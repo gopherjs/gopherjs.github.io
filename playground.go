@@ -109,7 +109,7 @@ func main() {
 			scope.Set("output", []interface{}{})
 		})
 
-		time.AfterFunc(0, func() {
+		time.AfterFunc(100*time.Millisecond, func() {
 			scope.Apply(func() {
 				run()
 			})
