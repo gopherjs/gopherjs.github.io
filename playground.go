@@ -26,6 +26,7 @@ func main() {
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
 		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n}\n")
+		scope.Set("output", []interface{}{&OutputLine{"out", "Loading..."}})
 
 		var t *translator.Translator
 		t = &translator.Translator{
@@ -108,7 +109,11 @@ func main() {
 			scope.Set("output", []interface{}{})
 		})
 
-		run()
+		time.AfterFunc(0, func() {
+			scope.Apply(func() {
+				run()
+			})
+		})
 	})
 }
 
