@@ -1,14 +1,15 @@
 package main
 
 import (
+	"bytes"
 	"code.google.com/p/go.tools/go/types"
 	"github.com/neelance/go-angularjs"
 	"github.com/neelance/gopherjs/translator"
-	"go/build"
+	"go/ast"
 	"go/format"
+	"go/parser"
+	"go/scanner"
 	"go/token"
-	"io"
-	"io/ioutil"
 	"os"
 	"strings"
 	"time"
@@ -28,59 +29,41 @@ func main() {
 		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n}\n")
 		scope.Set("output", []interface{}{&OutputLine{"out", "Loading..."}})
 
-		var t *translator.Translator
-		t = &translator.Translator{
-			BuildContext: &build.Context{
-				GOROOT:        "/",
-				GOOS:          build.Default.GOOS,
-				GOARCH:        build.Default.GOARCH,
-				Compiler:      "gc",
-				InstallSuffix: "js",
-				IsDir:         func(name string) bool { return dirs[name] != nil },
-				HasSubdir: func(root, dir string) (string, bool) {
-					if strings.HasPrefix(dir, root) {
-						return dir[len(root):], true
-					}
-					return "", false
-				},
-				ReadDir: func(name string) ([]os.FileInfo, error) {
-					return dirs[name], nil
-				},
-				OpenFile: func(name string) (io.ReadCloser, error) {
-					if name == "/prog.go" {
-						return ioutil.NopCloser(strings.NewReader(scope.GetString("code"))), nil
-					}
+		jsPackages := make(map[string][]byte)
+		fileSet := token.NewFileSet()
+		typesConfig := &types.Config{
+			Packages: make(map[string]*types.Package),
+			Import: func(imports map[string]*types.Package, path string) (*types.Package, error) {
+				if _, found := jsPackages[path]; found {
+					return imports[path], nil
+				}
 
-					content, found := files[name]
-					if !found {
-						return nil, os.ErrNotExist
-					}
-					return ioutil.NopCloser(strings.NewReader(content)), nil
-				},
-			},
-			TypesConfig: &types.Config{
-				Packages: make(map[string]*types.Package),
-			},
-			GetModTime: func(name string) time.Time {
-				return time.Unix(1, 0)
-			},
-			StoreArchive: func(pkg *translator.GopherPackage) error {
-				return nil
-			},
-			FileSet:  token.NewFileSet(),
-			Packages: make(map[string]*translator.GopherPackage),
-		}
+				code, imp, err := translator.ReadArchive(imports, path+".a", path, strings.NewReader(files["/pkg/darwin_amd64_js/"+path+".a"]))
+				if err != nil {
+					return nil, err
+				}
+				jsPackages[path] = code
 
-		pkg := &translator.GopherPackage{
-			Package: &build.Package{
-				Name:       "main",
-				ImportPath: "main",
-				GoFiles:    []string{"prog.go"},
+				return imp, nil
 			},
 		}
 
 		run := func() {
-			err := t.BuildPackage(pkg)
+			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.GetString("code")), 0)
+			if err != nil {
+				if list, isList := err.(scanner.ErrorList); isList {
+					output := make([]interface{}, 0)
+					for _, entry := range list {
+						output = append(output, &OutputLine{"err", entry.Error()})
+					}
+					scope.Set("output", output)
+					return
+				}
+				scope.Set("output", []interface{}{&OutputLine{"err", err.Error()}})
+				return
+			}
+
+			jsPackages["main"], err = translator.TranslatePackage("main", []*ast.File{file}, fileSet, typesConfig)
 			if err != nil {
 				if list, isList := err.(translator.ErrorList); isList {
 					output := make([]interface{}, 0)
@@ -94,8 +77,35 @@ func main() {
 				return
 			}
 
+			dependencies, err := translator.GetAllDependencies("main", typesConfig)
+			if err != nil {
+				scope.Set("output", []interface{}{&OutputLine{"err", err.Error()}})
+				return
+			}
+
+			jsCode := bytes.NewBuffer(nil)
+			jsCode.WriteString(strings.TrimSpace(translator.Prelude))
+			jsCode.WriteRune('\n')
+
+			for _, dep := range dependencies {
+				jsCode.WriteString("Go$packages[\"" + dep + "\"] = (function() {\n")
+				jsCode.Write(jsPackages[dep])
+				jsCode.WriteString("})();\n")
+			}
+
+			translator.WriteInterfaces(dependencies, typesConfig, jsCode)
+
+			for _, depPath := range dependencies {
+				initObj := typesConfig.Packages[depPath].Scope().Lookup("init")
+				if initObj != nil {
+					jsCode.WriteString("Go$packages[\"" + depPath + "\"].init();\n")
+				}
+			}
+
+			jsCode.WriteString("Go$packages[\"main\"].main();\n")
+
 			scope.Set("output", []interface{}{})
-			evalScript(string(pkg.JavaScriptCode), scope)
+			evalScript(jsCode.String(), scope)
 		}
 		scope.Set("run", run)
 
