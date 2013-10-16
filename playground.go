@@ -48,7 +48,11 @@ func main() {
 			},
 		}
 
+		setupEnvironment(scope)
+
 		run := func() {
+			scope.Set("output", []interface{}{})
+
 			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.GetString("code")), 0)
 			if err != nil {
 				if list, isList := err.(scanner.ErrorList); isList {
@@ -83,31 +87,35 @@ func main() {
 				return
 			}
 
-			jsCode := bytes.NewBuffer(nil)
-			jsCode.WriteString(strings.TrimSpace(translator.Prelude))
-			jsCode.WriteRune('\n')
-
+			var toLoad []*types.Package
 			for _, dep := range dependencies {
-				jsCode.WriteString("Go$packages[\"" + dep + "\"] = (function() {\n")
-				jsCode.Write(jsPackages[dep])
+				if dep.Path() == "main" || !isAlreadyLoaded(dep.Path()) {
+					toLoad = append(toLoad, dep)
+				}
+			}
+
+			jsCode := bytes.NewBuffer(nil)
+
+			for _, dep := range toLoad {
+				jsCode.WriteString("Go$packages[\"" + dep.Path() + "\"] = (function() {\n")
+				jsCode.Write(jsPackages[dep.Path()])
 				jsCode.WriteString("})();\n")
 			}
 
-			translator.WriteInterfaces(dependencies, typesConfig, jsCode)
+			translator.WriteInterfaces(dependencies, jsCode)
 
-			for _, depPath := range dependencies {
-				initObj := typesConfig.Packages[depPath].Scope().Lookup("init")
-				if initObj != nil {
-					jsCode.WriteString("Go$packages[\"" + depPath + "\"].init();\n")
+			for _, dep := range toLoad {
+				if dep.Scope().Lookup("init") != nil {
+					jsCode.WriteString("Go$packages[\"" + dep.Path() + "\"].init();\n")
 				}
 			}
 
 			jsCode.WriteString("Go$packages[\"main\"].main();\n")
 
-			scope.Set("output", []interface{}{})
 			evalScript(jsCode.String(), scope)
 		}
 		scope.Set("run", run)
+		run()
 
 		scope.Set("format", func() {
 			out, err := format.Source([]byte(scope.GetString("code")))
@@ -118,26 +126,19 @@ func main() {
 			scope.Set("code", string(out))
 			scope.Set("output", []interface{}{})
 		})
-
-		time.AfterFunc(100*time.Millisecond, func() {
-			scope.Apply(func() {
-				run()
-			})
-		})
 	})
 }
 
-func evalScript(script string, scope *angularjs.Scope) {}
+func setupEnvironment(scope *angularjs.Scope) {}
 
-const js_evalScript = `
-  var Go$webMode = true;
-  var console = { log: function() {
+const js_setupEnvironment = `
+  console = { log: function() {
   	var lines = Go$externalizeString(Array.prototype.join.call(arguments, " ")).split("\n");
   	for (var i = 0; i < lines.length; i++) {
   		scope.native.output.push(new OutputLine("out", lines[i]));
   	}
   } };
-  var Go$syscall = function(trap, arg1, arg2, arg3) {
+  Go$packages["syscall"].Go$setSyscall(function(trap, arg1, arg2, arg3) {
   	switch (trap) {
   	case 4: // SYS_WRITE
   	  var lines = Go$externalizeString(Go$bytesToString(new Go$Slice(arg2))).split("\n");
@@ -152,7 +153,18 @@ const js_evalScript = `
   	default:
 	  	throw new Go$Panic("Syscall not supported: " + trap);
   	}
-  };
+  });
+`
+
+func isAlreadyLoaded(path string) bool { return false }
+
+const js_isAlreadyLoaded = `
+  return Go$packages[path] !== undefined;
+`
+
+func evalScript(script string, scope *angularjs.Scope) {}
+
+const js_evalScript = `
   try {
   	eval(script);
   } catch (err) {
