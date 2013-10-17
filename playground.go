@@ -102,7 +102,7 @@ func main() {
 				jsCode.WriteString("})();\n")
 			}
 
-			translator.WriteInterfaces(dependencies, jsCode)
+			translator.WriteInterfaces(dependencies, jsCode, true)
 
 			for _, dep := range toLoad {
 				if dep.Scope().Lookup("init") != nil {
@@ -133,7 +133,7 @@ func setupEnvironment(scope *angularjs.Scope) {}
 
 const js_setupEnvironment = `
   console = { log: function() {
-  	var lines = Go$externalizeString(Array.prototype.join.call(arguments, " ")).split("\n");
+  	var lines = Go$externalizeString(Array.prototype.join.call(arguments, " ") + "\n").split("\n");
   	for (var i = 0; i < lines.length; i++) {
   		scope.native.output.push(new OutputLine("out", lines[i]));
   	}
