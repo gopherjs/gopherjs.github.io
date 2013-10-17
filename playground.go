@@ -26,7 +26,7 @@ func main() {
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
-		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n}\n")
+		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\talert(\"Hello, playground\")\n\tfmt.Println(\"Hello, playground\")\n}\n\nfunc alert(msg string) {}\n\nconst js_alert = `window.alert(msg);`\n")
 		scope.Set("output", []interface{}{&OutputLine{"out", "Loading..."}})
 
 		jsPackages := make(map[string][]byte)
@@ -50,7 +50,7 @@ func main() {
 
 		setupEnvironment(scope)
 
-		run := func() {
+		run := func(loadOnly bool) {
 			scope.Set("output", []interface{}{})
 
 			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.GetString("code")), 0)
@@ -110,12 +110,14 @@ func main() {
 				}
 			}
 
-			jsCode.WriteString("Go$packages[\"main\"].main();\n")
+			if !loadOnly {
+				jsCode.WriteString("Go$packages[\"main\"].main();\n")
+			}
 
 			evalScript(jsCode.String(), scope)
 		}
 		scope.Set("run", run)
-		run()
+		run(true)
 
 		scope.Set("format", func() {
 			out, err := format.Source([]byte(scope.GetString("code")))
