@@ -10,9 +10,7 @@ import (
 	"go/parser"
 	"go/scanner"
 	"go/token"
-	"os"
 	"strings"
-	"time"
 )
 
 type OutputLine struct {
@@ -38,7 +36,7 @@ func main() {
 					return imports[path], nil
 				}
 
-				code, imp, err := translator.ReadArchive(imports, path+".a", path, strings.NewReader(files["/pkg/darwin_amd64_js/"+path+".a"]))
+				code, imp, err := translator.ReadArchive(imports, path+".a", path, strings.NewReader(files[path+".a"]))
 				if err != nil {
 					return nil, err
 				}
@@ -177,32 +175,3 @@ const js_evalScript = `
   	}
   }
 `
-
-type FileEntry struct {
-	name string
-	mode os.FileMode
-}
-
-func (e *FileEntry) Name() string {
-	return e.name
-}
-
-func (e *FileEntry) Size() int64 {
-	return 0
-}
-
-func (e *FileEntry) Mode() os.FileMode {
-	return e.mode
-}
-
-func (e *FileEntry) ModTime() time.Time {
-	return time.Unix(1, 0)
-}
-
-func (e *FileEntry) IsDir() bool {
-	return e.mode.IsDir()
-}
-
-func (e *FileEntry) Sys() interface{} {
-	return nil
-}
