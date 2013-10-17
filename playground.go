@@ -26,7 +26,7 @@ func main() {
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
-		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\talert(\"Hello, playground\")\n\tfmt.Println(\"Hello, playground\")\n}\n\nfunc alert(msg string) {}\n\nconst js_alert = `window.alert(msg);`\n")
+		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\talert(\"Hello, JavaScript\")\n\tfmt.Println(\"Hello, playground\")\n}\n\nfunc alert(msg string) {}\n\nconst js_alert = `window.alert(msg);`\n")
 		scope.Set("output", []interface{}{&OutputLine{"out", "Loading..."}})
 
 		jsPackages := make(map[string][]byte)
