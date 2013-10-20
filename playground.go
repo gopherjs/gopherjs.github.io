@@ -103,9 +103,7 @@ func main() {
 			translator.WriteInterfaces(dependencies, jsCode, true)
 
 			for _, dep := range toLoad {
-				if dep.Scope().Lookup("init") != nil {
-					jsCode.WriteString("Go$packages[\"" + dep.Path() + "\"].init();\n")
-				}
+				jsCode.WriteString("Go$packages[\"" + dep.Path() + "\"].init();\n")
 			}
 
 			if !loadOnly {
