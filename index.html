@@ -49,6 +49,7 @@
         position: absolute;
         right: 0;
         top: 75%;
+        overflow: scroll;
       }
       #output .system,#output .loading {
         color: #999;
@@ -119,7 +120,7 @@
       <textarea ng-model="code" id="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
     </div>
     <div id="output">
-      <div ng-repeat="line in output" class="{{line.Type}}">{{line.Content}}</div>
+      <pre ng-repeat="line in output" class="{{line.Type}}">{{line.Content}}</pre>
     </div>
 </body>
 </html>

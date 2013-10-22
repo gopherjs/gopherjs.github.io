@@ -131,11 +131,18 @@ func main() {
 func setupEnvironment(scope *angularjs.Scope) {}
 
 const js_setupEnvironment = `
+  var scrollToBottom = function() {
+    window.setTimeout(function() {
+      var box = document.getElementById("output");
+      box.scrollTop = box.scrollHeight;
+    }, 0);
+  };
   console = { log: function() {
   	var lines = Go$externalizeString(Array.prototype.join.call(arguments, " ") + "\n").split("\n");
   	for (var i = 0; i < lines.length; i++) {
   		scope.native.output.push(new OutputLine("out", lines[i]));
   	}
+    scope.native.$evalAsync(scrollToBottom);
   } };
   Go$packages["syscall"].Go$setSyscall(function(trap, arg1, arg2, arg3) {
   	switch (trap) {
@@ -148,6 +155,7 @@ const js_setupEnvironment = `
 	  	for (var i = 1; i < lines.length; i++) {
 	  	  scope.native.output.push(new OutputLine("out", lines[i]));
 	  	}
+      scope.native.$evalAsync(scrollToBottom);
   	  return [arg2.length, 0, null];
   	default:
 	  	throw new Go$Panic("Syscall not supported: " + trap);
