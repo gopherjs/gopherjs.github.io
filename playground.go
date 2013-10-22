@@ -10,7 +10,6 @@ import (
 	"go/parser"
 	"go/scanner"
 	"go/token"
-	"strings"
 )
 
 type OutputLine struct {
@@ -36,7 +35,7 @@ func main() {
 					return imports[path], nil
 				}
 
-				code, imp, err := translator.ReadArchive(imports, path+".a", path, strings.NewReader(files[path+".a"]))
+				code, imp, err := translator.ReadArchive(imports, path+".a", path, bytes.NewReader([]byte(files[path+".a"])))
 				if err != nil {
 					return nil, err
 				}
@@ -85,6 +84,10 @@ func main() {
 				return
 			}
 
+			if loadOnly {
+				return
+			}
+
 			var toLoad []*types.Package
 			for _, dep := range dependencies {
 				if dep.Path() == "main" || !isAlreadyLoaded(dep.Path()) {
@@ -106,9 +109,7 @@ func main() {
 				jsCode.WriteString("Go$packages[\"" + dep.Path() + "\"].init();\n")
 			}
 
-			if !loadOnly {
-				jsCode.WriteString("Go$packages[\"main\"].main();\n")
-			}
+			jsCode.WriteString("Go$packages[\"main\"].main();\n")
 
 			evalScript(jsCode.String(), scope)
 		}
