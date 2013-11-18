@@ -17,8 +17,6 @@ type OutputLine struct {
 	Content string
 }
 
-const gopherjsWebMode = true
-
 func main() {
 	app := angularjs.NewModule("playground", nil, nil)
 
