@@ -96,9 +96,9 @@ func main() {
 			jsCode := bytes.NewBuffer(nil)
 
 			for _, dep := range toLoad {
-				jsCode.WriteString("Go$packages[\"" + dep.Path() + "\"] = (function() {\n")
+				jsCode.WriteString("Go$packages[\"" + dep.Path() + "\"] = (function() {\n  var Go$pkg = {};\n")
 				jsCode.Write(jsPackages[dep.Path()])
-				jsCode.WriteString("})();\n")
+				jsCode.WriteString("  return Go$pkg;\n})();\n")
 			}
 
 			translator.WriteInterfaces(dependencies, jsCode, true)
