@@ -16,7 +16,6 @@ func main() {
 	out.WriteString("package main\n\nvar files = map[string]string {\n")
 
 	readDir := func(dir string) {
-		dir = fmt.Sprintf("%s/pkg/%s_%s_js/", dir, build.Default.GOOS, build.Default.GOARCH)
 		err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 			if info.IsDir() {
 				return nil
@@ -33,8 +32,9 @@ func main() {
 			panic(err)
 		}
 	}
-	readDir(build.Default.GOROOT)
-	readDir(build.Default.GOPATH)
+	readDir(fmt.Sprintf("%s/pkg/%s_%s_js/", build.Default.GOROOT, build.Default.GOOS, build.Default.GOARCH))
+	readDir(fmt.Sprintf("%s/pkg/%s_js/", build.Default.GOROOT, build.Default.GOOS))
+	readDir(fmt.Sprintf("%s/pkg/%s_js/", build.Default.GOPATH, build.Default.GOOS))
 
 	out.WriteString("}\n")
 	out.Close()
