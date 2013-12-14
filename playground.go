@@ -151,7 +151,7 @@ const js_setupEnvironment = `
   Go$packages["syscall"].Go$setSyscall(function(trap, arg1, arg2, arg3) {
   	switch (trap) {
   	case 4: // SYS_WRITE
-  	  write(Go$bytesToString(new Go$Slice(arg2)));
+  	  write(Go$bytesToString(new (Go$sliceType(Go$Byte))(arg2)));
   	  return [arg2.length, 0, null];
   	default:
 	  	throw new Go$Panic("Syscall not supported: " + trap);
