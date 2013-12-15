@@ -1,16 +1,4 @@
-diff -r 55504f60f053 go/types/builtins.go
---- a/go/types/builtins.go
-+++ b/go/types/builtins.go
-@@ -566,7 +566,7 @@
- 		list[i] = NewVar(token.NoPos, nil, "", defaultType(param))
- 	}
- 	params := NewTuple(list...)
--	var result *Tuple
-+	result := NewTuple()
- 	if res != nil {
- 		assert(!isUntyped(res))
- 		result = NewTuple(NewVar(token.NoPos, nil, "", res))
-diff -r 55504f60f053 go/types/call.go
+diff -r 000d539042f7 go/types/call.go
 --- a/go/types/call.go
 +++ b/go/types/call.go
 @@ -238,7 +238,6 @@
@@ -95,7 +83,7 @@ diff -r 55504f60f053 go/types/call.go
 -	x.mode = invalid
 -	x.expr = e
  }
-diff -r 55504f60f053 go/types/expr.go
+diff -r 000d539042f7 go/types/expr.go
 --- a/go/types/expr.go
 +++ b/go/types/expr.go
 @@ -481,7 +481,9 @@
@@ -189,15 +177,6 @@ diff -r 55504f60f053 go/types/expr.go
  }
  
  func (check *checker) comparison(x, y *operand, op token.Token) {
-@@ -908,7 +921,7 @@
- 		typ = Typ[Invalid]
- 		record = false // nothing to do
- 	case novalue:
--		typ = (*Tuple)(nil)
-+		typ = (*Tuple)(NewTuple())
- 	case constant:
- 		typ = x.typ
- 		val = x.val
 @@ -947,7 +960,9 @@
  
  	switch e := e.(type) {
@@ -461,88 +440,3 @@ diff -r 55504f60f053 go/types/expr.go
  }
  
  // typeAssertion checks that x.(T) is legal; xtyp must be the type of x.
-diff -r 55504f60f053 go/types/methodset.go
---- a/go/types/methodset.go
-+++ b/go/types/methodset.go
-@@ -121,8 +121,8 @@
- 		var next []embeddedType // embedded types found at current depth
- 
- 		// field and method sets at current depth, allocated lazily
--		var fset fieldSet
--		var mset methodSet
-+		fset := make(fieldSet)
-+		mset := make(methodSet)
- 
- 		for _, e := range current {
- 			// The very first time only, e.typ may be nil.
-@@ -229,9 +229,6 @@
- // If multiples is set, f appears multiple times
- // and is treated as a collision.
- func (s fieldSet) add(f *Var, multiples bool) fieldSet {
--	if s == nil {
--		s = make(fieldSet)
--	}
- 	key := f.Id()
- 	// if f is not in the set, add it
- 	if !multiples {
-@@ -256,9 +253,6 @@
- 	if len(list) == 0 {
- 		return s
- 	}
--	if s == nil {
--		s = make(methodSet)
--	}
- 	for i, f := range list {
- 		key := f.Id()
- 		// if f is not in the set, add it
-diff -r 55504f60f053 go/types/typemap/typemap.go
---- a/go/types/typemap/typemap.go
-+++ b/go/types/typemap/typemap.go
-@@ -130,10 +130,7 @@
- 
- // Len returns the number of map entries.
- func (m *M) Len() int {
--	if m != nil {
--		return m.length
--	}
--	return 0
-+	return m.length
- }
- 
- // Iterate calls function f on each entry in the map in unspecified order.
-diff -r 55504f60f053 go/types/types.go
---- a/go/types/types.go
-+++ b/go/types/types.go
-@@ -186,18 +186,12 @@
- 
- // NewTuple returns a new tuple for the given variables.
- func NewTuple(x ...*Var) *Tuple {
--	if len(x) > 0 {
--		return &Tuple{x}
--	}
--	return nil
-+	return &Tuple{x}
- }
- 
- // Len returns the number variables of tuple t.
- func (t *Tuple) Len() int {
--	if t != nil {
--		return len(t.vars)
--	}
--	return 0
-+	return len(t.vars)
- }
- 
- // At returns the i'th variable of tuple t.
-diff -r 55504f60f053 go/types/universe.go
---- a/go/types/universe.go
-+++ b/go/types/universe.go
-@@ -65,7 +65,7 @@
- 
- 	// Error has a nil package in its qualified name since it is in no package
- 	res := NewVar(token.NoPos, nil, "", Typ[String])
--	sig := &Signature{results: NewTuple(res)}
-+	sig := &Signature{results: NewTuple(res), params: NewTuple()}
- 	err := NewFunc(token.NoPos, nil, "Error", sig)
- 	typ := &Named{underlying: NewInterface([]*Func{err}, nil), complete: true}
- 	sig.recv = NewVar(token.NoPos, nil, "", typ)
