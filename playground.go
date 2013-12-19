@@ -96,18 +96,18 @@ func main() {
 			jsCode := bytes.NewBuffer(nil)
 
 			for _, dep := range toLoad {
-				jsCode.WriteString("Go$packages[\"" + dep.Path() + "\"] = (function() {\n  var Go$pkg = {};\n")
+				jsCode.WriteString("go$packages[\"" + dep.Path() + "\"] = (function() {\n  var go$pkg = {};\n")
 				jsCode.Write(jsPackages[dep.Path()])
-				jsCode.WriteString("  return Go$pkg;\n})();\n")
+				jsCode.WriteString("  return go$pkg;\n})();\n")
 			}
 
 			translator.WriteInterfaces(dependencies, jsCode, true)
 
 			for _, dep := range toLoad {
-				jsCode.WriteString("Go$packages[\"" + dep.Path() + "\"].init();\n")
+				jsCode.WriteString("go$packages[\"" + dep.Path() + "\"].init();\n")
 			}
 
-			jsCode.WriteString("Go$packages[\"main\"].main();\n")
+			jsCode.WriteString("go$packages[\"main\"].main();\n")
 
 			evalScript(jsCode.String(), scope)
 		}
@@ -130,7 +130,7 @@ func setupEnvironment(scope *angularjs.Scope) {}
 
 const js_setupEnvironment = `
   var write = function(str) {
-    var lines = Go$externalizeString(str).split("\n");
+    var lines = go$externalizeString(str).split("\n");
     if (scope.native.output.length === 0) {
       scope.native.output.push(new OutputLine("out", ""));
     }
@@ -148,10 +148,10 @@ const js_setupEnvironment = `
   console = { log: function() {
     write(Array.prototype.join.call(arguments, " ") + "\n");
   } };
-  Go$packages["syscall"].Go$setSyscall(function(trap, arg1, arg2, arg3) {
+  go$packages["syscall"].go$setSyscall(function(trap, arg1, arg2, arg3) {
   	switch (trap) {
   	case 4: // SYS_WRITE
-  	  write(Go$bytesToString(new (Go$sliceType(Go$Uint8))(arg2)));
+  	  write(go$bytesToString(new (go$sliceType(Go$Uint8))(arg2)));
   	  return [arg2.length, 0, null];
   	default:
 	  	throw new Go$Panic("Syscall not supported: " + trap);
@@ -162,7 +162,7 @@ const js_setupEnvironment = `
 func isAlreadyLoaded(path string) bool { return false }
 
 const js_isAlreadyLoaded = `
-  return Go$packages[path] !== undefined;
+  return go$packages[path] !== undefined;
 `
 
 func evalScript(script string, scope *angularjs.Scope) {}
