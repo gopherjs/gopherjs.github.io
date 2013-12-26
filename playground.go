@@ -132,11 +132,11 @@ const js_setupEnvironment = `
   var write = function(str) {
     var lines = go$externalizeString(str).split("\n");
     if (scope.native.output.length === 0) {
-      scope.native.output.push(new OutputLine("out", ""));
+      scope.native.output.push(new OutputLine.Ptr("out", ""));
     }
     scope.native.output[scope.native.output.length - 1].Content += lines[0];
     for (var i = 1; i < lines.length; i++) {
-      scope.native.output.push(new OutputLine("out", lines[i]));
+      scope.native.output.push(new OutputLine.Ptr("out", lines[i]));
     }
     scope.native.$evalAsync(function() {
       window.setTimeout(function() {
@@ -171,10 +171,10 @@ const js_evalScript = `
   try {
   	eval(script);
   } catch (err) {
-  	scope.native.output.push(new OutputLine("err", "panic: " + err.message.v));
+  	scope.native.output.push(new OutputLine.Ptr("err", "panic: " + err.message.v));
   	var stack = err.stack.split("\n").slice(1, -12);
   	for (var i = 0; i < stack.length; i++) {
-  		scope.native.output.push(new OutputLine("err", stack[i].split(" (eval at ")[0]));
+  		scope.native.output.push(new OutputLine.Ptr("err", stack[i].split(" (eval at ")[0]));
   	}
   }
 `
