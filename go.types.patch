@@ -1,4 +1,4 @@
-diff -r 000d539042f7 go/types/call.go
+diff -r cb7689e25ef0 go/types/call.go
 --- a/go/types/call.go
 +++ b/go/types/call.go
 @@ -238,7 +238,6 @@
@@ -83,7 +83,7 @@ diff -r 000d539042f7 go/types/call.go
 -	x.mode = invalid
 -	x.expr = e
  }
-diff -r 000d539042f7 go/types/expr.go
+diff -r cb7689e25ef0 go/types/expr.go
 --- a/go/types/expr.go
 +++ b/go/types/expr.go
 @@ -481,7 +481,9 @@
@@ -132,7 +132,7 @@ diff -r 000d539042f7 go/types/expr.go
  			}
  		}
  	case *Interface:
- 		if !x.isNil() && t.NumMethods() > 0 /* empty interfaces are ok */ {
+ 		if !x.isNil() && !t.Empty() /* empty interfaces are ok */ {
 -			goto Error
 +			check.errorf(x.pos(), "cannot convert %s to %s", x, target)
 +			x.mode = invalid
@@ -143,7 +143,7 @@ diff -r 000d539042f7 go/types/expr.go
 @@ -536,27 +548,28 @@
  		} else {
  			// cannot assign untyped values to non-empty interfaces
- 			if t.NumMethods() > 0 {
+ 			if !t.Empty() {
 -				goto Error
 +				check.errorf(x.pos(), "cannot convert %s to %s", x, target)
 +				x.mode = invalid
