@@ -10,18 +10,15 @@ import (
 	"go/parser"
 	"go/scanner"
 	"go/token"
+	"strings"
+	"time"
 )
-
-type OutputLine struct {
-	Type    string
-	Content string
-}
 
 func main() {
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
-		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\talert(\"Hello, JavaScript\")\n\tfmt.Println(\"Hello, playground\")\n}\n\nfunc alert(msg string) {}\n\nconst js_alert = `window.alert(msg);`\n")
+		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\talert(\"こんにちは Hello, JavaScript\")\n\tfmt.Println(\"こんにちは Hello, playground\")\n}\n\nfunc alert(msg string) {}\n\nconst js_alert = `window.alert(msg);`\n")
 		scope.Set("output", []interface{}{&OutputLine{"out", "Loading..."}})
 
 		jsPackages := make(map[string][]byte)
@@ -126,32 +123,56 @@ func main() {
 	})
 }
 
+type jsObject *struct{}
+
+type OutputLine struct {
+	Type    string
+	Content string
+}
+
+func (o *OutputLine) EncodedContent() jsObject {
+	return encodeString(o.Content)
+}
+
+func encodeString(s string) jsObject { return nil }
+
+const js_encodeString = `
+  return s;
+`
+
+func writeString(scope *angularjs.Scope, s string) {
+	lines := strings.Split(s, "\n")
+	output := scope.Get("output").([]interface{})
+	if len(output) == 0 {
+		output = []interface{}{&OutputLine{"out", ""}}
+	}
+	output[len(output)-1].(*OutputLine).Content += lines[0]
+	for i := 1; i < len(lines); i++ {
+		output = append(output, OutputLine{"out", lines[i]})
+	}
+	scope.Set("output", output)
+	scope.EvalAsync(func() {
+		time.AfterFunc(0, func() {
+			box := angularjs.ElementById("output")
+			box.SetProp("scrollTop", box.Prop("scrollHeight"))
+		})
+	})
+}
+
+func writeBytes(scope *angularjs.Scope, b [0]byte) {
+	writeString(scope, string(b[:]))
+}
+
 func setupEnvironment(scope *angularjs.Scope) {}
 
 const js_setupEnvironment = `
-  var write = function(str) {
-    var lines = go$externalizeString(str).split("\n");
-    if (scope.native.output.length === 0) {
-      scope.native.output.push(new OutputLine.Ptr("out", ""));
-    }
-    scope.native.output[scope.native.output.length - 1].Content += lines[0];
-    for (var i = 1; i < lines.length; i++) {
-      scope.native.output.push(new OutputLine.Ptr("out", lines[i]));
-    }
-    scope.native.$evalAsync(function() {
-      window.setTimeout(function() {
-        var box = document.getElementById("output");
-        box.scrollTop = box.scrollHeight;
-      }, 0);
-    });
-  };
   console = { log: function() {
-    write(Array.prototype.join.call(arguments, " ") + "\n");
+    writeString(scope, Array.prototype.join.call(arguments, " ") + "\n");
   } };
   go$packages["syscall"].go$setSyscall(function(trap, arg1, arg2, arg3) {
   	switch (trap) {
   	case 4: // SYS_WRITE
-  	  write(go$bytesToString(new (go$sliceType(Go$Uint8))(arg2)));
+  	  writeBytes(scope, arg2);
   	  return [arg2.length, 0, null];
   	default:
 	  	throw new Go$Panic("Syscall not supported: " + trap);
@@ -171,7 +192,7 @@ const js_evalScript = `
   try {
   	eval(script);
   } catch (err) {
-  	scope.native.output.push(new OutputLine.Ptr("err", "panic: " + err.message.v));
+  	scope.native.output.push(new OutputLine.Ptr("err", "panic: " + err.message));
   	var stack = err.stack.split("\n").slice(1, -12);
   	for (var i = 0; i < stack.length; i++) {
   		scope.native.output.push(new OutputLine.Ptr("err", stack[i].split(" (eval at ")[0]));
