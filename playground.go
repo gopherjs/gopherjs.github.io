@@ -195,7 +195,7 @@ const js_evalScript = `
   	scope.native.output.push(new OutputLine.Ptr("err", "panic: " + err.message));
   	var stack = err.stack.split("\n").slice(1, -12);
   	for (var i = 0; i < stack.length; i++) {
-  		scope.native.output.push(new OutputLine.Ptr("err", stack[i].split(" (eval at ")[0]));
+  		scope.native.output.push(new OutputLine.Ptr("err", stack[i].split(/ \(|@/)[0]));
   	}
   }
 `
