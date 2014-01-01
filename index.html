@@ -116,11 +116,23 @@
         <input type="button" value="Format" ng-click="format()">
       </div>
     </div>
+    
     <div id="wrap">
       <textarea ng-model="code" id="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
     </div>
     <div id="output">
       <pre ng-repeat="line in output" class="{{line.Type}}">{{line.EncodedContent()}}&nbsp;</pre>
     </div>
-</body>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46799660-2', 'neelance.github.io');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
 </html>
