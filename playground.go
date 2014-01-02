@@ -192,10 +192,10 @@ const js_evalScript = `
   try {
   	eval(script);
   } catch (err) {
-  	scope.native.output.push(new OutputLine.Ptr("err", "panic: " + err.message));
+  	scope.jso.output.push(new OutputLine.Ptr("err", "panic: " + err.message));
   	var stack = err.stack.split("\n").slice(1, -12);
   	for (var i = 0; i < stack.length; i++) {
-  		scope.native.output.push(new OutputLine.Ptr("err", stack[i].split(/ \(|@/)[0]));
+  		scope.jso.output.push(new OutputLine.Ptr("err", stack[i].split(/ \(|@/)[0]));
   	}
   }
 `
