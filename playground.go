@@ -18,7 +18,7 @@ func main() {
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
-		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\talert(\"Hello, JavaScript\")\n\tfmt.Println(\"Hello, playground\")\n}\n\nfunc alert(msg string) {}\n\nconst js_alert = `window.alert(msg);`\n")
+		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\talert(\"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n\nfunc alert(msg string) {}\n\nconst js_alert = `\n\twindow.alert(msg);\n`\n")
 		scope.Set("output", []interface{}{&OutputLine{"out", "Loading..."}})
 
 		jsPackages := make(map[string][]byte)
@@ -188,9 +188,6 @@ func writeBytes(scope *angularjs.Scope, b [0]byte) {
 func setupEnvironment(scope *angularjs.Scope) {}
 
 const js_setupEnvironment = `
-	// console = { log: function() {
-	//   writeString(scope, Array.prototype.join.call(arguments, " ") + "\n");
-	// } };
 	go$packages["syscall"].go$setSyscall(function(trap, arg1, arg2, arg3) {
 		switch (trap) {
 		case 4: // SYS_WRITE
