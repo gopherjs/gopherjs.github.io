@@ -23,31 +23,29 @@ func main() {
 
 		jsPackages := make(map[string][]byte)
 		fileSet := token.NewFileSet()
+		var pkgsToLoad []string
+		pkgsReceived := 0
 		typesConfig := &types.Config{
 			Packages: make(map[string]*types.Package),
 			Import: func(imports map[string]*types.Package, path string) (*types.Package, error) {
 				if _, found := jsPackages[path]; found {
 					return imports[path], nil
 				}
-
-				code, imp, err := translator.ReadArchive(imports, path+".a", path, bytes.NewReader([]byte(files[path+".a"])))
-				if err != nil {
-					return nil, err
-				}
-				jsPackages[path] = code
-
-				return imp, nil
+				pkgsToLoad = append(pkgsToLoad, path)
+				return nil, nil
 			},
 		}
 
 		setupEnvironment(scope)
 
-		run := func(loadOnly bool) {
+		var run func(bool)
+		run = func(loadOnly bool) {
 			scope.Set("output", []interface{}{})
+			pkgsToLoad = nil
 
 			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.GetString("code")), 0)
 			if err != nil {
-				if list, isList := err.(scanner.ErrorList); isList {
+				if list, ok := err.(scanner.ErrorList); ok {
 					output := make([]interface{}, 0)
 					for _, entry := range list {
 						output = append(output, &OutputLine{"err", entry.Error()})
@@ -60,8 +58,8 @@ func main() {
 			}
 
 			jsPackages["main"], err = translator.TranslatePackage("main", []*ast.File{file}, fileSet, typesConfig)
-			if err != nil {
-				if list, isList := err.(translator.ErrorList); isList {
+			if err != nil && len(pkgsToLoad) == 0 {
+				if list, ok := err.(translator.ErrorList); ok {
 					output := make([]interface{}, 0)
 					for _, entry := range list {
 						output = append(output, &OutputLine{"err", entry.Error()})
@@ -76,6 +74,30 @@ func main() {
 			dependencies, err := translator.GetAllDependencies("main", typesConfig)
 			if err != nil {
 				scope.Set("output", []interface{}{&OutputLine{"err", err.Error()}})
+				return
+			}
+
+			if len(pkgsToLoad) != 0 {
+				pkgsReceived = 0
+				for _, p := range pkgsToLoad {
+					path := p
+					angularjs.HTTP.Get("pkg/"+path+".a", func(data string, status int) {
+						if status != 200 {
+							scope.Set("output", []interface{}{&OutputLine{"err", `cannot load package "` + path + `"`}})
+							return
+						}
+						code, _, err := translator.ReadArchive(typesConfig.Packages, path+".a", path, bytes.NewReader([]byte(data)))
+						if err != nil {
+							scope.Set("output", []interface{}{&OutputLine{"err", err.Error()}})
+							return
+						}
+						jsPackages[path] = code
+						pkgsReceived++
+						if pkgsReceived == len(pkgsToLoad) {
+							run(loadOnly)
+						}
+					})
+				}
 				return
 			}
 
@@ -137,7 +159,7 @@ func (o *OutputLine) EncodedContent() jsObject {
 func encodeString(s string) jsObject { return nil }
 
 const js_encodeString = `
-  return s;
+	return s;
 `
 
 func writeString(scope *angularjs.Scope, s string) {
@@ -166,36 +188,36 @@ func writeBytes(scope *angularjs.Scope, b [0]byte) {
 func setupEnvironment(scope *angularjs.Scope) {}
 
 const js_setupEnvironment = `
-  console = { log: function() {
-    writeString(scope, Array.prototype.join.call(arguments, " ") + "\n");
-  } };
-  go$packages["syscall"].go$setSyscall(function(trap, arg1, arg2, arg3) {
-  	switch (trap) {
-  	case 4: // SYS_WRITE
-  	  writeBytes(scope, arg2);
-  	  return [arg2.length, 0, null];
-  	default:
-	  	throw new Go$Panic("Syscall not supported: " + trap);
-  	}
-  });
+	// console = { log: function() {
+	//   writeString(scope, Array.prototype.join.call(arguments, " ") + "\n");
+	// } };
+	go$packages["syscall"].go$setSyscall(function(trap, arg1, arg2, arg3) {
+		switch (trap) {
+		case 4: // SYS_WRITE
+			writeBytes(scope, arg2);
+			return [arg2.length, 0, null];
+		default:
+			throw new Go$Panic("Syscall not supported: " + trap);
+		}
+	});
 `
 
 func isAlreadyLoaded(path string) bool { return false }
 
 const js_isAlreadyLoaded = `
-  return go$packages[path] !== undefined;
+	return go$packages[path] !== undefined;
 `
 
 func evalScript(script string, scope *angularjs.Scope) {}
 
 const js_evalScript = `
-  try {
-  	eval(script);
-  } catch (err) {
-  	scope.jso.output.push(new OutputLine.Ptr("err", "panic: " + err.message));
-  	var stack = err.stack.split("\n").slice(1, -12);
-  	for (var i = 0; i < stack.length; i++) {
-  		scope.jso.output.push(new OutputLine.Ptr("err", stack[i].split(/ \(|@/)[0]));
-  	}
-  }
+	try {
+		eval(script);
+	} catch (err) {
+		scope.jso.output.push(new OutputLine.Ptr("err", "panic: " + err.message));
+		var stack = err.stack.split("\n").slice(1, -12);
+		for (var i = 0; i < stack.length; i++) {
+			scope.jso.output.push(new OutputLine.Ptr("err", stack[i].split(/ \(|@/)[0]));
+		}
+	}
 `
