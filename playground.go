@@ -38,6 +38,8 @@ func main() {
 
 		setupEnvironment(scope)
 
+		// angularjs.ElementById("code")
+
 		var run func(bool)
 		run = func(loadOnly bool) {
 			scope.Set("output", []interface{}{})
@@ -197,6 +199,8 @@ const js_setupEnvironment = `
 			throw new Go$Panic("Syscall not supported: " + trap);
 		}
 	});
+
+	//angular.element(document.getElementById("code")).
 `
 
 func isAlreadyLoaded(path string) bool { return false }
