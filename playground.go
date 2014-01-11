@@ -38,7 +38,18 @@ func main() {
 
 		setupEnvironment(scope)
 
-		// angularjs.ElementById("code")
+		codeArea := angularjs.ElementById("code")
+		codeArea.On("keydown", func(e *angularjs.Event) {
+			if e.KeyCode == 9 {
+				start := int(codeArea.Prop("selectionStart").(float64))
+				end := int(codeArea.Prop("selectionEnd").(float64))
+				code := codeArea.Val().(string)
+				codeArea.SetVal(code[:start] + "\t" + code[end:])
+				codeArea.SetProp("selectionStart", start+1)
+				codeArea.SetProp("selectionEnd", start+1)
+				e.PreventDefault()
+			}
+		})
 
 		var run func(bool)
 		run = func(loadOnly bool) {
@@ -199,8 +210,6 @@ const js_setupEnvironment = `
 			throw new Go$Panic("Syscall not supported: " + trap);
 		}
 	});
-
-	//angular.element(document.getElementById("code")).
 `
 
 func isAlreadyLoaded(path string) bool { return false }
