@@ -47,7 +47,7 @@ func main() {
 			case '\r':
 				toInsert = "\n"
 				start := int(codeArea.Prop("selectionStart").(float64))
-				code := codeArea.Val().(string)
+				code := scope.GetString("code")
 				i := strings.LastIndex(code[:start], "\n") + 1
 				for i < start {
 					c := code[i]
@@ -61,8 +61,10 @@ func main() {
 			if toInsert != "" {
 				start := int(codeArea.Prop("selectionStart").(float64))
 				end := int(codeArea.Prop("selectionEnd").(float64))
-				code := codeArea.Val().(string)
-				codeArea.SetVal(code[:start] + toInsert + code[end:])
+				code := scope.GetString("code")
+				scope.Apply(func() {
+					scope.Set("code", code[:start]+toInsert+code[end:])
+				})
 				codeArea.SetProp("selectionStart", start+len(toInsert))
 				codeArea.SetProp("selectionEnd", start+len(toInsert))
 				e.PreventDefault()
