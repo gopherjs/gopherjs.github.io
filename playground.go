@@ -40,13 +40,31 @@ func main() {
 
 		codeArea := angularjs.ElementById("code")
 		codeArea.On("keydown", func(e *angularjs.Event) {
-			if e.KeyCode == 9 {
+			toInsert := ""
+			switch e.KeyCode {
+			case '\t':
+				toInsert = "\t"
+			case '\r':
+				toInsert = "\n"
+				start := int(codeArea.Prop("selectionStart").(float64))
+				code := codeArea.Val().(string)
+				i := strings.LastIndex(code[:start], "\n") + 1
+				for i < start {
+					c := code[i]
+					if c != ' ' && c != '\t' {
+						break
+					}
+					toInsert += string(c)
+					i++
+				}
+			}
+			if toInsert != "" {
 				start := int(codeArea.Prop("selectionStart").(float64))
 				end := int(codeArea.Prop("selectionEnd").(float64))
 				code := codeArea.Val().(string)
-				codeArea.SetVal(code[:start] + "\t" + code[end:])
-				codeArea.SetProp("selectionStart", start+1)
-				codeArea.SetProp("selectionEnd", start+1)
+				codeArea.SetVal(code[:start] + toInsert + code[end:])
+				codeArea.SetProp("selectionStart", start+len(toInsert))
+				codeArea.SetProp("selectionEnd", start+len(toInsert))
 				e.PreventDefault()
 			}
 		})
