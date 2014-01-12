@@ -1,4 +1,4 @@
-diff -r cb7689e25ef0 go/types/call.go
+diff -r f61e52f498ef go/types/call.go
 --- a/go/types/call.go
 +++ b/go/types/call.go
 @@ -238,7 +238,6 @@
@@ -83,7 +83,7 @@ diff -r cb7689e25ef0 go/types/call.go
 -	x.mode = invalid
 -	x.expr = e
  }
-diff -r cb7689e25ef0 go/types/expr.go
+diff -r f61e52f498ef go/types/expr.go
 --- a/go/types/expr.go
 +++ b/go/types/expr.go
 @@ -481,7 +481,9 @@
@@ -177,7 +177,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  }
  
  func (check *checker) comparison(x, y *operand, op token.Token) {
-@@ -947,7 +960,9 @@
+@@ -941,7 +954,9 @@
  
  	switch e := e.(type) {
  	case *ast.BadExpr:
@@ -188,7 +188,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  
  	case *ast.Ident:
  		check.ident(x, e, nil, false)
-@@ -956,13 +971,17 @@
+@@ -950,13 +965,17 @@
  		// ellipses are handled explicitly where they are legal
  		// (array composite literals and parameter lists)
  		check.errorf(e.Pos(), "invalid use of '...'")
@@ -208,8 +208,8 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  
  	case *ast.FuncLit:
-@@ -976,7 +995,9 @@
- 			check.later(nil, check.decl, sig, e.Body)
+@@ -969,7 +988,9 @@
+ 			x.typ = sig
  		} else {
  			check.invalidAST(e.Pos(), "invalid function literal %s", e)
 -			goto Error
@@ -219,7 +219,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  
  	case *ast.CompositeLit:
-@@ -1001,7 +1022,9 @@
+@@ -994,7 +1015,9 @@
  		}
  		if typ == nil {
  			check.errorf(e.Pos(), "missing type in composite literal")
@@ -230,7 +230,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  
  		switch typ, _ := deref(typ); utyp := typ.Underlying().(type) {
-@@ -1116,7 +1139,9 @@
+@@ -1109,7 +1132,9 @@
  
  		default:
  			check.errorf(e.Pos(), "invalid composite literal type %s", typ)
@@ -241,7 +241,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  
  		x.mode = value
-@@ -1133,7 +1158,9 @@
+@@ -1126,7 +1151,9 @@
  	case *ast.IndexExpr:
  		check.expr(x, e.X)
  		if x.mode == invalid {
@@ -252,7 +252,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  
  		valid := false
-@@ -1180,7 +1207,9 @@
+@@ -1173,7 +1200,9 @@
  				if key.mode != invalid {
  					check.invalidOp(key.pos(), "cannot use %s as map index of type %s", &key, typ.key)
  				}
@@ -263,7 +263,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  			}
  			x.mode = mapindex
  			x.typ = typ.elem
-@@ -1190,12 +1219,16 @@
+@@ -1183,12 +1212,16 @@
  
  		if !valid {
  			check.invalidOp(x.pos(), "cannot index %s", x)
@@ -282,7 +282,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  
  		check.index(e.Index, length)
-@@ -1204,7 +1237,9 @@
+@@ -1197,7 +1230,9 @@
  	case *ast.SliceExpr:
  		check.expr(x, e.X)
  		if x.mode == invalid {
@@ -293,7 +293,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  
  		valid := false
-@@ -1214,7 +1249,9 @@
+@@ -1207,7 +1242,9 @@
  			if isString(typ) {
  				if slice3(e) {
  					check.invalidOp(x.pos(), "3-index slice of string")
@@ -304,7 +304,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  				}
  				valid = true
  				if x.mode == constant {
-@@ -1233,7 +1270,9 @@
+@@ -1226,7 +1263,9 @@
  			length = typ.len
  			if x.mode != variable {
  				check.invalidOp(x.pos(), "cannot slice %s (value not addressable)", x)
@@ -315,7 +315,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  			}
  			x.typ = &Slice{elem: typ.elem}
  
-@@ -1253,13 +1292,17 @@
+@@ -1246,13 +1285,17 @@
  
  		if !valid {
  			check.invalidOp(x.pos(), "cannot slice %s", x)
@@ -335,7 +335,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  
  		// check indices
-@@ -1305,21 +1348,29 @@
+@@ -1298,21 +1341,29 @@
  	case *ast.TypeAssertExpr:
  		check.expr(x, e.X)
  		if x.mode == invalid {
@@ -369,7 +369,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  		check.typeAssertion(x.pos(), x, xtyp, T)
  		x.mode = commaok
-@@ -1332,7 +1383,9 @@
+@@ -1325,7 +1376,9 @@
  		check.exprOrType(x, e.X)
  		switch x.mode {
  		case invalid:
@@ -380,7 +380,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		case typexpr:
  			x.typ = &Pointer{base: x.typ}
  		default:
-@@ -1341,18 +1394,24 @@
+@@ -1334,18 +1387,24 @@
  				x.typ = typ.base
  			} else {
  				check.invalidOp(x.pos(), "cannot indirect %s", x)
@@ -408,7 +408,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  		}
  		if e.Op == token.ARROW {
  			x.expr = e
-@@ -1362,13 +1421,17 @@
+@@ -1355,13 +1414,17 @@
  	case *ast.BinaryExpr:
  		check.binary(x, e.X, e.Y, e.Op)
  		if x.mode == invalid {
@@ -428,7 +428,7 @@ diff -r cb7689e25ef0 go/types/expr.go
  
  	case *ast.ArrayType, *ast.StructType, *ast.FuncType,
  		*ast.InterfaceType, *ast.MapType, *ast.ChanType:
-@@ -1390,11 +1453,6 @@
+@@ -1383,11 +1446,6 @@
  	// everything went well
  	x.expr = e
  	return expression
