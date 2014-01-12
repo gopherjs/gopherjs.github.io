@@ -121,7 +121,7 @@
       <textarea ng-model="code" id="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
     </div>
     <div id="output">
-      <pre ng-repeat="line in output" class="{{line.Type}}">{{line.EncodedContent()}}&nbsp;</pre>
+      <pre ng-repeat="line in output" class="{{line.type}}">{{line.content}}&nbsp;</pre>
     </div>
 
     <script>

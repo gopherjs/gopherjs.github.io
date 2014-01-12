@@ -3,7 +3,9 @@ package main
 import (
 	"bytes"
 	"code.google.com/p/go.tools/go/types"
+	"fmt"
 	"github.com/neelance/go-angularjs"
+	"github.com/neelance/gopherjs/js"
 	"github.com/neelance/gopherjs/translator"
 	"go/ast"
 	"go/format"
@@ -14,12 +16,15 @@ import (
 	"time"
 )
 
+type Line map[string]string
+
+var output []Line
+
 func main() {
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
-		scope.Set("code", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\talert(\"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n\nfunc alert(msg string) {}\n\nconst js_alert = `\n\twindow.alert(msg);\n`\n")
-		scope.Set("output", []interface{}{&OutputLine{"out", "Loading..."}})
+		scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/neelance/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global(\"alert\").Invoke(\"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
 
 		jsPackages := make(map[string][]byte)
 		fileSet := token.NewFileSet()
@@ -46,8 +51,8 @@ func main() {
 				toInsert = "\t"
 			case '\r':
 				toInsert = "\n"
-				start := int(codeArea.Prop("selectionStart").(float64))
-				code := scope.GetString("code")
+				start := codeArea.Prop("selectionStart").Int()
+				code := scope.Get("code").String()
 				i := strings.LastIndex(code[:start], "\n") + 1
 				for i < start {
 					c := code[i]
@@ -59,9 +64,9 @@ func main() {
 				}
 			}
 			if toInsert != "" {
-				start := int(codeArea.Prop("selectionStart").(float64))
-				end := int(codeArea.Prop("selectionEnd").(float64))
-				code := scope.GetString("code")
+				start := codeArea.Prop("selectionStart").Int()
+				end := codeArea.Prop("selectionEnd").Int()
+				code := scope.Get("code").String()
 				scope.Apply(func() {
 					scope.Set("code", code[:start]+toInsert+code[end:])
 				})
@@ -73,40 +78,40 @@ func main() {
 
 		var run func(bool)
 		run = func(loadOnly bool) {
-			scope.Set("output", []interface{}{})
+			output = nil
+			scope.Set("output", output)
 			pkgsToLoad = nil
 
-			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.GetString("code")), 0)
+			file, err := parser.ParseFile(fileSet, "prog.go", []byte(scope.Get("code").String()), 0)
 			if err != nil {
 				if list, ok := err.(scanner.ErrorList); ok {
-					output := make([]interface{}, 0)
 					for _, entry := range list {
-						output = append(output, &OutputLine{"err", entry.Error()})
+						output = append(output, Line{"type": "err", "content": entry.Error()})
 					}
 					scope.Set("output", output)
 					return
 				}
-				scope.Set("output", []interface{}{&OutputLine{"err", err.Error()}})
+				scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
 				return
 			}
 
 			jsPackages["main"], err = translator.TranslatePackage("main", []*ast.File{file}, fileSet, typesConfig)
 			if err != nil && len(pkgsToLoad) == 0 {
 				if list, ok := err.(translator.ErrorList); ok {
-					output := make([]interface{}, 0)
+					output := make([]Line, 0)
 					for _, entry := range list {
-						output = append(output, &OutputLine{"err", entry.Error()})
+						output = append(output, Line{"type": "err", "content": entry.Error()})
 					}
 					scope.Set("output", output)
 					return
 				}
-				scope.Set("output", []interface{}{&OutputLine{"err", err.Error()}})
+				scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
 				return
 			}
 
 			dependencies, err := translator.GetAllDependencies("main", typesConfig)
 			if err != nil {
-				scope.Set("output", []interface{}{&OutputLine{"err", err.Error()}})
+				scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
 				return
 			}
 
@@ -116,12 +121,12 @@ func main() {
 					path := p
 					angularjs.HTTP.Get("pkg/"+path+".a", func(data string, status int) {
 						if status != 200 {
-							scope.Set("output", []interface{}{&OutputLine{"err", `cannot load package "` + path + `"`}})
+							scope.Set("output", []Line{Line{"type": "err", "content": `cannot load package "` + path + `"`}})
 							return
 						}
 						code, _, err := translator.ReadArchive(typesConfig.Packages, path+".a", path, bytes.NewReader([]byte(data)))
 						if err != nil {
-							scope.Set("output", []interface{}{&OutputLine{"err", err.Error()}})
+							scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
 							return
 						}
 						jsPackages[path] = code
@@ -148,9 +153,9 @@ func main() {
 			jsCode := bytes.NewBuffer(nil)
 
 			for _, dep := range toLoad {
-				jsCode.WriteString("go$packages[\"" + dep.Path() + "\"] = (function() {\n  var go$pkg = {};\n")
+				jsCode.WriteString("go$packages[\"" + dep.Path() + "\"] = (function() {\n\tvar go$pkg = {};\n")
 				jsCode.Write(jsPackages[dep.Path()])
-				jsCode.WriteString("  return go$pkg;\n})();\n")
+				jsCode.WriteString("\treturn go$pkg;\n})();\n")
 			}
 
 			translator.WriteInterfaces(dependencies, jsCode, true)
@@ -167,43 +172,25 @@ func main() {
 		run(true)
 
 		scope.Set("format", func() {
-			out, err := format.Source([]byte(scope.GetString("code")))
+			out, err := format.Source([]byte(scope.Get("code").String()))
 			if err != nil {
-				scope.Set("output", []interface{}{&OutputLine{"err", err.Error()}})
+				scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
 				return
 			}
 			scope.Set("code", string(out))
-			scope.Set("output", []interface{}{})
+			scope.Set("output", []Line{})
 		})
 	})
 }
 
-type jsObject *struct{}
-
-type OutputLine struct {
-	Type    string
-	Content string
-}
-
-func (o *OutputLine) EncodedContent() jsObject {
-	return encodeString(o.Content)
-}
-
-func encodeString(s string) jsObject { return nil }
-
-const js_encodeString = `
-	return s;
-`
-
 func writeString(scope *angularjs.Scope, s string) {
 	lines := strings.Split(s, "\n")
-	output := scope.Get("output").([]interface{})
-	if len(output) == 0 {
-		output = []interface{}{&OutputLine{"out", ""}}
+	if len(output) == 0 || output[len(output)-1]["type"] != "out" {
+		output = append(output, Line{"type": "out", "content": ""})
 	}
-	output[len(output)-1].(*OutputLine).Content += lines[0]
+	output[len(output)-1]["content"] += lines[0]
 	for i := 1; i < len(lines); i++ {
-		output = append(output, OutputLine{"out", lines[i]})
+		output = append(output, Line{"type": "out", "content": lines[i]})
 	}
 	scope.Set("output", output)
 	scope.EvalAsync(func() {
@@ -214,40 +201,29 @@ func writeString(scope *angularjs.Scope, s string) {
 	})
 }
 
-func writeBytes(scope *angularjs.Scope, b [0]byte) {
-	writeString(scope, string(b[:]))
+func setupEnvironment(scope *angularjs.Scope) {
+	js.Global("go$packages").Get("syscall").Call("go$setSyscall", func(trap int, a1, a2, a3 [0]byte) (r1, r2 int, err error) {
+		switch trap {
+		case 4:
+			s := string(a2[:]) // hack
+			writeString(scope, s)
+			return len(s), 0, nil
+		default:
+			panic("syscall not supported")
+		}
+	})
 }
 
-func setupEnvironment(scope *angularjs.Scope) {}
+func isAlreadyLoaded(path string) bool {
+	return !js.Global("go$packages").Get(path).IsUndefined()
+}
 
-const js_setupEnvironment = `
-	go$packages["syscall"].go$setSyscall(function(trap, arg1, arg2, arg3) {
-		switch (trap) {
-		case 4: // SYS_WRITE
-			writeBytes(scope, arg2);
-			return [arg2.length, 0, null];
-		default:
-			throw new Go$Panic("Syscall not supported: " + trap);
+func evalScript(script string, scope *angularjs.Scope) {
+	defer func() {
+		if err := recover(); err != nil {
+			output = append(output, Line{"type": "err", "content": fmt.Sprintf("panic: %v", err)})
+			scope.Set("output", output)
 		}
-	});
-`
-
-func isAlreadyLoaded(path string) bool { return false }
-
-const js_isAlreadyLoaded = `
-	return go$packages[path] !== undefined;
-`
-
-func evalScript(script string, scope *angularjs.Scope) {}
-
-const js_evalScript = `
-	try {
-		eval(script);
-	} catch (err) {
-		scope.jso.output.push(new OutputLine.Ptr("err", "panic: " + err.message));
-		var stack = err.stack.split("\n").slice(1, -12);
-		for (var i = 0; i < stack.length; i++) {
-			scope.jso.output.push(new OutputLine.Ptr("err", stack[i].split(/ \(|@/)[0]));
-		}
-	}
-`
+	}()
+	js.Global("eval").Invoke(script)
+}
