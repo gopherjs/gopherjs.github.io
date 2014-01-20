@@ -119,12 +119,18 @@ func main() {
 				pkgsReceived = 0
 				for _, p := range pkgsToLoad {
 					path := p
-					angularjs.HTTP.Get("pkg/"+path+".a", func(data string, status int) {
-						if status != 200 {
+
+					req := js.Global("XMLHttpRequest").New()
+					req.Call("open", "GET", "pkg/"+path+".a", true)
+					req.Set("responseType", "arraybuffer")
+					req.Set("onload", func() {
+						if req.Get("status").Int() != 200 {
 							scope.Set("output", []Line{Line{"type": "err", "content": `cannot load package "` + path + `"`}})
 							return
 						}
-						code, _, err := translator.ReadArchive(typesConfig.Packages, path+".a", path, bytes.NewReader([]byte(data)))
+
+						data := js.Global("Uint8Array").New(req.Get("response")).Interface().([]byte)
+						code, _, err := translator.ReadArchive(typesConfig.Packages, path+".a", path, []byte(data))
 						if err != nil {
 							scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
 							return
@@ -135,6 +141,7 @@ func main() {
 							run(loadOnly)
 						}
 					})
+					req.Call("send")
 				}
 				return
 			}
@@ -202,10 +209,10 @@ func writeString(scope *angularjs.Scope, s string) {
 }
 
 func setupEnvironment(scope *angularjs.Scope) {
-	js.Global("go$packages").Get("syscall").Call("go$setSyscall", func(trap int, a1, a2, a3 [0]byte) (r1, r2 int, err error) {
+	js.Global("go$packages").Get("syscall").Call("go$setSyscall", func(trap int, a1, a2, a3 js.Object) (r1, r2 int, err error) {
 		switch trap {
 		case 4:
-			s := string(a2[:]) // hack
+			s := string(a2.Interface().([]byte))
 			writeString(scope, s)
 			return len(s), 0, nil
 		default:
