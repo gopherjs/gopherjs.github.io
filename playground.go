@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"code.google.com/p/go.tools/go/types"
 	"fmt"
 	"github.com/neelance/go-angularjs"
 	"github.com/neelance/gopherjs/js"
@@ -26,20 +25,10 @@ func main() {
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
 		scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/neelance/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global(\"alert\").Invoke(\"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
 
-		jsPackages := make(map[string][]byte)
+		packages := make(map[string]*translator.Output)
 		fileSet := token.NewFileSet()
 		var pkgsToLoad []string
 		pkgsReceived := 0
-		typesConfig := &types.Config{
-			Packages: make(map[string]*types.Package),
-			Import: func(imports map[string]*types.Package, path string) (*types.Package, error) {
-				if _, found := jsPackages[path]; found {
-					return imports[path], nil
-				}
-				pkgsToLoad = append(pkgsToLoad, path)
-				return nil, nil
-			},
-		}
 
 		setupEnvironment(scope)
 
@@ -95,7 +84,15 @@ func main() {
 				return
 			}
 
-			jsPackages["main"], err = translator.TranslatePackage("main", []*ast.File{file}, fileSet, typesConfig)
+			importPackage := func(path string) (*translator.Output, error) {
+				if pkg, found := packages[path]; found {
+					return pkg, nil
+				}
+				pkgsToLoad = append(pkgsToLoad, path)
+				return &translator.Output{}, nil
+			}
+			mainPkg, err := translator.TranslatePackage("main", []*ast.File{file}, fileSet, importPackage)
+			packages["main"] = mainPkg
 			if err != nil && len(pkgsToLoad) == 0 {
 				if list, ok := err.(translator.ErrorList); ok {
 					output := make([]Line, 0)
@@ -109,10 +106,14 @@ func main() {
 				return
 			}
 
-			dependencies, err := translator.GetAllDependencies("main", typesConfig)
-			if err != nil {
-				scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
-				return
+			var pkgsToEval []string
+			if len(pkgsToLoad) == 0 {
+				for _, path := range mainPkg.Dependencies {
+					importPackage(path)
+					if path == "main" || !isAlreadyLoaded(path) {
+						pkgsToEval = append(pkgsToEval, path)
+					}
+				}
 			}
 
 			if len(pkgsToLoad) != 0 {
@@ -125,17 +126,20 @@ func main() {
 					req.Set("responseType", "arraybuffer")
 					req.Set("onload", func() {
 						if req.Get("status").Int() != 200 {
-							scope.Set("output", []Line{Line{"type": "err", "content": `cannot load package "` + path + `"`}})
+							scope.Apply(func() {
+								scope.Set("output", []Line{Line{"type": "err", "content": `cannot load package "` + path + `"`}})
+							})
 							return
 						}
 
 						data := js.Global("Uint8Array").New(req.Get("response")).Interface().([]byte)
-						code, _, err := translator.ReadArchive(typesConfig.Packages, path+".a", path, []byte(data))
+						packages[path], err = translator.ReadArchive(path+".a", path, []byte(data))
 						if err != nil {
-							scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
+							scope.Apply(func() {
+								scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
+							})
 							return
 						}
-						jsPackages[path] = code
 						pkgsReceived++
 						if pkgsReceived == len(pkgsToLoad) {
 							run(loadOnly)
@@ -150,25 +154,18 @@ func main() {
 				return
 			}
 
-			var toLoad []*types.Package
-			for _, dep := range dependencies {
-				if dep.Path() == "main" || !isAlreadyLoaded(dep.Path()) {
-					toLoad = append(toLoad, dep)
-				}
-			}
-
 			jsCode := bytes.NewBuffer(nil)
 
-			for _, dep := range toLoad {
-				jsCode.WriteString("go$packages[\"" + dep.Path() + "\"] = (function() {\n\tvar go$pkg = {};\n")
-				jsCode.Write(jsPackages[dep.Path()])
+			for _, path := range pkgsToEval {
+				jsCode.WriteString("go$packages[\"" + path + "\"] = (function() {\n\tvar go$pkg = {};\n")
+				jsCode.Write(packages[path].Code)
 				jsCode.WriteString("\treturn go$pkg;\n})();\n")
 			}
 
-			translator.WriteInterfaces(dependencies, jsCode, true)
+			translator.WriteInterfaces(mainPkg.Dependencies, jsCode, true)
 
-			for _, dep := range toLoad {
-				jsCode.WriteString("go$packages[\"" + dep.Path() + "\"].init();\n")
+			for _, path := range pkgsToEval {
+				jsCode.WriteString("go$packages[\"" + path + "\"].init();\n")
 			}
 
 			jsCode.WriteString("go$packages[\"main\"].main();\n")
