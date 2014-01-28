@@ -24,6 +24,8 @@ func main() {
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
 		scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/neelance/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global(\"alert\").Invoke(\"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
+		scope.Set("showGenerated", false)
+		scope.Set("generated", `(generated code will be shown here after clicking "Run")`)
 
 		packages := make(map[string]*translator.Output)
 		fileSet := token.NewFileSet()
@@ -153,6 +155,8 @@ func main() {
 			if loadOnly {
 				return
 			}
+
+			scope.Set("generated", "go$packages[\"main\"] = (function() {\n\tvar go$pkg = {};\n"+string(packages["main"].Code)+"\treturn go$pkg;\n})();\n")
 
 			jsCode := bytes.NewBuffer(nil)
 

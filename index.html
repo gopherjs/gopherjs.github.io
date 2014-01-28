@@ -16,39 +16,48 @@
       a {
         color: #009;
       }
-      #wrap {
-        background: #ffd;
-        bottom: 25%;
-        left: 0;
-        margin: 0;
-        padding: 5px;
+      .box {
         position: absolute;
-        right: 0;
-        top: 50px;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
       }
-      #code, #output, pre, .lines {
+      .yellow {
+        background: #ffd;
+        margin: 0px;
+        padding: 5px;
+      }
+      .show-generated-false #generated {
+        display: none;
+      }
+      .show-generated-true #input {
+        right: 50%;
+        margin-right: 2px;
+      }
+      .show-generated-true #generated {
+        left: 50%;
+        margin-left: 2px;
+      }
+      #code, #output, #generated, pre, .lines {
         font-family: Menlo,Courier\ New,monospace;
         font-size: 11pt;
       }
       #code {
+        width: 100%;
+        height: 100%;
         background: inherit;
         border: none;
         float: right;
-        height: 100%;
         margin: 0;
         outline: none;
         padding: 0;
         resize: none;
-        width: 100%;
         wrap: off;
       }
       #output {
-        bottom: 0;
-        left: 0;
         padding: 8px;
         position: absolute;
-        right: 0;
-        top: 75%;
         overflow: scroll;
       }
       #output .system,#output .loading {
@@ -88,6 +97,13 @@
         background: #666;
         color: #fff;
       }
+      label {
+        font-family: sans-serif;
+        font-size: 16px;
+      }
+      input[type="checkbox"] {
+        height: 14px;
+      }
       .lines {
         float: left;
         overflow: hidden;
@@ -112,15 +128,21 @@
     <div id="banner">
       <div id="head" itemprop="name">GopherJS Playground</div>
       <div id="controls">
-        <input type="button" value="Run" ng-click="run(false)">
-        <input type="button" value="Format" ng-click="format()">
+        <input type="button" value="Run" ng-click="run(false)" />
+        <input type="button" value="Format" ng-click="format()" />
+        <label><input ng-model="showGenerated" type="checkbox" />Show generated code for main package</label>
       </div>
     </div>
     
-    <div id="wrap">
-      <textarea ng-model="code" id="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+    <div class="box show-generated-{{showGenerated}}" style="top: 50px; bottom: 25%;">
+      <div class="box yellow" id="input">
+        <textarea ng-model="code" id="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+      </div>
+      <div class="box yellow" id="generated">
+        <pre style="margin: 0px;">{{generated}}</pre>
+      </div>
     </div>
-    <div id="output">
+    <div class="box" style="top: 75%;" id="output">
       <pre ng-repeat="line in output" class="{{line.type}}">{{line.content}}&nbsp;</pre>
     </div>
 
