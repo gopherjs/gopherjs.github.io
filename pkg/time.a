@@ -1,0 +1,2680 @@
+0ƒP‚$—package time
+import errors "errors"
+import syscall "syscall"
+import sync "sync"
+import runtime "runtime"
+const @"".ANSIC = "Mon Jan _2 15:04:05 2006"
+func @"".After(@"".d @"".Duration) (? <-chan @"".Time)
+func @"".AfterFunc(@"".d @"".Duration, @"".f func () ()) (? *@"".Timer)
+const @"".April @"".Month = 0x4
+const @"".August @"".Month = 0x8
+func @"".Date(@"".year int, @"".month @"".Month, @"".day int, @"".hour int, @"".min int, @"".sec int, @"".nsec int, @"".loc *@"".Location) (? @"".Time)
+const @"".December @"".Month = 0xc
+type @"".Duration int64
+func (? @"".Duration) @"".Hours() (? float64)
+func (? @"".Duration) @"".Minutes() (? float64)
+func (? @"".Duration) @"".Nanoseconds() (? int64)
+func (? @"".Duration) @"".Seconds() (? float64)
+func (? @"".Duration) @"".String() (? string)
+func (? *@"".Duration) @"".Hours() (? float64)
+func (? *@"".Duration) @"".Minutes() (? float64)
+func (? *@"".Duration) @"".Nanoseconds() (? int64)
+func (? *@"".Duration) @"".Seconds() (? float64)
+func (? *@"".Duration) @"".String() (? string)
+const @"".February @"".Month = 0x2
+func @"".FixedZone(@"".name string, @"".offset int) (? *@"".Location)
+const @"".Friday @"".Weekday = 0x5
+const @"".Hour @"".Duration = 0x34630b8a000
+const @"".January @"".Month = 0x1
+const @"".July @"".Month = 0x7
+const @"".June @"".Month = 0x6
+const @"".Kitchen = "3:04PM"
+func @"".LoadLocation(@"".name string) (? *@"".Location, ? error)
+var @"".Local *@"".Location
+type @"".Location struct { @"".name string; @"".zone []@"".zone; @"".tx []@"".zoneTrans; @"".cacheStart int64; @"".cacheEnd int64; @"".cacheZone *@"".zone }
+func (? *@"".Location) @"".String() (? string)
+func (? *@"".Location) @"".get() (? *@"".Location)
+func (? *@"".Location) @"".lookup(@"".sec int64) (@"".name string, @"".offset int, @"".isDST bool, @"".start int64, @"".end int64)
+func (? *@"".Location) @"".lookupName(@"".name string, @"".unix int64) (@"".offset int, @"".isDST bool, @"".ok bool)
+const @"".March @"".Month = 0x3
+const @"".May @"".Month = 0x5
+const @"".Microsecond @"".Duration = 0x3e8
+const @"".Millisecond @"".Duration = 0xf4240
+const @"".Minute @"".Duration = 0xdf8475800
+const @"".Monday @"".Weekday = 0x1
+type @"".Month int
+func (? @"".Month) @"".String() (? string)
+func (? *@"".Month) @"".String() (? string)
+const @"".Nanosecond @"".Duration = 0x1
+func @"".NewTicker(@"".d @"".Duration) (? *@"".Ticker)
+func @"".NewTimer(@"".d @"".Duration) (? *@"".Timer)
+const @"".November @"".Month = 0xb
+func @"".Now() (? @"".Time)
+const @"".October @"".Month = 0xa
+func @"".Parse(@"".layout string, @"".value string) (? @"".Time, ? error)
+func @"".ParseDuration(@"".s string) (? @"".Duration, ? error)
+type @"".ParseError struct { @"".Layout string; @"".Value string; @"".LayoutElem string; @"".ValueElem string; @"".Message string }
+func (? *@"".ParseError) @"".Error() (? string)
+func @"".ParseInLocation(@"".layout string, @"".value string, @"".loc *@"".Location) (? @"".Time, ? error)
+const @"".RFC1123 = "Mon, 02 Jan 2006 15:04:05 MST"
+const @"".RFC1123Z = "Mon, 02 Jan 2006 15:04:05 -0700"
+const @"".RFC3339 = "2006-01-02T15:04:05Z07:00"
+const @"".RFC3339Nano = "2006-01-02T15:04:05.999999999Z07:00"
+const @"".RFC822 = "02 Jan 06 15:04 MST"
+const @"".RFC822Z = "02 Jan 06 15:04 -0700"
+const @"".RFC850 = "Monday, 02-Jan-06 15:04:05 MST"
+const @"".RubyDate = "Mon Jan 02 15:04:05 -0700 2006"
+const @"".Saturday @"".Weekday = 0x6
+const @"".Second @"".Duration = 0x3b9aca00
+const @"".September @"".Month = 0x9
+func @"".Since(@"".t @"".Time) (? @"".Duration)
+func @"".Sleep(@"".d @"".Duration) ()
+const @"".Stamp = "Jan _2 15:04:05"
+const @"".StampMicro = "Jan _2 15:04:05.000000"
+const @"".StampMilli = "Jan _2 15:04:05.000"
+const @"".StampNano = "Jan _2 15:04:05.000000000"
+const @"".Sunday @"".Weekday = 0x0
+const @"".Thursday @"".Weekday = 0x4
+func @"".Tick(@"".d @"".Duration) (? <-chan @"".Time)
+type @"".Ticker struct { @"".C <-chan @"".Time; @"".r @"".runtimeTimer }
+func (? *@"".Ticker) @"".Stop() ()
+type @"".Time struct { @"".sec int64; @"".nsec uintptr; @"".loc *@"".Location }
+func (? @"".Time) @"".Add(@"".d @"".Duration) (? @"".Time)
+func (? @"".Time) @"".AddDate(@"".years int, @"".months int, @"".days int) (? @"".Time)
+func (? @"".Time) @"".After(@"".u @"".Time) (? bool)
+func (? @"".Time) @"".Before(@"".u @"".Time) (? bool)
+func (? @"".Time) @"".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? @"".Time) @"".Date() (@"".year int, @"".month @"".Month, @"".day int)
+func (? @"".Time) @"".Day() (? int)
+func (? @"".Time) @"".Equal(@"".u @"".Time) (? bool)
+func (? @"".Time) @"".Format(@"".layout string) (? string)
+func (? @"".Time) @"".GobEncode() (? []byte, ? error)
+func (? @"".Time) @"".Hour() (? int)
+func (? @"".Time) @"".ISOWeek() (@"".year int, @"".week int)
+func (? @"".Time) @"".In(@"".loc *@"".Location) (? @"".Time)
+func (? @"".Time) @"".IsZero() (? bool)
+func (? @"".Time) @"".Local() (? @"".Time)
+func (? @"".Time) @"".Location() (? *@"".Location)
+func (? @"".Time) @"".MarshalBinary() (? []byte, ? error)
+func (? @"".Time) @"".MarshalJSON() (? []byte, ? error)
+func (? @"".Time) @"".MarshalText() (? []byte, ? error)
+func (? @"".Time) @"".Minute() (? int)
+func (? @"".Time) @"".Month() (? @"".Month)
+func (? @"".Time) @"".Nanosecond() (? int)
+func (? @"".Time) @"".Round(@"".d @"".Duration) (? @"".Time)
+func (? @"".Time) @"".Second() (? int)
+func (? @"".Time) @"".String() (? string)
+func (? @"".Time) @"".Sub(@"".u @"".Time) (? @"".Duration)
+func (? @"".Time) @"".Truncate(@"".d @"".Duration) (? @"".Time)
+func (? @"".Time) @"".UTC() (? @"".Time)
+func (? @"".Time) @"".Unix() (? int64)
+func (? @"".Time) @"".UnixNano() (? int64)
+func (? @"".Time) @"".Weekday() (? @"".Weekday)
+func (? @"".Time) @"".Year() (? int)
+func (? @"".Time) @"".YearDay() (? int)
+func (? @"".Time) @"".Zone() (@"".name string, @"".offset int)
+func (? @"".Time) @"".abs() (? uint64)
+func (? @"".Time) @"".date(@"".full bool) (@"".year int, @"".month @"".Month, @"".day int, @"".yday int)
+func (? @"".Time) @"".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+func (? *@"".Time) @"".Add(@"".d @"".Duration) (? @"".Time)
+func (? *@"".Time) @"".AddDate(@"".years int, @"".months int, @"".days int) (? @"".Time)
+func (? *@"".Time) @"".After(@"".u @"".Time) (? bool)
+func (? *@"".Time) @"".Before(@"".u @"".Time) (? bool)
+func (? *@"".Time) @"".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? *@"".Time) @"".Date() (@"".year int, @"".month @"".Month, @"".day int)
+func (? *@"".Time) @"".Day() (? int)
+func (? *@"".Time) @"".Equal(@"".u @"".Time) (? bool)
+func (? *@"".Time) @"".Format(@"".layout string) (? string)
+func (? *@"".Time) @"".GobDecode(@"".data []byte) (? error)
+func (? *@"".Time) @"".GobEncode() (? []byte, ? error)
+func (? *@"".Time) @"".Hour() (? int)
+func (? *@"".Time) @"".ISOWeek() (@"".year int, @"".week int)
+func (? *@"".Time) @"".In(@"".loc *@"".Location) (? @"".Time)
+func (? *@"".Time) @"".IsZero() (? bool)
+func (? *@"".Time) @"".Local() (? @"".Time)
+func (? *@"".Time) @"".Location() (? *@"".Location)
+func (? *@"".Time) @"".MarshalBinary() (? []byte, ? error)
+func (? *@"".Time) @"".MarshalJSON() (? []byte, ? error)
+func (? *@"".Time) @"".MarshalText() (? []byte, ? error)
+func (? *@"".Time) @"".Minute() (? int)
+func (? *@"".Time) @"".Month() (? @"".Month)
+func (? *@"".Time) @"".Nanosecond() (? int)
+func (? *@"".Time) @"".Round(@"".d @"".Duration) (? @"".Time)
+func (? *@"".Time) @"".Second() (? int)
+func (? *@"".Time) @"".String() (? string)
+func (? *@"".Time) @"".Sub(@"".u @"".Time) (? @"".Duration)
+func (? *@"".Time) @"".Truncate(@"".d @"".Duration) (? @"".Time)
+func (? *@"".Time) @"".UTC() (? @"".Time)
+func (? *@"".Time) @"".Unix() (? int64)
+func (? *@"".Time) @"".UnixNano() (? int64)
+func (? *@"".Time) @"".UnmarshalBinary(@"".data []byte) (? error)
+func (? *@"".Time) @"".UnmarshalJSON(@"".data []byte) (@"".err error)
+func (? *@"".Time) @"".UnmarshalText(@"".data []byte) (@"".err error)
+func (? *@"".Time) @"".Weekday() (? @"".Weekday)
+func (? *@"".Time) @"".Year() (? int)
+func (? *@"".Time) @"".YearDay() (? int)
+func (? *@"".Time) @"".Zone() (@"".name string, @"".offset int)
+func (? *@"".Time) @"".abs() (? uint64)
+func (? *@"".Time) @"".date(@"".full bool) (@"".year int, @"".month @"".Month, @"".day int, @"".yday int)
+func (? *@"".Time) @"".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+type @"".Timer struct { @"".C <-chan @"".Time; @"".r @"".runtimeTimer }
+func (? *@"".Timer) @"".Reset(@"".d @"".Duration) (? bool)
+func (? *@"".Timer) @"".Stop() (? bool)
+const @"".Tuesday @"".Weekday = 0x2
+var @"".UTC *@"".Location
+func @"".Unix(@"".sec int64, @"".nsec int64) (? @"".Time)
+const @"".UnixDate = "Mon Jan _2 15:04:05 MST 2006"
+const @"".Wednesday @"".Weekday = 0x3
+type @"".Weekday int
+func (? @"".Weekday) @"".String() (? string)
+func (? *@"".Weekday) @"".String() (? string)
+type @"".data struct { @"".p []byte; @"".error bool }
+func (? *@"".data) @"".big4() (@"".n uint32, @"".ok bool)
+func (? *@"".data) @"".byte() (@"".n byte, @"".ok bool)
+func (? *@"".data) @"".read(@"".n int) (? []byte)
+type @"".runtimeTimer struct { @"".i int32; @"".when int64; @"".period int64; @"".f func (? int64, ? interface {  }) (); @"".arg interface {  } }
+type @"".zone struct { @"".name string; @"".offset int; @"".isDST bool }
+type @"".zoneTrans struct { @"".when int64; @"".index uint8; @"".isstd bool; @"".isutc bool }
+$$
+03runtimeerrorssync/atomicsyncsyscalltimeƒî{	var errors = go$packages["errors"];
+	var syscall = go$packages["syscall"];
+	var sync = go$packages["sync"];
+	var runtime = go$packages["runtime"];
+	var ParseError;
+	ParseError = go$newType(0, "Struct", "time.ParseError", "ParseError", "time", function(Layout_, Value_, LayoutElem_, ValueElem_, Message_) {
+		this.go$val = this;
+		this.Layout = Layout_ !== undefined ? Layout_ : "";
+		this.Value = Value_ !== undefined ? Value_ : "";
+		this.LayoutElem = LayoutElem_ !== undefined ? LayoutElem_ : "";
+		this.ValueElem = ValueElem_ !== undefined ? ValueElem_ : "";
+		this.Message = Message_ !== undefined ? Message_ : "";
+	});
+	go$pkg.ParseError = ParseError;
+	var runtimeTimer;
+	runtimeTimer = go$newType(0, "Struct", "time.runtimeTimer", "runtimeTimer", "time", function(i_, when_, period_, f_, arg_) {
+		this.go$val = this;
+		this.i = i_ !== undefined ? i_ : 0;
+		this.when = when_ !== undefined ? when_ : new Go$Int64(0, 0);
+		this.period = period_ !== undefined ? period_ : new Go$Int64(0, 0);
+		this.f = f_ !== undefined ? f_ : go$throwNilPointerError;
+		this.arg = arg_ !== undefined ? arg_ : null;
+	});
+	go$pkg.runtimeTimer = runtimeTimer;
+	var Timer;
+	Timer = go$newType(0, "Struct", "time.Timer", "Timer", "time", function(C_, r_) {
+		this.go$val = this;
+		this.C = C_ !== undefined ? C_ : (go$chanType(Time, false, true)).nil;
+		this.r = r_ !== undefined ? r_ : new runtimeTimer.Ptr();
+	});
+	go$pkg.Timer = Timer;
+	var Ticker;
+	Ticker = go$newType(0, "Struct", "time.Ticker", "Ticker", "time", function(C_, r_) {
+		this.go$val = this;
+		this.C = C_ !== undefined ? C_ : (go$chanType(Time, false, true)).nil;
+		this.r = r_ !== undefined ? r_ : new runtimeTimer.Ptr();
+	});
+	go$pkg.Ticker = Ticker;
+	var Time;
+	Time = go$newType(0, "Struct", "time.Time", "Time", "time", function(sec_, nsec_, loc_) {
+		this.go$val = this;
+		this.sec = sec_ !== undefined ? sec_ : new Go$Int64(0, 0);
+		this.nsec = nsec_ !== undefined ? nsec_ : 0;
+		this.loc = loc_ !== undefined ? loc_ : (go$ptrType(Location)).nil;
+	});
+	go$pkg.Time = Time;
+	var Month;
+	Month = go$newType(4, "Int", "time.Month", "Month", "time", null);
+	go$pkg.Month = Month;
+	var Weekday;
+	Weekday = go$newType(4, "Int", "time.Weekday", "Weekday", "time", null);
+	go$pkg.Weekday = Weekday;
+	var Duration;
+	Duration = go$newType(8, "Int64", "time.Duration", "Duration", "time", null);
+	go$pkg.Duration = Duration;
+	var Location;
+	Location = go$newType(0, "Struct", "time.Location", "Location", "time", function(name_, zone_, tx_, cacheStart_, cacheEnd_, cacheZone_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : "";
+		this.zone = zone_ !== undefined ? zone_ : (go$sliceType(zone)).nil;
+		this.tx = tx_ !== undefined ? tx_ : (go$sliceType(zoneTrans)).nil;
+		this.cacheStart = cacheStart_ !== undefined ? cacheStart_ : new Go$Int64(0, 0);
+		this.cacheEnd = cacheEnd_ !== undefined ? cacheEnd_ : new Go$Int64(0, 0);
+		this.cacheZone = cacheZone_ !== undefined ? cacheZone_ : (go$ptrType(zone)).nil;
+	});
+	go$pkg.Location = Location;
+	var zone;
+	zone = go$newType(0, "Struct", "time.zone", "zone", "time", function(name_, offset_, isDST_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : "";
+		this.offset = offset_ !== undefined ? offset_ : 0;
+		this.isDST = isDST_ !== undefined ? isDST_ : false;
+	});
+	go$pkg.zone = zone;
+	var zoneTrans;
+	zoneTrans = go$newType(0, "Struct", "time.zoneTrans", "zoneTrans", "time", function(when_, index_, isstd_, isutc_) {
+		this.go$val = this;
+		this.when = when_ !== undefined ? when_ : new Go$Int64(0, 0);
+		this.index = index_ !== undefined ? index_ : 0;
+		this.isstd = isstd_ !== undefined ? isstd_ : false;
+		this.isutc = isutc_ !== undefined ? isutc_ : false;
+	});
+	go$pkg.zoneTrans = zoneTrans;
+	var data;
+	data = go$newType(0, "Struct", "time.data", "data", "time", function(p_, error_) {
+		this.go$val = this;
+		this.p = p_ !== undefined ? p_ : (go$sliceType(Go$Uint8)).nil;
+		this.error = error_ !== undefined ? error_ : false;
+	});
+	go$pkg.data = data;
+	ParseError.init([["Layout", "", Go$String, ""], ["Value", "", Go$String, ""], ["LayoutElem", "", Go$String, ""], ["ValueElem", "", Go$String, ""], ["Message", "", Go$String, ""]]);
+	(go$ptrType(ParseError)).methods = [["Error", "", [], [Go$String], false]];
+	runtimeTimer.init([["i", "time", Go$Int32, ""], ["when", "time", Go$Int64, ""], ["period", "time", Go$Int64, ""], ["f", "time", (go$funcType([Go$Int64, go$emptyInterface], [], false)), ""], ["arg", "time", go$emptyInterface, ""]]);
+	Timer.init([["C", "", (go$chanType(Time, false, true)), ""], ["r", "time", runtimeTimer, ""]]);
+	(go$ptrType(Timer)).methods = [["Reset", "", [Duration], [Go$Bool], false], ["Stop", "", [], [Go$Bool], false]];
+	Ticker.init([["C", "", (go$chanType(Time, false, true)), ""], ["r", "time", runtimeTimer, ""]]);
+	(go$ptrType(Ticker)).methods = [["Stop", "", [], [], false]];
+	Time.init([["sec", "time", Go$Int64, ""], ["nsec", "time", Go$Uintptr, ""], ["loc", "time", (go$ptrType(Location)), ""]]);
+	Time.methods = [["Add", "", [Duration], [Time], false], ["AddDate", "", [Go$Int, Go$Int, Go$Int], [Time], false], ["After", "", [Time], [Go$Bool], false], ["Before", "", [Time], [Go$Bool], false], ["Clock", "", [], [Go$Int, Go$Int, Go$Int], false], ["Date", "", [], [Go$Int, Month, Go$Int], false], ["Day", "", [], [Go$Int], false], ["Equal", "", [Time], [Go$Bool], false], ["Format", "", [Go$String], [Go$String], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Hour", "", [], [Go$Int], false], ["ISOWeek", "", [], [Go$Int, Go$Int], false], ["In", "", [(go$ptrType(Location))], [Time], false], ["IsZero", "", [], [Go$Bool], false], ["Local", "", [], [Time], false], ["Location", "", [], [(go$ptrType(Location))], false], ["MarshalBinary", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalText", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Minute", "", [], [Go$Int], false], ["Month", "", [], [Month], false], ["Nanosecond", "", [], [Go$Int], false], ["Round", "", [Duration], [Time], false], ["Second", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [Time], [Duration], false], ["Truncate", "", [Duration], [Time], false], ["UTC", "", [], [Time], false], ["Unix", "", [], [Go$Int64], false], ["UnixNano", "", [], [Go$Int64], false], ["Weekday", "", [], [Weekday], false], ["Year", "", [], [Go$Int], false], ["YearDay", "", [], [Go$Int], false], ["Zone", "", [], [Go$String, Go$Int], false], ["abs", "time", [], [Go$Uint64], false], ["date", "time", [Go$Bool], [Go$Int, Month, Go$Int, Go$Int], false], ["locabs", "time", [], [Go$String, Go$Int, Go$Uint64], false]];
+	(go$ptrType(Time)).methods = [["Add", "", [Duration], [Time], false], ["AddDate", "", [Go$Int, Go$Int, Go$Int], [Time], false], ["After", "", [Time], [Go$Bool], false], ["Before", "", [Time], [Go$Bool], false], ["Clock", "", [], [Go$Int, Go$Int, Go$Int], false], ["Date", "", [], [Go$Int, Month, Go$Int], false], ["Day", "", [], [Go$Int], false], ["Equal", "", [Time], [Go$Bool], false], ["Format", "", [Go$String], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Hour", "", [], [Go$Int], false], ["ISOWeek", "", [], [Go$Int, Go$Int], false], ["In", "", [(go$ptrType(Location))], [Time], false], ["IsZero", "", [], [Go$Bool], false], ["Local", "", [], [Time], false], ["Location", "", [], [(go$ptrType(Location))], false], ["MarshalBinary", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalText", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Minute", "", [], [Go$Int], false], ["Month", "", [], [Month], false], ["Nanosecond", "", [], [Go$Int], false], ["Round", "", [Duration], [Time], false], ["Second", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [Time], [Duration], false], ["Truncate", "", [Duration], [Time], false], ["UTC", "", [], [Time], false], ["Unix", "", [], [Go$Int64], false], ["UnixNano", "", [], [Go$Int64], false], ["UnmarshalBinary", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["UnmarshalJSON", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["UnmarshalText", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["Weekday", "", [], [Weekday], false], ["Year", "", [], [Go$Int], false], ["YearDay", "", [], [Go$Int], false], ["Zone", "", [], [Go$String, Go$Int], false], ["abs", "time", [], [Go$Uint64], false], ["date", "time", [Go$Bool], [Go$Int, Month, Go$Int, Go$Int], false], ["locabs", "time", [], [Go$String, Go$Int, Go$Uint64], false]];
+	Month.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(Month)).methods = [["String", "", [], [Go$String], false]];
+	Weekday.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(Weekday)).methods = [["String", "", [], [Go$String], false]];
+	Duration.methods = [["Hours", "", [], [Go$Float64], false], ["Minutes", "", [], [Go$Float64], false], ["Nanoseconds", "", [], [Go$Int64], false], ["Seconds", "", [], [Go$Float64], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(Duration)).methods = [["Hours", "", [], [Go$Float64], false], ["Minutes", "", [], [Go$Float64], false], ["Nanoseconds", "", [], [Go$Int64], false], ["Seconds", "", [], [Go$Float64], false], ["String", "", [], [Go$String], false]];
+	Location.init([["name", "time", Go$String, ""], ["zone", "time", (go$sliceType(zone)), ""], ["tx", "time", (go$sliceType(zoneTrans)), ""], ["cacheStart", "time", Go$Int64, ""], ["cacheEnd", "time", Go$Int64, ""], ["cacheZone", "time", (go$ptrType(zone)), ""]]);
+	(go$ptrType(Location)).methods = [["String", "", [], [Go$String], false], ["get", "time", [], [(go$ptrType(Location))], false], ["lookup", "time", [Go$Int64], [Go$String, Go$Int, Go$Bool, Go$Int64, Go$Int64], false], ["lookupName", "time", [Go$String, Go$Int64], [Go$Int, Go$Bool, Go$Bool], false]];
+	zone.init([["name", "time", Go$String, ""], ["offset", "time", Go$Int, ""], ["isDST", "time", Go$Bool, ""]]);
+	zoneTrans.init([["when", "time", Go$Int64, ""], ["index", "time", Go$Uint8, ""], ["isstd", "time", Go$Bool, ""], ["isutc", "time", Go$Bool, ""]]);
+	data.init([["p", "time", (go$sliceType(Go$Uint8)), ""], ["error", "time", Go$Bool, ""]]);
+	(go$ptrType(data)).methods = [["big4", "time", [], [Go$Uint32, Go$Bool], false], ["byte", "time", [], [Go$Uint8, Go$Bool], false], ["read", "time", [Go$Int], [(go$sliceType(Go$Uint8))], false]];
+	var startsWithLowerCase = function(str) {
+		var c;
+		if (str.length === 0) {
+			return false;
+		}
+		c = str.charCodeAt(0);
+		return 97 <= c && c <= 122;
+	};
+	var nextStdChunk = function(layout) {
+		var prefix, std, suffix, i, c, _ref, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, ch, j, std$1, _tuple$25, _tuple$26;
+		prefix = "";
+		std = 0;
+		suffix = "";
+		i = 0;
+		while (i < layout.length) {
+			c = (layout.charCodeAt(i) >> 0);
+			_ref = c;
+			if (_ref === 74) {
+				if (layout.length >= (i + 3 >> 0) && layout.substring(i, (i + 3 >> 0)) === "Jan") {
+					if (layout.length >= (i + 7 >> 0) && layout.substring(i, (i + 7 >> 0)) === "January") {
+						_tuple = [layout.substring(0, i), 257, layout.substring((i + 7 >> 0))], prefix = _tuple[0], std = _tuple[1], suffix = _tuple[2];
+						return [prefix, std, suffix];
+					}
+					if (!startsWithLowerCase(layout.substring((i + 3 >> 0)))) {
+						_tuple$1 = [layout.substring(0, i), 258, layout.substring((i + 3 >> 0))], prefix = _tuple$1[0], std = _tuple$1[1], suffix = _tuple$1[2];
+						return [prefix, std, suffix];
+					}
+				}
+			} else if (_ref === 77) {
+				if (layout.length >= (i + 3 >> 0)) {
+					if (layout.substring(i, (i + 3 >> 0)) === "Mon") {
+						if (layout.length >= (i + 6 >> 0) && layout.substring(i, (i + 6 >> 0)) === "Monday") {
+							_tuple$2 = [layout.substring(0, i), 261, layout.substring((i + 6 >> 0))], prefix = _tuple$2[0], std = _tuple$2[1], suffix = _tuple$2[2];
+							return [prefix, std, suffix];
+						}
+						if (!startsWithLowerCase(layout.substring((i + 3 >> 0)))) {
+							_tuple$3 = [layout.substring(0, i), 262, layout.substring((i + 3 >> 0))], prefix = _tuple$3[0], std = _tuple$3[1], suffix = _tuple$3[2];
+							return [prefix, std, suffix];
+						}
+					}
+					if (layout.substring(i, (i + 3 >> 0)) === "MST") {
+						_tuple$4 = [layout.substring(0, i), 21, layout.substring((i + 3 >> 0))], prefix = _tuple$4[0], std = _tuple$4[1], suffix = _tuple$4[2];
+						return [prefix, std, suffix];
+					}
+				}
+			} else if (_ref === 48) {
+				if (layout.length >= (i + 2 >> 0) && 49 <= layout.charCodeAt((i + 1 >> 0)) && layout.charCodeAt((i + 1 >> 0)) <= 54) {
+					_tuple$5 = [layout.substring(0, i), std0x[(layout.charCodeAt((i + 1 >> 0)) - 49 << 24 >>> 24)], layout.substring((i + 2 >> 0))], prefix = _tuple$5[0], std = _tuple$5[1], suffix = _tuple$5[2];
+					return [prefix, std, suffix];
+				}
+			} else if (_ref === 49) {
+				if (layout.length >= (i + 2 >> 0) && (layout.charCodeAt((i + 1 >> 0)) === 53)) {
+					_tuple$6 = [layout.substring(0, i), 522, layout.substring((i + 2 >> 0))], prefix = _tuple$6[0], std = _tuple$6[1], suffix = _tuple$6[2];
+					return [prefix, std, suffix];
+				}
+				_tuple$7 = [layout.substring(0, i), 259, layout.substring((i + 1 >> 0))], prefix = _tuple$7[0], std = _tuple$7[1], suffix = _tuple$7[2];
+				return [prefix, std, suffix];
+			} else if (_ref === 50) {
+				if (layout.length >= (i + 4 >> 0) && layout.substring(i, (i + 4 >> 0)) === "2006") {
+					_tuple$8 = [layout.substring(0, i), 273, layout.substring((i + 4 >> 0))], prefix = _tuple$8[0], std = _tuple$8[1], suffix = _tuple$8[2];
+					return [prefix, std, suffix];
+				}
+				_tuple$9 = [layout.substring(0, i), 263, layout.substring((i + 1 >> 0))], prefix = _tuple$9[0], std = _tuple$9[1], suffix = _tuple$9[2];
+				return [prefix, std, suffix];
+			} else if (_ref === 95) {
+				if (layout.length >= (i + 2 >> 0) && (layout.charCodeAt((i + 1 >> 0)) === 50)) {
+					_tuple$10 = [layout.substring(0, i), 264, layout.substring((i + 2 >> 0))], prefix = _tuple$10[0], std = _tuple$10[1], suffix = _tuple$10[2];
+					return [prefix, std, suffix];
+				}
+			} else if (_ref === 51) {
+				_tuple$11 = [layout.substring(0, i), 523, layout.substring((i + 1 >> 0))], prefix = _tuple$11[0], std = _tuple$11[1], suffix = _tuple$11[2];
+				return [prefix, std, suffix];
+			} else if (_ref === 52) {
+				_tuple$12 = [layout.substring(0, i), 525, layout.substring((i + 1 >> 0))], prefix = _tuple$12[0], std = _tuple$12[1], suffix = _tuple$12[2];
+				return [prefix, std, suffix];
+			} else if (_ref === 53) {
+				_tuple$13 = [layout.substring(0, i), 527, layout.substring((i + 1 >> 0))], prefix = _tuple$13[0], std = _tuple$13[1], suffix = _tuple$13[2];
+				return [prefix, std, suffix];
+			} else if (_ref === 80) {
+				if (layout.length >= (i + 2 >> 0) && (layout.charCodeAt((i + 1 >> 0)) === 77)) {
+					_tuple$14 = [layout.substring(0, i), 531, layout.substring((i + 2 >> 0))], prefix = _tuple$14[0], std = _tuple$14[1], suffix = _tuple$14[2];
+					return [prefix, std, suffix];
+				}
+			} else if (_ref === 112) {
+				if (layout.length >= (i + 2 >> 0) && (layout.charCodeAt((i + 1 >> 0)) === 109)) {
+					_tuple$15 = [layout.substring(0, i), 532, layout.substring((i + 2 >> 0))], prefix = _tuple$15[0], std = _tuple$15[1], suffix = _tuple$15[2];
+					return [prefix, std, suffix];
+				}
+			} else if (_ref === 45) {
+				if (layout.length >= (i + 7 >> 0) && layout.substring(i, (i + 7 >> 0)) === "-070000") {
+					_tuple$16 = [layout.substring(0, i), 27, layout.substring((i + 7 >> 0))], prefix = _tuple$16[0], std = _tuple$16[1], suffix = _tuple$16[2];
+					return [prefix, std, suffix];
+				}
+				if (layout.length >= (i + 9 >> 0) && layout.substring(i, (i + 9 >> 0)) === "-07:00:00") {
+					_tuple$17 = [layout.substring(0, i), 30, layout.substring((i + 9 >> 0))], prefix = _tuple$17[0], std = _tuple$17[1], suffix = _tuple$17[2];
+					return [prefix, std, suffix];
+				}
+				if (layout.length >= (i + 5 >> 0) && layout.substring(i, (i + 5 >> 0)) === "-0700") {
+					_tuple$18 = [layout.substring(0, i), 26, layout.substring((i + 5 >> 0))], prefix = _tuple$18[0], std = _tuple$18[1], suffix = _tuple$18[2];
+					return [prefix, std, suffix];
+				}
+				if (layout.length >= (i + 6 >> 0) && layout.substring(i, (i + 6 >> 0)) === "-07:00") {
+					_tuple$19 = [layout.substring(0, i), 29, layout.substring((i + 6 >> 0))], prefix = _tuple$19[0], std = _tuple$19[1], suffix = _tuple$19[2];
+					return [prefix, std, suffix];
+				}
+				if (layout.length >= (i + 3 >> 0) && layout.substring(i, (i + 3 >> 0)) === "-07") {
+					_tuple$20 = [layout.substring(0, i), 28, layout.substring((i + 3 >> 0))], prefix = _tuple$20[0], std = _tuple$20[1], suffix = _tuple$20[2];
+					return [prefix, std, suffix];
+				}
+			} else if (_ref === 90) {
+				if (layout.length >= (i + 7 >> 0) && layout.substring(i, (i + 7 >> 0)) === "Z070000") {
+					_tuple$21 = [layout.substring(0, i), 23, layout.substring((i + 7 >> 0))], prefix = _tuple$21[0], std = _tuple$21[1], suffix = _tuple$21[2];
+					return [prefix, std, suffix];
+				}
+				if (layout.length >= (i + 9 >> 0) && layout.substring(i, (i + 9 >> 0)) === "Z07:00:00") {
+					_tuple$22 = [layout.substring(0, i), 25, layout.substring((i + 9 >> 0))], prefix = _tuple$22[0], std = _tuple$22[1], suffix = _tuple$22[2];
+					return [prefix, std, suffix];
+				}
+				if (layout.length >= (i + 5 >> 0) && layout.substring(i, (i + 5 >> 0)) === "Z0700") {
+					_tuple$23 = [layout.substring(0, i), 22, layout.substring((i + 5 >> 0))], prefix = _tuple$23[0], std = _tuple$23[1], suffix = _tuple$23[2];
+					return [prefix, std, suffix];
+				}
+				if (layout.length >= (i + 6 >> 0) && layout.substring(i, (i + 6 >> 0)) === "Z07:00") {
+					_tuple$24 = [layout.substring(0, i), 24, layout.substring((i + 6 >> 0))], prefix = _tuple$24[0], std = _tuple$24[1], suffix = _tuple$24[2];
+					return [prefix, std, suffix];
+				}
+			} else if (_ref === 46) {
+				if ((i + 1 >> 0) < layout.length && ((layout.charCodeAt((i + 1 >> 0)) === 48) || (layout.charCodeAt((i + 1 >> 0)) === 57))) {
+					ch = layout.charCodeAt((i + 1 >> 0));
+					j = i + 1 >> 0;
+					while (j < layout.length && (layout.charCodeAt(j) === ch)) {
+						j = j + 1 >> 0;
+					}
+					if (!isDigit(layout, j)) {
+						std$1 = 31;
+						if (layout.charCodeAt((i + 1 >> 0)) === 57) {
+							std$1 = 32;
+						}
+						std$1 = std$1 | ((((j - ((i + 1 >> 0)) >> 0)) << 16 >> 0));
+						_tuple$25 = [layout.substring(0, i), std$1, layout.substring(j)], prefix = _tuple$25[0], std = _tuple$25[1], suffix = _tuple$25[2];
+						return [prefix, std, suffix];
+					}
+				}
+			}
+			i = i + 1 >> 0;
+		}
+		_tuple$26 = [layout, 0, ""], prefix = _tuple$26[0], std = _tuple$26[1], suffix = _tuple$26[2];
+		return [prefix, std, suffix];
+	};
+	var match = function(s1, s2) {
+		var i, c1, c2;
+		i = 0;
+		while (i < s1.length) {
+			c1 = s1.charCodeAt(i);
+			c2 = s2.charCodeAt(i);
+			if (!((c1 === c2))) {
+				c1 = (c1 | 32) >>> 0;
+				c2 = (c2 | 32) >>> 0;
+				if (!((c1 === c2)) || c1 < 97 || c1 > 122) {
+					return false;
+				}
+			}
+			i = i + 1 >> 0;
+		}
+		return true;
+	};
+	var lookup = function(tab, val) {
+		var _ref, _i, _slice, _index, v, i;
+		_ref = tab;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (val.length >= v.length && match(val.substring(0, v.length), v)) {
+				return [i, val.substring(v.length), null];
+			}
+		}
+		return [-1, val, errBad];
+	};
+	var appendUint = function(b, x, pad) {
+		var _q, _r, buf, n, _r$1, _q$1;
+		if (x < 10) {
+			if (!((pad === 0))) {
+				b = go$append(b, pad);
+			}
+			return go$append(b, ((48 + x >>> 0) << 24 >>> 24));
+		}
+		if (x < 100) {
+			b = go$append(b, ((48 + (_q = x / 10, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0) << 24 >>> 24));
+			b = go$append(b, ((48 + (_r = x % 10, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0) << 24 >>> 24));
+			return b;
+		}
+		buf = go$makeNativeArray("Uint8", 32, function() { return 0; });
+		n = 32;
+		if (x === 0) {
+			return go$append(b, 48);
+		}
+		while (x >= 10) {
+			n = n - 1 >> 0;
+			buf[n] = (((_r$1 = x % 10, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) + 48 >>> 0) << 24 >>> 24);
+			x = (_q$1 = x / 10, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		}
+		n = n - 1 >> 0;
+		buf[n] = ((x + 48 >>> 0) << 24 >>> 24);
+		return go$appendSlice(b, go$subslice(new (go$sliceType(Go$Uint8))(buf), n));
+	};
+	var atoi = function(s) {
+		var x, err, neg, _tuple, q, rem, _tuple$1, _tuple$2;
+		x = 0;
+		err = null;
+		neg = false;
+		if (!(s === "") && ((s.charCodeAt(0) === 45) || (s.charCodeAt(0) === 43))) {
+			neg = s.charCodeAt(0) === 45;
+			s = s.substring(1);
+		}
+		_tuple = leadingInt(s), q = _tuple[0], rem = _tuple[1], err = _tuple[2];
+		x = ((q.low + ((q.high >> 31) * 4294967296)) >> 0);
+		if (!(go$interfaceIsEqual(err, null)) || !(rem === "")) {
+			_tuple$1 = [0, atoiError], x = _tuple$1[0], err = _tuple$1[1];
+			return [x, err];
+		}
+		if (neg) {
+			x = -x;
+		}
+		_tuple$2 = [x, null], x = _tuple$2[0], err = _tuple$2[1];
+		return [x, err];
+	};
+	var formatNano = function(b, nanosec, n, trim) {
+		var u, buf, start, _r, _q;
+		u = nanosec;
+		buf = go$makeNativeArray("Uint8", 9, function() { return 0; });
+		start = 9;
+		while (start > 0) {
+			start = start - 1 >> 0;
+			buf[start] = (((_r = u % 10, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) + 48 >>> 0) << 24 >>> 24);
+			u = (_q = u / 10, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		}
+		if (n > 9) {
+			n = 9;
+		}
+		if (trim) {
+			while (n > 0 && (buf[(n - 1 >> 0)] === 48)) {
+				n = n - 1 >> 0;
+			}
+			if (n === 0) {
+				return b;
+			}
+		}
+		b = go$append(b, 46);
+		return go$appendSlice(b, go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, n));
+	};
+	Time.Ptr.prototype.String = function() {
+		var _struct, t;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return t.Format("2006-01-02 15:04:05.999999999 -0700 MST");
+	};
+	Time.prototype.String = function() { return this.go$val.String(); };
+	Time.Ptr.prototype.Format = function(layout) {
+		var _struct, t, _tuple, name, offset, abs, year, month, day, hour, min, sec, b, buf, max, _tuple$1, prefix, std, suffix, _tuple$2, _tuple$3, _ref, y, _r, y$1, m, s, _r$1, hr, _r$2, hr$1, _q, zone$1, absoffset, _q$1, _r$3, _r$4, _q$2, zone$2, _q$3, _r$5;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = t.locabs(), name = _tuple[0], offset = _tuple[1], abs = _tuple[2], year = -1, month = 0, day = 0, hour = -1, min = 0, sec = 0, b = (go$sliceType(Go$Uint8)).nil, buf = go$makeNativeArray("Uint8", 64, function() { return 0; });
+		max = layout.length + 10 >> 0;
+		if (max <= 64) {
+			b = go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, 0);
+		} else {
+			b = (go$sliceType(Go$Uint8)).make(0, max, function() { return 0; });
+		}
+		while (!(layout === "")) {
+			_tuple$1 = nextStdChunk(layout), prefix = _tuple$1[0], std = _tuple$1[1], suffix = _tuple$1[2];
+			if (!(prefix === "")) {
+				b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(prefix)));
+			}
+			if (std === 0) {
+				break;
+			}
+			layout = suffix;
+			if (year < 0 && !(((std & 256) === 0))) {
+				_tuple$2 = absDate(abs, true), year = _tuple$2[0], month = _tuple$2[1], day = _tuple$2[2];
+			}
+			if (hour < 0 && !(((std & 512) === 0))) {
+				_tuple$3 = absClock(abs), hour = _tuple$3[0], min = _tuple$3[1], sec = _tuple$3[2];
+			}
+			_ref = std & 65535;
+			switch (undefined) {
+			default:
+				if (_ref === 274) {
+					y = year;
+					if (y < 0) {
+						y = -y;
+					}
+					b = appendUint(b, ((_r = y % 100, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+				} else if (_ref === 273) {
+					y$1 = year;
+					if (year <= -1000) {
+						b = go$append(b, 45);
+						y$1 = -y$1;
+					} else if (year <= -100) {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-0")));
+						y$1 = -y$1;
+					} else if (year <= -10) {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-00")));
+						y$1 = -y$1;
+					} else if (year < 0) {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-000")));
+						y$1 = -y$1;
+					} else if (year < 10) {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("000")));
+					} else if (year < 100) {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("00")));
+					} else if (year < 1000) {
+						b = go$append(b, 48);
+					}
+					b = appendUint(b, (y$1 >>> 0), 0);
+				} else if (_ref === 258) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Month(month)).String().substring(0, 3))));
+				} else if (_ref === 257) {
+					m = (new Month(month)).String();
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(m)));
+				} else if (_ref === 259) {
+					b = appendUint(b, (month >>> 0), 0);
+				} else if (_ref === 260) {
+					b = appendUint(b, (month >>> 0), 48);
+				} else if (_ref === 262) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Weekday(absWeekday(abs))).String().substring(0, 3))));
+				} else if (_ref === 261) {
+					s = (new Weekday(absWeekday(abs))).String();
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
+				} else if (_ref === 263) {
+					b = appendUint(b, (day >>> 0), 0);
+				} else if (_ref === 264) {
+					b = appendUint(b, (day >>> 0), 32);
+				} else if (_ref === 265) {
+					b = appendUint(b, (day >>> 0), 48);
+				} else if (_ref === 522) {
+					b = appendUint(b, (hour >>> 0), 48);
+				} else if (_ref === 523) {
+					hr = (_r$1 = hour % 12, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero"));
+					if (hr === 0) {
+						hr = 12;
+					}
+					b = appendUint(b, (hr >>> 0), 0);
+				} else if (_ref === 524) {
+					hr$1 = (_r$2 = hour % 12, _r$2 === _r$2 ? _r$2 : go$throwRuntimeError("integer divide by zero"));
+					if (hr$1 === 0) {
+						hr$1 = 12;
+					}
+					b = appendUint(b, (hr$1 >>> 0), 48);
+				} else if (_ref === 525) {
+					b = appendUint(b, (min >>> 0), 0);
+				} else if (_ref === 526) {
+					b = appendUint(b, (min >>> 0), 48);
+				} else if (_ref === 527) {
+					b = appendUint(b, (sec >>> 0), 0);
+				} else if (_ref === 528) {
+					b = appendUint(b, (sec >>> 0), 48);
+				} else if (_ref === 531) {
+					if (hour >= 12) {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("PM")));
+					} else {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("AM")));
+					}
+				} else if (_ref === 532) {
+					if (hour >= 12) {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("pm")));
+					} else {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("am")));
+					}
+				} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 29 || _ref === 27 || _ref === 30) {
+					if ((offset === 0) && ((std === 22) || (std === 24) || (std === 23) || (std === 25))) {
+						b = go$append(b, 90);
+						break;
+					}
+					zone$1 = (_q = offset / 60, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+					absoffset = offset;
+					if (zone$1 < 0) {
+						b = go$append(b, 45);
+						zone$1 = -zone$1;
+						absoffset = -absoffset;
+					} else {
+						b = go$append(b, 43);
+					}
+					b = appendUint(b, ((_q$1 = zone$1 / 60, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+					if ((std === 24) || (std === 29)) {
+						b = go$append(b, 58);
+					}
+					b = appendUint(b, ((_r$3 = zone$1 % 60, _r$3 === _r$3 ? _r$3 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+					if ((std === 23) || (std === 27) || (std === 30) || (std === 25)) {
+						if ((std === 30) || (std === 25)) {
+							b = go$append(b, 58);
+						}
+						b = appendUint(b, ((_r$4 = absoffset % 60, _r$4 === _r$4 ? _r$4 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+					}
+				} else if (_ref === 21) {
+					if (!(name === "")) {
+						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(name)));
+						break;
+					}
+					zone$2 = (_q$2 = offset / 60, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : go$throwRuntimeError("integer divide by zero"));
+					if (zone$2 < 0) {
+						b = go$append(b, 45);
+						zone$2 = -zone$2;
+					} else {
+						b = go$append(b, 43);
+					}
+					b = appendUint(b, ((_q$3 = zone$2 / 60, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+					b = appendUint(b, ((_r$5 = zone$2 % 60, _r$5 === _r$5 ? _r$5 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+				} else if (_ref === 31 || _ref === 32) {
+					b = formatNano(b, (t.Nanosecond() >>> 0), std >> 16 >> 0, (std & 65535) === 32);
+				}
+			}
+		}
+		return go$bytesToString(b);
+	};
+	Time.prototype.Format = function(layout) { return this.go$val.Format(layout); };
+	var quote = function(s) {
+		return "\"" + s + "\"";
+	};
+	ParseError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		if (e.Message === "") {
+			return "parsing time " + quote(e.Value) + " as " + quote(e.Layout) + ": cannot parse " + quote(e.ValueElem) + " as " + quote(e.LayoutElem);
+		}
+		return "parsing time " + quote(e.Value) + e.Message;
+	};
+	ParseError.prototype.Error = function() { return this.go$val.Error(); };
+	var isDigit = function(s, i) {
+		var c;
+		if (s.length <= i) {
+			return false;
+		}
+		c = s.charCodeAt(i);
+		return 48 <= c && c <= 57;
+	};
+	var getnum = function(s, fixed) {
+		var x, x$1;
+		if (!isDigit(s, 0)) {
+			return [0, s, errBad];
+		}
+		if (!isDigit(s, 1)) {
+			if (fixed) {
+				return [0, s, errBad];
+			}
+			return [((s.charCodeAt(0) - 48 << 24 >>> 24) >> 0), s.substring(1), null];
+		}
+		return [(x = ((s.charCodeAt(0) - 48 << 24 >>> 24) >> 0), x$1 = 10, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) + ((s.charCodeAt(1) - 48 << 24 >>> 24) >> 0) >> 0, s.substring(2), null];
+	};
+	var cutspace = function(s) {
+		while (s.length > 0 && (s.charCodeAt(0) === 32)) {
+			s = s.substring(1);
+		}
+		return s;
+	};
+	var skip = function(value, prefix) {
+		while (prefix.length > 0) {
+			if (prefix.charCodeAt(0) === 32) {
+				if (value.length > 0 && !((value.charCodeAt(0) === 32))) {
+					return [value, errBad];
+				}
+				prefix = cutspace(prefix);
+				value = cutspace(value);
+				continue;
+			}
+			if ((value.length === 0) || !((value.charCodeAt(0) === prefix.charCodeAt(0)))) {
+				return [value, errBad];
+			}
+			prefix = prefix.substring(1);
+			value = value.substring(1);
+		}
+		return [value, null];
+	};
+	var Parse = go$pkg.Parse = function(layout, value) {
+		return parse(layout, value, go$pkg.UTC, go$pkg.Local);
+	};
+	var ParseInLocation = go$pkg.ParseInLocation = function(layout, value, loc) {
+		return parse(layout, value, loc, loc);
+	};
+	var parse = function(layout, value, defaultLocation, local) {
+		var _tuple, alayout, avalue, rangeErrString, amSet, pmSet, year, month, day, hour, min, sec, nsec, z, zoneOffset, zoneName, err, _tuple$1, prefix, std, suffix, stdstr, _tuple$2, p, _ref, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, n, _tuple$18, _tuple$19, _ref$1, _tuple$20, _ref$2, _tuple$21, sign, hour$1, min$1, seconds, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, hr, mm, ss, _tuple$28, _tuple$29, _tuple$30, x, x$1, x$2, _ref$3, _tuple$31, n$1, ok, _tuple$32, ndigit, _tuple$33, i, _tuple$34, _struct, _struct$1, t, x$3, x$4, _tuple$35, x$5, name, offset, _struct$2, _struct$3, _struct$4, t$1, _tuple$36, x$6, offset$1, ok$1, x$7, x$8, _struct$5, _tuple$37, x$9, _struct$6, _struct$7;
+		_tuple = [layout, value], alayout = _tuple[0], avalue = _tuple[1];
+		rangeErrString = "";
+		amSet = false;
+		pmSet = false;
+		year = 0, month = 1, day = 1, hour = 0, min = 0, sec = 0, nsec = 0, z = (go$ptrType(Location)).nil, zoneOffset = -1, zoneName = "";
+		while (true) {
+			err = null;
+			_tuple$1 = nextStdChunk(layout), prefix = _tuple$1[0], std = _tuple$1[1], suffix = _tuple$1[2];
+			stdstr = layout.substring(prefix.length, (layout.length - suffix.length >> 0));
+			_tuple$2 = skip(value, prefix), value = _tuple$2[0], err = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [new Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(Location)).nil), new ParseError.Ptr(alayout, avalue, prefix, value, "")];
+			}
+			if (std === 0) {
+				if (!((value.length === 0))) {
+					return [new Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(Location)).nil), new ParseError.Ptr(alayout, avalue, "", value, ": extra text: " + value)];
+				}
+				break;
+			}
+			layout = suffix;
+			p = "";
+			_ref = std & 65535;
+			switch (undefined) {
+			default:
+				if (_ref === 274) {
+					if (value.length < 2) {
+						err = errBad;
+						break;
+					}
+					_tuple$3 = [value.substring(0, 2), value.substring(2)], p = _tuple$3[0], value = _tuple$3[1];
+					_tuple$4 = atoi(p), year = _tuple$4[0], err = _tuple$4[1];
+					if (year >= 69) {
+						year = year + 1900 >> 0;
+					} else {
+						year = year + 2000 >> 0;
+					}
+				} else if (_ref === 273) {
+					if (value.length < 4 || !isDigit(value, 0)) {
+						err = errBad;
+						break;
+					}
+					_tuple$5 = [value.substring(0, 4), value.substring(4)], p = _tuple$5[0], value = _tuple$5[1];
+					_tuple$6 = atoi(p), year = _tuple$6[0], err = _tuple$6[1];
+				} else if (_ref === 258) {
+					_tuple$7 = lookup(shortMonthNames, value), month = _tuple$7[0], value = _tuple$7[1], err = _tuple$7[2];
+				} else if (_ref === 257) {
+					_tuple$8 = lookup(longMonthNames, value), month = _tuple$8[0], value = _tuple$8[1], err = _tuple$8[2];
+				} else if (_ref === 259 || _ref === 260) {
+					_tuple$9 = getnum(value, std === 260), month = _tuple$9[0], value = _tuple$9[1], err = _tuple$9[2];
+					if (month <= 0 || 12 < month) {
+						rangeErrString = "month";
+					}
+				} else if (_ref === 262) {
+					_tuple$10 = lookup(shortDayNames, value), value = _tuple$10[1], err = _tuple$10[2];
+				} else if (_ref === 261) {
+					_tuple$11 = lookup(longDayNames, value), value = _tuple$11[1], err = _tuple$11[2];
+				} else if (_ref === 263 || _ref === 264 || _ref === 265) {
+					if ((std === 264) && value.length > 0 && (value.charCodeAt(0) === 32)) {
+						value = value.substring(1);
+					}
+					_tuple$12 = getnum(value, std === 265), day = _tuple$12[0], value = _tuple$12[1], err = _tuple$12[2];
+					if (day < 0 || 31 < day) {
+						rangeErrString = "day";
+					}
+				} else if (_ref === 522) {
+					_tuple$13 = getnum(value, false), hour = _tuple$13[0], value = _tuple$13[1], err = _tuple$13[2];
+					if (hour < 0 || 24 <= hour) {
+						rangeErrString = "hour";
+					}
+				} else if (_ref === 523 || _ref === 524) {
+					_tuple$14 = getnum(value, std === 524), hour = _tuple$14[0], value = _tuple$14[1], err = _tuple$14[2];
+					if (hour < 0 || 12 < hour) {
+						rangeErrString = "hour";
+					}
+				} else if (_ref === 525 || _ref === 526) {
+					_tuple$15 = getnum(value, std === 526), min = _tuple$15[0], value = _tuple$15[1], err = _tuple$15[2];
+					if (min < 0 || 60 <= min) {
+						rangeErrString = "minute";
+					}
+				} else if (_ref === 527 || _ref === 528) {
+					_tuple$16 = getnum(value, std === 528), sec = _tuple$16[0], value = _tuple$16[1], err = _tuple$16[2];
+					if (sec < 0 || 60 <= sec) {
+						rangeErrString = "second";
+					}
+					if (value.length >= 2 && (value.charCodeAt(0) === 46) && isDigit(value, 1)) {
+						_tuple$17 = nextStdChunk(layout), std = _tuple$17[1];
+						std = std & 65535;
+						if ((std === 31) || (std === 32)) {
+							break;
+						}
+						n = 2;
+						while (n < value.length && isDigit(value, n)) {
+							n = n + 1 >> 0;
+						}
+						_tuple$18 = parseNanoseconds(value, n), nsec = _tuple$18[0], rangeErrString = _tuple$18[1], err = _tuple$18[2];
+						value = value.substring(n);
+					}
+				} else if (_ref === 531) {
+					if (value.length < 2) {
+						err = errBad;
+						break;
+					}
+					_tuple$19 = [value.substring(0, 2), value.substring(2)], p = _tuple$19[0], value = _tuple$19[1];
+					_ref$1 = p;
+					if (_ref$1 === "PM") {
+						pmSet = true;
+					} else if (_ref$1 === "AM") {
+						amSet = true;
+					} else {
+						err = errBad;
+					}
+				} else if (_ref === 532) {
+					if (value.length < 2) {
+						err = errBad;
+						break;
+					}
+					_tuple$20 = [value.substring(0, 2), value.substring(2)], p = _tuple$20[0], value = _tuple$20[1];
+					_ref$2 = p;
+					if (_ref$2 === "pm") {
+						pmSet = true;
+					} else if (_ref$2 === "am") {
+						amSet = true;
+					} else {
+						err = errBad;
+					}
+				} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 28 || _ref === 29 || _ref === 27 || _ref === 30) {
+					if (((std === 22) || (std === 24)) && value.length >= 1 && (value.charCodeAt(0) === 90)) {
+						value = value.substring(1);
+						z = go$pkg.UTC;
+						break;
+					}
+					_tuple$21 = ["", "", "", ""], sign = _tuple$21[0], hour$1 = _tuple$21[1], min$1 = _tuple$21[2], seconds = _tuple$21[3];
+					if ((std === 24) || (std === 29)) {
+						if (value.length < 6) {
+							err = errBad;
+							break;
+						}
+						if (!((value.charCodeAt(3) === 58))) {
+							err = errBad;
+							break;
+						}
+						_tuple$22 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), "00", value.substring(6)], sign = _tuple$22[0], hour$1 = _tuple$22[1], min$1 = _tuple$22[2], seconds = _tuple$22[3], value = _tuple$22[4];
+					} else if (std === 28) {
+						if (value.length < 3) {
+							err = errBad;
+							break;
+						}
+						_tuple$23 = [value.substring(0, 1), value.substring(1, 3), "00", "00", value.substring(3)], sign = _tuple$23[0], hour$1 = _tuple$23[1], min$1 = _tuple$23[2], seconds = _tuple$23[3], value = _tuple$23[4];
+					} else if ((std === 25) || (std === 30)) {
+						if (value.length < 9) {
+							err = errBad;
+							break;
+						}
+						if (!((value.charCodeAt(3) === 58)) || !((value.charCodeAt(6) === 58))) {
+							err = errBad;
+							break;
+						}
+						_tuple$24 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), value.substring(7, 9), value.substring(9)], sign = _tuple$24[0], hour$1 = _tuple$24[1], min$1 = _tuple$24[2], seconds = _tuple$24[3], value = _tuple$24[4];
+					} else if ((std === 23) || (std === 27)) {
+						if (value.length < 7) {
+							err = errBad;
+							break;
+						}
+						_tuple$25 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), value.substring(5, 7), value.substring(7)], sign = _tuple$25[0], hour$1 = _tuple$25[1], min$1 = _tuple$25[2], seconds = _tuple$25[3], value = _tuple$25[4];
+					} else {
+						if (value.length < 5) {
+							err = errBad;
+							break;
+						}
+						_tuple$26 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), "00", value.substring(5)], sign = _tuple$26[0], hour$1 = _tuple$26[1], min$1 = _tuple$26[2], seconds = _tuple$26[3], value = _tuple$26[4];
+					}
+					_tuple$27 = [0, 0, 0], hr = _tuple$27[0], mm = _tuple$27[1], ss = _tuple$27[2];
+					_tuple$28 = atoi(hour$1), hr = _tuple$28[0], err = _tuple$28[1];
+					if (go$interfaceIsEqual(err, null)) {
+						_tuple$29 = atoi(min$1), mm = _tuple$29[0], err = _tuple$29[1];
+					}
+					if (go$interfaceIsEqual(err, null)) {
+						_tuple$30 = atoi(seconds), ss = _tuple$30[0], err = _tuple$30[1];
+					}
+					zoneOffset = (x = ((x$1 = 60, (((hr >>> 16 << 16) * x$1 >> 0) + (hr << 16 >>> 16) * x$1) >> 0) + mm >> 0), x$2 = 60, (((x >>> 16 << 16) * x$2 >> 0) + (x << 16 >>> 16) * x$2) >> 0) + ss >> 0;
+					_ref$3 = sign.charCodeAt(0);
+					if (_ref$3 === 43) {
+					} else if (_ref$3 === 45) {
+						zoneOffset = -zoneOffset;
+					} else {
+						err = errBad;
+					}
+				} else if (_ref === 21) {
+					if (value.length >= 3 && value.substring(0, 3) === "UTC") {
+						z = go$pkg.UTC;
+						value = value.substring(3);
+						break;
+					}
+					_tuple$31 = parseTimeZone(value), n$1 = _tuple$31[0], ok = _tuple$31[1];
+					if (!ok) {
+						err = errBad;
+						break;
+					}
+					_tuple$32 = [value.substring(0, n$1), value.substring(n$1)], zoneName = _tuple$32[0], value = _tuple$32[1];
+				} else if (_ref === 31) {
+					ndigit = 1 + ((std >> 16 >> 0)) >> 0;
+					if (value.length < ndigit) {
+						err = errBad;
+						break;
+					}
+					_tuple$33 = parseNanoseconds(value, ndigit), nsec = _tuple$33[0], rangeErrString = _tuple$33[1], err = _tuple$33[2];
+					value = value.substring(ndigit);
+				} else if (_ref === 32) {
+					if (value.length < 2 || !((value.charCodeAt(0) === 46)) || value.charCodeAt(1) < 48 || 57 < value.charCodeAt(1)) {
+						break;
+					}
+					i = 0;
+					while (i < 9 && (i + 1 >> 0) < value.length && 48 <= value.charCodeAt((i + 1 >> 0)) && value.charCodeAt((i + 1 >> 0)) <= 57) {
+						i = i + 1 >> 0;
+					}
+					_tuple$34 = parseNanoseconds(value, 1 + i >> 0), nsec = _tuple$34[0], rangeErrString = _tuple$34[1], err = _tuple$34[2];
+					value = value.substring((1 + i >> 0));
+				}
+			}
+			if (!(rangeErrString === "")) {
+				return [new Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(Location)).nil), new ParseError.Ptr(alayout, avalue, stdstr, value, ": " + rangeErrString + " out of range")];
+			}
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [new Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(Location)).nil), new ParseError.Ptr(alayout, avalue, stdstr, value, "")];
+			}
+		}
+		if (pmSet && hour < 12) {
+			hour = hour + 12 >> 0;
+		} else if (amSet && (hour === 12)) {
+			hour = 0;
+		}
+		if (!(z === (go$ptrType(Location)).nil)) {
+			return [(_struct = Date(year, (month >> 0), day, hour, min, sec, nsec, z), new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)), null];
+		}
+		if (!((zoneOffset === -1))) {
+			t = (_struct$1 = Date(year, (month >> 0), day, hour, min, sec, nsec, go$pkg.UTC), new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+			t.sec = (x$3 = t.sec, x$4 = new Go$Int64(0, zoneOffset), new Go$Int64(x$3.high - x$4.high, x$3.low - x$4.low));
+			_tuple$35 = local.lookup((x$5 = t.sec, new Go$Int64(x$5.high + -15, x$5.low + 2288912640))), name = _tuple$35[0], offset = _tuple$35[1];
+			if ((offset === zoneOffset) && (zoneName === "" || name === zoneName)) {
+				t.loc = local;
+				return [(_struct$2 = t, new Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc)), null];
+			}
+			t.loc = FixedZone(zoneName, zoneOffset);
+			return [(_struct$3 = t, new Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc)), null];
+		}
+		if (!(zoneName === "")) {
+			t$1 = (_struct$4 = Date(year, (month >> 0), day, hour, min, sec, nsec, go$pkg.UTC), new Time.Ptr(_struct$4.sec, _struct$4.nsec, _struct$4.loc));
+			_tuple$36 = local.lookupName(zoneName, (x$6 = t$1.sec, new Go$Int64(x$6.high + -15, x$6.low + 2288912640))), offset$1 = _tuple$36[0], ok$1 = _tuple$36[2];
+			if (ok$1) {
+				t$1.sec = (x$7 = t$1.sec, x$8 = new Go$Int64(0, offset$1), new Go$Int64(x$7.high - x$8.high, x$7.low - x$8.low));
+				t$1.loc = local;
+				return [(_struct$5 = t$1, new Time.Ptr(_struct$5.sec, _struct$5.nsec, _struct$5.loc)), null];
+			}
+			if (zoneName.length > 3 && zoneName.substring(0, 3) === "GMT") {
+				_tuple$37 = atoi(zoneName.substring(3)), offset$1 = _tuple$37[0];
+				offset$1 = (x$9 = 3600, (((offset$1 >>> 16 << 16) * x$9 >> 0) + (offset$1 << 16 >>> 16) * x$9) >> 0);
+			}
+			t$1.loc = FixedZone(zoneName, offset$1);
+			return [(_struct$6 = t$1, new Time.Ptr(_struct$6.sec, _struct$6.nsec, _struct$6.loc)), null];
+		}
+		return [(_struct$7 = Date(year, (month >> 0), day, hour, min, sec, nsec, defaultLocation), new Time.Ptr(_struct$7.sec, _struct$7.nsec, _struct$7.loc)), null];
+	};
+	var parseTimeZone = function(value) {
+		var length, ok, _tuple, _tuple$1, _tuple$2, nUpper, c, _ref, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7;
+		length = 0;
+		ok = false;
+		if (value.length < 3) {
+			_tuple = [0, false], length = _tuple[0], ok = _tuple[1];
+			return [length, ok];
+		}
+		if (value.length >= 4 && value.substring(0, 4) === "ChST") {
+			_tuple$1 = [4, true], length = _tuple$1[0], ok = _tuple$1[1];
+			return [length, ok];
+		}
+		if (value.substring(0, 3) === "GMT") {
+			length = parseGMT(value);
+			_tuple$2 = [length, true], length = _tuple$2[0], ok = _tuple$2[1];
+			return [length, ok];
+		}
+		nUpper = 0;
+		nUpper = 0;
+		while (nUpper < 6) {
+			if (nUpper >= value.length) {
+				break;
+			}
+			if (c = value.charCodeAt(nUpper), c < 65 || 90 < c) {
+				break;
+			}
+			nUpper = nUpper + 1 >> 0;
+		}
+		_ref = nUpper;
+		if (_ref === 0 || _ref === 1 || _ref === 2 || _ref === 6) {
+			_tuple$3 = [0, false], length = _tuple$3[0], ok = _tuple$3[1];
+			return [length, ok];
+		} else if (_ref === 5) {
+			if (value.charCodeAt(4) === 84) {
+				_tuple$4 = [5, true], length = _tuple$4[0], ok = _tuple$4[1];
+				return [length, ok];
+			}
+		} else if (_ref === 4) {
+			if (value.charCodeAt(3) === 84) {
+				_tuple$5 = [4, true], length = _tuple$5[0], ok = _tuple$5[1];
+				return [length, ok];
+			}
+		} else if (_ref === 3) {
+			_tuple$6 = [3, true], length = _tuple$6[0], ok = _tuple$6[1];
+			return [length, ok];
+		}
+		_tuple$7 = [0, false], length = _tuple$7[0], ok = _tuple$7[1];
+		return [length, ok];
+	};
+	var parseGMT = function(value) {
+		var sign, _tuple, x, rem, err;
+		value = value.substring(3);
+		if (value.length === 0) {
+			return 3;
+		}
+		sign = value.charCodeAt(0);
+		if (!((sign === 45)) && !((sign === 43))) {
+			return 3;
+		}
+		_tuple = leadingInt(value.substring(1)), x = _tuple[0], rem = _tuple[1], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return 3;
+		}
+		if (sign === 45) {
+			x = new Go$Int64(-x.high, -x.low);
+		}
+		if ((x.high === 0 && x.low === 0) || (x.high < -1 || (x.high === -1 && x.low < 4294967282)) || (0 < x.high || (0 === x.high && 12 < x.low))) {
+			return 3;
+		}
+		return (3 + value.length >> 0) - rem.length >> 0;
+	};
+	var parseNanoseconds = function(value, nbytes) {
+		var ns, rangeErrString, err, _tuple, scaleDigits, i, x;
+		ns = 0;
+		rangeErrString = "";
+		err = null;
+		if (!((value.charCodeAt(0) === 46))) {
+			err = errBad;
+			return [ns, rangeErrString, err];
+		}
+		if (_tuple = atoi(value.substring(1, nbytes)), ns = _tuple[0], err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			return [ns, rangeErrString, err];
+		}
+		if (ns < 0 || 1000000000 <= ns) {
+			rangeErrString = "fractional second";
+			return [ns, rangeErrString, err];
+		}
+		scaleDigits = 10 - nbytes >> 0;
+		i = 0;
+		while (i < scaleDigits) {
+			ns = (x = 10, (((ns >>> 16 << 16) * x >> 0) + (ns << 16 >>> 16) * x) >> 0);
+			i = i + 1 >> 0;
+		}
+		return [ns, rangeErrString, err];
+	};
+	var leadingInt = function(s) {
+		var x, rem, err, i, c, _tuple, x$1, x$2, x$3, _tuple$1;
+		x = new Go$Int64(0, 0);
+		rem = "";
+		err = null;
+		i = 0;
+		while (i < s.length) {
+			c = s.charCodeAt(i);
+			if (c < 48 || c > 57) {
+				break;
+			}
+			if ((x.high > 214748364 || (x.high === 214748364 && x.low >= 3435973835))) {
+				_tuple = [new Go$Int64(0, 0), "", errLeadingInt], x = _tuple[0], rem = _tuple[1], err = _tuple[2];
+				return [x, rem, err];
+			}
+			x = (x$1 = (x$2 = go$mul64(x, new Go$Int64(0, 10)), x$3 = new Go$Int64(0, c), new Go$Int64(x$2.high + x$3.high, x$2.low + x$3.low)), new Go$Int64(x$1.high - 0, x$1.low - 48));
+			i = i + 1 >> 0;
+		}
+		_tuple$1 = [x, s.substring(i), null], x = _tuple$1[0], rem = _tuple$1[1], err = _tuple$1[2];
+		return [x, rem, err];
+	};
+	var ParseDuration = go$pkg.ParseDuration = function(s) {
+		var orig, f, neg, c, g, x, err, pl, _tuple, pre, post, pl$1, _tuple$1, scale, n, i, c$1, u, _tuple$2, _entry, unit, ok;
+		orig = s;
+		f = 0;
+		neg = false;
+		if (!(s === "")) {
+			c = s.charCodeAt(0);
+			if ((c === 45) || (c === 43)) {
+				neg = c === 45;
+				s = s.substring(1);
+			}
+		}
+		if (s === "0") {
+			return [new Duration(0, 0), null];
+		}
+		if (s === "") {
+			return [new Duration(0, 0), errors.New("time: invalid duration " + orig)];
+		}
+		while (!(s === "")) {
+			g = 0;
+			x = new Go$Int64(0, 0);
+			err = null;
+			if (!((s.charCodeAt(0) === 46) || (48 <= s.charCodeAt(0) && s.charCodeAt(0) <= 57))) {
+				return [new Duration(0, 0), errors.New("time: invalid duration " + orig)];
+			}
+			pl = s.length;
+			_tuple = leadingInt(s), x = _tuple[0], s = _tuple[1], err = _tuple[2];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [new Duration(0, 0), errors.New("time: invalid duration " + orig)];
+			}
+			g = go$flatten64(x);
+			pre = !((pl === s.length));
+			post = false;
+			if (!(s === "") && (s.charCodeAt(0) === 46)) {
+				s = s.substring(1);
+				pl$1 = s.length;
+				_tuple$1 = leadingInt(s), x = _tuple$1[0], s = _tuple$1[1], err = _tuple$1[2];
+				if (!(go$interfaceIsEqual(err, null))) {
+					return [new Duration(0, 0), errors.New("time: invalid duration " + orig)];
+				}
+				scale = 1;
+				n = pl$1 - s.length >> 0;
+				while (n > 0) {
+					scale = scale * 10;
+					n = n - 1 >> 0;
+				}
+				g = g + (go$flatten64(x) / scale);
+				post = !((pl$1 === s.length));
+			}
+			if (!pre && !post) {
+				return [new Duration(0, 0), errors.New("time: invalid duration " + orig)];
+			}
+			i = 0;
+			while (i < s.length) {
+				c$1 = s.charCodeAt(i);
+				if ((c$1 === 46) || (48 <= c$1 && c$1 <= 57)) {
+					break;
+				}
+				i = i + 1 >> 0;
+			}
+			if (i === 0) {
+				return [new Duration(0, 0), errors.New("time: missing unit in duration " + orig)];
+			}
+			u = s.substring(0, i);
+			s = s.substring(i);
+			_tuple$2 = (_entry = unitMap[u], _entry !== undefined ? [_entry.v, true] : [0, false]), unit = _tuple$2[0], ok = _tuple$2[1];
+			if (!ok) {
+				return [new Duration(0, 0), errors.New("time: unknown unit " + u + " in duration " + orig)];
+			}
+			f = f + (g * unit);
+		}
+		if (neg) {
+			f = -f;
+		}
+		return [new Duration(0, f), null];
+	};
+	var nano = function() {
+		var _tuple, sec, nsec, x, x$1;
+		_tuple = now(), sec = _tuple[0], nsec = _tuple[1];
+		return (x = go$mul64(sec, new Go$Int64(0, 1000000000)), x$1 = new Go$Int64(0, nsec), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
+	};
+	var when = function(d) {
+		var x, x$1, t;
+		if ((d.high < 0 || (d.high === 0 && d.low <= 0))) {
+			return nano();
+		}
+		t = (x = nano(), x$1 = new Go$Int64(d.high, d.low), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
+		if ((t.high < 0 || (t.high === 0 && t.low < 0))) {
+			t = new Go$Int64(2147483647, 4294967295);
+		}
+		return t;
+	};
+	var startTimer = function() {
+		throw go$panic("Native function not implemented: startTimer");
+	};
+	var stopTimer = function() {
+		throw go$panic("Native function not implemented: stopTimer");
+	};
+	Timer.Ptr.prototype.Stop = function() {
+		var t;
+		t = this;
+		return stopTimer(t.r);
+	};
+	Timer.prototype.Stop = function() { return this.go$val.Stop(); };
+	Timer.Ptr.prototype.Reset = function(d) {
+		var t, w, active;
+		t = this;
+		w = when(d);
+		active = stopTimer(t.r);
+		t.r.when = w;
+		startTimer(t.r);
+		return active;
+	};
+	Timer.prototype.Reset = function(d) { return this.go$val.Reset(d); };
+	var sendTime = function(now$1, c) {
+		go$notSupported("select")
+	};
+	var goFunc = function(now$1, arg) {
+		go$notSupported("go")
+	};
+	var interrupt = function() {
+		syscall.Kill(syscall.Getpid(), 20);
+	};
+	var readFile = function(name) {
+		var _tuple, f, err, buf, ret, n, _tuple$1;
+		var go$deferred = [];
+		try {
+			_tuple = syscall.Open(name, 0, 0), f = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [(go$sliceType(Go$Uint8)).nil, err];
+			}
+			go$deferred.push({ recv: syscall, method: "Close", args: [f] });
+			buf = go$makeNativeArray("Uint8", 4096, function() { return 0; }), ret = (go$sliceType(Go$Uint8)).nil, n = 0;
+			while (true) {
+				_tuple$1 = syscall.Read(f, new (go$sliceType(Go$Uint8))(buf)), n = _tuple$1[0], err = _tuple$1[1];
+				if (n > 0) {
+					ret = go$appendSlice(ret, go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, n));
+				}
+				if ((n === 0) || !(go$interfaceIsEqual(err, null))) {
+					break;
+				}
+			}
+			return [ret, err];
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [(go$sliceType(Go$Uint8)).nil, null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	var open = function(name) {
+		var _tuple, fd, err;
+		_tuple = syscall.Open(name, 0, 0), fd = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [0, err];
+		}
+		return [(fd >>> 0), null];
+	};
+	var closefd = function(fd) {
+		syscall.Close((fd >> 0));
+	};
+	var preadn = function(fd, buf, off) {
+		var whence, err, _tuple, _tuple$1, m, err$1;
+		whence = 0;
+		if (off < 0) {
+			whence = 2;
+		}
+		if (_tuple = syscall.Seek((fd >> 0), new Go$Int64(0, off), whence), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		while (buf.length > 0) {
+			_tuple$1 = syscall.Read((fd >> 0), buf), m = _tuple$1[0], err$1 = _tuple$1[1];
+			if (m <= 0) {
+				if (go$interfaceIsEqual(err$1, null)) {
+					return errors.New("short read");
+				}
+				return err$1;
+			}
+			buf = go$subslice(buf, m);
+		}
+		return null;
+	};
+	var NewTicker = go$pkg.NewTicker = function(d) {
+		var c, x, x$1, t;
+		if ((d.high < 0 || (d.high === 0 && d.low <= 0))) {
+			throw go$panic(errors.New("non-positive interval for NewTicker"));
+		}
+		c = new (go$chanType(Time, false, false))();
+		t = new Ticker.Ptr(c, new runtimeTimer.Ptr(0, (x = nano(), x$1 = new Go$Int64(d.high, d.low), new Go$Int64(x.high + x$1.high, x.low + x$1.low)), new Go$Int64(d.high, d.low), sendTime, c));
+		startTimer(t.r);
+		return t;
+	};
+	Ticker.Ptr.prototype.Stop = function() {
+		var t;
+		t = this;
+		stopTimer(t.r);
+	};
+	Ticker.prototype.Stop = function() { return this.go$val.Stop(); };
+	Time.Ptr.prototype.After = function(u) {
+		var _struct, t, x, x$1, x$2, x$3;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (x = t.sec, x$1 = u.sec, (x.high > x$1.high || (x.high === x$1.high && x.low > x$1.low))) || (x$2 = t.sec, x$3 = u.sec, (x$2.high === x$3.high && x$2.low === x$3.low)) && t.nsec > u.nsec;
+	};
+	Time.prototype.After = function(u) { return this.go$val.After(u); };
+	Time.Ptr.prototype.Before = function(u) {
+		var _struct, t, x, x$1, x$2, x$3;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (x = t.sec, x$1 = u.sec, (x.high < x$1.high || (x.high === x$1.high && x.low < x$1.low))) || (x$2 = t.sec, x$3 = u.sec, (x$2.high === x$3.high && x$2.low === x$3.low)) && t.nsec < u.nsec;
+	};
+	Time.prototype.Before = function(u) { return this.go$val.Before(u); };
+	Time.Ptr.prototype.Equal = function(u) {
+		var _struct, t, x, x$1;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (x = t.sec, x$1 = u.sec, (x.high === x$1.high && x.low === x$1.low)) && (t.nsec === u.nsec);
+	};
+	Time.prototype.Equal = function(u) { return this.go$val.Equal(u); };
+	Month.prototype.String = function() {
+		var m;
+		m = this.go$val;
+		return months[(m - 1 >> 0)];
+	};
+	go$ptrType(Month).prototype.String = function() { return new Month(this.go$get()).String(); };
+	Weekday.prototype.String = function() {
+		var d;
+		d = this.go$val;
+		return days[d];
+	};
+	go$ptrType(Weekday).prototype.String = function() { return new Weekday(this.go$get()).String(); };
+	Time.Ptr.prototype.IsZero = function() {
+		var _struct, t, x;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (x = t.sec, (x.high === 0 && x.low === 0)) && (t.nsec === 0);
+	};
+	Time.prototype.IsZero = function() { return this.go$val.IsZero(); };
+	Time.Ptr.prototype.abs = function() {
+		var _struct, t, l, x, sec, x$1, x$2, x$3, _tuple, offset, x$4, x$5;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		l = t.loc;
+		if (l === (go$ptrType(Location)).nil || l === localLoc) {
+			l = l.get();
+		}
+		sec = (x = t.sec, new Go$Int64(x.high + -15, x.low + 2288912640));
+		if (!(l === utcLoc)) {
+			if (!(l.cacheZone === (go$ptrType(zone)).nil) && (x$1 = l.cacheStart, (x$1.high < sec.high || (x$1.high === sec.high && x$1.low <= sec.low))) && (x$2 = l.cacheEnd, (sec.high < x$2.high || (sec.high === x$2.high && sec.low < x$2.low)))) {
+				sec = (x$3 = new Go$Int64(0, l.cacheZone.offset), new Go$Int64(sec.high + x$3.high, sec.low + x$3.low));
+			} else {
+				_tuple = l.lookup(sec), offset = _tuple[1];
+				sec = (x$4 = new Go$Int64(0, offset), new Go$Int64(sec.high + x$4.high, sec.low + x$4.low));
+			}
+		}
+		return (x$5 = new Go$Int64(sec.high + 2147483646, sec.low + 450480384), new Go$Uint64(x$5.high, x$5.low));
+	};
+	Time.prototype.abs = function() { return this.go$val.abs(); };
+	Time.Ptr.prototype.locabs = function() {
+		var name, offset, abs, _struct, t, l, x, sec, x$1, x$2, _tuple, x$3, x$4;
+		name = "";
+		offset = 0;
+		abs = new Go$Uint64(0, 0);
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		l = t.loc;
+		if (l === (go$ptrType(Location)).nil || l === localLoc) {
+			l = l.get();
+		}
+		sec = (x = t.sec, new Go$Int64(x.high + -15, x.low + 2288912640));
+		if (!(l === utcLoc)) {
+			if (!(l.cacheZone === (go$ptrType(zone)).nil) && (x$1 = l.cacheStart, (x$1.high < sec.high || (x$1.high === sec.high && x$1.low <= sec.low))) && (x$2 = l.cacheEnd, (sec.high < x$2.high || (sec.high === x$2.high && sec.low < x$2.low)))) {
+				name = l.cacheZone.name;
+				offset = l.cacheZone.offset;
+			} else {
+				_tuple = l.lookup(sec), name = _tuple[0], offset = _tuple[1];
+			}
+			sec = (x$3 = new Go$Int64(0, offset), new Go$Int64(sec.high + x$3.high, sec.low + x$3.low));
+		} else {
+			name = "UTC";
+		}
+		abs = (x$4 = new Go$Int64(sec.high + 2147483646, sec.low + 450480384), new Go$Uint64(x$4.high, x$4.low));
+		return [name, offset, abs];
+	};
+	Time.prototype.locabs = function() { return this.go$val.locabs(); };
+	Time.Ptr.prototype.Date = function() {
+		var year, month, day, _struct, t, _tuple;
+		year = 0;
+		month = 0;
+		day = 0;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = t.date(true), year = _tuple[0], month = _tuple[1], day = _tuple[2];
+		return [year, month, day];
+	};
+	Time.prototype.Date = function() { return this.go$val.Date(); };
+	Time.Ptr.prototype.Year = function() {
+		var _struct, t, _tuple, year;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = t.date(false), year = _tuple[0];
+		return year;
+	};
+	Time.prototype.Year = function() { return this.go$val.Year(); };
+	Time.Ptr.prototype.Month = function() {
+		var _struct, t, _tuple, month;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = t.date(true), month = _tuple[1];
+		return month;
+	};
+	Time.prototype.Month = function() { return this.go$val.Month(); };
+	Time.Ptr.prototype.Day = function() {
+		var _struct, t, _tuple, day;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = t.date(true), day = _tuple[2];
+		return day;
+	};
+	Time.prototype.Day = function() { return this.go$val.Day(); };
+	Time.Ptr.prototype.Weekday = function() {
+		var _struct, t;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return absWeekday(t.abs());
+	};
+	Time.prototype.Weekday = function() { return this.go$val.Weekday(); };
+	var absWeekday = function(abs) {
+		var sec, _q;
+		sec = go$div64((new Go$Uint64(abs.high + 0, abs.low + 86400)), new Go$Uint64(0, 604800), true);
+		return ((_q = (sec.low >> 0) / 86400, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
+	};
+	Time.Ptr.prototype.ISOWeek = function() {
+		var year, week, _struct, t, _tuple, month, day, yday, _r, wday, _q, _r$1, jan1wday, dec31wday, _r$2;
+		year = 0;
+		week = 0;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = t.date(true), year = _tuple[0], month = _tuple[1], day = _tuple[2], yday = _tuple[3];
+		wday = (_r = ((t.Weekday() + 6 >> 0) >> 0) % 7, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"));
+		week = (_q = (((yday - wday >> 0) + 7 >> 0)) / 7, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+		jan1wday = (_r$1 = (((wday - yday >> 0) + 371 >> 0)) % 7, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero"));
+		if (1 <= jan1wday && jan1wday <= 3) {
+			week = week + 1 >> 0;
+		}
+		if (week === 0) {
+			year = year - 1 >> 0;
+			week = 52;
+			if ((jan1wday === 4) || ((jan1wday === 5) && isLeap(year))) {
+				week = week + 1 >> 0;
+			}
+		}
+		if ((month === 12) && day >= 29 && wday < 3) {
+			if (dec31wday = (_r$2 = (((wday + 31 >> 0) - day >> 0)) % 7, _r$2 === _r$2 ? _r$2 : go$throwRuntimeError("integer divide by zero")), 0 <= dec31wday && dec31wday <= 2) {
+				year = year + 1 >> 0;
+				week = 1;
+			}
+		}
+		return [year, week];
+	};
+	Time.prototype.ISOWeek = function() { return this.go$val.ISOWeek(); };
+	Time.Ptr.prototype.Clock = function() {
+		var hour, min, sec, _struct, t, _tuple;
+		hour = 0;
+		min = 0;
+		sec = 0;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = absClock(t.abs()), hour = _tuple[0], min = _tuple[1], sec = _tuple[2];
+		return [hour, min, sec];
+	};
+	Time.prototype.Clock = function() { return this.go$val.Clock(); };
+	var absClock = function(abs) {
+		var hour, min, sec, _q, _q$1;
+		hour = 0;
+		min = 0;
+		sec = 0;
+		sec = (go$div64(abs, new Go$Uint64(0, 86400), true).low >> 0);
+		hour = (_q = sec / 3600, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+		sec = sec - (((((hour >>> 16 << 16) * 3600 >> 0) + (hour << 16 >>> 16) * 3600) >> 0)) >> 0;
+		min = (_q$1 = sec / 60, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero"));
+		sec = sec - (((((min >>> 16 << 16) * 60 >> 0) + (min << 16 >>> 16) * 60) >> 0)) >> 0;
+		return [hour, min, sec];
+	};
+	Time.Ptr.prototype.Hour = function() {
+		var _struct, t, _q;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (_q = (go$div64(t.abs(), new Go$Uint64(0, 86400), true).low >> 0) / 3600, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+	};
+	Time.prototype.Hour = function() { return this.go$val.Hour(); };
+	Time.Ptr.prototype.Minute = function() {
+		var _struct, t, _q;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (_q = (go$div64(t.abs(), new Go$Uint64(0, 3600), true).low >> 0) / 60, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+	};
+	Time.prototype.Minute = function() { return this.go$val.Minute(); };
+	Time.Ptr.prototype.Second = function() {
+		var _struct, t;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (go$div64(t.abs(), new Go$Uint64(0, 60), true).low >> 0);
+	};
+	Time.prototype.Second = function() { return this.go$val.Second(); };
+	Time.Ptr.prototype.Nanosecond = function() {
+		var _struct, t;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (t.nsec >> 0);
+	};
+	Time.prototype.Nanosecond = function() { return this.go$val.Nanosecond(); };
+	Time.Ptr.prototype.YearDay = function() {
+		var _struct, t, _tuple, yday;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = t.date(false), yday = _tuple[3];
+		return yday + 1 >> 0;
+	};
+	Time.prototype.YearDay = function() { return this.go$val.YearDay(); };
+	Duration.prototype.String = function() {
+		var d, buf, w, u, neg, prec, unit, _tuple, _tuple$1;
+		d = this;
+		buf = go$makeNativeArray("Uint8", 32, function() { return 0; });
+		w = 32;
+		u = new Go$Uint64(d.high, d.low);
+		neg = (d.high < 0 || (d.high === 0 && d.low < 0));
+		if (neg) {
+			u = new Go$Uint64(-u.high, -u.low);
+		}
+		if ((u.high < 0 || (u.high === 0 && u.low < 1000000000))) {
+			prec = 0, unit = 0;
+			if ((u.high === 0 && u.low === 0)) {
+				return "0";
+			} else if ((u.high < 0 || (u.high === 0 && u.low < 1000))) {
+				prec = 0;
+				unit = 110;
+			} else if ((u.high < 0 || (u.high === 0 && u.low < 1000000))) {
+				prec = 3;
+				unit = 117;
+			} else {
+				prec = 6;
+				unit = 109;
+			}
+			w = w - 2 >> 0;
+			buf[w] = unit;
+			buf[w + 1 >> 0] = 115;
+			_tuple = fmtFrac(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, w), u, prec), w = _tuple[0], u = _tuple[1];
+			w = fmtInt(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, w), u);
+		} else {
+			w = w - 1 >> 0;
+			buf[w] = 115;
+			_tuple$1 = fmtFrac(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, w), u, 9), w = _tuple$1[0], u = _tuple$1[1];
+			w = fmtInt(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, w), go$div64(u, new Go$Uint64(0, 60), true));
+			u = go$div64(u, new Go$Uint64(0, 60), false);
+			if ((u.high > 0 || (u.high === 0 && u.low > 0))) {
+				w = w - 1 >> 0;
+				buf[w] = 109;
+				w = fmtInt(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, w), go$div64(u, new Go$Uint64(0, 60), true));
+				u = go$div64(u, new Go$Uint64(0, 60), false);
+				if ((u.high > 0 || (u.high === 0 && u.low > 0))) {
+					w = w - 1 >> 0;
+					buf[w] = 104;
+					w = fmtInt(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, w), u);
+				}
+			}
+		}
+		if (neg) {
+			w = w - 1 >> 0;
+			buf[w] = 45;
+		}
+		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(buf), w));
+	};
+	go$ptrType(Duration).prototype.String = function() { return this.go$get().String(); };
+	var fmtFrac = function(buf, v, prec) {
+		var nw, nv, w, print, i, digit, _slice, _index, _slice$1, _index$1, _tuple;
+		nw = 0;
+		nv = new Go$Uint64(0, 0);
+		w = buf.length;
+		print = false;
+		i = 0;
+		while (i < prec) {
+			digit = go$div64(v, new Go$Uint64(0, 10), true);
+			print = print || !((digit.high === 0 && digit.low === 0));
+			if (print) {
+				w = w - 1 >> 0;
+				_slice = buf, _index = w, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (digit.low << 24 >>> 24) + 48 << 24 >>> 24) : go$throwRuntimeError("index out of range");
+			}
+			v = go$div64(v, new Go$Uint64(0, 10), false);
+			i = i + 1 >> 0;
+		}
+		if (print) {
+			w = w - 1 >> 0;
+			_slice$1 = buf, _index$1 = w, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 46) : go$throwRuntimeError("index out of range");
+		}
+		_tuple = [w, v], nw = _tuple[0], nv = _tuple[1];
+		return [nw, nv];
+	};
+	var fmtInt = function(buf, v) {
+		var w, _slice, _index, _slice$1, _index$1;
+		w = buf.length;
+		if ((v.high === 0 && v.low === 0)) {
+			w = w - 1 >> 0;
+			_slice = buf, _index = w, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 48) : go$throwRuntimeError("index out of range");
+		} else {
+			while ((v.high > 0 || (v.high === 0 && v.low > 0))) {
+				w = w - 1 >> 0;
+				_slice$1 = buf, _index$1 = w, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (go$div64(v, new Go$Uint64(0, 10), true).low << 24 >>> 24) + 48 << 24 >>> 24) : go$throwRuntimeError("index out of range");
+				v = go$div64(v, new Go$Uint64(0, 10), false);
+			}
+		}
+		return w;
+	};
+	Duration.prototype.Nanoseconds = function() {
+		var d;
+		d = this;
+		return new Go$Int64(d.high, d.low);
+	};
+	go$ptrType(Duration).prototype.Nanoseconds = function() { return this.go$get().Nanoseconds(); };
+	Duration.prototype.Seconds = function() {
+		var d, sec, nsec;
+		d = this;
+		sec = go$div64(d, new Duration(0, 1000000000), false);
+		nsec = go$div64(d, new Duration(0, 1000000000), true);
+		return go$flatten64(sec) + go$flatten64(nsec) * 1e-09;
+	};
+	go$ptrType(Duration).prototype.Seconds = function() { return this.go$get().Seconds(); };
+	Duration.prototype.Minutes = function() {
+		var d, min, nsec;
+		d = this;
+		min = go$div64(d, new Duration(13, 4165425152), false);
+		nsec = go$div64(d, new Duration(13, 4165425152), true);
+		return go$flatten64(min) + go$flatten64(nsec) * 1.6666666666666667e-11;
+	};
+	go$ptrType(Duration).prototype.Minutes = function() { return this.go$get().Minutes(); };
+	Duration.prototype.Hours = function() {
+		var d, hour, nsec;
+		d = this;
+		hour = go$div64(d, new Duration(838, 817405952), false);
+		nsec = go$div64(d, new Duration(838, 817405952), true);
+		return go$flatten64(hour) + go$flatten64(nsec) * 2.777777777777778e-13;
+	};
+	go$ptrType(Duration).prototype.Hours = function() { return this.go$get().Hours(); };
+	Time.Ptr.prototype.Add = function(d) {
+		var _struct, t, x, x$1, x$2, x$3, nsec, x$4, x$5, _struct$1;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		t.sec = (x = t.sec, x$1 = (x$2 = go$div64(d, new Duration(0, 1000000000), false), new Go$Int64(x$2.high, x$2.low)), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
+		nsec = (t.nsec >> 0) + ((x$3 = go$div64(d, new Duration(0, 1000000000), true), x$3.low + ((x$3.high >> 31) * 4294967296)) >> 0) >> 0;
+		if (nsec >= 1000000000) {
+			t.sec = (x$4 = t.sec, new Go$Int64(x$4.high + 0, x$4.low + 1));
+			nsec = nsec - 1000000000 >> 0;
+		} else if (nsec < 0) {
+			t.sec = (x$5 = t.sec, new Go$Int64(x$5.high - 0, x$5.low - 1));
+			nsec = nsec + 1000000000 >> 0;
+		}
+		t.nsec = (nsec >>> 0);
+		return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+	};
+	Time.prototype.Add = function(d) { return this.go$val.Add(d); };
+	Time.Ptr.prototype.Sub = function(u) {
+		var _struct, t, x, x$1, x$2, x$3, x$4, d, _struct$1, _struct$2;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		d = (x = go$mul64((x$1 = (x$2 = t.sec, x$3 = u.sec, new Go$Int64(x$2.high - x$3.high, x$2.low - x$3.low)), new Duration(x$1.high, x$1.low)), new Duration(0, 1000000000)), x$4 = new Duration(0, ((t.nsec >> 0) - (u.nsec >> 0) >> 0)), new Duration(x.high + x$4.high, x.low + x$4.low));
+		if (u.Add(d).Equal((_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)))) {
+			return d;
+		} else if (t.Before((_struct$2 = u, new Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc)))) {
+			return new Duration(-2147483648, 0);
+		} else {
+			return new Duration(2147483647, 4294967295);
+		}
+	};
+	Time.prototype.Sub = function(u) { return this.go$val.Sub(u); };
+	var Since = go$pkg.Since = function(t) {
+		var _struct;
+		return Now().Sub((_struct = t, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)));
+	};
+	Time.Ptr.prototype.AddDate = function(years, months$1, days$1) {
+		var _struct, t, _tuple, year, month, day, _tuple$1, hour, min, sec, _struct$1;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = t.Date(), year = _tuple[0], month = _tuple[1], day = _tuple[2];
+		_tuple$1 = t.Clock(), hour = _tuple$1[0], min = _tuple$1[1], sec = _tuple$1[2];
+		return (_struct$1 = Date(year + years >> 0, month + (months$1 >> 0) >> 0, day + days$1 >> 0, hour, min, sec, (t.nsec >> 0), t.loc), new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+	};
+	Time.prototype.AddDate = function(years, months$1, days$1) { return this.go$val.AddDate(years, months$1, days$1); };
+	Time.Ptr.prototype.date = function(full) {
+		var year, month, day, yday, _struct, t, _tuple;
+		year = 0;
+		month = 0;
+		day = 0;
+		yday = 0;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = absDate(t.abs(), full), year = _tuple[0], month = _tuple[1], day = _tuple[2], yday = _tuple[3];
+		return [year, month, day, yday];
+	};
+	Time.prototype.date = function(full) { return this.go$val.date(full); };
+	var absDate = function(abs, full) {
+		var year, month, day, yday, d, n, y, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10, _q, end, begin;
+		year = 0;
+		month = 0;
+		day = 0;
+		yday = 0;
+		d = go$div64(abs, new Go$Uint64(0, 86400), false);
+		n = go$div64(d, new Go$Uint64(0, 146097), false);
+		y = go$mul64(new Go$Uint64(0, 400), n);
+		d = (x = go$mul64(new Go$Uint64(0, 146097), n), new Go$Uint64(d.high - x.high, d.low - x.low));
+		n = go$div64(d, new Go$Uint64(0, 36524), false);
+		n = (x$1 = go$shiftRightUint64(n, 2), new Go$Uint64(n.high - x$1.high, n.low - x$1.low));
+		y = (x$2 = go$mul64(new Go$Uint64(0, 100), n), new Go$Uint64(y.high + x$2.high, y.low + x$2.low));
+		d = (x$3 = go$mul64(new Go$Uint64(0, 36524), n), new Go$Uint64(d.high - x$3.high, d.low - x$3.low));
+		n = go$div64(d, new Go$Uint64(0, 1461), false);
+		y = (x$4 = go$mul64(new Go$Uint64(0, 4), n), new Go$Uint64(y.high + x$4.high, y.low + x$4.low));
+		d = (x$5 = go$mul64(new Go$Uint64(0, 1461), n), new Go$Uint64(d.high - x$5.high, d.low - x$5.low));
+		n = go$div64(d, new Go$Uint64(0, 365), false);
+		n = (x$6 = go$shiftRightUint64(n, 2), new Go$Uint64(n.high - x$6.high, n.low - x$6.low));
+		y = (x$7 = n, new Go$Uint64(y.high + x$7.high, y.low + x$7.low));
+		d = (x$8 = go$mul64(new Go$Uint64(0, 365), n), new Go$Uint64(d.high - x$8.high, d.low - x$8.low));
+		year = ((x$9 = (x$10 = new Go$Int64(y.high, y.low), new Go$Int64(x$10.high + -69, x$10.low + 4075721025)), x$9.low + ((x$9.high >> 31) * 4294967296)) >> 0);
+		yday = (d.low >> 0);
+		if (!full) {
+			return [year, month, day, yday];
+		}
+		day = yday;
+		if (isLeap(year)) {
+			if (day > 59) {
+				day = day - 1 >> 0;
+			} else if (day === 59) {
+				month = 2;
+				day = 29;
+				return [year, month, day, yday];
+			}
+		}
+		month = ((_q = day / 31, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
+		end = (daysBefore[(month + 1 >> 0)] >> 0);
+		begin = 0;
+		if (day >= end) {
+			month = month + 1 >> 0;
+			begin = end;
+		} else {
+			begin = (daysBefore[month] >> 0);
+		}
+		month = month + 1 >> 0;
+		day = (day - begin >> 0) + 1 >> 0;
+		return [year, month, day, yday];
+	};
+	var daysIn = function(m, year) {
+		if ((m === 2) && isLeap(year)) {
+			return 29;
+		}
+		return ((daysBefore[m] - daysBefore[(m - 1 >> 0)] >> 0) >> 0);
+	};
+	var Now = go$pkg.Now = function() {
+		var _tuple, sec, nsec;
+		_tuple = now(), sec = _tuple[0], nsec = _tuple[1];
+		return new Time.Ptr(new Go$Int64(sec.high + 14, sec.low + 2006054656), (nsec >>> 0), go$pkg.Local);
+	};
+	Time.Ptr.prototype.UTC = function() {
+		var _struct, t, _struct$1;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		t.loc = go$pkg.UTC;
+		return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+	};
+	Time.prototype.UTC = function() { return this.go$val.UTC(); };
+	Time.Ptr.prototype.Local = function() {
+		var _struct, t, _struct$1;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		t.loc = go$pkg.Local;
+		return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+	};
+	Time.prototype.Local = function() { return this.go$val.Local(); };
+	Time.Ptr.prototype.In = function(loc) {
+		var _struct, t, _struct$1;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		if (loc === (go$ptrType(Location)).nil) {
+			throw go$panic(new Go$String("time: missing Location in call to Time.In"));
+		}
+		t.loc = loc;
+		return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+	};
+	Time.prototype.In = function(loc) { return this.go$val.In(loc); };
+	Time.Ptr.prototype.Location = function() {
+		var _struct, t, l;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		l = t.loc;
+		if (l === (go$ptrType(Location)).nil) {
+			l = go$pkg.UTC;
+		}
+		return l;
+	};
+	Time.prototype.Location = function() { return this.go$val.Location(); };
+	Time.Ptr.prototype.Zone = function() {
+		var name, offset, _struct, t, _tuple, x;
+		name = "";
+		offset = 0;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		_tuple = t.loc.lookup((x = t.sec, new Go$Int64(x.high + -15, x.low + 2288912640))), name = _tuple[0], offset = _tuple[1];
+		return [name, offset];
+	};
+	Time.prototype.Zone = function() { return this.go$val.Zone(); };
+	Time.Ptr.prototype.Unix = function() {
+		var _struct, t, x;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (x = t.sec, new Go$Int64(x.high + -15, x.low + 2288912640));
+	};
+	Time.prototype.Unix = function() { return this.go$val.Unix(); };
+	Time.Ptr.prototype.UnixNano = function() {
+		var _struct, t, x, x$1, x$2, x$3;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return (x = go$mul64(((x$1 = t.sec, new Go$Int64(x$1.high + -15, x$1.low + 2288912640))), new Go$Int64(0, 1000000000)), x$2 = (x$3 = t.nsec, new Go$Int64(0, x$3.constructor === Number ? x$3 : 1)), new Go$Int64(x.high + x$2.high, x.low + x$2.low));
+	};
+	Time.prototype.UnixNano = function() { return this.go$val.UnixNano(); };
+	Time.Ptr.prototype.MarshalBinary = function() {
+		var _struct, t, offsetMin, _tuple, offset, _r, _q, enc;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		offsetMin = 0;
+		if (t.Location() === utcLoc) {
+			offsetMin = -1;
+		} else {
+			_tuple = t.Zone(), offset = _tuple[1];
+			if (!(((_r = offset % 60, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
+				return [(go$sliceType(Go$Uint8)).nil, errors.New("Time.MarshalBinary: zone offset has fractional minute")];
+			}
+			offset = (_q = offset / 60, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+			if (offset < -32768 || (offset === -1) || offset > 32767) {
+				return [(go$sliceType(Go$Uint8)).nil, errors.New("Time.MarshalBinary: unexpected zone offset")];
+			}
+			offsetMin = (offset << 16 >> 16);
+		}
+		enc = new (go$sliceType(Go$Uint8))([1, (go$shiftRightInt64(t.sec, 56).low << 24 >>> 24), (go$shiftRightInt64(t.sec, 48).low << 24 >>> 24), (go$shiftRightInt64(t.sec, 40).low << 24 >>> 24), (go$shiftRightInt64(t.sec, 32).low << 24 >>> 24), (go$shiftRightInt64(t.sec, 24).low << 24 >>> 24), (go$shiftRightInt64(t.sec, 16).low << 24 >>> 24), (go$shiftRightInt64(t.sec, 8).low << 24 >>> 24), (t.sec.low << 24 >>> 24), ((t.nsec >>> 24 >>> 0) << 24 >>> 24), ((t.nsec >>> 16 >>> 0) << 24 >>> 24), ((t.nsec >>> 8 >>> 0) << 24 >>> 24), (t.nsec << 24 >>> 24), ((offsetMin >> 8 << 16 >> 16) << 24 >>> 24), (offsetMin << 24 >>> 24)]);
+		return [enc, null];
+	};
+	Time.prototype.MarshalBinary = function() { return this.go$val.MarshalBinary(); };
+	Time.Ptr.prototype.UnmarshalBinary = function(data$1) {
+		var t, buf, _slice, _index, x, x$1, x$2, x$3, x$4, x$5, x$6, _slice$1, _index$1, x$7, _slice$2, _index$2, x$8, _slice$3, _index$3, x$9, _slice$4, _index$4, x$10, _slice$5, _index$5, x$11, _slice$6, _index$6, x$12, _slice$7, _index$7, x$13, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, x$14, _slice$13, _index$13, _slice$14, _index$14, x$15, offset, localoff, _tuple, x$16;
+		t = this;
+		buf = data$1;
+		if (buf.length === 0) {
+			return errors.New("Time.UnmarshalBinary: no data");
+		}
+		if (!(((_slice = buf, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 1))) {
+			return errors.New("Time.UnmarshalBinary: unsupported version");
+		}
+		if (!((buf.length === 15))) {
+			return errors.New("Time.UnmarshalBinary: invalid length");
+		}
+		buf = go$subslice(buf, 1);
+		t.sec = (x = (x$1 = (x$2 = (x$3 = (x$4 = (x$5 = (x$6 = new Go$Int64(0, (_slice$1 = buf, _index$1 = 7, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))), x$7 = go$shiftLeft64(new Go$Int64(0, (_slice$2 = buf, _index$2 = 6, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))), 8), new Go$Int64(x$6.high | x$7.high, (x$6.low | x$7.low) >>> 0)), x$8 = go$shiftLeft64(new Go$Int64(0, (_slice$3 = buf, _index$3 = 5, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))), 16), new Go$Int64(x$5.high | x$8.high, (x$5.low | x$8.low) >>> 0)), x$9 = go$shiftLeft64(new Go$Int64(0, (_slice$4 = buf, _index$4 = 4, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))), 24), new Go$Int64(x$4.high | x$9.high, (x$4.low | x$9.low) >>> 0)), x$10 = go$shiftLeft64(new Go$Int64(0, (_slice$5 = buf, _index$5 = 3, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))), 32), new Go$Int64(x$3.high | x$10.high, (x$3.low | x$10.low) >>> 0)), x$11 = go$shiftLeft64(new Go$Int64(0, (_slice$6 = buf, _index$6 = 2, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))), 40), new Go$Int64(x$2.high | x$11.high, (x$2.low | x$11.low) >>> 0)), x$12 = go$shiftLeft64(new Go$Int64(0, (_slice$7 = buf, _index$7 = 1, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))), 48), new Go$Int64(x$1.high | x$12.high, (x$1.low | x$12.low) >>> 0)), x$13 = go$shiftLeft64(new Go$Int64(0, (_slice$8 = buf, _index$8 = 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"))), 56), new Go$Int64(x.high | x$13.high, (x.low | x$13.low) >>> 0));
+		buf = go$subslice(buf, 8);
+		t.nsec = ((((((_slice$9 = buf, _index$9 = 3, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) >> 0) | (((_slice$10 = buf, _index$10 = 2, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range")) >> 0) << 8 >> 0)) | (((_slice$11 = buf, _index$11 = 1, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")) >> 0) << 16 >> 0)) | (((_slice$12 = buf, _index$12 = 0, (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range")) >> 0) << 24 >> 0)) >>> 0);
+		buf = go$subslice(buf, 4);
+		offset = (x$14 = ((((_slice$13 = buf, _index$13 = 1, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range")) << 16 >> 16) | (((_slice$14 = buf, _index$14 = 0, (_index$14 >= 0 && _index$14 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$14] : go$throwRuntimeError("index out of range")) << 16 >> 16) << 8 << 16 >> 16)) >> 0), x$15 = 60, (((x$14 >>> 16 << 16) * x$15 >> 0) + (x$14 << 16 >>> 16) * x$15) >> 0);
+		if (offset === -60) {
+			t.loc = utcLoc;
+		} else if (_tuple = go$pkg.Local.lookup((x$16 = t.sec, new Go$Int64(x$16.high + -15, x$16.low + 2288912640))), localoff = _tuple[1], offset === localoff) {
+			t.loc = go$pkg.Local;
+		} else {
+			t.loc = FixedZone("", offset);
+		}
+		return null;
+	};
+	Time.prototype.UnmarshalBinary = function(data$1) { return this.go$val.UnmarshalBinary(data$1); };
+	Time.Ptr.prototype.GobEncode = function() {
+		var _struct, t;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return t.MarshalBinary();
+	};
+	Time.prototype.GobEncode = function() { return this.go$val.GobEncode(); };
+	Time.Ptr.prototype.GobDecode = function(data$1) {
+		var t;
+		t = this;
+		return t.UnmarshalBinary(data$1);
+	};
+	Time.prototype.GobDecode = function(data$1) { return this.go$val.GobDecode(data$1); };
+	Time.Ptr.prototype.MarshalJSON = function() {
+		var _struct, t, y;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		if (y = t.Year(), y < 0 || y >= 10000) {
+			return [(go$sliceType(Go$Uint8)).nil, errors.New("Time.MarshalJSON: year outside of range [0,9999]")];
+		}
+		return [new (go$sliceType(Go$Uint8))(go$stringToBytes(t.Format("\"2006-01-02T15:04:05.999999999Z07:00\""))), null];
+	};
+	Time.prototype.MarshalJSON = function() { return this.go$val.MarshalJSON(); };
+	Time.Ptr.prototype.UnmarshalJSON = function(data$1) {
+		var err, t, _tuple, _struct, l, r;
+		err = null;
+		t = this;
+		_tuple = Parse("\"2006-01-02T15:04:05Z07:00\"", go$bytesToString(data$1)), l = t, r = (_struct = _tuple[0], new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)), l.sec = r.sec, l.nsec = r.nsec, l.loc = r.loc, err = _tuple[1];
+		return err;
+	};
+	Time.prototype.UnmarshalJSON = function(data$1) { return this.go$val.UnmarshalJSON(data$1); };
+	Time.Ptr.prototype.MarshalText = function() {
+		var _struct, t, y;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		if (y = t.Year(), y < 0 || y >= 10000) {
+			return [(go$sliceType(Go$Uint8)).nil, errors.New("Time.MarshalText: year outside of range [0,9999]")];
+		}
+		return [new (go$sliceType(Go$Uint8))(go$stringToBytes(t.Format("2006-01-02T15:04:05.999999999Z07:00"))), null];
+	};
+	Time.prototype.MarshalText = function() { return this.go$val.MarshalText(); };
+	Time.Ptr.prototype.UnmarshalText = function(data$1) {
+		var err, t, _tuple, _struct, l, r;
+		err = null;
+		t = this;
+		_tuple = Parse("2006-01-02T15:04:05Z07:00", go$bytesToString(data$1)), l = t, r = (_struct = _tuple[0], new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)), l.sec = r.sec, l.nsec = r.nsec, l.loc = r.loc, err = _tuple[1];
+		return err;
+	};
+	Time.prototype.UnmarshalText = function(data$1) { return this.go$val.UnmarshalText(data$1); };
+	var Unix = go$pkg.Unix = function(sec, nsec) {
+		var n, x, x$1;
+		if ((nsec.high < 0 || (nsec.high === 0 && nsec.low < 0)) || (nsec.high > 0 || (nsec.high === 0 && nsec.low >= 1000000000))) {
+			n = go$div64(nsec, new Go$Int64(0, 1000000000), false);
+			sec = (x = n, new Go$Int64(sec.high + x.high, sec.low + x.low));
+			nsec = (x$1 = go$mul64(n, new Go$Int64(0, 1000000000)), new Go$Int64(nsec.high - x$1.high, nsec.low - x$1.low));
+			if ((nsec.high < 0 || (nsec.high === 0 && nsec.low < 0))) {
+				nsec = new Go$Int64(nsec.high + 0, nsec.low + 1000000000);
+				sec = new Go$Int64(sec.high - 0, sec.low - 1);
+			}
+		}
+		return new Time.Ptr(new Go$Int64(sec.high + 14, sec.low + 2006054656), (nsec.low >>> 0), go$pkg.Local);
+	};
+	var isLeap = function(year) {
+		var _r, _r$1, _r$2;
+		return ((_r = year % 4, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0) && (!(((_r$1 = year % 100, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) === 0)) || ((_r$2 = year % 400, _r$2 === _r$2 ? _r$2 : go$throwRuntimeError("integer divide by zero")) === 0));
+	};
+	var norm = function(hi, lo, base) {
+		var nhi, nlo, _q, n, _q$1, n$1, _tuple;
+		nhi = 0;
+		nlo = 0;
+		if (lo < 0) {
+			n = (_q = ((-lo - 1 >> 0)) / base, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) + 1 >> 0;
+			hi = hi - (n) >> 0;
+			lo = lo + (((((n >>> 16 << 16) * base >> 0) + (n << 16 >>> 16) * base) >> 0)) >> 0;
+		}
+		if (lo >= base) {
+			n$1 = (_q$1 = lo / base, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero"));
+			hi = hi + (n$1) >> 0;
+			lo = lo - (((((n$1 >>> 16 << 16) * base >> 0) + (n$1 << 16 >>> 16) * base) >> 0)) >> 0;
+		}
+		_tuple = [hi, lo], nhi = _tuple[0], nlo = _tuple[1];
+		return [nhi, nlo];
+	};
+	var Date = go$pkg.Date = function(year, month, day, hour, min, sec, nsec, loc) {
+		var m, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, x, x$1, y, n, x$2, d, x$3, x$4, x$5, x$6, x$7, x$8, x$9, abs, x$10, x$11, unix, _tuple$5, offset, start, end, x$12, utc, _tuple$6, _tuple$7, x$13;
+		if (loc === (go$ptrType(Location)).nil) {
+			throw go$panic(new Go$String("time: missing Location in call to Date"));
+		}
+		m = (month >> 0) - 1 >> 0;
+		_tuple = norm(year, m, 12), year = _tuple[0], m = _tuple[1];
+		month = (m >> 0) + 1 >> 0;
+		_tuple$1 = norm(sec, nsec, 1000000000), sec = _tuple$1[0], nsec = _tuple$1[1];
+		_tuple$2 = norm(min, sec, 60), min = _tuple$2[0], sec = _tuple$2[1];
+		_tuple$3 = norm(hour, min, 60), hour = _tuple$3[0], min = _tuple$3[1];
+		_tuple$4 = norm(day, hour, 24), day = _tuple$4[0], hour = _tuple$4[1];
+		y = (x = (x$1 = new Go$Int64(0, year), new Go$Int64(x$1.high - -69, x$1.low - 4075721025)), new Go$Uint64(x.high, x.low));
+		n = go$div64(y, new Go$Uint64(0, 400), false);
+		y = (x$2 = go$mul64(new Go$Uint64(0, 400), n), new Go$Uint64(y.high - x$2.high, y.low - x$2.low));
+		d = go$mul64(new Go$Uint64(0, 146097), n);
+		n = go$div64(y, new Go$Uint64(0, 100), false);
+		y = (x$3 = go$mul64(new Go$Uint64(0, 100), n), new Go$Uint64(y.high - x$3.high, y.low - x$3.low));
+		d = (x$4 = go$mul64(new Go$Uint64(0, 36524), n), new Go$Uint64(d.high + x$4.high, d.low + x$4.low));
+		n = go$div64(y, new Go$Uint64(0, 4), false);
+		y = (x$5 = go$mul64(new Go$Uint64(0, 4), n), new Go$Uint64(y.high - x$5.high, y.low - x$5.low));
+		d = (x$6 = go$mul64(new Go$Uint64(0, 1461), n), new Go$Uint64(d.high + x$6.high, d.low + x$6.low));
+		n = y;
+		d = (x$7 = go$mul64(new Go$Uint64(0, 365), n), new Go$Uint64(d.high + x$7.high, d.low + x$7.low));
+		d = (x$8 = new Go$Uint64(0, daysBefore[(month - 1 >> 0)]), new Go$Uint64(d.high + x$8.high, d.low + x$8.low));
+		if (isLeap(year) && month >= 3) {
+			d = new Go$Uint64(d.high + 0, d.low + 1);
+		}
+		d = (x$9 = new Go$Uint64(0, (day - 1 >> 0)), new Go$Uint64(d.high + x$9.high, d.low + x$9.low));
+		abs = go$mul64(d, new Go$Uint64(0, 86400));
+		abs = (x$10 = new Go$Uint64(0, ((((((hour >>> 16 << 16) * 3600 >> 0) + (hour << 16 >>> 16) * 3600) >> 0) + ((((min >>> 16 << 16) * 60 >> 0) + (min << 16 >>> 16) * 60) >> 0) >> 0) + sec >> 0)), new Go$Uint64(abs.high + x$10.high, abs.low + x$10.low));
+		unix = (x$11 = new Go$Int64(abs.high, abs.low), new Go$Int64(x$11.high + -2147483647, x$11.low + 3844486912));
+		_tuple$5 = loc.lookup(unix), offset = _tuple$5[1], start = _tuple$5[3], end = _tuple$5[4];
+		if (!((offset === 0))) {
+			utc = (x$12 = new Go$Int64(0, offset), new Go$Int64(unix.high - x$12.high, unix.low - x$12.low));
+			if ((utc.high < start.high || (utc.high === start.high && utc.low < start.low))) {
+				_tuple$6 = loc.lookup(new Go$Int64(start.high - 0, start.low - 1)), offset = _tuple$6[1];
+			} else if ((utc.high > end.high || (utc.high === end.high && utc.low >= end.low))) {
+				_tuple$7 = loc.lookup(end), offset = _tuple$7[1];
+			}
+			unix = (x$13 = new Go$Int64(0, offset), new Go$Int64(unix.high - x$13.high, unix.low - x$13.low));
+		}
+		return new Time.Ptr(new Go$Int64(unix.high + 14, unix.low + 2006054656), (nsec >>> 0), loc);
+	};
+	Time.Ptr.prototype.Truncate = function(d) {
+		var _struct, t, _struct$1, _tuple, _struct$2, r, _struct$3;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		if ((d.high < 0 || (d.high === 0 && d.low <= 0))) {
+			return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+		}
+		_tuple = div((_struct$2 = t, new Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc)), d), r = _tuple[1];
+		return (_struct$3 = t.Add(new Duration(-r.high, -r.low)), new Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc));
+	};
+	Time.prototype.Truncate = function(d) { return this.go$val.Truncate(d); };
+	Time.Ptr.prototype.Round = function(d) {
+		var _struct, t, _struct$1, _tuple, _struct$2, r, x, _struct$3, _struct$4;
+		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		if ((d.high < 0 || (d.high === 0 && d.low <= 0))) {
+			return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+		}
+		_tuple = div((_struct$2 = t, new Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc)), d), r = _tuple[1];
+		if ((x = new Duration(r.high + r.high, r.low + r.low), (x.high < d.high || (x.high === d.high && x.low < d.low)))) {
+			return (_struct$3 = t.Add(new Duration(-r.high, -r.low)), new Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc));
+		}
+		return (_struct$4 = t.Add(new Duration(d.high - r.high, d.low - r.low)), new Time.Ptr(_struct$4.sec, _struct$4.nsec, _struct$4.loc));
+	};
+	Time.prototype.Round = function(d) { return this.go$val.Round(d); };
+	var div = function(t, d) {
+		var qmod2, r, neg, nsec, x, x$1, x$2, x$3, x$4, _q, _r, x$5, d1, x$6, x$7, x$8, x$9, x$10, sec, tmp, u1, u0, _tuple, u0x, x$11, _tuple$1, d1$1, x$12, d0, _tuple$2, x$13, x$14, x$15;
+		qmod2 = 0;
+		r = new Duration(0, 0);
+		neg = false;
+		nsec = (t.nsec >> 0);
+		if ((x = t.sec, (x.high < 0 || (x.high === 0 && x.low < 0)))) {
+			neg = true;
+			t.sec = (x$1 = t.sec, new Go$Int64(-x$1.high, -x$1.low));
+			nsec = -nsec;
+			if (nsec < 0) {
+				nsec = nsec + 1000000000 >> 0;
+				t.sec = (x$2 = t.sec, new Go$Int64(x$2.high - 0, x$2.low - 1));
+			}
+		}
+		if ((d.high < 0 || (d.high === 0 && d.low < 1000000000)) && (x$3 = go$div64(new Duration(0, 1000000000), (new Duration(d.high + d.high, d.low + d.low)), true), (x$3.high === 0 && x$3.low === 0))) {
+			qmod2 = ((_q = nsec / ((d.low + ((d.high >> 31) * 4294967296)) >> 0), (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0) & 1;
+			r = new Duration(0, (_r = nsec % ((d.low + ((d.high >> 31) * 4294967296)) >> 0), _r === _r ? _r : go$throwRuntimeError("integer divide by zero")));
+		} else if ((x$4 = go$div64(d, new Duration(0, 1000000000), true), (x$4.high === 0 && x$4.low === 0))) {
+			d1 = (x$5 = go$div64(d, new Duration(0, 1000000000), false), new Go$Int64(x$5.high, x$5.low));
+			qmod2 = ((x$6 = go$div64(t.sec, d1, false), x$6.low + ((x$6.high >> 31) * 4294967296)) >> 0) & 1;
+			r = (x$7 = go$mul64((x$8 = go$div64(t.sec, d1, true), new Duration(x$8.high, x$8.low)), new Duration(0, 1000000000)), x$9 = new Duration(0, nsec), new Duration(x$7.high + x$9.high, x$7.low + x$9.low));
+		} else {
+			sec = (x$10 = t.sec, new Go$Uint64(x$10.high, x$10.low));
+			tmp = go$mul64((go$shiftRightUint64(sec, 32)), new Go$Uint64(0, 1000000000));
+			u1 = go$shiftRightUint64(tmp, 32);
+			u0 = go$shiftLeft64(tmp, 32);
+			tmp = go$mul64(new Go$Uint64(sec.high & 0, (sec.low & 4294967295) >>> 0), new Go$Uint64(0, 1000000000));
+			_tuple = [u0, new Go$Uint64(u0.high + tmp.high, u0.low + tmp.low)], u0x = _tuple[0], u0 = _tuple[1];
+			if ((u0.high < u0x.high || (u0.high === u0x.high && u0.low < u0x.low))) {
+				u1 = new Go$Uint64(u1.high + 0, u1.low + 1);
+			}
+			_tuple$1 = [u0, (x$11 = new Go$Uint64(0, nsec), new Go$Uint64(u0.high + x$11.high, u0.low + x$11.low))], u0x = _tuple$1[0], u0 = _tuple$1[1];
+			if ((u0.high < u0x.high || (u0.high === u0x.high && u0.low < u0x.low))) {
+				u1 = new Go$Uint64(u1.high + 0, u1.low + 1);
+			}
+			d1$1 = new Go$Uint64(d.high, d.low);
+			while (!((x$12 = go$shiftRightUint64(d1$1, 63), (x$12.high === 0 && x$12.low === 1)))) {
+				d1$1 = go$shiftLeft64(d1$1, 1);
+			}
+			d0 = new Go$Uint64(0, 0);
+			while (true) {
+				qmod2 = 0;
+				if ((u1.high > d1$1.high || (u1.high === d1$1.high && u1.low > d1$1.low)) || (u1.high === d1$1.high && u1.low === d1$1.low) && (u0.high > d0.high || (u0.high === d0.high && u0.low >= d0.low))) {
+					qmod2 = 1;
+					_tuple$2 = [u0, new Go$Uint64(u0.high - d0.high, u0.low - d0.low)], u0x = _tuple$2[0], u0 = _tuple$2[1];
+					if ((u0.high > u0x.high || (u0.high === u0x.high && u0.low > u0x.low))) {
+						u1 = new Go$Uint64(u1.high - 0, u1.low - 1);
+					}
+					u1 = (x$13 = d1$1, new Go$Uint64(u1.high - x$13.high, u1.low - x$13.low));
+				}
+				if ((d1$1.high === 0 && d1$1.low === 0) && (x$14 = new Go$Uint64(d.high, d.low), (d0.high === x$14.high && d0.low === x$14.low))) {
+					break;
+				}
+				d0 = go$shiftRightUint64(d0, 1);
+				d0 = (x$15 = go$shiftLeft64((new Go$Uint64(d1$1.high & 0, (d1$1.low & 1) >>> 0)), 63), new Go$Uint64(d0.high | x$15.high, (d0.low | x$15.low) >>> 0));
+				d1$1 = go$shiftRightUint64(d1$1, 1);
+			}
+			r = new Duration(u0.high, u0.low);
+		}
+		if (neg && !((r.high === 0 && r.low === 0))) {
+			qmod2 = (qmod2 ^ 1) >> 0;
+			r = new Duration(d.high - r.high, d.low - r.low);
+		}
+		return [qmod2, r];
+	};
+	Location.Ptr.prototype.get = function() {
+		var l;
+		l = this;
+		if (l === (go$ptrType(Location)).nil) {
+			return utcLoc;
+		}
+		if (l === localLoc) {
+			localOnce.Do(initLocal);
+		}
+		return l;
+	};
+	Location.prototype.get = function() { return this.go$val.get(); };
+	Location.Ptr.prototype.String = function() {
+		var l;
+		l = this;
+		return l.get().name;
+	};
+	Location.prototype.String = function() { return this.go$val.String(); };
+	var FixedZone = go$pkg.FixedZone = function(name, offset) {
+		var l, _slice, _index;
+		l = new Location.Ptr(name, new (go$sliceType(zone))([new zone.Ptr(name, offset, false)]), new (go$sliceType(zoneTrans))([new zoneTrans.Ptr(new Go$Int64(-2147483648, 0), 0, false, false)]), new Go$Int64(-2147483648, 0), new Go$Int64(2147483647, 4294967295), (go$ptrType(zone)).nil);
+		l.cacheZone = (_slice = l.zone, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		return l;
+	};
+	Location.Ptr.prototype.lookup = function(sec) {
+		var name, offset, isDST, start, end, l, zone$1, x, x$1, tx, lo, hi, _q, m, _slice, _index, lim, _slice$1, _index$1, _slice$2, _index$2, zone$2, _slice$3, _index$3;
+		name = "";
+		offset = 0;
+		isDST = false;
+		start = new Go$Int64(0, 0);
+		end = new Go$Int64(0, 0);
+		l = this;
+		l = l.get();
+		if (l.tx.length === 0) {
+			name = "UTC";
+			offset = 0;
+			isDST = false;
+			start = new Go$Int64(-2147483648, 0);
+			end = new Go$Int64(2147483647, 4294967295);
+			return [name, offset, isDST, start, end];
+		}
+		if (zone$1 = l.cacheZone, !(zone$1 === (go$ptrType(zone)).nil) && (x = l.cacheStart, (x.high < sec.high || (x.high === sec.high && x.low <= sec.low))) && (x$1 = l.cacheEnd, (sec.high < x$1.high || (sec.high === x$1.high && sec.low < x$1.low)))) {
+			name = zone$1.name;
+			offset = zone$1.offset;
+			isDST = zone$1.isDST;
+			start = l.cacheStart;
+			end = l.cacheEnd;
+			return [name, offset, isDST, start, end];
+		}
+		tx = l.tx;
+		end = new Go$Int64(2147483647, 4294967295);
+		lo = 0;
+		hi = tx.length;
+		while ((hi - lo >> 0) > 1) {
+			m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+			lim = (_slice = tx, _index = m, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).when;
+			if ((sec.high < lim.high || (sec.high === lim.high && sec.low < lim.low))) {
+				end = lim;
+				hi = m;
+			} else {
+				lo = m;
+			}
+		}
+		zone$2 = (_slice$1 = l.zone, _index$1 = (_slice$2 = tx, _index$2 = lo, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).index, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+		name = zone$2.name;
+		offset = zone$2.offset;
+		isDST = zone$2.isDST;
+		start = (_slice$3 = tx, _index$3 = lo, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).when;
+		return [name, offset, isDST, start, end];
+	};
+	Location.prototype.lookup = function(sec) { return this.go$val.lookup(sec); };
+	Location.Ptr.prototype.lookupName = function(name, unix) {
+		var offset, isDST, ok, l, _ref, _i, i, _slice, _index, zone$1, _tuple, x, nam, offset$1, isDST$1, _tuple$1, _ref$1, _i$1, i$1, _slice$1, _index$1, zone$2, _tuple$2;
+		offset = 0;
+		isDST = false;
+		ok = false;
+		l = this;
+		l = l.get();
+		_ref = l.zone;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			zone$1 = (_slice = l.zone, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (zone$1.name === name) {
+				_tuple = l.lookup((x = new Go$Int64(0, zone$1.offset), new Go$Int64(unix.high - x.high, unix.low - x.low))), nam = _tuple[0], offset$1 = _tuple[1], isDST$1 = _tuple[2];
+				if (nam === zone$1.name) {
+					_tuple$1 = [offset$1, isDST$1, true], offset = _tuple$1[0], isDST = _tuple$1[1], ok = _tuple$1[2];
+					return [offset, isDST, ok];
+				}
+			}
+		}
+		_ref$1 = l.zone;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			i$1 = _i$1;
+			zone$2 = (_slice$1 = l.zone, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			if (zone$2.name === name) {
+				_tuple$2 = [zone$2.offset, zone$2.isDST, true], offset = _tuple$2[0], isDST = _tuple$2[1], ok = _tuple$2[2];
+				return [offset, isDST, ok];
+			}
+		}
+		return [offset, isDST, ok];
+	};
+	Location.prototype.lookupName = function(name, unix) { return this.go$val.lookupName(name, unix); };
+	var LoadLocation = go$pkg.LoadLocation = function(name) {
+		var err, _tuple, z;
+		if (name === "" || name === "UTC") {
+			return [go$pkg.UTC, null];
+		}
+		if (name === "Local") {
+			return [go$pkg.Local, null];
+		}
+		if (!(zoneinfo === "")) {
+			if (_tuple = loadZoneFile(zoneinfo, name), z = _tuple[0], err = _tuple[1], go$interfaceIsEqual(err, null)) {
+				z.name = name;
+				return [z, null];
+			}
+		}
+		return loadLocation(name);
+	};
+	data.Ptr.prototype.read = function(n) {
+		var d, p;
+		d = this;
+		if (d.p.length < n) {
+			d.p = (go$sliceType(Go$Uint8)).nil;
+			d.error = true;
+			return (go$sliceType(Go$Uint8)).nil;
+		}
+		p = go$subslice(d.p, 0, n);
+		d.p = go$subslice(d.p, n);
+		return p;
+	};
+	data.prototype.read = function(n) { return this.go$val.read(n); };
+	data.Ptr.prototype.big4 = function() {
+		var n, ok, d, p, _tuple, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple$1;
+		n = 0;
+		ok = false;
+		d = this;
+		p = d.read(4);
+		if (p.length < 4) {
+			d.error = true;
+			_tuple = [0, false], n = _tuple[0], ok = _tuple[1];
+			return [n, ok];
+		}
+		_tuple$1 = [((((((((_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) << 24 >>> 0) | (((_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0) << 16 >>> 0)) >>> 0) | (((_slice$2 = p, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0) << 8 >>> 0)) >>> 0) | ((_slice$3 = p, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0)) >>> 0, true], n = _tuple$1[0], ok = _tuple$1[1];
+		return [n, ok];
+	};
+	data.prototype.big4 = function() { return this.go$val.big4(); };
+	data.Ptr.prototype.byte$ = function() {
+		var n, ok, d, p, _tuple, _slice, _index, _tuple$1;
+		n = 0;
+		ok = false;
+		d = this;
+		p = d.read(1);
+		if (p.length < 1) {
+			d.error = true;
+			_tuple = [0, false], n = _tuple[0], ok = _tuple[1];
+			return [n, ok];
+		}
+		_tuple$1 = [(_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), true], n = _tuple$1[0], ok = _tuple$1[1];
+		return [n, ok];
+	};
+	data.prototype.byte$ = function() { return this.go$val.byte$(); };
+	var byteString = function(p) {
+		var i, _slice, _index;
+		i = 0;
+		while (i < p.length) {
+			if ((_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0) {
+				return go$bytesToString(go$subslice(p, 0, i));
+			}
+			i = i + 1 >> 0;
+		}
+		return go$bytesToString(p);
+	};
+	var loadZoneData = function(bytes) {
+		var l, err, d, magic, _tuple, p, _slice, _index, _slice$1, _index$1, _tuple$1, n, i, _tuple$2, nn, ok, _tuple$3, x, x$1, txtimes, txzones, x$2, x$3, zonedata, abbrev, x$4, x$5, isstd, isutc, _tuple$4, zone$1, _ref, _i, i$1, ok$1, n$1, _tuple$5, _tuple$6, _slice$2, _index$2, b, _tuple$7, _tuple$8, _slice$3, _index$3, _tuple$9, _tuple$10, _slice$4, _index$4, tx, _ref$1, _i$1, i$2, ok$2, n$2, _tuple$11, _tuple$12, _slice$5, _index$5, _slice$6, _index$6, _tuple$13, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _tuple$14, sec, _ref$2, _i$2, i$3, x$6, _slice$13, _index$13, x$7, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17, _slice$18, _index$18, _tuple$15;
+		l = (go$ptrType(Location)).nil;
+		err = null;
+		d = new data.Ptr(bytes, false);
+		if (magic = d.read(4), !(go$bytesToString(magic) === "TZif")) {
+			_tuple = [(go$ptrType(Location)).nil, badData], l = _tuple[0], err = _tuple[1];
+			return [l, err];
+		}
+		p = (go$sliceType(Go$Uint8)).nil;
+		if (p = d.read(16), !((p.length === 16)) || !(((_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0)) && !(((_slice$1 = p, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 50))) {
+			_tuple$1 = [(go$ptrType(Location)).nil, badData], l = _tuple$1[0], err = _tuple$1[1];
+			return [l, err];
+		}
+		n = go$makeNativeArray("Int", 6, function() { return 0; });
+		i = 0;
+		while (i < 6) {
+			_tuple$2 = d.big4(), nn = _tuple$2[0], ok = _tuple$2[1];
+			if (!ok) {
+				_tuple$3 = [(go$ptrType(Location)).nil, badData], l = _tuple$3[0], err = _tuple$3[1];
+				return [l, err];
+			}
+			n[i] = (nn >> 0);
+			i = i + 1 >> 0;
+		}
+		txtimes = new data.Ptr(d.read((x = n[3], x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0)), false);
+		txzones = d.read(n[3]);
+		zonedata = new data.Ptr(d.read((x$2 = n[4], x$3 = 6, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0)), false);
+		abbrev = d.read(n[5]);
+		d.read((x$4 = n[2], x$5 = 8, (((x$4 >>> 16 << 16) * x$5 >> 0) + (x$4 << 16 >>> 16) * x$5) >> 0));
+		isstd = d.read(n[1]);
+		isutc = d.read(n[0]);
+		if (d.error) {
+			_tuple$4 = [(go$ptrType(Location)).nil, badData], l = _tuple$4[0], err = _tuple$4[1];
+			return [l, err];
+		}
+		zone$1 = (go$sliceType(zone)).make(n[4], 0, function() { return new zone.Ptr(); });
+		_ref = zone$1;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i$1 = _i;
+			ok$1 = false;
+			n$1 = 0;
+			if (_tuple$5 = zonedata.big4(), n$1 = _tuple$5[0], ok$1 = _tuple$5[1], !ok$1) {
+				_tuple$6 = [(go$ptrType(Location)).nil, badData], l = _tuple$6[0], err = _tuple$6[1];
+				return [l, err];
+			}
+			(_slice$2 = zone$1, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).offset = ((n$1 >> 0) >> 0);
+			b = 0;
+			if (_tuple$7 = zonedata.byte$(), b = _tuple$7[0], ok$1 = _tuple$7[1], !ok$1) {
+				_tuple$8 = [(go$ptrType(Location)).nil, badData], l = _tuple$8[0], err = _tuple$8[1];
+				return [l, err];
+			}
+			(_slice$3 = zone$1, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).isDST = !((b === 0));
+			if (_tuple$9 = zonedata.byte$(), b = _tuple$9[0], ok$1 = _tuple$9[1], !ok$1 || (b >> 0) >= abbrev.length) {
+				_tuple$10 = [(go$ptrType(Location)).nil, badData], l = _tuple$10[0], err = _tuple$10[1];
+				return [l, err];
+			}
+			(_slice$4 = zone$1, _index$4 = i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).name = byteString(go$subslice(abbrev, b));
+		}
+		tx = (go$sliceType(zoneTrans)).make(n[3], 0, function() { return new zoneTrans.Ptr(); });
+		_ref$1 = tx;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			i$2 = _i$1;
+			ok$2 = false;
+			n$2 = 0;
+			if (_tuple$11 = txtimes.big4(), n$2 = _tuple$11[0], ok$2 = _tuple$11[1], !ok$2) {
+				_tuple$12 = [(go$ptrType(Location)).nil, badData], l = _tuple$12[0], err = _tuple$12[1];
+				return [l, err];
+			}
+			(_slice$5 = tx, _index$5 = i$2, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).when = new Go$Int64(0, (n$2 >> 0));
+			if (((_slice$6 = txzones, _index$6 = i$2, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) >> 0) >= zone$1.length) {
+				_tuple$13 = [(go$ptrType(Location)).nil, badData], l = _tuple$13[0], err = _tuple$13[1];
+				return [l, err];
+			}
+			(_slice$8 = tx, _index$8 = i$2, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")).index = (_slice$7 = txzones, _index$7 = i$2, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+			if (i$2 < isstd.length) {
+				(_slice$10 = tx, _index$10 = i$2, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range")).isstd = !(((_slice$9 = isstd, _index$9 = i$2, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) === 0));
+			}
+			if (i$2 < isutc.length) {
+				(_slice$12 = tx, _index$12 = i$2, (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range")).isutc = !(((_slice$11 = isutc, _index$11 = i$2, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")) === 0));
+			}
+		}
+		if (tx.length === 0) {
+			tx = go$append(tx, new zoneTrans.Ptr(new Go$Int64(-2147483648, 0), 0, false, false));
+		}
+		l = new Location.Ptr("", zone$1, tx, new Go$Int64(0, 0), new Go$Int64(0, 0), (go$ptrType(zone)).nil);
+		_tuple$14 = now(), sec = _tuple$14[0];
+		_ref$2 = tx;
+		_i$2 = 0;
+		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+			i$3 = _i$2;
+			if ((x$6 = (_slice$13 = tx, _index$13 = i$3, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range")).when, (x$6.high < sec.high || (x$6.high === sec.high && x$6.low <= sec.low))) && (((i$3 + 1 >> 0) === tx.length) || (x$7 = (_slice$14 = tx, _index$14 = (i$3 + 1 >> 0), (_index$14 >= 0 && _index$14 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$14] : go$throwRuntimeError("index out of range")).when, (sec.high < x$7.high || (sec.high === x$7.high && sec.low < x$7.low))))) {
+				l.cacheStart = (_slice$15 = tx, _index$15 = i$3, (_index$15 >= 0 && _index$15 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$15] : go$throwRuntimeError("index out of range")).when;
+				l.cacheEnd = new Go$Int64(2147483647, 4294967295);
+				if ((i$3 + 1 >> 0) < tx.length) {
+					l.cacheEnd = (_slice$16 = tx, _index$16 = (i$3 + 1 >> 0), (_index$16 >= 0 && _index$16 < _slice$16.length) ? _slice$16.array[_slice$16.offset + _index$16] : go$throwRuntimeError("index out of range")).when;
+				}
+				l.cacheZone = (_slice$17 = l.zone, _index$17 = (_slice$18 = tx, _index$18 = i$3, (_index$18 >= 0 && _index$18 < _slice$18.length) ? _slice$18.array[_slice$18.offset + _index$18] : go$throwRuntimeError("index out of range")).index, (_index$17 >= 0 && _index$17 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$17] : go$throwRuntimeError("index out of range"));
+			}
+		}
+		_tuple$15 = [l, null], l = _tuple$15[0], err = _tuple$15[1];
+		return [l, err];
+	};
+	var loadZoneFile = function(dir, name) {
+		var l, err, _tuple, _tuple$1, buf, _tuple$2;
+		l = (go$ptrType(Location)).nil;
+		err = null;
+		if (dir.length > 4 && dir.substring((dir.length - 4 >> 0)) === ".zip") {
+			_tuple = loadZoneZip(dir, name), l = _tuple[0], err = _tuple[1];
+			return [l, err];
+		}
+		if (!(dir === "")) {
+			name = dir + "/" + name;
+		}
+		_tuple$1 = readFile(name), buf = _tuple$1[0], err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [l, err];
+		}
+		_tuple$2 = loadZoneData(buf), l = _tuple$2[0], err = _tuple$2[1];
+		return [l, err];
+	};
+	var get4 = function(b) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		if (b.length < 4) {
+			return 0;
+		}
+		return ((((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0) << 8 >> 0)) | (((_slice$2 = b, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >> 0) << 16 >> 0)) | (((_slice$3 = b, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >> 0) << 24 >> 0);
+	};
+	var get2 = function(b) {
+		var _slice, _index, _slice$1, _index$1;
+		if (b.length < 2) {
+			return 0;
+		}
+		return ((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0) << 8 >> 0);
+	};
+	var loadZoneZip = function(zipfile, name) {
+		var l, err, _tuple, fd, _tuple$1, buf, err$1, _tuple$2, n, size, off, err$2, _tuple$3, i, meth, size$1, namelen, xlen, fclen, off$1, zname, _tuple$4, err$3, _tuple$5, err$4, _tuple$6, _tuple$7, _tuple$8;
+		l = (go$ptrType(Location)).nil;
+		err = null;
+		var go$deferred = [];
+		try {
+			_tuple = open(zipfile), fd = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				_tuple$1 = [(go$ptrType(Location)).nil, errors.New("open " + zipfile + ": " + err.Error())], l = _tuple$1[0], err = _tuple$1[1];
+				return [l, err];
+			}
+			go$deferred.push({ fun: closefd, args: [fd] });
+			buf = (go$sliceType(Go$Uint8)).make(22, 0, function() { return 0; });
+			if (err$1 = preadn(fd, buf, -22), !(go$interfaceIsEqual(err$1, null)) || !((get4(buf) === 101010256))) {
+				_tuple$2 = [(go$ptrType(Location)).nil, errors.New("corrupt zip file " + zipfile)], l = _tuple$2[0], err = _tuple$2[1];
+				return [l, err];
+			}
+			n = get2(go$subslice(buf, 10));
+			size = get4(go$subslice(buf, 12));
+			off = get4(go$subslice(buf, 16));
+			buf = (go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; });
+			if (err$2 = preadn(fd, buf, off), !(go$interfaceIsEqual(err$2, null))) {
+				_tuple$3 = [(go$ptrType(Location)).nil, errors.New("corrupt zip file " + zipfile)], l = _tuple$3[0], err = _tuple$3[1];
+				return [l, err];
+			}
+			i = 0;
+			while (i < n) {
+				if (!((get4(buf) === 33639248))) {
+					break;
+				}
+				meth = get2(go$subslice(buf, 10));
+				size$1 = get4(go$subslice(buf, 24));
+				namelen = get2(go$subslice(buf, 28));
+				xlen = get2(go$subslice(buf, 30));
+				fclen = get2(go$subslice(buf, 32));
+				off$1 = get4(go$subslice(buf, 42));
+				zname = go$subslice(buf, 46, (46 + namelen >> 0));
+				buf = go$subslice(buf, (((46 + namelen >> 0) + xlen >> 0) + fclen >> 0));
+				if (!(go$bytesToString(zname) === name)) {
+					i = i + 1 >> 0;
+					continue;
+				}
+				if (!((meth === 0))) {
+					_tuple$4 = [(go$ptrType(Location)).nil, errors.New("unsupported compression for " + name + " in " + zipfile)], l = _tuple$4[0], err = _tuple$4[1];
+					return [l, err];
+				}
+				buf = (go$sliceType(Go$Uint8)).make(30 + namelen >> 0, 0, function() { return 0; });
+				if (err$3 = preadn(fd, buf, off$1), !(go$interfaceIsEqual(err$3, null)) || !((get4(buf) === 67324752)) || !((get2(go$subslice(buf, 8)) === meth)) || !((get2(go$subslice(buf, 26)) === namelen)) || !(go$bytesToString(go$subslice(buf, 30, (30 + namelen >> 0))) === name)) {
+					_tuple$5 = [(go$ptrType(Location)).nil, errors.New("corrupt zip file " + zipfile)], l = _tuple$5[0], err = _tuple$5[1];
+					return [l, err];
+				}
+				xlen = get2(go$subslice(buf, 28));
+				buf = (go$sliceType(Go$Uint8)).make(size$1, 0, function() { return 0; });
+				if (err$4 = preadn(fd, buf, ((off$1 + 30 >> 0) + namelen >> 0) + xlen >> 0), !(go$interfaceIsEqual(err$4, null))) {
+					_tuple$6 = [(go$ptrType(Location)).nil, errors.New("corrupt zip file " + zipfile)], l = _tuple$6[0], err = _tuple$6[1];
+					return [l, err];
+				}
+				_tuple$7 = loadZoneData(buf), l = _tuple$7[0], err = _tuple$7[1];
+				return [l, err];
+			}
+			_tuple$8 = [(go$ptrType(Location)).nil, errors.New("cannot find " + name + " in zip file " + zipfile)], l = _tuple$8[0], err = _tuple$8[1];
+			return [l, err];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [l, err];
+		}
+	};
+	var initTestingZone = function() {
+		var _tuple, z, err, _struct;
+		_tuple = loadZoneFile(runtime.GOROOT() + "/lib/time/zoneinfo.zip", "America/Los_Angeles"), z = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			throw go$panic(new Go$String("cannot load America/Los_Angeles for testing: " + err.Error()));
+		}
+		z.name = "Local";
+		localLoc = (_struct = z, new Location.Ptr(_struct.name, _struct.zone, _struct.tx, _struct.cacheStart, _struct.cacheEnd, _struct.cacheZone));
+	};
+	var forceZipFileForTesting = function(zipOnly) {
+		var i, _slice, _index;
+		zoneDirs = (go$sliceType(Go$String)).make(origZoneDirs.length, 0, function() { return ""; });
+		go$copySlice(zoneDirs, origZoneDirs);
+		if (zipOnly) {
+			i = 0;
+			while (i < (zoneDirs.length - 1 >> 0)) {
+				_slice = zoneDirs, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = "/XXXNOEXIST") : go$throwRuntimeError("index out of range");
+				i = i + 1 >> 0;
+			}
+		}
+	};
+	var initLocal = function() {
+		var _tuple, tz, ok, _tuple$1, z, err, _struct, err$1, _tuple$2, z$1, _struct$1;
+		_tuple = syscall.Getenv("TZ"), tz = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			_tuple$1 = loadZoneFile("", "/etc/localtime"), z = _tuple$1[0], err = _tuple$1[1];
+			if (go$interfaceIsEqual(err, null)) {
+				localLoc = (_struct = z, new Location.Ptr(_struct.name, _struct.zone, _struct.tx, _struct.cacheStart, _struct.cacheEnd, _struct.cacheZone));
+				localLoc.name = "Local";
+				return;
+			}
+		} else if (!(tz === "") && !(tz === "UTC")) {
+			if (_tuple$2 = loadLocation(tz), z$1 = _tuple$2[0], err$1 = _tuple$2[1], go$interfaceIsEqual(err$1, null)) {
+				localLoc = (_struct$1 = z$1, new Location.Ptr(_struct$1.name, _struct$1.zone, _struct$1.tx, _struct$1.cacheStart, _struct$1.cacheEnd, _struct$1.cacheZone));
+				return;
+			}
+		}
+		localLoc.name = "UTC";
+	};
+	var loadLocation = function(name) {
+		var _ref, _i, _slice, _index, zoneDir, err, _tuple, z;
+		_ref = zoneDirs;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			zoneDir = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (_tuple = loadZoneFile(zoneDir, name), z = _tuple[0], err = _tuple[1], go$interfaceIsEqual(err, null)) {
+				z.name = name;
+				return [z, null];
+			}
+		}
+		return [(go$ptrType(Location)).nil, errors.New("unknown time zone " + name)];
+	};
+	var Sleep = go$pkg.Sleep = function() { go$notSupported("time.Sleep (use time.AfterFunc instead)") };
+	var NewTimer = go$pkg.NewTimer = function() { go$notSupported("time.NewTimer (use time.AfterFunc instead)") };
+	var After = go$pkg.After = function() { go$notSupported("time.After (use time.AfterFunc instead)") };
+	var AfterFunc = go$pkg.AfterFunc = function(d, f) {
+			setTimeout(f, go$div64(d, go$pkg.Millisecond).low);
+			return null;
+		};
+	var Tick = go$pkg.Tick = function() { go$notSupported("time.Tick (use time.AfterFunc instead)") };
+	var now = go$now;
+	go$pkg.ANSIC = "Mon Jan _2 15:04:05 2006";
+	go$pkg.UnixDate = "Mon Jan _2 15:04:05 MST 2006";
+	go$pkg.RubyDate = "Mon Jan 02 15:04:05 -0700 2006";
+	go$pkg.RFC822 = "02 Jan 06 15:04 MST";
+	go$pkg.RFC822Z = "02 Jan 06 15:04 -0700";
+	go$pkg.RFC850 = "Monday, 02-Jan-06 15:04:05 MST";
+	go$pkg.RFC1123 = "Mon, 02 Jan 2006 15:04:05 MST";
+	go$pkg.RFC1123Z = "Mon, 02 Jan 2006 15:04:05 -0700";
+	go$pkg.RFC3339 = "2006-01-02T15:04:05Z07:00";
+	go$pkg.RFC3339Nano = "2006-01-02T15:04:05.999999999Z07:00";
+	go$pkg.Kitchen = "3:04PM";
+	go$pkg.Stamp = "Jan _2 15:04:05";
+	go$pkg.StampMilli = "Jan _2 15:04:05.000";
+	go$pkg.StampMicro = "Jan _2 15:04:05.000000";
+	go$pkg.StampNano = "Jan _2 15:04:05.000000000";
+	var stdLongMonth = 257;
+	var stdMonth = 258;
+	var stdNumMonth = 259;
+	var stdZeroMonth = 260;
+	var stdLongWeekDay = 261;
+	var stdWeekDay = 262;
+	var stdDay = 263;
+	var stdUnderDay = 264;
+	var stdZeroDay = 265;
+	var stdHour = 522;
+	var stdHour12 = 523;
+	var stdZeroHour12 = 524;
+	var stdMinute = 525;
+	var stdZeroMinute = 526;
+	var stdSecond = 527;
+	var stdZeroSecond = 528;
+	var stdLongYear = 273;
+	var stdYear = 274;
+	var stdPM = 531;
+	var stdpm = 532;
+	var stdTZ = 21;
+	var stdISO8601TZ = 22;
+	var stdISO8601SecondsTZ = 23;
+	var stdISO8601ColonTZ = 24;
+	var stdISO8601ColonSecondsTZ = 25;
+	var stdNumTZ = 26;
+	var stdNumSecondsTz = 27;
+	var stdNumShortTZ = 28;
+	var stdNumColonTZ = 29;
+	var stdNumColonSecondsTZ = 30;
+	var stdFracSecond0 = 31;
+	var stdFracSecond9 = 32;
+	var stdNeedDate = 256;
+	var stdNeedClock = 512;
+	var stdArgShift = 16;
+	var stdMask = 65535;
+	go$pkg.January = 1;
+	go$pkg.February = 2;
+	go$pkg.March = 3;
+	go$pkg.April = 4;
+	go$pkg.May = 5;
+	go$pkg.June = 6;
+	go$pkg.July = 7;
+	go$pkg.August = 8;
+	go$pkg.September = 9;
+	go$pkg.October = 10;
+	go$pkg.November = 11;
+	go$pkg.December = 12;
+	go$pkg.Sunday = 0;
+	go$pkg.Monday = 1;
+	go$pkg.Tuesday = 2;
+	go$pkg.Wednesday = 3;
+	go$pkg.Thursday = 4;
+	go$pkg.Friday = 5;
+	go$pkg.Saturday = 6;
+	var absoluteZeroYear = -292277022399;
+	var internalYear = 1;
+	var unixYear = 1970;
+	var absoluteToInternal = new Go$Int64(-2147483632, 1555574272);
+	var internalToAbsolute = new Go$Int64(2147483631, 2739393024);
+	var unixToInternal = new Go$Int64(14, 2006054656);
+	var internalToUnix = new Go$Int64(-15, 2288912640);
+	var minDuration = new Duration(-2147483648, 0);
+	var maxDuration = new Duration(2147483647, 4294967295);
+	go$pkg.Nanosecond = new Duration(0, 1);
+	go$pkg.Microsecond = new Duration(0, 1000);
+	go$pkg.Millisecond = new Duration(0, 1000000);
+	go$pkg.Second = new Duration(0, 1000000000);
+	go$pkg.Minute = new Duration(13, 4165425152);
+	go$pkg.Hour = new Duration(838, 817405952);
+	var secondsPerMinute = 60;
+	var secondsPerHour = 3600;
+	var secondsPerDay = 86400;
+	var secondsPerWeek = 604800;
+	var daysPer400Years = 146097;
+	var daysPer100Years = 36524;
+	var daysPer4Years = 1461;
+	var timeBinaryVersion = 1;
+	var std0x = go$makeNativeArray("Int", 6, function() { return 0; });
+	var longDayNames = (go$sliceType(Go$String)).nil;
+	var shortDayNames = (go$sliceType(Go$String)).nil;
+	var shortMonthNames = (go$sliceType(Go$String)).nil;
+	var longMonthNames = (go$sliceType(Go$String)).nil;
+	var atoiError = null;
+	var errBad = null;
+	var errLeadingInt = null;
+	var unitMap = false;
+	var months = go$makeNativeArray("String", 12, function() { return ""; });
+	var days = go$makeNativeArray("String", 7, function() { return ""; });
+	var daysBefore = go$makeNativeArray("Int32", 13, function() { return 0; });
+	go$pkg.UTC = (go$ptrType(Location)).nil;
+	var utcLoc = new Location.Ptr();
+	go$pkg.Local = (go$ptrType(Location)).nil;
+	var localLoc = new Location.Ptr();
+	var localOnce = new sync.Once.Ptr();
+	var zoneinfo = "";
+	var _ = false;
+	var badData = null;
+	var zoneDirs = (go$sliceType(Go$String)).nil;
+	var origZoneDirs = (go$sliceType(Go$String)).nil;
+	go$pkg.init = function() {
+		var _map, _key, _tuple;
+		std0x = go$toNativeArray("Int", [260, 265, 524, 526, 528, 274]);
+		longDayNames = new (go$sliceType(Go$String))(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
+		shortDayNames = new (go$sliceType(Go$String))(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
+		shortMonthNames = new (go$sliceType(Go$String))(["---", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]);
+		longMonthNames = new (go$sliceType(Go$String))(["---", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
+		atoiError = errors.New("time: invalid number");
+		errBad = errors.New("bad value for field");
+		errLeadingInt = errors.New("time: bad [0-9]*");
+		unitMap = (_map = new Go$Map(), _key = "ns", _map[_key] = { k: _key, v: 1 }, _key = "us", _map[_key] = { k: _key, v: 1000 }, _key = "\xC2\xB5s", _map[_key] = { k: _key, v: 1000 }, _key = "\xCE\xBCs", _map[_key] = { k: _key, v: 1000 }, _key = "ms", _map[_key] = { k: _key, v: 1e+06 }, _key = "s", _map[_key] = { k: _key, v: 1e+09 }, _key = "m", _map[_key] = { k: _key, v: 6e+10 }, _key = "h", _map[_key] = { k: _key, v: 3.6e+12 }, _map);
+		months = go$toNativeArray("String", ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
+		days = go$toNativeArray("String", ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
+		daysBefore = go$toNativeArray("Int32", [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365]);
+		utcLoc = new Location.Ptr("UTC", (go$sliceType(zone)).nil, (go$sliceType(zoneTrans)).nil, new Go$Int64(0, 0), new Go$Int64(0, 0), (go$ptrType(zone)).nil);
+		go$pkg.UTC = utcLoc;
+		go$pkg.Local = localLoc;
+		_tuple = syscall.Getenv("ZONEINFO"), zoneinfo = _tuple[0];
+		badData = errors.New("malformed time zone information");
+		zoneDirs = new (go$sliceType(Go$String))(["/usr/share/zoneinfo/", "/usr/share/lib/zoneinfo/", "/usr/lib/locale/TZ/", runtime.GOROOT() + "/lib/time/zoneinfo.zip"]);
+		origZoneDirs = zoneDirs;
+	};

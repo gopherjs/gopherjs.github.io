@@ -1,0 +1,2914 @@
+0ƒC¾‚#package syntax
+import unicode "unicode"
+import sort "sort"
+import strings "strings"
+import utf8 "unicode/utf8"
+import bytes "bytes"
+import strconv "strconv"
+const @"".ClassNL @"".Flags = 0x4
+func @"".Compile(@"".re *@"".Regexp) (? *@"".Prog, ? error)
+const @"".DotNL @"".Flags = 0x8
+const @"".EmptyBeginLine @"".EmptyOp = 0x1
+const @"".EmptyBeginText @"".EmptyOp = 0x4
+const @"".EmptyEndLine @"".EmptyOp = 0x2
+const @"".EmptyEndText @"".EmptyOp = 0x8
+const @"".EmptyNoWordBoundary @"".EmptyOp = 0x20
+type @"".EmptyOp uint8
+func @"".EmptyOpContext(@"".r1 rune, @"".r2 rune) (? @"".EmptyOp)
+const @"".EmptyWordBoundary @"".EmptyOp = 0x10
+const @"".ErrInternalError @"".ErrorCode = "regexp/syntax: internal error"
+const @"".ErrInvalidCharClass @"".ErrorCode = "invalid character class"
+const @"".ErrInvalidCharRange @"".ErrorCode = "invalid character class range"
+const @"".ErrInvalidEscape @"".ErrorCode = "invalid escape sequence"
+const @"".ErrInvalidNamedCapture @"".ErrorCode = "invalid named capture"
+const @"".ErrInvalidPerlOp @"".ErrorCode = "invalid or unsupported Perl syntax"
+const @"".ErrInvalidRepeatOp @"".ErrorCode = "invalid nested repetition operator"
+const @"".ErrInvalidRepeatSize @"".ErrorCode = "invalid repeat count"
+const @"".ErrInvalidUTF8 @"".ErrorCode = "invalid UTF-8"
+const @"".ErrMissingBracket @"".ErrorCode = "missing closing ]"
+const @"".ErrMissingParen @"".ErrorCode = "missing closing )"
+const @"".ErrMissingRepeatArgument @"".ErrorCode = "missing argument to repetition operator"
+const @"".ErrTrailingBackslash @"".ErrorCode = "trailing backslash at end of expression"
+const @"".ErrUnexpectedParen @"".ErrorCode = "unexpected )"
+type @"".Error struct { @"".Code @"".ErrorCode; @"".Expr string }
+func (? *@"".Error) @"".Error() (? string)
+type @"".ErrorCode string
+func (? @"".ErrorCode) @"".String() (? string)
+func (? *@"".ErrorCode) @"".String() (? string)
+type @"".Flags uint16
+const @"".FoldCase @"".Flags = 0x1
+type @"".Inst struct { @"".Op @"".InstOp; @"".Out uint32; @"".Arg uint32; @"".Rune []rune }
+func (? *@"".Inst) @"".MatchEmptyWidth(@"".before rune, @"".after rune) (? bool)
+func (? *@"".Inst) @"".MatchRune(@"".r rune) (? bool)
+func (? *@"".Inst) @"".String() (? string)
+func (? *@"".Inst) @"".op() (? @"".InstOp)
+const @"".InstAlt @"".InstOp = 0x0
+const @"".InstAltMatch @"".InstOp = 0x1
+const @"".InstCapture @"".InstOp = 0x2
+const @"".InstEmptyWidth @"".InstOp = 0x3
+const @"".InstFail @"".InstOp = 0x5
+const @"".InstMatch @"".InstOp = 0x4
+const @"".InstNop @"".InstOp = 0x6
+type @"".InstOp uint8
+const @"".InstRune @"".InstOp = 0x7
+const @"".InstRune1 @"".InstOp = 0x8
+const @"".InstRuneAny @"".InstOp = 0x9
+const @"".InstRuneAnyNotNL @"".InstOp = 0xa
+func @"".IsWordChar(@"".r rune) (? bool)
+const @"".Literal @"".Flags = 0x2
+const @"".MatchNL @"".Flags = 0xc
+const @"".NonGreedy @"".Flags = 0x20
+const @"".OneLine @"".Flags = 0x10
+type @"".Op uint8
+const @"".OpAlternate @"".Op = 0x13
+const @"".OpAnyChar @"".Op = 0x6
+const @"".OpAnyCharNotNL @"".Op = 0x5
+const @"".OpBeginLine @"".Op = 0x7
+const @"".OpBeginText @"".Op = 0x9
+const @"".OpCapture @"".Op = 0xd
+const @"".OpCharClass @"".Op = 0x4
+const @"".OpConcat @"".Op = 0x12
+const @"".OpEmptyMatch @"".Op = 0x2
+const @"".OpEndLine @"".Op = 0x8
+const @"".OpEndText @"".Op = 0xa
+const @"".OpLiteral @"".Op = 0x3
+const @"".OpNoMatch @"".Op = 0x1
+const @"".OpNoWordBoundary @"".Op = 0xc
+const @"".OpPlus @"".Op = 0xf
+const @"".OpQuest @"".Op = 0x10
+const @"".OpRepeat @"".Op = 0x11
+const @"".OpStar @"".Op = 0xe
+const @"".OpWordBoundary @"".Op = 0xb
+const @"".POSIX @"".Flags = 0x0
+func @"".Parse(@"".s string, @"".flags @"".Flags) (? *@"".Regexp, ? error)
+const @"".Perl @"".Flags = 0xd4
+const @"".PerlX @"".Flags = 0x40
+type @"".Prog struct { @"".Inst []@"".Inst; @"".Start int; @"".NumCap int }
+func (? *@"".Prog) @"".Prefix() (@"".prefix string, @"".complete bool)
+func (? *@"".Prog) @"".StartCond() (? @"".EmptyOp)
+func (? *@"".Prog) @"".String() (? string)
+func (? *@"".Prog) @"".skipNop(@"".pc uint32) (? *@"".Inst)
+type @"".Regexp struct { @"".Op @"".Op; @"".Flags @"".Flags; @"".Sub []*@"".Regexp; @"".Sub0 [1]*@"".Regexp; @"".Rune []rune; @"".Rune0 [2]rune; @"".Min int; @"".Max int; @"".Cap int; @"".Name string }
+func (? *@"".Regexp) @"".CapNames() (? []string)
+func (? *@"".Regexp) @"".Equal(@"".y *@"".Regexp) (? bool)
+func (? *@"".Regexp) @"".MaxCap() (? int)
+func (? *@"".Regexp) @"".Simplify() (? *@"".Regexp)
+func (? *@"".Regexp) @"".String() (? string)
+func (? *@"".Regexp) @"".capNames(@"".names []string) ()
+const @"".Simple @"".Flags = 0x200
+const @"".UnicodeGroups @"".Flags = 0x80
+const @"".WasDollar @"".Flags = 0x100
+type @"".charGroup struct { @"".sign int; @"".class []rune }
+type @"".compiler struct { @"".p *@"".Prog }
+func (? *@"".compiler) @"".alt(@"".f1 @"".frag, @"".f2 @"".frag) (? @"".frag)
+func (? *@"".compiler) @"".cap(@"".arg uint32) (? @"".frag)
+func (? *@"".compiler) @"".cat(@"".f1 @"".frag, @"".f2 @"".frag) (? @"".frag)
+func (? *@"".compiler) @"".compile(@"".re *@"".Regexp) (? @"".frag)
+func (? *@"".compiler) @"".empty(@"".op @"".EmptyOp) (? @"".frag)
+func (? *@"".compiler) @"".fail() (? @"".frag)
+func (? *@"".compiler) @"".init() ()
+func (? *@"".compiler) @"".inst(@"".op @"".InstOp) (? @"".frag)
+func (? *@"".compiler) @"".nop() (? @"".frag)
+func (? *@"".compiler) @"".plus(@"".f1 @"".frag, @"".nongreedy bool) (? @"".frag)
+func (? *@"".compiler) @"".quest(@"".f1 @"".frag, @"".nongreedy bool) (? @"".frag)
+func (? *@"".compiler) @"".rune(@"".r []rune, @"".flags @"".Flags) (? @"".frag)
+func (? *@"".compiler) @"".star(@"".f1 @"".frag, @"".nongreedy bool) (? @"".frag)
+type @"".frag struct { @"".i uint32; @"".out @"".patchList }
+type @"".parser struct { @"".flags @"".Flags; @"".stack []*@"".Regexp; @"".free *@"".Regexp; @"".numCap int; @"".wholeRegexp string; @"".tmpClass []rune }
+func (? *@"".parser) @"".alternate() (? *@"".Regexp)
+func (? *@"".parser) @"".appendGroup(@"".r []rune, @"".g @"".charGroup) (? []rune)
+func (? *@"".parser) @"".collapse(@"".subs []*@"".Regexp, @"".op @"".Op) (? *@"".Regexp)
+func (? *@"".parser) @"".concat() (? *@"".Regexp)
+func (? *@"".parser) @"".factor(@"".sub []*@"".Regexp, @"".flags @"".Flags) (? []*@"".Regexp)
+func (? *@"".parser) @"".leadingRegexp(@"".re *@"".Regexp) (? *@"".Regexp)
+func (? *@"".parser) @"".leadingString(@"".re *@"".Regexp) (? []rune, ? @"".Flags)
+func (? *@"".parser) @"".literal(@"".r rune) ()
+func (? *@"".parser) @"".maybeConcat(@"".r rune, @"".flags @"".Flags) (? bool)
+func (? *@"".parser) @"".newLiteral(@"".r rune, @"".flags @"".Flags) (? *@"".Regexp)
+func (? *@"".parser) @"".newRegexp(@"".op @"".Op) (? *@"".Regexp)
+func (? *@"".parser) @"".op(@"".op @"".Op) (? *@"".Regexp)
+func (? *@"".parser) @"".parseClass(@"".s string) (@"".rest string, @"".err error)
+func (? *@"".parser) @"".parseClassChar(@"".s string, @"".wholeClass string) (@"".r rune, @"".rest string, @"".err error)
+func (? *@"".parser) @"".parseEscape(@"".s string) (@"".r rune, @"".rest string, @"".err error)
+func (? *@"".parser) @"".parseInt(@"".s string) (@"".n int, @"".rest string, @"".ok bool)
+func (? *@"".parser) @"".parseNamedClass(@"".s string, @"".r []rune) (@"".out []rune, @"".rest string, @"".err error)
+func (? *@"".parser) @"".parsePerlClassEscape(@"".s string, @"".r []rune) (@"".out []rune, @"".rest string)
+func (? *@"".parser) @"".parsePerlFlags(@"".s string) (@"".rest string, @"".err error)
+func (? *@"".parser) @"".parseRepeat(@"".s string) (@"".min int, @"".max int, @"".rest string, @"".ok bool)
+func (? *@"".parser) @"".parseRightParen() (? error)
+func (? *@"".parser) @"".parseUnicodeClass(@"".s string, @"".r []rune) (@"".out []rune, @"".rest string, @"".err error)
+func (? *@"".parser) @"".parseVerticalBar() (? error)
+func (? *@"".parser) @"".push(@"".re *@"".Regexp) (? *@"".Regexp)
+func (? *@"".parser) @"".removeLeadingRegexp(@"".re *@"".Regexp, @"".reuse bool) (? *@"".Regexp)
+func (? *@"".parser) @"".removeLeadingString(@"".re *@"".Regexp, @"".n int) (? *@"".Regexp)
+func (? *@"".parser) @"".repeat(@"".op @"".Op, @"".min int, @"".max int, @"".before string, @"".after string, @"".lastRepeat string) (? string, ? error)
+func (? *@"".parser) @"".reuse(@"".re *@"".Regexp) ()
+func (? *@"".parser) @"".swapVerticalBar() (? bool)
+type @"".patchList uint32
+func (? @"".patchList) @"".append(@"".p *@"".Prog, @"".l2 @"".patchList) (? @"".patchList)
+func (? @"".patchList) @"".next(@"".p *@"".Prog) (? @"".patchList)
+func (? @"".patchList) @"".patch(@"".p *@"".Prog, @"".val uint32) ()
+func (? *@"".patchList) @"".append(@"".p *@"".Prog, @"".l2 @"".patchList) (? @"".patchList)
+func (? *@"".patchList) @"".next(@"".p *@"".Prog) (? @"".patchList)
+func (? *@"".patchList) @"".patch(@"".p *@"".Prog, @"".val uint32) ()
+type @"".ranges struct { @"".p *[]rune }
+func (? @"".ranges) @"".Len() (? int)
+func (? @"".ranges) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".ranges) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".ranges) @"".Len() (? int)
+func (? *@"".ranges) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".ranges) @"".Swap(@"".i int, @"".j int) ()
+$$
+0sruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxƒÁ	var unicode = go$packages["unicode"];
+	var sort = go$packages["sort"];
+	var strings = go$packages["strings"];
+	var utf8 = go$packages["unicode/utf8"];
+	var bytes = go$packages["bytes"];
+	var strconv = go$packages["strconv"];
+	var patchList;
+	patchList = go$newType(4, "Uint32", "syntax.patchList", "patchList", "regexp/syntax", null);
+	go$pkg.patchList = patchList;
+	var frag;
+	frag = go$newType(0, "Struct", "syntax.frag", "frag", "regexp/syntax", function(i_, out_) {
+		this.go$val = this;
+		this.i = i_ !== undefined ? i_ : 0;
+		this.out = out_ !== undefined ? out_ : 0;
+	});
+	go$pkg.frag = frag;
+	var compiler;
+	compiler = go$newType(0, "Struct", "syntax.compiler", "compiler", "regexp/syntax", function(p_) {
+		this.go$val = this;
+		this.p = p_ !== undefined ? p_ : (go$ptrType(Prog)).nil;
+	});
+	go$pkg.compiler = compiler;
+	var Error;
+	Error = go$newType(0, "Struct", "syntax.Error", "Error", "regexp/syntax", function(Code_, Expr_) {
+		this.go$val = this;
+		this.Code = Code_ !== undefined ? Code_ : "";
+		this.Expr = Expr_ !== undefined ? Expr_ : "";
+	});
+	go$pkg.Error = Error;
+	var ErrorCode;
+	ErrorCode = go$newType(0, "String", "syntax.ErrorCode", "ErrorCode", "regexp/syntax", null);
+	go$pkg.ErrorCode = ErrorCode;
+	var Flags;
+	Flags = go$newType(2, "Uint16", "syntax.Flags", "Flags", "regexp/syntax", null);
+	go$pkg.Flags = Flags;
+	var parser;
+	parser = go$newType(0, "Struct", "syntax.parser", "parser", "regexp/syntax", function(flags_, stack_, free_, numCap_, wholeRegexp_, tmpClass_) {
+		this.go$val = this;
+		this.flags = flags_ !== undefined ? flags_ : 0;
+		this.stack = stack_ !== undefined ? stack_ : (go$sliceType((go$ptrType(Regexp)))).nil;
+		this.free = free_ !== undefined ? free_ : (go$ptrType(Regexp)).nil;
+		this.numCap = numCap_ !== undefined ? numCap_ : 0;
+		this.wholeRegexp = wholeRegexp_ !== undefined ? wholeRegexp_ : "";
+		this.tmpClass = tmpClass_ !== undefined ? tmpClass_ : (go$sliceType(Go$Int32)).nil;
+	});
+	go$pkg.parser = parser;
+	var charGroup;
+	charGroup = go$newType(0, "Struct", "syntax.charGroup", "charGroup", "regexp/syntax", function(sign_, class$1_) {
+		this.go$val = this;
+		this.sign = sign_ !== undefined ? sign_ : 0;
+		this.class$1 = class$1_ !== undefined ? class$1_ : (go$sliceType(Go$Int32)).nil;
+	});
+	go$pkg.charGroup = charGroup;
+	var ranges;
+	ranges = go$newType(0, "Struct", "syntax.ranges", "ranges", "regexp/syntax", function(p_) {
+		this.go$val = this;
+		this.p = p_ !== undefined ? p_ : (go$ptrType((go$sliceType(Go$Int32)))).nil;
+	});
+	go$pkg.ranges = ranges;
+	var Prog;
+	Prog = go$newType(0, "Struct", "syntax.Prog", "Prog", "regexp/syntax", function(Inst_, Start_, NumCap_) {
+		this.go$val = this;
+		this.Inst = Inst_ !== undefined ? Inst_ : (go$sliceType(Inst)).nil;
+		this.Start = Start_ !== undefined ? Start_ : 0;
+		this.NumCap = NumCap_ !== undefined ? NumCap_ : 0;
+	});
+	go$pkg.Prog = Prog;
+	var InstOp;
+	InstOp = go$newType(1, "Uint8", "syntax.InstOp", "InstOp", "regexp/syntax", null);
+	go$pkg.InstOp = InstOp;
+	var EmptyOp;
+	EmptyOp = go$newType(1, "Uint8", "syntax.EmptyOp", "EmptyOp", "regexp/syntax", null);
+	go$pkg.EmptyOp = EmptyOp;
+	var Inst;
+	Inst = go$newType(0, "Struct", "syntax.Inst", "Inst", "regexp/syntax", function(Op_, Out_, Arg_, Rune_) {
+		this.go$val = this;
+		this.Op = Op_ !== undefined ? Op_ : 0;
+		this.Out = Out_ !== undefined ? Out_ : 0;
+		this.Arg = Arg_ !== undefined ? Arg_ : 0;
+		this.Rune = Rune_ !== undefined ? Rune_ : (go$sliceType(Go$Int32)).nil;
+	});
+	go$pkg.Inst = Inst;
+	var Regexp;
+	Regexp = go$newType(0, "Struct", "syntax.Regexp", "Regexp", "regexp/syntax", function(Op_, Flags_, Sub_, Sub0_, Rune_, Rune0_, Min_, Max_, Cap_, Name_) {
+		this.go$val = this;
+		this.Op = Op_ !== undefined ? Op_ : 0;
+		this.Flags = Flags_ !== undefined ? Flags_ : 0;
+		this.Sub = Sub_ !== undefined ? Sub_ : (go$sliceType((go$ptrType(Regexp)))).nil;
+		this.Sub0 = Sub0_ !== undefined ? Sub0_ : go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; });
+		this.Rune = Rune_ !== undefined ? Rune_ : (go$sliceType(Go$Int32)).nil;
+		this.Rune0 = Rune0_ !== undefined ? Rune0_ : go$makeNativeArray("Int32", 2, function() { return 0; });
+		this.Min = Min_ !== undefined ? Min_ : 0;
+		this.Max = Max_ !== undefined ? Max_ : 0;
+		this.Cap = Cap_ !== undefined ? Cap_ : 0;
+		this.Name = Name_ !== undefined ? Name_ : "";
+	});
+	go$pkg.Regexp = Regexp;
+	var Op;
+	Op = go$newType(1, "Uint8", "syntax.Op", "Op", "regexp/syntax", null);
+	go$pkg.Op = Op;
+	patchList.methods = [["append", "regexp/syntax", [(go$ptrType(Prog)), patchList], [patchList], false], ["next", "regexp/syntax", [(go$ptrType(Prog))], [patchList], false], ["patch", "regexp/syntax", [(go$ptrType(Prog)), Go$Uint32], [], false]];
+	(go$ptrType(patchList)).methods = [["append", "regexp/syntax", [(go$ptrType(Prog)), patchList], [patchList], false], ["next", "regexp/syntax", [(go$ptrType(Prog))], [patchList], false], ["patch", "regexp/syntax", [(go$ptrType(Prog)), Go$Uint32], [], false]];
+	frag.init([["i", "regexp/syntax", Go$Uint32, ""], ["out", "regexp/syntax", patchList, ""]]);
+	compiler.init([["p", "regexp/syntax", (go$ptrType(Prog)), ""]]);
+	(go$ptrType(compiler)).methods = [["alt", "regexp/syntax", [frag, frag], [frag], false], ["cap", "regexp/syntax", [Go$Uint32], [frag], false], ["cat", "regexp/syntax", [frag, frag], [frag], false], ["compile", "regexp/syntax", [(go$ptrType(Regexp))], [frag], false], ["empty", "regexp/syntax", [EmptyOp], [frag], false], ["fail", "regexp/syntax", [], [frag], false], ["init", "regexp/syntax", [], [], false], ["inst", "regexp/syntax", [InstOp], [frag], false], ["nop", "regexp/syntax", [], [frag], false], ["plus", "regexp/syntax", [frag, Go$Bool], [frag], false], ["quest", "regexp/syntax", [frag, Go$Bool], [frag], false], ["rune", "regexp/syntax", [(go$sliceType(Go$Int32)), Flags], [frag], false], ["star", "regexp/syntax", [frag, Go$Bool], [frag], false]];
+	Error.init([["Code", "", ErrorCode, ""], ["Expr", "", Go$String, ""]]);
+	(go$ptrType(Error)).methods = [["Error", "", [], [Go$String], false]];
+	ErrorCode.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(ErrorCode)).methods = [["String", "", [], [Go$String], false]];
+	parser.init([["flags", "regexp/syntax", Flags, ""], ["stack", "regexp/syntax", (go$sliceType((go$ptrType(Regexp)))), ""], ["free", "regexp/syntax", (go$ptrType(Regexp)), ""], ["numCap", "regexp/syntax", Go$Int, ""], ["wholeRegexp", "regexp/syntax", Go$String, ""], ["tmpClass", "regexp/syntax", (go$sliceType(Go$Int32)), ""]]);
+	(go$ptrType(parser)).methods = [["alternate", "regexp/syntax", [], [(go$ptrType(Regexp))], false], ["appendGroup", "regexp/syntax", [(go$sliceType(Go$Int32)), charGroup], [(go$sliceType(Go$Int32))], false], ["collapse", "regexp/syntax", [(go$sliceType((go$ptrType(Regexp)))), Op], [(go$ptrType(Regexp))], false], ["concat", "regexp/syntax", [], [(go$ptrType(Regexp))], false], ["factor", "regexp/syntax", [(go$sliceType((go$ptrType(Regexp)))), Flags], [(go$sliceType((go$ptrType(Regexp))))], false], ["leadingRegexp", "regexp/syntax", [(go$ptrType(Regexp))], [(go$ptrType(Regexp))], false], ["leadingString", "regexp/syntax", [(go$ptrType(Regexp))], [(go$sliceType(Go$Int32)), Flags], false], ["literal", "regexp/syntax", [Go$Int32], [], false], ["maybeConcat", "regexp/syntax", [Go$Int32, Flags], [Go$Bool], false], ["newLiteral", "regexp/syntax", [Go$Int32, Flags], [(go$ptrType(Regexp))], false], ["newRegexp", "regexp/syntax", [Op], [(go$ptrType(Regexp))], false], ["op", "regexp/syntax", [Op], [(go$ptrType(Regexp))], false], ["parseClass", "regexp/syntax", [Go$String], [Go$String, go$error], false], ["parseClassChar", "regexp/syntax", [Go$String, Go$String], [Go$Int32, Go$String, go$error], false], ["parseEscape", "regexp/syntax", [Go$String], [Go$Int32, Go$String, go$error], false], ["parseInt", "regexp/syntax", [Go$String], [Go$Int, Go$String, Go$Bool], false], ["parseNamedClass", "regexp/syntax", [Go$String, (go$sliceType(Go$Int32))], [(go$sliceType(Go$Int32)), Go$String, go$error], false], ["parsePerlClassEscape", "regexp/syntax", [Go$String, (go$sliceType(Go$Int32))], [(go$sliceType(Go$Int32)), Go$String], false], ["parsePerlFlags", "regexp/syntax", [Go$String], [Go$String, go$error], false], ["parseRepeat", "regexp/syntax", [Go$String], [Go$Int, Go$Int, Go$String, Go$Bool], false], ["parseRightParen", "regexp/syntax", [], [go$error], false], ["parseUnicodeClass", "regexp/syntax", [Go$String, (go$sliceType(Go$Int32))], [(go$sliceType(Go$Int32)), Go$String, go$error], false], ["parseVerticalBar", "regexp/syntax", [], [go$error], false], ["push", "regexp/syntax", [(go$ptrType(Regexp))], [(go$ptrType(Regexp))], false], ["removeLeadingRegexp", "regexp/syntax", [(go$ptrType(Regexp)), Go$Bool], [(go$ptrType(Regexp))], false], ["removeLeadingString", "regexp/syntax", [(go$ptrType(Regexp)), Go$Int], [(go$ptrType(Regexp))], false], ["repeat", "regexp/syntax", [Op, Go$Int, Go$Int, Go$String, Go$String, Go$String], [Go$String, go$error], false], ["reuse", "regexp/syntax", [(go$ptrType(Regexp))], [], false], ["swapVerticalBar", "regexp/syntax", [], [Go$Bool], false]];
+	charGroup.init([["sign", "regexp/syntax", Go$Int, ""], ["class", "regexp/syntax", (go$sliceType(Go$Int32)), ""]]);
+	ranges.init([["p", "regexp/syntax", (go$ptrType((go$sliceType(Go$Int32)))), ""]]);
+	ranges.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(ranges)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	Prog.init([["Inst", "", (go$sliceType(Inst)), ""], ["Start", "", Go$Int, ""], ["NumCap", "", Go$Int, ""]]);
+	(go$ptrType(Prog)).methods = [["Prefix", "", [], [Go$String, Go$Bool], false], ["StartCond", "", [], [EmptyOp], false], ["String", "", [], [Go$String], false], ["skipNop", "regexp/syntax", [Go$Uint32], [(go$ptrType(Inst))], false]];
+	Inst.init([["Op", "", InstOp, ""], ["Out", "", Go$Uint32, ""], ["Arg", "", Go$Uint32, ""], ["Rune", "", (go$sliceType(Go$Int32)), ""]]);
+	(go$ptrType(Inst)).methods = [["MatchEmptyWidth", "", [Go$Int32, Go$Int32], [Go$Bool], false], ["MatchRune", "", [Go$Int32], [Go$Bool], false], ["String", "", [], [Go$String], false], ["op", "regexp/syntax", [], [InstOp], false]];
+	Regexp.init([["Op", "", Op, ""], ["Flags", "", Flags, ""], ["Sub", "", (go$sliceType((go$ptrType(Regexp)))), ""], ["Sub0", "", (go$arrayType((go$ptrType(Regexp)), 1)), ""], ["Rune", "", (go$sliceType(Go$Int32)), ""], ["Rune0", "", (go$arrayType(Go$Int32, 2)), ""], ["Min", "", Go$Int, ""], ["Max", "", Go$Int, ""], ["Cap", "", Go$Int, ""], ["Name", "", Go$String, ""]]);
+	(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
+	patchList.prototype.next = function(p) {
+		var l, _slice, _index, i;
+		l = this.go$val;
+		i = (_slice = p.Inst, _index = (l >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (((l & 1) >>> 0) === 0) {
+			return (i.Out >>> 0);
+		}
+		return (i.Arg >>> 0);
+	};
+	go$ptrType(patchList).prototype.next = function(p) { return new patchList(this.go$get()).next(p); };
+	patchList.prototype.patch = function(p, val) {
+		var l, _slice, _index, i;
+		l = this.go$val;
+		while (!((l === 0))) {
+			i = (_slice = p.Inst, _index = (l >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (((l & 1) >>> 0) === 0) {
+				l = (i.Out >>> 0);
+				i.Out = val;
+			} else {
+				l = (i.Arg >>> 0);
+				i.Arg = val;
+			}
+		}
+	};
+	go$ptrType(patchList).prototype.patch = function(p, val) { return new patchList(this.go$get()).patch(p, val); };
+	patchList.prototype.append = function(p, l2) {
+		var l1, last, next, _slice, _index, i;
+		l1 = this.go$val;
+		if (l1 === 0) {
+			return l2;
+		}
+		if (l2 === 0) {
+			return l1;
+		}
+		last = l1;
+		while (true) {
+			next = (new patchList(last)).next(p);
+			if (next === 0) {
+				break;
+			}
+			last = next;
+		}
+		i = (_slice = p.Inst, _index = (last >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (((last & 1) >>> 0) === 0) {
+			i.Out = (l2 >>> 0);
+		} else {
+			i.Arg = (l2 >>> 0);
+		}
+		return l1;
+	};
+	go$ptrType(patchList).prototype.append = function(p, l2) { return new patchList(this.go$get()).append(p, l2); };
+	var Compile = go$pkg.Compile = function(re) {
+		var c, _struct, f;
+		c = new compiler.Ptr();
+		c.init();
+		f = (_struct = c.compile(re), new frag.Ptr(_struct.i, _struct.out));
+		(new patchList(f.out)).patch(c.p, c.inst(4).i);
+		c.p.Start = (f.i >> 0);
+		return [c.p, null];
+	};
+	compiler.Ptr.prototype.init = function() {
+		var c;
+		c = this;
+		c.p = new Prog.Ptr();
+		c.p.NumCap = 2;
+		c.inst(5);
+	};
+	compiler.prototype.init = function() { return this.go$val.init(); };
+	compiler.Ptr.prototype.compile = function(re) {
+		var c, _ref, _struct, _struct$1, _struct$2, f, _ref$1, _i, j, _struct$3, f1, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, _struct$15, _struct$16, _struct$17, _struct$18, bra, _slice, _index, _struct$19, sub, _struct$20, ket, _struct$21, _struct$22, _struct$23, _struct$24, _struct$25, _slice$1, _index$1, _struct$26, _struct$27, _slice$2, _index$2, _struct$28, _struct$29, _slice$3, _index$3, _struct$30, _struct$31, _struct$32, f$1, _ref$2, _i$1, _slice$4, _index$4, sub$1, i, _struct$33, _struct$34, _struct$35, _struct$36, _struct$37, f$2, _ref$3, _i$2, _slice$5, _index$5, sub$2, _struct$38, _struct$39, _struct$40, _struct$41;
+		c = this;
+		_ref = re.Op;
+		if (_ref === 1) {
+			return (_struct = c.fail(), new frag.Ptr(_struct.i, _struct.out));
+		} else if (_ref === 2) {
+			return (_struct$1 = c.nop(), new frag.Ptr(_struct$1.i, _struct$1.out));
+		} else if (_ref === 3) {
+			if (re.Rune.length === 0) {
+				return (_struct$2 = c.nop(), new frag.Ptr(_struct$2.i, _struct$2.out));
+			}
+			f = new frag.Ptr();
+			_ref$1 = re.Rune;
+			_i = 0;
+			for (; _i < _ref$1.length; _i += 1) {
+				j = _i;
+				f1 = (_struct$3 = c.rune(go$subslice(re.Rune, j, (j + 1 >> 0)), re.Flags), new frag.Ptr(_struct$3.i, _struct$3.out));
+				if (j === 0) {
+					f = (_struct$4 = f1, new frag.Ptr(_struct$4.i, _struct$4.out));
+				} else {
+					f = (_struct$7 = c.cat((_struct$5 = f, new frag.Ptr(_struct$5.i, _struct$5.out)), (_struct$6 = f1, new frag.Ptr(_struct$6.i, _struct$6.out))), new frag.Ptr(_struct$7.i, _struct$7.out));
+				}
+			}
+			return (_struct$8 = f, new frag.Ptr(_struct$8.i, _struct$8.out));
+		} else if (_ref === 4) {
+			return (_struct$9 = c.rune(re.Rune, re.Flags), new frag.Ptr(_struct$9.i, _struct$9.out));
+		} else if (_ref === 5) {
+			return (_struct$10 = c.rune(anyRuneNotNL, 0), new frag.Ptr(_struct$10.i, _struct$10.out));
+		} else if (_ref === 6) {
+			return (_struct$11 = c.rune(anyRune, 0), new frag.Ptr(_struct$11.i, _struct$11.out));
+		} else if (_ref === 7) {
+			return (_struct$12 = c.empty(1), new frag.Ptr(_struct$12.i, _struct$12.out));
+		} else if (_ref === 8) {
+			return (_struct$13 = c.empty(2), new frag.Ptr(_struct$13.i, _struct$13.out));
+		} else if (_ref === 9) {
+			return (_struct$14 = c.empty(4), new frag.Ptr(_struct$14.i, _struct$14.out));
+		} else if (_ref === 10) {
+			return (_struct$15 = c.empty(8), new frag.Ptr(_struct$15.i, _struct$15.out));
+		} else if (_ref === 11) {
+			return (_struct$16 = c.empty(16), new frag.Ptr(_struct$16.i, _struct$16.out));
+		} else if (_ref === 12) {
+			return (_struct$17 = c.empty(32), new frag.Ptr(_struct$17.i, _struct$17.out));
+		} else if (_ref === 13) {
+			bra = (_struct$18 = c.cap(((re.Cap << 1 >> 0) >>> 0)), new frag.Ptr(_struct$18.i, _struct$18.out));
+			sub = (_struct$19 = c.compile((_slice = re.Sub, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), new frag.Ptr(_struct$19.i, _struct$19.out));
+			ket = (_struct$20 = c.cap((((re.Cap << 1 >> 0) | 1) >>> 0)), new frag.Ptr(_struct$20.i, _struct$20.out));
+			return (_struct$25 = c.cat((_struct$23 = c.cat((_struct$21 = bra, new frag.Ptr(_struct$21.i, _struct$21.out)), (_struct$22 = sub, new frag.Ptr(_struct$22.i, _struct$22.out))), new frag.Ptr(_struct$23.i, _struct$23.out)), (_struct$24 = ket, new frag.Ptr(_struct$24.i, _struct$24.out))), new frag.Ptr(_struct$25.i, _struct$25.out));
+		} else if (_ref === 14) {
+			return (_struct$27 = c.star((_struct$26 = c.compile((_slice$1 = re.Sub, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))), new frag.Ptr(_struct$26.i, _struct$26.out)), !((((re.Flags & 32) >>> 0) === 0))), new frag.Ptr(_struct$27.i, _struct$27.out));
+		} else if (_ref === 15) {
+			return (_struct$29 = c.plus((_struct$28 = c.compile((_slice$2 = re.Sub, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))), new frag.Ptr(_struct$28.i, _struct$28.out)), !((((re.Flags & 32) >>> 0) === 0))), new frag.Ptr(_struct$29.i, _struct$29.out));
+		} else if (_ref === 16) {
+			return (_struct$31 = c.quest((_struct$30 = c.compile((_slice$3 = re.Sub, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))), new frag.Ptr(_struct$30.i, _struct$30.out)), !((((re.Flags & 32) >>> 0) === 0))), new frag.Ptr(_struct$31.i, _struct$31.out));
+		} else if (_ref === 18) {
+			if (re.Sub.length === 0) {
+				return (_struct$32 = c.nop(), new frag.Ptr(_struct$32.i, _struct$32.out));
+			}
+			f$1 = new frag.Ptr();
+			_ref$2 = re.Sub;
+			_i$1 = 0;
+			for (; _i$1 < _ref$2.length; _i$1 += 1) {
+				sub$1 = (_slice$4 = _ref$2, _index$4 = _i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
+				i = _i$1;
+				if (i === 0) {
+					f$1 = (_struct$33 = c.compile(sub$1), new frag.Ptr(_struct$33.i, _struct$33.out));
+				} else {
+					f$1 = (_struct$36 = c.cat((_struct$34 = f$1, new frag.Ptr(_struct$34.i, _struct$34.out)), (_struct$35 = c.compile(sub$1), new frag.Ptr(_struct$35.i, _struct$35.out))), new frag.Ptr(_struct$36.i, _struct$36.out));
+				}
+			}
+			return (_struct$37 = f$1, new frag.Ptr(_struct$37.i, _struct$37.out));
+		} else if (_ref === 19) {
+			f$2 = new frag.Ptr();
+			_ref$3 = re.Sub;
+			_i$2 = 0;
+			for (; _i$2 < _ref$3.length; _i$2 += 1) {
+				sub$2 = (_slice$5 = _ref$3, _index$5 = _i$2, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+				f$2 = (_struct$40 = c.alt((_struct$38 = f$2, new frag.Ptr(_struct$38.i, _struct$38.out)), (_struct$39 = c.compile(sub$2), new frag.Ptr(_struct$39.i, _struct$39.out))), new frag.Ptr(_struct$40.i, _struct$40.out));
+			}
+			return (_struct$41 = f$2, new frag.Ptr(_struct$41.i, _struct$41.out));
+		}
+		throw go$panic(new Go$String("regexp: unhandled case in compile"));
+	};
+	compiler.prototype.compile = function(re) { return this.go$val.compile(re); };
+	compiler.Ptr.prototype.inst = function(op) {
+		var c, f, _struct;
+		c = this;
+		f = new frag.Ptr((c.p.Inst.length >>> 0), 0);
+		c.p.Inst = go$append(c.p.Inst, new Inst.Ptr(op, 0, 0, (go$sliceType(Go$Int32)).nil));
+		return (_struct = f, new frag.Ptr(_struct.i, _struct.out));
+	};
+	compiler.prototype.inst = function(op) { return this.go$val.inst(op); };
+	compiler.Ptr.prototype.nop = function() {
+		var c, _struct, f, _struct$1;
+		c = this;
+		f = (_struct = c.inst(6), new frag.Ptr(_struct.i, _struct.out));
+		f.out = ((f.i << 1 >>> 0) >>> 0);
+		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
+	};
+	compiler.prototype.nop = function() { return this.go$val.nop(); };
+	compiler.Ptr.prototype.fail = function() {
+		var c;
+		c = this;
+		return new frag.Ptr(0, 0);
+	};
+	compiler.prototype.fail = function() { return this.go$val.fail(); };
+	compiler.Ptr.prototype.cap = function(arg) {
+		var c, _struct, f, _slice, _index, _struct$1;
+		c = this;
+		f = (_struct = c.inst(2), new frag.Ptr(_struct.i, _struct.out));
+		f.out = ((f.i << 1 >>> 0) >>> 0);
+		(_slice = c.p.Inst, _index = f.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Arg = arg;
+		if (c.p.NumCap < ((arg >> 0) + 1 >> 0)) {
+			c.p.NumCap = (arg >> 0) + 1 >> 0;
+		}
+		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
+	};
+	compiler.prototype.cap = function(arg) { return this.go$val.cap(arg); };
+	compiler.Ptr.prototype.cat = function(f1, f2) {
+		var c;
+		c = this;
+		if ((f1.i === 0) || (f2.i === 0)) {
+			return new frag.Ptr(0, 0);
+		}
+		(new patchList(f1.out)).patch(c.p, f2.i);
+		return new frag.Ptr(f1.i, f2.out);
+	};
+	compiler.prototype.cat = function(f1, f2) { return this.go$val.cat(f1, f2); };
+	compiler.Ptr.prototype.alt = function(f1, f2) {
+		var c, _struct, _struct$1, _struct$2, f, _slice, _index, i, _struct$3;
+		c = this;
+		if (f1.i === 0) {
+			return (_struct = f2, new frag.Ptr(_struct.i, _struct.out));
+		}
+		if (f2.i === 0) {
+			return (_struct$1 = f1, new frag.Ptr(_struct$1.i, _struct$1.out));
+		}
+		f = (_struct$2 = c.inst(0), new frag.Ptr(_struct$2.i, _struct$2.out));
+		i = (_slice = c.p.Inst, _index = f.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		i.Out = f1.i;
+		i.Arg = f2.i;
+		f.out = (new patchList(f1.out)).append(c.p, f2.out);
+		return (_struct$3 = f, new frag.Ptr(_struct$3.i, _struct$3.out));
+	};
+	compiler.prototype.alt = function(f1, f2) { return this.go$val.alt(f1, f2); };
+	compiler.Ptr.prototype.quest = function(f1, nongreedy) {
+		var c, _struct, f, _slice, _index, i, _struct$1;
+		c = this;
+		f = (_struct = c.inst(0), new frag.Ptr(_struct.i, _struct.out));
+		i = (_slice = c.p.Inst, _index = f.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (nongreedy) {
+			i.Arg = f1.i;
+			f.out = ((f.i << 1 >>> 0) >>> 0);
+		} else {
+			i.Out = f1.i;
+			f.out = ((((f.i << 1 >>> 0) | 1) >>> 0) >>> 0);
+		}
+		f.out = (new patchList(f.out)).append(c.p, f1.out);
+		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
+	};
+	compiler.prototype.quest = function(f1, nongreedy) { return this.go$val.quest(f1, nongreedy); };
+	compiler.Ptr.prototype.star = function(f1, nongreedy) {
+		var c, _struct, f, _slice, _index, i, _struct$1;
+		c = this;
+		f = (_struct = c.inst(0), new frag.Ptr(_struct.i, _struct.out));
+		i = (_slice = c.p.Inst, _index = f.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (nongreedy) {
+			i.Arg = f1.i;
+			f.out = ((f.i << 1 >>> 0) >>> 0);
+		} else {
+			i.Out = f1.i;
+			f.out = ((((f.i << 1 >>> 0) | 1) >>> 0) >>> 0);
+		}
+		(new patchList(f1.out)).patch(c.p, f.i);
+		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
+	};
+	compiler.prototype.star = function(f1, nongreedy) { return this.go$val.star(f1, nongreedy); };
+	compiler.Ptr.prototype.plus = function(f1, nongreedy) {
+		var c, _struct;
+		c = this;
+		return new frag.Ptr(f1.i, c.star((_struct = f1, new frag.Ptr(_struct.i, _struct.out)), nongreedy).out);
+	};
+	compiler.prototype.plus = function(f1, nongreedy) { return this.go$val.plus(f1, nongreedy); };
+	compiler.Ptr.prototype.empty = function(op) {
+		var c, _struct, f, _slice, _index, _struct$1;
+		c = this;
+		f = (_struct = c.inst(3), new frag.Ptr(_struct.i, _struct.out));
+		(_slice = c.p.Inst, _index = f.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Arg = (op >>> 0);
+		f.out = ((f.i << 1 >>> 0) >>> 0);
+		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
+	};
+	compiler.prototype.empty = function(op) { return this.go$val.empty(op); };
+	compiler.Ptr.prototype.rune = function(r, flags) {
+		var c, _struct, f, _slice, _index, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _struct$1;
+		c = this;
+		f = (_struct = c.inst(7), new frag.Ptr(_struct.i, _struct.out));
+		i = (_slice = c.p.Inst, _index = f.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		i.Rune = r;
+		flags = (flags & 1) >>> 0;
+		if (!((r.length === 1)) || (unicode.SimpleFold((_slice$1 = r, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) === (_slice$2 = r, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) {
+			flags = flags & ~1;
+		}
+		i.Arg = (flags >>> 0);
+		f.out = ((f.i << 1 >>> 0) >>> 0);
+		if ((((flags & 1) >>> 0) === 0) && ((r.length === 1) || (r.length === 2) && ((_slice$3 = r, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) === (_slice$4 = r, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))))) {
+			i.Op = 8;
+		} else if ((r.length === 2) && ((_slice$5 = r, _index$5 = 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$6 = r, _index$6 = 1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) === 1114111)) {
+			i.Op = 9;
+		} else if ((r.length === 4) && ((_slice$7 = r, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$8 = r, _index$8 = 1, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")) === 9) && ((_slice$9 = r, _index$9 = 2, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) === 11) && ((_slice$10 = r, _index$10 = 3, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range")) === 1114111)) {
+			i.Op = 10;
+		}
+		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
+	};
+	compiler.prototype.rune = function(r, flags) { return this.go$val.rune(r, flags); };
+	Error.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return "error parsing regexp: " + (new ErrorCode(e.Code)).String() + ": `" + e.Expr + "`";
+	};
+	Error.prototype.Error = function() { return this.go$val.Error(); };
+	ErrorCode.prototype.String = function() {
+		var e;
+		e = this.go$val;
+		return e;
+	};
+	go$ptrType(ErrorCode).prototype.String = function() { return new ErrorCode(this.go$get()).String(); };
+	parser.Ptr.prototype.newRegexp = function(op) {
+		var p, re, l, r;
+		p = this;
+		re = p.free;
+		if (!(re === (go$ptrType(Regexp)).nil)) {
+			p.free = re.Sub0[0];
+			l = re, r = new Regexp.Ptr(0, 0, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, ""), l.Op = r.Op, l.Flags = r.Flags, l.Sub = r.Sub, l.Sub0 = r.Sub0, l.Rune = r.Rune, l.Rune0 = r.Rune0, l.Min = r.Min, l.Max = r.Max, l.Cap = r.Cap, l.Name = r.Name;
+		} else {
+			re = new Regexp.Ptr();
+		}
+		re.Op = op;
+		return re;
+	};
+	parser.prototype.newRegexp = function(op) { return this.go$val.newRegexp(op); };
+	parser.Ptr.prototype.reuse = function(re) {
+		var p;
+		p = this;
+		re.Sub0[0] = p.free;
+		p.free = re;
+	};
+	parser.prototype.reuse = function(re) { return this.go$val.reuse(re); };
+	parser.Ptr.prototype.push = function(re) {
+		var p, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17;
+		p = this;
+		if ((re.Op === 4) && (re.Rune.length === 2) && ((_slice = re.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === (_slice$1 = re.Rune, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))) {
+			if (p.maybeConcat((_slice$16 = re.Rune, _index$16 = 0, (_index$16 >= 0 && _index$16 < _slice$16.length) ? _slice$16.array[_slice$16.offset + _index$16] : go$throwRuntimeError("index out of range")), p.flags & ~1)) {
+				return (go$ptrType(Regexp)).nil;
+			}
+			re.Op = 3;
+			re.Rune = go$subslice(re.Rune, 0, 1);
+			re.Flags = p.flags & ~1;
+		} else if ((re.Op === 4) && (re.Rune.length === 4) && ((_slice$2 = re.Rune, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === (_slice$3 = re.Rune, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) && ((_slice$4 = re.Rune, _index$4 = 2, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) === (_slice$5 = re.Rune, _index$5 = 3, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))) && (unicode.SimpleFold((_slice$6 = re.Rune, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))) === (_slice$7 = re.Rune, _index$7 = 2, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))) && (unicode.SimpleFold((_slice$8 = re.Rune, _index$8 = 2, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"))) === (_slice$9 = re.Rune, _index$9 = 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range"))) || (re.Op === 4) && (re.Rune.length === 2) && (((_slice$10 = re.Rune, _index$10 = 0, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range")) + 1 >> 0) === (_slice$11 = re.Rune, _index$11 = 1, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range"))) && (unicode.SimpleFold((_slice$12 = re.Rune, _index$12 = 0, (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range"))) === (_slice$13 = re.Rune, _index$13 = 1, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range"))) && (unicode.SimpleFold((_slice$14 = re.Rune, _index$14 = 1, (_index$14 >= 0 && _index$14 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$14] : go$throwRuntimeError("index out of range"))) === (_slice$15 = re.Rune, _index$15 = 0, (_index$15 >= 0 && _index$15 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$15] : go$throwRuntimeError("index out of range")))) {
+			if (p.maybeConcat((_slice$17 = re.Rune, _index$17 = 0, (_index$17 >= 0 && _index$17 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$17] : go$throwRuntimeError("index out of range")), (p.flags | 1) >>> 0)) {
+				return (go$ptrType(Regexp)).nil;
+			}
+			re.Op = 3;
+			re.Rune = go$subslice(re.Rune, 0, 1);
+			re.Flags = (p.flags | 1) >>> 0;
+		} else {
+			p.maybeConcat(-1, 0);
+		}
+		p.stack = go$append(p.stack, re);
+		return re;
+	};
+	parser.prototype.push = function(re) { return this.go$val.push(re); };
+	parser.Ptr.prototype.maybeConcat = function(r, flags) {
+		var p, n, _slice, _index, re1, _slice$1, _index$1, re2, _slice$2, _index$2;
+		p = this;
+		n = p.stack.length;
+		if (n < 2) {
+			return false;
+		}
+		re1 = (_slice = p.stack, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		re2 = (_slice$1 = p.stack, _index$1 = (n - 2 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+		if (!((re1.Op === 3)) || !((re2.Op === 3)) || !((((re1.Flags & 1) >>> 0) === ((re2.Flags & 1) >>> 0)))) {
+			return false;
+		}
+		re2.Rune = go$appendSlice(re2.Rune, re1.Rune);
+		if (r >= 0) {
+			re1.Rune = go$subslice(new (go$sliceType(Go$Int32))(re1.Rune0), 0, 1);
+			_slice$2 = re1.Rune, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = r) : go$throwRuntimeError("index out of range");
+			re1.Flags = flags;
+			return true;
+		}
+		p.stack = go$subslice(p.stack, 0, (n - 1 >> 0));
+		p.reuse(re1);
+		return false;
+	};
+	parser.prototype.maybeConcat = function(r, flags) { return this.go$val.maybeConcat(r, flags); };
+	parser.Ptr.prototype.newLiteral = function(r, flags) {
+		var p, re;
+		p = this;
+		re = p.newRegexp(3);
+		re.Flags = flags;
+		if (!((((flags & 1) >>> 0) === 0))) {
+			r = minFoldRune(r);
+		}
+		re.Rune0[0] = r;
+		re.Rune = go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 1);
+		return re;
+	};
+	parser.prototype.newLiteral = function(r, flags) { return this.go$val.newLiteral(r, flags); };
+	var minFoldRune = function(r) {
+		var min, r0;
+		if (r < 65 || r > 66639) {
+			return r;
+		}
+		min = r;
+		r0 = r;
+		r = unicode.SimpleFold(r);
+		while (!((r === r0))) {
+			if (min > r) {
+				min = r;
+			}
+			r = unicode.SimpleFold(r);
+		}
+		return min;
+	};
+	parser.Ptr.prototype.literal = function(r) {
+		var p;
+		p = this;
+		p.push(p.newLiteral(r, p.flags));
+	};
+	parser.prototype.literal = function(r) { return this.go$val.literal(r); };
+	parser.Ptr.prototype.op = function(op) {
+		var p, re;
+		p = this;
+		re = p.newRegexp(op);
+		re.Flags = p.flags;
+		return p.push(re);
+	};
+	parser.prototype.op = function(op) { return this.go$val.op(op); };
+	parser.Ptr.prototype.repeat = function(op, min, max, before, after, lastRepeat) {
+		var p, flags, n, _slice, _index, sub, re, _slice$1, _index$1, _slice$2, _index$2;
+		p = this;
+		flags = p.flags;
+		if (!((((p.flags & 64) >>> 0) === 0))) {
+			if (after.length > 0 && (after.charCodeAt(0) === 63)) {
+				after = after.substring(1);
+				flags = (flags ^ 32) << 16 >>> 16;
+			}
+			if (!(lastRepeat === "")) {
+				return ["", new Error.Ptr("invalid nested repetition operator", lastRepeat.substring(0, (lastRepeat.length - after.length >> 0)))];
+			}
+		}
+		n = p.stack.length;
+		if (n === 0) {
+			return ["", new Error.Ptr("missing argument to repetition operator", before.substring(0, (before.length - after.length >> 0)))];
+		}
+		sub = (_slice = p.stack, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (sub.Op >= 128) {
+			return ["", new Error.Ptr("missing argument to repetition operator", before.substring(0, (before.length - after.length >> 0)))];
+		}
+		re = p.newRegexp(op);
+		re.Min = min;
+		re.Max = max;
+		re.Flags = flags;
+		re.Sub = go$subslice(new (go$sliceType((go$ptrType(Regexp))))(re.Sub0), 0, 1);
+		_slice$1 = re.Sub, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = sub) : go$throwRuntimeError("index out of range");
+		_slice$2 = p.stack, _index$2 = n - 1 >> 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = re) : go$throwRuntimeError("index out of range");
+		return [after, null];
+	};
+	parser.prototype.repeat = function(op, min, max, before, after, lastRepeat) { return this.go$val.repeat(op, min, max, before, after, lastRepeat); };
+	parser.Ptr.prototype.concat = function() {
+		var p, i, _slice, _index, subs;
+		p = this;
+		p.maybeConcat(-1, 0);
+		i = p.stack.length;
+		while (i > 0 && (_slice = p.stack, _index = (i - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Op < 128) {
+			i = i - 1 >> 0;
+		}
+		subs = go$subslice(p.stack, i);
+		p.stack = go$subslice(p.stack, 0, i);
+		if (subs.length === 0) {
+			return p.push(p.newRegexp(2));
+		}
+		return p.push(p.collapse(subs, 18));
+	};
+	parser.prototype.concat = function() { return this.go$val.concat(); };
+	parser.Ptr.prototype.alternate = function() {
+		var p, i, _slice, _index, subs, _slice$1, _index$1;
+		p = this;
+		i = p.stack.length;
+		while (i > 0 && (_slice = p.stack, _index = (i - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Op < 128) {
+			i = i - 1 >> 0;
+		}
+		subs = go$subslice(p.stack, i);
+		p.stack = go$subslice(p.stack, 0, i);
+		if (subs.length > 0) {
+			cleanAlt((_slice$1 = subs, _index$1 = (subs.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
+		}
+		if (subs.length === 0) {
+			return p.push(p.newRegexp(1));
+		}
+		return p.push(p.collapse(subs, 19));
+	};
+	parser.prototype.alternate = function() { return this.go$val.alternate(); };
+	var cleanAlt = function(re) {
+		var _ref, v, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
+		_ref = re.Op;
+		if (_ref === 4) {
+			re.Rune = cleanClass(new (go$ptrType((go$sliceType(Go$Int32))))(function() { return re.Rune; }, function(v) { re.Rune = v; }));
+			if ((re.Rune.length === 2) && ((_slice = re.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$1 = re.Rune, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 1114111)) {
+				re.Rune = (go$sliceType(Go$Int32)).nil;
+				re.Op = 6;
+				return;
+			}
+			if ((re.Rune.length === 4) && ((_slice$2 = re.Rune, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$3 = re.Rune, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) === 9) && ((_slice$4 = re.Rune, _index$4 = 2, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) === 11) && ((_slice$5 = re.Rune, _index$5 = 3, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) === 1114111)) {
+				re.Rune = (go$sliceType(Go$Int32)).nil;
+				re.Op = 5;
+				return;
+			}
+			if ((re.Rune.capacity - re.Rune.length >> 0) > 100) {
+				re.Rune = go$appendSlice(go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0), re.Rune);
+			}
+		}
+	};
+	parser.Ptr.prototype.collapse = function(subs, op) {
+		var p, _slice, _index, re, _ref, _i, _slice$1, _index$1, sub, old, _slice$2, _index$2;
+		p = this;
+		if (subs.length === 1) {
+			return (_slice = subs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		}
+		re = p.newRegexp(op);
+		re.Sub = go$subslice(new (go$sliceType((go$ptrType(Regexp))))(re.Sub0), 0, 0);
+		_ref = subs;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			sub = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			if (sub.Op === op) {
+				re.Sub = go$appendSlice(re.Sub, sub.Sub);
+				p.reuse(sub);
+			} else {
+				re.Sub = go$append(re.Sub, sub);
+			}
+		}
+		if (op === 19) {
+			re.Sub = p.factor(re.Sub, re.Flags);
+			if (re.Sub.length === 1) {
+				old = re;
+				re = (_slice$2 = re.Sub, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				p.reuse(old);
+			}
+		}
+		return re;
+	};
+	parser.prototype.collapse = function(subs, op) { return this.go$val.collapse(subs, op); };
+	parser.Ptr.prototype.factor = function(sub, flags) {
+		var p, str, strflags, start, out, i, istr, iflags, _tuple, _slice, _index, same, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, prefix, j, _slice$4, _index$4, _slice$5, _index$5, suffix, re, first, i$1, ifirst, _slice$6, _index$6, _slice$7, _index$7, prefix$1, j$1, reuse, _slice$8, _index$8, _slice$9, _index$9, suffix$1, re$1, i$2, _slice$10, _index$10, _slice$11, _index$11, max, j$2, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17, _slice$18, _index$18, _slice$19, _index$19, _tuple$1, _slice$20, _index$20, _slice$21, _index$21, j$3, _slice$22, _index$22, _slice$23, _index$23, _slice$24, _index$24, _slice$25, _index$25, _slice$26, _index$26, _slice$27, _index$27, _ref, _i, i$3, _slice$28, _index$28, _slice$29, _index$29, _slice$30, _index$30;
+		p = this;
+		if (sub.length < 2) {
+			return sub;
+		}
+		str = (go$sliceType(Go$Int32)).nil;
+		strflags = 0;
+		start = 0;
+		out = go$subslice(sub, 0, 0);
+		i = 0;
+		while (i <= sub.length) {
+			istr = (go$sliceType(Go$Int32)).nil;
+			iflags = 0;
+			if (i < sub.length) {
+				_tuple = p.leadingString((_slice = sub, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), istr = _tuple[0], iflags = _tuple[1];
+				if (iflags === strflags) {
+					same = 0;
+					while (same < str.length && same < istr.length && ((_slice$1 = str, _index$1 = same, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = istr, _index$2 = same, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) {
+						same = same + 1 >> 0;
+					}
+					if (same > 0) {
+						str = go$subslice(str, 0, same);
+						i = i + 1 >> 0;
+						continue;
+					}
+				}
+			}
+			if (i === start) {
+			} else if (i === (start + 1 >> 0)) {
+				out = go$append(out, (_slice$3 = sub, _index$3 = start, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")));
+			} else {
+				prefix = p.newRegexp(3);
+				prefix.Flags = strflags;
+				prefix.Rune = go$appendSlice(go$subslice(prefix.Rune, 0, 0), str);
+				j = start;
+				while (j < i) {
+					_slice$5 = sub, _index$5 = j, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = p.removeLeadingString((_slice$4 = sub, _index$4 = j, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), str.length)) : go$throwRuntimeError("index out of range");
+					j = j + 1 >> 0;
+				}
+				suffix = p.collapse(go$subslice(sub, start, i), 19);
+				re = p.newRegexp(18);
+				re.Sub = go$append(go$subslice(re.Sub, 0, 0), prefix, suffix);
+				out = go$append(out, re);
+			}
+			start = i;
+			str = istr;
+			strflags = iflags;
+			i = i + 1 >> 0;
+		}
+		sub = out;
+		start = 0;
+		out = go$subslice(sub, 0, 0);
+		first = (go$ptrType(Regexp)).nil;
+		i$1 = 0;
+		while (i$1 <= sub.length) {
+			ifirst = (go$ptrType(Regexp)).nil;
+			if (i$1 < sub.length) {
+				ifirst = p.leadingRegexp((_slice$6 = sub, _index$6 = i$1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")));
+				if (!(first === (go$ptrType(Regexp)).nil) && first.Equal(ifirst)) {
+					i$1 = i$1 + 1 >> 0;
+					continue;
+				}
+			}
+			if (i$1 === start) {
+			} else if (i$1 === (start + 1 >> 0)) {
+				out = go$append(out, (_slice$7 = sub, _index$7 = start, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")));
+			} else {
+				prefix$1 = first;
+				j$1 = start;
+				while (j$1 < i$1) {
+					reuse = !((j$1 === start));
+					_slice$9 = sub, _index$9 = j$1, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = p.removeLeadingRegexp((_slice$8 = sub, _index$8 = j$1, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")), reuse)) : go$throwRuntimeError("index out of range");
+					j$1 = j$1 + 1 >> 0;
+				}
+				suffix$1 = p.collapse(go$subslice(sub, start, i$1), 19);
+				re$1 = p.newRegexp(18);
+				re$1.Sub = go$append(go$subslice(re$1.Sub, 0, 0), prefix$1, suffix$1);
+				out = go$append(out, re$1);
+			}
+			start = i$1;
+			first = ifirst;
+			i$1 = i$1 + 1 >> 0;
+		}
+		sub = out;
+		start = 0;
+		out = go$subslice(sub, 0, 0);
+		i$2 = 0;
+		while (i$2 <= sub.length) {
+			if (i$2 < sub.length && isCharClass((_slice$10 = sub, _index$10 = i$2, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range")))) {
+				i$2 = i$2 + 1 >> 0;
+				continue;
+			}
+			if (i$2 === start) {
+			} else if (i$2 === (start + 1 >> 0)) {
+				out = go$append(out, (_slice$11 = sub, _index$11 = start, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")));
+			} else {
+				max = start;
+				j$2 = start + 1 >> 0;
+				while (j$2 < i$2) {
+					if ((_slice$12 = sub, _index$12 = max, (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range")).Op < (_slice$13 = sub, _index$13 = j$2, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range")).Op || ((_slice$14 = sub, _index$14 = max, (_index$14 >= 0 && _index$14 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$14] : go$throwRuntimeError("index out of range")).Op === (_slice$15 = sub, _index$15 = j$2, (_index$15 >= 0 && _index$15 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$15] : go$throwRuntimeError("index out of range")).Op) && (_slice$16 = sub, _index$16 = max, (_index$16 >= 0 && _index$16 < _slice$16.length) ? _slice$16.array[_slice$16.offset + _index$16] : go$throwRuntimeError("index out of range")).Rune.length < (_slice$17 = sub, _index$17 = j$2, (_index$17 >= 0 && _index$17 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$17] : go$throwRuntimeError("index out of range")).Rune.length) {
+						max = j$2;
+					}
+					j$2 = j$2 + 1 >> 0;
+				}
+				_tuple$1 = [(_slice$18 = sub, _index$18 = max, (_index$18 >= 0 && _index$18 < _slice$18.length) ? _slice$18.array[_slice$18.offset + _index$18] : go$throwRuntimeError("index out of range")), (_slice$19 = sub, _index$19 = start, (_index$19 >= 0 && _index$19 < _slice$19.length) ? _slice$19.array[_slice$19.offset + _index$19] : go$throwRuntimeError("index out of range"))], _slice$20 = sub, _index$20 = start, (_index$20 >= 0 && _index$20 < _slice$20.length) ? (_slice$20.array[_slice$20.offset + _index$20] = _tuple$1[0]) : go$throwRuntimeError("index out of range"), _slice$21 = sub, _index$21 = max, (_index$21 >= 0 && _index$21 < _slice$21.length) ? (_slice$21.array[_slice$21.offset + _index$21] = _tuple$1[1]) : go$throwRuntimeError("index out of range");
+				j$3 = start + 1 >> 0;
+				while (j$3 < i$2) {
+					mergeCharClass((_slice$22 = sub, _index$22 = start, (_index$22 >= 0 && _index$22 < _slice$22.length) ? _slice$22.array[_slice$22.offset + _index$22] : go$throwRuntimeError("index out of range")), (_slice$23 = sub, _index$23 = j$3, (_index$23 >= 0 && _index$23 < _slice$23.length) ? _slice$23.array[_slice$23.offset + _index$23] : go$throwRuntimeError("index out of range")));
+					p.reuse((_slice$24 = sub, _index$24 = j$3, (_index$24 >= 0 && _index$24 < _slice$24.length) ? _slice$24.array[_slice$24.offset + _index$24] : go$throwRuntimeError("index out of range")));
+					j$3 = j$3 + 1 >> 0;
+				}
+				cleanAlt((_slice$25 = sub, _index$25 = start, (_index$25 >= 0 && _index$25 < _slice$25.length) ? _slice$25.array[_slice$25.offset + _index$25] : go$throwRuntimeError("index out of range")));
+				out = go$append(out, (_slice$26 = sub, _index$26 = start, (_index$26 >= 0 && _index$26 < _slice$26.length) ? _slice$26.array[_slice$26.offset + _index$26] : go$throwRuntimeError("index out of range")));
+			}
+			if (i$2 < sub.length) {
+				out = go$append(out, (_slice$27 = sub, _index$27 = i$2, (_index$27 >= 0 && _index$27 < _slice$27.length) ? _slice$27.array[_slice$27.offset + _index$27] : go$throwRuntimeError("index out of range")));
+			}
+			start = i$2 + 1 >> 0;
+			i$2 = i$2 + 1 >> 0;
+		}
+		sub = out;
+		start = 0;
+		out = go$subslice(sub, 0, 0);
+		_ref = sub;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i$3 = _i;
+			if ((i$3 + 1 >> 0) < sub.length && ((_slice$28 = sub, _index$28 = i$3, (_index$28 >= 0 && _index$28 < _slice$28.length) ? _slice$28.array[_slice$28.offset + _index$28] : go$throwRuntimeError("index out of range")).Op === 2) && ((_slice$29 = sub, _index$29 = (i$3 + 1 >> 0), (_index$29 >= 0 && _index$29 < _slice$29.length) ? _slice$29.array[_slice$29.offset + _index$29] : go$throwRuntimeError("index out of range")).Op === 2)) {
+				continue;
+			}
+			out = go$append(out, (_slice$30 = sub, _index$30 = i$3, (_index$30 >= 0 && _index$30 < _slice$30.length) ? _slice$30.array[_slice$30.offset + _index$30] : go$throwRuntimeError("index out of range")));
+		}
+		sub = out;
+		return sub;
+	};
+	parser.prototype.factor = function(sub, flags) { return this.go$val.factor(sub, flags); };
+	parser.Ptr.prototype.leadingString = function(re) {
+		var p, _slice, _index;
+		p = this;
+		if ((re.Op === 18) && re.Sub.length > 0) {
+			re = (_slice = re.Sub, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		}
+		if (!((re.Op === 3))) {
+			return [(go$sliceType(Go$Int32)).nil, 0];
+		}
+		return [re.Rune, (re.Flags & 1) >>> 0];
+	};
+	parser.prototype.leadingString = function(re) { return this.go$val.leadingString(re); };
+	parser.Ptr.prototype.removeLeadingString = function(re, n) {
+		var p, _slice, _index, sub, _slice$1, _index$1, _ref, old, _slice$2, _index$2;
+		p = this;
+		if ((re.Op === 18) && re.Sub.length > 0) {
+			sub = (_slice = re.Sub, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			sub = p.removeLeadingString(sub, n);
+			_slice$1 = re.Sub, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = sub) : go$throwRuntimeError("index out of range");
+			if (sub.Op === 2) {
+				p.reuse(sub);
+				_ref = re.Sub.length;
+				if (_ref === 0 || _ref === 1) {
+					re.Op = 2;
+					re.Sub = (go$sliceType((go$ptrType(Regexp)))).nil;
+				} else if (_ref === 2) {
+					old = re;
+					re = (_slice$2 = re.Sub, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+					p.reuse(old);
+				} else {
+					go$copySlice(re.Sub, go$subslice(re.Sub, 1));
+					re.Sub = go$subslice(re.Sub, 0, (re.Sub.length - 1 >> 0));
+				}
+			}
+			return re;
+		}
+		if (re.Op === 3) {
+			re.Rune = go$subslice(re.Rune, 0, go$copySlice(re.Rune, go$subslice(re.Rune, n)));
+			if (re.Rune.length === 0) {
+				re.Op = 2;
+			}
+		}
+		return re;
+	};
+	parser.prototype.removeLeadingString = function(re, n) { return this.go$val.removeLeadingString(re, n); };
+	parser.Ptr.prototype.leadingRegexp = function(re) {
+		var p, _slice, _index, sub;
+		p = this;
+		if (re.Op === 2) {
+			return (go$ptrType(Regexp)).nil;
+		}
+		if ((re.Op === 18) && re.Sub.length > 0) {
+			sub = (_slice = re.Sub, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (sub.Op === 2) {
+				return (go$ptrType(Regexp)).nil;
+			}
+			return sub;
+		}
+		return re;
+	};
+	parser.prototype.leadingRegexp = function(re) { return this.go$val.leadingRegexp(re); };
+	parser.Ptr.prototype.removeLeadingRegexp = function(re, reuse) {
+		var p, _slice, _index, _ref, old, _slice$1, _index$1;
+		p = this;
+		if ((re.Op === 18) && re.Sub.length > 0) {
+			if (reuse) {
+				p.reuse((_slice = re.Sub, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
+			}
+			re.Sub = go$subslice(re.Sub, 0, go$copySlice(re.Sub, go$subslice(re.Sub, 1)));
+			_ref = re.Sub.length;
+			if (_ref === 0) {
+				re.Op = 2;
+				re.Sub = (go$sliceType((go$ptrType(Regexp)))).nil;
+			} else if (_ref === 1) {
+				old = re;
+				re = (_slice$1 = re.Sub, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				p.reuse(old);
+			}
+			return re;
+		}
+		if (reuse) {
+			p.reuse(re);
+		}
+		return p.newRegexp(2);
+	};
+	parser.prototype.removeLeadingRegexp = function(re, reuse) { return this.go$val.removeLeadingRegexp(re, reuse); };
+	var literalRegexp = function(s, flags) {
+		var re, _ref, _i, _rune, c;
+		re = new Regexp.Ptr(3, 0, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, "");
+		re.Flags = flags;
+		re.Rune = go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0);
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			c = _rune[0];
+			if (re.Rune.length >= re.Rune.capacity) {
+				re.Rune = new (go$sliceType(Go$Int32))(go$stringToRunes(s));
+				break;
+			}
+			re.Rune = go$append(re.Rune, c);
+		}
+		return re;
+	};
+	var Parse = go$pkg.Parse = function(s, flags) {
+		var err, p, err$1, c, op, lastRepeat, _tuple, min, max, t, repeat, _ref, _tuple$1, _lhs, _tuple$2, before, _ref$1, after, _tuple$3, before$1, _tuple$4, min$1, max$1, after$1, ok, _tuple$5, _ref$2, lit, i, re, _tuple$6, r, rest, err$2, r$1, _tuple$7, rest$1, _tuple$8, _tuple$9, n, _slice, _index;
+		if (!((((flags & 2) >>> 0) === 0))) {
+			if (err = checkUTF8(s), !(go$interfaceIsEqual(err, null))) {
+				return [(go$ptrType(Regexp)).nil, err];
+			}
+			return [literalRegexp(s, flags), null];
+		}
+		p = new parser.Ptr(), err$1 = null, c = 0, op = 0, lastRepeat = "", _tuple = [0, 0], min = _tuple[0], max = _tuple[1];
+		p.flags = flags;
+		p.wholeRegexp = s;
+		t = s;
+		while (!(t === "")) {
+			repeat = "";
+			_ref = t.charCodeAt(0);
+			BigSwitch: switch (undefined) {
+			default:
+				if (_ref === 40) {
+					if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2 && (t.charCodeAt(1) === 63)) {
+						if (_tuple$1 = p.parsePerlFlags(t), t = _tuple$1[0], err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+							return [(go$ptrType(Regexp)).nil, err$1];
+						}
+						break;
+					}
+					p.numCap = p.numCap + 1 >> 0;
+					p.op(128).Cap = p.numCap;
+					t = t.substring(1);
+				} else if (_ref === 124) {
+					if (err$1 = p.parseVerticalBar(), !(go$interfaceIsEqual(err$1, null))) {
+						return [(go$ptrType(Regexp)).nil, err$1];
+					}
+					t = t.substring(1);
+				} else if (_ref === 41) {
+					if (err$1 = p.parseRightParen(), !(go$interfaceIsEqual(err$1, null))) {
+						return [(go$ptrType(Regexp)).nil, err$1];
+					}
+					t = t.substring(1);
+				} else if (_ref === 94) {
+					if (!((((p.flags & 16) >>> 0) === 0))) {
+						p.op(9);
+					} else {
+						p.op(7);
+					}
+					t = t.substring(1);
+				} else if (_ref === 36) {
+					if (!((((p.flags & 16) >>> 0) === 0))) {
+						_lhs = p.op(10), _lhs.Flags = (_lhs.Flags | 256) >>> 0;
+					} else {
+						p.op(8);
+					}
+					t = t.substring(1);
+				} else if (_ref === 46) {
+					if (!((((p.flags & 8) >>> 0) === 0))) {
+						p.op(6);
+					} else {
+						p.op(5);
+					}
+					t = t.substring(1);
+				} else if (_ref === 91) {
+					if (_tuple$2 = p.parseClass(t), t = _tuple$2[0], err$1 = _tuple$2[1], !(go$interfaceIsEqual(err$1, null))) {
+						return [(go$ptrType(Regexp)).nil, err$1];
+					}
+				} else if (_ref === 42 || _ref === 43 || _ref === 63) {
+					before = t;
+					_ref$1 = t.charCodeAt(0);
+					if (_ref$1 === 42) {
+						op = 14;
+					} else if (_ref$1 === 43) {
+						op = 15;
+					} else if (_ref$1 === 63) {
+						op = 16;
+					}
+					after = t.substring(1);
+					if (_tuple$3 = p.repeat(op, min, max, before, after, lastRepeat), after = _tuple$3[0], err$1 = _tuple$3[1], !(go$interfaceIsEqual(err$1, null))) {
+						return [(go$ptrType(Regexp)).nil, err$1];
+					}
+					repeat = before;
+					t = after;
+				} else if (_ref === 123) {
+					op = 17;
+					before$1 = t;
+					_tuple$4 = p.parseRepeat(t), min$1 = _tuple$4[0], max$1 = _tuple$4[1], after$1 = _tuple$4[2], ok = _tuple$4[3];
+					if (!ok) {
+						p.literal(123);
+						t = t.substring(1);
+						break;
+					}
+					if (min$1 < 0 || min$1 > 1000 || max$1 > 1000 || max$1 >= 0 && min$1 > max$1) {
+						return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid repeat count", before$1.substring(0, (before$1.length - after$1.length >> 0)))];
+					}
+					if (_tuple$5 = p.repeat(op, min$1, max$1, before$1, after$1, lastRepeat), after$1 = _tuple$5[0], err$1 = _tuple$5[1], !(go$interfaceIsEqual(err$1, null))) {
+						return [(go$ptrType(Regexp)).nil, err$1];
+					}
+					repeat = before$1;
+					t = after$1;
+				} else if (_ref === 92) {
+					if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2) {
+						_ref$2 = t.charCodeAt(1);
+						if (_ref$2 === 65) {
+							p.op(9);
+							t = t.substring(2);
+							break BigSwitch;
+						} else if (_ref$2 === 98) {
+							p.op(11);
+							t = t.substring(2);
+							break BigSwitch;
+						} else if (_ref$2 === 66) {
+							p.op(12);
+							t = t.substring(2);
+							break BigSwitch;
+						} else if (_ref$2 === 67) {
+							return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid escape sequence", t.substring(0, 2))];
+						} else if (_ref$2 === 81) {
+							lit = "";
+							if (i = strings.Index(t, "\\E"), i < 0) {
+								lit = t.substring(2);
+								t = "";
+							} else {
+								lit = t.substring(2, i);
+								t = t.substring((i + 2 >> 0));
+							}
+							p.push(literalRegexp(lit, p.flags));
+							break BigSwitch;
+						} else if (_ref$2 === 122) {
+							p.op(10);
+							t = t.substring(2);
+							break BigSwitch;
+						}
+					}
+					re = p.newRegexp(4);
+					re.Flags = p.flags;
+					if (t.length >= 2 && ((t.charCodeAt(1) === 112) || (t.charCodeAt(1) === 80))) {
+						_tuple$6 = p.parseUnicodeClass(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r = _tuple$6[0], rest = _tuple$6[1], err$2 = _tuple$6[2];
+						if (!(go$interfaceIsEqual(err$2, null))) {
+							return [(go$ptrType(Regexp)).nil, err$2];
+						}
+						if (!(r === (go$sliceType(Go$Int32)).nil)) {
+							re.Rune = r;
+							t = rest;
+							p.push(re);
+							break BigSwitch;
+						}
+					}
+					if (_tuple$7 = p.parsePerlClassEscape(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r$1 = _tuple$7[0], rest$1 = _tuple$7[1], !(r$1 === (go$sliceType(Go$Int32)).nil)) {
+						re.Rune = r$1;
+						t = rest$1;
+						p.push(re);
+						break BigSwitch;
+					}
+					p.reuse(re);
+					if (_tuple$8 = p.parseEscape(t), c = _tuple$8[0], t = _tuple$8[1], err$1 = _tuple$8[2], !(go$interfaceIsEqual(err$1, null))) {
+						return [(go$ptrType(Regexp)).nil, err$1];
+					}
+					p.literal(c);
+				} else {
+					if (_tuple$9 = nextRune(t), c = _tuple$9[0], t = _tuple$9[1], err$1 = _tuple$9[2], !(go$interfaceIsEqual(err$1, null))) {
+						return [(go$ptrType(Regexp)).nil, err$1];
+					}
+					p.literal(c);
+				}
+			}
+			lastRepeat = repeat;
+		}
+		p.concat();
+		if (p.swapVerticalBar()) {
+			p.stack = go$subslice(p.stack, 0, (p.stack.length - 1 >> 0));
+		}
+		p.alternate();
+		n = p.stack.length;
+		if (!((n === 1))) {
+			return [(go$ptrType(Regexp)).nil, new Error.Ptr("missing closing )", s)];
+		}
+		return [(_slice = p.stack, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), null];
+	};
+	parser.Ptr.prototype.parseRepeat = function(s) {
+		var min, max, rest, ok, p, ok1, _tuple, _tuple$1;
+		min = 0;
+		max = 0;
+		rest = "";
+		ok = false;
+		p = this;
+		if (s === "" || !((s.charCodeAt(0) === 123))) {
+			return [min, max, rest, ok];
+		}
+		s = s.substring(1);
+		ok1 = false;
+		if (_tuple = p.parseInt(s), min = _tuple[0], s = _tuple[1], ok1 = _tuple[2], !ok1) {
+			return [min, max, rest, ok];
+		}
+		if (s === "") {
+			return [min, max, rest, ok];
+		}
+		if (!((s.charCodeAt(0) === 44))) {
+			max = min;
+		} else {
+			s = s.substring(1);
+			if (s === "") {
+				return [min, max, rest, ok];
+			}
+			if (s.charCodeAt(0) === 125) {
+				max = -1;
+			} else if (_tuple$1 = p.parseInt(s), max = _tuple$1[0], s = _tuple$1[1], ok1 = _tuple$1[2], !ok1) {
+				return [min, max, rest, ok];
+			} else if (max < 0) {
+				min = -1;
+			}
+		}
+		if (s === "" || !((s.charCodeAt(0) === 125))) {
+			return [min, max, rest, ok];
+		}
+		rest = s.substring(1);
+		ok = true;
+		return [min, max, rest, ok];
+	};
+	parser.prototype.parseRepeat = function(s) { return this.go$val.parseRepeat(s); };
+	parser.Ptr.prototype.parsePerlFlags = function(s) {
+		var rest, err, p, t, end, _tuple, _tuple$1, capture, name, _tuple$2, _tuple$3, re, _tuple$4, c, flags, sign, sawFlag, _tuple$5, _tuple$6, _ref, _tuple$7, _tuple$8;
+		rest = "";
+		err = null;
+		p = this;
+		t = s;
+		if (t.length > 4 && (t.charCodeAt(2) === 80) && (t.charCodeAt(3) === 60)) {
+			end = strings.IndexRune(t, 62);
+			if (end < 0) {
+				if (err = checkUTF8(t), !(go$interfaceIsEqual(err, null))) {
+					_tuple = ["", err], rest = _tuple[0], err = _tuple[1];
+					return [rest, err];
+				}
+				_tuple$1 = ["", new Error.Ptr("invalid named capture", s)], rest = _tuple$1[0], err = _tuple$1[1];
+				return [rest, err];
+			}
+			capture = t.substring(0, (end + 1 >> 0));
+			name = t.substring(4, end);
+			if (err = checkUTF8(name), !(go$interfaceIsEqual(err, null))) {
+				_tuple$2 = ["", err], rest = _tuple$2[0], err = _tuple$2[1];
+				return [rest, err];
+			}
+			if (!isValidCaptureName(name)) {
+				_tuple$3 = ["", new Error.Ptr("invalid named capture", capture)], rest = _tuple$3[0], err = _tuple$3[1];
+				return [rest, err];
+			}
+			p.numCap = p.numCap + 1 >> 0;
+			re = p.op(128);
+			re.Cap = p.numCap;
+			re.Name = name;
+			_tuple$4 = [t.substring((end + 1 >> 0)), null], rest = _tuple$4[0], err = _tuple$4[1];
+			return [rest, err];
+		}
+		c = 0;
+		t = t.substring(2);
+		flags = p.flags;
+		sign = 1;
+		sawFlag = false;
+		Loop: while (!(t === "")) {
+			if (_tuple$5 = nextRune(t), c = _tuple$5[0], t = _tuple$5[1], err = _tuple$5[2], !(go$interfaceIsEqual(err, null))) {
+				_tuple$6 = ["", err], rest = _tuple$6[0], err = _tuple$6[1];
+				return [rest, err];
+			}
+			_ref = c;
+			if (_ref === 105) {
+				flags = (flags | 1) >>> 0;
+				sawFlag = true;
+			} else if (_ref === 109) {
+				flags = flags & ~16;
+				sawFlag = true;
+			} else if (_ref === 115) {
+				flags = (flags | 8) >>> 0;
+				sawFlag = true;
+			} else if (_ref === 85) {
+				flags = (flags | 32) >>> 0;
+				sawFlag = true;
+			} else if (_ref === 45) {
+				if (sign < 0) {
+					break Loop;
+				}
+				sign = -1;
+				flags = ~flags << 16 >>> 16;
+				sawFlag = false;
+			} else if (_ref === 58 || _ref === 41) {
+				if (sign < 0) {
+					if (!sawFlag) {
+						break Loop;
+					}
+					flags = ~flags << 16 >>> 16;
+				}
+				if (c === 58) {
+					p.op(128);
+				}
+				p.flags = flags;
+				_tuple$7 = [t, null], rest = _tuple$7[0], err = _tuple$7[1];
+				return [rest, err];
+			} else {
+				break Loop;
+			}
+		}
+		_tuple$8 = ["", new Error.Ptr("invalid or unsupported Perl syntax", s.substring(0, (s.length - t.length >> 0)))], rest = _tuple$8[0], err = _tuple$8[1];
+		return [rest, err];
+	};
+	parser.prototype.parsePerlFlags = function(s) { return this.go$val.parsePerlFlags(s); };
+	var isValidCaptureName = function(name) {
+		var _ref, _i, _rune, c;
+		if (name === "") {
+			return false;
+		}
+		_ref = name;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			c = _rune[0];
+			if (!((c === 95)) && !isalnum(c)) {
+				return false;
+			}
+		}
+		return true;
+	};
+	parser.Ptr.prototype.parseInt = function(s) {
+		var n, rest, ok, p, t, i, x;
+		n = 0;
+		rest = "";
+		ok = false;
+		p = this;
+		if (s === "" || s.charCodeAt(0) < 48 || 57 < s.charCodeAt(0)) {
+			return [n, rest, ok];
+		}
+		if (s.length >= 2 && (s.charCodeAt(0) === 48) && 48 <= s.charCodeAt(1) && s.charCodeAt(1) <= 57) {
+			return [n, rest, ok];
+		}
+		t = s;
+		while (!(s === "") && 48 <= s.charCodeAt(0) && s.charCodeAt(0) <= 57) {
+			s = s.substring(1);
+		}
+		rest = s;
+		ok = true;
+		t = t.substring(0, (t.length - s.length >> 0));
+		i = 0;
+		while (i < t.length) {
+			if (n >= 100000000) {
+				n = -1;
+				break;
+			}
+			n = ((x = 10, (((n >>> 16 << 16) * x >> 0) + (n << 16 >>> 16) * x) >> 0) + (t.charCodeAt(i) >> 0) >> 0) - 48 >> 0;
+			i = i + 1 >> 0;
+		}
+		return [n, rest, ok];
+	};
+	parser.prototype.parseInt = function(s) { return this.go$val.parseInt(s); };
+	var isCharClass = function(re) {
+		return (re.Op === 3) && (re.Rune.length === 1) || (re.Op === 4) || (re.Op === 5) || (re.Op === 6);
+	};
+	var matchRune = function(re, r) {
+		var _ref, _slice, _index, i, _slice$1, _index$1, _slice$2, _index$2;
+		_ref = re.Op;
+		if (_ref === 3) {
+			return (re.Rune.length === 1) && ((_slice = re.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === r);
+		} else if (_ref === 4) {
+			i = 0;
+			while (i < re.Rune.length) {
+				if ((_slice$1 = re.Rune, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) <= r && r <= (_slice$2 = re.Rune, _index$2 = (i + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) {
+					return true;
+				}
+				i = i + 2 >> 0;
+			}
+			return false;
+		} else if (_ref === 5) {
+			return !((r === 10));
+		} else if (_ref === 6) {
+			return true;
+		}
+		return false;
+	};
+	parser.Ptr.prototype.parseVerticalBar = function() {
+		var p;
+		p = this;
+		p.concat();
+		if (!p.swapVerticalBar()) {
+			p.op(129);
+		}
+		return null;
+	};
+	parser.prototype.parseVerticalBar = function() { return this.go$val.parseVerticalBar(); };
+	var mergeCharClass = function(dst, src) {
+		var _ref, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
+		_ref = dst.Op;
+		switch (undefined) {
+		default:
+			if (_ref === 6) {
+			} else if (_ref === 5) {
+				if (matchRune(src, 10)) {
+					dst.Op = 6;
+				}
+			} else if (_ref === 4) {
+				if (src.Op === 3) {
+					dst.Rune = appendLiteral(dst.Rune, (_slice = src.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), src.Flags);
+				} else {
+					dst.Rune = appendClass(dst.Rune, src.Rune);
+				}
+			} else if (_ref === 3) {
+				if (((_slice$1 = src.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = dst.Rune, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) && (src.Flags === dst.Flags)) {
+					break;
+				}
+				dst.Op = 4;
+				dst.Rune = appendLiteral(go$subslice(dst.Rune, 0, 0), (_slice$3 = dst.Rune, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), dst.Flags);
+				dst.Rune = appendLiteral(dst.Rune, (_slice$4 = src.Rune, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), src.Flags);
+			}
+		}
+	};
+	parser.Ptr.prototype.swapVerticalBar = function() {
+		var p, n, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, re1, _slice$4, _index$4, re3, _tuple, _slice$5, _index$5, _slice$6, _index$6, re1$1, _slice$7, _index$7, re2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10;
+		p = this;
+		n = p.stack.length;
+		if (n >= 3 && ((_slice = p.stack, _index = (n - 2 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Op === 129) && isCharClass((_slice$1 = p.stack, _index$1 = (n - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) && isCharClass((_slice$2 = p.stack, _index$2 = (n - 3 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) {
+			re1 = (_slice$3 = p.stack, _index$3 = (n - 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			re3 = (_slice$4 = p.stack, _index$4 = (n - 3 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
+			if (re1.Op > re3.Op) {
+				_tuple = [re3, re1], re1 = _tuple[0], re3 = _tuple[1];
+				_slice$5 = p.stack, _index$5 = n - 3 >> 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = re3) : go$throwRuntimeError("index out of range");
+			}
+			mergeCharClass(re3, re1);
+			p.reuse(re1);
+			p.stack = go$subslice(p.stack, 0, (n - 1 >> 0));
+			return true;
+		}
+		if (n >= 2) {
+			re1$1 = (_slice$6 = p.stack, _index$6 = (n - 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+			re2 = (_slice$7 = p.stack, _index$7 = (n - 2 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+			if (re2.Op === 129) {
+				if (n >= 3) {
+					cleanAlt((_slice$8 = p.stack, _index$8 = (n - 3 >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")));
+				}
+				_slice$9 = p.stack, _index$9 = n - 2 >> 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = re1$1) : go$throwRuntimeError("index out of range");
+				_slice$10 = p.stack, _index$10 = n - 1 >> 0, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = re2) : go$throwRuntimeError("index out of range");
+				return true;
+			}
+		}
+		return false;
+	};
+	parser.prototype.swapVerticalBar = function() { return this.go$val.swapVerticalBar(); };
+	parser.Ptr.prototype.parseRightParen = function() {
+		var p, n, _slice, _index, re1, _slice$1, _index$1, re2, _slice$2, _index$2;
+		p = this;
+		p.concat();
+		if (p.swapVerticalBar()) {
+			p.stack = go$subslice(p.stack, 0, (p.stack.length - 1 >> 0));
+		}
+		p.alternate();
+		n = p.stack.length;
+		if (n < 2) {
+			return new Error.Ptr("unexpected )", p.wholeRegexp);
+		}
+		re1 = (_slice = p.stack, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		re2 = (_slice$1 = p.stack, _index$1 = (n - 2 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+		p.stack = go$subslice(p.stack, 0, (n - 2 >> 0));
+		if (!((re2.Op === 128))) {
+			return new Error.Ptr("unexpected )", p.wholeRegexp);
+		}
+		p.flags = re2.Flags;
+		if (re2.Cap === 0) {
+			p.push(re1);
+		} else {
+			re2.Op = 13;
+			re2.Sub = go$subslice(new (go$sliceType((go$ptrType(Regexp))))(re2.Sub0), 0, 1);
+			_slice$2 = re2.Sub, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = re1) : go$throwRuntimeError("index out of range");
+			p.push(re2);
+		}
+		return null;
+	};
+	parser.prototype.parseRightParen = function() { return this.go$val.parseRightParen(); };
+	parser.Ptr.prototype.parseEscape = function(s) {
+		var r, rest, err, p, t, _tuple, _tuple$1, c, _tuple$2, _ref, i, x, _tuple$3, x$1, _tuple$4, _tuple$5, _tuple$6, nhex, _tuple$7, _tuple$8, v, x$2, _tuple$9, x$3, _tuple$10, _tuple$11, y, x$4, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$20;
+		r = 0;
+		rest = "";
+		err = null;
+		p = this;
+		t = s.substring(1);
+		if (t === "") {
+			_tuple = [0, "", new Error.Ptr("trailing backslash at end of expression", "")], r = _tuple[0], rest = _tuple[1], err = _tuple[2];
+			return [r, rest, err];
+		}
+		_tuple$1 = nextRune(t), c = _tuple$1[0], t = _tuple$1[1], err = _tuple$1[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$2 = [0, "", err], r = _tuple$2[0], rest = _tuple$2[1], err = _tuple$2[2];
+			return [r, rest, err];
+		}
+		_ref = c;
+		Switch: switch (undefined) {
+		default:
+			if (_ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
+				if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
+					break;
+				}
+				r = c - 48 >> 0;
+				i = 1;
+				while (i < 3) {
+					if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
+						break;
+					}
+					r = ((x = 8, (((r >>> 16 << 16) * x >> 0) + (r << 16 >>> 16) * x) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
+					t = t.substring(1);
+					i = i + 1 >> 0;
+				}
+				_tuple$3 = [r, t, null], r = _tuple$3[0], rest = _tuple$3[1], err = _tuple$3[2];
+				return [r, rest, err];
+			} else if (_ref === 48) {
+				r = c - 48 >> 0;
+				i = 1;
+				while (i < 3) {
+					if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
+						break;
+					}
+					r = ((x$1 = 8, (((r >>> 16 << 16) * x$1 >> 0) + (r << 16 >>> 16) * x$1) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
+					t = t.substring(1);
+					i = i + 1 >> 0;
+				}
+				_tuple$4 = [r, t, null], r = _tuple$4[0], rest = _tuple$4[1], err = _tuple$4[2];
+				return [r, rest, err];
+			} else if (_ref === 120) {
+				if (t === "") {
+					break;
+				}
+				if (_tuple$5 = nextRune(t), c = _tuple$5[0], t = _tuple$5[1], err = _tuple$5[2], !(go$interfaceIsEqual(err, null))) {
+					_tuple$6 = [0, "", err], r = _tuple$6[0], rest = _tuple$6[1], err = _tuple$6[2];
+					return [r, rest, err];
+				}
+				if (c === 123) {
+					nhex = 0;
+					r = 0;
+					while (true) {
+						if (t === "") {
+							break Switch;
+						}
+						if (_tuple$7 = nextRune(t), c = _tuple$7[0], t = _tuple$7[1], err = _tuple$7[2], !(go$interfaceIsEqual(err, null))) {
+							_tuple$8 = [0, "", err], r = _tuple$8[0], rest = _tuple$8[1], err = _tuple$8[2];
+							return [r, rest, err];
+						}
+						if (c === 125) {
+							break;
+						}
+						v = unhex(c);
+						if (v < 0) {
+							break Switch;
+						}
+						r = (x$2 = 16, (((r >>> 16 << 16) * x$2 >> 0) + (r << 16 >>> 16) * x$2) >> 0) + v >> 0;
+						if (r > 1114111) {
+							break Switch;
+						}
+						nhex = nhex + 1 >> 0;
+					}
+					if (nhex === 0) {
+						break Switch;
+					}
+					_tuple$9 = [r, t, null], r = _tuple$9[0], rest = _tuple$9[1], err = _tuple$9[2];
+					return [r, rest, err];
+				}
+				x$3 = unhex(c);
+				if (_tuple$10 = nextRune(t), c = _tuple$10[0], t = _tuple$10[1], err = _tuple$10[2], !(go$interfaceIsEqual(err, null))) {
+					_tuple$11 = [0, "", err], r = _tuple$11[0], rest = _tuple$11[1], err = _tuple$11[2];
+					return [r, rest, err];
+				}
+				y = unhex(c);
+				if (x$3 < 0 || y < 0) {
+					break;
+				}
+				_tuple$12 = [(x$4 = 16, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) + y >> 0, t, null], r = _tuple$12[0], rest = _tuple$12[1], err = _tuple$12[2];
+				return [r, rest, err];
+			} else if (_ref === 97) {
+				_tuple$13 = [7, t, err], r = _tuple$13[0], rest = _tuple$13[1], err = _tuple$13[2];
+				return [r, rest, err];
+			} else if (_ref === 102) {
+				_tuple$14 = [12, t, err], r = _tuple$14[0], rest = _tuple$14[1], err = _tuple$14[2];
+				return [r, rest, err];
+			} else if (_ref === 110) {
+				_tuple$15 = [10, t, err], r = _tuple$15[0], rest = _tuple$15[1], err = _tuple$15[2];
+				return [r, rest, err];
+			} else if (_ref === 114) {
+				_tuple$16 = [13, t, err], r = _tuple$16[0], rest = _tuple$16[1], err = _tuple$16[2];
+				return [r, rest, err];
+			} else if (_ref === 116) {
+				_tuple$17 = [9, t, err], r = _tuple$17[0], rest = _tuple$17[1], err = _tuple$17[2];
+				return [r, rest, err];
+			} else if (_ref === 118) {
+				_tuple$18 = [11, t, err], r = _tuple$18[0], rest = _tuple$18[1], err = _tuple$18[2];
+				return [r, rest, err];
+			} else {
+				if (c < 128 && !isalnum(c)) {
+					_tuple$19 = [c, t, null], r = _tuple$19[0], rest = _tuple$19[1], err = _tuple$19[2];
+					return [r, rest, err];
+				}
+			}
+		}
+		_tuple$20 = [0, "", new Error.Ptr("invalid escape sequence", s.substring(0, (s.length - t.length >> 0)))], r = _tuple$20[0], rest = _tuple$20[1], err = _tuple$20[2];
+		return [r, rest, err];
+	};
+	parser.prototype.parseEscape = function(s) { return this.go$val.parseEscape(s); };
+	parser.Ptr.prototype.parseClassChar = function(s, wholeClass) {
+		var r, rest, err, p, _tuple, _tuple$1, _tuple$2;
+		r = 0;
+		rest = "";
+		err = null;
+		p = this;
+		if (s === "") {
+			_tuple = [0, "", new Error.Ptr("missing closing ]", wholeClass)], r = _tuple[0], rest = _tuple[1], err = _tuple[2];
+			return [r, rest, err];
+		}
+		if (s.charCodeAt(0) === 92) {
+			_tuple$1 = p.parseEscape(s), r = _tuple$1[0], rest = _tuple$1[1], err = _tuple$1[2];
+			return [r, rest, err];
+		}
+		_tuple$2 = nextRune(s), r = _tuple$2[0], rest = _tuple$2[1], err = _tuple$2[2];
+		return [r, rest, err];
+	};
+	parser.prototype.parseClassChar = function(s, wholeClass) { return this.go$val.parseClassChar(s, wholeClass); };
+	parser.Ptr.prototype.parsePerlClassEscape = function(s, r) {
+		var out, rest, p, _entry, _struct, g, _struct$1, _tuple;
+		out = (go$sliceType(Go$Int32)).nil;
+		rest = "";
+		p = this;
+		if ((((p.flags & 64) >>> 0) === 0) || s.length < 2 || !((s.charCodeAt(0) === 92))) {
+			return [out, rest];
+		}
+		g = (_struct = (_entry = perlGroup[s.substring(0, 2)], _entry !== undefined ? _entry.v : new charGroup.Ptr()), new charGroup.Ptr(_struct.sign, _struct.class$1));
+		if (g.sign === 0) {
+			return [out, rest];
+		}
+		_tuple = [p.appendGroup(r, (_struct$1 = g, new charGroup.Ptr(_struct$1.sign, _struct$1.class$1))), s.substring(2)], out = _tuple[0], rest = _tuple[1];
+		return [out, rest];
+	};
+	parser.prototype.parsePerlClassEscape = function(s, r) { return this.go$val.parsePerlClassEscape(s, r); };
+	parser.Ptr.prototype.parseNamedClass = function(s, r) {
+		var out, rest, err, p, i, _tuple, name, _entry, _struct, g, _tuple$1, _struct$1, _tuple$2;
+		out = (go$sliceType(Go$Int32)).nil;
+		rest = "";
+		err = null;
+		p = this;
+		if (s.length < 2 || !((s.charCodeAt(0) === 91)) || !((s.charCodeAt(1) === 58))) {
+			return [out, rest, err];
+		}
+		i = strings.Index(s.substring(2), ":]");
+		if (i < 0) {
+			return [out, rest, err];
+		}
+		i = i + 2 >> 0;
+		_tuple = [s.substring(0, (i + 2 >> 0)), s.substring((i + 2 >> 0))], name = _tuple[0], s = _tuple[1];
+		g = (_struct = (_entry = posixGroup[name], _entry !== undefined ? _entry.v : new charGroup.Ptr()), new charGroup.Ptr(_struct.sign, _struct.class$1));
+		if (g.sign === 0) {
+			_tuple$1 = [(go$sliceType(Go$Int32)).nil, "", new Error.Ptr("invalid character class range", name)], out = _tuple$1[0], rest = _tuple$1[1], err = _tuple$1[2];
+			return [out, rest, err];
+		}
+		_tuple$2 = [p.appendGroup(r, (_struct$1 = g, new charGroup.Ptr(_struct$1.sign, _struct$1.class$1))), s, null], out = _tuple$2[0], rest = _tuple$2[1], err = _tuple$2[2];
+		return [out, rest, err];
+	};
+	parser.prototype.parseNamedClass = function(s, r) { return this.go$val.parseNamedClass(s, r); };
+	parser.Ptr.prototype.appendGroup = function(r, g) {
+		var p, tmp, v;
+		p = this;
+		if (((p.flags & 1) >>> 0) === 0) {
+			if (g.sign < 0) {
+				r = appendNegatedClass(r, g.class$1);
+			} else {
+				r = appendClass(r, g.class$1);
+			}
+		} else {
+			tmp = go$subslice(p.tmpClass, 0, 0);
+			tmp = appendFoldedClass(tmp, g.class$1);
+			p.tmpClass = tmp;
+			tmp = cleanClass(new (go$ptrType((go$sliceType(Go$Int32))))(function() { return p.tmpClass; }, function(v) { p.tmpClass = v; }));
+			if (g.sign < 0) {
+				r = appendNegatedClass(r, tmp);
+			} else {
+				r = appendClass(r, tmp);
+			}
+		}
+		return r;
+	};
+	parser.prototype.appendGroup = function(r, g) { return this.go$val.appendGroup(r, g); };
+	var unicodeTable = function(name) {
+		var t, _entry, _entry$1, t$1, _entry$2, _entry$3;
+		if (name === "Any") {
+			return [anyTable, anyTable];
+		}
+		if (t = (_entry = unicode.Categories[name], _entry !== undefined ? _entry.v : (go$ptrType(unicode.RangeTable)).nil), !(t === (go$ptrType(unicode.RangeTable)).nil)) {
+			return [t, (_entry$1 = unicode.FoldCategory[name], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(unicode.RangeTable)).nil)];
+		}
+		if (t$1 = (_entry$2 = unicode.Scripts[name], _entry$2 !== undefined ? _entry$2.v : (go$ptrType(unicode.RangeTable)).nil), !(t$1 === (go$ptrType(unicode.RangeTable)).nil)) {
+			return [t$1, (_entry$3 = unicode.FoldScript[name], _entry$3 !== undefined ? _entry$3.v : (go$ptrType(unicode.RangeTable)).nil)];
+		}
+		return [(go$ptrType(unicode.RangeTable)).nil, (go$ptrType(unicode.RangeTable)).nil];
+	};
+	parser.Ptr.prototype.parseUnicodeClass = function(s, r) {
+		var out, rest, err, p, sign, t, _tuple, c, _tuple$1, seq, name, end, _tuple$2, _tuple$3, _tuple$4, tab, fold, _tuple$5, tmp, v, _tuple$6;
+		out = (go$sliceType(Go$Int32)).nil;
+		rest = "";
+		err = null;
+		p = this;
+		if ((((p.flags & 128) >>> 0) === 0) || s.length < 2 || !((s.charCodeAt(0) === 92)) || !((s.charCodeAt(1) === 112)) && !((s.charCodeAt(1) === 80))) {
+			return [out, rest, err];
+		}
+		sign = 1;
+		if (s.charCodeAt(1) === 80) {
+			sign = -1;
+		}
+		t = s.substring(2);
+		_tuple = nextRune(t), c = _tuple[0], t = _tuple[1], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [out, rest, err];
+		}
+		_tuple$1 = ["", ""], seq = _tuple$1[0], name = _tuple$1[1];
+		if (!((c === 123))) {
+			seq = s.substring(0, (s.length - t.length >> 0));
+			name = seq.substring(2);
+		} else {
+			end = strings.IndexRune(s, 125);
+			if (end < 0) {
+				if (err = checkUTF8(s), !(go$interfaceIsEqual(err, null))) {
+					return [out, rest, err];
+				}
+				_tuple$2 = [(go$sliceType(Go$Int32)).nil, "", new Error.Ptr("invalid character class range", s)], out = _tuple$2[0], rest = _tuple$2[1], err = _tuple$2[2];
+				return [out, rest, err];
+			}
+			_tuple$3 = [s.substring(0, (end + 1 >> 0)), s.substring((end + 1 >> 0))], seq = _tuple$3[0], t = _tuple$3[1];
+			name = s.substring(3, end);
+			if (err = checkUTF8(name), !(go$interfaceIsEqual(err, null))) {
+				return [out, rest, err];
+			}
+		}
+		if (!(name === "") && (name.charCodeAt(0) === 94)) {
+			sign = -sign;
+			name = name.substring(1);
+		}
+		_tuple$4 = unicodeTable(name), tab = _tuple$4[0], fold = _tuple$4[1];
+		if (tab === (go$ptrType(unicode.RangeTable)).nil) {
+			_tuple$5 = [(go$sliceType(Go$Int32)).nil, "", new Error.Ptr("invalid character class range", seq)], out = _tuple$5[0], rest = _tuple$5[1], err = _tuple$5[2];
+			return [out, rest, err];
+		}
+		if ((((p.flags & 1) >>> 0) === 0) || fold === (go$ptrType(unicode.RangeTable)).nil) {
+			if (sign > 0) {
+				r = appendTable(r, tab);
+			} else {
+				r = appendNegatedTable(r, tab);
+			}
+		} else {
+			tmp = go$subslice(p.tmpClass, 0, 0);
+			tmp = appendTable(tmp, tab);
+			tmp = appendTable(tmp, fold);
+			p.tmpClass = tmp;
+			tmp = cleanClass(new (go$ptrType((go$sliceType(Go$Int32))))(function() { return p.tmpClass; }, function(v) { p.tmpClass = v; }));
+			if (sign > 0) {
+				r = appendClass(r, tmp);
+			} else {
+				r = appendNegatedClass(r, tmp);
+			}
+		}
+		_tuple$6 = [r, t, null], out = _tuple$6[0], rest = _tuple$6[1], err = _tuple$6[2];
+		return [out, rest, err];
+	};
+	parser.prototype.parseUnicodeClass = function(s, r) { return this.go$val.parseUnicodeClass(s, r); };
+	parser.Ptr.prototype.parseClass = function(s) {
+		var rest, err, p, t, re, sign, class$1, first, _tuple, size, _tuple$1, _tuple$2, nclass, nt, err$1, _tuple$3, _tuple$4, _tuple$5, nclass$1, nt$1, err$2, _tuple$6, _tuple$7, nclass$2, _tuple$8, nt$2, _tuple$9, rng, _tuple$10, lo, hi, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, v, _tuple$16;
+		rest = "";
+		err = null;
+		p = this;
+		t = s.substring(1);
+		re = p.newRegexp(4);
+		re.Flags = p.flags;
+		re.Rune = go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0);
+		sign = 1;
+		if (!(t === "") && (t.charCodeAt(0) === 94)) {
+			sign = -1;
+			t = t.substring(1);
+			if (((p.flags & 4) >>> 0) === 0) {
+				re.Rune = go$append(re.Rune, 10, 10);
+			}
+		}
+		class$1 = re.Rune;
+		first = true;
+		while (t === "" || !((t.charCodeAt(0) === 93)) || first) {
+			if (!(t === "") && (t.charCodeAt(0) === 45) && (((p.flags & 64) >>> 0) === 0) && !first && ((t.length === 1) || !((t.charCodeAt(1) === 93)))) {
+				_tuple = utf8.DecodeRuneInString(t.substring(1)), size = _tuple[1];
+				_tuple$1 = ["", new Error.Ptr("invalid character class range", t.substring(0, (1 + size >> 0)))], rest = _tuple$1[0], err = _tuple$1[1];
+				return [rest, err];
+			}
+			first = false;
+			if (t.length > 2 && (t.charCodeAt(0) === 91) && (t.charCodeAt(1) === 58)) {
+				_tuple$2 = p.parseNamedClass(t, class$1), nclass = _tuple$2[0], nt = _tuple$2[1], err$1 = _tuple$2[2];
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					_tuple$3 = ["", err$1], rest = _tuple$3[0], err = _tuple$3[1];
+					return [rest, err];
+				}
+				if (!(nclass === (go$sliceType(Go$Int32)).nil)) {
+					_tuple$4 = [nclass, nt], class$1 = _tuple$4[0], t = _tuple$4[1];
+					continue;
+				}
+			}
+			_tuple$5 = p.parseUnicodeClass(t, class$1), nclass$1 = _tuple$5[0], nt$1 = _tuple$5[1], err$2 = _tuple$5[2];
+			if (!(go$interfaceIsEqual(err$2, null))) {
+				_tuple$6 = ["", err$2], rest = _tuple$6[0], err = _tuple$6[1];
+				return [rest, err];
+			}
+			if (!(nclass$1 === (go$sliceType(Go$Int32)).nil)) {
+				_tuple$7 = [nclass$1, nt$1], class$1 = _tuple$7[0], t = _tuple$7[1];
+				continue;
+			}
+			if (_tuple$8 = p.parsePerlClassEscape(t, class$1), nclass$2 = _tuple$8[0], nt$2 = _tuple$8[1], !(nclass$2 === (go$sliceType(Go$Int32)).nil)) {
+				_tuple$9 = [nclass$2, nt$2], class$1 = _tuple$9[0], t = _tuple$9[1];
+				continue;
+			}
+			rng = t;
+			_tuple$10 = [0, 0], lo = _tuple$10[0], hi = _tuple$10[1];
+			if (_tuple$11 = p.parseClassChar(t, s), lo = _tuple$11[0], t = _tuple$11[1], err$2 = _tuple$11[2], !(go$interfaceIsEqual(err$2, null))) {
+				_tuple$12 = ["", err$2], rest = _tuple$12[0], err = _tuple$12[1];
+				return [rest, err];
+			}
+			hi = lo;
+			if (t.length >= 2 && (t.charCodeAt(0) === 45) && !((t.charCodeAt(1) === 93))) {
+				t = t.substring(1);
+				if (_tuple$13 = p.parseClassChar(t, s), hi = _tuple$13[0], t = _tuple$13[1], err$2 = _tuple$13[2], !(go$interfaceIsEqual(err$2, null))) {
+					_tuple$14 = ["", err$2], rest = _tuple$14[0], err = _tuple$14[1];
+					return [rest, err];
+				}
+				if (hi < lo) {
+					rng = rng.substring(0, (rng.length - t.length >> 0));
+					_tuple$15 = ["", new Error.Ptr("invalid character class range", rng)], rest = _tuple$15[0], err = _tuple$15[1];
+					return [rest, err];
+				}
+			}
+			if (((p.flags & 1) >>> 0) === 0) {
+				class$1 = appendRange(class$1, lo, hi);
+			} else {
+				class$1 = appendFoldedRange(class$1, lo, hi);
+			}
+		}
+		t = t.substring(1);
+		re.Rune = class$1;
+		class$1 = cleanClass(new (go$ptrType((go$sliceType(Go$Int32))))(function() { return re.Rune; }, function(v) { re.Rune = v; }));
+		if (sign < 0) {
+			class$1 = negateClass(class$1);
+		}
+		re.Rune = class$1;
+		p.push(re);
+		_tuple$16 = [t, null], rest = _tuple$16[0], err = _tuple$16[1];
+		return [rest, err];
+	};
+	parser.prototype.parseClass = function(s) { return this.go$val.parseClass(s); };
+	var cleanClass = function(rp) {
+		var x, r, w, i, _slice, _index, _slice$1, _index$1, _tuple, lo, hi, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6;
+		sort.Sort((x = new ranges.Ptr(rp), new x.constructor.Struct(x)));
+		r = rp.go$get();
+		if (r.length < 2) {
+			return r;
+		}
+		w = 2;
+		i = 2;
+		while (i < r.length) {
+			_tuple = [(_slice = r, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = r, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], lo = _tuple[0], hi = _tuple[1];
+			if (lo <= ((_slice$2 = r, _index$2 = (w - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) + 1 >> 0)) {
+				if (hi > (_slice$3 = r, _index$3 = (w - 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) {
+					_slice$4 = r, _index$4 = w - 1 >> 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = hi) : go$throwRuntimeError("index out of range");
+				}
+				i = i + 2 >> 0;
+				continue;
+			}
+			_slice$5 = r, _index$5 = w, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = lo) : go$throwRuntimeError("index out of range");
+			_slice$6 = r, _index$6 = w + 1 >> 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = hi) : go$throwRuntimeError("index out of range");
+			w = w + 2 >> 0;
+			i = i + 2 >> 0;
+		}
+		return go$subslice(r, 0, w);
+	};
+	var appendLiteral = function(r, x, flags) {
+		if (!((((flags & 1) >>> 0) === 0))) {
+			return appendFoldedRange(r, x, x);
+		}
+		return appendRange(r, x, x);
+	};
+	var appendRange = function(r, lo, hi) {
+		var n, i, _slice, _index, _slice$1, _index$1, _tuple, rlo, rhi, _slice$2, _index$2, _slice$3, _index$3;
+		n = r.length;
+		i = 2;
+		while (i <= 4) {
+			if (n >= i) {
+				_tuple = [(_slice = r, _index = (n - i >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = r, _index$1 = ((n - i >> 0) + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], rlo = _tuple[0], rhi = _tuple[1];
+				if (lo <= (rhi + 1 >> 0) && rlo <= (hi + 1 >> 0)) {
+					if (lo < rlo) {
+						_slice$2 = r, _index$2 = n - i >> 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = lo) : go$throwRuntimeError("index out of range");
+					}
+					if (hi > rhi) {
+						_slice$3 = r, _index$3 = (n - i >> 0) + 1 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = hi) : go$throwRuntimeError("index out of range");
+					}
+					return r;
+				}
+			}
+			i = i + 2 >> 0;
+		}
+		return go$append(r, lo, hi);
+	};
+	var appendFoldedRange = function(r, lo, hi) {
+		var c, f;
+		if (lo <= 65 && hi >= 66639) {
+			return appendRange(r, lo, hi);
+		}
+		if (hi < 65 || lo > 66639) {
+			return appendRange(r, lo, hi);
+		}
+		if (lo < 65) {
+			r = appendRange(r, lo, 64);
+			lo = 65;
+		}
+		if (hi > 66639) {
+			r = appendRange(r, 66640, hi);
+			hi = 66639;
+		}
+		c = lo;
+		while (c <= hi) {
+			r = appendRange(r, c, c);
+			f = unicode.SimpleFold(c);
+			while (!((f === c))) {
+				r = appendRange(r, f, f);
+				f = unicode.SimpleFold(f);
+			}
+			c = c + 1 >> 0;
+		}
+		return r;
+	};
+	var appendClass = function(r, x) {
+		var i, _slice, _index, _slice$1, _index$1;
+		i = 0;
+		while (i < x.length) {
+			r = appendRange(r, (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
+			i = i + 2 >> 0;
+		}
+		return r;
+	};
+	var appendFoldedClass = function(r, x) {
+		var i, _slice, _index, _slice$1, _index$1;
+		i = 0;
+		while (i < x.length) {
+			r = appendFoldedRange(r, (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
+			i = i + 2 >> 0;
+		}
+		return r;
+	};
+	var appendNegatedClass = function(r, x) {
+		var nextLo, i, _slice, _index, _slice$1, _index$1, _tuple, lo, hi;
+		nextLo = 0;
+		i = 0;
+		while (i < x.length) {
+			_tuple = [(_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], lo = _tuple[0], hi = _tuple[1];
+			if (nextLo <= (lo - 1 >> 0)) {
+				r = appendRange(r, nextLo, lo - 1 >> 0);
+			}
+			nextLo = hi + 1 >> 0;
+			i = i + 2 >> 0;
+		}
+		if (nextLo <= 1114111) {
+			r = appendRange(r, nextLo, 1114111);
+		}
+		return r;
+	};
+	var appendTable = function(r, x) {
+		var _ref, _i, _slice, _index, _struct, xr, _tuple, lo, hi, stride, c, _ref$1, _i$1, _slice$1, _index$1, _struct$1, xr$1, _tuple$1, lo$1, hi$1, stride$1, c$1;
+		_ref = x.R16;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			xr = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new unicode.Range16.Ptr(_struct.Lo, _struct.Hi, _struct.Stride));
+			_tuple = [(xr.Lo >> 0), (xr.Hi >> 0), (xr.Stride >> 0)], lo = _tuple[0], hi = _tuple[1], stride = _tuple[2];
+			if (stride === 1) {
+				r = appendRange(r, lo, hi);
+				continue;
+			}
+			c = lo;
+			while (c <= hi) {
+				r = appendRange(r, c, c);
+				c = c + (stride) >> 0;
+			}
+		}
+		_ref$1 = x.R32;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			xr$1 = (_struct$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new unicode.Range32.Ptr(_struct$1.Lo, _struct$1.Hi, _struct$1.Stride));
+			_tuple$1 = [(xr$1.Lo >> 0), (xr$1.Hi >> 0), (xr$1.Stride >> 0)], lo$1 = _tuple$1[0], hi$1 = _tuple$1[1], stride$1 = _tuple$1[2];
+			if (stride$1 === 1) {
+				r = appendRange(r, lo$1, hi$1);
+				continue;
+			}
+			c$1 = lo$1;
+			while (c$1 <= hi$1) {
+				r = appendRange(r, c$1, c$1);
+				c$1 = c$1 + (stride$1) >> 0;
+			}
+		}
+		return r;
+	};
+	var appendNegatedTable = function(r, x) {
+		var nextLo, _ref, _i, _slice, _index, _struct, xr, _tuple, lo, hi, stride, c, _ref$1, _i$1, _slice$1, _index$1, _struct$1, xr$1, _tuple$1, lo$1, hi$1, stride$1, c$1;
+		nextLo = 0;
+		_ref = x.R16;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			xr = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new unicode.Range16.Ptr(_struct.Lo, _struct.Hi, _struct.Stride));
+			_tuple = [(xr.Lo >> 0), (xr.Hi >> 0), (xr.Stride >> 0)], lo = _tuple[0], hi = _tuple[1], stride = _tuple[2];
+			if (stride === 1) {
+				if (nextLo <= (lo - 1 >> 0)) {
+					r = appendRange(r, nextLo, lo - 1 >> 0);
+				}
+				nextLo = hi + 1 >> 0;
+				continue;
+			}
+			c = lo;
+			while (c <= hi) {
+				if (nextLo <= (c - 1 >> 0)) {
+					r = appendRange(r, nextLo, c - 1 >> 0);
+				}
+				nextLo = c + 1 >> 0;
+				c = c + (stride) >> 0;
+			}
+		}
+		_ref$1 = x.R32;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			xr$1 = (_struct$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new unicode.Range32.Ptr(_struct$1.Lo, _struct$1.Hi, _struct$1.Stride));
+			_tuple$1 = [(xr$1.Lo >> 0), (xr$1.Hi >> 0), (xr$1.Stride >> 0)], lo$1 = _tuple$1[0], hi$1 = _tuple$1[1], stride$1 = _tuple$1[2];
+			if (stride$1 === 1) {
+				if (nextLo <= (lo$1 - 1 >> 0)) {
+					r = appendRange(r, nextLo, lo$1 - 1 >> 0);
+				}
+				nextLo = hi$1 + 1 >> 0;
+				continue;
+			}
+			c$1 = lo$1;
+			while (c$1 <= hi$1) {
+				if (nextLo <= (c$1 - 1 >> 0)) {
+					r = appendRange(r, nextLo, c$1 - 1 >> 0);
+				}
+				nextLo = c$1 + 1 >> 0;
+				c$1 = c$1 + (stride$1) >> 0;
+			}
+		}
+		if (nextLo <= 1114111) {
+			r = appendRange(r, nextLo, 1114111);
+		}
+		return r;
+	};
+	var negateClass = function(r) {
+		var nextLo, w, i, _slice, _index, _slice$1, _index$1, _tuple, lo, hi, _slice$2, _index$2, _slice$3, _index$3;
+		nextLo = 0;
+		w = 0;
+		i = 0;
+		while (i < r.length) {
+			_tuple = [(_slice = r, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = r, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], lo = _tuple[0], hi = _tuple[1];
+			if (nextLo <= (lo - 1 >> 0)) {
+				_slice$2 = r, _index$2 = w, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = nextLo) : go$throwRuntimeError("index out of range");
+				_slice$3 = r, _index$3 = w + 1 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = lo - 1 >> 0) : go$throwRuntimeError("index out of range");
+				w = w + 2 >> 0;
+			}
+			nextLo = hi + 1 >> 0;
+			i = i + 2 >> 0;
+		}
+		r = go$subslice(r, 0, w);
+		if (nextLo <= 1114111) {
+			r = go$append(r, nextLo, 1114111);
+		}
+		return r;
+	};
+	ranges.Ptr.prototype.Less = function(i, j) {
+		var _struct, ra, p, x, x$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
+		ra = (_struct = this, new ranges.Ptr(_struct.p));
+		p = ra.p.go$get();
+		i = (x = 2, (((i >>> 16 << 16) * x >> 0) + (i << 16 >>> 16) * x) >> 0);
+		j = (x$1 = 2, (((j >>> 16 << 16) * x$1 >> 0) + (j << 16 >>> 16) * x$1) >> 0);
+		return (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < (_slice$1 = p, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) || ((_slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === (_slice$3 = p, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) && (_slice$4 = p, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) > (_slice$5 = p, _index$5 = (j + 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+	};
+	ranges.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
+	ranges.Ptr.prototype.Len = function() {
+		var _struct, ra, _q;
+		ra = (_struct = this, new ranges.Ptr(_struct.p));
+		return (_q = ra.p.go$get().length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+	};
+	ranges.prototype.Len = function() { return this.go$val.Len(); };
+	ranges.Ptr.prototype.Swap = function(i, j) {
+		var _struct, ra, p, x, x$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
+		ra = (_struct = this, new ranges.Ptr(_struct.p));
+		p = ra.p.go$get();
+		i = (x = 2, (((i >>> 16 << 16) * x >> 0) + (i << 16 >>> 16) * x) >> 0);
+		j = (x$1 = 2, (((j >>> 16 << 16) * x$1 >> 0) + (j << 16 >>> 16) * x$1) >> 0);
+		_tuple = [(_slice = p, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p, _index$1 = (j + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (_slice$3 = p, _index$3 = (i + 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))], _slice$4 = p, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$5 = p, _index$5 = i + 1 >> 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = _tuple[1]) : go$throwRuntimeError("index out of range"), _slice$6 = p, _index$6 = j, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = _tuple[2]) : go$throwRuntimeError("index out of range"), _slice$7 = p, _index$7 = j + 1 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = _tuple[3]) : go$throwRuntimeError("index out of range");
+	};
+	ranges.prototype.Swap = function(i, j) { return this.go$val.Swap(i, j); };
+	var checkUTF8 = function(s) {
+		var _tuple, rune, size;
+		while (!(s === "")) {
+			_tuple = utf8.DecodeRuneInString(s), rune = _tuple[0], size = _tuple[1];
+			if ((rune === 65533) && (size === 1)) {
+				return new Error.Ptr("invalid UTF-8", s);
+			}
+			s = s.substring(size);
+		}
+		return null;
+	};
+	var nextRune = function(s) {
+		var c, t, err, _tuple, size, _tuple$1, _tuple$2;
+		c = 0;
+		t = "";
+		err = null;
+		_tuple = utf8.DecodeRuneInString(s), c = _tuple[0], size = _tuple[1];
+		if ((c === 65533) && (size === 1)) {
+			_tuple$1 = [0, "", new Error.Ptr("invalid UTF-8", s)], c = _tuple$1[0], t = _tuple$1[1], err = _tuple$1[2];
+			return [c, t, err];
+		}
+		_tuple$2 = [c, s.substring(size), null], c = _tuple$2[0], t = _tuple$2[1], err = _tuple$2[2];
+		return [c, t, err];
+	};
+	var isalnum = function(c) {
+		return 48 <= c && c <= 57 || 65 <= c && c <= 90 || 97 <= c && c <= 122;
+	};
+	var unhex = function(c) {
+		if (48 <= c && c <= 57) {
+			return c - 48 >> 0;
+		}
+		if (97 <= c && c <= 102) {
+			return (c - 97 >> 0) + 10 >> 0;
+		}
+		if (65 <= c && c <= 70) {
+			return (c - 65 >> 0) + 10 >> 0;
+		}
+		return -1;
+	};
+	var EmptyOpContext = go$pkg.EmptyOpContext = function(r1, r2) {
+		var op, boundary;
+		op = 32;
+		boundary = 0;
+		if (IsWordChar(r1)) {
+			boundary = 1;
+		} else if (r1 === 10) {
+			op = (op | 1) >>> 0;
+		} else if (r1 < 0) {
+			op = (op | 5) >>> 0;
+		}
+		if (IsWordChar(r2)) {
+			boundary = (boundary ^ 1) << 24 >>> 24;
+		} else if (r2 === 10) {
+			op = (op | 2) >>> 0;
+		} else if (r2 < 0) {
+			op = (op | 10) >>> 0;
+		}
+		if (!((boundary === 0))) {
+			op = (op ^ 48) << 24 >>> 24;
+		}
+		return op;
+	};
+	var IsWordChar = go$pkg.IsWordChar = function(r) {
+		return 65 <= r && r <= 90 || 97 <= r && r <= 122 || 48 <= r && r <= 57 || (r === 95);
+	};
+	Prog.Ptr.prototype.String = function() {
+		var p, b;
+		p = this;
+		b = new bytes.Buffer.Ptr();
+		dumpProg(b, p);
+		return b.String();
+	};
+	Prog.prototype.String = function() { return this.go$val.String(); };
+	Prog.Ptr.prototype.skipNop = function(pc) {
+		var p, _slice, _index, i, _slice$1, _index$1;
+		p = this;
+		i = (_slice = p.Inst, _index = pc, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		while ((i.Op === 6) || (i.Op === 2)) {
+			pc = i.Out;
+			i = (_slice$1 = p.Inst, _index$1 = pc, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+		}
+		return i;
+	};
+	Prog.prototype.skipNop = function(pc) { return this.go$val.skipNop(pc); };
+	Inst.Ptr.prototype.op = function() {
+		var i, op, _ref;
+		i = this;
+		op = i.Op;
+		_ref = op;
+		if (_ref === 8 || _ref === 9 || _ref === 10) {
+			op = 7;
+		}
+		return op;
+	};
+	Inst.prototype.op = function() { return this.go$val.op(); };
+	Prog.Ptr.prototype.Prefix = function() {
+		var prefix, complete, p, i, _tuple, buf, _slice, _index, _tuple$1;
+		prefix = "";
+		complete = false;
+		p = this;
+		i = p.skipNop((p.Start >>> 0));
+		if (!((i.op() === 7)) || !((i.Rune.length === 1))) {
+			_tuple = ["", i.Op === 4], prefix = _tuple[0], complete = _tuple[1];
+			return [prefix, complete];
+		}
+		buf = new bytes.Buffer.Ptr();
+		while ((i.op() === 7) && (i.Rune.length === 1) && ((((i.Arg << 16 >>> 16) & 1) >>> 0) === 0)) {
+			buf.WriteRune((_slice = i.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
+			i = p.skipNop(i.Out);
+		}
+		_tuple$1 = [buf.String(), i.Op === 4], prefix = _tuple$1[0], complete = _tuple$1[1];
+		return [prefix, complete];
+	};
+	Prog.prototype.Prefix = function() { return this.go$val.Prefix(); };
+	Prog.Ptr.prototype.StartCond = function() {
+		var p, flag, pc, _slice, _index, i, _ref, _slice$1, _index$1;
+		p = this;
+		flag = 0;
+		pc = (p.Start >>> 0);
+		i = (_slice = p.Inst, _index = pc, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		Loop: while (true) {
+			_ref = i.Op;
+			if (_ref === 3) {
+				flag = (flag | ((i.Arg << 24 >>> 24))) >>> 0;
+			} else if (_ref === 5) {
+				return 255;
+			} else if (_ref === 2 || _ref === 6) {
+			} else {
+				break Loop;
+			}
+			pc = i.Out;
+			i = (_slice$1 = p.Inst, _index$1 = pc, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+		}
+		return flag;
+	};
+	Prog.prototype.StartCond = function() { return this.go$val.StartCond(); };
+	Inst.Ptr.prototype.MatchRune = function(r) {
+		var i, rune, _slice, _index, r0, r1, j, _slice$1, _index$1, _slice$2, _index$2, lo, _q, hi, _q$1, m, c, _slice$3, _index$3, x, _slice$4, _index$4, x$1;
+		i = this;
+		rune = i.Rune;
+		if (rune.length === 1) {
+			r0 = (_slice = rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (r === r0) {
+				return true;
+			}
+			if (!(((((i.Arg << 16 >>> 16) & 1) >>> 0) === 0))) {
+				r1 = unicode.SimpleFold(r0);
+				while (!((r1 === r0))) {
+					if (r === r1) {
+						return true;
+					}
+					r1 = unicode.SimpleFold(r1);
+				}
+			}
+			return false;
+		}
+		j = 0;
+		while (j < rune.length && j <= 8) {
+			if (r < (_slice$1 = rune, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) {
+				return false;
+			}
+			if (r <= (_slice$2 = rune, _index$2 = (j + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) {
+				return true;
+			}
+			j = j + 2 >> 0;
+		}
+		lo = 0;
+		hi = (_q = rune.length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+		while (lo < hi) {
+			m = lo + (_q$1 = ((hi - lo >> 0)) / 2, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+			if (c = (_slice$3 = rune, _index$3 = (x = 2, (((x >>> 16 << 16) * m >> 0) + (x << 16 >>> 16) * m) >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), c <= r) {
+				if (r <= (_slice$4 = rune, _index$4 = ((x$1 = 2, (((x$1 >>> 16 << 16) * m >> 0) + (x$1 << 16 >>> 16) * m) >> 0) + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))) {
+					return true;
+				}
+				lo = m + 1 >> 0;
+			} else {
+				hi = m;
+			}
+		}
+		return false;
+	};
+	Inst.prototype.MatchRune = function(r) { return this.go$val.MatchRune(r); };
+	var wordRune = function(r) {
+		return (r === 95) || (65 <= r && r <= 90) || (97 <= r && r <= 122) || (48 <= r && r <= 57);
+	};
+	Inst.Ptr.prototype.MatchEmptyWidth = function(before, after) {
+		var i, _ref;
+		i = this;
+		_ref = (i.Arg << 24 >>> 24);
+		if (_ref === 1) {
+			return (before === 10) || (before === -1);
+		} else if (_ref === 2) {
+			return (after === 10) || (after === -1);
+		} else if (_ref === 4) {
+			return before === -1;
+		} else if (_ref === 8) {
+			return after === -1;
+		} else if (_ref === 16) {
+			return !(wordRune(before) === wordRune(after));
+		} else if (_ref === 32) {
+			return wordRune(before) === wordRune(after);
+		}
+		throw go$panic(new Go$String("unknown empty width arg"));
+	};
+	Inst.prototype.MatchEmptyWidth = function(before, after) { return this.go$val.MatchEmptyWidth(before, after); };
+	Inst.Ptr.prototype.String = function() {
+		var i, b;
+		i = this;
+		b = new bytes.Buffer.Ptr();
+		dumpInst(b, i);
+		return b.String();
+	};
+	Inst.prototype.String = function() { return this.go$val.String(); };
+	var bw = function(b, args) {
+		var _ref, _i, _slice, _index, s;
+		_ref = args;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			b.WriteString(s);
+		}
+	};
+	var dumpProg = function(b, p) {
+		var _ref, _i, j, _slice, _index, i, pc;
+		_ref = p.Inst;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			j = _i;
+			i = (_slice = p.Inst, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			pc = strconv.Itoa(j);
+			if (pc.length < 3) {
+				b.WriteString("   ".substring(pc.length));
+			}
+			if (j === p.Start) {
+				pc = pc + "*";
+			}
+			bw(b, new (go$sliceType(Go$String))([pc, "\t"]));
+			dumpInst(b, i);
+			bw(b, new (go$sliceType(Go$String))(["\n"]));
+		}
+	};
+	var u32 = function(i) {
+		return strconv.FormatUint(new Go$Uint64(0, i), 10);
+	};
+	var dumpInst = function(b, i) {
+		var _ref;
+		_ref = i.Op;
+		if (_ref === 0) {
+			bw(b, new (go$sliceType(Go$String))(["alt -> ", u32(i.Out), ", ", u32(i.Arg)]));
+		} else if (_ref === 1) {
+			bw(b, new (go$sliceType(Go$String))(["altmatch -> ", u32(i.Out), ", ", u32(i.Arg)]));
+		} else if (_ref === 2) {
+			bw(b, new (go$sliceType(Go$String))(["cap ", u32(i.Arg), " -> ", u32(i.Out)]));
+		} else if (_ref === 3) {
+			bw(b, new (go$sliceType(Go$String))(["empty ", u32(i.Arg), " -> ", u32(i.Out)]));
+		} else if (_ref === 4) {
+			bw(b, new (go$sliceType(Go$String))(["match"]));
+		} else if (_ref === 5) {
+			bw(b, new (go$sliceType(Go$String))(["fail"]));
+		} else if (_ref === 6) {
+			bw(b, new (go$sliceType(Go$String))(["nop -> ", u32(i.Out)]));
+		} else if (_ref === 7) {
+			if (i.Rune === (go$sliceType(Go$Int32)).nil) {
+				bw(b, new (go$sliceType(Go$String))(["rune <nil>"]));
+			}
+			bw(b, new (go$sliceType(Go$String))(["rune ", strconv.QuoteToASCII(go$runesToString(i.Rune))]));
+			if (!(((((i.Arg << 16 >>> 16) & 1) >>> 0) === 0))) {
+				bw(b, new (go$sliceType(Go$String))(["/i"]));
+			}
+			bw(b, new (go$sliceType(Go$String))([" -> ", u32(i.Out)]));
+		} else if (_ref === 8) {
+			bw(b, new (go$sliceType(Go$String))(["rune1 ", strconv.QuoteToASCII(go$runesToString(i.Rune)), " -> ", u32(i.Out)]));
+		} else if (_ref === 9) {
+			bw(b, new (go$sliceType(Go$String))(["any -> ", u32(i.Out)]));
+		} else if (_ref === 10) {
+			bw(b, new (go$sliceType(Go$String))(["anynotnl -> ", u32(i.Out)]));
+		}
+	};
+	Regexp.Ptr.prototype.Equal = function(y) {
+		var x, _ref, _ref$1, _i, _slice, _index, r, i, _slice$1, _index$1, _ref$2, _i$1, _slice$2, _index$2, sub, i$1, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9;
+		x = this;
+		if (x === (go$ptrType(Regexp)).nil || y === (go$ptrType(Regexp)).nil) {
+			return x === y;
+		}
+		if (!((x.Op === y.Op))) {
+			return false;
+		}
+		_ref = x.Op;
+		if (_ref === 10) {
+			if (!((((x.Flags & 256) >>> 0) === ((y.Flags & 256) >>> 0)))) {
+				return false;
+			}
+		} else if (_ref === 3 || _ref === 4) {
+			if (!((x.Rune.length === y.Rune.length))) {
+				return false;
+			}
+			_ref$1 = x.Rune;
+			_i = 0;
+			for (; _i < _ref$1.length; _i += 1) {
+				r = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				if (!((r === (_slice$1 = y.Rune, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))))) {
+					return false;
+				}
+			}
+		} else if (_ref === 19 || _ref === 18) {
+			if (!((x.Sub.length === y.Sub.length))) {
+				return false;
+			}
+			_ref$2 = x.Sub;
+			_i$1 = 0;
+			for (; _i$1 < _ref$2.length; _i$1 += 1) {
+				sub = (_slice$2 = _ref$2, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				i$1 = _i$1;
+				if (!sub.Equal((_slice$3 = y.Sub, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")))) {
+					return false;
+				}
+			}
+		} else if (_ref === 14 || _ref === 15 || _ref === 16) {
+			if (!((((x.Flags & 32) >>> 0) === ((y.Flags & 32) >>> 0))) || !(_slice$4 = x.Sub, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).Equal((_slice$5 = y.Sub, _index$5 = 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")))) {
+				return false;
+			}
+		} else if (_ref === 17) {
+			if (!((((x.Flags & 32) >>> 0) === ((y.Flags & 32) >>> 0))) || !((x.Min === y.Min)) || !((x.Max === y.Max)) || !(_slice$6 = x.Sub, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).Equal((_slice$7 = y.Sub, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")))) {
+				return false;
+			}
+		} else if (_ref === 13) {
+			if (!((x.Cap === y.Cap)) || !(x.Name === y.Name) || !(_slice$8 = x.Sub, _index$8 = 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")).Equal((_slice$9 = y.Sub, _index$9 = 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")))) {
+				return false;
+			}
+		}
+		return true;
+	};
+	Regexp.prototype.Equal = function(y) { return this.go$val.Equal(y); };
+	var writeRegexp = function(b, re) {
+		var _ref, _ref$1, _i, _slice, _index, r, _r, _slice$1, _index$1, _slice$2, _index$2, i, _slice$3, _index$3, _slice$4, _index$4, _tuple, lo, hi, i$1, _slice$5, _index$5, _slice$6, _index$6, _tuple$1, lo$1, hi$1, _slice$7, _index$7, _slice$8, _index$8, sub, _slice$9, _index$9, _ref$2, _ref$3, _i$1, _slice$10, _index$10, sub$1, _ref$4, _i$2, _slice$11, _index$11, sub$2, i$2;
+		_ref = re.Op;
+		switch (undefined) {
+		default:
+			if (_ref === 1) {
+				b.WriteString("[^\\x00-\\x{10FFFF}]");
+			} else if (_ref === 2) {
+				b.WriteString("(?:)");
+			} else if (_ref === 3) {
+				if (!((((re.Flags & 1) >>> 0) === 0))) {
+					b.WriteString("(?i:");
+				}
+				_ref$1 = re.Rune;
+				_i = 0;
+				for (; _i < _ref$1.length; _i += 1) {
+					r = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					escape(b, r, false);
+				}
+				if (!((((re.Flags & 1) >>> 0) === 0))) {
+					b.WriteString(")");
+				}
+			} else if (_ref === 4) {
+				if (!(((_r = re.Rune.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
+					b.WriteString("[invalid char class]");
+					break;
+				}
+				b.WriteRune(91);
+				if (re.Rune.length === 0) {
+					b.WriteString("^\\x00-\\x{10FFFF}");
+				} else if (((_slice$1 = re.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$2 = re.Rune, _index$2 = (re.Rune.length - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 1114111)) {
+					b.WriteRune(94);
+					i = 1;
+					while (i < (re.Rune.length - 1 >> 0)) {
+						_tuple = [(_slice$3 = re.Rune, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) + 1 >> 0, (_slice$4 = re.Rune, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) - 1 >> 0], lo = _tuple[0], hi = _tuple[1];
+						escape(b, lo, lo === 45);
+						if (!((lo === hi))) {
+							b.WriteRune(45);
+							escape(b, hi, hi === 45);
+						}
+						i = i + 2 >> 0;
+					}
+				} else {
+					i$1 = 0;
+					while (i$1 < re.Rune.length) {
+						_tuple$1 = [(_slice$5 = re.Rune, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (_slice$6 = re.Rune, _index$6 = (i$1 + 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))], lo$1 = _tuple$1[0], hi$1 = _tuple$1[1];
+						escape(b, lo$1, lo$1 === 45);
+						if (!((lo$1 === hi$1))) {
+							b.WriteRune(45);
+							escape(b, hi$1, hi$1 === 45);
+						}
+						i$1 = i$1 + 2 >> 0;
+					}
+				}
+				b.WriteRune(93);
+			} else if (_ref === 5) {
+				b.WriteString("(?-s:.)");
+			} else if (_ref === 6) {
+				b.WriteString("(?s:.)");
+			} else if (_ref === 7) {
+				b.WriteRune(94);
+			} else if (_ref === 8) {
+				b.WriteRune(36);
+			} else if (_ref === 9) {
+				b.WriteString("\\A");
+			} else if (_ref === 10) {
+				if (!((((re.Flags & 256) >>> 0) === 0))) {
+					b.WriteString("(?-m:$)");
+				} else {
+					b.WriteString("\\z");
+				}
+			} else if (_ref === 11) {
+				b.WriteString("\\b");
+			} else if (_ref === 12) {
+				b.WriteString("\\B");
+			} else if (_ref === 13) {
+				if (!(re.Name === "")) {
+					b.WriteString("(?P<");
+					b.WriteString(re.Name);
+					b.WriteRune(62);
+				} else {
+					b.WriteRune(40);
+				}
+				if (!(((_slice$7 = re.Sub, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")).Op === 2))) {
+					writeRegexp(b, (_slice$8 = re.Sub, _index$8 = 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")));
+				}
+				b.WriteRune(41);
+			} else if (_ref === 14 || _ref === 15 || _ref === 16 || _ref === 17) {
+				if (sub = (_slice$9 = re.Sub, _index$9 = 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")), sub.Op > 13 || (sub.Op === 3) && sub.Rune.length > 1) {
+					b.WriteString("(?:");
+					writeRegexp(b, sub);
+					b.WriteString(")");
+				} else {
+					writeRegexp(b, sub);
+				}
+				_ref$2 = re.Op;
+				if (_ref$2 === 14) {
+					b.WriteRune(42);
+				} else if (_ref$2 === 15) {
+					b.WriteRune(43);
+				} else if (_ref$2 === 16) {
+					b.WriteRune(63);
+				} else if (_ref$2 === 17) {
+					b.WriteRune(123);
+					b.WriteString(strconv.Itoa(re.Min));
+					if (!((re.Max === re.Min))) {
+						b.WriteRune(44);
+						if (re.Max >= 0) {
+							b.WriteString(strconv.Itoa(re.Max));
+						}
+					}
+					b.WriteRune(125);
+				}
+				if (!((((re.Flags & 32) >>> 0) === 0))) {
+					b.WriteRune(63);
+				}
+			} else if (_ref === 18) {
+				_ref$3 = re.Sub;
+				_i$1 = 0;
+				for (; _i$1 < _ref$3.length; _i$1 += 1) {
+					sub$1 = (_slice$10 = _ref$3, _index$10 = _i$1, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"));
+					if (sub$1.Op === 19) {
+						b.WriteString("(?:");
+						writeRegexp(b, sub$1);
+						b.WriteString(")");
+					} else {
+						writeRegexp(b, sub$1);
+					}
+				}
+			} else if (_ref === 19) {
+				_ref$4 = re.Sub;
+				_i$2 = 0;
+				for (; _i$2 < _ref$4.length; _i$2 += 1) {
+					sub$2 = (_slice$11 = _ref$4, _index$11 = _i$2, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range"));
+					i$2 = _i$2;
+					if (i$2 > 0) {
+						b.WriteRune(124);
+					}
+					writeRegexp(b, sub$2);
+				}
+			} else {
+				b.WriteString("<invalid op" + strconv.Itoa((re.Op >> 0)) + ">");
+			}
+		}
+	};
+	Regexp.Ptr.prototype.String = function() {
+		var re, b;
+		re = this;
+		b = new bytes.Buffer.Ptr();
+		writeRegexp(b, re);
+		return b.String();
+	};
+	Regexp.prototype.String = function() { return this.go$val.String(); };
+	var escape = function(b, r, force) {
+		var _ref, s;
+		if (unicode.IsPrint(r)) {
+			if (strings.IndexRune("\\.+*?()|[]{}^$", r) >= 0 || force) {
+				b.WriteRune(92);
+			}
+			b.WriteRune(r);
+			return;
+		}
+		_ref = r;
+		switch (undefined) {
+		default:
+			if (_ref === 7) {
+				b.WriteString("\\a");
+			} else if (_ref === 12) {
+				b.WriteString("\\f");
+			} else if (_ref === 10) {
+				b.WriteString("\\n");
+			} else if (_ref === 13) {
+				b.WriteString("\\r");
+			} else if (_ref === 9) {
+				b.WriteString("\\t");
+			} else if (_ref === 11) {
+				b.WriteString("\\v");
+			} else {
+				if (r < 256) {
+					b.WriteString("\\x");
+					s = strconv.FormatInt(new Go$Int64(0, r), 16);
+					if (s.length === 1) {
+						b.WriteRune(48);
+					}
+					b.WriteString(s);
+					break;
+				}
+				b.WriteString("\\x{");
+				b.WriteString(strconv.FormatInt(new Go$Int64(0, r), 16));
+				b.WriteString("}");
+			}
+		}
+	};
+	Regexp.Ptr.prototype.MaxCap = function() {
+		var re, m, _ref, _i, _slice, _index, sub, n;
+		re = this;
+		m = 0;
+		if (re.Op === 13) {
+			m = re.Cap;
+		}
+		_ref = re.Sub;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			sub = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (n = sub.MaxCap(), m < n) {
+				m = n;
+			}
+		}
+		return m;
+	};
+	Regexp.prototype.MaxCap = function() { return this.go$val.MaxCap(); };
+	Regexp.Ptr.prototype.CapNames = function() {
+		var re, names;
+		re = this;
+		names = (go$sliceType(Go$String)).make(re.MaxCap() + 1 >> 0, 0, function() { return ""; });
+		re.capNames(names);
+		return names;
+	};
+	Regexp.prototype.CapNames = function() { return this.go$val.CapNames(); };
+	Regexp.Ptr.prototype.capNames = function(names) {
+		var re, _slice, _index, _ref, _i, _slice$1, _index$1, sub;
+		re = this;
+		if (re.Op === 13) {
+			_slice = names, _index = re.Cap, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = re.Name) : go$throwRuntimeError("index out of range");
+		}
+		_ref = re.Sub;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			sub = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			sub.capNames(names);
+		}
+	};
+	Regexp.prototype.capNames = function(names) { return this.go$val.capNames(names); };
+	Regexp.Ptr.prototype.Simplify = function() {
+		var re, _ref, nre, _ref$1, _i, _slice, _index, sub, i, nsub, _struct, l, r, _slice$1, _index$1, sub$1, _slice$2, _index$2, sub$2, nre$1, i$1, prefix, i$2, suffix, i$3, nre2;
+		re = this;
+		if (re === (go$ptrType(Regexp)).nil) {
+			return (go$ptrType(Regexp)).nil;
+		}
+		_ref = re.Op;
+		if (_ref === 13 || _ref === 18 || _ref === 19) {
+			nre = re;
+			_ref$1 = re.Sub;
+			_i = 0;
+			for (; _i < _ref$1.length; _i += 1) {
+				sub = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				nsub = sub.Simplify();
+				if (nre === re && !(nsub === sub)) {
+					nre = new Regexp.Ptr();
+					l = nre, r = (_struct = re, new Regexp.Ptr(_struct.Op, _struct.Flags, _struct.Sub, go$mapArray(_struct.Sub0, function(entry) { return entry; }), _struct.Rune, go$mapArray(_struct.Rune0, function(entry) { return entry; }), _struct.Min, _struct.Max, _struct.Cap, _struct.Name)), l.Op = r.Op, l.Flags = r.Flags, l.Sub = r.Sub, l.Sub0 = r.Sub0, l.Rune = r.Rune, l.Rune0 = r.Rune0, l.Min = r.Min, l.Max = r.Max, l.Cap = r.Cap, l.Name = r.Name;
+					nre.Rune = (go$sliceType(Go$Int32)).nil;
+					nre.Sub = go$appendSlice(go$subslice(new (go$sliceType((go$ptrType(Regexp))))(nre.Sub0), 0, 0), go$subslice(re.Sub, 0, i));
+				}
+				if (!(nre === re)) {
+					nre.Sub = go$append(nre.Sub, nsub);
+				}
+			}
+			return nre;
+		} else if (_ref === 14 || _ref === 15 || _ref === 16) {
+			sub$1 = (_slice$1 = re.Sub, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Simplify();
+			return simplify1(re.Op, re.Flags, sub$1, re);
+		} else if (_ref === 17) {
+			if ((re.Min === 0) && (re.Max === 0)) {
+				return new Regexp.Ptr(2, 0, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, "");
+			}
+			sub$2 = (_slice$2 = re.Sub, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Simplify();
+			if (re.Max === -1) {
+				if (re.Min === 0) {
+					return simplify1(14, re.Flags, sub$2, (go$ptrType(Regexp)).nil);
+				}
+				if (re.Min === 1) {
+					return simplify1(15, re.Flags, sub$2, (go$ptrType(Regexp)).nil);
+				}
+				nre$1 = new Regexp.Ptr(18, 0, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, "");
+				nre$1.Sub = go$subslice(new (go$sliceType((go$ptrType(Regexp))))(nre$1.Sub0), 0, 0);
+				i$1 = 0;
+				while (i$1 < (re.Min - 1 >> 0)) {
+					nre$1.Sub = go$append(nre$1.Sub, sub$2);
+					i$1 = i$1 + 1 >> 0;
+				}
+				nre$1.Sub = go$append(nre$1.Sub, simplify1(15, re.Flags, sub$2, (go$ptrType(Regexp)).nil));
+				return nre$1;
+			}
+			if ((re.Min === 1) && (re.Max === 1)) {
+				return sub$2;
+			}
+			prefix = (go$ptrType(Regexp)).nil;
+			if (re.Min > 0) {
+				prefix = new Regexp.Ptr(18, 0, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, "");
+				prefix.Sub = go$subslice(new (go$sliceType((go$ptrType(Regexp))))(prefix.Sub0), 0, 0);
+				i$2 = 0;
+				while (i$2 < re.Min) {
+					prefix.Sub = go$append(prefix.Sub, sub$2);
+					i$2 = i$2 + 1 >> 0;
+				}
+			}
+			if (re.Max > re.Min) {
+				suffix = simplify1(16, re.Flags, sub$2, (go$ptrType(Regexp)).nil);
+				i$3 = re.Min + 1 >> 0;
+				while (i$3 < re.Max) {
+					nre2 = new Regexp.Ptr(18, 0, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, "");
+					nre2.Sub = go$append(go$subslice(new (go$sliceType((go$ptrType(Regexp))))(nre2.Sub0), 0, 0), sub$2, suffix);
+					suffix = simplify1(16, re.Flags, nre2, (go$ptrType(Regexp)).nil);
+					i$3 = i$3 + 1 >> 0;
+				}
+				if (prefix === (go$ptrType(Regexp)).nil) {
+					return suffix;
+				}
+				prefix.Sub = go$append(prefix.Sub, suffix);
+			}
+			if (!(prefix === (go$ptrType(Regexp)).nil)) {
+				return prefix;
+			}
+			return new Regexp.Ptr(1, 0, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, "");
+		}
+		return re;
+	};
+	Regexp.prototype.Simplify = function() { return this.go$val.Simplify(); };
+	var simplify1 = function(op, flags, sub, re) {
+		var _slice, _index;
+		if (sub.Op === 2) {
+			return sub;
+		}
+		if ((op === sub.Op) && (((flags & 32) >>> 0) === ((sub.Flags & 32) >>> 0))) {
+			return sub;
+		}
+		if (!(re === (go$ptrType(Regexp)).nil) && (re.Op === op) && (((re.Flags & 32) >>> 0) === ((flags & 32) >>> 0)) && sub === (_slice = re.Sub, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))) {
+			return re;
+		}
+		re = new Regexp.Ptr(op, flags, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, "");
+		re.Sub = go$append(go$subslice(new (go$sliceType((go$ptrType(Regexp))))(re.Sub0), 0, 0), sub);
+		return re;
+	};
+	go$pkg.ErrInternalError = "regexp/syntax: internal error";
+	go$pkg.ErrInvalidCharClass = "invalid character class";
+	go$pkg.ErrInvalidCharRange = "invalid character class range";
+	go$pkg.ErrInvalidEscape = "invalid escape sequence";
+	go$pkg.ErrInvalidNamedCapture = "invalid named capture";
+	go$pkg.ErrInvalidPerlOp = "invalid or unsupported Perl syntax";
+	go$pkg.ErrInvalidRepeatOp = "invalid nested repetition operator";
+	go$pkg.ErrInvalidRepeatSize = "invalid repeat count";
+	go$pkg.ErrInvalidUTF8 = "invalid UTF-8";
+	go$pkg.ErrMissingBracket = "missing closing ]";
+	go$pkg.ErrMissingParen = "missing closing )";
+	go$pkg.ErrMissingRepeatArgument = "missing argument to repetition operator";
+	go$pkg.ErrTrailingBackslash = "trailing backslash at end of expression";
+	go$pkg.ErrUnexpectedParen = "unexpected )";
+	go$pkg.FoldCase = 1;
+	go$pkg.Literal = 2;
+	go$pkg.ClassNL = 4;
+	go$pkg.DotNL = 8;
+	go$pkg.OneLine = 16;
+	go$pkg.NonGreedy = 32;
+	go$pkg.PerlX = 64;
+	go$pkg.UnicodeGroups = 128;
+	go$pkg.WasDollar = 256;
+	go$pkg.Simple = 512;
+	go$pkg.MatchNL = 12;
+	go$pkg.Perl = 212;
+	go$pkg.POSIX = 0;
+	var opLeftParen = 128;
+	var opVerticalBar = 129;
+	var minFold = 65;
+	var maxFold = 66639;
+	go$pkg.InstAlt = 0;
+	go$pkg.InstAltMatch = 1;
+	go$pkg.InstCapture = 2;
+	go$pkg.InstEmptyWidth = 3;
+	go$pkg.InstMatch = 4;
+	go$pkg.InstFail = 5;
+	go$pkg.InstNop = 6;
+	go$pkg.InstRune = 7;
+	go$pkg.InstRune1 = 8;
+	go$pkg.InstRuneAny = 9;
+	go$pkg.InstRuneAnyNotNL = 10;
+	go$pkg.EmptyBeginLine = 1;
+	go$pkg.EmptyEndLine = 2;
+	go$pkg.EmptyBeginText = 4;
+	go$pkg.EmptyEndText = 8;
+	go$pkg.EmptyWordBoundary = 16;
+	go$pkg.EmptyNoWordBoundary = 32;
+	go$pkg.OpNoMatch = 1;
+	go$pkg.OpEmptyMatch = 2;
+	go$pkg.OpLiteral = 3;
+	go$pkg.OpCharClass = 4;
+	go$pkg.OpAnyCharNotNL = 5;
+	go$pkg.OpAnyChar = 6;
+	go$pkg.OpBeginLine = 7;
+	go$pkg.OpEndLine = 8;
+	go$pkg.OpBeginText = 9;
+	go$pkg.OpEndText = 10;
+	go$pkg.OpWordBoundary = 11;
+	go$pkg.OpNoWordBoundary = 12;
+	go$pkg.OpCapture = 13;
+	go$pkg.OpStar = 14;
+	go$pkg.OpPlus = 15;
+	go$pkg.OpQuest = 16;
+	go$pkg.OpRepeat = 17;
+	go$pkg.OpConcat = 18;
+	go$pkg.OpAlternate = 19;
+	var opPseudo = 128;
+	var meta = "\\.+*?()|[]{}^$";
+	var anyRuneNotNL = (go$sliceType(Go$Int32)).nil;
+	var anyRune = (go$sliceType(Go$Int32)).nil;
+	var anyTable = (go$ptrType(unicode.RangeTable)).nil;
+	var code1 = (go$sliceType(Go$Int32)).nil;
+	var code2 = (go$sliceType(Go$Int32)).nil;
+	var code3 = (go$sliceType(Go$Int32)).nil;
+	var perlGroup = false;
+	var code4 = (go$sliceType(Go$Int32)).nil;
+	var code5 = (go$sliceType(Go$Int32)).nil;
+	var code6 = (go$sliceType(Go$Int32)).nil;
+	var code7 = (go$sliceType(Go$Int32)).nil;
+	var code8 = (go$sliceType(Go$Int32)).nil;
+	var code9 = (go$sliceType(Go$Int32)).nil;
+	var code10 = (go$sliceType(Go$Int32)).nil;
+	var code11 = (go$sliceType(Go$Int32)).nil;
+	var code12 = (go$sliceType(Go$Int32)).nil;
+	var code13 = (go$sliceType(Go$Int32)).nil;
+	var code14 = (go$sliceType(Go$Int32)).nil;
+	var code15 = (go$sliceType(Go$Int32)).nil;
+	var code16 = (go$sliceType(Go$Int32)).nil;
+	var code17 = (go$sliceType(Go$Int32)).nil;
+	var posixGroup = false;
+	go$pkg.init = function() {
+		var _map, _key, _map$1, _key$1;
+		anyRuneNotNL = new (go$sliceType(Go$Int32))([0, 9, 11, 1114111]);
+		anyRune = new (go$sliceType(Go$Int32))([0, 1114111]);
+		anyTable = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(0, 65535, 1)]), new (go$sliceType(unicode.Range32))([new unicode.Range32.Ptr(65536, 1114111, 1)]), 0);
+		code1 = new (go$sliceType(Go$Int32))([48, 57]);
+		code2 = new (go$sliceType(Go$Int32))([9, 10, 12, 13, 32, 32]);
+		code3 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
+		perlGroup = (_map = new Go$Map(), _key = "\\d", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code1) }, _key = "\\D", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code1) }, _key = "\\s", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code2) }, _key = "\\S", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code2) }, _key = "\\w", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code3) }, _key = "\\W", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code3) }, _map);
+		code4 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 97, 122]);
+		code5 = new (go$sliceType(Go$Int32))([65, 90, 97, 122]);
+		code6 = new (go$sliceType(Go$Int32))([0, 127]);
+		code7 = new (go$sliceType(Go$Int32))([9, 9, 32, 32]);
+		code8 = new (go$sliceType(Go$Int32))([0, 31, 127, 127]);
+		code9 = new (go$sliceType(Go$Int32))([48, 57]);
+		code10 = new (go$sliceType(Go$Int32))([33, 126]);
+		code11 = new (go$sliceType(Go$Int32))([97, 122]);
+		code12 = new (go$sliceType(Go$Int32))([32, 126]);
+		code13 = new (go$sliceType(Go$Int32))([33, 47, 58, 64, 91, 96, 123, 126]);
+		code14 = new (go$sliceType(Go$Int32))([9, 13, 32, 32]);
+		code15 = new (go$sliceType(Go$Int32))([65, 90]);
+		code16 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
+		code17 = new (go$sliceType(Go$Int32))([48, 57, 65, 70, 97, 102]);
+		posixGroup = (_map$1 = new Go$Map(), _key$1 = "[:alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code4) }, _key$1 = "[:^alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code4) }, _key$1 = "[:alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code5) }, _key$1 = "[:^alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code5) }, _key$1 = "[:ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code6) }, _key$1 = "[:^ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code6) }, _key$1 = "[:blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code7) }, _key$1 = "[:^blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code7) }, _key$1 = "[:cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code8) }, _key$1 = "[:^cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code8) }, _key$1 = "[:digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code9) }, _key$1 = "[:^digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code9) }, _key$1 = "[:graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code10) }, _key$1 = "[:^graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code10) }, _key$1 = "[:lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code11) }, _key$1 = "[:^lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code11) }, _key$1 = "[:print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code12) }, _key$1 = "[:^print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code12) }, _key$1 = "[:punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code13) }, _key$1 = "[:^punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code13) }, _key$1 = "[:space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code14) }, _key$1 = "[:^space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code14) }, _key$1 = "[:upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code15) }, _key$1 = "[:^upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code15) }, _key$1 = "[:word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code16) }, _key$1 = "[:^word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code16) }, _key$1 = "[:xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code17) }, _key$1 = "[:^xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code17) }, _map$1);
+	};

@@ -1,0 +1,755 @@
+0‚µM‚@hpackage exec
+import bytes "bytes"
+import errors "errors"
+import io "io"
+import os "os"
+import strconv "strconv"
+import sync "sync"
+import syscall "syscall"
+import strings "strings"
+type @"".Cmd struct { @"".Path string; @"".Args []string; @"".Env []string; @"".Dir string; @"".Stdin @"io".Reader; @"".Stdout @"io".Writer; @"".Stderr @"io".Writer; @"".ExtraFiles []*@"os".File; @"".SysProcAttr *@"syscall".SysProcAttr; @"".Process *@"os".Process; @"".ProcessState *@"os".ProcessState; @"".err error; @"".finished bool; @"".childFiles []*@"os".File; @"".closeAfterStart []@"io".Closer; @"".closeAfterWait []@"io".Closer; @"".goroutine []func () (? error); @"".errch chan error }
+func (? *@"".Cmd) @"".CombinedOutput() (? []byte, ? error)
+func (? *@"".Cmd) @"".Output() (? []byte, ? error)
+func (? *@"".Cmd) @"".Run() (? error)
+func (? *@"".Cmd) @"".Start() (? error)
+func (? *@"".Cmd) @"".StderrPipe() (? @"io".ReadCloser, ? error)
+func (? *@"".Cmd) @"".StdinPipe() (? @"io".WriteCloser, ? error)
+func (? *@"".Cmd) @"".StdoutPipe() (? @"io".ReadCloser, ? error)
+func (? *@"".Cmd) @"".Wait() (? error)
+func (? *@"".Cmd) @"".argv() (? []string)
+func (? *@"".Cmd) @"".closeDescriptors(@"".closers []@"io".Closer) ()
+func (? *@"".Cmd) @"".envv() (? []string)
+func (? *@"".Cmd) @"".stderr() (@"".f *@"os".File, @"".err error)
+func (? *@"".Cmd) @"".stdin() (@"".f *@"os".File, @"".err error)
+func (? *@"".Cmd) @"".stdout() (@"".f *@"os".File, @"".err error)
+func (? *@"".Cmd) @"".writerDescriptor(@"".w @"io".Writer) (@"".f *@"os".File, @"".err error)
+func @"".Command(@"".name string, @"".arg ...string) (? *@"".Cmd)
+var @"".ErrNotFound error
+type @"".Error struct { @"".Name string; @"".Err error }
+func (? *@"".Error) @"".Error() (? string)
+type @"".ExitError struct { ? *@"os".ProcessState }
+func (? *@"".ExitError) @"".Error() (? string)
+func @"".LookPath(@"".file string) (? string, ? error)
+type @"".closeOnce struct { ? *@"os".File; @"".close @"sync".Once; @"".closeErr error }
+func (? *@"".closeOnce) @"".Close() (? error)
+type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"os".File struct { ? *@"os".file }
+func (? *@"os".File) @"os".Chdir() (? error)
+func (? *@"os".File) @"os".Chmod(@"".mode @"os".FileMode) (? error)
+func (? *@"os".File) @"os".Chown(@"".uid int, @"".gid int) (? error)
+func (? *@"os".File) @"os".Close() (? error)
+func (? *@"os".File) @"os".Fd() (? uintptr)
+func (? *@"os".File) @"os".Name() (? string)
+func (? *@"os".File) @"os".Read(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"os".File) @"os".ReadAt(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"os".File) @"os".Readdir(@"".n int) (@"".fi []@"os".FileInfo, @"".err error)
+func (? *@"os".File) @"os".Readdirnames(@"".n int) (@"".names []string, @"".err error)
+func (? *@"os".File) @"os".Seek(@"".offset int64, @"".whence int) (@"".ret int64, @"".err error)
+func (? *@"os".File) @"os".Stat() (@"".fi @"os".FileInfo, @"".err error)
+func (? *@"os".File) @"os".Sync() (@"".err error)
+func (? *@"os".File) @"os".Truncate(@"".size int64) (? error)
+func (? *@"os".File) @"os".Write(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"os".File) @"os".WriteAt(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"os".File) @"os".WriteString(@"".s string) (@"".ret int, @"".err error)
+func (? *@"os".File) @"os".pread(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"os".File) @"os".pwrite(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"os".File) @"os".read(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"os".File) @"os".readdir(@"".n int) (@"".fi []@"os".FileInfo, @"".err error)
+func (? *@"os".File) @"os".readdirnames(@"".n int) (@"".names []string, @"".err error)
+func (? *@"os".File) @"os".seek(@"".offset int64, @"".whence int) (@"".ret int64, @"".err error)
+func (? *@"os".File) @"os".write(@"".b []byte) (@"".n int, @"".err error)
+type @"syscall".SysProcAttr struct { @"syscall".Chroot string; @"syscall".Credential *@"syscall".Credential; @"syscall".Ptrace bool; @"syscall".Setsid bool; @"syscall".Setpgid bool; @"syscall".Setctty bool; @"syscall".Noctty bool }
+type @"os".Process struct { @"os".Pid int; @"os".handle uintptr; @"os".isdone uint32 }
+func (? *@"os".Process) @"os".Kill() (? error)
+func (? *@"os".Process) @"os".Release() (? error)
+func (? *@"os".Process) @"os".Signal(@"".sig @"os".Signal) (? error)
+func (? *@"os".Process) @"os".Wait() (? *@"os".ProcessState, ? error)
+func (? *@"os".Process) @"os".done() (? bool)
+func (? *@"os".Process) @"os".kill() (? error)
+func (? *@"os".Process) @"os".release() (? error)
+func (? *@"os".Process) @"os".setDone() ()
+func (? *@"os".Process) @"os".signal(@"".sig @"os".Signal) (? error)
+func (? *@"os".Process) @"os".wait() (@"".ps *@"os".ProcessState, @"".err error)
+type @"os".ProcessState struct { @"os".pid int; @"os".status @"syscall".WaitStatus; @"os".rusage *@"syscall".Rusage }
+func (? *@"os".ProcessState) @"os".Exited() (? bool)
+func (? *@"os".ProcessState) @"os".Pid() (? int)
+func (? *@"os".ProcessState) @"os".String() (? string)
+func (? *@"os".ProcessState) @"os".Success() (? bool)
+func (? *@"os".ProcessState) @"os".Sys() (? interface {  })
+func (? *@"os".ProcessState) @"os".SysUsage() (? interface {  })
+import time "time"
+func (? *@"os".ProcessState) @"os".SystemTime() (? @"time".Duration)
+func (? *@"os".ProcessState) @"os".UserTime() (? @"time".Duration)
+func (? *@"os".ProcessState) @"os".exited() (? bool)
+func (? *@"os".ProcessState) @"os".success() (? bool)
+func (? *@"os".ProcessState) @"os".sys() (? interface {  })
+func (? *@"os".ProcessState) @"os".sysUsage() (? interface {  })
+func (? *@"os".ProcessState) @"os".systemTime() (? @"time".Duration)
+func (? *@"os".ProcessState) @"os".userTime() (? @"time".Duration)
+type @"io".Closer interface { @"io".Close() (? error) }
+type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".WriteCloser interface { @"io".Close() (? error); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"sync".Once struct { @"sync".m @"sync".Mutex; @"sync".done uint32 }
+func (? *@"sync".Once) @"sync".Do(@"".f func () ()) ()
+type @"os".file struct { @"os".fd int; @"os".name string; @"os".dirinfo *@"os".dirInfo; @"os".nepipe int32 }
+func (? *@"os".file) @"os".close() (? error)
+type @"os".FileMode uint32
+func (? @"os".FileMode) @"os".IsDir() (? bool)
+func (? @"os".FileMode) @"os".IsRegular() (? bool)
+func (? @"os".FileMode) @"os".Perm() (? @"os".FileMode)
+func (? @"os".FileMode) @"os".String() (? string)
+func (? *@"os".FileMode) @"os".IsDir() (? bool)
+func (? *@"os".FileMode) @"os".IsRegular() (? bool)
+func (? *@"os".FileMode) @"os".Perm() (? @"os".FileMode)
+func (? *@"os".FileMode) @"os".String() (? string)
+type @"os".FileInfo interface { @"os".IsDir() (? bool); @"os".ModTime() (? @"time".Time); @"os".Mode() (? @"os".FileMode); @"os".Name() (? string); @"os".Size() (? int64); @"os".Sys() (? interface {  }) }
+type @"syscall".Credential struct { @"syscall".Uid uint32; @"syscall".Gid uint32; @"syscall".Groups []uint32 }
+type @"os".Signal interface { @"os".Signal() (); @"os".String() (? string) }
+type @"syscall".WaitStatus uint32
+func (? @"syscall".WaitStatus) @"syscall".Continued() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".CoreDump() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".ExitStatus() (? int)
+func (? @"syscall".WaitStatus) @"syscall".Exited() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".Signal() (? @"syscall".Signal)
+func (? @"syscall".WaitStatus) @"syscall".Signaled() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".StopSignal() (? @"syscall".Signal)
+func (? @"syscall".WaitStatus) @"syscall".Stopped() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".TrapCause() (? int)
+func (? *@"syscall".WaitStatus) @"syscall".Continued() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".CoreDump() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".ExitStatus() (? int)
+func (? *@"syscall".WaitStatus) @"syscall".Exited() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".Signal() (? @"syscall".Signal)
+func (? *@"syscall".WaitStatus) @"syscall".Signaled() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".StopSignal() (? @"syscall".Signal)
+func (? *@"syscall".WaitStatus) @"syscall".Stopped() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".TrapCause() (? int)
+type @"syscall".Rusage struct { @"syscall".Utime @"syscall".Timeval; @"syscall".Stime @"syscall".Timeval; @"syscall".Maxrss int64; @"syscall".Ixrss int64; @"syscall".Idrss int64; @"syscall".Isrss int64; @"syscall".Minflt int64; @"syscall".Majflt int64; @"syscall".Nswap int64; @"syscall".Inblock int64; @"syscall".Oublock int64; @"syscall".Msgsnd int64; @"syscall".Msgrcv int64; @"syscall".Nsignals int64; @"syscall".Nvcsw int64; @"syscall".Nivcsw int64 }
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? @"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? @"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? @"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+func (? *@"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? *@"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? *@"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? *@"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+type @"syscall".Signal int
+func (? @"syscall".Signal) @"syscall".Signal() ()
+func (? @"syscall".Signal) @"syscall".String() (? string)
+func (? *@"syscall".Signal) @"syscall".Signal() ()
+func (? *@"syscall".Signal) @"syscall".String() (? string)
+type @"syscall".Timeval struct { @"syscall".Sec int64; @"syscall".Usec int32; @"syscall".Pad_cgo_0 [4]byte }
+func (? *@"syscall".Timeval) @"syscall".Nano() (? int64)
+func (? *@"syscall".Timeval) @"syscall".Unix() (@"".sec int64, @"".nsec int64)
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"".sec int64) (@"".name string, @"".offset int, @"".isDST bool, @"".start int64, @"".end int64)
+func (? *@"time".Location) @"time".lookupName(@"".name string, @"".unix int64) (@"".offset int, @"".isDST bool, @"".ok bool)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+$$
+0zruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeosmathstrconvstringsos/exec‚ta	var bytes = go$packages["bytes"];
+	var errors = go$packages["errors"];
+	var io = go$packages["io"];
+	var os = go$packages["os"];
+	var strconv = go$packages["strconv"];
+	var sync = go$packages["sync"];
+	var syscall = go$packages["syscall"];
+	var strings = go$packages["strings"];
+	var Error;
+	Error = go$newType(0, "Struct", "exec.Error", "Error", "os/exec", function(Name_, Err_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.Err = Err_ !== undefined ? Err_ : null;
+	});
+	go$pkg.Error = Error;
+	var Cmd;
+	Cmd = go$newType(0, "Struct", "exec.Cmd", "Cmd", "os/exec", function(Path_, Args_, Env_, Dir_, Stdin_, Stdout_, Stderr_, ExtraFiles_, SysProcAttr_, Process_, ProcessState_, err_, finished_, childFiles_, closeAfterStart_, closeAfterWait_, goroutine_, errch_) {
+		this.go$val = this;
+		this.Path = Path_ !== undefined ? Path_ : "";
+		this.Args = Args_ !== undefined ? Args_ : (go$sliceType(Go$String)).nil;
+		this.Env = Env_ !== undefined ? Env_ : (go$sliceType(Go$String)).nil;
+		this.Dir = Dir_ !== undefined ? Dir_ : "";
+		this.Stdin = Stdin_ !== undefined ? Stdin_ : null;
+		this.Stdout = Stdout_ !== undefined ? Stdout_ : null;
+		this.Stderr = Stderr_ !== undefined ? Stderr_ : null;
+		this.ExtraFiles = ExtraFiles_ !== undefined ? ExtraFiles_ : (go$sliceType((go$ptrType(os.File)))).nil;
+		this.SysProcAttr = SysProcAttr_ !== undefined ? SysProcAttr_ : (go$ptrType(syscall.SysProcAttr)).nil;
+		this.Process = Process_ !== undefined ? Process_ : (go$ptrType(os.Process)).nil;
+		this.ProcessState = ProcessState_ !== undefined ? ProcessState_ : (go$ptrType(os.ProcessState)).nil;
+		this.err = err_ !== undefined ? err_ : null;
+		this.finished = finished_ !== undefined ? finished_ : false;
+		this.childFiles = childFiles_ !== undefined ? childFiles_ : (go$sliceType((go$ptrType(os.File)))).nil;
+		this.closeAfterStart = closeAfterStart_ !== undefined ? closeAfterStart_ : (go$sliceType(io.Closer)).nil;
+		this.closeAfterWait = closeAfterWait_ !== undefined ? closeAfterWait_ : (go$sliceType(io.Closer)).nil;
+		this.goroutine = goroutine_ !== undefined ? goroutine_ : (go$sliceType((go$funcType([], [go$error], false)))).nil;
+		this.errch = errch_ !== undefined ? errch_ : (go$chanType(go$error, false, false)).nil;
+	});
+	go$pkg.Cmd = Cmd;
+	var ExitError;
+	ExitError = go$newType(0, "Struct", "exec.ExitError", "ExitError", "os/exec", function(ProcessState_) {
+		this.go$val = this;
+		this.ProcessState = ProcessState_ !== undefined ? ProcessState_ : (go$ptrType(os.ProcessState)).nil;
+	});
+	ExitError.prototype.Exited = function() { return this.go$val.Exited(); };
+	ExitError.Ptr.prototype.Exited = function() { return this.ProcessState.Exited(); };
+	ExitError.prototype.Pid = function() { return this.go$val.Pid(); };
+	ExitError.Ptr.prototype.Pid = function() { return this.ProcessState.Pid(); };
+	ExitError.prototype.String = function() { return this.go$val.String(); };
+	ExitError.Ptr.prototype.String = function() { return this.ProcessState.String(); };
+	ExitError.prototype.Success = function() { return this.go$val.Success(); };
+	ExitError.Ptr.prototype.Success = function() { return this.ProcessState.Success(); };
+	ExitError.prototype.Sys = function() { return this.go$val.Sys(); };
+	ExitError.Ptr.prototype.Sys = function() { return this.ProcessState.Sys(); };
+	ExitError.prototype.SysUsage = function() { return this.go$val.SysUsage(); };
+	ExitError.Ptr.prototype.SysUsage = function() { return this.ProcessState.SysUsage(); };
+	ExitError.prototype.SystemTime = function() { return this.go$val.SystemTime(); };
+	ExitError.Ptr.prototype.SystemTime = function() { return this.ProcessState.SystemTime(); };
+	ExitError.prototype.UserTime = function() { return this.go$val.UserTime(); };
+	ExitError.Ptr.prototype.UserTime = function() { return this.ProcessState.UserTime(); };
+	ExitError.prototype.exited = function() { return this.go$val.exited(); };
+	ExitError.Ptr.prototype.exited = function() { return this.ProcessState.exited(); };
+	ExitError.prototype.success = function() { return this.go$val.success(); };
+	ExitError.Ptr.prototype.success = function() { return this.ProcessState.success(); };
+	ExitError.prototype.sys = function() { return this.go$val.sys(); };
+	ExitError.Ptr.prototype.sys = function() { return this.ProcessState.sys(); };
+	ExitError.prototype.sysUsage = function() { return this.go$val.sysUsage(); };
+	ExitError.Ptr.prototype.sysUsage = function() { return this.ProcessState.sysUsage(); };
+	ExitError.prototype.systemTime = function() { return this.go$val.systemTime(); };
+	ExitError.Ptr.prototype.systemTime = function() { return this.ProcessState.systemTime(); };
+	ExitError.prototype.userTime = function() { return this.go$val.userTime(); };
+	ExitError.Ptr.prototype.userTime = function() { return this.ProcessState.userTime(); };
+	go$pkg.ExitError = ExitError;
+	var closeOnce;
+	closeOnce = go$newType(0, "Struct", "exec.closeOnce", "closeOnce", "os/exec", function(File_, close_, closeErr_) {
+		this.go$val = this;
+		this.File = File_ !== undefined ? File_ : (go$ptrType(os.File)).nil;
+		this.close = close_ !== undefined ? close_ : new sync.Once.Ptr();
+		this.closeErr = closeErr_ !== undefined ? closeErr_ : null;
+	});
+	closeOnce.prototype.Chdir = function() { return this.go$val.Chdir(); };
+	closeOnce.Ptr.prototype.Chdir = function() { return this.File.Chdir(); };
+	closeOnce.prototype.Chmod = function(mode) { return this.go$val.Chmod(mode); };
+	closeOnce.Ptr.prototype.Chmod = function(mode) { return this.File.Chmod(mode); };
+	closeOnce.prototype.Chown = function(uid, gid) { return this.go$val.Chown(uid, gid); };
+	closeOnce.Ptr.prototype.Chown = function(uid, gid) { return this.File.Chown(uid, gid); };
+	closeOnce.prototype.Close = function() { return this.go$val.Close(); };
+	closeOnce.Ptr.prototype.Close = function() { return this.File.Close(); };
+	closeOnce.prototype.Fd = function() { return this.go$val.Fd(); };
+	closeOnce.Ptr.prototype.Fd = function() { return this.File.Fd(); };
+	closeOnce.prototype.Name = function() { return this.go$val.Name(); };
+	closeOnce.Ptr.prototype.Name = function() { return this.File.Name(); };
+	closeOnce.prototype.Read = function(b) { return this.go$val.Read(b); };
+	closeOnce.Ptr.prototype.Read = function(b) { return this.File.Read(b); };
+	closeOnce.prototype.ReadAt = function(b, off) { return this.go$val.ReadAt(b, off); };
+	closeOnce.Ptr.prototype.ReadAt = function(b, off) { return this.File.ReadAt(b, off); };
+	closeOnce.prototype.Readdir = function(n) { return this.go$val.Readdir(n); };
+	closeOnce.Ptr.prototype.Readdir = function(n) { return this.File.Readdir(n); };
+	closeOnce.prototype.Readdirnames = function(n) { return this.go$val.Readdirnames(n); };
+	closeOnce.Ptr.prototype.Readdirnames = function(n) { return this.File.Readdirnames(n); };
+	closeOnce.prototype.Seek = function(offset, whence) { return this.go$val.Seek(offset, whence); };
+	closeOnce.Ptr.prototype.Seek = function(offset, whence) { return this.File.Seek(offset, whence); };
+	closeOnce.prototype.Stat = function() { return this.go$val.Stat(); };
+	closeOnce.Ptr.prototype.Stat = function() { return this.File.Stat(); };
+	closeOnce.prototype.Sync = function() { return this.go$val.Sync(); };
+	closeOnce.Ptr.prototype.Sync = function() { return this.File.Sync(); };
+	closeOnce.prototype.Truncate = function(size) { return this.go$val.Truncate(size); };
+	closeOnce.Ptr.prototype.Truncate = function(size) { return this.File.Truncate(size); };
+	closeOnce.prototype.Write = function(b) { return this.go$val.Write(b); };
+	closeOnce.Ptr.prototype.Write = function(b) { return this.File.Write(b); };
+	closeOnce.prototype.WriteAt = function(b, off) { return this.go$val.WriteAt(b, off); };
+	closeOnce.Ptr.prototype.WriteAt = function(b, off) { return this.File.WriteAt(b, off); };
+	closeOnce.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
+	closeOnce.Ptr.prototype.WriteString = function(s) { return this.File.WriteString(s); };
+	closeOnce.prototype.close = function() { return this.go$val.close(); };
+	closeOnce.Ptr.prototype.close = function() { return this.File.close(); };
+	closeOnce.prototype.pread = function(b, off) { return this.go$val.pread(b, off); };
+	closeOnce.Ptr.prototype.pread = function(b, off) { return this.File.pread(b, off); };
+	closeOnce.prototype.pwrite = function(b, off) { return this.go$val.pwrite(b, off); };
+	closeOnce.Ptr.prototype.pwrite = function(b, off) { return this.File.pwrite(b, off); };
+	closeOnce.prototype.read = function(b) { return this.go$val.read(b); };
+	closeOnce.Ptr.prototype.read = function(b) { return this.File.read(b); };
+	closeOnce.prototype.readdir = function(n) { return this.go$val.readdir(n); };
+	closeOnce.Ptr.prototype.readdir = function(n) { return this.File.readdir(n); };
+	closeOnce.prototype.readdirnames = function(n) { return this.go$val.readdirnames(n); };
+	closeOnce.Ptr.prototype.readdirnames = function(n) { return this.File.readdirnames(n); };
+	closeOnce.prototype.seek = function(offset, whence) { return this.go$val.seek(offset, whence); };
+	closeOnce.Ptr.prototype.seek = function(offset, whence) { return this.File.seek(offset, whence); };
+	closeOnce.prototype.write = function(b) { return this.go$val.write(b); };
+	closeOnce.Ptr.prototype.write = function(b) { return this.File.write(b); };
+	go$pkg.closeOnce = closeOnce;
+	Error.init([["Name", "", Go$String, ""], ["Err", "", go$error, ""]]);
+	(go$ptrType(Error)).methods = [["Error", "", [], [Go$String], false]];
+	Cmd.init([["Path", "", Go$String, ""], ["Args", "", (go$sliceType(Go$String)), ""], ["Env", "", (go$sliceType(Go$String)), ""], ["Dir", "", Go$String, ""], ["Stdin", "", io.Reader, ""], ["Stdout", "", io.Writer, ""], ["Stderr", "", io.Writer, ""], ["ExtraFiles", "", (go$sliceType((go$ptrType(os.File)))), ""], ["SysProcAttr", "", (go$ptrType(syscall.SysProcAttr)), ""], ["Process", "", (go$ptrType(os.Process)), ""], ["ProcessState", "", (go$ptrType(os.ProcessState)), ""], ["err", "os/exec", go$error, ""], ["finished", "os/exec", Go$Bool, ""], ["childFiles", "os/exec", (go$sliceType((go$ptrType(os.File)))), ""], ["closeAfterStart", "os/exec", (go$sliceType(io.Closer)), ""], ["closeAfterWait", "os/exec", (go$sliceType(io.Closer)), ""], ["goroutine", "os/exec", (go$sliceType((go$funcType([], [go$error], false)))), ""], ["errch", "os/exec", (go$chanType(go$error, false, false)), ""]]);
+	(go$ptrType(Cmd)).methods = [["CombinedOutput", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Output", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Run", "", [], [go$error], false], ["Start", "", [], [go$error], false], ["StderrPipe", "", [], [io.ReadCloser, go$error], false], ["StdinPipe", "", [], [io.WriteCloser, go$error], false], ["StdoutPipe", "", [], [io.ReadCloser, go$error], false], ["Wait", "", [], [go$error], false], ["argv", "os/exec", [], [(go$sliceType(Go$String))], false], ["closeDescriptors", "os/exec", [(go$sliceType(io.Closer))], [], false], ["envv", "os/exec", [], [(go$sliceType(Go$String))], false], ["stderr", "os/exec", [], [(go$ptrType(os.File)), go$error], false], ["stdin", "os/exec", [], [(go$ptrType(os.File)), go$error], false], ["stdout", "os/exec", [], [(go$ptrType(os.File)), go$error], false], ["writerDescriptor", "os/exec", [io.Writer], [(go$ptrType(os.File)), go$error], false]];
+	ExitError.init([["", "", (go$ptrType(os.ProcessState)), ""]]);
+	ExitError.methods = [["Exited", "", [], [Go$Bool], false], ["Pid", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Success", "", [], [Go$Bool], false], ["Sys", "", [], [go$emptyInterface], false], ["SysUsage", "", [], [go$emptyInterface], false], ["SystemTime", "", [], [go$packages["time"].Duration], false], ["UserTime", "", [], [go$packages["time"].Duration], false], ["exited", "os", [], [Go$Bool], false], ["success", "os", [], [Go$Bool], false], ["sys", "os", [], [go$emptyInterface], false], ["sysUsage", "os", [], [go$emptyInterface], false], ["systemTime", "os", [], [go$packages["time"].Duration], false], ["userTime", "os", [], [go$packages["time"].Duration], false]];
+	(go$ptrType(ExitError)).methods = [["Error", "", [], [Go$String], false], ["Exited", "", [], [Go$Bool], false], ["Pid", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Success", "", [], [Go$Bool], false], ["Sys", "", [], [go$emptyInterface], false], ["SysUsage", "", [], [go$emptyInterface], false], ["SystemTime", "", [], [go$packages["time"].Duration], false], ["UserTime", "", [], [go$packages["time"].Duration], false], ["exited", "os", [], [Go$Bool], false], ["success", "os", [], [Go$Bool], false], ["sys", "os", [], [go$emptyInterface], false], ["sysUsage", "os", [], [go$emptyInterface], false], ["systemTime", "os", [], [go$packages["time"].Duration], false], ["userTime", "os", [], [go$packages["time"].Duration], false]];
+	closeOnce.init([["", "", (go$ptrType(os.File)), ""], ["close", "os/exec", sync.Once, ""], ["closeErr", "os/exec", go$error, ""]]);
+	closeOnce.methods = [["Chdir", "", [], [go$error], false], ["Chmod", "", [os.FileMode], [go$error], false], ["Chown", "", [Go$Int, Go$Int], [go$error], false], ["Fd", "", [], [Go$Uintptr], false], ["Name", "", [], [Go$String], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["Readdir", "", [Go$Int], [(go$sliceType(os.FileInfo)), go$error], false], ["Readdirnames", "", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["Stat", "", [], [os.FileInfo, go$error], false], ["Sync", "", [], [go$error], false], ["Truncate", "", [Go$Int64], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["close", "os", [], [go$error], false], ["pread", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["pwrite", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["read", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["readdir", "os", [Go$Int], [(go$sliceType(os.FileInfo)), go$error], false], ["readdirnames", "os", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["seek", "os", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["write", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	(go$ptrType(closeOnce)).methods = [["Chdir", "", [], [go$error], false], ["Chmod", "", [os.FileMode], [go$error], false], ["Chown", "", [Go$Int, Go$Int], [go$error], false], ["Close", "", [], [go$error], false], ["Fd", "", [], [Go$Uintptr], false], ["Name", "", [], [Go$String], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["Readdir", "", [Go$Int], [(go$sliceType(os.FileInfo)), go$error], false], ["Readdirnames", "", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["Stat", "", [], [os.FileInfo, go$error], false], ["Sync", "", [], [go$error], false], ["Truncate", "", [Go$Int64], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["close", "os", [], [go$error], false], ["pread", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["pwrite", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["read", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["readdir", "os", [Go$Int], [(go$sliceType(os.FileInfo)), go$error], false], ["readdirnames", "os", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["seek", "os", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["write", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	Error.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return "exec: " + strconv.Quote(e.Name) + ": " + e.Err.Error();
+	};
+	Error.prototype.Error = function() { return this.go$val.Error(); };
+	var Command = go$pkg.Command = function(name, arg) {
+		var _tuple, aname, err;
+		_tuple = LookPath(name), aname = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			aname = name;
+		}
+		return new Cmd.Ptr(aname, go$appendSlice(new (go$sliceType(Go$String))([name]), arg), (go$sliceType(Go$String)).nil, "", null, null, null, (go$sliceType((go$ptrType(os.File)))).nil, (go$ptrType(syscall.SysProcAttr)).nil, (go$ptrType(os.Process)).nil, (go$ptrType(os.ProcessState)).nil, err, false, (go$sliceType((go$ptrType(os.File)))).nil, (go$sliceType(io.Closer)).nil, (go$sliceType(io.Closer)).nil, (go$sliceType((go$funcType([], [go$error], false)))).nil, (go$chanType(go$error, false, false)).nil);
+	};
+	var interfaceEqual = function(a, b) {
+		var go$deferred = [];
+		try {
+			go$deferred.push({ fun: (function() {
+				go$recover();
+			}), args: [] });
+			return go$interfaceIsEqual(a, b);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return false;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Cmd.Ptr.prototype.envv = function() {
+		var c;
+		c = this;
+		if (!(c.Env === (go$sliceType(Go$String)).nil)) {
+			return c.Env;
+		}
+		return os.Environ();
+	};
+	Cmd.prototype.envv = function() { return this.go$val.envv(); };
+	Cmd.Ptr.prototype.argv = function() {
+		var c;
+		c = this;
+		if (c.Args.length > 0) {
+			return c.Args;
+		}
+		return new (go$sliceType(Go$String))([c.Path]);
+	};
+	Cmd.prototype.argv = function() { return this.go$val.argv(); };
+	Cmd.Ptr.prototype.stdin = function() {
+		var f, err, c, _tuple, ok, _tuple$1, x, f$1, _tuple$2, _tuple$3, pr, pw, _tuple$4;
+		f = (go$ptrType(os.File)).nil;
+		err = null;
+		c = this;
+		if (go$interfaceIsEqual(c.Stdin, null)) {
+			_tuple = os.Open("/dev/null"), f = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [f, err];
+			}
+			c.closeAfterStart = go$append(c.closeAfterStart, f);
+			return [f, err];
+		}
+		if (_tuple$1 = (x = c.Stdin, (x !== null && x.constructor === (go$ptrType(os.File)) ? [x.go$val, true] : [(go$ptrType(os.File)).nil, false])), f$1 = _tuple$1[0], ok = _tuple$1[1], ok) {
+			_tuple$2 = [f$1, null], f = _tuple$2[0], err = _tuple$2[1];
+			return [f, err];
+		}
+		_tuple$3 = os.Pipe(), pr = _tuple$3[0], pw = _tuple$3[1], err = _tuple$3[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [f, err];
+		}
+		c.closeAfterStart = go$append(c.closeAfterStart, pr);
+		c.closeAfterWait = go$append(c.closeAfterWait, pw);
+		c.goroutine = go$append(c.goroutine, (function() {
+			var _tuple$4, err$1, err1;
+			_tuple$4 = io.Copy(pw, c.Stdin), err$1 = _tuple$4[1];
+			if (err1 = pw.Close(), go$interfaceIsEqual(err$1, null)) {
+				err$1 = err1;
+			}
+			return err$1;
+		}));
+		_tuple$4 = [pr, null], f = _tuple$4[0], err = _tuple$4[1];
+		return [f, err];
+	};
+	Cmd.prototype.stdin = function() { return this.go$val.stdin(); };
+	Cmd.Ptr.prototype.stdout = function() {
+		var f, err, c, _tuple;
+		f = (go$ptrType(os.File)).nil;
+		err = null;
+		c = this;
+		_tuple = c.writerDescriptor(c.Stdout), f = _tuple[0], err = _tuple[1];
+		return [f, err];
+	};
+	Cmd.prototype.stdout = function() { return this.go$val.stdout(); };
+	Cmd.Ptr.prototype.stderr = function() {
+		var f, err, c, _slice, _index, _tuple, _tuple$1;
+		f = (go$ptrType(os.File)).nil;
+		err = null;
+		c = this;
+		if (!(go$interfaceIsEqual(c.Stderr, null)) && interfaceEqual(c.Stderr, c.Stdout)) {
+			_tuple = [(_slice = c.childFiles, _index = 1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), null], f = _tuple[0], err = _tuple[1];
+			return [f, err];
+		}
+		_tuple$1 = c.writerDescriptor(c.Stderr), f = _tuple$1[0], err = _tuple$1[1];
+		return [f, err];
+	};
+	Cmd.prototype.stderr = function() { return this.go$val.stderr(); };
+	Cmd.Ptr.prototype.writerDescriptor = function(w) {
+		var f, err, c, _tuple, ok, _tuple$1, f$1, _tuple$2, _tuple$3, pr, pw, _tuple$4;
+		f = (go$ptrType(os.File)).nil;
+		err = null;
+		c = this;
+		if (go$interfaceIsEqual(w, null)) {
+			_tuple = os.OpenFile("/dev/null", 1, 0), f = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [f, err];
+			}
+			c.closeAfterStart = go$append(c.closeAfterStart, f);
+			return [f, err];
+		}
+		if (_tuple$1 = (w !== null && w.constructor === (go$ptrType(os.File)) ? [w.go$val, true] : [(go$ptrType(os.File)).nil, false]), f$1 = _tuple$1[0], ok = _tuple$1[1], ok) {
+			_tuple$2 = [f$1, null], f = _tuple$2[0], err = _tuple$2[1];
+			return [f, err];
+		}
+		_tuple$3 = os.Pipe(), pr = _tuple$3[0], pw = _tuple$3[1], err = _tuple$3[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [f, err];
+		}
+		c.closeAfterStart = go$append(c.closeAfterStart, pw);
+		c.closeAfterWait = go$append(c.closeAfterWait, pr);
+		c.goroutine = go$append(c.goroutine, (function() {
+			var _tuple$4, err$1;
+			_tuple$4 = io.Copy(w, pr), err$1 = _tuple$4[1];
+			return err$1;
+		}));
+		_tuple$4 = [pw, null], f = _tuple$4[0], err = _tuple$4[1];
+		return [f, err];
+	};
+	Cmd.prototype.writerDescriptor = function(w) { return this.go$val.writerDescriptor(w); };
+	Cmd.Ptr.prototype.closeDescriptors = function(closers) {
+		var c, _ref, _i, _slice, _index, fd;
+		c = this;
+		_ref = closers;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			fd = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			fd.Close();
+		}
+	};
+	Cmd.prototype.closeDescriptors = function(closers) { return this.go$val.closeDescriptors(closers); };
+	Cmd.Ptr.prototype.Run = function() {
+		var c, err;
+		c = this;
+		if (err = c.Start(), !(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		return c.Wait();
+	};
+	Cmd.prototype.Run = function() { return this.go$val.Run(); };
+	Cmd.Ptr.prototype.Start = function() {
+		var c, F, _ref, _i, _slice, _index, setupFd, _tuple, fd, err, err$1, _tuple$1, _ref$1, _i$1, _slice$1, _index$1, fn;
+		c = this;
+		if (!(go$interfaceIsEqual(c.err, null))) {
+			c.closeDescriptors(c.closeAfterStart);
+			c.closeDescriptors(c.closeAfterWait);
+			return c.err;
+		}
+		if (!(c.Process === (go$ptrType(os.Process)).nil)) {
+			return errors.New("exec: already started");
+		}
+		F = go$newType(0, "Func", "exec.F", "F", "os/exec", null);
+		F.init([(go$ptrType(Cmd))], [(go$ptrType(os.File)), go$error], false);
+		_ref = new (go$sliceType(F))([(function(recv) { return recv.stdin(); }), (function(recv) { return recv.stdout(); }), (function(recv) { return recv.stderr(); })]);
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			setupFd = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_tuple = setupFd(c), fd = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				c.closeDescriptors(c.closeAfterStart);
+				c.closeDescriptors(c.closeAfterWait);
+				return err;
+			}
+			c.childFiles = go$append(c.childFiles, fd);
+		}
+		c.childFiles = go$appendSlice(c.childFiles, c.ExtraFiles);
+		err$1 = null;
+		_tuple$1 = os.StartProcess(c.Path, c.argv(), new os.ProcAttr.Ptr(c.Dir, c.envv(), c.childFiles, c.SysProcAttr)), c.Process = _tuple$1[0], err$1 = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
+			c.closeDescriptors(c.closeAfterStart);
+			c.closeDescriptors(c.closeAfterWait);
+			return err$1;
+		}
+		c.closeDescriptors(c.closeAfterStart);
+		c.errch = new (go$chanType(go$error, false, false))();
+		_ref$1 = c.goroutine;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			fn = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			go$notSupported("go")
+		}
+		return null;
+	};
+	Cmd.prototype.Start = function() { return this.go$val.Start(); };
+	ExitError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return e.ProcessState.String();
+	};
+	ExitError.prototype.Error = function() { return this.go$val.Error(); };
+	Cmd.Ptr.prototype.Wait = function() {
+		var c, _tuple, state, err, copyError, _ref, _i, err$1;
+		c = this;
+		if (c.Process === (go$ptrType(os.Process)).nil) {
+			return errors.New("exec: not started");
+		}
+		if (c.finished) {
+			return errors.New("exec: Wait was already called");
+		}
+		c.finished = true;
+		_tuple = c.Process.Wait(), state = _tuple[0], err = _tuple[1];
+		c.ProcessState = state;
+		copyError = null;
+		_ref = c.goroutine;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			if (err$1 = undefined, !(go$interfaceIsEqual(err$1, null)) && go$interfaceIsEqual(copyError, null)) {
+				copyError = err$1;
+			}
+		}
+		c.closeDescriptors(c.closeAfterWait);
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		} else if (!state.Success()) {
+			return new ExitError.Ptr(state);
+		}
+		return copyError;
+	};
+	Cmd.prototype.Wait = function() { return this.go$val.Wait(); };
+	Cmd.Ptr.prototype.Output = function() {
+		var c, b, err;
+		c = this;
+		if (!(go$interfaceIsEqual(c.Stdout, null))) {
+			return [(go$sliceType(Go$Uint8)).nil, errors.New("exec: Stdout already set")];
+		}
+		b = new bytes.Buffer.Ptr();
+		c.Stdout = b;
+		err = c.Run();
+		return [b.Bytes(), err];
+	};
+	Cmd.prototype.Output = function() { return this.go$val.Output(); };
+	Cmd.Ptr.prototype.CombinedOutput = function() {
+		var c, b, err;
+		c = this;
+		if (!(go$interfaceIsEqual(c.Stdout, null))) {
+			return [(go$sliceType(Go$Uint8)).nil, errors.New("exec: Stdout already set")];
+		}
+		if (!(go$interfaceIsEqual(c.Stderr, null))) {
+			return [(go$sliceType(Go$Uint8)).nil, errors.New("exec: Stderr already set")];
+		}
+		b = new bytes.Buffer.Ptr();
+		c.Stdout = b;
+		c.Stderr = b;
+		err = c.Run();
+		return [b.Bytes(), err];
+	};
+	Cmd.prototype.CombinedOutput = function() { return this.go$val.CombinedOutput(); };
+	Cmd.Ptr.prototype.StdinPipe = function() {
+		var c, _tuple, pr, pw, err, wc;
+		c = this;
+		if (!(go$interfaceIsEqual(c.Stdin, null))) {
+			return [null, errors.New("exec: Stdin already set")];
+		}
+		if (!(c.Process === (go$ptrType(os.Process)).nil)) {
+			return [null, errors.New("exec: StdinPipe after process started")];
+		}
+		_tuple = os.Pipe(), pr = _tuple[0], pw = _tuple[1], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [null, err];
+		}
+		c.Stdin = pr;
+		c.closeAfterStart = go$append(c.closeAfterStart, pr);
+		wc = new closeOnce.Ptr(pw, new sync.Once.Ptr(), null);
+		c.closeAfterWait = go$append(c.closeAfterWait, wc);
+		return [wc, null];
+	};
+	Cmd.prototype.StdinPipe = function() { return this.go$val.StdinPipe(); };
+	closeOnce.Ptr.prototype.Close = function() {
+		var c;
+		c = this;
+		c.close.Do((function() {
+			c.closeErr = c.File.Close();
+		}));
+		return c.closeErr;
+	};
+	closeOnce.prototype.Close = function() { return this.go$val.Close(); };
+	Cmd.Ptr.prototype.StdoutPipe = function() {
+		var c, _tuple, pr, pw, err;
+		c = this;
+		if (!(go$interfaceIsEqual(c.Stdout, null))) {
+			return [null, errors.New("exec: Stdout already set")];
+		}
+		if (!(c.Process === (go$ptrType(os.Process)).nil)) {
+			return [null, errors.New("exec: StdoutPipe after process started")];
+		}
+		_tuple = os.Pipe(), pr = _tuple[0], pw = _tuple[1], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [null, err];
+		}
+		c.Stdout = pw;
+		c.closeAfterStart = go$append(c.closeAfterStart, pw);
+		c.closeAfterWait = go$append(c.closeAfterWait, pr);
+		return [pr, null];
+	};
+	Cmd.prototype.StdoutPipe = function() { return this.go$val.StdoutPipe(); };
+	Cmd.Ptr.prototype.StderrPipe = function() {
+		var c, _tuple, pr, pw, err;
+		c = this;
+		if (!(go$interfaceIsEqual(c.Stderr, null))) {
+			return [null, errors.New("exec: Stderr already set")];
+		}
+		if (!(c.Process === (go$ptrType(os.Process)).nil)) {
+			return [null, errors.New("exec: StderrPipe after process started")];
+		}
+		_tuple = os.Pipe(), pr = _tuple[0], pw = _tuple[1], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [null, err];
+		}
+		c.Stderr = pw;
+		c.closeAfterStart = go$append(c.closeAfterStart, pw);
+		c.closeAfterWait = go$append(c.closeAfterWait, pr);
+		return [pr, null];
+	};
+	Cmd.prototype.StderrPipe = function() { return this.go$val.StderrPipe(); };
+	var findExecutable = function(file) {
+		var _tuple, d, err, m;
+		_tuple = os.Stat(file), d = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		if (m = d.Mode(), !(new os.FileMode(m)).IsDir() && !((((m & 73) >>> 0) === 0))) {
+			return null;
+		}
+		return os.ErrPermission;
+	};
+	var LookPath = go$pkg.LookPath = function(file) {
+		var err, pathenv, _ref, _i, _slice, _index, dir, path, err$1;
+		if (strings.Contains(file, "/")) {
+			err = findExecutable(file);
+			if (go$interfaceIsEqual(err, null)) {
+				return [file, null];
+			}
+			return ["", new Error.Ptr(file, err)];
+		}
+		pathenv = os.Getenv("PATH");
+		if (pathenv === "") {
+			return ["", new Error.Ptr(file, go$pkg.ErrNotFound)];
+		}
+		_ref = strings.Split(pathenv, ":");
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			dir = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (dir === "") {
+				dir = ".";
+			}
+			path = dir + "/" + file;
+			if (err$1 = findExecutable(path), go$interfaceIsEqual(err$1, null)) {
+				return [path, null];
+			}
+		}
+		return ["", new Error.Ptr(file, go$pkg.ErrNotFound)];
+	};
+	go$pkg.ErrNotFound = null;
+	go$pkg.init = function() {
+		go$pkg.ErrNotFound = errors.New("executable file not found in $PATH");
+	};

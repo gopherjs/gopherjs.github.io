@@ -1,0 +1,417 @@
+0‚?ö‚Bpackage utf8
+func @"".DecodeLastRune(@"".p []byte) (@"".r rune, @"".size int)
+func @"".DecodeLastRuneInString(@"".s string) (@"".r rune, @"".size int)
+func @"".DecodeRune(@"".p []byte) (@"".r rune, @"".size int)
+func @"".DecodeRuneInString(@"".s string) (@"".r rune, @"".size int)
+func @"".EncodeRune(@"".p []byte, @"".r rune) (? int)
+func @"".FullRune(@"".p []byte) (? bool)
+func @"".FullRuneInString(@"".s string) (? bool)
+const @"".MaxRune = '\U0010ffff'
+func @"".RuneCount(@"".p []byte) (? int)
+func @"".RuneCountInString(@"".s string) (@"".n int)
+const @"".RuneError = '\ufffd'
+func @"".RuneLen(@"".r rune) (? int)
+const @"".RuneSelf = 0x80
+func @"".RuneStart(@"".b byte) (? bool)
+const @"".UTFMax = 0x4
+func @"".Valid(@"".p []byte) (? bool)
+func @"".ValidRune(@"".r rune) (? bool)
+func @"".ValidString(@"".s string) (? bool)
+$$
+0runtimeunicode/utf8‚<“	var decodeRuneInternal = function(p) {
+		var r, size, short$1, n, _tuple, _slice, _index, c0, _tuple$1, _tuple$2, _tuple$3, _slice$1, _index$1, c1, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _slice$2, _index$2, c2, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _slice$3, _index$3, c3, _tuple$13, _tuple$14, _tuple$15, _tuple$16;
+		r = 0;
+		size = 0;
+		short$1 = false;
+		n = p.length;
+		if (n < 1) {
+			_tuple = [65533, 0, true], r = _tuple[0], size = _tuple[1], short$1 = _tuple[2];
+			return [r, size, short$1];
+		}
+		c0 = (_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (c0 < 128) {
+			_tuple$1 = [(c0 >> 0), 1, false], r = _tuple$1[0], size = _tuple$1[1], short$1 = _tuple$1[2];
+			return [r, size, short$1];
+		}
+		if (c0 < 192) {
+			_tuple$2 = [65533, 1, false], r = _tuple$2[0], size = _tuple$2[1], short$1 = _tuple$2[2];
+			return [r, size, short$1];
+		}
+		if (n < 2) {
+			_tuple$3 = [65533, 1, true], r = _tuple$3[0], size = _tuple$3[1], short$1 = _tuple$3[2];
+			return [r, size, short$1];
+		}
+		c1 = (_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+		if (c1 < 128 || 192 <= c1) {
+			_tuple$4 = [65533, 1, false], r = _tuple$4[0], size = _tuple$4[1], short$1 = _tuple$4[2];
+			return [r, size, short$1];
+		}
+		if (c0 < 224) {
+			r = ((((c0 & 31) >>> 0) >> 0) << 6 >> 0) | (((c1 & 63) >>> 0) >> 0);
+			if (r <= 127) {
+				_tuple$5 = [65533, 1, false], r = _tuple$5[0], size = _tuple$5[1], short$1 = _tuple$5[2];
+				return [r, size, short$1];
+			}
+			_tuple$6 = [r, 2, false], r = _tuple$6[0], size = _tuple$6[1], short$1 = _tuple$6[2];
+			return [r, size, short$1];
+		}
+		if (n < 3) {
+			_tuple$7 = [65533, 1, true], r = _tuple$7[0], size = _tuple$7[1], short$1 = _tuple$7[2];
+			return [r, size, short$1];
+		}
+		c2 = (_slice$2 = p, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+		if (c2 < 128 || 192 <= c2) {
+			_tuple$8 = [65533, 1, false], r = _tuple$8[0], size = _tuple$8[1], short$1 = _tuple$8[2];
+			return [r, size, short$1];
+		}
+		if (c0 < 240) {
+			r = (((((c0 & 15) >>> 0) >> 0) << 12 >> 0) | ((((c1 & 63) >>> 0) >> 0) << 6 >> 0)) | (((c2 & 63) >>> 0) >> 0);
+			if (r <= 2047) {
+				_tuple$9 = [65533, 1, false], r = _tuple$9[0], size = _tuple$9[1], short$1 = _tuple$9[2];
+				return [r, size, short$1];
+			}
+			if (55296 <= r && r <= 57343) {
+				_tuple$10 = [65533, 1, false], r = _tuple$10[0], size = _tuple$10[1], short$1 = _tuple$10[2];
+				return [r, size, short$1];
+			}
+			_tuple$11 = [r, 3, false], r = _tuple$11[0], size = _tuple$11[1], short$1 = _tuple$11[2];
+			return [r, size, short$1];
+		}
+		if (n < 4) {
+			_tuple$12 = [65533, 1, true], r = _tuple$12[0], size = _tuple$12[1], short$1 = _tuple$12[2];
+			return [r, size, short$1];
+		}
+		c3 = (_slice$3 = p, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+		if (c3 < 128 || 192 <= c3) {
+			_tuple$13 = [65533, 1, false], r = _tuple$13[0], size = _tuple$13[1], short$1 = _tuple$13[2];
+			return [r, size, short$1];
+		}
+		if (c0 < 248) {
+			r = ((((((c0 & 7) >>> 0) >> 0) << 18 >> 0) | ((((c1 & 63) >>> 0) >> 0) << 12 >> 0)) | ((((c2 & 63) >>> 0) >> 0) << 6 >> 0)) | (((c3 & 63) >>> 0) >> 0);
+			if (r <= 65535 || 1114111 < r) {
+				_tuple$14 = [65533, 1, false], r = _tuple$14[0], size = _tuple$14[1], short$1 = _tuple$14[2];
+				return [r, size, short$1];
+			}
+			_tuple$15 = [r, 4, false], r = _tuple$15[0], size = _tuple$15[1], short$1 = _tuple$15[2];
+			return [r, size, short$1];
+		}
+		_tuple$16 = [65533, 1, false], r = _tuple$16[0], size = _tuple$16[1], short$1 = _tuple$16[2];
+		return [r, size, short$1];
+	};
+	var decodeRuneInStringInternal = function(s) {
+		var r, size, short$1, n, _tuple, c0, _tuple$1, _tuple$2, _tuple$3, c1, _tuple$4, _tuple$5, _tuple$6, _tuple$7, c2, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, c3, _tuple$13, _tuple$14, _tuple$15, _tuple$16;
+		r = 0;
+		size = 0;
+		short$1 = false;
+		n = s.length;
+		if (n < 1) {
+			_tuple = [65533, 0, true], r = _tuple[0], size = _tuple[1], short$1 = _tuple[2];
+			return [r, size, short$1];
+		}
+		c0 = s.charCodeAt(0);
+		if (c0 < 128) {
+			_tuple$1 = [(c0 >> 0), 1, false], r = _tuple$1[0], size = _tuple$1[1], short$1 = _tuple$1[2];
+			return [r, size, short$1];
+		}
+		if (c0 < 192) {
+			_tuple$2 = [65533, 1, false], r = _tuple$2[0], size = _tuple$2[1], short$1 = _tuple$2[2];
+			return [r, size, short$1];
+		}
+		if (n < 2) {
+			_tuple$3 = [65533, 1, true], r = _tuple$3[0], size = _tuple$3[1], short$1 = _tuple$3[2];
+			return [r, size, short$1];
+		}
+		c1 = s.charCodeAt(1);
+		if (c1 < 128 || 192 <= c1) {
+			_tuple$4 = [65533, 1, false], r = _tuple$4[0], size = _tuple$4[1], short$1 = _tuple$4[2];
+			return [r, size, short$1];
+		}
+		if (c0 < 224) {
+			r = ((((c0 & 31) >>> 0) >> 0) << 6 >> 0) | (((c1 & 63) >>> 0) >> 0);
+			if (r <= 127) {
+				_tuple$5 = [65533, 1, false], r = _tuple$5[0], size = _tuple$5[1], short$1 = _tuple$5[2];
+				return [r, size, short$1];
+			}
+			_tuple$6 = [r, 2, false], r = _tuple$6[0], size = _tuple$6[1], short$1 = _tuple$6[2];
+			return [r, size, short$1];
+		}
+		if (n < 3) {
+			_tuple$7 = [65533, 1, true], r = _tuple$7[0], size = _tuple$7[1], short$1 = _tuple$7[2];
+			return [r, size, short$1];
+		}
+		c2 = s.charCodeAt(2);
+		if (c2 < 128 || 192 <= c2) {
+			_tuple$8 = [65533, 1, false], r = _tuple$8[0], size = _tuple$8[1], short$1 = _tuple$8[2];
+			return [r, size, short$1];
+		}
+		if (c0 < 240) {
+			r = (((((c0 & 15) >>> 0) >> 0) << 12 >> 0) | ((((c1 & 63) >>> 0) >> 0) << 6 >> 0)) | (((c2 & 63) >>> 0) >> 0);
+			if (r <= 2047) {
+				_tuple$9 = [65533, 1, false], r = _tuple$9[0], size = _tuple$9[1], short$1 = _tuple$9[2];
+				return [r, size, short$1];
+			}
+			if (55296 <= r && r <= 57343) {
+				_tuple$10 = [65533, 1, false], r = _tuple$10[0], size = _tuple$10[1], short$1 = _tuple$10[2];
+				return [r, size, short$1];
+			}
+			_tuple$11 = [r, 3, false], r = _tuple$11[0], size = _tuple$11[1], short$1 = _tuple$11[2];
+			return [r, size, short$1];
+		}
+		if (n < 4) {
+			_tuple$12 = [65533, 1, true], r = _tuple$12[0], size = _tuple$12[1], short$1 = _tuple$12[2];
+			return [r, size, short$1];
+		}
+		c3 = s.charCodeAt(3);
+		if (c3 < 128 || 192 <= c3) {
+			_tuple$13 = [65533, 1, false], r = _tuple$13[0], size = _tuple$13[1], short$1 = _tuple$13[2];
+			return [r, size, short$1];
+		}
+		if (c0 < 248) {
+			r = ((((((c0 & 7) >>> 0) >> 0) << 18 >> 0) | ((((c1 & 63) >>> 0) >> 0) << 12 >> 0)) | ((((c2 & 63) >>> 0) >> 0) << 6 >> 0)) | (((c3 & 63) >>> 0) >> 0);
+			if (r <= 65535 || 1114111 < r) {
+				_tuple$14 = [65533, 1, false], r = _tuple$14[0], size = _tuple$14[1], short$1 = _tuple$14[2];
+				return [r, size, short$1];
+			}
+			_tuple$15 = [r, 4, false], r = _tuple$15[0], size = _tuple$15[1], short$1 = _tuple$15[2];
+			return [r, size, short$1];
+		}
+		_tuple$16 = [65533, 1, false], r = _tuple$16[0], size = _tuple$16[1], short$1 = _tuple$16[2];
+		return [r, size, short$1];
+	};
+	var FullRune = go$pkg.FullRune = function(p) {
+		var _tuple, short$1;
+		_tuple = decodeRuneInternal(p), short$1 = _tuple[2];
+		return !short$1;
+	};
+	var FullRuneInString = go$pkg.FullRuneInString = function(s) {
+		var _tuple, short$1;
+		_tuple = decodeRuneInStringInternal(s), short$1 = _tuple[2];
+		return !short$1;
+	};
+	var DecodeRune = go$pkg.DecodeRune = function(p) {
+		var r, size, _tuple;
+		r = 0;
+		size = 0;
+		_tuple = decodeRuneInternal(p), r = _tuple[0], size = _tuple[1];
+		return [r, size];
+	};
+	var DecodeRuneInString = go$pkg.DecodeRuneInString = function(s) {
+		var r, size, _tuple;
+		r = 0;
+		size = 0;
+		_tuple = decodeRuneInStringInternal(s), r = _tuple[0], size = _tuple[1];
+		return [r, size];
+	};
+	var DecodeLastRune = go$pkg.DecodeLastRune = function(p) {
+		var r, size, end, _tuple, start, _slice, _index, _tuple$1, lim, _slice$1, _index$1, _tuple$2, _tuple$3, _tuple$4;
+		r = 0;
+		size = 0;
+		end = p.length;
+		if (end === 0) {
+			_tuple = [65533, 0], r = _tuple[0], size = _tuple[1];
+			return [r, size];
+		}
+		start = end - 1 >> 0;
+		r = ((_slice = p, _index = start, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0);
+		if (r < 128) {
+			_tuple$1 = [r, 1], r = _tuple$1[0], size = _tuple$1[1];
+			return [r, size];
+		}
+		lim = end - 4 >> 0;
+		if (lim < 0) {
+			lim = 0;
+		}
+		start = start - 1 >> 0;
+		while (start >= lim) {
+			if (RuneStart((_slice$1 = p, _index$1 = start, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))) {
+				break;
+			}
+			start = start - 1 >> 0;
+		}
+		if (start < 0) {
+			start = 0;
+		}
+		_tuple$2 = DecodeRune(go$subslice(p, start, end)), r = _tuple$2[0], size = _tuple$2[1];
+		if (!(((start + size >> 0) === end))) {
+			_tuple$3 = [65533, 1], r = _tuple$3[0], size = _tuple$3[1];
+			return [r, size];
+		}
+		_tuple$4 = [r, size], r = _tuple$4[0], size = _tuple$4[1];
+		return [r, size];
+	};
+	var DecodeLastRuneInString = go$pkg.DecodeLastRuneInString = function(s) {
+		var r, size, end, _tuple, start, _tuple$1, lim, _tuple$2, _tuple$3, _tuple$4;
+		r = 0;
+		size = 0;
+		end = s.length;
+		if (end === 0) {
+			_tuple = [65533, 0], r = _tuple[0], size = _tuple[1];
+			return [r, size];
+		}
+		start = end - 1 >> 0;
+		r = (s.charCodeAt(start) >> 0);
+		if (r < 128) {
+			_tuple$1 = [r, 1], r = _tuple$1[0], size = _tuple$1[1];
+			return [r, size];
+		}
+		lim = end - 4 >> 0;
+		if (lim < 0) {
+			lim = 0;
+		}
+		start = start - 1 >> 0;
+		while (start >= lim) {
+			if (RuneStart(s.charCodeAt(start))) {
+				break;
+			}
+			start = start - 1 >> 0;
+		}
+		if (start < 0) {
+			start = 0;
+		}
+		_tuple$2 = DecodeRuneInString(s.substring(start, end)), r = _tuple$2[0], size = _tuple$2[1];
+		if (!(((start + size >> 0) === end))) {
+			_tuple$3 = [65533, 1], r = _tuple$3[0], size = _tuple$3[1];
+			return [r, size];
+		}
+		_tuple$4 = [r, size], r = _tuple$4[0], size = _tuple$4[1];
+		return [r, size];
+	};
+	var RuneLen = go$pkg.RuneLen = function(r) {
+		if (r < 0) {
+			return -1;
+		} else if (r <= 127) {
+			return 1;
+		} else if (r <= 2047) {
+			return 2;
+		} else if (55296 <= r && r <= 57343) {
+			return -1;
+		} else if (r <= 65535) {
+			return 3;
+		} else if (r <= 1114111) {
+			return 4;
+		}
+		return -1;
+	};
+	var EncodeRune = go$pkg.EncodeRune = function(p, r) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9;
+		if ((r >>> 0) <= 127) {
+			_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (r << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+			return 1;
+		}
+		if ((r >>> 0) <= 2047) {
+			_slice$1 = p, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (192 | ((r >> 6 >> 0) << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+			_slice$2 = p, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (128 | (((r << 24 >>> 24) & 63) >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+			return 2;
+		}
+		if ((r >>> 0) > 1114111) {
+			r = 65533;
+		}
+		if (55296 <= r && r <= 57343) {
+			r = 65533;
+		}
+		if ((r >>> 0) <= 65535) {
+			_slice$3 = p, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (224 | ((r >> 12 >> 0) << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+			_slice$4 = p, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = (128 | ((((r >> 6 >> 0) << 24 >>> 24) & 63) >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+			_slice$5 = p, _index$5 = 2, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (128 | (((r << 24 >>> 24) & 63) >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+			return 3;
+		}
+		_slice$6 = p, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = (240 | ((r >> 18 >> 0) << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+		_slice$7 = p, _index$7 = 1, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (128 | ((((r >> 12 >> 0) << 24 >>> 24) & 63) >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+		_slice$8 = p, _index$8 = 2, (_index$8 >= 0 && _index$8 < _slice$8.length) ? (_slice$8.array[_slice$8.offset + _index$8] = (128 | ((((r >> 6 >> 0) << 24 >>> 24) & 63) >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+		_slice$9 = p, _index$9 = 3, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = (128 | (((r << 24 >>> 24) & 63) >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+		return 4;
+	};
+	var RuneCount = go$pkg.RuneCount = function(p) {
+		var i, n, _slice, _index, _tuple, size;
+		i = 0;
+		n = 0;
+		n = 0;
+		while (i < p.length) {
+			if ((_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < 128) {
+				i = i + 1 >> 0;
+			} else {
+				_tuple = DecodeRune(go$subslice(p, i)), size = _tuple[1];
+				i = i + (size) >> 0;
+			}
+			n = n + 1 >> 0;
+		}
+		return n;
+	};
+	var RuneCountInString = go$pkg.RuneCountInString = function(s) {
+		var n, _ref, _i, _rune;
+		n = 0;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			n = n + 1 >> 0;
+		}
+		return n;
+	};
+	var RuneStart = go$pkg.RuneStart = function(b) {
+		return !((((b & 192) >>> 0) === 128));
+	};
+	var Valid = go$pkg.Valid = function(p) {
+		var i, _slice, _index, _tuple, size;
+		i = 0;
+		while (i < p.length) {
+			if ((_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < 128) {
+				i = i + 1 >> 0;
+			} else {
+				_tuple = DecodeRune(go$subslice(p, i)), size = _tuple[1];
+				if (size === 1) {
+					return false;
+				}
+				i = i + (size) >> 0;
+			}
+		}
+		return true;
+	};
+	var ValidString = go$pkg.ValidString = function(s) {
+		var _ref, _i, _rune, r, i, _tuple, size;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			r = _rune[0];
+			i = _i;
+			if (r === 65533) {
+				_tuple = DecodeRuneInString(s.substring(i)), size = _tuple[1];
+				if (size === 1) {
+					return false;
+				}
+			}
+		}
+		return true;
+	};
+	var ValidRune = go$pkg.ValidRune = function(r) {
+		if (r < 0) {
+			return false;
+		} else if (55296 <= r && r <= 57343) {
+			return false;
+		} else if (r > 1114111) {
+			return false;
+		}
+		return true;
+	};
+	go$pkg.RuneError = 65533;
+	go$pkg.RuneSelf = 128;
+	go$pkg.MaxRune = 1114111;
+	go$pkg.UTFMax = 4;
+	var surrogateMin = 55296;
+	var surrogateMax = 57343;
+	var t1 = 0;
+	var tx = 128;
+	var t2 = 192;
+	var t3 = 224;
+	var t4 = 240;
+	var t5 = 248;
+	var maskx = 63;
+	var mask2 = 31;
+	var mask3 = 15;
+	var mask4 = 7;
+	var rune1Max = 127;
+	var rune2Max = 2047;
+	var rune3Max = 65535;
+	go$pkg.init = function() {
+	};

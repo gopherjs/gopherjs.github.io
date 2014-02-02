@@ -1,0 +1,2627 @@
+0ƒ-·‚½package elf
+import strconv "strconv"
+import bytes "bytes"
+import dwarf "debug/dwarf"
+import binary "encoding/binary"
+import errors "errors"
+import fmt "fmt"
+import io "io"
+import os "os"
+const @"".ARM_MAGIC_TRAMP_NUMBER = 0x5c000003
+type @"".Class byte
+func (? @"".Class) @"".GoString() (? string)
+func (? @"".Class) @"".String() (? string)
+func (? *@"".Class) @"".GoString() (? string)
+func (? *@"".Class) @"".String() (? string)
+const @"".DF_BIND_NOW @"".DynFlag = 0x8
+const @"".DF_ORIGIN @"".DynFlag = 0x1
+const @"".DF_STATIC_TLS @"".DynFlag = 0x10
+const @"".DF_SYMBOLIC @"".DynFlag = 0x2
+const @"".DF_TEXTREL @"".DynFlag = 0x4
+const @"".DT_BIND_NOW @"".DynTag = 0x18
+const @"".DT_DEBUG @"".DynTag = 0x15
+const @"".DT_ENCODING @"".DynTag = 0x20
+const @"".DT_FINI @"".DynTag = 0xd
+const @"".DT_FINI_ARRAY @"".DynTag = 0x1a
+const @"".DT_FINI_ARRAYSZ @"".DynTag = 0x1c
+const @"".DT_FLAGS @"".DynTag = 0x1e
+const @"".DT_HASH @"".DynTag = 0x4
+const @"".DT_HIOS @"".DynTag = 0x6ffff000
+const @"".DT_HIPROC @"".DynTag = 0x7fffffff
+const @"".DT_INIT @"".DynTag = 0xc
+const @"".DT_INIT_ARRAY @"".DynTag = 0x19
+const @"".DT_INIT_ARRAYSZ @"".DynTag = 0x1b
+const @"".DT_JMPREL @"".DynTag = 0x17
+const @"".DT_LOOS @"".DynTag = 0x6000000d
+const @"".DT_LOPROC @"".DynTag = 0x70000000
+const @"".DT_NEEDED @"".DynTag = 0x1
+const @"".DT_NULL @"".DynTag = 0x0
+const @"".DT_PLTGOT @"".DynTag = 0x3
+const @"".DT_PLTREL @"".DynTag = 0x14
+const @"".DT_PLTRELSZ @"".DynTag = 0x2
+const @"".DT_PREINIT_ARRAY @"".DynTag = 0x20
+const @"".DT_PREINIT_ARRAYSZ @"".DynTag = 0x21
+const @"".DT_REL @"".DynTag = 0x11
+const @"".DT_RELA @"".DynTag = 0x7
+const @"".DT_RELAENT @"".DynTag = 0x9
+const @"".DT_RELASZ @"".DynTag = 0x8
+const @"".DT_RELENT @"".DynTag = 0x13
+const @"".DT_RELSZ @"".DynTag = 0x12
+const @"".DT_RPATH @"".DynTag = 0xf
+const @"".DT_RUNPATH @"".DynTag = 0x1d
+const @"".DT_SONAME @"".DynTag = 0xe
+const @"".DT_STRSZ @"".DynTag = 0xa
+const @"".DT_STRTAB @"".DynTag = 0x5
+const @"".DT_SYMBOLIC @"".DynTag = 0x10
+const @"".DT_SYMENT @"".DynTag = 0xb
+const @"".DT_SYMTAB @"".DynTag = 0x6
+const @"".DT_TEXTREL @"".DynTag = 0x16
+const @"".DT_VERNEED @"".DynTag = 0x6ffffffe
+const @"".DT_VERNEEDNUM @"".DynTag = 0x6fffffff
+const @"".DT_VERSYM @"".DynTag = 0x6ffffff0
+type @"".Data byte
+func (? @"".Data) @"".GoString() (? string)
+func (? @"".Data) @"".String() (? string)
+func (? *@"".Data) @"".GoString() (? string)
+func (? *@"".Data) @"".String() (? string)
+type @"".Dyn32 struct { @"".Tag int32; @"".Val uint32 }
+type @"".Dyn64 struct { @"".Tag int64; @"".Val uint64 }
+type @"".DynFlag int
+func (? @"".DynFlag) @"".GoString() (? string)
+func (? @"".DynFlag) @"".String() (? string)
+func (? *@"".DynFlag) @"".GoString() (? string)
+func (? *@"".DynFlag) @"".String() (? string)
+type @"".DynTag int
+func (? @"".DynTag) @"".GoString() (? string)
+func (? @"".DynTag) @"".String() (? string)
+func (? *@"".DynTag) @"".GoString() (? string)
+func (? *@"".DynTag) @"".String() (? string)
+const @"".EI_ABIVERSION = 0x8
+const @"".EI_CLASS = 0x4
+const @"".EI_DATA = 0x5
+const @"".EI_NIDENT = 0x10
+const @"".EI_OSABI = 0x7
+const @"".EI_PAD = 0x9
+const @"".EI_VERSION = 0x6
+const @"".ELFCLASS32 @"".Class = 0x1
+const @"".ELFCLASS64 @"".Class = 0x2
+const @"".ELFCLASSNONE @"".Class = 0x0
+const @"".ELFDATA2LSB @"".Data = 0x1
+const @"".ELFDATA2MSB @"".Data = 0x2
+const @"".ELFDATANONE @"".Data = 0x0
+const @"".ELFMAG = "\u007fELF"
+const @"".ELFOSABI_86OPEN @"".OSABI = 0x5
+const @"".ELFOSABI_AIX @"".OSABI = 0x7
+const @"".ELFOSABI_ARM @"".OSABI = 0x61
+const @"".ELFOSABI_FREEBSD @"".OSABI = 0x9
+const @"".ELFOSABI_HPUX @"".OSABI = 0x1
+const @"".ELFOSABI_HURD @"".OSABI = 0x4
+const @"".ELFOSABI_IRIX @"".OSABI = 0x8
+const @"".ELFOSABI_LINUX @"".OSABI = 0x3
+const @"".ELFOSABI_MODESTO @"".OSABI = 0xb
+const @"".ELFOSABI_NETBSD @"".OSABI = 0x2
+const @"".ELFOSABI_NONE @"".OSABI = 0x0
+const @"".ELFOSABI_NSK @"".OSABI = 0xe
+const @"".ELFOSABI_OPENBSD @"".OSABI = 0xc
+const @"".ELFOSABI_OPENVMS @"".OSABI = 0xd
+const @"".ELFOSABI_SOLARIS @"".OSABI = 0x6
+const @"".ELFOSABI_STANDALONE @"".OSABI = 0xff
+const @"".ELFOSABI_TRU64 @"".OSABI = 0xa
+const @"".EM_386 @"".Machine = 0x3
+const @"".EM_486 @"".Machine = 0x6
+const @"".EM_68HC12 @"".Machine = 0x35
+const @"".EM_68K @"".Machine = 0x4
+const @"".EM_860 @"".Machine = 0x7
+const @"".EM_88K @"".Machine = 0x5
+const @"".EM_960 @"".Machine = 0x13
+const @"".EM_ALPHA @"".Machine = 0x9026
+const @"".EM_ALPHA_STD @"".Machine = 0x29
+const @"".EM_ARC @"".Machine = 0x2d
+const @"".EM_ARM @"".Machine = 0x28
+const @"".EM_COLDFIRE @"".Machine = 0x34
+const @"".EM_FR20 @"".Machine = 0x25
+const @"".EM_H8S @"".Machine = 0x30
+const @"".EM_H8_300 @"".Machine = 0x2e
+const @"".EM_H8_300H @"".Machine = 0x2f
+const @"".EM_H8_500 @"".Machine = 0x31
+const @"".EM_IA_64 @"".Machine = 0x32
+const @"".EM_M32 @"".Machine = 0x1
+const @"".EM_ME16 @"".Machine = 0x3b
+const @"".EM_MIPS @"".Machine = 0x8
+const @"".EM_MIPS_RS3_LE @"".Machine = 0xa
+const @"".EM_MIPS_RS4_BE @"".Machine = 0xa
+const @"".EM_MIPS_X @"".Machine = 0x33
+const @"".EM_MMA @"".Machine = 0x36
+const @"".EM_NCPU @"".Machine = 0x38
+const @"".EM_NDR1 @"".Machine = 0x39
+const @"".EM_NONE @"".Machine = 0x0
+const @"".EM_PARISC @"".Machine = 0xf
+const @"".EM_PCP @"".Machine = 0x37
+const @"".EM_PPC @"".Machine = 0x14
+const @"".EM_PPC64 @"".Machine = 0x15
+const @"".EM_RCE @"".Machine = 0x27
+const @"".EM_RH32 @"".Machine = 0x26
+const @"".EM_S370 @"".Machine = 0x9
+const @"".EM_S390 @"".Machine = 0x16
+const @"".EM_SH @"".Machine = 0x2a
+const @"".EM_SPARC @"".Machine = 0x2
+const @"".EM_SPARC32PLUS @"".Machine = 0x12
+const @"".EM_SPARCV9 @"".Machine = 0x2b
+const @"".EM_ST100 @"".Machine = 0x3c
+const @"".EM_STARCORE @"".Machine = 0x3a
+const @"".EM_TINYJ @"".Machine = 0x3d
+const @"".EM_TRICORE @"".Machine = 0x2c
+const @"".EM_V800 @"".Machine = 0x24
+const @"".EM_VPP500 @"".Machine = 0x11
+const @"".EM_X86_64 @"".Machine = 0x3e
+const @"".ET_CORE @"".Type = 0x4
+const @"".ET_DYN @"".Type = 0x3
+const @"".ET_EXEC @"".Type = 0x2
+const @"".ET_HIOS @"".Type = 0xfeff
+const @"".ET_HIPROC @"".Type = 0xffff
+const @"".ET_LOOS @"".Type = 0xfe00
+const @"".ET_LOPROC @"".Type = 0xff00
+const @"".ET_NONE @"".Type = 0x0
+const @"".ET_REL @"".Type = 0x1
+const @"".EV_CURRENT @"".Version = 0x1
+const @"".EV_NONE @"".Version = 0x0
+type @"".File struct { ? @"".FileHeader; @"".Sections []*@"".Section; @"".Progs []*@"".Prog; @"".closer @"io".Closer; @"".gnuNeed []@"".verneed; @"".gnuVersym []byte }
+func (? *@"".File) @"".Close() (? error)
+func (? *@"".File) @"".DWARF() (? *@"debug/dwarf".Data, ? error)
+func (? *@"".File) @"".DynString(@"".tag @"".DynTag) (? []string, ? error)
+func (? *@"".File) @"".ImportedLibraries() (? []string, ? error)
+func (? *@"".File) @"".ImportedSymbols() (? []@"".ImportedSymbol, ? error)
+func (? *@"".File) @"".Section(@"".name string) (? *@"".Section)
+func (? *@"".File) @"".SectionByType(@"".typ @"".SectionType) (? *@"".Section)
+func (? *@"".File) @"".Symbols() (? []@"".Symbol, ? error)
+func (? *@"".File) @"".applyRelocations(@"".dst []byte, @"".rels []byte) (? error)
+func (? *@"".File) @"".applyRelocationsAMD64(@"".dst []byte, @"".rels []byte) (? error)
+func (? *@"".File) @"".getSymbols(@"".typ @"".SectionType) (? []@"".Symbol, ? []byte, ? error)
+func (? *@"".File) @"".getSymbols32(@"".typ @"".SectionType) (? []@"".Symbol, ? []byte, ? error)
+func (? *@"".File) @"".getSymbols64(@"".typ @"".SectionType) (? []@"".Symbol, ? []byte, ? error)
+func (? *@"".File) @"".gnuVersion(@"".i int, @"".sym *@"".ImportedSymbol) ()
+func (? *@"".File) @"".gnuVersionInit(@"".str []byte) ()
+func (? *@"".File) @"".stringTable(@"".link uint32) (? []byte, ? error)
+type @"".FileHeader struct { @"".Class @"".Class; @"".Data @"".Data; @"".Version @"".Version; @"".OSABI @"".OSABI; @"".ABIVersion uint8; @"".ByteOrder @"encoding/binary".ByteOrder; @"".Type @"".Type; @"".Machine @"".Machine; @"".Entry uint64 }
+type @"".FormatError struct { @"".off int64; @"".msg string; @"".val interface {  } }
+func (? *@"".FormatError) @"".Error() (? string)
+type @"".Header32 struct { @"".Ident [16]byte; @"".Type uint16; @"".Machine uint16; @"".Version uint32; @"".Entry uint32; @"".Phoff uint32; @"".Shoff uint32; @"".Flags uint32; @"".Ehsize uint16; @"".Phentsize uint16; @"".Phnum uint16; @"".Shentsize uint16; @"".Shnum uint16; @"".Shstrndx uint16 }
+type @"".Header64 struct { @"".Ident [16]byte; @"".Type uint16; @"".Machine uint16; @"".Version uint32; @"".Entry uint64; @"".Phoff uint64; @"".Shoff uint64; @"".Flags uint32; @"".Ehsize uint16; @"".Phentsize uint16; @"".Phnum uint16; @"".Shentsize uint16; @"".Shnum uint16; @"".Shstrndx uint16 }
+type @"".ImportedSymbol struct { @"".Name string; @"".Version string; @"".Library string }
+type @"".Machine uint16
+func (? @"".Machine) @"".GoString() (? string)
+func (? @"".Machine) @"".String() (? string)
+func (? *@"".Machine) @"".GoString() (? string)
+func (? *@"".Machine) @"".String() (? string)
+const @"".NT_FPREGSET @"".NType = 0x2
+const @"".NT_PRPSINFO @"".NType = 0x3
+const @"".NT_PRSTATUS @"".NType = 0x1
+type @"".NType int
+func (? @"".NType) @"".GoString() (? string)
+func (? @"".NType) @"".String() (? string)
+func (? *@"".NType) @"".GoString() (? string)
+func (? *@"".NType) @"".String() (? string)
+func @"".NewFile(@"".r @"io".ReaderAt) (? *@"".File, ? error)
+type @"".OSABI byte
+func (? @"".OSABI) @"".GoString() (? string)
+func (? @"".OSABI) @"".String() (? string)
+func (? *@"".OSABI) @"".GoString() (? string)
+func (? *@"".OSABI) @"".String() (? string)
+func @"".Open(@"".name string) (? *@"".File, ? error)
+const @"".PF_MASKOS @"".ProgFlag = 0xff00000
+const @"".PF_MASKPROC @"".ProgFlag = 0xf0000000
+const @"".PF_R @"".ProgFlag = 0x4
+const @"".PF_W @"".ProgFlag = 0x2
+const @"".PF_X @"".ProgFlag = 0x1
+const @"".PT_DYNAMIC @"".ProgType = 0x2
+const @"".PT_HIOS @"".ProgType = 0x6fffffff
+const @"".PT_HIPROC @"".ProgType = 0x7fffffff
+const @"".PT_INTERP @"".ProgType = 0x3
+const @"".PT_LOAD @"".ProgType = 0x1
+const @"".PT_LOOS @"".ProgType = 0x60000000
+const @"".PT_LOPROC @"".ProgType = 0x70000000
+const @"".PT_NOTE @"".ProgType = 0x4
+const @"".PT_NULL @"".ProgType = 0x0
+const @"".PT_PHDR @"".ProgType = 0x6
+const @"".PT_SHLIB @"".ProgType = 0x5
+const @"".PT_TLS @"".ProgType = 0x7
+type @"".Prog struct { ? @"".ProgHeader; ? @"io".ReaderAt; @"".sr *@"io".SectionReader }
+func (? *@"".Prog) @"".Open() (? @"io".ReadSeeker)
+type @"".Prog32 struct { @"".Type uint32; @"".Off uint32; @"".Vaddr uint32; @"".Paddr uint32; @"".Filesz uint32; @"".Memsz uint32; @"".Flags uint32; @"".Align uint32 }
+type @"".Prog64 struct { @"".Type uint32; @"".Flags uint32; @"".Off uint64; @"".Vaddr uint64; @"".Paddr uint64; @"".Filesz uint64; @"".Memsz uint64; @"".Align uint64 }
+type @"".ProgFlag uint32
+func (? @"".ProgFlag) @"".GoString() (? string)
+func (? @"".ProgFlag) @"".String() (? string)
+func (? *@"".ProgFlag) @"".GoString() (? string)
+func (? *@"".ProgFlag) @"".String() (? string)
+type @"".ProgHeader struct { @"".Type @"".ProgType; @"".Flags @"".ProgFlag; @"".Off uint64; @"".Vaddr uint64; @"".Paddr uint64; @"".Filesz uint64; @"".Memsz uint64; @"".Align uint64 }
+type @"".ProgType int
+func (? @"".ProgType) @"".GoString() (? string)
+func (? @"".ProgType) @"".String() (? string)
+func (? *@"".ProgType) @"".GoString() (? string)
+func (? *@"".ProgType) @"".String() (? string)
+type @"".R_386 int
+func (? @"".R_386) @"".GoString() (? string)
+func (? @"".R_386) @"".String() (? string)
+func (? *@"".R_386) @"".GoString() (? string)
+func (? *@"".R_386) @"".String() (? string)
+const @"".R_386_32 @"".R_386 = 0x1
+const @"".R_386_COPY @"".R_386 = 0x5
+const @"".R_386_GLOB_DAT @"".R_386 = 0x6
+const @"".R_386_GOT32 @"".R_386 = 0x3
+const @"".R_386_GOTOFF @"".R_386 = 0x9
+const @"".R_386_GOTPC @"".R_386 = 0xa
+const @"".R_386_JMP_SLOT @"".R_386 = 0x7
+const @"".R_386_NONE @"".R_386 = 0x0
+const @"".R_386_PC32 @"".R_386 = 0x2
+const @"".R_386_PLT32 @"".R_386 = 0x4
+const @"".R_386_RELATIVE @"".R_386 = 0x8
+const @"".R_386_TLS_DTPMOD32 @"".R_386 = 0x23
+const @"".R_386_TLS_DTPOFF32 @"".R_386 = 0x24
+const @"".R_386_TLS_GD @"".R_386 = 0x12
+const @"".R_386_TLS_GD_32 @"".R_386 = 0x18
+const @"".R_386_TLS_GD_CALL @"".R_386 = 0x1a
+const @"".R_386_TLS_GD_POP @"".R_386 = 0x1b
+const @"".R_386_TLS_GD_PUSH @"".R_386 = 0x19
+const @"".R_386_TLS_GOTIE @"".R_386 = 0x10
+const @"".R_386_TLS_IE @"".R_386 = 0xf
+const @"".R_386_TLS_IE_32 @"".R_386 = 0x21
+const @"".R_386_TLS_LDM @"".R_386 = 0x13
+const @"".R_386_TLS_LDM_32 @"".R_386 = 0x1c
+const @"".R_386_TLS_LDM_CALL @"".R_386 = 0x1e
+const @"".R_386_TLS_LDM_POP @"".R_386 = 0x1f
+const @"".R_386_TLS_LDM_PUSH @"".R_386 = 0x1d
+const @"".R_386_TLS_LDO_32 @"".R_386 = 0x20
+const @"".R_386_TLS_LE @"".R_386 = 0x11
+const @"".R_386_TLS_LE_32 @"".R_386 = 0x22
+const @"".R_386_TLS_TPOFF @"".R_386 = 0xe
+const @"".R_386_TLS_TPOFF32 @"".R_386 = 0x25
+type @"".R_ALPHA int
+func (? @"".R_ALPHA) @"".GoString() (? string)
+func (? @"".R_ALPHA) @"".String() (? string)
+func (? *@"".R_ALPHA) @"".GoString() (? string)
+func (? *@"".R_ALPHA) @"".String() (? string)
+const @"".R_ALPHA_BRADDR @"".R_ALPHA = 0x7
+const @"".R_ALPHA_COPY @"".R_ALPHA = 0x18
+const @"".R_ALPHA_GLOB_DAT @"".R_ALPHA = 0x19
+const @"".R_ALPHA_GPDISP @"".R_ALPHA = 0x6
+const @"".R_ALPHA_GPREL32 @"".R_ALPHA = 0x3
+const @"".R_ALPHA_GPRELHIGH @"".R_ALPHA = 0x11
+const @"".R_ALPHA_GPRELLOW @"".R_ALPHA = 0x12
+const @"".R_ALPHA_GPVALUE @"".R_ALPHA = 0x10
+const @"".R_ALPHA_HINT @"".R_ALPHA = 0x8
+const @"".R_ALPHA_IMMED_BR_HI32 @"".R_ALPHA = 0x16
+const @"".R_ALPHA_IMMED_GP_16 @"".R_ALPHA = 0x13
+const @"".R_ALPHA_IMMED_GP_HI32 @"".R_ALPHA = 0x14
+const @"".R_ALPHA_IMMED_LO32 @"".R_ALPHA = 0x17
+const @"".R_ALPHA_IMMED_SCN_HI32 @"".R_ALPHA = 0x15
+const @"".R_ALPHA_JMP_SLOT @"".R_ALPHA = 0x1a
+const @"".R_ALPHA_LITERAL @"".R_ALPHA = 0x4
+const @"".R_ALPHA_LITUSE @"".R_ALPHA = 0x5
+const @"".R_ALPHA_NONE @"".R_ALPHA = 0x0
+const @"".R_ALPHA_OP_PRSHIFT @"".R_ALPHA = 0xf
+const @"".R_ALPHA_OP_PSUB @"".R_ALPHA = 0xe
+const @"".R_ALPHA_OP_PUSH @"".R_ALPHA = 0xc
+const @"".R_ALPHA_OP_STORE @"".R_ALPHA = 0xd
+const @"".R_ALPHA_REFLONG @"".R_ALPHA = 0x1
+const @"".R_ALPHA_REFQUAD @"".R_ALPHA = 0x2
+const @"".R_ALPHA_RELATIVE @"".R_ALPHA = 0x1b
+const @"".R_ALPHA_SREL16 @"".R_ALPHA = 0x9
+const @"".R_ALPHA_SREL32 @"".R_ALPHA = 0xa
+const @"".R_ALPHA_SREL64 @"".R_ALPHA = 0xb
+type @"".R_ARM int
+func (? @"".R_ARM) @"".GoString() (? string)
+func (? @"".R_ARM) @"".String() (? string)
+func (? *@"".R_ARM) @"".GoString() (? string)
+func (? *@"".R_ARM) @"".String() (? string)
+const @"".R_ARM_ABS12 @"".R_ARM = 0x6
+const @"".R_ARM_ABS16 @"".R_ARM = 0x5
+const @"".R_ARM_ABS32 @"".R_ARM = 0x2
+const @"".R_ARM_ABS8 @"".R_ARM = 0x8
+const @"".R_ARM_AMP_VCALL9 @"".R_ARM = 0xc
+const @"".R_ARM_COPY @"".R_ARM = 0x14
+const @"".R_ARM_GLOB_DAT @"".R_ARM = 0x15
+const @"".R_ARM_GNU_VTENTRY @"".R_ARM = 0x64
+const @"".R_ARM_GNU_VTINHERIT @"".R_ARM = 0x65
+const @"".R_ARM_GOT32 @"".R_ARM = 0x1a
+const @"".R_ARM_GOTOFF @"".R_ARM = 0x18
+const @"".R_ARM_GOTPC @"".R_ARM = 0x19
+const @"".R_ARM_JUMP_SLOT @"".R_ARM = 0x16
+const @"".R_ARM_NONE @"".R_ARM = 0x0
+const @"".R_ARM_PC13 @"".R_ARM = 0x4
+const @"".R_ARM_PC24 @"".R_ARM = 0x1
+const @"".R_ARM_PLT32 @"".R_ARM = 0x1b
+const @"".R_ARM_RABS32 @"".R_ARM = 0xfd
+const @"".R_ARM_RBASE @"".R_ARM = 0xff
+const @"".R_ARM_REL32 @"".R_ARM = 0x3
+const @"".R_ARM_RELATIVE @"".R_ARM = 0x17
+const @"".R_ARM_RPC24 @"".R_ARM = 0xfe
+const @"".R_ARM_RREL32 @"".R_ARM = 0xfc
+const @"".R_ARM_RSBREL32 @"".R_ARM = 0xfa
+const @"".R_ARM_SBREL32 @"".R_ARM = 0x9
+const @"".R_ARM_SWI24 @"".R_ARM = 0xd
+const @"".R_ARM_THM_ABS5 @"".R_ARM = 0x7
+const @"".R_ARM_THM_PC22 @"".R_ARM = 0xa
+const @"".R_ARM_THM_PC8 @"".R_ARM = 0xb
+const @"".R_ARM_THM_RPC22 @"".R_ARM = 0xfb
+const @"".R_ARM_THM_SWI8 @"".R_ARM = 0xe
+const @"".R_ARM_THM_XPC22 @"".R_ARM = 0x10
+const @"".R_ARM_XPC25 @"".R_ARM = 0xf
+func @"".R_INFO(@"".sym uint32, @"".typ uint32) (? uint64)
+func @"".R_INFO32(@"".sym uint32, @"".typ uint32) (? uint32)
+type @"".R_PPC int
+func (? @"".R_PPC) @"".GoString() (? string)
+func (? @"".R_PPC) @"".String() (? string)
+func (? *@"".R_PPC) @"".GoString() (? string)
+func (? *@"".R_PPC) @"".String() (? string)
+const @"".R_PPC_ADDR14 @"".R_PPC = 0x7
+const @"".R_PPC_ADDR14_BRNTAKEN @"".R_PPC = 0x9
+const @"".R_PPC_ADDR14_BRTAKEN @"".R_PPC = 0x8
+const @"".R_PPC_ADDR16 @"".R_PPC = 0x3
+const @"".R_PPC_ADDR16_HA @"".R_PPC = 0x6
+const @"".R_PPC_ADDR16_HI @"".R_PPC = 0x5
+const @"".R_PPC_ADDR16_LO @"".R_PPC = 0x4
+const @"".R_PPC_ADDR24 @"".R_PPC = 0x2
+const @"".R_PPC_ADDR32 @"".R_PPC = 0x1
+const @"".R_PPC_COPY @"".R_PPC = 0x13
+const @"".R_PPC_DTPMOD32 @"".R_PPC = 0x44
+const @"".R_PPC_DTPREL16 @"".R_PPC = 0x4a
+const @"".R_PPC_DTPREL16_HA @"".R_PPC = 0x4d
+const @"".R_PPC_DTPREL16_HI @"".R_PPC = 0x4c
+const @"".R_PPC_DTPREL16_LO @"".R_PPC = 0x4b
+const @"".R_PPC_DTPREL32 @"".R_PPC = 0x4e
+const @"".R_PPC_EMB_BIT_FLD @"".R_PPC = 0x73
+const @"".R_PPC_EMB_MRKREF @"".R_PPC = 0x6e
+const @"".R_PPC_EMB_NADDR16 @"".R_PPC = 0x66
+const @"".R_PPC_EMB_NADDR16_HA @"".R_PPC = 0x69
+const @"".R_PPC_EMB_NADDR16_HI @"".R_PPC = 0x68
+const @"".R_PPC_EMB_NADDR16_LO @"".R_PPC = 0x67
+const @"".R_PPC_EMB_NADDR32 @"".R_PPC = 0x65
+const @"".R_PPC_EMB_RELSDA @"".R_PPC = 0x74
+const @"".R_PPC_EMB_RELSEC16 @"".R_PPC = 0x6f
+const @"".R_PPC_EMB_RELST_HA @"".R_PPC = 0x72
+const @"".R_PPC_EMB_RELST_HI @"".R_PPC = 0x71
+const @"".R_PPC_EMB_RELST_LO @"".R_PPC = 0x70
+const @"".R_PPC_EMB_SDA21 @"".R_PPC = 0x6d
+const @"".R_PPC_EMB_SDA2I16 @"".R_PPC = 0x6b
+const @"".R_PPC_EMB_SDA2REL @"".R_PPC = 0x6c
+const @"".R_PPC_EMB_SDAI16 @"".R_PPC = 0x6a
+const @"".R_PPC_GLOB_DAT @"".R_PPC = 0x14
+const @"".R_PPC_GOT16 @"".R_PPC = 0xe
+const @"".R_PPC_GOT16_HA @"".R_PPC = 0x11
+const @"".R_PPC_GOT16_HI @"".R_PPC = 0x10
+const @"".R_PPC_GOT16_LO @"".R_PPC = 0xf
+const @"".R_PPC_GOT_TLSGD16 @"".R_PPC = 0x4f
+const @"".R_PPC_GOT_TLSGD16_HA @"".R_PPC = 0x52
+const @"".R_PPC_GOT_TLSGD16_HI @"".R_PPC = 0x51
+const @"".R_PPC_GOT_TLSGD16_LO @"".R_PPC = 0x50
+const @"".R_PPC_GOT_TLSLD16 @"".R_PPC = 0x53
+const @"".R_PPC_GOT_TLSLD16_HA @"".R_PPC = 0x56
+const @"".R_PPC_GOT_TLSLD16_HI @"".R_PPC = 0x55
+const @"".R_PPC_GOT_TLSLD16_LO @"".R_PPC = 0x54
+const @"".R_PPC_GOT_TPREL16 @"".R_PPC = 0x57
+const @"".R_PPC_GOT_TPREL16_HA @"".R_PPC = 0x5a
+const @"".R_PPC_GOT_TPREL16_HI @"".R_PPC = 0x59
+const @"".R_PPC_GOT_TPREL16_LO @"".R_PPC = 0x58
+const @"".R_PPC_JMP_SLOT @"".R_PPC = 0x15
+const @"".R_PPC_LOCAL24PC @"".R_PPC = 0x17
+const @"".R_PPC_NONE @"".R_PPC = 0x0
+const @"".R_PPC_PLT16_HA @"".R_PPC = 0x1f
+const @"".R_PPC_PLT16_HI @"".R_PPC = 0x1e
+const @"".R_PPC_PLT16_LO @"".R_PPC = 0x1d
+const @"".R_PPC_PLT32 @"".R_PPC = 0x1b
+const @"".R_PPC_PLTREL24 @"".R_PPC = 0x12
+const @"".R_PPC_PLTREL32 @"".R_PPC = 0x1c
+const @"".R_PPC_REL14 @"".R_PPC = 0xb
+const @"".R_PPC_REL14_BRNTAKEN @"".R_PPC = 0xd
+const @"".R_PPC_REL14_BRTAKEN @"".R_PPC = 0xc
+const @"".R_PPC_REL24 @"".R_PPC = 0xa
+const @"".R_PPC_REL32 @"".R_PPC = 0x1a
+const @"".R_PPC_RELATIVE @"".R_PPC = 0x16
+const @"".R_PPC_SDAREL16 @"".R_PPC = 0x20
+const @"".R_PPC_SECTOFF @"".R_PPC = 0x21
+const @"".R_PPC_SECTOFF_HA @"".R_PPC = 0x24
+const @"".R_PPC_SECTOFF_HI @"".R_PPC = 0x23
+const @"".R_PPC_SECTOFF_LO @"".R_PPC = 0x22
+const @"".R_PPC_TLS @"".R_PPC = 0x43
+const @"".R_PPC_TPREL16 @"".R_PPC = 0x45
+const @"".R_PPC_TPREL16_HA @"".R_PPC = 0x48
+const @"".R_PPC_TPREL16_HI @"".R_PPC = 0x47
+const @"".R_PPC_TPREL16_LO @"".R_PPC = 0x46
+const @"".R_PPC_TPREL32 @"".R_PPC = 0x49
+const @"".R_PPC_UADDR16 @"".R_PPC = 0x19
+const @"".R_PPC_UADDR32 @"".R_PPC = 0x18
+type @"".R_SPARC int
+func (? @"".R_SPARC) @"".GoString() (? string)
+func (? @"".R_SPARC) @"".String() (? string)
+func (? *@"".R_SPARC) @"".GoString() (? string)
+func (? *@"".R_SPARC) @"".String() (? string)
+const @"".R_SPARC_10 @"".R_SPARC = 0x1e
+const @"".R_SPARC_11 @"".R_SPARC = 0x1f
+const @"".R_SPARC_13 @"".R_SPARC = 0xb
+const @"".R_SPARC_16 @"".R_SPARC = 0x2
+const @"".R_SPARC_22 @"".R_SPARC = 0xa
+const @"".R_SPARC_32 @"".R_SPARC = 0x3
+const @"".R_SPARC_5 @"".R_SPARC = 0x2c
+const @"".R_SPARC_6 @"".R_SPARC = 0x2d
+const @"".R_SPARC_64 @"".R_SPARC = 0x20
+const @"".R_SPARC_7 @"".R_SPARC = 0x2b
+const @"".R_SPARC_8 @"".R_SPARC = 0x1
+const @"".R_SPARC_COPY @"".R_SPARC = 0x13
+const @"".R_SPARC_DISP16 @"".R_SPARC = 0x5
+const @"".R_SPARC_DISP32 @"".R_SPARC = 0x6
+const @"".R_SPARC_DISP64 @"".R_SPARC = 0x2e
+const @"".R_SPARC_DISP8 @"".R_SPARC = 0x4
+const @"".R_SPARC_GLOB_DAT @"".R_SPARC = 0x14
+const @"".R_SPARC_GLOB_JMP @"".R_SPARC = 0x2a
+const @"".R_SPARC_GOT10 @"".R_SPARC = 0xd
+const @"".R_SPARC_GOT13 @"".R_SPARC = 0xe
+const @"".R_SPARC_GOT22 @"".R_SPARC = 0xf
+const @"".R_SPARC_H44 @"".R_SPARC = 0x32
+const @"".R_SPARC_HH22 @"".R_SPARC = 0x22
+const @"".R_SPARC_HI22 @"".R_SPARC = 0x9
+const @"".R_SPARC_HIPLT22 @"".R_SPARC = 0x19
+const @"".R_SPARC_HIX22 @"".R_SPARC = 0x30
+const @"".R_SPARC_HM10 @"".R_SPARC = 0x23
+const @"".R_SPARC_JMP_SLOT @"".R_SPARC = 0x15
+const @"".R_SPARC_L44 @"".R_SPARC = 0x34
+const @"".R_SPARC_LM22 @"".R_SPARC = 0x24
+const @"".R_SPARC_LO10 @"".R_SPARC = 0xc
+const @"".R_SPARC_LOPLT10 @"".R_SPARC = 0x1a
+const @"".R_SPARC_LOX10 @"".R_SPARC = 0x31
+const @"".R_SPARC_M44 @"".R_SPARC = 0x33
+const @"".R_SPARC_NONE @"".R_SPARC = 0x0
+const @"".R_SPARC_OLO10 @"".R_SPARC = 0x21
+const @"".R_SPARC_PC10 @"".R_SPARC = 0x10
+const @"".R_SPARC_PC22 @"".R_SPARC = 0x11
+const @"".R_SPARC_PCPLT10 @"".R_SPARC = 0x1d
+const @"".R_SPARC_PCPLT22 @"".R_SPARC = 0x1c
+const @"".R_SPARC_PCPLT32 @"".R_SPARC = 0x1b
+const @"".R_SPARC_PC_HH22 @"".R_SPARC = 0x25
+const @"".R_SPARC_PC_HM10 @"".R_SPARC = 0x26
+const @"".R_SPARC_PC_LM22 @"".R_SPARC = 0x27
+const @"".R_SPARC_PLT32 @"".R_SPARC = 0x18
+const @"".R_SPARC_PLT64 @"".R_SPARC = 0x2f
+const @"".R_SPARC_REGISTER @"".R_SPARC = 0x35
+const @"".R_SPARC_RELATIVE @"".R_SPARC = 0x16
+const @"".R_SPARC_UA16 @"".R_SPARC = 0x37
+const @"".R_SPARC_UA32 @"".R_SPARC = 0x17
+const @"".R_SPARC_UA64 @"".R_SPARC = 0x36
+const @"".R_SPARC_WDISP16 @"".R_SPARC = 0x28
+const @"".R_SPARC_WDISP19 @"".R_SPARC = 0x29
+const @"".R_SPARC_WDISP22 @"".R_SPARC = 0x8
+const @"".R_SPARC_WDISP30 @"".R_SPARC = 0x7
+const @"".R_SPARC_WPLT30 @"".R_SPARC = 0x12
+func @"".R_SYM32(@"".info uint32) (? uint32)
+func @"".R_SYM64(@"".info uint64) (? uint32)
+func @"".R_TYPE32(@"".info uint32) (? uint32)
+func @"".R_TYPE64(@"".info uint64) (? uint32)
+type @"".R_X86_64 int
+func (? @"".R_X86_64) @"".GoString() (? string)
+func (? @"".R_X86_64) @"".String() (? string)
+func (? *@"".R_X86_64) @"".GoString() (? string)
+func (? *@"".R_X86_64) @"".String() (? string)
+const @"".R_X86_64_16 @"".R_X86_64 = 0xc
+const @"".R_X86_64_32 @"".R_X86_64 = 0xa
+const @"".R_X86_64_32S @"".R_X86_64 = 0xb
+const @"".R_X86_64_64 @"".R_X86_64 = 0x1
+const @"".R_X86_64_8 @"".R_X86_64 = 0xe
+const @"".R_X86_64_COPY @"".R_X86_64 = 0x5
+const @"".R_X86_64_DTPMOD64 @"".R_X86_64 = 0x10
+const @"".R_X86_64_DTPOFF32 @"".R_X86_64 = 0x15
+const @"".R_X86_64_DTPOFF64 @"".R_X86_64 = 0x11
+const @"".R_X86_64_GLOB_DAT @"".R_X86_64 = 0x6
+const @"".R_X86_64_GOT32 @"".R_X86_64 = 0x3
+const @"".R_X86_64_GOTPCREL @"".R_X86_64 = 0x9
+const @"".R_X86_64_GOTTPOFF @"".R_X86_64 = 0x16
+const @"".R_X86_64_JMP_SLOT @"".R_X86_64 = 0x7
+const @"".R_X86_64_NONE @"".R_X86_64 = 0x0
+const @"".R_X86_64_PC16 @"".R_X86_64 = 0xd
+const @"".R_X86_64_PC32 @"".R_X86_64 = 0x2
+const @"".R_X86_64_PC8 @"".R_X86_64 = 0xf
+const @"".R_X86_64_PLT32 @"".R_X86_64 = 0x4
+const @"".R_X86_64_RELATIVE @"".R_X86_64 = 0x8
+const @"".R_X86_64_TLSGD @"".R_X86_64 = 0x13
+const @"".R_X86_64_TLSLD @"".R_X86_64 = 0x14
+const @"".R_X86_64_TPOFF32 @"".R_X86_64 = 0x17
+const @"".R_X86_64_TPOFF64 @"".R_X86_64 = 0x12
+type @"".Rel32 struct { @"".Off uint32; @"".Info uint32 }
+type @"".Rel64 struct { @"".Off uint64; @"".Info uint64 }
+type @"".Rela32 struct { @"".Off uint32; @"".Info uint32; @"".Addend int32 }
+type @"".Rela64 struct { @"".Off uint64; @"".Info uint64; @"".Addend int64 }
+const @"".SHF_ALLOC @"".SectionFlag = 0x2
+const @"".SHF_EXECINSTR @"".SectionFlag = 0x4
+const @"".SHF_GROUP @"".SectionFlag = 0x200
+const @"".SHF_INFO_LINK @"".SectionFlag = 0x40
+const @"".SHF_LINK_ORDER @"".SectionFlag = 0x80
+const @"".SHF_MASKOS @"".SectionFlag = 0xff00000
+const @"".SHF_MASKPROC @"".SectionFlag = 0xf0000000
+const @"".SHF_MERGE @"".SectionFlag = 0x10
+const @"".SHF_OS_NONCONFORMING @"".SectionFlag = 0x100
+const @"".SHF_STRINGS @"".SectionFlag = 0x20
+const @"".SHF_TLS @"".SectionFlag = 0x400
+const @"".SHF_WRITE @"".SectionFlag = 0x1
+const @"".SHN_ABS @"".SectionIndex = 0xfff1
+const @"".SHN_COMMON @"".SectionIndex = 0xfff2
+const @"".SHN_HIOS @"".SectionIndex = 0xff3f
+const @"".SHN_HIPROC @"".SectionIndex = 0xff1f
+const @"".SHN_HIRESERVE @"".SectionIndex = 0xffff
+const @"".SHN_LOOS @"".SectionIndex = 0xff20
+const @"".SHN_LOPROC @"".SectionIndex = 0xff00
+const @"".SHN_LORESERVE @"".SectionIndex = 0xff00
+const @"".SHN_UNDEF @"".SectionIndex = 0x0
+const @"".SHN_XINDEX @"".SectionIndex = 0xffff
+const @"".SHT_DYNAMIC @"".SectionType = 0x6
+const @"".SHT_DYNSYM @"".SectionType = 0xb
+const @"".SHT_FINI_ARRAY @"".SectionType = 0xf
+const @"".SHT_GNU_ATTRIBUTES @"".SectionType = 0x6ffffff5
+const @"".SHT_GNU_HASH @"".SectionType = 0x6ffffff6
+const @"".SHT_GNU_LIBLIST @"".SectionType = 0x6ffffff7
+const @"".SHT_GNU_VERDEF @"".SectionType = 0x6ffffffd
+const @"".SHT_GNU_VERNEED @"".SectionType = 0x6ffffffe
+const @"".SHT_GNU_VERSYM @"".SectionType = 0x6fffffff
+const @"".SHT_GROUP @"".SectionType = 0x11
+const @"".SHT_HASH @"".SectionType = 0x5
+const @"".SHT_HIOS @"".SectionType = 0x6fffffff
+const @"".SHT_HIPROC @"".SectionType = 0x7fffffff
+const @"".SHT_HIUSER @"".SectionType = 0xffffffff
+const @"".SHT_INIT_ARRAY @"".SectionType = 0xe
+const @"".SHT_LOOS @"".SectionType = 0x60000000
+const @"".SHT_LOPROC @"".SectionType = 0x70000000
+const @"".SHT_LOUSER @"".SectionType = 0x80000000
+const @"".SHT_NOBITS @"".SectionType = 0x8
+const @"".SHT_NOTE @"".SectionType = 0x7
+const @"".SHT_NULL @"".SectionType = 0x0
+const @"".SHT_PREINIT_ARRAY @"".SectionType = 0x10
+const @"".SHT_PROGBITS @"".SectionType = 0x1
+const @"".SHT_REL @"".SectionType = 0x9
+const @"".SHT_RELA @"".SectionType = 0x4
+const @"".SHT_SHLIB @"".SectionType = 0xa
+const @"".SHT_STRTAB @"".SectionType = 0x3
+const @"".SHT_SYMTAB @"".SectionType = 0x2
+const @"".SHT_SYMTAB_SHNDX @"".SectionType = 0x12
+const @"".STB_GLOBAL @"".SymBind = 0x1
+const @"".STB_HIOS @"".SymBind = 0xc
+const @"".STB_HIPROC @"".SymBind = 0xf
+const @"".STB_LOCAL @"".SymBind = 0x0
+const @"".STB_LOOS @"".SymBind = 0xa
+const @"".STB_LOPROC @"".SymBind = 0xd
+const @"".STB_WEAK @"".SymBind = 0x2
+const @"".STT_COMMON @"".SymType = 0x5
+const @"".STT_FILE @"".SymType = 0x4
+const @"".STT_FUNC @"".SymType = 0x2
+const @"".STT_HIOS @"".SymType = 0xc
+const @"".STT_HIPROC @"".SymType = 0xf
+const @"".STT_LOOS @"".SymType = 0xa
+const @"".STT_LOPROC @"".SymType = 0xd
+const @"".STT_NOTYPE @"".SymType = 0x0
+const @"".STT_OBJECT @"".SymType = 0x1
+const @"".STT_SECTION @"".SymType = 0x3
+const @"".STT_TLS @"".SymType = 0x6
+const @"".STV_DEFAULT @"".SymVis = 0x0
+const @"".STV_HIDDEN @"".SymVis = 0x2
+const @"".STV_INTERNAL @"".SymVis = 0x1
+const @"".STV_PROTECTED @"".SymVis = 0x3
+func @"".ST_BIND(@"".info uint8) (? @"".SymBind)
+func @"".ST_INFO(@"".bind @"".SymBind, @"".typ @"".SymType) (? uint8)
+func @"".ST_TYPE(@"".info uint8) (? @"".SymType)
+func @"".ST_VISIBILITY(@"".other uint8) (? @"".SymVis)
+type @"".Section struct { ? @"".SectionHeader; ? @"io".ReaderAt; @"".sr *@"io".SectionReader }
+func (? *@"".Section) @"".Data() (? []byte, ? error)
+func (? *@"".Section) @"".Open() (? @"io".ReadSeeker)
+type @"".Section32 struct { @"".Name uint32; @"".Type uint32; @"".Flags uint32; @"".Addr uint32; @"".Off uint32; @"".Size uint32; @"".Link uint32; @"".Info uint32; @"".Addralign uint32; @"".Entsize uint32 }
+type @"".Section64 struct { @"".Name uint32; @"".Type uint32; @"".Flags uint64; @"".Addr uint64; @"".Off uint64; @"".Size uint64; @"".Link uint32; @"".Info uint32; @"".Addralign uint64; @"".Entsize uint64 }
+type @"".SectionFlag uint32
+func (? @"".SectionFlag) @"".GoString() (? string)
+func (? @"".SectionFlag) @"".String() (? string)
+func (? *@"".SectionFlag) @"".GoString() (? string)
+func (? *@"".SectionFlag) @"".String() (? string)
+type @"".SectionHeader struct { @"".Name string; @"".Type @"".SectionType; @"".Flags @"".SectionFlag; @"".Addr uint64; @"".Offset uint64; @"".Size uint64; @"".Link uint32; @"".Info uint32; @"".Addralign uint64; @"".Entsize uint64 }
+type @"".SectionIndex int
+func (? @"".SectionIndex) @"".GoString() (? string)
+func (? @"".SectionIndex) @"".String() (? string)
+func (? *@"".SectionIndex) @"".GoString() (? string)
+func (? *@"".SectionIndex) @"".String() (? string)
+type @"".SectionType uint32
+func (? @"".SectionType) @"".GoString() (? string)
+func (? @"".SectionType) @"".String() (? string)
+func (? *@"".SectionType) @"".GoString() (? string)
+func (? *@"".SectionType) @"".String() (? string)
+type @"".Sym32 struct { @"".Name uint32; @"".Value uint32; @"".Size uint32; @"".Info uint8; @"".Other uint8; @"".Shndx uint16 }
+const @"".Sym32Size = 0x10
+type @"".Sym64 struct { @"".Name uint32; @"".Info uint8; @"".Other uint8; @"".Shndx uint16; @"".Value uint64; @"".Size uint64 }
+const @"".Sym64Size = 0x18
+type @"".SymBind int
+func (? @"".SymBind) @"".GoString() (? string)
+func (? @"".SymBind) @"".String() (? string)
+func (? *@"".SymBind) @"".GoString() (? string)
+func (? *@"".SymBind) @"".String() (? string)
+type @"".SymType int
+func (? @"".SymType) @"".GoString() (? string)
+func (? @"".SymType) @"".String() (? string)
+func (? *@"".SymType) @"".GoString() (? string)
+func (? *@"".SymType) @"".String() (? string)
+type @"".SymVis int
+func (? @"".SymVis) @"".GoString() (? string)
+func (? @"".SymVis) @"".String() (? string)
+func (? *@"".SymVis) @"".GoString() (? string)
+func (? *@"".SymVis) @"".String() (? string)
+type @"".Symbol struct { @"".Name string; @"".Info byte; @"".Other byte; @"".Section @"".SectionIndex; @"".Value uint64; @"".Size uint64 }
+type @"".Type uint16
+func (? @"".Type) @"".GoString() (? string)
+func (? @"".Type) @"".String() (? string)
+func (? *@"".Type) @"".GoString() (? string)
+func (? *@"".Type) @"".String() (? string)
+type @"".Version byte
+func (? @"".Version) @"".GoString() (? string)
+func (? @"".Version) @"".String() (? string)
+func (? *@"".Version) @"".GoString() (? string)
+func (? *@"".Version) @"".String() (? string)
+type @"".intName struct { @"".i uint32; @"".s string }
+type @"".verneed struct { @"".File string; @"".Name string }
+type @"io".Closer interface { @"io".Close() (? error) }
+type @"debug/dwarf".Data struct { @"debug/dwarf".abbrev []byte; @"debug/dwarf".aranges []byte; @"debug/dwarf".frame []byte; @"debug/dwarf".info []byte; @"debug/dwarf".line []byte; @"debug/dwarf".pubnames []byte; @"debug/dwarf".ranges []byte; @"debug/dwarf".str []byte; @"debug/dwarf".abbrevCache map[uint32]@"debug/dwarf".abbrevTable; @"debug/dwarf".addrsize int; @"debug/dwarf".order @"encoding/binary".ByteOrder; @"debug/dwarf".typeCache map[@"debug/dwarf".Offset]@"debug/dwarf".Type; @"debug/dwarf".unit []@"debug/dwarf".unit }
+func (? *@"debug/dwarf".Data) @"debug/dwarf".Reader() (? *@"debug/dwarf".Reader)
+func (? *@"debug/dwarf".Data) @"debug/dwarf".Type(@"debug/dwarf".off @"debug/dwarf".Offset) (? @"debug/dwarf".Type, ? error)
+func (? *@"debug/dwarf".Data) @"debug/dwarf".parseAbbrev(@"debug/dwarf".off uint32) (? @"debug/dwarf".abbrevTable, ? error)
+func (? *@"debug/dwarf".Data) @"debug/dwarf".parseUnits() (? []@"debug/dwarf".unit, ? error)
+type @"encoding/binary".ByteOrder interface { @"encoding/binary".PutUint16(? []byte, ? uint16) (); @"encoding/binary".PutUint32(? []byte, ? uint32) (); @"encoding/binary".PutUint64(? []byte, ? uint64) (); @"encoding/binary".String() (? string); @"encoding/binary".Uint16(? []byte) (? uint16); @"encoding/binary".Uint32(? []byte) (? uint32); @"encoding/binary".Uint64(? []byte) (? uint64) }
+type @"io".ReaderAt interface { @"io".ReadAt(@"".p []byte, @"".off int64) (@"".n int, @"".err error) }
+type @"io".SectionReader struct { @"io".r @"io".ReaderAt; @"io".base int64; @"io".off int64; @"io".limit int64 }
+func (? *@"io".SectionReader) @"io".Read(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"io".SectionReader) @"io".ReadAt(@"".p []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"io".SectionReader) @"io".Seek(@"".offset int64, @"".whence int) (? int64, ? error)
+func (? *@"io".SectionReader) @"io".Size() (? int64)
+type @"io".ReadSeeker interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error); @"io".Seek(@"".offset int64, @"".whence int) (? int64, ? error) }
+type @"debug/dwarf".abbrevTable map[uint32]@"debug/dwarf".abbrev
+type @"debug/dwarf".Offset uint32
+type @"debug/dwarf".Type interface { @"debug/dwarf".Common() (? *@"debug/dwarf".CommonType); @"debug/dwarf".Size() (? int64); @"debug/dwarf".String() (? string) }
+type @"debug/dwarf".unit struct { @"debug/dwarf".base @"debug/dwarf".Offset; @"debug/dwarf".off @"debug/dwarf".Offset; @"debug/dwarf".data []byte; @"debug/dwarf".atable @"debug/dwarf".abbrevTable; @"debug/dwarf".asize int; @"debug/dwarf".vers int; @"debug/dwarf".is64 bool }
+func (? *@"debug/dwarf".unit) @"debug/dwarf".addrsize() (? int)
+func (? *@"debug/dwarf".unit) @"debug/dwarf".dwarf64() (? bool, ? bool)
+func (? *@"debug/dwarf".unit) @"debug/dwarf".version() (? int)
+type @"debug/dwarf".Reader struct { @"debug/dwarf".b @"debug/dwarf".buf; @"debug/dwarf".d *@"debug/dwarf".Data; @"debug/dwarf".err error; @"debug/dwarf".unit int; @"debug/dwarf".lastChildren bool; @"debug/dwarf".lastSibling @"debug/dwarf".Offset }
+func (? *@"debug/dwarf".Reader) @"debug/dwarf".Next() (? *@"debug/dwarf".Entry, ? error)
+func (? *@"debug/dwarf".Reader) @"debug/dwarf".Seek(@"debug/dwarf".off @"debug/dwarf".Offset) ()
+func (? *@"debug/dwarf".Reader) @"debug/dwarf".SkipChildren() ()
+func (? *@"debug/dwarf".Reader) @"debug/dwarf".maybeNextUnit() ()
+type @"debug/dwarf".abbrev struct { @"debug/dwarf".tag @"debug/dwarf".Tag; @"debug/dwarf".children bool; @"debug/dwarf".field []@"debug/dwarf".afield }
+type @"debug/dwarf".CommonType struct { @"debug/dwarf".ByteSize int64; @"debug/dwarf".Name string }
+func (? *@"debug/dwarf".CommonType) @"debug/dwarf".Common() (? *@"debug/dwarf".CommonType)
+func (? *@"debug/dwarf".CommonType) @"debug/dwarf".Size() (? int64)
+type @"debug/dwarf".buf struct { @"debug/dwarf".dwarf *@"debug/dwarf".Data; @"debug/dwarf".order @"encoding/binary".ByteOrder; @"debug/dwarf".format @"debug/dwarf".dataFormat; @"debug/dwarf".name string; @"debug/dwarf".off @"debug/dwarf".Offset; @"debug/dwarf".data []byte; @"debug/dwarf".err error }
+func (? *@"debug/dwarf".buf) @"debug/dwarf".addr() (? uint64)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".bytes(@"debug/dwarf".n int) (? []byte)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".entry(@"debug/dwarf".atab @"debug/dwarf".abbrevTable, @"debug/dwarf".ubase @"debug/dwarf".Offset) (? *@"debug/dwarf".Entry)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".error(@"debug/dwarf".s string) ()
+func (? *@"debug/dwarf".buf) @"debug/dwarf".int() (? int64)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".skip(@"debug/dwarf".n int) ()
+func (? *@"debug/dwarf".buf) @"debug/dwarf".string() (? string)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint() (? uint64)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint16() (? uint16)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint32() (? uint32)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint64() (? uint64)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint8() (? uint8)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".varint() (@"debug/dwarf".c uint64, @"debug/dwarf".bits uint)
+type @"debug/dwarf".Entry struct { @"debug/dwarf".Offset @"debug/dwarf".Offset; @"debug/dwarf".Tag @"debug/dwarf".Tag; @"debug/dwarf".Children bool; @"debug/dwarf".Field []@"debug/dwarf".Field }
+func (? *@"debug/dwarf".Entry) @"debug/dwarf".Val(@"debug/dwarf".a @"debug/dwarf".Attr) (? interface {  })
+type @"debug/dwarf".Tag uint32
+func (? @"debug/dwarf".Tag) @"debug/dwarf".GoString() (? string)
+func (? @"debug/dwarf".Tag) @"debug/dwarf".String() (? string)
+func (? *@"debug/dwarf".Tag) @"debug/dwarf".GoString() (? string)
+func (? *@"debug/dwarf".Tag) @"debug/dwarf".String() (? string)
+type @"debug/dwarf".afield struct { @"debug/dwarf".attr @"debug/dwarf".Attr; @"debug/dwarf".fmt @"debug/dwarf".format }
+type @"debug/dwarf".dataFormat interface { @"debug/dwarf".addrsize() (? int); @"debug/dwarf".dwarf64() (@"debug/dwarf".dwarf64 bool, @"debug/dwarf".isKnown bool); @"debug/dwarf".version() (? int) }
+type @"debug/dwarf".Field struct { @"debug/dwarf".Attr @"debug/dwarf".Attr; @"debug/dwarf".Val interface {  } }
+type @"debug/dwarf".Attr uint32
+func (? @"debug/dwarf".Attr) @"debug/dwarf".GoString() (? string)
+func (? @"debug/dwarf".Attr) @"debug/dwarf".String() (? string)
+func (? *@"debug/dwarf".Attr) @"debug/dwarf".GoString() (? string)
+func (? *@"debug/dwarf".Attr) @"debug/dwarf".String() (? string)
+type @"debug/dwarf".format uint32
+$$
+0Ÿruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarydebug/dwarfsyscalltimeosfmt	debug/elfƒO	var strconv = go$packages["strconv"];
+	var bytes = go$packages["bytes"];
+	var dwarf = go$packages["debug/dwarf"];
+	var binary = go$packages["encoding/binary"];
+	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var os = go$packages["os"];
+	var Version;
+	Version = go$newType(1, "Uint8", "elf.Version", "Version", "debug/elf", null);
+	go$pkg.Version = Version;
+	var Class;
+	Class = go$newType(1, "Uint8", "elf.Class", "Class", "debug/elf", null);
+	go$pkg.Class = Class;
+	var Data;
+	Data = go$newType(1, "Uint8", "elf.Data", "Data", "debug/elf", null);
+	go$pkg.Data = Data;
+	var OSABI;
+	OSABI = go$newType(1, "Uint8", "elf.OSABI", "OSABI", "debug/elf", null);
+	go$pkg.OSABI = OSABI;
+	var Type;
+	Type = go$newType(2, "Uint16", "elf.Type", "Type", "debug/elf", null);
+	go$pkg.Type = Type;
+	var Machine;
+	Machine = go$newType(2, "Uint16", "elf.Machine", "Machine", "debug/elf", null);
+	go$pkg.Machine = Machine;
+	var SectionIndex;
+	SectionIndex = go$newType(4, "Int", "elf.SectionIndex", "SectionIndex", "debug/elf", null);
+	go$pkg.SectionIndex = SectionIndex;
+	var SectionType;
+	SectionType = go$newType(4, "Uint32", "elf.SectionType", "SectionType", "debug/elf", null);
+	go$pkg.SectionType = SectionType;
+	var SectionFlag;
+	SectionFlag = go$newType(4, "Uint32", "elf.SectionFlag", "SectionFlag", "debug/elf", null);
+	go$pkg.SectionFlag = SectionFlag;
+	var ProgType;
+	ProgType = go$newType(4, "Int", "elf.ProgType", "ProgType", "debug/elf", null);
+	go$pkg.ProgType = ProgType;
+	var ProgFlag;
+	ProgFlag = go$newType(4, "Uint32", "elf.ProgFlag", "ProgFlag", "debug/elf", null);
+	go$pkg.ProgFlag = ProgFlag;
+	var DynTag;
+	DynTag = go$newType(4, "Int", "elf.DynTag", "DynTag", "debug/elf", null);
+	go$pkg.DynTag = DynTag;
+	var DynFlag;
+	DynFlag = go$newType(4, "Int", "elf.DynFlag", "DynFlag", "debug/elf", null);
+	go$pkg.DynFlag = DynFlag;
+	var NType;
+	NType = go$newType(4, "Int", "elf.NType", "NType", "debug/elf", null);
+	go$pkg.NType = NType;
+	var SymBind;
+	SymBind = go$newType(4, "Int", "elf.SymBind", "SymBind", "debug/elf", null);
+	go$pkg.SymBind = SymBind;
+	var SymType;
+	SymType = go$newType(4, "Int", "elf.SymType", "SymType", "debug/elf", null);
+	go$pkg.SymType = SymType;
+	var SymVis;
+	SymVis = go$newType(4, "Int", "elf.SymVis", "SymVis", "debug/elf", null);
+	go$pkg.SymVis = SymVis;
+	var R_X86_64;
+	R_X86_64 = go$newType(4, "Int", "elf.R_X86_64", "R_X86_64", "debug/elf", null);
+	go$pkg.R_X86_64 = R_X86_64;
+	var R_ALPHA;
+	R_ALPHA = go$newType(4, "Int", "elf.R_ALPHA", "R_ALPHA", "debug/elf", null);
+	go$pkg.R_ALPHA = R_ALPHA;
+	var R_ARM;
+	R_ARM = go$newType(4, "Int", "elf.R_ARM", "R_ARM", "debug/elf", null);
+	go$pkg.R_ARM = R_ARM;
+	var R_386;
+	R_386 = go$newType(4, "Int", "elf.R_386", "R_386", "debug/elf", null);
+	go$pkg.R_386 = R_386;
+	var R_PPC;
+	R_PPC = go$newType(4, "Int", "elf.R_PPC", "R_PPC", "debug/elf", null);
+	go$pkg.R_PPC = R_PPC;
+	var R_SPARC;
+	R_SPARC = go$newType(4, "Int", "elf.R_SPARC", "R_SPARC", "debug/elf", null);
+	go$pkg.R_SPARC = R_SPARC;
+	var Header32;
+	Header32 = go$newType(0, "Struct", "elf.Header32", "Header32", "debug/elf", function(Ident_, Type_, Machine_, Version_, Entry_, Phoff_, Shoff_, Flags_, Ehsize_, Phentsize_, Phnum_, Shentsize_, Shnum_, Shstrndx_) {
+		this.go$val = this;
+		this.Ident = Ident_ !== undefined ? Ident_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Machine = Machine_ !== undefined ? Machine_ : 0;
+		this.Version = Version_ !== undefined ? Version_ : 0;
+		this.Entry = Entry_ !== undefined ? Entry_ : 0;
+		this.Phoff = Phoff_ !== undefined ? Phoff_ : 0;
+		this.Shoff = Shoff_ !== undefined ? Shoff_ : 0;
+		this.Flags = Flags_ !== undefined ? Flags_ : 0;
+		this.Ehsize = Ehsize_ !== undefined ? Ehsize_ : 0;
+		this.Phentsize = Phentsize_ !== undefined ? Phentsize_ : 0;
+		this.Phnum = Phnum_ !== undefined ? Phnum_ : 0;
+		this.Shentsize = Shentsize_ !== undefined ? Shentsize_ : 0;
+		this.Shnum = Shnum_ !== undefined ? Shnum_ : 0;
+		this.Shstrndx = Shstrndx_ !== undefined ? Shstrndx_ : 0;
+	});
+	go$pkg.Header32 = Header32;
+	var Section32;
+	Section32 = go$newType(0, "Struct", "elf.Section32", "Section32", "debug/elf", function(Name_, Type_, Flags_, Addr_, Off_, Size_, Link_, Info_, Addralign_, Entsize_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : 0;
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Flags = Flags_ !== undefined ? Flags_ : 0;
+		this.Addr = Addr_ !== undefined ? Addr_ : 0;
+		this.Off = Off_ !== undefined ? Off_ : 0;
+		this.Size = Size_ !== undefined ? Size_ : 0;
+		this.Link = Link_ !== undefined ? Link_ : 0;
+		this.Info = Info_ !== undefined ? Info_ : 0;
+		this.Addralign = Addralign_ !== undefined ? Addralign_ : 0;
+		this.Entsize = Entsize_ !== undefined ? Entsize_ : 0;
+	});
+	go$pkg.Section32 = Section32;
+	var Prog32;
+	Prog32 = go$newType(0, "Struct", "elf.Prog32", "Prog32", "debug/elf", function(Type_, Off_, Vaddr_, Paddr_, Filesz_, Memsz_, Flags_, Align_) {
+		this.go$val = this;
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Off = Off_ !== undefined ? Off_ : 0;
+		this.Vaddr = Vaddr_ !== undefined ? Vaddr_ : 0;
+		this.Paddr = Paddr_ !== undefined ? Paddr_ : 0;
+		this.Filesz = Filesz_ !== undefined ? Filesz_ : 0;
+		this.Memsz = Memsz_ !== undefined ? Memsz_ : 0;
+		this.Flags = Flags_ !== undefined ? Flags_ : 0;
+		this.Align = Align_ !== undefined ? Align_ : 0;
+	});
+	go$pkg.Prog32 = Prog32;
+	var Dyn32;
+	Dyn32 = go$newType(0, "Struct", "elf.Dyn32", "Dyn32", "debug/elf", function(Tag_, Val_) {
+		this.go$val = this;
+		this.Tag = Tag_ !== undefined ? Tag_ : 0;
+		this.Val = Val_ !== undefined ? Val_ : 0;
+	});
+	go$pkg.Dyn32 = Dyn32;
+	var Rel32;
+	Rel32 = go$newType(0, "Struct", "elf.Rel32", "Rel32", "debug/elf", function(Off_, Info_) {
+		this.go$val = this;
+		this.Off = Off_ !== undefined ? Off_ : 0;
+		this.Info = Info_ !== undefined ? Info_ : 0;
+	});
+	go$pkg.Rel32 = Rel32;
+	var Rela32;
+	Rela32 = go$newType(0, "Struct", "elf.Rela32", "Rela32", "debug/elf", function(Off_, Info_, Addend_) {
+		this.go$val = this;
+		this.Off = Off_ !== undefined ? Off_ : 0;
+		this.Info = Info_ !== undefined ? Info_ : 0;
+		this.Addend = Addend_ !== undefined ? Addend_ : 0;
+	});
+	go$pkg.Rela32 = Rela32;
+	var Sym32;
+	Sym32 = go$newType(0, "Struct", "elf.Sym32", "Sym32", "debug/elf", function(Name_, Value_, Size_, Info_, Other_, Shndx_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : 0;
+		this.Value = Value_ !== undefined ? Value_ : 0;
+		this.Size = Size_ !== undefined ? Size_ : 0;
+		this.Info = Info_ !== undefined ? Info_ : 0;
+		this.Other = Other_ !== undefined ? Other_ : 0;
+		this.Shndx = Shndx_ !== undefined ? Shndx_ : 0;
+	});
+	go$pkg.Sym32 = Sym32;
+	var Header64;
+	Header64 = go$newType(0, "Struct", "elf.Header64", "Header64", "debug/elf", function(Ident_, Type_, Machine_, Version_, Entry_, Phoff_, Shoff_, Flags_, Ehsize_, Phentsize_, Phnum_, Shentsize_, Shnum_, Shstrndx_) {
+		this.go$val = this;
+		this.Ident = Ident_ !== undefined ? Ident_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Machine = Machine_ !== undefined ? Machine_ : 0;
+		this.Version = Version_ !== undefined ? Version_ : 0;
+		this.Entry = Entry_ !== undefined ? Entry_ : new Go$Uint64(0, 0);
+		this.Phoff = Phoff_ !== undefined ? Phoff_ : new Go$Uint64(0, 0);
+		this.Shoff = Shoff_ !== undefined ? Shoff_ : new Go$Uint64(0, 0);
+		this.Flags = Flags_ !== undefined ? Flags_ : 0;
+		this.Ehsize = Ehsize_ !== undefined ? Ehsize_ : 0;
+		this.Phentsize = Phentsize_ !== undefined ? Phentsize_ : 0;
+		this.Phnum = Phnum_ !== undefined ? Phnum_ : 0;
+		this.Shentsize = Shentsize_ !== undefined ? Shentsize_ : 0;
+		this.Shnum = Shnum_ !== undefined ? Shnum_ : 0;
+		this.Shstrndx = Shstrndx_ !== undefined ? Shstrndx_ : 0;
+	});
+	go$pkg.Header64 = Header64;
+	var Section64;
+	Section64 = go$newType(0, "Struct", "elf.Section64", "Section64", "debug/elf", function(Name_, Type_, Flags_, Addr_, Off_, Size_, Link_, Info_, Addralign_, Entsize_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : 0;
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Flags = Flags_ !== undefined ? Flags_ : new Go$Uint64(0, 0);
+		this.Addr = Addr_ !== undefined ? Addr_ : new Go$Uint64(0, 0);
+		this.Off = Off_ !== undefined ? Off_ : new Go$Uint64(0, 0);
+		this.Size = Size_ !== undefined ? Size_ : new Go$Uint64(0, 0);
+		this.Link = Link_ !== undefined ? Link_ : 0;
+		this.Info = Info_ !== undefined ? Info_ : 0;
+		this.Addralign = Addralign_ !== undefined ? Addralign_ : new Go$Uint64(0, 0);
+		this.Entsize = Entsize_ !== undefined ? Entsize_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.Section64 = Section64;
+	var Prog64;
+	Prog64 = go$newType(0, "Struct", "elf.Prog64", "Prog64", "debug/elf", function(Type_, Flags_, Off_, Vaddr_, Paddr_, Filesz_, Memsz_, Align_) {
+		this.go$val = this;
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Flags = Flags_ !== undefined ? Flags_ : 0;
+		this.Off = Off_ !== undefined ? Off_ : new Go$Uint64(0, 0);
+		this.Vaddr = Vaddr_ !== undefined ? Vaddr_ : new Go$Uint64(0, 0);
+		this.Paddr = Paddr_ !== undefined ? Paddr_ : new Go$Uint64(0, 0);
+		this.Filesz = Filesz_ !== undefined ? Filesz_ : new Go$Uint64(0, 0);
+		this.Memsz = Memsz_ !== undefined ? Memsz_ : new Go$Uint64(0, 0);
+		this.Align = Align_ !== undefined ? Align_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.Prog64 = Prog64;
+	var Dyn64;
+	Dyn64 = go$newType(0, "Struct", "elf.Dyn64", "Dyn64", "debug/elf", function(Tag_, Val_) {
+		this.go$val = this;
+		this.Tag = Tag_ !== undefined ? Tag_ : new Go$Int64(0, 0);
+		this.Val = Val_ !== undefined ? Val_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.Dyn64 = Dyn64;
+	var Rel64;
+	Rel64 = go$newType(0, "Struct", "elf.Rel64", "Rel64", "debug/elf", function(Off_, Info_) {
+		this.go$val = this;
+		this.Off = Off_ !== undefined ? Off_ : new Go$Uint64(0, 0);
+		this.Info = Info_ !== undefined ? Info_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.Rel64 = Rel64;
+	var Rela64;
+	Rela64 = go$newType(0, "Struct", "elf.Rela64", "Rela64", "debug/elf", function(Off_, Info_, Addend_) {
+		this.go$val = this;
+		this.Off = Off_ !== undefined ? Off_ : new Go$Uint64(0, 0);
+		this.Info = Info_ !== undefined ? Info_ : new Go$Uint64(0, 0);
+		this.Addend = Addend_ !== undefined ? Addend_ : new Go$Int64(0, 0);
+	});
+	go$pkg.Rela64 = Rela64;
+	var Sym64;
+	Sym64 = go$newType(0, "Struct", "elf.Sym64", "Sym64", "debug/elf", function(Name_, Info_, Other_, Shndx_, Value_, Size_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : 0;
+		this.Info = Info_ !== undefined ? Info_ : 0;
+		this.Other = Other_ !== undefined ? Other_ : 0;
+		this.Shndx = Shndx_ !== undefined ? Shndx_ : 0;
+		this.Value = Value_ !== undefined ? Value_ : new Go$Uint64(0, 0);
+		this.Size = Size_ !== undefined ? Size_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.Sym64 = Sym64;
+	var intName;
+	intName = go$newType(0, "Struct", "elf.intName", "intName", "debug/elf", function(i_, s_) {
+		this.go$val = this;
+		this.i = i_ !== undefined ? i_ : 0;
+		this.s = s_ !== undefined ? s_ : "";
+	});
+	go$pkg.intName = intName;
+	var FileHeader;
+	FileHeader = go$newType(0, "Struct", "elf.FileHeader", "FileHeader", "debug/elf", function(Class_, Data_, Version_, OSABI_, ABIVersion_, ByteOrder_, Type_, Machine_, Entry_) {
+		this.go$val = this;
+		this.Class = Class_ !== undefined ? Class_ : 0;
+		this.Data = Data_ !== undefined ? Data_ : 0;
+		this.Version = Version_ !== undefined ? Version_ : 0;
+		this.OSABI = OSABI_ !== undefined ? OSABI_ : 0;
+		this.ABIVersion = ABIVersion_ !== undefined ? ABIVersion_ : 0;
+		this.ByteOrder = ByteOrder_ !== undefined ? ByteOrder_ : null;
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Machine = Machine_ !== undefined ? Machine_ : 0;
+		this.Entry = Entry_ !== undefined ? Entry_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.FileHeader = FileHeader;
+	var File;
+	File = go$newType(0, "Struct", "elf.File", "File", "debug/elf", function(FileHeader_, Sections_, Progs_, closer_, gnuNeed_, gnuVersym_) {
+		this.go$val = this;
+		this.FileHeader = FileHeader_ !== undefined ? FileHeader_ : new FileHeader.Ptr();
+		this.Sections = Sections_ !== undefined ? Sections_ : (go$sliceType((go$ptrType(Section)))).nil;
+		this.Progs = Progs_ !== undefined ? Progs_ : (go$sliceType((go$ptrType(Prog)))).nil;
+		this.closer = closer_ !== undefined ? closer_ : null;
+		this.gnuNeed = gnuNeed_ !== undefined ? gnuNeed_ : (go$sliceType(verneed)).nil;
+		this.gnuVersym = gnuVersym_ !== undefined ? gnuVersym_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.File = File;
+	var SectionHeader;
+	SectionHeader = go$newType(0, "Struct", "elf.SectionHeader", "SectionHeader", "debug/elf", function(Name_, Type_, Flags_, Addr_, Offset_, Size_, Link_, Info_, Addralign_, Entsize_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Flags = Flags_ !== undefined ? Flags_ : 0;
+		this.Addr = Addr_ !== undefined ? Addr_ : new Go$Uint64(0, 0);
+		this.Offset = Offset_ !== undefined ? Offset_ : new Go$Uint64(0, 0);
+		this.Size = Size_ !== undefined ? Size_ : new Go$Uint64(0, 0);
+		this.Link = Link_ !== undefined ? Link_ : 0;
+		this.Info = Info_ !== undefined ? Info_ : 0;
+		this.Addralign = Addralign_ !== undefined ? Addralign_ : new Go$Uint64(0, 0);
+		this.Entsize = Entsize_ !== undefined ? Entsize_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.SectionHeader = SectionHeader;
+	var Section;
+	Section = go$newType(0, "Struct", "elf.Section", "Section", "debug/elf", function(SectionHeader_, ReaderAt_, sr_) {
+		this.go$val = this;
+		this.SectionHeader = SectionHeader_ !== undefined ? SectionHeader_ : new SectionHeader.Ptr();
+		this.ReaderAt = ReaderAt_ !== undefined ? ReaderAt_ : null;
+		this.sr = sr_ !== undefined ? sr_ : (go$ptrType(io.SectionReader)).nil;
+	});
+	Section.prototype.ReadAt = function(p, off) { return this.go$val.ReadAt(p, off); };
+	Section.Ptr.prototype.ReadAt = function(p, off) { return this.ReaderAt.ReadAt(p, off); };
+	go$pkg.Section = Section;
+	var ProgHeader;
+	ProgHeader = go$newType(0, "Struct", "elf.ProgHeader", "ProgHeader", "debug/elf", function(Type_, Flags_, Off_, Vaddr_, Paddr_, Filesz_, Memsz_, Align_) {
+		this.go$val = this;
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Flags = Flags_ !== undefined ? Flags_ : 0;
+		this.Off = Off_ !== undefined ? Off_ : new Go$Uint64(0, 0);
+		this.Vaddr = Vaddr_ !== undefined ? Vaddr_ : new Go$Uint64(0, 0);
+		this.Paddr = Paddr_ !== undefined ? Paddr_ : new Go$Uint64(0, 0);
+		this.Filesz = Filesz_ !== undefined ? Filesz_ : new Go$Uint64(0, 0);
+		this.Memsz = Memsz_ !== undefined ? Memsz_ : new Go$Uint64(0, 0);
+		this.Align = Align_ !== undefined ? Align_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.ProgHeader = ProgHeader;
+	var Prog;
+	Prog = go$newType(0, "Struct", "elf.Prog", "Prog", "debug/elf", function(ProgHeader_, ReaderAt_, sr_) {
+		this.go$val = this;
+		this.ProgHeader = ProgHeader_ !== undefined ? ProgHeader_ : new ProgHeader.Ptr();
+		this.ReaderAt = ReaderAt_ !== undefined ? ReaderAt_ : null;
+		this.sr = sr_ !== undefined ? sr_ : (go$ptrType(io.SectionReader)).nil;
+	});
+	Prog.prototype.ReadAt = function(p, off) { return this.go$val.ReadAt(p, off); };
+	Prog.Ptr.prototype.ReadAt = function(p, off) { return this.ReaderAt.ReadAt(p, off); };
+	go$pkg.Prog = Prog;
+	var Symbol;
+	Symbol = go$newType(0, "Struct", "elf.Symbol", "Symbol", "debug/elf", function(Name_, Info_, Other_, Section_, Value_, Size_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.Info = Info_ !== undefined ? Info_ : 0;
+		this.Other = Other_ !== undefined ? Other_ : 0;
+		this.Section = Section_ !== undefined ? Section_ : 0;
+		this.Value = Value_ !== undefined ? Value_ : new Go$Uint64(0, 0);
+		this.Size = Size_ !== undefined ? Size_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.Symbol = Symbol;
+	var FormatError;
+	FormatError = go$newType(0, "Struct", "elf.FormatError", "FormatError", "debug/elf", function(off_, msg_, val_) {
+		this.go$val = this;
+		this.off = off_ !== undefined ? off_ : new Go$Int64(0, 0);
+		this.msg = msg_ !== undefined ? msg_ : "";
+		this.val = val_ !== undefined ? val_ : null;
+	});
+	go$pkg.FormatError = FormatError;
+	var ImportedSymbol;
+	ImportedSymbol = go$newType(0, "Struct", "elf.ImportedSymbol", "ImportedSymbol", "debug/elf", function(Name_, Version_, Library_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.Version = Version_ !== undefined ? Version_ : "";
+		this.Library = Library_ !== undefined ? Library_ : "";
+	});
+	go$pkg.ImportedSymbol = ImportedSymbol;
+	var verneed;
+	verneed = go$newType(0, "Struct", "elf.verneed", "verneed", "debug/elf", function(File_, Name_) {
+		this.go$val = this;
+		this.File = File_ !== undefined ? File_ : "";
+		this.Name = Name_ !== undefined ? Name_ : "";
+	});
+	go$pkg.verneed = verneed;
+	Version.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(Version)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	Class.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(Class)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	Data.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(Data)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	OSABI.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(OSABI)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	Type.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(Type)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	Machine.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(Machine)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	SectionIndex.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(SectionIndex)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	SectionType.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(SectionType)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	SectionFlag.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(SectionFlag)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	ProgType.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(ProgType)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	ProgFlag.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(ProgFlag)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	DynTag.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(DynTag)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	DynFlag.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(DynFlag)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	NType.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(NType)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	SymBind.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(SymBind)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	SymType.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(SymType)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	SymVis.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(SymVis)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	R_X86_64.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(R_X86_64)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	R_ALPHA.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(R_ALPHA)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	R_ARM.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(R_ARM)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	R_386.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(R_386)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	R_PPC.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(R_PPC)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	R_SPARC.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(R_SPARC)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
+	Header32.init([["Ident", "", (go$arrayType(Go$Uint8, 16)), ""], ["Type", "", Go$Uint16, ""], ["Machine", "", Go$Uint16, ""], ["Version", "", Go$Uint32, ""], ["Entry", "", Go$Uint32, ""], ["Phoff", "", Go$Uint32, ""], ["Shoff", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Ehsize", "", Go$Uint16, ""], ["Phentsize", "", Go$Uint16, ""], ["Phnum", "", Go$Uint16, ""], ["Shentsize", "", Go$Uint16, ""], ["Shnum", "", Go$Uint16, ""], ["Shstrndx", "", Go$Uint16, ""]]);
+	Section32.init([["Name", "", Go$Uint32, ""], ["Type", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Addr", "", Go$Uint32, ""], ["Off", "", Go$Uint32, ""], ["Size", "", Go$Uint32, ""], ["Link", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""], ["Addralign", "", Go$Uint32, ""], ["Entsize", "", Go$Uint32, ""]]);
+	Prog32.init([["Type", "", Go$Uint32, ""], ["Off", "", Go$Uint32, ""], ["Vaddr", "", Go$Uint32, ""], ["Paddr", "", Go$Uint32, ""], ["Filesz", "", Go$Uint32, ""], ["Memsz", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Align", "", Go$Uint32, ""]]);
+	Dyn32.init([["Tag", "", Go$Int32, ""], ["Val", "", Go$Uint32, ""]]);
+	Rel32.init([["Off", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""]]);
+	Rela32.init([["Off", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""], ["Addend", "", Go$Int32, ""]]);
+	Sym32.init([["Name", "", Go$Uint32, ""], ["Value", "", Go$Uint32, ""], ["Size", "", Go$Uint32, ""], ["Info", "", Go$Uint8, ""], ["Other", "", Go$Uint8, ""], ["Shndx", "", Go$Uint16, ""]]);
+	Header64.init([["Ident", "", (go$arrayType(Go$Uint8, 16)), ""], ["Type", "", Go$Uint16, ""], ["Machine", "", Go$Uint16, ""], ["Version", "", Go$Uint32, ""], ["Entry", "", Go$Uint64, ""], ["Phoff", "", Go$Uint64, ""], ["Shoff", "", Go$Uint64, ""], ["Flags", "", Go$Uint32, ""], ["Ehsize", "", Go$Uint16, ""], ["Phentsize", "", Go$Uint16, ""], ["Phnum", "", Go$Uint16, ""], ["Shentsize", "", Go$Uint16, ""], ["Shnum", "", Go$Uint16, ""], ["Shstrndx", "", Go$Uint16, ""]]);
+	Section64.init([["Name", "", Go$Uint32, ""], ["Type", "", Go$Uint32, ""], ["Flags", "", Go$Uint64, ""], ["Addr", "", Go$Uint64, ""], ["Off", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""], ["Link", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""], ["Addralign", "", Go$Uint64, ""], ["Entsize", "", Go$Uint64, ""]]);
+	Prog64.init([["Type", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Off", "", Go$Uint64, ""], ["Vaddr", "", Go$Uint64, ""], ["Paddr", "", Go$Uint64, ""], ["Filesz", "", Go$Uint64, ""], ["Memsz", "", Go$Uint64, ""], ["Align", "", Go$Uint64, ""]]);
+	Dyn64.init([["Tag", "", Go$Int64, ""], ["Val", "", Go$Uint64, ""]]);
+	Rel64.init([["Off", "", Go$Uint64, ""], ["Info", "", Go$Uint64, ""]]);
+	Rela64.init([["Off", "", Go$Uint64, ""], ["Info", "", Go$Uint64, ""], ["Addend", "", Go$Int64, ""]]);
+	Sym64.init([["Name", "", Go$Uint32, ""], ["Info", "", Go$Uint8, ""], ["Other", "", Go$Uint8, ""], ["Shndx", "", Go$Uint16, ""], ["Value", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""]]);
+	intName.init([["i", "debug/elf", Go$Uint32, ""], ["s", "debug/elf", Go$String, ""]]);
+	FileHeader.init([["Class", "", Class, ""], ["Data", "", Data, ""], ["Version", "", Version, ""], ["OSABI", "", OSABI, ""], ["ABIVersion", "", Go$Uint8, ""], ["ByteOrder", "", binary.ByteOrder, ""], ["Type", "", Type, ""], ["Machine", "", Machine, ""], ["Entry", "", Go$Uint64, ""]]);
+	File.init([["", "", FileHeader, ""], ["Sections", "", (go$sliceType((go$ptrType(Section)))), ""], ["Progs", "", (go$sliceType((go$ptrType(Prog)))), ""], ["closer", "debug/elf", io.Closer, ""], ["gnuNeed", "debug/elf", (go$sliceType(verneed)), ""], ["gnuVersym", "debug/elf", (go$sliceType(Go$Uint8)), ""]]);
+	(go$ptrType(File)).methods = [["Close", "", [], [go$error], false], ["DWARF", "", [], [(go$ptrType(dwarf.Data)), go$error], false], ["DynString", "", [DynTag], [(go$sliceType(Go$String)), go$error], false], ["ImportedLibraries", "", [], [(go$sliceType(Go$String)), go$error], false], ["ImportedSymbols", "", [], [(go$sliceType(ImportedSymbol)), go$error], false], ["Section", "", [Go$String], [(go$ptrType(Section))], false], ["SectionByType", "", [SectionType], [(go$ptrType(Section))], false], ["Symbols", "", [], [(go$sliceType(Symbol)), go$error], false], ["applyRelocations", "debug/elf", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [go$error], false], ["applyRelocationsAMD64", "debug/elf", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [go$error], false], ["getSymbols", "debug/elf", [SectionType], [(go$sliceType(Symbol)), (go$sliceType(Go$Uint8)), go$error], false], ["getSymbols32", "debug/elf", [SectionType], [(go$sliceType(Symbol)), (go$sliceType(Go$Uint8)), go$error], false], ["getSymbols64", "debug/elf", [SectionType], [(go$sliceType(Symbol)), (go$sliceType(Go$Uint8)), go$error], false], ["gnuVersion", "debug/elf", [Go$Int, (go$ptrType(ImportedSymbol))], [], false], ["gnuVersionInit", "debug/elf", [(go$sliceType(Go$Uint8))], [], false], ["stringTable", "debug/elf", [Go$Uint32], [(go$sliceType(Go$Uint8)), go$error], false]];
+	SectionHeader.init([["Name", "", Go$String, ""], ["Type", "", SectionType, ""], ["Flags", "", SectionFlag, ""], ["Addr", "", Go$Uint64, ""], ["Offset", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""], ["Link", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""], ["Addralign", "", Go$Uint64, ""], ["Entsize", "", Go$Uint64, ""]]);
+	Section.init([["", "", SectionHeader, ""], ["", "", io.ReaderAt, ""], ["sr", "debug/elf", (go$ptrType(io.SectionReader)), ""]]);
+	Section.methods = [["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
+	(go$ptrType(Section)).methods = [["Data", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Open", "", [], [io.ReadSeeker], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
+	ProgHeader.init([["Type", "", ProgType, ""], ["Flags", "", ProgFlag, ""], ["Off", "", Go$Uint64, ""], ["Vaddr", "", Go$Uint64, ""], ["Paddr", "", Go$Uint64, ""], ["Filesz", "", Go$Uint64, ""], ["Memsz", "", Go$Uint64, ""], ["Align", "", Go$Uint64, ""]]);
+	Prog.init([["", "", ProgHeader, ""], ["", "", io.ReaderAt, ""], ["sr", "debug/elf", (go$ptrType(io.SectionReader)), ""]]);
+	Prog.methods = [["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
+	(go$ptrType(Prog)).methods = [["Open", "", [], [io.ReadSeeker], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
+	Symbol.init([["Name", "", Go$String, ""], ["Info", "", Go$Uint8, ""], ["Other", "", Go$Uint8, ""], ["Section", "", SectionIndex, ""], ["Value", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""]]);
+	FormatError.init([["off", "debug/elf", Go$Int64, ""], ["msg", "debug/elf", Go$String, ""], ["val", "debug/elf", go$emptyInterface, ""]]);
+	(go$ptrType(FormatError)).methods = [["Error", "", [], [Go$String], false]];
+	ImportedSymbol.init([["Name", "", Go$String, ""], ["Version", "", Go$String, ""], ["Library", "", Go$String, ""]]);
+	verneed.init([["File", "", Go$String, ""], ["Name", "", Go$String, ""]]);
+	Version.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), versionStrings, false);
+	};
+	go$ptrType(Version).prototype.String = function() { return new Version(this.go$get()).String(); };
+	Version.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), versionStrings, true);
+	};
+	go$ptrType(Version).prototype.GoString = function() { return new Version(this.go$get()).GoString(); };
+	Class.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), classStrings, false);
+	};
+	go$ptrType(Class).prototype.String = function() { return new Class(this.go$get()).String(); };
+	Class.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), classStrings, true);
+	};
+	go$ptrType(Class).prototype.GoString = function() { return new Class(this.go$get()).GoString(); };
+	Data.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), dataStrings, false);
+	};
+	go$ptrType(Data).prototype.String = function() { return new Data(this.go$get()).String(); };
+	Data.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), dataStrings, true);
+	};
+	go$ptrType(Data).prototype.GoString = function() { return new Data(this.go$get()).GoString(); };
+	OSABI.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), osabiStrings, false);
+	};
+	go$ptrType(OSABI).prototype.String = function() { return new OSABI(this.go$get()).String(); };
+	OSABI.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), osabiStrings, true);
+	};
+	go$ptrType(OSABI).prototype.GoString = function() { return new OSABI(this.go$get()).GoString(); };
+	Type.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), typeStrings, false);
+	};
+	go$ptrType(Type).prototype.String = function() { return new Type(this.go$get()).String(); };
+	Type.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), typeStrings, true);
+	};
+	go$ptrType(Type).prototype.GoString = function() { return new Type(this.go$get()).GoString(); };
+	Machine.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), machineStrings, false);
+	};
+	go$ptrType(Machine).prototype.String = function() { return new Machine(this.go$get()).String(); };
+	Machine.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), machineStrings, true);
+	};
+	go$ptrType(Machine).prototype.GoString = function() { return new Machine(this.go$get()).GoString(); };
+	SectionIndex.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), shnStrings, false);
+	};
+	go$ptrType(SectionIndex).prototype.String = function() { return new SectionIndex(this.go$get()).String(); };
+	SectionIndex.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), shnStrings, true);
+	};
+	go$ptrType(SectionIndex).prototype.GoString = function() { return new SectionIndex(this.go$get()).GoString(); };
+	SectionType.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), shtStrings, false);
+	};
+	go$ptrType(SectionType).prototype.String = function() { return new SectionType(this.go$get()).String(); };
+	SectionType.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), shtStrings, true);
+	};
+	go$ptrType(SectionType).prototype.GoString = function() { return new SectionType(this.go$get()).GoString(); };
+	SectionFlag.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return flagName((i >>> 0), shfStrings, false);
+	};
+	go$ptrType(SectionFlag).prototype.String = function() { return new SectionFlag(this.go$get()).String(); };
+	SectionFlag.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return flagName((i >>> 0), shfStrings, true);
+	};
+	go$ptrType(SectionFlag).prototype.GoString = function() { return new SectionFlag(this.go$get()).GoString(); };
+	ProgType.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), ptStrings, false);
+	};
+	go$ptrType(ProgType).prototype.String = function() { return new ProgType(this.go$get()).String(); };
+	ProgType.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), ptStrings, true);
+	};
+	go$ptrType(ProgType).prototype.GoString = function() { return new ProgType(this.go$get()).GoString(); };
+	ProgFlag.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return flagName((i >>> 0), pfStrings, false);
+	};
+	go$ptrType(ProgFlag).prototype.String = function() { return new ProgFlag(this.go$get()).String(); };
+	ProgFlag.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return flagName((i >>> 0), pfStrings, true);
+	};
+	go$ptrType(ProgFlag).prototype.GoString = function() { return new ProgFlag(this.go$get()).GoString(); };
+	DynTag.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), dtStrings, false);
+	};
+	go$ptrType(DynTag).prototype.String = function() { return new DynTag(this.go$get()).String(); };
+	DynTag.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), dtStrings, true);
+	};
+	go$ptrType(DynTag).prototype.GoString = function() { return new DynTag(this.go$get()).GoString(); };
+	DynFlag.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return flagName((i >>> 0), dflagStrings, false);
+	};
+	go$ptrType(DynFlag).prototype.String = function() { return new DynFlag(this.go$get()).String(); };
+	DynFlag.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return flagName((i >>> 0), dflagStrings, true);
+	};
+	go$ptrType(DynFlag).prototype.GoString = function() { return new DynFlag(this.go$get()).GoString(); };
+	NType.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), ntypeStrings, false);
+	};
+	go$ptrType(NType).prototype.String = function() { return new NType(this.go$get()).String(); };
+	NType.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), ntypeStrings, true);
+	};
+	go$ptrType(NType).prototype.GoString = function() { return new NType(this.go$get()).GoString(); };
+	SymBind.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), stbStrings, false);
+	};
+	go$ptrType(SymBind).prototype.String = function() { return new SymBind(this.go$get()).String(); };
+	SymBind.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), stbStrings, true);
+	};
+	go$ptrType(SymBind).prototype.GoString = function() { return new SymBind(this.go$get()).GoString(); };
+	SymType.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), sttStrings, false);
+	};
+	go$ptrType(SymType).prototype.String = function() { return new SymType(this.go$get()).String(); };
+	SymType.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), sttStrings, true);
+	};
+	go$ptrType(SymType).prototype.GoString = function() { return new SymType(this.go$get()).GoString(); };
+	SymVis.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), stvStrings, false);
+	};
+	go$ptrType(SymVis).prototype.String = function() { return new SymVis(this.go$get()).String(); };
+	SymVis.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), stvStrings, true);
+	};
+	go$ptrType(SymVis).prototype.GoString = function() { return new SymVis(this.go$get()).GoString(); };
+	R_X86_64.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), rx86_64Strings, false);
+	};
+	go$ptrType(R_X86_64).prototype.String = function() { return new R_X86_64(this.go$get()).String(); };
+	R_X86_64.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), rx86_64Strings, true);
+	};
+	go$ptrType(R_X86_64).prototype.GoString = function() { return new R_X86_64(this.go$get()).GoString(); };
+	R_ALPHA.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), ralphaStrings, false);
+	};
+	go$ptrType(R_ALPHA).prototype.String = function() { return new R_ALPHA(this.go$get()).String(); };
+	R_ALPHA.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), ralphaStrings, true);
+	};
+	go$ptrType(R_ALPHA).prototype.GoString = function() { return new R_ALPHA(this.go$get()).GoString(); };
+	R_ARM.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), rarmStrings, false);
+	};
+	go$ptrType(R_ARM).prototype.String = function() { return new R_ARM(this.go$get()).String(); };
+	R_ARM.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), rarmStrings, true);
+	};
+	go$ptrType(R_ARM).prototype.GoString = function() { return new R_ARM(this.go$get()).GoString(); };
+	R_386.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), r386Strings, false);
+	};
+	go$ptrType(R_386).prototype.String = function() { return new R_386(this.go$get()).String(); };
+	R_386.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), r386Strings, true);
+	};
+	go$ptrType(R_386).prototype.GoString = function() { return new R_386(this.go$get()).GoString(); };
+	R_PPC.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), rppcStrings, false);
+	};
+	go$ptrType(R_PPC).prototype.String = function() { return new R_PPC(this.go$get()).String(); };
+	R_PPC.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), rppcStrings, true);
+	};
+	go$ptrType(R_PPC).prototype.GoString = function() { return new R_PPC(this.go$get()).GoString(); };
+	R_SPARC.prototype.String = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), rsparcStrings, false);
+	};
+	go$ptrType(R_SPARC).prototype.String = function() { return new R_SPARC(this.go$get()).String(); };
+	R_SPARC.prototype.GoString = function() {
+		var i;
+		i = this.go$val;
+		return stringName((i >>> 0), rsparcStrings, true);
+	};
+	go$ptrType(R_SPARC).prototype.GoString = function() { return new R_SPARC(this.go$get()).GoString(); };
+	var R_SYM32 = go$pkg.R_SYM32 = function(info) {
+		return (info >>> 8 >>> 0);
+	};
+	var R_TYPE32 = go$pkg.R_TYPE32 = function(info) {
+		return ((info & 255) >>> 0);
+	};
+	var R_INFO32 = go$pkg.R_INFO32 = function(sym, typ) {
+		return ((sym << 8 >>> 0) | typ) >>> 0;
+	};
+	var ST_BIND = go$pkg.ST_BIND = function(info) {
+		return ((info >>> 4 << 24 >>> 24) >> 0);
+	};
+	var ST_TYPE = go$pkg.ST_TYPE = function(info) {
+		return (((info & 15) >>> 0) >> 0);
+	};
+	var ST_INFO = go$pkg.ST_INFO = function(bind, typ) {
+		return (((bind << 24 >>> 24) << 4 << 24 >>> 24) | (((typ << 24 >>> 24) & 15) >>> 0)) >>> 0;
+	};
+	var ST_VISIBILITY = go$pkg.ST_VISIBILITY = function(other) {
+		return (((other & 3) >>> 0) >> 0);
+	};
+	var R_SYM64 = go$pkg.R_SYM64 = function(info) {
+		return (go$shiftRightUint64(info, 32).low >>> 0);
+	};
+	var R_TYPE64 = go$pkg.R_TYPE64 = function(info) {
+		return (info.low >>> 0);
+	};
+	var R_INFO = go$pkg.R_INFO = function(sym, typ) {
+		var x, x$1;
+		return (x = go$shiftLeft64(new Go$Uint64(0, sym), 32), x$1 = new Go$Uint64(0, typ), new Go$Uint64(x.high | x$1.high, (x.low | x$1.low) >>> 0));
+	};
+	var stringName = function(i, names, goSyntax) {
+		var _ref, _i, _slice, _index, _struct, n, j, _slice$1, _index$1, _struct$1, n$1, s;
+		_ref = names;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			n = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new intName.Ptr(_struct.i, _struct.s));
+			if (n.i === i) {
+				if (goSyntax) {
+					return "elf." + n.s;
+				}
+				return n.s;
+			}
+		}
+		j = names.length - 1 >> 0;
+		while (j >= 0) {
+			n$1 = (_struct$1 = (_slice$1 = names, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new intName.Ptr(_struct$1.i, _struct$1.s));
+			if (n$1.i < i) {
+				s = n$1.s;
+				if (goSyntax) {
+					s = "elf." + s;
+				}
+				return s + "+" + strconv.FormatUint(new Go$Uint64(0, (i - n$1.i >>> 0)), 10);
+			}
+			j = j - 1 >> 0;
+		}
+		return strconv.FormatUint(new Go$Uint64(0, i), 10);
+	};
+	var flagName = function(i, names, goSyntax) {
+		var s, _ref, _i, _slice, _index, _struct, n;
+		s = "";
+		_ref = names;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			n = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new intName.Ptr(_struct.i, _struct.s));
+			if (((n.i & i) >>> 0) === n.i) {
+				if (s.length > 0) {
+					s = s + "+";
+				}
+				if (goSyntax) {
+					s = s + "elf.";
+				}
+				s = s + (n.s);
+				i = i - (n.i) >>> 0;
+			}
+		}
+		if (s.length === 0) {
+			return "0x" + strconv.FormatUint(new Go$Uint64(0, i), 16);
+		}
+		if (!((i === 0))) {
+			s = s + ("+0x" + strconv.FormatUint(new Go$Uint64(0, i), 16));
+		}
+		return s;
+	};
+	Section.Ptr.prototype.Data = function() {
+		var s, dat, _tuple, n, err;
+		s = this;
+		dat = (go$sliceType(Go$Uint8)).make(go$flatten64(s.sr.Size()), 0, function() { return 0; });
+		_tuple = s.sr.ReadAt(dat, new Go$Int64(0, 0)), n = _tuple[0], err = _tuple[1];
+		return [go$subslice(dat, 0, n), err];
+	};
+	Section.prototype.Data = function() { return this.go$val.Data(); };
+	File.Ptr.prototype.stringTable = function(link) {
+		var f, _slice, _index;
+		f = this;
+		if (link <= 0 || link >= (f.Sections.length >>> 0)) {
+			return [(go$sliceType(Go$Uint8)).nil, errors.New("section has invalid string table link")];
+		}
+		return (_slice = f.Sections, _index = link, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Data();
+	};
+	File.prototype.stringTable = function(link) { return this.go$val.stringTable(link); };
+	Section.Ptr.prototype.Open = function() {
+		var s;
+		s = this;
+		return io.NewSectionReader(s.sr, new Go$Int64(0, 0), new Go$Int64(2147483647, 4294967295));
+	};
+	Section.prototype.Open = function() { return this.go$val.Open(); };
+	Prog.Ptr.prototype.Open = function() {
+		var p;
+		p = this;
+		return io.NewSectionReader(p.sr, new Go$Int64(0, 0), new Go$Int64(2147483647, 4294967295));
+	};
+	Prog.prototype.Open = function() { return this.go$val.Open(); };
+	FormatError.Ptr.prototype.Error = function() {
+		var e, msg;
+		e = this;
+		msg = e.msg;
+		if (!(go$interfaceIsEqual(e.val, null))) {
+			msg = msg + (fmt.Sprintf(" '%v' ", new (go$sliceType(go$emptyInterface))([e.val])));
+		}
+		msg = msg + (fmt.Sprintf("in record at byte %#x", new (go$sliceType(go$emptyInterface))([e.off])));
+		return msg;
+	};
+	FormatError.prototype.Error = function() { return this.go$val.Error(); };
+	var Open = go$pkg.Open = function(name) {
+		var _tuple, f, err, _tuple$1, ff;
+		_tuple = os.Open(name), f = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(File)).nil, err];
+		}
+		_tuple$1 = NewFile(f), ff = _tuple$1[0], err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			f.Close();
+			return [(go$ptrType(File)).nil, err];
+		}
+		ff.closer = f;
+		return [ff, null];
+	};
+	File.Ptr.prototype.Close = function() {
+		var f, err;
+		f = this;
+		err = null;
+		if (!(go$interfaceIsEqual(f.closer, null))) {
+			err = f.closer.Close();
+			f.closer = null;
+		}
+		return err;
+	};
+	File.prototype.Close = function() { return this.go$val.Close(); };
+	File.Ptr.prototype.SectionByType = function(typ) {
+		var f, _ref, _i, _slice, _index, s;
+		f = this;
+		_ref = f.Sections;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (s.SectionHeader.Type === typ) {
+				return s;
+			}
+		}
+		return (go$ptrType(Section)).nil;
+	};
+	File.prototype.SectionByType = function(typ) { return this.go$val.SectionByType(typ); };
+	var NewFile = go$pkg.NewFile = function(r) {
+		var sr, ident, err, _tuple, f, _ref, _ref$1, x, x$1, phoff, _tuple$1, phentsize, phnum, shoff, _tuple$2, shentsize, shnum, shstrndx, _ref$2, hdr, err$1, v, hdr$1, err$2, v$1, x$2, x$3, i, x$4, off, p, _ref$3, ph, err$3, ph$1, err$4, x$5, x$6, _slice, _index, names, i$1, x$7, off$1, s, _ref$4, sh, err$5, _slice$1, _index$1, sh$1, err$6, _slice$2, _index$2, x$8, x$9, _slice$3, _index$3, _tuple$3, _slice$4, _index$4, shstrtab, err$7, _ref$5, _i, _slice$5, _index$5, s$1, i$2, ok, _tuple$4, _slice$6, _index$6, x$10, _slice$7, _index$7;
+		sr = io.NewSectionReader(r, new Go$Int64(0, 0), new Go$Int64(2147483647, 4294967295));
+		ident = go$makeNativeArray("Uint8", 16, function() { return 0; });
+		if (_tuple = r.ReadAt(go$subslice(new (go$sliceType(Go$Uint8))(ident), 0), new Go$Int64(0, 0)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(File)).nil, err];
+		}
+		if (!((ident[0] === 127)) || !((ident[1] === 69)) || !((ident[2] === 76)) || !((ident[3] === 70))) {
+			return [(go$ptrType(File)).nil, new FormatError.Ptr(new Go$Int64(0, 0), "bad magic number", go$subslice(new (go$sliceType(Go$Uint8))(ident), 0, 4))];
+		}
+		f = new File.Ptr();
+		f.FileHeader.Class = (ident[4] << 24 >>> 24);
+		_ref = f.FileHeader.Class;
+		if (_ref === 1) {
+		} else if (_ref === 2) {
+		} else {
+			return [(go$ptrType(File)).nil, new FormatError.Ptr(new Go$Int64(0, 0), "unknown ELF class", new Class(f.FileHeader.Class))];
+		}
+		f.FileHeader.Data = (ident[5] << 24 >>> 24);
+		_ref$1 = f.FileHeader.Data;
+		if (_ref$1 === 1) {
+			f.FileHeader.ByteOrder = (x = binary.LittleEndian, new x.constructor.Struct(x));
+		} else if (_ref$1 === 2) {
+			f.FileHeader.ByteOrder = (x$1 = binary.BigEndian, new x$1.constructor.Struct(x$1));
+		} else {
+			return [(go$ptrType(File)).nil, new FormatError.Ptr(new Go$Int64(0, 0), "unknown ELF data encoding", new Data(f.FileHeader.Data))];
+		}
+		f.FileHeader.Version = (ident[6] << 24 >>> 24);
+		if (!((f.FileHeader.Version === 1))) {
+			return [(go$ptrType(File)).nil, new FormatError.Ptr(new Go$Int64(0, 0), "unknown ELF version", new Version(f.FileHeader.Version))];
+		}
+		f.FileHeader.OSABI = (ident[7] << 24 >>> 24);
+		f.FileHeader.ABIVersion = ident[8];
+		phoff = new Go$Int64(0, 0);
+		_tuple$1 = [0, 0], phentsize = _tuple$1[0], phnum = _tuple$1[1];
+		shoff = new Go$Int64(0, 0);
+		_tuple$2 = [0, 0, 0], shentsize = _tuple$2[0], shnum = _tuple$2[1], shstrndx = _tuple$2[2];
+		shstrndx = -1;
+		_ref$2 = f.FileHeader.Class;
+		if (_ref$2 === 1) {
+			hdr = new Header32.Ptr();
+			sr.Seek(new Go$Int64(0, 0), 0);
+			if (err$1 = binary.Read(sr, f.FileHeader.ByteOrder, hdr), !(go$interfaceIsEqual(err$1, null))) {
+				return [(go$ptrType(File)).nil, err$1];
+			}
+			f.FileHeader.Type = (hdr.Type << 16 >>> 16);
+			f.FileHeader.Machine = (hdr.Machine << 16 >>> 16);
+			f.FileHeader.Entry = new Go$Uint64(0, hdr.Entry);
+			if (v = (hdr.Version << 24 >>> 24), !((v === f.FileHeader.Version))) {
+				return [(go$ptrType(File)).nil, new FormatError.Ptr(new Go$Int64(0, 0), "mismatched ELF version", new Version(v))];
+			}
+			phoff = new Go$Int64(0, hdr.Phoff);
+			phentsize = (hdr.Phentsize >> 0);
+			phnum = (hdr.Phnum >> 0);
+			shoff = new Go$Int64(0, hdr.Shoff);
+			shentsize = (hdr.Shentsize >> 0);
+			shnum = (hdr.Shnum >> 0);
+			shstrndx = (hdr.Shstrndx >> 0);
+		} else if (_ref$2 === 2) {
+			hdr$1 = new Header64.Ptr();
+			sr.Seek(new Go$Int64(0, 0), 0);
+			if (err$2 = binary.Read(sr, f.FileHeader.ByteOrder, hdr$1), !(go$interfaceIsEqual(err$2, null))) {
+				return [(go$ptrType(File)).nil, err$2];
+			}
+			f.FileHeader.Type = (hdr$1.Type << 16 >>> 16);
+			f.FileHeader.Machine = (hdr$1.Machine << 16 >>> 16);
+			f.FileHeader.Entry = hdr$1.Entry;
+			if (v$1 = (hdr$1.Version << 24 >>> 24), !((v$1 === f.FileHeader.Version))) {
+				return [(go$ptrType(File)).nil, new FormatError.Ptr(new Go$Int64(0, 0), "mismatched ELF version", new Version(v$1))];
+			}
+			phoff = (x$2 = hdr$1.Phoff, new Go$Int64(x$2.high, x$2.low));
+			phentsize = (hdr$1.Phentsize >> 0);
+			phnum = (hdr$1.Phnum >> 0);
+			shoff = (x$3 = hdr$1.Shoff, new Go$Int64(x$3.high, x$3.low));
+			shentsize = (hdr$1.Shentsize >> 0);
+			shnum = (hdr$1.Shnum >> 0);
+			shstrndx = (hdr$1.Shstrndx >> 0);
+		}
+		if (shnum > 0 && (shoff.high > 0 || (shoff.high === 0 && shoff.low > 0)) && (shstrndx < 0 || shstrndx >= shnum)) {
+			return [(go$ptrType(File)).nil, new FormatError.Ptr(new Go$Int64(0, 0), "invalid ELF shstrndx", new Go$Int(shstrndx))];
+		}
+		f.Progs = (go$sliceType((go$ptrType(Prog)))).make(phnum, 0, function() { return (go$ptrType(Prog)).nil; });
+		i = 0;
+		while (i < phnum) {
+			off = (x$4 = go$mul64(new Go$Int64(0, i), new Go$Int64(0, phentsize)), new Go$Int64(phoff.high + x$4.high, phoff.low + x$4.low));
+			sr.Seek(off, 0);
+			p = new Prog.Ptr();
+			_ref$3 = f.FileHeader.Class;
+			if (_ref$3 === 1) {
+				ph = new Prog32.Ptr();
+				if (err$3 = binary.Read(sr, f.FileHeader.ByteOrder, ph), !(go$interfaceIsEqual(err$3, null))) {
+					return [(go$ptrType(File)).nil, err$3];
+				}
+				p.ProgHeader = new ProgHeader.Ptr((ph.Type >> 0), (ph.Flags >>> 0), new Go$Uint64(0, ph.Off), new Go$Uint64(0, ph.Vaddr), new Go$Uint64(0, ph.Paddr), new Go$Uint64(0, ph.Filesz), new Go$Uint64(0, ph.Memsz), new Go$Uint64(0, ph.Align));
+			} else if (_ref$3 === 2) {
+				ph$1 = new Prog64.Ptr();
+				if (err$4 = binary.Read(sr, f.FileHeader.ByteOrder, ph$1), !(go$interfaceIsEqual(err$4, null))) {
+					return [(go$ptrType(File)).nil, err$4];
+				}
+				p.ProgHeader = new ProgHeader.Ptr((ph$1.Type >> 0), (ph$1.Flags >>> 0), ph$1.Off, ph$1.Vaddr, ph$1.Paddr, ph$1.Filesz, ph$1.Memsz, ph$1.Align);
+			}
+			p.sr = io.NewSectionReader(r, (x$5 = p.ProgHeader.Off, new Go$Int64(x$5.high, x$5.low)), (x$6 = p.ProgHeader.Filesz, new Go$Int64(x$6.high, x$6.low)));
+			p.ReaderAt = p.sr;
+			_slice = f.Progs, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = p) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+		}
+		f.Sections = (go$sliceType((go$ptrType(Section)))).make(shnum, 0, function() { return (go$ptrType(Section)).nil; });
+		names = (go$sliceType(Go$Uint32)).make(shnum, 0, function() { return 0; });
+		i$1 = 0;
+		while (i$1 < shnum) {
+			off$1 = (x$7 = go$mul64(new Go$Int64(0, i$1), new Go$Int64(0, shentsize)), new Go$Int64(shoff.high + x$7.high, shoff.low + x$7.low));
+			sr.Seek(off$1, 0);
+			s = new Section.Ptr();
+			_ref$4 = f.FileHeader.Class;
+			if (_ref$4 === 1) {
+				sh = new Section32.Ptr();
+				if (err$5 = binary.Read(sr, f.FileHeader.ByteOrder, sh), !(go$interfaceIsEqual(err$5, null))) {
+					return [(go$ptrType(File)).nil, err$5];
+				}
+				_slice$1 = names, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = sh.Name) : go$throwRuntimeError("index out of range");
+				s.SectionHeader = new SectionHeader.Ptr("", (sh.Type >>> 0), (sh.Flags >>> 0), new Go$Uint64(0, sh.Addr), new Go$Uint64(0, sh.Off), new Go$Uint64(0, sh.Size), sh.Link, sh.Info, new Go$Uint64(0, sh.Addralign), new Go$Uint64(0, sh.Entsize));
+			} else if (_ref$4 === 2) {
+				sh$1 = new Section64.Ptr();
+				if (err$6 = binary.Read(sr, f.FileHeader.ByteOrder, sh$1), !(go$interfaceIsEqual(err$6, null))) {
+					return [(go$ptrType(File)).nil, err$6];
+				}
+				_slice$2 = names, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = sh$1.Name) : go$throwRuntimeError("index out of range");
+				s.SectionHeader = new SectionHeader.Ptr("", (sh$1.Type >>> 0), (sh$1.Flags.low >>> 0), sh$1.Addr, sh$1.Off, sh$1.Size, sh$1.Link, sh$1.Info, sh$1.Addralign, sh$1.Entsize);
+			}
+			s.sr = io.NewSectionReader(r, (x$8 = s.SectionHeader.Offset, new Go$Int64(x$8.high, x$8.low)), (x$9 = s.SectionHeader.Size, new Go$Int64(x$9.high, x$9.low)));
+			s.ReaderAt = s.sr;
+			_slice$3 = f.Sections, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = s) : go$throwRuntimeError("index out of range");
+			i$1 = i$1 + 1 >> 0;
+		}
+		if (f.Sections.length === 0) {
+			return [f, null];
+		}
+		_tuple$3 = (_slice$4 = f.Sections, _index$4 = shstrndx, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).Data(), shstrtab = _tuple$3[0], err$7 = _tuple$3[1];
+		if (!(go$interfaceIsEqual(err$7, null))) {
+			return [(go$ptrType(File)).nil, err$7];
+		}
+		_ref$5 = f.Sections;
+		_i = 0;
+		for (; _i < _ref$5.length; _i += 1) {
+			s$1 = (_slice$5 = _ref$5, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+			i$2 = _i;
+			ok = false;
+			_tuple$4 = getString(shstrtab, ((_slice$6 = names, _index$6 = i$2, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) >> 0)), s$1.SectionHeader.Name = _tuple$4[0], ok = _tuple$4[1];
+			if (!ok) {
+				return [(go$ptrType(File)).nil, new FormatError.Ptr((x$10 = new Go$Int64(0, ((((i$2 >>> 16 << 16) * shentsize >> 0) + (i$2 << 16 >>> 16) * shentsize) >> 0)), new Go$Int64(shoff.high + x$10.high, shoff.low + x$10.low)), "bad section name index", new Go$Uint32((_slice$7 = names, _index$7 = i$2, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))))];
+			}
+		}
+		return [f, null];
+	};
+	File.Ptr.prototype.getSymbols = function(typ) {
+		var f, _ref;
+		f = this;
+		_ref = f.FileHeader.Class;
+		if (_ref === 2) {
+			return f.getSymbols64(typ);
+		} else if (_ref === 1) {
+			return f.getSymbols32(typ);
+		}
+		return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("not implemented")];
+	};
+	File.prototype.getSymbols = function(typ) { return this.go$val.getSymbols(typ); };
+	File.Ptr.prototype.getSymbols32 = function(typ) {
+		var f, symtabSection, _tuple, data, err, symtab, _r, _tuple$1, strdata, skip, _q, symbols, i, sym, _tuple$2, str, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
+		f = this;
+		symtabSection = f.SectionByType(typ);
+		if (symtabSection === (go$ptrType(Section)).nil) {
+			return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("no symbol section")];
+		}
+		_tuple = symtabSection.Data(), data = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("cannot load symbol section")];
+		}
+		symtab = bytes.NewBuffer(data);
+		if (!(((_r = symtab.Len() % 16, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
+			return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("length of symbol section is not a multiple of SymSize")];
+		}
+		_tuple$1 = f.stringTable(symtabSection.SectionHeader.Link), strdata = _tuple$1[0], err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("cannot load string table section")];
+		}
+		skip = go$makeNativeArray("Uint8", 16, function() { return 0; });
+		symtab.Read(new (go$sliceType(Go$Uint8))(skip));
+		symbols = (go$sliceType(Symbol)).make((_q = symtab.Len() / 16, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 0, function() { return new Symbol.Ptr(); });
+		i = 0;
+		sym = new Sym32.Ptr();
+		while (symtab.Len() > 0) {
+			binary.Read(symtab, f.FileHeader.ByteOrder, sym);
+			_tuple$2 = getString(strdata, (sym.Name >> 0)), str = _tuple$2[0];
+			(_slice = symbols, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name = str;
+			(_slice$1 = symbols, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Info = sym.Info;
+			(_slice$2 = symbols, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Other = sym.Other;
+			(_slice$3 = symbols, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Section = (sym.Shndx >> 0);
+			(_slice$4 = symbols, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).Value = new Go$Uint64(0, sym.Value);
+			(_slice$5 = symbols, _index$5 = i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).Size = new Go$Uint64(0, sym.Size);
+			i = i + 1 >> 0;
+		}
+		return [symbols, strdata, null];
+	};
+	File.prototype.getSymbols32 = function(typ) { return this.go$val.getSymbols32(typ); };
+	File.Ptr.prototype.getSymbols64 = function(typ) {
+		var f, symtabSection, _tuple, data, err, symtab, _r, _tuple$1, strdata, skip, _q, symbols, i, sym, _tuple$2, str, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
+		f = this;
+		symtabSection = f.SectionByType(typ);
+		if (symtabSection === (go$ptrType(Section)).nil) {
+			return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("no symbol section")];
+		}
+		_tuple = symtabSection.Data(), data = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("cannot load symbol section")];
+		}
+		symtab = bytes.NewBuffer(data);
+		if (!(((_r = symtab.Len() % 24, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
+			return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("length of symbol section is not a multiple of Sym64Size")];
+		}
+		_tuple$1 = f.stringTable(symtabSection.SectionHeader.Link), strdata = _tuple$1[0], err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("cannot load string table section")];
+		}
+		skip = go$makeNativeArray("Uint8", 24, function() { return 0; });
+		symtab.Read(new (go$sliceType(Go$Uint8))(skip));
+		symbols = (go$sliceType(Symbol)).make((_q = symtab.Len() / 24, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 0, function() { return new Symbol.Ptr(); });
+		i = 0;
+		sym = new Sym64.Ptr();
+		while (symtab.Len() > 0) {
+			binary.Read(symtab, f.FileHeader.ByteOrder, sym);
+			_tuple$2 = getString(strdata, (sym.Name >> 0)), str = _tuple$2[0];
+			(_slice = symbols, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name = str;
+			(_slice$1 = symbols, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Info = sym.Info;
+			(_slice$2 = symbols, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Other = sym.Other;
+			(_slice$3 = symbols, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Section = (sym.Shndx >> 0);
+			(_slice$4 = symbols, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).Value = sym.Value;
+			(_slice$5 = symbols, _index$5 = i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).Size = sym.Size;
+			i = i + 1 >> 0;
+		}
+		return [symbols, strdata, null];
+	};
+	File.prototype.getSymbols64 = function(typ) { return this.go$val.getSymbols64(typ); };
+	var getString = function(section, start) {
+		var end, _slice, _index;
+		if (start < 0 || start >= section.length) {
+			return ["", false];
+		}
+		end = start;
+		while (end < section.length) {
+			if ((_slice = section, _index = end, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0) {
+				return [go$bytesToString(go$subslice(section, start, end)), true];
+			}
+			end = end + 1 >> 0;
+		}
+		return ["", false];
+	};
+	File.Ptr.prototype.Section = function(name) {
+		var f, _ref, _i, _slice, _index, s;
+		f = this;
+		_ref = f.Sections;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (s.SectionHeader.Name === name) {
+				return s;
+			}
+		}
+		return (go$ptrType(Section)).nil;
+	};
+	File.prototype.Section = function(name) { return this.go$val.Section(name); };
+	File.Ptr.prototype.applyRelocations = function(dst, rels) {
+		var f;
+		f = this;
+		if ((f.FileHeader.Class === 2) && (f.FileHeader.Machine === 62)) {
+			return f.applyRelocationsAMD64(dst, rels);
+		}
+		return errors.New("not implemented");
+	};
+	File.prototype.applyRelocations = function(dst, rels) { return this.go$val.applyRelocations(dst, rels); };
+	File.Ptr.prototype.applyRelocationsAMD64 = function(dst, rels) {
+		var f, _r, _tuple, symbols, err, b, rela, symNo, x, t, x$1, _slice, _index, sym, _ref, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10, x$11, x$12;
+		f = this;
+		if (!(((_r = rels.length % 24, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
+			return errors.New("length of relocation section is not a multiple of Sym64Size");
+		}
+		_tuple = f.getSymbols(2), symbols = _tuple[0], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		b = bytes.NewBuffer(rels);
+		rela = new Rela64.Ptr();
+		while (b.Len() > 0) {
+			binary.Read(b, f.FileHeader.ByteOrder, rela);
+			symNo = go$shiftRightUint64(rela.Info, 32);
+			t = ((x = rela.Info, new Go$Uint64(x.high & 0, (x.low & 65535) >>> 0)).low >> 0);
+			if ((symNo.high === 0 && symNo.low === 0) || (x$1 = new Go$Uint64(0, symbols.length), (symNo.high > x$1.high || (symNo.high === x$1.high && symNo.low > x$1.low)))) {
+				continue;
+			}
+			sym = (_slice = symbols, _index = go$flatten64(new Go$Uint64(symNo.high - 0, symNo.low - 1)), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (!(((((sym.Info & 15) >>> 0) >> 0) === 3))) {
+				continue;
+			}
+			_ref = t;
+			if (_ref === 1) {
+				if ((x$2 = (x$3 = rela.Off, new Go$Uint64(x$3.high + 0, x$3.low + 8)), x$4 = new Go$Uint64(0, dst.length), (x$2.high > x$4.high || (x$2.high === x$4.high && x$2.low >= x$4.low))) || (x$5 = rela.Addend, (x$5.high < 0 || (x$5.high === 0 && x$5.low < 0)))) {
+					continue;
+				}
+				f.FileHeader.ByteOrder.PutUint64(go$subslice(dst, go$flatten64(rela.Off), go$flatten64((x$6 = rela.Off, new Go$Uint64(x$6.high + 0, x$6.low + 8)))), (x$7 = rela.Addend, new Go$Uint64(x$7.high, x$7.low)));
+			} else if (_ref === 10) {
+				if ((x$8 = (x$9 = rela.Off, new Go$Uint64(x$9.high + 0, x$9.low + 4)), x$10 = new Go$Uint64(0, dst.length), (x$8.high > x$10.high || (x$8.high === x$10.high && x$8.low >= x$10.low))) || (x$11 = rela.Addend, (x$11.high < 0 || (x$11.high === 0 && x$11.low < 0)))) {
+					continue;
+				}
+				f.FileHeader.ByteOrder.PutUint32(go$subslice(dst, go$flatten64(rela.Off), go$flatten64((x$12 = rela.Off, new Go$Uint64(x$12.high + 0, x$12.low + 4)))), (rela.Addend.low >>> 0));
+			}
+		}
+		return null;
+	};
+	File.prototype.applyRelocationsAMD64 = function(dst, rels) { return this.go$val.applyRelocationsAMD64(dst, rels); };
+	File.Ptr.prototype.DWARF = function() {
+		var f, names, dat, _ref, _i, name, i, s, _tuple, b, err, x, x$1, rela, _tuple$1, data, err$1, _tuple$2, abbrev, info, str;
+		f = this;
+		names = go$toNativeArray("String", ["abbrev", "info", "str"]);
+		dat = go$makeNativeArray("Slice", 3, function() { return (go$sliceType(Go$Uint8)).nil; });
+		_ref = names;
+		_i = 0;
+		for (; _i < 3; _i += 1) {
+			name = _ref[_i];
+			i = _i;
+			name = ".debug_" + name;
+			s = f.Section(name);
+			if (s === (go$ptrType(Section)).nil) {
+				continue;
+			}
+			_tuple = s.Data(), b = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null)) && (x = new Go$Uint64(0, b.length), x$1 = s.SectionHeader.Size, (x.high < x$1.high || (x.high === x$1.high && x.low < x$1.low)))) {
+				return [(go$ptrType(dwarf.Data)).nil, err];
+			}
+			dat[i] = b;
+		}
+		rela = f.Section(".rela.debug_info");
+		if (!(rela === (go$ptrType(Section)).nil) && (rela.SectionHeader.Type === 4) && (f.FileHeader.Machine === 62)) {
+			_tuple$1 = rela.Data(), data = _tuple$1[0], err$1 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [(go$ptrType(dwarf.Data)).nil, err$1];
+			}
+			err$1 = f.applyRelocations(dat[1], data);
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [(go$ptrType(dwarf.Data)).nil, err$1];
+			}
+		}
+		_tuple$2 = [dat[0], dat[1], dat[2]], abbrev = _tuple$2[0], info = _tuple$2[1], str = _tuple$2[2];
+		return dwarf.New(abbrev, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, info, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, str);
+	};
+	File.prototype.DWARF = function() { return this.go$val.DWARF(); };
+	File.Ptr.prototype.Symbols = function() {
+		var f, _tuple, sym, err;
+		f = this;
+		_tuple = f.getSymbols(2), sym = _tuple[0], err = _tuple[2];
+		return [sym, err];
+	};
+	File.prototype.Symbols = function() { return this.go$val.Symbols(); };
+	File.Ptr.prototype.ImportedSymbols = function() {
+		var f, _tuple, sym, str, err, all, _ref, _i, _slice, _index, _struct, s, i, _slice$1, _index$1;
+		f = this;
+		_tuple = f.getSymbols(11), sym = _tuple[0], str = _tuple[1], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(ImportedSymbol)).nil, err];
+		}
+		f.gnuVersionInit(str);
+		all = (go$sliceType(ImportedSymbol)).nil;
+		_ref = sym;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Symbol.Ptr(_struct.Name, _struct.Info, _struct.Other, _struct.Section, _struct.Value, _struct.Size));
+			i = _i;
+			if ((ST_BIND(s.Info) === 1) && (s.Section === 0)) {
+				all = go$append(all, new ImportedSymbol.Ptr(s.Name, "", ""));
+				f.gnuVersion(i, (_slice$1 = all, _index$1 = (all.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
+			}
+		}
+		return [all, null];
+	};
+	File.prototype.ImportedSymbols = function() { return this.go$val.ImportedSymbols(); };
+	File.Ptr.prototype.gnuVersionInit = function(str) {
+		var f, vn, _tuple, d, need, i, vers, cnt, fileoff, aux, next, _tuple$1, file, name, j, c, other, nameoff, next$1, _tuple$2, ndx, x, x$1, a, _slice, _index, vs, _tuple$3;
+		f = this;
+		vn = f.SectionByType(1879048190);
+		if (vn === (go$ptrType(Section)).nil) {
+			return;
+		}
+		_tuple = vn.Data(), d = _tuple[0];
+		need = (go$sliceType(verneed)).nil;
+		i = 0;
+		while (true) {
+			if ((i + 16 >> 0) > d.length) {
+				break;
+			}
+			vers = f.FileHeader.ByteOrder.Uint16(go$subslice(d, i, (i + 2 >> 0)));
+			if (!((vers === 1))) {
+				break;
+			}
+			cnt = f.FileHeader.ByteOrder.Uint16(go$subslice(d, i + 2 >> 0, (i + 4 >> 0)));
+			fileoff = f.FileHeader.ByteOrder.Uint32(go$subslice(d, i + 4 >> 0, (i + 8 >> 0)));
+			aux = f.FileHeader.ByteOrder.Uint32(go$subslice(d, i + 8 >> 0, (i + 12 >> 0)));
+			next = f.FileHeader.ByteOrder.Uint32(go$subslice(d, i + 12 >> 0, (i + 16 >> 0)));
+			_tuple$1 = getString(str, (fileoff >> 0)), file = _tuple$1[0];
+			name = "";
+			j = i + (aux >> 0) >> 0;
+			c = 0;
+			while (c < (cnt >> 0)) {
+				if ((j + 16 >> 0) > d.length) {
+					break;
+				}
+				other = f.FileHeader.ByteOrder.Uint16(go$subslice(d, j + 6 >> 0, (j + 8 >> 0)));
+				nameoff = f.FileHeader.ByteOrder.Uint32(go$subslice(d, j + 8 >> 0, (j + 12 >> 0)));
+				next$1 = f.FileHeader.ByteOrder.Uint32(go$subslice(d, j + 12 >> 0, (j + 16 >> 0)));
+				_tuple$2 = getString(str, (nameoff >> 0)), name = _tuple$2[0];
+				ndx = (other >> 0);
+				if (ndx >= need.length) {
+					a = (go$sliceType(verneed)).make((x = 2, x$1 = (ndx + 1 >> 0), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0), 0, function() { return new verneed.Ptr(); });
+					go$copySlice(a, need);
+					need = a;
+				}
+				_slice = need, _index = ndx, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = new verneed.Ptr(file, name)) : go$throwRuntimeError("index out of range");
+				if (next$1 === 0) {
+					break;
+				}
+				j = j + ((next$1 >> 0)) >> 0;
+				c = c + 1 >> 0;
+			}
+			if (next === 0) {
+				break;
+			}
+			i = i + ((next >> 0)) >> 0;
+		}
+		vs = f.SectionByType(1879048191);
+		if (vs === (go$ptrType(Section)).nil) {
+			return;
+		}
+		_tuple$3 = vs.Data(), d = _tuple$3[0];
+		f.gnuNeed = need;
+		f.gnuVersym = d;
+	};
+	File.prototype.gnuVersionInit = function(str) { return this.go$val.gnuVersionInit(str); };
+	File.Ptr.prototype.gnuVersion = function(i, sym) {
+		var f, x, x$1, j, _slice, _index, n;
+		f = this;
+		i = (x = (i + 1 >> 0), x$1 = 2, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		if (i >= f.gnuVersym.length) {
+			return;
+		}
+		j = (f.FileHeader.ByteOrder.Uint16(go$subslice(f.gnuVersym, i)) >> 0);
+		if (j < 2 || j >= f.gnuNeed.length) {
+			return;
+		}
+		n = (_slice = f.gnuNeed, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		sym.Library = n.File;
+		sym.Version = n.Name;
+	};
+	File.prototype.gnuVersion = function(i, sym) { return this.go$val.gnuVersion(i, sym); };
+	File.Ptr.prototype.ImportedLibraries = function() {
+		var f;
+		f = this;
+		return f.DynString(1);
+	};
+	File.prototype.ImportedLibraries = function() { return this.go$val.ImportedLibraries(); };
+	File.Ptr.prototype.DynString = function(tag) {
+		var f, _ref, ds, _tuple, d, err, _tuple$1, str, all, t, v, _ref$1, _tuple$2, s, ok;
+		f = this;
+		_ref = tag;
+		if (_ref === 1 || _ref === 14 || _ref === 15 || _ref === 29) {
+		} else {
+			return [(go$sliceType(Go$String)).nil, fmt.Errorf("non-string-valued tag %v", new (go$sliceType(go$emptyInterface))([new DynTag(tag)]))];
+		}
+		ds = f.SectionByType(6);
+		if (ds === (go$ptrType(Section)).nil) {
+			return [(go$sliceType(Go$String)).nil, null];
+		}
+		_tuple = ds.Data(), d = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Go$String)).nil, err];
+		}
+		_tuple$1 = f.stringTable(ds.SectionHeader.Link), str = _tuple$1[0], err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Go$String)).nil, err];
+		}
+		all = (go$sliceType(Go$String)).nil;
+		while (d.length > 0) {
+			t = 0;
+			v = new Go$Uint64(0, 0);
+			_ref$1 = f.FileHeader.Class;
+			if (_ref$1 === 1) {
+				t = (f.FileHeader.ByteOrder.Uint32(go$subslice(d, 0, 4)) >> 0);
+				v = new Go$Uint64(0, f.FileHeader.ByteOrder.Uint32(go$subslice(d, 4, 8)));
+				d = go$subslice(d, 8);
+			} else if (_ref$1 === 2) {
+				t = (f.FileHeader.ByteOrder.Uint64(go$subslice(d, 0, 8)).low >> 0);
+				v = f.FileHeader.ByteOrder.Uint64(go$subslice(d, 8, 16));
+				d = go$subslice(d, 16);
+			}
+			if (t === tag) {
+				_tuple$2 = getString(str, (v.low >> 0)), s = _tuple$2[0], ok = _tuple$2[1];
+				if (ok) {
+					all = go$append(all, s);
+				}
+			}
+		}
+		return [all, null];
+	};
+	File.prototype.DynString = function(tag) { return this.go$val.DynString(tag); };
+	go$pkg.EI_CLASS = 4;
+	go$pkg.EI_DATA = 5;
+	go$pkg.EI_VERSION = 6;
+	go$pkg.EI_OSABI = 7;
+	go$pkg.EI_ABIVERSION = 8;
+	go$pkg.EI_PAD = 9;
+	go$pkg.EI_NIDENT = 16;
+	go$pkg.ELFMAG = "\x7FELF";
+	go$pkg.EV_NONE = 0;
+	go$pkg.EV_CURRENT = 1;
+	go$pkg.ELFCLASSNONE = 0;
+	go$pkg.ELFCLASS32 = 1;
+	go$pkg.ELFCLASS64 = 2;
+	go$pkg.ELFDATANONE = 0;
+	go$pkg.ELFDATA2LSB = 1;
+	go$pkg.ELFDATA2MSB = 2;
+	go$pkg.ELFOSABI_NONE = 0;
+	go$pkg.ELFOSABI_HPUX = 1;
+	go$pkg.ELFOSABI_NETBSD = 2;
+	go$pkg.ELFOSABI_LINUX = 3;
+	go$pkg.ELFOSABI_HURD = 4;
+	go$pkg.ELFOSABI_86OPEN = 5;
+	go$pkg.ELFOSABI_SOLARIS = 6;
+	go$pkg.ELFOSABI_AIX = 7;
+	go$pkg.ELFOSABI_IRIX = 8;
+	go$pkg.ELFOSABI_FREEBSD = 9;
+	go$pkg.ELFOSABI_TRU64 = 10;
+	go$pkg.ELFOSABI_MODESTO = 11;
+	go$pkg.ELFOSABI_OPENBSD = 12;
+	go$pkg.ELFOSABI_OPENVMS = 13;
+	go$pkg.ELFOSABI_NSK = 14;
+	go$pkg.ELFOSABI_ARM = 97;
+	go$pkg.ELFOSABI_STANDALONE = 255;
+	go$pkg.ET_NONE = 0;
+	go$pkg.ET_REL = 1;
+	go$pkg.ET_EXEC = 2;
+	go$pkg.ET_DYN = 3;
+	go$pkg.ET_CORE = 4;
+	go$pkg.ET_LOOS = 65024;
+	go$pkg.ET_HIOS = 65279;
+	go$pkg.ET_LOPROC = 65280;
+	go$pkg.ET_HIPROC = 65535;
+	go$pkg.EM_NONE = 0;
+	go$pkg.EM_M32 = 1;
+	go$pkg.EM_SPARC = 2;
+	go$pkg.EM_386 = 3;
+	go$pkg.EM_68K = 4;
+	go$pkg.EM_88K = 5;
+	go$pkg.EM_860 = 7;
+	go$pkg.EM_MIPS = 8;
+	go$pkg.EM_S370 = 9;
+	go$pkg.EM_MIPS_RS3_LE = 10;
+	go$pkg.EM_PARISC = 15;
+	go$pkg.EM_VPP500 = 17;
+	go$pkg.EM_SPARC32PLUS = 18;
+	go$pkg.EM_960 = 19;
+	go$pkg.EM_PPC = 20;
+	go$pkg.EM_PPC64 = 21;
+	go$pkg.EM_S390 = 22;
+	go$pkg.EM_V800 = 36;
+	go$pkg.EM_FR20 = 37;
+	go$pkg.EM_RH32 = 38;
+	go$pkg.EM_RCE = 39;
+	go$pkg.EM_ARM = 40;
+	go$pkg.EM_SH = 42;
+	go$pkg.EM_SPARCV9 = 43;
+	go$pkg.EM_TRICORE = 44;
+	go$pkg.EM_ARC = 45;
+	go$pkg.EM_H8_300 = 46;
+	go$pkg.EM_H8_300H = 47;
+	go$pkg.EM_H8S = 48;
+	go$pkg.EM_H8_500 = 49;
+	go$pkg.EM_IA_64 = 50;
+	go$pkg.EM_MIPS_X = 51;
+	go$pkg.EM_COLDFIRE = 52;
+	go$pkg.EM_68HC12 = 53;
+	go$pkg.EM_MMA = 54;
+	go$pkg.EM_PCP = 55;
+	go$pkg.EM_NCPU = 56;
+	go$pkg.EM_NDR1 = 57;
+	go$pkg.EM_STARCORE = 58;
+	go$pkg.EM_ME16 = 59;
+	go$pkg.EM_ST100 = 60;
+	go$pkg.EM_TINYJ = 61;
+	go$pkg.EM_X86_64 = 62;
+	go$pkg.EM_486 = 6;
+	go$pkg.EM_MIPS_RS4_BE = 10;
+	go$pkg.EM_ALPHA_STD = 41;
+	go$pkg.EM_ALPHA = 36902;
+	go$pkg.SHN_UNDEF = 0;
+	go$pkg.SHN_LORESERVE = 65280;
+	go$pkg.SHN_LOPROC = 65280;
+	go$pkg.SHN_HIPROC = 65311;
+	go$pkg.SHN_LOOS = 65312;
+	go$pkg.SHN_HIOS = 65343;
+	go$pkg.SHN_ABS = 65521;
+	go$pkg.SHN_COMMON = 65522;
+	go$pkg.SHN_XINDEX = 65535;
+	go$pkg.SHN_HIRESERVE = 65535;
+	go$pkg.SHT_NULL = 0;
+	go$pkg.SHT_PROGBITS = 1;
+	go$pkg.SHT_SYMTAB = 2;
+	go$pkg.SHT_STRTAB = 3;
+	go$pkg.SHT_RELA = 4;
+	go$pkg.SHT_HASH = 5;
+	go$pkg.SHT_DYNAMIC = 6;
+	go$pkg.SHT_NOTE = 7;
+	go$pkg.SHT_NOBITS = 8;
+	go$pkg.SHT_REL = 9;
+	go$pkg.SHT_SHLIB = 10;
+	go$pkg.SHT_DYNSYM = 11;
+	go$pkg.SHT_INIT_ARRAY = 14;
+	go$pkg.SHT_FINI_ARRAY = 15;
+	go$pkg.SHT_PREINIT_ARRAY = 16;
+	go$pkg.SHT_GROUP = 17;
+	go$pkg.SHT_SYMTAB_SHNDX = 18;
+	go$pkg.SHT_LOOS = 1610612736;
+	go$pkg.SHT_GNU_ATTRIBUTES = 1879048181;
+	go$pkg.SHT_GNU_HASH = 1879048182;
+	go$pkg.SHT_GNU_LIBLIST = 1879048183;
+	go$pkg.SHT_GNU_VERDEF = 1879048189;
+	go$pkg.SHT_GNU_VERNEED = 1879048190;
+	go$pkg.SHT_GNU_VERSYM = 1879048191;
+	go$pkg.SHT_HIOS = 1879048191;
+	go$pkg.SHT_LOPROC = 1879048192;
+	go$pkg.SHT_HIPROC = 2147483647;
+	go$pkg.SHT_LOUSER = 2147483648;
+	go$pkg.SHT_HIUSER = 4294967295;
+	go$pkg.SHF_WRITE = 1;
+	go$pkg.SHF_ALLOC = 2;
+	go$pkg.SHF_EXECINSTR = 4;
+	go$pkg.SHF_MERGE = 16;
+	go$pkg.SHF_STRINGS = 32;
+	go$pkg.SHF_INFO_LINK = 64;
+	go$pkg.SHF_LINK_ORDER = 128;
+	go$pkg.SHF_OS_NONCONFORMING = 256;
+	go$pkg.SHF_GROUP = 512;
+	go$pkg.SHF_TLS = 1024;
+	go$pkg.SHF_MASKOS = 267386880;
+	go$pkg.SHF_MASKPROC = 4026531840;
+	go$pkg.PT_NULL = 0;
+	go$pkg.PT_LOAD = 1;
+	go$pkg.PT_DYNAMIC = 2;
+	go$pkg.PT_INTERP = 3;
+	go$pkg.PT_NOTE = 4;
+	go$pkg.PT_SHLIB = 5;
+	go$pkg.PT_PHDR = 6;
+	go$pkg.PT_TLS = 7;
+	go$pkg.PT_LOOS = 1610612736;
+	go$pkg.PT_HIOS = 1879048191;
+	go$pkg.PT_LOPROC = 1879048192;
+	go$pkg.PT_HIPROC = 2147483647;
+	go$pkg.PF_X = 1;
+	go$pkg.PF_W = 2;
+	go$pkg.PF_R = 4;
+	go$pkg.PF_MASKOS = 267386880;
+	go$pkg.PF_MASKPROC = 4026531840;
+	go$pkg.DT_NULL = 0;
+	go$pkg.DT_NEEDED = 1;
+	go$pkg.DT_PLTRELSZ = 2;
+	go$pkg.DT_PLTGOT = 3;
+	go$pkg.DT_HASH = 4;
+	go$pkg.DT_STRTAB = 5;
+	go$pkg.DT_SYMTAB = 6;
+	go$pkg.DT_RELA = 7;
+	go$pkg.DT_RELASZ = 8;
+	go$pkg.DT_RELAENT = 9;
+	go$pkg.DT_STRSZ = 10;
+	go$pkg.DT_SYMENT = 11;
+	go$pkg.DT_INIT = 12;
+	go$pkg.DT_FINI = 13;
+	go$pkg.DT_SONAME = 14;
+	go$pkg.DT_RPATH = 15;
+	go$pkg.DT_SYMBOLIC = 16;
+	go$pkg.DT_REL = 17;
+	go$pkg.DT_RELSZ = 18;
+	go$pkg.DT_RELENT = 19;
+	go$pkg.DT_PLTREL = 20;
+	go$pkg.DT_DEBUG = 21;
+	go$pkg.DT_TEXTREL = 22;
+	go$pkg.DT_JMPREL = 23;
+	go$pkg.DT_BIND_NOW = 24;
+	go$pkg.DT_INIT_ARRAY = 25;
+	go$pkg.DT_FINI_ARRAY = 26;
+	go$pkg.DT_INIT_ARRAYSZ = 27;
+	go$pkg.DT_FINI_ARRAYSZ = 28;
+	go$pkg.DT_RUNPATH = 29;
+	go$pkg.DT_FLAGS = 30;
+	go$pkg.DT_ENCODING = 32;
+	go$pkg.DT_PREINIT_ARRAY = 32;
+	go$pkg.DT_PREINIT_ARRAYSZ = 33;
+	go$pkg.DT_LOOS = 1610612749;
+	go$pkg.DT_HIOS = 1879044096;
+	go$pkg.DT_VERSYM = 1879048176;
+	go$pkg.DT_VERNEED = 1879048190;
+	go$pkg.DT_VERNEEDNUM = 1879048191;
+	go$pkg.DT_LOPROC = 1879048192;
+	go$pkg.DT_HIPROC = 2147483647;
+	go$pkg.DF_ORIGIN = 1;
+	go$pkg.DF_SYMBOLIC = 2;
+	go$pkg.DF_TEXTREL = 4;
+	go$pkg.DF_BIND_NOW = 8;
+	go$pkg.DF_STATIC_TLS = 16;
+	go$pkg.NT_PRSTATUS = 1;
+	go$pkg.NT_FPREGSET = 2;
+	go$pkg.NT_PRPSINFO = 3;
+	go$pkg.STB_LOCAL = 0;
+	go$pkg.STB_GLOBAL = 1;
+	go$pkg.STB_WEAK = 2;
+	go$pkg.STB_LOOS = 10;
+	go$pkg.STB_HIOS = 12;
+	go$pkg.STB_LOPROC = 13;
+	go$pkg.STB_HIPROC = 15;
+	go$pkg.STT_NOTYPE = 0;
+	go$pkg.STT_OBJECT = 1;
+	go$pkg.STT_FUNC = 2;
+	go$pkg.STT_SECTION = 3;
+	go$pkg.STT_FILE = 4;
+	go$pkg.STT_COMMON = 5;
+	go$pkg.STT_TLS = 6;
+	go$pkg.STT_LOOS = 10;
+	go$pkg.STT_HIOS = 12;
+	go$pkg.STT_LOPROC = 13;
+	go$pkg.STT_HIPROC = 15;
+	go$pkg.STV_DEFAULT = 0;
+	go$pkg.STV_INTERNAL = 1;
+	go$pkg.STV_HIDDEN = 2;
+	go$pkg.STV_PROTECTED = 3;
+	go$pkg.R_X86_64_NONE = 0;
+	go$pkg.R_X86_64_64 = 1;
+	go$pkg.R_X86_64_PC32 = 2;
+	go$pkg.R_X86_64_GOT32 = 3;
+	go$pkg.R_X86_64_PLT32 = 4;
+	go$pkg.R_X86_64_COPY = 5;
+	go$pkg.R_X86_64_GLOB_DAT = 6;
+	go$pkg.R_X86_64_JMP_SLOT = 7;
+	go$pkg.R_X86_64_RELATIVE = 8;
+	go$pkg.R_X86_64_GOTPCREL = 9;
+	go$pkg.R_X86_64_32 = 10;
+	go$pkg.R_X86_64_32S = 11;
+	go$pkg.R_X86_64_16 = 12;
+	go$pkg.R_X86_64_PC16 = 13;
+	go$pkg.R_X86_64_8 = 14;
+	go$pkg.R_X86_64_PC8 = 15;
+	go$pkg.R_X86_64_DTPMOD64 = 16;
+	go$pkg.R_X86_64_DTPOFF64 = 17;
+	go$pkg.R_X86_64_TPOFF64 = 18;
+	go$pkg.R_X86_64_TLSGD = 19;
+	go$pkg.R_X86_64_TLSLD = 20;
+	go$pkg.R_X86_64_DTPOFF32 = 21;
+	go$pkg.R_X86_64_GOTTPOFF = 22;
+	go$pkg.R_X86_64_TPOFF32 = 23;
+	go$pkg.R_ALPHA_NONE = 0;
+	go$pkg.R_ALPHA_REFLONG = 1;
+	go$pkg.R_ALPHA_REFQUAD = 2;
+	go$pkg.R_ALPHA_GPREL32 = 3;
+	go$pkg.R_ALPHA_LITERAL = 4;
+	go$pkg.R_ALPHA_LITUSE = 5;
+	go$pkg.R_ALPHA_GPDISP = 6;
+	go$pkg.R_ALPHA_BRADDR = 7;
+	go$pkg.R_ALPHA_HINT = 8;
+	go$pkg.R_ALPHA_SREL16 = 9;
+	go$pkg.R_ALPHA_SREL32 = 10;
+	go$pkg.R_ALPHA_SREL64 = 11;
+	go$pkg.R_ALPHA_OP_PUSH = 12;
+	go$pkg.R_ALPHA_OP_STORE = 13;
+	go$pkg.R_ALPHA_OP_PSUB = 14;
+	go$pkg.R_ALPHA_OP_PRSHIFT = 15;
+	go$pkg.R_ALPHA_GPVALUE = 16;
+	go$pkg.R_ALPHA_GPRELHIGH = 17;
+	go$pkg.R_ALPHA_GPRELLOW = 18;
+	go$pkg.R_ALPHA_IMMED_GP_16 = 19;
+	go$pkg.R_ALPHA_IMMED_GP_HI32 = 20;
+	go$pkg.R_ALPHA_IMMED_SCN_HI32 = 21;
+	go$pkg.R_ALPHA_IMMED_BR_HI32 = 22;
+	go$pkg.R_ALPHA_IMMED_LO32 = 23;
+	go$pkg.R_ALPHA_COPY = 24;
+	go$pkg.R_ALPHA_GLOB_DAT = 25;
+	go$pkg.R_ALPHA_JMP_SLOT = 26;
+	go$pkg.R_ALPHA_RELATIVE = 27;
+	go$pkg.R_ARM_NONE = 0;
+	go$pkg.R_ARM_PC24 = 1;
+	go$pkg.R_ARM_ABS32 = 2;
+	go$pkg.R_ARM_REL32 = 3;
+	go$pkg.R_ARM_PC13 = 4;
+	go$pkg.R_ARM_ABS16 = 5;
+	go$pkg.R_ARM_ABS12 = 6;
+	go$pkg.R_ARM_THM_ABS5 = 7;
+	go$pkg.R_ARM_ABS8 = 8;
+	go$pkg.R_ARM_SBREL32 = 9;
+	go$pkg.R_ARM_THM_PC22 = 10;
+	go$pkg.R_ARM_THM_PC8 = 11;
+	go$pkg.R_ARM_AMP_VCALL9 = 12;
+	go$pkg.R_ARM_SWI24 = 13;
+	go$pkg.R_ARM_THM_SWI8 = 14;
+	go$pkg.R_ARM_XPC25 = 15;
+	go$pkg.R_ARM_THM_XPC22 = 16;
+	go$pkg.R_ARM_COPY = 20;
+	go$pkg.R_ARM_GLOB_DAT = 21;
+	go$pkg.R_ARM_JUMP_SLOT = 22;
+	go$pkg.R_ARM_RELATIVE = 23;
+	go$pkg.R_ARM_GOTOFF = 24;
+	go$pkg.R_ARM_GOTPC = 25;
+	go$pkg.R_ARM_GOT32 = 26;
+	go$pkg.R_ARM_PLT32 = 27;
+	go$pkg.R_ARM_GNU_VTENTRY = 100;
+	go$pkg.R_ARM_GNU_VTINHERIT = 101;
+	go$pkg.R_ARM_RSBREL32 = 250;
+	go$pkg.R_ARM_THM_RPC22 = 251;
+	go$pkg.R_ARM_RREL32 = 252;
+	go$pkg.R_ARM_RABS32 = 253;
+	go$pkg.R_ARM_RPC24 = 254;
+	go$pkg.R_ARM_RBASE = 255;
+	go$pkg.R_386_NONE = 0;
+	go$pkg.R_386_32 = 1;
+	go$pkg.R_386_PC32 = 2;
+	go$pkg.R_386_GOT32 = 3;
+	go$pkg.R_386_PLT32 = 4;
+	go$pkg.R_386_COPY = 5;
+	go$pkg.R_386_GLOB_DAT = 6;
+	go$pkg.R_386_JMP_SLOT = 7;
+	go$pkg.R_386_RELATIVE = 8;
+	go$pkg.R_386_GOTOFF = 9;
+	go$pkg.R_386_GOTPC = 10;
+	go$pkg.R_386_TLS_TPOFF = 14;
+	go$pkg.R_386_TLS_IE = 15;
+	go$pkg.R_386_TLS_GOTIE = 16;
+	go$pkg.R_386_TLS_LE = 17;
+	go$pkg.R_386_TLS_GD = 18;
+	go$pkg.R_386_TLS_LDM = 19;
+	go$pkg.R_386_TLS_GD_32 = 24;
+	go$pkg.R_386_TLS_GD_PUSH = 25;
+	go$pkg.R_386_TLS_GD_CALL = 26;
+	go$pkg.R_386_TLS_GD_POP = 27;
+	go$pkg.R_386_TLS_LDM_32 = 28;
+	go$pkg.R_386_TLS_LDM_PUSH = 29;
+	go$pkg.R_386_TLS_LDM_CALL = 30;
+	go$pkg.R_386_TLS_LDM_POP = 31;
+	go$pkg.R_386_TLS_LDO_32 = 32;
+	go$pkg.R_386_TLS_IE_32 = 33;
+	go$pkg.R_386_TLS_LE_32 = 34;
+	go$pkg.R_386_TLS_DTPMOD32 = 35;
+	go$pkg.R_386_TLS_DTPOFF32 = 36;
+	go$pkg.R_386_TLS_TPOFF32 = 37;
+	go$pkg.R_PPC_NONE = 0;
+	go$pkg.R_PPC_ADDR32 = 1;
+	go$pkg.R_PPC_ADDR24 = 2;
+	go$pkg.R_PPC_ADDR16 = 3;
+	go$pkg.R_PPC_ADDR16_LO = 4;
+	go$pkg.R_PPC_ADDR16_HI = 5;
+	go$pkg.R_PPC_ADDR16_HA = 6;
+	go$pkg.R_PPC_ADDR14 = 7;
+	go$pkg.R_PPC_ADDR14_BRTAKEN = 8;
+	go$pkg.R_PPC_ADDR14_BRNTAKEN = 9;
+	go$pkg.R_PPC_REL24 = 10;
+	go$pkg.R_PPC_REL14 = 11;
+	go$pkg.R_PPC_REL14_BRTAKEN = 12;
+	go$pkg.R_PPC_REL14_BRNTAKEN = 13;
+	go$pkg.R_PPC_GOT16 = 14;
+	go$pkg.R_PPC_GOT16_LO = 15;
+	go$pkg.R_PPC_GOT16_HI = 16;
+	go$pkg.R_PPC_GOT16_HA = 17;
+	go$pkg.R_PPC_PLTREL24 = 18;
+	go$pkg.R_PPC_COPY = 19;
+	go$pkg.R_PPC_GLOB_DAT = 20;
+	go$pkg.R_PPC_JMP_SLOT = 21;
+	go$pkg.R_PPC_RELATIVE = 22;
+	go$pkg.R_PPC_LOCAL24PC = 23;
+	go$pkg.R_PPC_UADDR32 = 24;
+	go$pkg.R_PPC_UADDR16 = 25;
+	go$pkg.R_PPC_REL32 = 26;
+	go$pkg.R_PPC_PLT32 = 27;
+	go$pkg.R_PPC_PLTREL32 = 28;
+	go$pkg.R_PPC_PLT16_LO = 29;
+	go$pkg.R_PPC_PLT16_HI = 30;
+	go$pkg.R_PPC_PLT16_HA = 31;
+	go$pkg.R_PPC_SDAREL16 = 32;
+	go$pkg.R_PPC_SECTOFF = 33;
+	go$pkg.R_PPC_SECTOFF_LO = 34;
+	go$pkg.R_PPC_SECTOFF_HI = 35;
+	go$pkg.R_PPC_SECTOFF_HA = 36;
+	go$pkg.R_PPC_TLS = 67;
+	go$pkg.R_PPC_DTPMOD32 = 68;
+	go$pkg.R_PPC_TPREL16 = 69;
+	go$pkg.R_PPC_TPREL16_LO = 70;
+	go$pkg.R_PPC_TPREL16_HI = 71;
+	go$pkg.R_PPC_TPREL16_HA = 72;
+	go$pkg.R_PPC_TPREL32 = 73;
+	go$pkg.R_PPC_DTPREL16 = 74;
+	go$pkg.R_PPC_DTPREL16_LO = 75;
+	go$pkg.R_PPC_DTPREL16_HI = 76;
+	go$pkg.R_PPC_DTPREL16_HA = 77;
+	go$pkg.R_PPC_DTPREL32 = 78;
+	go$pkg.R_PPC_GOT_TLSGD16 = 79;
+	go$pkg.R_PPC_GOT_TLSGD16_LO = 80;
+	go$pkg.R_PPC_GOT_TLSGD16_HI = 81;
+	go$pkg.R_PPC_GOT_TLSGD16_HA = 82;
+	go$pkg.R_PPC_GOT_TLSLD16 = 83;
+	go$pkg.R_PPC_GOT_TLSLD16_LO = 84;
+	go$pkg.R_PPC_GOT_TLSLD16_HI = 85;
+	go$pkg.R_PPC_GOT_TLSLD16_HA = 86;
+	go$pkg.R_PPC_GOT_TPREL16 = 87;
+	go$pkg.R_PPC_GOT_TPREL16_LO = 88;
+	go$pkg.R_PPC_GOT_TPREL16_HI = 89;
+	go$pkg.R_PPC_GOT_TPREL16_HA = 90;
+	go$pkg.R_PPC_EMB_NADDR32 = 101;
+	go$pkg.R_PPC_EMB_NADDR16 = 102;
+	go$pkg.R_PPC_EMB_NADDR16_LO = 103;
+	go$pkg.R_PPC_EMB_NADDR16_HI = 104;
+	go$pkg.R_PPC_EMB_NADDR16_HA = 105;
+	go$pkg.R_PPC_EMB_SDAI16 = 106;
+	go$pkg.R_PPC_EMB_SDA2I16 = 107;
+	go$pkg.R_PPC_EMB_SDA2REL = 108;
+	go$pkg.R_PPC_EMB_SDA21 = 109;
+	go$pkg.R_PPC_EMB_MRKREF = 110;
+	go$pkg.R_PPC_EMB_RELSEC16 = 111;
+	go$pkg.R_PPC_EMB_RELST_LO = 112;
+	go$pkg.R_PPC_EMB_RELST_HI = 113;
+	go$pkg.R_PPC_EMB_RELST_HA = 114;
+	go$pkg.R_PPC_EMB_BIT_FLD = 115;
+	go$pkg.R_PPC_EMB_RELSDA = 116;
+	go$pkg.R_SPARC_NONE = 0;
+	go$pkg.R_SPARC_8 = 1;
+	go$pkg.R_SPARC_16 = 2;
+	go$pkg.R_SPARC_32 = 3;
+	go$pkg.R_SPARC_DISP8 = 4;
+	go$pkg.R_SPARC_DISP16 = 5;
+	go$pkg.R_SPARC_DISP32 = 6;
+	go$pkg.R_SPARC_WDISP30 = 7;
+	go$pkg.R_SPARC_WDISP22 = 8;
+	go$pkg.R_SPARC_HI22 = 9;
+	go$pkg.R_SPARC_22 = 10;
+	go$pkg.R_SPARC_13 = 11;
+	go$pkg.R_SPARC_LO10 = 12;
+	go$pkg.R_SPARC_GOT10 = 13;
+	go$pkg.R_SPARC_GOT13 = 14;
+	go$pkg.R_SPARC_GOT22 = 15;
+	go$pkg.R_SPARC_PC10 = 16;
+	go$pkg.R_SPARC_PC22 = 17;
+	go$pkg.R_SPARC_WPLT30 = 18;
+	go$pkg.R_SPARC_COPY = 19;
+	go$pkg.R_SPARC_GLOB_DAT = 20;
+	go$pkg.R_SPARC_JMP_SLOT = 21;
+	go$pkg.R_SPARC_RELATIVE = 22;
+	go$pkg.R_SPARC_UA32 = 23;
+	go$pkg.R_SPARC_PLT32 = 24;
+	go$pkg.R_SPARC_HIPLT22 = 25;
+	go$pkg.R_SPARC_LOPLT10 = 26;
+	go$pkg.R_SPARC_PCPLT32 = 27;
+	go$pkg.R_SPARC_PCPLT22 = 28;
+	go$pkg.R_SPARC_PCPLT10 = 29;
+	go$pkg.R_SPARC_10 = 30;
+	go$pkg.R_SPARC_11 = 31;
+	go$pkg.R_SPARC_64 = 32;
+	go$pkg.R_SPARC_OLO10 = 33;
+	go$pkg.R_SPARC_HH22 = 34;
+	go$pkg.R_SPARC_HM10 = 35;
+	go$pkg.R_SPARC_LM22 = 36;
+	go$pkg.R_SPARC_PC_HH22 = 37;
+	go$pkg.R_SPARC_PC_HM10 = 38;
+	go$pkg.R_SPARC_PC_LM22 = 39;
+	go$pkg.R_SPARC_WDISP16 = 40;
+	go$pkg.R_SPARC_WDISP19 = 41;
+	go$pkg.R_SPARC_GLOB_JMP = 42;
+	go$pkg.R_SPARC_7 = 43;
+	go$pkg.R_SPARC_5 = 44;
+	go$pkg.R_SPARC_6 = 45;
+	go$pkg.R_SPARC_DISP64 = 46;
+	go$pkg.R_SPARC_PLT64 = 47;
+	go$pkg.R_SPARC_HIX22 = 48;
+	go$pkg.R_SPARC_LOX10 = 49;
+	go$pkg.R_SPARC_H44 = 50;
+	go$pkg.R_SPARC_M44 = 51;
+	go$pkg.R_SPARC_L44 = 52;
+	go$pkg.R_SPARC_REGISTER = 53;
+	go$pkg.R_SPARC_UA64 = 54;
+	go$pkg.R_SPARC_UA16 = 55;
+	go$pkg.ARM_MAGIC_TRAMP_NUMBER = 1543503875;
+	go$pkg.Sym32Size = 16;
+	go$pkg.Sym64Size = 24;
+	var versionStrings = (go$sliceType(intName)).nil;
+	var classStrings = (go$sliceType(intName)).nil;
+	var dataStrings = (go$sliceType(intName)).nil;
+	var osabiStrings = (go$sliceType(intName)).nil;
+	var typeStrings = (go$sliceType(intName)).nil;
+	var machineStrings = (go$sliceType(intName)).nil;
+	var shnStrings = (go$sliceType(intName)).nil;
+	var shtStrings = (go$sliceType(intName)).nil;
+	var shfStrings = (go$sliceType(intName)).nil;
+	var ptStrings = (go$sliceType(intName)).nil;
+	var pfStrings = (go$sliceType(intName)).nil;
+	var dtStrings = (go$sliceType(intName)).nil;
+	var dflagStrings = (go$sliceType(intName)).nil;
+	var ntypeStrings = (go$sliceType(intName)).nil;
+	var stbStrings = (go$sliceType(intName)).nil;
+	var sttStrings = (go$sliceType(intName)).nil;
+	var stvStrings = (go$sliceType(intName)).nil;
+	var rx86_64Strings = (go$sliceType(intName)).nil;
+	var ralphaStrings = (go$sliceType(intName)).nil;
+	var rarmStrings = (go$sliceType(intName)).nil;
+	var r386Strings = (go$sliceType(intName)).nil;
+	var rppcStrings = (go$sliceType(intName)).nil;
+	var rsparcStrings = (go$sliceType(intName)).nil;
+	go$pkg.init = function() {
+		versionStrings = new (go$sliceType(intName))([new intName.Ptr(0, "EV_NONE"), new intName.Ptr(1, "EV_CURRENT")]);
+		classStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ELFCLASSNONE"), new intName.Ptr(1, "ELFCLASS32"), new intName.Ptr(2, "ELFCLASS64")]);
+		dataStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ELFDATANONE"), new intName.Ptr(1, "ELFDATA2LSB"), new intName.Ptr(2, "ELFDATA2MSB")]);
+		osabiStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ELFOSABI_NONE"), new intName.Ptr(1, "ELFOSABI_HPUX"), new intName.Ptr(2, "ELFOSABI_NETBSD"), new intName.Ptr(3, "ELFOSABI_LINUX"), new intName.Ptr(4, "ELFOSABI_HURD"), new intName.Ptr(5, "ELFOSABI_86OPEN"), new intName.Ptr(6, "ELFOSABI_SOLARIS"), new intName.Ptr(7, "ELFOSABI_AIX"), new intName.Ptr(8, "ELFOSABI_IRIX"), new intName.Ptr(9, "ELFOSABI_FREEBSD"), new intName.Ptr(10, "ELFOSABI_TRU64"), new intName.Ptr(11, "ELFOSABI_MODESTO"), new intName.Ptr(12, "ELFOSABI_OPENBSD"), new intName.Ptr(13, "ELFOSABI_OPENVMS"), new intName.Ptr(14, "ELFOSABI_NSK"), new intName.Ptr(97, "ELFOSABI_ARM"), new intName.Ptr(255, "ELFOSABI_STANDALONE")]);
+		typeStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ET_NONE"), new intName.Ptr(1, "ET_REL"), new intName.Ptr(2, "ET_EXEC"), new intName.Ptr(3, "ET_DYN"), new intName.Ptr(4, "ET_CORE"), new intName.Ptr(65024, "ET_LOOS"), new intName.Ptr(65279, "ET_HIOS"), new intName.Ptr(65280, "ET_LOPROC"), new intName.Ptr(65535, "ET_HIPROC")]);
+		machineStrings = new (go$sliceType(intName))([new intName.Ptr(0, "EM_NONE"), new intName.Ptr(1, "EM_M32"), new intName.Ptr(2, "EM_SPARC"), new intName.Ptr(3, "EM_386"), new intName.Ptr(4, "EM_68K"), new intName.Ptr(5, "EM_88K"), new intName.Ptr(7, "EM_860"), new intName.Ptr(8, "EM_MIPS"), new intName.Ptr(9, "EM_S370"), new intName.Ptr(10, "EM_MIPS_RS3_LE"), new intName.Ptr(15, "EM_PARISC"), new intName.Ptr(17, "EM_VPP500"), new intName.Ptr(18, "EM_SPARC32PLUS"), new intName.Ptr(19, "EM_960"), new intName.Ptr(20, "EM_PPC"), new intName.Ptr(21, "EM_PPC64"), new intName.Ptr(22, "EM_S390"), new intName.Ptr(36, "EM_V800"), new intName.Ptr(37, "EM_FR20"), new intName.Ptr(38, "EM_RH32"), new intName.Ptr(39, "EM_RCE"), new intName.Ptr(40, "EM_ARM"), new intName.Ptr(42, "EM_SH"), new intName.Ptr(43, "EM_SPARCV9"), new intName.Ptr(44, "EM_TRICORE"), new intName.Ptr(45, "EM_ARC"), new intName.Ptr(46, "EM_H8_300"), new intName.Ptr(47, "EM_H8_300H"), new intName.Ptr(48, "EM_H8S"), new intName.Ptr(49, "EM_H8_500"), new intName.Ptr(50, "EM_IA_64"), new intName.Ptr(51, "EM_MIPS_X"), new intName.Ptr(52, "EM_COLDFIRE"), new intName.Ptr(53, "EM_68HC12"), new intName.Ptr(54, "EM_MMA"), new intName.Ptr(55, "EM_PCP"), new intName.Ptr(56, "EM_NCPU"), new intName.Ptr(57, "EM_NDR1"), new intName.Ptr(58, "EM_STARCORE"), new intName.Ptr(59, "EM_ME16"), new intName.Ptr(60, "EM_ST100"), new intName.Ptr(61, "EM_TINYJ"), new intName.Ptr(62, "EM_X86_64"), new intName.Ptr(6, "EM_486"), new intName.Ptr(10, "EM_MIPS_RS4_BE"), new intName.Ptr(41, "EM_ALPHA_STD"), new intName.Ptr(36902, "EM_ALPHA")]);
+		shnStrings = new (go$sliceType(intName))([new intName.Ptr(0, "SHN_UNDEF"), new intName.Ptr(65280, "SHN_LOPROC"), new intName.Ptr(65312, "SHN_LOOS"), new intName.Ptr(65521, "SHN_ABS"), new intName.Ptr(65522, "SHN_COMMON"), new intName.Ptr(65535, "SHN_XINDEX")]);
+		shtStrings = new (go$sliceType(intName))([new intName.Ptr(0, "SHT_NULL"), new intName.Ptr(1, "SHT_PROGBITS"), new intName.Ptr(2, "SHT_SYMTAB"), new intName.Ptr(3, "SHT_STRTAB"), new intName.Ptr(4, "SHT_RELA"), new intName.Ptr(5, "SHT_HASH"), new intName.Ptr(6, "SHT_DYNAMIC"), new intName.Ptr(7, "SHT_NOTE"), new intName.Ptr(8, "SHT_NOBITS"), new intName.Ptr(9, "SHT_REL"), new intName.Ptr(10, "SHT_SHLIB"), new intName.Ptr(11, "SHT_DYNSYM"), new intName.Ptr(14, "SHT_INIT_ARRAY"), new intName.Ptr(15, "SHT_FINI_ARRAY"), new intName.Ptr(16, "SHT_PREINIT_ARRAY"), new intName.Ptr(17, "SHT_GROUP"), new intName.Ptr(18, "SHT_SYMTAB_SHNDX"), new intName.Ptr(1610612736, "SHT_LOOS"), new intName.Ptr(1879048181, "SHT_GNU_ATTRIBUTES"), new intName.Ptr(1879048182, "SHT_GNU_HASH"), new intName.Ptr(1879048183, "SHT_GNU_LIBLIST"), new intName.Ptr(1879048189, "SHT_GNU_VERDEF"), new intName.Ptr(1879048190, "SHT_GNU_VERNEED"), new intName.Ptr(1879048191, "SHT_GNU_VERSYM"), new intName.Ptr(1879048192, "SHT_LOPROC"), new intName.Ptr(2147483647, "SHT_HIPROC"), new intName.Ptr(2147483648, "SHT_LOUSER"), new intName.Ptr(4294967295, "SHT_HIUSER")]);
+		shfStrings = new (go$sliceType(intName))([new intName.Ptr(1, "SHF_WRITE"), new intName.Ptr(2, "SHF_ALLOC"), new intName.Ptr(4, "SHF_EXECINSTR"), new intName.Ptr(16, "SHF_MERGE"), new intName.Ptr(32, "SHF_STRINGS"), new intName.Ptr(64, "SHF_INFO_LINK"), new intName.Ptr(128, "SHF_LINK_ORDER"), new intName.Ptr(256, "SHF_OS_NONCONFORMING"), new intName.Ptr(512, "SHF_GROUP"), new intName.Ptr(1024, "SHF_TLS")]);
+		ptStrings = new (go$sliceType(intName))([new intName.Ptr(0, "PT_NULL"), new intName.Ptr(1, "PT_LOAD"), new intName.Ptr(2, "PT_DYNAMIC"), new intName.Ptr(3, "PT_INTERP"), new intName.Ptr(4, "PT_NOTE"), new intName.Ptr(5, "PT_SHLIB"), new intName.Ptr(6, "PT_PHDR"), new intName.Ptr(7, "PT_TLS"), new intName.Ptr(1610612736, "PT_LOOS"), new intName.Ptr(1879048191, "PT_HIOS"), new intName.Ptr(1879048192, "PT_LOPROC"), new intName.Ptr(2147483647, "PT_HIPROC")]);
+		pfStrings = new (go$sliceType(intName))([new intName.Ptr(1, "PF_X"), new intName.Ptr(2, "PF_W"), new intName.Ptr(4, "PF_R")]);
+		dtStrings = new (go$sliceType(intName))([new intName.Ptr(0, "DT_NULL"), new intName.Ptr(1, "DT_NEEDED"), new intName.Ptr(2, "DT_PLTRELSZ"), new intName.Ptr(3, "DT_PLTGOT"), new intName.Ptr(4, "DT_HASH"), new intName.Ptr(5, "DT_STRTAB"), new intName.Ptr(6, "DT_SYMTAB"), new intName.Ptr(7, "DT_RELA"), new intName.Ptr(8, "DT_RELASZ"), new intName.Ptr(9, "DT_RELAENT"), new intName.Ptr(10, "DT_STRSZ"), new intName.Ptr(11, "DT_SYMENT"), new intName.Ptr(12, "DT_INIT"), new intName.Ptr(13, "DT_FINI"), new intName.Ptr(14, "DT_SONAME"), new intName.Ptr(15, "DT_RPATH"), new intName.Ptr(16, "DT_SYMBOLIC"), new intName.Ptr(17, "DT_REL"), new intName.Ptr(18, "DT_RELSZ"), new intName.Ptr(19, "DT_RELENT"), new intName.Ptr(20, "DT_PLTREL"), new intName.Ptr(21, "DT_DEBUG"), new intName.Ptr(22, "DT_TEXTREL"), new intName.Ptr(23, "DT_JMPREL"), new intName.Ptr(24, "DT_BIND_NOW"), new intName.Ptr(25, "DT_INIT_ARRAY"), new intName.Ptr(26, "DT_FINI_ARRAY"), new intName.Ptr(27, "DT_INIT_ARRAYSZ"), new intName.Ptr(28, "DT_FINI_ARRAYSZ"), new intName.Ptr(29, "DT_RUNPATH"), new intName.Ptr(30, "DT_FLAGS"), new intName.Ptr(32, "DT_ENCODING"), new intName.Ptr(32, "DT_PREINIT_ARRAY"), new intName.Ptr(33, "DT_PREINIT_ARRAYSZ"), new intName.Ptr(1610612749, "DT_LOOS"), new intName.Ptr(1879044096, "DT_HIOS"), new intName.Ptr(1879048176, "DT_VERSYM"), new intName.Ptr(1879048190, "DT_VERNEED"), new intName.Ptr(1879048191, "DT_VERNEEDNUM"), new intName.Ptr(1879048192, "DT_LOPROC"), new intName.Ptr(2147483647, "DT_HIPROC")]);
+		dflagStrings = new (go$sliceType(intName))([new intName.Ptr(1, "DF_ORIGIN"), new intName.Ptr(2, "DF_SYMBOLIC"), new intName.Ptr(4, "DF_TEXTREL"), new intName.Ptr(8, "DF_BIND_NOW"), new intName.Ptr(16, "DF_STATIC_TLS")]);
+		ntypeStrings = new (go$sliceType(intName))([new intName.Ptr(1, "NT_PRSTATUS"), new intName.Ptr(2, "NT_FPREGSET"), new intName.Ptr(3, "NT_PRPSINFO")]);
+		stbStrings = new (go$sliceType(intName))([new intName.Ptr(0, "STB_LOCAL"), new intName.Ptr(1, "STB_GLOBAL"), new intName.Ptr(2, "STB_WEAK"), new intName.Ptr(10, "STB_LOOS"), new intName.Ptr(12, "STB_HIOS"), new intName.Ptr(13, "STB_LOPROC"), new intName.Ptr(15, "STB_HIPROC")]);
+		sttStrings = new (go$sliceType(intName))([new intName.Ptr(0, "STT_NOTYPE"), new intName.Ptr(1, "STT_OBJECT"), new intName.Ptr(2, "STT_FUNC"), new intName.Ptr(3, "STT_SECTION"), new intName.Ptr(4, "STT_FILE"), new intName.Ptr(5, "STT_COMMON"), new intName.Ptr(6, "STT_TLS"), new intName.Ptr(10, "STT_LOOS"), new intName.Ptr(12, "STT_HIOS"), new intName.Ptr(13, "STT_LOPROC"), new intName.Ptr(15, "STT_HIPROC")]);
+		stvStrings = new (go$sliceType(intName))([new intName.Ptr(0, "STV_DEFAULT"), new intName.Ptr(1, "STV_INTERNAL"), new intName.Ptr(2, "STV_HIDDEN"), new intName.Ptr(3, "STV_PROTECTED")]);
+		rx86_64Strings = new (go$sliceType(intName))([new intName.Ptr(0, "R_X86_64_NONE"), new intName.Ptr(1, "R_X86_64_64"), new intName.Ptr(2, "R_X86_64_PC32"), new intName.Ptr(3, "R_X86_64_GOT32"), new intName.Ptr(4, "R_X86_64_PLT32"), new intName.Ptr(5, "R_X86_64_COPY"), new intName.Ptr(6, "R_X86_64_GLOB_DAT"), new intName.Ptr(7, "R_X86_64_JMP_SLOT"), new intName.Ptr(8, "R_X86_64_RELATIVE"), new intName.Ptr(9, "R_X86_64_GOTPCREL"), new intName.Ptr(10, "R_X86_64_32"), new intName.Ptr(11, "R_X86_64_32S"), new intName.Ptr(12, "R_X86_64_16"), new intName.Ptr(13, "R_X86_64_PC16"), new intName.Ptr(14, "R_X86_64_8"), new intName.Ptr(15, "R_X86_64_PC8"), new intName.Ptr(16, "R_X86_64_DTPMOD64"), new intName.Ptr(17, "R_X86_64_DTPOFF64"), new intName.Ptr(18, "R_X86_64_TPOFF64"), new intName.Ptr(19, "R_X86_64_TLSGD"), new intName.Ptr(20, "R_X86_64_TLSLD"), new intName.Ptr(21, "R_X86_64_DTPOFF32"), new intName.Ptr(22, "R_X86_64_GOTTPOFF"), new intName.Ptr(23, "R_X86_64_TPOFF32")]);
+		ralphaStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_ALPHA_NONE"), new intName.Ptr(1, "R_ALPHA_REFLONG"), new intName.Ptr(2, "R_ALPHA_REFQUAD"), new intName.Ptr(3, "R_ALPHA_GPREL32"), new intName.Ptr(4, "R_ALPHA_LITERAL"), new intName.Ptr(5, "R_ALPHA_LITUSE"), new intName.Ptr(6, "R_ALPHA_GPDISP"), new intName.Ptr(7, "R_ALPHA_BRADDR"), new intName.Ptr(8, "R_ALPHA_HINT"), new intName.Ptr(9, "R_ALPHA_SREL16"), new intName.Ptr(10, "R_ALPHA_SREL32"), new intName.Ptr(11, "R_ALPHA_SREL64"), new intName.Ptr(12, "R_ALPHA_OP_PUSH"), new intName.Ptr(13, "R_ALPHA_OP_STORE"), new intName.Ptr(14, "R_ALPHA_OP_PSUB"), new intName.Ptr(15, "R_ALPHA_OP_PRSHIFT"), new intName.Ptr(16, "R_ALPHA_GPVALUE"), new intName.Ptr(17, "R_ALPHA_GPRELHIGH"), new intName.Ptr(18, "R_ALPHA_GPRELLOW"), new intName.Ptr(19, "R_ALPHA_IMMED_GP_16"), new intName.Ptr(20, "R_ALPHA_IMMED_GP_HI32"), new intName.Ptr(21, "R_ALPHA_IMMED_SCN_HI32"), new intName.Ptr(22, "R_ALPHA_IMMED_BR_HI32"), new intName.Ptr(23, "R_ALPHA_IMMED_LO32"), new intName.Ptr(24, "R_ALPHA_COPY"), new intName.Ptr(25, "R_ALPHA_GLOB_DAT"), new intName.Ptr(26, "R_ALPHA_JMP_SLOT"), new intName.Ptr(27, "R_ALPHA_RELATIVE")]);
+		rarmStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_ARM_NONE"), new intName.Ptr(1, "R_ARM_PC24"), new intName.Ptr(2, "R_ARM_ABS32"), new intName.Ptr(3, "R_ARM_REL32"), new intName.Ptr(4, "R_ARM_PC13"), new intName.Ptr(5, "R_ARM_ABS16"), new intName.Ptr(6, "R_ARM_ABS12"), new intName.Ptr(7, "R_ARM_THM_ABS5"), new intName.Ptr(8, "R_ARM_ABS8"), new intName.Ptr(9, "R_ARM_SBREL32"), new intName.Ptr(10, "R_ARM_THM_PC22"), new intName.Ptr(11, "R_ARM_THM_PC8"), new intName.Ptr(12, "R_ARM_AMP_VCALL9"), new intName.Ptr(13, "R_ARM_SWI24"), new intName.Ptr(14, "R_ARM_THM_SWI8"), new intName.Ptr(15, "R_ARM_XPC25"), new intName.Ptr(16, "R_ARM_THM_XPC22"), new intName.Ptr(20, "R_ARM_COPY"), new intName.Ptr(21, "R_ARM_GLOB_DAT"), new intName.Ptr(22, "R_ARM_JUMP_SLOT"), new intName.Ptr(23, "R_ARM_RELATIVE"), new intName.Ptr(24, "R_ARM_GOTOFF"), new intName.Ptr(25, "R_ARM_GOTPC"), new intName.Ptr(26, "R_ARM_GOT32"), new intName.Ptr(27, "R_ARM_PLT32"), new intName.Ptr(100, "R_ARM_GNU_VTENTRY"), new intName.Ptr(101, "R_ARM_GNU_VTINHERIT"), new intName.Ptr(250, "R_ARM_RSBREL32"), new intName.Ptr(251, "R_ARM_THM_RPC22"), new intName.Ptr(252, "R_ARM_RREL32"), new intName.Ptr(253, "R_ARM_RABS32"), new intName.Ptr(254, "R_ARM_RPC24"), new intName.Ptr(255, "R_ARM_RBASE")]);
+		r386Strings = new (go$sliceType(intName))([new intName.Ptr(0, "R_386_NONE"), new intName.Ptr(1, "R_386_32"), new intName.Ptr(2, "R_386_PC32"), new intName.Ptr(3, "R_386_GOT32"), new intName.Ptr(4, "R_386_PLT32"), new intName.Ptr(5, "R_386_COPY"), new intName.Ptr(6, "R_386_GLOB_DAT"), new intName.Ptr(7, "R_386_JMP_SLOT"), new intName.Ptr(8, "R_386_RELATIVE"), new intName.Ptr(9, "R_386_GOTOFF"), new intName.Ptr(10, "R_386_GOTPC"), new intName.Ptr(14, "R_386_TLS_TPOFF"), new intName.Ptr(15, "R_386_TLS_IE"), new intName.Ptr(16, "R_386_TLS_GOTIE"), new intName.Ptr(17, "R_386_TLS_LE"), new intName.Ptr(18, "R_386_TLS_GD"), new intName.Ptr(19, "R_386_TLS_LDM"), new intName.Ptr(24, "R_386_TLS_GD_32"), new intName.Ptr(25, "R_386_TLS_GD_PUSH"), new intName.Ptr(26, "R_386_TLS_GD_CALL"), new intName.Ptr(27, "R_386_TLS_GD_POP"), new intName.Ptr(28, "R_386_TLS_LDM_32"), new intName.Ptr(29, "R_386_TLS_LDM_PUSH"), new intName.Ptr(30, "R_386_TLS_LDM_CALL"), new intName.Ptr(31, "R_386_TLS_LDM_POP"), new intName.Ptr(32, "R_386_TLS_LDO_32"), new intName.Ptr(33, "R_386_TLS_IE_32"), new intName.Ptr(34, "R_386_TLS_LE_32"), new intName.Ptr(35, "R_386_TLS_DTPMOD32"), new intName.Ptr(36, "R_386_TLS_DTPOFF32"), new intName.Ptr(37, "R_386_TLS_TPOFF32")]);
+		rppcStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_PPC_NONE"), new intName.Ptr(1, "R_PPC_ADDR32"), new intName.Ptr(2, "R_PPC_ADDR24"), new intName.Ptr(3, "R_PPC_ADDR16"), new intName.Ptr(4, "R_PPC_ADDR16_LO"), new intName.Ptr(5, "R_PPC_ADDR16_HI"), new intName.Ptr(6, "R_PPC_ADDR16_HA"), new intName.Ptr(7, "R_PPC_ADDR14"), new intName.Ptr(8, "R_PPC_ADDR14_BRTAKEN"), new intName.Ptr(9, "R_PPC_ADDR14_BRNTAKEN"), new intName.Ptr(10, "R_PPC_REL24"), new intName.Ptr(11, "R_PPC_REL14"), new intName.Ptr(12, "R_PPC_REL14_BRTAKEN"), new intName.Ptr(13, "R_PPC_REL14_BRNTAKEN"), new intName.Ptr(14, "R_PPC_GOT16"), new intName.Ptr(15, "R_PPC_GOT16_LO"), new intName.Ptr(16, "R_PPC_GOT16_HI"), new intName.Ptr(17, "R_PPC_GOT16_HA"), new intName.Ptr(18, "R_PPC_PLTREL24"), new intName.Ptr(19, "R_PPC_COPY"), new intName.Ptr(20, "R_PPC_GLOB_DAT"), new intName.Ptr(21, "R_PPC_JMP_SLOT"), new intName.Ptr(22, "R_PPC_RELATIVE"), new intName.Ptr(23, "R_PPC_LOCAL24PC"), new intName.Ptr(24, "R_PPC_UADDR32"), new intName.Ptr(25, "R_PPC_UADDR16"), new intName.Ptr(26, "R_PPC_REL32"), new intName.Ptr(27, "R_PPC_PLT32"), new intName.Ptr(28, "R_PPC_PLTREL32"), new intName.Ptr(29, "R_PPC_PLT16_LO"), new intName.Ptr(30, "R_PPC_PLT16_HI"), new intName.Ptr(31, "R_PPC_PLT16_HA"), new intName.Ptr(32, "R_PPC_SDAREL16"), new intName.Ptr(33, "R_PPC_SECTOFF"), new intName.Ptr(34, "R_PPC_SECTOFF_LO"), new intName.Ptr(35, "R_PPC_SECTOFF_HI"), new intName.Ptr(36, "R_PPC_SECTOFF_HA"), new intName.Ptr(67, "R_PPC_TLS"), new intName.Ptr(68, "R_PPC_DTPMOD32"), new intName.Ptr(69, "R_PPC_TPREL16"), new intName.Ptr(70, "R_PPC_TPREL16_LO"), new intName.Ptr(71, "R_PPC_TPREL16_HI"), new intName.Ptr(72, "R_PPC_TPREL16_HA"), new intName.Ptr(73, "R_PPC_TPREL32"), new intName.Ptr(74, "R_PPC_DTPREL16"), new intName.Ptr(75, "R_PPC_DTPREL16_LO"), new intName.Ptr(76, "R_PPC_DTPREL16_HI"), new intName.Ptr(77, "R_PPC_DTPREL16_HA"), new intName.Ptr(78, "R_PPC_DTPREL32"), new intName.Ptr(79, "R_PPC_GOT_TLSGD16"), new intName.Ptr(80, "R_PPC_GOT_TLSGD16_LO"), new intName.Ptr(81, "R_PPC_GOT_TLSGD16_HI"), new intName.Ptr(82, "R_PPC_GOT_TLSGD16_HA"), new intName.Ptr(83, "R_PPC_GOT_TLSLD16"), new intName.Ptr(84, "R_PPC_GOT_TLSLD16_LO"), new intName.Ptr(85, "R_PPC_GOT_TLSLD16_HI"), new intName.Ptr(86, "R_PPC_GOT_TLSLD16_HA"), new intName.Ptr(87, "R_PPC_GOT_TPREL16"), new intName.Ptr(88, "R_PPC_GOT_TPREL16_LO"), new intName.Ptr(89, "R_PPC_GOT_TPREL16_HI"), new intName.Ptr(90, "R_PPC_GOT_TPREL16_HA"), new intName.Ptr(101, "R_PPC_EMB_NADDR32"), new intName.Ptr(102, "R_PPC_EMB_NADDR16"), new intName.Ptr(103, "R_PPC_EMB_NADDR16_LO"), new intName.Ptr(104, "R_PPC_EMB_NADDR16_HI"), new intName.Ptr(105, "R_PPC_EMB_NADDR16_HA"), new intName.Ptr(106, "R_PPC_EMB_SDAI16"), new intName.Ptr(107, "R_PPC_EMB_SDA2I16"), new intName.Ptr(108, "R_PPC_EMB_SDA2REL"), new intName.Ptr(109, "R_PPC_EMB_SDA21"), new intName.Ptr(110, "R_PPC_EMB_MRKREF"), new intName.Ptr(111, "R_PPC_EMB_RELSEC16"), new intName.Ptr(112, "R_PPC_EMB_RELST_LO"), new intName.Ptr(113, "R_PPC_EMB_RELST_HI"), new intName.Ptr(114, "R_PPC_EMB_RELST_HA"), new intName.Ptr(115, "R_PPC_EMB_BIT_FLD"), new intName.Ptr(116, "R_PPC_EMB_RELSDA")]);
+		rsparcStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_SPARC_NONE"), new intName.Ptr(1, "R_SPARC_8"), new intName.Ptr(2, "R_SPARC_16"), new intName.Ptr(3, "R_SPARC_32"), new intName.Ptr(4, "R_SPARC_DISP8"), new intName.Ptr(5, "R_SPARC_DISP16"), new intName.Ptr(6, "R_SPARC_DISP32"), new intName.Ptr(7, "R_SPARC_WDISP30"), new intName.Ptr(8, "R_SPARC_WDISP22"), new intName.Ptr(9, "R_SPARC_HI22"), new intName.Ptr(10, "R_SPARC_22"), new intName.Ptr(11, "R_SPARC_13"), new intName.Ptr(12, "R_SPARC_LO10"), new intName.Ptr(13, "R_SPARC_GOT10"), new intName.Ptr(14, "R_SPARC_GOT13"), new intName.Ptr(15, "R_SPARC_GOT22"), new intName.Ptr(16, "R_SPARC_PC10"), new intName.Ptr(17, "R_SPARC_PC22"), new intName.Ptr(18, "R_SPARC_WPLT30"), new intName.Ptr(19, "R_SPARC_COPY"), new intName.Ptr(20, "R_SPARC_GLOB_DAT"), new intName.Ptr(21, "R_SPARC_JMP_SLOT"), new intName.Ptr(22, "R_SPARC_RELATIVE"), new intName.Ptr(23, "R_SPARC_UA32"), new intName.Ptr(24, "R_SPARC_PLT32"), new intName.Ptr(25, "R_SPARC_HIPLT22"), new intName.Ptr(26, "R_SPARC_LOPLT10"), new intName.Ptr(27, "R_SPARC_PCPLT32"), new intName.Ptr(28, "R_SPARC_PCPLT22"), new intName.Ptr(29, "R_SPARC_PCPLT10"), new intName.Ptr(30, "R_SPARC_10"), new intName.Ptr(31, "R_SPARC_11"), new intName.Ptr(32, "R_SPARC_64"), new intName.Ptr(33, "R_SPARC_OLO10"), new intName.Ptr(34, "R_SPARC_HH22"), new intName.Ptr(35, "R_SPARC_HM10"), new intName.Ptr(36, "R_SPARC_LM22"), new intName.Ptr(37, "R_SPARC_PC_HH22"), new intName.Ptr(38, "R_SPARC_PC_HM10"), new intName.Ptr(39, "R_SPARC_PC_LM22"), new intName.Ptr(40, "R_SPARC_WDISP16"), new intName.Ptr(41, "R_SPARC_WDISP19"), new intName.Ptr(42, "R_SPARC_GLOB_JMP"), new intName.Ptr(43, "R_SPARC_7"), new intName.Ptr(44, "R_SPARC_5"), new intName.Ptr(45, "R_SPARC_6"), new intName.Ptr(46, "R_SPARC_DISP64"), new intName.Ptr(47, "R_SPARC_PLT64"), new intName.Ptr(48, "R_SPARC_HIX22"), new intName.Ptr(49, "R_SPARC_LOX10"), new intName.Ptr(50, "R_SPARC_H44"), new intName.Ptr(51, "R_SPARC_M44"), new intName.Ptr(52, "R_SPARC_L44"), new intName.Ptr(53, "R_SPARC_REGISTER"), new intName.Ptr(54, "R_SPARC_UA64"), new intName.Ptr(55, "R_SPARC_UA16")]);
+	};

@@ -1,0 +1,1256 @@
+0‚º_‚7package bytes
+import errors "errors"
+import io "io"
+import utf8 "unicode/utf8"
+import unicode "unicode"
+type @"".Buffer struct { @"".buf []byte; @"".off int; @"".runeBytes [4]byte; @"".bootstrap [64]byte; @"".lastRead @"".readOp }
+func (? *@"".Buffer) @"".Bytes() (? []byte)
+func (? *@"".Buffer) @"".Grow(@"".n int) ()
+func (? *@"".Buffer) @"".Len() (? int)
+func (? *@"".Buffer) @"".Next(@"".n int) (? []byte)
+func (? *@"".Buffer) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"".Buffer) @"".ReadByte() (@"".c byte, @"".err error)
+func (? *@"".Buffer) @"".ReadBytes(@"".delim byte) (@"".line []byte, @"".err error)
+func (? *@"".Buffer) @"".ReadFrom(@"".r @"io".Reader) (@"".n int64, @"".err error)
+func (? *@"".Buffer) @"".ReadRune() (@"".r rune, @"".size int, @"".err error)
+func (? *@"".Buffer) @"".ReadString(@"".delim byte) (@"".line string, @"".err error)
+func (? *@"".Buffer) @"".Reset() ()
+func (? *@"".Buffer) @"".String() (? string)
+func (? *@"".Buffer) @"".Truncate(@"".n int) ()
+func (? *@"".Buffer) @"".UnreadByte() (? error)
+func (? *@"".Buffer) @"".UnreadRune() (? error)
+func (? *@"".Buffer) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"".Buffer) @"".WriteByte(@"".c byte) (? error)
+func (? *@"".Buffer) @"".WriteRune(@"".r rune) (@"".n int, @"".err error)
+func (? *@"".Buffer) @"".WriteString(@"".s string) (@"".n int, @"".err error)
+func (? *@"".Buffer) @"".WriteTo(@"".w @"io".Writer) (@"".n int64, @"".err error)
+func (? *@"".Buffer) @"".grow(@"".n int) (? int)
+func (? *@"".Buffer) @"".readSlice(@"".delim byte) (@"".line []byte, @"".err error)
+func @"".Compare(@"".a []byte, @"".b []byte) (? int)
+func @"".Contains(@"".b []byte, @"".subslice []byte) (? bool)
+func @"".Count(@"".s []byte, @"".sep []byte) (? int)
+func @"".Equal(@"".a []byte, @"".b []byte) (? bool)
+func @"".EqualFold(@"".s []byte, @"".t []byte) (? bool)
+var @"".ErrTooLarge error
+func @"".Fields(@"".s []byte) (? [][]byte)
+func @"".FieldsFunc(@"".s []byte, @"".f func (? rune) (? bool)) (? [][]byte)
+func @"".HasPrefix(@"".s []byte, @"".prefix []byte) (? bool)
+func @"".HasSuffix(@"".s []byte, @"".suffix []byte) (? bool)
+func @"".Index(@"".s []byte, @"".sep []byte) (? int)
+func @"".IndexAny(@"".s []byte, @"".chars string) (? int)
+func @"".IndexByte(@"".s []byte, @"".c byte) (? int)
+func @"".IndexFunc(@"".s []byte, @"".f func (@"".r rune) (? bool)) (? int)
+func @"".IndexRune(@"".s []byte, @"".r rune) (? int)
+func @"".Join(@"".s [][]byte, @"".sep []byte) (? []byte)
+func @"".LastIndex(@"".s []byte, @"".sep []byte) (? int)
+func @"".LastIndexAny(@"".s []byte, @"".chars string) (? int)
+func @"".LastIndexFunc(@"".s []byte, @"".f func (@"".r rune) (? bool)) (? int)
+func @"".Map(@"".mapping func (@"".r rune) (? rune), @"".s []byte) (? []byte)
+const @"".MinRead = 0x200
+func @"".NewBuffer(@"".buf []byte) (? *@"".Buffer)
+func @"".NewBufferString(@"".s string) (? *@"".Buffer)
+func @"".NewReader(@"".b []byte) (? *@"".Reader)
+type @"".Reader struct { @"".s []byte; @"".i int; @"".prevRune int }
+func (? *@"".Reader) @"".Len() (? int)
+func (? *@"".Reader) @"".Read(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"".Reader) @"".ReadAt(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"".Reader) @"".ReadByte() (@"".b byte, @"".err error)
+func (? *@"".Reader) @"".ReadRune() (@"".ch rune, @"".size int, @"".err error)
+func (? *@"".Reader) @"".Seek(@"".offset int64, @"".whence int) (? int64, ? error)
+func (? *@"".Reader) @"".UnreadByte() (? error)
+func (? *@"".Reader) @"".UnreadRune() (? error)
+func (? *@"".Reader) @"".WriteTo(@"".w @"io".Writer) (@"".n int64, @"".err error)
+func @"".Repeat(@"".b []byte, @"".count int) (? []byte)
+func @"".Replace(@"".s []byte, @"".old []byte, @"".new []byte, @"".n int) (? []byte)
+func @"".Runes(@"".s []byte) (? []rune)
+func @"".Split(@"".s []byte, @"".sep []byte) (? [][]byte)
+func @"".SplitAfter(@"".s []byte, @"".sep []byte) (? [][]byte)
+func @"".SplitAfterN(@"".s []byte, @"".sep []byte, @"".n int) (? [][]byte)
+func @"".SplitN(@"".s []byte, @"".sep []byte, @"".n int) (? [][]byte)
+func @"".Title(@"".s []byte) (? []byte)
+func @"".ToLower(@"".s []byte) (? []byte)
+func @"".ToLowerSpecial(@""._case @"unicode".SpecialCase, @"".s []byte) (? []byte)
+func @"".ToTitle(@"".s []byte) (? []byte)
+func @"".ToTitleSpecial(@""._case @"unicode".SpecialCase, @"".s []byte) (? []byte)
+func @"".ToUpper(@"".s []byte) (? []byte)
+func @"".ToUpperSpecial(@""._case @"unicode".SpecialCase, @"".s []byte) (? []byte)
+func @"".Trim(@"".s []byte, @"".cutset string) (? []byte)
+func @"".TrimFunc(@"".s []byte, @"".f func (@"".r rune) (? bool)) (? []byte)
+func @"".TrimLeft(@"".s []byte, @"".cutset string) (? []byte)
+func @"".TrimLeftFunc(@"".s []byte, @"".f func (@"".r rune) (? bool)) (? []byte)
+func @"".TrimPrefix(@"".s []byte, @"".prefix []byte) (? []byte)
+func @"".TrimRight(@"".s []byte, @"".cutset string) (? []byte)
+func @"".TrimRightFunc(@"".s []byte, @"".f func (@"".r rune) (? bool)) (? []byte)
+func @"".TrimSpace(@"".s []byte) (? []byte)
+func @"".TrimSuffix(@"".s []byte, @"".suffix []byte) (? []byte)
+type @"".readOp int
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"unicode".SpecialCase []@"unicode".CaseRange
+func (? @"unicode".SpecialCase) @"unicode".ToLower(@"unicode".r rune) (? rune)
+func (? @"unicode".SpecialCase) @"unicode".ToTitle(@"unicode".r rune) (? rune)
+func (? @"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
+func (? *@"unicode".SpecialCase) @"unicode".ToLower(@"unicode".r rune) (? rune)
+func (? *@"unicode".SpecialCase) @"unicode".ToTitle(@"unicode".r rune) (? rune)
+func (? *@"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
+type @"unicode".CaseRange struct { @"unicode".Lo uint32; @"unicode".Hi uint32; @"unicode".Delta @"unicode".d }
+type @"unicode".d [3]rune
+$$
+0Fruntimeerrorssync/atomicsynciounicodeunicode/utf8bytes‚¢Ø	var errors = go$packages["errors"];
+	var io = go$packages["io"];
+	var utf8 = go$packages["unicode/utf8"];
+	var unicode = go$packages["unicode"];
+	var Buffer;
+	Buffer = go$newType(0, "Struct", "bytes.Buffer", "Buffer", "bytes", function(buf_, off_, runeBytes_, bootstrap_, lastRead_) {
+		this.go$val = this;
+		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
+		this.off = off_ !== undefined ? off_ : 0;
+		this.runeBytes = runeBytes_ !== undefined ? runeBytes_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
+		this.bootstrap = bootstrap_ !== undefined ? bootstrap_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
+		this.lastRead = lastRead_ !== undefined ? lastRead_ : 0;
+	});
+	go$pkg.Buffer = Buffer;
+	var readOp;
+	readOp = go$newType(4, "Int", "bytes.readOp", "readOp", "bytes", null);
+	go$pkg.readOp = readOp;
+	var Reader;
+	Reader = go$newType(0, "Struct", "bytes.Reader", "Reader", "bytes", function(s_, i_, prevRune_) {
+		this.go$val = this;
+		this.s = s_ !== undefined ? s_ : (go$sliceType(Go$Uint8)).nil;
+		this.i = i_ !== undefined ? i_ : 0;
+		this.prevRune = prevRune_ !== undefined ? prevRune_ : 0;
+	});
+	go$pkg.Reader = Reader;
+	Buffer.init([["buf", "bytes", (go$sliceType(Go$Uint8)), ""], ["off", "bytes", Go$Int, ""], ["runeBytes", "bytes", (go$arrayType(Go$Uint8, 4)), ""], ["bootstrap", "bytes", (go$arrayType(Go$Uint8, 64)), ""], ["lastRead", "bytes", readOp, ""]]);
+	(go$ptrType(Buffer)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Len", "", [], [Go$Int], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false]];
+	Reader.init([["s", "bytes", (go$sliceType(Go$Uint8)), ""], ["i", "bytes", Go$Int, ""], ["prevRune", "bytes", Go$Int, ""]]);
+	(go$ptrType(Reader)).methods = [["Len", "", [], [Go$Int], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false]];
+	Buffer.Ptr.prototype.Bytes = function() {
+		var b;
+		b = this;
+		return go$subslice(b.buf, b.off);
+	};
+	Buffer.prototype.Bytes = function() { return this.go$val.Bytes(); };
+	Buffer.Ptr.prototype.String = function() {
+		var b;
+		b = this;
+		if (b === (go$ptrType(Buffer)).nil) {
+			return "<nil>";
+		}
+		return go$bytesToString(go$subslice(b.buf, b.off));
+	};
+	Buffer.prototype.String = function() { return this.go$val.String(); };
+	Buffer.Ptr.prototype.Len = function() {
+		var b;
+		b = this;
+		return b.buf.length - b.off >> 0;
+	};
+	Buffer.prototype.Len = function() { return this.go$val.Len(); };
+	Buffer.Ptr.prototype.Truncate = function(n) {
+		var b;
+		b = this;
+		b.lastRead = 0;
+		if (n < 0 || n > b.Len()) {
+			throw go$panic(new Go$String("bytes.Buffer: truncation out of range"));
+		} else if (n === 0) {
+			b.off = 0;
+		}
+		b.buf = go$subslice(b.buf, 0, (b.off + n >> 0));
+	};
+	Buffer.prototype.Truncate = function(n) { return this.go$val.Truncate(n); };
+	Buffer.Ptr.prototype.Reset = function() {
+		var b;
+		b = this;
+		b.Truncate(0);
+	};
+	Buffer.prototype.Reset = function() { return this.go$val.Reset(); };
+	Buffer.Ptr.prototype.grow = function(n) {
+		var b, m, buf, _q, x, x$1;
+		b = this;
+		m = b.Len();
+		if ((m === 0) && !((b.off === 0))) {
+			b.Truncate(0);
+		}
+		if ((b.buf.length + n >> 0) > b.buf.capacity) {
+			buf = (go$sliceType(Go$Uint8)).nil;
+			if (b.buf === (go$sliceType(Go$Uint8)).nil && n <= 64) {
+				buf = go$subslice(new (go$sliceType(Go$Uint8))(b.bootstrap), 0);
+			} else if ((m + n >> 0) <= (_q = b.buf.capacity / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))) {
+				go$copySlice(b.buf, go$subslice(b.buf, b.off));
+				buf = go$subslice(b.buf, 0, m);
+			} else {
+				buf = makeSlice((x = 2, x$1 = b.buf.capacity, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) + n >> 0);
+				go$copySlice(buf, go$subslice(b.buf, b.off));
+			}
+			b.buf = buf;
+			b.off = 0;
+		}
+		b.buf = go$subslice(b.buf, 0, ((b.off + m >> 0) + n >> 0));
+		return b.off + m >> 0;
+	};
+	Buffer.prototype.grow = function(n) { return this.go$val.grow(n); };
+	Buffer.Ptr.prototype.Grow = function(n) {
+		var b, m;
+		b = this;
+		if (n < 0) {
+			throw go$panic(new Go$String("bytes.Buffer.Grow: negative count"));
+		}
+		m = b.grow(n);
+		b.buf = go$subslice(b.buf, 0, m);
+	};
+	Buffer.prototype.Grow = function(n) { return this.go$val.Grow(n); };
+	Buffer.Ptr.prototype.Write = function(p) {
+		var n, err, b, m, _tuple;
+		n = 0;
+		err = null;
+		b = this;
+		b.lastRead = 0;
+		m = b.grow(p.length);
+		_tuple = [go$copySlice(go$subslice(b.buf, m), p), null], n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	Buffer.prototype.Write = function(p) { return this.go$val.Write(p); };
+	Buffer.Ptr.prototype.WriteString = function(s) {
+		var n, err, b, m, _tuple;
+		n = 0;
+		err = null;
+		b = this;
+		b.lastRead = 0;
+		m = b.grow(s.length);
+		_tuple = [go$copyString(go$subslice(b.buf, m), s), null], n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	Buffer.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
+	Buffer.Ptr.prototype.ReadFrom = function(r) {
+		var n, err, b, free, newBuf, x, x$1, _tuple, m, e, x$2, _tuple$1, _tuple$2;
+		n = new Go$Int64(0, 0);
+		err = null;
+		b = this;
+		b.lastRead = 0;
+		if (b.off >= b.buf.length) {
+			b.Truncate(0);
+		}
+		while (true) {
+			if (free = b.buf.capacity - b.buf.length >> 0, free < 512) {
+				newBuf = b.buf;
+				if ((b.off + free >> 0) < 512) {
+					newBuf = makeSlice((x = 2, x$1 = b.buf.capacity, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) + 512 >> 0);
+				}
+				go$copySlice(newBuf, go$subslice(b.buf, b.off));
+				b.buf = go$subslice(newBuf, 0, (b.buf.length - b.off >> 0));
+				b.off = 0;
+			}
+			_tuple = r.Read(go$subslice(b.buf, b.buf.length, b.buf.capacity)), m = _tuple[0], e = _tuple[1];
+			b.buf = go$subslice(b.buf, 0, (b.buf.length + m >> 0));
+			n = (x$2 = new Go$Int64(0, m), new Go$Int64(n.high + x$2.high, n.low + x$2.low));
+			if (go$interfaceIsEqual(e, io.EOF)) {
+				break;
+			}
+			if (!(go$interfaceIsEqual(e, null))) {
+				_tuple$1 = [n, e], n = _tuple$1[0], err = _tuple$1[1];
+				return [n, err];
+			}
+		}
+		_tuple$2 = [n, null], n = _tuple$2[0], err = _tuple$2[1];
+		return [n, err];
+	};
+	Buffer.prototype.ReadFrom = function(r) { return this.go$val.ReadFrom(r); };
+	var makeSlice = function(n) {
+		var go$deferred = [];
+		try {
+			go$deferred.push({ fun: (function() {
+				if (!(go$interfaceIsEqual(go$recover(), null))) {
+					throw go$panic(go$pkg.ErrTooLarge);
+				}
+			}), args: [] });
+			return (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$sliceType(Go$Uint8)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Buffer.Ptr.prototype.WriteTo = function(w) {
+		var n, err, b, nBytes, _tuple, m, e, _tuple$1, _tuple$2;
+		n = new Go$Int64(0, 0);
+		err = null;
+		b = this;
+		b.lastRead = 0;
+		if (b.off < b.buf.length) {
+			nBytes = b.Len();
+			_tuple = w.Write(go$subslice(b.buf, b.off)), m = _tuple[0], e = _tuple[1];
+			if (m > nBytes) {
+				throw go$panic(new Go$String("bytes.Buffer.WriteTo: invalid Write count"));
+			}
+			b.off = b.off + (m) >> 0;
+			n = new Go$Int64(0, m);
+			if (!(go$interfaceIsEqual(e, null))) {
+				_tuple$1 = [n, e], n = _tuple$1[0], err = _tuple$1[1];
+				return [n, err];
+			}
+			if (!((m === nBytes))) {
+				_tuple$2 = [n, io.ErrShortWrite], n = _tuple$2[0], err = _tuple$2[1];
+				return [n, err];
+			}
+		}
+		b.Truncate(0);
+		return [n, err];
+	};
+	Buffer.prototype.WriteTo = function(w) { return this.go$val.WriteTo(w); };
+	Buffer.Ptr.prototype.WriteByte = function(c) {
+		var b, m, _slice, _index;
+		b = this;
+		b.lastRead = 0;
+		m = b.grow(1);
+		_slice = b.buf, _index = m, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = c) : go$throwRuntimeError("index out of range");
+		return null;
+	};
+	Buffer.prototype.WriteByte = function(c) { return this.go$val.WriteByte(c); };
+	Buffer.Ptr.prototype.WriteRune = function(r) {
+		var n, err, b, _tuple, _tuple$1;
+		n = 0;
+		err = null;
+		b = this;
+		if (r < 128) {
+			b.WriteByte((r << 24 >>> 24));
+			_tuple = [1, null], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		n = utf8.EncodeRune(go$subslice(new (go$sliceType(Go$Uint8))(b.runeBytes), 0), r);
+		b.Write(go$subslice(new (go$sliceType(Go$Uint8))(b.runeBytes), 0, n));
+		_tuple$1 = [n, null], n = _tuple$1[0], err = _tuple$1[1];
+		return [n, err];
+	};
+	Buffer.prototype.WriteRune = function(r) { return this.go$val.WriteRune(r); };
+	Buffer.Ptr.prototype.Read = function(p) {
+		var n, err, b, _tuple;
+		n = 0;
+		err = null;
+		b = this;
+		b.lastRead = 0;
+		if (b.off >= b.buf.length) {
+			b.Truncate(0);
+			if (p.length === 0) {
+				return [n, err];
+			}
+			_tuple = [0, io.EOF], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		n = go$copySlice(p, go$subslice(b.buf, b.off));
+		b.off = b.off + (n) >> 0;
+		if (n > 0) {
+			b.lastRead = 2;
+		}
+		return [n, err];
+	};
+	Buffer.prototype.Read = function(p) { return this.go$val.Read(p); };
+	Buffer.Ptr.prototype.Next = function(n) {
+		var b, m, data;
+		b = this;
+		b.lastRead = 0;
+		m = b.Len();
+		if (n > m) {
+			n = m;
+		}
+		data = go$subslice(b.buf, b.off, (b.off + n >> 0));
+		b.off = b.off + (n) >> 0;
+		if (n > 0) {
+			b.lastRead = 2;
+		}
+		return data;
+	};
+	Buffer.prototype.Next = function(n) { return this.go$val.Next(n); };
+	Buffer.Ptr.prototype.ReadByte = function() {
+		var c, err, b, _tuple, _slice, _index, _tuple$1;
+		c = 0;
+		err = null;
+		b = this;
+		b.lastRead = 0;
+		if (b.off >= b.buf.length) {
+			b.Truncate(0);
+			_tuple = [0, io.EOF], c = _tuple[0], err = _tuple[1];
+			return [c, err];
+		}
+		c = (_slice = b.buf, _index = b.off, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		b.off = b.off + 1 >> 0;
+		b.lastRead = 2;
+		_tuple$1 = [c, null], c = _tuple$1[0], err = _tuple$1[1];
+		return [c, err];
+	};
+	Buffer.prototype.ReadByte = function() { return this.go$val.ReadByte(); };
+	Buffer.Ptr.prototype.ReadRune = function() {
+		var r, size, err, b, _tuple, _slice, _index, c, _tuple$1, _tuple$2, n, _tuple$3;
+		r = 0;
+		size = 0;
+		err = null;
+		b = this;
+		b.lastRead = 0;
+		if (b.off >= b.buf.length) {
+			b.Truncate(0);
+			_tuple = [0, 0, io.EOF], r = _tuple[0], size = _tuple[1], err = _tuple[2];
+			return [r, size, err];
+		}
+		b.lastRead = 1;
+		c = (_slice = b.buf, _index = b.off, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (c < 128) {
+			b.off = b.off + 1 >> 0;
+			_tuple$1 = [(c >> 0), 1, null], r = _tuple$1[0], size = _tuple$1[1], err = _tuple$1[2];
+			return [r, size, err];
+		}
+		_tuple$2 = utf8.DecodeRune(go$subslice(b.buf, b.off)), r = _tuple$2[0], n = _tuple$2[1];
+		b.off = b.off + (n) >> 0;
+		_tuple$3 = [r, n, null], r = _tuple$3[0], size = _tuple$3[1], err = _tuple$3[2];
+		return [r, size, err];
+	};
+	Buffer.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
+	Buffer.Ptr.prototype.UnreadRune = function() {
+		var b, _tuple, n;
+		b = this;
+		if (!((b.lastRead === 1))) {
+			return errors.New("bytes.Buffer: UnreadRune: previous operation was not ReadRune");
+		}
+		b.lastRead = 0;
+		if (b.off > 0) {
+			_tuple = utf8.DecodeLastRune(go$subslice(b.buf, 0, b.off)), n = _tuple[1];
+			b.off = b.off - (n) >> 0;
+		}
+		return null;
+	};
+	Buffer.prototype.UnreadRune = function() { return this.go$val.UnreadRune(); };
+	Buffer.Ptr.prototype.UnreadByte = function() {
+		var b;
+		b = this;
+		if (!((b.lastRead === 1)) && !((b.lastRead === 2))) {
+			return errors.New("bytes.Buffer: UnreadByte: previous operation was not a read");
+		}
+		b.lastRead = 0;
+		if (b.off > 0) {
+			b.off = b.off - 1 >> 0;
+		}
+		return null;
+	};
+	Buffer.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
+	Buffer.Ptr.prototype.ReadBytes = function(delim) {
+		var line, err, b, _tuple, slice;
+		line = (go$sliceType(Go$Uint8)).nil;
+		err = null;
+		b = this;
+		_tuple = b.readSlice(delim), slice = _tuple[0], err = _tuple[1];
+		line = go$appendSlice(line, slice);
+		return [line, err];
+	};
+	Buffer.prototype.ReadBytes = function(delim) { return this.go$val.ReadBytes(delim); };
+	Buffer.Ptr.prototype.readSlice = function(delim) {
+		var line, err, b, i, end, _tuple;
+		line = (go$sliceType(Go$Uint8)).nil;
+		err = null;
+		b = this;
+		i = IndexByte(go$subslice(b.buf, b.off), delim);
+		end = (b.off + i >> 0) + 1 >> 0;
+		if (i < 0) {
+			end = b.buf.length;
+			err = io.EOF;
+		}
+		line = go$subslice(b.buf, b.off, end);
+		b.off = end;
+		b.lastRead = 2;
+		_tuple = [line, err], line = _tuple[0], err = _tuple[1];
+		return [line, err];
+	};
+	Buffer.prototype.readSlice = function(delim) { return this.go$val.readSlice(delim); };
+	Buffer.Ptr.prototype.ReadString = function(delim) {
+		var line, err, b, _tuple, slice, _tuple$1;
+		line = "";
+		err = null;
+		b = this;
+		_tuple = b.readSlice(delim), slice = _tuple[0], err = _tuple[1];
+		_tuple$1 = [go$bytesToString(slice), err], line = _tuple$1[0], err = _tuple$1[1];
+		return [line, err];
+	};
+	Buffer.prototype.ReadString = function(delim) { return this.go$val.ReadString(delim); };
+	var NewBuffer = go$pkg.NewBuffer = function(buf) {
+		return new Buffer.Ptr(buf, 0, go$makeNativeArray("Uint8", 4, function() { return 0; }), go$makeNativeArray("Uint8", 64, function() { return 0; }), 0);
+	};
+	var NewBufferString = go$pkg.NewBufferString = function(s) {
+		return new Buffer.Ptr(new (go$sliceType(Go$Uint8))(go$stringToBytes(s)), 0, go$makeNativeArray("Uint8", 4, function() { return 0; }), go$makeNativeArray("Uint8", 64, function() { return 0; }), 0);
+	};
+	var equalPortable = function(a, b) {
+		var _ref, _i, _slice, _index, c, i, _slice$1, _index$1;
+		if (!((a.length === b.length))) {
+			return false;
+		}
+		_ref = a;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (!((c === (_slice$1 = b, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))))) {
+				return false;
+			}
+		}
+		return true;
+	};
+	var explode = function(s, n) {
+		var a, size, na, _slice, _index, _tuple, _slice$1, _index$1;
+		if (n <= 0) {
+			n = s.length;
+		}
+		a = (go$sliceType((go$sliceType(Go$Uint8)))).make(n, 0, function() { return (go$sliceType(Go$Uint8)).nil; });
+		size = 0;
+		na = 0;
+		while (s.length > 0) {
+			if ((na + 1 >> 0) >= n) {
+				_slice = a, _index = na, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = s) : go$throwRuntimeError("index out of range");
+				na = na + 1 >> 0;
+				break;
+			}
+			_tuple = utf8.DecodeRune(s), size = _tuple[1];
+			_slice$1 = a, _index$1 = na, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = go$subslice(s, 0, size)) : go$throwRuntimeError("index out of range");
+			s = go$subslice(s, size);
+			na = na + 1 >> 0;
+		}
+		return go$subslice(a, 0, na);
+	};
+	var Count = go$pkg.Count = function(s, sep) {
+		var n, count, _slice, _index, c, i, t, _slice$1, _index$1, o;
+		n = sep.length;
+		if (n === 0) {
+			return utf8.RuneCount(s) + 1 >> 0;
+		}
+		if (n > s.length) {
+			return 0;
+		}
+		count = 0;
+		c = (_slice = sep, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		i = 0;
+		t = go$subslice(s, 0, ((s.length - n >> 0) + 1 >> 0));
+		while (i < t.length) {
+			if (!(((_slice$1 = t, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === c))) {
+				o = IndexByte(go$subslice(t, i), c);
+				if (o < 0) {
+					break;
+				}
+				i = i + (o) >> 0;
+			}
+			if ((n === 1) || Equal(go$subslice(s, i, (i + n >> 0)), sep)) {
+				count = count + 1 >> 0;
+				i = i + (n) >> 0;
+				continue;
+			}
+			i = i + 1 >> 0;
+		}
+		return count;
+	};
+	var Contains = go$pkg.Contains = function(b, subslice) {
+		return !((Index(b, subslice) === -1));
+	};
+	var Index = go$pkg.Index = function(s, sep) {
+		var n, _slice, _index, c, i, t, _slice$1, _index$1, o;
+		n = sep.length;
+		if (n === 0) {
+			return 0;
+		}
+		if (n > s.length) {
+			return -1;
+		}
+		c = (_slice = sep, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (n === 1) {
+			return IndexByte(s, c);
+		}
+		i = 0;
+		t = go$subslice(s, 0, ((s.length - n >> 0) + 1 >> 0));
+		while (i < t.length) {
+			if (!(((_slice$1 = t, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === c))) {
+				o = IndexByte(go$subslice(t, i), c);
+				if (o < 0) {
+					break;
+				}
+				i = i + (o) >> 0;
+			}
+			if (Equal(go$subslice(s, i, (i + n >> 0)), sep)) {
+				return i;
+			}
+			i = i + 1 >> 0;
+		}
+		return -1;
+	};
+	var indexBytePortable = function(s, c) {
+		var _ref, _i, _slice, _index, b, i;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (b === c) {
+				return i;
+			}
+		}
+		return -1;
+	};
+	var LastIndex = go$pkg.LastIndex = function(s, sep) {
+		var n, _slice, _index, c, i, _slice$1, _index$1;
+		n = sep.length;
+		if (n === 0) {
+			return s.length;
+		}
+		c = (_slice = sep, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		i = s.length - n >> 0;
+		while (i >= 0) {
+			if (((_slice$1 = s, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === c) && ((n === 1) || Equal(go$subslice(s, i, (i + n >> 0)), sep))) {
+				return i;
+			}
+			i = i - 1 >> 0;
+		}
+		return -1;
+	};
+	var IndexRune = go$pkg.IndexRune = function(s, r) {
+		var i, _tuple, r1, size;
+		i = 0;
+		while (i < s.length) {
+			_tuple = utf8.DecodeRune(go$subslice(s, i)), r1 = _tuple[0], size = _tuple[1];
+			if (r === r1) {
+				return i;
+			}
+			i = i + (size) >> 0;
+		}
+		return -1;
+	};
+	var IndexAny = go$pkg.IndexAny = function(s, chars) {
+		var r, width, i, _slice, _index, _tuple, _ref, _i, _rune, ch;
+		if (chars.length > 0) {
+			r = 0;
+			width = 0;
+			i = 0;
+			while (i < s.length) {
+				r = ((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0);
+				if (r < 128) {
+					width = 1;
+				} else {
+					_tuple = utf8.DecodeRune(go$subslice(s, i)), r = _tuple[0], width = _tuple[1];
+				}
+				_ref = chars;
+				_i = 0;
+				for (; _i < _ref.length; _i += _rune[1]) {
+					_rune = go$decodeRune(_ref, _i);
+					ch = _rune[0];
+					if (r === ch) {
+						return i;
+					}
+				}
+				i = i + (width) >> 0;
+			}
+		}
+		return -1;
+	};
+	var LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
+		var i, _tuple, r, size, _ref, _i, _rune, ch;
+		if (chars.length > 0) {
+			i = s.length;
+			while (i > 0) {
+				_tuple = utf8.DecodeLastRune(go$subslice(s, 0, i)), r = _tuple[0], size = _tuple[1];
+				i = i - (size) >> 0;
+				_ref = chars;
+				_i = 0;
+				for (; _i < _ref.length; _i += _rune[1]) {
+					_rune = go$decodeRune(_ref, _i);
+					ch = _rune[0];
+					if (r === ch) {
+						return i;
+					}
+				}
+			}
+		}
+		return -1;
+	};
+	var genSplit = function(s, sep, sepSave, n) {
+		var _slice, _index, c, start, a, na, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		if (n === 0) {
+			return (go$sliceType((go$sliceType(Go$Uint8)))).nil;
+		}
+		if (sep.length === 0) {
+			return explode(s, n);
+		}
+		if (n < 0) {
+			n = Count(s, sep) + 1 >> 0;
+		}
+		c = (_slice = sep, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		start = 0;
+		a = (go$sliceType((go$sliceType(Go$Uint8)))).make(n, 0, function() { return (go$sliceType(Go$Uint8)).nil; });
+		na = 0;
+		i = 0;
+		while ((i + sep.length >> 0) <= s.length && (na + 1 >> 0) < n) {
+			if (((_slice$1 = s, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === c) && ((sep.length === 1) || Equal(go$subslice(s, i, (i + sep.length >> 0)), sep))) {
+				_slice$2 = a, _index$2 = na, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = go$subslice(s, start, (i + sepSave >> 0))) : go$throwRuntimeError("index out of range");
+				na = na + 1 >> 0;
+				start = i + sep.length >> 0;
+				i = i + ((sep.length - 1 >> 0)) >> 0;
+			}
+			i = i + 1 >> 0;
+		}
+		_slice$3 = a, _index$3 = na, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = go$subslice(s, start)) : go$throwRuntimeError("index out of range");
+		return go$subslice(a, 0, (na + 1 >> 0));
+	};
+	var SplitN = go$pkg.SplitN = function(s, sep, n) {
+		return genSplit(s, sep, 0, n);
+	};
+	var SplitAfterN = go$pkg.SplitAfterN = function(s, sep, n) {
+		return genSplit(s, sep, sep.length, n);
+	};
+	var Split = go$pkg.Split = function(s, sep) {
+		return genSplit(s, sep, 0, -1);
+	};
+	var SplitAfter = go$pkg.SplitAfter = function(s, sep) {
+		return genSplit(s, sep, sep.length, -1);
+	};
+	var Fields = go$pkg.Fields = function(s) {
+		return FieldsFunc(s, unicode.IsSpace);
+	};
+	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
+		var n, inField, i, _tuple, r, size, wasInField, a, na, fieldStart, i$1, _tuple$1, r$1, size$1, _slice, _index;
+		n = 0;
+		inField = false;
+		i = 0;
+		while (i < s.length) {
+			_tuple = utf8.DecodeRune(go$subslice(s, i)), r = _tuple[0], size = _tuple[1];
+			wasInField = inField;
+			inField = !f(r);
+			if (inField && !wasInField) {
+				n = n + 1 >> 0;
+			}
+			i = i + (size) >> 0;
+		}
+		a = (go$sliceType((go$sliceType(Go$Uint8)))).make(n, 0, function() { return (go$sliceType(Go$Uint8)).nil; });
+		na = 0;
+		fieldStart = -1;
+		i$1 = 0;
+		while (i$1 <= s.length && na < n) {
+			_tuple$1 = utf8.DecodeRune(go$subslice(s, i$1)), r$1 = _tuple$1[0], size$1 = _tuple$1[1];
+			if (fieldStart < 0 && size$1 > 0 && !f(r$1)) {
+				fieldStart = i$1;
+				i$1 = i$1 + (size$1) >> 0;
+				continue;
+			}
+			if (fieldStart >= 0 && ((size$1 === 0) || f(r$1))) {
+				_slice = a, _index = na, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = go$subslice(s, fieldStart, i$1)) : go$throwRuntimeError("index out of range");
+				na = na + 1 >> 0;
+				fieldStart = -1;
+			}
+			if (size$1 === 0) {
+				break;
+			}
+			i$1 = i$1 + (size$1) >> 0;
+		}
+		return go$subslice(a, 0, na);
+	};
+	var Join = go$pkg.Join = function(s, sep) {
+		var _slice, _index, x, x$1, n, _ref, _i, _slice$1, _index$1, v, b, _slice$2, _index$2, bp, _ref$1, _i$1, _slice$3, _index$3, v$1;
+		if (s.length === 0) {
+			return new (go$sliceType(Go$Uint8))([]);
+		}
+		if (s.length === 1) {
+			return go$appendSlice((go$sliceType(Go$Uint8)).nil, (_slice = s, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
+		}
+		n = (x = sep.length, x$1 = (s.length - 1 >> 0), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			v = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			n = n + (v.length) >> 0;
+		}
+		b = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
+		bp = go$copySlice(b, (_slice$2 = s, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")));
+		_ref$1 = go$subslice(s, 1);
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			v$1 = (_slice$3 = _ref$1, _index$3 = _i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			bp = bp + (go$copySlice(go$subslice(b, bp), sep)) >> 0;
+			bp = bp + (go$copySlice(go$subslice(b, bp), v$1)) >> 0;
+		}
+		return b;
+	};
+	var HasPrefix = go$pkg.HasPrefix = function(s, prefix) {
+		return s.length >= prefix.length && Equal(go$subslice(s, 0, prefix.length), prefix);
+	};
+	var HasSuffix = go$pkg.HasSuffix = function(s, suffix) {
+		return s.length >= suffix.length && Equal(go$subslice(s, (s.length - suffix.length >> 0)), suffix);
+	};
+	var Map = go$pkg.Map = function(mapping, s) {
+		var maxbytes, nbytes, b, i, wid, _slice, _index, r, _tuple, x, nb;
+		maxbytes = s.length;
+		nbytes = 0;
+		b = (go$sliceType(Go$Uint8)).make(maxbytes, 0, function() { return 0; });
+		i = 0;
+		while (i < s.length) {
+			wid = 1;
+			r = ((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0);
+			if (r >= 128) {
+				_tuple = utf8.DecodeRune(go$subslice(s, i)), r = _tuple[0], wid = _tuple[1];
+			}
+			r = mapping(r);
+			if (r >= 0) {
+				if ((nbytes + utf8.RuneLen(r) >> 0) > maxbytes) {
+					maxbytes = (x = 2, (((maxbytes >>> 16 << 16) * x >> 0) + (maxbytes << 16 >>> 16) * x) >> 0) + 4 >> 0;
+					nb = (go$sliceType(Go$Uint8)).make(maxbytes, 0, function() { return 0; });
+					go$copySlice(nb, go$subslice(b, 0, nbytes));
+					b = nb;
+				}
+				nbytes = nbytes + (utf8.EncodeRune(go$subslice(b, nbytes, maxbytes), r)) >> 0;
+			}
+			i = i + (wid) >> 0;
+		}
+		return go$subslice(b, 0, nbytes);
+	};
+	var Repeat = go$pkg.Repeat = function(b, count) {
+		var x, nb, bp, i;
+		nb = (go$sliceType(Go$Uint8)).make((x = b.length, (((x >>> 16 << 16) * count >> 0) + (x << 16 >>> 16) * count) >> 0), 0, function() { return 0; });
+		bp = 0;
+		i = 0;
+		while (i < count) {
+			bp = bp + (go$copySlice(go$subslice(nb, bp), b)) >> 0;
+			i = i + 1 >> 0;
+		}
+		return nb;
+	};
+	var ToUpper = go$pkg.ToUpper = function(s) {
+		return Map(unicode.ToUpper, s);
+	};
+	var ToLower = go$pkg.ToLower = function(s) {
+		return Map(unicode.ToLower, s);
+	};
+	var ToTitle = go$pkg.ToTitle = function(s) {
+		return Map(unicode.ToTitle, s);
+	};
+	var ToUpperSpecial = go$pkg.ToUpperSpecial = function(_case, s) {
+		return Map((function(r) {
+			return _case.ToUpper(r);
+		}), s);
+	};
+	var ToLowerSpecial = go$pkg.ToLowerSpecial = function(_case, s) {
+		return Map((function(r) {
+			return _case.ToLower(r);
+		}), s);
+	};
+	var ToTitleSpecial = go$pkg.ToTitleSpecial = function(_case, s) {
+		return Map((function(r) {
+			return _case.ToTitle(r);
+		}), s);
+	};
+	var isSeparator = function(r) {
+		if (r <= 127) {
+			if (48 <= r && r <= 57) {
+				return false;
+			} else if (97 <= r && r <= 122) {
+				return false;
+			} else if (65 <= r && r <= 90) {
+				return false;
+			} else if (r === 95) {
+				return false;
+			}
+			return true;
+		}
+		if (unicode.IsLetter(r) || unicode.IsDigit(r)) {
+			return false;
+		}
+		return unicode.IsSpace(r);
+	};
+	var Title = go$pkg.Title = function(s) {
+		var prev;
+		prev = 32;
+		return Map((function(r) {
+			if (isSeparator(prev)) {
+				prev = r;
+				return unicode.ToTitle(r);
+			}
+			prev = r;
+			return r;
+		}), s);
+	};
+	var TrimLeftFunc = go$pkg.TrimLeftFunc = function(s, f) {
+		var i;
+		i = indexFunc(s, f, false);
+		if (i === -1) {
+			return (go$sliceType(Go$Uint8)).nil;
+		}
+		return go$subslice(s, i);
+	};
+	var TrimRightFunc = go$pkg.TrimRightFunc = function(s, f) {
+		var i, _slice, _index, _tuple, wid;
+		i = lastIndexFunc(s, f, false);
+		if (i >= 0 && (_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 128) {
+			_tuple = utf8.DecodeRune(go$subslice(s, i)), wid = _tuple[1];
+			i = i + (wid) >> 0;
+		} else {
+			i = i + 1 >> 0;
+		}
+		return go$subslice(s, 0, i);
+	};
+	var TrimFunc = go$pkg.TrimFunc = function(s, f) {
+		return TrimRightFunc(TrimLeftFunc(s, f), f);
+	};
+	var TrimPrefix = go$pkg.TrimPrefix = function(s, prefix) {
+		if (HasPrefix(s, prefix)) {
+			return go$subslice(s, prefix.length);
+		}
+		return s;
+	};
+	var TrimSuffix = go$pkg.TrimSuffix = function(s, suffix) {
+		if (HasSuffix(s, suffix)) {
+			return go$subslice(s, 0, (s.length - suffix.length >> 0));
+		}
+		return s;
+	};
+	var IndexFunc = go$pkg.IndexFunc = function(s, f) {
+		return indexFunc(s, f, true);
+	};
+	var LastIndexFunc = go$pkg.LastIndexFunc = function(s, f) {
+		return lastIndexFunc(s, f, true);
+	};
+	var indexFunc = function(s, f, truth) {
+		var start, wid, _slice, _index, r, _tuple;
+		start = 0;
+		while (start < s.length) {
+			wid = 1;
+			r = ((_slice = s, _index = start, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0);
+			if (r >= 128) {
+				_tuple = utf8.DecodeRune(go$subslice(s, start)), r = _tuple[0], wid = _tuple[1];
+			}
+			if (f(r) === truth) {
+				return start;
+			}
+			start = start + (wid) >> 0;
+		}
+		return -1;
+	};
+	var lastIndexFunc = function(s, f, truth) {
+		var i, _slice, _index, _tuple, r, size, _tuple$1;
+		i = s.length;
+		while (i > 0) {
+			_tuple = [((_slice = s, _index = (i - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0), 1], r = _tuple[0], size = _tuple[1];
+			if (r >= 128) {
+				_tuple$1 = utf8.DecodeLastRune(go$subslice(s, 0, i)), r = _tuple$1[0], size = _tuple$1[1];
+			}
+			i = i - (size) >> 0;
+			if (f(r) === truth) {
+				return i;
+			}
+		}
+		return -1;
+	};
+	var makeCutsetFunc = function(cutset) {
+		return (function(r) {
+			var _ref, _i, _rune, c;
+			_ref = cutset;
+			_i = 0;
+			for (; _i < _ref.length; _i += _rune[1]) {
+				_rune = go$decodeRune(_ref, _i);
+				c = _rune[0];
+				if (c === r) {
+					return true;
+				}
+			}
+			return false;
+		});
+	};
+	var Trim = go$pkg.Trim = function(s, cutset) {
+		return TrimFunc(s, makeCutsetFunc(cutset));
+	};
+	var TrimLeft = go$pkg.TrimLeft = function(s, cutset) {
+		return TrimLeftFunc(s, makeCutsetFunc(cutset));
+	};
+	var TrimRight = go$pkg.TrimRight = function(s, cutset) {
+		return TrimRightFunc(s, makeCutsetFunc(cutset));
+	};
+	var TrimSpace = go$pkg.TrimSpace = function(s) {
+		return TrimFunc(s, unicode.IsSpace);
+	};
+	var Runes = go$pkg.Runes = function(s) {
+		var t, i, _tuple, r, l, _slice, _index;
+		t = (go$sliceType(Go$Int32)).make(utf8.RuneCount(s), 0, function() { return 0; });
+		i = 0;
+		while (s.length > 0) {
+			_tuple = utf8.DecodeRune(s), r = _tuple[0], l = _tuple[1];
+			_slice = t, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = r) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+			s = go$subslice(s, l);
+		}
+		return t;
+	};
+	var Replace = go$pkg.Replace = function(s, old, new$1, n) {
+		var m, x, t, w, start, i, j, _tuple, wid;
+		m = 0;
+		if (!((n === 0))) {
+			m = Count(s, old);
+		}
+		if (m === 0) {
+			return go$appendSlice((go$sliceType(Go$Uint8)).nil, s);
+		}
+		if (n < 0 || m < n) {
+			n = m;
+		}
+		t = (go$sliceType(Go$Uint8)).make(s.length + (x = (new$1.length - old.length >> 0), (((n >>> 16 << 16) * x >> 0) + (n << 16 >>> 16) * x) >> 0) >> 0, 0, function() { return 0; });
+		w = 0;
+		start = 0;
+		i = 0;
+		while (i < n) {
+			j = start;
+			if (old.length === 0) {
+				if (i > 0) {
+					_tuple = utf8.DecodeRune(go$subslice(s, start)), wid = _tuple[1];
+					j = j + (wid) >> 0;
+				}
+			} else {
+				j = j + (Index(go$subslice(s, start), old)) >> 0;
+			}
+			w = w + (go$copySlice(go$subslice(t, w), go$subslice(s, start, j))) >> 0;
+			w = w + (go$copySlice(go$subslice(t, w), new$1)) >> 0;
+			start = j + old.length >> 0;
+			i = i + 1 >> 0;
+		}
+		w = w + (go$copySlice(go$subslice(t, w), go$subslice(s, start))) >> 0;
+		return go$subslice(t, 0, w);
+	};
+	var EqualFold = go$pkg.EqualFold = function(s, t) {
+		var _tuple, sr, tr, _slice, _index, _slice$1, _index$1, _tuple$1, _tuple$2, r, size, _tuple$3, _slice$2, _index$2, _slice$3, _index$3, _tuple$4, _tuple$5, r$1, size$1, _tuple$6, _tuple$7, r$2;
+		while (!((s.length === 0)) && !((t.length === 0))) {
+			_tuple = [0, 0], sr = _tuple[0], tr = _tuple[1];
+			if ((_slice = s, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < 128) {
+				_tuple$1 = [((_slice$1 = s, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0), go$subslice(s, 1)], sr = _tuple$1[0], s = _tuple$1[1];
+			} else {
+				_tuple$2 = utf8.DecodeRune(s), r = _tuple$2[0], size = _tuple$2[1];
+				_tuple$3 = [r, go$subslice(s, size)], sr = _tuple$3[0], s = _tuple$3[1];
+			}
+			if ((_slice$2 = t, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) < 128) {
+				_tuple$4 = [((_slice$3 = t, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >> 0), go$subslice(t, 1)], tr = _tuple$4[0], t = _tuple$4[1];
+			} else {
+				_tuple$5 = utf8.DecodeRune(t), r$1 = _tuple$5[0], size$1 = _tuple$5[1];
+				_tuple$6 = [r$1, go$subslice(t, size$1)], tr = _tuple$6[0], t = _tuple$6[1];
+			}
+			if (tr === sr) {
+				continue;
+			}
+			if (tr < sr) {
+				_tuple$7 = [sr, tr], tr = _tuple$7[0], sr = _tuple$7[1];
+			}
+			if (tr < 128 && 65 <= sr && sr <= 90) {
+				if (tr === ((sr + 97 >> 0) - 65 >> 0)) {
+					continue;
+				}
+				return false;
+			}
+			r$2 = unicode.SimpleFold(sr);
+			while (!((r$2 === sr)) && r$2 < tr) {
+				r$2 = unicode.SimpleFold(r$2);
+			}
+			if (r$2 === tr) {
+				continue;
+			}
+			return false;
+		}
+		return s.length === t.length;
+	};
+	Reader.Ptr.prototype.Len = function() {
+		var r;
+		r = this;
+		if (r.i >= r.s.length) {
+			return 0;
+		}
+		return r.s.length - r.i >> 0;
+	};
+	Reader.prototype.Len = function() { return this.go$val.Len(); };
+	Reader.Ptr.prototype.Read = function(b) {
+		var n, err, r, _tuple, _tuple$1;
+		n = 0;
+		err = null;
+		r = this;
+		if (b.length === 0) {
+			_tuple = [0, null], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if (r.i >= r.s.length) {
+			_tuple$1 = [0, io.EOF], n = _tuple$1[0], err = _tuple$1[1];
+			return [n, err];
+		}
+		n = go$copySlice(b, go$subslice(r.s, r.i));
+		r.i = r.i + (n) >> 0;
+		r.prevRune = -1;
+		return [n, err];
+	};
+	Reader.prototype.Read = function(b) { return this.go$val.Read(b); };
+	Reader.Ptr.prototype.ReadAt = function(b, off) {
+		var n, err, r, _tuple, x, _tuple$1;
+		n = 0;
+		err = null;
+		r = this;
+		if ((off.high < 0 || (off.high === 0 && off.low < 0))) {
+			_tuple = [0, errors.New("bytes: invalid offset")], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if ((x = new Go$Int64(0, r.s.length), (off.high > x.high || (off.high === x.high && off.low >= x.low)))) {
+			_tuple$1 = [0, io.EOF], n = _tuple$1[0], err = _tuple$1[1];
+			return [n, err];
+		}
+		n = go$copySlice(b, go$subslice(r.s, ((off.low + ((off.high >> 31) * 4294967296)) >> 0)));
+		if (n < b.length) {
+			err = io.EOF;
+		}
+		return [n, err];
+	};
+	Reader.prototype.ReadAt = function(b, off) { return this.go$val.ReadAt(b, off); };
+	Reader.Ptr.prototype.ReadByte = function() {
+		var b, err, r, _tuple, _slice, _index;
+		b = 0;
+		err = null;
+		r = this;
+		if (r.i >= r.s.length) {
+			_tuple = [0, io.EOF], b = _tuple[0], err = _tuple[1];
+			return [b, err];
+		}
+		b = (_slice = r.s, _index = r.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		r.i = r.i + 1 >> 0;
+		r.prevRune = -1;
+		return [b, err];
+	};
+	Reader.prototype.ReadByte = function() { return this.go$val.ReadByte(); };
+	Reader.Ptr.prototype.UnreadByte = function() {
+		var r;
+		r = this;
+		if (r.i <= 0) {
+			return errors.New("bytes.Reader: at beginning of slice");
+		}
+		r.i = r.i - 1 >> 0;
+		r.prevRune = -1;
+		return null;
+	};
+	Reader.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
+	Reader.Ptr.prototype.ReadRune = function() {
+		var ch, size, err, r, _tuple, c, _slice, _index, _tuple$1, _tuple$2;
+		ch = 0;
+		size = 0;
+		err = null;
+		r = this;
+		if (r.i >= r.s.length) {
+			_tuple = [0, 0, io.EOF], ch = _tuple[0], size = _tuple[1], err = _tuple[2];
+			return [ch, size, err];
+		}
+		r.prevRune = r.i;
+		if (c = (_slice = r.s, _index = r.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), c < 128) {
+			r.i = r.i + 1 >> 0;
+			_tuple$1 = [(c >> 0), 1, null], ch = _tuple$1[0], size = _tuple$1[1], err = _tuple$1[2];
+			return [ch, size, err];
+		}
+		_tuple$2 = utf8.DecodeRune(go$subslice(r.s, r.i)), ch = _tuple$2[0], size = _tuple$2[1];
+		r.i = r.i + (size) >> 0;
+		return [ch, size, err];
+	};
+	Reader.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
+	Reader.Ptr.prototype.UnreadRune = function() {
+		var r;
+		r = this;
+		if (r.prevRune < 0) {
+			return errors.New("bytes.Reader: previous operation was not ReadRune");
+		}
+		r.i = r.prevRune;
+		r.prevRune = -1;
+		return null;
+	};
+	Reader.prototype.UnreadRune = function() { return this.go$val.UnreadRune(); };
+	Reader.Ptr.prototype.Seek = function(offset, whence) {
+		var r, abs, _ref, x, x$1;
+		r = this;
+		abs = new Go$Int64(0, 0);
+		_ref = whence;
+		if (_ref === 0) {
+			abs = offset;
+		} else if (_ref === 1) {
+			abs = (x = new Go$Int64(0, r.i), new Go$Int64(x.high + offset.high, x.low + offset.low));
+		} else if (_ref === 2) {
+			abs = (x$1 = new Go$Int64(0, r.s.length), new Go$Int64(x$1.high + offset.high, x$1.low + offset.low));
+		} else {
+			return [new Go$Int64(0, 0), errors.New("bytes: invalid whence")];
+		}
+		if ((abs.high < 0 || (abs.high === 0 && abs.low < 0))) {
+			return [new Go$Int64(0, 0), errors.New("bytes: negative position")];
+		}
+		if ((abs.high > 0 || (abs.high === 0 && abs.low >= 2147483648))) {
+			return [new Go$Int64(0, 0), errors.New("bytes: position out of range")];
+		}
+		r.i = ((abs.low + ((abs.high >> 31) * 4294967296)) >> 0);
+		return [abs, null];
+	};
+	Reader.prototype.Seek = function(offset, whence) { return this.go$val.Seek(offset, whence); };
+	Reader.Ptr.prototype.WriteTo = function(w) {
+		var n, err, r, _tuple, b, _tuple$1, m;
+		n = new Go$Int64(0, 0);
+		err = null;
+		r = this;
+		r.prevRune = -1;
+		if (r.i >= r.s.length) {
+			_tuple = [new Go$Int64(0, 0), null], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		b = go$subslice(r.s, r.i);
+		_tuple$1 = w.Write(b), m = _tuple$1[0], err = _tuple$1[1];
+		if (m > b.length) {
+			throw go$panic(new Go$String("bytes.Reader.WriteTo: invalid Write count"));
+		}
+		r.i = r.i + (m) >> 0;
+		n = new Go$Int64(0, m);
+		if (!((m === b.length)) && go$interfaceIsEqual(err, null)) {
+			err = io.ErrShortWrite;
+		}
+		return [n, err];
+	};
+	Reader.prototype.WriteTo = function(w) { return this.go$val.WriteTo(w); };
+	var NewReader = go$pkg.NewReader = function(b) {
+		return new Reader.Ptr(b, 0, -1);
+	};
+	var IndexByte = go$pkg.IndexByte = function(s, c) {
+			var i;
+			for (i = 0; i < s.length; i += 1) {
+				if (s.array[s.offset + i] === c) {
+					return i;
+				}
+			}
+			return -1;
+		};
+	var Equal = go$pkg.Equal = function(a, b) {
+			if (a.length !== b.length) {
+				return false;
+			}
+			var i;
+			for (i = 0; i < a.length; i += 1) {
+				if (a.array[a.offset + i] !== b.array[b.offset + i]) {
+					return false;
+				}
+			}
+			return true;
+		};
+	var Compare = go$pkg.Compare = function(a, b) {
+			var l = Math.min(a.length, b.length), i;
+			for (i = 0; i < a.length; i += 1) {
+				var va = a.array[a.offset + i];
+				var vb = b.array[b.offset + i];
+				if (va < vb) {
+					return -1;
+				}
+				if (va > vb) {
+					return 1;
+				}
+			}
+			if (a.length < b.length) {
+				return -1;
+			}
+			if (a.length > b.length) {
+				return 1;
+			}
+			return 0;
+		};
+	var opInvalid = 0;
+	var opReadRune = 1;
+	var opRead = 2;
+	go$pkg.MinRead = 512;
+	go$pkg.ErrTooLarge = null;
+	go$pkg.init = function() {
+		go$pkg.ErrTooLarge = errors.New("bytes.Buffer: too large");
+	};

@@ -1,0 +1,715 @@
+0ƒ7‚Npackage draw
+import image "image"
+import color "image/color"
+func @"".Draw(@"".dst @"".Image, @"".r @"image".Rectangle, @"".src @"image".Image, @"".sp @"image".Point, @"".op @"".Op) ()
+func @"".DrawMask(@"".dst @"".Image, @"".r @"image".Rectangle, @"".src @"image".Image, @"".sp @"image".Point, @"".mask @"image".Image, @"".mp @"image".Point, @"".op @"".Op) ()
+type @"".Drawer interface { @"".Draw(@"".dst @"".Image, @"".r @"image".Rectangle, @"".src @"image".Image, @"".sp @"image".Point) () }
+var @"".FloydSteinberg @"".Drawer
+type @"".Image interface { @"image".At(@"image".x int, @"image".y int) (? @"image/color".Color); @"image".Bounds() (? @"image".Rectangle); @"image".ColorModel() (? @"image/color".Model); @"".Set(@"".x int, @"".y int, @"".c @"image/color".Color) () }
+type @"".Op int
+func (? @"".Op) @"".Draw(@"".dst @"".Image, @"".r @"image".Rectangle, @"".src @"image".Image, @"".sp @"image".Point) ()
+func (? *@"".Op) @"".Draw(@"".dst @"".Image, @"".r @"image".Rectangle, @"".src @"image".Image, @"".sp @"image".Point) ()
+const @"".Over @"".Op = 0x0
+type @"".Quantizer interface { @"".Quantize(@"".p @"image/color".Palette, @"".m @"image".Image) (? @"image/color".Palette) }
+const @"".Src @"".Op = 0x1
+type @"".floydSteinberg struct {  }
+func (? @"".floydSteinberg) @"".Draw(@"".dst @"".Image, @"".r @"image".Rectangle, @"".src @"image".Image, @"".sp @"image".Point) ()
+func (? *@"".floydSteinberg) @"".Draw(@"".dst @"".Image, @"".r @"image".Rectangle, @"".src @"image".Image, @"".sp @"image".Point) ()
+type @"image".Rectangle struct { @"image".Min @"image".Point; @"image".Max @"image".Point }
+func (? @"image".Rectangle) @"image".Add(@"image".p @"image".Point) (? @"image".Rectangle)
+func (? @"image".Rectangle) @"image".Canon() (? @"image".Rectangle)
+func (? @"image".Rectangle) @"image".Dx() (? int)
+func (? @"image".Rectangle) @"image".Dy() (? int)
+func (? @"image".Rectangle) @"image".Empty() (? bool)
+func (? @"image".Rectangle) @"image".Eq(@"image".s @"image".Rectangle) (? bool)
+func (? @"image".Rectangle) @"image".In(@"image".s @"image".Rectangle) (? bool)
+func (? @"image".Rectangle) @"image".Inset(@"image".n int) (? @"image".Rectangle)
+func (? @"image".Rectangle) @"image".Intersect(@"image".s @"image".Rectangle) (? @"image".Rectangle)
+func (? @"image".Rectangle) @"image".Overlaps(@"image".s @"image".Rectangle) (? bool)
+func (? @"image".Rectangle) @"image".Size() (? @"image".Point)
+func (? @"image".Rectangle) @"image".String() (? string)
+func (? @"image".Rectangle) @"image".Sub(@"image".p @"image".Point) (? @"image".Rectangle)
+func (? @"image".Rectangle) @"image".Union(@"image".s @"image".Rectangle) (? @"image".Rectangle)
+func (? *@"image".Rectangle) @"image".Add(@"image".p @"image".Point) (? @"image".Rectangle)
+func (? *@"image".Rectangle) @"image".Canon() (? @"image".Rectangle)
+func (? *@"image".Rectangle) @"image".Dx() (? int)
+func (? *@"image".Rectangle) @"image".Dy() (? int)
+func (? *@"image".Rectangle) @"image".Empty() (? bool)
+func (? *@"image".Rectangle) @"image".Eq(@"image".s @"image".Rectangle) (? bool)
+func (? *@"image".Rectangle) @"image".In(@"image".s @"image".Rectangle) (? bool)
+func (? *@"image".Rectangle) @"image".Inset(@"image".n int) (? @"image".Rectangle)
+func (? *@"image".Rectangle) @"image".Intersect(@"image".s @"image".Rectangle) (? @"image".Rectangle)
+func (? *@"image".Rectangle) @"image".Overlaps(@"image".s @"image".Rectangle) (? bool)
+func (? *@"image".Rectangle) @"image".Size() (? @"image".Point)
+func (? *@"image".Rectangle) @"image".String() (? string)
+func (? *@"image".Rectangle) @"image".Sub(@"image".p @"image".Point) (? @"image".Rectangle)
+func (? *@"image".Rectangle) @"image".Union(@"image".s @"image".Rectangle) (? @"image".Rectangle)
+type @"image".Image interface { @"image".At(@"image".x int, @"image".y int) (? @"image/color".Color); @"image".Bounds() (? @"image".Rectangle); @"image".ColorModel() (? @"image/color".Model) }
+type @"image".Point struct { @"image".X int; @"image".Y int }
+func (? @"image".Point) @"image".Add(@"image".q @"image".Point) (? @"image".Point)
+func (? @"image".Point) @"image".Div(@"image".k int) (? @"image".Point)
+func (? @"image".Point) @"image".Eq(@"image".q @"image".Point) (? bool)
+func (? @"image".Point) @"image".In(@"image".r @"image".Rectangle) (? bool)
+func (? @"image".Point) @"image".Mod(@"image".r @"image".Rectangle) (? @"image".Point)
+func (? @"image".Point) @"image".Mul(@"image".k int) (? @"image".Point)
+func (? @"image".Point) @"image".String() (? string)
+func (? @"image".Point) @"image".Sub(@"image".q @"image".Point) (? @"image".Point)
+func (? *@"image".Point) @"image".Add(@"image".q @"image".Point) (? @"image".Point)
+func (? *@"image".Point) @"image".Div(@"image".k int) (? @"image".Point)
+func (? *@"image".Point) @"image".Eq(@"image".q @"image".Point) (? bool)
+func (? *@"image".Point) @"image".In(@"image".r @"image".Rectangle) (? bool)
+func (? *@"image".Point) @"image".Mod(@"image".r @"image".Rectangle) (? @"image".Point)
+func (? *@"image".Point) @"image".Mul(@"image".k int) (? @"image".Point)
+func (? *@"image".Point) @"image".String() (? string)
+func (? *@"image".Point) @"image".Sub(@"image".q @"image".Point) (? @"image".Point)
+type @"image/color".Color interface { @"image/color".RGBA() (@"image/color".r uint32, @"image/color".g uint32, @"image/color".b uint32, @"image/color".a uint32) }
+type @"image/color".Model interface { @"image/color".Convert(@"image/color".c @"image/color".Color) (? @"image/color".Color) }
+type @"image/color".Palette []@"image/color".Color
+func (? @"image/color".Palette) @"image/color".Convert(@"image/color".c @"image/color".Color) (? @"image/color".Color)
+func (? @"image/color".Palette) @"image/color".Index(@"image/color".c @"image/color".Color) (? int)
+func (? *@"image/color".Palette) @"image/color".Convert(@"image/color".c @"image/color".Color) (? @"image/color".Color)
+func (? *@"image/color".Palette) @"image/color".Index(@"image/color".c @"image/color".Color) (? int)
+$$
+0|runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage
+image/drawƒ¸	var image = go$packages["image"];
+	var color = go$packages["image/color"];
+	var Image;
+	Image = go$newType(0, "Interface", "draw.Image", "Image", "image/draw", null);
+	go$pkg.Image = Image;
+	var Quantizer;
+	Quantizer = go$newType(0, "Interface", "draw.Quantizer", "Quantizer", "image/draw", null);
+	go$pkg.Quantizer = Quantizer;
+	var Op;
+	Op = go$newType(4, "Int", "draw.Op", "Op", "image/draw", null);
+	go$pkg.Op = Op;
+	var Drawer;
+	Drawer = go$newType(0, "Interface", "draw.Drawer", "Drawer", "image/draw", null);
+	go$pkg.Drawer = Drawer;
+	var floydSteinberg;
+	floydSteinberg = go$newType(0, "Struct", "draw.floydSteinberg", "floydSteinberg", "image/draw", function() {
+		this.go$val = this;
+	});
+	go$pkg.floydSteinberg = floydSteinberg;
+	Image.init([["At", "", (go$funcType([Go$Int, Go$Int], [color.Color], false))], ["Bounds", "", (go$funcType([], [image.Rectangle], false))], ["ColorModel", "", (go$funcType([], [color.Model], false))], ["Set", "", (go$funcType([Go$Int, Go$Int, color.Color], [], false))]]);
+	Quantizer.init([["Quantize", "", (go$funcType([color.Palette, image.Image], [color.Palette], false))]]);
+	Op.methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false]];
+	(go$ptrType(Op)).methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false]];
+	Drawer.init([["Draw", "", (go$funcType([Image, image.Rectangle, image.Image, image.Point], [], false))]]);
+	floydSteinberg.init([]);
+	floydSteinberg.methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false]];
+	(go$ptrType(floydSteinberg)).methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false]];
+	Op.prototype.Draw = function(dst, r, src, sp) {
+		var op, _struct, _struct$1, _struct$2, _struct$3;
+		op = this.go$val;
+		DrawMask(dst, (_struct = r, new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y)))), src, (_struct$3 = sp, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), null, new image.Point.Ptr(0, 0), op);
+	};
+	go$ptrType(Op).prototype.Draw = function(dst, r, src, sp) { return new Op(this.go$get()).Draw(dst, r, src, sp); };
+	floydSteinberg.Ptr.prototype.Draw = function(dst, r, src, sp) {
+		var _struct, _struct$1, _struct$2, _struct$3;
+		clip(dst, r, src, sp, null, (go$ptrType(image.Point)).nil);
+		if (r.Empty()) {
+			return;
+		}
+		drawPaletted(dst, (_struct = r, new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y)))), src, (_struct$3 = sp, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), true);
+	};
+	floydSteinberg.prototype.Draw = function(dst, r, src, sp) { return this.go$val.Draw(dst, r, src, sp); };
+	var clip = function(dst, r, src, sp, mask, mp) {
+		var _struct, orig, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, l, r$1, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, l$1, r$2, _struct$15, _struct$16, _struct$17, _struct$18, _struct$19, _struct$20, _struct$21, _struct$22, l$2, r$3, dx, dy;
+		orig = (_struct = r.Min, new image.Point.Ptr(_struct.X, _struct.Y));
+		l = r, r$1 = (_struct$4 = r.Intersect((_struct$1 = dst.Bounds(), new image.Rectangle.Ptr((_struct$2 = _struct$1.Min, new image.Point.Ptr(_struct$2.X, _struct$2.Y)), (_struct$3 = _struct$1.Max, new image.Point.Ptr(_struct$3.X, _struct$3.Y))))), new image.Rectangle.Ptr((_struct$5 = _struct$4.Min, new image.Point.Ptr(_struct$5.X, _struct$5.Y)), (_struct$6 = _struct$4.Max, new image.Point.Ptr(_struct$6.X, _struct$6.Y)))), l.Min = r$1.Min, l.Max = r$1.Max;
+		l$1 = r, r$2 = (_struct$12 = r.Intersect((_struct$9 = src.Bounds().Add((_struct$8 = orig.Sub((_struct$7 = sp, new image.Point.Ptr(_struct$7.X, _struct$7.Y))), new image.Point.Ptr(_struct$8.X, _struct$8.Y))), new image.Rectangle.Ptr((_struct$10 = _struct$9.Min, new image.Point.Ptr(_struct$10.X, _struct$10.Y)), (_struct$11 = _struct$9.Max, new image.Point.Ptr(_struct$11.X, _struct$11.Y))))), new image.Rectangle.Ptr((_struct$13 = _struct$12.Min, new image.Point.Ptr(_struct$13.X, _struct$13.Y)), (_struct$14 = _struct$12.Max, new image.Point.Ptr(_struct$14.X, _struct$14.Y)))), l$1.Min = r$2.Min, l$1.Max = r$2.Max;
+		if (!(go$interfaceIsEqual(mask, null))) {
+			l$2 = r, r$3 = (_struct$20 = r.Intersect((_struct$17 = mask.Bounds().Add((_struct$16 = orig.Sub((_struct$15 = mp, new image.Point.Ptr(_struct$15.X, _struct$15.Y))), new image.Point.Ptr(_struct$16.X, _struct$16.Y))), new image.Rectangle.Ptr((_struct$18 = _struct$17.Min, new image.Point.Ptr(_struct$18.X, _struct$18.Y)), (_struct$19 = _struct$17.Max, new image.Point.Ptr(_struct$19.X, _struct$19.Y))))), new image.Rectangle.Ptr((_struct$21 = _struct$20.Min, new image.Point.Ptr(_struct$21.X, _struct$21.Y)), (_struct$22 = _struct$20.Max, new image.Point.Ptr(_struct$22.X, _struct$22.Y)))), l$2.Min = r$3.Min, l$2.Max = r$3.Max;
+		}
+		dx = r.Min.X - orig.X >> 0;
+		dy = r.Min.Y - orig.Y >> 0;
+		if ((dx === 0) && (dy === 0)) {
+			return;
+		}
+		sp.X = (sp).X + (dx) >> 0;
+		sp.Y = (sp).Y + (dy) >> 0;
+		mp.X = (mp).X + (dx) >> 0;
+		mp.Y = (mp).Y + (dy) >> 0;
+	};
+	var processBackward = function(dst, r, src, sp) {
+		var _struct, _struct$1, _struct$2, _struct$3, _struct$4;
+		return go$interfaceIsEqual(dst, src) && r.Overlaps((_struct$2 = r.Add((_struct$1 = sp.Sub((_struct = r.Min, new image.Point.Ptr(_struct.X, _struct.Y))), new image.Point.Ptr(_struct$1.X, _struct$1.Y))), new image.Rectangle.Ptr((_struct$3 = _struct$2.Min, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), (_struct$4 = _struct$2.Max, new image.Point.Ptr(_struct$4.X, _struct$4.Y))))) && (sp.Y < r.Min.Y || ((sp.Y === r.Min.Y) && sp.X < r.Min.X));
+	};
+	var Draw = go$pkg.Draw = function(dst, r, src, sp, op) {
+		var _struct, _struct$1, _struct$2, _struct$3;
+		DrawMask(dst, (_struct = r, new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y)))), src, (_struct$3 = sp, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), null, new image.Point.Ptr(0, 0), op);
+	};
+	var DrawMask = go$pkg.DrawMask = function(dst, r, src, sp, mask, mp, op) {
+		var dst0, _ref, _type, ok, src0, _ref$1, _type$1, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, _tuple, mask0, src0$1, _ref$2, _type$2, _struct$15, _struct$16, _struct$17, _struct$18, src0$2, _ref$3, _type$3, _struct$19, _struct$20, _struct$21, _struct$22, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, _struct$34, _struct$35, _struct$36, _struct$37, _struct$38, _struct$39, _struct$40, _struct$41, _struct$42, _struct$43, _struct$44, _struct$45, _struct$46, _tuple$1, x0, x1, dx, _tuple$2, y0, y1, dy, _struct$47, _struct$48, _struct$49, _struct$50, _tuple$3, _tuple$4, out, sy, my, y, sx, mx, x, ma, _tuple$5, x$1, _tuple$6, sr, sg, sb, sa, _tuple$7, dr, dg, db, da, _q, a, _q$1, _q$2, _q$3, _q$4, _q$5, _q$6, _q$7, _q$8, _tuple$8, _tuple$9;
+		clip(dst, r, src, sp, mask, mp);
+		if (r.Empty()) {
+			return;
+		}
+		_ref = dst;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(image.RGBA))) {
+			dst0 = _ref.go$val;
+			if (op === 0) {
+				if (go$interfaceIsEqual(mask, null)) {
+					_ref$1 = src;
+					_type$1 = _ref$1 !== null ? _ref$1.constructor : null;
+					if (_type$1 === (go$ptrType(image.Uniform))) {
+						src0 = _ref$1.go$val;
+						drawFillOver(dst0, (_struct = r, new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y)))), src0);
+						return;
+					} else if (_type$1 === (go$ptrType(image.RGBA))) {
+						src0 = _ref$1.go$val;
+						drawCopyOver(dst0, (_struct$3 = r, new image.Rectangle.Ptr((_struct$4 = _struct$3.Min, new image.Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new image.Point.Ptr(_struct$5.X, _struct$5.Y)))), src0, (_struct$6 = sp, new image.Point.Ptr(_struct$6.X, _struct$6.Y)));
+						return;
+					} else if (_type$1 === (go$ptrType(image.NRGBA))) {
+						src0 = _ref$1.go$val;
+						drawNRGBAOver(dst0, (_struct$7 = r, new image.Rectangle.Ptr((_struct$8 = _struct$7.Min, new image.Point.Ptr(_struct$8.X, _struct$8.Y)), (_struct$9 = _struct$7.Max, new image.Point.Ptr(_struct$9.X, _struct$9.Y)))), src0, (_struct$10 = sp, new image.Point.Ptr(_struct$10.X, _struct$10.Y)));
+						return;
+					} else if (_type$1 === (go$ptrType(image.YCbCr))) {
+						src0 = _ref$1.go$val;
+						if (drawYCbCr(dst0, (_struct$11 = r, new image.Rectangle.Ptr((_struct$12 = _struct$11.Min, new image.Point.Ptr(_struct$12.X, _struct$12.Y)), (_struct$13 = _struct$11.Max, new image.Point.Ptr(_struct$13.X, _struct$13.Y)))), src0, (_struct$14 = sp, new image.Point.Ptr(_struct$14.X, _struct$14.Y)))) {
+							return;
+						}
+					}
+				} else if (_tuple = (mask !== null && mask.constructor === (go$ptrType(image.Alpha)) ? [mask.go$val, true] : [(go$ptrType(image.Alpha)).nil, false]), mask0 = _tuple[0], ok = _tuple[1], ok) {
+					_ref$2 = src;
+					_type$2 = _ref$2 !== null ? _ref$2.constructor : null;
+					if (_type$2 === (go$ptrType(image.Uniform))) {
+						src0$1 = _ref$2.go$val;
+						drawGlyphOver(dst0, (_struct$15 = r, new image.Rectangle.Ptr((_struct$16 = _struct$15.Min, new image.Point.Ptr(_struct$16.X, _struct$16.Y)), (_struct$17 = _struct$15.Max, new image.Point.Ptr(_struct$17.X, _struct$17.Y)))), src0$1, mask0, (_struct$18 = mp, new image.Point.Ptr(_struct$18.X, _struct$18.Y)));
+						return;
+					}
+				}
+			} else {
+				if (go$interfaceIsEqual(mask, null)) {
+					_ref$3 = src;
+					_type$3 = _ref$3 !== null ? _ref$3.constructor : null;
+					if (_type$3 === (go$ptrType(image.Uniform))) {
+						src0$2 = _ref$3.go$val;
+						drawFillSrc(dst0, (_struct$19 = r, new image.Rectangle.Ptr((_struct$20 = _struct$19.Min, new image.Point.Ptr(_struct$20.X, _struct$20.Y)), (_struct$21 = _struct$19.Max, new image.Point.Ptr(_struct$21.X, _struct$21.Y)))), src0$2);
+						return;
+					} else if (_type$3 === (go$ptrType(image.RGBA))) {
+						src0$2 = _ref$3.go$val;
+						drawCopySrc(dst0, (_struct$22 = r, new image.Rectangle.Ptr((_struct$23 = _struct$22.Min, new image.Point.Ptr(_struct$23.X, _struct$23.Y)), (_struct$24 = _struct$22.Max, new image.Point.Ptr(_struct$24.X, _struct$24.Y)))), src0$2, (_struct$25 = sp, new image.Point.Ptr(_struct$25.X, _struct$25.Y)));
+						return;
+					} else if (_type$3 === (go$ptrType(image.NRGBA))) {
+						src0$2 = _ref$3.go$val;
+						drawNRGBASrc(dst0, (_struct$26 = r, new image.Rectangle.Ptr((_struct$27 = _struct$26.Min, new image.Point.Ptr(_struct$27.X, _struct$27.Y)), (_struct$28 = _struct$26.Max, new image.Point.Ptr(_struct$28.X, _struct$28.Y)))), src0$2, (_struct$29 = sp, new image.Point.Ptr(_struct$29.X, _struct$29.Y)));
+						return;
+					} else if (_type$3 === (go$ptrType(image.YCbCr))) {
+						src0$2 = _ref$3.go$val;
+						if (drawYCbCr(dst0, (_struct$30 = r, new image.Rectangle.Ptr((_struct$31 = _struct$30.Min, new image.Point.Ptr(_struct$31.X, _struct$31.Y)), (_struct$32 = _struct$30.Max, new image.Point.Ptr(_struct$32.X, _struct$32.Y)))), src0$2, (_struct$33 = sp, new image.Point.Ptr(_struct$33.X, _struct$33.Y)))) {
+							return;
+						}
+					}
+				}
+			}
+			drawRGBA(dst0, (_struct$34 = r, new image.Rectangle.Ptr((_struct$35 = _struct$34.Min, new image.Point.Ptr(_struct$35.X, _struct$35.Y)), (_struct$36 = _struct$34.Max, new image.Point.Ptr(_struct$36.X, _struct$36.Y)))), src, (_struct$37 = sp, new image.Point.Ptr(_struct$37.X, _struct$37.Y)), mask, (_struct$38 = mp, new image.Point.Ptr(_struct$38.X, _struct$38.Y)), op);
+			return;
+		} else if (_type === (go$ptrType(image.Paletted))) {
+			dst0 = _ref.go$val;
+			if ((op === 1) && go$interfaceIsEqual(mask, null) && !processBackward(dst, (_struct$39 = r, new image.Rectangle.Ptr((_struct$40 = _struct$39.Min, new image.Point.Ptr(_struct$40.X, _struct$40.Y)), (_struct$41 = _struct$39.Max, new image.Point.Ptr(_struct$41.X, _struct$41.Y)))), src, (_struct$42 = sp, new image.Point.Ptr(_struct$42.X, _struct$42.Y)))) {
+				drawPaletted(dst0, (_struct$43 = r, new image.Rectangle.Ptr((_struct$44 = _struct$43.Min, new image.Point.Ptr(_struct$44.X, _struct$44.Y)), (_struct$45 = _struct$43.Max, new image.Point.Ptr(_struct$45.X, _struct$45.Y)))), src, (_struct$46 = sp, new image.Point.Ptr(_struct$46.X, _struct$46.Y)), false);
+			}
+		}
+		_tuple$1 = [r.Min.X, r.Max.X, 1], x0 = _tuple$1[0], x1 = _tuple$1[1], dx = _tuple$1[2];
+		_tuple$2 = [r.Min.Y, r.Max.Y, 1], y0 = _tuple$2[0], y1 = _tuple$2[1], dy = _tuple$2[2];
+		if (processBackward(dst, (_struct$47 = r, new image.Rectangle.Ptr((_struct$48 = _struct$47.Min, new image.Point.Ptr(_struct$48.X, _struct$48.Y)), (_struct$49 = _struct$47.Max, new image.Point.Ptr(_struct$49.X, _struct$49.Y)))), src, (_struct$50 = sp, new image.Point.Ptr(_struct$50.X, _struct$50.Y)))) {
+			_tuple$3 = [x1 - 1 >> 0, x0 - 1 >> 0, -1], x0 = _tuple$3[0], x1 = _tuple$3[1], dx = _tuple$3[2];
+			_tuple$4 = [y1 - 1 >> 0, y0 - 1 >> 0, -1], y0 = _tuple$4[0], y1 = _tuple$4[1], dy = _tuple$4[2];
+		}
+		out = new color.RGBA64.Ptr();
+		sy = (sp.Y + y0 >> 0) - r.Min.Y >> 0;
+		my = (mp.Y + y0 >> 0) - r.Min.Y >> 0;
+		y = y0;
+		while (!((y === y1))) {
+			sx = (sp.X + x0 >> 0) - r.Min.X >> 0;
+			mx = (mp.X + x0 >> 0) - r.Min.X >> 0;
+			x = x0;
+			while (!((x === x1))) {
+				ma = 65535;
+				if (!(go$interfaceIsEqual(mask, null))) {
+					_tuple$5 = mask.At(mx, my).RGBA(), ma = _tuple$5[3];
+				}
+				if (ma === 0) {
+					if (op === 0) {
+					} else {
+						dst.Set(x, y, (x$1 = color.Transparent, new x$1.constructor.Struct(x$1)));
+					}
+				} else if ((ma === 65535) && (op === 1)) {
+					dst.Set(x, y, src.At(sx, sy));
+				} else {
+					_tuple$6 = src.At(sx, sy).RGBA(), sr = _tuple$6[0], sg = _tuple$6[1], sb = _tuple$6[2], sa = _tuple$6[3];
+					if (op === 0) {
+						_tuple$7 = dst.At(x, y).RGBA(), dr = _tuple$7[0], dg = _tuple$7[1], db = _tuple$7[2], da = _tuple$7[3];
+						a = 65535 - ((_q = ((((sa >>> 16 << 16) * ma >>> 0) + (sa << 16 >>> 16) * ma) >>> 0) / 65535, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"))) >>> 0;
+						out.R = ((_q$1 = ((((((dr >>> 16 << 16) * a >>> 0) + (dr << 16 >>> 16) * a) >>> 0) + ((((sr >>> 16 << 16) * ma >>> 0) + (sr << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16);
+						out.G = ((_q$2 = ((((((dg >>> 16 << 16) * a >>> 0) + (dg << 16 >>> 16) * a) >>> 0) + ((((sg >>> 16 << 16) * ma >>> 0) + (sg << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16);
+						out.B = ((_q$3 = ((((((db >>> 16 << 16) * a >>> 0) + (db << 16 >>> 16) * a) >>> 0) + ((((sb >>> 16 << 16) * ma >>> 0) + (sb << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >>> 0 : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16);
+						out.A = ((_q$4 = ((((((da >>> 16 << 16) * a >>> 0) + (da << 16 >>> 16) * a) >>> 0) + ((((sa >>> 16 << 16) * ma >>> 0) + (sa << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$4 === _q$4 && _q$4 !== 1/0 && _q$4 !== -1/0) ? _q$4 >>> 0 : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16);
+					} else {
+						out.R = ((_q$5 = ((((sr >>> 16 << 16) * ma >>> 0) + (sr << 16 >>> 16) * ma) >>> 0) / 65535, (_q$5 === _q$5 && _q$5 !== 1/0 && _q$5 !== -1/0) ? _q$5 >>> 0 : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16);
+						out.G = ((_q$6 = ((((sg >>> 16 << 16) * ma >>> 0) + (sg << 16 >>> 16) * ma) >>> 0) / 65535, (_q$6 === _q$6 && _q$6 !== 1/0 && _q$6 !== -1/0) ? _q$6 >>> 0 : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16);
+						out.B = ((_q$7 = ((((sb >>> 16 << 16) * ma >>> 0) + (sb << 16 >>> 16) * ma) >>> 0) / 65535, (_q$7 === _q$7 && _q$7 !== 1/0 && _q$7 !== -1/0) ? _q$7 >>> 0 : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16);
+						out.A = ((_q$8 = ((((sa >>> 16 << 16) * ma >>> 0) + (sa << 16 >>> 16) * ma) >>> 0) / 65535, (_q$8 === _q$8 && _q$8 !== 1/0 && _q$8 !== -1/0) ? _q$8 >>> 0 : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16);
+					}
+					dst.Set(x, y, out);
+				}
+				_tuple$8 = [x + dx >> 0, sx + dx >> 0, mx + dx >> 0], x = _tuple$8[0], sx = _tuple$8[1], mx = _tuple$8[2];
+			}
+			_tuple$9 = [y + dy >> 0, sy + dy >> 0, my + dy >> 0], y = _tuple$9[0], sy = _tuple$9[1], my = _tuple$9[2];
+		}
+	};
+	var drawFillOver = function(dst, r, src) {
+		var _tuple, sr, sg, sb, sa, x, x$1, a, i0, x$2, x$3, i1, y, i, _slice, _index, dr, _slice$1, _index$1, dg, _slice$2, _index$2, db, _slice$3, _index$3, da, _q, _slice$4, _index$4, _q$1, _slice$5, _index$5, _q$2, _slice$6, _index$6, _q$3, _slice$7, _index$7;
+		_tuple = src.RGBA(), sr = _tuple[0], sg = _tuple[1], sb = _tuple[2], sa = _tuple[3];
+		a = (x = (65535 - sa >>> 0), x$1 = 257, (((x >>> 16 << 16) * x$1 >>> 0) + (x << 16 >>> 16) * x$1) >>> 0);
+		i0 = dst.PixOffset(r.Min.X, r.Min.Y);
+		i1 = i0 + (x$2 = r.Dx(), x$3 = 4, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0) >> 0;
+		y = r.Min.Y;
+		while (!((y === r.Max.Y))) {
+			i = i0;
+			while (i < i1) {
+				dr = ((_slice = dst.Pix, _index = (i + 0 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0);
+				dg = ((_slice$1 = dst.Pix, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0);
+				db = ((_slice$2 = dst.Pix, _index$2 = (i + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0);
+				da = ((_slice$3 = dst.Pix, _index$3 = (i + 3 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0);
+				_slice$4 = dst.Pix, _index$4 = i + 0 >> 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = (((((_q = ((((dr >>> 16 << 16) * a >>> 0) + (dr << 16 >>> 16) * a) >>> 0) / 65535, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")) + sr >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$5 = dst.Pix, _index$5 = i + 1 >> 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (((((_q$1 = ((((dg >>> 16 << 16) * a >>> 0) + (dg << 16 >>> 16) * a) >>> 0) / 65535, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sg >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$6 = dst.Pix, _index$6 = i + 2 >> 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = (((((_q$2 = ((((db >>> 16 << 16) * a >>> 0) + (db << 16 >>> 16) * a) >>> 0) / 65535, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sb >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$7 = dst.Pix, _index$7 = i + 3 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (((((_q$3 = ((((da >>> 16 << 16) * a >>> 0) + (da << 16 >>> 16) * a) >>> 0) / 65535, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sa >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				i = i + 4 >> 0;
+			}
+			i0 = i0 + (dst.Stride) >> 0;
+			i1 = i1 + (dst.Stride) >> 0;
+			y = y + 1 >> 0;
+		}
+	};
+	var drawFillSrc = function(dst, r, src) {
+		var _tuple, sr, sg, sb, sa, i0, x, x$1, i1, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, firstRow, y;
+		_tuple = src.RGBA(), sr = _tuple[0], sg = _tuple[1], sb = _tuple[2], sa = _tuple[3];
+		i0 = dst.PixOffset(r.Min.X, r.Min.Y);
+		i1 = i0 + (x = r.Dx(), x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) >> 0;
+		i = i0;
+		while (i < i1) {
+			_slice = dst.Pix, _index = i + 0 >> 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((sr >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+			_slice$1 = dst.Pix, _index$1 = i + 1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((sg >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+			_slice$2 = dst.Pix, _index$2 = i + 2 >> 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ((sb >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+			_slice$3 = dst.Pix, _index$3 = i + 3 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = ((sa >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+			i = i + 4 >> 0;
+		}
+		firstRow = go$subslice(dst.Pix, i0, i1);
+		y = r.Min.Y + 1 >> 0;
+		while (y < r.Max.Y) {
+			i0 = i0 + (dst.Stride) >> 0;
+			i1 = i1 + (dst.Stride) >> 0;
+			go$copySlice(go$subslice(dst.Pix, i0, i1), firstRow);
+			y = y + 1 >> 0;
+		}
+	};
+	var drawCopyOver = function(dst, r, src, sp) {
+		var _tuple, dx, dy, d0, s0, _tuple$1, ddelta, sdelta, _tuple$2, i0, i1, idelta, x, _tuple$3, x$1, x$2, x$3, x$4, x$5, x$6, _tuple$4, dpix, spix, i, x$7, _slice, _index, x$8, sr, x$9, _slice$1, _index$1, x$10, sg, x$11, _slice$2, _index$2, x$12, sb, x$13, _slice$3, _index$3, x$14, sa, _slice$4, _index$4, dr, _slice$5, _index$5, dg, _slice$6, _index$6, db, _slice$7, _index$7, da, x$15, x$16, a, _q, _slice$8, _index$8, _q$1, _slice$9, _index$9, _q$2, _slice$10, _index$10, _q$3, _slice$11, _index$11;
+		_tuple = [r.Dx(), r.Dy()], dx = _tuple[0], dy = _tuple[1];
+		d0 = dst.PixOffset(r.Min.X, r.Min.Y);
+		s0 = src.PixOffset(sp.X, sp.Y);
+		_tuple$1 = [0, 0], ddelta = _tuple$1[0], sdelta = _tuple$1[1], _tuple$2 = [0, 0, 0], i0 = _tuple$2[0], i1 = _tuple$2[1], idelta = _tuple$2[2];
+		if (r.Min.Y < sp.Y || (r.Min.Y === sp.Y) && r.Min.X <= sp.X) {
+			ddelta = dst.Stride;
+			sdelta = src.Stride;
+			_tuple$3 = [0, (x = 4, (((dx >>> 16 << 16) * x >> 0) + (dx << 16 >>> 16) * x) >> 0), 4], i0 = _tuple$3[0], i1 = _tuple$3[1], idelta = _tuple$3[2];
+		} else {
+			d0 = d0 + ((x$1 = (dy - 1 >> 0), x$2 = dst.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0)) >> 0;
+			s0 = s0 + ((x$3 = (dy - 1 >> 0), x$4 = src.Stride, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0)) >> 0;
+			ddelta = -dst.Stride;
+			sdelta = -src.Stride;
+			_tuple$4 = [(x$5 = (dx - 1 >> 0), x$6 = 4, (((x$5 >>> 16 << 16) * x$6 >> 0) + (x$5 << 16 >>> 16) * x$6) >> 0), -4, -4], i0 = _tuple$4[0], i1 = _tuple$4[1], idelta = _tuple$4[2];
+		}
+		while (dy > 0) {
+			dpix = go$subslice(dst.Pix, d0);
+			spix = go$subslice(src.Pix, s0);
+			i = i0;
+			while (!((i === i1))) {
+				sr = (x$7 = ((_slice = spix, _index = (i + 0 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0), x$8 = 257, (((x$7 >>> 16 << 16) * x$8 >>> 0) + (x$7 << 16 >>> 16) * x$8) >>> 0);
+				sg = (x$9 = ((_slice$1 = spix, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0), x$10 = 257, (((x$9 >>> 16 << 16) * x$10 >>> 0) + (x$9 << 16 >>> 16) * x$10) >>> 0);
+				sb = (x$11 = ((_slice$2 = spix, _index$2 = (i + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0), x$12 = 257, (((x$11 >>> 16 << 16) * x$12 >>> 0) + (x$11 << 16 >>> 16) * x$12) >>> 0);
+				sa = (x$13 = ((_slice$3 = spix, _index$3 = (i + 3 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0), x$14 = 257, (((x$13 >>> 16 << 16) * x$14 >>> 0) + (x$13 << 16 >>> 16) * x$14) >>> 0);
+				dr = ((_slice$4 = dpix, _index$4 = (i + 0 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) >>> 0);
+				dg = ((_slice$5 = dpix, _index$5 = (i + 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) >>> 0);
+				db = ((_slice$6 = dpix, _index$6 = (i + 2 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) >>> 0);
+				da = ((_slice$7 = dpix, _index$7 = (i + 3 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) >>> 0);
+				a = (x$15 = (65535 - sa >>> 0), x$16 = 257, (((x$15 >>> 16 << 16) * x$16 >>> 0) + (x$15 << 16 >>> 16) * x$16) >>> 0);
+				_slice$8 = dpix, _index$8 = i + 0 >> 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? (_slice$8.array[_slice$8.offset + _index$8] = (((((_q = ((((dr >>> 16 << 16) * a >>> 0) + (dr << 16 >>> 16) * a) >>> 0) / 65535, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")) + sr >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$9 = dpix, _index$9 = i + 1 >> 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = (((((_q$1 = ((((dg >>> 16 << 16) * a >>> 0) + (dg << 16 >>> 16) * a) >>> 0) / 65535, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sg >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$10 = dpix, _index$10 = i + 2 >> 0, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = (((((_q$2 = ((((db >>> 16 << 16) * a >>> 0) + (db << 16 >>> 16) * a) >>> 0) / 65535, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sb >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$11 = dpix, _index$11 = i + 3 >> 0, (_index$11 >= 0 && _index$11 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$11] = (((((_q$3 = ((((da >>> 16 << 16) * a >>> 0) + (da << 16 >>> 16) * a) >>> 0) / 65535, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sa >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				i = i + (idelta) >> 0;
+			}
+			d0 = d0 + (ddelta) >> 0;
+			s0 = s0 + (sdelta) >> 0;
+			dy = dy - 1 >> 0;
+		}
+	};
+	var drawCopySrc = function(dst, r, src, sp) {
+		var x, x$1, _tuple, n, dy, d0, s0, _tuple$1, ddelta, sdelta, x$2, x$3, x$4, x$5;
+		_tuple = [(x = 4, x$1 = r.Dx(), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0), r.Dy()], n = _tuple[0], dy = _tuple[1];
+		d0 = dst.PixOffset(r.Min.X, r.Min.Y);
+		s0 = src.PixOffset(sp.X, sp.Y);
+		_tuple$1 = [0, 0], ddelta = _tuple$1[0], sdelta = _tuple$1[1];
+		if (r.Min.Y <= sp.Y) {
+			ddelta = dst.Stride;
+			sdelta = src.Stride;
+		} else {
+			d0 = d0 + ((x$2 = (dy - 1 >> 0), x$3 = dst.Stride, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0)) >> 0;
+			s0 = s0 + ((x$4 = (dy - 1 >> 0), x$5 = src.Stride, (((x$4 >>> 16 << 16) * x$5 >> 0) + (x$4 << 16 >>> 16) * x$5) >> 0)) >> 0;
+			ddelta = -dst.Stride;
+			sdelta = -src.Stride;
+		}
+		while (dy > 0) {
+			go$copySlice(go$subslice(dst.Pix, d0, (d0 + n >> 0)), go$subslice(src.Pix, s0, (s0 + n >> 0)));
+			d0 = d0 + (ddelta) >> 0;
+			s0 = s0 + (sdelta) >> 0;
+			dy = dy - 1 >> 0;
+		}
+	};
+	var drawNRGBAOver = function(dst, r, src, sp) {
+		var x, x$1, i0, x$2, x$3, i1, x$4, x$5, si0, yMax, y, sy, x$6, dpix, x$7, spix, _tuple, i, si, x$8, _slice, _index, x$9, sa, _q, x$10, _slice$1, _index$1, sr, _q$1, x$11, _slice$2, _index$2, sg, _q$2, x$12, _slice$3, _index$3, sb, _slice$4, _index$4, dr, _slice$5, _index$5, dg, _slice$6, _index$6, db, _slice$7, _index$7, da, x$13, x$14, a, _q$3, _slice$8, _index$8, _q$4, _slice$9, _index$9, _q$5, _slice$10, _index$10, _q$6, _slice$11, _index$11, _tuple$1, _tuple$2;
+		i0 = (x = (r.Min.X - dst.Rect.Min.X >> 0), x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		i1 = (x$2 = (r.Max.X - dst.Rect.Min.X >> 0), x$3 = 4, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0);
+		si0 = (x$4 = (sp.X - src.Rect.Min.X >> 0), x$5 = 4, (((x$4 >>> 16 << 16) * x$5 >> 0) + (x$4 << 16 >>> 16) * x$5) >> 0);
+		yMax = r.Max.Y - dst.Rect.Min.Y >> 0;
+		y = r.Min.Y - dst.Rect.Min.Y >> 0;
+		sy = sp.Y - src.Rect.Min.Y >> 0;
+		while (!((y === yMax))) {
+			dpix = go$subslice(dst.Pix, (x$6 = dst.Stride, (((y >>> 16 << 16) * x$6 >> 0) + (y << 16 >>> 16) * x$6) >> 0));
+			spix = go$subslice(src.Pix, (x$7 = src.Stride, (((sy >>> 16 << 16) * x$7 >> 0) + (sy << 16 >>> 16) * x$7) >> 0));
+			_tuple = [i0, si0], i = _tuple[0], si = _tuple[1];
+			while (i < i1) {
+				sa = (x$8 = ((_slice = spix, _index = (si + 3 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0), x$9 = 257, (((x$8 >>> 16 << 16) * x$9 >>> 0) + (x$8 << 16 >>> 16) * x$9) >>> 0);
+				sr = (_q = (x$10 = ((_slice$1 = spix, _index$1 = (si + 0 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0), (((x$10 >>> 16 << 16) * sa >>> 0) + (x$10 << 16 >>> 16) * sa) >>> 0) / 255, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+				sg = (_q$1 = (x$11 = ((_slice$2 = spix, _index$2 = (si + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0), (((x$11 >>> 16 << 16) * sa >>> 0) + (x$11 << 16 >>> 16) * sa) >>> 0) / 255, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+				sb = (_q$2 = (x$12 = ((_slice$3 = spix, _index$3 = (si + 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0), (((x$12 >>> 16 << 16) * sa >>> 0) + (x$12 << 16 >>> 16) * sa) >>> 0) / 255, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+				dr = ((_slice$4 = dpix, _index$4 = (i + 0 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) >>> 0);
+				dg = ((_slice$5 = dpix, _index$5 = (i + 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) >>> 0);
+				db = ((_slice$6 = dpix, _index$6 = (i + 2 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) >>> 0);
+				da = ((_slice$7 = dpix, _index$7 = (i + 3 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) >>> 0);
+				a = (x$13 = (65535 - sa >>> 0), x$14 = 257, (((x$13 >>> 16 << 16) * x$14 >>> 0) + (x$13 << 16 >>> 16) * x$14) >>> 0);
+				_slice$8 = dpix, _index$8 = i + 0 >> 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? (_slice$8.array[_slice$8.offset + _index$8] = (((((_q$3 = ((((dr >>> 16 << 16) * a >>> 0) + (dr << 16 >>> 16) * a) >>> 0) / 65535, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sr >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$9 = dpix, _index$9 = i + 1 >> 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = (((((_q$4 = ((((dg >>> 16 << 16) * a >>> 0) + (dg << 16 >>> 16) * a) >>> 0) / 65535, (_q$4 === _q$4 && _q$4 !== 1/0 && _q$4 !== -1/0) ? _q$4 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sg >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$10 = dpix, _index$10 = i + 2 >> 0, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = (((((_q$5 = ((((db >>> 16 << 16) * a >>> 0) + (db << 16 >>> 16) * a) >>> 0) / 65535, (_q$5 === _q$5 && _q$5 !== 1/0 && _q$5 !== -1/0) ? _q$5 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sb >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$11 = dpix, _index$11 = i + 3 >> 0, (_index$11 >= 0 && _index$11 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$11] = (((((_q$6 = ((((da >>> 16 << 16) * a >>> 0) + (da << 16 >>> 16) * a) >>> 0) / 65535, (_q$6 === _q$6 && _q$6 !== 1/0 && _q$6 !== -1/0) ? _q$6 >>> 0 : go$throwRuntimeError("integer divide by zero")) + sa >>> 0)) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_tuple$1 = [i + 4 >> 0, si + 4 >> 0], i = _tuple$1[0], si = _tuple$1[1];
+			}
+			_tuple$2 = [y + 1 >> 0, sy + 1 >> 0], y = _tuple$2[0], sy = _tuple$2[1];
+		}
+	};
+	var drawNRGBASrc = function(dst, r, src, sp) {
+		var x, x$1, i0, x$2, x$3, i1, x$4, x$5, si0, yMax, y, sy, x$6, dpix, x$7, spix, _tuple, i, si, x$8, _slice, _index, x$9, sa, _q, x$10, _slice$1, _index$1, sr, _q$1, x$11, _slice$2, _index$2, sg, _q$2, x$12, _slice$3, _index$3, sb, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _tuple$1, _tuple$2;
+		i0 = (x = (r.Min.X - dst.Rect.Min.X >> 0), x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		i1 = (x$2 = (r.Max.X - dst.Rect.Min.X >> 0), x$3 = 4, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0);
+		si0 = (x$4 = (sp.X - src.Rect.Min.X >> 0), x$5 = 4, (((x$4 >>> 16 << 16) * x$5 >> 0) + (x$4 << 16 >>> 16) * x$5) >> 0);
+		yMax = r.Max.Y - dst.Rect.Min.Y >> 0;
+		y = r.Min.Y - dst.Rect.Min.Y >> 0;
+		sy = sp.Y - src.Rect.Min.Y >> 0;
+		while (!((y === yMax))) {
+			dpix = go$subslice(dst.Pix, (x$6 = dst.Stride, (((y >>> 16 << 16) * x$6 >> 0) + (y << 16 >>> 16) * x$6) >> 0));
+			spix = go$subslice(src.Pix, (x$7 = src.Stride, (((sy >>> 16 << 16) * x$7 >> 0) + (sy << 16 >>> 16) * x$7) >> 0));
+			_tuple = [i0, si0], i = _tuple[0], si = _tuple[1];
+			while (i < i1) {
+				sa = (x$8 = ((_slice = spix, _index = (si + 3 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0), x$9 = 257, (((x$8 >>> 16 << 16) * x$9 >>> 0) + (x$8 << 16 >>> 16) * x$9) >>> 0);
+				sr = (_q = (x$10 = ((_slice$1 = spix, _index$1 = (si + 0 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0), (((x$10 >>> 16 << 16) * sa >>> 0) + (x$10 << 16 >>> 16) * sa) >>> 0) / 255, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+				sg = (_q$1 = (x$11 = ((_slice$2 = spix, _index$2 = (si + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0), (((x$11 >>> 16 << 16) * sa >>> 0) + (x$11 << 16 >>> 16) * sa) >>> 0) / 255, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+				sb = (_q$2 = (x$12 = ((_slice$3 = spix, _index$3 = (si + 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0), (((x$12 >>> 16 << 16) * sa >>> 0) + (x$12 << 16 >>> 16) * sa) >>> 0) / 255, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+				_slice$4 = dpix, _index$4 = i + 0 >> 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = ((sr >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$5 = dpix, _index$5 = i + 1 >> 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = ((sg >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$6 = dpix, _index$6 = i + 2 >> 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = ((sb >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$7 = dpix, _index$7 = i + 3 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = ((sa >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_tuple$1 = [i + 4 >> 0, si + 4 >> 0], i = _tuple$1[0], si = _tuple$1[1];
+			}
+			_tuple$2 = [y + 1 >> 0, sy + 1 >> 0], y = _tuple$2[0], sy = _tuple$2[1];
+		}
+	};
+	var drawYCbCr = function(dst, r, src, sp) {
+		var ok, x, x$1, x0, x$2, x$3, x1, y0, y1, _ref, _tuple, y, sy, x$4, dpix, x$5, x$6, yi, x$7, x$8, ci, x$9, _tuple$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, rr, gg, bb, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _tuple$2, _tuple$3, _tuple$4, y$1, sy$1, x$10, dpix$1, x$11, x$12, yi$1, x$13, x$14, _q, ciBase, _tuple$5, x$15, sx, _q$1, ci$1, _tuple$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, rr$1, gg$1, bb$1, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _tuple$7, _tuple$8, _tuple$9, y$2, sy$2, x$16, dpix$2, x$17, x$18, yi$2, x$19, _q$2, _q$3, x$20, _q$4, ciBase$1, _tuple$10, x$21, sx$1, _q$5, ci$2, _tuple$11, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, rr$2, gg$2, bb$2, _slice$17, _index$17, _slice$18, _index$18, _slice$19, _index$19, _slice$20, _index$20, _tuple$12, _tuple$13, _tuple$14, y$3, sy$3, x$22, dpix$3, x$23, x$24, yi$3, x$25, _q$6, _q$7, x$26, ci$3, x$27, _tuple$15, _slice$21, _index$21, _slice$22, _index$22, _slice$23, _index$23, rr$3, gg$3, bb$3, _slice$24, _index$24, _slice$25, _index$25, _slice$26, _index$26, _slice$27, _index$27, _tuple$16, _tuple$17;
+		ok = false;
+		x0 = (x = (r.Min.X - dst.Rect.Min.X >> 0), x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		x1 = (x$2 = (r.Max.X - dst.Rect.Min.X >> 0), x$3 = 4, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0);
+		y0 = r.Min.Y - dst.Rect.Min.Y >> 0;
+		y1 = r.Max.Y - dst.Rect.Min.Y >> 0;
+		_ref = src.SubsampleRatio;
+		if (_ref === 0) {
+			_tuple = [y0, sp.Y], y = _tuple[0], sy = _tuple[1];
+			while (!((y === y1))) {
+				dpix = go$subslice(dst.Pix, (x$4 = dst.Stride, (((y >>> 16 << 16) * x$4 >> 0) + (y << 16 >>> 16) * x$4) >> 0));
+				yi = (x$5 = (sy - src.Rect.Min.Y >> 0), x$6 = src.YStride, (((x$5 >>> 16 << 16) * x$6 >> 0) + (x$5 << 16 >>> 16) * x$6) >> 0) + ((sp.X - src.Rect.Min.X >> 0)) >> 0;
+				ci = (x$7 = (sy - src.Rect.Min.Y >> 0), x$8 = src.CStride, (((x$7 >>> 16 << 16) * x$8 >> 0) + (x$7 << 16 >>> 16) * x$8) >> 0) + ((sp.X - src.Rect.Min.X >> 0)) >> 0;
+				x$9 = x0;
+				while (!((x$9 === x1))) {
+					_tuple$1 = color.YCbCrToRGB((_slice = src.Y, _index = yi, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = src.Cb, _index$1 = ci, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = src.Cr, _index$2 = ci, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))), rr = _tuple$1[0], gg = _tuple$1[1], bb = _tuple$1[2];
+					_slice$3 = dpix, _index$3 = x$9 + 0 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = rr) : go$throwRuntimeError("index out of range");
+					_slice$4 = dpix, _index$4 = x$9 + 1 >> 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = gg) : go$throwRuntimeError("index out of range");
+					_slice$5 = dpix, _index$5 = x$9 + 2 >> 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = bb) : go$throwRuntimeError("index out of range");
+					_slice$6 = dpix, _index$6 = x$9 + 3 >> 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = 255) : go$throwRuntimeError("index out of range");
+					_tuple$2 = [x$9 + 4 >> 0, yi + 1 >> 0, ci + 1 >> 0], x$9 = _tuple$2[0], yi = _tuple$2[1], ci = _tuple$2[2];
+				}
+				_tuple$3 = [y + 1 >> 0, sy + 1 >> 0], y = _tuple$3[0], sy = _tuple$3[1];
+			}
+		} else if (_ref === 1) {
+			_tuple$4 = [y0, sp.Y], y$1 = _tuple$4[0], sy$1 = _tuple$4[1];
+			while (!((y$1 === y1))) {
+				dpix$1 = go$subslice(dst.Pix, (x$10 = dst.Stride, (((y$1 >>> 16 << 16) * x$10 >> 0) + (y$1 << 16 >>> 16) * x$10) >> 0));
+				yi$1 = (x$11 = (sy$1 - src.Rect.Min.Y >> 0), x$12 = src.YStride, (((x$11 >>> 16 << 16) * x$12 >> 0) + (x$11 << 16 >>> 16) * x$12) >> 0) + ((sp.X - src.Rect.Min.X >> 0)) >> 0;
+				ciBase = (x$13 = (sy$1 - src.Rect.Min.Y >> 0), x$14 = src.CStride, (((x$13 >>> 16 << 16) * x$14 >> 0) + (x$13 << 16 >>> 16) * x$14) >> 0) - (_q = src.Rect.Min.X / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+				_tuple$5 = [x0, sp.X], x$15 = _tuple$5[0], sx = _tuple$5[1];
+				while (!((x$15 === x1))) {
+					ci$1 = ciBase + (_q$1 = sx / 2, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+					_tuple$6 = color.YCbCrToRGB((_slice$7 = src.Y, _index$7 = yi$1, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), (_slice$8 = src.Cb, _index$8 = ci$1, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")), (_slice$9 = src.Cr, _index$9 = ci$1, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range"))), rr$1 = _tuple$6[0], gg$1 = _tuple$6[1], bb$1 = _tuple$6[2];
+					_slice$10 = dpix$1, _index$10 = x$15 + 0 >> 0, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = rr$1) : go$throwRuntimeError("index out of range");
+					_slice$11 = dpix$1, _index$11 = x$15 + 1 >> 0, (_index$11 >= 0 && _index$11 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$11] = gg$1) : go$throwRuntimeError("index out of range");
+					_slice$12 = dpix$1, _index$12 = x$15 + 2 >> 0, (_index$12 >= 0 && _index$12 < _slice$12.length) ? (_slice$12.array[_slice$12.offset + _index$12] = bb$1) : go$throwRuntimeError("index out of range");
+					_slice$13 = dpix$1, _index$13 = x$15 + 3 >> 0, (_index$13 >= 0 && _index$13 < _slice$13.length) ? (_slice$13.array[_slice$13.offset + _index$13] = 255) : go$throwRuntimeError("index out of range");
+					_tuple$7 = [x$15 + 4 >> 0, sx + 1 >> 0, yi$1 + 1 >> 0], x$15 = _tuple$7[0], sx = _tuple$7[1], yi$1 = _tuple$7[2];
+				}
+				_tuple$8 = [y$1 + 1 >> 0, sy$1 + 1 >> 0], y$1 = _tuple$8[0], sy$1 = _tuple$8[1];
+			}
+		} else if (_ref === 2) {
+			_tuple$9 = [y0, sp.Y], y$2 = _tuple$9[0], sy$2 = _tuple$9[1];
+			while (!((y$2 === y1))) {
+				dpix$2 = go$subslice(dst.Pix, (x$16 = dst.Stride, (((y$2 >>> 16 << 16) * x$16 >> 0) + (y$2 << 16 >>> 16) * x$16) >> 0));
+				yi$2 = (x$17 = (sy$2 - src.Rect.Min.Y >> 0), x$18 = src.YStride, (((x$17 >>> 16 << 16) * x$18 >> 0) + (x$17 << 16 >>> 16) * x$18) >> 0) + ((sp.X - src.Rect.Min.X >> 0)) >> 0;
+				ciBase$1 = (x$19 = ((_q$2 = sy$2 / 2, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : go$throwRuntimeError("integer divide by zero")) - (_q$3 = src.Rect.Min.Y / 2, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0), x$20 = src.CStride, (((x$19 >>> 16 << 16) * x$20 >> 0) + (x$19 << 16 >>> 16) * x$20) >> 0) - (_q$4 = src.Rect.Min.X / 2, (_q$4 === _q$4 && _q$4 !== 1/0 && _q$4 !== -1/0) ? _q$4 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+				_tuple$10 = [x0, sp.X], x$21 = _tuple$10[0], sx$1 = _tuple$10[1];
+				while (!((x$21 === x1))) {
+					ci$2 = ciBase$1 + (_q$5 = sx$1 / 2, (_q$5 === _q$5 && _q$5 !== 1/0 && _q$5 !== -1/0) ? _q$5 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+					_tuple$11 = color.YCbCrToRGB((_slice$14 = src.Y, _index$14 = yi$2, (_index$14 >= 0 && _index$14 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$14] : go$throwRuntimeError("index out of range")), (_slice$15 = src.Cb, _index$15 = ci$2, (_index$15 >= 0 && _index$15 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$15] : go$throwRuntimeError("index out of range")), (_slice$16 = src.Cr, _index$16 = ci$2, (_index$16 >= 0 && _index$16 < _slice$16.length) ? _slice$16.array[_slice$16.offset + _index$16] : go$throwRuntimeError("index out of range"))), rr$2 = _tuple$11[0], gg$2 = _tuple$11[1], bb$2 = _tuple$11[2];
+					_slice$17 = dpix$2, _index$17 = x$21 + 0 >> 0, (_index$17 >= 0 && _index$17 < _slice$17.length) ? (_slice$17.array[_slice$17.offset + _index$17] = rr$2) : go$throwRuntimeError("index out of range");
+					_slice$18 = dpix$2, _index$18 = x$21 + 1 >> 0, (_index$18 >= 0 && _index$18 < _slice$18.length) ? (_slice$18.array[_slice$18.offset + _index$18] = gg$2) : go$throwRuntimeError("index out of range");
+					_slice$19 = dpix$2, _index$19 = x$21 + 2 >> 0, (_index$19 >= 0 && _index$19 < _slice$19.length) ? (_slice$19.array[_slice$19.offset + _index$19] = bb$2) : go$throwRuntimeError("index out of range");
+					_slice$20 = dpix$2, _index$20 = x$21 + 3 >> 0, (_index$20 >= 0 && _index$20 < _slice$20.length) ? (_slice$20.array[_slice$20.offset + _index$20] = 255) : go$throwRuntimeError("index out of range");
+					_tuple$12 = [x$21 + 4 >> 0, sx$1 + 1 >> 0, yi$2 + 1 >> 0], x$21 = _tuple$12[0], sx$1 = _tuple$12[1], yi$2 = _tuple$12[2];
+				}
+				_tuple$13 = [y$2 + 1 >> 0, sy$2 + 1 >> 0], y$2 = _tuple$13[0], sy$2 = _tuple$13[1];
+			}
+		} else if (_ref === 3) {
+			_tuple$14 = [y0, sp.Y], y$3 = _tuple$14[0], sy$3 = _tuple$14[1];
+			while (!((y$3 === y1))) {
+				dpix$3 = go$subslice(dst.Pix, (x$22 = dst.Stride, (((y$3 >>> 16 << 16) * x$22 >> 0) + (y$3 << 16 >>> 16) * x$22) >> 0));
+				yi$3 = (x$23 = (sy$3 - src.Rect.Min.Y >> 0), x$24 = src.YStride, (((x$23 >>> 16 << 16) * x$24 >> 0) + (x$23 << 16 >>> 16) * x$24) >> 0) + ((sp.X - src.Rect.Min.X >> 0)) >> 0;
+				ci$3 = (x$25 = ((_q$6 = sy$3 / 2, (_q$6 === _q$6 && _q$6 !== 1/0 && _q$6 !== -1/0) ? _q$6 >> 0 : go$throwRuntimeError("integer divide by zero")) - (_q$7 = src.Rect.Min.Y / 2, (_q$7 === _q$7 && _q$7 !== 1/0 && _q$7 !== -1/0) ? _q$7 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0), x$26 = src.CStride, (((x$25 >>> 16 << 16) * x$26 >> 0) + (x$25 << 16 >>> 16) * x$26) >> 0) + ((sp.X - src.Rect.Min.X >> 0)) >> 0;
+				x$27 = x0;
+				while (!((x$27 === x1))) {
+					_tuple$15 = color.YCbCrToRGB((_slice$21 = src.Y, _index$21 = yi$3, (_index$21 >= 0 && _index$21 < _slice$21.length) ? _slice$21.array[_slice$21.offset + _index$21] : go$throwRuntimeError("index out of range")), (_slice$22 = src.Cb, _index$22 = ci$3, (_index$22 >= 0 && _index$22 < _slice$22.length) ? _slice$22.array[_slice$22.offset + _index$22] : go$throwRuntimeError("index out of range")), (_slice$23 = src.Cr, _index$23 = ci$3, (_index$23 >= 0 && _index$23 < _slice$23.length) ? _slice$23.array[_slice$23.offset + _index$23] : go$throwRuntimeError("index out of range"))), rr$3 = _tuple$15[0], gg$3 = _tuple$15[1], bb$3 = _tuple$15[2];
+					_slice$24 = dpix$3, _index$24 = x$27 + 0 >> 0, (_index$24 >= 0 && _index$24 < _slice$24.length) ? (_slice$24.array[_slice$24.offset + _index$24] = rr$3) : go$throwRuntimeError("index out of range");
+					_slice$25 = dpix$3, _index$25 = x$27 + 1 >> 0, (_index$25 >= 0 && _index$25 < _slice$25.length) ? (_slice$25.array[_slice$25.offset + _index$25] = gg$3) : go$throwRuntimeError("index out of range");
+					_slice$26 = dpix$3, _index$26 = x$27 + 2 >> 0, (_index$26 >= 0 && _index$26 < _slice$26.length) ? (_slice$26.array[_slice$26.offset + _index$26] = bb$3) : go$throwRuntimeError("index out of range");
+					_slice$27 = dpix$3, _index$27 = x$27 + 3 >> 0, (_index$27 >= 0 && _index$27 < _slice$27.length) ? (_slice$27.array[_slice$27.offset + _index$27] = 255) : go$throwRuntimeError("index out of range");
+					_tuple$16 = [x$27 + 4 >> 0, yi$3 + 1 >> 0, ci$3 + 1 >> 0], x$27 = _tuple$16[0], yi$3 = _tuple$16[1], ci$3 = _tuple$16[2];
+				}
+				_tuple$17 = [y$3 + 1 >> 0, sy$3 + 1 >> 0], y$3 = _tuple$17[0], sy$3 = _tuple$17[1];
+			}
+		} else {
+			ok = false;
+			return ok;
+		}
+		ok = true;
+		return ok;
+	};
+	var drawGlyphOver = function(dst, r, src, mask, mp) {
+		var i0, x, x$1, i1, mi0, _tuple, sr, sg, sb, sa, _tuple$1, y, my, _tuple$2, i, mi, _slice, _index, ma, _tuple$3, _slice$1, _index$1, dr, _slice$2, _index$2, dg, _slice$3, _index$3, db, _slice$4, _index$4, da, x$2, _q, x$3, a, _q$1, _slice$5, _index$5, _q$2, _slice$6, _index$6, _q$3, _slice$7, _index$7, _q$4, _slice$8, _index$8, _tuple$4, _tuple$5;
+		i0 = dst.PixOffset(r.Min.X, r.Min.Y);
+		i1 = i0 + (x = r.Dx(), x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) >> 0;
+		mi0 = mask.PixOffset(mp.X, mp.Y);
+		_tuple = src.RGBA(), sr = _tuple[0], sg = _tuple[1], sb = _tuple[2], sa = _tuple[3];
+		_tuple$1 = [r.Min.Y, mp.Y], y = _tuple$1[0], my = _tuple$1[1];
+		while (!((y === r.Max.Y))) {
+			_tuple$2 = [i0, mi0], i = _tuple$2[0], mi = _tuple$2[1];
+			while (i < i1) {
+				ma = ((_slice = mask.Pix, _index = mi, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0);
+				if (ma === 0) {
+					_tuple$3 = [i + 4 >> 0, mi + 1 >> 0], i = _tuple$3[0], mi = _tuple$3[1];
+					continue;
+				}
+				ma = (ma | ((ma << 8 >>> 0))) >>> 0;
+				dr = ((_slice$1 = dst.Pix, _index$1 = (i + 0 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0);
+				dg = ((_slice$2 = dst.Pix, _index$2 = (i + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0);
+				db = ((_slice$3 = dst.Pix, _index$3 = (i + 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0);
+				da = ((_slice$4 = dst.Pix, _index$4 = (i + 3 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) >>> 0);
+				a = (x$2 = (65535 - ((_q = ((((sa >>> 16 << 16) * ma >>> 0) + (sa << 16 >>> 16) * ma) >>> 0) / 65535, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"))) >>> 0), x$3 = 257, (((x$2 >>> 16 << 16) * x$3 >>> 0) + (x$2 << 16 >>> 16) * x$3) >>> 0);
+				_slice$5 = dst.Pix, _index$5 = i + 0 >> 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (((_q$1 = ((((((dr >>> 16 << 16) * a >>> 0) + (dr << 16 >>> 16) * a) >>> 0) + ((((sr >>> 16 << 16) * ma >>> 0) + (sr << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$6 = dst.Pix, _index$6 = i + 1 >> 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = (((_q$2 = ((((((dg >>> 16 << 16) * a >>> 0) + (dg << 16 >>> 16) * a) >>> 0) + ((((sg >>> 16 << 16) * ma >>> 0) + (sg << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$7 = dst.Pix, _index$7 = i + 2 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (((_q$3 = ((((((db >>> 16 << 16) * a >>> 0) + (db << 16 >>> 16) * a) >>> 0) + ((((sb >>> 16 << 16) * ma >>> 0) + (sb << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$8 = dst.Pix, _index$8 = i + 3 >> 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? (_slice$8.array[_slice$8.offset + _index$8] = (((_q$4 = ((((((da >>> 16 << 16) * a >>> 0) + (da << 16 >>> 16) * a) >>> 0) + ((((sa >>> 16 << 16) * ma >>> 0) + (sa << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$4 === _q$4 && _q$4 !== 1/0 && _q$4 !== -1/0) ? _q$4 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_tuple$4 = [i + 4 >> 0, mi + 1 >> 0], i = _tuple$4[0], mi = _tuple$4[1];
+			}
+			i0 = i0 + (dst.Stride) >> 0;
+			i1 = i1 + (dst.Stride) >> 0;
+			mi0 = mi0 + (mask.Stride) >> 0;
+			_tuple$5 = [y + 1 >> 0, my + 1 >> 0], y = _tuple$5[0], my = _tuple$5[1];
+		}
+	};
+	var drawRGBA = function(dst, r, src, sp, mask, mp, op) {
+		var _tuple, x0, x1, dx, _tuple$1, y0, y1, dy, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _tuple$2, _tuple$3, sy, my, sx0, mx0, sx1, i0, x, di, y, _tuple$4, i, sx, mx, ma, _tuple$5, _tuple$6, sr, sg, sb, sa, _slice, _index, dr, _slice$1, _index$1, dg, _slice$2, _index$2, db, _slice$3, _index$3, da, x$1, _q, x$2, a, _q$1, _slice$4, _index$4, _q$2, _slice$5, _index$5, _q$3, _slice$6, _index$6, _q$4, _slice$7, _index$7, _q$5, _slice$8, _index$8, _q$6, _slice$9, _index$9, _q$7, _slice$10, _index$10, _q$8, _slice$11, _index$11, _tuple$7, x$3, _tuple$8;
+		_tuple = [r.Min.X, r.Max.X, 1], x0 = _tuple[0], x1 = _tuple[1], dx = _tuple[2];
+		_tuple$1 = [r.Min.Y, r.Max.Y, 1], y0 = _tuple$1[0], y1 = _tuple$1[1], dy = _tuple$1[2];
+		if (go$interfaceIsEqual(dst, src) && r.Overlaps((_struct$2 = r.Add((_struct$1 = sp.Sub((_struct = r.Min, new image.Point.Ptr(_struct.X, _struct.Y))), new image.Point.Ptr(_struct$1.X, _struct$1.Y))), new image.Rectangle.Ptr((_struct$3 = _struct$2.Min, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), (_struct$4 = _struct$2.Max, new image.Point.Ptr(_struct$4.X, _struct$4.Y)))))) {
+			if (sp.Y < r.Min.Y || (sp.Y === r.Min.Y) && sp.X < r.Min.X) {
+				_tuple$2 = [x1 - 1 >> 0, x0 - 1 >> 0, -1], x0 = _tuple$2[0], x1 = _tuple$2[1], dx = _tuple$2[2];
+				_tuple$3 = [y1 - 1 >> 0, y0 - 1 >> 0, -1], y0 = _tuple$3[0], y1 = _tuple$3[1], dy = _tuple$3[2];
+			}
+		}
+		sy = (sp.Y + y0 >> 0) - r.Min.Y >> 0;
+		my = (mp.Y + y0 >> 0) - r.Min.Y >> 0;
+		sx0 = (sp.X + x0 >> 0) - r.Min.X >> 0;
+		mx0 = (mp.X + x0 >> 0) - r.Min.X >> 0;
+		sx1 = sx0 + ((x1 - x0 >> 0)) >> 0;
+		i0 = dst.PixOffset(x0, y0);
+		di = (x = 4, (((dx >>> 16 << 16) * x >> 0) + (dx << 16 >>> 16) * x) >> 0);
+		y = y0;
+		while (!((y === y1))) {
+			_tuple$4 = [i0, sx0, mx0], i = _tuple$4[0], sx = _tuple$4[1], mx = _tuple$4[2];
+			while (!((sx === sx1))) {
+				ma = 65535;
+				if (!(go$interfaceIsEqual(mask, null))) {
+					_tuple$5 = mask.At(mx, my).RGBA(), ma = _tuple$5[3];
+				}
+				_tuple$6 = src.At(sx, sy).RGBA(), sr = _tuple$6[0], sg = _tuple$6[1], sb = _tuple$6[2], sa = _tuple$6[3];
+				if (op === 0) {
+					dr = ((_slice = dst.Pix, _index = (i + 0 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0);
+					dg = ((_slice$1 = dst.Pix, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0);
+					db = ((_slice$2 = dst.Pix, _index$2 = (i + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0);
+					da = ((_slice$3 = dst.Pix, _index$3 = (i + 3 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0);
+					a = (x$1 = (65535 - ((_q = ((((sa >>> 16 << 16) * ma >>> 0) + (sa << 16 >>> 16) * ma) >>> 0) / 65535, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"))) >>> 0), x$2 = 257, (((x$1 >>> 16 << 16) * x$2 >>> 0) + (x$1 << 16 >>> 16) * x$2) >>> 0);
+					_slice$4 = dst.Pix, _index$4 = i + 0 >> 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = (((_q$1 = ((((((dr >>> 16 << 16) * a >>> 0) + (dr << 16 >>> 16) * a) >>> 0) + ((((sr >>> 16 << 16) * ma >>> 0) + (sr << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					_slice$5 = dst.Pix, _index$5 = i + 1 >> 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (((_q$2 = ((((((dg >>> 16 << 16) * a >>> 0) + (dg << 16 >>> 16) * a) >>> 0) + ((((sg >>> 16 << 16) * ma >>> 0) + (sg << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					_slice$6 = dst.Pix, _index$6 = i + 2 >> 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = (((_q$3 = ((((((db >>> 16 << 16) * a >>> 0) + (db << 16 >>> 16) * a) >>> 0) + ((((sb >>> 16 << 16) * ma >>> 0) + (sb << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					_slice$7 = dst.Pix, _index$7 = i + 3 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (((_q$4 = ((((((da >>> 16 << 16) * a >>> 0) + (da << 16 >>> 16) * a) >>> 0) + ((((sa >>> 16 << 16) * ma >>> 0) + (sa << 16 >>> 16) * ma) >>> 0) >>> 0)) / 65535, (_q$4 === _q$4 && _q$4 !== 1/0 && _q$4 !== -1/0) ? _q$4 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				} else {
+					_slice$8 = dst.Pix, _index$8 = i + 0 >> 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? (_slice$8.array[_slice$8.offset + _index$8] = (((_q$5 = ((((sr >>> 16 << 16) * ma >>> 0) + (sr << 16 >>> 16) * ma) >>> 0) / 65535, (_q$5 === _q$5 && _q$5 !== 1/0 && _q$5 !== -1/0) ? _q$5 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					_slice$9 = dst.Pix, _index$9 = i + 1 >> 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = (((_q$6 = ((((sg >>> 16 << 16) * ma >>> 0) + (sg << 16 >>> 16) * ma) >>> 0) / 65535, (_q$6 === _q$6 && _q$6 !== 1/0 && _q$6 !== -1/0) ? _q$6 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					_slice$10 = dst.Pix, _index$10 = i + 2 >> 0, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = (((_q$7 = ((((sb >>> 16 << 16) * ma >>> 0) + (sb << 16 >>> 16) * ma) >>> 0) / 65535, (_q$7 === _q$7 && _q$7 !== 1/0 && _q$7 !== -1/0) ? _q$7 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					_slice$11 = dst.Pix, _index$11 = i + 3 >> 0, (_index$11 >= 0 && _index$11 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$11] = (((_q$8 = ((((sa >>> 16 << 16) * ma >>> 0) + (sa << 16 >>> 16) * ma) >>> 0) / 65535, (_q$8 === _q$8 && _q$8 !== 1/0 && _q$8 !== -1/0) ? _q$8 >>> 0 : go$throwRuntimeError("integer divide by zero")) >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				}
+				_tuple$7 = [i + di >> 0, sx + dx >> 0, mx + dx >> 0], i = _tuple$7[0], sx = _tuple$7[1], mx = _tuple$7[2];
+			}
+			i0 = i0 + ((x$3 = dst.Stride, (((dy >>> 16 << 16) * x$3 >> 0) + (dy << 16 >>> 16) * x$3) >> 0)) >> 0;
+			_tuple$8 = [y + dy >> 0, sy + dy >> 0, my + dy >> 0], y = _tuple$8[0], sy = _tuple$8[1], my = _tuple$8[2];
+		}
+	};
+	var clamp = function(i) {
+		if (i < 0) {
+			return 0;
+		}
+		if (i > 65535) {
+			return 65535;
+		}
+		return i;
+	};
+	var drawPaletted = function(dst, r, src, sp, floydSteinberg$1) {
+		var _tuple, palette, pix, stride, ok, _tuple$1, p, _ref, _i, _slice, _index, col, i, _tuple$2, r$1, g, b, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple$3, _tuple$4, quantErrorCurr, quantErrorNext, out, y, x, _tuple$5, sr, sg, sb, _tuple$6, er, eg, eb, _q, _slice$4, _index$4, _q$1, _slice$5, _index$5, _q$2, _slice$6, _index$6, _tuple$7, bestIndex, bestSSD, _ref$1, _i$1, _slice$7, _index$7, p$1, index, delta, ssd, _tuple$8, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _tuple$9, _lhs, _index$12, _slice$12, _index$13, x$1, _lhs$1, _index$14, _slice$13, _index$15, x$2, _lhs$2, _index$16, _slice$14, _index$17, x$3, _lhs$3, _index$18, _slice$15, _index$19, x$4, _lhs$4, _index$20, _slice$16, _index$21, x$5, _lhs$5, _index$22, _slice$17, _index$23, x$6, _lhs$6, _index$24, _slice$18, _index$25, x$7, _lhs$7, _index$26, _slice$19, _index$27, x$8, _lhs$8, _index$28, _slice$20, _index$29, x$9, _lhs$9, _index$30, _slice$21, _index$31, x$10, _lhs$10, _index$32, _slice$22, _index$33, x$11, _lhs$11, _index$34, _slice$23, _index$35, x$12, _tuple$10, _ref$2, _i$2, i$1, _slice$24, _index$36;
+		_tuple = [(go$sliceType((go$arrayType(Go$Int32, 3)))).nil, (go$sliceType(Go$Uint8)).nil, 0], palette = _tuple[0], pix = _tuple[1], stride = _tuple[2];
+		if (_tuple$1 = (dst !== null && dst.constructor === (go$ptrType(image.Paletted)) ? [dst.go$val, true] : [(go$ptrType(image.Paletted)).nil, false]), p = _tuple$1[0], ok = _tuple$1[1], ok) {
+			palette = (go$sliceType((go$arrayType(Go$Int32, 3)))).make(p.Palette.length, 0, function() { return go$makeNativeArray("Int32", 3, function() { return 0; }); });
+			_ref = p.Palette;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				col = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				_tuple$2 = col.RGBA(), r$1 = _tuple$2[0], g = _tuple$2[1], b = _tuple$2[2];
+				(_slice$1 = palette, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))[0] = (r$1 >> 0);
+				(_slice$2 = palette, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))[1] = (g >> 0);
+				(_slice$3 = palette, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))[2] = (b >> 0);
+			}
+			_tuple$3 = [go$subslice(p.Pix, p.PixOffset(r.Min.X, r.Min.Y)), p.Stride], pix = _tuple$3[0], stride = _tuple$3[1];
+		}
+		_tuple$4 = [(go$sliceType((go$arrayType(Go$Int32, 3)))).nil, (go$sliceType((go$arrayType(Go$Int32, 3)))).nil], quantErrorCurr = _tuple$4[0], quantErrorNext = _tuple$4[1];
+		if (floydSteinberg$1) {
+			quantErrorCurr = (go$sliceType((go$arrayType(Go$Int32, 3)))).make(r.Dx() + 2 >> 0, 0, function() { return go$makeNativeArray("Int32", 3, function() { return 0; }); });
+			quantErrorNext = (go$sliceType((go$arrayType(Go$Int32, 3)))).make(r.Dx() + 2 >> 0, 0, function() { return go$makeNativeArray("Int32", 3, function() { return 0; }); });
+		}
+		out = new color.RGBA64.Ptr(0, 0, 0, 65535);
+		y = 0;
+		while (!((y === r.Dy()))) {
+			x = 0;
+			while (!((x === r.Dx()))) {
+				_tuple$5 = src.At(sp.X + x >> 0, sp.Y + y >> 0).RGBA(), sr = _tuple$5[0], sg = _tuple$5[1], sb = _tuple$5[2];
+				_tuple$6 = [(sr >> 0), (sg >> 0), (sb >> 0)], er = _tuple$6[0], eg = _tuple$6[1], eb = _tuple$6[2];
+				if (floydSteinberg$1) {
+					er = clamp(er + (_q = (_slice$4 = quantErrorCurr, _index$4 = (x + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))[0] / 16, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
+					eg = clamp(eg + (_q$1 = (_slice$5 = quantErrorCurr, _index$5 = (x + 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))[1] / 16, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
+					eb = clamp(eb + (_q$2 = (_slice$6 = quantErrorCurr, _index$6 = (x + 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))[2] / 16, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
+				}
+				if (!(palette === (go$sliceType((go$arrayType(Go$Int32, 3)))).nil)) {
+					_tuple$7 = [0, 4294967295], bestIndex = _tuple$7[0], bestSSD = _tuple$7[1];
+					_ref$1 = palette;
+					_i$1 = 0;
+					for (; _i$1 < _ref$1.length; _i$1 += 1) {
+						p$1 = go$mapArray((_slice$7 = _ref$1, _index$7 = _i$1, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), function(entry) { return entry; });
+						index = _i$1;
+						delta = ((er - p$1[0] >> 0)) >> 1 >> 0;
+						ssd = (((((delta >>> 16 << 16) * delta >> 0) + (delta << 16 >>> 16) * delta) >> 0) >>> 0);
+						delta = ((eg - p$1[1] >> 0)) >> 1 >> 0;
+						ssd = ssd + ((((((delta >>> 16 << 16) * delta >> 0) + (delta << 16 >>> 16) * delta) >> 0) >>> 0)) >>> 0;
+						delta = ((eb - p$1[2] >> 0)) >> 1 >> 0;
+						ssd = ssd + ((((((delta >>> 16 << 16) * delta >> 0) + (delta << 16 >>> 16) * delta) >> 0) >>> 0)) >>> 0;
+						if (ssd < bestSSD) {
+							_tuple$8 = [index, ssd], bestIndex = _tuple$8[0], bestSSD = _tuple$8[1];
+							if (ssd === 0) {
+								break;
+							}
+						}
+					}
+					_slice$8 = pix, _index$8 = ((((y >>> 16 << 16) * stride >> 0) + (y << 16 >>> 16) * stride) >> 0) + x >> 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? (_slice$8.array[_slice$8.offset + _index$8] = (bestIndex << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					if (!floydSteinberg$1) {
+						x = x + 1 >> 0;
+						continue;
+					}
+					er = er - ((_slice$9 = palette, _index$9 = bestIndex, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range"))[0]) >> 0;
+					eg = eg - ((_slice$10 = palette, _index$10 = bestIndex, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"))[1]) >> 0;
+					eb = eb - ((_slice$11 = palette, _index$11 = bestIndex, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range"))[2]) >> 0;
+				} else {
+					out.R = (er << 16 >>> 16);
+					out.G = (eg << 16 >>> 16);
+					out.B = (eb << 16 >>> 16);
+					dst.Set(r.Min.X + x >> 0, r.Min.Y + y >> 0, out);
+					if (!floydSteinberg$1) {
+						x = x + 1 >> 0;
+						continue;
+					}
+					_tuple$9 = dst.At(r.Min.X + x >> 0, r.Min.Y + y >> 0).RGBA(), sr = _tuple$9[0], sg = _tuple$9[1], sb = _tuple$9[2];
+					er = er - ((sr >> 0)) >> 0;
+					eg = eg - ((sg >> 0)) >> 0;
+					eb = eb - ((sb >> 0)) >> 0;
+				}
+				_lhs = (_slice$12 = quantErrorNext, _index$13 = (x + 0 >> 0), (_index$13 >= 0 && _index$13 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$13] : go$throwRuntimeError("index out of range")), _index$12 = 0, _lhs[_index$12] = _lhs[_index$12] + ((x$1 = 3, (((er >>> 16 << 16) * x$1 >> 0) + (er << 16 >>> 16) * x$1) >> 0)) >> 0;
+				_lhs$1 = (_slice$13 = quantErrorNext, _index$15 = (x + 0 >> 0), (_index$15 >= 0 && _index$15 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$15] : go$throwRuntimeError("index out of range")), _index$14 = 1, _lhs$1[_index$14] = _lhs$1[_index$14] + ((x$2 = 3, (((eg >>> 16 << 16) * x$2 >> 0) + (eg << 16 >>> 16) * x$2) >> 0)) >> 0;
+				_lhs$2 = (_slice$14 = quantErrorNext, _index$17 = (x + 0 >> 0), (_index$17 >= 0 && _index$17 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$17] : go$throwRuntimeError("index out of range")), _index$16 = 2, _lhs$2[_index$16] = _lhs$2[_index$16] + ((x$3 = 3, (((eb >>> 16 << 16) * x$3 >> 0) + (eb << 16 >>> 16) * x$3) >> 0)) >> 0;
+				_lhs$3 = (_slice$15 = quantErrorNext, _index$19 = (x + 1 >> 0), (_index$19 >= 0 && _index$19 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$19] : go$throwRuntimeError("index out of range")), _index$18 = 0, _lhs$3[_index$18] = _lhs$3[_index$18] + ((x$4 = 5, (((er >>> 16 << 16) * x$4 >> 0) + (er << 16 >>> 16) * x$4) >> 0)) >> 0;
+				_lhs$4 = (_slice$16 = quantErrorNext, _index$21 = (x + 1 >> 0), (_index$21 >= 0 && _index$21 < _slice$16.length) ? _slice$16.array[_slice$16.offset + _index$21] : go$throwRuntimeError("index out of range")), _index$20 = 1, _lhs$4[_index$20] = _lhs$4[_index$20] + ((x$5 = 5, (((eg >>> 16 << 16) * x$5 >> 0) + (eg << 16 >>> 16) * x$5) >> 0)) >> 0;
+				_lhs$5 = (_slice$17 = quantErrorNext, _index$23 = (x + 1 >> 0), (_index$23 >= 0 && _index$23 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$23] : go$throwRuntimeError("index out of range")), _index$22 = 2, _lhs$5[_index$22] = _lhs$5[_index$22] + ((x$6 = 5, (((eb >>> 16 << 16) * x$6 >> 0) + (eb << 16 >>> 16) * x$6) >> 0)) >> 0;
+				_lhs$6 = (_slice$18 = quantErrorNext, _index$25 = (x + 2 >> 0), (_index$25 >= 0 && _index$25 < _slice$18.length) ? _slice$18.array[_slice$18.offset + _index$25] : go$throwRuntimeError("index out of range")), _index$24 = 0, _lhs$6[_index$24] = _lhs$6[_index$24] + ((x$7 = 1, (((er >>> 16 << 16) * x$7 >> 0) + (er << 16 >>> 16) * x$7) >> 0)) >> 0;
+				_lhs$7 = (_slice$19 = quantErrorNext, _index$27 = (x + 2 >> 0), (_index$27 >= 0 && _index$27 < _slice$19.length) ? _slice$19.array[_slice$19.offset + _index$27] : go$throwRuntimeError("index out of range")), _index$26 = 1, _lhs$7[_index$26] = _lhs$7[_index$26] + ((x$8 = 1, (((eg >>> 16 << 16) * x$8 >> 0) + (eg << 16 >>> 16) * x$8) >> 0)) >> 0;
+				_lhs$8 = (_slice$20 = quantErrorNext, _index$29 = (x + 2 >> 0), (_index$29 >= 0 && _index$29 < _slice$20.length) ? _slice$20.array[_slice$20.offset + _index$29] : go$throwRuntimeError("index out of range")), _index$28 = 2, _lhs$8[_index$28] = _lhs$8[_index$28] + ((x$9 = 1, (((eb >>> 16 << 16) * x$9 >> 0) + (eb << 16 >>> 16) * x$9) >> 0)) >> 0;
+				_lhs$9 = (_slice$21 = quantErrorCurr, _index$31 = (x + 2 >> 0), (_index$31 >= 0 && _index$31 < _slice$21.length) ? _slice$21.array[_slice$21.offset + _index$31] : go$throwRuntimeError("index out of range")), _index$30 = 0, _lhs$9[_index$30] = _lhs$9[_index$30] + ((x$10 = 7, (((er >>> 16 << 16) * x$10 >> 0) + (er << 16 >>> 16) * x$10) >> 0)) >> 0;
+				_lhs$10 = (_slice$22 = quantErrorCurr, _index$33 = (x + 2 >> 0), (_index$33 >= 0 && _index$33 < _slice$22.length) ? _slice$22.array[_slice$22.offset + _index$33] : go$throwRuntimeError("index out of range")), _index$32 = 1, _lhs$10[_index$32] = _lhs$10[_index$32] + ((x$11 = 7, (((eg >>> 16 << 16) * x$11 >> 0) + (eg << 16 >>> 16) * x$11) >> 0)) >> 0;
+				_lhs$11 = (_slice$23 = quantErrorCurr, _index$35 = (x + 2 >> 0), (_index$35 >= 0 && _index$35 < _slice$23.length) ? _slice$23.array[_slice$23.offset + _index$35] : go$throwRuntimeError("index out of range")), _index$34 = 2, _lhs$11[_index$34] = _lhs$11[_index$34] + ((x$12 = 7, (((eb >>> 16 << 16) * x$12 >> 0) + (eb << 16 >>> 16) * x$12) >> 0)) >> 0;
+				x = x + 1 >> 0;
+			}
+			if (floydSteinberg$1) {
+				_tuple$10 = [quantErrorNext, quantErrorCurr], quantErrorCurr = _tuple$10[0], quantErrorNext = _tuple$10[1];
+				_ref$2 = quantErrorNext;
+				_i$2 = 0;
+				for (; _i$2 < _ref$2.length; _i$2 += 1) {
+					i$1 = _i$2;
+					_slice$24 = quantErrorNext, _index$36 = i$1, (_index$36 >= 0 && _index$36 < _slice$24.length) ? (_slice$24.array[_slice$24.offset + _index$36] = go$makeNativeArray("Int32", 3, function() { return 0; })) : go$throwRuntimeError("index out of range");
+				}
+			}
+			y = y + 1 >> 0;
+		}
+	};
+	var m = 65535;
+	go$pkg.Over = 0;
+	go$pkg.Src = 1;
+	go$pkg.FloydSteinberg = null;
+	go$pkg.init = function() {
+		var x;
+		go$pkg.FloydSteinberg = (x = new floydSteinberg.Ptr(), new x.constructor.Struct(x));
+	};

@@ -1,0 +1,357 @@
+0‚-‚âpackage path
+import errors "errors"
+import strings "strings"
+import utf8 "unicode/utf8"
+func @"".Base(@"".path string) (? string)
+func @"".Clean(@"".path string) (? string)
+func @"".Dir(@"".path string) (? string)
+var @"".ErrBadPattern error
+func @"".Ext(@"".path string) (? string)
+func @"".IsAbs(@"".path string) (? bool)
+func @"".Join(@"".elem ...string) (? string)
+func @"".Match(@"".pattern string, @"".name string) (@"".matched bool, @"".err error)
+func @"".Split(@"".path string) (@"".dir string, @"".file string)
+type @"".lazybuf struct { @"".s string; @"".buf []byte; @"".w int }
+func (? *@"".lazybuf) @"".append(@"".c byte) ()
+func (? *@"".lazybuf) @"".index(@"".i int) (? byte)
+func (? *@"".lazybuf) @"".string() (? string)
+$$
+0Nruntimeerrorssync/atomicsynciounicodeunicode/utf8stringspath‚)Ö	var errors = go$packages["errors"];
+	var strings = go$packages["strings"];
+	var utf8 = go$packages["unicode/utf8"];
+	var lazybuf;
+	lazybuf = go$newType(0, "Struct", "path.lazybuf", "lazybuf", "path", function(s_, buf_, w_) {
+		this.go$val = this;
+		this.s = s_ !== undefined ? s_ : "";
+		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
+		this.w = w_ !== undefined ? w_ : 0;
+	});
+	go$pkg.lazybuf = lazybuf;
+	lazybuf.init([["s", "path", Go$String, ""], ["buf", "path", (go$sliceType(Go$Uint8)), ""], ["w", "path", Go$Int, ""]]);
+	(go$ptrType(lazybuf)).methods = [["append", "path", [Go$Uint8], [], false], ["index", "path", [Go$Int], [Go$Uint8], false], ["string", "path", [], [Go$String], false]];
+	var Match = go$pkg.Match = function(pattern, name) {
+		var matched, err, star, chunk, _tuple, _tuple$1, _tuple$2, t, ok, err$1, _tuple$3, i, _tuple$4, t$1, ok$1, err$2, _tuple$5, _tuple$6, _tuple$7;
+		matched = false;
+		err = null;
+		Pattern: while (pattern.length > 0) {
+			star = false;
+			chunk = "";
+			_tuple = scanChunk(pattern), star = _tuple[0], chunk = _tuple[1], pattern = _tuple[2];
+			if (star && chunk === "") {
+				_tuple$1 = [strings.Index(name, "/") < 0, null], matched = _tuple$1[0], err = _tuple$1[1];
+				return [matched, err];
+			}
+			_tuple$2 = matchChunk(chunk, name), t = _tuple$2[0], ok = _tuple$2[1], err$1 = _tuple$2[2];
+			if (ok && ((t.length === 0) || pattern.length > 0)) {
+				name = t;
+				continue;
+			}
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				_tuple$3 = [false, err$1], matched = _tuple$3[0], err = _tuple$3[1];
+				return [matched, err];
+			}
+			if (star) {
+				i = 0;
+				while (i < name.length && !((name.charCodeAt(i) === 47))) {
+					_tuple$4 = matchChunk(chunk, name.substring((i + 1 >> 0))), t$1 = _tuple$4[0], ok$1 = _tuple$4[1], err$2 = _tuple$4[2];
+					if (ok$1) {
+						if ((pattern.length === 0) && t$1.length > 0) {
+							i = i + 1 >> 0;
+							continue;
+						}
+						name = t$1;
+						continue Pattern;
+					}
+					if (!(go$interfaceIsEqual(err$2, null))) {
+						_tuple$5 = [false, err$2], matched = _tuple$5[0], err = _tuple$5[1];
+						return [matched, err];
+					}
+					i = i + 1 >> 0;
+				}
+			}
+			_tuple$6 = [false, null], matched = _tuple$6[0], err = _tuple$6[1];
+			return [matched, err];
+		}
+		_tuple$7 = [name.length === 0, null], matched = _tuple$7[0], err = _tuple$7[1];
+		return [matched, err];
+	};
+	var scanChunk = function(pattern) {
+		var star, chunk, rest, inrange, i, _ref, _tuple;
+		star = false;
+		chunk = "";
+		rest = "";
+		while (pattern.length > 0 && (pattern.charCodeAt(0) === 42)) {
+			pattern = pattern.substring(1);
+			star = true;
+		}
+		inrange = false;
+		i = 0;
+		i = 0;
+		Scan: while (i < pattern.length) {
+			_ref = pattern.charCodeAt(i);
+			if (_ref === 92) {
+				if ((i + 1 >> 0) < pattern.length) {
+					i = i + 1 >> 0;
+				}
+			} else if (_ref === 91) {
+				inrange = true;
+			} else if (_ref === 93) {
+				inrange = false;
+			} else if (_ref === 42) {
+				if (!inrange) {
+					break Scan;
+				}
+			}
+			i = i + 1 >> 0;
+		}
+		_tuple = [star, pattern.substring(0, i), pattern.substring(i)], star = _tuple[0], chunk = _tuple[1], rest = _tuple[2];
+		return [star, chunk, rest];
+	};
+	var matchChunk = function(chunk, s) {
+		var rest, ok, err, _ref, _tuple, r, n, notNegated, match, nrange, _tuple$1, lo, hi, _tuple$2, _tuple$3, _tuple$4, n$1, _tuple$5;
+		rest = "";
+		ok = false;
+		err = null;
+		while (chunk.length > 0) {
+			if (s.length === 0) {
+				return [rest, ok, err];
+			}
+			_ref = chunk.charCodeAt(0);
+			if (_ref === 91) {
+				_tuple = utf8.DecodeRuneInString(s), r = _tuple[0], n = _tuple[1];
+				s = s.substring(n);
+				chunk = chunk.substring(1);
+				notNegated = true;
+				if (chunk.length > 0 && (chunk.charCodeAt(0) === 94)) {
+					notNegated = false;
+					chunk = chunk.substring(1);
+				}
+				match = false;
+				nrange = 0;
+				while (true) {
+					if (chunk.length > 0 && (chunk.charCodeAt(0) === 93) && nrange > 0) {
+						chunk = chunk.substring(1);
+						break;
+					}
+					_tuple$1 = [0, 0], lo = _tuple$1[0], hi = _tuple$1[1];
+					if (_tuple$2 = getEsc(chunk), lo = _tuple$2[0], chunk = _tuple$2[1], err = _tuple$2[2], !(go$interfaceIsEqual(err, null))) {
+						return [rest, ok, err];
+					}
+					hi = lo;
+					if (chunk.charCodeAt(0) === 45) {
+						if (_tuple$3 = getEsc(chunk.substring(1)), hi = _tuple$3[0], chunk = _tuple$3[1], err = _tuple$3[2], !(go$interfaceIsEqual(err, null))) {
+							return [rest, ok, err];
+						}
+					}
+					if (lo <= r && r <= hi) {
+						match = true;
+					}
+					nrange = nrange + 1 >> 0;
+				}
+				if (!(match === notNegated)) {
+					return [rest, ok, err];
+				}
+			} else if (_ref === 63) {
+				if (s.charCodeAt(0) === 47) {
+					return [rest, ok, err];
+				}
+				_tuple$4 = utf8.DecodeRuneInString(s), n$1 = _tuple$4[1];
+				s = s.substring(n$1);
+				chunk = chunk.substring(1);
+			} else if (_ref === 92) {
+				chunk = chunk.substring(1);
+				if (chunk.length === 0) {
+					err = go$pkg.ErrBadPattern;
+					return [rest, ok, err];
+				}
+				if (!((chunk.charCodeAt(0) === s.charCodeAt(0)))) {
+					return [rest, ok, err];
+				}
+				s = s.substring(1);
+				chunk = chunk.substring(1);
+			} else {
+				if (!((chunk.charCodeAt(0) === s.charCodeAt(0)))) {
+					return [rest, ok, err];
+				}
+				s = s.substring(1);
+				chunk = chunk.substring(1);
+			}
+		}
+		_tuple$5 = [s, true, null], rest = _tuple$5[0], ok = _tuple$5[1], err = _tuple$5[2];
+		return [rest, ok, err];
+	};
+	var getEsc = function(chunk) {
+		var r, nchunk, err, _tuple, n;
+		r = 0;
+		nchunk = "";
+		err = null;
+		if ((chunk.length === 0) || (chunk.charCodeAt(0) === 45) || (chunk.charCodeAt(0) === 93)) {
+			err = go$pkg.ErrBadPattern;
+			return [r, nchunk, err];
+		}
+		if (chunk.charCodeAt(0) === 92) {
+			chunk = chunk.substring(1);
+			if (chunk.length === 0) {
+				err = go$pkg.ErrBadPattern;
+				return [r, nchunk, err];
+			}
+		}
+		_tuple = utf8.DecodeRuneInString(chunk), r = _tuple[0], n = _tuple[1];
+		if ((r === 65533) && (n === 1)) {
+			err = go$pkg.ErrBadPattern;
+		}
+		nchunk = chunk.substring(n);
+		if (nchunk.length === 0) {
+			err = go$pkg.ErrBadPattern;
+		}
+		return [r, nchunk, err];
+	};
+	lazybuf.Ptr.prototype.index = function(i) {
+		var b, _slice, _index;
+		b = this;
+		if (!(b.buf === (go$sliceType(Go$Uint8)).nil)) {
+			return (_slice = b.buf, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		}
+		return b.s.charCodeAt(i);
+	};
+	lazybuf.prototype.index = function(i) { return this.go$val.index(i); };
+	lazybuf.Ptr.prototype.append = function(c) {
+		var b, _slice, _index;
+		b = this;
+		if (b.buf === (go$sliceType(Go$Uint8)).nil) {
+			if (b.w < b.s.length && (b.s.charCodeAt(b.w) === c)) {
+				b.w = b.w + 1 >> 0;
+				return;
+			}
+			b.buf = (go$sliceType(Go$Uint8)).make(b.s.length, 0, function() { return 0; });
+			go$copyString(b.buf, b.s.substring(0, b.w));
+		}
+		_slice = b.buf, _index = b.w, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = c) : go$throwRuntimeError("index out of range");
+		b.w = b.w + 1 >> 0;
+	};
+	lazybuf.prototype.append = function(c) { return this.go$val.append(c); };
+	lazybuf.Ptr.prototype.string = function() {
+		var b;
+		b = this;
+		if (b.buf === (go$sliceType(Go$Uint8)).nil) {
+			return b.s.substring(0, b.w);
+		}
+		return go$bytesToString(go$subslice(b.buf, 0, b.w));
+	};
+	lazybuf.prototype.string = function() { return this.go$val.string(); };
+	var Clean = go$pkg.Clean = function(path) {
+		var rooted, n, out, _tuple, r, dotdot, _tuple$1;
+		if (path === "") {
+			return ".";
+		}
+		rooted = path.charCodeAt(0) === 47;
+		n = path.length;
+		out = new lazybuf.Ptr(path, (go$sliceType(Go$Uint8)).nil, 0);
+		_tuple = [0, 0], r = _tuple[0], dotdot = _tuple[1];
+		if (rooted) {
+			out.append(47);
+			_tuple$1 = [1, 1], r = _tuple$1[0], dotdot = _tuple$1[1];
+		}
+		while (r < n) {
+			if (path.charCodeAt(r) === 47) {
+				r = r + 1 >> 0;
+			} else if ((path.charCodeAt(r) === 46) && (((r + 1 >> 0) === n) || (path.charCodeAt((r + 1 >> 0)) === 47))) {
+				r = r + 1 >> 0;
+			} else if ((path.charCodeAt(r) === 46) && (path.charCodeAt((r + 1 >> 0)) === 46) && (((r + 2 >> 0) === n) || (path.charCodeAt((r + 2 >> 0)) === 47))) {
+				r = r + 2 >> 0;
+				if (out.w > dotdot) {
+					out.w = out.w - 1 >> 0;
+					while (out.w > dotdot && !((out.index(out.w) === 47))) {
+						out.w = out.w - 1 >> 0;
+					}
+				} else if (!rooted) {
+					if (out.w > 0) {
+						out.append(47);
+					}
+					out.append(46);
+					out.append(46);
+					dotdot = out.w;
+				}
+			} else {
+				if (rooted && !((out.w === 1)) || !rooted && !((out.w === 0))) {
+					out.append(47);
+				}
+				while (r < n && !((path.charCodeAt(r) === 47))) {
+					out.append(path.charCodeAt(r));
+					r = r + 1 >> 0;
+				}
+			}
+		}
+		if (out.w === 0) {
+			return ".";
+		}
+		return out.string();
+	};
+	var Split = go$pkg.Split = function(path) {
+		var dir, file, i, _tuple;
+		dir = "";
+		file = "";
+		i = strings.LastIndex(path, "/");
+		_tuple = [path.substring(0, (i + 1 >> 0)), path.substring((i + 1 >> 0))], dir = _tuple[0], file = _tuple[1];
+		return [dir, file];
+	};
+	var Join = go$pkg.Join = function(elem) {
+		var _ref, _i, _slice, _index, e, i;
+		_ref = elem;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			e = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (!(e === "")) {
+				return Clean(strings.Join(go$subslice(elem, i), "/"));
+			}
+		}
+		return "";
+	};
+	var Ext = go$pkg.Ext = function(path) {
+		var i;
+		i = path.length - 1 >> 0;
+		while (i >= 0 && !((path.charCodeAt(i) === 47))) {
+			if (path.charCodeAt(i) === 46) {
+				return path.substring(i);
+			}
+			i = i - 1 >> 0;
+		}
+		return "";
+	};
+	var Base = go$pkg.Base = function(path) {
+		var i;
+		if (path === "") {
+			return ".";
+		}
+		while (path.length > 0 && (path.charCodeAt((path.length - 1 >> 0)) === 47)) {
+			path = path.substring(0, (path.length - 1 >> 0));
+		}
+		if (i = strings.LastIndex(path, "/"), i >= 0) {
+			path = path.substring((i + 1 >> 0));
+		}
+		if (path === "") {
+			return "/";
+		}
+		return path;
+	};
+	var IsAbs = go$pkg.IsAbs = function(path) {
+		return path.length > 0 && (path.charCodeAt(0) === 47);
+	};
+	var Dir = go$pkg.Dir = function(path) {
+		var _tuple, dir, last;
+		_tuple = Split(path), dir = _tuple[0];
+		dir = Clean(dir);
+		last = dir.length - 1 >> 0;
+		if (last > 0 && (dir.charCodeAt(last) === 47)) {
+			dir = dir.substring(0, last);
+		}
+		if (dir === "") {
+			dir = ".";
+		}
+		return dir;
+	};
+	go$pkg.ErrBadPattern = null;
+	go$pkg.init = function() {
+		go$pkg.ErrBadPattern = errors.New("syntax error in pattern");
+	};

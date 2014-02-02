@@ -1,0 +1,1134 @@
+0‚ÝÐ‚+Ïpackage tar
+import bytes "bytes"
+import errors "errors"
+import fmt "fmt"
+import os "os"
+import path "path"
+import time "time"
+import io "io"
+import ioutil "io/ioutil"
+import strconv "strconv"
+import strings "strings"
+import syscall "syscall"
+var @"".ErrFieldTooLong error
+var @"".ErrHeader error
+var @"".ErrWriteAfterClose error
+var @"".ErrWriteTooLong error
+func @"".FileInfoHeader(@"".fi @"os".FileInfo, @"".link string) (? *@"".Header, ? error)
+type @"".Header struct { @"".Name string; @"".Mode int64; @"".Uid int; @"".Gid int; @"".Size int64; @"".ModTime @"time".Time; @"".Typeflag byte; @"".Linkname string; @"".Uname string; @"".Gname string; @"".Devmajor int64; @"".Devminor int64; @"".AccessTime @"time".Time; @"".ChangeTime @"time".Time }
+func (? *@"".Header) @"".FileInfo() (? @"os".FileInfo)
+func @"".NewReader(@"".r @"io".Reader) (? *@"".Reader)
+func @"".NewWriter(@"".w @"io".Writer) (? *@"".Writer)
+type @"".Reader struct { @"".r @"io".Reader; @"".err error; @"".nb int64; @"".pad int64 }
+func (? *@"".Reader) @"".Next() (? *@"".Header, ? error)
+func (? *@"".Reader) @"".Read(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"".Reader) @"".octal(@"".b []byte) (? int64)
+func (? *@"".Reader) @"".readHeader() (? *@"".Header)
+func (? *@"".Reader) @"".skipUnread() ()
+func (? *@"".Reader) @"".verifyChecksum(@"".header []byte) (? bool)
+const @"".TypeBlock = '\u0034'
+const @"".TypeChar = '\u0033'
+const @"".TypeCont = '\u0037'
+const @"".TypeDir = '\u0035'
+const @"".TypeFifo = '\u0036'
+const @"".TypeGNULongLink = '\u004b'
+const @"".TypeGNULongName = '\u004c'
+const @"".TypeLink = '\u0031'
+const @"".TypeReg = '\u0030'
+const @"".TypeRegA = '\u0000'
+const @"".TypeSymlink = '\u0032'
+const @"".TypeXGlobalHeader = '\u0067'
+const @"".TypeXHeader = '\u0078'
+type @"".Writer struct { @"".w @"io".Writer; @"".err error; @"".nb int64; @"".pad int64; @"".closed bool; @"".usedBinary bool; @"".preferPax bool }
+func (? *@"".Writer) @"".Close() (? error)
+func (? *@"".Writer) @"".Flush() (? error)
+func (? *@"".Writer) @"".Write(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"".Writer) @"".WriteHeader(@"".hdr *@"".Header) (? error)
+func (? *@"".Writer) @"".cString(@"".b []byte, @"".s string, @"".allowPax bool, @"".paxKeyword string, @"".paxHeaders map[string]string) ()
+func (? *@"".Writer) @"".numeric(@"".b []byte, @"".x int64, @"".allowPax bool, @"".paxKeyword string, @"".paxHeaders map[string]string) ()
+func (? *@"".Writer) @"".octal(@"".b []byte, @"".x int64) ()
+func (? *@"".Writer) @"".splitUSTARLongName(@"".name string) (@"".prefix string, @"".suffix string, @"".err error)
+func (? *@"".Writer) @"".writeHeader(@"".hdr *@"".Header, @"".allowPax bool) (? error)
+func (? *@"".Writer) @"".writePAXHeader(@"".hdr *@"".Header, @"".paxHeaders map[string]string) (? error)
+type @"".headerFileInfo struct { @"".h *@"".Header }
+func (? @"".headerFileInfo) @"".IsDir() (? bool)
+func (? @"".headerFileInfo) @"".ModTime() (? @"time".Time)
+func (? @"".headerFileInfo) @"".Mode() (@"".mode @"os".FileMode)
+func (? @"".headerFileInfo) @"".Name() (? string)
+func (? @"".headerFileInfo) @"".Size() (? int64)
+func (? @"".headerFileInfo) @"".Sys() (? interface {  })
+func (? *@"".headerFileInfo) @"".IsDir() (? bool)
+func (? *@"".headerFileInfo) @"".ModTime() (? @"time".Time)
+func (? *@"".headerFileInfo) @"".Mode() (@"".mode @"os".FileMode)
+func (? *@"".headerFileInfo) @"".Name() (? string)
+func (? *@"".headerFileInfo) @"".Size() (? int64)
+func (? *@"".headerFileInfo) @"".Sys() (? interface {  })
+type @"".slicer []byte
+func (? *@"".slicer) @"".next(@"".n int) (@"".b []byte)
+type @"os".FileInfo interface { @"os".IsDir() (? bool); @"os".ModTime() (? @"time".Time); @"os".Mode() (? @"os".FileMode); @"os".Name() (? string); @"os".Size() (? int64); @"os".Sys() (? interface {  }) }
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? @"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? @"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? @"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+func (? *@"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? *@"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? *@"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? *@"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"os".FileMode uint32
+func (? @"os".FileMode) @"os".IsDir() (? bool)
+func (? @"os".FileMode) @"os".IsRegular() (? bool)
+func (? @"os".FileMode) @"os".Perm() (? @"os".FileMode)
+func (? @"os".FileMode) @"os".String() (? string)
+func (? *@"os".FileMode) @"os".IsDir() (? bool)
+func (? *@"os".FileMode) @"os".IsRegular() (? bool)
+func (? *@"os".FileMode) @"os".Perm() (? @"os".FileMode)
+func (? *@"os".FileMode) @"os".String() (? string)
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"".sec int64) (@"".name string, @"".offset int, @"".isDST bool, @"".start int64, @"".end int64)
+func (? *@"time".Location) @"time".lookupName(@"".name string, @"".unix int64) (@"".offset int, @"".isDST bool, @"".ok bool)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+$$
+0²runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilpatharchive/tar‚±D	var bytes = go$packages["bytes"];
+	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var os = go$packages["os"];
+	var path = go$packages["path"];
+	var time = go$packages["time"];
+	var io = go$packages["io"];
+	var ioutil = go$packages["io/ioutil"];
+	var strconv = go$packages["strconv"];
+	var strings = go$packages["strings"];
+	var syscall = go$packages["syscall"];
+	var Header;
+	Header = go$newType(0, "Struct", "tar.Header", "Header", "archive/tar", function(Name_, Mode_, Uid_, Gid_, Size_, ModTime_, Typeflag_, Linkname_, Uname_, Gname_, Devmajor_, Devminor_, AccessTime_, ChangeTime_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.Mode = Mode_ !== undefined ? Mode_ : new Go$Int64(0, 0);
+		this.Uid = Uid_ !== undefined ? Uid_ : 0;
+		this.Gid = Gid_ !== undefined ? Gid_ : 0;
+		this.Size = Size_ !== undefined ? Size_ : new Go$Int64(0, 0);
+		this.ModTime = ModTime_ !== undefined ? ModTime_ : new time.Time.Ptr();
+		this.Typeflag = Typeflag_ !== undefined ? Typeflag_ : 0;
+		this.Linkname = Linkname_ !== undefined ? Linkname_ : "";
+		this.Uname = Uname_ !== undefined ? Uname_ : "";
+		this.Gname = Gname_ !== undefined ? Gname_ : "";
+		this.Devmajor = Devmajor_ !== undefined ? Devmajor_ : new Go$Int64(0, 0);
+		this.Devminor = Devminor_ !== undefined ? Devminor_ : new Go$Int64(0, 0);
+		this.AccessTime = AccessTime_ !== undefined ? AccessTime_ : new time.Time.Ptr();
+		this.ChangeTime = ChangeTime_ !== undefined ? ChangeTime_ : new time.Time.Ptr();
+	});
+	go$pkg.Header = Header;
+	var headerFileInfo;
+	headerFileInfo = go$newType(0, "Struct", "tar.headerFileInfo", "headerFileInfo", "archive/tar", function(h_) {
+		this.go$val = this;
+		this.h = h_ !== undefined ? h_ : (go$ptrType(Header)).nil;
+	});
+	go$pkg.headerFileInfo = headerFileInfo;
+	var slicer;
+	slicer = go$newType(0, "Slice", "tar.slicer", "slicer", "archive/tar", null);
+	go$pkg.slicer = slicer;
+	var Reader;
+	Reader = go$newType(0, "Struct", "tar.Reader", "Reader", "archive/tar", function(r_, err_, nb_, pad_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+		this.err = err_ !== undefined ? err_ : null;
+		this.nb = nb_ !== undefined ? nb_ : new Go$Int64(0, 0);
+		this.pad = pad_ !== undefined ? pad_ : new Go$Int64(0, 0);
+	});
+	go$pkg.Reader = Reader;
+	var Writer;
+	Writer = go$newType(0, "Struct", "tar.Writer", "Writer", "archive/tar", function(w_, err_, nb_, pad_, closed_, usedBinary_, preferPax_) {
+		this.go$val = this;
+		this.w = w_ !== undefined ? w_ : null;
+		this.err = err_ !== undefined ? err_ : null;
+		this.nb = nb_ !== undefined ? nb_ : new Go$Int64(0, 0);
+		this.pad = pad_ !== undefined ? pad_ : new Go$Int64(0, 0);
+		this.closed = closed_ !== undefined ? closed_ : false;
+		this.usedBinary = usedBinary_ !== undefined ? usedBinary_ : false;
+		this.preferPax = preferPax_ !== undefined ? preferPax_ : false;
+	});
+	go$pkg.Writer = Writer;
+	Header.init([["Name", "", Go$String, ""], ["Mode", "", Go$Int64, ""], ["Uid", "", Go$Int, ""], ["Gid", "", Go$Int, ""], ["Size", "", Go$Int64, ""], ["ModTime", "", time.Time, ""], ["Typeflag", "", Go$Uint8, ""], ["Linkname", "", Go$String, ""], ["Uname", "", Go$String, ""], ["Gname", "", Go$String, ""], ["Devmajor", "", Go$Int64, ""], ["Devminor", "", Go$Int64, ""], ["AccessTime", "", time.Time, ""], ["ChangeTime", "", time.Time, ""]]);
+	(go$ptrType(Header)).methods = [["FileInfo", "", [], [os.FileInfo], false]];
+	headerFileInfo.init([["h", "archive/tar", (go$ptrType(Header)), ""]]);
+	headerFileInfo.methods = [["IsDir", "", [], [Go$Bool], false], ["ModTime", "", [], [time.Time], false], ["Mode", "", [], [os.FileMode], false], ["Name", "", [], [Go$String], false], ["Size", "", [], [Go$Int64], false], ["Sys", "", [], [go$emptyInterface], false]];
+	(go$ptrType(headerFileInfo)).methods = [["IsDir", "", [], [Go$Bool], false], ["ModTime", "", [], [time.Time], false], ["Mode", "", [], [os.FileMode], false], ["Name", "", [], [Go$String], false], ["Size", "", [], [Go$Int64], false], ["Sys", "", [], [go$emptyInterface], false]];
+	slicer.init(Go$Uint8);
+	(go$ptrType(slicer)).methods = [["next", "archive/tar", [Go$Int], [(go$sliceType(Go$Uint8))], false]];
+	Reader.init([["r", "archive/tar", io.Reader, ""], ["err", "archive/tar", go$error, ""], ["nb", "archive/tar", Go$Int64, ""], ["pad", "archive/tar", Go$Int64, ""]]);
+	(go$ptrType(Reader)).methods = [["Next", "", [], [(go$ptrType(Header)), go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["octal", "archive/tar", [(go$sliceType(Go$Uint8))], [Go$Int64], false], ["readHeader", "archive/tar", [], [(go$ptrType(Header))], false], ["skipUnread", "archive/tar", [], [], false], ["verifyChecksum", "archive/tar", [(go$sliceType(Go$Uint8))], [Go$Bool], false]];
+	Writer.init([["w", "archive/tar", io.Writer, ""], ["err", "archive/tar", go$error, ""], ["nb", "archive/tar", Go$Int64, ""], ["pad", "archive/tar", Go$Int64, ""], ["closed", "archive/tar", Go$Bool, ""], ["usedBinary", "archive/tar", Go$Bool, ""], ["preferPax", "archive/tar", Go$Bool, ""]]);
+	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteHeader", "", [(go$ptrType(Header))], [go$error], false], ["cString", "archive/tar", [(go$sliceType(Go$Uint8)), Go$String, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false], ["numeric", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false], ["octal", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64], [], false], ["splitUSTARLongName", "archive/tar", [Go$String], [Go$String, Go$String, go$error], false], ["writeHeader", "archive/tar", [(go$ptrType(Header)), Go$Bool], [go$error], false], ["writePAXHeader", "archive/tar", [(go$ptrType(Header)), (go$mapType(Go$String, Go$String))], [go$error], false]];
+	Header.Ptr.prototype.FileInfo = function() {
+		var h, x;
+		h = this;
+		return (x = new headerFileInfo.Ptr(h), new x.constructor.Struct(x));
+	};
+	Header.prototype.FileInfo = function() { return this.go$val.FileInfo(); };
+	headerFileInfo.Ptr.prototype.Size = function() {
+		var _struct, fi;
+		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+		return fi.h.Size;
+	};
+	headerFileInfo.prototype.Size = function() { return this.go$val.Size(); };
+	headerFileInfo.Ptr.prototype.IsDir = function() {
+		var _struct, fi;
+		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+		return (new os.FileMode(fi.Mode())).IsDir();
+	};
+	headerFileInfo.prototype.IsDir = function() { return this.go$val.IsDir(); };
+	headerFileInfo.Ptr.prototype.ModTime = function() {
+		var _struct, fi, _struct$1;
+		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+		return (_struct$1 = fi.h.ModTime, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+	};
+	headerFileInfo.prototype.ModTime = function() { return this.go$val.ModTime(); };
+	headerFileInfo.Ptr.prototype.Sys = function() {
+		var _struct, fi;
+		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+		return fi.h;
+	};
+	headerFileInfo.prototype.Sys = function() { return this.go$val.Sys(); };
+	headerFileInfo.Ptr.prototype.Name = function() {
+		var _struct, fi;
+		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+		if (fi.IsDir()) {
+			return path.Base(path.Clean(fi.h.Name));
+		}
+		return path.Base(fi.h.Name);
+	};
+	headerFileInfo.prototype.Name = function() { return this.go$val.Name(); };
+	headerFileInfo.Ptr.prototype.Mode = function() {
+		var mode, _struct, fi, x, x$1, x$2, x$3, x$4, x$5, m, _ref;
+		mode = 0;
+		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+		mode = (new os.FileMode((fi.h.Mode.low >>> 0))).Perm();
+		if (!((x = (x$1 = fi.h.Mode, new Go$Int64(x$1.high & 0, (x$1.low & 2048) >>> 0)), (x.high === 0 && x.low === 0)))) {
+			mode = (mode | 8388608) >>> 0;
+		}
+		if (!((x$2 = (x$3 = fi.h.Mode, new Go$Int64(x$3.high & 0, (x$3.low & 1024) >>> 0)), (x$2.high === 0 && x$2.low === 0)))) {
+			mode = (mode | 4194304) >>> 0;
+		}
+		if (!((x$4 = (x$5 = fi.h.Mode, new Go$Int64(x$5.high & 0, (x$5.low & 512) >>> 0)), (x$4.high === 0 && x$4.low === 0)))) {
+			mode = (mode | 1048576) >>> 0;
+		}
+		m = (fi.h.Mode.low >>> 0) & ~4095;
+		if (m === 16384) {
+			mode = (mode | 2147483648) >>> 0;
+		}
+		if (m === 4096) {
+			mode = (mode | 33554432) >>> 0;
+		}
+		if (m === 40960) {
+			mode = (mode | 134217728) >>> 0;
+		}
+		if (m === 24576) {
+			mode = (mode | 67108864) >>> 0;
+		}
+		if (m === 8192) {
+			mode = (mode | 67108864) >>> 0;
+			mode = (mode | 2097152) >>> 0;
+		}
+		if (m === 49152) {
+			mode = (mode | 16777216) >>> 0;
+		}
+		_ref = fi.h.Typeflag;
+		if (_ref === 49 || _ref === 50) {
+			mode = (mode | 134217728) >>> 0;
+		} else if (_ref === 51) {
+			mode = (mode | 67108864) >>> 0;
+			mode = (mode | 2097152) >>> 0;
+		} else if (_ref === 52) {
+			mode = (mode | 67108864) >>> 0;
+		} else if (_ref === 53) {
+			mode = (mode | 2147483648) >>> 0;
+		} else if (_ref === 54) {
+			mode = (mode | 33554432) >>> 0;
+		}
+		mode = mode;
+		return mode;
+	};
+	headerFileInfo.prototype.Mode = function() { return this.go$val.Mode(); };
+	var FileInfoHeader = go$pkg.FileInfoHeader = function(fi, link) {
+		var fm, _struct, h, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
+		if (go$interfaceIsEqual(fi, null)) {
+			return [(go$ptrType(Header)).nil, errors.New("tar: FileInfo is nil")];
+		}
+		fm = fi.Mode();
+		h = new Header.Ptr(fi.Name(), new Go$Int64(0, (new os.FileMode(fm)).Perm()), 0, 0, new Go$Int64(0, 0), (_struct = fi.ModTime(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)), 0, "", "", "", new Go$Int64(0, 0), new Go$Int64(0, 0), new time.Time.Ptr(), new time.Time.Ptr());
+		if ((new os.FileMode(fm)).IsRegular()) {
+			h.Mode = (x = h.Mode, new Go$Int64(x.high | 0, (x.low | 32768) >>> 0));
+			h.Typeflag = 48;
+			h.Size = fi.Size();
+		} else if (fi.IsDir()) {
+			h.Typeflag = 53;
+			h.Mode = (x$1 = h.Mode, new Go$Int64(x$1.high | 0, (x$1.low | 16384) >>> 0));
+			h.Name = h.Name + "/";
+		} else if (!((((fm & 134217728) >>> 0) === 0))) {
+			h.Typeflag = 50;
+			h.Mode = (x$2 = h.Mode, new Go$Int64(x$2.high | 0, (x$2.low | 40960) >>> 0));
+			h.Linkname = link;
+		} else if (!((((fm & 67108864) >>> 0) === 0))) {
+			if (!((((fm & 2097152) >>> 0) === 0))) {
+				h.Mode = (x$3 = h.Mode, new Go$Int64(x$3.high | 0, (x$3.low | 8192) >>> 0));
+				h.Typeflag = 51;
+			} else {
+				h.Mode = (x$4 = h.Mode, new Go$Int64(x$4.high | 0, (x$4.low | 24576) >>> 0));
+				h.Typeflag = 52;
+			}
+		} else if (!((((fm & 33554432) >>> 0) === 0))) {
+			h.Typeflag = 54;
+			h.Mode = (x$5 = h.Mode, new Go$Int64(x$5.high | 0, (x$5.low | 4096) >>> 0));
+		} else if (!((((fm & 16777216) >>> 0) === 0))) {
+			h.Mode = (x$6 = h.Mode, new Go$Int64(x$6.high | 0, (x$6.low | 49152) >>> 0));
+		} else {
+			return [(go$ptrType(Header)).nil, fmt.Errorf("archive/tar: unknown file mode %v", new (go$sliceType(go$emptyInterface))([new os.FileMode(fm)]))];
+		}
+		if (!((((fm & 8388608) >>> 0) === 0))) {
+			h.Mode = (x$7 = h.Mode, new Go$Int64(x$7.high | 0, (x$7.low | 2048) >>> 0));
+		}
+		if (!((((fm & 4194304) >>> 0) === 0))) {
+			h.Mode = (x$8 = h.Mode, new Go$Int64(x$8.high | 0, (x$8.low | 1024) >>> 0));
+		}
+		if (!((((fm & 1048576) >>> 0) === 0))) {
+			h.Mode = (x$9 = h.Mode, new Go$Int64(x$9.high | 0, (x$9.low | 512) >>> 0));
+		}
+		if (!(sysStat === go$throwNilPointerError)) {
+			return [h, sysStat(fi, h)];
+		}
+		return [h, null];
+	};
+	var checksum = function(header) {
+		var unsigned, signed, i, x, _slice, _index, x$1, _slice$1, _index$1;
+		unsigned = new Go$Int64(0, 0);
+		signed = new Go$Int64(0, 0);
+		i = 0;
+		while (i < header.length) {
+			if (i === 148) {
+				unsigned = new Go$Int64(unsigned.high + 0, unsigned.low + 256);
+				signed = new Go$Int64(signed.high + 0, signed.low + 256);
+				i = i + 7 >> 0;
+				i = i + 1 >> 0;
+				continue;
+			}
+			unsigned = (x = new Go$Int64(0, (_slice = header, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), new Go$Int64(unsigned.high + x.high, unsigned.low + x.low));
+			signed = (x$1 = new Go$Int64(0, ((_slice$1 = header, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 24 >> 24)), new Go$Int64(signed.high + x$1.high, signed.low + x$1.low));
+			i = i + 1 >> 0;
+		}
+		return [unsigned, signed];
+	};
+	go$ptrType(slicer).prototype.next = function(n) {
+		var b, sp, s, x, _tuple;
+		b = (go$sliceType(Go$Uint8)).nil;
+		sp = this;
+		s = sp.go$get();
+		_tuple = [(x = go$subslice(s, 0, n), go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length)), go$subslice(s, n)], b = _tuple[0], sp.go$set(_tuple[1]);
+		return b;
+	};
+	slicer.prototype.next = function(n) { var obj = this; return (new (go$ptrType(slicer))(function() { return obj; }, null)).next(n); };
+	var isASCII = function(s) {
+		var _ref, _i, _rune, c;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			c = _rune[0];
+			if (c >= 128) {
+				return false;
+			}
+		}
+		return true;
+	};
+	var toASCII = function(s) {
+		var buf, _ref, _i, _rune, c;
+		if (isASCII(s)) {
+			return s;
+		}
+		buf = new bytes.Buffer.Ptr();
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			c = _rune[0];
+			if (c < 128) {
+				buf.WriteByte((c << 24 >>> 24));
+			}
+		}
+		return buf.String();
+	};
+	var NewReader = go$pkg.NewReader = function(r) {
+		return new Reader.Ptr(r, null, new Go$Int64(0, 0), new Go$Int64(0, 0));
+	};
+	Reader.Ptr.prototype.Next = function() {
+		var tr, hdr, _ref, _tuple, headers, err, _tuple$1, realname, err$1, _tuple$2, hdr$1, _tuple$3, realname$1, err$2, _tuple$4, hdr$2;
+		tr = this;
+		hdr = (go$ptrType(Header)).nil;
+		if (go$interfaceIsEqual(tr.err, null)) {
+			tr.skipUnread();
+		}
+		if (!(go$interfaceIsEqual(tr.err, null))) {
+			return [hdr, tr.err];
+		}
+		hdr = tr.readHeader();
+		if (hdr === (go$ptrType(Header)).nil) {
+			return [hdr, tr.err];
+		}
+		_ref = hdr.Typeflag;
+		if (_ref === 120) {
+			_tuple = parsePAX(tr), headers = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [(go$ptrType(Header)).nil, err];
+			}
+			tr.skipUnread();
+			hdr = tr.readHeader();
+			mergePAX(hdr, headers);
+			return [hdr, null];
+		} else if (_ref === 76) {
+			_tuple$1 = ioutil.ReadAll(tr), realname = _tuple$1[0], err$1 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [(go$ptrType(Header)).nil, err$1];
+			}
+			_tuple$2 = tr.Next(), hdr$1 = _tuple$2[0], err$1 = _tuple$2[1];
+			hdr$1.Name = cString(realname);
+			return [hdr$1, err$1];
+		} else if (_ref === 75) {
+			_tuple$3 = ioutil.ReadAll(tr), realname$1 = _tuple$3[0], err$2 = _tuple$3[1];
+			if (!(go$interfaceIsEqual(err$2, null))) {
+				return [(go$ptrType(Header)).nil, err$2];
+			}
+			_tuple$4 = tr.Next(), hdr$2 = _tuple$4[0], err$2 = _tuple$4[1];
+			hdr$2.Linkname = cString(realname$1);
+			return [hdr$2, err$2];
+		}
+		return [hdr, tr.err];
+	};
+	Reader.prototype.Next = function() { return this.go$val.Next(); };
+	var mergePAX = function(hdr, headers) {
+		var _ref, _i, _keys, _entry, v, k, _ref$1, _tuple, uid, err, _tuple$1, gid, err$1, _tuple$2, _struct, t, err$2, _struct$1, _tuple$3, _struct$2, t$1, err$3, _struct$3, _tuple$4, _struct$4, t$2, err$4, _struct$5, _tuple$5, size, err$5;
+		_ref = headers;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry = _ref[_keys[_i]];
+			v = _entry.v;
+			k = _entry.k;
+			_ref$1 = k;
+			if (_ref$1 === "path") {
+				hdr.Name = v;
+			} else if (_ref$1 === "linkpath") {
+				hdr.Linkname = v;
+			} else if (_ref$1 === "gname") {
+				hdr.Gname = v;
+			} else if (_ref$1 === "uname") {
+				hdr.Uname = v;
+			} else if (_ref$1 === "uid") {
+				_tuple = strconv.ParseInt(v, 10, 0), uid = _tuple[0], err = _tuple[1];
+				if (!(go$interfaceIsEqual(err, null))) {
+					return err;
+				}
+				hdr.Uid = ((uid.low + ((uid.high >> 31) * 4294967296)) >> 0);
+			} else if (_ref$1 === "gid") {
+				_tuple$1 = strconv.ParseInt(v, 10, 0), gid = _tuple$1[0], err$1 = _tuple$1[1];
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					return err$1;
+				}
+				hdr.Gid = ((gid.low + ((gid.high >> 31) * 4294967296)) >> 0);
+			} else if (_ref$1 === "atime") {
+				_tuple$2 = parsePAXTime(v), t = (_struct = _tuple$2[0], new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)), err$2 = _tuple$2[1];
+				if (!(go$interfaceIsEqual(err$2, null))) {
+					return err$2;
+				}
+				hdr.AccessTime = (_struct$1 = t, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+			} else if (_ref$1 === "mtime") {
+				_tuple$3 = parsePAXTime(v), t$1 = (_struct$2 = _tuple$3[0], new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc)), err$3 = _tuple$3[1];
+				if (!(go$interfaceIsEqual(err$3, null))) {
+					return err$3;
+				}
+				hdr.ModTime = (_struct$3 = t$1, new time.Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc));
+			} else if (_ref$1 === "ctime") {
+				_tuple$4 = parsePAXTime(v), t$2 = (_struct$4 = _tuple$4[0], new time.Time.Ptr(_struct$4.sec, _struct$4.nsec, _struct$4.loc)), err$4 = _tuple$4[1];
+				if (!(go$interfaceIsEqual(err$4, null))) {
+					return err$4;
+				}
+				hdr.ChangeTime = (_struct$5 = t$2, new time.Time.Ptr(_struct$5.sec, _struct$5.nsec, _struct$5.loc));
+			} else if (_ref$1 === "size") {
+				_tuple$5 = strconv.ParseInt(v, 10, 0), size = _tuple$5[0], err$5 = _tuple$5[1];
+				if (!(go$interfaceIsEqual(err$5, null))) {
+					return err$5;
+				}
+				hdr.Size = size;
+			}
+		}
+		return null;
+	};
+	var parsePAXTime = function(t) {
+		var buf, pos, _tuple, seconds, nanoseconds, err, _tuple$1, _tuple$2, nano_buf, _tuple$3, _struct, ts, _struct$1;
+		buf = new (go$sliceType(Go$Uint8))(go$stringToBytes(t));
+		pos = bytes.IndexByte(buf, 46);
+		_tuple = [new Go$Int64(0, 0), new Go$Int64(0, 0)], seconds = _tuple[0], nanoseconds = _tuple[1];
+		err = null;
+		if (pos === -1) {
+			_tuple$1 = strconv.ParseInt(t, 10, 0), seconds = _tuple$1[0], err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [new time.Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(time.Location)).nil), err];
+			}
+		} else {
+			_tuple$2 = strconv.ParseInt(go$bytesToString(go$subslice(buf, 0, pos)), 10, 0), seconds = _tuple$2[0], err = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [new time.Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(time.Location)).nil), err];
+			}
+			nano_buf = go$bytesToString(go$subslice(buf, (pos + 1 >> 0)));
+			if (nano_buf.length < 9) {
+				nano_buf = nano_buf + (strings.Repeat("0", 9 - nano_buf.length >> 0));
+			} else if (nano_buf.length > 9) {
+				nano_buf = nano_buf.substring(0, 9);
+			}
+			_tuple$3 = strconv.ParseInt(nano_buf, 10, 0), nanoseconds = _tuple$3[0], err = _tuple$3[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [new time.Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(time.Location)).nil), err];
+			}
+		}
+		ts = (_struct = time.Unix(seconds, nanoseconds), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		return [(_struct$1 = ts, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)), null];
+	};
+	var parsePAX = function(r) {
+		var _tuple, buf, err, headers, sp, _tuple$1, n, err$1, record, _tuple$2, eq, _tuple$3, key, value, _key;
+		_tuple = ioutil.ReadAll(r), buf = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [false, err];
+		}
+		headers = new Go$Map();
+		while (buf.length > 0) {
+			sp = 0;
+			sp = bytes.IndexByte(buf, 32);
+			if (sp === -1) {
+				return [false, go$pkg.ErrHeader];
+			}
+			_tuple$1 = strconv.ParseInt(go$bytesToString(go$subslice(buf, 0, sp)), 10, 0), n = _tuple$1[0], err$1 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [false, go$pkg.ErrHeader];
+			}
+			record = (go$sliceType(Go$Uint8)).nil;
+			_tuple$2 = [go$subslice(buf, sp + 1 >> 0, go$flatten64(new Go$Int64(n.high - 0, n.low - 1))), go$subslice(buf, go$flatten64(n))], record = _tuple$2[0], buf = _tuple$2[1];
+			eq = bytes.IndexByte(record, 61);
+			if (eq === -1) {
+				return [false, go$pkg.ErrHeader];
+			}
+			_tuple$3 = [go$subslice(record, 0, eq), go$subslice(record, (eq + 1 >> 0))], key = _tuple$3[0], value = _tuple$3[1];
+			_key = go$bytesToString(key), (headers || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: go$bytesToString(value) };
+		}
+		return [headers, null];
+	};
+	var cString = function(b) {
+		var n, _slice, _index;
+		n = 0;
+		while (n < b.length && !(((_slice = b, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0))) {
+			n = n + 1 >> 0;
+		}
+		return go$bytesToString(go$subslice(b, 0, n));
+	};
+	Reader.Ptr.prototype.octal = function(b) {
+		var tr, _slice, _index, x, _ref, _i, _slice$1, _index$1, c, i, x$1, x$2, _tuple, x$3, err;
+		tr = this;
+		if (b.length > 0 && !(((((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & 128) >>> 0) === 0))) {
+			x = new Go$Int64(0, 0);
+			_ref = b;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				c = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				if (i === 0) {
+					c = (c & 127) >>> 0;
+				}
+				x = (x$1 = go$shiftLeft64(x, 8), x$2 = new Go$Int64(0, c), new Go$Int64(x$1.high | x$2.high, (x$1.low | x$2.low) >>> 0));
+			}
+			return x;
+		}
+		b = bytes.Trim(b, " \x00");
+		if (b.length === 0) {
+			return new Go$Int64(0, 0);
+		}
+		_tuple = strconv.ParseUint(cString(b), 8, 64), x$3 = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			tr.err = err;
+		}
+		return new Go$Int64(x$3.high, x$3.low);
+	};
+	Reader.prototype.octal = function(b) { return this.go$val.octal(b); };
+	Reader.Ptr.prototype.skipUnread = function() {
+		var tr, x, x$1, nr, _tuple, ok, _tuple$1, x$2, sr, err, _tuple$2, _tuple$3;
+		tr = this;
+		nr = (x = tr.nb, x$1 = tr.pad, new Go$Int64(x.high + x$1.high, x.low + x$1.low));
+		_tuple = [new Go$Int64(0, 0), new Go$Int64(0, 0)], tr.nb = _tuple[0], tr.pad = _tuple[1];
+		if (_tuple$1 = (x$2 = tr.r, (x$2 !== null && io.Seeker.implementedBy.indexOf(x$2.constructor) !== -1 ? [x$2, true] : [null, false])), sr = _tuple$1[0], ok = _tuple$1[1], ok) {
+			if (_tuple$2 = sr.Seek(nr, 1), err = _tuple$2[1], go$interfaceIsEqual(err, null)) {
+				return;
+			}
+		}
+		_tuple$3 = io.CopyN(ioutil.Discard, tr.r, nr), tr.err = _tuple$3[1];
+	};
+	Reader.prototype.skipUnread = function() { return this.go$val.skipUnread(); };
+	Reader.Ptr.prototype.verifyChecksum = function(header) {
+		var tr, given, _tuple, unsigned, signed;
+		tr = this;
+		if (!(go$interfaceIsEqual(tr.err, null))) {
+			return false;
+		}
+		given = tr.octal(go$subslice(header, 148, 156));
+		_tuple = checksum(header), unsigned = _tuple[0], signed = _tuple[1];
+		return (given.high === unsigned.high && given.low === unsigned.low) || (given.high === signed.high && given.low === signed.low);
+	};
+	Reader.prototype.verifyChecksum = function(header) { return this.go$val.verifyChecksum(header); };
+	Reader.Ptr.prototype.readHeader = function() {
+		var tr, header, _tuple, _tuple$1, hdr, s, v, v$1, x, v$2, x$1, v$3, v$4, v$5, _struct, v$6, _slice, _index, v$7, v$8, v$9, magic, format, _ref, _ref$1, v$10, v$11, v$12, devmajor, v$13, devminor, prefix, _ref$2, v$14, v$15, v$16, _struct$1, v$17, _struct$2, x$2, x$3;
+		tr = this;
+		header = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
+		if (_tuple = io.ReadFull(tr.r, header), tr.err = _tuple[1], !(go$interfaceIsEqual(tr.err, null))) {
+			return (go$ptrType(Header)).nil;
+		}
+		if (bytes.Equal(header, go$subslice(zeroBlock, 0, 512))) {
+			if (_tuple$1 = io.ReadFull(tr.r, header), tr.err = _tuple$1[1], !(go$interfaceIsEqual(tr.err, null))) {
+				return (go$ptrType(Header)).nil;
+			}
+			if (bytes.Equal(header, go$subslice(zeroBlock, 0, 512))) {
+				tr.err = io.EOF;
+			} else {
+				tr.err = go$pkg.ErrHeader;
+			}
+			return (go$ptrType(Header)).nil;
+		}
+		if (!tr.verifyChecksum(header)) {
+			tr.err = go$pkg.ErrHeader;
+			return (go$ptrType(Header)).nil;
+		}
+		hdr = new Header.Ptr();
+		s = go$subslice(new slicer(header.array), header.offset, header.offset + header.length);
+		hdr.Name = cString((new (go$ptrType(slicer))(function() { return s; }, function(v) { s = v; })).next(100));
+		hdr.Mode = tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$1) { s = v$1; })).next(8));
+		hdr.Uid = ((x = tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$2) { s = v$2; })).next(8)), x.low + ((x.high >> 31) * 4294967296)) >> 0);
+		hdr.Gid = ((x$1 = tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$3) { s = v$3; })).next(8)), x$1.low + ((x$1.high >> 31) * 4294967296)) >> 0);
+		hdr.Size = tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$4) { s = v$4; })).next(12));
+		hdr.ModTime = (_struct = time.Unix(tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$5) { s = v$5; })).next(12)), new Go$Int64(0, 0)), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		(new (go$ptrType(slicer))(function() { return s; }, function(v$6) { s = v$6; })).next(8);
+		hdr.Typeflag = (_slice = (new (go$ptrType(slicer))(function() { return s; }, function(v$7) { s = v$7; })).next(1), _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		hdr.Linkname = cString((new (go$ptrType(slicer))(function() { return s; }, function(v$8) { s = v$8; })).next(100));
+		magic = go$bytesToString((new (go$ptrType(slicer))(function() { return s; }, function(v$9) { s = v$9; })).next(8));
+		format = "";
+		_ref = magic;
+		if (_ref === "ustar\x0000") {
+			if (go$bytesToString(go$subslice(header, 508, 512)) === "tar\x00") {
+				format = "star";
+			} else {
+				format = "posix";
+			}
+		} else if (_ref === "ustar  \x00") {
+			format = "gnu";
+		}
+		_ref$1 = format;
+		if (_ref$1 === "posix" || _ref$1 === "gnu" || _ref$1 === "star") {
+			hdr.Uname = cString((new (go$ptrType(slicer))(function() { return s; }, function(v$10) { s = v$10; })).next(32));
+			hdr.Gname = cString((new (go$ptrType(slicer))(function() { return s; }, function(v$11) { s = v$11; })).next(32));
+			devmajor = (new (go$ptrType(slicer))(function() { return s; }, function(v$12) { s = v$12; })).next(8);
+			devminor = (new (go$ptrType(slicer))(function() { return s; }, function(v$13) { s = v$13; })).next(8);
+			if ((hdr.Typeflag === 51) || (hdr.Typeflag === 52)) {
+				hdr.Devmajor = tr.octal(devmajor);
+				hdr.Devminor = tr.octal(devminor);
+			}
+			prefix = "";
+			_ref$2 = format;
+			if (_ref$2 === "posix" || _ref$2 === "gnu") {
+				prefix = cString((new (go$ptrType(slicer))(function() { return s; }, function(v$14) { s = v$14; })).next(155));
+			} else if (_ref$2 === "star") {
+				prefix = cString((new (go$ptrType(slicer))(function() { return s; }, function(v$15) { s = v$15; })).next(131));
+				hdr.AccessTime = (_struct$1 = time.Unix(tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$16) { s = v$16; })).next(12)), new Go$Int64(0, 0)), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+				hdr.ChangeTime = (_struct$2 = time.Unix(tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$17) { s = v$17; })).next(12)), new Go$Int64(0, 0)), new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc));
+			}
+			if (prefix.length > 0) {
+				hdr.Name = prefix + "/" + hdr.Name;
+			}
+		}
+		if (!(go$interfaceIsEqual(tr.err, null))) {
+			tr.err = go$pkg.ErrHeader;
+			return (go$ptrType(Header)).nil;
+		}
+		tr.nb = hdr.Size;
+		tr.pad = (x$2 = (x$3 = tr.nb, new Go$Int64(-x$3.high, -x$3.low)), new Go$Int64(x$2.high & 0, (x$2.low & 511) >>> 0));
+		return hdr;
+	};
+	Reader.prototype.readHeader = function() { return this.go$val.readHeader(); };
+	Reader.Ptr.prototype.Read = function(b) {
+		var n, err, tr, x, _tuple, x$1, x$2, _tuple$1, x$3, x$4, x$5;
+		n = 0;
+		err = null;
+		tr = this;
+		if ((x = tr.nb, (x.high === 0 && x.low === 0))) {
+			_tuple = [0, io.EOF], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if ((x$1 = new Go$Int64(0, b.length), x$2 = tr.nb, (x$1.high > x$2.high || (x$1.high === x$2.high && x$1.low > x$2.low)))) {
+			b = go$subslice(b, 0, go$flatten64(tr.nb));
+		}
+		_tuple$1 = tr.r.Read(b), n = _tuple$1[0], err = _tuple$1[1];
+		tr.nb = (x$3 = tr.nb, x$4 = new Go$Int64(0, n), new Go$Int64(x$3.high - x$4.high, x$3.low - x$4.low));
+		if (go$interfaceIsEqual(err, io.EOF) && (x$5 = tr.nb, (x$5.high > 0 || (x$5.high === 0 && x$5.low > 0)))) {
+			err = io.ErrUnexpectedEOF;
+		}
+		tr.err = err;
+		return [n, err];
+	};
+	Reader.prototype.Read = function(b) { return this.go$val.Read(b); };
+	var statAtime = function(st) {
+		var _tuple, _struct;
+		return (_struct = (_tuple = st.Atimespec.Unix(), time.Unix(_tuple[0], _tuple[1])), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+	};
+	var statCtime = function(st) {
+		var _tuple, _struct;
+		return (_struct = (_tuple = st.Ctimespec.Unix(), time.Unix(_tuple[0], _tuple[1])), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+	};
+	var statUnix = function(fi, h) {
+		var _tuple, x, sys, ok, _struct, _struct$1;
+		_tuple = (x = fi.Sys(), (x !== null && x.constructor === (go$ptrType(syscall.Stat_t)) ? [x.go$val, true] : [(go$ptrType(syscall.Stat_t)).nil, false])), sys = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			return null;
+		}
+		h.Uid = (sys.Uid >> 0);
+		h.Gid = (sys.Gid >> 0);
+		h.AccessTime = (_struct = statAtime(sys), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		h.ChangeTime = (_struct$1 = statCtime(sys), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+		return null;
+	};
+	var NewWriter = go$pkg.NewWriter = function(w) {
+		return new Writer.Ptr(w, null, new Go$Int64(0, 0), new Go$Int64(0, 0), false, false, false);
+	};
+	Writer.Ptr.prototype.Flush = function() {
+		var tw, x, x$1, x$2, n, nr, nw, _tuple, x$3;
+		tw = this;
+		if ((x = tw.nb, (x.high > 0 || (x.high === 0 && x.low > 0)))) {
+			tw.err = fmt.Errorf("archive/tar: missed writing %d bytes", new (go$sliceType(go$emptyInterface))([tw.nb]));
+			return tw.err;
+		}
+		n = (x$1 = tw.nb, x$2 = tw.pad, new Go$Int64(x$1.high + x$2.high, x$1.low + x$2.low));
+		while ((n.high > 0 || (n.high === 0 && n.low > 0)) && go$interfaceIsEqual(tw.err, null)) {
+			nr = n;
+			if ((nr.high > 0 || (nr.high === 0 && nr.low > 512))) {
+				nr = new Go$Int64(0, 512);
+			}
+			nw = 0;
+			_tuple = tw.w.Write(go$subslice(zeroBlock, 0, go$flatten64(nr))), nw = _tuple[0], tw.err = _tuple[1];
+			n = (x$3 = new Go$Int64(0, nw), new Go$Int64(n.high - x$3.high, n.low - x$3.low));
+		}
+		tw.nb = new Go$Int64(0, 0);
+		tw.pad = new Go$Int64(0, 0);
+		return tw.err;
+	};
+	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
+	Writer.Ptr.prototype.cString = function(b, s, allowPax, paxKeyword, paxHeaders) {
+		var tw, needsPaxHeader, _key, ascii, _slice, _index;
+		tw = this;
+		needsPaxHeader = allowPax && s.length > b.length || !isASCII(s);
+		if (needsPaxHeader) {
+			_key = paxKeyword, (paxHeaders || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: s };
+			return;
+		}
+		if (s.length > b.length) {
+			if (go$interfaceIsEqual(tw.err, null)) {
+				tw.err = go$pkg.ErrFieldTooLong;
+			}
+			return;
+		}
+		ascii = toASCII(s);
+		go$copyString(b, ascii);
+		if (ascii.length < b.length) {
+			_slice = b, _index = ascii.length, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+		}
+	};
+	Writer.prototype.cString = function(b, s, allowPax, paxKeyword, paxHeaders) { return this.go$val.cString(b, s, allowPax, paxKeyword, paxHeaders); };
+	Writer.Ptr.prototype.octal = function(b, x) {
+		var tw, s;
+		tw = this;
+		s = strconv.FormatInt(x, 8);
+		while ((s.length + 1 >> 0) < b.length) {
+			s = "0" + s;
+		}
+		tw.cString(b, s, false, "", false);
+	};
+	Writer.prototype.octal = function(b, x) { return this.go$val.octal(b, x); };
+	Writer.Ptr.prototype.numeric = function(b, x, allowPax, paxKeyword, paxHeaders) {
+		var tw, s, s$1, _key, i, _slice, _index, _lhs, _index$1, _slice$1, _index$2, _slice$2, _index$3;
+		tw = this;
+		s = strconv.FormatInt(x, 8);
+		if (s.length < b.length) {
+			tw.octal(b, x);
+			return;
+		}
+		if (allowPax && tw.preferPax) {
+			tw.octal(b, new Go$Int64(0, 0));
+			s$1 = strconv.FormatInt(x, 10);
+			_key = paxKeyword, (paxHeaders || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: s$1 };
+			return;
+		}
+		tw.usedBinary = true;
+		i = b.length - 1 >> 0;
+		while ((x.high > 0 || (x.high === 0 && x.low > 0)) && i >= 0) {
+			_slice = b, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (x.low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+			x = go$shiftRightInt64(x, 8);
+			i = i - 1 >> 0;
+		}
+		_lhs = b, _index$1 = 0, _slice$2 = _lhs, _index$3 = _index$1, (_index$3 >= 0 && _index$3 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$3] = ((_slice$1 = _lhs, _index$2 = _index$1, (_index$2 >= 0 && _index$2 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$2] : go$throwRuntimeError("index out of range")) | 128) >>> 0) : go$throwRuntimeError("index out of range");
+	};
+	Writer.prototype.numeric = function(b, x, allowPax, paxKeyword, paxHeaders) { return this.go$val.numeric(b, x, allowPax, paxKeyword, paxHeaders); };
+	Writer.Ptr.prototype.WriteHeader = function(hdr) {
+		var tw;
+		tw = this;
+		return tw.writeHeader(hdr, true);
+	};
+	Writer.prototype.WriteHeader = function(hdr) { return this.go$val.WriteHeader(hdr); };
+	Writer.Ptr.prototype.writeHeader = function(hdr, allowPax) {
+		var tw, paxHeaders, header, s, v, pathHeaderBytes, modTime, _struct, _struct$1, v$1, v$2, v$3, v$4, v$5, v$6, _slice, _index, v$7, v$8, v$9, v$10, v$11, v$12, v$13, v$14, prefixHeaderBytes, _tuple, _entry, paxPathUsed, suffix, prefix, err, _tuple$1, _tuple$2, chksum, _slice$1, _index$1, err$1, x, _tuple$3;
+		tw = this;
+		if (tw.closed) {
+			return go$pkg.ErrWriteAfterClose;
+		}
+		if (go$interfaceIsEqual(tw.err, null)) {
+			tw.Flush();
+		}
+		if (!(go$interfaceIsEqual(tw.err, null))) {
+			return tw.err;
+		}
+		paxHeaders = new Go$Map();
+		header = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
+		s = go$subslice(new slicer(header.array), header.offset, header.offset + header.length);
+		pathHeaderBytes = (new (go$ptrType(slicer))(function() { return s; }, function(v) { s = v; })).next(100);
+		tw.cString(pathHeaderBytes, hdr.Name, true, "path", paxHeaders);
+		modTime = new Go$Int64(0, 0);
+		if (!hdr.ModTime.Before((_struct = minTime, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc))) && !hdr.ModTime.After((_struct$1 = maxTime, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)))) {
+			modTime = hdr.ModTime.Unix();
+		}
+		tw.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$1) { s = v$1; })).next(8), hdr.Mode);
+		tw.numeric((new (go$ptrType(slicer))(function() { return s; }, function(v$2) { s = v$2; })).next(8), new Go$Int64(0, hdr.Uid), true, "uid", paxHeaders);
+		tw.numeric((new (go$ptrType(slicer))(function() { return s; }, function(v$3) { s = v$3; })).next(8), new Go$Int64(0, hdr.Gid), true, "gid", paxHeaders);
+		tw.numeric((new (go$ptrType(slicer))(function() { return s; }, function(v$4) { s = v$4; })).next(12), hdr.Size, true, "size", paxHeaders);
+		tw.numeric((new (go$ptrType(slicer))(function() { return s; }, function(v$5) { s = v$5; })).next(12), modTime, false, "", false);
+		(new (go$ptrType(slicer))(function() { return s; }, function(v$6) { s = v$6; })).next(8);
+		_slice = (new (go$ptrType(slicer))(function() { return s; }, function(v$7) { s = v$7; })).next(1), _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = hdr.Typeflag) : go$throwRuntimeError("index out of range");
+		tw.cString((new (go$ptrType(slicer))(function() { return s; }, function(v$8) { s = v$8; })).next(100), hdr.Linkname, true, "linkpath", paxHeaders);
+		go$copySlice((new (go$ptrType(slicer))(function() { return s; }, function(v$9) { s = v$9; })).next(8), new (go$sliceType(Go$Uint8))(go$stringToBytes("ustar\x0000")));
+		tw.cString((new (go$ptrType(slicer))(function() { return s; }, function(v$10) { s = v$10; })).next(32), hdr.Uname, true, "uname", paxHeaders);
+		tw.cString((new (go$ptrType(slicer))(function() { return s; }, function(v$11) { s = v$11; })).next(32), hdr.Gname, true, "gname", paxHeaders);
+		tw.numeric((new (go$ptrType(slicer))(function() { return s; }, function(v$12) { s = v$12; })).next(8), hdr.Devmajor, false, "", false);
+		tw.numeric((new (go$ptrType(slicer))(function() { return s; }, function(v$13) { s = v$13; })).next(8), hdr.Devminor, false, "", false);
+		prefixHeaderBytes = (new (go$ptrType(slicer))(function() { return s; }, function(v$14) { s = v$14; })).next(155);
+		tw.cString(prefixHeaderBytes, "", false, "", false);
+		if (tw.usedBinary) {
+			go$copySlice(go$subslice(header, 257, 265), new (go$sliceType(Go$Uint8))(go$stringToBytes("ustar  \x00")));
+		}
+		_tuple = (_entry = paxHeaders["path"], _entry !== undefined ? [_entry.v, true] : ["", false]), paxPathUsed = _tuple[1];
+		if (!tw.preferPax && (go$keys(paxHeaders).length === 1) && paxPathUsed) {
+			suffix = hdr.Name;
+			prefix = "";
+			if (hdr.Name.length > 100 && isASCII(hdr.Name)) {
+				err = null;
+				_tuple$1 = tw.splitUSTARLongName(hdr.Name), prefix = _tuple$1[0], suffix = _tuple$1[1], err = _tuple$1[2];
+				if (go$interfaceIsEqual(err, null)) {
+					delete paxHeaders["path"];
+					tw.cString(pathHeaderBytes, suffix, false, "", false);
+					tw.cString(prefixHeaderBytes, prefix, false, "", false);
+					if (prefix.length > 0) {
+						go$copySlice(go$subslice(header, 257, 265), new (go$sliceType(Go$Uint8))(go$stringToBytes("ustar\x00")));
+					}
+				}
+			}
+		}
+		_tuple$2 = checksum(header), chksum = _tuple$2[0];
+		tw.octal(go$subslice(header, 148, 155), chksum);
+		_slice$1 = header, _index$1 = 155, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 32) : go$throwRuntimeError("index out of range");
+		if (!(go$interfaceIsEqual(tw.err, null))) {
+			return tw.err;
+		}
+		if (go$keys(paxHeaders).length > 0) {
+			if (!allowPax) {
+				return errInvalidHeader;
+			}
+			if (err$1 = tw.writePAXHeader(hdr, paxHeaders), !(go$interfaceIsEqual(err$1, null))) {
+				return err$1;
+			}
+		}
+		tw.nb = hdr.Size;
+		tw.pad = go$div64(((x = go$div64(tw.nb, new Go$Int64(0, 512), true), new Go$Int64(0 - x.high, 512 - x.low))), new Go$Int64(0, 512), true);
+		_tuple$3 = tw.w.Write(header), tw.err = _tuple$3[1];
+		return tw.err;
+	};
+	Writer.prototype.writeHeader = function(hdr, allowPax) { return this.go$val.writeHeader(hdr, allowPax); };
+	Writer.Ptr.prototype.splitUSTARLongName = function(name) {
+		var prefix, suffix, err, tw, length, i, nlen, plen, _tuple;
+		prefix = "";
+		suffix = "";
+		err = null;
+		tw = this;
+		length = name.length;
+		if (length > 156) {
+			length = 156;
+		} else if (name.charCodeAt((length - 1 >> 0)) === 47) {
+			length = length - 1 >> 0;
+		}
+		i = strings.LastIndex(name.substring(0, length), "/");
+		nlen = (name.length - i >> 0) - 1 >> 0;
+		plen = i;
+		if (i <= 0 || nlen > 100 || (nlen === 0) || plen > 155) {
+			err = errNameTooLong;
+			return [prefix, suffix, err];
+		}
+		_tuple = [name.substring(0, i), name.substring((i + 1 >> 0))], prefix = _tuple[0], suffix = _tuple[1];
+		return [prefix, suffix, err];
+	};
+	Writer.prototype.splitUSTARLongName = function(name) { return this.go$val.splitUSTARLongName(name); };
+	Writer.Ptr.prototype.writePAXHeader = function(hdr, paxHeaders) {
+		var tw, ext, _struct, pid, _tuple, dir, file, fullName, ascii, buf, _ref, _i, _keys, _entry, v, k, err, err$1, _tuple$1, err$2;
+		tw = this;
+		ext = new Header.Ptr();
+		ext.Typeflag = 120;
+		ext.ModTime = (_struct = hdr.ModTime, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		pid = os.Getpid();
+		_tuple = path.Split(hdr.Name), dir = _tuple[0], file = _tuple[1];
+		fullName = path.Join(new (go$sliceType(Go$String))([dir, fmt.Sprintf("PaxHeaders.%d", new (go$sliceType(go$emptyInterface))([new Go$Int(pid)])), file]));
+		ascii = toASCII(fullName);
+		if (ascii.length > 100) {
+			ascii = ascii.substring(0, 100);
+		}
+		ext.Name = ascii;
+		buf = new bytes.Buffer.Ptr();
+		_ref = paxHeaders;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry = _ref[_keys[_i]];
+			v = _entry.v;
+			k = _entry.k;
+			fmt.Fprint(buf, new (go$sliceType(go$emptyInterface))([new Go$String(paxHeader(k + "=" + v))]));
+		}
+		ext.Size = new Go$Int64(0, buf.Bytes().length);
+		if (err = tw.writeHeader(ext, false), !(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		if (_tuple$1 = tw.Write(buf.Bytes()), err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+			return err$1;
+		}
+		if (err$2 = tw.Flush(), !(go$interfaceIsEqual(err$2, null))) {
+			return err$2;
+		}
+		return null;
+	};
+	Writer.prototype.writePAXHeader = function(hdr, paxHeaders) { return this.go$val.writePAXHeader(hdr, paxHeaders); };
+	var paxHeader = function(msg) {
+		var size, record;
+		size = msg.length + 2 >> 0;
+		size = size + (strconv.Itoa(size).length) >> 0;
+		record = fmt.Sprintf("%d %s\n", new (go$sliceType(go$emptyInterface))([new Go$Int(size), new Go$String(msg)]));
+		if (!((record.length === size))) {
+			size = record.length;
+			record = fmt.Sprintf("%d %s\n", new (go$sliceType(go$emptyInterface))([new Go$Int(size), new Go$String(msg)]));
+		}
+		return record;
+	};
+	Writer.Ptr.prototype.Write = function(b) {
+		var n, err, tw, overwrite, x, x$1, _tuple, x$2, x$3;
+		n = 0;
+		err = null;
+		tw = this;
+		if (tw.closed) {
+			err = go$pkg.ErrWriteTooLong;
+			return [n, err];
+		}
+		overwrite = false;
+		if ((x = new Go$Int64(0, b.length), x$1 = tw.nb, (x.high > x$1.high || (x.high === x$1.high && x.low > x$1.low)))) {
+			b = go$subslice(b, 0, go$flatten64(tw.nb));
+			overwrite = true;
+		}
+		_tuple = tw.w.Write(b), n = _tuple[0], err = _tuple[1];
+		tw.nb = (x$2 = tw.nb, x$3 = new Go$Int64(0, n), new Go$Int64(x$2.high - x$3.high, x$2.low - x$3.low));
+		if (go$interfaceIsEqual(err, null) && overwrite) {
+			err = go$pkg.ErrWriteTooLong;
+			return [n, err];
+		}
+		tw.err = err;
+		return [n, err];
+	};
+	Writer.prototype.Write = function(b) { return this.go$val.Write(b); };
+	Writer.Ptr.prototype.Close = function() {
+		var tw, i, _tuple;
+		tw = this;
+		if (!(go$interfaceIsEqual(tw.err, null)) || tw.closed) {
+			return tw.err;
+		}
+		tw.Flush();
+		tw.closed = true;
+		if (!(go$interfaceIsEqual(tw.err, null))) {
+			return tw.err;
+		}
+		i = 0;
+		while (i < 2) {
+			_tuple = tw.w.Write(zeroBlock), tw.err = _tuple[1];
+			if (!(go$interfaceIsEqual(tw.err, null))) {
+				break;
+			}
+			i = i + 1 >> 0;
+		}
+		return tw.err;
+	};
+	Writer.prototype.Close = function() { return this.go$val.Close(); };
+	var blockSize = 512;
+	go$pkg.TypeReg = 48;
+	go$pkg.TypeRegA = 0;
+	go$pkg.TypeLink = 49;
+	go$pkg.TypeSymlink = 50;
+	go$pkg.TypeChar = 51;
+	go$pkg.TypeBlock = 52;
+	go$pkg.TypeDir = 53;
+	go$pkg.TypeFifo = 54;
+	go$pkg.TypeCont = 55;
+	go$pkg.TypeXHeader = 120;
+	go$pkg.TypeXGlobalHeader = 103;
+	go$pkg.TypeGNULongName = 76;
+	go$pkg.TypeGNULongLink = 75;
+	var fileNameSize = 100;
+	var fileNamePrefixSize = 155;
+	var c_ISUID = 2048;
+	var c_ISGID = 1024;
+	var c_ISVTX = 512;
+	var c_ISDIR = 16384;
+	var c_ISFIFO = 4096;
+	var c_ISREG = 32768;
+	var c_ISLNK = 40960;
+	var c_ISBLK = 24576;
+	var c_ISCHR = 8192;
+	var c_ISSOCK = 49152;
+	var paxAtime = "atime";
+	var paxCharset = "charset";
+	var paxComment = "comment";
+	var paxCtime = "ctime";
+	var paxGid = "gid";
+	var paxGname = "gname";
+	var paxLinkpath = "linkpath";
+	var paxMtime = "mtime";
+	var paxPath = "path";
+	var paxSize = "size";
+	var paxUid = "uid";
+	var paxUname = "uname";
+	var paxNone = "";
+	var maxNanoSecondIntSize = 9;
+	var sysStat = go$throwNilPointerError;
+	var zeroBlock = (go$sliceType(Go$Uint8)).nil;
+	go$pkg.ErrHeader = null;
+	go$pkg.ErrWriteTooLong = null;
+	go$pkg.ErrFieldTooLong = null;
+	go$pkg.ErrWriteAfterClose = null;
+	var errNameTooLong = null;
+	var errInvalidHeader = null;
+	var minTime = new time.Time.Ptr();
+	var maxTime = new time.Time.Ptr();
+	go$pkg.init = function() {
+		var _struct, _struct$1;
+		zeroBlock = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
+		go$pkg.ErrHeader = errors.New("archive/tar: invalid tar header");
+		go$pkg.ErrWriteTooLong = errors.New("archive/tar: write too long");
+		go$pkg.ErrFieldTooLong = errors.New("archive/tar: header field too long");
+		go$pkg.ErrWriteAfterClose = errors.New("archive/tar: write after close");
+		errNameTooLong = errors.New("archive/tar: name too long");
+		errInvalidHeader = errors.New("archive/tar: header field too long or contains invalid values");
+		minTime = (_struct = time.Unix(new Go$Int64(0, 0), new Go$Int64(0, 0)), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		maxTime = (_struct$1 = minTime.Add(new time.Duration(1999999999, 3294967296)), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+		sysStat = statUnix;
+	};

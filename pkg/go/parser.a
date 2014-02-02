@@ -1,0 +1,3103 @@
+0ÉòÇâpackage parser
+import bytes "bytes"
+import errors "errors"
+import ast "go/ast"
+import token "go/token"
+import io "io"
+import ioutil "io/ioutil"
+import os "os"
+import filepath "path/filepath"
+import strings "strings"
+import fmt "fmt"
+import scanner "go/scanner"
+import strconv "strconv"
+import unicode "unicode"
+const @"".AllErrors @"".Mode = 0x20
+const @"".DeclarationErrors @"".Mode = 0x10
+const @"".ImportsOnly @"".Mode = 0x2
+type @"".Mode uint
+const @"".PackageClauseOnly @"".Mode = 0x1
+const @"".ParseComments @"".Mode = 0x4
+func @"".ParseDir(@"".fset *@"go/token".FileSet, @"".path string, @"".filter func (? @"os".FileInfo) (? bool), @"".mode @"".Mode) (@"".pkgs map[string]*@"go/ast".Package, @"".first error)
+func @"".ParseExpr(@"".x string) (? @"go/ast".Expr, ? error)
+func @"".ParseFile(@"".fset *@"go/token".FileSet, @"".filename string, @"".src interface {  }, @"".mode @"".Mode) (@"".f *@"go/ast".File, @"".err error)
+const @"".SpuriousErrors @"".Mode = 0x20
+const @"".Trace @"".Mode = 0x8
+type @"".bailout struct {  }
+type @"".parseSpecFunction func (@"".doc *@"go/ast".CommentGroup, @"".keyword @"go/token".Token, @"".iota int) (? @"go/ast".Spec)
+type @"".parser struct { @"".file *@"go/token".File; @"".errors @"go/scanner".ErrorList; @"".scanner @"go/scanner".Scanner; @"".mode @"".Mode; @"".trace bool; @"".indent int; @"".comments []*@"go/ast".CommentGroup; @"".leadComment *@"go/ast".CommentGroup; @"".lineComment *@"go/ast".CommentGroup; @"".pos @"go/token".Pos; @"".tok @"go/token".Token; @"".lit string; @"".syncPos @"go/token".Pos; @"".syncCnt int; @"".exprLev int; @"".inRhs bool; @"".pkgScope *@"go/ast".Scope; @"".topScope *@"go/ast".Scope; @"".unresolved []*@"go/ast".Ident; @"".imports []*@"go/ast".ImportSpec; @"".labelScope *@"go/ast".Scope; @"".targetStack [][]*@"go/ast".Ident }
+func (? *@"".parser) @"".atComma(@"".context string) (? bool)
+func (? *@"".parser) @"".checkExpr(@"".x @"go/ast".Expr) (? @"go/ast".Expr)
+func (? *@"".parser) @"".checkExprOrType(@"".x @"go/ast".Expr) (? @"go/ast".Expr)
+func (? *@"".parser) @"".closeLabelScope() ()
+func (? *@"".parser) @"".closeScope() ()
+func (? *@"".parser) @"".consumeComment() (@"".comment *@"go/ast".Comment, @"".endline int)
+func (? *@"".parser) @"".consumeCommentGroup(@"".n int) (@"".comments *@"go/ast".CommentGroup, @"".endline int)
+func (? *@"".parser) @"".declare(@"".decl interface {  }, @"".data interface {  }, @"".scope *@"go/ast".Scope, @"".kind @"go/ast".ObjKind, @"".idents ...*@"go/ast".Ident) ()
+func (? *@"".parser) @"".error(@"".pos @"go/token".Pos, @"".msg string) ()
+func (? *@"".parser) @"".errorExpected(@"".pos @"go/token".Pos, @"".msg string) ()
+func (? *@"".parser) @"".expect(@"".tok @"go/token".Token) (? @"go/token".Pos)
+func (? *@"".parser) @"".expectClosing(@"".tok @"go/token".Token, @"".context string) (? @"go/token".Pos)
+func (? *@"".parser) @"".expectSemi() ()
+func (? *@"".parser) @"".init(@"".fset *@"go/token".FileSet, @"".filename string, @"".src []byte, @"".mode @"".Mode) ()
+func (? *@"".parser) @"".makeExpr(@"".s @"go/ast".Stmt) (? @"go/ast".Expr)
+func (? *@"".parser) @"".makeIdentList(@"".list []@"go/ast".Expr) (? []*@"go/ast".Ident)
+func (? *@"".parser) @"".next() ()
+func (? *@"".parser) @"".next0() ()
+func (? *@"".parser) @"".openLabelScope() ()
+func (? *@"".parser) @"".openScope() ()
+func (? *@"".parser) @"".parseArrayType() (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseBinaryExpr(@"".lhs bool, @"".prec1 int) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseBlockStmt() (? *@"go/ast".BlockStmt)
+func (? *@"".parser) @"".parseBody(@"".scope *@"go/ast".Scope) (? *@"go/ast".BlockStmt)
+func (? *@"".parser) @"".parseBranchStmt(@"".tok @"go/token".Token) (? *@"go/ast".BranchStmt)
+func (? *@"".parser) @"".parseCallExpr() (? *@"go/ast".CallExpr)
+func (? *@"".parser) @"".parseCallOrConversion(@"".fun @"go/ast".Expr) (? *@"go/ast".CallExpr)
+func (? *@"".parser) @"".parseCaseClause(@"".typeSwitch bool) (? *@"go/ast".CaseClause)
+func (? *@"".parser) @"".parseChanType() (? *@"go/ast".ChanType)
+func (? *@"".parser) @"".parseCommClause() (? *@"go/ast".CommClause)
+func (? *@"".parser) @"".parseDecl(@"".sync func (? *@"".parser) ()) (? @"go/ast".Decl)
+func (? *@"".parser) @"".parseDeferStmt() (? @"go/ast".Stmt)
+func (? *@"".parser) @"".parseElement(@"".keyOk bool) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseElementList() (@"".list []@"go/ast".Expr)
+func (? *@"".parser) @"".parseExpr(@"".lhs bool) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseExprList(@"".lhs bool) (@"".list []@"go/ast".Expr)
+func (? *@"".parser) @"".parseFieldDecl(@"".scope *@"go/ast".Scope) (? *@"go/ast".Field)
+func (? *@"".parser) @"".parseFile() (? *@"go/ast".File)
+func (? *@"".parser) @"".parseForStmt() (? @"go/ast".Stmt)
+func (? *@"".parser) @"".parseFuncDecl() (? *@"go/ast".FuncDecl)
+func (? *@"".parser) @"".parseFuncType() (? *@"go/ast".FuncType, ? *@"go/ast".Scope)
+func (? *@"".parser) @"".parseFuncTypeOrLit() (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseGenDecl(@"".keyword @"go/token".Token, @"".f @"".parseSpecFunction) (? *@"go/ast".GenDecl)
+func (? *@"".parser) @"".parseGoStmt() (? @"go/ast".Stmt)
+func (? *@"".parser) @"".parseIdent() (? *@"go/ast".Ident)
+func (? *@"".parser) @"".parseIdentList() (@"".list []*@"go/ast".Ident)
+func (? *@"".parser) @"".parseIfStmt() (? *@"go/ast".IfStmt)
+func (? *@"".parser) @"".parseImportSpec(@"".doc *@"go/ast".CommentGroup, _ @"go/token".Token, _ int) (? @"go/ast".Spec)
+func (? *@"".parser) @"".parseIndexOrSlice(@"".x @"go/ast".Expr) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseInterfaceType() (? *@"go/ast".InterfaceType)
+func (? *@"".parser) @"".parseLhsList() (? []@"go/ast".Expr)
+func (? *@"".parser) @"".parseLiteralValue(@"".typ @"go/ast".Expr) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseMapType() (? *@"go/ast".MapType)
+func (? *@"".parser) @"".parseMethodSpec(@"".scope *@"go/ast".Scope) (? *@"go/ast".Field)
+func (? *@"".parser) @"".parseOperand(@"".lhs bool) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseParameterList(@"".scope *@"go/ast".Scope, @"".ellipsisOk bool) (@"".params []*@"go/ast".Field)
+func (? *@"".parser) @"".parseParameters(@"".scope *@"go/ast".Scope, @"".ellipsisOk bool) (? *@"go/ast".FieldList)
+func (? *@"".parser) @"".parsePointerType() (? *@"go/ast".StarExpr)
+func (? *@"".parser) @"".parsePrimaryExpr(@"".lhs bool) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseReceiver(@"".scope *@"go/ast".Scope) (? *@"go/ast".FieldList)
+func (? *@"".parser) @"".parseResult(@"".scope *@"go/ast".Scope) (? *@"go/ast".FieldList)
+func (? *@"".parser) @"".parseReturnStmt() (? *@"go/ast".ReturnStmt)
+func (? *@"".parser) @"".parseRhs() (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseRhsList() (? []@"go/ast".Expr)
+func (? *@"".parser) @"".parseRhsOrType() (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseSelectStmt() (? *@"go/ast".SelectStmt)
+func (? *@"".parser) @"".parseSelector(@"".x @"go/ast".Expr) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseSignature(@"".scope *@"go/ast".Scope) (@"".params *@"go/ast".FieldList, @"".results *@"go/ast".FieldList)
+func (? *@"".parser) @"".parseSimpleStmt(@"".mode int) (? @"go/ast".Stmt, ? bool)
+func (? *@"".parser) @"".parseStmt() (@"".s @"go/ast".Stmt)
+func (? *@"".parser) @"".parseStmtList() (@"".list []@"go/ast".Stmt)
+func (? *@"".parser) @"".parseStructType() (? *@"go/ast".StructType)
+func (? *@"".parser) @"".parseSwitchStmt() (? @"go/ast".Stmt)
+func (? *@"".parser) @"".parseType() (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseTypeAssertion(@"".x @"go/ast".Expr) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseTypeList() (@"".list []@"go/ast".Expr)
+func (? *@"".parser) @"".parseTypeName() (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseTypeSpec(@"".doc *@"go/ast".CommentGroup, _ @"go/token".Token, _ int) (? @"go/ast".Spec)
+func (? *@"".parser) @"".parseUnaryExpr(@"".lhs bool) (? @"go/ast".Expr)
+func (? *@"".parser) @"".parseValueSpec(@"".doc *@"go/ast".CommentGroup, @"".keyword @"go/token".Token, @"".iota int) (? @"go/ast".Spec)
+func (? *@"".parser) @"".parseVarList(@"".isParam bool) (@"".list []@"go/ast".Expr, @"".typ @"go/ast".Expr)
+func (? *@"".parser) @"".parseVarType(@"".isParam bool) (? @"go/ast".Expr)
+func (? *@"".parser) @"".printTrace(@"".a ...interface {  }) ()
+func (? *@"".parser) @"".resolve(@"".x @"go/ast".Expr) ()
+func (? *@"".parser) @"".shortVarDecl(@"".decl *@"go/ast".AssignStmt, @"".list []@"go/ast".Expr) ()
+func (? *@"".parser) @"".tokPrec() (? @"go/token".Token, ? int)
+func (? *@"".parser) @"".tryIdentOrType() (? @"go/ast".Expr)
+func (? *@"".parser) @"".tryResolve(@"".x @"go/ast".Expr, @"".collectUnresolved bool) ()
+func (? *@"".parser) @"".tryType() (? @"go/ast".Expr)
+func (? *@"".parser) @"".tryVarType(@"".isParam bool) (? @"go/ast".Expr)
+import sync "sync"
+type @"go/token".FileSet struct { @"go/token".mutex @"sync".RWMutex; @"go/token".base int; @"go/token".files []*@"go/token".File; @"go/token".last *@"go/token".File }
+func (? *@"go/token".FileSet) @"go/token".AddFile(@"go/token".filename string, @"go/token".base int, @"go/token".size int) (? *@"go/token".File)
+func (? *@"go/token".FileSet) @"go/token".Base() (? int)
+func (? *@"go/token".FileSet) @"go/token".File(@"go/token".p @"go/token".Pos) (@"go/token".f *@"go/token".File)
+func (? *@"go/token".FileSet) @"go/token".Iterate(@"go/token".f func (? *@"go/token".File) (? bool)) ()
+func (? *@"go/token".FileSet) @"go/token".Position(@"go/token".p @"go/token".Pos) (@"go/token".pos @"go/token".Position)
+func (? *@"go/token".FileSet) @"go/token".Read(@"go/token".decode func (? interface {  }) (? error)) (? error)
+func (? *@"go/token".FileSet) @"go/token".Write(@"go/token".encode func (? interface {  }) (? error)) (? error)
+func (? *@"go/token".FileSet) @"go/token".file(@"go/token".p @"go/token".Pos) (? *@"go/token".File)
+import time "time"
+type @"os".FileInfo interface { @"os".IsDir() (? bool); @"os".ModTime() (? @"time".Time); @"os".Mode() (? @"os".FileMode); @"os".Name() (? string); @"os".Size() (? int64); @"os".Sys() (? interface {  }) }
+type @"go/ast".Package struct { @"go/ast".Name string; @"go/ast".Scope *@"go/ast".Scope; @"go/ast".Imports map[string]*@"go/ast".Object; @"go/ast".Files map[string]*@"go/ast".File }
+func (? *@"go/ast".Package) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".Package) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".Expr interface { @"go/ast".End() (? @"go/token".Pos); @"go/ast".Pos() (? @"go/token".Pos); @"go/ast".exprNode() () }
+type @"go/ast".File struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".Package @"go/token".Pos; @"go/ast".Name *@"go/ast".Ident; @"go/ast".Decls []@"go/ast".Decl; @"go/ast".Scope *@"go/ast".Scope; @"go/ast".Imports []*@"go/ast".ImportSpec; @"go/ast".Unresolved []*@"go/ast".Ident; @"go/ast".Comments []*@"go/ast".CommentGroup }
+func (? *@"go/ast".File) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".File) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".CommentGroup struct { @"go/ast".List []*@"go/ast".Comment }
+func (? *@"go/ast".CommentGroup) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".CommentGroup) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".CommentGroup) @"go/ast".Text() (? string)
+type @"go/token".Token int
+func (? @"go/token".Token) @"go/token".IsKeyword() (? bool)
+func (? @"go/token".Token) @"go/token".IsLiteral() (? bool)
+func (? @"go/token".Token) @"go/token".IsOperator() (? bool)
+func (? @"go/token".Token) @"go/token".Precedence() (? int)
+func (? @"go/token".Token) @"go/token".String() (? string)
+func (? *@"go/token".Token) @"go/token".IsKeyword() (? bool)
+func (? *@"go/token".Token) @"go/token".IsLiteral() (? bool)
+func (? *@"go/token".Token) @"go/token".IsOperator() (? bool)
+func (? *@"go/token".Token) @"go/token".Precedence() (? int)
+func (? *@"go/token".Token) @"go/token".String() (? string)
+type @"go/ast".Spec interface { @"go/ast".End() (? @"go/token".Pos); @"go/ast".Pos() (? @"go/token".Pos); @"go/ast".specNode() () }
+type @"go/token".File struct { @"go/token".set *@"go/token".FileSet; @"go/token".name string; @"go/token".base int; @"go/token".size int; @"go/token".lines []int; @"go/token".infos []@"go/token".lineInfo }
+func (? *@"go/token".File) @"go/token".AddLine(@"go/token".offset int) ()
+func (? *@"go/token".File) @"go/token".AddLineInfo(@"go/token".offset int, @"go/token".filename string, @"go/token".line int) ()
+func (? *@"go/token".File) @"go/token".Base() (? int)
+func (? *@"go/token".File) @"go/token".Line(@"go/token".p @"go/token".Pos) (? int)
+func (? *@"go/token".File) @"go/token".LineCount() (? int)
+func (? *@"go/token".File) @"go/token".MergeLine(@"go/token".line int) ()
+func (? *@"go/token".File) @"go/token".Name() (? string)
+func (? *@"go/token".File) @"go/token".Offset(@"go/token".p @"go/token".Pos) (? int)
+func (? *@"go/token".File) @"go/token".Pos(@"go/token".offset int) (? @"go/token".Pos)
+func (? *@"go/token".File) @"go/token".Position(@"go/token".p @"go/token".Pos) (@"go/token".pos @"go/token".Position)
+func (? *@"go/token".File) @"go/token".SetLines(@"go/token".lines []int) (? bool)
+func (? *@"go/token".File) @"go/token".SetLinesForContent(@"go/token".content []byte) ()
+func (? *@"go/token".File) @"go/token".Size() (? int)
+func (? *@"go/token".File) @"go/token".info(@"go/token".offset int) (@"go/token".filename string, @"go/token".line int, @"go/token".column int)
+func (? *@"go/token".File) @"go/token".position(@"go/token".p @"go/token".Pos) (@"go/token".pos @"go/token".Position)
+type @"go/scanner".ErrorList []*@"go/scanner".Error
+func (? @"go/scanner".ErrorList) @"go/scanner".Err() (? error)
+func (? @"go/scanner".ErrorList) @"go/scanner".Error() (? string)
+func (? @"go/scanner".ErrorList) @"go/scanner".Len() (? int)
+func (? @"go/scanner".ErrorList) @"go/scanner".Less(@"go/scanner".i int, @"go/scanner".j int) (? bool)
+func (? @"go/scanner".ErrorList) @"go/scanner".Sort() ()
+func (? @"go/scanner".ErrorList) @"go/scanner".Swap(@"go/scanner".i int, @"go/scanner".j int) ()
+func (? *@"go/scanner".ErrorList) @"go/scanner".Add(@"go/scanner".pos @"go/token".Position, @"go/scanner".msg string) ()
+func (? *@"go/scanner".ErrorList) @"go/scanner".Err() (? error)
+func (? *@"go/scanner".ErrorList) @"go/scanner".Error() (? string)
+func (? *@"go/scanner".ErrorList) @"go/scanner".Len() (? int)
+func (? *@"go/scanner".ErrorList) @"go/scanner".Less(@"go/scanner".i int, @"go/scanner".j int) (? bool)
+func (? *@"go/scanner".ErrorList) @"go/scanner".RemoveMultiples() ()
+func (? *@"go/scanner".ErrorList) @"go/scanner".Reset() ()
+func (? *@"go/scanner".ErrorList) @"go/scanner".Sort() ()
+func (? *@"go/scanner".ErrorList) @"go/scanner".Swap(@"go/scanner".i int, @"go/scanner".j int) ()
+type @"go/scanner".Scanner struct { @"go/scanner".file *@"go/token".File; @"go/scanner".dir string; @"go/scanner".src []byte; @"go/scanner".err @"go/scanner".ErrorHandler; @"go/scanner".mode @"go/scanner".Mode; @"go/scanner".ch rune; @"go/scanner".offset int; @"go/scanner".rdOffset int; @"go/scanner".lineOffset int; @"go/scanner".insertSemi bool; @"go/scanner".ErrorCount int }
+func (? *@"go/scanner".Scanner) @"go/scanner".Init(@"go/scanner".file *@"go/token".File, @"go/scanner".src []byte, @"go/scanner".err @"go/scanner".ErrorHandler, @"go/scanner".mode @"go/scanner".Mode) ()
+func (? *@"go/scanner".Scanner) @"go/scanner".Scan() (@"go/scanner".pos @"go/token".Pos, @"go/scanner".tok @"go/token".Token, @"go/scanner".lit string)
+func (? *@"go/scanner".Scanner) @"go/scanner".error(@"go/scanner".offs int, @"go/scanner".msg string) ()
+func (? *@"go/scanner".Scanner) @"go/scanner".findLineEnd() (? bool)
+func (? *@"go/scanner".Scanner) @"go/scanner".interpretLineComment(@"go/scanner".text []byte) ()
+func (? *@"go/scanner".Scanner) @"go/scanner".next() ()
+func (? *@"go/scanner".Scanner) @"go/scanner".scanChar() (? string)
+func (? *@"go/scanner".Scanner) @"go/scanner".scanComment() (? string)
+func (? *@"go/scanner".Scanner) @"go/scanner".scanEscape(@"go/scanner".quote rune) ()
+func (? *@"go/scanner".Scanner) @"go/scanner".scanIdentifier() (? string)
+func (? *@"go/scanner".Scanner) @"go/scanner".scanMantissa(@"go/scanner".base int) ()
+func (? *@"go/scanner".Scanner) @"go/scanner".scanNumber(@"go/scanner".seenDecimalPoint bool) (? @"go/token".Token, ? string)
+func (? *@"go/scanner".Scanner) @"go/scanner".scanRawString() (? string)
+func (? *@"go/scanner".Scanner) @"go/scanner".scanString() (? string)
+func (? *@"go/scanner".Scanner) @"go/scanner".skipWhitespace() ()
+func (? *@"go/scanner".Scanner) @"go/scanner".switch2(@"go/scanner".tok0 @"go/token".Token, @"go/scanner".tok1 @"go/token".Token) (? @"go/token".Token)
+func (? *@"go/scanner".Scanner) @"go/scanner".switch3(@"go/scanner".tok0 @"go/token".Token, @"go/scanner".tok1 @"go/token".Token, @"go/scanner".ch2 rune, @"go/scanner".tok2 @"go/token".Token) (? @"go/token".Token)
+func (? *@"go/scanner".Scanner) @"go/scanner".switch4(@"go/scanner".tok0 @"go/token".Token, @"go/scanner".tok1 @"go/token".Token, @"go/scanner".ch2 rune, @"go/scanner".tok2 @"go/token".Token, @"go/scanner".tok3 @"go/token".Token) (? @"go/token".Token)
+type @"go/token".Pos int
+func (? @"go/token".Pos) @"go/token".IsValid() (? bool)
+func (? *@"go/token".Pos) @"go/token".IsValid() (? bool)
+type @"go/ast".Scope struct { @"go/ast".Outer *@"go/ast".Scope; @"go/ast".Objects map[string]*@"go/ast".Object }
+func (? *@"go/ast".Scope) @"go/ast".Insert(@"go/ast".obj *@"go/ast".Object) (@"go/ast".alt *@"go/ast".Object)
+func (? *@"go/ast".Scope) @"go/ast".Lookup(@"go/ast".name string) (? *@"go/ast".Object)
+func (? *@"go/ast".Scope) @"go/ast".String() (? string)
+type @"go/ast".Ident struct { @"go/ast".NamePos @"go/token".Pos; @"go/ast".Name string; @"go/ast".Obj *@"go/ast".Object }
+func (? *@"go/ast".Ident) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".Ident) @"go/ast".IsExported() (? bool)
+func (? *@"go/ast".Ident) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".Ident) @"go/ast".String() (? string)
+func (? *@"go/ast".Ident) @"go/ast".exprNode() ()
+type @"go/ast".ImportSpec struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".Name *@"go/ast".Ident; @"go/ast".Path *@"go/ast".BasicLit; @"go/ast".Comment *@"go/ast".CommentGroup; @"go/ast".EndPos @"go/token".Pos }
+func (? *@"go/ast".ImportSpec) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".ImportSpec) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".ImportSpec) @"go/ast".specNode() ()
+type @"go/ast".Comment struct { @"go/ast".Slash @"go/token".Pos; @"go/ast".Text string }
+func (? *@"go/ast".Comment) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".Comment) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".ObjKind int
+func (? @"go/ast".ObjKind) @"go/ast".String() (? string)
+func (? *@"go/ast".ObjKind) @"go/ast".String() (? string)
+type @"go/ast".Stmt interface { @"go/ast".End() (? @"go/token".Pos); @"go/ast".Pos() (? @"go/token".Pos); @"go/ast".stmtNode() () }
+type @"go/ast".BlockStmt struct { @"go/ast".Lbrace @"go/token".Pos; @"go/ast".List []@"go/ast".Stmt; @"go/ast".Rbrace @"go/token".Pos }
+func (? *@"go/ast".BlockStmt) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".BlockStmt) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".BlockStmt) @"go/ast".stmtNode() ()
+type @"go/ast".BranchStmt struct { @"go/ast".TokPos @"go/token".Pos; @"go/ast".Tok @"go/token".Token; @"go/ast".Label *@"go/ast".Ident }
+func (? *@"go/ast".BranchStmt) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".BranchStmt) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".BranchStmt) @"go/ast".stmtNode() ()
+type @"go/ast".CallExpr struct { @"go/ast".Fun @"go/ast".Expr; @"go/ast".Lparen @"go/token".Pos; @"go/ast".Args []@"go/ast".Expr; @"go/ast".Ellipsis @"go/token".Pos; @"go/ast".Rparen @"go/token".Pos }
+func (? *@"go/ast".CallExpr) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".CallExpr) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".CallExpr) @"go/ast".exprNode() ()
+type @"go/ast".CaseClause struct { @"go/ast".Case @"go/token".Pos; @"go/ast".List []@"go/ast".Expr; @"go/ast".Colon @"go/token".Pos; @"go/ast".Body []@"go/ast".Stmt }
+func (? *@"go/ast".CaseClause) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".CaseClause) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".CaseClause) @"go/ast".stmtNode() ()
+type @"go/ast".ChanType struct { @"go/ast".Begin @"go/token".Pos; @"go/ast".Arrow @"go/token".Pos; @"go/ast".Dir @"go/ast".ChanDir; @"go/ast".Value @"go/ast".Expr }
+func (? *@"go/ast".ChanType) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".ChanType) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".ChanType) @"go/ast".exprNode() ()
+type @"go/ast".CommClause struct { @"go/ast".Case @"go/token".Pos; @"go/ast".Comm @"go/ast".Stmt; @"go/ast".Colon @"go/token".Pos; @"go/ast".Body []@"go/ast".Stmt }
+func (? *@"go/ast".CommClause) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".CommClause) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".CommClause) @"go/ast".stmtNode() ()
+type @"go/ast".Decl interface { @"go/ast".End() (? @"go/token".Pos); @"go/ast".Pos() (? @"go/token".Pos); @"go/ast".declNode() () }
+type @"go/ast".Field struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".Names []*@"go/ast".Ident; @"go/ast".Type @"go/ast".Expr; @"go/ast".Tag *@"go/ast".BasicLit; @"go/ast".Comment *@"go/ast".CommentGroup }
+func (? *@"go/ast".Field) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".Field) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".FuncDecl struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".Recv *@"go/ast".FieldList; @"go/ast".Name *@"go/ast".Ident; @"go/ast".Type *@"go/ast".FuncType; @"go/ast".Body *@"go/ast".BlockStmt }
+func (? *@"go/ast".FuncDecl) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".FuncDecl) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".FuncDecl) @"go/ast".declNode() ()
+type @"go/ast".FuncType struct { @"go/ast".Func @"go/token".Pos; @"go/ast".Params *@"go/ast".FieldList; @"go/ast".Results *@"go/ast".FieldList }
+func (? *@"go/ast".FuncType) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".FuncType) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".FuncType) @"go/ast".exprNode() ()
+type @"go/ast".GenDecl struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".TokPos @"go/token".Pos; @"go/ast".Tok @"go/token".Token; @"go/ast".Lparen @"go/token".Pos; @"go/ast".Specs []@"go/ast".Spec; @"go/ast".Rparen @"go/token".Pos }
+func (? *@"go/ast".GenDecl) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".GenDecl) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".GenDecl) @"go/ast".declNode() ()
+type @"go/ast".IfStmt struct { @"go/ast".If @"go/token".Pos; @"go/ast".Init @"go/ast".Stmt; @"go/ast".Cond @"go/ast".Expr; @"go/ast".Body *@"go/ast".BlockStmt; @"go/ast".Else @"go/ast".Stmt }
+func (? *@"go/ast".IfStmt) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".IfStmt) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".IfStmt) @"go/ast".stmtNode() ()
+type @"go/ast".InterfaceType struct { @"go/ast".Interface @"go/token".Pos; @"go/ast".Methods *@"go/ast".FieldList; @"go/ast".Incomplete bool }
+func (? *@"go/ast".InterfaceType) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".InterfaceType) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".InterfaceType) @"go/ast".exprNode() ()
+type @"go/ast".MapType struct { @"go/ast".Map @"go/token".Pos; @"go/ast".Key @"go/ast".Expr; @"go/ast".Value @"go/ast".Expr }
+func (? *@"go/ast".MapType) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".MapType) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".MapType) @"go/ast".exprNode() ()
+type @"go/ast".FieldList struct { @"go/ast".Opening @"go/token".Pos; @"go/ast".List []*@"go/ast".Field; @"go/ast".Closing @"go/token".Pos }
+func (? *@"go/ast".FieldList) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".FieldList) @"go/ast".NumFields() (? int)
+func (? *@"go/ast".FieldList) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".StarExpr struct { @"go/ast".Star @"go/token".Pos; @"go/ast".X @"go/ast".Expr }
+func (? *@"go/ast".StarExpr) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".StarExpr) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".StarExpr) @"go/ast".exprNode() ()
+type @"go/ast".ReturnStmt struct { @"go/ast".Return @"go/token".Pos; @"go/ast".Results []@"go/ast".Expr }
+func (? *@"go/ast".ReturnStmt) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".ReturnStmt) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".ReturnStmt) @"go/ast".stmtNode() ()
+type @"go/ast".SelectStmt struct { @"go/ast".Select @"go/token".Pos; @"go/ast".Body *@"go/ast".BlockStmt }
+func (? *@"go/ast".SelectStmt) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".SelectStmt) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".SelectStmt) @"go/ast".stmtNode() ()
+type @"go/ast".StructType struct { @"go/ast".Struct @"go/token".Pos; @"go/ast".Fields *@"go/ast".FieldList; @"go/ast".Incomplete bool }
+func (? *@"go/ast".StructType) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".StructType) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".StructType) @"go/ast".exprNode() ()
+type @"go/ast".AssignStmt struct { @"go/ast".Lhs []@"go/ast".Expr; @"go/ast".TokPos @"go/token".Pos; @"go/ast".Tok @"go/token".Token; @"go/ast".Rhs []@"go/ast".Expr }
+func (? *@"go/ast".AssignStmt) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".AssignStmt) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".AssignStmt) @"go/ast".stmtNode() ()
+type @"sync".RWMutex struct { @"sync".w @"sync".Mutex; @"sync".writerSem uint32; @"sync".readerSem uint32; @"sync".readerCount int32; @"sync".readerWait int32 }
+func (? *@"sync".RWMutex) @"sync".Lock() ()
+func (? *@"sync".RWMutex) @"sync".RLock() ()
+func (? *@"sync".RWMutex) @"sync".RLocker() (? @"sync".Locker)
+func (? *@"sync".RWMutex) @"sync".RUnlock() ()
+func (? *@"sync".RWMutex) @"sync".Unlock() ()
+type @"go/token".Position struct { @"go/token".Filename string; @"go/token".Offset int; @"go/token".Line int; @"go/token".Column int }
+func (? @"go/token".Position) @"go/token".String() (? string)
+func (? *@"go/token".Position) @"go/token".IsValid() (? bool)
+func (? *@"go/token".Position) @"go/token".String() (? string)
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? @"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? @"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? @"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+func (? *@"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? *@"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? *@"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? *@"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+type @"os".FileMode uint32
+func (? @"os".FileMode) @"os".IsDir() (? bool)
+func (? @"os".FileMode) @"os".IsRegular() (? bool)
+func (? @"os".FileMode) @"os".Perm() (? @"os".FileMode)
+func (? @"os".FileMode) @"os".String() (? string)
+func (? *@"os".FileMode) @"os".IsDir() (? bool)
+func (? *@"os".FileMode) @"os".IsRegular() (? bool)
+func (? *@"os".FileMode) @"os".Perm() (? @"os".FileMode)
+func (? *@"os".FileMode) @"os".String() (? string)
+type @"go/ast".Object struct { @"go/ast".Kind @"go/ast".ObjKind; @"go/ast".Name string; @"go/ast".Decl interface {  }; @"go/ast".Data interface {  }; @"go/ast".Type interface {  } }
+func (? *@"go/ast".Object) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/token".lineInfo struct { @"go/token".Offset int; @"go/token".Filename string; @"go/token".Line int }
+type @"go/scanner".Error struct { @"go/scanner".Pos @"go/token".Position; @"go/scanner".Msg string }
+func (? @"go/scanner".Error) @"go/scanner".Error() (? string)
+func (? *@"go/scanner".Error) @"go/scanner".Error() (? string)
+type @"go/scanner".ErrorHandler func (@"go/scanner".pos @"go/token".Position, @"go/scanner".msg string) ()
+type @"go/scanner".Mode uint
+type @"go/ast".BasicLit struct { @"go/ast".ValuePos @"go/token".Pos; @"go/ast".Kind @"go/token".Token; @"go/ast".Value string }
+func (? *@"go/ast".BasicLit) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".BasicLit) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".BasicLit) @"go/ast".exprNode() ()
+type @"go/ast".ChanDir int
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+$$
+0Å»runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
+go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
+	var errors = go$packages["errors"];
+	var ast = go$packages["go/ast"];
+	var token = go$packages["go/token"];
+	var io = go$packages["io"];
+	var ioutil = go$packages["io/ioutil"];
+	var os = go$packages["os"];
+	var filepath = go$packages["path/filepath"];
+	var strings = go$packages["strings"];
+	var fmt = go$packages["fmt"];
+	var scanner = go$packages["go/scanner"];
+	var strconv = go$packages["strconv"];
+	var unicode = go$packages["unicode"];
+	var Mode;
+	Mode = go$newType(4, "Uint", "parser.Mode", "Mode", "go/parser", null);
+	go$pkg.Mode = Mode;
+	var parser;
+	parser = go$newType(0, "Struct", "parser.parser", "parser", "go/parser", function(file_, errors_, scanner_, mode_, trace_, indent_, comments_, leadComment_, lineComment_, pos_, tok_, lit_, syncPos_, syncCnt_, exprLev_, inRhs_, pkgScope_, topScope_, unresolved_, imports_, labelScope_, targetStack_) {
+		this.go$val = this;
+		this.file = file_ !== undefined ? file_ : (go$ptrType(token.File)).nil;
+		this.errors = errors_ !== undefined ? errors_ : scanner.ErrorList.nil;
+		this.scanner = scanner_ !== undefined ? scanner_ : new scanner.Scanner.Ptr();
+		this.mode = mode_ !== undefined ? mode_ : 0;
+		this.trace = trace_ !== undefined ? trace_ : false;
+		this.indent = indent_ !== undefined ? indent_ : 0;
+		this.comments = comments_ !== undefined ? comments_ : (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
+		this.leadComment = leadComment_ !== undefined ? leadComment_ : (go$ptrType(ast.CommentGroup)).nil;
+		this.lineComment = lineComment_ !== undefined ? lineComment_ : (go$ptrType(ast.CommentGroup)).nil;
+		this.pos = pos_ !== undefined ? pos_ : 0;
+		this.tok = tok_ !== undefined ? tok_ : 0;
+		this.lit = lit_ !== undefined ? lit_ : "";
+		this.syncPos = syncPos_ !== undefined ? syncPos_ : 0;
+		this.syncCnt = syncCnt_ !== undefined ? syncCnt_ : 0;
+		this.exprLev = exprLev_ !== undefined ? exprLev_ : 0;
+		this.inRhs = inRhs_ !== undefined ? inRhs_ : false;
+		this.pkgScope = pkgScope_ !== undefined ? pkgScope_ : (go$ptrType(ast.Scope)).nil;
+		this.topScope = topScope_ !== undefined ? topScope_ : (go$ptrType(ast.Scope)).nil;
+		this.unresolved = unresolved_ !== undefined ? unresolved_ : (go$sliceType((go$ptrType(ast.Ident)))).nil;
+		this.imports = imports_ !== undefined ? imports_ : (go$sliceType((go$ptrType(ast.ImportSpec)))).nil;
+		this.labelScope = labelScope_ !== undefined ? labelScope_ : (go$ptrType(ast.Scope)).nil;
+		this.targetStack = targetStack_ !== undefined ? targetStack_ : (go$sliceType((go$sliceType((go$ptrType(ast.Ident)))))).nil;
+	});
+	go$pkg.parser = parser;
+	var bailout;
+	bailout = go$newType(0, "Struct", "parser.bailout", "bailout", "go/parser", function() {
+		this.go$val = this;
+	});
+	go$pkg.bailout = bailout;
+	var parseSpecFunction;
+	parseSpecFunction = go$newType(0, "Func", "parser.parseSpecFunction", "parseSpecFunction", "go/parser", null);
+	go$pkg.parseSpecFunction = parseSpecFunction;
+	parser.init([["file", "go/parser", (go$ptrType(token.File)), ""], ["errors", "go/parser", scanner.ErrorList, ""], ["scanner", "go/parser", scanner.Scanner, ""], ["mode", "go/parser", Mode, ""], ["trace", "go/parser", Go$Bool, ""], ["indent", "go/parser", Go$Int, ""], ["comments", "go/parser", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""], ["leadComment", "go/parser", (go$ptrType(ast.CommentGroup)), ""], ["lineComment", "go/parser", (go$ptrType(ast.CommentGroup)), ""], ["pos", "go/parser", token.Pos, ""], ["tok", "go/parser", token.Token, ""], ["lit", "go/parser", Go$String, ""], ["syncPos", "go/parser", token.Pos, ""], ["syncCnt", "go/parser", Go$Int, ""], ["exprLev", "go/parser", Go$Int, ""], ["inRhs", "go/parser", Go$Bool, ""], ["pkgScope", "go/parser", (go$ptrType(ast.Scope)), ""], ["topScope", "go/parser", (go$ptrType(ast.Scope)), ""], ["unresolved", "go/parser", (go$sliceType((go$ptrType(ast.Ident)))), ""], ["imports", "go/parser", (go$sliceType((go$ptrType(ast.ImportSpec)))), ""], ["labelScope", "go/parser", (go$ptrType(ast.Scope)), ""], ["targetStack", "go/parser", (go$sliceType((go$sliceType((go$ptrType(ast.Ident)))))), ""]]);
+	(go$ptrType(parser)).methods = [["atComma", "go/parser", [Go$String], [Go$Bool], false], ["checkExpr", "go/parser", [ast.Expr], [ast.Expr], false], ["checkExprOrType", "go/parser", [ast.Expr], [ast.Expr], false], ["closeLabelScope", "go/parser", [], [], false], ["closeScope", "go/parser", [], [], false], ["consumeComment", "go/parser", [], [(go$ptrType(ast.Comment)), Go$Int], false], ["consumeCommentGroup", "go/parser", [Go$Int], [(go$ptrType(ast.CommentGroup)), Go$Int], false], ["declare", "go/parser", [go$emptyInterface, go$emptyInterface, (go$ptrType(ast.Scope)), ast.ObjKind, (go$sliceType((go$ptrType(ast.Ident))))], [], true], ["error", "go/parser", [token.Pos, Go$String], [], false], ["errorExpected", "go/parser", [token.Pos, Go$String], [], false], ["expect", "go/parser", [token.Token], [token.Pos], false], ["expectClosing", "go/parser", [token.Token, Go$String], [token.Pos], false], ["expectSemi", "go/parser", [], [], false], ["init", "go/parser", [(go$ptrType(token.FileSet)), Go$String, (go$sliceType(Go$Uint8)), Mode], [], false], ["makeExpr", "go/parser", [ast.Stmt], [ast.Expr], false], ["makeIdentList", "go/parser", [(go$sliceType(ast.Expr))], [(go$sliceType((go$ptrType(ast.Ident))))], false], ["next", "go/parser", [], [], false], ["next0", "go/parser", [], [], false], ["openLabelScope", "go/parser", [], [], false], ["openScope", "go/parser", [], [], false], ["parseArrayType", "go/parser", [], [ast.Expr], false], ["parseBinaryExpr", "go/parser", [Go$Bool, Go$Int], [ast.Expr], false], ["parseBlockStmt", "go/parser", [], [(go$ptrType(ast.BlockStmt))], false], ["parseBody", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.BlockStmt))], false], ["parseBranchStmt", "go/parser", [token.Token], [(go$ptrType(ast.BranchStmt))], false], ["parseCallExpr", "go/parser", [], [(go$ptrType(ast.CallExpr))], false], ["parseCallOrConversion", "go/parser", [ast.Expr], [(go$ptrType(ast.CallExpr))], false], ["parseCaseClause", "go/parser", [Go$Bool], [(go$ptrType(ast.CaseClause))], false], ["parseChanType", "go/parser", [], [(go$ptrType(ast.ChanType))], false], ["parseCommClause", "go/parser", [], [(go$ptrType(ast.CommClause))], false], ["parseDecl", "go/parser", [(go$funcType([(go$ptrType(parser))], [], false))], [ast.Decl], false], ["parseDeferStmt", "go/parser", [], [ast.Stmt], false], ["parseElement", "go/parser", [Go$Bool], [ast.Expr], false], ["parseElementList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseExpr", "go/parser", [Go$Bool], [ast.Expr], false], ["parseExprList", "go/parser", [Go$Bool], [(go$sliceType(ast.Expr))], false], ["parseFieldDecl", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.Field))], false], ["parseFile", "go/parser", [], [(go$ptrType(ast.File))], false], ["parseForStmt", "go/parser", [], [ast.Stmt], false], ["parseFuncDecl", "go/parser", [], [(go$ptrType(ast.FuncDecl))], false], ["parseFuncType", "go/parser", [], [(go$ptrType(ast.FuncType)), (go$ptrType(ast.Scope))], false], ["parseFuncTypeOrLit", "go/parser", [], [ast.Expr], false], ["parseGenDecl", "go/parser", [token.Token, parseSpecFunction], [(go$ptrType(ast.GenDecl))], false], ["parseGoStmt", "go/parser", [], [ast.Stmt], false], ["parseIdent", "go/parser", [], [(go$ptrType(ast.Ident))], false], ["parseIdentList", "go/parser", [], [(go$sliceType((go$ptrType(ast.Ident))))], false], ["parseIfStmt", "go/parser", [], [(go$ptrType(ast.IfStmt))], false], ["parseImportSpec", "go/parser", [(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false], ["parseIndexOrSlice", "go/parser", [ast.Expr], [ast.Expr], false], ["parseInterfaceType", "go/parser", [], [(go$ptrType(ast.InterfaceType))], false], ["parseLhsList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseLiteralValue", "go/parser", [ast.Expr], [ast.Expr], false], ["parseMapType", "go/parser", [], [(go$ptrType(ast.MapType))], false], ["parseMethodSpec", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.Field))], false], ["parseOperand", "go/parser", [Go$Bool], [ast.Expr], false], ["parseParameterList", "go/parser", [(go$ptrType(ast.Scope)), Go$Bool], [(go$sliceType((go$ptrType(ast.Field))))], false], ["parseParameters", "go/parser", [(go$ptrType(ast.Scope)), Go$Bool], [(go$ptrType(ast.FieldList))], false], ["parsePointerType", "go/parser", [], [(go$ptrType(ast.StarExpr))], false], ["parsePrimaryExpr", "go/parser", [Go$Bool], [ast.Expr], false], ["parseReceiver", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.FieldList))], false], ["parseResult", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.FieldList))], false], ["parseReturnStmt", "go/parser", [], [(go$ptrType(ast.ReturnStmt))], false], ["parseRhs", "go/parser", [], [ast.Expr], false], ["parseRhsList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseRhsOrType", "go/parser", [], [ast.Expr], false], ["parseSelectStmt", "go/parser", [], [(go$ptrType(ast.SelectStmt))], false], ["parseSelector", "go/parser", [ast.Expr], [ast.Expr], false], ["parseSignature", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.FieldList)), (go$ptrType(ast.FieldList))], false], ["parseSimpleStmt", "go/parser", [Go$Int], [ast.Stmt, Go$Bool], false], ["parseStmt", "go/parser", [], [ast.Stmt], false], ["parseStmtList", "go/parser", [], [(go$sliceType(ast.Stmt))], false], ["parseStructType", "go/parser", [], [(go$ptrType(ast.StructType))], false], ["parseSwitchStmt", "go/parser", [], [ast.Stmt], false], ["parseType", "go/parser", [], [ast.Expr], false], ["parseTypeAssertion", "go/parser", [ast.Expr], [ast.Expr], false], ["parseTypeList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseTypeName", "go/parser", [], [ast.Expr], false], ["parseTypeSpec", "go/parser", [(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false], ["parseUnaryExpr", "go/parser", [Go$Bool], [ast.Expr], false], ["parseValueSpec", "go/parser", [(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false], ["parseVarList", "go/parser", [Go$Bool], [(go$sliceType(ast.Expr)), ast.Expr], false], ["parseVarType", "go/parser", [Go$Bool], [ast.Expr], false], ["printTrace", "go/parser", [(go$sliceType(go$emptyInterface))], [], true], ["resolve", "go/parser", [ast.Expr], [], false], ["shortVarDecl", "go/parser", [(go$ptrType(ast.AssignStmt)), (go$sliceType(ast.Expr))], [], false], ["tokPrec", "go/parser", [], [token.Token, Go$Int], false], ["tryIdentOrType", "go/parser", [], [ast.Expr], false], ["tryResolve", "go/parser", [ast.Expr, Go$Bool], [], false], ["tryType", "go/parser", [], [ast.Expr], false], ["tryVarType", "go/parser", [Go$Bool], [ast.Expr], false]];
+	bailout.init([]);
+	parseSpecFunction.init([(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false);
+	var readSource = function(filename, src) {
+		var s, _ref, _type, buf, err, _tuple;
+		if (!(go$interfaceIsEqual(src, null))) {
+			_ref = src;
+			_type = _ref !== null ? _ref.constructor : null;
+			if (_type === Go$String) {
+				s = _ref.go$val;
+				return [new (go$sliceType(Go$Uint8))(go$stringToBytes(s)), null];
+			} else if (_type === (go$sliceType(Go$Uint8))) {
+				s = _ref.go$val;
+				return [s, null];
+			} else if (_type === (go$ptrType(bytes.Buffer))) {
+				s = _ref.go$val;
+				if (!(s === (go$ptrType(bytes.Buffer)).nil)) {
+					return [s.Bytes(), null];
+				}
+			} else if (io.Reader.implementedBy.indexOf(_type) !== -1) {
+				s = _ref;
+				buf = new bytes.Buffer.Ptr();
+				if (_tuple = io.Copy(buf, s), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+					return [(go$sliceType(Go$Uint8)).nil, err];
+				}
+				return [buf.Bytes(), null];
+			}
+			return [(go$sliceType(Go$Uint8)).nil, errors.New("invalid source")];
+		}
+		return ioutil.ReadFile(filename);
+	};
+	var ParseFile = go$pkg.ParseFile = function(fset, filename, src, mode) {
+		var f, err, _tuple, text, _tuple$1, p;
+		f = (go$ptrType(ast.File)).nil;
+		err = null;
+		var go$deferred = [];
+		try {
+			_tuple = readSource(filename, src), text = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				_tuple$1 = [(go$ptrType(ast.File)).nil, err], f = _tuple$1[0], err = _tuple$1[1];
+				return [f, err];
+			}
+			p = new parser.Ptr();
+			go$deferred.push({ fun: (function() {
+				var e;
+				if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
+				}
+				if (f === (go$ptrType(ast.File)).nil) {
+					f = new ast.File.Ptr((go$ptrType(ast.CommentGroup)).nil, 0, new ast.Ident.Ptr(), (go$sliceType(ast.Decl)).nil, ast.NewScope((go$ptrType(ast.Scope)).nil), (go$sliceType((go$ptrType(ast.ImportSpec)))).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, (go$sliceType((go$ptrType(ast.CommentGroup)))).nil);
+				}
+				p.errors.Sort();
+				err = p.errors.Err();
+			}), args: [] });
+			p.init(fset, filename, text, mode);
+			f = p.parseFile();
+			return [f, err];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [f, err];
+		}
+	};
+	var ParseDir = go$pkg.ParseDir = function(fset, path, filter, mode) {
+		var pkgs, first, _tuple, fd, err, _tuple$1, _tuple$2, list, _tuple$3, _ref, _i, _slice, _index, d, filename, err$1, _tuple$4, src, name, _tuple$5, _entry, pkg, found, _key, _key$1;
+		pkgs = false;
+		first = null;
+		var go$deferred = [];
+		try {
+			_tuple = os.Open(path), fd = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				_tuple$1 = [false, err], pkgs = _tuple$1[0], first = _tuple$1[1];
+				return [pkgs, first];
+			}
+			go$deferred.push({ recv: fd, method: "Close", args: [] });
+			_tuple$2 = fd.Readdir(-1), list = _tuple$2[0], err = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				_tuple$3 = [false, err], pkgs = _tuple$3[0], first = _tuple$3[1];
+				return [pkgs, first];
+			}
+			pkgs = new Go$Map();
+			_ref = list;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				if (strings.HasSuffix(d.Name(), ".go") && (filter === go$throwNilPointerError || filter(d))) {
+					filename = filepath.Join(new (go$sliceType(Go$String))([path, d.Name()]));
+					if (_tuple$4 = ParseFile(fset, filename, null, mode), src = _tuple$4[0], err$1 = _tuple$4[1], go$interfaceIsEqual(err$1, null)) {
+						name = src.Name.Name;
+						_tuple$5 = (_entry = pkgs[name], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(ast.Package)).nil, false]), pkg = _tuple$5[0], found = _tuple$5[1];
+						if (!found) {
+							pkg = new ast.Package.Ptr(name, (go$ptrType(ast.Scope)).nil, false, new Go$Map());
+							_key = name, (pkgs || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: pkg };
+						}
+						_key$1 = filename, (pkg.Files || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: src };
+					} else if (go$interfaceIsEqual(first, null)) {
+						first = err$1;
+					}
+				}
+			}
+			return [pkgs, first];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [pkgs, first];
+		}
+	};
+	var ParseExpr = go$pkg.ParseExpr = function(x) {
+		var p, e;
+		p = new parser.Ptr();
+		p.init(token.NewFileSet(), "", new (go$sliceType(Go$Uint8))(go$stringToBytes(x)), 0);
+		p.openScope();
+		p.pkgScope = p.topScope;
+		e = p.parseRhsOrType();
+		p.closeScope();
+		assert(p.topScope === (go$ptrType(ast.Scope)).nil, "unbalanced scopes");
+		if (p.errors.Len() > 0) {
+			p.errors.Sort();
+			return [null, p.errors.Err()];
+		}
+		return [e, null];
+	};
+	parser.Ptr.prototype.init = function(fset, filename, src, mode) {
+		var p, m, eh;
+		p = this;
+		p.file = fset.AddFile(filename, -1, src.length);
+		m = 0;
+		if (!((((mode & 4) >>> 0) === 0))) {
+			m = 1;
+		}
+		eh = (function(pos, msg) {
+			var v, _struct;
+			(new (go$ptrType(scanner.ErrorList))(function() { return p.errors; }, function(v) { p.errors = v; })).Add((_struct = pos, new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)), msg);
+		});
+		p.scanner.Init(p.file, src, eh, m);
+		p.mode = mode;
+		p.trace = !((((mode & 8) >>> 0) === 0));
+		p.next();
+	};
+	parser.prototype.init = function(fset, filename, src, mode) { return this.go$val.init(fset, filename, src, mode); };
+	parser.Ptr.prototype.openScope = function() {
+		var p;
+		p = this;
+		p.topScope = ast.NewScope(p.topScope);
+	};
+	parser.prototype.openScope = function() { return this.go$val.openScope(); };
+	parser.Ptr.prototype.closeScope = function() {
+		var p;
+		p = this;
+		p.topScope = p.topScope.Outer;
+	};
+	parser.prototype.closeScope = function() { return this.go$val.closeScope(); };
+	parser.Ptr.prototype.openLabelScope = function() {
+		var p;
+		p = this;
+		p.labelScope = ast.NewScope(p.labelScope);
+		p.targetStack = go$append(p.targetStack, (go$sliceType((go$ptrType(ast.Ident)))).nil);
+	};
+	parser.prototype.openLabelScope = function() { return this.go$val.openLabelScope(); };
+	parser.Ptr.prototype.closeLabelScope = function() {
+		var p, n, scope, _ref, _slice, _index, _i, _slice$1, _index$1, ident;
+		p = this;
+		n = p.targetStack.length - 1 >> 0;
+		scope = p.labelScope;
+		_ref = (_slice = p.targetStack, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			ident = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			ident.Obj = scope.Lookup(ident.Name);
+			if (ident.Obj === (go$ptrType(ast.Object)).nil && !((((p.mode & 16) >>> 0) === 0))) {
+				p.error(ident.Pos(), fmt.Sprintf("label %s undefined", new (go$sliceType(go$emptyInterface))([new Go$String(ident.Name)])));
+			}
+		}
+		p.targetStack = go$subslice(p.targetStack, 0, n);
+		p.labelScope = p.labelScope.Outer;
+	};
+	parser.prototype.closeLabelScope = function() { return this.go$val.closeLabelScope(); };
+	parser.Ptr.prototype.declare = function(decl, data, scope, kind, idents) {
+		var p, _ref, _i, _slice, _index, ident, obj, alt, prevDecl, pos, x;
+		p = this;
+		_ref = idents;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			ident = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			assert(ident.Obj === (go$ptrType(ast.Object)).nil, "identifier already declared or resolved");
+			obj = ast.NewObj(kind, ident.Name);
+			obj.Decl = decl;
+			obj.Data = data;
+			ident.Obj = obj;
+			if (!(ident.Name === "_")) {
+				if (alt = scope.Insert(obj), !(alt === (go$ptrType(ast.Object)).nil) && !((((p.mode & 16) >>> 0) === 0))) {
+					prevDecl = "";
+					if (pos = alt.Pos(), (new token.Pos(pos)).IsValid()) {
+						prevDecl = fmt.Sprintf("\n\tprevious declaration at %s", new (go$sliceType(go$emptyInterface))([(x = p.file.Position(pos), new x.constructor.Struct(x))]));
+					}
+					p.error(ident.Pos(), fmt.Sprintf("%s redeclared in this block%s", new (go$sliceType(go$emptyInterface))([new Go$String(ident.Name), new Go$String(prevDecl)])));
+				}
+			}
+		}
+	};
+	parser.prototype.declare = function(decl, data, scope, kind, idents) { return this.go$val.declare(decl, data, scope, kind, idents); };
+	parser.Ptr.prototype.shortVarDecl = function(decl, list) {
+		var p, n, _ref, _i, _slice, _index, x, isIdent, _tuple, ident, obj, alt, _slice$1, _index$1;
+		p = this;
+		n = 0;
+		_ref = list;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1], isIdent) {
+				assert(ident.Obj === (go$ptrType(ast.Object)).nil, "identifier already declared or resolved");
+				obj = ast.NewObj(4, ident.Name);
+				obj.Decl = decl;
+				ident.Obj = obj;
+				if (!(ident.Name === "_")) {
+					if (alt = p.topScope.Insert(obj), !(alt === (go$ptrType(ast.Object)).nil)) {
+						ident.Obj = alt;
+					} else {
+						n = n + 1 >> 0;
+					}
+				}
+			} else {
+				p.errorExpected(x.Pos(), "identifier on left side of :=");
+			}
+		}
+		if ((n === 0) && !((((p.mode & 16) >>> 0) === 0))) {
+			p.error((_slice$1 = list, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Pos(), "no new variables on left side of :=");
+		}
+	};
+	parser.prototype.shortVarDecl = function(decl, list) { return this.go$val.shortVarDecl(decl, list); };
+	parser.Ptr.prototype.tryResolve = function(x, collectUnresolved) {
+		var p, _tuple, ident, s, obj;
+		p = this;
+		_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0];
+		if (ident === (go$ptrType(ast.Ident)).nil) {
+			return;
+		}
+		assert(ident.Obj === (go$ptrType(ast.Object)).nil, "identifier already declared or resolved");
+		if (ident.Name === "_") {
+			return;
+		}
+		s = p.topScope;
+		while (!(s === (go$ptrType(ast.Scope)).nil)) {
+			if (obj = s.Lookup(ident.Name), !(obj === (go$ptrType(ast.Object)).nil)) {
+				ident.Obj = obj;
+				return;
+			}
+			s = s.Outer;
+		}
+		if (collectUnresolved) {
+			ident.Obj = unresolved;
+			p.unresolved = go$append(p.unresolved, ident);
+		}
+	};
+	parser.prototype.tryResolve = function(x, collectUnresolved) { return this.go$val.tryResolve(x, collectUnresolved); };
+	parser.Ptr.prototype.resolve = function(x) {
+		var p;
+		p = this;
+		p.tryResolve(x, true);
+	};
+	parser.prototype.resolve = function(x) { return this.go$val.resolve(x); };
+	parser.Ptr.prototype.printTrace = function(a) {
+		var p, _struct, pos, x, x$1, i;
+		p = this;
+		pos = (_struct = p.file.Position(p.pos), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+		fmt.Printf("%5d:%3d: ", new (go$sliceType(go$emptyInterface))([new Go$Int(pos.Line), new Go$Int(pos.Column)]));
+		i = (x = 2, x$1 = p.indent, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		while (i > 64) {
+			fmt.Print(new (go$sliceType(go$emptyInterface))([new Go$String(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ")]));
+			i = i - 64 >> 0;
+		}
+		fmt.Print(new (go$sliceType(go$emptyInterface))([new Go$String(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ".substring(0, i))]));
+		fmt.Println(a);
+	};
+	parser.prototype.printTrace = function(a) { return this.go$val.printTrace(a); };
+	var trace = function(p, msg) {
+		p.printTrace(new (go$sliceType(go$emptyInterface))([new Go$String(msg), new Go$String("(")]));
+		p.indent = p.indent + 1 >> 0;
+		return p;
+	};
+	var un = function(p) {
+		p.indent = p.indent - 1 >> 0;
+		p.printTrace(new (go$sliceType(go$emptyInterface))([new Go$String(")")]));
+	};
+	parser.Ptr.prototype.next0 = function() {
+		var p, s, _tuple;
+		p = this;
+		if (p.trace && (new token.Pos(p.pos)).IsValid()) {
+			s = (new token.Token(p.tok)).String();
+			if ((new token.Token(p.tok)).IsLiteral()) {
+				p.printTrace(new (go$sliceType(go$emptyInterface))([new Go$String(s), new Go$String(p.lit)]));
+			} else if ((new token.Token(p.tok)).IsOperator() || (new token.Token(p.tok)).IsKeyword()) {
+				p.printTrace(new (go$sliceType(go$emptyInterface))([new Go$String("\"" + s + "\"")]));
+			} else {
+				p.printTrace(new (go$sliceType(go$emptyInterface))([new Go$String(s)]));
+			}
+		}
+		_tuple = p.scanner.Scan(), p.pos = _tuple[0], p.tok = _tuple[1], p.lit = _tuple[2];
+	};
+	parser.prototype.next0 = function() { return this.go$val.next0(); };
+	parser.Ptr.prototype.consumeComment = function() {
+		var comment, endline, p, i;
+		comment = (go$ptrType(ast.Comment)).nil;
+		endline = 0;
+		p = this;
+		endline = p.file.Line(p.pos);
+		if (p.lit.charCodeAt(1) === 42) {
+			i = 0;
+			while (i < p.lit.length) {
+				if (p.lit.charCodeAt(i) === 10) {
+					endline = endline + 1 >> 0;
+				}
+				i = i + 1 >> 0;
+			}
+		}
+		comment = new ast.Comment.Ptr(p.pos, p.lit);
+		p.next0();
+		return [comment, endline];
+	};
+	parser.prototype.consumeComment = function() { return this.go$val.consumeComment(); };
+	parser.Ptr.prototype.consumeCommentGroup = function(n) {
+		var comments, endline, p, list, comment, _tuple;
+		comments = (go$ptrType(ast.CommentGroup)).nil;
+		endline = 0;
+		p = this;
+		list = (go$sliceType((go$ptrType(ast.Comment)))).nil;
+		endline = p.file.Line(p.pos);
+		while ((p.tok === 2) && p.file.Line(p.pos) <= (endline + n >> 0)) {
+			comment = (go$ptrType(ast.Comment)).nil;
+			_tuple = p.consumeComment(), comment = _tuple[0], endline = _tuple[1];
+			list = go$append(list, comment);
+		}
+		comments = new ast.CommentGroup.Ptr(list);
+		p.comments = go$append(p.comments, comments);
+		return [comments, endline];
+	};
+	parser.prototype.consumeCommentGroup = function(n) { return this.go$val.consumeCommentGroup(n); };
+	parser.Ptr.prototype.next = function() {
+		var p, prev, comment, endline, _tuple, _tuple$1;
+		p = this;
+		p.leadComment = (go$ptrType(ast.CommentGroup)).nil;
+		p.lineComment = (go$ptrType(ast.CommentGroup)).nil;
+		prev = p.pos;
+		p.next0();
+		if (p.tok === 2) {
+			comment = (go$ptrType(ast.CommentGroup)).nil;
+			endline = 0;
+			if (p.file.Line(p.pos) === p.file.Line(prev)) {
+				_tuple = p.consumeCommentGroup(0), comment = _tuple[0], endline = _tuple[1];
+				if (!((p.file.Line(p.pos) === endline))) {
+					p.lineComment = comment;
+				}
+			}
+			endline = -1;
+			while (p.tok === 2) {
+				_tuple$1 = p.consumeCommentGroup(1), comment = _tuple$1[0], endline = _tuple$1[1];
+			}
+			if ((endline + 1 >> 0) === p.file.Line(p.pos)) {
+				p.leadComment = comment;
+			}
+		}
+	};
+	parser.prototype.next = function() { return this.go$val.next(); };
+	parser.Ptr.prototype.error = function(pos, msg) {
+		var p, _struct, epos, n, _slice, _index, x, v, _struct$1;
+		p = this;
+		epos = (_struct = p.file.Position(pos), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+		if (((p.mode & 32) >>> 0) === 0) {
+			n = p.errors.length;
+			if (n > 0 && ((_slice = p.errors, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos.Line === epos.Line)) {
+				return;
+			}
+			if (n > 10) {
+				throw go$panic((x = new bailout.Ptr(), new x.constructor.Struct(x)));
+			}
+		}
+		(new (go$ptrType(scanner.ErrorList))(function() { return p.errors; }, function(v) { p.errors = v; })).Add((_struct$1 = epos, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), msg);
+	};
+	parser.prototype.error = function(pos, msg) { return this.go$val.error(pos, msg); };
+	parser.Ptr.prototype.errorExpected = function(pos, msg) {
+		var p;
+		p = this;
+		msg = "expected " + msg;
+		if (pos === p.pos) {
+			if ((p.tok === 57) && p.lit === "\n") {
+				msg = msg + ", found newline";
+			} else {
+				msg = msg + (", found '" + (new token.Token(p.tok)).String() + "'");
+				if ((new token.Token(p.tok)).IsLiteral()) {
+					msg = msg + (" " + p.lit);
+				}
+			}
+		}
+		p.error(pos, msg);
+	};
+	parser.prototype.errorExpected = function(pos, msg) { return this.go$val.errorExpected(pos, msg); };
+	parser.Ptr.prototype.expect = function(tok) {
+		var p, pos;
+		p = this;
+		pos = p.pos;
+		if (!((p.tok === tok))) {
+			p.errorExpected(pos, "'" + (new token.Token(tok)).String() + "'");
+		}
+		p.next();
+		return pos;
+	};
+	parser.prototype.expect = function(tok) { return this.go$val.expect(tok); };
+	parser.Ptr.prototype.expectClosing = function(tok, context) {
+		var p;
+		p = this;
+		if (!((p.tok === tok)) && (p.tok === 57) && p.lit === "\n") {
+			p.error(p.pos, "missing ',' before newline in " + context);
+			p.next();
+		}
+		return p.expect(tok);
+	};
+	parser.prototype.expectClosing = function(tok, context) { return this.go$val.expectClosing(tok, context); };
+	parser.Ptr.prototype.expectSemi = function() {
+		var p;
+		p = this;
+		if (!((p.tok === 54)) && !((p.tok === 56))) {
+			if (p.tok === 57) {
+				p.next();
+			} else {
+				p.errorExpected(p.pos, "';'");
+				syncStmt(p);
+			}
+		}
+	};
+	parser.prototype.expectSemi = function() { return this.go$val.expectSemi(); };
+	parser.Ptr.prototype.atComma = function(context) {
+		var p;
+		p = this;
+		if (p.tok === 52) {
+			return true;
+		}
+		if ((p.tok === 57) && p.lit === "\n") {
+			p.error(p.pos, "missing ',' before newline in " + context);
+			return true;
+		}
+		return false;
+	};
+	parser.prototype.atComma = function(context) { return this.go$val.atComma(context); };
+	var assert = function(cond, msg) {
+		if (!cond) {
+			throw go$panic(new Go$String("go/parser internal error: " + msg));
+		}
+	};
+	var syncStmt = function(p) {
+		var _ref;
+		while (true) {
+			_ref = p.tok;
+			if (_ref === 61 || _ref === 64 || _ref === 65 || _ref === 67 || _ref === 69 || _ref === 70 || _ref === 72 || _ref === 73 || _ref === 74 || _ref === 80 || _ref === 81 || _ref === 83 || _ref === 84 || _ref === 85) {
+				if ((p.pos === p.syncPos) && p.syncCnt < 10) {
+					p.syncCnt = p.syncCnt + 1 >> 0;
+					return;
+				}
+				if (p.pos > p.syncPos) {
+					p.syncPos = p.pos;
+					p.syncCnt = 0;
+					return;
+				}
+			} else if (_ref === 1) {
+				return;
+			}
+			p.next();
+		}
+	};
+	var syncDecl = function(p) {
+		var _ref;
+		while (true) {
+			_ref = p.tok;
+			if (_ref === 64 || _ref === 84 || _ref === 85) {
+				if ((p.pos === p.syncPos) && p.syncCnt < 10) {
+					p.syncCnt = p.syncCnt + 1 >> 0;
+					return;
+				}
+				if (p.pos > p.syncPos) {
+					p.syncPos = p.pos;
+					p.syncCnt = 0;
+					return;
+				}
+			} else if (_ref === 1) {
+				return;
+			}
+			p.next();
+		}
+	};
+	parser.Ptr.prototype.parseIdent = function() {
+		var p, pos, name;
+		p = this;
+		pos = p.pos;
+		name = "_";
+		if (p.tok === 4) {
+			name = p.lit;
+			p.next();
+		} else {
+			p.expect(4);
+		}
+		return new ast.Ident.Ptr(pos, name, (go$ptrType(ast.Object)).nil);
+	};
+	parser.prototype.parseIdent = function() { return this.go$val.parseIdent(); };
+	parser.Ptr.prototype.parseIdentList = function() {
+		var list, p;
+		list = (go$sliceType((go$ptrType(ast.Ident)))).nil;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "IdentList")] });
+			}
+			list = go$append(list, p.parseIdent());
+			while (p.tok === 52) {
+				p.next();
+				list = go$append(list, p.parseIdent());
+			}
+			return list;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return list;
+		}
+	};
+	parser.prototype.parseIdentList = function() { return this.go$val.parseIdentList(); };
+	parser.Ptr.prototype.parseExprList = function(lhs) {
+		var list, p;
+		list = (go$sliceType(ast.Expr)).nil;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "ExpressionList")] });
+			}
+			list = go$append(list, p.checkExpr(p.parseExpr(lhs)));
+			while (p.tok === 52) {
+				p.next();
+				list = go$append(list, p.checkExpr(p.parseExpr(lhs)));
+			}
+			return list;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return list;
+		}
+	};
+	parser.prototype.parseExprList = function(lhs) { return this.go$val.parseExprList(lhs); };
+	parser.Ptr.prototype.parseLhsList = function() {
+		var p, old, list, _ref, _ref$1, _i, _slice, _index, x;
+		p = this;
+		old = p.inRhs;
+		p.inRhs = false;
+		list = p.parseExprList(true);
+		_ref = p.tok;
+		if (_ref === 47) {
+		} else if (_ref === 58) {
+		} else {
+			_ref$1 = list;
+			_i = 0;
+			for (; _i < _ref$1.length; _i += 1) {
+				x = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				p.resolve(x);
+			}
+		}
+		p.inRhs = old;
+		return list;
+	};
+	parser.prototype.parseLhsList = function() { return this.go$val.parseLhsList(); };
+	parser.Ptr.prototype.parseRhsList = function() {
+		var p, old, list;
+		p = this;
+		old = p.inRhs;
+		p.inRhs = true;
+		list = p.parseExprList(false);
+		p.inRhs = old;
+		return list;
+	};
+	parser.prototype.parseRhsList = function() { return this.go$val.parseRhsList(); };
+	parser.Ptr.prototype.parseType = function() {
+		var p, typ, pos;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Type")] });
+			}
+			typ = p.tryType();
+			if (go$interfaceIsEqual(typ, null)) {
+				pos = p.pos;
+				p.errorExpected(pos, "type");
+				p.next();
+				return new ast.BadExpr.Ptr(pos, p.pos);
+			}
+			return typ;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseType = function() { return this.go$val.parseType(); };
+	parser.Ptr.prototype.parseTypeName = function() {
+		var p, ident, sel;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "TypeName")] });
+			}
+			ident = p.parseIdent();
+			if (p.tok === 53) {
+				p.next();
+				p.resolve(ident);
+				sel = p.parseIdent();
+				return new ast.SelectorExpr.Ptr(ident, sel);
+			}
+			return ident;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseTypeName = function() { return this.go$val.parseTypeName(); };
+	parser.Ptr.prototype.parseArrayType = function() {
+		var p, lbrack, len, elt;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "ArrayType")] });
+			}
+			lbrack = p.expect(50);
+			len = null;
+			if (p.tok === 48) {
+				len = new ast.Ellipsis.Ptr(p.pos, null);
+				p.next();
+			} else if (!((p.tok === 55))) {
+				len = p.parseRhs();
+			}
+			p.expect(55);
+			elt = p.parseType();
+			return new ast.ArrayType.Ptr(lbrack, len, elt);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseArrayType = function() { return this.go$val.parseArrayType(); };
+	parser.Ptr.prototype.makeIdentList = function(list) {
+		var p, idents, _ref, _i, _slice, _index, x, i, _tuple, ident, isIdent, isBad, _tuple$1, _slice$1, _index$1;
+		p = this;
+		idents = (go$sliceType((go$ptrType(ast.Ident)))).make(list.length, 0, function() { return (go$ptrType(ast.Ident)).nil; });
+		_ref = list;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1];
+			if (!isIdent) {
+				if (_tuple$1 = (x !== null && x.constructor === (go$ptrType(ast.BadExpr)) ? [x.go$val, true] : [(go$ptrType(ast.BadExpr)).nil, false]), isBad = _tuple$1[1], !isBad) {
+					p.errorExpected(x.Pos(), "identifier");
+				}
+				ident = new ast.Ident.Ptr(x.Pos(), "_", (go$ptrType(ast.Object)).nil);
+			}
+			_slice$1 = idents, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ident) : go$throwRuntimeError("index out of range");
+		}
+		return idents;
+	};
+	parser.prototype.makeIdentList = function(list) { return this.go$val.makeIdentList(list); };
+	parser.Ptr.prototype.parseFieldDecl = function(scope) {
+		var p, doc, _tuple, list, typ, tag, idents, _slice, _index, n, pos, _slice$1, _index$1, field;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "FieldDecl")] });
+			}
+			doc = p.leadComment;
+			_tuple = p.parseVarList(false), list = _tuple[0], typ = _tuple[1];
+			tag = (go$ptrType(ast.BasicLit)).nil;
+			if (p.tok === 9) {
+				tag = new ast.BasicLit.Ptr(p.pos, p.tok, p.lit);
+				p.next();
+			}
+			idents = (go$sliceType((go$ptrType(ast.Ident)))).nil;
+			if (!(go$interfaceIsEqual(typ, null))) {
+				idents = p.makeIdentList(list);
+			} else {
+				typ = (_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				if (n = list.length, n > 1 || !isTypeName(deref(typ))) {
+					pos = typ.Pos();
+					p.errorExpected(pos, "anonymous field");
+					typ = new ast.BadExpr.Ptr(pos, (_slice$1 = list, _index$1 = (n - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).End());
+				}
+			}
+			p.expectSemi();
+			field = new ast.Field.Ptr(doc, idents, typ, tag, p.lineComment);
+			p.declare(field, null, scope, 4, idents);
+			p.resolve(typ);
+			return field;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.Field)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseFieldDecl = function(scope) { return this.go$val.parseFieldDecl(scope); };
+	parser.Ptr.prototype.parseStructType = function() {
+		var p, pos, lbrace, scope, list, rbrace;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "StructType")] });
+			}
+			pos = p.expect(82);
+			lbrace = p.expect(51);
+			scope = ast.NewScope((go$ptrType(ast.Scope)).nil);
+			list = (go$sliceType((go$ptrType(ast.Field)))).nil;
+			while ((p.tok === 4) || (p.tok === 14) || (p.tok === 49)) {
+				list = go$append(list, p.parseFieldDecl(scope));
+			}
+			rbrace = p.expect(56);
+			return new ast.StructType.Ptr(pos, new ast.FieldList.Ptr(lbrace, list, rbrace), false);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.StructType)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseStructType = function() { return this.go$val.parseStructType(); };
+	parser.Ptr.prototype.parsePointerType = function() {
+		var p, star, base;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "PointerType")] });
+			}
+			star = p.expect(14);
+			base = p.parseType();
+			return new ast.StarExpr.Ptr(star, base);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.StarExpr)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parsePointerType = function() { return this.go$val.parsePointerType(); };
+	parser.Ptr.prototype.tryVarType = function(isParam) {
+		var p, pos, typ;
+		p = this;
+		if (isParam && (p.tok === 48)) {
+			pos = p.pos;
+			p.next();
+			typ = p.tryIdentOrType();
+			if (!(go$interfaceIsEqual(typ, null))) {
+				p.resolve(typ);
+			} else {
+				p.error(pos, "'...' parameter is missing type");
+				typ = new ast.BadExpr.Ptr(pos, p.pos);
+			}
+			return new ast.Ellipsis.Ptr(pos, typ);
+		}
+		return p.tryIdentOrType();
+	};
+	parser.prototype.tryVarType = function(isParam) { return this.go$val.tryVarType(isParam); };
+	parser.Ptr.prototype.parseVarType = function(isParam) {
+		var p, typ, pos;
+		p = this;
+		typ = p.tryVarType(isParam);
+		if (go$interfaceIsEqual(typ, null)) {
+			pos = p.pos;
+			p.errorExpected(pos, "type");
+			p.next();
+			typ = new ast.BadExpr.Ptr(pos, p.pos);
+		}
+		return typ;
+	};
+	parser.prototype.parseVarType = function(isParam) { return this.go$val.parseVarType(isParam); };
+	parser.Ptr.prototype.parseVarList = function(isParam) {
+		var list, typ, p, typ$1;
+		list = (go$sliceType(ast.Expr)).nil;
+		typ = null;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "VarList")] });
+			}
+			typ$1 = p.parseVarType(isParam);
+			while (!(go$interfaceIsEqual(typ$1, null))) {
+				list = go$append(list, typ$1);
+				if (!((p.tok === 52))) {
+					break;
+				}
+				p.next();
+				typ$1 = p.tryVarType(isParam);
+			}
+			typ = p.tryVarType(isParam);
+			return [list, typ];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [list, typ];
+		}
+	};
+	parser.prototype.parseVarList = function(isParam) { return this.go$val.parseVarList(isParam); };
+	parser.Ptr.prototype.parseParameterList = function(scope, ellipsisOk) {
+		var params, p, _tuple, list, typ, idents, field, idents$1, typ$1, field$1, _ref, _i, _slice, _index, typ$2, i, _slice$1, _index$1;
+		params = (go$sliceType((go$ptrType(ast.Field)))).nil;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "ParameterList")] });
+			}
+			_tuple = p.parseVarList(ellipsisOk), list = _tuple[0], typ = _tuple[1];
+			if (!(go$interfaceIsEqual(typ, null))) {
+				idents = p.makeIdentList(list);
+				field = new ast.Field.Ptr((go$ptrType(ast.CommentGroup)).nil, idents, typ, (go$ptrType(ast.BasicLit)).nil, (go$ptrType(ast.CommentGroup)).nil);
+				params = go$append(params, field);
+				p.declare(field, null, scope, 4, idents);
+				p.resolve(typ);
+				if (p.tok === 52) {
+					p.next();
+				}
+				while (!((p.tok === 54)) && !((p.tok === 1))) {
+					idents$1 = p.parseIdentList();
+					typ$1 = p.parseVarType(ellipsisOk);
+					field$1 = new ast.Field.Ptr((go$ptrType(ast.CommentGroup)).nil, idents$1, typ$1, (go$ptrType(ast.BasicLit)).nil, (go$ptrType(ast.CommentGroup)).nil);
+					params = go$append(params, field$1);
+					p.declare(field$1, null, scope, 4, idents$1);
+					p.resolve(typ$1);
+					if (!p.atComma("parameter list")) {
+						break;
+					}
+					p.next();
+				}
+			} else {
+				params = (go$sliceType((go$ptrType(ast.Field)))).make(list.length, 0, function() { return (go$ptrType(ast.Field)).nil; });
+				_ref = list;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					typ$2 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					i = _i;
+					p.resolve(typ$2);
+					_slice$1 = params, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = new ast.Field.Ptr((go$ptrType(ast.CommentGroup)).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, typ$2, (go$ptrType(ast.BasicLit)).nil, (go$ptrType(ast.CommentGroup)).nil)) : go$throwRuntimeError("index out of range");
+				}
+			}
+			return params;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return params;
+		}
+	};
+	parser.prototype.parseParameterList = function(scope, ellipsisOk) { return this.go$val.parseParameterList(scope, ellipsisOk); };
+	parser.Ptr.prototype.parseParameters = function(scope, ellipsisOk) {
+		var p, params, lparen, rparen;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Parameters")] });
+			}
+			params = (go$sliceType((go$ptrType(ast.Field)))).nil;
+			lparen = p.expect(49);
+			if (!((p.tok === 54))) {
+				params = p.parseParameterList(scope, ellipsisOk);
+			}
+			rparen = p.expect(54);
+			return new ast.FieldList.Ptr(lparen, params, rparen);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.FieldList)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseParameters = function(scope, ellipsisOk) { return this.go$val.parseParameters(scope, ellipsisOk); };
+	parser.Ptr.prototype.parseResult = function(scope) {
+		var p, typ, list, _slice, _index;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Result")] });
+			}
+			if (p.tok === 49) {
+				return p.parseParameters(scope, false);
+			}
+			typ = p.tryType();
+			if (!(go$interfaceIsEqual(typ, null))) {
+				list = (go$sliceType((go$ptrType(ast.Field)))).make(1, 0, function() { return (go$ptrType(ast.Field)).nil; });
+				_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = new ast.Field.Ptr((go$ptrType(ast.CommentGroup)).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, typ, (go$ptrType(ast.BasicLit)).nil, (go$ptrType(ast.CommentGroup)).nil)) : go$throwRuntimeError("index out of range");
+				return new ast.FieldList.Ptr(0, list, 0);
+			}
+			return (go$ptrType(ast.FieldList)).nil;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.FieldList)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseResult = function(scope) { return this.go$val.parseResult(scope); };
+	parser.Ptr.prototype.parseSignature = function(scope) {
+		var params, results, p;
+		params = (go$ptrType(ast.FieldList)).nil;
+		results = (go$ptrType(ast.FieldList)).nil;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Signature")] });
+			}
+			params = p.parseParameters(scope, true);
+			results = p.parseResult(scope);
+			return [params, results];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [params, results];
+		}
+	};
+	parser.prototype.parseSignature = function(scope) { return this.go$val.parseSignature(scope); };
+	parser.Ptr.prototype.parseFuncType = function() {
+		var p, pos, scope, _tuple, params, results;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "FuncType")] });
+			}
+			pos = p.expect(71);
+			scope = ast.NewScope(p.topScope);
+			_tuple = p.parseSignature(scope), params = _tuple[0], results = _tuple[1];
+			return [new ast.FuncType.Ptr(pos, params, results), scope];
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [(go$ptrType(ast.FuncType)).nil, (go$ptrType(ast.Scope)).nil];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseFuncType = function() { return this.go$val.parseFuncType(); };
+	parser.Ptr.prototype.parseMethodSpec = function(scope) {
+		var p, doc, idents, typ, x, isIdent, _tuple, ident, scope$1, _tuple$1, params, results, spec;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "MethodSpec")] });
+			}
+			doc = p.leadComment;
+			idents = (go$sliceType((go$ptrType(ast.Ident)))).nil;
+			typ = null;
+			x = p.parseTypeName();
+			if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1], isIdent && (p.tok === 49)) {
+				idents = new (go$sliceType((go$ptrType(ast.Ident))))([ident]);
+				scope$1 = ast.NewScope((go$ptrType(ast.Scope)).nil);
+				_tuple$1 = p.parseSignature(scope$1), params = _tuple$1[0], results = _tuple$1[1];
+				typ = new ast.FuncType.Ptr(0, params, results);
+			} else {
+				typ = x;
+				p.resolve(typ);
+			}
+			p.expectSemi();
+			spec = new ast.Field.Ptr(doc, idents, typ, (go$ptrType(ast.BasicLit)).nil, p.lineComment);
+			p.declare(spec, null, scope, 5, idents);
+			return spec;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.Field)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseMethodSpec = function(scope) { return this.go$val.parseMethodSpec(scope); };
+	parser.Ptr.prototype.parseInterfaceType = function() {
+		var p, pos, lbrace, scope, list, rbrace;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "InterfaceType")] });
+			}
+			pos = p.expect(76);
+			lbrace = p.expect(51);
+			scope = ast.NewScope((go$ptrType(ast.Scope)).nil);
+			list = (go$sliceType((go$ptrType(ast.Field)))).nil;
+			while (p.tok === 4) {
+				list = go$append(list, p.parseMethodSpec(scope));
+			}
+			rbrace = p.expect(56);
+			return new ast.InterfaceType.Ptr(pos, new ast.FieldList.Ptr(lbrace, list, rbrace), false);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.InterfaceType)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseInterfaceType = function() { return this.go$val.parseInterfaceType(); };
+	parser.Ptr.prototype.parseMapType = function() {
+		var p, pos, key, value;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "MapType")] });
+			}
+			pos = p.expect(77);
+			p.expect(50);
+			key = p.parseType();
+			p.expect(55);
+			value = p.parseType();
+			return new ast.MapType.Ptr(pos, key, value);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.MapType)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseMapType = function() { return this.go$val.parseMapType(); };
+	parser.Ptr.prototype.parseChanType = function() {
+		var p, pos, dir, arrow, value;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "ChanType")] });
+			}
+			pos = p.pos;
+			dir = 3;
+			arrow = 0;
+			if (p.tok === 63) {
+				p.next();
+				if (p.tok === 36) {
+					arrow = p.pos;
+					p.next();
+					dir = 1;
+				}
+			} else {
+				arrow = p.expect(36);
+				p.expect(63);
+				dir = 2;
+			}
+			value = p.parseType();
+			return new ast.ChanType.Ptr(pos, arrow, dir, value);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.ChanType)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseChanType = function() { return this.go$val.parseChanType(); };
+	parser.Ptr.prototype.tryIdentOrType = function() {
+		var p, _ref, _tuple, typ, lparen, typ$1, rparen;
+		p = this;
+		_ref = p.tok;
+		if (_ref === 4) {
+			return p.parseTypeName();
+		} else if (_ref === 50) {
+			return p.parseArrayType();
+		} else if (_ref === 82) {
+			return p.parseStructType();
+		} else if (_ref === 14) {
+			return p.parsePointerType();
+		} else if (_ref === 71) {
+			_tuple = p.parseFuncType(), typ = _tuple[0];
+			return typ;
+		} else if (_ref === 76) {
+			return p.parseInterfaceType();
+		} else if (_ref === 77) {
+			return p.parseMapType();
+		} else if (_ref === 63 || _ref === 36) {
+			return p.parseChanType();
+		} else if (_ref === 49) {
+			lparen = p.pos;
+			p.next();
+			typ$1 = p.parseType();
+			rparen = p.expect(54);
+			return new ast.ParenExpr.Ptr(lparen, typ$1, rparen);
+		}
+		return null;
+	};
+	parser.prototype.tryIdentOrType = function() { return this.go$val.tryIdentOrType(); };
+	parser.Ptr.prototype.tryType = function() {
+		var p, typ;
+		p = this;
+		typ = p.tryIdentOrType();
+		if (!(go$interfaceIsEqual(typ, null))) {
+			p.resolve(typ);
+		}
+		return typ;
+	};
+	parser.prototype.tryType = function() { return this.go$val.tryType(); };
+	parser.Ptr.prototype.parseStmtList = function() {
+		var list, p;
+		list = (go$sliceType(ast.Stmt)).nil;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "StatementList")] });
+			}
+			while (!((p.tok === 62)) && !((p.tok === 66)) && !((p.tok === 56)) && !((p.tok === 1))) {
+				list = go$append(list, p.parseStmt());
+			}
+			return list;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return list;
+		}
+	};
+	parser.prototype.parseStmtList = function() { return this.go$val.parseStmtList(); };
+	parser.Ptr.prototype.parseBody = function(scope) {
+		var p, lbrace, list, rbrace;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Body")] });
+			}
+			lbrace = p.expect(51);
+			p.topScope = scope;
+			p.openLabelScope();
+			list = p.parseStmtList();
+			p.closeLabelScope();
+			p.closeScope();
+			rbrace = p.expect(56);
+			return new ast.BlockStmt.Ptr(lbrace, list, rbrace);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.BlockStmt)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseBody = function(scope) { return this.go$val.parseBody(scope); };
+	parser.Ptr.prototype.parseBlockStmt = function() {
+		var p, lbrace, list, rbrace;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "BlockStmt")] });
+			}
+			lbrace = p.expect(51);
+			p.openScope();
+			list = p.parseStmtList();
+			p.closeScope();
+			rbrace = p.expect(56);
+			return new ast.BlockStmt.Ptr(lbrace, list, rbrace);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.BlockStmt)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseBlockStmt = function() { return this.go$val.parseBlockStmt(); };
+	parser.Ptr.prototype.parseFuncTypeOrLit = function() {
+		var p, _tuple, typ, scope, body;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "FuncTypeOrLit")] });
+			}
+			_tuple = p.parseFuncType(), typ = _tuple[0], scope = _tuple[1];
+			if (!((p.tok === 51))) {
+				return typ;
+			}
+			p.exprLev = p.exprLev + 1 >> 0;
+			body = p.parseBody(scope);
+			p.exprLev = p.exprLev - 1 >> 0;
+			return new ast.FuncLit.Ptr(typ, body);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseFuncTypeOrLit = function() { return this.go$val.parseFuncTypeOrLit(); };
+	parser.Ptr.prototype.parseOperand = function(lhs) {
+		var p, _ref, x, x$1, lparen, x$2, rparen, typ, _tuple, isIdent, pos;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Operand")] });
+			}
+			_ref = p.tok;
+			if (_ref === 4) {
+				x = p.parseIdent();
+				if (!lhs) {
+					p.resolve(x);
+				}
+				return x;
+			} else if (_ref === 5 || _ref === 6 || _ref === 7 || _ref === 8 || _ref === 9) {
+				x$1 = new ast.BasicLit.Ptr(p.pos, p.tok, p.lit);
+				p.next();
+				return x$1;
+			} else if (_ref === 49) {
+				lparen = p.pos;
+				p.next();
+				p.exprLev = p.exprLev + 1 >> 0;
+				x$2 = p.parseRhsOrType();
+				p.exprLev = p.exprLev - 1 >> 0;
+				rparen = p.expect(54);
+				return new ast.ParenExpr.Ptr(lparen, x$2, rparen);
+			} else if (_ref === 71) {
+				return p.parseFuncTypeOrLit();
+			}
+			if (typ = p.tryIdentOrType(), !(go$interfaceIsEqual(typ, null))) {
+				_tuple = (typ !== null && typ.constructor === (go$ptrType(ast.Ident)) ? [typ.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), isIdent = _tuple[1];
+				assert(!isIdent, "type cannot be identifier");
+				return typ;
+			}
+			pos = p.pos;
+			p.errorExpected(pos, "operand");
+			syncStmt(p);
+			return new ast.BadExpr.Ptr(pos, p.pos);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseOperand = function(lhs) { return this.go$val.parseOperand(lhs); };
+	parser.Ptr.prototype.parseSelector = function(x) {
+		var p, sel;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Selector")] });
+			}
+			sel = p.parseIdent();
+			return new ast.SelectorExpr.Ptr(x, sel);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseSelector = function(x) { return this.go$val.parseSelector(x); };
+	parser.Ptr.prototype.parseTypeAssertion = function(x) {
+		var p, lparen, typ, rparen;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "TypeAssertion")] });
+			}
+			lparen = p.expect(49);
+			typ = null;
+			if (p.tok === 84) {
+				p.next();
+			} else {
+				typ = p.parseType();
+			}
+			rparen = p.expect(54);
+			return new ast.TypeAssertExpr.Ptr(x, lparen, typ, rparen);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseTypeAssertion = function(x) { return this.go$val.parseTypeAssertion(x); };
+	parser.Ptr.prototype.parseIndexOrSlice = function(x) {
+		var p, lbrack, index, ncolons, rbrack;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "IndexOrSlice")] });
+			}
+			lbrack = p.expect(50);
+			p.exprLev = p.exprLev + 1 >> 0;
+			index = go$makeNativeArray("Interface", 3, function() { return null; });
+			if (!((p.tok === 58))) {
+				index[0] = p.parseRhs();
+			}
+			ncolons = 0;
+			while ((p.tok === 58) && ncolons < 2) {
+				p.next();
+				ncolons = ncolons + 1 >> 0;
+				if (!((p.tok === 58)) && !((p.tok === 55)) && !((p.tok === 1))) {
+					index[ncolons] = p.parseRhs();
+				}
+			}
+			p.exprLev = p.exprLev - 1 >> 0;
+			rbrack = p.expect(55);
+			if (ncolons > 0) {
+				return new ast.SliceExpr.Ptr(x, lbrack, index[0], index[1], index[2], ncolons === 2, rbrack);
+			}
+			return new ast.IndexExpr.Ptr(x, lbrack, index[0], rbrack);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseIndexOrSlice = function(x) { return this.go$val.parseIndexOrSlice(x); };
+	parser.Ptr.prototype.parseCallOrConversion = function(fun) {
+		var p, lparen, list, ellipsis, rparen;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "CallOrConversion")] });
+			}
+			lparen = p.expect(49);
+			p.exprLev = p.exprLev + 1 >> 0;
+			list = (go$sliceType(ast.Expr)).nil;
+			ellipsis = 0;
+			while (!((p.tok === 54)) && !((p.tok === 1)) && !(new token.Pos(ellipsis)).IsValid()) {
+				list = go$append(list, p.parseRhsOrType());
+				if (p.tok === 48) {
+					ellipsis = p.pos;
+					p.next();
+				}
+				if (!p.atComma("argument list")) {
+					break;
+				}
+				p.next();
+			}
+			p.exprLev = p.exprLev - 1 >> 0;
+			rparen = p.expectClosing(54, "argument list");
+			return new ast.CallExpr.Ptr(fun, lparen, list, ellipsis, rparen);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.CallExpr)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseCallOrConversion = function(fun) { return this.go$val.parseCallOrConversion(fun); };
+	parser.Ptr.prototype.parseElement = function(keyOk) {
+		var p, x, colon;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Element")] });
+			}
+			if (p.tok === 51) {
+				return p.parseLiteralValue(null);
+			}
+			x = p.checkExpr(p.parseExpr(keyOk));
+			if (keyOk) {
+				if (p.tok === 58) {
+					colon = p.pos;
+					p.next();
+					p.tryResolve(x, false);
+					return new ast.KeyValueExpr.Ptr(x, colon, p.parseElement(false));
+				}
+				p.resolve(x);
+			}
+			return x;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseElement = function(keyOk) { return this.go$val.parseElement(keyOk); };
+	parser.Ptr.prototype.parseElementList = function() {
+		var list, p;
+		list = (go$sliceType(ast.Expr)).nil;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "ElementList")] });
+			}
+			while (!((p.tok === 56)) && !((p.tok === 1))) {
+				list = go$append(list, p.parseElement(true));
+				if (!p.atComma("composite literal")) {
+					break;
+				}
+				p.next();
+			}
+			return list;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return list;
+		}
+	};
+	parser.prototype.parseElementList = function() { return this.go$val.parseElementList(); };
+	parser.Ptr.prototype.parseLiteralValue = function(typ) {
+		var p, lbrace, elts, rbrace;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "LiteralValue")] });
+			}
+			lbrace = p.expect(51);
+			elts = (go$sliceType(ast.Expr)).nil;
+			p.exprLev = p.exprLev + 1 >> 0;
+			if (!((p.tok === 56))) {
+				elts = p.parseElementList();
+			}
+			p.exprLev = p.exprLev - 1 >> 0;
+			rbrace = p.expectClosing(56, "composite literal");
+			return new ast.CompositeLit.Ptr(typ, lbrace, elts, rbrace);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseLiteralValue = function(typ) { return this.go$val.parseLiteralValue(typ); };
+	parser.Ptr.prototype.checkExpr = function(x) {
+		var p, _ref, _type;
+		p = this;
+		_ref = unparen(x);
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.BadExpr))) {
+		} else if (_type === (go$ptrType(ast.Ident))) {
+		} else if (_type === (go$ptrType(ast.BasicLit))) {
+		} else if (_type === (go$ptrType(ast.FuncLit))) {
+		} else if (_type === (go$ptrType(ast.CompositeLit))) {
+		} else if (_type === (go$ptrType(ast.ParenExpr))) {
+			throw go$panic(new Go$String("unreachable"));
+		} else if (_type === (go$ptrType(ast.SelectorExpr))) {
+		} else if (_type === (go$ptrType(ast.IndexExpr))) {
+		} else if (_type === (go$ptrType(ast.SliceExpr))) {
+		} else if (_type === (go$ptrType(ast.TypeAssertExpr))) {
+		} else if (_type === (go$ptrType(ast.CallExpr))) {
+		} else if (_type === (go$ptrType(ast.StarExpr))) {
+		} else if (_type === (go$ptrType(ast.UnaryExpr))) {
+		} else if (_type === (go$ptrType(ast.BinaryExpr))) {
+		} else {
+			p.errorExpected(x.Pos(), "expression");
+			x = new ast.BadExpr.Ptr(x.Pos(), x.End());
+		}
+		return x;
+	};
+	parser.prototype.checkExpr = function(x) { return this.go$val.checkExpr(x); };
+	var isTypeName = function(x) {
+		var t, _ref, _type, _tuple, x$1, isIdent;
+		_ref = x;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.BadExpr))) {
+			t = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.Ident))) {
+			t = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.SelectorExpr))) {
+			t = _ref.go$val;
+			_tuple = (x$1 = t.X, (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ident)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), isIdent = _tuple[1];
+			return isIdent;
+		} else {
+			t = _ref;
+			return false;
+		}
+		return true;
+	};
+	var isLiteralType = function(x) {
+		var t, _ref, _type, _tuple, x$1, isIdent;
+		_ref = x;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.BadExpr))) {
+			t = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.Ident))) {
+			t = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.SelectorExpr))) {
+			t = _ref.go$val;
+			_tuple = (x$1 = t.X, (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ident)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), isIdent = _tuple[1];
+			return isIdent;
+		} else if (_type === (go$ptrType(ast.ArrayType))) {
+			t = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.StructType))) {
+			t = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.MapType))) {
+			t = _ref.go$val;
+		} else {
+			t = _ref;
+			return false;
+		}
+		return true;
+	};
+	var deref = function(x) {
+		var isPtr, _tuple, p;
+		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.StarExpr)) ? [x.go$val, true] : [(go$ptrType(ast.StarExpr)).nil, false]), p = _tuple[0], isPtr = _tuple[1], isPtr) {
+			x = p.X;
+		}
+		return x;
+	};
+	var unparen = function(x) {
+		var isParen, _tuple, p;
+		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), p = _tuple[0], isParen = _tuple[1], isParen) {
+			x = unparen(p.X);
+		}
+		return x;
+	};
+	parser.Ptr.prototype.checkExprOrType = function(x) {
+		var p, t, _ref, _type, isEllipsis, _tuple, x$1, len;
+		p = this;
+		_ref = unparen(x);
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.ParenExpr))) {
+			t = _ref.go$val;
+			throw go$panic(new Go$String("unreachable"));
+		} else if (_type === (go$ptrType(ast.UnaryExpr))) {
+			t = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.ArrayType))) {
+			t = _ref.go$val;
+			if (_tuple = (x$1 = t.Len, (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ellipsis)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ellipsis)).nil, false])), len = _tuple[0], isEllipsis = _tuple[1], isEllipsis) {
+				p.error(len.Pos(), "expected array length, found '...'");
+				x = new ast.BadExpr.Ptr(x.Pos(), x.End());
+			}
+		}
+		return x;
+	};
+	parser.prototype.checkExprOrType = function(x) { return this.go$val.checkExprOrType(x); };
+	parser.Ptr.prototype.parsePrimaryExpr = function(lhs) {
+		var p, x, _ref, _ref$1, pos;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "PrimaryExpr")] });
+			}
+			x = p.parseOperand(lhs);
+			L: while (true) {
+				_ref = p.tok;
+				if (_ref === 53) {
+					p.next();
+					if (lhs) {
+						p.resolve(x);
+					}
+					_ref$1 = p.tok;
+					if (_ref$1 === 4) {
+						x = p.parseSelector(p.checkExprOrType(x));
+					} else if (_ref$1 === 49) {
+						x = p.parseTypeAssertion(p.checkExpr(x));
+					} else {
+						pos = p.pos;
+						p.errorExpected(pos, "selector or type assertion");
+						p.next();
+						x = new ast.BadExpr.Ptr(pos, p.pos);
+					}
+				} else if (_ref === 50) {
+					if (lhs) {
+						p.resolve(x);
+					}
+					x = p.parseIndexOrSlice(p.checkExpr(x));
+				} else if (_ref === 49) {
+					if (lhs) {
+						p.resolve(x);
+					}
+					x = p.parseCallOrConversion(p.checkExprOrType(x));
+				} else if (_ref === 51) {
+					if (isLiteralType(x) && (p.exprLev >= 0 || !isTypeName(x))) {
+						if (lhs) {
+							p.resolve(x);
+						}
+						x = p.parseLiteralValue(x);
+					} else {
+						break L;
+					}
+				} else {
+					break L;
+				}
+				lhs = false;
+			}
+			return x;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parsePrimaryExpr = function(lhs) { return this.go$val.parsePrimaryExpr(lhs); };
+	parser.Ptr.prototype.parseUnaryExpr = function(lhs) {
+		var p, _ref, _tuple, pos, op, x, arrow, x$1, ok, _tuple$1, typ, dir, _tuple$2, _tuple$3, _tuple$4, x$2, pos$1, x$3;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "UnaryExpr")] });
+			}
+			_ref = p.tok;
+			if (_ref === 12 || _ref === 13 || _ref === 43 || _ref === 19 || _ref === 17) {
+				_tuple = [p.pos, p.tok], pos = _tuple[0], op = _tuple[1];
+				p.next();
+				x = p.parseUnaryExpr(false);
+				return new ast.UnaryExpr.Ptr(pos, op, p.checkExpr(x));
+			} else if (_ref === 36) {
+				arrow = p.pos;
+				p.next();
+				x$1 = p.parseUnaryExpr(false);
+				if (_tuple$1 = (x$1 !== null && x$1.constructor === (go$ptrType(ast.ChanType)) ? [x$1.go$val, true] : [(go$ptrType(ast.ChanType)).nil, false]), typ = _tuple$1[0], ok = _tuple$1[1], ok) {
+					dir = 1;
+					while (ok && (dir === 1)) {
+						if (typ.Dir === 2) {
+							p.errorExpected(typ.Arrow, "'chan'");
+						}
+						_tuple$2 = [typ.Arrow, arrow, arrow], arrow = _tuple$2[0], typ.Begin = _tuple$2[1], typ.Arrow = _tuple$2[2];
+						_tuple$3 = [typ.Dir, 2], dir = _tuple$3[0], typ.Dir = _tuple$3[1];
+						_tuple$4 = (x$2 = typ.Value, (x$2 !== null && x$2.constructor === (go$ptrType(ast.ChanType)) ? [x$2.go$val, true] : [(go$ptrType(ast.ChanType)).nil, false])), typ = _tuple$4[0], ok = _tuple$4[1];
+					}
+					if (dir === 1) {
+						p.errorExpected(arrow, "channel type");
+					}
+					return x$1;
+				}
+				return new ast.UnaryExpr.Ptr(arrow, 36, p.checkExpr(x$1));
+			} else if (_ref === 14) {
+				pos$1 = p.pos;
+				p.next();
+				x$3 = p.parseUnaryExpr(false);
+				return new ast.StarExpr.Ptr(pos$1, p.checkExprOrType(x$3));
+			}
+			return p.parsePrimaryExpr(lhs);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseUnaryExpr = function(lhs) { return this.go$val.parseUnaryExpr(lhs); };
+	parser.Ptr.prototype.tokPrec = function() {
+		var p, tok;
+		p = this;
+		tok = p.tok;
+		if (p.inRhs && (tok === 42)) {
+			tok = 39;
+		}
+		return [tok, (new token.Token(tok)).Precedence()];
+	};
+	parser.prototype.tokPrec = function() { return this.go$val.tokPrec(); };
+	parser.Ptr.prototype.parseBinaryExpr = function(lhs, prec1) {
+		var p, x, _tuple, prec, _tuple$1, op, oprec, pos, y;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "BinaryExpr")] });
+			}
+			x = p.parseUnaryExpr(lhs);
+			_tuple = p.tokPrec(), prec = _tuple[1];
+			while (prec >= prec1) {
+				while (true) {
+					_tuple$1 = p.tokPrec(), op = _tuple$1[0], oprec = _tuple$1[1];
+					if (!((oprec === prec))) {
+						break;
+					}
+					pos = p.expect(op);
+					if (lhs) {
+						p.resolve(x);
+						lhs = false;
+					}
+					y = p.parseBinaryExpr(false, prec + 1 >> 0);
+					x = new ast.BinaryExpr.Ptr(p.checkExpr(x), pos, op, p.checkExpr(y));
+				}
+				prec = prec - 1 >> 0;
+			}
+			return x;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseBinaryExpr = function(lhs, prec1) { return this.go$val.parseBinaryExpr(lhs, prec1); };
+	parser.Ptr.prototype.parseExpr = function(lhs) {
+		var p;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Expression")] });
+			}
+			return p.parseBinaryExpr(lhs, 1);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseExpr = function(lhs) { return this.go$val.parseExpr(lhs); };
+	parser.Ptr.prototype.parseRhs = function() {
+		var p, old, x;
+		p = this;
+		old = p.inRhs;
+		p.inRhs = true;
+		x = p.checkExpr(p.parseExpr(false));
+		p.inRhs = old;
+		return x;
+	};
+	parser.prototype.parseRhs = function() { return this.go$val.parseRhs(); };
+	parser.Ptr.prototype.parseRhsOrType = function() {
+		var p, old, x;
+		p = this;
+		old = p.inRhs;
+		p.inRhs = true;
+		x = p.checkExprOrType(p.parseExpr(false));
+		p.inRhs = old;
+		return x;
+	};
+	parser.prototype.parseRhsOrType = function() { return this.go$val.parseRhsOrType(); };
+	parser.Ptr.prototype.parseSimpleStmt = function(mode) {
+		var p, x, _ref, _tuple, pos, tok, y, isRange, pos$1, as, _slice, _index, _ref$1, colon, isIdent, _tuple$1, x$1, _slice$1, _index$1, label, stmt, _slice$2, _index$2, arrow, y$1, _slice$3, _index$3, _slice$4, _index$4, s, _slice$5, _index$5;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "SimpleStmt")] });
+			}
+			x = p.parseLhsList();
+			_ref = p.tok;
+			if (_ref === 47 || _ref === 42 || _ref === 23 || _ref === 24 || _ref === 25 || _ref === 26 || _ref === 27 || _ref === 28 || _ref === 29 || _ref === 30 || _ref === 31 || _ref === 32 || _ref === 33) {
+				_tuple = [p.pos, p.tok], pos = _tuple[0], tok = _tuple[1];
+				p.next();
+				y = (go$sliceType(ast.Expr)).nil;
+				isRange = false;
+				if ((mode === 2) && (p.tok === 79) && ((tok === 47) || (tok === 42))) {
+					pos$1 = p.pos;
+					p.next();
+					y = new (go$sliceType(ast.Expr))([new ast.UnaryExpr.Ptr(pos$1, 79, p.parseRhs())]);
+					isRange = true;
+				} else {
+					y = p.parseRhsList();
+				}
+				as = new ast.AssignStmt.Ptr(x, pos, tok, y);
+				if (tok === 47) {
+					p.shortVarDecl(as, x);
+				}
+				return [as, isRange];
+			}
+			if (x.length > 1) {
+				p.errorExpected((_slice = x, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos(), "1 expression");
+			}
+			_ref$1 = p.tok;
+			if (_ref$1 === 58) {
+				colon = p.pos;
+				p.next();
+				if (_tuple$1 = (x$1 = (_slice$1 = x, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ident)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), label = _tuple$1[0], isIdent = _tuple$1[1], (mode === 1) && isIdent) {
+					stmt = new ast.LabeledStmt.Ptr(label, colon, p.parseStmt());
+					p.declare(stmt, null, p.labelScope, 6, new (go$sliceType((go$ptrType(ast.Ident))))([label]));
+					return [stmt, false];
+				}
+				p.error(colon, "illegal label declaration");
+				return [new ast.BadStmt.Ptr((_slice$2 = x, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Pos(), colon + 1 >> 0), false];
+			} else if (_ref$1 === 36) {
+				arrow = p.pos;
+				p.next();
+				y$1 = p.parseRhs();
+				return [new ast.SendStmt.Ptr((_slice$3 = x, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), arrow, y$1), false];
+			} else if (_ref$1 === 37 || _ref$1 === 38) {
+				s = new ast.IncDecStmt.Ptr((_slice$4 = x, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), p.pos, p.tok);
+				p.next();
+				return [s, false];
+			}
+			return [new ast.ExprStmt.Ptr((_slice$5 = x, _index$5 = 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))), false];
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [null, false];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseSimpleStmt = function(mode) { return this.go$val.parseSimpleStmt(mode); };
+	parser.Ptr.prototype.parseCallExpr = function() {
+		var p, x, isCall, _tuple, call, isBad, _tuple$1;
+		p = this;
+		x = p.parseRhsOrType();
+		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.CallExpr)) ? [x.go$val, true] : [(go$ptrType(ast.CallExpr)).nil, false]), call = _tuple[0], isCall = _tuple[1], isCall) {
+			return call;
+		}
+		if (_tuple$1 = (x !== null && x.constructor === (go$ptrType(ast.BadExpr)) ? [x.go$val, true] : [(go$ptrType(ast.BadExpr)).nil, false]), isBad = _tuple$1[1], !isBad) {
+			p.errorExpected(x.Pos(), "function/method call");
+		}
+		return (go$ptrType(ast.CallExpr)).nil;
+	};
+	parser.prototype.parseCallExpr = function() { return this.go$val.parseCallExpr(); };
+	parser.Ptr.prototype.parseGoStmt = function() {
+		var p, pos, call;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "GoStmt")] });
+			}
+			pos = p.expect(72);
+			call = p.parseCallExpr();
+			p.expectSemi();
+			if (call === (go$ptrType(ast.CallExpr)).nil) {
+				return new ast.BadStmt.Ptr(pos, pos + 2 >> 0);
+			}
+			return new ast.GoStmt.Ptr(pos, call);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseGoStmt = function() { return this.go$val.parseGoStmt(); };
+	parser.Ptr.prototype.parseDeferStmt = function() {
+		var p, pos, call;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "DeferStmt")] });
+			}
+			pos = p.expect(67);
+			call = p.parseCallExpr();
+			p.expectSemi();
+			if (call === (go$ptrType(ast.CallExpr)).nil) {
+				return new ast.BadStmt.Ptr(pos, pos + 5 >> 0);
+			}
+			return new ast.DeferStmt.Ptr(pos, call);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseDeferStmt = function() { return this.go$val.parseDeferStmt(); };
+	parser.Ptr.prototype.parseReturnStmt = function() {
+		var p, pos, x;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "ReturnStmt")] });
+			}
+			pos = p.pos;
+			p.expect(80);
+			x = (go$sliceType(ast.Expr)).nil;
+			if (!((p.tok === 57)) && !((p.tok === 56))) {
+				x = p.parseRhsList();
+			}
+			p.expectSemi();
+			return new ast.ReturnStmt.Ptr(pos, x);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.ReturnStmt)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseReturnStmt = function() { return this.go$val.parseReturnStmt(); };
+	parser.Ptr.prototype.parseBranchStmt = function(tok) {
+		var p, pos, label, n, _slice, _index, _slice$1, _index$1;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "BranchStmt")] });
+			}
+			pos = p.expect(tok);
+			label = (go$ptrType(ast.Ident)).nil;
+			if (!((tok === 69)) && (p.tok === 4)) {
+				label = p.parseIdent();
+				n = p.targetStack.length - 1 >> 0;
+				_slice$1 = p.targetStack, _index$1 = n, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = go$append((_slice = p.targetStack, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), label)) : go$throwRuntimeError("index out of range");
+			}
+			p.expectSemi();
+			return new ast.BranchStmt.Ptr(pos, tok, label);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.BranchStmt)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseBranchStmt = function(tok) { return this.go$val.parseBranchStmt(tok); };
+	parser.Ptr.prototype.makeExpr = function(s) {
+		var p, isExpr, _tuple, es;
+		p = this;
+		if (go$interfaceIsEqual(s, null)) {
+			return null;
+		}
+		if (_tuple = (s !== null && s.constructor === (go$ptrType(ast.ExprStmt)) ? [s.go$val, true] : [(go$ptrType(ast.ExprStmt)).nil, false]), es = _tuple[0], isExpr = _tuple[1], isExpr) {
+			return p.checkExpr(es.X);
+		}
+		p.error(s.Pos(), "expected condition, found simple statement");
+		return new ast.BadExpr.Ptr(s.Pos(), s.End());
+	};
+	parser.prototype.makeExpr = function(s) { return this.go$val.makeExpr(s); };
+	parser.Ptr.prototype.parseIfStmt = function() {
+		var p, pos, s, x, prevLev, _tuple, body, else_;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "IfStmt")] });
+			}
+			pos = p.expect(74);
+			p.openScope();
+			go$deferred.push({ recv: p, method: "closeScope", args: [] });
+			s = null;
+			x = null;
+			{
+				prevLev = p.exprLev;
+				p.exprLev = -1;
+				if (p.tok === 57) {
+					p.next();
+					x = p.parseRhs();
+				} else {
+					_tuple = p.parseSimpleStmt(0), s = _tuple[0];
+					if (p.tok === 57) {
+						p.next();
+						x = p.parseRhs();
+					} else {
+						x = p.makeExpr(s);
+						s = null;
+					}
+				}
+				p.exprLev = prevLev;
+			}
+			body = p.parseBlockStmt();
+			else_ = null;
+			if (p.tok === 68) {
+				p.next();
+				else_ = p.parseStmt();
+			} else {
+				p.expectSemi();
+			}
+			return new ast.IfStmt.Ptr(pos, s, x, body, else_);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.IfStmt)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseIfStmt = function() { return this.go$val.parseIfStmt(); };
+	parser.Ptr.prototype.parseTypeList = function() {
+		var list, p;
+		list = (go$sliceType(ast.Expr)).nil;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "TypeList")] });
+			}
+			list = go$append(list, p.parseType());
+			while (p.tok === 52) {
+				p.next();
+				list = go$append(list, p.parseType());
+			}
+			return list;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return list;
+		}
+	};
+	parser.prototype.parseTypeList = function() { return this.go$val.parseTypeList(); };
+	parser.Ptr.prototype.parseCaseClause = function(typeSwitch) {
+		var p, pos, list, colon, body;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "CaseClause")] });
+			}
+			pos = p.pos;
+			list = (go$sliceType(ast.Expr)).nil;
+			if (p.tok === 62) {
+				p.next();
+				if (typeSwitch) {
+					list = p.parseTypeList();
+				} else {
+					list = p.parseRhsList();
+				}
+			} else {
+				p.expect(66);
+			}
+			colon = p.expect(58);
+			p.openScope();
+			body = p.parseStmtList();
+			p.closeScope();
+			return new ast.CaseClause.Ptr(pos, list, colon, body);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.CaseClause)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseCaseClause = function(typeSwitch) { return this.go$val.parseCaseClause(typeSwitch); };
+	var isTypeSwitchAssert = function(x) {
+		var _tuple, a, ok;
+		_tuple = (x !== null && x.constructor === (go$ptrType(ast.TypeAssertExpr)) ? [x.go$val, true] : [(go$ptrType(ast.TypeAssertExpr)).nil, false]), a = _tuple[0], ok = _tuple[1];
+		return ok && go$interfaceIsEqual(a.Type, null);
+	};
+	var isTypeSwitchGuard = function(s) {
+		var t, _ref, _type, _slice, _index;
+		_ref = s;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.ExprStmt))) {
+			t = _ref.go$val;
+			return isTypeSwitchAssert(t.X);
+		} else if (_type === (go$ptrType(ast.AssignStmt))) {
+			t = _ref.go$val;
+			return (t.Lhs.length === 1) && (t.Tok === 47) && (t.Rhs.length === 1) && isTypeSwitchAssert((_slice = t.Rhs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
+		}
+		return false;
+	};
+	parser.Ptr.prototype.parseSwitchStmt = function() {
+		var p, pos, _tuple, s1, s2, prevLev, _tuple$1, _tuple$2, typeSwitch, lbrace, list, rbrace, body;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "SwitchStmt")] });
+			}
+			pos = p.expect(83);
+			p.openScope();
+			go$deferred.push({ recv: p, method: "closeScope", args: [] });
+			_tuple = [null, null], s1 = _tuple[0], s2 = _tuple[1];
+			if (!((p.tok === 51))) {
+				prevLev = p.exprLev;
+				p.exprLev = -1;
+				if (!((p.tok === 57))) {
+					_tuple$1 = p.parseSimpleStmt(0), s2 = _tuple$1[0];
+				}
+				if (p.tok === 57) {
+					p.next();
+					s1 = s2;
+					s2 = null;
+					if (!((p.tok === 51))) {
+						p.openScope();
+						go$deferred.push({ recv: p, method: "closeScope", args: [] });
+						_tuple$2 = p.parseSimpleStmt(0), s2 = _tuple$2[0];
+					}
+				}
+				p.exprLev = prevLev;
+			}
+			typeSwitch = isTypeSwitchGuard(s2);
+			lbrace = p.expect(51);
+			list = (go$sliceType(ast.Stmt)).nil;
+			while ((p.tok === 62) || (p.tok === 66)) {
+				list = go$append(list, p.parseCaseClause(typeSwitch));
+			}
+			rbrace = p.expect(56);
+			p.expectSemi();
+			body = new ast.BlockStmt.Ptr(lbrace, list, rbrace);
+			if (typeSwitch) {
+				return new ast.TypeSwitchStmt.Ptr(pos, s1, s2, body);
+			}
+			return new ast.SwitchStmt.Ptr(pos, s1, p.makeExpr(s2), body);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseSwitchStmt = function() { return this.go$val.parseSwitchStmt(); };
+	parser.Ptr.prototype.parseCommClause = function() {
+		var p, pos, comm, lhs, _slice, _index, arrow, rhs, _slice$1, _index$1, tok, _slice$2, _index$2, pos$1, rhs$1, as, _slice$3, _index$3, _slice$4, _index$4, colon, body;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "CommClause")] });
+			}
+			p.openScope();
+			pos = p.pos;
+			comm = null;
+			if (p.tok === 62) {
+				p.next();
+				lhs = p.parseLhsList();
+				if (p.tok === 36) {
+					if (lhs.length > 1) {
+						p.errorExpected((_slice = lhs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos(), "1 expression");
+					}
+					arrow = p.pos;
+					p.next();
+					rhs = p.parseRhs();
+					comm = new ast.SendStmt.Ptr((_slice$1 = lhs, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), arrow, rhs);
+				} else {
+					if (tok = p.tok, (tok === 42) || (tok === 47)) {
+						if (lhs.length > 2) {
+							p.errorExpected((_slice$2 = lhs, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Pos(), "1 or 2 expressions");
+							lhs = go$subslice(lhs, 0, 2);
+						}
+						pos$1 = p.pos;
+						p.next();
+						rhs$1 = p.parseRhs();
+						as = new ast.AssignStmt.Ptr(lhs, pos$1, tok, new (go$sliceType(ast.Expr))([rhs$1]));
+						if (tok === 47) {
+							p.shortVarDecl(as, lhs);
+						}
+						comm = as;
+					} else {
+						if (lhs.length > 1) {
+							p.errorExpected((_slice$3 = lhs, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Pos(), "1 expression");
+						}
+						comm = new ast.ExprStmt.Ptr((_slice$4 = lhs, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")));
+					}
+				}
+			} else {
+				p.expect(66);
+			}
+			colon = p.expect(58);
+			body = p.parseStmtList();
+			p.closeScope();
+			return new ast.CommClause.Ptr(pos, comm, colon, body);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.CommClause)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseCommClause = function() { return this.go$val.parseCommClause(); };
+	parser.Ptr.prototype.parseSelectStmt = function() {
+		var p, pos, lbrace, list, rbrace, body;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "SelectStmt")] });
+			}
+			pos = p.expect(81);
+			lbrace = p.expect(51);
+			list = (go$sliceType(ast.Stmt)).nil;
+			while ((p.tok === 62) || (p.tok === 66)) {
+				list = go$append(list, p.parseCommClause());
+			}
+			rbrace = p.expect(56);
+			p.expectSemi();
+			body = new ast.BlockStmt.Ptr(lbrace, list, rbrace);
+			return new ast.SelectStmt.Ptr(pos, body);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.SelectStmt)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseSelectStmt = function() { return this.go$val.parseSelectStmt(); };
+	parser.Ptr.prototype.parseForStmt = function() {
+		var p, pos, _tuple, s1, s2, s3, isRange, prevLev, _tuple$1, _tuple$2, _tuple$3, body, as, _tuple$4, key, value, _ref, _slice, _index, _slice$1, _index$1, _tuple$5, _slice$2, _index$2, _slice$3, _index$3, x, _slice$4, _index$4, x$1;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "ForStmt")] });
+			}
+			pos = p.expect(70);
+			p.openScope();
+			go$deferred.push({ recv: p, method: "closeScope", args: [] });
+			_tuple = [null, null, null], s1 = _tuple[0], s2 = _tuple[1], s3 = _tuple[2];
+			isRange = false;
+			if (!((p.tok === 51))) {
+				prevLev = p.exprLev;
+				p.exprLev = -1;
+				if (!((p.tok === 57))) {
+					_tuple$1 = p.parseSimpleStmt(2), s2 = _tuple$1[0], isRange = _tuple$1[1];
+				}
+				if (!isRange && (p.tok === 57)) {
+					p.next();
+					s1 = s2;
+					s2 = null;
+					if (!((p.tok === 57))) {
+						_tuple$2 = p.parseSimpleStmt(0), s2 = _tuple$2[0];
+					}
+					p.expectSemi();
+					if (!((p.tok === 51))) {
+						_tuple$3 = p.parseSimpleStmt(0), s3 = _tuple$3[0];
+					}
+				}
+				p.exprLev = prevLev;
+			}
+			body = p.parseBlockStmt();
+			p.expectSemi();
+			if (isRange) {
+				as = (s2 !== null && s2.constructor === (go$ptrType(ast.AssignStmt)) ? s2.go$val : go$typeAssertionFailed(s2, (go$ptrType(ast.AssignStmt))));
+				_tuple$4 = [null, null], key = _tuple$4[0], value = _tuple$4[1];
+				_ref = as.Lhs.length;
+				if (_ref === 2) {
+					_tuple$5 = [(_slice = as.Lhs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = as.Lhs, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], key = _tuple$5[0], value = _tuple$5[1];
+				} else if (_ref === 1) {
+					key = (_slice$2 = as.Lhs, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				} else {
+					p.errorExpected((_slice$3 = as.Lhs, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Pos(), "1 or 2 expressions");
+					return new ast.BadStmt.Ptr(pos, body.End());
+				}
+				x$1 = (x = (_slice$4 = as.Rhs, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.UnaryExpr)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(ast.UnaryExpr))))).X;
+				return new ast.RangeStmt.Ptr(pos, key, value, as.TokPos, as.Tok, x$1, body);
+			}
+			return new ast.ForStmt.Ptr(pos, s1, p.makeExpr(s2), s3, body);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseForStmt = function() { return this.go$val.parseForStmt(); };
+	parser.Ptr.prototype.parseStmt = function() {
+		var s, p, _ref, _tuple, isLabeledStmt, _tuple$1, pos;
+		s = null;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Statement")] });
+			}
+			_ref = p.tok;
+			if (_ref === 64 || _ref === 84 || _ref === 85) {
+				s = new ast.DeclStmt.Ptr(p.parseDecl(syncStmt));
+			} else if (_ref === 4 || _ref === 5 || _ref === 6 || _ref === 7 || _ref === 8 || _ref === 9 || _ref === 71 || _ref === 49 || _ref === 50 || _ref === 82 || _ref === 12 || _ref === 13 || _ref === 14 || _ref === 17 || _ref === 19 || _ref === 36 || _ref === 43) {
+				_tuple = p.parseSimpleStmt(1), s = _tuple[0];
+				if (_tuple$1 = (s !== null && s.constructor === (go$ptrType(ast.LabeledStmt)) ? [s.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), isLabeledStmt = _tuple$1[1], !isLabeledStmt) {
+					p.expectSemi();
+				}
+			} else if (_ref === 72) {
+				s = p.parseGoStmt();
+			} else if (_ref === 67) {
+				s = p.parseDeferStmt();
+			} else if (_ref === 80) {
+				s = p.parseReturnStmt();
+			} else if (_ref === 61 || _ref === 65 || _ref === 73 || _ref === 69) {
+				s = p.parseBranchStmt(p.tok);
+			} else if (_ref === 51) {
+				s = p.parseBlockStmt();
+				p.expectSemi();
+			} else if (_ref === 74) {
+				s = p.parseIfStmt();
+			} else if (_ref === 83) {
+				s = p.parseSwitchStmt();
+			} else if (_ref === 81) {
+				s = p.parseSelectStmt();
+			} else if (_ref === 70) {
+				s = p.parseForStmt();
+			} else if (_ref === 57) {
+				s = new ast.EmptyStmt.Ptr(p.pos);
+				p.next();
+			} else if (_ref === 56) {
+				s = new ast.EmptyStmt.Ptr(p.pos);
+			} else {
+				pos = p.pos;
+				p.errorExpected(pos, "statement");
+				syncStmt(p);
+				s = new ast.BadStmt.Ptr(pos, p.pos);
+			}
+			return s;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return s;
+		}
+	};
+	parser.prototype.parseStmt = function() { return this.go$val.parseStmt(); };
+	var isValidImport = function(lit) {
+		var _tuple, s, _ref, _i, _rune, r;
+		_tuple = strconv.Unquote(lit), s = _tuple[0];
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			r = _rune[0];
+			if (!unicode.IsGraphic(r) || unicode.IsSpace(r) || strings.ContainsRune("!\"#$%&'()*,:;<=>?[\\]^{|}`\xEF\xBF\xBD", r)) {
+				return false;
+			}
+		}
+		return !(s === "");
+	};
+	parser.Ptr.prototype.parseImportSpec = function(doc, param, param$1) {
+		var p, ident, _ref, pos, path, spec;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "ImportSpec")] });
+			}
+			ident = (go$ptrType(ast.Ident)).nil;
+			_ref = p.tok;
+			if (_ref === 53) {
+				ident = new ast.Ident.Ptr(p.pos, ".", (go$ptrType(ast.Object)).nil);
+				p.next();
+			} else if (_ref === 4) {
+				ident = p.parseIdent();
+			}
+			pos = p.pos;
+			path = "";
+			if (p.tok === 9) {
+				path = p.lit;
+				if (!isValidImport(path)) {
+					p.error(pos, "invalid import path: " + path);
+				}
+				p.next();
+			} else {
+				p.expect(9);
+			}
+			p.expectSemi();
+			spec = new ast.ImportSpec.Ptr(doc, ident, new ast.BasicLit.Ptr(pos, 9, path), p.lineComment, 0);
+			p.imports = go$append(p.imports, spec);
+			return spec;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseImportSpec = function(doc, param, param$1) { return this.go$val.parseImportSpec(doc, param, param$1); };
+	parser.Ptr.prototype.parseValueSpec = function(doc, keyword, iota) {
+		var p, idents, typ, values, spec, kind;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, (new token.Token(keyword)).String() + "Spec")] });
+			}
+			idents = p.parseIdentList();
+			typ = p.tryType();
+			values = (go$sliceType(ast.Expr)).nil;
+			if (p.tok === 42) {
+				p.next();
+				values = p.parseRhsList();
+			}
+			p.expectSemi();
+			spec = new ast.ValueSpec.Ptr(doc, idents, typ, values, p.lineComment);
+			kind = 2;
+			if (keyword === 85) {
+				kind = 4;
+			}
+			p.declare(spec, new Go$Int(iota), p.topScope, kind, idents);
+			return spec;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseValueSpec = function(doc, keyword, iota) { return this.go$val.parseValueSpec(doc, keyword, iota); };
+	parser.Ptr.prototype.parseTypeSpec = function(doc, param, param$1) {
+		var p, ident, spec;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "TypeSpec")] });
+			}
+			ident = p.parseIdent();
+			spec = new ast.TypeSpec.Ptr(doc, ident, null, (go$ptrType(ast.CommentGroup)).nil);
+			p.declare(spec, null, p.topScope, 3, new (go$sliceType((go$ptrType(ast.Ident))))([ident]));
+			spec.Type = p.parseType();
+			p.expectSemi();
+			spec.Comment = p.lineComment;
+			return spec;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseTypeSpec = function(doc, param, param$1) { return this.go$val.parseTypeSpec(doc, param, param$1); };
+	parser.Ptr.prototype.parseGenDecl = function(keyword, f) {
+		var p, doc, pos, _tuple, lparen, rparen, list, iota;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "GenDecl(" + (new token.Token(keyword)).String() + ")")] });
+			}
+			doc = p.leadComment;
+			pos = p.expect(keyword);
+			_tuple = [0, 0], lparen = _tuple[0], rparen = _tuple[1];
+			list = (go$sliceType(ast.Spec)).nil;
+			if (p.tok === 49) {
+				lparen = p.pos;
+				p.next();
+				iota = 0;
+				while (!((p.tok === 54)) && !((p.tok === 1))) {
+					list = go$append(list, f(p.leadComment, keyword, iota));
+					iota = iota + 1 >> 0;
+				}
+				rparen = p.expect(54);
+				p.expectSemi();
+			} else {
+				list = go$append(list, f((go$ptrType(ast.CommentGroup)).nil, keyword, 0));
+			}
+			return new ast.GenDecl.Ptr(doc, pos, keyword, lparen, list, rparen);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.GenDecl)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseGenDecl = function(keyword, f) { return this.go$val.parseGenDecl(keyword, f); };
+	parser.Ptr.prototype.parseReceiver = function(scope) {
+		var p, par, _slice, _index, recv, base, isIdent, _tuple, isBad, _tuple$1;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Receiver")] });
+			}
+			par = p.parseParameters(scope, false);
+			if (!((par.NumFields() === 1))) {
+				p.errorExpected(par.Opening, "exactly one receiver");
+				par.List = new (go$sliceType((go$ptrType(ast.Field))))([new ast.Field.Ptr((go$ptrType(ast.CommentGroup)).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, new ast.BadExpr.Ptr(par.Opening, par.Closing + 1 >> 0), (go$ptrType(ast.BasicLit)).nil, (go$ptrType(ast.CommentGroup)).nil)]);
+				return par;
+			}
+			recv = (_slice = par.List, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			base = deref(recv.Type);
+			if (_tuple = (base !== null && base.constructor === (go$ptrType(ast.Ident)) ? [base.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), isIdent = _tuple[1], !isIdent) {
+				if (_tuple$1 = (base !== null && base.constructor === (go$ptrType(ast.BadExpr)) ? [base.go$val, true] : [(go$ptrType(ast.BadExpr)).nil, false]), isBad = _tuple$1[1], !isBad) {
+					p.errorExpected(base.Pos(), "(unqualified) identifier");
+				}
+				par.List = new (go$sliceType((go$ptrType(ast.Field))))([new ast.Field.Ptr((go$ptrType(ast.CommentGroup)).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, new ast.BadExpr.Ptr(recv.Pos(), recv.End()), (go$ptrType(ast.BasicLit)).nil, (go$ptrType(ast.CommentGroup)).nil)]);
+			}
+			return par;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.FieldList)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseReceiver = function(scope) { return this.go$val.parseReceiver(scope); };
+	parser.Ptr.prototype.parseFuncDecl = function() {
+		var p, doc, pos, scope, recv, ident, _tuple, params, results, body, decl;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "FunctionDecl")] });
+			}
+			doc = p.leadComment;
+			pos = p.expect(71);
+			scope = ast.NewScope(p.topScope);
+			recv = (go$ptrType(ast.FieldList)).nil;
+			if (p.tok === 49) {
+				recv = p.parseReceiver(scope);
+			}
+			ident = p.parseIdent();
+			_tuple = p.parseSignature(scope), params = _tuple[0], results = _tuple[1];
+			body = (go$ptrType(ast.BlockStmt)).nil;
+			if (p.tok === 51) {
+				body = p.parseBody(scope);
+			}
+			p.expectSemi();
+			decl = new ast.FuncDecl.Ptr(doc, recv, ident, new ast.FuncType.Ptr(pos, params, results), body);
+			if (recv === (go$ptrType(ast.FieldList)).nil) {
+				if (!(ident.Name === "init")) {
+					p.declare(decl, null, p.pkgScope, 5, new (go$sliceType((go$ptrType(ast.Ident))))([ident]));
+				}
+			}
+			return decl;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.FuncDecl)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseFuncDecl = function() { return this.go$val.parseFuncDecl(); };
+	parser.Ptr.prototype.parseDecl = function(sync) {
+		var p, f, _ref, doc, keyword, iota, _recv, doc$1, _, _$1, _recv$1, pos;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "Declaration")] });
+			}
+			f = go$throwNilPointerError;
+			_ref = p.tok;
+			if (_ref === 64 || _ref === 85) {
+				f = (_recv = p, function(doc, keyword, iota) { return _recv.parseValueSpec(doc, keyword, iota); });
+			} else if (_ref === 84) {
+				f = (_recv$1 = p, function(doc$1, _, _$1) { return _recv$1.parseTypeSpec(doc$1, _, _$1); });
+			} else if (_ref === 71) {
+				return p.parseFuncDecl();
+			} else {
+				pos = p.pos;
+				p.errorExpected(pos, "declaration");
+				sync(p);
+				return new ast.BadDecl.Ptr(pos, p.pos);
+			}
+			return p.parseGenDecl(p.tok, f);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseDecl = function(sync) { return this.go$val.parseDecl(sync); };
+	parser.Ptr.prototype.parseFile = function() {
+		var p, doc, pos, ident, decls, doc$1, _, _$1, _recv, i, _ref, _i, _slice, _index, ident$1, _slice$1, _index$1;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.trace) {
+				go$deferred.push({ fun: un, args: [trace(p, "File")] });
+			}
+			if (!((p.errors.Len() === 0))) {
+				return (go$ptrType(ast.File)).nil;
+			}
+			doc = p.leadComment;
+			pos = p.expect(78);
+			ident = p.parseIdent();
+			if (ident.Name === "_" && !((((p.mode & 16) >>> 0) === 0))) {
+				p.error(p.pos, "invalid package name _");
+			}
+			p.expectSemi();
+			if (!((p.errors.Len() === 0))) {
+				return (go$ptrType(ast.File)).nil;
+			}
+			p.openScope();
+			p.pkgScope = p.topScope;
+			decls = (go$sliceType(ast.Decl)).nil;
+			if (((p.mode & 1) >>> 0) === 0) {
+				while (p.tok === 75) {
+					decls = go$append(decls, p.parseGenDecl(75, (_recv = p, function(doc$1, _, _$1) { return _recv.parseImportSpec(doc$1, _, _$1); })));
+				}
+				if (((p.mode & 2) >>> 0) === 0) {
+					while (!((p.tok === 1))) {
+						decls = go$append(decls, p.parseDecl(syncDecl));
+					}
+				}
+			}
+			p.closeScope();
+			assert(p.topScope === (go$ptrType(ast.Scope)).nil, "unbalanced scopes");
+			assert(p.labelScope === (go$ptrType(ast.Scope)).nil, "unbalanced label scopes");
+			i = 0;
+			_ref = p.unresolved;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				ident$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				assert(ident$1.Obj === unresolved, "object already resolved");
+				ident$1.Obj = p.pkgScope.Lookup(ident$1.Name);
+				if (ident$1.Obj === (go$ptrType(ast.Object)).nil) {
+					_slice$1 = p.unresolved, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ident$1) : go$throwRuntimeError("index out of range");
+					i = i + 1 >> 0;
+				}
+			}
+			return new ast.File.Ptr(doc, pos, ident, decls, p.pkgScope, p.imports, go$subslice(p.unresolved, 0, i), p.comments);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(ast.File)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	parser.prototype.parseFile = function() { return this.go$val.parseFile(); };
+	go$pkg.PackageClauseOnly = 1;
+	go$pkg.ImportsOnly = 2;
+	go$pkg.ParseComments = 4;
+	go$pkg.Trace = 8;
+	go$pkg.DeclarationErrors = 16;
+	go$pkg.SpuriousErrors = 32;
+	go$pkg.AllErrors = 32;
+	var basic = 0;
+	var labelOk = 1;
+	var rangeOk = 2;
+	var unresolved = (go$ptrType(ast.Object)).nil;
+	go$pkg.init = function() {
+		unresolved = new ast.Object.Ptr();
+	};

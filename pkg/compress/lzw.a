@@ -1,0 +1,459 @@
+0ÇN`Ç	package lzw
+import bufio "bufio"
+import errors "errors"
+import fmt "fmt"
+import io "io"
+const @"".LSB @"".Order = 0x0
+const @"".MSB @"".Order = 0x1
+func @"".NewReader(@"".r @"io".Reader, @"".order @"".Order, @"".litWidth int) (? @"io".ReadCloser)
+func @"".NewWriter(@"".w @"io".Writer, @"".order @"".Order, @"".litWidth int) (? @"io".WriteCloser)
+type @"".Order int
+type @"".decoder struct { @"".r @"io".ByteReader; @"".bits uint32; @"".nBits uint; @"".width uint; @"".read func (? *@"".decoder) (? uint16, ? error); @"".litWidth int; @"".err error; @"".clear uint16; @"".eof uint16; @"".hi uint16; @"".overflow uint16; @"".last uint16; @"".suffix [4096]uint8; @"".prefix [4096]uint16; @"".output [8192]byte; @"".o int; @"".toRead []byte }
+func (? *@"".decoder) @"".Close() (? error)
+func (? *@"".decoder) @"".Read(@"".b []byte) (? int, ? error)
+func (? *@"".decoder) @"".decode() ()
+func (? *@"".decoder) @"".flush() ()
+func (? *@"".decoder) @"".readLSB() (? uint16, ? error)
+func (? *@"".decoder) @"".readMSB() (? uint16, ? error)
+type @"".encoder struct { @"".w @"".writer; @"".order @"".Order; @"".write func (? *@"".encoder, ? uint32) (? error); @"".bits uint32; @"".nBits uint; @"".width uint; @"".litWidth uint; @"".hi uint32; @"".overflow uint32; @"".savedCode uint32; @"".err error; @"".table [16384]uint32 }
+func (? *@"".encoder) @"".Close() (? error)
+func (? *@"".encoder) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"".encoder) @"".incHi() (? error)
+func (? *@"".encoder) @"".writeLSB(@"".c uint32) (? error)
+func (? *@"".encoder) @"".writeMSB(@"".c uint32) (? error)
+type @"".errWriteCloser struct { @"".err error }
+func (? *@"".errWriteCloser) @"".Close() (? error)
+func (? *@"".errWriteCloser) @"".Write(? []byte) (? int, ? error)
+type @"".writer interface { @"".Flush() (? error); @"io".WriteByte(@"".c byte) (? error) }
+type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".WriteCloser interface { @"io".Close() (? error); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".ByteReader interface { @"io".ReadByte() (@"".c byte, @"".err error) }
+$$
+0Åãruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtcompress/lzwÇD´	var bufio = go$packages["bufio"];
+	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var Order;
+	Order = go$newType(4, "Int", "lzw.Order", "Order", "compress/lzw", null);
+	go$pkg.Order = Order;
+	var decoder;
+	decoder = go$newType(0, "Struct", "lzw.decoder", "decoder", "compress/lzw", function(r_, bits_, nBits_, width_, read_, litWidth_, err_, clear_, eof_, hi_, overflow_, last_, suffix_, prefix_, output_, o_, toRead_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+		this.bits = bits_ !== undefined ? bits_ : 0;
+		this.nBits = nBits_ !== undefined ? nBits_ : 0;
+		this.width = width_ !== undefined ? width_ : 0;
+		this.read = read_ !== undefined ? read_ : go$throwNilPointerError;
+		this.litWidth = litWidth_ !== undefined ? litWidth_ : 0;
+		this.err = err_ !== undefined ? err_ : null;
+		this.clear = clear_ !== undefined ? clear_ : 0;
+		this.eof = eof_ !== undefined ? eof_ : 0;
+		this.hi = hi_ !== undefined ? hi_ : 0;
+		this.overflow = overflow_ !== undefined ? overflow_ : 0;
+		this.last = last_ !== undefined ? last_ : 0;
+		this.suffix = suffix_ !== undefined ? suffix_ : go$makeNativeArray("Uint8", 4096, function() { return 0; });
+		this.prefix = prefix_ !== undefined ? prefix_ : go$makeNativeArray("Uint16", 4096, function() { return 0; });
+		this.output = output_ !== undefined ? output_ : go$makeNativeArray("Uint8", 8192, function() { return 0; });
+		this.o = o_ !== undefined ? o_ : 0;
+		this.toRead = toRead_ !== undefined ? toRead_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.decoder = decoder;
+	var writer;
+	writer = go$newType(0, "Interface", "lzw.writer", "writer", "compress/lzw", null);
+	go$pkg.writer = writer;
+	var errWriteCloser;
+	errWriteCloser = go$newType(0, "Struct", "lzw.errWriteCloser", "errWriteCloser", "compress/lzw", function(err_) {
+		this.go$val = this;
+		this.err = err_ !== undefined ? err_ : null;
+	});
+	go$pkg.errWriteCloser = errWriteCloser;
+	var encoder;
+	encoder = go$newType(0, "Struct", "lzw.encoder", "encoder", "compress/lzw", function(w_, order_, write_, bits_, nBits_, width_, litWidth_, hi_, overflow_, savedCode_, err_, table_) {
+		this.go$val = this;
+		this.w = w_ !== undefined ? w_ : null;
+		this.order = order_ !== undefined ? order_ : 0;
+		this.write = write_ !== undefined ? write_ : go$throwNilPointerError;
+		this.bits = bits_ !== undefined ? bits_ : 0;
+		this.nBits = nBits_ !== undefined ? nBits_ : 0;
+		this.width = width_ !== undefined ? width_ : 0;
+		this.litWidth = litWidth_ !== undefined ? litWidth_ : 0;
+		this.hi = hi_ !== undefined ? hi_ : 0;
+		this.overflow = overflow_ !== undefined ? overflow_ : 0;
+		this.savedCode = savedCode_ !== undefined ? savedCode_ : 0;
+		this.err = err_ !== undefined ? err_ : null;
+		this.table = table_ !== undefined ? table_ : go$makeNativeArray("Uint32", 16384, function() { return 0; });
+	});
+	go$pkg.encoder = encoder;
+	decoder.init([["r", "compress/lzw", io.ByteReader, ""], ["bits", "compress/lzw", Go$Uint32, ""], ["nBits", "compress/lzw", Go$Uint, ""], ["width", "compress/lzw", Go$Uint, ""], ["read", "compress/lzw", (go$funcType([(go$ptrType(decoder))], [Go$Uint16, go$error], false)), ""], ["litWidth", "compress/lzw", Go$Int, ""], ["err", "compress/lzw", go$error, ""], ["clear", "compress/lzw", Go$Uint16, ""], ["eof", "compress/lzw", Go$Uint16, ""], ["hi", "compress/lzw", Go$Uint16, ""], ["overflow", "compress/lzw", Go$Uint16, ""], ["last", "compress/lzw", Go$Uint16, ""], ["suffix", "compress/lzw", (go$arrayType(Go$Uint8, 4096)), ""], ["prefix", "compress/lzw", (go$arrayType(Go$Uint16, 4096)), ""], ["output", "compress/lzw", (go$arrayType(Go$Uint8, 8192)), ""], ["o", "compress/lzw", Go$Int, ""], ["toRead", "compress/lzw", (go$sliceType(Go$Uint8)), ""]]);
+	(go$ptrType(decoder)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["decode", "compress/lzw", [], [], false], ["flush", "compress/lzw", [], [], false], ["readLSB", "compress/lzw", [], [Go$Uint16, go$error], false], ["readMSB", "compress/lzw", [], [Go$Uint16, go$error], false]];
+	writer.init([["Flush", "", (go$funcType([], [go$error], false))], ["WriteByte", "", (go$funcType([Go$Uint8], [go$error], false))]]);
+	errWriteCloser.init([["err", "compress/lzw", go$error, ""]]);
+	(go$ptrType(errWriteCloser)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	encoder.init([["w", "compress/lzw", writer, ""], ["order", "compress/lzw", Order, ""], ["write", "compress/lzw", (go$funcType([(go$ptrType(encoder)), Go$Uint32], [go$error], false)), ""], ["bits", "compress/lzw", Go$Uint32, ""], ["nBits", "compress/lzw", Go$Uint, ""], ["width", "compress/lzw", Go$Uint, ""], ["litWidth", "compress/lzw", Go$Uint, ""], ["hi", "compress/lzw", Go$Uint32, ""], ["overflow", "compress/lzw", Go$Uint32, ""], ["savedCode", "compress/lzw", Go$Uint32, ""], ["err", "compress/lzw", go$error, ""], ["table", "compress/lzw", (go$arrayType(Go$Uint32, 16384)), ""]]);
+	(go$ptrType(encoder)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["incHi", "compress/lzw", [], [go$error], false], ["writeLSB", "compress/lzw", [Go$Uint32], [go$error], false], ["writeMSB", "compress/lzw", [Go$Uint32], [go$error], false]];
+	decoder.Ptr.prototype.readLSB = function() {
+		var d, _tuple, x, err, y, y$1, code, y$2;
+		d = this;
+		while (d.nBits < d.width) {
+			_tuple = d.r.ReadByte(), x = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [0, err];
+			}
+			d.bits = (d.bits | (((y = d.nBits, y < 32 ? ((x >>> 0) << y) : 0) >>> 0))) >>> 0;
+			d.nBits = d.nBits + 8 >>> 0;
+		}
+		code = (((d.bits & ((((y$1 = d.width, y$1 < 32 ? (1 << y$1) : 0) >>> 0) - 1 >>> 0))) >>> 0) << 16 >>> 16);
+		d.bits = (y$2 = (d.width), y$2 < 32 ? (d.bits >>> y$2) : 0) >>> 0;
+		d.nBits = d.nBits - (d.width) >>> 0;
+		return [code, null];
+	};
+	decoder.prototype.readLSB = function() { return this.go$val.readLSB(); };
+	decoder.Ptr.prototype.readMSB = function() {
+		var d, _tuple, x, err, y, y$1, code, y$2;
+		d = this;
+		while (d.nBits < d.width) {
+			_tuple = d.r.ReadByte(), x = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [0, err];
+			}
+			d.bits = (d.bits | (((y = ((24 - d.nBits >>> 0)), y < 32 ? ((x >>> 0) << y) : 0) >>> 0))) >>> 0;
+			d.nBits = d.nBits + 8 >>> 0;
+		}
+		code = (((y$1 = ((32 - d.width >>> 0)), y$1 < 32 ? (d.bits >>> y$1) : 0) >>> 0) << 16 >>> 16);
+		d.bits = (y$2 = (d.width), y$2 < 32 ? (d.bits << y$2) : 0) >>> 0;
+		d.nBits = d.nBits - (d.width) >>> 0;
+		return [code, null];
+	};
+	decoder.prototype.readMSB = function() { return this.go$val.readMSB(); };
+	decoder.Ptr.prototype.Read = function(b) {
+		var d, n;
+		d = this;
+		while (true) {
+			if (d.toRead.length > 0) {
+				n = go$copySlice(b, d.toRead);
+				d.toRead = go$subslice(d.toRead, n);
+				return [n, null];
+			}
+			if (!(go$interfaceIsEqual(d.err, null))) {
+				return [0, d.err];
+			}
+			d.decode();
+		}
+	};
+	decoder.prototype.Read = function(b) { return this.go$val.Read(b); };
+	decoder.Ptr.prototype.decode = function() {
+		var d, _tuple, code, err, y, _tuple$1, c, i, _tuple$2;
+		d = this;
+		while (true) {
+			_tuple = d.read(d), code = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				if (go$interfaceIsEqual(err, io.EOF)) {
+					err = io.ErrUnexpectedEOF;
+				}
+				d.err = err;
+				return;
+			}
+			if (code < d.clear) {
+				d.output[d.o] = (code << 24 >>> 24);
+				d.o = d.o + 1 >> 0;
+				if (!((d.last === 65535))) {
+					d.suffix[d.hi] = (code << 24 >>> 24);
+					d.prefix[d.hi] = d.last;
+				}
+			} else if (code === d.clear) {
+				d.width = 1 + (d.litWidth >>> 0) >>> 0;
+				d.hi = d.eof;
+				d.overflow = (y = d.width, y < 32 ? (1 << y) : 0) << 16 >>> 16;
+				d.last = 65535;
+				continue;
+			} else if (code === d.eof) {
+				d.flush();
+				d.err = io.EOF;
+				return;
+			} else if (code <= d.hi) {
+				_tuple$1 = [code, 8191], c = _tuple$1[0], i = _tuple$1[1];
+				if (code === d.hi) {
+					c = d.last;
+					while (c >= d.clear) {
+						c = d.prefix[c];
+					}
+					d.output[i] = (c << 24 >>> 24);
+					i = i - 1 >> 0;
+					c = d.last;
+				}
+				while (c >= d.clear) {
+					d.output[i] = d.suffix[c];
+					i = i - 1 >> 0;
+					c = d.prefix[c];
+				}
+				d.output[i] = (c << 24 >>> 24);
+				d.o = d.o + (go$copySlice(go$subslice(new (go$sliceType(Go$Uint8))(d.output), d.o), go$subslice(new (go$sliceType(Go$Uint8))(d.output), i))) >> 0;
+				if (!((d.last === 65535))) {
+					d.suffix[d.hi] = (c << 24 >>> 24);
+					d.prefix[d.hi] = d.last;
+				}
+			} else {
+				d.err = errors.New("lzw: invalid code");
+				return;
+			}
+			_tuple$2 = [code, d.hi + 1 << 16 >>> 16], d.last = _tuple$2[0], d.hi = _tuple$2[1];
+			if (d.hi >= d.overflow) {
+				if (d.width === 12) {
+					d.last = 65535;
+				} else {
+					d.width = d.width + 1 >>> 0;
+					d.overflow = d.overflow << 1 << 16 >>> 16;
+				}
+			}
+			if (d.o >= 4096) {
+				d.flush();
+				return;
+			}
+		}
+	};
+	decoder.prototype.decode = function() { return this.go$val.decode(); };
+	decoder.Ptr.prototype.flush = function() {
+		var d;
+		d = this;
+		d.toRead = go$subslice(new (go$sliceType(Go$Uint8))(d.output), 0, d.o);
+		d.o = 0;
+	};
+	decoder.prototype.flush = function() { return this.go$val.flush(); };
+	decoder.Ptr.prototype.Close = function() {
+		var d;
+		d = this;
+		d.err = errClosed;
+		return null;
+	};
+	decoder.prototype.Close = function() { return this.go$val.Close(); };
+	var NewReader = go$pkg.NewReader = function(r, order, litWidth) {
+		var d, _ref, ok, _tuple, br, y, _tuple$1, y$1;
+		d = new decoder.Ptr();
+		_ref = order;
+		if (_ref === 0) {
+			d.read = (function(recv) { return recv.readLSB(); });
+		} else if (_ref === 1) {
+			d.read = (function(recv) { return recv.readMSB(); });
+		} else {
+			d.err = errors.New("lzw: unknown order");
+			return d;
+		}
+		if (litWidth < 2 || 8 < litWidth) {
+			d.err = fmt.Errorf("lzw: litWidth %d out of range", new (go$sliceType(go$emptyInterface))([new Go$Int(litWidth)]));
+			return d;
+		}
+		if (_tuple = (r !== null && io.ByteReader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), br = _tuple[0], ok = _tuple[1], ok) {
+			d.r = br;
+		} else {
+			d.r = bufio.NewReader(r);
+		}
+		d.litWidth = litWidth;
+		d.width = 1 + (litWidth >>> 0) >>> 0;
+		d.clear = (y = (litWidth >>> 0), y < 32 ? (1 << y) : 0) << 16 >>> 16;
+		_tuple$1 = [d.clear + 1 << 16 >>> 16, d.clear + 1 << 16 >>> 16], d.eof = _tuple$1[0], d.hi = _tuple$1[1];
+		d.overflow = (y$1 = d.width, y$1 < 32 ? (1 << y$1) : 0) << 16 >>> 16;
+		d.last = 65535;
+		return d;
+	};
+	errWriteCloser.Ptr.prototype.Write = function() {
+		var e;
+		e = this;
+		return [0, e.err];
+	};
+	errWriteCloser.prototype.Write = function() { return this.go$val.Write(); };
+	errWriteCloser.Ptr.prototype.Close = function() {
+		var e;
+		e = this;
+		return e.err;
+	};
+	errWriteCloser.prototype.Close = function() { return this.go$val.Close(); };
+	encoder.Ptr.prototype.writeLSB = function(c) {
+		var e, y, err;
+		e = this;
+		e.bits = (e.bits | (((y = e.nBits, y < 32 ? (c << y) : 0) >>> 0))) >>> 0;
+		e.nBits = e.nBits + (e.width) >>> 0;
+		while (e.nBits >= 8) {
+			if (err = e.w.WriteByte((e.bits << 24 >>> 24)), !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			e.bits = e.bits >>> 8 >>> 0;
+			e.nBits = e.nBits - 8 >>> 0;
+		}
+		return null;
+	};
+	encoder.prototype.writeLSB = function(c) { return this.go$val.writeLSB(c); };
+	encoder.Ptr.prototype.writeMSB = function(c) {
+		var e, y, err;
+		e = this;
+		e.bits = (e.bits | (((y = (((32 - e.width >>> 0) - e.nBits >>> 0)), y < 32 ? (c << y) : 0) >>> 0))) >>> 0;
+		e.nBits = e.nBits + (e.width) >>> 0;
+		while (e.nBits >= 8) {
+			if (err = e.w.WriteByte(((e.bits >>> 24 >>> 0) << 24 >>> 24)), !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			e.bits = e.bits << 8 >>> 0;
+			e.nBits = e.nBits - 8 >>> 0;
+		}
+		return null;
+	};
+	encoder.prototype.writeMSB = function(c) { return this.go$val.writeMSB(c); };
+	encoder.Ptr.prototype.incHi = function() {
+		var e, y, clear, err, _ref, _i, i;
+		e = this;
+		e.hi = e.hi + 1 >>> 0;
+		if (e.hi === e.overflow) {
+			e.width = e.width + 1 >>> 0;
+			e.overflow = e.overflow << 1 >>> 0;
+		}
+		if (e.hi === 4095) {
+			clear = (y = e.litWidth, y < 32 ? (1 << y) : 0) >>> 0;
+			if (err = e.write(e, clear), !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			e.width = e.litWidth + 1 >>> 0;
+			e.hi = clear + 1 >>> 0;
+			e.overflow = clear << 1 >>> 0;
+			_ref = e.table;
+			_i = 0;
+			for (; _i < 16384; _i += 1) {
+				i = _i;
+				e.table[i] = 0;
+			}
+			return errOutOfCodes;
+		}
+		return null;
+	};
+	encoder.prototype.incHi = function() { return this.go$val.incHi(); };
+	encoder.Ptr.prototype.Write = function(p) {
+		var n, err, e, _tuple, _tuple$1, y, litMask, code, _slice, _index, _tuple$2, _ref, _i, _slice$1, _index$1, x, literal, key, hash, _tuple$3, h, t, _tuple$4, err1, _tuple$5, _tuple$6;
+		n = 0;
+		err = null;
+		e = this;
+		if (!(go$interfaceIsEqual(e.err, null))) {
+			_tuple = [0, e.err], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if (p.length === 0) {
+			_tuple$1 = [0, null], n = _tuple$1[0], err = _tuple$1[1];
+			return [n, err];
+		}
+		n = p.length;
+		litMask = (((y = e.litWidth, y < 32 ? (1 << y) : 0) >>> 0) - 1 >>> 0);
+		code = e.savedCode;
+		if (code === 4294967295) {
+			_tuple$2 = [(((_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) & litMask) >>> 0, go$subslice(p, 1)], code = _tuple$2[0], p = _tuple$2[1];
+		}
+		_ref = p;
+		_i = 0;
+		loop: for (; _i < _ref.length; _i += 1) {
+			x = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			literal = ((x >>> 0) & litMask) >>> 0;
+			key = ((code << 8 >>> 0) | literal) >>> 0;
+			hash = (((((key >>> 12 >>> 0) ^ key) >>> 0)) & 16383) >>> 0;
+			_tuple$3 = [hash, e.table[hash]], h = _tuple$3[0], t = _tuple$3[1];
+			while (!((t === 0))) {
+				if (key === (t >>> 12 >>> 0)) {
+					code = (t & 4095) >>> 0;
+					continue loop;
+				}
+				h = (((h + 1 >>> 0)) & 16383) >>> 0;
+				t = e.table[h];
+			}
+			if (e.err = e.write(e, code), !(go$interfaceIsEqual(e.err, null))) {
+				_tuple$4 = [0, e.err], n = _tuple$4[0], err = _tuple$4[1];
+				return [n, err];
+			}
+			code = literal;
+			if (err1 = e.incHi(), !(go$interfaceIsEqual(err1, null))) {
+				if (go$interfaceIsEqual(err1, errOutOfCodes)) {
+					continue;
+				}
+				e.err = err1;
+				_tuple$5 = [0, e.err], n = _tuple$5[0], err = _tuple$5[1];
+				return [n, err];
+			}
+			while (true) {
+				if (e.table[hash] === 0) {
+					e.table[hash] = (((key << 12 >>> 0)) | e.hi) >>> 0;
+					break;
+				}
+				hash = (((hash + 1 >>> 0)) & 16383) >>> 0;
+			}
+		}
+		e.savedCode = code;
+		_tuple$6 = [n, null], n = _tuple$6[0], err = _tuple$6[1];
+		return [n, err];
+	};
+	encoder.prototype.Write = function(p) { return this.go$val.Write(p); };
+	encoder.Ptr.prototype.Close = function() {
+		var e, err, err$1, y, eof, err$2, err$3;
+		e = this;
+		if (!(go$interfaceIsEqual(e.err, null))) {
+			if (go$interfaceIsEqual(e.err, errClosed)) {
+				return null;
+			}
+			return e.err;
+		}
+		e.err = errClosed;
+		if (!((e.savedCode === 4294967295))) {
+			if (err = e.write(e, e.savedCode), !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			if (err$1 = e.incHi(), !(go$interfaceIsEqual(err$1, null)) && !(go$interfaceIsEqual(err$1, errOutOfCodes))) {
+				return err$1;
+			}
+		}
+		eof = ((y = e.litWidth, y < 32 ? (1 << y) : 0) >>> 0) + 1 >>> 0;
+		if (err$2 = e.write(e, eof), !(go$interfaceIsEqual(err$2, null))) {
+			return err$2;
+		}
+		if (e.nBits > 0) {
+			if (e.order === 1) {
+				e.bits = e.bits >>> 24 >>> 0;
+			}
+			if (err$3 = e.w.WriteByte((e.bits << 24 >>> 24)), !(go$interfaceIsEqual(err$3, null))) {
+				return err$3;
+			}
+		}
+		return e.w.Flush();
+	};
+	encoder.prototype.Close = function() { return this.go$val.Close(); };
+	var NewWriter = go$pkg.NewWriter = function(w, order, litWidth) {
+		var write, _ref, c, c$1, _tuple, bw, ok, lw, y, y$1;
+		write = go$throwNilPointerError;
+		_ref = order;
+		if (_ref === 0) {
+			write = (function(recv, c) { return recv.writeLSB(c); });
+		} else if (_ref === 1) {
+			write = (function(recv, c$1) { return recv.writeMSB(c$1); });
+		} else {
+			return new errWriteCloser.Ptr(errors.New("lzw: unknown order"));
+		}
+		if (litWidth < 2 || 8 < litWidth) {
+			return new errWriteCloser.Ptr(fmt.Errorf("lzw: litWidth %d out of range", new (go$sliceType(go$emptyInterface))([new Go$Int(litWidth)])));
+		}
+		_tuple = (w !== null && writer.implementedBy.indexOf(w.constructor) !== -1 ? [w, true] : [null, false]), bw = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			bw = bufio.NewWriter(w);
+		}
+		lw = (litWidth >>> 0);
+		return new encoder.Ptr(bw, order, write, 0, 0, 1 + lw >>> 0, lw, ((y = lw, y < 32 ? (1 << y) : 0) >>> 0) + 1 >>> 0, (y$1 = ((lw + 1 >>> 0)), y$1 < 32 ? (1 << y$1) : 0) >>> 0, 4294967295, null, go$makeNativeArray("Uint32", 16384, function() { return 0; }));
+	};
+	go$pkg.LSB = 0;
+	go$pkg.MSB = 1;
+	var maxWidth = 12;
+	var decoderInvalidCode = 65535;
+	var flushBuffer = 4096;
+	var maxCode = 4095;
+	var invalidCode = 4294967295;
+	var tableSize = 16384;
+	var tableMask = 16383;
+	var invalidEntry = 0;
+	var errClosed = null;
+	var errOutOfCodes = null;
+	go$pkg.init = function() {
+		errClosed = errors.New("compress/lzw: reader/writer is closed");
+		errOutOfCodes = errors.New("lzw: out of codes");
+	};

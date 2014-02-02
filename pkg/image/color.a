@@ -1,0 +1,517 @@
+0‚gb‚ëpackage color
+type @"".Alpha struct { @"".A uint8 }
+func (? @"".Alpha) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+func (? *@"".Alpha) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+type @"".Alpha16 struct { @"".A uint16 }
+func (? @"".Alpha16) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+func (? *@"".Alpha16) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+var @"".Alpha16Model @"".Model
+var @"".AlphaModel @"".Model
+var @"".Black @"".Gray16
+type @"".Color interface { @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32) }
+type @"".Gray struct { @"".Y uint8 }
+func (? @"".Gray) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+func (? *@"".Gray) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+type @"".Gray16 struct { @"".Y uint16 }
+func (? @"".Gray16) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+func (? *@"".Gray16) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+var @"".Gray16Model @"".Model
+var @"".GrayModel @"".Model
+type @"".Model interface { @"".Convert(@"".c @"".Color) (? @"".Color) }
+func @"".ModelFunc(@"".f func (? @"".Color) (? @"".Color)) (? @"".Model)
+type @"".NRGBA struct { @"".R uint8; @"".G uint8; @"".B uint8; @"".A uint8 }
+func (? @"".NRGBA) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+func (? *@"".NRGBA) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+type @"".NRGBA64 struct { @"".R uint16; @"".G uint16; @"".B uint16; @"".A uint16 }
+func (? @"".NRGBA64) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+func (? *@"".NRGBA64) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+var @"".NRGBA64Model @"".Model
+var @"".NRGBAModel @"".Model
+var @"".Opaque @"".Alpha16
+type @"".Palette []@"".Color
+func (? @"".Palette) @"".Convert(@"".c @"".Color) (? @"".Color)
+func (? @"".Palette) @"".Index(@"".c @"".Color) (? int)
+func (? *@"".Palette) @"".Convert(@"".c @"".Color) (? @"".Color)
+func (? *@"".Palette) @"".Index(@"".c @"".Color) (? int)
+type @"".RGBA struct { @"".R uint8; @"".G uint8; @"".B uint8; @"".A uint8 }
+func (? @"".RGBA) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+func (? *@"".RGBA) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+type @"".RGBA64 struct { @"".R uint16; @"".G uint16; @"".B uint16; @"".A uint16 }
+func (? @"".RGBA64) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+func (? *@"".RGBA64) @"".RGBA() (@"".r uint32, @"".g uint32, @"".b uint32, @"".a uint32)
+var @"".RGBA64Model @"".Model
+var @"".RGBAModel @"".Model
+func @"".RGBToYCbCr(@"".r uint8, @"".g uint8, @"".b uint8) (? uint8, ? uint8, ? uint8)
+var @"".Transparent @"".Alpha16
+var @"".White @"".Gray16
+type @"".YCbCr struct { @"".Y uint8; @"".Cb uint8; @"".Cr uint8 }
+func (? @"".YCbCr) @"".RGBA() (? uint32, ? uint32, ? uint32, ? uint32)
+func (? *@"".YCbCr) @"".RGBA() (? uint32, ? uint32, ? uint32, ? uint32)
+var @"".YCbCrModel @"".Model
+func @"".YCbCrToRGB(@"".y uint8, @"".cb uint8, @"".cr uint8) (? uint8, ? uint8, ? uint8)
+type @"".modelFunc struct { @"".f func (? @"".Color) (? @"".Color) }
+func (? *@"".modelFunc) @"".Convert(@"".c @"".Color) (? @"".Color)
+$$
+0runtimeimage/color‚ZW	var Color;
+	Color = go$newType(0, "Interface", "color.Color", "Color", "image/color", null);
+	go$pkg.Color = Color;
+	var RGBA;
+	RGBA = go$newType(0, "Struct", "color.RGBA", "RGBA", "image/color", function(R_, G_, B_, A_) {
+		this.go$val = this;
+		this.R = R_ !== undefined ? R_ : 0;
+		this.G = G_ !== undefined ? G_ : 0;
+		this.B = B_ !== undefined ? B_ : 0;
+		this.A = A_ !== undefined ? A_ : 0;
+	});
+	go$pkg.RGBA = RGBA;
+	var RGBA64;
+	RGBA64 = go$newType(0, "Struct", "color.RGBA64", "RGBA64", "image/color", function(R_, G_, B_, A_) {
+		this.go$val = this;
+		this.R = R_ !== undefined ? R_ : 0;
+		this.G = G_ !== undefined ? G_ : 0;
+		this.B = B_ !== undefined ? B_ : 0;
+		this.A = A_ !== undefined ? A_ : 0;
+	});
+	go$pkg.RGBA64 = RGBA64;
+	var NRGBA;
+	NRGBA = go$newType(0, "Struct", "color.NRGBA", "NRGBA", "image/color", function(R_, G_, B_, A_) {
+		this.go$val = this;
+		this.R = R_ !== undefined ? R_ : 0;
+		this.G = G_ !== undefined ? G_ : 0;
+		this.B = B_ !== undefined ? B_ : 0;
+		this.A = A_ !== undefined ? A_ : 0;
+	});
+	go$pkg.NRGBA = NRGBA;
+	var NRGBA64;
+	NRGBA64 = go$newType(0, "Struct", "color.NRGBA64", "NRGBA64", "image/color", function(R_, G_, B_, A_) {
+		this.go$val = this;
+		this.R = R_ !== undefined ? R_ : 0;
+		this.G = G_ !== undefined ? G_ : 0;
+		this.B = B_ !== undefined ? B_ : 0;
+		this.A = A_ !== undefined ? A_ : 0;
+	});
+	go$pkg.NRGBA64 = NRGBA64;
+	var Alpha;
+	Alpha = go$newType(0, "Struct", "color.Alpha", "Alpha", "image/color", function(A_) {
+		this.go$val = this;
+		this.A = A_ !== undefined ? A_ : 0;
+	});
+	go$pkg.Alpha = Alpha;
+	var Alpha16;
+	Alpha16 = go$newType(0, "Struct", "color.Alpha16", "Alpha16", "image/color", function(A_) {
+		this.go$val = this;
+		this.A = A_ !== undefined ? A_ : 0;
+	});
+	go$pkg.Alpha16 = Alpha16;
+	var Gray;
+	Gray = go$newType(0, "Struct", "color.Gray", "Gray", "image/color", function(Y_) {
+		this.go$val = this;
+		this.Y = Y_ !== undefined ? Y_ : 0;
+	});
+	go$pkg.Gray = Gray;
+	var Gray16;
+	Gray16 = go$newType(0, "Struct", "color.Gray16", "Gray16", "image/color", function(Y_) {
+		this.go$val = this;
+		this.Y = Y_ !== undefined ? Y_ : 0;
+	});
+	go$pkg.Gray16 = Gray16;
+	var Model;
+	Model = go$newType(0, "Interface", "color.Model", "Model", "image/color", null);
+	go$pkg.Model = Model;
+	var modelFunc;
+	modelFunc = go$newType(0, "Struct", "color.modelFunc", "modelFunc", "image/color", function(f_) {
+		this.go$val = this;
+		this.f = f_ !== undefined ? f_ : go$throwNilPointerError;
+	});
+	go$pkg.modelFunc = modelFunc;
+	var Palette;
+	Palette = go$newType(0, "Slice", "color.Palette", "Palette", "image/color", null);
+	go$pkg.Palette = Palette;
+	var YCbCr;
+	YCbCr = go$newType(0, "Struct", "color.YCbCr", "YCbCr", "image/color", function(Y_, Cb_, Cr_) {
+		this.go$val = this;
+		this.Y = Y_ !== undefined ? Y_ : 0;
+		this.Cb = Cb_ !== undefined ? Cb_ : 0;
+		this.Cr = Cr_ !== undefined ? Cr_ : 0;
+	});
+	go$pkg.YCbCr = YCbCr;
+	Color.init([["RGBA", "", (go$funcType([], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false))]]);
+	RGBA.init([["R", "", Go$Uint8, ""], ["G", "", Go$Uint8, ""], ["B", "", Go$Uint8, ""], ["A", "", Go$Uint8, ""]]);
+	RGBA.methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	(go$ptrType(RGBA)).methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	RGBA64.init([["R", "", Go$Uint16, ""], ["G", "", Go$Uint16, ""], ["B", "", Go$Uint16, ""], ["A", "", Go$Uint16, ""]]);
+	RGBA64.methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	(go$ptrType(RGBA64)).methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	NRGBA.init([["R", "", Go$Uint8, ""], ["G", "", Go$Uint8, ""], ["B", "", Go$Uint8, ""], ["A", "", Go$Uint8, ""]]);
+	NRGBA.methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	(go$ptrType(NRGBA)).methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	NRGBA64.init([["R", "", Go$Uint16, ""], ["G", "", Go$Uint16, ""], ["B", "", Go$Uint16, ""], ["A", "", Go$Uint16, ""]]);
+	NRGBA64.methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	(go$ptrType(NRGBA64)).methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	Alpha.init([["A", "", Go$Uint8, ""]]);
+	Alpha.methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	(go$ptrType(Alpha)).methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	Alpha16.init([["A", "", Go$Uint16, ""]]);
+	Alpha16.methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	(go$ptrType(Alpha16)).methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	Gray.init([["Y", "", Go$Uint8, ""]]);
+	Gray.methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	(go$ptrType(Gray)).methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	Gray16.init([["Y", "", Go$Uint16, ""]]);
+	Gray16.methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	(go$ptrType(Gray16)).methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	Model.init([["Convert", "", (go$funcType([Color], [Color], false))]]);
+	modelFunc.init([["f", "image/color", (go$funcType([Color], [Color], false)), ""]]);
+	(go$ptrType(modelFunc)).methods = [["Convert", "", [Color], [Color], false]];
+	Palette.init(Color);
+	Palette.methods = [["Convert", "", [Color], [Color], false], ["Index", "", [Color], [Go$Int], false]];
+	(go$ptrType(Palette)).methods = [["Convert", "", [Color], [Color], false], ["Index", "", [Color], [Go$Int], false]];
+	YCbCr.init([["Y", "", Go$Uint8, ""], ["Cb", "", Go$Uint8, ""], ["Cr", "", Go$Uint8, ""]]);
+	YCbCr.methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	(go$ptrType(YCbCr)).methods = [["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
+	RGBA.Ptr.prototype.RGBA = function() {
+		var r, g, b, a, _struct, c;
+		r = 0;
+		g = 0;
+		b = 0;
+		a = 0;
+		c = (_struct = this, new RGBA.Ptr(_struct.R, _struct.G, _struct.B, _struct.A));
+		r = (c.R >>> 0);
+		r = (r | ((r << 8 >>> 0))) >>> 0;
+		g = (c.G >>> 0);
+		g = (g | ((g << 8 >>> 0))) >>> 0;
+		b = (c.B >>> 0);
+		b = (b | ((b << 8 >>> 0))) >>> 0;
+		a = (c.A >>> 0);
+		a = (a | ((a << 8 >>> 0))) >>> 0;
+		return [r, g, b, a];
+	};
+	RGBA.prototype.RGBA = function() { return this.go$val.RGBA(); };
+	RGBA64.Ptr.prototype.RGBA = function() {
+		var r, g, b, a, _struct, c, _tuple;
+		r = 0;
+		g = 0;
+		b = 0;
+		a = 0;
+		c = (_struct = this, new RGBA64.Ptr(_struct.R, _struct.G, _struct.B, _struct.A));
+		_tuple = [(c.R >>> 0), (c.G >>> 0), (c.B >>> 0), (c.A >>> 0)], r = _tuple[0], g = _tuple[1], b = _tuple[2], a = _tuple[3];
+		return [r, g, b, a];
+	};
+	RGBA64.prototype.RGBA = function() { return this.go$val.RGBA(); };
+	NRGBA.Ptr.prototype.RGBA = function() {
+		var r, g, b, a, _struct, c, x, _q, x$1, _q$1, x$2, _q$2;
+		r = 0;
+		g = 0;
+		b = 0;
+		a = 0;
+		c = (_struct = this, new NRGBA.Ptr(_struct.R, _struct.G, _struct.B, _struct.A));
+		r = (c.R >>> 0);
+		r = (r | ((r << 8 >>> 0))) >>> 0;
+		r = (x = (c.A >>> 0), (((r >>> 16 << 16) * x >>> 0) + (r << 16 >>> 16) * x) >>> 0);
+		r = (_q = r / 255, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		g = (c.G >>> 0);
+		g = (g | ((g << 8 >>> 0))) >>> 0;
+		g = (x$1 = (c.A >>> 0), (((g >>> 16 << 16) * x$1 >>> 0) + (g << 16 >>> 16) * x$1) >>> 0);
+		g = (_q$1 = g / 255, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		b = (c.B >>> 0);
+		b = (b | ((b << 8 >>> 0))) >>> 0;
+		b = (x$2 = (c.A >>> 0), (((b >>> 16 << 16) * x$2 >>> 0) + (b << 16 >>> 16) * x$2) >>> 0);
+		b = (_q$2 = b / 255, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		a = (c.A >>> 0);
+		a = (a | ((a << 8 >>> 0))) >>> 0;
+		return [r, g, b, a];
+	};
+	NRGBA.prototype.RGBA = function() { return this.go$val.RGBA(); };
+	NRGBA64.Ptr.prototype.RGBA = function() {
+		var r, g, b, a, _struct, c, x, _q, x$1, _q$1, x$2, _q$2;
+		r = 0;
+		g = 0;
+		b = 0;
+		a = 0;
+		c = (_struct = this, new NRGBA64.Ptr(_struct.R, _struct.G, _struct.B, _struct.A));
+		r = (c.R >>> 0);
+		r = (x = (c.A >>> 0), (((r >>> 16 << 16) * x >>> 0) + (r << 16 >>> 16) * x) >>> 0);
+		r = (_q = r / 65535, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		g = (c.G >>> 0);
+		g = (x$1 = (c.A >>> 0), (((g >>> 16 << 16) * x$1 >>> 0) + (g << 16 >>> 16) * x$1) >>> 0);
+		g = (_q$1 = g / 65535, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		b = (c.B >>> 0);
+		b = (x$2 = (c.A >>> 0), (((b >>> 16 << 16) * x$2 >>> 0) + (b << 16 >>> 16) * x$2) >>> 0);
+		b = (_q$2 = b / 65535, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		a = (c.A >>> 0);
+		return [r, g, b, a];
+	};
+	NRGBA64.prototype.RGBA = function() { return this.go$val.RGBA(); };
+	Alpha.Ptr.prototype.RGBA = function() {
+		var r, g, b, a, _struct, c, _tuple;
+		r = 0;
+		g = 0;
+		b = 0;
+		a = 0;
+		c = (_struct = this, new Alpha.Ptr(_struct.A));
+		a = (c.A >>> 0);
+		a = (a | ((a << 8 >>> 0))) >>> 0;
+		_tuple = [a, a, a, a], r = _tuple[0], g = _tuple[1], b = _tuple[2], a = _tuple[3];
+		return [r, g, b, a];
+	};
+	Alpha.prototype.RGBA = function() { return this.go$val.RGBA(); };
+	Alpha16.Ptr.prototype.RGBA = function() {
+		var r, g, b, a, _struct, c, _tuple;
+		r = 0;
+		g = 0;
+		b = 0;
+		a = 0;
+		c = (_struct = this, new Alpha16.Ptr(_struct.A));
+		a = (c.A >>> 0);
+		_tuple = [a, a, a, a], r = _tuple[0], g = _tuple[1], b = _tuple[2], a = _tuple[3];
+		return [r, g, b, a];
+	};
+	Alpha16.prototype.RGBA = function() { return this.go$val.RGBA(); };
+	Gray.Ptr.prototype.RGBA = function() {
+		var r, g, b, a, _struct, c, y, _tuple;
+		r = 0;
+		g = 0;
+		b = 0;
+		a = 0;
+		c = (_struct = this, new Gray.Ptr(_struct.Y));
+		y = (c.Y >>> 0);
+		y = (y | ((y << 8 >>> 0))) >>> 0;
+		_tuple = [y, y, y, 65535], r = _tuple[0], g = _tuple[1], b = _tuple[2], a = _tuple[3];
+		return [r, g, b, a];
+	};
+	Gray.prototype.RGBA = function() { return this.go$val.RGBA(); };
+	Gray16.Ptr.prototype.RGBA = function() {
+		var r, g, b, a, _struct, c, y, _tuple;
+		r = 0;
+		g = 0;
+		b = 0;
+		a = 0;
+		c = (_struct = this, new Gray16.Ptr(_struct.Y));
+		y = (c.Y >>> 0);
+		_tuple = [y, y, y, 65535], r = _tuple[0], g = _tuple[1], b = _tuple[2], a = _tuple[3];
+		return [r, g, b, a];
+	};
+	Gray16.prototype.RGBA = function() { return this.go$val.RGBA(); };
+	var ModelFunc = go$pkg.ModelFunc = function(f) {
+		return new modelFunc.Ptr(f);
+	};
+	modelFunc.Ptr.prototype.Convert = function(c) {
+		var m;
+		m = this;
+		return m.f(c);
+	};
+	modelFunc.prototype.Convert = function(c) { return this.go$val.Convert(c); };
+	var rgbaModel = function(c) {
+		var ok, _tuple, _tuple$1, r, g, b, a, x;
+		if (_tuple = (c !== null && c.constructor === RGBA ? [c.go$val, true] : [new RGBA.Ptr(), false]), ok = _tuple[1], ok) {
+			return c;
+		}
+		_tuple$1 = c.RGBA(), r = _tuple$1[0], g = _tuple$1[1], b = _tuple$1[2], a = _tuple$1[3];
+		return (x = new RGBA.Ptr(((r >>> 8 >>> 0) << 24 >>> 24), ((g >>> 8 >>> 0) << 24 >>> 24), ((b >>> 8 >>> 0) << 24 >>> 24), ((a >>> 8 >>> 0) << 24 >>> 24)), new x.constructor.Struct(x));
+	};
+	var rgba64Model = function(c) {
+		var ok, _tuple, _tuple$1, r, g, b, a, x;
+		if (_tuple = (c !== null && c.constructor === RGBA64 ? [c.go$val, true] : [new RGBA64.Ptr(), false]), ok = _tuple[1], ok) {
+			return c;
+		}
+		_tuple$1 = c.RGBA(), r = _tuple$1[0], g = _tuple$1[1], b = _tuple$1[2], a = _tuple$1[3];
+		return (x = new RGBA64.Ptr((r << 16 >>> 16), (g << 16 >>> 16), (b << 16 >>> 16), (a << 16 >>> 16)), new x.constructor.Struct(x));
+	};
+	var nrgbaModel = function(c) {
+		var ok, _tuple, _tuple$1, r, g, b, a, x, x$1, _q, x$2, _q$1, x$3, _q$2, x$4, x$5;
+		if (_tuple = (c !== null && c.constructor === NRGBA ? [c.go$val, true] : [new NRGBA.Ptr(), false]), ok = _tuple[1], ok) {
+			return c;
+		}
+		_tuple$1 = c.RGBA(), r = _tuple$1[0], g = _tuple$1[1], b = _tuple$1[2], a = _tuple$1[3];
+		if (a === 65535) {
+			return (x = new NRGBA.Ptr(((r >>> 8 >>> 0) << 24 >>> 24), ((g >>> 8 >>> 0) << 24 >>> 24), ((b >>> 8 >>> 0) << 24 >>> 24), 255), new x.constructor.Struct(x));
+		}
+		if (a === 0) {
+			return (x$1 = new NRGBA.Ptr(0, 0, 0, 0), new x$1.constructor.Struct(x$1));
+		}
+		r = (_q = ((x$2 = 65535, (((r >>> 16 << 16) * x$2 >>> 0) + (r << 16 >>> 16) * x$2) >>> 0)) / a, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		g = (_q$1 = ((x$3 = 65535, (((g >>> 16 << 16) * x$3 >>> 0) + (g << 16 >>> 16) * x$3) >>> 0)) / a, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		b = (_q$2 = ((x$4 = 65535, (((b >>> 16 << 16) * x$4 >>> 0) + (b << 16 >>> 16) * x$4) >>> 0)) / a, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		return (x$5 = new NRGBA.Ptr(((r >>> 8 >>> 0) << 24 >>> 24), ((g >>> 8 >>> 0) << 24 >>> 24), ((b >>> 8 >>> 0) << 24 >>> 24), ((a >>> 8 >>> 0) << 24 >>> 24)), new x$5.constructor.Struct(x$5));
+	};
+	var nrgba64Model = function(c) {
+		var ok, _tuple, _tuple$1, r, g, b, a, x, x$1, _q, x$2, _q$1, x$3, _q$2, x$4, x$5;
+		if (_tuple = (c !== null && c.constructor === NRGBA64 ? [c.go$val, true] : [new NRGBA64.Ptr(), false]), ok = _tuple[1], ok) {
+			return c;
+		}
+		_tuple$1 = c.RGBA(), r = _tuple$1[0], g = _tuple$1[1], b = _tuple$1[2], a = _tuple$1[3];
+		if (a === 65535) {
+			return (x = new NRGBA64.Ptr((r << 16 >>> 16), (g << 16 >>> 16), (b << 16 >>> 16), 65535), new x.constructor.Struct(x));
+		}
+		if (a === 0) {
+			return (x$1 = new NRGBA64.Ptr(0, 0, 0, 0), new x$1.constructor.Struct(x$1));
+		}
+		r = (_q = ((x$2 = 65535, (((r >>> 16 << 16) * x$2 >>> 0) + (r << 16 >>> 16) * x$2) >>> 0)) / a, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		g = (_q$1 = ((x$3 = 65535, (((g >>> 16 << 16) * x$3 >>> 0) + (g << 16 >>> 16) * x$3) >>> 0)) / a, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		b = (_q$2 = ((x$4 = 65535, (((b >>> 16 << 16) * x$4 >>> 0) + (b << 16 >>> 16) * x$4) >>> 0)) / a, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		return (x$5 = new NRGBA64.Ptr((r << 16 >>> 16), (g << 16 >>> 16), (b << 16 >>> 16), (a << 16 >>> 16)), new x$5.constructor.Struct(x$5));
+	};
+	var alphaModel = function(c) {
+		var ok, _tuple, _tuple$1, a, x;
+		if (_tuple = (c !== null && c.constructor === Alpha ? [c.go$val, true] : [new Alpha.Ptr(), false]), ok = _tuple[1], ok) {
+			return c;
+		}
+		_tuple$1 = c.RGBA(), a = _tuple$1[3];
+		return (x = new Alpha.Ptr(((a >>> 8 >>> 0) << 24 >>> 24)), new x.constructor.Struct(x));
+	};
+	var alpha16Model = function(c) {
+		var ok, _tuple, _tuple$1, a, x;
+		if (_tuple = (c !== null && c.constructor === Alpha16 ? [c.go$val, true] : [new Alpha16.Ptr(), false]), ok = _tuple[1], ok) {
+			return c;
+		}
+		_tuple$1 = c.RGBA(), a = _tuple$1[3];
+		return (x = new Alpha16.Ptr((a << 16 >>> 16)), new x.constructor.Struct(x));
+	};
+	var grayModel = function(c) {
+		var ok, _tuple, _tuple$1, r, g, b, _q, x, x$1, x$2, y, x$3;
+		if (_tuple = (c !== null && c.constructor === Gray ? [c.go$val, true] : [new Gray.Ptr(), false]), ok = _tuple[1], ok) {
+			return c;
+		}
+		_tuple$1 = c.RGBA(), r = _tuple$1[0], g = _tuple$1[1], b = _tuple$1[2];
+		y = (_q = (((((x = 299, (((x >>> 16 << 16) * r >>> 0) + (x << 16 >>> 16) * r) >>> 0) + (x$1 = 587, (((x$1 >>> 16 << 16) * g >>> 0) + (x$1 << 16 >>> 16) * g) >>> 0) >>> 0) + (x$2 = 114, (((x$2 >>> 16 << 16) * b >>> 0) + (x$2 << 16 >>> 16) * b) >>> 0) >>> 0) + 500 >>> 0)) / 1000, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		return (x$3 = new Gray.Ptr(((y >>> 8 >>> 0) << 24 >>> 24)), new x$3.constructor.Struct(x$3));
+	};
+	var gray16Model = function(c) {
+		var ok, _tuple, _tuple$1, r, g, b, _q, x, x$1, x$2, y, x$3;
+		if (_tuple = (c !== null && c.constructor === Gray16 ? [c.go$val, true] : [new Gray16.Ptr(), false]), ok = _tuple[1], ok) {
+			return c;
+		}
+		_tuple$1 = c.RGBA(), r = _tuple$1[0], g = _tuple$1[1], b = _tuple$1[2];
+		y = (_q = (((((x = 299, (((x >>> 16 << 16) * r >>> 0) + (x << 16 >>> 16) * r) >>> 0) + (x$1 = 587, (((x$1 >>> 16 << 16) * g >>> 0) + (x$1 << 16 >>> 16) * g) >>> 0) >>> 0) + (x$2 = 114, (((x$2 >>> 16 << 16) * b >>> 0) + (x$2 << 16 >>> 16) * b) >>> 0) >>> 0) + 500 >>> 0)) / 1000, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		return (x$3 = new Gray16.Ptr((y << 16 >>> 16)), new x$3.constructor.Struct(x$3));
+	};
+	Palette.prototype.Convert = function(c) {
+		var p, _slice, _index;
+		p = this;
+		if (p.length === 0) {
+			return null;
+		}
+		return (_slice = p, _index = p.Index(c), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+	};
+	go$ptrType(Palette).prototype.Convert = function(c) { return this.go$get().Convert(c); };
+	Palette.prototype.Index = function(c) {
+		var p, _tuple, cr, cg, cb, _tuple$1, ret, bestSSD, _ref, _i, _slice, _index, v, i, _tuple$2, vr, vg, vb, delta, ssd, _tuple$3;
+		p = this;
+		_tuple = c.RGBA(), cr = _tuple[0], cg = _tuple[1], cb = _tuple[2];
+		_tuple$1 = [0, 4294967295], ret = _tuple$1[0], bestSSD = _tuple$1[1];
+		_ref = p;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_tuple$2 = v.RGBA(), vr = _tuple$2[0], vg = _tuple$2[1], vb = _tuple$2[2];
+			delta = (((cr >> 0) - (vr >> 0) >> 0)) >> 1 >> 0;
+			ssd = (((((delta >>> 16 << 16) * delta >> 0) + (delta << 16 >>> 16) * delta) >> 0) >>> 0);
+			delta = (((cg >> 0) - (vg >> 0) >> 0)) >> 1 >> 0;
+			ssd = ssd + ((((((delta >>> 16 << 16) * delta >> 0) + (delta << 16 >>> 16) * delta) >> 0) >>> 0)) >>> 0;
+			delta = (((cb >> 0) - (vb >> 0) >> 0)) >> 1 >> 0;
+			ssd = ssd + ((((((delta >>> 16 << 16) * delta >> 0) + (delta << 16 >>> 16) * delta) >> 0) >>> 0)) >>> 0;
+			if (ssd < bestSSD) {
+				if (ssd === 0) {
+					return i;
+				}
+				_tuple$3 = [i, ssd], ret = _tuple$3[0], bestSSD = _tuple$3[1];
+			}
+		}
+		return ret;
+	};
+	go$ptrType(Palette).prototype.Index = function(c) { return this.go$get().Index(c); };
+	var RGBToYCbCr = go$pkg.RGBToYCbCr = function(r, g, b) {
+		var r1, g1, b1, x, x$1, x$2, yy, x$3, x$4, x$5, cb, x$6, x$7, x$8, cr;
+		r1 = (r >> 0);
+		g1 = (g >> 0);
+		b1 = (b >> 0);
+		yy = (((((x = 19595, (((x >>> 16 << 16) * r1 >> 0) + (x << 16 >>> 16) * r1) >> 0) + (x$1 = 38470, (((x$1 >>> 16 << 16) * g1 >> 0) + (x$1 << 16 >>> 16) * g1) >> 0) >> 0) + (x$2 = 7471, (((x$2 >>> 16 << 16) * b1 >> 0) + (x$2 << 16 >>> 16) * b1) >> 0) >> 0) + 32768 >> 0)) >> 16 >> 0;
+		cb = (((((x$3 = -11056, (((x$3 >>> 16 << 16) * r1 >> 0) + (x$3 << 16 >>> 16) * r1) >> 0) - (x$4 = 21712, (((x$4 >>> 16 << 16) * g1 >> 0) + (x$4 << 16 >>> 16) * g1) >> 0) >> 0) + (x$5 = 32768, (((x$5 >>> 16 << 16) * b1 >> 0) + (x$5 << 16 >>> 16) * b1) >> 0) >> 0) + 8421376 >> 0)) >> 16 >> 0;
+		cr = (((((x$6 = 32768, (((x$6 >>> 16 << 16) * r1 >> 0) + (x$6 << 16 >>> 16) * r1) >> 0) - (x$7 = 27440, (((x$7 >>> 16 << 16) * g1 >> 0) + (x$7 << 16 >>> 16) * g1) >> 0) >> 0) - (x$8 = 5328, (((x$8 >>> 16 << 16) * b1 >> 0) + (x$8 << 16 >>> 16) * b1) >> 0) >> 0) + 8421376 >> 0)) >> 16 >> 0;
+		if (yy < 0) {
+			yy = 0;
+		} else if (yy > 255) {
+			yy = 255;
+		}
+		if (cb < 0) {
+			cb = 0;
+		} else if (cb > 255) {
+			cb = 255;
+		}
+		if (cr < 0) {
+			cr = 0;
+		} else if (cr > 255) {
+			cr = 255;
+		}
+		return [(yy << 24 >>> 24), (cb << 24 >>> 24), (cr << 24 >>> 24)];
+	};
+	var YCbCrToRGB = go$pkg.YCbCrToRGB = function(y, cb, cr) {
+		var yy1, cb1, cr1, x, r, x$1, x$2, g, x$3, b;
+		yy1 = ((y >> 0) << 16 >> 0) + 32768 >> 0;
+		cb1 = (cb >> 0) - 128 >> 0;
+		cr1 = (cr >> 0) - 128 >> 0;
+		r = ((yy1 + (x = 91881, (((x >>> 16 << 16) * cr1 >> 0) + (x << 16 >>> 16) * cr1) >> 0) >> 0)) >> 16 >> 0;
+		g = (((yy1 - (x$1 = 22554, (((x$1 >>> 16 << 16) * cb1 >> 0) + (x$1 << 16 >>> 16) * cb1) >> 0) >> 0) - (x$2 = 46802, (((x$2 >>> 16 << 16) * cr1 >> 0) + (x$2 << 16 >>> 16) * cr1) >> 0) >> 0)) >> 16 >> 0;
+		b = ((yy1 + (x$3 = 116130, (((x$3 >>> 16 << 16) * cb1 >> 0) + (x$3 << 16 >>> 16) * cb1) >> 0) >> 0)) >> 16 >> 0;
+		if (r < 0) {
+			r = 0;
+		} else if (r > 255) {
+			r = 255;
+		}
+		if (g < 0) {
+			g = 0;
+		} else if (g > 255) {
+			g = 255;
+		}
+		if (b < 0) {
+			b = 0;
+		} else if (b > 255) {
+			b = 255;
+		}
+		return [(r << 24 >>> 24), (g << 24 >>> 24), (b << 24 >>> 24)];
+	};
+	YCbCr.Ptr.prototype.RGBA = function() {
+		var _struct, c, _tuple, r, g, b, x, x$1, x$2, x$3, x$4, x$5;
+		c = (_struct = this, new YCbCr.Ptr(_struct.Y, _struct.Cb, _struct.Cr));
+		_tuple = YCbCrToRGB(c.Y, c.Cb, c.Cr), r = _tuple[0], g = _tuple[1], b = _tuple[2];
+		return [(x = (r >>> 0), x$1 = 257, (((x >>> 16 << 16) * x$1 >>> 0) + (x << 16 >>> 16) * x$1) >>> 0), (x$2 = (g >>> 0), x$3 = 257, (((x$2 >>> 16 << 16) * x$3 >>> 0) + (x$2 << 16 >>> 16) * x$3) >>> 0), (x$4 = (b >>> 0), x$5 = 257, (((x$4 >>> 16 << 16) * x$5 >>> 0) + (x$4 << 16 >>> 16) * x$5) >>> 0), 65535];
+	};
+	YCbCr.prototype.RGBA = function() { return this.go$val.RGBA(); };
+	var yCbCrModel = function(c) {
+		var ok, _tuple, _tuple$1, r, g, b, _tuple$2, y, u, v, x;
+		if (_tuple = (c !== null && c.constructor === YCbCr ? [c.go$val, true] : [new YCbCr.Ptr(), false]), ok = _tuple[1], ok) {
+			return c;
+		}
+		_tuple$1 = c.RGBA(), r = _tuple$1[0], g = _tuple$1[1], b = _tuple$1[2];
+		_tuple$2 = RGBToYCbCr(((r >>> 8 >>> 0) << 24 >>> 24), ((g >>> 8 >>> 0) << 24 >>> 24), ((b >>> 8 >>> 0) << 24 >>> 24)), y = _tuple$2[0], u = _tuple$2[1], v = _tuple$2[2];
+		return (x = new YCbCr.Ptr(y, u, v), new x.constructor.Struct(x));
+	};
+	go$pkg.RGBAModel = null;
+	go$pkg.RGBA64Model = null;
+	go$pkg.NRGBAModel = null;
+	go$pkg.NRGBA64Model = null;
+	go$pkg.AlphaModel = null;
+	go$pkg.Alpha16Model = null;
+	go$pkg.GrayModel = null;
+	go$pkg.Gray16Model = null;
+	go$pkg.Black = new Gray16.Ptr();
+	go$pkg.White = new Gray16.Ptr();
+	go$pkg.Transparent = new Alpha16.Ptr();
+	go$pkg.Opaque = new Alpha16.Ptr();
+	go$pkg.YCbCrModel = null;
+	go$pkg.init = function() {
+		go$pkg.RGBAModel = ModelFunc(rgbaModel);
+		go$pkg.RGBA64Model = ModelFunc(rgba64Model);
+		go$pkg.NRGBAModel = ModelFunc(nrgbaModel);
+		go$pkg.NRGBA64Model = ModelFunc(nrgba64Model);
+		go$pkg.AlphaModel = ModelFunc(alphaModel);
+		go$pkg.Alpha16Model = ModelFunc(alpha16Model);
+		go$pkg.GrayModel = ModelFunc(grayModel);
+		go$pkg.Gray16Model = ModelFunc(gray16Model);
+		go$pkg.Black = new Gray16.Ptr(0);
+		go$pkg.White = new Gray16.Ptr(65535);
+		go$pkg.Transparent = new Alpha16.Ptr(0);
+		go$pkg.Opaque = new Alpha16.Ptr(65535);
+		go$pkg.YCbCrModel = ModelFunc(yCbCrModel);
+	};

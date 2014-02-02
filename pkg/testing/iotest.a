@@ -1,0 +1,213 @@
+0‚&‚²package iotest
+import io "io"
+import log "log"
+import errors "errors"
+func @"".DataErrReader(@"".r @"io".Reader) (? @"io".Reader)
+var @"".ErrTimeout error
+func @"".HalfReader(@"".r @"io".Reader) (? @"io".Reader)
+func @"".NewReadLogger(@"".prefix string, @"".r @"io".Reader) (? @"io".Reader)
+func @"".NewWriteLogger(@"".prefix string, @"".w @"io".Writer) (? @"io".Writer)
+func @"".OneByteReader(@"".r @"io".Reader) (? @"io".Reader)
+func @"".TimeoutReader(@"".r @"io".Reader) (? @"io".Reader)
+func @"".TruncateWriter(@"".w @"io".Writer, @"".n int64) (? @"io".Writer)
+type @"".dataErrReader struct { @"".r @"io".Reader; @"".unread []byte; @"".data []byte }
+func (? *@"".dataErrReader) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+type @"".halfReader struct { @"".r @"io".Reader }
+func (? *@"".halfReader) @"".Read(@"".p []byte) (? int, ? error)
+type @"".oneByteReader struct { @"".r @"io".Reader }
+func (? *@"".oneByteReader) @"".Read(@"".p []byte) (? int, ? error)
+type @"".readLogger struct { @"".prefix string; @"".r @"io".Reader }
+func (? *@"".readLogger) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+type @"".timeoutReader struct { @"".r @"io".Reader; @"".count int }
+func (? *@"".timeoutReader) @"".Read(@"".p []byte) (? int, ? error)
+type @"".truncateWriter struct { @"".w @"io".Writer; @"".n int64 }
+func (? *@"".truncateWriter) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+type @"".writeLogger struct { @"".prefix string; @"".w @"io".Writer }
+func (? *@"".writeLogger) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0{runtimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtlogtesting/iotest‚Û	var io = go$packages["io"];
+	var log = go$packages["log"];
+	var errors = go$packages["errors"];
+	var writeLogger;
+	writeLogger = go$newType(0, "Struct", "iotest.writeLogger", "writeLogger", "testing/iotest", function(prefix_, w_) {
+		this.go$val = this;
+		this.prefix = prefix_ !== undefined ? prefix_ : "";
+		this.w = w_ !== undefined ? w_ : null;
+	});
+	go$pkg.writeLogger = writeLogger;
+	var readLogger;
+	readLogger = go$newType(0, "Struct", "iotest.readLogger", "readLogger", "testing/iotest", function(prefix_, r_) {
+		this.go$val = this;
+		this.prefix = prefix_ !== undefined ? prefix_ : "";
+		this.r = r_ !== undefined ? r_ : null;
+	});
+	go$pkg.readLogger = readLogger;
+	var oneByteReader;
+	oneByteReader = go$newType(0, "Struct", "iotest.oneByteReader", "oneByteReader", "testing/iotest", function(r_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+	});
+	go$pkg.oneByteReader = oneByteReader;
+	var halfReader;
+	halfReader = go$newType(0, "Struct", "iotest.halfReader", "halfReader", "testing/iotest", function(r_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+	});
+	go$pkg.halfReader = halfReader;
+	var dataErrReader;
+	dataErrReader = go$newType(0, "Struct", "iotest.dataErrReader", "dataErrReader", "testing/iotest", function(r_, unread_, data_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+		this.unread = unread_ !== undefined ? unread_ : (go$sliceType(Go$Uint8)).nil;
+		this.data = data_ !== undefined ? data_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.dataErrReader = dataErrReader;
+	var timeoutReader;
+	timeoutReader = go$newType(0, "Struct", "iotest.timeoutReader", "timeoutReader", "testing/iotest", function(r_, count_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+		this.count = count_ !== undefined ? count_ : 0;
+	});
+	go$pkg.timeoutReader = timeoutReader;
+	var truncateWriter;
+	truncateWriter = go$newType(0, "Struct", "iotest.truncateWriter", "truncateWriter", "testing/iotest", function(w_, n_) {
+		this.go$val = this;
+		this.w = w_ !== undefined ? w_ : null;
+		this.n = n_ !== undefined ? n_ : new Go$Int64(0, 0);
+	});
+	go$pkg.truncateWriter = truncateWriter;
+	writeLogger.init([["prefix", "testing/iotest", Go$String, ""], ["w", "testing/iotest", io.Writer, ""]]);
+	(go$ptrType(writeLogger)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	readLogger.init([["prefix", "testing/iotest", Go$String, ""], ["r", "testing/iotest", io.Reader, ""]]);
+	(go$ptrType(readLogger)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	oneByteReader.init([["r", "testing/iotest", io.Reader, ""]]);
+	(go$ptrType(oneByteReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	halfReader.init([["r", "testing/iotest", io.Reader, ""]]);
+	(go$ptrType(halfReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	dataErrReader.init([["r", "testing/iotest", io.Reader, ""], ["unread", "testing/iotest", (go$sliceType(Go$Uint8)), ""], ["data", "testing/iotest", (go$sliceType(Go$Uint8)), ""]]);
+	(go$ptrType(dataErrReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	timeoutReader.init([["r", "testing/iotest", io.Reader, ""], ["count", "testing/iotest", Go$Int, ""]]);
+	(go$ptrType(timeoutReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	truncateWriter.init([["w", "testing/iotest", io.Writer, ""], ["n", "testing/iotest", Go$Int64, ""]]);
+	(go$ptrType(truncateWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	writeLogger.Ptr.prototype.Write = function(p) {
+		var n, err, l, _tuple;
+		n = 0;
+		err = null;
+		l = this;
+		_tuple = l.w.Write(p), n = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			log.Printf("%s %x: %v", new (go$sliceType(go$emptyInterface))([new Go$String(l.prefix), go$subslice(p, 0, n), err]));
+		} else {
+			log.Printf("%s %x", new (go$sliceType(go$emptyInterface))([new Go$String(l.prefix), go$subslice(p, 0, n)]));
+		}
+		return [n, err];
+	};
+	writeLogger.prototype.Write = function(p) { return this.go$val.Write(p); };
+	var NewWriteLogger = go$pkg.NewWriteLogger = function(prefix, w) {
+		return new writeLogger.Ptr(prefix, w);
+	};
+	readLogger.Ptr.prototype.Read = function(p) {
+		var n, err, l, _tuple;
+		n = 0;
+		err = null;
+		l = this;
+		_tuple = l.r.Read(p), n = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			log.Printf("%s %x: %v", new (go$sliceType(go$emptyInterface))([new Go$String(l.prefix), go$subslice(p, 0, n), err]));
+		} else {
+			log.Printf("%s %x", new (go$sliceType(go$emptyInterface))([new Go$String(l.prefix), go$subslice(p, 0, n)]));
+		}
+		return [n, err];
+	};
+	readLogger.prototype.Read = function(p) { return this.go$val.Read(p); };
+	var NewReadLogger = go$pkg.NewReadLogger = function(prefix, r) {
+		return new readLogger.Ptr(prefix, r);
+	};
+	var OneByteReader = go$pkg.OneByteReader = function(r) {
+		return new oneByteReader.Ptr(r);
+	};
+	oneByteReader.Ptr.prototype.Read = function(p) {
+		var r;
+		r = this;
+		if (p.length === 0) {
+			return [0, null];
+		}
+		return r.r.Read(go$subslice(p, 0, 1));
+	};
+	oneByteReader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	var HalfReader = go$pkg.HalfReader = function(r) {
+		return new halfReader.Ptr(r);
+	};
+	halfReader.Ptr.prototype.Read = function(p) {
+		var r, _q;
+		r = this;
+		return r.r.Read(go$subslice(p, 0, (_q = ((p.length + 1 >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))));
+	};
+	halfReader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	var DataErrReader = go$pkg.DataErrReader = function(r) {
+		return new dataErrReader.Ptr(r, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).make(1024, 0, function() { return 0; }));
+	};
+	dataErrReader.Ptr.prototype.Read = function(p) {
+		var n, err, r, _tuple, n1, err1;
+		n = 0;
+		err = null;
+		r = this;
+		while (true) {
+			if (r.unread.length === 0) {
+				_tuple = r.r.Read(r.data), n1 = _tuple[0], err1 = _tuple[1];
+				r.unread = go$subslice(r.data, 0, n1);
+				err = err1;
+			}
+			if (n > 0 || !(go$interfaceIsEqual(err, null))) {
+				break;
+			}
+			n = go$copySlice(p, r.unread);
+			r.unread = go$subslice(r.unread, n);
+		}
+		return [n, err];
+	};
+	dataErrReader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	var TimeoutReader = go$pkg.TimeoutReader = function(r) {
+		return new timeoutReader.Ptr(r, 0);
+	};
+	timeoutReader.Ptr.prototype.Read = function(p) {
+		var r;
+		r = this;
+		r.count = r.count + 1 >> 0;
+		if (r.count === 2) {
+			return [0, go$pkg.ErrTimeout];
+		}
+		return r.r.Read(p);
+	};
+	timeoutReader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	var TruncateWriter = go$pkg.TruncateWriter = function(w, n) {
+		return new truncateWriter.Ptr(w, n);
+	};
+	truncateWriter.Ptr.prototype.Write = function(p) {
+		var n, err, t, x, _tuple, x$1, x$2, x$3, _tuple$1, x$4, x$5;
+		n = 0;
+		err = null;
+		t = this;
+		if ((x = t.n, (x.high < 0 || (x.high === 0 && x.low <= 0)))) {
+			_tuple = [p.length, null], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		n = p.length;
+		if ((x$1 = new Go$Int64(0, n), x$2 = t.n, (x$1.high > x$2.high || (x$1.high === x$2.high && x$1.low > x$2.low)))) {
+			n = ((x$3 = t.n, x$3.low + ((x$3.high >> 31) * 4294967296)) >> 0);
+		}
+		_tuple$1 = t.w.Write(go$subslice(p, 0, n)), n = _tuple$1[0], err = _tuple$1[1];
+		t.n = (x$4 = t.n, x$5 = new Go$Int64(0, n), new Go$Int64(x$4.high - x$5.high, x$4.low - x$5.low));
+		if (go$interfaceIsEqual(err, null)) {
+			n = p.length;
+		}
+		return [n, err];
+	};
+	truncateWriter.prototype.Write = function(p) { return this.go$val.Write(p); };
+	go$pkg.ErrTimeout = null;
+	go$pkg.init = function() {
+		go$pkg.ErrTimeout = errors.New("timeout");
+	};

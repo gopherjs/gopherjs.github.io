@@ -1,0 +1,437 @@
+0ÇWbÇ.ipackage ioutil
+import bytes "bytes"
+import io "io"
+import os "os"
+import sort "sort"
+import filepath "path/filepath"
+import strconv "strconv"
+import sync "sync"
+import time "time"
+var @"".Discard @"io".Writer
+func @"".NopCloser(@"".r @"io".Reader) (? @"io".ReadCloser)
+func @"".ReadAll(@"".r @"io".Reader) (? []byte, ? error)
+func @"".ReadDir(@"".dirname string) (? []@"os".FileInfo, ? error)
+func @"".ReadFile(@"".filename string) (? []byte, ? error)
+func @"".TempDir(@"".dir string, @"".prefix string) (@"".name string, @"".err error)
+func @"".TempFile(@"".dir string, @"".prefix string) (@"".f *@"os".File, @"".err error)
+func @"".WriteFile(@"".filename string, @"".data []byte, @"".perm @"os".FileMode) (? error)
+type @"".byName []@"os".FileInfo
+func (? @"".byName) @"".Len() (? int)
+func (? @"".byName) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".byName) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".byName) @"".Len() (? int)
+func (? *@"".byName) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".byName) @"".Swap(@"".i int, @"".j int) ()
+type @"".devNull int
+func (? @"".devNull) @"".ReadFrom(@"".r @"io".Reader) (@"".n int64, @"".err error)
+func (? @"".devNull) @"".Write(@"".p []byte) (? int, ? error)
+func (? @"".devNull) @"".WriteString(@"".s string) (? int, ? error)
+func (? *@"".devNull) @"".ReadFrom(@"".r @"io".Reader) (@"".n int64, @"".err error)
+func (? *@"".devNull) @"".Write(@"".p []byte) (? int, ? error)
+func (? *@"".devNull) @"".WriteString(@"".s string) (? int, ? error)
+type @"".nopCloser struct { ? @"io".Reader }
+func (? @"".nopCloser) @"".Close() (? error)
+func (? *@"".nopCloser) @"".Close() (? error)
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"os".FileInfo interface { @"os".IsDir() (? bool); @"os".ModTime() (? @"time".Time); @"os".Mode() (? @"os".FileMode); @"os".Name() (? string); @"os".Size() (? int64); @"os".Sys() (? interface {  }) }
+type @"os".File struct { ? *@"os".file }
+func (? *@"os".File) @"os".Chdir() (? error)
+func (? *@"os".File) @"os".Chmod(@"os".mode @"os".FileMode) (? error)
+func (? *@"os".File) @"os".Chown(@"os".uid int, @"os".gid int) (? error)
+func (? *@"os".File) @"os".Close() (? error)
+func (? *@"os".File) @"os".Fd() (? uintptr)
+func (? *@"os".File) @"os".Name() (? string)
+func (? *@"os".File) @"os".Read(@"os".b []byte) (@"os".n int, @"os".err error)
+func (? *@"os".File) @"os".ReadAt(@"os".b []byte, @"os".off int64) (@"os".n int, @"os".err error)
+func (? *@"os".File) @"os".Readdir(@"os".n int) (@"os".fi []@"os".FileInfo, @"os".err error)
+func (? *@"os".File) @"os".Readdirnames(@"os".n int) (@"os".names []string, @"os".err error)
+func (? *@"os".File) @"os".Seek(@"os".offset int64, @"os".whence int) (@"os".ret int64, @"os".err error)
+func (? *@"os".File) @"os".Stat() (@"os".fi @"os".FileInfo, @"os".err error)
+func (? *@"os".File) @"os".Sync() (@"os".err error)
+func (? *@"os".File) @"os".Truncate(@"os".size int64) (? error)
+func (? *@"os".File) @"os".Write(@"os".b []byte) (@"os".n int, @"os".err error)
+func (? *@"os".File) @"os".WriteAt(@"os".b []byte, @"os".off int64) (@"os".n int, @"os".err error)
+func (? *@"os".File) @"os".WriteString(@"os".s string) (@"os".ret int, @"os".err error)
+func (? *@"os".File) @"os".pread(@"os".b []byte, @"os".off int64) (@"os".n int, @"os".err error)
+func (? *@"os".File) @"os".pwrite(@"os".b []byte, @"os".off int64) (@"os".n int, @"os".err error)
+func (? *@"os".File) @"os".read(@"os".b []byte) (@"os".n int, @"os".err error)
+func (? *@"os".File) @"os".readdir(@"os".n int) (@"os".fi []@"os".FileInfo, @"os".err error)
+func (? *@"os".File) @"os".readdirnames(@"os".n int) (@"os".names []string, @"os".err error)
+func (? *@"os".File) @"os".seek(@"os".offset int64, @"os".whence int) (@"os".ret int64, @"os".err error)
+func (? *@"os".File) @"os".write(@"os".b []byte) (@"os".n int, @"os".err error)
+type @"os".FileMode uint32
+func (? @"os".FileMode) @"os".IsDir() (? bool)
+func (? @"os".FileMode) @"os".IsRegular() (? bool)
+func (? @"os".FileMode) @"os".Perm() (? @"os".FileMode)
+func (? @"os".FileMode) @"os".String() (? string)
+func (? *@"os".FileMode) @"os".IsDir() (? bool)
+func (? *@"os".FileMode) @"os".IsRegular() (? bool)
+func (? *@"os".FileMode) @"os".Perm() (? @"os".FileMode)
+func (? *@"os".FileMode) @"os".String() (? string)
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? @"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? @"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? @"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+func (? *@"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? *@"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? *@"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? *@"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+type @"os".file struct { @"os".fd int; @"os".name string; @"os".dirinfo *@"os".dirInfo; @"os".nepipe int32 }
+func (? *@"os".file) @"os".close() (? error)
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+$$
+0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutilÇ(]	var bytes = go$packages["bytes"];
+	var io = go$packages["io"];
+	var os = go$packages["os"];
+	var sort = go$packages["sort"];
+	var filepath = go$packages["path/filepath"];
+	var strconv = go$packages["strconv"];
+	var sync = go$packages["sync"];
+	var time = go$packages["time"];
+	var byName;
+	byName = go$newType(0, "Slice", "ioutil.byName", "byName", "io/ioutil", null);
+	go$pkg.byName = byName;
+	var nopCloser;
+	nopCloser = go$newType(0, "Struct", "ioutil.nopCloser", "nopCloser", "io/ioutil", function(Reader_) {
+		this.go$val = this;
+		this.Reader = Reader_ !== undefined ? Reader_ : null;
+	});
+	nopCloser.prototype.Read = function(p) { return this.go$val.Read(p); };
+	nopCloser.Ptr.prototype.Read = function(p) { return this.Reader.Read(p); };
+	go$pkg.nopCloser = nopCloser;
+	var devNull;
+	devNull = go$newType(4, "Int", "ioutil.devNull", "devNull", "io/ioutil", null);
+	go$pkg.devNull = devNull;
+	byName.init(os.FileInfo);
+	byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	nopCloser.init([["", "", io.Reader, ""]]);
+	nopCloser.methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
+	(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
+	var readAll = function(r, capacity) {
+		var b, err, buf, _tuple, _tuple$1;
+		b = (go$sliceType(Go$Uint8)).nil;
+		err = null;
+		var go$deferred = [];
+		try {
+			buf = bytes.NewBuffer((go$sliceType(Go$Uint8)).make(0, go$flatten64(capacity), function() { return 0; }));
+			go$deferred.push({ fun: (function() {
+				var e, ok, panicErr, _tuple;
+				e = go$recover();
+				if (go$interfaceIsEqual(e, null)) {
+					return;
+				}
+				if (_tuple = (e !== null && go$error.implementedBy.indexOf(e.constructor) !== -1 ? [e, true] : [null, false]), panicErr = _tuple[0], ok = _tuple[1], ok && go$interfaceIsEqual(panicErr, bytes.ErrTooLarge)) {
+					err = panicErr;
+				} else {
+					throw go$panic(e);
+				}
+			}), args: [] });
+			_tuple = buf.ReadFrom(r), err = _tuple[1];
+			_tuple$1 = [buf.Bytes(), err], b = _tuple$1[0], err = _tuple$1[1];
+			return [b, err];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [b, err];
+		}
+	};
+	var ReadAll = go$pkg.ReadAll = function(r) {
+		return readAll(r, new Go$Int64(0, 512));
+	};
+	var ReadFile = go$pkg.ReadFile = function(filename) {
+		var _tuple, f, err, n, err$1, _tuple$1, fi, size;
+		var go$deferred = [];
+		try {
+			_tuple = os.Open(filename), f = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [(go$sliceType(Go$Uint8)).nil, err];
+			}
+			go$deferred.push({ recv: f, method: "Close", args: [] });
+			n = new Go$Int64(0, 0);
+			if (_tuple$1 = f.Stat(), fi = _tuple$1[0], err$1 = _tuple$1[1], go$interfaceIsEqual(err$1, null)) {
+				if (size = fi.Size(), (size.high < 0 || (size.high === 0 && size.low < 1000000000))) {
+					n = size;
+				}
+			}
+			return readAll(f, new Go$Int64(n.high + 0, n.low + 512));
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [(go$sliceType(Go$Uint8)).nil, null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	var WriteFile = go$pkg.WriteFile = function(filename, data, perm) {
+		var _tuple, f, err, _tuple$1, n, err1;
+		_tuple = os.OpenFile(filename, 1537, perm), f = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		_tuple$1 = f.Write(data), n = _tuple$1[0], err = _tuple$1[1];
+		if (go$interfaceIsEqual(err, null) && n < data.length) {
+			err = io.ErrShortWrite;
+		}
+		if (err1 = f.Close(), go$interfaceIsEqual(err, null)) {
+			err = err1;
+		}
+		return err;
+	};
+	byName.prototype.Len = function() {
+		var f;
+		f = this;
+		return f.length;
+	};
+	go$ptrType(byName).prototype.Len = function() { return this.go$get().Len(); };
+	byName.prototype.Less = function(i, j) {
+		var f, _slice, _index, _slice$1, _index$1;
+		f = this;
+		return (_slice = f, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name() < (_slice$1 = f, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name();
+	};
+	go$ptrType(byName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
+	byName.prototype.Swap = function(i, j) {
+		var f, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		f = this;
+		_tuple = [(_slice = f, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = f, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = f, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = f, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	go$ptrType(byName).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+	var ReadDir = go$pkg.ReadDir = function(dirname) {
+		var _tuple, f, err, _tuple$1, list;
+		_tuple = os.Open(dirname), f = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(os.FileInfo)).nil, err];
+		}
+		_tuple$1 = f.Readdir(-1), list = _tuple$1[0], err = _tuple$1[1];
+		f.Close();
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(os.FileInfo)).nil, err];
+		}
+		sort.Sort(go$subslice(new byName(list.array), list.offset, list.offset + list.length));
+		return [list, null];
+	};
+	nopCloser.Ptr.prototype.Close = function() {
+		return null;
+	};
+	nopCloser.prototype.Close = function() { return this.go$val.Close(); };
+	var NopCloser = go$pkg.NopCloser = function(r) {
+		var x;
+		return (x = new nopCloser.Ptr(r), new x.constructor.Struct(x));
+	};
+	devNull.prototype.Write = function(p) {
+		return [p.length, null];
+	};
+	go$ptrType(devNull).prototype.Write = function(p) { return new devNull(this.go$get()).Write(p); };
+	devNull.prototype.WriteString = function(s) {
+		return [s.length, null];
+	};
+	go$ptrType(devNull).prototype.WriteString = function(s) { return new devNull(this.go$get()).WriteString(s); };
+	devNull.prototype.ReadFrom = function(r) {
+		var n, err, buf, readSize, _tuple, x, _tuple$1;
+		n = new Go$Int64(0, 0);
+		err = null;
+		var go$deferred = [];
+		try {
+			buf = blackHole();
+			go$deferred.push({ fun: blackHolePut, args: [buf] });
+			readSize = 0;
+			while (true) {
+				_tuple = r.Read(buf), readSize = _tuple[0], err = _tuple[1];
+				n = (x = new Go$Int64(0, readSize), new Go$Int64(n.high + x.high, n.low + x.low));
+				if (!(go$interfaceIsEqual(err, null))) {
+					if (go$interfaceIsEqual(err, io.EOF)) {
+						_tuple$1 = [n, null], n = _tuple$1[0], err = _tuple$1[1];
+						return [n, err];
+					}
+					return [n, err];
+				}
+			}
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [n, err];
+		}
+	};
+	go$ptrType(devNull).prototype.ReadFrom = function(r) { return new devNull(this.go$get()).ReadFrom(r); };
+	var reseed = function() {
+		var x, x$1;
+		return ((x = time.Now().UnixNano(), x$1 = new Go$Int64(0, os.Getpid()), new Go$Int64(x.high + x$1.high, x.low + x$1.low)).low >>> 0);
+	};
+	var nextSuffix = function() {
+		var r, x, _r;
+		randmu.Lock();
+		r = rand;
+		if (r === 0) {
+			r = reseed();
+		}
+		r = (x = 1664525, (((r >>> 16 << 16) * x >>> 0) + (r << 16 >>> 16) * x) >>> 0) + 1013904223 >>> 0;
+		rand = r;
+		randmu.Unlock();
+		return strconv.Itoa(((1000000000 + (_r = r % 1000000000, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0) >> 0)).substring(1);
+	};
+	var TempFile = go$pkg.TempFile = function(dir, prefix) {
+		var f, err, nconflict, i, name, _tuple;
+		f = (go$ptrType(os.File)).nil;
+		err = null;
+		if (dir === "") {
+			dir = os.TempDir();
+		}
+		nconflict = 0;
+		i = 0;
+		while (i < 10000) {
+			name = filepath.Join(new (go$sliceType(Go$String))([dir, prefix + nextSuffix()]));
+			_tuple = os.OpenFile(name, 2562, 384), f = _tuple[0], err = _tuple[1];
+			if (os.IsExist(err)) {
+				if (nconflict = nconflict + 1 >> 0, nconflict > 10) {
+					rand = reseed();
+				}
+				i = i + 1 >> 0;
+				continue;
+			}
+			break;
+		}
+		return [f, err];
+	};
+	var TempDir = go$pkg.TempDir = function(dir, prefix) {
+		var name, err, nconflict, i, try$1;
+		name = "";
+		err = null;
+		if (dir === "") {
+			dir = os.TempDir();
+		}
+		nconflict = 0;
+		i = 0;
+		while (i < 10000) {
+			try$1 = filepath.Join(new (go$sliceType(Go$String))([dir, prefix + nextSuffix()]));
+			err = os.Mkdir(try$1, 448);
+			if (os.IsExist(err)) {
+				if (nconflict = nconflict + 1 >> 0, nconflict > 10) {
+					rand = reseed();
+				}
+				i = i + 1 >> 0;
+				continue;
+			}
+			if (go$interfaceIsEqual(err, null)) {
+				name = try$1;
+			}
+			break;
+		}
+		return [name, err];
+	};
+	var blackHole = function() {
+			return blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });
+		};
+	var blackHolePut = function(p) {
+			blackHoles.push(p);
+		};
+	var blackHoleBuf = (go$chanType((go$sliceType(Go$Uint8)), false, false)).nil;
+	var _ = null;
+	go$pkg.Discard = null;
+	var rand = 0;
+	var randmu = new sync.Mutex.Ptr();
+
+			var blackHoles = [];
+			go$pkg.init = function() {
+		blackHoleBuf = new (go$chanType((go$sliceType(Go$Uint8)), false, false))();
+		go$pkg.Discard = new devNull(0);
+	};

@@ -1,0 +1,467 @@
+0‚TÂ‚•package tabwriter
+import bytes "bytes"
+import io "io"
+import utf8 "unicode/utf8"
+const @"".AlignRight uint = 0x4
+const @"".Debug uint = 0x20
+const @"".DiscardEmptyColumns uint = 0x8
+const @"".Escape = '\u00ff'
+const @"".FilterHTML uint = 0x1
+func @"".NewWriter(@"".output @"io".Writer, @"".minwidth int, @"".tabwidth int, @"".padding int, @"".padchar byte, @"".flags uint) (? *@"".Writer)
+const @"".StripEscape uint = 0x2
+const @"".TabIndent uint = 0x10
+type @"".Writer struct { @"".output @"io".Writer; @"".minwidth int; @"".tabwidth int; @"".padding int; @"".padbytes [8]byte; @"".flags uint; @"".buf @"bytes".Buffer; @"".pos int; @"".cell @"".cell; @"".endChar byte; @"".lines [][]@"".cell; @"".widths []int }
+func (? *@"".Writer) @"".Flush() (@"".err error)
+func (? *@"".Writer) @"".Init(@"".output @"io".Writer, @"".minwidth int, @"".tabwidth int, @"".padding int, @"".padchar byte, @"".flags uint) (? *@"".Writer)
+func (? *@"".Writer) @"".Write(@"".buf []byte) (@"".n int, @"".err error)
+func (? *@"".Writer) @"".addLine() ()
+func (? *@"".Writer) @"".append(@"".text []byte) ()
+func (? *@"".Writer) @"".dump() ()
+func (? *@"".Writer) @"".endEscape() ()
+func (? *@"".Writer) @"".format(@"".pos0 int, @"".line0 int, @"".line1 int) (@"".pos int)
+func (? *@"".Writer) @"".reset() ()
+func (? *@"".Writer) @"".startEscape(@"".ch byte) ()
+func (? *@"".Writer) @"".terminateCell(@"".htab bool) (? int)
+func (? *@"".Writer) @"".updateWidth() ()
+func (? *@"".Writer) @"".write0(@"".buf []byte) ()
+func (? *@"".Writer) @"".writeLines(@"".pos0 int, @"".line0 int, @"".line1 int) (@"".pos int)
+func (? *@"".Writer) @"".writeN(@"".src []byte, @"".n int) ()
+func (? *@"".Writer) @"".writePadding(@"".textw int, @"".cellw int, @"".useTabs bool) ()
+type @"".cell struct { @"".size int; @"".width int; @"".htab bool }
+type @"".osError struct { @"".err error }
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"bytes".Buffer struct { @"bytes".buf []byte; @"bytes".off int; @"bytes".runeBytes [4]byte; @"bytes".bootstrap [64]byte; @"bytes".lastRead @"bytes".readOp }
+func (? *@"bytes".Buffer) @"bytes".Bytes() (? []byte)
+func (? *@"bytes".Buffer) @"bytes".Grow(@"bytes".n int) ()
+func (? *@"bytes".Buffer) @"bytes".Len() (? int)
+func (? *@"bytes".Buffer) @"bytes".Next(@"bytes".n int) (? []byte)
+func (? *@"bytes".Buffer) @"bytes".Read(@"bytes".p []byte) (@"bytes".n int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadByte() (@"bytes".c byte, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadBytes(@"bytes".delim byte) (@"bytes".line []byte, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadFrom(@"bytes".r @"io".Reader) (@"bytes".n int64, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadRune() (@"bytes".r rune, @"bytes".size int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadString(@"bytes".delim byte) (@"bytes".line string, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".Reset() ()
+func (? *@"bytes".Buffer) @"bytes".String() (? string)
+func (? *@"bytes".Buffer) @"bytes".Truncate(@"bytes".n int) ()
+func (? *@"bytes".Buffer) @"bytes".UnreadByte() (? error)
+func (? *@"bytes".Buffer) @"bytes".UnreadRune() (? error)
+func (? *@"bytes".Buffer) @"bytes".Write(@"bytes".p []byte) (@"bytes".n int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteByte(@"bytes".c byte) (? error)
+func (? *@"bytes".Buffer) @"bytes".WriteRune(@"bytes".r rune) (@"bytes".n int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteString(@"bytes".s string) (@"bytes".n int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteTo(@"bytes".w @"io".Writer) (@"bytes".n int64, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".grow(@"bytes".n int) (? int)
+func (? *@"bytes".Buffer) @"bytes".readSlice(@"bytes".delim byte) (@"bytes".line []byte, @"bytes".err error)
+type @"bytes".readOp int
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+$$
+0Vruntimeerrorssync/atomicsynciounicodeunicode/utf8bytestext/tabwriter‚DÍ	var bytes = go$packages["bytes"];
+	var io = go$packages["io"];
+	var utf8 = go$packages["unicode/utf8"];
+	var cell;
+	cell = go$newType(0, "Struct", "tabwriter.cell", "cell", "text/tabwriter", function(size_, width_, htab_) {
+		this.go$val = this;
+		this.size = size_ !== undefined ? size_ : 0;
+		this.width = width_ !== undefined ? width_ : 0;
+		this.htab = htab_ !== undefined ? htab_ : false;
+	});
+	go$pkg.cell = cell;
+	var Writer;
+	Writer = go$newType(0, "Struct", "tabwriter.Writer", "Writer", "text/tabwriter", function(output_, minwidth_, tabwidth_, padding_, padbytes_, flags_, buf_, pos_, cell_, endChar_, lines_, widths_) {
+		this.go$val = this;
+		this.output = output_ !== undefined ? output_ : null;
+		this.minwidth = minwidth_ !== undefined ? minwidth_ : 0;
+		this.tabwidth = tabwidth_ !== undefined ? tabwidth_ : 0;
+		this.padding = padding_ !== undefined ? padding_ : 0;
+		this.padbytes = padbytes_ !== undefined ? padbytes_ : go$makeNativeArray("Uint8", 8, function() { return 0; });
+		this.flags = flags_ !== undefined ? flags_ : 0;
+		this.buf = buf_ !== undefined ? buf_ : new bytes.Buffer.Ptr();
+		this.pos = pos_ !== undefined ? pos_ : 0;
+		this.cell = cell_ !== undefined ? cell_ : new cell.Ptr();
+		this.endChar = endChar_ !== undefined ? endChar_ : 0;
+		this.lines = lines_ !== undefined ? lines_ : (go$sliceType((go$sliceType(cell)))).nil;
+		this.widths = widths_ !== undefined ? widths_ : (go$sliceType(Go$Int)).nil;
+	});
+	go$pkg.Writer = Writer;
+	var osError;
+	osError = go$newType(0, "Struct", "tabwriter.osError", "osError", "text/tabwriter", function(err_) {
+		this.go$val = this;
+		this.err = err_ !== undefined ? err_ : null;
+	});
+	go$pkg.osError = osError;
+	cell.init([["size", "text/tabwriter", Go$Int, ""], ["width", "text/tabwriter", Go$Int, ""], ["htab", "text/tabwriter", Go$Bool, ""]]);
+	Writer.init([["output", "text/tabwriter", io.Writer, ""], ["minwidth", "text/tabwriter", Go$Int, ""], ["tabwidth", "text/tabwriter", Go$Int, ""], ["padding", "text/tabwriter", Go$Int, ""], ["padbytes", "text/tabwriter", (go$arrayType(Go$Uint8, 8)), ""], ["flags", "text/tabwriter", Go$Uint, ""], ["buf", "text/tabwriter", bytes.Buffer, ""], ["pos", "text/tabwriter", Go$Int, ""], ["cell", "text/tabwriter", cell, ""], ["endChar", "text/tabwriter", Go$Uint8, ""], ["lines", "text/tabwriter", (go$sliceType((go$sliceType(cell)))), ""], ["widths", "text/tabwriter", (go$sliceType(Go$Int)), ""]]);
+	(go$ptrType(Writer)).methods = [["Flush", "", [], [go$error], false], ["Init", "", [io.Writer, Go$Int, Go$Int, Go$Int, Go$Uint8, Go$Uint], [(go$ptrType(Writer))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["addLine", "text/tabwriter", [], [], false], ["append", "text/tabwriter", [(go$sliceType(Go$Uint8))], [], false], ["dump", "text/tabwriter", [], [], false], ["endEscape", "text/tabwriter", [], [], false], ["format", "text/tabwriter", [Go$Int, Go$Int, Go$Int], [Go$Int], false], ["reset", "text/tabwriter", [], [], false], ["startEscape", "text/tabwriter", [Go$Uint8], [], false], ["terminateCell", "text/tabwriter", [Go$Bool], [Go$Int], false], ["updateWidth", "text/tabwriter", [], [], false], ["write0", "text/tabwriter", [(go$sliceType(Go$Uint8))], [], false], ["writeLines", "text/tabwriter", [Go$Int, Go$Int, Go$Int], [Go$Int], false], ["writeN", "text/tabwriter", [(go$sliceType(Go$Uint8)), Go$Int], [], false], ["writePadding", "text/tabwriter", [Go$Int, Go$Int, Go$Bool], [], false]];
+	osError.init([["err", "text/tabwriter", go$error, ""]]);
+	Writer.Ptr.prototype.addLine = function() {
+		var b;
+		b = this;
+		b.lines = go$append(b.lines, new (go$sliceType(cell))([]));
+	};
+	Writer.prototype.addLine = function() { return this.go$val.addLine(); };
+	Writer.Ptr.prototype.reset = function() {
+		var b;
+		b = this;
+		b.buf.Reset();
+		b.pos = 0;
+		b.cell = new cell.Ptr(0, 0, false);
+		b.endChar = 0;
+		b.lines = go$subslice(b.lines, 0, 0);
+		b.widths = go$subslice(b.widths, 0, 0);
+		b.addLine();
+	};
+	Writer.prototype.reset = function() { return this.go$val.reset(); };
+	Writer.Ptr.prototype.Init = function(output, minwidth, tabwidth, padding, padchar, flags) {
+		var b, _ref, _i, i;
+		b = this;
+		if (minwidth < 0 || tabwidth < 0 || padding < 0) {
+			throw go$panic(new Go$String("negative minwidth, tabwidth, or padding"));
+		}
+		b.output = output;
+		b.minwidth = minwidth;
+		b.tabwidth = tabwidth;
+		b.padding = padding;
+		_ref = b.padbytes;
+		_i = 0;
+		for (; _i < 8; _i += 1) {
+			i = _i;
+			b.padbytes[i] = padchar;
+		}
+		if (padchar === 9) {
+			flags = flags & ~4;
+		}
+		b.flags = flags;
+		b.reset();
+		return b;
+	};
+	Writer.prototype.Init = function(output, minwidth, tabwidth, padding, padchar, flags) { return this.go$val.Init(output, minwidth, tabwidth, padding, padchar, flags); };
+	Writer.Ptr.prototype.dump = function() {
+		var b, pos, _ref, _i, _slice, _index, line, i, _ref$1, _i$1, _slice$1, _index$1, _struct, c;
+		b = this;
+		pos = 0;
+		_ref = b.lines;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			line = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			console.log("(", i, ") ");
+			_ref$1 = line;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				c = (_struct = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new cell.Ptr(_struct.size, _struct.width, _struct.htab));
+				console.log("[", go$bytesToString(go$subslice(b.buf.Bytes(), pos, (pos + c.size >> 0))), "]");
+				pos = pos + (c.size) >> 0;
+			}
+			console.log("\n");
+		}
+		console.log("\n");
+	};
+	Writer.prototype.dump = function() { return this.go$val.dump(); };
+	Writer.Ptr.prototype.write0 = function(buf) {
+		var b, _tuple, n, err, x;
+		b = this;
+		_tuple = b.output.Write(buf), n = _tuple[0], err = _tuple[1];
+		if (!((n === buf.length)) && go$interfaceIsEqual(err, null)) {
+			err = io.ErrShortWrite;
+		}
+		if (!(go$interfaceIsEqual(err, null))) {
+			throw go$panic((x = new osError.Ptr(err), new x.constructor.Struct(x)));
+		}
+	};
+	Writer.prototype.write0 = function(buf) { return this.go$val.write0(buf); };
+	Writer.Ptr.prototype.writeN = function(src, n) {
+		var b;
+		b = this;
+		while (n > src.length) {
+			b.write0(src);
+			n = n - (src.length) >> 0;
+		}
+		b.write0(go$subslice(src, 0, n));
+	};
+	Writer.prototype.writeN = function(src, n) { return this.go$val.writeN(src, n); };
+	Writer.Ptr.prototype.writePadding = function(textw, cellw, useTabs) {
+		var b, x, _q, x$1, n, _q$1;
+		b = this;
+		if ((b.padbytes[0] === 9) || useTabs) {
+			if (b.tabwidth === 0) {
+				return;
+			}
+			cellw = (x = (_q = (((cellw + b.tabwidth >> 0) - 1 >> 0)) / b.tabwidth, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), x$1 = b.tabwidth, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+			n = cellw - textw >> 0;
+			if (n < 0) {
+				throw go$panic(new Go$String("internal error"));
+			}
+			b.writeN(tabs, (_q$1 = (((n + b.tabwidth >> 0) - 1 >> 0)) / b.tabwidth, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")));
+			return;
+		}
+		b.writeN(go$subslice(new (go$sliceType(Go$Uint8))(b.padbytes), 0), cellw - textw >> 0);
+	};
+	Writer.prototype.writePadding = function(textw, cellw, useTabs) { return this.go$val.writePadding(textw, cellw, useTabs); };
+	Writer.Ptr.prototype.writeLines = function(pos0, line0, line1) {
+		var pos, b, i, _slice, _index, line, useTabs, _ref, _i, _slice$1, _index$1, _struct, c, j, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
+		pos = 0;
+		b = this;
+		pos = pos0;
+		i = line0;
+		while (i < line1) {
+			line = (_slice = b.lines, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			useTabs = !((((b.flags & 16) >>> 0) === 0));
+			_ref = line;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				c = (_struct = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new cell.Ptr(_struct.size, _struct.width, _struct.htab));
+				j = _i;
+				if (j > 0 && !((((b.flags & 32) >>> 0) === 0))) {
+					b.write0(vbar);
+				}
+				if (c.size === 0) {
+					if (j < b.widths.length) {
+						b.writePadding(c.width, (_slice$2 = b.widths, _index$2 = j, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), useTabs);
+					}
+				} else {
+					useTabs = false;
+					if (((b.flags & 4) >>> 0) === 0) {
+						b.write0(go$subslice(b.buf.Bytes(), pos, (pos + c.size >> 0)));
+						pos = pos + (c.size) >> 0;
+						if (j < b.widths.length) {
+							b.writePadding(c.width, (_slice$3 = b.widths, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), false);
+						}
+					} else {
+						if (j < b.widths.length) {
+							b.writePadding(c.width, (_slice$4 = b.widths, _index$4 = j, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), false);
+						}
+						b.write0(go$subslice(b.buf.Bytes(), pos, (pos + c.size >> 0)));
+						pos = pos + (c.size) >> 0;
+					}
+				}
+			}
+			if ((i + 1 >> 0) === b.lines.length) {
+				b.write0(go$subslice(b.buf.Bytes(), pos, (pos + b.cell.size >> 0)));
+				pos = pos + (b.cell.size) >> 0;
+			} else {
+				b.write0(newline);
+			}
+			i = i + 1 >> 0;
+		}
+		return pos;
+	};
+	Writer.prototype.writeLines = function(pos0, line0, line1) { return this.go$val.writeLines(pos0, line0, line1); };
+	Writer.Ptr.prototype.format = function(pos0, line0, line1) {
+		var pos, b, column, this$1, _slice, _index, line, width, discardable, _slice$1, _index$1, _slice$2, _index$2, _struct, c, w;
+		pos = 0;
+		b = this;
+		pos = pos0;
+		column = b.widths.length;
+		this$1 = line0;
+		while (this$1 < line1) {
+			line = (_slice = b.lines, _index = this$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (column < (line.length - 1 >> 0)) {
+				pos = b.writeLines(pos, line0, this$1);
+				line0 = this$1;
+				width = b.minwidth;
+				discardable = true;
+				while (this$1 < line1) {
+					line = (_slice$1 = b.lines, _index$1 = this$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+					if (column < (line.length - 1 >> 0)) {
+						c = (_struct = (_slice$2 = line, _index$2 = column, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), new cell.Ptr(_struct.size, _struct.width, _struct.htab));
+						if (w = c.width + b.padding >> 0, w > width) {
+							width = w;
+						}
+						if (c.width > 0 || c.htab) {
+							discardable = false;
+						}
+					} else {
+						break;
+					}
+					this$1 = this$1 + 1 >> 0;
+				}
+				if (discardable && !((((b.flags & 8) >>> 0) === 0))) {
+					width = 0;
+				}
+				b.widths = go$append(b.widths, width);
+				pos = b.format(pos, line0, this$1);
+				b.widths = go$subslice(b.widths, 0, (b.widths.length - 1 >> 0));
+				line0 = this$1;
+			}
+			this$1 = this$1 + 1 >> 0;
+		}
+		pos = b.writeLines(pos, line0, line1);
+		return pos;
+	};
+	Writer.prototype.format = function(pos0, line0, line1) { return this.go$val.format(pos0, line0, line1); };
+	Writer.Ptr.prototype.append = function(text) {
+		var b;
+		b = this;
+		b.buf.Write(text);
+		b.cell.size = b.cell.size + (text.length) >> 0;
+	};
+	Writer.prototype.append = function(text) { return this.go$val.append(text); };
+	Writer.Ptr.prototype.updateWidth = function() {
+		var b;
+		b = this;
+		b.cell.width = b.cell.width + (utf8.RuneCount(go$subslice(b.buf.Bytes(), b.pos, b.buf.Len()))) >> 0;
+		b.pos = b.buf.Len();
+	};
+	Writer.prototype.updateWidth = function() { return this.go$val.updateWidth(); };
+	Writer.Ptr.prototype.startEscape = function(ch) {
+		var b, _ref;
+		b = this;
+		_ref = ch;
+		if (_ref === 255) {
+			b.endChar = 255;
+		} else if (_ref === 60) {
+			b.endChar = 62;
+		} else if (_ref === 38) {
+			b.endChar = 59;
+		}
+	};
+	Writer.prototype.startEscape = function(ch) { return this.go$val.startEscape(ch); };
+	Writer.Ptr.prototype.endEscape = function() {
+		var b, _ref;
+		b = this;
+		_ref = b.endChar;
+		if (_ref === 255) {
+			b.updateWidth();
+			if (((b.flags & 2) >>> 0) === 0) {
+				b.cell.width = b.cell.width - 2 >> 0;
+			}
+		} else if (_ref === 62) {
+		} else if (_ref === 59) {
+			b.cell.width = b.cell.width + 1 >> 0;
+		}
+		b.pos = b.buf.Len();
+		b.endChar = 0;
+	};
+	Writer.prototype.endEscape = function() { return this.go$val.endEscape(); };
+	Writer.Ptr.prototype.terminateCell = function(htab) {
+		var b, v, _slice, _index, _slice$1, _index$1, line, _struct;
+		b = this;
+		b.cell.htab = htab;
+		line = new (go$ptrType((go$sliceType(cell))))(function() { return (_slice = b.lines, _index = (b.lines.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v) { _slice$1 = b.lines, _index$1 = b.lines.length - 1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v) : go$throwRuntimeError("index out of range"); });
+		line.go$set(go$append(line.go$get(), (_struct = b.cell, new cell.Ptr(_struct.size, _struct.width, _struct.htab))));
+		b.cell = new cell.Ptr(0, 0, false);
+		return line.go$get().length;
+	};
+	Writer.prototype.terminateCell = function(htab) { return this.go$val.terminateCell(htab); };
+	var handlePanic = function(err) {
+		var e;
+		if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
+			err.go$set((e !== null && e.constructor === osError ? e.go$val : go$typeAssertionFailed(e, osError)).err);
+		}
+	};
+	Writer.Ptr.prototype.Flush = function() {
+		var err, b, v;
+		err = null;
+		var go$deferred = [];
+		try {
+			b = this;
+			go$deferred.push({ recv: b, method: "reset", args: [] });
+			go$deferred.push({ fun: handlePanic, args: [new (go$ptrType(go$error))(function() { return err; }, function(v) { err = v; })] });
+			if (b.cell.size > 0) {
+				if (!((b.endChar === 0))) {
+					b.endEscape();
+				}
+				b.terminateCell(false);
+			}
+			b.format(0, 0, b.lines.length);
+			return err;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return err;
+		}
+	};
+	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
+	Writer.Ptr.prototype.Write = function(buf) {
+		var n, err, b, v, _ref, _i, _slice, _index, ch, i, _ref$1, ncells, j;
+		n = 0;
+		err = null;
+		var go$deferred = [];
+		try {
+			b = this;
+			go$deferred.push({ fun: handlePanic, args: [new (go$ptrType(go$error))(function() { return err; }, function(v) { err = v; })] });
+			n = 0;
+			_ref = buf;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				ch = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				if (b.endChar === 0) {
+					_ref$1 = ch;
+					if (_ref$1 === 9 || _ref$1 === 11 || _ref$1 === 10 || _ref$1 === 12) {
+						b.append(go$subslice(buf, n, i));
+						b.updateWidth();
+						n = i + 1 >> 0;
+						ncells = b.terminateCell(ch === 9);
+						if ((ch === 10) || (ch === 12)) {
+							b.addLine();
+							if ((ch === 12) || (ncells === 1)) {
+								if (err = b.Flush(), !(go$interfaceIsEqual(err, null))) {
+									return [n, err];
+								}
+								if ((ch === 12) && !((((b.flags & 32) >>> 0) === 0))) {
+									b.write0(hbar);
+								}
+							}
+						}
+					} else if (_ref$1 === 255) {
+						b.append(go$subslice(buf, n, i));
+						b.updateWidth();
+						n = i;
+						if (!((((b.flags & 2) >>> 0) === 0))) {
+							n = n + 1 >> 0;
+						}
+						b.startEscape(255);
+					} else if (_ref$1 === 60 || _ref$1 === 38) {
+						if (!((((b.flags & 1) >>> 0) === 0))) {
+							b.append(go$subslice(buf, n, i));
+							b.updateWidth();
+							n = i;
+							b.startEscape(ch);
+						}
+					}
+				} else {
+					if (ch === b.endChar) {
+						j = i + 1 >> 0;
+						if ((ch === 255) && !((((b.flags & 2) >>> 0) === 0))) {
+							j = i;
+						}
+						b.append(go$subslice(buf, n, j));
+						n = i + 1 >> 0;
+						b.endEscape();
+					}
+				}
+			}
+			b.append(go$subslice(buf, n));
+			n = buf.length;
+			return [n, err];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [n, err];
+		}
+	};
+	Writer.prototype.Write = function(buf) { return this.go$val.Write(buf); };
+	var NewWriter = go$pkg.NewWriter = function(output, minwidth, tabwidth, padding, padchar, flags) {
+		return new Writer.Ptr().Init(output, minwidth, tabwidth, padding, padchar, flags);
+	};
+	go$pkg.FilterHTML = 1;
+	go$pkg.StripEscape = 2;
+	go$pkg.AlignRight = 4;
+	go$pkg.DiscardEmptyColumns = 8;
+	go$pkg.TabIndent = 16;
+	go$pkg.Debug = 32;
+	go$pkg.Escape = 255;
+	var newline = (go$sliceType(Go$Uint8)).nil;
+	var tabs = (go$sliceType(Go$Uint8)).nil;
+	var vbar = (go$sliceType(Go$Uint8)).nil;
+	var hbar = (go$sliceType(Go$Uint8)).nil;
+	go$pkg.init = function() {
+		newline = new (go$sliceType(Go$Uint8))([10]);
+		tabs = new (go$sliceType(Go$Uint8))(go$stringToBytes("\t\t\t\t\t\t\t\t"));
+		vbar = new (go$sliceType(Go$Uint8))([124]);
+		hbar = new (go$sliceType(Go$Uint8))(go$stringToBytes("---\n"));
+	};

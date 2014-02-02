@@ -1,0 +1,158 @@
+0‚d‚†package crc32
+import hash "hash"
+import sync "sync"
+const @"".Castagnoli = 0x82f63b78
+func @"".Checksum(@"".data []byte, @"".tab *@"".Table) (? uint32)
+func @"".ChecksumIEEE(@"".data []byte) (? uint32)
+const @"".IEEE = 0xedb88320
+var @"".IEEETable *@"".Table
+const @"".Koopman = 0xeb31d82e
+func @"".MakeTable(@"".poly uint32) (? *@"".Table)
+func @"".New(@"".tab *@"".Table) (? @"hash".Hash32)
+func @"".NewIEEE() (? @"hash".Hash32)
+const @"".Size = 0x4
+type @"".Table [256]uint32
+func @"".Update(@"".crc uint32, @"".tab *@"".Table, @"".p []byte) (? uint32)
+type @"".digest struct { @"".crc uint32; @"".tab *@"".Table }
+func (? *@"".digest) @"".BlockSize() (? int)
+func (? *@"".digest) @"".Reset() ()
+func (? *@"".digest) @"".Size() (? int)
+func (? *@"".digest) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".digest) @"".Sum32() (? uint32)
+func (? *@"".digest) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+import io "io"
+type @"hash".Hash32 interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"hash".Sum32() (? uint32); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0:runtimeerrorssync/atomicsynciohash
+hash/crc32‚š	var hash = go$packages["hash"];
+	var sync = go$packages["sync"];
+	var Table;
+	Table = go$newType(0, "Array", "crc32.Table", "Table", "hash/crc32", null);
+	go$pkg.Table = Table;
+	var digest;
+	digest = go$newType(0, "Struct", "crc32.digest", "digest", "hash/crc32", function(crc_, tab_) {
+		this.go$val = this;
+		this.crc = crc_ !== undefined ? crc_ : 0;
+		this.tab = tab_ !== undefined ? tab_ : (go$ptrType(Table)).nil;
+	});
+	go$pkg.digest = digest;
+	Table.init(Go$Uint32, 256);
+	digest.init([["crc", "hash/crc32", Go$Uint32, ""], ["tab", "hash/crc32", (go$ptrType(Table)), ""]]);
+	(go$ptrType(digest)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Sum32", "", [], [Go$Uint32], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	var castagnoliInit = function() {
+		castagnoliTable = makeTable(2197175160);
+	};
+	var MakeTable = go$pkg.MakeTable = function(poly) {
+		var _ref;
+		_ref = poly;
+		if (_ref === 3988292384) {
+			return go$pkg.IEEETable;
+		} else if (_ref === 2197175160) {
+			castagnoliOnce.Do(castagnoliInit);
+			return castagnoliTable;
+		}
+		return makeTable(poly);
+	};
+	var makeTable = function(poly) {
+		var t, i, crc, j;
+		t = go$makeNativeArray("Uint32", 256, function() { return 0; });
+		i = 0;
+		while (i < 256) {
+			crc = (i >>> 0);
+			j = 0;
+			while (j < 8) {
+				if (((crc & 1) >>> 0) === 1) {
+					crc = (((crc >>> 1 >>> 0)) ^ poly) >>> 0;
+				} else {
+					crc = crc >>> 1 >>> 0;
+				}
+				j = j + 1 >> 0;
+			}
+			t[i] = crc;
+			i = i + 1 >> 0;
+		}
+		return t;
+	};
+	var New = go$pkg.New = function(tab) {
+		return new digest.Ptr(0, tab);
+	};
+	var NewIEEE = go$pkg.NewIEEE = function() {
+		return New(go$pkg.IEEETable);
+	};
+	digest.Ptr.prototype.Size = function() {
+		var d;
+		d = this;
+		return 4;
+	};
+	digest.prototype.Size = function() { return this.go$val.Size(); };
+	digest.Ptr.prototype.BlockSize = function() {
+		var d;
+		d = this;
+		return 1;
+	};
+	digest.prototype.BlockSize = function() { return this.go$val.BlockSize(); };
+	digest.Ptr.prototype.Reset = function() {
+		var d;
+		d = this;
+		d.crc = 0;
+	};
+	digest.prototype.Reset = function() { return this.go$val.Reset(); };
+	var update = function(crc, tab, p) {
+		var _ref, _i, _slice, _index, v;
+		crc = ~crc >>> 0;
+		_ref = p;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			crc = (tab[(((crc << 24 >>> 24) ^ v) << 24 >>> 24)] ^ ((crc >>> 8 >>> 0))) >>> 0;
+		}
+		return ~crc >>> 0;
+	};
+	var Update = go$pkg.Update = function(crc, tab, p) {
+		if (go$arrayIsEqual(tab, castagnoliTable)) {
+			return updateCastagnoli(crc, p);
+		}
+		return update(crc, tab, p);
+	};
+	digest.Ptr.prototype.Write = function(p) {
+		var n, err, d, _tuple;
+		n = 0;
+		err = null;
+		d = this;
+		d.crc = Update(d.crc, d.tab, p);
+		_tuple = [p.length, null], n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	digest.prototype.Write = function(p) { return this.go$val.Write(p); };
+	digest.Ptr.prototype.Sum32 = function() {
+		var d;
+		d = this;
+		return d.crc;
+	};
+	digest.prototype.Sum32 = function() { return this.go$val.Sum32(); };
+	digest.Ptr.prototype.Sum = function(in$1) {
+		var d, s;
+		d = this;
+		s = d.Sum32();
+		return go$append(in$1, ((s >>> 24 >>> 0) << 24 >>> 24), ((s >>> 16 >>> 0) << 24 >>> 24), ((s >>> 8 >>> 0) << 24 >>> 24), (s << 24 >>> 24));
+	};
+	digest.prototype.Sum = function(in$1) { return this.go$val.Sum(in$1); };
+	var Checksum = go$pkg.Checksum = function(data, tab) {
+		return Update(0, tab, data);
+	};
+	var ChecksumIEEE = go$pkg.ChecksumIEEE = function(data) {
+		return update(0, go$pkg.IEEETable, data);
+	};
+	var updateCastagnoli = function(crc, p) {
+		return update(crc, castagnoliTable, p);
+	};
+	go$pkg.Size = 4;
+	go$pkg.IEEE = 3988292384;
+	go$pkg.Castagnoli = 2197175160;
+	go$pkg.Koopman = 3945912366;
+	var castagnoliTable = (go$ptrType(Table)).nil;
+	var castagnoliOnce = new sync.Once.Ptr();
+	go$pkg.IEEETable = (go$ptrType(Table)).nil;
+	go$pkg.init = function() {
+		go$pkg.IEEETable = makeTable(3988292384);
+	};

@@ -1,0 +1,74 @@
+0‚‚package user
+import fmt "fmt"
+import runtime "runtime"
+import strconv "strconv"
+func @"".Current() (? *@"".User, ? error)
+func @"".Lookup(@"".username string) (? *@"".User, ? error)
+func @"".LookupId(@"".uid string) (? *@"".User, ? error)
+type @"".UnknownUserError string
+func (? @"".UnknownUserError) @"".Error() (? string)
+func (? *@"".UnknownUserError) @"".Error() (? string)
+type @"".UnknownUserIdError int
+func (? @"".UnknownUserIdError) @"".Error() (? string)
+func (? *@"".UnknownUserIdError) @"".Error() (? string)
+type @"".User struct { @"".Uid string; @"".Gid string; @"".Username string; @"".Name string; @"".HomeDir string }
+$$
+0oruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtos/user‚	var fmt = go$packages["fmt"];
+	var runtime = go$packages["runtime"];
+	var strconv = go$packages["strconv"];
+	var User;
+	User = go$newType(0, "Struct", "user.User", "User", "os/user", function(Uid_, Gid_, Username_, Name_, HomeDir_) {
+		this.go$val = this;
+		this.Uid = Uid_ !== undefined ? Uid_ : "";
+		this.Gid = Gid_ !== undefined ? Gid_ : "";
+		this.Username = Username_ !== undefined ? Username_ : "";
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.HomeDir = HomeDir_ !== undefined ? HomeDir_ : "";
+	});
+	go$pkg.User = User;
+	var UnknownUserIdError;
+	UnknownUserIdError = go$newType(4, "Int", "user.UnknownUserIdError", "UnknownUserIdError", "os/user", null);
+	go$pkg.UnknownUserIdError = UnknownUserIdError;
+	var UnknownUserError;
+	UnknownUserError = go$newType(0, "String", "user.UnknownUserError", "UnknownUserError", "os/user", null);
+	go$pkg.UnknownUserError = UnknownUserError;
+	User.init([["Uid", "", Go$String, ""], ["Gid", "", Go$String, ""], ["Username", "", Go$String, ""], ["Name", "", Go$String, ""], ["HomeDir", "", Go$String, ""]]);
+	UnknownUserIdError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(UnknownUserIdError)).methods = [["Error", "", [], [Go$String], false]];
+	UnknownUserError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(UnknownUserError)).methods = [["Error", "", [], [Go$String], false]];
+	var Current = go$pkg.Current = function() {
+		return current();
+	};
+	var Lookup = go$pkg.Lookup = function(username) {
+		return lookup(username);
+	};
+	var LookupId = go$pkg.LookupId = function(uid) {
+		return lookupId(uid);
+	};
+	var current = function() {
+		return [(go$ptrType(User)).nil, fmt.Errorf("user: Current not implemented on %s/%s", new (go$sliceType(go$emptyInterface))([new Go$String("darwin"), new Go$String("js")]))];
+	};
+	var lookup = function(username) {
+		return [(go$ptrType(User)).nil, fmt.Errorf("user: Lookup not implemented on %s/%s", new (go$sliceType(go$emptyInterface))([new Go$String("darwin"), new Go$String("js")]))];
+	};
+	var lookupId = function(uid) {
+		return [(go$ptrType(User)).nil, fmt.Errorf("user: LookupId not implemented on %s/%s", new (go$sliceType(go$emptyInterface))([new Go$String("darwin"), new Go$String("js")]))];
+	};
+	UnknownUserIdError.prototype.Error = function() {
+		var e;
+		e = this.go$val;
+		return "user: unknown userid " + strconv.Itoa((e >> 0));
+	};
+	go$ptrType(UnknownUserIdError).prototype.Error = function() { return new UnknownUserIdError(this.go$get()).Error(); };
+	UnknownUserError.prototype.Error = function() {
+		var e;
+		e = this.go$val;
+		return "user: unknown user " + e;
+	};
+	go$ptrType(UnknownUserError).prototype.Error = function() { return new UnknownUserError(this.go$get()).Error(); };
+	var implemented = false;
+	go$pkg.init = function() {
+		implemented = true;
+		implemented = false;
+	};

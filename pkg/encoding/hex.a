@@ -1,0 +1,221 @@
+0‚)¼‚Jpackage hex
+import bytes "bytes"
+import errors "errors"
+import fmt "fmt"
+import io "io"
+func @"".Decode(@"".dst []byte, @"".src []byte) (? int, ? error)
+func @"".DecodeString(@"".s string) (? []byte, ? error)
+func @"".DecodedLen(@"".x int) (? int)
+func @"".Dump(@"".data []byte) (? string)
+func @"".Dumper(@"".w @"io".Writer) (? @"io".WriteCloser)
+func @"".Encode(@"".dst []byte, @"".src []byte) (? int)
+func @"".EncodeToString(@"".src []byte) (? string)
+func @"".EncodedLen(@"".n int) (? int)
+var @"".ErrLength error
+type @"".InvalidByteError byte
+func (? @"".InvalidByteError) @"".Error() (? string)
+func (? *@"".InvalidByteError) @"".Error() (? string)
+type @"".dumper struct { @"".w @"io".Writer; @"".rightChars [18]byte; @"".buf [14]byte; @"".used int; @"".n uint }
+func (? *@"".dumper) @"".Close() (@"".err error)
+func (? *@"".dumper) @"".Write(@"".data []byte) (@"".n int, @"".err error)
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".WriteCloser interface { @"io".Close() (? error); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0„runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/hex‚$ã	var bytes = go$packages["bytes"];
+	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var InvalidByteError;
+	InvalidByteError = go$newType(1, "Uint8", "hex.InvalidByteError", "InvalidByteError", "encoding/hex", null);
+	go$pkg.InvalidByteError = InvalidByteError;
+	var dumper;
+	dumper = go$newType(0, "Struct", "hex.dumper", "dumper", "encoding/hex", function(w_, rightChars_, buf_, used_, n_) {
+		this.go$val = this;
+		this.w = w_ !== undefined ? w_ : null;
+		this.rightChars = rightChars_ !== undefined ? rightChars_ : go$makeNativeArray("Uint8", 18, function() { return 0; });
+		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 14, function() { return 0; });
+		this.used = used_ !== undefined ? used_ : 0;
+		this.n = n_ !== undefined ? n_ : 0;
+	});
+	go$pkg.dumper = dumper;
+	InvalidByteError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(InvalidByteError)).methods = [["Error", "", [], [Go$String], false]];
+	dumper.init([["w", "encoding/hex", io.Writer, ""], ["rightChars", "encoding/hex", (go$arrayType(Go$Uint8, 18)), ""], ["buf", "encoding/hex", (go$arrayType(Go$Uint8, 14)), ""], ["used", "encoding/hex", Go$Int, ""], ["n", "encoding/hex", Go$Uint, ""]]);
+	(go$ptrType(dumper)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	var EncodedLen = go$pkg.EncodedLen = function(n) {
+		var x;
+		return (x = 2, (((n >>> 16 << 16) * x >> 0) + (n << 16 >>> 16) * x) >> 0);
+	};
+	var Encode = go$pkg.Encode = function(dst, src) {
+		var _ref, _i, _slice, _index, v, i, _slice$1, _index$1, x, _slice$2, _index$2, x$1, x$2, x$3;
+		_ref = src;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_slice$1 = dst, _index$1 = (x = 2, (((i >>> 16 << 16) * x >> 0) + (i << 16 >>> 16) * x) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = "0123456789abcdef".charCodeAt((v >>> 4 << 24 >>> 24))) : go$throwRuntimeError("index out of range");
+			_slice$2 = dst, _index$2 = (x$1 = 2, (((i >>> 16 << 16) * x$1 >> 0) + (i << 16 >>> 16) * x$1) >> 0) + 1 >> 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = "0123456789abcdef".charCodeAt(((v & 15) >>> 0))) : go$throwRuntimeError("index out of range");
+		}
+		return (x$2 = src.length, x$3 = 2, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0);
+	};
+	InvalidByteError.prototype.Error = function() {
+		var e;
+		e = this.go$val;
+		return fmt.Sprintf("encoding/hex: invalid byte: %#U", new (go$sliceType(go$emptyInterface))([new Go$Int32((e >> 0))]));
+	};
+	go$ptrType(InvalidByteError).prototype.Error = function() { return new InvalidByteError(this.go$get()).Error(); };
+	var DecodedLen = go$pkg.DecodedLen = function(x) {
+		var _q;
+		return (_q = x / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+	};
+	var Decode = go$pkg.Decode = function(dst, src) {
+		var _r, i, _q, _tuple, _slice, _index, x, a, ok, _slice$1, _index$1, x$1, _tuple$1, _slice$2, _index$2, x$2, b, _slice$3, _index$3, x$3, _slice$4, _index$4, _q$1;
+		if ((_r = src.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 1) {
+			return [0, go$pkg.ErrLength];
+		}
+		i = 0;
+		while (i < (_q = src.length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))) {
+			_tuple = fromHexChar((_slice = src, _index = (x = 2, (((i >>> 16 << 16) * x >> 0) + (i << 16 >>> 16) * x) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), a = _tuple[0], ok = _tuple[1];
+			if (!ok) {
+				return [0, new InvalidByteError(((_slice$1 = src, _index$1 = (x$1 = 2, (((i >>> 16 << 16) * x$1 >> 0) + (i << 16 >>> 16) * x$1) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 24 >>> 24))];
+			}
+			_tuple$1 = fromHexChar((_slice$2 = src, _index$2 = ((x$2 = 2, (((i >>> 16 << 16) * x$2 >> 0) + (i << 16 >>> 16) * x$2) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))), b = _tuple$1[0], ok = _tuple$1[1];
+			if (!ok) {
+				return [0, new InvalidByteError(((_slice$3 = src, _index$3 = ((x$3 = 2, (((i >>> 16 << 16) * x$3 >> 0) + (i << 16 >>> 16) * x$3) >> 0) + 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) << 24 >>> 24))];
+			}
+			_slice$4 = dst, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = (((a << 4 << 24 >>> 24)) | b) >>> 0) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+		}
+		return [(_q$1 = src.length / 2, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")), null];
+	};
+	var fromHexChar = function(c) {
+		if (48 <= c && c <= 57) {
+			return [c - 48 << 24 >>> 24, true];
+		} else if (97 <= c && c <= 102) {
+			return [(c - 97 << 24 >>> 24) + 10 << 24 >>> 24, true];
+		} else if (65 <= c && c <= 70) {
+			return [(c - 65 << 24 >>> 24) + 10 << 24 >>> 24, true];
+		}
+		return [0, false];
+	};
+	var EncodeToString = go$pkg.EncodeToString = function(src) {
+		var dst;
+		dst = (go$sliceType(Go$Uint8)).make(EncodedLen(src.length), 0, function() { return 0; });
+		Encode(dst, src);
+		return go$bytesToString(dst);
+	};
+	var DecodeString = go$pkg.DecodeString = function(s) {
+		var src, dst, _tuple, err;
+		src = new (go$sliceType(Go$Uint8))(go$stringToBytes(s));
+		dst = (go$sliceType(Go$Uint8)).make(DecodedLen(src.length), 0, function() { return 0; });
+		_tuple = Decode(dst, src), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Go$Uint8)).nil, err];
+		}
+		return [dst, null];
+	};
+	var Dump = go$pkg.Dump = function(data) {
+		var buf, dumper$1;
+		buf = new bytes.Buffer.Ptr();
+		dumper$1 = Dumper(buf);
+		dumper$1.Write(data);
+		dumper$1.Close();
+		return go$bytesToString(buf.Bytes());
+	};
+	var Dumper = go$pkg.Dumper = function(w) {
+		return new dumper.Ptr(w, go$makeNativeArray("Uint8", 18, function() { return 0; }), go$makeNativeArray("Uint8", 14, function() { return 0; }), 0, 0);
+	};
+	var toChar = function(b) {
+		if (b < 32 || b > 126) {
+			return 46;
+		}
+		return b;
+	};
+	dumper.Ptr.prototype.Write = function(data) {
+		var n, err, h, _ref, _i, i, _tuple, l, _tuple$1, _slice, _index, _tuple$2;
+		n = 0;
+		err = null;
+		h = this;
+		_ref = data;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			if (h.used === 0) {
+				h.buf[0] = ((h.n >>> 24 >>> 0) << 24 >>> 24);
+				h.buf[1] = ((h.n >>> 16 >>> 0) << 24 >>> 24);
+				h.buf[2] = ((h.n >>> 8 >>> 0) << 24 >>> 24);
+				h.buf[3] = (h.n << 24 >>> 24);
+				Encode(go$subslice(new (go$sliceType(Go$Uint8))(h.buf), 4), go$subslice(new (go$sliceType(Go$Uint8))(h.buf), 0, 4));
+				h.buf[12] = 32;
+				h.buf[13] = 32;
+				_tuple = h.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(h.buf), 4)), err = _tuple[1];
+			}
+			Encode(new (go$sliceType(Go$Uint8))(h.buf), go$subslice(data, i, (i + 1 >> 0)));
+			h.buf[2] = 32;
+			l = 3;
+			if (h.used === 7) {
+				h.buf[3] = 32;
+				l = 4;
+			} else if (h.used === 15) {
+				h.buf[3] = 32;
+				h.buf[4] = 124;
+				l = 5;
+			}
+			_tuple$1 = h.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(h.buf), 0, l)), err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [n, err];
+			}
+			n = n + 1 >> 0;
+			h.rightChars[h.used] = toChar((_slice = data, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
+			h.used = h.used + 1 >> 0;
+			h.n = h.n + 1 >>> 0;
+			if (h.used === 16) {
+				h.rightChars[16] = 124;
+				h.rightChars[17] = 10;
+				_tuple$2 = h.w.Write(new (go$sliceType(Go$Uint8))(h.rightChars)), err = _tuple$2[1];
+				if (!(go$interfaceIsEqual(err, null))) {
+					return [n, err];
+				}
+				h.used = 0;
+			}
+		}
+		return [n, err];
+	};
+	dumper.prototype.Write = function(data) { return this.go$val.Write(data); };
+	dumper.Ptr.prototype.Close = function() {
+		var err, h, nBytes, l, _tuple, _tuple$1;
+		err = null;
+		h = this;
+		if (h.used === 0) {
+			return err;
+		}
+		h.buf[0] = 32;
+		h.buf[1] = 32;
+		h.buf[2] = 32;
+		h.buf[3] = 32;
+		h.buf[4] = 124;
+		nBytes = h.used;
+		while (h.used < 16) {
+			l = 3;
+			if (h.used === 7) {
+				l = 4;
+			} else if (h.used === 15) {
+				l = 5;
+			}
+			_tuple = h.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(h.buf), 0, l)), err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			h.used = h.used + 1 >> 0;
+		}
+		h.rightChars[nBytes] = 124;
+		h.rightChars[nBytes + 1 >> 0] = 10;
+		_tuple$1 = h.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(h.rightChars), 0, (nBytes + 2 >> 0))), err = _tuple$1[1];
+		return err;
+	};
+	dumper.prototype.Close = function() { return this.go$val.Close(); };
+	var hextable = "0123456789abcdef";
+	go$pkg.ErrLength = null;
+	go$pkg.init = function() {
+		go$pkg.ErrLength = errors.New("encoding/hex: odd length hex string");
+	};

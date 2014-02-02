@@ -1,0 +1,1166 @@
+0ÇÊPÇ˛package gosym
+import binary "encoding/binary"
+import sync "sync"
+import bytes "bytes"
+import fmt "fmt"
+import strconv "strconv"
+import strings "strings"
+type @"".DecodingError struct { @"".off int; @"".msg string; @"".val interface {  } }
+func (? *@"".DecodingError) @"".Error() (? string)
+type @"".Func struct { @"".Entry uint64; ? *@"".Sym; @"".End uint64; @"".Params []*@"".Sym; @"".Locals []*@"".Sym; @"".FrameSize int; @"".LineTable *@"".LineTable; @"".Obj *@"".Obj }
+type @"".LineTable struct { @"".Data []byte; @"".PC uint64; @"".Line int; @"".mu @"sync".Mutex; @"".go12 int; @"".binary @"encoding/binary".ByteOrder; @"".quantum uint32; @"".ptrsize uint32; @"".functab []byte; @"".nfunctab uint32; @"".filetab []byte; @"".nfiletab uint32; @"".fileMap map[string]uint32 }
+func (? *@"".LineTable) @"".LineToPC(@"".line int, @"".maxpc uint64) (? uint64)
+func (? *@"".LineTable) @"".PCToLine(@"".pc uint64) (? int)
+func (? *@"".LineTable) @"".findFileLine(@"".entry uint64, @"".filetab uint32, @"".linetab uint32, @"".filenum int32, @"".line int32) (? uint64)
+func (? *@"".LineTable) @"".findFunc(@"".pc uint64) (? []byte)
+func (? *@"".LineTable) @"".go12Init() ()
+func (? *@"".LineTable) @"".go12LineToPC(@"".file string, @"".line int) (@"".pc uint64)
+func (? *@"".LineTable) @"".go12MapFiles(@"".m map[string]*@"".Obj, @"".obj *@"".Obj) ()
+func (? *@"".LineTable) @"".go12PCToFile(@"".pc uint64) (@"".file string)
+func (? *@"".LineTable) @"".go12PCToLine(@"".pc uint64) (@"".line int)
+func (? *@"".LineTable) @"".initFileMap() ()
+func (? *@"".LineTable) @"".isGo12() (? bool)
+func (? *@"".LineTable) @"".parse(@"".targetPC uint64, @"".targetLine int) (@"".b []byte, @"".pc uint64, @"".line int)
+func (? *@"".LineTable) @"".pcvalue(@"".off uint32, @"".entry uint64, @"".targetpc uint64) (? int32)
+func (? *@"".LineTable) @"".readvarint(@"".pp *[]byte) (? uint32)
+func (? *@"".LineTable) @"".slice(@"".pc uint64) (? *@"".LineTable)
+func (? *@"".LineTable) @"".step(@"".p *[]byte, @"".pc *uint64, @"".val *int32, @"".first bool) (? bool)
+func (? *@"".LineTable) @"".string(@"".off uint32) (? string)
+func (? *@"".LineTable) @"".uintptr(@"".b []byte) (? uint64)
+func @"".NewLineTable(@"".data []byte, @"".text uint64) (? *@"".LineTable)
+func @"".NewTable(@"".symtab []byte, @"".pcln *@"".LineTable) (? *@"".Table, ? error)
+type @"".Obj struct { @"".Funcs []@"".Func; @"".Paths []@"".Sym }
+func (? *@"".Obj) @"".alineFromLine(@"".path string, @"".line int) (? int, ? error)
+func (? *@"".Obj) @"".lineFromAline(@"".aline int) (? string, ? int)
+type @"".Sym struct { @"".Value uint64; @"".Type byte; @"".Name string; @"".GoType uint64; @"".Func *@"".Func }
+func (? *@"".Sym) @"".BaseName() (? string)
+func (? *@"".Sym) @"".PackageName() (? string)
+func (? *@"".Sym) @"".ReceiverName() (? string)
+func (? *@"".Sym) @"".Static() (? bool)
+type @"".Table struct { @"".Syms []@"".Sym; @"".Funcs []@"".Func; @"".Files map[string]*@"".Obj; @"".Objs []@"".Obj; @"".go12line *@"".LineTable }
+func (? *@"".Table) @"".LineToPC(@"".file string, @"".line int) (@"".pc uint64, @"".fn *@"".Func, @"".err error)
+func (? *@"".Table) @"".LookupFunc(@"".name string) (? *@"".Func)
+func (? *@"".Table) @"".LookupSym(@"".name string) (? *@"".Sym)
+func (? *@"".Table) @"".PCToFunc(@"".pc uint64) (? *@"".Func)
+func (? *@"".Table) @"".PCToLine(@"".pc uint64) (@"".file string, @"".line int, @"".fn *@"".Func)
+func (? *@"".Table) @"".SymByAddr(@"".addr uint64) (? *@"".Sym)
+type @"".UnknownFileError string
+func (? @"".UnknownFileError) @"".Error() (? string)
+func (? *@"".UnknownFileError) @"".Error() (? string)
+type @"".UnknownLineError struct { @"".File string; @"".Line int }
+func (? *@"".UnknownLineError) @"".Error() (? string)
+type @"".sym struct { @"".value uint64; @"".gotype uint64; @"".typ byte; @"".name []byte }
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"encoding/binary".ByteOrder interface { @"encoding/binary".PutUint16(? []byte, ? uint16) (); @"encoding/binary".PutUint32(? []byte, ? uint32) (); @"encoding/binary".PutUint64(? []byte, ? uint64) (); @"encoding/binary".String() (? string); @"encoding/binary".Uint16(? []byte) (? uint16); @"encoding/binary".Uint32(? []byte) (? uint32); @"encoding/binary".Uint64(? []byte) (? uint64) }
+$$
+0Åùruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysyscalltimeosfmtstringsdebug/gosymÇ‘™	var binary = go$packages["encoding/binary"];
+	var sync = go$packages["sync"];
+	var bytes = go$packages["bytes"];
+	var fmt = go$packages["fmt"];
+	var strconv = go$packages["strconv"];
+	var strings = go$packages["strings"];
+	var LineTable;
+	LineTable = go$newType(0, "Struct", "gosym.LineTable", "LineTable", "debug/gosym", function(Data_, PC_, Line_, mu_, go12_, binary_, quantum_, ptrsize_, functab_, nfunctab_, filetab_, nfiletab_, fileMap_) {
+		this.go$val = this;
+		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
+		this.PC = PC_ !== undefined ? PC_ : new Go$Uint64(0, 0);
+		this.Line = Line_ !== undefined ? Line_ : 0;
+		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
+		this.go12 = go12_ !== undefined ? go12_ : 0;
+		this.binary = binary_ !== undefined ? binary_ : null;
+		this.quantum = quantum_ !== undefined ? quantum_ : 0;
+		this.ptrsize = ptrsize_ !== undefined ? ptrsize_ : 0;
+		this.functab = functab_ !== undefined ? functab_ : (go$sliceType(Go$Uint8)).nil;
+		this.nfunctab = nfunctab_ !== undefined ? nfunctab_ : 0;
+		this.filetab = filetab_ !== undefined ? filetab_ : (go$sliceType(Go$Uint8)).nil;
+		this.nfiletab = nfiletab_ !== undefined ? nfiletab_ : 0;
+		this.fileMap = fileMap_ !== undefined ? fileMap_ : false;
+	});
+	go$pkg.LineTable = LineTable;
+	var Sym;
+	Sym = go$newType(0, "Struct", "gosym.Sym", "Sym", "debug/gosym", function(Value_, Type_, Name_, GoType_, Func_) {
+		this.go$val = this;
+		this.Value = Value_ !== undefined ? Value_ : new Go$Uint64(0, 0);
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.GoType = GoType_ !== undefined ? GoType_ : new Go$Uint64(0, 0);
+		this.Func = Func_ !== undefined ? Func_ : (go$ptrType(Func)).nil;
+	});
+	go$pkg.Sym = Sym;
+	var Func;
+	Func = go$newType(0, "Struct", "gosym.Func", "Func", "debug/gosym", function(Entry_, Sym_, End_, Params_, Locals_, FrameSize_, LineTable_, Obj_) {
+		this.go$val = this;
+		this.Entry = Entry_ !== undefined ? Entry_ : new Go$Uint64(0, 0);
+		this.Sym = Sym_ !== undefined ? Sym_ : (go$ptrType(Sym)).nil;
+		this.End = End_ !== undefined ? End_ : new Go$Uint64(0, 0);
+		this.Params = Params_ !== undefined ? Params_ : (go$sliceType((go$ptrType(Sym)))).nil;
+		this.Locals = Locals_ !== undefined ? Locals_ : (go$sliceType((go$ptrType(Sym)))).nil;
+		this.FrameSize = FrameSize_ !== undefined ? FrameSize_ : 0;
+		this.LineTable = LineTable_ !== undefined ? LineTable_ : (go$ptrType(LineTable)).nil;
+		this.Obj = Obj_ !== undefined ? Obj_ : (go$ptrType(Obj)).nil;
+	});
+	Func.prototype.BaseName = function() { return this.go$val.BaseName(); };
+	Func.Ptr.prototype.BaseName = function() { return this.Sym.BaseName(); };
+	Func.prototype.PackageName = function() { return this.go$val.PackageName(); };
+	Func.Ptr.prototype.PackageName = function() { return this.Sym.PackageName(); };
+	Func.prototype.ReceiverName = function() { return this.go$val.ReceiverName(); };
+	Func.Ptr.prototype.ReceiverName = function() { return this.Sym.ReceiverName(); };
+	Func.prototype.Static = function() { return this.go$val.Static(); };
+	Func.Ptr.prototype.Static = function() { return this.Sym.Static(); };
+	go$pkg.Func = Func;
+	var Obj;
+	Obj = go$newType(0, "Struct", "gosym.Obj", "Obj", "debug/gosym", function(Funcs_, Paths_) {
+		this.go$val = this;
+		this.Funcs = Funcs_ !== undefined ? Funcs_ : (go$sliceType(Func)).nil;
+		this.Paths = Paths_ !== undefined ? Paths_ : (go$sliceType(Sym)).nil;
+	});
+	go$pkg.Obj = Obj;
+	var Table;
+	Table = go$newType(0, "Struct", "gosym.Table", "Table", "debug/gosym", function(Syms_, Funcs_, Files_, Objs_, go12line_) {
+		this.go$val = this;
+		this.Syms = Syms_ !== undefined ? Syms_ : (go$sliceType(Sym)).nil;
+		this.Funcs = Funcs_ !== undefined ? Funcs_ : (go$sliceType(Func)).nil;
+		this.Files = Files_ !== undefined ? Files_ : false;
+		this.Objs = Objs_ !== undefined ? Objs_ : (go$sliceType(Obj)).nil;
+		this.go12line = go12line_ !== undefined ? go12line_ : (go$ptrType(LineTable)).nil;
+	});
+	go$pkg.Table = Table;
+	var sym;
+	sym = go$newType(0, "Struct", "gosym.sym", "sym", "debug/gosym", function(value_, gotype_, typ_, name_) {
+		this.go$val = this;
+		this.value = value_ !== undefined ? value_ : new Go$Uint64(0, 0);
+		this.gotype = gotype_ !== undefined ? gotype_ : new Go$Uint64(0, 0);
+		this.typ = typ_ !== undefined ? typ_ : 0;
+		this.name = name_ !== undefined ? name_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.sym = sym;
+	var UnknownFileError;
+	UnknownFileError = go$newType(0, "String", "gosym.UnknownFileError", "UnknownFileError", "debug/gosym", null);
+	go$pkg.UnknownFileError = UnknownFileError;
+	var UnknownLineError;
+	UnknownLineError = go$newType(0, "Struct", "gosym.UnknownLineError", "UnknownLineError", "debug/gosym", function(File_, Line_) {
+		this.go$val = this;
+		this.File = File_ !== undefined ? File_ : "";
+		this.Line = Line_ !== undefined ? Line_ : 0;
+	});
+	go$pkg.UnknownLineError = UnknownLineError;
+	var DecodingError;
+	DecodingError = go$newType(0, "Struct", "gosym.DecodingError", "DecodingError", "debug/gosym", function(off_, msg_, val_) {
+		this.go$val = this;
+		this.off = off_ !== undefined ? off_ : 0;
+		this.msg = msg_ !== undefined ? msg_ : "";
+		this.val = val_ !== undefined ? val_ : null;
+	});
+	go$pkg.DecodingError = DecodingError;
+	LineTable.init([["Data", "", (go$sliceType(Go$Uint8)), ""], ["PC", "", Go$Uint64, ""], ["Line", "", Go$Int, ""], ["mu", "debug/gosym", sync.Mutex, ""], ["go12", "debug/gosym", Go$Int, ""], ["binary", "debug/gosym", binary.ByteOrder, ""], ["quantum", "debug/gosym", Go$Uint32, ""], ["ptrsize", "debug/gosym", Go$Uint32, ""], ["functab", "debug/gosym", (go$sliceType(Go$Uint8)), ""], ["nfunctab", "debug/gosym", Go$Uint32, ""], ["filetab", "debug/gosym", (go$sliceType(Go$Uint8)), ""], ["nfiletab", "debug/gosym", Go$Uint32, ""], ["fileMap", "debug/gosym", (go$mapType(Go$String, Go$Uint32)), ""]]);
+	(go$ptrType(LineTable)).methods = [["LineToPC", "", [Go$Int, Go$Uint64], [Go$Uint64], false], ["PCToLine", "", [Go$Uint64], [Go$Int], false], ["findFileLine", "debug/gosym", [Go$Uint64, Go$Uint32, Go$Uint32, Go$Int32, Go$Int32], [Go$Uint64], false], ["findFunc", "debug/gosym", [Go$Uint64], [(go$sliceType(Go$Uint8))], false], ["go12Init", "debug/gosym", [], [], false], ["go12LineToPC", "debug/gosym", [Go$String, Go$Int], [Go$Uint64], false], ["go12MapFiles", "debug/gosym", [(go$mapType(Go$String, (go$ptrType(Obj)))), (go$ptrType(Obj))], [], false], ["go12PCToFile", "debug/gosym", [Go$Uint64], [Go$String], false], ["go12PCToLine", "debug/gosym", [Go$Uint64], [Go$Int], false], ["initFileMap", "debug/gosym", [], [], false], ["isGo12", "debug/gosym", [], [Go$Bool], false], ["parse", "debug/gosym", [Go$Uint64, Go$Int], [(go$sliceType(Go$Uint8)), Go$Uint64, Go$Int], false], ["pcvalue", "debug/gosym", [Go$Uint32, Go$Uint64, Go$Uint64], [Go$Int32], false], ["readvarint", "debug/gosym", [(go$ptrType((go$sliceType(Go$Uint8))))], [Go$Uint32], false], ["slice", "debug/gosym", [Go$Uint64], [(go$ptrType(LineTable))], false], ["step", "debug/gosym", [(go$ptrType((go$sliceType(Go$Uint8)))), (go$ptrType(Go$Uint64)), (go$ptrType(Go$Int32)), Go$Bool], [Go$Bool], false], ["string", "debug/gosym", [Go$Uint32], [Go$String], false], ["uintptr", "debug/gosym", [(go$sliceType(Go$Uint8))], [Go$Uint64], false]];
+	Sym.init([["Value", "", Go$Uint64, ""], ["Type", "", Go$Uint8, ""], ["Name", "", Go$String, ""], ["GoType", "", Go$Uint64, ""], ["Func", "", (go$ptrType(Func)), ""]]);
+	(go$ptrType(Sym)).methods = [["BaseName", "", [], [Go$String], false], ["PackageName", "", [], [Go$String], false], ["ReceiverName", "", [], [Go$String], false], ["Static", "", [], [Go$Bool], false]];
+	Func.init([["Entry", "", Go$Uint64, ""], ["", "", (go$ptrType(Sym)), ""], ["End", "", Go$Uint64, ""], ["Params", "", (go$sliceType((go$ptrType(Sym)))), ""], ["Locals", "", (go$sliceType((go$ptrType(Sym)))), ""], ["FrameSize", "", Go$Int, ""], ["LineTable", "", (go$ptrType(LineTable)), ""], ["Obj", "", (go$ptrType(Obj)), ""]]);
+	Func.methods = [["BaseName", "", [], [Go$String], false], ["PackageName", "", [], [Go$String], false], ["ReceiverName", "", [], [Go$String], false], ["Static", "", [], [Go$Bool], false]];
+	(go$ptrType(Func)).methods = [["BaseName", "", [], [Go$String], false], ["PackageName", "", [], [Go$String], false], ["ReceiverName", "", [], [Go$String], false], ["Static", "", [], [Go$Bool], false]];
+	Obj.init([["Funcs", "", (go$sliceType(Func)), ""], ["Paths", "", (go$sliceType(Sym)), ""]]);
+	(go$ptrType(Obj)).methods = [["alineFromLine", "debug/gosym", [Go$String, Go$Int], [Go$Int, go$error], false], ["lineFromAline", "debug/gosym", [Go$Int], [Go$String, Go$Int], false]];
+	Table.init([["Syms", "", (go$sliceType(Sym)), ""], ["Funcs", "", (go$sliceType(Func)), ""], ["Files", "", (go$mapType(Go$String, (go$ptrType(Obj)))), ""], ["Objs", "", (go$sliceType(Obj)), ""], ["go12line", "debug/gosym", (go$ptrType(LineTable)), ""]]);
+	(go$ptrType(Table)).methods = [["LineToPC", "", [Go$String, Go$Int], [Go$Uint64, (go$ptrType(Func)), go$error], false], ["LookupFunc", "", [Go$String], [(go$ptrType(Func))], false], ["LookupSym", "", [Go$String], [(go$ptrType(Sym))], false], ["PCToFunc", "", [Go$Uint64], [(go$ptrType(Func))], false], ["PCToLine", "", [Go$Uint64], [Go$String, Go$Int, (go$ptrType(Func))], false], ["SymByAddr", "", [Go$Uint64], [(go$ptrType(Sym))], false]];
+	sym.init([["value", "debug/gosym", Go$Uint64, ""], ["gotype", "debug/gosym", Go$Uint64, ""], ["typ", "debug/gosym", Go$Uint8, ""], ["name", "debug/gosym", (go$sliceType(Go$Uint8)), ""]]);
+	UnknownFileError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(UnknownFileError)).methods = [["Error", "", [], [Go$String], false]];
+	UnknownLineError.init([["File", "", Go$String, ""], ["Line", "", Go$Int, ""]]);
+	(go$ptrType(UnknownLineError)).methods = [["Error", "", [], [Go$String], false]];
+	DecodingError.init([["off", "debug/gosym", Go$Int, ""], ["msg", "debug/gosym", Go$String, ""], ["val", "debug/gosym", go$emptyInterface, ""]]);
+	(go$ptrType(DecodingError)).methods = [["Error", "", [], [Go$String], false]];
+	LineTable.Ptr.prototype.parse = function(targetPC, targetLine) {
+		var b, pc, line, t, _tuple, _slice, _index, code, val, x, _tuple$1;
+		b = (go$sliceType(Go$Uint8)).nil;
+		pc = new Go$Uint64(0, 0);
+		line = 0;
+		t = this;
+		_tuple = [t.Data, t.PC, t.Line], b = _tuple[0], pc = _tuple[1], line = _tuple[2];
+		while ((pc.high < targetPC.high || (pc.high === targetPC.high && pc.low <= targetPC.low)) && !((line === targetLine)) && b.length > 0) {
+			code = (_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			b = go$subslice(b, 1);
+			switch (undefined) {
+			default:
+				if (code === 0) {
+					if (b.length < 4) {
+						b = go$subslice(b, 0, 0);
+						break;
+					}
+					val = binary.BigEndian.Uint32(b);
+					b = go$subslice(b, 4);
+					line = line + ((val >> 0)) >> 0;
+				} else if (code <= 64) {
+					line = line + ((code >> 0)) >> 0;
+				} else if (code <= 128) {
+					line = line - (((code - 64 << 24 >>> 24) >> 0)) >> 0;
+				} else {
+					pc = (x = go$mul64(new Go$Uint64(0, 1), new Go$Uint64(0, (code - 128 << 24 >>> 24))), new Go$Uint64(pc.high + x.high, pc.low + x.low));
+					continue;
+				}
+			}
+			pc = new Go$Uint64(pc.high + 0, pc.low + 1);
+		}
+		_tuple$1 = [b, pc, line], b = _tuple$1[0], pc = _tuple$1[1], line = _tuple$1[2];
+		return [b, pc, line];
+	};
+	LineTable.prototype.parse = function(targetPC, targetLine) { return this.go$val.parse(targetPC, targetLine); };
+	LineTable.Ptr.prototype.slice = function(pc) {
+		var t, _tuple, data, line;
+		t = this;
+		_tuple = t.parse(pc, -1), data = _tuple[0], pc = _tuple[1], line = _tuple[2];
+		return new LineTable.Ptr(data, pc, line, new sync.Mutex.Ptr(), 0, null, 0, 0, (go$sliceType(Go$Uint8)).nil, 0, (go$sliceType(Go$Uint8)).nil, 0, false);
+	};
+	LineTable.prototype.slice = function(pc) { return this.go$val.slice(pc); };
+	LineTable.Ptr.prototype.PCToLine = function(pc) {
+		var t, _tuple, line;
+		t = this;
+		if (t.isGo12()) {
+			return t.go12PCToLine(pc);
+		}
+		_tuple = t.parse(pc, -1), line = _tuple[2];
+		return line;
+	};
+	LineTable.prototype.PCToLine = function(pc) { return this.go$val.PCToLine(pc); };
+	LineTable.Ptr.prototype.LineToPC = function(line, maxpc) {
+		var t, _tuple, pc, line1;
+		t = this;
+		if (t.isGo12()) {
+			return new Go$Uint64(0, 0);
+		}
+		_tuple = t.parse(maxpc, line), pc = _tuple[1], line1 = _tuple[2];
+		if (!((line1 === line))) {
+			return new Go$Uint64(0, 0);
+		}
+		return new Go$Uint64(pc.high - 0, pc.low - 1);
+	};
+	LineTable.prototype.LineToPC = function(line, maxpc) { return this.go$val.LineToPC(line, maxpc); };
+	var NewLineTable = go$pkg.NewLineTable = function(data, text) {
+		return new LineTable.Ptr(data, text, 0, new sync.Mutex.Ptr(), 0, null, 0, 0, (go$sliceType(Go$Uint8)).nil, 0, (go$sliceType(Go$Uint8)).nil, 0, false);
+	};
+	LineTable.Ptr.prototype.isGo12 = function() {
+		var t;
+		t = this;
+		t.go12Init();
+		return t.go12 === 1;
+	};
+	LineTable.prototype.isGo12 = function() { return this.go$val.isGo12(); };
+	LineTable.Ptr.prototype.uintptr = function(b) {
+		var t;
+		t = this;
+		if (t.ptrsize === 4) {
+			return new Go$Uint64(0, t.binary.Uint32(b));
+		}
+		return t.binary.Uint64(b);
+	};
+	LineTable.prototype.uintptr = function(b) { return this.go$val.uintptr(b); };
+	LineTable.Ptr.prototype.go12Init = function() {
+		var t, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _ref, x, x$1, _slice$6, _index$6, _slice$7, _index$7, x$2, x$3, x$4, x$5, functabsize, fileoff, x$6, x$7;
+		var go$deferred = [];
+		try {
+			t = this;
+			t.mu.Lock();
+			go$deferred.push({ recv: t.mu, method: "Unlock", args: [] });
+			if (!((t.go12 === 0))) {
+				return;
+			}
+			go$deferred.push({ fun: (function() {
+				go$recover();
+			}), args: [] });
+			t.go12 = -1;
+			if (t.Data.length < 16 || !(((_slice = t.Data, _index = 4, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0)) || !(((_slice$1 = t.Data, _index$1 = 5, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 0)) || (!(((_slice$2 = t.Data, _index$2 = 6, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 1)) && !(((_slice$3 = t.Data, _index$3 = 6, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) === 4))) || (!(((_slice$4 = t.Data, _index$4 = 7, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) === 4)) && !(((_slice$5 = t.Data, _index$5 = 7, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) === 8)))) {
+				return;
+			}
+			_ref = 4294967291;
+			if (_ref === binary.LittleEndian.Uint32(t.Data)) {
+				t.binary = (x = binary.LittleEndian, new x.constructor.Struct(x));
+			} else if (_ref === binary.BigEndian.Uint32(t.Data)) {
+				t.binary = (x$1 = binary.BigEndian, new x$1.constructor.Struct(x$1));
+			} else {
+				return;
+			}
+			t.quantum = ((_slice$6 = t.Data, _index$6 = 6, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) >>> 0);
+			t.ptrsize = ((_slice$7 = t.Data, _index$7 = 7, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) >>> 0);
+			t.nfunctab = (t.uintptr(go$subslice(t.Data, 8)).low >>> 0);
+			t.functab = go$subslice(t.Data, (8 + t.ptrsize >>> 0));
+			functabsize = (x$2 = (x$3 = t.nfunctab, x$4 = 2, (((x$3 >>> 16 << 16) * x$4 >>> 0) + (x$3 << 16 >>> 16) * x$4) >>> 0), x$5 = t.ptrsize, (((x$2 >>> 16 << 16) * x$5 >>> 0) + (x$2 << 16 >>> 16) * x$5) >>> 0) + t.ptrsize >>> 0;
+			fileoff = t.binary.Uint32(go$subslice(t.functab, functabsize));
+			t.functab = go$subslice(t.functab, 0, functabsize);
+			t.filetab = go$subslice(t.Data, fileoff);
+			t.nfiletab = t.binary.Uint32(t.filetab);
+			t.filetab = go$subslice(t.filetab, 0, (x$6 = t.nfiletab, x$7 = 4, (((x$6 >>> 16 << 16) * x$7 >>> 0) + (x$6 << 16 >>> 16) * x$7) >>> 0));
+			t.go12 = 1;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	LineTable.prototype.go12Init = function() { return this.go$val.go12Init(); };
+	LineTable.Ptr.prototype.findFunc = function(pc) {
+		var t, x, x$1, f, nf, _q, m, x$2, x$3, x$4, fm, x$5, x$6, x$7, x$8, x$9, x$10, x$11, x$12, x$13;
+		t = this;
+		if ((x = t.uintptr(t.functab), (pc.high < x.high || (pc.high === x.high && pc.low < x.low))) || (x$1 = t.uintptr(go$subslice(t.functab, (t.functab.length - (t.ptrsize >> 0) >> 0))), (pc.high > x$1.high || (pc.high === x$1.high && pc.low >= x$1.low)))) {
+			return (go$sliceType(Go$Uint8)).nil;
+		}
+		f = t.functab;
+		nf = t.nfunctab;
+		while (nf > 0) {
+			m = (_q = nf / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+			fm = go$subslice(f, (x$2 = (x$3 = 2, x$4 = t.ptrsize, (((x$3 >>> 16 << 16) * x$4 >>> 0) + (x$3 << 16 >>> 16) * x$4) >>> 0), (((x$2 >>> 16 << 16) * m >>> 0) + (x$2 << 16 >>> 16) * m) >>> 0));
+			if ((x$5 = t.uintptr(fm), (x$5.high < pc.high || (x$5.high === pc.high && x$5.low <= pc.low))) && (x$6 = t.uintptr(go$subslice(fm, (x$7 = 2, x$8 = t.ptrsize, (((x$7 >>> 16 << 16) * x$8 >>> 0) + (x$7 << 16 >>> 16) * x$8) >>> 0))), (pc.high < x$6.high || (pc.high === x$6.high && pc.low < x$6.low)))) {
+				return go$subslice(t.Data, go$flatten64(t.uintptr(go$subslice(fm, t.ptrsize))));
+			} else if ((x$9 = t.uintptr(fm), (pc.high < x$9.high || (pc.high === x$9.high && pc.low < x$9.low)))) {
+				nf = m;
+			} else {
+				f = go$subslice(f, (x$10 = (x$11 = (m + 1 >>> 0), x$12 = 2, (((x$11 >>> 16 << 16) * x$12 >>> 0) + (x$11 << 16 >>> 16) * x$12) >>> 0), x$13 = t.ptrsize, (((x$10 >>> 16 << 16) * x$13 >>> 0) + (x$10 << 16 >>> 16) * x$13) >>> 0));
+				nf = nf - ((m + 1 >>> 0)) >>> 0;
+			}
+		}
+		return (go$sliceType(Go$Uint8)).nil;
+	};
+	LineTable.prototype.findFunc = function(pc) { return this.go$val.findFunc(pc); };
+	LineTable.Ptr.prototype.readvarint = function(pp) {
+		var t, _tuple, v, shift, p, _slice, _index, b, y;
+		t = this;
+		_tuple = [0, 0], v = _tuple[0], shift = _tuple[1];
+		p = pp.go$get();
+		shift = 0;
+		while (true) {
+			b = (_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			p = go$subslice(p, 1);
+			v = (v | (((y = shift, y < 32 ? (((((b >>> 0) & 127) >>> 0)) << y) : 0) >>> 0))) >>> 0;
+			if (((b & 128) >>> 0) === 0) {
+				break;
+			}
+			shift = shift + 7 >>> 0;
+		}
+		pp.go$set(p);
+		return v;
+	};
+	LineTable.prototype.readvarint = function(pp) { return this.go$val.readvarint(pp); };
+	LineTable.Ptr.prototype.string = function(off) {
+		var t, i, _slice, _index;
+		t = this;
+		i = off;
+		while (true) {
+			if ((_slice = t.Data, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0) {
+				return go$bytesToString(go$subslice(t.Data, off, i));
+			}
+			i = i + 1 >>> 0;
+		}
+	};
+	LineTable.prototype.string = function(off) { return this.go$val.string(off); };
+	LineTable.Ptr.prototype.step = function(p, pc, val, first) {
+		var t, uvdelta, vdelta, x, x$1, pcdelta, _lhs, x$2, x$3, _lhs$1;
+		t = this;
+		uvdelta = t.readvarint(p);
+		if ((uvdelta === 0) && !first) {
+			return false;
+		}
+		if (!((((uvdelta & 1) >>> 0) === 0))) {
+			uvdelta = ~((uvdelta >>> 1 >>> 0)) >>> 0;
+		} else {
+			uvdelta = uvdelta >>> 1 >>> 0;
+		}
+		vdelta = (uvdelta >> 0);
+		pcdelta = (x = t.readvarint(p), x$1 = t.quantum, (((x >>> 16 << 16) * x$1 >>> 0) + (x << 16 >>> 16) * x$1) >>> 0);
+		_lhs = pc, _lhs.go$set((x$2 = _lhs.go$get(), x$3 = new Go$Uint64(0, pcdelta), new Go$Uint64(x$2.high + x$3.high, x$2.low + x$3.low)));
+		_lhs$1 = val, _lhs$1.go$set(_lhs$1.go$get() + (vdelta) >> 0);
+		return true;
+	};
+	LineTable.prototype.step = function(p, pc, val, first) { return this.go$val.step(p, pc, val, first); };
+	LineTable.Ptr.prototype.pcvalue = function(off, entry, targetpc) {
+		var t, p, val, pc, v, v$1, v$2;
+		t = this;
+		if (off === 0) {
+			return -1;
+		}
+		p = go$subslice(t.Data, off);
+		val = -1;
+		pc = entry;
+		while (t.step(new (go$ptrType((go$sliceType(Go$Uint8))))(function() { return p; }, function(v) { p = v; }), new (go$ptrType(Go$Uint64))(function() { return pc; }, function(v$1) { pc = v$1; }), new (go$ptrType(Go$Int32))(function() { return val; }, function(v$2) { val = v$2; }), (pc.high === entry.high && pc.low === entry.low))) {
+			if ((targetpc.high < pc.high || (targetpc.high === pc.high && targetpc.low < pc.low))) {
+				return val;
+			}
+		}
+		return -1;
+	};
+	LineTable.prototype.pcvalue = function(off, entry, targetpc) { return this.go$val.pcvalue(off, entry, targetpc); };
+	LineTable.Ptr.prototype.findFileLine = function(entry, filetab, linetab, filenum, line) {
+		var t, fp, fl, fileVal, filePC, lineVal, linePC, fileStartPC, v, v$1, v$2, lineStartPC, v$3, v$4, v$5;
+		t = this;
+		if ((filetab === 0) || (linetab === 0)) {
+			return new Go$Uint64(0, 0);
+		}
+		fp = go$subslice(t.Data, filetab);
+		fl = go$subslice(t.Data, linetab);
+		fileVal = -1;
+		filePC = entry;
+		lineVal = -1;
+		linePC = entry;
+		fileStartPC = filePC;
+		while (t.step(new (go$ptrType((go$sliceType(Go$Uint8))))(function() { return fp; }, function(v) { fp = v; }), new (go$ptrType(Go$Uint64))(function() { return filePC; }, function(v$1) { filePC = v$1; }), new (go$ptrType(Go$Int32))(function() { return fileVal; }, function(v$2) { fileVal = v$2; }), (filePC.high === entry.high && filePC.low === entry.low))) {
+			if ((fileVal === filenum) && (fileStartPC.high < filePC.high || (fileStartPC.high === filePC.high && fileStartPC.low < filePC.low))) {
+				lineStartPC = linePC;
+				while ((linePC.high < filePC.high || (linePC.high === filePC.high && linePC.low < filePC.low)) && t.step(new (go$ptrType((go$sliceType(Go$Uint8))))(function() { return fl; }, function(v$3) { fl = v$3; }), new (go$ptrType(Go$Uint64))(function() { return linePC; }, function(v$4) { linePC = v$4; }), new (go$ptrType(Go$Int32))(function() { return lineVal; }, function(v$5) { lineVal = v$5; }), (linePC.high === entry.high && linePC.low === entry.low))) {
+					if (lineVal === line) {
+						if ((fileStartPC.high < lineStartPC.high || (fileStartPC.high === lineStartPC.high && fileStartPC.low <= lineStartPC.low))) {
+							return lineStartPC;
+						}
+						if ((fileStartPC.high < linePC.high || (fileStartPC.high === linePC.high && fileStartPC.low < linePC.low))) {
+							return fileStartPC;
+						}
+					}
+					lineStartPC = linePC;
+				}
+			}
+			fileStartPC = filePC;
+		}
+		return new Go$Uint64(0, 0);
+	};
+	LineTable.prototype.findFileLine = function(entry, filetab, linetab, filenum, line) { return this.go$val.findFileLine(entry, filetab, linetab, filenum, line); };
+	LineTable.Ptr.prototype.go12PCToLine = function(pc) {
+		var line, t, f, entry, linetab;
+		line = 0;
+		var go$deferred = [];
+		try {
+			t = this;
+			go$deferred.push({ fun: (function() {
+				if (!(go$interfaceIsEqual(go$recover(), null))) {
+					line = -1;
+				}
+			}), args: [] });
+			f = t.findFunc(pc);
+			if (f === (go$sliceType(Go$Uint8)).nil) {
+				line = -1;
+				return line;
+			}
+			entry = t.uintptr(f);
+			linetab = t.binary.Uint32(go$subslice(f, (t.ptrsize + 20 >>> 0)));
+			line = (t.pcvalue(linetab, entry, pc) >> 0);
+			return line;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return line;
+		}
+	};
+	LineTable.prototype.go12PCToLine = function(pc) { return this.go$val.go12PCToLine(pc); };
+	LineTable.Ptr.prototype.go12PCToFile = function(pc) {
+		var file, t, f, entry, filetab, fno, x;
+		file = "";
+		var go$deferred = [];
+		try {
+			t = this;
+			go$deferred.push({ fun: (function() {
+				if (!(go$interfaceIsEqual(go$recover(), null))) {
+					file = "";
+				}
+			}), args: [] });
+			f = t.findFunc(pc);
+			if (f === (go$sliceType(Go$Uint8)).nil) {
+				file = "";
+				return file;
+			}
+			entry = t.uintptr(f);
+			filetab = t.binary.Uint32(go$subslice(f, (t.ptrsize + 16 >>> 0)));
+			fno = t.pcvalue(filetab, entry, pc);
+			if (fno <= 0) {
+				file = "";
+				return file;
+			}
+			file = t.string(t.binary.Uint32(go$subslice(t.filetab, (x = 4, (((x >>> 16 << 16) * fno >> 0) + (x << 16 >>> 16) * fno) >> 0))));
+			return file;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return file;
+		}
+	};
+	LineTable.prototype.go12PCToFile = function(pc) { return this.go$val.go12PCToFile(pc); };
+	LineTable.Ptr.prototype.go12LineToPC = function(file, line) {
+		var pc, t, _entry, filenum, i, x, x$1, x$2, f, entry, filetab, linetab, pc$1;
+		pc = new Go$Uint64(0, 0);
+		var go$deferred = [];
+		try {
+			t = this;
+			go$deferred.push({ fun: (function() {
+				if (!(go$interfaceIsEqual(go$recover(), null))) {
+					pc = new Go$Uint64(0, 0);
+				}
+			}), args: [] });
+			t.initFileMap();
+			filenum = (_entry = t.fileMap[file], _entry !== undefined ? _entry.v : 0);
+			if (filenum === 0) {
+				pc = new Go$Uint64(0, 0);
+				return pc;
+			}
+			i = 0;
+			while (i < t.nfunctab) {
+				f = go$subslice(t.Data, go$flatten64(t.uintptr(go$subslice(t.functab, ((x = (x$1 = 2, x$2 = t.ptrsize, (((x$1 >>> 16 << 16) * x$2 >>> 0) + (x$1 << 16 >>> 16) * x$2) >>> 0), (((x >>> 16 << 16) * i >>> 0) + (x << 16 >>> 16) * i) >>> 0) + t.ptrsize >>> 0)))));
+				entry = t.uintptr(f);
+				filetab = t.binary.Uint32(go$subslice(f, (t.ptrsize + 16 >>> 0)));
+				linetab = t.binary.Uint32(go$subslice(f, (t.ptrsize + 20 >>> 0)));
+				pc$1 = t.findFileLine(entry, filetab, linetab, (filenum >> 0), (line >> 0));
+				if (!((pc$1.high === 0 && pc$1.low === 0))) {
+					pc = pc$1;
+					return pc;
+				}
+				i = i + 1 >>> 0;
+			}
+			pc = new Go$Uint64(0, 0);
+			return pc;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return pc;
+		}
+	};
+	LineTable.prototype.go12LineToPC = function(file, line) { return this.go$val.go12LineToPC(file, line); };
+	LineTable.Ptr.prototype.initFileMap = function() {
+		var t, m, i, x, s, _key;
+		var go$deferred = [];
+		try {
+			t = this;
+			t.mu.Lock();
+			go$deferred.push({ recv: t.mu, method: "Unlock", args: [] });
+			if (!(t.fileMap === false)) {
+				return;
+			}
+			m = new Go$Map();
+			i = 1;
+			while (i < t.nfiletab) {
+				s = t.string(t.binary.Uint32(go$subslice(t.filetab, (x = 4, (((x >>> 16 << 16) * i >>> 0) + (x << 16 >>> 16) * i) >>> 0))));
+				_key = s, (m || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: i };
+				i = i + 1 >>> 0;
+			}
+			t.fileMap = m;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	LineTable.prototype.initFileMap = function() { return this.go$val.initFileMap(); };
+	LineTable.Ptr.prototype.go12MapFiles = function(m, obj) {
+		var t, _ref, _i, _keys, _entry, file, _key;
+		var go$deferred = [];
+		try {
+			t = this;
+			go$deferred.push({ fun: (function() {
+				go$recover();
+			}), args: [] });
+			t.initFileMap();
+			_ref = t.fileMap;
+			_i = 0;
+			_keys = go$keys(_ref);
+			for (; _i < _keys.length; _i += 1) {
+				_entry = _ref[_keys[_i]];
+				file = _entry.k;
+				_key = file, (m || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: obj };
+			}
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	LineTable.prototype.go12MapFiles = function(m, obj) { return this.go$val.go12MapFiles(m, obj); };
+	Sym.Ptr.prototype.Static = function() {
+		var s;
+		s = this;
+		return s.Type >= 97;
+	};
+	Sym.prototype.Static = function() { return this.go$val.Static(); };
+	Sym.Ptr.prototype.PackageName = function() {
+		var s, i;
+		s = this;
+		if (i = strings.Index(s.Name, "."), !((i === -1))) {
+			return s.Name.substring(0, i);
+		}
+		return "";
+	};
+	Sym.prototype.PackageName = function() { return this.go$val.PackageName(); };
+	Sym.Ptr.prototype.ReceiverName = function() {
+		var s, l, r;
+		s = this;
+		l = strings.Index(s.Name, ".");
+		r = strings.LastIndex(s.Name, ".");
+		if ((l === -1) || (r === -1) || (l === r)) {
+			return "";
+		}
+		return s.Name.substring(l + 1 >> 0, r);
+	};
+	Sym.prototype.ReceiverName = function() { return this.go$val.ReceiverName(); };
+	Sym.Ptr.prototype.BaseName = function() {
+		var s, i;
+		s = this;
+		if (i = strings.LastIndex(s.Name, "."), !((i === -1))) {
+			return s.Name.substring((i + 1 >> 0));
+		}
+		return s.Name;
+	};
+	Sym.prototype.BaseName = function() { return this.go$val.BaseName(); };
+	var walksymtab = function(data, fn) {
+		var x, order, newTable, x$1, x$2, ptrsz, _slice, _index, s, p, typ, _slice$1, _index$1, _slice$2, _index$2, wideValue, _slice$3, _index$3, goType, shift, _slice$4, _index$4, x$3, x$4, _slice$5, _index$5, x$5, x$6, _slice$6, _index$6, _slice$7, _index$7, i, nnul, _slice$8, _index$8, _ref, _slice$9, _index$9, _slice$10, _index$10, _struct;
+		order = (x = binary.BigEndian, new x.constructor.Struct(x));
+		newTable = false;
+		if (bytes.HasPrefix(data, oldLittleEndianSymtab)) {
+			data = go$subslice(data, 6);
+			order = (x$1 = binary.LittleEndian, new x$1.constructor.Struct(x$1));
+		} else if (bytes.HasPrefix(data, bigEndianSymtab)) {
+			newTable = true;
+		} else if (bytes.HasPrefix(data, littleEndianSymtab)) {
+			newTable = true;
+			order = (x$2 = binary.LittleEndian, new x$2.constructor.Struct(x$2));
+		}
+		ptrsz = 0;
+		if (newTable) {
+			if (data.length < 8) {
+				return new DecodingError.Ptr(data.length, "unexpected EOF", null);
+			}
+			ptrsz = ((_slice = data, _index = 7, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0);
+			if (!((ptrsz === 4)) && !((ptrsz === 8))) {
+				return new DecodingError.Ptr(7, "invalid pointer size", new Go$Int(ptrsz));
+			}
+			data = go$subslice(data, 8);
+		}
+		s = new sym.Ptr();
+		p = data;
+		while (p.length >= 4) {
+			typ = 0;
+			if (newTable) {
+				typ = ((_slice$1 = p, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) & 63) >>> 0;
+				wideValue = !(((((_slice$2 = p, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) & 64) >>> 0) === 0));
+				goType = !(((((_slice$3 = p, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) & 128) >>> 0) === 0));
+				if (typ < 26) {
+					typ = typ + 65 << 24 >>> 24;
+				} else {
+					typ = typ + 71 << 24 >>> 24;
+				}
+				s.typ = typ;
+				p = go$subslice(p, 1);
+				if (wideValue) {
+					if (p.length < ptrsz) {
+						return new DecodingError.Ptr(data.length, "unexpected EOF", null);
+					}
+					if (ptrsz === 8) {
+						s.value = order.Uint64(go$subslice(p, 0, 8));
+						p = go$subslice(p, 8);
+					} else {
+						s.value = new Go$Uint64(0, order.Uint32(go$subslice(p, 0, 4)));
+						p = go$subslice(p, 4);
+					}
+				} else {
+					s.value = new Go$Uint64(0, 0);
+					shift = 0;
+					while (p.length > 0 && !(((((_slice$4 = p, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) & 128) >>> 0) === 0))) {
+						s.value = (x$3 = s.value, x$4 = go$shiftLeft64(new Go$Uint64(0, (((_slice$5 = p, _index$5 = 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) & 127) >>> 0)), shift), new Go$Uint64(x$3.high | x$4.high, (x$3.low | x$4.low) >>> 0));
+						shift = shift + 7 >>> 0;
+						p = go$subslice(p, 1);
+					}
+					if (p.length === 0) {
+						return new DecodingError.Ptr(data.length, "unexpected EOF", null);
+					}
+					s.value = (x$5 = s.value, x$6 = go$shiftLeft64(new Go$Uint64(0, (_slice$6 = p, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))), shift), new Go$Uint64(x$5.high | x$6.high, (x$5.low | x$6.low) >>> 0));
+					p = go$subslice(p, 1);
+				}
+				if (goType) {
+					if (p.length < ptrsz) {
+						return new DecodingError.Ptr(data.length, "unexpected EOF", null);
+					}
+					if (ptrsz === 8) {
+						s.gotype = order.Uint64(go$subslice(p, 0, 8));
+						p = go$subslice(p, 8);
+					} else {
+						s.gotype = new Go$Uint64(0, order.Uint32(go$subslice(p, 0, 4)));
+						p = go$subslice(p, 4);
+					}
+				}
+			} else {
+				s.value = new Go$Uint64(0, order.Uint32(go$subslice(p, 0, 4)));
+				if (p.length < 5) {
+					return new DecodingError.Ptr(data.length, "unexpected EOF", null);
+				}
+				typ = (_slice$7 = p, _index$7 = 4, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+				if (((typ & 128) >>> 0) === 0) {
+					return new DecodingError.Ptr((data.length - p.length >> 0) + 4 >> 0, "bad symbol type", new Go$Uint8(typ));
+				}
+				typ = typ & ~128;
+				s.typ = typ;
+				p = go$subslice(p, 5);
+			}
+			i = 0;
+			nnul = 0;
+			i = 0;
+			while (i < p.length) {
+				if ((_slice$8 = p, _index$8 = i, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")) === 0) {
+					nnul = 1;
+					break;
+				}
+				i = i + 1 >> 0;
+			}
+			_ref = typ;
+			if (_ref === 122 || _ref === 90) {
+				p = go$subslice(p, (i + nnul >> 0));
+				i = 0;
+				while ((i + 2 >> 0) <= p.length) {
+					if (((_slice$9 = p, _index$9 = i, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$10 = p, _index$10 = (i + 1 >> 0), (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range")) === 0)) {
+						nnul = 2;
+						break;
+					}
+					i = i + 2 >> 0;
+				}
+			}
+			if (p.length < (i + nnul >> 0)) {
+				return new DecodingError.Ptr(data.length, "unexpected EOF", null);
+			}
+			s.name = go$subslice(p, 0, i);
+			i = i + (nnul) >> 0;
+			p = go$subslice(p, i);
+			if (!newTable) {
+				if (p.length < 4) {
+					return new DecodingError.Ptr(data.length, "unexpected EOF", null);
+				}
+				s.gotype = new Go$Uint64(0, order.Uint32(go$subslice(p, 0, 4)));
+				p = go$subslice(p, 4);
+			}
+			fn((_struct = s, new sym.Ptr(_struct.value, _struct.gotype, _struct.typ, _struct.name)));
+		}
+		return null;
+	};
+	var NewTable = go$pkg.NewTable = function(symtab, pcln) {
+		var n, err, t, fname, nf, nz, lasttyp, obj, _slice, _index, lastf, i, _slice$1, _index$1, sym$1, _ref, n$1, _slice$2, _index$2, end, c, _slice$3, _index$3, depth, _ref$1, _i, j, _slice$4, _index$4, s, _key, n$2, _slice$5, _index$5, _tuple, np, na, end$1, _ref$2, _slice$6, _index$6, n$3, _slice$7, _index$7, fn, j$1, _slice$8, _index$8, s$1, _ref$3, n$4, _slice$9, _index$9, n$5, _slice$10, _index$10;
+		n = 0;
+		err = walksymtab(symtab, (function(s) {
+			n = n + 1 >> 0;
+			return null;
+		}));
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Table)).nil, err];
+		}
+		t = new Table.Ptr();
+		if (pcln.isGo12()) {
+			t.go12line = pcln;
+		}
+		fname = new Go$Map();
+		t.Syms = (go$sliceType(Sym)).make(0, n, function() { return new Sym.Ptr(); });
+		nf = 0;
+		nz = 0;
+		lasttyp = 0;
+		err = walksymtab(symtab, (function(s) {
+			var n$1, _slice, _index, ts, _ref, i, eltIdx, _tuple, _entry, elt, ok, n$2, w, b, i$1, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _ref$1, _key;
+			n$1 = t.Syms.length;
+			t.Syms = go$subslice(t.Syms, 0, (n$1 + 1 >> 0));
+			ts = (_slice = t.Syms, _index = n$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			ts.Type = s.typ;
+			ts.Value = s.value;
+			ts.GoType = s.gotype;
+			_ref = s.typ;
+			if (_ref === 122 || _ref === 90) {
+				if (!((lasttyp === 122)) && !((lasttyp === 90))) {
+					nz = nz + 1 >> 0;
+				}
+				i = 0;
+				while (i < s.name.length) {
+					eltIdx = binary.BigEndian.Uint16(go$subslice(s.name, i, (i + 2 >> 0)));
+					_tuple = (_entry = fname[eltIdx], _entry !== undefined ? [_entry.v, true] : ["", false]), elt = _tuple[0], ok = _tuple[1];
+					if (!ok) {
+						return new DecodingError.Ptr(-1, "bad filename code", new Go$Uint16(eltIdx));
+					}
+					if (n$2 = ts.Name.length, n$2 > 0 && !((ts.Name.charCodeAt((n$2 - 1 >> 0)) === 47))) {
+						ts.Name = ts.Name + "/";
+					}
+					ts.Name = ts.Name + (elt);
+					i = i + 2 >> 0;
+				}
+			} else {
+				w = 0;
+				b = s.name;
+				i$1 = 0;
+				while (i$1 < b.length) {
+					if (((_slice$1 = b, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 194) && (i$1 + 1 >> 0) < b.length && ((_slice$2 = b, _index$2 = (i$1 + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 183)) {
+						i$1 = i$1 + 1 >> 0;
+						_slice$3 = b, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = 46) : go$throwRuntimeError("index out of range");
+					}
+					_slice$5 = b, _index$5 = w, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (_slice$4 = b, _index$4 = i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))) : go$throwRuntimeError("index out of range");
+					w = w + 1 >> 0;
+					i$1 = i$1 + 1 >> 0;
+				}
+				ts.Name = go$bytesToString(go$subslice(s.name, 0, w));
+			}
+			_ref$1 = s.typ;
+			if (_ref$1 === 84 || _ref$1 === 116 || _ref$1 === 76 || _ref$1 === 108) {
+				nf = nf + 1 >> 0;
+			} else if (_ref$1 === 102) {
+				_key = (s.value.low << 16 >>> 16), (fname || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: ts.Name };
+			}
+			lasttyp = s.typ;
+			return null;
+		}));
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Table)).nil, err];
+		}
+		t.Funcs = (go$sliceType(Func)).make(0, nf, function() { return new Func.Ptr(); });
+		t.Files = new Go$Map();
+		obj = (go$ptrType(Obj)).nil;
+		if (!(t.go12line === (go$ptrType(LineTable)).nil)) {
+			t.Objs = (go$sliceType(Obj)).make(1, 0, function() { return new Obj.Ptr(); });
+			obj = (_slice = t.Objs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			t.go12line.go12MapFiles(t.Files, obj);
+		} else {
+			t.Objs = (go$sliceType(Obj)).make(0, nz, function() { return new Obj.Ptr(); });
+		}
+		lastf = 0;
+		i = 0;
+		while (i < t.Syms.length) {
+			sym$1 = (_slice$1 = t.Syms, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			_ref = sym$1.Type;
+			switch (undefined) {
+			default:
+				if (_ref === 90 || _ref === 122) {
+					if (!(t.go12line === (go$ptrType(LineTable)).nil)) {
+						break;
+					}
+					if (!(obj === (go$ptrType(Obj)).nil)) {
+						obj.Funcs = go$subslice(t.Funcs, lastf);
+					}
+					lastf = t.Funcs.length;
+					n$1 = t.Objs.length;
+					t.Objs = go$subslice(t.Objs, 0, (n$1 + 1 >> 0));
+					obj = (_slice$2 = t.Objs, _index$2 = n$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+					end = 0;
+					end = i + 1 >> 0;
+					while (end < t.Syms.length) {
+						if (c = (_slice$3 = t.Syms, _index$3 = end, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Type, !((c === 90)) && !((c === 122))) {
+							break;
+						}
+						end = end + 1 >> 0;
+					}
+					obj.Paths = go$subslice(t.Syms, i, end);
+					i = end - 1 >> 0;
+					depth = 0;
+					_ref$1 = obj.Paths;
+					_i = 0;
+					for (; _i < _ref$1.length; _i += 1) {
+						j = _i;
+						s = (_slice$4 = obj.Paths, _index$4 = j, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
+						if (s.Name === "") {
+							depth = depth - 1 >> 0;
+						} else {
+							if (depth === 0) {
+								_key = s.Name, (t.Files || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: obj };
+							}
+							depth = depth + 1 >> 0;
+						}
+					}
+				} else if (_ref === 84 || _ref === 116 || _ref === 76 || _ref === 108) {
+					if (n$2 = t.Funcs.length, n$2 > 0) {
+						(_slice$5 = t.Funcs, _index$5 = (n$2 - 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).End = sym$1.Value;
+					}
+					if (sym$1.Name === "etext") {
+						i = i + 1 >> 0;
+						continue;
+					}
+					_tuple = [0, 0], np = _tuple[0], na = _tuple[1];
+					end$1 = 0;
+					end$1 = i + 1 >> 0;
+					countloop: while (end$1 < t.Syms.length) {
+						_ref$2 = (_slice$6 = t.Syms, _index$6 = end$1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).Type;
+						if (_ref$2 === 84 || _ref$2 === 116 || _ref$2 === 76 || _ref$2 === 108 || _ref$2 === 90 || _ref$2 === 122) {
+							break countloop;
+						} else if (_ref$2 === 112) {
+							np = np + 1 >> 0;
+						} else if (_ref$2 === 97) {
+							na = na + 1 >> 0;
+						}
+						end$1 = end$1 + 1 >> 0;
+					}
+					n$3 = t.Funcs.length;
+					t.Funcs = go$subslice(t.Funcs, 0, (n$3 + 1 >> 0));
+					fn = (_slice$7 = t.Funcs, _index$7 = n$3, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+					sym$1.Func = fn;
+					fn.Params = (go$sliceType((go$ptrType(Sym)))).make(0, np, function() { return (go$ptrType(Sym)).nil; });
+					fn.Locals = (go$sliceType((go$ptrType(Sym)))).make(0, na, function() { return (go$ptrType(Sym)).nil; });
+					fn.Sym = sym$1;
+					fn.Entry = sym$1.Value;
+					fn.Obj = obj;
+					if (!(t.go12line === (go$ptrType(LineTable)).nil)) {
+						fn.LineTable = t.go12line;
+					} else if (!(pcln === (go$ptrType(LineTable)).nil)) {
+						fn.LineTable = pcln.slice(fn.Entry);
+						pcln = fn.LineTable;
+					}
+					j$1 = i;
+					while (j$1 < end$1) {
+						s$1 = (_slice$8 = t.Syms, _index$8 = j$1, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
+						_ref$3 = s$1.Type;
+						if (_ref$3 === 109) {
+							fn.FrameSize = (s$1.Value.low >> 0);
+						} else if (_ref$3 === 112) {
+							n$4 = fn.Params.length;
+							fn.Params = go$subslice(fn.Params, 0, (n$4 + 1 >> 0));
+							_slice$9 = fn.Params, _index$9 = n$4, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = s$1) : go$throwRuntimeError("index out of range");
+						} else if (_ref$3 === 97) {
+							n$5 = fn.Locals.length;
+							fn.Locals = go$subslice(fn.Locals, 0, (n$5 + 1 >> 0));
+							_slice$10 = fn.Locals, _index$10 = n$5, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = s$1) : go$throwRuntimeError("index out of range");
+						}
+						j$1 = j$1 + 1 >> 0;
+					}
+					i = end$1 - 1 >> 0;
+				}
+			}
+			i = i + 1 >> 0;
+		}
+		if (!(obj === (go$ptrType(Obj)).nil)) {
+			obj.Funcs = go$subslice(t.Funcs, lastf);
+		}
+		return [t, null];
+	};
+	Table.Ptr.prototype.PCToFunc = function(pc) {
+		var t, funcs, _q, m, _slice, _index, fn, x, x$1, x$2;
+		t = this;
+		funcs = t.Funcs;
+		while (funcs.length > 0) {
+			m = (_q = funcs.length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+			fn = (_slice = funcs, _index = m, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if ((x = fn.Entry, (pc.high < x.high || (pc.high === x.high && pc.low < x.low)))) {
+				funcs = go$subslice(funcs, 0, m);
+			} else if ((x$1 = fn.Entry, (x$1.high < pc.high || (x$1.high === pc.high && x$1.low <= pc.low))) && (x$2 = fn.End, (pc.high < x$2.high || (pc.high === x$2.high && pc.low < x$2.low)))) {
+				return fn;
+			} else {
+				funcs = go$subslice(funcs, (m + 1 >> 0));
+			}
+		}
+		return (go$ptrType(Func)).nil;
+	};
+	Table.prototype.PCToFunc = function(pc) { return this.go$val.PCToFunc(pc); };
+	Table.Ptr.prototype.PCToLine = function(pc) {
+		var file, line, fn, t, _tuple;
+		file = "";
+		line = 0;
+		fn = (go$ptrType(Func)).nil;
+		t = this;
+		if (fn = t.PCToFunc(pc), fn === (go$ptrType(Func)).nil) {
+			return [file, line, fn];
+		}
+		if (!(t.go12line === (go$ptrType(LineTable)).nil)) {
+			file = t.go12line.go12PCToFile(pc);
+			line = t.go12line.go12PCToLine(pc);
+		} else {
+			_tuple = fn.Obj.lineFromAline(fn.LineTable.PCToLine(pc)), file = _tuple[0], line = _tuple[1];
+		}
+		return [file, line, fn];
+	};
+	Table.prototype.PCToLine = function(pc) { return this.go$val.PCToLine(pc); };
+	Table.Ptr.prototype.LineToPC = function(file, line) {
+		var pc, fn, err, t, _tuple, _entry, obj, ok, _tuple$1, pc$1, _tuple$2, _tuple$3, _tuple$4, abs, _ref, _i, i, _slice, _index, f, pc$2, _tuple$5, _tuple$6;
+		pc = new Go$Uint64(0, 0);
+		fn = (go$ptrType(Func)).nil;
+		err = null;
+		t = this;
+		_tuple = (_entry = t.Files[file], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(Obj)).nil, false]), obj = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			_tuple$1 = [new Go$Uint64(0, 0), (go$ptrType(Func)).nil, new UnknownFileError(file)], pc = _tuple$1[0], fn = _tuple$1[1], err = _tuple$1[2];
+			return [pc, fn, err];
+		}
+		if (!(t.go12line === (go$ptrType(LineTable)).nil)) {
+			pc$1 = t.go12line.go12LineToPC(file, line);
+			if ((pc$1.high === 0 && pc$1.low === 0)) {
+				_tuple$2 = [new Go$Uint64(0, 0), (go$ptrType(Func)).nil, new UnknownLineError.Ptr(file, line)], pc = _tuple$2[0], fn = _tuple$2[1], err = _tuple$2[2];
+				return [pc, fn, err];
+			}
+			_tuple$3 = [pc$1, t.PCToFunc(pc$1), null], pc = _tuple$3[0], fn = _tuple$3[1], err = _tuple$3[2];
+			return [pc, fn, err];
+		}
+		_tuple$4 = obj.alineFromLine(file, line), abs = _tuple$4[0], err = _tuple$4[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [pc, fn, err];
+		}
+		_ref = obj.Funcs;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			f = (_slice = obj.Funcs, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			pc$2 = f.LineTable.LineToPC(abs, f.End);
+			if (!((pc$2.high === 0 && pc$2.low === 0))) {
+				_tuple$5 = [pc$2, f, null], pc = _tuple$5[0], fn = _tuple$5[1], err = _tuple$5[2];
+				return [pc, fn, err];
+			}
+		}
+		_tuple$6 = [new Go$Uint64(0, 0), (go$ptrType(Func)).nil, new UnknownLineError.Ptr(file, line)], pc = _tuple$6[0], fn = _tuple$6[1], err = _tuple$6[2];
+		return [pc, fn, err];
+	};
+	Table.prototype.LineToPC = function(file, line) { return this.go$val.LineToPC(file, line); };
+	Table.Ptr.prototype.LookupSym = function(name) {
+		var t, _ref, _i, i, _slice, _index, s, _ref$1;
+		t = this;
+		_ref = t.Syms;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			s = (_slice = t.Syms, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_ref$1 = s.Type;
+			if (_ref$1 === 84 || _ref$1 === 116 || _ref$1 === 76 || _ref$1 === 108 || _ref$1 === 68 || _ref$1 === 100 || _ref$1 === 66 || _ref$1 === 98) {
+				if (s.Name === name) {
+					return s;
+				}
+			}
+		}
+		return (go$ptrType(Sym)).nil;
+	};
+	Table.prototype.LookupSym = function(name) { return this.go$val.LookupSym(name); };
+	Table.Ptr.prototype.LookupFunc = function(name) {
+		var t, _ref, _i, i, _slice, _index, f;
+		t = this;
+		_ref = t.Funcs;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			f = (_slice = t.Funcs, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (f.Sym.Name === name) {
+				return f;
+			}
+		}
+		return (go$ptrType(Func)).nil;
+	};
+	Table.prototype.LookupFunc = function(name) { return this.go$val.LookupFunc(name); };
+	Table.Ptr.prototype.SymByAddr = function(addr) {
+		var t, _ref, _i, i, _slice, _index, s, _ref$1, x;
+		t = this;
+		_ref = t.Syms;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			s = (_slice = t.Syms, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_ref$1 = s.Type;
+			if (_ref$1 === 84 || _ref$1 === 116 || _ref$1 === 76 || _ref$1 === 108 || _ref$1 === 68 || _ref$1 === 100 || _ref$1 === 66 || _ref$1 === 98) {
+				if ((x = s.Value, (x.high === addr.high && x.low === addr.low))) {
+					return s;
+				}
+			}
+		}
+		return (go$ptrType(Sym)).nil;
+	};
+	Table.prototype.SymByAddr = function(addr) { return this.go$val.SymByAddr(addr); };
+	Obj.Ptr.prototype.lineFromAline = function(aline) {
+		var o, stackEnt, noPath, tos, _ref, _i, _slice, _index, _struct, s, val;
+		o = this;
+		stackEnt = go$newType(0, "Struct", "gosym.stackEnt", "stackEnt", "debug/gosym", function(path_, start_, offset_, prev_) {
+			this.go$val = this;
+			this.path = path_ !== undefined ? path_ : "";
+			this.start = start_ !== undefined ? start_ : 0;
+			this.offset = offset_ !== undefined ? offset_ : 0;
+			this.prev = prev_ !== undefined ? prev_ : (go$ptrType(stackEnt)).nil;
+		});
+		stackEnt.init([["path", "debug/gosym", Go$String, ""], ["start", "debug/gosym", Go$Int, ""], ["offset", "debug/gosym", Go$Int, ""], ["prev", "debug/gosym", (go$ptrType(stackEnt)), ""]]);
+		noPath = new stackEnt.Ptr("", 0, 0, (go$ptrType(stackEnt)).nil);
+		tos = noPath;
+		_ref = o.Paths;
+		_i = 0;
+		pathloop: for (; _i < _ref.length; _i += 1) {
+			s = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Sym.Ptr(_struct.Value, _struct.Type, _struct.Name, _struct.GoType, _struct.Func));
+			val = (s.Value.low >> 0);
+			if (val > aline) {
+				break pathloop;
+			} else if (val === 1) {
+				tos = new stackEnt.Ptr(s.Name, val, 0, noPath);
+			} else if (s.Name === "") {
+				if (tos === noPath) {
+					return ["<malformed symbol table>", 0];
+				}
+				tos.prev.offset = tos.prev.offset + ((val - tos.start >> 0)) >> 0;
+				tos = tos.prev;
+			} else {
+				tos = new stackEnt.Ptr(s.Name, val, 0, tos);
+			}
+		}
+		if (tos === noPath) {
+			return ["", 0];
+		}
+		return [tos.path, ((aline - tos.start >> 0) - tos.offset >> 0) + 1 >> 0];
+	};
+	Obj.prototype.lineFromAline = function(aline) { return this.go$val.lineFromAline(aline); };
+	Obj.Ptr.prototype.alineFromLine = function(path, line) {
+		var o, _ref, _i, _slice, _index, _struct, s, i, depth, incstart, _ref$1, _i$1, _slice$1, _index$1, _struct$1, s$1, val;
+		o = this;
+		if (line < 1) {
+			return [0, new UnknownLineError.Ptr(path, line)];
+		}
+		_ref = o.Paths;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Sym.Ptr(_struct.Value, _struct.Type, _struct.Name, _struct.GoType, _struct.Func));
+			i = _i;
+			if (!(s.Name === path)) {
+				continue;
+			}
+			depth = 0;
+			incstart = 0;
+			line = line + ((s.Value.low >> 0)) >> 0;
+			_ref$1 = go$subslice(o.Paths, i);
+			_i$1 = 0;
+			pathloop: for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				s$1 = (_struct$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Sym.Ptr(_struct$1.Value, _struct$1.Type, _struct$1.Name, _struct$1.GoType, _struct$1.Func));
+				val = (s$1.Value.low >> 0);
+				if ((depth === 1) && val >= line) {
+					return [line - 1 >> 0, null];
+				} else if (s$1.Name === "") {
+					depth = depth - 1 >> 0;
+					if (depth === 0) {
+						break pathloop;
+					} else if (depth === 1) {
+						line = line + ((val - incstart >> 0)) >> 0;
+					}
+				} else {
+					if (depth === 1) {
+						incstart = val;
+					}
+					depth = depth + 1 >> 0;
+				}
+			}
+			return [0, new UnknownLineError.Ptr(path, line)];
+		}
+		return [0, new UnknownFileError(path)];
+	};
+	Obj.prototype.alineFromLine = function(path, line) { return this.go$val.alineFromLine(path, line); };
+	UnknownFileError.prototype.Error = function() {
+		var e;
+		e = this.go$val;
+		return "unknown file: " + e;
+	};
+	go$ptrType(UnknownFileError).prototype.Error = function() { return new UnknownFileError(this.go$get()).Error(); };
+	UnknownLineError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return "no code at " + e.File + ":" + strconv.Itoa(e.Line);
+	};
+	UnknownLineError.prototype.Error = function() { return this.go$val.Error(); };
+	DecodingError.Ptr.prototype.Error = function() {
+		var e, msg;
+		e = this;
+		msg = e.msg;
+		if (!(go$interfaceIsEqual(e.val, null))) {
+			msg = msg + (fmt.Sprintf(" '%v'", new (go$sliceType(go$emptyInterface))([e.val])));
+		}
+		msg = msg + (fmt.Sprintf(" at byte %#x", new (go$sliceType(go$emptyInterface))([new Go$Int(e.off)])));
+		return msg;
+	};
+	DecodingError.prototype.Error = function() { return this.go$val.Error(); };
+	var oldQuantum = 1;
+	var go12magic = 4294967291;
+	var littleEndianSymtab = (go$sliceType(Go$Uint8)).nil;
+	var bigEndianSymtab = (go$sliceType(Go$Uint8)).nil;
+	var oldLittleEndianSymtab = (go$sliceType(Go$Uint8)).nil;
+	go$pkg.init = function() {
+		littleEndianSymtab = new (go$sliceType(Go$Uint8))([253, 255, 255, 255, 0, 0, 0]);
+		bigEndianSymtab = new (go$sliceType(Go$Uint8))([255, 255, 255, 253, 0, 0, 0]);
+		oldLittleEndianSymtab = new (go$sliceType(Go$Uint8))([254, 255, 255, 255, 0, 0]);
+	};

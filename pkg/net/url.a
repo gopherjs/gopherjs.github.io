@@ -1,0 +1,687 @@
+0Çi“Çhpackage url
+import bytes "bytes"
+import errors "errors"
+import sort "sort"
+import strconv "strconv"
+import strings "strings"
+type @"".Error struct { @"".Op string; @"".URL string; @"".Err error }
+func (? *@"".Error) @"".Error() (? string)
+type @"".EscapeError string
+func (? @"".EscapeError) @"".Error() (? string)
+func (? *@"".EscapeError) @"".Error() (? string)
+func @"".Parse(@"".rawurl string) (@"".url *@"".URL, @"".err error)
+func @"".ParseQuery(@"".query string) (@"".m @"".Values, @"".err error)
+func @"".ParseRequestURI(@"".rawurl string) (@"".url *@"".URL, @"".err error)
+func @"".QueryEscape(@"".s string) (? string)
+func @"".QueryUnescape(@"".s string) (? string, ? error)
+type @"".URL struct { @"".Scheme string; @"".Opaque string; @"".User *@"".Userinfo; @"".Host string; @"".Path string; @"".RawQuery string; @"".Fragment string }
+func (? *@"".URL) @"".IsAbs() (? bool)
+func (? *@"".URL) @"".Parse(@"".ref string) (? *@"".URL, ? error)
+func (? *@"".URL) @"".Query() (? @"".Values)
+func (? *@"".URL) @"".RequestURI() (? string)
+func (? *@"".URL) @"".ResolveReference(@"".ref *@"".URL) (? *@"".URL)
+func (? *@"".URL) @"".String() (? string)
+func @"".User(@"".username string) (? *@"".Userinfo)
+func @"".UserPassword(@"".username string, @"".password string) (? *@"".Userinfo)
+type @"".Userinfo struct { @"".username string; @"".password string; @"".passwordSet bool }
+func (? *@"".Userinfo) @"".Password() (? string, ? bool)
+func (? *@"".Userinfo) @"".String() (? string)
+func (? *@"".Userinfo) @"".Username() (? string)
+type @"".Values map[string][]string
+func (? @"".Values) @"".Add(@"".key string, @"".value string) ()
+func (? @"".Values) @"".Del(@"".key string) ()
+func (? @"".Values) @"".Encode() (? string)
+func (? @"".Values) @"".Get(@"".key string) (? string)
+func (? @"".Values) @"".Set(@"".key string, @"".value string) ()
+func (? *@"".Values) @"".Add(@"".key string, @"".value string) ()
+func (? *@"".Values) @"".Del(@"".key string) ()
+func (? *@"".Values) @"".Encode() (? string)
+func (? *@"".Values) @"".Get(@"".key string) (? string)
+func (? *@"".Values) @"".Set(@"".key string, @"".value string) ()
+type @"".encoding int
+$$
+0mruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsnet/urlÇ`Û	var bytes = go$packages["bytes"];
+	var errors = go$packages["errors"];
+	var sort = go$packages["sort"];
+	var strconv = go$packages["strconv"];
+	var strings = go$packages["strings"];
+	var Error;
+	Error = go$newType(0, "Struct", "url.Error", "Error", "net/url", function(Op_, URL_, Err_) {
+		this.go$val = this;
+		this.Op = Op_ !== undefined ? Op_ : "";
+		this.URL = URL_ !== undefined ? URL_ : "";
+		this.Err = Err_ !== undefined ? Err_ : null;
+	});
+	go$pkg.Error = Error;
+	var encoding;
+	encoding = go$newType(4, "Int", "url.encoding", "encoding", "net/url", null);
+	go$pkg.encoding = encoding;
+	var EscapeError;
+	EscapeError = go$newType(0, "String", "url.EscapeError", "EscapeError", "net/url", null);
+	go$pkg.EscapeError = EscapeError;
+	var URL;
+	URL = go$newType(0, "Struct", "url.URL", "URL", "net/url", function(Scheme_, Opaque_, User_, Host_, Path_, RawQuery_, Fragment_) {
+		this.go$val = this;
+		this.Scheme = Scheme_ !== undefined ? Scheme_ : "";
+		this.Opaque = Opaque_ !== undefined ? Opaque_ : "";
+		this.User = User_ !== undefined ? User_ : (go$ptrType(Userinfo)).nil;
+		this.Host = Host_ !== undefined ? Host_ : "";
+		this.Path = Path_ !== undefined ? Path_ : "";
+		this.RawQuery = RawQuery_ !== undefined ? RawQuery_ : "";
+		this.Fragment = Fragment_ !== undefined ? Fragment_ : "";
+	});
+	go$pkg.URL = URL;
+	var Userinfo;
+	Userinfo = go$newType(0, "Struct", "url.Userinfo", "Userinfo", "net/url", function(username_, password_, passwordSet_) {
+		this.go$val = this;
+		this.username = username_ !== undefined ? username_ : "";
+		this.password = password_ !== undefined ? password_ : "";
+		this.passwordSet = passwordSet_ !== undefined ? passwordSet_ : false;
+	});
+	go$pkg.Userinfo = Userinfo;
+	var Values;
+	Values = go$newType(0, "Map", "url.Values", "Values", "net/url", null);
+	go$pkg.Values = Values;
+	Error.init([["Op", "", Go$String, ""], ["URL", "", Go$String, ""], ["Err", "", go$error, ""]]);
+	(go$ptrType(Error)).methods = [["Error", "", [], [Go$String], false]];
+	EscapeError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(EscapeError)).methods = [["Error", "", [], [Go$String], false]];
+	URL.init([["Scheme", "", Go$String, ""], ["Opaque", "", Go$String, ""], ["User", "", (go$ptrType(Userinfo)), ""], ["Host", "", Go$String, ""], ["Path", "", Go$String, ""], ["RawQuery", "", Go$String, ""], ["Fragment", "", Go$String, ""]]);
+	(go$ptrType(URL)).methods = [["IsAbs", "", [], [Go$Bool], false], ["Parse", "", [Go$String], [(go$ptrType(URL)), go$error], false], ["Query", "", [], [Values], false], ["RequestURI", "", [], [Go$String], false], ["ResolveReference", "", [(go$ptrType(URL))], [(go$ptrType(URL))], false], ["String", "", [], [Go$String], false]];
+	Userinfo.init([["username", "net/url", Go$String, ""], ["password", "net/url", Go$String, ""], ["passwordSet", "net/url", Go$Bool, ""]]);
+	(go$ptrType(Userinfo)).methods = [["Password", "", [], [Go$String, Go$Bool], false], ["String", "", [], [Go$String], false], ["Username", "", [], [Go$String], false]];
+	Values.init(Go$String, (go$sliceType(Go$String)));
+	Values.methods = [["Add", "", [Go$String, Go$String], [], false], ["Del", "", [Go$String], [], false], ["Encode", "", [], [Go$String], false], ["Get", "", [Go$String], [Go$String], false], ["Set", "", [Go$String, Go$String], [], false]];
+	(go$ptrType(Values)).methods = [["Add", "", [Go$String, Go$String], [], false], ["Del", "", [Go$String], [], false], ["Encode", "", [], [Go$String], false], ["Get", "", [Go$String], [Go$String], false], ["Set", "", [Go$String, Go$String], [], false]];
+	Error.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return e.Op + " " + e.URL + ": " + e.Err.Error();
+	};
+	Error.prototype.Error = function() { return this.go$val.Error(); };
+	var ishex = function(c) {
+		if (48 <= c && c <= 57) {
+			return true;
+		} else if (97 <= c && c <= 102) {
+			return true;
+		} else if (65 <= c && c <= 70) {
+			return true;
+		}
+		return false;
+	};
+	var unhex = function(c) {
+		if (48 <= c && c <= 57) {
+			return c - 48 << 24 >>> 24;
+		} else if (97 <= c && c <= 102) {
+			return (c - 97 << 24 >>> 24) + 10 << 24 >>> 24;
+		} else if (65 <= c && c <= 70) {
+			return (c - 65 << 24 >>> 24) + 10 << 24 >>> 24;
+		}
+		return 0;
+	};
+	EscapeError.prototype.Error = function() {
+		var e;
+		e = this.go$val;
+		return "invalid URL escape " + strconv.Quote(e);
+	};
+	go$ptrType(EscapeError).prototype.Error = function() { return new EscapeError(this.go$get()).Error(); };
+	var shouldEscape = function(c, mode) {
+		var _ref, _ref$1;
+		if (65 <= c && c <= 90 || 97 <= c && c <= 122 || 48 <= c && c <= 57) {
+			return false;
+		}
+		_ref = c;
+		if (_ref === 45 || _ref === 95 || _ref === 46 || _ref === 126) {
+			return false;
+		} else if (_ref === 36 || _ref === 38 || _ref === 43 || _ref === 44 || _ref === 47 || _ref === 58 || _ref === 59 || _ref === 61 || _ref === 63 || _ref === 64) {
+			_ref$1 = mode;
+			if (_ref$1 === 1) {
+				return c === 63;
+			} else if (_ref$1 === 2) {
+				return (c === 64) || (c === 47) || (c === 58);
+			} else if (_ref$1 === 3) {
+				return true;
+			} else if (_ref$1 === 4) {
+				return false;
+			}
+		}
+		return true;
+	};
+	var QueryUnescape = go$pkg.QueryUnescape = function(s) {
+		return unescape(s, 3);
+	};
+	var unescape = function(s, mode) {
+		var n, hasPlus, i, _ref, x, t, j, i$1, _ref$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		n = 0;
+		hasPlus = false;
+		i = 0;
+		while (i < s.length) {
+			_ref = s.charCodeAt(i);
+			if (_ref === 37) {
+				n = n + 1 >> 0;
+				if ((i + 2 >> 0) >= s.length || !ishex(s.charCodeAt((i + 1 >> 0))) || !ishex(s.charCodeAt((i + 2 >> 0)))) {
+					s = s.substring(i);
+					if (s.length > 3) {
+						s = s.substring(0, 3);
+					}
+					return ["", new EscapeError(s)];
+				}
+				i = i + 3 >> 0;
+			} else if (_ref === 43) {
+				hasPlus = mode === 3;
+				i = i + 1 >> 0;
+			} else {
+				i = i + 1 >> 0;
+			}
+		}
+		if ((n === 0) && !hasPlus) {
+			return [s, null];
+		}
+		t = (go$sliceType(Go$Uint8)).make(s.length - (x = 2, (((x >>> 16 << 16) * n >> 0) + (x << 16 >>> 16) * n) >> 0) >> 0, 0, function() { return 0; });
+		j = 0;
+		i$1 = 0;
+		while (i$1 < s.length) {
+			_ref$1 = s.charCodeAt(i$1);
+			if (_ref$1 === 37) {
+				_slice = t, _index = j, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((unhex(s.charCodeAt((i$1 + 1 >> 0))) << 4 << 24 >>> 24) | unhex(s.charCodeAt((i$1 + 2 >> 0)))) >>> 0) : go$throwRuntimeError("index out of range");
+				j = j + 1 >> 0;
+				i$1 = i$1 + 3 >> 0;
+			} else if (_ref$1 === 43) {
+				if (mode === 3) {
+					_slice$1 = t, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 32) : go$throwRuntimeError("index out of range");
+				} else {
+					_slice$2 = t, _index$2 = j, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 43) : go$throwRuntimeError("index out of range");
+				}
+				j = j + 1 >> 0;
+				i$1 = i$1 + 1 >> 0;
+			} else {
+				_slice$3 = t, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = s.charCodeAt(i$1)) : go$throwRuntimeError("index out of range");
+				j = j + 1 >> 0;
+				i$1 = i$1 + 1 >> 0;
+			}
+		}
+		return [go$bytesToString(t), null];
+	};
+	var QueryEscape = go$pkg.QueryEscape = function(s) {
+		return escape(s, 3);
+	};
+	var escape = function(s, mode) {
+		var _tuple, spaceCount, hexCount, i, c, x, t, j, i$1, c$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
+		_tuple = [0, 0], spaceCount = _tuple[0], hexCount = _tuple[1];
+		i = 0;
+		while (i < s.length) {
+			c = s.charCodeAt(i);
+			if (shouldEscape(c, mode)) {
+				if ((c === 32) && (mode === 3)) {
+					spaceCount = spaceCount + 1 >> 0;
+				} else {
+					hexCount = hexCount + 1 >> 0;
+				}
+			}
+			i = i + 1 >> 0;
+		}
+		if ((spaceCount === 0) && (hexCount === 0)) {
+			return s;
+		}
+		t = (go$sliceType(Go$Uint8)).make(s.length + (x = 2, (((x >>> 16 << 16) * hexCount >> 0) + (x << 16 >>> 16) * hexCount) >> 0) >> 0, 0, function() { return 0; });
+		j = 0;
+		i$1 = 0;
+		while (i$1 < s.length) {
+			c$1 = s.charCodeAt(i$1);
+			if ((c$1 === 32) && (mode === 3)) {
+				_slice = t, _index = j, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 43) : go$throwRuntimeError("index out of range");
+				j = j + 1 >> 0;
+			} else if (shouldEscape(c$1, mode)) {
+				_slice$1 = t, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 37) : go$throwRuntimeError("index out of range");
+				_slice$2 = t, _index$2 = j + 1 >> 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = "0123456789ABCDEF".charCodeAt((c$1 >>> 4 << 24 >>> 24))) : go$throwRuntimeError("index out of range");
+				_slice$3 = t, _index$3 = j + 2 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = "0123456789ABCDEF".charCodeAt(((c$1 & 15) >>> 0))) : go$throwRuntimeError("index out of range");
+				j = j + 3 >> 0;
+			} else {
+				_slice$4 = t, _index$4 = j, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = s.charCodeAt(i$1)) : go$throwRuntimeError("index out of range");
+				j = j + 1 >> 0;
+			}
+			i$1 = i$1 + 1 >> 0;
+		}
+		return go$bytesToString(t);
+	};
+	var User = go$pkg.User = function(username) {
+		return new Userinfo.Ptr(username, "", false);
+	};
+	var UserPassword = go$pkg.UserPassword = function(username, password) {
+		return new Userinfo.Ptr(username, password, true);
+	};
+	Userinfo.Ptr.prototype.Username = function() {
+		var u;
+		u = this;
+		return u.username;
+	};
+	Userinfo.prototype.Username = function() { return this.go$val.Username(); };
+	Userinfo.Ptr.prototype.Password = function() {
+		var u;
+		u = this;
+		if (u.passwordSet) {
+			return [u.password, true];
+		}
+		return ["", false];
+	};
+	Userinfo.prototype.Password = function() { return this.go$val.Password(); };
+	Userinfo.Ptr.prototype.String = function() {
+		var u, s;
+		u = this;
+		s = escape(u.username, 2);
+		if (u.passwordSet) {
+			s = s + (":" + escape(u.password, 2));
+		}
+		return s;
+	};
+	Userinfo.prototype.String = function() { return this.go$val.String(); };
+	var getscheme = function(rawurl) {
+		var scheme, path, err, i, c, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4;
+		scheme = "";
+		path = "";
+		err = null;
+		i = 0;
+		while (i < rawurl.length) {
+			c = rawurl.charCodeAt(i);
+			if (97 <= c && c <= 122 || 65 <= c && c <= 90) {
+			} else if (48 <= c && c <= 57 || (c === 43) || (c === 45) || (c === 46)) {
+				if (i === 0) {
+					_tuple = ["", rawurl, null], scheme = _tuple[0], path = _tuple[1], err = _tuple[2];
+					return [scheme, path, err];
+				}
+			} else if (c === 58) {
+				if (i === 0) {
+					_tuple$1 = ["", "", errors.New("missing protocol scheme")], scheme = _tuple$1[0], path = _tuple$1[1], err = _tuple$1[2];
+					return [scheme, path, err];
+				}
+				_tuple$2 = [rawurl.substring(0, i), rawurl.substring((i + 1 >> 0)), null], scheme = _tuple$2[0], path = _tuple$2[1], err = _tuple$2[2];
+				return [scheme, path, err];
+			} else {
+				_tuple$3 = ["", rawurl, null], scheme = _tuple$3[0], path = _tuple$3[1], err = _tuple$3[2];
+				return [scheme, path, err];
+			}
+			i = i + 1 >> 0;
+		}
+		_tuple$4 = ["", rawurl, null], scheme = _tuple$4[0], path = _tuple$4[1], err = _tuple$4[2];
+		return [scheme, path, err];
+	};
+	var split = function(s, c, cutc) {
+		var i;
+		i = strings.Index(s, c);
+		if (i < 0) {
+			return [s, ""];
+		}
+		if (cutc) {
+			return [s.substring(0, i), s.substring((i + c.length >> 0))];
+		}
+		return [s.substring(0, i), s.substring(i)];
+	};
+	var Parse = go$pkg.Parse = function(rawurl) {
+		var url, err, _tuple, u, frag, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6;
+		url = (go$ptrType(URL)).nil;
+		err = null;
+		_tuple = split(rawurl, "#", true), u = _tuple[0], frag = _tuple[1];
+		if (_tuple$1 = parse(u, false), url = _tuple$1[0], err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
+			_tuple$2 = [(go$ptrType(URL)).nil, err], url = _tuple$2[0], err = _tuple$2[1];
+			return [url, err];
+		}
+		if (frag === "") {
+			_tuple$3 = [url, null], url = _tuple$3[0], err = _tuple$3[1];
+			return [url, err];
+		}
+		if (_tuple$4 = unescape(frag, 4), url.Fragment = _tuple$4[0], err = _tuple$4[1], !(go$interfaceIsEqual(err, null))) {
+			_tuple$5 = [(go$ptrType(URL)).nil, new Error.Ptr("parse", rawurl, err)], url = _tuple$5[0], err = _tuple$5[1];
+			return [url, err];
+		}
+		_tuple$6 = [url, null], url = _tuple$6[0], err = _tuple$6[1];
+		return [url, err];
+	};
+	var ParseRequestURI = go$pkg.ParseRequestURI = function(rawurl) {
+		var url, err, _tuple;
+		url = (go$ptrType(URL)).nil;
+		err = null;
+		_tuple = parse(rawurl, true), url = _tuple[0], err = _tuple[1];
+		return [url, err];
+	};
+	var parse = function(rawurl, viaRequest) {
+		var url, err, rest, _tuple, _tuple$1, _tuple$2, authority, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7;
+		url = (go$ptrType(URL)).nil;
+		err = null;
+		rest = "";
+		if (rawurl === "" && viaRequest) {
+			err = errors.New("empty url");
+			go$notSupported("goto");
+		}
+		url = new URL.Ptr();
+		if (rawurl === "*") {
+			url.Path = "*";
+			return [url, err];
+		}
+		if (_tuple = getscheme(rawurl), url.Scheme = _tuple[0], rest = _tuple[1], err = _tuple[2], !(go$interfaceIsEqual(err, null))) {
+			go$notSupported("goto");
+		}
+		url.Scheme = strings.ToLower(url.Scheme);
+		_tuple$1 = split(rest, "?", true), rest = _tuple$1[0], url.RawQuery = _tuple$1[1];
+		if (!strings.HasPrefix(rest, "/")) {
+			if (!(url.Scheme === "")) {
+				url.Opaque = rest;
+				_tuple$2 = [url, null], url = _tuple$2[0], err = _tuple$2[1];
+				return [url, err];
+			}
+			if (viaRequest) {
+				err = errors.New("invalid URI for request");
+				go$notSupported("goto");
+			}
+		}
+		if ((!(url.Scheme === "") || !viaRequest && !strings.HasPrefix(rest, "///")) && strings.HasPrefix(rest, "//")) {
+			authority = "";
+			_tuple$3 = split(rest.substring(2), "/", false), authority = _tuple$3[0], rest = _tuple$3[1];
+			_tuple$4 = parseAuthority(authority), url.User = _tuple$4[0], url.Host = _tuple$4[1], err = _tuple$4[2];
+			if (!(go$interfaceIsEqual(err, null))) {
+				go$notSupported("goto");
+			}
+			if (strings.Contains(url.Host, "%")) {
+				err = errors.New("hexadecimal escape in host");
+				go$notSupported("goto");
+			}
+		}
+		if (_tuple$5 = unescape(rest, 1), url.Path = _tuple$5[0], err = _tuple$5[1], !(go$interfaceIsEqual(err, null))) {
+			go$notSupported("goto");
+		}
+		_tuple$6 = [url, null], url = _tuple$6[0], err = _tuple$6[1];
+		return [url, err];
+		Error: _tuple$7 = [(go$ptrType(URL)).nil, new Error.Ptr("parse", rawurl, err)], url = _tuple$7[0], err = _tuple$7[1];
+		return [url, err];
+	};
+	var parseAuthority = function(authority) {
+		var user, host, err, i, _tuple, userinfo, _tuple$1, _tuple$2, username, password, _tuple$3, _tuple$4;
+		user = (go$ptrType(Userinfo)).nil;
+		host = "";
+		err = null;
+		i = strings.LastIndex(authority, "@");
+		if (i < 0) {
+			host = authority;
+			return [user, host, err];
+		}
+		_tuple = [authority.substring(0, i), authority.substring((i + 1 >> 0))], userinfo = _tuple[0], host = _tuple[1];
+		if (strings.Index(userinfo, ":") < 0) {
+			if (_tuple$1 = unescape(userinfo, 2), userinfo = _tuple$1[0], err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
+				return [user, host, err];
+			}
+			user = User(userinfo);
+		} else {
+			_tuple$2 = split(userinfo, ":", true), username = _tuple$2[0], password = _tuple$2[1];
+			if (_tuple$3 = unescape(username, 2), username = _tuple$3[0], err = _tuple$3[1], !(go$interfaceIsEqual(err, null))) {
+				return [user, host, err];
+			}
+			if (_tuple$4 = unescape(password, 2), password = _tuple$4[0], err = _tuple$4[1], !(go$interfaceIsEqual(err, null))) {
+				return [user, host, err];
+			}
+			user = UserPassword(username, password);
+		}
+		return [user, host, err];
+	};
+	URL.Ptr.prototype.String = function() {
+		var u, buf, ui, h;
+		u = this;
+		buf = new bytes.Buffer.Ptr();
+		if (!(u.Scheme === "")) {
+			buf.WriteString(u.Scheme);
+			buf.WriteByte(58);
+		}
+		if (!(u.Opaque === "")) {
+			buf.WriteString(u.Opaque);
+		} else {
+			if (!(u.Scheme === "") || !(u.Host === "") || !(u.User === (go$ptrType(Userinfo)).nil)) {
+				buf.WriteString("//");
+				if (ui = u.User, !(ui === (go$ptrType(Userinfo)).nil)) {
+					buf.WriteString(ui.String());
+					buf.WriteByte(64);
+				}
+				if (h = u.Host, !(h === "")) {
+					buf.WriteString(h);
+				}
+			}
+			if (!(u.Path === "") && !((u.Path.charCodeAt(0) === 47)) && !(u.Host === "")) {
+				buf.WriteByte(47);
+			}
+			buf.WriteString(escape(u.Path, 1));
+		}
+		if (!(u.RawQuery === "")) {
+			buf.WriteByte(63);
+			buf.WriteString(u.RawQuery);
+		}
+		if (!(u.Fragment === "")) {
+			buf.WriteByte(35);
+			buf.WriteString(escape(u.Fragment, 4));
+		}
+		return buf.String();
+	};
+	URL.prototype.String = function() { return this.go$val.String(); };
+	Values.prototype.Get = function(key) {
+		var v, _tuple, _entry, vs, ok, _slice, _index;
+		v = this.go$val;
+		if (v === false) {
+			return "";
+		}
+		_tuple = (_entry = v[key], _entry !== undefined ? [_entry.v, true] : [(go$sliceType(Go$String)).nil, false]), vs = _tuple[0], ok = _tuple[1];
+		if (!ok || (vs.length === 0)) {
+			return "";
+		}
+		return (_slice = vs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+	};
+	go$ptrType(Values).prototype.Get = function(key) { return new Values(this.go$get()).Get(key); };
+	Values.prototype.Set = function(key, value) {
+		var v, _key;
+		v = this.go$val;
+		_key = key, (v || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: new (go$sliceType(Go$String))([value]) };
+	};
+	go$ptrType(Values).prototype.Set = function(key, value) { return new Values(this.go$get()).Set(key, value); };
+	Values.prototype.Add = function(key, value) {
+		var v, _entry, _key;
+		v = this.go$val;
+		_key = key, (v || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: go$append((_entry = v[key], _entry !== undefined ? _entry.v : (go$sliceType(Go$String)).nil), value) };
+	};
+	go$ptrType(Values).prototype.Add = function(key, value) { return new Values(this.go$get()).Add(key, value); };
+	Values.prototype.Del = function(key) {
+		var v;
+		v = this.go$val;
+		delete v[key];
+	};
+	go$ptrType(Values).prototype.Del = function(key) { return new Values(this.go$get()).Del(key); };
+	var ParseQuery = go$pkg.ParseQuery = function(query) {
+		var m, err;
+		m = false;
+		err = null;
+		m = new Go$Map();
+		err = parseQuery(m, query);
+		return [m, err];
+	};
+	var parseQuery = function(m, query) {
+		var err, key, i, _tuple, value, i$1, _tuple$1, _tuple$2, err1, _tuple$3, _entry, _key;
+		err = null;
+		while (!(query === "")) {
+			key = query;
+			if (i = strings.IndexAny(key, "&;"), i >= 0) {
+				_tuple = [key.substring(0, i), key.substring((i + 1 >> 0))], key = _tuple[0], query = _tuple[1];
+			} else {
+				query = "";
+			}
+			if (key === "") {
+				continue;
+			}
+			value = "";
+			if (i$1 = strings.Index(key, "="), i$1 >= 0) {
+				_tuple$1 = [key.substring(0, i$1), key.substring((i$1 + 1 >> 0))], key = _tuple$1[0], value = _tuple$1[1];
+			}
+			_tuple$2 = QueryUnescape(key), key = _tuple$2[0], err1 = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err1, null))) {
+				if (go$interfaceIsEqual(err, null)) {
+					err = err1;
+				}
+				continue;
+			}
+			_tuple$3 = QueryUnescape(value), value = _tuple$3[0], err1 = _tuple$3[1];
+			if (!(go$interfaceIsEqual(err1, null))) {
+				if (go$interfaceIsEqual(err, null)) {
+					err = err1;
+				}
+				continue;
+			}
+			_key = key, (m || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: go$append((_entry = m[key], _entry !== undefined ? _entry.v : (go$sliceType(Go$String)).nil), value) };
+		}
+		err = err;
+		return err;
+	};
+	Values.prototype.Encode = function() {
+		var v, buf, keys, _ref, _i, _keys, _entry, k, _ref$1, _i$1, _slice, _index, k$1, _entry$1, vs, prefix, _ref$2, _i$2, _slice$1, _index$1, v$1;
+		v = this.go$val;
+		if (v === false) {
+			return "";
+		}
+		buf = new bytes.Buffer.Ptr();
+		keys = (go$sliceType(Go$String)).make(0, go$keys(v).length, function() { return ""; });
+		_ref = v;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry = _ref[_keys[_i]];
+			k = _entry.k;
+			keys = go$append(keys, k);
+		}
+		sort.Strings(keys);
+		_ref$1 = keys;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			k$1 = (_slice = _ref$1, _index = _i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			vs = (_entry$1 = v[k$1], _entry$1 !== undefined ? _entry$1.v : (go$sliceType(Go$String)).nil);
+			prefix = QueryEscape(k$1) + "=";
+			_ref$2 = vs;
+			_i$2 = 0;
+			for (; _i$2 < _ref$2.length; _i$2 += 1) {
+				v$1 = (_slice$1 = _ref$2, _index$1 = _i$2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				if (buf.Len() > 0) {
+					buf.WriteByte(38);
+				}
+				buf.WriteString(prefix);
+				buf.WriteString(QueryEscape(v$1));
+			}
+		}
+		return buf.String();
+	};
+	go$ptrType(Values).prototype.Encode = function() { return new Values(this.go$get()).Encode(); };
+	var resolvePath = function(base, ref) {
+		var full, i, dst, src, _ref, _i, _slice, _index, elem, _ref$1, last, _slice$1, _index$1;
+		full = "";
+		if (ref === "") {
+			full = base;
+		} else if (!((ref.charCodeAt(0) === 47))) {
+			i = strings.LastIndex(base, "/");
+			full = base.substring(0, (i + 1 >> 0)) + ref;
+		} else {
+			full = ref;
+		}
+		if (full === "") {
+			return "";
+		}
+		dst = (go$sliceType(Go$String)).nil;
+		src = strings.Split(full, "/");
+		_ref = src;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			elem = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_ref$1 = elem;
+			if (_ref$1 === ".") {
+			} else if (_ref$1 === "..") {
+				if (dst.length > 0) {
+					dst = go$subslice(dst, 0, (dst.length - 1 >> 0));
+				}
+			} else {
+				dst = go$append(dst, elem);
+			}
+		}
+		if (last = (_slice$1 = src, _index$1 = (src.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), last === "." || last === "..") {
+			dst = go$append(dst, "");
+		}
+		return "/" + strings.TrimLeft(strings.Join(dst, "/"), "/");
+	};
+	URL.Ptr.prototype.IsAbs = function() {
+		var u;
+		u = this;
+		return !(u.Scheme === "");
+	};
+	URL.prototype.IsAbs = function() { return this.go$val.IsAbs(); };
+	URL.Ptr.prototype.Parse = function(ref) {
+		var u, _tuple, refurl, err;
+		u = this;
+		_tuple = Parse(ref), refurl = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(URL)).nil, err];
+		}
+		return [u.ResolveReference(refurl), null];
+	};
+	URL.prototype.Parse = function(ref) { return this.go$val.Parse(ref); };
+	URL.Ptr.prototype.ResolveReference = function(ref) {
+		var u, _struct, url;
+		u = this;
+		url = (_struct = ref, new URL.Ptr(_struct.Scheme, _struct.Opaque, _struct.User, _struct.Host, _struct.Path, _struct.RawQuery, _struct.Fragment));
+		if (ref.Scheme === "") {
+			url.Scheme = u.Scheme;
+		}
+		if (!(ref.Scheme === "") || !(ref.Host === "") || !(ref.User === (go$ptrType(Userinfo)).nil)) {
+			url.Path = resolvePath(ref.Path, "");
+			return url;
+		}
+		if (!(ref.Opaque === "")) {
+			url.User = (go$ptrType(Userinfo)).nil;
+			url.Host = "";
+			url.Path = "";
+			return url;
+		}
+		if (ref.Path === "") {
+			if (ref.RawQuery === "") {
+				url.RawQuery = u.RawQuery;
+				if (ref.Fragment === "") {
+					url.Fragment = u.Fragment;
+				}
+			}
+		}
+		url.Host = u.Host;
+		url.User = u.User;
+		url.Path = resolvePath(u.Path, ref.Path);
+		return url;
+	};
+	URL.prototype.ResolveReference = function(ref) { return this.go$val.ResolveReference(ref); };
+	URL.Ptr.prototype.Query = function() {
+		var u, _tuple, v;
+		u = this;
+		_tuple = ParseQuery(u.RawQuery), v = _tuple[0];
+		return v;
+	};
+	URL.prototype.Query = function() { return this.go$val.Query(); };
+	URL.Ptr.prototype.RequestURI = function() {
+		var u, result;
+		u = this;
+		result = u.Opaque;
+		if (result === "") {
+			result = escape(u.Path, 1);
+			if (result === "") {
+				result = "/";
+			}
+		} else {
+			if (strings.HasPrefix(result, "//")) {
+				result = u.Scheme + ":" + result;
+			}
+		}
+		if (!(u.RawQuery === "")) {
+			result = result + ("?" + u.RawQuery);
+		}
+		return result;
+	};
+	URL.prototype.RequestURI = function() { return this.go$val.RequestURI(); };
+	var encodePath = 1;
+	var encodeUserPassword = 2;
+	var encodeQueryComponent = 3;
+	var encodeFragment = 4;
+	go$pkg.init = function() {
+	};

@@ -1,0 +1,1518 @@
+0‚ïþ‚package strings
+import errors "errors"
+import io "io"
+import utf8 "unicode/utf8"
+import unicode "unicode"
+func @"".Contains(@"".s string, @"".substr string) (? bool)
+func @"".ContainsAny(@"".s string, @"".chars string) (? bool)
+func @"".ContainsRune(@"".s string, @"".r rune) (? bool)
+func @"".Count(@"".s string, @"".sep string) (? int)
+func @"".EqualFold(@"".s string, @"".t string) (? bool)
+func @"".Fields(@"".s string) (? []string)
+func @"".FieldsFunc(@"".s string, @"".f func (? rune) (? bool)) (? []string)
+func @"".HasPrefix(@"".s string, @"".prefix string) (? bool)
+func @"".HasSuffix(@"".s string, @"".suffix string) (? bool)
+func @"".Index(@"".s string, @"".sep string) (? int)
+func @"".IndexAny(@"".s string, @"".chars string) (? int)
+func @"".IndexByte(@"".s string, @"".c byte) (? int)
+func @"".IndexFunc(@"".s string, @"".f func (? rune) (? bool)) (? int)
+func @"".IndexRune(@"".s string, @"".r rune) (? int)
+func @"".Join(@"".a []string, @"".sep string) (? string)
+func @"".LastIndex(@"".s string, @"".sep string) (? int)
+func @"".LastIndexAny(@"".s string, @"".chars string) (? int)
+func @"".LastIndexFunc(@"".s string, @"".f func (? rune) (? bool)) (? int)
+func @"".Map(@"".mapping func (? rune) (? rune), @"".s string) (? string)
+func @"".NewReader(@"".s string) (? *@"".Reader)
+func @"".NewReplacer(@"".oldnew ...string) (? *@"".Replacer)
+type @"".Reader struct { @"".s string; @"".i int; @"".prevRune int }
+func (? *@"".Reader) @"".Len() (? int)
+func (? *@"".Reader) @"".Read(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"".Reader) @"".ReadAt(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"".Reader) @"".ReadByte() (@"".b byte, @"".err error)
+func (? *@"".Reader) @"".ReadRune() (@"".ch rune, @"".size int, @"".err error)
+func (? *@"".Reader) @"".Seek(@"".offset int64, @"".whence int) (? int64, ? error)
+func (? *@"".Reader) @"".UnreadByte() (? error)
+func (? *@"".Reader) @"".UnreadRune() (? error)
+func (? *@"".Reader) @"".WriteTo(@"".w @"io".Writer) (@"".n int64, @"".err error)
+func @"".Repeat(@"".s string, @"".count int) (? string)
+func @"".Replace(@"".s string, @"".old string, @"".new string, @"".n int) (? string)
+type @"".Replacer struct { @"".r @"".replacer }
+func (? *@"".Replacer) @"".Replace(@"".s string) (? string)
+func (? *@"".Replacer) @"".WriteString(@"".w @"io".Writer, @"".s string) (@"".n int, @"".err error)
+func @"".Split(@"".s string, @"".sep string) (? []string)
+func @"".SplitAfter(@"".s string, @"".sep string) (? []string)
+func @"".SplitAfterN(@"".s string, @"".sep string, @"".n int) (? []string)
+func @"".SplitN(@"".s string, @"".sep string, @"".n int) (? []string)
+func @"".Title(@"".s string) (? string)
+func @"".ToLower(@"".s string) (? string)
+func @"".ToLowerSpecial(@""._case @"unicode".SpecialCase, @"".s string) (? string)
+func @"".ToTitle(@"".s string) (? string)
+func @"".ToTitleSpecial(@""._case @"unicode".SpecialCase, @"".s string) (? string)
+func @"".ToUpper(@"".s string) (? string)
+func @"".ToUpperSpecial(@""._case @"unicode".SpecialCase, @"".s string) (? string)
+func @"".Trim(@"".s string, @"".cutset string) (? string)
+func @"".TrimFunc(@"".s string, @"".f func (? rune) (? bool)) (? string)
+func @"".TrimLeft(@"".s string, @"".cutset string) (? string)
+func @"".TrimLeftFunc(@"".s string, @"".f func (? rune) (? bool)) (? string)
+func @"".TrimPrefix(@"".s string, @"".prefix string) (? string)
+func @"".TrimRight(@"".s string, @"".cutset string) (? string)
+func @"".TrimRightFunc(@"".s string, @"".f func (? rune) (? bool)) (? string)
+func @"".TrimSpace(@"".s string) (? string)
+func @"".TrimSuffix(@"".s string, @"".suffix string) (? string)
+type @"".appendSliceWriter []byte
+func (? *@"".appendSliceWriter) @"".Write(@"".p []byte) (? int, ? error)
+func (? *@"".appendSliceWriter) @"".WriteString(@"".s string) (? int, ? error)
+type @"".byteBitmap [8]uint32
+func (? *@"".byteBitmap) @"".set(@"".b byte) ()
+type @"".byteReplacer struct { @"".old @"".byteBitmap; @"".new [256]byte }
+func (? *@"".byteReplacer) @"".Replace(@"".s string) (? string)
+func (? *@"".byteReplacer) @"".WriteString(@"".w @"io".Writer, @"".s string) (@"".n int, @"".err error)
+type @"".byteStringReplacer struct { @"".old @"".byteBitmap; @"".new [256][]byte }
+func (? *@"".byteStringReplacer) @"".Replace(@"".s string) (? string)
+func (? *@"".byteStringReplacer) @"".WriteString(@"".w @"io".Writer, @"".s string) (@"".n int, @"".err error)
+type @"".genericReplacer struct { @"".root @"".trieNode; @"".tableSize int; @"".mapping [256]byte }
+func (? *@"".genericReplacer) @"".Replace(@"".s string) (? string)
+func (? *@"".genericReplacer) @"".WriteString(@"".w @"io".Writer, @"".s string) (@"".n int, @"".err error)
+func (? *@"".genericReplacer) @"".lookup(@"".s string, @"".ignoreRoot bool) (@"".val string, @"".keylen int, @"".found bool)
+type @"".replacer interface { @"".Replace(@"".s string) (? string); @"".WriteString(@"".w @"io".Writer, @"".s string) (@"".n int, @"".err error) }
+type @"".singleStringReplacer struct { @"".finder *@"".stringFinder; @"".value string }
+func (? *@"".singleStringReplacer) @"".Replace(@"".s string) (? string)
+func (? *@"".singleStringReplacer) @"".WriteString(@"".w @"io".Writer, @"".s string) (@"".n int, @"".err error)
+type @"".stringFinder struct { @"".pattern string; @"".badCharSkip [256]int; @"".goodSuffixSkip []int }
+func (? *@"".stringFinder) @"".next(@"".text string) (? int)
+type @"".stringWriter struct { @"".w @"io".Writer }
+func (? @"".stringWriter) @"".WriteString(@"".s string) (? int, ? error)
+func (? *@"".stringWriter) @"".WriteString(@"".s string) (? int, ? error)
+type @"".stringWriterIface interface { @"".WriteString(? string) (? int, ? error) }
+type @"".trieNode struct { @"".value string; @"".priority int; @"".prefix string; @"".next *@"".trieNode; @"".table []*@"".trieNode }
+func (? *@"".trieNode) @"".add(@"".key string, @"".val string, @"".priority int, @"".r *@"".genericReplacer) ()
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"unicode".SpecialCase []@"unicode".CaseRange
+func (? @"unicode".SpecialCase) @"unicode".ToLower(@"unicode".r rune) (? rune)
+func (? @"unicode".SpecialCase) @"unicode".ToTitle(@"unicode".r rune) (? rune)
+func (? @"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
+func (? *@"unicode".SpecialCase) @"unicode".ToLower(@"unicode".r rune) (? rune)
+func (? *@"unicode".SpecialCase) @"unicode".ToTitle(@"unicode".r rune) (? rune)
+func (? *@"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
+type @"unicode".CaseRange struct { @"unicode".Lo uint32; @"unicode".Hi uint32; @"unicode".Delta @"unicode".d }
+type @"unicode".d [3]rune
+$$
+0Hruntimeerrorssync/atomicsynciounicodeunicode/utf8strings‚Õ	var errors = go$packages["errors"];
+	var io = go$packages["io"];
+	var utf8 = go$packages["unicode/utf8"];
+	var unicode = go$packages["unicode"];
+	var Reader;
+	Reader = go$newType(0, "Struct", "strings.Reader", "Reader", "strings", function(s_, i_, prevRune_) {
+		this.go$val = this;
+		this.s = s_ !== undefined ? s_ : "";
+		this.i = i_ !== undefined ? i_ : 0;
+		this.prevRune = prevRune_ !== undefined ? prevRune_ : 0;
+	});
+	go$pkg.Reader = Reader;
+	var Replacer;
+	Replacer = go$newType(0, "Struct", "strings.Replacer", "Replacer", "strings", function(r_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+	});
+	go$pkg.Replacer = Replacer;
+	var replacer;
+	replacer = go$newType(0, "Interface", "strings.replacer", "replacer", "strings", null);
+	go$pkg.replacer = replacer;
+	var byteBitmap;
+	byteBitmap = go$newType(0, "Array", "strings.byteBitmap", "byteBitmap", "strings", null);
+	go$pkg.byteBitmap = byteBitmap;
+	var trieNode;
+	trieNode = go$newType(0, "Struct", "strings.trieNode", "trieNode", "strings", function(value_, priority_, prefix_, next_, table_) {
+		this.go$val = this;
+		this.value = value_ !== undefined ? value_ : "";
+		this.priority = priority_ !== undefined ? priority_ : 0;
+		this.prefix = prefix_ !== undefined ? prefix_ : "";
+		this.next = next_ !== undefined ? next_ : (go$ptrType(trieNode)).nil;
+		this.table = table_ !== undefined ? table_ : (go$sliceType((go$ptrType(trieNode)))).nil;
+	});
+	go$pkg.trieNode = trieNode;
+	var genericReplacer;
+	genericReplacer = go$newType(0, "Struct", "strings.genericReplacer", "genericReplacer", "strings", function(root_, tableSize_, mapping_) {
+		this.go$val = this;
+		this.root = root_ !== undefined ? root_ : new trieNode.Ptr();
+		this.tableSize = tableSize_ !== undefined ? tableSize_ : 0;
+		this.mapping = mapping_ !== undefined ? mapping_ : go$makeNativeArray("Uint8", 256, function() { return 0; });
+	});
+	go$pkg.genericReplacer = genericReplacer;
+	var appendSliceWriter;
+	appendSliceWriter = go$newType(0, "Slice", "strings.appendSliceWriter", "appendSliceWriter", "strings", null);
+	go$pkg.appendSliceWriter = appendSliceWriter;
+	var stringWriterIface;
+	stringWriterIface = go$newType(0, "Interface", "strings.stringWriterIface", "stringWriterIface", "strings", null);
+	go$pkg.stringWriterIface = stringWriterIface;
+	var stringWriter;
+	stringWriter = go$newType(0, "Struct", "strings.stringWriter", "stringWriter", "strings", function(w_) {
+		this.go$val = this;
+		this.w = w_ !== undefined ? w_ : null;
+	});
+	go$pkg.stringWriter = stringWriter;
+	var singleStringReplacer;
+	singleStringReplacer = go$newType(0, "Struct", "strings.singleStringReplacer", "singleStringReplacer", "strings", function(finder_, value_) {
+		this.go$val = this;
+		this.finder = finder_ !== undefined ? finder_ : (go$ptrType(stringFinder)).nil;
+		this.value = value_ !== undefined ? value_ : "";
+	});
+	go$pkg.singleStringReplacer = singleStringReplacer;
+	var byteReplacer;
+	byteReplacer = go$newType(0, "Struct", "strings.byteReplacer", "byteReplacer", "strings", function(old_, new$1_) {
+		this.go$val = this;
+		this.old = old_ !== undefined ? old_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
+		this.new$1 = new$1_ !== undefined ? new$1_ : go$makeNativeArray("Uint8", 256, function() { return 0; });
+	});
+	go$pkg.byteReplacer = byteReplacer;
+	var byteStringReplacer;
+	byteStringReplacer = go$newType(0, "Struct", "strings.byteStringReplacer", "byteStringReplacer", "strings", function(old_, new$1_) {
+		this.go$val = this;
+		this.old = old_ !== undefined ? old_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
+		this.new$1 = new$1_ !== undefined ? new$1_ : go$makeNativeArray("Slice", 256, function() { return (go$sliceType(Go$Uint8)).nil; });
+	});
+	go$pkg.byteStringReplacer = byteStringReplacer;
+	var stringFinder;
+	stringFinder = go$newType(0, "Struct", "strings.stringFinder", "stringFinder", "strings", function(pattern_, badCharSkip_, goodSuffixSkip_) {
+		this.go$val = this;
+		this.pattern = pattern_ !== undefined ? pattern_ : "";
+		this.badCharSkip = badCharSkip_ !== undefined ? badCharSkip_ : go$makeNativeArray("Int", 256, function() { return 0; });
+		this.goodSuffixSkip = goodSuffixSkip_ !== undefined ? goodSuffixSkip_ : (go$sliceType(Go$Int)).nil;
+	});
+	go$pkg.stringFinder = stringFinder;
+	Reader.init([["s", "strings", Go$String, ""], ["i", "strings", Go$Int, ""], ["prevRune", "strings", Go$Int, ""]]);
+	(go$ptrType(Reader)).methods = [["Len", "", [], [Go$Int], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false]];
+	Replacer.init([["r", "strings", replacer, ""]]);
+	(go$ptrType(Replacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
+	replacer.init([["Replace", "", (go$funcType([Go$String], [Go$String], false))], ["WriteString", "", (go$funcType([io.Writer, Go$String], [Go$Int, go$error], false))]]);
+	byteBitmap.init(Go$Uint32, 8);
+	(go$ptrType(byteBitmap)).methods = [["set", "strings", [Go$Uint8], [], false]];
+	trieNode.init([["value", "strings", Go$String, ""], ["priority", "strings", Go$Int, ""], ["prefix", "strings", Go$String, ""], ["next", "strings", (go$ptrType(trieNode)), ""], ["table", "strings", (go$sliceType((go$ptrType(trieNode)))), ""]]);
+	(go$ptrType(trieNode)).methods = [["add", "strings", [Go$String, Go$String, Go$Int, (go$ptrType(genericReplacer))], [], false]];
+	genericReplacer.init([["root", "strings", trieNode, ""], ["tableSize", "strings", Go$Int, ""], ["mapping", "strings", (go$arrayType(Go$Uint8, 256)), ""]]);
+	(go$ptrType(genericReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false], ["lookup", "strings", [Go$String, Go$Bool], [Go$String, Go$Int, Go$Bool], false]];
+	appendSliceWriter.init(Go$Uint8);
+	(go$ptrType(appendSliceWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
+	stringWriterIface.init([["WriteString", "", (go$funcType([Go$String], [Go$Int, go$error], false))]]);
+	stringWriter.init([["w", "strings", io.Writer, ""]]);
+	stringWriter.methods = [["WriteString", "", [Go$String], [Go$Int, go$error], false]];
+	(go$ptrType(stringWriter)).methods = [["WriteString", "", [Go$String], [Go$Int, go$error], false]];
+	singleStringReplacer.init([["finder", "strings", (go$ptrType(stringFinder)), ""], ["value", "strings", Go$String, ""]]);
+	(go$ptrType(singleStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
+	byteReplacer.init([["old", "strings", byteBitmap, ""], ["new", "strings", (go$arrayType(Go$Uint8, 256)), ""]]);
+	(go$ptrType(byteReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
+	byteStringReplacer.init([["old", "strings", byteBitmap, ""], ["new", "strings", (go$arrayType((go$sliceType(Go$Uint8)), 256)), ""]]);
+	(go$ptrType(byteStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
+	stringFinder.init([["pattern", "strings", Go$String, ""], ["badCharSkip", "strings", (go$arrayType(Go$Int, 256)), ""], ["goodSuffixSkip", "strings", (go$sliceType(Go$Int)), ""]]);
+	(go$ptrType(stringFinder)).methods = [["next", "strings", [Go$String], [Go$Int], false]];
+	Reader.Ptr.prototype.Len = function() {
+		var r;
+		r = this;
+		if (r.i >= r.s.length) {
+			return 0;
+		}
+		return r.s.length - r.i >> 0;
+	};
+	Reader.prototype.Len = function() { return this.go$val.Len(); };
+	Reader.Ptr.prototype.Read = function(b) {
+		var n, err, r, _tuple, _tuple$1;
+		n = 0;
+		err = null;
+		r = this;
+		if (b.length === 0) {
+			_tuple = [0, null], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if (r.i >= r.s.length) {
+			_tuple$1 = [0, io.EOF], n = _tuple$1[0], err = _tuple$1[1];
+			return [n, err];
+		}
+		n = go$copyString(b, r.s.substring(r.i));
+		r.i = r.i + (n) >> 0;
+		r.prevRune = -1;
+		return [n, err];
+	};
+	Reader.prototype.Read = function(b) { return this.go$val.Read(b); };
+	Reader.Ptr.prototype.ReadAt = function(b, off) {
+		var n, err, r, _tuple, x, _tuple$1;
+		n = 0;
+		err = null;
+		r = this;
+		if ((off.high < 0 || (off.high === 0 && off.low < 0))) {
+			_tuple = [0, errors.New("strings: invalid offset")], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if ((x = new Go$Int64(0, r.s.length), (off.high > x.high || (off.high === x.high && off.low >= x.low)))) {
+			_tuple$1 = [0, io.EOF], n = _tuple$1[0], err = _tuple$1[1];
+			return [n, err];
+		}
+		n = go$copyString(b, r.s.substring(((off.low + ((off.high >> 31) * 4294967296)) >> 0)));
+		if (n < b.length) {
+			err = io.EOF;
+		}
+		return [n, err];
+	};
+	Reader.prototype.ReadAt = function(b, off) { return this.go$val.ReadAt(b, off); };
+	Reader.Ptr.prototype.ReadByte = function() {
+		var b, err, r, _tuple;
+		b = 0;
+		err = null;
+		r = this;
+		if (r.i >= r.s.length) {
+			_tuple = [0, io.EOF], b = _tuple[0], err = _tuple[1];
+			return [b, err];
+		}
+		b = r.s.charCodeAt(r.i);
+		r.i = r.i + 1 >> 0;
+		r.prevRune = -1;
+		return [b, err];
+	};
+	Reader.prototype.ReadByte = function() { return this.go$val.ReadByte(); };
+	Reader.Ptr.prototype.UnreadByte = function() {
+		var r;
+		r = this;
+		if (r.i <= 0) {
+			return errors.New("strings.Reader: at beginning of string");
+		}
+		r.i = r.i - 1 >> 0;
+		r.prevRune = -1;
+		return null;
+	};
+	Reader.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
+	Reader.Ptr.prototype.ReadRune = function() {
+		var ch, size, err, r, _tuple, c, _tuple$1, _tuple$2;
+		ch = 0;
+		size = 0;
+		err = null;
+		r = this;
+		if (r.i >= r.s.length) {
+			_tuple = [0, 0, io.EOF], ch = _tuple[0], size = _tuple[1], err = _tuple[2];
+			return [ch, size, err];
+		}
+		r.prevRune = r.i;
+		if (c = r.s.charCodeAt(r.i), c < 128) {
+			r.i = r.i + 1 >> 0;
+			_tuple$1 = [(c >> 0), 1, null], ch = _tuple$1[0], size = _tuple$1[1], err = _tuple$1[2];
+			return [ch, size, err];
+		}
+		_tuple$2 = utf8.DecodeRuneInString(r.s.substring(r.i)), ch = _tuple$2[0], size = _tuple$2[1];
+		r.i = r.i + (size) >> 0;
+		return [ch, size, err];
+	};
+	Reader.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
+	Reader.Ptr.prototype.UnreadRune = function() {
+		var r;
+		r = this;
+		if (r.prevRune < 0) {
+			return errors.New("strings.Reader: previous operation was not ReadRune");
+		}
+		r.i = r.prevRune;
+		r.prevRune = -1;
+		return null;
+	};
+	Reader.prototype.UnreadRune = function() { return this.go$val.UnreadRune(); };
+	Reader.Ptr.prototype.Seek = function(offset, whence) {
+		var r, abs, _ref, x, x$1;
+		r = this;
+		abs = new Go$Int64(0, 0);
+		_ref = whence;
+		if (_ref === 0) {
+			abs = offset;
+		} else if (_ref === 1) {
+			abs = (x = new Go$Int64(0, r.i), new Go$Int64(x.high + offset.high, x.low + offset.low));
+		} else if (_ref === 2) {
+			abs = (x$1 = new Go$Int64(0, r.s.length), new Go$Int64(x$1.high + offset.high, x$1.low + offset.low));
+		} else {
+			return [new Go$Int64(0, 0), errors.New("strings: invalid whence")];
+		}
+		if ((abs.high < 0 || (abs.high === 0 && abs.low < 0))) {
+			return [new Go$Int64(0, 0), errors.New("strings: negative position")];
+		}
+		if ((abs.high > 0 || (abs.high === 0 && abs.low >= 2147483648))) {
+			return [new Go$Int64(0, 0), errors.New("strings: position out of range")];
+		}
+		r.i = ((abs.low + ((abs.high >> 31) * 4294967296)) >> 0);
+		return [abs, null];
+	};
+	Reader.prototype.Seek = function(offset, whence) { return this.go$val.Seek(offset, whence); };
+	Reader.Ptr.prototype.WriteTo = function(w) {
+		var n, err, r, _tuple, s, _tuple$1, m;
+		n = new Go$Int64(0, 0);
+		err = null;
+		r = this;
+		r.prevRune = -1;
+		if (r.i >= r.s.length) {
+			_tuple = [new Go$Int64(0, 0), null], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		s = r.s.substring(r.i);
+		_tuple$1 = io.WriteString(w, s), m = _tuple$1[0], err = _tuple$1[1];
+		if (m > s.length) {
+			throw go$panic(new Go$String("strings.Reader.WriteTo: invalid WriteString count"));
+		}
+		r.i = r.i + (m) >> 0;
+		n = new Go$Int64(0, m);
+		if (!((m === s.length)) && go$interfaceIsEqual(err, null)) {
+			err = io.ErrShortWrite;
+		}
+		return [n, err];
+	};
+	Reader.prototype.WriteTo = function(w) { return this.go$val.WriteTo(w); };
+	var NewReader = go$pkg.NewReader = function(s) {
+		return new Reader.Ptr(s, 0, -1);
+	};
+	byteBitmap.prototype.set = function(b) {
+		var m, _lhs, _index, y;
+		m = this.go$val;
+		_lhs = m, _index = b >>> 5 << 24 >>> 24, _lhs[_index] = (_lhs[_index] | (((y = (((b & 31) >>> 0)), y < 32 ? (1 << y) : 0) >>> 0))) >>> 0;
+	};
+	go$ptrType(byteBitmap).prototype.set = function(b) { return (new byteBitmap(this.go$get())).set(b); };
+	var NewReplacer = go$pkg.NewReplacer = function(oldnew) {
+		var _r, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, allNewBytes, i, _slice$3, _index$3, _slice$4, _index$4, bb, i$1, _slice$5, _index$5, _slice$6, _index$6, _tuple, o, n, y, bs, i$2, _slice$7, _index$7, _slice$8, _index$8, _tuple$1, o$1, new$1, y$1;
+		if ((_r = oldnew.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 1) {
+			throw go$panic(new Go$String("strings.NewReplacer: odd argument count"));
+		}
+		if ((oldnew.length === 2) && (_slice = oldnew, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).length > 1) {
+			return new Replacer.Ptr(makeSingleStringReplacer((_slice$1 = oldnew, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = oldnew, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))));
+		}
+		allNewBytes = true;
+		i = 0;
+		while (i < oldnew.length) {
+			if (!(((_slice$3 = oldnew, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).length === 1))) {
+				return new Replacer.Ptr(makeGenericReplacer(oldnew));
+			}
+			if (!(((_slice$4 = oldnew, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).length === 1))) {
+				allNewBytes = false;
+			}
+			i = i + 2 >> 0;
+		}
+		if (allNewBytes) {
+			bb = new byteReplacer.Ptr(go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint8", 256, function() { return 0; }));
+			i$1 = 0;
+			while (i$1 < oldnew.length) {
+				_tuple = [(_slice$5 = oldnew, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).charCodeAt(0), (_slice$6 = oldnew, _index$6 = (i$1 + 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).charCodeAt(0)], o = _tuple[0], n = _tuple[1];
+				if (!((((bb.old[(o >>> 5 << 24 >>> 24)] & ((y = (((o & 31) >>> 0)), y < 32 ? (1 << y) : 0) >>> 0)) >>> 0) === 0))) {
+					i$1 = i$1 + 2 >> 0;
+					continue;
+				}
+				(new byteBitmap(bb.old)).set(o);
+				bb.new$1[o] = n;
+				i$1 = i$1 + 2 >> 0;
+			}
+			return new Replacer.Ptr(bb);
+		}
+		bs = new byteStringReplacer.Ptr(go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Slice", 256, function() { return (go$sliceType(Go$Uint8)).nil; }));
+		i$2 = 0;
+		while (i$2 < oldnew.length) {
+			_tuple$1 = [(_slice$7 = oldnew, _index$7 = i$2, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")).charCodeAt(0), (_slice$8 = oldnew, _index$8 = (i$2 + 1 >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"))], o$1 = _tuple$1[0], new$1 = _tuple$1[1];
+			if (!((((bs.old[(o$1 >>> 5 << 24 >>> 24)] & ((y$1 = (((o$1 & 31) >>> 0)), y$1 < 32 ? (1 << y$1) : 0) >>> 0)) >>> 0) === 0))) {
+				i$2 = i$2 + 2 >> 0;
+				continue;
+			}
+			(new byteBitmap(bs.old)).set(o$1);
+			bs.new$1[o$1] = new (go$sliceType(Go$Uint8))(go$stringToBytes(new$1));
+			i$2 = i$2 + 2 >> 0;
+		}
+		return new Replacer.Ptr(bs);
+	};
+	Replacer.Ptr.prototype.Replace = function(s) {
+		var r;
+		r = this;
+		return r.r.Replace(s);
+	};
+	Replacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
+	Replacer.Ptr.prototype.WriteString = function(w, s) {
+		var n, err, r, _tuple;
+		n = 0;
+		err = null;
+		r = this;
+		_tuple = r.r.WriteString(w, s), n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	Replacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
+	trieNode.Ptr.prototype.add = function(key, val, priority, r) {
+		var t, n, prefixNode, keyNode, _slice, _index, _slice$1, _index$1, next, m, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
+		t = this;
+		if (key === "") {
+			if (t.priority === 0) {
+				t.value = val;
+				t.priority = priority;
+			}
+			return;
+		}
+		if (!(t.prefix === "")) {
+			n = 0;
+			while (n < t.prefix.length && n < key.length) {
+				if (!((t.prefix.charCodeAt(n) === key.charCodeAt(n)))) {
+					break;
+				}
+				n = n + 1 >> 0;
+			}
+			if (n === t.prefix.length) {
+				t.next.add(key.substring(n), val, priority, r);
+			} else if (n === 0) {
+				prefixNode = (go$ptrType(trieNode)).nil;
+				if (t.prefix.length === 1) {
+					prefixNode = t.next;
+				} else {
+					prefixNode = new trieNode.Ptr("", 0, t.prefix.substring(1), t.next, (go$sliceType((go$ptrType(trieNode)))).nil);
+				}
+				keyNode = new trieNode.Ptr();
+				t.table = (go$sliceType((go$ptrType(trieNode)))).make(r.tableSize, 0, function() { return (go$ptrType(trieNode)).nil; });
+				_slice = t.table, _index = r.mapping[t.prefix.charCodeAt(0)], (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = prefixNode) : go$throwRuntimeError("index out of range");
+				_slice$1 = t.table, _index$1 = r.mapping[key.charCodeAt(0)], (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = keyNode) : go$throwRuntimeError("index out of range");
+				t.prefix = "";
+				t.next = (go$ptrType(trieNode)).nil;
+				keyNode.add(key.substring(1), val, priority, r);
+			} else {
+				next = new trieNode.Ptr("", 0, t.prefix.substring(n), t.next, (go$sliceType((go$ptrType(trieNode)))).nil);
+				t.prefix = t.prefix.substring(0, n);
+				t.next = next;
+				next.add(key.substring(n), val, priority, r);
+			}
+		} else if (!(t.table === (go$sliceType((go$ptrType(trieNode)))).nil)) {
+			m = r.mapping[key.charCodeAt(0)];
+			if ((_slice$2 = t.table, _index$2 = m, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === (go$ptrType(trieNode)).nil) {
+				_slice$3 = t.table, _index$3 = m, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = new trieNode.Ptr()) : go$throwRuntimeError("index out of range");
+			}
+			(_slice$4 = t.table, _index$4 = m, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).add(key.substring(1), val, priority, r);
+		} else {
+			t.prefix = key;
+			t.next = new trieNode.Ptr();
+			t.next.add("", val, priority, r);
+		}
+	};
+	trieNode.prototype.add = function(key, val, priority, r) { return this.go$val.add(key, val, priority, r); };
+	genericReplacer.Ptr.prototype.lookup = function(s, ignoreRoot) {
+		var val, keylen, found, r, bestPriority, node, n, index, _slice, _index;
+		val = "";
+		keylen = 0;
+		found = false;
+		r = this;
+		bestPriority = 0;
+		node = r.root;
+		n = 0;
+		while (!(node === (go$ptrType(trieNode)).nil)) {
+			if (node.priority > bestPriority && !(ignoreRoot && node === r.root)) {
+				bestPriority = node.priority;
+				val = node.value;
+				keylen = n;
+				found = true;
+			}
+			if (s === "") {
+				break;
+			}
+			if (!(node.table === (go$sliceType((go$ptrType(trieNode)))).nil)) {
+				index = r.mapping[s.charCodeAt(0)];
+				if ((index >> 0) === r.tableSize) {
+					break;
+				}
+				node = (_slice = node.table, _index = index, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				s = s.substring(1);
+				n = n + 1 >> 0;
+			} else if (!(node.prefix === "") && HasPrefix(s, node.prefix)) {
+				n = n + (node.prefix.length) >> 0;
+				s = s.substring(node.prefix.length);
+				node = node.next;
+			} else {
+				break;
+			}
+		}
+		return [val, keylen, found];
+	};
+	genericReplacer.prototype.lookup = function(s, ignoreRoot) { return this.go$val.lookup(s, ignoreRoot); };
+	var makeGenericReplacer = function(oldnew) {
+		var r, i, _slice, _index, key, j, _ref, _i, b, index, _ref$1, _i$1, b$1, i$1, i$2, _slice$1, _index$1, _slice$2, _index$2;
+		r = new genericReplacer.Ptr();
+		i = 0;
+		while (i < oldnew.length) {
+			key = (_slice = oldnew, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			j = 0;
+			while (j < key.length) {
+				r.mapping[key.charCodeAt(j)] = 1;
+				j = j + 1 >> 0;
+			}
+			i = i + 2 >> 0;
+		}
+		_ref = r.mapping;
+		_i = 0;
+		for (; _i < 256; _i += 1) {
+			b = _ref[_i];
+			r.tableSize = r.tableSize + ((b >> 0)) >> 0;
+		}
+		index = 0;
+		_ref$1 = r.mapping;
+		_i$1 = 0;
+		for (; _i$1 < 256; _i$1 += 1) {
+			b$1 = _ref$1[_i$1];
+			i$1 = _i$1;
+			if (b$1 === 0) {
+				r.mapping[i$1] = (r.tableSize << 24 >>> 24);
+			} else {
+				r.mapping[i$1] = index;
+				index = index + 1 << 24 >>> 24;
+			}
+		}
+		r.root.table = (go$sliceType((go$ptrType(trieNode)))).make(r.tableSize, 0, function() { return (go$ptrType(trieNode)).nil; });
+		i$2 = 0;
+		while (i$2 < oldnew.length) {
+			r.root.add((_slice$1 = oldnew, _index$1 = i$2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = oldnew, _index$2 = (i$2 + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), oldnew.length - i$2 >> 0, r);
+			i$2 = i$2 + 2 >> 0;
+		}
+		return r;
+	};
+	go$ptrType(appendSliceWriter).prototype.Write = function(p) {
+		var w;
+		w = this;
+		w.go$set(go$appendSlice(w.go$get(), p));
+		return [p.length, null];
+	};
+	appendSliceWriter.prototype.Write = function(p) { var obj = this; return (new (go$ptrType(appendSliceWriter))(function() { return obj; }, null)).Write(p); };
+	go$ptrType(appendSliceWriter).prototype.WriteString = function(s) {
+		var w;
+		w = this;
+		w.go$set(go$appendSlice(w.go$get(), new appendSliceWriter(go$stringToBytes(s))));
+		return [s.length, null];
+	};
+	appendSliceWriter.prototype.WriteString = function(s) { var obj = this; return (new (go$ptrType(appendSliceWriter))(function() { return obj; }, null)).WriteString(s); };
+	stringWriter.Ptr.prototype.WriteString = function(s) {
+		var _struct, w;
+		w = (_struct = this, new stringWriter.Ptr(_struct.w));
+		return w.w.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
+	};
+	stringWriter.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
+	var getStringWriter = function(w) {
+		var _tuple, sw, ok, x;
+		_tuple = (w !== null && stringWriterIface.implementedBy.indexOf(w.constructor) !== -1 ? [w, true] : [null, false]), sw = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			sw = (x = new stringWriter.Ptr(w), new x.constructor.Struct(x));
+		}
+		return sw;
+	};
+	genericReplacer.Ptr.prototype.Replace = function(s) {
+		var r, buf, v;
+		r = this;
+		buf = appendSliceWriter.make(0, s.length, function() { return 0; });
+		r.WriteString(new (go$ptrType(appendSliceWriter))(function() { return buf; }, function(v) { buf = v; }), s);
+		return go$bytesToString(buf);
+	};
+	genericReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
+	genericReplacer.Ptr.prototype.WriteString = function(w, s) {
+		var n, err, r, sw, _tuple, last, wn, prevMatchEmpty, i, _tuple$1, val, keylen, match, _tuple$2, _tuple$3, _tuple$4;
+		n = 0;
+		err = null;
+		r = this;
+		sw = getStringWriter(w);
+		_tuple = [0, 0], last = _tuple[0], wn = _tuple[1];
+		prevMatchEmpty = false;
+		i = 0;
+		while (i <= s.length) {
+			_tuple$1 = r.lookup(s.substring(i), prevMatchEmpty), val = _tuple$1[0], keylen = _tuple$1[1], match = _tuple$1[2];
+			prevMatchEmpty = match && (keylen === 0);
+			if (match) {
+				_tuple$2 = sw.WriteString(s.substring(last, i)), wn = _tuple$2[0], err = _tuple$2[1];
+				n = n + (wn) >> 0;
+				if (!(go$interfaceIsEqual(err, null))) {
+					return [n, err];
+				}
+				_tuple$3 = sw.WriteString(val), wn = _tuple$3[0], err = _tuple$3[1];
+				n = n + (wn) >> 0;
+				if (!(go$interfaceIsEqual(err, null))) {
+					return [n, err];
+				}
+				i = i + (keylen) >> 0;
+				last = i;
+				continue;
+			}
+			i = i + 1 >> 0;
+		}
+		if (!((last === s.length))) {
+			_tuple$4 = sw.WriteString(s.substring(last)), wn = _tuple$4[0], err = _tuple$4[1];
+			n = n + (wn) >> 0;
+		}
+		return [n, err];
+	};
+	genericReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
+	var makeSingleStringReplacer = function(pattern, value) {
+		return new singleStringReplacer.Ptr(makeStringFinder(pattern), value);
+	};
+	singleStringReplacer.Ptr.prototype.Replace = function(s) {
+		var r, buf, _tuple, i, matched, match;
+		r = this;
+		buf = (go$sliceType(Go$Uint8)).nil;
+		_tuple = [0, false], i = _tuple[0], matched = _tuple[1];
+		while (true) {
+			match = r.finder.next(s.substring(i));
+			if (match === -1) {
+				break;
+			}
+			matched = true;
+			buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(s.substring(i, (i + match >> 0)))));
+			buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(r.value)));
+			i = i + ((match + r.finder.pattern.length >> 0)) >> 0;
+		}
+		if (!matched) {
+			return s;
+		}
+		buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(s.substring(i))));
+		return go$bytesToString(buf);
+	};
+	singleStringReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
+	singleStringReplacer.Ptr.prototype.WriteString = function(w, s) {
+		var n, err, r, sw, _tuple, i, wn, match, _tuple$1, _tuple$2, _tuple$3;
+		n = 0;
+		err = null;
+		r = this;
+		sw = getStringWriter(w);
+		_tuple = [0, 0], i = _tuple[0], wn = _tuple[1];
+		while (true) {
+			match = r.finder.next(s.substring(i));
+			if (match === -1) {
+				break;
+			}
+			_tuple$1 = sw.WriteString(s.substring(i, (i + match >> 0))), wn = _tuple$1[0], err = _tuple$1[1];
+			n = n + (wn) >> 0;
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [n, err];
+			}
+			_tuple$2 = sw.WriteString(r.value), wn = _tuple$2[0], err = _tuple$2[1];
+			n = n + (wn) >> 0;
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [n, err];
+			}
+			i = i + ((match + r.finder.pattern.length >> 0)) >> 0;
+		}
+		_tuple$3 = sw.WriteString(s.substring(i)), wn = _tuple$3[0], err = _tuple$3[1];
+		n = n + (wn) >> 0;
+		return [n, err];
+	};
+	singleStringReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
+	byteReplacer.Ptr.prototype.Replace = function(s) {
+		var r, buf, i, b, y, _slice, _index;
+		r = this;
+		buf = (go$sliceType(Go$Uint8)).nil;
+		i = 0;
+		while (i < s.length) {
+			b = s.charCodeAt(i);
+			if (!((((r.old[(b >>> 5 << 24 >>> 24)] & ((y = (((b & 31) >>> 0)), y < 32 ? (1 << y) : 0) >>> 0)) >>> 0) === 0))) {
+				if (buf === (go$sliceType(Go$Uint8)).nil) {
+					buf = new (go$sliceType(Go$Uint8))(go$stringToBytes(s));
+				}
+				_slice = buf, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = r.new$1[b]) : go$throwRuntimeError("index out of range");
+			}
+			i = i + 1 >> 0;
+		}
+		if (buf === (go$sliceType(Go$Uint8)).nil) {
+			return s;
+		}
+		return go$bytesToString(buf);
+	};
+	byteReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
+	byteReplacer.Ptr.prototype.WriteString = function(w, s) {
+		var n, err, r, bufsize, buf, ncopy, _ref, _i, _slice, _index, b, i, y, _slice$1, _index$1, _tuple, wn, err$1, _tuple$1, _tuple$2;
+		n = 0;
+		err = null;
+		r = this;
+		bufsize = 32768;
+		if (s.length < bufsize) {
+			bufsize = s.length;
+		}
+		buf = (go$sliceType(Go$Uint8)).make(bufsize, 0, function() { return 0; });
+		while (s.length > 0) {
+			ncopy = go$copyString(buf, s);
+			s = s.substring(ncopy);
+			_ref = go$subslice(buf, 0, ncopy);
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				if (!((((r.old[(b >>> 5 << 24 >>> 24)] & ((y = (((b & 31) >>> 0)), y < 32 ? (1 << y) : 0) >>> 0)) >>> 0) === 0))) {
+					_slice$1 = buf, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = r.new$1[b]) : go$throwRuntimeError("index out of range");
+				}
+			}
+			_tuple = w.Write(go$subslice(buf, 0, ncopy)), wn = _tuple[0], err$1 = _tuple[1];
+			n = n + (wn) >> 0;
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				_tuple$1 = [n, err$1], n = _tuple$1[0], err = _tuple$1[1];
+				return [n, err];
+			}
+		}
+		_tuple$2 = [n, null], n = _tuple$2[0], err = _tuple$2[1];
+		return [n, err];
+	};
+	byteReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
+	byteStringReplacer.Ptr.prototype.Replace = function(s) {
+		var r, newSize, anyChanges, i, b, y, buf, bi, i$1, b$1, y$1, n, _slice, _index;
+		r = this;
+		newSize = 0;
+		anyChanges = false;
+		i = 0;
+		while (i < s.length) {
+			b = s.charCodeAt(i);
+			if (!((((r.old[(b >>> 5 << 24 >>> 24)] & ((y = (((b & 31) >>> 0)), y < 32 ? (1 << y) : 0) >>> 0)) >>> 0) === 0))) {
+				anyChanges = true;
+				newSize = newSize + (r.new$1[b].length) >> 0;
+			} else {
+				newSize = newSize + 1 >> 0;
+			}
+			i = i + 1 >> 0;
+		}
+		if (!anyChanges) {
+			return s;
+		}
+		buf = (go$sliceType(Go$Uint8)).make(newSize, 0, function() { return 0; });
+		bi = buf;
+		i$1 = 0;
+		while (i$1 < s.length) {
+			b$1 = s.charCodeAt(i$1);
+			if (!((((r.old[(b$1 >>> 5 << 24 >>> 24)] & ((y$1 = (((b$1 & 31) >>> 0)), y$1 < 32 ? (1 << y$1) : 0) >>> 0)) >>> 0) === 0))) {
+				n = go$copySlice(bi, r.new$1[b$1]);
+				bi = go$subslice(bi, n);
+			} else {
+				_slice = bi, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = b$1) : go$throwRuntimeError("index out of range");
+				bi = go$subslice(bi, 1);
+			}
+			i$1 = i$1 + 1 >> 0;
+		}
+		return go$bytesToString(buf);
+	};
+	byteStringReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
+	byteStringReplacer.Ptr.prototype.WriteString = function(w, s) {
+		var n, err, r, bufsize, buf, bi, i, b, new$1, y, _tuple, nw, err$1, _tuple$1, _tuple$2, nw$1, err$2, _tuple$3, _tuple$4, nw$2, err$3, _tuple$5, _tuple$6;
+		n = 0;
+		err = null;
+		r = this;
+		bufsize = 32768;
+		if (s.length < bufsize) {
+			bufsize = s.length;
+		}
+		buf = (go$sliceType(Go$Uint8)).make(bufsize, 0, function() { return 0; });
+		bi = go$subslice(buf, 0, 0);
+		i = 0;
+		while (i < s.length) {
+			b = s.charCodeAt(i);
+			new$1 = (go$sliceType(Go$Uint8)).nil;
+			if (!((((r.old[(b >>> 5 << 24 >>> 24)] & ((y = (((b & 31) >>> 0)), y < 32 ? (1 << y) : 0) >>> 0)) >>> 0) === 0))) {
+				new$1 = r.new$1[b];
+			} else {
+				bi = go$append(bi, b);
+			}
+			if ((bi.length === bi.capacity) || (bi.length > 0 && new$1.length > 0)) {
+				_tuple = w.Write(bi), nw = _tuple[0], err$1 = _tuple[1];
+				n = n + (nw) >> 0;
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					_tuple$1 = [n, err$1], n = _tuple$1[0], err = _tuple$1[1];
+					return [n, err];
+				}
+				bi = go$subslice(buf, 0, 0);
+			}
+			if (new$1.length > 0) {
+				_tuple$2 = w.Write(new$1), nw$1 = _tuple$2[0], err$2 = _tuple$2[1];
+				n = n + (nw$1) >> 0;
+				if (!(go$interfaceIsEqual(err$2, null))) {
+					_tuple$3 = [n, err$2], n = _tuple$3[0], err = _tuple$3[1];
+					return [n, err];
+				}
+			}
+			i = i + 1 >> 0;
+		}
+		if (bi.length > 0) {
+			_tuple$4 = w.Write(bi), nw$2 = _tuple$4[0], err$3 = _tuple$4[1];
+			n = n + (nw$2) >> 0;
+			if (!(go$interfaceIsEqual(err$3, null))) {
+				_tuple$5 = [n, err$3], n = _tuple$5[0], err = _tuple$5[1];
+				return [n, err];
+			}
+		}
+		_tuple$6 = [n, null], n = _tuple$6[0], err = _tuple$6[1];
+		return [n, err];
+	};
+	byteStringReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
+	var makeStringFinder = function(pattern) {
+		var f, last, _ref, _i, i, i$1, lastPrefix, i$2, _slice, _index, i$3, lenSuffix, _slice$1, _index$1;
+		f = new stringFinder.Ptr(pattern, go$makeNativeArray("Int", 256, function() { return 0; }), (go$sliceType(Go$Int)).make(pattern.length, 0, function() { return 0; }));
+		last = pattern.length - 1 >> 0;
+		_ref = f.badCharSkip;
+		_i = 0;
+		for (; _i < 256; _i += 1) {
+			i = _i;
+			f.badCharSkip[i] = pattern.length;
+		}
+		i$1 = 0;
+		while (i$1 < last) {
+			f.badCharSkip[pattern.charCodeAt(i$1)] = last - i$1 >> 0;
+			i$1 = i$1 + 1 >> 0;
+		}
+		lastPrefix = last;
+		i$2 = last;
+		while (i$2 >= 0) {
+			if (HasPrefix(pattern, pattern.substring((i$2 + 1 >> 0)))) {
+				lastPrefix = i$2 + 1 >> 0;
+			}
+			_slice = f.goodSuffixSkip, _index = i$2, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (lastPrefix + last >> 0) - i$2 >> 0) : go$throwRuntimeError("index out of range");
+			i$2 = i$2 - 1 >> 0;
+		}
+		i$3 = 0;
+		while (i$3 < last) {
+			lenSuffix = longestCommonSuffix(pattern, pattern.substring(1, (i$3 + 1 >> 0)));
+			if (!((pattern.charCodeAt((i$3 - lenSuffix >> 0)) === pattern.charCodeAt((last - lenSuffix >> 0))))) {
+				_slice$1 = f.goodSuffixSkip, _index$1 = last - lenSuffix >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (lenSuffix + last >> 0) - i$3 >> 0) : go$throwRuntimeError("index out of range");
+			}
+			i$3 = i$3 + 1 >> 0;
+		}
+		return f;
+	};
+	var longestCommonSuffix = function(a, b) {
+		var i;
+		i = 0;
+		while (i < a.length && i < b.length) {
+			if (!((a.charCodeAt(((a.length - 1 >> 0) - i >> 0)) === b.charCodeAt(((b.length - 1 >> 0) - i >> 0))))) {
+				break;
+			}
+			i = i + 1 >> 0;
+		}
+		return i;
+	};
+	stringFinder.Ptr.prototype.next = function(text) {
+		var f, i, j, _slice, _index;
+		f = this;
+		i = f.pattern.length - 1 >> 0;
+		while (i < text.length) {
+			j = f.pattern.length - 1 >> 0;
+			while (j >= 0 && (text.charCodeAt(i) === f.pattern.charCodeAt(j))) {
+				i = i - 1 >> 0;
+				j = j - 1 >> 0;
+			}
+			if (j < 0) {
+				return i + 1 >> 0;
+			}
+			i = i + (max(f.badCharSkip[text.charCodeAt(i)], (_slice = f.goodSuffixSkip, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")))) >> 0;
+		}
+		return -1;
+	};
+	stringFinder.prototype.next = function(text) { return this.go$val.next(text); };
+	var max = function(a, b) {
+		if (a > b) {
+			return a;
+		}
+		return b;
+	};
+	var explode = function(s, n) {
+		var l, a, size, ch, _tuple, i, cur, _tuple$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
+		if (n === 0) {
+			return (go$sliceType(Go$String)).nil;
+		}
+		l = utf8.RuneCountInString(s);
+		if (n <= 0 || n > l) {
+			n = l;
+		}
+		a = (go$sliceType(Go$String)).make(n, 0, function() { return ""; });
+		size = 0;
+		ch = 0;
+		_tuple = [0, 0], i = _tuple[0], cur = _tuple[1];
+		while ((i + 1 >> 0) < n) {
+			_tuple$1 = utf8.DecodeRuneInString(s.substring(cur)), ch = _tuple$1[0], size = _tuple$1[1];
+			if (ch === 65533) {
+				_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = "\xEF\xBF\xBD") : go$throwRuntimeError("index out of range");
+			} else {
+				_slice$1 = a, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = s.substring(cur, (cur + size >> 0))) : go$throwRuntimeError("index out of range");
+			}
+			cur = cur + (size) >> 0;
+			i = i + 1 >> 0;
+		}
+		if (cur < s.length) {
+			_slice$2 = a, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = s.substring(cur)) : go$throwRuntimeError("index out of range");
+		}
+		return a;
+	};
+	var hashstr = function(sep) {
+		var hash, i, _tuple, pow, sq, i$1, x, x$1;
+		hash = 0;
+		i = 0;
+		while (i < sep.length) {
+			hash = ((((hash >>> 16 << 16) * 16777619 >>> 0) + (hash << 16 >>> 16) * 16777619) >>> 0) + (sep.charCodeAt(i) >>> 0) >>> 0;
+			i = i + 1 >> 0;
+		}
+		_tuple = [1, 16777619], pow = _tuple[0], sq = _tuple[1];
+		i$1 = sep.length;
+		while (i$1 > 0) {
+			if (!(((i$1 & 1) === 0))) {
+				pow = (x = sq, (((pow >>> 16 << 16) * x >>> 0) + (pow << 16 >>> 16) * x) >>> 0);
+			}
+			sq = (x$1 = sq, (((sq >>> 16 << 16) * x$1 >>> 0) + (sq << 16 >>> 16) * x$1) >>> 0);
+			i$1 = i$1 >> 1 >> 0;
+		}
+		return [hash, pow];
+	};
+	var Count = go$pkg.Count = function(s, sep) {
+		var n, c, i, _tuple, hashsep, pow, h, i$1, lastmatch, i$2, x, x$1;
+		n = 0;
+		if (sep.length === 0) {
+			return utf8.RuneCountInString(s) + 1 >> 0;
+		} else if (sep.length === 1) {
+			c = sep.charCodeAt(0);
+			i = 0;
+			while (i < s.length) {
+				if (s.charCodeAt(i) === c) {
+					n = n + 1 >> 0;
+				}
+				i = i + 1 >> 0;
+			}
+			return n;
+		} else if (sep.length > s.length) {
+			return 0;
+		} else if (sep.length === s.length) {
+			if (sep === s) {
+				return 1;
+			}
+			return 0;
+		}
+		_tuple = hashstr(sep), hashsep = _tuple[0], pow = _tuple[1];
+		h = 0;
+		i$1 = 0;
+		while (i$1 < sep.length) {
+			h = ((((h >>> 16 << 16) * 16777619 >>> 0) + (h << 16 >>> 16) * 16777619) >>> 0) + (s.charCodeAt(i$1) >>> 0) >>> 0;
+			i$1 = i$1 + 1 >> 0;
+		}
+		lastmatch = 0;
+		if ((h === hashsep) && s.substring(0, sep.length) === sep) {
+			n = n + 1 >> 0;
+			lastmatch = sep.length;
+		}
+		i$2 = sep.length;
+		while (i$2 < s.length) {
+			h = (x = 16777619, (((h >>> 16 << 16) * x >>> 0) + (h << 16 >>> 16) * x) >>> 0);
+			h = h + ((s.charCodeAt(i$2) >>> 0)) >>> 0;
+			h = h - ((x$1 = (s.charCodeAt((i$2 - sep.length >> 0)) >>> 0), (((pow >>> 16 << 16) * x$1 >>> 0) + (pow << 16 >>> 16) * x$1) >>> 0)) >>> 0;
+			i$2 = i$2 + 1 >> 0;
+			if ((h === hashsep) && lastmatch <= (i$2 - sep.length >> 0) && s.substring(i$2 - sep.length >> 0, i$2) === sep) {
+				n = n + 1 >> 0;
+				lastmatch = i$2;
+			}
+		}
+		return n;
+	};
+	var Contains = go$pkg.Contains = function(s, substr) {
+		return Index(s, substr) >= 0;
+	};
+	var ContainsAny = go$pkg.ContainsAny = function(s, chars) {
+		return IndexAny(s, chars) >= 0;
+	};
+	var ContainsRune = go$pkg.ContainsRune = function(s, r) {
+		return IndexRune(s, r) >= 0;
+	};
+	var Index = go$pkg.Index = function(s, sep) {
+		var n, _tuple, hashsep, pow, h, i, i$1, x, x$1;
+		n = sep.length;
+		if (n === 0) {
+			return 0;
+		} else if (n === 1) {
+			return IndexByte(s, sep.charCodeAt(0));
+		} else if (n === s.length) {
+			if (sep === s) {
+				return 0;
+			}
+			return -1;
+		} else if (n > s.length) {
+			return -1;
+		}
+		_tuple = hashstr(sep), hashsep = _tuple[0], pow = _tuple[1];
+		h = 0;
+		i = 0;
+		while (i < n) {
+			h = ((((h >>> 16 << 16) * 16777619 >>> 0) + (h << 16 >>> 16) * 16777619) >>> 0) + (s.charCodeAt(i) >>> 0) >>> 0;
+			i = i + 1 >> 0;
+		}
+		if ((h === hashsep) && s.substring(0, n) === sep) {
+			return 0;
+		}
+		i$1 = n;
+		while (i$1 < s.length) {
+			h = (x = 16777619, (((h >>> 16 << 16) * x >>> 0) + (h << 16 >>> 16) * x) >>> 0);
+			h = h + ((s.charCodeAt(i$1) >>> 0)) >>> 0;
+			h = h - ((x$1 = (s.charCodeAt((i$1 - n >> 0)) >>> 0), (((pow >>> 16 << 16) * x$1 >>> 0) + (pow << 16 >>> 16) * x$1) >>> 0)) >>> 0;
+			i$1 = i$1 + 1 >> 0;
+			if ((h === hashsep) && s.substring(i$1 - n >> 0, i$1) === sep) {
+				return i$1 - n >> 0;
+			}
+		}
+		return -1;
+	};
+	var LastIndex = go$pkg.LastIndex = function(s, sep) {
+		var n, c, i, i$1;
+		n = sep.length;
+		if (n === 0) {
+			return s.length;
+		}
+		c = sep.charCodeAt(0);
+		if (n === 1) {
+			i = s.length - 1 >> 0;
+			while (i >= 0) {
+				if (s.charCodeAt(i) === c) {
+					return i;
+				}
+				i = i - 1 >> 0;
+			}
+			return -1;
+		}
+		i$1 = s.length - n >> 0;
+		while (i$1 >= 0) {
+			if ((s.charCodeAt(i$1) === c) && s.substring(i$1, (i$1 + n >> 0)) === sep) {
+				return i$1;
+			}
+			i$1 = i$1 - 1 >> 0;
+		}
+		return -1;
+	};
+	var IndexRune = go$pkg.IndexRune = function(s, r) {
+		var b, i, _ref, _i, _rune, c, i$1;
+		if (r < 128) {
+			b = (r << 24 >>> 24);
+			i = 0;
+			while (i < s.length) {
+				if (s.charCodeAt(i) === b) {
+					return i;
+				}
+				i = i + 1 >> 0;
+			}
+		} else {
+			_ref = s;
+			_i = 0;
+			for (; _i < _ref.length; _i += _rune[1]) {
+				_rune = go$decodeRune(_ref, _i);
+				c = _rune[0];
+				i$1 = _i;
+				if (c === r) {
+					return i$1;
+				}
+			}
+		}
+		return -1;
+	};
+	var IndexAny = go$pkg.IndexAny = function(s, chars) {
+		var _ref, _i, _rune, c, i, _ref$1, _i$1, _rune$1, m;
+		if (chars.length > 0) {
+			_ref = s;
+			_i = 0;
+			for (; _i < _ref.length; _i += _rune[1]) {
+				_rune = go$decodeRune(_ref, _i);
+				c = _rune[0];
+				i = _i;
+				_ref$1 = chars;
+				_i$1 = 0;
+				for (; _i$1 < _ref$1.length; _i$1 += _rune$1[1]) {
+					_rune$1 = go$decodeRune(_ref$1, _i$1);
+					m = _rune$1[0];
+					if (c === m) {
+						return i;
+					}
+				}
+			}
+		}
+		return -1;
+	};
+	var LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
+		var i, _tuple, rune, size, _ref, _i, _rune, m;
+		if (chars.length > 0) {
+			i = s.length;
+			while (i > 0) {
+				_tuple = utf8.DecodeLastRuneInString(s.substring(0, i)), rune = _tuple[0], size = _tuple[1];
+				i = i - (size) >> 0;
+				_ref = chars;
+				_i = 0;
+				for (; _i < _ref.length; _i += _rune[1]) {
+					_rune = go$decodeRune(_ref, _i);
+					m = _rune[0];
+					if (rune === m) {
+						return i;
+					}
+				}
+			}
+		}
+		return -1;
+	};
+	var genSplit = function(s, sep, sepSave, n) {
+		var c, start, a, na, i, _slice, _index, _slice$1, _index$1;
+		if (n === 0) {
+			return (go$sliceType(Go$String)).nil;
+		}
+		if (sep === "") {
+			return explode(s, n);
+		}
+		if (n < 0) {
+			n = Count(s, sep) + 1 >> 0;
+		}
+		c = sep.charCodeAt(0);
+		start = 0;
+		a = (go$sliceType(Go$String)).make(n, 0, function() { return ""; });
+		na = 0;
+		i = 0;
+		while ((i + sep.length >> 0) <= s.length && (na + 1 >> 0) < n) {
+			if ((s.charCodeAt(i) === c) && ((sep.length === 1) || s.substring(i, (i + sep.length >> 0)) === sep)) {
+				_slice = a, _index = na, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = s.substring(start, (i + sepSave >> 0))) : go$throwRuntimeError("index out of range");
+				na = na + 1 >> 0;
+				start = i + sep.length >> 0;
+				i = i + ((sep.length - 1 >> 0)) >> 0;
+			}
+			i = i + 1 >> 0;
+		}
+		_slice$1 = a, _index$1 = na, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = s.substring(start)) : go$throwRuntimeError("index out of range");
+		return go$subslice(a, 0, (na + 1 >> 0));
+	};
+	var SplitN = go$pkg.SplitN = function(s, sep, n) {
+		return genSplit(s, sep, 0, n);
+	};
+	var SplitAfterN = go$pkg.SplitAfterN = function(s, sep, n) {
+		return genSplit(s, sep, sep.length, n);
+	};
+	var Split = go$pkg.Split = function(s, sep) {
+		return genSplit(s, sep, 0, -1);
+	};
+	var SplitAfter = go$pkg.SplitAfter = function(s, sep) {
+		return genSplit(s, sep, sep.length, -1);
+	};
+	var Fields = go$pkg.Fields = function(s) {
+		return FieldsFunc(s, unicode.IsSpace);
+	};
+	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
+		var n, inField, _ref, _i, _rune, rune, wasInField, a, na, fieldStart, _ref$1, _i$1, _rune$1, rune$1, i, _slice, _index, _slice$1, _index$1;
+		n = 0;
+		inField = false;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			rune = _rune[0];
+			wasInField = inField;
+			inField = !f(rune);
+			if (inField && !wasInField) {
+				n = n + 1 >> 0;
+			}
+		}
+		a = (go$sliceType(Go$String)).make(n, 0, function() { return ""; });
+		na = 0;
+		fieldStart = -1;
+		_ref$1 = s;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += _rune$1[1]) {
+			_rune$1 = go$decodeRune(_ref$1, _i$1);
+			rune$1 = _rune$1[0];
+			i = _i$1;
+			if (f(rune$1)) {
+				if (fieldStart >= 0) {
+					_slice = a, _index = na, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = s.substring(fieldStart, i)) : go$throwRuntimeError("index out of range");
+					na = na + 1 >> 0;
+					fieldStart = -1;
+				}
+			} else if (fieldStart === -1) {
+				fieldStart = i;
+			}
+		}
+		if (fieldStart >= 0) {
+			_slice$1 = a, _index$1 = na, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = s.substring(fieldStart)) : go$throwRuntimeError("index out of range");
+		}
+		return a;
+	};
+	var Join = go$pkg.Join = function(a, sep) {
+		var _slice, _index, x, x$1, n, i, _slice$1, _index$1, b, _slice$2, _index$2, bp, _ref, _i, _slice$3, _index$3, s;
+		if (a.length === 0) {
+			return "";
+		}
+		if (a.length === 1) {
+			return (_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		}
+		n = (x = sep.length, x$1 = (a.length - 1 >> 0), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		i = 0;
+		while (i < a.length) {
+			n = n + ((_slice$1 = a, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).length) >> 0;
+			i = i + 1 >> 0;
+		}
+		b = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
+		bp = go$copyString(b, (_slice$2 = a, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")));
+		_ref = go$subslice(a, 1);
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_slice$3 = _ref, _index$3 = _i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			bp = bp + (go$copyString(go$subslice(b, bp), sep)) >> 0;
+			bp = bp + (go$copyString(go$subslice(b, bp), s)) >> 0;
+		}
+		return go$bytesToString(b);
+	};
+	var HasPrefix = go$pkg.HasPrefix = function(s, prefix) {
+		return s.length >= prefix.length && s.substring(0, prefix.length) === prefix;
+	};
+	var HasSuffix = go$pkg.HasSuffix = function(s, suffix) {
+		return s.length >= suffix.length && s.substring((s.length - suffix.length >> 0)) === suffix;
+	};
+	var Map = go$pkg.Map = function(mapping, s) {
+		var maxbytes, nbytes, b, _ref, _i, _rune, c, i, r, wid, x, nb;
+		maxbytes = s.length;
+		nbytes = 0;
+		b = (go$sliceType(Go$Uint8)).nil;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			c = _rune[0];
+			i = _i;
+			r = mapping(c);
+			if (b === (go$sliceType(Go$Uint8)).nil) {
+				if (r === c) {
+					continue;
+				}
+				b = (go$sliceType(Go$Uint8)).make(maxbytes, 0, function() { return 0; });
+				nbytes = go$copyString(b, s.substring(0, i));
+			}
+			if (r >= 0) {
+				wid = 1;
+				if (r >= 128) {
+					wid = utf8.RuneLen(r);
+				}
+				if ((nbytes + wid >> 0) > maxbytes) {
+					maxbytes = (x = 2, (((maxbytes >>> 16 << 16) * x >> 0) + (maxbytes << 16 >>> 16) * x) >> 0) + 4 >> 0;
+					nb = (go$sliceType(Go$Uint8)).make(maxbytes, 0, function() { return 0; });
+					go$copySlice(nb, go$subslice(b, 0, nbytes));
+					b = nb;
+				}
+				nbytes = nbytes + (utf8.EncodeRune(go$subslice(b, nbytes, maxbytes), r)) >> 0;
+			}
+		}
+		if (b === (go$sliceType(Go$Uint8)).nil) {
+			return s;
+		}
+		return go$bytesToString(go$subslice(b, 0, nbytes));
+	};
+	var Repeat = go$pkg.Repeat = function(s, count) {
+		var x, b, bp, i;
+		b = (go$sliceType(Go$Uint8)).make((x = s.length, (((x >>> 16 << 16) * count >> 0) + (x << 16 >>> 16) * count) >> 0), 0, function() { return 0; });
+		bp = 0;
+		i = 0;
+		while (i < count) {
+			bp = bp + (go$copyString(go$subslice(b, bp), s)) >> 0;
+			i = i + 1 >> 0;
+		}
+		return go$bytesToString(b);
+	};
+	var ToUpper = go$pkg.ToUpper = function(s) {
+		return Map(unicode.ToUpper, s);
+	};
+	var ToLower = go$pkg.ToLower = function(s) {
+		return Map(unicode.ToLower, s);
+	};
+	var ToTitle = go$pkg.ToTitle = function(s) {
+		return Map(unicode.ToTitle, s);
+	};
+	var ToUpperSpecial = go$pkg.ToUpperSpecial = function(_case, s) {
+		return Map((function(r) {
+			return _case.ToUpper(r);
+		}), s);
+	};
+	var ToLowerSpecial = go$pkg.ToLowerSpecial = function(_case, s) {
+		return Map((function(r) {
+			return _case.ToLower(r);
+		}), s);
+	};
+	var ToTitleSpecial = go$pkg.ToTitleSpecial = function(_case, s) {
+		return Map((function(r) {
+			return _case.ToTitle(r);
+		}), s);
+	};
+	var isSeparator = function(r) {
+		if (r <= 127) {
+			if (48 <= r && r <= 57) {
+				return false;
+			} else if (97 <= r && r <= 122) {
+				return false;
+			} else if (65 <= r && r <= 90) {
+				return false;
+			} else if (r === 95) {
+				return false;
+			}
+			return true;
+		}
+		if (unicode.IsLetter(r) || unicode.IsDigit(r)) {
+			return false;
+		}
+		return unicode.IsSpace(r);
+	};
+	var Title = go$pkg.Title = function(s) {
+		var prev;
+		prev = 32;
+		return Map((function(r) {
+			if (isSeparator(prev)) {
+				prev = r;
+				return unicode.ToTitle(r);
+			}
+			prev = r;
+			return r;
+		}), s);
+	};
+	var TrimLeftFunc = go$pkg.TrimLeftFunc = function(s, f) {
+		var i;
+		i = indexFunc(s, f, false);
+		if (i === -1) {
+			return "";
+		}
+		return s.substring(i);
+	};
+	var TrimRightFunc = go$pkg.TrimRightFunc = function(s, f) {
+		var i, _tuple, wid;
+		i = lastIndexFunc(s, f, false);
+		if (i >= 0 && s.charCodeAt(i) >= 128) {
+			_tuple = utf8.DecodeRuneInString(s.substring(i)), wid = _tuple[1];
+			i = i + (wid) >> 0;
+		} else {
+			i = i + 1 >> 0;
+		}
+		return s.substring(0, i);
+	};
+	var TrimFunc = go$pkg.TrimFunc = function(s, f) {
+		return TrimRightFunc(TrimLeftFunc(s, f), f);
+	};
+	var IndexFunc = go$pkg.IndexFunc = function(s, f) {
+		return indexFunc(s, f, true);
+	};
+	var LastIndexFunc = go$pkg.LastIndexFunc = function(s, f) {
+		return lastIndexFunc(s, f, true);
+	};
+	var indexFunc = function(s, f, truth) {
+		var start, wid, r, _tuple;
+		start = 0;
+		while (start < s.length) {
+			wid = 1;
+			r = (s.charCodeAt(start) >> 0);
+			if (r >= 128) {
+				_tuple = utf8.DecodeRuneInString(s.substring(start)), r = _tuple[0], wid = _tuple[1];
+			}
+			if (f(r) === truth) {
+				return start;
+			}
+			start = start + (wid) >> 0;
+		}
+		return -1;
+	};
+	var lastIndexFunc = function(s, f, truth) {
+		var i, _tuple, r, size;
+		i = s.length;
+		while (i > 0) {
+			_tuple = utf8.DecodeLastRuneInString(s.substring(0, i)), r = _tuple[0], size = _tuple[1];
+			i = i - (size) >> 0;
+			if (f(r) === truth) {
+				return i;
+			}
+		}
+		return -1;
+	};
+	var makeCutsetFunc = function(cutset) {
+		return (function(r) {
+			return IndexRune(cutset, r) >= 0;
+		});
+	};
+	var Trim = go$pkg.Trim = function(s, cutset) {
+		if (s === "" || cutset === "") {
+			return s;
+		}
+		return TrimFunc(s, makeCutsetFunc(cutset));
+	};
+	var TrimLeft = go$pkg.TrimLeft = function(s, cutset) {
+		if (s === "" || cutset === "") {
+			return s;
+		}
+		return TrimLeftFunc(s, makeCutsetFunc(cutset));
+	};
+	var TrimRight = go$pkg.TrimRight = function(s, cutset) {
+		if (s === "" || cutset === "") {
+			return s;
+		}
+		return TrimRightFunc(s, makeCutsetFunc(cutset));
+	};
+	var TrimSpace = go$pkg.TrimSpace = function(s) {
+		return TrimFunc(s, unicode.IsSpace);
+	};
+	var TrimPrefix = go$pkg.TrimPrefix = function(s, prefix) {
+		if (HasPrefix(s, prefix)) {
+			return s.substring(prefix.length);
+		}
+		return s;
+	};
+	var TrimSuffix = go$pkg.TrimSuffix = function(s, suffix) {
+		if (HasSuffix(s, suffix)) {
+			return s.substring(0, (s.length - suffix.length >> 0));
+		}
+		return s;
+	};
+	var Replace = go$pkg.Replace = function(s, old, new$1, n) {
+		var m, x, t, w, start, i, j, _tuple, wid;
+		if (old === new$1 || (n === 0)) {
+			return s;
+		}
+		if (m = Count(s, old), m === 0) {
+			return s;
+		} else if (n < 0 || m < n) {
+			n = m;
+		}
+		t = (go$sliceType(Go$Uint8)).make(s.length + (x = (new$1.length - old.length >> 0), (((n >>> 16 << 16) * x >> 0) + (n << 16 >>> 16) * x) >> 0) >> 0, 0, function() { return 0; });
+		w = 0;
+		start = 0;
+		i = 0;
+		while (i < n) {
+			j = start;
+			if (old.length === 0) {
+				if (i > 0) {
+					_tuple = utf8.DecodeRuneInString(s.substring(start)), wid = _tuple[1];
+					j = j + (wid) >> 0;
+				}
+			} else {
+				j = j + (Index(s.substring(start), old)) >> 0;
+			}
+			w = w + (go$copyString(go$subslice(t, w), s.substring(start, j))) >> 0;
+			w = w + (go$copyString(go$subslice(t, w), new$1)) >> 0;
+			start = j + old.length >> 0;
+			i = i + 1 >> 0;
+		}
+		w = w + (go$copyString(go$subslice(t, w), s.substring(start))) >> 0;
+		return go$bytesToString(go$subslice(t, 0, w));
+	};
+	var EqualFold = go$pkg.EqualFold = function(s, t) {
+		var _tuple, sr, tr, _tuple$1, _tuple$2, r, size, _tuple$3, _tuple$4, _tuple$5, r$1, size$1, _tuple$6, _tuple$7, r$2;
+		while (!(s === "") && !(t === "")) {
+			_tuple = [0, 0], sr = _tuple[0], tr = _tuple[1];
+			if (s.charCodeAt(0) < 128) {
+				_tuple$1 = [(s.charCodeAt(0) >> 0), s.substring(1)], sr = _tuple$1[0], s = _tuple$1[1];
+			} else {
+				_tuple$2 = utf8.DecodeRuneInString(s), r = _tuple$2[0], size = _tuple$2[1];
+				_tuple$3 = [r, s.substring(size)], sr = _tuple$3[0], s = _tuple$3[1];
+			}
+			if (t.charCodeAt(0) < 128) {
+				_tuple$4 = [(t.charCodeAt(0) >> 0), t.substring(1)], tr = _tuple$4[0], t = _tuple$4[1];
+			} else {
+				_tuple$5 = utf8.DecodeRuneInString(t), r$1 = _tuple$5[0], size$1 = _tuple$5[1];
+				_tuple$6 = [r$1, t.substring(size$1)], tr = _tuple$6[0], t = _tuple$6[1];
+			}
+			if (tr === sr) {
+				continue;
+			}
+			if (tr < sr) {
+				_tuple$7 = [sr, tr], tr = _tuple$7[0], sr = _tuple$7[1];
+			}
+			if (tr < 128 && 65 <= sr && sr <= 90) {
+				if (tr === ((sr + 97 >> 0) - 65 >> 0)) {
+					continue;
+				}
+				return false;
+			}
+			r$2 = unicode.SimpleFold(sr);
+			while (!((r$2 === sr)) && r$2 < tr) {
+				r$2 = unicode.SimpleFold(r$2);
+			}
+			if (r$2 === tr) {
+				continue;
+			}
+			return false;
+		}
+		return s === t;
+	};
+	var IndexByte = go$pkg.IndexByte = function(s, c) { return s.indexOf(String.fromCharCode(c)); };
+	var primeRK = 16777619;
+	go$pkg.init = function() {
+	};

@@ -1,0 +1,2932 @@
+0ƒ»‚/´package big
+import errors "errors"
+import fmt "fmt"
+import io "io"
+import rand "math/rand"
+import strings "strings"
+import math "math"
+import sync "sync"
+import binary "encoding/binary"
+type @"".Int struct { @"".neg bool; @"".abs @"".nat }
+func (? *@"".Int) @"".Abs(@"".x *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".Add(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".And(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".AndNot(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".Binomial(@"".n int64, @"".k int64) (? *@"".Int)
+func (? *@"".Int) @"".Bit(@"".i int) (? uint)
+func (? *@"".Int) @"".BitLen() (? int)
+func (? *@"".Int) @"".Bits() (? []@"".Word)
+func (? *@"".Int) @"".Bytes() (? []byte)
+func (? *@"".Int) @"".Cmp(@"".y *@"".Int) (@"".r int)
+func (? *@"".Int) @"".Div(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".DivMod(@"".x *@"".Int, @"".y *@"".Int, @"".m *@"".Int) (? *@"".Int, ? *@"".Int)
+func (? *@"".Int) @"".Exp(@"".x *@"".Int, @"".y *@"".Int, @"".m *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".Format(@"".s @"fmt".State, @"".ch rune) ()
+func (? *@"".Int) @"".GCD(@"".x *@"".Int, @"".y *@"".Int, @"".a *@"".Int, @"".b *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".GobDecode(@"".buf []byte) (? error)
+func (? *@"".Int) @"".GobEncode() (? []byte, ? error)
+func (? *@"".Int) @"".Int64() (? int64)
+func (? *@"".Int) @"".Lsh(@"".x *@"".Int, @"".n uint) (? *@"".Int)
+func (? *@"".Int) @"".MarshalJSON() (? []byte, ? error)
+func (? *@"".Int) @"".Mod(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".ModInverse(@"".g *@"".Int, @"".p *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".Mul(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".MulRange(@"".a int64, @"".b int64) (? *@"".Int)
+func (? *@"".Int) @"".Neg(@"".x *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".Not(@"".x *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".Or(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".ProbablyPrime(@"".n int) (? bool)
+func (? *@"".Int) @"".Quo(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".QuoRem(@"".x *@"".Int, @"".y *@"".Int, @"".r *@"".Int) (? *@"".Int, ? *@"".Int)
+func (? *@"".Int) @"".Rand(@"".rnd *@"math/rand".Rand, @"".n *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".Rem(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".Rsh(@"".x *@"".Int, @"".n uint) (? *@"".Int)
+func (? *@"".Int) @"".Scan(@"".s @"fmt".ScanState, @"".ch rune) (? error)
+func (? *@"".Int) @"".Set(@"".x *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".SetBit(@"".x *@"".Int, @"".i int, @"".b uint) (? *@"".Int)
+func (? *@"".Int) @"".SetBits(@"".abs []@"".Word) (? *@"".Int)
+func (? *@"".Int) @"".SetBytes(@"".buf []byte) (? *@"".Int)
+func (? *@"".Int) @"".SetInt64(@"".x int64) (? *@"".Int)
+func (? *@"".Int) @"".SetString(@"".s string, @"".base int) (? *@"".Int, ? bool)
+func (? *@"".Int) @"".SetUint64(@"".x uint64) (? *@"".Int)
+func (? *@"".Int) @"".Sign() (? int)
+func (? *@"".Int) @"".String() (? string)
+func (? *@"".Int) @"".Sub(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".Uint64() (? uint64)
+func (? *@"".Int) @"".UnmarshalJSON(@"".x []byte) (? error)
+func (? *@"".Int) @"".Xor(@"".x *@"".Int, @"".y *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".binaryGCD(@"".a *@"".Int, @"".b *@"".Int) (? *@"".Int)
+func (? *@"".Int) @"".scan(@"".r @"io".RuneScanner, @"".base int) (? *@"".Int, ? int, ? error)
+const @"".MaxBase = '\u0024'
+func @"".NewInt(@"".x int64) (? *@"".Int)
+func @"".NewRat(@"".a int64, @"".b int64) (? *@"".Rat)
+type @"".Rat struct { @"".a @"".Int; @"".b @"".Int }
+func (? *@"".Rat) @"".Abs(@"".x *@"".Rat) (? *@"".Rat)
+func (? *@"".Rat) @"".Add(@"".x *@"".Rat, @"".y *@"".Rat) (? *@"".Rat)
+func (? *@"".Rat) @"".Cmp(@"".y *@"".Rat) (? int)
+func (? *@"".Rat) @"".Denom() (? *@"".Int)
+func (? *@"".Rat) @"".Float64() (@"".f float64, @"".exact bool)
+func (? *@"".Rat) @"".FloatString(@"".prec int) (? string)
+func (? *@"".Rat) @"".GobDecode(@"".buf []byte) (? error)
+func (? *@"".Rat) @"".GobEncode() (? []byte, ? error)
+func (? *@"".Rat) @"".Inv(@"".x *@"".Rat) (? *@"".Rat)
+func (? *@"".Rat) @"".IsInt() (? bool)
+func (? *@"".Rat) @"".Mul(@"".x *@"".Rat, @"".y *@"".Rat) (? *@"".Rat)
+func (? *@"".Rat) @"".Neg(@"".x *@"".Rat) (? *@"".Rat)
+func (? *@"".Rat) @"".Num() (? *@"".Int)
+func (? *@"".Rat) @"".Quo(@"".x *@"".Rat, @"".y *@"".Rat) (? *@"".Rat)
+func (? *@"".Rat) @"".RatString() (? string)
+func (? *@"".Rat) @"".Scan(@"".s @"fmt".ScanState, @"".ch rune) (? error)
+func (? *@"".Rat) @"".Set(@"".x *@"".Rat) (? *@"".Rat)
+func (? *@"".Rat) @"".SetFloat64(@"".f float64) (? *@"".Rat)
+func (? *@"".Rat) @"".SetFrac(@"".a *@"".Int, @"".b *@"".Int) (? *@"".Rat)
+func (? *@"".Rat) @"".SetFrac64(@"".a int64, @"".b int64) (? *@"".Rat)
+func (? *@"".Rat) @"".SetInt(@"".x *@"".Int) (? *@"".Rat)
+func (? *@"".Rat) @"".SetInt64(@"".x int64) (? *@"".Rat)
+func (? *@"".Rat) @"".SetString(@"".s string) (? *@"".Rat, ? bool)
+func (? *@"".Rat) @"".Sign() (? int)
+func (? *@"".Rat) @"".String() (? string)
+func (? *@"".Rat) @"".Sub(@"".x *@"".Rat, @"".y *@"".Rat) (? *@"".Rat)
+func (? *@"".Rat) @"".norm() (? *@"".Rat)
+type @"".Word uintptr
+type @"".divisor struct { @"".bbb @"".nat; @"".nbits int; @"".ndigits int }
+type @"".nat []@"".Word
+func (? @"".nat) @"".add(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? @"".nat) @"".and(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? @"".nat) @"".andNot(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? @"".nat) @"".bit(@"".i uint) (? uint)
+func (? @"".nat) @"".bitLen() (? int)
+func (? @"".nat) @"".bytes(@"".buf []byte) (@"".i int)
+func (? @"".nat) @"".clear() ()
+func (? @"".nat) @"".cmp(@"".y @"".nat) (@"".r int)
+func (? @"".nat) @"".convertWords(@"".s []byte, @"".charset string, @"".b @"".Word, @"".ndigits int, @"".bb @"".Word, @"".table []@"".divisor) ()
+func (? @"".nat) @"".decimalString() (? string)
+func (? @"".nat) @"".div(@"".z2 @"".nat, @"".u @"".nat, @"".v @"".nat) (@"".q @"".nat, @"".r @"".nat)
+func (? @"".nat) @"".divLarge(@"".u @"".nat, @"".uIn @"".nat, @"".v @"".nat) (@"".q @"".nat, @"".r @"".nat)
+func (? @"".nat) @"".divW(@"".x @"".nat, @"".y @"".Word) (@"".q @"".nat, @"".r @"".Word)
+func (? @"".nat) @"".expNN(@"".x @"".nat, @"".y @"".nat, @"".m @"".nat) (? @"".nat)
+func (? @"".nat) @"".expNNWindowed(@"".x @"".nat, @"".y @"".nat, @"".m @"".nat) (? @"".nat)
+func (? @"".nat) @"".expWW(@"".x @"".Word, @"".y @"".Word) (? @"".nat)
+func (? @"".nat) @"".make(@"".n int) (? @"".nat)
+func (? @"".nat) @"".modW(@"".d @"".Word) (@"".r @"".Word)
+func (? @"".nat) @"".mul(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? @"".nat) @"".mulAddWW(@"".x @"".nat, @"".y @"".Word, @"".r @"".Word) (? @"".nat)
+func (? @"".nat) @"".mulRange(@"".a uint64, @"".b uint64) (? @"".nat)
+func (? @"".nat) @"".norm() (? @"".nat)
+func (? @"".nat) @"".or(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? @"".nat) @"".probablyPrime(@"".reps int) (? bool)
+func (? @"".nat) @"".random(@"".rand *@"math/rand".Rand, @"".limit @"".nat, @"".n int) (? @"".nat)
+func (? @"".nat) @"".scan(@"".r @"io".RuneScanner, @"".base int) (? @"".nat, ? int, ? error)
+func (? @"".nat) @"".set(@"".x @"".nat) (? @"".nat)
+func (? @"".nat) @"".setBit(@"".x @"".nat, @"".i uint, @"".b uint) (? @"".nat)
+func (? @"".nat) @"".setBytes(@"".buf []byte) (? @"".nat)
+func (? @"".nat) @"".setUint64(@"".x uint64) (? @"".nat)
+func (? @"".nat) @"".setWord(@"".x @"".Word) (? @"".nat)
+func (? @"".nat) @"".shl(@"".x @"".nat, @"".s uint) (? @"".nat)
+func (? @"".nat) @"".shr(@"".x @"".nat, @"".s uint) (? @"".nat)
+func (? @"".nat) @"".string(@"".charset string) (? string)
+func (? @"".nat) @"".sub(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? @"".nat) @"".trailingZeroBits() (? uint)
+func (? @"".nat) @"".xor(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? *@"".nat) @"".add(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? *@"".nat) @"".and(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? *@"".nat) @"".andNot(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? *@"".nat) @"".bit(@"".i uint) (? uint)
+func (? *@"".nat) @"".bitLen() (? int)
+func (? *@"".nat) @"".bytes(@"".buf []byte) (@"".i int)
+func (? *@"".nat) @"".clear() ()
+func (? *@"".nat) @"".cmp(@"".y @"".nat) (@"".r int)
+func (? *@"".nat) @"".convertWords(@"".s []byte, @"".charset string, @"".b @"".Word, @"".ndigits int, @"".bb @"".Word, @"".table []@"".divisor) ()
+func (? *@"".nat) @"".decimalString() (? string)
+func (? *@"".nat) @"".div(@"".z2 @"".nat, @"".u @"".nat, @"".v @"".nat) (@"".q @"".nat, @"".r @"".nat)
+func (? *@"".nat) @"".divLarge(@"".u @"".nat, @"".uIn @"".nat, @"".v @"".nat) (@"".q @"".nat, @"".r @"".nat)
+func (? *@"".nat) @"".divW(@"".x @"".nat, @"".y @"".Word) (@"".q @"".nat, @"".r @"".Word)
+func (? *@"".nat) @"".expNN(@"".x @"".nat, @"".y @"".nat, @"".m @"".nat) (? @"".nat)
+func (? *@"".nat) @"".expNNWindowed(@"".x @"".nat, @"".y @"".nat, @"".m @"".nat) (? @"".nat)
+func (? *@"".nat) @"".expWW(@"".x @"".Word, @"".y @"".Word) (? @"".nat)
+func (? *@"".nat) @"".make(@"".n int) (? @"".nat)
+func (? *@"".nat) @"".modW(@"".d @"".Word) (@"".r @"".Word)
+func (? *@"".nat) @"".mul(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? *@"".nat) @"".mulAddWW(@"".x @"".nat, @"".y @"".Word, @"".r @"".Word) (? @"".nat)
+func (? *@"".nat) @"".mulRange(@"".a uint64, @"".b uint64) (? @"".nat)
+func (? *@"".nat) @"".norm() (? @"".nat)
+func (? *@"".nat) @"".or(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? *@"".nat) @"".probablyPrime(@"".reps int) (? bool)
+func (? *@"".nat) @"".random(@"".rand *@"math/rand".Rand, @"".limit @"".nat, @"".n int) (? @"".nat)
+func (? *@"".nat) @"".scan(@"".r @"io".RuneScanner, @"".base int) (? @"".nat, ? int, ? error)
+func (? *@"".nat) @"".set(@"".x @"".nat) (? @"".nat)
+func (? *@"".nat) @"".setBit(@"".x @"".nat, @"".i uint, @"".b uint) (? @"".nat)
+func (? *@"".nat) @"".setBytes(@"".buf []byte) (? @"".nat)
+func (? *@"".nat) @"".setUint64(@"".x uint64) (? @"".nat)
+func (? *@"".nat) @"".setWord(@"".x @"".Word) (? @"".nat)
+func (? *@"".nat) @"".shl(@"".x @"".nat, @"".s uint) (? @"".nat)
+func (? *@"".nat) @"".shr(@"".x @"".nat, @"".s uint) (? @"".nat)
+func (? *@"".nat) @"".string(@"".charset string) (? string)
+func (? *@"".nat) @"".sub(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+func (? *@"".nat) @"".trailingZeroBits() (? uint)
+func (? *@"".nat) @"".xor(@"".x @"".nat, @"".y @"".nat) (? @"".nat)
+type @"fmt".State interface { @"fmt".Flag(@"fmt".c int) (? bool); @"fmt".Precision() (@"fmt".prec int, @"fmt".ok bool); @"fmt".Width() (@"fmt".wid int, @"fmt".ok bool); @"fmt".Write(@"fmt".b []byte) (@"fmt".ret int, @"fmt".err error) }
+type @"math/rand".Rand struct { @"math/rand".src @"math/rand".Source }
+func (? *@"math/rand".Rand) @"math/rand".ExpFloat64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Float32() (? float32)
+func (? *@"math/rand".Rand) @"math/rand".Float64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Int() (? int)
+func (? *@"math/rand".Rand) @"math/rand".Int31() (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int31n(@"math/rand".n int32) (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int63() (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Int63n(@"math/rand".n int64) (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Intn(@"math/rand".n int) (? int)
+func (? *@"math/rand".Rand) @"math/rand".NormFloat64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Perm(@"math/rand".n int) (? []int)
+func (? *@"math/rand".Rand) @"math/rand".Seed(@"math/rand".seed int64) ()
+func (? *@"math/rand".Rand) @"math/rand".Uint32() (? uint32)
+type @"fmt".ScanState interface { @"fmt".Read(@"fmt".buf []byte) (@"fmt".n int, @"fmt".err error); @"fmt".ReadRune() (@"fmt".r rune, @"fmt".size int, @"fmt".err error); @"fmt".SkipSpace() (); @"fmt".Token(@"fmt".skipSpace bool, @"fmt".f func (? rune) (? bool)) (@"fmt".token []byte, @"fmt".err error); @"fmt".UnreadRune() (? error); @"fmt".Width() (@"fmt".wid int, @"fmt".ok bool) }
+type @"io".RuneScanner interface { @"io".ReadRune() (@"io".r rune, @"io".size int, @"io".err error); @"io".UnreadRune() (? error) }
+type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"math/rand".seed int64) () }
+$$
+0žruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigƒç]	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var rand = go$packages["math/rand"];
+	var strings = go$packages["strings"];
+	var math = go$packages["math"];
+	var sync = go$packages["sync"];
+	var binary = go$packages["encoding/binary"];
+	var Word;
+	Word = go$newType(4, "Uintptr", "big.Word", "Word", "math/big", null);
+	go$pkg.Word = Word;
+	var Int;
+	Int = go$newType(0, "Struct", "big.Int", "Int", "math/big", function(neg_, abs_) {
+		this.go$val = this;
+		this.neg = neg_ !== undefined ? neg_ : false;
+		this.abs = abs_ !== undefined ? abs_ : nat.nil;
+	});
+	go$pkg.Int = Int;
+	var nat;
+	nat = go$newType(0, "Slice", "big.nat", "nat", "math/big", null);
+	go$pkg.nat = nat;
+	var divisor;
+	divisor = go$newType(0, "Struct", "big.divisor", "divisor", "math/big", function(bbb_, nbits_, ndigits_) {
+		this.go$val = this;
+		this.bbb = bbb_ !== undefined ? bbb_ : nat.nil;
+		this.nbits = nbits_ !== undefined ? nbits_ : 0;
+		this.ndigits = ndigits_ !== undefined ? ndigits_ : 0;
+	});
+	go$pkg.divisor = divisor;
+	var Rat;
+	Rat = go$newType(0, "Struct", "big.Rat", "Rat", "math/big", function(a_, b_) {
+		this.go$val = this;
+		this.a = a_ !== undefined ? a_ : new Int.Ptr();
+		this.b = b_ !== undefined ? b_ : new Int.Ptr();
+	});
+	go$pkg.Rat = Rat;
+	Int.init([["neg", "math/big", Go$Bool, ""], ["abs", "math/big", nat, ""]]);
+	(go$ptrType(Int)).methods = [["Abs", "", [(go$ptrType(Int))], [(go$ptrType(Int))], false], ["Add", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["And", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["AndNot", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["Binomial", "", [Go$Int64, Go$Int64], [(go$ptrType(Int))], false], ["Bit", "", [Go$Int], [Go$Uint], false], ["BitLen", "", [], [Go$Int], false], ["Bits", "", [], [(go$sliceType(Word))], false], ["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Cmp", "", [(go$ptrType(Int))], [Go$Int], false], ["Div", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["DivMod", "", [(go$ptrType(Int)), (go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int)), (go$ptrType(Int))], false], ["Exp", "", [(go$ptrType(Int)), (go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["Format", "", [fmt.State, Go$Int32], [], false], ["GCD", "", [(go$ptrType(Int)), (go$ptrType(Int)), (go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Int64", "", [], [Go$Int64], false], ["Lsh", "", [(go$ptrType(Int)), Go$Uint], [(go$ptrType(Int))], false], ["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Mod", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["ModInverse", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["Mul", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["MulRange", "", [Go$Int64, Go$Int64], [(go$ptrType(Int))], false], ["Neg", "", [(go$ptrType(Int))], [(go$ptrType(Int))], false], ["Not", "", [(go$ptrType(Int))], [(go$ptrType(Int))], false], ["Or", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["ProbablyPrime", "", [Go$Int], [Go$Bool], false], ["Quo", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["QuoRem", "", [(go$ptrType(Int)), (go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int)), (go$ptrType(Int))], false], ["Rand", "", [(go$ptrType(rand.Rand)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["Rem", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["Rsh", "", [(go$ptrType(Int)), Go$Uint], [(go$ptrType(Int))], false], ["Scan", "", [fmt.ScanState, Go$Int32], [go$error], false], ["Set", "", [(go$ptrType(Int))], [(go$ptrType(Int))], false], ["SetBit", "", [(go$ptrType(Int)), Go$Int, Go$Uint], [(go$ptrType(Int))], false], ["SetBits", "", [(go$sliceType(Word))], [(go$ptrType(Int))], false], ["SetBytes", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(Int))], false], ["SetInt64", "", [Go$Int64], [(go$ptrType(Int))], false], ["SetString", "", [Go$String, Go$Int], [(go$ptrType(Int)), Go$Bool], false], ["SetUint64", "", [Go$Uint64], [(go$ptrType(Int))], false], ["Sign", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["Uint64", "", [], [Go$Uint64], false], ["UnmarshalJSON", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["Xor", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["binaryGCD", "math/big", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Int))], false], ["scan", "math/big", [io.RuneScanner, Go$Int], [(go$ptrType(Int)), Go$Int, go$error], false]];
+	nat.init(Word);
+	nat.methods = [["add", "math/big", [nat, nat], [nat], false], ["and", "math/big", [nat, nat], [nat], false], ["andNot", "math/big", [nat, nat], [nat], false], ["bit", "math/big", [Go$Uint], [Go$Uint], false], ["bitLen", "math/big", [], [Go$Int], false], ["bytes", "math/big", [(go$sliceType(Go$Uint8))], [Go$Int], false], ["clear", "math/big", [], [], false], ["cmp", "math/big", [nat], [Go$Int], false], ["convertWords", "math/big", [(go$sliceType(Go$Uint8)), Go$String, Word, Go$Int, Word, (go$sliceType(divisor))], [], false], ["decimalString", "math/big", [], [Go$String], false], ["div", "math/big", [nat, nat, nat], [nat, nat], false], ["divLarge", "math/big", [nat, nat, nat], [nat, nat], false], ["divW", "math/big", [nat, Word], [nat, Word], false], ["expNN", "math/big", [nat, nat, nat], [nat], false], ["expNNWindowed", "math/big", [nat, nat, nat], [nat], false], ["expWW", "math/big", [Word, Word], [nat], false], ["make", "math/big", [Go$Int], [nat], false], ["modW", "math/big", [Word], [Word], false], ["mul", "math/big", [nat, nat], [nat], false], ["mulAddWW", "math/big", [nat, Word, Word], [nat], false], ["mulRange", "math/big", [Go$Uint64, Go$Uint64], [nat], false], ["norm", "math/big", [], [nat], false], ["or", "math/big", [nat, nat], [nat], false], ["probablyPrime", "math/big", [Go$Int], [Go$Bool], false], ["random", "math/big", [(go$ptrType(rand.Rand)), nat, Go$Int], [nat], false], ["scan", "math/big", [io.RuneScanner, Go$Int], [nat, Go$Int, go$error], false], ["set", "math/big", [nat], [nat], false], ["setBit", "math/big", [nat, Go$Uint, Go$Uint], [nat], false], ["setBytes", "math/big", [(go$sliceType(Go$Uint8))], [nat], false], ["setUint64", "math/big", [Go$Uint64], [nat], false], ["setWord", "math/big", [Word], [nat], false], ["shl", "math/big", [nat, Go$Uint], [nat], false], ["shr", "math/big", [nat, Go$Uint], [nat], false], ["string", "math/big", [Go$String], [Go$String], false], ["sub", "math/big", [nat, nat], [nat], false], ["trailingZeroBits", "math/big", [], [Go$Uint], false], ["xor", "math/big", [nat, nat], [nat], false]];
+	(go$ptrType(nat)).methods = [["add", "math/big", [nat, nat], [nat], false], ["and", "math/big", [nat, nat], [nat], false], ["andNot", "math/big", [nat, nat], [nat], false], ["bit", "math/big", [Go$Uint], [Go$Uint], false], ["bitLen", "math/big", [], [Go$Int], false], ["bytes", "math/big", [(go$sliceType(Go$Uint8))], [Go$Int], false], ["clear", "math/big", [], [], false], ["cmp", "math/big", [nat], [Go$Int], false], ["convertWords", "math/big", [(go$sliceType(Go$Uint8)), Go$String, Word, Go$Int, Word, (go$sliceType(divisor))], [], false], ["decimalString", "math/big", [], [Go$String], false], ["div", "math/big", [nat, nat, nat], [nat, nat], false], ["divLarge", "math/big", [nat, nat, nat], [nat, nat], false], ["divW", "math/big", [nat, Word], [nat, Word], false], ["expNN", "math/big", [nat, nat, nat], [nat], false], ["expNNWindowed", "math/big", [nat, nat, nat], [nat], false], ["expWW", "math/big", [Word, Word], [nat], false], ["make", "math/big", [Go$Int], [nat], false], ["modW", "math/big", [Word], [Word], false], ["mul", "math/big", [nat, nat], [nat], false], ["mulAddWW", "math/big", [nat, Word, Word], [nat], false], ["mulRange", "math/big", [Go$Uint64, Go$Uint64], [nat], false], ["norm", "math/big", [], [nat], false], ["or", "math/big", [nat, nat], [nat], false], ["probablyPrime", "math/big", [Go$Int], [Go$Bool], false], ["random", "math/big", [(go$ptrType(rand.Rand)), nat, Go$Int], [nat], false], ["scan", "math/big", [io.RuneScanner, Go$Int], [nat, Go$Int, go$error], false], ["set", "math/big", [nat], [nat], false], ["setBit", "math/big", [nat, Go$Uint, Go$Uint], [nat], false], ["setBytes", "math/big", [(go$sliceType(Go$Uint8))], [nat], false], ["setUint64", "math/big", [Go$Uint64], [nat], false], ["setWord", "math/big", [Word], [nat], false], ["shl", "math/big", [nat, Go$Uint], [nat], false], ["shr", "math/big", [nat, Go$Uint], [nat], false], ["string", "math/big", [Go$String], [Go$String], false], ["sub", "math/big", [nat, nat], [nat], false], ["trailingZeroBits", "math/big", [], [Go$Uint], false], ["xor", "math/big", [nat, nat], [nat], false]];
+	divisor.init([["bbb", "math/big", nat, ""], ["nbits", "math/big", Go$Int, ""], ["ndigits", "math/big", Go$Int, ""]]);
+	Rat.init([["a", "math/big", Int, ""], ["b", "math/big", Int, ""]]);
+	(go$ptrType(Rat)).methods = [["Abs", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Add", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Cmp", "", [(go$ptrType(Rat))], [Go$Int], false], ["Denom", "", [], [(go$ptrType(Int))], false], ["Float64", "", [], [Go$Float64, Go$Bool], false], ["FloatString", "", [Go$Int], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Inv", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["IsInt", "", [], [Go$Bool], false], ["Mul", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Neg", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Num", "", [], [(go$ptrType(Int))], false], ["Quo", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["RatString", "", [], [Go$String], false], ["Scan", "", [fmt.ScanState, Go$Int32], [go$error], false], ["Set", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["SetFloat64", "", [Go$Float64], [(go$ptrType(Rat))], false], ["SetFrac", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetFrac64", "", [Go$Int64, Go$Int64], [(go$ptrType(Rat))], false], ["SetInt", "", [(go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetInt64", "", [Go$Int64], [(go$ptrType(Rat))], false], ["SetString", "", [Go$String], [(go$ptrType(Rat)), Go$Bool], false], ["Sign", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["norm", "math/big", [], [(go$ptrType(Rat))], false]];
+	var addWW_g = function(x, y, c) {
+		var z1, z0, yc;
+		z1 = 0;
+		z0 = 0;
+		yc = y + c >>> 0;
+		z0 = x + yc >>> 0;
+		if (z0 < x || yc < y) {
+			z1 = 1;
+		}
+		return [z1, z0];
+	};
+	var subWW_g = function(x, y, c) {
+		var z1, z0, yc;
+		z1 = 0;
+		z0 = 0;
+		yc = y + c >>> 0;
+		z0 = x - yc >>> 0;
+		if (z0 > x || yc < y) {
+			z1 = 1;
+		}
+		return [z1, z0];
+	};
+	var mulWW_g = function(x, y) {
+		var z1, z0, x0, x1, y0, y1, w0, t, w1, w2;
+		z1 = 0;
+		z0 = 0;
+		x0 = (x & 65535) >>> 0;
+		x1 = x >>> 16 >>> 0;
+		y0 = (y & 65535) >>> 0;
+		y1 = y >>> 16 >>> 0;
+		w0 = (((x0 >>> 16 << 16) * y0 >>> 0) + (x0 << 16 >>> 16) * y0) >>> 0;
+		t = ((((x1 >>> 16 << 16) * y0 >>> 0) + (x1 << 16 >>> 16) * y0) >>> 0) + (w0 >>> 16 >>> 0) >>> 0;
+		w1 = (t & 65535) >>> 0;
+		w2 = t >>> 16 >>> 0;
+		w1 = w1 + (((((x0 >>> 16 << 16) * y1 >>> 0) + (x0 << 16 >>> 16) * y1) >>> 0)) >>> 0;
+		z1 = (((((x1 >>> 16 << 16) * y1 >>> 0) + (x1 << 16 >>> 16) * y1) >>> 0) + w2 >>> 0) + (w1 >>> 16 >>> 0) >>> 0;
+		z0 = (((x >>> 16 << 16) * y >>> 0) + (x << 16 >>> 16) * y) >>> 0;
+		return [z1, z0];
+	};
+	var mulAddWWW_g = function(x, y, c) {
+		var z1, z0, _tuple, zz0;
+		z1 = 0;
+		z0 = 0;
+		_tuple = mulWW(x, y), z1 = _tuple[0], zz0 = _tuple[1];
+		if (z0 = zz0 + c >>> 0, z0 < zz0) {
+			z1 = z1 + 1 >>> 0;
+		}
+		return [z1, z0];
+	};
+	var bitLen_g = function(x) {
+		var n;
+		n = 0;
+		while (x >= 32768) {
+			n = n + 16 >> 0;
+			x = x >>> 16 >>> 0;
+		}
+		if (x >= 128) {
+			x = x >>> 8 >>> 0;
+			n = n + 8 >> 0;
+		}
+		if (x >= 8) {
+			x = x >>> 4 >>> 0;
+			n = n + 4 >> 0;
+		}
+		if (x >= 2) {
+			x = x >>> 2 >>> 0;
+			n = n + 2 >> 0;
+		}
+		if (x >= 1) {
+			n = n + 1 >> 0;
+		}
+		return n;
+	};
+	var log2 = function(x) {
+		return bitLen(x) - 1 >> 0;
+	};
+	var leadingZeros = function(x) {
+		return ((32 - bitLen(x) >> 0) >>> 0);
+	};
+	var divWW_g = function(u1, u0, v) {
+		var q, r, _tuple, s, y, vn1, vn0, y$1, y$2, un32, y$3, un10, un1, un0, _q, q1, rhat, un21, _q$1, q0, y$4, _tuple$1;
+		q = 0;
+		r = 0;
+		if (u1 >= v) {
+			_tuple = [4294967295, 4294967295], q = _tuple[0], r = _tuple[1];
+			return [q, r];
+		}
+		s = leadingZeros(v);
+		v = (y = (s), y < 32 ? (v << y) : 0) >>> 0;
+		vn1 = v >>> 16 >>> 0;
+		vn0 = (v & 65535) >>> 0;
+		un32 = (((y$1 = s, y$1 < 32 ? (u1 << y$1) : 0) >>> 0) | ((y$2 = ((32 - s >>> 0)), y$2 < 32 ? (u0 >>> y$2) : 0) >>> 0)) >>> 0;
+		un10 = (y$3 = s, y$3 < 32 ? (u0 << y$3) : 0) >>> 0;
+		un1 = un10 >>> 16 >>> 0;
+		un0 = (un10 & 65535) >>> 0;
+		q1 = (_q = un32 / vn1, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		rhat = un32 - ((((q1 >>> 16 << 16) * vn1 >>> 0) + (q1 << 16 >>> 16) * vn1) >>> 0) >>> 0;
+		while (q1 >= 65536 || ((((q1 >>> 16 << 16) * vn0 >>> 0) + (q1 << 16 >>> 16) * vn0) >>> 0) > (((((65536 >>> 16 << 16) * rhat >>> 0) + (65536 << 16 >>> 16) * rhat) >>> 0) + un1 >>> 0)) {
+			q1 = q1 - 1 >>> 0;
+			rhat = rhat + (vn1) >>> 0;
+			if (rhat >= 65536) {
+				break;
+			}
+		}
+		un21 = (((((un32 >>> 16 << 16) * 65536 >>> 0) + (un32 << 16 >>> 16) * 65536) >>> 0) + un1 >>> 0) - ((((q1 >>> 16 << 16) * v >>> 0) + (q1 << 16 >>> 16) * v) >>> 0) >>> 0;
+		q0 = (_q$1 = un21 / vn1, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		rhat = un21 - ((((q0 >>> 16 << 16) * vn1 >>> 0) + (q0 << 16 >>> 16) * vn1) >>> 0) >>> 0;
+		while (q0 >= 65536 || ((((q0 >>> 16 << 16) * vn0 >>> 0) + (q0 << 16 >>> 16) * vn0) >>> 0) > (((((65536 >>> 16 << 16) * rhat >>> 0) + (65536 << 16 >>> 16) * rhat) >>> 0) + un0 >>> 0)) {
+			q0 = q0 - 1 >>> 0;
+			rhat = rhat + (vn1) >>> 0;
+			if (rhat >= 65536) {
+				break;
+			}
+		}
+		_tuple$1 = [((((q1 >>> 16 << 16) * 65536 >>> 0) + (q1 << 16 >>> 16) * 65536) >>> 0) + q0 >>> 0, (y$4 = s, y$4 < 32 ? ((((((((un21 >>> 16 << 16) * 65536 >>> 0) + (un21 << 16 >>> 16) * 65536) >>> 0) + un0 >>> 0) - ((((q0 >>> 16 << 16) * v >>> 0) + (q0 << 16 >>> 16) * v) >>> 0) >>> 0)) >>> y$4) : 0) >>> 0], q = _tuple$1[0], r = _tuple$1[1];
+		return [q, r];
+	};
+	var addVV_g = function(z, x, y) {
+		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
+		c = 0;
+		_ref = z;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_tuple = addWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = y, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), c), c = _tuple[0], _slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[1]) : go$throwRuntimeError("index out of range");
+		}
+		return c;
+	};
+	var subVV_g = function(z, x, y) {
+		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
+		c = 0;
+		_ref = z;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_tuple = subWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = y, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), c), c = _tuple[0], _slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[1]) : go$throwRuntimeError("index out of range");
+		}
+		return c;
+	};
+	var addVW_g = function(z, x, y) {
+		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1;
+		c = 0;
+		c = y;
+		_ref = z;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_tuple = addWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), c, 0), c = _tuple[0], _slice$1 = z, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple[1]) : go$throwRuntimeError("index out of range");
+		}
+		return c;
+	};
+	var subVW_g = function(z, x, y) {
+		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1;
+		c = 0;
+		c = y;
+		_ref = z;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_tuple = subWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), c, 0), c = _tuple[0], _slice$1 = z, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple[1]) : go$throwRuntimeError("index out of range");
+		}
+		return c;
+	};
+	var shlVU_g = function(z, x, s) {
+		var c, n, nonAsciiName, _slice, _index, w1, y, i, w, _slice$1, _index$1, y$1, y$2, _slice$2, _index$2, y$3, _slice$3, _index$3;
+		c = 0;
+		if (n = z.length, n > 0) {
+			nonAsciiName = 32 - s >>> 0;
+			w1 = (_slice = x, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			c = (y = nonAsciiName, y < 32 ? (w1 >>> y) : 0) >>> 0;
+			i = n - 1 >> 0;
+			while (i > 0) {
+				w = w1;
+				w1 = (_slice$1 = x, _index$1 = (i - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				_slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (((y$1 = s, y$1 < 32 ? (w << y$1) : 0) >>> 0) | ((y$2 = nonAsciiName, y$2 < 32 ? (w1 >>> y$2) : 0) >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+				i = i - 1 >> 0;
+			}
+			_slice$3 = z, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (y$3 = s, y$3 < 32 ? (w1 << y$3) : 0) >>> 0) : go$throwRuntimeError("index out of range");
+		}
+		return c;
+	};
+	var shrVU_g = function(z, x, s) {
+		var c, n, nonAsciiName, _slice, _index, w1, y, i, w, _slice$1, _index$1, y$1, y$2, _slice$2, _index$2, y$3, _slice$3, _index$3;
+		c = 0;
+		if (n = z.length, n > 0) {
+			nonAsciiName = 32 - s >>> 0;
+			w1 = (_slice = x, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			c = (y = nonAsciiName, y < 32 ? (w1 << y) : 0) >>> 0;
+			i = 0;
+			while (i < (n - 1 >> 0)) {
+				w = w1;
+				w1 = (_slice$1 = x, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				_slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (((y$1 = s, y$1 < 32 ? (w >>> y$1) : 0) >>> 0) | ((y$2 = nonAsciiName, y$2 < 32 ? (w1 << y$2) : 0) >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+				i = i + 1 >> 0;
+			}
+			_slice$3 = z, _index$3 = n - 1 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (y$3 = s, y$3 < 32 ? (w1 >>> y$3) : 0) >>> 0) : go$throwRuntimeError("index out of range");
+		}
+		return c;
+	};
+	var mulAddVWW_g = function(z, x, y, r) {
+		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1;
+		c = 0;
+		c = r;
+		_ref = z;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_tuple = mulAddWWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), y, c), c = _tuple[0], _slice$1 = z, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple[1]) : go$throwRuntimeError("index out of range");
+		}
+		return c;
+	};
+	var addMulVVW_g = function(z, x, y) {
+		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1, z1, z0, _tuple$1, _slice$2, _index$2;
+		c = 0;
+		_ref = z;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_tuple = mulAddWWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), y, (_slice$1 = z, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))), z1 = _tuple[0], z0 = _tuple[1];
+			_tuple$1 = addWW_g(z0, c, 0), c = _tuple$1[0], _slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple$1[1]) : go$throwRuntimeError("index out of range");
+			c = c + (z1) >>> 0;
+		}
+		return c;
+	};
+	var divWVW_g = function(z, xn, x, y) {
+		var r, i, _tuple, _slice, _index, _slice$1, _index$1;
+		r = 0;
+		r = xn;
+		i = z.length - 1 >> 0;
+		while (i >= 0) {
+			_tuple = divWW_g(r, (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), y), _slice$1 = z, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple[0]) : go$throwRuntimeError("index out of range"), r = _tuple[1];
+			i = i - 1 >> 0;
+		}
+		return r;
+	};
+	Int.Ptr.prototype.Sign = function() {
+		var x;
+		x = this;
+		if (x.abs.length === 0) {
+			return 0;
+		}
+		if (x.neg) {
+			return -1;
+		}
+		return 1;
+	};
+	Int.prototype.Sign = function() { return this.go$val.Sign(); };
+	Int.Ptr.prototype.SetInt64 = function(x) {
+		var z, neg;
+		z = this;
+		neg = false;
+		if ((x.high < 0 || (x.high === 0 && x.low < 0))) {
+			neg = true;
+			x = new Go$Int64(-x.high, -x.low);
+		}
+		z.abs = z.abs.setUint64(new Go$Uint64(x.high, x.low));
+		z.neg = neg;
+		return z;
+	};
+	Int.prototype.SetInt64 = function(x) { return this.go$val.SetInt64(x); };
+	Int.Ptr.prototype.SetUint64 = function(x) {
+		var z;
+		z = this;
+		z.abs = z.abs.setUint64(x);
+		z.neg = false;
+		return z;
+	};
+	Int.prototype.SetUint64 = function(x) { return this.go$val.SetUint64(x); };
+	var NewInt = go$pkg.NewInt = function(x) {
+		return new Int.Ptr().SetInt64(x);
+	};
+	Int.Ptr.prototype.Set = function(x) {
+		var z;
+		z = this;
+		if (!(z === x)) {
+			z.abs = z.abs.set(x.abs);
+			z.neg = x.neg;
+		}
+		return z;
+	};
+	Int.prototype.Set = function(x) { return this.go$val.Set(x); };
+	Int.Ptr.prototype.Bits = function() {
+		var x, x$1;
+		x = this;
+		return (x$1 = x.abs, go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length));
+	};
+	Int.prototype.Bits = function() { return this.go$val.Bits(); };
+	Int.Ptr.prototype.SetBits = function(abs) {
+		var z;
+		z = this;
+		z.abs = go$subslice(new nat(abs.array), abs.offset, abs.offset + abs.length).norm();
+		z.neg = false;
+		return z;
+	};
+	Int.prototype.SetBits = function(abs) { return this.go$val.SetBits(abs); };
+	Int.Ptr.prototype.Abs = function(x) {
+		var z;
+		z = this;
+		z.Set(x);
+		z.neg = false;
+		return z;
+	};
+	Int.prototype.Abs = function(x) { return this.go$val.Abs(x); };
+	Int.Ptr.prototype.Neg = function(x) {
+		var z;
+		z = this;
+		z.Set(x);
+		z.neg = z.abs.length > 0 && !z.neg;
+		return z;
+	};
+	Int.prototype.Neg = function(x) { return this.go$val.Neg(x); };
+	Int.Ptr.prototype.Add = function(x, y) {
+		var z, neg;
+		z = this;
+		neg = x.neg;
+		if (x.neg === y.neg) {
+			z.abs = z.abs.add(x.abs, y.abs);
+		} else {
+			if (x.abs.cmp(y.abs) >= 0) {
+				z.abs = z.abs.sub(x.abs, y.abs);
+			} else {
+				neg = !neg;
+				z.abs = z.abs.sub(y.abs, x.abs);
+			}
+		}
+		z.neg = z.abs.length > 0 && neg;
+		return z;
+	};
+	Int.prototype.Add = function(x, y) { return this.go$val.Add(x, y); };
+	Int.Ptr.prototype.Sub = function(x, y) {
+		var z, neg;
+		z = this;
+		neg = x.neg;
+		if (!(x.neg === y.neg)) {
+			z.abs = z.abs.add(x.abs, y.abs);
+		} else {
+			if (x.abs.cmp(y.abs) >= 0) {
+				z.abs = z.abs.sub(x.abs, y.abs);
+			} else {
+				neg = !neg;
+				z.abs = z.abs.sub(y.abs, x.abs);
+			}
+		}
+		z.neg = z.abs.length > 0 && neg;
+		return z;
+	};
+	Int.prototype.Sub = function(x, y) { return this.go$val.Sub(x, y); };
+	Int.Ptr.prototype.Mul = function(x, y) {
+		var z;
+		z = this;
+		z.abs = z.abs.mul(x.abs, y.abs);
+		z.neg = z.abs.length > 0 && !(x.neg === y.neg);
+		return z;
+	};
+	Int.prototype.Mul = function(x, y) { return this.go$val.Mul(x, y); };
+	Int.Ptr.prototype.MulRange = function(a, b) {
+		var z, neg, x, x$1, _tuple;
+		z = this;
+		if ((a.high > b.high || (a.high === b.high && a.low > b.low))) {
+			return z.SetInt64(new Go$Int64(0, 1));
+		} else if ((a.high < 0 || (a.high === 0 && a.low <= 0)) && (b.high > 0 || (b.high === 0 && b.low >= 0))) {
+			return z.SetInt64(new Go$Int64(0, 0));
+		}
+		neg = false;
+		if ((a.high < 0 || (a.high === 0 && a.low < 0))) {
+			neg = (x = (x$1 = new Go$Int64(b.high - a.high, b.low - a.low), new Go$Int64(x$1.high & 0, (x$1.low & 1) >>> 0)), (x.high === 0 && x.low === 0));
+			_tuple = [new Go$Int64(-b.high, -b.low), new Go$Int64(-a.high, -a.low)], a = _tuple[0], b = _tuple[1];
+		}
+		z.abs = z.abs.mulRange(new Go$Uint64(a.high, a.low), new Go$Uint64(b.high, b.low));
+		z.neg = neg;
+		return z;
+	};
+	Int.prototype.MulRange = function(a, b) { return this.go$val.MulRange(a, b); };
+	Int.Ptr.prototype.Binomial = function(n, k) {
+		var z, _tuple, a, b, x;
+		z = this;
+		_tuple = [new Int.Ptr(), new Int.Ptr()], a = _tuple[0], b = _tuple[1];
+		a.MulRange((x = new Go$Int64(n.high - k.high, n.low - k.low), new Go$Int64(x.high + 0, x.low + 1)), n);
+		b.MulRange(new Go$Int64(0, 1), k);
+		return z.Quo(a, b);
+	};
+	Int.prototype.Binomial = function(n, k) { return this.go$val.Binomial(n, k); };
+	Int.Ptr.prototype.Quo = function(x, y) {
+		var z, _tuple;
+		z = this;
+		_tuple = z.abs.div(nat.nil, x.abs, y.abs), z.abs = _tuple[0];
+		z.neg = z.abs.length > 0 && !(x.neg === y.neg);
+		return z;
+	};
+	Int.prototype.Quo = function(x, y) { return this.go$val.Quo(x, y); };
+	Int.Ptr.prototype.Rem = function(x, y) {
+		var z, _tuple;
+		z = this;
+		_tuple = nat.nil.div(z.abs, x.abs, y.abs), z.abs = _tuple[1];
+		z.neg = z.abs.length > 0 && x.neg;
+		return z;
+	};
+	Int.prototype.Rem = function(x, y) { return this.go$val.Rem(x, y); };
+	Int.Ptr.prototype.QuoRem = function(x, y, r) {
+		var z, _tuple, _tuple$1;
+		z = this;
+		_tuple = z.abs.div(r.abs, x.abs, y.abs), z.abs = _tuple[0], r.abs = _tuple[1];
+		_tuple$1 = [z.abs.length > 0 && !(x.neg === y.neg), r.abs.length > 0 && x.neg], z.neg = _tuple$1[0], r.neg = _tuple$1[1];
+		return [z, r];
+	};
+	Int.prototype.QuoRem = function(x, y, r) { return this.go$val.QuoRem(x, y, r); };
+	Int.Ptr.prototype.Div = function(x, y) {
+		var z, y_neg, r;
+		z = this;
+		y_neg = y.neg;
+		r = new Int.Ptr();
+		z.QuoRem(x, y, r);
+		if (r.neg) {
+			if (y_neg) {
+				z.Add(z, intOne);
+			} else {
+				z.Sub(z, intOne);
+			}
+		}
+		return z;
+	};
+	Int.prototype.Div = function(x, y) { return this.go$val.Div(x, y); };
+	Int.Ptr.prototype.Mod = function(x, y) {
+		var z, y0, q;
+		z = this;
+		y0 = y;
+		if (z === y || alias(z.abs, y.abs)) {
+			y0 = new Int.Ptr().Set(y);
+		}
+		q = new Int.Ptr();
+		q.QuoRem(x, y, z);
+		if (z.neg) {
+			if (y0.neg) {
+				z.Sub(z, y0);
+			} else {
+				z.Add(z, y0);
+			}
+		}
+		return z;
+	};
+	Int.prototype.Mod = function(x, y) { return this.go$val.Mod(x, y); };
+	Int.Ptr.prototype.DivMod = function(x, y, m) {
+		var z, y0;
+		z = this;
+		y0 = y;
+		if (z === y || alias(z.abs, y.abs)) {
+			y0 = new Int.Ptr().Set(y);
+		}
+		z.QuoRem(x, y, m);
+		if (m.neg) {
+			if (y0.neg) {
+				z.Add(z, intOne);
+				m.Sub(m, y0);
+			} else {
+				z.Sub(z, intOne);
+				m.Add(m, y0);
+			}
+		}
+		return [z, m];
+	};
+	Int.prototype.DivMod = function(x, y, m) { return this.go$val.DivMod(x, y, m); };
+	Int.Ptr.prototype.Cmp = function(y) {
+		var r, x;
+		r = 0;
+		x = this;
+		if (x.neg === y.neg) {
+			r = x.abs.cmp(y.abs);
+			if (x.neg) {
+				r = -r;
+			}
+		} else if (x.neg) {
+			r = -1;
+		} else {
+			r = 1;
+		}
+		return r;
+	};
+	Int.prototype.Cmp = function(y) { return this.go$val.Cmp(y); };
+	Int.Ptr.prototype.String = function() {
+		var x;
+		x = this;
+		if (x === (go$ptrType(Int)).nil) {
+			return "<nil>";
+		} else if (x.neg) {
+			return "-" + x.abs.decimalString();
+		}
+		return x.abs.decimalString();
+	};
+	Int.prototype.String = function() { return this.go$val.String(); };
+	var charset = function(ch) {
+		var _ref;
+		_ref = ch;
+		if (_ref === 98) {
+			return "0123456789abcdefghijklmnopqrstuvwxyz".substring(0, 2);
+		} else if (_ref === 111) {
+			return "0123456789abcdefghijklmnopqrstuvwxyz".substring(0, 8);
+		} else if (_ref === 100 || _ref === 115 || _ref === 118) {
+			return "0123456789abcdefghijklmnopqrstuvwxyz".substring(0, 10);
+		} else if (_ref === 120) {
+			return "0123456789abcdefghijklmnopqrstuvwxyz".substring(0, 16);
+		} else if (_ref === 88) {
+			return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".substring(0, 16);
+		}
+		return "";
+	};
+	var writeMultiple = function(s, text, count) {
+		var b;
+		if (text.length > 0) {
+			b = new (go$sliceType(Go$Uint8))(go$stringToBytes(text));
+			while (count > 0) {
+				s.Write(b);
+				count = count - 1 >> 0;
+			}
+		}
+	};
+	Int.Ptr.prototype.Format = function(s, ch) {
+		var x, cs, sign, prefix, _ref, digits, left, zeroes, right, _tuple, precision, precisionSet, length, widthSet, width, _tuple$1, d;
+		x = this;
+		cs = charset(ch);
+		if (cs === "") {
+			fmt.Fprintf(s, "%%!%c(big.Int=%s)", new (go$sliceType(go$emptyInterface))([new Go$Int32(ch), new Go$String(x.String())]));
+			return;
+		} else if (x === (go$ptrType(Int)).nil) {
+			fmt.Fprint(s, new (go$sliceType(go$emptyInterface))([new Go$String("<nil>")]));
+			return;
+		}
+		sign = "";
+		if (x.neg) {
+			sign = "-";
+		} else if (s.Flag(43)) {
+			sign = "+";
+		} else if (s.Flag(32)) {
+			sign = " ";
+		}
+		prefix = "";
+		if (s.Flag(35)) {
+			_ref = ch;
+			if (_ref === 111) {
+				prefix = "0";
+			} else if (_ref === 120) {
+				prefix = "0x";
+			} else if (_ref === 88) {
+				prefix = "0X";
+			}
+		}
+		digits = x.abs.string(cs);
+		left = 0;
+		zeroes = 0;
+		right = 0;
+		_tuple = s.Precision(), precision = _tuple[0], precisionSet = _tuple[1];
+		if (precisionSet) {
+			if (digits.length < precision) {
+				zeroes = precision - digits.length >> 0;
+			} else if (digits === "0" && (precision === 0)) {
+				return;
+			}
+		}
+		length = ((sign.length + prefix.length >> 0) + zeroes >> 0) + digits.length >> 0;
+		if (_tuple$1 = s.Width(), width = _tuple$1[0], widthSet = _tuple$1[1], widthSet && length < width) {
+			d = width - length >> 0;
+			if (s.Flag(45)) {
+				right = d;
+			} else if (s.Flag(48) && !precisionSet) {
+				zeroes = d;
+			} else {
+				left = d;
+			}
+		}
+		writeMultiple(s, " ", left);
+		writeMultiple(s, sign, 1);
+		writeMultiple(s, prefix, 1);
+		writeMultiple(s, "0", zeroes);
+		writeMultiple(s, digits, 1);
+		writeMultiple(s, " ", right);
+	};
+	Int.prototype.Format = function(s, ch) { return this.go$val.Format(s, ch); };
+	Int.Ptr.prototype.scan = function(r, base) {
+		var z, _tuple, ch, err, neg, _ref, _tuple$1;
+		z = this;
+		_tuple = r.ReadRune(), ch = _tuple[0], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Int)).nil, 0, err];
+		}
+		neg = false;
+		_ref = ch;
+		if (_ref === 45) {
+			neg = true;
+		} else if (_ref === 43) {
+		} else {
+			r.UnreadRune();
+		}
+		_tuple$1 = z.abs.scan(r, base), z.abs = _tuple$1[0], base = _tuple$1[1], err = _tuple$1[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Int)).nil, base, err];
+		}
+		z.neg = z.abs.length > 0 && neg;
+		return [z, base, null];
+	};
+	Int.prototype.scan = function(r, base) { return this.go$val.scan(r, base); };
+	Int.Ptr.prototype.Scan = function(s, ch) {
+		var z, base, _ref, _tuple, err;
+		z = this;
+		s.SkipSpace();
+		base = 0;
+		_ref = ch;
+		if (_ref === 98) {
+			base = 2;
+		} else if (_ref === 111) {
+			base = 8;
+		} else if (_ref === 100) {
+			base = 10;
+		} else if (_ref === 120 || _ref === 88) {
+			base = 16;
+		} else if (_ref === 115 || _ref === 118) {
+		} else {
+			return errors.New("Int.Scan: invalid verb");
+		}
+		_tuple = z.scan(s, base), err = _tuple[2];
+		return err;
+	};
+	Int.prototype.Scan = function(s, ch) { return this.go$val.Scan(s, ch); };
+	Int.Ptr.prototype.Int64 = function() {
+		var x, x$1, v;
+		x = this;
+		v = (x$1 = x.Uint64(), new Go$Int64(x$1.high, x$1.low));
+		if (x.neg) {
+			v = new Go$Int64(-v.high, -v.low);
+		}
+		return v;
+	};
+	Int.prototype.Int64 = function() { return this.go$val.Int64(); };
+	Int.Ptr.prototype.Uint64 = function() {
+		var x, x$1, _slice, _index, v, x$2, x$3, _slice$1, _index$1;
+		x = this;
+		if (x.abs.length === 0) {
+			return new Go$Uint64(0, 0);
+		}
+		v = (x$1 = (_slice = x.abs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Go$Uint64(0, x$1.constructor === Number ? x$1 : 1));
+		if (true && x.abs.length > 1) {
+			v = (x$2 = go$shiftLeft64((x$3 = (_slice$1 = x.abs, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Go$Uint64(0, x$3.constructor === Number ? x$3 : 1)), 32), new Go$Uint64(v.high | x$2.high, (v.low | x$2.low) >>> 0));
+		}
+		return v;
+	};
+	Int.prototype.Uint64 = function() { return this.go$val.Uint64(); };
+	Int.Ptr.prototype.SetString = function(s, base) {
+		var z, r, _tuple, err, _tuple$1;
+		z = this;
+		r = strings.NewReader(s);
+		_tuple = z.scan(r, base), err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Int)).nil, false];
+		}
+		_tuple$1 = r.ReadRune(), err = _tuple$1[2];
+		if (!(go$interfaceIsEqual(err, io.EOF))) {
+			return [(go$ptrType(Int)).nil, false];
+		}
+		return [z, true];
+	};
+	Int.prototype.SetString = function(s, base) { return this.go$val.SetString(s, base); };
+	Int.Ptr.prototype.SetBytes = function(buf) {
+		var z;
+		z = this;
+		z.abs = z.abs.setBytes(buf);
+		z.neg = false;
+		return z;
+	};
+	Int.prototype.SetBytes = function(buf) { return this.go$val.SetBytes(buf); };
+	Int.Ptr.prototype.Bytes = function() {
+		var x, x$1, buf;
+		x = this;
+		buf = (go$sliceType(Go$Uint8)).make((x$1 = x.abs.length, (((x$1 >>> 16 << 16) * 4 >> 0) + (x$1 << 16 >>> 16) * 4) >> 0), 0, function() { return 0; });
+		return go$subslice(buf, x.abs.bytes(buf));
+	};
+	Int.prototype.Bytes = function() { return this.go$val.Bytes(); };
+	Int.Ptr.prototype.BitLen = function() {
+		var x;
+		x = this;
+		return x.abs.bitLen();
+	};
+	Int.prototype.BitLen = function() { return this.go$val.BitLen(); };
+	Int.Ptr.prototype.Exp = function(x, y, m) {
+		var z, mWords, _slice, _index;
+		z = this;
+		if (y.neg || (y.abs.length === 0)) {
+			return z.SetInt64(new Go$Int64(0, 1));
+		}
+		mWords = nat.nil;
+		if (!(m === (go$ptrType(Int)).nil)) {
+			mWords = m.abs;
+		}
+		z.abs = z.abs.expNN(x.abs, y.abs, mWords);
+		z.neg = z.abs.length > 0 && x.neg && ((((_slice = y.abs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & 1) >>> 0) === 1);
+		return z;
+	};
+	Int.prototype.Exp = function(x, y, m) { return this.go$val.Exp(x, y, m); };
+	Int.Ptr.prototype.GCD = function(x, y, a, b) {
+		var z, A, B, X, Y, lastX, lastY, q, temp, r, _tuple, _tuple$1, _struct, l, r$1, _struct$1, l$1, r$2, _struct$2, l$2, r$3;
+		z = this;
+		if (a.Sign() <= 0 || b.Sign() <= 0) {
+			z.SetInt64(new Go$Int64(0, 0));
+			if (!(x === (go$ptrType(Int)).nil)) {
+				x.SetInt64(new Go$Int64(0, 0));
+			}
+			if (!(y === (go$ptrType(Int)).nil)) {
+				y.SetInt64(new Go$Int64(0, 0));
+			}
+			return z;
+		}
+		if (x === (go$ptrType(Int)).nil && y === (go$ptrType(Int)).nil) {
+			return z.binaryGCD(a, b);
+		}
+		A = new Int.Ptr().Set(a);
+		B = new Int.Ptr().Set(b);
+		X = new Int.Ptr();
+		Y = new Int.Ptr().SetInt64(new Go$Int64(0, 1));
+		lastX = new Int.Ptr().SetInt64(new Go$Int64(0, 1));
+		lastY = new Int.Ptr();
+		q = new Int.Ptr();
+		temp = new Int.Ptr();
+		while (B.abs.length > 0) {
+			r = new Int.Ptr();
+			_tuple = q.QuoRem(A, B, r), q = _tuple[0], r = _tuple[1];
+			_tuple$1 = [B, r], A = _tuple$1[0], B = _tuple$1[1];
+			temp.Set(X);
+			X.Mul(X, q);
+			X.neg = !X.neg;
+			X.Add(X, lastX);
+			lastX.Set(temp);
+			temp.Set(Y);
+			Y.Mul(Y, q);
+			Y.neg = !Y.neg;
+			Y.Add(Y, lastY);
+			lastY.Set(temp);
+		}
+		if (!(x === (go$ptrType(Int)).nil)) {
+			l = x, r$1 = (_struct = lastX, new Int.Ptr(_struct.neg, _struct.abs)), l.neg = r$1.neg, l.abs = r$1.abs;
+		}
+		if (!(y === (go$ptrType(Int)).nil)) {
+			l$1 = y, r$2 = (_struct$1 = lastY, new Int.Ptr(_struct$1.neg, _struct$1.abs)), l$1.neg = r$2.neg, l$1.abs = r$2.abs;
+		}
+		l$2 = z, r$3 = (_struct$2 = A, new Int.Ptr(_struct$2.neg, _struct$2.abs)), l$2.neg = r$3.neg, l$2.abs = r$3.abs;
+		return z;
+	};
+	Int.prototype.GCD = function(x, y, a, b) { return this.go$val.GCD(x, y, a, b); };
+	Int.Ptr.prototype.binaryGCD = function(a, b) {
+		var z, u, v, k, vk, t, _slice, _index, _tuple, _tuple$1;
+		z = this;
+		u = z;
+		v = new Int.Ptr();
+		if (a.abs.length > b.abs.length) {
+			u.Set(b);
+			v.Rem(a, b);
+		} else if (a.abs.length < b.abs.length) {
+			u.Set(a);
+			v.Rem(b, a);
+		} else {
+			u.Set(a);
+			v.Set(b);
+		}
+		if (v.abs.length === 0) {
+			return u;
+		}
+		k = u.abs.trailingZeroBits();
+		if (vk = v.abs.trailingZeroBits(), vk < k) {
+			k = vk;
+		}
+		u.Rsh(u, k);
+		v.Rsh(v, k);
+		t = new Int.Ptr();
+		if (!(((((_slice = u.abs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & 1) >>> 0) === 0))) {
+			t.Neg(v);
+		} else {
+			t.Set(u);
+		}
+		while (t.abs.length > 0) {
+			t.Rsh(t, t.abs.trailingZeroBits());
+			if (t.neg) {
+				_tuple = [t, v], v = _tuple[0], t = _tuple[1];
+				v.neg = v.abs.length > 0 && !v.neg;
+			} else {
+				_tuple$1 = [t, u], u = _tuple$1[0], t = _tuple$1[1];
+			}
+			t.Sub(u, v);
+		}
+		return z.Lsh(u, k);
+	};
+	Int.prototype.binaryGCD = function(a, b) { return this.go$val.binaryGCD(a, b); };
+	Int.Ptr.prototype.ProbablyPrime = function(n) {
+		var x;
+		x = this;
+		return !x.neg && x.abs.probablyPrime(n);
+	};
+	Int.prototype.ProbablyPrime = function(n) { return this.go$val.ProbablyPrime(n); };
+	Int.Ptr.prototype.Rand = function(rnd, n) {
+		var z;
+		z = this;
+		z.neg = false;
+		if (n.neg === true || (n.abs.length === 0)) {
+			z.abs = nat.nil;
+			return z;
+		}
+		z.abs = z.abs.random(rnd, n.abs, n.abs.bitLen());
+		return z;
+	};
+	Int.prototype.Rand = function(rnd, n) { return this.go$val.Rand(rnd, n); };
+	Int.Ptr.prototype.ModInverse = function(g, p) {
+		var z, d;
+		z = this;
+		d = new Int.Ptr();
+		d.GCD(z, (go$ptrType(Int)).nil, g, p);
+		if (z.neg) {
+			z.Add(z, p);
+		}
+		return z;
+	};
+	Int.prototype.ModInverse = function(g, p) { return this.go$val.ModInverse(g, p); };
+	Int.Ptr.prototype.Lsh = function(x, n) {
+		var z;
+		z = this;
+		z.abs = z.abs.shl(x.abs, n);
+		z.neg = x.neg;
+		return z;
+	};
+	Int.prototype.Lsh = function(x, n) { return this.go$val.Lsh(x, n); };
+	Int.Ptr.prototype.Rsh = function(x, n) {
+		var z, t;
+		z = this;
+		if (x.neg) {
+			t = z.abs.sub(x.abs, natOne);
+			t = t.shr(t, n);
+			z.abs = t.add(t, natOne);
+			z.neg = true;
+			return z;
+		}
+		z.abs = z.abs.shr(x.abs, n);
+		z.neg = false;
+		return z;
+	};
+	Int.prototype.Rsh = function(x, n) { return this.go$val.Rsh(x, n); };
+	Int.Ptr.prototype.Bit = function(i) {
+		var x, _slice, _index, t;
+		x = this;
+		if (i === 0) {
+			if (x.abs.length > 0) {
+				return ((((_slice = x.abs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & 1) >>> 0) >>> 0);
+			}
+			return 0;
+		}
+		if (i < 0) {
+			throw go$panic(new Go$String("negative bit index"));
+		}
+		if (x.neg) {
+			t = nat.nil.sub(x.abs, natOne);
+			return (t.bit((i >>> 0)) ^ 1) >>> 0;
+		}
+		return x.abs.bit((i >>> 0));
+	};
+	Int.prototype.Bit = function(i) { return this.go$val.Bit(i); };
+	Int.Ptr.prototype.SetBit = function(x, i, b) {
+		var z, t;
+		z = this;
+		if (i < 0) {
+			throw go$panic(new Go$String("negative bit index"));
+		}
+		if (x.neg) {
+			t = z.abs.sub(x.abs, natOne);
+			t = t.setBit(t, (i >>> 0), (b ^ 1) >>> 0);
+			z.abs = t.add(t, natOne);
+			z.neg = z.abs.length > 0;
+			return z;
+		}
+		z.abs = z.abs.setBit(x.abs, (i >>> 0), b);
+		z.neg = false;
+		return z;
+	};
+	Int.prototype.SetBit = function(x, i, b) { return this.go$val.SetBit(x, i, b); };
+	Int.Ptr.prototype.And = function(x, y) {
+		var z, x1, y1, _tuple, y1$1;
+		z = this;
+		if (x.neg === y.neg) {
+			if (x.neg) {
+				x1 = nat.nil.sub(x.abs, natOne);
+				y1 = nat.nil.sub(y.abs, natOne);
+				z.abs = z.abs.add(z.abs.or(x1, y1), natOne);
+				z.neg = true;
+				return z;
+			}
+			z.abs = z.abs.and(x.abs, y.abs);
+			z.neg = false;
+			return z;
+		}
+		if (x.neg) {
+			_tuple = [y, x], x = _tuple[0], y = _tuple[1];
+		}
+		y1$1 = nat.nil.sub(y.abs, natOne);
+		z.abs = z.abs.andNot(x.abs, y1$1);
+		z.neg = false;
+		return z;
+	};
+	Int.prototype.And = function(x, y) { return this.go$val.And(x, y); };
+	Int.Ptr.prototype.AndNot = function(x, y) {
+		var z, x1, y1, x1$1, y1$1;
+		z = this;
+		if (x.neg === y.neg) {
+			if (x.neg) {
+				x1 = nat.nil.sub(x.abs, natOne);
+				y1 = nat.nil.sub(y.abs, natOne);
+				z.abs = z.abs.andNot(y1, x1);
+				z.neg = false;
+				return z;
+			}
+			z.abs = z.abs.andNot(x.abs, y.abs);
+			z.neg = false;
+			return z;
+		}
+		if (x.neg) {
+			x1$1 = nat.nil.sub(x.abs, natOne);
+			z.abs = z.abs.add(z.abs.or(x1$1, y.abs), natOne);
+			z.neg = true;
+			return z;
+		}
+		y1$1 = nat.nil.add(y.abs, natOne);
+		z.abs = z.abs.and(x.abs, y1$1);
+		z.neg = false;
+		return z;
+	};
+	Int.prototype.AndNot = function(x, y) { return this.go$val.AndNot(x, y); };
+	Int.Ptr.prototype.Or = function(x, y) {
+		var z, x1, y1, _tuple, y1$1;
+		z = this;
+		if (x.neg === y.neg) {
+			if (x.neg) {
+				x1 = nat.nil.sub(x.abs, natOne);
+				y1 = nat.nil.sub(y.abs, natOne);
+				z.abs = z.abs.add(z.abs.and(x1, y1), natOne);
+				z.neg = true;
+				return z;
+			}
+			z.abs = z.abs.or(x.abs, y.abs);
+			z.neg = false;
+			return z;
+		}
+		if (x.neg) {
+			_tuple = [y, x], x = _tuple[0], y = _tuple[1];
+		}
+		y1$1 = nat.nil.sub(y.abs, natOne);
+		z.abs = z.abs.add(z.abs.andNot(y1$1, x.abs), natOne);
+		z.neg = true;
+		return z;
+	};
+	Int.prototype.Or = function(x, y) { return this.go$val.Or(x, y); };
+	Int.Ptr.prototype.Xor = function(x, y) {
+		var z, x1, y1, _tuple, y1$1;
+		z = this;
+		if (x.neg === y.neg) {
+			if (x.neg) {
+				x1 = nat.nil.sub(x.abs, natOne);
+				y1 = nat.nil.sub(y.abs, natOne);
+				z.abs = z.abs.xor(x1, y1);
+				z.neg = false;
+				return z;
+			}
+			z.abs = z.abs.xor(x.abs, y.abs);
+			z.neg = false;
+			return z;
+		}
+		if (x.neg) {
+			_tuple = [y, x], x = _tuple[0], y = _tuple[1];
+		}
+		y1$1 = nat.nil.sub(y.abs, natOne);
+		z.abs = z.abs.add(z.abs.xor(x.abs, y1$1), natOne);
+		z.neg = true;
+		return z;
+	};
+	Int.prototype.Xor = function(x, y) { return this.go$val.Xor(x, y); };
+	Int.Ptr.prototype.Not = function(x) {
+		var z;
+		z = this;
+		if (x.neg) {
+			z.abs = z.abs.sub(x.abs, natOne);
+			z.neg = false;
+			return z;
+		}
+		z.abs = z.abs.add(x.abs, natOne);
+		z.neg = true;
+		return z;
+	};
+	Int.prototype.Not = function(x) { return this.go$val.Not(x); };
+	Int.Ptr.prototype.GobEncode = function() {
+		var x, x$1, buf, i, b, _slice, _index;
+		x = this;
+		if (x === (go$ptrType(Int)).nil) {
+			return [(go$sliceType(Go$Uint8)).nil, null];
+		}
+		buf = (go$sliceType(Go$Uint8)).make(1 + (x$1 = x.abs.length, (((x$1 >>> 16 << 16) * 4 >> 0) + (x$1 << 16 >>> 16) * 4) >> 0) >> 0, 0, function() { return 0; });
+		i = x.abs.bytes(buf) - 1 >> 0;
+		b = 2;
+		if (x.neg) {
+			b = (b | 1) >>> 0;
+		}
+		_slice = buf, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = b) : go$throwRuntimeError("index out of range");
+		return [go$subslice(buf, i), null];
+	};
+	Int.prototype.GobEncode = function() { return this.go$val.GobEncode(); };
+	Int.Ptr.prototype.GobDecode = function(buf) {
+		var z, l, r, _slice, _index, b;
+		z = this;
+		if (buf.length === 0) {
+			l = z, r = new Int.Ptr(false, nat.nil), l.neg = r.neg, l.abs = r.abs;
+			return null;
+		}
+		b = (_slice = buf, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (!(((b >>> 1 << 24 >>> 24) === 1))) {
+			return errors.New(fmt.Sprintf("Int.GobDecode: encoding version %d not supported", new (go$sliceType(go$emptyInterface))([new Go$Uint8((b >>> 1 << 24 >>> 24))])));
+		}
+		z.neg = !((((b & 1) >>> 0) === 0));
+		z.abs = z.abs.setBytes(go$subslice(buf, 1));
+		return null;
+	};
+	Int.prototype.GobDecode = function(buf) { return this.go$val.GobDecode(buf); };
+	Int.Ptr.prototype.MarshalJSON = function() {
+		var x;
+		x = this;
+		return [new (go$sliceType(Go$Uint8))(go$stringToBytes(x.String())), null];
+	};
+	Int.prototype.MarshalJSON = function() { return this.go$val.MarshalJSON(); };
+	Int.Ptr.prototype.UnmarshalJSON = function(x) {
+		var z, _tuple, ok;
+		z = this;
+		_tuple = z.SetString(go$bytesToString(x), 0), ok = _tuple[1];
+		if (!ok) {
+			return fmt.Errorf("math/big: cannot unmarshal %s into a *big.Int", new (go$sliceType(go$emptyInterface))([x]));
+		}
+		return null;
+	};
+	Int.prototype.UnmarshalJSON = function(x) { return this.go$val.UnmarshalJSON(x); };
+	nat.prototype.clear = function() {
+		var z, _ref, _i, i, _slice, _index;
+		z = this;
+		_ref = z;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_slice = z, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+		}
+	};
+	go$ptrType(nat).prototype.clear = function() { return this.go$get().clear(); };
+	nat.prototype.norm = function() {
+		var z, i, _slice, _index;
+		z = this;
+		i = z.length;
+		while (i > 0 && ((_slice = z, _index = (i - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0)) {
+			i = i - 1 >> 0;
+		}
+		return go$subslice(z, 0, i);
+	};
+	go$ptrType(nat).prototype.norm = function() { return this.go$get().norm(); };
+	nat.prototype.make = function(n) {
+		var z;
+		z = this;
+		if (n <= z.capacity) {
+			return go$subslice(z, 0, n);
+		}
+		return nat.make(n, n + 4 >> 0, function() { return 0; });
+	};
+	go$ptrType(nat).prototype.make = function(n) { return this.go$get().make(n); };
+	nat.prototype.setWord = function(x) {
+		var z, _slice, _index;
+		z = this;
+		if (x === 0) {
+			return z.make(0);
+		}
+		z = z.make(1);
+		_slice = z, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = x) : go$throwRuntimeError("index out of range");
+		return z;
+	};
+	go$ptrType(nat).prototype.setWord = function(x) { return this.go$get().setWord(x); };
+	nat.prototype.setUint64 = function(x) {
+		var z, x$1, w, n, t, _ref, _i, i, _slice, _index;
+		z = this;
+		if (w = (x.low >>> 0), (x$1 = new Go$Uint64(0, w.constructor === Number ? w : 1), (x$1.high === x.high && x$1.low === x.low))) {
+			return z.setWord(w);
+		}
+		n = 0;
+		t = x;
+		while ((t.high > 0 || (t.high === 0 && t.low > 0))) {
+			n = n + 1 >> 0;
+			t = go$shiftRightUint64(t, 32);
+		}
+		z = z.make(n);
+		_ref = z;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_slice = z, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (new Go$Uint64(x.high & 0, (x.low & 4294967295) >>> 0).low >>> 0)) : go$throwRuntimeError("index out of range");
+			x = go$shiftRightUint64(x, 32);
+		}
+		return z;
+	};
+	go$ptrType(nat).prototype.setUint64 = function(x) { return this.go$get().setUint64(x); };
+	nat.prototype.set = function(x) {
+		var z;
+		z = this;
+		z = z.make(x.length);
+		go$copySlice(z, x);
+		return z;
+	};
+	go$ptrType(nat).prototype.set = function(x) { return this.go$get().set(x); };
+	nat.prototype.add = function(x, y) {
+		var z, m, n, x$1, c, x$2, x$3, _slice, _index;
+		z = this;
+		m = x.length;
+		n = y.length;
+		if (m < n) {
+			return z.add(y, x);
+		} else if (m === 0) {
+			return z.make(0);
+		} else if (n === 0) {
+			return z.set(x);
+		}
+		z = z.make(m + 1 >> 0);
+		c = addVV((x$1 = go$subslice(z, 0, n), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length), go$subslice(new (go$sliceType(Word))(y.array), y.offset, y.offset + y.length));
+		if (m > n) {
+			c = addVW((x$2 = go$subslice(z, n, m), go$subslice(new (go$sliceType(Word))(x$2.array), x$2.offset, x$2.offset + x$2.length)), (x$3 = go$subslice(x, n), go$subslice(new (go$sliceType(Word))(x$3.array), x$3.offset, x$3.offset + x$3.length)), c);
+		}
+		_slice = z, _index = m, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = c) : go$throwRuntimeError("index out of range");
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.add = function(x, y) { return this.go$get().add(x, y); };
+	nat.prototype.sub = function(x, y) {
+		var z, m, n, x$1, c, x$2, x$3;
+		z = this;
+		m = x.length;
+		n = y.length;
+		if (m < n) {
+			throw go$panic(new Go$String("underflow"));
+		} else if (m === 0) {
+			return z.make(0);
+		} else if (n === 0) {
+			return z.set(x);
+		}
+		z = z.make(m);
+		c = subVV((x$1 = go$subslice(z, 0, n), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length), go$subslice(new (go$sliceType(Word))(y.array), y.offset, y.offset + y.length));
+		if (m > n) {
+			c = subVW((x$2 = go$subslice(z, n), go$subslice(new (go$sliceType(Word))(x$2.array), x$2.offset, x$2.offset + x$2.length)), (x$3 = go$subslice(x, n), go$subslice(new (go$sliceType(Word))(x$3.array), x$3.offset, x$3.offset + x$3.length)), c);
+		}
+		if (!((c === 0))) {
+			throw go$panic(new Go$String("underflow"));
+		}
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.sub = function(x, y) { return this.go$get().sub(x, y); };
+	nat.prototype.cmp = function(y) {
+		var r, x, m, n, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
+		r = 0;
+		x = this;
+		m = x.length;
+		n = y.length;
+		if (!((m === n)) || (m === 0)) {
+			if (m < n) {
+				r = -1;
+			} else if (m > n) {
+				r = 1;
+			}
+			return r;
+		}
+		i = m - 1 >> 0;
+		while (i > 0 && ((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === (_slice$1 = y, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))) {
+			i = i - 1 >> 0;
+		}
+		if ((_slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) < (_slice$3 = y, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) {
+			r = -1;
+		} else if ((_slice$4 = x, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) > (_slice$5 = y, _index$5 = i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))) {
+			r = 1;
+		}
+		return r;
+	};
+	go$ptrType(nat).prototype.cmp = function(y) { return this.go$get().cmp(y); };
+	nat.prototype.mulAddWW = function(x, y, r) {
+		var z, m, x$1, _slice, _index;
+		z = this;
+		m = x.length;
+		if ((m === 0) || (y === 0)) {
+			return z.setWord(r);
+		}
+		z = z.make(m + 1 >> 0);
+		_slice = z, _index = m, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = mulAddVWW((x$1 = go$subslice(z, 0, m), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length), y, r)) : go$throwRuntimeError("index out of range");
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.mulAddWW = function(x, y, r) { return this.go$get().mulAddWW(x, y, r); };
+	var basicMul = function(z, x, y) {
+		var _ref, _i, _slice, _index, d, i, x$1, _slice$1, _index$1;
+		go$subslice(z, 0, (x.length + y.length >> 0)).clear();
+		_ref = y;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (!((d === 0))) {
+				_slice$1 = z, _index$1 = x.length + i >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = addMulVVW((x$1 = go$subslice(z, i, (i + x.length >> 0)), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length), d)) : go$throwRuntimeError("index out of range");
+			}
+		}
+	};
+	var karatsubaAdd = function(z, x, n) {
+		var c, x$1, x$2, x$3;
+		if (c = addVV((x$1 = go$subslice(z, 0, n), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(z.array), z.offset, z.offset + z.length), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length)), !((c === 0))) {
+			addVW((x$2 = go$subslice(z, n, (n + (n >> 1 >> 0) >> 0)), go$subslice(new (go$sliceType(Word))(x$2.array), x$2.offset, x$2.offset + x$2.length)), (x$3 = go$subslice(z, n), go$subslice(new (go$sliceType(Word))(x$3.array), x$3.offset, x$3.offset + x$3.length)), c);
+		}
+	};
+	var karatsubaSub = function(z, x, n) {
+		var c, x$1, x$2, x$3;
+		if (c = subVV((x$1 = go$subslice(z, 0, n), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(z.array), z.offset, z.offset + z.length), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length)), !((c === 0))) {
+			subVW((x$2 = go$subslice(z, n, (n + (n >> 1 >> 0) >> 0)), go$subslice(new (go$sliceType(Word))(x$2.array), x$2.offset, x$2.offset + x$2.length)), (x$3 = go$subslice(z, n), go$subslice(new (go$sliceType(Word))(x$3.array), x$3.offset, x$3.offset + x$3.length)), c);
+		}
+	};
+	var karatsuba = function(z, x, y) {
+		var n, n2, _tuple, x1, x0, _tuple$1, y1, y0, s, x$1, x$2, xd, x$3, x$4, yd, x$5, p, x$6, r, x$7;
+		n = y.length;
+		if (!(((n & 1) === 0)) || n < karatsubaThreshold || n < 2) {
+			basicMul(z, x, y);
+			return;
+		}
+		n2 = n >> 1 >> 0;
+		_tuple = [go$subslice(x, n2), go$subslice(x, 0, n2)], x1 = _tuple[0], x0 = _tuple[1];
+		_tuple$1 = [go$subslice(y, n2), go$subslice(y, 0, n2)], y1 = _tuple$1[0], y0 = _tuple$1[1];
+		karatsuba(z, x0, y0);
+		karatsuba(go$subslice(z, n), x1, y1);
+		s = 1;
+		xd = go$subslice(z, (x$1 = 2, (((x$1 >>> 16 << 16) * n >> 0) + (x$1 << 16 >>> 16) * n) >> 0), ((x$2 = 2, (((x$2 >>> 16 << 16) * n >> 0) + (x$2 << 16 >>> 16) * n) >> 0) + n2 >> 0));
+		if (!((subVV(go$subslice(new (go$sliceType(Word))(xd.array), xd.offset, xd.offset + xd.length), go$subslice(new (go$sliceType(Word))(x1.array), x1.offset, x1.offset + x1.length), go$subslice(new (go$sliceType(Word))(x0.array), x0.offset, x0.offset + x0.length)) === 0))) {
+			s = -s;
+			subVV(go$subslice(new (go$sliceType(Word))(xd.array), xd.offset, xd.offset + xd.length), go$subslice(new (go$sliceType(Word))(x0.array), x0.offset, x0.offset + x0.length), go$subslice(new (go$sliceType(Word))(x1.array), x1.offset, x1.offset + x1.length));
+		}
+		yd = go$subslice(z, (x$3 = 2, (((x$3 >>> 16 << 16) * n >> 0) + (x$3 << 16 >>> 16) * n) >> 0) + n2 >> 0, (x$4 = 3, (((x$4 >>> 16 << 16) * n >> 0) + (x$4 << 16 >>> 16) * n) >> 0));
+		if (!((subVV(go$subslice(new (go$sliceType(Word))(yd.array), yd.offset, yd.offset + yd.length), go$subslice(new (go$sliceType(Word))(y0.array), y0.offset, y0.offset + y0.length), go$subslice(new (go$sliceType(Word))(y1.array), y1.offset, y1.offset + y1.length)) === 0))) {
+			s = -s;
+			subVV(go$subslice(new (go$sliceType(Word))(yd.array), yd.offset, yd.offset + yd.length), go$subslice(new (go$sliceType(Word))(y1.array), y1.offset, y1.offset + y1.length), go$subslice(new (go$sliceType(Word))(y0.array), y0.offset, y0.offset + y0.length));
+		}
+		p = go$subslice(z, (x$5 = 3, (((n >>> 16 << 16) * x$5 >> 0) + (n << 16 >>> 16) * x$5) >> 0));
+		karatsuba(p, xd, yd);
+		r = go$subslice(z, (x$6 = 4, (((n >>> 16 << 16) * x$6 >> 0) + (n << 16 >>> 16) * x$6) >> 0));
+		go$copySlice(r, go$subslice(z, 0, (x$7 = 2, (((n >>> 16 << 16) * x$7 >> 0) + (n << 16 >>> 16) * x$7) >> 0)));
+		karatsubaAdd(go$subslice(z, n2), r, n);
+		karatsubaAdd(go$subslice(z, n2), go$subslice(r, n), n);
+		if (s > 0) {
+			karatsubaAdd(go$subslice(z, n2), p, n);
+		} else {
+			karatsubaSub(go$subslice(z, n2), p, n);
+		}
+	};
+	var alias = function(x, y) {
+		return x.capacity > 0 && y.capacity > 0 && go$sliceIsEqual(go$subslice(x, 0, x.capacity), (x.capacity - 1 >> 0), go$subslice(y, 0, y.capacity), (y.capacity - 1 >> 0));
+	};
+	var addAt = function(z, x, i) {
+		var n, c, x$1, x$2, j, x$3, x$4;
+		if (n = x.length, n > 0) {
+			if (c = addVV((x$1 = go$subslice(z, i, (i + n >> 0)), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), (x$2 = go$subslice(z, i), go$subslice(new (go$sliceType(Word))(x$2.array), x$2.offset, x$2.offset + x$2.length)), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length)), !((c === 0))) {
+				j = i + n >> 0;
+				if (j < z.length) {
+					addVW((x$3 = go$subslice(z, j), go$subslice(new (go$sliceType(Word))(x$3.array), x$3.offset, x$3.offset + x$3.length)), (x$4 = go$subslice(z, j), go$subslice(new (go$sliceType(Word))(x$4.array), x$4.offset, x$4.offset + x$4.length)), c);
+				}
+			}
+		}
+	};
+	var max = function(x, y) {
+		if (x > y) {
+			return x;
+		}
+		return y;
+	};
+	var karatsubaLen = function(n) {
+		var i, y;
+		i = 0;
+		while (n > karatsubaThreshold) {
+			n = n >> 1 >> 0;
+			i = i + 1 >>> 0;
+		}
+		return (y = i, y < 32 ? (n << y) : 0) >> 0;
+	};
+	nat.prototype.mul = function(x, y) {
+		var z, m, n, _slice, _index, k, x0, y0, x$1, x$2, t, x0$1, y1, y0$1, i, xi;
+		z = this;
+		m = x.length;
+		n = y.length;
+		if (m < n) {
+			return z.mul(y, x);
+		} else if ((m === 0) || (n === 0)) {
+			return z.make(0);
+		} else if (n === 1) {
+			return z.mulAddWW(x, (_slice = y, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), 0);
+		}
+		if (alias(z, x) || alias(z, y)) {
+			z = nat.nil;
+		}
+		if (n < karatsubaThreshold) {
+			z = z.make(m + n >> 0);
+			basicMul(z, x, y);
+			return z.norm();
+		}
+		k = karatsubaLen(n);
+		x0 = go$subslice(x, 0, k);
+		y0 = go$subslice(y, 0, k);
+		z = z.make(max((x$1 = 6, (((x$1 >>> 16 << 16) * k >> 0) + (x$1 << 16 >>> 16) * k) >> 0), m + n >> 0));
+		karatsuba(z, x0, y0);
+		z = go$subslice(z, 0, (m + n >> 0));
+		go$subslice(z, (x$2 = 2, (((x$2 >>> 16 << 16) * k >> 0) + (x$2 << 16 >>> 16) * k) >> 0)).clear();
+		if (k < n || !((m === n))) {
+			t = nat.nil;
+			x0$1 = x0.norm();
+			y1 = go$subslice(y, k);
+			t = t.mul(x0$1, y1);
+			addAt(z, t, k);
+			y0$1 = y0.norm();
+			i = k;
+			while (i < x.length) {
+				xi = go$subslice(x, i);
+				if (xi.length > k) {
+					xi = go$subslice(xi, 0, k);
+				}
+				xi = xi.norm();
+				t = t.mul(xi, y0$1);
+				addAt(z, t, i);
+				t = t.mul(xi, y1);
+				addAt(z, t, i + k >> 0);
+				i = i + (k) >> 0;
+			}
+		}
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.mul = function(x, y) { return this.go$get().mul(x, y); };
+	nat.prototype.mulRange = function(a, b) {
+		var z, x, m;
+		z = this;
+		if ((a.high === 0 && a.low === 0)) {
+			return z.setUint64(new Go$Uint64(0, 0));
+		} else if ((a.high > b.high || (a.high === b.high && a.low > b.low))) {
+			return z.setUint64(new Go$Uint64(0, 1));
+		} else if ((a.high === b.high && a.low === b.low)) {
+			return z.setUint64(a);
+		} else if ((x = new Go$Uint64(a.high + 0, a.low + 1), (x.high === b.high && x.low === b.low))) {
+			return z.mul(nat.nil.setUint64(a), nat.nil.setUint64(b));
+		}
+		m = go$div64((new Go$Uint64(a.high + b.high, a.low + b.low)), new Go$Uint64(0, 2), false);
+		return z.mul(nat.nil.mulRange(a, m), nat.nil.mulRange(new Go$Uint64(m.high + 0, m.low + 1), b));
+	};
+	go$ptrType(nat).prototype.mulRange = function(a, b) { return this.go$get().mulRange(a, b); };
+	nat.prototype.divW = function(x, y) {
+		var q, r, z, m;
+		q = nat.nil;
+		r = 0;
+		z = this;
+		m = x.length;
+		if (y === 0) {
+			throw go$panic(new Go$String("division by zero"));
+		} else if (y === 1) {
+			q = z.set(x);
+			return [q, r];
+		} else if (m === 0) {
+			q = z.make(0);
+			return [q, r];
+		}
+		z = z.make(m);
+		r = divWVW(go$subslice(new (go$sliceType(Word))(z.array), z.offset, z.offset + z.length), 0, go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length), y);
+		q = z.norm();
+		return [q, r];
+	};
+	go$ptrType(nat).prototype.divW = function(x, y) { return this.go$get().divW(x, y); };
+	nat.prototype.div = function(z2, u, v) {
+		var q, r, z, r2, _tuple, _slice, _index, _tuple$1;
+		q = nat.nil;
+		r = nat.nil;
+		z = this;
+		if (v.length === 0) {
+			throw go$panic(new Go$String("division by zero"));
+		}
+		if (u.cmp(v) < 0) {
+			q = z.make(0);
+			r = z2.set(u);
+			return [q, r];
+		}
+		if (v.length === 1) {
+			r2 = 0;
+			_tuple = z.divW(u, (_slice = v, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), q = _tuple[0], r2 = _tuple[1];
+			r = z2.setWord(r2);
+			return [q, r];
+		}
+		_tuple$1 = z.divLarge(z2, u, v), q = _tuple$1[0], r = _tuple$1[1];
+		return [q, r];
+	};
+	go$ptrType(nat).prototype.div = function(z2, u, v) { return this.go$get().div(z2, u, v); };
+	nat.prototype.divLarge = function(u, uIn, v) {
+		var q, r, z, n, m, qhatv, _slice, _index, shift, v1, x, _slice$1, _index$1, j, qhat, _slice$2, _index$2, _slice$3, _index$3, rhat, _tuple, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _tuple$1, _slice$7, _index$7, x1, x2, _slice$8, _index$8, prevRhat, _slice$9, _index$9, _tuple$2, _slice$10, _index$10, x$1, _slice$11, _index$11, x$2, x$3, c, x$4, x$5, c$1, _lhs, _index$12, _slice$12, _index$13, _slice$13, _index$14, _slice$14, _index$15, _tuple$3;
+		q = nat.nil;
+		r = nat.nil;
+		z = this;
+		n = v.length;
+		m = uIn.length - n >> 0;
+		if (alias(z, uIn) || alias(z, v)) {
+			z = nat.nil;
+		}
+		q = z.make(m + 1 >> 0);
+		qhatv = nat.make(n + 1 >> 0, 0, function() { return 0; });
+		if (alias(u, uIn) || alias(u, v)) {
+			u = nat.nil;
+		}
+		u = u.make(uIn.length + 1 >> 0);
+		u.clear();
+		shift = leadingZeros((_slice = v, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
+		if (shift > 0) {
+			v1 = nat.make(n, 0, function() { return 0; });
+			shlVU(go$subslice(new (go$sliceType(Word))(v1.array), v1.offset, v1.offset + v1.length), go$subslice(new (go$sliceType(Word))(v.array), v.offset, v.offset + v.length), shift);
+			v = v1;
+		}
+		_slice$1 = u, _index$1 = uIn.length, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = shlVU((x = go$subslice(u, 0, uIn.length), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length)), go$subslice(new (go$sliceType(Word))(uIn.array), uIn.offset, uIn.offset + uIn.length), shift)) : go$throwRuntimeError("index out of range");
+		j = m;
+		while (j >= 0) {
+			qhat = 4294967295;
+			if (!(((_slice$2 = u, _index$2 = (j + n >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === (_slice$3 = v, _index$3 = (n - 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))))) {
+				rhat = 0;
+				_tuple = divWW((_slice$4 = u, _index$4 = (j + n >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (_slice$5 = u, _index$5 = ((j + n >> 0) - 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (_slice$6 = v, _index$6 = (n - 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))), qhat = _tuple[0], rhat = _tuple[1];
+				_tuple$1 = mulWW(qhat, (_slice$7 = v, _index$7 = (n - 2 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))), x1 = _tuple$1[0], x2 = _tuple$1[1];
+				while (greaterThan(x1, x2, rhat, (_slice$8 = u, _index$8 = ((j + n >> 0) - 2 >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")))) {
+					qhat = qhat - 1 >>> 0;
+					prevRhat = rhat;
+					rhat = rhat + ((_slice$9 = v, _index$9 = (n - 1 >> 0), (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range"))) >>> 0;
+					if (rhat < prevRhat) {
+						break;
+					}
+					_tuple$2 = mulWW(qhat, (_slice$10 = v, _index$10 = (n - 2 >> 0), (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"))), x1 = _tuple$2[0], x2 = _tuple$2[1];
+				}
+			}
+			_slice$11 = qhatv, _index$11 = n, (_index$11 >= 0 && _index$11 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$11] = mulAddVWW((x$1 = go$subslice(qhatv, 0, n), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(v.array), v.offset, v.offset + v.length), qhat, 0)) : go$throwRuntimeError("index out of range");
+			c = subVV((x$2 = go$subslice(u, j, (j + qhatv.length >> 0)), go$subslice(new (go$sliceType(Word))(x$2.array), x$2.offset, x$2.offset + x$2.length)), (x$3 = go$subslice(u, j), go$subslice(new (go$sliceType(Word))(x$3.array), x$3.offset, x$3.offset + x$3.length)), go$subslice(new (go$sliceType(Word))(qhatv.array), qhatv.offset, qhatv.offset + qhatv.length));
+			if (!((c === 0))) {
+				c$1 = addVV((x$4 = go$subslice(u, j, (j + n >> 0)), go$subslice(new (go$sliceType(Word))(x$4.array), x$4.offset, x$4.offset + x$4.length)), (x$5 = go$subslice(u, j), go$subslice(new (go$sliceType(Word))(x$5.array), x$5.offset, x$5.offset + x$5.length)), go$subslice(new (go$sliceType(Word))(v.array), v.offset, v.offset + v.length));
+				_lhs = u, _index$12 = j + n >> 0, _slice$13 = _lhs, _index$14 = _index$12, (_index$14 >= 0 && _index$14 < _slice$13.length) ? (_slice$13.array[_slice$13.offset + _index$14] = (_slice$12 = _lhs, _index$13 = _index$12, (_index$13 >= 0 && _index$13 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$13] : go$throwRuntimeError("index out of range")) + (c$1) >>> 0) : go$throwRuntimeError("index out of range");
+				qhat = qhat - 1 >>> 0;
+			}
+			_slice$14 = q, _index$15 = j, (_index$15 >= 0 && _index$15 < _slice$14.length) ? (_slice$14.array[_slice$14.offset + _index$15] = qhat) : go$throwRuntimeError("index out of range");
+			j = j - 1 >> 0;
+		}
+		q = q.norm();
+		shrVU(go$subslice(new (go$sliceType(Word))(u.array), u.offset, u.offset + u.length), go$subslice(new (go$sliceType(Word))(u.array), u.offset, u.offset + u.length), shift);
+		r = u.norm();
+		_tuple$3 = [q, r], q = _tuple$3[0], r = _tuple$3[1];
+		return [q, r];
+	};
+	go$ptrType(nat).prototype.divLarge = function(u, uIn, v) { return this.go$get().divLarge(u, uIn, v); };
+	nat.prototype.bitLen = function() {
+		var x, i, _slice, _index;
+		x = this;
+		if (i = x.length - 1 >> 0, i >= 0) {
+			return ((((i >>> 16 << 16) * 32 >> 0) + (i << 16 >>> 16) * 32) >> 0) + bitLen((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))) >> 0;
+		}
+		return 0;
+	};
+	go$ptrType(nat).prototype.bitLen = function() { return this.go$get().bitLen(); };
+	var hexValue = function(ch) {
+		var d;
+		d = 37;
+		if (48 <= ch && ch <= 57) {
+			d = ((ch - 48 >> 0) >> 0);
+		} else if (97 <= ch && ch <= 122) {
+			d = (((ch - 97 >> 0) + 10 >> 0) >> 0);
+		} else if (65 <= ch && ch <= 90) {
+			d = (((ch - 65 >> 0) + 10 >> 0) >> 0);
+		}
+		return (d >>> 0);
+	};
+	nat.prototype.scan = function(r, base) {
+		var z, _tuple, ch, err, b, _tuple$1, _ref, _ref$1, _tuple$2, bb, dd, _q, max$1, d, x, _tuple$3;
+		z = this;
+		if (base < 0 || (base === 1) || 36 < base) {
+			return [z, 0, errors.New("illegal number base")];
+		}
+		_tuple = r.ReadRune(), ch = _tuple[0], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [z, 0, err];
+		}
+		b = (base >>> 0);
+		if (base === 0) {
+			b = 10;
+			if (ch === 48) {
+				_tuple$1 = r.ReadRune(), ch = _tuple$1[0], err = _tuple$1[2];
+				_ref = err;
+				if (go$interfaceIsEqual(_ref, null)) {
+					b = 8;
+					_ref$1 = ch;
+					if (_ref$1 === 120 || _ref$1 === 88) {
+						b = 16;
+					} else if (_ref$1 === 98 || _ref$1 === 66) {
+						b = 2;
+					}
+					if ((b === 2) || (b === 16)) {
+						if (_tuple$2 = r.ReadRune(), ch = _tuple$2[0], err = _tuple$2[2], !(go$interfaceIsEqual(err, null))) {
+							return [z, 0, err];
+						}
+					}
+				} else if (go$interfaceIsEqual(_ref, io.EOF)) {
+					return [z.make(0), 10, null];
+				} else {
+					return [z, 10, err];
+				}
+			}
+		}
+		z = z.make(0);
+		bb = 1;
+		dd = 0;
+		max$1 = (_q = 4294967295 / b, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		while (true) {
+			d = hexValue(ch);
+			if (d >= b) {
+				r.UnreadRune();
+				break;
+			}
+			if (bb <= max$1) {
+				bb = (x = b, (((bb >>> 16 << 16) * x >>> 0) + (bb << 16 >>> 16) * x) >>> 0);
+				dd = ((((dd >>> 16 << 16) * b >>> 0) + (dd << 16 >>> 16) * b) >>> 0) + d >>> 0;
+			} else {
+				z = z.mulAddWW(z, bb, dd);
+				bb = b;
+				dd = d;
+			}
+			if (_tuple$3 = r.ReadRune(), ch = _tuple$3[0], err = _tuple$3[2], !(go$interfaceIsEqual(err, null))) {
+				if (!(go$interfaceIsEqual(err, io.EOF))) {
+					return [z, (b >> 0), err];
+				}
+				break;
+			}
+		}
+		if (bb > 1) {
+			z = z.mulAddWW(z, bb, dd);
+		} else if ((base === 0) && (b === 8)) {
+			return [z, 10, null];
+		} else if (!((base === 0)) || !((b === 8))) {
+			return [z, (b >> 0), errors.New("syntax error scanning number")];
+		}
+		return [z.norm(), (b >> 0), null];
+	};
+	go$ptrType(nat).prototype.scan = function(r, base) { return this.go$get().scan(r, base); };
+	nat.prototype.decimalString = function() {
+		var x;
+		x = this;
+		return x.string("0123456789abcdefghijklmnopqrstuvwxyz".substring(0, 10));
+	};
+	go$ptrType(nat).prototype.decimalString = function() { return this.go$get().decimalString(); };
+	nat.prototype.string = function(charset$1) {
+		var x, b, i, s, shift, y, mask, _slice, _index, w, nbits, k, _slice$1, _index$1, y$1, _slice$2, _index$2, y$2, _slice$3, _index$3, _slice$4, _index$4, y$3, _slice$5, _index$5, _slice$6, _index$6, y$4, bb, ndigits, _q, max$1, x$1, table, q, zero, _slice$7, _index$7;
+		x = this;
+		b = (charset$1.length >>> 0);
+		if (b < 2 || false) {
+			throw go$panic(new Go$String("illegal base"));
+		} else if (x.length === 0) {
+			return go$encodeRune(charset$1.charCodeAt(0));
+		}
+		i = (x.bitLen() / math.Log2(b) >> 0) + 1 >> 0;
+		s = (go$sliceType(Go$Uint8)).make(i, 0, function() { return 0; });
+		if (b === ((b & (-b >>> 0)) >>> 0)) {
+			shift = trailingZeroBits(b);
+			mask = ((y = shift, y < 32 ? (1 << y) : 0) >>> 0) - 1 >>> 0;
+			w = (_slice = x, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			nbits = 32;
+			k = 1;
+			while (k < x.length) {
+				while (nbits >= shift) {
+					i = i - 1 >> 0;
+					_slice$1 = s, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = charset$1.charCodeAt(((w & mask) >>> 0))) : go$throwRuntimeError("index out of range");
+					w = (y$1 = (shift), y$1 < 32 ? (w >>> y$1) : 0) >>> 0;
+					nbits = nbits - (shift) >>> 0;
+				}
+				if (nbits === 0) {
+					w = (_slice$2 = x, _index$2 = k, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+					nbits = 32;
+				} else {
+					w = (w | (((y$2 = nbits, y$2 < 32 ? ((_slice$3 = x, _index$3 = k, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) << y$2) : 0) >>> 0))) >>> 0;
+					i = i - 1 >> 0;
+					_slice$4 = s, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = charset$1.charCodeAt(((w & mask) >>> 0))) : go$throwRuntimeError("index out of range");
+					w = (y$3 = ((shift - nbits >>> 0)), y$3 < 32 ? ((_slice$5 = x, _index$5 = k, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) >>> y$3) : 0) >>> 0;
+					nbits = 32 - ((shift - nbits >>> 0)) >>> 0;
+				}
+				k = k + 1 >> 0;
+			}
+			while (nbits >= 0 && !((w === 0))) {
+				i = i - 1 >> 0;
+				_slice$6 = s, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = charset$1.charCodeAt(((w & mask) >>> 0))) : go$throwRuntimeError("index out of range");
+				w = (y$4 = (shift), y$4 < 32 ? (w >>> y$4) : 0) >>> 0;
+				nbits = nbits - (shift) >>> 0;
+			}
+		} else {
+			bb = b;
+			ndigits = 1;
+			max$1 = (_q = 4294967295 / b, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+			while (bb <= max$1) {
+				ndigits = ndigits + 1 >> 0;
+				bb = (x$1 = b, (((bb >>> 16 << 16) * x$1 >>> 0) + (bb << 16 >>> 16) * x$1) >>> 0);
+			}
+			table = divisors(x.length, b, ndigits, bb);
+			q = nat.nil.set(x);
+			q.convertWords(s, charset$1, b, ndigits, bb, table);
+			i = 0;
+			zero = charset$1.charCodeAt(0);
+			while ((_slice$7 = s, _index$7 = i, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) === zero) {
+				i = i + 1 >> 0;
+			}
+		}
+		return go$bytesToString(go$subslice(s, i));
+	};
+	go$ptrType(nat).prototype.string = function(charset$1) { return this.go$get().string(charset$1); };
+	nat.prototype.convertWords = function(s, charset$1, b, ndigits, bb, table) {
+		var q, r, index, maxLength, minLength, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _tuple, _slice$3, _index$3, _slice$4, _index$4, h, i, r$1, _tuple$1, j, _q, t, _slice$5, _index$5, _tuple$2, j$1, _r, _slice$6, _index$6, _q$1, zero, _slice$7, _index$7;
+		q = this;
+		if (!(table === (go$sliceType(divisor)).nil)) {
+			r = nat.nil;
+			index = table.length - 1 >> 0;
+			while (q.length > leafSize) {
+				maxLength = q.bitLen();
+				minLength = maxLength >> 1 >> 0;
+				while (index > 0 && (_slice = table, _index = (index - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).nbits > minLength) {
+					index = index - 1 >> 0;
+				}
+				if ((_slice$1 = table, _index$1 = index, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).nbits >= maxLength && (_slice$2 = table, _index$2 = index, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).bbb.cmp(q) >= 0) {
+					index = index - 1 >> 0;
+					if (index < 0) {
+						throw go$panic(new Go$String("internal inconsistency"));
+					}
+				}
+				_tuple = q.div(r, q, (_slice$3 = table, _index$3 = index, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).bbb), q = _tuple[0], r = _tuple[1];
+				h = s.length - (_slice$4 = table, _index$4 = index, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).ndigits >> 0;
+				r.convertWords(go$subslice(s, h), charset$1, b, ndigits, bb, go$subslice(table, 0, index));
+				s = go$subslice(s, 0, h);
+			}
+		}
+		i = s.length;
+		r$1 = 0;
+		if (b === 10) {
+			while (q.length > 0) {
+				_tuple$1 = q.divW(q, bb), q = _tuple$1[0], r$1 = _tuple$1[1];
+				j = 0;
+				while (j < ndigits && i > 0) {
+					i = i - 1 >> 0;
+					t = (_q = r$1 / 10, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+					_slice$5 = s, _index$5 = i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = charset$1.charCodeAt((((r$1 - (t << 3 >>> 0) >>> 0) - t >>> 0) - t >>> 0))) : go$throwRuntimeError("index out of range");
+					r$1 = t;
+					j = j + 1 >> 0;
+				}
+			}
+		} else {
+			while (q.length > 0) {
+				_tuple$2 = q.divW(q, bb), q = _tuple$2[0], r$1 = _tuple$2[1];
+				j$1 = 0;
+				while (j$1 < ndigits && i > 0) {
+					i = i - 1 >> 0;
+					_slice$6 = s, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = charset$1.charCodeAt((_r = r$1 % b, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")))) : go$throwRuntimeError("index out of range");
+					r$1 = (_q$1 = r$1 / (b), (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero"));
+					j$1 = j$1 + 1 >> 0;
+				}
+			}
+		}
+		zero = charset$1.charCodeAt(0);
+		while (i > 0) {
+			i = i - 1 >> 0;
+			_slice$7 = s, _index$7 = i, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = zero) : go$throwRuntimeError("index out of range");
+		}
+	};
+	go$ptrType(nat).prototype.convertWords = function(s, charset$1, b, ndigits, bb, table) { return this.go$get().convertWords(s, charset$1, b, ndigits, bb, table); };
+	nat.prototype.expWW = function(x, y) {
+		var z;
+		z = this;
+		return z.expNN(nat.nil.setWord(x), nat.nil.setWord(y), nat.nil);
+	};
+	go$ptrType(nat).prototype.expWW = function(x, y) { return this.go$get().expWW(x, y); };
+	var divisors = function(m, b, ndigits, bb) {
+		var k, words, table, _slice, _index, larger, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, x, x$1, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15;
+		if ((leafSize === 0) || m <= leafSize) {
+			return (go$sliceType(divisor)).nil;
+		}
+		k = 1;
+		words = leafSize;
+		while (words < (m >> 1 >> 0) && k < 64) {
+			k = k + 1 >> 0;
+			words = words << 1 >> 0;
+		}
+		table = (go$sliceType(divisor)).nil;
+		if (b === 10) {
+			cacheBase10.Mutex.Lock();
+			table = go$subslice(new (go$sliceType(divisor))(cacheBase10.table), 0, k);
+		} else {
+			table = (go$sliceType(divisor)).make(k, 0, function() { return new divisor.Ptr(); });
+		}
+		if ((_slice = table, _index = (k - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).ndigits === 0) {
+			larger = nat.nil;
+			i = 0;
+			while (i < k) {
+				if ((_slice$1 = table, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).ndigits === 0) {
+					if (i === 0) {
+						(_slice$2 = table, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).bbb = nat.nil.expWW(bb, (leafSize >>> 0));
+						(_slice$3 = table, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).ndigits = (((ndigits >>> 16 << 16) * leafSize >> 0) + (ndigits << 16 >>> 16) * leafSize) >> 0;
+					} else {
+						(_slice$6 = table, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).bbb = nat.nil.mul((_slice$4 = table, _index$4 = (i - 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).bbb, (_slice$5 = table, _index$5 = (i - 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).bbb);
+						(_slice$8 = table, _index$8 = i, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")).ndigits = (x = 2, x$1 = (_slice$7 = table, _index$7 = (i - 1 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")).ndigits, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+					}
+					larger = nat.nil.set((_slice$9 = table, _index$9 = i, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")).bbb);
+					while (mulAddVWW(go$subslice(new (go$sliceType(Word))(larger.array), larger.offset, larger.offset + larger.length), go$subslice(new (go$sliceType(Word))(larger.array), larger.offset, larger.offset + larger.length), b, 0) === 0) {
+						(_slice$11 = table, _index$11 = i, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")).bbb = (_slice$10 = table, _index$10 = i, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range")).bbb.set(larger);
+						(_slice$13 = table, _index$13 = i, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range")).ndigits = (_slice$12 = table, _index$12 = i, (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range")).ndigits + 1 >> 0;
+					}
+					(_slice$15 = table, _index$15 = i, (_index$15 >= 0 && _index$15 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$15] : go$throwRuntimeError("index out of range")).nbits = (_slice$14 = table, _index$14 = i, (_index$14 >= 0 && _index$14 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$14] : go$throwRuntimeError("index out of range")).bbb.bitLen();
+				}
+				i = i + 1 >> 0;
+			}
+		}
+		if (b === 10) {
+			cacheBase10.Mutex.Unlock();
+		}
+		return table;
+	};
+	var trailingZeroBits = function(x) {
+		var _ref, _slice, _index, x$1, _slice$1, _index$1, x$2, x$3;
+		_ref = 32;
+		if (_ref === 32) {
+			return ((_slice = deBruijn32Lookup, _index = (((x$1 = ((x & (-x >>> 0)) >>> 0), (((x$1 >>> 16 << 16) * 125613361 >>> 0) + (x$1 << 16 >>> 16) * 125613361) >>> 0)) >>> 27 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0);
+		} else if (_ref === 64) {
+			return ((_slice$1 = deBruijn64Lookup, _index$1 = (((x$2 = ((x & (-x >>> 0)) >>> 0), x$3 = 3033172745, (((x$2 >>> 16 << 16) * x$3 >>> 0) + (x$2 << 16 >>> 16) * x$3) >>> 0)) >>> 58 >>> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0);
+		} else {
+			throw go$panic(new Go$String("unknown word size"));
+		}
+	};
+	nat.prototype.trailingZeroBits = function() {
+		var x, i, _slice, _index, _slice$1, _index$1;
+		x = this;
+		if (x.length === 0) {
+			return 0;
+		}
+		i = 0;
+		while ((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0) {
+			i = i + 1 >>> 0;
+		}
+		return ((((i >>> 16 << 16) * 32 >>> 0) + (i << 16 >>> 16) * 32) >>> 0) + trailingZeroBits((_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) >>> 0;
+	};
+	go$ptrType(nat).prototype.trailingZeroBits = function() { return this.go$get().trailingZeroBits(); };
+	nat.prototype.shl = function(x, s) {
+		var z, m, _q, n, x$1, _r, _slice, _index;
+		z = this;
+		m = x.length;
+		if (m === 0) {
+			return z.make(0);
+		}
+		n = m + ((_q = s / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")) >> 0) >> 0;
+		z = z.make(n + 1 >> 0);
+		_slice = z, _index = n, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = shlVU((x$1 = go$subslice(z, n - m >> 0, n), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length), (_r = s % 32, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")))) : go$throwRuntimeError("index out of range");
+		go$subslice(z, 0, (n - m >> 0)).clear();
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.shl = function(x, s) { return this.go$get().shl(x, s); };
+	nat.prototype.shr = function(x, s) {
+		var z, m, _q, n, x$1, _r;
+		z = this;
+		m = x.length;
+		n = m - ((_q = s / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")) >> 0) >> 0;
+		if (n <= 0) {
+			return z.make(0);
+		}
+		z = z.make(n);
+		shrVU(go$subslice(new (go$sliceType(Word))(z.array), z.offset, z.offset + z.length), (x$1 = go$subslice(x, (m - n >> 0)), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), (_r = s % 32, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")));
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.shr = function(x, s) { return this.go$get().shr(x, s); };
+	nat.prototype.setBit = function(x, i, b) {
+		var z, _q, j, y, _r, m, n, _ref, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _lhs$1, _index$3, _slice$2, _index$4, _slice$3, _index$5;
+		z = this;
+		j = ((_q = i / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
+		m = (y = ((_r = i % 32, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"))), y < 32 ? (1 << y) : 0) >>> 0;
+		n = x.length;
+		_ref = b;
+		if (_ref === 0) {
+			z = z.make(n);
+			go$copySlice(z, x);
+			if (j >= n) {
+				return z;
+			}
+			_lhs = z, _index = j, _slice$1 = _lhs, _index$2 = _index, (_index$2 >= 0 && _index$2 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$2] = (_slice = _lhs, _index$1 = _index, (_index$1 >= 0 && _index$1 < _slice.length) ? _slice.array[_slice.offset + _index$1] : go$throwRuntimeError("index out of range")) & ~(m)) : go$throwRuntimeError("index out of range");
+			return z.norm();
+		} else if (_ref === 1) {
+			if (j >= n) {
+				z = z.make(j + 1 >> 0);
+				go$subslice(z, n).clear();
+			} else {
+				z = z.make(n);
+			}
+			go$copySlice(z, x);
+			_lhs$1 = z, _index$3 = j, _slice$3 = _lhs$1, _index$5 = _index$3, (_index$5 >= 0 && _index$5 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$5] = ((_slice$2 = _lhs$1, _index$4 = _index$3, (_index$4 >= 0 && _index$4 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$4] : go$throwRuntimeError("index out of range")) | (m)) >>> 0) : go$throwRuntimeError("index out of range");
+			return z;
+		}
+		throw go$panic(new Go$String("set bit is not 0 or 1"));
+	};
+	go$ptrType(nat).prototype.setBit = function(x, i, b) { return this.go$get().setBit(x, i, b); };
+	nat.prototype.bit = function(i) {
+		var z, _q, j, y, _r, _slice, _index;
+		z = this;
+		j = ((_q = i / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
+		if (j >= z.length) {
+			return 0;
+		}
+		return (((((y = ((_r = i % 32, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"))), y < 32 ? ((_slice = z, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> y) : 0) >>> 0) & 1) >>> 0) >>> 0);
+	};
+	go$ptrType(nat).prototype.bit = function(i) { return this.go$get().bit(i); };
+	nat.prototype.and = function(x, y) {
+		var z, m, n, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
+		z = this;
+		m = x.length;
+		n = y.length;
+		if (m > n) {
+			m = n;
+		}
+		z = z.make(m);
+		i = 0;
+		while (i < m) {
+			_slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & (_slice$1 = y, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) >>> 0) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+		}
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.and = function(x, y) { return this.go$get().and(x, y); };
+	nat.prototype.andNot = function(x, y) {
+		var z, m, n, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
+		z = this;
+		m = x.length;
+		n = y.length;
+		if (n > m) {
+			n = m;
+		}
+		z = z.make(m);
+		i = 0;
+		while (i < n) {
+			_slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & ~(_slice$1 = y, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+		}
+		go$copySlice(go$subslice(z, n, m), go$subslice(x, n, m));
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.andNot = function(x, y) { return this.go$get().andNot(x, y); };
+	nat.prototype.or = function(x, y) {
+		var z, m, n, s, _tuple, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
+		z = this;
+		m = x.length;
+		n = y.length;
+		s = x;
+		if (m < n) {
+			_tuple = [m, n], n = _tuple[0], m = _tuple[1];
+			s = y;
+		}
+		z = z.make(m);
+		i = 0;
+		while (i < n) {
+			_slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) | (_slice$1 = y, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) >>> 0) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+		}
+		go$copySlice(go$subslice(z, n, m), go$subslice(s, n, m));
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.or = function(x, y) { return this.go$get().or(x, y); };
+	nat.prototype.xor = function(x, y) {
+		var z, m, n, s, _tuple, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
+		z = this;
+		m = x.length;
+		n = y.length;
+		s = x;
+		if (m < n) {
+			_tuple = [m, n], n = _tuple[0], m = _tuple[1];
+			s = y;
+		}
+		z = z.make(m);
+		i = 0;
+		while (i < n) {
+			_slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) ^ (_slice$1 = y, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) >>> 0) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+		}
+		go$copySlice(go$subslice(z, n, m), go$subslice(s, n, m));
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.xor = function(x, y) { return this.go$get().xor(x, y); };
+	var greaterThan = function(x1, x2, y1, y2) {
+		return x1 > y1 || (x1 === y1) && x2 > y2;
+	};
+	nat.prototype.modW = function(d) {
+		var r, x, q;
+		r = 0;
+		x = this;
+		q = nat.nil;
+		q = q.make(x.length);
+		r = divWVW(go$subslice(new (go$sliceType(Word))(q.array), q.offset, q.offset + q.length), 0, go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length), d);
+		return r;
+	};
+	go$ptrType(nat).prototype.modW = function(d) { return this.go$get().modW(d); };
+	nat.prototype.random = function(rand$1, limit, n) {
+		var z, _r, bitLengthOfMSW, y, mask, _ref, _ref$1, _i, i, _slice, _index, _ref$2, _i$1, i$1, _slice$1, _index$1, _lhs, _index$2, _slice$2, _index$3, _slice$3, _index$4;
+		z = this;
+		if (alias(z, limit)) {
+			z = nat.nil;
+		}
+		z = z.make(limit.length);
+		bitLengthOfMSW = ((_r = n % 32, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0);
+		if (bitLengthOfMSW === 0) {
+			bitLengthOfMSW = 32;
+		}
+		mask = ((((y = bitLengthOfMSW, y < 32 ? (1 << y) : 0) >>> 0)) - 1 >>> 0);
+		while (true) {
+			_ref = 32;
+			if (_ref === 32) {
+				_ref$1 = z;
+				_i = 0;
+				for (; _i < _ref$1.length; _i += 1) {
+					i = _i;
+					_slice = z, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (rand$1.Uint32() >>> 0)) : go$throwRuntimeError("index out of range");
+				}
+			} else if (_ref === 64) {
+				_ref$2 = z;
+				_i$1 = 0;
+				for (; _i$1 < _ref$2.length; _i$1 += 1) {
+					i$1 = _i$1;
+					_slice$1 = z, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((rand$1.Uint32() >>> 0) | ((rand$1.Uint32() >>> 0) << 32 >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+				}
+			} else {
+				throw go$panic(new Go$String("unknown word size"));
+			}
+			_lhs = z, _index$2 = limit.length - 1 >> 0, _slice$3 = _lhs, _index$4 = _index$2, (_index$4 >= 0 && _index$4 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$4] = ((_slice$2 = _lhs, _index$3 = _index$2, (_index$3 >= 0 && _index$3 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$3] : go$throwRuntimeError("index out of range")) & (mask)) >>> 0) : go$throwRuntimeError("index out of range");
+			if (z.cmp(limit) < 0) {
+				break;
+			}
+		}
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.random = function(rand$1, limit, n) { return this.go$get().random(rand$1, limit, n); };
+	nat.prototype.expNN = function(x, y, m) {
+		var z, _slice, _index, _slice$1, _index$1, v, shift, y$1, q, w, _tuple, zz, r, j, _tuple$1, _tuple$2, _tuple$3, _tuple$4, i, _slice$2, _index$2, j$1, _tuple$5, _tuple$6, _tuple$7, _tuple$8;
+		z = this;
+		if (alias(z, x) || alias(z, y)) {
+			z = nat.nil;
+		}
+		if (y.length === 0) {
+			z = z.make(1);
+			_slice = z, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 1) : go$throwRuntimeError("index out of range");
+			return z;
+		}
+		if (!((m.length === 0))) {
+			z = z.make(m.length);
+		}
+		z = z.set(x);
+		if (x.length > 1 && y.length > 1 && m.length > 0) {
+			return z.expNNWindowed(x, y, m);
+		}
+		v = (_slice$1 = y, _index$1 = (y.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+		shift = leadingZeros(v) + 1 >>> 0;
+		v = (y$1 = (shift), y$1 < 32 ? (v << y$1) : 0) >>> 0;
+		q = nat.nil;
+		w = 32 - (shift >> 0) >> 0;
+		_tuple = [nat.nil, nat.nil], zz = _tuple[0], r = _tuple[1];
+		j = 0;
+		while (j < w) {
+			zz = zz.mul(z, z);
+			_tuple$1 = [z, zz], zz = _tuple$1[0], z = _tuple$1[1];
+			if (!((((v & 2147483648) >>> 0) === 0))) {
+				zz = zz.mul(z, x);
+				_tuple$2 = [z, zz], zz = _tuple$2[0], z = _tuple$2[1];
+			}
+			if (!((m.length === 0))) {
+				_tuple$3 = zz.div(r, z, m), zz = _tuple$3[0], r = _tuple$3[1];
+				_tuple$4 = [q, z, zz, r], zz = _tuple$4[0], r = _tuple$4[1], q = _tuple$4[2], z = _tuple$4[3];
+			}
+			v = v << 1 >>> 0;
+			j = j + 1 >> 0;
+		}
+		i = y.length - 2 >> 0;
+		while (i >= 0) {
+			v = (_slice$2 = y, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+			j$1 = 0;
+			while (j$1 < 32) {
+				zz = zz.mul(z, z);
+				_tuple$5 = [z, zz], zz = _tuple$5[0], z = _tuple$5[1];
+				if (!((((v & 2147483648) >>> 0) === 0))) {
+					zz = zz.mul(z, x);
+					_tuple$6 = [z, zz], zz = _tuple$6[0], z = _tuple$6[1];
+				}
+				if (!((m.length === 0))) {
+					_tuple$7 = zz.div(r, z, m), zz = _tuple$7[0], r = _tuple$7[1];
+					_tuple$8 = [q, z, zz, r], zz = _tuple$8[0], r = _tuple$8[1], q = _tuple$8[2], z = _tuple$8[3];
+				}
+				v = v << 1 >>> 0;
+				j$1 = j$1 + 1 >> 0;
+			}
+			i = i - 1 >> 0;
+		}
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.expNN = function(x, y, m) { return this.go$get().expNN(x, y, m); };
+	nat.prototype.expNNWindowed = function(x, y, m) {
+		var z, _tuple, zz, r, powers, i, v, _q, _q$1, v$1, v$2, _tuple$1, p2, p, p1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, i$1, _slice, _index, yi, j, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$20;
+		z = this;
+		_tuple = [nat.nil, nat.nil], zz = _tuple[0], r = _tuple[1];
+		powers = go$makeNativeArray("Slice", 16, function() { return nat.nil; });
+		powers[0] = natOne;
+		powers[1] = x;
+		i = 2;
+		while (i < 16) {
+			_tuple$1 = [new (go$ptrType(nat))(function() { return powers[(_q = i / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))]; }, function(v) { powers[(_q$1 = i / 2, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero"))] = v; }), new (go$ptrType(nat))(function() { return powers[i]; }, function(v$1) { powers[i] = v$1; }), new (go$ptrType(nat))(function() { return powers[(i + 1 >> 0)]; }, function(v$2) { powers[i + 1 >> 0] = v$2; })], p2 = _tuple$1[0], p = _tuple$1[1], p1 = _tuple$1[2];
+			p.go$set(p.mul(p2.go$get(), p2.go$get()));
+			_tuple$2 = zz.div(r, p.go$get(), m), zz = _tuple$2[0], r = _tuple$2[1];
+			_tuple$3 = [r, p.go$get()], p.go$set(_tuple$3[0]), r = _tuple$3[1];
+			p1.go$set(p1.mul(p.go$get(), x));
+			_tuple$4 = zz.div(r, p1.go$get(), m), zz = _tuple$4[0], r = _tuple$4[1];
+			_tuple$5 = [r, p1.go$get()], p1.go$set(_tuple$5[0]), r = _tuple$5[1];
+			i = i + 2 >> 0;
+		}
+		z = z.setWord(1);
+		i$1 = y.length - 1 >> 0;
+		while (i$1 >= 0) {
+			yi = (_slice = y, _index = i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			j = 0;
+			while (j < 32) {
+				if (!((i$1 === (y.length - 1 >> 0))) || !((j === 0))) {
+					zz = zz.mul(z, z);
+					_tuple$6 = [z, zz], zz = _tuple$6[0], z = _tuple$6[1];
+					_tuple$7 = zz.div(r, z, m), zz = _tuple$7[0], r = _tuple$7[1];
+					_tuple$8 = [r, z], z = _tuple$8[0], r = _tuple$8[1];
+					zz = zz.mul(z, z);
+					_tuple$9 = [z, zz], zz = _tuple$9[0], z = _tuple$9[1];
+					_tuple$10 = zz.div(r, z, m), zz = _tuple$10[0], r = _tuple$10[1];
+					_tuple$11 = [r, z], z = _tuple$11[0], r = _tuple$11[1];
+					zz = zz.mul(z, z);
+					_tuple$12 = [z, zz], zz = _tuple$12[0], z = _tuple$12[1];
+					_tuple$13 = zz.div(r, z, m), zz = _tuple$13[0], r = _tuple$13[1];
+					_tuple$14 = [r, z], z = _tuple$14[0], r = _tuple$14[1];
+					zz = zz.mul(z, z);
+					_tuple$15 = [z, zz], zz = _tuple$15[0], z = _tuple$15[1];
+					_tuple$16 = zz.div(r, z, m), zz = _tuple$16[0], r = _tuple$16[1];
+					_tuple$17 = [r, z], z = _tuple$17[0], r = _tuple$17[1];
+				}
+				zz = zz.mul(z, powers[(yi >>> 28 >>> 0)]);
+				_tuple$18 = [z, zz], zz = _tuple$18[0], z = _tuple$18[1];
+				_tuple$19 = zz.div(r, z, m), zz = _tuple$19[0], r = _tuple$19[1];
+				_tuple$20 = [r, z], z = _tuple$20[0], r = _tuple$20[1];
+				yi = yi << 4 >>> 0;
+				j = j + 4 >> 0;
+			}
+			i$1 = i$1 - 1 >> 0;
+		}
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.expNNWindowed = function(x, y, m) { return this.go$get().expNNWindowed(x, y, m); };
+	nat.prototype.probablyPrime = function(reps) {
+		var n, _slice, _index, _r, _slice$1, _index$1, _slice$2, _index$2, _ref, _slice$3, _index$3, r, _ref$1, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, nm1, k, q, nm3, x, _slice$4, _index$4, rand$1, _tuple, x$1, y, quotient, nm3Len, i, j, _tuple$1;
+		n = this;
+		if (n.length === 0) {
+			return false;
+		}
+		if (n.length === 1) {
+			if ((_slice = n, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < 2) {
+				return false;
+			}
+			if ((_r = (_slice$1 = n, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0) {
+				return (_slice$2 = n, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 2;
+			}
+			_ref = (_slice$3 = n, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			if (_ref === 3 || _ref === 5 || _ref === 7 || _ref === 11 || _ref === 13 || _ref === 17 || _ref === 19 || _ref === 23 || _ref === 29 || _ref === 31 || _ref === 37 || _ref === 41 || _ref === 43 || _ref === 47 || _ref === 53) {
+				return true;
+			}
+		}
+		r = 0;
+		_ref$1 = 32;
+		if (_ref$1 === 32) {
+			r = n.modW(3234846615);
+		} else if (_ref$1 === 64) {
+			r = n.modW(820596253);
+		} else {
+			throw go$panic(new Go$String("Unknown word size"));
+		}
+		if (((_r$1 = r % 3, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) === 0) || ((_r$2 = r % 5, _r$2 === _r$2 ? _r$2 : go$throwRuntimeError("integer divide by zero")) === 0) || ((_r$3 = r % 7, _r$3 === _r$3 ? _r$3 : go$throwRuntimeError("integer divide by zero")) === 0) || ((_r$4 = r % 11, _r$4 === _r$4 ? _r$4 : go$throwRuntimeError("integer divide by zero")) === 0) || ((_r$5 = r % 13, _r$5 === _r$5 ? _r$5 : go$throwRuntimeError("integer divide by zero")) === 0) || ((_r$6 = r % 17, _r$6 === _r$6 ? _r$6 : go$throwRuntimeError("integer divide by zero")) === 0) || ((_r$7 = r % 19, _r$7 === _r$7 ? _r$7 : go$throwRuntimeError("integer divide by zero")) === 0) || ((_r$8 = r % 23, _r$8 === _r$8 ? _r$8 : go$throwRuntimeError("integer divide by zero")) === 0) || ((_r$9 = r % 29, _r$9 === _r$9 ? _r$9 : go$throwRuntimeError("integer divide by zero")) === 0)) {
+			return false;
+		}
+		nm1 = nat.nil.sub(n, natOne);
+		k = nm1.trailingZeroBits();
+		q = nat.nil.shr(nm1, k);
+		nm3 = nat.nil.sub(nm1, natTwo);
+		rand$1 = rand.New(rand.NewSource((x = (_slice$4 = n, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), new Go$Int64(0, x.constructor === Number ? x : 1))));
+		_tuple = [nat.nil, nat.nil, nat.nil], x$1 = _tuple[0], y = _tuple[1], quotient = _tuple[2];
+		nm3Len = nm3.bitLen();
+		i = 0;
+		NextRandom: while (i < reps) {
+			x$1 = x$1.random(rand$1, nm3, nm3Len);
+			x$1 = x$1.add(x$1, natTwo);
+			y = y.expNN(x$1, q, n);
+			if ((y.cmp(natOne) === 0) || (y.cmp(nm1) === 0)) {
+				i = i + 1 >> 0;
+				continue;
+			}
+			j = 1;
+			while (j < k) {
+				y = y.mul(y, y);
+				_tuple$1 = quotient.div(y, y, n), quotient = _tuple$1[0], y = _tuple$1[1];
+				if (y.cmp(nm1) === 0) {
+					i = i + 1 >> 0;
+					continue NextRandom;
+				}
+				if (y.cmp(natOne) === 0) {
+					return false;
+				}
+				j = j + 1 >>> 0;
+			}
+			return false;
+		}
+		return true;
+	};
+	go$ptrType(nat).prototype.probablyPrime = function(reps) { return this.go$get().probablyPrime(reps); };
+	nat.prototype.bytes = function(buf) {
+		var i, z, _ref, _i, _slice, _index, d, j, _slice$1, _index$1, _slice$2, _index$2;
+		i = 0;
+		z = this;
+		i = buf.length;
+		_ref = z;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			j = 0;
+			while (j < 4) {
+				i = i - 1 >> 0;
+				_slice$1 = buf, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (d << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				d = d >>> 8 >>> 0;
+				j = j + 1 >> 0;
+			}
+		}
+		while (i < buf.length && ((_slice$2 = buf, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 0)) {
+			i = i + 1 >> 0;
+		}
+		return i;
+	};
+	go$ptrType(nat).prototype.bytes = function(buf) { return this.go$get().bytes(buf); };
+	nat.prototype.setBytes = function(buf) {
+		var z, _q, k, s, d, i, y, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
+		z = this;
+		z = z.make((_q = (((buf.length + 4 >> 0) - 1 >> 0)) / 4, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")));
+		k = 0;
+		s = 0;
+		d = 0;
+		i = buf.length;
+		while (i > 0) {
+			d = (d | (((y = s, y < 32 ? (((_slice = buf, _index = (i - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) << y) : 0) >>> 0))) >>> 0;
+			if (s = s + 8 >>> 0, s === 32) {
+				_slice$1 = z, _index$1 = k, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = d) : go$throwRuntimeError("index out of range");
+				k = k + 1 >> 0;
+				s = 0;
+				d = 0;
+			}
+			i = i - 1 >> 0;
+		}
+		if (k < z.length) {
+			_slice$2 = z, _index$2 = k, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = d) : go$throwRuntimeError("index out of range");
+		}
+		return z.norm();
+	};
+	go$ptrType(nat).prototype.setBytes = function(buf) { return this.go$get().setBytes(buf); };
+	var NewRat = go$pkg.NewRat = function(a, b) {
+		return new Rat.Ptr().SetFrac64(a, b);
+	};
+	Rat.Ptr.prototype.SetFloat64 = function(f) {
+		var z, bits, mantissa, x, exp, _ref, shift, x$1;
+		z = this;
+		bits = math.Float64bits(f);
+		mantissa = new Go$Uint64(bits.high & 1048575, (bits.low & 4294967295) >>> 0);
+		exp = ((x = go$shiftRightUint64(bits, 52), new Go$Uint64(x.high & 0, (x.low & 2047) >>> 0)).low >> 0);
+		_ref = exp;
+		if (_ref === 2047) {
+			return (go$ptrType(Rat)).nil;
+		} else if (_ref === 0) {
+			exp = exp - 1022 >> 0;
+		} else {
+			mantissa = new Go$Uint64(mantissa.high | 1048576, (mantissa.low | 0) >>> 0);
+			exp = exp - 1023 >> 0;
+		}
+		shift = 52 - exp >> 0;
+		while ((x$1 = new Go$Uint64(mantissa.high & 0, (mantissa.low & 1) >>> 0), (x$1.high === 0 && x$1.low === 0)) && shift > 0) {
+			mantissa = go$shiftRightUint64(mantissa, 1);
+			shift = shift - 1 >> 0;
+		}
+		z.a.SetUint64(mantissa);
+		z.a.neg = f < 0;
+		z.b.Set(intOne);
+		if (shift > 0) {
+			z.b.Lsh(z.b, (shift >>> 0));
+		} else {
+			z.a.Lsh(z.a, (-shift >>> 0));
+		}
+		return z.norm();
+	};
+	Rat.prototype.SetFloat64 = function(f) { return this.go$val.SetFloat64(f); };
+	var isFinite = function(f) {
+		return math.Abs(f) <= 1.7976931348623157e+308;
+	};
+	var low64 = function(z) {
+		var x, x$1, _slice, _index, x$2, x$3, _slice$1, _index$1, x$4, _slice$2, _index$2;
+		if (z.length === 0) {
+			return new Go$Uint64(0, 0);
+		}
+		if (true && z.length > 1) {
+			return (x = go$shiftLeft64((x$1 = (_slice = z, _index = 1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Go$Uint64(0, x$1.constructor === Number ? x$1 : 1)), 32), x$2 = (x$3 = (_slice$1 = z, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Go$Uint64(0, x$3.constructor === Number ? x$3 : 1)), new Go$Uint64(x.high | x$2.high, (x.low | x$2.low) >>> 0));
+		}
+		return (x$4 = (_slice$2 = z, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), new Go$Uint64(0, x$4.constructor === Number ? x$4 : 1));
+	};
+	var quotToFloat = function(a, b) {
+		var f, exact, alen, _tuple, blen, exp, _tuple$1, a2, b2, shift, q, _tuple$2, r, mantissa, haveRem, x, x$1, shift$1, x$2, x$3, lostbits, x$4, x$5;
+		f = 0;
+		exact = false;
+		alen = a.bitLen();
+		if (alen === 0) {
+			_tuple = [0, true], f = _tuple[0], exact = _tuple[1];
+			return [f, exact];
+		}
+		blen = b.bitLen();
+		if (blen === 0) {
+			throw go$panic(new Go$String("division by zero"));
+		}
+		exp = alen - blen >> 0;
+		_tuple$1 = [nat.nil, nat.nil], a2 = _tuple$1[0], b2 = _tuple$1[1];
+		a2 = a2.set(a);
+		b2 = b2.set(b);
+		if (shift = 54 - exp >> 0, shift > 0) {
+			a2 = a2.shl(a2, (shift >>> 0));
+		} else if (shift < 0) {
+			b2 = b2.shl(b2, (-shift >>> 0));
+		}
+		q = nat.nil;
+		_tuple$2 = q.div(a2, a2, b2), q = _tuple$2[0], r = _tuple$2[1];
+		mantissa = low64(q);
+		haveRem = r.length > 0;
+		if ((x = go$shiftRightUint64(mantissa, 54), (x.high === 0 && x.low === 1))) {
+			if ((x$1 = new Go$Uint64(mantissa.high & 0, (mantissa.low & 1) >>> 0), (x$1.high === 0 && x$1.low === 1))) {
+				haveRem = true;
+			}
+			mantissa = go$shiftRightUint64(mantissa, 1);
+			exp = exp + 1 >> 0;
+		}
+		if (-1074 <= exp && exp <= -1022) {
+			shift$1 = new Go$Uint64(0, (-1022 - ((exp - 1 >> 0)) >> 0));
+			lostbits = (x$2 = (x$3 = go$shiftLeft64(new Go$Uint64(0, 1), go$flatten64(shift$1)), new Go$Uint64(x$3.high - 0, x$3.low - 1)), new Go$Uint64(mantissa.high & x$2.high, (mantissa.low & x$2.low) >>> 0));
+			haveRem = haveRem || !((lostbits.high === 0 && lostbits.low === 0));
+			mantissa = go$shiftRightUint64(mantissa, go$flatten64((shift$1)));
+			exp = -1021;
+		}
+		exact = !haveRem;
+		if (!((x$4 = new Go$Uint64(mantissa.high & 0, (mantissa.low & 1) >>> 0), (x$4.high === 0 && x$4.low === 0)))) {
+			exact = false;
+			if (haveRem || !((x$5 = new Go$Uint64(mantissa.high & 0, (mantissa.low & 2) >>> 0), (x$5.high === 0 && x$5.low === 0)))) {
+				if (mantissa = new Go$Uint64(mantissa.high + 0, mantissa.low + 1), (mantissa.high > 4194304 || (mantissa.high === 4194304 && mantissa.low >= 0))) {
+					mantissa = go$shiftRightUint64(mantissa, 1);
+					exp = exp + 1 >> 0;
+				}
+			}
+		}
+		mantissa = go$shiftRightUint64(mantissa, 1);
+		f = math.Ldexp(go$flatten64(mantissa), exp - 53 >> 0);
+		if (math.IsInf(f, 0)) {
+			exact = false;
+		}
+		return [f, exact];
+	};
+	Rat.Ptr.prototype.Float64 = function() {
+		var f, exact, x, b, _tuple;
+		f = 0;
+		exact = false;
+		x = this;
+		b = x.b.abs;
+		if (b.length === 0) {
+			b = b.set(natOne);
+		}
+		_tuple = quotToFloat(x.a.abs, b), f = _tuple[0], exact = _tuple[1];
+		if (x.a.neg) {
+			f = -f;
+		}
+		return [f, exact];
+	};
+	Rat.prototype.Float64 = function() { return this.go$val.Float64(); };
+	Rat.Ptr.prototype.SetFrac = function(a, b) {
+		var z, babs;
+		z = this;
+		z.a.neg = !(a.neg === b.neg);
+		babs = b.abs;
+		if (babs.length === 0) {
+			throw go$panic(new Go$String("division by zero"));
+		}
+		if (z.a === b || alias(z.a.abs, babs)) {
+			babs = nat.nil.set(babs);
+		}
+		z.a.abs = z.a.abs.set(a.abs);
+		z.b.abs = z.b.abs.set(babs);
+		return z.norm();
+	};
+	Rat.prototype.SetFrac = function(a, b) { return this.go$val.SetFrac(a, b); };
+	Rat.Ptr.prototype.SetFrac64 = function(a, b) {
+		var z;
+		z = this;
+		z.a.SetInt64(a);
+		if ((b.high === 0 && b.low === 0)) {
+			throw go$panic(new Go$String("division by zero"));
+		}
+		if ((b.high < 0 || (b.high === 0 && b.low < 0))) {
+			b = new Go$Int64(-b.high, -b.low);
+			z.a.neg = !z.a.neg;
+		}
+		z.b.abs = z.b.abs.setUint64(new Go$Uint64(b.high, b.low));
+		return z.norm();
+	};
+	Rat.prototype.SetFrac64 = function(a, b) { return this.go$val.SetFrac64(a, b); };
+	Rat.Ptr.prototype.SetInt = function(x) {
+		var z;
+		z = this;
+		z.a.Set(x);
+		z.b.abs = z.b.abs.make(0);
+		return z;
+	};
+	Rat.prototype.SetInt = function(x) { return this.go$val.SetInt(x); };
+	Rat.Ptr.prototype.SetInt64 = function(x) {
+		var z;
+		z = this;
+		z.a.SetInt64(x);
+		z.b.abs = z.b.abs.make(0);
+		return z;
+	};
+	Rat.prototype.SetInt64 = function(x) { return this.go$val.SetInt64(x); };
+	Rat.Ptr.prototype.Set = function(x) {
+		var z;
+		z = this;
+		if (!(z === x)) {
+			z.a.Set(x.a);
+			z.b.Set(x.b);
+		}
+		return z;
+	};
+	Rat.prototype.Set = function(x) { return this.go$val.Set(x); };
+	Rat.Ptr.prototype.Abs = function(x) {
+		var z;
+		z = this;
+		z.Set(x);
+		z.a.neg = false;
+		return z;
+	};
+	Rat.prototype.Abs = function(x) { return this.go$val.Abs(x); };
+	Rat.Ptr.prototype.Neg = function(x) {
+		var z;
+		z = this;
+		z.Set(x);
+		z.a.neg = z.a.abs.length > 0 && !z.a.neg;
+		return z;
+	};
+	Rat.prototype.Neg = function(x) { return this.go$val.Neg(x); };
+	Rat.Ptr.prototype.Inv = function(x) {
+		var z, a, b, _tuple;
+		z = this;
+		if (x.a.abs.length === 0) {
+			throw go$panic(new Go$String("division by zero"));
+		}
+		z.Set(x);
+		a = z.b.abs;
+		if (a.length === 0) {
+			a = a.set(natOne);
+		}
+		b = z.a.abs;
+		if (b.cmp(natOne) === 0) {
+			b = b.make(0);
+		}
+		_tuple = [a, b], z.a.abs = _tuple[0], z.b.abs = _tuple[1];
+		return z;
+	};
+	Rat.prototype.Inv = function(x) { return this.go$val.Inv(x); };
+	Rat.Ptr.prototype.Sign = function() {
+		var x;
+		x = this;
+		return x.a.Sign();
+	};
+	Rat.prototype.Sign = function() { return this.go$val.Sign(); };
+	Rat.Ptr.prototype.IsInt = function() {
+		var x;
+		x = this;
+		return (x.b.abs.length === 0) || (x.b.abs.cmp(natOne) === 0);
+	};
+	Rat.prototype.IsInt = function() { return this.go$val.IsInt(); };
+	Rat.Ptr.prototype.Num = function() {
+		var x;
+		x = this;
+		return x.a;
+	};
+	Rat.prototype.Num = function() { return this.go$val.Num(); };
+	Rat.Ptr.prototype.Denom = function() {
+		var x;
+		x = this;
+		x.b.neg = false;
+		if (x.b.abs.length === 0) {
+			x.b.abs = x.b.abs.set(natOne);
+		}
+		return x.b;
+	};
+	Rat.prototype.Denom = function() { return this.go$val.Denom(); };
+	Rat.Ptr.prototype.norm = function() {
+		var z, neg, f, _tuple, _tuple$1;
+		z = this;
+		if (z.a.abs.length === 0) {
+			z.a.neg = false;
+			z.b.abs = z.b.abs.make(0);
+		} else if (z.b.abs.length === 0) {
+		} else if (z.b.abs.cmp(natOne) === 0) {
+			z.b.abs = z.b.abs.make(0);
+		} else {
+			neg = z.a.neg;
+			z.a.neg = false;
+			z.b.neg = false;
+			if (f = NewInt(new Go$Int64(0, 0)).binaryGCD(z.a, z.b), !((f.Cmp(intOne) === 0))) {
+				_tuple = z.a.abs.div(nat.nil, z.a.abs, f.abs), z.a.abs = _tuple[0];
+				_tuple$1 = z.b.abs.div(nat.nil, z.b.abs, f.abs), z.b.abs = _tuple$1[0];
+				if (z.b.abs.cmp(natOne) === 0) {
+					z.b.abs = z.b.abs.make(0);
+				}
+			}
+			z.a.neg = neg;
+		}
+		return z;
+	};
+	Rat.prototype.norm = function() { return this.go$val.norm(); };
+	var mulDenom = function(z, x, y) {
+		if (x.length === 0) {
+			return z.set(y);
+		} else if (y.length === 0) {
+			return z.set(x);
+		}
+		return z.mul(x, y);
+	};
+	var scaleDenom = function(x, f) {
+		var z;
+		z = new Int.Ptr();
+		if (f.length === 0) {
+			return z.Set(x);
+		}
+		z.abs = z.abs.mul(x.abs, f);
+		z.neg = x.neg;
+		return z;
+	};
+	Rat.Ptr.prototype.Cmp = function(y) {
+		var x;
+		x = this;
+		return scaleDenom(x.a, y.b.abs).Cmp(scaleDenom(y.a, x.b.abs));
+	};
+	Rat.prototype.Cmp = function(y) { return this.go$val.Cmp(y); };
+	Rat.Ptr.prototype.Add = function(x, y) {
+		var z, a1, a2;
+		z = this;
+		a1 = scaleDenom(x.a, y.b.abs);
+		a2 = scaleDenom(y.a, x.b.abs);
+		z.a.Add(a1, a2);
+		z.b.abs = mulDenom(z.b.abs, x.b.abs, y.b.abs);
+		return z.norm();
+	};
+	Rat.prototype.Add = function(x, y) { return this.go$val.Add(x, y); };
+	Rat.Ptr.prototype.Sub = function(x, y) {
+		var z, a1, a2;
+		z = this;
+		a1 = scaleDenom(x.a, y.b.abs);
+		a2 = scaleDenom(y.a, x.b.abs);
+		z.a.Sub(a1, a2);
+		z.b.abs = mulDenom(z.b.abs, x.b.abs, y.b.abs);
+		return z.norm();
+	};
+	Rat.prototype.Sub = function(x, y) { return this.go$val.Sub(x, y); };
+	Rat.Ptr.prototype.Mul = function(x, y) {
+		var z;
+		z = this;
+		z.a.Mul(x.a, y.a);
+		z.b.abs = mulDenom(z.b.abs, x.b.abs, y.b.abs);
+		return z.norm();
+	};
+	Rat.prototype.Mul = function(x, y) { return this.go$val.Mul(x, y); };
+	Rat.Ptr.prototype.Quo = function(x, y) {
+		var z, a, b;
+		z = this;
+		if (y.a.abs.length === 0) {
+			throw go$panic(new Go$String("division by zero"));
+		}
+		a = scaleDenom(x.a, y.b.abs);
+		b = scaleDenom(y.a, x.b.abs);
+		z.a.abs = a.abs;
+		z.b.abs = b.abs;
+		z.a.neg = !(a.neg === b.neg);
+		return z.norm();
+	};
+	Rat.prototype.Quo = function(x, y) { return this.go$val.Quo(x, y); };
+	var ratTok = function(ch) {
+		return strings.IndexRune("+-/0123456789.eE", ch) >= 0;
+	};
+	Rat.Ptr.prototype.Scan = function(s, ch) {
+		var z, _tuple, tok, err, ok, _tuple$1;
+		z = this;
+		_tuple = s.Token(true, ratTok), tok = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		if (strings.IndexRune("efgEFGv", ch) < 0) {
+			return errors.New("Rat.Scan: invalid verb");
+		}
+		if (_tuple$1 = z.SetString(go$bytesToString(tok)), ok = _tuple$1[1], !ok) {
+			return errors.New("Rat.Scan: invalid syntax");
+		}
+		return null;
+	};
+	Rat.prototype.Scan = function(s, ch) { return this.go$val.Scan(s, ch); };
+	Rat.Ptr.prototype.SetString = function(s) {
+		var z, sep, ok, _tuple, err, _tuple$1, e, exp, ok$1, _tuple$2, ok$2, _tuple$3, powTen;
+		z = this;
+		if (s.length === 0) {
+			return [(go$ptrType(Rat)).nil, false];
+		}
+		sep = strings.Index(s, "/");
+		if (sep >= 0) {
+			if (_tuple = z.a.SetString(s.substring(0, sep), 10), ok = _tuple[1], !ok) {
+				return [(go$ptrType(Rat)).nil, false];
+			}
+			s = s.substring((sep + 1 >> 0));
+			err = null;
+			if (_tuple$1 = z.b.abs.scan(strings.NewReader(s), 10), z.b.abs = _tuple$1[0], err = _tuple$1[2], !(go$interfaceIsEqual(err, null))) {
+				return [(go$ptrType(Rat)).nil, false];
+			}
+			return [z.norm(), true];
+		}
+		sep = strings.Index(s, ".");
+		e = strings.IndexAny(s, "eE");
+		exp = new Int.Ptr();
+		if (e >= 0) {
+			if (e < sep) {
+				return [(go$ptrType(Rat)).nil, false];
+			}
+			if (_tuple$2 = exp.SetString(s.substring((e + 1 >> 0)), 10), ok$1 = _tuple$2[1], !ok$1) {
+				return [(go$ptrType(Rat)).nil, false];
+			}
+			s = s.substring(0, e);
+		}
+		if (sep >= 0) {
+			s = s.substring(0, sep) + s.substring((sep + 1 >> 0));
+			exp.Sub(exp, NewInt(new Go$Int64(0, (s.length - sep >> 0))));
+		}
+		if (_tuple$3 = z.a.SetString(s, 10), ok$2 = _tuple$3[1], !ok$2) {
+			return [(go$ptrType(Rat)).nil, false];
+		}
+		powTen = nat.nil.expNN(natTen, exp.abs, nat.nil);
+		if (exp.neg) {
+			z.b.abs = powTen;
+			z.norm();
+		} else {
+			z.a.abs = z.a.abs.mul(z.a.abs, powTen);
+			z.b.abs = z.b.abs.make(0);
+		}
+		return [z, true];
+	};
+	Rat.prototype.SetString = function(s) { return this.go$val.SetString(s); };
+	Rat.Ptr.prototype.String = function() {
+		var x, s;
+		x = this;
+		s = "/1";
+		if (!((x.b.abs.length === 0))) {
+			s = "/" + x.b.abs.decimalString();
+		}
+		return x.a.String() + s;
+	};
+	Rat.prototype.String = function() { return this.go$val.String(); };
+	Rat.Ptr.prototype.RatString = function() {
+		var x;
+		x = this;
+		if (x.IsInt()) {
+			return x.a.String();
+		}
+		return x.String();
+	};
+	Rat.prototype.RatString = function() { return this.go$val.RatString(); };
+	Rat.Ptr.prototype.FloatString = function(prec) {
+		var x, s, _tuple, q, r, p, _tuple$1, r2, s$1, rs, leadingZeros$1;
+		x = this;
+		if (x.IsInt()) {
+			s = x.a.String();
+			if (prec > 0) {
+				s = s + ("." + strings.Repeat("0", prec));
+			}
+			return s;
+		}
+		_tuple = nat.nil.div(nat.nil, x.a.abs, x.b.abs), q = _tuple[0], r = _tuple[1];
+		p = natOne;
+		if (prec > 0) {
+			p = nat.nil.expNN(natTen, nat.nil.setUint64(new Go$Uint64(0, prec)), nat.nil);
+		}
+		r = r.mul(r, p);
+		_tuple$1 = r.div(nat.nil, r, x.b.abs), r = _tuple$1[0], r2 = _tuple$1[1];
+		r2 = r2.add(r2, r2);
+		if (x.b.abs.cmp(r2) <= 0) {
+			r = r.add(r, natOne);
+			if (r.cmp(p) >= 0) {
+				q = nat.nil.add(q, natOne);
+				r = nat.nil.sub(r, p);
+			}
+		}
+		s$1 = q.decimalString();
+		if (x.a.neg) {
+			s$1 = "-" + s$1;
+		}
+		if (prec > 0) {
+			rs = r.decimalString();
+			leadingZeros$1 = prec - rs.length >> 0;
+			s$1 = s$1 + ("." + strings.Repeat("0", leadingZeros$1) + rs);
+		}
+		return s$1;
+	};
+	Rat.prototype.FloatString = function(prec) { return this.go$val.FloatString(prec); };
+	Rat.Ptr.prototype.GobEncode = function() {
+		var x, x$1, buf, i, j, n, b, _slice, _index;
+		x = this;
+		if (x === (go$ptrType(Rat)).nil) {
+			return [(go$sliceType(Go$Uint8)).nil, null];
+		}
+		buf = (go$sliceType(Go$Uint8)).make(5 + (x$1 = (x.a.abs.length + x.b.abs.length >> 0), (((x$1 >>> 16 << 16) * 4 >> 0) + (x$1 << 16 >>> 16) * 4) >> 0) >> 0, 0, function() { return 0; });
+		i = x.b.abs.bytes(buf);
+		j = x.a.abs.bytes(go$subslice(buf, 0, i));
+		n = i - j >> 0;
+		if (!((((n >>> 0) >> 0) === n))) {
+			return [(go$sliceType(Go$Uint8)).nil, errors.New("Rat.GobEncode: numerator too large")];
+		}
+		binary.BigEndian.PutUint32(go$subslice(buf, j - 4 >> 0, j), (n >>> 0));
+		j = j - 5 >> 0;
+		b = 2;
+		if (x.a.neg) {
+			b = (b | 1) >>> 0;
+		}
+		_slice = buf, _index = j, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = b) : go$throwRuntimeError("index out of range");
+		return [go$subslice(buf, j), null];
+	};
+	Rat.prototype.GobEncode = function() { return this.go$val.GobEncode(); };
+	Rat.Ptr.prototype.GobDecode = function(buf) {
+		var z, l, r, _slice, _index, b, i;
+		z = this;
+		if (buf.length === 0) {
+			l = z, r = new Rat.Ptr(new Int.Ptr(), new Int.Ptr()), l.a = r.a, l.b = r.b;
+			return null;
+		}
+		b = (_slice = buf, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (!(((b >>> 1 << 24 >>> 24) === 1))) {
+			return errors.New(fmt.Sprintf("Rat.GobDecode: encoding version %d not supported", new (go$sliceType(go$emptyInterface))([new Go$Uint8((b >>> 1 << 24 >>> 24))])));
+		}
+		i = 5 + binary.BigEndian.Uint32(go$subslice(buf, 1, 5)) >>> 0;
+		z.a.neg = !((((b & 1) >>> 0) === 0));
+		z.a.abs = z.a.abs.setBytes(go$subslice(buf, 5, i));
+		z.b.abs = z.b.abs.setBytes(go$subslice(buf, i));
+		return null;
+	};
+	Rat.prototype.GobDecode = function(buf) { return this.go$val.GobDecode(buf); };
+	var mulWW = mulWW_g;
+	var divWW = divWW_g;
+	var addVV = addVV_g;
+	var subVV = subVV_g;
+	var addVW = addVW_g;
+	var subVW = subVW_g;
+	var shlVU = shlVU_g;
+	var shrVU = shrVU_g;
+	var mulAddVWW = mulAddVWW_g;
+	var addMulVVW = addMulVVW_g;
+	var divWVW = divWVW_g;
+	var bitLen = bitLen_g;
+	var _m = 4294967295;
+	var _logS = 2;
+	var _S = 4;
+	var _W = 32;
+	var _B = 4294967296;
+	var _M = 4294967295;
+	var _W2 = 16;
+	var _B2 = 65536;
+	var _M2 = 65535;
+	var intGobVersion = 1;
+	go$pkg.MaxBase = 36;
+	var lowercaseDigits = "0123456789abcdefghijklmnopqrstuvwxyz";
+	var uppercaseDigits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	var deBruijn32 = 125613361;
+	var deBruijn64 = 285870213051353865;
+	var ratGobVersion = 1;
+	var intOne = (go$ptrType(Int)).nil;
+	var natOne = nat.nil;
+	var natTwo = nat.nil;
+	var natTen = nat.nil;
+	var karatsubaThreshold = 0;
+	var leafSize = 0;
+	var cacheBase10 = new (go$structType([["", "", sync.Mutex, ""], ["table", "math/big", (go$arrayType(divisor, 64)), ""]])).Ptr(new sync.Mutex.Ptr(), go$makeNativeArray("Struct", 64, function() { return new divisor.Ptr(); }));
+	var deBruijn32Lookup = (go$sliceType(Go$Uint8)).nil;
+	var deBruijn64Lookup = (go$sliceType(Go$Uint8)).nil;
+	go$pkg.init = function() {
+		natOne = new nat([1]);
+		intOne = new Int.Ptr(false, natOne);
+		natTwo = new nat([2]);
+		natTen = new nat([10]);
+		karatsubaThreshold = 40;
+		leafSize = 8;
+		deBruijn32Lookup = new (go$sliceType(Go$Uint8))([0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9]);
+		deBruijn64Lookup = new (go$sliceType(Go$Uint8))([0, 1, 56, 2, 57, 49, 28, 3, 61, 58, 42, 50, 38, 29, 17, 4, 62, 47, 59, 36, 45, 43, 51, 22, 53, 39, 33, 30, 24, 18, 12, 5, 63, 55, 48, 27, 60, 41, 37, 16, 46, 35, 44, 21, 52, 32, 23, 11, 54, 26, 40, 15, 34, 20, 31, 10, 25, 14, 19, 9, 13, 8, 7, 6]);
+	};

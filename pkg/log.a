@@ -1,0 +1,472 @@
+0‚Pw‚$ìpackage log
+import fmt "fmt"
+import io "io"
+import os "os"
+import runtime "runtime"
+import sync "sync"
+import time "time"
+func @"".Fatal(@"".v ...interface {  }) ()
+func @"".Fatalf(@"".format string, @"".v ...interface {  }) ()
+func @"".Fatalln(@"".v ...interface {  }) ()
+func @"".Flags() (? int)
+const @"".Ldate = 0x1
+const @"".Llongfile = 0x8
+const @"".Lmicroseconds = 0x4
+type @"".Logger struct { @"".mu @"sync".Mutex; @"".prefix string; @"".flag int; @"".out @"io".Writer; @"".buf []byte }
+func (? *@"".Logger) @"".Fatal(@"".v ...interface {  }) ()
+func (? *@"".Logger) @"".Fatalf(@"".format string, @"".v ...interface {  }) ()
+func (? *@"".Logger) @"".Fatalln(@"".v ...interface {  }) ()
+func (? *@"".Logger) @"".Flags() (? int)
+func (? *@"".Logger) @"".Output(@"".calldepth int, @"".s string) (? error)
+func (? *@"".Logger) @"".Panic(@"".v ...interface {  }) ()
+func (? *@"".Logger) @"".Panicf(@"".format string, @"".v ...interface {  }) ()
+func (? *@"".Logger) @"".Panicln(@"".v ...interface {  }) ()
+func (? *@"".Logger) @"".Prefix() (? string)
+func (? *@"".Logger) @"".Print(@"".v ...interface {  }) ()
+func (? *@"".Logger) @"".Printf(@"".format string, @"".v ...interface {  }) ()
+func (? *@"".Logger) @"".Println(@"".v ...interface {  }) ()
+func (? *@"".Logger) @"".SetFlags(@"".flag int) ()
+func (? *@"".Logger) @"".SetPrefix(@"".prefix string) ()
+func (? *@"".Logger) @"".formatHeader(@"".buf *[]byte, @"".t @"time".Time, @"".file string, @"".line int) ()
+const @"".Lshortfile = 0x10
+const @"".LstdFlags = 0x3
+const @"".Ltime = 0x2
+func @"".New(@"".out @"io".Writer, @"".prefix string, @"".flag int) (? *@"".Logger)
+func @"".Panic(@"".v ...interface {  }) ()
+func @"".Panicf(@"".format string, @"".v ...interface {  }) ()
+func @"".Panicln(@"".v ...interface {  }) ()
+func @"".Prefix() (? string)
+func @"".Print(@"".v ...interface {  }) ()
+func @"".Printf(@"".format string, @"".v ...interface {  }) ()
+func @"".Println(@"".v ...interface {  }) ()
+func @"".SetFlags(@"".flag int) ()
+func @"".SetOutput(@"".w @"io".Writer) ()
+func @"".SetPrefix(@"".prefix string) ()
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? @"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? @"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? @"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+func (? *@"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? *@"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? *@"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? *@"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+$$
+0kruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtlog‚+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var os = go$packages["os"];
+	var runtime = go$packages["runtime"];
+	var sync = go$packages["sync"];
+	var time = go$packages["time"];
+	var Logger;
+	Logger = go$newType(0, "Struct", "log.Logger", "Logger", "log", function(mu_, prefix_, flag_, out_, buf_) {
+		this.go$val = this;
+		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
+		this.prefix = prefix_ !== undefined ? prefix_ : "";
+		this.flag = flag_ !== undefined ? flag_ : 0;
+		this.out = out_ !== undefined ? out_ : null;
+		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.Logger = Logger;
+	Logger.init([["mu", "log", sync.Mutex, ""], ["prefix", "log", Go$String, ""], ["flag", "log", Go$Int, ""], ["out", "log", io.Writer, ""], ["buf", "log", (go$sliceType(Go$Uint8)), ""]]);
+	(go$ptrType(Logger)).methods = [["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fatalln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Flags", "", [], [Go$Int], false], ["Output", "", [Go$Int, Go$String], [go$error], false], ["Panic", "", [(go$sliceType(go$emptyInterface))], [], true], ["Panicf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Panicln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Prefix", "", [], [Go$String], false], ["Print", "", [(go$sliceType(go$emptyInterface))], [], true], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Println", "", [(go$sliceType(go$emptyInterface))], [], true], ["SetFlags", "", [Go$Int], [], false], ["SetPrefix", "", [Go$String], [], false], ["formatHeader", "log", [(go$ptrType((go$sliceType(Go$Uint8)))), time.Time, Go$String, Go$Int], [], false]];
+	var New = go$pkg.New = function(out, prefix, flag) {
+		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
+	};
+	var itoa = function(buf, i, wid) {
+		var u, b, bp, _r, _q;
+		u = (i >>> 0);
+		if ((u === 0) && wid <= 1) {
+			buf.go$set(go$append(buf.go$get(), 48));
+			return;
+		}
+		b = go$makeNativeArray("Uint8", 32, function() { return 0; });
+		bp = 32;
+		while (u > 0 || wid > 0) {
+			bp = bp - 1 >> 0;
+			wid = wid - 1 >> 0;
+			b[bp] = ((_r = u % 10, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) << 24 >>> 24) + 48 << 24 >>> 24;
+			u = (_q = u / 10, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"));
+		}
+		buf.go$set(go$appendSlice(buf.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(b), bp)));
+	};
+	Logger.Ptr.prototype.formatHeader = function(buf, t, file, line) {
+		var l, _tuple, year, month, day, _tuple$1, hour, min, sec, _q, short$1, i;
+		l = this;
+		buf.go$set(go$appendSlice(buf.go$get(), new (go$sliceType(Go$Uint8))(go$stringToBytes(l.prefix))));
+		if (!(((l.flag & 7) === 0))) {
+			if (!(((l.flag & 1) === 0))) {
+				_tuple = t.Date(), year = _tuple[0], month = _tuple[1], day = _tuple[2];
+				itoa(buf, year, 4);
+				buf.go$set(go$append(buf.go$get(), 47));
+				itoa(buf, (month >> 0), 2);
+				buf.go$set(go$append(buf.go$get(), 47));
+				itoa(buf, day, 2);
+				buf.go$set(go$append(buf.go$get(), 32));
+			}
+			if (!(((l.flag & 6) === 0))) {
+				_tuple$1 = t.Clock(), hour = _tuple$1[0], min = _tuple$1[1], sec = _tuple$1[2];
+				itoa(buf, hour, 2);
+				buf.go$set(go$append(buf.go$get(), 58));
+				itoa(buf, min, 2);
+				buf.go$set(go$append(buf.go$get(), 58));
+				itoa(buf, sec, 2);
+				if (!(((l.flag & 4) === 0))) {
+					buf.go$set(go$append(buf.go$get(), 46));
+					itoa(buf, (_q = t.Nanosecond() / 1000, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 6);
+				}
+				buf.go$set(go$append(buf.go$get(), 32));
+			}
+		}
+		if (!(((l.flag & 24) === 0))) {
+			if (!(((l.flag & 16) === 0))) {
+				short$1 = file;
+				i = file.length - 1 >> 0;
+				while (i > 0) {
+					if (file.charCodeAt(i) === 47) {
+						short$1 = file.substring((i + 1 >> 0));
+						break;
+					}
+					i = i - 1 >> 0;
+				}
+				file = short$1;
+			}
+			buf.go$set(go$appendSlice(buf.go$get(), new (go$sliceType(Go$Uint8))(go$stringToBytes(file))));
+			buf.go$set(go$append(buf.go$get(), 58));
+			itoa(buf, line, -1);
+			buf.go$set(go$appendSlice(buf.go$get(), new (go$sliceType(Go$Uint8))(go$stringToBytes(": "))));
+		}
+	};
+	Logger.prototype.formatHeader = function(buf, t, file, line) { return this.go$val.formatHeader(buf, t, file, line); };
+	Logger.Ptr.prototype.Output = function(calldepth, s) {
+		var l, _struct, now, file, line, ok, _tuple, v, _struct$1, _tuple$1, err;
+		var go$deferred = [];
+		try {
+			l = this;
+			now = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+			file = "";
+			line = 0;
+			l.mu.Lock();
+			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
+			if (!(((l.flag & 24) === 0))) {
+				l.mu.Unlock();
+				ok = false;
+				_tuple = runtime.Caller(calldepth), file = _tuple[1], line = _tuple[2], ok = _tuple[3];
+				if (!ok) {
+					file = "???";
+					line = 0;
+				}
+				l.mu.Lock();
+			}
+			l.buf = go$subslice(l.buf, 0, 0);
+			l.formatHeader(new (go$ptrType((go$sliceType(Go$Uint8))))(function() { return l.buf; }, function(v) { l.buf = v; }), (_struct$1 = now, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)), file, line);
+			l.buf = go$appendSlice(l.buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
+			if (s.length > 0 && !((s.charCodeAt((s.length - 1 >> 0)) === 10))) {
+				l.buf = go$append(l.buf, 10);
+			}
+			_tuple$1 = l.out.Write(l.buf), err = _tuple$1[1];
+			return err;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Logger.prototype.Output = function(calldepth, s) { return this.go$val.Output(calldepth, s); };
+	Logger.Ptr.prototype.Printf = function(format, v) {
+		var l;
+		l = this;
+		l.Output(2, fmt.Sprintf(format, v));
+	};
+	Logger.prototype.Printf = function(format, v) { return this.go$val.Printf(format, v); };
+	Logger.Ptr.prototype.Print = function(v) {
+		var l;
+		l = this;
+		l.Output(2, fmt.Sprint(v));
+	};
+	Logger.prototype.Print = function(v) { return this.go$val.Print(v); };
+	Logger.Ptr.prototype.Println = function(v) {
+		var l;
+		l = this;
+		l.Output(2, fmt.Sprintln(v));
+	};
+	Logger.prototype.Println = function(v) { return this.go$val.Println(v); };
+	Logger.Ptr.prototype.Fatal = function(v) {
+		var l;
+		l = this;
+		l.Output(2, fmt.Sprint(v));
+		os.Exit(1);
+	};
+	Logger.prototype.Fatal = function(v) { return this.go$val.Fatal(v); };
+	Logger.Ptr.prototype.Fatalf = function(format, v) {
+		var l;
+		l = this;
+		l.Output(2, fmt.Sprintf(format, v));
+		os.Exit(1);
+	};
+	Logger.prototype.Fatalf = function(format, v) { return this.go$val.Fatalf(format, v); };
+	Logger.Ptr.prototype.Fatalln = function(v) {
+		var l;
+		l = this;
+		l.Output(2, fmt.Sprintln(v));
+		os.Exit(1);
+	};
+	Logger.prototype.Fatalln = function(v) { return this.go$val.Fatalln(v); };
+	Logger.Ptr.prototype.Panic = function(v) {
+		var l, s;
+		l = this;
+		s = fmt.Sprint(v);
+		l.Output(2, s);
+		throw go$panic(new Go$String(s));
+	};
+	Logger.prototype.Panic = function(v) { return this.go$val.Panic(v); };
+	Logger.Ptr.prototype.Panicf = function(format, v) {
+		var l, s;
+		l = this;
+		s = fmt.Sprintf(format, v);
+		l.Output(2, s);
+		throw go$panic(new Go$String(s));
+	};
+	Logger.prototype.Panicf = function(format, v) { return this.go$val.Panicf(format, v); };
+	Logger.Ptr.prototype.Panicln = function(v) {
+		var l, s;
+		l = this;
+		s = fmt.Sprintln(v);
+		l.Output(2, s);
+		throw go$panic(new Go$String(s));
+	};
+	Logger.prototype.Panicln = function(v) { return this.go$val.Panicln(v); };
+	Logger.Ptr.prototype.Flags = function() {
+		var l;
+		var go$deferred = [];
+		try {
+			l = this;
+			l.mu.Lock();
+			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
+			return l.flag;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return 0;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Logger.prototype.Flags = function() { return this.go$val.Flags(); };
+	Logger.Ptr.prototype.SetFlags = function(flag) {
+		var l;
+		var go$deferred = [];
+		try {
+			l = this;
+			l.mu.Lock();
+			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
+			l.flag = flag;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Logger.prototype.SetFlags = function(flag) { return this.go$val.SetFlags(flag); };
+	Logger.Ptr.prototype.Prefix = function() {
+		var l;
+		var go$deferred = [];
+		try {
+			l = this;
+			l.mu.Lock();
+			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
+			return l.prefix;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return "";
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Logger.prototype.Prefix = function() { return this.go$val.Prefix(); };
+	Logger.Ptr.prototype.SetPrefix = function(prefix) {
+		var l;
+		var go$deferred = [];
+		try {
+			l = this;
+			l.mu.Lock();
+			go$deferred.push({ recv: l.mu, method: "Unlock", args: [] });
+			l.prefix = prefix;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Logger.prototype.SetPrefix = function(prefix) { return this.go$val.SetPrefix(prefix); };
+	var SetOutput = go$pkg.SetOutput = function(w) {
+		var go$deferred = [];
+		try {
+			std.mu.Lock();
+			go$deferred.push({ recv: std.mu, method: "Unlock", args: [] });
+			std.out = w;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	var Flags = go$pkg.Flags = function() {
+		return std.Flags();
+	};
+	var SetFlags = go$pkg.SetFlags = function(flag) {
+		std.SetFlags(flag);
+	};
+	var Prefix = go$pkg.Prefix = function() {
+		return std.Prefix();
+	};
+	var SetPrefix = go$pkg.SetPrefix = function(prefix) {
+		std.SetPrefix(prefix);
+	};
+	var Print = go$pkg.Print = function(v) {
+		std.Output(2, fmt.Sprint(v));
+	};
+	var Printf = go$pkg.Printf = function(format, v) {
+		std.Output(2, fmt.Sprintf(format, v));
+	};
+	var Println = go$pkg.Println = function(v) {
+		std.Output(2, fmt.Sprintln(v));
+	};
+	var Fatal = go$pkg.Fatal = function(v) {
+		std.Output(2, fmt.Sprint(v));
+		os.Exit(1);
+	};
+	var Fatalf = go$pkg.Fatalf = function(format, v) {
+		std.Output(2, fmt.Sprintf(format, v));
+		os.Exit(1);
+	};
+	var Fatalln = go$pkg.Fatalln = function(v) {
+		std.Output(2, fmt.Sprintln(v));
+		os.Exit(1);
+	};
+	var Panic = go$pkg.Panic = function(v) {
+		var s;
+		s = fmt.Sprint(v);
+		std.Output(2, s);
+		throw go$panic(new Go$String(s));
+	};
+	var Panicf = go$pkg.Panicf = function(format, v) {
+		var s;
+		s = fmt.Sprintf(format, v);
+		std.Output(2, s);
+		throw go$panic(new Go$String(s));
+	};
+	var Panicln = go$pkg.Panicln = function(v) {
+		var s;
+		s = fmt.Sprintln(v);
+		std.Output(2, s);
+		throw go$panic(new Go$String(s));
+	};
+	go$pkg.Ldate = 1;
+	go$pkg.Ltime = 2;
+	go$pkg.Lmicroseconds = 4;
+	go$pkg.Llongfile = 8;
+	go$pkg.Lshortfile = 16;
+	go$pkg.LstdFlags = 3;
+	var std = (go$ptrType(Logger)).nil;
+	go$pkg.init = function() {
+		std = New(os.Stderr, "", 3);
+	};

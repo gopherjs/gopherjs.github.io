@@ -1,0 +1,1924 @@
+0ƒ8Ä‚H÷package os
+import io "io"
+import syscall "syscall"
+import time "time"
+import errors "errors"
+import runtime "runtime"
+import atomic "sync/atomic"
+import sync "sync"
+var @"".Args []string
+func @"".Chdir(@"".dir string) (? error)
+func @"".Chmod(@"".name string, @"".mode @"".FileMode) (? error)
+func @"".Chown(@"".name string, @"".uid int, @"".gid int) (? error)
+func @"".Chtimes(@"".name string, @"".atime @"time".Time, @"".mtime @"time".Time) (? error)
+func @"".Clearenv() ()
+func @"".Create(@"".name string) (@"".file *@"".File, @"".err error)
+const @"".DevNull = "/dev/null"
+func @"".Environ() (? []string)
+var @"".ErrExist error
+var @"".ErrInvalid error
+var @"".ErrNotExist error
+var @"".ErrPermission error
+func @"".Exit(@"".code int) ()
+func @"".Expand(@"".s string, @"".mapping func (? string) (? string)) (? string)
+func @"".ExpandEnv(@"".s string) (? string)
+type @"".File struct { ? *@"".file }
+func (? *@"".File) @"".Chdir() (? error)
+func (? *@"".File) @"".Chmod(@"".mode @"".FileMode) (? error)
+func (? *@"".File) @"".Chown(@"".uid int, @"".gid int) (? error)
+func (? *@"".File) @"".Close() (? error)
+func (? *@"".File) @"".Fd() (? uintptr)
+func (? *@"".File) @"".Name() (? string)
+func (? *@"".File) @"".Read(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"".File) @"".ReadAt(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"".File) @"".Readdir(@"".n int) (@"".fi []@"".FileInfo, @"".err error)
+func (? *@"".File) @"".Readdirnames(@"".n int) (@"".names []string, @"".err error)
+func (? *@"".File) @"".Seek(@"".offset int64, @"".whence int) (@"".ret int64, @"".err error)
+func (? *@"".File) @"".Stat() (@"".fi @"".FileInfo, @"".err error)
+func (? *@"".File) @"".Sync() (@"".err error)
+func (? *@"".File) @"".Truncate(@"".size int64) (? error)
+func (? *@"".File) @"".Write(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"".File) @"".WriteAt(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"".File) @"".WriteString(@"".s string) (@"".ret int, @"".err error)
+func (? *@"".File) @"".pread(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"".File) @"".pwrite(@"".b []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"".File) @"".read(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"".File) @"".readdir(@"".n int) (@"".fi []@"".FileInfo, @"".err error)
+func (? *@"".File) @"".readdirnames(@"".n int) (@"".names []string, @"".err error)
+func (? *@"".File) @"".seek(@"".offset int64, @"".whence int) (@"".ret int64, @"".err error)
+func (? *@"".File) @"".write(@"".b []byte) (@"".n int, @"".err error)
+type @"".FileInfo interface { @"".IsDir() (? bool); @"".ModTime() (? @"time".Time); @"".Mode() (? @"".FileMode); @"".Name() (? string); @"".Size() (? int64); @"".Sys() (? interface {  }) }
+type @"".FileMode uint32
+func (? @"".FileMode) @"".IsDir() (? bool)
+func (? @"".FileMode) @"".IsRegular() (? bool)
+func (? @"".FileMode) @"".Perm() (? @"".FileMode)
+func (? @"".FileMode) @"".String() (? string)
+func (? *@"".FileMode) @"".IsDir() (? bool)
+func (? *@"".FileMode) @"".IsRegular() (? bool)
+func (? *@"".FileMode) @"".Perm() (? @"".FileMode)
+func (? *@"".FileMode) @"".String() (? string)
+func @"".FindProcess(@"".pid int) (@"".p *@"".Process, @"".err error)
+func @"".Getegid() (? int)
+func @"".Getenv(@"".key string) (? string)
+func @"".Geteuid() (? int)
+func @"".Getgid() (? int)
+func @"".Getgroups() (? []int, ? error)
+func @"".Getpagesize() (? int)
+func @"".Getpid() (? int)
+func @"".Getppid() (? int)
+func @"".Getuid() (? int)
+func @"".Getwd() (@"".pwd string, @"".err error)
+func @"".Hostname() (@"".name string, @"".err error)
+var @"".Interrupt @"".Signal
+func @"".IsExist(@"".err error) (? bool)
+func @"".IsNotExist(@"".err error) (? bool)
+func @"".IsPathSeparator(@"".c uint8) (? bool)
+func @"".IsPermission(@"".err error) (? bool)
+var @"".Kill @"".Signal
+func @"".Lchown(@"".name string, @"".uid int, @"".gid int) (? error)
+func @"".Link(@"".oldname string, @"".newname string) (? error)
+type @"".LinkError struct { @"".Op string; @"".Old string; @"".New string; @"".Err error }
+func (? *@"".LinkError) @"".Error() (? string)
+func @"".Lstat(@"".name string) (@"".fi @"".FileInfo, @"".err error)
+func @"".Mkdir(@"".name string, @"".perm @"".FileMode) (? error)
+func @"".MkdirAll(@"".path string, @"".perm @"".FileMode) (? error)
+const @"".ModeAppend @"".FileMode = 0x40000000
+const @"".ModeCharDevice @"".FileMode = 0x200000
+const @"".ModeDevice @"".FileMode = 0x4000000
+const @"".ModeDir @"".FileMode = 0x80000000
+const @"".ModeExclusive @"".FileMode = 0x20000000
+const @"".ModeNamedPipe @"".FileMode = 0x2000000
+const @"".ModePerm @"".FileMode = 0x1ff
+const @"".ModeSetgid @"".FileMode = 0x400000
+const @"".ModeSetuid @"".FileMode = 0x800000
+const @"".ModeSocket @"".FileMode = 0x1000000
+const @"".ModeSticky @"".FileMode = 0x100000
+const @"".ModeSymlink @"".FileMode = 0x8000000
+const @"".ModeTemporary @"".FileMode = 0x10000000
+const @"".ModeType @"".FileMode = 0x8f000000
+func @"".NewFile(@"".fd uintptr, @"".name string) (? *@"".File)
+func @"".NewSyscallError(@"".syscall string, @"".err error) (? error)
+const @"".O_APPEND int = 0x8
+const @"".O_CREATE int = 0x200
+const @"".O_EXCL int = 0x800
+const @"".O_RDONLY int = 0x0
+const @"".O_RDWR int = 0x2
+const @"".O_SYNC int = 0x80
+const @"".O_TRUNC int = 0x400
+const @"".O_WRONLY int = 0x1
+func @"".Open(@"".name string) (@"".file *@"".File, @"".err error)
+func @"".OpenFile(@"".name string, @"".flag int, @"".perm @"".FileMode) (@"".file *@"".File, @"".err error)
+type @"".PathError struct { @"".Op string; @"".Path string; @"".Err error }
+func (? *@"".PathError) @"".Error() (? string)
+const @"".PathListSeparator = '\u003a'
+const @"".PathSeparator = '\u002f'
+func @"".Pipe() (@"".r *@"".File, @"".w *@"".File, @"".err error)
+type @"".ProcAttr struct { @"".Dir string; @"".Env []string; @"".Files []*@"".File; @"".Sys *@"syscall".SysProcAttr }
+type @"".Process struct { @"".Pid int; @"".handle uintptr; @"".isdone uint32 }
+func (? *@"".Process) @"".Kill() (? error)
+func (? *@"".Process) @"".Release() (? error)
+func (? *@"".Process) @"".Signal(@"".sig @"".Signal) (? error)
+func (? *@"".Process) @"".Wait() (? *@"".ProcessState, ? error)
+func (? *@"".Process) @"".done() (? bool)
+func (? *@"".Process) @"".kill() (? error)
+func (? *@"".Process) @"".release() (? error)
+func (? *@"".Process) @"".setDone() ()
+func (? *@"".Process) @"".signal(@"".sig @"".Signal) (? error)
+func (? *@"".Process) @"".wait() (@"".ps *@"".ProcessState, @"".err error)
+type @"".ProcessState struct { @"".pid int; @"".status @"syscall".WaitStatus; @"".rusage *@"syscall".Rusage }
+func (? *@"".ProcessState) @"".Exited() (? bool)
+func (? *@"".ProcessState) @"".Pid() (? int)
+func (? *@"".ProcessState) @"".String() (? string)
+func (? *@"".ProcessState) @"".Success() (? bool)
+func (? *@"".ProcessState) @"".Sys() (? interface {  })
+func (? *@"".ProcessState) @"".SysUsage() (? interface {  })
+func (? *@"".ProcessState) @"".SystemTime() (? @"time".Duration)
+func (? *@"".ProcessState) @"".UserTime() (? @"time".Duration)
+func (? *@"".ProcessState) @"".exited() (? bool)
+func (? *@"".ProcessState) @"".success() (? bool)
+func (? *@"".ProcessState) @"".sys() (? interface {  })
+func (? *@"".ProcessState) @"".sysUsage() (? interface {  })
+func (? *@"".ProcessState) @"".systemTime() (? @"time".Duration)
+func (? *@"".ProcessState) @"".userTime() (? @"time".Duration)
+func @"".Readlink(@"".name string) (? string, ? error)
+func @"".Remove(@"".name string) (? error)
+func @"".RemoveAll(@"".path string) (? error)
+func @"".Rename(@"".oldname string, @"".newname string) (? error)
+const @"".SEEK_CUR int = 0x1
+const @"".SEEK_END int = 0x2
+const @"".SEEK_SET int = 0x0
+func @"".SameFile(@"".fi1 @"".FileInfo, @"".fi2 @"".FileInfo) (? bool)
+func @"".Setenv(@"".key string, @"".value string) (? error)
+type @"".Signal interface { @"".Signal() (); @"".String() (? string) }
+func @"".StartProcess(@"".name string, @"".argv []string, @"".attr *@"".ProcAttr) (? *@"".Process, ? error)
+func @"".Stat(@"".name string) (@"".fi @"".FileInfo, @"".err error)
+var @"".Stderr *@"".File
+var @"".Stdin *@"".File
+var @"".Stdout *@"".File
+func @"".Symlink(@"".oldname string, @"".newname string) (? error)
+type @"".SyscallError struct { @"".Syscall string; @"".Err error }
+func (? *@"".SyscallError) @"".Error() (? string)
+func @"".TempDir() (? string)
+func @"".Truncate(@"".name string, @"".size int64) (? error)
+type @"".dirInfo struct { @"".buf []byte; @"".nbuf int; @"".bufp int }
+type @"".file struct { @"".fd int; @"".name string; @"".dirinfo *@"".dirInfo; @"".nepipe int32 }
+func (? *@"".file) @"".close() (? error)
+type @"".fileStat struct { @"".name string; @"".size int64; @"".mode @"".FileMode; @"".modTime @"time".Time; @"".sys interface {  } }
+func (? *@"".fileStat) @"".IsDir() (? bool)
+func (? *@"".fileStat) @"".ModTime() (? @"time".Time)
+func (? *@"".fileStat) @"".Mode() (? @"".FileMode)
+func (? *@"".fileStat) @"".Name() (? string)
+func (? *@"".fileStat) @"".Size() (? int64)
+func (? *@"".fileStat) @"".Sys() (? interface {  })
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? @"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? @"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? @"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+func (? *@"time".Time) @"time".Add(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"time".years int, @"time".months int, @"time".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"time".hour int, @"time".min int, @"time".sec int)
+func (? *@"time".Time) @"time".Date() (@"time".year int, @"time".month @"time".Month, @"time".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"time".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"time".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"time".year int, @"time".week int)
+func (? *@"time".Time) @"time".In(@"time".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"time".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"time".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"time".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"time".data []byte) (@"time".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"time".name string, @"time".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"time".full bool) (@"time".year int, @"time".month @"time".Month, @"time".day int, @"time".yday int)
+func (? *@"time".Time) @"time".locabs() (@"time".name string, @"time".offset int, @"time".abs uint64)
+type @"syscall".SysProcAttr struct { @"syscall".Chroot string; @"syscall".Credential *@"syscall".Credential; @"syscall".Ptrace bool; @"syscall".Setsid bool; @"syscall".Setpgid bool; @"syscall".Setctty bool; @"syscall".Noctty bool }
+type @"syscall".WaitStatus uint32
+func (? @"syscall".WaitStatus) @"syscall".Continued() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".CoreDump() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".ExitStatus() (? int)
+func (? @"syscall".WaitStatus) @"syscall".Exited() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".Signal() (? @"syscall".Signal)
+func (? @"syscall".WaitStatus) @"syscall".Signaled() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".StopSignal() (? @"syscall".Signal)
+func (? @"syscall".WaitStatus) @"syscall".Stopped() (? bool)
+func (? @"syscall".WaitStatus) @"syscall".TrapCause() (? int)
+func (? *@"syscall".WaitStatus) @"syscall".Continued() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".CoreDump() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".ExitStatus() (? int)
+func (? *@"syscall".WaitStatus) @"syscall".Exited() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".Signal() (? @"syscall".Signal)
+func (? *@"syscall".WaitStatus) @"syscall".Signaled() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".StopSignal() (? @"syscall".Signal)
+func (? *@"syscall".WaitStatus) @"syscall".Stopped() (? bool)
+func (? *@"syscall".WaitStatus) @"syscall".TrapCause() (? int)
+type @"syscall".Rusage struct { @"syscall".Utime @"syscall".Timeval; @"syscall".Stime @"syscall".Timeval; @"syscall".Maxrss int64; @"syscall".Ixrss int64; @"syscall".Idrss int64; @"syscall".Isrss int64; @"syscall".Minflt int64; @"syscall".Majflt int64; @"syscall".Nswap int64; @"syscall".Inblock int64; @"syscall".Oublock int64; @"syscall".Msgsnd int64; @"syscall".Msgrcv int64; @"syscall".Nsignals int64; @"syscall".Nvcsw int64; @"syscall".Nivcsw int64 }
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"time".sec int64) (@"time".name string, @"time".offset int, @"time".isDST bool, @"time".start int64, @"time".end int64)
+func (? *@"time".Location) @"time".lookupName(@"time".name string, @"time".unix int64) (@"time".offset int, @"time".isDST bool, @"time".ok bool)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"syscall".Credential struct { @"syscall".Uid uint32; @"syscall".Gid uint32; @"syscall".Groups []uint32 }
+type @"syscall".Signal int
+func (? @"syscall".Signal) @"syscall".Signal() ()
+func (? @"syscall".Signal) @"syscall".String() (? string)
+func (? *@"syscall".Signal) @"syscall".Signal() ()
+func (? *@"syscall".Signal) @"syscall".String() (? string)
+type @"syscall".Timeval struct { @"syscall".Sec int64; @"syscall".Usec int32; @"syscall".Pad_cgo_0 [4]byte }
+func (? *@"syscall".Timeval) @"syscall".Nano() (? int64)
+func (? *@"syscall".Timeval) @"syscall".Unix() (@"syscall".sec int64, @"syscall".nsec int64)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+$$
+0;runtimeerrorssync/atomicsynciosyscalltimeos‚ïˆ	var io = go$packages["io"];
+	var syscall = go$packages["syscall"];
+	var time = go$packages["time"];
+	var errors = go$packages["errors"];
+	var runtime = go$packages["runtime"];
+	var atomic = go$packages["sync/atomic"];
+	var sync = go$packages["sync"];
+	var PathError;
+	PathError = go$newType(0, "Struct", "os.PathError", "PathError", "os", function(Op_, Path_, Err_) {
+		this.go$val = this;
+		this.Op = Op_ !== undefined ? Op_ : "";
+		this.Path = Path_ !== undefined ? Path_ : "";
+		this.Err = Err_ !== undefined ? Err_ : null;
+	});
+	go$pkg.PathError = PathError;
+	var SyscallError;
+	SyscallError = go$newType(0, "Struct", "os.SyscallError", "SyscallError", "os", function(Syscall_, Err_) {
+		this.go$val = this;
+		this.Syscall = Syscall_ !== undefined ? Syscall_ : "";
+		this.Err = Err_ !== undefined ? Err_ : null;
+	});
+	go$pkg.SyscallError = SyscallError;
+	var Process;
+	Process = go$newType(0, "Struct", "os.Process", "Process", "os", function(Pid_, handle_, isdone_) {
+		this.go$val = this;
+		this.Pid = Pid_ !== undefined ? Pid_ : 0;
+		this.handle = handle_ !== undefined ? handle_ : 0;
+		this.isdone = isdone_ !== undefined ? isdone_ : 0;
+	});
+	go$pkg.Process = Process;
+	var ProcAttr;
+	ProcAttr = go$newType(0, "Struct", "os.ProcAttr", "ProcAttr", "os", function(Dir_, Env_, Files_, Sys_) {
+		this.go$val = this;
+		this.Dir = Dir_ !== undefined ? Dir_ : "";
+		this.Env = Env_ !== undefined ? Env_ : (go$sliceType(Go$String)).nil;
+		this.Files = Files_ !== undefined ? Files_ : (go$sliceType((go$ptrType(File)))).nil;
+		this.Sys = Sys_ !== undefined ? Sys_ : (go$ptrType(syscall.SysProcAttr)).nil;
+	});
+	go$pkg.ProcAttr = ProcAttr;
+	var Signal;
+	Signal = go$newType(0, "Interface", "os.Signal", "Signal", "os", null);
+	go$pkg.Signal = Signal;
+	var ProcessState;
+	ProcessState = go$newType(0, "Struct", "os.ProcessState", "ProcessState", "os", function(pid_, status_, rusage_) {
+		this.go$val = this;
+		this.pid = pid_ !== undefined ? pid_ : 0;
+		this.status = status_ !== undefined ? status_ : 0;
+		this.rusage = rusage_ !== undefined ? rusage_ : (go$ptrType(syscall.Rusage)).nil;
+	});
+	go$pkg.ProcessState = ProcessState;
+	var LinkError;
+	LinkError = go$newType(0, "Struct", "os.LinkError", "LinkError", "os", function(Op_, Old_, New_, Err_) {
+		this.go$val = this;
+		this.Op = Op_ !== undefined ? Op_ : "";
+		this.Old = Old_ !== undefined ? Old_ : "";
+		this.New = New_ !== undefined ? New_ : "";
+		this.Err = Err_ !== undefined ? Err_ : null;
+	});
+	go$pkg.LinkError = LinkError;
+	var File;
+	File = go$newType(0, "Struct", "os.File", "File", "os", function(file_) {
+		this.go$val = this;
+		this.file = file_ !== undefined ? file_ : (go$ptrType(file)).nil;
+	});
+	File.prototype.close = function() { return this.go$val.close(); };
+	File.Ptr.prototype.close = function() { return this.file.close(); };
+	go$pkg.File = File;
+	var file;
+	file = go$newType(0, "Struct", "os.file", "file", "os", function(fd_, name_, dirinfo_, nepipe_) {
+		this.go$val = this;
+		this.fd = fd_ !== undefined ? fd_ : 0;
+		this.name = name_ !== undefined ? name_ : "";
+		this.dirinfo = dirinfo_ !== undefined ? dirinfo_ : (go$ptrType(dirInfo)).nil;
+		this.nepipe = nepipe_ !== undefined ? nepipe_ : 0;
+	});
+	go$pkg.file = file;
+	var dirInfo;
+	dirInfo = go$newType(0, "Struct", "os.dirInfo", "dirInfo", "os", function(buf_, nbuf_, bufp_) {
+		this.go$val = this;
+		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
+		this.nbuf = nbuf_ !== undefined ? nbuf_ : 0;
+		this.bufp = bufp_ !== undefined ? bufp_ : 0;
+	});
+	go$pkg.dirInfo = dirInfo;
+	var FileInfo;
+	FileInfo = go$newType(0, "Interface", "os.FileInfo", "FileInfo", "os", null);
+	go$pkg.FileInfo = FileInfo;
+	var FileMode;
+	FileMode = go$newType(4, "Uint32", "os.FileMode", "FileMode", "os", null);
+	go$pkg.FileMode = FileMode;
+	var fileStat;
+	fileStat = go$newType(0, "Struct", "os.fileStat", "fileStat", "os", function(name_, size_, mode_, modTime_, sys_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : "";
+		this.size = size_ !== undefined ? size_ : new Go$Int64(0, 0);
+		this.mode = mode_ !== undefined ? mode_ : 0;
+		this.modTime = modTime_ !== undefined ? modTime_ : new time.Time.Ptr();
+		this.sys = sys_ !== undefined ? sys_ : null;
+	});
+	go$pkg.fileStat = fileStat;
+	PathError.init([["Op", "", Go$String, ""], ["Path", "", Go$String, ""], ["Err", "", go$error, ""]]);
+	(go$ptrType(PathError)).methods = [["Error", "", [], [Go$String], false]];
+	SyscallError.init([["Syscall", "", Go$String, ""], ["Err", "", go$error, ""]]);
+	(go$ptrType(SyscallError)).methods = [["Error", "", [], [Go$String], false]];
+	Process.init([["Pid", "", Go$Int, ""], ["handle", "os", Go$Uintptr, ""], ["isdone", "os", Go$Uint32, ""]]);
+	(go$ptrType(Process)).methods = [["Kill", "", [], [go$error], false], ["Release", "", [], [go$error], false], ["Signal", "", [Signal], [go$error], false], ["Wait", "", [], [(go$ptrType(ProcessState)), go$error], false], ["done", "os", [], [Go$Bool], false], ["kill", "os", [], [go$error], false], ["release", "os", [], [go$error], false], ["setDone", "os", [], [], false], ["signal", "os", [Signal], [go$error], false], ["wait", "os", [], [(go$ptrType(ProcessState)), go$error], false]];
+	ProcAttr.init([["Dir", "", Go$String, ""], ["Env", "", (go$sliceType(Go$String)), ""], ["Files", "", (go$sliceType((go$ptrType(File)))), ""], ["Sys", "", (go$ptrType(syscall.SysProcAttr)), ""]]);
+	Signal.init([["Signal", "", (go$funcType([], [], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
+	ProcessState.init([["pid", "os", Go$Int, ""], ["status", "os", syscall.WaitStatus, ""], ["rusage", "os", (go$ptrType(syscall.Rusage)), ""]]);
+	(go$ptrType(ProcessState)).methods = [["Exited", "", [], [Go$Bool], false], ["Pid", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Success", "", [], [Go$Bool], false], ["Sys", "", [], [go$emptyInterface], false], ["SysUsage", "", [], [go$emptyInterface], false], ["SystemTime", "", [], [time.Duration], false], ["UserTime", "", [], [time.Duration], false], ["exited", "os", [], [Go$Bool], false], ["success", "os", [], [Go$Bool], false], ["sys", "os", [], [go$emptyInterface], false], ["sysUsage", "os", [], [go$emptyInterface], false], ["systemTime", "os", [], [time.Duration], false], ["userTime", "os", [], [time.Duration], false]];
+	LinkError.init([["Op", "", Go$String, ""], ["Old", "", Go$String, ""], ["New", "", Go$String, ""], ["Err", "", go$error, ""]]);
+	(go$ptrType(LinkError)).methods = [["Error", "", [], [Go$String], false]];
+	File.init([["", "os", (go$ptrType(file)), ""]]);
+	File.methods = [["close", "os", [], [go$error], false]];
+	(go$ptrType(File)).methods = [["Chdir", "", [], [go$error], false], ["Chmod", "", [FileMode], [go$error], false], ["Chown", "", [Go$Int, Go$Int], [go$error], false], ["Close", "", [], [go$error], false], ["Fd", "", [], [Go$Uintptr], false], ["Name", "", [], [Go$String], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["Readdir", "", [Go$Int], [(go$sliceType(FileInfo)), go$error], false], ["Readdirnames", "", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["Stat", "", [], [FileInfo, go$error], false], ["Sync", "", [], [go$error], false], ["Truncate", "", [Go$Int64], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["close", "os", [], [go$error], false], ["pread", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["pwrite", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["read", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["readdir", "os", [Go$Int], [(go$sliceType(FileInfo)), go$error], false], ["readdirnames", "os", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["seek", "os", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["write", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	file.init([["fd", "os", Go$Int, ""], ["name", "os", Go$String, ""], ["dirinfo", "os", (go$ptrType(dirInfo)), ""], ["nepipe", "os", Go$Int32, ""]]);
+	(go$ptrType(file)).methods = [["close", "os", [], [go$error], false]];
+	dirInfo.init([["buf", "os", (go$sliceType(Go$Uint8)), ""], ["nbuf", "os", Go$Int, ""], ["bufp", "os", Go$Int, ""]]);
+	FileInfo.init([["IsDir", "", (go$funcType([], [Go$Bool], false))], ["ModTime", "", (go$funcType([], [time.Time], false))], ["Mode", "", (go$funcType([], [FileMode], false))], ["Name", "", (go$funcType([], [Go$String], false))], ["Size", "", (go$funcType([], [Go$Int64], false))], ["Sys", "", (go$funcType([], [go$emptyInterface], false))]]);
+	FileMode.methods = [["IsDir", "", [], [Go$Bool], false], ["IsRegular", "", [], [Go$Bool], false], ["Perm", "", [], [FileMode], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(FileMode)).methods = [["IsDir", "", [], [Go$Bool], false], ["IsRegular", "", [], [Go$Bool], false], ["Perm", "", [], [FileMode], false], ["String", "", [], [Go$String], false]];
+	fileStat.init([["name", "os", Go$String, ""], ["size", "os", Go$Int64, ""], ["mode", "os", FileMode, ""], ["modTime", "os", time.Time, ""], ["sys", "os", go$emptyInterface, ""]]);
+	(go$ptrType(fileStat)).methods = [["IsDir", "", [], [Go$Bool], false], ["ModTime", "", [], [time.Time], false], ["Mode", "", [], [FileMode], false], ["Name", "", [], [Go$String], false], ["Size", "", [], [Go$Int64], false], ["Sys", "", [], [go$emptyInterface], false]];
+	File.Ptr.prototype.readdirnames = function(n) {
+		var names, err, f, d, size, errno, _tuple, _tuple$1, _tuple$2, nb, nc, _tuple$3, _tuple$4, _tuple$5;
+		names = (go$sliceType(Go$String)).nil;
+		err = null;
+		f = this;
+		if (f.file.dirinfo === (go$ptrType(dirInfo)).nil) {
+			f.file.dirinfo = new dirInfo.Ptr();
+			f.file.dirinfo.buf = (go$sliceType(Go$Uint8)).make(4096, 0, function() { return 0; });
+		}
+		d = f.file.dirinfo;
+		size = n;
+		if (size <= 0) {
+			size = 100;
+			n = -1;
+		}
+		names = (go$sliceType(Go$String)).make(0, size, function() { return ""; });
+		while (!((n === 0))) {
+			if (d.bufp >= d.nbuf) {
+				d.bufp = 0;
+				errno = null;
+				_tuple = syscall.ReadDirent(f.file.fd, d.buf), d.nbuf = _tuple[0], errno = _tuple[1];
+				if (!(go$interfaceIsEqual(errno, null))) {
+					_tuple$1 = [names, NewSyscallError("readdirent", errno)], names = _tuple$1[0], err = _tuple$1[1];
+					return [names, err];
+				}
+				if (d.nbuf <= 0) {
+					break;
+				}
+			}
+			_tuple$2 = [0, 0], nb = _tuple$2[0], nc = _tuple$2[1];
+			_tuple$3 = syscall.ParseDirent(go$subslice(d.buf, d.bufp, d.nbuf), n, names), nb = _tuple$3[0], nc = _tuple$3[1], names = _tuple$3[2];
+			d.bufp = d.bufp + (nb) >> 0;
+			n = n - (nc) >> 0;
+		}
+		if (n >= 0 && (names.length === 0)) {
+			_tuple$4 = [names, io.EOF], names = _tuple$4[0], err = _tuple$4[1];
+			return [names, err];
+		}
+		_tuple$5 = [names, null], names = _tuple$5[0], err = _tuple$5[1];
+		return [names, err];
+	};
+	File.prototype.readdirnames = function(n) { return this.go$val.readdirnames(n); };
+	var FindProcess = go$pkg.FindProcess = function(pid) {
+		var p, err, _tuple;
+		p = (go$ptrType(Process)).nil;
+		err = null;
+		_tuple = findProcess(pid), p = _tuple[0], err = _tuple[1];
+		return [p, err];
+	};
+	var StartProcess = go$pkg.StartProcess = function(name, argv, attr) {
+		return startProcess(name, argv, attr);
+	};
+	Process.Ptr.prototype.Release = function() {
+		var p;
+		p = this;
+		return p.release();
+	};
+	Process.prototype.Release = function() { return this.go$val.Release(); };
+	Process.Ptr.prototype.Kill = function() {
+		var p;
+		p = this;
+		return p.kill();
+	};
+	Process.prototype.Kill = function() { return this.go$val.Kill(); };
+	Process.Ptr.prototype.Wait = function() {
+		var p;
+		p = this;
+		return p.wait();
+	};
+	Process.prototype.Wait = function() { return this.go$val.Wait(); };
+	Process.Ptr.prototype.Signal = function(sig) {
+		var p;
+		p = this;
+		return p.signal(sig);
+	};
+	Process.prototype.Signal = function(sig) { return this.go$val.Signal(sig); };
+	ProcessState.Ptr.prototype.UserTime = function() {
+		var p;
+		p = this;
+		return p.userTime();
+	};
+	ProcessState.prototype.UserTime = function() { return this.go$val.UserTime(); };
+	ProcessState.Ptr.prototype.SystemTime = function() {
+		var p;
+		p = this;
+		return p.systemTime();
+	};
+	ProcessState.prototype.SystemTime = function() { return this.go$val.SystemTime(); };
+	ProcessState.Ptr.prototype.Exited = function() {
+		var p;
+		p = this;
+		return p.exited();
+	};
+	ProcessState.prototype.Exited = function() { return this.go$val.Exited(); };
+	ProcessState.Ptr.prototype.Success = function() {
+		var p;
+		p = this;
+		return p.success();
+	};
+	ProcessState.prototype.Success = function() { return this.go$val.Success(); };
+	ProcessState.Ptr.prototype.Sys = function() {
+		var p;
+		p = this;
+		return p.sys();
+	};
+	ProcessState.prototype.Sys = function() { return this.go$val.Sys(); };
+	ProcessState.Ptr.prototype.SysUsage = function() {
+		var p;
+		p = this;
+		return p.sysUsage();
+	};
+	ProcessState.prototype.SysUsage = function() { return this.go$val.SysUsage(); };
+	var Hostname = go$pkg.Hostname = function() {
+		var name, err, _tuple;
+		name = "";
+		err = null;
+		_tuple = hostname(), name = _tuple[0], err = _tuple[1];
+		return [name, err];
+	};
+	File.Ptr.prototype.Readdir = function(n) {
+		var fi, err, f, _tuple, _tuple$1;
+		fi = (go$sliceType(FileInfo)).nil;
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			_tuple = [(go$sliceType(FileInfo)).nil, go$pkg.ErrInvalid], fi = _tuple[0], err = _tuple[1];
+			return [fi, err];
+		}
+		_tuple$1 = f.readdir(n), fi = _tuple$1[0], err = _tuple$1[1];
+		return [fi, err];
+	};
+	File.prototype.Readdir = function(n) { return this.go$val.Readdir(n); };
+	File.Ptr.prototype.Readdirnames = function(n) {
+		var names, err, f, _tuple, _tuple$1;
+		names = (go$sliceType(Go$String)).nil;
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			_tuple = [(go$sliceType(Go$String)).nil, go$pkg.ErrInvalid], names = _tuple[0], err = _tuple[1];
+			return [names, err];
+		}
+		_tuple$1 = f.readdirnames(n), names = _tuple$1[0], err = _tuple$1[1];
+		return [names, err];
+	};
+	File.prototype.Readdirnames = function(n) { return this.go$val.Readdirnames(n); };
+	var Expand = go$pkg.Expand = function(s, mapping) {
+		var x, x$1, buf, i, j, _tuple, name, w;
+		buf = (go$sliceType(Go$Uint8)).make(0, (x = 2, x$1 = s.length, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0), function() { return 0; });
+		i = 0;
+		j = 0;
+		while (j < s.length) {
+			if ((s.charCodeAt(j) === 36) && (j + 1 >> 0) < s.length) {
+				buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(s.substring(i, j))));
+				_tuple = getShellName(s.substring((j + 1 >> 0))), name = _tuple[0], w = _tuple[1];
+				buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(mapping(name))));
+				j = j + (w) >> 0;
+				i = j + 1 >> 0;
+			}
+			j = j + 1 >> 0;
+		}
+		return go$bytesToString(buf) + s.substring(i);
+	};
+	var ExpandEnv = go$pkg.ExpandEnv = function(s) {
+		return Expand(s, Getenv);
+	};
+	var isShellSpecialVar = function(c) {
+		var _ref;
+		_ref = c;
+		if (_ref === 42 || _ref === 35 || _ref === 36 || _ref === 64 || _ref === 33 || _ref === 63 || _ref === 48 || _ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55 || _ref === 56 || _ref === 57) {
+			return true;
+		}
+		return false;
+	};
+	var isAlphaNum = function(c) {
+		return (c === 95) || 48 <= c && c <= 57 || 97 <= c && c <= 122 || 65 <= c && c <= 90;
+	};
+	var getShellName = function(s) {
+		var i, i$1;
+		if (s.charCodeAt(0) === 123) {
+			if (s.length > 2 && isShellSpecialVar(s.charCodeAt(1)) && (s.charCodeAt(2) === 125)) {
+				return [s.substring(1, 2), 3];
+			}
+			i = 1;
+			while (i < s.length) {
+				if (s.charCodeAt(i) === 125) {
+					return [s.substring(1, i), i + 1 >> 0];
+				}
+				i = i + 1 >> 0;
+			}
+			return ["", 1];
+		} else if (isShellSpecialVar(s.charCodeAt(0))) {
+			return [s.substring(0, 1), 1];
+		}
+		i$1 = 0;
+		i$1 = 0;
+		while (i$1 < s.length && isAlphaNum(s.charCodeAt(i$1))) {
+			i$1 = i$1 + 1 >> 0;
+		}
+		return [s.substring(0, i$1), i$1];
+	};
+	var Getenv = go$pkg.Getenv = function(key) {
+		var _tuple, v;
+		_tuple = syscall.Getenv(key), v = _tuple[0];
+		return v;
+	};
+	var Setenv = go$pkg.Setenv = function(key, value) {
+		var err;
+		err = syscall.Setenv(key, value);
+		if (!(go$interfaceIsEqual(err, null))) {
+			return NewSyscallError("setenv", err);
+		}
+		return null;
+	};
+	var Clearenv = go$pkg.Clearenv = function() {
+		syscall.Clearenv();
+	};
+	var Environ = go$pkg.Environ = function() {
+		return syscall.Environ();
+	};
+	PathError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return e.Op + " " + e.Path + ": " + e.Err.Error();
+	};
+	PathError.prototype.Error = function() { return this.go$val.Error(); };
+	SyscallError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return e.Syscall + ": " + e.Err.Error();
+	};
+	SyscallError.prototype.Error = function() { return this.go$val.Error(); };
+	var NewSyscallError = go$pkg.NewSyscallError = function(syscall$1, err) {
+		if (go$interfaceIsEqual(err, null)) {
+			return null;
+		}
+		return new SyscallError.Ptr(syscall$1, err);
+	};
+	var IsExist = go$pkg.IsExist = function(err) {
+		return isExist(err);
+	};
+	var IsNotExist = go$pkg.IsNotExist = function(err) {
+		return isNotExist(err);
+	};
+	var IsPermission = go$pkg.IsPermission = function(err) {
+		return isPermission(err);
+	};
+	var isExist = function(err) {
+		var pe, _ref, _type;
+		_ref = err;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === null) {
+			pe = _ref;
+			return false;
+		} else if (_type === (go$ptrType(PathError))) {
+			pe = _ref.go$val;
+			err = pe.Err;
+		} else if (_type === (go$ptrType(LinkError))) {
+			pe = _ref.go$val;
+			err = pe.Err;
+		}
+		return go$interfaceIsEqual(err, new syscall.Errno(17)) || go$interfaceIsEqual(err, go$pkg.ErrExist);
+	};
+	var isNotExist = function(err) {
+		var pe, _ref, _type;
+		_ref = err;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === null) {
+			pe = _ref;
+			return false;
+		} else if (_type === (go$ptrType(PathError))) {
+			pe = _ref.go$val;
+			err = pe.Err;
+		} else if (_type === (go$ptrType(LinkError))) {
+			pe = _ref.go$val;
+			err = pe.Err;
+		}
+		return go$interfaceIsEqual(err, new syscall.Errno(2)) || go$interfaceIsEqual(err, go$pkg.ErrNotExist);
+	};
+	var isPermission = function(err) {
+		var pe, _ref, _type;
+		_ref = err;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === null) {
+			pe = _ref;
+			return false;
+		} else if (_type === (go$ptrType(PathError))) {
+			pe = _ref.go$val;
+			err = pe.Err;
+		} else if (_type === (go$ptrType(LinkError))) {
+			pe = _ref.go$val;
+			err = pe.Err;
+		}
+		return go$interfaceIsEqual(err, new syscall.Errno(13)) || go$interfaceIsEqual(err, new syscall.Errno(1)) || go$interfaceIsEqual(err, go$pkg.ErrPermission);
+	};
+	var newProcess = function(pid, handle) {
+		var p;
+		p = new Process.Ptr(pid, handle, 0);
+		runtime.SetFinalizer(p, new (go$funcType([(go$ptrType(Process))], [go$error], false))((function(recv) { return recv.Release(); })));
+		return p;
+	};
+	Process.Ptr.prototype.setDone = function() {
+		var p, v;
+		p = this;
+		atomic.StoreUint32(new (go$ptrType(Go$Uint32))(function() { return p.isdone; }, function(v) { p.isdone = v; }), 1);
+	};
+	Process.prototype.setDone = function() { return this.go$val.setDone(); };
+	Process.Ptr.prototype.done = function() {
+		var p, v;
+		p = this;
+		return atomic.LoadUint32(new (go$ptrType(Go$Uint32))(function() { return p.isdone; }, function(v) { p.isdone = v; })) > 0;
+	};
+	Process.prototype.done = function() { return this.go$val.done(); };
+	var Getpid = go$pkg.Getpid = function() {
+		return syscall.Getpid();
+	};
+	var Getppid = go$pkg.Getppid = function() {
+		return syscall.Getppid();
+	};
+	var startProcess = function(name, argv, attr) {
+		var p, err, err$1, _tuple, pe, _tuple$1, sysattr, _ref, _i, _slice, _index, f, _tuple$2, pid, h, e, _tuple$3, _tuple$4;
+		p = (go$ptrType(Process)).nil;
+		err = null;
+		if (!(attr === (go$ptrType(ProcAttr)).nil) && attr.Sys === (go$ptrType(syscall.SysProcAttr)).nil && !(attr.Dir === "")) {
+			if (_tuple = Stat(attr.Dir), err$1 = _tuple[1], !(go$interfaceIsEqual(err$1, null))) {
+				pe = (err$1 !== null && err$1.constructor === (go$ptrType(PathError)) ? err$1.go$val : go$typeAssertionFailed(err$1, (go$ptrType(PathError))));
+				pe.Op = "chdir";
+				_tuple$1 = [(go$ptrType(Process)).nil, pe], p = _tuple$1[0], err = _tuple$1[1];
+				return [p, err];
+			}
+		}
+		sysattr = new syscall.ProcAttr.Ptr(attr.Dir, attr.Env, (go$sliceType(Go$Uintptr)).nil, attr.Sys);
+		if (sysattr.Env === (go$sliceType(Go$String)).nil) {
+			sysattr.Env = Environ();
+		}
+		_ref = attr.Files;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			sysattr.Files = go$append(sysattr.Files, f.Fd());
+		}
+		_tuple$2 = syscall.StartProcess(name, argv, sysattr), pid = _tuple$2[0], h = _tuple$2[1], e = _tuple$2[2];
+		if (!(go$interfaceIsEqual(e, null))) {
+			_tuple$3 = [(go$ptrType(Process)).nil, new PathError.Ptr("fork/exec", name, e)], p = _tuple$3[0], err = _tuple$3[1];
+			return [p, err];
+		}
+		_tuple$4 = [newProcess(pid, h), null], p = _tuple$4[0], err = _tuple$4[1];
+		return [p, err];
+	};
+	Process.Ptr.prototype.kill = function() {
+		var p;
+		p = this;
+		return p.Signal(go$pkg.Kill);
+	};
+	Process.prototype.kill = function() { return this.go$val.kill(); };
+	ProcessState.Ptr.prototype.Pid = function() {
+		var p;
+		p = this;
+		return p.pid;
+	};
+	ProcessState.prototype.Pid = function() { return this.go$val.Pid(); };
+	ProcessState.Ptr.prototype.exited = function() {
+		var p;
+		p = this;
+		return (new syscall.WaitStatus(p.status)).Exited();
+	};
+	ProcessState.prototype.exited = function() { return this.go$val.exited(); };
+	ProcessState.Ptr.prototype.success = function() {
+		var p;
+		p = this;
+		return (new syscall.WaitStatus(p.status)).ExitStatus() === 0;
+	};
+	ProcessState.prototype.success = function() { return this.go$val.success(); };
+	ProcessState.Ptr.prototype.sys = function() {
+		var p;
+		p = this;
+		return new syscall.WaitStatus(p.status);
+	};
+	ProcessState.prototype.sys = function() { return this.go$val.sys(); };
+	ProcessState.Ptr.prototype.sysUsage = function() {
+		var p;
+		p = this;
+		return p.rusage;
+	};
+	ProcessState.prototype.sysUsage = function() { return this.go$val.sysUsage(); };
+	var itod = function(i) {
+		var u, b, bp;
+		if (i === 0) {
+			return "0";
+		}
+		u = new Go$Uint64(0, i);
+		if (i < 0) {
+			u = new Go$Uint64(-u.high, -u.low);
+		}
+		b = go$makeNativeArray("Uint8", 32, function() { return 0; });
+		bp = 32;
+		while ((u.high > 0 || (u.high === 0 && u.low > 0))) {
+			bp = bp - 1 >> 0;
+			b[bp] = (go$div64(u, new Go$Uint64(0, 10), true).low << 24 >>> 24) + 48 << 24 >>> 24;
+			u = go$div64(u, new Go$Uint64(0, 10), false);
+		}
+		if (i < 0) {
+			bp = bp - 1 >> 0;
+			b[bp] = 45;
+		}
+		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(b), bp));
+	};
+	ProcessState.Ptr.prototype.String = function() {
+		var p, x, status, res;
+		p = this;
+		if (p === (go$ptrType(ProcessState)).nil) {
+			return "<nil>";
+		}
+		status = (x = p.Sys(), (x !== null && x.constructor === syscall.WaitStatus ? x.go$val : go$typeAssertionFailed(x, syscall.WaitStatus)));
+		res = "";
+		if ((new syscall.WaitStatus(status)).Exited()) {
+			res = "exit status " + itod((new syscall.WaitStatus(status)).ExitStatus());
+		} else if ((new syscall.WaitStatus(status)).Signaled()) {
+			res = "signal: " + (new syscall.Signal((new syscall.WaitStatus(status)).Signal())).String();
+		} else if ((new syscall.WaitStatus(status)).Stopped()) {
+			res = "stop signal: " + (new syscall.Signal((new syscall.WaitStatus(status)).StopSignal())).String();
+			if (((new syscall.WaitStatus(status)).StopSignal() === 5) && !(((new syscall.WaitStatus(status)).TrapCause() === 0))) {
+				res = res + (" (trap " + itod((new syscall.WaitStatus(status)).TrapCause()) + ")");
+			}
+		} else if ((new syscall.WaitStatus(status)).Continued()) {
+			res = "continued";
+		}
+		if ((new syscall.WaitStatus(status)).CoreDump()) {
+			res = res + " (core dumped)";
+		}
+		return res;
+	};
+	ProcessState.prototype.String = function() { return this.go$val.String(); };
+	Process.Ptr.prototype.wait = function() {
+		var ps, err, p, _tuple, status, rusage, _tuple$1, v, pid1, e, _tuple$2, _tuple$3;
+		ps = (go$ptrType(ProcessState)).nil;
+		err = null;
+		p = this;
+		if (p.Pid === -1) {
+			_tuple = [(go$ptrType(ProcessState)).nil, new syscall.Errno(22)], ps = _tuple[0], err = _tuple[1];
+			return [ps, err];
+		}
+		status = 0;
+		rusage = new syscall.Rusage.Ptr();
+		_tuple$1 = syscall.Wait4(p.Pid, new (go$ptrType(syscall.WaitStatus))(function() { return status; }, function(v) { status = v; }), 0, rusage), pid1 = _tuple$1[0], e = _tuple$1[1];
+		if (!(go$interfaceIsEqual(e, null))) {
+			_tuple$2 = [(go$ptrType(ProcessState)).nil, NewSyscallError("wait", e)], ps = _tuple$2[0], err = _tuple$2[1];
+			return [ps, err];
+		}
+		if (!((pid1 === 0))) {
+			p.setDone();
+		}
+		ps = new ProcessState.Ptr(pid1, status, rusage);
+		_tuple$3 = [ps, null], ps = _tuple$3[0], err = _tuple$3[1];
+		return [ps, err];
+	};
+	Process.prototype.wait = function() { return this.go$val.wait(); };
+	Process.Ptr.prototype.signal = function(sig) {
+		var p, _tuple, s, ok, e;
+		p = this;
+		if (p.done()) {
+			return errors.New("os: process already finished");
+		}
+		_tuple = (sig !== null && sig.constructor === syscall.Signal ? [sig.go$val, true] : [0, false]), s = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			return errors.New("os: unsupported signal type");
+		}
+		if (e = syscall.Kill(p.Pid, s), !(go$interfaceIsEqual(e, null))) {
+			return e;
+		}
+		return null;
+	};
+	Process.prototype.signal = function(sig) { return this.go$val.signal(sig); };
+	Process.Ptr.prototype.release = function() {
+		var p;
+		p = this;
+		p.Pid = -1;
+		runtime.SetFinalizer(p, null);
+		return null;
+	};
+	Process.prototype.release = function() { return this.go$val.release(); };
+	var findProcess = function(pid) {
+		var p, err, _tuple;
+		p = (go$ptrType(Process)).nil;
+		err = null;
+		_tuple = [newProcess(pid, 0), null], p = _tuple[0], err = _tuple[1];
+		return [p, err];
+	};
+	ProcessState.Ptr.prototype.userTime = function() {
+		var p, x;
+		p = this;
+		return go$mul64((x = p.rusage.Utime.Nano(), new time.Duration(x.high, x.low)), new time.Duration(0, 1));
+	};
+	ProcessState.prototype.userTime = function() { return this.go$val.userTime(); };
+	ProcessState.Ptr.prototype.systemTime = function() {
+		var p, x;
+		p = this;
+		return go$mul64((x = p.rusage.Stime.Nano(), new time.Duration(x.high, x.low)), new time.Duration(0, 1));
+	};
+	ProcessState.prototype.systemTime = function() { return this.go$val.systemTime(); };
+	File.Ptr.prototype.Name = function() {
+		var f;
+		f = this;
+		return f.file.name;
+	};
+	File.prototype.Name = function() { return this.go$val.Name(); };
+	LinkError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return e.Op + " " + e.Old + " " + e.New + ": " + e.Err.Error();
+	};
+	LinkError.prototype.Error = function() { return this.go$val.Error(); };
+	File.Ptr.prototype.Read = function(b) {
+		var n, err, f, _tuple, _tuple$1, e, _tuple$2, _tuple$3;
+		n = 0;
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			_tuple = [0, go$pkg.ErrInvalid], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		_tuple$1 = f.read(b), n = _tuple$1[0], e = _tuple$1[1];
+		if (n < 0) {
+			n = 0;
+		}
+		if ((n === 0) && b.length > 0 && go$interfaceIsEqual(e, null)) {
+			_tuple$2 = [0, io.EOF], n = _tuple$2[0], err = _tuple$2[1];
+			return [n, err];
+		}
+		if (!(go$interfaceIsEqual(e, null))) {
+			err = new PathError.Ptr("read", f.file.name, e);
+		}
+		_tuple$3 = [n, err], n = _tuple$3[0], err = _tuple$3[1];
+		return [n, err];
+	};
+	File.prototype.Read = function(b) { return this.go$val.Read(b); };
+	File.Ptr.prototype.ReadAt = function(b, off) {
+		var n, err, f, _tuple, _tuple$1, m, e, _tuple$2, x;
+		n = 0;
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			_tuple = [0, go$pkg.ErrInvalid], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		while (b.length > 0) {
+			_tuple$1 = f.pread(b, off), m = _tuple$1[0], e = _tuple$1[1];
+			if ((m === 0) && go$interfaceIsEqual(e, null)) {
+				_tuple$2 = [n, io.EOF], n = _tuple$2[0], err = _tuple$2[1];
+				return [n, err];
+			}
+			if (!(go$interfaceIsEqual(e, null))) {
+				err = new PathError.Ptr("read", f.file.name, e);
+				break;
+			}
+			n = n + (m) >> 0;
+			b = go$subslice(b, m);
+			off = (x = new Go$Int64(0, m), new Go$Int64(off.high + x.high, off.low + x.low));
+		}
+		return [n, err];
+	};
+	File.prototype.ReadAt = function(b, off) { return this.go$val.ReadAt(b, off); };
+	File.Ptr.prototype.Write = function(b) {
+		var n, err, f, _tuple, _tuple$1, e, _tuple$2;
+		n = 0;
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			_tuple = [0, go$pkg.ErrInvalid], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		_tuple$1 = f.write(b), n = _tuple$1[0], e = _tuple$1[1];
+		if (n < 0) {
+			n = 0;
+		}
+		epipecheck(f, e);
+		if (!(go$interfaceIsEqual(e, null))) {
+			err = new PathError.Ptr("write", f.file.name, e);
+		}
+		_tuple$2 = [n, err], n = _tuple$2[0], err = _tuple$2[1];
+		return [n, err];
+	};
+	File.prototype.Write = function(b) { return this.go$val.Write(b); };
+	File.Ptr.prototype.WriteAt = function(b, off) {
+		var n, err, f, _tuple, _tuple$1, m, e, x;
+		n = 0;
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			_tuple = [0, go$pkg.ErrInvalid], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		while (b.length > 0) {
+			_tuple$1 = f.pwrite(b, off), m = _tuple$1[0], e = _tuple$1[1];
+			if (!(go$interfaceIsEqual(e, null))) {
+				err = new PathError.Ptr("write", f.file.name, e);
+				break;
+			}
+			n = n + (m) >> 0;
+			b = go$subslice(b, m);
+			off = (x = new Go$Int64(0, m), new Go$Int64(off.high + x.high, off.low + x.low));
+		}
+		return [n, err];
+	};
+	File.prototype.WriteAt = function(b, off) { return this.go$val.WriteAt(b, off); };
+	File.Ptr.prototype.Seek = function(offset, whence) {
+		var ret, err, f, _tuple, _tuple$1, r, e, _tuple$2, _tuple$3;
+		ret = new Go$Int64(0, 0);
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			_tuple = [new Go$Int64(0, 0), go$pkg.ErrInvalid], ret = _tuple[0], err = _tuple[1];
+			return [ret, err];
+		}
+		_tuple$1 = f.seek(offset, whence), r = _tuple$1[0], e = _tuple$1[1];
+		if (go$interfaceIsEqual(e, null) && !(f.file.dirinfo === (go$ptrType(dirInfo)).nil) && !((r.high === 0 && r.low === 0))) {
+			e = new syscall.Errno(21);
+		}
+		if (!(go$interfaceIsEqual(e, null))) {
+			_tuple$2 = [new Go$Int64(0, 0), new PathError.Ptr("seek", f.file.name, e)], ret = _tuple$2[0], err = _tuple$2[1];
+			return [ret, err];
+		}
+		_tuple$3 = [r, null], ret = _tuple$3[0], err = _tuple$3[1];
+		return [ret, err];
+	};
+	File.prototype.Seek = function(offset, whence) { return this.go$val.Seek(offset, whence); };
+	File.Ptr.prototype.WriteString = function(s) {
+		var ret, err, f, _tuple, _tuple$1;
+		ret = 0;
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			_tuple = [0, go$pkg.ErrInvalid], ret = _tuple[0], err = _tuple[1];
+			return [ret, err];
+		}
+		_tuple$1 = f.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), ret = _tuple$1[0], err = _tuple$1[1];
+		return [ret, err];
+	};
+	File.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
+	var Mkdir = go$pkg.Mkdir = function(name, perm) {
+		var e;
+		e = syscall.Mkdir(name, syscallMode(perm));
+		if (!(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("mkdir", name, e);
+		}
+		return null;
+	};
+	var Chdir = go$pkg.Chdir = function(dir) {
+		var e;
+		if (e = syscall.Chdir(dir), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("chdir", dir, e);
+		}
+		return null;
+	};
+	File.Ptr.prototype.Chdir = function() {
+		var f, e;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			return go$pkg.ErrInvalid;
+		}
+		if (e = syscall.Fchdir(f.file.fd), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("chdir", f.file.name, e);
+		}
+		return null;
+	};
+	File.prototype.Chdir = function() { return this.go$val.Chdir(); };
+	var Open = go$pkg.Open = function(name) {
+		var file$1, err, _tuple;
+		file$1 = (go$ptrType(File)).nil;
+		err = null;
+		_tuple = OpenFile(name, 0, 0), file$1 = _tuple[0], err = _tuple[1];
+		return [file$1, err];
+	};
+	var Create = go$pkg.Create = function(name) {
+		var file$1, err, _tuple;
+		file$1 = (go$ptrType(File)).nil;
+		err = null;
+		_tuple = OpenFile(name, 1538, 438), file$1 = _tuple[0], err = _tuple[1];
+		return [file$1, err];
+	};
+	var sigpipe = function() {
+		throw go$panic("Native function not implemented: sigpipe");
+	};
+	var Link = go$pkg.Link = function(oldname, newname) {
+		var e;
+		e = syscall.Link(oldname, newname);
+		if (!(go$interfaceIsEqual(e, null))) {
+			return new LinkError.Ptr("link", oldname, newname, e);
+		}
+		return null;
+	};
+	var Symlink = go$pkg.Symlink = function(oldname, newname) {
+		var e;
+		e = syscall.Symlink(oldname, newname);
+		if (!(go$interfaceIsEqual(e, null))) {
+			return new LinkError.Ptr("symlink", oldname, newname, e);
+		}
+		return null;
+	};
+	var Readlink = go$pkg.Readlink = function(name) {
+		var len, b, _tuple, n, e, x;
+		len = 128;
+		while (true) {
+			b = (go$sliceType(Go$Uint8)).make(len, 0, function() { return 0; });
+			_tuple = syscall.Readlink(name, b), n = _tuple[0], e = _tuple[1];
+			if (!(go$interfaceIsEqual(e, null))) {
+				return ["", new PathError.Ptr("readlink", name, e)];
+			}
+			if (n < len) {
+				return [go$bytesToString(go$subslice(b, 0, n)), null];
+			}
+			len = (x = 2, (((len >>> 16 << 16) * x >> 0) + (len << 16 >>> 16) * x) >> 0);
+		}
+	};
+	var Rename = go$pkg.Rename = function(oldname, newname) {
+		var e;
+		e = syscall.Rename(oldname, newname);
+		if (!(go$interfaceIsEqual(e, null))) {
+			return new LinkError.Ptr("rename", oldname, newname, e);
+		}
+		return null;
+	};
+	var syscallMode = function(i) {
+		var o;
+		o = 0;
+		o = (o | (((new FileMode(i)).Perm() >>> 0))) >>> 0;
+		if (!((((i & 8388608) >>> 0) === 0))) {
+			o = (o | 2048) >>> 0;
+		}
+		if (!((((i & 4194304) >>> 0) === 0))) {
+			o = (o | 1024) >>> 0;
+		}
+		if (!((((i & 1048576) >>> 0) === 0))) {
+			o = (o | 512) >>> 0;
+		}
+		return o;
+	};
+	var Chmod = go$pkg.Chmod = function(name, mode) {
+		var e;
+		if (e = syscall.Chmod(name, syscallMode(mode)), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("chmod", name, e);
+		}
+		return null;
+	};
+	File.Ptr.prototype.Chmod = function(mode) {
+		var f, e;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			return go$pkg.ErrInvalid;
+		}
+		if (e = syscall.Fchmod(f.file.fd, syscallMode(mode)), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("chmod", f.file.name, e);
+		}
+		return null;
+	};
+	File.prototype.Chmod = function(mode) { return this.go$val.Chmod(mode); };
+	var Chown = go$pkg.Chown = function(name, uid, gid) {
+		var e;
+		if (e = syscall.Chown(name, uid, gid), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("chown", name, e);
+		}
+		return null;
+	};
+	var Lchown = go$pkg.Lchown = function(name, uid, gid) {
+		var e;
+		if (e = syscall.Lchown(name, uid, gid), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("lchown", name, e);
+		}
+		return null;
+	};
+	File.Ptr.prototype.Chown = function(uid, gid) {
+		var f, e;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			return go$pkg.ErrInvalid;
+		}
+		if (e = syscall.Fchown(f.file.fd, uid, gid), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("chown", f.file.name, e);
+		}
+		return null;
+	};
+	File.prototype.Chown = function(uid, gid) { return this.go$val.Chown(uid, gid); };
+	File.Ptr.prototype.Truncate = function(size) {
+		var f, e;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			return go$pkg.ErrInvalid;
+		}
+		if (e = syscall.Ftruncate(f.file.fd, size), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("truncate", f.file.name, e);
+		}
+		return null;
+	};
+	File.prototype.Truncate = function(size) { return this.go$val.Truncate(size); };
+	File.Ptr.prototype.Sync = function() {
+		var err, f, e;
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			err = new syscall.Errno(22);
+			return err;
+		}
+		if (e = syscall.Fsync(f.file.fd), !(go$interfaceIsEqual(e, null))) {
+			err = NewSyscallError("fsync", e);
+			return err;
+		}
+		err = null;
+		return err;
+	};
+	File.prototype.Sync = function() { return this.go$val.Sync(); };
+	var Chtimes = go$pkg.Chtimes = function(name, atime$1, mtime) {
+		var utimes, _struct, _struct$1, e;
+		utimes = go$makeNativeArray("Struct", 2, function() { return new syscall.Timespec.Ptr(); });
+		utimes[0] = (_struct = syscall.NsecToTimespec(atime$1.UnixNano()), new syscall.Timespec.Ptr(_struct.Sec, _struct.Nsec));
+		utimes[1] = (_struct$1 = syscall.NsecToTimespec(mtime.UnixNano()), new syscall.Timespec.Ptr(_struct$1.Sec, _struct$1.Nsec));
+		if (e = syscall.UtimesNano(name, go$subslice(new (go$sliceType(syscall.Timespec))(utimes), 0)), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("chtimes", name, e);
+		}
+		return null;
+	};
+	File.Ptr.prototype.Fd = function() {
+		var f;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			return 4294967295;
+		}
+		return (f.file.fd >>> 0);
+	};
+	File.prototype.Fd = function() { return this.go$val.Fd(); };
+	var NewFile = go$pkg.NewFile = function(fd, name) {
+		var fdi, f;
+		fdi = (fd >> 0);
+		if (fdi < 0) {
+			return (go$ptrType(File)).nil;
+		}
+		f = new File.Ptr(new file.Ptr(fdi, name, (go$ptrType(dirInfo)).nil, 0));
+		runtime.SetFinalizer(f.file, new (go$funcType([(go$ptrType(file))], [go$error], false))((function(recv) { return recv.close(); })));
+		return f;
+	};
+	var epipecheck = function(file$1, e) {
+		var v, v$1;
+		if (go$interfaceIsEqual(e, new syscall.Errno(32))) {
+			if (atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return file$1.file.nepipe; }, function(v) { file$1.file.nepipe = v; }), 1) >= 10) {
+				sigpipe();
+			}
+		} else {
+			atomic.StoreInt32(new (go$ptrType(Go$Int32))(function() { return file$1.file.nepipe; }, function(v$1) { file$1.file.nepipe = v$1; }), 0);
+		}
+	};
+	var OpenFile = go$pkg.OpenFile = function(name, flag, perm) {
+		var file$1, err, _tuple, r, e, _tuple$1, _tuple$2;
+		file$1 = (go$ptrType(File)).nil;
+		err = null;
+		_tuple = syscall.Open(name, flag | 16777216, syscallMode(perm)), r = _tuple[0], e = _tuple[1];
+		if (!(go$interfaceIsEqual(e, null))) {
+			_tuple$1 = [(go$ptrType(File)).nil, new PathError.Ptr("open", name, e)], file$1 = _tuple$1[0], err = _tuple$1[1];
+			return [file$1, err];
+		}
+		syscall.CloseOnExec(r);
+		_tuple$2 = [NewFile((r >>> 0), name), null], file$1 = _tuple$2[0], err = _tuple$2[1];
+		return [file$1, err];
+	};
+	File.Ptr.prototype.Close = function() {
+		var f;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			return go$pkg.ErrInvalid;
+		}
+		return f.file.close();
+	};
+	File.prototype.Close = function() { return this.go$val.Close(); };
+	file.Ptr.prototype.close = function() {
+		var file$1, err, e;
+		file$1 = this;
+		if (file$1 === (go$ptrType(file)).nil || file$1.fd < 0) {
+			return new syscall.Errno(22);
+		}
+		err = null;
+		if (e = syscall.Close(file$1.fd), !(go$interfaceIsEqual(e, null))) {
+			err = new PathError.Ptr("close", file$1.name, e);
+		}
+		file$1.fd = -1;
+		runtime.SetFinalizer(file$1, null);
+		return err;
+	};
+	file.prototype.close = function() { return this.go$val.close(); };
+	File.Ptr.prototype.Stat = function() {
+		var fi, err, f, _tuple, stat, _tuple$1, _tuple$2;
+		fi = null;
+		err = null;
+		f = this;
+		if (f === (go$ptrType(File)).nil) {
+			_tuple = [null, go$pkg.ErrInvalid], fi = _tuple[0], err = _tuple[1];
+			return [fi, err];
+		}
+		stat = new syscall.Stat_t.Ptr();
+		err = syscall.Fstat(f.file.fd, stat);
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$1 = [null, new PathError.Ptr("stat", f.file.name, err)], fi = _tuple$1[0], err = _tuple$1[1];
+			return [fi, err];
+		}
+		_tuple$2 = [fileInfoFromStat(stat, f.file.name), null], fi = _tuple$2[0], err = _tuple$2[1];
+		return [fi, err];
+	};
+	File.prototype.Stat = function() { return this.go$val.Stat(); };
+	var Stat = go$pkg.Stat = function(name) {
+		var fi, err, stat, _tuple, _tuple$1;
+		fi = null;
+		err = null;
+		stat = new syscall.Stat_t.Ptr();
+		err = syscall.Stat(name, stat);
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple = [null, new PathError.Ptr("stat", name, err)], fi = _tuple[0], err = _tuple[1];
+			return [fi, err];
+		}
+		_tuple$1 = [fileInfoFromStat(stat, name), null], fi = _tuple$1[0], err = _tuple$1[1];
+		return [fi, err];
+	};
+	var Lstat = go$pkg.Lstat = function(name) {
+		var fi, err, stat, _tuple, _tuple$1;
+		fi = null;
+		err = null;
+		stat = new syscall.Stat_t.Ptr();
+		err = syscall.Lstat(name, stat);
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple = [null, new PathError.Ptr("lstat", name, err)], fi = _tuple[0], err = _tuple[1];
+			return [fi, err];
+		}
+		_tuple$1 = [fileInfoFromStat(stat, name), null], fi = _tuple$1[0], err = _tuple$1[1];
+		return [fi, err];
+	};
+	File.Ptr.prototype.readdir = function(n) {
+		var fi, err, f, dirname, _tuple, names, _ref, _i, _slice, _index, filename, i, _tuple$1, fip, lerr, _slice$1, _index$1, _slice$2, _index$2, _tuple$2;
+		fi = (go$sliceType(FileInfo)).nil;
+		err = null;
+		f = this;
+		dirname = f.file.name;
+		if (dirname === "") {
+			dirname = ".";
+		}
+		dirname = dirname + "/";
+		_tuple = f.Readdirnames(n), names = _tuple[0], err = _tuple[1];
+		fi = (go$sliceType(FileInfo)).make(names.length, 0, function() { return null; });
+		_ref = names;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			filename = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_tuple$1 = lstat(dirname + filename), fip = _tuple$1[0], lerr = _tuple$1[1];
+			if (!(go$interfaceIsEqual(lerr, null))) {
+				_slice$1 = fi, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = new fileStat.Ptr(filename, new Go$Int64(0, 0), 0, new time.Time.Ptr(), null)) : go$throwRuntimeError("index out of range");
+				continue;
+			}
+			_slice$2 = fi, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = fip) : go$throwRuntimeError("index out of range");
+		}
+		_tuple$2 = [fi, err], fi = _tuple$2[0], err = _tuple$2[1];
+		return [fi, err];
+	};
+	File.prototype.readdir = function(n) { return this.go$val.readdir(n); };
+	File.Ptr.prototype.read = function(b) {
+		var n, err, f, _tuple;
+		n = 0;
+		err = null;
+		f = this;
+		_tuple = syscall.Read(f.file.fd, b), n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	File.prototype.read = function(b) { return this.go$val.read(b); };
+	File.Ptr.prototype.pread = function(b, off) {
+		var n, err, f, _tuple;
+		n = 0;
+		err = null;
+		f = this;
+		_tuple = syscall.Pread(f.file.fd, b, off), n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	File.prototype.pread = function(b, off) { return this.go$val.pread(b, off); };
+	File.Ptr.prototype.write = function(b) {
+		var n, err, f, _tuple, m, err$1, _tuple$1;
+		n = 0;
+		err = null;
+		f = this;
+		while (true) {
+			_tuple = syscall.Write(f.file.fd, b), m = _tuple[0], err$1 = _tuple[1];
+			n = n + (m) >> 0;
+			if (0 < m && m < b.length || go$interfaceIsEqual(err$1, new syscall.Errno(4))) {
+				b = go$subslice(b, m);
+				continue;
+			}
+			_tuple$1 = [n, err$1], n = _tuple$1[0], err = _tuple$1[1];
+			return [n, err];
+		}
+	};
+	File.prototype.write = function(b) { return this.go$val.write(b); };
+	File.Ptr.prototype.pwrite = function(b, off) {
+		var n, err, f, _tuple;
+		n = 0;
+		err = null;
+		f = this;
+		_tuple = syscall.Pwrite(f.file.fd, b, off), n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	File.prototype.pwrite = function(b, off) { return this.go$val.pwrite(b, off); };
+	File.Ptr.prototype.seek = function(offset, whence) {
+		var ret, err, f, _tuple;
+		ret = new Go$Int64(0, 0);
+		err = null;
+		f = this;
+		_tuple = syscall.Seek(f.file.fd, offset, whence), ret = _tuple[0], err = _tuple[1];
+		return [ret, err];
+	};
+	File.prototype.seek = function(offset, whence) { return this.go$val.seek(offset, whence); };
+	var Truncate = go$pkg.Truncate = function(name, size) {
+		var e;
+		if (e = syscall.Truncate(name, size), !(go$interfaceIsEqual(e, null))) {
+			return new PathError.Ptr("truncate", name, e);
+		}
+		return null;
+	};
+	var Remove = go$pkg.Remove = function(name) {
+		var e, e1;
+		e = syscall.Unlink(name);
+		if (go$interfaceIsEqual(e, null)) {
+			return null;
+		}
+		e1 = syscall.Rmdir(name);
+		if (go$interfaceIsEqual(e1, null)) {
+			return null;
+		}
+		if (!(go$interfaceIsEqual(e1, new syscall.Errno(20)))) {
+			e = e1;
+		}
+		return new PathError.Ptr("remove", name, e);
+	};
+	var basename = function(name) {
+		var i;
+		i = name.length - 1 >> 0;
+		while (i > 0 && (name.charCodeAt(i) === 47)) {
+			name = name.substring(0, i);
+			i = i - 1 >> 0;
+		}
+		i = i - 1 >> 0;
+		while (i >= 0) {
+			if (name.charCodeAt(i) === 47) {
+				name = name.substring((i + 1 >> 0));
+				break;
+			}
+			i = i - 1 >> 0;
+		}
+		return name;
+	};
+	var TempDir = go$pkg.TempDir = function() {
+		var dir;
+		dir = Getenv("TMPDIR");
+		if (dir === "") {
+			dir = "/tmp";
+		}
+		return dir;
+	};
+	var Getwd = go$pkg.Getwd = function() {
+		var pwd, err, _tuple, s, e, _tuple$1, _tuple$2, dot, _tuple$3, _tuple$4, d, err$1, _tuple$5, _tuple$6, d$1, err$2, _tuple$7, _tuple$8, root, _tuple$9, _tuple$10, parent, _tuple$11, _tuple$12, fd, err$3, _tuple$13, _tuple$14, names, err$4, _tuple$15, _ref, _i, _slice, _index, name, _tuple$16, d$2, _tuple$17, pd, _tuple$18, _tuple$19;
+		pwd = "";
+		err = null;
+		_tuple = syscall.Getwd(), s = _tuple[0], e = _tuple[1];
+		if (useSyscallwd(e)) {
+			_tuple$1 = [s, NewSyscallError("getwd", e)], pwd = _tuple$1[0], err = _tuple$1[1];
+			return [pwd, err];
+		}
+		_tuple$2 = Stat("."), dot = _tuple$2[0], err = _tuple$2[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$3 = ["", err], pwd = _tuple$3[0], err = _tuple$3[1];
+			return [pwd, err];
+		}
+		pwd = Getenv("PWD");
+		if (pwd.length > 0 && (pwd.charCodeAt(0) === 47)) {
+			_tuple$4 = Stat(pwd), d = _tuple$4[0], err$1 = _tuple$4[1];
+			if (go$interfaceIsEqual(err$1, null) && SameFile(dot, d)) {
+				_tuple$5 = [pwd, null], pwd = _tuple$5[0], err = _tuple$5[1];
+				return [pwd, err];
+			}
+		}
+		getwdCache.Mutex.Lock();
+		pwd = getwdCache.dir;
+		getwdCache.Mutex.Unlock();
+		if (pwd.length > 0) {
+			_tuple$6 = Stat(pwd), d$1 = _tuple$6[0], err$2 = _tuple$6[1];
+			if (go$interfaceIsEqual(err$2, null) && SameFile(dot, d$1)) {
+				_tuple$7 = [pwd, null], pwd = _tuple$7[0], err = _tuple$7[1];
+				return [pwd, err];
+			}
+		}
+		_tuple$8 = Stat("/"), root = _tuple$8[0], err = _tuple$8[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$9 = ["", err], pwd = _tuple$9[0], err = _tuple$9[1];
+			return [pwd, err];
+		}
+		if (SameFile(root, dot)) {
+			_tuple$10 = ["/", null], pwd = _tuple$10[0], err = _tuple$10[1];
+			return [pwd, err];
+		}
+		pwd = "";
+		parent = "..";
+		while (true) {
+			if (parent.length >= 1024) {
+				_tuple$11 = ["", new syscall.Errno(63)], pwd = _tuple$11[0], err = _tuple$11[1];
+				return [pwd, err];
+			}
+			_tuple$12 = Open(parent), fd = _tuple$12[0], err$3 = _tuple$12[1];
+			if (!(go$interfaceIsEqual(err$3, null))) {
+				_tuple$13 = ["", err$3], pwd = _tuple$13[0], err = _tuple$13[1];
+				return [pwd, err];
+			}
+			NamesLoop: while (true) {
+				_tuple$14 = fd.Readdirnames(100), names = _tuple$14[0], err$4 = _tuple$14[1];
+				if (!(go$interfaceIsEqual(err$4, null))) {
+					fd.Close();
+					_tuple$15 = ["", err$4], pwd = _tuple$15[0], err = _tuple$15[1];
+					return [pwd, err];
+				}
+				_ref = names;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					name = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					_tuple$16 = Lstat(parent + "/" + name), d$2 = _tuple$16[0];
+					if (SameFile(d$2, dot)) {
+						pwd = "/" + name + pwd;
+						break NamesLoop;
+					}
+				}
+			}
+			_tuple$17 = fd.Stat(), pd = _tuple$17[0], err$3 = _tuple$17[1];
+			if (!(go$interfaceIsEqual(err$3, null))) {
+				_tuple$18 = ["", err$3], pwd = _tuple$18[0], err = _tuple$18[1];
+				return [pwd, err];
+			}
+			fd.Close();
+			if (SameFile(pd, root)) {
+				break;
+			}
+			dot = pd;
+			parent = "../" + parent;
+		}
+		getwdCache.Mutex.Lock();
+		getwdCache.dir = pwd;
+		getwdCache.Mutex.Unlock();
+		_tuple$19 = [pwd, null], pwd = _tuple$19[0], err = _tuple$19[1];
+		return [pwd, err];
+	};
+	var useSyscallwdDarwin = function(err) {
+		return !(go$interfaceIsEqual(err, new syscall.Errno(45)));
+	};
+	var MkdirAll = go$pkg.MkdirAll = function(path, perm) {
+		var _tuple, dir, err, i, j, _tuple$1, dir$1, err1;
+		_tuple = Stat(path), dir = _tuple[0], err = _tuple[1];
+		if (go$interfaceIsEqual(err, null)) {
+			if (dir.IsDir()) {
+				return null;
+			}
+			return new PathError.Ptr("mkdir", path, new syscall.Errno(20));
+		}
+		i = path.length;
+		while (i > 0 && IsPathSeparator(path.charCodeAt((i - 1 >> 0)))) {
+			i = i - 1 >> 0;
+		}
+		j = i;
+		while (j > 0 && !IsPathSeparator(path.charCodeAt((j - 1 >> 0)))) {
+			j = j - 1 >> 0;
+		}
+		if (j > 1) {
+			err = MkdirAll(path.substring(0, (j - 1 >> 0)), perm);
+			if (!(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+		}
+		err = Mkdir(path, perm);
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$1 = Lstat(path), dir$1 = _tuple$1[0], err1 = _tuple$1[1];
+			if (go$interfaceIsEqual(err1, null) && dir$1.IsDir()) {
+				return null;
+			}
+			return err;
+		}
+		return null;
+	};
+	var RemoveAll = go$pkg.RemoveAll = function(path) {
+		var err, _tuple, dir, serr, ok, serr$1, _tuple$1, _tuple$2, fd, _tuple$3, names, err1, _ref, _i, _slice, _index, name, err1$1, err1$2;
+		err = Remove(path);
+		if (go$interfaceIsEqual(err, null)) {
+			return null;
+		}
+		_tuple = Lstat(path), dir = _tuple[0], serr = _tuple[1];
+		if (!(go$interfaceIsEqual(serr, null))) {
+			if (_tuple$1 = (serr !== null && serr.constructor === (go$ptrType(PathError)) ? [serr.go$val, true] : [(go$ptrType(PathError)).nil, false]), serr$1 = _tuple$1[0], ok = _tuple$1[1], ok && (IsNotExist(serr$1.Err) || go$interfaceIsEqual(serr$1.Err, new syscall.Errno(20)))) {
+				return null;
+			}
+			return serr;
+		}
+		if (!dir.IsDir()) {
+			return err;
+		}
+		_tuple$2 = Open(path), fd = _tuple$2[0], err = _tuple$2[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		err = null;
+		while (true) {
+			_tuple$3 = fd.Readdirnames(100), names = _tuple$3[0], err1 = _tuple$3[1];
+			_ref = names;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				name = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				err1$1 = RemoveAll(path + "/" + name);
+				if (go$interfaceIsEqual(err, null)) {
+					err = err1$1;
+				}
+			}
+			if (go$interfaceIsEqual(err1, io.EOF)) {
+				break;
+			}
+			if (go$interfaceIsEqual(err, null)) {
+				err = err1;
+			}
+			if (names.length === 0) {
+				break;
+			}
+		}
+		fd.Close();
+		err1$2 = Remove(path);
+		if (go$interfaceIsEqual(err, null)) {
+			err = err1$2;
+		}
+		return err;
+	};
+	var IsPathSeparator = go$pkg.IsPathSeparator = function(c) {
+		return 47 === c;
+	};
+	var Pipe = go$pkg.Pipe = function() {
+		var r, w, err, p, e, _tuple, _tuple$1;
+		r = (go$ptrType(File)).nil;
+		w = (go$ptrType(File)).nil;
+		err = null;
+		p = go$makeNativeArray("Int", 2, function() { return 0; });
+		syscall.ForkLock.RLock();
+		e = syscall.Pipe(go$subslice(new (go$sliceType(Go$Int))(p), 0));
+		if (!(go$interfaceIsEqual(e, null))) {
+			syscall.ForkLock.RUnlock();
+			_tuple = [(go$ptrType(File)).nil, (go$ptrType(File)).nil, NewSyscallError("pipe", e)], r = _tuple[0], w = _tuple[1], err = _tuple[2];
+			return [r, w, err];
+		}
+		syscall.CloseOnExec(p[0]);
+		syscall.CloseOnExec(p[1]);
+		syscall.ForkLock.RUnlock();
+		_tuple$1 = [NewFile((p[0] >>> 0), "|0"), NewFile((p[1] >>> 0), "|1"), null], r = _tuple$1[0], w = _tuple$1[1], err = _tuple$1[2];
+		return [r, w, err];
+	};
+	var Getuid = go$pkg.Getuid = function() {
+		return syscall.Getuid();
+	};
+	var Geteuid = go$pkg.Geteuid = function() {
+		return syscall.Geteuid();
+	};
+	var Getgid = go$pkg.Getgid = function() {
+		return syscall.Getgid();
+	};
+	var Getegid = go$pkg.Getegid = function() {
+		return syscall.Getegid();
+	};
+	var Getgroups = go$pkg.Getgroups = function() {
+		var _tuple, gids, e;
+		_tuple = syscall.Getgroups(), gids = _tuple[0], e = _tuple[1];
+		return [gids, NewSyscallError("getgroups", e)];
+	};
+	var Exit = go$pkg.Exit = function(code) {
+		syscall.Exit(code);
+	};
+	var sameFile = function(fs1, fs2) {
+		var x, stat1, x$1, stat2, x$2, x$3;
+		stat1 = (x = fs1.sys, (x !== null && x.constructor === (go$ptrType(syscall.Stat_t)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(syscall.Stat_t)))));
+		stat2 = (x$1 = fs2.sys, (x$1 !== null && x$1.constructor === (go$ptrType(syscall.Stat_t)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(syscall.Stat_t)))));
+		return (stat1.Dev === stat2.Dev) && (x$2 = stat1.Ino, x$3 = stat2.Ino, (x$2.high === x$3.high && x$2.low === x$3.low));
+	};
+	var fileInfoFromStat = function(st, name) {
+		var _struct, _struct$1, fs, _ref;
+		fs = new fileStat.Ptr(basename(name), st.Size, 0, (_struct$1 = timespecToTime((_struct = st.Mtimespec, new syscall.Timespec.Ptr(_struct.Sec, _struct.Nsec))), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)), st);
+		fs.mode = (((st.Mode & 511) >>> 0) >>> 0);
+		_ref = (st.Mode & 61440) >>> 0;
+		if (_ref === 24576 || _ref === 57344) {
+			fs.mode = (fs.mode | 67108864) >>> 0;
+		} else if (_ref === 8192) {
+			fs.mode = (fs.mode | 69206016) >>> 0;
+		} else if (_ref === 16384) {
+			fs.mode = (fs.mode | 2147483648) >>> 0;
+		} else if (_ref === 4096) {
+			fs.mode = (fs.mode | 33554432) >>> 0;
+		} else if (_ref === 40960) {
+			fs.mode = (fs.mode | 134217728) >>> 0;
+		} else if (_ref === 32768) {
+		} else if (_ref === 49152) {
+			fs.mode = (fs.mode | 16777216) >>> 0;
+		}
+		if (!((((st.Mode & 1024) >>> 0) === 0))) {
+			fs.mode = (fs.mode | 4194304) >>> 0;
+		}
+		if (!((((st.Mode & 2048) >>> 0) === 0))) {
+			fs.mode = (fs.mode | 8388608) >>> 0;
+		}
+		if (!((((st.Mode & 512) >>> 0) === 0))) {
+			fs.mode = (fs.mode | 1048576) >>> 0;
+		}
+		return fs;
+	};
+	var timespecToTime = function(ts) {
+		var _struct;
+		return (_struct = time.Unix(ts.Sec, ts.Nsec), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+	};
+	var atime = function(fi) {
+		var x, _struct, _struct$1;
+		return (_struct$1 = timespecToTime((_struct = (x = fi.Sys(), (x !== null && x.constructor === (go$ptrType(syscall.Stat_t)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(syscall.Stat_t))))).Atimespec, new syscall.Timespec.Ptr(_struct.Sec, _struct.Nsec))), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+	};
+	var hostname = function() {
+		var name, err, _tuple, _tuple$1, _tuple$2;
+		name = "";
+		err = null;
+		_tuple = syscall.Sysctl("kern.hostname"), name = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$1 = ["", NewSyscallError("sysctl kern.hostname", err)], name = _tuple$1[0], err = _tuple$1[1];
+			return [name, err];
+		}
+		_tuple$2 = [name, null], name = _tuple$2[0], err = _tuple$2[1];
+		return [name, err];
+	};
+	var Getpagesize = go$pkg.Getpagesize = function() {
+		return syscall.Getpagesize();
+	};
+	FileMode.prototype.String = function() {
+		var m, buf, w, _ref, _i, _rune, c, i, y, _ref$1, _i$1, _rune$1, c$1, i$1, y$1;
+		m = this.go$val;
+		buf = go$makeNativeArray("Uint8", 32, function() { return 0; });
+		w = 0;
+		_ref = "dalTLDpSugct";
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			c = _rune[0];
+			i = _i;
+			if (!((((m & (((y = ((31 - i >> 0) >>> 0), y < 32 ? (1 << y) : 0) >>> 0))) >>> 0) === 0))) {
+				buf[w] = (c << 24 >>> 24);
+				w = w + 1 >> 0;
+			}
+		}
+		if (w === 0) {
+			buf[w] = 45;
+			w = w + 1 >> 0;
+		}
+		_ref$1 = "rwxrwxrwx";
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += _rune$1[1]) {
+			_rune$1 = go$decodeRune(_ref$1, _i$1);
+			c$1 = _rune$1[0];
+			i$1 = _i$1;
+			if (!((((m & (((y$1 = ((8 - i$1 >> 0) >>> 0), y$1 < 32 ? (1 << y$1) : 0) >>> 0))) >>> 0) === 0))) {
+				buf[w] = (c$1 << 24 >>> 24);
+			} else {
+				buf[w] = 45;
+			}
+			w = w + 1 >> 0;
+		}
+		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, w));
+	};
+	go$ptrType(FileMode).prototype.String = function() { return new FileMode(this.go$get()).String(); };
+	FileMode.prototype.IsDir = function() {
+		var m;
+		m = this.go$val;
+		return !((((m & 2147483648) >>> 0) === 0));
+	};
+	go$ptrType(FileMode).prototype.IsDir = function() { return new FileMode(this.go$get()).IsDir(); };
+	FileMode.prototype.IsRegular = function() {
+		var m;
+		m = this.go$val;
+		return ((m & 2399141888) >>> 0) === 0;
+	};
+	go$ptrType(FileMode).prototype.IsRegular = function() { return new FileMode(this.go$get()).IsRegular(); };
+	FileMode.prototype.Perm = function() {
+		var m;
+		m = this.go$val;
+		return (m & 511) >>> 0;
+	};
+	go$ptrType(FileMode).prototype.Perm = function() { return new FileMode(this.go$get()).Perm(); };
+	fileStat.Ptr.prototype.Name = function() {
+		var fs;
+		fs = this;
+		return fs.name;
+	};
+	fileStat.prototype.Name = function() { return this.go$val.Name(); };
+	fileStat.Ptr.prototype.IsDir = function() {
+		var fs;
+		fs = this;
+		return (new FileMode(fs.Mode())).IsDir();
+	};
+	fileStat.prototype.IsDir = function() { return this.go$val.IsDir(); };
+	var SameFile = go$pkg.SameFile = function(fi1, fi2) {
+		var _tuple, fs1, ok1, _tuple$1, fs2, ok2;
+		_tuple = (fi1 !== null && fi1.constructor === (go$ptrType(fileStat)) ? [fi1.go$val, true] : [(go$ptrType(fileStat)).nil, false]), fs1 = _tuple[0], ok1 = _tuple[1];
+		_tuple$1 = (fi2 !== null && fi2.constructor === (go$ptrType(fileStat)) ? [fi2.go$val, true] : [(go$ptrType(fileStat)).nil, false]), fs2 = _tuple$1[0], ok2 = _tuple$1[1];
+		if (!ok1 || !ok2) {
+			return false;
+		}
+		return sameFile(fs1, fs2);
+	};
+	fileStat.Ptr.prototype.Size = function() {
+		var fs;
+		fs = this;
+		return fs.size;
+	};
+	fileStat.prototype.Size = function() { return this.go$val.Size(); };
+	fileStat.Ptr.prototype.Mode = function() {
+		var fs;
+		fs = this;
+		return fs.mode;
+	};
+	fileStat.prototype.Mode = function() { return this.go$val.Mode(); };
+	fileStat.Ptr.prototype.ModTime = function() {
+		var fs, _struct;
+		fs = this;
+		return (_struct = fs.modTime, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+	};
+	fileStat.prototype.ModTime = function() { return this.go$val.ModTime(); };
+	fileStat.Ptr.prototype.Sys = function() {
+		var fs;
+		fs = this;
+		return fs.sys;
+	};
+	fileStat.prototype.Sys = function() { return this.go$val.Sys(); };
+	var blockSize = 4096;
+	go$pkg.O_RDONLY = 0;
+	go$pkg.O_WRONLY = 1;
+	go$pkg.O_RDWR = 2;
+	go$pkg.O_APPEND = 8;
+	go$pkg.O_CREATE = 512;
+	go$pkg.O_EXCL = 2048;
+	go$pkg.O_SYNC = 128;
+	go$pkg.O_TRUNC = 1024;
+	go$pkg.SEEK_SET = 0;
+	go$pkg.SEEK_CUR = 1;
+	go$pkg.SEEK_END = 2;
+	go$pkg.DevNull = "/dev/null";
+	go$pkg.PathSeparator = 47;
+	go$pkg.PathListSeparator = 58;
+	go$pkg.ModeDir = 2147483648;
+	go$pkg.ModeAppend = 1073741824;
+	go$pkg.ModeExclusive = 536870912;
+	go$pkg.ModeTemporary = 268435456;
+	go$pkg.ModeSymlink = 134217728;
+	go$pkg.ModeDevice = 67108864;
+	go$pkg.ModeNamedPipe = 33554432;
+	go$pkg.ModeSocket = 16777216;
+	go$pkg.ModeSetuid = 8388608;
+	go$pkg.ModeSetgid = 4194304;
+	go$pkg.ModeCharDevice = 2097152;
+	go$pkg.ModeSticky = 1048576;
+	go$pkg.ModeType = 2399141888;
+	go$pkg.ModePerm = 511;
+	go$pkg.ErrInvalid = null;
+	go$pkg.ErrPermission = null;
+	go$pkg.ErrExist = null;
+	go$pkg.ErrNotExist = null;
+	go$pkg.Interrupt = null;
+	go$pkg.Kill = null;
+	go$pkg.Stdin = (go$ptrType(File)).nil;
+	go$pkg.Stdout = (go$ptrType(File)).nil;
+	go$pkg.Stderr = (go$ptrType(File)).nil;
+	var lstat = go$throwNilPointerError;
+	var getwdCache = new (go$structType([["", "", sync.Mutex, ""], ["dir", "os", Go$String, ""]])).Ptr(new sync.Mutex.Ptr(), "");
+	var useSyscallwd = go$throwNilPointerError;
+	go$pkg.Args = (go$sliceType(Go$String)).nil;
+
+			go$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);
+			if (go$packages["runtime"].GOOS === "windows") {
+				NewFile = go$pkg.NewFile = function() { return new File.Ptr(); };
+			}
+			go$pkg.init = function() {
+		go$pkg.ErrInvalid = errors.New("invalid argument");
+		go$pkg.ErrPermission = errors.New("permission denied");
+		go$pkg.ErrExist = errors.New("file already exists");
+		go$pkg.ErrNotExist = errors.New("file does not exist");
+		go$pkg.Interrupt = new syscall.Signal(2);
+		go$pkg.Kill = new syscall.Signal(9);
+		go$pkg.Stdin = NewFile((syscall.Stdin >>> 0), "/dev/stdin");
+		go$pkg.Stdout = NewFile((syscall.Stdout >>> 0), "/dev/stdout");
+		go$pkg.Stderr = NewFile((syscall.Stderr >>> 0), "/dev/stderr");
+		lstat = Lstat;
+		useSyscallwd = (function() {
+			return true;
+		});
+		useSyscallwd = useSyscallwdDarwin;
+	};

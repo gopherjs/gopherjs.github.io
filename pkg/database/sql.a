@@ -1,0 +1,1977 @@
+0ƒh‚0_package sql
+import driver "database/sql/driver"
+import errors "errors"
+import fmt "fmt"
+import reflect "reflect"
+import strconv "strconv"
+import list "container/list"
+import io "io"
+import runtime "runtime"
+import sync "sync"
+type @"".DB struct { @"".driver @"database/sql/driver".Driver; @"".dsn string; @"".mu @"sync".Mutex; @"".freeConn *@"container/list".List; @"".connRequests *@"container/list".List; @"".numOpen int; @"".pendingOpens int; @"".openerCh chan struct {  }; @"".closed bool; @"".dep map[@"".finalCloser]@"".depSet; @"".lastPut map[*@"".driverConn]string; @"".maxIdle int; @"".maxOpen int }
+func (? *@"".DB) @"".Begin() (? *@"".Tx, ? error)
+func (? *@"".DB) @"".Close() (? error)
+func (? *@"".DB) @"".Driver() (? @"database/sql/driver".Driver)
+func (? *@"".DB) @"".Exec(@"".query string, @"".args ...interface {  }) (? @"".Result, ? error)
+func (? *@"".DB) @"".Ping() (? error)
+func (? *@"".DB) @"".Prepare(@"".query string) (? *@"".Stmt, ? error)
+func (? *@"".DB) @"".Query(@"".query string, @"".args ...interface {  }) (? *@"".Rows, ? error)
+func (? *@"".DB) @"".QueryRow(@"".query string, @"".args ...interface {  }) (? *@"".Row)
+func (? *@"".DB) @"".SetMaxIdleConns(@"".n int) ()
+func (? *@"".DB) @"".SetMaxOpenConns(@"".n int) ()
+func (? *@"".DB) @"".addDep(@"".x @"".finalCloser, @"".dep interface {  }) ()
+func (? *@"".DB) @"".addDepLocked(@"".x @"".finalCloser, @"".dep interface {  }) ()
+func (? *@"".DB) @"".begin() (@"".tx *@"".Tx, @"".err error)
+func (? *@"".DB) @"".conn() (? *@"".driverConn, ? error)
+func (? *@"".DB) @"".connIfFree(@"".wanted *@"".driverConn) (? *@"".driverConn, ? error)
+func (? *@"".DB) @"".connectionOpener() ()
+func (? *@"".DB) @"".exec(@"".query string, @"".args []interface {  }) (@"".res @"".Result, @"".err error)
+func (? *@"".DB) @"".maxIdleConnsLocked() (? int)
+func (? *@"".DB) @"".maybeOpenNewConnections() ()
+func (? *@"".DB) @"".noteUnusedDriverStatement(@"".c *@"".driverConn, @"".si @"database/sql/driver".Stmt) ()
+func (? *@"".DB) @"".openNewConnection() ()
+func (? *@"".DB) @"".prepare(@"".query string) (? *@"".Stmt, ? error)
+func (? *@"".DB) @"".putConn(@"".dc *@"".driverConn, @"".err error) ()
+func (? *@"".DB) @"".putConnDBLocked(@"".dc *@"".driverConn, @"".err error) (? bool)
+func (? *@"".DB) @"".query(@"".query string, @"".args []interface {  }) (? *@"".Rows, ? error)
+func (? *@"".DB) @"".queryConn(@"".dc *@"".driverConn, @"".releaseConn func (? error) (), @"".query string, @"".args []interface {  }) (? *@"".Rows, ? error)
+func (? *@"".DB) @"".removeDep(@"".x @"".finalCloser, @"".dep interface {  }) (? error)
+func (? *@"".DB) @"".removeDepLocked(@"".x @"".finalCloser, @"".dep interface {  }) (? func () (? error))
+var @"".ErrNoRows error
+var @"".ErrTxDone error
+type @"".NullBool struct { @"".Bool bool; @"".Valid bool }
+func (? @"".NullBool) @"".Value() (? @"database/sql/driver".Value, ? error)
+func (? *@"".NullBool) @"".Scan(@"".value interface {  }) (? error)
+func (? *@"".NullBool) @"".Value() (? @"database/sql/driver".Value, ? error)
+type @"".NullFloat64 struct { @"".Float64 float64; @"".Valid bool }
+func (? @"".NullFloat64) @"".Value() (? @"database/sql/driver".Value, ? error)
+func (? *@"".NullFloat64) @"".Scan(@"".value interface {  }) (? error)
+func (? *@"".NullFloat64) @"".Value() (? @"database/sql/driver".Value, ? error)
+type @"".NullInt64 struct { @"".Int64 int64; @"".Valid bool }
+func (? @"".NullInt64) @"".Value() (? @"database/sql/driver".Value, ? error)
+func (? *@"".NullInt64) @"".Scan(@"".value interface {  }) (? error)
+func (? *@"".NullInt64) @"".Value() (? @"database/sql/driver".Value, ? error)
+type @"".NullString struct { @"".String string; @"".Valid bool }
+func (? @"".NullString) @"".Value() (? @"database/sql/driver".Value, ? error)
+func (? *@"".NullString) @"".Scan(@"".value interface {  }) (? error)
+func (? *@"".NullString) @"".Value() (? @"database/sql/driver".Value, ? error)
+func @"".Open(@"".driverName string, @"".dataSourceName string) (? *@"".DB, ? error)
+type @"".RawBytes []byte
+func @"".Register(@"".name string, @"".driver @"database/sql/driver".Driver) ()
+type @"".Result interface { @"".LastInsertId() (? int64, ? error); @"".RowsAffected() (? int64, ? error) }
+type @"".Row struct { @"".err error; @"".rows *@"".Rows }
+func (? *@"".Row) @"".Scan(@"".dest ...interface {  }) (? error)
+type @"".Rows struct { @"".dc *@"".driverConn; @"".releaseConn func (? error) (); @"".rowsi @"database/sql/driver".Rows; @"".closed bool; @"".lastcols []@"database/sql/driver".Value; @"".lasterr error; @"".closeStmt @"database/sql/driver".Stmt }
+func (? *@"".Rows) @"".Close() (? error)
+func (? *@"".Rows) @"".Columns() (? []string, ? error)
+func (? *@"".Rows) @"".Err() (? error)
+func (? *@"".Rows) @"".Next() (? bool)
+func (? *@"".Rows) @"".Scan(@"".dest ...interface {  }) (? error)
+type @"".Scanner interface { @"".Scan(@"".src interface {  }) (? error) }
+type @"".Stmt struct { @"".db *@"".DB; @"".query string; @"".stickyErr error; @"".closemu @"sync".RWMutex; @"".tx *@"".Tx; @"".txsi *@"".driverStmt; @"".mu @"sync".Mutex; @"".closed bool; @"".css []@"".connStmt }
+func (? *@"".Stmt) @"".Close() (? error)
+func (? *@"".Stmt) @"".Exec(@"".args ...interface {  }) (? @"".Result, ? error)
+func (? *@"".Stmt) @"".Query(@"".args ...interface {  }) (? *@"".Rows, ? error)
+func (? *@"".Stmt) @"".QueryRow(@"".args ...interface {  }) (? *@"".Row)
+func (? *@"".Stmt) @"".connStmt() (@"".ci *@"".driverConn, @"".releaseConn func (? error) (), @"".si @"database/sql/driver".Stmt, @"".err error)
+func (? *@"".Stmt) @"".finalClose() (? error)
+type @"".Tx struct { @"".db *@"".DB; @"".dc *@"".driverConn; @"".txi @"database/sql/driver".Tx; @"".done bool }
+func (? *@"".Tx) @"".Commit() (? error)
+func (? *@"".Tx) @"".Exec(@"".query string, @"".args ...interface {  }) (? @"".Result, ? error)
+func (? *@"".Tx) @"".Prepare(@"".query string) (? *@"".Stmt, ? error)
+func (? *@"".Tx) @"".Query(@"".query string, @"".args ...interface {  }) (? *@"".Rows, ? error)
+func (? *@"".Tx) @"".QueryRow(@"".query string, @"".args ...interface {  }) (? *@"".Row)
+func (? *@"".Tx) @"".Rollback() (? error)
+func (? *@"".Tx) @"".Stmt(@"".stmt *@"".Stmt) (? *@"".Stmt)
+func (? *@"".Tx) @"".close() ()
+func (? *@"".Tx) @"".grabConn() (? *@"".driverConn, ? error)
+type @"".connRequest chan<- interface {  }
+type @"".connStmt struct { @"".dc *@"".driverConn; @"".si @"database/sql/driver".Stmt }
+type @"".depSet map[interface {  }]bool
+type @"".driverConn struct { @"".db *@"".DB; ? @"sync".Mutex; @"".ci @"database/sql/driver".Conn; @"".closed bool; @"".finalClosed bool; @"".openStmt map[@"database/sql/driver".Stmt]bool; @"".inUse bool; @"".onPut []func () (); @"".dbmuClosed bool; @"".listElem *@"container/list".Element }
+func (? *@"".driverConn) @"".Close() (? error)
+func (? *@"".driverConn) @"".closeDBLocked() (? func () (? error))
+func (? *@"".driverConn) @"".finalClose() (? error)
+func (? *@"".driverConn) @"".prepareLocked(@"".query string) (? @"database/sql/driver".Stmt, ? error)
+func (? *@"".driverConn) @"".releaseConn(@"".err error) ()
+func (? *@"".driverConn) @"".removeOpenStmt(@"".si @"database/sql/driver".Stmt) ()
+type @"".driverResult struct { ? @"sync".Locker; @"".resi @"database/sql/driver".Result }
+func (? @"".driverResult) @"".LastInsertId() (? int64, ? error)
+func (? @"".driverResult) @"".RowsAffected() (? int64, ? error)
+func (? *@"".driverResult) @"".LastInsertId() (? int64, ? error)
+func (? *@"".driverResult) @"".RowsAffected() (? int64, ? error)
+type @"".driverStmt struct { ? @"sync".Locker; @"".si @"database/sql/driver".Stmt }
+func (? *@"".driverStmt) @"".Close() (? error)
+type @"".finalCloser interface { @"".finalClose() (? error) }
+type @"database/sql/driver".Driver interface { @"database/sql/driver".Open(@"database/sql/driver".name string) (? @"database/sql/driver".Conn, ? error) }
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"container/list".List struct { @"container/list".root @"container/list".Element; @"container/list".len int }
+func (? *@"container/list".List) @"container/list".Back() (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".Front() (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".Init() (? *@"container/list".List)
+func (? *@"container/list".List) @"container/list".InsertAfter(@"".v interface {  }, @"".mark *@"container/list".Element) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".InsertBefore(@"".v interface {  }, @"".mark *@"container/list".Element) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".Len() (? int)
+func (? *@"container/list".List) @"container/list".MoveAfter(@"".e *@"container/list".Element, @"".mark *@"container/list".Element) ()
+func (? *@"container/list".List) @"container/list".MoveBefore(@"".e *@"container/list".Element, @"".mark *@"container/list".Element) ()
+func (? *@"container/list".List) @"container/list".MoveToBack(@"".e *@"container/list".Element) ()
+func (? *@"container/list".List) @"container/list".MoveToFront(@"".e *@"container/list".Element) ()
+func (? *@"container/list".List) @"container/list".PushBack(@"".v interface {  }) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".PushBackList(@"".other *@"container/list".List) ()
+func (? *@"container/list".List) @"container/list".PushFront(@"".v interface {  }) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".PushFrontList(@"".other *@"container/list".List) ()
+func (? *@"container/list".List) @"container/list".Remove(@"".e *@"container/list".Element) (? interface {  })
+func (? *@"container/list".List) @"container/list".insert(@"".e *@"container/list".Element, @"".at *@"container/list".Element) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".insertValue(@"".v interface {  }, @"".at *@"container/list".Element) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".lazyInit() ()
+func (? *@"container/list".List) @"container/list".remove(@"".e *@"container/list".Element) (? *@"container/list".Element)
+type @"database/sql/driver".Stmt interface { @"database/sql/driver".Close() (? error); @"database/sql/driver".Exec(@"database/sql/driver".args []@"database/sql/driver".Value) (? @"database/sql/driver".Result, ? error); @"database/sql/driver".NumInput() (? int); @"database/sql/driver".Query(@"database/sql/driver".args []@"database/sql/driver".Value) (? @"database/sql/driver".Rows, ? error) }
+type @"database/sql/driver".Value interface {  }
+type @"database/sql/driver".Rows interface { @"database/sql/driver".Close() (? error); @"database/sql/driver".Columns() (? []string); @"database/sql/driver".Next(@"database/sql/driver".dest []@"database/sql/driver".Value) (? error) }
+type @"sync".RWMutex struct { @"sync".w @"sync".Mutex; @"sync".writerSem uint32; @"sync".readerSem uint32; @"sync".readerCount int32; @"sync".readerWait int32 }
+func (? *@"sync".RWMutex) @"sync".Lock() ()
+func (? *@"sync".RWMutex) @"sync".RLock() ()
+func (? *@"sync".RWMutex) @"sync".RLocker() (? @"sync".Locker)
+func (? *@"sync".RWMutex) @"sync".RUnlock() ()
+func (? *@"sync".RWMutex) @"sync".Unlock() ()
+type @"database/sql/driver".Tx interface { @"database/sql/driver".Commit() (? error); @"database/sql/driver".Rollback() (? error) }
+type @"database/sql/driver".Conn interface { @"database/sql/driver".Begin() (? @"database/sql/driver".Tx, ? error); @"database/sql/driver".Close() (? error); @"database/sql/driver".Prepare(@"database/sql/driver".query string) (? @"database/sql/driver".Stmt, ? error) }
+type @"container/list".Element struct { @"container/list".next *@"container/list".Element; @"container/list".prev *@"container/list".Element; @"container/list".list *@"container/list".List; @"container/list".Value interface {  } }
+func (? *@"container/list".Element) @"container/list".Next() (? *@"container/list".Element)
+func (? *@"container/list".Element) @"container/list".Prev() (? *@"container/list".Element)
+type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
+type @"database/sql/driver".Result interface { @"database/sql/driver".LastInsertId() (? int64, ? error); @"database/sql/driver".RowsAffected() (? int64, ? error) }
+$$
+0™runtimecontainer/listerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtdatabase/sql/driverdatabase/sqlƒ7	var driver = go$packages["database/sql/driver"];
+	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var reflect = go$packages["reflect"];
+	var strconv = go$packages["strconv"];
+	var list = go$packages["container/list"];
+	var io = go$packages["io"];
+	var runtime = go$packages["runtime"];
+	var sync = go$packages["sync"];
+	var RawBytes;
+	RawBytes = go$newType(0, "Slice", "sql.RawBytes", "RawBytes", "database/sql", null);
+	go$pkg.RawBytes = RawBytes;
+	var NullString;
+	NullString = go$newType(0, "Struct", "sql.NullString", "NullString", "database/sql", function(String_, Valid_) {
+		this.go$val = this;
+		this.String = String_ !== undefined ? String_ : "";
+		this.Valid = Valid_ !== undefined ? Valid_ : false;
+	});
+	go$pkg.NullString = NullString;
+	var NullInt64;
+	NullInt64 = go$newType(0, "Struct", "sql.NullInt64", "NullInt64", "database/sql", function(Int64_, Valid_) {
+		this.go$val = this;
+		this.Int64 = Int64_ !== undefined ? Int64_ : new Go$Int64(0, 0);
+		this.Valid = Valid_ !== undefined ? Valid_ : false;
+	});
+	go$pkg.NullInt64 = NullInt64;
+	var NullFloat64;
+	NullFloat64 = go$newType(0, "Struct", "sql.NullFloat64", "NullFloat64", "database/sql", function(Float64_, Valid_) {
+		this.go$val = this;
+		this.Float64 = Float64_ !== undefined ? Float64_ : 0;
+		this.Valid = Valid_ !== undefined ? Valid_ : false;
+	});
+	go$pkg.NullFloat64 = NullFloat64;
+	var NullBool;
+	NullBool = go$newType(0, "Struct", "sql.NullBool", "NullBool", "database/sql", function(Bool_, Valid_) {
+		this.go$val = this;
+		this.Bool = Bool_ !== undefined ? Bool_ : false;
+		this.Valid = Valid_ !== undefined ? Valid_ : false;
+	});
+	go$pkg.NullBool = NullBool;
+	var Scanner;
+	Scanner = go$newType(0, "Interface", "sql.Scanner", "Scanner", "database/sql", null);
+	go$pkg.Scanner = Scanner;
+	var DB;
+	DB = go$newType(0, "Struct", "sql.DB", "DB", "database/sql", function(driver_, dsn_, mu_, freeConn_, connRequests_, numOpen_, pendingOpens_, openerCh_, closed_, dep_, lastPut_, maxIdle_, maxOpen_) {
+		this.go$val = this;
+		this.driver = driver_ !== undefined ? driver_ : null;
+		this.dsn = dsn_ !== undefined ? dsn_ : "";
+		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
+		this.freeConn = freeConn_ !== undefined ? freeConn_ : (go$ptrType(list.List)).nil;
+		this.connRequests = connRequests_ !== undefined ? connRequests_ : (go$ptrType(list.List)).nil;
+		this.numOpen = numOpen_ !== undefined ? numOpen_ : 0;
+		this.pendingOpens = pendingOpens_ !== undefined ? pendingOpens_ : 0;
+		this.openerCh = openerCh_ !== undefined ? openerCh_ : (go$chanType((go$structType([])), false, false)).nil;
+		this.closed = closed_ !== undefined ? closed_ : false;
+		this.dep = dep_ !== undefined ? dep_ : false;
+		this.lastPut = lastPut_ !== undefined ? lastPut_ : false;
+		this.maxIdle = maxIdle_ !== undefined ? maxIdle_ : 0;
+		this.maxOpen = maxOpen_ !== undefined ? maxOpen_ : 0;
+	});
+	go$pkg.DB = DB;
+	var driverConn;
+	driverConn = go$newType(0, "Struct", "sql.driverConn", "driverConn", "database/sql", function(db_, Mutex_, ci_, closed_, finalClosed_, openStmt_, inUse_, onPut_, dbmuClosed_, listElem_) {
+		this.go$val = this;
+		this.db = db_ !== undefined ? db_ : (go$ptrType(DB)).nil;
+		this.Mutex = Mutex_ !== undefined ? Mutex_ : new sync.Mutex.Ptr();
+		this.ci = ci_ !== undefined ? ci_ : null;
+		this.closed = closed_ !== undefined ? closed_ : false;
+		this.finalClosed = finalClosed_ !== undefined ? finalClosed_ : false;
+		this.openStmt = openStmt_ !== undefined ? openStmt_ : false;
+		this.inUse = inUse_ !== undefined ? inUse_ : false;
+		this.onPut = onPut_ !== undefined ? onPut_ : (go$sliceType((go$funcType([], [], false)))).nil;
+		this.dbmuClosed = dbmuClosed_ !== undefined ? dbmuClosed_ : false;
+		this.listElem = listElem_ !== undefined ? listElem_ : (go$ptrType(list.Element)).nil;
+	});
+	driverConn.prototype.Lock = function() { return this.go$val.Lock(); };
+	driverConn.Ptr.prototype.Lock = function() { return this.Mutex.Lock(); };
+	driverConn.prototype.Unlock = function() { return this.go$val.Unlock(); };
+	driverConn.Ptr.prototype.Unlock = function() { return this.Mutex.Unlock(); };
+	go$pkg.driverConn = driverConn;
+	var driverStmt;
+	driverStmt = go$newType(0, "Struct", "sql.driverStmt", "driverStmt", "database/sql", function(Locker_, si_) {
+		this.go$val = this;
+		this.Locker = Locker_ !== undefined ? Locker_ : null;
+		this.si = si_ !== undefined ? si_ : null;
+	});
+	driverStmt.prototype.Lock = function() { return this.go$val.Lock(); };
+	driverStmt.Ptr.prototype.Lock = function() { return this.Locker.Lock(); };
+	driverStmt.prototype.Unlock = function() { return this.go$val.Unlock(); };
+	driverStmt.Ptr.prototype.Unlock = function() { return this.Locker.Unlock(); };
+	go$pkg.driverStmt = driverStmt;
+	var depSet;
+	depSet = go$newType(0, "Map", "sql.depSet", "depSet", "database/sql", null);
+	go$pkg.depSet = depSet;
+	var finalCloser;
+	finalCloser = go$newType(0, "Interface", "sql.finalCloser", "finalCloser", "database/sql", null);
+	go$pkg.finalCloser = finalCloser;
+	var connRequest;
+	connRequest = go$newType(0, "Chan", "sql.connRequest", "connRequest", "database/sql", null);
+	go$pkg.connRequest = connRequest;
+	var Tx;
+	Tx = go$newType(0, "Struct", "sql.Tx", "Tx", "database/sql", function(db_, dc_, txi_, done_) {
+		this.go$val = this;
+		this.db = db_ !== undefined ? db_ : (go$ptrType(DB)).nil;
+		this.dc = dc_ !== undefined ? dc_ : (go$ptrType(driverConn)).nil;
+		this.txi = txi_ !== undefined ? txi_ : null;
+		this.done = done_ !== undefined ? done_ : false;
+	});
+	go$pkg.Tx = Tx;
+	var connStmt;
+	connStmt = go$newType(0, "Struct", "sql.connStmt", "connStmt", "database/sql", function(dc_, si_) {
+		this.go$val = this;
+		this.dc = dc_ !== undefined ? dc_ : (go$ptrType(driverConn)).nil;
+		this.si = si_ !== undefined ? si_ : null;
+	});
+	go$pkg.connStmt = connStmt;
+	var Stmt;
+	Stmt = go$newType(0, "Struct", "sql.Stmt", "Stmt", "database/sql", function(db_, query_, stickyErr_, closemu_, tx_, txsi_, mu_, closed_, css_) {
+		this.go$val = this;
+		this.db = db_ !== undefined ? db_ : (go$ptrType(DB)).nil;
+		this.query = query_ !== undefined ? query_ : "";
+		this.stickyErr = stickyErr_ !== undefined ? stickyErr_ : null;
+		this.closemu = closemu_ !== undefined ? closemu_ : new sync.RWMutex.Ptr();
+		this.tx = tx_ !== undefined ? tx_ : (go$ptrType(Tx)).nil;
+		this.txsi = txsi_ !== undefined ? txsi_ : (go$ptrType(driverStmt)).nil;
+		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
+		this.closed = closed_ !== undefined ? closed_ : false;
+		this.css = css_ !== undefined ? css_ : (go$sliceType(connStmt)).nil;
+	});
+	go$pkg.Stmt = Stmt;
+	var Rows;
+	Rows = go$newType(0, "Struct", "sql.Rows", "Rows", "database/sql", function(dc_, releaseConn_, rowsi_, closed_, lastcols_, lasterr_, closeStmt_) {
+		this.go$val = this;
+		this.dc = dc_ !== undefined ? dc_ : (go$ptrType(driverConn)).nil;
+		this.releaseConn = releaseConn_ !== undefined ? releaseConn_ : go$throwNilPointerError;
+		this.rowsi = rowsi_ !== undefined ? rowsi_ : null;
+		this.closed = closed_ !== undefined ? closed_ : false;
+		this.lastcols = lastcols_ !== undefined ? lastcols_ : (go$sliceType(driver.Value)).nil;
+		this.lasterr = lasterr_ !== undefined ? lasterr_ : null;
+		this.closeStmt = closeStmt_ !== undefined ? closeStmt_ : null;
+	});
+	go$pkg.Rows = Rows;
+	var Row;
+	Row = go$newType(0, "Struct", "sql.Row", "Row", "database/sql", function(err_, rows_) {
+		this.go$val = this;
+		this.err = err_ !== undefined ? err_ : null;
+		this.rows = rows_ !== undefined ? rows_ : (go$ptrType(Rows)).nil;
+	});
+	go$pkg.Row = Row;
+	var Result;
+	Result = go$newType(0, "Interface", "sql.Result", "Result", "database/sql", null);
+	go$pkg.Result = Result;
+	var driverResult;
+	driverResult = go$newType(0, "Struct", "sql.driverResult", "driverResult", "database/sql", function(Locker_, resi_) {
+		this.go$val = this;
+		this.Locker = Locker_ !== undefined ? Locker_ : null;
+		this.resi = resi_ !== undefined ? resi_ : null;
+	});
+	driverResult.prototype.Lock = function() { return this.go$val.Lock(); };
+	driverResult.Ptr.prototype.Lock = function() { return this.Locker.Lock(); };
+	driverResult.prototype.Unlock = function() { return this.go$val.Unlock(); };
+	driverResult.Ptr.prototype.Unlock = function() { return this.Locker.Unlock(); };
+	go$pkg.driverResult = driverResult;
+	RawBytes.init(Go$Uint8);
+	NullString.init([["String", "", Go$String, ""], ["Valid", "", Go$Bool, ""]]);
+	NullString.methods = [["Value", "", [], [driver.Value, go$error], false]];
+	(go$ptrType(NullString)).methods = [["Scan", "", [go$emptyInterface], [go$error], false], ["Value", "", [], [driver.Value, go$error], false]];
+	NullInt64.init([["Int64", "", Go$Int64, ""], ["Valid", "", Go$Bool, ""]]);
+	NullInt64.methods = [["Value", "", [], [driver.Value, go$error], false]];
+	(go$ptrType(NullInt64)).methods = [["Scan", "", [go$emptyInterface], [go$error], false], ["Value", "", [], [driver.Value, go$error], false]];
+	NullFloat64.init([["Float64", "", Go$Float64, ""], ["Valid", "", Go$Bool, ""]]);
+	NullFloat64.methods = [["Value", "", [], [driver.Value, go$error], false]];
+	(go$ptrType(NullFloat64)).methods = [["Scan", "", [go$emptyInterface], [go$error], false], ["Value", "", [], [driver.Value, go$error], false]];
+	NullBool.init([["Bool", "", Go$Bool, ""], ["Valid", "", Go$Bool, ""]]);
+	NullBool.methods = [["Value", "", [], [driver.Value, go$error], false]];
+	(go$ptrType(NullBool)).methods = [["Scan", "", [go$emptyInterface], [go$error], false], ["Value", "", [], [driver.Value, go$error], false]];
+	Scanner.init([["Scan", "", (go$funcType([go$emptyInterface], [go$error], false))]]);
+	DB.init([["driver", "database/sql", driver.Driver, ""], ["dsn", "database/sql", Go$String, ""], ["mu", "database/sql", sync.Mutex, ""], ["freeConn", "database/sql", (go$ptrType(list.List)), ""], ["connRequests", "database/sql", (go$ptrType(list.List)), ""], ["numOpen", "database/sql", Go$Int, ""], ["pendingOpens", "database/sql", Go$Int, ""], ["openerCh", "database/sql", (go$chanType((go$structType([])), false, false)), ""], ["closed", "database/sql", Go$Bool, ""], ["dep", "database/sql", (go$mapType(finalCloser, depSet)), ""], ["lastPut", "database/sql", (go$mapType((go$ptrType(driverConn)), Go$String)), ""], ["maxIdle", "database/sql", Go$Int, ""], ["maxOpen", "database/sql", Go$Int, ""]]);
+	(go$ptrType(DB)).methods = [["Begin", "", [], [(go$ptrType(Tx)), go$error], false], ["Close", "", [], [go$error], false], ["Driver", "", [], [driver.Driver], false], ["Exec", "", [Go$String, (go$sliceType(go$emptyInterface))], [Result, go$error], true], ["Ping", "", [], [go$error], false], ["Prepare", "", [Go$String], [(go$ptrType(Stmt)), go$error], false], ["Query", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], true], ["QueryRow", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Row))], true], ["SetMaxIdleConns", "", [Go$Int], [], false], ["SetMaxOpenConns", "", [Go$Int], [], false], ["addDep", "database/sql", [finalCloser, go$emptyInterface], [], false], ["addDepLocked", "database/sql", [finalCloser, go$emptyInterface], [], false], ["begin", "database/sql", [], [(go$ptrType(Tx)), go$error], false], ["conn", "database/sql", [], [(go$ptrType(driverConn)), go$error], false], ["connIfFree", "database/sql", [(go$ptrType(driverConn))], [(go$ptrType(driverConn)), go$error], false], ["connectionOpener", "database/sql", [], [], false], ["exec", "database/sql", [Go$String, (go$sliceType(go$emptyInterface))], [Result, go$error], false], ["maxIdleConnsLocked", "database/sql", [], [Go$Int], false], ["maybeOpenNewConnections", "database/sql", [], [], false], ["noteUnusedDriverStatement", "database/sql", [(go$ptrType(driverConn)), driver.Stmt], [], false], ["openNewConnection", "database/sql", [], [], false], ["prepare", "database/sql", [Go$String], [(go$ptrType(Stmt)), go$error], false], ["putConn", "database/sql", [(go$ptrType(driverConn)), go$error], [], false], ["putConnDBLocked", "database/sql", [(go$ptrType(driverConn)), go$error], [Go$Bool], false], ["query", "database/sql", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], false], ["queryConn", "database/sql", [(go$ptrType(driverConn)), (go$funcType([go$error], [], false)), Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], false], ["removeDep", "database/sql", [finalCloser, go$emptyInterface], [go$error], false], ["removeDepLocked", "database/sql", [finalCloser, go$emptyInterface], [(go$funcType([], [go$error], false))], false]];
+	driverConn.init([["db", "database/sql", (go$ptrType(DB)), ""], ["", "", sync.Mutex, ""], ["ci", "database/sql", driver.Conn, ""], ["closed", "database/sql", Go$Bool, ""], ["finalClosed", "database/sql", Go$Bool, ""], ["openStmt", "database/sql", (go$mapType(driver.Stmt, Go$Bool)), ""], ["inUse", "database/sql", Go$Bool, ""], ["onPut", "database/sql", (go$sliceType((go$funcType([], [], false)))), ""], ["dbmuClosed", "database/sql", Go$Bool, ""], ["listElem", "database/sql", (go$ptrType(list.Element)), ""]]);
+	(go$ptrType(driverConn)).methods = [["Close", "", [], [go$error], false], ["Lock", "", [], [], false], ["Unlock", "", [], [], false], ["closeDBLocked", "database/sql", [], [(go$funcType([], [go$error], false))], false], ["finalClose", "database/sql", [], [go$error], false], ["prepareLocked", "database/sql", [Go$String], [driver.Stmt, go$error], false], ["releaseConn", "database/sql", [go$error], [], false], ["removeOpenStmt", "database/sql", [driver.Stmt], [], false]];
+	driverStmt.init([["", "", sync.Locker, ""], ["si", "database/sql", driver.Stmt, ""]]);
+	driverStmt.methods = [["Lock", "", [], [], false], ["Unlock", "", [], [], false]];
+	(go$ptrType(driverStmt)).methods = [["Close", "", [], [go$error], false], ["Lock", "", [], [], false], ["Unlock", "", [], [], false]];
+	depSet.init(go$emptyInterface, Go$Bool);
+	finalCloser.init([["finalClose", "database/sql", (go$funcType([], [go$error], false))]]);
+	connRequest.init(go$emptyInterface, true, false);
+	Tx.init([["db", "database/sql", (go$ptrType(DB)), ""], ["dc", "database/sql", (go$ptrType(driverConn)), ""], ["txi", "database/sql", driver.Tx, ""], ["done", "database/sql", Go$Bool, ""]]);
+	(go$ptrType(Tx)).methods = [["Commit", "", [], [go$error], false], ["Exec", "", [Go$String, (go$sliceType(go$emptyInterface))], [Result, go$error], true], ["Prepare", "", [Go$String], [(go$ptrType(Stmt)), go$error], false], ["Query", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], true], ["QueryRow", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Row))], true], ["Rollback", "", [], [go$error], false], ["Stmt", "", [(go$ptrType(Stmt))], [(go$ptrType(Stmt))], false], ["close", "database/sql", [], [], false], ["grabConn", "database/sql", [], [(go$ptrType(driverConn)), go$error], false]];
+	connStmt.init([["dc", "database/sql", (go$ptrType(driverConn)), ""], ["si", "database/sql", driver.Stmt, ""]]);
+	Stmt.init([["db", "database/sql", (go$ptrType(DB)), ""], ["query", "database/sql", Go$String, ""], ["stickyErr", "database/sql", go$error, ""], ["closemu", "database/sql", sync.RWMutex, ""], ["tx", "database/sql", (go$ptrType(Tx)), ""], ["txsi", "database/sql", (go$ptrType(driverStmt)), ""], ["mu", "database/sql", sync.Mutex, ""], ["closed", "database/sql", Go$Bool, ""], ["css", "database/sql", (go$sliceType(connStmt)), ""]]);
+	(go$ptrType(Stmt)).methods = [["Close", "", [], [go$error], false], ["Exec", "", [(go$sliceType(go$emptyInterface))], [Result, go$error], true], ["Query", "", [(go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], true], ["QueryRow", "", [(go$sliceType(go$emptyInterface))], [(go$ptrType(Row))], true], ["connStmt", "database/sql", [], [(go$ptrType(driverConn)), (go$funcType([go$error], [], false)), driver.Stmt, go$error], false], ["finalClose", "database/sql", [], [go$error], false]];
+	Rows.init([["dc", "database/sql", (go$ptrType(driverConn)), ""], ["releaseConn", "database/sql", (go$funcType([go$error], [], false)), ""], ["rowsi", "database/sql", driver.Rows, ""], ["closed", "database/sql", Go$Bool, ""], ["lastcols", "database/sql", (go$sliceType(driver.Value)), ""], ["lasterr", "database/sql", go$error, ""], ["closeStmt", "database/sql", driver.Stmt, ""]]);
+	(go$ptrType(Rows)).methods = [["Close", "", [], [go$error], false], ["Columns", "", [], [(go$sliceType(Go$String)), go$error], false], ["Err", "", [], [go$error], false], ["Next", "", [], [Go$Bool], false], ["Scan", "", [(go$sliceType(go$emptyInterface))], [go$error], true]];
+	Row.init([["err", "database/sql", go$error, ""], ["rows", "database/sql", (go$ptrType(Rows)), ""]]);
+	(go$ptrType(Row)).methods = [["Scan", "", [(go$sliceType(go$emptyInterface))], [go$error], true]];
+	Result.init([["LastInsertId", "", (go$funcType([], [Go$Int64, go$error], false))], ["RowsAffected", "", (go$funcType([], [Go$Int64, go$error], false))]]);
+	driverResult.init([["", "", sync.Locker, ""], ["resi", "database/sql", driver.Result, ""]]);
+	driverResult.methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
+	(go$ptrType(driverResult)).methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
+	var driverArgs = function(ds, args) {
+		var dargs, si, _tuple, cc, ok, _ref, _i, _slice, _index, arg, n, err, _tuple$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, arg$1, n$1, ok$1, _tuple$2, svi, _tuple$3, sv, err$1, err$2, _tuple$4, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
+		dargs = (go$sliceType(driver.Value)).make(args.length, 0, function() { return null; });
+		si = null;
+		if (!(ds === (go$ptrType(driverStmt)).nil)) {
+			si = ds.si;
+		}
+		_tuple = (si !== null && driver.ColumnConverter.implementedBy.indexOf(si.constructor) !== -1 ? [si, true] : [null, false]), cc = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			_ref = args;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				arg = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				n = _i;
+				err = null;
+				_tuple$1 = driver.DefaultParameterConverter.ConvertValue(arg), _slice$1 = dargs, _index$1 = n, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple$1[0]) : go$throwRuntimeError("index out of range"), err = _tuple$1[1];
+				if (!(go$interfaceIsEqual(err, null))) {
+					return [(go$sliceType(driver.Value)).nil, fmt.Errorf("sql: converting Exec argument #%d's type: %v", new (go$sliceType(go$emptyInterface))([new Go$Int(n), err]))];
+				}
+			}
+			return [dargs, null];
+		}
+		_ref$1 = args;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			arg$1 = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+			n$1 = _i$1;
+			if (_tuple$2 = (arg$1 !== null && driver.Valuer.implementedBy.indexOf(arg$1.constructor) !== -1 ? [arg$1, true] : [null, false]), svi = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
+				_tuple$3 = svi.Value(), sv = _tuple$3[0], err$1 = _tuple$3[1];
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					return [(go$sliceType(driver.Value)).nil, fmt.Errorf("sql: argument index %d from Value: %v", new (go$sliceType(go$emptyInterface))([new Go$Int(n$1), err$1]))];
+				}
+				if (!driver.IsValue(sv)) {
+					return [(go$sliceType(driver.Value)).nil, fmt.Errorf("sql: argument index %d: non-subset type %T returned from Value", new (go$sliceType(go$emptyInterface))([new Go$Int(n$1), sv]))];
+				}
+				arg$1 = sv;
+			}
+			err$2 = null;
+			ds.Locker.Lock();
+			_tuple$4 = cc.ColumnConverter(n$1).ConvertValue(arg$1), _slice$3 = dargs, _index$3 = n$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple$4[0]) : go$throwRuntimeError("index out of range"), err$2 = _tuple$4[1];
+			ds.Locker.Unlock();
+			if (!(go$interfaceIsEqual(err$2, null))) {
+				return [(go$sliceType(driver.Value)).nil, fmt.Errorf("sql: converting argument #%d's type: %v", new (go$sliceType(go$emptyInterface))([new Go$Int(n$1), err$2]))];
+			}
+			if (!driver.IsValue((_slice$4 = dargs, _index$4 = n$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")))) {
+				return [(go$sliceType(driver.Value)).nil, fmt.Errorf("sql: driver ColumnConverter error converted %T to unsupported type %T", new (go$sliceType(go$emptyInterface))([arg$1, (_slice$5 = dargs, _index$5 = n$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))]))];
+			}
+		}
+		return [dargs, null];
+	};
+	var convertAssign = function(dest, src) {
+		var s, _ref, _type, d, _ref$1, _type$1, d$1, _ref$2, _type$2, d$2, _ref$3, _type$3, sv, d$3, _ref$4, _type$4, _struct, _ref$5, _struct$1, _ref$6, _struct$2, _ref$7, _tuple, bv, err, ok, _tuple$1, scanner, _struct$3, dpv, _struct$4, _struct$5, _struct$6, dv, _struct$7, _ref$8, _struct$8, _struct$9, s$1, _tuple$2, i64, err$1, s$2, _tuple$3, u64, err$2, s$3, _tuple$4, f64, err$3;
+		_ref = src;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === Go$String) {
+			s = _ref.go$val;
+			_ref$1 = dest;
+			_type$1 = _ref$1 !== null ? _ref$1.constructor : null;
+			if (_type$1 === (go$ptrType(Go$String))) {
+				d = _ref$1.go$val;
+				if (go$pointerIsEqual(d, (go$ptrType(Go$String)).nil)) {
+					return errNilPtr;
+				}
+				d.go$set(s);
+				return null;
+			} else if (_type$1 === (go$ptrType((go$sliceType(Go$Uint8))))) {
+				d = _ref$1.go$val;
+				if (go$pointerIsEqual(d, (go$ptrType((go$sliceType(Go$Uint8)))).nil)) {
+					return errNilPtr;
+				}
+				d.go$set(new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
+				return null;
+			}
+		} else if (_type === (go$sliceType(Go$Uint8))) {
+			s = _ref.go$val;
+			_ref$2 = dest;
+			_type$2 = _ref$2 !== null ? _ref$2.constructor : null;
+			if (_type$2 === (go$ptrType(Go$String))) {
+				d$1 = _ref$2.go$val;
+				if (go$pointerIsEqual(d$1, (go$ptrType(Go$String)).nil)) {
+					return errNilPtr;
+				}
+				d$1.go$set(go$bytesToString(s));
+				return null;
+			} else if (_type$2 === (go$ptrType(go$emptyInterface))) {
+				d$1 = _ref$2.go$val;
+				if (d$1 === (go$ptrType(go$emptyInterface)).nil) {
+					return errNilPtr;
+				}
+				d$1.go$set(cloneBytes(s));
+				return null;
+			} else if (_type$2 === (go$ptrType((go$sliceType(Go$Uint8))))) {
+				d$1 = _ref$2.go$val;
+				if (go$pointerIsEqual(d$1, (go$ptrType((go$sliceType(Go$Uint8)))).nil)) {
+					return errNilPtr;
+				}
+				d$1.go$set(cloneBytes(s));
+				return null;
+			} else if (_type$2 === (go$ptrType(RawBytes))) {
+				d$1 = _ref$2.go$val;
+				if (go$pointerIsEqual(d$1, (go$ptrType(RawBytes)).nil)) {
+					return errNilPtr;
+				}
+				d$1.go$set(go$subslice(new RawBytes(s.array), s.offset, s.offset + s.length));
+				return null;
+			}
+		} else if (_type === null) {
+			s = _ref;
+			_ref$3 = dest;
+			_type$3 = _ref$3 !== null ? _ref$3.constructor : null;
+			if (_type$3 === (go$ptrType(go$emptyInterface))) {
+				d$2 = _ref$3.go$val;
+				if (d$2 === (go$ptrType(go$emptyInterface)).nil) {
+					return errNilPtr;
+				}
+				d$2.go$set(null);
+				return null;
+			} else if (_type$3 === (go$ptrType((go$sliceType(Go$Uint8))))) {
+				d$2 = _ref$3.go$val;
+				if (go$pointerIsEqual(d$2, (go$ptrType((go$sliceType(Go$Uint8)))).nil)) {
+					return errNilPtr;
+				}
+				d$2.go$set((go$sliceType(Go$Uint8)).nil);
+				return null;
+			} else if (_type$3 === (go$ptrType(RawBytes))) {
+				d$2 = _ref$3.go$val;
+				if (go$pointerIsEqual(d$2, (go$ptrType(RawBytes)).nil)) {
+					return errNilPtr;
+				}
+				d$2.go$set(RawBytes.nil);
+				return null;
+			}
+		}
+		sv = new reflect.Value.Ptr();
+		_ref$4 = dest;
+		_type$4 = _ref$4 !== null ? _ref$4.constructor : null;
+		if (_type$4 === (go$ptrType(Go$String))) {
+			d$3 = _ref$4.go$val;
+			sv = (_struct = reflect.ValueOf(src), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+			_ref$5 = sv.Kind();
+			if (_ref$5 === 1 || _ref$5 === 2 || _ref$5 === 3 || _ref$5 === 4 || _ref$5 === 5 || _ref$5 === 6 || _ref$5 === 7 || _ref$5 === 8 || _ref$5 === 9 || _ref$5 === 10 || _ref$5 === 11 || _ref$5 === 13 || _ref$5 === 14) {
+				d$3.go$set(fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([src])));
+				return null;
+			}
+		} else if (_type$4 === (go$ptrType((go$sliceType(Go$Uint8))))) {
+			d$3 = _ref$4.go$val;
+			sv = (_struct$1 = reflect.ValueOf(src), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+			_ref$6 = sv.Kind();
+			if (_ref$6 === 1 || _ref$6 === 2 || _ref$6 === 3 || _ref$6 === 4 || _ref$6 === 5 || _ref$6 === 6 || _ref$6 === 7 || _ref$6 === 8 || _ref$6 === 9 || _ref$6 === 10 || _ref$6 === 11 || _ref$6 === 13 || _ref$6 === 14) {
+				d$3.go$set(new (go$sliceType(Go$Uint8))(go$stringToBytes(fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([src])))));
+				return null;
+			}
+		} else if (_type$4 === (go$ptrType(RawBytes))) {
+			d$3 = _ref$4.go$val;
+			sv = (_struct$2 = reflect.ValueOf(src), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+			_ref$7 = sv.Kind();
+			if (_ref$7 === 1 || _ref$7 === 2 || _ref$7 === 3 || _ref$7 === 4 || _ref$7 === 5 || _ref$7 === 6 || _ref$7 === 7 || _ref$7 === 8 || _ref$7 === 9 || _ref$7 === 10 || _ref$7 === 11 || _ref$7 === 13 || _ref$7 === 14) {
+				d$3.go$set(new RawBytes(go$stringToBytes(fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([src])))));
+				return null;
+			}
+		} else if (_type$4 === (go$ptrType(Go$Bool))) {
+			d$3 = _ref$4.go$val;
+			_tuple = driver.Bool.ConvertValue(src), bv = _tuple[0], err = _tuple[1];
+			if (go$interfaceIsEqual(err, null)) {
+				d$3.go$set((bv !== null && bv.constructor === Go$Bool ? bv.go$val : go$typeAssertionFailed(bv, Go$Bool)));
+			}
+			return err;
+		} else if (_type$4 === (go$ptrType(go$emptyInterface))) {
+			d$3 = _ref$4.go$val;
+			d$3.go$set(src);
+			return null;
+		}
+		if (_tuple$1 = (dest !== null && Scanner.implementedBy.indexOf(dest.constructor) !== -1 ? [dest, true] : [null, false]), scanner = _tuple$1[0], ok = _tuple$1[1], ok) {
+			return scanner.Scan(src);
+		}
+		dpv = (_struct$3 = reflect.ValueOf(dest), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
+		if (!((dpv.Kind() === 22))) {
+			return errors.New("destination not a pointer");
+		}
+		if (dpv.IsNil()) {
+			return errNilPtr;
+		}
+		if (!sv.IsValid()) {
+			sv = (_struct$4 = reflect.ValueOf(src), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
+		}
+		dv = (_struct$6 = reflect.Indirect((_struct$5 = dpv, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag));
+		if (dv.Kind() === sv.Kind()) {
+			dv.Set((_struct$7 = sv, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)));
+			return null;
+		}
+		_ref$8 = dv.Kind();
+		if (_ref$8 === 22) {
+			if (go$interfaceIsEqual(src, null)) {
+				dv.Set((_struct$8 = reflect.Zero(dv.Type()), new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)));
+				return null;
+			} else {
+				dv.Set((_struct$9 = reflect.New(dv.Type().Elem()), new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)));
+				return convertAssign(dv.Interface(), src);
+			}
+		} else if (_ref$8 === 2 || _ref$8 === 3 || _ref$8 === 4 || _ref$8 === 5 || _ref$8 === 6) {
+			s$1 = asString(src);
+			_tuple$2 = strconv.ParseInt(s$1, 10, dv.Type().Bits()), i64 = _tuple$2[0], err$1 = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return fmt.Errorf("converting string %q to a %s: %v", new (go$sliceType(go$emptyInterface))([new Go$String(s$1), new reflect.Kind(dv.Kind()), err$1]));
+			}
+			dv.SetInt(i64);
+			return null;
+		} else if (_ref$8 === 7 || _ref$8 === 8 || _ref$8 === 9 || _ref$8 === 10 || _ref$8 === 11) {
+			s$2 = asString(src);
+			_tuple$3 = strconv.ParseUint(s$2, 10, dv.Type().Bits()), u64 = _tuple$3[0], err$2 = _tuple$3[1];
+			if (!(go$interfaceIsEqual(err$2, null))) {
+				return fmt.Errorf("converting string %q to a %s: %v", new (go$sliceType(go$emptyInterface))([new Go$String(s$2), new reflect.Kind(dv.Kind()), err$2]));
+			}
+			dv.SetUint(u64);
+			return null;
+		} else if (_ref$8 === 13 || _ref$8 === 14) {
+			s$3 = asString(src);
+			_tuple$4 = strconv.ParseFloat(s$3, dv.Type().Bits()), f64 = _tuple$4[0], err$3 = _tuple$4[1];
+			if (!(go$interfaceIsEqual(err$3, null))) {
+				return fmt.Errorf("converting string %q to a %s: %v", new (go$sliceType(go$emptyInterface))([new Go$String(s$3), new reflect.Kind(dv.Kind()), err$3]));
+			}
+			dv.SetFloat(f64);
+			return null;
+		}
+		return fmt.Errorf("unsupported driver -> Scan pair: %T -> %T", new (go$sliceType(go$emptyInterface))([src, dest]));
+	};
+	var cloneBytes = function(b) {
+		var c;
+		if (b === (go$sliceType(Go$Uint8)).nil) {
+			return (go$sliceType(Go$Uint8)).nil;
+		} else {
+			c = (go$sliceType(Go$Uint8)).make(b.length, 0, function() { return 0; });
+			go$copySlice(c, b);
+			return c;
+		}
+	};
+	var asString = function(src) {
+		var v, _ref, _type;
+		_ref = src;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === Go$String) {
+			v = _ref.go$val;
+			return v;
+		} else if (_type === (go$sliceType(Go$Uint8))) {
+			v = _ref.go$val;
+			return go$bytesToString(v);
+		}
+		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([src]));
+	};
+	var Register = go$pkg.Register = function(name, driver$1) {
+		var dup, _tuple, _entry, _key;
+		if (go$interfaceIsEqual(driver$1, null)) {
+			throw go$panic(new Go$String("sql: Register driver is nil"));
+		}
+		if (_tuple = (_entry = drivers[name], _entry !== undefined ? [_entry.v, true] : [null, false]), dup = _tuple[1], dup) {
+			throw go$panic(new Go$String("sql: Register called twice for driver " + name));
+		}
+		_key = name, (drivers || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: driver$1 };
+	};
+	NullString.Ptr.prototype.Scan = function(value) {
+		var ns, _tuple, v;
+		ns = this;
+		if (go$interfaceIsEqual(value, null)) {
+			_tuple = ["", false], ns.String = _tuple[0], ns.Valid = _tuple[1];
+			return null;
+		}
+		ns.Valid = true;
+		return convertAssign(new (go$ptrType(Go$String))(function() { return ns.String; }, function(v) { ns.String = v; }), value);
+	};
+	NullString.prototype.Scan = function(value) { return this.go$val.Scan(value); };
+	NullString.Ptr.prototype.Value = function() {
+		var _struct, ns;
+		ns = (_struct = this, new NullString.Ptr(_struct.String, _struct.Valid));
+		if (!ns.Valid) {
+			return [null, null];
+		}
+		return [new Go$String(ns.String), null];
+	};
+	NullString.prototype.Value = function() { return this.go$val.Value(); };
+	NullInt64.Ptr.prototype.Scan = function(value) {
+		var n, _tuple, v;
+		n = this;
+		if (go$interfaceIsEqual(value, null)) {
+			_tuple = [new Go$Int64(0, 0), false], n.Int64 = _tuple[0], n.Valid = _tuple[1];
+			return null;
+		}
+		n.Valid = true;
+		return convertAssign(new (go$ptrType(Go$Int64))(function() { return n.Int64; }, function(v) { n.Int64 = v; }), value);
+	};
+	NullInt64.prototype.Scan = function(value) { return this.go$val.Scan(value); };
+	NullInt64.Ptr.prototype.Value = function() {
+		var _struct, n;
+		n = (_struct = this, new NullInt64.Ptr(_struct.Int64, _struct.Valid));
+		if (!n.Valid) {
+			return [null, null];
+		}
+		return [n.Int64, null];
+	};
+	NullInt64.prototype.Value = function() { return this.go$val.Value(); };
+	NullFloat64.Ptr.prototype.Scan = function(value) {
+		var n, _tuple, v;
+		n = this;
+		if (go$interfaceIsEqual(value, null)) {
+			_tuple = [0, false], n.Float64 = _tuple[0], n.Valid = _tuple[1];
+			return null;
+		}
+		n.Valid = true;
+		return convertAssign(new (go$ptrType(Go$Float64))(function() { return n.Float64; }, function(v) { n.Float64 = v; }), value);
+	};
+	NullFloat64.prototype.Scan = function(value) { return this.go$val.Scan(value); };
+	NullFloat64.Ptr.prototype.Value = function() {
+		var _struct, n;
+		n = (_struct = this, new NullFloat64.Ptr(_struct.Float64, _struct.Valid));
+		if (!n.Valid) {
+			return [null, null];
+		}
+		return [new Go$Float64(n.Float64), null];
+	};
+	NullFloat64.prototype.Value = function() { return this.go$val.Value(); };
+	NullBool.Ptr.prototype.Scan = function(value) {
+		var n, _tuple, v;
+		n = this;
+		if (go$interfaceIsEqual(value, null)) {
+			_tuple = [false, false], n.Bool = _tuple[0], n.Valid = _tuple[1];
+			return null;
+		}
+		n.Valid = true;
+		return convertAssign(new (go$ptrType(Go$Bool))(function() { return n.Bool; }, function(v) { n.Bool = v; }), value);
+	};
+	NullBool.prototype.Scan = function(value) { return this.go$val.Scan(value); };
+	NullBool.Ptr.prototype.Value = function() {
+		var _struct, n;
+		n = (_struct = this, new NullBool.Ptr(_struct.Bool, _struct.Valid));
+		if (!n.Valid) {
+			return [null, null];
+		}
+		return [new Go$Bool(n.Bool), null];
+	};
+	NullBool.prototype.Value = function() { return this.go$val.Value(); };
+	driverConn.Ptr.prototype.releaseConn = function(err) {
+		var dc;
+		dc = this;
+		dc.db.putConn(dc, err);
+	};
+	driverConn.prototype.releaseConn = function(err) { return this.go$val.releaseConn(err); };
+	driverConn.Ptr.prototype.removeOpenStmt = function(si) {
+		var dc;
+		var go$deferred = [];
+		try {
+			dc = this;
+			dc.Mutex.Lock();
+			go$deferred.push({ recv: dc, method: "Unlock", args: [] });
+			delete dc.openStmt[(si || go$interfaceNil).go$key()];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	driverConn.prototype.removeOpenStmt = function(si) { return this.go$val.removeOpenStmt(si); };
+	driverConn.Ptr.prototype.prepareLocked = function(query) {
+		var dc, _tuple, si, err, _key;
+		dc = this;
+		_tuple = dc.ci.Prepare(query), si = _tuple[0], err = _tuple[1];
+		if (go$interfaceIsEqual(err, null)) {
+			if (dc.openStmt === false) {
+				dc.openStmt = new Go$Map();
+			}
+			_key = si, (dc.openStmt || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: true };
+		}
+		return [si, err];
+	};
+	driverConn.prototype.prepareLocked = function(query) { return this.go$val.prepareLocked(query); };
+	driverConn.Ptr.prototype.closeDBLocked = function() {
+		var dc;
+		var go$deferred = [];
+		try {
+			dc = this;
+			dc.Mutex.Lock();
+			go$deferred.push({ recv: dc, method: "Unlock", args: [] });
+			if (dc.closed) {
+				return (function() {
+					return errors.New("sql: duplicate driverConn close");
+				});
+			}
+			dc.closed = true;
+			return dc.db.removeDepLocked(dc, dc);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return go$throwNilPointerError;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	driverConn.prototype.closeDBLocked = function() { return this.go$val.closeDBLocked(); };
+	driverConn.Ptr.prototype.Close = function() {
+		var dc, fn;
+		dc = this;
+		dc.Mutex.Lock();
+		if (dc.closed) {
+			dc.Mutex.Unlock();
+			return errors.New("sql: duplicate driverConn close");
+		}
+		dc.closed = true;
+		dc.Mutex.Unlock();
+		dc.db.mu.Lock();
+		dc.dbmuClosed = true;
+		fn = dc.db.removeDepLocked(dc, dc);
+		dc.db.mu.Unlock();
+		return fn();
+	};
+	driverConn.prototype.Close = function() { return this.go$val.Close(); };
+	driverConn.Ptr.prototype.finalClose = function() {
+		var dc, _ref, _i, _keys, _entry, si, err;
+		dc = this;
+		dc.Mutex.Lock();
+		_ref = dc.openStmt;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry = _ref[_keys[_i]];
+			si = _entry.k;
+			si.Close();
+		}
+		dc.openStmt = false;
+		err = dc.ci.Close();
+		dc.ci = null;
+		dc.finalClosed = true;
+		dc.Mutex.Unlock();
+		dc.db.mu.Lock();
+		dc.db.numOpen = dc.db.numOpen - 1 >> 0;
+		dc.db.maybeOpenNewConnections();
+		dc.db.mu.Unlock();
+		return err;
+	};
+	driverConn.prototype.finalClose = function() { return this.go$val.finalClose(); };
+	driverStmt.Ptr.prototype.Close = function() {
+		var ds;
+		var go$deferred = [];
+		try {
+			ds = this;
+			ds.Locker.Lock();
+			go$deferred.push({ recv: ds, method: "Unlock", args: [] });
+			return ds.si.Close();
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	driverStmt.prototype.Close = function() { return this.go$val.Close(); };
+	DB.Ptr.prototype.addDep = function(x, dep) {
+		var db;
+		var go$deferred = [];
+		try {
+			db = this;
+			db.mu.Lock();
+			go$deferred.push({ recv: db.mu, method: "Unlock", args: [] });
+			db.addDepLocked(x, dep);
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	DB.prototype.addDep = function(x, dep) { return this.go$val.addDep(x, dep); };
+	DB.Ptr.prototype.addDepLocked = function(x, dep) {
+		var db, _entry, xdep, _key, _key$1;
+		db = this;
+		if (db.dep === false) {
+			db.dep = new Go$Map();
+		}
+		xdep = (_entry = db.dep[(x || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : false);
+		if (xdep === false) {
+			xdep = new Go$Map();
+			_key = x, (db.dep || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: xdep };
+		}
+		_key$1 = dep, (xdep || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: true };
+	};
+	DB.prototype.addDepLocked = function(x, dep) { return this.go$val.addDepLocked(x, dep); };
+	DB.Ptr.prototype.removeDep = function(x, dep) {
+		var db, fn;
+		db = this;
+		db.mu.Lock();
+		fn = db.removeDepLocked(x, dep);
+		db.mu.Unlock();
+		return fn();
+	};
+	DB.prototype.removeDep = function(x, dep) { return this.go$val.removeDep(x, dep); };
+	DB.Ptr.prototype.removeDepLocked = function(x, dep) {
+		var db, _tuple, _entry, xdep, ok, l0, _ref, _recv;
+		db = this;
+		_tuple = (_entry = db.dep[(x || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [false, false]), xdep = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			throw go$panic(new Go$String(fmt.Sprintf("unpaired removeDep: no deps for %T", new (go$sliceType(go$emptyInterface))([x]))));
+		}
+		l0 = go$keys(xdep).length;
+		delete xdep[(dep || go$interfaceNil).go$key()];
+		_ref = go$keys(xdep).length;
+		if (_ref === l0) {
+			throw go$panic(new Go$String(fmt.Sprintf("unpaired removeDep: no %T dep on %T", new (go$sliceType(go$emptyInterface))([dep, x]))));
+		} else if (_ref === 0) {
+			delete db.dep[(x || go$interfaceNil).go$key()];
+			return (_recv = x, function() { return _recv.finalClose(); });
+		} else {
+			return (function() {
+				return null;
+			});
+		}
+	};
+	DB.prototype.removeDepLocked = function(x, dep) { return this.go$val.removeDepLocked(x, dep); };
+	var Open = go$pkg.Open = function(driverName, dataSourceName) {
+		var _tuple, _entry, driveri, ok, db;
+		_tuple = (_entry = drivers[driverName], _entry !== undefined ? [_entry.v, true] : [null, false]), driveri = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			return [(go$ptrType(DB)).nil, fmt.Errorf("sql: unknown driver %q (forgotten import?)", new (go$sliceType(go$emptyInterface))([new Go$String(driverName)]))];
+		}
+		db = new DB.Ptr(driveri, dataSourceName, new sync.Mutex.Ptr(), (go$ptrType(list.List)).nil, (go$ptrType(list.List)).nil, 0, 0, new (go$chanType((go$structType([])), false, false))(), false, false, new Go$Map(), 0, 0);
+		db.freeConn = list.New();
+		db.connRequests = list.New();
+		go$notSupported("go")
+		return [db, null];
+	};
+	DB.Ptr.prototype.Ping = function() {
+		var db, _tuple, dc, err;
+		db = this;
+		_tuple = db.conn(), dc = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		db.putConn(dc, null);
+		return null;
+	};
+	DB.prototype.Ping = function() { return this.go$val.Ping(); };
+	DB.Ptr.prototype.Close = function() {
+		var db, err, fns, x, dc, x$1, req, _ref, _i, _slice, _index, fn, err1;
+		db = this;
+		db.mu.Lock();
+		if (db.closed) {
+			db.mu.Unlock();
+			return null;
+		}
+		go$notSupported("close");
+		err = null;
+		fns = (go$sliceType((go$funcType([], [go$error], false)))).make(0, db.freeConn.Len(), function() { return go$throwNilPointerError; });
+		while (!(db.freeConn.Front() === (go$ptrType(list.Element)).nil)) {
+			dc = (x = db.freeConn.Front().Value, (x !== null && x.constructor === (go$ptrType(driverConn)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(driverConn)))));
+			dc.listElem = (go$ptrType(list.Element)).nil;
+			fns = go$append(fns, dc.closeDBLocked());
+			db.freeConn.Remove(db.freeConn.Front());
+		}
+		db.closed = true;
+		while (!(db.connRequests.Front() === (go$ptrType(list.Element)).nil)) {
+			req = (x$1 = db.connRequests.Front().Value, (x$1 !== null && x$1.constructor === connRequest ? x$1.go$val : go$typeAssertionFailed(x$1, connRequest)));
+			db.connRequests.Remove(db.connRequests.Front());
+			go$notSupported("close");
+		}
+		db.mu.Unlock();
+		_ref = fns;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			fn = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			err1 = fn();
+			if (!(go$interfaceIsEqual(err1, null))) {
+				err = err1;
+			}
+		}
+		return err;
+	};
+	DB.prototype.Close = function() { return this.go$val.Close(); };
+	DB.Ptr.prototype.maxIdleConnsLocked = function() {
+		var db, n;
+		db = this;
+		n = db.maxIdle;
+		if (n === 0) {
+			return 2;
+		} else if (n < 0) {
+			return 0;
+		} else {
+			return n;
+		}
+	};
+	DB.prototype.maxIdleConnsLocked = function() { return this.go$val.maxIdleConnsLocked(); };
+	DB.Ptr.prototype.SetMaxIdleConns = function(n) {
+		var db, closing, x, dc, _ref, _i, _slice, _index, c;
+		db = this;
+		db.mu.Lock();
+		if (n > 0) {
+			db.maxIdle = n;
+		} else {
+			db.maxIdle = -1;
+		}
+		if (db.maxOpen > 0 && db.maxIdleConnsLocked() > db.maxOpen) {
+			db.maxIdle = db.maxOpen;
+		}
+		closing = (go$sliceType((go$ptrType(driverConn)))).nil;
+		while (db.freeConn.Len() > db.maxIdleConnsLocked()) {
+			dc = (x = db.freeConn.Back().Value, (x !== null && x.constructor === (go$ptrType(driverConn)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(driverConn)))));
+			dc.listElem = (go$ptrType(list.Element)).nil;
+			db.freeConn.Remove(db.freeConn.Back());
+			closing = go$append(closing, dc);
+		}
+		db.mu.Unlock();
+		_ref = closing;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			c.Close();
+		}
+	};
+	DB.prototype.SetMaxIdleConns = function(n) { return this.go$val.SetMaxIdleConns(n); };
+	DB.Ptr.prototype.SetMaxOpenConns = function(n) {
+		var db, syncMaxIdle;
+		db = this;
+		db.mu.Lock();
+		db.maxOpen = n;
+		if (n < 0) {
+			db.maxOpen = 0;
+		}
+		syncMaxIdle = db.maxOpen > 0 && db.maxIdleConnsLocked() > db.maxOpen;
+		db.mu.Unlock();
+		if (syncMaxIdle) {
+			db.SetMaxIdleConns(n);
+		}
+	};
+	DB.prototype.SetMaxOpenConns = function(n) { return this.go$val.SetMaxOpenConns(n); };
+	DB.Ptr.prototype.maybeOpenNewConnections = function() {
+		var db, numRequests, numCanOpen;
+		db = this;
+		numRequests = db.connRequests.Len() - db.pendingOpens >> 0;
+		if (db.maxOpen > 0) {
+			numCanOpen = db.maxOpen - ((db.numOpen + db.pendingOpens >> 0)) >> 0;
+			if (numRequests > numCanOpen) {
+				numRequests = numCanOpen;
+			}
+		}
+		while (numRequests > 0) {
+			db.pendingOpens = db.pendingOpens + 1 >> 0;
+			numRequests = numRequests - 1 >> 0;
+			go$notSupported("send");
+		}
+	};
+	DB.prototype.maybeOpenNewConnections = function() { return this.go$val.maybeOpenNewConnections(); };
+	DB.Ptr.prototype.connectionOpener = function() {
+		var db, _ref, _i;
+		db = this;
+		_ref = db.openerCh;
+		_i = 0;
+	};
+	DB.prototype.connectionOpener = function() { return this.go$val.connectionOpener(); };
+	DB.Ptr.prototype.openNewConnection = function() {
+		var db, _tuple, ci, err, dc;
+		var go$deferred = [];
+		try {
+			db = this;
+			_tuple = db.driver.Open(db.dsn), ci = _tuple[0], err = _tuple[1];
+			db.mu.Lock();
+			go$deferred.push({ recv: db.mu, method: "Unlock", args: [] });
+			if (db.closed) {
+				if (go$interfaceIsEqual(err, null)) {
+					ci.Close();
+				}
+				return;
+			}
+			db.pendingOpens = db.pendingOpens - 1 >> 0;
+			if (!(go$interfaceIsEqual(err, null))) {
+				db.putConnDBLocked((go$ptrType(driverConn)).nil, err);
+				return;
+			}
+			dc = new driverConn.Ptr(db, new sync.Mutex.Ptr(), ci, false, false, false, false, (go$sliceType((go$funcType([], [], false)))).nil, false, (go$ptrType(list.Element)).nil);
+			if (db.putConnDBLocked(dc, err)) {
+				db.addDepLocked(dc, dc);
+				db.numOpen = db.numOpen + 1 >> 0;
+			} else {
+				ci.Close();
+			}
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	DB.prototype.openNewConnection = function() { return this.go$val.openNewConnection(); };
+	DB.Ptr.prototype.conn = function() {
+		var db, ch, req, _tuple, ret, ok, _ref, _type, f, x, conn, _tuple$1, ci, err, dc;
+		db = this;
+		db.mu.Lock();
+		if (db.closed) {
+			db.mu.Unlock();
+			return [(go$ptrType(driverConn)).nil, errDBClosed];
+		}
+		if (db.maxOpen > 0 && (db.numOpen >= db.maxOpen || (db.freeConn.Len() === 0))) {
+			ch = new (go$chanType(go$emptyInterface, false, false))();
+			req = ch;
+			db.connRequests.PushBack(req);
+			db.maybeOpenNewConnections();
+			db.mu.Unlock();
+			_tuple = undefined, ret = _tuple[0], ok = _tuple[1];
+			if (!ok) {
+				return [(go$ptrType(driverConn)).nil, errDBClosed];
+			}
+			_ref = ret;
+			_type = _ref !== null ? _ref.constructor : null;
+			if (_type === (go$ptrType(driverConn))) {
+				return [(ret !== null && ret.constructor === (go$ptrType(driverConn)) ? ret.go$val : go$typeAssertionFailed(ret, (go$ptrType(driverConn)))), null];
+			} else if (go$error.implementedBy.indexOf(_type) !== -1) {
+				return [(go$ptrType(driverConn)).nil, (ret !== null && go$error.implementedBy.indexOf(ret.constructor) !== -1 ? ret : go$typeAssertionFailed(ret, go$error))];
+			} else {
+				throw go$panic(new Go$String("sql: Unexpected type passed through connRequest.ch"));
+			}
+		}
+		if (f = db.freeConn.Front(), !(f === (go$ptrType(list.Element)).nil)) {
+			conn = (x = f.Value, (x !== null && x.constructor === (go$ptrType(driverConn)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(driverConn)))));
+			conn.listElem = (go$ptrType(list.Element)).nil;
+			db.freeConn.Remove(f);
+			conn.inUse = true;
+			db.mu.Unlock();
+			return [conn, null];
+		}
+		db.mu.Unlock();
+		_tuple$1 = db.driver.Open(db.dsn), ci = _tuple$1[0], err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(driverConn)).nil, err];
+		}
+		db.mu.Lock();
+		db.numOpen = db.numOpen + 1 >> 0;
+		dc = new driverConn.Ptr(db, new sync.Mutex.Ptr(), ci, false, false, false, false, (go$sliceType((go$funcType([], [], false)))).nil, false, (go$ptrType(list.Element)).nil);
+		db.addDepLocked(dc, dc);
+		dc.inUse = true;
+		db.mu.Unlock();
+		return [dc, null];
+	};
+	DB.prototype.conn = function() { return this.go$val.conn(); };
+	DB.Ptr.prototype.connIfFree = function(wanted) {
+		var db;
+		var go$deferred = [];
+		try {
+			db = this;
+			db.mu.Lock();
+			go$deferred.push({ recv: db.mu, method: "Unlock", args: [] });
+			if (wanted.dbmuClosed) {
+				return [(go$ptrType(driverConn)).nil, errConnClosed];
+			}
+			if (wanted.inUse) {
+				return [(go$ptrType(driverConn)).nil, errConnBusy];
+			}
+			if (!(wanted.listElem === (go$ptrType(list.Element)).nil)) {
+				db.freeConn.Remove(wanted.listElem);
+				wanted.listElem = (go$ptrType(list.Element)).nil;
+				wanted.inUse = true;
+				return [wanted, null];
+			}
+			return [(go$ptrType(driverConn)).nil, errConnBusy];
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [(go$ptrType(driverConn)).nil, null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	DB.prototype.connIfFree = function(wanted) { return this.go$val.connIfFree(wanted); };
+	DB.Ptr.prototype.noteUnusedDriverStatement = function(c, si) {
+		var db;
+		var go$deferred = [];
+		try {
+			db = this;
+			db.mu.Lock();
+			go$deferred.push({ recv: db.mu, method: "Unlock", args: [] });
+			if (c.inUse) {
+				c.onPut = go$append(c.onPut, (function() {
+					si.Close();
+				}));
+			} else {
+				c.Mutex.Lock();
+				go$deferred.push({ recv: c, method: "Unlock", args: [] });
+				if (!c.finalClosed) {
+					si.Close();
+				}
+			}
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	DB.prototype.noteUnusedDriverStatement = function(c, si) { return this.go$val.noteUnusedDriverStatement(c, si); };
+	DB.Ptr.prototype.putConn = function(dc, err) {
+		var db, _ref, _i, _slice, _index, fn, added;
+		db = this;
+		db.mu.Lock();
+		if (!dc.inUse) {
+			throw go$panic(new Go$String("sql: connection returned that was never out"));
+		}
+		dc.inUse = false;
+		_ref = dc.onPut;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			fn = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			fn();
+		}
+		dc.onPut = (go$sliceType((go$funcType([], [], false)))).nil;
+		if (go$interfaceIsEqual(err, driver.ErrBadConn)) {
+			db.maybeOpenNewConnections();
+			db.mu.Unlock();
+			dc.Close();
+			return;
+		}
+		if (!(putConnHook === go$throwNilPointerError)) {
+			putConnHook(db, dc);
+		}
+		added = db.putConnDBLocked(dc, null);
+		db.mu.Unlock();
+		if (!added) {
+			dc.Close();
+		}
+	};
+	DB.prototype.putConn = function(dc, err) { return this.go$val.putConn(dc, err); };
+	DB.Ptr.prototype.putConnDBLocked = function(dc, err) {
+		var db, x, req;
+		db = this;
+		if (db.connRequests.Len() > 0) {
+			req = (x = db.connRequests.Front().Value, (x !== null && x.constructor === connRequest ? x.go$val : go$typeAssertionFailed(x, connRequest)));
+			db.connRequests.Remove(db.connRequests.Front());
+			if (!(go$interfaceIsEqual(err, null))) {
+				go$notSupported("send");
+			} else {
+				dc.inUse = true;
+				go$notSupported("send");
+			}
+			return true;
+		} else if (go$interfaceIsEqual(err, null) && !db.closed && db.maxIdleConnsLocked() > 0 && db.maxIdleConnsLocked() > db.freeConn.Len()) {
+			dc.listElem = db.freeConn.PushFront(dc);
+			return true;
+		}
+		return false;
+	};
+	DB.prototype.putConnDBLocked = function(dc, err) { return this.go$val.putConnDBLocked(dc, err); };
+	DB.Ptr.prototype.Prepare = function(query) {
+		var db, stmt, err, i, _tuple;
+		db = this;
+		stmt = (go$ptrType(Stmt)).nil;
+		err = null;
+		i = 0;
+		while (i < 10) {
+			_tuple = db.prepare(query), stmt = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, driver.ErrBadConn))) {
+				break;
+			}
+			i = i + 1 >> 0;
+		}
+		return [stmt, err];
+	};
+	DB.prototype.Prepare = function(query) { return this.go$val.Prepare(query); };
+	DB.Ptr.prototype.prepare = function(query) {
+		var db, _tuple, dc, err, _tuple$1, si, stmt;
+		db = this;
+		_tuple = db.conn(), dc = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Stmt)).nil, err];
+		}
+		dc.Mutex.Lock();
+		_tuple$1 = dc.prepareLocked(query), si = _tuple$1[0], err = _tuple$1[1];
+		dc.Mutex.Unlock();
+		if (!(go$interfaceIsEqual(err, null))) {
+			db.putConn(dc, err);
+			return [(go$ptrType(Stmt)).nil, err];
+		}
+		stmt = new Stmt.Ptr(db, query, null, new sync.RWMutex.Ptr(), (go$ptrType(Tx)).nil, (go$ptrType(driverStmt)).nil, new sync.Mutex.Ptr(), false, new (go$sliceType(connStmt))([new connStmt.Ptr(dc, si)]));
+		db.addDep(stmt, stmt);
+		db.putConn(dc, null);
+		return [stmt, null];
+	};
+	DB.prototype.prepare = function(query) { return this.go$val.prepare(query); };
+	DB.Ptr.prototype.Exec = function(query, args) {
+		var db, res, err, i, _tuple;
+		db = this;
+		res = null;
+		err = null;
+		i = 0;
+		while (i < 10) {
+			_tuple = db.exec(query, args), res = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, driver.ErrBadConn))) {
+				break;
+			}
+			i = i + 1 >> 0;
+		}
+		return [res, err];
+	};
+	DB.prototype.Exec = function(query, args) { return this.go$val.Exec(query, args); };
+	DB.Ptr.prototype.exec = function(query, args) {
+		var res, err, db, _tuple, dc, _tuple$1, ok, _tuple$2, x, execer, _tuple$3, dargs, err$1, _tuple$4, _tuple$5, resi, _tuple$6, x$1, _tuple$7, _tuple$8, si, _tuple$9, _tuple$10;
+		res = null;
+		err = null;
+		var go$deferred = [];
+		try {
+			db = this;
+			_tuple = db.conn(), dc = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				_tuple$1 = [null, err], res = _tuple$1[0], err = _tuple$1[1];
+				return [res, err];
+			}
+			go$deferred.push({ fun: (function() {
+				db.putConn(dc, err);
+			}), args: [] });
+			if (_tuple$2 = (x = dc.ci, (x !== null && driver.Execer.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), execer = _tuple$2[0], ok = _tuple$2[1], ok) {
+				_tuple$3 = driverArgs((go$ptrType(driverStmt)).nil, args), dargs = _tuple$3[0], err$1 = _tuple$3[1];
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					_tuple$4 = [null, err$1], res = _tuple$4[0], err = _tuple$4[1];
+					return [res, err];
+				}
+				dc.Mutex.Lock();
+				_tuple$5 = execer.Exec(query, dargs), resi = _tuple$5[0], err$1 = _tuple$5[1];
+				dc.Mutex.Unlock();
+				if (!(go$interfaceIsEqual(err$1, driver.ErrSkip))) {
+					if (!(go$interfaceIsEqual(err$1, null))) {
+						_tuple$6 = [null, err$1], res = _tuple$6[0], err = _tuple$6[1];
+						return [res, err];
+					}
+					_tuple$7 = [(x$1 = new driverResult.Ptr(dc, resi), new x$1.constructor.Struct(x$1)), null], res = _tuple$7[0], err = _tuple$7[1];
+					return [res, err];
+				}
+			}
+			dc.Mutex.Lock();
+			_tuple$8 = dc.ci.Prepare(query), si = _tuple$8[0], err = _tuple$8[1];
+			dc.Mutex.Unlock();
+			if (!(go$interfaceIsEqual(err, null))) {
+				_tuple$9 = [null, err], res = _tuple$9[0], err = _tuple$9[1];
+				return [res, err];
+			}
+			go$deferred.push({ fun: withLock, args: [dc, (function() {
+				si.Close();
+			})] });
+			_tuple$10 = resultFromStatement(new driverStmt.Ptr(dc, si), args), res = _tuple$10[0], err = _tuple$10[1];
+			return [res, err];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [res, err];
+		}
+	};
+	DB.prototype.exec = function(query, args) { return this.go$val.exec(query, args); };
+	DB.Ptr.prototype.Query = function(query, args) {
+		var db, rows, err, i, _tuple;
+		db = this;
+		rows = (go$ptrType(Rows)).nil;
+		err = null;
+		i = 0;
+		while (i < 10) {
+			_tuple = db.query(query, args), rows = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, driver.ErrBadConn))) {
+				break;
+			}
+			i = i + 1 >> 0;
+		}
+		return [rows, err];
+	};
+	DB.prototype.Query = function(query, args) { return this.go$val.Query(query, args); };
+	DB.Ptr.prototype.query = function(query, args) {
+		var db, _tuple, ci, err, err$1, _recv;
+		db = this;
+		_tuple = db.conn(), ci = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Rows)).nil, err];
+		}
+		return db.queryConn(ci, (_recv = ci, function(err$1) { return _recv.releaseConn(err$1); }), query, args);
+	};
+	DB.prototype.query = function(query, args) { return this.go$val.query(query, args); };
+	DB.Ptr.prototype.queryConn = function(dc, releaseConn, query, args) {
+		var db, ok, _tuple, x, queryer, _tuple$1, dargs, err, _tuple$2, rowsi, rows, _tuple$3, si, err$1, ds, _tuple$4, _struct, rowsi$1, rows$1;
+		db = this;
+		if (_tuple = (x = dc.ci, (x !== null && driver.Queryer.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), queryer = _tuple[0], ok = _tuple[1], ok) {
+			_tuple$1 = driverArgs((go$ptrType(driverStmt)).nil, args), dargs = _tuple$1[0], err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				releaseConn(err);
+				return [(go$ptrType(Rows)).nil, err];
+			}
+			dc.Mutex.Lock();
+			_tuple$2 = queryer.Query(query, dargs), rowsi = _tuple$2[0], err = _tuple$2[1];
+			dc.Mutex.Unlock();
+			if (!(go$interfaceIsEqual(err, driver.ErrSkip))) {
+				if (!(go$interfaceIsEqual(err, null))) {
+					releaseConn(err);
+					return [(go$ptrType(Rows)).nil, err];
+				}
+				rows = new Rows.Ptr(dc, releaseConn, rowsi, false, (go$sliceType(driver.Value)).nil, null, null);
+				return [rows, null];
+			}
+		}
+		dc.Mutex.Lock();
+		_tuple$3 = dc.ci.Prepare(query), si = _tuple$3[0], err$1 = _tuple$3[1];
+		dc.Mutex.Unlock();
+		if (!(go$interfaceIsEqual(err$1, null))) {
+			releaseConn(err$1);
+			return [(go$ptrType(Rows)).nil, err$1];
+		}
+		ds = new driverStmt.Ptr(dc, si);
+		_tuple$4 = rowsiFromStatement((_struct = ds, new driverStmt.Ptr(_struct.Locker, _struct.si)), args), rowsi$1 = _tuple$4[0], err$1 = _tuple$4[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
+			dc.Mutex.Lock();
+			si.Close();
+			dc.Mutex.Unlock();
+			releaseConn(err$1);
+			return [(go$ptrType(Rows)).nil, err$1];
+		}
+		rows$1 = new Rows.Ptr(dc, releaseConn, rowsi$1, false, (go$sliceType(driver.Value)).nil, null, si);
+		return [rows$1, null];
+	};
+	DB.prototype.queryConn = function(dc, releaseConn, query, args) { return this.go$val.queryConn(dc, releaseConn, query, args); };
+	DB.Ptr.prototype.QueryRow = function(query, args) {
+		var db, _tuple, rows, err;
+		db = this;
+		_tuple = db.Query(query, args), rows = _tuple[0], err = _tuple[1];
+		return new Row.Ptr(err, rows);
+	};
+	DB.prototype.QueryRow = function(query, args) { return this.go$val.QueryRow(query, args); };
+	DB.Ptr.prototype.Begin = function() {
+		var db, tx, err, i, _tuple;
+		db = this;
+		tx = (go$ptrType(Tx)).nil;
+		err = null;
+		i = 0;
+		while (i < 10) {
+			_tuple = db.begin(), tx = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, driver.ErrBadConn))) {
+				break;
+			}
+			i = i + 1 >> 0;
+		}
+		return [tx, err];
+	};
+	DB.prototype.Begin = function() { return this.go$val.Begin(); };
+	DB.Ptr.prototype.begin = function() {
+		var tx, err, db, _tuple, dc, _tuple$1, _tuple$2, txi, _tuple$3, _tuple$4;
+		tx = (go$ptrType(Tx)).nil;
+		err = null;
+		db = this;
+		_tuple = db.conn(), dc = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$1 = [(go$ptrType(Tx)).nil, err], tx = _tuple$1[0], err = _tuple$1[1];
+			return [tx, err];
+		}
+		dc.Mutex.Lock();
+		_tuple$2 = dc.ci.Begin(), txi = _tuple$2[0], err = _tuple$2[1];
+		dc.Mutex.Unlock();
+		if (!(go$interfaceIsEqual(err, null))) {
+			db.putConn(dc, err);
+			_tuple$3 = [(go$ptrType(Tx)).nil, err], tx = _tuple$3[0], err = _tuple$3[1];
+			return [tx, err];
+		}
+		_tuple$4 = [new Tx.Ptr(db, dc, txi, false), null], tx = _tuple$4[0], err = _tuple$4[1];
+		return [tx, err];
+	};
+	DB.prototype.begin = function() { return this.go$val.begin(); };
+	DB.Ptr.prototype.Driver = function() {
+		var db;
+		db = this;
+		return db.driver;
+	};
+	DB.prototype.Driver = function() { return this.go$val.Driver(); };
+	Tx.Ptr.prototype.close = function() {
+		var tx;
+		tx = this;
+		if (tx.done) {
+			throw go$panic(new Go$String("double close"));
+		}
+		tx.done = true;
+		tx.db.putConn(tx.dc, null);
+		tx.dc = (go$ptrType(driverConn)).nil;
+		tx.txi = null;
+	};
+	Tx.prototype.close = function() { return this.go$val.close(); };
+	Tx.Ptr.prototype.grabConn = function() {
+		var tx;
+		tx = this;
+		if (tx.done) {
+			return [(go$ptrType(driverConn)).nil, go$pkg.ErrTxDone];
+		}
+		return [tx.dc, null];
+	};
+	Tx.prototype.grabConn = function() { return this.go$val.grabConn(); };
+	Tx.Ptr.prototype.Commit = function() {
+		var tx;
+		var go$deferred = [];
+		try {
+			tx = this;
+			if (tx.done) {
+				return go$pkg.ErrTxDone;
+			}
+			go$deferred.push({ recv: tx, method: "close", args: [] });
+			tx.dc.Mutex.Lock();
+			go$deferred.push({ recv: tx.dc, method: "Unlock", args: [] });
+			return tx.txi.Commit();
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Tx.prototype.Commit = function() { return this.go$val.Commit(); };
+	Tx.Ptr.prototype.Rollback = function() {
+		var tx;
+		var go$deferred = [];
+		try {
+			tx = this;
+			if (tx.done) {
+				return go$pkg.ErrTxDone;
+			}
+			go$deferred.push({ recv: tx, method: "close", args: [] });
+			tx.dc.Mutex.Lock();
+			go$deferred.push({ recv: tx.dc, method: "Unlock", args: [] });
+			return tx.txi.Rollback();
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Tx.prototype.Rollback = function() { return this.go$val.Rollback(); };
+	Tx.Ptr.prototype.Prepare = function(query) {
+		var tx, _tuple, dc, err, _tuple$1, si, stmt;
+		tx = this;
+		_tuple = tx.grabConn(), dc = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Stmt)).nil, err];
+		}
+		dc.Mutex.Lock();
+		_tuple$1 = dc.ci.Prepare(query), si = _tuple$1[0], err = _tuple$1[1];
+		dc.Mutex.Unlock();
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Stmt)).nil, err];
+		}
+		stmt = new Stmt.Ptr(tx.db, query, null, new sync.RWMutex.Ptr(), tx, new driverStmt.Ptr(dc, si), new sync.Mutex.Ptr(), false, (go$sliceType(connStmt)).nil);
+		return [stmt, null];
+	};
+	Tx.prototype.Prepare = function(query) { return this.go$val.Prepare(query); };
+	Tx.Ptr.prototype.Stmt = function(stmt) {
+		var tx, _tuple, dc, err, _tuple$1, si;
+		tx = this;
+		if (!(tx.db === stmt.db)) {
+			return new Stmt.Ptr((go$ptrType(DB)).nil, "", errors.New("sql: Tx.Stmt: statement from different database used"), new sync.RWMutex.Ptr(), (go$ptrType(Tx)).nil, (go$ptrType(driverStmt)).nil, new sync.Mutex.Ptr(), false, (go$sliceType(connStmt)).nil);
+		}
+		_tuple = tx.grabConn(), dc = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return new Stmt.Ptr((go$ptrType(DB)).nil, "", err, new sync.RWMutex.Ptr(), (go$ptrType(Tx)).nil, (go$ptrType(driverStmt)).nil, new sync.Mutex.Ptr(), false, (go$sliceType(connStmt)).nil);
+		}
+		dc.Mutex.Lock();
+		_tuple$1 = dc.ci.Prepare(stmt.query), si = _tuple$1[0], err = _tuple$1[1];
+		dc.Mutex.Unlock();
+		return new Stmt.Ptr(tx.db, stmt.query, err, new sync.RWMutex.Ptr(), tx, new driverStmt.Ptr(dc, si), new sync.Mutex.Ptr(), false, (go$sliceType(connStmt)).nil);
+	};
+	Tx.prototype.Stmt = function(stmt) { return this.go$val.Stmt(stmt); };
+	Tx.Ptr.prototype.Exec = function(query, args) {
+		var tx, _tuple, dc, err, ok, _tuple$1, x, execer, _tuple$2, dargs, err$1, _tuple$3, resi, x$1, _tuple$4, si;
+		var go$deferred = [];
+		try {
+			tx = this;
+			_tuple = tx.grabConn(), dc = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [null, err];
+			}
+			if (_tuple$1 = (x = dc.ci, (x !== null && driver.Execer.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), execer = _tuple$1[0], ok = _tuple$1[1], ok) {
+				_tuple$2 = driverArgs((go$ptrType(driverStmt)).nil, args), dargs = _tuple$2[0], err$1 = _tuple$2[1];
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					return [null, err$1];
+				}
+				dc.Mutex.Lock();
+				_tuple$3 = execer.Exec(query, dargs), resi = _tuple$3[0], err$1 = _tuple$3[1];
+				dc.Mutex.Unlock();
+				if (go$interfaceIsEqual(err$1, null)) {
+					return [(x$1 = new driverResult.Ptr(dc, resi), new x$1.constructor.Struct(x$1)), null];
+				}
+				if (!(go$interfaceIsEqual(err$1, driver.ErrSkip))) {
+					return [null, err$1];
+				}
+			}
+			dc.Mutex.Lock();
+			_tuple$4 = dc.ci.Prepare(query), si = _tuple$4[0], err = _tuple$4[1];
+			dc.Mutex.Unlock();
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [null, err];
+			}
+			go$deferred.push({ fun: withLock, args: [dc, (function() {
+				si.Close();
+			})] });
+			return resultFromStatement(new driverStmt.Ptr(dc, si), args);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [null, null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Tx.prototype.Exec = function(query, args) { return this.go$val.Exec(query, args); };
+	Tx.Ptr.prototype.Query = function(query, args) {
+		var tx, _tuple, dc, err, releaseConn;
+		tx = this;
+		_tuple = tx.grabConn(), dc = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Rows)).nil, err];
+		}
+		releaseConn = (function() {
+		});
+		return tx.db.queryConn(dc, releaseConn, query, args);
+	};
+	Tx.prototype.Query = function(query, args) { return this.go$val.Query(query, args); };
+	Tx.Ptr.prototype.QueryRow = function(query, args) {
+		var tx, _tuple, rows, err;
+		tx = this;
+		_tuple = tx.Query(query, args), rows = _tuple[0], err = _tuple[1];
+		return new Row.Ptr(err, rows);
+	};
+	Tx.prototype.QueryRow = function(query, args) { return this.go$val.QueryRow(query, args); };
+	Stmt.Ptr.prototype.Exec = function(args) {
+		var s, _tuple, dc, releaseConn, si, err;
+		var go$deferred = [];
+		try {
+			s = this;
+			s.closemu.RLock();
+			go$deferred.push({ recv: s.closemu, method: "RUnlock", args: [] });
+			_tuple = s.connStmt(), dc = _tuple[0], releaseConn = _tuple[1], si = _tuple[2], err = _tuple[3];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [null, err];
+			}
+			go$deferred.push({ fun: releaseConn, args: [null] });
+			return resultFromStatement(new driverStmt.Ptr(dc, si), args);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [null, null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Stmt.prototype.Exec = function(args) { return this.go$val.Exec(args); };
+	var resultFromStatement = function(ds, args) {
+		var want, _tuple, dargs, err, _tuple$1, resi, x;
+		ds.Locker.Lock();
+		want = ds.si.NumInput();
+		ds.Locker.Unlock();
+		if (!((want === -1)) && !((args.length === want))) {
+			return [null, fmt.Errorf("sql: expected %d arguments, got %d", new (go$sliceType(go$emptyInterface))([new Go$Int(want), new Go$Int(args.length)]))];
+		}
+		_tuple = driverArgs(ds, args), dargs = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [null, err];
+		}
+		ds.Locker.Lock();
+		_tuple$1 = ds.si.Exec(dargs), resi = _tuple$1[0], err = _tuple$1[1];
+		ds.Locker.Unlock();
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [null, err];
+		}
+		return [(x = new driverResult.Ptr(ds.Locker, resi), new x.constructor.Struct(x)), null];
+	};
+	Stmt.Ptr.prototype.connStmt = function() {
+		var ci, releaseConn, si, err, s, _tuple, _tuple$1, cs, match, i, _slice, _index, _struct, v, _tuple$2, err$1, _struct$1, _slice$1, _index$1, _struct$2, _slice$2, _index$2, i$1, _tuple$3, dc, err$2, _tuple$4, _tuple$5, si$1, _tuple$6, _struct$3, conn, err$3, _recv, _tuple$7;
+		ci = (go$ptrType(driverConn)).nil;
+		releaseConn = go$throwNilPointerError;
+		si = null;
+		err = null;
+		s = this;
+		if (err = s.stickyErr, !(go$interfaceIsEqual(err, null))) {
+			return [ci, releaseConn, si, err];
+		}
+		s.mu.Lock();
+		if (s.closed) {
+			s.mu.Unlock();
+			err = errors.New("sql: statement is closed");
+			return [ci, releaseConn, si, err];
+		}
+		if (!(s.tx === (go$ptrType(Tx)).nil)) {
+			s.mu.Unlock();
+			_tuple = s.tx.grabConn(), ci = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [ci, releaseConn, si, err];
+			}
+			releaseConn = (function() {
+			});
+			_tuple$1 = [ci, releaseConn, s.txsi.si, null], ci = _tuple$1[0], releaseConn = _tuple$1[1], si = _tuple$1[2], err = _tuple$1[3];
+			return [ci, releaseConn, si, err];
+		}
+		cs = new connStmt.Ptr();
+		match = false;
+		i = 0;
+		while (i < s.css.length) {
+			v = (_struct = (_slice = s.css, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new connStmt.Ptr(_struct.dc, _struct.si));
+			_tuple$2 = s.db.connIfFree(v.dc), err$1 = _tuple$2[1];
+			if (go$interfaceIsEqual(err$1, null)) {
+				match = true;
+				cs = (_struct$1 = v, new connStmt.Ptr(_struct$1.dc, _struct$1.si));
+				break;
+			}
+			if (go$interfaceIsEqual(err$1, errConnClosed)) {
+				_slice$2 = s.css, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (_struct$2 = (_slice$1 = s.css, _index$1 = (s.css.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new connStmt.Ptr(_struct$2.dc, _struct$2.si))) : go$throwRuntimeError("index out of range");
+				s.css = go$subslice(s.css, 0, (s.css.length - 1 >> 0));
+				i = i - 1 >> 0;
+			}
+			i = i + 1 >> 0;
+		}
+		s.mu.Unlock();
+		if (!match) {
+			i$1 = 0;
+			while (true) {
+				_tuple$3 = s.db.conn(), dc = _tuple$3[0], err$2 = _tuple$3[1];
+				if (!(go$interfaceIsEqual(err$2, null))) {
+					_tuple$4 = [(go$ptrType(driverConn)).nil, go$throwNilPointerError, null, err$2], ci = _tuple$4[0], releaseConn = _tuple$4[1], si = _tuple$4[2], err = _tuple$4[3];
+					return [ci, releaseConn, si, err];
+				}
+				dc.Mutex.Lock();
+				_tuple$5 = dc.prepareLocked(s.query), si$1 = _tuple$5[0], err$2 = _tuple$5[1];
+				dc.Mutex.Unlock();
+				if (go$interfaceIsEqual(err$2, driver.ErrBadConn) && i$1 < 10) {
+					i$1 = i$1 + 1 >> 0;
+					continue;
+				}
+				if (!(go$interfaceIsEqual(err$2, null))) {
+					_tuple$6 = [(go$ptrType(driverConn)).nil, go$throwNilPointerError, null, err$2], ci = _tuple$6[0], releaseConn = _tuple$6[1], si = _tuple$6[2], err = _tuple$6[3];
+					return [ci, releaseConn, si, err];
+				}
+				s.mu.Lock();
+				cs = new connStmt.Ptr(dc, si$1);
+				s.css = go$append(s.css, (_struct$3 = cs, new connStmt.Ptr(_struct$3.dc, _struct$3.si)));
+				s.mu.Unlock();
+				break;
+			}
+		}
+		conn = cs.dc;
+		_tuple$7 = [conn, (_recv = conn, function(err$3) { return _recv.releaseConn(err$3); }), cs.si, null], ci = _tuple$7[0], releaseConn = _tuple$7[1], si = _tuple$7[2], err = _tuple$7[3];
+		return [ci, releaseConn, si, err];
+	};
+	Stmt.prototype.connStmt = function() { return this.go$val.connStmt(); };
+	Stmt.Ptr.prototype.Query = function(args) {
+		var s, _tuple, dc, releaseConn, si, err, ds, _tuple$1, _struct, rowsi, rows;
+		var go$deferred = [];
+		try {
+			s = this;
+			s.closemu.RLock();
+			go$deferred.push({ recv: s.closemu, method: "RUnlock", args: [] });
+			_tuple = s.connStmt(), dc = _tuple[0], releaseConn = _tuple[1], si = _tuple[2], err = _tuple[3];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [(go$ptrType(Rows)).nil, err];
+			}
+			ds = new driverStmt.Ptr(dc, si);
+			_tuple$1 = rowsiFromStatement((_struct = ds, new driverStmt.Ptr(_struct.Locker, _struct.si)), args), rowsi = _tuple$1[0], err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				releaseConn(err);
+				return [(go$ptrType(Rows)).nil, err];
+			}
+			rows = new Rows.Ptr(dc, go$throwNilPointerError, rowsi, false, (go$sliceType(driver.Value)).nil, null, null);
+			s.db.addDep(s, rows);
+			rows.releaseConn = (function(err$1) {
+				releaseConn(err$1);
+				s.db.removeDep(s, rows);
+			});
+			return [rows, null];
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [(go$ptrType(Rows)).nil, null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Stmt.prototype.Query = function(args) { return this.go$val.Query(args); };
+	var rowsiFromStatement = function(ds, args) {
+		var want, _tuple, dargs, err, _tuple$1, rowsi;
+		ds.Locker.Lock();
+		want = ds.si.NumInput();
+		ds.Locker.Unlock();
+		if (!((want === -1)) && !((args.length === want))) {
+			return [null, fmt.Errorf("sql: statement expects %d inputs; got %d", new (go$sliceType(go$emptyInterface))([new Go$Int(want), new Go$Int(args.length)]))];
+		}
+		_tuple = driverArgs(ds, args), dargs = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [null, err];
+		}
+		ds.Locker.Lock();
+		_tuple$1 = ds.si.Query(dargs), rowsi = _tuple$1[0], err = _tuple$1[1];
+		ds.Locker.Unlock();
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [null, err];
+		}
+		return [rowsi, null];
+	};
+	Stmt.Ptr.prototype.QueryRow = function(args) {
+		var s, _tuple, rows, err;
+		s = this;
+		_tuple = s.Query(args), rows = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return new Row.Ptr(err, (go$ptrType(Rows)).nil);
+		}
+		return new Row.Ptr(null, rows);
+	};
+	Stmt.prototype.QueryRow = function(args) { return this.go$val.QueryRow(args); };
+	Stmt.Ptr.prototype.Close = function() {
+		var s;
+		var go$deferred = [];
+		try {
+			s = this;
+			s.closemu.Lock();
+			go$deferred.push({ recv: s.closemu, method: "Unlock", args: [] });
+			if (!(go$interfaceIsEqual(s.stickyErr, null))) {
+				return s.stickyErr;
+			}
+			s.mu.Lock();
+			if (s.closed) {
+				s.mu.Unlock();
+				return null;
+			}
+			s.closed = true;
+			if (!(s.tx === (go$ptrType(Tx)).nil)) {
+				s.txsi.Close();
+				s.mu.Unlock();
+				return null;
+			}
+			s.mu.Unlock();
+			return s.db.removeDep(s, s);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Stmt.prototype.Close = function() { return this.go$val.Close(); };
+	Stmt.Ptr.prototype.finalClose = function() {
+		var s, _ref, _i, _slice, _index, _struct, v;
+		var go$deferred = [];
+		try {
+			s = this;
+			s.mu.Lock();
+			go$deferred.push({ recv: s.mu, method: "Unlock", args: [] });
+			if (!(s.css === (go$sliceType(connStmt)).nil)) {
+				_ref = s.css;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					v = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new connStmt.Ptr(_struct.dc, _struct.si));
+					s.db.noteUnusedDriverStatement(v.dc, v.si);
+					v.dc.removeOpenStmt(v.si);
+				}
+				s.css = (go$sliceType(connStmt)).nil;
+			}
+			return null;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Stmt.prototype.finalClose = function() { return this.go$val.finalClose(); };
+	Rows.Ptr.prototype.Next = function() {
+		var rs;
+		rs = this;
+		if (rs.closed) {
+			return false;
+		}
+		if (rs.lastcols === (go$sliceType(driver.Value)).nil) {
+			rs.lastcols = (go$sliceType(driver.Value)).make(rs.rowsi.Columns().length, 0, function() { return null; });
+		}
+		rs.lasterr = rs.rowsi.Next(rs.lastcols);
+		if (!(go$interfaceIsEqual(rs.lasterr, null))) {
+			rs.Close();
+			return false;
+		}
+		return true;
+	};
+	Rows.prototype.Next = function() { return this.go$val.Next(); };
+	Rows.Ptr.prototype.Err = function() {
+		var rs;
+		rs = this;
+		if (go$interfaceIsEqual(rs.lasterr, io.EOF)) {
+			return null;
+		}
+		return rs.lasterr;
+	};
+	Rows.prototype.Err = function() { return this.go$val.Err(); };
+	Rows.Ptr.prototype.Columns = function() {
+		var rs;
+		rs = this;
+		if (rs.closed) {
+			return [(go$sliceType(Go$String)).nil, errors.New("sql: Rows are closed")];
+		}
+		if (go$interfaceIsEqual(rs.rowsi, null)) {
+			return [(go$sliceType(Go$String)).nil, errors.New("sql: no Rows available")];
+		}
+		return [rs.rowsi.Columns(), null];
+	};
+	Rows.prototype.Columns = function() { return this.go$val.Columns(); };
+	Rows.Ptr.prototype.Scan = function(dest) {
+		var rs, _ref, _i, _slice, _index, sv, i, _slice$1, _index$1, err;
+		rs = this;
+		if (rs.closed) {
+			return errors.New("sql: Rows are closed");
+		}
+		if (rs.lastcols === (go$sliceType(driver.Value)).nil) {
+			return errors.New("sql: Scan called without calling Next");
+		}
+		if (!((dest.length === rs.lastcols.length))) {
+			return fmt.Errorf("sql: expected %d destination arguments in Scan, not %d", new (go$sliceType(go$emptyInterface))([new Go$Int(rs.lastcols.length), new Go$Int(dest.length)]));
+		}
+		_ref = rs.lastcols;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			sv = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			err = convertAssign((_slice$1 = dest, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), sv);
+			if (!(go$interfaceIsEqual(err, null))) {
+				return fmt.Errorf("sql: Scan error on column index %d: %v", new (go$sliceType(go$emptyInterface))([new Go$Int(i), err]));
+			}
+		}
+		return null;
+	};
+	Rows.prototype.Scan = function(dest) { return this.go$val.Scan(dest); };
+	Rows.Ptr.prototype.Close = function() {
+		var rs, err, fn, v;
+		rs = this;
+		if (rs.closed) {
+			return null;
+		}
+		rs.closed = true;
+		err = rs.rowsi.Close();
+		if (fn = rowsCloseHook, !(fn === go$throwNilPointerError)) {
+			fn(rs, new (go$ptrType(go$error))(function() { return err; }, function(v) { err = v; }));
+		}
+		if (!(go$interfaceIsEqual(rs.closeStmt, null))) {
+			rs.closeStmt.Close();
+		}
+		rs.releaseConn(err);
+		return err;
+	};
+	Rows.prototype.Close = function() { return this.go$val.Close(); };
+	Row.Ptr.prototype.Scan = function(dest) {
+		var r, _ref, _i, _slice, _index, dp, ok, _tuple, err;
+		var go$deferred = [];
+		try {
+			r = this;
+			if (!(go$interfaceIsEqual(r.err, null))) {
+				return r.err;
+			}
+			go$deferred.push({ recv: r.rows, method: "Close", args: [] });
+			_ref = dest;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				dp = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				if (_tuple = (dp !== null && dp.constructor === (go$ptrType(RawBytes)) ? [dp.go$val, true] : [(go$ptrType(RawBytes)).nil, false]), ok = _tuple[1], ok) {
+					return errors.New("sql: RawBytes isn't allowed on Row.Scan");
+				}
+			}
+			if (!r.rows.Next()) {
+				return go$pkg.ErrNoRows;
+			}
+			err = r.rows.Scan(dest);
+			if (!(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			return null;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Row.prototype.Scan = function(dest) { return this.go$val.Scan(dest); };
+	driverResult.Ptr.prototype.LastInsertId = function() {
+		var _struct, dr;
+		var go$deferred = [];
+		try {
+			dr = (_struct = this, new driverResult.Ptr(_struct.Locker, _struct.resi));
+			dr.Locker.Lock();
+			go$deferred.push({ recv: dr, method: "Unlock", args: [] });
+			return dr.resi.LastInsertId();
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [new Go$Int64(0, 0), null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	driverResult.prototype.LastInsertId = function() { return this.go$val.LastInsertId(); };
+	driverResult.Ptr.prototype.RowsAffected = function() {
+		var _struct, dr;
+		var go$deferred = [];
+		try {
+			dr = (_struct = this, new driverResult.Ptr(_struct.Locker, _struct.resi));
+			dr.Locker.Lock();
+			go$deferred.push({ recv: dr, method: "Unlock", args: [] });
+			return dr.resi.RowsAffected();
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [new Go$Int64(0, 0), null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	driverResult.prototype.RowsAffected = function() { return this.go$val.RowsAffected(); };
+	var stack = function() {
+		var buf;
+		buf = go$makeNativeArray("Uint8", 2048, function() { return 0; });
+		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, runtime.Stack(new (go$sliceType(Go$Uint8))(buf), false)));
+	};
+	var withLock = function(lk, fn) {
+		lk.Lock();
+		fn();
+		lk.Unlock();
+	};
+	var defaultMaxIdleConns = 2;
+	var debugGetPut = false;
+	var errNilPtr = null;
+	var drivers = false;
+	go$pkg.ErrNoRows = null;
+	var connectionRequestQueueSize = 0;
+	var errDBClosed = null;
+	var errConnClosed = null;
+	var errConnBusy = null;
+	var putConnHook = go$throwNilPointerError;
+	go$pkg.ErrTxDone = null;
+	var rowsCloseHook = go$throwNilPointerError;
+	go$pkg.init = function() {
+		errNilPtr = errors.New("destination pointer is nil");
+		drivers = new Go$Map();
+		go$pkg.ErrNoRows = errors.New("sql: no rows in result set");
+		connectionRequestQueueSize = 1000000;
+		errDBClosed = errors.New("sql: database is closed");
+		errConnClosed = errors.New("database/sql: internal sentinel error: conn is closed");
+		errConnBusy = errors.New("database/sql: internal sentinel error: conn is busy");
+		go$pkg.ErrTxDone = errors.New("sql: Transaction has already been committed or rolled back");
+	};

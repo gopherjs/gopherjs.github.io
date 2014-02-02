@@ -1,0 +1,324 @@
+0‚I\‚&package md5
+import crypto "crypto"
+import hash "hash"
+import runtime "runtime"
+const @"".BlockSize = 0x40
+func @"".New() (? @"hash".Hash)
+const @"".Size = 0x10
+func @"".Sum(@"".data []byte) (? [16]byte)
+type @"".digest struct { @"".s [4]uint32; @"".x [64]byte; @"".nx int; @"".len uint64 }
+func (? *@"".digest) @"".BlockSize() (? int)
+func (? *@"".digest) @"".Reset() ()
+func (? *@"".digest) @"".Size() (? int)
+func (? *@"".digest) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".digest) @"".Write(@"".p []byte) (@"".nn int, @"".err error)
+func (? *@"".digest) @"".checkSum() (? [16]byte)
+import io "io"
+type @"hash".Hash interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0_runtimeerrorssync/atomicsynciohashmathunicode/utf8strconvcrypto
+crypto/md5‚EÍ	var crypto = go$packages["crypto"];
+	var hash = go$packages["hash"];
+	var runtime = go$packages["runtime"];
+	var digest;
+	digest = go$newType(0, "Struct", "md5.digest", "digest", "crypto/md5", function(s_, x_, nx_, len_) {
+		this.go$val = this;
+		this.s = s_ !== undefined ? s_ : go$makeNativeArray("Uint32", 4, function() { return 0; });
+		this.x = x_ !== undefined ? x_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
+		this.nx = nx_ !== undefined ? nx_ : 0;
+		this.len = len_ !== undefined ? len_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.digest = digest;
+	digest.init([["s", "crypto/md5", (go$arrayType(Go$Uint32, 4)), ""], ["x", "crypto/md5", (go$arrayType(Go$Uint8, 64)), ""], ["nx", "crypto/md5", Go$Int, ""], ["len", "crypto/md5", Go$Uint64, ""]]);
+	(go$ptrType(digest)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["checkSum", "crypto/md5", [], [(go$arrayType(Go$Uint8, 16))], false]];
+	digest.Ptr.prototype.Reset = function() {
+		var d;
+		d = this;
+		d.s[0] = 1732584193;
+		d.s[1] = 4023233417;
+		d.s[2] = 2562383102;
+		d.s[3] = 271733878;
+		d.nx = 0;
+		d.len = new Go$Uint64(0, 0);
+	};
+	digest.prototype.Reset = function() { return this.go$val.Reset(); };
+	var New = go$pkg.New = function() {
+		var d;
+		d = new digest.Ptr();
+		d.Reset();
+		return d;
+	};
+	digest.Ptr.prototype.Size = function() {
+		var d;
+		d = this;
+		return 16;
+	};
+	digest.prototype.Size = function() { return this.go$val.Size(); };
+	digest.Ptr.prototype.BlockSize = function() {
+		var d;
+		d = this;
+		return 64;
+	};
+	digest.prototype.BlockSize = function() { return this.go$val.BlockSize(); };
+	digest.Ptr.prototype.Write = function(p) {
+		var nn, err, d, x, x$1, n, i, _slice, _index, n$1;
+		nn = 0;
+		err = null;
+		d = this;
+		nn = p.length;
+		d.len = (x = d.len, x$1 = new Go$Uint64(0, nn), new Go$Uint64(x.high + x$1.high, x.low + x$1.low));
+		if (d.nx > 0) {
+			n = p.length;
+			if (n > (64 - d.nx >> 0)) {
+				n = 64 - d.nx >> 0;
+			}
+			i = 0;
+			while (i < n) {
+				d.x[d.nx + i >> 0] = (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = i + 1 >> 0;
+			}
+			d.nx = d.nx + (n) >> 0;
+			if (d.nx === 64) {
+				block(d, go$subslice(new (go$sliceType(Go$Uint8))(d.x), 0, 64));
+				d.nx = 0;
+			}
+			p = go$subslice(p, n);
+		}
+		if (p.length >= 64) {
+			n$1 = p.length & ~63;
+			block(d, go$subslice(p, 0, n$1));
+			p = go$subslice(p, n$1);
+		}
+		if (p.length > 0) {
+			d.nx = go$copySlice(new (go$sliceType(Go$Uint8))(d.x), p);
+		}
+		return [nn, err];
+	};
+	digest.prototype.Write = function(p) { return this.go$val.Write(p); };
+	digest.Ptr.prototype.Sum = function(in$1) {
+		var d0, _struct, d, hash$1;
+		d0 = this;
+		d = (_struct = d0, new digest.Ptr(go$mapArray(_struct.s, function(entry) { return entry; }), go$mapArray(_struct.x, function(entry) { return entry; }), _struct.nx, _struct.len));
+		hash$1 = go$mapArray(d.checkSum(), function(entry) { return entry; });
+		return go$appendSlice(in$1, new (go$sliceType(Go$Uint8))(hash$1));
+	};
+	digest.prototype.Sum = function(in$1) { return this.go$val.Sum(in$1); };
+	digest.Ptr.prototype.checkSum = function() {
+		var d, len, tmp, x, x$1, x$2, i, x$3, digest$1, _ref, _i, s, i$1, x$4, x$5, x$6, x$7;
+		d = this;
+		len = d.len;
+		tmp = go$makeNativeArray("Uint8", 64, function() { return 0; });
+		tmp[0] = 128;
+		if ((x = go$div64(len, new Go$Uint64(0, 64), true), (x.high < 0 || (x.high === 0 && x.low < 56)))) {
+			d.Write(go$subslice(new (go$sliceType(Go$Uint8))(tmp), 0, go$flatten64((x$1 = go$div64(len, new Go$Uint64(0, 64), true), new Go$Uint64(0 - x$1.high, 56 - x$1.low)))));
+		} else {
+			d.Write(go$subslice(new (go$sliceType(Go$Uint8))(tmp), 0, go$flatten64((x$2 = go$div64(len, new Go$Uint64(0, 64), true), new Go$Uint64(0 - x$2.high, 120 - x$2.low)))));
+		}
+		len = go$shiftLeft64(len, 3);
+		i = 0;
+		while (i < 8) {
+			tmp[i] = (go$shiftRightUint64(len, ((x$3 = 8, (((x$3 >>> 16 << 16) * i >>> 0) + (x$3 << 16 >>> 16) * i) >>> 0))).low << 24 >>> 24);
+			i = i + 1 >>> 0;
+		}
+		d.Write(go$subslice(new (go$sliceType(Go$Uint8))(tmp), 0, 8));
+		if (!((d.nx === 0))) {
+			throw go$panic(new Go$String("d.nx != 0"));
+		}
+		digest$1 = go$makeNativeArray("Uint8", 16, function() { return 0; });
+		_ref = d.s;
+		_i = 0;
+		for (; _i < 4; _i += 1) {
+			s = _ref[_i];
+			i$1 = _i;
+			digest$1[(x$4 = 4, (((i$1 >>> 16 << 16) * x$4 >> 0) + (i$1 << 16 >>> 16) * x$4) >> 0)] = (s << 24 >>> 24);
+			digest$1[(x$5 = 4, (((i$1 >>> 16 << 16) * x$5 >> 0) + (i$1 << 16 >>> 16) * x$5) >> 0) + 1 >> 0] = ((s >>> 8 >>> 0) << 24 >>> 24);
+			digest$1[(x$6 = 4, (((i$1 >>> 16 << 16) * x$6 >> 0) + (i$1 << 16 >>> 16) * x$6) >> 0) + 2 >> 0] = ((s >>> 16 >>> 0) << 24 >>> 24);
+			digest$1[(x$7 = 4, (((i$1 >>> 16 << 16) * x$7 >> 0) + (i$1 << 16 >>> 16) * x$7) >> 0) + 3 >> 0] = ((s >>> 24 >>> 0) << 24 >>> 24);
+		}
+		return go$mapArray(digest$1, function(entry) { return entry; });
+	};
+	digest.prototype.checkSum = function() { return this.go$val.checkSum(); };
+	var Sum = go$pkg.Sum = function(data) {
+		var d;
+		d = new digest.Ptr();
+		d.Reset();
+		d.Write(data);
+		return go$mapArray(d.checkSum(), function(entry) { return entry; });
+	};
+	var block = function(dig, p) {
+		var a, b, c, d, X, xbuf, _tuple, aa, bb, cc, dd, j, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		a = dig.s[0];
+		b = dig.s[1];
+		c = dig.s[2];
+		d = dig.s[3];
+		X = (go$ptrType((go$arrayType(Go$Uint32, 16)))).nil;
+		xbuf = go$makeNativeArray("Uint32", 16, function() { return 0; });
+		while (p.length >= 64) {
+			_tuple = [a, b, c, d], aa = _tuple[0], bb = _tuple[1], cc = _tuple[2], dd = _tuple[3];
+			if (littleEndian && (((go$sliceToArray(p) & 3) >>> 0) === 0)) {
+				X = go$sliceToArray(p);
+			} else {
+				X = xbuf;
+				j = 0;
+				i = 0;
+				while (i < 16) {
+					X[i & 15] = (((((((_slice = p, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) | (((_slice$1 = p, _index$1 = (j + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0) << 8 >>> 0)) >>> 0) | (((_slice$2 = p, _index$2 = (j + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0) << 16 >>> 0)) >>> 0) | (((_slice$3 = p, _index$3 = (j + 3 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0) << 24 >>> 0)) >>> 0;
+					j = j + 4 >> 0;
+					i = i + 1 >> 0;
+				}
+			}
+			a = a + ((((((((((((c ^ d) >>> 0)) & b) >>> 0)) ^ d) >>> 0)) + X[0] >>> 0) + 3614090360 >>> 0)) >>> 0;
+			a = (((a << 7 >>> 0) | (a >>> 25 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((((((b ^ c) >>> 0)) & a) >>> 0)) ^ c) >>> 0)) + X[1] >>> 0) + 3905402710 >>> 0)) >>> 0;
+			d = (((d << 12 >>> 0) | (d >>> 20 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((((((a ^ b) >>> 0)) & d) >>> 0)) ^ b) >>> 0)) + X[2] >>> 0) + 606105819 >>> 0)) >>> 0;
+			c = (((c << 17 >>> 0) | (c >>> 15 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((((((d ^ a) >>> 0)) & c) >>> 0)) ^ a) >>> 0)) + X[3] >>> 0) + 3250441966 >>> 0)) >>> 0;
+			b = (((b << 22 >>> 0) | (b >>> 10 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((((((c ^ d) >>> 0)) & b) >>> 0)) ^ d) >>> 0)) + X[4] >>> 0) + 4118548399 >>> 0)) >>> 0;
+			a = (((a << 7 >>> 0) | (a >>> 25 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((((((b ^ c) >>> 0)) & a) >>> 0)) ^ c) >>> 0)) + X[5] >>> 0) + 1200080426 >>> 0)) >>> 0;
+			d = (((d << 12 >>> 0) | (d >>> 20 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((((((a ^ b) >>> 0)) & d) >>> 0)) ^ b) >>> 0)) + X[6] >>> 0) + 2821735955 >>> 0)) >>> 0;
+			c = (((c << 17 >>> 0) | (c >>> 15 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((((((d ^ a) >>> 0)) & c) >>> 0)) ^ a) >>> 0)) + X[7] >>> 0) + 4249261313 >>> 0)) >>> 0;
+			b = (((b << 22 >>> 0) | (b >>> 10 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((((((c ^ d) >>> 0)) & b) >>> 0)) ^ d) >>> 0)) + X[8] >>> 0) + 1770035416 >>> 0)) >>> 0;
+			a = (((a << 7 >>> 0) | (a >>> 25 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((((((b ^ c) >>> 0)) & a) >>> 0)) ^ c) >>> 0)) + X[9] >>> 0) + 2336552879 >>> 0)) >>> 0;
+			d = (((d << 12 >>> 0) | (d >>> 20 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((((((a ^ b) >>> 0)) & d) >>> 0)) ^ b) >>> 0)) + X[10] >>> 0) + 4294925233 >>> 0)) >>> 0;
+			c = (((c << 17 >>> 0) | (c >>> 15 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((((((d ^ a) >>> 0)) & c) >>> 0)) ^ a) >>> 0)) + X[11] >>> 0) + 2304563134 >>> 0)) >>> 0;
+			b = (((b << 22 >>> 0) | (b >>> 10 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((((((c ^ d) >>> 0)) & b) >>> 0)) ^ d) >>> 0)) + X[12] >>> 0) + 1804603682 >>> 0)) >>> 0;
+			a = (((a << 7 >>> 0) | (a >>> 25 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((((((b ^ c) >>> 0)) & a) >>> 0)) ^ c) >>> 0)) + X[13] >>> 0) + 4254626195 >>> 0)) >>> 0;
+			d = (((d << 12 >>> 0) | (d >>> 20 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((((((a ^ b) >>> 0)) & d) >>> 0)) ^ b) >>> 0)) + X[14] >>> 0) + 2792965006 >>> 0)) >>> 0;
+			c = (((c << 17 >>> 0) | (c >>> 15 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((((((d ^ a) >>> 0)) & c) >>> 0)) ^ a) >>> 0)) + X[15] >>> 0) + 1236535329 >>> 0)) >>> 0;
+			b = (((b << 22 >>> 0) | (b >>> 10 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((((((b ^ c) >>> 0)) & d) >>> 0)) ^ c) >>> 0)) + X[1] >>> 0) + 4129170786 >>> 0)) >>> 0;
+			a = (((a << 5 >>> 0) | (a >>> 27 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((((((a ^ b) >>> 0)) & c) >>> 0)) ^ b) >>> 0)) + X[6] >>> 0) + 3225465664 >>> 0)) >>> 0;
+			d = (((d << 9 >>> 0) | (d >>> 23 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((((((d ^ a) >>> 0)) & b) >>> 0)) ^ a) >>> 0)) + X[11] >>> 0) + 643717713 >>> 0)) >>> 0;
+			c = (((c << 14 >>> 0) | (c >>> 18 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((((((c ^ d) >>> 0)) & a) >>> 0)) ^ d) >>> 0)) + X[0] >>> 0) + 3921069994 >>> 0)) >>> 0;
+			b = (((b << 20 >>> 0) | (b >>> 12 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((((((b ^ c) >>> 0)) & d) >>> 0)) ^ c) >>> 0)) + X[5] >>> 0) + 3593408605 >>> 0)) >>> 0;
+			a = (((a << 5 >>> 0) | (a >>> 27 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((((((a ^ b) >>> 0)) & c) >>> 0)) ^ b) >>> 0)) + X[10] >>> 0) + 38016083 >>> 0)) >>> 0;
+			d = (((d << 9 >>> 0) | (d >>> 23 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((((((d ^ a) >>> 0)) & b) >>> 0)) ^ a) >>> 0)) + X[15] >>> 0) + 3634488961 >>> 0)) >>> 0;
+			c = (((c << 14 >>> 0) | (c >>> 18 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((((((c ^ d) >>> 0)) & a) >>> 0)) ^ d) >>> 0)) + X[4] >>> 0) + 3889429448 >>> 0)) >>> 0;
+			b = (((b << 20 >>> 0) | (b >>> 12 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((((((b ^ c) >>> 0)) & d) >>> 0)) ^ c) >>> 0)) + X[9] >>> 0) + 568446438 >>> 0)) >>> 0;
+			a = (((a << 5 >>> 0) | (a >>> 27 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((((((a ^ b) >>> 0)) & c) >>> 0)) ^ b) >>> 0)) + X[14] >>> 0) + 3275163606 >>> 0)) >>> 0;
+			d = (((d << 9 >>> 0) | (d >>> 23 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((((((d ^ a) >>> 0)) & b) >>> 0)) ^ a) >>> 0)) + X[3] >>> 0) + 4107603335 >>> 0)) >>> 0;
+			c = (((c << 14 >>> 0) | (c >>> 18 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((((((c ^ d) >>> 0)) & a) >>> 0)) ^ d) >>> 0)) + X[8] >>> 0) + 1163531501 >>> 0)) >>> 0;
+			b = (((b << 20 >>> 0) | (b >>> 12 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((((((b ^ c) >>> 0)) & d) >>> 0)) ^ c) >>> 0)) + X[13] >>> 0) + 2850285829 >>> 0)) >>> 0;
+			a = (((a << 5 >>> 0) | (a >>> 27 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((((((a ^ b) >>> 0)) & c) >>> 0)) ^ b) >>> 0)) + X[2] >>> 0) + 4243563512 >>> 0)) >>> 0;
+			d = (((d << 9 >>> 0) | (d >>> 23 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((((((d ^ a) >>> 0)) & b) >>> 0)) ^ a) >>> 0)) + X[7] >>> 0) + 1735328473 >>> 0)) >>> 0;
+			c = (((c << 14 >>> 0) | (c >>> 18 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((((((c ^ d) >>> 0)) & a) >>> 0)) ^ d) >>> 0)) + X[12] >>> 0) + 2368359562 >>> 0)) >>> 0;
+			b = (((b << 20 >>> 0) | (b >>> 12 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((b ^ c) >>> 0) ^ d) >>> 0)) + X[5] >>> 0) + 4294588738 >>> 0)) >>> 0;
+			a = (((a << 4 >>> 0) | (a >>> 28 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((a ^ b) >>> 0) ^ c) >>> 0)) + X[8] >>> 0) + 2272392833 >>> 0)) >>> 0;
+			d = (((d << 11 >>> 0) | (d >>> 21 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((d ^ a) >>> 0) ^ b) >>> 0)) + X[11] >>> 0) + 1839030562 >>> 0)) >>> 0;
+			c = (((c << 16 >>> 0) | (c >>> 16 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((c ^ d) >>> 0) ^ a) >>> 0)) + X[14] >>> 0) + 4259657740 >>> 0)) >>> 0;
+			b = (((b << 23 >>> 0) | (b >>> 9 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((b ^ c) >>> 0) ^ d) >>> 0)) + X[1] >>> 0) + 2763975236 >>> 0)) >>> 0;
+			a = (((a << 4 >>> 0) | (a >>> 28 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((a ^ b) >>> 0) ^ c) >>> 0)) + X[4] >>> 0) + 1272893353 >>> 0)) >>> 0;
+			d = (((d << 11 >>> 0) | (d >>> 21 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((d ^ a) >>> 0) ^ b) >>> 0)) + X[7] >>> 0) + 4139469664 >>> 0)) >>> 0;
+			c = (((c << 16 >>> 0) | (c >>> 16 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((c ^ d) >>> 0) ^ a) >>> 0)) + X[10] >>> 0) + 3200236656 >>> 0)) >>> 0;
+			b = (((b << 23 >>> 0) | (b >>> 9 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((b ^ c) >>> 0) ^ d) >>> 0)) + X[13] >>> 0) + 681279174 >>> 0)) >>> 0;
+			a = (((a << 4 >>> 0) | (a >>> 28 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((a ^ b) >>> 0) ^ c) >>> 0)) + X[0] >>> 0) + 3936430074 >>> 0)) >>> 0;
+			d = (((d << 11 >>> 0) | (d >>> 21 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((d ^ a) >>> 0) ^ b) >>> 0)) + X[3] >>> 0) + 3572445317 >>> 0)) >>> 0;
+			c = (((c << 16 >>> 0) | (c >>> 16 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((c ^ d) >>> 0) ^ a) >>> 0)) + X[6] >>> 0) + 76029189 >>> 0)) >>> 0;
+			b = (((b << 23 >>> 0) | (b >>> 9 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((((b ^ c) >>> 0) ^ d) >>> 0)) + X[9] >>> 0) + 3654602809 >>> 0)) >>> 0;
+			a = (((a << 4 >>> 0) | (a >>> 28 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((((a ^ b) >>> 0) ^ c) >>> 0)) + X[12] >>> 0) + 3873151461 >>> 0)) >>> 0;
+			d = (((d << 11 >>> 0) | (d >>> 21 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((((d ^ a) >>> 0) ^ b) >>> 0)) + X[15] >>> 0) + 530742520 >>> 0)) >>> 0;
+			c = (((c << 16 >>> 0) | (c >>> 16 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((((c ^ d) >>> 0) ^ a) >>> 0)) + X[2] >>> 0) + 3299628645 >>> 0)) >>> 0;
+			b = (((b << 23 >>> 0) | (b >>> 9 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((c ^ (((b | (~d >>> 0)) >>> 0))) >>> 0)) + X[0] >>> 0) + 4096336452 >>> 0)) >>> 0;
+			a = (((a << 6 >>> 0) | (a >>> 26 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((b ^ (((a | (~c >>> 0)) >>> 0))) >>> 0)) + X[7] >>> 0) + 1126891415 >>> 0)) >>> 0;
+			d = (((d << 10 >>> 0) | (d >>> 22 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((a ^ (((d | (~b >>> 0)) >>> 0))) >>> 0)) + X[14] >>> 0) + 2878612391 >>> 0)) >>> 0;
+			c = (((c << 15 >>> 0) | (c >>> 17 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((d ^ (((c | (~a >>> 0)) >>> 0))) >>> 0)) + X[5] >>> 0) + 4237533241 >>> 0)) >>> 0;
+			b = (((b << 21 >>> 0) | (b >>> 11 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((c ^ (((b | (~d >>> 0)) >>> 0))) >>> 0)) + X[12] >>> 0) + 1700485571 >>> 0)) >>> 0;
+			a = (((a << 6 >>> 0) | (a >>> 26 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((b ^ (((a | (~c >>> 0)) >>> 0))) >>> 0)) + X[3] >>> 0) + 2399980690 >>> 0)) >>> 0;
+			d = (((d << 10 >>> 0) | (d >>> 22 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((a ^ (((d | (~b >>> 0)) >>> 0))) >>> 0)) + X[10] >>> 0) + 4293915773 >>> 0)) >>> 0;
+			c = (((c << 15 >>> 0) | (c >>> 17 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((d ^ (((c | (~a >>> 0)) >>> 0))) >>> 0)) + X[1] >>> 0) + 2240044497 >>> 0)) >>> 0;
+			b = (((b << 21 >>> 0) | (b >>> 11 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((c ^ (((b | (~d >>> 0)) >>> 0))) >>> 0)) + X[8] >>> 0) + 1873313359 >>> 0)) >>> 0;
+			a = (((a << 6 >>> 0) | (a >>> 26 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((b ^ (((a | (~c >>> 0)) >>> 0))) >>> 0)) + X[15] >>> 0) + 4264355552 >>> 0)) >>> 0;
+			d = (((d << 10 >>> 0) | (d >>> 22 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((a ^ (((d | (~b >>> 0)) >>> 0))) >>> 0)) + X[6] >>> 0) + 2734768916 >>> 0)) >>> 0;
+			c = (((c << 15 >>> 0) | (c >>> 17 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((d ^ (((c | (~a >>> 0)) >>> 0))) >>> 0)) + X[13] >>> 0) + 1309151649 >>> 0)) >>> 0;
+			b = (((b << 21 >>> 0) | (b >>> 11 >>> 0)) >>> 0) + c >>> 0;
+			a = a + ((((((c ^ (((b | (~d >>> 0)) >>> 0))) >>> 0)) + X[4] >>> 0) + 4149444226 >>> 0)) >>> 0;
+			a = (((a << 6 >>> 0) | (a >>> 26 >>> 0)) >>> 0) + b >>> 0;
+			d = d + ((((((b ^ (((a | (~c >>> 0)) >>> 0))) >>> 0)) + X[11] >>> 0) + 3174756917 >>> 0)) >>> 0;
+			d = (((d << 10 >>> 0) | (d >>> 22 >>> 0)) >>> 0) + a >>> 0;
+			c = c + ((((((a ^ (((d | (~b >>> 0)) >>> 0))) >>> 0)) + X[2] >>> 0) + 718787259 >>> 0)) >>> 0;
+			c = (((c << 15 >>> 0) | (c >>> 17 >>> 0)) >>> 0) + d >>> 0;
+			b = b + ((((((d ^ (((c | (~a >>> 0)) >>> 0))) >>> 0)) + X[9] >>> 0) + 3951481745 >>> 0)) >>> 0;
+			b = (((b << 21 >>> 0) | (b >>> 11 >>> 0)) >>> 0) + c >>> 0;
+			a = a + (aa) >>> 0;
+			b = b + (bb) >>> 0;
+			c = c + (cc) >>> 0;
+			d = d + (dd) >>> 0;
+			p = go$subslice(p, 64);
+		}
+		dig.s[0] = a;
+		dig.s[1] = b;
+		dig.s[2] = c;
+		dig.s[3] = d;
+	};
+	go$pkg.Size = 16;
+	go$pkg.BlockSize = 64;
+	var chunk = 64;
+	var init0 = 1732584193;
+	var init1 = 4023233417;
+	var init2 = 2562383102;
+	var init3 = 271733878;
+	var x86 = false;
+	var littleEndian = false;
+	go$pkg.init = function() {
+		var x, y;
+		crypto.RegisterHash(2, New);
+		x = 67305985;
+		y = go$toNativeArray("Uint8", [1, 2, 3, 4]);
+		littleEndian = go$arrayIsEqual(x, y);
+	};

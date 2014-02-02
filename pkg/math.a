@@ -1,0 +1,2244 @@
+0ƒ&¬‚âpackage math
+func @"".Abs(@"".x float64) (? float64)
+func @"".Acos(@"".x float64) (? float64)
+func @"".Acosh(@"".x float64) (? float64)
+func @"".Asin(@"".x float64) (? float64)
+func @"".Asinh(@"".x float64) (? float64)
+func @"".Atan(@"".x float64) (? float64)
+func @"".Atan2(@"".y float64, @"".x float64) (? float64)
+func @"".Atanh(@"".x float64) (? float64)
+func @"".Cbrt(@"".x float64) (? float64)
+func @"".Ceil(@"".x float64) (? float64)
+func @"".Copysign(@"".x float64, @"".y float64) (? float64)
+func @"".Cos(@"".x float64) (? float64)
+func @"".Cosh(@"".x float64) (? float64)
+func @"".Dim(@"".x float64, @"".y float64) (? float64)
+const @"".E = 6121026514868073p-51
+func @"".Erf(@"".x float64) (? float64)
+func @"".Erfc(@"".x float64) (? float64)
+func @"".Exp(@"".x float64) (? float64)
+func @"".Exp2(@"".x float64) (? float64)
+func @"".Expm1(@"".x float64) (? float64)
+func @"".Float32bits(@"".f float32) (? uint32)
+func @"".Float32frombits(@"".b uint32) (? float32)
+func @"".Float64bits(@"".f float64) (? uint64)
+func @"".Float64frombits(@"".b uint64) (? float64)
+func @"".Floor(@"".x float64) (? float64)
+func @"".Frexp(@"".f float64) (@"".frac float64, @"".exp int)
+func @"".Gamma(@"".x float64) (? float64)
+func @"".Hypot(@"".p float64, @"".q float64) (? float64)
+func @"".Ilogb(@"".x float64) (? int)
+func @"".Inf(@"".sign int) (? float64)
+func @"".IsInf(@"".f float64, @"".sign int) (? bool)
+func @"".IsNaN(@"".f float64) (@"".is bool)
+func @"".J0(@"".x float64) (? float64)
+func @"".J1(@"".x float64) (? float64)
+func @"".Jn(@"".n int, @"".x float64) (? float64)
+func @"".Ldexp(@"".frac float64, @"".exp int) (? float64)
+func @"".Lgamma(@"".x float64) (@"".lgamma float64, @"".sign int)
+const @"".Ln10 = 5184960683398422p-51
+const @"".Ln2 = 6243314768165359p-53
+func @"".Log(@"".x float64) (? float64)
+func @"".Log10(@"".x float64) (? float64)
+const @"".Log10E = 7823553867474190p-54
+func @"".Log1p(@"".x float64) (? float64)
+func @"".Log2(@"".x float64) (? float64)
+const @"".Log2E = 6497320848556798p-52
+func @"".Logb(@"".x float64) (? float64)
+func @"".Max(@"".x float64, @"".y float64) (? float64)
+const @"".MaxFloat32 = 9007198717870080p+75
+const @"".MaxFloat64 = 9007199254740991p+971
+const @"".MaxInt16 = 0x7fff
+const @"".MaxInt32 = 0x7fffffff
+const @"".MaxInt64 = 0x7fffffffffffffff
+const @"".MaxInt8 = 0x7f
+const @"".MaxUint16 = 0xffff
+const @"".MaxUint32 = 0xffffffff
+const @"".MaxUint64 = -0x1
+const @"".MaxUint8 = 0xff
+func @"".Min(@"".x float64, @"".y float64) (? float64)
+const @"".MinInt16 = -0x8000
+const @"".MinInt32 = -0x80000000
+const @"".MinInt64 = -0x8000000000000000
+const @"".MinInt8 = -0x80
+func @"".Mod(@"".x float64, @"".y float64) (? float64)
+func @"".Modf(@"".f float64) (@"".int float64, @"".frac float64)
+func @"".NaN() (? float64)
+func @"".Nextafter(@"".x float64, @"".y float64) (@"".r float64)
+const @"".Phi = 7286977268806824p-52
+const @"".Pi = 7074237752028440p-51
+func @"".Pow(@"".x float64, @"".y float64) (? float64)
+func @"".Pow10(@"".e int) (? float64)
+func @"".Remainder(@"".x float64, @"".y float64) (? float64)
+func @"".Signbit(@"".x float64) (? bool)
+func @"".Sin(@"".x float64) (? float64)
+func @"".Sincos(@"".x float64) (@"".sin float64, @"".cos float64)
+func @"".Sinh(@"".x float64) (? float64)
+const @"".SmallestNonzeroFloat32 = 4503599627370496p-201
+const @"".SmallestNonzeroFloat64 = 1p-1074
+func @"".Sqrt(@"".x float64) (? float64)
+const @"".Sqrt2 = 6369051672525773p-52
+const @"".SqrtE = 7425180500362908p-52
+const @"".SqrtPhi = 5728667219559510p-52
+const @"".SqrtPi = 7982422502469483p-52
+func @"".Tan(@"".x float64) (? float64)
+func @"".Tanh(@"".x float64) (? float64)
+func @"".Trunc(@"".x float64) (? float64)
+func @"".Y0(@"".x float64) (? float64)
+func @"".Y1(@"".x float64) (? float64)
+func @"".Yn(@"".n int, @"".x float64) (? float64)
+$$
+0runtimemathƒ°	var abs = function(x) {
+		if (x < 0) {
+			return -x;
+		} else if (x === 0) {
+			return 0;
+		}
+		return x;
+	};
+	var Acosh = go$pkg.Acosh = function(x) {
+		var t;
+		if (x < 1 || IsNaN(x)) {
+			return NaN();
+		} else if (x === 1) {
+			return 0;
+		} else if (x >= 2.68435456e+08) {
+			return Log(x) + 0.6931471805599453;
+		} else if (x > 2) {
+			return Log(2 * x - 1 / (x + Sqrt(x * x - 1)));
+		}
+		t = x - 1;
+		return Log1p(t + Sqrt(2 * t + t * t));
+	};
+	var asin = function(x) {
+		var sign, temp;
+		if (x === 0) {
+			return x;
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		if (x > 1) {
+			return NaN();
+		}
+		temp = Sqrt(1 - x * x);
+		if (x > 0.7) {
+			temp = 1.5707963267948966 - satan(temp / x);
+		} else {
+			temp = satan(x / temp);
+		}
+		if (sign) {
+			temp = -temp;
+		}
+		return temp;
+	};
+	var acos = function(x) {
+		return 1.5707963267948966 - Asin(x);
+	};
+	var Asinh = go$pkg.Asinh = function(x) {
+		var sign, temp;
+		if (IsNaN(x) || IsInf(x, 0)) {
+			return x;
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		temp = 0;
+		if (x > 2.68435456e+08) {
+			temp = Log(x) + 0.6931471805599453;
+		} else if (x > 2) {
+			temp = Log(2 * x + 1 / (Sqrt(x * x + 1) + x));
+		} else if (x < 3.725290298461914e-09) {
+			temp = x;
+		} else {
+			temp = Log1p(x + x * x / (1 + Sqrt(1 + x * x)));
+		}
+		if (sign) {
+			temp = -temp;
+		}
+		return temp;
+	};
+	var xatan = function(x) {
+		var z;
+		z = x * x;
+		z = z * ((((-0.8750608600031904 * z + -16.157537187333652) * z + -75.00855792314705) * z + -122.88666844901361) * z + -64.85021904942025) / (((((z + 24.858464901423062) * z + 165.02700983169885) * z + 432.88106049129027) * z + 485.3903996359137) * z + 194.5506571482614);
+		z = x * z + x;
+		return z;
+	};
+	var satan = function(x) {
+		if (x <= 0.66) {
+			return xatan(x);
+		}
+		if (x > 2.414213562373095) {
+			return 1.5707963267948966 - xatan(1 / x) + 6.123233995736766e-17;
+		}
+		return 0.7853981633974483 + xatan((x - 1) / (x + 1)) + 3.061616997868383e-17;
+	};
+	var atan = function(x) {
+		if (x === 0) {
+			return x;
+		}
+		if (x > 0) {
+			return satan(x);
+		}
+		return -satan(-x);
+	};
+	var atan2 = function(y, x) {
+		var q;
+		if (IsNaN(y) || IsNaN(x)) {
+			return NaN();
+		} else if (y === 0) {
+			if (x >= 0 && !Signbit(x)) {
+				return Copysign(0, y);
+			}
+			return Copysign(3.141592653589793, y);
+		} else if (x === 0) {
+			return Copysign(1.5707963267948966, y);
+		} else if (IsInf(x, 0)) {
+			if (IsInf(x, 1)) {
+				if (IsInf(y, 0)) {
+					return Copysign(0.7853981633974483, y);
+				} else {
+					return Copysign(0, y);
+				}
+			}
+			if (IsInf(y, 0)) {
+				return Copysign(2.356194490192345, y);
+			} else {
+				return Copysign(3.141592653589793, y);
+			}
+		} else if (IsInf(y, 0)) {
+			return Copysign(1.5707963267948966, y);
+		}
+		q = Atan(y / x);
+		if (x < 0) {
+			if (q <= 0) {
+				return q + 3.141592653589793;
+			}
+			return q - 3.141592653589793;
+		}
+		return q;
+	};
+	var Atanh = go$pkg.Atanh = function(x) {
+		var sign, temp;
+		if (x < -1 || x > 1 || IsNaN(x)) {
+			return NaN();
+		} else if (x === 1) {
+			return Inf(1);
+		} else if (x === -1) {
+			return Inf(-1);
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		temp = 0;
+		if (x < 3.725290298461914e-09) {
+			temp = x;
+		} else if (x < 0.5) {
+			temp = x + x;
+			temp = 0.5 * Log1p(temp + temp * x / (1 - x));
+		} else {
+			temp = 0.5 * Log1p((x + x) / (1 - x));
+		}
+		if (sign) {
+			temp = -temp;
+		}
+		return temp;
+	};
+	var normalize = function(x) {
+		var y, exp$1, _tuple, _tuple$1;
+		y = 0;
+		exp$1 = 0;
+		if (Abs(x) < 2.2250738585072014e-308) {
+			_tuple = [x * 4.503599627370496e+15, -52], y = _tuple[0], exp$1 = _tuple[1];
+			return [y, exp$1];
+		}
+		_tuple$1 = [x, 0], y = _tuple$1[0], exp$1 = _tuple$1[1];
+		return [y, exp$1];
+	};
+	var Cbrt = go$pkg.Cbrt = function(x) {
+		var sign, _tuple, f, e, _r, m, _ref, _q, y, s, t;
+		if ((x === 0) || IsNaN(x) || IsInf(x, 0)) {
+			return x;
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		_tuple = Frexp(x), f = _tuple[0], e = _tuple[1];
+		m = (_r = e % 3, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"));
+		if (m > 0) {
+			m = m - 3 >> 0;
+			e = e - (m) >> 0;
+		}
+		_ref = m;
+		if (_ref === 0) {
+			f = 0.1662848358 * f + 1.096040958 - 0.4105032829 / (0.5649335816 + f);
+		} else if (_ref === -1) {
+			f = f * 0.5;
+			f = 0.2639607233 * f + 0.8699282849 - 0.1629083358 / (0.2824667908 + f);
+		} else {
+			f = f * 0.25;
+			f = 0.4190115298 * f + 0.6904625373 - 0.0646502159 / (0.1412333954 + f);
+		}
+		y = Ldexp(f, (_q = e / 3, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")));
+		s = y * y * y;
+		t = s + x;
+		y = y * ((t + x) / (s + t));
+		s = (y * y * y - x) / x;
+		y = y - (y * ((0.1728395061728395 * s - 0.2222222222222222) * s + 0.3333333333333333) * s);
+		if (sign) {
+			y = -y;
+		}
+		return y;
+	};
+	var dim = function(x, y) {
+		return max(x - y, 0);
+	};
+	var max = function(x, y) {
+		if (IsInf(x, 1) || IsInf(y, 1)) {
+			return Inf(1);
+		} else if (IsNaN(x) || IsNaN(y)) {
+			return NaN();
+		} else if ((x === 0) && (x === y)) {
+			if (Signbit(x)) {
+				return y;
+			}
+			return x;
+		}
+		if (x > y) {
+			return x;
+		}
+		return y;
+	};
+	var min = function(x, y) {
+		if (IsInf(x, -1) || IsInf(y, -1)) {
+			return Inf(-1);
+		} else if (IsNaN(x) || IsNaN(y)) {
+			return NaN();
+		} else if ((x === 0) && (x === y)) {
+			if (Signbit(x)) {
+				return x;
+			}
+			return y;
+		}
+		if (x < y) {
+			return x;
+		}
+		return y;
+	};
+	var Erf = go$pkg.Erf = function(x) {
+		var sign, temp, z, r, s, y, s$1, P, Q, s$2, _tuple, R, S, x$1, z$1, r$1;
+		if (IsNaN(x)) {
+			return NaN();
+		} else if (IsInf(x, 1)) {
+			return 1;
+		} else if (IsInf(x, -1)) {
+			return -1;
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		if (x < 0.84375) {
+			temp = 0;
+			if (x < 3.725290298461914e-09) {
+				if (x < 2.848094538889218e-306) {
+					temp = 0.125 * (8 * x + 1.0270333367641007 * x);
+				} else {
+					temp = x + 0.1283791670955126 * x;
+				}
+			} else {
+				z = x * x;
+				r = 0.12837916709551256 + z * (-0.3250421072470015 + z * (-0.02848174957559851 + z * (-0.005770270296489442 + z * -2.3763016656650163e-05)));
+				s = 1 + z * (0.39791722395915535 + z * (0.0650222499887673 + z * (0.005081306281875766 + z * (0.00013249473800432164 + z * -3.960228278775368e-06))));
+				y = r / s;
+				temp = x + x * y;
+			}
+			if (sign) {
+				return -temp;
+			}
+			return temp;
+		}
+		if (x < 1.25) {
+			s$1 = x - 1;
+			P = -0.0023621185607526594 + s$1 * (0.41485611868374833 + s$1 * (-0.3722078760357013 + s$1 * (0.31834661990116175 + s$1 * (-0.11089469428239668 + s$1 * (0.035478304325618236 + s$1 * -0.002166375594868791)))));
+			Q = 1 + s$1 * (0.10642088040084423 + s$1 * (0.540397917702171 + s$1 * (0.07182865441419627 + s$1 * (0.12617121980876164 + s$1 * (0.01363708391202905 + s$1 * 0.011984499846799107)))));
+			if (sign) {
+				return -0.8450629115104675 - P / Q;
+			}
+			return 0.8450629115104675 + P / Q;
+		}
+		if (x >= 6) {
+			if (sign) {
+				return -1;
+			}
+			return 1;
+		}
+		s$2 = 1 / (x * x);
+		_tuple = [0, 0], R = _tuple[0], S = _tuple[1];
+		if (x < 2.857142857142857) {
+			R = -0.009864944034847148 + s$2 * (-0.6938585727071818 + s$2 * (-10.558626225323291 + s$2 * (-62.375332450326006 + s$2 * (-162.39666946257347 + s$2 * (-184.60509290671104 + s$2 * (-81.2874355063066 + s$2 * -9.814329344169145))))));
+			S = 1 + s$2 * (19.651271667439257 + s$2 * (137.65775414351904 + s$2 * (434.56587747522923 + s$2 * (645.3872717332679 + s$2 * (429.00814002756783 + s$2 * (108.63500554177944 + s$2 * (6.570249770319282 + s$2 * -0.0604244152148581)))))));
+		} else {
+			R = -0.0098649429247001 + s$2 * (-0.799283237680523 + s$2 * (-17.757954917754752 + s$2 * (-160.63638485582192 + s$2 * (-637.5664433683896 + s$2 * (-1025.0951316110772 + s$2 * -483.5191916086514)))));
+			S = 1 + s$2 * (30.33806074348246 + s$2 * (325.7925129965739 + s$2 * (1536.729586084437 + s$2 * (3199.8582195085955 + s$2 * (2553.0504064331644 + s$2 * (474.52854120695537 + s$2 * -22.44095244658582))))));
+		}
+		z$1 = Float64frombits((x$1 = Float64bits(x), new Go$Uint64(x$1.high & 4294967295, (x$1.low & 0) >>> 0)));
+		r$1 = Exp(-z$1 * z$1 - 0.5625) * Exp((z$1 - x) * (z$1 + x) + R / S);
+		if (sign) {
+			return r$1 / x - 1;
+		}
+		return 1 - r$1 / x;
+	};
+	var Erfc = go$pkg.Erfc = function(x) {
+		var sign, temp, z, r, s, y, s$1, P, Q, s$2, _tuple, R, S, x$1, z$1, r$1;
+		if (IsNaN(x)) {
+			return NaN();
+		} else if (IsInf(x, 1)) {
+			return 0;
+		} else if (IsInf(x, -1)) {
+			return 2;
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		if (x < 0.84375) {
+			temp = 0;
+			if (x < 1.3877787807814457e-17) {
+				temp = x;
+			} else {
+				z = x * x;
+				r = 0.12837916709551256 + z * (-0.3250421072470015 + z * (-0.02848174957559851 + z * (-0.005770270296489442 + z * -2.3763016656650163e-05)));
+				s = 1 + z * (0.39791722395915535 + z * (0.0650222499887673 + z * (0.005081306281875766 + z * (0.00013249473800432164 + z * -3.960228278775368e-06))));
+				y = r / s;
+				if (x < 0.25) {
+					temp = x + x * y;
+				} else {
+					temp = 0.5 + (x * y + (x - 0.5));
+				}
+			}
+			if (sign) {
+				return 1 + temp;
+			}
+			return 1 - temp;
+		}
+		if (x < 1.25) {
+			s$1 = x - 1;
+			P = -0.0023621185607526594 + s$1 * (0.41485611868374833 + s$1 * (-0.3722078760357013 + s$1 * (0.31834661990116175 + s$1 * (-0.11089469428239668 + s$1 * (0.035478304325618236 + s$1 * -0.002166375594868791)))));
+			Q = 1 + s$1 * (0.10642088040084423 + s$1 * (0.540397917702171 + s$1 * (0.07182865441419627 + s$1 * (0.12617121980876164 + s$1 * (0.01363708391202905 + s$1 * 0.011984499846799107)))));
+			if (sign) {
+				return 1.8450629115104675 + P / Q;
+			}
+			return 0.15493708848953247 - P / Q;
+		}
+		if (x < 28) {
+			s$2 = 1 / (x * x);
+			_tuple = [0, 0], R = _tuple[0], S = _tuple[1];
+			if (x < 2.857142857142857) {
+				R = -0.009864944034847148 + s$2 * (-0.6938585727071818 + s$2 * (-10.558626225323291 + s$2 * (-62.375332450326006 + s$2 * (-162.39666946257347 + s$2 * (-184.60509290671104 + s$2 * (-81.2874355063066 + s$2 * -9.814329344169145))))));
+				S = 1 + s$2 * (19.651271667439257 + s$2 * (137.65775414351904 + s$2 * (434.56587747522923 + s$2 * (645.3872717332679 + s$2 * (429.00814002756783 + s$2 * (108.63500554177944 + s$2 * (6.570249770319282 + s$2 * -0.0604244152148581)))))));
+			} else {
+				if (sign && x > 6) {
+					return 2;
+				}
+				R = -0.0098649429247001 + s$2 * (-0.799283237680523 + s$2 * (-17.757954917754752 + s$2 * (-160.63638485582192 + s$2 * (-637.5664433683896 + s$2 * (-1025.0951316110772 + s$2 * -483.5191916086514)))));
+				S = 1 + s$2 * (30.33806074348246 + s$2 * (325.7925129965739 + s$2 * (1536.729586084437 + s$2 * (3199.8582195085955 + s$2 * (2553.0504064331644 + s$2 * (474.52854120695537 + s$2 * -22.44095244658582))))));
+			}
+			z$1 = Float64frombits((x$1 = Float64bits(x), new Go$Uint64(x$1.high & 4294967295, (x$1.low & 0) >>> 0)));
+			r$1 = Exp(-z$1 * z$1 - 0.5625) * Exp((z$1 - x) * (z$1 + x) + R / S);
+			if (sign) {
+				return 2 - r$1 / x;
+			}
+			return r$1 / x;
+		}
+		if (sign) {
+			return 2;
+		}
+		return 0;
+	};
+	var exp = function(x) {
+		var k, hi, lo;
+		if (IsNaN(x) || IsInf(x, 1)) {
+			return x;
+		} else if (IsInf(x, -1)) {
+			return 0;
+		} else if (x > 709.782712893384) {
+			return Inf(1);
+		} else if (x < -745.1332191019411) {
+			return 0;
+		} else if (-3.725290298461914e-09 < x && x < 3.725290298461914e-09) {
+			return 1 + x;
+		}
+		k = 0;
+		if (x < 0) {
+			k = (1.4426950408889634 * x - 0.5 >> 0);
+		} else if (x > 0) {
+			k = (1.4426950408889634 * x + 0.5 >> 0);
+		}
+		hi = x - k * 0.6931471803691238;
+		lo = k * 1.9082149292705877e-10;
+		return expmulti(hi, lo, k);
+	};
+	var exp2 = function(x) {
+		var k, t, hi, lo;
+		if (IsNaN(x) || IsInf(x, 1)) {
+			return x;
+		} else if (IsInf(x, -1)) {
+			return 0;
+		} else if (x > 1023.9999999999999) {
+			return Inf(1);
+		} else if (x < -1074) {
+			return 0;
+		}
+		k = 0;
+		if (x > 0) {
+			k = (x + 0.5 >> 0);
+		} else if (x < 0) {
+			k = (x - 0.5 >> 0);
+		}
+		t = x - k;
+		hi = t * 0.6931471803691238;
+		lo = -t * 1.9082149292705877e-10;
+		return expmulti(hi, lo, k);
+	};
+	var expmulti = function(hi, lo, k) {
+		var r, t, c, y;
+		r = hi - lo;
+		t = r * r;
+		c = r - t * (0.16666666666666602 + t * (-0.0027777777777015593 + t * (6.613756321437934e-05 + t * (-1.6533902205465252e-06 + t * 4.1381367970572385e-08))));
+		y = 1 - ((lo - (r * c) / (2 - c)) - hi);
+		return Ldexp(y, k);
+	};
+	var expm1 = function(x) {
+		var absx, sign, c, k, _tuple, hi, lo, t, hfx, hxs, r1, t$1, e, y, x$1, x$2, x$3, t$2, y$1, x$4, x$5, t$3, y$2, x$6, x$7;
+		if (IsInf(x, 1) || IsNaN(x)) {
+			return x;
+		} else if (IsInf(x, -1)) {
+			return -1;
+		}
+		absx = x;
+		sign = false;
+		if (x < 0) {
+			absx = -absx;
+			sign = true;
+		}
+		if (absx >= 38.816242111356935) {
+			if (absx >= 709.782712893384) {
+				return Inf(1);
+			}
+			if (sign) {
+				return -1;
+			}
+		}
+		c = 0;
+		k = 0;
+		if (absx > 0.34657359027997264) {
+			_tuple = [0, 0], hi = _tuple[0], lo = _tuple[1];
+			if (absx < 1.0397207708399179) {
+				if (!sign) {
+					hi = x - 0.6931471803691238;
+					lo = 1.9082149292705877e-10;
+					k = 1;
+				} else {
+					hi = x + 0.6931471803691238;
+					lo = -1.9082149292705877e-10;
+					k = -1;
+				}
+			} else {
+				if (!sign) {
+					k = (1.4426950408889634 * x + 0.5 >> 0);
+				} else {
+					k = (1.4426950408889634 * x - 0.5 >> 0);
+				}
+				t = k;
+				hi = x - t * 0.6931471803691238;
+				lo = t * 1.9082149292705877e-10;
+			}
+			x = hi - lo;
+			c = (hi - x) - lo;
+		} else if (absx < 5.551115123125783e-17) {
+			return x;
+		} else {
+			k = 0;
+		}
+		hfx = 0.5 * x;
+		hxs = x * hfx;
+		r1 = 1 + hxs * (-0.03333333333333313 + hxs * (0.0015873015872548146 + hxs * (-7.93650757867488e-05 + hxs * (4.008217827329362e-06 + hxs * -2.0109921818362437e-07))));
+		t$1 = 3 - r1 * hfx;
+		e = hxs * ((r1 - t$1) / (6 - x * t$1));
+		if (!((k === 0))) {
+			e = x * (e - c) - c;
+			e = e - (hxs);
+			if (k === -1) {
+				return 0.5 * (x - e) - 0.5;
+			} else if (k === 1) {
+				if (x < -0.25) {
+					return -2 * (e - (x + 0.5));
+				}
+				return 1 + 2 * (x - e);
+			} else if (k <= -2 || k > 56) {
+				y = 1 - (e - x);
+				y = Float64frombits((x$1 = Float64bits(y), x$2 = go$shiftLeft64(new Go$Uint64(0, k), 52), new Go$Uint64(x$1.high + x$2.high, x$1.low + x$2.low)));
+				return y - 1;
+			}
+			if (k < 20) {
+				t$2 = Float64frombits((x$3 = go$shiftRightUint64(new Go$Uint64(2097152, 0), (k >>> 0)), new Go$Uint64(1072693248 - x$3.high, 0 - x$3.low)));
+				y$1 = t$2 - (e - x);
+				y$1 = Float64frombits((x$4 = Float64bits(y$1), x$5 = go$shiftLeft64(new Go$Uint64(0, k), 52), new Go$Uint64(x$4.high + x$5.high, x$4.low + x$5.low)));
+				return y$1;
+			}
+			t$3 = Float64frombits(new Go$Uint64(0, (((1023 - k >> 0)) << 52 >> 0)));
+			y$2 = x - (e + t$3);
+			y$2 = y$2 + 1;
+			y$2 = Float64frombits((x$6 = Float64bits(y$2), x$7 = go$shiftLeft64(new Go$Uint64(0, k), 52), new Go$Uint64(x$6.high + x$7.high, x$6.low + x$7.low)));
+			return y$2;
+		}
+		return x - (x * e - hxs);
+	};
+	var floor = function(x) {
+		var _tuple, d, fract, _tuple$1, d$1;
+		if ((x === 0) || IsNaN(x) || IsInf(x, 0)) {
+			return x;
+		}
+		if (x < 0) {
+			_tuple = Modf(-x), d = _tuple[0], fract = _tuple[1];
+			if (!((fract === 0))) {
+				d = d + 1;
+			}
+			return -d;
+		}
+		_tuple$1 = Modf(x), d$1 = _tuple$1[0];
+		return d$1;
+	};
+	var ceil = function(x) {
+		return -Floor(-x);
+	};
+	var trunc = function(x) {
+		var _tuple, d;
+		if ((x === 0) || IsNaN(x) || IsInf(x, 0)) {
+			return x;
+		}
+		_tuple = Modf(x), d = _tuple[0];
+		return d;
+	};
+	var frexp = function(f) {
+		var frac, exp$1, _tuple, _tuple$1, _tuple$2, x, x$1;
+		frac = 0;
+		exp$1 = 0;
+		if (f === 0) {
+			_tuple = [f, 0], frac = _tuple[0], exp$1 = _tuple[1];
+			return [frac, exp$1];
+		} else if (IsInf(f, 0) || IsNaN(f)) {
+			_tuple$1 = [f, 0], frac = _tuple$1[0], exp$1 = _tuple$1[1];
+			return [frac, exp$1];
+		}
+		_tuple$2 = normalize(f), f = _tuple$2[0], exp$1 = _tuple$2[1];
+		x = Float64bits(f);
+		exp$1 = exp$1 + (((((x$1 = go$shiftRightUint64(x, 52), new Go$Uint64(x$1.high & 0, (x$1.low & 2047) >>> 0)).low >> 0) - 1023 >> 0) + 1 >> 0)) >> 0;
+		x = new Go$Uint64(x.high &~ 2146435072, (x.low &~ 0) >>> 0);
+		x = new Go$Uint64(x.high | 1071644672, (x.low | 0) >>> 0);
+		frac = Float64frombits(x);
+		return [frac, exp$1];
+	};
+	var stirling = function(x) {
+		var w, y, v;
+		w = 1 / x;
+		w = 1 + w * ((((_gamS[0] * w + _gamS[1]) * w + _gamS[2]) * w + _gamS[3]) * w + _gamS[4]);
+		y = Exp(x);
+		if (x > 143.01608) {
+			v = Pow(x, 0.5 * x - 0.25);
+			y = v * (v / y);
+		} else {
+			y = Pow(x, x - 0.5) / y;
+		}
+		y = 2.5066282746310007 * y * w;
+		return y;
+	};
+	var Gamma = go$pkg.Gamma = function(x) {
+		var q, p, signgam, ip, z, z$1;
+		if (isNegInt(x) || IsInf(x, -1) || IsNaN(x)) {
+			return NaN();
+		} else if (x === 0) {
+			if (Signbit(x)) {
+				return Inf(-1);
+			}
+			return Inf(1);
+		} else if (x < -170.5674972726612 || x > 171.61447887182297) {
+			return Inf(1);
+		}
+		q = Abs(x);
+		p = Floor(q);
+		if (q > 33) {
+			if (x >= 0) {
+				return stirling(x);
+			}
+			signgam = 1;
+			if (ip = (p >> 0), (ip & 1) === 0) {
+				signgam = -1;
+			}
+			z = q - p;
+			if (z > 0.5) {
+				p = p + 1;
+				z = q - p;
+			}
+			z = q * Sin(3.141592653589793 * z);
+			if (z === 0) {
+				return Inf(signgam);
+			}
+			z = 3.141592653589793 / (Abs(z) * stirling(q));
+			return signgam * z;
+		}
+		z$1 = 1;
+		while (x >= 3) {
+			x = x - 1;
+			z$1 = z$1 * x;
+		}
+		while (x < 0) {
+			if (x > -1e-09) {
+				if (x === 0) {
+					return Inf(1);
+				}
+				return z$1 / ((1 + 0.5772156649015329 * x) * x);
+			}
+			z$1 = z$1 / x;
+			x = x + 1;
+		}
+		while (x < 2) {
+			if (x < 1e-09) {
+				if (x === 0) {
+					return Inf(1);
+				}
+				return z$1 / ((1 + 0.5772156649015329 * x) * x);
+			}
+			z$1 = z$1 / x;
+			x = x + 1;
+		}
+		if (x === 2) {
+			return z$1;
+		}
+		x = x - 2;
+		p = (((((x * _gamP[0] + _gamP[1]) * x + _gamP[2]) * x + _gamP[3]) * x + _gamP[4]) * x + _gamP[5]) * x + _gamP[6];
+		q = ((((((x * _gamQ[0] + _gamQ[1]) * x + _gamQ[2]) * x + _gamQ[3]) * x + _gamQ[4]) * x + _gamQ[5]) * x + _gamQ[6]) * x + _gamQ[7];
+		return z$1 * p / q;
+	};
+	var isNegInt = function(x) {
+		var _tuple, xf;
+		if (x < 0) {
+			_tuple = Modf(x), xf = _tuple[1];
+			return xf === 0;
+		}
+		return false;
+	};
+	var hypot = function(p, q) {
+		var _tuple;
+		if (IsInf(p, 0) || IsInf(q, 0)) {
+			return Inf(1);
+		} else if (IsNaN(p) || IsNaN(q)) {
+			return NaN();
+		}
+		if (p < 0) {
+			p = -p;
+		}
+		if (q < 0) {
+			q = -q;
+		}
+		if (p < q) {
+			_tuple = [q, p], p = _tuple[0], q = _tuple[1];
+		}
+		if (p === 0) {
+			return 0;
+		}
+		q = q / p;
+		return p * Sqrt(1 + q * q);
+	};
+	var J0 = go$pkg.J0 = function(x) {
+		var _tuple, s, c, ss, cc, z, z$1, u, v, z$2, r, s$1, u$1;
+		if (IsNaN(x)) {
+			return x;
+		} else if (IsInf(x, 0)) {
+			return 0;
+		} else if (x === 0) {
+			return 1;
+		}
+		if (x < 0) {
+			x = -x;
+		}
+		if (x >= 2) {
+			_tuple = Sincos(x), s = _tuple[0], c = _tuple[1];
+			ss = s - c;
+			cc = s + c;
+			if (x < 8.988465674311579e+307) {
+				z = -Cos(x + x);
+				if (s * c < 0) {
+					cc = z / ss;
+				} else {
+					ss = z / cc;
+				}
+			}
+			z$1 = 0;
+			if (x > 6.80564733841877e+38) {
+				z$1 = 0.5641895835477563 * cc / Sqrt(x);
+			} else {
+				u = pzero(x);
+				v = qzero(x);
+				z$1 = 0.5641895835477563 * (u * cc - v * ss) / Sqrt(x);
+			}
+			return z$1;
+		}
+		if (x < 0.0001220703125) {
+			if (x < 7.450580596923828e-09) {
+				return 1;
+			}
+			return 1 - 0.25 * x * x;
+		}
+		z$2 = x * x;
+		r = z$2 * (0.015624999999999995 + z$2 * (-0.00018997929423885472 + z$2 * (1.8295404953270067e-06 + z$2 * -4.618326885321032e-09)));
+		s$1 = 1 + z$2 * (0.015619102946489001 + z$2 * (0.00011692678466333745 + z$2 * (5.135465502073181e-07 + z$2 * 1.1661400333379e-09)));
+		if (x < 1) {
+			return 1 + z$2 * (-0.25 + (r / s$1));
+		}
+		u$1 = 0.5 * x;
+		return (1 + u$1) * (1 - u$1) + z$2 * (r / s$1);
+	};
+	var Y0 = go$pkg.Y0 = function(x) {
+		var _tuple, s, c, ss, cc, z, z$1, u, v, z$2, u$1, v$1;
+		if (x < 0 || IsNaN(x)) {
+			return NaN();
+		} else if (IsInf(x, 1)) {
+			return 0;
+		} else if (x === 0) {
+			return Inf(-1);
+		}
+		if (x >= 2) {
+			_tuple = Sincos(x), s = _tuple[0], c = _tuple[1];
+			ss = s - c;
+			cc = s + c;
+			if (x < 8.988465674311579e+307) {
+				z = -Cos(x + x);
+				if (s * c < 0) {
+					cc = z / ss;
+				} else {
+					ss = z / cc;
+				}
+			}
+			z$1 = 0;
+			if (x > 6.80564733841877e+38) {
+				z$1 = 0.5641895835477563 * ss / Sqrt(x);
+			} else {
+				u = pzero(x);
+				v = qzero(x);
+				z$1 = 0.5641895835477563 * (u * ss + v * cc) / Sqrt(x);
+			}
+			return z$1;
+		}
+		if (x <= 7.450580596923828e-09) {
+			return -0.07380429510868723 + 0.6366197723675814 * Log(x);
+		}
+		z$2 = x * x;
+		u$1 = -0.07380429510868723 + z$2 * (0.17666645250918112 + z$2 * (-0.01381856719455969 + z$2 * (0.00034745343209368365 + z$2 * (-3.8140705372436416e-06 + z$2 * (1.9559013703502292e-08 + z$2 * -3.982051941321034e-11)))));
+		v$1 = 1 + z$2 * (0.01273048348341237 + z$2 * (7.600686273503533e-05 + z$2 * (2.591508518404578e-07 + z$2 * 4.4111031133267547e-10)));
+		return u$1 / v$1 + 0.6366197723675814 * J0(x) * Log(x);
+	};
+	var pzero = function(x) {
+		var p, q, z, r, s;
+		p = go$makeNativeArray("Float64", 6, function() { return 0; });
+		q = go$makeNativeArray("Float64", 5, function() { return 0; });
+		if (x >= 8) {
+			p = go$mapArray(p0R8, function(entry) { return entry; });
+			q = go$mapArray(p0S8, function(entry) { return entry; });
+		} else if (x >= 4.5454) {
+			p = go$mapArray(p0R5, function(entry) { return entry; });
+			q = go$mapArray(p0S5, function(entry) { return entry; });
+		} else if (x >= 2.8571) {
+			p = go$mapArray(p0R3, function(entry) { return entry; });
+			q = go$mapArray(p0S3, function(entry) { return entry; });
+		} else if (x >= 2) {
+			p = go$mapArray(p0R2, function(entry) { return entry; });
+			q = go$mapArray(p0S2, function(entry) { return entry; });
+		}
+		z = 1 / (x * x);
+		r = p[0] + z * (p[1] + z * (p[2] + z * (p[3] + z * (p[4] + z * p[5]))));
+		s = 1 + z * (q[0] + z * (q[1] + z * (q[2] + z * (q[3] + z * q[4]))));
+		return 1 + r / s;
+	};
+	var qzero = function(x) {
+		var _tuple, p, q, z, r, s;
+		_tuple = [go$makeNativeArray("Float64", 6, function() { return 0; }), go$makeNativeArray("Float64", 6, function() { return 0; })], p = _tuple[0], q = _tuple[1];
+		if (x >= 8) {
+			p = go$mapArray(q0R8, function(entry) { return entry; });
+			q = go$mapArray(q0S8, function(entry) { return entry; });
+		} else if (x >= 4.5454) {
+			p = go$mapArray(q0R5, function(entry) { return entry; });
+			q = go$mapArray(q0S5, function(entry) { return entry; });
+		} else if (x >= 2.8571) {
+			p = go$mapArray(q0R3, function(entry) { return entry; });
+			q = go$mapArray(q0S3, function(entry) { return entry; });
+		} else if (x >= 2) {
+			p = go$mapArray(q0R2, function(entry) { return entry; });
+			q = go$mapArray(q0S2, function(entry) { return entry; });
+		}
+		z = 1 / (x * x);
+		r = p[0] + z * (p[1] + z * (p[2] + z * (p[3] + z * (p[4] + z * p[5]))));
+		s = 1 + z * (q[0] + z * (q[1] + z * (q[2] + z * (q[3] + z * (q[4] + z * q[5])))));
+		return (-0.125 + r / s) / x;
+	};
+	var J1 = go$pkg.J1 = function(x) {
+		var sign, _tuple, s, c, ss, cc, z, z$1, u, v, z$2, r, s$1;
+		if (IsNaN(x)) {
+			return x;
+		} else if (IsInf(x, 0) || (x === 0)) {
+			return 0;
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		if (x >= 2) {
+			_tuple = Sincos(x), s = _tuple[0], c = _tuple[1];
+			ss = -s - c;
+			cc = s - c;
+			if (x < 8.988465674311579e+307) {
+				z = Cos(x + x);
+				if (s * c > 0) {
+					cc = z / ss;
+				} else {
+					ss = z / cc;
+				}
+			}
+			z$1 = 0;
+			if (x > 6.80564733841877e+38) {
+				z$1 = 0.5641895835477563 * cc / Sqrt(x);
+			} else {
+				u = pone(x);
+				v = qone(x);
+				z$1 = 0.5641895835477563 * (u * cc - v * ss) / Sqrt(x);
+			}
+			if (sign) {
+				return -z$1;
+			}
+			return z$1;
+		}
+		if (x < 7.450580596923828e-09) {
+			return 0.5 * x;
+		}
+		z$2 = x * x;
+		r = z$2 * (-0.0625 + z$2 * (0.001407056669551897 + z$2 * (-1.599556310840356e-05 + z$2 * 4.9672799960958445e-08)));
+		s$1 = 1 + z$2 * (0.019153759953836346 + z$2 * (0.00018594678558863092 + z$2 * (1.1771846404262368e-06 + z$2 * (5.0463625707621704e-09 + z$2 * 1.2354227442613791e-11))));
+		r = r * (x);
+		z$2 = 0.5 * x + r / s$1;
+		if (sign) {
+			return -z$2;
+		}
+		return z$2;
+	};
+	var Y1 = go$pkg.Y1 = function(x) {
+		var _tuple, s, c, ss, cc, z, z$1, u, v, z$2, u$1, v$1;
+		if (x < 0 || IsNaN(x)) {
+			return NaN();
+		} else if (IsInf(x, 1)) {
+			return 0;
+		} else if (x === 0) {
+			return Inf(-1);
+		}
+		if (x >= 2) {
+			_tuple = Sincos(x), s = _tuple[0], c = _tuple[1];
+			ss = -s - c;
+			cc = s - c;
+			if (x < 8.988465674311579e+307) {
+				z = Cos(x + x);
+				if (s * c > 0) {
+					cc = z / ss;
+				} else {
+					ss = z / cc;
+				}
+			}
+			z$1 = 0;
+			if (x > 6.80564733841877e+38) {
+				z$1 = 0.5641895835477563 * ss / Sqrt(x);
+			} else {
+				u = pone(x);
+				v = qone(x);
+				z$1 = 0.5641895835477563 * (u * ss + v * cc) / Sqrt(x);
+			}
+			return z$1;
+		}
+		if (x <= 5.551115123125783e-17) {
+			return -0.6366197723675814 / x;
+		}
+		z$2 = x * x;
+		u$1 = -0.19605709064623894 + z$2 * (0.05044387166398113 + z$2 * (-0.0019125689587576355 + z$2 * (2.352526005616105e-05 + z$2 * -9.190991580398789e-08)));
+		v$1 = 1 + z$2 * (0.01991673182366499 + z$2 * (0.00020255258102513517 + z$2 * (1.3560880109751623e-06 + z$2 * (6.227414523646215e-09 + z$2 * 1.6655924620799208e-11))));
+		return x * (u$1 / v$1) + 0.6366197723675814 * (J1(x) * Log(x) - 1 / x);
+	};
+	var pone = function(x) {
+		var p, q, z, r, s;
+		p = go$makeNativeArray("Float64", 6, function() { return 0; });
+		q = go$makeNativeArray("Float64", 5, function() { return 0; });
+		if (x >= 8) {
+			p = go$mapArray(p1R8, function(entry) { return entry; });
+			q = go$mapArray(p1S8, function(entry) { return entry; });
+		} else if (x >= 4.5454) {
+			p = go$mapArray(p1R5, function(entry) { return entry; });
+			q = go$mapArray(p1S5, function(entry) { return entry; });
+		} else if (x >= 2.8571) {
+			p = go$mapArray(p1R3, function(entry) { return entry; });
+			q = go$mapArray(p1S3, function(entry) { return entry; });
+		} else if (x >= 2) {
+			p = go$mapArray(p1R2, function(entry) { return entry; });
+			q = go$mapArray(p1S2, function(entry) { return entry; });
+		}
+		z = 1 / (x * x);
+		r = p[0] + z * (p[1] + z * (p[2] + z * (p[3] + z * (p[4] + z * p[5]))));
+		s = 1 + z * (q[0] + z * (q[1] + z * (q[2] + z * (q[3] + z * q[4]))));
+		return 1 + r / s;
+	};
+	var qone = function(x) {
+		var _tuple, p, q, z, r, s;
+		_tuple = [go$makeNativeArray("Float64", 6, function() { return 0; }), go$makeNativeArray("Float64", 6, function() { return 0; })], p = _tuple[0], q = _tuple[1];
+		if (x >= 8) {
+			p = go$mapArray(q1R8, function(entry) { return entry; });
+			q = go$mapArray(q1S8, function(entry) { return entry; });
+		} else if (x >= 4.5454) {
+			p = go$mapArray(q1R5, function(entry) { return entry; });
+			q = go$mapArray(q1S5, function(entry) { return entry; });
+		} else if (x >= 2.8571) {
+			p = go$mapArray(q1R3, function(entry) { return entry; });
+			q = go$mapArray(q1S3, function(entry) { return entry; });
+		} else if (x >= 2) {
+			p = go$mapArray(q1R2, function(entry) { return entry; });
+			q = go$mapArray(q1S2, function(entry) { return entry; });
+		}
+		z = 1 / (x * x);
+		r = p[0] + z * (p[1] + z * (p[2] + z * (p[3] + z * (p[4] + z * p[5]))));
+		s = 1 + z * (q[0] + z * (q[1] + z * (q[2] + z * (q[3] + z * (q[4] + z * q[5])))));
+		return (0.375 + r / s) / x;
+	};
+	var Jn = go$pkg.Jn = function(n, x) {
+		var _tuple, sign, b, temp, _ref, _tuple$1, i, a, _tuple$2, temp$1, a$1, i$1, w, h, q0, z, q1, k, _tuple$3, m, t, x$1, x$2, i$2, a$2, tmp, v, i$3, di, _tuple$4, i$4, di$1, _tuple$5;
+		if (IsNaN(x)) {
+			return x;
+		} else if (IsInf(x, 0)) {
+			return 0;
+		}
+		if (n === 0) {
+			return J0(x);
+		}
+		if (x === 0) {
+			return 0;
+		}
+		if (n < 0) {
+			_tuple = [-n, -x], n = _tuple[0], x = _tuple[1];
+		}
+		if (n === 1) {
+			return J1(x);
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			if ((n & 1) === 1) {
+				sign = true;
+			}
+		}
+		b = 0;
+		if (n <= x) {
+			if (x >= 8.148143905337944e+90) {
+				temp = 0;
+				_ref = n & 3;
+				if (_ref === 0) {
+					temp = Cos(x) + Sin(x);
+				} else if (_ref === 1) {
+					temp = -Cos(x) + Sin(x);
+				} else if (_ref === 2) {
+					temp = -Cos(x) - Sin(x);
+				} else if (_ref === 3) {
+					temp = Cos(x) - Sin(x);
+				}
+				b = 0.5641895835477563 * temp / Sqrt(x);
+			} else {
+				b = J1(x);
+				_tuple$1 = [1, J0(x)], i = _tuple$1[0], a = _tuple$1[1];
+				while (i < n) {
+					_tuple$2 = [b, b * ((i + i >> 0) / x) - a], a = _tuple$2[0], b = _tuple$2[1];
+					i = i + 1 >> 0;
+				}
+			}
+		} else {
+			if (x < 1.862645149230957e-09) {
+				if (n > 33) {
+					b = 0;
+				} else {
+					temp$1 = x * 0.5;
+					b = temp$1;
+					a$1 = 1;
+					i$1 = 2;
+					while (i$1 <= n) {
+						a$1 = a$1 * (i$1);
+						b = b * (temp$1);
+						i$1 = i$1 + 1 >> 0;
+					}
+					b = b / (a$1);
+				}
+			} else {
+				w = (n + n >> 0) / x;
+				h = 2 / x;
+				q0 = w;
+				z = w + h;
+				q1 = w * z - 1;
+				k = 1;
+				while (q1 < 1e+09) {
+					k = k + 1 >> 0;
+					z = z + (h);
+					_tuple$3 = [q1, z * q1 - q0], q0 = _tuple$3[0], q1 = _tuple$3[1];
+				}
+				m = n + n >> 0;
+				t = 0;
+				i$2 = (x$1 = 2, x$2 = (n + k >> 0), (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0);
+				while (i$2 >= m) {
+					t = 1 / (i$2 / x - t);
+					i$2 = i$2 - 2 >> 0;
+				}
+				a$2 = t;
+				b = 1;
+				tmp = n;
+				v = 2 / x;
+				tmp = tmp * Log(Abs(v * tmp));
+				if (tmp < 709.782712893384) {
+					i$3 = n - 1 >> 0;
+					while (i$3 > 0) {
+						di = (i$3 + i$3 >> 0);
+						_tuple$4 = [b, b * di / x - a$2], a$2 = _tuple$4[0], b = _tuple$4[1];
+						di = di - 2;
+						i$3 = i$3 - 1 >> 0;
+					}
+				} else {
+					i$4 = n - 1 >> 0;
+					while (i$4 > 0) {
+						di$1 = (i$4 + i$4 >> 0);
+						_tuple$5 = [b, b * di$1 / x - a$2], a$2 = _tuple$5[0], b = _tuple$5[1];
+						di$1 = di$1 - 2;
+						if (b > 1e+100) {
+							a$2 = a$2 / (b);
+							t = t / (b);
+							b = 1;
+						}
+						i$4 = i$4 - 1 >> 0;
+					}
+				}
+				b = t * J0(x) / b;
+			}
+		}
+		if (sign) {
+			return -b;
+		}
+		return b;
+	};
+	var Yn = go$pkg.Yn = function(n, x) {
+		var sign, b, temp, _ref, a, i, _tuple;
+		if (x < 0 || IsNaN(x)) {
+			return NaN();
+		} else if (IsInf(x, 1)) {
+			return 0;
+		}
+		if (n === 0) {
+			return Y0(x);
+		}
+		if (x === 0) {
+			if (n < 0 && ((n & 1) === 1)) {
+				return Inf(1);
+			}
+			return Inf(-1);
+		}
+		sign = false;
+		if (n < 0) {
+			n = -n;
+			if ((n & 1) === 1) {
+				sign = true;
+			}
+		}
+		if (n === 1) {
+			if (sign) {
+				return -Y1(x);
+			}
+			return Y1(x);
+		}
+		b = 0;
+		if (x >= 8.148143905337944e+90) {
+			temp = 0;
+			_ref = n & 3;
+			if (_ref === 0) {
+				temp = Sin(x) - Cos(x);
+			} else if (_ref === 1) {
+				temp = -Sin(x) - Cos(x);
+			} else if (_ref === 2) {
+				temp = -Sin(x) + Cos(x);
+			} else if (_ref === 3) {
+				temp = Sin(x) + Cos(x);
+			}
+			b = 0.5641895835477563 * temp / Sqrt(x);
+		} else {
+			a = Y0(x);
+			b = Y1(x);
+			i = 1;
+			while (i < n && !IsInf(b, -1)) {
+				_tuple = [b, ((i + i >> 0) / x) * b - a], a = _tuple[0], b = _tuple[1];
+				i = i + 1 >> 0;
+			}
+		}
+		if (sign) {
+			return -b;
+		}
+		return b;
+	};
+	var ldexp = function(frac, exp$1) {
+		var _tuple, e, x, m, x$1;
+		if (frac === 0) {
+			return frac;
+		} else if (IsInf(frac, 0) || IsNaN(frac)) {
+			return frac;
+		}
+		_tuple = normalize(frac), frac = _tuple[0], e = _tuple[1];
+		exp$1 = exp$1 + (e) >> 0;
+		x = Float64bits(frac);
+		exp$1 = exp$1 + ((((go$shiftRightUint64(x, 52).low >> 0) & 2047) - 1023 >> 0)) >> 0;
+		if (exp$1 < -1074) {
+			return Copysign(0, frac);
+		}
+		if (exp$1 > 1023) {
+			if (frac < 0) {
+				return Inf(-1);
+			}
+			return Inf(1);
+		}
+		m = 1;
+		if (exp$1 < -1022) {
+			exp$1 = exp$1 + 52 >> 0;
+			m = 2.220446049250313e-16;
+		}
+		x = new Go$Uint64(x.high &~ 2146435072, (x.low &~ 0) >>> 0);
+		x = (x$1 = go$shiftLeft64(new Go$Uint64(0, (exp$1 + 1023 >> 0)), 52), new Go$Uint64(x.high | x$1.high, (x.low | x$1.low) >>> 0));
+		return m * Float64frombits(x);
+	};
+	var Lgamma = go$pkg.Lgamma = function(x) {
+		var lgamma, sign, neg, nadj, t, y, i, _ref, z, p1, p2, p, z$1, w, p1$1, p2$1, p3, p$1, p1$2, p2$2, i$1, y$1, p$2, q, z$2, _ref$1, t$1, z$3, y$2, w$1;
+		lgamma = 0;
+		sign = 0;
+		sign = 1;
+		if (IsNaN(x)) {
+			lgamma = x;
+			return [lgamma, sign];
+		} else if (IsInf(x, 0)) {
+			lgamma = x;
+			return [lgamma, sign];
+		} else if (x === 0) {
+			lgamma = Inf(1);
+			return [lgamma, sign];
+		}
+		neg = false;
+		if (x < 0) {
+			x = -x;
+			neg = true;
+		}
+		if (x < 8.470329472543003e-22) {
+			if (neg) {
+				sign = -1;
+			}
+			lgamma = -Log(x);
+			return [lgamma, sign];
+		}
+		nadj = 0;
+		if (neg) {
+			if (x >= 4.503599627370496e+15) {
+				lgamma = Inf(1);
+				return [lgamma, sign];
+			}
+			t = sinPi(x);
+			if (t === 0) {
+				lgamma = Inf(1);
+				return [lgamma, sign];
+			}
+			nadj = Log(3.141592653589793 / Abs(t * x));
+			if (t < 0) {
+				sign = -1;
+			}
+		}
+		if ((x === 1) || (x === 2)) {
+			lgamma = 0;
+			return [lgamma, sign];
+		} else if (x < 2) {
+			y = 0;
+			i = 0;
+			if (x <= 0.9) {
+				lgamma = -Log(x);
+				if (x >= 0.7316321449683623) {
+					y = 1 - x;
+					i = 0;
+				} else if (x >= 0.19163214496836226) {
+					y = x - 0.46163214496836225;
+					i = 1;
+				} else {
+					y = x;
+					i = 2;
+				}
+			} else {
+				lgamma = 0;
+				if (x >= 1.7316321449683623) {
+					y = 2 - x;
+					i = 0;
+				} else if (x >= 1.1916321449683622) {
+					y = x - 1.4616321449683622;
+					i = 1;
+				} else {
+					y = x - 1;
+					i = 2;
+				}
+			}
+			_ref = i;
+			if (_ref === 0) {
+				z = y * y;
+				p1 = _lgamA[0] + z * (_lgamA[2] + z * (_lgamA[4] + z * (_lgamA[6] + z * (_lgamA[8] + z * _lgamA[10]))));
+				p2 = z * (_lgamA[1] + z * (_lgamA[3] + z * (_lgamA[5] + z * (_lgamA[7] + z * (_lgamA[9] + z * _lgamA[11])))));
+				p = y * p1 + p2;
+				lgamma = lgamma + ((p - 0.5 * y));
+			} else if (_ref === 1) {
+				z$1 = y * y;
+				w = z$1 * y;
+				p1$1 = _lgamT[0] + w * (_lgamT[3] + w * (_lgamT[6] + w * (_lgamT[9] + w * _lgamT[12])));
+				p2$1 = _lgamT[1] + w * (_lgamT[4] + w * (_lgamT[7] + w * (_lgamT[10] + w * _lgamT[13])));
+				p3 = _lgamT[2] + w * (_lgamT[5] + w * (_lgamT[8] + w * (_lgamT[11] + w * _lgamT[14])));
+				p$1 = z$1 * p1$1 - (-3.638676997039505e-18 - w * (p2$1 + y * p3));
+				lgamma = lgamma + ((-0.12148629053584961 + p$1));
+			} else if (_ref === 2) {
+				p1$2 = y * (_lgamU[0] + y * (_lgamU[1] + y * (_lgamU[2] + y * (_lgamU[3] + y * (_lgamU[4] + y * _lgamU[5])))));
+				p2$2 = 1 + y * (_lgamV[1] + y * (_lgamV[2] + y * (_lgamV[3] + y * (_lgamV[4] + y * _lgamV[5]))));
+				lgamma = lgamma + ((-0.5 * y + p1$2 / p2$2));
+			}
+		} else if (x < 8) {
+			i$1 = (x >> 0);
+			y$1 = x - i$1;
+			p$2 = y$1 * (_lgamS[0] + y$1 * (_lgamS[1] + y$1 * (_lgamS[2] + y$1 * (_lgamS[3] + y$1 * (_lgamS[4] + y$1 * (_lgamS[5] + y$1 * _lgamS[6]))))));
+			q = 1 + y$1 * (_lgamR[1] + y$1 * (_lgamR[2] + y$1 * (_lgamR[3] + y$1 * (_lgamR[4] + y$1 * (_lgamR[5] + y$1 * _lgamR[6])))));
+			lgamma = 0.5 * y$1 + p$2 / q;
+			z$2 = 1;
+			_ref$1 = i$1;
+			if (_ref$1 === 7) {
+				z$2 = z$2 * ((y$1 + 6));
+				z$2 = z$2 * ((y$1 + 5));
+				z$2 = z$2 * ((y$1 + 4));
+				z$2 = z$2 * ((y$1 + 3));
+				z$2 = z$2 * ((y$1 + 2));
+				lgamma = lgamma + (Log(z$2));
+			} else if (_ref$1 === 6) {
+				z$2 = z$2 * ((y$1 + 5));
+				z$2 = z$2 * ((y$1 + 4));
+				z$2 = z$2 * ((y$1 + 3));
+				z$2 = z$2 * ((y$1 + 2));
+				lgamma = lgamma + (Log(z$2));
+			} else if (_ref$1 === 5) {
+				z$2 = z$2 * ((y$1 + 4));
+				z$2 = z$2 * ((y$1 + 3));
+				z$2 = z$2 * ((y$1 + 2));
+				lgamma = lgamma + (Log(z$2));
+			} else if (_ref$1 === 4) {
+				z$2 = z$2 * ((y$1 + 3));
+				z$2 = z$2 * ((y$1 + 2));
+				lgamma = lgamma + (Log(z$2));
+			} else if (_ref$1 === 3) {
+				z$2 = z$2 * ((y$1 + 2));
+				lgamma = lgamma + (Log(z$2));
+			}
+		} else if (x < 2.8823037615171174e+17) {
+			t$1 = Log(x);
+			z$3 = 1 / x;
+			y$2 = z$3 * z$3;
+			w$1 = _lgamW[0] + z$3 * (_lgamW[1] + y$2 * (_lgamW[2] + y$2 * (_lgamW[3] + y$2 * (_lgamW[4] + y$2 * (_lgamW[5] + y$2 * _lgamW[6])))));
+			lgamma = (x - 0.5) * (t$1 - 1) + w$1;
+		} else {
+			lgamma = x * (Log(x) - 1);
+		}
+		if (neg) {
+			lgamma = nadj - lgamma;
+		}
+		return [lgamma, sign];
+	};
+	var sinPi = function(x) {
+		var z, n, x$1, _ref;
+		if (x < 0.25) {
+			return -Sin(3.141592653589793 * x);
+		}
+		z = Floor(x);
+		n = 0;
+		if (!((z === x))) {
+			x = Mod(x, 2);
+			n = (x * 4 >> 0);
+		} else {
+			if (x >= 9.007199254740992e+15) {
+				x = 0;
+				n = 0;
+			} else {
+				if (x < 4.503599627370496e+15) {
+					z = x + 4.503599627370496e+15;
+				}
+				n = ((x$1 = Float64bits(z), new Go$Uint64(0 & x$1.high, (1 & x$1.low) >>> 0)).low >> 0);
+				x = n;
+				n = n << 2 >> 0;
+			}
+		}
+		_ref = n;
+		if (_ref === 0) {
+			x = Sin(3.141592653589793 * x);
+		} else if (_ref === 1 || _ref === 2) {
+			x = Cos(3.141592653589793 * (0.5 - x));
+		} else if (_ref === 3 || _ref === 4) {
+			x = Sin(3.141592653589793 * (1 - x));
+		} else if (_ref === 5 || _ref === 6) {
+			x = -Cos(3.141592653589793 * (x - 1.5));
+		} else {
+			x = Sin(3.141592653589793 * (x - 2));
+		}
+		return -x;
+	};
+	var log = function(x) {
+		var _tuple, f1, ki, f, k, s, s2, s4, t1, t2, R, hfsq;
+		if (IsNaN(x) || IsInf(x, 1)) {
+			return x;
+		} else if (x < 0) {
+			return NaN();
+		} else if (x === 0) {
+			return Inf(-1);
+		}
+		_tuple = Frexp(x), f1 = _tuple[0], ki = _tuple[1];
+		if (f1 < 0.7071067811865476) {
+			f1 = f1 * 2;
+			ki = ki - 1 >> 0;
+		}
+		f = f1 - 1;
+		k = ki;
+		s = f / (2 + f);
+		s2 = s * s;
+		s4 = s2 * s2;
+		t1 = s2 * (0.6666666666666735 + s4 * (0.2857142874366239 + s4 * (0.1818357216161805 + s4 * 0.14798198605116586)));
+		t2 = s4 * (0.3999999999940942 + s4 * (0.22222198432149784 + s4 * 0.15313837699209373));
+		R = t1 + t2;
+		hfsq = 0.5 * f * f;
+		return k * 0.6931471803691238 - ((hfsq - (s * (hfsq + R) + k * 1.9082149292705877e-10)) - f);
+	};
+	var log10 = function(x) {
+		return Log(x) * 0.4342944819032518;
+	};
+	var log2 = function(x) {
+		var _tuple, frac, exp$1;
+		_tuple = Frexp(x), frac = _tuple[0], exp$1 = _tuple[1];
+		return Log(frac) * 1.4426950408889634 + exp$1;
+	};
+	var log1p = function(x) {
+		var absx, f, iu, k, c, u, x$1, x$2, hfsq, _tuple, s, R, z;
+		if (x < -1 || IsNaN(x)) {
+			return NaN();
+		} else if (x === -1) {
+			return Inf(-1);
+		} else if (IsInf(x, 1)) {
+			return Inf(1);
+		}
+		absx = x;
+		if (absx < 0) {
+			absx = -absx;
+		}
+		f = 0;
+		iu = new Go$Uint64(0, 0);
+		k = 1;
+		if (absx < 0.41421356237309503) {
+			if (absx < 1.862645149230957e-09) {
+				if (absx < 5.551115123125783e-17) {
+					return x;
+				}
+				return x - x * x * 0.5;
+			}
+			if (x > -0.2928932188134525) {
+				k = 0;
+				f = x;
+				iu = new Go$Uint64(0, 1);
+			}
+		}
+		c = 0;
+		if (!((k === 0))) {
+			u = 0;
+			if (absx < 9.007199254740992e+15) {
+				u = 1 + x;
+				iu = Float64bits(u);
+				k = ((x$1 = go$shiftRightUint64(iu, 52), new Go$Uint64(x$1.high - 0, x$1.low - 1023)).low >> 0);
+				if (k > 0) {
+					c = 1 - (u - x);
+				} else {
+					c = x - (u - 1);
+					c = c / (u);
+				}
+			} else {
+				u = x;
+				iu = Float64bits(u);
+				k = ((x$2 = go$shiftRightUint64(iu, 52), new Go$Uint64(x$2.high - 0, x$2.low - 1023)).low >> 0);
+				c = 0;
+			}
+			iu = new Go$Uint64(iu.high & 1048575, (iu.low & 4294967295) >>> 0);
+			if ((iu.high < 434334 || (iu.high === 434334 && iu.low < 1719614413))) {
+				u = Float64frombits(new Go$Uint64(iu.high | 1072693248, (iu.low | 0) >>> 0));
+			} else {
+				k = k + 1 >> 0;
+				u = Float64frombits(new Go$Uint64(iu.high | 1071644672, (iu.low | 0) >>> 0));
+				iu = go$shiftRightUint64((new Go$Uint64(1048576 - iu.high, 0 - iu.low)), 2);
+			}
+			f = u - 1;
+		}
+		hfsq = 0.5 * f * f;
+		_tuple = [0, 0, 0], s = _tuple[0], R = _tuple[1], z = _tuple[2];
+		if ((iu.high === 0 && iu.low === 0)) {
+			if (f === 0) {
+				if (k === 0) {
+					return 0;
+				} else {
+					c = c + (k * 1.9082149292705877e-10);
+					return k * 0.6931471803691238 + c;
+				}
+			}
+			R = hfsq * (1 - 0.6666666666666666 * f);
+			if (k === 0) {
+				return f - R;
+			}
+			return k * 0.6931471803691238 - ((R - (k * 1.9082149292705877e-10 + c)) - f);
+		}
+		s = f / (2 + f);
+		z = s * s;
+		R = z * (0.6666666666666735 + z * (0.3999999999940942 + z * (0.2857142874366239 + z * (0.22222198432149784 + z * (0.1818357216161805 + z * (0.15313837699209373 + z * 0.14798198605116586))))));
+		if (k === 0) {
+			return f - (hfsq - s * (hfsq + R));
+		}
+		return k * 0.6931471803691238 - ((hfsq - (s * (hfsq + R) + (k * 1.9082149292705877e-10 + c))) - f);
+	};
+	var Logb = go$pkg.Logb = function(x) {
+		if (x === 0) {
+			return Inf(-1);
+		} else if (IsInf(x, 0)) {
+			return Inf(1);
+		} else if (IsNaN(x)) {
+			return x;
+		}
+		return ilogb(x);
+	};
+	var Ilogb = go$pkg.Ilogb = function(x) {
+		if (x === 0) {
+			return -2147483648;
+		} else if (IsNaN(x)) {
+			return 2147483647;
+		} else if (IsInf(x, 0)) {
+			return 2147483647;
+		}
+		return ilogb(x);
+	};
+	var ilogb = function(x) {
+		var _tuple, exp$1, x$1;
+		_tuple = normalize(x), x = _tuple[0], exp$1 = _tuple[1];
+		return (((x$1 = go$shiftRightUint64(Float64bits(x), 52), new Go$Uint64(x$1.high & 0, (x$1.low & 2047) >>> 0)).low >> 0) - 1023 >> 0) + exp$1 >> 0;
+	};
+	var mod = function(x, y) {
+		var _tuple, yfr, yexp, sign, r, _tuple$1, rfr, rexp;
+		if ((y === 0) || IsInf(x, 0) || IsNaN(x) || IsNaN(y)) {
+			return NaN();
+		}
+		if (y < 0) {
+			y = -y;
+		}
+		_tuple = Frexp(y), yfr = _tuple[0], yexp = _tuple[1];
+		sign = false;
+		r = x;
+		if (x < 0) {
+			r = -x;
+			sign = true;
+		}
+		while (r >= y) {
+			_tuple$1 = Frexp(r), rfr = _tuple$1[0], rexp = _tuple$1[1];
+			if (rfr < yfr) {
+				rexp = rexp - 1 >> 0;
+			}
+			r = r - Ldexp(y, rexp - yexp >> 0);
+		}
+		if (sign) {
+			r = -r;
+		}
+		return r;
+	};
+	var modf = function(f) {
+		var int$1, frac, _tuple, _tuple$1, _tuple$2, x, e, x$1, x$2;
+		int$1 = 0;
+		frac = 0;
+		if (f < 1) {
+			if (f < 0) {
+				_tuple = Modf(-f), int$1 = _tuple[0], frac = _tuple[1];
+				_tuple$1 = [-int$1, -frac], int$1 = _tuple$1[0], frac = _tuple$1[1];
+				return [int$1, frac];
+			}
+			_tuple$2 = [0, f], int$1 = _tuple$2[0], frac = _tuple$2[1];
+			return [int$1, frac];
+		}
+		x = Float64bits(f);
+		e = (((go$shiftRightUint64(x, 52).low >>> 0) & 2047) >>> 0) - 1023 >>> 0;
+		if (e < 52) {
+			x = (x$1 = (x$2 = go$shiftLeft64(new Go$Uint64(0, 1), ((52 - e >>> 0))), new Go$Uint64(x$2.high - 0, x$2.low - 1)), new Go$Uint64(x.high &~ x$1.high, (x.low &~ x$1.low) >>> 0));
+		}
+		int$1 = Float64frombits(x);
+		frac = f - int$1;
+		return [int$1, frac];
+	};
+	var Nextafter = go$pkg.Nextafter = function(x, y) {
+		var r, x$1, x$2;
+		r = 0;
+		if (IsNaN(x) || IsNaN(y)) {
+			r = NaN();
+		} else if (x === y) {
+			r = x;
+		} else if (x === 0) {
+			r = Copysign(Float64frombits(new Go$Uint64(0, 1)), y);
+		} else if ((y > x) === (x > 0)) {
+			r = Float64frombits((x$1 = Float64bits(x), new Go$Uint64(x$1.high + 0, x$1.low + 1)));
+		} else {
+			r = Float64frombits((x$2 = Float64bits(x), new Go$Uint64(x$2.high - 0, x$2.low - 1)));
+		}
+		return r;
+	};
+	var isOddInt = function(x) {
+		var _tuple, xi, xf, x$1, x$2;
+		_tuple = Modf(x), xi = _tuple[0], xf = _tuple[1];
+		return (xf === 0) && (x$1 = (x$2 = new Go$Int64(0, xi), new Go$Int64(x$2.high & 0, (x$2.low & 1) >>> 0)), (x$1.high === 0 && x$1.low === 1));
+	};
+	var Pow10 = go$pkg.Pow10 = function(e) {
+		var _q, m;
+		if (e <= -325) {
+			return 0;
+		} else if (e > 309) {
+			return Inf(1);
+		}
+		if (e < 0) {
+			return 1 / Pow10(-e);
+		}
+		if (e < 70) {
+			return pow10tab[e];
+		}
+		m = (_q = e / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+		return Pow10(m) * Pow10(e - m >> 0);
+	};
+	var remainder = function(x, y) {
+		var sign, yHalf;
+		if (IsNaN(x) || IsNaN(y) || IsInf(x, 0) || (y === 0)) {
+			return NaN();
+		} else if (IsInf(y, 0)) {
+			return x;
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		if (y < 0) {
+			y = -y;
+		}
+		if (x === y) {
+			return 0;
+		}
+		if (y <= 8.988465674311579e+307) {
+			x = Mod(x, y + y);
+		}
+		if (y < 4.450147717014403e-308) {
+			if (x + x > y) {
+				x = x - (y);
+				if (x + x >= y) {
+					x = x - (y);
+				}
+			}
+		} else {
+			yHalf = 0.5 * y;
+			if (x > yHalf) {
+				x = x - (y);
+				if (x >= yHalf) {
+					x = x - (y);
+				}
+			}
+		}
+		if (sign) {
+			x = -x;
+		}
+		return x;
+	};
+	var cos = function(x) {
+		var sign, j, y, x$1, z, zz;
+		if (IsNaN(x) || IsInf(x, 0)) {
+			return NaN();
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+		}
+		j = new Go$Int64(0, x * 1.2732395447351625);
+		y = go$flatten64(j);
+		if ((x$1 = new Go$Int64(j.high & 0, (j.low & 1) >>> 0), (x$1.high === 0 && x$1.low === 1))) {
+			j = new Go$Int64(j.high + 0, j.low + 1);
+			y = y + 1;
+		}
+		j = new Go$Int64(j.high & 0, (j.low & 7) >>> 0);
+		if ((j.high > 0 || (j.high === 0 && j.low > 3))) {
+			j = new Go$Int64(j.high - 0, j.low - 4);
+			sign = !sign;
+		}
+		if ((j.high > 0 || (j.high === 0 && j.low > 1))) {
+			sign = !sign;
+		}
+		z = ((x - y * 0.7853981256484985) - y * 3.774894707930798e-08) - y * 2.6951514290790595e-15;
+		zz = z * z;
+		if ((j.high === 0 && j.low === 1) || (j.high === 0 && j.low === 2)) {
+			y = z + z * zz * ((((((_sin[0] * zz) + _sin[1]) * zz + _sin[2]) * zz + _sin[3]) * zz + _sin[4]) * zz + _sin[5]);
+		} else {
+			y = 1 - 0.5 * zz + zz * zz * ((((((_cos[0] * zz) + _cos[1]) * zz + _cos[2]) * zz + _cos[3]) * zz + _cos[4]) * zz + _cos[5]);
+		}
+		if (sign) {
+			y = -y;
+		}
+		return y;
+	};
+	var sin = function(x) {
+		var sign, j, y, x$1, z, zz;
+		if ((x === 0) || IsNaN(x)) {
+			return x;
+		} else if (IsInf(x, 0)) {
+			return NaN();
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		j = new Go$Int64(0, x * 1.2732395447351625);
+		y = go$flatten64(j);
+		if ((x$1 = new Go$Int64(j.high & 0, (j.low & 1) >>> 0), (x$1.high === 0 && x$1.low === 1))) {
+			j = new Go$Int64(j.high + 0, j.low + 1);
+			y = y + 1;
+		}
+		j = new Go$Int64(j.high & 0, (j.low & 7) >>> 0);
+		if ((j.high > 0 || (j.high === 0 && j.low > 3))) {
+			sign = !sign;
+			j = new Go$Int64(j.high - 0, j.low - 4);
+		}
+		z = ((x - y * 0.7853981256484985) - y * 3.774894707930798e-08) - y * 2.6951514290790595e-15;
+		zz = z * z;
+		if ((j.high === 0 && j.low === 1) || (j.high === 0 && j.low === 2)) {
+			y = 1 - 0.5 * zz + zz * zz * ((((((_cos[0] * zz) + _cos[1]) * zz + _cos[2]) * zz + _cos[3]) * zz + _cos[4]) * zz + _cos[5]);
+		} else {
+			y = z + z * zz * ((((((_sin[0] * zz) + _sin[1]) * zz + _sin[2]) * zz + _sin[3]) * zz + _sin[4]) * zz + _sin[5]);
+		}
+		if (sign) {
+			y = -y;
+		}
+		return y;
+	};
+	var sincos = function(x) {
+		var sin$1, cos$1, _tuple, _tuple$1, _tuple$2, sinSign, cosSign, j, y, x$1, _tuple$3, z, zz, _tuple$4;
+		sin$1 = 0;
+		cos$1 = 0;
+		if (x === 0) {
+			_tuple = [x, 1], sin$1 = _tuple[0], cos$1 = _tuple[1];
+			return [sin$1, cos$1];
+		} else if (IsNaN(x) || IsInf(x, 0)) {
+			_tuple$1 = [NaN(), NaN()], sin$1 = _tuple$1[0], cos$1 = _tuple$1[1];
+			return [sin$1, cos$1];
+		}
+		_tuple$2 = [false, false], sinSign = _tuple$2[0], cosSign = _tuple$2[1];
+		if (x < 0) {
+			x = -x;
+			sinSign = true;
+		}
+		j = new Go$Int64(0, x * 1.2732395447351625);
+		y = go$flatten64(j);
+		if ((x$1 = new Go$Int64(j.high & 0, (j.low & 1) >>> 0), (x$1.high === 0 && x$1.low === 1))) {
+			j = new Go$Int64(j.high + 0, j.low + 1);
+			y = y + 1;
+		}
+		j = new Go$Int64(j.high & 0, (j.low & 7) >>> 0);
+		if ((j.high > 0 || (j.high === 0 && j.low > 3))) {
+			j = new Go$Int64(j.high - 0, j.low - 4);
+			_tuple$3 = [!sinSign, !cosSign], sinSign = _tuple$3[0], cosSign = _tuple$3[1];
+		}
+		if ((j.high > 0 || (j.high === 0 && j.low > 1))) {
+			cosSign = !cosSign;
+		}
+		z = ((x - y * 0.7853981256484985) - y * 3.774894707930798e-08) - y * 2.6951514290790595e-15;
+		zz = z * z;
+		cos$1 = 1 - 0.5 * zz + zz * zz * ((((((_cos[0] * zz) + _cos[1]) * zz + _cos[2]) * zz + _cos[3]) * zz + _cos[4]) * zz + _cos[5]);
+		sin$1 = z + z * zz * ((((((_sin[0] * zz) + _sin[1]) * zz + _sin[2]) * zz + _sin[3]) * zz + _sin[4]) * zz + _sin[5]);
+		if ((j.high === 0 && j.low === 1) || (j.high === 0 && j.low === 2)) {
+			_tuple$4 = [cos$1, sin$1], sin$1 = _tuple$4[0], cos$1 = _tuple$4[1];
+		}
+		if (cosSign) {
+			cos$1 = -cos$1;
+		}
+		if (sinSign) {
+			sin$1 = -sin$1;
+		}
+		return [sin$1, cos$1];
+	};
+	var Sinh = go$pkg.Sinh = function(x) {
+		var sign, temp, _ref, sq;
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		temp = 0;
+		_ref = true;
+		if (_ref === x > 21) {
+			temp = Exp(x) / 2;
+		} else if (_ref === x > 0.5) {
+			temp = (Exp(x) - Exp(-x)) / 2;
+		} else {
+			sq = x * x;
+			temp = (((-26.30563213397497 * sq + -2894.211355989564) * sq + -89912.72022039509) * sq + -630767.3640497717) * x;
+			temp = temp / (((sq + -173.6789535582337) * sq + 15215.17378790019) * sq + -630767.3640497717);
+		}
+		if (sign) {
+			temp = -temp;
+		}
+		return temp;
+	};
+	var Cosh = go$pkg.Cosh = function(x) {
+		if (x < 0) {
+			x = -x;
+		}
+		if (x > 21) {
+			return Exp(x) / 2;
+		}
+		return (Exp(x) + Exp(-x)) / 2;
+	};
+	var sqrt = function(x) {
+		var ix, x$1, exp$1, x$2, _tuple, q, s, r, t, x$3, x$4, x$5, x$6, x$7;
+		if ((x === 0) || IsNaN(x) || IsInf(x, 1)) {
+			return x;
+		} else if (x < 0) {
+			return NaN();
+		}
+		ix = Float64bits(x);
+		exp$1 = ((x$1 = go$shiftRightUint64(ix, 52), new Go$Uint64(x$1.high & 0, (x$1.low & 2047) >>> 0)).low >> 0);
+		if (exp$1 === 0) {
+			while ((x$2 = go$shiftLeft64(new Go$Uint64(ix.high & 0, (ix.low & 1) >>> 0), 52), (x$2.high === 0 && x$2.low === 0))) {
+				ix = go$shiftLeft64(ix, 1);
+				exp$1 = exp$1 - 1 >> 0;
+			}
+			exp$1 = exp$1 + 1 >> 0;
+		}
+		exp$1 = exp$1 - 1023 >> 0;
+		ix = new Go$Uint64(ix.high &~ 2146435072, (ix.low &~ 0) >>> 0);
+		ix = new Go$Uint64(ix.high | 1048576, (ix.low | 0) >>> 0);
+		if ((exp$1 & 1) === 1) {
+			ix = go$shiftLeft64(ix, 1);
+		}
+		exp$1 = exp$1 >> 1 >> 0;
+		ix = go$shiftLeft64(ix, 1);
+		_tuple = [new Go$Uint64(0, 0), new Go$Uint64(0, 0)], q = _tuple[0], s = _tuple[1];
+		r = new Go$Uint64(2097152, 0);
+		while (!((r.high === 0 && r.low === 0))) {
+			t = new Go$Uint64(s.high + r.high, s.low + r.low);
+			if ((t.high < ix.high || (t.high === ix.high && t.low <= ix.low))) {
+				s = new Go$Uint64(t.high + r.high, t.low + r.low);
+				ix = (x$3 = t, new Go$Uint64(ix.high - x$3.high, ix.low - x$3.low));
+				q = (x$4 = r, new Go$Uint64(q.high + x$4.high, q.low + x$4.low));
+			}
+			ix = go$shiftLeft64(ix, 1);
+			r = go$shiftRightUint64(r, 1);
+		}
+		if (!((ix.high === 0 && ix.low === 0))) {
+			q = (x$5 = new Go$Uint64(q.high & 0, (q.low & 1) >>> 0), new Go$Uint64(q.high + x$5.high, q.low + x$5.low));
+		}
+		ix = (x$6 = go$shiftRightUint64(q, 1), x$7 = go$shiftLeft64(new Go$Uint64(0, ((exp$1 - 1 >> 0) + 1023 >> 0)), 52), new Go$Uint64(x$6.high + x$7.high, x$6.low + x$7.low));
+		return Float64frombits(ix);
+	};
+	var sqrtC = function(f, r) {
+		r.go$set(sqrt(f));
+	};
+	var tan = function(x) {
+		var sign, j, y, x$1, z, zz, x$2;
+		if ((x === 0) || IsNaN(x)) {
+			return x;
+		} else if (IsInf(x, 0)) {
+			return NaN();
+		}
+		sign = false;
+		if (x < 0) {
+			x = -x;
+			sign = true;
+		}
+		j = new Go$Int64(0, x * 1.2732395447351625);
+		y = go$flatten64(j);
+		if ((x$1 = new Go$Int64(j.high & 0, (j.low & 1) >>> 0), (x$1.high === 0 && x$1.low === 1))) {
+			j = new Go$Int64(j.high + 0, j.low + 1);
+			y = y + 1;
+		}
+		z = ((x - y * 0.7853981256484985) - y * 3.774894707930798e-08) - y * 2.6951514290790595e-15;
+		zz = z * z;
+		if (zz > 1e-14) {
+			y = z + z * (zz * (((_tanP[0] * zz) + _tanP[1]) * zz + _tanP[2]) / ((((zz + _tanQ[1]) * zz + _tanQ[2]) * zz + _tanQ[3]) * zz + _tanQ[4]));
+		} else {
+			y = z;
+		}
+		if ((x$2 = new Go$Int64(j.high & 0, (j.low & 2) >>> 0), (x$2.high === 0 && x$2.low === 2))) {
+			y = -1 / y;
+		}
+		if (sign) {
+			y = -y;
+		}
+		return y;
+	};
+	var Tanh = go$pkg.Tanh = function(x) {
+		var z, s, s$1;
+		z = Abs(x);
+		if (z > 44.014845965556525) {
+			if (x < 0) {
+				return -1;
+			}
+			return 1;
+		} else if (z >= 0.625) {
+			s = Exp(2 * z);
+			z = 1 - 2 / (s + 1);
+			if (x < 0) {
+				z = -z;
+			}
+		} else {
+			if (x === 0) {
+				return x;
+			}
+			s$1 = x * x;
+			z = x + x * s$1 * ((tanhP[0] * s$1 + tanhP[1]) * s$1 + tanhP[2]) / (((s$1 + tanhQ[0]) * s$1 + tanhQ[1]) * s$1 + tanhQ[2]);
+		}
+		return z;
+	};
+	var Abs = go$pkg.Abs = Math.abs;
+	var Asin = go$pkg.Asin = Math.asin;
+	var Acos = go$pkg.Acos = Math.acos;
+	var Atan = go$pkg.Atan = Math.atan;
+	var Atan2 = go$pkg.Atan2 = Math.atan2;
+	var Inf = go$pkg.Inf = function(sign) { return sign >= 0 ? 1/0 : -1/0; };
+	var NaN = go$pkg.NaN = function() { return 0/0; };
+	var IsNaN = go$pkg.IsNaN = function(f) { return f !== f; };
+	var IsInf = go$pkg.IsInf = function(f, sign) { if (f === -1/0) { return sign <= 0; } if (f === 1/0) { return sign >= 0; } return false; };
+	var Copysign = go$pkg.Copysign = function(x, y) { return (x < 0 || 1/x === 1/-0) !== (y < 0 || 1/y === 1/-0) ? -x : x; };
+	var Dim = go$pkg.Dim = function(x, y) { return Math.max(x - y, 0); };
+	var Max = go$pkg.Max = function(x, y) { return (x === 1/0 || y === 1/0) ? 1/0 : Math.max(x, y); };
+	var Min = go$pkg.Min = function(x, y) { return (x === -1/0 || y === -1/0) ? -1/0 : Math.min(x, y); };
+	var Exp = go$pkg.Exp = Math.exp;
+	var Exp2 = go$pkg.Exp2 = function(x) { return Math.pow(2, x); };
+	var Expm1 = go$pkg.Expm1 = expm1;
+	var Floor = go$pkg.Floor = Math.floor;
+	var Ceil = go$pkg.Ceil = Math.ceil;
+	var Trunc = go$pkg.Trunc = function(x) { return (x === 1/0 || x === -1/0 || x !== x || 1/x === 1/-0) ? x : x >> 0; };
+	var Frexp = go$pkg.Frexp = frexp;
+	var Hypot = go$pkg.Hypot = hypot;
+	var Ldexp = go$pkg.Ldexp = function(frac, exp) {
+			if (frac === 0) { return frac; }
+			if (exp >= 1024) { return frac * Math.pow(2, 1023) * Math.pow(2, exp - 1023); }
+			if (exp <= -1024) { return frac * Math.pow(2, -1023) * Math.pow(2, exp + 1023); }
+			return frac * Math.pow(2, exp);
+		};
+	var Log = go$pkg.Log = Math.log;
+	var Log10 = go$pkg.Log10 = log10;
+	var Log2 = go$pkg.Log2 = log2;
+	var Log1p = go$pkg.Log1p = log1p;
+	var Mod = go$pkg.Mod = function(x, y) { return x % y; };
+	var Modf = go$pkg.Modf = function(f) { if (f === -1/0 || f === 1/0) { return [f, 0/0]; } var frac = f % 1; return [f - frac, frac]; };
+	var Pow = go$pkg.Pow = function(x, y) { return ((x === 1) || (x === -1 && (y === -1/0 || y === 1/0))) ? 1 : Math.pow(x, y); };
+	var Remainder = go$pkg.Remainder = remainder;
+	var Signbit = go$pkg.Signbit = function(x) { return x < 0 || 1/x === 1/-0; };
+	var Cos = go$pkg.Cos = Math.cos;
+	var Sin = go$pkg.Sin = Math.sin;
+	var Sincos = go$pkg.Sincos = function(x) { return [Math.sin(x), Math.cos(x)]; };
+	var Sqrt = go$pkg.Sqrt = Math.sqrt;
+	var Tan = go$pkg.Tan = Math.tan;
+	var Float32bits = go$pkg.Float32bits = go$float32bits;
+	var Float32frombits = go$pkg.Float32frombits = function(b) {
+			var s, e, m;
+			s = 1;
+			if (!(((b & 2147483648) >>> 0) === 0)) {
+				s = -1;
+			}
+			e = (((((b >>> 23) >>> 0)) & 255) >>> 0);
+			m = ((b & 8388607) >>> 0);
+			if (e === 255) {
+				if (m === 0) {
+					return s / 0;
+				}
+				return 0/0;
+			}
+			if (!(e === 0)) {
+				m = (m + (8388608) >>> 0);
+			}
+			if (e === 0) {
+				e = 1;
+			}
+			return Ldexp(m, e - 127 - 23) * s;
+		};
+	var Float64bits = go$pkg.Float64bits = function(f) {
+			var s, e, x, y, x$1, y$1, x$2, y$2;
+			if (f === 0) {
+				if (f === 0 && 1 / f === 1 / -0) {
+					return new Go$Uint64(2147483648, 0);
+				}
+				return new Go$Uint64(0, 0);
+			}
+			if (!(f === f)) {
+				return new Go$Uint64(2146959360, 1);
+			}
+			s = new Go$Uint64(0, 0);
+			if (f < 0) {
+				s = new Go$Uint64(2147483648, 0);
+				f = -f;
+			}
+			e = 1075;
+			while (f >= 9.007199254740992e+15) {
+				f = f / (2);
+				if (e === 2047) {
+					break;
+				}
+				e = (e + (1) >>> 0);
+			}
+			while (f < 4.503599627370496e+15) {
+				e = (e - (1) >>> 0);
+				if (e === 0) {
+					break;
+				}
+				f = f * (2);
+			}
+			return (x$2 = (x = s, y = go$shiftLeft64(new Go$Uint64(0, e), 52), new Go$Uint64(x.high | y.high, (x.low | y.low) >>> 0)), y$2 = ((x$1 = new Go$Uint64(0, f), y$1 = new Go$Uint64(1048576, 0), new Go$Uint64(x$1.high &~ y$1.high, (x$1.low &~ y$1.low) >>> 0))), new Go$Uint64(x$2.high | y$2.high, (x$2.low | y$2.low) >>> 0));
+		};
+	var Float64frombits = go$pkg.Float64frombits = function(b) {
+			var s, x, y, x$1, y$1, x$2, y$2, e, x$3, y$3, m, x$4, y$4, x$5, y$5, x$6, y$6, x$7, y$7, x$8, y$8;
+			s = 1;
+			if (!((x$1 = (x = b, y = new Go$Uint64(2147483648, 0), new Go$Uint64(x.high & y.high, (x.low & y.low) >>> 0)), y$1 = new Go$Uint64(0, 0), x$1.high === y$1.high && x$1.low === y$1.low))) {
+				s = -1;
+			}
+			e = (x$2 = (go$shiftRightUint64(b, 52)), y$2 = new Go$Uint64(0, 2047), new Go$Uint64(x$2.high & y$2.high, (x$2.low & y$2.low) >>> 0));
+			m = (x$3 = b, y$3 = new Go$Uint64(1048575, 4294967295), new Go$Uint64(x$3.high & y$3.high, (x$3.low & y$3.low) >>> 0));
+			if ((x$4 = e, y$4 = new Go$Uint64(0, 2047), x$4.high === y$4.high && x$4.low === y$4.low)) {
+				if ((x$5 = m, y$5 = new Go$Uint64(0, 0), x$5.high === y$5.high && x$5.low === y$5.low)) {
+					return s / 0;
+				}
+				return 0/0;
+			}
+			if (!((x$6 = e, y$6 = new Go$Uint64(0, 0), x$6.high === y$6.high && x$6.low === y$6.low))) {
+				m = (x$7 = m, y$7 = (new Go$Uint64(1048576, 0)), new Go$Uint64(x$7.high + y$7.high, x$7.low + y$7.low));
+			}
+			if ((x$8 = e, y$8 = new Go$Uint64(0, 0), x$8.high === y$8.high && x$8.low === y$8.low)) {
+				e = new Go$Uint64(0, 1);
+			}
+			return Ldexp((m.high * 4294967296 + m.low), e.low - 1023 - 52) * s;
+		};
+	var uvnan = 9221120237041090561;
+	var uvinf = 9218868437227405312;
+	var uvneginf = -4503599627370496;
+	var mask = 2047;
+	var shift = 52;
+	var bias = 1023;
+	go$pkg.E = 2.718281828459045;
+	go$pkg.Pi = 3.141592653589793;
+	go$pkg.Phi = 1.618033988749895;
+	go$pkg.Sqrt2 = 1.4142135623730951;
+	go$pkg.SqrtE = 1.6487212707001282;
+	go$pkg.SqrtPi = 1.772453850905516;
+	go$pkg.SqrtPhi = 1.272019649514069;
+	go$pkg.Ln2 = 0.6931471805599453;
+	go$pkg.Log2E = 1.4426950408889634;
+	go$pkg.Ln10 = 2.302585092994046;
+	go$pkg.Log10E = 0.4342944819032518;
+	go$pkg.MaxFloat32 = 3.4028234663852886e+38;
+	go$pkg.SmallestNonzeroFloat32 = 1.401298464324817e-45;
+	go$pkg.MaxFloat64 = 1.7976931348623157e+308;
+	go$pkg.SmallestNonzeroFloat64 = 5e-324;
+	go$pkg.MaxInt8 = 127;
+	go$pkg.MinInt8 = -128;
+	go$pkg.MaxInt16 = 32767;
+	go$pkg.MinInt16 = -32768;
+	go$pkg.MaxInt32 = 2147483647;
+	go$pkg.MinInt32 = -2147483648;
+	go$pkg.MaxInt64 = 9223372036854775807;
+	go$pkg.MinInt64 = -9223372036854775808;
+	go$pkg.MaxUint8 = 255;
+	go$pkg.MaxUint16 = 65535;
+	go$pkg.MaxUint32 = 4294967295;
+	go$pkg.MaxUint64 = -1;
+	var erx = 0.8450629115104675;
+	var efx = 0.1283791670955126;
+	var efx8 = 1.0270333367641007;
+	var pp0 = 0.12837916709551256;
+	var pp1 = -0.3250421072470015;
+	var pp2 = -0.02848174957559851;
+	var pp3 = -0.005770270296489442;
+	var pp4 = -2.3763016656650163e-05;
+	var qq1 = 0.39791722395915535;
+	var qq2 = 0.0650222499887673;
+	var qq3 = 0.005081306281875766;
+	var qq4 = 0.00013249473800432164;
+	var qq5 = -3.960228278775368e-06;
+	var pa0 = -0.0023621185607526594;
+	var pa1 = 0.41485611868374833;
+	var pa2 = -0.3722078760357013;
+	var pa3 = 0.31834661990116175;
+	var pa4 = -0.11089469428239668;
+	var pa5 = 0.035478304325618236;
+	var pa6 = -0.002166375594868791;
+	var qa1 = 0.10642088040084423;
+	var qa2 = 0.540397917702171;
+	var qa3 = 0.07182865441419627;
+	var qa4 = 0.12617121980876164;
+	var qa5 = 0.01363708391202905;
+	var qa6 = 0.011984499846799107;
+	var ra0 = -0.009864944034847148;
+	var ra1 = -0.6938585727071818;
+	var ra2 = -10.558626225323291;
+	var ra3 = -62.375332450326006;
+	var ra4 = -162.39666946257347;
+	var ra5 = -184.60509290671104;
+	var ra6 = -81.2874355063066;
+	var ra7 = -9.814329344169145;
+	var sa1 = 19.651271667439257;
+	var sa2 = 137.65775414351904;
+	var sa3 = 434.56587747522923;
+	var sa4 = 645.3872717332679;
+	var sa5 = 429.00814002756783;
+	var sa6 = 108.63500554177944;
+	var sa7 = 6.570249770319282;
+	var sa8 = -0.0604244152148581;
+	var rb0 = -0.0098649429247001;
+	var rb1 = -0.799283237680523;
+	var rb2 = -17.757954917754752;
+	var rb3 = -160.63638485582192;
+	var rb4 = -637.5664433683896;
+	var rb5 = -1025.0951316110772;
+	var rb6 = -483.5191916086514;
+	var sb1 = 30.33806074348246;
+	var sb2 = 325.7925129965739;
+	var sb3 = 1536.729586084437;
+	var sb4 = 3199.8582195085955;
+	var sb5 = 2553.0504064331644;
+	var sb6 = 474.52854120695537;
+	var sb7 = -22.44095244658582;
+	var _gamP = go$makeNativeArray("Float64", 7, function() { return 0; });
+	var _gamQ = go$makeNativeArray("Float64", 8, function() { return 0; });
+	var _gamS = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var p0R8 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var p0S8 = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var p0R5 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var p0S5 = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var p0R3 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var p0S3 = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var p0R2 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var p0S2 = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var q0R8 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q0S8 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q0R5 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q0S5 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q0R3 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q0S3 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q0R2 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q0S2 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var p1R8 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var p1S8 = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var p1R5 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var p1S5 = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var p1R3 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var p1S3 = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var p1R2 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var p1S2 = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var q1R8 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q1S8 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q1R5 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q1S5 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q1R3 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q1S3 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q1R2 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var q1S2 = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var _lgamA = go$makeNativeArray("Float64", 12, function() { return 0; });
+	var _lgamR = go$makeNativeArray("Float64", 7, function() { return 0; });
+	var _lgamS = go$makeNativeArray("Float64", 7, function() { return 0; });
+	var _lgamT = go$makeNativeArray("Float64", 15, function() { return 0; });
+	var _lgamU = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var _lgamV = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var _lgamW = go$makeNativeArray("Float64", 7, function() { return 0; });
+	var pow10tab = go$makeNativeArray("Float64", 70, function() { return 0; });
+	var _sin = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var _cos = go$makeNativeArray("Float64", 6, function() { return 0; });
+	var _tanP = go$makeNativeArray("Float64", 3, function() { return 0; });
+	var _tanQ = go$makeNativeArray("Float64", 5, function() { return 0; });
+	var tanhP = go$makeNativeArray("Float64", 3, function() { return 0; });
+	var tanhQ = go$makeNativeArray("Float64", 3, function() { return 0; });
+	go$pkg.init = function() {
+		var i, _q, m;
+		_gamP = go$toNativeArray("Float64", [0.00016011952247675185, 0.0011913514700658638, 0.010421379756176158, 0.04763678004571372, 0.20744822764843598, 0.4942148268014971, 1]);
+		_gamQ = go$toNativeArray("Float64", [-2.3158187332412014e-05, 0.0005396055804933034, -0.004456419138517973, 0.011813978522206043, 0.035823639860549865, -0.23459179571824335, 0.0714304917030273, 1]);
+		_gamS = go$toNativeArray("Float64", [0.0007873113957930937, -0.00022954996161337813, -0.0026813261780578124, 0.0034722222160545866, 0.08333333333334822]);
+		p0R8 = go$toNativeArray("Float64", [0, -0.07031249999999004, -8.081670412753498, -257.06310567970485, -2485.216410094288, -5253.043804907295]);
+		p0S8 = go$toNativeArray("Float64", [116.53436461966818, 3833.7447536412183, 40597.857264847255, 116752.97256437592, 47627.728414673096]);
+		p0R5 = go$toNativeArray("Float64", [-1.141254646918945e-11, -0.07031249408735993, -4.159610644705878, -67.67476522651673, -331.23129964917297, -346.4333883656049]);
+		p0S5 = go$toNativeArray("Float64", [60.753938269230034, 1051.2523059570458, 5978.970943338558, 9625.445143577745, 2406.058159229391]);
+		p0R3 = go$toNativeArray("Float64", [-2.547046017719519e-09, -0.07031196163814817, -2.409032215495296, -21.96597747348831, -58.07917047017376, -31.44794705948885]);
+		p0S3 = go$toNativeArray("Float64", [35.85603380552097, 361.51398305030386, 1193.6078379211153, 1127.9967985690741, 173.58093081333575]);
+		p0R2 = go$toNativeArray("Float64", [-8.875343330325264e-08, -0.07030309954836247, -1.4507384678095299, -7.635696138235278, -11.193166886035675, -3.2336457935133534]);
+		p0S2 = go$toNativeArray("Float64", [22.22029975320888, 136.2067942182152, 270.4702786580835, 153.87539420832033, 14.65761769482562]);
+		q0R8 = go$toNativeArray("Float64", [0, 0.0732421874999935, 11.76820646822527, 557.6733802564019, 8859.197207564686, 37014.62677768878]);
+		q0S8 = go$toNativeArray("Float64", [163.77602689568982, 8098.344946564498, 142538.29141912048, 803309.2571195144, 840501.5798190605, -343899.2935378666]);
+		q0R5 = go$toNativeArray("Float64", [1.8408596359451553e-11, 0.07324217666126848, 5.8356350896205695, 135.11157728644983, 1027.243765961641, 1989.9778586460538]);
+		q0S5 = go$toNativeArray("Float64", [82.77661022365378, 2077.81416421393, 18847.28877857181, 56751.11228949473, 35976.75384251145, -5354.342756019448]);
+		q0R3 = go$toNativeArray("Float64", [4.377410140897386e-09, 0.07324111800429114, 3.344231375161707, 42.621844074541265, 170.8080913405656, 166.73394869665117]);
+		q0S3 = go$toNativeArray("Float64", [48.75887297245872, 709.689221056606, 3704.1482262011136, 6460.425167525689, 2516.3336892036896, -149.2474518361564]);
+		q0R2 = go$toNativeArray("Float64", [1.5044444488698327e-07, 0.07322342659630793, 1.99819174093816, 14.495602934788574, 31.666231750478154, 16.252707571092927]);
+		q0S2 = go$toNativeArray("Float64", [30.36558483552192, 269.34811860804984, 844.7837575953201, 882.9358451124886, 212.66638851179883, -5.3109549388266695]);
+		p1R8 = go$toNativeArray("Float64", [0, 0.11718749999998865, 13.239480659307358, 412.05185430737856, 3874.7453891396053, 7914.479540318917]);
+		p1S8 = go$toNativeArray("Float64", [114.20737037567841, 3650.9308342085346, 36956.206026903346, 97602.79359349508, 30804.27206278888]);
+		p1R5 = go$toNativeArray("Float64", [1.3199051955624352e-11, 0.1171874931906141, 6.802751278684329, 108.30818299018911, 517.6361395331998, 528.7152013633375]);
+		p1S5 = go$toNativeArray("Float64", [59.28059872211313, 991.4014187336144, 5353.26695291488, 7844.690317495512, 1504.0468881036106]);
+		p1R3 = go$toNativeArray("Float64", [3.025039161373736e-09, 0.11718686556725359, 3.9329775003331564, 35.11940355916369, 91.05501107507813, 48.55906851973649]);
+		p1S3 = go$toNativeArray("Float64", [34.79130950012515, 336.76245874782575, 1046.8713997577513, 890.8113463982564, 103.78793243963928]);
+		p1R2 = go$toNativeArray("Float64", [1.0771083010687374e-07, 0.11717621946268335, 2.368514966676088, 12.242610914826123, 17.693971127168773, 5.073523125888185]);
+		p1S2 = go$toNativeArray("Float64", [21.43648593638214, 125.29022716840275, 232.2764690571628, 117.6793732871471, 8.364638933716183]);
+		q1R8 = go$toNativeArray("Float64", [0, -0.10253906249999271, -16.271753454459, -759.6017225139501, -11849.806670242959, -48438.512428575035]);
+		q1S8 = go$toNativeArray("Float64", [161.3953697007229, 7825.385999233485, 133875.33628724958, 719657.7236832409, 666601.2326177764, -294490.26430383464]);
+		q1R5 = go$toNativeArray("Float64", [-2.089799311417641e-11, -0.10253905024137543, -8.05644828123936, -183.66960747488838, -1373.1937606550816, -2612.4444045321566]);
+		q1S5 = go$toNativeArray("Float64", [81.27655013843358, 1991.7987346048596, 17468.48519249089, 49851.42709103523, 27948.075163891812, -4719.183547951285]);
+		q1R3 = go$toNativeArray("Float64", [-5.078312264617666e-09, -0.10253782982083709, -4.610115811394734, -57.847221656278364, -228.2445407376317, -219.21012847890933]);
+		q1S3 = go$toNativeArray("Float64", [47.66515503237295, 673.8651126766997, 3380.1528667952634, 5547.729097207228, 1903.119193388108, -135.20119144430734]);
+		q1R2 = go$toNativeArray("Float64", [-1.7838172751095887e-07, -0.10251704260798555, -2.7522056827818746, -19.663616264370372, -42.32531333728305, -21.371921170370406]);
+		q1S2 = go$toNativeArray("Float64", [29.533362906052385, 252.98154998219053, 757.5028348686454, 739.3932053204672, 155.94900333666612, -4.959498988226282]);
+		_lgamA = go$toNativeArray("Float64", [0.07721566490153287, 0.3224670334241136, 0.06735230105312927, 0.020580808432516733, 0.007385550860814029, 0.0028905138367341563, 0.0011927076318336207, 0.0005100697921535113, 0.00022086279071390839, 0.00010801156724758394, 2.5214456545125733e-05, 4.4864094961891516e-05]);
+		_lgamR = go$toNativeArray("Float64", [1, 1.3920053346762105, 0.7219355475671381, 0.17193386563280308, 0.01864591917156529, 0.0007779424963818936, 7.326684307446256e-06]);
+		_lgamS = go$toNativeArray("Float64", [-0.07721566490153287, 0.21498241596060885, 0.325778796408931, 0.14635047265246445, 0.02664227030336386, 0.0018402845140733772, 3.194753265841009e-05]);
+		_lgamT = go$toNativeArray("Float64", [0.48383612272381005, -0.1475877229945939, 0.06462494023913339, -0.032788541075985965, 0.01797067508118204, -0.010314224129834144, 0.006100538702462913, -0.0036845201678113826, 0.0022596478090061247, -0.0014034646998923284, 0.000881081882437654, -0.0005385953053567405, 0.00031563207090362595, -0.00031275416837512086, 0.0003355291926355191]);
+		_lgamU = go$toNativeArray("Float64", [-0.07721566490153287, 0.6328270640250934, 1.4549225013723477, 0.9777175279633727, 0.22896372806469245, 0.013381091853678766]);
+		_lgamV = go$toNativeArray("Float64", [1, 2.4559779371304113, 2.128489763798934, 0.7692851504566728, 0.10422264559336913, 0.003217092422824239]);
+		_lgamW = go$toNativeArray("Float64", [0.4189385332046727, 0.08333333333333297, -0.0027777777772877554, 0.0007936505586430196, -0.00059518755745034, 0.0008363399189962821, -0.0016309293409657527]);
+		_sin = go$toNativeArray("Float64", [1.5896230157654656e-10, -2.5050747762857807e-08, 2.7557313621385722e-06, -0.0001984126982958954, 0.008333333333322118, -0.1666666666666663]);
+		_cos = go$toNativeArray("Float64", [-1.1358536521387682e-11, 2.087570084197473e-09, -2.755731417929674e-07, 2.4801587288851704e-05, -0.0013888888888873056, 0.041666666666666595]);
+		_tanP = go$toNativeArray("Float64", [-13093.693918138379, 1.1535166483858742e+06, -1.7956525197648488e+07]);
+		_tanQ = go$toNativeArray("Float64", [1, 13681.296347069296, -1.3208923444021097e+06, 2.500838018233579e+07, -5.3869575592945464e+07]);
+		tanhP = go$toNativeArray("Float64", [-0.9643991794250523, -99.28772310019185, -1614.6876844170845]);
+		tanhQ = go$toNativeArray("Float64", [112.81167849163293, 2235.4883906010045, 4844.063053251255]);
+		pow10tab[0] = 1;
+		pow10tab[1] = 10;
+		i = 2;
+		while (i < 70) {
+			m = (_q = i / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+			pow10tab[i] = pow10tab[m] * pow10tab[(i - m >> 0)];
+			i = i + 1 >> 0;
+		}
+	};

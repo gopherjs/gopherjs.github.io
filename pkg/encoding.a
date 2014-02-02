@@ -1,0 +1,24 @@
+0‚1‚tpackage encoding
+type @"".BinaryMarshaler interface { @"".MarshalBinary() (@"".data []byte, @"".err error) }
+type @"".BinaryUnmarshaler interface { @"".UnmarshalBinary(@"".data []byte) (? error) }
+type @"".TextMarshaler interface { @"".MarshalText() (@"".text []byte, @"".err error) }
+type @"".TextUnmarshaler interface { @"".UnmarshalText(@"".text []byte) (? error) }
+$$
+0runtimeencoding‚ 	var BinaryMarshaler;
+	BinaryMarshaler = go$newType(0, "Interface", "encoding.BinaryMarshaler", "BinaryMarshaler", "encoding", null);
+	go$pkg.BinaryMarshaler = BinaryMarshaler;
+	var BinaryUnmarshaler;
+	BinaryUnmarshaler = go$newType(0, "Interface", "encoding.BinaryUnmarshaler", "BinaryUnmarshaler", "encoding", null);
+	go$pkg.BinaryUnmarshaler = BinaryUnmarshaler;
+	var TextMarshaler;
+	TextMarshaler = go$newType(0, "Interface", "encoding.TextMarshaler", "TextMarshaler", "encoding", null);
+	go$pkg.TextMarshaler = TextMarshaler;
+	var TextUnmarshaler;
+	TextUnmarshaler = go$newType(0, "Interface", "encoding.TextUnmarshaler", "TextUnmarshaler", "encoding", null);
+	go$pkg.TextUnmarshaler = TextUnmarshaler;
+	BinaryMarshaler.init([["MarshalBinary", "", (go$funcType([], [(go$sliceType(Go$Uint8)), go$error], false))]]);
+	BinaryUnmarshaler.init([["UnmarshalBinary", "", (go$funcType([(go$sliceType(Go$Uint8))], [go$error], false))]]);
+	TextMarshaler.init([["MarshalText", "", (go$funcType([], [(go$sliceType(Go$Uint8)), go$error], false))]]);
+	TextUnmarshaler.init([["UnmarshalText", "", (go$funcType([(go$sliceType(Go$Uint8))], [go$error], false))]]);
+	go$pkg.init = function() {
+	};

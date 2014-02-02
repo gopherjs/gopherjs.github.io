@@ -1,0 +1,646 @@
+0‚Šj‚>&package gzip
+import bufio "bufio"
+import flate "compress/flate"
+import errors "errors"
+import hash "hash"
+import crc32 "hash/crc32"
+import io "io"
+import time "time"
+import fmt "fmt"
+const @"".BestCompression = 0x9
+const @"".BestSpeed = 0x1
+const @"".DefaultCompression = -0x1
+var @"".ErrChecksum error
+var @"".ErrHeader error
+type @"".Header struct { @"".Comment string; @"".Extra []byte; @"".ModTime @"time".Time; @"".Name string; @"".OS byte }
+func @"".NewReader(@"".r @"io".Reader) (? *@"".Reader, ? error)
+func @"".NewWriter(@"".w @"io".Writer) (? *@"".Writer)
+func @"".NewWriterLevel(@"".w @"io".Writer, @"".level int) (? *@"".Writer, ? error)
+const @"".NoCompression = 0x0
+type @"".Reader struct { ? @"".Header; @"".r @"compress/flate".Reader; @"".decompressor @"io".ReadCloser; @"".digest @"hash".Hash32; @"".size uint32; @"".flg byte; @"".buf [512]byte; @"".err error }
+func (? *@"".Reader) @"".Close() (? error)
+func (? *@"".Reader) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"".Reader) @"".read2() (? uint32, ? error)
+func (? *@"".Reader) @"".readHeader(@"".save bool) (? error)
+func (? *@"".Reader) @"".readString() (? string, ? error)
+type @"".Writer struct { ? @"".Header; @"".w @"io".Writer; @"".level int; @"".wroteHeader bool; @"".compressor *@"compress/flate".Writer; @"".digest @"hash".Hash32; @"".size uint32; @"".closed bool; @"".buf [10]byte; @"".err error }
+func (? *@"".Writer) @"".Close() (? error)
+func (? *@"".Writer) @"".Flush() (? error)
+func (? *@"".Writer) @"".Reset(@"".w @"io".Writer) ()
+func (? *@"".Writer) @"".Write(@"".p []byte) (? int, ? error)
+func (? *@"".Writer) @"".init(@"".w @"io".Writer, @"".level int) ()
+func (? *@"".Writer) @"".writeBytes(@"".b []byte) (? error)
+func (? *@"".Writer) @"".writeString(@"".s string) (@"".err error)
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? @"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? @"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? @"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+func (? *@"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? *@"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? *@"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? *@"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"compress/flate".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error); @"compress/flate".ReadByte() (@"compress/flate".c byte, @"compress/flate".err error) }
+type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"hash".Hash32 interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"hash".Sum32() (? uint32); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"compress/flate".Writer struct { @"compress/flate".d @"compress/flate".compressor; @"compress/flate".dict []byte }
+func (? *@"compress/flate".Writer) @"compress/flate".Close() (? error)
+func (? *@"compress/flate".Writer) @"compress/flate".Flush() (? error)
+func (? *@"compress/flate".Writer) @"compress/flate".Reset(@"compress/flate".dst @"io".Writer) ()
+func (? *@"compress/flate".Writer) @"compress/flate".Write(@"compress/flate".data []byte) (@"compress/flate".n int, @"compress/flate".err error)
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"".sec int64) (@"".name string, @"".offset int, @"".isDST bool, @"".start int64, @"".end int64)
+func (? *@"time".Location) @"time".lookupName(@"".name string, @"".unix int64) (@"".offset int, @"".isDST bool, @"".ok bool)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"compress/flate".compressor struct { ? @"compress/flate".compressionLevel; @"compress/flate".w *@"compress/flate".huffmanBitWriter; @"compress/flate".fill func (? *@"compress/flate".compressor, ? []byte) (? int); @"compress/flate".step func (? *@"compress/flate".compressor) (); @"compress/flate".sync bool; @"compress/flate".chainHead int; @"compress/flate".hashHead []int; @"compress/flate".hashPrev []int; @"compress/flate".hashOffset int; @"compress/flate".index int; @"compress/flate".window []byte; @"compress/flate".windowEnd int; @"compress/flate".blockStart int; @"compress/flate".byteAvailable bool; @"compress/flate".tokens []@"compress/flate".token; @"compress/flate".length int; @"compress/flate".offset int; @"compress/flate".hash int; @"compress/flate".maxInsertIndex int; @"compress/flate".err error }
+func (? *@"compress/flate".compressor) @"compress/flate".close() (? error)
+func (? *@"compress/flate".compressor) @"compress/flate".deflate() ()
+func (? *@"compress/flate".compressor) @"compress/flate".fillDeflate(@"compress/flate".b []byte) (? int)
+func (? *@"compress/flate".compressor) @"compress/flate".fillStore(@"compress/flate".b []byte) (? int)
+func (? *@"compress/flate".compressor) @"compress/flate".findMatch(@"compress/flate".pos int, @"compress/flate".prevHead int, @"compress/flate".prevLength int, @"compress/flate".lookahead int) (@"compress/flate".length int, @"compress/flate".offset int, @"compress/flate".ok bool)
+func (? *@"compress/flate".compressor) @"compress/flate".init(@"compress/flate".w @"io".Writer, @"compress/flate".level int) (@"compress/flate".err error)
+func (? *@"compress/flate".compressor) @"compress/flate".initDeflate() ()
+func (? *@"compress/flate".compressor) @"compress/flate".reset(@"compress/flate".w @"io".Writer) ()
+func (? *@"compress/flate".compressor) @"compress/flate".store() ()
+func (? *@"compress/flate".compressor) @"compress/flate".syncFlush() (? error)
+func (? *@"compress/flate".compressor) @"compress/flate".write(@"compress/flate".b []byte) (@"compress/flate".n int, @"compress/flate".err error)
+func (? *@"compress/flate".compressor) @"compress/flate".writeBlock(@"compress/flate".tokens []@"compress/flate".token, @"compress/flate".index int, @"compress/flate".eof bool) (? error)
+func (? *@"compress/flate".compressor) @"compress/flate".writeStoredBlock(@"compress/flate".buf []byte) (? error)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+type @"compress/flate".compressionLevel struct { @"compress/flate".good int; @"compress/flate".lazy int; @"compress/flate".nice int; @"compress/flate".chain int; @"compress/flate".fastSkipHashing int }
+type @"compress/flate".huffmanBitWriter struct { @"compress/flate".w @"io".Writer; @"compress/flate".bits uint32; @"compress/flate".nbits uint32; @"compress/flate".bytes [64]byte; @"compress/flate".nbytes int; @"compress/flate".literalFreq []int32; @"compress/flate".offsetFreq []int32; @"compress/flate".codegen []uint8; @"compress/flate".codegenFreq []int32; @"compress/flate".literalEncoding *@"compress/flate".huffmanEncoder; @"compress/flate".offsetEncoding *@"compress/flate".huffmanEncoder; @"compress/flate".codegenEncoding *@"compress/flate".huffmanEncoder; @"compress/flate".err error }
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".flush() ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".flushBits() ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".generateCodegen(@"compress/flate".numLiterals int, @"compress/flate".numOffsets int) ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".reset(@"compress/flate".writer @"io".Writer) ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".writeBits(@"compress/flate".b int32, @"compress/flate".nb int32) ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".writeBlock(@"compress/flate".tokens []@"compress/flate".token, @"compress/flate".eof bool, @"compress/flate".input []byte) ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".writeBytes(@"compress/flate".bytes []byte) ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".writeCode(@"compress/flate".code *@"compress/flate".huffmanEncoder, @"compress/flate".literal uint32) ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".writeDynamicHeader(@"compress/flate".numLiterals int, @"compress/flate".numOffsets int, @"compress/flate".numCodegens int, @"compress/flate".isEof bool) ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".writeFixedHeader(@"compress/flate".isEof bool) ()
+func (? *@"compress/flate".huffmanBitWriter) @"compress/flate".writeStoredHeader(@"compress/flate".length int, @"compress/flate".isEof bool) ()
+type @"compress/flate".token uint32
+func (? @"compress/flate".token) @"compress/flate".length() (? uint32)
+func (? @"compress/flate".token) @"compress/flate".literal() (? uint32)
+func (? @"compress/flate".token) @"compress/flate".offset() (? uint32)
+func (? @"compress/flate".token) @"compress/flate".typ() (? uint32)
+func (? *@"compress/flate".token) @"compress/flate".length() (? uint32)
+func (? *@"compress/flate".token) @"compress/flate".literal() (? uint32)
+func (? *@"compress/flate".token) @"compress/flate".offset() (? uint32)
+func (? *@"compress/flate".token) @"compress/flate".typ() (? uint32)
+type @"compress/flate".huffmanEncoder struct { @"compress/flate".codeBits []uint8; @"compress/flate".code []uint16 }
+func (? *@"compress/flate".huffmanEncoder) @"compress/flate".assignEncodingAndSize(@"compress/flate".bitCount []int32, @"compress/flate".list []@"compress/flate".literalNode) ()
+func (? *@"compress/flate".huffmanEncoder) @"compress/flate".bitCounts(@"compress/flate".list []@"compress/flate".literalNode, @"compress/flate".maxBits int32) (? []int32)
+func (? *@"compress/flate".huffmanEncoder) @"compress/flate".bitLength(@"compress/flate".freq []int32) (? int64)
+func (? *@"compress/flate".huffmanEncoder) @"compress/flate".generate(@"compress/flate".freq []int32, @"compress/flate".maxBits int32) ()
+type @"compress/flate".literalNode struct { @"compress/flate".literal uint16; @"compress/flate".freq int32 }
+$$
+0´runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flatehash
+hash/crc32compress/gzip‚K…	var bufio = go$packages["bufio"];
+	var flate = go$packages["compress/flate"];
+	var errors = go$packages["errors"];
+	var hash = go$packages["hash"];
+	var crc32 = go$packages["hash/crc32"];
+	var io = go$packages["io"];
+	var time = go$packages["time"];
+	var fmt = go$packages["fmt"];
+	var Header;
+	Header = go$newType(0, "Struct", "gzip.Header", "Header", "compress/gzip", function(Comment_, Extra_, ModTime_, Name_, OS_) {
+		this.go$val = this;
+		this.Comment = Comment_ !== undefined ? Comment_ : "";
+		this.Extra = Extra_ !== undefined ? Extra_ : (go$sliceType(Go$Uint8)).nil;
+		this.ModTime = ModTime_ !== undefined ? ModTime_ : new time.Time.Ptr();
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.OS = OS_ !== undefined ? OS_ : 0;
+	});
+	go$pkg.Header = Header;
+	var Reader;
+	Reader = go$newType(0, "Struct", "gzip.Reader", "Reader", "compress/gzip", function(Header_, r_, decompressor_, digest_, size_, flg_, buf_, err_) {
+		this.go$val = this;
+		this.Header = Header_ !== undefined ? Header_ : new Header.Ptr();
+		this.r = r_ !== undefined ? r_ : null;
+		this.decompressor = decompressor_ !== undefined ? decompressor_ : null;
+		this.digest = digest_ !== undefined ? digest_ : null;
+		this.size = size_ !== undefined ? size_ : 0;
+		this.flg = flg_ !== undefined ? flg_ : 0;
+		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 512, function() { return 0; });
+		this.err = err_ !== undefined ? err_ : null;
+	});
+	go$pkg.Reader = Reader;
+	var Writer;
+	Writer = go$newType(0, "Struct", "gzip.Writer", "Writer", "compress/gzip", function(Header_, w_, level_, wroteHeader_, compressor_, digest_, size_, closed_, buf_, err_) {
+		this.go$val = this;
+		this.Header = Header_ !== undefined ? Header_ : new Header.Ptr();
+		this.w = w_ !== undefined ? w_ : null;
+		this.level = level_ !== undefined ? level_ : 0;
+		this.wroteHeader = wroteHeader_ !== undefined ? wroteHeader_ : false;
+		this.compressor = compressor_ !== undefined ? compressor_ : (go$ptrType(flate.Writer)).nil;
+		this.digest = digest_ !== undefined ? digest_ : null;
+		this.size = size_ !== undefined ? size_ : 0;
+		this.closed = closed_ !== undefined ? closed_ : false;
+		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 10, function() { return 0; });
+		this.err = err_ !== undefined ? err_ : null;
+	});
+	go$pkg.Writer = Writer;
+	Header.init([["Comment", "", Go$String, ""], ["Extra", "", (go$sliceType(Go$Uint8)), ""], ["ModTime", "", time.Time, ""], ["Name", "", Go$String, ""], ["OS", "", Go$Uint8, ""]]);
+	Reader.init([["", "", Header, ""], ["r", "compress/gzip", flate.Reader, ""], ["decompressor", "compress/gzip", io.ReadCloser, ""], ["digest", "compress/gzip", hash.Hash32, ""], ["size", "compress/gzip", Go$Uint32, ""], ["flg", "compress/gzip", Go$Uint8, ""], ["buf", "compress/gzip", (go$arrayType(Go$Uint8, 512)), ""], ["err", "compress/gzip", go$error, ""]]);
+	(go$ptrType(Reader)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["read2", "compress/gzip", [], [Go$Uint32, go$error], false], ["readHeader", "compress/gzip", [Go$Bool], [go$error], false], ["readString", "compress/gzip", [], [Go$String, go$error], false]];
+	Writer.init([["", "", Header, ""], ["w", "compress/gzip", io.Writer, ""], ["level", "compress/gzip", Go$Int, ""], ["wroteHeader", "compress/gzip", Go$Bool, ""], ["compressor", "compress/gzip", (go$ptrType(flate.Writer)), ""], ["digest", "compress/gzip", hash.Hash32, ""], ["size", "compress/gzip", Go$Uint32, ""], ["closed", "compress/gzip", Go$Bool, ""], ["buf", "compress/gzip", (go$arrayType(Go$Uint8, 10)), ""], ["err", "compress/gzip", go$error, ""]]);
+	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["init", "compress/gzip", [io.Writer, Go$Int], [], false], ["writeBytes", "compress/gzip", [(go$sliceType(Go$Uint8))], [go$error], false], ["writeString", "compress/gzip", [Go$String], [go$error], false]];
+	var makeReader = function(r) {
+		var ok, _tuple, rr;
+		if (_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
+			return rr;
+		}
+		return bufio.NewReader(r);
+	};
+	var NewReader = go$pkg.NewReader = function(r) {
+		var z, err;
+		z = new Reader.Ptr();
+		z.r = makeReader(r);
+		z.digest = crc32.NewIEEE();
+		if (err = z.readHeader(true), !(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Reader)).nil, err];
+		}
+		return [z, null];
+	};
+	var get4 = function(p) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		return (((((((_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) | (((_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0) << 8 >>> 0)) >>> 0) | (((_slice$2 = p, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0) << 16 >>> 0)) >>> 0) | (((_slice$3 = p, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0) << 24 >>> 0)) >>> 0;
+	};
+	Reader.Ptr.prototype.readString = function() {
+		var z, err, needconv, i, _tuple, s, _ref, _i, _slice, _index, v;
+		z = this;
+		err = null;
+		needconv = false;
+		i = 0;
+		while (true) {
+			if (i >= 512) {
+				return ["", go$pkg.ErrHeader];
+			}
+			_tuple = z.r.ReadByte(), z.buf[i] = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return ["", err];
+			}
+			if (z.buf[i] > 127) {
+				needconv = true;
+			}
+			if (z.buf[i] === 0) {
+				if (needconv) {
+					s = (go$sliceType(Go$Int32)).make(0, i, function() { return 0; });
+					_ref = go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, i);
+					_i = 0;
+					for (; _i < _ref.length; _i += 1) {
+						v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+						s = go$append(s, (v >> 0));
+					}
+					return [go$runesToString(s), null];
+				}
+				return [go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, i)), null];
+			}
+			i = i + 1 >> 0;
+		}
+	};
+	Reader.prototype.readString = function() { return this.go$val.readString(); };
+	Reader.Ptr.prototype.read2 = function() {
+		var z, _tuple, err;
+		z = this;
+		_tuple = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 2)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [0, err];
+		}
+		return [((z.buf[0] >>> 0) | ((z.buf[1] >>> 0) << 8 >>> 0)) >>> 0, null];
+	};
+	Reader.prototype.read2 = function() { return this.go$val.read2(); };
+	Reader.Ptr.prototype.readHeader = function(save) {
+		var z, _tuple, err, _struct, _tuple$1, n, err$1, data, _tuple$2, s, _tuple$3, _tuple$4, _tuple$5, n$1, err$2, sum;
+		z = this;
+		_tuple = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 10)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		if (!((z.buf[0] === 31)) || !((z.buf[1] === 139)) || !((z.buf[2] === 8))) {
+			return go$pkg.ErrHeader;
+		}
+		z.flg = z.buf[3];
+		if (save) {
+			z.Header.ModTime = (_struct = time.Unix(new Go$Int64(0, get4(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 4, 8))), new Go$Int64(0, 0)), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+			z.Header.OS = z.buf[9];
+		}
+		z.digest.Reset();
+		z.digest.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 10));
+		if (!((((z.flg & 4) >>> 0) === 0))) {
+			_tuple$1 = z.read2(), n = _tuple$1[0], err$1 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return err$1;
+			}
+			data = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
+			if (_tuple$2 = io.ReadFull(z.r, data), err$1 = _tuple$2[1], !(go$interfaceIsEqual(err$1, null))) {
+				return err$1;
+			}
+			if (save) {
+				z.Header.Extra = data;
+			}
+		}
+		s = "";
+		if (!((((z.flg & 8) >>> 0) === 0))) {
+			if (_tuple$3 = z.readString(), s = _tuple$3[0], err = _tuple$3[1], !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			if (save) {
+				z.Header.Name = s;
+			}
+		}
+		if (!((((z.flg & 16) >>> 0) === 0))) {
+			if (_tuple$4 = z.readString(), s = _tuple$4[0], err = _tuple$4[1], !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			if (save) {
+				z.Header.Comment = s;
+			}
+		}
+		if (!((((z.flg & 2) >>> 0) === 0))) {
+			_tuple$5 = z.read2(), n$1 = _tuple$5[0], err$2 = _tuple$5[1];
+			if (!(go$interfaceIsEqual(err$2, null))) {
+				return err$2;
+			}
+			sum = (z.digest.Sum32() & 65535) >>> 0;
+			if (!((n$1 === sum))) {
+				return go$pkg.ErrHeader;
+			}
+		}
+		z.digest.Reset();
+		z.decompressor = flate.NewReader(z.r);
+		return null;
+	};
+	Reader.prototype.readHeader = function(save) { return this.go$val.readHeader(save); };
+	Reader.Ptr.prototype.Read = function(p) {
+		var n, err, z, _tuple, _tuple$1, _tuple$2, err$1, _tuple$3, _tuple$4, _tuple$5, crc32$1, isize, sum, _tuple$6, _tuple$7;
+		n = 0;
+		err = null;
+		z = this;
+		if (!(go$interfaceIsEqual(z.err, null))) {
+			_tuple = [0, z.err], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if (p.length === 0) {
+			_tuple$1 = [0, null], n = _tuple$1[0], err = _tuple$1[1];
+			return [n, err];
+		}
+		_tuple$2 = z.decompressor.Read(p), n = _tuple$2[0], err = _tuple$2[1];
+		z.digest.Write(go$subslice(p, 0, n));
+		z.size = z.size + ((n >>> 0)) >>> 0;
+		if (!((n === 0)) || !(go$interfaceIsEqual(err, io.EOF))) {
+			z.err = err;
+			return [n, err];
+		}
+		if (_tuple$3 = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 8)), err$1 = _tuple$3[1], !(go$interfaceIsEqual(err$1, null))) {
+			z.err = err$1;
+			_tuple$4 = [0, err$1], n = _tuple$4[0], err = _tuple$4[1];
+			return [n, err];
+		}
+		_tuple$5 = [get4(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 4)), get4(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 4, 8))], crc32$1 = _tuple$5[0], isize = _tuple$5[1];
+		sum = z.digest.Sum32();
+		if (!((sum === crc32$1)) || !((isize === z.size))) {
+			z.err = go$pkg.ErrChecksum;
+			_tuple$6 = [0, z.err], n = _tuple$6[0], err = _tuple$6[1];
+			return [n, err];
+		}
+		if (err = z.readHeader(false), !(go$interfaceIsEqual(err, null))) {
+			z.err = err;
+			return [n, err];
+		}
+		z.digest.Reset();
+		z.size = 0;
+		_tuple$7 = z.Read(p), n = _tuple$7[0], err = _tuple$7[1];
+		return [n, err];
+	};
+	Reader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	Reader.Ptr.prototype.Close = function() {
+		var z;
+		z = this;
+		return z.decompressor.Close();
+	};
+	Reader.prototype.Close = function() { return this.go$val.Close(); };
+	var NewWriter = go$pkg.NewWriter = function(w) {
+		var _tuple, z;
+		_tuple = NewWriterLevel(w, -1), z = _tuple[0];
+		return z;
+	};
+	var NewWriterLevel = go$pkg.NewWriterLevel = function(w, level) {
+		var z;
+		if (level < -1 || level > 9) {
+			return [(go$ptrType(Writer)).nil, fmt.Errorf("gzip: invalid compression level: %d", new (go$sliceType(go$emptyInterface))([new Go$Int(level)]))];
+		}
+		z = new Writer.Ptr();
+		z.init(w, level);
+		return [z, null];
+	};
+	Writer.Ptr.prototype.init = function(w, level) {
+		var z, digest, compressor, l, r;
+		z = this;
+		digest = z.digest;
+		if (!(go$interfaceIsEqual(digest, null))) {
+			digest.Reset();
+		} else {
+			digest = crc32.NewIEEE();
+		}
+		compressor = z.compressor;
+		if (!(compressor === (go$ptrType(flate.Writer)).nil)) {
+			compressor.Reset(w);
+		}
+		l = z, r = new Writer.Ptr(new Header.Ptr("", (go$sliceType(Go$Uint8)).nil, new time.Time.Ptr(), "", 255), w, level, false, compressor, digest, 0, false, go$makeNativeArray("Uint8", 10, function() { return 0; }), null), l.Header = r.Header, l.w = r.w, l.level = r.level, l.wroteHeader = r.wroteHeader, l.compressor = r.compressor, l.digest = r.digest, l.size = r.size, l.closed = r.closed, l.buf = r.buf, l.err = r.err;
+	};
+	Writer.prototype.init = function(w, level) { return this.go$val.init(w, level); };
+	Writer.Ptr.prototype.Reset = function(w) {
+		var z;
+		z = this;
+		z.init(w, z.level);
+	};
+	Writer.prototype.Reset = function(w) { return this.go$val.Reset(w); };
+	var put2 = function(p, v) {
+		var _slice, _index, _slice$1, _index$1;
+		_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((v >>> 0 << 16 >>> 16) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((v >>> 8 << 16 >>> 16) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+	};
+	var put4 = function(p, v) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((v >>> 0 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((v >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$2 = p, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ((v >>> 16 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$3 = p, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = ((v >>> 24 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+	};
+	Writer.Ptr.prototype.writeBytes = function(b) {
+		var z, _tuple, err, _tuple$1;
+		z = this;
+		if (b.length > 65535) {
+			return errors.New("gzip.Write: Extra data is too large");
+		}
+		put2(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 2), (b.length << 16 >>> 16));
+		_tuple = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 2)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		_tuple$1 = z.w.Write(b), err = _tuple$1[1];
+		return err;
+	};
+	Writer.prototype.writeBytes = function(b) { return this.go$val.writeBytes(b); };
+	Writer.Ptr.prototype.writeString = function(s) {
+		var err, z, needconv, _ref, _i, _rune, v, b, _ref$1, _i$1, _rune$1, v$1, _tuple, _tuple$1, _tuple$2;
+		err = null;
+		z = this;
+		needconv = false;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			v = _rune[0];
+			if ((v === 0) || v > 255) {
+				err = errors.New("gzip.Write: non-Latin-1 header string");
+				return err;
+			}
+			if (v > 127) {
+				needconv = true;
+			}
+		}
+		if (needconv) {
+			b = (go$sliceType(Go$Uint8)).make(0, s.length, function() { return 0; });
+			_ref$1 = s;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += _rune$1[1]) {
+				_rune$1 = go$decodeRune(_ref$1, _i$1);
+				v$1 = _rune$1[0];
+				b = go$append(b, (v$1 << 24 >>> 24));
+			}
+			_tuple = z.w.Write(b), err = _tuple[1];
+		} else {
+			_tuple$1 = io.WriteString(z.w, s), err = _tuple$1[1];
+		}
+		if (!(go$interfaceIsEqual(err, null))) {
+			err = err;
+			return err;
+		}
+		z.buf[0] = 0;
+		_tuple$2 = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 1)), err = _tuple$2[1];
+		err = err;
+		return err;
+	};
+	Writer.prototype.writeString = function(s) { return this.go$val.writeString(s); };
+	Writer.Ptr.prototype.Write = function(p) {
+		var z, n, _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, _tuple, _tuple$1, _tuple$2;
+		z = this;
+		if (!(go$interfaceIsEqual(z.err, null))) {
+			return [0, z.err];
+		}
+		n = 0;
+		if (!z.wroteHeader) {
+			z.wroteHeader = true;
+			z.buf[0] = 31;
+			z.buf[1] = 139;
+			z.buf[2] = 8;
+			z.buf[3] = 0;
+			if (!(z.Header.Extra === (go$sliceType(Go$Uint8)).nil)) {
+				_lhs = z.buf, _index = 3, _lhs[_index] = (_lhs[_index] | 4) >>> 0;
+			}
+			if (!(z.Header.Name === "")) {
+				_lhs$1 = z.buf, _index$1 = 3, _lhs$1[_index$1] = (_lhs$1[_index$1] | 8) >>> 0;
+			}
+			if (!(z.Header.Comment === "")) {
+				_lhs$2 = z.buf, _index$2 = 3, _lhs$2[_index$2] = (_lhs$2[_index$2] | 16) >>> 0;
+			}
+			put4(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 4, 8), (z.Header.ModTime.Unix().low >>> 0));
+			if (z.level === 9) {
+				z.buf[8] = 2;
+			} else if (z.level === 1) {
+				z.buf[8] = 4;
+			} else {
+				z.buf[8] = 0;
+			}
+			z.buf[9] = z.Header.OS;
+			_tuple = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 10)), n = _tuple[0], z.err = _tuple[1];
+			if (!(go$interfaceIsEqual(z.err, null))) {
+				return [n, z.err];
+			}
+			if (!(z.Header.Extra === (go$sliceType(Go$Uint8)).nil)) {
+				z.err = z.writeBytes(z.Header.Extra);
+				if (!(go$interfaceIsEqual(z.err, null))) {
+					return [n, z.err];
+				}
+			}
+			if (!(z.Header.Name === "")) {
+				z.err = z.writeString(z.Header.Name);
+				if (!(go$interfaceIsEqual(z.err, null))) {
+					return [n, z.err];
+				}
+			}
+			if (!(z.Header.Comment === "")) {
+				z.err = z.writeString(z.Header.Comment);
+				if (!(go$interfaceIsEqual(z.err, null))) {
+					return [n, z.err];
+				}
+			}
+			if (z.compressor === (go$ptrType(flate.Writer)).nil) {
+				_tuple$1 = flate.NewWriter(z.w, z.level), z.compressor = _tuple$1[0];
+			}
+		}
+		z.size = z.size + ((p.length >>> 0)) >>> 0;
+		z.digest.Write(p);
+		_tuple$2 = z.compressor.Write(p), n = _tuple$2[0], z.err = _tuple$2[1];
+		return [n, z.err];
+	};
+	Writer.prototype.Write = function(p) { return this.go$val.Write(p); };
+	Writer.Ptr.prototype.Flush = function() {
+		var z;
+		z = this;
+		if (!(go$interfaceIsEqual(z.err, null))) {
+			return z.err;
+		}
+		if (z.closed) {
+			return null;
+		}
+		if (!z.wroteHeader) {
+			z.Write((go$sliceType(Go$Uint8)).nil);
+			if (!(go$interfaceIsEqual(z.err, null))) {
+				return z.err;
+			}
+		}
+		z.err = z.compressor.Flush();
+		return z.err;
+	};
+	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
+	Writer.Ptr.prototype.Close = function() {
+		var z, _tuple;
+		z = this;
+		if (!(go$interfaceIsEqual(z.err, null))) {
+			return z.err;
+		}
+		if (z.closed) {
+			return null;
+		}
+		z.closed = true;
+		if (!z.wroteHeader) {
+			z.Write((go$sliceType(Go$Uint8)).nil);
+			if (!(go$interfaceIsEqual(z.err, null))) {
+				return z.err;
+			}
+		}
+		z.err = z.compressor.Close();
+		if (!(go$interfaceIsEqual(z.err, null))) {
+			return z.err;
+		}
+		put4(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 4), z.digest.Sum32());
+		put4(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 4, 8), z.size);
+		_tuple = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 8)), z.err = _tuple[1];
+		return z.err;
+	};
+	Writer.prototype.Close = function() { return this.go$val.Close(); };
+	var gzipID1 = 31;
+	var gzipID2 = 139;
+	var gzipDeflate = 8;
+	var flagText = 1;
+	var flagHdrCrc = 2;
+	var flagExtra = 4;
+	var flagName = 8;
+	var flagComment = 16;
+	go$pkg.NoCompression = 0;
+	go$pkg.BestSpeed = 1;
+	go$pkg.BestCompression = 9;
+	go$pkg.DefaultCompression = -1;
+	go$pkg.ErrChecksum = null;
+	go$pkg.ErrHeader = null;
+	go$pkg.init = function() {
+		go$pkg.ErrChecksum = errors.New("gzip: invalid checksum");
+		go$pkg.ErrHeader = errors.New("gzip: invalid header");
+	};

@@ -1,0 +1,479 @@
+0Ç—uÇpackage base32
+import bytes "bytes"
+import io "io"
+import strconv "strconv"
+import strings "strings"
+type @"".CorruptInputError int64
+func (? @"".CorruptInputError) @"".Error() (? string)
+func (? *@"".CorruptInputError) @"".Error() (? string)
+type @"".Encoding struct { @"".encode string; @"".decodeMap [256]byte }
+func (? *@"".Encoding) @"".Decode(@"".dst []byte, @"".src []byte) (@"".n int, @"".err error)
+func (? *@"".Encoding) @"".DecodeString(@"".s string) (? []byte, ? error)
+func (? *@"".Encoding) @"".DecodedLen(@"".n int) (? int)
+func (? *@"".Encoding) @"".Encode(@"".dst []byte, @"".src []byte) ()
+func (? *@"".Encoding) @"".EncodeToString(@"".src []byte) (? string)
+func (? *@"".Encoding) @"".EncodedLen(@"".n int) (? int)
+func (? *@"".Encoding) @"".decode(@"".dst []byte, @"".src []byte) (@"".n int, @"".end bool, @"".err error)
+var @"".HexEncoding *@"".Encoding
+func @"".NewDecoder(@"".enc *@"".Encoding, @"".r @"io".Reader) (? @"io".Reader)
+func @"".NewEncoder(@"".enc *@"".Encoding, @"".w @"io".Writer) (? @"io".WriteCloser)
+func @"".NewEncoding(@"".encoder string) (? *@"".Encoding)
+var @"".StdEncoding *@"".Encoding
+type @"".decoder struct { @"".err error; @"".enc *@"".Encoding; @"".r @"io".Reader; @"".end bool; @"".buf [1024]byte; @"".nbuf int; @"".out []byte; @"".outbuf [640]byte }
+func (? *@"".decoder) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+type @"".encoder struct { @"".err error; @"".enc *@"".Encoding; @"".w @"io".Writer; @"".buf [5]byte; @"".nbuf int; @"".out [1024]byte }
+func (? *@"".encoder) @"".Close() (? error)
+func (? *@"".encoder) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+type @"".newlineFilteringReader struct { @"".wrapped @"io".Reader }
+func (? *@"".newlineFilteringReader) @"".Read(@"".p []byte) (? int, ? error)
+type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".WriteCloser interface { @"io".Close() (? error); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0oruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvstringsencoding/base32Ç»Ô	var bytes = go$packages["bytes"];
+	var io = go$packages["io"];
+	var strconv = go$packages["strconv"];
+	var strings = go$packages["strings"];
+	var Encoding;
+	Encoding = go$newType(0, "Struct", "base32.Encoding", "Encoding", "encoding/base32", function(encode_, decodeMap_) {
+		this.go$val = this;
+		this.encode = encode_ !== undefined ? encode_ : "";
+		this.decodeMap = decodeMap_ !== undefined ? decodeMap_ : go$makeNativeArray("Uint8", 256, function() { return 0; });
+	});
+	go$pkg.Encoding = Encoding;
+	var encoder;
+	encoder = go$newType(0, "Struct", "base32.encoder", "encoder", "encoding/base32", function(err_, enc_, w_, buf_, nbuf_, out_) {
+		this.go$val = this;
+		this.err = err_ !== undefined ? err_ : null;
+		this.enc = enc_ !== undefined ? enc_ : (go$ptrType(Encoding)).nil;
+		this.w = w_ !== undefined ? w_ : null;
+		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 5, function() { return 0; });
+		this.nbuf = nbuf_ !== undefined ? nbuf_ : 0;
+		this.out = out_ !== undefined ? out_ : go$makeNativeArray("Uint8", 1024, function() { return 0; });
+	});
+	go$pkg.encoder = encoder;
+	var CorruptInputError;
+	CorruptInputError = go$newType(8, "Int64", "base32.CorruptInputError", "CorruptInputError", "encoding/base32", null);
+	go$pkg.CorruptInputError = CorruptInputError;
+	var decoder;
+	decoder = go$newType(0, "Struct", "base32.decoder", "decoder", "encoding/base32", function(err_, enc_, r_, end_, buf_, nbuf_, out_, outbuf_) {
+		this.go$val = this;
+		this.err = err_ !== undefined ? err_ : null;
+		this.enc = enc_ !== undefined ? enc_ : (go$ptrType(Encoding)).nil;
+		this.r = r_ !== undefined ? r_ : null;
+		this.end = end_ !== undefined ? end_ : false;
+		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 1024, function() { return 0; });
+		this.nbuf = nbuf_ !== undefined ? nbuf_ : 0;
+		this.out = out_ !== undefined ? out_ : (go$sliceType(Go$Uint8)).nil;
+		this.outbuf = outbuf_ !== undefined ? outbuf_ : go$makeNativeArray("Uint8", 640, function() { return 0; });
+	});
+	go$pkg.decoder = decoder;
+	var newlineFilteringReader;
+	newlineFilteringReader = go$newType(0, "Struct", "base32.newlineFilteringReader", "newlineFilteringReader", "encoding/base32", function(wrapped_) {
+		this.go$val = this;
+		this.wrapped = wrapped_ !== undefined ? wrapped_ : null;
+	});
+	go$pkg.newlineFilteringReader = newlineFilteringReader;
+	Encoding.init([["encode", "encoding/base32", Go$String, ""], ["decodeMap", "encoding/base32", (go$arrayType(Go$Uint8, 256)), ""]]);
+	(go$ptrType(Encoding)).methods = [["Decode", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["DecodeString", "", [Go$String], [(go$sliceType(Go$Uint8)), go$error], false], ["DecodedLen", "", [Go$Int], [Go$Int], false], ["Encode", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [], false], ["EncodeToString", "", [(go$sliceType(Go$Uint8))], [Go$String], false], ["EncodedLen", "", [Go$Int], [Go$Int], false], ["decode", "encoding/base32", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [Go$Int, Go$Bool, go$error], false]];
+	encoder.init([["err", "encoding/base32", go$error, ""], ["enc", "encoding/base32", (go$ptrType(Encoding)), ""], ["w", "encoding/base32", io.Writer, ""], ["buf", "encoding/base32", (go$arrayType(Go$Uint8, 5)), ""], ["nbuf", "encoding/base32", Go$Int, ""], ["out", "encoding/base32", (go$arrayType(Go$Uint8, 1024)), ""]]);
+	(go$ptrType(encoder)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	CorruptInputError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(CorruptInputError)).methods = [["Error", "", [], [Go$String], false]];
+	decoder.init([["err", "encoding/base32", go$error, ""], ["enc", "encoding/base32", (go$ptrType(Encoding)), ""], ["r", "encoding/base32", io.Reader, ""], ["end", "encoding/base32", Go$Bool, ""], ["buf", "encoding/base32", (go$arrayType(Go$Uint8, 1024)), ""], ["nbuf", "encoding/base32", Go$Int, ""], ["out", "encoding/base32", (go$sliceType(Go$Uint8)), ""], ["outbuf", "encoding/base32", (go$arrayType(Go$Uint8, 640)), ""]]);
+	(go$ptrType(decoder)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	newlineFilteringReader.init([["wrapped", "encoding/base32", io.Reader, ""]]);
+	(go$ptrType(newlineFilteringReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	var NewEncoding = go$pkg.NewEncoding = function(encoder$1) {
+		var e, i, i$1;
+		e = new Encoding.Ptr();
+		e.encode = encoder$1;
+		i = 0;
+		while (i < 256) {
+			e.decodeMap[i] = 255;
+			i = i + 1 >> 0;
+		}
+		i$1 = 0;
+		while (i$1 < encoder$1.length) {
+			e.decodeMap[encoder$1.charCodeAt(i$1)] = (i$1 << 24 >>> 24);
+			i$1 = i$1 + 1 >> 0;
+		}
+		return e;
+	};
+	Encoding.Ptr.prototype.Encode = function(dst, src) {
+		var enc, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _ref, _lhs, _index$8, _slice$8, _index$9, _slice$9, _index$10, _slice$10, _index$11, _lhs$1, _index$12, _slice$11, _index$13, _slice$12, _index$14, _slice$13, _index$15, _lhs$2, _index$16, _slice$14, _index$17, _slice$15, _index$18, _slice$16, _index$19, _lhs$3, _index$20, _slice$17, _index$21, _slice$18, _index$22, _slice$19, _index$23, _lhs$4, _index$24, _slice$20, _index$25, _slice$21, _index$26, _slice$22, _index$27, _lhs$5, _index$28, _slice$23, _index$29, _slice$24, _index$30, _slice$25, _index$31, _lhs$6, _index$32, _slice$26, _index$33, _slice$27, _index$34, _slice$28, _index$35, _lhs$7, _index$36, _slice$29, _index$37, _slice$30, _index$38, _slice$31, _index$39, _lhs$8, _index$40, _slice$32, _index$41, _slice$33, _index$42, _slice$34, _index$43, _lhs$9, _index$44, _slice$35, _index$45, _slice$36, _index$46, _slice$37, _index$47, _lhs$10, _index$48, _slice$38, _index$49, _slice$39, _index$50, _slice$40, _index$51, _lhs$11, _index$52, _slice$41, _index$53, _slice$42, _index$54, _slice$43, _index$55, _lhs$12, _index$56, _slice$44, _index$57, _slice$45, _index$58, _slice$46, _index$59, _lhs$13, _index$60, _slice$47, _index$61, _slice$48, _index$62, _slice$49, _index$63, _lhs$14, _index$64, _slice$50, _index$65, _slice$51, _index$66, _slice$52, _index$67, _lhs$15, _index$68, _slice$53, _index$69, _slice$54, _index$70, _slice$55, _index$71, _lhs$16, _index$72, _slice$56, _index$73, _slice$57, _index$74, _slice$58, _index$75, _lhs$17, _index$76, _slice$59, _index$77, _slice$60, _index$78, _slice$61, _index$79, _lhs$18, _index$80, _slice$62, _index$81, _slice$63, _index$82, _slice$64, _index$83, _lhs$19, _index$84, _slice$65, _index$85, _slice$66, _index$86, _slice$67, _index$87, _lhs$20, _index$88, _slice$68, _index$89, _slice$69, _index$90, _slice$70, _index$91, _lhs$21, _index$92, _slice$71, _index$93, _slice$72, _index$94, _slice$73, _index$95, _lhs$22, _index$96, _slice$74, _index$97, _slice$75, _index$98, _slice$76, _index$99, _lhs$23, _index$100, _slice$77, _index$101, _slice$78, _index$102, _slice$79, _index$103, _lhs$24, _index$104, _slice$80, _index$105, _slice$81, _index$106, _slice$82, _index$107, _lhs$25, _index$108, _slice$83, _index$109, _slice$84, _index$110, _slice$85, _index$111, _lhs$26, _index$112, _slice$86, _index$113, _slice$87, _index$114, _slice$88, _index$115, _lhs$27, _index$116, _slice$89, _index$117, _slice$90, _index$118, _slice$91, _index$119, _lhs$28, _index$120, _slice$92, _index$121, _slice$93, _index$122, _slice$94, _index$123, _lhs$29, _index$124, _slice$95, _index$125, _slice$96, _index$126, _slice$97, _index$127, _lhs$30, _index$128, _slice$98, _index$129, _slice$99, _index$130, _slice$100, _index$131, _lhs$31, _index$132, _slice$101, _index$133, _slice$102, _index$134, _slice$103, _index$135, _lhs$32, _index$136, _slice$104, _index$137, _slice$105, _index$138, _slice$106, _index$139, _lhs$33, _index$140, _slice$107, _index$141, _slice$108, _index$142, _slice$109, _index$143, _lhs$34, _index$144, _slice$110, _index$145, _slice$111, _index$146, _slice$112, _index$147, _lhs$35, _index$148, _slice$113, _index$149, _slice$114, _index$150, _slice$115, _index$151, j, _slice$116, _index$152, _slice$117, _index$153, _slice$118, _index$154, _slice$119, _index$155, _slice$120, _index$156, _slice$121, _index$157, _slice$122, _index$158, _slice$123, _index$159;
+		enc = this;
+		if (src.length === 0) {
+			return;
+		}
+		while (src.length > 0) {
+			_slice = dst, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+			_slice$1 = dst, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
+			_slice$2 = dst, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 0) : go$throwRuntimeError("index out of range");
+			_slice$3 = dst, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = 0) : go$throwRuntimeError("index out of range");
+			_slice$4 = dst, _index$4 = 4, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = 0) : go$throwRuntimeError("index out of range");
+			_slice$5 = dst, _index$5 = 5, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = 0) : go$throwRuntimeError("index out of range");
+			_slice$6 = dst, _index$6 = 6, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = 0) : go$throwRuntimeError("index out of range");
+			_slice$7 = dst, _index$7 = 7, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = 0) : go$throwRuntimeError("index out of range");
+			_ref = src.length;
+			if (_ref === 4) {
+				_lhs = dst, _index$8 = 6, _slice$10 = _lhs, _index$11 = _index$8, (_index$11 >= 0 && _index$11 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$11] = ((_slice$8 = _lhs, _index$9 = _index$8, (_index$9 >= 0 && _index$9 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$9] : go$throwRuntimeError("index out of range")) | ((((((_slice$9 = src, _index$10 = 3, (_index$10 >= 0 && _index$10 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$10] : go$throwRuntimeError("index out of range")) << 3 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$1 = dst, _index$12 = 5, _slice$13 = _lhs$1, _index$15 = _index$12, (_index$15 >= 0 && _index$15 < _slice$13.length) ? (_slice$13.array[_slice$13.offset + _index$15] = ((_slice$11 = _lhs$1, _index$13 = _index$12, (_index$13 >= 0 && _index$13 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$13] : go$throwRuntimeError("index out of range")) | ((((((_slice$12 = src, _index$14 = 3, (_index$14 >= 0 && _index$14 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$14] : go$throwRuntimeError("index out of range")) >>> 2 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$2 = dst, _index$16 = 4, _slice$16 = _lhs$2, _index$19 = _index$16, (_index$19 >= 0 && _index$19 < _slice$16.length) ? (_slice$16.array[_slice$16.offset + _index$19] = ((_slice$14 = _lhs$2, _index$17 = _index$16, (_index$17 >= 0 && _index$17 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$17] : go$throwRuntimeError("index out of range")) | (((_slice$15 = src, _index$18 = 3, (_index$18 >= 0 && _index$18 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$18] : go$throwRuntimeError("index out of range")) >>> 7 << 24 >>> 24))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$3 = dst, _index$20 = 4, _slice$19 = _lhs$3, _index$23 = _index$20, (_index$23 >= 0 && _index$23 < _slice$19.length) ? (_slice$19.array[_slice$19.offset + _index$23] = ((_slice$17 = _lhs$3, _index$21 = _index$20, (_index$21 >= 0 && _index$21 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$21] : go$throwRuntimeError("index out of range")) | ((((((_slice$18 = src, _index$22 = 2, (_index$22 >= 0 && _index$22 < _slice$18.length) ? _slice$18.array[_slice$18.offset + _index$22] : go$throwRuntimeError("index out of range")) << 1 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$4 = dst, _index$24 = 3, _slice$22 = _lhs$4, _index$27 = _index$24, (_index$27 >= 0 && _index$27 < _slice$22.length) ? (_slice$22.array[_slice$22.offset + _index$27] = ((_slice$20 = _lhs$4, _index$25 = _index$24, (_index$25 >= 0 && _index$25 < _slice$20.length) ? _slice$20.array[_slice$20.offset + _index$25] : go$throwRuntimeError("index out of range")) | ((((((_slice$21 = src, _index$26 = 2, (_index$26 >= 0 && _index$26 < _slice$21.length) ? _slice$21.array[_slice$21.offset + _index$26] : go$throwRuntimeError("index out of range")) >>> 4 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$5 = dst, _index$28 = 3, _slice$25 = _lhs$5, _index$31 = _index$28, (_index$31 >= 0 && _index$31 < _slice$25.length) ? (_slice$25.array[_slice$25.offset + _index$31] = ((_slice$23 = _lhs$5, _index$29 = _index$28, (_index$29 >= 0 && _index$29 < _slice$23.length) ? _slice$23.array[_slice$23.offset + _index$29] : go$throwRuntimeError("index out of range")) | ((((((_slice$24 = src, _index$30 = 1, (_index$30 >= 0 && _index$30 < _slice$24.length) ? _slice$24.array[_slice$24.offset + _index$30] : go$throwRuntimeError("index out of range")) << 4 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$6 = dst, _index$32 = 2, _slice$28 = _lhs$6, _index$35 = _index$32, (_index$35 >= 0 && _index$35 < _slice$28.length) ? (_slice$28.array[_slice$28.offset + _index$35] = ((_slice$26 = _lhs$6, _index$33 = _index$32, (_index$33 >= 0 && _index$33 < _slice$26.length) ? _slice$26.array[_slice$26.offset + _index$33] : go$throwRuntimeError("index out of range")) | ((((((_slice$27 = src, _index$34 = 1, (_index$34 >= 0 && _index$34 < _slice$27.length) ? _slice$27.array[_slice$27.offset + _index$34] : go$throwRuntimeError("index out of range")) >>> 1 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$7 = dst, _index$36 = 1, _slice$31 = _lhs$7, _index$39 = _index$36, (_index$39 >= 0 && _index$39 < _slice$31.length) ? (_slice$31.array[_slice$31.offset + _index$39] = ((_slice$29 = _lhs$7, _index$37 = _index$36, (_index$37 >= 0 && _index$37 < _slice$29.length) ? _slice$29.array[_slice$29.offset + _index$37] : go$throwRuntimeError("index out of range")) | ((((((_slice$30 = src, _index$38 = 1, (_index$38 >= 0 && _index$38 < _slice$30.length) ? _slice$30.array[_slice$30.offset + _index$38] : go$throwRuntimeError("index out of range")) >>> 6 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$8 = dst, _index$40 = 1, _slice$34 = _lhs$8, _index$43 = _index$40, (_index$43 >= 0 && _index$43 < _slice$34.length) ? (_slice$34.array[_slice$34.offset + _index$43] = ((_slice$32 = _lhs$8, _index$41 = _index$40, (_index$41 >= 0 && _index$41 < _slice$32.length) ? _slice$32.array[_slice$32.offset + _index$41] : go$throwRuntimeError("index out of range")) | ((((((_slice$33 = src, _index$42 = 0, (_index$42 >= 0 && _index$42 < _slice$33.length) ? _slice$33.array[_slice$33.offset + _index$42] : go$throwRuntimeError("index out of range")) << 2 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$9 = dst, _index$44 = 0, _slice$37 = _lhs$9, _index$47 = _index$44, (_index$47 >= 0 && _index$47 < _slice$37.length) ? (_slice$37.array[_slice$37.offset + _index$47] = ((_slice$35 = _lhs$9, _index$45 = _index$44, (_index$45 >= 0 && _index$45 < _slice$35.length) ? _slice$35.array[_slice$35.offset + _index$45] : go$throwRuntimeError("index out of range")) | (((_slice$36 = src, _index$46 = 0, (_index$46 >= 0 && _index$46 < _slice$36.length) ? _slice$36.array[_slice$36.offset + _index$46] : go$throwRuntimeError("index out of range")) >>> 3 << 24 >>> 24))) >>> 0) : go$throwRuntimeError("index out of range");
+			} else if (_ref === 3) {
+				_lhs$10 = dst, _index$48 = 4, _slice$40 = _lhs$10, _index$51 = _index$48, (_index$51 >= 0 && _index$51 < _slice$40.length) ? (_slice$40.array[_slice$40.offset + _index$51] = ((_slice$38 = _lhs$10, _index$49 = _index$48, (_index$49 >= 0 && _index$49 < _slice$38.length) ? _slice$38.array[_slice$38.offset + _index$49] : go$throwRuntimeError("index out of range")) | ((((((_slice$39 = src, _index$50 = 2, (_index$50 >= 0 && _index$50 < _slice$39.length) ? _slice$39.array[_slice$39.offset + _index$50] : go$throwRuntimeError("index out of range")) << 1 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$11 = dst, _index$52 = 3, _slice$43 = _lhs$11, _index$55 = _index$52, (_index$55 >= 0 && _index$55 < _slice$43.length) ? (_slice$43.array[_slice$43.offset + _index$55] = ((_slice$41 = _lhs$11, _index$53 = _index$52, (_index$53 >= 0 && _index$53 < _slice$41.length) ? _slice$41.array[_slice$41.offset + _index$53] : go$throwRuntimeError("index out of range")) | ((((((_slice$42 = src, _index$54 = 2, (_index$54 >= 0 && _index$54 < _slice$42.length) ? _slice$42.array[_slice$42.offset + _index$54] : go$throwRuntimeError("index out of range")) >>> 4 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$12 = dst, _index$56 = 3, _slice$46 = _lhs$12, _index$59 = _index$56, (_index$59 >= 0 && _index$59 < _slice$46.length) ? (_slice$46.array[_slice$46.offset + _index$59] = ((_slice$44 = _lhs$12, _index$57 = _index$56, (_index$57 >= 0 && _index$57 < _slice$44.length) ? _slice$44.array[_slice$44.offset + _index$57] : go$throwRuntimeError("index out of range")) | ((((((_slice$45 = src, _index$58 = 1, (_index$58 >= 0 && _index$58 < _slice$45.length) ? _slice$45.array[_slice$45.offset + _index$58] : go$throwRuntimeError("index out of range")) << 4 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$13 = dst, _index$60 = 2, _slice$49 = _lhs$13, _index$63 = _index$60, (_index$63 >= 0 && _index$63 < _slice$49.length) ? (_slice$49.array[_slice$49.offset + _index$63] = ((_slice$47 = _lhs$13, _index$61 = _index$60, (_index$61 >= 0 && _index$61 < _slice$47.length) ? _slice$47.array[_slice$47.offset + _index$61] : go$throwRuntimeError("index out of range")) | ((((((_slice$48 = src, _index$62 = 1, (_index$62 >= 0 && _index$62 < _slice$48.length) ? _slice$48.array[_slice$48.offset + _index$62] : go$throwRuntimeError("index out of range")) >>> 1 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$14 = dst, _index$64 = 1, _slice$52 = _lhs$14, _index$67 = _index$64, (_index$67 >= 0 && _index$67 < _slice$52.length) ? (_slice$52.array[_slice$52.offset + _index$67] = ((_slice$50 = _lhs$14, _index$65 = _index$64, (_index$65 >= 0 && _index$65 < _slice$50.length) ? _slice$50.array[_slice$50.offset + _index$65] : go$throwRuntimeError("index out of range")) | ((((((_slice$51 = src, _index$66 = 1, (_index$66 >= 0 && _index$66 < _slice$51.length) ? _slice$51.array[_slice$51.offset + _index$66] : go$throwRuntimeError("index out of range")) >>> 6 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$15 = dst, _index$68 = 1, _slice$55 = _lhs$15, _index$71 = _index$68, (_index$71 >= 0 && _index$71 < _slice$55.length) ? (_slice$55.array[_slice$55.offset + _index$71] = ((_slice$53 = _lhs$15, _index$69 = _index$68, (_index$69 >= 0 && _index$69 < _slice$53.length) ? _slice$53.array[_slice$53.offset + _index$69] : go$throwRuntimeError("index out of range")) | ((((((_slice$54 = src, _index$70 = 0, (_index$70 >= 0 && _index$70 < _slice$54.length) ? _slice$54.array[_slice$54.offset + _index$70] : go$throwRuntimeError("index out of range")) << 2 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$16 = dst, _index$72 = 0, _slice$58 = _lhs$16, _index$75 = _index$72, (_index$75 >= 0 && _index$75 < _slice$58.length) ? (_slice$58.array[_slice$58.offset + _index$75] = ((_slice$56 = _lhs$16, _index$73 = _index$72, (_index$73 >= 0 && _index$73 < _slice$56.length) ? _slice$56.array[_slice$56.offset + _index$73] : go$throwRuntimeError("index out of range")) | (((_slice$57 = src, _index$74 = 0, (_index$74 >= 0 && _index$74 < _slice$57.length) ? _slice$57.array[_slice$57.offset + _index$74] : go$throwRuntimeError("index out of range")) >>> 3 << 24 >>> 24))) >>> 0) : go$throwRuntimeError("index out of range");
+			} else if (_ref === 2) {
+				_lhs$17 = dst, _index$76 = 3, _slice$61 = _lhs$17, _index$79 = _index$76, (_index$79 >= 0 && _index$79 < _slice$61.length) ? (_slice$61.array[_slice$61.offset + _index$79] = ((_slice$59 = _lhs$17, _index$77 = _index$76, (_index$77 >= 0 && _index$77 < _slice$59.length) ? _slice$59.array[_slice$59.offset + _index$77] : go$throwRuntimeError("index out of range")) | ((((((_slice$60 = src, _index$78 = 1, (_index$78 >= 0 && _index$78 < _slice$60.length) ? _slice$60.array[_slice$60.offset + _index$78] : go$throwRuntimeError("index out of range")) << 4 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$18 = dst, _index$80 = 2, _slice$64 = _lhs$18, _index$83 = _index$80, (_index$83 >= 0 && _index$83 < _slice$64.length) ? (_slice$64.array[_slice$64.offset + _index$83] = ((_slice$62 = _lhs$18, _index$81 = _index$80, (_index$81 >= 0 && _index$81 < _slice$62.length) ? _slice$62.array[_slice$62.offset + _index$81] : go$throwRuntimeError("index out of range")) | ((((((_slice$63 = src, _index$82 = 1, (_index$82 >= 0 && _index$82 < _slice$63.length) ? _slice$63.array[_slice$63.offset + _index$82] : go$throwRuntimeError("index out of range")) >>> 1 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$19 = dst, _index$84 = 1, _slice$67 = _lhs$19, _index$87 = _index$84, (_index$87 >= 0 && _index$87 < _slice$67.length) ? (_slice$67.array[_slice$67.offset + _index$87] = ((_slice$65 = _lhs$19, _index$85 = _index$84, (_index$85 >= 0 && _index$85 < _slice$65.length) ? _slice$65.array[_slice$65.offset + _index$85] : go$throwRuntimeError("index out of range")) | ((((((_slice$66 = src, _index$86 = 1, (_index$86 >= 0 && _index$86 < _slice$66.length) ? _slice$66.array[_slice$66.offset + _index$86] : go$throwRuntimeError("index out of range")) >>> 6 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$20 = dst, _index$88 = 1, _slice$70 = _lhs$20, _index$91 = _index$88, (_index$91 >= 0 && _index$91 < _slice$70.length) ? (_slice$70.array[_slice$70.offset + _index$91] = ((_slice$68 = _lhs$20, _index$89 = _index$88, (_index$89 >= 0 && _index$89 < _slice$68.length) ? _slice$68.array[_slice$68.offset + _index$89] : go$throwRuntimeError("index out of range")) | ((((((_slice$69 = src, _index$90 = 0, (_index$90 >= 0 && _index$90 < _slice$69.length) ? _slice$69.array[_slice$69.offset + _index$90] : go$throwRuntimeError("index out of range")) << 2 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$21 = dst, _index$92 = 0, _slice$73 = _lhs$21, _index$95 = _index$92, (_index$95 >= 0 && _index$95 < _slice$73.length) ? (_slice$73.array[_slice$73.offset + _index$95] = ((_slice$71 = _lhs$21, _index$93 = _index$92, (_index$93 >= 0 && _index$93 < _slice$71.length) ? _slice$71.array[_slice$71.offset + _index$93] : go$throwRuntimeError("index out of range")) | (((_slice$72 = src, _index$94 = 0, (_index$94 >= 0 && _index$94 < _slice$72.length) ? _slice$72.array[_slice$72.offset + _index$94] : go$throwRuntimeError("index out of range")) >>> 3 << 24 >>> 24))) >>> 0) : go$throwRuntimeError("index out of range");
+			} else if (_ref === 1) {
+				_lhs$22 = dst, _index$96 = 1, _slice$76 = _lhs$22, _index$99 = _index$96, (_index$99 >= 0 && _index$99 < _slice$76.length) ? (_slice$76.array[_slice$76.offset + _index$99] = ((_slice$74 = _lhs$22, _index$97 = _index$96, (_index$97 >= 0 && _index$97 < _slice$74.length) ? _slice$74.array[_slice$74.offset + _index$97] : go$throwRuntimeError("index out of range")) | ((((((_slice$75 = src, _index$98 = 0, (_index$98 >= 0 && _index$98 < _slice$75.length) ? _slice$75.array[_slice$75.offset + _index$98] : go$throwRuntimeError("index out of range")) << 2 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$23 = dst, _index$100 = 0, _slice$79 = _lhs$23, _index$103 = _index$100, (_index$103 >= 0 && _index$103 < _slice$79.length) ? (_slice$79.array[_slice$79.offset + _index$103] = ((_slice$77 = _lhs$23, _index$101 = _index$100, (_index$101 >= 0 && _index$101 < _slice$77.length) ? _slice$77.array[_slice$77.offset + _index$101] : go$throwRuntimeError("index out of range")) | (((_slice$78 = src, _index$102 = 0, (_index$102 >= 0 && _index$102 < _slice$78.length) ? _slice$78.array[_slice$78.offset + _index$102] : go$throwRuntimeError("index out of range")) >>> 3 << 24 >>> 24))) >>> 0) : go$throwRuntimeError("index out of range");
+			} else {
+				_lhs$24 = dst, _index$104 = 7, _slice$82 = _lhs$24, _index$107 = _index$104, (_index$107 >= 0 && _index$107 < _slice$82.length) ? (_slice$82.array[_slice$82.offset + _index$107] = ((_slice$80 = _lhs$24, _index$105 = _index$104, (_index$105 >= 0 && _index$105 < _slice$80.length) ? _slice$80.array[_slice$80.offset + _index$105] : go$throwRuntimeError("index out of range")) | ((((_slice$81 = src, _index$106 = 4, (_index$106 >= 0 && _index$106 < _slice$81.length) ? _slice$81.array[_slice$81.offset + _index$106] : go$throwRuntimeError("index out of range")) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$25 = dst, _index$108 = 6, _slice$85 = _lhs$25, _index$111 = _index$108, (_index$111 >= 0 && _index$111 < _slice$85.length) ? (_slice$85.array[_slice$85.offset + _index$111] = ((_slice$83 = _lhs$25, _index$109 = _index$108, (_index$109 >= 0 && _index$109 < _slice$83.length) ? _slice$83.array[_slice$83.offset + _index$109] : go$throwRuntimeError("index out of range")) | (((_slice$84 = src, _index$110 = 4, (_index$110 >= 0 && _index$110 < _slice$84.length) ? _slice$84.array[_slice$84.offset + _index$110] : go$throwRuntimeError("index out of range")) >>> 5 << 24 >>> 24))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$26 = dst, _index$112 = 6, _slice$88 = _lhs$26, _index$115 = _index$112, (_index$115 >= 0 && _index$115 < _slice$88.length) ? (_slice$88.array[_slice$88.offset + _index$115] = ((_slice$86 = _lhs$26, _index$113 = _index$112, (_index$113 >= 0 && _index$113 < _slice$86.length) ? _slice$86.array[_slice$86.offset + _index$113] : go$throwRuntimeError("index out of range")) | ((((((_slice$87 = src, _index$114 = 3, (_index$114 >= 0 && _index$114 < _slice$87.length) ? _slice$87.array[_slice$87.offset + _index$114] : go$throwRuntimeError("index out of range")) << 3 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$27 = dst, _index$116 = 5, _slice$91 = _lhs$27, _index$119 = _index$116, (_index$119 >= 0 && _index$119 < _slice$91.length) ? (_slice$91.array[_slice$91.offset + _index$119] = ((_slice$89 = _lhs$27, _index$117 = _index$116, (_index$117 >= 0 && _index$117 < _slice$89.length) ? _slice$89.array[_slice$89.offset + _index$117] : go$throwRuntimeError("index out of range")) | ((((((_slice$90 = src, _index$118 = 3, (_index$118 >= 0 && _index$118 < _slice$90.length) ? _slice$90.array[_slice$90.offset + _index$118] : go$throwRuntimeError("index out of range")) >>> 2 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$28 = dst, _index$120 = 4, _slice$94 = _lhs$28, _index$123 = _index$120, (_index$123 >= 0 && _index$123 < _slice$94.length) ? (_slice$94.array[_slice$94.offset + _index$123] = ((_slice$92 = _lhs$28, _index$121 = _index$120, (_index$121 >= 0 && _index$121 < _slice$92.length) ? _slice$92.array[_slice$92.offset + _index$121] : go$throwRuntimeError("index out of range")) | (((_slice$93 = src, _index$122 = 3, (_index$122 >= 0 && _index$122 < _slice$93.length) ? _slice$93.array[_slice$93.offset + _index$122] : go$throwRuntimeError("index out of range")) >>> 7 << 24 >>> 24))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$29 = dst, _index$124 = 4, _slice$97 = _lhs$29, _index$127 = _index$124, (_index$127 >= 0 && _index$127 < _slice$97.length) ? (_slice$97.array[_slice$97.offset + _index$127] = ((_slice$95 = _lhs$29, _index$125 = _index$124, (_index$125 >= 0 && _index$125 < _slice$95.length) ? _slice$95.array[_slice$95.offset + _index$125] : go$throwRuntimeError("index out of range")) | ((((((_slice$96 = src, _index$126 = 2, (_index$126 >= 0 && _index$126 < _slice$96.length) ? _slice$96.array[_slice$96.offset + _index$126] : go$throwRuntimeError("index out of range")) << 1 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$30 = dst, _index$128 = 3, _slice$100 = _lhs$30, _index$131 = _index$128, (_index$131 >= 0 && _index$131 < _slice$100.length) ? (_slice$100.array[_slice$100.offset + _index$131] = ((_slice$98 = _lhs$30, _index$129 = _index$128, (_index$129 >= 0 && _index$129 < _slice$98.length) ? _slice$98.array[_slice$98.offset + _index$129] : go$throwRuntimeError("index out of range")) | ((((((_slice$99 = src, _index$130 = 2, (_index$130 >= 0 && _index$130 < _slice$99.length) ? _slice$99.array[_slice$99.offset + _index$130] : go$throwRuntimeError("index out of range")) >>> 4 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$31 = dst, _index$132 = 3, _slice$103 = _lhs$31, _index$135 = _index$132, (_index$135 >= 0 && _index$135 < _slice$103.length) ? (_slice$103.array[_slice$103.offset + _index$135] = ((_slice$101 = _lhs$31, _index$133 = _index$132, (_index$133 >= 0 && _index$133 < _slice$101.length) ? _slice$101.array[_slice$101.offset + _index$133] : go$throwRuntimeError("index out of range")) | ((((((_slice$102 = src, _index$134 = 1, (_index$134 >= 0 && _index$134 < _slice$102.length) ? _slice$102.array[_slice$102.offset + _index$134] : go$throwRuntimeError("index out of range")) << 4 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$32 = dst, _index$136 = 2, _slice$106 = _lhs$32, _index$139 = _index$136, (_index$139 >= 0 && _index$139 < _slice$106.length) ? (_slice$106.array[_slice$106.offset + _index$139] = ((_slice$104 = _lhs$32, _index$137 = _index$136, (_index$137 >= 0 && _index$137 < _slice$104.length) ? _slice$104.array[_slice$104.offset + _index$137] : go$throwRuntimeError("index out of range")) | ((((((_slice$105 = src, _index$138 = 1, (_index$138 >= 0 && _index$138 < _slice$105.length) ? _slice$105.array[_slice$105.offset + _index$138] : go$throwRuntimeError("index out of range")) >>> 1 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$33 = dst, _index$140 = 1, _slice$109 = _lhs$33, _index$143 = _index$140, (_index$143 >= 0 && _index$143 < _slice$109.length) ? (_slice$109.array[_slice$109.offset + _index$143] = ((_slice$107 = _lhs$33, _index$141 = _index$140, (_index$141 >= 0 && _index$141 < _slice$107.length) ? _slice$107.array[_slice$107.offset + _index$141] : go$throwRuntimeError("index out of range")) | ((((((_slice$108 = src, _index$142 = 1, (_index$142 >= 0 && _index$142 < _slice$108.length) ? _slice$108.array[_slice$108.offset + _index$142] : go$throwRuntimeError("index out of range")) >>> 6 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$34 = dst, _index$144 = 1, _slice$112 = _lhs$34, _index$147 = _index$144, (_index$147 >= 0 && _index$147 < _slice$112.length) ? (_slice$112.array[_slice$112.offset + _index$147] = ((_slice$110 = _lhs$34, _index$145 = _index$144, (_index$145 >= 0 && _index$145 < _slice$110.length) ? _slice$110.array[_slice$110.offset + _index$145] : go$throwRuntimeError("index out of range")) | ((((((_slice$111 = src, _index$146 = 0, (_index$146 >= 0 && _index$146 < _slice$111.length) ? _slice$111.array[_slice$111.offset + _index$146] : go$throwRuntimeError("index out of range")) << 2 << 24 >>> 24)) & 31) >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
+				_lhs$35 = dst, _index$148 = 0, _slice$115 = _lhs$35, _index$151 = _index$148, (_index$151 >= 0 && _index$151 < _slice$115.length) ? (_slice$115.array[_slice$115.offset + _index$151] = ((_slice$113 = _lhs$35, _index$149 = _index$148, (_index$149 >= 0 && _index$149 < _slice$113.length) ? _slice$113.array[_slice$113.offset + _index$149] : go$throwRuntimeError("index out of range")) | (((_slice$114 = src, _index$150 = 0, (_index$150 >= 0 && _index$150 < _slice$114.length) ? _slice$114.array[_slice$114.offset + _index$150] : go$throwRuntimeError("index out of range")) >>> 3 << 24 >>> 24))) >>> 0) : go$throwRuntimeError("index out of range");
+			}
+			j = 0;
+			while (j < 8) {
+				_slice$117 = dst, _index$153 = j, (_index$153 >= 0 && _index$153 < _slice$117.length) ? (_slice$117.array[_slice$117.offset + _index$153] = enc.encode.charCodeAt((_slice$116 = dst, _index$152 = j, (_index$152 >= 0 && _index$152 < _slice$116.length) ? _slice$116.array[_slice$116.offset + _index$152] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
+				j = j + 1 >> 0;
+			}
+			if (src.length < 5) {
+				_slice$118 = dst, _index$154 = 7, (_index$154 >= 0 && _index$154 < _slice$118.length) ? (_slice$118.array[_slice$118.offset + _index$154] = 61) : go$throwRuntimeError("index out of range");
+				if (src.length < 4) {
+					_slice$119 = dst, _index$155 = 6, (_index$155 >= 0 && _index$155 < _slice$119.length) ? (_slice$119.array[_slice$119.offset + _index$155] = 61) : go$throwRuntimeError("index out of range");
+					_slice$120 = dst, _index$156 = 5, (_index$156 >= 0 && _index$156 < _slice$120.length) ? (_slice$120.array[_slice$120.offset + _index$156] = 61) : go$throwRuntimeError("index out of range");
+					if (src.length < 3) {
+						_slice$121 = dst, _index$157 = 4, (_index$157 >= 0 && _index$157 < _slice$121.length) ? (_slice$121.array[_slice$121.offset + _index$157] = 61) : go$throwRuntimeError("index out of range");
+						if (src.length < 2) {
+							_slice$122 = dst, _index$158 = 3, (_index$158 >= 0 && _index$158 < _slice$122.length) ? (_slice$122.array[_slice$122.offset + _index$158] = 61) : go$throwRuntimeError("index out of range");
+							_slice$123 = dst, _index$159 = 2, (_index$159 >= 0 && _index$159 < _slice$123.length) ? (_slice$123.array[_slice$123.offset + _index$159] = 61) : go$throwRuntimeError("index out of range");
+						}
+					}
+				}
+				break;
+			}
+			src = go$subslice(src, 5);
+			dst = go$subslice(dst, 8);
+		}
+	};
+	Encoding.prototype.Encode = function(dst, src) { return this.go$val.Encode(dst, src); };
+	Encoding.Ptr.prototype.EncodeToString = function(src) {
+		var enc, buf;
+		enc = this;
+		buf = (go$sliceType(Go$Uint8)).make(enc.EncodedLen(src.length), 0, function() { return 0; });
+		enc.Encode(buf, src);
+		return go$bytesToString(buf);
+	};
+	Encoding.prototype.EncodeToString = function(src) { return this.go$val.EncodeToString(src); };
+	encoder.Ptr.prototype.Write = function(p) {
+		var n, err, e, _tuple, i, _slice, _index, _tuple$1, _tuple$2, nn, _r, _tuple$3, x, _q, x$1, _tuple$4, i$1, _slice$1, _index$1;
+		n = 0;
+		err = null;
+		e = this;
+		if (!(go$interfaceIsEqual(e.err, null))) {
+			_tuple = [0, e.err], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if (e.nbuf > 0) {
+			i = 0;
+			i = 0;
+			while (i < p.length && e.nbuf < 5) {
+				e.buf[e.nbuf] = (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				e.nbuf = e.nbuf + 1 >> 0;
+				i = i + 1 >> 0;
+			}
+			n = n + (i) >> 0;
+			p = go$subslice(p, i);
+			if (e.nbuf < 5) {
+				return [n, err];
+			}
+			e.enc.Encode(go$subslice(new (go$sliceType(Go$Uint8))(e.out), 0), go$subslice(new (go$sliceType(Go$Uint8))(e.buf), 0));
+			if (_tuple$1 = e.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(e.out), 0, 8)), e.err = _tuple$1[1], !(go$interfaceIsEqual(e.err, null))) {
+				_tuple$2 = [n, e.err], n = _tuple$2[0], err = _tuple$2[1];
+				return [n, err];
+			}
+			e.nbuf = 0;
+		}
+		while (p.length >= 5) {
+			nn = 640;
+			if (nn > p.length) {
+				nn = p.length;
+			}
+			nn = nn - ((_r = nn % 5, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"))) >> 0;
+			if (nn > 0) {
+				e.enc.Encode(go$subslice(new (go$sliceType(Go$Uint8))(e.out), 0), go$subslice(p, 0, nn));
+				if (_tuple$3 = e.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(e.out), 0, (x = (_q = nn / 5, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), x$1 = 8, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0))), e.err = _tuple$3[1], !(go$interfaceIsEqual(e.err, null))) {
+					_tuple$4 = [n, e.err], n = _tuple$4[0], err = _tuple$4[1];
+					return [n, err];
+				}
+			}
+			n = n + (nn) >> 0;
+			p = go$subslice(p, nn);
+		}
+		i$1 = 0;
+		while (i$1 < p.length) {
+			e.buf[i$1] = (_slice$1 = p, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			i$1 = i$1 + 1 >> 0;
+		}
+		e.nbuf = p.length;
+		n = n + (p.length) >> 0;
+		return [n, err];
+	};
+	encoder.prototype.Write = function(p) { return this.go$val.Write(p); };
+	encoder.Ptr.prototype.Close = function() {
+		var e, _tuple;
+		e = this;
+		if (go$interfaceIsEqual(e.err, null) && e.nbuf > 0) {
+			e.enc.Encode(go$subslice(new (go$sliceType(Go$Uint8))(e.out), 0), go$subslice(new (go$sliceType(Go$Uint8))(e.buf), 0, e.nbuf));
+			e.nbuf = 0;
+			_tuple = e.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(e.out), 0, 8)), e.err = _tuple[1];
+		}
+		return e.err;
+	};
+	encoder.prototype.Close = function() { return this.go$val.Close(); };
+	var NewEncoder = go$pkg.NewEncoder = function(enc, w) {
+		return new encoder.Ptr(null, enc, w, go$makeNativeArray("Uint8", 5, function() { return 0; }), 0, go$makeNativeArray("Uint8", 1024, function() { return 0; }));
+	};
+	Encoding.Ptr.prototype.EncodedLen = function(n) {
+		var enc, x, _q, x$1;
+		enc = this;
+		return (x = (_q = ((n + 4 >> 0)) / 5, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), x$1 = 8, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+	};
+	Encoding.prototype.EncodedLen = function(n) { return this.go$val.EncodedLen(n); };
+	CorruptInputError.prototype.Error = function() {
+		var e;
+		e = this;
+		return "illegal base32 data at input byte " + strconv.FormatInt(new Go$Int64(e.high, e.low), 10);
+	};
+	go$ptrType(CorruptInputError).prototype.Error = function() { return this.go$get().Error(); };
+	Encoding.Ptr.prototype.decode = function(dst, src) {
+		var n, end, err, enc, olen, dbuf, dlen, j, _tuple, _slice, _index, in$1, _tuple$1, k, _slice$1, _index$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _ref, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _ref$1, _tuple$6;
+		n = 0;
+		end = false;
+		err = null;
+		enc = this;
+		olen = src.length;
+		while (src.length > 0 && !end) {
+			dbuf = go$makeNativeArray("Uint8", 8, function() { return 0; });
+			dlen = 8;
+			j = 0;
+			while (j < 8) {
+				if (src.length === 0) {
+					_tuple = [n, false, new CorruptInputError(0, ((olen - src.length >> 0) - j >> 0))], n = _tuple[0], end = _tuple[1], err = _tuple[2];
+					return [n, end, err];
+				}
+				in$1 = (_slice = src, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				src = go$subslice(src, 1);
+				if ((in$1 === 61) && j >= 2 && src.length < 8) {
+					if ((src.length + j >> 0) < 7) {
+						_tuple$1 = [n, false, new CorruptInputError(0, olen)], n = _tuple$1[0], end = _tuple$1[1], err = _tuple$1[2];
+						return [n, end, err];
+					}
+					k = 0;
+					while (k < (7 - j >> 0)) {
+						if (src.length > k && !(((_slice$1 = src, _index$1 = k, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 61))) {
+							_tuple$2 = [n, false, new CorruptInputError(0, (((olen - src.length >> 0) + k >> 0) - 1 >> 0))], n = _tuple$2[0], end = _tuple$2[1], err = _tuple$2[2];
+							return [n, end, err];
+						}
+						k = k + 1 >> 0;
+					}
+					_tuple$3 = [j, true], dlen = _tuple$3[0], end = _tuple$3[1];
+					if ((dlen === 1) || (dlen === 3) || (dlen === 6)) {
+						_tuple$4 = [n, false, new CorruptInputError(0, ((olen - src.length >> 0) - 1 >> 0))], n = _tuple$4[0], end = _tuple$4[1], err = _tuple$4[2];
+						return [n, end, err];
+					}
+					break;
+				}
+				dbuf[j] = enc.decodeMap[in$1];
+				if (dbuf[j] === 255) {
+					_tuple$5 = [n, false, new CorruptInputError(0, ((olen - src.length >> 0) - 1 >> 0))], n = _tuple$5[0], end = _tuple$5[1], err = _tuple$5[2];
+					return [n, end, err];
+				}
+				j = j + 1 >> 0;
+			}
+			_ref = dlen;
+			if (_ref === 8) {
+				_slice$2 = dst, _index$2 = 4, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ((dbuf[6] << 5 << 24 >>> 24) | dbuf[7]) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$3 = dst, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = ((((dbuf[4] << 7 << 24 >>> 24) | (dbuf[5] << 2 << 24 >>> 24)) >>> 0) | (dbuf[6] >>> 3 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$4 = dst, _index$4 = 2, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = ((dbuf[3] << 4 << 24 >>> 24) | (dbuf[4] >>> 1 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$5 = dst, _index$5 = 1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = ((((dbuf[1] << 6 << 24 >>> 24) | (dbuf[2] << 1 << 24 >>> 24)) >>> 0) | (dbuf[3] >>> 4 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$6 = dst, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = ((dbuf[0] << 3 << 24 >>> 24) | (dbuf[1] >>> 2 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+			} else if (_ref === 7) {
+				_slice$7 = dst, _index$7 = 3, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = ((((dbuf[4] << 7 << 24 >>> 24) | (dbuf[5] << 2 << 24 >>> 24)) >>> 0) | (dbuf[6] >>> 3 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$8 = dst, _index$8 = 2, (_index$8 >= 0 && _index$8 < _slice$8.length) ? (_slice$8.array[_slice$8.offset + _index$8] = ((dbuf[3] << 4 << 24 >>> 24) | (dbuf[4] >>> 1 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$9 = dst, _index$9 = 1, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = ((((dbuf[1] << 6 << 24 >>> 24) | (dbuf[2] << 1 << 24 >>> 24)) >>> 0) | (dbuf[3] >>> 4 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$10 = dst, _index$10 = 0, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = ((dbuf[0] << 3 << 24 >>> 24) | (dbuf[1] >>> 2 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+			} else if (_ref === 5) {
+				_slice$11 = dst, _index$11 = 2, (_index$11 >= 0 && _index$11 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$11] = ((dbuf[3] << 4 << 24 >>> 24) | (dbuf[4] >>> 1 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$12 = dst, _index$12 = 1, (_index$12 >= 0 && _index$12 < _slice$12.length) ? (_slice$12.array[_slice$12.offset + _index$12] = ((((dbuf[1] << 6 << 24 >>> 24) | (dbuf[2] << 1 << 24 >>> 24)) >>> 0) | (dbuf[3] >>> 4 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$13 = dst, _index$13 = 0, (_index$13 >= 0 && _index$13 < _slice$13.length) ? (_slice$13.array[_slice$13.offset + _index$13] = ((dbuf[0] << 3 << 24 >>> 24) | (dbuf[1] >>> 2 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+			} else if (_ref === 4) {
+				_slice$14 = dst, _index$14 = 1, (_index$14 >= 0 && _index$14 < _slice$14.length) ? (_slice$14.array[_slice$14.offset + _index$14] = ((((dbuf[1] << 6 << 24 >>> 24) | (dbuf[2] << 1 << 24 >>> 24)) >>> 0) | (dbuf[3] >>> 4 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+				_slice$15 = dst, _index$15 = 0, (_index$15 >= 0 && _index$15 < _slice$15.length) ? (_slice$15.array[_slice$15.offset + _index$15] = ((dbuf[0] << 3 << 24 >>> 24) | (dbuf[1] >>> 2 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+			} else if (_ref === 2) {
+				_slice$16 = dst, _index$16 = 0, (_index$16 >= 0 && _index$16 < _slice$16.length) ? (_slice$16.array[_slice$16.offset + _index$16] = ((dbuf[0] << 3 << 24 >>> 24) | (dbuf[1] >>> 2 << 24 >>> 24)) >>> 0) : go$throwRuntimeError("index out of range");
+			}
+			dst = go$subslice(dst, 5);
+			_ref$1 = dlen;
+			if (_ref$1 === 2) {
+				n = n + 1 >> 0;
+			} else if (_ref$1 === 4) {
+				n = n + 2 >> 0;
+			} else if (_ref$1 === 5) {
+				n = n + 3 >> 0;
+			} else if (_ref$1 === 7) {
+				n = n + 4 >> 0;
+			} else if (_ref$1 === 8) {
+				n = n + 5 >> 0;
+			}
+		}
+		_tuple$6 = [n, end, null], n = _tuple$6[0], end = _tuple$6[1], err = _tuple$6[2];
+		return [n, end, err];
+	};
+	Encoding.prototype.decode = function(dst, src) { return this.go$val.decode(dst, src); };
+	Encoding.Ptr.prototype.Decode = function(dst, src) {
+		var n, err, enc, _tuple;
+		n = 0;
+		err = null;
+		enc = this;
+		src = bytes.Map(removeNewlinesMapper, src);
+		_tuple = enc.decode(dst, src), n = _tuple[0], err = _tuple[2];
+		return [n, err];
+	};
+	Encoding.prototype.Decode = function(dst, src) { return this.go$val.Decode(dst, src); };
+	Encoding.Ptr.prototype.DecodeString = function(s) {
+		var enc, dbuf, _tuple, n, err;
+		enc = this;
+		s = strings.Map(removeNewlinesMapper, s);
+		dbuf = (go$sliceType(Go$Uint8)).make(enc.DecodedLen(s.length), 0, function() { return 0; });
+		_tuple = enc.Decode(dbuf, new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), n = _tuple[0], err = _tuple[1];
+		return [go$subslice(dbuf, 0, n), err];
+	};
+	Encoding.prototype.DecodeString = function(s) { return this.go$val.DecodeString(s); };
+	decoder.Ptr.prototype.Read = function(p) {
+		var n, err, d, _tuple, _tuple$1, x, _q, x$1, nn, _tuple$2, _tuple$3, x$2, _q$1, x$3, nr, x$4, _q$2, x$5, nw, _tuple$4, _tuple$5, i, _tuple$6;
+		n = 0;
+		err = null;
+		d = this;
+		if (!(go$interfaceIsEqual(d.err, null))) {
+			_tuple = [0, d.err], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if (d.out.length > 0) {
+			n = go$copySlice(p, d.out);
+			d.out = go$subslice(d.out, n);
+			_tuple$1 = [n, null], n = _tuple$1[0], err = _tuple$1[1];
+			return [n, err];
+		}
+		nn = (x = (_q = p.length / 5, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), x$1 = 8, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		if (nn < 8) {
+			nn = 8;
+		}
+		if (nn > 1024) {
+			nn = 1024;
+		}
+		_tuple$2 = io.ReadAtLeast(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.buf), d.nbuf, nn), 8 - d.nbuf >> 0), nn = _tuple$2[0], d.err = _tuple$2[1];
+		d.nbuf = d.nbuf + (nn) >> 0;
+		if (d.nbuf < 8) {
+			_tuple$3 = [0, d.err], n = _tuple$3[0], err = _tuple$3[1];
+			return [n, err];
+		}
+		nr = (x$2 = (_q$1 = d.nbuf / 8, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")), x$3 = 8, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0);
+		nw = (x$4 = (_q$2 = d.nbuf / 8, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : go$throwRuntimeError("integer divide by zero")), x$5 = 5, (((x$4 >>> 16 << 16) * x$5 >> 0) + (x$4 << 16 >>> 16) * x$5) >> 0);
+		if (nw > p.length) {
+			_tuple$4 = d.enc.decode(go$subslice(new (go$sliceType(Go$Uint8))(d.outbuf), 0), go$subslice(new (go$sliceType(Go$Uint8))(d.buf), 0, nr)), nw = _tuple$4[0], d.end = _tuple$4[1], d.err = _tuple$4[2];
+			d.out = go$subslice(new (go$sliceType(Go$Uint8))(d.outbuf), 0, nw);
+			n = go$copySlice(p, d.out);
+			d.out = go$subslice(d.out, n);
+		} else {
+			_tuple$5 = d.enc.decode(p, go$subslice(new (go$sliceType(Go$Uint8))(d.buf), 0, nr)), n = _tuple$5[0], d.end = _tuple$5[1], d.err = _tuple$5[2];
+		}
+		d.nbuf = d.nbuf - (nr) >> 0;
+		i = 0;
+		while (i < d.nbuf) {
+			d.buf[i] = d.buf[(i + nr >> 0)];
+			i = i + 1 >> 0;
+		}
+		if (go$interfaceIsEqual(d.err, null)) {
+			d.err = err;
+		}
+		_tuple$6 = [n, d.err], n = _tuple$6[0], err = _tuple$6[1];
+		return [n, err];
+	};
+	decoder.prototype.Read = function(p) { return this.go$val.Read(p); };
+	newlineFilteringReader.Ptr.prototype.Read = function(p) {
+		var r, _tuple, n, err, offset, _ref, _i, _slice, _index, b, i, _slice$1, _index$1, _tuple$1;
+		r = this;
+		_tuple = r.wrapped.Read(p), n = _tuple[0], err = _tuple[1];
+		while (n > 0) {
+			offset = 0;
+			_ref = go$subslice(p, 0, n);
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				if (!((b === 13)) && !((b === 10))) {
+					if (!((i === offset))) {
+						_slice$1 = p, _index$1 = offset, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = b) : go$throwRuntimeError("index out of range");
+					}
+					offset = offset + 1 >> 0;
+				}
+			}
+			if (offset > 0) {
+				return [offset, err];
+			}
+			_tuple$1 = r.wrapped.Read(p), n = _tuple$1[0], err = _tuple$1[1];
+		}
+		return [n, err];
+	};
+	newlineFilteringReader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	var NewDecoder = go$pkg.NewDecoder = function(enc, r) {
+		return new decoder.Ptr(null, enc, new newlineFilteringReader.Ptr(r), false, go$makeNativeArray("Uint8", 1024, function() { return 0; }), 0, (go$sliceType(Go$Uint8)).nil, go$makeNativeArray("Uint8", 640, function() { return 0; }));
+	};
+	Encoding.Ptr.prototype.DecodedLen = function(n) {
+		var enc, x, _q, x$1;
+		enc = this;
+		return (x = (_q = n / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), x$1 = 5, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+	};
+	Encoding.prototype.DecodedLen = function(n) { return this.go$val.DecodedLen(n); };
+	var encodeStd = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+	var encodeHex = "0123456789ABCDEFGHIJKLMNOPQRSTUV";
+	go$pkg.StdEncoding = (go$ptrType(Encoding)).nil;
+	go$pkg.HexEncoding = (go$ptrType(Encoding)).nil;
+	var removeNewlinesMapper = go$throwNilPointerError;
+	go$pkg.init = function() {
+		go$pkg.StdEncoding = NewEncoding("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
+		go$pkg.HexEncoding = NewEncoding("0123456789ABCDEFGHIJKLMNOPQRSTUV");
+		removeNewlinesMapper = (function(r) {
+			if ((r === 13) || (r === 10)) {
+				return -1;
+			}
+			return r;
+		});
+	};

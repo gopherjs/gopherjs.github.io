@@ -1,0 +1,265 @@
+0‚4*‚Qpackage fnv
+import hash "hash"
+func @"".New32() (? @"hash".Hash32)
+func @"".New32a() (? @"hash".Hash32)
+func @"".New64() (? @"hash".Hash64)
+func @"".New64a() (? @"hash".Hash64)
+type @"".sum32 uint32
+func (? *@"".sum32) @"".BlockSize() (? int)
+func (? *@"".sum32) @"".Reset() ()
+func (? *@"".sum32) @"".Size() (? int)
+func (? *@"".sum32) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".sum32) @"".Sum32() (? uint32)
+func (? *@"".sum32) @"".Write(@"".data []byte) (? int, ? error)
+type @"".sum32a uint32
+func (? *@"".sum32a) @"".BlockSize() (? int)
+func (? *@"".sum32a) @"".Reset() ()
+func (? *@"".sum32a) @"".Size() (? int)
+func (? *@"".sum32a) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".sum32a) @"".Sum32() (? uint32)
+func (? *@"".sum32a) @"".Write(@"".data []byte) (? int, ? error)
+type @"".sum64 uint64
+func (? *@"".sum64) @"".BlockSize() (? int)
+func (? *@"".sum64) @"".Reset() ()
+func (? *@"".sum64) @"".Size() (? int)
+func (? *@"".sum64) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".sum64) @"".Sum64() (? uint64)
+func (? *@"".sum64) @"".Write(@"".data []byte) (? int, ? error)
+type @"".sum64a uint64
+func (? *@"".sum64a) @"".BlockSize() (? int)
+func (? *@"".sum64a) @"".Reset() ()
+func (? *@"".sum64a) @"".Size() (? int)
+func (? *@"".sum64a) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".sum64a) @"".Sum64() (? uint64)
+func (? *@"".sum64a) @"".Write(@"".data []byte) (? int, ? error)
+import io "io"
+type @"hash".Hash32 interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"hash".Sum32() (? uint32); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"hash".Hash64 interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"hash".Sum64() (? uint64); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+08runtimeerrorssync/atomicsynciohashhash/fnv‚,—	var hash = go$packages["hash"];
+	var sum32;
+	sum32 = go$newType(4, "Uint32", "fnv.sum32", "sum32", "hash/fnv", null);
+	go$pkg.sum32 = sum32;
+	var sum32a;
+	sum32a = go$newType(4, "Uint32", "fnv.sum32a", "sum32a", "hash/fnv", null);
+	go$pkg.sum32a = sum32a;
+	var sum64;
+	sum64 = go$newType(8, "Uint64", "fnv.sum64", "sum64", "hash/fnv", null);
+	go$pkg.sum64 = sum64;
+	var sum64a;
+	sum64a = go$newType(8, "Uint64", "fnv.sum64a", "sum64a", "hash/fnv", null);
+	go$pkg.sum64a = sum64a;
+	(go$ptrType(sum32)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Sum32", "", [], [Go$Uint32], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	(go$ptrType(sum32a)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Sum32", "", [], [Go$Uint32], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	(go$ptrType(sum64)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Sum64", "", [], [Go$Uint64], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	(go$ptrType(sum64a)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Sum64", "", [], [Go$Uint64], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	var New32 = go$pkg.New32 = function() {
+		var s, v;
+		s = 2166136261;
+		return new (go$ptrType(sum32))(function() { return s; }, function(v) { s = v; });
+	};
+	var New32a = go$pkg.New32a = function() {
+		var s, v;
+		s = 2166136261;
+		return new (go$ptrType(sum32a))(function() { return s; }, function(v) { s = v; });
+	};
+	var New64 = go$pkg.New64 = function() {
+		var s, v;
+		s = new sum64(3421674724, 2216829733);
+		return new (go$ptrType(sum64))(function() { return s; }, function(v) { s = v; });
+	};
+	var New64a = go$pkg.New64a = function() {
+		var s, v;
+		s = new sum64a(3421674724, 2216829733);
+		return new (go$ptrType(sum64a))(function() { return s; }, function(v) { s = v; });
+	};
+	go$ptrType(sum32).prototype.Reset = function() {
+		var s;
+		s = this;
+		s.go$set(2166136261);
+	};
+	sum32.prototype.Reset = function() { var obj = this.go$val; return (new (go$ptrType(sum32))(function() { return obj; }, null)).Reset(); };
+	go$ptrType(sum32a).prototype.Reset = function() {
+		var s;
+		s = this;
+		s.go$set(2166136261);
+	};
+	sum32a.prototype.Reset = function() { var obj = this.go$val; return (new (go$ptrType(sum32a))(function() { return obj; }, null)).Reset(); };
+	go$ptrType(sum64).prototype.Reset = function() {
+		var s;
+		s = this;
+		s.go$set(new sum64(3421674724, 2216829733));
+	};
+	sum64.prototype.Reset = function() { var obj = this; return (new (go$ptrType(sum64))(function() { return obj; }, null)).Reset(); };
+	go$ptrType(sum64a).prototype.Reset = function() {
+		var s;
+		s = this;
+		s.go$set(new sum64a(3421674724, 2216829733));
+	};
+	sum64a.prototype.Reset = function() { var obj = this; return (new (go$ptrType(sum64a))(function() { return obj; }, null)).Reset(); };
+	go$ptrType(sum32).prototype.Sum32 = function() {
+		var s;
+		s = this;
+		return (s.go$get() >>> 0);
+	};
+	sum32.prototype.Sum32 = function() { var obj = this.go$val; return (new (go$ptrType(sum32))(function() { return obj; }, null)).Sum32(); };
+	go$ptrType(sum32a).prototype.Sum32 = function() {
+		var s;
+		s = this;
+		return (s.go$get() >>> 0);
+	};
+	sum32a.prototype.Sum32 = function() { var obj = this.go$val; return (new (go$ptrType(sum32a))(function() { return obj; }, null)).Sum32(); };
+	go$ptrType(sum64).prototype.Sum64 = function() {
+		var s, x;
+		s = this;
+		return (x = s.go$get(), new Go$Uint64(x.high, x.low));
+	};
+	sum64.prototype.Sum64 = function() { var obj = this; return (new (go$ptrType(sum64))(function() { return obj; }, null)).Sum64(); };
+	go$ptrType(sum64a).prototype.Sum64 = function() {
+		var s, x;
+		s = this;
+		return (x = s.go$get(), new Go$Uint64(x.high, x.low));
+	};
+	sum64a.prototype.Sum64 = function() { var obj = this; return (new (go$ptrType(sum64a))(function() { return obj; }, null)).Sum64(); };
+	go$ptrType(sum32).prototype.Write = function(data) {
+		var s, hash$1, _ref, _i, _slice, _index, c, x;
+		s = this;
+		hash$1 = s.go$get();
+		_ref = data;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			hash$1 = (x = 16777619, (((hash$1 >>> 16 << 16) * x >>> 0) + (hash$1 << 16 >>> 16) * x) >>> 0);
+			hash$1 = (hash$1 ^ ((c >>> 0))) >>> 0;
+		}
+		s.go$set(hash$1);
+		return [data.length, null];
+	};
+	sum32.prototype.Write = function(data) { var obj = this.go$val; return (new (go$ptrType(sum32))(function() { return obj; }, null)).Write(data); };
+	go$ptrType(sum32a).prototype.Write = function(data) {
+		var s, hash$1, _ref, _i, _slice, _index, c, x;
+		s = this;
+		hash$1 = s.go$get();
+		_ref = data;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			hash$1 = (hash$1 ^ ((c >>> 0))) >>> 0;
+			hash$1 = (x = 16777619, (((hash$1 >>> 16 << 16) * x >>> 0) + (hash$1 << 16 >>> 16) * x) >>> 0);
+		}
+		s.go$set(hash$1);
+		return [data.length, null];
+	};
+	sum32a.prototype.Write = function(data) { var obj = this.go$val; return (new (go$ptrType(sum32a))(function() { return obj; }, null)).Write(data); };
+	go$ptrType(sum64).prototype.Write = function(data) {
+		var s, hash$1, _ref, _i, _slice, _index, c, x;
+		s = this;
+		hash$1 = s.go$get();
+		_ref = data;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			hash$1 = go$mul64(hash$1, new sum64(256, 435));
+			hash$1 = (x = new sum64(0, c), new sum64(hash$1.high ^ x.high, (hash$1.low ^ x.low) >>> 0));
+		}
+		s.go$set(hash$1);
+		return [data.length, null];
+	};
+	sum64.prototype.Write = function(data) { var obj = this; return (new (go$ptrType(sum64))(function() { return obj; }, null)).Write(data); };
+	go$ptrType(sum64a).prototype.Write = function(data) {
+		var s, hash$1, _ref, _i, _slice, _index, c, x;
+		s = this;
+		hash$1 = s.go$get();
+		_ref = data;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			hash$1 = (x = new sum64a(0, c), new sum64a(hash$1.high ^ x.high, (hash$1.low ^ x.low) >>> 0));
+			hash$1 = go$mul64(hash$1, new sum64a(256, 435));
+		}
+		s.go$set(hash$1);
+		return [data.length, null];
+	};
+	sum64a.prototype.Write = function(data) { var obj = this; return (new (go$ptrType(sum64a))(function() { return obj; }, null)).Write(data); };
+	go$ptrType(sum32).prototype.Size = function() {
+		var s;
+		s = this;
+		return 4;
+	};
+	sum32.prototype.Size = function() { var obj = this.go$val; return (new (go$ptrType(sum32))(function() { return obj; }, null)).Size(); };
+	go$ptrType(sum32a).prototype.Size = function() {
+		var s;
+		s = this;
+		return 4;
+	};
+	sum32a.prototype.Size = function() { var obj = this.go$val; return (new (go$ptrType(sum32a))(function() { return obj; }, null)).Size(); };
+	go$ptrType(sum64).prototype.Size = function() {
+		var s;
+		s = this;
+		return 8;
+	};
+	sum64.prototype.Size = function() { var obj = this; return (new (go$ptrType(sum64))(function() { return obj; }, null)).Size(); };
+	go$ptrType(sum64a).prototype.Size = function() {
+		var s;
+		s = this;
+		return 8;
+	};
+	sum64a.prototype.Size = function() { var obj = this; return (new (go$ptrType(sum64a))(function() { return obj; }, null)).Size(); };
+	go$ptrType(sum32).prototype.BlockSize = function() {
+		var s;
+		s = this;
+		return 1;
+	};
+	sum32.prototype.BlockSize = function() { var obj = this.go$val; return (new (go$ptrType(sum32))(function() { return obj; }, null)).BlockSize(); };
+	go$ptrType(sum32a).prototype.BlockSize = function() {
+		var s;
+		s = this;
+		return 1;
+	};
+	sum32a.prototype.BlockSize = function() { var obj = this.go$val; return (new (go$ptrType(sum32a))(function() { return obj; }, null)).BlockSize(); };
+	go$ptrType(sum64).prototype.BlockSize = function() {
+		var s;
+		s = this;
+		return 1;
+	};
+	sum64.prototype.BlockSize = function() { var obj = this; return (new (go$ptrType(sum64))(function() { return obj; }, null)).BlockSize(); };
+	go$ptrType(sum64a).prototype.BlockSize = function() {
+		var s;
+		s = this;
+		return 1;
+	};
+	sum64a.prototype.BlockSize = function() { var obj = this; return (new (go$ptrType(sum64a))(function() { return obj; }, null)).BlockSize(); };
+	go$ptrType(sum32).prototype.Sum = function(in$1) {
+		var s, v;
+		s = this;
+		v = (s.go$get() >>> 0);
+		return go$append(in$1, ((v >>> 24 >>> 0) << 24 >>> 24), ((v >>> 16 >>> 0) << 24 >>> 24), ((v >>> 8 >>> 0) << 24 >>> 24), (v << 24 >>> 24));
+	};
+	sum32.prototype.Sum = function(in$1) { var obj = this.go$val; return (new (go$ptrType(sum32))(function() { return obj; }, null)).Sum(in$1); };
+	go$ptrType(sum32a).prototype.Sum = function(in$1) {
+		var s, v;
+		s = this;
+		v = (s.go$get() >>> 0);
+		return go$append(in$1, ((v >>> 24 >>> 0) << 24 >>> 24), ((v >>> 16 >>> 0) << 24 >>> 24), ((v >>> 8 >>> 0) << 24 >>> 24), (v << 24 >>> 24));
+	};
+	sum32a.prototype.Sum = function(in$1) { var obj = this.go$val; return (new (go$ptrType(sum32a))(function() { return obj; }, null)).Sum(in$1); };
+	go$ptrType(sum64).prototype.Sum = function(in$1) {
+		var s, x, v;
+		s = this;
+		v = (x = s.go$get(), new Go$Uint64(x.high, x.low));
+		return go$append(in$1, (go$shiftRightUint64(v, 56).low << 24 >>> 24), (go$shiftRightUint64(v, 48).low << 24 >>> 24), (go$shiftRightUint64(v, 40).low << 24 >>> 24), (go$shiftRightUint64(v, 32).low << 24 >>> 24), (go$shiftRightUint64(v, 24).low << 24 >>> 24), (go$shiftRightUint64(v, 16).low << 24 >>> 24), (go$shiftRightUint64(v, 8).low << 24 >>> 24), (v.low << 24 >>> 24));
+	};
+	sum64.prototype.Sum = function(in$1) { var obj = this; return (new (go$ptrType(sum64))(function() { return obj; }, null)).Sum(in$1); };
+	go$ptrType(sum64a).prototype.Sum = function(in$1) {
+		var s, x, v;
+		s = this;
+		v = (x = s.go$get(), new Go$Uint64(x.high, x.low));
+		return go$append(in$1, (go$shiftRightUint64(v, 56).low << 24 >>> 24), (go$shiftRightUint64(v, 48).low << 24 >>> 24), (go$shiftRightUint64(v, 40).low << 24 >>> 24), (go$shiftRightUint64(v, 32).low << 24 >>> 24), (go$shiftRightUint64(v, 24).low << 24 >>> 24), (go$shiftRightUint64(v, 16).low << 24 >>> 24), (go$shiftRightUint64(v, 8).low << 24 >>> 24), (v.low << 24 >>> 24));
+	};
+	sum64a.prototype.Sum = function(in$1) { var obj = this; return (new (go$ptrType(sum64a))(function() { return obj; }, null)).Sum(in$1); };
+	var offset32 = 2166136261;
+	var offset64 = -3750763034362895579;
+	var prime32 = 16777619;
+	var prime64 = 1099511628211;
+	go$pkg.init = function() {
+	};

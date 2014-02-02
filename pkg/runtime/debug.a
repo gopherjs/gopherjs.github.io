@@ -1,0 +1,293 @@
+0ВDКВepackage debug
+import runtime "runtime"
+import sort "sort"
+import time "time"
+import bytes "bytes"
+import fmt "fmt"
+import ioutil "io/ioutil"
+import os "os"
+func @"".FreeOSMemory() ()
+type @"".GCStats struct { @"".LastGC @"time".Time; @"".NumGC int64; @"".PauseTotal @"time".Duration; @"".Pause []@"time".Duration; @"".PauseQuantiles []@"time".Duration }
+func @"".PrintStack() ()
+func @"".ReadGCStats(@"".stats *@"".GCStats) ()
+func @"".SetGCPercent(@"".percent int) (? int)
+func @"".SetMaxStack(@"".bytes int) (? int)
+func @"".SetMaxThreads(@"".threads int) (? int)
+func @"".Stack() (? []byte)
+type @"".byDuration []@"time".Duration
+func (? @"".byDuration) @"".Len() (? int)
+func (? @"".byDuration) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".byDuration) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".byDuration) @"".Len() (? int)
+func (? *@"".byDuration) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".byDuration) @"".Swap(@"".i int, @"".j int) ()
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? @"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? @"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? @"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+func (? *@"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? *@"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? *@"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? *@"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"".sec int64) (@"".name string, @"".offset int, @"".isDST bool, @"".start int64, @"".end int64)
+func (? *@"time".Location) @"time".lookupName(@"".name string, @"".unix int64) (@"".offset int, @"".isDST bool, @"".ok bool)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+$$
+0Боruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilruntime/debugВ%l	var runtime = go$packages["runtime"];
+	var sort = go$packages["sort"];
+	var time = go$packages["time"];
+	var bytes = go$packages["bytes"];
+	var fmt = go$packages["fmt"];
+	var ioutil = go$packages["io/ioutil"];
+	var os = go$packages["os"];
+	var GCStats;
+	GCStats = go$newType(0, "Struct", "debug.GCStats", "GCStats", "runtime/debug", function(LastGC_, NumGC_, PauseTotal_, Pause_, PauseQuantiles_) {
+		this.go$val = this;
+		this.LastGC = LastGC_ !== undefined ? LastGC_ : new time.Time.Ptr();
+		this.NumGC = NumGC_ !== undefined ? NumGC_ : new Go$Int64(0, 0);
+		this.PauseTotal = PauseTotal_ !== undefined ? PauseTotal_ : new time.Duration(0, 0);
+		this.Pause = Pause_ !== undefined ? Pause_ : (go$sliceType(time.Duration)).nil;
+		this.PauseQuantiles = PauseQuantiles_ !== undefined ? PauseQuantiles_ : (go$sliceType(time.Duration)).nil;
+	});
+	go$pkg.GCStats = GCStats;
+	var byDuration;
+	byDuration = go$newType(0, "Slice", "debug.byDuration", "byDuration", "runtime/debug", null);
+	go$pkg.byDuration = byDuration;
+	GCStats.init([["LastGC", "", time.Time, ""], ["NumGC", "", Go$Int64, ""], ["PauseTotal", "", time.Duration, ""], ["Pause", "", (go$sliceType(time.Duration)), ""], ["PauseQuantiles", "", (go$sliceType(time.Duration)), ""]]);
+	byDuration.init(time.Duration);
+	byDuration.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(byDuration)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	var readGCStats = function() {
+		throw go$panic("Native function not implemented: readGCStats");
+	};
+	var enableGC = function() {
+		throw go$panic("Native function not implemented: enableGC");
+	};
+	var setGCPercent = function() {
+		throw go$panic("Native function not implemented: setGCPercent");
+	};
+	var freeOSMemory = function() {
+		throw go$panic("Native function not implemented: freeOSMemory");
+	};
+	var setMaxStack = function() {
+		throw go$panic("Native function not implemented: setMaxStack");
+	};
+	var setMaxThreads = function() {
+		throw go$panic("Native function not implemented: setMaxThreads");
+	};
+	var ReadGCStats = go$pkg.ReadGCStats = function(stats) {
+		var v, n, x, _slice, _index, _struct, x$1, _slice$1, _index$1, _slice$2, _index$2, _ref, _i, i, _slice$3, _index$3, sorted, nq, i$1, _slice$4, _index$4, _q, x$2, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
+		if (stats.Pause.capacity < 512) {
+			stats.Pause = (go$sliceType(time.Duration)).make(512, 0, function() { return new time.Duration(0, 0); });
+		}
+		readGCStats(new (go$ptrType((go$sliceType(time.Duration))))(function() { return stats.Pause; }, function(v) { stats.Pause = v; }));
+		n = stats.Pause.length - 3 >> 0;
+		stats.LastGC = (_struct = time.Unix(new Go$Int64(0, 0), (x = (_slice = stats.Pause, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Go$Int64(x.high, x.low))), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		stats.NumGC = (x$1 = (_slice$1 = stats.Pause, _index$1 = (n + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Go$Int64(x$1.high, x$1.low));
+		stats.PauseTotal = (_slice$2 = stats.Pause, _index$2 = (n + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+		stats.Pause = go$subslice(stats.Pause, 0, n);
+		if (stats.PauseQuantiles.length > 0) {
+			if (n === 0) {
+				_ref = stats.PauseQuantiles;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					i = _i;
+					_slice$3 = stats.PauseQuantiles, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = new time.Duration(0, 0)) : go$throwRuntimeError("index out of range");
+				}
+			} else {
+				sorted = go$subslice(stats.Pause, n, (n + n >> 0));
+				go$copySlice(sorted, stats.Pause);
+				sort.Sort(go$subslice(new byDuration(sorted.array), sorted.offset, sorted.offset + sorted.length));
+				nq = stats.PauseQuantiles.length - 1 >> 0;
+				i$1 = 0;
+				while (i$1 < nq) {
+					_slice$5 = stats.PauseQuantiles, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (_slice$4 = sorted, _index$4 = (_q = (x$2 = sorted.length, (((x$2 >>> 16 << 16) * i$1 >> 0) + (x$2 << 16 >>> 16) * i$1) >> 0) / nq, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))) : go$throwRuntimeError("index out of range");
+					i$1 = i$1 + 1 >> 0;
+				}
+				_slice$7 = stats.PauseQuantiles, _index$7 = nq, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (_slice$6 = sorted, _index$6 = (sorted.length - 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))) : go$throwRuntimeError("index out of range");
+			}
+		}
+	};
+	byDuration.prototype.Len = function() {
+		var x;
+		x = this;
+		return x.length;
+	};
+	go$ptrType(byDuration).prototype.Len = function() { return this.go$get().Len(); };
+	byDuration.prototype.Swap = function(i, j) {
+		var x, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		x = this;
+		_tuple = [(_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	go$ptrType(byDuration).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+	byDuration.prototype.Less = function(i, j) {
+		var x, x$1, _slice, _index, x$2, _slice$1, _index$1;
+		x = this;
+		return (x$1 = (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), x$2 = (_slice$1 = x, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (x$1.high < x$2.high || (x$1.high === x$2.high && x$1.low < x$2.low)));
+	};
+	go$ptrType(byDuration).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
+	var SetGCPercent = go$pkg.SetGCPercent = function(percent) {
+		return setGCPercent(percent);
+	};
+	var FreeOSMemory = go$pkg.FreeOSMemory = function() {
+		freeOSMemory();
+	};
+	var SetMaxStack = go$pkg.SetMaxStack = function(bytes$1) {
+		return setMaxStack(bytes$1);
+	};
+	var SetMaxThreads = go$pkg.SetMaxThreads = function(threads) {
+		return setMaxThreads(threads);
+	};
+	var PrintStack = go$pkg.PrintStack = function() {
+		os.Stderr.Write(stack());
+	};
+	var Stack = go$pkg.Stack = function() {
+		return stack();
+	};
+	var stack = function() {
+		var buf, lines, lastFile, i, _tuple, pc, file, line, ok, _tuple$1, data, err;
+		buf = new bytes.Buffer.Ptr();
+		lines = (go$sliceType((go$sliceType(Go$Uint8)))).nil;
+		lastFile = "";
+		i = 2;
+		while (true) {
+			_tuple = runtime.Caller(i), pc = _tuple[0], file = _tuple[1], line = _tuple[2], ok = _tuple[3];
+			if (!ok) {
+				break;
+			}
+			fmt.Fprintf(buf, "%s:%d (0x%x)\n", new (go$sliceType(go$emptyInterface))([new Go$String(file), new Go$Int(line), new Go$Uintptr(pc)]));
+			if (!(file === lastFile)) {
+				_tuple$1 = ioutil.ReadFile(file), data = _tuple$1[0], err = _tuple$1[1];
+				if (!(go$interfaceIsEqual(err, null))) {
+					i = i + 1 >> 0;
+					continue;
+				}
+				lines = bytes.Split(data, new (go$sliceType(Go$Uint8))([10]));
+				lastFile = file;
+			}
+			line = line - 1 >> 0;
+			fmt.Fprintf(buf, "\t%s: %s\n", new (go$sliceType(go$emptyInterface))([function$1(pc), source(lines, line)]));
+			i = i + 1 >> 0;
+		}
+		return buf.Bytes();
+	};
+	var source = function(lines, n) {
+		var _slice, _index;
+		if (n < 0 || n >= lines.length) {
+			return dunno;
+		}
+		return bytes.Trim((_slice = lines, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), " \t");
+	};
+	var function$1 = function(pc) {
+		var fn, name, period;
+		fn = runtime.FuncForPC(pc);
+		if (fn === (go$ptrType(runtime.Func)).nil) {
+			return dunno;
+		}
+		name = new (go$sliceType(Go$Uint8))(go$stringToBytes(fn.Name()));
+		if (period = bytes.Index(name, dot), period >= 0) {
+			name = go$subslice(name, (period + 1 >> 0));
+		}
+		name = bytes.Replace(name, centerDot, dot, -1);
+		return name;
+	};
+	var dunno = (go$sliceType(Go$Uint8)).nil;
+	var centerDot = (go$sliceType(Go$Uint8)).nil;
+	var dot = (go$sliceType(Go$Uint8)).nil;
+	go$pkg.init = function() {
+		dunno = new (go$sliceType(Go$Uint8))(go$stringToBytes("???"));
+		centerDot = new (go$sliceType(Go$Uint8))(go$stringToBytes("\xC2\xB7"));
+		dot = new (go$sliceType(Go$Uint8))(go$stringToBytes("."));
+	};

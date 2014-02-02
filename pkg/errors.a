@@ -1,0 +1,24 @@
+0Ç$Åòpackage errors
+func @"".New(@"".text string) (? error)
+type @"".errorString struct { @"".s string }
+func (? *@"".errorString) @"".Error() (? string)
+$$
+0runtimeerrorsÇr	var errorString;
+	errorString = go$newType(0, "Struct", "errors.errorString", "errorString", "errors", function(s_) {
+		this.go$val = this;
+		this.s = s_ !== undefined ? s_ : "";
+	});
+	go$pkg.errorString = errorString;
+	errorString.init([["s", "errors", Go$String, ""]]);
+	(go$ptrType(errorString)).methods = [["Error", "", [], [Go$String], false]];
+	var New = go$pkg.New = function(text) {
+		return new errorString.Ptr(text);
+	};
+	errorString.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return e.s;
+	};
+	errorString.prototype.Error = function() { return this.go$val.Error(); };
+	go$pkg.init = function() {
+	};

@@ -1,0 +1,21 @@
+0‚‘‚cpackage hash
+import io "io"
+type @"".Hash interface { @"".BlockSize() (? int); @"".Reset() (); @"".Size() (? int); @"".Sum(@"".b []byte) (? []byte); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"".Hash32 interface { @"".BlockSize() (? int); @"".Reset() (); @"".Size() (? int); @"".Sum(@"".b []byte) (? []byte); @"".Sum32() (? uint32); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"".Hash64 interface { @"".BlockSize() (? int); @"".Reset() (); @"".Size() (? int); @"".Sum(@"".b []byte) (? []byte); @"".Sum64() (? uint64); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0.runtimeerrorssync/atomicsynciohash‚ö	var io = go$packages["io"];
+	var Hash;
+	Hash = go$newType(0, "Interface", "hash.Hash", "Hash", "hash", null);
+	go$pkg.Hash = Hash;
+	var Hash32;
+	Hash32 = go$newType(0, "Interface", "hash.Hash32", "Hash32", "hash", null);
+	go$pkg.Hash32 = Hash32;
+	var Hash64;
+	Hash64 = go$newType(0, "Interface", "hash.Hash64", "Hash64", "hash", null);
+	go$pkg.Hash64 = Hash64;
+	Hash.init([["BlockSize", "", (go$funcType([], [Go$Int], false))], ["Reset", "", (go$funcType([], [], false))], ["Size", "", (go$funcType([], [Go$Int], false))], ["Sum", "", (go$funcType([(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	Hash32.init([["BlockSize", "", (go$funcType([], [Go$Int], false))], ["Reset", "", (go$funcType([], [], false))], ["Size", "", (go$funcType([], [Go$Int], false))], ["Sum", "", (go$funcType([(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false))], ["Sum32", "", (go$funcType([], [Go$Uint32], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	Hash64.init([["BlockSize", "", (go$funcType([], [Go$Int], false))], ["Reset", "", (go$funcType([], [], false))], ["Size", "", (go$funcType([], [Go$Int], false))], ["Sum", "", (go$funcType([(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false))], ["Sum64", "", (go$funcType([], [Go$Uint64], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	go$pkg.init = function() {
+	};

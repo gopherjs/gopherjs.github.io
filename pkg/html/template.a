@@ -1,0 +1,2841 @@
+0ƒ§l‚›~package template
+import strings "strings"
+import fmt "fmt"
+import reflect "reflect"
+import bytes "bytes"
+import unicode "unicode"
+import utf8 "unicode/utf8"
+import html "html"
+import io "io"
+import template "text/template"
+import parse "text/template/parse"
+import json "encoding/json"
+import ioutil "io/ioutil"
+import filepath "path/filepath"
+import sync "sync"
+type @"".CSS string
+const @"".ErrAmbigContext @"".ErrorCode = 0x1
+const @"".ErrBadHTML @"".ErrorCode = 0x2
+const @"".ErrBranchEnd @"".ErrorCode = 0x3
+const @"".ErrEndContext @"".ErrorCode = 0x4
+const @"".ErrNoSuchTemplate @"".ErrorCode = 0x5
+const @"".ErrOutputContext @"".ErrorCode = 0x6
+const @"".ErrPartialCharset @"".ErrorCode = 0x7
+const @"".ErrPartialEscape @"".ErrorCode = 0x8
+const @"".ErrRangeLoopReentry @"".ErrorCode = 0x9
+const @"".ErrSlashAmbig @"".ErrorCode = 0xa
+type @"".Error struct { @"".ErrorCode @"".ErrorCode; @"".Name string; @"".Line int; @"".Description string }
+func (? *@"".Error) @"".Error() (? string)
+type @"".ErrorCode int
+type @"".FuncMap map[string]interface {  }
+type @"".HTML string
+type @"".HTMLAttr string
+func @"".HTMLEscape(@"".w @"io".Writer, @"".b []byte) ()
+func @"".HTMLEscapeString(@"".s string) (? string)
+func @"".HTMLEscaper(@"".args ...interface {  }) (? string)
+type @"".JS string
+func @"".JSEscape(@"".w @"io".Writer, @"".b []byte) ()
+func @"".JSEscapeString(@"".s string) (? string)
+func @"".JSEscaper(@"".args ...interface {  }) (? string)
+type @"".JSStr string
+func @"".Must(@"".t *@"".Template, @"".err error) (? *@"".Template)
+func @"".New(@"".name string) (? *@"".Template)
+const @"".OK @"".ErrorCode = 0x0
+func @"".ParseFiles(@"".filenames ...string) (? *@"".Template, ? error)
+func @"".ParseGlob(@"".pattern string) (? *@"".Template, ? error)
+type @"".Template struct { @"".escaped bool; @"".text *@"text/template".Template; @"".Tree *@"text/template/parse".Tree; ? *@"".nameSpace }
+func (? *@"".Template) @"".AddParseTree(@"".name string, @"".tree *@"text/template/parse".Tree) (? *@"".Template, ? error)
+func (? *@"".Template) @"".Clone() (? *@"".Template, ? error)
+func (? *@"".Template) @"".Delims(@"".left string, @"".right string) (? *@"".Template)
+func (? *@"".Template) @"".Execute(@"".wr @"io".Writer, @"".data interface {  }) (? error)
+func (? *@"".Template) @"".ExecuteTemplate(@"".wr @"io".Writer, @"".name string, @"".data interface {  }) (? error)
+func (? *@"".Template) @"".Funcs(@"".funcMap @"".FuncMap) (? *@"".Template)
+func (? *@"".Template) @"".Lookup(@"".name string) (? *@"".Template)
+func (? *@"".Template) @"".Name() (? string)
+func (? *@"".Template) @"".New(@"".name string) (? *@"".Template)
+func (? *@"".Template) @"".Parse(@"".src string) (? *@"".Template, ? error)
+func (? *@"".Template) @"".ParseFiles(@"".filenames ...string) (? *@"".Template, ? error)
+func (? *@"".Template) @"".ParseGlob(@"".pattern string) (? *@"".Template, ? error)
+func (? *@"".Template) @"".Templates() (? []*@"".Template)
+func (? *@"".Template) @"".escape() (? error)
+func (? *@"".Template) @"".lookupAndEscapeTemplate(@"".name string) (@"".tmpl *@"".Template, @"".err error)
+func (? *@"".Template) @"".new(@"".name string) (? *@"".Template)
+type @"".URL string
+func @"".URLQueryEscaper(@"".args ...interface {  }) (? string)
+type @"".attr uint8
+func (? @"".attr) @"".String() (? string)
+func (? *@"".attr) @"".String() (? string)
+type @"".contentType uint8
+type @"".context struct { @"".state @"".state; @"".delim @"".delim; @"".urlPart @"".urlPart; @"".jsCtx @"".jsCtx; @"".attr @"".attr; @"".element @"".element; @"".err *@"".Error }
+func (? @"".context) @"".String() (? string)
+func (? @"".context) @"".eq(@"".d @"".context) (? bool)
+func (? @"".context) @"".mangle(@"".templateName string) (? string)
+func (? *@"".context) @"".String() (? string)
+func (? *@"".context) @"".eq(@"".d @"".context) (? bool)
+func (? *@"".context) @"".mangle(@"".templateName string) (? string)
+type @"".delim uint8
+func (? @"".delim) @"".String() (? string)
+func (? *@"".delim) @"".String() (? string)
+type @"".element uint8
+func (? @"".element) @"".String() (? string)
+func (? *@"".element) @"".String() (? string)
+type @"".escaper struct { @"".tmpl *@"".Template; @"".output map[string]@"".context; @"".derived map[string]*@"text/template".Template; @"".called map[string]bool; @"".actionNodeEdits map[*@"text/template/parse".ActionNode][]string; @"".templateNodeEdits map[*@"text/template/parse".TemplateNode]string; @"".textNodeEdits map[*@"text/template/parse".TextNode][]byte }
+func (? *@"".escaper) @"".commit() ()
+func (? *@"".escaper) @"".computeOutCtx(@"".c @"".context, @"".t *@"text/template".Template) (? @"".context)
+func (? *@"".escaper) @"".editActionNode(@"".n *@"text/template/parse".ActionNode, @"".cmds []string) ()
+func (? *@"".escaper) @"".editTemplateNode(@"".n *@"text/template/parse".TemplateNode, @"".callee string) ()
+func (? *@"".escaper) @"".editTextNode(@"".n *@"text/template/parse".TextNode, @"".text []byte) ()
+func (? *@"".escaper) @"".escape(@"".c @"".context, @"".n @"text/template/parse".Node) (? @"".context)
+func (? *@"".escaper) @"".escapeAction(@"".c @"".context, @"".n *@"text/template/parse".ActionNode) (? @"".context)
+func (? *@"".escaper) @"".escapeBranch(@"".c @"".context, @"".n *@"text/template/parse".BranchNode, @"".nodeName string) (? @"".context)
+func (? *@"".escaper) @"".escapeList(@"".c @"".context, @"".n *@"text/template/parse".ListNode) (? @"".context)
+func (? *@"".escaper) @"".escapeListConditionally(@"".c @"".context, @"".n *@"text/template/parse".ListNode, @"".filter func (? *@"".escaper, ? @"".context) (? bool)) (? @"".context, ? bool)
+func (? *@"".escaper) @"".escapeTemplate(@"".c @"".context, @"".n *@"text/template/parse".TemplateNode) (? @"".context)
+func (? *@"".escaper) @"".escapeTemplateBody(@"".c @"".context, @"".t *@"text/template".Template) (? @"".context, ? bool)
+func (? *@"".escaper) @"".escapeText(@"".c @"".context, @"".n *@"text/template/parse".TextNode) (? @"".context)
+func (? *@"".escaper) @"".escapeTree(@"".c @"".context, @"".name string, @"".line int) (? @"".context, ? string)
+func (? *@"".escaper) @"".template(@"".name string) (? *@"text/template".Template)
+type @"".jsCtx uint8
+func (? @"".jsCtx) @"".String() (? string)
+func (? *@"".jsCtx) @"".String() (? string)
+type @"".nameSpace struct { @"".mu @"sync".Mutex; @"".set map[string]*@"".Template }
+type @"".state uint8
+func (? @"".state) @"".String() (? string)
+func (? *@"".state) @"".String() (? string)
+type @"".urlPart uint8
+func (? @"".urlPart) @"".String() (? string)
+func (? *@"".urlPart) @"".String() (? string)
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"text/template".Template struct { @"text/template".name string; ? *@"text/template/parse".Tree; ? *@"text/template".common; @"text/template".leftDelim string; @"text/template".rightDelim string }
+func (? *@"text/template".Template) @"text/template".AddParseTree(@"".name string, @"".tree *@"text/template/parse".Tree) (? *@"text/template".Template, ? error)
+func (? *@"text/template".Template) @"text/template".Clone() (? *@"text/template".Template, ? error)
+func (? *@"text/template".Template) @"text/template".Delims(@"".left string, @"".right string) (? *@"text/template".Template)
+func (? *@"text/template".Template) @"text/template".Execute(@"".wr @"io".Writer, @"".data interface {  }) (@"".err error)
+func (? *@"text/template".Template) @"text/template".ExecuteTemplate(@"".wr @"io".Writer, @"".name string, @"".data interface {  }) (? error)
+func (? *@"text/template".Template) @"text/template".Funcs(@"".funcMap @"text/template".FuncMap) (? *@"text/template".Template)
+func (? *@"text/template".Template) @"text/template".Lookup(@"".name string) (? *@"text/template".Template)
+func (? *@"text/template".Template) @"text/template".Name() (? string)
+func (? *@"text/template".Template) @"text/template".New(@"".name string) (? *@"text/template".Template)
+func (? *@"text/template".Template) @"text/template".Parse(@"".text string) (? *@"text/template".Template, ? error)
+func (? *@"text/template".Template) @"text/template".ParseFiles(@"".filenames ...string) (? *@"text/template".Template, ? error)
+func (? *@"text/template".Template) @"text/template".ParseGlob(@"".pattern string) (? *@"text/template".Template, ? error)
+func (? *@"text/template".Template) @"text/template".Templates() (? []*@"text/template".Template)
+func (? *@"text/template".Template) @"text/template".associate(@"".new *@"text/template".Template, @"".tree *@"text/template/parse".Tree) (? bool, ? error)
+func (? *@"text/template".Template) @"text/template".copy(@"".c *@"text/template".common) (? *@"text/template".Template)
+func (? *@"text/template".Template) @"text/template".init() ()
+type @"text/template/parse".Tree struct { @"text/template/parse".Name string; @"text/template/parse".ParseName string; @"text/template/parse".Root *@"text/template/parse".ListNode; @"text/template/parse".text string; @"text/template/parse".funcs []map[string]interface {  }; @"text/template/parse".lex *@"text/template/parse".lexer; @"text/template/parse".token [3]@"text/template/parse".item; @"text/template/parse".peekCount int; @"text/template/parse".vars []string }
+func (? *@"text/template/parse".Tree) @"text/template/parse".Copy() (? *@"text/template/parse".Tree)
+func (? *@"text/template/parse".Tree) @"text/template/parse".ErrorContext(@"".n @"text/template/parse".Node) (@"".location string, @"".context string)
+func (? *@"text/template/parse".Tree) @"text/template/parse".Parse(@"".text string, @"".leftDelim string, @"".rightDelim string, @"".treeSet map[string]*@"text/template/parse".Tree, @"".funcs ...map[string]interface {  }) (@"".tree *@"text/template/parse".Tree, @"".err error)
+func (? *@"text/template/parse".Tree) @"text/template/parse".action() (@"".n @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".add(@"".treeSet map[string]*@"text/template/parse".Tree) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".backup() ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".backup2(@"".t1 @"text/template/parse".item) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".backup3(@"".t2 @"text/template/parse".item, @"".t1 @"text/template/parse".item) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".command() (? *@"text/template/parse".CommandNode)
+func (? *@"text/template/parse".Tree) @"text/template/parse".elseControl() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".endControl() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".error(@"".err error) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".errorf(@"".format string, @"".args ...interface {  }) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".expect(@"".expected @"text/template/parse".itemType, @"".context string) (? @"text/template/parse".item)
+func (? *@"text/template/parse".Tree) @"text/template/parse".expectOneOf(@"".expected1 @"text/template/parse".itemType, @"".expected2 @"text/template/parse".itemType, @"".context string) (? @"text/template/parse".item)
+func (? *@"text/template/parse".Tree) @"text/template/parse".hasFunction(@"".name string) (? bool)
+func (? *@"text/template/parse".Tree) @"text/template/parse".ifControl() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".itemList() (@"".list *@"text/template/parse".ListNode, @"".next @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".next() (? @"text/template/parse".item)
+func (? *@"text/template/parse".Tree) @"text/template/parse".nextNonSpace() (@"".token @"text/template/parse".item)
+func (? *@"text/template/parse".Tree) @"text/template/parse".operand() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".parse(@"".treeSet map[string]*@"text/template/parse".Tree) (@"".next @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".parseControl(@"".allowElseIf bool, @"".context string) (@"".pos @"text/template/parse".Pos, @"".line int, @"".pipe *@"text/template/parse".PipeNode, @"".list *@"text/template/parse".ListNode, @"".elseList *@"text/template/parse".ListNode)
+func (? *@"text/template/parse".Tree) @"text/template/parse".parseDefinition(@"".treeSet map[string]*@"text/template/parse".Tree) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".peek() (? @"text/template/parse".item)
+func (? *@"text/template/parse".Tree) @"text/template/parse".peekNonSpace() (@"".token @"text/template/parse".item)
+func (? *@"text/template/parse".Tree) @"text/template/parse".pipeline(@"".context string) (@"".pipe *@"text/template/parse".PipeNode)
+func (? *@"text/template/parse".Tree) @"text/template/parse".popVars(@"".n int) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".rangeControl() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".recover(@"".errp *error) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".startParse(@"".funcs []map[string]interface {  }, @"".lex *@"text/template/parse".lexer) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".stopParse() ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".templateControl() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".term() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".textOrAction() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".unexpected(@"".token @"text/template/parse".item, @"".context string) ()
+func (? *@"text/template/parse".Tree) @"text/template/parse".useVar(@"".pos @"text/template/parse".Pos, @"".name string) (? @"text/template/parse".Node)
+func (? *@"text/template/parse".Tree) @"text/template/parse".withControl() (? @"text/template/parse".Node)
+type @"text/template/parse".ActionNode struct { ? @"text/template/parse".NodeType; ? @"text/template/parse".Pos; @"text/template/parse".Line int; @"text/template/parse".Pipe *@"text/template/parse".PipeNode }
+func (? *@"text/template/parse".ActionNode) @"text/template/parse".Copy() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".ActionNode) @"text/template/parse".String() (? string)
+type @"text/template/parse".TemplateNode struct { ? @"text/template/parse".NodeType; ? @"text/template/parse".Pos; @"text/template/parse".Line int; @"text/template/parse".Name string; @"text/template/parse".Pipe *@"text/template/parse".PipeNode }
+func (? *@"text/template/parse".TemplateNode) @"text/template/parse".Copy() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".TemplateNode) @"text/template/parse".String() (? string)
+type @"text/template/parse".TextNode struct { ? @"text/template/parse".NodeType; ? @"text/template/parse".Pos; @"text/template/parse".Text []byte }
+func (? *@"text/template/parse".TextNode) @"text/template/parse".Copy() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".TextNode) @"text/template/parse".String() (? string)
+type @"text/template/parse".Node interface { @"text/template/parse".Copy() (? @"text/template/parse".Node); @"text/template/parse".Position() (? @"text/template/parse".Pos); @"text/template/parse".String() (? string); @"text/template/parse".Type() (? @"text/template/parse".NodeType); @"text/template/parse".unexported() () }
+type @"text/template/parse".BranchNode struct { ? @"text/template/parse".NodeType; ? @"text/template/parse".Pos; @"text/template/parse".Line int; @"text/template/parse".Pipe *@"text/template/parse".PipeNode; @"text/template/parse".List *@"text/template/parse".ListNode; @"text/template/parse".ElseList *@"text/template/parse".ListNode }
+func (? *@"text/template/parse".BranchNode) @"text/template/parse".String() (? string)
+type @"text/template/parse".ListNode struct { ? @"text/template/parse".NodeType; ? @"text/template/parse".Pos; @"text/template/parse".Nodes []@"text/template/parse".Node }
+func (? *@"text/template/parse".ListNode) @"text/template/parse".Copy() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".ListNode) @"text/template/parse".CopyList() (? *@"text/template/parse".ListNode)
+func (? *@"text/template/parse".ListNode) @"text/template/parse".String() (? string)
+func (? *@"text/template/parse".ListNode) @"text/template/parse".append(@"".n @"text/template/parse".Node) ()
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"text/template".common struct { @"text/template".tmpl map[string]*@"text/template".Template; @"text/template".parseFuncs @"text/template".FuncMap; @"text/template".execFuncs map[string]@"reflect".Value }
+type @"text/template".FuncMap map[string]interface {  }
+import list "container/list"
+type @"text/template/parse".lexer struct { @"text/template/parse".name string; @"text/template/parse".input string; @"text/template/parse".leftDelim string; @"text/template/parse".rightDelim string; @"text/template/parse".state @"text/template/parse".stateFn; @"text/template/parse".pos @"text/template/parse".Pos; @"text/template/parse".start @"text/template/parse".Pos; @"text/template/parse".width @"text/template/parse".Pos; @"text/template/parse".lastPos @"text/template/parse".Pos; @"text/template/parse".items *@"container/list".List; @"text/template/parse".parenDepth int }
+func (? *@"text/template/parse".lexer) @"text/template/parse".accept(@"".valid string) (? bool)
+func (? *@"text/template/parse".lexer) @"text/template/parse".acceptRun(@"".valid string) ()
+func (? *@"text/template/parse".lexer) @"text/template/parse".atTerminator() (? bool)
+func (? *@"text/template/parse".lexer) @"text/template/parse".backup() ()
+func (? *@"text/template/parse".lexer) @"text/template/parse".emit(@"".t @"text/template/parse".itemType) ()
+func (? *@"text/template/parse".lexer) @"text/template/parse".errorf(@"".format string, @"".args ...interface {  }) (? @"text/template/parse".stateFn)
+func (? *@"text/template/parse".lexer) @"text/template/parse".ignore() ()
+func (? *@"text/template/parse".lexer) @"text/template/parse".lineNumber() (? int)
+func (? *@"text/template/parse".lexer) @"text/template/parse".next() (? rune)
+func (? *@"text/template/parse".lexer) @"text/template/parse".nextItem() (? @"text/template/parse".item)
+func (? *@"text/template/parse".lexer) @"text/template/parse".peek() (? rune)
+func (? *@"text/template/parse".lexer) @"text/template/parse".scanNumber() (? bool)
+type @"text/template/parse".item struct { @"text/template/parse".typ @"text/template/parse".itemType; @"text/template/parse".pos @"text/template/parse".Pos; @"text/template/parse".val string }
+func (? @"text/template/parse".item) @"text/template/parse".String() (? string)
+func (? *@"text/template/parse".item) @"text/template/parse".String() (? string)
+type @"text/template/parse".CommandNode struct { ? @"text/template/parse".NodeType; ? @"text/template/parse".Pos; @"text/template/parse".Args []@"text/template/parse".Node }
+func (? *@"text/template/parse".CommandNode) @"text/template/parse".Copy() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".CommandNode) @"text/template/parse".String() (? string)
+func (? *@"text/template/parse".CommandNode) @"text/template/parse".append(@"".arg @"text/template/parse".Node) ()
+type @"text/template/parse".itemType int
+type @"text/template/parse".Pos int
+func (? @"text/template/parse".Pos) @"text/template/parse".Position() (? @"text/template/parse".Pos)
+func (? @"text/template/parse".Pos) @"text/template/parse".unexported() ()
+func (? *@"text/template/parse".Pos) @"text/template/parse".Position() (? @"text/template/parse".Pos)
+func (? *@"text/template/parse".Pos) @"text/template/parse".unexported() ()
+type @"text/template/parse".PipeNode struct { ? @"text/template/parse".NodeType; ? @"text/template/parse".Pos; @"text/template/parse".Line int; @"text/template/parse".Decl []*@"text/template/parse".VariableNode; @"text/template/parse".Cmds []*@"text/template/parse".CommandNode }
+func (? *@"text/template/parse".PipeNode) @"text/template/parse".Copy() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".PipeNode) @"text/template/parse".CopyPipe() (? *@"text/template/parse".PipeNode)
+func (? *@"text/template/parse".PipeNode) @"text/template/parse".String() (? string)
+func (? *@"text/template/parse".PipeNode) @"text/template/parse".append(@"".command *@"text/template/parse".CommandNode) ()
+type @"text/template/parse".NodeType int
+func (? @"text/template/parse".NodeType) @"text/template/parse".Type() (? @"text/template/parse".NodeType)
+func (? *@"text/template/parse".NodeType) @"text/template/parse".Type() (? @"text/template/parse".NodeType)
+type @"reflect".Value struct { @"reflect".typ *@"reflect".rtype; @"reflect".val @"unsafe".Pointer; ? @"reflect".flag }
+func (? @"reflect".Value) @"reflect".Addr() (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Bool() (? bool)
+func (? @"reflect".Value) @"reflect".Bytes() (? []byte)
+func (? @"reflect".Value) @"reflect".Call(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".CallSlice(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".CanAddr() (? bool)
+func (? @"reflect".Value) @"reflect".CanInterface() (? bool)
+func (? @"reflect".Value) @"reflect".CanSet() (? bool)
+func (? @"reflect".Value) @"reflect".Cap() (? int)
+func (? @"reflect".Value) @"reflect".Close() ()
+func (? @"reflect".Value) @"reflect".Complex() (? complex128)
+func (? @"reflect".Value) @"reflect".Convert(@"".t @"reflect".Type) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Elem() (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Field(@"".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByIndex(@"".index []int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByName(@"".name string) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Float() (? float64)
+func (? @"reflect".Value) @"reflect".Index(@"".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Int() (? int64)
+func (? @"reflect".Value) @"reflect".Interface() (@"".i interface {  })
+func (? @"reflect".Value) @"reflect".InterfaceData() (? [2]uintptr)
+func (? @"reflect".Value) @"reflect".IsNil() (? bool)
+func (? @"reflect".Value) @"reflect".IsValid() (? bool)
+func (? @"reflect".Value) @"reflect".Kind() (? @"reflect".Kind)
+func (? @"reflect".Value) @"reflect".Len() (? int)
+func (? @"reflect".Value) @"reflect".MapIndex(@"".key @"reflect".Value) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".MapKeys() (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".Method(@"".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".MethodByName(@"".name string) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".NumField() (? int)
+func (? @"reflect".Value) @"reflect".NumMethod() (? int)
+func (? @"reflect".Value) @"reflect".OverflowComplex(@"".x complex128) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowFloat(@"".x float64) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowInt(@"".x int64) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowUint(@"".x uint64) (? bool)
+func (? @"reflect".Value) @"reflect".Pointer() (? uintptr)
+func (? @"reflect".Value) @"reflect".Recv() (@"".x @"reflect".Value, @"".ok bool)
+func (? @"reflect".Value) @"reflect".Send(@"".x @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".Set(@"".x @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".SetBool(@"".x bool) ()
+func (? @"reflect".Value) @"reflect".SetBytes(@"".x []byte) ()
+func (? @"reflect".Value) @"reflect".SetCap(@"".n int) ()
+func (? @"reflect".Value) @"reflect".SetComplex(@"".x complex128) ()
+func (? @"reflect".Value) @"reflect".SetFloat(@"".x float64) ()
+func (? @"reflect".Value) @"reflect".SetInt(@"".x int64) ()
+func (? @"reflect".Value) @"reflect".SetLen(@"".n int) ()
+func (? @"reflect".Value) @"reflect".SetMapIndex(@"".key @"reflect".Value, @"".val @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".SetPointer(@"".x @"unsafe".Pointer) ()
+func (? @"reflect".Value) @"reflect".SetString(@"".x string) ()
+func (? @"reflect".Value) @"reflect".SetUint(@"".x uint64) ()
+func (? @"reflect".Value) @"reflect".Slice(@"".i int, @"".j int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Slice3(@"".i int, @"".j int, @"".k int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".String() (? string)
+func (? @"reflect".Value) @"reflect".TryRecv() (@"".x @"reflect".Value, @"".ok bool)
+func (? @"reflect".Value) @"reflect".TrySend(@"".x @"reflect".Value) (? bool)
+func (? @"reflect".Value) @"reflect".Type() (? @"reflect".Type)
+func (? @"reflect".Value) @"reflect".Uint() (? uint64)
+func (? @"reflect".Value) @"reflect".UnsafeAddr() (? uintptr)
+func (? @"reflect".Value) @"reflect".assignTo(@"".context string, @"".dst *@"reflect".rtype, @"".target *interface {  }) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".call(@"".op string, @"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".iword() (? @"reflect".iword)
+func (? @"reflect".Value) @"reflect".recv(@"".nb bool) (@"".val @"reflect".Value, @"".ok bool)
+func (? @"reflect".Value) @"reflect".runes() (? []rune)
+func (? @"reflect".Value) @"reflect".send(@"".x @"reflect".Value, @"".nb bool) (@"".selected bool)
+func (? @"reflect".Value) @"reflect".setRunes(@"".x []rune) ()
+func (? *@"reflect".Value) @"reflect".Addr() (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Bool() (? bool)
+func (? *@"reflect".Value) @"reflect".Bytes() (? []byte)
+func (? *@"reflect".Value) @"reflect".Call(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".CallSlice(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".CanAddr() (? bool)
+func (? *@"reflect".Value) @"reflect".CanInterface() (? bool)
+func (? *@"reflect".Value) @"reflect".CanSet() (? bool)
+func (? *@"reflect".Value) @"reflect".Cap() (? int)
+func (? *@"reflect".Value) @"reflect".Close() ()
+func (? *@"reflect".Value) @"reflect".Complex() (? complex128)
+func (? *@"reflect".Value) @"reflect".Convert(@"".t @"reflect".Type) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Elem() (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Field(@"".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByIndex(@"".index []int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByName(@"".name string) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Float() (? float64)
+func (? *@"reflect".Value) @"reflect".Index(@"".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Int() (? int64)
+func (? *@"reflect".Value) @"reflect".Interface() (@"".i interface {  })
+func (? *@"reflect".Value) @"reflect".InterfaceData() (? [2]uintptr)
+func (? *@"reflect".Value) @"reflect".IsNil() (? bool)
+func (? *@"reflect".Value) @"reflect".IsValid() (? bool)
+func (? *@"reflect".Value) @"reflect".Kind() (? @"reflect".Kind)
+func (? *@"reflect".Value) @"reflect".Len() (? int)
+func (? *@"reflect".Value) @"reflect".MapIndex(@"".key @"reflect".Value) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".MapKeys() (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Method(@"".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".MethodByName(@"".name string) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".NumField() (? int)
+func (? *@"reflect".Value) @"reflect".NumMethod() (? int)
+func (? *@"reflect".Value) @"reflect".OverflowComplex(@"".x complex128) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowFloat(@"".x float64) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowInt(@"".x int64) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowUint(@"".x uint64) (? bool)
+func (? *@"reflect".Value) @"reflect".Pointer() (? uintptr)
+func (? *@"reflect".Value) @"reflect".Recv() (@"".x @"reflect".Value, @"".ok bool)
+func (? *@"reflect".Value) @"reflect".Send(@"".x @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".Set(@"".x @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".SetBool(@"".x bool) ()
+func (? *@"reflect".Value) @"reflect".SetBytes(@"".x []byte) ()
+func (? *@"reflect".Value) @"reflect".SetCap(@"".n int) ()
+func (? *@"reflect".Value) @"reflect".SetComplex(@"".x complex128) ()
+func (? *@"reflect".Value) @"reflect".SetFloat(@"".x float64) ()
+func (? *@"reflect".Value) @"reflect".SetInt(@"".x int64) ()
+func (? *@"reflect".Value) @"reflect".SetLen(@"".n int) ()
+func (? *@"reflect".Value) @"reflect".SetMapIndex(@"".key @"reflect".Value, @"".val @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".SetPointer(@"".x @"unsafe".Pointer) ()
+func (? *@"reflect".Value) @"reflect".SetString(@"".x string) ()
+func (? *@"reflect".Value) @"reflect".SetUint(@"".x uint64) ()
+func (? *@"reflect".Value) @"reflect".Slice(@"".i int, @"".j int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Slice3(@"".i int, @"".j int, @"".k int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".String() (? string)
+func (? *@"reflect".Value) @"reflect".TryRecv() (@"".x @"reflect".Value, @"".ok bool)
+func (? *@"reflect".Value) @"reflect".TrySend(@"".x @"reflect".Value) (? bool)
+func (? *@"reflect".Value) @"reflect".Type() (? @"reflect".Type)
+func (? *@"reflect".Value) @"reflect".Uint() (? uint64)
+func (? *@"reflect".Value) @"reflect".UnsafeAddr() (? uintptr)
+func (? *@"reflect".Value) @"reflect".assignTo(@"".context string, @"".dst *@"reflect".rtype, @"".target *interface {  }) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".call(@"".op string, @"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".iword() (? @"reflect".iword)
+func (? *@"reflect".Value) @"reflect".recv(@"".nb bool) (@"".val @"reflect".Value, @"".ok bool)
+func (? *@"reflect".Value) @"reflect".runes() (? []rune)
+func (? *@"reflect".Value) @"reflect".send(@"".x @"reflect".Value, @"".nb bool) (@"".selected bool)
+func (? *@"reflect".Value) @"reflect".setRunes(@"".x []rune) ()
+type @"text/template/parse".stateFn func (? *@"text/template/parse".lexer) (? @"text/template/parse".stateFn)
+type @"container/list".List struct { @"container/list".root @"container/list".Element; @"container/list".len int }
+func (? *@"container/list".List) @"container/list".Back() (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".Front() (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".Init() (? *@"container/list".List)
+func (? *@"container/list".List) @"container/list".InsertAfter(@"".v interface {  }, @"".mark *@"container/list".Element) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".InsertBefore(@"".v interface {  }, @"".mark *@"container/list".Element) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".Len() (? int)
+func (? *@"container/list".List) @"container/list".MoveAfter(@"".e *@"container/list".Element, @"".mark *@"container/list".Element) ()
+func (? *@"container/list".List) @"container/list".MoveBefore(@"".e *@"container/list".Element, @"".mark *@"container/list".Element) ()
+func (? *@"container/list".List) @"container/list".MoveToBack(@"".e *@"container/list".Element) ()
+func (? *@"container/list".List) @"container/list".MoveToFront(@"".e *@"container/list".Element) ()
+func (? *@"container/list".List) @"container/list".PushBack(@"".v interface {  }) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".PushBackList(@"".other *@"container/list".List) ()
+func (? *@"container/list".List) @"container/list".PushFront(@"".v interface {  }) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".PushFrontList(@"".other *@"container/list".List) ()
+func (? *@"container/list".List) @"container/list".Remove(@"".e *@"container/list".Element) (? interface {  })
+func (? *@"container/list".List) @"container/list".insert(@"".e *@"container/list".Element, @"".at *@"container/list".Element) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".insertValue(@"".v interface {  }, @"".at *@"container/list".Element) (? *@"container/list".Element)
+func (? *@"container/list".List) @"container/list".lazyInit() ()
+func (? *@"container/list".List) @"container/list".remove(@"".e *@"container/list".Element) (? *@"container/list".Element)
+type @"text/template/parse".VariableNode struct { ? @"text/template/parse".NodeType; ? @"text/template/parse".Pos; @"text/template/parse".Ident []string }
+func (? *@"text/template/parse".VariableNode) @"text/template/parse".Copy() (? @"text/template/parse".Node)
+func (? *@"text/template/parse".VariableNode) @"text/template/parse".String() (? string)
+type @"reflect".rtype struct { @"reflect".size uintptr; @"reflect".hash uint32; _ uint8; @"reflect".align uint8; @"reflect".fieldAlign uint8; @"reflect".kind uint8; @"reflect".alg *uintptr; @"reflect".gc @"unsafe".Pointer; @"reflect".string *string; ? *@"reflect".uncommonType; @"reflect".ptrToThis *@"reflect".rtype }
+func (? *@"reflect".rtype) @"reflect".Align() (? int)
+func (? *@"reflect".rtype) @"reflect".AssignableTo(@"".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".Bits() (? int)
+func (? *@"reflect".rtype) @"reflect".ChanDir() (? @"reflect".ChanDir)
+func (? *@"reflect".rtype) @"reflect".ConvertibleTo(@"".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".Elem() (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".Field(@"".i int) (? @"reflect".StructField)
+func (? *@"reflect".rtype) @"reflect".FieldAlign() (? int)
+func (? *@"reflect".rtype) @"reflect".FieldByIndex(@"".index []int) (? @"reflect".StructField)
+func (? *@"reflect".rtype) @"reflect".FieldByName(@"".name string) (? @"reflect".StructField, ? bool)
+func (? *@"reflect".rtype) @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".StructField, ? bool)
+func (? *@"reflect".rtype) @"reflect".Implements(@"".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".In(@"".i int) (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".IsVariadic() (? bool)
+func (? *@"reflect".rtype) @"reflect".Key() (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".Kind() (? @"reflect".Kind)
+func (? *@"reflect".rtype) @"reflect".Len() (? int)
+func (? *@"reflect".rtype) @"reflect".Method(@"".i int) (@"".m @"reflect".Method)
+func (? *@"reflect".rtype) @"reflect".MethodByName(@"".name string) (@"".m @"reflect".Method, @"".ok bool)
+func (? *@"reflect".rtype) @"reflect".Name() (? string)
+func (? *@"reflect".rtype) @"reflect".NumField() (? int)
+func (? *@"reflect".rtype) @"reflect".NumIn() (? int)
+func (? *@"reflect".rtype) @"reflect".NumMethod() (? int)
+func (? *@"reflect".rtype) @"reflect".NumOut() (? int)
+func (? *@"reflect".rtype) @"reflect".Out(@"".i int) (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".PkgPath() (? string)
+func (? *@"reflect".rtype) @"reflect".Size() (? uintptr)
+func (? *@"reflect".rtype) @"reflect".String() (? string)
+func (? *@"reflect".rtype) @"reflect".common() (? *@"reflect".rtype)
+func (? *@"reflect".rtype) @"reflect".ptrTo() (? *@"reflect".rtype)
+type @"reflect".flag uintptr
+func (? @"reflect".flag) @"reflect".kind() (? @"reflect".Kind)
+func (? @"reflect".flag) @"reflect".mustBe(@"".expected @"reflect".Kind) ()
+func (? @"reflect".flag) @"reflect".mustBeAssignable() ()
+func (? @"reflect".flag) @"reflect".mustBeExported() ()
+func (? *@"reflect".flag) @"reflect".kind() (? @"reflect".Kind)
+func (? *@"reflect".flag) @"reflect".mustBe(@"".expected @"reflect".Kind) ()
+func (? *@"reflect".flag) @"reflect".mustBeAssignable() ()
+func (? *@"reflect".flag) @"reflect".mustBeExported() ()
+type @"reflect".Type interface { @"reflect".Align() (? int); @"reflect".AssignableTo(@"".u @"reflect".Type) (? bool); @"reflect".Bits() (? int); @"reflect".ChanDir() (? @"reflect".ChanDir); @"reflect".ConvertibleTo(@"".u @"reflect".Type) (? bool); @"reflect".Elem() (? @"reflect".Type); @"reflect".Field(@"".i int) (? @"reflect".StructField); @"reflect".FieldAlign() (? int); @"reflect".FieldByIndex(@"".index []int) (? @"reflect".StructField); @"reflect".FieldByName(@"".name string) (? @"reflect".StructField, ? bool); @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".StructField, ? bool); @"reflect".Implements(@"".u @"reflect".Type) (? bool); @"reflect".In(@"".i int) (? @"reflect".Type); @"reflect".IsVariadic() (? bool); @"reflect".Key() (? @"reflect".Type); @"reflect".Kind() (? @"reflect".Kind); @"reflect".Len() (? int); @"reflect".Method(? int) (? @"reflect".Method); @"reflect".MethodByName(? string) (? @"reflect".Method, ? bool); @"reflect".Name() (? string); @"reflect".NumField() (? int); @"reflect".NumIn() (? int); @"reflect".NumMethod() (? int); @"reflect".NumOut() (? int); @"reflect".Out(@"".i int) (? @"reflect".Type); @"reflect".PkgPath() (? string); @"reflect".Size() (? uintptr); @"reflect".String() (? string); @"reflect".common() (? *@"reflect".rtype); @"reflect".uncommon() (? *@"reflect".uncommonType) }
+type @"reflect".Kind uint
+func (? @"reflect".Kind) @"reflect".String() (? string)
+func (? *@"reflect".Kind) @"reflect".String() (? string)
+type @"reflect".iword @"unsafe".Pointer
+type @"container/list".Element struct { @"container/list".next *@"container/list".Element; @"container/list".prev *@"container/list".Element; @"container/list".list *@"container/list".List; @"container/list".Value interface {  } }
+func (? *@"container/list".Element) @"container/list".Next() (? *@"container/list".Element)
+func (? *@"container/list".Element) @"container/list".Prev() (? *@"container/list".Element)
+type @"reflect".uncommonType struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".methods []@"reflect".method }
+func (? *@"reflect".uncommonType) @"reflect".Method(@"".i int) (@"".m @"reflect".Method)
+func (? *@"reflect".uncommonType) @"reflect".MethodByName(@"".name string) (@"".m @"reflect".Method, @"".ok bool)
+func (? *@"reflect".uncommonType) @"reflect".Name() (? string)
+func (? *@"reflect".uncommonType) @"reflect".NumMethod() (? int)
+func (? *@"reflect".uncommonType) @"reflect".PkgPath() (? string)
+func (? *@"reflect".uncommonType) @"reflect".uncommon() (? *@"reflect".uncommonType)
+type @"reflect".ChanDir int
+func (? @"reflect".ChanDir) @"reflect".String() (? string)
+func (? *@"reflect".ChanDir) @"reflect".String() (? string)
+type @"reflect".StructField struct { @"reflect".Name string; @"reflect".PkgPath string; @"reflect".Type @"reflect".Type; @"reflect".Tag @"reflect".StructTag; @"reflect".Offset uintptr; @"reflect".Index []int; @"reflect".Anonymous bool }
+type @"reflect".Method struct { @"reflect".Name string; @"reflect".PkgPath string; @"reflect".Type @"reflect".Type; @"reflect".Func @"reflect".Value; @"reflect".Index int }
+type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
+type @"reflect".StructTag string
+func (? @"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
+func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
+$$
+0‚*runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesencodingmathstrconvstringsencoding/base64syscalltimeosreflectfmtsortunicode/utf16encoding/jsonhtmlpath/filepath	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatehtml/templateƒ
+·	var strings = go$packages["strings"];
+	var fmt = go$packages["fmt"];
+	var reflect = go$packages["reflect"];
+	var bytes = go$packages["bytes"];
+	var unicode = go$packages["unicode"];
+	var utf8 = go$packages["unicode/utf8"];
+	var html = go$packages["html"];
+	var io = go$packages["io"];
+	var template = go$packages["text/template"];
+	var parse = go$packages["text/template/parse"];
+	var json = go$packages["encoding/json"];
+	var ioutil = go$packages["io/ioutil"];
+	var filepath = go$packages["path/filepath"];
+	var sync = go$packages["sync"];
+	var CSS;
+	CSS = go$newType(0, "String", "template.CSS", "CSS", "html/template", null);
+	go$pkg.CSS = CSS;
+	var HTML;
+	HTML = go$newType(0, "String", "template.HTML", "HTML", "html/template", null);
+	go$pkg.HTML = HTML;
+	var HTMLAttr;
+	HTMLAttr = go$newType(0, "String", "template.HTMLAttr", "HTMLAttr", "html/template", null);
+	go$pkg.HTMLAttr = HTMLAttr;
+	var JS;
+	JS = go$newType(0, "String", "template.JS", "JS", "html/template", null);
+	go$pkg.JS = JS;
+	var JSStr;
+	JSStr = go$newType(0, "String", "template.JSStr", "JSStr", "html/template", null);
+	go$pkg.JSStr = JSStr;
+	var URL;
+	URL = go$newType(0, "String", "template.URL", "URL", "html/template", null);
+	go$pkg.URL = URL;
+	var contentType;
+	contentType = go$newType(1, "Uint8", "template.contentType", "contentType", "html/template", null);
+	go$pkg.contentType = contentType;
+	var context;
+	context = go$newType(0, "Struct", "template.context", "context", "html/template", function(state_, delim_, urlPart_, jsCtx_, attr_, element_, err_) {
+		this.go$val = this;
+		this.state = state_ !== undefined ? state_ : 0;
+		this.delim = delim_ !== undefined ? delim_ : 0;
+		this.urlPart = urlPart_ !== undefined ? urlPart_ : 0;
+		this.jsCtx = jsCtx_ !== undefined ? jsCtx_ : 0;
+		this.attr = attr_ !== undefined ? attr_ : 0;
+		this.element = element_ !== undefined ? element_ : 0;
+		this.err = err_ !== undefined ? err_ : (go$ptrType(Error)).nil;
+	});
+	go$pkg.context = context;
+	var state;
+	state = go$newType(1, "Uint8", "template.state", "state", "html/template", null);
+	go$pkg.state = state;
+	var delim;
+	delim = go$newType(1, "Uint8", "template.delim", "delim", "html/template", null);
+	go$pkg.delim = delim;
+	var urlPart;
+	urlPart = go$newType(1, "Uint8", "template.urlPart", "urlPart", "html/template", null);
+	go$pkg.urlPart = urlPart;
+	var jsCtx;
+	jsCtx = go$newType(1, "Uint8", "template.jsCtx", "jsCtx", "html/template", null);
+	go$pkg.jsCtx = jsCtx;
+	var element;
+	element = go$newType(1, "Uint8", "template.element", "element", "html/template", null);
+	go$pkg.element = element;
+	var attr;
+	attr = go$newType(1, "Uint8", "template.attr", "attr", "html/template", null);
+	go$pkg.attr = attr;
+	var Error;
+	Error = go$newType(0, "Struct", "template.Error", "Error", "html/template", function(ErrorCode_, Name_, Line_, Description_) {
+		this.go$val = this;
+		this.ErrorCode = ErrorCode_ !== undefined ? ErrorCode_ : 0;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.Line = Line_ !== undefined ? Line_ : 0;
+		this.Description = Description_ !== undefined ? Description_ : "";
+	});
+	go$pkg.Error = Error;
+	var ErrorCode;
+	ErrorCode = go$newType(4, "Int", "template.ErrorCode", "ErrorCode", "html/template", null);
+	go$pkg.ErrorCode = ErrorCode;
+	var escaper;
+	escaper = go$newType(0, "Struct", "template.escaper", "escaper", "html/template", function(tmpl_, output_, derived_, called_, actionNodeEdits_, templateNodeEdits_, textNodeEdits_) {
+		this.go$val = this;
+		this.tmpl = tmpl_ !== undefined ? tmpl_ : (go$ptrType(Template)).nil;
+		this.output = output_ !== undefined ? output_ : false;
+		this.derived = derived_ !== undefined ? derived_ : false;
+		this.called = called_ !== undefined ? called_ : false;
+		this.actionNodeEdits = actionNodeEdits_ !== undefined ? actionNodeEdits_ : false;
+		this.templateNodeEdits = templateNodeEdits_ !== undefined ? templateNodeEdits_ : false;
+		this.textNodeEdits = textNodeEdits_ !== undefined ? textNodeEdits_ : false;
+	});
+	go$pkg.escaper = escaper;
+	var Template;
+	Template = go$newType(0, "Struct", "template.Template", "Template", "html/template", function(escaped_, text_, Tree_, nameSpace_) {
+		this.go$val = this;
+		this.escaped = escaped_ !== undefined ? escaped_ : false;
+		this.text = text_ !== undefined ? text_ : (go$ptrType(template.Template)).nil;
+		this.Tree = Tree_ !== undefined ? Tree_ : (go$ptrType(parse.Tree)).nil;
+		this.nameSpace = nameSpace_ !== undefined ? nameSpace_ : (go$ptrType(nameSpace)).nil;
+	});
+	go$pkg.Template = Template;
+	var nameSpace;
+	nameSpace = go$newType(0, "Struct", "template.nameSpace", "nameSpace", "html/template", function(mu_, set_) {
+		this.go$val = this;
+		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
+		this.set = set_ !== undefined ? set_ : false;
+	});
+	go$pkg.nameSpace = nameSpace;
+	var FuncMap;
+	FuncMap = go$newType(0, "Map", "template.FuncMap", "FuncMap", "html/template", null);
+	go$pkg.FuncMap = FuncMap;
+	context.init([["state", "html/template", state, ""], ["delim", "html/template", delim, ""], ["urlPart", "html/template", urlPart, ""], ["jsCtx", "html/template", jsCtx, ""], ["attr", "html/template", attr, ""], ["element", "html/template", element, ""], ["err", "html/template", (go$ptrType(Error)), ""]]);
+	context.methods = [["String", "", [], [Go$String], false], ["eq", "html/template", [context], [Go$Bool], false], ["mangle", "html/template", [Go$String], [Go$String], false]];
+	(go$ptrType(context)).methods = [["String", "", [], [Go$String], false], ["eq", "html/template", [context], [Go$Bool], false], ["mangle", "html/template", [Go$String], [Go$String], false]];
+	state.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(state)).methods = [["String", "", [], [Go$String], false]];
+	delim.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(delim)).methods = [["String", "", [], [Go$String], false]];
+	urlPart.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(urlPart)).methods = [["String", "", [], [Go$String], false]];
+	jsCtx.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(jsCtx)).methods = [["String", "", [], [Go$String], false]];
+	element.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(element)).methods = [["String", "", [], [Go$String], false]];
+	attr.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(attr)).methods = [["String", "", [], [Go$String], false]];
+	Error.init([["ErrorCode", "", ErrorCode, ""], ["Name", "", Go$String, ""], ["Line", "", Go$Int, ""], ["Description", "", Go$String, ""]]);
+	(go$ptrType(Error)).methods = [["Error", "", [], [Go$String], false]];
+	escaper.init([["tmpl", "html/template", (go$ptrType(Template)), ""], ["output", "html/template", (go$mapType(Go$String, context)), ""], ["derived", "html/template", (go$mapType(Go$String, (go$ptrType(template.Template)))), ""], ["called", "html/template", (go$mapType(Go$String, Go$Bool)), ""], ["actionNodeEdits", "html/template", (go$mapType((go$ptrType(parse.ActionNode)), (go$sliceType(Go$String)))), ""], ["templateNodeEdits", "html/template", (go$mapType((go$ptrType(parse.TemplateNode)), Go$String)), ""], ["textNodeEdits", "html/template", (go$mapType((go$ptrType(parse.TextNode)), (go$sliceType(Go$Uint8)))), ""]]);
+	(go$ptrType(escaper)).methods = [["commit", "html/template", [], [], false], ["computeOutCtx", "html/template", [context, (go$ptrType(template.Template))], [context], false], ["editActionNode", "html/template", [(go$ptrType(parse.ActionNode)), (go$sliceType(Go$String))], [], false], ["editTemplateNode", "html/template", [(go$ptrType(parse.TemplateNode)), Go$String], [], false], ["editTextNode", "html/template", [(go$ptrType(parse.TextNode)), (go$sliceType(Go$Uint8))], [], false], ["escape", "html/template", [context, parse.Node], [context], false], ["escapeAction", "html/template", [context, (go$ptrType(parse.ActionNode))], [context], false], ["escapeBranch", "html/template", [context, (go$ptrType(parse.BranchNode)), Go$String], [context], false], ["escapeList", "html/template", [context, (go$ptrType(parse.ListNode))], [context], false], ["escapeListConditionally", "html/template", [context, (go$ptrType(parse.ListNode)), (go$funcType([(go$ptrType(escaper)), context], [Go$Bool], false))], [context, Go$Bool], false], ["escapeTemplate", "html/template", [context, (go$ptrType(parse.TemplateNode))], [context], false], ["escapeTemplateBody", "html/template", [context, (go$ptrType(template.Template))], [context, Go$Bool], false], ["escapeText", "html/template", [context, (go$ptrType(parse.TextNode))], [context], false], ["escapeTree", "html/template", [context, Go$String, Go$Int], [context, Go$String], false], ["template", "html/template", [Go$String], [(go$ptrType(template.Template))], false]];
+	Template.init([["escaped", "html/template", Go$Bool, ""], ["text", "html/template", (go$ptrType(template.Template)), ""], ["Tree", "", (go$ptrType(parse.Tree)), ""], ["", "html/template", (go$ptrType(nameSpace)), ""]]);
+	(go$ptrType(Template)).methods = [["AddParseTree", "", [Go$String, (go$ptrType(parse.Tree))], [(go$ptrType(Template)), go$error], false], ["Clone", "", [], [(go$ptrType(Template)), go$error], false], ["Delims", "", [Go$String, Go$String], [(go$ptrType(Template))], false], ["Execute", "", [io.Writer, go$emptyInterface], [go$error], false], ["ExecuteTemplate", "", [io.Writer, Go$String, go$emptyInterface], [go$error], false], ["Funcs", "", [FuncMap], [(go$ptrType(Template))], false], ["Lookup", "", [Go$String], [(go$ptrType(Template))], false], ["Name", "", [], [Go$String], false], ["New", "", [Go$String], [(go$ptrType(Template))], false], ["Parse", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["ParseFiles", "", [(go$sliceType(Go$String))], [(go$ptrType(Template)), go$error], true], ["ParseGlob", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["Templates", "", [], [(go$sliceType((go$ptrType(Template))))], false], ["escape", "html/template", [], [go$error], false], ["lookupAndEscapeTemplate", "html/template", [Go$String], [(go$ptrType(Template)), go$error], false], ["new", "html/template", [Go$String], [(go$ptrType(Template))], false]];
+	nameSpace.init([["mu", "html/template", sync.Mutex, ""], ["set", "html/template", (go$mapType(Go$String, (go$ptrType(Template)))), ""]]);
+	FuncMap.init(Go$String, go$emptyInterface);
+	var attrType = function(name) {
+		var colon, ok, _tuple, _entry, t;
+		name = strings.ToLower(name);
+		if (strings.HasPrefix(name, "data-")) {
+			name = name.substring(5);
+		} else if (colon = strings.IndexRune(name, 58), !((colon === -1))) {
+			if (name.substring(0, colon) === "xmlns") {
+				return 6;
+			}
+			name = name.substring((colon + 1 >> 0));
+		}
+		if (_tuple = (_entry = attrTypeMap[name], _entry !== undefined ? [_entry.v, true] : [0, false]), t = _tuple[0], ok = _tuple[1], ok) {
+			return t;
+		}
+		if (strings.HasPrefix(name, "on")) {
+			return 4;
+		}
+		if (strings.Contains(name, "src") || strings.Contains(name, "uri") || strings.Contains(name, "url")) {
+			return 6;
+		}
+		return 0;
+	};
+	var indirect = function(a) {
+		var t, _struct, v, _struct$1;
+		if (go$interfaceIsEqual(a, null)) {
+			return null;
+		}
+		if (t = reflect.TypeOf(a), !((t.Kind() === 22))) {
+			return a;
+		}
+		v = (_struct = reflect.ValueOf(a), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		while ((v.Kind() === 22) && !v.IsNil()) {
+			v = (_struct$1 = v.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		}
+		return v.Interface();
+	};
+	var indirectToStringerOrError = function(a) {
+		var _struct, v, _struct$1;
+		if (go$interfaceIsEqual(a, null)) {
+			return null;
+		}
+		v = (_struct = reflect.ValueOf(a), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		while (!v.Type().Implements(fmtStringerType) && !v.Type().Implements(errorType) && (v.Kind() === 22) && !v.IsNil()) {
+			v = (_struct$1 = v.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		}
+		return v.Interface();
+	};
+	var stringify = function(args) {
+		var s, _ref, _type, _slice, _index, _ref$1, _i, _slice$1, _index$1, arg, i, _slice$2, _index$2;
+		if (args.length === 1) {
+			_ref = indirect((_slice = args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
+			_type = _ref !== null ? _ref.constructor : null;
+			if (_type === Go$String) {
+				s = _ref.go$val;
+				return [s, 0];
+			} else if (_type === CSS) {
+				s = _ref.go$val;
+				return [s, 1];
+			} else if (_type === HTML) {
+				s = _ref.go$val;
+				return [s, 2];
+			} else if (_type === HTMLAttr) {
+				s = _ref.go$val;
+				return [s, 3];
+			} else if (_type === JS) {
+				s = _ref.go$val;
+				return [s, 4];
+			} else if (_type === JSStr) {
+				s = _ref.go$val;
+				return [s, 5];
+			} else if (_type === URL) {
+				s = _ref.go$val;
+				return [s, 6];
+			}
+		}
+		_ref$1 = args;
+		_i = 0;
+		for (; _i < _ref$1.length; _i += 1) {
+			arg = (_slice$1 = _ref$1, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_slice$2 = args, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = indirectToStringerOrError(arg)) : go$throwRuntimeError("index out of range");
+		}
+		return [fmt.Sprint(args), 0];
+	};
+	context.Ptr.prototype.String = function() {
+		var _struct, c;
+		c = (_struct = this, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
+		return fmt.Sprintf("{%v %v %v %v %v %v %v}", new (go$sliceType(go$emptyInterface))([new state(c.state), new delim(c.delim), new urlPart(c.urlPart), new jsCtx(c.jsCtx), new attr(c.attr), new element(c.element), c.err]));
+	};
+	context.prototype.String = function() { return this.go$val.String(); };
+	context.Ptr.prototype.eq = function(d) {
+		var _struct, c;
+		c = (_struct = this, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
+		return (c.state === d.state) && (c.delim === d.delim) && (c.urlPart === d.urlPart) && (c.jsCtx === d.jsCtx) && (c.attr === d.attr) && (c.element === d.element) && c.err === d.err;
+	};
+	context.prototype.eq = function(d) { return this.go$val.eq(d); };
+	context.Ptr.prototype.mangle = function(templateName) {
+		var _struct, c, s;
+		c = (_struct = this, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
+		if (c.state === 0) {
+			return templateName;
+		}
+		s = templateName + "$htmltemplate_" + (new state(c.state)).String();
+		if (!((c.delim === 0))) {
+			s = s + ("_" + (new delim(c.delim)).String());
+		}
+		if (!((c.urlPart === 0))) {
+			s = s + ("_" + (new urlPart(c.urlPart)).String());
+		}
+		if (!((c.jsCtx === 0))) {
+			s = s + ("_" + (new jsCtx(c.jsCtx)).String());
+		}
+		if (!((c.attr === 0))) {
+			s = s + ("_" + (new attr(c.attr)).String());
+		}
+		if (!((c.element === 0))) {
+			s = s + ("_" + (new element(c.element)).String());
+		}
+		return s;
+	};
+	context.prototype.mangle = function(templateName) { return this.go$val.mangle(templateName); };
+	state.prototype.String = function() {
+		var s;
+		s = this.go$val;
+		if ((s >> 0) < 24) {
+			return stateNames[s];
+		}
+		return fmt.Sprintf("illegal state %d", new (go$sliceType(go$emptyInterface))([new Go$Int((s >> 0))]));
+	};
+	go$ptrType(state).prototype.String = function() { return new state(this.go$get()).String(); };
+	var isComment = function(s) {
+		var _ref;
+		_ref = s;
+		if (_ref === 5 || _ref === 13 || _ref === 14 || _ref === 21 || _ref === 22) {
+			return true;
+		}
+		return false;
+	};
+	var isInTag = function(s) {
+		var _ref;
+		_ref = s;
+		if (_ref === 1 || _ref === 2 || _ref === 3 || _ref === 4 || _ref === 7) {
+			return true;
+		}
+		return false;
+	};
+	delim.prototype.String = function() {
+		var d;
+		d = this.go$val;
+		if ((d >> 0) < 4) {
+			return delimNames[d];
+		}
+		return fmt.Sprintf("illegal delim %d", new (go$sliceType(go$emptyInterface))([new Go$Int((d >> 0))]));
+	};
+	go$ptrType(delim).prototype.String = function() { return new delim(this.go$get()).String(); };
+	urlPart.prototype.String = function() {
+		var u;
+		u = this.go$val;
+		if ((u >> 0) < 4) {
+			return urlPartNames[u];
+		}
+		return fmt.Sprintf("illegal urlPart %d", new (go$sliceType(go$emptyInterface))([new Go$Int((u >> 0))]));
+	};
+	go$ptrType(urlPart).prototype.String = function() { return new urlPart(this.go$get()).String(); };
+	jsCtx.prototype.String = function() {
+		var c, _ref;
+		c = this.go$val;
+		_ref = c;
+		if (_ref === 0) {
+			return "jsCtxRegexp";
+		} else if (_ref === 1) {
+			return "jsCtxDivOp";
+		} else if (_ref === 2) {
+			return "jsCtxUnknown";
+		}
+		return fmt.Sprintf("illegal jsCtx %d", new (go$sliceType(go$emptyInterface))([new Go$Int((c >> 0))]));
+	};
+	go$ptrType(jsCtx).prototype.String = function() { return new jsCtx(this.go$get()).String(); };
+	element.prototype.String = function() {
+		var e;
+		e = this.go$val;
+		if ((e >> 0) < 5) {
+			return elementNames[e];
+		}
+		return fmt.Sprintf("illegal element %d", new (go$sliceType(go$emptyInterface))([new Go$Int((e >> 0))]));
+	};
+	go$ptrType(element).prototype.String = function() { return new element(this.go$get()).String(); };
+	attr.prototype.String = function() {
+		var a;
+		a = this.go$val;
+		if ((a >> 0) < 4) {
+			return attrNames[a];
+		}
+		return fmt.Sprintf("illegal attr %d", new (go$sliceType(go$emptyInterface))([new Go$Int((a >> 0))]));
+	};
+	go$ptrType(attr).prototype.String = function() { return new attr(this.go$get()).String(); };
+	var endsWithCSSKeyword = function(b, kw) {
+		var i, _tuple, r;
+		i = b.length - kw.length >> 0;
+		if (i < 0) {
+			return false;
+		}
+		if (!((i === 0))) {
+			_tuple = utf8.DecodeLastRune(go$subslice(b, 0, i)), r = _tuple[0];
+			if (isCSSNmchar(r)) {
+				return false;
+			}
+		}
+		return go$bytesToString(bytes.ToLower(go$subslice(b, i))) === kw;
+	};
+	var isCSSNmchar = function(r) {
+		return 97 <= r && r <= 122 || 65 <= r && r <= 90 || 48 <= r && r <= 57 || (r === 45) || (r === 95) || 128 <= r && r <= 55295 || 57344 <= r && r <= 65533 || 65536 <= r && r <= 1114111;
+	};
+	var decodeCSS = function(s) {
+		var i, b, i$1, _tuple, _slice, _index, j, _slice$1, _index$1, r, _q, _tuple$1, n, _tuple$2, _tuple$3, n$1, _tuple$4;
+		i = bytes.IndexByte(s, 92);
+		if (i === -1) {
+			return s;
+		}
+		b = (go$sliceType(Go$Uint8)).make(0, s.length, function() { return 0; });
+		while (!((s.length === 0))) {
+			i$1 = bytes.IndexByte(s, 92);
+			if (i$1 === -1) {
+				i$1 = s.length;
+			}
+			_tuple = [go$appendSlice(b, go$subslice(s, 0, i$1)), go$subslice(s, i$1)], b = _tuple[0], s = _tuple[1];
+			if (s.length < 2) {
+				break;
+			}
+			if (isHex((_slice = s, _index = 1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")))) {
+				j = 2;
+				while (j < s.length && j < 7 && isHex((_slice$1 = s, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))) {
+					j = j + 1 >> 0;
+				}
+				r = hexDecode(go$subslice(s, 1, j));
+				if (r > 1114111) {
+					_tuple$1 = [(_q = r / 16, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), j - 1 >> 0], r = _tuple$1[0], j = _tuple$1[1];
+				}
+				n = utf8.EncodeRune(go$subslice(b, b.length, b.capacity), r);
+				_tuple$2 = [go$subslice(b, 0, (b.length + n >> 0)), skipCSSSpace(go$subslice(s, j))], b = _tuple$2[0], s = _tuple$2[1];
+			} else {
+				_tuple$3 = utf8.DecodeRune(go$subslice(s, 1)), n$1 = _tuple$3[1];
+				_tuple$4 = [go$appendSlice(b, go$subslice(s, 1, (1 + n$1 >> 0))), go$subslice(s, (1 + n$1 >> 0))], b = _tuple$4[0], s = _tuple$4[1];
+			}
+		}
+		return b;
+	};
+	var isHex = function(c) {
+		return 48 <= c && c <= 57 || 97 <= c && c <= 102 || 65 <= c && c <= 70;
+	};
+	var hexDecode = function(s) {
+		var n, _ref, _i, _slice, _index, c;
+		n = 0;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			n = n << 4 >> 0;
+			if (48 <= c && c <= 57) {
+				n = n | (((c - 48 << 24 >>> 24) >> 0));
+			} else if (97 <= c && c <= 102) {
+				n = n | ((((c - 97 << 24 >>> 24) >> 0) + 10 >> 0));
+			} else if (65 <= c && c <= 70) {
+				n = n | ((((c - 65 << 24 >>> 24) >> 0) + 10 >> 0));
+			} else {
+				throw go$panic(new Go$String(fmt.Sprintf("Bad hex digit in %q", new (go$sliceType(go$emptyInterface))([s]))));
+			}
+		}
+		return n;
+	};
+	var skipCSSSpace = function(c) {
+		var _ref, _slice, _index, _slice$1, _index$1;
+		if (c.length === 0) {
+			return c;
+		}
+		_ref = (_slice = c, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (_ref === 9 || _ref === 10 || _ref === 12 || _ref === 32) {
+			return go$subslice(c, 1);
+		} else if (_ref === 13) {
+			if (c.length >= 2 && ((_slice$1 = c, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 10)) {
+				return go$subslice(c, 2);
+			}
+			return go$subslice(c, 1);
+		}
+		return c;
+	};
+	var isCSSSpace = function(b) {
+		var _ref;
+		_ref = b;
+		if (_ref === 9 || _ref === 10 || _ref === 12 || _ref === 13 || _ref === 32) {
+			return true;
+		}
+		return false;
+	};
+	var cssEscaper = function(args) {
+		var _tuple, s, b, written, _ref, _i, _rune, r, i, repl, _ref$1;
+		_tuple = stringify(args), s = _tuple[0];
+		b = new bytes.Buffer.Ptr();
+		written = 0;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			r = _rune[0];
+			i = _i;
+			repl = "";
+			_ref$1 = r;
+			if (_ref$1 === 0) {
+				repl = "\\0";
+			} else if (_ref$1 === 9) {
+				repl = "\\9";
+			} else if (_ref$1 === 10) {
+				repl = "\\a";
+			} else if (_ref$1 === 12) {
+				repl = "\\c";
+			} else if (_ref$1 === 13) {
+				repl = "\\d";
+			} else if (_ref$1 === 34) {
+				repl = "\\22";
+			} else if (_ref$1 === 38) {
+				repl = "\\26";
+			} else if (_ref$1 === 39) {
+				repl = "\\27";
+			} else if (_ref$1 === 40) {
+				repl = "\\28";
+			} else if (_ref$1 === 41) {
+				repl = "\\29";
+			} else if (_ref$1 === 43) {
+				repl = "\\2b";
+			} else if (_ref$1 === 47) {
+				repl = "\\2f";
+			} else if (_ref$1 === 58) {
+				repl = "\\3a";
+			} else if (_ref$1 === 59) {
+				repl = "\\3b";
+			} else if (_ref$1 === 60) {
+				repl = "\\3c";
+			} else if (_ref$1 === 62) {
+				repl = "\\3e";
+			} else if (_ref$1 === 92) {
+				repl = "\\\\";
+			} else if (_ref$1 === 123) {
+				repl = "\\7b";
+			} else if (_ref$1 === 125) {
+				repl = "\\7d";
+			} else {
+				continue;
+			}
+			b.WriteString(s.substring(written, i));
+			b.WriteString(repl);
+			written = i + utf8.RuneLen(r) >> 0;
+			if (!(repl === "\\\\") && ((written === s.length) || isHex(s.charCodeAt(written)) || isCSSSpace(s.charCodeAt(written)))) {
+				b.WriteByte(32);
+			}
+		}
+		if (written === 0) {
+			return s;
+		}
+		b.WriteString(s.substring(written));
+		return b.String();
+	};
+	var cssValueFilter = function(args) {
+		var _tuple, s, t, _tuple$1, b, id, _ref, _i, _slice, _index, c, i, _ref$1, _slice$1, _index$1;
+		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
+		if (t === 1) {
+			return s;
+		}
+		_tuple$1 = [decodeCSS(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), (go$sliceType(Go$Uint8)).make(0, 64, function() { return 0; })], b = _tuple$1[0], id = _tuple$1[1];
+		_ref = b;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_ref$1 = c;
+			if (_ref$1 === 0 || _ref$1 === 34 || _ref$1 === 39 || _ref$1 === 40 || _ref$1 === 41 || _ref$1 === 47 || _ref$1 === 59 || _ref$1 === 64 || _ref$1 === 91 || _ref$1 === 92 || _ref$1 === 93 || _ref$1 === 96 || _ref$1 === 123 || _ref$1 === 125) {
+				return "ZgotmplZ";
+			} else if (_ref$1 === 45) {
+				if (!((i === 0)) && ((_slice$1 = b, _index$1 = (i - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 45)) {
+					return "ZgotmplZ";
+				}
+			} else {
+				if (c < 128 && isCSSNmchar((c >> 0))) {
+					id = go$append(id, c);
+				}
+			}
+		}
+		id = bytes.ToLower(id);
+		if (!((bytes.Index(id, expressionBytes) === -1)) || !((bytes.Index(id, mozBindingBytes) === -1))) {
+			return "ZgotmplZ";
+		}
+		return go$bytesToString(b);
+	};
+	Error.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		if (!((e.Line === 0))) {
+			return fmt.Sprintf("html/template:%s:%d: %s", new (go$sliceType(go$emptyInterface))([new Go$String(e.Name), new Go$Int(e.Line), new Go$String(e.Description)]));
+		} else if (!(e.Name === "")) {
+			return fmt.Sprintf("html/template:%s: %s", new (go$sliceType(go$emptyInterface))([new Go$String(e.Name), new Go$String(e.Description)]));
+		}
+		return "html/template: " + e.Description;
+	};
+	Error.prototype.Error = function() { return this.go$val.Error(); };
+	var errorf = function(k, line, f, args) {
+		return new Error.Ptr(k, "", line, fmt.Sprintf(f, args));
+	};
+	var escapeTemplates = function(tmpl, names) {
+		var e, _ref, _i, _slice, _index, name, _tuple, _struct, c, err, _tuple$1, _ref$1, _i$1, _slice$1, _index$1, name$1, t, _entry;
+		e = newEscaper(tmpl);
+		_ref = names;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			name = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_tuple = e.escapeTree(new context.Ptr(0, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), name, 0), c = (_struct = _tuple[0], new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
+			err = null;
+			if (!(c.err === (go$ptrType(Error)).nil)) {
+				_tuple$1 = [c.err, name], err = _tuple$1[0], c.err.Name = _tuple$1[1];
+			} else if (!((c.state === 0))) {
+				err = new Error.Ptr(4, name, 0, fmt.Sprintf("ends in a non-text context: %v", new (go$sliceType(go$emptyInterface))([new c.constructor.Struct(c)])));
+			}
+			if (!(go$interfaceIsEqual(err, null))) {
+				_ref$1 = names;
+				_i$1 = 0;
+				for (; _i$1 < _ref$1.length; _i$1 += 1) {
+					name$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+					if (t = (_entry = tmpl.nameSpace.set[name$1], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil), !(t === (go$ptrType(Template)).nil)) {
+						t.text.Tree = (go$ptrType(parse.Tree)).nil;
+						t.Tree = (go$ptrType(parse.Tree)).nil;
+					}
+				}
+				return err;
+			}
+			tmpl.escaped = true;
+			tmpl.Tree = tmpl.text.Tree;
+		}
+		e.commit();
+		return null;
+	};
+	var newEscaper = function(t) {
+		var _map, _key, _map$1, _key$1, _map$2, _key$2, _map$3, _key$3, _map$4, _key$4, _map$5, _key$5;
+		return new escaper.Ptr(t, (_map = new Go$Map(), _map), (_map$1 = new Go$Map(), _map$1), (_map$2 = new Go$Map(), _map$2), (_map$3 = new Go$Map(), _map$3), (_map$4 = new Go$Map(), _map$4), (_map$5 = new Go$Map(), _map$5));
+	};
+	escaper.Ptr.prototype.escape = function(c, n) {
+		var e, n$1, _ref, _type, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13;
+		e = this;
+		_ref = n;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(parse.ActionNode))) {
+			n$1 = _ref.go$val;
+			return (_struct$1 = e.escapeAction((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), n$1), new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err));
+		} else if (_type === (go$ptrType(parse.IfNode))) {
+			n$1 = _ref.go$val;
+			return (_struct$3 = e.escapeBranch((_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), n$1.BranchNode, "if"), new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err));
+		} else if (_type === (go$ptrType(parse.ListNode))) {
+			n$1 = _ref.go$val;
+			return (_struct$5 = e.escapeList((_struct$4 = c, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err)), n$1), new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err));
+		} else if (_type === (go$ptrType(parse.RangeNode))) {
+			n$1 = _ref.go$val;
+			return (_struct$7 = e.escapeBranch((_struct$6 = c, new context.Ptr(_struct$6.state, _struct$6.delim, _struct$6.urlPart, _struct$6.jsCtx, _struct$6.attr, _struct$6.element, _struct$6.err)), n$1.BranchNode, "range"), new context.Ptr(_struct$7.state, _struct$7.delim, _struct$7.urlPart, _struct$7.jsCtx, _struct$7.attr, _struct$7.element, _struct$7.err));
+		} else if (_type === (go$ptrType(parse.TemplateNode))) {
+			n$1 = _ref.go$val;
+			return (_struct$9 = e.escapeTemplate((_struct$8 = c, new context.Ptr(_struct$8.state, _struct$8.delim, _struct$8.urlPart, _struct$8.jsCtx, _struct$8.attr, _struct$8.element, _struct$8.err)), n$1), new context.Ptr(_struct$9.state, _struct$9.delim, _struct$9.urlPart, _struct$9.jsCtx, _struct$9.attr, _struct$9.element, _struct$9.err));
+		} else if (_type === (go$ptrType(parse.TextNode))) {
+			n$1 = _ref.go$val;
+			return (_struct$11 = e.escapeText((_struct$10 = c, new context.Ptr(_struct$10.state, _struct$10.delim, _struct$10.urlPart, _struct$10.jsCtx, _struct$10.attr, _struct$10.element, _struct$10.err)), n$1), new context.Ptr(_struct$11.state, _struct$11.delim, _struct$11.urlPart, _struct$11.jsCtx, _struct$11.attr, _struct$11.element, _struct$11.err));
+		} else if (_type === (go$ptrType(parse.WithNode))) {
+			n$1 = _ref.go$val;
+			return (_struct$13 = e.escapeBranch((_struct$12 = c, new context.Ptr(_struct$12.state, _struct$12.delim, _struct$12.urlPart, _struct$12.jsCtx, _struct$12.attr, _struct$12.element, _struct$12.err)), n$1.BranchNode, "with"), new context.Ptr(_struct$13.state, _struct$13.delim, _struct$13.urlPart, _struct$13.jsCtx, _struct$13.attr, _struct$13.element, _struct$13.err));
+		}
+		throw go$panic(new Go$String("escaping " + n.String() + " is unimplemented"));
+	};
+	escaper.prototype.escape = function(c, n) { return this.go$val.escape(c, n); };
+	escaper.Ptr.prototype.escapeAction = function(c, n) {
+		var e, _struct, _struct$1, _struct$2, s, _ref, _struct$3, _ref$1, _ref$2, _ref$3, _ref$4, _struct$4;
+		e = this;
+		if (!((n.Pipe.Decl.length === 0))) {
+			return (_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
+		}
+		c = (_struct$2 = nudge((_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err))), new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err));
+		s = (go$sliceType(Go$String)).make(0, 3, function() { return ""; });
+		_ref = c.state;
+		if (_ref === 23) {
+			return (_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err));
+		} else if (_ref === 8 || _ref === 16 || _ref === 17 || _ref === 18 || _ref === 19 || _ref === 20) {
+			_ref$1 = c.urlPart;
+			if (_ref$1 === 0) {
+				s = go$append(s, "html_template_urlfilter");
+				_ref$2 = c.state;
+				if (_ref$2 === 16 || _ref$2 === 17) {
+					s = go$append(s, "html_template_cssescaper");
+				} else {
+					s = go$append(s, "html_template_urlnormalizer");
+				}
+			} else if (_ref$1 === 1) {
+				_ref$3 = c.state;
+				if (_ref$3 === 16 || _ref$3 === 17) {
+					s = go$append(s, "html_template_cssescaper");
+				} else {
+					s = go$append(s, "html_template_urlnormalizer");
+				}
+			} else if (_ref$1 === 2) {
+				s = go$append(s, "html_template_urlescaper");
+			} else if (_ref$1 === 3) {
+				return new context.Ptr(23, 0, 0, 0, 0, 0, errorf(1, n.Line, "%s appears in an ambiguous URL context", new (go$sliceType(go$emptyInterface))([n])));
+			} else {
+				throw go$panic(new Go$String((new urlPart(c.urlPart)).String()));
+			}
+		} else if (_ref === 9) {
+			s = go$append(s, "html_template_jsvalescaper");
+			c.jsCtx = 1;
+		} else if (_ref === 10 || _ref === 11) {
+			s = go$append(s, "html_template_jsstrescaper");
+		} else if (_ref === 12) {
+			s = go$append(s, "html_template_jsregexpescaper");
+		} else if (_ref === 15) {
+			s = go$append(s, "html_template_cssvaluefilter");
+		} else if (_ref === 0) {
+			s = go$append(s, "html_template_htmlescaper");
+		} else if (_ref === 6) {
+			s = go$append(s, "html_template_rcdataescaper");
+		} else if (_ref === 7) {
+		} else if (_ref === 2 || _ref === 1) {
+			c.state = 2;
+			s = go$append(s, "html_template_htmlnamefilter");
+		} else {
+			if (isComment(c.state)) {
+				s = go$append(s, "html_template_commentescaper");
+			} else {
+				throw go$panic(new Go$String("unexpected state " + (new state(c.state)).String()));
+			}
+		}
+		_ref$4 = c.delim;
+		if (_ref$4 === 0) {
+		} else if (_ref$4 === 3) {
+			s = go$append(s, "html_template_nospaceescaper");
+		} else {
+			s = go$append(s, "html_template_attrescaper");
+		}
+		e.editActionNode(n, s);
+		return (_struct$4 = c, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err));
+	};
+	escaper.prototype.escapeAction = function(c, n) { return this.go$val.escapeAction(c, n); };
+	var ensurePipelineContains = function(p, s) {
+		var n, idents, i, cmd, _slice, _index, ok, _tuple, x, _slice$1, _index$1, dups, _ref, _i, _slice$2, _index$2, id, _slice$3, _index$3, x$1, _slice$4, _index$4, newCmds, _ref$1, _i$1, _slice$5, _index$5, id$1, _slice$6, _index$6, pos, x$2, _slice$7, _index$7, i$1, _ref$2, _i$2, _slice$8, _index$8, name, _ref$3, _i$3, _slice$9, _index$9, name$1;
+		if (s.length === 0) {
+			return;
+		}
+		n = p.Cmds.length;
+		idents = p.Cmds;
+		i = n - 1 >> 0;
+		while (i >= 0) {
+			if (cmd = (_slice = p.Cmds, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), !((cmd.Args.length === 0))) {
+				if (_tuple = (x = (_slice$1 = cmd.Args, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(parse.IdentifierNode)) ? [x.go$val, true] : [(go$ptrType(parse.IdentifierNode)).nil, false])), ok = _tuple[1], ok) {
+					i = i - 1 >> 0;
+					continue;
+				}
+			}
+			idents = go$subslice(p.Cmds, (i + 1 >> 0));
+			i = i - 1 >> 0;
+		}
+		dups = 0;
+		_ref = idents;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			id = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+			if (escFnsEq((_slice$3 = s, _index$3 = dups, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), ((x$1 = (_slice$4 = id.Args, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (x$1 !== null && x$1.constructor === (go$ptrType(parse.IdentifierNode)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(parse.IdentifierNode)))))).Ident)) {
+				dups = dups + 1 >> 0;
+				if (dups === s.length) {
+					return;
+				}
+			}
+		}
+		newCmds = (go$sliceType((go$ptrType(parse.CommandNode)))).make(n - idents.length >> 0, (n + s.length >> 0) - dups >> 0, function() { return (go$ptrType(parse.CommandNode)).nil; });
+		go$copySlice(newCmds, p.Cmds);
+		_ref$1 = idents;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			id$1 = (_slice$5 = _ref$1, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+			pos = (_slice$6 = id$1.Args, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).Position();
+			i$1 = indexOfStr(((x$2 = (_slice$7 = id$1.Args, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), (x$2 !== null && x$2.constructor === (go$ptrType(parse.IdentifierNode)) ? x$2.go$val : go$typeAssertionFailed(x$2, (go$ptrType(parse.IdentifierNode)))))).Ident, s, escFnsEq);
+			if (!((i$1 === -1))) {
+				_ref$2 = go$subslice(s, 0, i$1);
+				_i$2 = 0;
+				for (; _i$2 < _ref$2.length; _i$2 += 1) {
+					name = (_slice$8 = _ref$2, _index$8 = _i$2, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
+					newCmds = appendCmd(newCmds, newIdentCmd(name, pos));
+				}
+				s = go$subslice(s, (i$1 + 1 >> 0));
+			}
+			newCmds = appendCmd(newCmds, id$1);
+		}
+		_ref$3 = s;
+		_i$3 = 0;
+		for (; _i$3 < _ref$3.length; _i$3 += 1) {
+			name$1 = (_slice$9 = _ref$3, _index$9 = _i$3, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range"));
+			newCmds = appendCmd(newCmds, newIdentCmd(name$1, (new parse.Pos(p.Pos)).Position()));
+		}
+		p.Cmds = newCmds;
+	};
+	var appendCmd = function(cmds, cmd) {
+		var n, _tuple, x, _slice, _index, _slice$1, _index$1, last, ok, _tuple$1, x$1, _slice$2, _index$2, next, _entry, _entry$1;
+		if (n = cmds.length, !((n === 0))) {
+			_tuple = (x = (_slice = (_slice$1 = cmds, _index$1 = (n - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(parse.IdentifierNode)) ? [x.go$val, true] : [(go$ptrType(parse.IdentifierNode)).nil, false])), last = _tuple[0], ok = _tuple[1];
+			_tuple$1 = (x$1 = (_slice$2 = cmd.Args, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (x$1 !== null && x$1.constructor === (go$ptrType(parse.IdentifierNode)) ? [x$1.go$val, true] : [(go$ptrType(parse.IdentifierNode)).nil, false])), next = _tuple$1[0];
+			if (ok && (_entry = (_entry$1 = redundantFuncs[last.Ident], _entry$1 !== undefined ? _entry$1.v : false)[next.Ident], _entry !== undefined ? _entry.v : false)) {
+				return cmds;
+			}
+		}
+		return go$append(cmds, cmd);
+	};
+	var indexOfStr = function(s, strs, eq) {
+		var _ref, _i, _slice, _index, t, i;
+		_ref = strs;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			t = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (eq(s, t)) {
+				return i;
+			}
+		}
+		return -1;
+	};
+	var escFnsEq = function(a, b) {
+		var e, _entry, e$1, _entry$1;
+		if (e = (_entry = equivEscapers[a], _entry !== undefined ? _entry.v : ""), !(e === "")) {
+			a = e;
+		}
+		if (e$1 = (_entry$1 = equivEscapers[b], _entry$1 !== undefined ? _entry$1.v : ""), !(e$1 === "")) {
+			b = e$1;
+		}
+		return a === b;
+	};
+	var newIdentCmd = function(identifier, pos) {
+		return new parse.CommandNode.Ptr(4, 0, new (go$sliceType(parse.Node))([parse.NewIdentifier(identifier).SetPos(pos)]));
+	};
+	var nudge = function(c) {
+		var _ref, _tuple, _tuple$1, _struct;
+		_ref = c.state;
+		if (_ref === 1) {
+			c.state = 2;
+		} else if (_ref === 4) {
+			_tuple = [attrStartStates[c.attr], 3, 0], c.state = _tuple[0], c.delim = _tuple[1], c.attr = _tuple[2];
+		} else if (_ref === 3) {
+			_tuple$1 = [2, 0], c.state = _tuple$1[0], c.attr = _tuple$1[1];
+		}
+		return (_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
+	};
+	var join = function(a, b, line, nodeName) {
+		var _struct, _struct$1, _struct$2, _struct$3, _struct$4, c, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, c$1, _struct$10, d, _struct$11, _struct$12, _struct$13, _struct$14, _struct$15, _tuple, e, _struct$16, _struct$17, _struct$18, _struct$19;
+		if (a.state === 23) {
+			return (_struct = a, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
+		}
+		if (b.state === 23) {
+			return (_struct$1 = b, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err));
+		}
+		if (a.eq((_struct$2 = b, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)))) {
+			return (_struct$3 = a, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err));
+		}
+		c = (_struct$4 = a, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err));
+		c.urlPart = b.urlPart;
+		if (c.eq((_struct$5 = b, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err)))) {
+			c.urlPart = 3;
+			return (_struct$6 = c, new context.Ptr(_struct$6.state, _struct$6.delim, _struct$6.urlPart, _struct$6.jsCtx, _struct$6.attr, _struct$6.element, _struct$6.err));
+		}
+		c = (_struct$7 = a, new context.Ptr(_struct$7.state, _struct$7.delim, _struct$7.urlPart, _struct$7.jsCtx, _struct$7.attr, _struct$7.element, _struct$7.err));
+		c.jsCtx = b.jsCtx;
+		if (c.eq((_struct$8 = b, new context.Ptr(_struct$8.state, _struct$8.delim, _struct$8.urlPart, _struct$8.jsCtx, _struct$8.attr, _struct$8.element, _struct$8.err)))) {
+			c.jsCtx = 2;
+			return (_struct$9 = c, new context.Ptr(_struct$9.state, _struct$9.delim, _struct$9.urlPart, _struct$9.jsCtx, _struct$9.attr, _struct$9.element, _struct$9.err));
+		}
+		if (_tuple = [(_struct$13 = nudge((_struct$12 = a, new context.Ptr(_struct$12.state, _struct$12.delim, _struct$12.urlPart, _struct$12.jsCtx, _struct$12.attr, _struct$12.element, _struct$12.err))), new context.Ptr(_struct$13.state, _struct$13.delim, _struct$13.urlPart, _struct$13.jsCtx, _struct$13.attr, _struct$13.element, _struct$13.err)), (_struct$15 = nudge((_struct$14 = b, new context.Ptr(_struct$14.state, _struct$14.delim, _struct$14.urlPart, _struct$14.jsCtx, _struct$14.attr, _struct$14.element, _struct$14.err))), new context.Ptr(_struct$15.state, _struct$15.delim, _struct$15.urlPart, _struct$15.jsCtx, _struct$15.attr, _struct$15.element, _struct$15.err))], c$1 = _tuple[0], d = _tuple[1], !(c$1.eq((_struct$10 = a, new context.Ptr(_struct$10.state, _struct$10.delim, _struct$10.urlPart, _struct$10.jsCtx, _struct$10.attr, _struct$10.element, _struct$10.err))) && d.eq((_struct$11 = b, new context.Ptr(_struct$11.state, _struct$11.delim, _struct$11.urlPart, _struct$11.jsCtx, _struct$11.attr, _struct$11.element, _struct$11.err))))) {
+			if (e = (_struct$18 = join((_struct$16 = c$1, new context.Ptr(_struct$16.state, _struct$16.delim, _struct$16.urlPart, _struct$16.jsCtx, _struct$16.attr, _struct$16.element, _struct$16.err)), (_struct$17 = d, new context.Ptr(_struct$17.state, _struct$17.delim, _struct$17.urlPart, _struct$17.jsCtx, _struct$17.attr, _struct$17.element, _struct$17.err)), line, nodeName), new context.Ptr(_struct$18.state, _struct$18.delim, _struct$18.urlPart, _struct$18.jsCtx, _struct$18.attr, _struct$18.element, _struct$18.err)), !((e.state === 23))) {
+				return (_struct$19 = e, new context.Ptr(_struct$19.state, _struct$19.delim, _struct$19.urlPart, _struct$19.jsCtx, _struct$19.attr, _struct$19.element, _struct$19.err));
+			}
+		}
+		return new context.Ptr(23, 0, 0, 0, 0, 0, errorf(3, line, "{{%s}} branches end in different contexts: %v, %v", new (go$sliceType(go$emptyInterface))([new Go$String(nodeName), new a.constructor.Struct(a), new b.constructor.Struct(b)])));
+	};
+	escaper.Ptr.prototype.escapeBranch = function(c, n, nodeName) {
+		var e, _struct, _struct$1, c0, _tuple, _struct$2, _struct$3, c1, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, c1$1, _struct$10, _struct$11, _struct$12;
+		e = this;
+		c0 = (_struct$1 = e.escapeList((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), n.List), new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err));
+		if (nodeName === "range" && !((c0.state === 23))) {
+			_tuple = e.escapeListConditionally((_struct$2 = c0, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), n.List, go$throwNilPointerError), c1 = (_struct$3 = _tuple[0], new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err));
+			c0 = (_struct$6 = join((_struct$4 = c0, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err)), (_struct$5 = c1, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err)), n.Line, nodeName), new context.Ptr(_struct$6.state, _struct$6.delim, _struct$6.urlPart, _struct$6.jsCtx, _struct$6.attr, _struct$6.element, _struct$6.err));
+			if (c0.state === 23) {
+				c0.err.Line = n.Line;
+				c0.err.Description = "on range loop re-entry: " + c0.err.Description;
+				return (_struct$7 = c0, new context.Ptr(_struct$7.state, _struct$7.delim, _struct$7.urlPart, _struct$7.jsCtx, _struct$7.attr, _struct$7.element, _struct$7.err));
+			}
+		}
+		c1$1 = (_struct$9 = e.escapeList((_struct$8 = c, new context.Ptr(_struct$8.state, _struct$8.delim, _struct$8.urlPart, _struct$8.jsCtx, _struct$8.attr, _struct$8.element, _struct$8.err)), n.ElseList), new context.Ptr(_struct$9.state, _struct$9.delim, _struct$9.urlPart, _struct$9.jsCtx, _struct$9.attr, _struct$9.element, _struct$9.err));
+		return (_struct$12 = join((_struct$10 = c0, new context.Ptr(_struct$10.state, _struct$10.delim, _struct$10.urlPart, _struct$10.jsCtx, _struct$10.attr, _struct$10.element, _struct$10.err)), (_struct$11 = c1$1, new context.Ptr(_struct$11.state, _struct$11.delim, _struct$11.urlPart, _struct$11.jsCtx, _struct$11.attr, _struct$11.element, _struct$11.err)), n.Line, nodeName), new context.Ptr(_struct$12.state, _struct$12.delim, _struct$12.urlPart, _struct$12.jsCtx, _struct$12.attr, _struct$12.element, _struct$12.err));
+	};
+	escaper.prototype.escapeBranch = function(c, n, nodeName) { return this.go$val.escapeBranch(c, n, nodeName); };
+	escaper.Ptr.prototype.escapeList = function(c, n) {
+		var e, _struct, _ref, _i, _slice, _index, m, _struct$1, _struct$2, _struct$3;
+		e = this;
+		if (n === (go$ptrType(parse.ListNode)).nil) {
+			return (_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
+		}
+		_ref = n.Nodes;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			m = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			c = (_struct$2 = e.escape((_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), m), new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err));
+		}
+		return (_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err));
+	};
+	escaper.prototype.escapeList = function(c, n) { return this.go$val.escapeList(c, n); };
+	escaper.Ptr.prototype.escapeListConditionally = function(c, n, filter) {
+		var e, e1, _ref, _i, _keys, _entry, v, k, _struct, _key, _struct$1, _struct$2, _struct$3, ok, _ref$1, _i$1, _keys$1, _entry$1, v$1, k$1, _struct$4, _key$1, _ref$2, _i$2, _keys$2, _entry$2, v$2, k$2, _key$2, _ref$3, _i$3, _keys$3, _entry$3, v$3, k$3, _key$3, _ref$4, _i$4, _keys$4, _entry$4, v$4, k$4, _ref$5, _i$5, _keys$5, _entry$5, v$5, k$5, _ref$6, _i$6, _keys$6, _entry$6, v$6, k$6, _struct$5;
+		e = this;
+		e1 = newEscaper(e.tmpl);
+		_ref = e.output;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry = _ref[_keys[_i]];
+			v = _entry.v;
+			k = _entry.k;
+			_key = k, (e1.output || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: (_struct = v, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)) };
+		}
+		c = (_struct$2 = e1.escapeList((_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), n), new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err));
+		ok = !(filter === go$throwNilPointerError) && filter(e1, (_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err)));
+		if (ok) {
+			_ref$1 = e1.output;
+			_i$1 = 0;
+			_keys$1 = go$keys(_ref$1);
+			for (; _i$1 < _keys$1.length; _i$1 += 1) {
+				_entry$1 = _ref$1[_keys$1[_i$1]];
+				v$1 = _entry$1.v;
+				k$1 = _entry$1.k;
+				_key$1 = k$1, (e.output || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: (_struct$4 = v$1, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err)) };
+			}
+			_ref$2 = e1.derived;
+			_i$2 = 0;
+			_keys$2 = go$keys(_ref$2);
+			for (; _i$2 < _keys$2.length; _i$2 += 1) {
+				_entry$2 = _ref$2[_keys$2[_i$2]];
+				v$2 = _entry$2.v;
+				k$2 = _entry$2.k;
+				_key$2 = k$2, (e.derived || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: v$2 };
+			}
+			_ref$3 = e1.called;
+			_i$3 = 0;
+			_keys$3 = go$keys(_ref$3);
+			for (; _i$3 < _keys$3.length; _i$3 += 1) {
+				_entry$3 = _ref$3[_keys$3[_i$3]];
+				v$3 = _entry$3.v;
+				k$3 = _entry$3.k;
+				_key$3 = k$3, (e.called || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: v$3 };
+			}
+			_ref$4 = e1.actionNodeEdits;
+			_i$4 = 0;
+			_keys$4 = go$keys(_ref$4);
+			for (; _i$4 < _keys$4.length; _i$4 += 1) {
+				_entry$4 = _ref$4[_keys$4[_i$4]];
+				v$4 = _entry$4.v;
+				k$4 = _entry$4.k;
+				e.editActionNode(k$4, v$4);
+			}
+			_ref$5 = e1.templateNodeEdits;
+			_i$5 = 0;
+			_keys$5 = go$keys(_ref$5);
+			for (; _i$5 < _keys$5.length; _i$5 += 1) {
+				_entry$5 = _ref$5[_keys$5[_i$5]];
+				v$5 = _entry$5.v;
+				k$5 = _entry$5.k;
+				e.editTemplateNode(k$5, v$5);
+			}
+			_ref$6 = e1.textNodeEdits;
+			_i$6 = 0;
+			_keys$6 = go$keys(_ref$6);
+			for (; _i$6 < _keys$6.length; _i$6 += 1) {
+				_entry$6 = _ref$6[_keys$6[_i$6]];
+				v$6 = _entry$6.v;
+				k$6 = _entry$6.k;
+				e.editTextNode(k$6, v$6);
+			}
+		}
+		return [(_struct$5 = c, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err)), ok];
+	};
+	escaper.prototype.escapeListConditionally = function(c, n, filter) { return this.go$val.escapeListConditionally(c, n, filter); };
+	escaper.Ptr.prototype.escapeTemplate = function(c, n) {
+		var e, _tuple, _struct, _struct$1, name, _struct$2;
+		e = this;
+		_tuple = e.escapeTree((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), n.Name, n.Line), c = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), name = _tuple[1];
+		if (!(name === n.Name)) {
+			e.editTemplateNode(n, name);
+		}
+		return (_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err));
+	};
+	escaper.prototype.escapeTemplate = function(c, n) { return this.go$val.escapeTemplate(c, n); };
+	escaper.Ptr.prototype.escapeTree = function(c, name, line) {
+		var e, dname, _key, ok, _tuple, _entry, _struct, out, _struct$1, t, _entry$1, dt, _key$1, _struct$2, _struct$3;
+		e = this;
+		dname = c.mangle(name);
+		_key = dname, (e.called || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
+		if (_tuple = (_entry = e.output[dname], _entry !== undefined ? [_entry.v, true] : [new context.Ptr(), false]), out = (_struct = _tuple[0], new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), ok = _tuple[1], ok) {
+			return [(_struct$1 = out, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), dname];
+		}
+		t = e.template(name);
+		if (t === (go$ptrType(template.Template)).nil) {
+			if (!((_entry$1 = e.tmpl.nameSpace.set[name], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(Template)).nil) === (go$ptrType(Template)).nil)) {
+				return [new context.Ptr(23, 0, 0, 0, 0, 0, errorf(5, line, "%q is an incomplete or empty template", new (go$sliceType(go$emptyInterface))([new Go$String(name)]))), dname];
+			}
+			return [new context.Ptr(23, 0, 0, 0, 0, 0, errorf(5, line, "no such template %q", new (go$sliceType(go$emptyInterface))([new Go$String(name)]))), dname];
+		}
+		if (!(dname === name)) {
+			dt = e.template(dname);
+			if (dt === (go$ptrType(template.Template)).nil) {
+				dt = template.New(dname);
+				dt.Tree = new parse.Tree.Ptr(dname, "", t.Tree.Root.CopyList(), "", (go$sliceType((go$mapType(Go$String, go$emptyInterface)))).nil, (go$ptrType(parse.lexer)).nil, go$makeNativeArray("Struct", 3, function() { return new parse.item.Ptr(); }), 0, (go$sliceType(Go$String)).nil);
+				_key$1 = dname, (e.derived || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: dt };
+			}
+			t = dt;
+		}
+		return [(_struct$3 = e.computeOutCtx((_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), t), new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err)), dname];
+	};
+	escaper.prototype.escapeTree = function(c, name, line) { return this.go$val.escapeTree(c, name, line); };
+	escaper.Ptr.prototype.computeOutCtx = function(c, t) {
+		var e, _tuple, _struct, _struct$1, c1, ok, ok2, _tuple$1, _struct$2, _struct$3, c2, _struct$4, _tuple$2, _struct$5;
+		e = this;
+		_tuple = e.escapeTemplateBody((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), t), c1 = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), ok = _tuple[1];
+		if (!ok) {
+			if (_tuple$1 = e.escapeTemplateBody((_struct$2 = c1, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), t), c2 = (_struct$3 = _tuple$1[0], new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err)), ok2 = _tuple$1[1], ok2) {
+				_tuple$2 = [(_struct$4 = c2, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err)), true], c1 = _tuple$2[0], ok = _tuple$2[1];
+			}
+		}
+		if (!ok && !((c1.state === 23))) {
+			return new context.Ptr(23, 0, 0, 0, 0, 0, errorf(6, 0, "cannot compute output context for template %s", new (go$sliceType(go$emptyInterface))([new Go$String(t.Name())])));
+		}
+		return (_struct$5 = c1, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err));
+	};
+	escaper.prototype.computeOutCtx = function(c, t) { return this.go$val.computeOutCtx(c, t); };
+	escaper.Ptr.prototype.escapeTemplateBody = function(c, t) {
+		var e, filter, _struct, _key, _struct$1;
+		e = this;
+		filter = (function(e1, c1) {
+			var _entry, _struct;
+			if (c1.state === 23) {
+				return false;
+			}
+			if (!(_entry = e1.called[t.Name()], _entry !== undefined ? _entry.v : false)) {
+				return true;
+			}
+			return c.eq((_struct = c1, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)));
+		});
+		_key = t.Name(), (e.output || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: (_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)) };
+		return e.escapeListConditionally((_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), t.Tree.Root, filter);
+	};
+	escaper.prototype.escapeTemplateBody = function(c, t) { return this.go$val.escapeTemplateBody(c, t); };
+	escaper.Ptr.prototype.escapeText = function(c, n) {
+		var e, _tuple, s, written, i, b, _tuple$1, _struct, _struct$1, c1, nread, i1, end, j, _slice, _index, j$1, _slice$1, _index$1, _ref, cs, _struct$2, _tuple$2, _struct$3;
+		e = this;
+		_tuple = [n.Text, 0, 0, new bytes.Buffer.Ptr()], s = _tuple[0], written = _tuple[1], i = _tuple[2], b = _tuple[3];
+		while (!((i === s.length))) {
+			_tuple$1 = contextAfterText((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), go$subslice(s, i)), c1 = (_struct$1 = _tuple$1[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), nread = _tuple$1[1];
+			i1 = i + nread >> 0;
+			if ((c.state === 0) || (c.state === 6)) {
+				end = i1;
+				if (!((c1.state === c.state))) {
+					j = end - 1 >> 0;
+					while (j >= i) {
+						if ((_slice = s, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 60) {
+							end = j;
+							break;
+						}
+						j = j - 1 >> 0;
+					}
+				}
+				j$1 = i;
+				while (j$1 < end) {
+					if (((_slice$1 = s, _index$1 = j$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 60) && !bytes.HasPrefix(bytes.ToUpper(go$subslice(s, j$1)), doctypeBytes)) {
+						b.Write(go$subslice(s, written, j$1));
+						b.WriteString("&lt;");
+						written = j$1 + 1 >> 0;
+					}
+					j$1 = j$1 + 1 >> 0;
+				}
+			} else if (isComment(c.state) && (c.delim === 0)) {
+				_ref = c.state;
+				if (_ref === 13) {
+					if (!((bytes.IndexAny(go$subslice(s, written, i1), "\n\r\xE2\x80\xA8\xE2\x80\xA9") === -1))) {
+						b.WriteByte(10);
+					} else {
+						b.WriteByte(32);
+					}
+				} else if (_ref === 21) {
+					b.WriteByte(32);
+				}
+				written = i1;
+			}
+			if (!((c.state === c1.state)) && isComment(c1.state) && (c1.delim === 0)) {
+				cs = i1 - 2 >> 0;
+				if (c1.state === 5) {
+					cs = cs - 2 >> 0;
+				}
+				b.Write(go$subslice(s, written, cs));
+				written = i1;
+			}
+			if ((i === i1) && (c.state === c1.state)) {
+				throw go$panic(new Go$String(fmt.Sprintf("infinite loop from %v to %v on %q..%q", new (go$sliceType(go$emptyInterface))([new c.constructor.Struct(c), new c1.constructor.Struct(c1), go$subslice(s, 0, i), go$subslice(s, i)]))));
+			}
+			_tuple$2 = [(_struct$2 = c1, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), i1], c = _tuple$2[0], i = _tuple$2[1];
+		}
+		if (!((written === 0)) && !((c.state === 23))) {
+			if (!isComment(c.state) || !((c.delim === 0))) {
+				b.Write(go$subslice(n.Text, written));
+			}
+			e.editTextNode(n, b.Bytes());
+		}
+		return (_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err));
+	};
+	escaper.prototype.escapeText = function(c, n) { return this.go$val.escapeText(c, n); };
+	var contextAfterText = function(c, s) {
+		var _tuple, _struct, _struct$1, c1, i, _struct$2, _struct$3, i$1, j, u, _tuple$1, _struct$4, _struct$5, c1$1, i1, _struct$6, _tuple$2, _struct$7;
+		if (c.delim === 0) {
+			_tuple = tSpecialTagEnd((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s), c1 = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i = _tuple[1];
+			if (i === 0) {
+				return [(_struct$2 = c1, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), 0];
+			}
+			return transitionFunc[c.state]((_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err)), go$subslice(s, 0, i));
+		}
+		i$1 = bytes.IndexAny(s, delimEnds[c.delim]);
+		if (i$1 === -1) {
+			i$1 = s.length;
+		}
+		if (c.delim === 3) {
+			if (j = bytes.IndexAny(go$subslice(s, 0, i$1), "\"'<=`"), j >= 0) {
+				return [new context.Ptr(23, 0, 0, 0, 0, 0, errorf(2, 0, "%q in unquoted attr: %q", new (go$sliceType(go$emptyInterface))([go$subslice(s, j, (j + 1 >> 0)), go$subslice(s, 0, i$1)]))), s.length];
+			}
+		}
+		if (i$1 === s.length) {
+			u = new (go$sliceType(Go$Uint8))(go$stringToBytes(html.UnescapeString(go$bytesToString(s))));
+			while (!((u.length === 0))) {
+				_tuple$1 = transitionFunc[c.state]((_struct$4 = c, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err)), u), c1$1 = (_struct$5 = _tuple$1[0], new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err)), i1 = _tuple$1[1];
+				_tuple$2 = [(_struct$6 = c1$1, new context.Ptr(_struct$6.state, _struct$6.delim, _struct$6.urlPart, _struct$6.jsCtx, _struct$6.attr, _struct$6.element, _struct$6.err)), go$subslice(u, i1)], c = _tuple$2[0], u = _tuple$2[1];
+			}
+			return [(_struct$7 = c, new context.Ptr(_struct$7.state, _struct$7.delim, _struct$7.urlPart, _struct$7.jsCtx, _struct$7.attr, _struct$7.element, _struct$7.err)), s.length];
+		}
+		if (!((c.delim === 3))) {
+			i$1 = i$1 + 1 >> 0;
+		}
+		return [new context.Ptr(1, 0, 0, 0, 0, c.element, (go$ptrType(Error)).nil), i$1];
+	};
+	escaper.Ptr.prototype.editActionNode = function(n, cmds) {
+		var e, ok, _tuple, _entry, _key;
+		e = this;
+		if (_tuple = (_entry = e.actionNodeEdits[n.go$key()], _entry !== undefined ? [_entry.v, true] : [(go$sliceType(Go$String)).nil, false]), ok = _tuple[1], ok) {
+			throw go$panic(new Go$String(fmt.Sprintf("node %s shared between templates", new (go$sliceType(go$emptyInterface))([n]))));
+		}
+		_key = n, (e.actionNodeEdits || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: cmds };
+	};
+	escaper.prototype.editActionNode = function(n, cmds) { return this.go$val.editActionNode(n, cmds); };
+	escaper.Ptr.prototype.editTemplateNode = function(n, callee) {
+		var e, ok, _tuple, _entry, _key;
+		e = this;
+		if (_tuple = (_entry = e.templateNodeEdits[n.go$key()], _entry !== undefined ? [_entry.v, true] : ["", false]), ok = _tuple[1], ok) {
+			throw go$panic(new Go$String(fmt.Sprintf("node %s shared between templates", new (go$sliceType(go$emptyInterface))([n]))));
+		}
+		_key = n, (e.templateNodeEdits || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: callee };
+	};
+	escaper.prototype.editTemplateNode = function(n, callee) { return this.go$val.editTemplateNode(n, callee); };
+	escaper.Ptr.prototype.editTextNode = function(n, text) {
+		var e, ok, _tuple, _entry, _key;
+		e = this;
+		if (_tuple = (_entry = e.textNodeEdits[n.go$key()], _entry !== undefined ? [_entry.v, true] : [(go$sliceType(Go$Uint8)).nil, false]), ok = _tuple[1], ok) {
+			throw go$panic(new Go$String(fmt.Sprintf("node %s shared between templates", new (go$sliceType(go$emptyInterface))([n]))));
+		}
+		_key = n, (e.textNodeEdits || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: text };
+	};
+	escaper.prototype.editTextNode = function(n, text) { return this.go$val.editTextNode(n, text); };
+	escaper.Ptr.prototype.commit = function() {
+		var e, _ref, _i, _keys, _entry, name, _ref$1, _i$1, _keys$1, _entry$1, t, err, _tuple, _ref$2, _i$2, _keys$2, _entry$2, s, n, _ref$3, _i$3, _keys$3, _entry$3, name$1, n$1, _ref$4, _i$4, _keys$4, _entry$4, s$1, n$2;
+		e = this;
+		_ref = e.output;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry = _ref[_keys[_i]];
+			name = _entry.k;
+			e.template(name).Funcs(funcMap);
+		}
+		_ref$1 = e.derived;
+		_i$1 = 0;
+		_keys$1 = go$keys(_ref$1);
+		for (; _i$1 < _keys$1.length; _i$1 += 1) {
+			_entry$1 = _ref$1[_keys$1[_i$1]];
+			t = _entry$1.v;
+			if (_tuple = e.tmpl.text.AddParseTree(t.Name(), t.Tree), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+				throw go$panic(new Go$String("error adding derived template"));
+			}
+		}
+		_ref$2 = e.actionNodeEdits;
+		_i$2 = 0;
+		_keys$2 = go$keys(_ref$2);
+		for (; _i$2 < _keys$2.length; _i$2 += 1) {
+			_entry$2 = _ref$2[_keys$2[_i$2]];
+			s = _entry$2.v;
+			n = _entry$2.k;
+			ensurePipelineContains(n.Pipe, s);
+		}
+		_ref$3 = e.templateNodeEdits;
+		_i$3 = 0;
+		_keys$3 = go$keys(_ref$3);
+		for (; _i$3 < _keys$3.length; _i$3 += 1) {
+			_entry$3 = _ref$3[_keys$3[_i$3]];
+			name$1 = _entry$3.v;
+			n$1 = _entry$3.k;
+			n$1.Name = name$1;
+		}
+		_ref$4 = e.textNodeEdits;
+		_i$4 = 0;
+		_keys$4 = go$keys(_ref$4);
+		for (; _i$4 < _keys$4.length; _i$4 += 1) {
+			_entry$4 = _ref$4[_keys$4[_i$4]];
+			s$1 = _entry$4.v;
+			n$2 = _entry$4.k;
+			n$2.Text = s$1;
+		}
+	};
+	escaper.prototype.commit = function() { return this.go$val.commit(); };
+	escaper.Ptr.prototype.template = function(name) {
+		var e, t, _entry;
+		e = this;
+		t = e.tmpl.text.Lookup(name);
+		if (t === (go$ptrType(template.Template)).nil) {
+			t = (_entry = e.derived[name], _entry !== undefined ? _entry.v : (go$ptrType(template.Template)).nil);
+		}
+		return t;
+	};
+	escaper.prototype.template = function(name) { return this.go$val.template(name); };
+	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
+		template.HTMLEscape(w, b);
+	};
+	var HTMLEscapeString = go$pkg.HTMLEscapeString = function(s) {
+		return template.HTMLEscapeString(s);
+	};
+	var HTMLEscaper = go$pkg.HTMLEscaper = function(args) {
+		return template.HTMLEscaper(args);
+	};
+	var JSEscape = go$pkg.JSEscape = function(w, b) {
+		template.JSEscape(w, b);
+	};
+	var JSEscapeString = go$pkg.JSEscapeString = function(s) {
+		return template.JSEscapeString(s);
+	};
+	var JSEscaper = go$pkg.JSEscaper = function(args) {
+		return template.JSEscaper(args);
+	};
+	var URLQueryEscaper = go$pkg.URLQueryEscaper = function(args) {
+		return template.URLQueryEscaper(args);
+	};
+	var htmlNospaceEscaper = function(args) {
+		var _tuple, s, t;
+		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
+		if (t === 2) {
+			return htmlReplacer(stripTags(s), htmlNospaceNormReplacementTable, false);
+		}
+		return htmlReplacer(s, htmlNospaceReplacementTable, false);
+	};
+	var attrEscaper = function(args) {
+		var _tuple, s, t;
+		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
+		if (t === 2) {
+			return htmlReplacer(stripTags(s), htmlNormReplacementTable, true);
+		}
+		return htmlReplacer(s, htmlReplacementTable, true);
+	};
+	var rcdataEscaper = function(args) {
+		var _tuple, s, t;
+		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
+		if (t === 2) {
+			return htmlReplacer(s, htmlNormReplacementTable, true);
+		}
+		return htmlReplacer(s, htmlReplacementTable, true);
+	};
+	var htmlEscaper = function(args) {
+		var _tuple, s, t;
+		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
+		if (t === 2) {
+			return s;
+		}
+		return htmlReplacer(s, htmlReplacementTable, true);
+	};
+	var htmlReplacer = function(s, replacementTable, badRunes) {
+		var _tuple, written, b, _ref, _i, _rune, r, i, repl, _slice, _index;
+		_tuple = [0, new bytes.Buffer.Ptr()], written = _tuple[0], b = _tuple[1];
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			r = _rune[0];
+			i = _i;
+			if ((r >> 0) < replacementTable.length) {
+				if (repl = (_slice = replacementTable, _index = r, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), !((repl.length === 0))) {
+					b.WriteString(s.substring(written, i));
+					b.WriteString(repl);
+					written = i + utf8.RuneLen(r) >> 0;
+				}
+			} else if (badRunes) {
+			} else if (64976 <= r && r <= 65007 || 65520 <= r && r <= 65535) {
+				fmt.Fprintf(b, "%s&#x%x;", new (go$sliceType(go$emptyInterface))([new Go$String(s.substring(written, i)), new Go$Int32(r)]));
+				written = i + utf8.RuneLen(r) >> 0;
+			}
+		}
+		if (written === 0) {
+			return s;
+		}
+		b.WriteString(s.substring(written));
+		return b.String();
+	};
+	var stripTags = function(html$1) {
+		var b, _tuple, s, c, i, allText, st, _tuple$1, _struct, _struct$1, d, nread, i1, j, j1, _slice, _index, _struct$2, _tuple$2, i1$1, _tuple$3;
+		b = new bytes.Buffer.Ptr();
+		_tuple = [new (go$sliceType(Go$Uint8))(go$stringToBytes(html$1)), new context.Ptr(0, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), 0, true], s = _tuple[0], c = _tuple[1], i = _tuple[2], allText = _tuple[3];
+		while (!((i === s.length))) {
+			if (c.delim === 0) {
+				st = c.state;
+				if (!((c.element === 0)) && !isInTag(st)) {
+					st = 6;
+				}
+				_tuple$1 = transitionFunc[st]((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), go$subslice(s, i)), d = (_struct$1 = _tuple$1[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), nread = _tuple$1[1];
+				i1 = i + nread >> 0;
+				if ((c.state === 0) || (c.state === 6)) {
+					j = i1;
+					if (!((d.state === c.state))) {
+						j1 = j - 1 >> 0;
+						while (j1 >= i) {
+							if ((_slice = s, _index = j1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 60) {
+								j = j1;
+								break;
+							}
+							j1 = j1 - 1 >> 0;
+						}
+					}
+					b.Write(go$subslice(s, i, j));
+				} else {
+					allText = false;
+				}
+				_tuple$2 = [(_struct$2 = d, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), i1], c = _tuple$2[0], i = _tuple$2[1];
+				continue;
+			}
+			i1$1 = i + bytes.IndexAny(go$subslice(s, i), delimEnds[c.delim]) >> 0;
+			if (i1$1 < i) {
+				break;
+			}
+			if (!((c.delim === 3))) {
+				i1$1 = i1$1 + 1 >> 0;
+			}
+			_tuple$3 = [new context.Ptr(1, 0, 0, 0, 0, c.element, (go$ptrType(Error)).nil), i1$1], c = _tuple$3[0], i = _tuple$3[1];
+		}
+		if (allText) {
+			return html$1;
+		} else if ((c.state === 0) || (c.state === 6)) {
+			b.Write(go$subslice(s, i));
+		}
+		return b.String();
+	};
+	var htmlNameFilter = function(args) {
+		var _tuple, s, t, t$1, _ref, _i, _rune, r;
+		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
+		if (t === 3) {
+			return s;
+		}
+		if (s.length === 0) {
+			return "ZgotmplZ";
+		}
+		s = strings.ToLower(s);
+		if (t$1 = attrType(s), !((t$1 === 0))) {
+			return "ZgotmplZ";
+		}
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			r = _rune[0];
+			if (48 <= r && r <= 57) {
+			} else if (97 <= r && r <= 122) {
+			} else {
+				return "ZgotmplZ";
+			}
+		}
+		return s;
+	};
+	var commentEscaper = function(args) {
+		return "";
+	};
+	var nextJSCtx = function(s, preceding) {
+		var _slice, _index, _tuple, c, n, _ref, start, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, j, _slice$4, _index$4, _entry;
+		s = bytes.TrimRight(s, "\t\n\f\r \xE2\x80\xA8\xE2\x80\xA9");
+		if (s.length === 0) {
+			return preceding;
+		}
+		_tuple = [(_slice = s, _index = (s.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), s.length], c = _tuple[0], n = _tuple[1];
+		_ref = c;
+		if (_ref === 43 || _ref === 45) {
+			start = n - 1 >> 0;
+			while (start > 0 && ((_slice$1 = s, _index$1 = (start - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === c)) {
+				start = start - 1 >> 0;
+			}
+			if ((((n - start >> 0)) & 1) === 1) {
+				return 0;
+			}
+			return 1;
+		} else if (_ref === 46) {
+			if (!((n === 1)) && 48 <= (_slice$2 = s, _index$2 = (n - 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) && (_slice$3 = s, _index$3 = (n - 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) <= 57) {
+				return 1;
+			}
+			return 0;
+		} else if (_ref === 44 || _ref === 60 || _ref === 62 || _ref === 61 || _ref === 42 || _ref === 37 || _ref === 38 || _ref === 124 || _ref === 94 || _ref === 63) {
+			return 0;
+		} else if (_ref === 33 || _ref === 126) {
+			return 0;
+		} else if (_ref === 40 || _ref === 91) {
+			return 0;
+		} else if (_ref === 58 || _ref === 59 || _ref === 123) {
+			return 0;
+		} else if (_ref === 125) {
+			return 0;
+		} else {
+			j = n;
+			while (j > 0 && isJSIdentPart(((_slice$4 = s, _index$4 = (j - 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) >> 0))) {
+				j = j - 1 >> 0;
+			}
+			if ((_entry = regexpPrecederKeywords[go$bytesToString(go$subslice(s, j))], _entry !== undefined ? _entry.v : false)) {
+				return 0;
+			}
+		}
+		return 1;
+	};
+	var indirectToJSONMarshaler = function(a) {
+		var _struct, v, _struct$1;
+		v = (_struct = reflect.ValueOf(a), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		while (!v.Type().Implements(jsonMarshalType) && (v.Kind() === 22) && !v.IsNil()) {
+			v = (_struct$1 = v.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		}
+		return v.Interface();
+	};
+	var jsValEscaper = function(args) {
+		var a, _slice, _index, t, _ref, _type, _ref$1, _i, _slice$1, _index$1, arg, i, _slice$2, _index$2, _tuple, b, err, _tuple$1, first, _tuple$2, last, buf, pad, written, i$1, _tuple$3, rune, n, repl;
+		a = null;
+		if (args.length === 1) {
+			a = indirectToJSONMarshaler((_slice = args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
+			_ref = a;
+			_type = _ref !== null ? _ref.constructor : null;
+			if (_type === JS) {
+				t = _ref.go$val;
+				return t;
+			} else if (_type === JSStr) {
+				t = _ref.go$val;
+				return "\"" + t + "\"";
+			} else if (json.Marshaler.implementedBy.indexOf(_type) !== -1) {
+				t = _ref;
+			} else if (fmt.Stringer.implementedBy.indexOf(_type) !== -1) {
+				t = _ref;
+				a = new Go$String(t.String());
+			}
+		} else {
+			_ref$1 = args;
+			_i = 0;
+			for (; _i < _ref$1.length; _i += 1) {
+				arg = (_slice$1 = _ref$1, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				_slice$2 = args, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = indirectToJSONMarshaler(arg)) : go$throwRuntimeError("index out of range");
+			}
+			a = new Go$String(fmt.Sprint(args));
+		}
+		_tuple = json.Marshal(a), b = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return fmt.Sprintf(" /* %s */null ", new (go$sliceType(go$emptyInterface))([new Go$String(strings.Replace(err.Error(), "*/", "* /", -1))]));
+		}
+		if (b.length === 0) {
+			return " null ";
+		}
+		_tuple$1 = utf8.DecodeRune(b), first = _tuple$1[0];
+		_tuple$2 = utf8.DecodeLastRune(b), last = _tuple$2[0];
+		buf = new bytes.Buffer.Ptr();
+		pad = isJSIdentPart(first) || isJSIdentPart(last);
+		if (pad) {
+			buf.WriteByte(32);
+		}
+		written = 0;
+		i$1 = 0;
+		while (i$1 < b.length) {
+			_tuple$3 = utf8.DecodeRune(go$subslice(b, i$1)), rune = _tuple$3[0], n = _tuple$3[1];
+			repl = "";
+			if (rune === 8232) {
+				repl = "\\u2028";
+			} else if (rune === 8233) {
+				repl = "\\u2029";
+			}
+			if (!(repl === "")) {
+				buf.Write(go$subslice(b, written, i$1));
+				buf.WriteString(repl);
+				written = i$1 + n >> 0;
+			}
+			i$1 = i$1 + (n) >> 0;
+		}
+		if (!((buf.Len() === 0))) {
+			buf.Write(go$subslice(b, written));
+			if (pad) {
+				buf.WriteByte(32);
+			}
+			b = buf.Bytes();
+		}
+		return go$bytesToString(b);
+	};
+	var jsStrEscaper = function(args) {
+		var _tuple, s, t;
+		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
+		if (t === 5) {
+			return replace(s, jsStrNormReplacementTable);
+		}
+		return replace(s, jsStrReplacementTable);
+	};
+	var jsRegexpEscaper = function(args) {
+		var _tuple, s;
+		_tuple = stringify(args), s = _tuple[0];
+		s = replace(s, jsRegexpReplacementTable);
+		if (s === "") {
+			return "(?:)";
+		}
+		return s;
+	};
+	var replace = function(s, replacementTable) {
+		var b, written, _ref, _i, _rune, r, i, repl, _slice, _index, _slice$1, _index$1;
+		b = new bytes.Buffer.Ptr();
+		written = 0;
+		_ref = s;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			r = _rune[0];
+			i = _i;
+			repl = "";
+			if ((r >> 0) < replacementTable.length && !((_slice = replacementTable, _index = r, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === "")) {
+				repl = (_slice$1 = replacementTable, _index$1 = r, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			} else if (r === 8232) {
+				repl = "\\u2028";
+			} else if (r === 8233) {
+				repl = "\\u2029";
+			} else {
+				continue;
+			}
+			b.WriteString(s.substring(written, i));
+			b.WriteString(repl);
+			written = i + utf8.RuneLen(r) >> 0;
+		}
+		if (written === 0) {
+			return s;
+		}
+		b.WriteString(s.substring(written));
+		return b.String();
+	};
+	var isJSIdentPart = function(r) {
+		if (r === 36) {
+			return true;
+		} else if (48 <= r && r <= 57) {
+			return true;
+		} else if (65 <= r && r <= 90) {
+			return true;
+		} else if (r === 95) {
+			return true;
+		} else if (97 <= r && r <= 122) {
+			return true;
+		}
+		return false;
+	};
+	Template.Ptr.prototype.Templates = function() {
+		var t, ns, m, _ref, _i, _keys, _entry, v;
+		var go$deferred = [];
+		try {
+			t = this;
+			ns = t.nameSpace;
+			ns.mu.Lock();
+			go$deferred.push({ recv: ns.mu, method: "Unlock", args: [] });
+			m = (go$sliceType((go$ptrType(Template)))).make(0, go$keys(ns.set).length, function() { return (go$ptrType(Template)).nil; });
+			_ref = ns.set;
+			_i = 0;
+			_keys = go$keys(_ref);
+			for (; _i < _keys.length; _i += 1) {
+				_entry = _ref[_keys[_i]];
+				v = _entry.v;
+				m = go$append(m, v);
+			}
+			return m;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$sliceType((go$ptrType(Template)))).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Template.prototype.Templates = function() { return this.go$val.Templates(); };
+	Template.Ptr.prototype.escape = function() {
+		var t, err;
+		var go$deferred = [];
+		try {
+			t = this;
+			t.nameSpace.mu.Lock();
+			go$deferred.push({ recv: t.nameSpace.mu, method: "Unlock", args: [] });
+			if (!t.escaped) {
+				if (err = escapeTemplates(t, new (go$sliceType(Go$String))([t.Name()])), !(go$interfaceIsEqual(err, null))) {
+					return err;
+				}
+				t.escaped = true;
+			}
+			return null;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Template.prototype.escape = function() { return this.go$val.escape(); };
+	Template.Ptr.prototype.Execute = function(wr, data) {
+		var t, err;
+		t = this;
+		if (err = t.escape(), !(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		return t.text.Execute(wr, data);
+	};
+	Template.prototype.Execute = function(wr, data) { return this.go$val.Execute(wr, data); };
+	Template.Ptr.prototype.ExecuteTemplate = function(wr, name, data) {
+		var t, _tuple, tmpl, err;
+		t = this;
+		_tuple = t.lookupAndEscapeTemplate(name), tmpl = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		return tmpl.text.Execute(wr, data);
+	};
+	Template.prototype.ExecuteTemplate = function(wr, name, data) { return this.go$val.ExecuteTemplate(wr, name, data); };
+	Template.Ptr.prototype.lookupAndEscapeTemplate = function(name) {
+		var tmpl, err, t, _entry, _tuple, _tuple$1, _tuple$2;
+		tmpl = (go$ptrType(Template)).nil;
+		err = null;
+		var go$deferred = [];
+		try {
+			t = this;
+			t.nameSpace.mu.Lock();
+			go$deferred.push({ recv: t.nameSpace.mu, method: "Unlock", args: [] });
+			tmpl = (_entry = t.nameSpace.set[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil);
+			if (tmpl === (go$ptrType(Template)).nil) {
+				_tuple = [(go$ptrType(Template)).nil, fmt.Errorf("html/template: %q is undefined", new (go$sliceType(go$emptyInterface))([new Go$String(name)]))], tmpl = _tuple[0], err = _tuple[1];
+				return [tmpl, err];
+			}
+			if (tmpl.text.Tree === (go$ptrType(parse.Tree)).nil || tmpl.text.Tree.Root === (go$ptrType(parse.ListNode)).nil) {
+				_tuple$1 = [(go$ptrType(Template)).nil, fmt.Errorf("html/template: %q is an incomplete template", new (go$sliceType(go$emptyInterface))([new Go$String(name)]))], tmpl = _tuple$1[0], err = _tuple$1[1];
+				return [tmpl, err];
+			}
+			if (t.text.Lookup(name) === (go$ptrType(template.Template)).nil) {
+				throw go$panic(new Go$String("html/template internal error: template escaping out of sync"));
+			}
+			if (!(tmpl === (go$ptrType(Template)).nil) && !tmpl.escaped) {
+				err = escapeTemplates(tmpl, new (go$sliceType(Go$String))([name]));
+			}
+			_tuple$2 = [tmpl, err], tmpl = _tuple$2[0], err = _tuple$2[1];
+			return [tmpl, err];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [tmpl, err];
+		}
+	};
+	Template.prototype.lookupAndEscapeTemplate = function(name) { return this.go$val.lookupAndEscapeTemplate(name); };
+	Template.Ptr.prototype.Parse = function(src) {
+		var t, _tuple, ret, err, _ref, _i, _slice, _index, v, name, _entry, tmpl;
+		var go$deferred = [];
+		try {
+			t = this;
+			t.nameSpace.mu.Lock();
+			t.escaped = false;
+			t.nameSpace.mu.Unlock();
+			_tuple = t.text.Parse(src), ret = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [(go$ptrType(Template)).nil, err];
+			}
+			t.nameSpace.mu.Lock();
+			go$deferred.push({ recv: t.nameSpace.mu, method: "Unlock", args: [] });
+			_ref = ret.Templates();
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				name = v.Name();
+				tmpl = (_entry = t.nameSpace.set[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil);
+				if (tmpl === (go$ptrType(Template)).nil) {
+					tmpl = t.new$(name);
+				}
+				tmpl.escaped = false;
+				tmpl.text = v;
+				tmpl.Tree = v.Tree;
+			}
+			return [t, null];
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [(go$ptrType(Template)).nil, null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Template.prototype.Parse = function(src) { return this.go$val.Parse(src); };
+	Template.Ptr.prototype.AddParseTree = function(name, tree) {
+		var t, _tuple, text, err, ret, _key;
+		var go$deferred = [];
+		try {
+			t = this;
+			t.nameSpace.mu.Lock();
+			go$deferred.push({ recv: t.nameSpace.mu, method: "Unlock", args: [] });
+			if (t.escaped) {
+				return [(go$ptrType(Template)).nil, fmt.Errorf("html/template: cannot AddParseTree to %q after it has executed", new (go$sliceType(go$emptyInterface))([new Go$String(t.Name())]))];
+			}
+			_tuple = t.text.AddParseTree(name, tree), text = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [(go$ptrType(Template)).nil, err];
+			}
+			ret = new Template.Ptr(false, text, text.Tree, t.nameSpace);
+			_key = name, (t.nameSpace.set || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: ret };
+			return [ret, null];
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [(go$ptrType(Template)).nil, null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Template.prototype.AddParseTree = function(name, tree) { return this.go$val.AddParseTree(name, tree); };
+	Template.Ptr.prototype.Clone = function() {
+		var t, _tuple, textClone, err, ret, _ref, _i, _slice, _index, x, name, _entry, src, _key;
+		var go$deferred = [];
+		try {
+			t = this;
+			t.nameSpace.mu.Lock();
+			go$deferred.push({ recv: t.nameSpace.mu, method: "Unlock", args: [] });
+			if (t.escaped) {
+				return [(go$ptrType(Template)).nil, fmt.Errorf("html/template: cannot Clone %q after it has executed", new (go$sliceType(go$emptyInterface))([new Go$String(t.Name())]))];
+			}
+			_tuple = t.text.Clone(), textClone = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [(go$ptrType(Template)).nil, err];
+			}
+			ret = new Template.Ptr(false, textClone, textClone.Tree, new nameSpace.Ptr(new sync.Mutex.Ptr(), new Go$Map()));
+			_ref = textClone.Templates();
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				name = x.Name();
+				src = (_entry = t.nameSpace.set[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil);
+				if (src === (go$ptrType(Template)).nil || src.escaped) {
+					return [(go$ptrType(Template)).nil, fmt.Errorf("html/template: cannot Clone %q after it has executed", new (go$sliceType(go$emptyInterface))([new Go$String(t.Name())]))];
+				}
+				x.Tree = x.Tree.Copy();
+				_key = name, (ret.nameSpace.set || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: new Template.Ptr(false, x, x.Tree, ret.nameSpace) };
+			}
+			return [ret, null];
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return [(go$ptrType(Template)).nil, null];
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Template.prototype.Clone = function() { return this.go$val.Clone(); };
+	var New = go$pkg.New = function(name) {
+		var tmpl, _key;
+		tmpl = new Template.Ptr(false, template.New(name), (go$ptrType(parse.Tree)).nil, new nameSpace.Ptr(new sync.Mutex.Ptr(), new Go$Map()));
+		_key = name, (tmpl.nameSpace.set || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: tmpl };
+		return tmpl;
+	};
+	Template.Ptr.prototype.New = function(name) {
+		var t;
+		var go$deferred = [];
+		try {
+			t = this;
+			t.nameSpace.mu.Lock();
+			go$deferred.push({ recv: t.nameSpace.mu, method: "Unlock", args: [] });
+			return t.new$(name);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(Template)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Template.prototype.New = function(name) { return this.go$val.New(name); };
+	Template.Ptr.prototype.new$ = function(name) {
+		var t, tmpl, _key;
+		t = this;
+		tmpl = new Template.Ptr(false, t.text.New(name), (go$ptrType(parse.Tree)).nil, t.nameSpace);
+		_key = name, (tmpl.nameSpace.set || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: tmpl };
+		return tmpl;
+	};
+	Template.prototype.new$ = function(name) { return this.go$val.new$(name); };
+	Template.Ptr.prototype.Name = function() {
+		var t;
+		t = this;
+		return t.text.Name();
+	};
+	Template.prototype.Name = function() { return this.go$val.Name(); };
+	Template.Ptr.prototype.Funcs = function(funcMap$1) {
+		var t;
+		t = this;
+		t.text.Funcs(funcMap$1);
+		return t;
+	};
+	Template.prototype.Funcs = function(funcMap$1) { return this.go$val.Funcs(funcMap$1); };
+	Template.Ptr.prototype.Delims = function(left, right) {
+		var t;
+		t = this;
+		t.text.Delims(left, right);
+		return t;
+	};
+	Template.prototype.Delims = function(left, right) { return this.go$val.Delims(left, right); };
+	Template.Ptr.prototype.Lookup = function(name) {
+		var t, _entry;
+		var go$deferred = [];
+		try {
+			t = this;
+			t.nameSpace.mu.Lock();
+			go$deferred.push({ recv: t.nameSpace.mu, method: "Unlock", args: [] });
+			return (_entry = t.nameSpace.set[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(Template)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Template.prototype.Lookup = function(name) { return this.go$val.Lookup(name); };
+	var Must = go$pkg.Must = function(t, err) {
+		if (!(go$interfaceIsEqual(err, null))) {
+			throw go$panic(err);
+		}
+		return t;
+	};
+	var ParseFiles = go$pkg.ParseFiles = function(filenames) {
+		return parseFiles((go$ptrType(Template)).nil, filenames);
+	};
+	Template.Ptr.prototype.ParseFiles = function(filenames) {
+		var t;
+		t = this;
+		return parseFiles(t, filenames);
+	};
+	Template.prototype.ParseFiles = function(filenames) { return this.go$val.ParseFiles(filenames); };
+	var parseFiles = function(t, filenames) {
+		var _ref, _i, _slice, _index, filename, _tuple, b, err, s, name, tmpl, _tuple$1;
+		if (filenames.length === 0) {
+			return [(go$ptrType(Template)).nil, fmt.Errorf("html/template: no files named in call to ParseFiles", new (go$sliceType(go$emptyInterface))([]))];
+		}
+		_ref = filenames;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			filename = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_tuple = ioutil.ReadFile(filename), b = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [(go$ptrType(Template)).nil, err];
+			}
+			s = go$bytesToString(b);
+			name = filepath.Base(filename);
+			tmpl = (go$ptrType(Template)).nil;
+			if (t === (go$ptrType(Template)).nil) {
+				t = New(name);
+			}
+			if (name === t.Name()) {
+				tmpl = t;
+			} else {
+				tmpl = t.New(name);
+			}
+			_tuple$1 = tmpl.Parse(s), err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [(go$ptrType(Template)).nil, err];
+			}
+		}
+		return [t, null];
+	};
+	var ParseGlob = go$pkg.ParseGlob = function(pattern) {
+		return parseGlob((go$ptrType(Template)).nil, pattern);
+	};
+	Template.Ptr.prototype.ParseGlob = function(pattern) {
+		var t;
+		t = this;
+		return parseGlob(t, pattern);
+	};
+	Template.prototype.ParseGlob = function(pattern) { return this.go$val.ParseGlob(pattern); };
+	var parseGlob = function(t, pattern) {
+		var _tuple, filenames, err;
+		_tuple = filepath.Glob(pattern), filenames = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Template)).nil, err];
+		}
+		if (filenames.length === 0) {
+			return [(go$ptrType(Template)).nil, fmt.Errorf("html/template: pattern matches no files: %#q", new (go$sliceType(go$emptyInterface))([new Go$String(pattern)]))];
+		}
+		return parseFiles(t, filenames);
+	};
+	var tText = function(c, s) {
+		var k, i, _struct, end, _slice, _index, _struct$1, _tuple, _tuple$1, j, e;
+		k = 0;
+		while (true) {
+			i = k + bytes.IndexByte(go$subslice(s, k), 60) >> 0;
+			if (i < k || ((i + 1 >> 0) === s.length)) {
+				return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+			} else if ((i + 4 >> 0) <= s.length && bytes.Equal(commentStart, go$subslice(s, i, (i + 4 >> 0)))) {
+				return [new context.Ptr(5, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), i + 4 >> 0];
+			}
+			i = i + 1 >> 0;
+			end = false;
+			if ((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 47) {
+				if ((i + 1 >> 0) === s.length) {
+					return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), s.length];
+				}
+				_tuple = [true, i + 1 >> 0], end = _tuple[0], i = _tuple[1];
+			}
+			_tuple$1 = eatTagName(s, i), j = _tuple$1[0], e = _tuple$1[1];
+			if (!((j === i))) {
+				if (end) {
+					e = 0;
+				}
+				return [new context.Ptr(1, 0, 0, 0, 0, e, (go$ptrType(Error)).nil), j];
+			}
+			k = j;
+		}
+	};
+	var tTag = function(c, s) {
+		var i, _struct, _slice, _index, _tuple, j, err, _tuple$1, state$1, attr$1, _ref;
+		i = eatWhiteSpace(s, 0);
+		if (i === s.length) {
+			return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+		}
+		if ((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 62) {
+			return [new context.Ptr(elementContentType[c.element], 0, 0, 0, 0, c.element, (go$ptrType(Error)).nil), i + 1 >> 0];
+		}
+		_tuple = eatAttrName(s, i), j = _tuple[0], err = _tuple[1];
+		if (!(err === (go$ptrType(Error)).nil)) {
+			return [new context.Ptr(23, 0, 0, 0, 0, 0, err), s.length];
+		}
+		_tuple$1 = [1, 0], state$1 = _tuple$1[0], attr$1 = _tuple$1[1];
+		if (i === j) {
+			return [new context.Ptr(23, 0, 0, 0, 0, 0, errorf(2, 0, "expected space, attr name, or end of tag, but got %q", new (go$sliceType(go$emptyInterface))([go$subslice(s, i)]))), s.length];
+		}
+		_ref = attrType(go$bytesToString(go$subslice(s, i, j)));
+		if (_ref === 6) {
+			attr$1 = 3;
+		} else if (_ref === 1) {
+			attr$1 = 2;
+		} else if (_ref === 4) {
+			attr$1 = 1;
+		}
+		if (j === s.length) {
+			state$1 = 2;
+		} else {
+			state$1 = 3;
+		}
+		return [new context.Ptr(state$1, 0, 0, 0, attr$1, c.element, (go$ptrType(Error)).nil), j];
+	};
+	var tAttrName = function(c, s) {
+		var _tuple, i, err, _struct;
+		_tuple = eatAttrName(s, 0), i = _tuple[0], err = _tuple[1];
+		if (!(err === (go$ptrType(Error)).nil)) {
+			return [new context.Ptr(23, 0, 0, 0, 0, 0, err), s.length];
+		} else if (!((i === s.length))) {
+			c.state = 3;
+		}
+		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), i];
+	};
+	var tAfterName = function(c, s) {
+		var i, _slice, _index, _struct, _struct$1, _struct$2;
+		i = eatWhiteSpace(s, 0);
+		if (i === s.length) {
+			return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+		} else if (!(((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 61))) {
+			c.state = 1;
+			return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i];
+		}
+		c.state = 4;
+		return [(_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), i + 1 >> 0];
+	};
+	var tBeforeValue = function(c, s) {
+		var i, _struct, delim$1, _ref, _slice, _index, _tuple, _tuple$1, _tuple$2, _struct$1;
+		i = eatWhiteSpace(s, 0);
+		if (i === s.length) {
+			return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+		}
+		delim$1 = 3;
+		_ref = (_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (_ref === 39) {
+			_tuple = [2, i + 1 >> 0], delim$1 = _tuple[0], i = _tuple[1];
+		} else if (_ref === 34) {
+			_tuple$1 = [1, i + 1 >> 0], delim$1 = _tuple$1[0], i = _tuple$1[1];
+		}
+		_tuple$2 = [attrStartStates[c.attr], delim$1, 0], c.state = _tuple$2[0], c.delim = _tuple$2[1], c.attr = _tuple$2[2];
+		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i];
+	};
+	var tHTMLCmt = function(c, s) {
+		var i, _struct;
+		if (i = bytes.Index(s, commentEnd), !((i === -1))) {
+			return [new context.Ptr(0, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), i + 3 >> 0];
+		}
+		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+	};
+	var tSpecialTagEnd = function(c, s) {
+		var i, _struct;
+		if (!((c.element === 0))) {
+			if (i = strings.Index(strings.ToLower(go$bytesToString(s)), specialTagEndMarkers[c.element]), !((i === -1))) {
+				return [new context.Ptr(0, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), i];
+			}
+		}
+		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+	};
+	var tAttr = function(c, s) {
+		var _struct;
+		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+	};
+	var tURL = function(c, s) {
+		var _struct;
+		if (bytes.IndexAny(s, "#?") >= 0) {
+			c.urlPart = 2;
+		} else if (!((s.length === eatWhiteSpace(s, 0))) && (c.urlPart === 0)) {
+			c.urlPart = 1;
+		}
+		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+	};
+	var tJS = function(c, s) {
+		var i, _struct, _ref, _slice, _index, _tuple, _tuple$1, _slice$1, _index$1, _slice$2, _index$2, _tuple$2, _tuple$3, _struct$1;
+		i = bytes.IndexAny(s, "\"'/");
+		if (i === -1) {
+			c.jsCtx = nextJSCtx(s, c.jsCtx);
+			return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+		}
+		c.jsCtx = nextJSCtx(go$subslice(s, 0, i), c.jsCtx);
+		_ref = (_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (_ref === 34) {
+			_tuple = [10, 0], c.state = _tuple[0], c.jsCtx = _tuple[1];
+		} else if (_ref === 39) {
+			_tuple$1 = [11, 0], c.state = _tuple$1[0], c.jsCtx = _tuple$1[1];
+		} else if (_ref === 47) {
+			if ((i + 1 >> 0) < s.length && ((_slice$1 = s, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 47)) {
+				_tuple$2 = [14, i + 1 >> 0], c.state = _tuple$2[0], i = _tuple$2[1];
+			} else if ((i + 1 >> 0) < s.length && ((_slice$2 = s, _index$2 = (i + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 42)) {
+				_tuple$3 = [13, i + 1 >> 0], c.state = _tuple$3[0], i = _tuple$3[1];
+			} else if (c.jsCtx === 0) {
+				c.state = 12;
+			} else if (c.jsCtx === 1) {
+				c.jsCtx = 0;
+			} else {
+				return [new context.Ptr(23, 0, 0, 0, 0, 0, errorf(10, 0, "'/' could start a division or regexp: %.32q", new (go$sliceType(go$emptyInterface))([go$subslice(s, i)]))), s.length];
+			}
+		} else {
+			throw go$panic(new Go$String("unreachable"));
+		}
+		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i + 1 >> 0];
+	};
+	var tJSDelimited = function(c, s) {
+		var specials, _ref, _tuple, k, inCharset, i, _ref$1, _slice, _index, _tuple$1, _struct, _struct$1;
+		specials = "\\\"";
+		_ref = c.state;
+		if (_ref === 11) {
+			specials = "\\'";
+		} else if (_ref === 12) {
+			specials = "\\/[]";
+		}
+		_tuple = [0, false], k = _tuple[0], inCharset = _tuple[1];
+		while (true) {
+			i = k + bytes.IndexAny(go$subslice(s, k), specials) >> 0;
+			if (i < k) {
+				break;
+			}
+			_ref$1 = (_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (_ref$1 === 92) {
+				i = i + 1 >> 0;
+				if (i === s.length) {
+					return [new context.Ptr(23, 0, 0, 0, 0, 0, errorf(8, 0, "unfinished escape sequence in JS string: %q", new (go$sliceType(go$emptyInterface))([s]))), s.length];
+				}
+			} else if (_ref$1 === 91) {
+				inCharset = true;
+			} else if (_ref$1 === 93) {
+				inCharset = false;
+			} else {
+				if (!inCharset) {
+					_tuple$1 = [9, 1], c.state = _tuple$1[0], c.jsCtx = _tuple$1[1];
+					return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), i + 1 >> 0];
+				}
+			}
+			k = i + 1 >> 0;
+		}
+		if (inCharset) {
+			return [new context.Ptr(23, 0, 0, 0, 0, 0, errorf(7, 0, "unfinished JS regexp charset: %q", new (go$sliceType(go$emptyInterface))([s]))), s.length];
+		}
+		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), s.length];
+	};
+	var tBlockCmt = function(c, s) {
+		var i, _struct, _ref, _struct$1;
+		i = bytes.Index(s, blockCommentEnd);
+		if (i === -1) {
+			return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+		}
+		_ref = c.state;
+		if (_ref === 13) {
+			c.state = 9;
+		} else if (_ref === 21) {
+			c.state = 15;
+		} else {
+			throw go$panic(new Go$String((new state(c.state)).String()));
+		}
+		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i + 2 >> 0];
+	};
+	var tLineCmt = function(c, s) {
+		var lineTerminators, endState, _ref, _tuple, _tuple$1, i, _struct, _struct$1;
+		lineTerminators = "";
+		endState = 0;
+		_ref = c.state;
+		if (_ref === 14) {
+			_tuple = ["\n\r\xE2\x80\xA8\xE2\x80\xA9", 9], lineTerminators = _tuple[0], endState = _tuple[1];
+		} else if (_ref === 22) {
+			_tuple$1 = ["\n\f\r", 15], lineTerminators = _tuple$1[0], endState = _tuple$1[1];
+		} else {
+			throw go$panic(new Go$String((new state(c.state)).String()));
+		}
+		i = bytes.IndexAny(s, lineTerminators);
+		if (i === -1) {
+			return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+		}
+		c.state = endState;
+		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i];
+	};
+	var tCSS = function(c, s) {
+		var k, i, _struct, _ref, _slice, _index, p, j, _slice$1, _index$1, _slice$2, _index$2, _tuple, _tuple$1, _struct$1, _ref$1, _slice$3, _index$3, _struct$2, _struct$3, _struct$4, _struct$5;
+		k = 0;
+		while (true) {
+			i = k + bytes.IndexAny(go$subslice(s, k), "(\"'/") >> 0;
+			if (i < k) {
+				return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+			}
+			_ref = (_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (_ref === 40) {
+				p = bytes.TrimRight(go$subslice(s, 0, i), "\t\n\f\r ");
+				if (endsWithCSSKeyword(p, "url")) {
+					j = s.length - bytes.TrimLeft(go$subslice(s, (i + 1 >> 0)), "\t\n\f\r ").length >> 0;
+					if (!((j === s.length)) && ((_slice$1 = s, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 34)) {
+						_tuple = [18, j + 1 >> 0], c.state = _tuple[0], j = _tuple[1];
+					} else if (!((j === s.length)) && ((_slice$2 = s, _index$2 = j, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 39)) {
+						_tuple$1 = [19, j + 1 >> 0], c.state = _tuple$1[0], j = _tuple$1[1];
+					} else {
+						c.state = 20;
+					}
+					return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), j];
+				}
+			} else if (_ref === 47) {
+				if ((i + 1 >> 0) < s.length) {
+					_ref$1 = (_slice$3 = s, _index$3 = (i + 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+					if (_ref$1 === 47) {
+						c.state = 22;
+						return [(_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), i + 2 >> 0];
+					} else if (_ref$1 === 42) {
+						c.state = 21;
+						return [(_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err)), i + 2 >> 0];
+					}
+				}
+			} else if (_ref === 34) {
+				c.state = 16;
+				return [(_struct$4 = c, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err)), i + 1 >> 0];
+			} else if (_ref === 39) {
+				c.state = 17;
+				return [(_struct$5 = c, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err)), i + 1 >> 0];
+			}
+			k = i + 1 >> 0;
+		}
+	};
+	var tCSSStr = function(c, s) {
+		var endAndEsc, _ref, k, i, _tuple, _struct, _struct$1, c$1, nread, _struct$2, _slice, _index, _struct$3, _tuple$1, _struct$4, _struct$5;
+		endAndEsc = "";
+		_ref = c.state;
+		if (_ref === 16 || _ref === 18) {
+			endAndEsc = "\\\"";
+		} else if (_ref === 17 || _ref === 19) {
+			endAndEsc = "\\'";
+		} else if (_ref === 20) {
+			endAndEsc = "\\\t\n\f\r )";
+		} else {
+			throw go$panic(new Go$String((new state(c.state)).String()));
+		}
+		k = 0;
+		while (true) {
+			i = k + bytes.IndexAny(go$subslice(s, k), endAndEsc) >> 0;
+			if (i < k) {
+				_tuple = tURL((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), decodeCSS(go$subslice(s, k))), c$1 = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), nread = _tuple[1];
+				return [(_struct$2 = c$1, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), k + nread >> 0];
+			}
+			if ((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 92) {
+				i = i + 1 >> 0;
+				if (i === s.length) {
+					return [new context.Ptr(23, 0, 0, 0, 0, 0, errorf(8, 0, "unfinished escape sequence in CSS string: %q", new (go$sliceType(go$emptyInterface))([s]))), s.length];
+				}
+			} else {
+				c.state = 15;
+				return [(_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err)), i + 1 >> 0];
+			}
+			_tuple$1 = tURL((_struct$4 = c, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err)), decodeCSS(go$subslice(s, 0, (i + 1 >> 0)))), c = (_struct$5 = _tuple$1[0], new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err));
+			k = i + 1 >> 0;
+		}
+	};
+	var tError = function(c, s) {
+		var _struct;
+		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
+	};
+	var eatAttrName = function(s, i) {
+		var j, _ref, _slice, _index;
+		j = i;
+		while (j < s.length) {
+			_ref = (_slice = s, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (_ref === 32 || _ref === 9 || _ref === 10 || _ref === 12 || _ref === 13 || _ref === 61 || _ref === 62) {
+				return [j, (go$ptrType(Error)).nil];
+			} else if (_ref === 39 || _ref === 34 || _ref === 60) {
+				return [-1, errorf(2, 0, "%q in attribute name: %.32q", new (go$sliceType(go$emptyInterface))([go$subslice(s, j, (j + 1 >> 0)), s]))];
+			} else {
+			}
+			j = j + 1 >> 0;
+		}
+		return [s.length, (go$ptrType(Error)).nil];
+	};
+	var asciiAlpha = function(c) {
+		return 65 <= c && c <= 90 || 97 <= c && c <= 122;
+	};
+	var asciiAlphaNum = function(c) {
+		return asciiAlpha(c) || 48 <= c && c <= 57;
+	};
+	var eatTagName = function(s, i) {
+		var _slice, _index, j, _slice$1, _index$1, x, _slice$2, _index$2, _entry;
+		if ((i === s.length) || !asciiAlpha((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")))) {
+			return [i, 0];
+		}
+		j = i + 1 >> 0;
+		while (j < s.length) {
+			x = (_slice$1 = s, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			if (asciiAlphaNum(x)) {
+				j = j + 1 >> 0;
+				continue;
+			}
+			if (((x === 58) || (x === 45)) && (j + 1 >> 0) < s.length && asciiAlphaNum((_slice$2 = s, _index$2 = (j + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) {
+				j = j + 2 >> 0;
+				continue;
+			}
+			break;
+		}
+		return [j, (_entry = elementNameMap[strings.ToLower(go$bytesToString(go$subslice(s, i, j)))], _entry !== undefined ? _entry.v : 0)];
+	};
+	var eatWhiteSpace = function(s, i) {
+		var j, _ref, _slice, _index;
+		j = i;
+		while (j < s.length) {
+			_ref = (_slice = s, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (_ref === 32 || _ref === 9 || _ref === 10 || _ref === 12 || _ref === 13) {
+			} else {
+				return j;
+			}
+			j = j + 1 >> 0;
+		}
+		return s.length;
+	};
+	var urlFilter = function(args) {
+		var _tuple, s, t, i, protocol;
+		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
+		if (t === 6) {
+			return s;
+		}
+		if (i = strings.IndexRune(s, 58), i >= 0 && strings.IndexRune(s.substring(0, i), 47) < 0) {
+			protocol = strings.ToLower(s.substring(0, i));
+			if (!(protocol === "http") && !(protocol === "https") && !(protocol === "mailto")) {
+				return "#ZgotmplZ";
+			}
+		}
+		return s;
+	};
+	var urlEscaper = function(args) {
+		return urlProcessor(false, args);
+	};
+	var urlNormalizer = function(args) {
+		return urlProcessor(true, args);
+	};
+	var urlProcessor = function(norm, args) {
+		var _tuple, s, t, b, written, _tuple$1, i, n, c, _ref;
+		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
+		if (t === 6) {
+			norm = true;
+		}
+		b = new bytes.Buffer.Ptr();
+		written = 0;
+		_tuple$1 = [0, s.length], i = _tuple$1[0], n = _tuple$1[1];
+		while (i < n) {
+			c = s.charCodeAt(i);
+			_ref = c;
+			if (_ref === 33 || _ref === 35 || _ref === 36 || _ref === 38 || _ref === 42 || _ref === 43 || _ref === 44 || _ref === 47 || _ref === 58 || _ref === 59 || _ref === 61 || _ref === 63 || _ref === 64 || _ref === 91 || _ref === 93) {
+				if (norm) {
+					i = i + 1 >> 0;
+					continue;
+				}
+			} else if (_ref === 45 || _ref === 46 || _ref === 95 || _ref === 126) {
+				i = i + 1 >> 0;
+				continue;
+			} else if (_ref === 37) {
+				if (norm && (i + 2 >> 0) < s.length && isHex(s.charCodeAt((i + 1 >> 0))) && isHex(s.charCodeAt((i + 2 >> 0)))) {
+					i = i + 1 >> 0;
+					continue;
+				}
+			} else {
+				if (97 <= c && c <= 122) {
+					i = i + 1 >> 0;
+					continue;
+				}
+				if (65 <= c && c <= 90) {
+					i = i + 1 >> 0;
+					continue;
+				}
+				if (48 <= c && c <= 57) {
+					i = i + 1 >> 0;
+					continue;
+				}
+			}
+			b.WriteString(s.substring(written, i));
+			fmt.Fprintf(b, "%%%02x", new (go$sliceType(go$emptyInterface))([new Go$Uint8(c)]));
+			written = i + 1 >> 0;
+			i = i + 1 >> 0;
+		}
+		if (written === 0) {
+			return s;
+		}
+		b.WriteString(s.substring(written));
+		return b.String();
+	};
+	var contentTypePlain = 0;
+	var contentTypeCSS = 1;
+	var contentTypeHTML = 2;
+	var contentTypeHTMLAttr = 3;
+	var contentTypeJS = 4;
+	var contentTypeJSStr = 5;
+	var contentTypeURL = 6;
+	var contentTypeUnsafe = 7;
+	var stateText = 0;
+	var stateTag = 1;
+	var stateAttrName = 2;
+	var stateAfterName = 3;
+	var stateBeforeValue = 4;
+	var stateHTMLCmt = 5;
+	var stateRCDATA = 6;
+	var stateAttr = 7;
+	var stateURL = 8;
+	var stateJS = 9;
+	var stateJSDqStr = 10;
+	var stateJSSqStr = 11;
+	var stateJSRegexp = 12;
+	var stateJSBlockCmt = 13;
+	var stateJSLineCmt = 14;
+	var stateCSS = 15;
+	var stateCSSDqStr = 16;
+	var stateCSSSqStr = 17;
+	var stateCSSDqURL = 18;
+	var stateCSSSqURL = 19;
+	var stateCSSURL = 20;
+	var stateCSSBlockCmt = 21;
+	var stateCSSLineCmt = 22;
+	var stateError = 23;
+	var delimNone = 0;
+	var delimDoubleQuote = 1;
+	var delimSingleQuote = 2;
+	var delimSpaceOrTagEnd = 3;
+	var urlPartNone = 0;
+	var urlPartPreQuery = 1;
+	var urlPartQueryOrFrag = 2;
+	var urlPartUnknown = 3;
+	var jsCtxRegexp = 0;
+	var jsCtxDivOp = 1;
+	var jsCtxUnknown = 2;
+	var elementNone = 0;
+	var elementScript = 1;
+	var elementStyle = 2;
+	var elementTextarea = 3;
+	var elementTitle = 4;
+	var attrNone = 0;
+	var attrScript = 1;
+	var attrStyle = 2;
+	var attrURL = 3;
+	go$pkg.OK = 0;
+	go$pkg.ErrAmbigContext = 1;
+	go$pkg.ErrBadHTML = 2;
+	go$pkg.ErrBranchEnd = 3;
+	go$pkg.ErrEndContext = 4;
+	go$pkg.ErrNoSuchTemplate = 5;
+	go$pkg.ErrOutputContext = 6;
+	go$pkg.ErrPartialCharset = 7;
+	go$pkg.ErrPartialEscape = 8;
+	go$pkg.ErrRangeLoopReentry = 9;
+	go$pkg.ErrSlashAmbig = 10;
+	var filterFailsafe = "ZgotmplZ";
+	var attrTypeMap = false;
+	var errorType = null;
+	var fmtStringerType = null;
+	var stateNames = go$makeNativeArray("String", 24, function() { return ""; });
+	var delimNames = go$makeNativeArray("String", 4, function() { return ""; });
+	var urlPartNames = go$makeNativeArray("String", 4, function() { return ""; });
+	var elementNames = go$makeNativeArray("String", 5, function() { return ""; });
+	var attrNames = go$makeNativeArray("String", 4, function() { return ""; });
+	var expressionBytes = (go$sliceType(Go$Uint8)).nil;
+	var mozBindingBytes = (go$sliceType(Go$Uint8)).nil;
+	var funcMap = false;
+	var equivEscapers = false;
+	var redundantFuncs = false;
+	var delimEnds = go$makeNativeArray("String", 4, function() { return ""; });
+	var doctypeBytes = (go$sliceType(Go$Uint8)).nil;
+	var htmlReplacementTable = (go$sliceType(Go$String)).nil;
+	var htmlNormReplacementTable = (go$sliceType(Go$String)).nil;
+	var htmlNospaceReplacementTable = (go$sliceType(Go$String)).nil;
+	var htmlNospaceNormReplacementTable = (go$sliceType(Go$String)).nil;
+	var regexpPrecederKeywords = false;
+	var jsonMarshalType = null;
+	var jsStrReplacementTable = (go$sliceType(Go$String)).nil;
+	var jsStrNormReplacementTable = (go$sliceType(Go$String)).nil;
+	var jsRegexpReplacementTable = (go$sliceType(Go$String)).nil;
+	var transitionFunc = go$makeNativeArray("Func", 24, function() { return go$throwNilPointerError; });
+	var commentStart = (go$sliceType(Go$Uint8)).nil;
+	var commentEnd = (go$sliceType(Go$Uint8)).nil;
+	var elementContentType = go$makeNativeArray("Uint8", 5, function() { return 0; });
+	var attrStartStates = go$makeNativeArray("Uint8", 4, function() { return 0; });
+	var specialTagEndMarkers = go$makeNativeArray("String", 5, function() { return ""; });
+	var blockCommentEnd = (go$sliceType(Go$Uint8)).nil;
+	var elementNameMap = false;
+	go$pkg.init = function() {
+		var _map, _key, _map$1, _key$1, _map$2, _key$2, _map$3, _key$3, _map$4, _key$4, _map$5, _key$5, _map$6, _key$6, _map$7, _key$7, _map$8, _key$8, _map$9, _key$9, _map$10, _key$10;
+		attrTypeMap = (_map = new Go$Map(), _key = "accept", _map[_key] = { k: _key, v: 0 }, _key = "accept-charset", _map[_key] = { k: _key, v: 7 }, _key = "action", _map[_key] = { k: _key, v: 6 }, _key = "alt", _map[_key] = { k: _key, v: 0 }, _key = "archive", _map[_key] = { k: _key, v: 6 }, _key = "async", _map[_key] = { k: _key, v: 7 }, _key = "autocomplete", _map[_key] = { k: _key, v: 0 }, _key = "autofocus", _map[_key] = { k: _key, v: 0 }, _key = "autoplay", _map[_key] = { k: _key, v: 0 }, _key = "background", _map[_key] = { k: _key, v: 6 }, _key = "border", _map[_key] = { k: _key, v: 0 }, _key = "checked", _map[_key] = { k: _key, v: 0 }, _key = "cite", _map[_key] = { k: _key, v: 6 }, _key = "challenge", _map[_key] = { k: _key, v: 7 }, _key = "charset", _map[_key] = { k: _key, v: 7 }, _key = "class", _map[_key] = { k: _key, v: 0 }, _key = "classid", _map[_key] = { k: _key, v: 6 }, _key = "codebase", _map[_key] = { k: _key, v: 6 }, _key = "cols", _map[_key] = { k: _key, v: 0 }, _key = "colspan", _map[_key] = { k: _key, v: 0 }, _key = "content", _map[_key] = { k: _key, v: 7 }, _key = "contenteditable", _map[_key] = { k: _key, v: 0 }, _key = "contextmenu", _map[_key] = { k: _key, v: 0 }, _key = "controls", _map[_key] = { k: _key, v: 0 }, _key = "coords", _map[_key] = { k: _key, v: 0 }, _key = "crossorigin", _map[_key] = { k: _key, v: 7 }, _key = "data", _map[_key] = { k: _key, v: 6 }, _key = "datetime", _map[_key] = { k: _key, v: 0 }, _key = "default", _map[_key] = { k: _key, v: 0 }, _key = "defer", _map[_key] = { k: _key, v: 7 }, _key = "dir", _map[_key] = { k: _key, v: 0 }, _key = "dirname", _map[_key] = { k: _key, v: 0 }, _key = "disabled", _map[_key] = { k: _key, v: 0 }, _key = "draggable", _map[_key] = { k: _key, v: 0 }, _key = "dropzone", _map[_key] = { k: _key, v: 0 }, _key = "enctype", _map[_key] = { k: _key, v: 7 }, _key = "for", _map[_key] = { k: _key, v: 0 }, _key = "form", _map[_key] = { k: _key, v: 7 }, _key = "formaction", _map[_key] = { k: _key, v: 6 }, _key = "formenctype", _map[_key] = { k: _key, v: 7 }, _key = "formmethod", _map[_key] = { k: _key, v: 7 }, _key = "formnovalidate", _map[_key] = { k: _key, v: 7 }, _key = "formtarget", _map[_key] = { k: _key, v: 0 }, _key = "headers", _map[_key] = { k: _key, v: 0 }, _key = "height", _map[_key] = { k: _key, v: 0 }, _key = "hidden", _map[_key] = { k: _key, v: 0 }, _key = "high", _map[_key] = { k: _key, v: 0 }, _key = "href", _map[_key] = { k: _key, v: 6 }, _key = "hreflang", _map[_key] = { k: _key, v: 0 }, _key = "http-equiv", _map[_key] = { k: _key, v: 7 }, _key = "icon", _map[_key] = { k: _key, v: 6 }, _key = "id", _map[_key] = { k: _key, v: 0 }, _key = "ismap", _map[_key] = { k: _key, v: 0 }, _key = "keytype", _map[_key] = { k: _key, v: 7 }, _key = "kind", _map[_key] = { k: _key, v: 0 }, _key = "label", _map[_key] = { k: _key, v: 0 }, _key = "lang", _map[_key] = { k: _key, v: 0 }, _key = "language", _map[_key] = { k: _key, v: 7 }, _key = "list", _map[_key] = { k: _key, v: 0 }, _key = "longdesc", _map[_key] = { k: _key, v: 6 }, _key = "loop", _map[_key] = { k: _key, v: 0 }, _key = "low", _map[_key] = { k: _key, v: 0 }, _key = "manifest", _map[_key] = { k: _key, v: 6 }, _key = "max", _map[_key] = { k: _key, v: 0 }, _key = "maxlength", _map[_key] = { k: _key, v: 0 }, _key = "media", _map[_key] = { k: _key, v: 0 }, _key = "mediagroup", _map[_key] = { k: _key, v: 0 }, _key = "method", _map[_key] = { k: _key, v: 7 }, _key = "min", _map[_key] = { k: _key, v: 0 }, _key = "multiple", _map[_key] = { k: _key, v: 0 }, _key = "name", _map[_key] = { k: _key, v: 0 }, _key = "novalidate", _map[_key] = { k: _key, v: 7 }, _key = "open", _map[_key] = { k: _key, v: 0 }, _key = "optimum", _map[_key] = { k: _key, v: 0 }, _key = "pattern", _map[_key] = { k: _key, v: 7 }, _key = "placeholder", _map[_key] = { k: _key, v: 0 }, _key = "poster", _map[_key] = { k: _key, v: 6 }, _key = "profile", _map[_key] = { k: _key, v: 6 }, _key = "preload", _map[_key] = { k: _key, v: 0 }, _key = "pubdate", _map[_key] = { k: _key, v: 0 }, _key = "radiogroup", _map[_key] = { k: _key, v: 0 }, _key = "readonly", _map[_key] = { k: _key, v: 0 }, _key = "rel", _map[_key] = { k: _key, v: 7 }, _key = "required", _map[_key] = { k: _key, v: 0 }, _key = "reversed", _map[_key] = { k: _key, v: 0 }, _key = "rows", _map[_key] = { k: _key, v: 0 }, _key = "rowspan", _map[_key] = { k: _key, v: 0 }, _key = "sandbox", _map[_key] = { k: _key, v: 7 }, _key = "spellcheck", _map[_key] = { k: _key, v: 0 }, _key = "scope", _map[_key] = { k: _key, v: 0 }, _key = "scoped", _map[_key] = { k: _key, v: 0 }, _key = "seamless", _map[_key] = { k: _key, v: 0 }, _key = "selected", _map[_key] = { k: _key, v: 0 }, _key = "shape", _map[_key] = { k: _key, v: 0 }, _key = "size", _map[_key] = { k: _key, v: 0 }, _key = "sizes", _map[_key] = { k: _key, v: 0 }, _key = "span", _map[_key] = { k: _key, v: 0 }, _key = "src", _map[_key] = { k: _key, v: 6 }, _key = "srcdoc", _map[_key] = { k: _key, v: 2 }, _key = "srclang", _map[_key] = { k: _key, v: 0 }, _key = "start", _map[_key] = { k: _key, v: 0 }, _key = "step", _map[_key] = { k: _key, v: 0 }, _key = "style", _map[_key] = { k: _key, v: 1 }, _key = "tabindex", _map[_key] = { k: _key, v: 0 }, _key = "target", _map[_key] = { k: _key, v: 0 }, _key = "title", _map[_key] = { k: _key, v: 0 }, _key = "type", _map[_key] = { k: _key, v: 7 }, _key = "usemap", _map[_key] = { k: _key, v: 6 }, _key = "value", _map[_key] = { k: _key, v: 7 }, _key = "width", _map[_key] = { k: _key, v: 0 }, _key = "wrap", _map[_key] = { k: _key, v: 0 }, _key = "xmlns", _map[_key] = { k: _key, v: 6 }, _map);
+		errorType = reflect.TypeOf((go$ptrType(go$error)).nil).Elem();
+		fmtStringerType = reflect.TypeOf((go$ptrType(fmt.Stringer)).nil).Elem();
+		stateNames = go$toNativeArray("String", ["stateText", "stateTag", "stateAttrName", "stateAfterName", "stateBeforeValue", "stateHTMLCmt", "stateRCDATA", "stateAttr", "stateURL", "stateJS", "stateJSDqStr", "stateJSSqStr", "stateJSRegexp", "stateJSBlockCmt", "stateJSLineCmt", "stateCSS", "stateCSSDqStr", "stateCSSSqStr", "stateCSSDqURL", "stateCSSSqURL", "stateCSSURL", "stateCSSBlockCmt", "stateCSSLineCmt", "stateError"]);
+		delimNames = go$toNativeArray("String", ["delimNone", "delimDoubleQuote", "delimSingleQuote", "delimSpaceOrTagEnd"]);
+		urlPartNames = go$toNativeArray("String", ["urlPartNone", "urlPartPreQuery", "urlPartQueryOrFrag", "urlPartUnknown"]);
+		elementNames = go$toNativeArray("String", ["elementNone", "elementScript", "elementStyle", "elementTextarea", "elementTitle"]);
+		attrNames = go$toNativeArray("String", ["attrNone", "attrScript", "attrStyle", "attrURL"]);
+		expressionBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("expression"));
+		mozBindingBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("mozbinding"));
+		htmlNospaceReplacementTable = new (go$sliceType(Go$String))(["&#xfffd;", "", "", "", "", "", "", "", "", "&#9;", "&#10;", "&#11;", "&#12;", "&#13;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#32;", "", "&#34;", "", "", "", "&amp;", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "&#61;", "&gt;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#96;"]);
+		htmlNospaceNormReplacementTable = new (go$sliceType(Go$String))(["&#xfffd;", "", "", "", "", "", "", "", "", "&#9;", "&#10;", "&#11;", "&#12;", "&#13;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#32;", "", "&#34;", "", "", "", "", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "&#61;", "&gt;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#96;"]);
+		delimEnds = go$toNativeArray("String", ["", "\"", "'", " \t\n\f\r>"]);
+		commentStart = new (go$sliceType(Go$Uint8))(go$stringToBytes("<!--"));
+		elementNameMap = (_map$1 = new Go$Map(), _key$1 = "script", _map$1[_key$1] = { k: _key$1, v: 1 }, _key$1 = "style", _map$1[_key$1] = { k: _key$1, v: 2 }, _key$1 = "textarea", _map$1[_key$1] = { k: _key$1, v: 3 }, _key$1 = "title", _map$1[_key$1] = { k: _key$1, v: 4 }, _map$1);
+		elementContentType = go$toNativeArray("Uint8", [0, 9, 15, 6, 6]);
+		attrStartStates = go$toNativeArray("Uint8", [7, 9, 15, 8]);
+		commentEnd = new (go$sliceType(Go$Uint8))(go$stringToBytes("-->"));
+		specialTagEndMarkers = go$toNativeArray("String", ["", "</script", "</style", "</textarea", "</title"]);
+		regexpPrecederKeywords = (_map$2 = new Go$Map(), _key$2 = "break", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "case", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "continue", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "delete", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "do", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "else", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "finally", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "in", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "instanceof", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "return", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "throw", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "try", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "typeof", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "void", _map$2[_key$2] = { k: _key$2, v: true }, _map$2);
+		blockCommentEnd = new (go$sliceType(Go$Uint8))(go$stringToBytes("*/"));
+		transitionFunc = go$toNativeArray("Func", [tText, tTag, tAttrName, tAfterName, tBeforeValue, tHTMLCmt, tSpecialTagEnd, tAttr, tURL, tJS, tJSDelimited, tJSDelimited, tJSDelimited, tBlockCmt, tLineCmt, tCSS, tCSSStr, tCSSStr, tCSSStr, tCSSStr, tCSSStr, tBlockCmt, tLineCmt, tError]);
+		htmlReplacementTable = new (go$sliceType(Go$String))(["\xEF\xBF\xBD", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#34;", "", "", "", "&amp;", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "", "&gt;"]);
+		htmlNormReplacementTable = new (go$sliceType(Go$String))(["\xEF\xBF\xBD", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#34;", "", "", "", "", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "", "&gt;"]);
+		jsonMarshalType = reflect.TypeOf((go$ptrType(json.Marshaler)).nil).Elem();
+		jsStrReplacementTable = new (go$sliceType(Go$String))(["\\0", "", "", "", "", "", "", "", "", "\\t", "\\n", "\\x0b", "\\f", "\\r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\x22", "", "", "", "\\x26", "\\x27", "", "", "", "\\x2b", "", "", "", "\\/", "", "", "", "", "", "", "", "", "", "", "", "", "\\x3c", "", "\\x3e", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\\\"]);
+		jsStrNormReplacementTable = new (go$sliceType(Go$String))(["\\0", "", "", "", "", "", "", "", "", "\\t", "\\n", "\\x0b", "\\f", "\\r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\x22", "", "", "", "\\x26", "\\x27", "", "", "", "\\x2b", "", "", "", "\\/", "", "", "", "", "", "", "", "", "", "", "", "", "\\x3c", "", "\\x3e"]);
+		jsRegexpReplacementTable = new (go$sliceType(Go$String))(["\\0", "", "", "", "", "", "", "", "", "\\t", "\\n", "\\x0b", "\\f", "\\r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\x22", "", "\\$", "", "\\x26", "\\x27", "\\(", "\\)", "\\*", "\\x2b", "", "\\-", "\\.", "\\/", "", "", "", "", "", "", "", "", "", "", "", "", "\\x3c", "", "\\x3e", "\\?", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\[", "\\\\", "\\]", "\\^", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\{", "\\|", "\\}"]);
+		funcMap = (_map$3 = new Go$Map(), _key$3 = "html_template_attrescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(attrEscaper) }, _key$3 = "html_template_commentescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(commentEscaper) }, _key$3 = "html_template_cssescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(cssEscaper) }, _key$3 = "html_template_cssvaluefilter", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(cssValueFilter) }, _key$3 = "html_template_htmlnamefilter", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(htmlNameFilter) }, _key$3 = "html_template_htmlescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(htmlEscaper) }, _key$3 = "html_template_jsregexpescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(jsRegexpEscaper) }, _key$3 = "html_template_jsstrescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(jsStrEscaper) }, _key$3 = "html_template_jsvalescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(jsValEscaper) }, _key$3 = "html_template_nospaceescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(htmlNospaceEscaper) }, _key$3 = "html_template_rcdataescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(rcdataEscaper) }, _key$3 = "html_template_urlescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(urlEscaper) }, _key$3 = "html_template_urlfilter", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(urlFilter) }, _key$3 = "html_template_urlnormalizer", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(urlNormalizer) }, _map$3);
+		equivEscapers = (_map$4 = new Go$Map(), _key$4 = "html_template_attrescaper", _map$4[_key$4] = { k: _key$4, v: "html" }, _key$4 = "html_template_htmlescaper", _map$4[_key$4] = { k: _key$4, v: "html" }, _key$4 = "html_template_nospaceescaper", _map$4[_key$4] = { k: _key$4, v: "html" }, _key$4 = "html_template_rcdataescaper", _map$4[_key$4] = { k: _key$4, v: "html" }, _key$4 = "html_template_urlescaper", _map$4[_key$4] = { k: _key$4, v: "urlquery" }, _key$4 = "html_template_urlnormalizer", _map$4[_key$4] = { k: _key$4, v: "urlquery" }, _map$4);
+		redundantFuncs = (_map$5 = new Go$Map(), _key$5 = "html_template_commentescaper", _map$5[_key$5] = { k: _key$5, v: (_map$6 = new Go$Map(), _key$6 = "html_template_attrescaper", _map$6[_key$6] = { k: _key$6, v: true }, _key$6 = "html_template_nospaceescaper", _map$6[_key$6] = { k: _key$6, v: true }, _key$6 = "html_template_htmlescaper", _map$6[_key$6] = { k: _key$6, v: true }, _map$6) }, _key$5 = "html_template_cssescaper", _map$5[_key$5] = { k: _key$5, v: (_map$7 = new Go$Map(), _key$7 = "html_template_attrescaper", _map$7[_key$7] = { k: _key$7, v: true }, _map$7) }, _key$5 = "html_template_jsregexpescaper", _map$5[_key$5] = { k: _key$5, v: (_map$8 = new Go$Map(), _key$8 = "html_template_attrescaper", _map$8[_key$8] = { k: _key$8, v: true }, _map$8) }, _key$5 = "html_template_jsstrescaper", _map$5[_key$5] = { k: _key$5, v: (_map$9 = new Go$Map(), _key$9 = "html_template_attrescaper", _map$9[_key$9] = { k: _key$9, v: true }, _map$9) }, _key$5 = "html_template_urlescaper", _map$5[_key$5] = { k: _key$5, v: (_map$10 = new Go$Map(), _key$10 = "html_template_urlnormalizer", _map$10[_key$10] = { k: _key$10, v: true }, _map$10) }, _map$5);
+		doctypeBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("<!DOCTYPE"));
+	};

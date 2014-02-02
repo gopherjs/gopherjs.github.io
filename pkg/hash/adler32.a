@@ -1,0 +1,96 @@
+0‚{‚¼package adler32
+import hash "hash"
+func @"".Checksum(@"".data []byte) (? uint32)
+func @"".New() (? @"hash".Hash32)
+const @"".Size = 0x4
+type @"".digest uint32
+func (? *@"".digest) @"".BlockSize() (? int)
+func (? *@"".digest) @"".Reset() ()
+func (? *@"".digest) @"".Size() (? int)
+func (? *@"".digest) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".digest) @"".Sum32() (? uint32)
+func (? *@"".digest) @"".Write(@"".p []byte) (@"".nn int, @"".err error)
+import io "io"
+type @"hash".Hash32 interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"hash".Sum32() (? uint32); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0<runtimeerrorssync/atomicsynciohashhash/adler32‚y	var hash = go$packages["hash"];
+	var digest;
+	digest = go$newType(4, "Uint32", "adler32.digest", "digest", "hash/adler32", null);
+	go$pkg.digest = digest;
+	(go$ptrType(digest)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Sum32", "", [], [Go$Uint32], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	go$ptrType(digest).prototype.Reset = function() {
+		var d;
+		d = this;
+		d.go$set(1);
+	};
+	digest.prototype.Reset = function() { var obj = this.go$val; return (new (go$ptrType(digest))(function() { return obj; }, null)).Reset(); };
+	var New = go$pkg.New = function() {
+		var d;
+		d = go$newDataPointer(0, (go$ptrType(digest)));
+		d.Reset();
+		return d;
+	};
+	go$ptrType(digest).prototype.Size = function() {
+		var d;
+		d = this;
+		return 4;
+	};
+	digest.prototype.Size = function() { var obj = this.go$val; return (new (go$ptrType(digest))(function() { return obj; }, null)).Size(); };
+	go$ptrType(digest).prototype.BlockSize = function() {
+		var d;
+		d = this;
+		return 1;
+	};
+	digest.prototype.BlockSize = function() { var obj = this.go$val; return (new (go$ptrType(digest))(function() { return obj; }, null)).BlockSize(); };
+	var update = function(d, p) {
+		var _tuple, s1, s2, q, _tuple$1, _ref, _i, _slice, _index, x, _r, _r$1;
+		_tuple = [(((d & 65535) >>> 0) >>> 0), ((d >>> 16 >>> 0) >>> 0)], s1 = _tuple[0], s2 = _tuple[1];
+		while (p.length > 0) {
+			q = (go$sliceType(Go$Uint8)).nil;
+			if (p.length > 5552) {
+				_tuple$1 = [go$subslice(p, 0, 5552), go$subslice(p, 5552)], p = _tuple$1[0], q = _tuple$1[1];
+			}
+			_ref = p;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				s1 = s1 + ((x >>> 0)) >>> 0;
+				s2 = s2 + (s1) >>> 0;
+			}
+			s1 = (_r = s1 % 65521, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"));
+			s2 = (_r$1 = s2 % 65521, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero"));
+			p = q;
+		}
+		return ((((s2 << 16 >>> 0) | s1) >>> 0) >>> 0);
+	};
+	go$ptrType(digest).prototype.Write = function(p) {
+		var nn, err, d, _tuple;
+		nn = 0;
+		err = null;
+		d = this;
+		d.go$set(update(d.go$get(), p));
+		_tuple = [p.length, null], nn = _tuple[0], err = _tuple[1];
+		return [nn, err];
+	};
+	digest.prototype.Write = function(p) { var obj = this.go$val; return (new (go$ptrType(digest))(function() { return obj; }, null)).Write(p); };
+	go$ptrType(digest).prototype.Sum32 = function() {
+		var d;
+		d = this;
+		return (d.go$get() >>> 0);
+	};
+	digest.prototype.Sum32 = function() { var obj = this.go$val; return (new (go$ptrType(digest))(function() { return obj; }, null)).Sum32(); };
+	go$ptrType(digest).prototype.Sum = function(in$1) {
+		var d, s;
+		d = this;
+		s = (d.go$get() >>> 0);
+		return go$append(in$1, ((s >>> 24 >>> 0) << 24 >>> 24), ((s >>> 16 >>> 0) << 24 >>> 24), ((s >>> 8 >>> 0) << 24 >>> 24), (s << 24 >>> 24));
+	};
+	digest.prototype.Sum = function(in$1) { var obj = this.go$val; return (new (go$ptrType(digest))(function() { return obj; }, null)).Sum(in$1); };
+	var Checksum = go$pkg.Checksum = function(data) {
+		return (update(1, data) >>> 0);
+	};
+	var mod = 65521;
+	var nmax = 5552;
+	go$pkg.Size = 4;
+	go$pkg.init = function() {
+	};

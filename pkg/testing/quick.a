@@ -1,0 +1,582 @@
+0ÇåcÇF7package quick
+import flag "flag"
+import fmt "fmt"
+import math "math"
+import rand "math/rand"
+import reflect "reflect"
+import strings "strings"
+func @"".Check(@"".function interface {  }, @"".config *@"".Config) (@"".err error)
+func @"".CheckEqual(@"".f interface {  }, @"".g interface {  }, @"".config *@"".Config) (@"".err error)
+type @"".CheckEqualError struct { ? @"".CheckError; @"".Out1 []interface {  }; @"".Out2 []interface {  } }
+func (? *@"".CheckEqualError) @"".Error() (? string)
+type @"".CheckError struct { @"".Count int; @"".In []interface {  } }
+func (? *@"".CheckError) @"".Error() (? string)
+type @"".Config struct { @"".MaxCount int; @"".MaxCountScale float64; @"".Rand *@"math/rand".Rand; @"".Values func (? []@"reflect".Value, ? *@"math/rand".Rand) () }
+func (? *@"".Config) @"".getMaxCount() (@"".maxCount int)
+func (? *@"".Config) @"".getRand() (? *@"math/rand".Rand)
+type @"".Generator interface { @"".Generate(@"".rand *@"math/rand".Rand, @"".size int) (? @"reflect".Value) }
+type @"".SetupError string
+func (? @"".SetupError) @"".Error() (? string)
+func (? *@"".SetupError) @"".Error() (? string)
+func @"".Value(@"".t @"reflect".Type, @"".rand *@"math/rand".Rand) (@"".value @"reflect".Value, @"".ok bool)
+type @"math/rand".Rand struct { @"math/rand".src @"math/rand".Source }
+func (? *@"math/rand".Rand) @"math/rand".ExpFloat64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Float32() (? float32)
+func (? *@"math/rand".Rand) @"math/rand".Float64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Int() (? int)
+func (? *@"math/rand".Rand) @"math/rand".Int31() (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int31n(@"".n int32) (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int63() (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Int63n(@"".n int64) (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Intn(@"".n int) (? int)
+func (? *@"math/rand".Rand) @"math/rand".NormFloat64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Perm(@"".n int) (? []int)
+func (? *@"math/rand".Rand) @"math/rand".Seed(@"".seed int64) ()
+func (? *@"math/rand".Rand) @"math/rand".Uint32() (? uint32)
+type @"reflect".Value struct { @"reflect".typ *@"reflect".rtype; @"reflect".val @"unsafe".Pointer; ? @"reflect".flag }
+func (? @"reflect".Value) @"reflect".Addr() (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Bool() (? bool)
+func (? @"reflect".Value) @"reflect".Bytes() (? []byte)
+func (? @"reflect".Value) @"reflect".Call(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".CallSlice(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".CanAddr() (? bool)
+func (? @"reflect".Value) @"reflect".CanInterface() (? bool)
+func (? @"reflect".Value) @"reflect".CanSet() (? bool)
+func (? @"reflect".Value) @"reflect".Cap() (? int)
+func (? @"reflect".Value) @"reflect".Close() ()
+func (? @"reflect".Value) @"reflect".Complex() (? complex128)
+func (? @"reflect".Value) @"reflect".Convert(@"".t @"reflect".Type) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Elem() (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Field(@"".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByIndex(@"".index []int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByName(@"".name string) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Float() (? float64)
+func (? @"reflect".Value) @"reflect".Index(@"".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Int() (? int64)
+func (? @"reflect".Value) @"reflect".Interface() (@"".i interface {  })
+func (? @"reflect".Value) @"reflect".InterfaceData() (? [2]uintptr)
+func (? @"reflect".Value) @"reflect".IsNil() (? bool)
+func (? @"reflect".Value) @"reflect".IsValid() (? bool)
+func (? @"reflect".Value) @"reflect".Kind() (? @"reflect".Kind)
+func (? @"reflect".Value) @"reflect".Len() (? int)
+func (? @"reflect".Value) @"reflect".MapIndex(@"".key @"reflect".Value) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".MapKeys() (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".Method(@"".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".MethodByName(@"".name string) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".NumField() (? int)
+func (? @"reflect".Value) @"reflect".NumMethod() (? int)
+func (? @"reflect".Value) @"reflect".OverflowComplex(@"".x complex128) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowFloat(@"".x float64) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowInt(@"".x int64) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowUint(@"".x uint64) (? bool)
+func (? @"reflect".Value) @"reflect".Pointer() (? uintptr)
+func (? @"reflect".Value) @"reflect".Recv() (@"".x @"reflect".Value, @"".ok bool)
+func (? @"reflect".Value) @"reflect".Send(@"".x @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".Set(@"".x @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".SetBool(@"".x bool) ()
+func (? @"reflect".Value) @"reflect".SetBytes(@"".x []byte) ()
+func (? @"reflect".Value) @"reflect".SetCap(@"".n int) ()
+func (? @"reflect".Value) @"reflect".SetComplex(@"".x complex128) ()
+func (? @"reflect".Value) @"reflect".SetFloat(@"".x float64) ()
+func (? @"reflect".Value) @"reflect".SetInt(@"".x int64) ()
+func (? @"reflect".Value) @"reflect".SetLen(@"".n int) ()
+func (? @"reflect".Value) @"reflect".SetMapIndex(@"".key @"reflect".Value, @"".val @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".SetPointer(@"".x @"unsafe".Pointer) ()
+func (? @"reflect".Value) @"reflect".SetString(@"".x string) ()
+func (? @"reflect".Value) @"reflect".SetUint(@"".x uint64) ()
+func (? @"reflect".Value) @"reflect".Slice(@"".i int, @"".j int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Slice3(@"".i int, @"".j int, @"".k int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".String() (? string)
+func (? @"reflect".Value) @"reflect".TryRecv() (@"".x @"reflect".Value, @"".ok bool)
+func (? @"reflect".Value) @"reflect".TrySend(@"".x @"reflect".Value) (? bool)
+func (? @"reflect".Value) @"reflect".Type() (? @"reflect".Type)
+func (? @"reflect".Value) @"reflect".Uint() (? uint64)
+func (? @"reflect".Value) @"reflect".UnsafeAddr() (? uintptr)
+func (? @"reflect".Value) @"reflect".assignTo(@"".context string, @"".dst *@"reflect".rtype, @"".target *interface {  }) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".call(@"".op string, @"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".iword() (? @"reflect".iword)
+func (? @"reflect".Value) @"reflect".recv(@"".nb bool) (@"".val @"reflect".Value, @"".ok bool)
+func (? @"reflect".Value) @"reflect".runes() (? []rune)
+func (? @"reflect".Value) @"reflect".send(@"".x @"reflect".Value, @"".nb bool) (@"".selected bool)
+func (? @"reflect".Value) @"reflect".setRunes(@"".x []rune) ()
+func (? *@"reflect".Value) @"reflect".Addr() (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Bool() (? bool)
+func (? *@"reflect".Value) @"reflect".Bytes() (? []byte)
+func (? *@"reflect".Value) @"reflect".Call(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".CallSlice(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".CanAddr() (? bool)
+func (? *@"reflect".Value) @"reflect".CanInterface() (? bool)
+func (? *@"reflect".Value) @"reflect".CanSet() (? bool)
+func (? *@"reflect".Value) @"reflect".Cap() (? int)
+func (? *@"reflect".Value) @"reflect".Close() ()
+func (? *@"reflect".Value) @"reflect".Complex() (? complex128)
+func (? *@"reflect".Value) @"reflect".Convert(@"".t @"reflect".Type) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Elem() (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Field(@"".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByIndex(@"".index []int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByName(@"".name string) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Float() (? float64)
+func (? *@"reflect".Value) @"reflect".Index(@"".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Int() (? int64)
+func (? *@"reflect".Value) @"reflect".Interface() (@"".i interface {  })
+func (? *@"reflect".Value) @"reflect".InterfaceData() (? [2]uintptr)
+func (? *@"reflect".Value) @"reflect".IsNil() (? bool)
+func (? *@"reflect".Value) @"reflect".IsValid() (? bool)
+func (? *@"reflect".Value) @"reflect".Kind() (? @"reflect".Kind)
+func (? *@"reflect".Value) @"reflect".Len() (? int)
+func (? *@"reflect".Value) @"reflect".MapIndex(@"".key @"reflect".Value) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".MapKeys() (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Method(@"".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".MethodByName(@"".name string) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".NumField() (? int)
+func (? *@"reflect".Value) @"reflect".NumMethod() (? int)
+func (? *@"reflect".Value) @"reflect".OverflowComplex(@"".x complex128) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowFloat(@"".x float64) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowInt(@"".x int64) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowUint(@"".x uint64) (? bool)
+func (? *@"reflect".Value) @"reflect".Pointer() (? uintptr)
+func (? *@"reflect".Value) @"reflect".Recv() (@"".x @"reflect".Value, @"".ok bool)
+func (? *@"reflect".Value) @"reflect".Send(@"".x @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".Set(@"".x @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".SetBool(@"".x bool) ()
+func (? *@"reflect".Value) @"reflect".SetBytes(@"".x []byte) ()
+func (? *@"reflect".Value) @"reflect".SetCap(@"".n int) ()
+func (? *@"reflect".Value) @"reflect".SetComplex(@"".x complex128) ()
+func (? *@"reflect".Value) @"reflect".SetFloat(@"".x float64) ()
+func (? *@"reflect".Value) @"reflect".SetInt(@"".x int64) ()
+func (? *@"reflect".Value) @"reflect".SetLen(@"".n int) ()
+func (? *@"reflect".Value) @"reflect".SetMapIndex(@"".key @"reflect".Value, @"".val @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".SetPointer(@"".x @"unsafe".Pointer) ()
+func (? *@"reflect".Value) @"reflect".SetString(@"".x string) ()
+func (? *@"reflect".Value) @"reflect".SetUint(@"".x uint64) ()
+func (? *@"reflect".Value) @"reflect".Slice(@"".i int, @"".j int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Slice3(@"".i int, @"".j int, @"".k int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".String() (? string)
+func (? *@"reflect".Value) @"reflect".TryRecv() (@"".x @"reflect".Value, @"".ok bool)
+func (? *@"reflect".Value) @"reflect".TrySend(@"".x @"reflect".Value) (? bool)
+func (? *@"reflect".Value) @"reflect".Type() (? @"reflect".Type)
+func (? *@"reflect".Value) @"reflect".Uint() (? uint64)
+func (? *@"reflect".Value) @"reflect".UnsafeAddr() (? uintptr)
+func (? *@"reflect".Value) @"reflect".assignTo(@"".context string, @"".dst *@"reflect".rtype, @"".target *interface {  }) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".call(@"".op string, @"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".iword() (? @"reflect".iword)
+func (? *@"reflect".Value) @"reflect".recv(@"".nb bool) (@"".val @"reflect".Value, @"".ok bool)
+func (? *@"reflect".Value) @"reflect".runes() (? []rune)
+func (? *@"reflect".Value) @"reflect".send(@"".x @"reflect".Value, @"".nb bool) (@"".selected bool)
+func (? *@"reflect".Value) @"reflect".setRunes(@"".x []rune) ()
+type @"reflect".Type interface { @"reflect".Align() (? int); @"reflect".AssignableTo(@"".u @"reflect".Type) (? bool); @"reflect".Bits() (? int); @"reflect".ChanDir() (? @"reflect".ChanDir); @"reflect".ConvertibleTo(@"".u @"reflect".Type) (? bool); @"reflect".Elem() (? @"reflect".Type); @"reflect".Field(@"".i int) (? @"reflect".StructField); @"reflect".FieldAlign() (? int); @"reflect".FieldByIndex(@"".index []int) (? @"reflect".StructField); @"reflect".FieldByName(@"".name string) (? @"reflect".StructField, ? bool); @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".StructField, ? bool); @"reflect".Implements(@"".u @"reflect".Type) (? bool); @"reflect".In(@"".i int) (? @"reflect".Type); @"reflect".IsVariadic() (? bool); @"reflect".Key() (? @"reflect".Type); @"reflect".Kind() (? @"reflect".Kind); @"reflect".Len() (? int); @"reflect".Method(? int) (? @"reflect".Method); @"reflect".MethodByName(? string) (? @"reflect".Method, ? bool); @"reflect".Name() (? string); @"reflect".NumField() (? int); @"reflect".NumIn() (? int); @"reflect".NumMethod() (? int); @"reflect".NumOut() (? int); @"reflect".Out(@"".i int) (? @"reflect".Type); @"reflect".PkgPath() (? string); @"reflect".Size() (? uintptr); @"reflect".String() (? string); @"reflect".common() (? *@"reflect".rtype); @"reflect".uncommon() (? *@"reflect".uncommonType) }
+type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
+type @"reflect".rtype struct { @"reflect".size uintptr; @"reflect".hash uint32; _ uint8; @"reflect".align uint8; @"reflect".fieldAlign uint8; @"reflect".kind uint8; @"reflect".alg *uintptr; @"reflect".gc @"unsafe".Pointer; @"reflect".string *string; ? *@"reflect".uncommonType; @"reflect".ptrToThis *@"reflect".rtype }
+func (? *@"reflect".rtype) @"reflect".Align() (? int)
+func (? *@"reflect".rtype) @"reflect".AssignableTo(@"".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".Bits() (? int)
+func (? *@"reflect".rtype) @"reflect".ChanDir() (? @"reflect".ChanDir)
+func (? *@"reflect".rtype) @"reflect".ConvertibleTo(@"".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".Elem() (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".Field(@"".i int) (? @"reflect".StructField)
+func (? *@"reflect".rtype) @"reflect".FieldAlign() (? int)
+func (? *@"reflect".rtype) @"reflect".FieldByIndex(@"".index []int) (? @"reflect".StructField)
+func (? *@"reflect".rtype) @"reflect".FieldByName(@"".name string) (? @"reflect".StructField, ? bool)
+func (? *@"reflect".rtype) @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".StructField, ? bool)
+func (? *@"reflect".rtype) @"reflect".Implements(@"".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".In(@"".i int) (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".IsVariadic() (? bool)
+func (? *@"reflect".rtype) @"reflect".Key() (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".Kind() (? @"reflect".Kind)
+func (? *@"reflect".rtype) @"reflect".Len() (? int)
+func (? *@"reflect".rtype) @"reflect".Method(@"".i int) (@"".m @"reflect".Method)
+func (? *@"reflect".rtype) @"reflect".MethodByName(@"".name string) (@"".m @"reflect".Method, @"".ok bool)
+func (? *@"reflect".rtype) @"reflect".Name() (? string)
+func (? *@"reflect".rtype) @"reflect".NumField() (? int)
+func (? *@"reflect".rtype) @"reflect".NumIn() (? int)
+func (? *@"reflect".rtype) @"reflect".NumMethod() (? int)
+func (? *@"reflect".rtype) @"reflect".NumOut() (? int)
+func (? *@"reflect".rtype) @"reflect".Out(@"".i int) (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".PkgPath() (? string)
+func (? *@"reflect".rtype) @"reflect".Size() (? uintptr)
+func (? *@"reflect".rtype) @"reflect".String() (? string)
+func (? *@"reflect".rtype) @"reflect".common() (? *@"reflect".rtype)
+func (? *@"reflect".rtype) @"reflect".ptrTo() (? *@"reflect".rtype)
+type @"reflect".flag uintptr
+func (? @"reflect".flag) @"reflect".kind() (? @"reflect".Kind)
+func (? @"reflect".flag) @"reflect".mustBe(@"".expected @"reflect".Kind) ()
+func (? @"reflect".flag) @"reflect".mustBeAssignable() ()
+func (? @"reflect".flag) @"reflect".mustBeExported() ()
+func (? *@"reflect".flag) @"reflect".kind() (? @"reflect".Kind)
+func (? *@"reflect".flag) @"reflect".mustBe(@"".expected @"reflect".Kind) ()
+func (? *@"reflect".flag) @"reflect".mustBeAssignable() ()
+func (? *@"reflect".flag) @"reflect".mustBeExported() ()
+type @"reflect".Kind uint
+func (? @"reflect".Kind) @"reflect".String() (? string)
+func (? *@"reflect".Kind) @"reflect".String() (? string)
+type @"reflect".iword @"unsafe".Pointer
+type @"reflect".ChanDir int
+func (? @"reflect".ChanDir) @"reflect".String() (? string)
+func (? *@"reflect".ChanDir) @"reflect".String() (? string)
+type @"reflect".StructField struct { @"reflect".Name string; @"reflect".PkgPath string; @"reflect".Type @"reflect".Type; @"reflect".Tag @"reflect".StructTag; @"reflect".Offset uintptr; @"reflect".Index []int; @"reflect".Anonymous bool }
+type @"reflect".Method struct { @"reflect".Name string; @"reflect".PkgPath string; @"reflect".Type @"reflect".Type; @"reflect".Func @"reflect".Value; @"reflect".Index int }
+type @"reflect".uncommonType struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".methods []@"reflect".method }
+func (? *@"reflect".uncommonType) @"reflect".Method(@"".i int) (@"".m @"reflect".Method)
+func (? *@"reflect".uncommonType) @"reflect".MethodByName(@"".name string) (@"".m @"reflect".Method, @"".ok bool)
+func (? *@"reflect".uncommonType) @"reflect".Name() (? string)
+func (? *@"reflect".uncommonType) @"reflect".NumMethod() (? int)
+func (? *@"reflect".uncommonType) @"reflect".PkgPath() (? string)
+func (? *@"reflect".uncommonType) @"reflect".uncommon() (? *@"reflect".uncommonType)
+type @"reflect".StructTag string
+func (? @"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
+func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
+type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
+$$
+0Åûruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortflag	math/randunicodestringstesting/quickÇEÉ	var flag = go$packages["flag"];
+	var fmt = go$packages["fmt"];
+	var math = go$packages["math"];
+	var rand = go$packages["math/rand"];
+	var reflect = go$packages["reflect"];
+	var strings = go$packages["strings"];
+	var Generator;
+	Generator = go$newType(0, "Interface", "quick.Generator", "Generator", "testing/quick", null);
+	go$pkg.Generator = Generator;
+	var Config;
+	Config = go$newType(0, "Struct", "quick.Config", "Config", "testing/quick", function(MaxCount_, MaxCountScale_, Rand_, Values_) {
+		this.go$val = this;
+		this.MaxCount = MaxCount_ !== undefined ? MaxCount_ : 0;
+		this.MaxCountScale = MaxCountScale_ !== undefined ? MaxCountScale_ : 0;
+		this.Rand = Rand_ !== undefined ? Rand_ : (go$ptrType(rand.Rand)).nil;
+		this.Values = Values_ !== undefined ? Values_ : go$throwNilPointerError;
+	});
+	go$pkg.Config = Config;
+	var SetupError;
+	SetupError = go$newType(0, "String", "quick.SetupError", "SetupError", "testing/quick", null);
+	go$pkg.SetupError = SetupError;
+	var CheckError;
+	CheckError = go$newType(0, "Struct", "quick.CheckError", "CheckError", "testing/quick", function(Count_, In_) {
+		this.go$val = this;
+		this.Count = Count_ !== undefined ? Count_ : 0;
+		this.In = In_ !== undefined ? In_ : (go$sliceType(go$emptyInterface)).nil;
+	});
+	go$pkg.CheckError = CheckError;
+	var CheckEqualError;
+	CheckEqualError = go$newType(0, "Struct", "quick.CheckEqualError", "CheckEqualError", "testing/quick", function(CheckError_, Out1_, Out2_) {
+		this.go$val = this;
+		this.CheckError = CheckError_ !== undefined ? CheckError_ : new CheckError.Ptr();
+		this.Out1 = Out1_ !== undefined ? Out1_ : (go$sliceType(go$emptyInterface)).nil;
+		this.Out2 = Out2_ !== undefined ? Out2_ : (go$sliceType(go$emptyInterface)).nil;
+	});
+	CheckEqualError.prototype.Error = function() { return this.go$val.Error(); };
+	CheckEqualError.Ptr.prototype.Error = function() { return this.CheckError.Error(); };
+	go$pkg.CheckEqualError = CheckEqualError;
+	Generator.init([["Generate", "", (go$funcType([(go$ptrType(rand.Rand)), Go$Int], [reflect.Value], false))]]);
+	Config.init([["MaxCount", "", Go$Int, ""], ["MaxCountScale", "", Go$Float64, ""], ["Rand", "", (go$ptrType(rand.Rand)), ""], ["Values", "", (go$funcType([(go$sliceType(reflect.Value)), (go$ptrType(rand.Rand))], [], false)), ""]]);
+	(go$ptrType(Config)).methods = [["getMaxCount", "testing/quick", [], [Go$Int], false], ["getRand", "testing/quick", [], [(go$ptrType(rand.Rand))], false]];
+	SetupError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(SetupError)).methods = [["Error", "", [], [Go$String], false]];
+	CheckError.init([["Count", "", Go$Int, ""], ["In", "", (go$sliceType(go$emptyInterface)), ""]]);
+	(go$ptrType(CheckError)).methods = [["Error", "", [], [Go$String], false]];
+	CheckEqualError.init([["", "", CheckError, ""], ["Out1", "", (go$sliceType(go$emptyInterface)), ""], ["Out2", "", (go$sliceType(go$emptyInterface)), ""]]);
+	(go$ptrType(CheckEqualError)).methods = [["Error", "", [], [Go$String], false]];
+	var randFloat32 = function(rand$1) {
+		var f;
+		f = rand$1.Float64() * 3.4028234663852886e+38;
+		if ((rand$1.Int() & 1) === 1) {
+			f = -f;
+		}
+		return f;
+	};
+	var randFloat64 = function(rand$1) {
+		var f;
+		f = rand$1.Float64() * 1.7976931348623157e+308;
+		if ((rand$1.Int() & 1) === 1) {
+			f = -f;
+		}
+		return f;
+	};
+	var randInt64 = function(rand$1) {
+		var x;
+		return (x = rand$1.Int63(), new Go$Int64(x.high - 1073741824, x.low - 0));
+	};
+	var Value = go$pkg.Value = function(t, rand$1) {
+		var value, ok, ok$1, _tuple, x, m, _struct, _tuple$1, _struct$1, _struct$2, v, concrete, _ref, x$1, x$2, x$3, x$4, x$5, x$6, numElems, _struct$3, i, _tuple$2, _struct$4, key, ok1, _tuple$3, _struct$5, value$1, ok2, _tuple$4, _struct$6, _struct$7, _struct$8, _tuple$5, _struct$9, elem, ok$2, _tuple$6, _struct$10, _struct$11, _struct$12, numElems$1, _struct$13, i$1, _tuple$7, _struct$14, elem$1, ok$3, _tuple$8, _struct$15, _struct$16, numChars, codePoints, i$2, _slice, _index, i$3, _tuple$9, _struct$17, elem$2, ok$4, _tuple$10, _struct$18, _struct$19, _tuple$11, _struct$20, _struct$21, _tuple$12, _struct$22;
+		value = new reflect.Value.Ptr();
+		ok = false;
+		if (_tuple = (x = reflect.Zero(t).Interface(), (x !== null && Generator.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), m = _tuple[0], ok$1 = _tuple[1], ok$1) {
+			_tuple$1 = [(_struct = m.Generate(rand$1, 50), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), true], value = _tuple$1[0], ok = _tuple$1[1];
+			return [(_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), ok];
+		}
+		v = (_struct$2 = reflect.New(t).Elem(), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+		concrete = t;
+		_ref = concrete.Kind();
+		if (_ref === 1) {
+			v.SetBool((rand$1.Int() & 1) === 0);
+		} else if (_ref === 13) {
+			v.SetFloat(randFloat32(rand$1));
+		} else if (_ref === 14) {
+			v.SetFloat(randFloat64(rand$1));
+		} else if (_ref === 15) {
+			v.SetComplex(new Go$Complex128(randFloat32(rand$1), randFloat32(rand$1)));
+		} else if (_ref === 16) {
+			v.SetComplex(new Go$Complex128(randFloat64(rand$1), randFloat64(rand$1)));
+		} else if (_ref === 4) {
+			v.SetInt(randInt64(rand$1));
+		} else if (_ref === 5) {
+			v.SetInt(randInt64(rand$1));
+		} else if (_ref === 6) {
+			v.SetInt(randInt64(rand$1));
+		} else if (_ref === 3) {
+			v.SetInt(randInt64(rand$1));
+		} else if (_ref === 2) {
+			v.SetInt(randInt64(rand$1));
+		} else if (_ref === 9) {
+			v.SetUint((x$1 = randInt64(rand$1), new Go$Uint64(x$1.high, x$1.low)));
+		} else if (_ref === 10) {
+			v.SetUint((x$2 = randInt64(rand$1), new Go$Uint64(x$2.high, x$2.low)));
+		} else if (_ref === 11) {
+			v.SetUint((x$3 = randInt64(rand$1), new Go$Uint64(x$3.high, x$3.low)));
+		} else if (_ref === 8) {
+			v.SetUint((x$4 = randInt64(rand$1), new Go$Uint64(x$4.high, x$4.low)));
+		} else if (_ref === 7) {
+			v.SetUint((x$5 = randInt64(rand$1), new Go$Uint64(x$5.high, x$5.low)));
+		} else if (_ref === 12) {
+			v.SetUint((x$6 = randInt64(rand$1), new Go$Uint64(x$6.high, x$6.low)));
+		} else if (_ref === 21) {
+			numElems = rand$1.Intn(50);
+			v.Set((_struct$3 = reflect.MakeMap(concrete), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
+			i = 0;
+			while (i < numElems) {
+				_tuple$2 = Value(concrete.Key(), rand$1), key = (_struct$4 = _tuple$2[0], new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), ok1 = _tuple$2[1];
+				_tuple$3 = Value(concrete.Elem(), rand$1), value$1 = (_struct$5 = _tuple$3[0], new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag)), ok2 = _tuple$3[1];
+				if (!ok1 || !ok2) {
+					_tuple$4 = [new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0), false], value = _tuple$4[0], ok = _tuple$4[1];
+					return [(_struct$6 = value, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), ok];
+				}
+				v.SetMapIndex((_struct$7 = key, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)), (_struct$8 = value$1, new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)));
+				i = i + 1 >> 0;
+			}
+		} else if (_ref === 22) {
+			_tuple$5 = Value(concrete.Elem(), rand$1), elem = (_struct$9 = _tuple$5[0], new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), ok$2 = _tuple$5[1];
+			if (!ok$2) {
+				_tuple$6 = [new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0), false], value = _tuple$6[0], ok = _tuple$6[1];
+				return [(_struct$10 = value, new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)), ok];
+			}
+			v.Set((_struct$11 = reflect.New(concrete.Elem()), new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag)));
+			v.Elem().Set((_struct$12 = elem, new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)));
+		} else if (_ref === 23) {
+			numElems$1 = rand$1.Intn(50);
+			v.Set((_struct$13 = reflect.MakeSlice(concrete, numElems$1, numElems$1), new reflect.Value.Ptr(_struct$13.typ, _struct$13.val, _struct$13.flag)));
+			i$1 = 0;
+			while (i$1 < numElems$1) {
+				_tuple$7 = Value(concrete.Elem(), rand$1), elem$1 = (_struct$14 = _tuple$7[0], new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag)), ok$3 = _tuple$7[1];
+				if (!ok$3) {
+					_tuple$8 = [new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0), false], value = _tuple$8[0], ok = _tuple$8[1];
+					return [(_struct$15 = value, new reflect.Value.Ptr(_struct$15.typ, _struct$15.val, _struct$15.flag)), ok];
+				}
+				v.Index(i$1).Set((_struct$16 = elem$1, new reflect.Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag)));
+				i$1 = i$1 + 1 >> 0;
+			}
+		} else if (_ref === 24) {
+			numChars = rand$1.Intn(50);
+			codePoints = (go$sliceType(Go$Int32)).make(numChars, 0, function() { return 0; });
+			i$2 = 0;
+			while (i$2 < numChars) {
+				_slice = codePoints, _index = i$2, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (rand$1.Intn(1114111) >> 0)) : go$throwRuntimeError("index out of range");
+				i$2 = i$2 + 1 >> 0;
+			}
+			v.SetString(go$runesToString(codePoints));
+		} else if (_ref === 25) {
+			i$3 = 0;
+			while (i$3 < v.NumField()) {
+				_tuple$9 = Value(concrete.Field(i$3).Type, rand$1), elem$2 = (_struct$17 = _tuple$9[0], new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag)), ok$4 = _tuple$9[1];
+				if (!ok$4) {
+					_tuple$10 = [new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0), false], value = _tuple$10[0], ok = _tuple$10[1];
+					return [(_struct$18 = value, new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag)), ok];
+				}
+				v.Field(i$3).Set((_struct$19 = elem$2, new reflect.Value.Ptr(_struct$19.typ, _struct$19.val, _struct$19.flag)));
+				i$3 = i$3 + 1 >> 0;
+			}
+		} else {
+			_tuple$11 = [new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0), false], value = _tuple$11[0], ok = _tuple$11[1];
+			return [(_struct$20 = value, new reflect.Value.Ptr(_struct$20.typ, _struct$20.val, _struct$20.flag)), ok];
+		}
+		_tuple$12 = [(_struct$21 = v, new reflect.Value.Ptr(_struct$21.typ, _struct$21.val, _struct$21.flag)), true], value = _tuple$12[0], ok = _tuple$12[1];
+		return [(_struct$22 = value, new reflect.Value.Ptr(_struct$22.typ, _struct$22.val, _struct$22.flag)), ok];
+	};
+	Config.Ptr.prototype.getRand = function() {
+		var c;
+		c = this;
+		if (c.Rand === (go$ptrType(rand.Rand)).nil) {
+			return rand.New(rand.NewSource(new Go$Int64(0, 0)));
+		}
+		return c.Rand;
+	};
+	Config.prototype.getRand = function() { return this.go$val.getRand(); };
+	Config.Ptr.prototype.getMaxCount = function() {
+		var maxCount, c;
+		maxCount = 0;
+		c = this;
+		maxCount = c.MaxCount;
+		if (maxCount === 0) {
+			if (!((c.MaxCountScale === 0))) {
+				maxCount = (c.MaxCountScale * defaultMaxCount.go$get() >> 0);
+			} else {
+				maxCount = defaultMaxCount.go$get();
+			}
+		}
+		return maxCount;
+	};
+	Config.prototype.getMaxCount = function() { return this.go$val.getMaxCount(); };
+	SetupError.prototype.Error = function() {
+		var s;
+		s = this.go$val;
+		return s;
+	};
+	go$ptrType(SetupError).prototype.Error = function() { return new SetupError(this.go$get()).Error(); };
+	CheckError.Ptr.prototype.Error = function() {
+		var s;
+		s = this;
+		return fmt.Sprintf("#%d: failed on input %s", new (go$sliceType(go$emptyInterface))([new Go$Int(s.Count), new Go$String(toString(s.In))]));
+	};
+	CheckError.prototype.Error = function() { return this.go$val.Error(); };
+	CheckEqualError.Ptr.prototype.Error = function() {
+		var s;
+		s = this;
+		return fmt.Sprintf("#%d: failed on input %s. Output 1: %s. Output 2: %s", new (go$sliceType(go$emptyInterface))([new Go$Int(s.CheckError.Count), new Go$String(toString(s.CheckError.In)), new Go$String(toString(s.Out1)), new Go$String(toString(s.Out2))]));
+	};
+	CheckEqualError.prototype.Error = function() { return this.go$val.Error(); };
+	var Check = go$pkg.Check = function(function$1, config) {
+		var err, _tuple, _struct, f, fType, ok, arguments$1, rand$1, maxCount, i, _slice, _index;
+		err = null;
+		if (config === (go$ptrType(Config)).nil) {
+			config = defaultConfig;
+		}
+		_tuple = functionAndType(function$1), f = (_struct = _tuple[0], new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), fType = _tuple[1], ok = _tuple[2];
+		if (!ok) {
+			err = new SetupError("argument is not a function");
+			return err;
+		}
+		if (!((fType.NumOut() === 1))) {
+			err = new SetupError("function returns more than one value.");
+			return err;
+		}
+		if (!((fType.Out(0).Kind() === 1))) {
+			err = new SetupError("function does not return a bool");
+			return err;
+		}
+		arguments$1 = (go$sliceType(reflect.Value)).make(fType.NumIn(), 0, function() { return new reflect.Value.Ptr(); });
+		rand$1 = config.getRand();
+		maxCount = config.getMaxCount();
+		i = 0;
+		while (i < maxCount) {
+			err = arbitraryValues(arguments$1, fType, config, rand$1);
+			if (!(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			if (!(_slice = f.Call(arguments$1), _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Bool()) {
+				err = new CheckError.Ptr(i + 1 >> 0, toInterfaces(arguments$1));
+				return err;
+			}
+			i = i + 1 >> 0;
+		}
+		return err;
+	};
+	var CheckEqual = go$pkg.CheckEqual = function(f, g, config) {
+		var err, _tuple, _struct, x, xType, ok, _tuple$1, _struct$1, y, yType, arguments$1, rand$1, maxCount, i, xOut, yOut;
+		err = null;
+		if (config === (go$ptrType(Config)).nil) {
+			config = defaultConfig;
+		}
+		_tuple = functionAndType(f), x = (_struct = _tuple[0], new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), xType = _tuple[1], ok = _tuple[2];
+		if (!ok) {
+			err = new SetupError("f is not a function");
+			return err;
+		}
+		_tuple$1 = functionAndType(g), y = (_struct$1 = _tuple$1[0], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), yType = _tuple$1[1], ok = _tuple$1[2];
+		if (!ok) {
+			err = new SetupError("g is not a function");
+			return err;
+		}
+		if (!(go$interfaceIsEqual(xType, yType))) {
+			err = new SetupError("functions have different types");
+			return err;
+		}
+		arguments$1 = (go$sliceType(reflect.Value)).make(xType.NumIn(), 0, function() { return new reflect.Value.Ptr(); });
+		rand$1 = config.getRand();
+		maxCount = config.getMaxCount();
+		i = 0;
+		while (i < maxCount) {
+			err = arbitraryValues(arguments$1, xType, config, rand$1);
+			if (!(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			xOut = toInterfaces(x.Call(arguments$1));
+			yOut = toInterfaces(y.Call(arguments$1));
+			if (!reflect.DeepEqual(xOut, yOut)) {
+				err = new CheckEqualError.Ptr(new CheckError.Ptr(i + 1 >> 0, toInterfaces(arguments$1)), xOut, yOut);
+				return err;
+			}
+			i = i + 1 >> 0;
+		}
+		return err;
+	};
+	var arbitraryValues = function(args, f, config, rand$1) {
+		var err, j, ok, _tuple, _struct, _slice, _index;
+		err = null;
+		if (!(config.Values === go$throwNilPointerError)) {
+			config.Values(args, rand$1);
+			return err;
+		}
+		j = 0;
+		while (j < args.length) {
+			ok = false;
+			_tuple = Value(f.In(j), rand$1), _slice = args, _index = j, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (_struct = _tuple[0], new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))) : go$throwRuntimeError("index out of range"), ok = _tuple[1];
+			if (!ok) {
+				err = new SetupError(fmt.Sprintf("cannot create arbitrary value of type %s for argument %d", new (go$sliceType(go$emptyInterface))([f.In(j), new Go$Int(j)])));
+				return err;
+			}
+			j = j + 1 >> 0;
+		}
+		return err;
+	};
+	var functionAndType = function(f) {
+		var v, t, ok, _struct, _struct$1, _struct$2;
+		v = new reflect.Value.Ptr();
+		t = null;
+		ok = false;
+		v = (_struct = reflect.ValueOf(f), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		ok = v.Kind() === 19;
+		if (!ok) {
+			return [(_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), t, ok];
+		}
+		t = v.Type();
+		return [(_struct$2 = v, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), t, ok];
+	};
+	var toInterfaces = function(values) {
+		var ret, _ref, _i, _slice, _index, _struct, v, i, _slice$1, _index$1;
+		ret = (go$sliceType(go$emptyInterface)).make(values.length, 0, function() { return null; });
+		_ref = values;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			v = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+			i = _i;
+			_slice$1 = ret, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v.Interface()) : go$throwRuntimeError("index out of range");
+		}
+		return ret;
+	};
+	var toString = function(interfaces) {
+		var s, _ref, _i, _slice, _index, v, i, _slice$1, _index$1;
+		s = (go$sliceType(Go$String)).make(interfaces.length, 0, function() { return ""; });
+		_ref = interfaces;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_slice$1 = s, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = fmt.Sprintf("%#v", new (go$sliceType(go$emptyInterface))([v]))) : go$throwRuntimeError("index out of range");
+		}
+		return strings.Join(s, ", ");
+	};
+	var complexSize = 50;
+	var defaultMaxCount = (go$ptrType(Go$Int)).nil;
+	var defaultConfig = new Config.Ptr();
+	go$pkg.init = function() {
+		defaultMaxCount = flag.Int("quickchecks", 100, "The default number of iterations for each check");
+	};

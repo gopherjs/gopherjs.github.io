@@ -1,0 +1,90 @@
+0‚5‚Ïpackage crypto
+import hash "hash"
+import strconv "strconv"
+type @"".Hash uint
+func (? @"".Hash) @"".Available() (? bool)
+func (? @"".Hash) @"".New() (? @"hash".Hash)
+func (? @"".Hash) @"".Size() (? int)
+func (? *@"".Hash) @"".Available() (? bool)
+func (? *@"".Hash) @"".New() (? @"hash".Hash)
+func (? *@"".Hash) @"".Size() (? int)
+const @"".MD4 @"".Hash = 0x1
+const @"".MD5 @"".Hash = 0x2
+const @"".MD5SHA1 @"".Hash = 0x8
+type @"".PrivateKey interface {  }
+type @"".PublicKey interface {  }
+const @"".RIPEMD160 @"".Hash = 0x9
+func @"".RegisterHash(@"".h @"".Hash, @"".f func () (? @"hash".Hash)) ()
+const @"".SHA1 @"".Hash = 0x3
+const @"".SHA224 @"".Hash = 0x4
+const @"".SHA256 @"".Hash = 0x5
+const @"".SHA384 @"".Hash = 0x6
+const @"".SHA512 @"".Hash = 0x7
+import io "io"
+type @"hash".Hash interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0Sruntimeerrorssync/atomicsynciohashmathunicode/utf8strconvcrypto‚		var hash = go$packages["hash"];
+	var strconv = go$packages["strconv"];
+	var Hash;
+	Hash = go$newType(4, "Uint", "crypto.Hash", "Hash", "crypto", null);
+	go$pkg.Hash = Hash;
+	var PublicKey;
+	PublicKey = go$newType(0, "Interface", "crypto.PublicKey", "PublicKey", "crypto", null);
+	go$pkg.PublicKey = PublicKey;
+	var PrivateKey;
+	PrivateKey = go$newType(0, "Interface", "crypto.PrivateKey", "PrivateKey", "crypto", null);
+	go$pkg.PrivateKey = PrivateKey;
+	Hash.methods = [["Available", "", [], [Go$Bool], false], ["New", "", [], [hash.Hash], false], ["Size", "", [], [Go$Int], false]];
+	(go$ptrType(Hash)).methods = [["Available", "", [], [Go$Bool], false], ["New", "", [], [hash.Hash], false], ["Size", "", [], [Go$Int], false]];
+	PublicKey.init([]);
+	PrivateKey.init([]);
+	Hash.prototype.Size = function() {
+		var h, _slice, _index;
+		h = this.go$val;
+		if (h > 0 && h < 10) {
+			return ((_slice = digestSizes, _index = h, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0);
+		}
+		throw go$panic(new Go$String("crypto: Size of unknown hash function"));
+	};
+	go$ptrType(Hash).prototype.Size = function() { return new Hash(this.go$get()).Size(); };
+	Hash.prototype.New = function() {
+		var h, _slice, _index, f;
+		h = this.go$val;
+		if (h > 0 && h < 10) {
+			f = (_slice = hashes, _index = h, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (!(f === go$throwNilPointerError)) {
+				return f();
+			}
+		}
+		throw go$panic(new Go$String("crypto: requested hash function #" + strconv.Itoa((h >> 0)) + " is unavailable"));
+	};
+	go$ptrType(Hash).prototype.New = function() { return new Hash(this.go$get()).New(); };
+	Hash.prototype.Available = function() {
+		var h, _slice, _index;
+		h = this.go$val;
+		return h < 10 && !((_slice = hashes, _index = h, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === go$throwNilPointerError);
+	};
+	go$ptrType(Hash).prototype.Available = function() { return new Hash(this.go$get()).Available(); };
+	var RegisterHash = go$pkg.RegisterHash = function(h, f) {
+		var _slice, _index;
+		if (h >= 10) {
+			throw go$panic(new Go$String("crypto: RegisterHash of unknown hash function"));
+		}
+		_slice = hashes, _index = h, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = f) : go$throwRuntimeError("index out of range");
+	};
+	go$pkg.MD4 = 1;
+	go$pkg.MD5 = 2;
+	go$pkg.SHA1 = 3;
+	go$pkg.SHA224 = 4;
+	go$pkg.SHA256 = 5;
+	go$pkg.SHA384 = 6;
+	go$pkg.SHA512 = 7;
+	go$pkg.MD5SHA1 = 8;
+	go$pkg.RIPEMD160 = 9;
+	var maxHash = 10;
+	var digestSizes = (go$sliceType(Go$Uint8)).nil;
+	var hashes = (go$sliceType((go$funcType([], [hash.Hash], false)))).nil;
+	go$pkg.init = function() {
+		digestSizes = new (go$sliceType(Go$Uint8))([0, 16, 16, 20, 28, 32, 48, 64, 36, 20]);
+		hashes = (go$sliceType((go$funcType([], [hash.Hash], false)))).make(10, 0, function() { return go$throwNilPointerError; });
+	};

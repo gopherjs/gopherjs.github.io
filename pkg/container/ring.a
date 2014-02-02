@@ -1,0 +1,138 @@
+0‚k‚package ring
+func @"".New(@"".n int) (? *@"".Ring)
+type @"".Ring struct { @"".next *@"".Ring; @"".prev *@"".Ring; @"".Value interface {  } }
+func (? *@"".Ring) @"".Do(@"".f func (? interface {  }) ()) ()
+func (? *@"".Ring) @"".Len() (? int)
+func (? *@"".Ring) @"".Link(@"".s *@"".Ring) (? *@"".Ring)
+func (? *@"".Ring) @"".Move(@"".n int) (? *@"".Ring)
+func (? *@"".Ring) @"".Next() (? *@"".Ring)
+func (? *@"".Ring) @"".Prev() (? *@"".Ring)
+func (? *@"".Ring) @"".Unlink(@"".n int) (? *@"".Ring)
+func (? *@"".Ring) @"".init() (? *@"".Ring)
+$$
+0runtimecontainer/ring‚)	var Ring;
+	Ring = go$newType(0, "Struct", "ring.Ring", "Ring", "container/ring", function(next_, prev_, Value_) {
+		this.go$val = this;
+		this.next = next_ !== undefined ? next_ : (go$ptrType(Ring)).nil;
+		this.prev = prev_ !== undefined ? prev_ : (go$ptrType(Ring)).nil;
+		this.Value = Value_ !== undefined ? Value_ : null;
+	});
+	go$pkg.Ring = Ring;
+	Ring.init([["next", "container/ring", (go$ptrType(Ring)), ""], ["prev", "container/ring", (go$ptrType(Ring)), ""], ["Value", "", go$emptyInterface, ""]]);
+	(go$ptrType(Ring)).methods = [["Do", "", [(go$funcType([go$emptyInterface], [], false))], [], false], ["Len", "", [], [Go$Int], false], ["Link", "", [(go$ptrType(Ring))], [(go$ptrType(Ring))], false], ["Move", "", [Go$Int], [(go$ptrType(Ring))], false], ["Next", "", [], [(go$ptrType(Ring))], false], ["Prev", "", [], [(go$ptrType(Ring))], false], ["Unlink", "", [Go$Int], [(go$ptrType(Ring))], false], ["init", "container/ring", [], [(go$ptrType(Ring))], false]];
+	Ring.Ptr.prototype.init = function() {
+		var r;
+		r = this;
+		r.next = r;
+		r.prev = r;
+		return r;
+	};
+	Ring.prototype.init = function() { return this.go$val.init(); };
+	Ring.Ptr.prototype.Next = function() {
+		var r;
+		r = this;
+		if (r.next === (go$ptrType(Ring)).nil) {
+			return r.init();
+		}
+		return r.next;
+	};
+	Ring.prototype.Next = function() { return this.go$val.Next(); };
+	Ring.Ptr.prototype.Prev = function() {
+		var r;
+		r = this;
+		if (r.next === (go$ptrType(Ring)).nil) {
+			return r.init();
+		}
+		return r.prev;
+	};
+	Ring.prototype.Prev = function() { return this.go$val.Prev(); };
+	Ring.Ptr.prototype.Move = function(n) {
+		var r;
+		r = this;
+		if (r.next === (go$ptrType(Ring)).nil) {
+			return r.init();
+		}
+		if (n < 0) {
+			while (n < 0) {
+				r = r.prev;
+				n = n + 1 >> 0;
+			}
+		} else if (n > 0) {
+			while (n > 0) {
+				r = r.next;
+				n = n - 1 >> 0;
+			}
+		}
+		return r;
+	};
+	Ring.prototype.Move = function(n) { return this.go$val.Move(n); };
+	var New = go$pkg.New = function(n) {
+		var r, p, i;
+		if (n <= 0) {
+			return (go$ptrType(Ring)).nil;
+		}
+		r = new Ring.Ptr();
+		p = r;
+		i = 1;
+		while (i < n) {
+			p.next = new Ring.Ptr((go$ptrType(Ring)).nil, p, null);
+			p = p.next;
+			i = i + 1 >> 0;
+		}
+		p.next = r;
+		r.prev = p;
+		return r;
+	};
+	Ring.Ptr.prototype.Link = function(s) {
+		var r, n, p;
+		r = this;
+		n = r.Next();
+		if (!(s === (go$ptrType(Ring)).nil)) {
+			p = s.Prev();
+			r.next = s;
+			s.prev = r;
+			n.prev = p;
+			p.next = n;
+		}
+		return n;
+	};
+	Ring.prototype.Link = function(s) { return this.go$val.Link(s); };
+	Ring.Ptr.prototype.Unlink = function(n) {
+		var r;
+		r = this;
+		if (n <= 0) {
+			return (go$ptrType(Ring)).nil;
+		}
+		return r.Link(r.Move(n + 1 >> 0));
+	};
+	Ring.prototype.Unlink = function(n) { return this.go$val.Unlink(n); };
+	Ring.Ptr.prototype.Len = function() {
+		var r, n, p;
+		r = this;
+		n = 0;
+		if (!(r === (go$ptrType(Ring)).nil)) {
+			n = 1;
+			p = r.Next();
+			while (!(p === r)) {
+				n = n + 1 >> 0;
+				p = p.next;
+			}
+		}
+		return n;
+	};
+	Ring.prototype.Len = function() { return this.go$val.Len(); };
+	Ring.Ptr.prototype.Do = function(f) {
+		var r, p;
+		r = this;
+		if (!(r === (go$ptrType(Ring)).nil)) {
+			f(r.Value);
+			p = r.Next();
+			while (!(p === r)) {
+				f(p.Value);
+				p = p.next;
+			}
+		}
+	};
+	Ring.prototype.Do = function(f) { return this.go$val.Do(f); };
+	go$pkg.init = function() {
+	};

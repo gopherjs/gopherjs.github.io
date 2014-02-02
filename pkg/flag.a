@@ -1,0 +1,908 @@
+0‚®€‚øpackage flag
+import errors "errors"
+import fmt "fmt"
+import io "io"
+import os "os"
+import sort "sort"
+import strconv "strconv"
+import time "time"
+func @"".Arg(@"".i int) (? string)
+func @"".Args() (? []string)
+func @"".Bool(@"".name string, @"".value bool, @"".usage string) (? *bool)
+func @"".BoolVar(@"".p *bool, @"".name string, @"".value bool, @"".usage string) ()
+var @"".CommandLine *@"".FlagSet
+const @"".ContinueOnError @"".ErrorHandling = 0x0
+func @"".Duration(@"".name string, @"".value @"time".Duration, @"".usage string) (? *@"time".Duration)
+func @"".DurationVar(@"".p *@"time".Duration, @"".name string, @"".value @"time".Duration, @"".usage string) ()
+var @"".ErrHelp error
+type @"".ErrorHandling int
+const @"".ExitOnError @"".ErrorHandling = 0x1
+type @"".Flag struct { @"".Name string; @"".Usage string; @"".Value @"".Value; @"".DefValue string }
+type @"".FlagSet struct { @"".Usage func () (); @"".name string; @"".parsed bool; @"".actual map[string]*@"".Flag; @"".formal map[string]*@"".Flag; @"".args []string; @"".exitOnError bool; @"".errorHandling @"".ErrorHandling; @"".output @"io".Writer }
+func (? *@"".FlagSet) @"".Arg(@"".i int) (? string)
+func (? *@"".FlagSet) @"".Args() (? []string)
+func (? *@"".FlagSet) @"".Bool(@"".name string, @"".value bool, @"".usage string) (? *bool)
+func (? *@"".FlagSet) @"".BoolVar(@"".p *bool, @"".name string, @"".value bool, @"".usage string) ()
+func (? *@"".FlagSet) @"".Duration(@"".name string, @"".value @"time".Duration, @"".usage string) (? *@"time".Duration)
+func (? *@"".FlagSet) @"".DurationVar(@"".p *@"time".Duration, @"".name string, @"".value @"time".Duration, @"".usage string) ()
+func (? *@"".FlagSet) @"".Float64(@"".name string, @"".value float64, @"".usage string) (? *float64)
+func (? *@"".FlagSet) @"".Float64Var(@"".p *float64, @"".name string, @"".value float64, @"".usage string) ()
+func (? *@"".FlagSet) @"".Init(@"".name string, @"".errorHandling @"".ErrorHandling) ()
+func (? *@"".FlagSet) @"".Int(@"".name string, @"".value int, @"".usage string) (? *int)
+func (? *@"".FlagSet) @"".Int64(@"".name string, @"".value int64, @"".usage string) (? *int64)
+func (? *@"".FlagSet) @"".Int64Var(@"".p *int64, @"".name string, @"".value int64, @"".usage string) ()
+func (? *@"".FlagSet) @"".IntVar(@"".p *int, @"".name string, @"".value int, @"".usage string) ()
+func (? *@"".FlagSet) @"".Lookup(@"".name string) (? *@"".Flag)
+func (? *@"".FlagSet) @"".NArg() (? int)
+func (? *@"".FlagSet) @"".NFlag() (? int)
+func (? *@"".FlagSet) @"".Parse(@"".arguments []string) (? error)
+func (? *@"".FlagSet) @"".Parsed() (? bool)
+func (? *@"".FlagSet) @"".PrintDefaults() ()
+func (? *@"".FlagSet) @"".Set(@"".name string, @"".value string) (? error)
+func (? *@"".FlagSet) @"".SetOutput(@"".output @"io".Writer) ()
+func (? *@"".FlagSet) @"".String(@"".name string, @"".value string, @"".usage string) (? *string)
+func (? *@"".FlagSet) @"".StringVar(@"".p *string, @"".name string, @"".value string, @"".usage string) ()
+func (? *@"".FlagSet) @"".Uint(@"".name string, @"".value uint, @"".usage string) (? *uint)
+func (? *@"".FlagSet) @"".Uint64(@"".name string, @"".value uint64, @"".usage string) (? *uint64)
+func (? *@"".FlagSet) @"".Uint64Var(@"".p *uint64, @"".name string, @"".value uint64, @"".usage string) ()
+func (? *@"".FlagSet) @"".UintVar(@"".p *uint, @"".name string, @"".value uint, @"".usage string) ()
+func (? *@"".FlagSet) @"".Var(@"".value @"".Value, @"".name string, @"".usage string) ()
+func (? *@"".FlagSet) @"".Visit(@"".fn func (? *@"".Flag) ()) ()
+func (? *@"".FlagSet) @"".VisitAll(@"".fn func (? *@"".Flag) ()) ()
+func (? *@"".FlagSet) @"".failf(@"".format string, @"".a ...interface {  }) (? error)
+func (? *@"".FlagSet) @"".out() (? @"io".Writer)
+func (? *@"".FlagSet) @"".parseOne() (? bool, ? error)
+func (? *@"".FlagSet) @"".usage() ()
+func @"".Float64(@"".name string, @"".value float64, @"".usage string) (? *float64)
+func @"".Float64Var(@"".p *float64, @"".name string, @"".value float64, @"".usage string) ()
+type @"".Getter interface { @"".Get() (? interface {  }); @"".Set(? string) (? error); @"".String() (? string) }
+func @"".Int(@"".name string, @"".value int, @"".usage string) (? *int)
+func @"".Int64(@"".name string, @"".value int64, @"".usage string) (? *int64)
+func @"".Int64Var(@"".p *int64, @"".name string, @"".value int64, @"".usage string) ()
+func @"".IntVar(@"".p *int, @"".name string, @"".value int, @"".usage string) ()
+func @"".Lookup(@"".name string) (? *@"".Flag)
+func @"".NArg() (? int)
+func @"".NFlag() (? int)
+func @"".NewFlagSet(@"".name string, @"".errorHandling @"".ErrorHandling) (? *@"".FlagSet)
+const @"".PanicOnError @"".ErrorHandling = 0x2
+func @"".Parse() ()
+func @"".Parsed() (? bool)
+func @"".PrintDefaults() ()
+func @"".Set(@"".name string, @"".value string) (? error)
+func @"".String(@"".name string, @"".value string, @"".usage string) (? *string)
+func @"".StringVar(@"".p *string, @"".name string, @"".value string, @"".usage string) ()
+func @"".Uint(@"".name string, @"".value uint, @"".usage string) (? *uint)
+func @"".Uint64(@"".name string, @"".value uint64, @"".usage string) (? *uint64)
+func @"".Uint64Var(@"".p *uint64, @"".name string, @"".value uint64, @"".usage string) ()
+func @"".UintVar(@"".p *uint, @"".name string, @"".value uint, @"".usage string) ()
+var @"".Usage func () ()
+type @"".Value interface { @"".Set(? string) (? error); @"".String() (? string) }
+func @"".Var(@"".value @"".Value, @"".name string, @"".usage string) ()
+func @"".Visit(@"".fn func (? *@"".Flag) ()) ()
+func @"".VisitAll(@"".fn func (? *@"".Flag) ()) ()
+type @"".boolFlag interface { @"".IsBoolFlag() (? bool); @"".Set(? string) (? error); @"".String() (? string) }
+type @"".boolValue bool
+func (? *@"".boolValue) @"".Get() (? interface {  })
+func (? *@"".boolValue) @"".IsBoolFlag() (? bool)
+func (? *@"".boolValue) @"".Set(@"".s string) (? error)
+func (? *@"".boolValue) @"".String() (? string)
+type @"".durationValue int64
+func (? *@"".durationValue) @"".Get() (? interface {  })
+func (? *@"".durationValue) @"".Set(@"".s string) (? error)
+func (? *@"".durationValue) @"".String() (? string)
+type @"".float64Value float64
+func (? *@"".float64Value) @"".Get() (? interface {  })
+func (? *@"".float64Value) @"".Set(@"".s string) (? error)
+func (? *@"".float64Value) @"".String() (? string)
+type @"".int64Value int64
+func (? *@"".int64Value) @"".Get() (? interface {  })
+func (? *@"".int64Value) @"".Set(@"".s string) (? error)
+func (? *@"".int64Value) @"".String() (? string)
+type @"".intValue int
+func (? *@"".intValue) @"".Get() (? interface {  })
+func (? *@"".intValue) @"".Set(@"".s string) (? error)
+func (? *@"".intValue) @"".String() (? string)
+type @"".stringValue string
+func (? *@"".stringValue) @"".Get() (? interface {  })
+func (? *@"".stringValue) @"".Set(@"".val string) (? error)
+func (? *@"".stringValue) @"".String() (? string)
+type @"".uint64Value uint64
+func (? *@"".uint64Value) @"".Get() (? interface {  })
+func (? *@"".uint64Value) @"".Set(@"".s string) (? error)
+func (? *@"".uint64Value) @"".String() (? string)
+type @"".uintValue uint
+func (? *@"".uintValue) @"".Get() (? interface {  })
+func (? *@"".uintValue) @"".Set(@"".s string) (? error)
+func (? *@"".uintValue) @"".String() (? string)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0rruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortflag‚	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var os = go$packages["os"];
+	var sort = go$packages["sort"];
+	var strconv = go$packages["strconv"];
+	var time = go$packages["time"];
+	var boolValue;
+	boolValue = go$newType(0, "Bool", "flag.boolValue", "boolValue", "flag", null);
+	go$pkg.boolValue = boolValue;
+	var boolFlag;
+	boolFlag = go$newType(0, "Interface", "flag.boolFlag", "boolFlag", "flag", null);
+	go$pkg.boolFlag = boolFlag;
+	var intValue;
+	intValue = go$newType(4, "Int", "flag.intValue", "intValue", "flag", null);
+	go$pkg.intValue = intValue;
+	var int64Value;
+	int64Value = go$newType(8, "Int64", "flag.int64Value", "int64Value", "flag", null);
+	go$pkg.int64Value = int64Value;
+	var uintValue;
+	uintValue = go$newType(4, "Uint", "flag.uintValue", "uintValue", "flag", null);
+	go$pkg.uintValue = uintValue;
+	var uint64Value;
+	uint64Value = go$newType(8, "Uint64", "flag.uint64Value", "uint64Value", "flag", null);
+	go$pkg.uint64Value = uint64Value;
+	var stringValue;
+	stringValue = go$newType(0, "String", "flag.stringValue", "stringValue", "flag", null);
+	go$pkg.stringValue = stringValue;
+	var float64Value;
+	float64Value = go$newType(0, "Float64", "flag.float64Value", "float64Value", "flag", null);
+	go$pkg.float64Value = float64Value;
+	var durationValue;
+	durationValue = go$newType(8, "Int64", "flag.durationValue", "durationValue", "flag", null);
+	go$pkg.durationValue = durationValue;
+	var Value;
+	Value = go$newType(0, "Interface", "flag.Value", "Value", "flag", null);
+	go$pkg.Value = Value;
+	var Getter;
+	Getter = go$newType(0, "Interface", "flag.Getter", "Getter", "flag", null);
+	go$pkg.Getter = Getter;
+	var ErrorHandling;
+	ErrorHandling = go$newType(4, "Int", "flag.ErrorHandling", "ErrorHandling", "flag", null);
+	go$pkg.ErrorHandling = ErrorHandling;
+	var FlagSet;
+	FlagSet = go$newType(0, "Struct", "flag.FlagSet", "FlagSet", "flag", function(Usage_, name_, parsed_, actual_, formal_, args_, exitOnError_, errorHandling_, output_) {
+		this.go$val = this;
+		this.Usage = Usage_ !== undefined ? Usage_ : go$throwNilPointerError;
+		this.name = name_ !== undefined ? name_ : "";
+		this.parsed = parsed_ !== undefined ? parsed_ : false;
+		this.actual = actual_ !== undefined ? actual_ : false;
+		this.formal = formal_ !== undefined ? formal_ : false;
+		this.args = args_ !== undefined ? args_ : (go$sliceType(Go$String)).nil;
+		this.exitOnError = exitOnError_ !== undefined ? exitOnError_ : false;
+		this.errorHandling = errorHandling_ !== undefined ? errorHandling_ : 0;
+		this.output = output_ !== undefined ? output_ : null;
+	});
+	go$pkg.FlagSet = FlagSet;
+	var Flag;
+	Flag = go$newType(0, "Struct", "flag.Flag", "Flag", "flag", function(Name_, Usage_, Value_, DefValue_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.Usage = Usage_ !== undefined ? Usage_ : "";
+		this.Value = Value_ !== undefined ? Value_ : null;
+		this.DefValue = DefValue_ !== undefined ? DefValue_ : "";
+	});
+	go$pkg.Flag = Flag;
+	(go$ptrType(boolValue)).methods = [["Get", "", [], [go$emptyInterface], false], ["IsBoolFlag", "", [], [Go$Bool], false], ["Set", "", [Go$String], [go$error], false], ["String", "", [], [Go$String], false]];
+	boolFlag.init([["IsBoolFlag", "", (go$funcType([], [Go$Bool], false))], ["Set", "", (go$funcType([Go$String], [go$error], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
+	(go$ptrType(intValue)).methods = [["Get", "", [], [go$emptyInterface], false], ["Set", "", [Go$String], [go$error], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(int64Value)).methods = [["Get", "", [], [go$emptyInterface], false], ["Set", "", [Go$String], [go$error], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(uintValue)).methods = [["Get", "", [], [go$emptyInterface], false], ["Set", "", [Go$String], [go$error], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(uint64Value)).methods = [["Get", "", [], [go$emptyInterface], false], ["Set", "", [Go$String], [go$error], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(stringValue)).methods = [["Get", "", [], [go$emptyInterface], false], ["Set", "", [Go$String], [go$error], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(float64Value)).methods = [["Get", "", [], [go$emptyInterface], false], ["Set", "", [Go$String], [go$error], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(durationValue)).methods = [["Get", "", [], [go$emptyInterface], false], ["Set", "", [Go$String], [go$error], false], ["String", "", [], [Go$String], false]];
+	Value.init([["Set", "", (go$funcType([Go$String], [go$error], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
+	Getter.init([["Get", "", (go$funcType([], [go$emptyInterface], false))], ["Set", "", (go$funcType([Go$String], [go$error], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
+	FlagSet.init([["Usage", "", (go$funcType([], [], false)), ""], ["name", "flag", Go$String, ""], ["parsed", "flag", Go$Bool, ""], ["actual", "flag", (go$mapType(Go$String, (go$ptrType(Flag)))), ""], ["formal", "flag", (go$mapType(Go$String, (go$ptrType(Flag)))), ""], ["args", "flag", (go$sliceType(Go$String)), ""], ["exitOnError", "flag", Go$Bool, ""], ["errorHandling", "flag", ErrorHandling, ""], ["output", "flag", io.Writer, ""]]);
+	(go$ptrType(FlagSet)).methods = [["Arg", "", [Go$Int], [Go$String], false], ["Args", "", [], [(go$sliceType(Go$String))], false], ["Bool", "", [Go$String, Go$Bool, Go$String], [(go$ptrType(Go$Bool))], false], ["BoolVar", "", [(go$ptrType(Go$Bool)), Go$String, Go$Bool, Go$String], [], false], ["Duration", "", [Go$String, time.Duration, Go$String], [(go$ptrType(time.Duration))], false], ["DurationVar", "", [(go$ptrType(time.Duration)), Go$String, time.Duration, Go$String], [], false], ["Float64", "", [Go$String, Go$Float64, Go$String], [(go$ptrType(Go$Float64))], false], ["Float64Var", "", [(go$ptrType(Go$Float64)), Go$String, Go$Float64, Go$String], [], false], ["Init", "", [Go$String, ErrorHandling], [], false], ["Int", "", [Go$String, Go$Int, Go$String], [(go$ptrType(Go$Int))], false], ["Int64", "", [Go$String, Go$Int64, Go$String], [(go$ptrType(Go$Int64))], false], ["Int64Var", "", [(go$ptrType(Go$Int64)), Go$String, Go$Int64, Go$String], [], false], ["IntVar", "", [(go$ptrType(Go$Int)), Go$String, Go$Int, Go$String], [], false], ["Lookup", "", [Go$String], [(go$ptrType(Flag))], false], ["NArg", "", [], [Go$Int], false], ["NFlag", "", [], [Go$Int], false], ["Parse", "", [(go$sliceType(Go$String))], [go$error], false], ["Parsed", "", [], [Go$Bool], false], ["PrintDefaults", "", [], [], false], ["Set", "", [Go$String, Go$String], [go$error], false], ["SetOutput", "", [io.Writer], [], false], ["String", "", [Go$String, Go$String, Go$String], [(go$ptrType(Go$String))], false], ["StringVar", "", [(go$ptrType(Go$String)), Go$String, Go$String, Go$String], [], false], ["Uint", "", [Go$String, Go$Uint, Go$String], [(go$ptrType(Go$Uint))], false], ["Uint64", "", [Go$String, Go$Uint64, Go$String], [(go$ptrType(Go$Uint64))], false], ["Uint64Var", "", [(go$ptrType(Go$Uint64)), Go$String, Go$Uint64, Go$String], [], false], ["UintVar", "", [(go$ptrType(Go$Uint)), Go$String, Go$Uint, Go$String], [], false], ["Var", "", [Value, Go$String, Go$String], [], false], ["Visit", "", [(go$funcType([(go$ptrType(Flag))], [], false))], [], false], ["VisitAll", "", [(go$funcType([(go$ptrType(Flag))], [], false))], [], false], ["failf", "flag", [Go$String, (go$sliceType(go$emptyInterface))], [go$error], true], ["out", "flag", [], [io.Writer], false], ["parseOne", "flag", [], [Go$Bool, go$error], false], ["usage", "flag", [], [], false]];
+	Flag.init([["Name", "", Go$String, ""], ["Usage", "", Go$String, ""], ["Value", "", Value, ""], ["DefValue", "", Go$String, ""]]);
+	var newBoolValue = function(val, p) {
+		p.go$set(val);
+		return new (go$ptrType(boolValue))(p.go$get, p.go$set);
+	};
+	go$ptrType(boolValue).prototype.Set = function(s) {
+		var b, _tuple, v, err;
+		b = this;
+		_tuple = strconv.ParseBool(s), v = _tuple[0], err = _tuple[1];
+		b.go$set(v);
+		return err;
+	};
+	boolValue.prototype.Set = function(s) { var obj = this.go$val; return (new (go$ptrType(boolValue))(function() { return obj; }, null)).Set(s); };
+	go$ptrType(boolValue).prototype.Get = function() {
+		var b;
+		b = this;
+		return new Go$Bool(b.go$get());
+	};
+	boolValue.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(boolValue))(function() { return obj; }, null)).Get(); };
+	go$ptrType(boolValue).prototype.String = function() {
+		var b;
+		b = this;
+		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([new boolValue(b.go$get())]));
+	};
+	boolValue.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(boolValue))(function() { return obj; }, null)).String(); };
+	go$ptrType(boolValue).prototype.IsBoolFlag = function() {
+		var b;
+		b = this;
+		return true;
+	};
+	boolValue.prototype.IsBoolFlag = function() { var obj = this.go$val; return (new (go$ptrType(boolValue))(function() { return obj; }, null)).IsBoolFlag(); };
+	var newIntValue = function(val, p) {
+		p.go$set(val);
+		return new (go$ptrType(intValue))(p.go$get, p.go$set);
+	};
+	go$ptrType(intValue).prototype.Set = function(s) {
+		var i, _tuple, v, err;
+		i = this;
+		_tuple = strconv.ParseInt(s, 0, 64), v = _tuple[0], err = _tuple[1];
+		i.go$set(((v.low + ((v.high >> 31) * 4294967296)) >> 0));
+		return err;
+	};
+	intValue.prototype.Set = function(s) { var obj = this.go$val; return (new (go$ptrType(intValue))(function() { return obj; }, null)).Set(s); };
+	go$ptrType(intValue).prototype.Get = function() {
+		var i;
+		i = this;
+		return new Go$Int((i.go$get() >> 0));
+	};
+	intValue.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(intValue))(function() { return obj; }, null)).Get(); };
+	go$ptrType(intValue).prototype.String = function() {
+		var i;
+		i = this;
+		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([new intValue(i.go$get())]));
+	};
+	intValue.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(intValue))(function() { return obj; }, null)).String(); };
+	var newInt64Value = function(val, p) {
+		p.go$set(val);
+		return new (go$ptrType(int64Value))(p.go$get, p.go$set);
+	};
+	go$ptrType(int64Value).prototype.Set = function(s) {
+		var i, _tuple, v, err;
+		i = this;
+		_tuple = strconv.ParseInt(s, 0, 64), v = _tuple[0], err = _tuple[1];
+		i.go$set(new int64Value(v.high, v.low));
+		return err;
+	};
+	int64Value.prototype.Set = function(s) { var obj = this; return (new (go$ptrType(int64Value))(function() { return obj; }, null)).Set(s); };
+	go$ptrType(int64Value).prototype.Get = function() {
+		var i, x;
+		i = this;
+		return (x = i.go$get(), new Go$Int64(x.high, x.low));
+	};
+	int64Value.prototype.Get = function() { var obj = this; return (new (go$ptrType(int64Value))(function() { return obj; }, null)).Get(); };
+	go$ptrType(int64Value).prototype.String = function() {
+		var i;
+		i = this;
+		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([i.go$get()]));
+	};
+	int64Value.prototype.String = function() { var obj = this; return (new (go$ptrType(int64Value))(function() { return obj; }, null)).String(); };
+	var newUintValue = function(val, p) {
+		p.go$set(val);
+		return new (go$ptrType(uintValue))(p.go$get, p.go$set);
+	};
+	go$ptrType(uintValue).prototype.Set = function(s) {
+		var i, _tuple, v, err;
+		i = this;
+		_tuple = strconv.ParseUint(s, 0, 64), v = _tuple[0], err = _tuple[1];
+		i.go$set((v.low >>> 0));
+		return err;
+	};
+	uintValue.prototype.Set = function(s) { var obj = this.go$val; return (new (go$ptrType(uintValue))(function() { return obj; }, null)).Set(s); };
+	go$ptrType(uintValue).prototype.Get = function() {
+		var i;
+		i = this;
+		return new Go$Uint((i.go$get() >>> 0));
+	};
+	uintValue.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(uintValue))(function() { return obj; }, null)).Get(); };
+	go$ptrType(uintValue).prototype.String = function() {
+		var i;
+		i = this;
+		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([new uintValue(i.go$get())]));
+	};
+	uintValue.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(uintValue))(function() { return obj; }, null)).String(); };
+	var newUint64Value = function(val, p) {
+		p.go$set(val);
+		return new (go$ptrType(uint64Value))(p.go$get, p.go$set);
+	};
+	go$ptrType(uint64Value).prototype.Set = function(s) {
+		var i, _tuple, v, err;
+		i = this;
+		_tuple = strconv.ParseUint(s, 0, 64), v = _tuple[0], err = _tuple[1];
+		i.go$set(new uint64Value(v.high, v.low));
+		return err;
+	};
+	uint64Value.prototype.Set = function(s) { var obj = this; return (new (go$ptrType(uint64Value))(function() { return obj; }, null)).Set(s); };
+	go$ptrType(uint64Value).prototype.Get = function() {
+		var i, x;
+		i = this;
+		return (x = i.go$get(), new Go$Uint64(x.high, x.low));
+	};
+	uint64Value.prototype.Get = function() { var obj = this; return (new (go$ptrType(uint64Value))(function() { return obj; }, null)).Get(); };
+	go$ptrType(uint64Value).prototype.String = function() {
+		var i;
+		i = this;
+		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([i.go$get()]));
+	};
+	uint64Value.prototype.String = function() { var obj = this; return (new (go$ptrType(uint64Value))(function() { return obj; }, null)).String(); };
+	var newStringValue = function(val, p) {
+		p.go$set(val);
+		return new (go$ptrType(stringValue))(p.go$get, p.go$set);
+	};
+	go$ptrType(stringValue).prototype.Set = function(val) {
+		var s;
+		s = this;
+		s.go$set(val);
+		return null;
+	};
+	stringValue.prototype.Set = function(val) { var obj = this.go$val; return (new (go$ptrType(stringValue))(function() { return obj; }, null)).Set(val); };
+	go$ptrType(stringValue).prototype.Get = function() {
+		var s;
+		s = this;
+		return new Go$String(s.go$get());
+	};
+	stringValue.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(stringValue))(function() { return obj; }, null)).Get(); };
+	go$ptrType(stringValue).prototype.String = function() {
+		var s;
+		s = this;
+		return fmt.Sprintf("%s", new (go$sliceType(go$emptyInterface))([new stringValue(s.go$get())]));
+	};
+	stringValue.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(stringValue))(function() { return obj; }, null)).String(); };
+	var newFloat64Value = function(val, p) {
+		p.go$set(val);
+		return new (go$ptrType(float64Value))(p.go$get, p.go$set);
+	};
+	go$ptrType(float64Value).prototype.Set = function(s) {
+		var f, _tuple, v, err;
+		f = this;
+		_tuple = strconv.ParseFloat(s, 64), v = _tuple[0], err = _tuple[1];
+		f.go$set(v);
+		return err;
+	};
+	float64Value.prototype.Set = function(s) { var obj = this.go$val; return (new (go$ptrType(float64Value))(function() { return obj; }, null)).Set(s); };
+	go$ptrType(float64Value).prototype.Get = function() {
+		var f;
+		f = this;
+		return new Go$Float64(f.go$get());
+	};
+	float64Value.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(float64Value))(function() { return obj; }, null)).Get(); };
+	go$ptrType(float64Value).prototype.String = function() {
+		var f;
+		f = this;
+		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([new float64Value(f.go$get())]));
+	};
+	float64Value.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(float64Value))(function() { return obj; }, null)).String(); };
+	var newDurationValue = function(val, p) {
+		p.go$set(val);
+		return new (go$ptrType(durationValue))(p.go$get, p.go$set);
+	};
+	go$ptrType(durationValue).prototype.Set = function(s) {
+		var d, _tuple, v, err;
+		d = this;
+		_tuple = time.ParseDuration(s), v = _tuple[0], err = _tuple[1];
+		d.go$set(new durationValue(v.high, v.low));
+		return err;
+	};
+	durationValue.prototype.Set = function(s) { var obj = this; return (new (go$ptrType(durationValue))(function() { return obj; }, null)).Set(s); };
+	go$ptrType(durationValue).prototype.Get = function() {
+		var d, x;
+		d = this;
+		return (x = d.go$get(), new time.Duration(x.high, x.low));
+	};
+	durationValue.prototype.Get = function() { var obj = this; return (new (go$ptrType(durationValue))(function() { return obj; }, null)).Get(); };
+	go$ptrType(durationValue).prototype.String = function() {
+		var d;
+		d = this;
+		return new (go$ptrType(time.Duration))(d.go$get, d.go$set).String();
+	};
+	durationValue.prototype.String = function() { var obj = this; return (new (go$ptrType(durationValue))(function() { return obj; }, null)).String(); };
+	var sortFlags = function(flags) {
+		var list, i, _ref, _i, _keys, _entry, f, _slice, _index, result, _ref$1, _i$1, _slice$1, _index$1, name, i$1, _entry$1, _slice$2, _index$2;
+		list = sort.StringSlice.make(go$keys(flags).length, 0, function() { return ""; });
+		i = 0;
+		_ref = flags;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry = _ref[_keys[_i]];
+			f = _entry.v;
+			_slice = list, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = f.Name) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+		}
+		list.Sort();
+		result = (go$sliceType((go$ptrType(Flag)))).make(list.length, 0, function() { return (go$ptrType(Flag)).nil; });
+		_ref$1 = list;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			name = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			i$1 = _i$1;
+			_slice$2 = result, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (_entry$1 = flags[name], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(Flag)).nil)) : go$throwRuntimeError("index out of range");
+		}
+		return result;
+	};
+	FlagSet.Ptr.prototype.out = function() {
+		var f;
+		f = this;
+		if (go$interfaceIsEqual(f.output, null)) {
+			return os.Stderr;
+		}
+		return f.output;
+	};
+	FlagSet.prototype.out = function() { return this.go$val.out(); };
+	FlagSet.Ptr.prototype.SetOutput = function(output) {
+		var f;
+		f = this;
+		f.output = output;
+	};
+	FlagSet.prototype.SetOutput = function(output) { return this.go$val.SetOutput(output); };
+	FlagSet.Ptr.prototype.VisitAll = function(fn) {
+		var f, _ref, _i, _slice, _index, flag;
+		f = this;
+		_ref = sortFlags(f.formal);
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			flag = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			fn(flag);
+		}
+	};
+	FlagSet.prototype.VisitAll = function(fn) { return this.go$val.VisitAll(fn); };
+	var VisitAll = go$pkg.VisitAll = function(fn) {
+		go$pkg.CommandLine.VisitAll(fn);
+	};
+	FlagSet.Ptr.prototype.Visit = function(fn) {
+		var f, _ref, _i, _slice, _index, flag;
+		f = this;
+		_ref = sortFlags(f.actual);
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			flag = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			fn(flag);
+		}
+	};
+	FlagSet.prototype.Visit = function(fn) { return this.go$val.Visit(fn); };
+	var Visit = go$pkg.Visit = function(fn) {
+		go$pkg.CommandLine.Visit(fn);
+	};
+	FlagSet.Ptr.prototype.Lookup = function(name) {
+		var f, _entry;
+		f = this;
+		return (_entry = f.formal[name], _entry !== undefined ? _entry.v : (go$ptrType(Flag)).nil);
+	};
+	FlagSet.prototype.Lookup = function(name) { return this.go$val.Lookup(name); };
+	var Lookup = go$pkg.Lookup = function(name) {
+		var _entry;
+		return (_entry = go$pkg.CommandLine.formal[name], _entry !== undefined ? _entry.v : (go$ptrType(Flag)).nil);
+	};
+	FlagSet.Ptr.prototype.Set = function(name, value) {
+		var f, _tuple, _entry, flag, ok, err, _key;
+		f = this;
+		_tuple = (_entry = f.formal[name], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(Flag)).nil, false]), flag = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			return fmt.Errorf("no such flag -%v", new (go$sliceType(go$emptyInterface))([new Go$String(name)]));
+		}
+		err = flag.Value.Set(value);
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		if (f.actual === false) {
+			f.actual = new Go$Map();
+		}
+		_key = name, (f.actual || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: flag };
+		return null;
+	};
+	FlagSet.prototype.Set = function(name, value) { return this.go$val.Set(name, value); };
+	var Set = go$pkg.Set = function(name, value) {
+		return go$pkg.CommandLine.Set(name, value);
+	};
+	FlagSet.Ptr.prototype.PrintDefaults = function() {
+		var f;
+		f = this;
+		f.VisitAll((function(flag) {
+			var format, ok, _tuple, x;
+			format = "  -%s=%s: %s\n";
+			if (_tuple = (x = flag.Value, (x !== null && x.constructor === (go$ptrType(stringValue)) ? [x.go$val, true] : [(go$ptrType(stringValue)).nil, false])), ok = _tuple[1], ok) {
+				format = "  -%s=%q: %s\n";
+			}
+			fmt.Fprintf(f.out(), format, new (go$sliceType(go$emptyInterface))([new Go$String(flag.Name), new Go$String(flag.DefValue), new Go$String(flag.Usage)]));
+		}));
+	};
+	FlagSet.prototype.PrintDefaults = function() { return this.go$val.PrintDefaults(); };
+	var PrintDefaults = go$pkg.PrintDefaults = function() {
+		go$pkg.CommandLine.PrintDefaults();
+	};
+	var defaultUsage = function(f) {
+		if (f.name === "") {
+			fmt.Fprintf(f.out(), "Usage:\n", new (go$sliceType(go$emptyInterface))([]));
+		} else {
+			fmt.Fprintf(f.out(), "Usage of %s:\n", new (go$sliceType(go$emptyInterface))([new Go$String(f.name)]));
+		}
+		f.PrintDefaults();
+	};
+	FlagSet.Ptr.prototype.NFlag = function() {
+		var f;
+		f = this;
+		return go$keys(f.actual).length;
+	};
+	FlagSet.prototype.NFlag = function() { return this.go$val.NFlag(); };
+	var NFlag = go$pkg.NFlag = function() {
+		return go$keys(go$pkg.CommandLine.actual).length;
+	};
+	FlagSet.Ptr.prototype.Arg = function(i) {
+		var f, _slice, _index;
+		f = this;
+		if (i < 0 || i >= f.args.length) {
+			return "";
+		}
+		return (_slice = f.args, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+	};
+	FlagSet.prototype.Arg = function(i) { return this.go$val.Arg(i); };
+	var Arg = go$pkg.Arg = function(i) {
+		return go$pkg.CommandLine.Arg(i);
+	};
+	FlagSet.Ptr.prototype.NArg = function() {
+		var f;
+		f = this;
+		return f.args.length;
+	};
+	FlagSet.prototype.NArg = function() { return this.go$val.NArg(); };
+	var NArg = go$pkg.NArg = function() {
+		return go$pkg.CommandLine.args.length;
+	};
+	FlagSet.Ptr.prototype.Args = function() {
+		var f;
+		f = this;
+		return f.args;
+	};
+	FlagSet.prototype.Args = function() { return this.go$val.Args(); };
+	var Args = go$pkg.Args = function() {
+		return go$pkg.CommandLine.args;
+	};
+	FlagSet.Ptr.prototype.BoolVar = function(p, name, value, usage) {
+		var f;
+		f = this;
+		f.Var(newBoolValue(value, p), name, usage);
+	};
+	FlagSet.prototype.BoolVar = function(p, name, value, usage) { return this.go$val.BoolVar(p, name, value, usage); };
+	var BoolVar = go$pkg.BoolVar = function(p, name, value, usage) {
+		go$pkg.CommandLine.Var(newBoolValue(value, p), name, usage);
+	};
+	FlagSet.Ptr.prototype.Bool = function(name, value, usage) {
+		var f, p;
+		f = this;
+		p = go$newDataPointer(false, (go$ptrType(Go$Bool)));
+		f.BoolVar(p, name, value, usage);
+		return p;
+	};
+	FlagSet.prototype.Bool = function(name, value, usage) { return this.go$val.Bool(name, value, usage); };
+	var Bool = go$pkg.Bool = function(name, value, usage) {
+		return go$pkg.CommandLine.Bool(name, value, usage);
+	};
+	FlagSet.Ptr.prototype.IntVar = function(p, name, value, usage) {
+		var f;
+		f = this;
+		f.Var(newIntValue(value, p), name, usage);
+	};
+	FlagSet.prototype.IntVar = function(p, name, value, usage) { return this.go$val.IntVar(p, name, value, usage); };
+	var IntVar = go$pkg.IntVar = function(p, name, value, usage) {
+		go$pkg.CommandLine.Var(newIntValue(value, p), name, usage);
+	};
+	FlagSet.Ptr.prototype.Int = function(name, value, usage) {
+		var f, p;
+		f = this;
+		p = go$newDataPointer(0, (go$ptrType(Go$Int)));
+		f.IntVar(p, name, value, usage);
+		return p;
+	};
+	FlagSet.prototype.Int = function(name, value, usage) { return this.go$val.Int(name, value, usage); };
+	var Int = go$pkg.Int = function(name, value, usage) {
+		return go$pkg.CommandLine.Int(name, value, usage);
+	};
+	FlagSet.Ptr.prototype.Int64Var = function(p, name, value, usage) {
+		var f;
+		f = this;
+		f.Var(newInt64Value(value, p), name, usage);
+	};
+	FlagSet.prototype.Int64Var = function(p, name, value, usage) { return this.go$val.Int64Var(p, name, value, usage); };
+	var Int64Var = go$pkg.Int64Var = function(p, name, value, usage) {
+		go$pkg.CommandLine.Var(newInt64Value(value, p), name, usage);
+	};
+	FlagSet.Ptr.prototype.Int64 = function(name, value, usage) {
+		var f, p;
+		f = this;
+		p = go$newDataPointer(new Go$Int64(0, 0), (go$ptrType(Go$Int64)));
+		f.Int64Var(p, name, value, usage);
+		return p;
+	};
+	FlagSet.prototype.Int64 = function(name, value, usage) { return this.go$val.Int64(name, value, usage); };
+	var Int64 = go$pkg.Int64 = function(name, value, usage) {
+		return go$pkg.CommandLine.Int64(name, value, usage);
+	};
+	FlagSet.Ptr.prototype.UintVar = function(p, name, value, usage) {
+		var f;
+		f = this;
+		f.Var(newUintValue(value, p), name, usage);
+	};
+	FlagSet.prototype.UintVar = function(p, name, value, usage) { return this.go$val.UintVar(p, name, value, usage); };
+	var UintVar = go$pkg.UintVar = function(p, name, value, usage) {
+		go$pkg.CommandLine.Var(newUintValue(value, p), name, usage);
+	};
+	FlagSet.Ptr.prototype.Uint = function(name, value, usage) {
+		var f, p;
+		f = this;
+		p = go$newDataPointer(0, (go$ptrType(Go$Uint)));
+		f.UintVar(p, name, value, usage);
+		return p;
+	};
+	FlagSet.prototype.Uint = function(name, value, usage) { return this.go$val.Uint(name, value, usage); };
+	var Uint = go$pkg.Uint = function(name, value, usage) {
+		return go$pkg.CommandLine.Uint(name, value, usage);
+	};
+	FlagSet.Ptr.prototype.Uint64Var = function(p, name, value, usage) {
+		var f;
+		f = this;
+		f.Var(newUint64Value(value, p), name, usage);
+	};
+	FlagSet.prototype.Uint64Var = function(p, name, value, usage) { return this.go$val.Uint64Var(p, name, value, usage); };
+	var Uint64Var = go$pkg.Uint64Var = function(p, name, value, usage) {
+		go$pkg.CommandLine.Var(newUint64Value(value, p), name, usage);
+	};
+	FlagSet.Ptr.prototype.Uint64 = function(name, value, usage) {
+		var f, p;
+		f = this;
+		p = go$newDataPointer(new Go$Uint64(0, 0), (go$ptrType(Go$Uint64)));
+		f.Uint64Var(p, name, value, usage);
+		return p;
+	};
+	FlagSet.prototype.Uint64 = function(name, value, usage) { return this.go$val.Uint64(name, value, usage); };
+	var Uint64 = go$pkg.Uint64 = function(name, value, usage) {
+		return go$pkg.CommandLine.Uint64(name, value, usage);
+	};
+	FlagSet.Ptr.prototype.StringVar = function(p, name, value, usage) {
+		var f;
+		f = this;
+		f.Var(newStringValue(value, p), name, usage);
+	};
+	FlagSet.prototype.StringVar = function(p, name, value, usage) { return this.go$val.StringVar(p, name, value, usage); };
+	var StringVar = go$pkg.StringVar = function(p, name, value, usage) {
+		go$pkg.CommandLine.Var(newStringValue(value, p), name, usage);
+	};
+	FlagSet.Ptr.prototype.String = function(name, value, usage) {
+		var f, p;
+		f = this;
+		p = go$newDataPointer("", (go$ptrType(Go$String)));
+		f.StringVar(p, name, value, usage);
+		return p;
+	};
+	FlagSet.prototype.String = function(name, value, usage) { return this.go$val.String(name, value, usage); };
+	var String = go$pkg.String = function(name, value, usage) {
+		return go$pkg.CommandLine.String(name, value, usage);
+	};
+	FlagSet.Ptr.prototype.Float64Var = function(p, name, value, usage) {
+		var f;
+		f = this;
+		f.Var(newFloat64Value(value, p), name, usage);
+	};
+	FlagSet.prototype.Float64Var = function(p, name, value, usage) { return this.go$val.Float64Var(p, name, value, usage); };
+	var Float64Var = go$pkg.Float64Var = function(p, name, value, usage) {
+		go$pkg.CommandLine.Var(newFloat64Value(value, p), name, usage);
+	};
+	FlagSet.Ptr.prototype.Float64 = function(name, value, usage) {
+		var f, p;
+		f = this;
+		p = go$newDataPointer(0, (go$ptrType(Go$Float64)));
+		f.Float64Var(p, name, value, usage);
+		return p;
+	};
+	FlagSet.prototype.Float64 = function(name, value, usage) { return this.go$val.Float64(name, value, usage); };
+	var Float64 = go$pkg.Float64 = function(name, value, usage) {
+		return go$pkg.CommandLine.Float64(name, value, usage);
+	};
+	FlagSet.Ptr.prototype.DurationVar = function(p, name, value, usage) {
+		var f;
+		f = this;
+		f.Var(newDurationValue(value, p), name, usage);
+	};
+	FlagSet.prototype.DurationVar = function(p, name, value, usage) { return this.go$val.DurationVar(p, name, value, usage); };
+	var DurationVar = go$pkg.DurationVar = function(p, name, value, usage) {
+		go$pkg.CommandLine.Var(newDurationValue(value, p), name, usage);
+	};
+	FlagSet.Ptr.prototype.Duration = function(name, value, usage) {
+		var f, p;
+		f = this;
+		p = go$newDataPointer(new time.Duration(0, 0), (go$ptrType(time.Duration)));
+		f.DurationVar(p, name, value, usage);
+		return p;
+	};
+	FlagSet.prototype.Duration = function(name, value, usage) { return this.go$val.Duration(name, value, usage); };
+	var Duration = go$pkg.Duration = function(name, value, usage) {
+		return go$pkg.CommandLine.Duration(name, value, usage);
+	};
+	FlagSet.Ptr.prototype.Var = function(value, name, usage) {
+		var f, flag, _tuple, _entry, alreadythere, msg, _key;
+		f = this;
+		flag = new Flag.Ptr(name, usage, value, value.String());
+		_tuple = (_entry = f.formal[name], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(Flag)).nil, false]), alreadythere = _tuple[1];
+		if (alreadythere) {
+			msg = "";
+			if (f.name === "") {
+				msg = fmt.Sprintf("flag redefined: %s", new (go$sliceType(go$emptyInterface))([new Go$String(name)]));
+			} else {
+				msg = fmt.Sprintf("%s flag redefined: %s", new (go$sliceType(go$emptyInterface))([new Go$String(f.name), new Go$String(name)]));
+			}
+			fmt.Fprintln(f.out(), new (go$sliceType(go$emptyInterface))([new Go$String(msg)]));
+			throw go$panic(new Go$String(msg));
+		}
+		if (f.formal === false) {
+			f.formal = new Go$Map();
+		}
+		_key = name, (f.formal || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: flag };
+	};
+	FlagSet.prototype.Var = function(value, name, usage) { return this.go$val.Var(value, name, usage); };
+	var Var = go$pkg.Var = function(value, name, usage) {
+		go$pkg.CommandLine.Var(value, name, usage);
+	};
+	FlagSet.Ptr.prototype.failf = function(format, a) {
+		var f, err;
+		f = this;
+		err = fmt.Errorf(format, a);
+		fmt.Fprintln(f.out(), new (go$sliceType(go$emptyInterface))([err]));
+		f.usage();
+		return err;
+	};
+	FlagSet.prototype.failf = function(format, a) { return this.go$val.failf(format, a); };
+	FlagSet.Ptr.prototype.usage = function() {
+		var f;
+		f = this;
+		if (f === go$pkg.CommandLine) {
+			go$pkg.Usage();
+		} else if (f.Usage === go$throwNilPointerError) {
+			defaultUsage(f);
+		} else {
+			f.Usage();
+		}
+	};
+	FlagSet.prototype.usage = function() { return this.go$val.usage(); };
+	FlagSet.Ptr.prototype.parseOne = function() {
+		var f, _slice, _index, s, num_minuses, name, has_value, value, i, m, _tuple, _entry, flag, alreadythere, ok, fv, _tuple$1, x, err, _slice$1, _index$1, _tuple$2, err$1, _key;
+		f = this;
+		if (f.args.length === 0) {
+			return [false, null];
+		}
+		s = (_slice = f.args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if ((s.length === 0) || !((s.charCodeAt(0) === 45)) || (s.length === 1)) {
+			return [false, null];
+		}
+		num_minuses = 1;
+		if (s.charCodeAt(1) === 45) {
+			num_minuses = num_minuses + 1 >> 0;
+			if (s.length === 2) {
+				f.args = go$subslice(f.args, 1);
+				return [false, null];
+			}
+		}
+		name = s.substring(num_minuses);
+		if ((name.length === 0) || (name.charCodeAt(0) === 45) || (name.charCodeAt(0) === 61)) {
+			return [false, f.failf("bad flag syntax: %s", new (go$sliceType(go$emptyInterface))([new Go$String(s)]))];
+		}
+		f.args = go$subslice(f.args, 1);
+		has_value = false;
+		value = "";
+		i = 1;
+		while (i < name.length) {
+			if (name.charCodeAt(i) === 61) {
+				value = name.substring((i + 1 >> 0));
+				has_value = true;
+				name = name.substring(0, i);
+				break;
+			}
+			i = i + 1 >> 0;
+		}
+		m = f.formal;
+		_tuple = (_entry = m[name], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(Flag)).nil, false]), flag = _tuple[0], alreadythere = _tuple[1];
+		if (!alreadythere) {
+			if (name === "help" || name === "h") {
+				f.usage();
+				return [false, go$pkg.ErrHelp];
+			}
+			return [false, f.failf("flag provided but not defined: -%s", new (go$sliceType(go$emptyInterface))([new Go$String(name)]))];
+		}
+		if (_tuple$1 = (x = flag.Value, (x !== null && boolFlag.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), fv = _tuple$1[0], ok = _tuple$1[1], ok && fv.IsBoolFlag()) {
+			if (has_value) {
+				if (err = fv.Set(value), !(go$interfaceIsEqual(err, null))) {
+					return [false, f.failf("invalid boolean value %q for  -%s: %v", new (go$sliceType(go$emptyInterface))([new Go$String(value), new Go$String(name), err]))];
+				}
+			} else {
+				fv.Set("true");
+			}
+		} else {
+			if (!has_value && f.args.length > 0) {
+				has_value = true;
+				_tuple$2 = [(_slice$1 = f.args, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), go$subslice(f.args, 1)], value = _tuple$2[0], f.args = _tuple$2[1];
+			}
+			if (!has_value) {
+				return [false, f.failf("flag needs an argument: -%s", new (go$sliceType(go$emptyInterface))([new Go$String(name)]))];
+			}
+			if (err$1 = flag.Value.Set(value), !(go$interfaceIsEqual(err$1, null))) {
+				return [false, f.failf("invalid value %q for flag -%s: %v", new (go$sliceType(go$emptyInterface))([new Go$String(value), new Go$String(name), err$1]))];
+			}
+		}
+		if (f.actual === false) {
+			f.actual = new Go$Map();
+		}
+		_key = name, (f.actual || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: flag };
+		return [true, null];
+	};
+	FlagSet.prototype.parseOne = function() { return this.go$val.parseOne(); };
+	FlagSet.Ptr.prototype.Parse = function(arguments$1) {
+		var f, _tuple, seen, err, _ref;
+		f = this;
+		f.parsed = true;
+		f.args = arguments$1;
+		while (true) {
+			_tuple = f.parseOne(), seen = _tuple[0], err = _tuple[1];
+			if (seen) {
+				continue;
+			}
+			if (go$interfaceIsEqual(err, null)) {
+				break;
+			}
+			_ref = f.errorHandling;
+			if (_ref === 0) {
+				return err;
+			} else if (_ref === 1) {
+				os.Exit(2);
+			} else if (_ref === 2) {
+				throw go$panic(err);
+			}
+		}
+		return null;
+	};
+	FlagSet.prototype.Parse = function(arguments$1) { return this.go$val.Parse(arguments$1); };
+	FlagSet.Ptr.prototype.Parsed = function() {
+		var f;
+		f = this;
+		return f.parsed;
+	};
+	FlagSet.prototype.Parsed = function() { return this.go$val.Parsed(); };
+	var Parse = go$pkg.Parse = function() {
+		go$pkg.CommandLine.Parse(go$subslice(os.Args, 1));
+	};
+	var Parsed = go$pkg.Parsed = function() {
+		return go$pkg.CommandLine.Parsed();
+	};
+	var NewFlagSet = go$pkg.NewFlagSet = function(name, errorHandling) {
+		var f;
+		f = new FlagSet.Ptr(go$throwNilPointerError, name, false, false, false, (go$sliceType(Go$String)).nil, false, errorHandling, null);
+		return f;
+	};
+	FlagSet.Ptr.prototype.Init = function(name, errorHandling) {
+		var f;
+		f = this;
+		f.name = name;
+		f.errorHandling = errorHandling;
+	};
+	FlagSet.prototype.Init = function(name, errorHandling) { return this.go$val.Init(name, errorHandling); };
+	go$pkg.ContinueOnError = 0;
+	go$pkg.ExitOnError = 1;
+	go$pkg.PanicOnError = 2;
+	go$pkg.ErrHelp = null;
+	go$pkg.Usage = go$throwNilPointerError;
+	go$pkg.CommandLine = (go$ptrType(FlagSet)).nil;
+	go$pkg.init = function() {
+		var _slice, _index;
+		go$pkg.ErrHelp = errors.New("flag: help requested");
+		go$pkg.CommandLine = NewFlagSet((_slice = os.Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), 1);
+		go$pkg.Usage = (function() {
+			var _slice$1, _index$1;
+			fmt.Fprintf(os.Stderr, "Usage of %s:\n", new (go$sliceType(go$emptyInterface))([new Go$String((_slice$1 = os.Args, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))]));
+			PrintDefaults();
+		});
+	};

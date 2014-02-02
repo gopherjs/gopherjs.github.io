@@ -1,0 +1,764 @@
+0‚{¶‚package token
+import fmt "fmt"
+import sort "sort"
+import sync "sync"
+import strconv "strconv"
+const @"".ADD @"".Token = 0xc
+const @"".ADD_ASSIGN @"".Token = 0x17
+const @"".AND @"".Token = 0x11
+const @"".AND_ASSIGN @"".Token = 0x1c
+const @"".AND_NOT @"".Token = 0x16
+const @"".AND_NOT_ASSIGN @"".Token = 0x21
+const @"".ARROW @"".Token = 0x24
+const @"".ASSIGN @"".Token = 0x2a
+const @"".BREAK @"".Token = 0x3d
+const @"".CASE @"".Token = 0x3e
+const @"".CHAN @"".Token = 0x3f
+const @"".CHAR @"".Token = 0x8
+const @"".COLON @"".Token = 0x3a
+const @"".COMMA @"".Token = 0x34
+const @"".COMMENT @"".Token = 0x2
+const @"".CONST @"".Token = 0x40
+const @"".CONTINUE @"".Token = 0x41
+const @"".DEC @"".Token = 0x26
+const @"".DEFAULT @"".Token = 0x42
+const @"".DEFER @"".Token = 0x43
+const @"".DEFINE @"".Token = 0x2f
+const @"".ELLIPSIS @"".Token = 0x30
+const @"".ELSE @"".Token = 0x44
+const @"".EOF @"".Token = 0x1
+const @"".EQL @"".Token = 0x27
+const @"".FALLTHROUGH @"".Token = 0x45
+const @"".FLOAT @"".Token = 0x6
+const @"".FOR @"".Token = 0x46
+const @"".FUNC @"".Token = 0x47
+type @"".File struct { @"".set *@"".FileSet; @"".name string; @"".base int; @"".size int; @"".lines []int; @"".infos []@"".lineInfo }
+func (? *@"".File) @"".AddLine(@"".offset int) ()
+func (? *@"".File) @"".AddLineInfo(@"".offset int, @"".filename string, @"".line int) ()
+func (? *@"".File) @"".Base() (? int)
+func (? *@"".File) @"".Line(@"".p @"".Pos) (? int)
+func (? *@"".File) @"".LineCount() (? int)
+func (? *@"".File) @"".MergeLine(@"".line int) ()
+func (? *@"".File) @"".Name() (? string)
+func (? *@"".File) @"".Offset(@"".p @"".Pos) (? int)
+func (? *@"".File) @"".Pos(@"".offset int) (? @"".Pos)
+func (? *@"".File) @"".Position(@"".p @"".Pos) (@"".pos @"".Position)
+func (? *@"".File) @"".SetLines(@"".lines []int) (? bool)
+func (? *@"".File) @"".SetLinesForContent(@"".content []byte) ()
+func (? *@"".File) @"".Size() (? int)
+func (? *@"".File) @"".info(@"".offset int) (@"".filename string, @"".line int, @"".column int)
+func (? *@"".File) @"".position(@"".p @"".Pos) (@"".pos @"".Position)
+type @"".FileSet struct { @"".mutex @"sync".RWMutex; @"".base int; @"".files []*@"".File; @"".last *@"".File }
+func (? *@"".FileSet) @"".AddFile(@"".filename string, @"".base int, @"".size int) (? *@"".File)
+func (? *@"".FileSet) @"".Base() (? int)
+func (? *@"".FileSet) @"".File(@"".p @"".Pos) (@"".f *@"".File)
+func (? *@"".FileSet) @"".Iterate(@"".f func (? *@"".File) (? bool)) ()
+func (? *@"".FileSet) @"".Position(@"".p @"".Pos) (@"".pos @"".Position)
+func (? *@"".FileSet) @"".Read(@"".decode func (? interface {  }) (? error)) (? error)
+func (? *@"".FileSet) @"".Write(@"".encode func (? interface {  }) (? error)) (? error)
+func (? *@"".FileSet) @"".file(@"".p @"".Pos) (? *@"".File)
+const @"".GEQ @"".Token = 0x2e
+const @"".GO @"".Token = 0x48
+const @"".GOTO @"".Token = 0x49
+const @"".GTR @"".Token = 0x29
+const @"".HighestPrec = 0x7
+const @"".IDENT @"".Token = 0x4
+const @"".IF @"".Token = 0x4a
+const @"".ILLEGAL @"".Token = 0x0
+const @"".IMAG @"".Token = 0x7
+const @"".IMPORT @"".Token = 0x4b
+const @"".INC @"".Token = 0x25
+const @"".INT @"".Token = 0x5
+const @"".INTERFACE @"".Token = 0x4c
+const @"".LAND @"".Token = 0x22
+const @"".LBRACE @"".Token = 0x33
+const @"".LBRACK @"".Token = 0x32
+const @"".LEQ @"".Token = 0x2d
+const @"".LOR @"".Token = 0x23
+const @"".LPAREN @"".Token = 0x31
+const @"".LSS @"".Token = 0x28
+func @"".Lookup(@"".ident string) (? @"".Token)
+const @"".LowestPrec = 0x0
+const @"".MAP @"".Token = 0x4d
+const @"".MUL @"".Token = 0xe
+const @"".MUL_ASSIGN @"".Token = 0x19
+const @"".NEQ @"".Token = 0x2c
+const @"".NOT @"".Token = 0x2b
+func @"".NewFileSet() (? *@"".FileSet)
+const @"".NoPos @"".Pos = 0x0
+const @"".OR @"".Token = 0x12
+const @"".OR_ASSIGN @"".Token = 0x1d
+const @"".PACKAGE @"".Token = 0x4e
+const @"".PERIOD @"".Token = 0x35
+type @"".Pos int
+func (? @"".Pos) @"".IsValid() (? bool)
+func (? *@"".Pos) @"".IsValid() (? bool)
+type @"".Position struct { @"".Filename string; @"".Offset int; @"".Line int; @"".Column int }
+func (? @"".Position) @"".String() (? string)
+func (? *@"".Position) @"".IsValid() (? bool)
+func (? *@"".Position) @"".String() (? string)
+const @"".QUO @"".Token = 0xf
+const @"".QUO_ASSIGN @"".Token = 0x1a
+const @"".RANGE @"".Token = 0x4f
+const @"".RBRACE @"".Token = 0x38
+const @"".RBRACK @"".Token = 0x37
+const @"".REM @"".Token = 0x10
+const @"".REM_ASSIGN @"".Token = 0x1b
+const @"".RETURN @"".Token = 0x50
+const @"".RPAREN @"".Token = 0x36
+const @"".SELECT @"".Token = 0x51
+const @"".SEMICOLON @"".Token = 0x39
+const @"".SHL @"".Token = 0x14
+const @"".SHL_ASSIGN @"".Token = 0x1f
+const @"".SHR @"".Token = 0x15
+const @"".SHR_ASSIGN @"".Token = 0x20
+const @"".STRING @"".Token = 0x9
+const @"".STRUCT @"".Token = 0x52
+const @"".SUB @"".Token = 0xd
+const @"".SUB_ASSIGN @"".Token = 0x18
+const @"".SWITCH @"".Token = 0x53
+const @"".TYPE @"".Token = 0x54
+type @"".Token int
+func (? @"".Token) @"".IsKeyword() (? bool)
+func (? @"".Token) @"".IsLiteral() (? bool)
+func (? @"".Token) @"".IsOperator() (? bool)
+func (? @"".Token) @"".Precedence() (? int)
+func (? @"".Token) @"".String() (? string)
+func (? *@"".Token) @"".IsKeyword() (? bool)
+func (? *@"".Token) @"".IsLiteral() (? bool)
+func (? *@"".Token) @"".IsOperator() (? bool)
+func (? *@"".Token) @"".Precedence() (? int)
+func (? *@"".Token) @"".String() (? string)
+const @"".UnaryPrec = 0x6
+const @"".VAR @"".Token = 0x55
+const @"".XOR @"".Token = 0x13
+const @"".XOR_ASSIGN @"".Token = 0x1e
+type @"".lineInfo struct { @"".Offset int; @"".Filename string; @"".Line int }
+type @"".serializedFile struct { @"".Name string; @"".Base int; @"".Size int; @"".Lines []int; @"".Infos []@"".lineInfo }
+type @"".serializedFileSet struct { @"".Base int; @"".Files []@"".serializedFile }
+type @"sync".RWMutex struct { @"sync".w @"sync".Mutex; @"sync".writerSem uint32; @"sync".readerSem uint32; @"sync".readerCount int32; @"sync".readerWait int32 }
+func (? *@"sync".RWMutex) @"sync".Lock() ()
+func (? *@"sync".RWMutex) @"sync".RLock() ()
+func (? *@"sync".RWMutex) @"sync".RLocker() (? @"sync".Locker)
+func (? *@"sync".RWMutex) @"sync".RUnlock() ()
+func (? *@"sync".RWMutex) @"sync".Unlock() ()
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
+$$
+0vruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortgo/token‚b4	var fmt = go$packages["fmt"];
+	var sort = go$packages["sort"];
+	var sync = go$packages["sync"];
+	var strconv = go$packages["strconv"];
+	var Position;
+	Position = go$newType(0, "Struct", "token.Position", "Position", "go/token", function(Filename_, Offset_, Line_, Column_) {
+		this.go$val = this;
+		this.Filename = Filename_ !== undefined ? Filename_ : "";
+		this.Offset = Offset_ !== undefined ? Offset_ : 0;
+		this.Line = Line_ !== undefined ? Line_ : 0;
+		this.Column = Column_ !== undefined ? Column_ : 0;
+	});
+	go$pkg.Position = Position;
+	var Pos;
+	Pos = go$newType(4, "Int", "token.Pos", "Pos", "go/token", null);
+	go$pkg.Pos = Pos;
+	var File;
+	File = go$newType(0, "Struct", "token.File", "File", "go/token", function(set_, name_, base_, size_, lines_, infos_) {
+		this.go$val = this;
+		this.set = set_ !== undefined ? set_ : (go$ptrType(FileSet)).nil;
+		this.name = name_ !== undefined ? name_ : "";
+		this.base = base_ !== undefined ? base_ : 0;
+		this.size = size_ !== undefined ? size_ : 0;
+		this.lines = lines_ !== undefined ? lines_ : (go$sliceType(Go$Int)).nil;
+		this.infos = infos_ !== undefined ? infos_ : (go$sliceType(lineInfo)).nil;
+	});
+	go$pkg.File = File;
+	var lineInfo;
+	lineInfo = go$newType(0, "Struct", "token.lineInfo", "lineInfo", "go/token", function(Offset_, Filename_, Line_) {
+		this.go$val = this;
+		this.Offset = Offset_ !== undefined ? Offset_ : 0;
+		this.Filename = Filename_ !== undefined ? Filename_ : "";
+		this.Line = Line_ !== undefined ? Line_ : 0;
+	});
+	go$pkg.lineInfo = lineInfo;
+	var FileSet;
+	FileSet = go$newType(0, "Struct", "token.FileSet", "FileSet", "go/token", function(mutex_, base_, files_, last_) {
+		this.go$val = this;
+		this.mutex = mutex_ !== undefined ? mutex_ : new sync.RWMutex.Ptr();
+		this.base = base_ !== undefined ? base_ : 0;
+		this.files = files_ !== undefined ? files_ : (go$sliceType((go$ptrType(File)))).nil;
+		this.last = last_ !== undefined ? last_ : (go$ptrType(File)).nil;
+	});
+	go$pkg.FileSet = FileSet;
+	var serializedFile;
+	serializedFile = go$newType(0, "Struct", "token.serializedFile", "serializedFile", "go/token", function(Name_, Base_, Size_, Lines_, Infos_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.Base = Base_ !== undefined ? Base_ : 0;
+		this.Size = Size_ !== undefined ? Size_ : 0;
+		this.Lines = Lines_ !== undefined ? Lines_ : (go$sliceType(Go$Int)).nil;
+		this.Infos = Infos_ !== undefined ? Infos_ : (go$sliceType(lineInfo)).nil;
+	});
+	go$pkg.serializedFile = serializedFile;
+	var serializedFileSet;
+	serializedFileSet = go$newType(0, "Struct", "token.serializedFileSet", "serializedFileSet", "go/token", function(Base_, Files_) {
+		this.go$val = this;
+		this.Base = Base_ !== undefined ? Base_ : 0;
+		this.Files = Files_ !== undefined ? Files_ : (go$sliceType(serializedFile)).nil;
+	});
+	go$pkg.serializedFileSet = serializedFileSet;
+	var Token;
+	Token = go$newType(4, "Int", "token.Token", "Token", "go/token", null);
+	go$pkg.Token = Token;
+	Position.init([["Filename", "", Go$String, ""], ["Offset", "", Go$Int, ""], ["Line", "", Go$Int, ""], ["Column", "", Go$Int, ""]]);
+	Position.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(Position)).methods = [["IsValid", "", [], [Go$Bool], false], ["String", "", [], [Go$String], false]];
+	Pos.methods = [["IsValid", "", [], [Go$Bool], false]];
+	(go$ptrType(Pos)).methods = [["IsValid", "", [], [Go$Bool], false]];
+	File.init([["set", "go/token", (go$ptrType(FileSet)), ""], ["name", "go/token", Go$String, ""], ["base", "go/token", Go$Int, ""], ["size", "go/token", Go$Int, ""], ["lines", "go/token", (go$sliceType(Go$Int)), ""], ["infos", "go/token", (go$sliceType(lineInfo)), ""]]);
+	(go$ptrType(File)).methods = [["AddLine", "", [Go$Int], [], false], ["AddLineInfo", "", [Go$Int, Go$String, Go$Int], [], false], ["Base", "", [], [Go$Int], false], ["Line", "", [Pos], [Go$Int], false], ["LineCount", "", [], [Go$Int], false], ["MergeLine", "", [Go$Int], [], false], ["Name", "", [], [Go$String], false], ["Offset", "", [Pos], [Go$Int], false], ["Pos", "", [Go$Int], [Pos], false], ["Position", "", [Pos], [Position], false], ["SetLines", "", [(go$sliceType(Go$Int))], [Go$Bool], false], ["SetLinesForContent", "", [(go$sliceType(Go$Uint8))], [], false], ["Size", "", [], [Go$Int], false], ["info", "go/token", [Go$Int], [Go$String, Go$Int, Go$Int], false], ["position", "go/token", [Pos], [Position], false]];
+	lineInfo.init([["Offset", "", Go$Int, ""], ["Filename", "", Go$String, ""], ["Line", "", Go$Int, ""]]);
+	FileSet.init([["mutex", "go/token", sync.RWMutex, ""], ["base", "go/token", Go$Int, ""], ["files", "go/token", (go$sliceType((go$ptrType(File)))), ""], ["last", "go/token", (go$ptrType(File)), ""]]);
+	(go$ptrType(FileSet)).methods = [["AddFile", "", [Go$String, Go$Int, Go$Int], [(go$ptrType(File))], false], ["Base", "", [], [Go$Int], false], ["File", "", [Pos], [(go$ptrType(File))], false], ["Iterate", "", [(go$funcType([(go$ptrType(File))], [Go$Bool], false))], [], false], ["Position", "", [Pos], [Position], false], ["Read", "", [(go$funcType([go$emptyInterface], [go$error], false))], [go$error], false], ["Write", "", [(go$funcType([go$emptyInterface], [go$error], false))], [go$error], false], ["file", "go/token", [Pos], [(go$ptrType(File))], false]];
+	serializedFile.init([["Name", "", Go$String, ""], ["Base", "", Go$Int, ""], ["Size", "", Go$Int, ""], ["Lines", "", (go$sliceType(Go$Int)), ""], ["Infos", "", (go$sliceType(lineInfo)), ""]]);
+	serializedFileSet.init([["Base", "", Go$Int, ""], ["Files", "", (go$sliceType(serializedFile)), ""]]);
+	Token.methods = [["IsKeyword", "", [], [Go$Bool], false], ["IsLiteral", "", [], [Go$Bool], false], ["IsOperator", "", [], [Go$Bool], false], ["Precedence", "", [], [Go$Int], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(Token)).methods = [["IsKeyword", "", [], [Go$Bool], false], ["IsLiteral", "", [], [Go$Bool], false], ["IsOperator", "", [], [Go$Bool], false], ["Precedence", "", [], [Go$Int], false], ["String", "", [], [Go$String], false]];
+	Position.Ptr.prototype.IsValid = function() {
+		var pos;
+		pos = this;
+		return pos.Line > 0;
+	};
+	Position.prototype.IsValid = function() { return this.go$val.IsValid(); };
+	Position.Ptr.prototype.String = function() {
+		var _struct, pos, s;
+		pos = (_struct = this, new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+		s = pos.Filename;
+		if (pos.IsValid()) {
+			if (!(s === "")) {
+				s = s + ":";
+			}
+			s = s + (fmt.Sprintf("%d:%d", new (go$sliceType(go$emptyInterface))([new Go$Int(pos.Line), new Go$Int(pos.Column)])));
+		}
+		if (s === "") {
+			s = "-";
+		}
+		return s;
+	};
+	Position.prototype.String = function() { return this.go$val.String(); };
+	Pos.prototype.IsValid = function() {
+		var p;
+		p = this.go$val;
+		return !((p === 0));
+	};
+	go$ptrType(Pos).prototype.IsValid = function() { return new Pos(this.go$get()).IsValid(); };
+	File.Ptr.prototype.Name = function() {
+		var f;
+		f = this;
+		return f.name;
+	};
+	File.prototype.Name = function() { return this.go$val.Name(); };
+	File.Ptr.prototype.Base = function() {
+		var f;
+		f = this;
+		return f.base;
+	};
+	File.prototype.Base = function() { return this.go$val.Base(); };
+	File.Ptr.prototype.Size = function() {
+		var f;
+		f = this;
+		return f.size;
+	};
+	File.prototype.Size = function() { return this.go$val.Size(); };
+	File.Ptr.prototype.LineCount = function() {
+		var f, n;
+		f = this;
+		f.set.mutex.RLock();
+		n = f.lines.length;
+		f.set.mutex.RUnlock();
+		return n;
+	};
+	File.prototype.LineCount = function() { return this.go$val.LineCount(); };
+	File.Ptr.prototype.AddLine = function(offset) {
+		var f, i, _slice, _index;
+		f = this;
+		f.set.mutex.Lock();
+		if (i = f.lines.length, ((i === 0) || (_slice = f.lines, _index = (i - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < offset) && offset < f.size) {
+			f.lines = go$append(f.lines, offset);
+		}
+		f.set.mutex.Unlock();
+	};
+	File.prototype.AddLine = function(offset) { return this.go$val.AddLine(offset); };
+	File.Ptr.prototype.MergeLine = function(line) {
+		var f;
+		var go$deferred = [];
+		try {
+			f = this;
+			if (line <= 0) {
+				throw go$panic(new Go$String("illegal line number (line numbering starts at 1)"));
+			}
+			f.set.mutex.Lock();
+			go$deferred.push({ recv: f.set.mutex, method: "Unlock", args: [] });
+			if (line >= f.lines.length) {
+				throw go$panic(new Go$String("illegal line number"));
+			}
+			go$copySlice(go$subslice(f.lines, line), go$subslice(f.lines, (line + 1 >> 0)));
+			f.lines = go$subslice(f.lines, 0, (f.lines.length - 1 >> 0));
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	File.prototype.MergeLine = function(line) { return this.go$val.MergeLine(line); };
+	File.Ptr.prototype.SetLines = function(lines) {
+		var f, size, _ref, _i, _slice, _index, offset, i, _slice$1, _index$1;
+		f = this;
+		size = f.size;
+		_ref = lines;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			offset = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (i > 0 && offset <= (_slice$1 = lines, _index$1 = (i - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) || size <= offset) {
+				return false;
+			}
+		}
+		f.set.mutex.Lock();
+		f.lines = lines;
+		f.set.mutex.Unlock();
+		return true;
+	};
+	File.prototype.SetLines = function(lines) { return this.go$val.SetLines(lines); };
+	File.Ptr.prototype.SetLinesForContent = function(content) {
+		var f, lines, line, _ref, _i, _slice, _index, b, offset;
+		f = this;
+		lines = (go$sliceType(Go$Int)).nil;
+		line = 0;
+		_ref = content;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			offset = _i;
+			if (line >= 0) {
+				lines = go$append(lines, line);
+			}
+			line = -1;
+			if (b === 10) {
+				line = offset + 1 >> 0;
+			}
+		}
+		f.set.mutex.Lock();
+		f.lines = lines;
+		f.set.mutex.Unlock();
+	};
+	File.prototype.SetLinesForContent = function(content) { return this.go$val.SetLinesForContent(content); };
+	File.Ptr.prototype.AddLineInfo = function(offset, filename, line) {
+		var f, i, _slice, _index;
+		f = this;
+		f.set.mutex.Lock();
+		if (i = f.infos.length, (i === 0) || (_slice = f.infos, _index = (i - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Offset < offset && offset < f.size) {
+			f.infos = go$append(f.infos, new lineInfo.Ptr(offset, filename, line));
+		}
+		f.set.mutex.Unlock();
+	};
+	File.prototype.AddLineInfo = function(offset, filename, line) { return this.go$val.AddLineInfo(offset, filename, line); };
+	File.Ptr.prototype.Pos = function(offset) {
+		var f;
+		f = this;
+		if (offset > f.size) {
+			throw go$panic(new Go$String("illegal file offset"));
+		}
+		return ((f.base + offset >> 0) >> 0);
+	};
+	File.prototype.Pos = function(offset) { return this.go$val.Pos(offset); };
+	File.Ptr.prototype.Offset = function(p) {
+		var f;
+		f = this;
+		if ((p >> 0) < f.base || (p >> 0) > (f.base + f.size >> 0)) {
+			throw go$panic(new Go$String("illegal Pos value"));
+		}
+		return (p >> 0) - f.base >> 0;
+	};
+	File.prototype.Offset = function(p) { return this.go$val.Offset(p); };
+	File.Ptr.prototype.Line = function(p) {
+		var f;
+		f = this;
+		return f.Position(p).Line;
+	};
+	File.prototype.Line = function(p) { return this.go$val.Line(p); };
+	var searchLineInfos = function(a, x) {
+		return sort.Search(a.length, (function(i) {
+			var _slice, _index;
+			return (_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Offset > x;
+		})) - 1 >> 0;
+	};
+	File.Ptr.prototype.info = function(offset) {
+		var filename, line, column, f, i, _slice, _index, _tuple, i$1, _slice$1, _index$1, alt, i$2;
+		filename = "";
+		line = 0;
+		column = 0;
+		f = this;
+		filename = f.name;
+		if (i = searchInts(f.lines, offset), i >= 0) {
+			_tuple = [i + 1 >> 0, (offset - (_slice = f.lines, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0) + 1 >> 0], line = _tuple[0], column = _tuple[1];
+		}
+		if (f.infos.length > 0) {
+			if (i$1 = searchLineInfos(f.infos, offset), i$1 >= 0) {
+				alt = (_slice$1 = f.infos, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				filename = alt.Filename;
+				if (i$2 = searchInts(f.lines, alt.Offset), i$2 >= 0) {
+					line = line + (((alt.Line - i$2 >> 0) - 1 >> 0)) >> 0;
+				}
+			}
+		}
+		return [filename, line, column];
+	};
+	File.prototype.info = function(offset) { return this.go$val.info(offset); };
+	File.Ptr.prototype.position = function(p) {
+		var pos, f, offset, _tuple, _struct;
+		pos = new Position.Ptr();
+		f = this;
+		offset = (p >> 0) - f.base >> 0;
+		pos.Offset = offset;
+		_tuple = f.info(offset), pos.Filename = _tuple[0], pos.Line = _tuple[1], pos.Column = _tuple[2];
+		return (_struct = pos, new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+	};
+	File.prototype.position = function(p) { return this.go$val.position(p); };
+	File.Ptr.prototype.Position = function(p) {
+		var pos, f, _struct, _struct$1;
+		pos = new Position.Ptr();
+		f = this;
+		if (!((p === 0))) {
+			if ((p >> 0) < f.base || (p >> 0) > (f.base + f.size >> 0)) {
+				throw go$panic(new Go$String("illegal Pos value"));
+			}
+			pos = (_struct = f.position(p), new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+		}
+		return (_struct$1 = pos, new Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column));
+	};
+	File.prototype.Position = function(p) { return this.go$val.Position(p); };
+	var NewFileSet = go$pkg.NewFileSet = function() {
+		return new FileSet.Ptr(new sync.RWMutex.Ptr(), 1, (go$sliceType((go$ptrType(File)))).nil, (go$ptrType(File)).nil);
+	};
+	FileSet.Ptr.prototype.Base = function() {
+		var s, b;
+		s = this;
+		s.mutex.RLock();
+		b = s.base;
+		s.mutex.RUnlock();
+		return b;
+	};
+	FileSet.prototype.Base = function() { return this.go$val.Base(); };
+	FileSet.Ptr.prototype.AddFile = function(filename, base, size) {
+		var s, f;
+		var go$deferred = [];
+		try {
+			s = this;
+			s.mutex.Lock();
+			go$deferred.push({ recv: s.mutex, method: "Unlock", args: [] });
+			if (base < 0) {
+				base = s.base;
+			}
+			if (base < s.base || size < 0) {
+				throw go$panic(new Go$String("illegal base or size"));
+			}
+			f = new File.Ptr(s, filename, base, size, new (go$sliceType(Go$Int))([0]), (go$sliceType(lineInfo)).nil);
+			base = base + ((size + 1 >> 0)) >> 0;
+			if (base < 0) {
+				throw go$panic(new Go$String("token.Pos offset overflow (> 2G of source code in file set)"));
+			}
+			s.base = base;
+			s.files = go$append(s.files, f);
+			s.last = f;
+			return f;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(File)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	FileSet.prototype.AddFile = function(filename, base, size) { return this.go$val.AddFile(filename, base, size); };
+	FileSet.Ptr.prototype.Iterate = function(f) {
+		var s, i, file, _slice, _index;
+		s = this;
+		i = 0;
+		while (true) {
+			file = (go$ptrType(File)).nil;
+			s.mutex.RLock();
+			if (i < s.files.length) {
+				file = (_slice = s.files, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			}
+			s.mutex.RUnlock();
+			if (file === (go$ptrType(File)).nil || !f(file)) {
+				break;
+			}
+			i = i + 1 >> 0;
+		}
+	};
+	FileSet.prototype.Iterate = function(f) { return this.go$val.Iterate(f); };
+	var searchFiles = function(a, x) {
+		return sort.Search(a.length, (function(i) {
+			var _slice, _index;
+			return (_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).base > x;
+		})) - 1 >> 0;
+	};
+	FileSet.Ptr.prototype.file = function(p) {
+		var s, f, i, _slice, _index, f$1;
+		s = this;
+		s.mutex.RLock();
+		if (f = s.last, !(f === (go$ptrType(File)).nil) && f.base <= (p >> 0) && (p >> 0) <= (f.base + f.size >> 0)) {
+			s.mutex.RUnlock();
+			return f;
+		}
+		if (i = searchFiles(s.files, (p >> 0)), i >= 0) {
+			f$1 = (_slice = s.files, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if ((p >> 0) <= (f$1.base + f$1.size >> 0)) {
+				s.mutex.RUnlock();
+				s.mutex.Lock();
+				s.last = f$1;
+				s.mutex.Unlock();
+				return f$1;
+			}
+		}
+		s.mutex.RUnlock();
+		return (go$ptrType(File)).nil;
+	};
+	FileSet.prototype.file = function(p) { return this.go$val.file(p); };
+	FileSet.Ptr.prototype.File = function(p) {
+		var f, s;
+		f = (go$ptrType(File)).nil;
+		s = this;
+		if (!((p === 0))) {
+			f = s.file(p);
+		}
+		return f;
+	};
+	FileSet.prototype.File = function(p) { return this.go$val.File(p); };
+	FileSet.Ptr.prototype.Position = function(p) {
+		var pos, s, f, _struct, _struct$1;
+		pos = new Position.Ptr();
+		s = this;
+		if (!((p === 0))) {
+			if (f = s.file(p), !(f === (go$ptrType(File)).nil)) {
+				pos = (_struct = f.position(p), new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+			}
+		}
+		return (_struct$1 = pos, new Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column));
+	};
+	FileSet.prototype.Position = function(p) { return this.go$val.Position(p); };
+	var searchInts = function(a, x) {
+		var _tuple, i, j, _q, h, _slice, _index;
+		_tuple = [0, a.length], i = _tuple[0], j = _tuple[1];
+		while (i < j) {
+			h = i + (_q = ((j - i >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+			if ((_slice = a, _index = h, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) <= x) {
+				i = h + 1 >> 0;
+			} else {
+				j = h;
+			}
+		}
+		return i - 1 >> 0;
+	};
+	FileSet.Ptr.prototype.Read = function(decode) {
+		var s, ss, err, files, i, _slice, _index, f, _slice$1, _index$1;
+		s = this;
+		ss = new serializedFileSet.Ptr();
+		if (err = decode(ss), !(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		s.mutex.Lock();
+		s.base = ss.Base;
+		files = (go$sliceType((go$ptrType(File)))).make(ss.Files.length, 0, function() { return (go$ptrType(File)).nil; });
+		i = 0;
+		while (i < ss.Files.length) {
+			f = (_slice = ss.Files, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_slice$1 = files, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = new File.Ptr(s, f.Name, f.Base, f.Size, f.Lines, f.Infos)) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+		}
+		s.files = files;
+		s.last = (go$ptrType(File)).nil;
+		s.mutex.Unlock();
+		return null;
+	};
+	FileSet.prototype.Read = function(decode) { return this.go$val.Read(decode); };
+	FileSet.Ptr.prototype.Write = function(encode) {
+		var s, ss, files, _ref, _i, _slice, _index, f, i, _slice$1, _index$1;
+		s = this;
+		ss = new serializedFileSet.Ptr();
+		s.mutex.Lock();
+		ss.Base = s.base;
+		files = (go$sliceType(serializedFile)).make(s.files.length, 0, function() { return new serializedFile.Ptr(); });
+		_ref = s.files;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_slice$1 = files, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = new serializedFile.Ptr(f.name, f.base, f.size, f.lines, f.infos)) : go$throwRuntimeError("index out of range");
+		}
+		ss.Files = files;
+		s.mutex.Unlock();
+		return encode(new ss.constructor.Struct(ss));
+	};
+	FileSet.prototype.Write = function(encode) { return this.go$val.Write(encode); };
+	Token.prototype.String = function() {
+		var tok, s;
+		tok = this.go$val;
+		s = "";
+		if (0 <= tok && tok < 86) {
+			s = tokens[tok];
+		}
+		if (s === "") {
+			s = "token(" + strconv.Itoa((tok >> 0)) + ")";
+		}
+		return s;
+	};
+	go$ptrType(Token).prototype.String = function() { return new Token(this.go$get()).String(); };
+	Token.prototype.Precedence = function() {
+		var op, _ref;
+		op = this.go$val;
+		_ref = op;
+		if (_ref === 35) {
+			return 1;
+		} else if (_ref === 34) {
+			return 2;
+		} else if (_ref === 39 || _ref === 44 || _ref === 40 || _ref === 45 || _ref === 41 || _ref === 46) {
+			return 3;
+		} else if (_ref === 12 || _ref === 13 || _ref === 18 || _ref === 19) {
+			return 4;
+		} else if (_ref === 14 || _ref === 15 || _ref === 16 || _ref === 20 || _ref === 21 || _ref === 17 || _ref === 22) {
+			return 5;
+		}
+		return 0;
+	};
+	go$ptrType(Token).prototype.Precedence = function() { return new Token(this.go$get()).Precedence(); };
+	var Lookup = go$pkg.Lookup = function(ident) {
+		var is_keyword, _tuple, _entry, tok;
+		if (_tuple = (_entry = keywords[ident], _entry !== undefined ? [_entry.v, true] : [0, false]), tok = _tuple[0], is_keyword = _tuple[1], is_keyword) {
+			return tok;
+		}
+		return 4;
+	};
+	Token.prototype.IsLiteral = function() {
+		var tok;
+		tok = this.go$val;
+		return 3 < tok && tok < 10;
+	};
+	go$ptrType(Token).prototype.IsLiteral = function() { return new Token(this.go$get()).IsLiteral(); };
+	Token.prototype.IsOperator = function() {
+		var tok;
+		tok = this.go$val;
+		return 11 < tok && tok < 59;
+	};
+	go$ptrType(Token).prototype.IsOperator = function() { return new Token(this.go$get()).IsOperator(); };
+	Token.prototype.IsKeyword = function() {
+		var tok;
+		tok = this.go$val;
+		return 60 < tok && tok < 86;
+	};
+	go$ptrType(Token).prototype.IsKeyword = function() { return new Token(this.go$get()).IsKeyword(); };
+	go$pkg.NoPos = 0;
+	go$pkg.ILLEGAL = 0;
+	go$pkg.EOF = 1;
+	go$pkg.COMMENT = 2;
+	var literal_beg = 3;
+	go$pkg.IDENT = 4;
+	go$pkg.INT = 5;
+	go$pkg.FLOAT = 6;
+	go$pkg.IMAG = 7;
+	go$pkg.CHAR = 8;
+	go$pkg.STRING = 9;
+	var literal_end = 10;
+	var operator_beg = 11;
+	go$pkg.ADD = 12;
+	go$pkg.SUB = 13;
+	go$pkg.MUL = 14;
+	go$pkg.QUO = 15;
+	go$pkg.REM = 16;
+	go$pkg.AND = 17;
+	go$pkg.OR = 18;
+	go$pkg.XOR = 19;
+	go$pkg.SHL = 20;
+	go$pkg.SHR = 21;
+	go$pkg.AND_NOT = 22;
+	go$pkg.ADD_ASSIGN = 23;
+	go$pkg.SUB_ASSIGN = 24;
+	go$pkg.MUL_ASSIGN = 25;
+	go$pkg.QUO_ASSIGN = 26;
+	go$pkg.REM_ASSIGN = 27;
+	go$pkg.AND_ASSIGN = 28;
+	go$pkg.OR_ASSIGN = 29;
+	go$pkg.XOR_ASSIGN = 30;
+	go$pkg.SHL_ASSIGN = 31;
+	go$pkg.SHR_ASSIGN = 32;
+	go$pkg.AND_NOT_ASSIGN = 33;
+	go$pkg.LAND = 34;
+	go$pkg.LOR = 35;
+	go$pkg.ARROW = 36;
+	go$pkg.INC = 37;
+	go$pkg.DEC = 38;
+	go$pkg.EQL = 39;
+	go$pkg.LSS = 40;
+	go$pkg.GTR = 41;
+	go$pkg.ASSIGN = 42;
+	go$pkg.NOT = 43;
+	go$pkg.NEQ = 44;
+	go$pkg.LEQ = 45;
+	go$pkg.GEQ = 46;
+	go$pkg.DEFINE = 47;
+	go$pkg.ELLIPSIS = 48;
+	go$pkg.LPAREN = 49;
+	go$pkg.LBRACK = 50;
+	go$pkg.LBRACE = 51;
+	go$pkg.COMMA = 52;
+	go$pkg.PERIOD = 53;
+	go$pkg.RPAREN = 54;
+	go$pkg.RBRACK = 55;
+	go$pkg.RBRACE = 56;
+	go$pkg.SEMICOLON = 57;
+	go$pkg.COLON = 58;
+	var operator_end = 59;
+	var keyword_beg = 60;
+	go$pkg.BREAK = 61;
+	go$pkg.CASE = 62;
+	go$pkg.CHAN = 63;
+	go$pkg.CONST = 64;
+	go$pkg.CONTINUE = 65;
+	go$pkg.DEFAULT = 66;
+	go$pkg.DEFER = 67;
+	go$pkg.ELSE = 68;
+	go$pkg.FALLTHROUGH = 69;
+	go$pkg.FOR = 70;
+	go$pkg.FUNC = 71;
+	go$pkg.GO = 72;
+	go$pkg.GOTO = 73;
+	go$pkg.IF = 74;
+	go$pkg.IMPORT = 75;
+	go$pkg.INTERFACE = 76;
+	go$pkg.MAP = 77;
+	go$pkg.PACKAGE = 78;
+	go$pkg.RANGE = 79;
+	go$pkg.RETURN = 80;
+	go$pkg.SELECT = 81;
+	go$pkg.STRUCT = 82;
+	go$pkg.SWITCH = 83;
+	go$pkg.TYPE = 84;
+	go$pkg.VAR = 85;
+	var keyword_end = 86;
+	go$pkg.LowestPrec = 0;
+	go$pkg.UnaryPrec = 6;
+	go$pkg.HighestPrec = 7;
+	var tokens = go$makeNativeArray("String", 86, function() { return ""; });
+	var keywords = false;
+	go$pkg.init = function() {
+		var i, _key;
+		tokens = go$toNativeArray("String", ["ILLEGAL", "EOF", "COMMENT", "", "IDENT", "INT", "FLOAT", "IMAG", "CHAR", "STRING", "", "", "+", "-", "*", "/", "%", "&", "|", "^", "<<", ">>", "&^", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>=", "&^=", "&&", "||", "<-", "++", "--", "==", "<", ">", "=", "!", "!=", "<=", ">=", ":=", "...", "(", "[", "{", ",", ".", ")", "]", "}", ";", ":", "", "", "break", "case", "chan", "const", "continue", "default", "defer", "else", "fallthrough", "for", "func", "go", "goto", "if", "import", "interface", "map", "package", "range", "return", "select", "struct", "switch", "type", "var"]);
+		keywords = new Go$Map();
+		i = 61;
+		while (i < 86) {
+			_key = tokens[i], (keywords || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: i };
+			i = i + 1 >> 0;
+		}
+	};

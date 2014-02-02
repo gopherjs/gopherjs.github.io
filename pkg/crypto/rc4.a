@@ -1,0 +1,85 @@
+0‚é‚•package rc4
+import strconv "strconv"
+type @"".Cipher struct { @"".s [256]uint32; @"".i uint8; @"".j uint8 }
+func (? *@"".Cipher) @"".Reset() ()
+func (? *@"".Cipher) @"".XORKeyStream(@"".dst []byte, @"".src []byte) ()
+type @"".KeySizeError int
+func (? @"".KeySizeError) @"".Error() (? string)
+func (? *@"".KeySizeError) @"".Error() (? string)
+func @"".NewCipher(@"".key []byte) (? *@"".Cipher, ? error)
+$$
+0:runtimeerrorsmathunicode/utf8strconv
+crypto/rc4‚	var strconv = go$packages["strconv"];
+	var Cipher;
+	Cipher = go$newType(0, "Struct", "rc4.Cipher", "Cipher", "crypto/rc4", function(s_, i_, j_) {
+		this.go$val = this;
+		this.s = s_ !== undefined ? s_ : go$makeNativeArray("Uint32", 256, function() { return 0; });
+		this.i = i_ !== undefined ? i_ : 0;
+		this.j = j_ !== undefined ? j_ : 0;
+	});
+	go$pkg.Cipher = Cipher;
+	var KeySizeError;
+	KeySizeError = go$newType(4, "Int", "rc4.KeySizeError", "KeySizeError", "crypto/rc4", null);
+	go$pkg.KeySizeError = KeySizeError;
+	Cipher.init([["s", "crypto/rc4", (go$arrayType(Go$Uint32, 256)), ""], ["i", "crypto/rc4", Go$Uint8, ""], ["j", "crypto/rc4", Go$Uint8, ""]]);
+	(go$ptrType(Cipher)).methods = [["Reset", "", [], [], false], ["XORKeyStream", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [], false]];
+	KeySizeError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(KeySizeError)).methods = [["Error", "", [], [Go$String], false]];
+	KeySizeError.prototype.Error = function() {
+		var k;
+		k = this.go$val;
+		return "crypto/rc4: invalid key size " + strconv.Itoa((k >> 0));
+	};
+	go$ptrType(KeySizeError).prototype.Error = function() { return new KeySizeError(this.go$get()).Error(); };
+	var NewCipher = go$pkg.NewCipher = function(key) {
+		var k, c, i, j, i$1, _slice, _index, _r, _tuple;
+		k = key.length;
+		if (k < 1 || k > 256) {
+			return [(go$ptrType(Cipher)).nil, new KeySizeError((k >> 0))];
+		}
+		c = new Cipher.Ptr();
+		i = 0;
+		while (i < 256) {
+			c.s[i] = (i >>> 0);
+			i = i + 1 >> 0;
+		}
+		j = 0;
+		i$1 = 0;
+		while (i$1 < 256) {
+			j = j + (((c.s[i$1] << 24 >>> 24) + (_slice = key, _index = (_r = i$1 % k, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 24 >>> 24)) << 24 >>> 24;
+			_tuple = [c.s[j], c.s[i$1]], c.s[i$1] = _tuple[0], c.s[j] = _tuple[1];
+			i$1 = i$1 + 1 >> 0;
+		}
+		return [c, null];
+	};
+	Cipher.Ptr.prototype.Reset = function() {
+		var c, _ref, _i, i, _tuple;
+		c = this;
+		_ref = c.s;
+		_i = 0;
+		for (; _i < 256; _i += 1) {
+			i = _i;
+			c.s[i] = 0;
+		}
+		_tuple = [0, 0], c.i = _tuple[0], c.j = _tuple[1];
+	};
+	Cipher.prototype.Reset = function() { return this.go$val.Reset(); };
+	Cipher.Ptr.prototype.XORKeyStream = function(dst, src) {
+		var c, _tuple, i, j, _ref, _i, _slice, _index, v, k, _tuple$1, _slice$1, _index$1, _tuple$2;
+		c = this;
+		_tuple = [c.i, c.j], i = _tuple[0], j = _tuple[1];
+		_ref = src;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			k = _i;
+			i = i + 1 << 24 >>> 24;
+			j = j + ((c.s[i] << 24 >>> 24)) << 24 >>> 24;
+			_tuple$1 = [c.s[j], c.s[i]], c.s[i] = _tuple$1[0], c.s[j] = _tuple$1[1];
+			_slice$1 = dst, _index$1 = k, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (v ^ (c.s[((c.s[i] + c.s[j] >>> 0) << 24 >>> 24)] << 24 >>> 24)) << 24 >>> 24) : go$throwRuntimeError("index out of range");
+		}
+		_tuple$2 = [i, j], c.i = _tuple$2[0], c.j = _tuple$2[1];
+	};
+	Cipher.prototype.XORKeyStream = function(dst, src) { return this.go$val.XORKeyStream(dst, src); };
+	go$pkg.init = function() {
+	};

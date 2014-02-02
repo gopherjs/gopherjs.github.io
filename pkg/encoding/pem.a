@@ -1,0 +1,249 @@
+0Ç*‹Ç´package pem
+import bytes "bytes"
+import base64 "encoding/base64"
+import io "io"
+import sort "sort"
+type @"".Block struct { @"".Type string; @"".Headers map[string]string; @"".Bytes []byte }
+func @"".Decode(@"".data []byte) (@"".p *@"".Block, @"".rest []byte)
+func @"".Encode(@"".out @"io".Writer, @"".b *@"".Block) (? error)
+func @"".EncodeToMemory(@"".b *@"".Block) (? []byte)
+type @"".lineBreaker struct { @"".line [64]byte; @"".used int; @"".out @"io".Writer }
+func (? *@"".lineBreaker) @"".Close() (@"".err error)
+func (? *@"".lineBreaker) @"".Write(@"".b []byte) (@"".n int, @"".err error)
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0ÅÉruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvstringsencoding/base64sortencoding/pemÇ'£	var bytes = go$packages["bytes"];
+	var base64 = go$packages["encoding/base64"];
+	var io = go$packages["io"];
+	var sort = go$packages["sort"];
+	var Block;
+	Block = go$newType(0, "Struct", "pem.Block", "Block", "encoding/pem", function(Type_, Headers_, Bytes_) {
+		this.go$val = this;
+		this.Type = Type_ !== undefined ? Type_ : "";
+		this.Headers = Headers_ !== undefined ? Headers_ : false;
+		this.Bytes = Bytes_ !== undefined ? Bytes_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.Block = Block;
+	var lineBreaker;
+	lineBreaker = go$newType(0, "Struct", "pem.lineBreaker", "lineBreaker", "encoding/pem", function(line_, used_, out_) {
+		this.go$val = this;
+		this.line = line_ !== undefined ? line_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
+		this.used = used_ !== undefined ? used_ : 0;
+		this.out = out_ !== undefined ? out_ : null;
+	});
+	go$pkg.lineBreaker = lineBreaker;
+	Block.init([["Type", "", Go$String, ""], ["Headers", "", (go$mapType(Go$String, Go$String)), ""], ["Bytes", "", (go$sliceType(Go$Uint8)), ""]]);
+	lineBreaker.init([["line", "encoding/pem", (go$arrayType(Go$Uint8, 64)), ""], ["used", "encoding/pem", Go$Int, ""], ["out", "encoding/pem", io.Writer, ""]]);
+	(go$ptrType(lineBreaker)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	var getLine = function(data) {
+		var line, rest, i, j, _slice, _index, _tuple;
+		line = (go$sliceType(Go$Uint8)).nil;
+		rest = (go$sliceType(Go$Uint8)).nil;
+		i = bytes.Index(data, new (go$sliceType(Go$Uint8))([10]));
+		j = 0;
+		if (i < 0) {
+			i = data.length;
+			j = i;
+		} else {
+			j = i + 1 >> 0;
+			if (i > 0 && ((_slice = data, _index = (i - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 13)) {
+				i = i - 1 >> 0;
+			}
+		}
+		_tuple = [bytes.TrimRight(go$subslice(data, 0, i), " \t"), go$subslice(data, j)], line = _tuple[0], rest = _tuple[1];
+		return [line, rest];
+	};
+	var removeWhitespace = function(data) {
+		var result, n, _ref, _i, _slice, _index, b, _slice$1, _index$1;
+		result = (go$sliceType(Go$Uint8)).make(data.length, 0, function() { return 0; });
+		n = 0;
+		_ref = data;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if ((b === 32) || (b === 9) || (b === 13) || (b === 10)) {
+				continue;
+			}
+			_slice$1 = result, _index$1 = n, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = b) : go$throwRuntimeError("index out of range");
+			n = n + 1 >> 0;
+		}
+		return go$subslice(result, 0, n);
+	};
+	var Decode = go$pkg.Decode = function(data) {
+		var p, rest, i, _tuple, _tuple$1, typeLine, _tuple$2, _tuple$3, _tuple$4, line, next, i$1, _tuple$5, key, val, _key, i$2, _tuple$6, base64Data, _tuple$7, n, err, _tuple$8, _tuple$9;
+		p = (go$ptrType(Block)).nil;
+		rest = (go$sliceType(Go$Uint8)).nil;
+		rest = data;
+		if (bytes.HasPrefix(data, go$subslice(pemStart, 1))) {
+			rest = go$subslice(rest, pemStart.length - 1 >> 0, data.length);
+		} else if (i = bytes.Index(data, pemStart), i >= 0) {
+			rest = go$subslice(rest, i + pemStart.length >> 0, data.length);
+		} else {
+			_tuple = [(go$ptrType(Block)).nil, data], p = _tuple[0], rest = _tuple[1];
+			return [p, rest];
+		}
+		_tuple$1 = getLine(rest), typeLine = _tuple$1[0], rest = _tuple$1[1];
+		if (!bytes.HasSuffix(typeLine, pemEndOfLine)) {
+			_tuple$2 = decodeError(data, rest), p = _tuple$2[0], rest = _tuple$2[1];
+			return [p, rest];
+		}
+		typeLine = go$subslice(typeLine, 0, (typeLine.length - pemEndOfLine.length >> 0));
+		p = new Block.Ptr(go$bytesToString(typeLine), new Go$Map(), (go$sliceType(Go$Uint8)).nil);
+		while (true) {
+			if (rest.length === 0) {
+				_tuple$3 = [(go$ptrType(Block)).nil, data], p = _tuple$3[0], rest = _tuple$3[1];
+				return [p, rest];
+			}
+			_tuple$4 = getLine(rest), line = _tuple$4[0], next = _tuple$4[1];
+			i$1 = bytes.Index(line, new (go$sliceType(Go$Uint8))([58]));
+			if (i$1 === -1) {
+				break;
+			}
+			_tuple$5 = [go$subslice(line, 0, i$1), go$subslice(line, (i$1 + 1 >> 0))], key = _tuple$5[0], val = _tuple$5[1];
+			key = bytes.TrimSpace(key);
+			val = bytes.TrimSpace(val);
+			_key = go$bytesToString(key), (p.Headers || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: go$bytesToString(val) };
+			rest = next;
+		}
+		i$2 = bytes.Index(rest, pemEnd);
+		if (i$2 < 0) {
+			_tuple$6 = decodeError(data, rest), p = _tuple$6[0], rest = _tuple$6[1];
+			return [p, rest];
+		}
+		base64Data = removeWhitespace(go$subslice(rest, 0, i$2));
+		p.Bytes = (go$sliceType(Go$Uint8)).make(base64.StdEncoding.DecodedLen(base64Data.length), 0, function() { return 0; });
+		_tuple$7 = base64.StdEncoding.Decode(p.Bytes, base64Data), n = _tuple$7[0], err = _tuple$7[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$8 = decodeError(data, rest), p = _tuple$8[0], rest = _tuple$8[1];
+			return [p, rest];
+		}
+		p.Bytes = go$subslice(p.Bytes, 0, n);
+		_tuple$9 = getLine(go$subslice(rest, (i$2 + pemEnd.length >> 0))), rest = _tuple$9[1];
+		return [p, rest];
+	};
+	var decodeError = function(data, rest) {
+		var _tuple, p;
+		_tuple = Decode(rest), p = _tuple[0], rest = _tuple[1];
+		if (p === (go$ptrType(Block)).nil) {
+			rest = data;
+		}
+		return [p, rest];
+	};
+	lineBreaker.Ptr.prototype.Write = function(b) {
+		var n, err, l, _tuple, _tuple$1, excess, _tuple$2, _tuple$3, _tuple$4;
+		n = 0;
+		err = null;
+		l = this;
+		if ((l.used + b.length >> 0) < 64) {
+			go$copySlice(go$subslice(new (go$sliceType(Go$Uint8))(l.line), l.used), b);
+			l.used = l.used + (b.length) >> 0;
+			_tuple = [b.length, null], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		_tuple$1 = l.out.Write(go$subslice(new (go$sliceType(Go$Uint8))(l.line), 0, l.used)), n = _tuple$1[0], err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [n, err];
+		}
+		excess = 64 - l.used >> 0;
+		l.used = 0;
+		_tuple$2 = l.out.Write(go$subslice(b, 0, excess)), n = _tuple$2[0], err = _tuple$2[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [n, err];
+		}
+		_tuple$3 = l.out.Write(new (go$sliceType(Go$Uint8))([10])), n = _tuple$3[0], err = _tuple$3[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [n, err];
+		}
+		_tuple$4 = l.Write(go$subslice(b, excess)), n = _tuple$4[0], err = _tuple$4[1];
+		return [n, err];
+	};
+	lineBreaker.prototype.Write = function(b) { return this.go$val.Write(b); };
+	lineBreaker.Ptr.prototype.Close = function() {
+		var err, l, _tuple, _tuple$1;
+		err = null;
+		l = this;
+		if (l.used > 0) {
+			_tuple = l.out.Write(go$subslice(new (go$sliceType(Go$Uint8))(l.line), 0, l.used)), err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			_tuple$1 = l.out.Write(new (go$sliceType(Go$Uint8))([10])), err = _tuple$1[1];
+		}
+		return err;
+	};
+	lineBreaker.prototype.Close = function() { return this.go$val.Close(); };
+	var writeHeader = function(out, k, v) {
+		var _tuple, err;
+		_tuple = out.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(k + ": " + v + "\n"))), err = _tuple[1];
+		return err;
+	};
+	var Encode = go$pkg.Encode = function(out, b) {
+		var err, _tuple, err$1, _tuple$1, h, hasProcType, _ref, _i, _keys, _entry, k, err$2, _entry$1, _ref$1, _i$1, _slice, _index, k$1, err$3, _entry$2, err$4, _tuple$2, breaker, b64, err$5, _tuple$3, err$6, _tuple$4, _tuple$5, err$7;
+		if (_tuple = out.Write(go$subslice(pemStart, 1)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		if (_tuple$1 = out.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(b.Type + "-----\n"))), err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+			return err$1;
+		}
+		if (go$keys(b.Headers).length > 0) {
+			h = (go$sliceType(Go$String)).make(0, go$keys(b.Headers).length, function() { return ""; });
+			hasProcType = false;
+			_ref = b.Headers;
+			_i = 0;
+			_keys = go$keys(_ref);
+			for (; _i < _keys.length; _i += 1) {
+				_entry = _ref[_keys[_i]];
+				k = _entry.k;
+				if (k === "Proc-Type") {
+					hasProcType = true;
+					continue;
+				}
+				h = go$append(h, k);
+			}
+			if (hasProcType) {
+				if (err$2 = writeHeader(out, "Proc-Type", (_entry$1 = b.Headers["Proc-Type"], _entry$1 !== undefined ? _entry$1.v : "")), !(go$interfaceIsEqual(err$2, null))) {
+					return err$2;
+				}
+			}
+			sort.Strings(h);
+			_ref$1 = h;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				k$1 = (_slice = _ref$1, _index = _i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				if (err$3 = writeHeader(out, k$1, (_entry$2 = b.Headers[k$1], _entry$2 !== undefined ? _entry$2.v : "")), !(go$interfaceIsEqual(err$3, null))) {
+					return err$3;
+				}
+			}
+			if (_tuple$2 = out.Write(new (go$sliceType(Go$Uint8))([10])), err$4 = _tuple$2[1], !(go$interfaceIsEqual(err$4, null))) {
+				return err$4;
+			}
+		}
+		breaker = new lineBreaker.Ptr();
+		breaker.out = out;
+		b64 = base64.NewEncoder(base64.StdEncoding, breaker);
+		if (_tuple$3 = b64.Write(b.Bytes), err$5 = _tuple$3[1], !(go$interfaceIsEqual(err$5, null))) {
+			return err$5;
+		}
+		b64.Close();
+		breaker.Close();
+		if (_tuple$4 = out.Write(go$subslice(pemEnd, 1)), err$6 = _tuple$4[1], !(go$interfaceIsEqual(err$6, null))) {
+			return err$6;
+		}
+		_tuple$5 = out.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(b.Type + "-----\n"))), err$7 = _tuple$5[1];
+		return err$7;
+	};
+	var EncodeToMemory = go$pkg.EncodeToMemory = function(b) {
+		var buf;
+		buf = new bytes.Buffer.Ptr();
+		Encode(buf, b);
+		return buf.Bytes();
+	};
+	var pemLineLength = 64;
+	var pemStart = (go$sliceType(Go$Uint8)).nil;
+	var pemEnd = (go$sliceType(Go$Uint8)).nil;
+	var pemEndOfLine = (go$sliceType(Go$Uint8)).nil;
+	go$pkg.init = function() {
+		pemStart = new (go$sliceType(Go$Uint8))(go$stringToBytes("\n-----BEGIN "));
+		pemEnd = new (go$sliceType(Go$Uint8))(go$stringToBytes("\n-----END "));
+		pemEndOfLine = new (go$sliceType(Go$Uint8))(go$stringToBytes("-----"));
+	};

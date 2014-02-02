@@ -1,0 +1,121 @@
+0‚—‚êpackage crc64
+import hash "hash"
+func @"".Checksum(@"".data []byte, @"".tab *@"".Table) (? uint64)
+const @"".ECMA = -0x3693a86a2878f0be
+const @"".ISO = -0x2800000000000000
+func @"".MakeTable(@"".poly uint64) (? *@"".Table)
+func @"".New(@"".tab *@"".Table) (? @"hash".Hash64)
+const @"".Size = 0x8
+type @"".Table [256]uint64
+func @"".Update(@"".crc uint64, @"".tab *@"".Table, @"".p []byte) (? uint64)
+type @"".digest struct { @"".crc uint64; @"".tab *@"".Table }
+func (? *@"".digest) @"".BlockSize() (? int)
+func (? *@"".digest) @"".Reset() ()
+func (? *@"".digest) @"".Size() (? int)
+func (? *@"".digest) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".digest) @"".Sum64() (? uint64)
+func (? *@"".digest) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+import io "io"
+type @"hash".Hash64 interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"hash".Sum64() (? uint64); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0:runtimeerrorssync/atomicsynciohash
+hash/crc64‚i	var hash = go$packages["hash"];
+	var Table;
+	Table = go$newType(0, "Array", "crc64.Table", "Table", "hash/crc64", null);
+	go$pkg.Table = Table;
+	var digest;
+	digest = go$newType(0, "Struct", "crc64.digest", "digest", "hash/crc64", function(crc_, tab_) {
+		this.go$val = this;
+		this.crc = crc_ !== undefined ? crc_ : new Go$Uint64(0, 0);
+		this.tab = tab_ !== undefined ? tab_ : (go$ptrType(Table)).nil;
+	});
+	go$pkg.digest = digest;
+	Table.init(Go$Uint64, 256);
+	digest.init([["crc", "hash/crc64", Go$Uint64, ""], ["tab", "hash/crc64", (go$ptrType(Table)), ""]]);
+	(go$ptrType(digest)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Sum64", "", [], [Go$Uint64], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	var MakeTable = go$pkg.MakeTable = function(poly) {
+		var t, i, crc, j, x, x$1;
+		t = go$makeNativeArray("Uint64", 256, function() { return new Go$Uint64(0, 0); });
+		i = 0;
+		while (i < 256) {
+			crc = new Go$Uint64(0, i);
+			j = 0;
+			while (j < 8) {
+				if ((x = new Go$Uint64(crc.high & 0, (crc.low & 1) >>> 0), (x.high === 0 && x.low === 1))) {
+					crc = (x$1 = go$shiftRightUint64(crc, 1), new Go$Uint64(x$1.high ^ poly.high, (x$1.low ^ poly.low) >>> 0));
+				} else {
+					crc = go$shiftRightUint64(crc, 1);
+				}
+				j = j + 1 >> 0;
+			}
+			t[i] = crc;
+			i = i + 1 >> 0;
+		}
+		return t;
+	};
+	var New = go$pkg.New = function(tab) {
+		return new digest.Ptr(new Go$Uint64(0, 0), tab);
+	};
+	digest.Ptr.prototype.Size = function() {
+		var d;
+		d = this;
+		return 8;
+	};
+	digest.prototype.Size = function() { return this.go$val.Size(); };
+	digest.Ptr.prototype.BlockSize = function() {
+		var d;
+		d = this;
+		return 1;
+	};
+	digest.prototype.BlockSize = function() { return this.go$val.BlockSize(); };
+	digest.Ptr.prototype.Reset = function() {
+		var d;
+		d = this;
+		d.crc = new Go$Uint64(0, 0);
+	};
+	digest.prototype.Reset = function() { return this.go$val.Reset(); };
+	var update = function(crc, tab, p) {
+		var _ref, _i, _slice, _index, v, x, x$1;
+		crc = new Go$Uint64(~crc.high, ~crc.low >>> 0);
+		_ref = p;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			crc = (x = tab[(((crc.low << 24 >>> 24) ^ v) << 24 >>> 24)], x$1 = go$shiftRightUint64(crc, 8), new Go$Uint64(x.high ^ x$1.high, (x.low ^ x$1.low) >>> 0));
+		}
+		return new Go$Uint64(~crc.high, ~crc.low >>> 0);
+	};
+	var Update = go$pkg.Update = function(crc, tab, p) {
+		return update(crc, tab, p);
+	};
+	digest.Ptr.prototype.Write = function(p) {
+		var n, err, d, _tuple;
+		n = 0;
+		err = null;
+		d = this;
+		d.crc = update(d.crc, d.tab, p);
+		_tuple = [p.length, null], n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	digest.prototype.Write = function(p) { return this.go$val.Write(p); };
+	digest.Ptr.prototype.Sum64 = function() {
+		var d;
+		d = this;
+		return d.crc;
+	};
+	digest.prototype.Sum64 = function() { return this.go$val.Sum64(); };
+	digest.Ptr.prototype.Sum = function(in$1) {
+		var d, s;
+		d = this;
+		s = d.Sum64();
+		return go$append(in$1, (go$shiftRightUint64(s, 56).low << 24 >>> 24), (go$shiftRightUint64(s, 48).low << 24 >>> 24), (go$shiftRightUint64(s, 40).low << 24 >>> 24), (go$shiftRightUint64(s, 32).low << 24 >>> 24), (go$shiftRightUint64(s, 24).low << 24 >>> 24), (go$shiftRightUint64(s, 16).low << 24 >>> 24), (go$shiftRightUint64(s, 8).low << 24 >>> 24), (s.low << 24 >>> 24));
+	};
+	digest.prototype.Sum = function(in$1) { return this.go$val.Sum(in$1); };
+	var Checksum = go$pkg.Checksum = function(data, tab) {
+		return update(new Go$Uint64(0, 0), tab, data);
+	};
+	go$pkg.Size = 8;
+	go$pkg.ISO = -2882303761517117440;
+	go$pkg.ECMA = -3932672073523589310;
+	go$pkg.init = function() {
+	};

@@ -1,0 +1,2563 @@
+0ƒÞä‚B0package printer
+import bytes "bytes"
+import ast "go/ast"
+import token "go/token"
+import utf8 "unicode/utf8"
+import fmt "fmt"
+import io "io"
+import os "os"
+import strconv "strconv"
+import strings "strings"
+import tabwriter "text/tabwriter"
+import unicode "unicode"
+type @"".CommentedNode struct { @"".Node interface {  }; @"".Comments []*@"go/ast".CommentGroup }
+type @"".Config struct { @"".Mode @"".Mode; @"".Tabwidth int; @"".Indent int }
+func (? *@"".Config) @"".Fprint(@"".output @"io".Writer, @"".fset *@"go/token".FileSet, @"".node interface {  }) (? error)
+func (? *@"".Config) @"".fprint(@"".output @"io".Writer, @"".fset *@"go/token".FileSet, @"".node interface {  }, @"".nodeSizes map[@"go/ast".Node]int) (@"".err error)
+func @"".Fprint(@"".output @"io".Writer, @"".fset *@"go/token".FileSet, @"".node interface {  }) (? error)
+type @"".Mode uint
+const @"".RawFormat @"".Mode = 0x1
+const @"".SourcePos @"".Mode = 0x8
+const @"".TabIndent @"".Mode = 0x2
+const @"".UseSpaces @"".Mode = 0x4
+type @"".exprListMode uint
+type @"".pmode int
+type @"".printer struct { ? @"".Config; @"".fset *@"go/token".FileSet; @"".output []byte; @"".indent int; @"".mode @"".pmode; @"".impliedSemi bool; @"".lastTok @"go/token".Token; @"".wsbuf []@"".whiteSpace; @"".pos @"go/token".Position; @"".out @"go/token".Position; @"".last @"go/token".Position; @"".comments []*@"go/ast".CommentGroup; @"".cindex int; @"".useNodeComments bool; @"".comment *@"go/ast".CommentGroup; @"".commentOffset int; @"".commentNewline bool; @"".nodeSizes map[@"go/ast".Node]int; @"".cachedPos @"go/token".Pos; @"".cachedLine int }
+func (? *@"".printer) @"".adjBlock(@"".headerSize int, @"".sep @"".whiteSpace, @"".b *@"go/ast".BlockStmt) ()
+func (? *@"".printer) @"".atLineBegin(@"".pos @"go/token".Position) ()
+func (? *@"".printer) @"".binaryExpr(@"".x *@"go/ast".BinaryExpr, @"".prec1 int, @"".cutoff int, @"".depth int) ()
+func (? *@"".printer) @"".block(@"".b *@"go/ast".BlockStmt, @"".nindent int) ()
+func (? *@"".printer) @"".bodySize(@"".b *@"go/ast".BlockStmt, @"".maxSize int) (? int)
+func (? *@"".printer) @"".commentBefore(@"".next @"go/token".Position) (@"".result bool)
+func (? *@"".printer) @"".commentsHaveNewline(@"".list []*@"go/ast".Comment) (? bool)
+func (? *@"".printer) @"".controlClause(@"".isForStmt bool, @"".init @"go/ast".Stmt, @"".expr @"go/ast".Expr, @"".post @"go/ast".Stmt) ()
+func (? *@"".printer) @"".decl(@"".decl @"go/ast".Decl) ()
+func (? *@"".printer) @"".declList(@"".list []@"go/ast".Decl) ()
+func (? *@"".printer) @"".distanceFrom(@"".from @"go/token".Pos) (? int)
+func (? *@"".printer) @"".expr(@"".x @"go/ast".Expr) ()
+func (? *@"".printer) @"".expr0(@"".x @"go/ast".Expr, @"".depth int) ()
+func (? *@"".printer) @"".expr1(@"".expr @"go/ast".Expr, @"".prec1 int, @"".depth int) ()
+func (? *@"".printer) @"".exprList(@"".prev0 @"go/token".Pos, @"".list []@"go/ast".Expr, @"".depth int, @"".mode @"".exprListMode, @"".next0 @"go/token".Pos) ()
+func (? *@"".printer) @"".fieldList(@"".fields *@"go/ast".FieldList, @"".isStruct bool, @"".isIncomplete bool) ()
+func (? *@"".printer) @"".file(@"".src *@"go/ast".File) ()
+func (? *@"".printer) @"".flush(@"".next @"go/token".Position, @"".tok @"go/token".Token) (@"".wroteNewline bool, @"".droppedFF bool)
+func (? *@"".printer) @"".funcDecl(@"".d *@"go/ast".FuncDecl) ()
+func (? *@"".printer) @"".genDecl(@"".d *@"go/ast".GenDecl) ()
+func (? *@"".printer) @"".identList(@"".list []*@"go/ast".Ident, @"".indent bool) ()
+func (? *@"".printer) @"".indentList(@"".list []@"go/ast".Expr) (? bool)
+func (? *@"".printer) @"".init(@"".cfg *@"".Config, @"".fset *@"go/token".FileSet, @"".nodeSizes map[@"go/ast".Node]int) ()
+func (? *@"".printer) @"".internalError(@"".msg ...interface {  }) ()
+func (? *@"".printer) @"".intersperseComments(@"".next @"go/token".Position, @"".tok @"go/token".Token) (@"".wroteNewline bool, @"".droppedFF bool)
+func (? *@"".printer) @"".isMultiLine(@"".n @"go/ast".Node) (? bool)
+func (? *@"".printer) @"".isOneLineFieldList(@"".list []*@"go/ast".Field) (? bool)
+func (? *@"".printer) @"".lineFor(@"".pos @"go/token".Pos) (? int)
+func (? *@"".printer) @"".linebreak(@"".line int, @"".min int, @"".ws @"".whiteSpace, @"".newSection bool) (@"".printedBreak bool)
+func (? *@"".printer) @"".nextComment() ()
+func (? *@"".printer) @"".nodeSize(@"".n @"go/ast".Node, @"".maxSize int) (@"".size int)
+func (? *@"".printer) @"".parameters(@"".fields *@"go/ast".FieldList) ()
+func (? *@"".printer) @"".posFor(@"".pos @"go/token".Pos) (? @"go/token".Position)
+func (? *@"".printer) @"".print(@"".args ...interface {  }) ()
+func (? *@"".printer) @"".printNode(@"".node interface {  }) (? error)
+func (? *@"".printer) @"".setComment(@"".g *@"go/ast".CommentGroup) ()
+func (? *@"".printer) @"".setLineComment(@"".text string) ()
+func (? *@"".printer) @"".signature(@"".params *@"go/ast".FieldList, @"".result *@"go/ast".FieldList) ()
+func (? *@"".printer) @"".spec(@"".spec @"go/ast".Spec, @"".n int, @"".doIndent bool) ()
+func (? *@"".printer) @"".stmt(@"".stmt @"go/ast".Stmt, @"".nextIsRBrace bool) ()
+func (? *@"".printer) @"".stmtList(@"".list []@"go/ast".Stmt, @"".nindent int, @"".nextIsRBrace bool) ()
+func (? *@"".printer) @"".valueSpec(@"".s *@"go/ast".ValueSpec, @"".keepType bool) ()
+func (? *@"".printer) @"".writeByte(@"".ch byte, @"".n int) ()
+func (? *@"".printer) @"".writeComment(@"".comment *@"go/ast".Comment) ()
+func (? *@"".printer) @"".writeCommentPrefix(@"".pos @"go/token".Position, @"".next @"go/token".Position, @"".prev *@"go/ast".Comment, @"".comment *@"go/ast".Comment, @"".tok @"go/token".Token) ()
+func (? *@"".printer) @"".writeCommentSuffix(@"".needsLinebreak bool) (@"".wroteNewline bool, @"".droppedFF bool)
+func (? *@"".printer) @"".writeString(@"".pos @"go/token".Position, @"".s string, @"".isLit bool) ()
+func (? *@"".printer) @"".writeWhitespace(@"".n int) ()
+type @"".trimmer struct { @"".output @"io".Writer; @"".state int; @"".space []byte }
+func (? *@"".trimmer) @"".Write(@"".data []byte) (@"".n int, @"".err error)
+func (? *@"".trimmer) @"".resetSpace() ()
+type @"".whiteSpace byte
+type @"go/ast".CommentGroup struct { @"go/ast".List []*@"go/ast".Comment }
+func (? *@"go/ast".CommentGroup) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".CommentGroup) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".CommentGroup) @"go/ast".Text() (? string)
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+import sync "sync"
+type @"go/token".FileSet struct { @"go/token".mutex @"sync".RWMutex; @"go/token".base int; @"go/token".files []*@"go/token".File; @"go/token".last *@"go/token".File }
+func (? *@"go/token".FileSet) @"go/token".AddFile(@"go/token".filename string, @"go/token".base int, @"go/token".size int) (? *@"go/token".File)
+func (? *@"go/token".FileSet) @"go/token".Base() (? int)
+func (? *@"go/token".FileSet) @"go/token".File(@"go/token".p @"go/token".Pos) (@"go/token".f *@"go/token".File)
+func (? *@"go/token".FileSet) @"go/token".Iterate(@"go/token".f func (? *@"go/token".File) (? bool)) ()
+func (? *@"go/token".FileSet) @"go/token".Position(@"go/token".p @"go/token".Pos) (@"go/token".pos @"go/token".Position)
+func (? *@"go/token".FileSet) @"go/token".Read(@"go/token".decode func (? interface {  }) (? error)) (? error)
+func (? *@"go/token".FileSet) @"go/token".Write(@"go/token".encode func (? interface {  }) (? error)) (? error)
+func (? *@"go/token".FileSet) @"go/token".file(@"go/token".p @"go/token".Pos) (? *@"go/token".File)
+type @"go/ast".Node interface { @"go/ast".End() (? @"go/token".Pos); @"go/ast".Pos() (? @"go/token".Pos) }
+type @"go/token".Token int
+func (? @"go/token".Token) @"go/token".IsKeyword() (? bool)
+func (? @"go/token".Token) @"go/token".IsLiteral() (? bool)
+func (? @"go/token".Token) @"go/token".IsOperator() (? bool)
+func (? @"go/token".Token) @"go/token".Precedence() (? int)
+func (? @"go/token".Token) @"go/token".String() (? string)
+func (? *@"go/token".Token) @"go/token".IsKeyword() (? bool)
+func (? *@"go/token".Token) @"go/token".IsLiteral() (? bool)
+func (? *@"go/token".Token) @"go/token".IsOperator() (? bool)
+func (? *@"go/token".Token) @"go/token".Precedence() (? int)
+func (? *@"go/token".Token) @"go/token".String() (? string)
+type @"go/token".Position struct { @"go/token".Filename string; @"go/token".Offset int; @"go/token".Line int; @"go/token".Column int }
+func (? @"go/token".Position) @"go/token".String() (? string)
+func (? *@"go/token".Position) @"go/token".IsValid() (? bool)
+func (? *@"go/token".Position) @"go/token".String() (? string)
+type @"go/token".Pos int
+func (? @"go/token".Pos) @"go/token".IsValid() (? bool)
+func (? *@"go/token".Pos) @"go/token".IsValid() (? bool)
+type @"go/ast".BlockStmt struct { @"go/ast".Lbrace @"go/token".Pos; @"go/ast".List []@"go/ast".Stmt; @"go/ast".Rbrace @"go/token".Pos }
+func (? *@"go/ast".BlockStmt) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".BlockStmt) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".BlockStmt) @"go/ast".stmtNode() ()
+type @"go/ast".BinaryExpr struct { @"go/ast".X @"go/ast".Expr; @"go/ast".OpPos @"go/token".Pos; @"go/ast".Op @"go/token".Token; @"go/ast".Y @"go/ast".Expr }
+func (? *@"go/ast".BinaryExpr) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".BinaryExpr) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".BinaryExpr) @"go/ast".exprNode() ()
+type @"go/ast".Comment struct { @"go/ast".Slash @"go/token".Pos; @"go/ast".Text string }
+func (? *@"go/ast".Comment) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".Comment) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".Stmt interface { @"go/ast".End() (? @"go/token".Pos); @"go/ast".Pos() (? @"go/token".Pos); @"go/ast".stmtNode() () }
+type @"go/ast".Expr interface { @"go/ast".End() (? @"go/token".Pos); @"go/ast".Pos() (? @"go/token".Pos); @"go/ast".exprNode() () }
+type @"go/ast".Decl interface { @"go/ast".End() (? @"go/token".Pos); @"go/ast".Pos() (? @"go/token".Pos); @"go/ast".declNode() () }
+type @"go/ast".FieldList struct { @"go/ast".Opening @"go/token".Pos; @"go/ast".List []*@"go/ast".Field; @"go/ast".Closing @"go/token".Pos }
+func (? *@"go/ast".FieldList) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".FieldList) @"go/ast".NumFields() (? int)
+func (? *@"go/ast".FieldList) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".File struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".Package @"go/token".Pos; @"go/ast".Name *@"go/ast".Ident; @"go/ast".Decls []@"go/ast".Decl; @"go/ast".Scope *@"go/ast".Scope; @"go/ast".Imports []*@"go/ast".ImportSpec; @"go/ast".Unresolved []*@"go/ast".Ident; @"go/ast".Comments []*@"go/ast".CommentGroup }
+func (? *@"go/ast".File) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".File) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".FuncDecl struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".Recv *@"go/ast".FieldList; @"go/ast".Name *@"go/ast".Ident; @"go/ast".Type *@"go/ast".FuncType; @"go/ast".Body *@"go/ast".BlockStmt }
+func (? *@"go/ast".FuncDecl) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".FuncDecl) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".FuncDecl) @"go/ast".declNode() ()
+type @"go/ast".GenDecl struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".TokPos @"go/token".Pos; @"go/ast".Tok @"go/token".Token; @"go/ast".Lparen @"go/token".Pos; @"go/ast".Specs []@"go/ast".Spec; @"go/ast".Rparen @"go/token".Pos }
+func (? *@"go/ast".GenDecl) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".GenDecl) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".GenDecl) @"go/ast".declNode() ()
+type @"go/ast".Ident struct { @"go/ast".NamePos @"go/token".Pos; @"go/ast".Name string; @"go/ast".Obj *@"go/ast".Object }
+func (? *@"go/ast".Ident) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".Ident) @"go/ast".IsExported() (? bool)
+func (? *@"go/ast".Ident) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".Ident) @"go/ast".String() (? string)
+func (? *@"go/ast".Ident) @"go/ast".exprNode() ()
+type @"go/ast".Field struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".Names []*@"go/ast".Ident; @"go/ast".Type @"go/ast".Expr; @"go/ast".Tag *@"go/ast".BasicLit; @"go/ast".Comment *@"go/ast".CommentGroup }
+func (? *@"go/ast".Field) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".Field) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".Spec interface { @"go/ast".End() (? @"go/token".Pos); @"go/ast".Pos() (? @"go/token".Pos); @"go/ast".specNode() () }
+type @"go/ast".ValueSpec struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".Names []*@"go/ast".Ident; @"go/ast".Type @"go/ast".Expr; @"go/ast".Values []@"go/ast".Expr; @"go/ast".Comment *@"go/ast".CommentGroup }
+func (? *@"go/ast".ValueSpec) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".ValueSpec) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".ValueSpec) @"go/ast".specNode() ()
+type @"sync".RWMutex struct { @"sync".w @"sync".Mutex; @"sync".writerSem uint32; @"sync".readerSem uint32; @"sync".readerCount int32; @"sync".readerWait int32 }
+func (? *@"sync".RWMutex) @"sync".Lock() ()
+func (? *@"sync".RWMutex) @"sync".RLock() ()
+func (? *@"sync".RWMutex) @"sync".RLocker() (? @"sync".Locker)
+func (? *@"sync".RWMutex) @"sync".RUnlock() ()
+func (? *@"sync".RWMutex) @"sync".Unlock() ()
+type @"go/token".File struct { @"go/token".set *@"go/token".FileSet; @"go/token".name string; @"go/token".base int; @"go/token".size int; @"go/token".lines []int; @"go/token".infos []@"go/token".lineInfo }
+func (? *@"go/token".File) @"go/token".AddLine(@"go/token".offset int) ()
+func (? *@"go/token".File) @"go/token".AddLineInfo(@"go/token".offset int, @"go/token".filename string, @"go/token".line int) ()
+func (? *@"go/token".File) @"go/token".Base() (? int)
+func (? *@"go/token".File) @"go/token".Line(@"go/token".p @"go/token".Pos) (? int)
+func (? *@"go/token".File) @"go/token".LineCount() (? int)
+func (? *@"go/token".File) @"go/token".MergeLine(@"go/token".line int) ()
+func (? *@"go/token".File) @"go/token".Name() (? string)
+func (? *@"go/token".File) @"go/token".Offset(@"go/token".p @"go/token".Pos) (? int)
+func (? *@"go/token".File) @"go/token".Pos(@"go/token".offset int) (? @"go/token".Pos)
+func (? *@"go/token".File) @"go/token".Position(@"go/token".p @"go/token".Pos) (@"go/token".pos @"go/token".Position)
+func (? *@"go/token".File) @"go/token".SetLines(@"go/token".lines []int) (? bool)
+func (? *@"go/token".File) @"go/token".SetLinesForContent(@"go/token".content []byte) ()
+func (? *@"go/token".File) @"go/token".Size() (? int)
+func (? *@"go/token".File) @"go/token".info(@"go/token".offset int) (@"go/token".filename string, @"go/token".line int, @"go/token".column int)
+func (? *@"go/token".File) @"go/token".position(@"go/token".p @"go/token".Pos) (@"go/token".pos @"go/token".Position)
+type @"go/ast".Scope struct { @"go/ast".Outer *@"go/ast".Scope; @"go/ast".Objects map[string]*@"go/ast".Object }
+func (? *@"go/ast".Scope) @"go/ast".Insert(@"go/ast".obj *@"go/ast".Object) (@"go/ast".alt *@"go/ast".Object)
+func (? *@"go/ast".Scope) @"go/ast".Lookup(@"go/ast".name string) (? *@"go/ast".Object)
+func (? *@"go/ast".Scope) @"go/ast".String() (? string)
+type @"go/ast".ImportSpec struct { @"go/ast".Doc *@"go/ast".CommentGroup; @"go/ast".Name *@"go/ast".Ident; @"go/ast".Path *@"go/ast".BasicLit; @"go/ast".Comment *@"go/ast".CommentGroup; @"go/ast".EndPos @"go/token".Pos }
+func (? *@"go/ast".ImportSpec) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".ImportSpec) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".ImportSpec) @"go/ast".specNode() ()
+type @"go/ast".FuncType struct { @"go/ast".Func @"go/token".Pos; @"go/ast".Params *@"go/ast".FieldList; @"go/ast".Results *@"go/ast".FieldList }
+func (? *@"go/ast".FuncType) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".FuncType) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".FuncType) @"go/ast".exprNode() ()
+type @"go/ast".Object struct { @"go/ast".Kind @"go/ast".ObjKind; @"go/ast".Name string; @"go/ast".Decl interface {  }; @"go/ast".Data interface {  }; @"go/ast".Type interface {  } }
+func (? *@"go/ast".Object) @"go/ast".Pos() (? @"go/token".Pos)
+type @"go/ast".BasicLit struct { @"go/ast".ValuePos @"go/token".Pos; @"go/ast".Kind @"go/token".Token; @"go/ast".Value string }
+func (? *@"go/ast".BasicLit) @"go/ast".End() (? @"go/token".Pos)
+func (? *@"go/ast".BasicLit) @"go/ast".Pos() (? @"go/token".Pos)
+func (? *@"go/ast".BasicLit) @"go/ast".exprNode() ()
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
+type @"go/token".lineInfo struct { @"go/token".Offset int; @"go/token".Filename string; @"go/token".Line int }
+type @"go/ast".ObjKind int
+func (? @"go/ast".ObjKind) @"go/ast".String() (? string)
+func (? *@"go/ast".ObjKind) @"go/ast".String() (? string)
+$$
+0Îruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
+go/scannergo/asttext/tabwriter
+go/printerƒ›Ú	var bytes = go$packages["bytes"];
+	var ast = go$packages["go/ast"];
+	var token = go$packages["go/token"];
+	var utf8 = go$packages["unicode/utf8"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var os = go$packages["os"];
+	var strconv = go$packages["strconv"];
+	var strings = go$packages["strings"];
+	var tabwriter = go$packages["text/tabwriter"];
+	var unicode = go$packages["unicode"];
+	var exprListMode;
+	exprListMode = go$newType(4, "Uint", "printer.exprListMode", "exprListMode", "go/printer", null);
+	go$pkg.exprListMode = exprListMode;
+	var whiteSpace;
+	whiteSpace = go$newType(1, "Uint8", "printer.whiteSpace", "whiteSpace", "go/printer", null);
+	go$pkg.whiteSpace = whiteSpace;
+	var pmode;
+	pmode = go$newType(4, "Int", "printer.pmode", "pmode", "go/printer", null);
+	go$pkg.pmode = pmode;
+	var printer;
+	printer = go$newType(0, "Struct", "printer.printer", "printer", "go/printer", function(Config_, fset_, output_, indent_, mode_, impliedSemi_, lastTok_, wsbuf_, pos_, out_, last_, comments_, cindex_, useNodeComments_, comment_, commentOffset_, commentNewline_, nodeSizes_, cachedPos_, cachedLine_) {
+		this.go$val = this;
+		this.Config = Config_ !== undefined ? Config_ : new Config.Ptr();
+		this.fset = fset_ !== undefined ? fset_ : (go$ptrType(token.FileSet)).nil;
+		this.output = output_ !== undefined ? output_ : (go$sliceType(Go$Uint8)).nil;
+		this.indent = indent_ !== undefined ? indent_ : 0;
+		this.mode = mode_ !== undefined ? mode_ : 0;
+		this.impliedSemi = impliedSemi_ !== undefined ? impliedSemi_ : false;
+		this.lastTok = lastTok_ !== undefined ? lastTok_ : 0;
+		this.wsbuf = wsbuf_ !== undefined ? wsbuf_ : (go$sliceType(whiteSpace)).nil;
+		this.pos = pos_ !== undefined ? pos_ : new token.Position.Ptr();
+		this.out = out_ !== undefined ? out_ : new token.Position.Ptr();
+		this.last = last_ !== undefined ? last_ : new token.Position.Ptr();
+		this.comments = comments_ !== undefined ? comments_ : (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
+		this.cindex = cindex_ !== undefined ? cindex_ : 0;
+		this.useNodeComments = useNodeComments_ !== undefined ? useNodeComments_ : false;
+		this.comment = comment_ !== undefined ? comment_ : (go$ptrType(ast.CommentGroup)).nil;
+		this.commentOffset = commentOffset_ !== undefined ? commentOffset_ : 0;
+		this.commentNewline = commentNewline_ !== undefined ? commentNewline_ : false;
+		this.nodeSizes = nodeSizes_ !== undefined ? nodeSizes_ : false;
+		this.cachedPos = cachedPos_ !== undefined ? cachedPos_ : 0;
+		this.cachedLine = cachedLine_ !== undefined ? cachedLine_ : 0;
+	});
+	printer.prototype.Fprint = function(output, fset, node) { return this.go$val.Fprint(output, fset, node); };
+	printer.Ptr.prototype.Fprint = function(output, fset, node) { return this.Config.Fprint(output, fset, node); };
+	printer.prototype.fprint = function(output, fset, node, nodeSizes) { return this.go$val.fprint(output, fset, node, nodeSizes); };
+	printer.Ptr.prototype.fprint = function(output, fset, node, nodeSizes) { return this.Config.fprint(output, fset, node, nodeSizes); };
+	go$pkg.printer = printer;
+	var trimmer;
+	trimmer = go$newType(0, "Struct", "printer.trimmer", "trimmer", "go/printer", function(output_, state_, space_) {
+		this.go$val = this;
+		this.output = output_ !== undefined ? output_ : null;
+		this.state = state_ !== undefined ? state_ : 0;
+		this.space = space_ !== undefined ? space_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.trimmer = trimmer;
+	var Mode;
+	Mode = go$newType(4, "Uint", "printer.Mode", "Mode", "go/printer", null);
+	go$pkg.Mode = Mode;
+	var Config;
+	Config = go$newType(0, "Struct", "printer.Config", "Config", "go/printer", function(Mode_, Tabwidth_, Indent_) {
+		this.go$val = this;
+		this.Mode = Mode_ !== undefined ? Mode_ : 0;
+		this.Tabwidth = Tabwidth_ !== undefined ? Tabwidth_ : 0;
+		this.Indent = Indent_ !== undefined ? Indent_ : 0;
+	});
+	go$pkg.Config = Config;
+	var CommentedNode;
+	CommentedNode = go$newType(0, "Struct", "printer.CommentedNode", "CommentedNode", "go/printer", function(Node_, Comments_) {
+		this.go$val = this;
+		this.Node = Node_ !== undefined ? Node_ : null;
+		this.Comments = Comments_ !== undefined ? Comments_ : (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
+	});
+	go$pkg.CommentedNode = CommentedNode;
+	printer.init([["", "", Config, ""], ["fset", "go/printer", (go$ptrType(token.FileSet)), ""], ["output", "go/printer", (go$sliceType(Go$Uint8)), ""], ["indent", "go/printer", Go$Int, ""], ["mode", "go/printer", pmode, ""], ["impliedSemi", "go/printer", Go$Bool, ""], ["lastTok", "go/printer", token.Token, ""], ["wsbuf", "go/printer", (go$sliceType(whiteSpace)), ""], ["pos", "go/printer", token.Position, ""], ["out", "go/printer", token.Position, ""], ["last", "go/printer", token.Position, ""], ["comments", "go/printer", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""], ["cindex", "go/printer", Go$Int, ""], ["useNodeComments", "go/printer", Go$Bool, ""], ["comment", "go/printer", (go$ptrType(ast.CommentGroup)), ""], ["commentOffset", "go/printer", Go$Int, ""], ["commentNewline", "go/printer", Go$Bool, ""], ["nodeSizes", "go/printer", (go$mapType(ast.Node, Go$Int)), ""], ["cachedPos", "go/printer", token.Pos, ""], ["cachedLine", "go/printer", Go$Int, ""]]);
+	(go$ptrType(printer)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false], ["adjBlock", "go/printer", [Go$Int, whiteSpace, (go$ptrType(ast.BlockStmt))], [], false], ["atLineBegin", "go/printer", [token.Position], [], false], ["binaryExpr", "go/printer", [(go$ptrType(ast.BinaryExpr)), Go$Int, Go$Int, Go$Int], [], false], ["block", "go/printer", [(go$ptrType(ast.BlockStmt)), Go$Int], [], false], ["bodySize", "go/printer", [(go$ptrType(ast.BlockStmt)), Go$Int], [Go$Int], false], ["commentBefore", "go/printer", [token.Position], [Go$Bool], false], ["commentsHaveNewline", "go/printer", [(go$sliceType((go$ptrType(ast.Comment))))], [Go$Bool], false], ["controlClause", "go/printer", [Go$Bool, ast.Stmt, ast.Expr, ast.Stmt], [], false], ["decl", "go/printer", [ast.Decl], [], false], ["declList", "go/printer", [(go$sliceType(ast.Decl))], [], false], ["distanceFrom", "go/printer", [token.Pos], [Go$Int], false], ["expr", "go/printer", [ast.Expr], [], false], ["expr0", "go/printer", [ast.Expr, Go$Int], [], false], ["expr1", "go/printer", [ast.Expr, Go$Int, Go$Int], [], false], ["exprList", "go/printer", [token.Pos, (go$sliceType(ast.Expr)), Go$Int, exprListMode, token.Pos], [], false], ["fieldList", "go/printer", [(go$ptrType(ast.FieldList)), Go$Bool, Go$Bool], [], false], ["file", "go/printer", [(go$ptrType(ast.File))], [], false], ["flush", "go/printer", [token.Position, token.Token], [Go$Bool, Go$Bool], false], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false], ["funcDecl", "go/printer", [(go$ptrType(ast.FuncDecl))], [], false], ["genDecl", "go/printer", [(go$ptrType(ast.GenDecl))], [], false], ["identList", "go/printer", [(go$sliceType((go$ptrType(ast.Ident)))), Go$Bool], [], false], ["indentList", "go/printer", [(go$sliceType(ast.Expr))], [Go$Bool], false], ["init", "go/printer", [(go$ptrType(Config)), (go$ptrType(token.FileSet)), (go$mapType(ast.Node, Go$Int))], [], false], ["internalError", "go/printer", [(go$sliceType(go$emptyInterface))], [], true], ["intersperseComments", "go/printer", [token.Position, token.Token], [Go$Bool, Go$Bool], false], ["isMultiLine", "go/printer", [ast.Node], [Go$Bool], false], ["isOneLineFieldList", "go/printer", [(go$sliceType((go$ptrType(ast.Field))))], [Go$Bool], false], ["lineFor", "go/printer", [token.Pos], [Go$Int], false], ["linebreak", "go/printer", [Go$Int, Go$Int, whiteSpace, Go$Bool], [Go$Bool], false], ["nextComment", "go/printer", [], [], false], ["nodeSize", "go/printer", [ast.Node, Go$Int], [Go$Int], false], ["parameters", "go/printer", [(go$ptrType(ast.FieldList))], [], false], ["posFor", "go/printer", [token.Pos], [token.Position], false], ["print", "go/printer", [(go$sliceType(go$emptyInterface))], [], true], ["printNode", "go/printer", [go$emptyInterface], [go$error], false], ["setComment", "go/printer", [(go$ptrType(ast.CommentGroup))], [], false], ["setLineComment", "go/printer", [Go$String], [], false], ["signature", "go/printer", [(go$ptrType(ast.FieldList)), (go$ptrType(ast.FieldList))], [], false], ["spec", "go/printer", [ast.Spec, Go$Int, Go$Bool], [], false], ["stmt", "go/printer", [ast.Stmt, Go$Bool], [], false], ["stmtList", "go/printer", [(go$sliceType(ast.Stmt)), Go$Int, Go$Bool], [], false], ["valueSpec", "go/printer", [(go$ptrType(ast.ValueSpec)), Go$Bool], [], false], ["writeByte", "go/printer", [Go$Uint8, Go$Int], [], false], ["writeComment", "go/printer", [(go$ptrType(ast.Comment))], [], false], ["writeCommentPrefix", "go/printer", [token.Position, token.Position, (go$ptrType(ast.Comment)), (go$ptrType(ast.Comment)), token.Token], [], false], ["writeCommentSuffix", "go/printer", [Go$Bool], [Go$Bool, Go$Bool], false], ["writeString", "go/printer", [token.Position, Go$String, Go$Bool], [], false], ["writeWhitespace", "go/printer", [Go$Int], [], false]];
+	trimmer.init([["output", "go/printer", io.Writer, ""], ["state", "go/printer", Go$Int, ""], ["space", "go/printer", (go$sliceType(Go$Uint8)), ""]]);
+	(go$ptrType(trimmer)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["resetSpace", "go/printer", [], [], false]];
+	Config.init([["Mode", "", Mode, ""], ["Tabwidth", "", Go$Int, ""], ["Indent", "", Go$Int, ""]]);
+	(go$ptrType(Config)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false]];
+	CommentedNode.init([["Node", "", go$emptyInterface, ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
+	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
+		var printedBreak, p, n;
+		printedBreak = false;
+		p = this;
+		n = nlimit(line - p.pos.Line >> 0);
+		if (n < min) {
+			n = min;
+		}
+		if (n > 0) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(ws)]));
+			if (newSection) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(12)]));
+				n = n - 1 >> 0;
+			}
+			while (n > 0) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10)]));
+				n = n - 1 >> 0;
+			}
+			printedBreak = true;
+		}
+		return printedBreak;
+	};
+	printer.prototype.linebreak = function(line, min, ws, newSection) { return this.go$val.linebreak(line, min, ws, newSection); };
+	printer.Ptr.prototype.setComment = function(g) {
+		var p, _slice, _index, _struct, _slice$1, _index$1;
+		p = this;
+		if (g === (go$ptrType(ast.CommentGroup)).nil || !p.useNodeComments) {
+			return;
+		}
+		if (p.comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil) {
+			p.comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).make(1, 0, function() { return (go$ptrType(ast.CommentGroup)).nil; });
+		} else if (p.cindex < p.comments.length) {
+			p.flush((_struct = p.posFor((_slice = g.List, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos()), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)), 0);
+			p.comments = go$subslice(p.comments, 0, 1);
+			p.internalError(new (go$sliceType(go$emptyInterface))([new Go$String("setComment found pending comments")]));
+		}
+		_slice$1 = p.comments, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = g) : go$throwRuntimeError("index out of range");
+		p.cindex = 0;
+		if (p.commentOffset === 1073741824) {
+			p.nextComment();
+		}
+	};
+	printer.prototype.setComment = function(g) { return this.go$val.setComment(g); };
+	printer.Ptr.prototype.identList = function(list, indent$1) {
+		var p, xlist, _ref, _i, _slice, _index, x, i, _slice$1, _index$1, mode;
+		p = this;
+		xlist = (go$sliceType(ast.Expr)).make(list.length, 0, function() { return null; });
+		_ref = list;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_slice$1 = xlist, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = x) : go$throwRuntimeError("index out of range");
+		}
+		mode = 0;
+		if (!indent$1) {
+			mode = 2;
+		}
+		p.exprList(0, xlist, 1, mode, 0);
+	};
+	printer.prototype.identList = function(list, indent$1) { return this.go$val.identList(list, indent$1); };
+	printer.Ptr.prototype.exprList = function(prev0, list, depth, mode, next0) {
+		var p, _struct, prev, _struct$1, next, _slice, _index, line, _slice$1, _index$1, endLine, _ref, _i, _slice$2, _index$2, x, i, ws, prevBreak, size, _ref$1, _i$1, _slice$3, _index$3, x$1, i$1, prevLine, useFF, prevSize, _tuple, pair, isPair, ratio, needsLinebreak, needsBlank;
+		p = this;
+		if (list.length === 0) {
+			return;
+		}
+		prev = (_struct = p.posFor(prev0), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+		next = (_struct$1 = p.posFor(next0), new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column));
+		line = p.lineFor((_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos());
+		endLine = p.lineFor((_slice$1 = list, _index$1 = (list.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).End());
+		if (prev.IsValid() && (prev.Line === line) && (line === endLine)) {
+			_ref = list;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				x = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				if (i > 0) {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Pos()), new token.Token(52), new whiteSpace(32)]));
+				}
+				p.expr0(x, depth);
+			}
+			return;
+		}
+		ws = 0;
+		if (((mode & 2) >>> 0) === 0) {
+			ws = 62;
+		}
+		prevBreak = -1;
+		if (prev.IsValid() && prev.Line < line && p.linebreak(line, 0, ws, true)) {
+			ws = 0;
+			prevBreak = 0;
+		}
+		size = 0;
+		_ref$1 = list;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			x$1 = (_slice$3 = _ref$1, _index$3 = _i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			i$1 = _i$1;
+			prevLine = line;
+			line = p.lineFor(x$1.Pos());
+			useFF = true;
+			prevSize = size;
+			size = p.nodeSize(x$1, 1000000);
+			_tuple = (x$1 !== null && x$1.constructor === (go$ptrType(ast.KeyValueExpr)) ? [x$1.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false]), pair = _tuple[0], isPair = _tuple[1];
+			if (size <= 1000000 && prev.IsValid() && next.IsValid()) {
+				if (isPair) {
+					size = p.nodeSize(pair.Key, 1000000);
+				}
+			} else {
+				size = 0;
+			}
+			if (prevSize > 0 && size > 0) {
+				if (prevSize <= 20 && size <= 20) {
+					useFF = false;
+				} else {
+					ratio = size / prevSize;
+					useFF = ratio <= 0.25 || 4 <= ratio;
+				}
+			}
+			if (i$1 > 0) {
+				needsLinebreak = prevLine < line && prevLine > 0 && line > 0;
+				if (!needsLinebreak) {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x$1.Pos())]));
+				}
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52)]));
+				needsBlank = true;
+				if (needsLinebreak) {
+					if (p.linebreak(line, 0, ws, useFF || (prevBreak + 1 >> 0) < i$1)) {
+						ws = 0;
+						prevBreak = i$1;
+						needsBlank = false;
+					}
+				}
+				if (needsBlank) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				}
+			}
+			if (isPair && size > 0 && list.length > 1) {
+				p.expr(pair.Key);
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(pair.Colon), new token.Token(58), new whiteSpace(11)]));
+				p.expr(pair.Value);
+			} else {
+				p.expr0(x$1, depth);
+			}
+		}
+		if (!((((mode & 1) >>> 0) === 0)) && next.IsValid() && p.pos.Line < next.Line) {
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52)]));
+			if ((ws === 0) && (((mode & 2) >>> 0) === 0)) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(12)]));
+			return;
+		}
+		if ((ws === 0) && (((mode & 2) >>> 0) === 0)) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+		}
+	};
+	printer.prototype.exprList = function(prev0, list, depth, mode, next0) { return this.go$val.exprList(prev0, list, depth, mode, next0); };
+	printer.Ptr.prototype.parameters = function(fields) {
+		var p, prevLine, ws, _ref, _i, _slice, _index, par, i, parLineBeg, _slice$1, _index$1, parLineEnd, needsLinebreak, closing;
+		p = this;
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(fields.Opening), new token.Token(49)]));
+		if (fields.List.length > 0) {
+			prevLine = p.lineFor(fields.Opening);
+			ws = 62;
+			_ref = fields.List;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				par = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				parLineBeg = 0;
+				if (par.Names.length > 0) {
+					parLineBeg = p.lineFor((_slice$1 = par.Names, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Pos());
+				} else {
+					parLineBeg = p.lineFor(par.Type.Pos());
+				}
+				parLineEnd = p.lineFor(par.Type.End());
+				needsLinebreak = 0 < prevLine && prevLine < parLineBeg;
+				if (i > 0) {
+					if (!needsLinebreak) {
+						p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(par.Pos())]));
+					}
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52)]));
+				}
+				if (needsLinebreak && p.linebreak(parLineBeg, 0, ws, true)) {
+					ws = 0;
+				} else if (i > 0) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				}
+				if (par.Names.length > 0) {
+					p.identList(par.Names, ws === 62);
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				}
+				p.expr(stripParensAlways(par.Type));
+				prevLine = parLineEnd;
+			}
+			if (closing = p.lineFor(fields.Closing), 0 < prevLine && prevLine < closing) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52)]));
+				p.linebreak(closing, 0, 0, true);
+			}
+			if (ws === 0) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+			}
+		}
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(fields.Closing), new token.Token(54)]));
+	};
+	printer.prototype.parameters = function(fields) { return this.go$val.parameters(fields); };
+	printer.Ptr.prototype.signature = function(params, result) {
+		var p, n, _slice, _index, _slice$1, _index$1;
+		p = this;
+		if (!(params === (go$ptrType(ast.FieldList)).nil)) {
+			p.parameters(params);
+		} else {
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(49), new token.Token(54)]));
+		}
+		n = result.NumFields();
+		if (n > 0) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			if ((n === 1) && (_slice = result.List, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Names === (go$sliceType((go$ptrType(ast.Ident)))).nil) {
+				p.expr(stripParensAlways((_slice$1 = result.List, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Type));
+				return;
+			}
+			p.parameters(result);
+		}
+	};
+	printer.prototype.signature = function(params, result) { return this.go$val.signature(params, result); };
+	var identListSize = function(list, maxSize) {
+		var size, _ref, _i, _slice, _index, x, i;
+		size = 0;
+		_ref = list;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (i > 0) {
+				size = size + 2 >> 0;
+			}
+			size = size + (utf8.RuneCountInString(x.Name)) >> 0;
+			if (size >= maxSize) {
+				break;
+			}
+		}
+		return size;
+	};
+	printer.Ptr.prototype.isOneLineFieldList = function(list) {
+		var p, _slice, _index, f, namesSize, typeSize;
+		p = this;
+		if (!((list.length === 1))) {
+			return false;
+		}
+		f = (_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (!(f.Tag === (go$ptrType(ast.BasicLit)).nil) || !(f.Comment === (go$ptrType(ast.CommentGroup)).nil)) {
+			return false;
+		}
+		namesSize = identListSize(f.Names, 30);
+		if (namesSize > 0) {
+			namesSize = 1;
+		}
+		typeSize = p.nodeSize(f.Type, 30);
+		return (namesSize + typeSize >> 0) <= 30;
+	};
+	printer.prototype.isOneLineFieldList = function(list) { return this.go$val.isOneLineFieldList(list); };
+	printer.Ptr.prototype.setLineComment = function(text) {
+		var p;
+		p = this;
+		p.setComment(new ast.CommentGroup.Ptr(new (go$sliceType((go$ptrType(ast.Comment))))([new ast.Comment.Ptr(0, text)])));
+	};
+	printer.prototype.setLineComment = function(text) { return this.go$val.setLineComment(text); };
+	printer.Ptr.prototype.isMultiLine = function(n) {
+		var p;
+		p = this;
+		return (p.lineFor(n.End()) - p.lineFor(n.Pos()) >> 0) > 0;
+	};
+	printer.prototype.isMultiLine = function(n) { return this.go$val.isMultiLine(n); };
+	printer.Ptr.prototype.fieldList = function(fields, isStruct, isIncomplete) {
+		var p, lbrace, list, rbrace, _struct, hasComments, srcIsOneLine, _slice, _index, f, _ref, _i, _slice$1, _index$1, x, i, sep, newSection, _ref$1, _i$1, _slice$2, _index$2, f$1, i$1, extraTabs, _struct$1, newSection$1, _ref$2, _i$2, _slice$3, _index$3, f$2, i$2, isFtyp, _tuple, x$1, ftyp, _slice$4, _index$4, _struct$2;
+		p = this;
+		lbrace = fields.Opening;
+		list = fields.List;
+		rbrace = fields.Closing;
+		hasComments = isIncomplete || p.commentBefore((_struct = p.posFor(rbrace), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)));
+		srcIsOneLine = (new token.Pos(lbrace)).IsValid() && (new token.Pos(rbrace)).IsValid() && (p.lineFor(lbrace) === p.lineFor(rbrace));
+		if (!hasComments && srcIsOneLine) {
+			if (list.length === 0) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(lbrace), new token.Token(51), new token.Pos(rbrace), new token.Token(56)]));
+				return;
+			} else if (isStruct && p.isOneLineFieldList(list)) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(lbrace), new token.Token(51), new whiteSpace(32)]));
+				f = (_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				_ref = f.Names;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					x = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+					i = _i;
+					if (i > 0) {
+						p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52), new whiteSpace(32)]));
+					}
+					p.expr(x);
+				}
+				if (f.Names.length > 0) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				}
+				p.expr(f.Type);
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(rbrace), new token.Token(56)]));
+				return;
+			}
+		}
+		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(lbrace), new token.Token(51), new whiteSpace(62)]));
+		if (hasComments || list.length > 0) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(12)]));
+		}
+		if (isStruct) {
+			sep = 11;
+			if (list.length === 1) {
+				sep = 32;
+			}
+			newSection = false;
+			_ref$1 = list;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				f$1 = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				i$1 = _i$1;
+				if (i$1 > 0) {
+					p.linebreak(p.lineFor(f$1.Pos()), 1, 0, newSection);
+				}
+				extraTabs = 0;
+				p.setComment(f$1.Doc);
+				if (f$1.Names.length > 0) {
+					p.identList(f$1.Names, false);
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(sep)]));
+					p.expr(f$1.Type);
+					extraTabs = 1;
+				} else {
+					p.expr(f$1.Type);
+					extraTabs = 2;
+				}
+				if (!(f$1.Tag === (go$ptrType(ast.BasicLit)).nil)) {
+					if (f$1.Names.length > 0 && (sep === 11)) {
+						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(sep)]));
+					}
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(sep)]));
+					p.expr(f$1.Tag);
+					extraTabs = 0;
+				}
+				if (!(f$1.Comment === (go$ptrType(ast.CommentGroup)).nil)) {
+					while (extraTabs > 0) {
+						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(sep)]));
+						extraTabs = extraTabs - 1 >> 0;
+					}
+					p.setComment(f$1.Comment);
+				}
+				newSection = p.isMultiLine(f$1);
+			}
+			if (isIncomplete) {
+				if (list.length > 0) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(12)]));
+				}
+				p.flush((_struct$1 = p.posFor(rbrace), new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), 56);
+				p.setLineComment("// contains filtered or unexported fields");
+			}
+		} else {
+			newSection$1 = false;
+			_ref$2 = list;
+			_i$2 = 0;
+			for (; _i$2 < _ref$2.length; _i$2 += 1) {
+				f$2 = (_slice$3 = _ref$2, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+				i$2 = _i$2;
+				if (i$2 > 0) {
+					p.linebreak(p.lineFor(f$2.Pos()), 1, 0, newSection$1);
+				}
+				p.setComment(f$2.Doc);
+				if (_tuple = (x$1 = f$2.Type, (x$1 !== null && x$1.constructor === (go$ptrType(ast.FuncType)) ? [x$1.go$val, true] : [(go$ptrType(ast.FuncType)).nil, false])), ftyp = _tuple[0], isFtyp = _tuple[1], isFtyp) {
+					p.expr((_slice$4 = f$2.Names, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")));
+					p.signature(ftyp.Params, ftyp.Results);
+				} else {
+					p.expr(f$2.Type);
+				}
+				p.setComment(f$2.Comment);
+				newSection$1 = p.isMultiLine(f$2);
+			}
+			if (isIncomplete) {
+				if (list.length > 0) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(12)]));
+				}
+				p.flush((_struct$2 = p.posFor(rbrace), new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column)), 56);
+				p.setLineComment("// contains filtered or unexported methods");
+			}
+		}
+		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12), new token.Pos(rbrace), new token.Token(56)]));
+	};
+	printer.prototype.fieldList = function(fields, isStruct, isIncomplete) { return this.go$val.fieldList(fields, isStruct, isIncomplete); };
+	var walkBinary = function(e) {
+		var has4, has5, maxProblem, _ref, l, _ref$1, _type, _tuple, h4, h5, mp, r, _ref$2, _type$1, _tuple$1, h4$1, h5$1, mp$1, _ref$3;
+		has4 = false;
+		has5 = false;
+		maxProblem = 0;
+		_ref = (new token.Token(e.Op)).Precedence();
+		if (_ref === 4) {
+			has4 = true;
+		} else if (_ref === 5) {
+			has5 = true;
+		}
+		_ref$1 = e.X;
+		_type = _ref$1 !== null ? _ref$1.constructor : null;
+		switch (undefined) {
+		default:
+			if (_type === (go$ptrType(ast.BinaryExpr))) {
+				l = _ref$1.go$val;
+				if ((new token.Token(l.Op)).Precedence() < (new token.Token(e.Op)).Precedence()) {
+					break;
+				}
+				_tuple = walkBinary(l), h4 = _tuple[0], h5 = _tuple[1], mp = _tuple[2];
+				has4 = has4 || h4;
+				has5 = has5 || h5;
+				if (maxProblem < mp) {
+					maxProblem = mp;
+				}
+			}
+		}
+		_ref$2 = e.Y;
+		_type$1 = _ref$2 !== null ? _ref$2.constructor : null;
+		switch (undefined) {
+		default:
+			if (_type$1 === (go$ptrType(ast.BinaryExpr))) {
+				r = _ref$2.go$val;
+				if ((new token.Token(r.Op)).Precedence() <= (new token.Token(e.Op)).Precedence()) {
+					break;
+				}
+				_tuple$1 = walkBinary(r), h4$1 = _tuple$1[0], h5$1 = _tuple$1[1], mp$1 = _tuple$1[2];
+				has4 = has4 || h4$1;
+				has5 = has5 || h5$1;
+				if (maxProblem < mp$1) {
+					maxProblem = mp$1;
+				}
+			} else if (_type$1 === (go$ptrType(ast.StarExpr))) {
+				r = _ref$2.go$val;
+				if (e.Op === 15) {
+					maxProblem = 5;
+				}
+			} else if (_type$1 === (go$ptrType(ast.UnaryExpr))) {
+				r = _ref$2.go$val;
+				_ref$3 = (new token.Token(e.Op)).String() + (new token.Token(r.Op)).String();
+				if (_ref$3 === "/*" || _ref$3 === "&&" || _ref$3 === "&^") {
+					maxProblem = 5;
+				} else if (_ref$3 === "++" || _ref$3 === "--") {
+					if (maxProblem < 4) {
+						maxProblem = 4;
+					}
+				}
+			}
+		}
+		return [has4, has5, maxProblem];
+	};
+	var cutoff = function(e, depth) {
+		var _tuple, has4, has5, maxProblem;
+		_tuple = walkBinary(e), has4 = _tuple[0], has5 = _tuple[1], maxProblem = _tuple[2];
+		if (maxProblem > 0) {
+			return maxProblem + 1 >> 0;
+		}
+		if (has4 && has5) {
+			if (depth === 1) {
+				return 5;
+			}
+			return 4;
+		}
+		if (depth === 1) {
+			return 6;
+		}
+		return 4;
+	};
+	var diffPrec = function(expr, prec) {
+		var _tuple, x, ok;
+		_tuple = (expr !== null && expr.constructor === (go$ptrType(ast.BinaryExpr)) ? [expr.go$val, true] : [(go$ptrType(ast.BinaryExpr)).nil, false]), x = _tuple[0], ok = _tuple[1];
+		if (!ok || !((prec === (new token.Token(x.Op)).Precedence()))) {
+			return 1;
+		}
+		return 0;
+	};
+	var reduceDepth = function(depth) {
+		depth = depth - 1 >> 0;
+		if (depth < 1) {
+			depth = 1;
+		}
+		return depth;
+	};
+	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, depth) {
+		var p, prec, printBlank, ws, xline, yline;
+		p = this;
+		prec = (new token.Token(x.Op)).Precedence();
+		if (prec < prec1) {
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(49)]));
+			p.expr0(x, reduceDepth(depth));
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(54)]));
+			return;
+		}
+		printBlank = prec < cutoff$1;
+		ws = 62;
+		p.expr1(x.X, prec, depth + diffPrec(x.X, prec) >> 0);
+		if (printBlank) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+		}
+		xline = p.pos.Line;
+		yline = p.lineFor(x.Y.Pos());
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.OpPos), new token.Token(x.Op)]));
+		if (!((xline === yline)) && xline > 0 && yline > 0) {
+			if (p.linebreak(yline, 1, ws, true)) {
+				ws = 0;
+				printBlank = false;
+			}
+		}
+		if (printBlank) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+		}
+		p.expr1(x.Y, prec + 1 >> 0, depth + 1 >> 0);
+		if (ws === 0) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+		}
+	};
+	printer.prototype.binaryExpr = function(x, prec1, cutoff$1, depth) { return this.go$val.binaryExpr(x, prec1, cutoff$1, depth); };
+	var isBinary = function(expr) {
+		var _tuple, ok;
+		_tuple = (expr !== null && expr.constructor === (go$ptrType(ast.BinaryExpr)) ? [expr.go$val, true] : [(go$ptrType(ast.BinaryExpr)).nil, false]), ok = _tuple[1];
+		return ok;
+	};
+	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) {
+		var p, x, _ref, _type, hasParens, _tuple, x$1, line, indices, _ref$1, _i, _slice, _index, y, i, _slice$1, _index$1, x$2, ok, _tuple$1, x$3, _ref$2;
+		p = this;
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(expr.Pos())]));
+		_ref = expr;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.BadExpr))) {
+			x = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new Go$String("BadExpr")]));
+		} else if (_type === (go$ptrType(ast.Ident))) {
+			x = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([x]));
+		} else if (_type === (go$ptrType(ast.BinaryExpr))) {
+			x = _ref.go$val;
+			if (depth < 1) {
+				p.internalError(new (go$sliceType(go$emptyInterface))([new Go$String("depth < 1:"), new Go$Int(depth)]));
+				depth = 1;
+			}
+			p.binaryExpr(x, prec1, cutoff(x, depth), depth);
+		} else if (_type === (go$ptrType(ast.KeyValueExpr))) {
+			x = _ref.go$val;
+			p.expr(x.Key);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Colon), new token.Token(58), new whiteSpace(32)]));
+			p.expr(x.Value);
+		} else if (_type === (go$ptrType(ast.StarExpr))) {
+			x = _ref.go$val;
+			if (6 < prec1) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(49)]));
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(14)]));
+				p.expr(x.X);
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(54)]));
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(14)]));
+				p.expr(x.X);
+			}
+		} else if (_type === (go$ptrType(ast.UnaryExpr))) {
+			x = _ref.go$val;
+			if (6 < prec1) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(49)]));
+				p.expr(x);
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(54)]));
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(x.Op)]));
+				if (x.Op === 79) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				}
+				p.expr1(x.X, 6, depth);
+			}
+		} else if (_type === (go$ptrType(ast.BasicLit))) {
+			x = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([x]));
+		} else if (_type === (go$ptrType(ast.FuncLit))) {
+			x = _ref.go$val;
+			p.expr(x.Type);
+			p.adjBlock(p.distanceFrom(x.Type.Pos()), 32, x.Body);
+		} else if (_type === (go$ptrType(ast.ParenExpr))) {
+			x = _ref.go$val;
+			if (_tuple = (x$1 = x.X, (x$1 !== null && x$1.constructor === (go$ptrType(ast.ParenExpr)) ? [x$1.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false])), hasParens = _tuple[1], hasParens) {
+				p.expr0(x.X, reduceDepth(depth));
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(49)]));
+				p.expr0(x.X, reduceDepth(depth));
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Rparen), new token.Token(54)]));
+			}
+		} else if (_type === (go$ptrType(ast.SelectorExpr))) {
+			x = _ref.go$val;
+			p.expr1(x.X, 7, depth);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(53)]));
+			if (line = p.lineFor(x.Sel.Pos()), p.pos.IsValid() && p.pos.Line < line) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62), new whiteSpace(10), new token.Pos(x.Sel.Pos()), x.Sel, new whiteSpace(60)]));
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Sel.Pos()), x.Sel]));
+			}
+		} else if (_type === (go$ptrType(ast.TypeAssertExpr))) {
+			x = _ref.go$val;
+			p.expr1(x.X, 7, depth);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(53), new token.Pos(x.Lparen), new token.Token(49)]));
+			if (!(go$interfaceIsEqual(x.Type, null))) {
+				p.expr(x.Type);
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(84)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Rparen), new token.Token(54)]));
+		} else if (_type === (go$ptrType(ast.IndexExpr))) {
+			x = _ref.go$val;
+			p.expr1(x.X, 7, 1);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Lbrack), new token.Token(50)]));
+			p.expr0(x.Index, depth + 1 >> 0);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Rbrack), new token.Token(55)]));
+		} else if (_type === (go$ptrType(ast.SliceExpr))) {
+			x = _ref.go$val;
+			p.expr1(x.X, 7, 1);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Lbrack), new token.Token(50)]));
+			indices = new (go$sliceType(ast.Expr))([x.Low, x.High]);
+			if (!(go$interfaceIsEqual(x.Max, null))) {
+				indices = go$append(indices, x.Max);
+			}
+			_ref$1 = indices;
+			_i = 0;
+			for (; _i < _ref$1.length; _i += 1) {
+				y = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				if (i > 0) {
+					x$2 = (_slice$1 = indices, _index$1 = (i - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+					if (depth <= 1 && !(go$interfaceIsEqual(x$2, null)) && !(go$interfaceIsEqual(y, null)) && (isBinary(x$2) || isBinary(y))) {
+						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Token(58), new whiteSpace(32)]));
+					} else {
+						p.print(new (go$sliceType(go$emptyInterface))([new token.Token(58)]));
+					}
+				}
+				if (!(go$interfaceIsEqual(y, null))) {
+					p.expr0(y, depth + 1 >> 0);
+				}
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Rbrack), new token.Token(55)]));
+		} else if (_type === (go$ptrType(ast.CallExpr))) {
+			x = _ref.go$val;
+			if (x.Args.length > 1) {
+				depth = depth + 1 >> 0;
+			}
+			if (_tuple$1 = (x$3 = x.Fun, (x$3 !== null && x$3.constructor === (go$ptrType(ast.FuncType)) ? [x$3.go$val, true] : [(go$ptrType(ast.FuncType)).nil, false])), ok = _tuple$1[1], ok) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(49)]));
+				p.expr1(x.Fun, 7, depth);
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(54)]));
+			} else {
+				p.expr1(x.Fun, 7, depth);
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Lparen), new token.Token(49)]));
+			if ((new token.Pos(x.Ellipsis)).IsValid()) {
+				p.exprList(x.Lparen, x.Args, depth, 0, x.Ellipsis);
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Ellipsis), new token.Token(48)]));
+				if ((new token.Pos(x.Rparen)).IsValid() && p.lineFor(x.Ellipsis) < p.lineFor(x.Rparen)) {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52), new whiteSpace(12)]));
+				}
+			} else {
+				p.exprList(x.Lparen, x.Args, depth, 1, x.Rparen);
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Rparen), new token.Token(54)]));
+		} else if (_type === (go$ptrType(ast.CompositeLit))) {
+			x = _ref.go$val;
+			if (!(go$interfaceIsEqual(x.Type, null))) {
+				p.expr1(x.Type, 7, depth);
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Lbrace), new token.Token(51)]));
+			p.exprList(x.Lbrace, x.Elts, 1, 1, x.Rbrace);
+			p.print(new (go$sliceType(go$emptyInterface))([new pmode(1), new token.Pos(x.Rbrace), new token.Token(56), new pmode(1)]));
+		} else if (_type === (go$ptrType(ast.Ellipsis))) {
+			x = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(48)]));
+			if (!(go$interfaceIsEqual(x.Elt, null))) {
+				p.expr(x.Elt);
+			}
+		} else if (_type === (go$ptrType(ast.ArrayType))) {
+			x = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(50)]));
+			if (!(go$interfaceIsEqual(x.Len, null))) {
+				p.expr(x.Len);
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(55)]));
+			p.expr(x.Elt);
+		} else if (_type === (go$ptrType(ast.StructType))) {
+			x = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(82)]));
+			p.fieldList(x.Fields, true, x.Incomplete);
+		} else if (_type === (go$ptrType(ast.FuncType))) {
+			x = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(71)]));
+			p.signature(x.Params, x.Results);
+		} else if (_type === (go$ptrType(ast.InterfaceType))) {
+			x = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(76)]));
+			p.fieldList(x.Methods, false, x.Incomplete);
+		} else if (_type === (go$ptrType(ast.MapType))) {
+			x = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(77), new token.Token(50)]));
+			p.expr(x.Key);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(55)]));
+			p.expr(x.Value);
+		} else if (_type === (go$ptrType(ast.ChanType))) {
+			x = _ref.go$val;
+			_ref$2 = x.Dir;
+			if (_ref$2 === 3) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(63)]));
+			} else if (_ref$2 === 2) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(36), new token.Token(63)]));
+			} else if (_ref$2 === 1) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(63), new token.Pos(x.Arrow), new token.Token(36)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			p.expr(x.Value);
+		} else {
+			x = _ref;
+			throw go$panic(new Go$String("unreachable"));
+		}
+		return;
+	};
+	printer.prototype.expr1 = function(expr, prec1, depth) { return this.go$val.expr1(expr, prec1, depth); };
+	printer.Ptr.prototype.expr0 = function(x, depth) {
+		var p;
+		p = this;
+		p.expr1(x, 0, depth);
+	};
+	printer.prototype.expr0 = function(x, depth) { return this.go$val.expr0(x, depth); };
+	printer.Ptr.prototype.expr = function(x) {
+		var p;
+		p = this;
+		p.expr1(x, 0, 1);
+	};
+	printer.prototype.expr = function(x) { return this.go$val.expr(x); };
+	printer.Ptr.prototype.stmtList = function(list, nindent, nextIsRBrace) {
+		var p, multiLine, i, _ref, _i, _slice, _index, s, isEmpty, _tuple;
+		p = this;
+		if (nindent > 0) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62)]));
+		}
+		multiLine = false;
+		i = 0;
+		_ref = list;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (_tuple = (s !== null && s.constructor === (go$ptrType(ast.EmptyStmt)) ? [s.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false]), isEmpty = _tuple[1], !isEmpty) {
+				if (p.output.length > 0) {
+					p.linebreak(p.lineFor(s.Pos()), 1, 0, (i === 0) || (nindent === 0) || multiLine);
+				}
+				p.stmt(s, nextIsRBrace && (i === (list.length - 1 >> 0)));
+				multiLine = p.isMultiLine(s);
+				i = i + 1 >> 0;
+			}
+		}
+		if (nindent > 0) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+		}
+	};
+	printer.prototype.stmtList = function(list, nindent, nextIsRBrace) { return this.go$val.stmtList(list, nindent, nextIsRBrace); };
+	printer.Ptr.prototype.block = function(b, nindent) {
+		var p;
+		p = this;
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(b.Lbrace), new token.Token(51)]));
+		p.stmtList(b.List, nindent, true);
+		p.linebreak(p.lineFor(b.Rbrace), 1, 0, true);
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(b.Rbrace), new token.Token(56)]));
+	};
+	printer.prototype.block = function(b, nindent) { return this.go$val.block(b, nindent); };
+	var isTypeName = function(x) {
+		var t, _ref, _type;
+		_ref = x;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.Ident))) {
+			t = _ref.go$val;
+			return true;
+		} else if (_type === (go$ptrType(ast.SelectorExpr))) {
+			t = _ref.go$val;
+			return isTypeName(t.X);
+		}
+		return false;
+	};
+	var stripParens = function(x) {
+		var strip, _tuple, px;
+		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), px = _tuple[0], strip = _tuple[1], strip) {
+			ast.Inspect(px.X, (function(node) {
+				var x$1, _ref, _type;
+				_ref = node;
+				_type = _ref !== null ? _ref.constructor : null;
+				if (_type === (go$ptrType(ast.ParenExpr))) {
+					x$1 = _ref.go$val;
+					return false;
+				} else if (_type === (go$ptrType(ast.CompositeLit))) {
+					x$1 = _ref.go$val;
+					if (isTypeName(x$1.Type)) {
+						strip = false;
+					}
+					return false;
+				}
+				return true;
+			}));
+			if (strip) {
+				return stripParens(px.X);
+			}
+		}
+		return x;
+	};
+	var stripParensAlways = function(x) {
+		var ok, _tuple, x$1;
+		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), x$1 = _tuple[0], ok = _tuple[1], ok) {
+			return stripParensAlways(x$1.X);
+		}
+		return x;
+	};
+	printer.Ptr.prototype.controlClause = function(isForStmt, init, expr, post) {
+		var p, needsBlank;
+		p = this;
+		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+		needsBlank = false;
+		if (go$interfaceIsEqual(init, null) && go$interfaceIsEqual(post, null)) {
+			if (!(go$interfaceIsEqual(expr, null))) {
+				p.expr(stripParens(expr));
+				needsBlank = true;
+			}
+		} else {
+			if (!(go$interfaceIsEqual(init, null))) {
+				p.stmt(init, false);
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(57), new whiteSpace(32)]));
+			if (!(go$interfaceIsEqual(expr, null))) {
+				p.expr(stripParens(expr));
+				needsBlank = true;
+			}
+			if (isForStmt) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(57), new whiteSpace(32)]));
+				needsBlank = false;
+				if (!(go$interfaceIsEqual(post, null))) {
+					p.stmt(post, false);
+					needsBlank = true;
+				}
+			}
+		}
+		if (needsBlank) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+		}
+	};
+	printer.prototype.controlClause = function(isForStmt, init, expr, post) { return this.go$val.controlClause(isForStmt, init, expr, post); };
+	printer.Ptr.prototype.indentList = function(list) {
+		var p, _slice, _index, b, _slice$1, _index$1, e, n, line, _ref, _i, _slice$2, _index$2, x, xb, xe;
+		p = this;
+		if (list.length >= 2) {
+			b = p.lineFor((_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos());
+			e = p.lineFor((_slice$1 = list, _index$1 = (list.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).End());
+			if (0 < b && b < e) {
+				n = 0;
+				line = b;
+				_ref = list;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					x = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+					xb = p.lineFor(x.Pos());
+					xe = p.lineFor(x.End());
+					if (line < xb) {
+						return true;
+					}
+					if (xb < xe) {
+						n = n + 1 >> 0;
+					}
+					line = xe;
+				}
+				return n > 1;
+			}
+		}
+		return false;
+	};
+	printer.prototype.indentList = function(list) { return this.go$val.indentList(list); };
+	printer.Ptr.prototype.stmt = function(stmt, nextIsRBrace) {
+		var p, s, _ref, _type, isEmpty, _tuple, x, e, depth, _ref$1, _type$1, body, _struct;
+		p = this;
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(stmt.Pos())]));
+		_ref = stmt;
+		_type = _ref !== null ? _ref.constructor : null;
+		switch (undefined) {
+		default:
+			if (_type === (go$ptrType(ast.BadStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new Go$String("BadStmt")]));
+			} else if (_type === (go$ptrType(ast.DeclStmt))) {
+				s = _ref.go$val;
+				p.decl(s.Decl);
+			} else if (_type === (go$ptrType(ast.EmptyStmt))) {
+				s = _ref.go$val;
+			} else if (_type === (go$ptrType(ast.LabeledStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+				p.expr(s.Label);
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58), new whiteSpace(62)]));
+				if (_tuple = (x = s.Stmt, (x !== null && x.constructor === (go$ptrType(ast.EmptyStmt)) ? [x.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false])), e = _tuple[0], isEmpty = _tuple[1], isEmpty) {
+					if (!nextIsRBrace) {
+						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10), new token.Pos(e.Pos()), new token.Token(57)]));
+						break;
+					}
+				} else {
+					p.linebreak(p.lineFor(s.Stmt.Pos()), 1, 0, true);
+				}
+				p.stmt(s.Stmt, nextIsRBrace);
+			} else if (_type === (go$ptrType(ast.ExprStmt))) {
+				s = _ref.go$val;
+				p.expr0(s.X, 1);
+			} else if (_type === (go$ptrType(ast.SendStmt))) {
+				s = _ref.go$val;
+				p.expr0(s.Chan, 1);
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.Arrow), new token.Token(36), new whiteSpace(32)]));
+				p.expr0(s.Value, 1);
+			} else if (_type === (go$ptrType(ast.IncDecStmt))) {
+				s = _ref.go$val;
+				p.expr0(s.X, 2);
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.TokPos), new token.Token(s.Tok)]));
+			} else if (_type === (go$ptrType(ast.AssignStmt))) {
+				s = _ref.go$val;
+				depth = 1;
+				if (s.Lhs.length > 1 && s.Rhs.length > 1) {
+					depth = depth + 1 >> 0;
+				}
+				p.exprList(s.Pos(), s.Lhs, depth, 0, s.TokPos);
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32)]));
+				p.exprList(s.TokPos, s.Rhs, depth, 0, 0);
+			} else if (_type === (go$ptrType(ast.GoStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(72), new whiteSpace(32)]));
+				p.expr(s.Call);
+			} else if (_type === (go$ptrType(ast.DeferStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(67), new whiteSpace(32)]));
+				p.expr(s.Call);
+			} else if (_type === (go$ptrType(ast.ReturnStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(80)]));
+				if (!(s.Results === (go$sliceType(ast.Expr)).nil)) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+					if (p.indentList(s.Results)) {
+						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62)]));
+						p.exprList(s.Pos(), s.Results, 1, 2, 0);
+						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+					} else {
+						p.exprList(s.Pos(), s.Results, 1, 0, 0);
+					}
+				}
+			} else if (_type === (go$ptrType(ast.BranchStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(s.Tok)]));
+				if (!(s.Label === (go$ptrType(ast.Ident)).nil)) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+					p.expr(s.Label);
+				}
+			} else if (_type === (go$ptrType(ast.BlockStmt))) {
+				s = _ref.go$val;
+				p.block(s, 1);
+			} else if (_type === (go$ptrType(ast.IfStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(74)]));
+				p.controlClause(false, s.Init, s.Cond, null);
+				p.block(s.Body, 1);
+				if (!(go$interfaceIsEqual(s.Else, null))) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Token(68), new whiteSpace(32)]));
+					_ref$1 = s.Else;
+					_type$1 = _ref$1 !== null ? _ref$1.constructor : null;
+					if (_type$1 === (go$ptrType(ast.BlockStmt)) || _type$1 === (go$ptrType(ast.IfStmt))) {
+						p.stmt(s.Else, nextIsRBrace);
+					} else {
+						p.print(new (go$sliceType(go$emptyInterface))([new token.Token(51), new whiteSpace(62), new whiteSpace(12)]));
+						p.stmt(s.Else, true);
+						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12), new token.Token(56)]));
+					}
+				}
+			} else if (_type === (go$ptrType(ast.CaseClause))) {
+				s = _ref.go$val;
+				if (!(s.List === (go$sliceType(ast.Expr)).nil)) {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
+					p.exprList(s.Pos(), s.List, 1, 0, s.Colon);
+				} else {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
+				}
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
+				p.stmtList(s.Body, 1, nextIsRBrace);
+			} else if (_type === (go$ptrType(ast.SwitchStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
+				p.controlClause(false, s.Init, s.Tag, null);
+				p.block(s.Body, 0);
+			} else if (_type === (go$ptrType(ast.TypeSwitchStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
+				if (!(go$interfaceIsEqual(s.Init, null))) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+					p.stmt(s.Init, false);
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(57)]));
+				}
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				p.stmt(s.Assign, false);
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				p.block(s.Body, 0);
+			} else if (_type === (go$ptrType(ast.CommClause))) {
+				s = _ref.go$val;
+				if (!(go$interfaceIsEqual(s.Comm, null))) {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
+					p.stmt(s.Comm, false);
+				} else {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
+				}
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
+				p.stmtList(s.Body, 1, nextIsRBrace);
+			} else if (_type === (go$ptrType(ast.SelectStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(81), new whiteSpace(32)]));
+				body = s.Body;
+				if ((body.List.length === 0) && !p.commentBefore((_struct = p.posFor(body.Rbrace), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)))) {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(body.Lbrace), new token.Token(51), new token.Pos(body.Rbrace), new token.Token(56)]));
+				} else {
+					p.block(body, 0);
+				}
+			} else if (_type === (go$ptrType(ast.ForStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70)]));
+				p.controlClause(true, s.Init, s.Cond, s.Post);
+				p.block(s.Body, 1);
+			} else if (_type === (go$ptrType(ast.RangeStmt))) {
+				s = _ref.go$val;
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70), new whiteSpace(32)]));
+				p.expr(s.Key);
+				if (!(go$interfaceIsEqual(s.Value, null))) {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Value.Pos()), new token.Token(52), new whiteSpace(32)]));
+					p.expr(s.Value);
+				}
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32), new token.Token(79), new whiteSpace(32)]));
+				p.expr(stripParens(s.X));
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				p.block(s.Body, 1);
+			} else {
+				s = _ref;
+				throw go$panic(new Go$String("unreachable"));
+			}
+		}
+		return;
+	};
+	printer.prototype.stmt = function(stmt, nextIsRBrace) { return this.go$val.stmt(stmt, nextIsRBrace); };
+	var keepTypeColumn = function(specs) {
+		var m, populate, i0, keepType, _ref, _i, _slice, _index, s, i, t;
+		m = (go$sliceType(Go$Bool)).make(specs.length, 0, function() { return false; });
+		populate = (function(i, j, keepType) {
+			var _slice, _index;
+			if (keepType) {
+				while (i < j) {
+					_slice = m, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = true) : go$throwRuntimeError("index out of range");
+					i = i + 1 >> 0;
+				}
+			}
+		});
+		i0 = -1;
+		keepType = false;
+		_ref = specs;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			t = (s !== null && s.constructor === (go$ptrType(ast.ValueSpec)) ? s.go$val : go$typeAssertionFailed(s, (go$ptrType(ast.ValueSpec))));
+			if (!(t.Values === (go$sliceType(ast.Expr)).nil)) {
+				if (i0 < 0) {
+					i0 = i;
+					keepType = false;
+				}
+			} else {
+				if (i0 >= 0) {
+					populate(i0, i, keepType);
+					i0 = -1;
+				}
+			}
+			if (!(go$interfaceIsEqual(t.Type, null))) {
+				keepType = true;
+			}
+		}
+		if (i0 >= 0) {
+			populate(i0, specs.length, keepType);
+		}
+		return m;
+	};
+	printer.Ptr.prototype.valueSpec = function(s, keepType) {
+		var p, extraTabs;
+		p = this;
+		p.setComment(s.Doc);
+		p.identList(s.Names, false);
+		extraTabs = 3;
+		if (!(go$interfaceIsEqual(s.Type, null)) || keepType) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(11)]));
+			extraTabs = extraTabs - 1 >> 0;
+		}
+		if (!(go$interfaceIsEqual(s.Type, null))) {
+			p.expr(s.Type);
+		}
+		if (!(s.Values === (go$sliceType(ast.Expr)).nil)) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(11), new token.Token(42), new whiteSpace(32)]));
+			p.exprList(0, s.Values, 1, 0, 0);
+			extraTabs = extraTabs - 1 >> 0;
+		}
+		if (!(s.Comment === (go$ptrType(ast.CommentGroup)).nil)) {
+			while (extraTabs > 0) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(11)]));
+				extraTabs = extraTabs - 1 >> 0;
+			}
+			p.setComment(s.Comment);
+		}
+	};
+	printer.prototype.valueSpec = function(s, keepType) { return this.go$val.valueSpec(s, keepType); };
+	printer.Ptr.prototype.spec = function(spec, n, doIndent) {
+		var p, s, _ref, _type;
+		p = this;
+		_ref = spec;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.ImportSpec))) {
+			s = _ref.go$val;
+			p.setComment(s.Doc);
+			if (!(s.Name === (go$ptrType(ast.Ident)).nil)) {
+				p.expr(s.Name);
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			}
+			p.expr(s.Path);
+			p.setComment(s.Comment);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.EndPos)]));
+		} else if (_type === (go$ptrType(ast.ValueSpec))) {
+			s = _ref.go$val;
+			if (!((n === 1))) {
+				p.internalError(new (go$sliceType(go$emptyInterface))([new Go$String("expected n = 1; got"), new Go$Int(n)]));
+			}
+			p.setComment(s.Doc);
+			p.identList(s.Names, doIndent);
+			if (!(go$interfaceIsEqual(s.Type, null))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				p.expr(s.Type);
+			}
+			if (!(s.Values === (go$sliceType(ast.Expr)).nil)) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Token(42), new whiteSpace(32)]));
+				p.exprList(0, s.Values, 1, 0, 0);
+			}
+			p.setComment(s.Comment);
+		} else if (_type === (go$ptrType(ast.TypeSpec))) {
+			s = _ref.go$val;
+			p.setComment(s.Doc);
+			p.expr(s.Name);
+			if (n === 1) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(11)]));
+			}
+			p.expr(s.Type);
+			p.setComment(s.Comment);
+		} else {
+			s = _ref;
+			throw go$panic(new Go$String("unreachable"));
+		}
+	};
+	printer.prototype.spec = function(spec, n, doIndent) { return this.go$val.spec(spec, n, doIndent); };
+	printer.Ptr.prototype.genDecl = function(d) {
+		var p, n, keepType, newSection, _ref, _i, _slice, _index, s, i, _slice$1, _index$1, newSection$1, _ref$1, _i$1, _slice$2, _index$2, s$1, i$1, _slice$3, _index$3;
+		p = this;
+		p.setComment(d.Doc);
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(d.Pos()), new token.Token(d.Tok), new whiteSpace(32)]));
+		if ((new token.Pos(d.Lparen)).IsValid()) {
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(d.Lparen), new token.Token(49)]));
+			if (n = d.Specs.length, n > 0) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62), new whiteSpace(12)]));
+				if (n > 1 && ((d.Tok === 64) || (d.Tok === 85))) {
+					keepType = keepTypeColumn(d.Specs);
+					newSection = false;
+					_ref = d.Specs;
+					_i = 0;
+					for (; _i < _ref.length; _i += 1) {
+						s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+						i = _i;
+						if (i > 0) {
+							p.linebreak(p.lineFor(s.Pos()), 1, 0, newSection);
+						}
+						p.valueSpec((s !== null && s.constructor === (go$ptrType(ast.ValueSpec)) ? s.go$val : go$typeAssertionFailed(s, (go$ptrType(ast.ValueSpec)))), (_slice$1 = keepType, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
+						newSection = p.isMultiLine(s);
+					}
+				} else {
+					newSection$1 = false;
+					_ref$1 = d.Specs;
+					_i$1 = 0;
+					for (; _i$1 < _ref$1.length; _i$1 += 1) {
+						s$1 = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+						i$1 = _i$1;
+						if (i$1 > 0) {
+							p.linebreak(p.lineFor(s$1.Pos()), 1, 0, newSection$1);
+						}
+						p.spec(s$1, n, false);
+						newSection$1 = p.isMultiLine(s$1);
+					}
+				}
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(d.Rparen), new token.Token(54)]));
+		} else {
+			p.spec((_slice$3 = d.Specs, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), 1, true);
+		}
+	};
+	printer.prototype.genDecl = function(d) { return this.go$val.genDecl(d); };
+	printer.Ptr.prototype.nodeSize = function(n, maxSize) {
+		var size, p, found, _tuple, _entry, size$1, _key, cfg, buf, err, _ref, _i, _slice, _index, ch, _key$1;
+		size = 0;
+		p = this;
+		if (_tuple = (_entry = p.nodeSizes[(n || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [0, false]), size$1 = _tuple[0], found = _tuple[1], found) {
+			size = size$1;
+			return size;
+		}
+		size = maxSize + 1 >> 0;
+		_key = n, (p.nodeSizes || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: size };
+		cfg = new Config.Ptr(1, 0, 0);
+		buf = new bytes.Buffer.Ptr();
+		if (err = cfg.fprint(buf, p.fset, n, p.nodeSizes), !(go$interfaceIsEqual(err, null))) {
+			return size;
+		}
+		if (buf.Len() <= maxSize) {
+			_ref = buf.Bytes();
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				ch = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				if (ch < 32) {
+					return size;
+				}
+			}
+			size = buf.Len();
+			_key$1 = n, (p.nodeSizes || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: size };
+		}
+		return size;
+	};
+	printer.prototype.nodeSize = function(n, maxSize) { return this.go$val.nodeSize(n, maxSize); };
+	printer.Ptr.prototype.bodySize = function(b, maxSize) {
+		var p, pos1, pos2, _struct, bodySize, _ref, _i, _slice, _index, s, i;
+		p = this;
+		pos1 = b.Pos();
+		pos2 = b.Rbrace;
+		if ((new token.Pos(pos1)).IsValid() && (new token.Pos(pos2)).IsValid() && !((p.lineFor(pos1) === p.lineFor(pos2)))) {
+			return maxSize + 1 >> 0;
+		}
+		if (b.List.length > 5 || p.commentBefore((_struct = p.posFor(pos2), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)))) {
+			return maxSize + 1 >> 0;
+		}
+		bodySize = 0;
+		_ref = b.List;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (i > 0) {
+				bodySize = bodySize + 2 >> 0;
+			}
+			bodySize = bodySize + (p.nodeSize(s, maxSize)) >> 0;
+		}
+		return bodySize;
+	};
+	printer.prototype.bodySize = function(b, maxSize) { return this.go$val.bodySize(b, maxSize); };
+	printer.Ptr.prototype.adjBlock = function(headerSize, sep, b) {
+		var p, _ref, _i, _slice, _index, s, i;
+		p = this;
+		if (b === (go$ptrType(ast.BlockStmt)).nil) {
+			return;
+		}
+		if ((headerSize + p.bodySize(b, 100) >> 0) <= 100) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(sep), new token.Pos(b.Lbrace), new token.Token(51)]));
+			if (b.List.length > 0) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				_ref = b.List;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					i = _i;
+					if (i > 0) {
+						p.print(new (go$sliceType(go$emptyInterface))([new token.Token(57), new whiteSpace(32)]));
+					}
+					p.stmt(s, i === (b.List.length - 1 >> 0));
+				}
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(b.Rbrace), new token.Token(56)]));
+			return;
+		}
+		if (!((sep === 0))) {
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+		}
+		p.block(b, 1);
+	};
+	printer.prototype.adjBlock = function(headerSize, sep, b) { return this.go$val.adjBlock(headerSize, sep, b); };
+	printer.Ptr.prototype.distanceFrom = function(from) {
+		var p, f, _struct;
+		p = this;
+		if ((new token.Pos(from)).IsValid() && p.pos.IsValid()) {
+			if (f = (_struct = p.posFor(from), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)), f.Line === p.pos.Line) {
+				return p.pos.Column - f.Column >> 0;
+			}
+		}
+		return 1073741824;
+	};
+	printer.prototype.distanceFrom = function(from) { return this.go$val.distanceFrom(from); };
+	printer.Ptr.prototype.funcDecl = function(d) {
+		var p;
+		p = this;
+		p.setComment(d.Doc);
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(d.Pos()), new token.Token(71), new whiteSpace(32)]));
+		if (!(d.Recv === (go$ptrType(ast.FieldList)).nil)) {
+			p.parameters(d.Recv);
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+		}
+		p.expr(d.Name);
+		p.signature(d.Type.Params, d.Type.Results);
+		p.adjBlock(p.distanceFrom(d.Pos()), 11, d.Body);
+	};
+	printer.prototype.funcDecl = function(d) { return this.go$val.funcDecl(d); };
+	printer.Ptr.prototype.decl = function(decl) {
+		var p, d, _ref, _type;
+		p = this;
+		_ref = decl;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.BadDecl))) {
+			d = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(d.Pos()), new Go$String("BadDecl")]));
+		} else if (_type === (go$ptrType(ast.GenDecl))) {
+			d = _ref.go$val;
+			p.genDecl(d);
+		} else if (_type === (go$ptrType(ast.FuncDecl))) {
+			d = _ref.go$val;
+			p.funcDecl(d);
+		} else {
+			d = _ref;
+			throw go$panic(new Go$String("unreachable"));
+		}
+	};
+	printer.prototype.decl = function(decl) { return this.go$val.decl(decl); };
+	var declToken = function(decl) {
+		var tok, d, _ref, _type;
+		tok = 0;
+		tok = 0;
+		_ref = decl;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.GenDecl))) {
+			d = _ref.go$val;
+			tok = d.Tok;
+		} else if (_type === (go$ptrType(ast.FuncDecl))) {
+			d = _ref.go$val;
+			tok = 71;
+		}
+		return tok;
+	};
+	printer.Ptr.prototype.declList = function(list) {
+		var p, tok, _ref, _i, _slice, _index, d, prev, min;
+		p = this;
+		tok = 0;
+		_ref = list;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			prev = tok;
+			tok = declToken(d);
+			if (p.output.length > 0) {
+				min = 1;
+				if (!((prev === tok)) || !(getDoc(d) === (go$ptrType(ast.CommentGroup)).nil)) {
+					min = 2;
+				}
+				p.linebreak(p.lineFor(d.Pos()), min, 0, false);
+			}
+			p.decl(d);
+		}
+	};
+	printer.prototype.declList = function(list) { return this.go$val.declList(list); };
+	printer.Ptr.prototype.file = function(src) {
+		var p;
+		p = this;
+		p.setComment(src.Doc);
+		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(src.Pos()), new token.Token(78), new whiteSpace(32)]));
+		p.expr(src.Name);
+		p.declList(src.Decls);
+		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10)]));
+	};
+	printer.prototype.file = function(src) { return this.go$val.file(src); };
+	printer.Ptr.prototype.init = function(cfg, fset, nodeSizes) {
+		var p, _struct;
+		p = this;
+		p.Config = (_struct = cfg, new Config.Ptr(_struct.Mode, _struct.Tabwidth, _struct.Indent));
+		p.fset = fset;
+		p.pos = new token.Position.Ptr("", 0, 1, 1);
+		p.out = new token.Position.Ptr("", 0, 1, 1);
+		p.wsbuf = (go$sliceType(whiteSpace)).make(0, 16, function() { return 0; });
+		p.nodeSizes = nodeSizes;
+		p.cachedPos = -1;
+	};
+	printer.prototype.init = function(cfg, fset, nodeSizes) { return this.go$val.init(cfg, fset, nodeSizes); };
+	printer.Ptr.prototype.commentsHaveNewline = function(list) {
+		var p, _slice, _index, line, _ref, _i, _slice$1, _index$1, c, i, _slice$2, _index$2, t;
+		p = this;
+		line = p.lineFor((_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos());
+		_ref = list;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			c = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (i > 0 && !((p.lineFor((_slice$2 = list, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Pos()) === line))) {
+				return true;
+			}
+			if (t = c.Text, t.length >= 2 && ((t.charCodeAt(1) === 47) || strings.Contains(t, "\n"))) {
+				return true;
+			}
+		}
+		return false;
+	};
+	printer.prototype.commentsHaveNewline = function(list) { return this.go$val.commentsHaveNewline(list); };
+	printer.Ptr.prototype.nextComment = function() {
+		var p, _slice, _index, c, list, _slice$1, _index$1;
+		p = this;
+		while (p.cindex < p.comments.length) {
+			c = (_slice = p.comments, _index = p.cindex, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			p.cindex = p.cindex + 1 >> 0;
+			if (list = c.List, list.length > 0) {
+				p.comment = c;
+				p.commentOffset = p.posFor((_slice$1 = list, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Pos()).Offset;
+				p.commentNewline = p.commentsHaveNewline(list);
+				return;
+			}
+		}
+		p.commentOffset = 1073741824;
+	};
+	printer.prototype.nextComment = function() { return this.go$val.nextComment(); };
+	printer.Ptr.prototype.internalError = function(msg) {
+		var p;
+		p = this;
+	};
+	printer.prototype.internalError = function(msg) { return this.go$val.internalError(msg); };
+	printer.Ptr.prototype.posFor = function(pos) {
+		var p, _struct;
+		p = this;
+		return (_struct = p.fset.Position(pos), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+	};
+	printer.prototype.posFor = function(pos) { return this.go$val.posFor(pos); };
+	printer.Ptr.prototype.lineFor = function(pos) {
+		var p;
+		p = this;
+		if (!((pos === p.cachedPos))) {
+			p.cachedPos = pos;
+			p.cachedLine = p.fset.Position(pos).Line;
+		}
+		return p.cachedLine;
+	};
+	printer.prototype.lineFor = function(pos) { return this.go$val.lineFor(pos); };
+	printer.Ptr.prototype.atLineBegin = function(pos) {
+		var p, n, i;
+		p = this;
+		if (!((((p.Config.Mode & 8) >>> 0) === 0)) && pos.IsValid() && (!((p.out.Line === pos.Line)) || !(p.out.Filename === pos.Filename))) {
+			p.output = go$append(p.output, 255);
+			p.output = go$appendSlice(p.output, new (go$sliceType(Go$Uint8))(go$stringToBytes(fmt.Sprintf("//line %s:%d\n", new (go$sliceType(go$emptyInterface))([new Go$String(pos.Filename), new Go$Int(pos.Line)])))));
+			p.output = go$append(p.output, 255);
+			p.out.Filename = pos.Filename;
+			p.out.Line = pos.Line;
+		}
+		n = p.Config.Indent + p.indent >> 0;
+		i = 0;
+		while (i < n) {
+			p.output = go$append(p.output, 9);
+			i = i + 1 >> 0;
+		}
+		p.pos.Offset = p.pos.Offset + (n) >> 0;
+		p.pos.Column = p.pos.Column + (n) >> 0;
+		p.out.Column = p.out.Column + (n) >> 0;
+	};
+	printer.prototype.atLineBegin = function(pos) { return this.go$val.atLineBegin(pos); };
+	printer.Ptr.prototype.writeByte = function(ch, n) {
+		var p, _struct, i;
+		p = this;
+		if (p.out.Column === 1) {
+			p.atLineBegin((_struct = p.pos, new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)));
+		}
+		i = 0;
+		while (i < n) {
+			p.output = go$append(p.output, ch);
+			i = i + 1 >> 0;
+		}
+		p.pos.Offset = p.pos.Offset + (n) >> 0;
+		if ((ch === 10) || (ch === 12)) {
+			p.pos.Line = p.pos.Line + (n) >> 0;
+			p.out.Line = p.out.Line + (n) >> 0;
+			p.pos.Column = 1;
+			p.out.Column = 1;
+			return;
+		}
+		p.pos.Column = p.pos.Column + (n) >> 0;
+		p.out.Column = p.out.Column + (n) >> 0;
+	};
+	printer.prototype.writeByte = function(ch, n) { return this.go$val.writeByte(ch, n); };
+	printer.Ptr.prototype.writeString = function(pos, s, isLit) {
+		var p, _struct, _struct$1, nlines, li, i, c, _struct$2;
+		p = this;
+		if (p.out.Column === 1) {
+			p.atLineBegin((_struct = pos, new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)));
+		}
+		if (pos.IsValid()) {
+			p.pos = (_struct$1 = pos, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column));
+		}
+		if (isLit) {
+			p.output = go$append(p.output, 255);
+		}
+		p.output = go$appendSlice(p.output, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
+		nlines = 0;
+		li = 0;
+		i = 0;
+		while (i < s.length) {
+			if (s.charCodeAt(i) === 10) {
+				nlines = nlines + 1 >> 0;
+				li = i;
+			}
+			i = i + 1 >> 0;
+		}
+		p.pos.Offset = p.pos.Offset + (s.length) >> 0;
+		if (nlines > 0) {
+			p.pos.Line = p.pos.Line + (nlines) >> 0;
+			p.out.Line = p.out.Line + (nlines) >> 0;
+			c = s.length - li >> 0;
+			p.pos.Column = c;
+			p.out.Column = c;
+		} else {
+			p.pos.Column = p.pos.Column + (s.length) >> 0;
+			p.out.Column = p.out.Column + (s.length) >> 0;
+		}
+		if (isLit) {
+			p.output = go$append(p.output, 255);
+		}
+		p.last = (_struct$2 = p.pos, new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column));
+	};
+	printer.prototype.writeString = function(pos, s, isLit) { return this.go$val.writeString(pos, s, isLit); };
+	printer.Ptr.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) {
+		var p, hasSep, j, _ref, _i, _slice, _index, ch, i, _ref$1, _slice$1, _index$1, sep, droppedLinebreak, j$1, _ref$2, _i$1, _slice$2, _index$2, ch$1, i$1, _ref$3, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, n;
+		p = this;
+		if (p.output.length === 0) {
+			return;
+		}
+		if (pos.IsValid() && !(pos.Filename === p.last.Filename)) {
+			p.writeByte(12, 2);
+			return;
+		}
+		if ((pos.Line === p.last.Line) && (prev === (go$ptrType(ast.Comment)).nil || !((prev.Text.charCodeAt(1) === 47)))) {
+			hasSep = false;
+			if (prev === (go$ptrType(ast.Comment)).nil) {
+				j = 0;
+				_ref = p.wsbuf;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					ch = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					i = _i;
+					_ref$1 = ch;
+					if (_ref$1 === 32) {
+						_slice$1 = p.wsbuf, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
+						continue;
+					} else if (_ref$1 === 11) {
+						hasSep = true;
+						continue;
+					} else if (_ref$1 === 62) {
+						continue;
+					}
+					j = i;
+					break;
+				}
+				p.writeWhitespace(j);
+			}
+			if (!hasSep) {
+				sep = 9;
+				if (pos.Line === next.Line) {
+					sep = 32;
+				}
+				p.writeByte(sep, 1);
+			}
+		} else {
+			droppedLinebreak = false;
+			j$1 = 0;
+			_ref$2 = p.wsbuf;
+			_i$1 = 0;
+			for (; _i$1 < _ref$2.length; _i$1 += 1) {
+				ch$1 = (_slice$2 = _ref$2, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				i$1 = _i$1;
+				_ref$3 = ch$1;
+				if (_ref$3 === 32 || _ref$3 === 11) {
+					_slice$3 = p.wsbuf, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = 0) : go$throwRuntimeError("index out of range");
+					continue;
+				} else if (_ref$3 === 62) {
+					continue;
+				} else if (_ref$3 === 60) {
+					if ((i$1 + 1 >> 0) < p.wsbuf.length && ((_slice$4 = p.wsbuf, _index$4 = (i$1 + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) === 60)) {
+						continue;
+					}
+					if (!((tok === 56)) && (pos.Column === next.Column)) {
+						continue;
+					}
+				} else if (_ref$3 === 10 || _ref$3 === 12) {
+					_slice$5 = p.wsbuf, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = 0) : go$throwRuntimeError("index out of range");
+					droppedLinebreak = prev === (go$ptrType(ast.Comment)).nil;
+				}
+				j$1 = i$1;
+				break;
+			}
+			p.writeWhitespace(j$1);
+			n = 0;
+			if (pos.IsValid() && p.last.IsValid()) {
+				n = pos.Line - p.last.Line >> 0;
+				if (n < 0) {
+					n = 0;
+				}
+			}
+			if ((p.indent === 0) && droppedLinebreak) {
+				n = n + 1 >> 0;
+			}
+			if ((n === 0) && !(prev === (go$ptrType(ast.Comment)).nil) && (prev.Text.charCodeAt(1) === 47)) {
+				n = 1;
+			}
+			if (n > 0) {
+				p.writeByte(12, nlimit(n));
+			}
+		}
+	};
+	printer.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) { return this.go$val.writeCommentPrefix(pos, next, prev, comment, tok); };
+	var isBlank = function(s) {
+		var i;
+		i = 0;
+		while (i < s.length) {
+			if (s.charCodeAt(i) > 32) {
+				return false;
+			}
+			i = i + 1 >> 0;
+		}
+		return true;
+	};
+	var commonPrefix = function(a, b) {
+		var i;
+		i = 0;
+		while (i < a.length && i < b.length && (a.charCodeAt(i) === b.charCodeAt(i)) && (a.charCodeAt(i) <= 32 || (a.charCodeAt(i) === 42))) {
+			i = i + 1 >> 0;
+		}
+		return a.substring(0, i);
+	};
+	var trimRight = function(s) {
+		return strings.TrimRightFunc(s, unicode.IsSpace);
+	};
+	var stripCommonPrefix = function(lines) {
+		var prefix, first, _ref, _i, _slice, _index, line, i, _slice$1, _index$1, _slice$2, _index$2, line$1, lineOfStars, i$1, _slice$3, _index$3, first$1, i$2, n, suffix, n$1, _slice$4, _index$4, _slice$5, _index$5, _tuple, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, last, closing, i$3, _slice$9, _index$9, _ref$1, _i$1, _slice$10, _index$10, line$2, i$4, _slice$11, _index$11;
+		if (lines.length <= 1) {
+			return;
+		}
+		prefix = "";
+		if (lines.length > 2) {
+			first = true;
+			_ref = go$subslice(lines, 1, (lines.length - 1 >> 0));
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				line = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				if (isBlank(line)) {
+					_slice$1 = lines, _index$1 = 1 + i >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = "") : go$throwRuntimeError("index out of range");
+				} else if (first) {
+					prefix = commonPrefix(line, line);
+					first = false;
+				} else {
+					prefix = commonPrefix(prefix, line);
+				}
+			}
+		} else {
+			line$1 = (_slice$2 = lines, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+			prefix = commonPrefix(line$1, line$1);
+		}
+		lineOfStars = false;
+		if (i$1 = strings.Index(prefix, "*"), i$1 >= 0) {
+			if (i$1 > 0 && (prefix.charCodeAt((i$1 - 1 >> 0)) === 32)) {
+				i$1 = i$1 - 1 >> 0;
+			}
+			prefix = prefix.substring(0, i$1);
+			lineOfStars = true;
+		} else {
+			first$1 = (_slice$3 = lines, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			if (isBlank(first$1.substring(2))) {
+				i$2 = prefix.length;
+				n = 0;
+				while (n < 3 && i$2 > 0 && (prefix.charCodeAt((i$2 - 1 >> 0)) === 32)) {
+					i$2 = i$2 - 1 >> 0;
+					n = n + 1 >> 0;
+				}
+				if ((i$2 === prefix.length) && i$2 > 0 && (prefix.charCodeAt((i$2 - 1 >> 0)) === 9)) {
+					i$2 = i$2 - 1 >> 0;
+				}
+				prefix = prefix.substring(0, i$2);
+			} else {
+				suffix = (go$sliceType(Go$Uint8)).make(first$1.length, 0, function() { return 0; });
+				n$1 = 2;
+				while (n$1 < first$1.length && first$1.charCodeAt(n$1) <= 32) {
+					_slice$4 = suffix, _index$4 = n$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = first$1.charCodeAt(n$1)) : go$throwRuntimeError("index out of range");
+					n$1 = n$1 + 1 >> 0;
+				}
+				if (n$1 > 2 && ((_slice$5 = suffix, _index$5 = 2, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) === 9)) {
+					suffix = go$subslice(suffix, 2, n$1);
+				} else {
+					_tuple = [32, 32], _slice$6 = suffix, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$7 = suffix, _index$7 = 1, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = _tuple[1]) : go$throwRuntimeError("index out of range");
+					suffix = go$subslice(suffix, 0, n$1);
+				}
+				prefix = strings.TrimSuffix(prefix, go$bytesToString(suffix));
+			}
+		}
+		last = (_slice$8 = lines, _index$8 = (lines.length - 1 >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
+		closing = "*/";
+		i$3 = strings.Index(last, closing);
+		if (isBlank(last.substring(0, i$3))) {
+			if (lineOfStars) {
+				closing = " */";
+			}
+			_slice$9 = lines, _index$9 = lines.length - 1 >> 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = prefix + closing) : go$throwRuntimeError("index out of range");
+		} else {
+			prefix = commonPrefix(prefix, last);
+		}
+		_ref$1 = lines;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			line$2 = (_slice$10 = _ref$1, _index$10 = _i$1, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"));
+			i$4 = _i$1;
+			if (i$4 > 0 && !(line$2 === "")) {
+				_slice$11 = lines, _index$11 = i$4, (_index$11 >= 0 && _index$11 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$11] = line$2.substring(prefix.length)) : go$throwRuntimeError("index out of range");
+			}
+		}
+	};
+	printer.Ptr.prototype.writeComment = function(comment) {
+		var p, text, _struct, pos, ldir, i, err, line, _tuple, indent$1, _struct$1, lines, _ref, _i, _slice, _index, line$1, i$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, line$2, i$2, _struct$2, _struct$3;
+		var go$deferred = [];
+		try {
+			p = this;
+			text = comment.Text;
+			pos = (_struct = p.posFor(comment.Pos()), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+			if (strings.HasPrefix(text, "//line ") && (!pos.IsValid() || (pos.Column === 1))) {
+				ldir = strings.TrimSpace(text.substring(7));
+				if (i = strings.LastIndex(ldir, ":"), i >= 0) {
+					if (_tuple = strconv.Atoi(ldir.substring((i + 1 >> 0))), line = _tuple[0], err = _tuple[1], go$interfaceIsEqual(err, null) && line > 0) {
+						indent$1 = p.indent;
+						p.indent = 0;
+						go$deferred.push({ fun: (function() {
+							p.pos.Filename = ldir.substring(0, i);
+							p.pos.Line = line;
+							p.pos.Column = 1;
+							p.indent = indent$1;
+						}), args: [] });
+					}
+				}
+			}
+			if (text.charCodeAt(1) === 47) {
+				p.writeString((_struct$1 = pos, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), trimRight(text), true);
+				return;
+			}
+			lines = strings.Split(text, "\n");
+			if (pos.IsValid() && (pos.Column === 1) && p.indent > 0) {
+				_ref = go$subslice(lines, 1);
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					line$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					i$1 = _i;
+					_slice$1 = lines, _index$1 = 1 + i$1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = "   " + line$1) : go$throwRuntimeError("index out of range");
+				}
+			}
+			stripCommonPrefix(lines);
+			_ref$1 = lines;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				line$2 = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				i$2 = _i$1;
+				if (i$2 > 0) {
+					p.writeByte(12, 1);
+					pos = (_struct$2 = p.pos, new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column));
+				}
+				if (line$2.length > 0) {
+					p.writeString((_struct$3 = pos, new token.Position.Ptr(_struct$3.Filename, _struct$3.Offset, _struct$3.Line, _struct$3.Column)), trimRight(line$2), true);
+				}
+			}
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	printer.prototype.writeComment = function(comment) { return this.go$val.writeComment(comment); };
+	printer.Ptr.prototype.writeCommentSuffix = function(needsLinebreak) {
+		var wroteNewline, droppedFF, p, _ref, _i, _slice, _index, ch, i, _ref$1, _slice$1, _index$1, _slice$2, _index$2;
+		wroteNewline = false;
+		droppedFF = false;
+		p = this;
+		_ref = p.wsbuf;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			ch = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_ref$1 = ch;
+			if (_ref$1 === 32 || _ref$1 === 11) {
+				_slice$1 = p.wsbuf, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
+			} else if (_ref$1 === 62 || _ref$1 === 60) {
+			} else if (_ref$1 === 10 || _ref$1 === 12) {
+				if (needsLinebreak) {
+					needsLinebreak = false;
+					wroteNewline = true;
+				} else {
+					if (ch === 12) {
+						droppedFF = true;
+					}
+					_slice$2 = p.wsbuf, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 0) : go$throwRuntimeError("index out of range");
+				}
+			}
+		}
+		p.writeWhitespace(p.wsbuf.length);
+		if (needsLinebreak) {
+			p.writeByte(10, 1);
+			wroteNewline = true;
+		}
+		return [wroteNewline, droppedFF];
+	};
+	printer.prototype.writeCommentSuffix = function(needsLinebreak) { return this.go$val.writeCommentSuffix(needsLinebreak); };
+	printer.Ptr.prototype.intersperseComments = function(next, tok) {
+		var wroteNewline, droppedFF, p, last, _struct, _ref, _i, _slice, _index, c, _struct$1, _struct$2, needsLinebreak, _tuple;
+		wroteNewline = false;
+		droppedFF = false;
+		p = this;
+		last = (go$ptrType(ast.Comment)).nil;
+		while (p.commentBefore((_struct = next, new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)))) {
+			_ref = p.comment.List;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				p.writeCommentPrefix((_struct$1 = p.posFor(c.Pos()), new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), (_struct$2 = next, new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column)), last, c, tok);
+				p.writeComment(c);
+				last = c;
+			}
+			p.nextComment();
+		}
+		if (!(last === (go$ptrType(ast.Comment)).nil)) {
+			if ((last.Text.charCodeAt(1) === 42) && (p.lineFor(last.Pos()) === next.Line) && !((tok === 52)) && !((tok === 54)) && !((tok === 55)) && !((tok === 56))) {
+				p.writeByte(32, 1);
+			}
+			needsLinebreak = (last.Text.charCodeAt(1) === 47) || (tok === 56) && ((p.mode & 1) === 0) || (tok === 1);
+			_tuple = p.writeCommentSuffix(needsLinebreak), wroteNewline = _tuple[0], droppedFF = _tuple[1];
+			return [wroteNewline, droppedFF];
+		}
+		p.internalError(new (go$sliceType(go$emptyInterface))([new Go$String("intersperseComments called without pending comments")]));
+		return [wroteNewline, droppedFF];
+	};
+	printer.prototype.intersperseComments = function(next, tok) { return this.go$val.intersperseComments(next, tok); };
+	printer.Ptr.prototype.writeWhitespace = function(n) {
+		var p, i, _slice, _index, ch, _ref, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3, i$1, _slice$4, _index$4, _slice$5, _index$5;
+		p = this;
+		i = 0;
+		while (i < n) {
+			ch = (_slice = p.wsbuf, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_ref = ch;
+			if (_ref === 0) {
+			} else if (_ref === 62) {
+				p.indent = p.indent + 1 >> 0;
+			} else if (_ref === 60) {
+				p.indent = p.indent - 1 >> 0;
+				if (p.indent < 0) {
+					p.internalError(new (go$sliceType(go$emptyInterface))([new Go$String("negative indentation:"), new Go$Int(p.indent)]));
+					p.indent = 0;
+				}
+			} else if (_ref === 10 || _ref === 12) {
+				if ((i + 1 >> 0) < n && ((_slice$1 = p.wsbuf, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 60)) {
+					_tuple = [60, 12], _slice$2 = p.wsbuf, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = p.wsbuf, _index$3 = i + 1 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+					i = i - 1 >> 0;
+					i = i + 1 >> 0;
+					continue;
+				}
+				p.writeByte((ch << 24 >>> 24), 1);
+			} else {
+				p.writeByte((ch << 24 >>> 24), 1);
+			}
+			i = i + 1 >> 0;
+		}
+		i$1 = 0;
+		while (n < p.wsbuf.length) {
+			_slice$5 = p.wsbuf, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (_slice$4 = p.wsbuf, _index$4 = n, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))) : go$throwRuntimeError("index out of range");
+			i$1 = i$1 + 1 >> 0;
+			n = n + 1 >> 0;
+		}
+		p.wsbuf = go$subslice(p.wsbuf, 0, i$1);
+	};
+	printer.prototype.writeWhitespace = function(n) { return this.go$val.writeWhitespace(n); };
+	var nlimit = function(n) {
+		if (n > 2) {
+			n = 2;
+		}
+		return n;
+	};
+	var mayCombine = function(prev, next) {
+		var b, _ref;
+		b = false;
+		_ref = prev;
+		if (_ref === 5) {
+			b = next === 46;
+		} else if (_ref === 12) {
+			b = next === 43;
+		} else if (_ref === 13) {
+			b = next === 45;
+		} else if (_ref === 15) {
+			b = next === 42;
+		} else if (_ref === 40) {
+			b = (next === 45) || (next === 60);
+		} else if (_ref === 17) {
+			b = (next === 38) || (next === 94);
+		}
+		return b;
+	};
+	printer.Ptr.prototype.print = function(args) {
+		var p, _ref, _i, _slice, _index, arg, data, isLit, impliedSemi, x, _ref$1, _type, i, _slice$1, _index$1, s, _slice$2, _index$2, _ref$2, _struct, _struct$1, next, _tuple, _struct$2, wroteNewline, droppedFF, n, ch, _struct$3;
+		p = this;
+		_ref = args;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			arg = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			data = "";
+			isLit = false;
+			impliedSemi = false;
+			_ref$1 = arg;
+			_type = _ref$1 !== null ? _ref$1.constructor : null;
+			if (_type === pmode) {
+				x = _ref$1.go$val;
+				p.mode = (p.mode ^ (x)) >> 0;
+				continue;
+			} else if (_type === whiteSpace) {
+				x = _ref$1.go$val;
+				if (x === 0) {
+					continue;
+				}
+				i = p.wsbuf.length;
+				if (i === p.wsbuf.capacity) {
+					p.writeWhitespace(i);
+					i = 0;
+				}
+				p.wsbuf = go$subslice(p.wsbuf, 0, (i + 1 >> 0));
+				_slice$1 = p.wsbuf, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = x) : go$throwRuntimeError("index out of range");
+				if ((x === 10) || (x === 12)) {
+					p.impliedSemi = false;
+				}
+				p.lastTok = 0;
+				continue;
+			} else if (_type === (go$ptrType(ast.Ident))) {
+				x = _ref$1.go$val;
+				data = x.Name;
+				impliedSemi = true;
+				p.lastTok = 4;
+			} else if (_type === (go$ptrType(ast.BasicLit))) {
+				x = _ref$1.go$val;
+				data = x.Value;
+				isLit = true;
+				impliedSemi = true;
+				p.lastTok = x.Kind;
+			} else if (_type === token.Token) {
+				x = _ref$1.go$val;
+				s = (new token.Token(x)).String();
+				if (mayCombine(p.lastTok, s.charCodeAt(0))) {
+					if (!((p.wsbuf.length === 0))) {
+						p.internalError(new (go$sliceType(go$emptyInterface))([new Go$String("whitespace buffer not empty")]));
+					}
+					p.wsbuf = go$subslice(p.wsbuf, 0, 1);
+					_slice$2 = p.wsbuf, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 32) : go$throwRuntimeError("index out of range");
+				}
+				data = s;
+				_ref$2 = x;
+				if (_ref$2 === 61 || _ref$2 === 65 || _ref$2 === 69 || _ref$2 === 80 || _ref$2 === 37 || _ref$2 === 38 || _ref$2 === 54 || _ref$2 === 55 || _ref$2 === 56) {
+					impliedSemi = true;
+				}
+				p.lastTok = x;
+			} else if (_type === token.Pos) {
+				x = _ref$1.go$val;
+				if ((new token.Pos(x)).IsValid()) {
+					p.pos = (_struct = p.posFor(x), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+				}
+				continue;
+			} else if (_type === Go$String) {
+				x = _ref$1.go$val;
+				data = x;
+				isLit = true;
+				impliedSemi = true;
+				p.lastTok = 9;
+			} else {
+				x = _ref$1;
+				fmt.Fprintf(os.Stderr, "print: unsupported argument %v (%T)\n", new (go$sliceType(go$emptyInterface))([arg, arg]));
+				throw go$panic(new Go$String("go/printer type"));
+			}
+			next = (_struct$1 = p.pos, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column));
+			_tuple = p.flush((_struct$2 = next, new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column)), p.lastTok), wroteNewline = _tuple[0], droppedFF = _tuple[1];
+			if (!p.impliedSemi) {
+				n = nlimit(next.Line - p.pos.Line >> 0);
+				if (wroteNewline && (n === 2)) {
+					n = 1;
+				}
+				if (n > 0) {
+					ch = 10;
+					if (droppedFF) {
+						ch = 12;
+					}
+					p.writeByte(ch, n);
+					impliedSemi = false;
+				}
+			}
+			p.writeString((_struct$3 = next, new token.Position.Ptr(_struct$3.Filename, _struct$3.Offset, _struct$3.Line, _struct$3.Column)), data, isLit);
+			p.impliedSemi = impliedSemi;
+		}
+	};
+	printer.prototype.print = function(args) { return this.go$val.print(args); };
+	printer.Ptr.prototype.commentBefore = function(next) {
+		var result, p;
+		result = false;
+		p = this;
+		result = p.commentOffset < next.Offset && (!p.impliedSemi || !p.commentNewline);
+		return result;
+	};
+	printer.prototype.commentBefore = function(next) { return this.go$val.commentBefore(next); };
+	printer.Ptr.prototype.flush = function(next, tok) {
+		var wroteNewline, droppedFF, p, _struct, _tuple, _struct$1;
+		wroteNewline = false;
+		droppedFF = false;
+		p = this;
+		if (p.commentBefore((_struct = next, new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)))) {
+			_tuple = p.intersperseComments((_struct$1 = next, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), tok), wroteNewline = _tuple[0], droppedFF = _tuple[1];
+		} else {
+			p.writeWhitespace(p.wsbuf.length);
+		}
+		return [wroteNewline, droppedFF];
+	};
+	printer.prototype.flush = function(next, tok) { return this.go$val.flush(next, tok); };
+	var getDoc = function(n) {
+		var n$1, _ref, _type;
+		_ref = n;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.Field))) {
+			n$1 = _ref.go$val;
+			return n$1.Doc;
+		} else if (_type === (go$ptrType(ast.ImportSpec))) {
+			n$1 = _ref.go$val;
+			return n$1.Doc;
+		} else if (_type === (go$ptrType(ast.ValueSpec))) {
+			n$1 = _ref.go$val;
+			return n$1.Doc;
+		} else if (_type === (go$ptrType(ast.TypeSpec))) {
+			n$1 = _ref.go$val;
+			return n$1.Doc;
+		} else if (_type === (go$ptrType(ast.GenDecl))) {
+			n$1 = _ref.go$val;
+			return n$1.Doc;
+		} else if (_type === (go$ptrType(ast.FuncDecl))) {
+			n$1 = _ref.go$val;
+			return n$1.Doc;
+		} else if (_type === (go$ptrType(ast.File))) {
+			n$1 = _ref.go$val;
+			return n$1.Doc;
+		}
+		return (go$ptrType(ast.CommentGroup)).nil;
+	};
+	printer.Ptr.prototype.printNode = function(node) {
+		var p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, _tuple$2, n$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
+		p = this;
+		comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
+		if (_tuple = (node !== null && node.constructor === (go$ptrType(CommentedNode)) ? [node.go$val, true] : [(go$ptrType(CommentedNode)).nil, false]), cnode = _tuple[0], ok = _tuple[1], ok) {
+			node = cnode.Node;
+			comments = cnode.Comments;
+		}
+		if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) {
+			_tuple$1 = (node !== null && ast.Node.implementedBy.indexOf(node.constructor) !== -1 ? [node, true] : [null, false]), n = _tuple$1[0], ok$2 = _tuple$1[1];
+			if (!ok$2) {
+				return fmt.Errorf("go/printer: unsupported node type %T", new (go$sliceType(go$emptyInterface))([node]));
+			}
+			beg = n.Pos();
+			end = n.End();
+			if (doc = getDoc(n), !(doc === (go$ptrType(ast.CommentGroup)).nil)) {
+				beg = doc.Pos();
+			}
+			i = 0;
+			while (i < comments.length && (_slice = comments, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).End() < beg) {
+				i = i + 1 >> 0;
+			}
+			j = i;
+			while (j < comments.length && (_slice$1 = comments, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Pos() < end) {
+				j = j + 1 >> 0;
+			}
+			if (i < j) {
+				p.comments = go$subslice(comments, i, j);
+			}
+		} else if (_tuple$2 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
+			p.comments = n$1.Comments;
+		}
+		p.useNodeComments = p.comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
+		p.nextComment();
+		_ref = node;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (ast.Expr.implementedBy.indexOf(_type) !== -1) {
+			n$2 = _ref;
+			p.expr(n$2);
+		} else if (ast.Stmt.implementedBy.indexOf(_type) !== -1) {
+			n$2 = _ref;
+			if (_tuple$3 = (n$2 !== null && n$2.constructor === (go$ptrType(ast.LabeledStmt)) ? [n$2.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), ok$3 = _tuple$3[1], ok$3) {
+				p.indent = 1;
+			}
+			p.stmt(n$2, false);
+		} else if (ast.Decl.implementedBy.indexOf(_type) !== -1) {
+			n$2 = _ref;
+			p.decl(n$2);
+		} else if (ast.Spec.implementedBy.indexOf(_type) !== -1) {
+			n$2 = _ref;
+			p.spec(n$2, 1, false);
+		} else if (_type === (go$sliceType(ast.Stmt))) {
+			n$2 = _ref.go$val;
+			_ref$1 = n$2;
+			_i = 0;
+			for (; _i < _ref$1.length; _i += 1) {
+				s = (_slice$2 = _ref$1, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				if (_tuple$4 = (s !== null && s.constructor === (go$ptrType(ast.LabeledStmt)) ? [s.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), ok$4 = _tuple$4[1], ok$4) {
+					p.indent = 1;
+				}
+			}
+			p.stmtList(n$2, 0, false);
+		} else if (_type === (go$sliceType(ast.Decl))) {
+			n$2 = _ref.go$val;
+			p.declList(n$2);
+		} else if (_type === (go$ptrType(ast.File))) {
+			n$2 = _ref.go$val;
+			p.file(n$2);
+		} else {
+			n$2 = _ref;
+			return fmt.Errorf("go/printer: unsupported node type %T", new (go$sliceType(go$emptyInterface))([node]));
+		}
+		return null;
+	};
+	printer.prototype.printNode = function(node) { return this.go$val.printNode(node); };
+	trimmer.Ptr.prototype.resetSpace = function() {
+		var p;
+		p = this;
+		p.state = 0;
+		p.space = go$subslice(p.space, 0, 0);
+	};
+	trimmer.prototype.resetSpace = function() { return this.go$val.resetSpace(); };
+	trimmer.Ptr.prototype.Write = function(data) {
+		var n, err, p, m, b, _ref, _i, _slice, _index, _ref$1, _ref$2, _tuple, _tuple$1, _tuple$2, _tuple$3, _ref$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _ref$4, _tuple$8;
+		n = 0;
+		err = null;
+		p = this;
+		m = 0;
+		b = 0;
+		_ref = data;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			n = _i;
+			if (b === 11) {
+				b = 9;
+			}
+			_ref$1 = p.state;
+			if (_ref$1 === 0) {
+				_ref$2 = b;
+				if (_ref$2 === 9 || _ref$2 === 32) {
+					p.space = go$append(p.space, b);
+				} else if (_ref$2 === 10 || _ref$2 === 12) {
+					p.resetSpace();
+					_tuple = p.output.Write(aNewline), err = _tuple[1];
+				} else if (_ref$2 === 255) {
+					_tuple$1 = p.output.Write(p.space), err = _tuple$1[1];
+					p.state = 1;
+					m = n + 1 >> 0;
+				} else {
+					_tuple$2 = p.output.Write(p.space), err = _tuple$2[1];
+					p.state = 2;
+					m = n;
+				}
+			} else if (_ref$1 === 1) {
+				if (b === 255) {
+					_tuple$3 = p.output.Write(go$subslice(data, m, n)), err = _tuple$3[1];
+					p.resetSpace();
+				}
+			} else if (_ref$1 === 2) {
+				_ref$3 = b;
+				if (_ref$3 === 9 || _ref$3 === 32) {
+					_tuple$4 = p.output.Write(go$subslice(data, m, n)), err = _tuple$4[1];
+					p.resetSpace();
+					p.space = go$append(p.space, b);
+				} else if (_ref$3 === 10 || _ref$3 === 12) {
+					_tuple$5 = p.output.Write(go$subslice(data, m, n)), err = _tuple$5[1];
+					p.resetSpace();
+					_tuple$6 = p.output.Write(aNewline), err = _tuple$6[1];
+				} else if (_ref$3 === 255) {
+					_tuple$7 = p.output.Write(go$subslice(data, m, n)), err = _tuple$7[1];
+					p.state = 1;
+					m = n + 1 >> 0;
+				}
+			} else {
+				throw go$panic(new Go$String("unreachable"));
+			}
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [n, err];
+			}
+		}
+		n = data.length;
+		_ref$4 = p.state;
+		if (_ref$4 === 1 || _ref$4 === 2) {
+			_tuple$8 = p.output.Write(go$subslice(data, m, n)), err = _tuple$8[1];
+			p.resetSpace();
+		}
+		return [n, err];
+	};
+	trimmer.prototype.Write = function(data) { return this.go$val.Write(data); };
+	Config.Ptr.prototype.fprint = function(output, fset, node, nodeSizes) {
+		var err, cfg, p, minwidth, padchar, twmode, _tuple, tw, _tuple$1;
+		err = null;
+		cfg = this;
+		p = new printer.Ptr();
+		p.init(cfg, fset, nodeSizes);
+		if (err = p.printNode(node), !(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		p.impliedSemi = false;
+		p.flush(new token.Position.Ptr("", 1073741824, 1073741824, 0), 1);
+		output = new trimmer.Ptr(output, 0, (go$sliceType(Go$Uint8)).nil);
+		if (((cfg.Mode & 1) >>> 0) === 0) {
+			minwidth = cfg.Tabwidth;
+			padchar = 9;
+			if (!((((cfg.Mode & 4) >>> 0) === 0))) {
+				padchar = 32;
+			}
+			twmode = 8;
+			if (!((((cfg.Mode & 2) >>> 0) === 0))) {
+				minwidth = 0;
+				twmode = (twmode | 16) >>> 0;
+			}
+			output = tabwriter.NewWriter(output, minwidth, cfg.Tabwidth, 1, padchar, twmode);
+		}
+		if (_tuple = output.Write(p.output), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		if (_tuple$1 = (output !== null && output.constructor === (go$ptrType(tabwriter.Writer)) ? [output.go$val, true] : [(go$ptrType(tabwriter.Writer)).nil, false]), tw = _tuple$1[0], !(tw === (go$ptrType(tabwriter.Writer)).nil)) {
+			err = tw.Flush();
+		}
+		return err;
+	};
+	Config.prototype.fprint = function(output, fset, node, nodeSizes) { return this.go$val.fprint(output, fset, node, nodeSizes); };
+	Config.Ptr.prototype.Fprint = function(output, fset, node) {
+		var cfg;
+		cfg = this;
+		return cfg.fprint(output, fset, node, new Go$Map());
+	};
+	Config.prototype.Fprint = function(output, fset, node) { return this.go$val.Fprint(output, fset, node); };
+	var Fprint = go$pkg.Fprint = function(output, fset, node) {
+		return (new Config.Ptr(0, 8, 0)).Fprint(output, fset, node);
+	};
+	var commaTerm = 1;
+	var noIndent = 2;
+	var maxNewlines = 2;
+	var debug = false;
+	var infinity = 1073741824;
+	var ignore = 0;
+	var blank = 32;
+	var vtab = 11;
+	var newline = 10;
+	var formfeed = 12;
+	var indent = 62;
+	var unindent = 60;
+	var noExtraLinebreak = 1;
+	var inSpace = 0;
+	var inEscape = 1;
+	var inText = 2;
+	go$pkg.RawFormat = 1;
+	go$pkg.TabIndent = 2;
+	go$pkg.UseSpaces = 4;
+	go$pkg.SourcePos = 8;
+	var aNewline = (go$sliceType(Go$Uint8)).nil;
+	go$pkg.init = function() {
+		aNewline = new (go$sliceType(Go$Uint8))(go$stringToBytes("\n"));
+	};

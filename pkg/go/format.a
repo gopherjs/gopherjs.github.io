@@ -1,0 +1,201 @@
+0Ç)ŸÇopackage format
+import bytes "bytes"
+import fmt "fmt"
+import ast "go/ast"
+import parser "go/parser"
+import printer "go/printer"
+import token "go/token"
+import io "io"
+import strings "strings"
+func @"".Node(@"".dst @"io".Writer, @"".fset *@"go/token".FileSet, @"".node interface {  }) (? error)
+func @"".Source(@"".src []byte) (? []byte, ? error)
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+import sync "sync"
+type @"go/token".FileSet struct { @"go/token".mutex @"sync".RWMutex; @"go/token".base int; @"go/token".files []*@"go/token".File; @"go/token".last *@"go/token".File }
+func (? *@"go/token".FileSet) @"go/token".AddFile(@"go/token".filename string, @"go/token".base int, @"go/token".size int) (? *@"go/token".File)
+func (? *@"go/token".FileSet) @"go/token".Base() (? int)
+func (? *@"go/token".FileSet) @"go/token".File(@"go/token".p @"go/token".Pos) (@"go/token".f *@"go/token".File)
+func (? *@"go/token".FileSet) @"go/token".Iterate(@"go/token".f func (? *@"go/token".File) (? bool)) ()
+func (? *@"go/token".FileSet) @"go/token".Position(@"go/token".p @"go/token".Pos) (@"go/token".pos @"go/token".Position)
+func (? *@"go/token".FileSet) @"go/token".Read(@"go/token".decode func (? interface {  }) (? error)) (? error)
+func (? *@"go/token".FileSet) @"go/token".Write(@"go/token".encode func (? interface {  }) (? error)) (? error)
+func (? *@"go/token".FileSet) @"go/token".file(@"go/token".p @"go/token".Pos) (? *@"go/token".File)
+type @"sync".RWMutex struct { @"sync".w @"sync".Mutex; @"sync".writerSem uint32; @"sync".readerSem uint32; @"sync".readerCount int32; @"sync".readerWait int32 }
+func (? *@"sync".RWMutex) @"sync".Lock() ()
+func (? *@"sync".RWMutex) @"sync".RLock() ()
+func (? *@"sync".RWMutex) @"sync".RLocker() (? @"sync".Locker)
+func (? *@"sync".RWMutex) @"sync".RUnlock() ()
+func (? *@"sync".RWMutex) @"sync".Unlock() ()
+type @"go/token".File struct { @"go/token".set *@"go/token".FileSet; @"go/token".name string; @"go/token".base int; @"go/token".size int; @"go/token".lines []int; @"go/token".infos []@"go/token".lineInfo }
+func (? *@"go/token".File) @"go/token".AddLine(@"go/token".offset int) ()
+func (? *@"go/token".File) @"go/token".AddLineInfo(@"go/token".offset int, @"go/token".filename string, @"go/token".line int) ()
+func (? *@"go/token".File) @"go/token".Base() (? int)
+func (? *@"go/token".File) @"go/token".Line(@"go/token".p @"go/token".Pos) (? int)
+func (? *@"go/token".File) @"go/token".LineCount() (? int)
+func (? *@"go/token".File) @"go/token".MergeLine(@"go/token".line int) ()
+func (? *@"go/token".File) @"go/token".Name() (? string)
+func (? *@"go/token".File) @"go/token".Offset(@"go/token".p @"go/token".Pos) (? int)
+func (? *@"go/token".File) @"go/token".Pos(@"go/token".offset int) (? @"go/token".Pos)
+func (? *@"go/token".File) @"go/token".Position(@"go/token".p @"go/token".Pos) (@"go/token".pos @"go/token".Position)
+func (? *@"go/token".File) @"go/token".SetLines(@"go/token".lines []int) (? bool)
+func (? *@"go/token".File) @"go/token".SetLinesForContent(@"go/token".content []byte) ()
+func (? *@"go/token".File) @"go/token".Size() (? int)
+func (? *@"go/token".File) @"go/token".info(@"go/token".offset int) (@"go/token".filename string, @"go/token".line int, @"go/token".column int)
+func (? *@"go/token".File) @"go/token".position(@"go/token".p @"go/token".Pos) (@"go/token".pos @"go/token".Position)
+type @"go/token".Pos int
+func (? @"go/token".Pos) @"go/token".IsValid() (? bool)
+func (? *@"go/token".Pos) @"go/token".IsValid() (? bool)
+type @"go/token".Position struct { @"go/token".Filename string; @"go/token".Offset int; @"go/token".Line int; @"go/token".Column int }
+func (? @"go/token".Position) @"go/token".String() (? string)
+func (? *@"go/token".Position) @"go/token".IsValid() (? bool)
+func (? *@"go/token".Position) @"go/token".String() (? string)
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
+type @"go/token".lineInfo struct { @"go/token".Offset int; @"go/token".Filename string; @"go/token".Line int }
+$$
+0ÅÔruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
+go/scannergo/ast	io/ioutil	go/parsertext/tabwriter
+go/printer	go/formatÇp	var bytes = go$packages["bytes"];
+	var fmt = go$packages["fmt"];
+	var ast = go$packages["go/ast"];
+	var parser = go$packages["go/parser"];
+	var printer = go$packages["go/printer"];
+	var token = go$packages["go/token"];
+	var io = go$packages["io"];
+	var strings = go$packages["strings"];
+	var Node = go$pkg.Node = function(dst, fset, node) {
+		var file, cnode, n, _ref, _type, ok, _tuple, x, f, buf, err, _tuple$1;
+		file = (go$ptrType(ast.File)).nil;
+		cnode = (go$ptrType(printer.CommentedNode)).nil;
+		_ref = node;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === (go$ptrType(ast.File))) {
+			n = _ref.go$val;
+			file = n;
+		} else if (_type === (go$ptrType(printer.CommentedNode))) {
+			n = _ref.go$val;
+			if (_tuple = (x = n.Node, (x !== null && x.constructor === (go$ptrType(ast.File)) ? [x.go$val, true] : [(go$ptrType(ast.File)).nil, false])), f = _tuple[0], ok = _tuple[1], ok) {
+				file = f;
+				cnode = n;
+			}
+		}
+		if (!(file === (go$ptrType(ast.File)).nil) && hasUnsortedImports(file)) {
+			buf = new bytes.Buffer.Ptr();
+			err = config.Fprint(buf, fset, file);
+			if (!(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			_tuple$1 = parser.ParseFile(fset, "", buf.Bytes(), 4), file = _tuple$1[0], err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return fmt.Errorf("format.Node internal error (%s)", new (go$sliceType(go$emptyInterface))([err]));
+			}
+			ast.SortImports(fset, file);
+			node = file;
+			if (!(cnode === (go$ptrType(printer.CommentedNode)).nil)) {
+				node = new printer.CommentedNode.Ptr(file, cnode.Comments);
+			}
+		}
+		return config.Fprint(dst, fset, node);
+	};
+	var Source = go$pkg.Source = function(src) {
+		var fset, _tuple, node, err, buf, ok, _tuple$1, file, err$1, _tuple$2, i, j, _slice, _index, _slice$1, _index$1, indent, hasSpace, _ref, _i, _slice$2, _index$2, b, _ref$1, _struct, cfg, err$2, _slice$3, _index$3;
+		fset = token.NewFileSet();
+		_tuple = parse(fset, src), node = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Go$Uint8)).nil, err];
+		}
+		buf = new bytes.Buffer.Ptr();
+		if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), file = _tuple$1[0], ok = _tuple$1[1], ok) {
+			ast.SortImports(fset, file);
+			err$1 = config.Fprint(buf, fset, file);
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [(go$sliceType(Go$Uint8)).nil, err$1];
+			}
+		} else {
+			_tuple$2 = [0, 0], i = _tuple$2[0], j = _tuple$2[1];
+			while (j < src.length && isSpace((_slice = src, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")))) {
+				if ((_slice$1 = src, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 10) {
+					i = j + 1 >> 0;
+				}
+				j = j + 1 >> 0;
+			}
+			buf.Write(go$subslice(src, 0, i));
+			indent = 0;
+			hasSpace = false;
+			_ref = go$subslice(src, i, j);
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				b = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				_ref$1 = b;
+				if (_ref$1 === 32) {
+					hasSpace = true;
+				} else if (_ref$1 === 9) {
+					indent = indent + 1 >> 0;
+				}
+			}
+			if ((indent === 0) && hasSpace) {
+				indent = 1;
+			}
+			cfg = (_struct = config, new printer.Config.Ptr(_struct.Mode, _struct.Tabwidth, _struct.Indent));
+			cfg.Indent = indent;
+			err$2 = cfg.Fprint(buf, fset, node);
+			if (!(go$interfaceIsEqual(err$2, null))) {
+				return [(go$sliceType(Go$Uint8)).nil, err$2];
+			}
+			i = src.length;
+			while (i > 0 && isSpace((_slice$3 = src, _index$3 = (i - 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")))) {
+				i = i - 1 >> 0;
+			}
+			buf.Write(go$subslice(src, i));
+		}
+		return [buf.Bytes(), null];
+	};
+	var hasUnsortedImports = function(file) {
+		var _ref, _i, _slice, _index, d, _tuple, d$1, ok;
+		_ref = file.Decls;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_tuple = (d !== null && d.constructor === (go$ptrType(ast.GenDecl)) ? [d.go$val, true] : [(go$ptrType(ast.GenDecl)).nil, false]), d$1 = _tuple[0], ok = _tuple[1];
+			if (!ok || !((d$1.Tok === 75))) {
+				return false;
+			}
+			if ((new token.Pos(d$1.Lparen)).IsValid()) {
+				return true;
+			}
+		}
+		return false;
+	};
+	var isSpace = function(b) {
+		return (b === 32) || (b === 9) || (b === 10) || (b === 13);
+	};
+	var parse = function(fset, src) {
+		var _tuple, file, err, psrc, _tuple$1, fsrc, _tuple$2, x, _slice, _index;
+		_tuple = parser.ParseFile(fset, "", src, 4), file = _tuple[0], err = _tuple[1];
+		if (go$interfaceIsEqual(err, null)) {
+			return [file, null];
+		}
+		if (!strings.Contains(err.Error(), "expected 'package'")) {
+			return [null, err];
+		}
+		psrc = go$appendSlice(new (go$sliceType(Go$Uint8))(go$stringToBytes("package p;")), src);
+		_tuple$1 = parser.ParseFile(fset, "", psrc, 4), file = _tuple$1[0], err = _tuple$1[1];
+		if (go$interfaceIsEqual(err, null)) {
+			return [file.Decls, null];
+		}
+		if (!strings.Contains(err.Error(), "expected declaration")) {
+			return [null, err];
+		}
+		fsrc = go$append(go$appendSlice(new (go$sliceType(Go$Uint8))(go$stringToBytes("package p; func _() {")), src), 125);
+		_tuple$2 = parser.ParseFile(fset, "", fsrc, 4), file = _tuple$2[0], err = _tuple$2[1];
+		if (go$interfaceIsEqual(err, null)) {
+			return [(x = (_slice = file.Decls, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.FuncDecl)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(ast.FuncDecl))))).Body.List, null];
+		}
+		return [null, err];
+	};
+	var config = new printer.Config.Ptr();
+	go$pkg.init = function() {
+		config = new printer.Config.Ptr(6, 8, 0);
+	};

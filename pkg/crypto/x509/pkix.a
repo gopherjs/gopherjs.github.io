@@ -1,0 +1,471 @@
+0Çï—Ç\Ôpackage pkix
+import asn1 "encoding/asn1"
+import big "math/big"
+import time "time"
+type @"".AlgorithmIdentifier struct { @"".Algorithm @"encoding/asn1".ObjectIdentifier; @"".Parameters @"encoding/asn1".RawValue "asn1:\"optional\"" }
+type @"".AttributeTypeAndValue struct { @"".Type @"encoding/asn1".ObjectIdentifier; @"".Value interface {  } }
+type @"".CertificateList struct { @"".TBSCertList @"".TBSCertificateList; @"".SignatureAlgorithm @"".AlgorithmIdentifier; @"".SignatureValue @"encoding/asn1".BitString }
+func (? *@"".CertificateList) @"".HasExpired(@"".now @"time".Time) (? bool)
+type @"".Extension struct { @"".Id @"encoding/asn1".ObjectIdentifier; @"".Critical bool "asn1:\"optional\""; @"".Value []byte }
+type @"".Name struct { @"".Country []string; @"".Organization []string; @"".OrganizationalUnit []string; @"".Locality []string; @"".Province []string; @"".StreetAddress []string; @"".PostalCode []string; @"".SerialNumber string; @"".CommonName string; @"".Names []@"".AttributeTypeAndValue }
+func (? @"".Name) @"".ToRDNSequence() (@"".ret @"".RDNSequence)
+func (? *@"".Name) @"".FillFromRDNSequence(@"".rdns *@"".RDNSequence) ()
+func (? *@"".Name) @"".ToRDNSequence() (@"".ret @"".RDNSequence)
+type @"".RDNSequence []@"".RelativeDistinguishedNameSET
+type @"".RelativeDistinguishedNameSET []@"".AttributeTypeAndValue
+type @"".RevokedCertificate struct { @"".SerialNumber *@"math/big".Int; @"".RevocationTime @"time".Time; @"".Extensions []@"".Extension "asn1:\"optional\"" }
+type @"".TBSCertificateList struct { @"".Raw @"encoding/asn1".RawContent; @"".Version int "asn1:\"optional,default:2\""; @"".Signature @"".AlgorithmIdentifier; @"".Issuer @"".RDNSequence; @"".ThisUpdate @"time".Time; @"".NextUpdate @"time".Time; @"".RevokedCertificates []@"".RevokedCertificate "asn1:\"optional\""; @"".Extensions []@"".Extension "asn1:\"tag:0,optional,explicit\"" }
+type @"encoding/asn1".ObjectIdentifier []int
+func (? @"encoding/asn1".ObjectIdentifier) @"encoding/asn1".Equal(@"".other @"encoding/asn1".ObjectIdentifier) (? bool)
+func (? *@"encoding/asn1".ObjectIdentifier) @"encoding/asn1".Equal(@"".other @"encoding/asn1".ObjectIdentifier) (? bool)
+type @"encoding/asn1".RawValue struct { @"encoding/asn1".Class int; @"encoding/asn1".Tag int; @"encoding/asn1".IsCompound bool; @"encoding/asn1".Bytes []byte; @"encoding/asn1".FullBytes []byte }
+type @"encoding/asn1".BitString struct { @"encoding/asn1".Bytes []byte; @"encoding/asn1".BitLength int }
+func (? @"encoding/asn1".BitString) @"encoding/asn1".At(@"".i int) (? int)
+func (? @"encoding/asn1".BitString) @"encoding/asn1".RightAlign() (? []byte)
+func (? *@"encoding/asn1".BitString) @"encoding/asn1".At(@"".i int) (? int)
+func (? *@"encoding/asn1".BitString) @"encoding/asn1".RightAlign() (? []byte)
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? @"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? @"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? @"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+func (? *@"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? *@"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? *@"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? *@"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+type @"math/big".Int struct { @"math/big".neg bool; @"math/big".abs @"math/big".nat }
+func (? *@"math/big".Int) @"math/big".Abs(@"".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Add(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".And(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".AndNot(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Binomial(@"".n int64, @"".k int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Bit(@"".i int) (? uint)
+func (? *@"math/big".Int) @"math/big".BitLen() (? int)
+func (? *@"math/big".Int) @"math/big".Bits() (? []@"math/big".Word)
+func (? *@"math/big".Int) @"math/big".Bytes() (? []byte)
+func (? *@"math/big".Int) @"math/big".Cmp(@"".y *@"math/big".Int) (@"".r int)
+func (? *@"math/big".Int) @"math/big".Div(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".DivMod(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".m *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Exp(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".m *@"math/big".Int) (? *@"math/big".Int)
+import fmt "fmt"
+func (? *@"math/big".Int) @"math/big".Format(@"".s @"fmt".State, @"".ch rune) ()
+func (? *@"math/big".Int) @"math/big".GCD(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".a *@"math/big".Int, @"".b *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".GobDecode(@"".buf []byte) (? error)
+func (? *@"math/big".Int) @"math/big".GobEncode() (? []byte, ? error)
+func (? *@"math/big".Int) @"math/big".Int64() (? int64)
+func (? *@"math/big".Int) @"math/big".Lsh(@"".x *@"math/big".Int, @"".n uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".MarshalJSON() (? []byte, ? error)
+func (? *@"math/big".Int) @"math/big".Mod(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".ModInverse(@"".g *@"math/big".Int, @"".p *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Mul(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".MulRange(@"".a int64, @"".b int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Neg(@"".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Not(@"".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Or(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".ProbablyPrime(@"".n int) (? bool)
+func (? *@"math/big".Int) @"math/big".Quo(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".QuoRem(@"".x *@"math/big".Int, @"".y *@"math/big".Int, @"".r *@"math/big".Int) (? *@"math/big".Int, ? *@"math/big".Int)
+import rand "math/rand"
+func (? *@"math/big".Int) @"math/big".Rand(@"".rnd *@"math/rand".Rand, @"".n *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rem(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Rsh(@"".x *@"math/big".Int, @"".n uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Scan(@"".s @"fmt".ScanState, @"".ch rune) (? error)
+func (? *@"math/big".Int) @"math/big".Set(@"".x *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBit(@"".x *@"math/big".Int, @"".i int, @"".b uint) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBits(@"".abs []@"math/big".Word) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetBytes(@"".buf []byte) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetInt64(@"".x int64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".SetString(@"".s string, @"".base int) (? *@"math/big".Int, ? bool)
+func (? *@"math/big".Int) @"math/big".SetUint64(@"".x uint64) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Sign() (? int)
+func (? *@"math/big".Int) @"math/big".String() (? string)
+func (? *@"math/big".Int) @"math/big".Sub(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".Uint64() (? uint64)
+func (? *@"math/big".Int) @"math/big".UnmarshalJSON(@"".x []byte) (? error)
+func (? *@"math/big".Int) @"math/big".Xor(@"".x *@"math/big".Int, @"".y *@"math/big".Int) (? *@"math/big".Int)
+func (? *@"math/big".Int) @"math/big".binaryGCD(@"".a *@"math/big".Int, @"".b *@"math/big".Int) (? *@"math/big".Int)
+import io "io"
+func (? *@"math/big".Int) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? *@"math/big".Int, ? int, ? error)
+type @"encoding/asn1".RawContent []byte
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"".sec int64) (@"".name string, @"".offset int, @"".isDST bool, @"".start int64, @"".end int64)
+func (? *@"time".Location) @"time".lookupName(@"".name string, @"".unix int64) (@"".offset int, @"".isDST bool, @"".ok bool)
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"math/big".nat []@"math/big".Word
+func (? @"math/big".nat) @"math/big".add(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".and(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".andNot(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".bit(@"".i uint) (? uint)
+func (? @"math/big".nat) @"math/big".bitLen() (? int)
+func (? @"math/big".nat) @"math/big".bytes(@"".buf []byte) (@"".i int)
+func (? @"math/big".nat) @"math/big".clear() ()
+func (? @"math/big".nat) @"math/big".cmp(@"".y @"math/big".nat) (@"".r int)
+func (? @"math/big".nat) @"math/big".convertWords(@"".s []byte, @"".charset string, @"".b @"math/big".Word, @"".ndigits int, @"".bb @"math/big".Word, @"".table []@"math/big".divisor) ()
+func (? @"math/big".nat) @"math/big".decimalString() (? string)
+func (? @"math/big".nat) @"math/big".div(@"".z2 @"math/big".nat, @"".u @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
+func (? @"math/big".nat) @"math/big".divLarge(@"".u @"math/big".nat, @"".uIn @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
+func (? @"math/big".nat) @"math/big".divW(@"".x @"math/big".nat, @"".y @"math/big".Word) (@"".q @"math/big".nat, @"".r @"math/big".Word)
+func (? @"math/big".nat) @"math/big".expNN(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".expNNWindowed(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".expWW(@"".x @"math/big".Word, @"".y @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".make(@"".n int) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".modW(@"".d @"math/big".Word) (@"".r @"math/big".Word)
+func (? @"math/big".nat) @"math/big".mul(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".mulAddWW(@"".x @"math/big".nat, @"".y @"math/big".Word, @"".r @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".mulRange(@"".a uint64, @"".b uint64) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".norm() (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".or(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".probablyPrime(@"".reps int) (? bool)
+func (? @"math/big".nat) @"math/big".random(@"".rand *@"math/rand".Rand, @"".limit @"math/big".nat, @"".n int) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? @"math/big".nat, ? int, ? error)
+func (? @"math/big".nat) @"math/big".set(@"".x @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setBit(@"".x @"math/big".nat, @"".i uint, @"".b uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setBytes(@"".buf []byte) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setUint64(@"".x uint64) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".setWord(@"".x @"math/big".Word) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".shl(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".shr(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".string(@"".charset string) (? string)
+func (? @"math/big".nat) @"math/big".sub(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? @"math/big".nat) @"math/big".trailingZeroBits() (? uint)
+func (? @"math/big".nat) @"math/big".xor(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".add(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".and(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".andNot(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".bit(@"".i uint) (? uint)
+func (? *@"math/big".nat) @"math/big".bitLen() (? int)
+func (? *@"math/big".nat) @"math/big".bytes(@"".buf []byte) (@"".i int)
+func (? *@"math/big".nat) @"math/big".clear() ()
+func (? *@"math/big".nat) @"math/big".cmp(@"".y @"math/big".nat) (@"".r int)
+func (? *@"math/big".nat) @"math/big".convertWords(@"".s []byte, @"".charset string, @"".b @"math/big".Word, @"".ndigits int, @"".bb @"math/big".Word, @"".table []@"math/big".divisor) ()
+func (? *@"math/big".nat) @"math/big".decimalString() (? string)
+func (? *@"math/big".nat) @"math/big".div(@"".z2 @"math/big".nat, @"".u @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".divLarge(@"".u @"math/big".nat, @"".uIn @"math/big".nat, @"".v @"math/big".nat) (@"".q @"math/big".nat, @"".r @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".divW(@"".x @"math/big".nat, @"".y @"math/big".Word) (@"".q @"math/big".nat, @"".r @"math/big".Word)
+func (? *@"math/big".nat) @"math/big".expNN(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".expNNWindowed(@"".x @"math/big".nat, @"".y @"math/big".nat, @"".m @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".expWW(@"".x @"math/big".Word, @"".y @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".make(@"".n int) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".modW(@"".d @"math/big".Word) (@"".r @"math/big".Word)
+func (? *@"math/big".nat) @"math/big".mul(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".mulAddWW(@"".x @"math/big".nat, @"".y @"math/big".Word, @"".r @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".mulRange(@"".a uint64, @"".b uint64) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".norm() (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".or(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".probablyPrime(@"".reps int) (? bool)
+func (? *@"math/big".nat) @"math/big".random(@"".rand *@"math/rand".Rand, @"".limit @"math/big".nat, @"".n int) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".scan(@"".r @"io".RuneScanner, @"".base int) (? @"math/big".nat, ? int, ? error)
+func (? *@"math/big".nat) @"math/big".set(@"".x @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setBit(@"".x @"math/big".nat, @"".i uint, @"".b uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setBytes(@"".buf []byte) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setUint64(@"".x uint64) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".setWord(@"".x @"math/big".Word) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".shl(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".shr(@"".x @"math/big".nat, @"".s uint) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".string(@"".charset string) (? string)
+func (? *@"math/big".nat) @"math/big".sub(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+func (? *@"math/big".nat) @"math/big".trailingZeroBits() (? uint)
+func (? *@"math/big".nat) @"math/big".xor(@"".x @"math/big".nat, @"".y @"math/big".nat) (? @"math/big".nat)
+type @"math/big".Word uintptr
+type @"fmt".State interface { @"fmt".Flag(@"".c int) (? bool); @"fmt".Precision() (@"".prec int, @"".ok bool); @"fmt".Width() (@"".wid int, @"".ok bool); @"fmt".Write(@"".b []byte) (@"".ret int, @"".err error) }
+type @"math/rand".Rand struct { @"math/rand".src @"math/rand".Source }
+func (? *@"math/rand".Rand) @"math/rand".ExpFloat64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Float32() (? float32)
+func (? *@"math/rand".Rand) @"math/rand".Float64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Int() (? int)
+func (? *@"math/rand".Rand) @"math/rand".Int31() (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int31n(@"".n int32) (? int32)
+func (? *@"math/rand".Rand) @"math/rand".Int63() (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Int63n(@"".n int64) (? int64)
+func (? *@"math/rand".Rand) @"math/rand".Intn(@"".n int) (? int)
+func (? *@"math/rand".Rand) @"math/rand".NormFloat64() (? float64)
+func (? *@"math/rand".Rand) @"math/rand".Perm(@"".n int) (? []int)
+func (? *@"math/rand".Rand) @"math/rand".Seed(@"".seed int64) ()
+func (? *@"math/rand".Rand) @"math/rand".Uint32() (? uint32)
+type @"fmt".ScanState interface { @"fmt".Read(@"".buf []byte) (@"".n int, @"".err error); @"fmt".ReadRune() (@"".r rune, @"".size int, @"".err error); @"fmt".SkipSpace() (); @"fmt".Token(@"".skipSpace bool, @"".f func (? rune) (? bool)) (@"".token []byte, @"".err error); @"fmt".UnreadRune() (? error); @"fmt".Width() (@"".wid int, @"".ok bool) }
+type @"io".RuneScanner interface { @"io".ReadRune() (@"".r rune, @"".size int, @"".err error); @"io".UnreadRune() (? error) }
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
+type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
+$$
+0Å∆runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/binary	math/randstringsmath/bigencoding/asn1crypto/x509/pkixÇ8	var asn1 = go$packages["encoding/asn1"];
+	var big = go$packages["math/big"];
+	var time = go$packages["time"];
+	var AlgorithmIdentifier;
+	AlgorithmIdentifier = go$newType(0, "Struct", "pkix.AlgorithmIdentifier", "AlgorithmIdentifier", "crypto/x509/pkix", function(Algorithm_, Parameters_) {
+		this.go$val = this;
+		this.Algorithm = Algorithm_ !== undefined ? Algorithm_ : asn1.ObjectIdentifier.nil;
+		this.Parameters = Parameters_ !== undefined ? Parameters_ : new asn1.RawValue.Ptr();
+	});
+	go$pkg.AlgorithmIdentifier = AlgorithmIdentifier;
+	var RDNSequence;
+	RDNSequence = go$newType(0, "Slice", "pkix.RDNSequence", "RDNSequence", "crypto/x509/pkix", null);
+	go$pkg.RDNSequence = RDNSequence;
+	var RelativeDistinguishedNameSET;
+	RelativeDistinguishedNameSET = go$newType(0, "Slice", "pkix.RelativeDistinguishedNameSET", "RelativeDistinguishedNameSET", "crypto/x509/pkix", null);
+	go$pkg.RelativeDistinguishedNameSET = RelativeDistinguishedNameSET;
+	var AttributeTypeAndValue;
+	AttributeTypeAndValue = go$newType(0, "Struct", "pkix.AttributeTypeAndValue", "AttributeTypeAndValue", "crypto/x509/pkix", function(Type_, Value_) {
+		this.go$val = this;
+		this.Type = Type_ !== undefined ? Type_ : asn1.ObjectIdentifier.nil;
+		this.Value = Value_ !== undefined ? Value_ : null;
+	});
+	go$pkg.AttributeTypeAndValue = AttributeTypeAndValue;
+	var Extension;
+	Extension = go$newType(0, "Struct", "pkix.Extension", "Extension", "crypto/x509/pkix", function(Id_, Critical_, Value_) {
+		this.go$val = this;
+		this.Id = Id_ !== undefined ? Id_ : asn1.ObjectIdentifier.nil;
+		this.Critical = Critical_ !== undefined ? Critical_ : false;
+		this.Value = Value_ !== undefined ? Value_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.Extension = Extension;
+	var Name;
+	Name = go$newType(0, "Struct", "pkix.Name", "Name", "crypto/x509/pkix", function(Country_, Organization_, OrganizationalUnit_, Locality_, Province_, StreetAddress_, PostalCode_, SerialNumber_, CommonName_, Names_) {
+		this.go$val = this;
+		this.Country = Country_ !== undefined ? Country_ : (go$sliceType(Go$String)).nil;
+		this.Organization = Organization_ !== undefined ? Organization_ : (go$sliceType(Go$String)).nil;
+		this.OrganizationalUnit = OrganizationalUnit_ !== undefined ? OrganizationalUnit_ : (go$sliceType(Go$String)).nil;
+		this.Locality = Locality_ !== undefined ? Locality_ : (go$sliceType(Go$String)).nil;
+		this.Province = Province_ !== undefined ? Province_ : (go$sliceType(Go$String)).nil;
+		this.StreetAddress = StreetAddress_ !== undefined ? StreetAddress_ : (go$sliceType(Go$String)).nil;
+		this.PostalCode = PostalCode_ !== undefined ? PostalCode_ : (go$sliceType(Go$String)).nil;
+		this.SerialNumber = SerialNumber_ !== undefined ? SerialNumber_ : "";
+		this.CommonName = CommonName_ !== undefined ? CommonName_ : "";
+		this.Names = Names_ !== undefined ? Names_ : (go$sliceType(AttributeTypeAndValue)).nil;
+	});
+	go$pkg.Name = Name;
+	var CertificateList;
+	CertificateList = go$newType(0, "Struct", "pkix.CertificateList", "CertificateList", "crypto/x509/pkix", function(TBSCertList_, SignatureAlgorithm_, SignatureValue_) {
+		this.go$val = this;
+		this.TBSCertList = TBSCertList_ !== undefined ? TBSCertList_ : new TBSCertificateList.Ptr();
+		this.SignatureAlgorithm = SignatureAlgorithm_ !== undefined ? SignatureAlgorithm_ : new AlgorithmIdentifier.Ptr();
+		this.SignatureValue = SignatureValue_ !== undefined ? SignatureValue_ : new asn1.BitString.Ptr();
+	});
+	go$pkg.CertificateList = CertificateList;
+	var TBSCertificateList;
+	TBSCertificateList = go$newType(0, "Struct", "pkix.TBSCertificateList", "TBSCertificateList", "crypto/x509/pkix", function(Raw_, Version_, Signature_, Issuer_, ThisUpdate_, NextUpdate_, RevokedCertificates_, Extensions_) {
+		this.go$val = this;
+		this.Raw = Raw_ !== undefined ? Raw_ : asn1.RawContent.nil;
+		this.Version = Version_ !== undefined ? Version_ : 0;
+		this.Signature = Signature_ !== undefined ? Signature_ : new AlgorithmIdentifier.Ptr();
+		this.Issuer = Issuer_ !== undefined ? Issuer_ : RDNSequence.nil;
+		this.ThisUpdate = ThisUpdate_ !== undefined ? ThisUpdate_ : new time.Time.Ptr();
+		this.NextUpdate = NextUpdate_ !== undefined ? NextUpdate_ : new time.Time.Ptr();
+		this.RevokedCertificates = RevokedCertificates_ !== undefined ? RevokedCertificates_ : (go$sliceType(RevokedCertificate)).nil;
+		this.Extensions = Extensions_ !== undefined ? Extensions_ : (go$sliceType(Extension)).nil;
+	});
+	go$pkg.TBSCertificateList = TBSCertificateList;
+	var RevokedCertificate;
+	RevokedCertificate = go$newType(0, "Struct", "pkix.RevokedCertificate", "RevokedCertificate", "crypto/x509/pkix", function(SerialNumber_, RevocationTime_, Extensions_) {
+		this.go$val = this;
+		this.SerialNumber = SerialNumber_ !== undefined ? SerialNumber_ : (go$ptrType(big.Int)).nil;
+		this.RevocationTime = RevocationTime_ !== undefined ? RevocationTime_ : new time.Time.Ptr();
+		this.Extensions = Extensions_ !== undefined ? Extensions_ : (go$sliceType(Extension)).nil;
+	});
+	go$pkg.RevokedCertificate = RevokedCertificate;
+	AlgorithmIdentifier.init([["Algorithm", "", asn1.ObjectIdentifier, ""], ["Parameters", "", asn1.RawValue, "asn1:\"optional\""]]);
+	RDNSequence.init(RelativeDistinguishedNameSET);
+	RelativeDistinguishedNameSET.init(AttributeTypeAndValue);
+	AttributeTypeAndValue.init([["Type", "", asn1.ObjectIdentifier, ""], ["Value", "", go$emptyInterface, ""]]);
+	Extension.init([["Id", "", asn1.ObjectIdentifier, ""], ["Critical", "", Go$Bool, "asn1:\"optional\""], ["Value", "", (go$sliceType(Go$Uint8)), ""]]);
+	Name.init([["Country", "", (go$sliceType(Go$String)), ""], ["Organization", "", (go$sliceType(Go$String)), ""], ["OrganizationalUnit", "", (go$sliceType(Go$String)), ""], ["Locality", "", (go$sliceType(Go$String)), ""], ["Province", "", (go$sliceType(Go$String)), ""], ["StreetAddress", "", (go$sliceType(Go$String)), ""], ["PostalCode", "", (go$sliceType(Go$String)), ""], ["SerialNumber", "", Go$String, ""], ["CommonName", "", Go$String, ""], ["Names", "", (go$sliceType(AttributeTypeAndValue)), ""]]);
+	Name.methods = [["ToRDNSequence", "", [], [RDNSequence], false]];
+	(go$ptrType(Name)).methods = [["FillFromRDNSequence", "", [(go$ptrType(RDNSequence))], [], false], ["ToRDNSequence", "", [], [RDNSequence], false]];
+	CertificateList.init([["TBSCertList", "", TBSCertificateList, ""], ["SignatureAlgorithm", "", AlgorithmIdentifier, ""], ["SignatureValue", "", asn1.BitString, ""]]);
+	(go$ptrType(CertificateList)).methods = [["HasExpired", "", [time.Time], [Go$Bool], false]];
+	TBSCertificateList.init([["Raw", "", asn1.RawContent, ""], ["Version", "", Go$Int, "asn1:\"optional,default:2\""], ["Signature", "", AlgorithmIdentifier, ""], ["Issuer", "", RDNSequence, ""], ["ThisUpdate", "", time.Time, ""], ["NextUpdate", "", time.Time, ""], ["RevokedCertificates", "", (go$sliceType(RevokedCertificate)), "asn1:\"optional\""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"tag:0,optional,explicit\""]]);
+	RevokedCertificate.init([["SerialNumber", "", (go$ptrType(big.Int)), ""], ["RevocationTime", "", time.Time, ""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"optional\""]]);
+	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
+		var n, _ref, _i, _slice, _index, rdn, _slice$1, _index$1, _struct, atv, _struct$1, _tuple, x, value, ok, t, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _slice$5, _index$5;
+		n = this;
+		_ref = rdns.go$get();
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			rdn = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (rdn.length === 0) {
+				continue;
+			}
+			atv = (_struct = (_slice$1 = rdn, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new AttributeTypeAndValue.Ptr(_struct.Type, _struct.Value));
+			n.Names = go$append(n.Names, (_struct$1 = atv, new AttributeTypeAndValue.Ptr(_struct$1.Type, _struct$1.Value)));
+			_tuple = (x = atv.Value, (x !== null && x.constructor === Go$String ? [x.go$val, true] : ["", false])), value = _tuple[0], ok = _tuple[1];
+			if (!ok) {
+				continue;
+			}
+			t = atv.Type;
+			if ((t.length === 4) && ((_slice$2 = t, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 2) && ((_slice$3 = t, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) === 5) && ((_slice$4 = t, _index$4 = 2, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) === 4)) {
+				_ref$1 = (_slice$5 = t, _index$5 = 3, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+				if (_ref$1 === 3) {
+					n.CommonName = value;
+				} else if (_ref$1 === 5) {
+					n.SerialNumber = value;
+				} else if (_ref$1 === 6) {
+					n.Country = go$append(n.Country, value);
+				} else if (_ref$1 === 7) {
+					n.Locality = go$append(n.Locality, value);
+				} else if (_ref$1 === 8) {
+					n.Province = go$append(n.Province, value);
+				} else if (_ref$1 === 9) {
+					n.StreetAddress = go$append(n.StreetAddress, value);
+				} else if (_ref$1 === 10) {
+					n.Organization = go$append(n.Organization, value);
+				} else if (_ref$1 === 11) {
+					n.OrganizationalUnit = go$append(n.OrganizationalUnit, value);
+				} else if (_ref$1 === 17) {
+					n.PostalCode = go$append(n.PostalCode, value);
+				}
+			}
+		}
+	};
+	Name.prototype.FillFromRDNSequence = function(rdns) { return this.go$val.FillFromRDNSequence(rdns); };
+	var appendRDNs = function(in$1, values, oid) {
+		var s, _ref, _i, _slice, _index, value, i, _slice$1, _index$1, _slice$2, _index$2;
+		if (values.length === 0) {
+			return in$1;
+		}
+		s = (go$sliceType(AttributeTypeAndValue)).make(values.length, 0, function() { return new AttributeTypeAndValue.Ptr(); });
+		_ref = values;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			value = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			(_slice$1 = s, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Type = oid;
+			(_slice$2 = s, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Value = new Go$String(value);
+		}
+		return go$append(in$1, go$subslice(new RelativeDistinguishedNameSET(s.array), s.offset, s.offset + s.length));
+	};
+	Name.Ptr.prototype.ToRDNSequence = function() {
+		var ret, _struct, n;
+		ret = RDNSequence.nil;
+		n = (_struct = this, new Name.Ptr(_struct.Country, _struct.Organization, _struct.OrganizationalUnit, _struct.Locality, _struct.Province, _struct.StreetAddress, _struct.PostalCode, _struct.SerialNumber, _struct.CommonName, _struct.Names));
+		ret = appendRDNs(ret, n.Country, go$subslice(new asn1.ObjectIdentifier(oidCountry.array), oidCountry.offset, oidCountry.offset + oidCountry.length));
+		ret = appendRDNs(ret, n.Organization, go$subslice(new asn1.ObjectIdentifier(oidOrganization.array), oidOrganization.offset, oidOrganization.offset + oidOrganization.length));
+		ret = appendRDNs(ret, n.OrganizationalUnit, go$subslice(new asn1.ObjectIdentifier(oidOrganizationalUnit.array), oidOrganizationalUnit.offset, oidOrganizationalUnit.offset + oidOrganizationalUnit.length));
+		ret = appendRDNs(ret, n.Locality, go$subslice(new asn1.ObjectIdentifier(oidLocality.array), oidLocality.offset, oidLocality.offset + oidLocality.length));
+		ret = appendRDNs(ret, n.Province, go$subslice(new asn1.ObjectIdentifier(oidProvince.array), oidProvince.offset, oidProvince.offset + oidProvince.length));
+		ret = appendRDNs(ret, n.StreetAddress, go$subslice(new asn1.ObjectIdentifier(oidStreetAddress.array), oidStreetAddress.offset, oidStreetAddress.offset + oidStreetAddress.length));
+		ret = appendRDNs(ret, n.PostalCode, go$subslice(new asn1.ObjectIdentifier(oidPostalCode.array), oidPostalCode.offset, oidPostalCode.offset + oidPostalCode.length));
+		if (n.CommonName.length > 0) {
+			ret = appendRDNs(ret, new (go$sliceType(Go$String))([n.CommonName]), go$subslice(new asn1.ObjectIdentifier(oidCommonName.array), oidCommonName.offset, oidCommonName.offset + oidCommonName.length));
+		}
+		if (n.SerialNumber.length > 0) {
+			ret = appendRDNs(ret, new (go$sliceType(Go$String))([n.SerialNumber]), go$subslice(new asn1.ObjectIdentifier(oidSerialNumber.array), oidSerialNumber.offset, oidSerialNumber.offset + oidSerialNumber.length));
+		}
+		ret = ret;
+		return ret;
+	};
+	Name.prototype.ToRDNSequence = function() { return this.go$val.ToRDNSequence(); };
+	CertificateList.Ptr.prototype.HasExpired = function(now) {
+		var certList, _struct;
+		certList = this;
+		return now.After((_struct = certList.TBSCertList.NextUpdate, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)));
+	};
+	CertificateList.prototype.HasExpired = function(now) { return this.go$val.HasExpired(now); };
+	var oidCountry = (go$sliceType(Go$Int)).nil;
+	var oidOrganization = (go$sliceType(Go$Int)).nil;
+	var oidOrganizationalUnit = (go$sliceType(Go$Int)).nil;
+	var oidCommonName = (go$sliceType(Go$Int)).nil;
+	var oidSerialNumber = (go$sliceType(Go$Int)).nil;
+	var oidLocality = (go$sliceType(Go$Int)).nil;
+	var oidProvince = (go$sliceType(Go$Int)).nil;
+	var oidStreetAddress = (go$sliceType(Go$Int)).nil;
+	var oidPostalCode = (go$sliceType(Go$Int)).nil;
+	go$pkg.init = function() {
+		oidCountry = new (go$sliceType(Go$Int))([2, 5, 4, 6]);
+		oidOrganization = new (go$sliceType(Go$Int))([2, 5, 4, 10]);
+		oidOrganizationalUnit = new (go$sliceType(Go$Int))([2, 5, 4, 11]);
+		oidCommonName = new (go$sliceType(Go$Int))([2, 5, 4, 3]);
+		oidSerialNumber = new (go$sliceType(Go$Int))([2, 5, 4, 5]);
+		oidLocality = new (go$sliceType(Go$Int))([2, 5, 4, 7]);
+		oidProvince = new (go$sliceType(Go$Int))([2, 5, 4, 8]);
+		oidStreetAddress = new (go$sliceType(Go$Int))([2, 5, 4, 9]);
+		oidPostalCode = new (go$sliceType(Go$Int))([2, 5, 4, 17]);
+	};

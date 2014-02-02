@@ -1,0 +1,1136 @@
+0ƒ!‡‚Spackage binary
+import errors "errors"
+import io "io"
+import math "math"
+import reflect "reflect"
+var @"".BigEndian @"".bigEndian
+type @"".ByteOrder interface { @"".PutUint16(? []byte, ? uint16) (); @"".PutUint32(? []byte, ? uint32) (); @"".PutUint64(? []byte, ? uint64) (); @"".String() (? string); @"".Uint16(? []byte) (? uint16); @"".Uint32(? []byte) (? uint32); @"".Uint64(? []byte) (? uint64) }
+var @"".LittleEndian @"".littleEndian
+const @"".MaxVarintLen16 = 0x3
+const @"".MaxVarintLen32 = 0x5
+const @"".MaxVarintLen64 = 0xa
+func @"".PutUvarint(@"".buf []byte, @"".x uint64) (? int)
+func @"".PutVarint(@"".buf []byte, @"".x int64) (? int)
+func @"".Read(@"".r @"io".Reader, @"".order @"".ByteOrder, @"".data interface {  }) (? error)
+func @"".ReadUvarint(@"".r @"io".ByteReader) (? uint64, ? error)
+func @"".ReadVarint(@"".r @"io".ByteReader) (? int64, ? error)
+func @"".Size(@"".v interface {  }) (? int)
+func @"".Uvarint(@"".buf []byte) (? uint64, ? int)
+func @"".Varint(@"".buf []byte) (? int64, ? int)
+func @"".Write(@"".w @"io".Writer, @"".order @"".ByteOrder, @"".data interface {  }) (? error)
+type @"".bigEndian struct {  }
+func (? @"".bigEndian) @"".GoString() (? string)
+func (? @"".bigEndian) @"".PutUint16(@"".b []byte, @"".v uint16) ()
+func (? @"".bigEndian) @"".PutUint32(@"".b []byte, @"".v uint32) ()
+func (? @"".bigEndian) @"".PutUint64(@"".b []byte, @"".v uint64) ()
+func (? @"".bigEndian) @"".String() (? string)
+func (? @"".bigEndian) @"".Uint16(@"".b []byte) (? uint16)
+func (? @"".bigEndian) @"".Uint32(@"".b []byte) (? uint32)
+func (? @"".bigEndian) @"".Uint64(@"".b []byte) (? uint64)
+func (? *@"".bigEndian) @"".GoString() (? string)
+func (? *@"".bigEndian) @"".PutUint16(@"".b []byte, @"".v uint16) ()
+func (? *@"".bigEndian) @"".PutUint32(@"".b []byte, @"".v uint32) ()
+func (? *@"".bigEndian) @"".PutUint64(@"".b []byte, @"".v uint64) ()
+func (? *@"".bigEndian) @"".String() (? string)
+func (? *@"".bigEndian) @"".Uint16(@"".b []byte) (? uint16)
+func (? *@"".bigEndian) @"".Uint32(@"".b []byte) (? uint32)
+func (? *@"".bigEndian) @"".Uint64(@"".b []byte) (? uint64)
+type @"".coder struct { @"".order @"".ByteOrder; @"".buf []byte }
+type @"".decoder struct { @"".order @"".ByteOrder; @"".buf []byte }
+func (? *@"".decoder) @"".int16() (? int16)
+func (? *@"".decoder) @"".int32() (? int32)
+func (? *@"".decoder) @"".int64() (? int64)
+func (? *@"".decoder) @"".int8() (? int8)
+func (? *@"".decoder) @"".skip(@"".v @"reflect".Value) ()
+func (? *@"".decoder) @"".uint16() (? uint16)
+func (? *@"".decoder) @"".uint32() (? uint32)
+func (? *@"".decoder) @"".uint64() (? uint64)
+func (? *@"".decoder) @"".uint8() (? uint8)
+func (? *@"".decoder) @"".value(@"".v @"reflect".Value) ()
+type @"".encoder struct { @"".order @"".ByteOrder; @"".buf []byte }
+func (? *@"".encoder) @"".int16(@"".x int16) ()
+func (? *@"".encoder) @"".int32(@"".x int32) ()
+func (? *@"".encoder) @"".int64(@"".x int64) ()
+func (? *@"".encoder) @"".int8(@"".x int8) ()
+func (? *@"".encoder) @"".skip(@"".v @"reflect".Value) ()
+func (? *@"".encoder) @"".uint16(@"".x uint16) ()
+func (? *@"".encoder) @"".uint32(@"".x uint32) ()
+func (? *@"".encoder) @"".uint64(@"".x uint64) ()
+func (? *@"".encoder) @"".uint8(@"".x uint8) ()
+func (? *@"".encoder) @"".value(@"".v @"reflect".Value) ()
+type @"".littleEndian struct {  }
+func (? @"".littleEndian) @"".GoString() (? string)
+func (? @"".littleEndian) @"".PutUint16(@"".b []byte, @"".v uint16) ()
+func (? @"".littleEndian) @"".PutUint32(@"".b []byte, @"".v uint32) ()
+func (? @"".littleEndian) @"".PutUint64(@"".b []byte, @"".v uint64) ()
+func (? @"".littleEndian) @"".String() (? string)
+func (? @"".littleEndian) @"".Uint16(@"".b []byte) (? uint16)
+func (? @"".littleEndian) @"".Uint32(@"".b []byte) (? uint32)
+func (? @"".littleEndian) @"".Uint64(@"".b []byte) (? uint64)
+func (? *@"".littleEndian) @"".GoString() (? string)
+func (? *@"".littleEndian) @"".PutUint16(@"".b []byte, @"".v uint16) ()
+func (? *@"".littleEndian) @"".PutUint32(@"".b []byte, @"".v uint32) ()
+func (? *@"".littleEndian) @"".PutUint64(@"".b []byte, @"".v uint64) ()
+func (? *@"".littleEndian) @"".String() (? string)
+func (? *@"".littleEndian) @"".Uint16(@"".b []byte) (? uint16)
+func (? *@"".littleEndian) @"".Uint32(@"".b []byte) (? uint32)
+func (? *@"".littleEndian) @"".Uint64(@"".b []byte) (? uint64)
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"io".ByteReader interface { @"io".ReadByte() (@"io".c byte, @"io".err error) }
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"reflect".Value struct { @"reflect".typ *@"reflect".rtype; @"reflect".val @"unsafe".Pointer; ? @"reflect".flag }
+func (? @"reflect".Value) @"reflect".Addr() (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Bool() (? bool)
+func (? @"reflect".Value) @"reflect".Bytes() (? []byte)
+func (? @"reflect".Value) @"reflect".Call(@"reflect".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".CallSlice(@"reflect".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".CanAddr() (? bool)
+func (? @"reflect".Value) @"reflect".CanInterface() (? bool)
+func (? @"reflect".Value) @"reflect".CanSet() (? bool)
+func (? @"reflect".Value) @"reflect".Cap() (? int)
+func (? @"reflect".Value) @"reflect".Close() ()
+func (? @"reflect".Value) @"reflect".Complex() (? complex128)
+func (? @"reflect".Value) @"reflect".Convert(@"reflect".t @"reflect".Type) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Elem() (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Field(@"reflect".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByIndex(@"reflect".index []int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByName(@"reflect".name string) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByNameFunc(@"reflect".match func (? string) (? bool)) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Float() (? float64)
+func (? @"reflect".Value) @"reflect".Index(@"reflect".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Int() (? int64)
+func (? @"reflect".Value) @"reflect".Interface() (@"reflect".i interface {  })
+func (? @"reflect".Value) @"reflect".InterfaceData() (? [2]uintptr)
+func (? @"reflect".Value) @"reflect".IsNil() (? bool)
+func (? @"reflect".Value) @"reflect".IsValid() (? bool)
+func (? @"reflect".Value) @"reflect".Kind() (? @"reflect".Kind)
+func (? @"reflect".Value) @"reflect".Len() (? int)
+func (? @"reflect".Value) @"reflect".MapIndex(@"reflect".key @"reflect".Value) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".MapKeys() (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".Method(@"reflect".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".MethodByName(@"reflect".name string) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".NumField() (? int)
+func (? @"reflect".Value) @"reflect".NumMethod() (? int)
+func (? @"reflect".Value) @"reflect".OverflowComplex(@"reflect".x complex128) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowFloat(@"reflect".x float64) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowInt(@"reflect".x int64) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowUint(@"reflect".x uint64) (? bool)
+func (? @"reflect".Value) @"reflect".Pointer() (? uintptr)
+func (? @"reflect".Value) @"reflect".Recv() (@"reflect".x @"reflect".Value, @"reflect".ok bool)
+func (? @"reflect".Value) @"reflect".Send(@"reflect".x @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".Set(@"reflect".x @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".SetBool(@"reflect".x bool) ()
+func (? @"reflect".Value) @"reflect".SetBytes(@"reflect".x []byte) ()
+func (? @"reflect".Value) @"reflect".SetCap(@"reflect".n int) ()
+func (? @"reflect".Value) @"reflect".SetComplex(@"reflect".x complex128) ()
+func (? @"reflect".Value) @"reflect".SetFloat(@"reflect".x float64) ()
+func (? @"reflect".Value) @"reflect".SetInt(@"reflect".x int64) ()
+func (? @"reflect".Value) @"reflect".SetLen(@"reflect".n int) ()
+func (? @"reflect".Value) @"reflect".SetMapIndex(@"reflect".key @"reflect".Value, @"reflect".val @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".SetPointer(@"reflect".x @"unsafe".Pointer) ()
+func (? @"reflect".Value) @"reflect".SetString(@"reflect".x string) ()
+func (? @"reflect".Value) @"reflect".SetUint(@"reflect".x uint64) ()
+func (? @"reflect".Value) @"reflect".Slice(@"reflect".i int, @"reflect".j int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Slice3(@"reflect".i int, @"reflect".j int, @"reflect".k int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".String() (? string)
+func (? @"reflect".Value) @"reflect".TryRecv() (@"reflect".x @"reflect".Value, @"reflect".ok bool)
+func (? @"reflect".Value) @"reflect".TrySend(@"reflect".x @"reflect".Value) (? bool)
+func (? @"reflect".Value) @"reflect".Type() (? @"reflect".Type)
+func (? @"reflect".Value) @"reflect".Uint() (? uint64)
+func (? @"reflect".Value) @"reflect".UnsafeAddr() (? uintptr)
+func (? @"reflect".Value) @"reflect".assignTo(@"reflect".context string, @"reflect".dst *@"reflect".rtype, @"reflect".target *interface {  }) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".call(@"reflect".op string, @"reflect".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".iword() (? @"reflect".iword)
+func (? @"reflect".Value) @"reflect".recv(@"reflect".nb bool) (@"reflect".val @"reflect".Value, @"reflect".ok bool)
+func (? @"reflect".Value) @"reflect".runes() (? []rune)
+func (? @"reflect".Value) @"reflect".send(@"reflect".x @"reflect".Value, @"reflect".nb bool) (@"reflect".selected bool)
+func (? @"reflect".Value) @"reflect".setRunes(@"reflect".x []rune) ()
+func (? *@"reflect".Value) @"reflect".Addr() (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Bool() (? bool)
+func (? *@"reflect".Value) @"reflect".Bytes() (? []byte)
+func (? *@"reflect".Value) @"reflect".Call(@"reflect".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".CallSlice(@"reflect".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".CanAddr() (? bool)
+func (? *@"reflect".Value) @"reflect".CanInterface() (? bool)
+func (? *@"reflect".Value) @"reflect".CanSet() (? bool)
+func (? *@"reflect".Value) @"reflect".Cap() (? int)
+func (? *@"reflect".Value) @"reflect".Close() ()
+func (? *@"reflect".Value) @"reflect".Complex() (? complex128)
+func (? *@"reflect".Value) @"reflect".Convert(@"reflect".t @"reflect".Type) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Elem() (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Field(@"reflect".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByIndex(@"reflect".index []int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByName(@"reflect".name string) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByNameFunc(@"reflect".match func (? string) (? bool)) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Float() (? float64)
+func (? *@"reflect".Value) @"reflect".Index(@"reflect".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Int() (? int64)
+func (? *@"reflect".Value) @"reflect".Interface() (@"reflect".i interface {  })
+func (? *@"reflect".Value) @"reflect".InterfaceData() (? [2]uintptr)
+func (? *@"reflect".Value) @"reflect".IsNil() (? bool)
+func (? *@"reflect".Value) @"reflect".IsValid() (? bool)
+func (? *@"reflect".Value) @"reflect".Kind() (? @"reflect".Kind)
+func (? *@"reflect".Value) @"reflect".Len() (? int)
+func (? *@"reflect".Value) @"reflect".MapIndex(@"reflect".key @"reflect".Value) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".MapKeys() (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Method(@"reflect".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".MethodByName(@"reflect".name string) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".NumField() (? int)
+func (? *@"reflect".Value) @"reflect".NumMethod() (? int)
+func (? *@"reflect".Value) @"reflect".OverflowComplex(@"reflect".x complex128) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowFloat(@"reflect".x float64) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowInt(@"reflect".x int64) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowUint(@"reflect".x uint64) (? bool)
+func (? *@"reflect".Value) @"reflect".Pointer() (? uintptr)
+func (? *@"reflect".Value) @"reflect".Recv() (@"reflect".x @"reflect".Value, @"reflect".ok bool)
+func (? *@"reflect".Value) @"reflect".Send(@"reflect".x @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".Set(@"reflect".x @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".SetBool(@"reflect".x bool) ()
+func (? *@"reflect".Value) @"reflect".SetBytes(@"reflect".x []byte) ()
+func (? *@"reflect".Value) @"reflect".SetCap(@"reflect".n int) ()
+func (? *@"reflect".Value) @"reflect".SetComplex(@"reflect".x complex128) ()
+func (? *@"reflect".Value) @"reflect".SetFloat(@"reflect".x float64) ()
+func (? *@"reflect".Value) @"reflect".SetInt(@"reflect".x int64) ()
+func (? *@"reflect".Value) @"reflect".SetLen(@"reflect".n int) ()
+func (? *@"reflect".Value) @"reflect".SetMapIndex(@"reflect".key @"reflect".Value, @"reflect".val @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".SetPointer(@"reflect".x @"unsafe".Pointer) ()
+func (? *@"reflect".Value) @"reflect".SetString(@"reflect".x string) ()
+func (? *@"reflect".Value) @"reflect".SetUint(@"reflect".x uint64) ()
+func (? *@"reflect".Value) @"reflect".Slice(@"reflect".i int, @"reflect".j int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Slice3(@"reflect".i int, @"reflect".j int, @"reflect".k int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".String() (? string)
+func (? *@"reflect".Value) @"reflect".TryRecv() (@"reflect".x @"reflect".Value, @"reflect".ok bool)
+func (? *@"reflect".Value) @"reflect".TrySend(@"reflect".x @"reflect".Value) (? bool)
+func (? *@"reflect".Value) @"reflect".Type() (? @"reflect".Type)
+func (? *@"reflect".Value) @"reflect".Uint() (? uint64)
+func (? *@"reflect".Value) @"reflect".UnsafeAddr() (? uintptr)
+func (? *@"reflect".Value) @"reflect".assignTo(@"reflect".context string, @"reflect".dst *@"reflect".rtype, @"reflect".target *interface {  }) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".call(@"reflect".op string, @"reflect".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".iword() (? @"reflect".iword)
+func (? *@"reflect".Value) @"reflect".recv(@"reflect".nb bool) (@"reflect".val @"reflect".Value, @"reflect".ok bool)
+func (? *@"reflect".Value) @"reflect".runes() (? []rune)
+func (? *@"reflect".Value) @"reflect".send(@"reflect".x @"reflect".Value, @"reflect".nb bool) (@"reflect".selected bool)
+func (? *@"reflect".Value) @"reflect".setRunes(@"reflect".x []rune) ()
+type @"reflect".rtype struct { @"reflect".size uintptr; @"reflect".hash uint32; _ uint8; @"reflect".align uint8; @"reflect".fieldAlign uint8; @"reflect".kind uint8; @"reflect".alg *uintptr; @"reflect".gc @"unsafe".Pointer; @"reflect".string *string; ? *@"reflect".uncommonType; @"reflect".ptrToThis *@"reflect".rtype }
+func (? *@"reflect".rtype) @"reflect".Align() (? int)
+func (? *@"reflect".rtype) @"reflect".AssignableTo(@"reflect".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".Bits() (? int)
+func (? *@"reflect".rtype) @"reflect".ChanDir() (? @"reflect".ChanDir)
+func (? *@"reflect".rtype) @"reflect".ConvertibleTo(@"reflect".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".Elem() (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".Field(@"reflect".i int) (? @"reflect".StructField)
+func (? *@"reflect".rtype) @"reflect".FieldAlign() (? int)
+func (? *@"reflect".rtype) @"reflect".FieldByIndex(@"reflect".index []int) (? @"reflect".StructField)
+func (? *@"reflect".rtype) @"reflect".FieldByName(@"reflect".name string) (? @"reflect".StructField, ? bool)
+func (? *@"reflect".rtype) @"reflect".FieldByNameFunc(@"reflect".match func (? string) (? bool)) (? @"reflect".StructField, ? bool)
+func (? *@"reflect".rtype) @"reflect".Implements(@"reflect".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".In(@"reflect".i int) (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".IsVariadic() (? bool)
+func (? *@"reflect".rtype) @"reflect".Key() (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".Kind() (? @"reflect".Kind)
+func (? *@"reflect".rtype) @"reflect".Len() (? int)
+func (? *@"reflect".rtype) @"reflect".Method(@"reflect".i int) (@"reflect".m @"reflect".Method)
+func (? *@"reflect".rtype) @"reflect".MethodByName(@"reflect".name string) (@"reflect".m @"reflect".Method, @"reflect".ok bool)
+func (? *@"reflect".rtype) @"reflect".Name() (? string)
+func (? *@"reflect".rtype) @"reflect".NumField() (? int)
+func (? *@"reflect".rtype) @"reflect".NumIn() (? int)
+func (? *@"reflect".rtype) @"reflect".NumMethod() (? int)
+func (? *@"reflect".rtype) @"reflect".NumOut() (? int)
+func (? *@"reflect".rtype) @"reflect".Out(@"reflect".i int) (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".PkgPath() (? string)
+func (? *@"reflect".rtype) @"reflect".Size() (? uintptr)
+func (? *@"reflect".rtype) @"reflect".String() (? string)
+func (? *@"reflect".rtype) @"reflect".common() (? *@"reflect".rtype)
+func (? *@"reflect".rtype) @"reflect".ptrTo() (? *@"reflect".rtype)
+type @"reflect".flag uintptr
+func (? @"reflect".flag) @"reflect".kind() (? @"reflect".Kind)
+func (? @"reflect".flag) @"reflect".mustBe(@"reflect".expected @"reflect".Kind) ()
+func (? @"reflect".flag) @"reflect".mustBeAssignable() ()
+func (? @"reflect".flag) @"reflect".mustBeExported() ()
+func (? *@"reflect".flag) @"reflect".kind() (? @"reflect".Kind)
+func (? *@"reflect".flag) @"reflect".mustBe(@"reflect".expected @"reflect".Kind) ()
+func (? *@"reflect".flag) @"reflect".mustBeAssignable() ()
+func (? *@"reflect".flag) @"reflect".mustBeExported() ()
+type @"reflect".Type interface { @"reflect".Align() (? int); @"reflect".AssignableTo(@"reflect".u @"reflect".Type) (? bool); @"reflect".Bits() (? int); @"reflect".ChanDir() (? @"reflect".ChanDir); @"reflect".ConvertibleTo(@"reflect".u @"reflect".Type) (? bool); @"reflect".Elem() (? @"reflect".Type); @"reflect".Field(@"reflect".i int) (? @"reflect".StructField); @"reflect".FieldAlign() (? int); @"reflect".FieldByIndex(@"reflect".index []int) (? @"reflect".StructField); @"reflect".FieldByName(@"reflect".name string) (? @"reflect".StructField, ? bool); @"reflect".FieldByNameFunc(@"reflect".match func (? string) (? bool)) (? @"reflect".StructField, ? bool); @"reflect".Implements(@"reflect".u @"reflect".Type) (? bool); @"reflect".In(@"reflect".i int) (? @"reflect".Type); @"reflect".IsVariadic() (? bool); @"reflect".Key() (? @"reflect".Type); @"reflect".Kind() (? @"reflect".Kind); @"reflect".Len() (? int); @"reflect".Method(? int) (? @"reflect".Method); @"reflect".MethodByName(? string) (? @"reflect".Method, ? bool); @"reflect".Name() (? string); @"reflect".NumField() (? int); @"reflect".NumIn() (? int); @"reflect".NumMethod() (? int); @"reflect".NumOut() (? int); @"reflect".Out(@"reflect".i int) (? @"reflect".Type); @"reflect".PkgPath() (? string); @"reflect".Size() (? uintptr); @"reflect".String() (? string); @"reflect".common() (? *@"reflect".rtype); @"reflect".uncommon() (? *@"reflect".uncommonType) }
+type @"reflect".Kind uint
+func (? @"reflect".Kind) @"reflect".String() (? string)
+func (? *@"reflect".Kind) @"reflect".String() (? string)
+type @"reflect".iword @"unsafe".Pointer
+type @"reflect".uncommonType struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".methods []@"reflect".method }
+func (? *@"reflect".uncommonType) @"reflect".Method(@"reflect".i int) (@"reflect".m @"reflect".Method)
+func (? *@"reflect".uncommonType) @"reflect".MethodByName(@"reflect".name string) (@"reflect".m @"reflect".Method, @"reflect".ok bool)
+func (? *@"reflect".uncommonType) @"reflect".Name() (? string)
+func (? *@"reflect".uncommonType) @"reflect".NumMethod() (? int)
+func (? *@"reflect".uncommonType) @"reflect".PkgPath() (? string)
+func (? *@"reflect".uncommonType) @"reflect".uncommon() (? *@"reflect".uncommonType)
+type @"reflect".ChanDir int
+func (? @"reflect".ChanDir) @"reflect".String() (? string)
+func (? *@"reflect".ChanDir) @"reflect".String() (? string)
+type @"reflect".StructField struct { @"reflect".Name string; @"reflect".PkgPath string; @"reflect".Type @"reflect".Type; @"reflect".Tag @"reflect".StructTag; @"reflect".Offset uintptr; @"reflect".Index []int; @"reflect".Anonymous bool }
+type @"reflect".Method struct { @"reflect".Name string; @"reflect".PkgPath string; @"reflect".Type @"reflect".Type; @"reflect".Func @"reflect".Value; @"reflect".Index int }
+type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
+type @"reflect".StructTag string
+func (? @"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
+func (? *@"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
+$$
+0_runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binary‚Î	var errors = go$packages["errors"];
+	var io = go$packages["io"];
+	var math = go$packages["math"];
+	var reflect = go$packages["reflect"];
+	var ByteOrder;
+	ByteOrder = go$newType(0, "Interface", "binary.ByteOrder", "ByteOrder", "encoding/binary", null);
+	go$pkg.ByteOrder = ByteOrder;
+	var littleEndian;
+	littleEndian = go$newType(0, "Struct", "binary.littleEndian", "littleEndian", "encoding/binary", function() {
+		this.go$val = this;
+	});
+	go$pkg.littleEndian = littleEndian;
+	var bigEndian;
+	bigEndian = go$newType(0, "Struct", "binary.bigEndian", "bigEndian", "encoding/binary", function() {
+		this.go$val = this;
+	});
+	go$pkg.bigEndian = bigEndian;
+	var coder;
+	coder = go$newType(0, "Struct", "binary.coder", "coder", "encoding/binary", function(order_, buf_) {
+		this.go$val = this;
+		this.order = order_ !== undefined ? order_ : null;
+		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.coder = coder;
+	var decoder;
+	decoder = go$newType(0, "Struct", "binary.decoder", "decoder", "encoding/binary", function(order_, buf_) {
+		this.go$val = this;
+		this.order = order_ !== undefined ? order_ : null;
+		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.decoder = decoder;
+	var encoder;
+	encoder = go$newType(0, "Struct", "binary.encoder", "encoder", "encoding/binary", function(order_, buf_) {
+		this.go$val = this;
+		this.order = order_ !== undefined ? order_ : null;
+		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.encoder = encoder;
+	ByteOrder.init([["PutUint16", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Uint16], [], false))], ["PutUint32", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Uint32], [], false))], ["PutUint64", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Uint64], [], false))], ["String", "", (go$funcType([], [Go$String], false))], ["Uint16", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Uint16], false))], ["Uint32", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Uint32], false))], ["Uint64", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Uint64], false))]]);
+	littleEndian.init([]);
+	littleEndian.methods = [["GoString", "", [], [Go$String], false], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false], ["String", "", [], [Go$String], false], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false]];
+	(go$ptrType(littleEndian)).methods = [["GoString", "", [], [Go$String], false], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false], ["String", "", [], [Go$String], false], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false]];
+	bigEndian.init([]);
+	bigEndian.methods = [["GoString", "", [], [Go$String], false], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false], ["String", "", [], [Go$String], false], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false]];
+	(go$ptrType(bigEndian)).methods = [["GoString", "", [], [Go$String], false], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false], ["String", "", [], [Go$String], false], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false]];
+	coder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
+	decoder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
+	(go$ptrType(decoder)).methods = [["int16", "encoding/binary", [], [Go$Int16], false], ["int32", "encoding/binary", [], [Go$Int32], false], ["int64", "encoding/binary", [], [Go$Int64], false], ["int8", "encoding/binary", [], [Go$Int8], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [], [Go$Uint16], false], ["uint32", "encoding/binary", [], [Go$Uint32], false], ["uint64", "encoding/binary", [], [Go$Uint64], false], ["uint8", "encoding/binary", [], [Go$Uint8], false], ["value", "encoding/binary", [reflect.Value], [], false]];
+	encoder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
+	(go$ptrType(encoder)).methods = [["int16", "encoding/binary", [Go$Int16], [], false], ["int32", "encoding/binary", [Go$Int32], [], false], ["int64", "encoding/binary", [Go$Int64], [], false], ["int8", "encoding/binary", [Go$Int8], [], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [Go$Uint16], [], false], ["uint32", "encoding/binary", [Go$Uint32], [], false], ["uint64", "encoding/binary", [Go$Uint64], [], false], ["uint8", "encoding/binary", [Go$Uint8], [], false], ["value", "encoding/binary", [reflect.Value], [], false]];
+	littleEndian.Ptr.prototype.Uint16 = function(b) {
+		var _slice, _index, _slice$1, _index$1;
+		return (((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16)) >>> 0;
+	};
+	littleEndian.prototype.Uint16 = function(b) { return this.go$val.Uint16(b); };
+	littleEndian.Ptr.prototype.PutUint16 = function(b, v) {
+		var _slice, _index, _slice$1, _index$1;
+		_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (v << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((v >>> 8 << 16 >>> 16) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+	};
+	littleEndian.prototype.PutUint16 = function(b, v) { return this.go$val.PutUint16(b, v); };
+	littleEndian.Ptr.prototype.Uint32 = function(b) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		return (((((((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0) << 8 >>> 0)) >>> 0) | (((_slice$2 = b, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0) << 16 >>> 0)) >>> 0) | (((_slice$3 = b, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0) << 24 >>> 0)) >>> 0;
+	};
+	littleEndian.prototype.Uint32 = function(b) { return this.go$val.Uint32(b); };
+	littleEndian.Ptr.prototype.PutUint32 = function(b, v) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (v << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((v >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$2 = b, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ((v >>> 16 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$3 = b, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = ((v >>> 24 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+	};
+	littleEndian.prototype.PutUint32 = function(b, v) { return this.go$val.PutUint32(b, v); };
+	littleEndian.Ptr.prototype.Uint64 = function(b) {
+		var x, x$1, x$2, x$3, x$4, x$5, x$6, _slice, _index, x$7, _slice$1, _index$1, x$8, _slice$2, _index$2, x$9, _slice$3, _index$3, x$10, _slice$4, _index$4, x$11, _slice$5, _index$5, x$12, _slice$6, _index$6, x$13, _slice$7, _index$7;
+		return (x = (x$1 = (x$2 = (x$3 = (x$4 = (x$5 = (x$6 = new Go$Uint64(0, (_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), x$7 = go$shiftLeft64(new Go$Uint64(0, (_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))), 8), new Go$Uint64(x$6.high | x$7.high, (x$6.low | x$7.low) >>> 0)), x$8 = go$shiftLeft64(new Go$Uint64(0, (_slice$2 = b, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))), 16), new Go$Uint64(x$5.high | x$8.high, (x$5.low | x$8.low) >>> 0)), x$9 = go$shiftLeft64(new Go$Uint64(0, (_slice$3 = b, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))), 24), new Go$Uint64(x$4.high | x$9.high, (x$4.low | x$9.low) >>> 0)), x$10 = go$shiftLeft64(new Go$Uint64(0, (_slice$4 = b, _index$4 = 4, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))), 32), new Go$Uint64(x$3.high | x$10.high, (x$3.low | x$10.low) >>> 0)), x$11 = go$shiftLeft64(new Go$Uint64(0, (_slice$5 = b, _index$5 = 5, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))), 40), new Go$Uint64(x$2.high | x$11.high, (x$2.low | x$11.low) >>> 0)), x$12 = go$shiftLeft64(new Go$Uint64(0, (_slice$6 = b, _index$6 = 6, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))), 48), new Go$Uint64(x$1.high | x$12.high, (x$1.low | x$12.low) >>> 0)), x$13 = go$shiftLeft64(new Go$Uint64(0, (_slice$7 = b, _index$7 = 7, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))), 56), new Go$Uint64(x.high | x$13.high, (x.low | x$13.low) >>> 0));
+	};
+	littleEndian.prototype.Uint64 = function(b) { return this.go$val.Uint64(b); };
+	littleEndian.Ptr.prototype.PutUint64 = function(b, v) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
+		_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (v.low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (go$shiftRightUint64(v, 8).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$2 = b, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (go$shiftRightUint64(v, 16).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$3 = b, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (go$shiftRightUint64(v, 24).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$4 = b, _index$4 = 4, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = (go$shiftRightUint64(v, 32).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$5 = b, _index$5 = 5, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (go$shiftRightUint64(v, 40).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$6 = b, _index$6 = 6, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = (go$shiftRightUint64(v, 48).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$7 = b, _index$7 = 7, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (go$shiftRightUint64(v, 56).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+	};
+	littleEndian.prototype.PutUint64 = function(b, v) { return this.go$val.PutUint64(b, v); };
+	littleEndian.Ptr.prototype.String = function() {
+		return "LittleEndian";
+	};
+	littleEndian.prototype.String = function() { return this.go$val.String(); };
+	littleEndian.Ptr.prototype.GoString = function() {
+		return "binary.LittleEndian";
+	};
+	littleEndian.prototype.GoString = function() { return this.go$val.GoString(); };
+	bigEndian.Ptr.prototype.Uint16 = function(b) {
+		var _slice, _index, _slice$1, _index$1;
+		return (((_slice = b, _index = 1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) | (((_slice$1 = b, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16)) >>> 0;
+	};
+	bigEndian.prototype.Uint16 = function(b) { return this.go$val.Uint16(b); };
+	bigEndian.Ptr.prototype.PutUint16 = function(b, v) {
+		var _slice, _index, _slice$1, _index$1;
+		_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((v >>> 8 << 16 >>> 16) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (v << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+	};
+	bigEndian.prototype.PutUint16 = function(b, v) { return this.go$val.PutUint16(b, v); };
+	bigEndian.Ptr.prototype.Uint32 = function(b) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		return (((((((_slice = b, _index = 3, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) | (((_slice$1 = b, _index$1 = 2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0) << 8 >>> 0)) >>> 0) | (((_slice$2 = b, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0) << 16 >>> 0)) >>> 0) | (((_slice$3 = b, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0) << 24 >>> 0)) >>> 0;
+	};
+	bigEndian.prototype.Uint32 = function(b) { return this.go$val.Uint32(b); };
+	bigEndian.Ptr.prototype.PutUint32 = function(b, v) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((v >>> 24 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((v >>> 16 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$2 = b, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ((v >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$3 = b, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (v << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+	};
+	bigEndian.prototype.PutUint32 = function(b, v) { return this.go$val.PutUint32(b, v); };
+	bigEndian.Ptr.prototype.Uint64 = function(b) {
+		var x, x$1, x$2, x$3, x$4, x$5, x$6, _slice, _index, x$7, _slice$1, _index$1, x$8, _slice$2, _index$2, x$9, _slice$3, _index$3, x$10, _slice$4, _index$4, x$11, _slice$5, _index$5, x$12, _slice$6, _index$6, x$13, _slice$7, _index$7;
+		return (x = (x$1 = (x$2 = (x$3 = (x$4 = (x$5 = (x$6 = new Go$Uint64(0, (_slice = b, _index = 7, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), x$7 = go$shiftLeft64(new Go$Uint64(0, (_slice$1 = b, _index$1 = 6, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))), 8), new Go$Uint64(x$6.high | x$7.high, (x$6.low | x$7.low) >>> 0)), x$8 = go$shiftLeft64(new Go$Uint64(0, (_slice$2 = b, _index$2 = 5, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))), 16), new Go$Uint64(x$5.high | x$8.high, (x$5.low | x$8.low) >>> 0)), x$9 = go$shiftLeft64(new Go$Uint64(0, (_slice$3 = b, _index$3 = 4, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))), 24), new Go$Uint64(x$4.high | x$9.high, (x$4.low | x$9.low) >>> 0)), x$10 = go$shiftLeft64(new Go$Uint64(0, (_slice$4 = b, _index$4 = 3, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))), 32), new Go$Uint64(x$3.high | x$10.high, (x$3.low | x$10.low) >>> 0)), x$11 = go$shiftLeft64(new Go$Uint64(0, (_slice$5 = b, _index$5 = 2, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))), 40), new Go$Uint64(x$2.high | x$11.high, (x$2.low | x$11.low) >>> 0)), x$12 = go$shiftLeft64(new Go$Uint64(0, (_slice$6 = b, _index$6 = 1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))), 48), new Go$Uint64(x$1.high | x$12.high, (x$1.low | x$12.low) >>> 0)), x$13 = go$shiftLeft64(new Go$Uint64(0, (_slice$7 = b, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))), 56), new Go$Uint64(x.high | x$13.high, (x.low | x$13.low) >>> 0));
+	};
+	bigEndian.prototype.Uint64 = function(b) { return this.go$val.Uint64(b); };
+	bigEndian.Ptr.prototype.PutUint64 = function(b, v) {
+		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
+		_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (go$shiftRightUint64(v, 56).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (go$shiftRightUint64(v, 48).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$2 = b, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (go$shiftRightUint64(v, 40).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$3 = b, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (go$shiftRightUint64(v, 32).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$4 = b, _index$4 = 4, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = (go$shiftRightUint64(v, 24).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$5 = b, _index$5 = 5, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (go$shiftRightUint64(v, 16).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$6 = b, _index$6 = 6, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = (go$shiftRightUint64(v, 8).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		_slice$7 = b, _index$7 = 7, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (v.low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+	};
+	bigEndian.prototype.PutUint64 = function(b, v) { return this.go$val.PutUint64(b, v); };
+	bigEndian.Ptr.prototype.String = function() {
+		return "BigEndian";
+	};
+	bigEndian.prototype.String = function() { return this.go$val.String(); };
+	bigEndian.Ptr.prototype.GoString = function() {
+		return "binary.BigEndian";
+	};
+	bigEndian.prototype.GoString = function() { return this.go$val.GoString(); };
+	var Read = go$pkg.Read = function(r, order, data) {
+		var n, b, bs, err, _tuple, data$1, _ref, _type, x, _ref$1, _i, _slice, _index, x$1, i, _slice$1, _index$1, _ref$2, _i$1, i$1, x$2, _slice$2, _index$2, _ref$3, _i$2, i$2, x$3, _slice$3, _index$3, _ref$4, _i$3, i$3, x$4, _slice$4, _index$4, _ref$5, _i$4, i$4, x$5, _slice$5, _index$5, _ref$6, _i$5, i$5, x$6, x$7, _slice$6, _index$6, _ref$7, _i$6, i$6, x$8, _slice$7, _index$7, v, _struct, d, _ref$8, _struct$1, _struct$2, _tuple$1, _struct$3, size, err$1, d$1, err$2, _tuple$2, _struct$4;
+		if (n = intDataSize(data), !((n === 0))) {
+			b = go$makeNativeArray("Uint8", 8, function() { return 0; });
+			bs = (go$sliceType(Go$Uint8)).nil;
+			if (n > 8) {
+				bs = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
+			} else {
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, n);
+			}
+			if (_tuple = io.ReadFull(r, bs), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			_ref = data;
+			_type = _ref !== null ? _ref.constructor : null;
+			if (_type === (go$ptrType(Go$Int8))) {
+				data$1 = _ref.go$val;
+				data$1.go$set((b[0] << 24 >> 24));
+			} else if (_type === (go$ptrType(Go$Uint8))) {
+				data$1 = _ref.go$val;
+				data$1.go$set(b[0]);
+			} else if (_type === (go$ptrType(Go$Int16))) {
+				data$1 = _ref.go$val;
+				data$1.go$set((order.Uint16(bs) << 16 >> 16));
+			} else if (_type === (go$ptrType(Go$Uint16))) {
+				data$1 = _ref.go$val;
+				data$1.go$set(order.Uint16(bs));
+			} else if (_type === (go$ptrType(Go$Int32))) {
+				data$1 = _ref.go$val;
+				data$1.go$set((order.Uint32(bs) >> 0));
+			} else if (_type === (go$ptrType(Go$Uint32))) {
+				data$1 = _ref.go$val;
+				data$1.go$set(order.Uint32(bs));
+			} else if (_type === (go$ptrType(Go$Int64))) {
+				data$1 = _ref.go$val;
+				data$1.go$set((x = order.Uint64(bs), new Go$Int64(x.high, x.low)));
+			} else if (_type === (go$ptrType(Go$Uint64))) {
+				data$1 = _ref.go$val;
+				data$1.go$set(order.Uint64(bs));
+			} else if (_type === (go$sliceType(Go$Int8))) {
+				data$1 = _ref.go$val;
+				_ref$1 = bs;
+				_i = 0;
+				for (; _i < _ref$1.length; _i += 1) {
+					x$1 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					i = _i;
+					_slice$1 = data$1, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (x$1 << 24 >> 24)) : go$throwRuntimeError("index out of range");
+				}
+			} else if (_type === (go$sliceType(Go$Uint8))) {
+				data$1 = _ref.go$val;
+				go$copySlice(data$1, bs);
+			} else if (_type === (go$sliceType(Go$Int16))) {
+				data$1 = _ref.go$val;
+				_ref$2 = data$1;
+				_i$1 = 0;
+				for (; _i$1 < _ref$2.length; _i$1 += 1) {
+					i$1 = _i$1;
+					_slice$2 = data$1, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (order.Uint16(go$subslice(bs, (x$2 = 2, (((x$2 >>> 16 << 16) * i$1 >> 0) + (x$2 << 16 >>> 16) * i$1) >> 0))) << 16 >> 16)) : go$throwRuntimeError("index out of range");
+				}
+			} else if (_type === (go$sliceType(Go$Uint16))) {
+				data$1 = _ref.go$val;
+				_ref$3 = data$1;
+				_i$2 = 0;
+				for (; _i$2 < _ref$3.length; _i$2 += 1) {
+					i$2 = _i$2;
+					_slice$3 = data$1, _index$3 = i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = order.Uint16(go$subslice(bs, (x$3 = 2, (((x$3 >>> 16 << 16) * i$2 >> 0) + (x$3 << 16 >>> 16) * i$2) >> 0)))) : go$throwRuntimeError("index out of range");
+				}
+			} else if (_type === (go$sliceType(Go$Int32))) {
+				data$1 = _ref.go$val;
+				_ref$4 = data$1;
+				_i$3 = 0;
+				for (; _i$3 < _ref$4.length; _i$3 += 1) {
+					i$3 = _i$3;
+					_slice$4 = data$1, _index$4 = i$3, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = (order.Uint32(go$subslice(bs, (x$4 = 4, (((x$4 >>> 16 << 16) * i$3 >> 0) + (x$4 << 16 >>> 16) * i$3) >> 0))) >> 0)) : go$throwRuntimeError("index out of range");
+				}
+			} else if (_type === (go$sliceType(Go$Uint32))) {
+				data$1 = _ref.go$val;
+				_ref$5 = data$1;
+				_i$4 = 0;
+				for (; _i$4 < _ref$5.length; _i$4 += 1) {
+					i$4 = _i$4;
+					_slice$5 = data$1, _index$5 = i$4, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = order.Uint32(go$subslice(bs, (x$5 = 4, (((x$5 >>> 16 << 16) * i$4 >> 0) + (x$5 << 16 >>> 16) * i$4) >> 0)))) : go$throwRuntimeError("index out of range");
+				}
+			} else if (_type === (go$sliceType(Go$Int64))) {
+				data$1 = _ref.go$val;
+				_ref$6 = data$1;
+				_i$5 = 0;
+				for (; _i$5 < _ref$6.length; _i$5 += 1) {
+					i$5 = _i$5;
+					_slice$6 = data$1, _index$6 = i$5, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = (x$6 = order.Uint64(go$subslice(bs, (x$7 = 8, (((x$7 >>> 16 << 16) * i$5 >> 0) + (x$7 << 16 >>> 16) * i$5) >> 0))), new Go$Int64(x$6.high, x$6.low))) : go$throwRuntimeError("index out of range");
+				}
+			} else if (_type === (go$sliceType(Go$Uint64))) {
+				data$1 = _ref.go$val;
+				_ref$7 = data$1;
+				_i$6 = 0;
+				for (; _i$6 < _ref$7.length; _i$6 += 1) {
+					i$6 = _i$6;
+					_slice$7 = data$1, _index$7 = i$6, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = order.Uint64(go$subslice(bs, (x$8 = 8, (((x$8 >>> 16 << 16) * i$6 >> 0) + (x$8 << 16 >>> 16) * i$6) >> 0)))) : go$throwRuntimeError("index out of range");
+				}
+			}
+			return null;
+		}
+		v = new reflect.Value.Ptr();
+		d = (_struct = reflect.ValueOf(data), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		_ref$8 = d.Kind();
+		if (_ref$8 === 22) {
+			v = (_struct$1 = d.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		} else if (_ref$8 === 23) {
+			v = (_struct$2 = d, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+		} else {
+			return errors.New("binary.Read: invalid type " + d.Type().String());
+		}
+		_tuple$1 = dataSize((_struct$3 = v, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag))), size = _tuple$1[0], err$1 = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
+			return errors.New("binary.Read: " + err$1.Error());
+		}
+		d$1 = new decoder.Ptr(order, (go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; }));
+		if (_tuple$2 = io.ReadFull(r, d$1.buf), err$2 = _tuple$2[1], !(go$interfaceIsEqual(err$2, null))) {
+			return err$2;
+		}
+		d$1.value((_struct$4 = v, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
+		return null;
+	};
+	var Write = go$pkg.Write = function(w, order, data) {
+		var n, b, bs, v, _ref, _type, _ref$1, _i, _slice, _index, x, i, _slice$1, _index$1, _ref$2, _i$1, _slice$2, _index$2, x$1, i$1, x$2, _ref$3, _i$2, _slice$3, _index$3, x$3, i$2, x$4, _ref$4, _i$3, _slice$4, _index$4, x$5, i$3, x$6, _ref$5, _i$4, _slice$5, _index$5, x$7, i$4, x$8, x$9, _ref$6, _i$5, _slice$6, _index$6, x$10, i$5, x$11, _ref$7, _i$6, _slice$7, _index$7, x$12, i$6, x$13, _tuple, err, _struct, _struct$1, v$1, _tuple$1, _struct$2, size, err$1, buf, e, _struct$3, _tuple$2;
+		if (n = intDataSize(data), !((n === 0))) {
+			b = go$makeNativeArray("Uint8", 8, function() { return 0; });
+			bs = (go$sliceType(Go$Uint8)).nil;
+			if (n > 8) {
+				bs = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
+			} else {
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, n);
+			}
+			_ref = data;
+			_type = _ref !== null ? _ref.constructor : null;
+			if (_type === (go$ptrType(Go$Int8))) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 1);
+				b[0] = (v.go$get() << 24 >>> 24);
+			} else if (_type === Go$Int8) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 1);
+				b[0] = (v << 24 >>> 24);
+			} else if (_type === (go$sliceType(Go$Int8))) {
+				v = _ref.go$val;
+				_ref$1 = v;
+				_i = 0;
+				for (; _i < _ref$1.length; _i += 1) {
+					x = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					i = _i;
+					_slice$1 = bs, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (x << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				}
+			} else if (_type === (go$ptrType(Go$Uint8))) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 1);
+				b[0] = v.go$get();
+			} else if (_type === Go$Uint8) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 1);
+				b[0] = v;
+			} else if (_type === (go$sliceType(Go$Uint8))) {
+				v = _ref.go$val;
+				bs = v;
+			} else if (_type === (go$ptrType(Go$Int16))) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 2);
+				order.PutUint16(bs, (v.go$get() << 16 >>> 16));
+			} else if (_type === Go$Int16) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 2);
+				order.PutUint16(bs, (v << 16 >>> 16));
+			} else if (_type === (go$sliceType(Go$Int16))) {
+				v = _ref.go$val;
+				_ref$2 = v;
+				_i$1 = 0;
+				for (; _i$1 < _ref$2.length; _i$1 += 1) {
+					x$1 = (_slice$2 = _ref$2, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+					i$1 = _i$1;
+					order.PutUint16(go$subslice(bs, (x$2 = 2, (((x$2 >>> 16 << 16) * i$1 >> 0) + (x$2 << 16 >>> 16) * i$1) >> 0)), (x$1 << 16 >>> 16));
+				}
+			} else if (_type === (go$ptrType(Go$Uint16))) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 2);
+				order.PutUint16(bs, v.go$get());
+			} else if (_type === Go$Uint16) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 2);
+				order.PutUint16(bs, v);
+			} else if (_type === (go$sliceType(Go$Uint16))) {
+				v = _ref.go$val;
+				_ref$3 = v;
+				_i$2 = 0;
+				for (; _i$2 < _ref$3.length; _i$2 += 1) {
+					x$3 = (_slice$3 = _ref$3, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+					i$2 = _i$2;
+					order.PutUint16(go$subslice(bs, (x$4 = 2, (((x$4 >>> 16 << 16) * i$2 >> 0) + (x$4 << 16 >>> 16) * i$2) >> 0)), x$3);
+				}
+			} else if (_type === (go$ptrType(Go$Int32))) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 4);
+				order.PutUint32(bs, (v.go$get() >>> 0));
+			} else if (_type === Go$Int32) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 4);
+				order.PutUint32(bs, (v >>> 0));
+			} else if (_type === (go$sliceType(Go$Int32))) {
+				v = _ref.go$val;
+				_ref$4 = v;
+				_i$3 = 0;
+				for (; _i$3 < _ref$4.length; _i$3 += 1) {
+					x$5 = (_slice$4 = _ref$4, _index$4 = _i$3, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
+					i$3 = _i$3;
+					order.PutUint32(go$subslice(bs, (x$6 = 4, (((x$6 >>> 16 << 16) * i$3 >> 0) + (x$6 << 16 >>> 16) * i$3) >> 0)), (x$5 >>> 0));
+				}
+			} else if (_type === (go$ptrType(Go$Uint32))) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 4);
+				order.PutUint32(bs, v.go$get());
+			} else if (_type === Go$Uint32) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 4);
+				order.PutUint32(bs, v);
+			} else if (_type === (go$sliceType(Go$Uint32))) {
+				v = _ref.go$val;
+				_ref$5 = v;
+				_i$4 = 0;
+				for (; _i$4 < _ref$5.length; _i$4 += 1) {
+					x$7 = (_slice$5 = _ref$5, _index$5 = _i$4, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+					i$4 = _i$4;
+					order.PutUint32(go$subslice(bs, (x$8 = 4, (((x$8 >>> 16 << 16) * i$4 >> 0) + (x$8 << 16 >>> 16) * i$4) >> 0)), x$7);
+				}
+			} else if (_type === (go$ptrType(Go$Int64))) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 8);
+				order.PutUint64(bs, (x$9 = v.go$get(), new Go$Uint64(x$9.high, x$9.low)));
+			} else if (_type === Go$Int64) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 8);
+				order.PutUint64(bs, new Go$Uint64(v.high, v.low));
+			} else if (_type === (go$sliceType(Go$Int64))) {
+				v = _ref.go$val;
+				_ref$6 = v;
+				_i$5 = 0;
+				for (; _i$5 < _ref$6.length; _i$5 += 1) {
+					x$10 = (_slice$6 = _ref$6, _index$6 = _i$5, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+					i$5 = _i$5;
+					order.PutUint64(go$subslice(bs, (x$11 = 8, (((x$11 >>> 16 << 16) * i$5 >> 0) + (x$11 << 16 >>> 16) * i$5) >> 0)), new Go$Uint64(x$10.high, x$10.low));
+				}
+			} else if (_type === (go$ptrType(Go$Uint64))) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 8);
+				order.PutUint64(bs, v.go$get());
+			} else if (_type === Go$Uint64) {
+				v = _ref.go$val;
+				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, 8);
+				order.PutUint64(bs, v);
+			} else if (_type === (go$sliceType(Go$Uint64))) {
+				v = _ref.go$val;
+				_ref$7 = v;
+				_i$6 = 0;
+				for (; _i$6 < _ref$7.length; _i$6 += 1) {
+					x$12 = (_slice$7 = _ref$7, _index$7 = _i$6, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+					i$6 = _i$6;
+					order.PutUint64(go$subslice(bs, (x$13 = 8, (((x$13 >>> 16 << 16) * i$6 >> 0) + (x$13 << 16 >>> 16) * i$6) >> 0)), x$12);
+				}
+			}
+			_tuple = w.Write(bs), err = _tuple[1];
+			return err;
+		}
+		v$1 = (_struct$1 = reflect.Indirect((_struct = reflect.ValueOf(data), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		_tuple$1 = dataSize((_struct$2 = v$1, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag))), size = _tuple$1[0], err$1 = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
+			return errors.New("binary.Write: " + err$1.Error());
+		}
+		buf = (go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; });
+		e = new encoder.Ptr(order, buf);
+		e.value((_struct$3 = v$1, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
+		_tuple$2 = w.Write(buf), err$1 = _tuple$2[1];
+		return err$1;
+	};
+	var Size = go$pkg.Size = function(v) {
+		var _tuple, _struct, _struct$1, n, err;
+		_tuple = dataSize((_struct$1 = reflect.Indirect((_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), n = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return -1;
+		}
+		return n;
+	};
+	var dataSize = function(v) {
+		var _tuple, elem, err, x;
+		if (v.Kind() === 23) {
+			_tuple = sizeof(v.Type().Elem()), elem = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [0, err];
+			}
+			return [(x = v.Len(), (((x >>> 16 << 16) * elem >> 0) + (x << 16 >>> 16) * elem) >> 0), null];
+		}
+		return sizeof(v.Type());
+	};
+	var sizeof = function(t) {
+		var _ref, _tuple, n, err, x, sum, _tuple$1, i, n$1, _tuple$2, s, err$1;
+		_ref = t.Kind();
+		if (_ref === 17) {
+			_tuple = sizeof(t.Elem()), n = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [0, err];
+			}
+			return [(x = t.Len(), (((x >>> 16 << 16) * n >> 0) + (x << 16 >>> 16) * n) >> 0), null];
+		} else if (_ref === 25) {
+			sum = 0;
+			_tuple$1 = [0, t.NumField()], i = _tuple$1[0], n$1 = _tuple$1[1];
+			while (i < n$1) {
+				_tuple$2 = sizeof(t.Field(i).Type), s = _tuple$2[0], err$1 = _tuple$2[1];
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					return [0, err$1];
+				}
+				sum = sum + (s) >> 0;
+				i = i + 1 >> 0;
+			}
+			return [sum, null];
+		} else if (_ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6 || _ref === 13 || _ref === 14 || _ref === 15 || _ref === 16) {
+			return [(t.Size() >> 0), null];
+		}
+		return [0, errors.New("invalid type " + t.String())];
+	};
+	decoder.Ptr.prototype.uint8 = function() {
+		var d, _slice, _index, x;
+		d = this;
+		x = (_slice = d.buf, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		d.buf = go$subslice(d.buf, 1);
+		return x;
+	};
+	decoder.prototype.uint8 = function() { return this.go$val.uint8(); };
+	encoder.Ptr.prototype.uint8 = function(x) {
+		var e, _slice, _index;
+		e = this;
+		_slice = e.buf, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = x) : go$throwRuntimeError("index out of range");
+		e.buf = go$subslice(e.buf, 1);
+	};
+	encoder.prototype.uint8 = function(x) { return this.go$val.uint8(x); };
+	decoder.Ptr.prototype.uint16 = function() {
+		var d, x;
+		d = this;
+		x = d.order.Uint16(go$subslice(d.buf, 0, 2));
+		d.buf = go$subslice(d.buf, 2);
+		return x;
+	};
+	decoder.prototype.uint16 = function() { return this.go$val.uint16(); };
+	encoder.Ptr.prototype.uint16 = function(x) {
+		var e;
+		e = this;
+		e.order.PutUint16(go$subslice(e.buf, 0, 2), x);
+		e.buf = go$subslice(e.buf, 2);
+	};
+	encoder.prototype.uint16 = function(x) { return this.go$val.uint16(x); };
+	decoder.Ptr.prototype.uint32 = function() {
+		var d, x;
+		d = this;
+		x = d.order.Uint32(go$subslice(d.buf, 0, 4));
+		d.buf = go$subslice(d.buf, 4);
+		return x;
+	};
+	decoder.prototype.uint32 = function() { return this.go$val.uint32(); };
+	encoder.Ptr.prototype.uint32 = function(x) {
+		var e;
+		e = this;
+		e.order.PutUint32(go$subslice(e.buf, 0, 4), x);
+		e.buf = go$subslice(e.buf, 4);
+	};
+	encoder.prototype.uint32 = function(x) { return this.go$val.uint32(x); };
+	decoder.Ptr.prototype.uint64 = function() {
+		var d, x;
+		d = this;
+		x = d.order.Uint64(go$subslice(d.buf, 0, 8));
+		d.buf = go$subslice(d.buf, 8);
+		return x;
+	};
+	decoder.prototype.uint64 = function() { return this.go$val.uint64(); };
+	encoder.Ptr.prototype.uint64 = function(x) {
+		var e;
+		e = this;
+		e.order.PutUint64(go$subslice(e.buf, 0, 8), x);
+		e.buf = go$subslice(e.buf, 8);
+	};
+	encoder.prototype.uint64 = function(x) { return this.go$val.uint64(x); };
+	decoder.Ptr.prototype.int8 = function() {
+		var d;
+		d = this;
+		return (d.uint8() << 24 >> 24);
+	};
+	decoder.prototype.int8 = function() { return this.go$val.int8(); };
+	encoder.Ptr.prototype.int8 = function(x) {
+		var e;
+		e = this;
+		e.uint8((x << 24 >>> 24));
+	};
+	encoder.prototype.int8 = function(x) { return this.go$val.int8(x); };
+	decoder.Ptr.prototype.int16 = function() {
+		var d;
+		d = this;
+		return (d.uint16() << 16 >> 16);
+	};
+	decoder.prototype.int16 = function() { return this.go$val.int16(); };
+	encoder.Ptr.prototype.int16 = function(x) {
+		var e;
+		e = this;
+		e.uint16((x << 16 >>> 16));
+	};
+	encoder.prototype.int16 = function(x) { return this.go$val.int16(x); };
+	decoder.Ptr.prototype.int32 = function() {
+		var d;
+		d = this;
+		return (d.uint32() >> 0);
+	};
+	decoder.prototype.int32 = function() { return this.go$val.int32(); };
+	encoder.Ptr.prototype.int32 = function(x) {
+		var e;
+		e = this;
+		e.uint32((x >>> 0));
+	};
+	encoder.prototype.int32 = function(x) { return this.go$val.int32(x); };
+	decoder.Ptr.prototype.int64 = function() {
+		var d, x;
+		d = this;
+		return (x = d.uint64(), new Go$Int64(x.high, x.low));
+	};
+	decoder.prototype.int64 = function() { return this.go$val.int64(); };
+	encoder.Ptr.prototype.int64 = function(x) {
+		var e;
+		e = this;
+		e.uint64(new Go$Uint64(x.high, x.low));
+	};
+	encoder.prototype.int64 = function(x) { return this.go$val.int64(x); };
+	decoder.Ptr.prototype.value = function(v) {
+		var d, _ref, l, i, _struct, t, l$1, i$1, v$1, _struct$1, _struct$2, _struct$3, l$2, i$2, _struct$4;
+		d = this;
+		_ref = v.Kind();
+		if (_ref === 17) {
+			l = v.Len();
+			i = 0;
+			while (i < l) {
+				d.value((_struct = v.Index(i), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
+				i = i + 1 >> 0;
+			}
+		} else if (_ref === 25) {
+			t = v.Type();
+			l$1 = v.NumField();
+			i$1 = 0;
+			while (i$1 < l$1) {
+				if (v$1 = (_struct$1 = v.Field(i$1), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), v$1.CanSet() || !(t.Field(i$1).Name === "_")) {
+					d.value((_struct$2 = v$1, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)));
+				} else {
+					d.skip((_struct$3 = v$1, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
+				}
+				i$1 = i$1 + 1 >> 0;
+			}
+		} else if (_ref === 23) {
+			l$2 = v.Len();
+			i$2 = 0;
+			while (i$2 < l$2) {
+				d.value((_struct$4 = v.Index(i$2), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
+				i$2 = i$2 + 1 >> 0;
+			}
+		} else if (_ref === 3) {
+			v.SetInt(new Go$Int64(0, d.int8()));
+		} else if (_ref === 4) {
+			v.SetInt(new Go$Int64(0, d.int16()));
+		} else if (_ref === 5) {
+			v.SetInt(new Go$Int64(0, d.int32()));
+		} else if (_ref === 6) {
+			v.SetInt(d.int64());
+		} else if (_ref === 8) {
+			v.SetUint(new Go$Uint64(0, d.uint8()));
+		} else if (_ref === 9) {
+			v.SetUint(new Go$Uint64(0, d.uint16()));
+		} else if (_ref === 10) {
+			v.SetUint(new Go$Uint64(0, d.uint32()));
+		} else if (_ref === 11) {
+			v.SetUint(d.uint64());
+		} else if (_ref === 13) {
+			v.SetFloat(math.Float32frombits(d.uint32()));
+		} else if (_ref === 14) {
+			v.SetFloat(math.Float64frombits(d.uint64()));
+		} else if (_ref === 15) {
+			v.SetComplex(new Go$Complex128(math.Float32frombits(d.uint32()), math.Float32frombits(d.uint32())));
+		} else if (_ref === 16) {
+			v.SetComplex(new Go$Complex128(math.Float64frombits(d.uint64()), math.Float64frombits(d.uint64())));
+		}
+	};
+	decoder.prototype.value = function(v) { return this.go$val.value(v); };
+	encoder.Ptr.prototype.value = function(v) {
+		var e, _ref, l, i, _struct, t, l$1, i$1, v$1, _struct$1, _struct$2, _struct$3, l$2, i$2, _struct$4, _ref$1, x, x$1, x$2, _ref$2, _ref$3, _ref$4, x$3, x$4;
+		e = this;
+		_ref = v.Kind();
+		if (_ref === 17) {
+			l = v.Len();
+			i = 0;
+			while (i < l) {
+				e.value((_struct = v.Index(i), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
+				i = i + 1 >> 0;
+			}
+		} else if (_ref === 25) {
+			t = v.Type();
+			l$1 = v.NumField();
+			i$1 = 0;
+			while (i$1 < l$1) {
+				if (v$1 = (_struct$1 = v.Field(i$1), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), v$1.CanSet() || !(t.Field(i$1).Name === "_")) {
+					e.value((_struct$2 = v$1, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)));
+				} else {
+					e.skip((_struct$3 = v$1, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
+				}
+				i$1 = i$1 + 1 >> 0;
+			}
+		} else if (_ref === 23) {
+			l$2 = v.Len();
+			i$2 = 0;
+			while (i$2 < l$2) {
+				e.value((_struct$4 = v.Index(i$2), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
+				i$2 = i$2 + 1 >> 0;
+			}
+		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
+			_ref$1 = v.Type().Kind();
+			if (_ref$1 === 3) {
+				e.int8(((x = v.Int(), x.low + ((x.high >> 31) * 4294967296)) << 24 >> 24));
+			} else if (_ref$1 === 4) {
+				e.int16(((x$1 = v.Int(), x$1.low + ((x$1.high >> 31) * 4294967296)) << 16 >> 16));
+			} else if (_ref$1 === 5) {
+				e.int32(((x$2 = v.Int(), x$2.low + ((x$2.high >> 31) * 4294967296)) >> 0));
+			} else if (_ref$1 === 6) {
+				e.int64(v.Int());
+			}
+		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
+			_ref$2 = v.Type().Kind();
+			if (_ref$2 === 8) {
+				e.uint8((v.Uint().low << 24 >>> 24));
+			} else if (_ref$2 === 9) {
+				e.uint16((v.Uint().low << 16 >>> 16));
+			} else if (_ref$2 === 10) {
+				e.uint32((v.Uint().low >>> 0));
+			} else if (_ref$2 === 11) {
+				e.uint64(v.Uint());
+			}
+		} else if (_ref === 13 || _ref === 14) {
+			_ref$3 = v.Type().Kind();
+			if (_ref$3 === 13) {
+				e.uint32(math.Float32bits(v.Float()));
+			} else if (_ref$3 === 14) {
+				e.uint64(math.Float64bits(v.Float()));
+			}
+		} else if (_ref === 15 || _ref === 16) {
+			_ref$4 = v.Type().Kind();
+			if (_ref$4 === 15) {
+				x$3 = v.Complex();
+				e.uint32(math.Float32bits(x$3.real));
+				e.uint32(math.Float32bits(x$3.imag));
+			} else if (_ref$4 === 16) {
+				x$4 = v.Complex();
+				e.uint64(math.Float64bits(x$4.real));
+				e.uint64(math.Float64bits(x$4.imag));
+			}
+		}
+	};
+	encoder.prototype.value = function(v) { return this.go$val.value(v); };
+	decoder.Ptr.prototype.skip = function(v) {
+		var d, _tuple, _struct, n;
+		d = this;
+		_tuple = dataSize((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), n = _tuple[0];
+		d.buf = go$subslice(d.buf, n);
+	};
+	decoder.prototype.skip = function(v) { return this.go$val.skip(v); };
+	encoder.Ptr.prototype.skip = function(v) {
+		var e, _tuple, _struct, n, _ref, _i, i, _slice, _index;
+		e = this;
+		_tuple = dataSize((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), n = _tuple[0];
+		_ref = go$subslice(e.buf, 0, n);
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_slice = e.buf, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+		}
+		e.buf = go$subslice(e.buf, n);
+	};
+	encoder.prototype.skip = function(v) { return this.go$val.skip(v); };
+	var intDataSize = function(data) {
+		var data$1, _ref, _type, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10, x$11;
+		_ref = data;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === Go$Int8 || _type === (go$ptrType(Go$Int8)) || _type === (go$ptrType(Go$Uint8))) {
+			data$1 = _ref;
+			return 1;
+		} else if (_type === (go$sliceType(Go$Int8))) {
+			data$1 = _ref.go$val;
+			return data$1.length;
+		} else if (_type === (go$sliceType(Go$Uint8))) {
+			data$1 = _ref.go$val;
+			return data$1.length;
+		} else if (_type === Go$Int16 || _type === (go$ptrType(Go$Int16)) || _type === (go$ptrType(Go$Uint16))) {
+			data$1 = _ref;
+			return 2;
+		} else if (_type === (go$sliceType(Go$Int16))) {
+			data$1 = _ref.go$val;
+			return (x = 2, x$1 = data$1.length, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		} else if (_type === (go$sliceType(Go$Uint16))) {
+			data$1 = _ref.go$val;
+			return (x$2 = 2, x$3 = data$1.length, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0);
+		} else if (_type === Go$Int32 || _type === (go$ptrType(Go$Int32)) || _type === (go$ptrType(Go$Uint32))) {
+			data$1 = _ref;
+			return 4;
+		} else if (_type === (go$sliceType(Go$Int32))) {
+			data$1 = _ref.go$val;
+			return (x$4 = 4, x$5 = data$1.length, (((x$4 >>> 16 << 16) * x$5 >> 0) + (x$4 << 16 >>> 16) * x$5) >> 0);
+		} else if (_type === (go$sliceType(Go$Uint32))) {
+			data$1 = _ref.go$val;
+			return (x$6 = 4, x$7 = data$1.length, (((x$6 >>> 16 << 16) * x$7 >> 0) + (x$6 << 16 >>> 16) * x$7) >> 0);
+		} else if (_type === Go$Int64 || _type === (go$ptrType(Go$Int64)) || _type === (go$ptrType(Go$Uint64))) {
+			data$1 = _ref;
+			return 8;
+		} else if (_type === (go$sliceType(Go$Int64))) {
+			data$1 = _ref.go$val;
+			return (x$8 = 8, x$9 = data$1.length, (((x$8 >>> 16 << 16) * x$9 >> 0) + (x$8 << 16 >>> 16) * x$9) >> 0);
+		} else if (_type === (go$sliceType(Go$Uint64))) {
+			data$1 = _ref.go$val;
+			return (x$10 = 8, x$11 = data$1.length, (((x$10 >>> 16 << 16) * x$11 >> 0) + (x$10 << 16 >>> 16) * x$11) >> 0);
+		}
+		return 0;
+	};
+	var PutUvarint = go$pkg.PutUvarint = function(buf, x) {
+		var i, _slice, _index, _slice$1, _index$1;
+		i = 0;
+		while ((x.high > 0 || (x.high === 0 && x.low >= 128))) {
+			_slice = buf, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((x.low << 24 >>> 24) | 128) >>> 0) : go$throwRuntimeError("index out of range");
+			x = go$shiftRightUint64(x, 7);
+			i = i + 1 >> 0;
+		}
+		_slice$1 = buf, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (x.low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+		return i + 1 >> 0;
+	};
+	var Uvarint = go$pkg.Uvarint = function(buf) {
+		var x, s, _ref, _i, _slice, _index, b, i, x$1, x$2;
+		x = new Go$Uint64(0, 0);
+		s = 0;
+		_ref = buf;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (b < 128) {
+				if (i > 9 || (i === 9) && b > 1) {
+					return [new Go$Uint64(0, 0), -((i + 1 >> 0))];
+				}
+				return [(x$1 = go$shiftLeft64(new Go$Uint64(0, b), s), new Go$Uint64(x.high | x$1.high, (x.low | x$1.low) >>> 0)), i + 1 >> 0];
+			}
+			x = (x$2 = go$shiftLeft64(new Go$Uint64(0, ((b & 127) >>> 0)), s), new Go$Uint64(x.high | x$2.high, (x.low | x$2.low) >>> 0));
+			s = s + 7 >>> 0;
+		}
+		return [new Go$Uint64(0, 0), 0];
+	};
+	var PutVarint = go$pkg.PutVarint = function(buf, x) {
+		var ux;
+		ux = go$shiftLeft64(new Go$Uint64(x.high, x.low), 1);
+		if ((x.high < 0 || (x.high === 0 && x.low < 0))) {
+			ux = new Go$Uint64(~ux.high, ~ux.low >>> 0);
+		}
+		return PutUvarint(buf, ux);
+	};
+	var Varint = go$pkg.Varint = function(buf) {
+		var _tuple, ux, n, x, x$1, x$2;
+		_tuple = Uvarint(buf), ux = _tuple[0], n = _tuple[1];
+		x$1 = (x = go$shiftRightUint64(ux, 1), new Go$Int64(x.high, x.low));
+		if (!((x$2 = new Go$Uint64(ux.high & 0, (ux.low & 1) >>> 0), (x$2.high === 0 && x$2.low === 0)))) {
+			x$1 = new Go$Int64(~x$1.high, ~x$1.low >>> 0);
+		}
+		return [x$1, n];
+	};
+	var ReadUvarint = go$pkg.ReadUvarint = function(r) {
+		var x, s, i, _tuple, b, err, x$1, x$2;
+		x = new Go$Uint64(0, 0);
+		s = 0;
+		i = 0;
+		while (true) {
+			_tuple = r.ReadByte(), b = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [x, err];
+			}
+			if (b < 128) {
+				if (i > 9 || (i === 9) && b > 1) {
+					return [x, overflow];
+				}
+				return [(x$1 = go$shiftLeft64(new Go$Uint64(0, b), s), new Go$Uint64(x.high | x$1.high, (x.low | x$1.low) >>> 0)), null];
+			}
+			x = (x$2 = go$shiftLeft64(new Go$Uint64(0, ((b & 127) >>> 0)), s), new Go$Uint64(x.high | x$2.high, (x.low | x$2.low) >>> 0));
+			s = s + 7 >>> 0;
+			i = i + 1 >> 0;
+		}
+	};
+	var ReadVarint = go$pkg.ReadVarint = function(r) {
+		var _tuple, ux, err, x, x$1, x$2;
+		_tuple = ReadUvarint(r), ux = _tuple[0], err = _tuple[1];
+		x$1 = (x = go$shiftRightUint64(ux, 1), new Go$Int64(x.high, x.low));
+		if (!((x$2 = new Go$Uint64(ux.high & 0, (ux.low & 1) >>> 0), (x$2.high === 0 && x$2.low === 0)))) {
+			x$1 = new Go$Int64(~x$1.high, ~x$1.low >>> 0);
+		}
+		return [x$1, err];
+	};
+	go$pkg.MaxVarintLen16 = 3;
+	go$pkg.MaxVarintLen32 = 5;
+	go$pkg.MaxVarintLen64 = 10;
+	go$pkg.LittleEndian = new littleEndian.Ptr();
+	go$pkg.BigEndian = new bigEndian.Ptr();
+	var overflow = null;
+	go$pkg.init = function() {
+		overflow = errors.New("binary: varint overflows a 64-bit integer");
+	};

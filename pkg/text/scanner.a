@@ -1,0 +1,611 @@
+0‚[×‚‰package scanner
+import bytes "bytes"
+import fmt "fmt"
+import io "io"
+import os "os"
+import unicode "unicode"
+import utf8 "unicode/utf8"
+const @"".Char = -0x5
+const @"".Comment = -0x8
+const @"".EOF = -0x1
+const @"".Float = -0x4
+const @"".GoTokens = 0x3f4
+const @"".GoWhitespace = 0x100002600
+const @"".Ident = -0x2
+const @"".Int = -0x3
+type @"".Position struct { @"".Filename string; @"".Offset int; @"".Line int; @"".Column int }
+func (? @"".Position) @"".String() (? string)
+func (? *@"".Position) @"".IsValid() (? bool)
+func (? *@"".Position) @"".String() (? string)
+const @"".RawString = -0x7
+const @"".ScanChars = 0x20
+const @"".ScanComments = 0x100
+const @"".ScanFloats = 0x10
+const @"".ScanIdents = 0x4
+const @"".ScanInts = 0x8
+const @"".ScanRawStrings = 0x80
+const @"".ScanStrings = 0x40
+type @"".Scanner struct { @"".src @"io".Reader; @"".srcBuf [1025]byte; @"".srcPos int; @"".srcEnd int; @"".srcBufOffset int; @"".line int; @"".column int; @"".lastLineLen int; @"".lastCharLen int; @"".tokBuf @"bytes".Buffer; @"".tokPos int; @"".tokEnd int; @"".ch rune; @"".Error func (@"".s *@"".Scanner, @"".msg string) (); @"".ErrorCount int; @"".Mode uint; @"".Whitespace uint64; ? @"".Position }
+func (? *@"".Scanner) @"".Init(@"".src @"io".Reader) (? *@"".Scanner)
+func (? *@"".Scanner) @"".Next() (? rune)
+func (? *@"".Scanner) @"".Peek() (? rune)
+func (? *@"".Scanner) @"".Pos() (@"".pos @"".Position)
+func (? *@"".Scanner) @"".Scan() (? rune)
+func (? *@"".Scanner) @"".TokenText() (? string)
+func (? *@"".Scanner) @"".error(@"".msg string) ()
+func (? *@"".Scanner) @"".next() (? rune)
+func (? *@"".Scanner) @"".scanChar() ()
+func (? *@"".Scanner) @"".scanComment(@"".ch rune) (? rune)
+func (? *@"".Scanner) @"".scanDigits(@"".ch rune, @"".base int, @"".n int) (? rune)
+func (? *@"".Scanner) @"".scanEscape(@"".quote rune) (? rune)
+func (? *@"".Scanner) @"".scanExponent(@"".ch rune) (? rune)
+func (? *@"".Scanner) @"".scanFraction(@"".ch rune) (? rune)
+func (? *@"".Scanner) @"".scanIdentifier() (? rune)
+func (? *@"".Scanner) @"".scanMantissa(@"".ch rune) (? rune)
+func (? *@"".Scanner) @"".scanNumber(@"".ch rune) (? rune, ? rune)
+func (? *@"".Scanner) @"".scanRawString() ()
+func (? *@"".Scanner) @"".scanString(@"".quote rune) (@"".n int)
+const @"".SkipComments = 0x200
+const @"".String = -0x6
+func @"".TokenString(@"".tok rune) (? string)
+type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+type @"bytes".Buffer struct { @"bytes".buf []byte; @"bytes".off int; @"bytes".runeBytes [4]byte; @"bytes".bootstrap [64]byte; @"bytes".lastRead @"bytes".readOp }
+func (? *@"bytes".Buffer) @"bytes".Bytes() (? []byte)
+func (? *@"bytes".Buffer) @"bytes".Grow(@"bytes".n int) ()
+func (? *@"bytes".Buffer) @"bytes".Len() (? int)
+func (? *@"bytes".Buffer) @"bytes".Next(@"bytes".n int) (? []byte)
+func (? *@"bytes".Buffer) @"bytes".Read(@"bytes".p []byte) (@"bytes".n int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadByte() (@"bytes".c byte, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadBytes(@"bytes".delim byte) (@"bytes".line []byte, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadFrom(@"bytes".r @"io".Reader) (@"bytes".n int64, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadRune() (@"bytes".r rune, @"bytes".size int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadString(@"bytes".delim byte) (@"bytes".line string, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".Reset() ()
+func (? *@"bytes".Buffer) @"bytes".String() (? string)
+func (? *@"bytes".Buffer) @"bytes".Truncate(@"bytes".n int) ()
+func (? *@"bytes".Buffer) @"bytes".UnreadByte() (? error)
+func (? *@"bytes".Buffer) @"bytes".UnreadRune() (? error)
+func (? *@"bytes".Buffer) @"bytes".Write(@"bytes".p []byte) (@"bytes".n int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteByte(@"bytes".c byte) (? error)
+func (? *@"bytes".Buffer) @"bytes".WriteRune(@"bytes".r rune) (@"bytes".n int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteString(@"bytes".s string) (@"bytes".n int, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteTo(@"bytes".w @"io".Writer) (@"bytes".n int64, @"bytes".err error)
+func (? *@"bytes".Buffer) @"bytes".grow(@"bytes".n int) (? int)
+func (? *@"bytes".Buffer) @"bytes".readSlice(@"bytes".delim byte) (@"bytes".line []byte, @"bytes".err error)
+type @"bytes".readOp int
+type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+$$
+0„runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmttext/scanner‚I¿	var bytes = go$packages["bytes"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var os = go$packages["os"];
+	var unicode = go$packages["unicode"];
+	var utf8 = go$packages["unicode/utf8"];
+	var Position;
+	Position = go$newType(0, "Struct", "scanner.Position", "Position", "text/scanner", function(Filename_, Offset_, Line_, Column_) {
+		this.go$val = this;
+		this.Filename = Filename_ !== undefined ? Filename_ : "";
+		this.Offset = Offset_ !== undefined ? Offset_ : 0;
+		this.Line = Line_ !== undefined ? Line_ : 0;
+		this.Column = Column_ !== undefined ? Column_ : 0;
+	});
+	go$pkg.Position = Position;
+	var Scanner;
+	Scanner = go$newType(0, "Struct", "scanner.Scanner", "Scanner", "text/scanner", function(src_, srcBuf_, srcPos_, srcEnd_, srcBufOffset_, line_, column_, lastLineLen_, lastCharLen_, tokBuf_, tokPos_, tokEnd_, ch_, Error_, ErrorCount_, Mode_, Whitespace_, Position_) {
+		this.go$val = this;
+		this.src = src_ !== undefined ? src_ : null;
+		this.srcBuf = srcBuf_ !== undefined ? srcBuf_ : go$makeNativeArray("Uint8", 1025, function() { return 0; });
+		this.srcPos = srcPos_ !== undefined ? srcPos_ : 0;
+		this.srcEnd = srcEnd_ !== undefined ? srcEnd_ : 0;
+		this.srcBufOffset = srcBufOffset_ !== undefined ? srcBufOffset_ : 0;
+		this.line = line_ !== undefined ? line_ : 0;
+		this.column = column_ !== undefined ? column_ : 0;
+		this.lastLineLen = lastLineLen_ !== undefined ? lastLineLen_ : 0;
+		this.lastCharLen = lastCharLen_ !== undefined ? lastCharLen_ : 0;
+		this.tokBuf = tokBuf_ !== undefined ? tokBuf_ : new bytes.Buffer.Ptr();
+		this.tokPos = tokPos_ !== undefined ? tokPos_ : 0;
+		this.tokEnd = tokEnd_ !== undefined ? tokEnd_ : 0;
+		this.ch = ch_ !== undefined ? ch_ : 0;
+		this.Error = Error_ !== undefined ? Error_ : go$throwNilPointerError;
+		this.ErrorCount = ErrorCount_ !== undefined ? ErrorCount_ : 0;
+		this.Mode = Mode_ !== undefined ? Mode_ : 0;
+		this.Whitespace = Whitespace_ !== undefined ? Whitespace_ : new Go$Uint64(0, 0);
+		this.Position = Position_ !== undefined ? Position_ : new Position.Ptr();
+	});
+	Scanner.prototype.IsValid = function() { return this.go$val.IsValid(); };
+	Scanner.Ptr.prototype.IsValid = function() { return this.Position.IsValid(); };
+	Scanner.prototype.String = function() { return this.go$val.String(); };
+	Scanner.Ptr.prototype.String = function() { return this.Position.String(); };
+	go$pkg.Scanner = Scanner;
+	Position.init([["Filename", "", Go$String, ""], ["Offset", "", Go$Int, ""], ["Line", "", Go$Int, ""], ["Column", "", Go$Int, ""]]);
+	Position.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(Position)).methods = [["IsValid", "", [], [Go$Bool], false], ["String", "", [], [Go$String], false]];
+	Scanner.init([["src", "text/scanner", io.Reader, ""], ["srcBuf", "text/scanner", (go$arrayType(Go$Uint8, 1025)), ""], ["srcPos", "text/scanner", Go$Int, ""], ["srcEnd", "text/scanner", Go$Int, ""], ["srcBufOffset", "text/scanner", Go$Int, ""], ["line", "text/scanner", Go$Int, ""], ["column", "text/scanner", Go$Int, ""], ["lastLineLen", "text/scanner", Go$Int, ""], ["lastCharLen", "text/scanner", Go$Int, ""], ["tokBuf", "text/scanner", bytes.Buffer, ""], ["tokPos", "text/scanner", Go$Int, ""], ["tokEnd", "text/scanner", Go$Int, ""], ["ch", "text/scanner", Go$Int32, ""], ["Error", "", (go$funcType([(go$ptrType(Scanner)), Go$String], [], false)), ""], ["ErrorCount", "", Go$Int, ""], ["Mode", "", Go$Uint, ""], ["Whitespace", "", Go$Uint64, ""], ["", "", Position, ""]]);
+	Scanner.methods = [["String", "", [], [Go$String], false]];
+	(go$ptrType(Scanner)).methods = [["Init", "", [io.Reader], [(go$ptrType(Scanner))], false], ["IsValid", "", [], [Go$Bool], false], ["Next", "", [], [Go$Int32], false], ["Peek", "", [], [Go$Int32], false], ["Pos", "", [], [Position], false], ["Scan", "", [], [Go$Int32], false], ["String", "", [], [Go$String], false], ["TokenText", "", [], [Go$String], false], ["error", "text/scanner", [Go$String], [], false], ["next", "text/scanner", [], [Go$Int32], false], ["scanChar", "text/scanner", [], [], false], ["scanComment", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanDigits", "text/scanner", [Go$Int32, Go$Int, Go$Int], [Go$Int32], false], ["scanEscape", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanExponent", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanFraction", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanIdentifier", "text/scanner", [], [Go$Int32], false], ["scanMantissa", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanNumber", "text/scanner", [Go$Int32], [Go$Int32, Go$Int32], false], ["scanRawString", "text/scanner", [], [], false], ["scanString", "text/scanner", [Go$Int32], [Go$Int], false]];
+	Position.Ptr.prototype.IsValid = function() {
+		var pos;
+		pos = this;
+		return pos.Line > 0;
+	};
+	Position.prototype.IsValid = function() { return this.go$val.IsValid(); };
+	Position.Ptr.prototype.String = function() {
+		var _struct, pos, s;
+		pos = (_struct = this, new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+		s = pos.Filename;
+		if (pos.IsValid()) {
+			if (!(s === "")) {
+				s = s + ":";
+			}
+			s = s + (fmt.Sprintf("%d:%d", new (go$sliceType(go$emptyInterface))([new Go$Int(pos.Line), new Go$Int(pos.Column)])));
+		}
+		if (s === "") {
+			s = "???";
+		}
+		return s;
+	};
+	Position.prototype.String = function() { return this.go$val.String(); };
+	var TokenString = go$pkg.TokenString = function(tok) {
+		var found, _tuple, _entry, s;
+		if (_tuple = (_entry = tokenString[tok], _entry !== undefined ? [_entry.v, true] : ["", false]), s = _tuple[0], found = _tuple[1], found) {
+			return s;
+		}
+		return fmt.Sprintf("%q", new (go$sliceType(go$emptyInterface))([new Go$String(go$encodeRune(tok))]));
+	};
+	Scanner.Ptr.prototype.Init = function(src) {
+		var s;
+		s = this;
+		s.src = src;
+		s.srcBuf[0] = 128;
+		s.srcPos = 0;
+		s.srcEnd = 0;
+		s.srcBufOffset = 0;
+		s.line = 1;
+		s.column = 0;
+		s.lastLineLen = 0;
+		s.lastCharLen = 0;
+		s.tokPos = -1;
+		s.ch = -1;
+		s.Error = go$throwNilPointerError;
+		s.ErrorCount = 0;
+		s.Mode = 1012;
+		s.Whitespace = new Go$Uint64(1, 9728);
+		s.Position.Line = 0;
+		return s;
+	};
+	Scanner.prototype.Init = function(src) { return this.go$val.Init(src); };
+	Scanner.Ptr.prototype.next = function() {
+		var s, _tuple, ch, width, i, _tuple$1, n, err, _tuple$2, _ref;
+		s = this;
+		_tuple = [(s.srcBuf[s.srcPos] >> 0), 1], ch = _tuple[0], width = _tuple[1];
+		if (ch >= 128) {
+			while ((s.srcPos + 4 >> 0) > s.srcEnd && !utf8.FullRune(go$subslice(new (go$sliceType(Go$Uint8))(s.srcBuf), s.srcPos, s.srcEnd))) {
+				if (s.tokPos >= 0) {
+					s.tokBuf.Write(go$subslice(new (go$sliceType(Go$Uint8))(s.srcBuf), s.tokPos, s.srcPos));
+					s.tokPos = 0;
+				}
+				go$copySlice(go$subslice(new (go$sliceType(Go$Uint8))(s.srcBuf), 0), go$subslice(new (go$sliceType(Go$Uint8))(s.srcBuf), s.srcPos, s.srcEnd));
+				s.srcBufOffset = s.srcBufOffset + (s.srcPos) >> 0;
+				i = s.srcEnd - s.srcPos >> 0;
+				_tuple$1 = s.src.Read(go$subslice(new (go$sliceType(Go$Uint8))(s.srcBuf), i, 1024)), n = _tuple$1[0], err = _tuple$1[1];
+				s.srcPos = 0;
+				s.srcEnd = i + n >> 0;
+				s.srcBuf[s.srcEnd] = 128;
+				if (!(go$interfaceIsEqual(err, null))) {
+					if (s.srcEnd === 0) {
+						if (s.lastCharLen > 0) {
+							s.column = s.column + 1 >> 0;
+						}
+						s.lastCharLen = 0;
+						return -1;
+					}
+					if (!(go$interfaceIsEqual(err, io.EOF))) {
+						s.error(err.Error());
+					}
+					break;
+				}
+			}
+			ch = (s.srcBuf[s.srcPos] >> 0);
+			if (ch >= 128) {
+				_tuple$2 = utf8.DecodeRune(go$subslice(new (go$sliceType(Go$Uint8))(s.srcBuf), s.srcPos, s.srcEnd)), ch = _tuple$2[0], width = _tuple$2[1];
+				if ((ch === 65533) && (width === 1)) {
+					s.srcPos = s.srcPos + (width) >> 0;
+					s.lastCharLen = width;
+					s.column = s.column + 1 >> 0;
+					s.error("illegal UTF-8 encoding");
+					return ch;
+				}
+			}
+		}
+		s.srcPos = s.srcPos + (width) >> 0;
+		s.lastCharLen = width;
+		s.column = s.column + 1 >> 0;
+		_ref = ch;
+		if (_ref === 0) {
+			s.error("illegal character NUL");
+		} else if (_ref === 10) {
+			s.line = s.line + 1 >> 0;
+			s.lastLineLen = s.column;
+			s.column = 0;
+		}
+		return ch;
+	};
+	Scanner.prototype.next = function() { return this.go$val.next(); };
+	Scanner.Ptr.prototype.Next = function() {
+		var s, ch;
+		s = this;
+		s.tokPos = -1;
+		s.Position.Line = 0;
+		ch = s.Peek();
+		s.ch = s.next();
+		return ch;
+	};
+	Scanner.prototype.Next = function() { return this.go$val.Next(); };
+	Scanner.Ptr.prototype.Peek = function() {
+		var s;
+		s = this;
+		if (s.ch < 0) {
+			s.ch = s.next();
+			if (s.ch === 65279) {
+				s.ch = s.next();
+			}
+		}
+		return s.ch;
+	};
+	Scanner.prototype.Peek = function() { return this.go$val.Peek(); };
+	Scanner.Ptr.prototype.error = function(msg) {
+		var s, _struct, pos, _struct$1;
+		s = this;
+		s.ErrorCount = s.ErrorCount + 1 >> 0;
+		if (!(s.Error === go$throwNilPointerError)) {
+			s.Error(s, msg);
+			return;
+		}
+		pos = (_struct = s.Position, new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+		if (!pos.IsValid()) {
+			pos = (_struct$1 = s.Pos(), new Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column));
+		}
+		fmt.Fprintf(os.Stderr, "%s: %s\n", new (go$sliceType(go$emptyInterface))([new pos.constructor.Struct(pos), new Go$String(msg)]));
+	};
+	Scanner.prototype.error = function(msg) { return this.go$val.error(msg); };
+	Scanner.Ptr.prototype.scanIdentifier = function() {
+		var s, ch;
+		s = this;
+		ch = s.next();
+		while ((ch === 95) || unicode.IsLetter(ch) || unicode.IsDigit(ch)) {
+			ch = s.next();
+		}
+		return ch;
+	};
+	Scanner.prototype.scanIdentifier = function() { return this.go$val.scanIdentifier(); };
+	var digitVal = function(ch) {
+		if (48 <= ch && ch <= 57) {
+			return ((ch - 48 >> 0) >> 0);
+		} else if (97 <= ch && ch <= 102) {
+			return (((ch - 97 >> 0) + 10 >> 0) >> 0);
+		} else if (65 <= ch && ch <= 70) {
+			return (((ch - 65 >> 0) + 10 >> 0) >> 0);
+		}
+		return 16;
+	};
+	var isDecimal = function(ch) {
+		return 48 <= ch && ch <= 57;
+	};
+	Scanner.Ptr.prototype.scanMantissa = function(ch) {
+		var s;
+		s = this;
+		while (isDecimal(ch)) {
+			ch = s.next();
+		}
+		return ch;
+	};
+	Scanner.prototype.scanMantissa = function(ch) { return this.go$val.scanMantissa(ch); };
+	Scanner.Ptr.prototype.scanFraction = function(ch) {
+		var s;
+		s = this;
+		if (ch === 46) {
+			ch = s.scanMantissa(s.next());
+		}
+		return ch;
+	};
+	Scanner.prototype.scanFraction = function(ch) { return this.go$val.scanFraction(ch); };
+	Scanner.Ptr.prototype.scanExponent = function(ch) {
+		var s;
+		s = this;
+		if ((ch === 101) || (ch === 69)) {
+			ch = s.next();
+			if ((ch === 45) || (ch === 43)) {
+				ch = s.next();
+			}
+			ch = s.scanMantissa(ch);
+		}
+		return ch;
+	};
+	Scanner.prototype.scanExponent = function(ch) { return this.go$val.scanExponent(ch); };
+	Scanner.Ptr.prototype.scanNumber = function(ch) {
+		var s, hasMantissa, has8or9;
+		s = this;
+		if (ch === 48) {
+			ch = s.next();
+			if ((ch === 120) || (ch === 88)) {
+				ch = s.next();
+				hasMantissa = false;
+				while (digitVal(ch) < 16) {
+					ch = s.next();
+					hasMantissa = true;
+				}
+				if (!hasMantissa) {
+					s.error("illegal hexadecimal number");
+				}
+			} else {
+				has8or9 = false;
+				while (isDecimal(ch)) {
+					if (ch > 55) {
+						has8or9 = true;
+					}
+					ch = s.next();
+				}
+				if (!((((s.Mode & 16) >>> 0) === 0)) && ((ch === 46) || (ch === 101) || (ch === 69))) {
+					ch = s.scanFraction(ch);
+					ch = s.scanExponent(ch);
+					return [-4, ch];
+				}
+				if (has8or9) {
+					s.error("illegal octal number");
+				}
+			}
+			return [-3, ch];
+		}
+		ch = s.scanMantissa(ch);
+		if (!((((s.Mode & 16) >>> 0) === 0)) && ((ch === 46) || (ch === 101) || (ch === 69))) {
+			ch = s.scanFraction(ch);
+			ch = s.scanExponent(ch);
+			return [-4, ch];
+		}
+		return [-3, ch];
+	};
+	Scanner.prototype.scanNumber = function(ch) { return this.go$val.scanNumber(ch); };
+	Scanner.Ptr.prototype.scanDigits = function(ch, base, n) {
+		var s;
+		s = this;
+		while (n > 0 && digitVal(ch) < base) {
+			ch = s.next();
+			n = n - 1 >> 0;
+		}
+		if (n > 0) {
+			s.error("illegal char escape");
+		}
+		return ch;
+	};
+	Scanner.prototype.scanDigits = function(ch, base, n) { return this.go$val.scanDigits(ch, base, n); };
+	Scanner.Ptr.prototype.scanEscape = function(quote) {
+		var s, ch, _ref;
+		s = this;
+		ch = s.next();
+		_ref = ch;
+		if (_ref === 97 || _ref === 98 || _ref === 102 || _ref === 110 || _ref === 114 || _ref === 116 || _ref === 118 || _ref === 92 || _ref === quote) {
+			ch = s.next();
+		} else if (_ref === 48 || _ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
+			ch = s.scanDigits(ch, 8, 3);
+		} else if (_ref === 120) {
+			ch = s.scanDigits(s.next(), 16, 2);
+		} else if (_ref === 117) {
+			ch = s.scanDigits(s.next(), 16, 4);
+		} else if (_ref === 85) {
+			ch = s.scanDigits(s.next(), 16, 8);
+		} else {
+			s.error("illegal char escape");
+		}
+		return ch;
+	};
+	Scanner.prototype.scanEscape = function(quote) { return this.go$val.scanEscape(quote); };
+	Scanner.Ptr.prototype.scanString = function(quote) {
+		var n, s, ch;
+		n = 0;
+		s = this;
+		ch = s.next();
+		while (!((ch === quote))) {
+			if ((ch === 10) || ch < 0) {
+				s.error("literal not terminated");
+				return n;
+			}
+			if (ch === 92) {
+				ch = s.scanEscape(quote);
+			} else {
+				ch = s.next();
+			}
+			n = n + 1 >> 0;
+		}
+		return n;
+	};
+	Scanner.prototype.scanString = function(quote) { return this.go$val.scanString(quote); };
+	Scanner.Ptr.prototype.scanRawString = function() {
+		var s, ch;
+		s = this;
+		ch = s.next();
+		while (!((ch === 96))) {
+			if (ch < 0) {
+				s.error("literal not terminated");
+				return;
+			}
+			ch = s.next();
+		}
+	};
+	Scanner.prototype.scanRawString = function() { return this.go$val.scanRawString(); };
+	Scanner.Ptr.prototype.scanChar = function() {
+		var s;
+		s = this;
+		if (!((s.scanString(39) === 1))) {
+			s.error("illegal char literal");
+		}
+	};
+	Scanner.prototype.scanChar = function() { return this.go$val.scanChar(); };
+	Scanner.Ptr.prototype.scanComment = function(ch) {
+		var s, ch0;
+		s = this;
+		if (ch === 47) {
+			ch = s.next();
+			while (!((ch === 10)) && ch >= 0) {
+				ch = s.next();
+			}
+			return ch;
+		}
+		ch = s.next();
+		while (true) {
+			if (ch < 0) {
+				s.error("comment not terminated");
+				break;
+			}
+			ch0 = ch;
+			ch = s.next();
+			if ((ch0 === 42) && (ch === 47)) {
+				ch = s.next();
+				break;
+			}
+		}
+		return ch;
+	};
+	Scanner.prototype.scanComment = function(ch) { return this.go$val.scanComment(ch); };
+	Scanner.Ptr.prototype.Scan = function() {
+		var s, ch, x, x$1, x$2, tok, _tuple, _ref;
+		s = this;
+		ch = s.Peek();
+		s.tokPos = -1;
+		s.Position.Line = 0;
+		while (true) {
+			while (!((x = (x$1 = s.Whitespace, x$2 = go$shiftLeft64(new Go$Uint64(0, 1), (ch >>> 0)), new Go$Uint64(x$1.high & x$2.high, (x$1.low & x$2.low) >>> 0)), (x.high === 0 && x.low === 0)))) {
+				ch = s.next();
+			}
+			s.tokBuf.Reset();
+			s.tokPos = s.srcPos - s.lastCharLen >> 0;
+			s.Position.Offset = s.srcBufOffset + s.tokPos >> 0;
+			if (s.column > 0) {
+				s.Position.Line = s.line;
+				s.Position.Column = s.column;
+			} else {
+				s.Position.Line = s.line - 1 >> 0;
+				s.Position.Column = s.lastLineLen;
+			}
+			tok = ch;
+			if (unicode.IsLetter(ch) || (ch === 95)) {
+				if (!((((s.Mode & 4) >>> 0) === 0))) {
+					tok = -2;
+					ch = s.scanIdentifier();
+				} else {
+					ch = s.next();
+				}
+			} else if (isDecimal(ch)) {
+				if (!((((s.Mode & 24) >>> 0) === 0))) {
+					_tuple = s.scanNumber(ch), tok = _tuple[0], ch = _tuple[1];
+				} else {
+					ch = s.next();
+				}
+			} else {
+				_ref = ch;
+				if (_ref === 34) {
+					if (!((((s.Mode & 64) >>> 0) === 0))) {
+						s.scanString(34);
+						tok = -6;
+					}
+					ch = s.next();
+				} else if (_ref === 39) {
+					if (!((((s.Mode & 32) >>> 0) === 0))) {
+						s.scanChar();
+						tok = -5;
+					}
+					ch = s.next();
+				} else if (_ref === 46) {
+					ch = s.next();
+					if (isDecimal(ch) && !((((s.Mode & 16) >>> 0) === 0))) {
+						tok = -4;
+						ch = s.scanMantissa(ch);
+						ch = s.scanExponent(ch);
+					}
+				} else if (_ref === 47) {
+					ch = s.next();
+					if (((ch === 47) || (ch === 42)) && !((((s.Mode & 256) >>> 0) === 0))) {
+						if (!((((s.Mode & 512) >>> 0) === 0))) {
+							s.tokPos = -1;
+							ch = s.scanComment(ch);
+							continue;
+						}
+						ch = s.scanComment(ch);
+						tok = -8;
+					}
+				} else if (_ref === 96) {
+					if (!((((s.Mode & 128) >>> 0) === 0))) {
+						s.scanRawString();
+						tok = -6;
+					}
+					ch = s.next();
+				} else {
+					ch = s.next();
+				}
+			}
+			s.tokEnd = s.srcPos - s.lastCharLen >> 0;
+			s.ch = ch;
+			return tok;
+		}
+	};
+	Scanner.prototype.Scan = function() { return this.go$val.Scan(); };
+	Scanner.Ptr.prototype.Pos = function() {
+		var pos, s, _struct;
+		pos = new Position.Ptr();
+		s = this;
+		pos.Filename = s.Position.Filename;
+		pos.Offset = (s.srcBufOffset + s.srcPos >> 0) - s.lastCharLen >> 0;
+		if (s.column > 0) {
+			pos.Line = s.line;
+			pos.Column = s.column;
+		} else if (s.lastLineLen > 0) {
+			pos.Line = s.line - 1 >> 0;
+			pos.Column = s.lastLineLen;
+		} else {
+			pos.Line = 1;
+			pos.Column = 1;
+		}
+		return (_struct = pos, new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+	};
+	Scanner.prototype.Pos = function() { return this.go$val.Pos(); };
+	Scanner.Ptr.prototype.TokenText = function() {
+		var s;
+		s = this;
+		if (s.tokPos < 0) {
+			return "";
+		}
+		if (s.tokEnd < 0) {
+			s.tokEnd = s.tokPos;
+		}
+		if (s.tokBuf.Len() === 0) {
+			return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(s.srcBuf), s.tokPos, s.tokEnd));
+		}
+		s.tokBuf.Write(go$subslice(new (go$sliceType(Go$Uint8))(s.srcBuf), s.tokPos, s.tokEnd));
+		s.tokPos = s.tokEnd;
+		return s.tokBuf.String();
+	};
+	Scanner.prototype.TokenText = function() { return this.go$val.TokenText(); };
+	go$pkg.ScanIdents = 4;
+	go$pkg.ScanInts = 8;
+	go$pkg.ScanFloats = 16;
+	go$pkg.ScanChars = 32;
+	go$pkg.ScanStrings = 64;
+	go$pkg.ScanRawStrings = 128;
+	go$pkg.ScanComments = 256;
+	go$pkg.SkipComments = 512;
+	go$pkg.GoTokens = 1012;
+	go$pkg.EOF = -1;
+	go$pkg.Ident = -2;
+	go$pkg.Int = -3;
+	go$pkg.Float = -4;
+	go$pkg.Char = -5;
+	go$pkg.String = -6;
+	go$pkg.RawString = -7;
+	go$pkg.Comment = -8;
+	var skipComment = -9;
+	go$pkg.GoWhitespace = 4294977024;
+	var bufLen = 1024;
+	var tokenString = false;
+	go$pkg.init = function() {
+		var _map, _key;
+		tokenString = (_map = new Go$Map(), _key = -1, _map[_key] = { k: _key, v: "EOF" }, _key = -2, _map[_key] = { k: _key, v: "Ident" }, _key = -3, _map[_key] = { k: _key, v: "Int" }, _key = -4, _map[_key] = { k: _key, v: "Float" }, _key = -5, _map[_key] = { k: _key, v: "Char" }, _key = -6, _map[_key] = { k: _key, v: "String" }, _key = -7, _map[_key] = { k: _key, v: "RawString" }, _key = -8, _map[_key] = { k: _key, v: "Comment" }, _map);
+	};

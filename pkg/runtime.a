@@ -1,0 +1,1941 @@
+0ƒõ¬‚=Vpackage runtime
+func @"".BlockProfile(@"".p []@"".BlockProfileRecord) (@"".n int, @"".ok bool)
+type @"".BlockProfileRecord struct { @"".Count int64; @"".Cycles int64; ? @"".StackRecord }
+func @"".Breakpoint() ()
+func @"".CPUProfile() (? []byte)
+func @"".Caller(@"".skip int) (@"".pc uintptr, @"".file string, @"".line int, @"".ok bool)
+func @"".Callers(@"".skip int, @"".pc []uintptr) (? int)
+const @"".Compiler = "gc"
+type @"".Error interface { @"".Error() (? string); @"".RuntimeError() () }
+type @"".Func struct { @"".opaque struct {  } }
+func (? *@"".Func) @"".Entry() (? uintptr)
+func (? *@"".Func) @"".FileLine(@"".pc uintptr) (@"".file string, @"".line int)
+func (? *@"".Func) @"".Name() (? string)
+func @"".FuncForPC(@"".pc uintptr) (? *@"".Func)
+func @"".GC() ()
+const @"".GOARCH string = "js"
+func @"".GOMAXPROCS(@"".n int) (? int)
+const @"".GOOS string = "darwin"
+func @"".GOROOT() (? string)
+func @"".Goexit() ()
+func @"".GoroutineProfile(@"".p []@"".StackRecord) (@"".n int, @"".ok bool)
+func @"".Gosched() ()
+func @"".LockOSThread() ()
+func @"".MemProfile(@"".p []@"".MemProfileRecord, @"".inuseZero bool) (@"".n int, @"".ok bool)
+var @"".MemProfileRate int
+type @"".MemProfileRecord struct { @"".AllocBytes int64; @"".FreeBytes int64; @"".AllocObjects int64; @"".FreeObjects int64; @"".Stack0 [32]uintptr }
+func (? *@"".MemProfileRecord) @"".InUseBytes() (? int64)
+func (? *@"".MemProfileRecord) @"".InUseObjects() (? int64)
+func (? *@"".MemProfileRecord) @"".Stack() (? []uintptr)
+type @"".MemStats struct { @"".Alloc uint64; @"".TotalAlloc uint64; @"".Sys uint64; @"".Lookups uint64; @"".Mallocs uint64; @"".Frees uint64; @"".HeapAlloc uint64; @"".HeapSys uint64; @"".HeapIdle uint64; @"".HeapInuse uint64; @"".HeapReleased uint64; @"".HeapObjects uint64; @"".StackInuse uint64; @"".StackSys uint64; @"".MSpanInuse uint64; @"".MSpanSys uint64; @"".MCacheInuse uint64; @"".MCacheSys uint64; @"".BuckHashSys uint64; @"".GCSys uint64; @"".OtherSys uint64; @"".NextGC uint64; @"".LastGC uint64; @"".PauseTotalNs uint64; @"".PauseNs [256]uint64; @"".NumGC uint32; @"".EnableGC bool; @"".DebugGC bool; @"".BySize [61]struct { @"".Size uint32; @"".Mallocs uint64; @"".Frees uint64 } }
+func @"".NumCPU() (? int)
+func @"".NumCgoCall() (? int64)
+func @"".NumGoroutine() (? int)
+func @"".ReadMemStats(@"".m *@"".MemStats) ()
+func @"".SetBlockProfileRate(@"".rate int) ()
+func @"".SetCPUProfileRate(@"".hz int) ()
+func @"".SetFinalizer(@"".x interface {  }, @"".f interface {  }) ()
+func @"".Stack(@"".buf []byte, @"".all bool) (? int)
+type @"".StackRecord struct { @"".Stack0 [32]uintptr }
+func (? *@"".StackRecord) @"".Stack() (? []uintptr)
+func @"".ThreadCreateProfile(@"".p []@"".StackRecord) (@"".n int, @"".ok bool)
+type @"".TypeAssertionError struct { @"".interfaceString string; @"".concreteString string; @"".assertedString string; @"".missingMethod string }
+func (? *@"".TypeAssertionError) @"".Error() (? string)
+func (? *@"".TypeAssertionError) @"".RuntimeError() ()
+func @"".UnlockOSThread() ()
+func @"".Version() (? string)
+type @""._1_ struct { @"".size uint32; @"".nmalloc uint64; @"".nfree uint64 }
+type @""._2_ struct { ? @"".mcentral; @"".pad [64]uint8 }
+type @""._3_ struct { ? @"".lock; @"".fn func (? *uint64, ? int32) (); @"".hz int32; @"".pcbuf [100]uint64 }
+type @""._complex128 struct { @"".real float64; @"".imag float64 }
+type @""._complex64 struct { @"".real float32; @"".imag float32 }
+type @""._defer struct { @"".siz int32; @"".special uint8; @"".free uint8; @"".argp *uint8; @"".pc *uint8; @"".fn *@"".funcval; @"".link *@""._defer; @"".args [1]@"unsafe".Pointer }
+type @""._func struct { @"".entry uint64; @"".nameoff int32; @"".args int32; @"".frame int32; @"".pcsp int32; @"".pcfile int32; @"".pcln int32; @"".npcdata int32; @"".nfuncdata int32 }
+type @""._imethod struct { @"".name *string; @"".pkgPath *string; @"".typ *@"".rtype }
+type @""._method struct { @"".name *string; @"".pkgPath *string; @"".mtyp *@"".rtype; @"".typ *@"".rtype; @"".ifn @"unsafe".Pointer; @"".tfn @"unsafe".Pointer }
+type @""._panic struct { @"".arg @"".eface; @"".stackbase uint64; @"".link *@""._panic; @"".recovered uint8 }
+type @""._select struct { @"".tcase uint16; @"".ncase uint16; @"".pollorder *uint16; @"".lockorder **@"".hchan; @"".scase [1]@"".scase }
+type @""._string struct { @"".str *uint8; @"".len int64 }
+type @""._type struct { @"".size uint64; @"".hash uint32; @""._unused uint8; @"".align uint8; @"".fieldalign uint8; @"".kind uint8; @"".alg *@"".alg; @"".gc @"unsafe".Pointer; @""._string *string; @"".x *@"".uncommontype; @"".ptrto *@""._type }
+type @"".alg struct { @"".hash func (? *uint64, ? uint64, ? @"unsafe".Pointer) (); @"".equal func (? *uint8, ? uint64, ? @"unsafe".Pointer, ? @"unsafe".Pointer) (); @"".print func (? uint64, ? @"unsafe".Pointer) (); @"".copy func (? uint64, ? @"unsafe".Pointer, ? @"unsafe".Pointer) () }
+type @"".bucket struct { @"".tophash [8]uint8; @"".overflow *@"".bucket; @"".data [1]uint8 }
+type @"".cgomal struct { @"".next *@"".cgomal; @"".alloc @"unsafe".Pointer }
+type @"".cgothreadstart struct { @"".m *@"".m; @"".g *@"".g; @"".fn func () () }
+type @"".chantype struct { ? @""._type; @"".elem *@""._type; @"".dir uint64 }
+type @"".debugvars struct { @"".gctrace int32; @"".schedtrace int32; @"".scheddetail int32 }
+type @"".deferchunk struct { @"".prev *@"".deferchunk; @"".off uint64 }
+type @"".eface struct { @""._type *@""._type; @"".data @"unsafe".Pointer }
+type @"".errorCString uintptr
+func (? @"".errorCString) @"".Error() (? string)
+func (? @"".errorCString) @"".RuntimeError() ()
+func (? *@"".errorCString) @"".Error() (? string)
+func (? *@"".errorCString) @"".RuntimeError() ()
+type @"".errorString string
+func (? @"".errorString) @"".Error() (? string)
+func (? @"".errorString) @"".RuntimeError() ()
+func (? *@"".errorString) @"".Error() (? string)
+func (? *@"".errorString) @"".RuntimeError() ()
+type @"".fixalloc struct { @"".size uint64; @"".first func (? @"unsafe".Pointer, ? *uint8) (); @"".arg @"unsafe".Pointer; @"".list *@"".mlink; @"".chunk *uint8; @"".nchunk uint32; @"".inuse uint64; @"".stat *uint64 }
+type @"".functype struct { ? @""._type; @"".dotdotdot uint8; @"".in []byte; @"".out []byte }
+type @"".funcval struct { @"".fn func () () }
+type @"".g struct { @"".stackguard0 uint64; @"".stackbase uint64; @"".panicwrap uint32; @"".selgen uint32; @""._defer *@""._defer; @""._panic *@""._panic; @"".sched @"".gobuf; @"".syscallstack uint64; @"".syscallsp uint64; @"".syscallpc uint64; @"".syscallguard uint64; @"".stackguard uint64; @"".stack0 uint64; @"".stacksize uint64; @"".alllink *@"".g; @"".param @"unsafe".Pointer; @"".status int16; @"".goid int64; @"".waitreason *int8; @"".schedlink *@"".g; @"".ispanic uint8; @"".issystem uint8; @"".isbackground uint8; @"".preempt uint8; @"".raceignore int8; @"".m *@"".m; @"".lockedm *@"".m; @"".sig int32; @"".writenbuf int32; @"".writebuf *uint8; @"".dchunk *@"".deferchunk; @"".dchunknext *@"".deferchunk; @"".sigcode0 uint64; @"".sigcode1 uint64; @"".sigpc uint64; @"".gopc uint64; @"".racectx uint64; @"".end [0]uint64 }
+type @"".gcstats struct { @"".nhandoff uint64; @"".nhandoffcnt uint64; @"".nprocyield uint64; @"".nosyield uint64; @"".nsleep uint64 }
+type @"".gobuf struct { @"".sp uint64; @"".pc uint64; @"".g *@"".g; @"".ret uint64; @"".ctxt @"unsafe".Pointer; @"".lr uint64 }
+type @"".hash_iter struct { @"".key *uint8; @"".value *uint8; @"".t *@"".maptype; @"".h *@"".hmap; @"".endbucket uint64; @"".wrapped uint8; @"".b uint8; @"".buckets *uint8; @"".bucket uint64; @"".bptr *@"".bucket; @"".i uint64; @"".check_bucket int64 }
+type @"".hchan struct { @"".qcount uint64; @"".dataqsiz uint64; @"".elemsize uint16; @"".pad uint16; @"".closed uint8; @"".elemalg *@"".alg; @"".sendx uint64; @"".recvx uint64; @"".recvq @"".waitq; @"".sendq @"".waitq; ? @"".lock }
+type @"".hmap struct { @"".count uint64; @"".flags uint32; @"".hash0 uint32; @"".b uint8; @"".keysize uint8; @"".valuesize uint8; @"".bucketsize uint16; @"".buckets *uint8; @"".oldbuckets *uint8; @"".nevacuate uint64 }
+type @"".iface struct { @"".tab *@"".itab; @"".data @"unsafe".Pointer }
+type @"".imethod struct { @"".name *string; @"".pkgpath *string; @""._type *@""._type }
+type @"".interfaceType struct { ? @"".rtype; @"".methods []@""._imethod }
+type @"".interfacetype struct { ? @""._type; @"".mhdr []byte; @"".m [0]@"".imethod }
+type @"".itab struct { @"".inter *@"".interfacetype; @""._type *@""._type; @"".link *@"".itab; @"".bad int32; @"".unused int32; @"".fun [0]func () () }
+type @"".lfnode struct { @"".next *@"".lfnode; @"".pushcnt uint64 }
+type @"".lock struct { @"".key uint64 }
+type @"".m struct { @"".g0 *@"".g; @"".moreargp @"unsafe".Pointer; @"".morebuf @"".gobuf; @"".moreframesize uint32; @"".moreargsize uint32; @"".cret uint64; @"".procid uint64; @"".gsignal *@"".g; @"".tls [4]uint64; @"".mstartfn func () (); @"".curg *@"".g; @"".caughtsig *@"".g; @"".p *@"".p; @"".nextp *@"".p; @"".id int32; @"".mallocing int32; @"".throwing int32; @"".gcing int32; @"".locks int32; @"".dying int32; @"".profilehz int32; @"".helpgc int32; @"".spinning uint8; @"".fastrand uint32; @"".ncgocall uint64; @"".ncgo int32; @"".cgomal *@"".cgomal; @"".park @"".note; @"".alllink *@"".m; @"".schedlink *@"".m; @"".machport uint32; @"".mcache *@"".mcache; @"".stackinuse int32; @"".stackcachepos uint32; @"".stackcachecnt uint32; @"".stackcache [32]@"unsafe".Pointer; @"".lockedg *@"".g; @"".createstack [32]uint64; @"".freglo [16]uint32; @"".freghi [16]uint32; @"".fflag uint32; @"".locked uint32; @"".nextwaitm *@"".m; @"".waitsema uint64; @"".waitsemacount uint32; @"".waitsemalock uint32; @"".gcstats @"".gcstats; @"".racecall uint8; @"".needextram uint8; @"".waitunlockf func (? *@"".lock) (); @"".waitlock @"unsafe".Pointer; @"".settype_buf [1024]uint64; @"".settype_bufsize uint64; @"".seh *@"".seh; @"".end [0]uint64 }
+type @"".maptype struct { ? @""._type; @"".key *@""._type; @"".elem *@""._type; @"".bucket *@""._type; @"".hmap *@""._type }
+type @"".mcache struct { @"".next_sample int32; @"".local_cachealloc int64; @"".list [61]@"".mcachelist; @"".local_nlookup uint64; @"".local_largefree uint64; @"".local_nlargefree uint64; @"".local_nsmallfree [61]uint64 }
+type @"".mcachelist struct { @"".list *@"".mlink; @"".nlist uint32 }
+type @"".mcentral struct { ? @"".lock; @"".sizeclass int32; @"".nonempty @"".mspan; @"".empty @"".mspan; @"".nfree int32 }
+type @"".method struct { @"".name *string; @"".pkgpath *string; @"".mtyp *@""._type; @"".typ *@""._type; @"".ifn func () (); @"".tfn func () () }
+type @"".mheap struct { ? @"".lock; @"".free [256]@"".mspan; @"".large @"".mspan; @"".allspans **@"".mspan; @"".nspan uint32; @"".nspancap uint32; @"".spans **@"".mspan; @"".spans_mapped uint64; @"".bitmap *uint8; @"".bitmap_mapped uint64; @"".arena_start *uint8; @"".arena_used *uint8; @"".arena_end *uint8; @"".central [61]@""._2_; @"".spanalloc @"".fixalloc; @"".cachealloc @"".fixalloc; @"".largefree uint64; @"".nlargefree uint64; @"".nsmallfree [61]uint64 }
+type @"".mlink struct { @"".next *@"".mlink }
+type @"".mspan struct { @"".next *@"".mspan; @"".prev *@"".mspan; @"".start uint64; @"".npages uint64; @"".freelist *@"".mlink; @"".ref uint32; @"".sizeclass int32; @"".elemsize uint64; @"".state uint32; @"".unusedsince int64; @"".npreleased uint64; @"".limit *uint8; @"".types @"".mtypes }
+type @"".mstats struct { @"".alloc uint64; @"".total_alloc uint64; @"".sys uint64; @"".nlookup uint64; @"".nmalloc uint64; @"".nfree uint64; @"".heap_alloc uint64; @"".heap_sys uint64; @"".heap_idle uint64; @"".heap_inuse uint64; @"".heap_released uint64; @"".heap_objects uint64; @"".stacks_inuse uint64; @"".stacks_sys uint64; @"".mspan_inuse uint64; @"".mspan_sys uint64; @"".mcache_inuse uint64; @"".mcache_sys uint64; @"".buckhash_sys uint64; @"".gc_sys uint64; @"".other_sys uint64; @"".next_gc uint64; @"".last_gc uint64; @"".pause_total_ns uint64; @"".pause_ns [256]uint64; @"".numgc uint32; @"".enablegc uint8; @"".debuggc uint8; @"".by_size [61]@""._1_ }
+type @"".mtypes struct { @"".compression uint8; @"".data uint64 }
+type @"".note struct { @"".key uint64 }
+type @"".p struct { ? @"".lock; @"".id int32; @"".status uint32; @"".link *@"".p; @"".schedtick uint32; @"".syscalltick uint32; @"".m *@"".m; @"".mcache *@"".mcache; @"".runq **@"".g; @"".runqhead int32; @"".runqtail int32; @"".runqsize int32; @"".gfree *@"".g; @"".gfreecnt int32; @"".pad [64]uint8 }
+type @"".parfor struct { @"".body func (? *@"".parfor, ? uint32) (); @"".done uint32; @"".nthr uint32; @"".nthrmax uint32; @"".thrseq uint32; @"".cnt uint32; @"".ctx @"unsafe".Pointer; @"".wait uint8; @"".thr *@"".parforthread; @"".pad uint32; @"".nsteal uint64; @"".nstealcnt uint64; @"".nprocyield uint64; @"".nosyield uint64; @"".nsleep uint64 }
+type @"".parforthread struct { @"".pos uint64; @"".nsteal uint64; @"".nstealcnt uint64; @"".nprocyield uint64; @"".nosyield uint64; @"".nsleep uint64; @"".pad [64]uint8 }
+type @"".pdesc struct { @"".schedtick uint32; @"".schedwhen int64; @"".syscalltick uint32; @"".syscallwhen int64 }
+type @"".ptrtype struct { ? @""._type; @"".elem *@""._type }
+type @"".rtype struct { @"".size uintptr; @"".hash uint32; _ uint8; @"".align uint8; @"".fieldAlign uint8; @"".kind uint8; @"".alg @"unsafe".Pointer; @"".gc @"unsafe".Pointer; @"".string *string; ? *@"".uncommonType; @"".ptrToThis *@"".rtype }
+type @"".runtimeselect struct { @"".dir uint64; @"".typ *@"".chantype; @"".ch *@"".hchan; @"".val uint64 }
+type @"".scase struct { @"".sg @"".sudog; @""._chan *@"".hchan; @"".pc *uint8; @"".kind uint16; @"".so uint16; @"".receivedp *uint8 }
+type @"".sched struct { ? @"".lock; @"".goidgen uint64; @"".midle *@"".m; @"".nmidle int32; @"".nmidlelocked int32; @"".mcount int32; @"".maxmcount int32; @"".pidle *@"".p; @"".npidle uint32; @"".nmspinning uint32; @"".runqhead *@"".g; @"".runqtail *@"".g; @"".runqsize int32; @"".gflock @"".lock; @"".gfree *@"".g; @"".gcwaiting uint32; @"".stopwait int32; @"".stopnote @"".note; @"".sysmonwait uint32; @"".sysmonnote @"".note; @"".lastpoll uint64; @"".profilehz int32 }
+type @"".seh struct { @"".prev @"unsafe".Pointer; @"".handler @"unsafe".Pointer }
+type @"".sigtab struct { @"".flags int32; @"".name *int8 }
+type @"".slice struct { @"".array *uint8; @"".len uint64; @"".cap uint64 }
+type @"".slicetype struct { ? @""._type; @"".elem *@""._type }
+type @"".stkframe struct { @"".fn *@""._func; @"".pc uint64; @"".lr uint64; @"".sp uint64; @"".fp uint64; @"".varp *uint8; @"".argp *uint8; @"".arglen uint64 }
+type @"".stktop struct { @"".stackguard uint64; @"".stackbase uint64; @"".gobuf @"".gobuf; @"".argsize uint32; @"".panicwrap uint32; @"".argp *uint8; @"".free uint64; @""._panic uint8 }
+type @"".stringer interface { @"".String() (? string) }
+type @"".sudog struct { @"".g *@"".g; @"".selgen uint32; @"".link *@"".sudog; @"".releasetime int64; @"".elem *uint8 }
+type @"".timer struct { @"".i int32; @"".when int64; @"".period int64; @"".fv *@"".funcval; @"".arg @"".eface }
+type @"".timers struct { ? @"".lock; @"".timerproc *@"".g; @"".sleeping uint8; @"".rescheduling uint8; @"".waitnote @"".note; @"".t **@"".timer; @"".len int32; @"".cap int32 }
+type @"".uncommonType struct { @"".name *string; @"".pkgPath *string; @"".methods []@""._method }
+type @"".uncommontype struct { @"".name *string; @"".pkgpath *string; @"".mhdr []byte; @"".m [0]@"".method }
+type @"".waitq struct { @"".first *@"".sudog; @"".last *@"".sudog }
+type @"".wincall struct { @"".fn func (? @"unsafe".Pointer) (); @"".n uint64; @"".args @"unsafe".Pointer; @"".r1 uint64; @"".r2 uint64; @"".err uint64 }
+type @"".wincallbackcontext struct { @"".gobody @"unsafe".Pointer; @"".argsize uint64; @"".restorestack uint64 }
+$$
+0	runtimeƒ¸B	var MemProfileRecord;
+	MemProfileRecord = go$newType(0, "Struct", "runtime.MemProfileRecord", "MemProfileRecord", "runtime", function(AllocBytes_, FreeBytes_, AllocObjects_, FreeObjects_, Stack0_) {
+		this.go$val = this;
+		this.AllocBytes = AllocBytes_ !== undefined ? AllocBytes_ : new Go$Int64(0, 0);
+		this.FreeBytes = FreeBytes_ !== undefined ? FreeBytes_ : new Go$Int64(0, 0);
+		this.AllocObjects = AllocObjects_ !== undefined ? AllocObjects_ : new Go$Int64(0, 0);
+		this.FreeObjects = FreeObjects_ !== undefined ? FreeObjects_ : new Go$Int64(0, 0);
+		this.Stack0 = Stack0_ !== undefined ? Stack0_ : go$makeNativeArray("Uintptr", 32, function() { return 0; });
+	});
+	go$pkg.MemProfileRecord = MemProfileRecord;
+	var StackRecord;
+	StackRecord = go$newType(0, "Struct", "runtime.StackRecord", "StackRecord", "runtime", function(Stack0_) {
+		this.go$val = this;
+		this.Stack0 = Stack0_ !== undefined ? Stack0_ : go$makeNativeArray("Uintptr", 32, function() { return 0; });
+	});
+	go$pkg.StackRecord = StackRecord;
+	var BlockProfileRecord;
+	BlockProfileRecord = go$newType(0, "Struct", "runtime.BlockProfileRecord", "BlockProfileRecord", "runtime", function(Count_, Cycles_, StackRecord_) {
+		this.go$val = this;
+		this.Count = Count_ !== undefined ? Count_ : new Go$Int64(0, 0);
+		this.Cycles = Cycles_ !== undefined ? Cycles_ : new Go$Int64(0, 0);
+		this.StackRecord = StackRecord_ !== undefined ? StackRecord_ : new StackRecord.Ptr();
+	});
+	BlockProfileRecord.prototype.Stack = function() { return this.go$val.Stack(); };
+	BlockProfileRecord.Ptr.prototype.Stack = function() { return this.StackRecord.Stack(); };
+	go$pkg.BlockProfileRecord = BlockProfileRecord;
+	var Error;
+	Error = go$newType(0, "Interface", "runtime.Error", "Error", "runtime", null);
+	go$pkg.Error = Error;
+	var TypeAssertionError;
+	TypeAssertionError = go$newType(0, "Struct", "runtime.TypeAssertionError", "TypeAssertionError", "runtime", function(interfaceString_, concreteString_, assertedString_, missingMethod_) {
+		this.go$val = this;
+		this.interfaceString = interfaceString_ !== undefined ? interfaceString_ : "";
+		this.concreteString = concreteString_ !== undefined ? concreteString_ : "";
+		this.assertedString = assertedString_ !== undefined ? assertedString_ : "";
+		this.missingMethod = missingMethod_ !== undefined ? missingMethod_ : "";
+	});
+	go$pkg.TypeAssertionError = TypeAssertionError;
+	var errorString;
+	errorString = go$newType(0, "String", "runtime.errorString", "errorString", "runtime", null);
+	go$pkg.errorString = errorString;
+	var errorCString;
+	errorCString = go$newType(4, "Uintptr", "runtime.errorCString", "errorCString", "runtime", null);
+	go$pkg.errorCString = errorCString;
+	var stringer;
+	stringer = go$newType(0, "Interface", "runtime.stringer", "stringer", "runtime", null);
+	go$pkg.stringer = stringer;
+	var Func;
+	Func = go$newType(0, "Struct", "runtime.Func", "Func", "runtime", function(opaque_) {
+		this.go$val = this;
+		this.opaque = opaque_ !== undefined ? opaque_ : new (go$structType([])).Ptr();
+	});
+	go$pkg.Func = Func;
+	var MemStats;
+	MemStats = go$newType(0, "Struct", "runtime.MemStats", "MemStats", "runtime", function(Alloc_, TotalAlloc_, Sys_, Lookups_, Mallocs_, Frees_, HeapAlloc_, HeapSys_, HeapIdle_, HeapInuse_, HeapReleased_, HeapObjects_, StackInuse_, StackSys_, MSpanInuse_, MSpanSys_, MCacheInuse_, MCacheSys_, BuckHashSys_, GCSys_, OtherSys_, NextGC_, LastGC_, PauseTotalNs_, PauseNs_, NumGC_, EnableGC_, DebugGC_, BySize_) {
+		this.go$val = this;
+		this.Alloc = Alloc_ !== undefined ? Alloc_ : new Go$Uint64(0, 0);
+		this.TotalAlloc = TotalAlloc_ !== undefined ? TotalAlloc_ : new Go$Uint64(0, 0);
+		this.Sys = Sys_ !== undefined ? Sys_ : new Go$Uint64(0, 0);
+		this.Lookups = Lookups_ !== undefined ? Lookups_ : new Go$Uint64(0, 0);
+		this.Mallocs = Mallocs_ !== undefined ? Mallocs_ : new Go$Uint64(0, 0);
+		this.Frees = Frees_ !== undefined ? Frees_ : new Go$Uint64(0, 0);
+		this.HeapAlloc = HeapAlloc_ !== undefined ? HeapAlloc_ : new Go$Uint64(0, 0);
+		this.HeapSys = HeapSys_ !== undefined ? HeapSys_ : new Go$Uint64(0, 0);
+		this.HeapIdle = HeapIdle_ !== undefined ? HeapIdle_ : new Go$Uint64(0, 0);
+		this.HeapInuse = HeapInuse_ !== undefined ? HeapInuse_ : new Go$Uint64(0, 0);
+		this.HeapReleased = HeapReleased_ !== undefined ? HeapReleased_ : new Go$Uint64(0, 0);
+		this.HeapObjects = HeapObjects_ !== undefined ? HeapObjects_ : new Go$Uint64(0, 0);
+		this.StackInuse = StackInuse_ !== undefined ? StackInuse_ : new Go$Uint64(0, 0);
+		this.StackSys = StackSys_ !== undefined ? StackSys_ : new Go$Uint64(0, 0);
+		this.MSpanInuse = MSpanInuse_ !== undefined ? MSpanInuse_ : new Go$Uint64(0, 0);
+		this.MSpanSys = MSpanSys_ !== undefined ? MSpanSys_ : new Go$Uint64(0, 0);
+		this.MCacheInuse = MCacheInuse_ !== undefined ? MCacheInuse_ : new Go$Uint64(0, 0);
+		this.MCacheSys = MCacheSys_ !== undefined ? MCacheSys_ : new Go$Uint64(0, 0);
+		this.BuckHashSys = BuckHashSys_ !== undefined ? BuckHashSys_ : new Go$Uint64(0, 0);
+		this.GCSys = GCSys_ !== undefined ? GCSys_ : new Go$Uint64(0, 0);
+		this.OtherSys = OtherSys_ !== undefined ? OtherSys_ : new Go$Uint64(0, 0);
+		this.NextGC = NextGC_ !== undefined ? NextGC_ : new Go$Uint64(0, 0);
+		this.LastGC = LastGC_ !== undefined ? LastGC_ : new Go$Uint64(0, 0);
+		this.PauseTotalNs = PauseTotalNs_ !== undefined ? PauseTotalNs_ : new Go$Uint64(0, 0);
+		this.PauseNs = PauseNs_ !== undefined ? PauseNs_ : go$makeNativeArray("Uint64", 256, function() { return new Go$Uint64(0, 0); });
+		this.NumGC = NumGC_ !== undefined ? NumGC_ : 0;
+		this.EnableGC = EnableGC_ !== undefined ? EnableGC_ : false;
+		this.DebugGC = DebugGC_ !== undefined ? DebugGC_ : false;
+		this.BySize = BySize_ !== undefined ? BySize_ : go$makeNativeArray("Struct", 61, function() { return new (go$structType([["Size", "", Go$Uint32, ""], ["Mallocs", "", Go$Uint64, ""], ["Frees", "", Go$Uint64, ""]])).Ptr(0, new Go$Uint64(0, 0), new Go$Uint64(0, 0)); });
+	});
+	go$pkg.MemStats = MemStats;
+	var rtype;
+	rtype = go$newType(0, "Struct", "runtime.rtype", "rtype", "runtime", function(size_, hash_, _$2_, align_, fieldAlign_, kind_, alg_, gc_, string_, uncommonType_, ptrToThis_) {
+		this.go$val = this;
+		this.size = size_ !== undefined ? size_ : 0;
+		this.hash = hash_ !== undefined ? hash_ : 0;
+		this._$2 = _$2_ !== undefined ? _$2_ : 0;
+		this.align = align_ !== undefined ? align_ : 0;
+		this.fieldAlign = fieldAlign_ !== undefined ? fieldAlign_ : 0;
+		this.kind = kind_ !== undefined ? kind_ : 0;
+		this.alg = alg_ !== undefined ? alg_ : 0;
+		this.gc = gc_ !== undefined ? gc_ : 0;
+		this.string = string_ !== undefined ? string_ : (go$ptrType(Go$String)).nil;
+		this.uncommonType = uncommonType_ !== undefined ? uncommonType_ : (go$ptrType(uncommonType)).nil;
+		this.ptrToThis = ptrToThis_ !== undefined ? ptrToThis_ : (go$ptrType(rtype)).nil;
+	});
+	go$pkg.rtype = rtype;
+	var _method;
+	_method = go$newType(0, "Struct", "runtime._method", "_method", "runtime", function(name_, pkgPath_, mtyp_, typ_, ifn_, tfn_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
+		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
+		this.mtyp = mtyp_ !== undefined ? mtyp_ : (go$ptrType(rtype)).nil;
+		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(rtype)).nil;
+		this.ifn = ifn_ !== undefined ? ifn_ : 0;
+		this.tfn = tfn_ !== undefined ? tfn_ : 0;
+	});
+	go$pkg._method = _method;
+	var uncommonType;
+	uncommonType = go$newType(0, "Struct", "runtime.uncommonType", "uncommonType", "runtime", function(name_, pkgPath_, methods_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
+		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
+		this.methods = methods_ !== undefined ? methods_ : (go$sliceType(_method)).nil;
+	});
+	go$pkg.uncommonType = uncommonType;
+	var _imethod;
+	_imethod = go$newType(0, "Struct", "runtime._imethod", "_imethod", "runtime", function(name_, pkgPath_, typ_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
+		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
+		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(rtype)).nil;
+	});
+	go$pkg._imethod = _imethod;
+	var interfaceType;
+	interfaceType = go$newType(0, "Struct", "runtime.interfaceType", "interfaceType", "runtime", function(rtype_, methods_) {
+		this.go$val = this;
+		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
+		this.methods = methods_ !== undefined ? methods_ : (go$sliceType(_imethod)).nil;
+	});
+	go$pkg.interfaceType = interfaceType;
+	var lock;
+	lock = go$newType(0, "Struct", "runtime.lock", "lock", "runtime", function(key_) {
+		this.go$val = this;
+		this.key = key_ !== undefined ? key_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.lock = lock;
+	var note;
+	note = go$newType(0, "Struct", "runtime.note", "note", "runtime", function(key_) {
+		this.go$val = this;
+		this.key = key_ !== undefined ? key_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.note = note;
+	var _string;
+	_string = go$newType(0, "Struct", "runtime._string", "_string", "runtime", function(str_, len_) {
+		this.go$val = this;
+		this.str = str_ !== undefined ? str_ : (go$ptrType(Go$Uint8)).nil;
+		this.len = len_ !== undefined ? len_ : new Go$Int64(0, 0);
+	});
+	go$pkg._string = _string;
+	var funcval;
+	funcval = go$newType(0, "Struct", "runtime.funcval", "funcval", "runtime", function(fn_) {
+		this.go$val = this;
+		this.fn = fn_ !== undefined ? fn_ : go$throwNilPointerError;
+	});
+	go$pkg.funcval = funcval;
+	var iface;
+	iface = go$newType(0, "Struct", "runtime.iface", "iface", "runtime", function(tab_, data_) {
+		this.go$val = this;
+		this.tab = tab_ !== undefined ? tab_ : (go$ptrType(itab)).nil;
+		this.data = data_ !== undefined ? data_ : 0;
+	});
+	go$pkg.iface = iface;
+	var eface;
+	eface = go$newType(0, "Struct", "runtime.eface", "eface", "runtime", function(_type_, data_) {
+		this.go$val = this;
+		this._type = _type_ !== undefined ? _type_ : (go$ptrType(_type)).nil;
+		this.data = data_ !== undefined ? data_ : 0;
+	});
+	go$pkg.eface = eface;
+	var _complex64;
+	_complex64 = go$newType(0, "Struct", "runtime._complex64", "_complex64", "runtime", function(real_, imag_) {
+		this.go$val = this;
+		this.real = real_ !== undefined ? real_ : 0;
+		this.imag = imag_ !== undefined ? imag_ : 0;
+	});
+	go$pkg._complex64 = _complex64;
+	var _complex128;
+	_complex128 = go$newType(0, "Struct", "runtime._complex128", "_complex128", "runtime", function(real_, imag_) {
+		this.go$val = this;
+		this.real = real_ !== undefined ? real_ : 0;
+		this.imag = imag_ !== undefined ? imag_ : 0;
+	});
+	go$pkg._complex128 = _complex128;
+	var slice;
+	slice = go$newType(0, "Struct", "runtime.slice", "slice", "runtime", function(array_, len_, cap_) {
+		this.go$val = this;
+		this.array = array_ !== undefined ? array_ : (go$ptrType(Go$Uint8)).nil;
+		this.len = len_ !== undefined ? len_ : new Go$Uint64(0, 0);
+		this.cap = cap_ !== undefined ? cap_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.slice = slice;
+	var gobuf;
+	gobuf = go$newType(0, "Struct", "runtime.gobuf", "gobuf", "runtime", function(sp_, pc_, g_, ret_, ctxt_, lr_) {
+		this.go$val = this;
+		this.sp = sp_ !== undefined ? sp_ : new Go$Uint64(0, 0);
+		this.pc = pc_ !== undefined ? pc_ : new Go$Uint64(0, 0);
+		this.g = g_ !== undefined ? g_ : (go$ptrType(g)).nil;
+		this.ret = ret_ !== undefined ? ret_ : new Go$Uint64(0, 0);
+		this.ctxt = ctxt_ !== undefined ? ctxt_ : 0;
+		this.lr = lr_ !== undefined ? lr_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.gobuf = gobuf;
+	var gcstats;
+	gcstats = go$newType(0, "Struct", "runtime.gcstats", "gcstats", "runtime", function(nhandoff_, nhandoffcnt_, nprocyield_, nosyield_, nsleep_) {
+		this.go$val = this;
+		this.nhandoff = nhandoff_ !== undefined ? nhandoff_ : new Go$Uint64(0, 0);
+		this.nhandoffcnt = nhandoffcnt_ !== undefined ? nhandoffcnt_ : new Go$Uint64(0, 0);
+		this.nprocyield = nprocyield_ !== undefined ? nprocyield_ : new Go$Uint64(0, 0);
+		this.nosyield = nosyield_ !== undefined ? nosyield_ : new Go$Uint64(0, 0);
+		this.nsleep = nsleep_ !== undefined ? nsleep_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.gcstats = gcstats;
+	var wincall;
+	wincall = go$newType(0, "Struct", "runtime.wincall", "wincall", "runtime", function(fn_, n_, args_, r1_, r2_, err_) {
+		this.go$val = this;
+		this.fn = fn_ !== undefined ? fn_ : go$throwNilPointerError;
+		this.n = n_ !== undefined ? n_ : new Go$Uint64(0, 0);
+		this.args = args_ !== undefined ? args_ : 0;
+		this.r1 = r1_ !== undefined ? r1_ : new Go$Uint64(0, 0);
+		this.r2 = r2_ !== undefined ? r2_ : new Go$Uint64(0, 0);
+		this.err = err_ !== undefined ? err_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.wincall = wincall;
+	var seh;
+	seh = go$newType(0, "Struct", "runtime.seh", "seh", "runtime", function(prev_, handler_) {
+		this.go$val = this;
+		this.prev = prev_ !== undefined ? prev_ : 0;
+		this.handler = handler_ !== undefined ? handler_ : 0;
+	});
+	go$pkg.seh = seh;
+	var wincallbackcontext;
+	wincallbackcontext = go$newType(0, "Struct", "runtime.wincallbackcontext", "wincallbackcontext", "runtime", function(gobody_, argsize_, restorestack_) {
+		this.go$val = this;
+		this.gobody = gobody_ !== undefined ? gobody_ : 0;
+		this.argsize = argsize_ !== undefined ? argsize_ : new Go$Uint64(0, 0);
+		this.restorestack = restorestack_ !== undefined ? restorestack_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.wincallbackcontext = wincallbackcontext;
+	var g;
+	g = go$newType(0, "Struct", "runtime.g", "g", "runtime", function(stackguard0_, stackbase_, panicwrap_, selgen_, _defer_, _panic_, sched_, syscallstack_, syscallsp_, syscallpc_, syscallguard_, stackguard_, stack0_, stacksize_, alllink_, param_, status_, goid_, waitreason_, schedlink_, ispanic_, issystem_, isbackground_, preempt_, raceignore_, m_, lockedm_, sig_, writenbuf_, writebuf_, dchunk_, dchunknext_, sigcode0_, sigcode1_, sigpc_, gopc_, racectx_, end_) {
+		this.go$val = this;
+		this.stackguard0 = stackguard0_ !== undefined ? stackguard0_ : new Go$Uint64(0, 0);
+		this.stackbase = stackbase_ !== undefined ? stackbase_ : new Go$Uint64(0, 0);
+		this.panicwrap = panicwrap_ !== undefined ? panicwrap_ : 0;
+		this.selgen = selgen_ !== undefined ? selgen_ : 0;
+		this._defer = _defer_ !== undefined ? _defer_ : (go$ptrType(_defer)).nil;
+		this._panic = _panic_ !== undefined ? _panic_ : (go$ptrType(_panic)).nil;
+		this.sched = sched_ !== undefined ? sched_ : new gobuf.Ptr();
+		this.syscallstack = syscallstack_ !== undefined ? syscallstack_ : new Go$Uint64(0, 0);
+		this.syscallsp = syscallsp_ !== undefined ? syscallsp_ : new Go$Uint64(0, 0);
+		this.syscallpc = syscallpc_ !== undefined ? syscallpc_ : new Go$Uint64(0, 0);
+		this.syscallguard = syscallguard_ !== undefined ? syscallguard_ : new Go$Uint64(0, 0);
+		this.stackguard = stackguard_ !== undefined ? stackguard_ : new Go$Uint64(0, 0);
+		this.stack0 = stack0_ !== undefined ? stack0_ : new Go$Uint64(0, 0);
+		this.stacksize = stacksize_ !== undefined ? stacksize_ : new Go$Uint64(0, 0);
+		this.alllink = alllink_ !== undefined ? alllink_ : (go$ptrType(g)).nil;
+		this.param = param_ !== undefined ? param_ : 0;
+		this.status = status_ !== undefined ? status_ : 0;
+		this.goid = goid_ !== undefined ? goid_ : new Go$Int64(0, 0);
+		this.waitreason = waitreason_ !== undefined ? waitreason_ : (go$ptrType(Go$Int8)).nil;
+		this.schedlink = schedlink_ !== undefined ? schedlink_ : (go$ptrType(g)).nil;
+		this.ispanic = ispanic_ !== undefined ? ispanic_ : 0;
+		this.issystem = issystem_ !== undefined ? issystem_ : 0;
+		this.isbackground = isbackground_ !== undefined ? isbackground_ : 0;
+		this.preempt = preempt_ !== undefined ? preempt_ : 0;
+		this.raceignore = raceignore_ !== undefined ? raceignore_ : 0;
+		this.m = m_ !== undefined ? m_ : (go$ptrType(m)).nil;
+		this.lockedm = lockedm_ !== undefined ? lockedm_ : (go$ptrType(m)).nil;
+		this.sig = sig_ !== undefined ? sig_ : 0;
+		this.writenbuf = writenbuf_ !== undefined ? writenbuf_ : 0;
+		this.writebuf = writebuf_ !== undefined ? writebuf_ : (go$ptrType(Go$Uint8)).nil;
+		this.dchunk = dchunk_ !== undefined ? dchunk_ : (go$ptrType(deferchunk)).nil;
+		this.dchunknext = dchunknext_ !== undefined ? dchunknext_ : (go$ptrType(deferchunk)).nil;
+		this.sigcode0 = sigcode0_ !== undefined ? sigcode0_ : new Go$Uint64(0, 0);
+		this.sigcode1 = sigcode1_ !== undefined ? sigcode1_ : new Go$Uint64(0, 0);
+		this.sigpc = sigpc_ !== undefined ? sigpc_ : new Go$Uint64(0, 0);
+		this.gopc = gopc_ !== undefined ? gopc_ : new Go$Uint64(0, 0);
+		this.racectx = racectx_ !== undefined ? racectx_ : new Go$Uint64(0, 0);
+		this.end = end_ !== undefined ? end_ : go$makeNativeArray("Uint64", 0, function() { return new Go$Uint64(0, 0); });
+	});
+	go$pkg.g = g;
+	var m;
+	m = go$newType(0, "Struct", "runtime.m", "m", "runtime", function(g0_, moreargp_, morebuf_, moreframesize_, moreargsize_, cret_, procid_, gsignal_, tls_, mstartfn_, curg_, caughtsig_, p_, nextp_, id_, mallocing_, throwing_, gcing_, locks_, dying_, profilehz_, helpgc_, spinning_, fastrand_, ncgocall_, ncgo_, cgomal_, park_, alllink_, schedlink_, machport_, mcache_, stackinuse_, stackcachepos_, stackcachecnt_, stackcache_, lockedg_, createstack_, freglo_, freghi_, fflag_, locked_, nextwaitm_, waitsema_, waitsemacount_, waitsemalock_, gcstats_, racecall_, needextram_, waitunlockf_, waitlock_, settype_buf_, settype_bufsize_, seh_, end_) {
+		this.go$val = this;
+		this.g0 = g0_ !== undefined ? g0_ : (go$ptrType(g)).nil;
+		this.moreargp = moreargp_ !== undefined ? moreargp_ : 0;
+		this.morebuf = morebuf_ !== undefined ? morebuf_ : new gobuf.Ptr();
+		this.moreframesize = moreframesize_ !== undefined ? moreframesize_ : 0;
+		this.moreargsize = moreargsize_ !== undefined ? moreargsize_ : 0;
+		this.cret = cret_ !== undefined ? cret_ : new Go$Uint64(0, 0);
+		this.procid = procid_ !== undefined ? procid_ : new Go$Uint64(0, 0);
+		this.gsignal = gsignal_ !== undefined ? gsignal_ : (go$ptrType(g)).nil;
+		this.tls = tls_ !== undefined ? tls_ : go$makeNativeArray("Uint64", 4, function() { return new Go$Uint64(0, 0); });
+		this.mstartfn = mstartfn_ !== undefined ? mstartfn_ : go$throwNilPointerError;
+		this.curg = curg_ !== undefined ? curg_ : (go$ptrType(g)).nil;
+		this.caughtsig = caughtsig_ !== undefined ? caughtsig_ : (go$ptrType(g)).nil;
+		this.p = p_ !== undefined ? p_ : (go$ptrType(p)).nil;
+		this.nextp = nextp_ !== undefined ? nextp_ : (go$ptrType(p)).nil;
+		this.id = id_ !== undefined ? id_ : 0;
+		this.mallocing = mallocing_ !== undefined ? mallocing_ : 0;
+		this.throwing = throwing_ !== undefined ? throwing_ : 0;
+		this.gcing = gcing_ !== undefined ? gcing_ : 0;
+		this.locks = locks_ !== undefined ? locks_ : 0;
+		this.dying = dying_ !== undefined ? dying_ : 0;
+		this.profilehz = profilehz_ !== undefined ? profilehz_ : 0;
+		this.helpgc = helpgc_ !== undefined ? helpgc_ : 0;
+		this.spinning = spinning_ !== undefined ? spinning_ : 0;
+		this.fastrand = fastrand_ !== undefined ? fastrand_ : 0;
+		this.ncgocall = ncgocall_ !== undefined ? ncgocall_ : new Go$Uint64(0, 0);
+		this.ncgo = ncgo_ !== undefined ? ncgo_ : 0;
+		this.cgomal = cgomal_ !== undefined ? cgomal_ : (go$ptrType(cgomal)).nil;
+		this.park = park_ !== undefined ? park_ : new note.Ptr();
+		this.alllink = alllink_ !== undefined ? alllink_ : (go$ptrType(m)).nil;
+		this.schedlink = schedlink_ !== undefined ? schedlink_ : (go$ptrType(m)).nil;
+		this.machport = machport_ !== undefined ? machport_ : 0;
+		this.mcache = mcache_ !== undefined ? mcache_ : (go$ptrType(mcache)).nil;
+		this.stackinuse = stackinuse_ !== undefined ? stackinuse_ : 0;
+		this.stackcachepos = stackcachepos_ !== undefined ? stackcachepos_ : 0;
+		this.stackcachecnt = stackcachecnt_ !== undefined ? stackcachecnt_ : 0;
+		this.stackcache = stackcache_ !== undefined ? stackcache_ : go$makeNativeArray("UnsafePointer", 32, function() { return 0; });
+		this.lockedg = lockedg_ !== undefined ? lockedg_ : (go$ptrType(g)).nil;
+		this.createstack = createstack_ !== undefined ? createstack_ : go$makeNativeArray("Uint64", 32, function() { return new Go$Uint64(0, 0); });
+		this.freglo = freglo_ !== undefined ? freglo_ : go$makeNativeArray("Uint32", 16, function() { return 0; });
+		this.freghi = freghi_ !== undefined ? freghi_ : go$makeNativeArray("Uint32", 16, function() { return 0; });
+		this.fflag = fflag_ !== undefined ? fflag_ : 0;
+		this.locked = locked_ !== undefined ? locked_ : 0;
+		this.nextwaitm = nextwaitm_ !== undefined ? nextwaitm_ : (go$ptrType(m)).nil;
+		this.waitsema = waitsema_ !== undefined ? waitsema_ : new Go$Uint64(0, 0);
+		this.waitsemacount = waitsemacount_ !== undefined ? waitsemacount_ : 0;
+		this.waitsemalock = waitsemalock_ !== undefined ? waitsemalock_ : 0;
+		this.gcstats = gcstats_ !== undefined ? gcstats_ : new gcstats.Ptr();
+		this.racecall = racecall_ !== undefined ? racecall_ : 0;
+		this.needextram = needextram_ !== undefined ? needextram_ : 0;
+		this.waitunlockf = waitunlockf_ !== undefined ? waitunlockf_ : go$throwNilPointerError;
+		this.waitlock = waitlock_ !== undefined ? waitlock_ : 0;
+		this.settype_buf = settype_buf_ !== undefined ? settype_buf_ : go$makeNativeArray("Uint64", 1024, function() { return new Go$Uint64(0, 0); });
+		this.settype_bufsize = settype_bufsize_ !== undefined ? settype_bufsize_ : new Go$Uint64(0, 0);
+		this.seh = seh_ !== undefined ? seh_ : (go$ptrType(seh)).nil;
+		this.end = end_ !== undefined ? end_ : go$makeNativeArray("Uint64", 0, function() { return new Go$Uint64(0, 0); });
+	});
+	go$pkg.m = m;
+	var p;
+	p = go$newType(0, "Struct", "runtime.p", "p", "runtime", function(lock_, id_, status_, link_, schedtick_, syscalltick_, m_, mcache_, runq_, runqhead_, runqtail_, runqsize_, gfree_, gfreecnt_, pad_) {
+		this.go$val = this;
+		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
+		this.id = id_ !== undefined ? id_ : 0;
+		this.status = status_ !== undefined ? status_ : 0;
+		this.link = link_ !== undefined ? link_ : (go$ptrType(p)).nil;
+		this.schedtick = schedtick_ !== undefined ? schedtick_ : 0;
+		this.syscalltick = syscalltick_ !== undefined ? syscalltick_ : 0;
+		this.m = m_ !== undefined ? m_ : (go$ptrType(m)).nil;
+		this.mcache = mcache_ !== undefined ? mcache_ : (go$ptrType(mcache)).nil;
+		this.runq = runq_ !== undefined ? runq_ : (go$ptrType((go$ptrType(g)))).nil;
+		this.runqhead = runqhead_ !== undefined ? runqhead_ : 0;
+		this.runqtail = runqtail_ !== undefined ? runqtail_ : 0;
+		this.runqsize = runqsize_ !== undefined ? runqsize_ : 0;
+		this.gfree = gfree_ !== undefined ? gfree_ : (go$ptrType(g)).nil;
+		this.gfreecnt = gfreecnt_ !== undefined ? gfreecnt_ : 0;
+		this.pad = pad_ !== undefined ? pad_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
+	});
+	go$pkg.p = p;
+	var stktop;
+	stktop = go$newType(0, "Struct", "runtime.stktop", "stktop", "runtime", function(stackguard_, stackbase_, gobuf_, argsize_, panicwrap_, argp_, free_, _panic_) {
+		this.go$val = this;
+		this.stackguard = stackguard_ !== undefined ? stackguard_ : new Go$Uint64(0, 0);
+		this.stackbase = stackbase_ !== undefined ? stackbase_ : new Go$Uint64(0, 0);
+		this.gobuf = gobuf_ !== undefined ? gobuf_ : new gobuf.Ptr();
+		this.argsize = argsize_ !== undefined ? argsize_ : 0;
+		this.panicwrap = panicwrap_ !== undefined ? panicwrap_ : 0;
+		this.argp = argp_ !== undefined ? argp_ : (go$ptrType(Go$Uint8)).nil;
+		this.free = free_ !== undefined ? free_ : new Go$Uint64(0, 0);
+		this._panic = _panic_ !== undefined ? _panic_ : 0;
+	});
+	go$pkg.stktop = stktop;
+	var sigtab;
+	sigtab = go$newType(0, "Struct", "runtime.sigtab", "sigtab", "runtime", function(flags_, name_) {
+		this.go$val = this;
+		this.flags = flags_ !== undefined ? flags_ : 0;
+		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$Int8)).nil;
+	});
+	go$pkg.sigtab = sigtab;
+	var _func;
+	_func = go$newType(0, "Struct", "runtime._func", "_func", "runtime", function(entry_, nameoff_, args_, frame_, pcsp_, pcfile_, pcln_, npcdata_, nfuncdata_) {
+		this.go$val = this;
+		this.entry = entry_ !== undefined ? entry_ : new Go$Uint64(0, 0);
+		this.nameoff = nameoff_ !== undefined ? nameoff_ : 0;
+		this.args = args_ !== undefined ? args_ : 0;
+		this.frame = frame_ !== undefined ? frame_ : 0;
+		this.pcsp = pcsp_ !== undefined ? pcsp_ : 0;
+		this.pcfile = pcfile_ !== undefined ? pcfile_ : 0;
+		this.pcln = pcln_ !== undefined ? pcln_ : 0;
+		this.npcdata = npcdata_ !== undefined ? npcdata_ : 0;
+		this.nfuncdata = nfuncdata_ !== undefined ? nfuncdata_ : 0;
+	});
+	go$pkg._func = _func;
+	var itab;
+	itab = go$newType(0, "Struct", "runtime.itab", "itab", "runtime", function(inter_, _type_, link_, bad_, unused_, fun_) {
+		this.go$val = this;
+		this.inter = inter_ !== undefined ? inter_ : (go$ptrType(interfacetype)).nil;
+		this._type = _type_ !== undefined ? _type_ : (go$ptrType(_type)).nil;
+		this.link = link_ !== undefined ? link_ : (go$ptrType(itab)).nil;
+		this.bad = bad_ !== undefined ? bad_ : 0;
+		this.unused = unused_ !== undefined ? unused_ : 0;
+		this.fun = fun_ !== undefined ? fun_ : go$makeNativeArray("Func", 0, function() { return go$throwNilPointerError; });
+	});
+	go$pkg.itab = itab;
+	var timers;
+	timers = go$newType(0, "Struct", "runtime.timers", "timers", "runtime", function(lock_, timerproc_, sleeping_, rescheduling_, waitnote_, t_, len_, cap_) {
+		this.go$val = this;
+		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
+		this.timerproc = timerproc_ !== undefined ? timerproc_ : (go$ptrType(g)).nil;
+		this.sleeping = sleeping_ !== undefined ? sleeping_ : 0;
+		this.rescheduling = rescheduling_ !== undefined ? rescheduling_ : 0;
+		this.waitnote = waitnote_ !== undefined ? waitnote_ : new note.Ptr();
+		this.t = t_ !== undefined ? t_ : (go$ptrType((go$ptrType(timer)))).nil;
+		this.len = len_ !== undefined ? len_ : 0;
+		this.cap = cap_ !== undefined ? cap_ : 0;
+	});
+	go$pkg.timers = timers;
+	var timer;
+	timer = go$newType(0, "Struct", "runtime.timer", "timer", "runtime", function(i_, when_, period_, fv_, arg_) {
+		this.go$val = this;
+		this.i = i_ !== undefined ? i_ : 0;
+		this.when = when_ !== undefined ? when_ : new Go$Int64(0, 0);
+		this.period = period_ !== undefined ? period_ : new Go$Int64(0, 0);
+		this.fv = fv_ !== undefined ? fv_ : (go$ptrType(funcval)).nil;
+		this.arg = arg_ !== undefined ? arg_ : new eface.Ptr();
+	});
+	go$pkg.timer = timer;
+	var lfnode;
+	lfnode = go$newType(0, "Struct", "runtime.lfnode", "lfnode", "runtime", function(next_, pushcnt_) {
+		this.go$val = this;
+		this.next = next_ !== undefined ? next_ : (go$ptrType(lfnode)).nil;
+		this.pushcnt = pushcnt_ !== undefined ? pushcnt_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.lfnode = lfnode;
+	var parfor;
+	parfor = go$newType(0, "Struct", "runtime.parfor", "parfor", "runtime", function(body_, done_, nthr_, nthrmax_, thrseq_, cnt_, ctx_, wait_, thr_, pad_, nsteal_, nstealcnt_, nprocyield_, nosyield_, nsleep_) {
+		this.go$val = this;
+		this.body = body_ !== undefined ? body_ : go$throwNilPointerError;
+		this.done = done_ !== undefined ? done_ : 0;
+		this.nthr = nthr_ !== undefined ? nthr_ : 0;
+		this.nthrmax = nthrmax_ !== undefined ? nthrmax_ : 0;
+		this.thrseq = thrseq_ !== undefined ? thrseq_ : 0;
+		this.cnt = cnt_ !== undefined ? cnt_ : 0;
+		this.ctx = ctx_ !== undefined ? ctx_ : 0;
+		this.wait = wait_ !== undefined ? wait_ : 0;
+		this.thr = thr_ !== undefined ? thr_ : (go$ptrType(parforthread)).nil;
+		this.pad = pad_ !== undefined ? pad_ : 0;
+		this.nsteal = nsteal_ !== undefined ? nsteal_ : new Go$Uint64(0, 0);
+		this.nstealcnt = nstealcnt_ !== undefined ? nstealcnt_ : new Go$Uint64(0, 0);
+		this.nprocyield = nprocyield_ !== undefined ? nprocyield_ : new Go$Uint64(0, 0);
+		this.nosyield = nosyield_ !== undefined ? nosyield_ : new Go$Uint64(0, 0);
+		this.nsleep = nsleep_ !== undefined ? nsleep_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.parfor = parfor;
+	var cgomal;
+	cgomal = go$newType(0, "Struct", "runtime.cgomal", "cgomal", "runtime", function(next_, alloc_) {
+		this.go$val = this;
+		this.next = next_ !== undefined ? next_ : (go$ptrType(cgomal)).nil;
+		this.alloc = alloc_ !== undefined ? alloc_ : 0;
+	});
+	go$pkg.cgomal = cgomal;
+	var debugvars;
+	debugvars = go$newType(0, "Struct", "runtime.debugvars", "debugvars", "runtime", function(gctrace_, schedtrace_, scheddetail_) {
+		this.go$val = this;
+		this.gctrace = gctrace_ !== undefined ? gctrace_ : 0;
+		this.schedtrace = schedtrace_ !== undefined ? schedtrace_ : 0;
+		this.scheddetail = scheddetail_ !== undefined ? scheddetail_ : 0;
+	});
+	go$pkg.debugvars = debugvars;
+	var alg;
+	alg = go$newType(0, "Struct", "runtime.alg", "alg", "runtime", function(hash_, equal_, print_, copy_) {
+		this.go$val = this;
+		this.hash = hash_ !== undefined ? hash_ : go$throwNilPointerError;
+		this.equal = equal_ !== undefined ? equal_ : go$throwNilPointerError;
+		this.print = print_ !== undefined ? print_ : go$throwNilPointerError;
+		this.copy = copy_ !== undefined ? copy_ : go$throwNilPointerError;
+	});
+	go$pkg.alg = alg;
+	var _defer;
+	_defer = go$newType(0, "Struct", "runtime._defer", "_defer", "runtime", function(siz_, special_, free_, argp_, pc_, fn_, link_, args_) {
+		this.go$val = this;
+		this.siz = siz_ !== undefined ? siz_ : 0;
+		this.special = special_ !== undefined ? special_ : 0;
+		this.free = free_ !== undefined ? free_ : 0;
+		this.argp = argp_ !== undefined ? argp_ : (go$ptrType(Go$Uint8)).nil;
+		this.pc = pc_ !== undefined ? pc_ : (go$ptrType(Go$Uint8)).nil;
+		this.fn = fn_ !== undefined ? fn_ : (go$ptrType(funcval)).nil;
+		this.link = link_ !== undefined ? link_ : (go$ptrType(_defer)).nil;
+		this.args = args_ !== undefined ? args_ : go$makeNativeArray("UnsafePointer", 1, function() { return 0; });
+	});
+	go$pkg._defer = _defer;
+	var deferchunk;
+	deferchunk = go$newType(0, "Struct", "runtime.deferchunk", "deferchunk", "runtime", function(prev_, off_) {
+		this.go$val = this;
+		this.prev = prev_ !== undefined ? prev_ : (go$ptrType(deferchunk)).nil;
+		this.off = off_ !== undefined ? off_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.deferchunk = deferchunk;
+	var _panic;
+	_panic = go$newType(0, "Struct", "runtime._panic", "_panic", "runtime", function(arg_, stackbase_, link_, recovered_) {
+		this.go$val = this;
+		this.arg = arg_ !== undefined ? arg_ : new eface.Ptr();
+		this.stackbase = stackbase_ !== undefined ? stackbase_ : new Go$Uint64(0, 0);
+		this.link = link_ !== undefined ? link_ : (go$ptrType(_panic)).nil;
+		this.recovered = recovered_ !== undefined ? recovered_ : 0;
+	});
+	go$pkg._panic = _panic;
+	var stkframe;
+	stkframe = go$newType(0, "Struct", "runtime.stkframe", "stkframe", "runtime", function(fn_, pc_, lr_, sp_, fp_, varp_, argp_, arglen_) {
+		this.go$val = this;
+		this.fn = fn_ !== undefined ? fn_ : (go$ptrType(_func)).nil;
+		this.pc = pc_ !== undefined ? pc_ : new Go$Uint64(0, 0);
+		this.lr = lr_ !== undefined ? lr_ : new Go$Uint64(0, 0);
+		this.sp = sp_ !== undefined ? sp_ : new Go$Uint64(0, 0);
+		this.fp = fp_ !== undefined ? fp_ : new Go$Uint64(0, 0);
+		this.varp = varp_ !== undefined ? varp_ : (go$ptrType(Go$Uint8)).nil;
+		this.argp = argp_ !== undefined ? argp_ : (go$ptrType(Go$Uint8)).nil;
+		this.arglen = arglen_ !== undefined ? arglen_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.stkframe = stkframe;
+	var mlink;
+	mlink = go$newType(0, "Struct", "runtime.mlink", "mlink", "runtime", function(next_) {
+		this.go$val = this;
+		this.next = next_ !== undefined ? next_ : (go$ptrType(mlink)).nil;
+	});
+	go$pkg.mlink = mlink;
+	var fixalloc;
+	fixalloc = go$newType(0, "Struct", "runtime.fixalloc", "fixalloc", "runtime", function(size_, first_, arg_, list_, chunk_, nchunk_, inuse_, stat_) {
+		this.go$val = this;
+		this.size = size_ !== undefined ? size_ : new Go$Uint64(0, 0);
+		this.first = first_ !== undefined ? first_ : go$throwNilPointerError;
+		this.arg = arg_ !== undefined ? arg_ : 0;
+		this.list = list_ !== undefined ? list_ : (go$ptrType(mlink)).nil;
+		this.chunk = chunk_ !== undefined ? chunk_ : (go$ptrType(Go$Uint8)).nil;
+		this.nchunk = nchunk_ !== undefined ? nchunk_ : 0;
+		this.inuse = inuse_ !== undefined ? inuse_ : new Go$Uint64(0, 0);
+		this.stat = stat_ !== undefined ? stat_ : (go$ptrType(Go$Uint64)).nil;
+	});
+	go$pkg.fixalloc = fixalloc;
+	var _1_;
+	_1_ = go$newType(0, "Struct", "runtime._1_", "_1_", "runtime", function(size_, nmalloc_, nfree_) {
+		this.go$val = this;
+		this.size = size_ !== undefined ? size_ : 0;
+		this.nmalloc = nmalloc_ !== undefined ? nmalloc_ : new Go$Uint64(0, 0);
+		this.nfree = nfree_ !== undefined ? nfree_ : new Go$Uint64(0, 0);
+	});
+	go$pkg._1_ = _1_;
+	var mstats;
+	mstats = go$newType(0, "Struct", "runtime.mstats", "mstats", "runtime", function(alloc_, total_alloc_, sys_, nlookup_, nmalloc_, nfree_, heap_alloc_, heap_sys_, heap_idle_, heap_inuse_, heap_released_, heap_objects_, stacks_inuse_, stacks_sys_, mspan_inuse_, mspan_sys_, mcache_inuse_, mcache_sys_, buckhash_sys_, gc_sys_, other_sys_, next_gc_, last_gc_, pause_total_ns_, pause_ns_, numgc_, enablegc_, debuggc_, by_size_) {
+		this.go$val = this;
+		this.alloc = alloc_ !== undefined ? alloc_ : new Go$Uint64(0, 0);
+		this.total_alloc = total_alloc_ !== undefined ? total_alloc_ : new Go$Uint64(0, 0);
+		this.sys = sys_ !== undefined ? sys_ : new Go$Uint64(0, 0);
+		this.nlookup = nlookup_ !== undefined ? nlookup_ : new Go$Uint64(0, 0);
+		this.nmalloc = nmalloc_ !== undefined ? nmalloc_ : new Go$Uint64(0, 0);
+		this.nfree = nfree_ !== undefined ? nfree_ : new Go$Uint64(0, 0);
+		this.heap_alloc = heap_alloc_ !== undefined ? heap_alloc_ : new Go$Uint64(0, 0);
+		this.heap_sys = heap_sys_ !== undefined ? heap_sys_ : new Go$Uint64(0, 0);
+		this.heap_idle = heap_idle_ !== undefined ? heap_idle_ : new Go$Uint64(0, 0);
+		this.heap_inuse = heap_inuse_ !== undefined ? heap_inuse_ : new Go$Uint64(0, 0);
+		this.heap_released = heap_released_ !== undefined ? heap_released_ : new Go$Uint64(0, 0);
+		this.heap_objects = heap_objects_ !== undefined ? heap_objects_ : new Go$Uint64(0, 0);
+		this.stacks_inuse = stacks_inuse_ !== undefined ? stacks_inuse_ : new Go$Uint64(0, 0);
+		this.stacks_sys = stacks_sys_ !== undefined ? stacks_sys_ : new Go$Uint64(0, 0);
+		this.mspan_inuse = mspan_inuse_ !== undefined ? mspan_inuse_ : new Go$Uint64(0, 0);
+		this.mspan_sys = mspan_sys_ !== undefined ? mspan_sys_ : new Go$Uint64(0, 0);
+		this.mcache_inuse = mcache_inuse_ !== undefined ? mcache_inuse_ : new Go$Uint64(0, 0);
+		this.mcache_sys = mcache_sys_ !== undefined ? mcache_sys_ : new Go$Uint64(0, 0);
+		this.buckhash_sys = buckhash_sys_ !== undefined ? buckhash_sys_ : new Go$Uint64(0, 0);
+		this.gc_sys = gc_sys_ !== undefined ? gc_sys_ : new Go$Uint64(0, 0);
+		this.other_sys = other_sys_ !== undefined ? other_sys_ : new Go$Uint64(0, 0);
+		this.next_gc = next_gc_ !== undefined ? next_gc_ : new Go$Uint64(0, 0);
+		this.last_gc = last_gc_ !== undefined ? last_gc_ : new Go$Uint64(0, 0);
+		this.pause_total_ns = pause_total_ns_ !== undefined ? pause_total_ns_ : new Go$Uint64(0, 0);
+		this.pause_ns = pause_ns_ !== undefined ? pause_ns_ : go$makeNativeArray("Uint64", 256, function() { return new Go$Uint64(0, 0); });
+		this.numgc = numgc_ !== undefined ? numgc_ : 0;
+		this.enablegc = enablegc_ !== undefined ? enablegc_ : 0;
+		this.debuggc = debuggc_ !== undefined ? debuggc_ : 0;
+		this.by_size = by_size_ !== undefined ? by_size_ : go$makeNativeArray("Struct", 61, function() { return new _1_.Ptr(); });
+	});
+	go$pkg.mstats = mstats;
+	var mcachelist;
+	mcachelist = go$newType(0, "Struct", "runtime.mcachelist", "mcachelist", "runtime", function(list_, nlist_) {
+		this.go$val = this;
+		this.list = list_ !== undefined ? list_ : (go$ptrType(mlink)).nil;
+		this.nlist = nlist_ !== undefined ? nlist_ : 0;
+	});
+	go$pkg.mcachelist = mcachelist;
+	var mcache;
+	mcache = go$newType(0, "Struct", "runtime.mcache", "mcache", "runtime", function(next_sample_, local_cachealloc_, list_, local_nlookup_, local_largefree_, local_nlargefree_, local_nsmallfree_) {
+		this.go$val = this;
+		this.next_sample = next_sample_ !== undefined ? next_sample_ : 0;
+		this.local_cachealloc = local_cachealloc_ !== undefined ? local_cachealloc_ : new Go$Int64(0, 0);
+		this.list = list_ !== undefined ? list_ : go$makeNativeArray("Struct", 61, function() { return new mcachelist.Ptr(); });
+		this.local_nlookup = local_nlookup_ !== undefined ? local_nlookup_ : new Go$Uint64(0, 0);
+		this.local_largefree = local_largefree_ !== undefined ? local_largefree_ : new Go$Uint64(0, 0);
+		this.local_nlargefree = local_nlargefree_ !== undefined ? local_nlargefree_ : new Go$Uint64(0, 0);
+		this.local_nsmallfree = local_nsmallfree_ !== undefined ? local_nsmallfree_ : go$makeNativeArray("Uint64", 61, function() { return new Go$Uint64(0, 0); });
+	});
+	go$pkg.mcache = mcache;
+	var mtypes;
+	mtypes = go$newType(0, "Struct", "runtime.mtypes", "mtypes", "runtime", function(compression_, data_) {
+		this.go$val = this;
+		this.compression = compression_ !== undefined ? compression_ : 0;
+		this.data = data_ !== undefined ? data_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.mtypes = mtypes;
+	var mspan;
+	mspan = go$newType(0, "Struct", "runtime.mspan", "mspan", "runtime", function(next_, prev_, start_, npages_, freelist_, ref_, sizeclass_, elemsize_, state_, unusedsince_, npreleased_, limit_, types_) {
+		this.go$val = this;
+		this.next = next_ !== undefined ? next_ : (go$ptrType(mspan)).nil;
+		this.prev = prev_ !== undefined ? prev_ : (go$ptrType(mspan)).nil;
+		this.start = start_ !== undefined ? start_ : new Go$Uint64(0, 0);
+		this.npages = npages_ !== undefined ? npages_ : new Go$Uint64(0, 0);
+		this.freelist = freelist_ !== undefined ? freelist_ : (go$ptrType(mlink)).nil;
+		this.ref = ref_ !== undefined ? ref_ : 0;
+		this.sizeclass = sizeclass_ !== undefined ? sizeclass_ : 0;
+		this.elemsize = elemsize_ !== undefined ? elemsize_ : new Go$Uint64(0, 0);
+		this.state = state_ !== undefined ? state_ : 0;
+		this.unusedsince = unusedsince_ !== undefined ? unusedsince_ : new Go$Int64(0, 0);
+		this.npreleased = npreleased_ !== undefined ? npreleased_ : new Go$Uint64(0, 0);
+		this.limit = limit_ !== undefined ? limit_ : (go$ptrType(Go$Uint8)).nil;
+		this.types = types_ !== undefined ? types_ : new mtypes.Ptr();
+	});
+	go$pkg.mspan = mspan;
+	var mcentral;
+	mcentral = go$newType(0, "Struct", "runtime.mcentral", "mcentral", "runtime", function(lock_, sizeclass_, nonempty_, empty_, nfree_) {
+		this.go$val = this;
+		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
+		this.sizeclass = sizeclass_ !== undefined ? sizeclass_ : 0;
+		this.nonempty = nonempty_ !== undefined ? nonempty_ : new mspan.Ptr();
+		this.empty = empty_ !== undefined ? empty_ : new mspan.Ptr();
+		this.nfree = nfree_ !== undefined ? nfree_ : 0;
+	});
+	go$pkg.mcentral = mcentral;
+	var _2_;
+	_2_ = go$newType(0, "Struct", "runtime._2_", "_2_", "runtime", function(mcentral_, pad_) {
+		this.go$val = this;
+		this.mcentral = mcentral_ !== undefined ? mcentral_ : new mcentral.Ptr();
+		this.pad = pad_ !== undefined ? pad_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
+	});
+	go$pkg._2_ = _2_;
+	var mheap;
+	mheap = go$newType(0, "Struct", "runtime.mheap", "mheap", "runtime", function(lock_, free_, large_, allspans_, nspan_, nspancap_, spans_, spans_mapped_, bitmap_, bitmap_mapped_, arena_start_, arena_used_, arena_end_, central_, spanalloc_, cachealloc_, largefree_, nlargefree_, nsmallfree_) {
+		this.go$val = this;
+		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
+		this.free = free_ !== undefined ? free_ : go$makeNativeArray("Struct", 256, function() { return new mspan.Ptr(); });
+		this.large = large_ !== undefined ? large_ : new mspan.Ptr();
+		this.allspans = allspans_ !== undefined ? allspans_ : (go$ptrType((go$ptrType(mspan)))).nil;
+		this.nspan = nspan_ !== undefined ? nspan_ : 0;
+		this.nspancap = nspancap_ !== undefined ? nspancap_ : 0;
+		this.spans = spans_ !== undefined ? spans_ : (go$ptrType((go$ptrType(mspan)))).nil;
+		this.spans_mapped = spans_mapped_ !== undefined ? spans_mapped_ : new Go$Uint64(0, 0);
+		this.bitmap = bitmap_ !== undefined ? bitmap_ : (go$ptrType(Go$Uint8)).nil;
+		this.bitmap_mapped = bitmap_mapped_ !== undefined ? bitmap_mapped_ : new Go$Uint64(0, 0);
+		this.arena_start = arena_start_ !== undefined ? arena_start_ : (go$ptrType(Go$Uint8)).nil;
+		this.arena_used = arena_used_ !== undefined ? arena_used_ : (go$ptrType(Go$Uint8)).nil;
+		this.arena_end = arena_end_ !== undefined ? arena_end_ : (go$ptrType(Go$Uint8)).nil;
+		this.central = central_ !== undefined ? central_ : go$makeNativeArray("Struct", 61, function() { return new _2_.Ptr(); });
+		this.spanalloc = spanalloc_ !== undefined ? spanalloc_ : new fixalloc.Ptr();
+		this.cachealloc = cachealloc_ !== undefined ? cachealloc_ : new fixalloc.Ptr();
+		this.largefree = largefree_ !== undefined ? largefree_ : new Go$Uint64(0, 0);
+		this.nlargefree = nlargefree_ !== undefined ? nlargefree_ : new Go$Uint64(0, 0);
+		this.nsmallfree = nsmallfree_ !== undefined ? nsmallfree_ : go$makeNativeArray("Uint64", 61, function() { return new Go$Uint64(0, 0); });
+	});
+	go$pkg.mheap = mheap;
+	var _type;
+	_type = go$newType(0, "Struct", "runtime._type", "_type", "runtime", function(size_, hash_, _unused_, align_, fieldalign_, kind_, alg_, gc_, _string_, x_, ptrto_) {
+		this.go$val = this;
+		this.size = size_ !== undefined ? size_ : new Go$Uint64(0, 0);
+		this.hash = hash_ !== undefined ? hash_ : 0;
+		this._unused = _unused_ !== undefined ? _unused_ : 0;
+		this.align = align_ !== undefined ? align_ : 0;
+		this.fieldalign = fieldalign_ !== undefined ? fieldalign_ : 0;
+		this.kind = kind_ !== undefined ? kind_ : 0;
+		this.alg = alg_ !== undefined ? alg_ : (go$ptrType(alg)).nil;
+		this.gc = gc_ !== undefined ? gc_ : 0;
+		this._string = _string_ !== undefined ? _string_ : (go$ptrType(Go$String)).nil;
+		this.x = x_ !== undefined ? x_ : (go$ptrType(uncommontype)).nil;
+		this.ptrto = ptrto_ !== undefined ? ptrto_ : (go$ptrType(_type)).nil;
+	});
+	go$pkg._type = _type;
+	var method;
+	method = go$newType(0, "Struct", "runtime.method", "method", "runtime", function(name_, pkgpath_, mtyp_, typ_, ifn_, tfn_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
+		this.pkgpath = pkgpath_ !== undefined ? pkgpath_ : (go$ptrType(Go$String)).nil;
+		this.mtyp = mtyp_ !== undefined ? mtyp_ : (go$ptrType(_type)).nil;
+		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(_type)).nil;
+		this.ifn = ifn_ !== undefined ? ifn_ : go$throwNilPointerError;
+		this.tfn = tfn_ !== undefined ? tfn_ : go$throwNilPointerError;
+	});
+	go$pkg.method = method;
+	var uncommontype;
+	uncommontype = go$newType(0, "Struct", "runtime.uncommontype", "uncommontype", "runtime", function(name_, pkgpath_, mhdr_, m_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
+		this.pkgpath = pkgpath_ !== undefined ? pkgpath_ : (go$ptrType(Go$String)).nil;
+		this.mhdr = mhdr_ !== undefined ? mhdr_ : (go$sliceType(Go$Uint8)).nil;
+		this.m = m_ !== undefined ? m_ : go$makeNativeArray("Struct", 0, function() { return new method.Ptr(); });
+	});
+	go$pkg.uncommontype = uncommontype;
+	var imethod;
+	imethod = go$newType(0, "Struct", "runtime.imethod", "imethod", "runtime", function(name_, pkgpath_, _type_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
+		this.pkgpath = pkgpath_ !== undefined ? pkgpath_ : (go$ptrType(Go$String)).nil;
+		this._type = _type_ !== undefined ? _type_ : (go$ptrType(_type)).nil;
+	});
+	go$pkg.imethod = imethod;
+	var interfacetype;
+	interfacetype = go$newType(0, "Struct", "runtime.interfacetype", "interfacetype", "runtime", function(_type_, mhdr_, m_) {
+		this.go$val = this;
+		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
+		this.mhdr = mhdr_ !== undefined ? mhdr_ : (go$sliceType(Go$Uint8)).nil;
+		this.m = m_ !== undefined ? m_ : go$makeNativeArray("Struct", 0, function() { return new imethod.Ptr(); });
+	});
+	go$pkg.interfacetype = interfacetype;
+	var maptype;
+	maptype = go$newType(0, "Struct", "runtime.maptype", "maptype", "runtime", function(_type_, key_, elem_, bucket_, hmap_) {
+		this.go$val = this;
+		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
+		this.key = key_ !== undefined ? key_ : (go$ptrType(_type)).nil;
+		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(_type)).nil;
+		this.bucket = bucket_ !== undefined ? bucket_ : (go$ptrType(_type)).nil;
+		this.hmap = hmap_ !== undefined ? hmap_ : (go$ptrType(_type)).nil;
+	});
+	go$pkg.maptype = maptype;
+	var chantype;
+	chantype = go$newType(0, "Struct", "runtime.chantype", "chantype", "runtime", function(_type_, elem_, dir_) {
+		this.go$val = this;
+		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
+		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(_type)).nil;
+		this.dir = dir_ !== undefined ? dir_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.chantype = chantype;
+	var slicetype;
+	slicetype = go$newType(0, "Struct", "runtime.slicetype", "slicetype", "runtime", function(_type_, elem_) {
+		this.go$val = this;
+		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
+		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(_type)).nil;
+	});
+	go$pkg.slicetype = slicetype;
+	var functype;
+	functype = go$newType(0, "Struct", "runtime.functype", "functype", "runtime", function(_type_, dotdotdot_, in$2_, out_) {
+		this.go$val = this;
+		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
+		this.dotdotdot = dotdotdot_ !== undefined ? dotdotdot_ : 0;
+		this.in$2 = in$2_ !== undefined ? in$2_ : (go$sliceType(Go$Uint8)).nil;
+		this.out = out_ !== undefined ? out_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.functype = functype;
+	var ptrtype;
+	ptrtype = go$newType(0, "Struct", "runtime.ptrtype", "ptrtype", "runtime", function(_type_, elem_) {
+		this.go$val = this;
+		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
+		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(_type)).nil;
+	});
+	go$pkg.ptrtype = ptrtype;
+	var sched;
+	sched = go$newType(0, "Struct", "runtime.sched", "sched", "runtime", function(lock_, goidgen_, midle_, nmidle_, nmidlelocked_, mcount_, maxmcount_, pidle_, npidle_, nmspinning_, runqhead_, runqtail_, runqsize_, gflock_, gfree_, gcwaiting_, stopwait_, stopnote_, sysmonwait_, sysmonnote_, lastpoll_, profilehz_) {
+		this.go$val = this;
+		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
+		this.goidgen = goidgen_ !== undefined ? goidgen_ : new Go$Uint64(0, 0);
+		this.midle = midle_ !== undefined ? midle_ : (go$ptrType(m)).nil;
+		this.nmidle = nmidle_ !== undefined ? nmidle_ : 0;
+		this.nmidlelocked = nmidlelocked_ !== undefined ? nmidlelocked_ : 0;
+		this.mcount = mcount_ !== undefined ? mcount_ : 0;
+		this.maxmcount = maxmcount_ !== undefined ? maxmcount_ : 0;
+		this.pidle = pidle_ !== undefined ? pidle_ : (go$ptrType(p)).nil;
+		this.npidle = npidle_ !== undefined ? npidle_ : 0;
+		this.nmspinning = nmspinning_ !== undefined ? nmspinning_ : 0;
+		this.runqhead = runqhead_ !== undefined ? runqhead_ : (go$ptrType(g)).nil;
+		this.runqtail = runqtail_ !== undefined ? runqtail_ : (go$ptrType(g)).nil;
+		this.runqsize = runqsize_ !== undefined ? runqsize_ : 0;
+		this.gflock = gflock_ !== undefined ? gflock_ : new lock.Ptr();
+		this.gfree = gfree_ !== undefined ? gfree_ : (go$ptrType(g)).nil;
+		this.gcwaiting = gcwaiting_ !== undefined ? gcwaiting_ : 0;
+		this.stopwait = stopwait_ !== undefined ? stopwait_ : 0;
+		this.stopnote = stopnote_ !== undefined ? stopnote_ : new note.Ptr();
+		this.sysmonwait = sysmonwait_ !== undefined ? sysmonwait_ : 0;
+		this.sysmonnote = sysmonnote_ !== undefined ? sysmonnote_ : new note.Ptr();
+		this.lastpoll = lastpoll_ !== undefined ? lastpoll_ : new Go$Uint64(0, 0);
+		this.profilehz = profilehz_ !== undefined ? profilehz_ : 0;
+	});
+	go$pkg.sched = sched;
+	var cgothreadstart;
+	cgothreadstart = go$newType(0, "Struct", "runtime.cgothreadstart", "cgothreadstart", "runtime", function(m_, g_, fn_) {
+		this.go$val = this;
+		this.m = m_ !== undefined ? m_ : (go$ptrType(m)).nil;
+		this.g = g_ !== undefined ? g_ : (go$ptrType(g)).nil;
+		this.fn = fn_ !== undefined ? fn_ : go$throwNilPointerError;
+	});
+	go$pkg.cgothreadstart = cgothreadstart;
+	var _3_;
+	_3_ = go$newType(0, "Struct", "runtime._3_", "_3_", "runtime", function(lock_, fn_, hz_, pcbuf_) {
+		this.go$val = this;
+		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
+		this.fn = fn_ !== undefined ? fn_ : go$throwNilPointerError;
+		this.hz = hz_ !== undefined ? hz_ : 0;
+		this.pcbuf = pcbuf_ !== undefined ? pcbuf_ : go$makeNativeArray("Uint64", 100, function() { return new Go$Uint64(0, 0); });
+	});
+	go$pkg._3_ = _3_;
+	var pdesc;
+	pdesc = go$newType(0, "Struct", "runtime.pdesc", "pdesc", "runtime", function(schedtick_, schedwhen_, syscalltick_, syscallwhen_) {
+		this.go$val = this;
+		this.schedtick = schedtick_ !== undefined ? schedtick_ : 0;
+		this.schedwhen = schedwhen_ !== undefined ? schedwhen_ : new Go$Int64(0, 0);
+		this.syscalltick = syscalltick_ !== undefined ? syscalltick_ : 0;
+		this.syscallwhen = syscallwhen_ !== undefined ? syscallwhen_ : new Go$Int64(0, 0);
+	});
+	go$pkg.pdesc = pdesc;
+	var bucket;
+	bucket = go$newType(0, "Struct", "runtime.bucket", "bucket", "runtime", function(tophash_, overflow_, data_) {
+		this.go$val = this;
+		this.tophash = tophash_ !== undefined ? tophash_ : go$makeNativeArray("Uint8", 8, function() { return 0; });
+		this.overflow = overflow_ !== undefined ? overflow_ : (go$ptrType(bucket)).nil;
+		this.data = data_ !== undefined ? data_ : go$makeNativeArray("Uint8", 1, function() { return 0; });
+	});
+	go$pkg.bucket = bucket;
+	var hmap;
+	hmap = go$newType(0, "Struct", "runtime.hmap", "hmap", "runtime", function(count_, flags_, hash0_, b_, keysize_, valuesize_, bucketsize_, buckets_, oldbuckets_, nevacuate_) {
+		this.go$val = this;
+		this.count = count_ !== undefined ? count_ : new Go$Uint64(0, 0);
+		this.flags = flags_ !== undefined ? flags_ : 0;
+		this.hash0 = hash0_ !== undefined ? hash0_ : 0;
+		this.b = b_ !== undefined ? b_ : 0;
+		this.keysize = keysize_ !== undefined ? keysize_ : 0;
+		this.valuesize = valuesize_ !== undefined ? valuesize_ : 0;
+		this.bucketsize = bucketsize_ !== undefined ? bucketsize_ : 0;
+		this.buckets = buckets_ !== undefined ? buckets_ : (go$ptrType(Go$Uint8)).nil;
+		this.oldbuckets = oldbuckets_ !== undefined ? oldbuckets_ : (go$ptrType(Go$Uint8)).nil;
+		this.nevacuate = nevacuate_ !== undefined ? nevacuate_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.hmap = hmap;
+	var hash_iter;
+	hash_iter = go$newType(0, "Struct", "runtime.hash_iter", "hash_iter", "runtime", function(key_, value_, t_, h_, endbucket_, wrapped_, b_, buckets_, bucket_, bptr_, i_, check_bucket_) {
+		this.go$val = this;
+		this.key = key_ !== undefined ? key_ : (go$ptrType(Go$Uint8)).nil;
+		this.value = value_ !== undefined ? value_ : (go$ptrType(Go$Uint8)).nil;
+		this.t = t_ !== undefined ? t_ : (go$ptrType(maptype)).nil;
+		this.h = h_ !== undefined ? h_ : (go$ptrType(hmap)).nil;
+		this.endbucket = endbucket_ !== undefined ? endbucket_ : new Go$Uint64(0, 0);
+		this.wrapped = wrapped_ !== undefined ? wrapped_ : 0;
+		this.b = b_ !== undefined ? b_ : 0;
+		this.buckets = buckets_ !== undefined ? buckets_ : (go$ptrType(Go$Uint8)).nil;
+		this.bucket = bucket_ !== undefined ? bucket_ : new Go$Uint64(0, 0);
+		this.bptr = bptr_ !== undefined ? bptr_ : (go$ptrType(bucket)).nil;
+		this.i = i_ !== undefined ? i_ : new Go$Uint64(0, 0);
+		this.check_bucket = check_bucket_ !== undefined ? check_bucket_ : new Go$Int64(0, 0);
+	});
+	go$pkg.hash_iter = hash_iter;
+	var sudog;
+	sudog = go$newType(0, "Struct", "runtime.sudog", "sudog", "runtime", function(g_, selgen_, link_, releasetime_, elem_) {
+		this.go$val = this;
+		this.g = g_ !== undefined ? g_ : (go$ptrType(g)).nil;
+		this.selgen = selgen_ !== undefined ? selgen_ : 0;
+		this.link = link_ !== undefined ? link_ : (go$ptrType(sudog)).nil;
+		this.releasetime = releasetime_ !== undefined ? releasetime_ : new Go$Int64(0, 0);
+		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(Go$Uint8)).nil;
+	});
+	go$pkg.sudog = sudog;
+	var waitq;
+	waitq = go$newType(0, "Struct", "runtime.waitq", "waitq", "runtime", function(first_, last_) {
+		this.go$val = this;
+		this.first = first_ !== undefined ? first_ : (go$ptrType(sudog)).nil;
+		this.last = last_ !== undefined ? last_ : (go$ptrType(sudog)).nil;
+	});
+	go$pkg.waitq = waitq;
+	var hchan;
+	hchan = go$newType(0, "Struct", "runtime.hchan", "hchan", "runtime", function(qcount_, dataqsiz_, elemsize_, pad_, closed_, elemalg_, sendx_, recvx_, recvq_, sendq_, lock_) {
+		this.go$val = this;
+		this.qcount = qcount_ !== undefined ? qcount_ : new Go$Uint64(0, 0);
+		this.dataqsiz = dataqsiz_ !== undefined ? dataqsiz_ : new Go$Uint64(0, 0);
+		this.elemsize = elemsize_ !== undefined ? elemsize_ : 0;
+		this.pad = pad_ !== undefined ? pad_ : 0;
+		this.closed = closed_ !== undefined ? closed_ : 0;
+		this.elemalg = elemalg_ !== undefined ? elemalg_ : (go$ptrType(alg)).nil;
+		this.sendx = sendx_ !== undefined ? sendx_ : new Go$Uint64(0, 0);
+		this.recvx = recvx_ !== undefined ? recvx_ : new Go$Uint64(0, 0);
+		this.recvq = recvq_ !== undefined ? recvq_ : new waitq.Ptr();
+		this.sendq = sendq_ !== undefined ? sendq_ : new waitq.Ptr();
+		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
+	});
+	go$pkg.hchan = hchan;
+	var scase;
+	scase = go$newType(0, "Struct", "runtime.scase", "scase", "runtime", function(sg_, _chan_, pc_, kind_, so_, receivedp_) {
+		this.go$val = this;
+		this.sg = sg_ !== undefined ? sg_ : new sudog.Ptr();
+		this._chan = _chan_ !== undefined ? _chan_ : (go$ptrType(hchan)).nil;
+		this.pc = pc_ !== undefined ? pc_ : (go$ptrType(Go$Uint8)).nil;
+		this.kind = kind_ !== undefined ? kind_ : 0;
+		this.so = so_ !== undefined ? so_ : 0;
+		this.receivedp = receivedp_ !== undefined ? receivedp_ : (go$ptrType(Go$Uint8)).nil;
+	});
+	go$pkg.scase = scase;
+	var _select;
+	_select = go$newType(0, "Struct", "runtime._select", "_select", "runtime", function(tcase_, ncase_, pollorder_, lockorder_, scase_) {
+		this.go$val = this;
+		this.tcase = tcase_ !== undefined ? tcase_ : 0;
+		this.ncase = ncase_ !== undefined ? ncase_ : 0;
+		this.pollorder = pollorder_ !== undefined ? pollorder_ : (go$ptrType(Go$Uint16)).nil;
+		this.lockorder = lockorder_ !== undefined ? lockorder_ : (go$ptrType((go$ptrType(hchan)))).nil;
+		this.scase = scase_ !== undefined ? scase_ : go$makeNativeArray("Struct", 1, function() { return new scase.Ptr(); });
+	});
+	go$pkg._select = _select;
+	var runtimeselect;
+	runtimeselect = go$newType(0, "Struct", "runtime.runtimeselect", "runtimeselect", "runtime", function(dir_, typ_, ch_, val_) {
+		this.go$val = this;
+		this.dir = dir_ !== undefined ? dir_ : new Go$Uint64(0, 0);
+		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(chantype)).nil;
+		this.ch = ch_ !== undefined ? ch_ : (go$ptrType(hchan)).nil;
+		this.val = val_ !== undefined ? val_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.runtimeselect = runtimeselect;
+	var parforthread;
+	parforthread = go$newType(0, "Struct", "runtime.parforthread", "parforthread", "runtime", function(pos_, nsteal_, nstealcnt_, nprocyield_, nosyield_, nsleep_, pad_) {
+		this.go$val = this;
+		this.pos = pos_ !== undefined ? pos_ : new Go$Uint64(0, 0);
+		this.nsteal = nsteal_ !== undefined ? nsteal_ : new Go$Uint64(0, 0);
+		this.nstealcnt = nstealcnt_ !== undefined ? nstealcnt_ : new Go$Uint64(0, 0);
+		this.nprocyield = nprocyield_ !== undefined ? nprocyield_ : new Go$Uint64(0, 0);
+		this.nosyield = nosyield_ !== undefined ? nosyield_ : new Go$Uint64(0, 0);
+		this.nsleep = nsleep_ !== undefined ? nsleep_ : new Go$Uint64(0, 0);
+		this.pad = pad_ !== undefined ? pad_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
+	});
+	go$pkg.parforthread = parforthread;
+	MemProfileRecord.init([["AllocBytes", "", Go$Int64, ""], ["FreeBytes", "", Go$Int64, ""], ["AllocObjects", "", Go$Int64, ""], ["FreeObjects", "", Go$Int64, ""], ["Stack0", "", (go$arrayType(Go$Uintptr, 32)), ""]]);
+	(go$ptrType(MemProfileRecord)).methods = [["InUseBytes", "", [], [Go$Int64], false], ["InUseObjects", "", [], [Go$Int64], false], ["Stack", "", [], [(go$sliceType(Go$Uintptr))], false]];
+	StackRecord.init([["Stack0", "", (go$arrayType(Go$Uintptr, 32)), ""]]);
+	(go$ptrType(StackRecord)).methods = [["Stack", "", [], [(go$sliceType(Go$Uintptr))], false]];
+	BlockProfileRecord.init([["Count", "", Go$Int64, ""], ["Cycles", "", Go$Int64, ""], ["", "", StackRecord, ""]]);
+	(go$ptrType(BlockProfileRecord)).methods = [["Stack", "", [], [(go$sliceType(Go$Uintptr))], false]];
+	Error.init([["Error", "", (go$funcType([], [Go$String], false))], ["RuntimeError", "", (go$funcType([], [], false))]]);
+	TypeAssertionError.init([["interfaceString", "runtime", Go$String, ""], ["concreteString", "runtime", Go$String, ""], ["assertedString", "runtime", Go$String, ""], ["missingMethod", "runtime", Go$String, ""]]);
+	(go$ptrType(TypeAssertionError)).methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
+	errorString.methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
+	(go$ptrType(errorString)).methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
+	errorCString.methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
+	(go$ptrType(errorCString)).methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
+	stringer.init([["String", "", (go$funcType([], [Go$String], false))]]);
+	Func.init([["opaque", "runtime", (go$structType([])), ""]]);
+	(go$ptrType(Func)).methods = [["Entry", "", [], [Go$Uintptr], false], ["FileLine", "", [Go$Uintptr], [Go$String, Go$Int], false], ["Name", "", [], [Go$String], false]];
+	MemStats.init([["Alloc", "", Go$Uint64, ""], ["TotalAlloc", "", Go$Uint64, ""], ["Sys", "", Go$Uint64, ""], ["Lookups", "", Go$Uint64, ""], ["Mallocs", "", Go$Uint64, ""], ["Frees", "", Go$Uint64, ""], ["HeapAlloc", "", Go$Uint64, ""], ["HeapSys", "", Go$Uint64, ""], ["HeapIdle", "", Go$Uint64, ""], ["HeapInuse", "", Go$Uint64, ""], ["HeapReleased", "", Go$Uint64, ""], ["HeapObjects", "", Go$Uint64, ""], ["StackInuse", "", Go$Uint64, ""], ["StackSys", "", Go$Uint64, ""], ["MSpanInuse", "", Go$Uint64, ""], ["MSpanSys", "", Go$Uint64, ""], ["MCacheInuse", "", Go$Uint64, ""], ["MCacheSys", "", Go$Uint64, ""], ["BuckHashSys", "", Go$Uint64, ""], ["GCSys", "", Go$Uint64, ""], ["OtherSys", "", Go$Uint64, ""], ["NextGC", "", Go$Uint64, ""], ["LastGC", "", Go$Uint64, ""], ["PauseTotalNs", "", Go$Uint64, ""], ["PauseNs", "", (go$arrayType(Go$Uint64, 256)), ""], ["NumGC", "", Go$Uint32, ""], ["EnableGC", "", Go$Bool, ""], ["DebugGC", "", Go$Bool, ""], ["BySize", "", (go$arrayType((go$structType([["Size", "", Go$Uint32, ""], ["Mallocs", "", Go$Uint64, ""], ["Frees", "", Go$Uint64, ""]])), 61)), ""]]);
+	rtype.init([["size", "runtime", Go$Uintptr, ""], ["hash", "runtime", Go$Uint32, ""], ["_", "runtime", Go$Uint8, ""], ["align", "runtime", Go$Uint8, ""], ["fieldAlign", "runtime", Go$Uint8, ""], ["kind", "runtime", Go$Uint8, ""], ["alg", "runtime", Go$UnsafePointer, ""], ["gc", "runtime", Go$UnsafePointer, ""], ["string", "runtime", (go$ptrType(Go$String)), ""], ["", "runtime", (go$ptrType(uncommonType)), ""], ["ptrToThis", "runtime", (go$ptrType(rtype)), ""]]);
+	_method.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgPath", "runtime", (go$ptrType(Go$String)), ""], ["mtyp", "runtime", (go$ptrType(rtype)), ""], ["typ", "runtime", (go$ptrType(rtype)), ""], ["ifn", "runtime", Go$UnsafePointer, ""], ["tfn", "runtime", Go$UnsafePointer, ""]]);
+	uncommonType.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgPath", "runtime", (go$ptrType(Go$String)), ""], ["methods", "runtime", (go$sliceType(_method)), ""]]);
+	_imethod.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgPath", "runtime", (go$ptrType(Go$String)), ""], ["typ", "runtime", (go$ptrType(rtype)), ""]]);
+	interfaceType.init([["", "runtime", rtype, ""], ["methods", "runtime", (go$sliceType(_imethod)), ""]]);
+	lock.init([["key", "runtime", Go$Uint64, ""]]);
+	note.init([["key", "runtime", Go$Uint64, ""]]);
+	_string.init([["str", "runtime", (go$ptrType(Go$Uint8)), ""], ["len", "runtime", Go$Int64, ""]]);
+	funcval.init([["fn", "runtime", (go$funcType([], [], false)), ""]]);
+	iface.init([["tab", "runtime", (go$ptrType(itab)), ""], ["data", "runtime", Go$UnsafePointer, ""]]);
+	eface.init([["_type", "runtime", (go$ptrType(_type)), ""], ["data", "runtime", Go$UnsafePointer, ""]]);
+	_complex64.init([["real", "runtime", Go$Float32, ""], ["imag", "runtime", Go$Float32, ""]]);
+	_complex128.init([["real", "runtime", Go$Float64, ""], ["imag", "runtime", Go$Float64, ""]]);
+	slice.init([["array", "runtime", (go$ptrType(Go$Uint8)), ""], ["len", "runtime", Go$Uint64, ""], ["cap", "runtime", Go$Uint64, ""]]);
+	gobuf.init([["sp", "runtime", Go$Uint64, ""], ["pc", "runtime", Go$Uint64, ""], ["g", "runtime", (go$ptrType(g)), ""], ["ret", "runtime", Go$Uint64, ""], ["ctxt", "runtime", Go$UnsafePointer, ""], ["lr", "runtime", Go$Uint64, ""]]);
+	gcstats.init([["nhandoff", "runtime", Go$Uint64, ""], ["nhandoffcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""]]);
+	wincall.init([["fn", "runtime", (go$funcType([Go$UnsafePointer], [], false)), ""], ["n", "runtime", Go$Uint64, ""], ["args", "runtime", Go$UnsafePointer, ""], ["r1", "runtime", Go$Uint64, ""], ["r2", "runtime", Go$Uint64, ""], ["err", "runtime", Go$Uint64, ""]]);
+	seh.init([["prev", "runtime", Go$UnsafePointer, ""], ["handler", "runtime", Go$UnsafePointer, ""]]);
+	wincallbackcontext.init([["gobody", "runtime", Go$UnsafePointer, ""], ["argsize", "runtime", Go$Uint64, ""], ["restorestack", "runtime", Go$Uint64, ""]]);
+	g.init([["stackguard0", "runtime", Go$Uint64, ""], ["stackbase", "runtime", Go$Uint64, ""], ["panicwrap", "runtime", Go$Uint32, ""], ["selgen", "runtime", Go$Uint32, ""], ["_defer", "runtime", (go$ptrType(_defer)), ""], ["_panic", "runtime", (go$ptrType(_panic)), ""], ["sched", "runtime", gobuf, ""], ["syscallstack", "runtime", Go$Uint64, ""], ["syscallsp", "runtime", Go$Uint64, ""], ["syscallpc", "runtime", Go$Uint64, ""], ["syscallguard", "runtime", Go$Uint64, ""], ["stackguard", "runtime", Go$Uint64, ""], ["stack0", "runtime", Go$Uint64, ""], ["stacksize", "runtime", Go$Uint64, ""], ["alllink", "runtime", (go$ptrType(g)), ""], ["param", "runtime", Go$UnsafePointer, ""], ["status", "runtime", Go$Int16, ""], ["goid", "runtime", Go$Int64, ""], ["waitreason", "runtime", (go$ptrType(Go$Int8)), ""], ["schedlink", "runtime", (go$ptrType(g)), ""], ["ispanic", "runtime", Go$Uint8, ""], ["issystem", "runtime", Go$Uint8, ""], ["isbackground", "runtime", Go$Uint8, ""], ["preempt", "runtime", Go$Uint8, ""], ["raceignore", "runtime", Go$Int8, ""], ["m", "runtime", (go$ptrType(m)), ""], ["lockedm", "runtime", (go$ptrType(m)), ""], ["sig", "runtime", Go$Int32, ""], ["writenbuf", "runtime", Go$Int32, ""], ["writebuf", "runtime", (go$ptrType(Go$Uint8)), ""], ["dchunk", "runtime", (go$ptrType(deferchunk)), ""], ["dchunknext", "runtime", (go$ptrType(deferchunk)), ""], ["sigcode0", "runtime", Go$Uint64, ""], ["sigcode1", "runtime", Go$Uint64, ""], ["sigpc", "runtime", Go$Uint64, ""], ["gopc", "runtime", Go$Uint64, ""], ["racectx", "runtime", Go$Uint64, ""], ["end", "runtime", (go$arrayType(Go$Uint64, 0)), ""]]);
+	m.init([["g0", "runtime", (go$ptrType(g)), ""], ["moreargp", "runtime", Go$UnsafePointer, ""], ["morebuf", "runtime", gobuf, ""], ["moreframesize", "runtime", Go$Uint32, ""], ["moreargsize", "runtime", Go$Uint32, ""], ["cret", "runtime", Go$Uint64, ""], ["procid", "runtime", Go$Uint64, ""], ["gsignal", "runtime", (go$ptrType(g)), ""], ["tls", "runtime", (go$arrayType(Go$Uint64, 4)), ""], ["mstartfn", "runtime", (go$funcType([], [], false)), ""], ["curg", "runtime", (go$ptrType(g)), ""], ["caughtsig", "runtime", (go$ptrType(g)), ""], ["p", "runtime", (go$ptrType(p)), ""], ["nextp", "runtime", (go$ptrType(p)), ""], ["id", "runtime", Go$Int32, ""], ["mallocing", "runtime", Go$Int32, ""], ["throwing", "runtime", Go$Int32, ""], ["gcing", "runtime", Go$Int32, ""], ["locks", "runtime", Go$Int32, ""], ["dying", "runtime", Go$Int32, ""], ["profilehz", "runtime", Go$Int32, ""], ["helpgc", "runtime", Go$Int32, ""], ["spinning", "runtime", Go$Uint8, ""], ["fastrand", "runtime", Go$Uint32, ""], ["ncgocall", "runtime", Go$Uint64, ""], ["ncgo", "runtime", Go$Int32, ""], ["cgomal", "runtime", (go$ptrType(cgomal)), ""], ["park", "runtime", note, ""], ["alllink", "runtime", (go$ptrType(m)), ""], ["schedlink", "runtime", (go$ptrType(m)), ""], ["machport", "runtime", Go$Uint32, ""], ["mcache", "runtime", (go$ptrType(mcache)), ""], ["stackinuse", "runtime", Go$Int32, ""], ["stackcachepos", "runtime", Go$Uint32, ""], ["stackcachecnt", "runtime", Go$Uint32, ""], ["stackcache", "runtime", (go$arrayType(Go$UnsafePointer, 32)), ""], ["lockedg", "runtime", (go$ptrType(g)), ""], ["createstack", "runtime", (go$arrayType(Go$Uint64, 32)), ""], ["freglo", "runtime", (go$arrayType(Go$Uint32, 16)), ""], ["freghi", "runtime", (go$arrayType(Go$Uint32, 16)), ""], ["fflag", "runtime", Go$Uint32, ""], ["locked", "runtime", Go$Uint32, ""], ["nextwaitm", "runtime", (go$ptrType(m)), ""], ["waitsema", "runtime", Go$Uint64, ""], ["waitsemacount", "runtime", Go$Uint32, ""], ["waitsemalock", "runtime", Go$Uint32, ""], ["gcstats", "runtime", gcstats, ""], ["racecall", "runtime", Go$Uint8, ""], ["needextram", "runtime", Go$Uint8, ""], ["waitunlockf", "runtime", (go$funcType([(go$ptrType(lock))], [], false)), ""], ["waitlock", "runtime", Go$UnsafePointer, ""], ["settype_buf", "runtime", (go$arrayType(Go$Uint64, 1024)), ""], ["settype_bufsize", "runtime", Go$Uint64, ""], ["seh", "runtime", (go$ptrType(seh)), ""], ["end", "runtime", (go$arrayType(Go$Uint64, 0)), ""]]);
+	p.init([["", "runtime", lock, ""], ["id", "runtime", Go$Int32, ""], ["status", "runtime", Go$Uint32, ""], ["link", "runtime", (go$ptrType(p)), ""], ["schedtick", "runtime", Go$Uint32, ""], ["syscalltick", "runtime", Go$Uint32, ""], ["m", "runtime", (go$ptrType(m)), ""], ["mcache", "runtime", (go$ptrType(mcache)), ""], ["runq", "runtime", (go$ptrType((go$ptrType(g)))), ""], ["runqhead", "runtime", Go$Int32, ""], ["runqtail", "runtime", Go$Int32, ""], ["runqsize", "runtime", Go$Int32, ""], ["gfree", "runtime", (go$ptrType(g)), ""], ["gfreecnt", "runtime", Go$Int32, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
+	stktop.init([["stackguard", "runtime", Go$Uint64, ""], ["stackbase", "runtime", Go$Uint64, ""], ["gobuf", "runtime", gobuf, ""], ["argsize", "runtime", Go$Uint32, ""], ["panicwrap", "runtime", Go$Uint32, ""], ["argp", "runtime", (go$ptrType(Go$Uint8)), ""], ["free", "runtime", Go$Uint64, ""], ["_panic", "runtime", Go$Uint8, ""]]);
+	sigtab.init([["flags", "runtime", Go$Int32, ""], ["name", "runtime", (go$ptrType(Go$Int8)), ""]]);
+	_func.init([["entry", "runtime", Go$Uint64, ""], ["nameoff", "runtime", Go$Int32, ""], ["args", "runtime", Go$Int32, ""], ["frame", "runtime", Go$Int32, ""], ["pcsp", "runtime", Go$Int32, ""], ["pcfile", "runtime", Go$Int32, ""], ["pcln", "runtime", Go$Int32, ""], ["npcdata", "runtime", Go$Int32, ""], ["nfuncdata", "runtime", Go$Int32, ""]]);
+	itab.init([["inter", "runtime", (go$ptrType(interfacetype)), ""], ["_type", "runtime", (go$ptrType(_type)), ""], ["link", "runtime", (go$ptrType(itab)), ""], ["bad", "runtime", Go$Int32, ""], ["unused", "runtime", Go$Int32, ""], ["fun", "runtime", (go$arrayType((go$funcType([], [], false)), 0)), ""]]);
+	timers.init([["", "runtime", lock, ""], ["timerproc", "runtime", (go$ptrType(g)), ""], ["sleeping", "runtime", Go$Uint8, ""], ["rescheduling", "runtime", Go$Uint8, ""], ["waitnote", "runtime", note, ""], ["t", "runtime", (go$ptrType((go$ptrType(timer)))), ""], ["len", "runtime", Go$Int32, ""], ["cap", "runtime", Go$Int32, ""]]);
+	timer.init([["i", "runtime", Go$Int32, ""], ["when", "runtime", Go$Int64, ""], ["period", "runtime", Go$Int64, ""], ["fv", "runtime", (go$ptrType(funcval)), ""], ["arg", "runtime", eface, ""]]);
+	lfnode.init([["next", "runtime", (go$ptrType(lfnode)), ""], ["pushcnt", "runtime", Go$Uint64, ""]]);
+	parfor.init([["body", "runtime", (go$funcType([(go$ptrType(parfor)), Go$Uint32], [], false)), ""], ["done", "runtime", Go$Uint32, ""], ["nthr", "runtime", Go$Uint32, ""], ["nthrmax", "runtime", Go$Uint32, ""], ["thrseq", "runtime", Go$Uint32, ""], ["cnt", "runtime", Go$Uint32, ""], ["ctx", "runtime", Go$UnsafePointer, ""], ["wait", "runtime", Go$Uint8, ""], ["thr", "runtime", (go$ptrType(parforthread)), ""], ["pad", "runtime", Go$Uint32, ""], ["nsteal", "runtime", Go$Uint64, ""], ["nstealcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""]]);
+	cgomal.init([["next", "runtime", (go$ptrType(cgomal)), ""], ["alloc", "runtime", Go$UnsafePointer, ""]]);
+	debugvars.init([["gctrace", "runtime", Go$Int32, ""], ["schedtrace", "runtime", Go$Int32, ""], ["scheddetail", "runtime", Go$Int32, ""]]);
+	alg.init([["hash", "runtime", (go$funcType([(go$ptrType(Go$Uint64)), Go$Uint64, Go$UnsafePointer], [], false)), ""], ["equal", "runtime", (go$funcType([(go$ptrType(Go$Uint8)), Go$Uint64, Go$UnsafePointer, Go$UnsafePointer], [], false)), ""], ["print", "runtime", (go$funcType([Go$Uint64, Go$UnsafePointer], [], false)), ""], ["copy", "runtime", (go$funcType([Go$Uint64, Go$UnsafePointer, Go$UnsafePointer], [], false)), ""]]);
+	_defer.init([["siz", "runtime", Go$Int32, ""], ["special", "runtime", Go$Uint8, ""], ["free", "runtime", Go$Uint8, ""], ["argp", "runtime", (go$ptrType(Go$Uint8)), ""], ["pc", "runtime", (go$ptrType(Go$Uint8)), ""], ["fn", "runtime", (go$ptrType(funcval)), ""], ["link", "runtime", (go$ptrType(_defer)), ""], ["args", "runtime", (go$arrayType(Go$UnsafePointer, 1)), ""]]);
+	deferchunk.init([["prev", "runtime", (go$ptrType(deferchunk)), ""], ["off", "runtime", Go$Uint64, ""]]);
+	_panic.init([["arg", "runtime", eface, ""], ["stackbase", "runtime", Go$Uint64, ""], ["link", "runtime", (go$ptrType(_panic)), ""], ["recovered", "runtime", Go$Uint8, ""]]);
+	stkframe.init([["fn", "runtime", (go$ptrType(_func)), ""], ["pc", "runtime", Go$Uint64, ""], ["lr", "runtime", Go$Uint64, ""], ["sp", "runtime", Go$Uint64, ""], ["fp", "runtime", Go$Uint64, ""], ["varp", "runtime", (go$ptrType(Go$Uint8)), ""], ["argp", "runtime", (go$ptrType(Go$Uint8)), ""], ["arglen", "runtime", Go$Uint64, ""]]);
+	mlink.init([["next", "runtime", (go$ptrType(mlink)), ""]]);
+	fixalloc.init([["size", "runtime", Go$Uint64, ""], ["first", "runtime", (go$funcType([Go$UnsafePointer, (go$ptrType(Go$Uint8))], [], false)), ""], ["arg", "runtime", Go$UnsafePointer, ""], ["list", "runtime", (go$ptrType(mlink)), ""], ["chunk", "runtime", (go$ptrType(Go$Uint8)), ""], ["nchunk", "runtime", Go$Uint32, ""], ["inuse", "runtime", Go$Uint64, ""], ["stat", "runtime", (go$ptrType(Go$Uint64)), ""]]);
+	_1_.init([["size", "runtime", Go$Uint32, ""], ["nmalloc", "runtime", Go$Uint64, ""], ["nfree", "runtime", Go$Uint64, ""]]);
+	mstats.init([["alloc", "runtime", Go$Uint64, ""], ["total_alloc", "runtime", Go$Uint64, ""], ["sys", "runtime", Go$Uint64, ""], ["nlookup", "runtime", Go$Uint64, ""], ["nmalloc", "runtime", Go$Uint64, ""], ["nfree", "runtime", Go$Uint64, ""], ["heap_alloc", "runtime", Go$Uint64, ""], ["heap_sys", "runtime", Go$Uint64, ""], ["heap_idle", "runtime", Go$Uint64, ""], ["heap_inuse", "runtime", Go$Uint64, ""], ["heap_released", "runtime", Go$Uint64, ""], ["heap_objects", "runtime", Go$Uint64, ""], ["stacks_inuse", "runtime", Go$Uint64, ""], ["stacks_sys", "runtime", Go$Uint64, ""], ["mspan_inuse", "runtime", Go$Uint64, ""], ["mspan_sys", "runtime", Go$Uint64, ""], ["mcache_inuse", "runtime", Go$Uint64, ""], ["mcache_sys", "runtime", Go$Uint64, ""], ["buckhash_sys", "runtime", Go$Uint64, ""], ["gc_sys", "runtime", Go$Uint64, ""], ["other_sys", "runtime", Go$Uint64, ""], ["next_gc", "runtime", Go$Uint64, ""], ["last_gc", "runtime", Go$Uint64, ""], ["pause_total_ns", "runtime", Go$Uint64, ""], ["pause_ns", "runtime", (go$arrayType(Go$Uint64, 256)), ""], ["numgc", "runtime", Go$Uint32, ""], ["enablegc", "runtime", Go$Uint8, ""], ["debuggc", "runtime", Go$Uint8, ""], ["by_size", "runtime", (go$arrayType(_1_, 61)), ""]]);
+	mcachelist.init([["list", "runtime", (go$ptrType(mlink)), ""], ["nlist", "runtime", Go$Uint32, ""]]);
+	mcache.init([["next_sample", "runtime", Go$Int32, ""], ["local_cachealloc", "runtime", Go$Int64, ""], ["list", "runtime", (go$arrayType(mcachelist, 61)), ""], ["local_nlookup", "runtime", Go$Uint64, ""], ["local_largefree", "runtime", Go$Uint64, ""], ["local_nlargefree", "runtime", Go$Uint64, ""], ["local_nsmallfree", "runtime", (go$arrayType(Go$Uint64, 61)), ""]]);
+	mtypes.init([["compression", "runtime", Go$Uint8, ""], ["data", "runtime", Go$Uint64, ""]]);
+	mspan.init([["next", "runtime", (go$ptrType(mspan)), ""], ["prev", "runtime", (go$ptrType(mspan)), ""], ["start", "runtime", Go$Uint64, ""], ["npages", "runtime", Go$Uint64, ""], ["freelist", "runtime", (go$ptrType(mlink)), ""], ["ref", "runtime", Go$Uint32, ""], ["sizeclass", "runtime", Go$Int32, ""], ["elemsize", "runtime", Go$Uint64, ""], ["state", "runtime", Go$Uint32, ""], ["unusedsince", "runtime", Go$Int64, ""], ["npreleased", "runtime", Go$Uint64, ""], ["limit", "runtime", (go$ptrType(Go$Uint8)), ""], ["types", "runtime", mtypes, ""]]);
+	mcentral.init([["", "runtime", lock, ""], ["sizeclass", "runtime", Go$Int32, ""], ["nonempty", "runtime", mspan, ""], ["empty", "runtime", mspan, ""], ["nfree", "runtime", Go$Int32, ""]]);
+	_2_.init([["", "runtime", mcentral, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
+	mheap.init([["", "runtime", lock, ""], ["free", "runtime", (go$arrayType(mspan, 256)), ""], ["large", "runtime", mspan, ""], ["allspans", "runtime", (go$ptrType((go$ptrType(mspan)))), ""], ["nspan", "runtime", Go$Uint32, ""], ["nspancap", "runtime", Go$Uint32, ""], ["spans", "runtime", (go$ptrType((go$ptrType(mspan)))), ""], ["spans_mapped", "runtime", Go$Uint64, ""], ["bitmap", "runtime", (go$ptrType(Go$Uint8)), ""], ["bitmap_mapped", "runtime", Go$Uint64, ""], ["arena_start", "runtime", (go$ptrType(Go$Uint8)), ""], ["arena_used", "runtime", (go$ptrType(Go$Uint8)), ""], ["arena_end", "runtime", (go$ptrType(Go$Uint8)), ""], ["central", "runtime", (go$arrayType(_2_, 61)), ""], ["spanalloc", "runtime", fixalloc, ""], ["cachealloc", "runtime", fixalloc, ""], ["largefree", "runtime", Go$Uint64, ""], ["nlargefree", "runtime", Go$Uint64, ""], ["nsmallfree", "runtime", (go$arrayType(Go$Uint64, 61)), ""]]);
+	_type.init([["size", "runtime", Go$Uint64, ""], ["hash", "runtime", Go$Uint32, ""], ["_unused", "runtime", Go$Uint8, ""], ["align", "runtime", Go$Uint8, ""], ["fieldalign", "runtime", Go$Uint8, ""], ["kind", "runtime", Go$Uint8, ""], ["alg", "runtime", (go$ptrType(alg)), ""], ["gc", "runtime", Go$UnsafePointer, ""], ["_string", "runtime", (go$ptrType(Go$String)), ""], ["x", "runtime", (go$ptrType(uncommontype)), ""], ["ptrto", "runtime", (go$ptrType(_type)), ""]]);
+	method.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgpath", "runtime", (go$ptrType(Go$String)), ""], ["mtyp", "runtime", (go$ptrType(_type)), ""], ["typ", "runtime", (go$ptrType(_type)), ""], ["ifn", "runtime", (go$funcType([], [], false)), ""], ["tfn", "runtime", (go$funcType([], [], false)), ""]]);
+	uncommontype.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgpath", "runtime", (go$ptrType(Go$String)), ""], ["mhdr", "runtime", (go$sliceType(Go$Uint8)), ""], ["m", "runtime", (go$arrayType(method, 0)), ""]]);
+	imethod.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgpath", "runtime", (go$ptrType(Go$String)), ""], ["_type", "runtime", (go$ptrType(_type)), ""]]);
+	interfacetype.init([["", "runtime", _type, ""], ["mhdr", "runtime", (go$sliceType(Go$Uint8)), ""], ["m", "runtime", (go$arrayType(imethod, 0)), ""]]);
+	maptype.init([["", "runtime", _type, ""], ["key", "runtime", (go$ptrType(_type)), ""], ["elem", "runtime", (go$ptrType(_type)), ""], ["bucket", "runtime", (go$ptrType(_type)), ""], ["hmap", "runtime", (go$ptrType(_type)), ""]]);
+	chantype.init([["", "runtime", _type, ""], ["elem", "runtime", (go$ptrType(_type)), ""], ["dir", "runtime", Go$Uint64, ""]]);
+	slicetype.init([["", "runtime", _type, ""], ["elem", "runtime", (go$ptrType(_type)), ""]]);
+	functype.init([["", "runtime", _type, ""], ["dotdotdot", "runtime", Go$Uint8, ""], ["in", "runtime", (go$sliceType(Go$Uint8)), ""], ["out", "runtime", (go$sliceType(Go$Uint8)), ""]]);
+	ptrtype.init([["", "runtime", _type, ""], ["elem", "runtime", (go$ptrType(_type)), ""]]);
+	sched.init([["", "runtime", lock, ""], ["goidgen", "runtime", Go$Uint64, ""], ["midle", "runtime", (go$ptrType(m)), ""], ["nmidle", "runtime", Go$Int32, ""], ["nmidlelocked", "runtime", Go$Int32, ""], ["mcount", "runtime", Go$Int32, ""], ["maxmcount", "runtime", Go$Int32, ""], ["pidle", "runtime", (go$ptrType(p)), ""], ["npidle", "runtime", Go$Uint32, ""], ["nmspinning", "runtime", Go$Uint32, ""], ["runqhead", "runtime", (go$ptrType(g)), ""], ["runqtail", "runtime", (go$ptrType(g)), ""], ["runqsize", "runtime", Go$Int32, ""], ["gflock", "runtime", lock, ""], ["gfree", "runtime", (go$ptrType(g)), ""], ["gcwaiting", "runtime", Go$Uint32, ""], ["stopwait", "runtime", Go$Int32, ""], ["stopnote", "runtime", note, ""], ["sysmonwait", "runtime", Go$Uint32, ""], ["sysmonnote", "runtime", note, ""], ["lastpoll", "runtime", Go$Uint64, ""], ["profilehz", "runtime", Go$Int32, ""]]);
+	cgothreadstart.init([["m", "runtime", (go$ptrType(m)), ""], ["g", "runtime", (go$ptrType(g)), ""], ["fn", "runtime", (go$funcType([], [], false)), ""]]);
+	_3_.init([["", "runtime", lock, ""], ["fn", "runtime", (go$funcType([(go$ptrType(Go$Uint64)), Go$Int32], [], false)), ""], ["hz", "runtime", Go$Int32, ""], ["pcbuf", "runtime", (go$arrayType(Go$Uint64, 100)), ""]]);
+	pdesc.init([["schedtick", "runtime", Go$Uint32, ""], ["schedwhen", "runtime", Go$Int64, ""], ["syscalltick", "runtime", Go$Uint32, ""], ["syscallwhen", "runtime", Go$Int64, ""]]);
+	bucket.init([["tophash", "runtime", (go$arrayType(Go$Uint8, 8)), ""], ["overflow", "runtime", (go$ptrType(bucket)), ""], ["data", "runtime", (go$arrayType(Go$Uint8, 1)), ""]]);
+	hmap.init([["count", "runtime", Go$Uint64, ""], ["flags", "runtime", Go$Uint32, ""], ["hash0", "runtime", Go$Uint32, ""], ["b", "runtime", Go$Uint8, ""], ["keysize", "runtime", Go$Uint8, ""], ["valuesize", "runtime", Go$Uint8, ""], ["bucketsize", "runtime", Go$Uint16, ""], ["buckets", "runtime", (go$ptrType(Go$Uint8)), ""], ["oldbuckets", "runtime", (go$ptrType(Go$Uint8)), ""], ["nevacuate", "runtime", Go$Uint64, ""]]);
+	hash_iter.init([["key", "runtime", (go$ptrType(Go$Uint8)), ""], ["value", "runtime", (go$ptrType(Go$Uint8)), ""], ["t", "runtime", (go$ptrType(maptype)), ""], ["h", "runtime", (go$ptrType(hmap)), ""], ["endbucket", "runtime", Go$Uint64, ""], ["wrapped", "runtime", Go$Uint8, ""], ["b", "runtime", Go$Uint8, ""], ["buckets", "runtime", (go$ptrType(Go$Uint8)), ""], ["bucket", "runtime", Go$Uint64, ""], ["bptr", "runtime", (go$ptrType(bucket)), ""], ["i", "runtime", Go$Uint64, ""], ["check_bucket", "runtime", Go$Int64, ""]]);
+	sudog.init([["g", "runtime", (go$ptrType(g)), ""], ["selgen", "runtime", Go$Uint32, ""], ["link", "runtime", (go$ptrType(sudog)), ""], ["releasetime", "runtime", Go$Int64, ""], ["elem", "runtime", (go$ptrType(Go$Uint8)), ""]]);
+	waitq.init([["first", "runtime", (go$ptrType(sudog)), ""], ["last", "runtime", (go$ptrType(sudog)), ""]]);
+	hchan.init([["qcount", "runtime", Go$Uint64, ""], ["dataqsiz", "runtime", Go$Uint64, ""], ["elemsize", "runtime", Go$Uint16, ""], ["pad", "runtime", Go$Uint16, ""], ["closed", "runtime", Go$Uint8, ""], ["elemalg", "runtime", (go$ptrType(alg)), ""], ["sendx", "runtime", Go$Uint64, ""], ["recvx", "runtime", Go$Uint64, ""], ["recvq", "runtime", waitq, ""], ["sendq", "runtime", waitq, ""], ["", "runtime", lock, ""]]);
+	scase.init([["sg", "runtime", sudog, ""], ["_chan", "runtime", (go$ptrType(hchan)), ""], ["pc", "runtime", (go$ptrType(Go$Uint8)), ""], ["kind", "runtime", Go$Uint16, ""], ["so", "runtime", Go$Uint16, ""], ["receivedp", "runtime", (go$ptrType(Go$Uint8)), ""]]);
+	_select.init([["tcase", "runtime", Go$Uint16, ""], ["ncase", "runtime", Go$Uint16, ""], ["pollorder", "runtime", (go$ptrType(Go$Uint16)), ""], ["lockorder", "runtime", (go$ptrType((go$ptrType(hchan)))), ""], ["scase", "runtime", (go$arrayType(scase, 1)), ""]]);
+	runtimeselect.init([["dir", "runtime", Go$Uint64, ""], ["typ", "runtime", (go$ptrType(chantype)), ""], ["ch", "runtime", (go$ptrType(hchan)), ""], ["val", "runtime", Go$Uint64, ""]]);
+	parforthread.init([["pos", "runtime", Go$Uint64, ""], ["nsteal", "runtime", Go$Uint64, ""], ["nstealcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
+	var Breakpoint = go$pkg.Breakpoint = function() {
+		throw go$panic("Native function not implemented: Breakpoint");
+	};
+	var LockOSThread = go$pkg.LockOSThread = function() {
+		throw go$panic("Native function not implemented: LockOSThread");
+	};
+	var UnlockOSThread = go$pkg.UnlockOSThread = function() {
+		throw go$panic("Native function not implemented: UnlockOSThread");
+	};
+	var NumCgoCall = go$pkg.NumCgoCall = function() {
+		throw go$panic("Native function not implemented: NumCgoCall");
+	};
+	var NumGoroutine = go$pkg.NumGoroutine = function() {
+		throw go$panic("Native function not implemented: NumGoroutine");
+	};
+	MemProfileRecord.Ptr.prototype.InUseBytes = function() {
+		var r, x, x$1;
+		r = this;
+		return (x = r.AllocBytes, x$1 = r.FreeBytes, new Go$Int64(x.high - x$1.high, x.low - x$1.low));
+	};
+	MemProfileRecord.prototype.InUseBytes = function() { return this.go$val.InUseBytes(); };
+	MemProfileRecord.Ptr.prototype.InUseObjects = function() {
+		var r, x, x$1;
+		r = this;
+		return (x = r.AllocObjects, x$1 = r.FreeObjects, new Go$Int64(x.high - x$1.high, x.low - x$1.low));
+	};
+	MemProfileRecord.prototype.InUseObjects = function() { return this.go$val.InUseObjects(); };
+	MemProfileRecord.Ptr.prototype.Stack = function() {
+		var r, _ref, _i, v, i;
+		r = this;
+		_ref = r.Stack0;
+		_i = 0;
+		for (; _i < 32; _i += 1) {
+			v = _ref[_i];
+			i = _i;
+			if (v === 0) {
+				return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0, i);
+			}
+		}
+		return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0);
+	};
+	MemProfileRecord.prototype.Stack = function() { return this.go$val.Stack(); };
+	var MemProfile = go$pkg.MemProfile = function(p$1, inuseZero) {
+		throw go$panic("Native function not implemented: MemProfile");
+	};
+	StackRecord.Ptr.prototype.Stack = function() {
+		var r, _ref, _i, v, i;
+		r = this;
+		_ref = r.Stack0;
+		_i = 0;
+		for (; _i < 32; _i += 1) {
+			v = _ref[_i];
+			i = _i;
+			if (v === 0) {
+				return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0, i);
+			}
+		}
+		return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0);
+	};
+	StackRecord.prototype.Stack = function() { return this.go$val.Stack(); };
+	var ThreadCreateProfile = go$pkg.ThreadCreateProfile = function(p$1) {
+		throw go$panic("Native function not implemented: ThreadCreateProfile");
+	};
+	var GoroutineProfile = go$pkg.GoroutineProfile = function(p$1) {
+		throw go$panic("Native function not implemented: GoroutineProfile");
+	};
+	var CPUProfile = go$pkg.CPUProfile = function() {
+		throw go$panic("Native function not implemented: CPUProfile");
+	};
+	var SetCPUProfileRate = go$pkg.SetCPUProfileRate = function(hz) {
+		throw go$panic("Native function not implemented: SetCPUProfileRate");
+	};
+	var SetBlockProfileRate = go$pkg.SetBlockProfileRate = function(rate) {
+		throw go$panic("Native function not implemented: SetBlockProfileRate");
+	};
+	var BlockProfile = go$pkg.BlockProfile = function(p$1) {
+		throw go$panic("Native function not implemented: BlockProfile");
+	};
+	var Stack = go$pkg.Stack = function(buf, all) {
+		throw go$panic("Native function not implemented: Stack");
+	};
+	TypeAssertionError.Ptr.prototype.RuntimeError = function() {
+	};
+	TypeAssertionError.prototype.RuntimeError = function() { return this.go$val.RuntimeError(); };
+	TypeAssertionError.Ptr.prototype.Error = function() {
+		var e, inter;
+		e = this;
+		inter = e.interfaceString;
+		if (inter === "") {
+			inter = "interface";
+		}
+		if (e.concreteString === "") {
+			return "interface conversion: " + inter + " is nil, not " + e.assertedString;
+		}
+		if (e.missingMethod === "") {
+			return "interface conversion: " + inter + " is " + e.concreteString + ", not " + e.assertedString;
+		}
+		return "interface conversion: " + e.concreteString + " is not " + e.assertedString + ": missing method " + e.missingMethod;
+	};
+	TypeAssertionError.prototype.Error = function() { return this.go$val.Error(); };
+	var newTypeAssertionError = function(ps1, ps2, ps3, pmeth, ret) {
+		var _tuple, s1, s2, s3, meth;
+		_tuple = ["", "", "", ""], s1 = _tuple[0], s2 = _tuple[1], s3 = _tuple[2], meth = _tuple[3];
+		if (!(go$pointerIsEqual(ps1, (go$ptrType(Go$String)).nil))) {
+			s1 = ps1.go$get();
+		}
+		if (!(go$pointerIsEqual(ps2, (go$ptrType(Go$String)).nil))) {
+			s2 = ps2.go$get();
+		}
+		if (!(go$pointerIsEqual(ps3, (go$ptrType(Go$String)).nil))) {
+			s3 = ps3.go$get();
+		}
+		if (!(go$pointerIsEqual(pmeth, (go$ptrType(Go$String)).nil))) {
+			meth = pmeth.go$get();
+		}
+		ret.go$set(new TypeAssertionError.Ptr(s1, s2, s3, meth));
+	};
+	errorString.prototype.RuntimeError = function() {
+		var e;
+		e = this.go$val;
+	};
+	go$ptrType(errorString).prototype.RuntimeError = function() { return new errorString(this.go$get()).RuntimeError(); };
+	errorString.prototype.Error = function() {
+		var e;
+		e = this.go$val;
+		return "runtime error: " + e;
+	};
+	go$ptrType(errorString).prototype.Error = function() { return new errorString(this.go$get()).Error(); };
+	var newErrorString = function(s, ret) {
+		ret.go$set(new errorString(s));
+	};
+	errorCString.prototype.RuntimeError = function() {
+		var e;
+		e = this.go$val;
+	};
+	go$ptrType(errorCString).prototype.RuntimeError = function() { return new errorCString(this.go$get()).RuntimeError(); };
+	var cstringToGo = function() {
+		throw go$panic("Native function not implemented: cstringToGo");
+	};
+	errorCString.prototype.Error = function() {
+		var e;
+		e = this.go$val;
+		return "runtime error: " + cstringToGo((e >>> 0));
+	};
+	go$ptrType(errorCString).prototype.Error = function() { return new errorCString(this.go$get()).Error(); };
+	var newErrorCString = function(s, ret) {
+		ret.go$set(new errorCString((s >>> 0)));
+	};
+	var typestring = function() {
+		throw go$panic("Native function not implemented: typestring");
+	};
+	var printany = function(i) {
+		var v, _ref, _type$1;
+		_ref = i;
+		_type$1 = _ref !== null ? _ref.constructor : null;
+		if (_type$1 === null) {
+			v = _ref;
+			console.log("nil");
+		} else if (stringer.implementedBy.indexOf(_type$1) !== -1) {
+			v = _ref;
+			console.log(v.String());
+		} else if (go$error.implementedBy.indexOf(_type$1) !== -1) {
+			v = _ref;
+			console.log(v.Error());
+		} else if (_type$1 === Go$Int) {
+			v = _ref.go$val;
+			console.log(v);
+		} else if (_type$1 === Go$String) {
+			v = _ref.go$val;
+			console.log(v);
+		} else {
+			v = _ref;
+			console.log("(", typestring(i), ") ", i);
+		}
+	};
+	var panicwrap = function(pkg, typ, meth) {
+		throw go$panic(new Go$String("value method " + pkg + "." + typ + "." + meth + " called using nil *" + typ + " pointer"));
+	};
+	var Gosched = go$pkg.Gosched = function() {
+		throw go$panic("Native function not implemented: Gosched");
+	};
+	var Callers = go$pkg.Callers = function(skip, pc) {
+		throw go$panic("Native function not implemented: Callers");
+	};
+	var FuncForPC = go$pkg.FuncForPC = function(pc) {
+		throw go$panic("Native function not implemented: FuncForPC");
+	};
+	Func.Ptr.prototype.Name = function() {
+		var f;
+		f = this;
+		return funcname_go(f);
+	};
+	Func.prototype.Name = function() { return this.go$val.Name(); };
+	Func.Ptr.prototype.Entry = function() {
+		var f;
+		f = this;
+		return funcentry_go(f);
+	};
+	Func.prototype.Entry = function() { return this.go$val.Entry(); };
+	Func.Ptr.prototype.FileLine = function(pc) {
+		var file, line, f, _tuple;
+		file = "";
+		line = 0;
+		f = this;
+		_tuple = funcline_go(f, pc), file = _tuple[0], line = _tuple[1];
+		return [file, line];
+	};
+	Func.prototype.FileLine = function(pc) { return this.go$val.FileLine(pc); };
+	var funcline_go = function() {
+		throw go$panic("Native function not implemented: funcline_go");
+	};
+	var funcname_go = function() {
+		throw go$panic("Native function not implemented: funcname_go");
+	};
+	var funcentry_go = function() {
+		throw go$panic("Native function not implemented: funcentry_go");
+	};
+	var GOROOT = go$pkg.GOROOT = function() {
+		var s;
+		s = getgoroot();
+		if (!(s === "")) {
+			return s;
+		}
+		return "/usr/local/go";
+	};
+	var Version = go$pkg.Version = function() {
+		return "go1.2";
+	};
+	var gc_m_ptr = function(ret) {
+		ret.go$set((go$ptrType(m)).nil);
+	};
+	var gc_itab_ptr = function(ret) {
+		ret.go$set((go$ptrType(itab)).nil);
+	};
+	var funpack64 = function(f) {
+		var sign, mant, exp, inf, nan$1, _ref;
+		sign = new Go$Uint64(0, 0);
+		mant = new Go$Uint64(0, 0);
+		exp = 0;
+		inf = false;
+		nan$1 = false;
+		sign = new Go$Uint64(f.high & 2147483648, (f.low & 0) >>> 0);
+		mant = new Go$Uint64(f.high & 1048575, (f.low & 4294967295) >>> 0);
+		exp = (go$shiftRightUint64(f, 52).low >> 0) & 2047;
+		_ref = exp;
+		if (_ref === 2047) {
+			if (!((mant.high === 0 && mant.low === 0))) {
+				nan$1 = true;
+				return [sign, mant, exp, inf, nan$1];
+			}
+			inf = true;
+			return [sign, mant, exp, inf, nan$1];
+		} else if (_ref === 0) {
+			if (!((mant.high === 0 && mant.low === 0))) {
+				exp = exp + -1022 >> 0;
+				while ((mant.high < 1048576 || (mant.high === 1048576 && mant.low < 0))) {
+					mant = go$shiftLeft64(mant, 1);
+					exp = exp - 1 >> 0;
+				}
+			}
+		} else {
+			mant = new Go$Uint64(mant.high | 1048576, (mant.low | 0) >>> 0);
+			exp = exp + -1023 >> 0;
+		}
+		return [sign, mant, exp, inf, nan$1];
+	};
+	var funpack32 = function(f) {
+		var sign, mant, exp, inf, nan$1, _ref;
+		sign = 0;
+		mant = 0;
+		exp = 0;
+		inf = false;
+		nan$1 = false;
+		sign = (f & 2147483648) >>> 0;
+		mant = (f & 8388607) >>> 0;
+		exp = ((f >>> 23 >>> 0) >> 0) & 255;
+		_ref = exp;
+		if (_ref === 255) {
+			if (!((mant === 0))) {
+				nan$1 = true;
+				return [sign, mant, exp, inf, nan$1];
+			}
+			inf = true;
+			return [sign, mant, exp, inf, nan$1];
+		} else if (_ref === 0) {
+			if (!((mant === 0))) {
+				exp = exp + -126 >> 0;
+				while (mant < 8388608) {
+					mant = mant << 1 >>> 0;
+					exp = exp - 1 >> 0;
+				}
+			}
+		} else {
+			mant = (mant | 8388608) >>> 0;
+			exp = exp + -127 >> 0;
+		}
+		return [sign, mant, exp, inf, nan$1];
+	};
+	var fpack64 = function(sign, mant, exp, trunc) {
+		var _tuple, mant0, exp0, trunc0, x, x$1, x$2, _tuple$1, x$3, x$4, x$5, x$6, x$7, x$8;
+		_tuple = [mant, exp, trunc], mant0 = _tuple[0], exp0 = _tuple[1], trunc0 = _tuple[2];
+		if ((mant.high === 0 && mant.low === 0)) {
+			return sign;
+		}
+		while ((mant.high < 1048576 || (mant.high === 1048576 && mant.low < 0))) {
+			mant = go$shiftLeft64(mant, 1);
+			exp = exp - 1 >> 0;
+		}
+		while ((mant.high > 4194304 || (mant.high === 4194304 && mant.low >= 0))) {
+			trunc = (x = new Go$Uint64(mant.high & 0, (mant.low & 1) >>> 0), new Go$Uint64(trunc.high | x.high, (trunc.low | x.low) >>> 0));
+			mant = go$shiftRightUint64(mant, 1);
+			exp = exp + 1 >> 0;
+		}
+		if ((mant.high > 2097152 || (mant.high === 2097152 && mant.low >= 0))) {
+			if (!((x$1 = new Go$Uint64(mant.high & 0, (mant.low & 1) >>> 0), (x$1.high === 0 && x$1.low === 0))) && (!((trunc.high === 0 && trunc.low === 0)) || !((x$2 = new Go$Uint64(mant.high & 0, (mant.low & 2) >>> 0), (x$2.high === 0 && x$2.low === 0))))) {
+				mant = new Go$Uint64(mant.high + 0, mant.low + 1);
+				if ((mant.high > 4194304 || (mant.high === 4194304 && mant.low >= 0))) {
+					mant = go$shiftRightUint64(mant, 1);
+					exp = exp + 1 >> 0;
+				}
+			}
+			mant = go$shiftRightUint64(mant, 1);
+			exp = exp + 1 >> 0;
+		}
+		if (exp >= 1024) {
+			return new Go$Uint64(sign.high ^ 2146435072, (sign.low ^ 0) >>> 0);
+		}
+		if (exp < -1022) {
+			if (exp < -1075) {
+				return new Go$Uint64(sign.high | 0, (sign.low | 0) >>> 0);
+			}
+			_tuple$1 = [mant0, exp0, trunc0], mant = _tuple$1[0], exp = _tuple$1[1], trunc = _tuple$1[2];
+			while (exp < -1023) {
+				trunc = (x$3 = new Go$Uint64(mant.high & 0, (mant.low & 1) >>> 0), new Go$Uint64(trunc.high | x$3.high, (trunc.low | x$3.low) >>> 0));
+				mant = go$shiftRightUint64(mant, 1);
+				exp = exp + 1 >> 0;
+			}
+			if (!((x$4 = new Go$Uint64(mant.high & 0, (mant.low & 1) >>> 0), (x$4.high === 0 && x$4.low === 0))) && (!((trunc.high === 0 && trunc.low === 0)) || !((x$5 = new Go$Uint64(mant.high & 0, (mant.low & 2) >>> 0), (x$5.high === 0 && x$5.low === 0))))) {
+				mant = new Go$Uint64(mant.high + 0, mant.low + 1);
+			}
+			mant = go$shiftRightUint64(mant, 1);
+			exp = exp + 1 >> 0;
+			if ((mant.high < 1048576 || (mant.high === 1048576 && mant.low < 0))) {
+				return new Go$Uint64(sign.high | mant.high, (sign.low | mant.low) >>> 0);
+			}
+		}
+		return (x$6 = (x$7 = go$shiftLeft64(new Go$Uint64(0, (exp - -1023 >> 0)), 52), new Go$Uint64(sign.high | x$7.high, (sign.low | x$7.low) >>> 0)), x$8 = new Go$Uint64(mant.high & 1048575, (mant.low & 4294967295) >>> 0), new Go$Uint64(x$6.high | x$8.high, (x$6.low | x$8.low) >>> 0));
+	};
+	var fpack32 = function(sign, mant, exp, trunc) {
+		var _tuple, mant0, exp0, trunc0, _tuple$1;
+		_tuple = [mant, exp, trunc], mant0 = _tuple[0], exp0 = _tuple[1], trunc0 = _tuple[2];
+		if (mant === 0) {
+			return sign;
+		}
+		while (mant < 8388608) {
+			mant = mant << 1 >>> 0;
+			exp = exp - 1 >> 0;
+		}
+		while (mant >= 33554432) {
+			trunc = (trunc | (((mant & 1) >>> 0))) >>> 0;
+			mant = mant >>> 1 >>> 0;
+			exp = exp + 1 >> 0;
+		}
+		if (mant >= 16777216) {
+			if (!((((mant & 1) >>> 0) === 0)) && (!((trunc === 0)) || !((((mant & 2) >>> 0) === 0)))) {
+				mant = mant + 1 >>> 0;
+				if (mant >= 33554432) {
+					mant = mant >>> 1 >>> 0;
+					exp = exp + 1 >> 0;
+				}
+			}
+			mant = mant >>> 1 >>> 0;
+			exp = exp + 1 >> 0;
+		}
+		if (exp >= 128) {
+			return (sign ^ 2139095040) >>> 0;
+		}
+		if (exp < -126) {
+			if (exp < -150) {
+				return (sign | 0) >>> 0;
+			}
+			_tuple$1 = [mant0, exp0, trunc0], mant = _tuple$1[0], exp = _tuple$1[1], trunc = _tuple$1[2];
+			while (exp < -127) {
+				trunc = (trunc | (((mant & 1) >>> 0))) >>> 0;
+				mant = mant >>> 1 >>> 0;
+				exp = exp + 1 >> 0;
+			}
+			if (!((((mant & 1) >>> 0) === 0)) && (!((trunc === 0)) || !((((mant & 2) >>> 0) === 0)))) {
+				mant = mant + 1 >>> 0;
+			}
+			mant = mant >>> 1 >>> 0;
+			exp = exp + 1 >> 0;
+			if (mant < 8388608) {
+				return (sign | mant) >>> 0;
+			}
+		}
+		return (((sign | (((exp - -127 >> 0) >>> 0) << 23 >>> 0)) >>> 0) | ((mant & 8388607) >>> 0)) >>> 0;
+	};
+	var fadd64 = function(f, g$1) {
+		var _tuple, fs, fm, fe, fi, fn, _tuple$1, gs, gm, ge, gi, gn, x, _tuple$2, shift, x$1, x$2, trunc, x$3, x$4;
+		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
+		_tuple$1 = funpack64(g$1), gs = _tuple$1[0], gm = _tuple$1[1], ge = _tuple$1[2], gi = _tuple$1[3], gn = _tuple$1[4];
+		if (fn || gn) {
+			return new Go$Uint64(2146435072, 1);
+		} else if (fi && gi && !((fs.high === gs.high && fs.low === gs.low))) {
+			return new Go$Uint64(2146435072, 1);
+		} else if (fi) {
+			return f;
+		} else if (gi) {
+			return g$1;
+		} else if ((fm.high === 0 && fm.low === 0) && (gm.high === 0 && gm.low === 0) && !((fs.high === 0 && fs.low === 0)) && !((gs.high === 0 && gs.low === 0))) {
+			return f;
+		} else if ((fm.high === 0 && fm.low === 0)) {
+			if ((gm.high === 0 && gm.low === 0)) {
+				g$1 = (x = gs, new Go$Uint64(g$1.high ^ x.high, (g$1.low ^ x.low) >>> 0));
+			}
+			return g$1;
+		} else if ((gm.high === 0 && gm.low === 0)) {
+			return f;
+		}
+		if (fe < ge || (fe === ge) && (fm.high < gm.high || (fm.high === gm.high && fm.low < gm.low))) {
+			_tuple$2 = [g$1, f, gs, gm, ge, fs, fm, fe], f = _tuple$2[0], g$1 = _tuple$2[1], fs = _tuple$2[2], fm = _tuple$2[3], fe = _tuple$2[4], gs = _tuple$2[5], gm = _tuple$2[6], ge = _tuple$2[7];
+		}
+		shift = ((fe - ge >> 0) >>> 0);
+		fm = go$shiftLeft64(fm, 2);
+		gm = go$shiftLeft64(gm, 2);
+		trunc = (x$1 = (x$2 = go$shiftLeft64(new Go$Uint64(0, 1), shift), new Go$Uint64(x$2.high - 0, x$2.low - 1)), new Go$Uint64(gm.high & x$1.high, (gm.low & x$1.low) >>> 0));
+		gm = go$shiftRightUint64(gm, (shift));
+		if ((fs.high === gs.high && fs.low === gs.low)) {
+			fm = (x$3 = gm, new Go$Uint64(fm.high + x$3.high, fm.low + x$3.low));
+		} else {
+			fm = (x$4 = gm, new Go$Uint64(fm.high - x$4.high, fm.low - x$4.low));
+			if (!((trunc.high === 0 && trunc.low === 0))) {
+				fm = new Go$Uint64(fm.high - 0, fm.low - 1);
+			}
+		}
+		if ((fm.high === 0 && fm.low === 0)) {
+			fs = new Go$Uint64(0, 0);
+		}
+		return fpack64(fs, fm, fe - 2 >> 0, trunc);
+	};
+	var fsub64 = function(f, g$1) {
+		return fadd64(f, fneg64(g$1));
+	};
+	var fneg64 = function(f) {
+		return new Go$Uint64(f.high ^ 2147483648, (f.low ^ 0) >>> 0);
+	};
+	var fmul64 = function(f, g$1) {
+		var _tuple, fs, fm, fe, fi, fn, _tuple$1, gs, gm, ge, gi, gn, _tuple$2, lo, hi, shift, x, x$1, trunc, x$2, x$3, mant;
+		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
+		_tuple$1 = funpack64(g$1), gs = _tuple$1[0], gm = _tuple$1[1], ge = _tuple$1[2], gi = _tuple$1[3], gn = _tuple$1[4];
+		if (fn || gn) {
+			return new Go$Uint64(2146435072, 1);
+		} else if (fi && gi) {
+			return new Go$Uint64(f.high ^ gs.high, (f.low ^ gs.low) >>> 0);
+		} else if (fi && (gm.high === 0 && gm.low === 0) || (fm.high === 0 && fm.low === 0) && gi) {
+			return new Go$Uint64(2146435072, 1);
+		} else if ((fm.high === 0 && fm.low === 0)) {
+			return new Go$Uint64(f.high ^ gs.high, (f.low ^ gs.low) >>> 0);
+		} else if ((gm.high === 0 && gm.low === 0)) {
+			return new Go$Uint64(g$1.high ^ fs.high, (g$1.low ^ fs.low) >>> 0);
+		}
+		_tuple$2 = mullu(fm, gm), lo = _tuple$2[0], hi = _tuple$2[1];
+		shift = 51;
+		trunc = (x = (x$1 = go$shiftLeft64(new Go$Uint64(0, 1), shift), new Go$Uint64(x$1.high - 0, x$1.low - 1)), new Go$Uint64(lo.high & x.high, (lo.low & x.low) >>> 0));
+		mant = (x$2 = go$shiftLeft64(hi, ((64 - shift >>> 0))), x$3 = go$shiftRightUint64(lo, shift), new Go$Uint64(x$2.high | x$3.high, (x$2.low | x$3.low) >>> 0));
+		return fpack64(new Go$Uint64(fs.high ^ gs.high, (fs.low ^ gs.low) >>> 0), mant, (fe + ge >> 0) - 1 >> 0, trunc);
+	};
+	var fdiv64 = function(f, g$1) {
+		var _tuple, fs, fm, fe, fi, fn, _tuple$1, gs, gm, ge, gi, gn, x, x$1, _tuple$2, shift, _tuple$3, q, r;
+		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
+		_tuple$1 = funpack64(g$1), gs = _tuple$1[0], gm = _tuple$1[1], ge = _tuple$1[2], gi = _tuple$1[3], gn = _tuple$1[4];
+		if (fn || gn) {
+			return new Go$Uint64(2146435072, 1);
+		} else if (fi && gi) {
+			return new Go$Uint64(2146435072, 1);
+		} else if (!fi && !gi && (fm.high === 0 && fm.low === 0) && (gm.high === 0 && gm.low === 0)) {
+			return new Go$Uint64(2146435072, 1);
+		} else if (fi || !gi && (gm.high === 0 && gm.low === 0)) {
+			return (x = new Go$Uint64(fs.high ^ gs.high, (fs.low ^ gs.low) >>> 0), new Go$Uint64(x.high ^ 2146435072, (x.low ^ 0) >>> 0));
+		} else if (gi || (fm.high === 0 && fm.low === 0)) {
+			return (x$1 = new Go$Uint64(fs.high ^ gs.high, (fs.low ^ gs.low) >>> 0), new Go$Uint64(x$1.high ^ 0, (x$1.low ^ 0) >>> 0));
+		}
+		_tuple$2 = [fi, fn, gi, gn];
+		shift = 54;
+		_tuple$3 = divlu(go$shiftRightUint64(fm, ((64 - shift >>> 0))), go$shiftLeft64(fm, shift), gm), q = _tuple$3[0], r = _tuple$3[1];
+		return fpack64(new Go$Uint64(fs.high ^ gs.high, (fs.low ^ gs.low) >>> 0), q, (fe - ge >> 0) - 2 >> 0, r);
+	};
+	var f64to32 = function(f) {
+		var _tuple, fs, fm, fe, fi, fn, fs32;
+		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
+		if (fn) {
+			return 2139095041;
+		}
+		fs32 = (go$shiftRightUint64(fs, 32).low >>> 0);
+		if (fi) {
+			return (fs32 ^ 2139095040) >>> 0;
+		}
+		return fpack32(fs32, (go$shiftRightUint64(fm, 28).low >>> 0), fe - 1 >> 0, (new Go$Uint64(fm.high & 0, (fm.low & 268435455) >>> 0).low >>> 0));
+	};
+	var f32to64 = function(f) {
+		var _tuple, fs, fm, fe, fi, fn, fs64;
+		_tuple = funpack32(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
+		if (fn) {
+			return new Go$Uint64(2146435072, 1);
+		}
+		fs64 = go$shiftLeft64(new Go$Uint64(0, fs), 32);
+		if (fi) {
+			return new Go$Uint64(fs64.high ^ 2146435072, (fs64.low ^ 0) >>> 0);
+		}
+		return fpack64(fs64, go$shiftLeft64(new Go$Uint64(0, fm), 29), fe, new Go$Uint64(0, 0));
+	};
+	var fcmp64 = function(f, g$1) {
+		var cmp, isnan, _tuple, fs, fm, fi, fn, _tuple$1, gs, gm, gi, gn, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8;
+		cmp = 0;
+		isnan = false;
+		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fi = _tuple[3], fn = _tuple[4];
+		_tuple$1 = funpack64(g$1), gs = _tuple$1[0], gm = _tuple$1[1], gi = _tuple$1[3], gn = _tuple$1[4];
+		if (fn || gn) {
+			_tuple$2 = [0, true], cmp = _tuple$2[0], isnan = _tuple$2[1];
+			return [cmp, isnan];
+		} else if (!fi && !gi && (fm.high === 0 && fm.low === 0) && (gm.high === 0 && gm.low === 0)) {
+			_tuple$3 = [0, false], cmp = _tuple$3[0], isnan = _tuple$3[1];
+			return [cmp, isnan];
+		} else if ((fs.high > gs.high || (fs.high === gs.high && fs.low > gs.low))) {
+			_tuple$4 = [-1, false], cmp = _tuple$4[0], isnan = _tuple$4[1];
+			return [cmp, isnan];
+		} else if ((fs.high < gs.high || (fs.high === gs.high && fs.low < gs.low))) {
+			_tuple$5 = [1, false], cmp = _tuple$5[0], isnan = _tuple$5[1];
+			return [cmp, isnan];
+		} else if ((fs.high === 0 && fs.low === 0) && (f.high < g$1.high || (f.high === g$1.high && f.low < g$1.low)) || !((fs.high === 0 && fs.low === 0)) && (f.high > g$1.high || (f.high === g$1.high && f.low > g$1.low))) {
+			_tuple$6 = [-1, false], cmp = _tuple$6[0], isnan = _tuple$6[1];
+			return [cmp, isnan];
+		} else if ((fs.high === 0 && fs.low === 0) && (f.high > g$1.high || (f.high === g$1.high && f.low > g$1.low)) || !((fs.high === 0 && fs.low === 0)) && (f.high < g$1.high || (f.high === g$1.high && f.low < g$1.low))) {
+			_tuple$7 = [1, false], cmp = _tuple$7[0], isnan = _tuple$7[1];
+			return [cmp, isnan];
+		}
+		_tuple$8 = [0, false], cmp = _tuple$8[0], isnan = _tuple$8[1];
+		return [cmp, isnan];
+	};
+	var f64toint = function(f) {
+		var val, ok, _tuple, fs, fm, fe, fi, fn, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6;
+		val = new Go$Int64(0, 0);
+		ok = false;
+		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
+		if (fi || fn) {
+			_tuple$1 = [new Go$Int64(0, 0), false], val = _tuple$1[0], ok = _tuple$1[1];
+			return [val, ok];
+		} else if (fe < -1) {
+			_tuple$2 = [new Go$Int64(0, 0), false], val = _tuple$2[0], ok = _tuple$2[1];
+			return [val, ok];
+		} else if (fe > 63) {
+			if (!((fs.high === 0 && fs.low === 0)) && (fm.high === 0 && fm.low === 0)) {
+				_tuple$3 = [new Go$Int64(-2147483648, 0), true], val = _tuple$3[0], ok = _tuple$3[1];
+				return [val, ok];
+			}
+			if (!((fs.high === 0 && fs.low === 0))) {
+				_tuple$4 = [new Go$Int64(0, 0), false], val = _tuple$4[0], ok = _tuple$4[1];
+				return [val, ok];
+			}
+			_tuple$5 = [new Go$Int64(0, 0), false], val = _tuple$5[0], ok = _tuple$5[1];
+			return [val, ok];
+		}
+		while (fe > 52) {
+			fe = fe - 1 >> 0;
+			fm = go$shiftLeft64(fm, 1);
+		}
+		while (fe < 52) {
+			fe = fe + 1 >> 0;
+			fm = go$shiftRightUint64(fm, 1);
+		}
+		val = new Go$Int64(fm.high, fm.low);
+		if (!((fs.high === 0 && fs.low === 0))) {
+			val = new Go$Int64(-val.high, -val.low);
+		}
+		_tuple$6 = [val, true], val = _tuple$6[0], ok = _tuple$6[1];
+		return [val, ok];
+	};
+	var fintto64 = function(val) {
+		var f, x, fs, mant;
+		f = new Go$Uint64(0, 0);
+		fs = (x = new Go$Uint64(val.high, val.low), new Go$Uint64(x.high & 2147483648, (x.low & 0) >>> 0));
+		mant = new Go$Uint64(val.high, val.low);
+		if (!((fs.high === 0 && fs.low === 0))) {
+			mant = new Go$Uint64(-mant.high, -mant.low);
+		}
+		f = fpack64(fs, mant, 52, new Go$Uint64(0, 0));
+		return f;
+	};
+	var mullu = function(u, v) {
+		var lo, hi, u0, u1, v0, v1, w0, x, x$1, t, w1, w2, x$2, x$3, x$4, x$5, _tuple;
+		lo = new Go$Uint64(0, 0);
+		hi = new Go$Uint64(0, 0);
+		u0 = new Go$Uint64(u.high & 0, (u.low & 4294967295) >>> 0);
+		u1 = go$shiftRightUint64(u, 32);
+		v0 = new Go$Uint64(v.high & 0, (v.low & 4294967295) >>> 0);
+		v1 = go$shiftRightUint64(v, 32);
+		w0 = go$mul64(u0, v0);
+		t = (x = go$mul64(u1, v0), x$1 = go$shiftRightUint64(w0, 32), new Go$Uint64(x.high + x$1.high, x.low + x$1.low));
+		w1 = new Go$Uint64(t.high & 0, (t.low & 4294967295) >>> 0);
+		w2 = go$shiftRightUint64(t, 32);
+		w1 = (x$2 = go$mul64(u0, v1), new Go$Uint64(w1.high + x$2.high, w1.low + x$2.low));
+		_tuple = [go$mul64(u, v), (x$3 = (x$4 = go$mul64(u1, v1), new Go$Uint64(x$4.high + w2.high, x$4.low + w2.low)), x$5 = go$shiftRightUint64(w1, 32), new Go$Uint64(x$3.high + x$5.high, x$3.low + x$5.low))], lo = _tuple[0], hi = _tuple[1];
+		return [lo, hi];
+	};
+	var divlu = function(u1, u0, v) {
+		var q, r, _tuple, s, x, vn1, vn0, x$1, x$2, un32, un10, un1, un0, q1, x$3, rhat, x$4, x$5, x$6, x$7, x$8, x$9, x$10, un21, q0, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, _tuple$1;
+		q = new Go$Uint64(0, 0);
+		r = new Go$Uint64(0, 0);
+		if ((u1.high > v.high || (u1.high === v.high && u1.low >= v.low))) {
+			_tuple = [new Go$Uint64(4294967295, 4294967295), new Go$Uint64(4294967295, 4294967295)], q = _tuple[0], r = _tuple[1];
+			return [q, r];
+		}
+		s = 0;
+		while ((x = new Go$Uint64(v.high & 2147483648, (v.low & 0) >>> 0), (x.high === 0 && x.low === 0))) {
+			s = s + 1 >>> 0;
+			v = go$shiftLeft64(v, 1);
+		}
+		vn1 = go$shiftRightUint64(v, 32);
+		vn0 = new Go$Uint64(v.high & 0, (v.low & 4294967295) >>> 0);
+		un32 = (x$1 = go$shiftLeft64(u1, s), x$2 = go$shiftRightUint64(u0, ((64 - s >>> 0))), new Go$Uint64(x$1.high | x$2.high, (x$1.low | x$2.low) >>> 0));
+		un10 = go$shiftLeft64(u0, s);
+		un1 = go$shiftRightUint64(un10, 32);
+		un0 = new Go$Uint64(un10.high & 0, (un10.low & 4294967295) >>> 0);
+		q1 = go$div64(un32, vn1, false);
+		rhat = (x$3 = go$mul64(q1, vn1), new Go$Uint64(un32.high - x$3.high, un32.low - x$3.low));
+		if ((q1.high > 1 || (q1.high === 1 && q1.low >= 0)) || (x$4 = go$mul64(q1, vn0), x$5 = (x$6 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$6.high + un1.high, x$6.low + un1.low)), (x$4.high > x$5.high || (x$4.high === x$5.high && x$4.low > x$5.low)))) {
+			q1 = new Go$Uint64(q1.high - 0, q1.low - 1);
+			rhat = (x$7 = vn1, new Go$Uint64(rhat.high + x$7.high, rhat.low + x$7.low));
+			if ((rhat.high < 1 || (rhat.high === 1 && rhat.low < 0))) {
+				go$notSupported("goto");
+			}
+		}
+		un21 = (x$8 = (x$9 = go$mul64(un32, new Go$Uint64(1, 0)), new Go$Uint64(x$9.high + un1.high, x$9.low + un1.low)), x$10 = go$mul64(q1, v), new Go$Uint64(x$8.high - x$10.high, x$8.low - x$10.low));
+		q0 = go$div64(un21, vn1, false);
+		rhat = (x$11 = go$mul64(q0, vn1), new Go$Uint64(un21.high - x$11.high, un21.low - x$11.low));
+		if ((q0.high > 1 || (q0.high === 1 && q0.low >= 0)) || (x$12 = go$mul64(q0, vn0), x$13 = (x$14 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$14.high + un0.high, x$14.low + un0.low)), (x$12.high > x$13.high || (x$12.high === x$13.high && x$12.low > x$13.low)))) {
+			q0 = new Go$Uint64(q0.high - 0, q0.low - 1);
+			rhat = (x$15 = vn1, new Go$Uint64(rhat.high + x$15.high, rhat.low + x$15.low));
+			if ((rhat.high < 1 || (rhat.high === 1 && rhat.low < 0))) {
+				go$notSupported("goto");
+			}
+		}
+		_tuple$1 = [(x$16 = go$mul64(q1, new Go$Uint64(1, 0)), new Go$Uint64(x$16.high + q0.high, x$16.low + q0.low)), go$shiftRightUint64(((x$17 = (x$18 = go$mul64(un21, new Go$Uint64(1, 0)), new Go$Uint64(x$18.high + un0.high, x$18.low + un0.low)), x$19 = go$mul64(q0, v), new Go$Uint64(x$17.high - x$19.high, x$17.low - x$19.low))), s)], q = _tuple$1[0], r = _tuple$1[1];
+		return [q, r];
+	};
+	var fadd64c = function(f, g$1, ret) {
+		ret.go$set(fadd64(f, g$1));
+	};
+	var fsub64c = function(f, g$1, ret) {
+		ret.go$set(fsub64(f, g$1));
+	};
+	var fmul64c = function(f, g$1, ret) {
+		ret.go$set(fmul64(f, g$1));
+	};
+	var fdiv64c = function(f, g$1, ret) {
+		ret.go$set(fdiv64(f, g$1));
+	};
+	var fneg64c = function(f, ret) {
+		ret.go$set(fneg64(f));
+	};
+	var f32to64c = function(f, ret) {
+		ret.go$set(f32to64(f));
+	};
+	var f64to32c = function(f, ret) {
+		ret.go$set(f64to32(f));
+	};
+	var fcmp64c = function(f, g$1, ret, retnan) {
+		var _tuple;
+		_tuple = fcmp64(f, g$1), ret.go$set(_tuple[0]), retnan.go$set(_tuple[1]);
+	};
+	var fintto64c = function(val, ret) {
+		ret.go$set(fintto64(val));
+	};
+	var f64tointc = function(f, ret, retok) {
+		var _tuple;
+		_tuple = f64toint(f), ret.go$set(_tuple[0]), retok.go$set(_tuple[1]);
+	};
+	var GOMAXPROCS = go$pkg.GOMAXPROCS = function(n) {
+			if (n > 1) {
+				go$notSupported("GOMAXPROCS != 1");
+			}
+			return 1;
+		};
+	var NumCPU = go$pkg.NumCPU = function() { return 1; };
+	var Goexit = go$pkg.Goexit = function() {
+			var err = new Go$Error();
+			err.go$exit = true;
+			throw err;
+		};
+	var Caller = go$pkg.Caller = function(skip) {
+			var line = go$getStack()[skip + 3];
+			if (line === undefined) {
+				return [0, "", 0, false];
+			}
+			var parts = line.substring(line.indexOf("(") + 1, line.indexOf(")")).split(":");
+			return [0, parts[0], parseInt(parts[1]), true];
+		};
+	var SetFinalizer = go$pkg.SetFinalizer = function() {};
+	var getgoroot = function() {
+			return (typeof process !== 'undefined') ? (process.env["GOROOT"] || "") : "/";
+		};
+	var ReadMemStats = go$pkg.ReadMemStats = function() {};
+	var GC = go$pkg.GC = function() {};
+	go$pkg.Compiler = "gc";
+	go$pkg.GOOS = "darwin";
+	go$pkg.GOARCH = "js";
+	var mantbits64 = 52;
+	var expbits64 = 11;
+	var bias64 = -1023;
+	var nan64 = new Go$Uint64(2146435072, 1);
+	var inf64 = new Go$Uint64(2146435072, 0);
+	var neg64 = new Go$Uint64(2147483648, 0);
+	var mantbits32 = 23;
+	var expbits32 = 8;
+	var bias32 = -127;
+	var nan32 = 2139095041;
+	var inf32 = 2139095040;
+	var neg32 = 2147483648;
+	var theGoarch = "js";
+	var theGoos = "darwin";
+	var defaultGoroot = "/usr/local/go";
+	var theVersion = "go1.2";
+	go$pkg.MemProfileRate = 0;
+	var sizeof_C_MStats = 0;
+	var memStats = new MemStats.Ptr();
+	var _ = 0;
+	var precisestack = 0;
+	var algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
+	var startup_random_data = (go$ptrType(Go$Uint8)).nil;
+	var startup_random_data_len = 0;
+	var emptystring = "";
+	var zerobase = new Go$Uint64(0, 0);
+	var allg = (go$ptrType(g)).nil;
+	var lastg = (go$ptrType(g)).nil;
+	var allm = (go$ptrType(m)).nil;
+	var allp = (go$ptrType((go$ptrType(p)))).nil;
+	var gomaxprocs = 0;
+	var needextram = 0;
+	var panicking = 0;
+	var goos = (go$ptrType(Go$Int8)).nil;
+	var ncpu = 0;
+	var iscgo = 0;
+	var sysargs = go$throwNilPointerError;
+	var maxstring = new Go$Uint64(0, 0);
+	var hchansize = 0;
+	var cpuid_ecx = 0;
+	var cpuid_edx = 0;
+	var debug = new debugvars.Ptr();
+	var maxstacksize = new Go$Uint64(0, 0);
+	var blockprofilerate = new Go$Int64(0, 0);
+	var worldsema = 0;
+	var nan = 0;
+	var posinf = 0;
+	var neginf = 0;
+	var memstats = new mstats.Ptr();
+	var class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
+	var class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
+	var size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
+	var size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
+	var checking = 0;
+	var m0 = new m.Ptr();
+	var g0 = new g.Ptr();
+	var extram = (go$ptrType(m)).nil;
+	var newprocs = 0;
+	var scavenger = new funcval.Ptr();
+	var initdone = new funcval.Ptr();
+	var _cgo_thread_start = go$throwNilPointerError;
+	var prof = new _3_.Ptr();
+	var experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
+	var hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
+	var ifacelock = new lock.Ptr();
+	var typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
+	var etypelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
+	var empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
+	var hashload = 0;
+
+			go$throwRuntimeError = function(msg) { throw go$panic(new errorString(msg)); };
+			sizeof_C_MStats = 3712;
+			go$pkg.init = function() {
+		go$pkg.MemProfileRate = 524288;
+		if (!((sizeof_C_MStats === 3712))) {
+			console.log(sizeof_C_MStats, 3712);
+			throw go$panic(new Go$String("MStats vs MemStatsType size mismatch"));
+		}
+	};

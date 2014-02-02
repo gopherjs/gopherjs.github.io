@@ -1,0 +1,453 @@
+0‚ÖÒ‚Ãpackage rand
+import math "math"
+import sync "sync"
+func @"".ExpFloat64() (? float64)
+func @"".Float32() (? float32)
+func @"".Float64() (? float64)
+func @"".Int() (? int)
+func @"".Int31() (? int32)
+func @"".Int31n(@"".n int32) (? int32)
+func @"".Int63() (? int64)
+func @"".Int63n(@"".n int64) (? int64)
+func @"".Intn(@"".n int) (? int)
+func @"".New(@"".src @"".Source) (? *@"".Rand)
+func @"".NewSource(@"".seed int64) (? @"".Source)
+func @"".NewZipf(@"".r *@"".Rand, @"".s float64, @"".v float64, @"".imax uint64) (? *@"".Zipf)
+func @"".NormFloat64() (? float64)
+func @"".Perm(@"".n int) (? []int)
+type @"".Rand struct { @"".src @"".Source }
+func (? *@"".Rand) @"".ExpFloat64() (? float64)
+func (? *@"".Rand) @"".Float32() (? float32)
+func (? *@"".Rand) @"".Float64() (? float64)
+func (? *@"".Rand) @"".Int() (? int)
+func (? *@"".Rand) @"".Int31() (? int32)
+func (? *@"".Rand) @"".Int31n(@"".n int32) (? int32)
+func (? *@"".Rand) @"".Int63() (? int64)
+func (? *@"".Rand) @"".Int63n(@"".n int64) (? int64)
+func (? *@"".Rand) @"".Intn(@"".n int) (? int)
+func (? *@"".Rand) @"".NormFloat64() (? float64)
+func (? *@"".Rand) @"".Perm(@"".n int) (? []int)
+func (? *@"".Rand) @"".Seed(@"".seed int64) ()
+func (? *@"".Rand) @"".Uint32() (? uint32)
+func @"".Seed(@"".seed int64) ()
+type @"".Source interface { @"".Int63() (? int64); @"".Seed(@"".seed int64) () }
+func @"".Uint32() (? uint32)
+type @"".Zipf struct { @"".r *@"".Rand; @"".imax float64; @"".v float64; @"".q float64; @"".s float64; @"".oneminusQ float64; @"".oneminusQinv float64; @"".hxm float64; @"".hx0minusHxm float64 }
+func (? *@"".Zipf) @"".Uint64() (? uint64)
+func (? *@"".Zipf) @"".h(@"".x float64) (? float64)
+func (? *@"".Zipf) @"".hinv(@"".x float64) (? float64)
+type @"".lockedSource struct { @"".lk @"sync".Mutex; @"".src @"".Source }
+func (? *@"".lockedSource) @"".Int63() (@"".n int64)
+func (? *@"".lockedSource) @"".Seed(@"".seed int64) ()
+type @"".rngSource struct { @"".tap int; @"".feed int; @"".vec [607]int64 }
+func (? *@"".rngSource) @"".Int63() (? int64)
+func (? *@"".rngSource) @"".Seed(@"".seed int64) ()
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+$$
+0-runtimemathsync/atomicsync	math/rand‚ÍØ	var math = go$packages["math"];
+	var sync = go$packages["sync"];
+	var Source;
+	Source = go$newType(0, "Interface", "rand.Source", "Source", "math/rand", null);
+	go$pkg.Source = Source;
+	var Rand;
+	Rand = go$newType(0, "Struct", "rand.Rand", "Rand", "math/rand", function(src_) {
+		this.go$val = this;
+		this.src = src_ !== undefined ? src_ : null;
+	});
+	go$pkg.Rand = Rand;
+	var lockedSource;
+	lockedSource = go$newType(0, "Struct", "rand.lockedSource", "lockedSource", "math/rand", function(lk_, src_) {
+		this.go$val = this;
+		this.lk = lk_ !== undefined ? lk_ : new sync.Mutex.Ptr();
+		this.src = src_ !== undefined ? src_ : null;
+	});
+	go$pkg.lockedSource = lockedSource;
+	var rngSource;
+	rngSource = go$newType(0, "Struct", "rand.rngSource", "rngSource", "math/rand", function(tap_, feed_, vec_) {
+		this.go$val = this;
+		this.tap = tap_ !== undefined ? tap_ : 0;
+		this.feed = feed_ !== undefined ? feed_ : 0;
+		this.vec = vec_ !== undefined ? vec_ : go$makeNativeArray("Int64", 607, function() { return new Go$Int64(0, 0); });
+	});
+	go$pkg.rngSource = rngSource;
+	var Zipf;
+	Zipf = go$newType(0, "Struct", "rand.Zipf", "Zipf", "math/rand", function(r_, imax_, v_, q_, s_, oneminusQ_, oneminusQinv_, hxm_, hx0minusHxm_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : (go$ptrType(Rand)).nil;
+		this.imax = imax_ !== undefined ? imax_ : 0;
+		this.v = v_ !== undefined ? v_ : 0;
+		this.q = q_ !== undefined ? q_ : 0;
+		this.s = s_ !== undefined ? s_ : 0;
+		this.oneminusQ = oneminusQ_ !== undefined ? oneminusQ_ : 0;
+		this.oneminusQinv = oneminusQinv_ !== undefined ? oneminusQinv_ : 0;
+		this.hxm = hxm_ !== undefined ? hxm_ : 0;
+		this.hx0minusHxm = hx0minusHxm_ !== undefined ? hx0minusHxm_ : 0;
+	});
+	go$pkg.Zipf = Zipf;
+	Source.init([["Int63", "", (go$funcType([], [Go$Int64], false))], ["Seed", "", (go$funcType([Go$Int64], [], false))]]);
+	Rand.init([["src", "math/rand", Source, ""]]);
+	(go$ptrType(Rand)).methods = [["ExpFloat64", "", [], [Go$Float64], false], ["Float32", "", [], [Go$Float32], false], ["Float64", "", [], [Go$Float64], false], ["Int", "", [], [Go$Int], false], ["Int31", "", [], [Go$Int32], false], ["Int31n", "", [Go$Int32], [Go$Int32], false], ["Int63", "", [], [Go$Int64], false], ["Int63n", "", [Go$Int64], [Go$Int64], false], ["Intn", "", [Go$Int], [Go$Int], false], ["NormFloat64", "", [], [Go$Float64], false], ["Perm", "", [Go$Int], [(go$sliceType(Go$Int))], false], ["Seed", "", [Go$Int64], [], false], ["Uint32", "", [], [Go$Uint32], false]];
+	lockedSource.init([["lk", "math/rand", sync.Mutex, ""], ["src", "math/rand", Source, ""]]);
+	(go$ptrType(lockedSource)).methods = [["Int63", "", [], [Go$Int64], false], ["Seed", "", [Go$Int64], [], false]];
+	rngSource.init([["tap", "math/rand", Go$Int, ""], ["feed", "math/rand", Go$Int, ""], ["vec", "math/rand", (go$arrayType(Go$Int64, 607)), ""]]);
+	(go$ptrType(rngSource)).methods = [["Int63", "", [], [Go$Int64], false], ["Seed", "", [Go$Int64], [], false]];
+	Zipf.init([["r", "math/rand", (go$ptrType(Rand)), ""], ["imax", "math/rand", Go$Float64, ""], ["v", "math/rand", Go$Float64, ""], ["q", "math/rand", Go$Float64, ""], ["s", "math/rand", Go$Float64, ""], ["oneminusQ", "math/rand", Go$Float64, ""], ["oneminusQinv", "math/rand", Go$Float64, ""], ["hxm", "math/rand", Go$Float64, ""], ["hx0minusHxm", "math/rand", Go$Float64, ""]]);
+	(go$ptrType(Zipf)).methods = [["Uint64", "", [], [Go$Uint64], false], ["h", "math/rand", [Go$Float64], [Go$Float64], false], ["hinv", "math/rand", [Go$Float64], [Go$Float64], false]];
+	Rand.Ptr.prototype.ExpFloat64 = function() {
+		var r, j, i, x;
+		r = this;
+		while (true) {
+			j = r.Uint32();
+			i = (j & 255) >>> 0;
+			x = j * we[i];
+			if (j < ke[i]) {
+				return x;
+			}
+			if (i === 0) {
+				return 7.69711747013105 - math.Log(r.Float64());
+			}
+			if (fe[i] + r.Float64() * (fe[(i - 1 >>> 0)] - fe[i]) < math.Exp(-x)) {
+				return x;
+			}
+		}
+	};
+	Rand.prototype.ExpFloat64 = function() { return this.go$val.ExpFloat64(); };
+	var absInt32 = function(i) {
+		if (i < 0) {
+			return (-i >>> 0);
+		}
+		return (i >>> 0);
+	};
+	Rand.Ptr.prototype.NormFloat64 = function() {
+		var r, j, i, x, y;
+		r = this;
+		while (true) {
+			j = (r.Uint32() >> 0);
+			i = j & 127;
+			x = j * wn[i];
+			if (absInt32(j) < kn[i]) {
+				return x;
+			}
+			if (i === 0) {
+				while (true) {
+					x = -math.Log(r.Float64()) * 0.29047645161474317;
+					y = -math.Log(r.Float64());
+					if (y + y >= x * x) {
+						break;
+					}
+				}
+				if (j > 0) {
+					return 3.442619855899 + x;
+				}
+				return -3.442619855899 - x;
+			}
+			if (fn[i] + r.Float64() * (fn[(i - 1 >> 0)] - fn[i]) < math.Exp(-0.5 * x * x)) {
+				return x;
+			}
+		}
+	};
+	Rand.prototype.NormFloat64 = function() { return this.go$val.NormFloat64(); };
+	var NewSource = go$pkg.NewSource = function(seed) {
+		var rng;
+		rng = new rngSource.Ptr();
+		rng.Seed(seed);
+		return rng;
+	};
+	var New = go$pkg.New = function(src) {
+		return new Rand.Ptr(src);
+	};
+	Rand.Ptr.prototype.Seed = function(seed) {
+		var r;
+		r = this;
+		r.src.Seed(seed);
+	};
+	Rand.prototype.Seed = function(seed) { return this.go$val.Seed(seed); };
+	Rand.Ptr.prototype.Int63 = function() {
+		var r;
+		r = this;
+		return r.src.Int63();
+	};
+	Rand.prototype.Int63 = function() { return this.go$val.Int63(); };
+	Rand.Ptr.prototype.Uint32 = function() {
+		var r;
+		r = this;
+		return (go$shiftRightInt64(r.Int63(), 31).low >>> 0);
+	};
+	Rand.prototype.Uint32 = function() { return this.go$val.Uint32(); };
+	Rand.Ptr.prototype.Int31 = function() {
+		var r, x;
+		r = this;
+		return ((x = go$shiftRightInt64(r.Int63(), 32), x.low + ((x.high >> 31) * 4294967296)) >> 0);
+	};
+	Rand.prototype.Int31 = function() { return this.go$val.Int31(); };
+	Rand.Ptr.prototype.Int = function() {
+		var r, u;
+		r = this;
+		u = (r.Int63().low >>> 0);
+		return (((u << 1 >>> 0) >>> 1 >>> 0) >> 0);
+	};
+	Rand.prototype.Int = function() { return this.go$val.Int(); };
+	Rand.Ptr.prototype.Int63n = function(n) {
+		var r, x, x$1, max, v;
+		r = this;
+		if ((n.high < 0 || (n.high === 0 && n.low <= 0))) {
+			throw go$panic(new Go$String("invalid argument to Int63n"));
+		}
+		max = (x = (x$1 = go$div64(new Go$Uint64(2147483648, 0), new Go$Uint64(n.high, n.low), true), new Go$Uint64(2147483647 - x$1.high, 4294967295 - x$1.low)), new Go$Int64(x.high, x.low));
+		v = r.Int63();
+		while ((v.high > max.high || (v.high === max.high && v.low > max.low))) {
+			v = r.Int63();
+		}
+		return go$div64(v, n, true);
+	};
+	Rand.prototype.Int63n = function(n) { return this.go$val.Int63n(n); };
+	Rand.Ptr.prototype.Int31n = function(n) {
+		var r, _r, max, v, _r$1;
+		r = this;
+		if (n <= 0) {
+			throw go$panic(new Go$String("invalid argument to Int31n"));
+		}
+		max = ((2147483647 - (_r = 2147483648 % (n >>> 0), _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0) >> 0);
+		v = r.Int31();
+		while (v > max) {
+			v = r.Int31();
+		}
+		return (_r$1 = v % n, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero"));
+	};
+	Rand.prototype.Int31n = function(n) { return this.go$val.Int31n(n); };
+	Rand.Ptr.prototype.Intn = function(n) {
+		var r, x;
+		r = this;
+		if (n <= 0) {
+			throw go$panic(new Go$String("invalid argument to Intn"));
+		}
+		if (n <= 2147483647) {
+			return (r.Int31n((n >> 0)) >> 0);
+		}
+		return ((x = r.Int63n(new Go$Int64(0, n)), x.low + ((x.high >> 31) * 4294967296)) >> 0);
+	};
+	Rand.prototype.Intn = function(n) { return this.go$val.Intn(n); };
+	Rand.Ptr.prototype.Float64 = function() {
+		var r;
+		r = this;
+		return go$flatten64(r.Int63()) / 9.223372036854776e+18;
+	};
+	Rand.prototype.Float64 = function() { return this.go$val.Float64(); };
+	Rand.Ptr.prototype.Float32 = function() {
+		var r;
+		r = this;
+		return r.Float64();
+	};
+	Rand.prototype.Float32 = function() { return this.go$val.Float32(); };
+	Rand.Ptr.prototype.Perm = function(n) {
+		var r, m, i, _slice, _index, i$1, j, _slice$1, _index$1, _slice$2, _index$2, _tuple, _slice$3, _index$3, _slice$4, _index$4;
+		r = this;
+		m = (go$sliceType(Go$Int)).make(n, 0, function() { return 0; });
+		i = 0;
+		while (i < n) {
+			_slice = m, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = i) : go$throwRuntimeError("index out of range");
+			i = i + 1 >> 0;
+		}
+		i$1 = 0;
+		while (i$1 < n) {
+			j = r.Intn(i$1 + 1 >> 0);
+			_tuple = [(_slice$1 = m, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = m, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))], _slice$3 = m, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$4 = m, _index$4 = j, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = _tuple[1]) : go$throwRuntimeError("index out of range");
+			i$1 = i$1 + 1 >> 0;
+		}
+		return m;
+	};
+	Rand.prototype.Perm = function(n) { return this.go$val.Perm(n); };
+	var Seed = go$pkg.Seed = function(seed) {
+		globalRand.Seed(seed);
+	};
+	var Int63 = go$pkg.Int63 = function() {
+		return globalRand.Int63();
+	};
+	var Uint32 = go$pkg.Uint32 = function() {
+		return globalRand.Uint32();
+	};
+	var Int31 = go$pkg.Int31 = function() {
+		return globalRand.Int31();
+	};
+	var Int = go$pkg.Int = function() {
+		return globalRand.Int();
+	};
+	var Int63n = go$pkg.Int63n = function(n) {
+		return globalRand.Int63n(n);
+	};
+	var Int31n = go$pkg.Int31n = function(n) {
+		return globalRand.Int31n(n);
+	};
+	var Intn = go$pkg.Intn = function(n) {
+		return globalRand.Intn(n);
+	};
+	var Float64 = go$pkg.Float64 = function() {
+		return globalRand.Float64();
+	};
+	var Float32 = go$pkg.Float32 = function() {
+		return globalRand.Float32();
+	};
+	var Perm = go$pkg.Perm = function(n) {
+		return globalRand.Perm(n);
+	};
+	var NormFloat64 = go$pkg.NormFloat64 = function() {
+		return globalRand.NormFloat64();
+	};
+	var ExpFloat64 = go$pkg.ExpFloat64 = function() {
+		return globalRand.ExpFloat64();
+	};
+	lockedSource.Ptr.prototype.Int63 = function() {
+		var n, r;
+		n = new Go$Int64(0, 0);
+		r = this;
+		r.lk.Lock();
+		n = r.src.Int63();
+		r.lk.Unlock();
+		return n;
+	};
+	lockedSource.prototype.Int63 = function() { return this.go$val.Int63(); };
+	lockedSource.Ptr.prototype.Seed = function(seed) {
+		var r;
+		r = this;
+		r.lk.Lock();
+		r.src.Seed(seed);
+		r.lk.Unlock();
+	};
+	lockedSource.prototype.Seed = function(seed) { return this.go$val.Seed(seed); };
+	var seedrand = function(x) {
+		var _q, hi, _r, lo;
+		hi = (_q = x / 44488, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+		lo = (_r = x % 44488, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"));
+		x = ((((48271 >>> 16 << 16) * lo >> 0) + (48271 << 16 >>> 16) * lo) >> 0) - ((((3399 >>> 16 << 16) * hi >> 0) + (3399 << 16 >>> 16) * hi) >> 0) >> 0;
+		if (x < 0) {
+			x = x + 2147483647 >> 0;
+		}
+		return x;
+	};
+	rngSource.Ptr.prototype.Seed = function(seed) {
+		var rng, x, i, u, x$1, x$2, x$3;
+		rng = this;
+		rng.tap = 0;
+		rng.feed = 334;
+		seed = go$div64(seed, new Go$Int64(0, 2147483647), true);
+		if ((seed.high < 0 || (seed.high === 0 && seed.low < 0))) {
+			seed = new Go$Int64(seed.high + 0, seed.low + 2147483647);
+		}
+		if ((seed.high === 0 && seed.low === 0)) {
+			seed = new Go$Int64(0, 89482311);
+		}
+		x = ((seed.low + ((seed.high >> 31) * 4294967296)) >> 0);
+		i = -20;
+		while (i < 607) {
+			x = seedrand(x);
+			if (i >= 0) {
+				u = new Go$Int64(0, 0);
+				u = go$shiftLeft64(new Go$Int64(0, x), 40);
+				x = seedrand(x);
+				u = (x$1 = go$shiftLeft64(new Go$Int64(0, x), 20), new Go$Int64(u.high ^ x$1.high, (u.low ^ x$1.low) >>> 0));
+				x = seedrand(x);
+				u = (x$2 = new Go$Int64(0, x), new Go$Int64(u.high ^ x$2.high, (u.low ^ x$2.low) >>> 0));
+				u = (x$3 = rng_cooked[i], new Go$Int64(u.high ^ x$3.high, (u.low ^ x$3.low) >>> 0));
+				rng.vec[i] = new Go$Int64(u.high & 2147483647, (u.low & 4294967295) >>> 0);
+			}
+			i = i + 1 >> 0;
+		}
+	};
+	rngSource.prototype.Seed = function(seed) { return this.go$val.Seed(seed); };
+	rngSource.Ptr.prototype.Int63 = function() {
+		var rng, x, x$1, x$2, x$3;
+		rng = this;
+		rng.tap = rng.tap - 1 >> 0;
+		if (rng.tap < 0) {
+			rng.tap = rng.tap + 607 >> 0;
+		}
+		rng.feed = rng.feed - 1 >> 0;
+		if (rng.feed < 0) {
+			rng.feed = rng.feed + 607 >> 0;
+		}
+		x$3 = (x = (x$1 = rng.vec[rng.feed], x$2 = rng.vec[rng.tap], new Go$Int64(x$1.high + x$2.high, x$1.low + x$2.low)), new Go$Int64(x.high & 2147483647, (x.low & 4294967295) >>> 0));
+		rng.vec[rng.feed] = x$3;
+		return x$3;
+	};
+	rngSource.prototype.Int63 = function() { return this.go$val.Int63(); };
+	Zipf.Ptr.prototype.h = function(x) {
+		var z;
+		z = this;
+		return math.Exp(z.oneminusQ * math.Log(z.v + x)) * z.oneminusQinv;
+	};
+	Zipf.prototype.h = function(x) { return this.go$val.h(x); };
+	Zipf.Ptr.prototype.hinv = function(x) {
+		var z;
+		z = this;
+		return math.Exp(z.oneminusQinv * math.Log(z.oneminusQ * x)) - z.v;
+	};
+	Zipf.prototype.hinv = function(x) { return this.go$val.hinv(x); };
+	var NewZipf = go$pkg.NewZipf = function(r, s, v, imax) {
+		var z;
+		z = new Zipf.Ptr();
+		if (s <= 1 || v < 1) {
+			return (go$ptrType(Zipf)).nil;
+		}
+		z.r = r;
+		z.imax = go$flatten64(imax);
+		z.v = v;
+		z.q = s;
+		z.oneminusQ = 1 - z.q;
+		z.oneminusQinv = 1 / z.oneminusQ;
+		z.hxm = z.h(z.imax + 0.5);
+		z.hx0minusHxm = z.h(0.5) - math.Exp(math.Log(z.v) * (-z.q)) - z.hxm;
+		z.s = 1 - z.hinv(z.h(1.5) - math.Exp(-z.q * math.Log(z.v + 1)));
+		return z;
+	};
+	Zipf.Ptr.prototype.Uint64 = function() {
+		var z, k, r, ur, x;
+		z = this;
+		if (z === (go$ptrType(Zipf)).nil) {
+			throw go$panic(new Go$String("rand: nil Zipf"));
+		}
+		k = 0;
+		while (true) {
+			r = z.r.Float64();
+			ur = z.hxm + r * z.hx0minusHxm;
+			x = z.hinv(ur);
+			k = math.Floor(x + 0.5);
+			if (k - x <= z.s) {
+				break;
+			}
+			if (ur >= z.h(k + 0.5) - math.Exp(-math.Log(k + z.v) * z.q)) {
+				break;
+			}
+		}
+		return new Go$Uint64(0, k);
+	};
+	Zipf.prototype.Uint64 = function() { return this.go$val.Uint64(); };
+	var re = 7.69711747013105;
+	var rn = 3.442619855899;
+	var _LEN = 607;
+	var _TAP = 273;
+	var _MAX = -9223372036854775808;
+	var _MASK = 9223372036854775807;
+	var _A = 48271;
+	var _M = 2147483647;
+	var _Q = 44488;
+	var _R = 3399;
+	var ke = go$makeNativeArray("Uint32", 256, function() { return 0; });
+	var we = go$makeNativeArray("Float32", 256, function() { return 0; });
+	var fe = go$makeNativeArray("Float32", 256, function() { return 0; });
+	var kn = go$makeNativeArray("Uint32", 128, function() { return 0; });
+	var wn = go$makeNativeArray("Float32", 128, function() { return 0; });
+	var fn = go$makeNativeArray("Float32", 128, function() { return 0; });
+	var globalRand = (go$ptrType(Rand)).nil;
+	var rng_cooked = go$makeNativeArray("Int64", 607, function() { return new Go$Int64(0, 0); });
+	go$pkg.init = function() {
+		ke = go$toNativeArray("Uint32", [3801129273, 0, 2615860924, 3279400049, 3571300752, 3733536696, 3836274812, 3906990442, 3958562475, 3997804264, 4028649213, 4053523342, 4074002619, 4091154507, 4105727352, 4118261130, 4129155133, 4138710916, 4147160435, 4154685009, 4161428406, 4167506077, 4173011791, 4178022498, 4182601930, 4186803325, 4190671498, 4194244443, 4197554582, 4200629752, 4203493986, 4206168142, 4208670408, 4211016720, 4213221098, 4215295924, 4217252177, 4219099625, 4220846988, 4222502074, 4224071896, 4225562770, 4226980400, 4228329951, 4229616109, 4230843138, 4232014925, 4233135020, 4234206673, 4235232866, 4236216336, 4237159604, 4238064994, 4238934652, 4239770563, 4240574564, 4241348362, 4242093539, 4242811568, 4243503822, 4244171579, 4244816032, 4245438297, 4246039419, 4246620374, 4247182079, 4247725394, 4248251127, 4248760037, 4249252839, 4249730206, 4250192773, 4250641138, 4251075867, 4251497493, 4251906522, 4252303431, 4252688672, 4253062674, 4253425844, 4253778565, 4254121205, 4254454110, 4254777611, 4255092022, 4255397640, 4255694750, 4255983622, 4256264513, 4256537670, 4256803325, 4257061702, 4257313014, 4257557464, 4257795244, 4258026541, 4258251531, 4258470383, 4258683258, 4258890309, 4259091685, 4259287526, 4259477966, 4259663135, 4259843154, 4260018142, 4260188212, 4260353470, 4260514019, 4260669958, 4260821380, 4260968374, 4261111028, 4261249421, 4261383632, 4261513736, 4261639802, 4261761900, 4261880092, 4261994441, 4262105003, 4262211835, 4262314988, 4262414513, 4262510454, 4262602857, 4262691764, 4262777212, 4262859239, 4262937878, 4263013162, 4263085118, 4263153776, 4263219158, 4263281289, 4263340187, 4263395872, 4263448358, 4263497660, 4263543789, 4263586755, 4263626565, 4263663224, 4263696735, 4263727099, 4263754314, 4263778377, 4263799282, 4263817020, 4263831582, 4263842955, 4263851124, 4263856071, 4263857776, 4263856218, 4263851370, 4263843206, 4263831695, 4263816804, 4263798497, 4263776735, 4263751476, 4263722676, 4263690284, 4263654251, 4263614520, 4263571032, 4263523724, 4263472530, 4263417377, 4263358192, 4263294892, 4263227394, 4263155608, 4263079437, 4262998781, 4262913534, 4262823581, 4262728804, 4262629075, 4262524261, 4262414220, 4262298801, 4262177846, 4262051187, 4261918645, 4261780032, 4261635148, 4261483780, 4261325704, 4261160681, 4260988457, 4260808763, 4260621313, 4260425802, 4260221905, 4260009277, 4259787550, 4259556329, 4259315195, 4259063697, 4258801357, 4258527656, 4258242044, 4257943926, 4257632664, 4257307571, 4256967906, 4256612870, 4256241598, 4255853155, 4255446525, 4255020608, 4254574202, 4254106002, 4253614578, 4253098370, 4252555662, 4251984571, 4251383021, 4250748722, 4250079132, 4249371435, 4248622490, 4247828790, 4246986404, 4246090910, 4245137315, 4244119963, 4243032411, 4241867296, 4240616155, 4239269214, 4237815118, 4236240596, 4234530035, 4232664930, 4230623176, 4228378137, 4225897409, 4223141146, 4220059768, 4216590757, 4212654085, 4208145538, 4202926710, 4196809522, 4189531420, 4180713890, 4169789475, 4155865042, 4137444620, 4111806704, 4073393724, 4008685917, 3873074895]);
+		we = go$toNativeArray("Float32", [2.0249555e-09, 1.486674e-11, 2.4409617e-11, 3.1968806e-11, 3.844677e-11, 4.4228204e-11, 4.9516443e-11, 5.443359e-11, 5.905944e-11, 6.344942e-11, 6.7643814e-11, 7.1672945e-11, 7.556032e-11, 7.932458e-11, 8.298079e-11, 8.654132e-11, 9.0016515e-11, 9.3415074e-11, 9.674443e-11, 1.0001099e-10, 1.03220314e-10, 1.06377254e-10, 1.09486115e-10, 1.1255068e-10, 1.1557435e-10, 1.1856015e-10, 1.2151083e-10, 1.2442886e-10, 1.2731648e-10, 1.3017575e-10, 1.3300853e-10, 1.3581657e-10, 1.3860142e-10, 1.4136457e-10, 1.4410738e-10, 1.4683108e-10, 1.4953687e-10, 1.5222583e-10, 1.54899e-10, 1.5755733e-10, 1.6020171e-10, 1.6283301e-10, 1.6545203e-10, 1.6805951e-10, 1.7065617e-10, 1.732427e-10, 1.7581973e-10, 1.7838787e-10, 1.8094774e-10, 1.8349985e-10, 1.8604476e-10, 1.8858298e-10, 1.9111498e-10, 1.9364126e-10, 1.9616223e-10, 1.9867835e-10, 2.0119004e-10, 2.0369768e-10, 2.0620168e-10, 2.087024e-10, 2.1120022e-10, 2.136955e-10, 2.1618855e-10, 2.1867974e-10, 2.2116936e-10, 2.2365775e-10, 2.261452e-10, 2.2863202e-10, 2.311185e-10, 2.3360494e-10, 2.360916e-10, 2.3857874e-10, 2.4106667e-10, 2.4355562e-10, 2.4604588e-10, 2.485377e-10, 2.5103128e-10, 2.5352695e-10, 2.560249e-10, 2.585254e-10, 2.6102867e-10, 2.6353494e-10, 2.6604446e-10, 2.6855745e-10, 2.7107416e-10, 2.7359479e-10, 2.761196e-10, 2.7864877e-10, 2.8118255e-10, 2.8372119e-10, 2.8626485e-10, 2.888138e-10, 2.9136826e-10, 2.939284e-10, 2.9649452e-10, 2.9906677e-10, 3.016454e-10, 3.0423064e-10, 3.0682268e-10, 3.0942177e-10, 3.1202813e-10, 3.1464195e-10, 3.1726352e-10, 3.19893e-10, 3.2253064e-10, 3.251767e-10, 3.2783135e-10, 3.3049485e-10, 3.3316744e-10, 3.3584938e-10, 3.3854083e-10, 3.4124212e-10, 3.4395342e-10, 3.46675e-10, 3.4940711e-10, 3.5215003e-10, 3.5490397e-10, 3.5766917e-10, 3.6044595e-10, 3.6323455e-10, 3.660352e-10, 3.6884823e-10, 3.7167386e-10, 3.745124e-10, 3.773641e-10, 3.802293e-10, 3.8310827e-10, 3.860013e-10, 3.8890866e-10, 3.918307e-10, 3.9476775e-10, 3.9772008e-10, 4.0068804e-10, 4.0367196e-10, 4.0667217e-10, 4.09689e-10, 4.1272286e-10, 4.1577405e-10, 4.1884296e-10, 4.2192994e-10, 4.250354e-10, 4.281597e-10, 4.313033e-10, 4.3446652e-10, 4.3764986e-10, 4.408537e-10, 4.4407847e-10, 4.4732465e-10, 4.5059267e-10, 4.5388301e-10, 4.571962e-10, 4.6053267e-10, 4.6389292e-10, 4.6727755e-10, 4.70687e-10, 4.741219e-10, 4.7758275e-10, 4.810702e-10, 4.845848e-10, 4.8812715e-10, 4.9169796e-10, 4.9529775e-10, 4.989273e-10, 5.0258725e-10, 5.0627835e-10, 5.100013e-10, 5.1375687e-10, 5.1754584e-10, 5.21369e-10, 5.2522725e-10, 5.2912136e-10, 5.330522e-10, 5.370208e-10, 5.4102806e-10, 5.45075e-10, 5.491625e-10, 5.532918e-10, 5.5746385e-10, 5.616799e-10, 5.6594107e-10, 5.7024857e-10, 5.746037e-10, 5.7900773e-10, 5.834621e-10, 5.8796823e-10, 5.925276e-10, 5.971417e-10, 6.018122e-10, 6.065408e-10, 6.113292e-10, 6.1617933e-10, 6.2109295e-10, 6.260722e-10, 6.3111916e-10, 6.3623595e-10, 6.4142497e-10, 6.4668854e-10, 6.5202926e-10, 6.5744976e-10, 6.6295286e-10, 6.6854156e-10, 6.742188e-10, 6.79988e-10, 6.858526e-10, 6.9181616e-10, 6.978826e-10, 7.04056e-10, 7.103407e-10, 7.167412e-10, 7.2326256e-10, 7.2990985e-10, 7.366886e-10, 7.4360473e-10, 7.5066453e-10, 7.5787476e-10, 7.6524265e-10, 7.7277595e-10, 7.80483e-10, 7.883728e-10, 7.9645507e-10, 8.047402e-10, 8.1323964e-10, 8.219657e-10, 8.309319e-10, 8.401528e-10, 8.496445e-10, 8.594247e-10, 8.6951274e-10, 8.799301e-10, 8.9070046e-10, 9.018503e-10, 9.134092e-10, 9.254101e-10, 9.378904e-10, 9.508923e-10, 9.644638e-10, 9.786603e-10, 9.935448e-10, 1.0091913e-09, 1.025686e-09, 1.0431306e-09, 1.0616465e-09, 1.08138e-09, 1.1025096e-09, 1.1252564e-09, 1.1498986e-09, 1.1767932e-09, 1.206409e-09, 1.2393786e-09, 1.276585e-09, 1.3193139e-09, 1.3695435e-09, 1.4305498e-09, 1.508365e-09, 1.6160854e-09, 1.7921248e-09]);
+		fe = go$toNativeArray("Float32", [1, 0.9381437, 0.90046996, 0.87170434, 0.8477855, 0.8269933, 0.8084217, 0.7915276, 0.77595687, 0.7614634, 0.7478686, 0.7350381, 0.72286767, 0.71127474, 0.70019263, 0.6895665, 0.67935055, 0.6695063, 0.66000086, 0.65080583, 0.6418967, 0.63325197, 0.6248527, 0.6166822, 0.60872537, 0.60096896, 0.5934009, 0.58601034, 0.5787874, 0.57172304, 0.5648092, 0.5580383, 0.5514034, 0.5448982, 0.5385169, 0.53225386, 0.5261042, 0.52006316, 0.5141264, 0.50828975, 0.5025495, 0.496902, 0.49134386, 0.485872, 0.48048335, 0.4751752, 0.46994483, 0.46478975, 0.45970762, 0.45469615, 0.44975325, 0.44487688, 0.44006512, 0.43531612, 0.43062815, 0.42599955, 0.42142874, 0.4169142, 0.41245446, 0.40804818, 0.403694, 0.3993907, 0.39513698, 0.39093173, 0.38677382, 0.38266218, 0.37859577, 0.37457356, 0.37059465, 0.3666581, 0.362763, 0.35890847, 0.35509375, 0.351318, 0.3475805, 0.34388044, 0.34021714, 0.3365899, 0.33299807, 0.32944095, 0.32591796, 0.3224285, 0.3189719, 0.31554767, 0.31215525, 0.30879408, 0.3054636, 0.3021634, 0.29889292, 0.2956517, 0.29243928, 0.28925523, 0.28609908, 0.28297043, 0.27986884, 0.27679393, 0.2737453, 0.2707226, 0.2677254, 0.26475343, 0.26180625, 0.25888354, 0.25598502, 0.2531103, 0.25025907, 0.24743107, 0.24462597, 0.24184346, 0.23908329, 0.23634516, 0.23362878, 0.23093392, 0.2282603, 0.22560766, 0.22297576, 0.22036438, 0.21777324, 0.21520215, 0.21265087, 0.21011916, 0.20760682, 0.20511365, 0.20263945, 0.20018397, 0.19774707, 0.19532852, 0.19292815, 0.19054577, 0.1881812, 0.18583426, 0.18350479, 0.1811926, 0.17889754, 0.17661946, 0.17435817, 0.17211354, 0.1698854, 0.16767362, 0.16547804, 0.16329853, 0.16113494, 0.15898713, 0.15685499, 0.15473837, 0.15263714, 0.15055119, 0.14848037, 0.14642459, 0.14438373, 0.14235765, 0.14034624, 0.13834943, 0.13636707, 0.13439907, 0.13244532, 0.13050574, 0.1285802, 0.12666863, 0.12477092, 0.12288698, 0.12101672, 0.119160056, 0.1173169, 0.115487166, 0.11367077, 0.11186763, 0.11007768, 0.10830083, 0.10653701, 0.10478614, 0.10304816, 0.101323, 0.09961058, 0.09791085, 0.09622374, 0.09454919, 0.09288713, 0.091237515, 0.08960028, 0.087975375, 0.08636274, 0.08476233, 0.083174095, 0.081597984, 0.08003395, 0.07848195, 0.076941945, 0.07541389, 0.07389775, 0.072393484, 0.07090106, 0.069420435, 0.06795159, 0.066494495, 0.06504912, 0.063615434, 0.062193416, 0.060783047, 0.059384305, 0.057997175, 0.05662164, 0.05525769, 0.053905312, 0.052564494, 0.051235236, 0.049917534, 0.048611384, 0.047316793, 0.046033762, 0.0447623, 0.043502413, 0.042254124, 0.041017443, 0.039792392, 0.038578995, 0.037377283, 0.036187284, 0.035009038, 0.033842582, 0.032687962, 0.031545233, 0.030414443, 0.02929566, 0.02818895, 0.027094385, 0.026012046, 0.024942026, 0.023884421, 0.022839336, 0.021806888, 0.020787204, 0.019780423, 0.0187867, 0.0178062, 0.016839107, 0.015885621, 0.014945968, 0.014020392, 0.013109165, 0.012212592, 0.011331013, 0.01046481, 0.009614414, 0.008780315, 0.007963077, 0.0071633533, 0.006381906, 0.0056196423, 0.0048776558, 0.004157295, 0.0034602648, 0.0027887989, 0.0021459677, 0.0015362998, 0.0009672693, 0.00045413437]);
+		kn = go$toNativeArray("Uint32", [1991057938, 0, 1611602771, 1826899878, 1918584482, 1969227037, 2001281515, 2023368125, 2039498179, 2051788381, 2061460127, 2069267110, 2075699398, 2081089314, 2085670119, 2089610331, 2093034710, 2096037586, 2098691595, 2101053571, 2103168620, 2105072996, 2106796166, 2108362327, 2109791536, 2111100552, 2112303493, 2113412330, 2114437283, 2115387130, 2116269447, 2117090813, 2117856962, 2118572919, 2119243101, 2119871411, 2120461303, 2121015852, 2121537798, 2122029592, 2122493434, 2122931299, 2123344971, 2123736059, 2124106020, 2124456175, 2124787725, 2125101763, 2125399283, 2125681194, 2125948325, 2126201433, 2126441213, 2126668298, 2126883268, 2127086657, 2127278949, 2127460589, 2127631985, 2127793506, 2127945490, 2128088244, 2128222044, 2128347141, 2128463758, 2128572095, 2128672327, 2128764606, 2128849065, 2128925811, 2128994934, 2129056501, 2129110560, 2129157136, 2129196237, 2129227847, 2129251929, 2129268426, 2129277255, 2129278312, 2129271467, 2129256561, 2129233410, 2129201800, 2129161480, 2129112170, 2129053545, 2128985244, 2128906855, 2128817916, 2128717911, 2128606255, 2128482298, 2128345305, 2128194452, 2128028813, 2127847342, 2127648860, 2127432031, 2127195339, 2126937058, 2126655214, 2126347546, 2126011445, 2125643893, 2125241376, 2124799783, 2124314271, 2123779094, 2123187386, 2122530867, 2121799464, 2120980787, 2120059418, 2119015917, 2117825402, 2116455471, 2114863093, 2112989789, 2110753906, 2108037662, 2104664315, 2100355223, 2094642347, 2086670106, 2074676188, 2054300022, 2010539237]);
+		wn = go$toNativeArray("Float32", [1.7290405e-09, 1.2680929e-10, 1.6897518e-10, 1.9862688e-10, 2.2232431e-10, 2.4244937e-10, 2.601613e-10, 2.7611988e-10, 2.9073963e-10, 3.042997e-10, 3.1699796e-10, 3.289802e-10, 3.4035738e-10, 3.5121603e-10, 3.616251e-10, 3.7164058e-10, 3.8130857e-10, 3.9066758e-10, 3.9975012e-10, 4.08584e-10, 4.1719309e-10, 4.2559822e-10, 4.338176e-10, 4.418672e-10, 4.497613e-10, 4.5751258e-10, 4.651324e-10, 4.7263105e-10, 4.8001775e-10, 4.87301e-10, 4.944885e-10, 5.015873e-10, 5.0860405e-10, 5.155446e-10, 5.2241467e-10, 5.2921934e-10, 5.359635e-10, 5.426517e-10, 5.4928817e-10, 5.5587696e-10, 5.624219e-10, 5.6892646e-10, 5.753941e-10, 5.818282e-10, 5.882317e-10, 5.946077e-10, 6.00959e-10, 6.072884e-10, 6.135985e-10, 6.19892e-10, 6.2617134e-10, 6.3243905e-10, 6.386974e-10, 6.449488e-10, 6.511956e-10, 6.5744005e-10, 6.6368433e-10, 6.699307e-10, 6.7618144e-10, 6.824387e-10, 6.8870465e-10, 6.949815e-10, 7.012715e-10, 7.075768e-10, 7.1389966e-10, 7.202424e-10, 7.266073e-10, 7.329966e-10, 7.394128e-10, 7.4585826e-10, 7.5233547e-10, 7.58847e-10, 7.653954e-10, 7.719835e-10, 7.7861395e-10, 7.852897e-10, 7.920138e-10, 7.987892e-10, 8.0561924e-10, 8.125073e-10, 8.194569e-10, 8.2647167e-10, 8.3355556e-10, 8.407127e-10, 8.479473e-10, 8.55264e-10, 8.6266755e-10, 8.7016316e-10, 8.777562e-10, 8.8545243e-10, 8.932582e-10, 9.0117996e-10, 9.09225e-10, 9.174008e-10, 9.2571584e-10, 9.341788e-10, 9.427997e-10, 9.515889e-10, 9.605579e-10, 9.697193e-10, 9.790869e-10, 9.88676e-10, 9.985036e-10, 1.0085882e-09, 1.0189509e-09, 1.0296151e-09, 1.0406069e-09, 1.0519566e-09, 1.063698e-09, 1.0758702e-09, 1.0885183e-09, 1.1016947e-09, 1.1154611e-09, 1.1298902e-09, 1.1450696e-09, 1.1611052e-09, 1.1781276e-09, 1.1962995e-09, 1.2158287e-09, 1.2369856e-09, 1.2601323e-09, 1.2857697e-09, 1.3146202e-09, 1.347784e-09, 1.3870636e-09, 1.4357403e-09, 1.5008659e-09, 1.6030948e-09]);
+		fn = go$toNativeArray("Float32", [1, 0.9635997, 0.9362827, 0.9130436, 0.89228165, 0.87324303, 0.8555006, 0.8387836, 0.8229072, 0.8077383, 0.793177, 0.7791461, 0.7655842, 0.7524416, 0.73967725, 0.7272569, 0.7151515, 0.7033361, 0.69178915, 0.68049186, 0.6694277, 0.658582, 0.6479418, 0.63749546, 0.6272325, 0.6171434, 0.6072195, 0.5974532, 0.58783704, 0.5783647, 0.56903, 0.5598274, 0.5507518, 0.54179835, 0.5329627, 0.52424055, 0.5156282, 0.50712204, 0.49871865, 0.49041483, 0.48220766, 0.4740943, 0.46607214, 0.4581387, 0.45029163, 0.44252872, 0.43484783, 0.427247, 0.41972435, 0.41227803, 0.40490642, 0.39760786, 0.3903808, 0.3832238, 0.37613547, 0.36911446, 0.3621595, 0.35526937, 0.34844297, 0.34167916, 0.33497685, 0.3283351, 0.3217529, 0.3152294, 0.30876362, 0.30235484, 0.29600215, 0.28970486, 0.2834622, 0.2772735, 0.27113807, 0.2650553, 0.25902456, 0.2530453, 0.24711695, 0.241239, 0.23541094, 0.22963232, 0.2239027, 0.21822165, 0.21258877, 0.20700371, 0.20146611, 0.19597565, 0.19053204, 0.18513499, 0.17978427, 0.17447963, 0.1692209, 0.16400786, 0.15884037, 0.15371831, 0.14864157, 0.14361008, 0.13862377, 0.13368265, 0.12878671, 0.12393598, 0.119130544, 0.11437051, 0.10965602, 0.104987256, 0.10036444, 0.095787846, 0.0912578, 0.08677467, 0.0823389, 0.077950984, 0.073611505, 0.06932112, 0.06508058, 0.06089077, 0.056752663, 0.0526674, 0.048636295, 0.044660863, 0.040742867, 0.03688439, 0.033087887, 0.029356318, 0.025693292, 0.022103304, 0.018592102, 0.015167298, 0.011839478, 0.008624485, 0.005548995, 0.0026696292]);
+		globalRand = New(new lockedSource.Ptr(new sync.Mutex.Ptr(), NewSource(new Go$Int64(0, 1))));
+		rng_cooked = go$toNativeArray("Int64", [new Go$Int64(1173834291, 3952672746), new Go$Int64(1081821761, 3130416987), new Go$Int64(324977939, 3414273807), new Go$Int64(1241840476, 2806224363), new Go$Int64(669549340, 1997590414), new Go$Int64(2103305448, 2402795971), new Go$Int64(1663160183, 1140819369), new Go$Int64(1120601685, 1788868961), new Go$Int64(1848035537, 1089001426), new Go$Int64(1235702047, 873593504), new Go$Int64(1911387977, 581324885), new Go$Int64(492609478, 1609182556), new Go$Int64(1069394745, 1241596776), new Go$Int64(1895445337, 1771189259), new Go$Int64(772864846, 3467012610), new Go$Int64(2006957225, 2344407434), new Go$Int64(402115761, 782467244), new Go$Int64(26335124, 3404933915), new Go$Int64(1063924276, 618867887), new Go$Int64(1178782866, 520164395), new Go$Int64(555910815, 1341358184), new Go$Int64(632398609, 665794848), new Go$Int64(1527227641, 3183648150), new Go$Int64(1781176124, 696329606), new Go$Int64(1789146075, 4151988961), new Go$Int64(60039534, 998951326), new Go$Int64(1535158725, 1364957564), new Go$Int64(63173359, 4090230633), new Go$Int64(649454641, 4009697548), new Go$Int64(248009524, 2569622517), new Go$Int64(778703922, 3742421481), new Go$Int64(1038377625, 1506914633), new Go$Int64(1738099768, 1983412561), new Go$Int64(236311649, 1436266083), new Go$Int64(1035966148, 3922894967), new Go$Int64(810508934, 1792680179), new Go$Int64(563141142, 1188796351), new Go$Int64(1349617468, 405968250), new Go$Int64(1044074554, 433754187), new Go$Int64(870549669, 4073162024), new Go$Int64(1053232044, 433121399), new Go$Int64(2451824, 4162580594), new Go$Int64(2010221076, 4132415622), new Go$Int64(611252600, 3033822028), new Go$Int64(2016407895, 824682382), new Go$Int64(2366218, 3583765414), new Go$Int64(1522878809, 535386927), new Go$Int64(1637219058, 2286693689), new Go$Int64(1453075389, 2968466525), new Go$Int64(193683513, 1351410206), new Go$Int64(1863677552, 1412813499), new Go$Int64(492736522, 4126267639), new Go$Int64(512765208, 2105529399), new Go$Int64(2132966268, 2413882233), new Go$Int64(947457634, 32226200), new Go$Int64(1149341356, 2032329073), new Go$Int64(106485445, 1356518208), new Go$Int64(79673492, 3430061722), new Go$Int64(663048513, 3820169661), new Go$Int64(481498454, 2981816134), new Go$Int64(1017155588, 4184371017), new Go$Int64(206574701, 2119206761), new Go$Int64(1295374591, 2472200560), new Go$Int64(1587026100, 2853524696), new Go$Int64(1307803389, 1681119904), new Go$Int64(1972496813, 95608918), new Go$Int64(392686347, 3690479145), new Go$Int64(941912722, 1397922290), new Go$Int64(988169623, 1516129515), new Go$Int64(1827305493, 1547420459), new Go$Int64(1311333971, 1470949486), new Go$Int64(194013850, 1336785672), new Go$Int64(2102397034, 4131677129), new Go$Int64(755205548, 4246329084), new Go$Int64(1004983461, 3788585631), new Go$Int64(2081005363, 3080389532), new Go$Int64(1501045284, 2215402037), new Go$Int64(391002300, 1171593935), new Go$Int64(1408774047, 1423855166), new Go$Int64(1628305930, 2276716302), new Go$Int64(1779030508, 2068027241), new Go$Int64(1369359303, 3427553297), new Go$Int64(189241615, 3289637845), new Go$Int64(1057480830, 3486407650), new Go$Int64(634572984, 3071877822), new Go$Int64(1159653919, 3363620705), new Go$Int64(1213226718, 4159821533), new Go$Int64(2070861710, 1894661), new Go$Int64(1472989750, 1156868282), new Go$Int64(348271067, 776219088), new Go$Int64(1646054810, 2425634259), new Go$Int64(1716021749, 680510161), new Go$Int64(1573220192, 1310101429), new Go$Int64(1095885995, 2964454134), new Go$Int64(1821788136, 3467098407), new Go$Int64(1990672920, 2109628894), new Go$Int64(7834944, 1232604732), new Go$Int64(309412934, 3261916179), new Go$Int64(1699175360, 434597899), new Go$Int64(235436061, 1624796439), new Go$Int64(521080809, 3589632480), new Go$Int64(1198416575, 864579159), new Go$Int64(208735487, 1380889830), new Go$Int64(619206309, 2654509477), new Go$Int64(1419738251, 1468209306), new Go$Int64(403198876, 100794388), new Go$Int64(956062190, 2991674471), new Go$Int64(1938816907, 2224662036), new Go$Int64(1973824487, 977097250), new Go$Int64(1351320195, 726419512), new Go$Int64(1964023751, 1747974366), new Go$Int64(1394388465, 1556430604), new Go$Int64(1097991433, 1080776742), new Go$Int64(1761636690, 280794874), new Go$Int64(117767733, 919835643), new Go$Int64(1180474222, 3434019658), new Go$Int64(196069168, 2461941785), new Go$Int64(133215641, 3615001066), new Go$Int64(417204809, 3103414427), new Go$Int64(790056561, 3380809712), new Go$Int64(879802240, 2724693469), new Go$Int64(547796833, 598827710), new Go$Int64(300924196, 3452273442), new Go$Int64(2071705424, 649274915), new Go$Int64(1346182319, 2585724112), new Go$Int64(636549385, 3165579553), new Go$Int64(1185578221, 2635894283), new Go$Int64(2094573470, 2053289721), new Go$Int64(985976581, 3169337108), new Go$Int64(1170569632, 144717764), new Go$Int64(1079216270, 1383666384), new Go$Int64(2022678706, 681540375), new Go$Int64(1375448925, 537050586), new Go$Int64(182715304, 315246468), new Go$Int64(226402871, 849323088), new Go$Int64(1262421183, 45543944), new Go$Int64(1201038398, 2319052083), new Go$Int64(2106775454, 3613090841), new Go$Int64(560472520, 2992171180), new Go$Int64(1765620479, 2068244785), new Go$Int64(917538188, 4239862634), new Go$Int64(777927839, 3892253031), new Go$Int64(720683925, 958186149), new Go$Int64(1724185863, 1877702262), new Go$Int64(1357886971, 837674867), new Go$Int64(1837048883, 1507589294), new Go$Int64(1905518400, 873336795), new Go$Int64(267722611, 2764496274), new Go$Int64(341003118, 4196182374), new Go$Int64(1080717893, 550964545), new Go$Int64(818747069, 420611474), new Go$Int64(222653272, 204265180), new Go$Int64(1549974541, 1787046383), new Go$Int64(1215581865, 3102292318), new Go$Int64(418321538, 1552199393), new Go$Int64(1243493047, 980542004), new Go$Int64(267284263, 3293718720), new Go$Int64(1179528763, 3771917473), new Go$Int64(599484404, 2195808264), new Go$Int64(252818753, 3894702887), new Go$Int64(780007692, 2099949527), new Go$Int64(1424094358, 338442522), new Go$Int64(490737398, 637158004), new Go$Int64(419862118, 281976339), new Go$Int64(574970164, 3619802330), new Go$Int64(1715552825, 3084554784), new Go$Int64(882872465, 4129772886), new Go$Int64(43084605, 1680378557), new Go$Int64(525521057, 3339087776), new Go$Int64(1680500332, 4220317857), new Go$Int64(211654685, 2959322499), new Go$Int64(1675600481, 1488354890), new Go$Int64(1312620086, 3958162143), new Go$Int64(920972075, 2773705983), new Go$Int64(1876039582, 225908689), new Go$Int64(963748535, 908216283), new Go$Int64(1541787429, 3574646075), new Go$Int64(319760557, 1936937569), new Go$Int64(1519770881, 75492235), new Go$Int64(816689472, 1935193178), new Go$Int64(2142521206, 2018250883), new Go$Int64(455141620, 3943126022), new Go$Int64(1546084160, 3066544345), new Go$Int64(1932392669, 2793082663), new Go$Int64(908474287, 3297036421), new Go$Int64(1640597065, 2206987825), new Go$Int64(1594236910, 807894872), new Go$Int64(366158341, 766252117), new Go$Int64(2060649606, 3833114345), new Go$Int64(845619743, 1255067973), new Go$Int64(1201145605, 741697208), new Go$Int64(671241040, 2810093753), new Go$Int64(1109032642, 4229340371), new Go$Int64(1462188720, 1361684224), new Go$Int64(988084219, 1906263026), new Go$Int64(475781207, 3904421704), new Go$Int64(1523946520, 1769075545), new Go$Int64(1062308525, 2621599764), new Go$Int64(1279509432, 3431891480), new Go$Int64(404732502, 1871896503), new Go$Int64(128756421, 1412808876), new Go$Int64(1605404688, 952876175), new Go$Int64(1917039957, 1824438899), new Go$Int64(1662295856, 1005035476), new Go$Int64(1990909507, 527508597), new Go$Int64(1288873303, 3066806859), new Go$Int64(565995893, 3244940914), new Go$Int64(1257737460, 209092916), new Go$Int64(1899814242, 1242699167), new Go$Int64(1433653252, 456723774), new Go$Int64(1776978905, 1001252870), new Go$Int64(1468772157, 2026725874), new Go$Int64(857254202, 2137562569), new Go$Int64(765939740, 3183366709), new Go$Int64(1533887628, 2612072960), new Go$Int64(56977098, 1727148468), new Go$Int64(949899753, 3803658212), new Go$Int64(1883670356, 479946959), new Go$Int64(685713571, 1562982345), new Go$Int64(201241205, 1766109365), new Go$Int64(700596547, 3257093788), new Go$Int64(1962768719, 2365720207), new Go$Int64(93384808, 3742754173), new Go$Int64(1689098413, 2878193673), new Go$Int64(1096135042, 2174002182), new Go$Int64(1313222695, 3573511231), new Go$Int64(1392911121, 1760299077), new Go$Int64(771856457, 2260779833), new Go$Int64(1281464374, 1452805722), new Go$Int64(917811730, 2940011802), new Go$Int64(1890251082, 1886183802), new Go$Int64(893897673, 2514369088), new Go$Int64(1644345561, 3924317791), new Go$Int64(172616216, 500935732), new Go$Int64(1403501753, 676580929), new Go$Int64(581571365, 1184984890), new Go$Int64(1455515235, 1271474274), new Go$Int64(318728910, 3163791473), new Go$Int64(2051027584, 2842487377), new Go$Int64(1511537551, 2170968612), new Go$Int64(573262976, 3535856740), new Go$Int64(94256461, 1488599718), new Go$Int64(966951817, 3408913763), new Go$Int64(60951736, 2501050084), new Go$Int64(1272353200, 1639124157), new Go$Int64(138001144, 4088176393), new Go$Int64(1574896563, 3989947576), new Go$Int64(1982239940, 3414355209), new Go$Int64(1355154361, 2275136352), new Go$Int64(89709303, 2151835223), new Go$Int64(1216338715, 1654534827), new Go$Int64(1467562197, 377892833), new Go$Int64(1664767638, 660204544), new Go$Int64(85706799, 390828249), new Go$Int64(725310955, 3402783878), new Go$Int64(678849488, 3717936603), new Go$Int64(1113532086, 2211058823), new Go$Int64(1564224320, 2692150867), new Go$Int64(1952770442, 1928910388), new Go$Int64(788716862, 3931011137), new Go$Int64(1083670504, 1112701047), new Go$Int64(2079333076, 2452299106), new Go$Int64(1251318826, 2337204777), new Go$Int64(1774877857, 273889282), new Go$Int64(1798719843, 1462008793), new Go$Int64(2138834788, 1554494002), new Go$Int64(952516517, 182675323), new Go$Int64(548928884, 1882802136), new Go$Int64(589279648, 3700220025), new Go$Int64(381039426, 3083431543), new Go$Int64(1295624457, 3622207527), new Go$Int64(338126939, 432729309), new Go$Int64(480013522, 2391914317), new Go$Int64(297925497, 235747924), new Go$Int64(2120733629, 3088823825), new Go$Int64(1402403853, 2314658321), new Go$Int64(1165929723, 2957634338), new Go$Int64(501323675, 4117056981), new Go$Int64(1564699815, 1482500298), new Go$Int64(1406657158, 840489337), new Go$Int64(799522364, 3483178565), new Go$Int64(532129761, 2074004656), new Go$Int64(724246478, 3643392642), new Go$Int64(1482330167, 1583624461), new Go$Int64(1261660694, 287473085), new Go$Int64(1667835381, 3136843981), new Go$Int64(1138806821, 1266970974), new Go$Int64(135185781, 1998688839), new Go$Int64(392094735, 1492900209), new Go$Int64(1031326774, 1538112737), new Go$Int64(76914806, 2207265429), new Go$Int64(260686035, 963263315), new Go$Int64(1671145500, 2295892134), new Go$Int64(1068469660, 2002560897), new Go$Int64(1791233343, 1369254035), new Go$Int64(33436120, 3353312708), new Go$Int64(57507843, 947771099), new Go$Int64(201728503, 1747061399), new Go$Int64(1507240140, 2047354631), new Go$Int64(720000810, 4165367136), new Go$Int64(479265078, 3388864963), new Go$Int64(1195302398, 286492130), new Go$Int64(2045622690, 2795735007), new Go$Int64(1431753082, 3703961339), new Go$Int64(1999047161, 1797825479), new Go$Int64(1429039600, 1116589674), new Go$Int64(482063550, 2593309206), new Go$Int64(1329049334, 3404995677), new Go$Int64(1396904208, 3453462936), new Go$Int64(1014767077, 3016498634), new Go$Int64(75698599, 1650371545), new Go$Int64(1592007860, 212344364), new Go$Int64(1127766888, 3843932156), new Go$Int64(1399463792, 3573129983), new Go$Int64(1256901817, 665897820), new Go$Int64(1071492673, 1675628772), new Go$Int64(243225682, 2831752928), new Go$Int64(2120298836, 1486294219), new Go$Int64(193076235, 268782709), new Go$Int64(1145360145, 4186179080), new Go$Int64(624342951, 1613720397), new Go$Int64(857179861, 2703686015), new Go$Int64(1235864944, 2205342611), new Go$Int64(1474779655, 1411666394), new Go$Int64(619028749, 677744900), new Go$Int64(270855115, 4172867247), new Go$Int64(135494707, 2163418403), new Go$Int64(849547544, 2841526879), new Go$Int64(1029966689, 1082141470), new Go$Int64(377371856, 4046134367), new Go$Int64(51415528, 2142943655), new Go$Int64(1897659315, 3124627521), new Go$Int64(998228909, 219992939), new Go$Int64(1068692697, 1756846531), new Go$Int64(1283749206, 1225118210), new Go$Int64(1621625642, 1647770243), new Go$Int64(111523943, 444807907), new Go$Int64(2036369448, 3952076173), new Go$Int64(53201823, 1461839639), new Go$Int64(315761893, 3699250910), new Go$Int64(702974850, 1373688981), new Go$Int64(734022261, 147523747), new Go$Int64(100152742, 1211276581), new Go$Int64(1294440951, 2548832680), new Go$Int64(1144696256, 1995631888), new Go$Int64(154500578, 2011457303), new Go$Int64(796460974, 3057425772), new Go$Int64(667839456, 81484597), new Go$Int64(465502760, 3646681560), new Go$Int64(775020923, 635548515), new Go$Int64(602489502, 2508044581), new Go$Int64(353263531, 1014917157), new Go$Int64(719992433, 3214891315), new Go$Int64(852684611, 959582252), new Go$Int64(226415134, 3347040449), new Go$Int64(1784615552, 4102971975), new Go$Int64(397887437, 4078022210), new Go$Int64(1610679822, 2851767182), new Go$Int64(749162636, 1540160644), new Go$Int64(598384772, 1057290595), new Go$Int64(2034890660, 3907769253), new Go$Int64(579300318, 4248952684), new Go$Int64(1092907599, 132554364), new Go$Int64(1061621234, 1029351092), new Go$Int64(697840928, 2583007416), new Go$Int64(298619124, 1486185789), new Go$Int64(55905697, 2871589073), new Go$Int64(2017643612, 723203291), new Go$Int64(146250550, 2494333952), new Go$Int64(1064490251, 2230939180), new Go$Int64(342915576, 3943232912), new Go$Int64(1768732449, 2181367922), new Go$Int64(1418222537, 2889274791), new Go$Int64(1824032949, 2046728161), new Go$Int64(1653899792, 1376052477), new Go$Int64(1022327048, 381236993), new Go$Int64(1034385958, 3188942166), new Go$Int64(2073003539, 350070824), new Go$Int64(144881592, 61758415), new Go$Int64(1405659422, 3492950336), new Go$Int64(117440928, 3093818430), new Go$Int64(1693893113, 2962480613), new Go$Int64(235432940, 3154871160), new Go$Int64(511005079, 3228564679), new Go$Int64(610731502, 888276216), new Go$Int64(1200780674, 3574998604), new Go$Int64(870415268, 1967526716), new Go$Int64(591335707, 1554691298), new Go$Int64(574459414, 339944798), new Go$Int64(1223764147, 1154515356), new Go$Int64(1825645307, 967516237), new Go$Int64(1546195135, 596588202), new Go$Int64(279882768, 3764362170), new Go$Int64(492091056, 266611402), new Go$Int64(1754227768, 2047856075), new Go$Int64(1146757215, 21444105), new Go$Int64(1198058894, 3065563181), new Go$Int64(1915064845, 1140663212), new Go$Int64(633187674, 2323741028), new Go$Int64(2126290159, 3103873707), new Go$Int64(1008658319, 2766828349), new Go$Int64(1661896145, 1970872996), new Go$Int64(1628585413, 3766615585), new Go$Int64(1552335120, 2036813414), new Go$Int64(152606527, 3105536507), new Go$Int64(13954645, 3396176938), new Go$Int64(1426081645, 1377154485), new Go$Int64(2085644467, 3807014186), new Go$Int64(543009040, 3710110597), new Go$Int64(396058129, 916420443), new Go$Int64(734556788, 2103831255), new Go$Int64(381322154, 717331943), new Go$Int64(572884752, 3550505941), new Go$Int64(45939673, 378749927), new Go$Int64(149867929, 611017331), new Go$Int64(592130075, 758907650), new Go$Int64(1012992349, 154266815), new Go$Int64(1107028706, 1407468696), new Go$Int64(469292398, 970098704), new Go$Int64(1862426162, 1971660656), new Go$Int64(998365243, 3332747885), new Go$Int64(1947089649, 1935189867), new Go$Int64(1510248801, 203520055), new Go$Int64(842317902, 3916463034), new Go$Int64(1758884993, 3474113316), new Go$Int64(1036101639, 316544223), new Go$Int64(373738757, 1650844677), new Go$Int64(1240292229, 4267565603), new Go$Int64(1077208624, 2501167616), new Go$Int64(626831785, 3929401789), new Go$Int64(56122796, 337170252), new Go$Int64(1186981558, 2061966842), new Go$Int64(1843292800, 2508461464), new Go$Int64(206012532, 2791377107), new Go$Int64(1240791848, 1227227588), new Go$Int64(1813978778, 1709681848), new Go$Int64(1153692192, 3768820575), new Go$Int64(1145186199, 2887126398), new Go$Int64(700372314, 296561685), new Go$Int64(700300844, 3729960077), new Go$Int64(575172304, 372833036), new Go$Int64(2078875613, 2409779288), new Go$Int64(1829161290, 555274064), new Go$Int64(1041887929, 4239804901), new Go$Int64(1839403216, 3723486978), new Go$Int64(498390553, 2145871984), new Go$Int64(564717933, 3565480803), new Go$Int64(578829821, 2197313814), new Go$Int64(974785092, 3613674566), new Go$Int64(438638731, 3042093666), new Go$Int64(2050927384, 3324034321), new Go$Int64(869420878, 3708873369), new Go$Int64(946682149, 1698090092), new Go$Int64(1618900382, 4213940712), new Go$Int64(304003901, 2087477361), new Go$Int64(381315848, 2407950639), new Go$Int64(851258090, 3942568569), new Go$Int64(923583198, 4088074412), new Go$Int64(723260036, 2964773675), new Go$Int64(1473561819, 1539178386), new Go$Int64(1062961552, 2694849566), new Go$Int64(460977733, 2120273838), new Go$Int64(542912908, 2484608657), new Go$Int64(880846449, 2956190677), new Go$Int64(1970902366, 4223313749), new Go$Int64(662161910, 3502682327), new Go$Int64(705634754, 4133891139), new Go$Int64(1116124348, 1166449596), new Go$Int64(1038247601, 3362705993), new Go$Int64(93734798, 3892921029), new Go$Int64(1876124043, 786869787), new Go$Int64(1057490746, 1046342263), new Go$Int64(242763728, 493777327), new Go$Int64(1293910447, 3304827646), new Go$Int64(616460742, 125356352), new Go$Int64(499300063, 74094113), new Go$Int64(1351896723, 2500816079), new Go$Int64(1657235204, 514015239), new Go$Int64(1377565129, 543520454), new Go$Int64(107706923, 3614531153), new Go$Int64(2056746300, 2356753985), new Go$Int64(1390062617, 2018141668), new Go$Int64(131272971, 2087974891), new Go$Int64(644556607, 3166972343), new Go$Int64(372256200, 1517638666), new Go$Int64(1212207984, 173466846), new Go$Int64(1451709187, 4241513471), new Go$Int64(733932806, 2783126920), new Go$Int64(1972004134, 4167264826), new Go$Int64(29260506, 3907395640), new Go$Int64(1236582087, 1539634186), new Go$Int64(1551526350, 178241987), new Go$Int64(2034206012, 182168164), new Go$Int64(1044953189, 2386154934), new Go$Int64(1379126408, 4077374341), new Go$Int64(32803926, 1732699140), new Go$Int64(1726425903, 1041306002), new Go$Int64(1860414813, 2068001749), new Go$Int64(1005320202, 3208962910), new Go$Int64(844054010, 697710380), new Go$Int64(638124245, 2228431183), new Go$Int64(1337169671, 3554678728), new Go$Int64(1396494601, 173470263), new Go$Int64(2061597383, 3848297795), new Go$Int64(1220546671, 246236185), new Go$Int64(163293187, 2066374846), new Go$Int64(1771673660, 312890749), new Go$Int64(703378057, 3573310289), new Go$Int64(1548631747, 143166754), new Go$Int64(613554316, 2081511079), new Go$Int64(1197802104, 486038032), new Go$Int64(240999859, 2982218564), new Go$Int64(364901986, 1000939191), new Go$Int64(1902782651, 2750454885), new Go$Int64(1475638791, 3375313137), new Go$Int64(503615608, 881302957), new Go$Int64(638698903, 2514186393), new Go$Int64(443860803, 360024739), new Go$Int64(1399671872, 292500025), new Go$Int64(1381210821, 2276300752), new Go$Int64(521803381, 4069087683), new Go$Int64(208500981, 1637778212), new Go$Int64(720490469, 1676670893), new Go$Int64(1067262482, 3855174429), new Go$Int64(2114075974, 2067248671), new Go$Int64(2058057389, 2884561259), new Go$Int64(1341742553, 2456511185), new Go$Int64(983726246, 561175414), new Go$Int64(427994085, 432588903), new Go$Int64(885133709, 4059399550), new Go$Int64(2054387382, 1075014784), new Go$Int64(413651020, 2728058415), new Go$Int64(1839142064, 1299703678), new Go$Int64(1262333188, 2347583393), new Go$Int64(1285481956, 2468164145), new Go$Int64(989129637, 1140014346), new Go$Int64(2033889184, 1936972070), new Go$Int64(409904655, 3870530098), new Go$Int64(1662989391, 1717789158), new Go$Int64(1914486492, 1153452491), new Go$Int64(1157059232, 3948827651), new Go$Int64(790338018, 2101413152), new Go$Int64(1495744672, 3854091229), new Go$Int64(83644069, 4215565463), new Go$Int64(762206335, 1202710438), new Go$Int64(1582574611, 2072216740), new Go$Int64(705690639, 2066751068), new Go$Int64(33900336, 173902580), new Go$Int64(1405499842, 142459001), new Go$Int64(172391592, 1889151926), new Go$Int64(1648540523, 3034199774), new Go$Int64(1618587731, 516490102), new Go$Int64(93114264, 3692577783), new Go$Int64(68662295, 2953948865), new Go$Int64(1826544975, 4041040923), new Go$Int64(204965672, 592046130), new Go$Int64(1441840008, 384297211), new Go$Int64(95834184, 265863924), new Go$Int64(2101717619, 1333136237), new Go$Int64(1499611781, 1406273556), new Go$Int64(1074670496, 426305476), new Go$Int64(125704633, 2750898176), new Go$Int64(488068495, 1633944332), new Go$Int64(2037723464, 3236349343), new Go$Int64(444060402, 4013676611), new Go$Int64(1718532237, 2265047407), new Go$Int64(1433593806, 875071080), new Go$Int64(1804436145, 1418843655), new Go$Int64(2009228711, 451657300), new Go$Int64(1229446621, 1866374663), new Go$Int64(1653472867, 1551455622), new Go$Int64(577191481, 3560962459), new Go$Int64(1669204077, 3347903778), new Go$Int64(1849156454, 2675874918), new Go$Int64(316128071, 2762991672), new Go$Int64(530492383, 3689068477), new Go$Int64(844089962, 4071997905), new Go$Int64(1508155730, 1381702441), new Go$Int64(2089931018, 2373284878), new Go$Int64(1283216186, 2143983064), new Go$Int64(308739063, 1938207195), new Go$Int64(1754949306, 1188152253), new Go$Int64(1272345009, 615870490), new Go$Int64(742653194, 2662252621), new Go$Int64(1477718295, 3839976789), new Go$Int64(56149435, 306752547), new Go$Int64(720795581, 2162363077), new Go$Int64(2090431015, 2767224719), new Go$Int64(675859549, 2628837712), new Go$Int64(1678405918, 2967771969), new Go$Int64(1694285728, 499792248), new Go$Int64(403352367, 4285253508), new Go$Int64(962357072, 2856511070), new Go$Int64(679471692, 2526409716), new Go$Int64(353777175, 1240875658), new Go$Int64(1232590226, 2577342868), new Go$Int64(1146185433, 4136853496), new Go$Int64(670368674, 2403540137), new Go$Int64(1372824515, 1371410668), new Go$Int64(1970921600, 371758825), new Go$Int64(1706420536, 1528834084), new Go$Int64(2075795018, 1504757260), new Go$Int64(685663576, 699052551), new Go$Int64(1641940109, 3347789870), new Go$Int64(1951619734, 3430604759), new Go$Int64(2119672219, 1935601723), new Go$Int64(966789690, 834676166)]);
+	};

@@ -1,0 +1,1398 @@
+0ƒ+*‚!ypackage regexp
+import io "io"
+import syntax "regexp/syntax"
+import bytes "bytes"
+import strconv "strconv"
+import strings "strings"
+import sync "sync"
+import unicode "unicode"
+import utf8 "unicode/utf8"
+func @"".Compile(@"".expr string) (? *@"".Regexp, ? error)
+func @"".CompilePOSIX(@"".expr string) (? *@"".Regexp, ? error)
+func @"".Match(@"".pattern string, @"".b []byte) (@"".matched bool, @"".err error)
+func @"".MatchReader(@"".pattern string, @"".r @"io".RuneReader) (@"".matched bool, @"".err error)
+func @"".MatchString(@"".pattern string, @"".s string) (@"".matched bool, @"".err error)
+func @"".MustCompile(@"".str string) (? *@"".Regexp)
+func @"".MustCompilePOSIX(@"".str string) (? *@"".Regexp)
+func @"".QuoteMeta(@"".s string) (? string)
+type @"".Regexp struct { @"".expr string; @"".prog *@"regexp/syntax".Prog; @"".prefix string; @"".prefixBytes []byte; @"".prefixComplete bool; @"".prefixRune rune; @"".cond @"regexp/syntax".EmptyOp; @"".numSubexp int; @"".subexpNames []string; @"".longest bool; @"".mu @"sync".Mutex; @"".machine []*@"".machine }
+func (? *@"".Regexp) @"".Expand(@"".dst []byte, @"".template []byte, @"".src []byte, @"".match []int) (? []byte)
+func (? *@"".Regexp) @"".ExpandString(@"".dst []byte, @"".template string, @"".src string, @"".match []int) (? []byte)
+func (? *@"".Regexp) @"".Find(@"".b []byte) (? []byte)
+func (? *@"".Regexp) @"".FindAll(@"".b []byte, @"".n int) (? [][]byte)
+func (? *@"".Regexp) @"".FindAllIndex(@"".b []byte, @"".n int) (? [][]int)
+func (? *@"".Regexp) @"".FindAllString(@"".s string, @"".n int) (? []string)
+func (? *@"".Regexp) @"".FindAllStringIndex(@"".s string, @"".n int) (? [][]int)
+func (? *@"".Regexp) @"".FindAllStringSubmatch(@"".s string, @"".n int) (? [][]string)
+func (? *@"".Regexp) @"".FindAllStringSubmatchIndex(@"".s string, @"".n int) (? [][]int)
+func (? *@"".Regexp) @"".FindAllSubmatch(@"".b []byte, @"".n int) (? [][][]byte)
+func (? *@"".Regexp) @"".FindAllSubmatchIndex(@"".b []byte, @"".n int) (? [][]int)
+func (? *@"".Regexp) @"".FindIndex(@"".b []byte) (@"".loc []int)
+func (? *@"".Regexp) @"".FindReaderIndex(@"".r @"io".RuneReader) (@"".loc []int)
+func (? *@"".Regexp) @"".FindReaderSubmatchIndex(@"".r @"io".RuneReader) (? []int)
+func (? *@"".Regexp) @"".FindString(@"".s string) (? string)
+func (? *@"".Regexp) @"".FindStringIndex(@"".s string) (@"".loc []int)
+func (? *@"".Regexp) @"".FindStringSubmatch(@"".s string) (? []string)
+func (? *@"".Regexp) @"".FindStringSubmatchIndex(@"".s string) (? []int)
+func (? *@"".Regexp) @"".FindSubmatch(@"".b []byte) (? [][]byte)
+func (? *@"".Regexp) @"".FindSubmatchIndex(@"".b []byte) (? []int)
+func (? *@"".Regexp) @"".LiteralPrefix() (@"".prefix string, @"".complete bool)
+func (? *@"".Regexp) @"".Longest() ()
+func (? *@"".Regexp) @"".Match(@"".b []byte) (? bool)
+func (? *@"".Regexp) @"".MatchReader(@"".r @"io".RuneReader) (? bool)
+func (? *@"".Regexp) @"".MatchString(@"".s string) (? bool)
+func (? *@"".Regexp) @"".NumSubexp() (? int)
+func (? *@"".Regexp) @"".ReplaceAll(@"".src []byte, @"".repl []byte) (? []byte)
+func (? *@"".Regexp) @"".ReplaceAllFunc(@"".src []byte, @"".repl func (? []byte) (? []byte)) (? []byte)
+func (? *@"".Regexp) @"".ReplaceAllLiteral(@"".src []byte, @"".repl []byte) (? []byte)
+func (? *@"".Regexp) @"".ReplaceAllLiteralString(@"".src string, @"".repl string) (? string)
+func (? *@"".Regexp) @"".ReplaceAllString(@"".src string, @"".repl string) (? string)
+func (? *@"".Regexp) @"".ReplaceAllStringFunc(@"".src string, @"".repl func (? string) (? string)) (? string)
+func (? *@"".Regexp) @"".Split(@"".s string, @"".n int) (? []string)
+func (? *@"".Regexp) @"".String() (? string)
+func (? *@"".Regexp) @"".SubexpNames() (? []string)
+func (? *@"".Regexp) @"".allMatches(@"".s string, @"".b []byte, @"".n int, @"".deliver func (? []int) ()) ()
+func (? *@"".Regexp) @"".doExecute(@"".r @"io".RuneReader, @"".b []byte, @"".s string, @"".pos int, @"".ncap int) (? []int)
+func (? *@"".Regexp) @"".expand(@"".dst []byte, @"".template string, @"".bsrc []byte, @"".src string, @"".match []int) (? []byte)
+func (? *@"".Regexp) @"".get() (? *@"".machine)
+func (? *@"".Regexp) @"".pad(@"".a []int) (? []int)
+func (? *@"".Regexp) @"".put(@"".z *@"".machine) ()
+func (? *@"".Regexp) @"".replaceAll(@"".bsrc []byte, @"".src string, @"".nmatch int, @"".repl func (@"".dst []byte, @"".m []int) (? []byte)) (? []byte)
+type @"".entry struct { @"".pc uint32; @"".t *@"".thread }
+type @"".input interface { @"".canCheckPrefix() (? bool); @"".context(@"".pos int) (? @"regexp/syntax".EmptyOp); @"".hasPrefix(@"".re *@"".Regexp) (? bool); @"".index(@"".re *@"".Regexp, @"".pos int) (? int); @"".step(@"".pos int) (@"".r rune, @"".width int) }
+type @"".inputBytes struct { @"".str []byte }
+func (? *@"".inputBytes) @"".canCheckPrefix() (? bool)
+func (? *@"".inputBytes) @"".context(@"".pos int) (? @"regexp/syntax".EmptyOp)
+func (? *@"".inputBytes) @"".hasPrefix(@"".re *@"".Regexp) (? bool)
+func (? *@"".inputBytes) @"".index(@"".re *@"".Regexp, @"".pos int) (? int)
+func (? *@"".inputBytes) @"".step(@"".pos int) (? rune, ? int)
+type @"".inputReader struct { @"".r @"io".RuneReader; @"".atEOT bool; @"".pos int }
+func (? *@"".inputReader) @"".canCheckPrefix() (? bool)
+func (? *@"".inputReader) @"".context(@"".pos int) (? @"regexp/syntax".EmptyOp)
+func (? *@"".inputReader) @"".hasPrefix(@"".re *@"".Regexp) (? bool)
+func (? *@"".inputReader) @"".index(@"".re *@"".Regexp, @"".pos int) (? int)
+func (? *@"".inputReader) @"".step(@"".pos int) (? rune, ? int)
+type @"".inputString struct { @"".str string }
+func (? *@"".inputString) @"".canCheckPrefix() (? bool)
+func (? *@"".inputString) @"".context(@"".pos int) (? @"regexp/syntax".EmptyOp)
+func (? *@"".inputString) @"".hasPrefix(@"".re *@"".Regexp) (? bool)
+func (? *@"".inputString) @"".index(@"".re *@"".Regexp, @"".pos int) (? int)
+func (? *@"".inputString) @"".step(@"".pos int) (? rune, ? int)
+type @"".machine struct { @"".re *@"".Regexp; @"".p *@"regexp/syntax".Prog; @"".q0 @"".queue; @"".q1 @"".queue; @"".pool []*@"".thread; @"".matched bool; @"".matchcap []int; @"".inputBytes @"".inputBytes; @"".inputString @"".inputString; @"".inputReader @"".inputReader }
+func (? *@"".machine) @"".add(@"".q *@"".queue, @"".pc uint32, @"".pos int, @"".cap []int, @"".cond @"regexp/syntax".EmptyOp, @"".t *@"".thread) (? *@"".thread)
+func (? *@"".machine) @"".alloc(@"".i *@"regexp/syntax".Inst) (? *@"".thread)
+func (? *@"".machine) @"".clear(@"".q *@"".queue) ()
+func (? *@"".machine) @"".free(@"".t *@"".thread) ()
+func (? *@"".machine) @"".init(@"".ncap int) ()
+func (? *@"".machine) @"".match(@"".i @"".input, @"".pos int) (? bool)
+func (? *@"".machine) @"".newInputBytes(@"".b []byte) (? @"".input)
+func (? *@"".machine) @"".newInputReader(@"".r @"io".RuneReader) (? @"".input)
+func (? *@"".machine) @"".newInputString(@"".s string) (? @"".input)
+func (? *@"".machine) @"".step(@"".runq *@"".queue, @"".nextq *@"".queue, @"".pos int, @"".nextPos int, @"".c rune, @"".nextCond @"regexp/syntax".EmptyOp) ()
+type @"".queue struct { @"".sparse []uint32; @"".dense []@"".entry }
+type @"".thread struct { @"".inst *@"regexp/syntax".Inst; @"".cap []int }
+type @"io".RuneReader interface { @"io".ReadRune() (@"io".r rune, @"io".size int, @"io".err error) }
+type @"regexp/syntax".Prog struct { @"regexp/syntax".Inst []@"regexp/syntax".Inst; @"regexp/syntax".Start int; @"regexp/syntax".NumCap int }
+func (? *@"regexp/syntax".Prog) @"regexp/syntax".Prefix() (@"regexp/syntax".prefix string, @"regexp/syntax".complete bool)
+func (? *@"regexp/syntax".Prog) @"regexp/syntax".StartCond() (? @"regexp/syntax".EmptyOp)
+func (? *@"regexp/syntax".Prog) @"regexp/syntax".String() (? string)
+func (? *@"regexp/syntax".Prog) @"regexp/syntax".skipNop(@"regexp/syntax".pc uint32) (? *@"regexp/syntax".Inst)
+type @"regexp/syntax".EmptyOp uint8
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"regexp/syntax".Inst struct { @"regexp/syntax".Op @"regexp/syntax".InstOp; @"regexp/syntax".Out uint32; @"regexp/syntax".Arg uint32; @"regexp/syntax".Rune []rune }
+func (? *@"regexp/syntax".Inst) @"regexp/syntax".MatchEmptyWidth(@"regexp/syntax".before rune, @"regexp/syntax".after rune) (? bool)
+func (? *@"regexp/syntax".Inst) @"regexp/syntax".MatchRune(@"regexp/syntax".r rune) (? bool)
+func (? *@"regexp/syntax".Inst) @"regexp/syntax".String() (? string)
+func (? *@"regexp/syntax".Inst) @"regexp/syntax".op() (? @"regexp/syntax".InstOp)
+type @"regexp/syntax".InstOp uint8
+$$
+0{runtimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxregexpƒ	+	var io = go$packages["io"];
+	var syntax = go$packages["regexp/syntax"];
+	var bytes = go$packages["bytes"];
+	var strconv = go$packages["strconv"];
+	var strings = go$packages["strings"];
+	var sync = go$packages["sync"];
+	var unicode = go$packages["unicode"];
+	var utf8 = go$packages["unicode/utf8"];
+	var queue;
+	queue = go$newType(0, "Struct", "regexp.queue", "queue", "regexp", function(sparse_, dense_) {
+		this.go$val = this;
+		this.sparse = sparse_ !== undefined ? sparse_ : (go$sliceType(Go$Uint32)).nil;
+		this.dense = dense_ !== undefined ? dense_ : (go$sliceType(entry)).nil;
+	});
+	go$pkg.queue = queue;
+	var entry;
+	entry = go$newType(0, "Struct", "regexp.entry", "entry", "regexp", function(pc_, t_) {
+		this.go$val = this;
+		this.pc = pc_ !== undefined ? pc_ : 0;
+		this.t = t_ !== undefined ? t_ : (go$ptrType(thread)).nil;
+	});
+	go$pkg.entry = entry;
+	var thread;
+	thread = go$newType(0, "Struct", "regexp.thread", "thread", "regexp", function(inst_, cap_) {
+		this.go$val = this;
+		this.inst = inst_ !== undefined ? inst_ : (go$ptrType(syntax.Inst)).nil;
+		this.cap = cap_ !== undefined ? cap_ : (go$sliceType(Go$Int)).nil;
+	});
+	go$pkg.thread = thread;
+	var machine;
+	machine = go$newType(0, "Struct", "regexp.machine", "machine", "regexp", function(re_, p_, q0_, q1_, pool_, matched_, matchcap_, inputBytes_, inputString_, inputReader_) {
+		this.go$val = this;
+		this.re = re_ !== undefined ? re_ : (go$ptrType(Regexp)).nil;
+		this.p = p_ !== undefined ? p_ : (go$ptrType(syntax.Prog)).nil;
+		this.q0 = q0_ !== undefined ? q0_ : new queue.Ptr();
+		this.q1 = q1_ !== undefined ? q1_ : new queue.Ptr();
+		this.pool = pool_ !== undefined ? pool_ : (go$sliceType((go$ptrType(thread)))).nil;
+		this.matched = matched_ !== undefined ? matched_ : false;
+		this.matchcap = matchcap_ !== undefined ? matchcap_ : (go$sliceType(Go$Int)).nil;
+		this.inputBytes = inputBytes_ !== undefined ? inputBytes_ : new inputBytes.Ptr();
+		this.inputString = inputString_ !== undefined ? inputString_ : new inputString.Ptr();
+		this.inputReader = inputReader_ !== undefined ? inputReader_ : new inputReader.Ptr();
+	});
+	go$pkg.machine = machine;
+	var Regexp;
+	Regexp = go$newType(0, "Struct", "regexp.Regexp", "Regexp", "regexp", function(expr_, prog_, prefix_, prefixBytes_, prefixComplete_, prefixRune_, cond_, numSubexp_, subexpNames_, longest_, mu_, machine_) {
+		this.go$val = this;
+		this.expr = expr_ !== undefined ? expr_ : "";
+		this.prog = prog_ !== undefined ? prog_ : (go$ptrType(syntax.Prog)).nil;
+		this.prefix = prefix_ !== undefined ? prefix_ : "";
+		this.prefixBytes = prefixBytes_ !== undefined ? prefixBytes_ : (go$sliceType(Go$Uint8)).nil;
+		this.prefixComplete = prefixComplete_ !== undefined ? prefixComplete_ : false;
+		this.prefixRune = prefixRune_ !== undefined ? prefixRune_ : 0;
+		this.cond = cond_ !== undefined ? cond_ : 0;
+		this.numSubexp = numSubexp_ !== undefined ? numSubexp_ : 0;
+		this.subexpNames = subexpNames_ !== undefined ? subexpNames_ : (go$sliceType(Go$String)).nil;
+		this.longest = longest_ !== undefined ? longest_ : false;
+		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
+		this.machine = machine_ !== undefined ? machine_ : (go$sliceType((go$ptrType(machine)))).nil;
+	});
+	go$pkg.Regexp = Regexp;
+	var input;
+	input = go$newType(0, "Interface", "regexp.input", "input", "regexp", null);
+	go$pkg.input = input;
+	var inputString;
+	inputString = go$newType(0, "Struct", "regexp.inputString", "inputString", "regexp", function(str_) {
+		this.go$val = this;
+		this.str = str_ !== undefined ? str_ : "";
+	});
+	go$pkg.inputString = inputString;
+	var inputBytes;
+	inputBytes = go$newType(0, "Struct", "regexp.inputBytes", "inputBytes", "regexp", function(str_) {
+		this.go$val = this;
+		this.str = str_ !== undefined ? str_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.inputBytes = inputBytes;
+	var inputReader;
+	inputReader = go$newType(0, "Struct", "regexp.inputReader", "inputReader", "regexp", function(r_, atEOT_, pos_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+		this.atEOT = atEOT_ !== undefined ? atEOT_ : false;
+		this.pos = pos_ !== undefined ? pos_ : 0;
+	});
+	go$pkg.inputReader = inputReader;
+	queue.init([["sparse", "regexp", (go$sliceType(Go$Uint32)), ""], ["dense", "regexp", (go$sliceType(entry)), ""]]);
+	entry.init([["pc", "regexp", Go$Uint32, ""], ["t", "regexp", (go$ptrType(thread)), ""]]);
+	thread.init([["inst", "regexp", (go$ptrType(syntax.Inst)), ""], ["cap", "regexp", (go$sliceType(Go$Int)), ""]]);
+	machine.init([["re", "regexp", (go$ptrType(Regexp)), ""], ["p", "regexp", (go$ptrType(syntax.Prog)), ""], ["q0", "regexp", queue, ""], ["q1", "regexp", queue, ""], ["pool", "regexp", (go$sliceType((go$ptrType(thread)))), ""], ["matched", "regexp", Go$Bool, ""], ["matchcap", "regexp", (go$sliceType(Go$Int)), ""], ["inputBytes", "regexp", inputBytes, ""], ["inputString", "regexp", inputString, ""], ["inputReader", "regexp", inputReader, ""]]);
+	(go$ptrType(machine)).methods = [["add", "regexp", [(go$ptrType(queue)), Go$Uint32, Go$Int, (go$sliceType(Go$Int)), syntax.EmptyOp, (go$ptrType(thread))], [(go$ptrType(thread))], false], ["alloc", "regexp", [(go$ptrType(syntax.Inst))], [(go$ptrType(thread))], false], ["clear", "regexp", [(go$ptrType(queue))], [], false], ["free", "regexp", [(go$ptrType(thread))], [], false], ["init", "regexp", [Go$Int], [], false], ["match", "regexp", [input, Go$Int], [Go$Bool], false], ["newInputBytes", "regexp", [(go$sliceType(Go$Uint8))], [input], false], ["newInputReader", "regexp", [io.RuneReader], [input], false], ["newInputString", "regexp", [Go$String], [input], false], ["step", "regexp", [(go$ptrType(queue)), (go$ptrType(queue)), Go$Int, Go$Int, Go$Int32, syntax.EmptyOp], [], false]];
+	Regexp.init([["expr", "regexp", Go$String, ""], ["prog", "regexp", (go$ptrType(syntax.Prog)), ""], ["prefix", "regexp", Go$String, ""], ["prefixBytes", "regexp", (go$sliceType(Go$Uint8)), ""], ["prefixComplete", "regexp", Go$Bool, ""], ["prefixRune", "regexp", Go$Int32, ""], ["cond", "regexp", syntax.EmptyOp, ""], ["numSubexp", "regexp", Go$Int, ""], ["subexpNames", "regexp", (go$sliceType(Go$String)), ""], ["longest", "regexp", Go$Bool, ""], ["mu", "regexp", sync.Mutex, ""], ["machine", "regexp", (go$sliceType((go$ptrType(machine)))), ""]]);
+	(go$ptrType(Regexp)).methods = [["Expand", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false], ["ExpandString", "", [(go$sliceType(Go$Uint8)), Go$String, Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false], ["Find", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["FindAll", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Uint8))))], false], ["FindAllIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["FindAllString", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false], ["FindAllStringIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["FindAllStringSubmatch", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$String))))], false], ["FindAllStringSubmatchIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["FindAllSubmatch", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType((go$sliceType(Go$Uint8))))))], false], ["FindAllSubmatchIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["FindIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false], ["FindReaderIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false], ["FindReaderSubmatchIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false], ["FindString", "", [Go$String], [Go$String], false], ["FindStringIndex", "", [Go$String], [(go$sliceType(Go$Int))], false], ["FindStringSubmatch", "", [Go$String], [(go$sliceType(Go$String))], false], ["FindStringSubmatchIndex", "", [Go$String], [(go$sliceType(Go$Int))], false], ["FindSubmatch", "", [(go$sliceType(Go$Uint8))], [(go$sliceType((go$sliceType(Go$Uint8))))], false], ["FindSubmatchIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false], ["LiteralPrefix", "", [], [Go$String, Go$Bool], false], ["Longest", "", [], [], false], ["Match", "", [(go$sliceType(Go$Uint8))], [Go$Bool], false], ["MatchReader", "", [io.RuneReader], [Go$Bool], false], ["MatchString", "", [Go$String], [Go$Bool], false], ["NumSubexp", "", [], [Go$Int], false], ["ReplaceAll", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["ReplaceAllFunc", "", [(go$sliceType(Go$Uint8)), (go$funcType([(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false], ["ReplaceAllLiteral", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["ReplaceAllLiteralString", "", [Go$String, Go$String], [Go$String], false], ["ReplaceAllString", "", [Go$String, Go$String], [Go$String], false], ["ReplaceAllStringFunc", "", [Go$String, (go$funcType([Go$String], [Go$String], false))], [Go$String], false], ["Split", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false], ["String", "", [], [Go$String], false], ["SubexpNames", "", [], [(go$sliceType(Go$String))], false], ["allMatches", "regexp", [Go$String, (go$sliceType(Go$Uint8)), Go$Int, (go$funcType([(go$sliceType(Go$Int))], [], false))], [], false], ["doExecute", "regexp", [io.RuneReader, (go$sliceType(Go$Uint8)), Go$String, Go$Int, Go$Int], [(go$sliceType(Go$Int))], false], ["expand", "regexp", [(go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false], ["get", "regexp", [], [(go$ptrType(machine))], false], ["pad", "regexp", [(go$sliceType(Go$Int))], [(go$sliceType(Go$Int))], false], ["put", "regexp", [(go$ptrType(machine))], [], false], ["replaceAll", "regexp", [(go$sliceType(Go$Uint8)), Go$String, Go$Int, (go$funcType([(go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false]];
+	input.init([["canCheckPrefix", "regexp", (go$funcType([], [Go$Bool], false))], ["context", "regexp", (go$funcType([Go$Int], [syntax.EmptyOp], false))], ["hasPrefix", "regexp", (go$funcType([(go$ptrType(Regexp))], [Go$Bool], false))], ["index", "regexp", (go$funcType([(go$ptrType(Regexp)), Go$Int], [Go$Int], false))], ["step", "regexp", (go$funcType([Go$Int], [Go$Int32, Go$Int], false))]]);
+	inputString.init([["str", "regexp", Go$String, ""]]);
+	(go$ptrType(inputString)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
+	inputBytes.init([["str", "regexp", (go$sliceType(Go$Uint8)), ""]]);
+	(go$ptrType(inputBytes)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
+	inputReader.init([["r", "regexp", io.RuneReader, ""], ["atEOT", "regexp", Go$Bool, ""], ["pos", "regexp", Go$Int, ""]]);
+	(go$ptrType(inputReader)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
+	machine.Ptr.prototype.newInputBytes = function(b) {
+		var m;
+		m = this;
+		m.inputBytes.str = b;
+		return m.inputBytes;
+	};
+	machine.prototype.newInputBytes = function(b) { return this.go$val.newInputBytes(b); };
+	machine.Ptr.prototype.newInputString = function(s) {
+		var m;
+		m = this;
+		m.inputString.str = s;
+		return m.inputString;
+	};
+	machine.prototype.newInputString = function(s) { return this.go$val.newInputString(s); };
+	machine.Ptr.prototype.newInputReader = function(r) {
+		var m;
+		m = this;
+		m.inputReader.r = r;
+		m.inputReader.atEOT = false;
+		m.inputReader.pos = 0;
+		return m.inputReader;
+	};
+	machine.prototype.newInputReader = function(r) { return this.go$val.newInputReader(r); };
+	var progMachine = function(p) {
+		var m, n, ncap;
+		m = new machine.Ptr((go$ptrType(Regexp)).nil, p, new queue.Ptr(), new queue.Ptr(), (go$sliceType((go$ptrType(thread)))).nil, false, (go$sliceType(Go$Int)).nil, new inputBytes.Ptr(), new inputString.Ptr(), new inputReader.Ptr());
+		n = m.p.Inst.length;
+		m.q0 = new queue.Ptr((go$sliceType(Go$Uint32)).make(n, 0, function() { return 0; }), (go$sliceType(entry)).make(0, n, function() { return new entry.Ptr(); }));
+		m.q1 = new queue.Ptr((go$sliceType(Go$Uint32)).make(n, 0, function() { return 0; }), (go$sliceType(entry)).make(0, n, function() { return new entry.Ptr(); }));
+		ncap = p.NumCap;
+		if (ncap < 2) {
+			ncap = 2;
+		}
+		m.matchcap = (go$sliceType(Go$Int)).make(ncap, 0, function() { return 0; });
+		return m;
+	};
+	machine.Ptr.prototype.init = function(ncap) {
+		var m, _ref, _i, _slice, _index, t;
+		m = this;
+		_ref = m.pool;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			t = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			t.cap = go$subslice(t.cap, 0, ncap);
+		}
+		m.matchcap = go$subslice(m.matchcap, 0, ncap);
+	};
+	machine.prototype.init = function(ncap) { return this.go$val.init(ncap); };
+	machine.Ptr.prototype.alloc = function(i) {
+		var m, t, n, _slice, _index;
+		m = this;
+		t = (go$ptrType(thread)).nil;
+		if (n = m.pool.length, n > 0) {
+			t = (_slice = m.pool, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			m.pool = go$subslice(m.pool, 0, (n - 1 >> 0));
+		} else {
+			t = new thread.Ptr();
+			t.cap = (go$sliceType(Go$Int)).make(m.matchcap.length, m.matchcap.capacity, function() { return 0; });
+		}
+		t.inst = i;
+		return t;
+	};
+	machine.prototype.alloc = function(i) { return this.go$val.alloc(i); };
+	machine.Ptr.prototype.free = function(t) {
+		var m;
+		m = this;
+		m.inputBytes.str = (go$sliceType(Go$Uint8)).nil;
+		m.inputString.str = "";
+		m.inputReader.r = null;
+		m.pool = go$append(m.pool, t);
+	};
+	machine.prototype.free = function(t) { return this.go$val.free(t); };
+	machine.Ptr.prototype.match = function(i, pos) {
+		var m, startCond, _ref, _i, i$1, _slice, _index, _tuple, runq, nextq, _tuple$1, r, r1, _tuple$2, width, width1, _tuple$3, _tuple$4, flag, advance, _tuple$5, _tuple$6, _slice$1, _index$1, _tuple$7, _tuple$8, _tuple$9;
+		m = this;
+		startCond = m.re.cond;
+		if (startCond === 255) {
+			return false;
+		}
+		m.matched = false;
+		_ref = m.matchcap;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i$1 = _i;
+			_slice = m.matchcap, _index = i$1, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = -1) : go$throwRuntimeError("index out of range");
+		}
+		_tuple = [m.q0, m.q1], runq = _tuple[0], nextq = _tuple[1];
+		_tuple$1 = [-1, -1], r = _tuple$1[0], r1 = _tuple$1[1];
+		_tuple$2 = [0, 0], width = _tuple$2[0], width1 = _tuple$2[1];
+		_tuple$3 = i.step(pos), r = _tuple$3[0], width = _tuple$3[1];
+		if (!((r === -1))) {
+			_tuple$4 = i.step(pos + width >> 0), r1 = _tuple$4[0], width1 = _tuple$4[1];
+		}
+		flag = 0;
+		if (pos === 0) {
+			flag = syntax.EmptyOpContext(-1, r);
+		} else {
+			flag = i.context(pos);
+		}
+		while (true) {
+			if (runq.dense.length === 0) {
+				if (!((((startCond & 4) >>> 0) === 0)) && !((pos === 0))) {
+					break;
+				}
+				if (m.matched) {
+					break;
+				}
+				if (m.re.prefix.length > 0 && !((r1 === m.re.prefixRune)) && i.canCheckPrefix()) {
+					advance = i.index(m.re, pos);
+					if (advance < 0) {
+						break;
+					}
+					pos = pos + (advance) >> 0;
+					_tuple$5 = i.step(pos), r = _tuple$5[0], width = _tuple$5[1];
+					_tuple$6 = i.step(pos + width >> 0), r1 = _tuple$6[0], width1 = _tuple$6[1];
+				}
+			}
+			if (!m.matched) {
+				if (m.matchcap.length > 0) {
+					_slice$1 = m.matchcap, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = pos) : go$throwRuntimeError("index out of range");
+				}
+				m.add(runq, (m.p.Start >>> 0), pos, m.matchcap, flag, (go$ptrType(thread)).nil);
+			}
+			flag = syntax.EmptyOpContext(r, r1);
+			m.step(runq, nextq, pos, pos + width >> 0, r, flag);
+			if (width === 0) {
+				break;
+			}
+			if ((m.matchcap.length === 0) && m.matched) {
+				break;
+			}
+			pos = pos + (width) >> 0;
+			_tuple$7 = [r1, width1], r = _tuple$7[0], width = _tuple$7[1];
+			if (!((r === -1))) {
+				_tuple$8 = i.step(pos + width >> 0), r1 = _tuple$8[0], width1 = _tuple$8[1];
+			}
+			_tuple$9 = [nextq, runq], runq = _tuple$9[0], nextq = _tuple$9[1];
+		}
+		m.clear(nextq);
+		return m.matched;
+	};
+	machine.prototype.match = function(i, pos) { return this.go$val.match(i, pos); };
+	machine.Ptr.prototype.clear = function(q) {
+		var m, _ref, _i, _slice, _index, _struct, d;
+		m = this;
+		_ref = q.dense;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			d = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new entry.Ptr(_struct.pc, _struct.t));
+			if (!(d.t === (go$ptrType(thread)).nil)) {
+				m.pool = go$append(m.pool, d.t);
+			}
+		}
+		q.dense = go$subslice(q.dense, 0, 0);
+	};
+	machine.prototype.clear = function(q) { return this.go$val.clear(q); };
+	machine.Ptr.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) {
+		var m, longest, j, _slice, _index, d, t, _slice$1, _index$1, _slice$2, _index$2, i, add, _ref, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _i, _slice$5, _index$5, _struct, d$1, _slice$6, _index$6;
+		m = this;
+		longest = m.re.longest;
+		j = 0;
+		while (j < runq.dense.length) {
+			d = (_slice = runq.dense, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			t = d.t;
+			if (t === (go$ptrType(thread)).nil) {
+				j = j + 1 >> 0;
+				continue;
+			}
+			if (longest && m.matched && t.cap.length > 0 && (_slice$1 = m.matchcap, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) < (_slice$2 = t.cap, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) {
+				m.pool = go$append(m.pool, t);
+				j = j + 1 >> 0;
+				continue;
+			}
+			i = t.inst;
+			add = false;
+			_ref = i.Op;
+			if (_ref === 4) {
+				if (t.cap.length > 0 && (!longest || !m.matched || (_slice$3 = m.matchcap, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) < pos)) {
+					_slice$4 = t.cap, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = pos) : go$throwRuntimeError("index out of range");
+					go$copySlice(m.matchcap, t.cap);
+				}
+				if (!longest) {
+					_ref$1 = go$subslice(runq.dense, (j + 1 >> 0));
+					_i = 0;
+					for (; _i < _ref$1.length; _i += 1) {
+						d$1 = (_struct = (_slice$5 = _ref$1, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), new entry.Ptr(_struct.pc, _struct.t));
+						if (!(d$1.t === (go$ptrType(thread)).nil)) {
+							m.pool = go$append(m.pool, d$1.t);
+						}
+					}
+					runq.dense = go$subslice(runq.dense, 0, 0);
+				}
+				m.matched = true;
+			} else if (_ref === 7) {
+				add = i.MatchRune(c);
+			} else if (_ref === 8) {
+				add = c === (_slice$6 = i.Rune, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+			} else if (_ref === 9) {
+				add = true;
+			} else if (_ref === 10) {
+				add = !((c === 10));
+			} else {
+				throw go$panic(new Go$String("bad inst"));
+			}
+			if (add) {
+				t = m.add(nextq, i.Out, nextPos, t.cap, nextCond, t);
+			}
+			if (!(t === (go$ptrType(thread)).nil)) {
+				m.pool = go$append(m.pool, t);
+			}
+			j = j + 1 >> 0;
+		}
+		runq.dense = go$subslice(runq.dense, 0, 0);
+	};
+	machine.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) { return this.go$val.step(runq, nextq, pos, nextPos, c, nextCond); };
+	machine.Ptr.prototype.add = function(q, pc, pos, cap, cond, t) {
+		var m, j, _slice, _index, _slice$1, _index$1, j$1, _slice$2, _index$2, d, _slice$3, _index$3, _slice$4, _index$4, i, _ref, _slice$5, _index$5, opos, _slice$6, _index$6, _slice$7, _index$7;
+		m = this;
+		if (pc === 0) {
+			return t;
+		}
+		if (j = (_slice$1 = q.sparse, _index$1 = pc, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), j < (q.dense.length >>> 0) && ((_slice = q.dense, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).pc === pc)) {
+			return t;
+		}
+		j$1 = q.dense.length;
+		q.dense = go$subslice(q.dense, 0, (j$1 + 1 >> 0));
+		d = (_slice$2 = q.dense, _index$2 = j$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+		d.t = (go$ptrType(thread)).nil;
+		d.pc = pc;
+		_slice$3 = q.sparse, _index$3 = pc, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (j$1 >>> 0)) : go$throwRuntimeError("index out of range");
+		i = (_slice$4 = m.p.Inst, _index$4 = pc, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
+		_ref = i.Op;
+		if (_ref === 5) {
+		} else if (_ref === 0 || _ref === 1) {
+			t = m.add(q, i.Out, pos, cap, cond, t);
+			t = m.add(q, i.Arg, pos, cap, cond, t);
+		} else if (_ref === 3) {
+			if (((i.Arg << 24 >>> 24) & ~cond) === 0) {
+				t = m.add(q, i.Out, pos, cap, cond, t);
+			}
+		} else if (_ref === 6) {
+			t = m.add(q, i.Out, pos, cap, cond, t);
+		} else if (_ref === 2) {
+			if ((i.Arg >> 0) < cap.length) {
+				opos = (_slice$5 = cap, _index$5 = i.Arg, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+				_slice$6 = cap, _index$6 = i.Arg, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = pos) : go$throwRuntimeError("index out of range");
+				m.add(q, i.Out, pos, cap, cond, (go$ptrType(thread)).nil);
+				_slice$7 = cap, _index$7 = i.Arg, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = opos) : go$throwRuntimeError("index out of range");
+			} else {
+				t = m.add(q, i.Out, pos, cap, cond, t);
+			}
+		} else if (_ref === 4 || _ref === 7 || _ref === 8 || _ref === 9 || _ref === 10) {
+			if (t === (go$ptrType(thread)).nil) {
+				t = m.alloc(i);
+			} else {
+				t.inst = i;
+			}
+			if (cap.length > 0 && !(go$sliceIsEqual(t.cap, 0, cap, 0))) {
+				go$copySlice(t.cap, cap);
+			}
+			d.t = t;
+			t = (go$ptrType(thread)).nil;
+		} else {
+			throw go$panic(new Go$String("unhandled"));
+		}
+		return t;
+	};
+	machine.prototype.add = function(q, pc, pos, cap, cond, t) { return this.go$val.add(q, pc, pos, cap, cond, t); };
+	Regexp.Ptr.prototype.doExecute = function(r, b, s, pos, ncap) {
+		var re, m, i, cap;
+		re = this;
+		m = re.get();
+		i = null;
+		if (!(go$interfaceIsEqual(r, null))) {
+			i = m.newInputReader(r);
+		} else if (!(b === (go$sliceType(Go$Uint8)).nil)) {
+			i = m.newInputBytes(b);
+		} else {
+			i = m.newInputString(s);
+		}
+		m.init(ncap);
+		if (!m.match(i, pos)) {
+			re.put(m);
+			return (go$sliceType(Go$Int)).nil;
+		}
+		if (ncap === 0) {
+			re.put(m);
+			return empty;
+		}
+		cap = (go$sliceType(Go$Int)).make(ncap, 0, function() { return 0; });
+		go$copySlice(cap, m.matchcap);
+		re.put(m);
+		return cap;
+	};
+	Regexp.prototype.doExecute = function(r, b, s, pos, ncap) { return this.go$val.doExecute(r, b, s, pos, ncap); };
+	Regexp.Ptr.prototype.String = function() {
+		var re;
+		re = this;
+		return re.expr;
+	};
+	Regexp.prototype.String = function() { return this.go$val.String(); };
+	var Compile = go$pkg.Compile = function(expr) {
+		return compile(expr, 212, false);
+	};
+	var CompilePOSIX = go$pkg.CompilePOSIX = function(expr) {
+		return compile(expr, 0, true);
+	};
+	Regexp.Ptr.prototype.Longest = function() {
+		var re;
+		re = this;
+		re.longest = true;
+	};
+	Regexp.prototype.Longest = function() { return this.go$val.Longest(); };
+	var compile = function(expr, mode, longest) {
+		var _tuple, re, err, maxCap, capNames, _tuple$1, prog, regexp, _tuple$2, _tuple$3;
+		_tuple = syntax.Parse(expr, mode), re = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Regexp)).nil, err];
+		}
+		maxCap = re.MaxCap();
+		capNames = re.CapNames();
+		re = re.Simplify();
+		_tuple$1 = syntax.Compile(re), prog = _tuple$1[0], err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Regexp)).nil, err];
+		}
+		regexp = new Regexp.Ptr(expr, prog, "", (go$sliceType(Go$Uint8)).nil, false, 0, prog.StartCond(), maxCap, capNames, longest, new sync.Mutex.Ptr(), (go$sliceType((go$ptrType(machine)))).nil);
+		_tuple$2 = prog.Prefix(), regexp.prefix = _tuple$2[0], regexp.prefixComplete = _tuple$2[1];
+		if (!(regexp.prefix === "")) {
+			regexp.prefixBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes(regexp.prefix));
+			_tuple$3 = utf8.DecodeRuneInString(regexp.prefix), regexp.prefixRune = _tuple$3[0];
+		}
+		return [regexp, null];
+	};
+	Regexp.Ptr.prototype.get = function() {
+		var re, n, _slice, _index, z, z$1;
+		re = this;
+		re.mu.Lock();
+		if (n = re.machine.length, n > 0) {
+			z = (_slice = re.machine, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			re.machine = go$subslice(re.machine, 0, (n - 1 >> 0));
+			re.mu.Unlock();
+			return z;
+		}
+		re.mu.Unlock();
+		z$1 = progMachine(re.prog);
+		z$1.re = re;
+		return z$1;
+	};
+	Regexp.prototype.get = function() { return this.go$val.get(); };
+	Regexp.Ptr.prototype.put = function(z) {
+		var re;
+		re = this;
+		re.mu.Lock();
+		re.machine = go$append(re.machine, z);
+		re.mu.Unlock();
+	};
+	Regexp.prototype.put = function(z) { return this.go$val.put(z); };
+	var MustCompile = go$pkg.MustCompile = function(str) {
+		var _tuple, regexp, error;
+		_tuple = Compile(str), regexp = _tuple[0], error = _tuple[1];
+		if (!(go$interfaceIsEqual(error, null))) {
+			throw go$panic(new Go$String("regexp: Compile(" + quote(str) + "): " + error.Error()));
+		}
+		return regexp;
+	};
+	var MustCompilePOSIX = go$pkg.MustCompilePOSIX = function(str) {
+		var _tuple, regexp, error;
+		_tuple = CompilePOSIX(str), regexp = _tuple[0], error = _tuple[1];
+		if (!(go$interfaceIsEqual(error, null))) {
+			throw go$panic(new Go$String("regexp: CompilePOSIX(" + quote(str) + "): " + error.Error()));
+		}
+		return regexp;
+	};
+	var quote = function(s) {
+		if (strconv.CanBackquote(s)) {
+			return "`" + s + "`";
+		}
+		return strconv.Quote(s);
+	};
+	Regexp.Ptr.prototype.NumSubexp = function() {
+		var re;
+		re = this;
+		return re.numSubexp;
+	};
+	Regexp.prototype.NumSubexp = function() { return this.go$val.NumSubexp(); };
+	Regexp.Ptr.prototype.SubexpNames = function() {
+		var re;
+		re = this;
+		return re.subexpNames;
+	};
+	Regexp.prototype.SubexpNames = function() { return this.go$val.SubexpNames(); };
+	inputString.Ptr.prototype.step = function(pos) {
+		var i, c;
+		i = this;
+		if (pos < i.str.length) {
+			c = i.str.charCodeAt(pos);
+			if (c < 128) {
+				return [(c >> 0), 1];
+			}
+			return utf8.DecodeRuneInString(i.str.substring(pos));
+		}
+		return [-1, 0];
+	};
+	inputString.prototype.step = function(pos) { return this.go$val.step(pos); };
+	inputString.Ptr.prototype.canCheckPrefix = function() {
+		var i;
+		i = this;
+		return true;
+	};
+	inputString.prototype.canCheckPrefix = function() { return this.go$val.canCheckPrefix(); };
+	inputString.Ptr.prototype.hasPrefix = function(re) {
+		var i;
+		i = this;
+		return strings.HasPrefix(i.str, re.prefix);
+	};
+	inputString.prototype.hasPrefix = function(re) { return this.go$val.hasPrefix(re); };
+	inputString.Ptr.prototype.index = function(re, pos) {
+		var i;
+		i = this;
+		return strings.Index(i.str.substring(pos), re.prefix);
+	};
+	inputString.prototype.index = function(re, pos) { return this.go$val.index(re, pos); };
+	inputString.Ptr.prototype.context = function(pos) {
+		var i, _tuple, r1, r2, _tuple$1, _tuple$2;
+		i = this;
+		_tuple = [-1, -1], r1 = _tuple[0], r2 = _tuple[1];
+		if (pos > 0 && pos <= i.str.length) {
+			_tuple$1 = utf8.DecodeLastRuneInString(i.str.substring(0, pos)), r1 = _tuple$1[0];
+		}
+		if (pos < i.str.length) {
+			_tuple$2 = utf8.DecodeRuneInString(i.str.substring(pos)), r2 = _tuple$2[0];
+		}
+		return syntax.EmptyOpContext(r1, r2);
+	};
+	inputString.prototype.context = function(pos) { return this.go$val.context(pos); };
+	inputBytes.Ptr.prototype.step = function(pos) {
+		var i, _slice, _index, c;
+		i = this;
+		if (pos < i.str.length) {
+			c = (_slice = i.str, _index = pos, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (c < 128) {
+				return [(c >> 0), 1];
+			}
+			return utf8.DecodeRune(go$subslice(i.str, pos));
+		}
+		return [-1, 0];
+	};
+	inputBytes.prototype.step = function(pos) { return this.go$val.step(pos); };
+	inputBytes.Ptr.prototype.canCheckPrefix = function() {
+		var i;
+		i = this;
+		return true;
+	};
+	inputBytes.prototype.canCheckPrefix = function() { return this.go$val.canCheckPrefix(); };
+	inputBytes.Ptr.prototype.hasPrefix = function(re) {
+		var i;
+		i = this;
+		return bytes.HasPrefix(i.str, re.prefixBytes);
+	};
+	inputBytes.prototype.hasPrefix = function(re) { return this.go$val.hasPrefix(re); };
+	inputBytes.Ptr.prototype.index = function(re, pos) {
+		var i;
+		i = this;
+		return bytes.Index(go$subslice(i.str, pos), re.prefixBytes);
+	};
+	inputBytes.prototype.index = function(re, pos) { return this.go$val.index(re, pos); };
+	inputBytes.Ptr.prototype.context = function(pos) {
+		var i, _tuple, r1, r2, _tuple$1, _tuple$2;
+		i = this;
+		_tuple = [-1, -1], r1 = _tuple[0], r2 = _tuple[1];
+		if (pos > 0 && pos <= i.str.length) {
+			_tuple$1 = utf8.DecodeLastRune(go$subslice(i.str, 0, pos)), r1 = _tuple$1[0];
+		}
+		if (pos < i.str.length) {
+			_tuple$2 = utf8.DecodeRune(go$subslice(i.str, pos)), r2 = _tuple$2[0];
+		}
+		return syntax.EmptyOpContext(r1, r2);
+	};
+	inputBytes.prototype.context = function(pos) { return this.go$val.context(pos); };
+	inputReader.Ptr.prototype.step = function(pos) {
+		var i, _tuple, r, w, err;
+		i = this;
+		if (!i.atEOT && !((pos === i.pos))) {
+			return [-1, 0];
+		}
+		_tuple = i.r.ReadRune(), r = _tuple[0], w = _tuple[1], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			i.atEOT = true;
+			return [-1, 0];
+		}
+		i.pos = i.pos + (w) >> 0;
+		return [r, w];
+	};
+	inputReader.prototype.step = function(pos) { return this.go$val.step(pos); };
+	inputReader.Ptr.prototype.canCheckPrefix = function() {
+		var i;
+		i = this;
+		return false;
+	};
+	inputReader.prototype.canCheckPrefix = function() { return this.go$val.canCheckPrefix(); };
+	inputReader.Ptr.prototype.hasPrefix = function(re) {
+		var i;
+		i = this;
+		return false;
+	};
+	inputReader.prototype.hasPrefix = function(re) { return this.go$val.hasPrefix(re); };
+	inputReader.Ptr.prototype.index = function(re, pos) {
+		var i;
+		i = this;
+		return -1;
+	};
+	inputReader.prototype.index = function(re, pos) { return this.go$val.index(re, pos); };
+	inputReader.Ptr.prototype.context = function(pos) {
+		var i;
+		i = this;
+		return 0;
+	};
+	inputReader.prototype.context = function(pos) { return this.go$val.context(pos); };
+	Regexp.Ptr.prototype.LiteralPrefix = function() {
+		var prefix, complete, re, _tuple;
+		prefix = "";
+		complete = false;
+		re = this;
+		_tuple = [re.prefix, re.prefixComplete], prefix = _tuple[0], complete = _tuple[1];
+		return [prefix, complete];
+	};
+	Regexp.prototype.LiteralPrefix = function() { return this.go$val.LiteralPrefix(); };
+	Regexp.Ptr.prototype.MatchReader = function(r) {
+		var re;
+		re = this;
+		return !(re.doExecute(r, (go$sliceType(Go$Uint8)).nil, "", 0, 0) === (go$sliceType(Go$Int)).nil);
+	};
+	Regexp.prototype.MatchReader = function(r) { return this.go$val.MatchReader(r); };
+	Regexp.Ptr.prototype.MatchString = function(s) {
+		var re;
+		re = this;
+		return !(re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, 0) === (go$sliceType(Go$Int)).nil);
+	};
+	Regexp.prototype.MatchString = function(s) { return this.go$val.MatchString(s); };
+	Regexp.Ptr.prototype.Match = function(b) {
+		var re;
+		re = this;
+		return !(re.doExecute(null, b, "", 0, 0) === (go$sliceType(Go$Int)).nil);
+	};
+	Regexp.prototype.Match = function(b) { return this.go$val.Match(b); };
+	var MatchReader = go$pkg.MatchReader = function(pattern, r) {
+		var matched, err, _tuple, re, _tuple$1, _tuple$2;
+		matched = false;
+		err = null;
+		_tuple = Compile(pattern), re = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$1 = [false, err], matched = _tuple$1[0], err = _tuple$1[1];
+			return [matched, err];
+		}
+		_tuple$2 = [re.MatchReader(r), null], matched = _tuple$2[0], err = _tuple$2[1];
+		return [matched, err];
+	};
+	var MatchString = go$pkg.MatchString = function(pattern, s) {
+		var matched, err, _tuple, re, _tuple$1, _tuple$2;
+		matched = false;
+		err = null;
+		_tuple = Compile(pattern), re = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$1 = [false, err], matched = _tuple$1[0], err = _tuple$1[1];
+			return [matched, err];
+		}
+		_tuple$2 = [re.MatchString(s), null], matched = _tuple$2[0], err = _tuple$2[1];
+		return [matched, err];
+	};
+	var Match = go$pkg.Match = function(pattern, b) {
+		var matched, err, _tuple, re, _tuple$1, _tuple$2;
+		matched = false;
+		err = null;
+		_tuple = Compile(pattern), re = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple$1 = [false, err], matched = _tuple$1[0], err = _tuple$1[1];
+			return [matched, err];
+		}
+		_tuple$2 = [re.Match(b), null], matched = _tuple$2[0], err = _tuple$2[1];
+		return [matched, err];
+	};
+	Regexp.Ptr.prototype.ReplaceAllString = function(src, repl) {
+		var re, n, x, x$1, b;
+		re = this;
+		n = 2;
+		if (strings.Index(repl, "$") >= 0) {
+			n = (x = 2, x$1 = (re.numSubexp + 1 >> 0), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		}
+		b = re.replaceAll((go$sliceType(Go$Uint8)).nil, src, n, (function(dst, match) {
+			return re.expand(dst, repl, (go$sliceType(Go$Uint8)).nil, src, match);
+		}));
+		return go$bytesToString(b);
+	};
+	Regexp.prototype.ReplaceAllString = function(src, repl) { return this.go$val.ReplaceAllString(src, repl); };
+	Regexp.Ptr.prototype.ReplaceAllLiteralString = function(src, repl) {
+		var re;
+		re = this;
+		return go$bytesToString(re.replaceAll((go$sliceType(Go$Uint8)).nil, src, 2, (function(dst, match) {
+			return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(repl)));
+		})));
+	};
+	Regexp.prototype.ReplaceAllLiteralString = function(src, repl) { return this.go$val.ReplaceAllLiteralString(src, repl); };
+	Regexp.Ptr.prototype.ReplaceAllStringFunc = function(src, repl) {
+		var re, b;
+		re = this;
+		b = re.replaceAll((go$sliceType(Go$Uint8)).nil, src, 2, (function(dst, match) {
+			var _slice, _index, _slice$1, _index$1;
+			return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(repl(src.substring((_slice = match, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = match, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))))));
+		}));
+		return go$bytesToString(b);
+	};
+	Regexp.prototype.ReplaceAllStringFunc = function(src, repl) { return this.go$val.ReplaceAllStringFunc(src, repl); };
+	Regexp.Ptr.prototype.replaceAll = function(bsrc, src, nmatch, repl) {
+		var re, lastMatchEnd, searchPos, buf, endPos, a, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, width, _tuple, _tuple$1, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
+		re = this;
+		lastMatchEnd = 0;
+		searchPos = 0;
+		buf = (go$sliceType(Go$Uint8)).nil;
+		endPos = 0;
+		if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
+			endPos = bsrc.length;
+		} else {
+			endPos = src.length;
+		}
+		while (searchPos <= endPos) {
+			a = re.doExecute(null, bsrc, src, searchPos, nmatch);
+			if (a.length === 0) {
+				break;
+			}
+			if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
+				buf = go$appendSlice(buf, go$subslice(bsrc, lastMatchEnd, (_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))));
+			} else {
+				buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(src.substring(lastMatchEnd, (_slice$1 = a, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))))));
+			}
+			if ((_slice$2 = a, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) > lastMatchEnd || ((_slice$3 = a, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) === 0)) {
+				buf = repl(buf, a);
+			}
+			lastMatchEnd = (_slice$4 = a, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
+			width = 0;
+			if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
+				_tuple = utf8.DecodeRune(go$subslice(bsrc, searchPos)), width = _tuple[1];
+			} else {
+				_tuple$1 = utf8.DecodeRuneInString(src.substring(searchPos)), width = _tuple$1[1];
+			}
+			if ((searchPos + width >> 0) > (_slice$5 = a, _index$5 = 1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))) {
+				searchPos = searchPos + (width) >> 0;
+			} else if ((searchPos + 1 >> 0) > (_slice$6 = a, _index$6 = 1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))) {
+				searchPos = searchPos + 1 >> 0;
+			} else {
+				searchPos = (_slice$7 = a, _index$7 = 1, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+			}
+		}
+		if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
+			buf = go$appendSlice(buf, go$subslice(bsrc, lastMatchEnd));
+		} else {
+			buf = go$appendSlice(buf, new (go$sliceType(Go$Uint8))(go$stringToBytes(src.substring(lastMatchEnd))));
+		}
+		return buf;
+	};
+	Regexp.prototype.replaceAll = function(bsrc, src, nmatch, repl) { return this.go$val.replaceAll(bsrc, src, nmatch, repl); };
+	Regexp.Ptr.prototype.ReplaceAll = function(src, repl) {
+		var re, n, x, x$1, srepl, b;
+		re = this;
+		n = 2;
+		if (bytes.IndexByte(repl, 36) >= 0) {
+			n = (x = 2, x$1 = (re.numSubexp + 1 >> 0), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		}
+		srepl = "";
+		b = re.replaceAll(src, "", n, (function(dst, match) {
+			if (!((srepl.length === repl.length))) {
+				srepl = go$bytesToString(repl);
+			}
+			return re.expand(dst, srepl, src, "", match);
+		}));
+		return b;
+	};
+	Regexp.prototype.ReplaceAll = function(src, repl) { return this.go$val.ReplaceAll(src, repl); };
+	Regexp.Ptr.prototype.ReplaceAllLiteral = function(src, repl) {
+		var re;
+		re = this;
+		return re.replaceAll(src, "", 2, (function(dst, match) {
+			return go$appendSlice(dst, repl);
+		}));
+	};
+	Regexp.prototype.ReplaceAllLiteral = function(src, repl) { return this.go$val.ReplaceAllLiteral(src, repl); };
+	Regexp.Ptr.prototype.ReplaceAllFunc = function(src, repl) {
+		var re;
+		re = this;
+		return re.replaceAll(src, "", 2, (function(dst, match) {
+			var _slice, _index, _slice$1, _index$1;
+			return go$appendSlice(dst, repl(go$subslice(src, (_slice = match, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = match, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))));
+		}));
+	};
+	Regexp.prototype.ReplaceAllFunc = function(src, repl) { return this.go$val.ReplaceAllFunc(src, repl); };
+	var special = function(b) {
+		return bytes.IndexByte(specialBytes, b) >= 0;
+	};
+	var QuoteMeta = go$pkg.QuoteMeta = function(s) {
+		var x, x$1, b, j, i, _slice, _index, _slice$1, _index$1;
+		b = (go$sliceType(Go$Uint8)).make((x = 2, x$1 = s.length, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0), 0, function() { return 0; });
+		j = 0;
+		i = 0;
+		while (i < s.length) {
+			if (special(s.charCodeAt(i))) {
+				_slice = b, _index = j, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 92) : go$throwRuntimeError("index out of range");
+				j = j + 1 >> 0;
+			}
+			_slice$1 = b, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = s.charCodeAt(i)) : go$throwRuntimeError("index out of range");
+			j = j + 1 >> 0;
+			i = i + 1 >> 0;
+		}
+		return go$bytesToString(go$subslice(b, 0, j));
+	};
+	Regexp.Ptr.prototype.pad = function(a) {
+		var re, x, x$1, n;
+		re = this;
+		if (a === (go$sliceType(Go$Int)).nil) {
+			return (go$sliceType(Go$Int)).nil;
+		}
+		n = (x = (1 + re.numSubexp >> 0), x$1 = 2, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
+		while (a.length < n) {
+			a = go$append(a, -1);
+		}
+		return a;
+	};
+	Regexp.prototype.pad = function(a) { return this.go$val.pad(a); };
+	Regexp.Ptr.prototype.allMatches = function(s, b, n, deliver) {
+		var re, end, _tuple, pos, i, prevMatchEnd, matches, accept, _slice, _index, _slice$1, _index$1, width, _tuple$1, _tuple$2, _slice$2, _index$2, _slice$3, _index$3;
+		re = this;
+		end = 0;
+		if (b === (go$sliceType(Go$Uint8)).nil) {
+			end = s.length;
+		} else {
+			end = b.length;
+		}
+		_tuple = [0, 0, -1], pos = _tuple[0], i = _tuple[1], prevMatchEnd = _tuple[2];
+		while (i < n && pos <= end) {
+			matches = re.doExecute(null, b, s, pos, re.prog.NumCap);
+			if (matches.length === 0) {
+				break;
+			}
+			accept = true;
+			if ((_slice = matches, _index = 1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === pos) {
+				if ((_slice$1 = matches, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === prevMatchEnd) {
+					accept = false;
+				}
+				width = 0;
+				if (b === (go$sliceType(Go$Uint8)).nil) {
+					_tuple$1 = utf8.DecodeRuneInString(s.substring(pos, end)), width = _tuple$1[1];
+				} else {
+					_tuple$2 = utf8.DecodeRune(go$subslice(b, pos, end)), width = _tuple$2[1];
+				}
+				if (width > 0) {
+					pos = pos + (width) >> 0;
+				} else {
+					pos = end + 1 >> 0;
+				}
+			} else {
+				pos = (_slice$2 = matches, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+			}
+			prevMatchEnd = (_slice$3 = matches, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			if (accept) {
+				deliver(re.pad(matches));
+				i = i + 1 >> 0;
+			}
+		}
+	};
+	Regexp.prototype.allMatches = function(s, b, n, deliver) { return this.go$val.allMatches(s, b, n, deliver); };
+	Regexp.Ptr.prototype.Find = function(b) {
+		var re, a, _slice, _index, _slice$1, _index$1;
+		re = this;
+		a = re.doExecute(null, b, "", 0, 2);
+		if (a === (go$sliceType(Go$Int)).nil) {
+			return (go$sliceType(Go$Uint8)).nil;
+		}
+		return go$subslice(b, (_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = a, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
+	};
+	Regexp.prototype.Find = function(b) { return this.go$val.Find(b); };
+	Regexp.Ptr.prototype.FindIndex = function(b) {
+		var loc, re, a;
+		loc = (go$sliceType(Go$Int)).nil;
+		re = this;
+		a = re.doExecute(null, b, "", 0, 2);
+		if (a === (go$sliceType(Go$Int)).nil) {
+			loc = (go$sliceType(Go$Int)).nil;
+			return loc;
+		}
+		loc = go$subslice(a, 0, 2);
+		return loc;
+	};
+	Regexp.prototype.FindIndex = function(b) { return this.go$val.FindIndex(b); };
+	Regexp.Ptr.prototype.FindString = function(s) {
+		var re, a, _slice, _index, _slice$1, _index$1;
+		re = this;
+		a = re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, 2);
+		if (a === (go$sliceType(Go$Int)).nil) {
+			return "";
+		}
+		return s.substring((_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = a, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
+	};
+	Regexp.prototype.FindString = function(s) { return this.go$val.FindString(s); };
+	Regexp.Ptr.prototype.FindStringIndex = function(s) {
+		var loc, re, a;
+		loc = (go$sliceType(Go$Int)).nil;
+		re = this;
+		a = re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, 2);
+		if (a === (go$sliceType(Go$Int)).nil) {
+			loc = (go$sliceType(Go$Int)).nil;
+			return loc;
+		}
+		loc = go$subslice(a, 0, 2);
+		return loc;
+	};
+	Regexp.prototype.FindStringIndex = function(s) { return this.go$val.FindStringIndex(s); };
+	Regexp.Ptr.prototype.FindReaderIndex = function(r) {
+		var loc, re, a;
+		loc = (go$sliceType(Go$Int)).nil;
+		re = this;
+		a = re.doExecute(r, (go$sliceType(Go$Uint8)).nil, "", 0, 2);
+		if (a === (go$sliceType(Go$Int)).nil) {
+			loc = (go$sliceType(Go$Int)).nil;
+			return loc;
+		}
+		loc = go$subslice(a, 0, 2);
+		return loc;
+	};
+	Regexp.prototype.FindReaderIndex = function(r) { return this.go$val.FindReaderIndex(r); };
+	Regexp.Ptr.prototype.FindSubmatch = function(b) {
+		var re, a, ret, _ref, _i, i, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3;
+		re = this;
+		a = re.doExecute(null, b, "", 0, re.prog.NumCap);
+		if (a === (go$sliceType(Go$Int)).nil) {
+			return (go$sliceType((go$sliceType(Go$Uint8)))).nil;
+		}
+		ret = (go$sliceType((go$sliceType(Go$Uint8)))).make(1 + re.numSubexp >> 0, 0, function() { return (go$sliceType(Go$Uint8)).nil; });
+		_ref = ret;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			if ((x = 2, (((x >>> 16 << 16) * i >> 0) + (x << 16 >>> 16) * i) >> 0) < a.length && (_slice = a, _index = (x$1 = 2, (((x$1 >>> 16 << 16) * i >> 0) + (x$1 << 16 >>> 16) * i) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
+				_slice$3 = ret, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = go$subslice(b, (_slice$1 = a, _index$1 = (x$2 = 2, (((x$2 >>> 16 << 16) * i >> 0) + (x$2 << 16 >>> 16) * i) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = a, _index$2 = ((x$3 = 2, (((x$3 >>> 16 << 16) * i >> 0) + (x$3 << 16 >>> 16) * i) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
+			}
+		}
+		return ret;
+	};
+	Regexp.prototype.FindSubmatch = function(b) { return this.go$val.FindSubmatch(b); };
+	Regexp.Ptr.prototype.Expand = function(dst, template, src, match) {
+		var re;
+		re = this;
+		return re.expand(dst, go$bytesToString(template), src, "", match);
+	};
+	Regexp.prototype.Expand = function(dst, template, src, match) { return this.go$val.Expand(dst, template, src, match); };
+	Regexp.Ptr.prototype.ExpandString = function(dst, template, src, match) {
+		var re;
+		re = this;
+		return re.expand(dst, template, (go$sliceType(Go$Uint8)).nil, src, match);
+	};
+	Regexp.prototype.ExpandString = function(dst, template, src, match) { return this.go$val.ExpandString(dst, template, src, match); };
+	Regexp.Ptr.prototype.expand = function(dst, template, bsrc, src, match) {
+		var re, i, _tuple, name, num, rest, ok, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3, x$4, _slice$4, _index$4, x$5, _ref, _i, _slice$5, _index$5, namei, i$1, x$6, _slice$6, _index$6, x$7, _slice$7, _index$7, x$8, _slice$8, _index$8, x$9, _slice$9, _index$9, x$10, _slice$10, _index$10, x$11;
+		re = this;
+		while (template.length > 0) {
+			i = strings.Index(template, "$");
+			if (i < 0) {
+				break;
+			}
+			dst = go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(template.substring(0, i))));
+			template = template.substring(i);
+			if (template.length > 1 && (template.charCodeAt(1) === 36)) {
+				dst = go$append(dst, 36);
+				template = template.substring(2);
+				continue;
+			}
+			_tuple = extract(template), name = _tuple[0], num = _tuple[1], rest = _tuple[2], ok = _tuple[3];
+			if (!ok) {
+				dst = go$append(dst, 36);
+				template = template.substring(1);
+				continue;
+			}
+			template = rest;
+			if (num >= 0) {
+				if (((x = 2, (((x >>> 16 << 16) * num >> 0) + (x << 16 >>> 16) * num) >> 0) + 1 >> 0) < match.length && (_slice = match, _index = (x$1 = 2, (((x$1 >>> 16 << 16) * num >> 0) + (x$1 << 16 >>> 16) * num) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
+					if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
+						dst = go$appendSlice(dst, go$subslice(bsrc, (_slice$1 = match, _index$1 = (x$2 = 2, (((x$2 >>> 16 << 16) * num >> 0) + (x$2 << 16 >>> 16) * num) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = match, _index$2 = ((x$3 = 2, (((x$3 >>> 16 << 16) * num >> 0) + (x$3 << 16 >>> 16) * num) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))));
+					} else {
+						dst = go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(src.substring((_slice$3 = match, _index$3 = (x$4 = 2, (((x$4 >>> 16 << 16) * num >> 0) + (x$4 << 16 >>> 16) * num) >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (_slice$4 = match, _index$4 = ((x$5 = 2, (((x$5 >>> 16 << 16) * num >> 0) + (x$5 << 16 >>> 16) * num) >> 0) + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))))));
+					}
+				}
+			} else {
+				_ref = re.subexpNames;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					namei = (_slice$5 = _ref, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+					i$1 = _i;
+					if (name === namei && ((x$6 = 2, (((x$6 >>> 16 << 16) * i$1 >> 0) + (x$6 << 16 >>> 16) * i$1) >> 0) + 1 >> 0) < match.length && (_slice$6 = match, _index$6 = (x$7 = 2, (((x$7 >>> 16 << 16) * i$1 >> 0) + (x$7 << 16 >>> 16) * i$1) >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) >= 0) {
+						if (!(bsrc === (go$sliceType(Go$Uint8)).nil)) {
+							dst = go$appendSlice(dst, go$subslice(bsrc, (_slice$7 = match, _index$7 = (x$8 = 2, (((x$8 >>> 16 << 16) * i$1 >> 0) + (x$8 << 16 >>> 16) * i$1) >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), (_slice$8 = match, _index$8 = ((x$9 = 2, (((x$9 >>> 16 << 16) * i$1 >> 0) + (x$9 << 16 >>> 16) * i$1) >> 0) + 1 >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"))));
+						} else {
+							dst = go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(src.substring((_slice$9 = match, _index$9 = (x$10 = 2, (((x$10 >>> 16 << 16) * i$1 >> 0) + (x$10 << 16 >>> 16) * i$1) >> 0), (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")), (_slice$10 = match, _index$10 = ((x$11 = 2, (((x$11 >>> 16 << 16) * i$1 >> 0) + (x$11 << 16 >>> 16) * i$1) >> 0) + 1 >> 0), (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"))))));
+						}
+						break;
+					}
+				}
+			}
+		}
+		dst = go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(template)));
+		return dst;
+	};
+	Regexp.prototype.expand = function(dst, template, bsrc, src, match) { return this.go$val.expand(dst, template, bsrc, src, match); };
+	var extract = function(str) {
+		var name, num, rest, ok, brace, i, _tuple, rune, size, i$1, x;
+		name = "";
+		num = 0;
+		rest = "";
+		ok = false;
+		if (str.length < 2 || !((str.charCodeAt(0) === 36))) {
+			return [name, num, rest, ok];
+		}
+		brace = false;
+		if (str.charCodeAt(1) === 123) {
+			brace = true;
+			str = str.substring(2);
+		} else {
+			str = str.substring(1);
+		}
+		i = 0;
+		while (i < str.length) {
+			_tuple = utf8.DecodeRuneInString(str.substring(i)), rune = _tuple[0], size = _tuple[1];
+			if (!unicode.IsLetter(rune) && !unicode.IsDigit(rune) && !((rune === 95))) {
+				break;
+			}
+			i = i + (size) >> 0;
+		}
+		if (i === 0) {
+			return [name, num, rest, ok];
+		}
+		name = str.substring(0, i);
+		if (brace) {
+			if (i >= str.length || !((str.charCodeAt(i) === 125))) {
+				return [name, num, rest, ok];
+			}
+			i = i + 1 >> 0;
+		}
+		num = 0;
+		i$1 = 0;
+		while (i$1 < name.length) {
+			if (name.charCodeAt(i$1) < 48 || 57 < name.charCodeAt(i$1) || num >= 100000000) {
+				num = -1;
+				break;
+			}
+			num = ((x = 10, (((num >>> 16 << 16) * x >> 0) + (num << 16 >>> 16) * x) >> 0) + (name.charCodeAt(i$1) >> 0) >> 0) - 48 >> 0;
+			i$1 = i$1 + 1 >> 0;
+		}
+		if ((name.charCodeAt(0) === 48) && name.length > 1) {
+			num = -1;
+		}
+		rest = str.substring(i);
+		ok = true;
+		return [name, num, rest, ok];
+	};
+	Regexp.Ptr.prototype.FindSubmatchIndex = function(b) {
+		var re;
+		re = this;
+		return re.pad(re.doExecute(null, b, "", 0, re.prog.NumCap));
+	};
+	Regexp.prototype.FindSubmatchIndex = function(b) { return this.go$val.FindSubmatchIndex(b); };
+	Regexp.Ptr.prototype.FindStringSubmatch = function(s) {
+		var re, a, ret, _ref, _i, i, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3;
+		re = this;
+		a = re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, re.prog.NumCap);
+		if (a === (go$sliceType(Go$Int)).nil) {
+			return (go$sliceType(Go$String)).nil;
+		}
+		ret = (go$sliceType(Go$String)).make(1 + re.numSubexp >> 0, 0, function() { return ""; });
+		_ref = ret;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			if ((x = 2, (((x >>> 16 << 16) * i >> 0) + (x << 16 >>> 16) * i) >> 0) < a.length && (_slice = a, _index = (x$1 = 2, (((x$1 >>> 16 << 16) * i >> 0) + (x$1 << 16 >>> 16) * i) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
+				_slice$3 = ret, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = s.substring((_slice$1 = a, _index$1 = (x$2 = 2, (((x$2 >>> 16 << 16) * i >> 0) + (x$2 << 16 >>> 16) * i) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = a, _index$2 = ((x$3 = 2, (((x$3 >>> 16 << 16) * i >> 0) + (x$3 << 16 >>> 16) * i) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
+			}
+		}
+		return ret;
+	};
+	Regexp.prototype.FindStringSubmatch = function(s) { return this.go$val.FindStringSubmatch(s); };
+	Regexp.Ptr.prototype.FindStringSubmatchIndex = function(s) {
+		var re;
+		re = this;
+		return re.pad(re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, re.prog.NumCap));
+	};
+	Regexp.prototype.FindStringSubmatchIndex = function(s) { return this.go$val.FindStringSubmatchIndex(s); };
+	Regexp.Ptr.prototype.FindReaderSubmatchIndex = function(r) {
+		var re;
+		re = this;
+		return re.pad(re.doExecute(r, (go$sliceType(Go$Uint8)).nil, "", 0, re.prog.NumCap));
+	};
+	Regexp.prototype.FindReaderSubmatchIndex = function(r) { return this.go$val.FindReaderSubmatchIndex(r); };
+	Regexp.Ptr.prototype.FindAll = function(b, n) {
+		var re, result;
+		re = this;
+		if (n < 0) {
+			n = b.length + 1 >> 0;
+		}
+		result = (go$sliceType((go$sliceType(Go$Uint8)))).make(0, 10, function() { return (go$sliceType(Go$Uint8)).nil; });
+		re.allMatches("", b, n, (function(match) {
+			var _slice, _index, _slice$1, _index$1;
+			result = go$append(result, go$subslice(b, (_slice = match, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = match, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))));
+		}));
+		if (result.length === 0) {
+			return (go$sliceType((go$sliceType(Go$Uint8)))).nil;
+		}
+		return result;
+	};
+	Regexp.prototype.FindAll = function(b, n) { return this.go$val.FindAll(b, n); };
+	Regexp.Ptr.prototype.FindAllIndex = function(b, n) {
+		var re, result;
+		re = this;
+		if (n < 0) {
+			n = b.length + 1 >> 0;
+		}
+		result = (go$sliceType((go$sliceType(Go$Int)))).make(0, 10, function() { return (go$sliceType(Go$Int)).nil; });
+		re.allMatches("", b, n, (function(match) {
+			result = go$append(result, go$subslice(match, 0, 2));
+		}));
+		if (result.length === 0) {
+			return (go$sliceType((go$sliceType(Go$Int)))).nil;
+		}
+		return result;
+	};
+	Regexp.prototype.FindAllIndex = function(b, n) { return this.go$val.FindAllIndex(b, n); };
+	Regexp.Ptr.prototype.FindAllString = function(s, n) {
+		var re, result;
+		re = this;
+		if (n < 0) {
+			n = s.length + 1 >> 0;
+		}
+		result = (go$sliceType(Go$String)).make(0, 10, function() { return ""; });
+		re.allMatches(s, (go$sliceType(Go$Uint8)).nil, n, (function(match) {
+			var _slice, _index, _slice$1, _index$1;
+			result = go$append(result, s.substring((_slice = match, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = match, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))));
+		}));
+		if (result.length === 0) {
+			return (go$sliceType(Go$String)).nil;
+		}
+		return result;
+	};
+	Regexp.prototype.FindAllString = function(s, n) { return this.go$val.FindAllString(s, n); };
+	Regexp.Ptr.prototype.FindAllStringIndex = function(s, n) {
+		var re, result;
+		re = this;
+		if (n < 0) {
+			n = s.length + 1 >> 0;
+		}
+		result = (go$sliceType((go$sliceType(Go$Int)))).make(0, 10, function() { return (go$sliceType(Go$Int)).nil; });
+		re.allMatches(s, (go$sliceType(Go$Uint8)).nil, n, (function(match) {
+			result = go$append(result, go$subslice(match, 0, 2));
+		}));
+		if (result.length === 0) {
+			return (go$sliceType((go$sliceType(Go$Int)))).nil;
+		}
+		return result;
+	};
+	Regexp.prototype.FindAllStringIndex = function(s, n) { return this.go$val.FindAllStringIndex(s, n); };
+	Regexp.Ptr.prototype.FindAllSubmatch = function(b, n) {
+		var re, result;
+		re = this;
+		if (n < 0) {
+			n = b.length + 1 >> 0;
+		}
+		result = (go$sliceType((go$sliceType((go$sliceType(Go$Uint8)))))).make(0, 10, function() { return (go$sliceType((go$sliceType(Go$Uint8)))).nil; });
+		re.allMatches("", b, n, (function(match) {
+			var _q, slice, _ref, _i, j, _slice, _index, x, _slice$1, _index$1, x$1, _slice$2, _index$2, x$2, _slice$3, _index$3;
+			slice = (go$sliceType((go$sliceType(Go$Uint8)))).make((_q = match.length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 0, function() { return (go$sliceType(Go$Uint8)).nil; });
+			_ref = slice;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				j = _i;
+				if ((_slice = match, _index = (x = 2, (((x >>> 16 << 16) * j >> 0) + (x << 16 >>> 16) * j) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
+					_slice$3 = slice, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = go$subslice(b, (_slice$1 = match, _index$1 = (x$1 = 2, (((x$1 >>> 16 << 16) * j >> 0) + (x$1 << 16 >>> 16) * j) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = match, _index$2 = ((x$2 = 2, (((x$2 >>> 16 << 16) * j >> 0) + (x$2 << 16 >>> 16) * j) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
+				}
+			}
+			result = go$append(result, slice);
+		}));
+		if (result.length === 0) {
+			return (go$sliceType((go$sliceType((go$sliceType(Go$Uint8)))))).nil;
+		}
+		return result;
+	};
+	Regexp.prototype.FindAllSubmatch = function(b, n) { return this.go$val.FindAllSubmatch(b, n); };
+	Regexp.Ptr.prototype.FindAllSubmatchIndex = function(b, n) {
+		var re, result;
+		re = this;
+		if (n < 0) {
+			n = b.length + 1 >> 0;
+		}
+		result = (go$sliceType((go$sliceType(Go$Int)))).make(0, 10, function() { return (go$sliceType(Go$Int)).nil; });
+		re.allMatches("", b, n, (function(match) {
+			result = go$append(result, match);
+		}));
+		if (result.length === 0) {
+			return (go$sliceType((go$sliceType(Go$Int)))).nil;
+		}
+		return result;
+	};
+	Regexp.prototype.FindAllSubmatchIndex = function(b, n) { return this.go$val.FindAllSubmatchIndex(b, n); };
+	Regexp.Ptr.prototype.FindAllStringSubmatch = function(s, n) {
+		var re, result;
+		re = this;
+		if (n < 0) {
+			n = s.length + 1 >> 0;
+		}
+		result = (go$sliceType((go$sliceType(Go$String)))).make(0, 10, function() { return (go$sliceType(Go$String)).nil; });
+		re.allMatches(s, (go$sliceType(Go$Uint8)).nil, n, (function(match) {
+			var _q, slice, _ref, _i, j, _slice, _index, x, _slice$1, _index$1, x$1, _slice$2, _index$2, x$2, _slice$3, _index$3;
+			slice = (go$sliceType(Go$String)).make((_q = match.length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 0, function() { return ""; });
+			_ref = slice;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				j = _i;
+				if ((_slice = match, _index = (x = 2, (((x >>> 16 << 16) * j >> 0) + (x << 16 >>> 16) * j) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
+					_slice$3 = slice, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = s.substring((_slice$1 = match, _index$1 = (x$1 = 2, (((x$1 >>> 16 << 16) * j >> 0) + (x$1 << 16 >>> 16) * j) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = match, _index$2 = ((x$2 = 2, (((x$2 >>> 16 << 16) * j >> 0) + (x$2 << 16 >>> 16) * j) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
+				}
+			}
+			result = go$append(result, slice);
+		}));
+		if (result.length === 0) {
+			return (go$sliceType((go$sliceType(Go$String)))).nil;
+		}
+		return result;
+	};
+	Regexp.prototype.FindAllStringSubmatch = function(s, n) { return this.go$val.FindAllStringSubmatch(s, n); };
+	Regexp.Ptr.prototype.FindAllStringSubmatchIndex = function(s, n) {
+		var re, result;
+		re = this;
+		if (n < 0) {
+			n = s.length + 1 >> 0;
+		}
+		result = (go$sliceType((go$sliceType(Go$Int)))).make(0, 10, function() { return (go$sliceType(Go$Int)).nil; });
+		re.allMatches(s, (go$sliceType(Go$Uint8)).nil, n, (function(match) {
+			result = go$append(result, match);
+		}));
+		if (result.length === 0) {
+			return (go$sliceType((go$sliceType(Go$Int)))).nil;
+		}
+		return result;
+	};
+	Regexp.prototype.FindAllStringSubmatchIndex = function(s, n) { return this.go$val.FindAllStringSubmatchIndex(s, n); };
+	Regexp.Ptr.prototype.Split = function(s, n) {
+		var re, matches, strings$1, beg, end, _ref, _i, _slice, _index, match, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		re = this;
+		if (n === 0) {
+			return (go$sliceType(Go$String)).nil;
+		}
+		if (re.expr.length > 0 && (s.length === 0)) {
+			return new (go$sliceType(Go$String))([""]);
+		}
+		matches = re.FindAllStringIndex(s, n);
+		strings$1 = (go$sliceType(Go$String)).make(0, matches.length, function() { return ""; });
+		beg = 0;
+		end = 0;
+		_ref = matches;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			match = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (n > 0 && strings$1.length >= (n - 1 >> 0)) {
+				break;
+			}
+			end = (_slice$1 = match, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			if (!(((_slice$2 = match, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 0))) {
+				strings$1 = go$append(strings$1, s.substring(beg, end));
+			}
+			beg = (_slice$3 = match, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+		}
+		if (!((end === s.length))) {
+			strings$1 = go$append(strings$1, s.substring(beg));
+		}
+		return strings$1;
+	};
+	Regexp.prototype.Split = function(s, n) { return this.go$val.Split(s, n); };
+	var endOfText = -1;
+	var startSize = 10;
+	var empty = (go$sliceType(Go$Int)).nil;
+	var debug = false;
+	var specialBytes = (go$sliceType(Go$Uint8)).nil;
+	go$pkg.init = function() {
+		empty = (go$sliceType(Go$Int)).make(0, 0, function() { return 0; });
+		debug = false;
+		specialBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("\\.+*?()|[]{}^$"));
+	};

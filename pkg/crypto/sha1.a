@@ -1,0 +1,230 @@
+0‚-,‚package sha1
+import crypto "crypto"
+import hash "hash"
+const @"".BlockSize = 0x40
+func @"".New() (? @"hash".Hash)
+const @"".Size = 0x14
+func @"".Sum(@"".data []byte) (? [20]byte)
+type @"".digest struct { @"".h [5]uint32; @"".x [64]byte; @"".nx int; @"".len uint64 }
+func (? *@"".digest) @"".BlockSize() (? int)
+func (? *@"".digest) @"".Reset() ()
+func (? *@"".digest) @"".Size() (? int)
+func (? *@"".digest) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".digest) @"".Write(@"".p []byte) (@"".nn int, @"".err error)
+func (? *@"".digest) @"".checkSum() (? [20]byte)
+import io "io"
+type @"hash".Hash interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0`runtimeerrorssync/atomicsynciohashmathunicode/utf8strconvcryptocrypto/sha1‚)´	var crypto = go$packages["crypto"];
+	var hash = go$packages["hash"];
+	var digest;
+	digest = go$newType(0, "Struct", "sha1.digest", "digest", "crypto/sha1", function(h_, x_, nx_, len_) {
+		this.go$val = this;
+		this.h = h_ !== undefined ? h_ : go$makeNativeArray("Uint32", 5, function() { return 0; });
+		this.x = x_ !== undefined ? x_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
+		this.nx = nx_ !== undefined ? nx_ : 0;
+		this.len = len_ !== undefined ? len_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.digest = digest;
+	digest.init([["h", "crypto/sha1", (go$arrayType(Go$Uint32, 5)), ""], ["x", "crypto/sha1", (go$arrayType(Go$Uint8, 64)), ""], ["nx", "crypto/sha1", Go$Int, ""], ["len", "crypto/sha1", Go$Uint64, ""]]);
+	(go$ptrType(digest)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["checkSum", "crypto/sha1", [], [(go$arrayType(Go$Uint8, 20))], false]];
+	digest.Ptr.prototype.Reset = function() {
+		var d;
+		d = this;
+		d.h[0] = 1732584193;
+		d.h[1] = 4023233417;
+		d.h[2] = 2562383102;
+		d.h[3] = 271733878;
+		d.h[4] = 3285377520;
+		d.nx = 0;
+		d.len = new Go$Uint64(0, 0);
+	};
+	digest.prototype.Reset = function() { return this.go$val.Reset(); };
+	var New = go$pkg.New = function() {
+		var d;
+		d = new digest.Ptr();
+		d.Reset();
+		return d;
+	};
+	digest.Ptr.prototype.Size = function() {
+		var d;
+		d = this;
+		return 20;
+	};
+	digest.prototype.Size = function() { return this.go$val.Size(); };
+	digest.Ptr.prototype.BlockSize = function() {
+		var d;
+		d = this;
+		return 64;
+	};
+	digest.prototype.BlockSize = function() { return this.go$val.BlockSize(); };
+	digest.Ptr.prototype.Write = function(p) {
+		var nn, err, d, x, x$1, n, i, _slice, _index, n$1;
+		nn = 0;
+		err = null;
+		d = this;
+		nn = p.length;
+		d.len = (x = d.len, x$1 = new Go$Uint64(0, nn), new Go$Uint64(x.high + x$1.high, x.low + x$1.low));
+		if (d.nx > 0) {
+			n = p.length;
+			if (n > (64 - d.nx >> 0)) {
+				n = 64 - d.nx >> 0;
+			}
+			i = 0;
+			while (i < n) {
+				d.x[d.nx + i >> 0] = (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = i + 1 >> 0;
+			}
+			d.nx = d.nx + (n) >> 0;
+			if (d.nx === 64) {
+				block(d, go$subslice(new (go$sliceType(Go$Uint8))(d.x), 0));
+				d.nx = 0;
+			}
+			p = go$subslice(p, n);
+		}
+		if (p.length >= 64) {
+			n$1 = p.length & ~63;
+			block(d, go$subslice(p, 0, n$1));
+			p = go$subslice(p, n$1);
+		}
+		if (p.length > 0) {
+			d.nx = go$copySlice(new (go$sliceType(Go$Uint8))(d.x), p);
+		}
+		return [nn, err];
+	};
+	digest.prototype.Write = function(p) { return this.go$val.Write(p); };
+	digest.Ptr.prototype.Sum = function(in$1) {
+		var d0, _struct, d, hash$1;
+		d0 = this;
+		d = (_struct = d0, new digest.Ptr(go$mapArray(_struct.h, function(entry) { return entry; }), go$mapArray(_struct.x, function(entry) { return entry; }), _struct.nx, _struct.len));
+		hash$1 = go$mapArray(d.checkSum(), function(entry) { return entry; });
+		return go$appendSlice(in$1, new (go$sliceType(Go$Uint8))(hash$1));
+	};
+	digest.prototype.Sum = function(in$1) { return this.go$val.Sum(in$1); };
+	digest.Ptr.prototype.checkSum = function() {
+		var d, len, tmp, x, x$1, x$2, i, x$3, digest$1, _ref, _i, s, i$1, x$4, x$5, x$6, x$7;
+		d = this;
+		len = d.len;
+		tmp = go$makeNativeArray("Uint8", 64, function() { return 0; });
+		tmp[0] = 128;
+		if ((x = go$div64(len, new Go$Uint64(0, 64), true), (x.high < 0 || (x.high === 0 && x.low < 56)))) {
+			d.Write(go$subslice(new (go$sliceType(Go$Uint8))(tmp), 0, go$flatten64((x$1 = go$div64(len, new Go$Uint64(0, 64), true), new Go$Uint64(0 - x$1.high, 56 - x$1.low)))));
+		} else {
+			d.Write(go$subslice(new (go$sliceType(Go$Uint8))(tmp), 0, go$flatten64((x$2 = go$div64(len, new Go$Uint64(0, 64), true), new Go$Uint64(0 - x$2.high, 120 - x$2.low)))));
+		}
+		len = go$shiftLeft64(len, 3);
+		i = 0;
+		while (i < 8) {
+			tmp[i] = (go$shiftRightUint64(len, ((56 - (x$3 = 8, (((x$3 >>> 16 << 16) * i >>> 0) + (x$3 << 16 >>> 16) * i) >>> 0) >>> 0))).low << 24 >>> 24);
+			i = i + 1 >>> 0;
+		}
+		d.Write(go$subslice(new (go$sliceType(Go$Uint8))(tmp), 0, 8));
+		if (!((d.nx === 0))) {
+			throw go$panic(new Go$String("d.nx != 0"));
+		}
+		digest$1 = go$makeNativeArray("Uint8", 20, function() { return 0; });
+		_ref = d.h;
+		_i = 0;
+		for (; _i < 5; _i += 1) {
+			s = _ref[_i];
+			i$1 = _i;
+			digest$1[(x$4 = 4, (((i$1 >>> 16 << 16) * x$4 >> 0) + (i$1 << 16 >>> 16) * x$4) >> 0)] = ((s >>> 24 >>> 0) << 24 >>> 24);
+			digest$1[(x$5 = 4, (((i$1 >>> 16 << 16) * x$5 >> 0) + (i$1 << 16 >>> 16) * x$5) >> 0) + 1 >> 0] = ((s >>> 16 >>> 0) << 24 >>> 24);
+			digest$1[(x$6 = 4, (((i$1 >>> 16 << 16) * x$6 >> 0) + (i$1 << 16 >>> 16) * x$6) >> 0) + 2 >> 0] = ((s >>> 8 >>> 0) << 24 >>> 24);
+			digest$1[(x$7 = 4, (((i$1 >>> 16 << 16) * x$7 >> 0) + (i$1 << 16 >>> 16) * x$7) >> 0) + 3 >> 0] = (s << 24 >>> 24);
+		}
+		return go$mapArray(digest$1, function(entry) { return entry; });
+	};
+	digest.prototype.checkSum = function() { return this.go$val.checkSum(); };
+	var Sum = go$pkg.Sum = function(data) {
+		var d;
+		d = new digest.Ptr();
+		d.Reset();
+		d.Write(data);
+		return go$mapArray(d.checkSum(), function(entry) { return entry; });
+	};
+	var block = function(dig, p) {
+		var w, _tuple, h0, h1, h2, h3, h4, i, x, j, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple$1, a, b, c, d, e, i$1, f, a5, b30, t, _tuple$2, tmp, f$1, a5$1, b30$1, t$1, _tuple$3, tmp$1, f$2, a5$2, b30$2, t$2, _tuple$4, tmp$2, f$3, a5$3, b30$3, t$3, _tuple$5, tmp$3, f$4, a5$4, b30$4, t$4, _tuple$6, _tuple$7;
+		w = go$makeNativeArray("Uint32", 16, function() { return 0; });
+		_tuple = [dig.h[0], dig.h[1], dig.h[2], dig.h[3], dig.h[4]], h0 = _tuple[0], h1 = _tuple[1], h2 = _tuple[2], h3 = _tuple[3], h4 = _tuple[4];
+		while (p.length >= 64) {
+			i = 0;
+			while (i < 16) {
+				j = (x = 4, (((i >>> 16 << 16) * x >> 0) + (i << 16 >>> 16) * x) >> 0);
+				w[i] = ((((((((_slice = p, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) << 24 >>> 0) | (((_slice$1 = p, _index$1 = (j + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0) << 16 >>> 0)) >>> 0) | (((_slice$2 = p, _index$2 = (j + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0) << 8 >>> 0)) >>> 0) | ((_slice$3 = p, _index$3 = (j + 3 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0)) >>> 0;
+				i = i + 1 >> 0;
+			}
+			_tuple$1 = [h0, h1, h2, h3, h4], a = _tuple$1[0], b = _tuple$1[1], c = _tuple$1[2], d = _tuple$1[3], e = _tuple$1[4];
+			i$1 = 0;
+			while (i$1 < 16) {
+				f = (((b & c) >>> 0) | ((((~b >>> 0)) & d) >>> 0)) >>> 0;
+				a5 = ((a << 5 >>> 0) | (a >>> 27 >>> 0)) >>> 0;
+				b30 = ((b << 30 >>> 0) | (b >>> 2 >>> 0)) >>> 0;
+				t = (((a5 + f >>> 0) + e >>> 0) + w[(i$1 & 15)] >>> 0) + 1518500249 >>> 0;
+				_tuple$2 = [t, a, b30, c, d], a = _tuple$2[0], b = _tuple$2[1], c = _tuple$2[2], d = _tuple$2[3], e = _tuple$2[4];
+				i$1 = i$1 + 1 >> 0;
+			}
+			while (i$1 < 20) {
+				tmp = (((((w[(((i$1 - 3 >> 0)) & 15)] ^ w[(((i$1 - 8 >> 0)) & 15)]) >>> 0) ^ w[(((i$1 - 14 >> 0)) & 15)]) >>> 0) ^ w[((i$1) & 15)]) >>> 0;
+				w[i$1 & 15] = ((tmp << 1 >>> 0) | (tmp >>> 31 >>> 0)) >>> 0;
+				f$1 = (((b & c) >>> 0) | ((((~b >>> 0)) & d) >>> 0)) >>> 0;
+				a5$1 = ((a << 5 >>> 0) | (a >>> 27 >>> 0)) >>> 0;
+				b30$1 = ((b << 30 >>> 0) | (b >>> 2 >>> 0)) >>> 0;
+				t$1 = (((a5$1 + f$1 >>> 0) + e >>> 0) + w[(i$1 & 15)] >>> 0) + 1518500249 >>> 0;
+				_tuple$3 = [t$1, a, b30$1, c, d], a = _tuple$3[0], b = _tuple$3[1], c = _tuple$3[2], d = _tuple$3[3], e = _tuple$3[4];
+				i$1 = i$1 + 1 >> 0;
+			}
+			while (i$1 < 40) {
+				tmp$1 = (((((w[(((i$1 - 3 >> 0)) & 15)] ^ w[(((i$1 - 8 >> 0)) & 15)]) >>> 0) ^ w[(((i$1 - 14 >> 0)) & 15)]) >>> 0) ^ w[((i$1) & 15)]) >>> 0;
+				w[i$1 & 15] = ((tmp$1 << 1 >>> 0) | (tmp$1 >>> 31 >>> 0)) >>> 0;
+				f$2 = (((b ^ c) >>> 0) ^ d) >>> 0;
+				a5$2 = ((a << 5 >>> 0) | (a >>> 27 >>> 0)) >>> 0;
+				b30$2 = ((b << 30 >>> 0) | (b >>> 2 >>> 0)) >>> 0;
+				t$2 = (((a5$2 + f$2 >>> 0) + e >>> 0) + w[(i$1 & 15)] >>> 0) + 1859775393 >>> 0;
+				_tuple$4 = [t$2, a, b30$2, c, d], a = _tuple$4[0], b = _tuple$4[1], c = _tuple$4[2], d = _tuple$4[3], e = _tuple$4[4];
+				i$1 = i$1 + 1 >> 0;
+			}
+			while (i$1 < 60) {
+				tmp$2 = (((((w[(((i$1 - 3 >> 0)) & 15)] ^ w[(((i$1 - 8 >> 0)) & 15)]) >>> 0) ^ w[(((i$1 - 14 >> 0)) & 15)]) >>> 0) ^ w[((i$1) & 15)]) >>> 0;
+				w[i$1 & 15] = ((tmp$2 << 1 >>> 0) | (tmp$2 >>> 31 >>> 0)) >>> 0;
+				f$3 = (((((((b | c) >>> 0)) & d) >>> 0)) | (((b & c) >>> 0))) >>> 0;
+				a5$3 = ((a << 5 >>> 0) | (a >>> 27 >>> 0)) >>> 0;
+				b30$3 = ((b << 30 >>> 0) | (b >>> 2 >>> 0)) >>> 0;
+				t$3 = (((a5$3 + f$3 >>> 0) + e >>> 0) + w[(i$1 & 15)] >>> 0) + 2400959708 >>> 0;
+				_tuple$5 = [t$3, a, b30$3, c, d], a = _tuple$5[0], b = _tuple$5[1], c = _tuple$5[2], d = _tuple$5[3], e = _tuple$5[4];
+				i$1 = i$1 + 1 >> 0;
+			}
+			while (i$1 < 80) {
+				tmp$3 = (((((w[(((i$1 - 3 >> 0)) & 15)] ^ w[(((i$1 - 8 >> 0)) & 15)]) >>> 0) ^ w[(((i$1 - 14 >> 0)) & 15)]) >>> 0) ^ w[((i$1) & 15)]) >>> 0;
+				w[i$1 & 15] = ((tmp$3 << 1 >>> 0) | (tmp$3 >>> 31 >>> 0)) >>> 0;
+				f$4 = (((b ^ c) >>> 0) ^ d) >>> 0;
+				a5$4 = ((a << 5 >>> 0) | (a >>> 27 >>> 0)) >>> 0;
+				b30$4 = ((b << 30 >>> 0) | (b >>> 2 >>> 0)) >>> 0;
+				t$4 = (((a5$4 + f$4 >>> 0) + e >>> 0) + w[(i$1 & 15)] >>> 0) + 3395469782 >>> 0;
+				_tuple$6 = [t$4, a, b30$4, c, d], a = _tuple$6[0], b = _tuple$6[1], c = _tuple$6[2], d = _tuple$6[3], e = _tuple$6[4];
+				i$1 = i$1 + 1 >> 0;
+			}
+			h0 = h0 + (a) >>> 0;
+			h1 = h1 + (b) >>> 0;
+			h2 = h2 + (c) >>> 0;
+			h3 = h3 + (d) >>> 0;
+			h4 = h4 + (e) >>> 0;
+			p = go$subslice(p, 64);
+		}
+		_tuple$7 = [h0, h1, h2, h3, h4], dig.h[0] = _tuple$7[0], dig.h[1] = _tuple$7[1], dig.h[2] = _tuple$7[2], dig.h[3] = _tuple$7[3], dig.h[4] = _tuple$7[4];
+	};
+	go$pkg.Size = 20;
+	go$pkg.BlockSize = 64;
+	var chunk = 64;
+	var init0 = 1732584193;
+	var init1 = 4023233417;
+	var init2 = 2562383102;
+	var init3 = 271733878;
+	var init4 = 3285377520;
+	var _K0 = 1518500249;
+	var _K1 = 1859775393;
+	var _K2 = 2400959708;
+	var _K3 = 3395469782;
+	go$pkg.init = function() {
+		crypto.RegisterHash(3, New);
+	};

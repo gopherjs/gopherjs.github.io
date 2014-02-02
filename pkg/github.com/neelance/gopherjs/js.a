@@ -1,0 +1,64 @@
+0‚1‚ÿpackage js
+type @"".Error struct { ? @"".Object }
+func (? *@"".Error) @"".Error() (? string)
+func @"".Global(@"".name string) (? @"".Object)
+type @"".Object interface { @"".Bool() (? bool); @"".Call(@"".name string, @"".args ...interface {  }) (? @"".Object); @"".Float() (? float64); @"".Get(@"".name string) (? @"".Object); @"".Index(@"".i int) (? @"".Object); @"".Int() (? int); @"".Interface() (? interface {  }); @"".Invoke(@"".args ...interface {  }) (? @"".Object); @"".IsNull() (? bool); @"".IsUndefined() (? bool); @"".Length() (? int); @"".New(@"".args ...interface {  }) (? @"".Object); @"".Set(@"".name string, @"".value interface {  }) (); @"".SetIndex(@"".i int, @"".value interface {  }) (); @"".String() (? string) }
+func @"".This() (? @"".Object)
+$$
+0*runtimegithub.com/neelance/gopherjs/js‚þ	var Object;
+	Object = go$newType(0, "Interface", "js.Object", "Object", "github.com/neelance/gopherjs/js", null);
+	go$pkg.Object = Object;
+	var Error;
+	Error = go$newType(0, "Struct", "js.Error", "Error", "github.com/neelance/gopherjs/js", function(Object_) {
+		this.go$val = this;
+		this.Object = Object_ !== undefined ? Object_ : null;
+	});
+	Error.prototype.Bool = function() { return this.go$val.Bool(); };
+	Error.Ptr.prototype.Bool = function() { return this.Object.Bool(); };
+	Error.prototype.Call = function(name, args) { return this.go$val.Call(name, args); };
+	Error.Ptr.prototype.Call = function(name, args) { return this.Object.Call(name, args); };
+	Error.prototype.Float = function() { return this.go$val.Float(); };
+	Error.Ptr.prototype.Float = function() { return this.Object.Float(); };
+	Error.prototype.Get = function(name) { return this.go$val.Get(name); };
+	Error.Ptr.prototype.Get = function(name) { return this.Object.Get(name); };
+	Error.prototype.Index = function(i) { return this.go$val.Index(i); };
+	Error.Ptr.prototype.Index = function(i) { return this.Object.Index(i); };
+	Error.prototype.Int = function() { return this.go$val.Int(); };
+	Error.Ptr.prototype.Int = function() { return this.Object.Int(); };
+	Error.prototype.Interface = function() { return this.go$val.Interface(); };
+	Error.Ptr.prototype.Interface = function() { return this.Object.Interface(); };
+	Error.prototype.Invoke = function(args) { return this.go$val.Invoke(args); };
+	Error.Ptr.prototype.Invoke = function(args) { return this.Object.Invoke(args); };
+	Error.prototype.IsNull = function() { return this.go$val.IsNull(); };
+	Error.Ptr.prototype.IsNull = function() { return this.Object.IsNull(); };
+	Error.prototype.IsUndefined = function() { return this.go$val.IsUndefined(); };
+	Error.Ptr.prototype.IsUndefined = function() { return this.Object.IsUndefined(); };
+	Error.prototype.Length = function() { return this.go$val.Length(); };
+	Error.Ptr.prototype.Length = function() { return this.Object.Length(); };
+	Error.prototype.New = function(args) { return this.go$val.New(args); };
+	Error.Ptr.prototype.New = function(args) { return this.Object.New(args); };
+	Error.prototype.Set = function(name, value) { return this.go$val.Set(name, value); };
+	Error.Ptr.prototype.Set = function(name, value) { return this.Object.Set(name, value); };
+	Error.prototype.SetIndex = function(i, value) { return this.go$val.SetIndex(i, value); };
+	Error.Ptr.prototype.SetIndex = function(i, value) { return this.Object.SetIndex(i, value); };
+	Error.prototype.String = function() { return this.go$val.String(); };
+	Error.Ptr.prototype.String = function() { return this.Object.String(); };
+	go$pkg.Error = Error;
+	Object.init([["Bool", "", (go$funcType([], [Go$Bool], false))], ["Call", "", (go$funcType([Go$String, (go$sliceType(go$emptyInterface))], [Object], true))], ["Float", "", (go$funcType([], [Go$Float64], false))], ["Get", "", (go$funcType([Go$String], [Object], false))], ["Index", "", (go$funcType([Go$Int], [Object], false))], ["Int", "", (go$funcType([], [Go$Int], false))], ["Interface", "", (go$funcType([], [go$emptyInterface], false))], ["Invoke", "", (go$funcType([(go$sliceType(go$emptyInterface))], [Object], true))], ["IsNull", "", (go$funcType([], [Go$Bool], false))], ["IsUndefined", "", (go$funcType([], [Go$Bool], false))], ["Length", "", (go$funcType([], [Go$Int], false))], ["New", "", (go$funcType([(go$sliceType(go$emptyInterface))], [Object], true))], ["Set", "", (go$funcType([Go$String, go$emptyInterface], [], false))], ["SetIndex", "", (go$funcType([Go$Int, go$emptyInterface], [], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
+	Error.init([["", "", Object, ""]]);
+	Error.methods = [["Bool", "", [], [Go$Bool], false], ["Call", "", [Go$String, (go$sliceType(go$emptyInterface))], [Object], true], ["Float", "", [], [Go$Float64], false], ["Get", "", [Go$String], [Object], false], ["Index", "", [Go$Int], [Object], false], ["Int", "", [], [Go$Int], false], ["Interface", "", [], [go$emptyInterface], false], ["Invoke", "", [(go$sliceType(go$emptyInterface))], [Object], true], ["IsNull", "", [], [Go$Bool], false], ["IsUndefined", "", [], [Go$Bool], false], ["Length", "", [], [Go$Int], false], ["New", "", [(go$sliceType(go$emptyInterface))], [Object], true], ["Set", "", [Go$String, go$emptyInterface], [], false], ["SetIndex", "", [Go$Int, go$emptyInterface], [], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(Error)).methods = [["Bool", "", [], [Go$Bool], false], ["Call", "", [Go$String, (go$sliceType(go$emptyInterface))], [Object], true], ["Error", "", [], [Go$String], false], ["Float", "", [], [Go$Float64], false], ["Get", "", [Go$String], [Object], false], ["Index", "", [Go$Int], [Object], false], ["Int", "", [], [Go$Int], false], ["Interface", "", [], [go$emptyInterface], false], ["Invoke", "", [(go$sliceType(go$emptyInterface))], [Object], true], ["IsNull", "", [], [Go$Bool], false], ["IsUndefined", "", [], [Go$Bool], false], ["Length", "", [], [Go$Int], false], ["New", "", [(go$sliceType(go$emptyInterface))], [Object], true], ["Set", "", [Go$String, go$emptyInterface], [], false], ["SetIndex", "", [Go$Int, go$emptyInterface], [], false], ["String", "", [], [Go$String], false]];
+	Error.Ptr.prototype.Error = function() {
+		var err;
+		err = this;
+		return "JavaScript error: " + go$internalize(err.Object.message, Go$String);
+	};
+	Error.prototype.Error = function() { return this.go$val.Error(); };
+	var Global = go$pkg.Global = function(name) {
+		return null;
+	};
+	var This = go$pkg.This = function() {
+		return null;
+	};
+	go$pkg.init = function() {
+	};

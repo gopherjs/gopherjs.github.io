@@ -1,0 +1,454 @@
+0ÇEoÇÁpackage mime
+import strings "strings"
+import bytes "bytes"
+import errors "errors"
+import fmt "fmt"
+import unicode "unicode"
+import sync "sync"
+import bufio "bufio"
+import os "os"
+func @"".AddExtensionType(@"".ext string, @"".typ string) (? error)
+func @"".FormatMediaType(@"".t string, @"".param map[string]string) (? string)
+func @"".ParseMediaType(@"".v string) (@"".mediatype string, @"".params map[string]string, @"".err error)
+func @"".TypeByExtension(@"".ext string) (? string)
+$$
+0Ååruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtstringsmimeÇBÒ	var strings = go$packages["strings"];
+	var bytes = go$packages["bytes"];
+	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var unicode = go$packages["unicode"];
+	var sync = go$packages["sync"];
+	var bufio = go$packages["bufio"];
+	var os = go$packages["os"];
+	var isTSpecial = function(r) {
+		return !((strings.IndexRune("()<>@,;:\\\"/[]?=", r) === -1));
+	};
+	var isTokenChar = function(r) {
+		return r > 32 && r < 127 && !isTSpecial(r);
+	};
+	var isToken = function(s) {
+		if (s === "") {
+			return false;
+		}
+		return strings.IndexFunc(s, isNotTokenChar) < 0;
+	};
+	var FormatMediaType = go$pkg.FormatMediaType = function(t, param) {
+		var slash, _tuple, major, sub, b, _ref, _i, _keys, _entry, value, attribute, offset, _ref$1, _i$1, _rune, character, index;
+		slash = strings.Index(t, "/");
+		if (slash === -1) {
+			return "";
+		}
+		_tuple = [t.substring(0, slash), t.substring((slash + 1 >> 0))], major = _tuple[0], sub = _tuple[1];
+		if (!isToken(major) || !isToken(sub)) {
+			return "";
+		}
+		b = new bytes.Buffer.Ptr();
+		b.WriteString(strings.ToLower(major));
+		b.WriteByte(47);
+		b.WriteString(strings.ToLower(sub));
+		_ref = param;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry = _ref[_keys[_i]];
+			value = _entry.v;
+			attribute = _entry.k;
+			b.WriteByte(59);
+			b.WriteByte(32);
+			if (!isToken(attribute)) {
+				return "";
+			}
+			b.WriteString(strings.ToLower(attribute));
+			b.WriteByte(61);
+			if (isToken(value)) {
+				b.WriteString(value);
+				continue;
+			}
+			b.WriteByte(34);
+			offset = 0;
+			_ref$1 = value;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += _rune[1]) {
+				_rune = go$decodeRune(_ref$1, _i$1);
+				character = _rune[0];
+				index = _i$1;
+				if ((character === 34) || (character === 92)) {
+					b.WriteString(value.substring(offset, index));
+					offset = index;
+					b.WriteByte(92);
+				}
+				if (!(((character & 128) === 0))) {
+					return "";
+				}
+			}
+			b.WriteString(value.substring(offset));
+			b.WriteByte(34);
+		}
+		return b.String();
+	};
+	var checkMediaTypeDisposition = function(s) {
+		var _tuple, typ, rest, _tuple$1, subtype;
+		_tuple = consumeToken(s), typ = _tuple[0], rest = _tuple[1];
+		if (typ === "") {
+			return errors.New("mime: no media type");
+		}
+		if (rest === "") {
+			return null;
+		}
+		if (!strings.HasPrefix(rest, "/")) {
+			return errors.New("mime: expected slash after first token");
+		}
+		_tuple$1 = consumeToken(rest.substring(1)), subtype = _tuple$1[0], rest = _tuple$1[1];
+		if (subtype === "") {
+			return errors.New("mime: expected token after slash");
+		}
+		if (!(rest === "")) {
+			return errors.New("mime: unexpected content after media subtype");
+		}
+		return null;
+	};
+	var ParseMediaType = go$pkg.ParseMediaType = function(v) {
+		var mediatype, params, err, i, _tuple, continuation, _tuple$1, key, value, rest, _tuple$2, pmap, idx, baseName, ok, _tuple$3, _entry, _key, _entry$1, exists, _tuple$4, _entry$2, _tuple$5, _key$1, buf, _ref, _i, _keys, _entry$3, pieceMap, key$1, singlePartKey, ok$1, _tuple$6, _entry$4, v$1, decv, _key$2, valid, n, simplePart, ok$2, _tuple$7, _entry$5, v$2, encodedPart, ok$3, _tuple$8, _entry$6, v$3, _tuple$9, decv$1, _key$3;
+		mediatype = "";
+		params = false;
+		err = null;
+		i = strings.Index(v, ";");
+		if (i === -1) {
+			i = v.length;
+		}
+		mediatype = strings.TrimSpace(strings.ToLower(v.substring(0, i)));
+		err = checkMediaTypeDisposition(mediatype);
+		if (!(go$interfaceIsEqual(err, null))) {
+			_tuple = ["", false, err], mediatype = _tuple[0], params = _tuple[1], err = _tuple[2];
+			return [mediatype, params, err];
+		}
+		params = new Go$Map();
+		continuation = false;
+		v = v.substring(i);
+		while (v.length > 0) {
+			v = strings.TrimLeftFunc(v, unicode.IsSpace);
+			if (v.length === 0) {
+				break;
+			}
+			_tuple$1 = consumeMediaParam(v), key = _tuple$1[0], value = _tuple$1[1], rest = _tuple$1[2];
+			if (key === "") {
+				if (strings.TrimSpace(rest) === ";") {
+					return [mediatype, params, err];
+				}
+				_tuple$2 = ["", false, errors.New("mime: invalid media parameter")], mediatype = _tuple$2[0], params = _tuple$2[1], err = _tuple$2[2];
+				return [mediatype, params, err];
+			}
+			pmap = params;
+			if (idx = strings.Index(key, "*"), !((idx === -1))) {
+				baseName = key.substring(0, idx);
+				if (continuation === false) {
+					continuation = new Go$Map();
+				}
+				ok = false;
+				if (_tuple$3 = (_entry = continuation[baseName], _entry !== undefined ? [_entry.v, true] : [false, false]), pmap = _tuple$3[0], ok = _tuple$3[1], !ok) {
+					_key = baseName, (continuation || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: new Go$Map() };
+					pmap = (_entry$1 = continuation[baseName], _entry$1 !== undefined ? _entry$1.v : false);
+				}
+			}
+			if (_tuple$4 = (_entry$2 = pmap[key], _entry$2 !== undefined ? [_entry$2.v, true] : ["", false]), exists = _tuple$4[1], exists) {
+				_tuple$5 = ["", false, errors.New("mime: duplicate parameter name")], mediatype = _tuple$5[0], params = _tuple$5[1], err = _tuple$5[2];
+				return [mediatype, params, err];
+			}
+			_key$1 = key, (pmap || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: value };
+			v = rest;
+		}
+		buf = new bytes.Buffer.Ptr();
+		_ref = continuation;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry$3 = _ref[_keys[_i]];
+			pieceMap = _entry$3.v;
+			key$1 = _entry$3.k;
+			singlePartKey = key$1 + "*";
+			if (_tuple$6 = (_entry$4 = pieceMap[singlePartKey], _entry$4 !== undefined ? [_entry$4.v, true] : ["", false]), v$1 = _tuple$6[0], ok$1 = _tuple$6[1], ok$1) {
+				decv = decode2231Enc(v$1);
+				_key$2 = key$1, (params || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: decv };
+				continue;
+			}
+			buf.Reset();
+			valid = false;
+			n = 0;
+			while (true) {
+				simplePart = fmt.Sprintf("%s*%d", new (go$sliceType(go$emptyInterface))([new Go$String(key$1), new Go$Int(n)]));
+				if (_tuple$7 = (_entry$5 = pieceMap[simplePart], _entry$5 !== undefined ? [_entry$5.v, true] : ["", false]), v$2 = _tuple$7[0], ok$2 = _tuple$7[1], ok$2) {
+					valid = true;
+					buf.WriteString(v$2);
+					n = n + 1 >> 0;
+					continue;
+				}
+				encodedPart = simplePart + "*";
+				if (_tuple$8 = (_entry$6 = pieceMap[encodedPart], _entry$6 !== undefined ? [_entry$6.v, true] : ["", false]), v$3 = _tuple$8[0], ok$3 = _tuple$8[1], ok$3) {
+					valid = true;
+					if (n === 0) {
+						buf.WriteString(decode2231Enc(v$3));
+					} else {
+						_tuple$9 = percentHexUnescape(v$3), decv$1 = _tuple$9[0];
+						buf.WriteString(decv$1);
+					}
+				} else {
+					break;
+				}
+				n = n + 1 >> 0;
+			}
+			if (valid) {
+				_key$3 = key$1, (params || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: buf.String() };
+			}
+		}
+		return [mediatype, params, err];
+	};
+	var decode2231Enc = function(v) {
+		var sv, _slice, _index, charset, _tuple, _slice$1, _index$1, encv;
+		sv = strings.SplitN(v, "'", 3);
+		if (!((sv.length === 3))) {
+			return "";
+		}
+		charset = strings.ToLower((_slice = sv, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
+		if (!(charset === "us-ascii") && !(charset === "utf-8")) {
+			return "";
+		}
+		_tuple = percentHexUnescape((_slice$1 = sv, _index$1 = 2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))), encv = _tuple[0];
+		return encv;
+	};
+	var isNotTokenChar = function(r) {
+		return !isTokenChar(r);
+	};
+	var consumeToken = function(v) {
+		var token, rest, notPos, _tuple, _tuple$1, _tuple$2;
+		token = "";
+		rest = "";
+		notPos = strings.IndexFunc(v, isNotTokenChar);
+		if (notPos === -1) {
+			_tuple = [v, ""], token = _tuple[0], rest = _tuple[1];
+			return [token, rest];
+		}
+		if (notPos === 0) {
+			_tuple$1 = ["", v], token = _tuple$1[0], rest = _tuple$1[1];
+			return [token, rest];
+		}
+		_tuple$2 = [v.substring(0, notPos), v.substring(notPos)], token = _tuple$2[0], rest = _tuple$2[1];
+		return [token, rest];
+	};
+	var consumeValue = function(v) {
+		var value, rest, _tuple, leadQuote, buffer, idx, r, nextIsLiteral, _ref, _i, _rune, _tuple$1, _tuple$2, _tuple$3;
+		value = "";
+		rest = "";
+		if (!strings.HasPrefix(v, "\"") && !strings.HasPrefix(v, "'")) {
+			_tuple = consumeToken(v), value = _tuple[0], rest = _tuple[1];
+			return [value, rest];
+		}
+		leadQuote = (v.charCodeAt(0) >> 0);
+		rest = v.substring(1);
+		buffer = new bytes.Buffer.Ptr();
+		idx = 0;
+		r = 0;
+		nextIsLiteral = false;
+		_ref = rest;
+		_i = 0;
+		for (; _i < _ref.length; _i += _rune[1]) {
+			_rune = go$decodeRune(_ref, _i);
+			r = _rune[0];
+			idx = _i;
+			if (nextIsLiteral) {
+				buffer.WriteRune(r);
+				nextIsLiteral = false;
+			} else if (r === leadQuote) {
+				_tuple$1 = [buffer.String(), rest.substring((idx + 1 >> 0))], value = _tuple$1[0], rest = _tuple$1[1];
+				return [value, rest];
+			} else if (r === 92) {
+				nextIsLiteral = true;
+			} else if (!((r === 13)) && !((r === 10))) {
+				buffer.WriteRune(r);
+			} else {
+				_tuple$2 = ["", v], value = _tuple$2[0], rest = _tuple$2[1];
+				return [value, rest];
+			}
+		}
+		_tuple$3 = ["", v], value = _tuple$3[0], rest = _tuple$3[1];
+		return [value, rest];
+	};
+	var consumeMediaParam = function(v) {
+		var param, value, rest, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6;
+		param = "";
+		value = "";
+		rest = "";
+		rest = strings.TrimLeftFunc(v, unicode.IsSpace);
+		if (!strings.HasPrefix(rest, ";")) {
+			_tuple = ["", "", v], param = _tuple[0], value = _tuple[1], rest = _tuple[2];
+			return [param, value, rest];
+		}
+		rest = rest.substring(1);
+		rest = strings.TrimLeftFunc(rest, unicode.IsSpace);
+		_tuple$1 = consumeToken(rest), param = _tuple$1[0], rest = _tuple$1[1];
+		param = strings.ToLower(param);
+		if (param === "") {
+			_tuple$2 = ["", "", v], param = _tuple$2[0], value = _tuple$2[1], rest = _tuple$2[2];
+			return [param, value, rest];
+		}
+		rest = strings.TrimLeftFunc(rest, unicode.IsSpace);
+		if (!strings.HasPrefix(rest, "=")) {
+			_tuple$3 = ["", "", v], param = _tuple$3[0], value = _tuple$3[1], rest = _tuple$3[2];
+			return [param, value, rest];
+		}
+		rest = rest.substring(1);
+		rest = strings.TrimLeftFunc(rest, unicode.IsSpace);
+		_tuple$4 = consumeValue(rest), value = _tuple$4[0], rest = _tuple$4[1];
+		if (value === "") {
+			_tuple$5 = ["", "", v], param = _tuple$5[0], value = _tuple$5[1], rest = _tuple$5[2];
+			return [param, value, rest];
+		}
+		_tuple$6 = [param, value, rest], param = _tuple$6[0], value = _tuple$6[1], rest = _tuple$6[2];
+		return [param, value, rest];
+	};
+	var percentHexUnescape = function(s) {
+		var percents, i, x, t, j, i$1, _ref, _slice, _index, _slice$1, _index$1;
+		percents = 0;
+		i = 0;
+		while (i < s.length) {
+			if (!((s.charCodeAt(i) === 37))) {
+				i = i + 1 >> 0;
+				continue;
+			}
+			percents = percents + 1 >> 0;
+			if ((i + 2 >> 0) >= s.length || !ishex(s.charCodeAt((i + 1 >> 0))) || !ishex(s.charCodeAt((i + 2 >> 0)))) {
+				s = s.substring(i);
+				if (s.length > 3) {
+					s = s.substring(0, 3);
+				}
+				return ["", fmt.Errorf("mime: bogus characters after %%: %q", new (go$sliceType(go$emptyInterface))([new Go$String(s)]))];
+			}
+			i = i + 3 >> 0;
+		}
+		if (percents === 0) {
+			return [s, null];
+		}
+		t = (go$sliceType(Go$Uint8)).make(s.length - (x = 2, (((x >>> 16 << 16) * percents >> 0) + (x << 16 >>> 16) * percents) >> 0) >> 0, 0, function() { return 0; });
+		j = 0;
+		i$1 = 0;
+		while (i$1 < s.length) {
+			_ref = s.charCodeAt(i$1);
+			if (_ref === 37) {
+				_slice = t, _index = j, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((unhex(s.charCodeAt((i$1 + 1 >> 0))) << 4 << 24 >>> 24) | unhex(s.charCodeAt((i$1 + 2 >> 0)))) >>> 0) : go$throwRuntimeError("index out of range");
+				j = j + 1 >> 0;
+				i$1 = i$1 + 3 >> 0;
+			} else {
+				_slice$1 = t, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = s.charCodeAt(i$1)) : go$throwRuntimeError("index out of range");
+				j = j + 1 >> 0;
+				i$1 = i$1 + 1 >> 0;
+			}
+		}
+		return [go$bytesToString(t), null];
+	};
+	var ishex = function(c) {
+		if (48 <= c && c <= 57) {
+			return true;
+		} else if (97 <= c && c <= 102) {
+			return true;
+		} else if (65 <= c && c <= 70) {
+			return true;
+		}
+		return false;
+	};
+	var unhex = function(c) {
+		if (48 <= c && c <= 57) {
+			return c - 48 << 24 >>> 24;
+		} else if (97 <= c && c <= 102) {
+			return (c - 97 << 24 >>> 24) + 10 << 24 >>> 24;
+		} else if (65 <= c && c <= 70) {
+			return (c - 65 << 24 >>> 24) + 10 << 24 >>> 24;
+		}
+		return 0;
+	};
+	var TypeByExtension = go$pkg.TypeByExtension = function(ext) {
+		var _entry, typename;
+		once.Do(initMime);
+		mimeLock.RLock();
+		typename = (_entry = mimeTypes[ext], _entry !== undefined ? _entry.v : "");
+		mimeLock.RUnlock();
+		return typename;
+	};
+	var AddExtensionType = go$pkg.AddExtensionType = function(ext, typ) {
+		if (ext === "" || !((ext.charCodeAt(0) === 46))) {
+			return fmt.Errorf("mime: extension \"%s\" misses dot", new (go$sliceType(go$emptyInterface))([new Go$String(ext)]));
+		}
+		once.Do(initMime);
+		return setExtensionType(ext, typ);
+	};
+	var setExtensionType = function(extension, mimeType) {
+		var _tuple, param, err, _entry, _key, _key$1;
+		_tuple = ParseMediaType(mimeType), param = _tuple[1], err = _tuple[2];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		if (strings.HasPrefix(mimeType, "text/") && (_entry = param["charset"], _entry !== undefined ? _entry.v : "") === "") {
+			_key = "charset", (param || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: "utf-8" };
+			mimeType = FormatMediaType(mimeType, param);
+		}
+		mimeLock.Lock();
+		_key$1 = extension, (mimeTypes || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: mimeType };
+		mimeLock.Unlock();
+		return null;
+	};
+	var loadMimeFile = function(filename) {
+		var _tuple, f, err, scanner, fields, _slice, _index, _slice$1, _index$1, mimeType, _ref, _i, _slice$2, _index$2, ext, err$1;
+		var go$deferred = [];
+		try {
+			_tuple = os.Open(filename), f = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return;
+			}
+			go$deferred.push({ recv: f, method: "Close", args: [] });
+			scanner = bufio.NewScanner(f);
+			while (scanner.Scan()) {
+				fields = strings.Fields(scanner.Text());
+				if (fields.length <= 1 || ((_slice = fields, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).charCodeAt(0) === 35)) {
+					continue;
+				}
+				mimeType = (_slice$1 = fields, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				_ref = go$subslice(fields, 1);
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					ext = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+					if (ext.charCodeAt(0) === 35) {
+						break;
+					}
+					setExtensionType("." + ext, mimeType);
+				}
+			}
+			if (err$1 = scanner.Err(), !(go$interfaceIsEqual(err$1, null))) {
+				throw go$panic(err$1);
+			}
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	var initMime = function() {
+		var _ref, _i, _slice, _index, filename;
+		_ref = typeFiles;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			filename = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			loadMimeFile(filename);
+		}
+	};
+	var initMimeForTests = function() {
+		var _map, _key;
+		typeFiles = new (go$sliceType(Go$String))(["testdata/test.types"]);
+		return (_map = new Go$Map(), _key = ".t1", _map[_key] = { k: _key, v: "application/test" }, _key = ".t2", _map[_key] = { k: _key, v: "text/test; charset=utf-8" }, _key = ".png", _map[_key] = { k: _key, v: "image/png" }, _map);
+	};
+	var mimeTypes = false;
+	var mimeLock = new sync.RWMutex.Ptr();
+	var once = new sync.Once.Ptr();
+	var typeFiles = (go$sliceType(Go$String)).nil;
+	go$pkg.init = function() {
+		var _map, _key;
+		mimeTypes = (_map = new Go$Map(), _key = ".css", _map[_key] = { k: _key, v: "text/css; charset=utf-8" }, _key = ".gif", _map[_key] = { k: _key, v: "image/gif" }, _key = ".htm", _map[_key] = { k: _key, v: "text/html; charset=utf-8" }, _key = ".html", _map[_key] = { k: _key, v: "text/html; charset=utf-8" }, _key = ".jpg", _map[_key] = { k: _key, v: "image/jpeg" }, _key = ".js", _map[_key] = { k: _key, v: "application/x-javascript" }, _key = ".pdf", _map[_key] = { k: _key, v: "application/pdf" }, _key = ".png", _map[_key] = { k: _key, v: "image/png" }, _key = ".xml", _map[_key] = { k: _key, v: "text/xml; charset=utf-8" }, _map);
+		typeFiles = new (go$sliceType(Go$String))(["/etc/mime.types", "/etc/apache2/mime.types", "/etc/apache/mime.types"]);
+	};

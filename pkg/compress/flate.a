@@ -1,0 +1,2135 @@
+0É›†Ç[package flate
+import fmt "fmt"
+import io "io"
+import math "math"
+import sort "sort"
+import bufio "bufio"
+import strconv "strconv"
+const @"".BestCompression = 0x9
+const @"".BestSpeed = 0x1
+type @"".CorruptInputError int64
+func (? @"".CorruptInputError) @"".Error() (? string)
+func (? *@"".CorruptInputError) @"".Error() (? string)
+const @"".DefaultCompression = -0x1
+type @"".InternalError string
+func (? @"".InternalError) @"".Error() (? string)
+func (? *@"".InternalError) @"".Error() (? string)
+func @"".NewReader(@"".r @"io".Reader) (? @"io".ReadCloser)
+func @"".NewReaderDict(@"".r @"io".Reader, @"".dict []byte) (? @"io".ReadCloser)
+func @"".NewWriter(@"".w @"io".Writer, @"".level int) (? *@"".Writer, ? error)
+func @"".NewWriterDict(@"".w @"io".Writer, @"".level int, @"".dict []byte) (? *@"".Writer, ? error)
+const @"".NoCompression = 0x0
+type @"".ReadError struct { @"".Offset int64; @"".Err error }
+func (? *@"".ReadError) @"".Error() (? string)
+type @"".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error); @"".ReadByte() (@"".c byte, @"".err error) }
+type @"".WriteError struct { @"".Offset int64; @"".Err error }
+func (? *@"".WriteError) @"".Error() (? string)
+type @"".Writer struct { @"".d @"".compressor; @"".dict []byte }
+func (? *@"".Writer) @"".Close() (? error)
+func (? *@"".Writer) @"".Flush() (? error)
+func (? *@"".Writer) @"".Reset(@"".dst @"io".Writer) ()
+func (? *@"".Writer) @"".Write(@"".data []byte) (@"".n int, @"".err error)
+type @"".compressionLevel struct { @"".good int; @"".lazy int; @"".nice int; @"".chain int; @"".fastSkipHashing int }
+type @"".compressor struct { ? @"".compressionLevel; @"".w *@"".huffmanBitWriter; @"".fill func (? *@"".compressor, ? []byte) (? int); @"".step func (? *@"".compressor) (); @"".sync bool; @"".chainHead int; @"".hashHead []int; @"".hashPrev []int; @"".hashOffset int; @"".index int; @"".window []byte; @"".windowEnd int; @"".blockStart int; @"".byteAvailable bool; @"".tokens []@"".token; @"".length int; @"".offset int; @"".hash int; @"".maxInsertIndex int; @"".err error }
+func (? *@"".compressor) @"".close() (? error)
+func (? *@"".compressor) @"".deflate() ()
+func (? *@"".compressor) @"".fillDeflate(@"".b []byte) (? int)
+func (? *@"".compressor) @"".fillStore(@"".b []byte) (? int)
+func (? *@"".compressor) @"".findMatch(@"".pos int, @"".prevHead int, @"".prevLength int, @"".lookahead int) (@"".length int, @"".offset int, @"".ok bool)
+func (? *@"".compressor) @"".init(@"".w @"io".Writer, @"".level int) (@"".err error)
+func (? *@"".compressor) @"".initDeflate() ()
+func (? *@"".compressor) @"".reset(@"".w @"io".Writer) ()
+func (? *@"".compressor) @"".store() ()
+func (? *@"".compressor) @"".syncFlush() (? error)
+func (? *@"".compressor) @"".write(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"".compressor) @"".writeBlock(@"".tokens []@"".token, @"".index int, @"".eof bool) (? error)
+func (? *@"".compressor) @"".writeStoredBlock(@"".buf []byte) (? error)
+type @"".decompressor struct { @"".r @"".Reader; @"".roffset int64; @"".woffset int64; @"".b uint32; @"".nb uint; @"".h1 @"".huffmanDecoder; @"".h2 @"".huffmanDecoder; @"".bits *[318]int; @"".codebits *[19]int; @"".hist *[32768]byte; @"".hp int; @"".hw int; @"".hfull bool; @"".buf [4]byte; @"".step func (? *@"".decompressor) (); @"".final bool; @"".err error; @"".toRead []byte; @"".hl *@"".huffmanDecoder; @"".hd *@"".huffmanDecoder; @"".copyLen int; @"".copyDist int }
+func (? *@"".decompressor) @"".Close() (? error)
+func (? *@"".decompressor) @"".Read(@"".b []byte) (? int, ? error)
+func (? *@"".decompressor) @"".copyData() ()
+func (? *@"".decompressor) @"".copyHist() (? bool)
+func (? *@"".decompressor) @"".copyHuff() ()
+func (? *@"".decompressor) @"".dataBlock() ()
+func (? *@"".decompressor) @"".flush(@"".step func (? *@"".decompressor) ()) ()
+func (? *@"".decompressor) @"".huffSym(@"".h *@"".huffmanDecoder) (? int, ? error)
+func (? *@"".decompressor) @"".huffmanBlock() ()
+func (? *@"".decompressor) @"".moreBits() (? error)
+func (? *@"".decompressor) @"".nextBlock() ()
+func (? *@"".decompressor) @"".readHuffman() (? error)
+func (? *@"".decompressor) @"".setDict(@"".dict []byte) ()
+type @"".dictWriter struct { @"".w @"io".Writer; @"".enabled bool }
+func (? *@"".dictWriter) @"".Write(@"".b []byte) (@"".n int, @"".err error)
+type @"".huffmanBitWriter struct { @"".w @"io".Writer; @"".bits uint32; @"".nbits uint32; @"".bytes [64]byte; @"".nbytes int; @"".literalFreq []int32; @"".offsetFreq []int32; @"".codegen []uint8; @"".codegenFreq []int32; @"".literalEncoding *@"".huffmanEncoder; @"".offsetEncoding *@"".huffmanEncoder; @"".codegenEncoding *@"".huffmanEncoder; @"".err error }
+func (? *@"".huffmanBitWriter) @"".flush() ()
+func (? *@"".huffmanBitWriter) @"".flushBits() ()
+func (? *@"".huffmanBitWriter) @"".generateCodegen(@"".numLiterals int, @"".numOffsets int) ()
+func (? *@"".huffmanBitWriter) @"".reset(@"".writer @"io".Writer) ()
+func (? *@"".huffmanBitWriter) @"".writeBits(@"".b int32, @"".nb int32) ()
+func (? *@"".huffmanBitWriter) @"".writeBlock(@"".tokens []@"".token, @"".eof bool, @"".input []byte) ()
+func (? *@"".huffmanBitWriter) @"".writeBytes(@"".bytes []byte) ()
+func (? *@"".huffmanBitWriter) @"".writeCode(@"".code *@"".huffmanEncoder, @"".literal uint32) ()
+func (? *@"".huffmanBitWriter) @"".writeDynamicHeader(@"".numLiterals int, @"".numOffsets int, @"".numCodegens int, @"".isEof bool) ()
+func (? *@"".huffmanBitWriter) @"".writeFixedHeader(@"".isEof bool) ()
+func (? *@"".huffmanBitWriter) @"".writeStoredHeader(@"".length int, @"".isEof bool) ()
+type @"".huffmanDecoder struct { @"".min int; @"".chunks [512]uint32; @"".links [][]uint32; @"".linkMask uint32 }
+func (? *@"".huffmanDecoder) @"".init(@"".bits []int) (? bool)
+type @"".huffmanEncoder struct { @"".codeBits []uint8; @"".code []uint16 }
+func (? *@"".huffmanEncoder) @"".assignEncodingAndSize(@"".bitCount []int32, @"".list []@"".literalNode) ()
+func (? *@"".huffmanEncoder) @"".bitCounts(@"".list []@"".literalNode, @"".maxBits int32) (? []int32)
+func (? *@"".huffmanEncoder) @"".bitLength(@"".freq []int32) (? int64)
+func (? *@"".huffmanEncoder) @"".generate(@"".freq []int32, @"".maxBits int32) ()
+type @"".levelInfo struct { @"".level int32; @"".lastFreq int32; @"".nextCharFreq int32; @"".nextPairFreq int32; @"".needed int32 }
+type @"".literalNode struct { @"".literal uint16; @"".freq int32 }
+type @"".literalNodeSorter struct { @"".a []@"".literalNode; @"".less func (@"".i int, @"".j int) (? bool) }
+func (? @"".literalNodeSorter) @"".Len() (? int)
+func (? @"".literalNodeSorter) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".literalNodeSorter) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".literalNodeSorter) @"".Len() (? int)
+func (? *@"".literalNodeSorter) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".literalNodeSorter) @"".Swap(@"".i int, @"".j int) ()
+type @"".token uint32
+func (? @"".token) @"".length() (? uint32)
+func (? @"".token) @"".literal() (? uint32)
+func (? @"".token) @"".offset() (? uint32)
+func (? @"".token) @"".typ() (? uint32)
+func (? *@"".token) @"".length() (? uint32)
+func (? *@"".token) @"".literal() (? uint32)
+func (? *@"".token) @"".offset() (? uint32)
+func (? *@"".token) @"".typ() (? uint32)
+type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0Åìruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flateÉø¶	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var math = go$packages["math"];
+	var sort = go$packages["sort"];
+	var bufio = go$packages["bufio"];
+	var strconv = go$packages["strconv"];
+	var compressionLevel;
+	compressionLevel = go$newType(0, "Struct", "flate.compressionLevel", "compressionLevel", "compress/flate", function(good_, lazy_, nice_, chain_, fastSkipHashing_) {
+		this.go$val = this;
+		this.good = good_ !== undefined ? good_ : 0;
+		this.lazy = lazy_ !== undefined ? lazy_ : 0;
+		this.nice = nice_ !== undefined ? nice_ : 0;
+		this.chain = chain_ !== undefined ? chain_ : 0;
+		this.fastSkipHashing = fastSkipHashing_ !== undefined ? fastSkipHashing_ : 0;
+	});
+	go$pkg.compressionLevel = compressionLevel;
+	var compressor;
+	compressor = go$newType(0, "Struct", "flate.compressor", "compressor", "compress/flate", function(compressionLevel_, w_, fill_, step_, sync_, chainHead_, hashHead_, hashPrev_, hashOffset_, index_, window_, windowEnd_, blockStart_, byteAvailable_, tokens_, length_, offset_, hash_, maxInsertIndex_, err_) {
+		this.go$val = this;
+		this.compressionLevel = compressionLevel_ !== undefined ? compressionLevel_ : new compressionLevel.Ptr();
+		this.w = w_ !== undefined ? w_ : (go$ptrType(huffmanBitWriter)).nil;
+		this.fill = fill_ !== undefined ? fill_ : go$throwNilPointerError;
+		this.step = step_ !== undefined ? step_ : go$throwNilPointerError;
+		this.sync = sync_ !== undefined ? sync_ : false;
+		this.chainHead = chainHead_ !== undefined ? chainHead_ : 0;
+		this.hashHead = hashHead_ !== undefined ? hashHead_ : (go$sliceType(Go$Int)).nil;
+		this.hashPrev = hashPrev_ !== undefined ? hashPrev_ : (go$sliceType(Go$Int)).nil;
+		this.hashOffset = hashOffset_ !== undefined ? hashOffset_ : 0;
+		this.index = index_ !== undefined ? index_ : 0;
+		this.window = window_ !== undefined ? window_ : (go$sliceType(Go$Uint8)).nil;
+		this.windowEnd = windowEnd_ !== undefined ? windowEnd_ : 0;
+		this.blockStart = blockStart_ !== undefined ? blockStart_ : 0;
+		this.byteAvailable = byteAvailable_ !== undefined ? byteAvailable_ : false;
+		this.tokens = tokens_ !== undefined ? tokens_ : (go$sliceType(token)).nil;
+		this.length = length_ !== undefined ? length_ : 0;
+		this.offset = offset_ !== undefined ? offset_ : 0;
+		this.hash = hash_ !== undefined ? hash_ : 0;
+		this.maxInsertIndex = maxInsertIndex_ !== undefined ? maxInsertIndex_ : 0;
+		this.err = err_ !== undefined ? err_ : null;
+	});
+	go$pkg.compressor = compressor;
+	var dictWriter;
+	dictWriter = go$newType(0, "Struct", "flate.dictWriter", "dictWriter", "compress/flate", function(w_, enabled_) {
+		this.go$val = this;
+		this.w = w_ !== undefined ? w_ : null;
+		this.enabled = enabled_ !== undefined ? enabled_ : false;
+	});
+	go$pkg.dictWriter = dictWriter;
+	var Writer;
+	Writer = go$newType(0, "Struct", "flate.Writer", "Writer", "compress/flate", function(d_, dict_) {
+		this.go$val = this;
+		this.d = d_ !== undefined ? d_ : new compressor.Ptr();
+		this.dict = dict_ !== undefined ? dict_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.Writer = Writer;
+	var huffmanBitWriter;
+	huffmanBitWriter = go$newType(0, "Struct", "flate.huffmanBitWriter", "huffmanBitWriter", "compress/flate", function(w_, bits_, nbits_, bytes_, nbytes_, literalFreq_, offsetFreq_, codegen_, codegenFreq_, literalEncoding_, offsetEncoding_, codegenEncoding_, err_) {
+		this.go$val = this;
+		this.w = w_ !== undefined ? w_ : null;
+		this.bits = bits_ !== undefined ? bits_ : 0;
+		this.nbits = nbits_ !== undefined ? nbits_ : 0;
+		this.bytes = bytes_ !== undefined ? bytes_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
+		this.nbytes = nbytes_ !== undefined ? nbytes_ : 0;
+		this.literalFreq = literalFreq_ !== undefined ? literalFreq_ : (go$sliceType(Go$Int32)).nil;
+		this.offsetFreq = offsetFreq_ !== undefined ? offsetFreq_ : (go$sliceType(Go$Int32)).nil;
+		this.codegen = codegen_ !== undefined ? codegen_ : (go$sliceType(Go$Uint8)).nil;
+		this.codegenFreq = codegenFreq_ !== undefined ? codegenFreq_ : (go$sliceType(Go$Int32)).nil;
+		this.literalEncoding = literalEncoding_ !== undefined ? literalEncoding_ : (go$ptrType(huffmanEncoder)).nil;
+		this.offsetEncoding = offsetEncoding_ !== undefined ? offsetEncoding_ : (go$ptrType(huffmanEncoder)).nil;
+		this.codegenEncoding = codegenEncoding_ !== undefined ? codegenEncoding_ : (go$ptrType(huffmanEncoder)).nil;
+		this.err = err_ !== undefined ? err_ : null;
+	});
+	go$pkg.huffmanBitWriter = huffmanBitWriter;
+	var huffmanEncoder;
+	huffmanEncoder = go$newType(0, "Struct", "flate.huffmanEncoder", "huffmanEncoder", "compress/flate", function(codeBits_, code_) {
+		this.go$val = this;
+		this.codeBits = codeBits_ !== undefined ? codeBits_ : (go$sliceType(Go$Uint8)).nil;
+		this.code = code_ !== undefined ? code_ : (go$sliceType(Go$Uint16)).nil;
+	});
+	go$pkg.huffmanEncoder = huffmanEncoder;
+	var literalNode;
+	literalNode = go$newType(0, "Struct", "flate.literalNode", "literalNode", "compress/flate", function(literal_, freq_) {
+		this.go$val = this;
+		this.literal = literal_ !== undefined ? literal_ : 0;
+		this.freq = freq_ !== undefined ? freq_ : 0;
+	});
+	go$pkg.literalNode = literalNode;
+	var levelInfo;
+	levelInfo = go$newType(0, "Struct", "flate.levelInfo", "levelInfo", "compress/flate", function(level_, lastFreq_, nextCharFreq_, nextPairFreq_, needed_) {
+		this.go$val = this;
+		this.level = level_ !== undefined ? level_ : 0;
+		this.lastFreq = lastFreq_ !== undefined ? lastFreq_ : 0;
+		this.nextCharFreq = nextCharFreq_ !== undefined ? nextCharFreq_ : 0;
+		this.nextPairFreq = nextPairFreq_ !== undefined ? nextPairFreq_ : 0;
+		this.needed = needed_ !== undefined ? needed_ : 0;
+	});
+	go$pkg.levelInfo = levelInfo;
+	var literalNodeSorter;
+	literalNodeSorter = go$newType(0, "Struct", "flate.literalNodeSorter", "literalNodeSorter", "compress/flate", function(a_, less_) {
+		this.go$val = this;
+		this.a = a_ !== undefined ? a_ : (go$sliceType(literalNode)).nil;
+		this.less = less_ !== undefined ? less_ : go$throwNilPointerError;
+	});
+	go$pkg.literalNodeSorter = literalNodeSorter;
+	var CorruptInputError;
+	CorruptInputError = go$newType(8, "Int64", "flate.CorruptInputError", "CorruptInputError", "compress/flate", null);
+	go$pkg.CorruptInputError = CorruptInputError;
+	var InternalError;
+	InternalError = go$newType(0, "String", "flate.InternalError", "InternalError", "compress/flate", null);
+	go$pkg.InternalError = InternalError;
+	var ReadError;
+	ReadError = go$newType(0, "Struct", "flate.ReadError", "ReadError", "compress/flate", function(Offset_, Err_) {
+		this.go$val = this;
+		this.Offset = Offset_ !== undefined ? Offset_ : new Go$Int64(0, 0);
+		this.Err = Err_ !== undefined ? Err_ : null;
+	});
+	go$pkg.ReadError = ReadError;
+	var WriteError;
+	WriteError = go$newType(0, "Struct", "flate.WriteError", "WriteError", "compress/flate", function(Offset_, Err_) {
+		this.go$val = this;
+		this.Offset = Offset_ !== undefined ? Offset_ : new Go$Int64(0, 0);
+		this.Err = Err_ !== undefined ? Err_ : null;
+	});
+	go$pkg.WriteError = WriteError;
+	var huffmanDecoder;
+	huffmanDecoder = go$newType(0, "Struct", "flate.huffmanDecoder", "huffmanDecoder", "compress/flate", function(min_, chunks_, links_, linkMask_) {
+		this.go$val = this;
+		this.min = min_ !== undefined ? min_ : 0;
+		this.chunks = chunks_ !== undefined ? chunks_ : go$makeNativeArray("Uint32", 512, function() { return 0; });
+		this.links = links_ !== undefined ? links_ : (go$sliceType((go$sliceType(Go$Uint32)))).nil;
+		this.linkMask = linkMask_ !== undefined ? linkMask_ : 0;
+	});
+	go$pkg.huffmanDecoder = huffmanDecoder;
+	var Reader;
+	Reader = go$newType(0, "Interface", "flate.Reader", "Reader", "compress/flate", null);
+	go$pkg.Reader = Reader;
+	var decompressor;
+	decompressor = go$newType(0, "Struct", "flate.decompressor", "decompressor", "compress/flate", function(r_, roffset_, woffset_, b_, nb_, h1_, h2_, bits_, codebits_, hist_, hp_, hw_, hfull_, buf_, step_, final$15_, err_, toRead_, hl_, hd_, copyLen_, copyDist_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+		this.roffset = roffset_ !== undefined ? roffset_ : new Go$Int64(0, 0);
+		this.woffset = woffset_ !== undefined ? woffset_ : new Go$Int64(0, 0);
+		this.b = b_ !== undefined ? b_ : 0;
+		this.nb = nb_ !== undefined ? nb_ : 0;
+		this.h1 = h1_ !== undefined ? h1_ : new huffmanDecoder.Ptr();
+		this.h2 = h2_ !== undefined ? h2_ : new huffmanDecoder.Ptr();
+		this.bits = bits_ !== undefined ? bits_ : (go$ptrType((go$arrayType(Go$Int, 318)))).nil;
+		this.codebits = codebits_ !== undefined ? codebits_ : (go$ptrType((go$arrayType(Go$Int, 19)))).nil;
+		this.hist = hist_ !== undefined ? hist_ : (go$ptrType((go$arrayType(Go$Uint8, 32768)))).nil;
+		this.hp = hp_ !== undefined ? hp_ : 0;
+		this.hw = hw_ !== undefined ? hw_ : 0;
+		this.hfull = hfull_ !== undefined ? hfull_ : false;
+		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
+		this.step = step_ !== undefined ? step_ : go$throwNilPointerError;
+		this.final$15 = final$15_ !== undefined ? final$15_ : false;
+		this.err = err_ !== undefined ? err_ : null;
+		this.toRead = toRead_ !== undefined ? toRead_ : (go$sliceType(Go$Uint8)).nil;
+		this.hl = hl_ !== undefined ? hl_ : (go$ptrType(huffmanDecoder)).nil;
+		this.hd = hd_ !== undefined ? hd_ : (go$ptrType(huffmanDecoder)).nil;
+		this.copyLen = copyLen_ !== undefined ? copyLen_ : 0;
+		this.copyDist = copyDist_ !== undefined ? copyDist_ : 0;
+	});
+	go$pkg.decompressor = decompressor;
+	var token;
+	token = go$newType(4, "Uint32", "flate.token", "token", "compress/flate", null);
+	go$pkg.token = token;
+	compressionLevel.init([["good", "compress/flate", Go$Int, ""], ["lazy", "compress/flate", Go$Int, ""], ["nice", "compress/flate", Go$Int, ""], ["chain", "compress/flate", Go$Int, ""], ["fastSkipHashing", "compress/flate", Go$Int, ""]]);
+	compressor.init([["", "compress/flate", compressionLevel, ""], ["w", "compress/flate", (go$ptrType(huffmanBitWriter)), ""], ["fill", "compress/flate", (go$funcType([(go$ptrType(compressor)), (go$sliceType(Go$Uint8))], [Go$Int], false)), ""], ["step", "compress/flate", (go$funcType([(go$ptrType(compressor))], [], false)), ""], ["sync", "compress/flate", Go$Bool, ""], ["chainHead", "compress/flate", Go$Int, ""], ["hashHead", "compress/flate", (go$sliceType(Go$Int)), ""], ["hashPrev", "compress/flate", (go$sliceType(Go$Int)), ""], ["hashOffset", "compress/flate", Go$Int, ""], ["index", "compress/flate", Go$Int, ""], ["window", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["windowEnd", "compress/flate", Go$Int, ""], ["blockStart", "compress/flate", Go$Int, ""], ["byteAvailable", "compress/flate", Go$Bool, ""], ["tokens", "compress/flate", (go$sliceType(token)), ""], ["length", "compress/flate", Go$Int, ""], ["offset", "compress/flate", Go$Int, ""], ["hash", "compress/flate", Go$Int, ""], ["maxInsertIndex", "compress/flate", Go$Int, ""], ["err", "compress/flate", go$error, ""]]);
+	(go$ptrType(compressor)).methods = [["close", "compress/flate", [], [go$error], false], ["deflate", "compress/flate", [], [], false], ["fillDeflate", "compress/flate", [(go$sliceType(Go$Uint8))], [Go$Int], false], ["fillStore", "compress/flate", [(go$sliceType(Go$Uint8))], [Go$Int], false], ["findMatch", "compress/flate", [Go$Int, Go$Int, Go$Int, Go$Int], [Go$Int, Go$Int, Go$Bool], false], ["init", "compress/flate", [io.Writer, Go$Int], [go$error], false], ["initDeflate", "compress/flate", [], [], false], ["reset", "compress/flate", [io.Writer], [], false], ["store", "compress/flate", [], [], false], ["syncFlush", "compress/flate", [], [go$error], false], ["write", "compress/flate", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["writeBlock", "compress/flate", [(go$sliceType(token)), Go$Int, Go$Bool], [go$error], false], ["writeStoredBlock", "compress/flate", [(go$sliceType(Go$Uint8))], [go$error], false]];
+	dictWriter.init([["w", "compress/flate", io.Writer, ""], ["enabled", "compress/flate", Go$Bool, ""]]);
+	(go$ptrType(dictWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	Writer.init([["d", "compress/flate", compressor, ""], ["dict", "compress/flate", (go$sliceType(Go$Uint8)), ""]]);
+	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	huffmanBitWriter.init([["w", "compress/flate", io.Writer, ""], ["bits", "compress/flate", Go$Uint32, ""], ["nbits", "compress/flate", Go$Uint32, ""], ["bytes", "compress/flate", (go$arrayType(Go$Uint8, 64)), ""], ["nbytes", "compress/flate", Go$Int, ""], ["literalFreq", "compress/flate", (go$sliceType(Go$Int32)), ""], ["offsetFreq", "compress/flate", (go$sliceType(Go$Int32)), ""], ["codegen", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["codegenFreq", "compress/flate", (go$sliceType(Go$Int32)), ""], ["literalEncoding", "compress/flate", (go$ptrType(huffmanEncoder)), ""], ["offsetEncoding", "compress/flate", (go$ptrType(huffmanEncoder)), ""], ["codegenEncoding", "compress/flate", (go$ptrType(huffmanEncoder)), ""], ["err", "compress/flate", go$error, ""]]);
+	(go$ptrType(huffmanBitWriter)).methods = [["flush", "compress/flate", [], [], false], ["flushBits", "compress/flate", [], [], false], ["generateCodegen", "compress/flate", [Go$Int, Go$Int], [], false], ["reset", "compress/flate", [io.Writer], [], false], ["writeBits", "compress/flate", [Go$Int32, Go$Int32], [], false], ["writeBlock", "compress/flate", [(go$sliceType(token)), Go$Bool, (go$sliceType(Go$Uint8))], [], false], ["writeBytes", "compress/flate", [(go$sliceType(Go$Uint8))], [], false], ["writeCode", "compress/flate", [(go$ptrType(huffmanEncoder)), Go$Uint32], [], false], ["writeDynamicHeader", "compress/flate", [Go$Int, Go$Int, Go$Int, Go$Bool], [], false], ["writeFixedHeader", "compress/flate", [Go$Bool], [], false], ["writeStoredHeader", "compress/flate", [Go$Int, Go$Bool], [], false]];
+	huffmanEncoder.init([["codeBits", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["code", "compress/flate", (go$sliceType(Go$Uint16)), ""]]);
+	(go$ptrType(huffmanEncoder)).methods = [["assignEncodingAndSize", "compress/flate", [(go$sliceType(Go$Int32)), (go$sliceType(literalNode))], [], false], ["bitCounts", "compress/flate", [(go$sliceType(literalNode)), Go$Int32], [(go$sliceType(Go$Int32))], false], ["bitLength", "compress/flate", [(go$sliceType(Go$Int32))], [Go$Int64], false], ["generate", "compress/flate", [(go$sliceType(Go$Int32)), Go$Int32], [], false]];
+	literalNode.init([["literal", "compress/flate", Go$Uint16, ""], ["freq", "compress/flate", Go$Int32, ""]]);
+	levelInfo.init([["level", "compress/flate", Go$Int32, ""], ["lastFreq", "compress/flate", Go$Int32, ""], ["nextCharFreq", "compress/flate", Go$Int32, ""], ["nextPairFreq", "compress/flate", Go$Int32, ""], ["needed", "compress/flate", Go$Int32, ""]]);
+	literalNodeSorter.init([["a", "compress/flate", (go$sliceType(literalNode)), ""], ["less", "compress/flate", (go$funcType([Go$Int, Go$Int], [Go$Bool], false)), ""]]);
+	literalNodeSorter.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(literalNodeSorter)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	CorruptInputError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(CorruptInputError)).methods = [["Error", "", [], [Go$String], false]];
+	InternalError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(InternalError)).methods = [["Error", "", [], [Go$String], false]];
+	ReadError.init([["Offset", "", Go$Int64, ""], ["Err", "", go$error, ""]]);
+	(go$ptrType(ReadError)).methods = [["Error", "", [], [Go$String], false]];
+	WriteError.init([["Offset", "", Go$Int64, ""], ["Err", "", go$error, ""]]);
+	(go$ptrType(WriteError)).methods = [["Error", "", [], [Go$String], false]];
+	huffmanDecoder.init([["min", "compress/flate", Go$Int, ""], ["chunks", "compress/flate", (go$arrayType(Go$Uint32, 512)), ""], ["links", "compress/flate", (go$sliceType((go$sliceType(Go$Uint32)))), ""], ["linkMask", "compress/flate", Go$Uint32, ""]]);
+	(go$ptrType(huffmanDecoder)).methods = [["init", "compress/flate", [(go$sliceType(Go$Int))], [Go$Bool], false]];
+	Reader.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["ReadByte", "", (go$funcType([], [Go$Uint8, go$error], false))]]);
+	decompressor.init([["r", "compress/flate", Reader, ""], ["roffset", "compress/flate", Go$Int64, ""], ["woffset", "compress/flate", Go$Int64, ""], ["b", "compress/flate", Go$Uint32, ""], ["nb", "compress/flate", Go$Uint, ""], ["h1", "compress/flate", huffmanDecoder, ""], ["h2", "compress/flate", huffmanDecoder, ""], ["bits", "compress/flate", (go$ptrType((go$arrayType(Go$Int, 318)))), ""], ["codebits", "compress/flate", (go$ptrType((go$arrayType(Go$Int, 19)))), ""], ["hist", "compress/flate", (go$ptrType((go$arrayType(Go$Uint8, 32768)))), ""], ["hp", "compress/flate", Go$Int, ""], ["hw", "compress/flate", Go$Int, ""], ["hfull", "compress/flate", Go$Bool, ""], ["buf", "compress/flate", (go$arrayType(Go$Uint8, 4)), ""], ["step", "compress/flate", (go$funcType([(go$ptrType(decompressor))], [], false)), ""], ["final", "compress/flate", Go$Bool, ""], ["err", "compress/flate", go$error, ""], ["toRead", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["hl", "compress/flate", (go$ptrType(huffmanDecoder)), ""], ["hd", "compress/flate", (go$ptrType(huffmanDecoder)), ""], ["copyLen", "compress/flate", Go$Int, ""], ["copyDist", "compress/flate", Go$Int, ""]]);
+	(go$ptrType(decompressor)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["copyData", "compress/flate", [], [], false], ["copyHist", "compress/flate", [], [Go$Bool], false], ["copyHuff", "compress/flate", [], [], false], ["dataBlock", "compress/flate", [], [], false], ["flush", "compress/flate", [(go$funcType([(go$ptrType(decompressor))], [], false))], [], false], ["huffSym", "compress/flate", [(go$ptrType(huffmanDecoder))], [Go$Int, go$error], false], ["huffmanBlock", "compress/flate", [], [], false], ["moreBits", "compress/flate", [], [go$error], false], ["nextBlock", "compress/flate", [], [], false], ["readHuffman", "compress/flate", [], [go$error], false], ["setDict", "compress/flate", [(go$sliceType(Go$Uint8))], [], false]];
+	token.methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
+	(go$ptrType(token)).methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
+	var forwardCopy = function(mem, dst, src, n) {
+		var k;
+		if (dst <= src) {
+			go$copySlice(go$subslice(mem, dst, (dst + n >> 0)), go$subslice(mem, src, (src + n >> 0)));
+			return;
+		}
+		while (true) {
+			if (dst >= (src + n >> 0)) {
+				go$copySlice(go$subslice(mem, dst, (dst + n >> 0)), go$subslice(mem, src, (src + n >> 0)));
+				return;
+			}
+			k = dst - src >> 0;
+			go$copySlice(go$subslice(mem, dst, (dst + k >> 0)), go$subslice(mem, src, (src + k >> 0)));
+			n = n - (k) >> 0;
+			dst = dst + (k) >> 0;
+		}
+	};
+	compressor.Ptr.prototype.fillDeflate = function(b) {
+		var d, delta, _ref, _i, _slice, _index, v, i, _lhs, _index$1, _slice$1, _index$2, _slice$2, _index$3, _slice$3, _index$4, _ref$1, _i$1, _slice$4, _index$5, v$1, i$1, _lhs$1, _index$6, _slice$5, _index$7, _slice$6, _index$8, _slice$7, _index$9, n;
+		d = this;
+		if (d.index >= 65275) {
+			go$copySlice(d.window, go$subslice(d.window, 32768, 65536));
+			d.index = d.index - 32768 >> 0;
+			d.windowEnd = d.windowEnd - 32768 >> 0;
+			if (d.blockStart >= 32768) {
+				d.blockStart = d.blockStart - 32768 >> 0;
+			} else {
+				d.blockStart = 2147483647;
+			}
+			d.hashOffset = d.hashOffset + 32768 >> 0;
+			if (d.hashOffset > 16777216) {
+				delta = d.hashOffset - 1 >> 0;
+				d.hashOffset = d.hashOffset - (delta) >> 0;
+				d.chainHead = d.chainHead - (delta) >> 0;
+				_ref = d.hashPrev;
+				_i = 0;
+				for (; _i < _ref.length; _i += 1) {
+					v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					i = _i;
+					if (v > delta) {
+						_lhs = d.hashPrev, _index$1 = i, _slice$2 = _lhs, _index$3 = _index$1, (_index$3 >= 0 && _index$3 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$3] = (_slice$1 = _lhs, _index$2 = _index$1, (_index$2 >= 0 && _index$2 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$2] : go$throwRuntimeError("index out of range")) - (delta) >> 0) : go$throwRuntimeError("index out of range");
+					} else {
+						_slice$3 = d.hashPrev, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$4] = 0) : go$throwRuntimeError("index out of range");
+					}
+				}
+				_ref$1 = d.hashHead;
+				_i$1 = 0;
+				for (; _i$1 < _ref$1.length; _i$1 += 1) {
+					v$1 = (_slice$4 = _ref$1, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$5] : go$throwRuntimeError("index out of range"));
+					i$1 = _i$1;
+					if (v$1 > delta) {
+						_lhs$1 = d.hashHead, _index$6 = i$1, _slice$6 = _lhs$1, _index$8 = _index$6, (_index$8 >= 0 && _index$8 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$8] = (_slice$5 = _lhs$1, _index$7 = _index$6, (_index$7 >= 0 && _index$7 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$7] : go$throwRuntimeError("index out of range")) - (delta) >> 0) : go$throwRuntimeError("index out of range");
+					} else {
+						_slice$7 = d.hashHead, _index$9 = i$1, (_index$9 >= 0 && _index$9 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$9] = 0) : go$throwRuntimeError("index out of range");
+					}
+				}
+			}
+		}
+		n = go$copySlice(go$subslice(d.window, d.windowEnd), b);
+		d.windowEnd = d.windowEnd + (n) >> 0;
+		return n;
+	};
+	compressor.prototype.fillDeflate = function(b) { return this.go$val.fillDeflate(b); };
+	compressor.Ptr.prototype.writeBlock = function(tokens, index, eof) {
+		var d, window;
+		d = this;
+		if (index > 0 || eof) {
+			window = (go$sliceType(Go$Uint8)).nil;
+			if (d.blockStart <= index) {
+				window = go$subslice(d.window, d.blockStart, index);
+			}
+			d.blockStart = index;
+			d.w.writeBlock(tokens, eof, window);
+			return d.w.err;
+		}
+		return null;
+	};
+	compressor.prototype.writeBlock = function(tokens, index, eof) { return this.go$val.writeBlock(tokens, index, eof); };
+	compressor.Ptr.prototype.findMatch = function(pos, prevHead, prevLength, lookahead) {
+		var length, offset, ok, d, minMatchLook, win, nice, tries, _slice, _index, w0, _slice$1, _index$1, w1, _slice$2, _index$2, wEnd, minIndex, i, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, n, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9;
+		length = 0;
+		offset = 0;
+		ok = false;
+		d = this;
+		minMatchLook = 258;
+		if (lookahead < minMatchLook) {
+			minMatchLook = lookahead;
+		}
+		win = go$subslice(d.window, 0, (pos + minMatchLook >> 0));
+		nice = win.length - pos >> 0;
+		if (d.compressionLevel.nice < nice) {
+			nice = d.compressionLevel.nice;
+		}
+		tries = d.compressionLevel.chain;
+		length = prevLength;
+		if (length >= d.compressionLevel.good) {
+			tries = tries >> 2 >> 0;
+		}
+		w0 = (_slice = win, _index = pos, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		w1 = (_slice$1 = win, _index$1 = (pos + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+		wEnd = (_slice$2 = win, _index$2 = (pos + length >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+		minIndex = pos - 32768 >> 0;
+		i = prevHead;
+		while (tries > 0) {
+			if ((w0 === (_slice$3 = win, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) && (w1 === (_slice$4 = win, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))) && (wEnd === (_slice$5 = win, _index$5 = (i + length >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")))) {
+				n = 3;
+				while ((pos + n >> 0) < win.length && ((_slice$6 = win, _index$6 = (i + n >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) === (_slice$7 = win, _index$7 = (pos + n >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")))) {
+					n = n + 1 >> 0;
+				}
+				if (n > length && (n > 3 || (pos - i >> 0) <= 4096)) {
+					length = n;
+					offset = pos - i >> 0;
+					ok = true;
+					if (n >= nice) {
+						break;
+					}
+					wEnd = (_slice$8 = win, _index$8 = (pos + n >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
+				}
+			}
+			if (i === minIndex) {
+				break;
+			}
+			if (i = (_slice$9 = d.hashPrev, _index$9 = (i & 32767), (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) - d.hashOffset >> 0, i < minIndex || i < 0) {
+				break;
+			}
+			tries = tries - 1 >> 0;
+		}
+		return [length, offset, ok];
+	};
+	compressor.prototype.findMatch = function(pos, prevHead, prevLength, lookahead) { return this.go$val.findMatch(pos, prevHead, prevLength, lookahead); };
+	compressor.Ptr.prototype.writeStoredBlock = function(buf) {
+		var d;
+		d = this;
+		if (d.w.writeStoredHeader(buf.length, false), !(go$interfaceIsEqual(d.w.err, null))) {
+			return d.w.err;
+		}
+		d.w.writeBytes(buf);
+		return d.w.err;
+	};
+	compressor.prototype.writeStoredBlock = function(buf) { return this.go$val.writeStoredBlock(buf); };
+	compressor.Ptr.prototype.initDeflate = function() {
+		var d;
+		d = this;
+		d.hashHead = (go$sliceType(Go$Int)).make(131072, 0, function() { return 0; });
+		d.hashPrev = (go$sliceType(Go$Int)).make(32768, 0, function() { return 0; });
+		d.window = (go$sliceType(Go$Uint8)).make(65536, 0, function() { return 0; });
+		d.hashOffset = 1;
+		d.tokens = (go$sliceType(token)).make(0, 16385, function() { return 0; });
+		d.length = 2;
+		d.offset = 0;
+		d.byteAvailable = false;
+		d.index = 0;
+		d.hash = 0;
+		d.chainHead = -1;
+	};
+	compressor.prototype.initDeflate = function() { return this.go$val.initDeflate(); };
+	compressor.Ptr.prototype.deflate = function() {
+		var d, _slice, _index, _slice$1, _index$1, lookahead, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, prevLength, prevOffset, minIndex, ok, _tuple, newLength, newOffset, newIndex, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, i, _slice$13, _index$13;
+		d = this;
+		if ((d.windowEnd - d.index >> 0) < 261 && !d.sync) {
+			return;
+		}
+		d.maxInsertIndex = d.windowEnd - 2 >> 0;
+		if (d.index < d.maxInsertIndex) {
+			d.hash = (((_slice = d.window, _index = d.index, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0) << 6 >> 0) + ((_slice$1 = d.window, _index$1 = (d.index + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0) >> 0;
+		}
+		Loop: while (true) {
+			if (d.index > d.windowEnd) {
+				throw go$panic(new Go$String("index > windowEnd"));
+			}
+			lookahead = d.windowEnd - d.index >> 0;
+			if (lookahead < 261) {
+				if (!d.sync) {
+					break Loop;
+				}
+				if (d.index > d.windowEnd) {
+					throw go$panic(new Go$String("index > windowEnd"));
+				}
+				if (lookahead === 0) {
+					if (d.byteAvailable) {
+						d.tokens = go$append(d.tokens, literalToken(((_slice$2 = d.window, _index$2 = (d.index - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0)));
+						d.byteAvailable = false;
+					}
+					if (d.tokens.length > 0) {
+						if (d.err = d.writeBlock(d.tokens, d.index, false), !(go$interfaceIsEqual(d.err, null))) {
+							return;
+						}
+						d.tokens = go$subslice(d.tokens, 0, 0);
+					}
+					break Loop;
+				}
+			}
+			if (d.index < d.maxInsertIndex) {
+				d.hash = (((d.hash << 6 >> 0) + ((_slice$3 = d.window, _index$3 = (d.index + 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >> 0) >> 0)) & 131071;
+				d.chainHead = (_slice$4 = d.hashHead, _index$4 = d.hash, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
+				_slice$5 = d.hashPrev, _index$5 = d.index & 32767, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = d.chainHead) : go$throwRuntimeError("index out of range");
+				_slice$6 = d.hashHead, _index$6 = d.hash, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = d.index + d.hashOffset >> 0) : go$throwRuntimeError("index out of range");
+			}
+			prevLength = d.length;
+			prevOffset = d.offset;
+			d.length = 2;
+			d.offset = 0;
+			minIndex = d.index - 32768 >> 0;
+			if (minIndex < 0) {
+				minIndex = 0;
+			}
+			if ((d.chainHead - d.hashOffset >> 0) >= minIndex && (!((d.compressionLevel.fastSkipHashing === 2147483647)) && lookahead > 2 || (d.compressionLevel.fastSkipHashing === 2147483647) && lookahead > prevLength && prevLength < d.compressionLevel.lazy)) {
+				if (_tuple = d.findMatch(d.index, d.chainHead - d.hashOffset >> 0, 2, lookahead), newLength = _tuple[0], newOffset = _tuple[1], ok = _tuple[2], ok) {
+					d.length = newLength;
+					d.offset = newOffset;
+				}
+			}
+			if (!((d.compressionLevel.fastSkipHashing === 2147483647)) && d.length >= 3 || (d.compressionLevel.fastSkipHashing === 2147483647) && prevLength >= 3 && d.length <= prevLength) {
+				if (!((d.compressionLevel.fastSkipHashing === 2147483647))) {
+					d.tokens = go$append(d.tokens, matchToken(((d.length - 3 >> 0) >>> 0), ((d.offset - 1 >> 0) >>> 0)));
+				} else {
+					d.tokens = go$append(d.tokens, matchToken(((prevLength - 3 >> 0) >>> 0), ((prevOffset - 1 >> 0) >>> 0)));
+				}
+				if (d.length <= d.compressionLevel.fastSkipHashing) {
+					newIndex = 0;
+					if (!((d.compressionLevel.fastSkipHashing === 2147483647))) {
+						newIndex = d.index + d.length >> 0;
+					} else {
+						newIndex = (d.index + prevLength >> 0) - 1 >> 0;
+					}
+					d.index = d.index + 1 >> 0;
+					while (d.index < newIndex) {
+						if (d.index < d.maxInsertIndex) {
+							d.hash = (((d.hash << 6 >> 0) + ((_slice$7 = d.window, _index$7 = (d.index + 2 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) >> 0) >> 0)) & 131071;
+							_slice$9 = d.hashPrev, _index$9 = d.index & 32767, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = (_slice$8 = d.hashHead, _index$8 = d.hash, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"))) : go$throwRuntimeError("index out of range");
+							_slice$10 = d.hashHead, _index$10 = d.hash, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = d.index + d.hashOffset >> 0) : go$throwRuntimeError("index out of range");
+						}
+						d.index = d.index + 1 >> 0;
+					}
+					if (d.compressionLevel.fastSkipHashing === 2147483647) {
+						d.byteAvailable = false;
+						d.length = 2;
+					}
+				} else {
+					d.index = d.index + (d.length) >> 0;
+					if (d.index < d.maxInsertIndex) {
+						d.hash = ((((_slice$11 = d.window, _index$11 = d.index, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")) >> 0) << 6 >> 0) + ((_slice$12 = d.window, _index$12 = (d.index + 1 >> 0), (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range")) >> 0) >> 0);
+					}
+				}
+				if (d.tokens.length === 16384) {
+					if (d.err = d.writeBlock(d.tokens, d.index, false), !(go$interfaceIsEqual(d.err, null))) {
+						return;
+					}
+					d.tokens = go$subslice(d.tokens, 0, 0);
+				}
+			} else {
+				if (!((d.compressionLevel.fastSkipHashing === 2147483647)) || d.byteAvailable) {
+					i = d.index - 1 >> 0;
+					if (!((d.compressionLevel.fastSkipHashing === 2147483647))) {
+						i = d.index;
+					}
+					d.tokens = go$append(d.tokens, literalToken(((_slice$13 = d.window, _index$13 = i, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range")) >>> 0)));
+					if (d.tokens.length === 16384) {
+						if (d.err = d.writeBlock(d.tokens, i + 1 >> 0, false), !(go$interfaceIsEqual(d.err, null))) {
+							return;
+						}
+						d.tokens = go$subslice(d.tokens, 0, 0);
+					}
+				}
+				d.index = d.index + 1 >> 0;
+				if (d.compressionLevel.fastSkipHashing === 2147483647) {
+					d.byteAvailable = true;
+				}
+			}
+		}
+	};
+	compressor.prototype.deflate = function() { return this.go$val.deflate(); };
+	compressor.Ptr.prototype.fillStore = function(b) {
+		var d, n;
+		d = this;
+		n = go$copySlice(go$subslice(d.window, d.windowEnd), b);
+		d.windowEnd = d.windowEnd + (n) >> 0;
+		return n;
+	};
+	compressor.prototype.fillStore = function(b) { return this.go$val.fillStore(b); };
+	compressor.Ptr.prototype.store = function() {
+		var d;
+		d = this;
+		if (d.windowEnd > 0) {
+			d.err = d.writeStoredBlock(go$subslice(d.window, 0, d.windowEnd));
+		}
+		d.windowEnd = 0;
+	};
+	compressor.prototype.store = function() { return this.go$val.store(); };
+	compressor.Ptr.prototype.write = function(b) {
+		var n, err, d, _tuple;
+		n = 0;
+		err = null;
+		d = this;
+		n = b.length;
+		b = go$subslice(b, d.fill(d, b));
+		while (b.length > 0) {
+			d.step(d);
+			b = go$subslice(b, d.fill(d, b));
+		}
+		_tuple = [n, d.err], n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	compressor.prototype.write = function(b) { return this.go$val.write(b); };
+	compressor.Ptr.prototype.syncFlush = function() {
+		var d;
+		d = this;
+		d.sync = true;
+		d.step(d);
+		if (go$interfaceIsEqual(d.err, null)) {
+			d.w.writeStoredHeader(0, false);
+			d.w.flush();
+			d.err = d.w.err;
+		}
+		d.sync = false;
+		return d.err;
+	};
+	compressor.prototype.syncFlush = function() { return this.go$val.syncFlush(); };
+	compressor.Ptr.prototype.init = function(w, level) {
+		var err, d, b, _slice, _index, _struct, b$1, _slice$1, _index$1, _struct$1, b$2;
+		err = null;
+		d = this;
+		d.w = newHuffmanBitWriter(w);
+		if (level === 0) {
+			d.window = (go$sliceType(Go$Uint8)).make(65535, 0, function() { return 0; });
+			d.fill = (function(recv, b) { return recv.fillStore(b); });
+			d.step = (function(recv) { return recv.store(); });
+		} else if (level === -1) {
+			level = 6;
+			d.compressionLevel = (_struct = (_slice = levels, _index = level, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new compressionLevel.Ptr(_struct.good, _struct.lazy, _struct.nice, _struct.chain, _struct.fastSkipHashing));
+			d.initDeflate();
+			d.fill = (function(recv, b$1) { return recv.fillDeflate(b$1); });
+			d.step = (function(recv) { return recv.deflate(); });
+		} else if (1 <= level && level <= 9) {
+			d.compressionLevel = (_struct$1 = (_slice$1 = levels, _index$1 = level, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new compressionLevel.Ptr(_struct$1.good, _struct$1.lazy, _struct$1.nice, _struct$1.chain, _struct$1.fastSkipHashing));
+			d.initDeflate();
+			d.fill = (function(recv, b$2) { return recv.fillDeflate(b$2); });
+			d.step = (function(recv) { return recv.deflate(); });
+		} else {
+			err = fmt.Errorf("flate: invalid compression level %d: want value in range [-1, 9]", new (go$sliceType(go$emptyInterface))([new Go$Int(level)]));
+			return err;
+		}
+		err = null;
+		return err;
+	};
+	compressor.prototype.init = function(w, level) { return this.go$val.init(w, level); };
+	compressor.Ptr.prototype.reset = function(w) {
+		var d, _ref, _ref$1, _i, i, _slice, _index, s, n, s$1, _tuple, s$2, n$1, _tuple$1, i$1, _slice$1, _index$1;
+		d = this;
+		d.w.reset(w);
+		d.sync = false;
+		d.err = null;
+		_ref = d.compressionLevel.chain;
+		if (_ref === 0) {
+			_ref$1 = d.window;
+			_i = 0;
+			for (; _i < _ref$1.length; _i += 1) {
+				i = _i;
+				_slice = d.window, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+			}
+			d.windowEnd = 0;
+		} else {
+			d.chainHead = -1;
+			s = d.hashHead;
+			while (s.length > 0) {
+				n = go$copySlice(s, new (go$sliceType(Go$Int))(zeroes));
+				s = go$subslice(s, n);
+			}
+			s$1 = d.hashPrev;
+			while (s$1.length > 0) {
+				go$copySlice(s$1, new (go$sliceType(Go$Int))(zeroes));
+				s$1 = go$subslice(s$1, 32);
+			}
+			d.hashOffset = 1;
+			_tuple = [0, 0], d.index = _tuple[0], d.windowEnd = _tuple[1];
+			s$2 = d.window;
+			while (s$2.length > 0) {
+				n$1 = go$copySlice(s$2, new (go$sliceType(Go$Uint8))(bzeroes));
+				s$2 = go$subslice(s$2, n$1);
+			}
+			_tuple$1 = [0, false], d.blockStart = _tuple$1[0], d.byteAvailable = _tuple$1[1];
+			d.tokens = go$subslice(d.tokens, 0, 16385);
+			i$1 = 0;
+			while (i$1 <= 16384) {
+				_slice$1 = d.tokens, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
+				i$1 = i$1 + 1 >> 0;
+			}
+			d.tokens = go$subslice(d.tokens, 0, 0);
+			d.length = 2;
+			d.offset = 0;
+			d.hash = 0;
+			d.maxInsertIndex = 0;
+		}
+	};
+	compressor.prototype.reset = function(w) { return this.go$val.reset(w); };
+	compressor.Ptr.prototype.close = function() {
+		var d;
+		d = this;
+		d.sync = true;
+		d.step(d);
+		if (!(go$interfaceIsEqual(d.err, null))) {
+			return d.err;
+		}
+		if (d.w.writeStoredHeader(0, true), !(go$interfaceIsEqual(d.w.err, null))) {
+			return d.w.err;
+		}
+		d.w.flush();
+		return d.w.err;
+	};
+	compressor.prototype.close = function() { return this.go$val.close(); };
+	var NewWriter = go$pkg.NewWriter = function(w, level) {
+		var dw, err;
+		dw = new Writer.Ptr();
+		if (err = dw.d.init(w, level), !(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Writer)).nil, err];
+		}
+		return [dw, null];
+	};
+	var NewWriterDict = go$pkg.NewWriterDict = function(w, level, dict) {
+		var dw, _tuple, zw, err;
+		dw = new dictWriter.Ptr(w, false);
+		_tuple = NewWriter(dw, level), zw = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(Writer)).nil, err];
+		}
+		zw.Write(dict);
+		zw.Flush();
+		dw.enabled = true;
+		zw.dict = go$appendSlice(zw.dict, dict);
+		return [zw, err];
+	};
+	dictWriter.Ptr.prototype.Write = function(b) {
+		var n, err, w, _tuple, _tuple$1;
+		n = 0;
+		err = null;
+		w = this;
+		if (w.enabled) {
+			_tuple = w.w.Write(b), n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		_tuple$1 = [b.length, null], n = _tuple$1[0], err = _tuple$1[1];
+		return [n, err];
+	};
+	dictWriter.prototype.Write = function(b) { return this.go$val.Write(b); };
+	Writer.Ptr.prototype.Write = function(data) {
+		var n, err, w, _tuple;
+		n = 0;
+		err = null;
+		w = this;
+		_tuple = w.d.write(data), n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	Writer.prototype.Write = function(data) { return this.go$val.Write(data); };
+	Writer.Ptr.prototype.Flush = function() {
+		var w;
+		w = this;
+		return w.d.syncFlush();
+	};
+	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
+	Writer.Ptr.prototype.Close = function() {
+		var w;
+		w = this;
+		return w.d.close();
+	};
+	Writer.prototype.Close = function() { return this.go$val.Close(); };
+	Writer.Ptr.prototype.Reset = function(dst) {
+		var w, ok, _tuple, x, dw;
+		w = this;
+		if (_tuple = (x = w.d.w.w, (x !== null && x.constructor === (go$ptrType(dictWriter)) ? [x.go$val, true] : [(go$ptrType(dictWriter)).nil, false])), dw = _tuple[0], ok = _tuple[1], ok) {
+			dw.w = dst;
+			w.d.reset(dw);
+			dw.enabled = false;
+			w.Write(w.dict);
+			w.Flush();
+			dw.enabled = true;
+		} else {
+			w.d.reset(dst);
+		}
+	};
+	Writer.prototype.Reset = function(dst) { return this.go$val.Reset(dst); };
+	var newHuffmanBitWriter = function(w) {
+		return new huffmanBitWriter.Ptr(w, 0, 0, go$makeNativeArray("Uint8", 64, function() { return 0; }), 0, (go$sliceType(Go$Int32)).make(286, 0, function() { return 0; }), (go$sliceType(Go$Int32)).make(30, 0, function() { return 0; }), (go$sliceType(Go$Uint8)).make(317, 0, function() { return 0; }), (go$sliceType(Go$Int32)).make(19, 0, function() { return 0; }), newHuffmanEncoder(286), newHuffmanEncoder(30), newHuffmanEncoder(19), null);
+	};
+	huffmanBitWriter.Ptr.prototype.reset = function(writer) {
+		var w, _tuple, _ref, _i, i, _slice, _index, _ref$1, _i$1, s, _ref$2, _i$2, i$1, _slice$1, _index$1, _ref$3, _i$3, enc, _ref$4, _i$4, i$2, _slice$2, _index$2, _ref$5, _i$5, i$3, _slice$3, _index$3;
+		w = this;
+		w.w = writer;
+		_tuple = [0, 0, 0, null], w.bits = _tuple[0], w.nbits = _tuple[1], w.nbytes = _tuple[2], w.err = _tuple[3];
+		w.bytes = go$makeNativeArray("Uint8", 64, function() { return 0; });
+		_ref = w.codegen;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_slice = w.codegen, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+		}
+		_ref$1 = go$toNativeArray("Slice", [w.literalFreq, w.offsetFreq, w.codegenFreq]);
+		_i$1 = 0;
+		for (; _i$1 < 3; _i$1 += 1) {
+			s = _ref$1[_i$1];
+			_ref$2 = s;
+			_i$2 = 0;
+			for (; _i$2 < _ref$2.length; _i$2 += 1) {
+				i$1 = _i$2;
+				_slice$1 = s, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
+			}
+		}
+		_ref$3 = go$toNativeArray("Ptr", [w.literalEncoding, w.offsetEncoding, w.codegenEncoding]);
+		_i$3 = 0;
+		for (; _i$3 < 3; _i$3 += 1) {
+			enc = _ref$3[_i$3];
+			_ref$4 = enc.code;
+			_i$4 = 0;
+			for (; _i$4 < _ref$4.length; _i$4 += 1) {
+				i$2 = _i$4;
+				_slice$2 = enc.code, _index$2 = i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 0) : go$throwRuntimeError("index out of range");
+			}
+			_ref$5 = enc.codeBits;
+			_i$5 = 0;
+			for (; _i$5 < _ref$5.length; _i$5 += 1) {
+				i$3 = _i$5;
+				_slice$3 = enc.codeBits, _index$3 = i$3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = 0) : go$throwRuntimeError("index out of range");
+			}
+		}
+	};
+	huffmanBitWriter.prototype.reset = function(writer) { return this.go$val.reset(writer); };
+	huffmanBitWriter.Ptr.prototype.flushBits = function() {
+		var w, bits, n, _tuple;
+		w = this;
+		if (!(go$interfaceIsEqual(w.err, null))) {
+			w.nbits = 0;
+			return;
+		}
+		bits = w.bits;
+		w.bits = w.bits >>> 16 >>> 0;
+		w.nbits = w.nbits - 16 >>> 0;
+		n = w.nbytes;
+		w.bytes[n] = (bits << 24 >>> 24);
+		w.bytes[n + 1 >> 0] = ((bits >>> 8 >>> 0) << 24 >>> 24);
+		if (n = n + 2 >> 0, n >= 64) {
+			_tuple = w.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(w.bytes), 0)), w.err = _tuple[1];
+			n = 0;
+		}
+		w.nbytes = n;
+	};
+	huffmanBitWriter.prototype.flushBits = function() { return this.go$val.flushBits(); };
+	huffmanBitWriter.Ptr.prototype.flush = function() {
+		var w, n, _tuple;
+		w = this;
+		if (!(go$interfaceIsEqual(w.err, null))) {
+			w.nbits = 0;
+			return;
+		}
+		n = w.nbytes;
+		if (w.nbits > 8) {
+			w.bytes[n] = (w.bits << 24 >>> 24);
+			w.bits = w.bits >>> 8 >>> 0;
+			w.nbits = w.nbits - 8 >>> 0;
+			n = n + 1 >> 0;
+		}
+		if (w.nbits > 0) {
+			w.bytes[n] = (w.bits << 24 >>> 24);
+			w.nbits = 0;
+			n = n + 1 >> 0;
+		}
+		w.bits = 0;
+		_tuple = w.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(w.bytes), 0, n)), w.err = _tuple[1];
+		w.nbytes = 0;
+	};
+	huffmanBitWriter.prototype.flush = function() { return this.go$val.flush(); };
+	huffmanBitWriter.Ptr.prototype.writeBits = function(b, nb) {
+		var w, y;
+		w = this;
+		w.bits = (w.bits | (((y = w.nbits, y < 32 ? ((b >>> 0) << y) : 0) >>> 0))) >>> 0;
+		if (w.nbits = w.nbits + ((nb >>> 0)) >>> 0, w.nbits >= 16) {
+			w.flushBits();
+		}
+	};
+	huffmanBitWriter.prototype.writeBits = function(b, nb) { return this.go$val.writeBits(b, nb); };
+	huffmanBitWriter.Ptr.prototype.writeBytes = function(bytes) {
+		var w, n, _tuple, _tuple$1;
+		w = this;
+		if (!(go$interfaceIsEqual(w.err, null))) {
+			return;
+		}
+		n = w.nbytes;
+		if (w.nbits === 8) {
+			w.bytes[n] = (w.bits << 24 >>> 24);
+			w.nbits = 0;
+			n = n + 1 >> 0;
+		}
+		if (!((w.nbits === 0))) {
+			w.err = new InternalError("writeBytes with unfinished bits");
+			return;
+		}
+		if (!((n === 0))) {
+			_tuple = w.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(w.bytes), 0, n)), w.err = _tuple[1];
+			if (!(go$interfaceIsEqual(w.err, null))) {
+				return;
+			}
+		}
+		w.nbytes = 0;
+		_tuple$1 = w.w.Write(bytes), w.err = _tuple$1[1];
+	};
+	huffmanBitWriter.prototype.writeBytes = function(bytes) { return this.go$val.writeBytes(bytes); };
+	huffmanBitWriter.Ptr.prototype.generateCodegen = function(numLiterals, numOffsets) {
+		var w, _ref, _i, i, _slice, _index, codegen, _slice$1, _index$1, _slice$2, _index$2, size, count, outIndex, inIndex, _slice$3, _index$3, nextSize, _slice$4, _index$4, _lhs, _index$5, _slice$5, _index$6, _slice$6, _index$7, n, _slice$7, _index$8, _slice$8, _index$9, _lhs$1, _index$10, _slice$9, _index$11, _slice$10, _index$12, n$1, _slice$11, _index$13, _slice$12, _index$14, _lhs$2, _index$15, _slice$13, _index$16, _slice$14, _index$17, _slice$15, _index$18, _slice$16, _index$19, _lhs$3, _index$20, _slice$17, _index$21, _slice$18, _index$22, _slice$19, _index$23, _lhs$4, _index$24, _slice$20, _index$25, _slice$21, _index$26, _slice$22, _index$27;
+		w = this;
+		_ref = w.codegenFreq;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_slice = w.codegenFreq, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+		}
+		codegen = w.codegen;
+		go$copySlice(go$subslice(codegen, 0, numLiterals), w.literalEncoding.codeBits);
+		go$copySlice(go$subslice(codegen, numLiterals, (numLiterals + numOffsets >> 0)), w.offsetEncoding.codeBits);
+		_slice$1 = codegen, _index$1 = numLiterals + numOffsets >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 255) : go$throwRuntimeError("index out of range");
+		size = (_slice$2 = codegen, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+		count = 1;
+		outIndex = 0;
+		inIndex = 1;
+		while (!((size === 255))) {
+			nextSize = (_slice$3 = codegen, _index$3 = inIndex, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			if (nextSize === size) {
+				count = count + 1 >> 0;
+				inIndex = inIndex + 1 >> 0;
+				continue;
+			}
+			if (!((size === 0))) {
+				_slice$4 = codegen, _index$4 = outIndex, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = size) : go$throwRuntimeError("index out of range");
+				outIndex = outIndex + 1 >> 0;
+				_lhs = w.codegenFreq, _index$5 = size, _slice$6 = _lhs, _index$7 = _index$5, (_index$7 >= 0 && _index$7 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$7] = (_slice$5 = _lhs, _index$6 = _index$5, (_index$6 >= 0 && _index$6 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$6] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
+				count = count - 1 >> 0;
+				while (count >= 3) {
+					n = 6;
+					if (n > count) {
+						n = count;
+					}
+					_slice$7 = codegen, _index$8 = outIndex, (_index$8 >= 0 && _index$8 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$8] = 16) : go$throwRuntimeError("index out of range");
+					outIndex = outIndex + 1 >> 0;
+					_slice$8 = codegen, _index$9 = outIndex, (_index$9 >= 0 && _index$9 < _slice$8.length) ? (_slice$8.array[_slice$8.offset + _index$9] = ((n - 3 >> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					outIndex = outIndex + 1 >> 0;
+					_lhs$1 = w.codegenFreq, _index$10 = 16, _slice$10 = _lhs$1, _index$12 = _index$10, (_index$12 >= 0 && _index$12 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$12] = (_slice$9 = _lhs$1, _index$11 = _index$10, (_index$11 >= 0 && _index$11 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$11] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
+					count = count - (n) >> 0;
+				}
+			} else {
+				while (count >= 11) {
+					n$1 = 138;
+					if (n$1 > count) {
+						n$1 = count;
+					}
+					_slice$11 = codegen, _index$13 = outIndex, (_index$13 >= 0 && _index$13 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$13] = 18) : go$throwRuntimeError("index out of range");
+					outIndex = outIndex + 1 >> 0;
+					_slice$12 = codegen, _index$14 = outIndex, (_index$14 >= 0 && _index$14 < _slice$12.length) ? (_slice$12.array[_slice$12.offset + _index$14] = ((n$1 - 11 >> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					outIndex = outIndex + 1 >> 0;
+					_lhs$2 = w.codegenFreq, _index$15 = 18, _slice$14 = _lhs$2, _index$17 = _index$15, (_index$17 >= 0 && _index$17 < _slice$14.length) ? (_slice$14.array[_slice$14.offset + _index$17] = (_slice$13 = _lhs$2, _index$16 = _index$15, (_index$16 >= 0 && _index$16 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$16] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
+					count = count - (n$1) >> 0;
+				}
+				if (count >= 3) {
+					_slice$15 = codegen, _index$18 = outIndex, (_index$18 >= 0 && _index$18 < _slice$15.length) ? (_slice$15.array[_slice$15.offset + _index$18] = 17) : go$throwRuntimeError("index out of range");
+					outIndex = outIndex + 1 >> 0;
+					_slice$16 = codegen, _index$19 = outIndex, (_index$19 >= 0 && _index$19 < _slice$16.length) ? (_slice$16.array[_slice$16.offset + _index$19] = ((count - 3 >> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					outIndex = outIndex + 1 >> 0;
+					_lhs$3 = w.codegenFreq, _index$20 = 17, _slice$18 = _lhs$3, _index$22 = _index$20, (_index$22 >= 0 && _index$22 < _slice$18.length) ? (_slice$18.array[_slice$18.offset + _index$22] = (_slice$17 = _lhs$3, _index$21 = _index$20, (_index$21 >= 0 && _index$21 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$21] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
+					count = 0;
+				}
+			}
+			count = count - 1 >> 0;
+			while (count >= 0) {
+				_slice$19 = codegen, _index$23 = outIndex, (_index$23 >= 0 && _index$23 < _slice$19.length) ? (_slice$19.array[_slice$19.offset + _index$23] = size) : go$throwRuntimeError("index out of range");
+				outIndex = outIndex + 1 >> 0;
+				_lhs$4 = w.codegenFreq, _index$24 = size, _slice$21 = _lhs$4, _index$26 = _index$24, (_index$26 >= 0 && _index$26 < _slice$21.length) ? (_slice$21.array[_slice$21.offset + _index$26] = (_slice$20 = _lhs$4, _index$25 = _index$24, (_index$25 >= 0 && _index$25 < _slice$20.length) ? _slice$20.array[_slice$20.offset + _index$25] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
+				count = count - 1 >> 0;
+			}
+			size = nextSize;
+			count = 1;
+			inIndex = inIndex + 1 >> 0;
+		}
+		_slice$22 = codegen, _index$27 = outIndex, (_index$27 >= 0 && _index$27 < _slice$22.length) ? (_slice$22.array[_slice$22.offset + _index$27] = 255) : go$throwRuntimeError("index out of range");
+	};
+	huffmanBitWriter.prototype.generateCodegen = function(numLiterals, numOffsets) { return this.go$val.generateCodegen(numLiterals, numOffsets); };
+	huffmanBitWriter.Ptr.prototype.writeCode = function(code, literal) {
+		var w, _slice, _index, _slice$1, _index$1;
+		w = this;
+		if (!(go$interfaceIsEqual(w.err, null))) {
+			return;
+		}
+		w.writeBits(((_slice = code.code, _index = literal, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0), ((_slice$1 = code.codeBits, _index$1 = literal, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0));
+	};
+	huffmanBitWriter.prototype.writeCode = function(code, literal) { return this.go$val.writeCode(code, literal); };
+	huffmanBitWriter.Ptr.prototype.writeDynamicHeader = function(numLiterals, numOffsets, numCodegens, isEof) {
+		var w, firstBits, i, _slice, _index, _slice$1, _index$1, value, i$1, _slice$2, _index$2, codeWord, _ref, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
+		w = this;
+		if (!(go$interfaceIsEqual(w.err, null))) {
+			return;
+		}
+		firstBits = 4;
+		if (isEof) {
+			firstBits = 5;
+		}
+		w.writeBits(firstBits, 3);
+		w.writeBits(((numLiterals - 257 >> 0) >> 0), 5);
+		w.writeBits(((numOffsets - 1 >> 0) >> 0), 5);
+		w.writeBits(((numCodegens - 4 >> 0) >> 0), 4);
+		i = 0;
+		while (i < numCodegens) {
+			value = (_slice = w.codegenEncoding.codeBits, _index = (_slice$1 = codegenOrder, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			w.writeBits((value >> 0), 3);
+			i = i + 1 >> 0;
+		}
+		i$1 = 0;
+		while (true) {
+			codeWord = ((_slice$2 = w.codegen, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >> 0);
+			i$1 = i$1 + 1 >> 0;
+			if (codeWord === 255) {
+				break;
+			}
+			w.writeCode(w.codegenEncoding, (codeWord >>> 0));
+			_ref = codeWord;
+			switch (undefined) {
+			default:
+				if (_ref === 16) {
+					w.writeBits(((_slice$3 = w.codegen, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >> 0), 2);
+					i$1 = i$1 + 1 >> 0;
+					break;
+				} else if (_ref === 17) {
+					w.writeBits(((_slice$4 = w.codegen, _index$4 = i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) >> 0), 3);
+					i$1 = i$1 + 1 >> 0;
+					break;
+				} else if (_ref === 18) {
+					w.writeBits(((_slice$5 = w.codegen, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) >> 0), 7);
+					i$1 = i$1 + 1 >> 0;
+					break;
+				}
+			}
+		}
+	};
+	huffmanBitWriter.prototype.writeDynamicHeader = function(numLiterals, numOffsets, numCodegens, isEof) { return this.go$val.writeDynamicHeader(numLiterals, numOffsets, numCodegens, isEof); };
+	huffmanBitWriter.Ptr.prototype.writeStoredHeader = function(length, isEof) {
+		var w, flag;
+		w = this;
+		if (!(go$interfaceIsEqual(w.err, null))) {
+			return;
+		}
+		flag = 0;
+		if (isEof) {
+			flag = 1;
+		}
+		w.writeBits(flag, 3);
+		w.flush();
+		w.writeBits((length >> 0), 16);
+		w.writeBits(((~(length << 16 >>> 16) << 16 >>> 16) >> 0), 16);
+	};
+	huffmanBitWriter.prototype.writeStoredHeader = function(length, isEof) { return this.go$val.writeStoredHeader(length, isEof); };
+	huffmanBitWriter.Ptr.prototype.writeFixedHeader = function(isEof) {
+		var w, value;
+		w = this;
+		if (!(go$interfaceIsEqual(w.err, null))) {
+			return;
+		}
+		value = 2;
+		if (isEof) {
+			value = 3;
+		}
+		w.writeBits(value, 3);
+	};
+	huffmanBitWriter.prototype.writeFixedHeader = function(isEof) { return this.go$val.writeFixedHeader(isEof); };
+	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof, input) {
+		var w, _ref, _i, i, _slice, _index, _ref$1, _i$1, i$1, _slice$1, _index$1, n, _slice$2, _index$2, _ref$2, _i$2, _slice$3, _index$3, t, _ref$3, _lhs, _index$4, _slice$4, _index$5, _slice$5, _index$6, length, offset, _lhs$1, _index$7, _slice$6, _index$8, _slice$7, _index$9, _lhs$2, _index$10, _slice$8, _index$11, _slice$9, _index$12, numLiterals, _slice$10, _index$13, numOffsets, _slice$11, _index$14, _slice$12, _index$15, storedBytes, extraBits, storedSize, x, x$1, lengthCode$1, x$2, _slice$13, _index$16, _slice$14, _index$17, offsetCode$1, x$3, _slice$15, _index$18, _slice$16, _index$19, x$4, x$5, x$6, x$7, size, literalEncoding, offsetEncoding, numCodegens, _slice$17, _index$20, _slice$18, _index$21, x$8, x$9, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, _slice$19, _index$22, x$18, x$19, x$20, _slice$20, _index$23, x$21, x$22, x$23, _slice$21, _index$24, x$24, dynamicHeader, x$25, x$26, x$27, dynamicSize, _ref$4, _i$3, _slice$22, _index$25, t$1, _ref$5, length$1, lengthCode$2, _slice$23, _index$26, extraLengthBits, _slice$24, _index$27, extraLength, offset$1, offsetCode$2, _slice$25, _index$28, extraOffsetBits, _slice$26, _index$29, extraOffset;
+		w = this;
+		if (!(go$interfaceIsEqual(w.err, null))) {
+			return;
+		}
+		_ref = w.literalFreq;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			_slice = w.literalFreq, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+		}
+		_ref$1 = w.offsetFreq;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			i$1 = _i$1;
+			_slice$1 = w.offsetFreq, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
+		}
+		n = tokens.length;
+		tokens = go$subslice(tokens, 0, (n + 1 >> 0));
+		_slice$2 = tokens, _index$2 = n, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 256) : go$throwRuntimeError("index out of range");
+		_ref$2 = tokens;
+		_i$2 = 0;
+		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+			t = (_slice$3 = _ref$2, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			_ref$3 = (new token(t)).typ();
+			if (_ref$3 === 0) {
+				_lhs = w.literalFreq, _index$4 = (new token(t)).literal(), _slice$5 = _lhs, _index$6 = _index$4, (_index$6 >= 0 && _index$6 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$6] = (_slice$4 = _lhs, _index$5 = _index$4, (_index$5 >= 0 && _index$5 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$5] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
+			} else if (_ref$3 === 1073741824) {
+				length = (new token(t)).length();
+				offset = (new token(t)).offset();
+				_lhs$1 = w.literalFreq, _index$7 = 257 + lengthCode(length) >>> 0, _slice$7 = _lhs$1, _index$9 = _index$7, (_index$9 >= 0 && _index$9 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$9] = (_slice$6 = _lhs$1, _index$8 = _index$7, (_index$8 >= 0 && _index$8 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$8] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
+				_lhs$2 = w.offsetFreq, _index$10 = offsetCode(offset), _slice$9 = _lhs$2, _index$12 = _index$10, (_index$12 >= 0 && _index$12 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$12] = (_slice$8 = _lhs$2, _index$11 = _index$10, (_index$11 >= 0 && _index$11 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$11] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
+			}
+		}
+		numLiterals = w.literalFreq.length;
+		while ((_slice$10 = w.literalFreq, _index$13 = (numLiterals - 1 >> 0), (_index$13 >= 0 && _index$13 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$13] : go$throwRuntimeError("index out of range")) === 0) {
+			numLiterals = numLiterals - 1 >> 0;
+		}
+		numOffsets = w.offsetFreq.length;
+		while (numOffsets > 0 && ((_slice$11 = w.offsetFreq, _index$14 = (numOffsets - 1 >> 0), (_index$14 >= 0 && _index$14 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$14] : go$throwRuntimeError("index out of range")) === 0)) {
+			numOffsets = numOffsets - 1 >> 0;
+		}
+		if (numOffsets === 0) {
+			_slice$12 = w.offsetFreq, _index$15 = 0, (_index$15 >= 0 && _index$15 < _slice$12.length) ? (_slice$12.array[_slice$12.offset + _index$15] = 1) : go$throwRuntimeError("index out of range");
+			numOffsets = 1;
+		}
+		w.literalEncoding.generate(w.literalFreq, 15);
+		w.offsetEncoding.generate(w.offsetFreq, 15);
+		storedBytes = 0;
+		if (!(input === (go$sliceType(Go$Uint8)).nil)) {
+			storedBytes = input.length;
+		}
+		extraBits = new Go$Int64(0, 0);
+		storedSize = new Go$Int64(2147483647, 4294967295);
+		if (storedBytes <= 65535 && !(input === (go$sliceType(Go$Uint8)).nil)) {
+			storedSize = new Go$Int64(0, (x = (storedBytes + 5 >> 0), x$1 = 8, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0));
+			lengthCode$1 = 265;
+			while (lengthCode$1 < numLiterals) {
+				extraBits = (x$2 = go$mul64(new Go$Int64(0, (_slice$13 = w.literalFreq, _index$16 = lengthCode$1, (_index$16 >= 0 && _index$16 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$16] : go$throwRuntimeError("index out of range"))), new Go$Int64(0, (_slice$14 = lengthExtraBits, _index$17 = (lengthCode$1 - 257 >> 0), (_index$17 >= 0 && _index$17 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$17] : go$throwRuntimeError("index out of range")))), new Go$Int64(extraBits.high + x$2.high, extraBits.low + x$2.low));
+				lengthCode$1 = lengthCode$1 + 1 >> 0;
+			}
+			offsetCode$1 = 4;
+			while (offsetCode$1 < numOffsets) {
+				extraBits = (x$3 = go$mul64(new Go$Int64(0, (_slice$15 = w.offsetFreq, _index$18 = offsetCode$1, (_index$18 >= 0 && _index$18 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$18] : go$throwRuntimeError("index out of range"))), new Go$Int64(0, (_slice$16 = offsetExtraBits, _index$19 = offsetCode$1, (_index$19 >= 0 && _index$19 < _slice$16.length) ? _slice$16.array[_slice$16.offset + _index$19] : go$throwRuntimeError("index out of range")))), new Go$Int64(extraBits.high + x$3.high, extraBits.low + x$3.low));
+				offsetCode$1 = offsetCode$1 + 1 >> 0;
+			}
+		}
+		size = (x$4 = (x$5 = (x$6 = fixedLiteralEncoding.bitLength(w.literalFreq), new Go$Int64(0 + x$6.high, 3 + x$6.low)), x$7 = fixedOffsetEncoding.bitLength(w.offsetFreq), new Go$Int64(x$5.high + x$7.high, x$5.low + x$7.low)), new Go$Int64(x$4.high + extraBits.high, x$4.low + extraBits.low));
+		literalEncoding = fixedLiteralEncoding;
+		offsetEncoding = fixedOffsetEncoding;
+		numCodegens = 0;
+		w.generateCodegen(numLiterals, numOffsets);
+		w.codegenEncoding.generate(w.codegenFreq, 7);
+		numCodegens = w.codegenFreq.length;
+		while (numCodegens > 4 && ((_slice$17 = w.codegenFreq, _index$20 = (_slice$18 = codegenOrder, _index$21 = (numCodegens - 1 >> 0), (_index$21 >= 0 && _index$21 < _slice$18.length) ? _slice$18.array[_slice$18.offset + _index$21] : go$throwRuntimeError("index out of range")), (_index$20 >= 0 && _index$20 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$20] : go$throwRuntimeError("index out of range")) === 0)) {
+			numCodegens = numCodegens - 1 >> 0;
+		}
+		dynamicHeader = (x$8 = (x$9 = (x$10 = (x$11 = (x$12 = new Go$Int64(0, (17 + ((x$13 = 3, (((x$13 >>> 16 << 16) * numCodegens >> 0) + (x$13 << 16 >>> 16) * numCodegens) >> 0)) >> 0)), x$14 = w.codegenEncoding.bitLength(w.codegenFreq), new Go$Int64(x$12.high + x$14.high, x$12.low + x$14.low)), x$15 = extraBits, new Go$Int64(x$11.high + x$15.high, x$11.low + x$15.low)), x$16 = new Go$Int64(0, (x$17 = (_slice$19 = w.codegenFreq, _index$22 = 16, (_index$22 >= 0 && _index$22 < _slice$19.length) ? _slice$19.array[_slice$19.offset + _index$22] : go$throwRuntimeError("index out of range")), x$18 = 2, (((x$17 >>> 16 << 16) * x$18 >> 0) + (x$17 << 16 >>> 16) * x$18) >> 0)), new Go$Int64(x$10.high + x$16.high, x$10.low + x$16.low)), x$19 = new Go$Int64(0, (x$20 = (_slice$20 = w.codegenFreq, _index$23 = 17, (_index$23 >= 0 && _index$23 < _slice$20.length) ? _slice$20.array[_slice$20.offset + _index$23] : go$throwRuntimeError("index out of range")), x$21 = 3, (((x$20 >>> 16 << 16) * x$21 >> 0) + (x$20 << 16 >>> 16) * x$21) >> 0)), new Go$Int64(x$9.high + x$19.high, x$9.low + x$19.low)), x$22 = new Go$Int64(0, (x$23 = (_slice$21 = w.codegenFreq, _index$24 = 18, (_index$24 >= 0 && _index$24 < _slice$21.length) ? _slice$21.array[_slice$21.offset + _index$24] : go$throwRuntimeError("index out of range")), x$24 = 7, (((x$23 >>> 16 << 16) * x$24 >> 0) + (x$23 << 16 >>> 16) * x$24) >> 0)), new Go$Int64(x$8.high + x$22.high, x$8.low + x$22.low));
+		dynamicSize = (x$25 = (x$26 = w.literalEncoding.bitLength(w.literalFreq), new Go$Int64(dynamicHeader.high + x$26.high, dynamicHeader.low + x$26.low)), x$27 = w.offsetEncoding.bitLength(w.offsetFreq), new Go$Int64(x$25.high + x$27.high, x$25.low + x$27.low));
+		if ((dynamicSize.high < size.high || (dynamicSize.high === size.high && dynamicSize.low < size.low))) {
+			size = dynamicSize;
+			literalEncoding = w.literalEncoding;
+			offsetEncoding = w.offsetEncoding;
+		}
+		if ((storedSize.high < size.high || (storedSize.high === size.high && storedSize.low < size.low))) {
+			w.writeStoredHeader(storedBytes, eof);
+			w.writeBytes(go$subslice(input, 0, storedBytes));
+			return;
+		}
+		if (literalEncoding === fixedLiteralEncoding) {
+			w.writeFixedHeader(eof);
+		} else {
+			w.writeDynamicHeader(numLiterals, numOffsets, numCodegens, eof);
+		}
+		_ref$4 = tokens;
+		_i$3 = 0;
+		for (; _i$3 < _ref$4.length; _i$3 += 1) {
+			t$1 = (_slice$22 = _ref$4, _index$25 = _i$3, (_index$25 >= 0 && _index$25 < _slice$22.length) ? _slice$22.array[_slice$22.offset + _index$25] : go$throwRuntimeError("index out of range"));
+			_ref$5 = (new token(t$1)).typ();
+			switch (undefined) {
+			default:
+				if (_ref$5 === 0) {
+					w.writeCode(literalEncoding, (new token(t$1)).literal());
+					break;
+				} else if (_ref$5 === 1073741824) {
+					length$1 = (new token(t$1)).length();
+					lengthCode$2 = lengthCode(length$1);
+					w.writeCode(literalEncoding, lengthCode$2 + 257 >>> 0);
+					extraLengthBits = ((_slice$23 = lengthExtraBits, _index$26 = lengthCode$2, (_index$26 >= 0 && _index$26 < _slice$23.length) ? _slice$23.array[_slice$23.offset + _index$26] : go$throwRuntimeError("index out of range")) >> 0);
+					if (extraLengthBits > 0) {
+						extraLength = ((length$1 - (_slice$24 = lengthBase, _index$27 = lengthCode$2, (_index$27 >= 0 && _index$27 < _slice$24.length) ? _slice$24.array[_slice$24.offset + _index$27] : go$throwRuntimeError("index out of range")) >>> 0) >> 0);
+						w.writeBits(extraLength, extraLengthBits);
+					}
+					offset$1 = (new token(t$1)).offset();
+					offsetCode$2 = offsetCode(offset$1);
+					w.writeCode(offsetEncoding, offsetCode$2);
+					extraOffsetBits = ((_slice$25 = offsetExtraBits, _index$28 = offsetCode$2, (_index$28 >= 0 && _index$28 < _slice$25.length) ? _slice$25.array[_slice$25.offset + _index$28] : go$throwRuntimeError("index out of range")) >> 0);
+					if (extraOffsetBits > 0) {
+						extraOffset = ((offset$1 - (_slice$26 = offsetBase, _index$29 = offsetCode$2, (_index$29 >= 0 && _index$29 < _slice$26.length) ? _slice$26.array[_slice$26.offset + _index$29] : go$throwRuntimeError("index out of range")) >>> 0) >> 0);
+						w.writeBits(extraOffset, extraOffsetBits);
+					}
+					break;
+				} else {
+					throw go$panic(new Go$String("unknown token type: " + go$encodeRune(t$1)));
+				}
+			}
+		}
+	};
+	huffmanBitWriter.prototype.writeBlock = function(tokens, eof, input) { return this.go$val.writeBlock(tokens, eof, input); };
+	var maxNode = function() {
+		return new literalNode.Ptr(65535, 2147483647);
+	};
+	var newHuffmanEncoder = function(size) {
+		return new huffmanEncoder.Ptr((go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; }), (go$sliceType(Go$Uint16)).make(size, 0, function() { return 0; }));
+	};
+	var generateFixedLiteralEncoding = function() {
+		var h, codeBits, code, ch, bits, size, _slice, _index, _slice$1, _index$1;
+		h = newHuffmanEncoder(286);
+		codeBits = h.codeBits;
+		code = h.code;
+		ch = 0;
+		ch = 0;
+		while (ch < 286) {
+			bits = 0;
+			size = 0;
+			switch (undefined) {
+			default:
+				if (ch < 144) {
+					bits = ch + 48 << 16 >>> 16;
+					size = 8;
+					break;
+				} else if (ch < 256) {
+					bits = (ch + 400 << 16 >>> 16) - 144 << 16 >>> 16;
+					size = 9;
+					break;
+				} else if (ch < 280) {
+					bits = ch - 256 << 16 >>> 16;
+					size = 7;
+					break;
+				} else {
+					bits = (ch + 192 << 16 >>> 16) - 280 << 16 >>> 16;
+					size = 8;
+				}
+			}
+			_slice = codeBits, _index = ch, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = size) : go$throwRuntimeError("index out of range");
+			_slice$1 = code, _index$1 = ch, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = reverseBits(bits, size)) : go$throwRuntimeError("index out of range");
+			ch = ch + 1 << 16 >>> 16;
+		}
+		return h;
+	};
+	var generateFixedOffsetEncoding = function() {
+		var h, codeBits, code, ch, _slice, _index, _slice$1, _index$1;
+		h = newHuffmanEncoder(30);
+		codeBits = h.codeBits;
+		code = h.code;
+		ch = 0;
+		while (ch < 30) {
+			_slice = codeBits, _index = ch, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 5) : go$throwRuntimeError("index out of range");
+			_slice$1 = code, _index$1 = ch, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = reverseBits(ch, 5)) : go$throwRuntimeError("index out of range");
+			ch = ch + 1 << 16 >>> 16;
+		}
+		return h;
+	};
+	huffmanEncoder.Ptr.prototype.bitLength = function(freq) {
+		var h, total, _ref, _i, _slice, _index, f, i, x, _slice$1, _index$1;
+		h = this;
+		total = new Go$Int64(0, 0);
+		_ref = freq;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (!((f === 0))) {
+				total = (x = go$mul64(new Go$Int64(0, f), new Go$Int64(0, (_slice$1 = h.codeBits, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))), new Go$Int64(total.high + x.high, total.low + x.low));
+			}
+		}
+		return total;
+	};
+	huffmanEncoder.prototype.bitLength = function(freq) { return this.go$val.bitLength(freq); };
+	huffmanEncoder.Ptr.prototype.bitCounts = function(list, maxBits) {
+		var h, n, _struct, _slice, _index, levels$1, leafCounts, level, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, x, level$1, l, prevFreq, n$1, _slice$5, _index$5, bitCount, bits, counts, level$2, _slice$6, _index$6;
+		h = this;
+		if (maxBits >= 16) {
+			throw go$panic(new Go$String("flate: maxBits too large"));
+		}
+		n = (list.length >> 0);
+		list = go$subslice(list, 0, (n + 1 >> 0));
+		_slice = list, _index = n, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (_struct = maxNode(), new literalNode.Ptr(_struct.literal, _struct.freq))) : go$throwRuntimeError("index out of range");
+		if (maxBits > (n - 1 >> 0)) {
+			maxBits = n - 1 >> 0;
+		}
+		levels$1 = go$makeNativeArray("Struct", 16, function() { return new levelInfo.Ptr(); });
+		leafCounts = go$makeNativeArray("Array", 16, function() { return go$makeNativeArray("Int32", 16, function() { return 0; }); });
+		level = 1;
+		while (level <= maxBits) {
+			levels$1[level] = new levelInfo.Ptr(level, (_slice$1 = list, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).freq, (_slice$2 = list, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).freq, (_slice$3 = list, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).freq + (_slice$4 = list, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).freq >> 0, 0);
+			leafCounts[level][level] = 2;
+			if (level === 1) {
+				levels$1[level].nextPairFreq = 2147483647;
+			}
+			level = level + 1 >> 0;
+		}
+		levels$1[maxBits].needed = (x = 2, (((x >>> 16 << 16) * n >> 0) + (x << 16 >>> 16) * n) >> 0) - 4 >> 0;
+		level$1 = maxBits;
+		while (true) {
+			l = levels$1[level$1];
+			if ((l.nextPairFreq === 2147483647) && (l.nextCharFreq === 2147483647)) {
+				l.needed = 0;
+				levels$1[(level$1 + 1 >> 0)].nextPairFreq = 2147483647;
+				level$1 = level$1 + 1 >> 0;
+				continue;
+			}
+			prevFreq = l.lastFreq;
+			if (l.nextCharFreq < l.nextPairFreq) {
+				n$1 = leafCounts[level$1][level$1] + 1 >> 0;
+				l.lastFreq = l.nextCharFreq;
+				leafCounts[level$1][level$1] = n$1;
+				l.nextCharFreq = (_slice$5 = list, _index$5 = n$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).freq;
+			} else {
+				l.lastFreq = l.nextPairFreq;
+				go$copySlice(go$subslice(new (go$sliceType(Go$Int32))(leafCounts[level$1]), 0, level$1), go$subslice(new (go$sliceType(Go$Int32))(leafCounts[(level$1 - 1 >> 0)]), 0, level$1));
+				levels$1[(l.level - 1 >> 0)].needed = 2;
+			}
+			if (l.needed = l.needed - 1 >> 0, l.needed === 0) {
+				if (l.level === maxBits) {
+					break;
+				}
+				levels$1[(l.level + 1 >> 0)].nextPairFreq = prevFreq + l.lastFreq >> 0;
+				level$1 = level$1 + 1 >> 0;
+			} else {
+				while (levels$1[(level$1 - 1 >> 0)].needed > 0) {
+					level$1 = level$1 - 1 >> 0;
+				}
+			}
+		}
+		if (!((leafCounts[maxBits][maxBits] === n))) {
+			throw go$panic(new Go$String("leafCounts[maxBits][maxBits] != n"));
+		}
+		bitCount = (go$sliceType(Go$Int32)).make(maxBits + 1 >> 0, 0, function() { return 0; });
+		bits = 1;
+		counts = leafCounts[maxBits];
+		level$2 = maxBits;
+		while (level$2 > 0) {
+			_slice$6 = bitCount, _index$6 = bits, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = counts[level$2] - counts[(level$2 - 1 >> 0)] >> 0) : go$throwRuntimeError("index out of range");
+			bits = bits + 1 >> 0;
+			level$2 = level$2 - 1 >> 0;
+		}
+		return bitCount;
+	};
+	huffmanEncoder.prototype.bitCounts = function(list, maxBits) { return this.go$val.bitCounts(list, maxBits); };
+	huffmanEncoder.Ptr.prototype.assignEncodingAndSize = function(bitCount, list) {
+		var h, code, _ref, _i, _slice, _index, bits, n, chunk, _ref$1, _i$1, _slice$1, _index$1, _struct, node, _slice$2, _index$2, _slice$3, _index$3;
+		h = this;
+		code = 0;
+		_ref = bitCount;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			bits = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			n = _i;
+			code = code << 1 << 16 >>> 16;
+			if ((n === 0) || (bits === 0)) {
+				continue;
+			}
+			chunk = go$subslice(list, (list.length - (bits >> 0) >> 0));
+			sortByLiteral(chunk);
+			_ref$1 = chunk;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				node = (_struct = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new literalNode.Ptr(_struct.literal, _struct.freq));
+				_slice$2 = h.codeBits, _index$2 = node.literal, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (n << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_slice$3 = h.code, _index$3 = node.literal, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = reverseBits(code, (n << 24 >>> 24))) : go$throwRuntimeError("index out of range");
+				code = code + 1 << 16 >>> 16;
+			}
+			list = go$subslice(list, 0, (list.length - (bits >> 0) >> 0));
+		}
+	};
+	huffmanEncoder.prototype.assignEncodingAndSize = function(bitCount, list) { return this.go$val.assignEncodingAndSize(bitCount, list); };
+	huffmanEncoder.Ptr.prototype.generate = function(freq, maxBits) {
+		var h, list, count, _ref, _i, _slice, _index, f, i, _slice$1, _index$1, _slice$2, _index$2, _ref$1, _i$1, _slice$3, _index$3, _struct, node, i$1, _slice$4, _index$4, _slice$5, _index$5, bitCount;
+		h = this;
+		list = (go$sliceType(literalNode)).make(freq.length + 1 >> 0, 0, function() { return new literalNode.Ptr(); });
+		count = 0;
+		_ref = freq;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (!((f === 0))) {
+				_slice$1 = list, _index$1 = count, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = new literalNode.Ptr((i << 16 >>> 16), f)) : go$throwRuntimeError("index out of range");
+				count = count + 1 >> 0;
+			} else {
+				_slice$2 = h.codeBits, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 0) : go$throwRuntimeError("index out of range");
+			}
+		}
+		h.codeBits = go$subslice(h.codeBits, 0, freq.length);
+		list = go$subslice(list, 0, count);
+		if (count <= 2) {
+			_ref$1 = list;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				node = (_struct = (_slice$3 = _ref$1, _index$3 = _i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), new literalNode.Ptr(_struct.literal, _struct.freq));
+				i$1 = _i$1;
+				_slice$4 = h.codeBits, _index$4 = node.literal, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = 1) : go$throwRuntimeError("index out of range");
+				_slice$5 = h.code, _index$5 = node.literal, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (i$1 << 16 >>> 16)) : go$throwRuntimeError("index out of range");
+			}
+			return;
+		}
+		sortByFreq(list);
+		bitCount = h.bitCounts(list, maxBits);
+		h.assignEncodingAndSize(bitCount, list);
+	};
+	huffmanEncoder.prototype.generate = function(freq, maxBits) { return this.go$val.generate(freq, maxBits); };
+	literalNodeSorter.Ptr.prototype.Len = function() {
+		var _struct, s;
+		s = (_struct = this, new literalNodeSorter.Ptr(_struct.a, _struct.less));
+		return s.a.length;
+	};
+	literalNodeSorter.prototype.Len = function() { return this.go$val.Len(); };
+	literalNodeSorter.Ptr.prototype.Less = function(i, j) {
+		var _struct, s;
+		s = (_struct = this, new literalNodeSorter.Ptr(_struct.a, _struct.less));
+		return s.less(i, j);
+	};
+	literalNodeSorter.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
+	literalNodeSorter.Ptr.prototype.Swap = function(i, j) {
+		var _struct, s, _slice, _index, _struct$1, _slice$1, _index$1, _struct$2, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		s = (_struct = this, new literalNodeSorter.Ptr(_struct.a, _struct.less));
+		_tuple = [(_struct$1 = (_slice = s.a, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new literalNode.Ptr(_struct$1.literal, _struct$1.freq)), (_struct$2 = (_slice$1 = s.a, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new literalNode.Ptr(_struct$2.literal, _struct$2.freq))], _slice$2 = s.a, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = s.a, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	literalNodeSorter.prototype.Swap = function(i, j) { return this.go$val.Swap(i, j); };
+	var sortByFreq = function(a) {
+		var s;
+		s = new literalNodeSorter.Ptr(a, (function(i, j) {
+			var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
+			if ((_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).freq === (_slice$1 = a, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).freq) {
+				return (_slice$2 = a, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).literal < (_slice$3 = a, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).literal;
+			}
+			return (_slice$4 = a, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).freq < (_slice$5 = a, _index$5 = j, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).freq;
+		}));
+		sort.Sort(s);
+	};
+	var sortByLiteral = function(a) {
+		var s;
+		s = new literalNodeSorter.Ptr(a, (function(i, j) {
+			var _slice, _index, _slice$1, _index$1;
+			return (_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).literal < (_slice$1 = a, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).literal;
+		}));
+		sort.Sort(s);
+	};
+	CorruptInputError.prototype.Error = function() {
+		var e;
+		e = this;
+		return "flate: corrupt input before offset " + strconv.FormatInt(new Go$Int64(e.high, e.low), 10);
+	};
+	go$ptrType(CorruptInputError).prototype.Error = function() { return this.go$get().Error(); };
+	InternalError.prototype.Error = function() {
+		var e;
+		e = this.go$val;
+		return "flate: internal error: " + e;
+	};
+	go$ptrType(InternalError).prototype.Error = function() { return new InternalError(this.go$get()).Error(); };
+	ReadError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return "flate: read error at offset " + strconv.FormatInt(e.Offset, 10) + ": " + e.Err.Error();
+	};
+	ReadError.prototype.Error = function() { return this.go$val.Error(); };
+	WriteError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return "flate: write error at offset " + strconv.FormatInt(e.Offset, 10) + ": " + e.Err.Error();
+	};
+	WriteError.prototype.Error = function() { return this.go$val.Error(); };
+	huffmanDecoder.Ptr.prototype.init = function(bits) {
+		var h, l, r, count, _tuple, min, max, _ref, _i, _slice, _index, n, _lhs, _index$1, linkBits, numLinks, y, code, nextcode, i, link, j, reverse, off, y$1, _slice$1, _index$2, n$1, _ref$1, _i$1, _slice$2, _index$3, n$2, i$1, code$1, _lhs$1, _index$4, chunk, reverse$1, off$1, y$2, value, _slice$3, _index$5, linktab, off$2, _slice$4, _index$6, y$3;
+		h = this;
+		if (!((h.min === 0))) {
+			l = h, r = new huffmanDecoder.Ptr(0, go$makeNativeArray("Uint32", 512, function() { return 0; }), (go$sliceType((go$sliceType(Go$Uint32)))).nil, 0), l.min = r.min, l.chunks = r.chunks, l.links = r.links, l.linkMask = r.linkMask;
+		}
+		count = go$makeNativeArray("Int", 16, function() { return 0; });
+		_tuple = [0, 0], min = _tuple[0], max = _tuple[1];
+		_ref = bits;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			n = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (n === 0) {
+				continue;
+			}
+			if ((min === 0) || n < min) {
+				min = n;
+			}
+			if (n > max) {
+				max = n;
+			}
+			_lhs = count, _index$1 = n, _lhs[_index$1] = _lhs[_index$1] + 1 >> 0;
+		}
+		if (max === 0) {
+			return false;
+		}
+		h.min = min;
+		linkBits = 0;
+		numLinks = 0;
+		if (max > 9) {
+			linkBits = (max >>> 0) - 9 >>> 0;
+			numLinks = (y = linkBits, y < 32 ? (1 << y) : 0) >> 0;
+			h.linkMask = ((numLinks - 1 >> 0) >>> 0);
+		}
+		code = 0;
+		nextcode = go$makeNativeArray("Int", 16, function() { return 0; });
+		i = min;
+		while (i <= max) {
+			if (i === 10) {
+				link = code >> 1 >> 0;
+				if (512 < link) {
+					return false;
+				}
+				h.links = (go$sliceType((go$sliceType(Go$Uint32)))).make(512 - link >> 0, 0, function() { return (go$sliceType(Go$Uint32)).nil; });
+				j = (link >>> 0);
+				while (j < 512) {
+					reverse = (reverseByte[(j >>> 8 >>> 0)] >> 0) | ((reverseByte[((j & 255) >>> 0)] >> 0) << 8 >> 0);
+					reverse = reverse >> 7 >> 0;
+					off = j - (link >>> 0) >>> 0;
+					h.chunks[reverse] = (((off << 4 >>> 0) + (i >>> 0) >>> 0) >>> 0);
+					_slice$1 = h.links, _index$2 = off, (_index$2 >= 0 && _index$2 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$2] = (go$sliceType(Go$Uint32)).make((y$1 = linkBits, y$1 < 32 ? (1 << y$1) : 0) >> 0, 0, function() { return 0; })) : go$throwRuntimeError("index out of range");
+					j = j + 1 >>> 0;
+				}
+			}
+			n$1 = count[i];
+			nextcode[i] = code;
+			code = code + (n$1) >> 0;
+			code = code << 1 >> 0;
+			i = i + 1 >> 0;
+		}
+		_ref$1 = bits;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			n$2 = (_slice$2 = _ref$1, _index$3 = _i$1, (_index$3 >= 0 && _index$3 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			i$1 = _i$1;
+			if (n$2 === 0) {
+				continue;
+			}
+			code$1 = nextcode[n$2];
+			_lhs$1 = nextcode, _index$4 = n$2, _lhs$1[_index$4] = _lhs$1[_index$4] + 1 >> 0;
+			chunk = (((i$1 << 4 >> 0) | n$2) >>> 0);
+			reverse$1 = (reverseByte[(code$1 >> 8 >> 0)] >> 0) | ((reverseByte[(code$1 & 255)] >> 0) << 8 >> 0);
+			reverse$1 = (reverse$1 >> go$min((((16 - n$2 >> 0) >>> 0)), 31)) >> 0;
+			if (n$2 <= 9) {
+				off$1 = reverse$1;
+				while (off$1 < 512) {
+					h.chunks[off$1] = chunk;
+					off$1 = off$1 + (((y$2 = (n$2 >>> 0), y$2 < 32 ? (1 << y$2) : 0) >> 0)) >> 0;
+				}
+			} else {
+				value = h.chunks[(reverse$1 & 511)] >>> 4 >>> 0;
+				if (value >= (h.links.length >>> 0)) {
+					return false;
+				}
+				linktab = (_slice$3 = h.links, _index$5 = value, (_index$5 >= 0 && _index$5 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$5] : go$throwRuntimeError("index out of range"));
+				reverse$1 = reverse$1 >> 9 >> 0;
+				off$2 = reverse$1;
+				while (off$2 < numLinks) {
+					_slice$4 = linktab, _index$6 = off$2, (_index$6 >= 0 && _index$6 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$6] = chunk) : go$throwRuntimeError("index out of range");
+					off$2 = off$2 + (((y$3 = ((n$2 - 9 >> 0) >>> 0), y$3 < 32 ? (1 << y$3) : 0) >> 0)) >> 0;
+				}
+			}
+		}
+		return true;
+	};
+	huffmanDecoder.prototype.init = function(bits) { return this.go$val.init(bits); };
+	decompressor.Ptr.prototype.nextBlock = function() {
+		var f, typ, _ref, x;
+		f = this;
+		if (f.final$15) {
+			if (!((f.hw === f.hp))) {
+				f.flush((function(recv) { return recv.nextBlock(); }));
+				return;
+			}
+			f.err = io.EOF;
+			return;
+		}
+		while (f.nb < 3) {
+			if (f.err = f.moreBits(), !(go$interfaceIsEqual(f.err, null))) {
+				return;
+			}
+		}
+		f.final$15 = ((f.b & 1) >>> 0) === 1;
+		f.b = f.b >>> 1 >>> 0;
+		typ = (f.b & 3) >>> 0;
+		f.b = f.b >>> 2 >>> 0;
+		f.nb = f.nb - 3 >>> 0;
+		_ref = typ;
+		switch (undefined) {
+		default:
+			if (_ref === 0) {
+				f.dataBlock();
+			} else if (_ref === 1) {
+				f.hl = fixedHuffmanDecoder;
+				f.hd = (go$ptrType(huffmanDecoder)).nil;
+				f.huffmanBlock();
+			} else if (_ref === 2) {
+				if (f.err = f.readHuffman(), !(go$interfaceIsEqual(f.err, null))) {
+					break;
+				}
+				f.hl = f.h1;
+				f.hd = f.h2;
+				f.huffmanBlock();
+			} else {
+				f.err = (x = f.roffset, new CorruptInputError(x.high, x.low));
+			}
+		}
+	};
+	decompressor.prototype.nextBlock = function() { return this.go$val.nextBlock(); };
+	decompressor.Ptr.prototype.Read = function(b) {
+		var f, n;
+		f = this;
+		while (true) {
+			if (f.toRead.length > 0) {
+				n = go$copySlice(b, f.toRead);
+				f.toRead = go$subslice(f.toRead, n);
+				return [n, null];
+			}
+			if (!(go$interfaceIsEqual(f.err, null))) {
+				return [0, f.err];
+			}
+			f.step(f);
+		}
+	};
+	decompressor.prototype.Read = function(b) { return this.go$val.Read(b); };
+	decompressor.Ptr.prototype.Close = function() {
+		var f;
+		f = this;
+		if (go$interfaceIsEqual(f.err, io.EOF)) {
+			return null;
+		}
+		return f.err;
+	};
+	decompressor.prototype.Close = function() { return this.go$val.Close(); };
+	decompressor.Ptr.prototype.readHuffman = function() {
+		var f, err, nlit, x, ndist, nclen, i, err$1, i$1, x$1, _tuple, i$2, n, _tuple$1, x$2, err$2, rep, nb, b, _ref, x$3, err$3, y, y$1, x$4, j, x$5;
+		f = this;
+		while (f.nb < 14) {
+			if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+		}
+		nlit = (((f.b & 31) >>> 0) >> 0) + 257 >> 0;
+		if (nlit > 286) {
+			return (x = f.roffset, new CorruptInputError(x.high, x.low));
+		}
+		f.b = f.b >>> 5 >>> 0;
+		ndist = (((f.b & 31) >>> 0) >> 0) + 1 >> 0;
+		f.b = f.b >>> 5 >>> 0;
+		nclen = (((f.b & 15) >>> 0) >> 0) + 4 >> 0;
+		f.b = f.b >>> 4 >>> 0;
+		f.nb = f.nb - 14 >>> 0;
+		i = 0;
+		while (i < nclen) {
+			while (f.nb < 3) {
+				if (err$1 = f.moreBits(), !(go$interfaceIsEqual(err$1, null))) {
+					return err$1;
+				}
+			}
+			f.codebits[codeOrder[i]] = (((f.b & 7) >>> 0) >> 0);
+			f.b = f.b >>> 3 >>> 0;
+			f.nb = f.nb - 3 >>> 0;
+			i = i + 1 >> 0;
+		}
+		i$1 = nclen;
+		while (i$1 < 19) {
+			f.codebits[codeOrder[i$1]] = 0;
+			i$1 = i$1 + 1 >> 0;
+		}
+		if (!f.h1.init(go$subslice(new (go$sliceType(Go$Int))(f.codebits), 0))) {
+			return (x$1 = f.roffset, new CorruptInputError(x$1.high, x$1.low));
+		}
+		_tuple = [0, nlit + ndist >> 0], i$2 = _tuple[0], n = _tuple[1];
+		while (i$2 < n) {
+			_tuple$1 = f.huffSym(f.h1), x$2 = _tuple$1[0], err$2 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$2, null))) {
+				return err$2;
+			}
+			if (x$2 < 16) {
+				f.bits[i$2] = x$2;
+				i$2 = i$2 + 1 >> 0;
+				continue;
+			}
+			rep = 0;
+			nb = 0;
+			b = 0;
+			_ref = x$2;
+			if (_ref === 16) {
+				rep = 3;
+				nb = 2;
+				if (i$2 === 0) {
+					return (x$3 = f.roffset, new CorruptInputError(x$3.high, x$3.low));
+				}
+				b = f.bits[(i$2 - 1 >> 0)];
+			} else if (_ref === 17) {
+				rep = 3;
+				nb = 3;
+				b = 0;
+			} else if (_ref === 18) {
+				rep = 11;
+				nb = 7;
+				b = 0;
+			} else {
+				return new InternalError("unexpected length code");
+			}
+			while (f.nb < nb) {
+				if (err$3 = f.moreBits(), !(go$interfaceIsEqual(err$3, null))) {
+					return err$3;
+				}
+			}
+			rep = rep + ((((f.b & (((y = nb, y < 32 ? (1 << y) : 0) >>> 0) - 1 >>> 0)) >>> 0) >> 0)) >> 0;
+			f.b = (y$1 = (nb), y$1 < 32 ? (f.b >>> y$1) : 0) >>> 0;
+			f.nb = f.nb - (nb) >>> 0;
+			if ((i$2 + rep >> 0) > n) {
+				return (x$4 = f.roffset, new CorruptInputError(x$4.high, x$4.low));
+			}
+			j = 0;
+			while (j < rep) {
+				f.bits[i$2] = b;
+				i$2 = i$2 + 1 >> 0;
+				j = j + 1 >> 0;
+			}
+		}
+		if (!f.h1.init(go$subslice(new (go$sliceType(Go$Int))(f.bits), 0, nlit)) || !f.h2.init(go$subslice(new (go$sliceType(Go$Int))(f.bits), nlit, (nlit + ndist >> 0)))) {
+			return (x$5 = f.roffset, new CorruptInputError(x$5.high, x$5.low));
+		}
+		return null;
+	};
+	decompressor.prototype.readHuffman = function() { return this.go$val.readHuffman(); };
+	decompressor.Ptr.prototype.huffmanBlock = function() {
+		var f, _tuple, v, err, n, length, x, x$1, x$2, x$3, x$4, y, y$1, dist, _tuple$1, x$5, nb, y$2, extra, y$3, y$4, y$5, x$6, _tuple$2;
+		f = this;
+		while (true) {
+			_tuple = f.huffSym(f.hl), v = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				f.err = err;
+				return;
+			}
+			n = 0;
+			length = 0;
+			if (v < 256) {
+				f.hist[f.hp] = (v << 24 >>> 24);
+				f.hp = f.hp + 1 >> 0;
+				if (f.hp === 32768) {
+					f.flush((function(recv) { return recv.huffmanBlock(); }));
+					return;
+				}
+				continue;
+			} else if (v === 256) {
+				f.step = (function(recv) { return recv.nextBlock(); });
+				return;
+			} else if (v < 265) {
+				length = v - 254 >> 0;
+				n = 0;
+			} else if (v < 269) {
+				length = (x = 2, (((v >>> 16 << 16) * x >> 0) + (v << 16 >>> 16) * x) >> 0) - 519 >> 0;
+				n = 1;
+			} else if (v < 273) {
+				length = (x$1 = 4, (((v >>> 16 << 16) * x$1 >> 0) + (v << 16 >>> 16) * x$1) >> 0) - 1057 >> 0;
+				n = 2;
+			} else if (v < 277) {
+				length = (x$2 = 8, (((v >>> 16 << 16) * x$2 >> 0) + (v << 16 >>> 16) * x$2) >> 0) - 2149 >> 0;
+				n = 3;
+			} else if (v < 281) {
+				length = (x$3 = 16, (((v >>> 16 << 16) * x$3 >> 0) + (v << 16 >>> 16) * x$3) >> 0) - 4365 >> 0;
+				n = 4;
+			} else if (v < 285) {
+				length = (x$4 = 32, (((v >>> 16 << 16) * x$4 >> 0) + (v << 16 >>> 16) * x$4) >> 0) - 8861 >> 0;
+				n = 5;
+			} else {
+				length = 258;
+				n = 0;
+			}
+			if (n > 0) {
+				while (f.nb < n) {
+					if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+						f.err = err;
+						return;
+					}
+				}
+				length = length + ((((f.b & (((y = n, y < 32 ? (1 << y) : 0) >>> 0) - 1 >>> 0)) >>> 0) >> 0)) >> 0;
+				f.b = (y$1 = (n), y$1 < 32 ? (f.b >>> y$1) : 0) >>> 0;
+				f.nb = f.nb - (n) >>> 0;
+			}
+			dist = 0;
+			if (f.hd === (go$ptrType(huffmanDecoder)).nil) {
+				while (f.nb < 5) {
+					if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+						f.err = err;
+						return;
+					}
+				}
+				dist = (reverseByte[((((f.b & 31) >>> 0)) << 3 >>> 0)] >> 0);
+				f.b = f.b >>> 5 >>> 0;
+				f.nb = f.nb - 5 >>> 0;
+			} else {
+				if (_tuple$1 = f.huffSym(f.hd), dist = _tuple$1[0], err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
+					f.err = err;
+					return;
+				}
+			}
+			if (dist < 4) {
+				dist = dist + 1 >> 0;
+			} else if (dist >= 30) {
+				f.err = (x$5 = f.roffset, new CorruptInputError(x$5.high, x$5.low));
+				return;
+			} else {
+				nb = ((dist - 2 >> 0) >>> 0) >>> 1 >>> 0;
+				extra = (y$2 = nb, y$2 < 32 ? (((dist & 1)) << y$2) : 0) >> 0;
+				while (f.nb < nb) {
+					if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+						f.err = err;
+						return;
+					}
+				}
+				extra = extra | ((((f.b & (((y$3 = nb, y$3 < 32 ? (1 << y$3) : 0) >>> 0) - 1 >>> 0)) >>> 0) >> 0));
+				f.b = (y$4 = (nb), y$4 < 32 ? (f.b >>> y$4) : 0) >>> 0;
+				f.nb = f.nb - (nb) >>> 0;
+				dist = (((y$5 = ((nb + 1 >>> 0)), y$5 < 32 ? (1 << y$5) : 0) >> 0) + 1 >> 0) + extra >> 0;
+			}
+			if (dist > 32768) {
+				f.err = new InternalError("bad history distance");
+				return;
+			}
+			if (!f.hfull && dist > f.hp) {
+				f.err = (x$6 = f.roffset, new CorruptInputError(x$6.high, x$6.low));
+				return;
+			}
+			_tuple$2 = [length, dist], f.copyLen = _tuple$2[0], f.copyDist = _tuple$2[1];
+			if (f.copyHist()) {
+				return;
+			}
+		}
+	};
+	decompressor.prototype.huffmanBlock = function() { return this.go$val.huffmanBlock(); };
+	decompressor.Ptr.prototype.copyHist = function() {
+		var f, p, n, x, x$1;
+		f = this;
+		p = f.hp - f.copyDist >> 0;
+		if (p < 0) {
+			p = p + 32768 >> 0;
+		}
+		while (f.copyLen > 0) {
+			n = f.copyLen;
+			if (x = 32768 - f.hp >> 0, n > x) {
+				n = x;
+			}
+			if (x$1 = 32768 - p >> 0, n > x$1) {
+				n = x$1;
+			}
+			forwardCopy(new (go$sliceType(Go$Uint8))(f.hist), f.hp, p, n);
+			p = p + (n) >> 0;
+			f.hp = f.hp + (n) >> 0;
+			f.copyLen = f.copyLen - (n) >> 0;
+			if (f.hp === 32768) {
+				f.flush((function(recv) { return recv.copyHuff(); }));
+				return true;
+			}
+			if (p === 32768) {
+				p = 0;
+			}
+		}
+		return false;
+	};
+	decompressor.prototype.copyHist = function() { return this.go$val.copyHist(); };
+	decompressor.Ptr.prototype.copyHuff = function() {
+		var f;
+		f = this;
+		if (f.copyHist()) {
+			return;
+		}
+		f.huffmanBlock();
+	};
+	decompressor.prototype.copyHuff = function() { return this.go$val.copyHuff(); };
+	decompressor.Ptr.prototype.dataBlock = function() {
+		var f, _tuple, nr, err, x, x$1, n, nn, x$2;
+		f = this;
+		f.nb = 0;
+		f.b = 0;
+		_tuple = io.ReadFull(f.r, go$subslice(new (go$sliceType(Go$Uint8))(f.buf), 0, 4)), nr = _tuple[0], err = _tuple[1];
+		f.roffset = (x = f.roffset, x$1 = new Go$Int64(0, nr), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
+		if (!(go$interfaceIsEqual(err, null))) {
+			f.err = new ReadError.Ptr(f.roffset, err);
+			return;
+		}
+		n = (f.buf[0] >> 0) | ((f.buf[1] >> 0) << 8 >> 0);
+		nn = (f.buf[2] >> 0) | ((f.buf[3] >> 0) << 8 >> 0);
+		if (!(((nn << 16 >>> 16) === ((~n >> 0) << 16 >>> 16)))) {
+			f.err = (x$2 = f.roffset, new CorruptInputError(x$2.high, x$2.low));
+			return;
+		}
+		if (n === 0) {
+			f.flush((function(recv) { return recv.nextBlock(); }));
+			return;
+		}
+		f.copyLen = n;
+		f.copyData();
+	};
+	decompressor.prototype.dataBlock = function() { return this.go$val.dataBlock(); };
+	decompressor.Ptr.prototype.copyData = function() {
+		var f, n, m, _tuple, err, x, x$1;
+		f = this;
+		n = f.copyLen;
+		while (n > 0) {
+			m = 32768 - f.hp >> 0;
+			if (m > n) {
+				m = n;
+			}
+			_tuple = io.ReadFull(f.r, go$subslice(new (go$sliceType(Go$Uint8))(f.hist), f.hp, (f.hp + m >> 0))), m = _tuple[0], err = _tuple[1];
+			f.roffset = (x = f.roffset, x$1 = new Go$Int64(0, m), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
+			if (!(go$interfaceIsEqual(err, null))) {
+				f.err = new ReadError.Ptr(f.roffset, err);
+				return;
+			}
+			n = n - (m) >> 0;
+			f.hp = f.hp + (m) >> 0;
+			if (f.hp === 32768) {
+				f.copyLen = n;
+				f.flush((function(recv) { return recv.copyData(); }));
+				return;
+			}
+		}
+		f.step = (function(recv) { return recv.nextBlock(); });
+	};
+	decompressor.prototype.copyData = function() { return this.go$val.copyData(); };
+	decompressor.Ptr.prototype.setDict = function(dict) {
+		var f;
+		f = this;
+		if (dict.length > 32768) {
+			dict = go$subslice(dict, (dict.length - 32768 >> 0));
+		}
+		f.hp = go$copySlice(new (go$sliceType(Go$Uint8))(f.hist), dict);
+		if (f.hp === 32768) {
+			f.hp = 0;
+			f.hfull = true;
+		}
+		f.hw = f.hp;
+	};
+	decompressor.prototype.setDict = function(dict) { return this.go$val.setDict(dict); };
+	decompressor.Ptr.prototype.moreBits = function() {
+		var f, _tuple, c, err, x, y;
+		f = this;
+		_tuple = f.r.ReadByte(), c = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			if (go$interfaceIsEqual(err, io.EOF)) {
+				err = io.ErrUnexpectedEOF;
+			}
+			return err;
+		}
+		f.roffset = (x = f.roffset, new Go$Int64(x.high + 0, x.low + 1));
+		f.b = (f.b | (((y = f.nb, y < 32 ? ((c >>> 0) << y) : 0) >>> 0))) >>> 0;
+		f.nb = f.nb + 8 >>> 0;
+		return null;
+	};
+	decompressor.prototype.moreBits = function() { return this.go$val.moreBits(); };
+	decompressor.Ptr.prototype.huffSym = function(h) {
+		var f, n, err, chunk, _slice, _index, _slice$1, _index$1, x, y;
+		f = this;
+		n = (h.min >>> 0);
+		while (true) {
+			while (f.nb < n) {
+				if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+					return [0, err];
+				}
+			}
+			chunk = h.chunks[((f.b & 511) >>> 0)];
+			n = (((chunk & 15) >>> 0) >>> 0);
+			if (n > 9) {
+				chunk = (_slice = (_slice$1 = h.links, _index$1 = (chunk >>> 4 >>> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), _index = ((((f.b >>> 9 >>> 0)) & h.linkMask) >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				n = (((chunk & 15) >>> 0) >>> 0);
+				if (n === 0) {
+					f.err = (x = f.roffset, new CorruptInputError(x.high, x.low));
+					return [0, f.err];
+				}
+			}
+			if (n <= f.nb) {
+				f.b = (y = (n), y < 32 ? (f.b >>> y) : 0) >>> 0;
+				f.nb = f.nb - (n) >>> 0;
+				return [((chunk >>> 4 >>> 0) >> 0), null];
+			}
+		}
+	};
+	decompressor.prototype.huffSym = function(h) { return this.go$val.huffSym(h); };
+	decompressor.Ptr.prototype.flush = function(step) {
+		var f, x, x$1;
+		f = this;
+		f.toRead = go$subslice(new (go$sliceType(Go$Uint8))(f.hist), f.hw, f.hp);
+		f.woffset = (x = f.woffset, x$1 = new Go$Int64(0, (f.hp - f.hw >> 0)), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
+		f.hw = f.hp;
+		if (f.hp === 32768) {
+			f.hp = 0;
+			f.hw = 0;
+			f.hfull = true;
+		}
+		f.step = step;
+	};
+	decompressor.prototype.flush = function(step) { return this.go$val.flush(step); };
+	var makeReader = function(r) {
+		var ok, _tuple, rr;
+		if (_tuple = (r !== null && Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
+			return rr;
+		}
+		return bufio.NewReader(r);
+	};
+	var NewReader = go$pkg.NewReader = function(r) {
+		var f;
+		f = new decompressor.Ptr();
+		f.bits = go$makeNativeArray("Int", 318, function() { return 0; });
+		f.codebits = go$makeNativeArray("Int", 19, function() { return 0; });
+		f.r = makeReader(r);
+		f.hist = go$makeNativeArray("Uint8", 32768, function() { return 0; });
+		f.step = (function(recv) { return recv.nextBlock(); });
+		return f;
+	};
+	var NewReaderDict = go$pkg.NewReaderDict = function(r, dict) {
+		var f;
+		f = new decompressor.Ptr();
+		f.r = makeReader(r);
+		f.hist = go$makeNativeArray("Uint8", 32768, function() { return 0; });
+		f.bits = go$makeNativeArray("Int", 318, function() { return 0; });
+		f.codebits = go$makeNativeArray("Int", 19, function() { return 0; });
+		f.step = (function(recv) { return recv.nextBlock(); });
+		f.setDict(dict);
+		return f;
+	};
+	var reverseUint16 = function(v) {
+		return ((reverseByte[(v >>> 8 << 16 >>> 16)] << 16 >>> 16) | ((reverseByte[((v & 255) >>> 0)] << 16 >>> 16) << 8 << 16 >>> 16)) >>> 0;
+	};
+	var reverseBits = function(number, bitLength) {
+		var y;
+		return reverseUint16((y = (16 - bitLength << 24 >>> 24), y < 32 ? (number << y) : 0) << 16 >>> 16);
+	};
+	var literalToken = function(literal) {
+		return ((0 + literal >>> 0) >>> 0);
+	};
+	var matchToken = function(xlength, xoffset) {
+		return (((1073741824 + (xlength << 22 >>> 0) >>> 0) + xoffset >>> 0) >>> 0);
+	};
+	token.prototype.typ = function() {
+		var t;
+		t = this.go$val;
+		return ((t >>> 0) & 3221225472) >>> 0;
+	};
+	go$ptrType(token).prototype.typ = function() { return new token(this.go$get()).typ(); };
+	token.prototype.literal = function() {
+		var t;
+		t = this.go$val;
+		return ((t - 0 >>> 0) >>> 0);
+	};
+	go$ptrType(token).prototype.literal = function() { return new token(this.go$get()).literal(); };
+	token.prototype.offset = function() {
+		var t;
+		t = this.go$val;
+		return ((t >>> 0) & 4194303) >>> 0;
+	};
+	go$ptrType(token).prototype.offset = function() { return new token(this.go$get()).offset(); };
+	token.prototype.length = function() {
+		var t;
+		t = this.go$val;
+		return ((((t - 1073741824 >>> 0)) >>> 22 >>> 0) >>> 0);
+	};
+	go$ptrType(token).prototype.length = function() { return new token(this.go$get()).length(); };
+	var lengthCode = function(len) {
+		return lengthCodes[len];
+	};
+	var offsetCode = function(off) {
+		if (off < 256) {
+			return offsetCodes[off];
+		} else if ((off >>> 7 >>> 0) < 256) {
+			return offsetCodes[(off >>> 7 >>> 0)] + 14 >>> 0;
+		} else {
+			return offsetCodes[(off >>> 14 >>> 0)] + 28 >>> 0;
+		}
+	};
+	go$pkg.NoCompression = 0;
+	go$pkg.BestSpeed = 1;
+	var fastCompression = 3;
+	go$pkg.BestCompression = 9;
+	go$pkg.DefaultCompression = -1;
+	var logWindowSize = 15;
+	var windowSize = 32768;
+	var windowMask = 32767;
+	var logMaxOffsetSize = 15;
+	var minMatchLength = 3;
+	var maxMatchLength = 258;
+	var minOffsetSize = 1;
+	var maxFlateBlockTokens = 16384;
+	var maxStoreBlockSize = 65535;
+	var hashBits = 17;
+	var hashSize = 131072;
+	var hashMask = 131071;
+	var hashShift = 6;
+	var maxHashOffset = 16777216;
+	var skipNever = 2147483647;
+	var offsetCodeCount = 30;
+	var endBlockMarker = 256;
+	var lengthCodesStart = 257;
+	var codegenCodeCount = 19;
+	var badCode = 255;
+	var maxBitsLimit = 16;
+	var maxCodeLen = 16;
+	var maxHist = 32768;
+	var maxLit = 286;
+	var maxDist = 32;
+	var numCodes = 19;
+	var huffmanChunkBits = 9;
+	var huffmanNumChunks = 512;
+	var huffmanCountMask = 15;
+	var huffmanValueShift = 4;
+	var lengthShift = 22;
+	var offsetMask = 4194303;
+	var typeMask = 3221225472;
+	var literalType = 0;
+	var matchType = 1073741824;
+	var levels = (go$sliceType(compressionLevel)).nil;
+	var zeroes = go$makeNativeArray("Int", 32, function() { return 0; });
+	var bzeroes = go$makeNativeArray("Uint8", 256, function() { return 0; });
+	var fixedHuffmanDecoder = new huffmanDecoder.Ptr();
+	var lengthExtraBits = (go$sliceType(Go$Int8)).nil;
+	var lengthBase = (go$sliceType(Go$Uint32)).nil;
+	var offsetExtraBits = (go$sliceType(Go$Int8)).nil;
+	var offsetBase = (go$sliceType(Go$Uint32)).nil;
+	var codegenOrder = (go$sliceType(Go$Uint32)).nil;
+	var fixedLiteralEncoding = (go$ptrType(huffmanEncoder)).nil;
+	var fixedOffsetEncoding = (go$ptrType(huffmanEncoder)).nil;
+	var codeOrder = go$makeNativeArray("Int", 19, function() { return 0; });
+	var reverseByte = go$makeNativeArray("Uint8", 256, function() { return 0; });
+	var lengthCodes = go$makeNativeArray("Uint32", 256, function() { return 0; });
+	var offsetCodes = go$makeNativeArray("Uint32", 256, function() { return 0; });
+	go$pkg.init = function() {
+		levels = new (go$sliceType(compressionLevel))([new compressionLevel.Ptr(0, 0, 0, 0, 0), new compressionLevel.Ptr(3, 0, 8, 4, 4), new compressionLevel.Ptr(3, 0, 16, 8, 5), new compressionLevel.Ptr(3, 0, 32, 32, 6), new compressionLevel.Ptr(4, 4, 16, 16, 2147483647), new compressionLevel.Ptr(8, 16, 32, 32, 2147483647), new compressionLevel.Ptr(8, 16, 128, 128, 2147483647), new compressionLevel.Ptr(8, 32, 128, 256, 2147483647), new compressionLevel.Ptr(32, 128, 258, 1024, 2147483647), new compressionLevel.Ptr(32, 258, 258, 4096, 2147483647)]);
+		fixedHuffmanDecoder = new huffmanDecoder.Ptr(7, go$toNativeArray("Uint32", [4103, 1288, 264, 4488, 4359, 1800, 776, 3081, 4231, 1544, 520, 2569, 8, 2056, 1032, 3593, 4167, 1416, 392, 2313, 4423, 1928, 904, 3337, 4295, 1672, 648, 2825, 136, 2184, 1160, 3849, 4135, 1352, 328, 4552, 4391, 1864, 840, 3209, 4263, 1608, 584, 2697, 72, 2120, 1096, 3721, 4199, 1480, 456, 2441, 4455, 1992, 968, 3465, 4327, 1736, 712, 2953, 200, 2248, 1224, 3977, 4119, 1320, 296, 4520, 4375, 1832, 808, 3145, 4247, 1576, 552, 2633, 40, 2088, 1064, 3657, 4183, 1448, 424, 2377, 4439, 1960, 936, 3401, 4311, 1704, 680, 2889, 168, 2216, 1192, 3913, 4151, 1384, 360, 4584, 4407, 1896, 872, 3273, 4279, 1640, 616, 2761, 104, 2152, 1128, 3785, 4215, 1512, 488, 2505, 4471, 2024, 1000, 3529, 4343, 1768, 744, 3017, 232, 2280, 1256, 4041, 4103, 1304, 280, 4504, 4359, 1816, 792, 3113, 4231, 1560, 536, 2601, 24, 2072, 1048, 3625, 4167, 1432, 408, 2345, 4423, 1944, 920, 3369, 4295, 1688, 664, 2857, 152, 2200, 1176, 3881, 4135, 1368, 344, 4568, 4391, 1880, 856, 3241, 4263, 1624, 600, 2729, 88, 2136, 1112, 3753, 4199, 1496, 472, 2473, 4455, 2008, 984, 3497, 4327, 1752, 728, 2985, 216, 2264, 1240, 4009, 4119, 1336, 312, 4536, 4375, 1848, 824, 3177, 4247, 1592, 568, 2665, 56, 2104, 1080, 3689, 4183, 1464, 440, 2409, 4439, 1976, 952, 3433, 4311, 1720, 696, 2921, 184, 2232, 1208, 3945, 4151, 1400, 376, 4600, 4407, 1912, 888, 3305, 4279, 1656, 632, 2793, 120, 2168, 1144, 3817, 4215, 1528, 504, 2537, 4471, 2040, 1016, 3561, 4343, 1784, 760, 3049, 248, 2296, 1272, 4073, 4103, 1288, 264, 4488, 4359, 1800, 776, 3097, 4231, 1544, 520, 2585, 8, 2056, 1032, 3609, 4167, 1416, 392, 2329, 4423, 1928, 904, 3353, 4295, 1672, 648, 2841, 136, 2184, 1160, 3865, 4135, 1352, 328, 4552, 4391, 1864, 840, 3225, 4263, 1608, 584, 2713, 72, 2120, 1096, 3737, 4199, 1480, 456, 2457, 4455, 1992, 968, 3481, 4327, 1736, 712, 2969, 200, 2248, 1224, 3993, 4119, 1320, 296, 4520, 4375, 1832, 808, 3161, 4247, 1576, 552, 2649, 40, 2088, 1064, 3673, 4183, 1448, 424, 2393, 4439, 1960, 936, 3417, 4311, 1704, 680, 2905, 168, 2216, 1192, 3929, 4151, 1384, 360, 4584, 4407, 1896, 872, 3289, 4279, 1640, 616, 2777, 104, 2152, 1128, 3801, 4215, 1512, 488, 2521, 4471, 2024, 1000, 3545, 4343, 1768, 744, 3033, 232, 2280, 1256, 4057, 4103, 1304, 280, 4504, 4359, 1816, 792, 3129, 4231, 1560, 536, 2617, 24, 2072, 1048, 3641, 4167, 1432, 408, 2361, 4423, 1944, 920, 3385, 4295, 1688, 664, 2873, 152, 2200, 1176, 3897, 4135, 1368, 344, 4568, 4391, 1880, 856, 3257, 4263, 1624, 600, 2745, 88, 2136, 1112, 3769, 4199, 1496, 472, 2489, 4455, 2008, 984, 3513, 4327, 1752, 728, 3001, 216, 2264, 1240, 4025, 4119, 1336, 312, 4536, 4375, 1848, 824, 3193, 4247, 1592, 568, 2681, 56, 2104, 1080, 3705, 4183, 1464, 440, 2425, 4439, 1976, 952, 3449, 4311, 1720, 696, 2937, 184, 2232, 1208, 3961, 4151, 1400, 376, 4600, 4407, 1912, 888, 3321, 4279, 1656, 632, 2809, 120, 2168, 1144, 3833, 4215, 1528, 504, 2553, 4471, 2040, 1016, 3577, 4343, 1784, 760, 3065, 248, 2296, 1272, 4089]), (go$sliceType((go$sliceType(Go$Uint32)))).nil, 0);
+		lengthExtraBits = new (go$sliceType(Go$Int8))([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0]);
+		lengthBase = new (go$sliceType(Go$Uint32))([0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16, 20, 24, 28, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 255]);
+		offsetExtraBits = new (go$sliceType(Go$Int8))([0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20]);
+		offsetBase = new (go$sliceType(Go$Uint32))([0, 1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 768, 1024, 1536, 2048, 3072, 4096, 6144, 8192, 12288, 16384, 24576, 32768, 49152, 65536, 98304, 131072, 196608, 262144, 393216, 524288, 786432, 1048576, 1572864, 2097152, 3145728]);
+		codegenOrder = new (go$sliceType(Go$Uint32))([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
+		reverseByte = go$toNativeArray("Uint8", [0, 128, 64, 192, 32, 160, 96, 224, 16, 144, 80, 208, 48, 176, 112, 240, 8, 136, 72, 200, 40, 168, 104, 232, 24, 152, 88, 216, 56, 184, 120, 248, 4, 132, 68, 196, 36, 164, 100, 228, 20, 148, 84, 212, 52, 180, 116, 244, 12, 140, 76, 204, 44, 172, 108, 236, 28, 156, 92, 220, 60, 188, 124, 252, 2, 130, 66, 194, 34, 162, 98, 226, 18, 146, 82, 210, 50, 178, 114, 242, 10, 138, 74, 202, 42, 170, 106, 234, 26, 154, 90, 218, 58, 186, 122, 250, 6, 134, 70, 198, 38, 166, 102, 230, 22, 150, 86, 214, 54, 182, 118, 246, 14, 142, 78, 206, 46, 174, 110, 238, 30, 158, 94, 222, 62, 190, 126, 254, 1, 129, 65, 193, 33, 161, 97, 225, 17, 145, 81, 209, 49, 177, 113, 241, 9, 137, 73, 201, 41, 169, 105, 233, 25, 153, 89, 217, 57, 185, 121, 249, 5, 133, 69, 197, 37, 165, 101, 229, 21, 149, 85, 213, 53, 181, 117, 245, 13, 141, 77, 205, 45, 173, 109, 237, 29, 157, 93, 221, 61, 189, 125, 253, 3, 131, 67, 195, 35, 163, 99, 227, 19, 147, 83, 211, 51, 179, 115, 243, 11, 139, 75, 203, 43, 171, 107, 235, 27, 155, 91, 219, 59, 187, 123, 251, 7, 135, 71, 199, 39, 167, 103, 231, 23, 151, 87, 215, 55, 183, 119, 247, 15, 143, 79, 207, 47, 175, 111, 239, 31, 159, 95, 223, 63, 191, 127, 255]);
+		fixedLiteralEncoding = generateFixedLiteralEncoding();
+		fixedOffsetEncoding = generateFixedOffsetEncoding();
+		codeOrder = go$toNativeArray("Int", [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
+		lengthCodes = go$toNativeArray("Uint32", [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 28]);
+		offsetCodes = go$toNativeArray("Uint32", [0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15]);
+	};

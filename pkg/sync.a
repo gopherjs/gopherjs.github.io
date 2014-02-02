@@ -1,0 +1,373 @@
+0‚@Á‚÷package sync
+import atomic "sync/atomic"
+type @"".Cond struct { @"".L @"".Locker; @"".sema @"".syncSema; @"".waiters uint32; @"".checker @"".copyChecker }
+func (? *@"".Cond) @"".Broadcast() ()
+func (? *@"".Cond) @"".Signal() ()
+func (? *@"".Cond) @"".Wait() ()
+func (? *@"".Cond) @"".signalImpl(@"".all bool) ()
+type @"".Locker interface { @"".Lock() (); @"".Unlock() () }
+type @"".Mutex struct { @"".state int32; @"".sema uint32 }
+func (? *@"".Mutex) @"".Lock() ()
+func (? *@"".Mutex) @"".Unlock() ()
+func @"".NewCond(@"".l @"".Locker) (? *@"".Cond)
+type @"".Once struct { @"".m @"".Mutex; @"".done uint32 }
+func (? *@"".Once) @"".Do(@"".f func () ()) ()
+type @"".RWMutex struct { @"".w @"".Mutex; @"".writerSem uint32; @"".readerSem uint32; @"".readerCount int32; @"".readerWait int32 }
+func (? *@"".RWMutex) @"".Lock() ()
+func (? *@"".RWMutex) @"".RLock() ()
+func (? *@"".RWMutex) @"".RLocker() (? @"".Locker)
+func (? *@"".RWMutex) @"".RUnlock() ()
+func (? *@"".RWMutex) @"".Unlock() ()
+type @"".WaitGroup struct { @"".m @"".Mutex; @"".counter int32; @"".waiters int32; @"".sema *uint32 }
+func (? *@"".WaitGroup) @"".Add(@"".delta int) ()
+func (? *@"".WaitGroup) @"".Done() ()
+func (? *@"".WaitGroup) @"".Wait() ()
+type @"".copyChecker uintptr
+func (? *@"".copyChecker) @"".check() ()
+type @"".rlocker struct { @"".w @"".Mutex; @"".writerSem uint32; @"".readerSem uint32; @"".readerCount int32; @"".readerWait int32 }
+func (? *@"".rlocker) @"".Lock() ()
+func (? *@"".rlocker) @"".Unlock() ()
+type @"".syncSema [3]uintptr
+$$
+0runtimesync/atomicsync‚:¤	var atomic = go$packages["sync/atomic"];
+	var Cond;
+	Cond = go$newType(0, "Struct", "sync.Cond", "Cond", "sync", function(L_, sema_, waiters_, checker_) {
+		this.go$val = this;
+		this.L = L_ !== undefined ? L_ : null;
+		this.sema = sema_ !== undefined ? sema_ : go$makeNativeArray("Uintptr", 3, function() { return 0; });
+		this.waiters = waiters_ !== undefined ? waiters_ : 0;
+		this.checker = checker_ !== undefined ? checker_ : 0;
+	});
+	go$pkg.Cond = Cond;
+	var copyChecker;
+	copyChecker = go$newType(4, "Uintptr", "sync.copyChecker", "copyChecker", "sync", null);
+	go$pkg.copyChecker = copyChecker;
+	var Mutex;
+	Mutex = go$newType(0, "Struct", "sync.Mutex", "Mutex", "sync", function(state_, sema_) {
+		this.go$val = this;
+		this.state = state_ !== undefined ? state_ : 0;
+		this.sema = sema_ !== undefined ? sema_ : 0;
+	});
+	go$pkg.Mutex = Mutex;
+	var Locker;
+	Locker = go$newType(0, "Interface", "sync.Locker", "Locker", "sync", null);
+	go$pkg.Locker = Locker;
+	var Once;
+	Once = go$newType(0, "Struct", "sync.Once", "Once", "sync", function(m_, done_) {
+		this.go$val = this;
+		this.m = m_ !== undefined ? m_ : new Mutex.Ptr();
+		this.done = done_ !== undefined ? done_ : 0;
+	});
+	go$pkg.Once = Once;
+	var syncSema;
+	syncSema = go$newType(0, "Array", "sync.syncSema", "syncSema", "sync", null);
+	go$pkg.syncSema = syncSema;
+	var RWMutex;
+	RWMutex = go$newType(0, "Struct", "sync.RWMutex", "RWMutex", "sync", function(w_, writerSem_, readerSem_, readerCount_, readerWait_) {
+		this.go$val = this;
+		this.w = w_ !== undefined ? w_ : new Mutex.Ptr();
+		this.writerSem = writerSem_ !== undefined ? writerSem_ : 0;
+		this.readerSem = readerSem_ !== undefined ? readerSem_ : 0;
+		this.readerCount = readerCount_ !== undefined ? readerCount_ : 0;
+		this.readerWait = readerWait_ !== undefined ? readerWait_ : 0;
+	});
+	go$pkg.RWMutex = RWMutex;
+	var rlocker;
+	rlocker = go$newType(0, "Struct", "sync.rlocker", "rlocker", "sync", function(w_, writerSem_, readerSem_, readerCount_, readerWait_) {
+		this.go$val = this;
+		this.w = w_ !== undefined ? w_ : new Mutex.Ptr();
+		this.writerSem = writerSem_ !== undefined ? writerSem_ : 0;
+		this.readerSem = readerSem_ !== undefined ? readerSem_ : 0;
+		this.readerCount = readerCount_ !== undefined ? readerCount_ : 0;
+		this.readerWait = readerWait_ !== undefined ? readerWait_ : 0;
+	});
+	go$pkg.rlocker = rlocker;
+	var WaitGroup;
+	WaitGroup = go$newType(0, "Struct", "sync.WaitGroup", "WaitGroup", "sync", function(m_, counter_, waiters_, sema_) {
+		this.go$val = this;
+		this.m = m_ !== undefined ? m_ : new Mutex.Ptr();
+		this.counter = counter_ !== undefined ? counter_ : 0;
+		this.waiters = waiters_ !== undefined ? waiters_ : 0;
+		this.sema = sema_ !== undefined ? sema_ : (go$ptrType(Go$Uint32)).nil;
+	});
+	go$pkg.WaitGroup = WaitGroup;
+	Cond.init([["L", "", Locker, ""], ["sema", "sync", syncSema, ""], ["waiters", "sync", Go$Uint32, ""], ["checker", "sync", copyChecker, ""]]);
+	(go$ptrType(Cond)).methods = [["Broadcast", "", [], [], false], ["Signal", "", [], [], false], ["Wait", "", [], [], false], ["signalImpl", "sync", [Go$Bool], [], false]];
+	(go$ptrType(copyChecker)).methods = [["check", "sync", [], [], false]];
+	Mutex.init([["state", "sync", Go$Int32, ""], ["sema", "sync", Go$Uint32, ""]]);
+	(go$ptrType(Mutex)).methods = [["Lock", "", [], [], false], ["Unlock", "", [], [], false]];
+	Locker.init([["Lock", "", (go$funcType([], [], false))], ["Unlock", "", (go$funcType([], [], false))]]);
+	Once.init([["m", "sync", Mutex, ""], ["done", "sync", Go$Uint32, ""]]);
+	(go$ptrType(Once)).methods = [["Do", "", [(go$funcType([], [], false))], [], false]];
+	syncSema.init(Go$Uintptr, 3);
+	RWMutex.init([["w", "sync", Mutex, ""], ["writerSem", "sync", Go$Uint32, ""], ["readerSem", "sync", Go$Uint32, ""], ["readerCount", "sync", Go$Int32, ""], ["readerWait", "sync", Go$Int32, ""]]);
+	(go$ptrType(RWMutex)).methods = [["Lock", "", [], [], false], ["RLock", "", [], [], false], ["RLocker", "", [], [Locker], false], ["RUnlock", "", [], [], false], ["Unlock", "", [], [], false]];
+	rlocker.init([["w", "sync", Mutex, ""], ["writerSem", "sync", Go$Uint32, ""], ["readerSem", "sync", Go$Uint32, ""], ["readerCount", "sync", Go$Int32, ""], ["readerWait", "sync", Go$Int32, ""]]);
+	(go$ptrType(rlocker)).methods = [["Lock", "", [], [], false], ["Unlock", "", [], [], false]];
+	WaitGroup.init([["m", "sync", Mutex, ""], ["counter", "sync", Go$Int32, ""], ["waiters", "sync", Go$Int32, ""], ["sema", "sync", (go$ptrType(Go$Uint32)), ""]]);
+	(go$ptrType(WaitGroup)).methods = [["Add", "", [Go$Int], [], false], ["Done", "", [], [], false], ["Wait", "", [], [], false]];
+	var NewCond = go$pkg.NewCond = function(l) {
+		return new Cond.Ptr(l, go$makeNativeArray("Uintptr", 3, function() { return 0; }), 0, 0);
+	};
+	Cond.Ptr.prototype.Wait = function() {
+		var c, v, v$1;
+		c = this;
+		(new (go$ptrType(copyChecker))(function() { return c.checker; }, function(v) { c.checker = v; })).check();
+		atomic.AddUint32(new (go$ptrType(Go$Uint32))(function() { return c.waiters; }, function(v$1) { c.waiters = v$1; }), 1);
+		c.L.Unlock();
+		runtime_Syncsemacquire(c.sema);
+		c.L.Lock();
+	};
+	Cond.prototype.Wait = function() { return this.go$val.Wait(); };
+	Cond.Ptr.prototype.Signal = function() {
+		var c;
+		c = this;
+		c.signalImpl(false);
+	};
+	Cond.prototype.Signal = function() { return this.go$val.Signal(); };
+	Cond.Ptr.prototype.Broadcast = function() {
+		var c;
+		c = this;
+		c.signalImpl(true);
+	};
+	Cond.prototype.Broadcast = function() { return this.go$val.Broadcast(); };
+	Cond.Ptr.prototype.signalImpl = function(all) {
+		var c, v, v$1, old, new$1, v$2;
+		c = this;
+		(new (go$ptrType(copyChecker))(function() { return c.checker; }, function(v) { c.checker = v; })).check();
+		while (true) {
+			old = atomic.LoadUint32(new (go$ptrType(Go$Uint32))(function() { return c.waiters; }, function(v$1) { c.waiters = v$1; }));
+			if (old === 0) {
+				return;
+			}
+			new$1 = old - 1 >>> 0;
+			if (all) {
+				new$1 = 0;
+			}
+			if (atomic.CompareAndSwapUint32(new (go$ptrType(Go$Uint32))(function() { return c.waiters; }, function(v$2) { c.waiters = v$2; }), old, new$1)) {
+				runtime_Syncsemrelease(c.sema, old - new$1 >>> 0);
+				return;
+			}
+		}
+	};
+	Cond.prototype.signalImpl = function(all) { return this.go$val.signalImpl(all); };
+	Mutex.Ptr.prototype.Lock = function() {
+		var m, v, awoke, old, new$1, v$1, v$2;
+		m = this;
+		if (atomic.CompareAndSwapInt32(new (go$ptrType(Go$Int32))(function() { return m.state; }, function(v) { m.state = v; }), 0, 1)) {
+			return;
+		}
+		awoke = false;
+		while (true) {
+			old = m.state;
+			new$1 = old | 1;
+			if (!(((old & 1) === 0))) {
+				new$1 = old + 4 >> 0;
+			}
+			if (awoke) {
+				new$1 = new$1 & ~2;
+			}
+			if (atomic.CompareAndSwapInt32(new (go$ptrType(Go$Int32))(function() { return m.state; }, function(v$1) { m.state = v$1; }), old, new$1)) {
+				if ((old & 1) === 0) {
+					break;
+				}
+				runtime_Semacquire(new (go$ptrType(Go$Uint32))(function() { return m.sema; }, function(v$2) { m.sema = v$2; }));
+				awoke = true;
+			}
+		}
+	};
+	Mutex.prototype.Lock = function() { return this.go$val.Lock(); };
+	Mutex.Ptr.prototype.Unlock = function() {
+		var m, v, new$1, old, v$1, v$2;
+		m = this;
+		new$1 = atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return m.state; }, function(v) { m.state = v; }), -1);
+		if ((((new$1 + 1 >> 0)) & 1) === 0) {
+			throw go$panic(new Go$String("sync: unlock of unlocked mutex"));
+		}
+		old = new$1;
+		while (true) {
+			if (((old >> 2 >> 0) === 0) || !(((old & 3) === 0))) {
+				return;
+			}
+			new$1 = ((old - 4 >> 0)) | 2;
+			if (atomic.CompareAndSwapInt32(new (go$ptrType(Go$Int32))(function() { return m.state; }, function(v$1) { m.state = v$1; }), old, new$1)) {
+				runtime_Semrelease(new (go$ptrType(Go$Uint32))(function() { return m.sema; }, function(v$2) { m.sema = v$2; }));
+				return;
+			}
+			old = m.state;
+		}
+	};
+	Mutex.prototype.Unlock = function() { return this.go$val.Unlock(); };
+	Once.Ptr.prototype.Do = function(f) {
+		var o, v, v$1;
+		var go$deferred = [];
+		try {
+			o = this;
+			if (atomic.LoadUint32(new (go$ptrType(Go$Uint32))(function() { return o.done; }, function(v) { o.done = v; })) === 1) {
+				return;
+			}
+			o.m.Lock();
+			go$deferred.push({ recv: o.m, method: "Unlock", args: [] });
+			if (o.done === 0) {
+				f();
+				atomic.StoreUint32(new (go$ptrType(Go$Uint32))(function() { return o.done; }, function(v$1) { o.done = v$1; }), 1);
+			}
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Once.prototype.Do = function(f) { return this.go$val.Do(f); };
+	var raceAcquire = function(addr) {
+	};
+	var raceRelease = function(addr) {
+	};
+	var raceReleaseMerge = function(addr) {
+	};
+	var raceDisable = function() {
+	};
+	var raceEnable = function() {
+	};
+	var raceRead = function(addr) {
+	};
+	var raceWrite = function(addr) {
+	};
+	var runtime_Semacquire = function(s) {
+		throw go$panic("Native function not implemented: runtime_Semacquire");
+	};
+	var runtime_Semrelease = function(s) {
+		throw go$panic("Native function not implemented: runtime_Semrelease");
+	};
+	var runtime_Syncsemacquire = function(s) {
+		throw go$panic("Native function not implemented: runtime_Syncsemacquire");
+	};
+	var runtime_Syncsemrelease = function(s, n) {
+		throw go$panic("Native function not implemented: runtime_Syncsemrelease");
+	};
+	RWMutex.Ptr.prototype.RLock = function() {
+		var rw, v, v$1;
+		rw = this;
+		if (atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return rw.readerCount; }, function(v) { rw.readerCount = v; }), 1) < 0) {
+			runtime_Semacquire(new (go$ptrType(Go$Uint32))(function() { return rw.readerSem; }, function(v$1) { rw.readerSem = v$1; }));
+		}
+	};
+	RWMutex.prototype.RLock = function() { return this.go$val.RLock(); };
+	RWMutex.Ptr.prototype.RUnlock = function() {
+		var rw, v, v$1, v$2;
+		rw = this;
+		if (atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return rw.readerCount; }, function(v) { rw.readerCount = v; }), -1) < 0) {
+			if (atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return rw.readerWait; }, function(v$1) { rw.readerWait = v$1; }), -1) === 0) {
+				runtime_Semrelease(new (go$ptrType(Go$Uint32))(function() { return rw.writerSem; }, function(v$2) { rw.writerSem = v$2; }));
+			}
+		}
+	};
+	RWMutex.prototype.RUnlock = function() { return this.go$val.RUnlock(); };
+	RWMutex.Ptr.prototype.Lock = function() {
+		var rw, v, r, v$1, v$2;
+		rw = this;
+		rw.w.Lock();
+		r = atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return rw.readerCount; }, function(v) { rw.readerCount = v; }), -1073741824) + 1073741824 >> 0;
+		if (!((r === 0)) && !((atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return rw.readerWait; }, function(v$1) { rw.readerWait = v$1; }), r) === 0))) {
+			runtime_Semacquire(new (go$ptrType(Go$Uint32))(function() { return rw.writerSem; }, function(v$2) { rw.writerSem = v$2; }));
+		}
+	};
+	RWMutex.prototype.Lock = function() { return this.go$val.Lock(); };
+	RWMutex.Ptr.prototype.Unlock = function() {
+		var rw, v, r, i, v$1;
+		rw = this;
+		r = atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return rw.readerCount; }, function(v) { rw.readerCount = v; }), 1073741824);
+		i = 0;
+		while (i < (r >> 0)) {
+			runtime_Semrelease(new (go$ptrType(Go$Uint32))(function() { return rw.readerSem; }, function(v$1) { rw.readerSem = v$1; }));
+			i = i + 1 >> 0;
+		}
+		rw.w.Unlock();
+	};
+	RWMutex.prototype.Unlock = function() { return this.go$val.Unlock(); };
+	RWMutex.Ptr.prototype.RLocker = function() {
+		var rw, _struct, _struct$1;
+		rw = this;
+		return (_struct = rw, new rlocker.Ptr((_struct$1 = _struct.w, new Mutex.Ptr(_struct$1.state, _struct$1.sema)), _struct.writerSem, _struct.readerSem, _struct.readerCount, _struct.readerWait));
+	};
+	RWMutex.prototype.RLocker = function() { return this.go$val.RLocker(); };
+	rlocker.Ptr.prototype.Lock = function() {
+		var r, _struct, _struct$1;
+		r = this;
+		(_struct = r, new RWMutex.Ptr((_struct$1 = _struct.w, new Mutex.Ptr(_struct$1.state, _struct$1.sema)), _struct.writerSem, _struct.readerSem, _struct.readerCount, _struct.readerWait)).RLock();
+	};
+	rlocker.prototype.Lock = function() { return this.go$val.Lock(); };
+	rlocker.Ptr.prototype.Unlock = function() {
+		var r, _struct, _struct$1;
+		r = this;
+		(_struct = r, new RWMutex.Ptr((_struct$1 = _struct.w, new Mutex.Ptr(_struct$1.state, _struct$1.sema)), _struct.writerSem, _struct.readerSem, _struct.readerCount, _struct.readerWait)).RUnlock();
+	};
+	rlocker.prototype.Unlock = function() { return this.go$val.Unlock(); };
+	WaitGroup.Ptr.prototype.Add = function(delta) {
+		var wg, v, v$1, v$2, i;
+		var go$deferred = [];
+		try {
+			wg = this;
+			v$1 = atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return wg.counter; }, function(v) { wg.counter = v; }), (delta >> 0));
+			if (v$1 < 0) {
+				throw go$panic(new Go$String("sync: negative WaitGroup counter"));
+			}
+			if (v$1 > 0 || (atomic.LoadInt32(new (go$ptrType(Go$Int32))(function() { return wg.waiters; }, function(v$2) { wg.waiters = v$2; })) === 0)) {
+				return;
+			}
+			wg.m.Lock();
+			i = 0;
+			while (i < wg.waiters) {
+				runtime_Semrelease(wg.sema);
+				i = i + 1 >> 0;
+			}
+			wg.waiters = 0;
+			wg.sema = (go$ptrType(Go$Uint32)).nil;
+			wg.m.Unlock();
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	WaitGroup.prototype.Add = function(delta) { return this.go$val.Add(delta); };
+	WaitGroup.Ptr.prototype.Done = function() {
+		var wg;
+		wg = this;
+		wg.Add(-1);
+	};
+	WaitGroup.prototype.Done = function() { return this.go$val.Done(); };
+	WaitGroup.Ptr.prototype.Wait = function() {
+		var wg, v, v$1, w, v$2, v$3, s;
+		wg = this;
+		if (atomic.LoadInt32(new (go$ptrType(Go$Int32))(function() { return wg.counter; }, function(v) { wg.counter = v; })) === 0) {
+			return;
+		}
+		wg.m.Lock();
+		w = atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return wg.waiters; }, function(v$1) { wg.waiters = v$1; }), 1);
+		if (atomic.LoadInt32(new (go$ptrType(Go$Int32))(function() { return wg.counter; }, function(v$2) { wg.counter = v$2; })) === 0) {
+			atomic.AddInt32(new (go$ptrType(Go$Int32))(function() { return wg.waiters; }, function(v$3) { wg.waiters = v$3; }), -1);
+			wg.m.Unlock();
+			return;
+		}
+		if (go$pointerIsEqual(wg.sema, (go$ptrType(Go$Uint32)).nil)) {
+			wg.sema = go$newDataPointer(0, (go$ptrType(Go$Uint32)));
+		}
+		s = wg.sema;
+		wg.m.Unlock();
+		runtime_Semacquire(s);
+	};
+	WaitGroup.prototype.Wait = function() { return this.go$val.Wait(); };
+	go$ptrType(copyChecker).prototype.check = function() {};
+	copyChecker.prototype.check = function() { var obj = this.go$val; return (new (go$ptrType(copyChecker))(function() { return obj; }, null)).check(); };
+	var runtime_Syncsemcheck = function() {};
+	var mutexLocked = 1;
+	var mutexWoken = 2;
+	var mutexWaiterShift = 2;
+	var raceenabled = false;
+	var rwmutexMaxReaders = 1073741824;
+	go$pkg.init = function() {
+		var s;
+		s = go$makeNativeArray("Uintptr", 3, function() { return 0; });
+		runtime_Syncsemcheck(12);
+	};

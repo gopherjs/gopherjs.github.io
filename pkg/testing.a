@@ -1,0 +1,1314 @@
+0ÉTÇ0*package testing
+import runtime "runtime"
+import flag "flag"
+import fmt "fmt"
+import os "os"
+import sync "sync"
+import time "time"
+import bytes "bytes"
+import io "io"
+import strings "strings"
+import pprof "runtime/pprof"
+import strconv "strconv"
+func @"".AllocsPerRun(@"".runs int, @"".f func () ()) (@"".avg float64)
+type @"".B struct { ? @"".common; @"".N int; @"".benchmark @"".InternalBenchmark; @"".bytes int64; @"".timerOn bool; @"".showAllocResult bool; @"".result @"".BenchmarkResult; @"".startAllocs uint64; @"".startBytes uint64; @"".netAllocs uint64; @"".netBytes uint64 }
+func (? *@"".B) @"".ReportAllocs() ()
+func (? *@"".B) @"".ResetTimer() ()
+func (? *@"".B) @"".SetBytes(@"".n int64) ()
+func (? *@"".B) @"".StartTimer() ()
+func (? *@"".B) @"".StopTimer() ()
+func (? *@"".B) @"".launch() ()
+func (? *@"".B) @"".nsPerOp() (? int64)
+func (? *@"".B) @"".run() (? @"".BenchmarkResult)
+func (? *@"".B) @"".runN(@"".n int) ()
+func (? *@"".B) @"".trimOutput() ()
+func @"".Benchmark(@"".f func (@"".b *@"".B) ()) (? @"".BenchmarkResult)
+type @"".BenchmarkResult struct { @"".N int; @"".T @"time".Duration; @"".Bytes int64; @"".MemAllocs uint64; @"".MemBytes uint64 }
+func (? @"".BenchmarkResult) @"".AllocedBytesPerOp() (? int64)
+func (? @"".BenchmarkResult) @"".AllocsPerOp() (? int64)
+func (? @"".BenchmarkResult) @"".MemString() (? string)
+func (? @"".BenchmarkResult) @"".NsPerOp() (? int64)
+func (? @"".BenchmarkResult) @"".String() (? string)
+func (? @"".BenchmarkResult) @"".mbPerSec() (? float64)
+func (? *@"".BenchmarkResult) @"".AllocedBytesPerOp() (? int64)
+func (? *@"".BenchmarkResult) @"".AllocsPerOp() (? int64)
+func (? *@"".BenchmarkResult) @"".MemString() (? string)
+func (? *@"".BenchmarkResult) @"".NsPerOp() (? int64)
+func (? *@"".BenchmarkResult) @"".String() (? string)
+func (? *@"".BenchmarkResult) @"".mbPerSec() (? float64)
+type @"".Cover struct { @"".Mode string; @"".Counters map[string][]uint32; @"".Blocks map[string][]@"".CoverBlock; @"".CoveredPackages string }
+type @"".CoverBlock struct { @"".Line0 uint32; @"".Col0 uint16; @"".Line1 uint32; @"".Col1 uint16; @"".Stmts uint16 }
+type @"".InternalBenchmark struct { @"".Name string; @"".F func (@"".b *@"".B) () }
+type @"".InternalExample struct { @"".Name string; @"".F func () (); @"".Output string }
+type @"".InternalTest struct { @"".Name string; @"".F func (? *@"".T) () }
+func @"".Main(@"".matchString func (@"".pat string, @"".str string) (? bool, ? error), @"".tests []@"".InternalTest, @"".benchmarks []@"".InternalBenchmark, @"".examples []@"".InternalExample) ()
+func @"".RegisterCover(@"".c @"".Cover) ()
+func @"".RunBenchmarks(@"".matchString func (@"".pat string, @"".str string) (? bool, ? error), @"".benchmarks []@"".InternalBenchmark) ()
+func @"".RunExamples(@"".matchString func (@"".pat string, @"".str string) (? bool, ? error), @"".examples []@"".InternalExample) (@"".ok bool)
+func @"".RunTests(@"".matchString func (@"".pat string, @"".str string) (? bool, ? error), @"".tests []@"".InternalTest) (@"".ok bool)
+func @"".Short() (? bool)
+type @"".T struct { ? @"".common; @"".name string; @"".startParallel chan bool }
+func (? *@"".T) @"".Parallel() ()
+func (? *@"".T) @"".report() ()
+type @"".TB interface { @"".Error(@"".args ...interface {  }) (); @"".Errorf(@"".format string, @"".args ...interface {  }) (); @"".Fail() (); @"".FailNow() (); @"".Failed() (? bool); @"".Fatal(@"".args ...interface {  }) (); @"".Fatalf(@"".format string, @"".args ...interface {  }) (); @"".Log(@"".args ...interface {  }) (); @"".Logf(@"".format string, @"".args ...interface {  }) (); @"".Skip(@"".args ...interface {  }) (); @"".SkipNow() (); @"".Skipf(@"".format string, @"".args ...interface {  }) (); @"".Skipped() (? bool); @"".private() () }
+func @"".Verbose() (? bool)
+type @"".common struct { @"".mu @"sync".RWMutex; @"".output []byte; @"".failed bool; @"".skipped bool; @"".start @"time".Time; @"".duration @"time".Duration; @"".self interface {  }; @"".signal chan interface {  } }
+func (? *@"".common) @"".Error(@"".args ...interface {  }) ()
+func (? *@"".common) @"".Errorf(@"".format string, @"".args ...interface {  }) ()
+func (? *@"".common) @"".Fail() ()
+func (? *@"".common) @"".FailNow() ()
+func (? *@"".common) @"".Failed() (? bool)
+func (? *@"".common) @"".Fatal(@"".args ...interface {  }) ()
+func (? *@"".common) @"".Fatalf(@"".format string, @"".args ...interface {  }) ()
+func (? *@"".common) @"".Log(@"".args ...interface {  }) ()
+func (? *@"".common) @"".Logf(@"".format string, @"".args ...interface {  }) ()
+func (? *@"".common) @"".Skip(@"".args ...interface {  }) ()
+func (? *@"".common) @"".SkipNow() ()
+func (? *@"".common) @"".Skipf(@"".format string, @"".args ...interface {  }) ()
+func (? *@"".common) @"".Skipped() (? bool)
+func (? *@"".common) @"".log(@"".s string) ()
+func (? *@"".common) @"".private() ()
+func (? *@"".common) @"".skip() ()
+type @"time".Duration int64
+func (? @"time".Duration) @"time".Hours() (? float64)
+func (? @"time".Duration) @"time".Minutes() (? float64)
+func (? @"time".Duration) @"time".Nanoseconds() (? int64)
+func (? @"time".Duration) @"time".Seconds() (? float64)
+func (? @"time".Duration) @"time".String() (? string)
+func (? *@"time".Duration) @"time".Hours() (? float64)
+func (? *@"time".Duration) @"time".Minutes() (? float64)
+func (? *@"time".Duration) @"time".Nanoseconds() (? int64)
+func (? *@"time".Duration) @"time".Seconds() (? float64)
+func (? *@"time".Duration) @"time".String() (? string)
+type @"sync".RWMutex struct { @"sync".w @"sync".Mutex; @"sync".writerSem uint32; @"sync".readerSem uint32; @"sync".readerCount int32; @"sync".readerWait int32 }
+func (? *@"sync".RWMutex) @"sync".Lock() ()
+func (? *@"sync".RWMutex) @"sync".RLock() ()
+func (? *@"sync".RWMutex) @"sync".RLocker() (? @"sync".Locker)
+func (? *@"sync".RWMutex) @"sync".RUnlock() ()
+func (? *@"sync".RWMutex) @"sync".Unlock() ()
+type @"time".Time struct { @"time".sec int64; @"time".nsec uintptr; @"time".loc *@"time".Location }
+func (? @"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? @"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? @"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? @"time".Time) @"time".Day() (? int)
+func (? @"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? @"time".Time) @"time".Format(@"".layout string) (? string)
+func (? @"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? @"time".Time) @"time".Hour() (? int)
+func (? @"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? @"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? @"time".Time) @"time".IsZero() (? bool)
+func (? @"time".Time) @"time".Local() (? @"time".Time)
+func (? @"time".Time) @"time".Location() (? *@"time".Location)
+func (? @"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? @"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? @"time".Time) @"time".Minute() (? int)
+func (? @"time".Time) @"time".Month() (? @"time".Month)
+func (? @"time".Time) @"time".Nanosecond() (? int)
+func (? @"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".Second() (? int)
+func (? @"time".Time) @"time".String() (? string)
+func (? @"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? @"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? @"time".Time) @"time".UTC() (? @"time".Time)
+func (? @"time".Time) @"time".Unix() (? int64)
+func (? @"time".Time) @"time".UnixNano() (? int64)
+func (? @"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? @"time".Time) @"time".Year() (? int)
+func (? @"time".Time) @"time".YearDay() (? int)
+func (? @"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? @"time".Time) @"time".abs() (? uint64)
+func (? @"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? @"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+func (? *@"time".Time) @"time".Add(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".AddDate(@"".years int, @"".months int, @"".days int) (? @"time".Time)
+func (? *@"time".Time) @"time".After(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Before(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Clock() (@"".hour int, @"".min int, @"".sec int)
+func (? *@"time".Time) @"time".Date() (@"".year int, @"".month @"time".Month, @"".day int)
+func (? *@"time".Time) @"time".Day() (? int)
+func (? *@"time".Time) @"time".Equal(@"".u @"time".Time) (? bool)
+func (? *@"time".Time) @"time".Format(@"".layout string) (? string)
+func (? *@"time".Time) @"time".GobDecode(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".GobEncode() (? []byte, ? error)
+func (? *@"time".Time) @"time".Hour() (? int)
+func (? *@"time".Time) @"time".ISOWeek() (@"".year int, @"".week int)
+func (? *@"time".Time) @"time".In(@"".loc *@"time".Location) (? @"time".Time)
+func (? *@"time".Time) @"time".IsZero() (? bool)
+func (? *@"time".Time) @"time".Local() (? @"time".Time)
+func (? *@"time".Time) @"time".Location() (? *@"time".Location)
+func (? *@"time".Time) @"time".MarshalBinary() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalJSON() (? []byte, ? error)
+func (? *@"time".Time) @"time".MarshalText() (? []byte, ? error)
+func (? *@"time".Time) @"time".Minute() (? int)
+func (? *@"time".Time) @"time".Month() (? @"time".Month)
+func (? *@"time".Time) @"time".Nanosecond() (? int)
+func (? *@"time".Time) @"time".Round(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".Second() (? int)
+func (? *@"time".Time) @"time".String() (? string)
+func (? *@"time".Time) @"time".Sub(@"".u @"time".Time) (? @"time".Duration)
+func (? *@"time".Time) @"time".Truncate(@"".d @"time".Duration) (? @"time".Time)
+func (? *@"time".Time) @"time".UTC() (? @"time".Time)
+func (? *@"time".Time) @"time".Unix() (? int64)
+func (? *@"time".Time) @"time".UnixNano() (? int64)
+func (? *@"time".Time) @"time".UnmarshalBinary(@"".data []byte) (? error)
+func (? *@"time".Time) @"time".UnmarshalJSON(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".UnmarshalText(@"".data []byte) (@"".err error)
+func (? *@"time".Time) @"time".Weekday() (? @"time".Weekday)
+func (? *@"time".Time) @"time".Year() (? int)
+func (? *@"time".Time) @"time".YearDay() (? int)
+func (? *@"time".Time) @"time".Zone() (@"".name string, @"".offset int)
+func (? *@"time".Time) @"time".abs() (? uint64)
+func (? *@"time".Time) @"time".date(@"".full bool) (@"".year int, @"".month @"time".Month, @"".day int, @"".yday int)
+func (? *@"time".Time) @"time".locabs() (@"".name string, @"".offset int, @"".abs uint64)
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
+type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+func (? *@"time".Location) @"time".String() (? string)
+func (? *@"time".Location) @"time".get() (? *@"time".Location)
+func (? *@"time".Location) @"time".lookup(@"".sec int64) (@"".name string, @"".offset int, @"".isDST bool, @"".start int64, @"".end int64)
+func (? *@"time".Location) @"time".lookupName(@"".name string, @"".unix int64) (@"".offset int, @"".isDST bool, @"".ok bool)
+type @"time".Month int
+func (? @"time".Month) @"time".String() (? string)
+func (? *@"time".Month) @"time".String() (? string)
+type @"time".Weekday int
+func (? @"time".Weekday) @"time".String() (? string)
+func (? *@"time".Weekday) @"time".String() (? string)
+type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+$$
+0Å∫runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortflagbufiostringstext/tabwriterruntime/pproftestingÇ€e	var runtime = go$packages["runtime"];
+	var flag = go$packages["flag"];
+	var fmt = go$packages["fmt"];
+	var os = go$packages["os"];
+	var sync = go$packages["sync"];
+	var time = go$packages["time"];
+	var bytes = go$packages["bytes"];
+	var io = go$packages["io"];
+	var strings = go$packages["strings"];
+	var pprof = go$packages["runtime/pprof"];
+	var strconv = go$packages["strconv"];
+	var InternalBenchmark;
+	InternalBenchmark = go$newType(0, "Struct", "testing.InternalBenchmark", "InternalBenchmark", "testing", function(Name_, F_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
+	});
+	go$pkg.InternalBenchmark = InternalBenchmark;
+	var B;
+	B = go$newType(0, "Struct", "testing.B", "B", "testing", function(common_, N_, benchmark_, bytes_, timerOn_, showAllocResult_, result_, startAllocs_, startBytes_, netAllocs_, netBytes_) {
+		this.go$val = this;
+		this.common = common_ !== undefined ? common_ : new common.Ptr();
+		this.N = N_ !== undefined ? N_ : 0;
+		this.benchmark = benchmark_ !== undefined ? benchmark_ : new InternalBenchmark.Ptr();
+		this.bytes = bytes_ !== undefined ? bytes_ : new Go$Int64(0, 0);
+		this.timerOn = timerOn_ !== undefined ? timerOn_ : false;
+		this.showAllocResult = showAllocResult_ !== undefined ? showAllocResult_ : false;
+		this.result = result_ !== undefined ? result_ : new BenchmarkResult.Ptr();
+		this.startAllocs = startAllocs_ !== undefined ? startAllocs_ : new Go$Uint64(0, 0);
+		this.startBytes = startBytes_ !== undefined ? startBytes_ : new Go$Uint64(0, 0);
+		this.netAllocs = netAllocs_ !== undefined ? netAllocs_ : new Go$Uint64(0, 0);
+		this.netBytes = netBytes_ !== undefined ? netBytes_ : new Go$Uint64(0, 0);
+	});
+	B.prototype.Error = function(args) { return this.go$val.Error(args); };
+	B.Ptr.prototype.Error = function(args) { return this.common.Error(args); };
+	B.prototype.Errorf = function(format, args) { return this.go$val.Errorf(format, args); };
+	B.Ptr.prototype.Errorf = function(format, args) { return this.common.Errorf(format, args); };
+	B.prototype.Fail = function() { return this.go$val.Fail(); };
+	B.Ptr.prototype.Fail = function() { return this.common.Fail(); };
+	B.prototype.FailNow = function() { return this.go$val.FailNow(); };
+	B.Ptr.prototype.FailNow = function() { return this.common.FailNow(); };
+	B.prototype.Failed = function() { return this.go$val.Failed(); };
+	B.Ptr.prototype.Failed = function() { return this.common.Failed(); };
+	B.prototype.Fatal = function(args) { return this.go$val.Fatal(args); };
+	B.Ptr.prototype.Fatal = function(args) { return this.common.Fatal(args); };
+	B.prototype.Fatalf = function(format, args) { return this.go$val.Fatalf(format, args); };
+	B.Ptr.prototype.Fatalf = function(format, args) { return this.common.Fatalf(format, args); };
+	B.prototype.Log = function(args) { return this.go$val.Log(args); };
+	B.Ptr.prototype.Log = function(args) { return this.common.Log(args); };
+	B.prototype.Logf = function(format, args) { return this.go$val.Logf(format, args); };
+	B.Ptr.prototype.Logf = function(format, args) { return this.common.Logf(format, args); };
+	B.prototype.Skip = function(args) { return this.go$val.Skip(args); };
+	B.Ptr.prototype.Skip = function(args) { return this.common.Skip(args); };
+	B.prototype.SkipNow = function() { return this.go$val.SkipNow(); };
+	B.Ptr.prototype.SkipNow = function() { return this.common.SkipNow(); };
+	B.prototype.Skipf = function(format, args) { return this.go$val.Skipf(format, args); };
+	B.Ptr.prototype.Skipf = function(format, args) { return this.common.Skipf(format, args); };
+	B.prototype.Skipped = function() { return this.go$val.Skipped(); };
+	B.Ptr.prototype.Skipped = function() { return this.common.Skipped(); };
+	B.prototype.log = function(s) { return this.go$val.log(s); };
+	B.Ptr.prototype.log = function(s) { return this.common.log(s); };
+	B.prototype.private = function() { return this.go$val.private(); };
+	B.Ptr.prototype.private = function() { return this.common.private(); };
+	B.prototype.skip = function() { return this.go$val.skip(); };
+	B.Ptr.prototype.skip = function() { return this.common.skip(); };
+	go$pkg.B = B;
+	var BenchmarkResult;
+	BenchmarkResult = go$newType(0, "Struct", "testing.BenchmarkResult", "BenchmarkResult", "testing", function(N_, T_, Bytes_, MemAllocs_, MemBytes_) {
+		this.go$val = this;
+		this.N = N_ !== undefined ? N_ : 0;
+		this.T = T_ !== undefined ? T_ : new time.Duration(0, 0);
+		this.Bytes = Bytes_ !== undefined ? Bytes_ : new Go$Int64(0, 0);
+		this.MemAllocs = MemAllocs_ !== undefined ? MemAllocs_ : new Go$Uint64(0, 0);
+		this.MemBytes = MemBytes_ !== undefined ? MemBytes_ : new Go$Uint64(0, 0);
+	});
+	go$pkg.BenchmarkResult = BenchmarkResult;
+	var CoverBlock;
+	CoverBlock = go$newType(0, "Struct", "testing.CoverBlock", "CoverBlock", "testing", function(Line0_, Col0_, Line1_, Col1_, Stmts_) {
+		this.go$val = this;
+		this.Line0 = Line0_ !== undefined ? Line0_ : 0;
+		this.Col0 = Col0_ !== undefined ? Col0_ : 0;
+		this.Line1 = Line1_ !== undefined ? Line1_ : 0;
+		this.Col1 = Col1_ !== undefined ? Col1_ : 0;
+		this.Stmts = Stmts_ !== undefined ? Stmts_ : 0;
+	});
+	go$pkg.CoverBlock = CoverBlock;
+	var Cover;
+	Cover = go$newType(0, "Struct", "testing.Cover", "Cover", "testing", function(Mode_, Counters_, Blocks_, CoveredPackages_) {
+		this.go$val = this;
+		this.Mode = Mode_ !== undefined ? Mode_ : "";
+		this.Counters = Counters_ !== undefined ? Counters_ : false;
+		this.Blocks = Blocks_ !== undefined ? Blocks_ : false;
+		this.CoveredPackages = CoveredPackages_ !== undefined ? CoveredPackages_ : "";
+	});
+	go$pkg.Cover = Cover;
+	var InternalExample;
+	InternalExample = go$newType(0, "Struct", "testing.InternalExample", "InternalExample", "testing", function(Name_, F_, Output_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
+		this.Output = Output_ !== undefined ? Output_ : "";
+	});
+	go$pkg.InternalExample = InternalExample;
+	var common;
+	common = go$newType(0, "Struct", "testing.common", "common", "testing", function(mu_, output_, failed_, skipped_, start_, duration_, self_, signal_) {
+		this.go$val = this;
+		this.mu = mu_ !== undefined ? mu_ : new sync.RWMutex.Ptr();
+		this.output = output_ !== undefined ? output_ : (go$sliceType(Go$Uint8)).nil;
+		this.failed = failed_ !== undefined ? failed_ : false;
+		this.skipped = skipped_ !== undefined ? skipped_ : false;
+		this.start = start_ !== undefined ? start_ : new time.Time.Ptr();
+		this.duration = duration_ !== undefined ? duration_ : new time.Duration(0, 0);
+		this.self = self_ !== undefined ? self_ : null;
+		this.signal = signal_ !== undefined ? signal_ : (go$chanType(go$emptyInterface, false, false)).nil;
+	});
+	go$pkg.common = common;
+	var TB;
+	TB = go$newType(0, "Interface", "testing.TB", "TB", "testing", null);
+	go$pkg.TB = TB;
+	var T;
+	T = go$newType(0, "Struct", "testing.T", "T", "testing", function(common_, name_, startParallel_) {
+		this.go$val = this;
+		this.common = common_ !== undefined ? common_ : new common.Ptr();
+		this.name = name_ !== undefined ? name_ : "";
+		this.startParallel = startParallel_ !== undefined ? startParallel_ : (go$chanType(Go$Bool, false, false)).nil;
+	});
+	T.prototype.Error = function(args) { return this.go$val.Error(args); };
+	T.Ptr.prototype.Error = function(args) { return this.common.Error(args); };
+	T.prototype.Errorf = function(format, args) { return this.go$val.Errorf(format, args); };
+	T.Ptr.prototype.Errorf = function(format, args) { return this.common.Errorf(format, args); };
+	T.prototype.Fail = function() { return this.go$val.Fail(); };
+	T.Ptr.prototype.Fail = function() { return this.common.Fail(); };
+	T.prototype.FailNow = function() { return this.go$val.FailNow(); };
+	T.Ptr.prototype.FailNow = function() { return this.common.FailNow(); };
+	T.prototype.Failed = function() { return this.go$val.Failed(); };
+	T.Ptr.prototype.Failed = function() { return this.common.Failed(); };
+	T.prototype.Fatal = function(args) { return this.go$val.Fatal(args); };
+	T.Ptr.prototype.Fatal = function(args) { return this.common.Fatal(args); };
+	T.prototype.Fatalf = function(format, args) { return this.go$val.Fatalf(format, args); };
+	T.Ptr.prototype.Fatalf = function(format, args) { return this.common.Fatalf(format, args); };
+	T.prototype.Log = function(args) { return this.go$val.Log(args); };
+	T.Ptr.prototype.Log = function(args) { return this.common.Log(args); };
+	T.prototype.Logf = function(format, args) { return this.go$val.Logf(format, args); };
+	T.Ptr.prototype.Logf = function(format, args) { return this.common.Logf(format, args); };
+	T.prototype.Skip = function(args) { return this.go$val.Skip(args); };
+	T.Ptr.prototype.Skip = function(args) { return this.common.Skip(args); };
+	T.prototype.SkipNow = function() { return this.go$val.SkipNow(); };
+	T.Ptr.prototype.SkipNow = function() { return this.common.SkipNow(); };
+	T.prototype.Skipf = function(format, args) { return this.go$val.Skipf(format, args); };
+	T.Ptr.prototype.Skipf = function(format, args) { return this.common.Skipf(format, args); };
+	T.prototype.Skipped = function() { return this.go$val.Skipped(); };
+	T.Ptr.prototype.Skipped = function() { return this.common.Skipped(); };
+	T.prototype.log = function(s) { return this.go$val.log(s); };
+	T.Ptr.prototype.log = function(s) { return this.common.log(s); };
+	T.prototype.private = function() { return this.go$val.private(); };
+	T.Ptr.prototype.private = function() { return this.common.private(); };
+	T.prototype.skip = function() { return this.go$val.skip(); };
+	T.Ptr.prototype.skip = function() { return this.common.skip(); };
+	go$pkg.T = T;
+	var InternalTest;
+	InternalTest = go$newType(0, "Struct", "testing.InternalTest", "InternalTest", "testing", function(Name_, F_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
+	});
+	go$pkg.InternalTest = InternalTest;
+	InternalBenchmark.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([(go$ptrType(B))], [], false)), ""]]);
+	B.init([["", "testing", common, ""], ["N", "", Go$Int, ""], ["benchmark", "testing", InternalBenchmark, ""], ["bytes", "testing", Go$Int64, ""], ["timerOn", "testing", Go$Bool, ""], ["showAllocResult", "testing", Go$Bool, ""], ["result", "testing", BenchmarkResult, ""], ["startAllocs", "testing", Go$Uint64, ""], ["startBytes", "testing", Go$Uint64, ""], ["netAllocs", "testing", Go$Uint64, ""], ["netBytes", "testing", Go$Uint64, ""]]);
+	(go$ptrType(B)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fail", "", [], [], false], ["FailNow", "", [], [], false], ["Failed", "", [], [Go$Bool], false], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["ReportAllocs", "", [], [], false], ["ResetTimer", "", [], [], false], ["SetBytes", "", [Go$Int64], [], false], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true], ["SkipNow", "", [], [], false], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skipped", "", [], [Go$Bool], false], ["StartTimer", "", [], [], false], ["StopTimer", "", [], [], false], ["launch", "testing", [], [], false], ["log", "testing", [Go$String], [], false], ["nsPerOp", "testing", [], [Go$Int64], false], ["private", "testing", [], [], false], ["run", "testing", [], [BenchmarkResult], false], ["runN", "testing", [Go$Int], [], false], ["skip", "testing", [], [], false], ["trimOutput", "testing", [], [], false]];
+	BenchmarkResult.init([["N", "", Go$Int, ""], ["T", "", time.Duration, ""], ["Bytes", "", Go$Int64, ""], ["MemAllocs", "", Go$Uint64, ""], ["MemBytes", "", Go$Uint64, ""]]);
+	BenchmarkResult.methods = [["AllocedBytesPerOp", "", [], [Go$Int64], false], ["AllocsPerOp", "", [], [Go$Int64], false], ["MemString", "", [], [Go$String], false], ["NsPerOp", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false], ["mbPerSec", "testing", [], [Go$Float64], false]];
+	(go$ptrType(BenchmarkResult)).methods = [["AllocedBytesPerOp", "", [], [Go$Int64], false], ["AllocsPerOp", "", [], [Go$Int64], false], ["MemString", "", [], [Go$String], false], ["NsPerOp", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false], ["mbPerSec", "testing", [], [Go$Float64], false]];
+	CoverBlock.init([["Line0", "", Go$Uint32, ""], ["Col0", "", Go$Uint16, ""], ["Line1", "", Go$Uint32, ""], ["Col1", "", Go$Uint16, ""], ["Stmts", "", Go$Uint16, ""]]);
+	Cover.init([["Mode", "", Go$String, ""], ["Counters", "", (go$mapType(Go$String, (go$sliceType(Go$Uint32)))), ""], ["Blocks", "", (go$mapType(Go$String, (go$sliceType(CoverBlock)))), ""], ["CoveredPackages", "", Go$String, ""]]);
+	InternalExample.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([], [], false)), ""], ["Output", "", Go$String, ""]]);
+	common.init([["mu", "testing", sync.RWMutex, ""], ["output", "testing", (go$sliceType(Go$Uint8)), ""], ["failed", "testing", Go$Bool, ""], ["skipped", "testing", Go$Bool, ""], ["start", "testing", time.Time, ""], ["duration", "testing", time.Duration, ""], ["self", "testing", go$emptyInterface, ""], ["signal", "testing", (go$chanType(go$emptyInterface, false, false)), ""]]);
+	(go$ptrType(common)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fail", "", [], [], false], ["FailNow", "", [], [], false], ["Failed", "", [], [Go$Bool], false], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true], ["SkipNow", "", [], [], false], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skipped", "", [], [Go$Bool], false], ["log", "testing", [Go$String], [], false], ["private", "testing", [], [], false], ["skip", "testing", [], [], false]];
+	TB.init([["Error", "", (go$funcType([(go$sliceType(go$emptyInterface))], [], true))], ["Errorf", "", (go$funcType([Go$String, (go$sliceType(go$emptyInterface))], [], true))], ["Fail", "", (go$funcType([], [], false))], ["FailNow", "", (go$funcType([], [], false))], ["Failed", "", (go$funcType([], [Go$Bool], false))], ["Fatal", "", (go$funcType([(go$sliceType(go$emptyInterface))], [], true))], ["Fatalf", "", (go$funcType([Go$String, (go$sliceType(go$emptyInterface))], [], true))], ["Log", "", (go$funcType([(go$sliceType(go$emptyInterface))], [], true))], ["Logf", "", (go$funcType([Go$String, (go$sliceType(go$emptyInterface))], [], true))], ["Skip", "", (go$funcType([(go$sliceType(go$emptyInterface))], [], true))], ["SkipNow", "", (go$funcType([], [], false))], ["Skipf", "", (go$funcType([Go$String, (go$sliceType(go$emptyInterface))], [], true))], ["Skipped", "", (go$funcType([], [Go$Bool], false))], ["private", "testing", (go$funcType([], [], false))]]);
+	T.init([["", "testing", common, ""], ["name", "testing", Go$String, ""], ["startParallel", "testing", (go$chanType(Go$Bool, false, false)), ""]]);
+	(go$ptrType(T)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fail", "", [], [], false], ["FailNow", "", [], [], false], ["Failed", "", [], [Go$Bool], false], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Parallel", "", [], [], false], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true], ["SkipNow", "", [], [], false], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skipped", "", [], [Go$Bool], false], ["log", "testing", [Go$String], [], false], ["private", "testing", [], [], false], ["report", "testing", [], [], false], ["skip", "testing", [], [], false]];
+	InternalTest.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([(go$ptrType(T))], [], false)), ""]]);
+	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
+		var avg, memstats, x, mallocs, i, x$1;
+		avg = 0;
+		var go$deferred = [];
+		try {
+			go$deferred.push({ recv: runtime, method: "GOMAXPROCS", args: [runtime.GOMAXPROCS(1)] });
+			f();
+			memstats = new runtime.MemStats.Ptr();
+			runtime.ReadMemStats(memstats);
+			mallocs = (x = memstats.Mallocs, new Go$Uint64(0 - x.high, 0 - x.low));
+			i = 0;
+			while (i < runs) {
+				f();
+				i = i + 1 >> 0;
+			}
+			runtime.ReadMemStats(memstats);
+			mallocs = (x$1 = memstats.Mallocs, new Go$Uint64(mallocs.high + x$1.high, mallocs.low + x$1.low));
+			avg = go$flatten64(go$div64(mallocs, new Go$Uint64(0, runs), false));
+			return avg;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return avg;
+		}
+	};
+	B.Ptr.prototype.StartTimer = function() {
+		var b, _struct;
+		b = this;
+		if (!b.timerOn) {
+			runtime.ReadMemStats(memStats);
+			b.startAllocs = memStats.Mallocs;
+			b.startBytes = memStats.TotalAlloc;
+			b.common.start = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+			b.timerOn = true;
+		}
+	};
+	B.prototype.StartTimer = function() { return this.go$val.StartTimer(); };
+	B.Ptr.prototype.StopTimer = function() {
+		var b, x, x$1, _struct, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
+		b = this;
+		if (b.timerOn) {
+			b.common.duration = (x = b.common.duration, x$1 = time.Now().Sub((_struct = b.common.start, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc))), new time.Duration(x.high + x$1.high, x.low + x$1.low));
+			runtime.ReadMemStats(memStats);
+			b.netAllocs = (x$2 = b.netAllocs, x$3 = (x$4 = memStats.Mallocs, x$5 = b.startAllocs, new Go$Uint64(x$4.high - x$5.high, x$4.low - x$5.low)), new Go$Uint64(x$2.high + x$3.high, x$2.low + x$3.low));
+			b.netBytes = (x$6 = b.netBytes, x$7 = (x$8 = memStats.TotalAlloc, x$9 = b.startBytes, new Go$Uint64(x$8.high - x$9.high, x$8.low - x$9.low)), new Go$Uint64(x$6.high + x$7.high, x$6.low + x$7.low));
+			b.timerOn = false;
+		}
+	};
+	B.prototype.StopTimer = function() { return this.go$val.StopTimer(); };
+	B.Ptr.prototype.ResetTimer = function() {
+		var b, _struct;
+		b = this;
+		if (b.timerOn) {
+			runtime.ReadMemStats(memStats);
+			b.startAllocs = memStats.Mallocs;
+			b.startBytes = memStats.TotalAlloc;
+			b.common.start = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		}
+		b.common.duration = new time.Duration(0, 0);
+		b.netAllocs = new Go$Uint64(0, 0);
+		b.netBytes = new Go$Uint64(0, 0);
+	};
+	B.prototype.ResetTimer = function() { return this.go$val.ResetTimer(); };
+	B.Ptr.prototype.SetBytes = function(n) {
+		var b;
+		b = this;
+		b.bytes = n;
+	};
+	B.prototype.SetBytes = function(n) { return this.go$val.SetBytes(n); };
+	B.Ptr.prototype.ReportAllocs = function() {
+		var b;
+		b = this;
+		b.showAllocResult = true;
+	};
+	B.prototype.ReportAllocs = function() { return this.go$val.ReportAllocs(); };
+	B.Ptr.prototype.nsPerOp = function() {
+		var b;
+		b = this;
+		if (b.N <= 0) {
+			return new Go$Int64(0, 0);
+		}
+		return go$div64(b.common.duration.Nanoseconds(), new Go$Int64(0, b.N), false);
+	};
+	B.prototype.nsPerOp = function() { return this.go$val.nsPerOp(); };
+	B.Ptr.prototype.runN = function(n) {
+		var b;
+		var go$deferred = [];
+		try {
+			b = this;
+			benchmarkLock.Lock();
+			go$deferred.push({ recv: benchmarkLock, method: "Unlock", args: [] });
+			runtime.GC();
+			b.N = n;
+			b.ResetTimer();
+			b.StartTimer();
+			b.benchmark.F(b);
+			b.StopTimer();
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	B.prototype.runN = function(n) { return this.go$val.runN(n); };
+	var min = function(x, y) {
+		if (x > y) {
+			return y;
+		}
+		return x;
+	};
+	var max = function(x, y) {
+		if (x < y) {
+			return y;
+		}
+		return x;
+	};
+	var roundDown10 = function(n) {
+		var tens, _q, result, i, x;
+		tens = 0;
+		while (n >= 10) {
+			n = (_q = n / 10, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+			tens = tens + 1 >> 0;
+		}
+		result = 1;
+		i = 0;
+		while (i < tens) {
+			result = (x = 10, (((result >>> 16 << 16) * x >> 0) + (result << 16 >>> 16) * x) >> 0);
+			i = i + 1 >> 0;
+		}
+		return result;
+	};
+	var roundUp = function(n) {
+		var base, x, x$1, x$2, x$3, x$4;
+		base = roundDown10(n);
+		if (n <= base) {
+			return base;
+		} else if (n <= ((x = 2, (((x >>> 16 << 16) * base >> 0) + (x << 16 >>> 16) * base) >> 0))) {
+			return (x$2 = 2, (((x$2 >>> 16 << 16) * base >> 0) + (x$2 << 16 >>> 16) * base) >> 0);
+		} else if (n <= ((x$1 = 5, (((x$1 >>> 16 << 16) * base >> 0) + (x$1 << 16 >>> 16) * base) >> 0))) {
+			return (x$3 = 5, (((x$3 >>> 16 << 16) * base >> 0) + (x$3 << 16 >>> 16) * base) >> 0);
+		} else {
+			return (x$4 = 10, (((x$4 >>> 16 << 16) * base >> 0) + (x$4 << 16 >>> 16) * base) >> 0);
+		}
+	};
+	B.Ptr.prototype.run = function() {
+		var b, _struct;
+		b = this;
+		go$notSupported("go")
+		undefined;
+		return (_struct = b.result, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
+	};
+	B.prototype.run = function() { return this.go$val.run(); };
+	B.Ptr.prototype.launch = function() {
+		var b, n, d, x, last, x$1, x$2, _q, x$3;
+		var go$deferred = [];
+		try {
+			b = this;
+			n = 1;
+			go$deferred.push({ fun: (function() {
+				go$notSupported("send");
+			}), args: [] });
+			b.runN(n);
+			d = benchTime.go$get();
+			while (!b.common.failed && (x = b.common.duration, (x.high < d.high || (x.high === d.high && x.low < d.low))) && n < 1000000000) {
+				last = n;
+				if ((x$1 = b.nsPerOp(), (x$1.high === 0 && x$1.low === 0))) {
+					n = 1000000000;
+				} else {
+					n = ((x$2 = go$div64(d.Nanoseconds(), b.nsPerOp(), false), x$2.low + ((x$2.high >> 31) * 4294967296)) >> 0);
+				}
+				n = max(min(n + (_q = n / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0, (x$3 = 100, (((x$3 >>> 16 << 16) * last >> 0) + (x$3 << 16 >>> 16) * last) >> 0)), last + 1 >> 0);
+				n = roundUp(n);
+				b.runN(n);
+			}
+			b.result = new BenchmarkResult.Ptr(b.N, b.common.duration, b.bytes, b.netAllocs, b.netBytes);
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	B.prototype.launch = function() { return this.go$val.launch(); };
+	BenchmarkResult.Ptr.prototype.NsPerOp = function() {
+		var _struct, r;
+		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
+		if (r.N <= 0) {
+			return new Go$Int64(0, 0);
+		}
+		return go$div64(r.T.Nanoseconds(), new Go$Int64(0, r.N), false);
+	};
+	BenchmarkResult.prototype.NsPerOp = function() { return this.go$val.NsPerOp(); };
+	BenchmarkResult.Ptr.prototype.mbPerSec = function() {
+		var _struct, r, x, x$1;
+		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
+		if ((x = r.Bytes, (x.high < 0 || (x.high === 0 && x.low <= 0))) || (x$1 = r.T, (x$1.high < 0 || (x$1.high === 0 && x$1.low <= 0))) || r.N <= 0) {
+			return 0;
+		}
+		return (go$flatten64(r.Bytes) * r.N / 1e+06) / r.T.Seconds();
+	};
+	BenchmarkResult.prototype.mbPerSec = function() { return this.go$val.mbPerSec(); };
+	BenchmarkResult.Ptr.prototype.AllocsPerOp = function() {
+		var _struct, r, x;
+		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
+		if (r.N <= 0) {
+			return new Go$Int64(0, 0);
+		}
+		return go$div64((x = r.MemAllocs, new Go$Int64(x.high, x.low)), new Go$Int64(0, r.N), false);
+	};
+	BenchmarkResult.prototype.AllocsPerOp = function() { return this.go$val.AllocsPerOp(); };
+	BenchmarkResult.Ptr.prototype.AllocedBytesPerOp = function() {
+		var _struct, r, x;
+		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
+		if (r.N <= 0) {
+			return new Go$Int64(0, 0);
+		}
+		return go$div64((x = r.MemBytes, new Go$Int64(x.high, x.low)), new Go$Int64(0, r.N), false);
+	};
+	BenchmarkResult.prototype.AllocedBytesPerOp = function() { return this.go$val.AllocedBytesPerOp(); };
+	BenchmarkResult.Ptr.prototype.String = function() {
+		var _struct, r, mbs, mb, nsop, ns;
+		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
+		mbs = r.mbPerSec();
+		mb = "";
+		if (!((mbs === 0))) {
+			mb = fmt.Sprintf("\t%7.2f MB/s", new (go$sliceType(go$emptyInterface))([new Go$Float64(mbs)]));
+		}
+		nsop = r.NsPerOp();
+		ns = fmt.Sprintf("%10d ns/op", new (go$sliceType(go$emptyInterface))([nsop]));
+		if (r.N > 0 && (nsop.high < 0 || (nsop.high === 0 && nsop.low < 100))) {
+			if ((nsop.high < 0 || (nsop.high === 0 && nsop.low < 10))) {
+				ns = fmt.Sprintf("%13.2f ns/op", new (go$sliceType(go$emptyInterface))([new Go$Float64(go$flatten64(r.T.Nanoseconds()) / r.N)]));
+			} else {
+				ns = fmt.Sprintf("%12.1f ns/op", new (go$sliceType(go$emptyInterface))([new Go$Float64(go$flatten64(r.T.Nanoseconds()) / r.N)]));
+			}
+		}
+		return fmt.Sprintf("%8d\t%s%s", new (go$sliceType(go$emptyInterface))([new Go$Int(r.N), new Go$String(ns), new Go$String(mb)]));
+	};
+	BenchmarkResult.prototype.String = function() { return this.go$val.String(); };
+	BenchmarkResult.Ptr.prototype.MemString = function() {
+		var _struct, r;
+		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
+		return fmt.Sprintf("%8d B/op\t%8d allocs/op", new (go$sliceType(go$emptyInterface))([r.AllocedBytesPerOp(), r.AllocsPerOp()]));
+	};
+	BenchmarkResult.prototype.MemString = function() { return this.go$val.MemString(); };
+	var RunBenchmarks = go$pkg.RunBenchmarks = function(matchString, benchmarks) {
+		var _ref, _i, _slice, _index, _struct, Benchmark$1, _tuple, matched, err, _ref$1, _i$1, _slice$1, _index$1, procs, _struct$1, b, benchName, _struct$2, r, results, p;
+		if (matchBenchmarks.go$get().length === 0) {
+			return;
+		}
+		_ref = benchmarks;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			Benchmark$1 = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new InternalBenchmark.Ptr(_struct.Name, _struct.F));
+			_tuple = matchString(matchBenchmarks.go$get(), Benchmark$1.Name), matched = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				fmt.Fprintf(os.Stderr, "testing: invalid regexp for -test.bench: %s\n", new (go$sliceType(go$emptyInterface))([err]));
+				os.Exit(1);
+			}
+			if (!matched) {
+				continue;
+			}
+			_ref$1 = cpuList;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				procs = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				runtime.GOMAXPROCS(procs);
+				b = new B.Ptr(new common.Ptr(new sync.RWMutex.Ptr(), (go$sliceType(Go$Uint8)).nil, false, false, new time.Time.Ptr(), new time.Duration(0, 0), null, new (go$chanType(go$emptyInterface, false, false))()), 0, (_struct$1 = Benchmark$1, new InternalBenchmark.Ptr(_struct$1.Name, _struct$1.F)), new Go$Int64(0, 0), false, false, new BenchmarkResult.Ptr(), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0));
+				benchName = Benchmark$1.Name;
+				if (!((procs === 1))) {
+					benchName = fmt.Sprintf("%s-%d", new (go$sliceType(go$emptyInterface))([new Go$String(Benchmark$1.Name), new Go$Int(procs)]));
+				}
+				fmt.Printf("%s\t", new (go$sliceType(go$emptyInterface))([new Go$String(benchName)]));
+				r = (_struct$2 = b.run(), new BenchmarkResult.Ptr(_struct$2.N, _struct$2.T, _struct$2.Bytes, _struct$2.MemAllocs, _struct$2.MemBytes));
+				if (b.common.failed) {
+					fmt.Printf("--- FAIL: %s\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(benchName), b.common.output]));
+					continue;
+				}
+				results = r.String();
+				if (benchmarkMemory.go$get() || b.showAllocResult) {
+					results = results + ("\t" + r.MemString());
+				}
+				fmt.Println(new (go$sliceType(go$emptyInterface))([new Go$String(results)]));
+				if (b.common.output.length > 0) {
+					b.trimOutput();
+					fmt.Printf("--- BENCH: %s\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(benchName), b.common.output]));
+				}
+				if (p = runtime.GOMAXPROCS(-1), !((p === procs))) {
+					fmt.Fprintf(os.Stderr, "testing: %s left GOMAXPROCS set to %d\n", new (go$sliceType(go$emptyInterface))([new Go$String(benchName), new Go$Int(p)]));
+				}
+			}
+		}
+	};
+	B.Ptr.prototype.trimOutput = function() {
+		var b, _tuple, nlCount, j, _slice, _index;
+		b = this;
+		_tuple = [0, 0], nlCount = _tuple[0], j = _tuple[1];
+		while (j < b.common.output.length) {
+			if ((_slice = b.common.output, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 10) {
+				nlCount = nlCount + 1 >> 0;
+				if (nlCount >= 10) {
+					b.common.output = go$appendSlice(go$subslice(b.common.output, 0, j), new (go$sliceType(Go$Uint8))(go$stringToBytes("\n\t... [output truncated]\n")));
+					break;
+				}
+			}
+			j = j + 1 >> 0;
+		}
+	};
+	B.prototype.trimOutput = function() { return this.go$val.trimOutput(); };
+	var Benchmark = go$pkg.Benchmark = function(f) {
+		var b, _struct;
+		b = new B.Ptr(new common.Ptr(new sync.RWMutex.Ptr(), (go$sliceType(Go$Uint8)).nil, false, false, new time.Time.Ptr(), new time.Duration(0, 0), null, new (go$chanType(go$emptyInterface, false, false))()), 0, new InternalBenchmark.Ptr("", f), new Go$Int64(0, 0), false, false, new BenchmarkResult.Ptr(), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0));
+		return (_struct = b.run(), new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
+	};
+	var RegisterCover = go$pkg.RegisterCover = function(c) {
+		var _struct;
+		cover = (_struct = c, new Cover.Ptr(_struct.Mode, _struct.Counters, _struct.Blocks, _struct.CoveredPackages));
+	};
+	var mustBeNil = function(err) {
+		if (!(go$interfaceIsEqual(err, null))) {
+			fmt.Fprintf(os.Stderr, "testing: %s\n", new (go$sliceType(go$emptyInterface))([err]));
+			os.Exit(2);
+		}
+	};
+	var coverReport = function() {
+		var f, err, _tuple, _tuple$1, active, total, _ref, _i, _keys, _entry, counts, name, _entry$1, blocks, _ref$1, _i$1, _slice, _index, count, i, _slice$1, _index$1, stmts, x, x$1, _tuple$2, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, err$1;
+		var go$deferred = [];
+		try {
+			f = (go$ptrType(os.File)).nil;
+			err = null;
+			if (!(coverProfile.go$get() === "")) {
+				_tuple = os.Create(toOutputDir(coverProfile.go$get())), f = _tuple[0], err = _tuple[1];
+				mustBeNil(err);
+				fmt.Fprintf(f, "mode: %s\n", new (go$sliceType(go$emptyInterface))([new Go$String(cover.Mode)]));
+				go$deferred.push({ fun: (function() {
+					mustBeNil(f.Close());
+				}), args: [] });
+			}
+			_tuple$1 = [new Go$Int64(0, 0), new Go$Int64(0, 0)], active = _tuple$1[0], total = _tuple$1[1];
+			_ref = cover.Counters;
+			_i = 0;
+			_keys = go$keys(_ref);
+			for (; _i < _keys.length; _i += 1) {
+				_entry = _ref[_keys[_i]];
+				counts = _entry.v;
+				name = _entry.k;
+				blocks = (_entry$1 = cover.Blocks[name], _entry$1 !== undefined ? _entry$1.v : (go$sliceType(CoverBlock)).nil);
+				_ref$1 = counts;
+				_i$1 = 0;
+				for (; _i$1 < _ref$1.length; _i$1 += 1) {
+					count = (_slice = _ref$1, _index = _i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					i = _i$1;
+					stmts = new Go$Int64(0, (_slice$1 = blocks, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Stmts);
+					total = (x = stmts, new Go$Int64(total.high + x.high, total.low + x.low));
+					if (count > 0) {
+						active = (x$1 = stmts, new Go$Int64(active.high + x$1.high, active.low + x$1.low));
+					}
+					if (!(f === (go$ptrType(os.File)).nil)) {
+						_tuple$2 = fmt.Fprintf(f, "%s:%d.%d,%d.%d %d %d\n", new (go$sliceType(go$emptyInterface))([new Go$String(name), new Go$Uint32((_slice$2 = blocks, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Line0), new Go$Uint16((_slice$3 = blocks, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Col0), new Go$Uint32((_slice$4 = blocks, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).Line1), new Go$Uint16((_slice$5 = blocks, _index$5 = i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).Col1), stmts, new Go$Uint32(count)])), err$1 = _tuple$2[1];
+						mustBeNil(err$1);
+					}
+				}
+			}
+			if ((total.high === 0 && total.low === 0)) {
+				total = new Go$Int64(0, 1);
+			}
+			fmt.Printf("coverage: %.1f%% of statements%s\n", new (go$sliceType(go$emptyInterface))([new Go$Float64(100 * go$flatten64(active) / go$flatten64(total)), new Go$String(cover.CoveredPackages)]));
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	var RunExamples = go$pkg.RunExamples = function(matchString, examples) {
+		var ok, eg, _ref, _i, _slice, _index, _struct, _tuple, matched, err, _struct$1;
+		ok = false;
+		ok = true;
+		eg = new InternalExample.Ptr();
+		_ref = examples;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			eg = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new InternalExample.Ptr(_struct.Name, _struct.F, _struct.Output));
+			_tuple = matchString(match.go$get(), eg.Name), matched = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				fmt.Fprintf(os.Stderr, "testing: invalid regexp for -test.run: %s\n", new (go$sliceType(go$emptyInterface))([err]));
+				os.Exit(1);
+			}
+			if (!matched) {
+				continue;
+			}
+			if (!runExample((_struct$1 = eg, new InternalExample.Ptr(_struct$1.Name, _struct$1.F, _struct$1.Output)))) {
+				ok = false;
+			}
+		}
+		return ok;
+	};
+	var runExample = function(eg) {
+		var ok, stdout, _tuple, r, w, err, outC, _struct, start;
+		ok = false;
+		var go$deferred = [];
+		try {
+			if (chatty.go$get()) {
+				fmt.Printf("=== RUN: %s\n", new (go$sliceType(go$emptyInterface))([new Go$String(eg.Name)]));
+			}
+			stdout = os.Stdout;
+			_tuple = os.Pipe(), r = _tuple[0], w = _tuple[1], err = _tuple[2];
+			if (!(go$interfaceIsEqual(err, null))) {
+				fmt.Fprintln(os.Stderr, new (go$sliceType(go$emptyInterface))([err]));
+				os.Exit(1);
+			}
+			os.Stdout = w;
+			outC = new (go$chanType(Go$String, false, false))();
+			go$notSupported("go")
+			start = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+			ok = true;
+			go$deferred.push({ fun: (function() {
+				var _struct$1, d, out, fail, err$1, g, e, _tuple$1;
+				d = time.Now().Sub((_struct$1 = start, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)));
+				w.Close();
+				os.Stdout = stdout;
+				out = undefined;
+				fail = "";
+				err$1 = go$recover();
+				if (_tuple$1 = [strings.TrimSpace(out), strings.TrimSpace(eg.Output)], g = _tuple$1[0], e = _tuple$1[1], !(g === e) && go$interfaceIsEqual(err$1, null)) {
+					fail = fmt.Sprintf("got:\n%s\nwant:\n%s\n", new (go$sliceType(go$emptyInterface))([new Go$String(g), new Go$String(e)]));
+				}
+				if (!(fail === "") || !(go$interfaceIsEqual(err$1, null))) {
+					fmt.Printf("--- FAIL: %s (%v)\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(eg.Name), d, new Go$String(fail)]));
+					ok = false;
+				} else if (chatty.go$get()) {
+					fmt.Printf("--- PASS: %s (%v)\n", new (go$sliceType(go$emptyInterface))([new Go$String(eg.Name), d]));
+				}
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					throw go$panic(err$1);
+				}
+			}), args: [] });
+			eg.F();
+			return ok;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return ok;
+		}
+	};
+	var Short = go$pkg.Short = function() {
+		return short$1.go$get();
+	};
+	var Verbose = go$pkg.Verbose = function() {
+		return chatty.go$get();
+	};
+	var decorate = function(s) {
+		var _tuple, file, line, ok, index, buf, lines, l, _slice, _index, _ref, _i, _slice$1, _index$1, line$1, i;
+		_tuple = runtime.Caller(3), file = _tuple[1], line = _tuple[2], ok = _tuple[3];
+		if (ok) {
+			if (index = strings.LastIndex(file, "/"), index >= 0) {
+				file = file.substring((index + 1 >> 0));
+			} else if (index = strings.LastIndex(file, "\\"), index >= 0) {
+				file = file.substring((index + 1 >> 0));
+			}
+		} else {
+			file = "???";
+			line = 1;
+		}
+		buf = new bytes.Buffer.Ptr();
+		buf.WriteByte(9);
+		fmt.Fprintf(buf, "%s:%d: ", new (go$sliceType(go$emptyInterface))([new Go$String(file), new Go$Int(line)]));
+		lines = strings.Split(s, "\n");
+		if (l = lines.length, l > 1 && (_slice = lines, _index = (l - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === "") {
+			lines = go$subslice(lines, 0, (l - 1 >> 0));
+		}
+		_ref = lines;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			line$1 = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (i > 0) {
+				buf.WriteString("\n\t\t");
+			}
+			buf.WriteString(line$1);
+		}
+		buf.WriteByte(10);
+		return buf.String();
+	};
+	common.Ptr.prototype.private$ = function() {
+		var c;
+		c = this;
+	};
+	common.prototype.private$ = function() { return this.go$val.private$(); };
+	common.Ptr.prototype.Fail = function() {
+		var c;
+		var go$deferred = [];
+		try {
+			c = this;
+			c.mu.Lock();
+			go$deferred.push({ recv: c.mu, method: "Unlock", args: [] });
+			c.failed = true;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	common.prototype.Fail = function() { return this.go$val.Fail(); };
+	common.Ptr.prototype.Failed = function() {
+		var c;
+		var go$deferred = [];
+		try {
+			c = this;
+			c.mu.RLock();
+			go$deferred.push({ recv: c.mu, method: "RUnlock", args: [] });
+			return c.failed;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return false;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	common.prototype.Failed = function() { return this.go$val.Failed(); };
+	common.Ptr.prototype.FailNow = function() {
+		var c;
+		c = this;
+		c.Fail();
+		runtime.Goexit();
+	};
+	common.prototype.FailNow = function() { return this.go$val.FailNow(); };
+	common.Ptr.prototype.log = function(s) {
+		var c;
+		var go$deferred = [];
+		try {
+			c = this;
+			c.mu.Lock();
+			go$deferred.push({ recv: c.mu, method: "Unlock", args: [] });
+			c.output = go$appendSlice(c.output, new (go$sliceType(Go$Uint8))(go$stringToBytes(decorate(s))));
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	common.prototype.log = function(s) { return this.go$val.log(s); };
+	common.Ptr.prototype.Log = function(args) {
+		var c;
+		c = this;
+		c.log(fmt.Sprintln(args));
+	};
+	common.prototype.Log = function(args) { return this.go$val.Log(args); };
+	common.Ptr.prototype.Logf = function(format, args) {
+		var c;
+		c = this;
+		c.log(fmt.Sprintf(format, args));
+	};
+	common.prototype.Logf = function(format, args) { return this.go$val.Logf(format, args); };
+	common.Ptr.prototype.Error = function(args) {
+		var c;
+		c = this;
+		c.log(fmt.Sprintln(args));
+		c.Fail();
+	};
+	common.prototype.Error = function(args) { return this.go$val.Error(args); };
+	common.Ptr.prototype.Errorf = function(format, args) {
+		var c;
+		c = this;
+		c.log(fmt.Sprintf(format, args));
+		c.Fail();
+	};
+	common.prototype.Errorf = function(format, args) { return this.go$val.Errorf(format, args); };
+	common.Ptr.prototype.Fatal = function(args) {
+		var c;
+		c = this;
+		c.log(fmt.Sprintln(args));
+		c.FailNow();
+	};
+	common.prototype.Fatal = function(args) { return this.go$val.Fatal(args); };
+	common.Ptr.prototype.Fatalf = function(format, args) {
+		var c;
+		c = this;
+		c.log(fmt.Sprintf(format, args));
+		c.FailNow();
+	};
+	common.prototype.Fatalf = function(format, args) { return this.go$val.Fatalf(format, args); };
+	common.Ptr.prototype.Skip = function(args) {
+		var c;
+		c = this;
+		c.log(fmt.Sprintln(args));
+		c.SkipNow();
+	};
+	common.prototype.Skip = function(args) { return this.go$val.Skip(args); };
+	common.Ptr.prototype.Skipf = function(format, args) {
+		var c;
+		c = this;
+		c.log(fmt.Sprintf(format, args));
+		c.SkipNow();
+	};
+	common.prototype.Skipf = function(format, args) { return this.go$val.Skipf(format, args); };
+	common.Ptr.prototype.SkipNow = function() {
+		var c;
+		c = this;
+		c.skip();
+		runtime.Goexit();
+	};
+	common.prototype.SkipNow = function() { return this.go$val.SkipNow(); };
+	common.Ptr.prototype.skip = function() {
+		var c;
+		var go$deferred = [];
+		try {
+			c = this;
+			c.mu.Lock();
+			go$deferred.push({ recv: c.mu, method: "Unlock", args: [] });
+			c.skipped = true;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	common.prototype.skip = function() { return this.go$val.skip(); };
+	common.Ptr.prototype.Skipped = function() {
+		var c;
+		var go$deferred = [];
+		try {
+			c = this;
+			c.mu.RLock();
+			go$deferred.push({ recv: c.mu, method: "RUnlock", args: [] });
+			return c.skipped;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return false;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	common.prototype.Skipped = function() { return this.go$val.Skipped(); };
+	T.Ptr.prototype.Parallel = function() {
+		var t, _struct;
+		t = this;
+		go$notSupported("send");
+		undefined;
+		t.common.start = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+	};
+	T.prototype.Parallel = function() { return this.go$val.Parallel(); };
+	var tRunner = function(t, test) {
+		var _struct;
+		var go$deferred = [];
+		try {
+			go$deferred.push({ fun: (function() {
+				var _struct, err;
+				t.common.duration = time.Now().Sub((_struct = t.common.start, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)));
+				if (err = go$recover(), !(go$interfaceIsEqual(err, null))) {
+					t.common.Fail();
+					t.report();
+					throw go$panic(err);
+				}
+				go$notSupported("send");
+			}), args: [] });
+			t.common.start = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+			test.F(t);
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	var Main = go$pkg.Main = function(matchString, tests, benchmarks, examples) {
+		var testOk, exampleOk;
+		flag.Parse();
+		parseCpuList();
+		before();
+		startAlarm();
+		haveExamples = examples.length > 0;
+		testOk = RunTests(matchString, tests);
+		exampleOk = RunExamples(matchString, examples);
+		stopAlarm();
+		if (!testOk || !exampleOk) {
+			fmt.Println(new (go$sliceType(go$emptyInterface))([new Go$String("FAIL")]));
+			os.Exit(1);
+		}
+		fmt.Println(new (go$sliceType(go$emptyInterface))([new Go$String("PASS")]));
+		RunBenchmarks(matchString, benchmarks);
+		after();
+	};
+	T.Ptr.prototype.report = function() {
+		var t, tstr, format;
+		t = this;
+		tstr = fmt.Sprintf("(%.2f seconds)", new (go$sliceType(go$emptyInterface))([new Go$Float64(t.common.duration.Seconds())]));
+		format = "--- %s: %s %s\n%s";
+		if (t.common.Failed()) {
+			fmt.Printf(format, new (go$sliceType(go$emptyInterface))([new Go$String("FAIL"), new Go$String(t.name), new Go$String(tstr), t.common.output]));
+		} else if (chatty.go$get()) {
+			if (t.common.Skipped()) {
+				fmt.Printf(format, new (go$sliceType(go$emptyInterface))([new Go$String("SKIP"), new Go$String(t.name), new Go$String(tstr), t.common.output]));
+			} else {
+				fmt.Printf(format, new (go$sliceType(go$emptyInterface))([new Go$String("PASS"), new Go$String(t.name), new Go$String(tstr), t.common.output]));
+			}
+		}
+	};
+	T.prototype.report = function() { return this.go$val.report(); };
+	var RunTests = go$pkg.RunTests = function(matchString, tests) {
+		var ok, _ref, _i, _slice, _index, procs, collector, numParallel, startParallel, i, t, _tuple, _slice$1, _index$1, matched, err, _slice$2, _index$2, testName, _slice$3, _index$3, x, out, running, x$1, t$1;
+		ok = false;
+		ok = true;
+		if ((tests.length === 0) && !haveExamples) {
+			fmt.Fprintln(os.Stderr, new (go$sliceType(go$emptyInterface))([new Go$String("testing: warning: no tests to run")]));
+			return ok;
+		}
+		_ref = cpuList;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			procs = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			runtime.GOMAXPROCS(procs);
+			collector = new (go$chanType(go$emptyInterface, false, false))();
+			numParallel = 0;
+			startParallel = new (go$chanType(Go$Bool, false, false))();
+			i = 0;
+			while (i < tests.length) {
+				t = [undefined];
+				_tuple = matchString(match.go$get(), (_slice$1 = tests, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name), matched = _tuple[0], err = _tuple[1];
+				if (!(go$interfaceIsEqual(err, null))) {
+					fmt.Fprintf(os.Stderr, "testing: invalid regexp for -test.run: %s\n", new (go$sliceType(go$emptyInterface))([err]));
+					os.Exit(1);
+				}
+				if (!matched) {
+					i = i + 1 >> 0;
+					continue;
+				}
+				testName = (_slice$2 = tests, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Name;
+				if (!((procs === 1))) {
+					testName = fmt.Sprintf("%s-%d", new (go$sliceType(go$emptyInterface))([new Go$String((_slice$3 = tests, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Name), new Go$Int(procs)]));
+				}
+				t[0] = new T.Ptr(new common.Ptr(new sync.RWMutex.Ptr(), (go$sliceType(Go$Uint8)).nil, false, false, new time.Time.Ptr(), new time.Duration(0, 0), null, new (go$chanType(go$emptyInterface, false, false))()), testName, startParallel);
+				t[0].common.self = t[0];
+				if (chatty.go$get()) {
+					fmt.Printf("=== RUN %s\n", new (go$sliceType(go$emptyInterface))([new Go$String(t[0].name)]));
+				}
+				go$notSupported("go")
+				out = (x = undefined, (x !== null && x.constructor === (go$ptrType(T)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(T)))));
+				if (out === (go$ptrType(T)).nil) {
+					go$notSupported("go")
+					numParallel = numParallel + 1 >> 0;
+					i = i + 1 >> 0;
+					continue;
+				}
+				t[0].report();
+				ok = ok && !out.common.Failed();
+				i = i + 1 >> 0;
+			}
+			running = 0;
+			while ((numParallel + running >> 0) > 0) {
+				if (running < parallel.go$get() && numParallel > 0) {
+					go$notSupported("send");
+					running = running + 1 >> 0;
+					numParallel = numParallel - 1 >> 0;
+					continue;
+				}
+				t$1 = (x$1 = undefined, (x$1 !== null && x$1.constructor === (go$ptrType(T)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(T)))));
+				t$1.report();
+				ok = ok && !t$1.common.Failed();
+				running = running - 1 >> 0;
+			}
+		}
+		return ok;
+	};
+	var before = function() {
+		var _tuple, f, err, err$1;
+		if (memProfileRate.go$get() > 0) {
+			runtime.MemProfileRate = memProfileRate.go$get();
+		}
+		if (!(cpuProfile.go$get() === "")) {
+			_tuple = os.Create(toOutputDir(cpuProfile.go$get())), f = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				fmt.Fprintf(os.Stderr, "testing: %s", new (go$sliceType(go$emptyInterface))([err]));
+				return;
+			}
+			if (err$1 = pprof.StartCPUProfile(f), !(go$interfaceIsEqual(err$1, null))) {
+				fmt.Fprintf(os.Stderr, "testing: can't start cpu profile: %s", new (go$sliceType(go$emptyInterface))([err$1]));
+				f.Close();
+				return;
+			}
+		}
+		if (!(blockProfile.go$get() === "") && blockProfileRate.go$get() >= 0) {
+			runtime.SetBlockProfileRate(blockProfileRate.go$get());
+		}
+		if (!(coverProfile.go$get() === "") && cover.Mode === "") {
+			fmt.Fprintf(os.Stderr, "testing: cannot use -test.coverprofile because test binary was not built with coverage enabled\n", new (go$sliceType(go$emptyInterface))([]));
+			os.Exit(2);
+		}
+	};
+	var after = function() {
+		var _tuple, f, err, _tuple$1, f$1, err$1;
+		if (!(cpuProfile.go$get() === "")) {
+			pprof.StopCPUProfile();
+		}
+		if (!(memProfile.go$get() === "")) {
+			_tuple = os.Create(toOutputDir(memProfile.go$get())), f = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				fmt.Fprintf(os.Stderr, "testing: %s\n", new (go$sliceType(go$emptyInterface))([err]));
+				os.Exit(2);
+			}
+			if (err = pprof.WriteHeapProfile(f), !(go$interfaceIsEqual(err, null))) {
+				fmt.Fprintf(os.Stderr, "testing: can't write %s: %s\n", new (go$sliceType(go$emptyInterface))([new Go$String(memProfile.go$get()), err]));
+				os.Exit(2);
+			}
+			f.Close();
+		}
+		if (!(blockProfile.go$get() === "") && blockProfileRate.go$get() >= 0) {
+			_tuple$1 = os.Create(toOutputDir(blockProfile.go$get())), f$1 = _tuple$1[0], err$1 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				fmt.Fprintf(os.Stderr, "testing: %s\n", new (go$sliceType(go$emptyInterface))([err$1]));
+				os.Exit(2);
+			}
+			if (err$1 = pprof.Lookup("block").WriteTo(f$1, 0), !(go$interfaceIsEqual(err$1, null))) {
+				fmt.Fprintf(os.Stderr, "testing: can't write %s: %s\n", new (go$sliceType(go$emptyInterface))([new Go$String(blockProfile.go$get()), err$1]));
+				os.Exit(2);
+			}
+			f$1.Close();
+		}
+		if (!(cover.Mode === "")) {
+			coverReport();
+		}
+	};
+	var toOutputDir = function(path) {
+		if (outputDir.go$get() === "" || path === "") {
+			return path;
+		}
+		if (os.IsPathSeparator(path.charCodeAt(0))) {
+			return path;
+		}
+		return fmt.Sprintf("%s%c%s", new (go$sliceType(go$emptyInterface))([new Go$String(outputDir.go$get()), new Go$Int32(47), new Go$String(path)]));
+	};
+	var startAlarm = function() {
+		var x;
+		if ((x = timeout.go$get(), (x.high > 0 || (x.high === 0 && x.low > 0)))) {
+			timer = time.AfterFunc(timeout.go$get(), (function() {
+				throw go$panic(new Go$String(fmt.Sprintf("test timed out after %v", new (go$sliceType(go$emptyInterface))([timeout.go$get()]))));
+			}));
+		}
+	};
+	var stopAlarm = function() {
+		var x;
+		if ((x = timeout.go$get(), (x.high > 0 || (x.high === 0 && x.low > 0)))) {
+			timer.Stop();
+		}
+	};
+	var parseCpuList = function() {
+		var _ref, _i, _slice, _index, val, _tuple, cpu, err;
+		_ref = strings.Split(cpuListStr.go$get(), ",");
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			val = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			val = strings.TrimSpace(val);
+			if (val === "") {
+				continue;
+			}
+			_tuple = strconv.Atoi(val), cpu = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null)) || cpu <= 0) {
+				fmt.Fprintf(os.Stderr, "testing: invalid value %q for -test.cpu\n", new (go$sliceType(go$emptyInterface))([new Go$String(val)]));
+				os.Exit(1);
+			}
+			cpuList = go$append(cpuList, cpu);
+		}
+		if (cpuList === (go$sliceType(Go$Int)).nil) {
+			cpuList = go$append(cpuList, runtime.GOMAXPROCS(-1));
+		}
+	};
+	var matchBenchmarks = (go$ptrType(Go$String)).nil;
+	var benchTime = (go$ptrType(time.Duration)).nil;
+	var benchmarkMemory = (go$ptrType(Go$Bool)).nil;
+	var benchmarkLock = new sync.Mutex.Ptr();
+	var memStats = new runtime.MemStats.Ptr();
+	var cover = new Cover.Ptr();
+	var short$1 = (go$ptrType(Go$Bool)).nil;
+	var outputDir = (go$ptrType(Go$String)).nil;
+	var chatty = (go$ptrType(Go$Bool)).nil;
+	var coverProfile = (go$ptrType(Go$String)).nil;
+	var match = (go$ptrType(Go$String)).nil;
+	var memProfile = (go$ptrType(Go$String)).nil;
+	var memProfileRate = (go$ptrType(Go$Int)).nil;
+	var cpuProfile = (go$ptrType(Go$String)).nil;
+	var blockProfile = (go$ptrType(Go$String)).nil;
+	var blockProfileRate = (go$ptrType(Go$Int)).nil;
+	var timeout = (go$ptrType(time.Duration)).nil;
+	var cpuListStr = (go$ptrType(Go$String)).nil;
+	var parallel = (go$ptrType(Go$Int)).nil;
+	var haveExamples = false;
+	var cpuList = (go$sliceType(Go$Int)).nil;
+	var _ = null;
+	var _$1 = null;
+	var timer = (go$ptrType(time.Timer)).nil;
+
+			go$pkg.RunTests2 = function(pkgPath, dir, names, tests) {
+				if (tests.length === 0) {
+					console.log("?   \t" + pkgPath + "\t[no test files]");
+					return;
+				}
+				os.Open(dir)[0].Chdir();
+				var start = time.Now(), status = "ok  ", i;
+				for (i = 0; i < tests.length; i += 1) {
+					var t = new T.Ptr(new common.Ptr(undefined, undefined, undefined, undefined, time.Now(), undefined, undefined, undefined), names[i], null);
+					var err = null;
+					try {
+						if (chatty.go$get()) {
+							console.log("=== RUN " + t.name);
+						}
+						tests[i](t);
+					} catch (e) {
+						go$jsErr = null;
+						if (e.go$exit) {
+							// test failed or skipped
+						} else if (e.go$notSupported) {
+							t.log(e.message);
+							t.skip();
+						} else {
+							t.Fail();
+							// t.log(e.message);
+							err = e;
+						}
+					}
+					t.common.duration = time.Now().Sub(t.common.start);
+					t.report();
+					if (err !== null) {
+						throw err;
+					}
+					if (t.common.failed) {
+						status = "FAIL";
+					}
+				}
+				var duration = time.Now().Sub(start);
+				fmt.Printf("%s\t%s\t%.3fs\n", new (go$sliceType(go$emptyInterface))([new Go$String(status), new Go$String(pkgPath), new Go$Float64(duration.Seconds())]));
+			};
+			go$pkg.init = function() {
+		matchBenchmarks = flag.String("test.bench", "", "regular expression to select benchmarks to run");
+		benchTime = flag.Duration("test.benchtime", new time.Duration(0, 1000000000), "approximate run time for each benchmark");
+		benchmarkMemory = flag.Bool("test.benchmem", false, "print memory allocations for benchmarks");
+		short$1 = flag.Bool("test.short", false, "run smaller test suite to save time");
+		outputDir = flag.String("test.outputdir", "", "directory in which to write profiles");
+		chatty = flag.Bool("test.v", false, "verbose: print additional output");
+		coverProfile = flag.String("test.coverprofile", "", "write a coverage profile to the named file after execution");
+		match = flag.String("test.run", "", "regular expression to select tests and examples to run");
+		memProfile = flag.String("test.memprofile", "", "write a memory profile to the named file after execution");
+		memProfileRate = flag.Int("test.memprofilerate", 0, "if >=0, sets runtime.MemProfileRate");
+		cpuProfile = flag.String("test.cpuprofile", "", "write a cpu profile to the named file during execution");
+		blockProfile = flag.String("test.blockprofile", "", "write a goroutine blocking profile to the named file after execution");
+		blockProfileRate = flag.Int("test.blockprofilerate", 1, "if >= 0, calls runtime.SetBlockProfileRate()");
+		timeout = flag.Duration("test.timeout", new time.Duration(0, 0), "if positive, sets an aggregate time limit for all tests");
+		cpuListStr = flag.String("test.cpu", "", "comma-separated list of number of CPUs to use for each test");
+		parallel = flag.Int("test.parallel", runtime.GOMAXPROCS(0), "maximum test parallelism");
+	};

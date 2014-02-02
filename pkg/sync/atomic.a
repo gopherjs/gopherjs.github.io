@@ -1,0 +1,171 @@
+0‚‚|package atomic
+func @"".AddInt32(@"".addr *int32, @"".delta int32) (@"".new int32)
+func @"".AddInt64(@"".addr *int64, @"".delta int64) (@"".new int64)
+func @"".AddUint32(@"".addr *uint32, @"".delta uint32) (@"".new uint32)
+func @"".AddUint64(@"".addr *uint64, @"".delta uint64) (@"".new uint64)
+func @"".AddUintptr(@"".addr *uintptr, @"".delta uintptr) (@"".new uintptr)
+func @"".CompareAndSwapInt32(@"".addr *int32, @"".old int32, @"".new int32) (@"".swapped bool)
+func @"".CompareAndSwapInt64(@"".addr *int64, @"".old int64, @"".new int64) (@"".swapped bool)
+func @"".CompareAndSwapPointer(@"".addr *@"unsafe".Pointer, @"".old @"unsafe".Pointer, @"".new @"unsafe".Pointer) (@"".swapped bool)
+func @"".CompareAndSwapUint32(@"".addr *uint32, @"".old uint32, @"".new uint32) (@"".swapped bool)
+func @"".CompareAndSwapUint64(@"".addr *uint64, @"".old uint64, @"".new uint64) (@"".swapped bool)
+func @"".CompareAndSwapUintptr(@"".addr *uintptr, @"".old uintptr, @"".new uintptr) (@"".swapped bool)
+func @"".LoadInt32(@"".addr *int32) (@"".val int32)
+func @"".LoadInt64(@"".addr *int64) (@"".val int64)
+func @"".LoadPointer(@"".addr *@"unsafe".Pointer) (@"".val @"unsafe".Pointer)
+func @"".LoadUint32(@"".addr *uint32) (@"".val uint32)
+func @"".LoadUint64(@"".addr *uint64) (@"".val uint64)
+func @"".LoadUintptr(@"".addr *uintptr) (@"".val uintptr)
+func @"".StoreInt32(@"".addr *int32, @"".val int32) ()
+func @"".StoreInt64(@"".addr *int64, @"".val int64) ()
+func @"".StorePointer(@"".addr *@"unsafe".Pointer, @"".val @"unsafe".Pointer) ()
+func @"".StoreUint32(@"".addr *uint32, @"".val uint32) ()
+func @"".StoreUint64(@"".addr *uint64, @"".val uint64) ()
+func @"".StoreUintptr(@"".addr *uintptr, @"".val uintptr) ()
+func @"".SwapInt32(@"".addr *int32, @"".new int32) (@"".old int32)
+func @"".SwapInt64(@"".addr *int64, @"".new int64) (@"".old int64)
+func @"".SwapPointer(@"".addr *@"unsafe".Pointer, @"".new @"unsafe".Pointer) (@"".old @"unsafe".Pointer)
+func @"".SwapUint32(@"".addr *uint32, @"".new uint32) (@"".old uint32)
+func @"".SwapUint64(@"".addr *uint64, @"".new uint64) (@"".old uint64)
+func @"".SwapUintptr(@"".addr *uintptr, @"".new uintptr) (@"".old uintptr)
+$$
+0runtimesync/atomic‚s	var panic64 = function() {
+		throw go$panic(new Go$String("sync/atomic: broken 64-bit atomic operations (buggy QEMU)"));
+	};
+	var SwapInt32 = go$pkg.SwapInt32 = function(addr, newVal) {
+		var value = addr.go$get();
+		addr.go$set(newVal);
+		return value;
+	};
+	var SwapInt64 = go$pkg.SwapInt64 = function(addr, newVal) {
+		var value = addr.go$get();
+		addr.go$set(newVal);
+		return value;
+	};
+	var SwapUint32 = go$pkg.SwapUint32 = function(addr, newVal) {
+		var value = addr.go$get();
+		addr.go$set(newVal);
+		return value;
+	};
+	var SwapUint64 = go$pkg.SwapUint64 = function(addr, newVal) {
+		var value = addr.go$get();
+		addr.go$set(newVal);
+		return value;
+	};
+	var SwapUintptr = go$pkg.SwapUintptr = function(addr, newVal) {
+		var value = addr.go$get();
+		addr.go$set(newVal);
+		return value;
+	};
+	var SwapPointer = go$pkg.SwapPointer = function(addr, newVal) {
+		var value = addr.go$get();
+		addr.go$set(newVal);
+		return value;
+	};
+	var CompareAndSwapInt32 = go$pkg.CompareAndSwapInt32 = function(addr, oldVal, newVal) {
+		if (addr.go$get() === oldVal) {
+			addr.go$set(newVal);
+			return true;
+		}
+		return false;
+	};
+	var CompareAndSwapInt64 = go$pkg.CompareAndSwapInt64 = function(addr, oldVal, newVal) {
+		if (addr.go$get() === oldVal) {
+			addr.go$set(newVal);
+			return true;
+		}
+		return false;
+	};
+	var CompareAndSwapUint32 = go$pkg.CompareAndSwapUint32 = function(addr, oldVal, newVal) {
+		if (addr.go$get() === oldVal) {
+			addr.go$set(newVal);
+			return true;
+		}
+		return false;
+	};
+	var CompareAndSwapUint64 = go$pkg.CompareAndSwapUint64 = function(addr, oldVal, newVal) {
+		if (addr.go$get() === oldVal) {
+			addr.go$set(newVal);
+			return true;
+		}
+		return false;
+	};
+	var CompareAndSwapUintptr = go$pkg.CompareAndSwapUintptr = function(addr, oldVal, newVal) {
+		if (addr.go$get() === oldVal) {
+			addr.go$set(newVal);
+			return true;
+		}
+		return false;
+	};
+	var CompareAndSwapPointer = go$pkg.CompareAndSwapPointer = function(addr, oldVal, newVal) {
+		if (addr.go$get() === oldVal) {
+			addr.go$set(newVal);
+			return true;
+		}
+		return false;
+	};
+	var AddInt32 = go$pkg.AddInt32 = function(addr, delta) {
+		var value = addr.go$get() + delta;
+		addr.go$set(value);
+		return value;
+	};
+	var AddUint32 = go$pkg.AddUint32 = function(addr, delta) {
+		var value = addr.go$get() + delta;
+		addr.go$set(value);
+		return value;
+	};
+	var AddInt64 = go$pkg.AddInt64 = function(addr, delta) {
+		var value = addr.go$get();
+		value = new value.constructor(value.high + delta.high, value.low + delta.low);
+		addr.go$set(value);
+		return value;
+	};
+	var AddUint64 = go$pkg.AddUint64 = function(addr, delta) {
+		var value = addr.go$get();
+		value = new value.constructor(value.high + delta.high, value.low + delta.low);
+		addr.go$set(value);
+		return value;
+	};
+	var AddUintptr = go$pkg.AddUintptr = function(addr, delta) {
+		var value = addr.go$get() + delta;
+		addr.go$set(value);
+		return value;
+	};
+	var LoadInt32 = go$pkg.LoadInt32 = function(addr) {
+		return addr.go$get();
+	};
+	var LoadInt64 = go$pkg.LoadInt64 = function(addr) {
+		return addr.go$get();
+	};
+	var LoadUint32 = go$pkg.LoadUint32 = function(addr) {
+		return addr.go$get();
+	};
+	var LoadUint64 = go$pkg.LoadUint64 = function(addr) {
+		return addr.go$get();
+	};
+	var LoadUintptr = go$pkg.LoadUintptr = function(addr) {
+		return addr.go$get();
+	};
+	var LoadPointer = go$pkg.LoadPointer = function(addr) {
+		return addr.go$get();
+	};
+	var StoreInt32 = go$pkg.StoreInt32 = function(addr, val) {
+		addr.go$set(val);
+	};
+	var StoreInt64 = go$pkg.StoreInt64 = function(addr, val) {
+		addr.go$set(val);
+	};
+	var StoreUint32 = go$pkg.StoreUint32 = function(addr, val) {
+		addr.go$set(val);
+	};
+	var StoreUint64 = go$pkg.StoreUint64 = function(addr, val) {
+		addr.go$set(val);
+	};
+	var StoreUintptr = go$pkg.StoreUintptr = function(addr, val) {
+		addr.go$set(val);
+	};
+	var StorePointer = go$pkg.StorePointer = function(addr, val) {
+		addr.go$set(val);
+	};
+	go$pkg.init = function() {
+	};

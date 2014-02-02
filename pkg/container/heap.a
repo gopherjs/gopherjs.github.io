@@ -1,0 +1,79 @@
+0‚	ƒ‚ùpackage heap
+import sort "sort"
+func @"".Fix(@"".h @"".Interface, @"".i int) ()
+func @"".Init(@"".h @"".Interface) ()
+type @"".Interface interface { @"sort".Len() (? int); @"sort".Less(@"".i int, @"".j int) (? bool); @"".Pop() (? interface {  }); @"".Push(@"".x interface {  }) (); @"sort".Swap(@"".i int, @"".j int) () }
+func @"".Pop(@"".h @"".Interface) (? interface {  })
+func @"".Push(@"".h @"".Interface, @"".x interface {  }) ()
+func @"".Remove(@"".h @"".Interface, @"".i int) (? interface {  })
+$$
+0runtimesortcontainer/heap‚a	var sort = go$packages["sort"];
+	var Interface;
+	Interface = go$newType(0, "Interface", "heap.Interface", "Interface", "container/heap", null);
+	go$pkg.Interface = Interface;
+	Interface.init([["Len", "", (go$funcType([], [Go$Int], false))], ["Less", "", (go$funcType([Go$Int, Go$Int], [Go$Bool], false))], ["Pop", "", (go$funcType([], [go$emptyInterface], false))], ["Push", "", (go$funcType([go$emptyInterface], [], false))], ["Swap", "", (go$funcType([Go$Int, Go$Int], [], false))]]);
+	var Init = go$pkg.Init = function(h) {
+		var n, _q, i;
+		n = h.Len();
+		i = (_q = n / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) - 1 >> 0;
+		while (i >= 0) {
+			down(h, i, n);
+			i = i - 1 >> 0;
+		}
+	};
+	var Push = go$pkg.Push = function(h, x) {
+		h.Push(x);
+		up(h, h.Len() - 1 >> 0);
+	};
+	var Pop = go$pkg.Pop = function(h) {
+		var n;
+		n = h.Len() - 1 >> 0;
+		h.Swap(0, n);
+		down(h, 0, n);
+		return h.Pop();
+	};
+	var Remove = go$pkg.Remove = function(h, i) {
+		var n;
+		n = h.Len() - 1 >> 0;
+		if (!((n === i))) {
+			h.Swap(i, n);
+			down(h, i, n);
+			up(h, i);
+		}
+		return h.Pop();
+	};
+	var Fix = go$pkg.Fix = function(h, i) {
+		down(h, i, h.Len());
+		up(h, i);
+	};
+	var up = function(h, j) {
+		var _q, i;
+		while (true) {
+			i = (_q = ((j - 1 >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+			if ((i === j) || !h.Less(j, i)) {
+				break;
+			}
+			h.Swap(i, j);
+			j = i;
+		}
+	};
+	var down = function(h, i, n) {
+		var x, j1, j, j2;
+		while (true) {
+			j1 = (x = 2, (((x >>> 16 << 16) * i >> 0) + (x << 16 >>> 16) * i) >> 0) + 1 >> 0;
+			if (j1 >= n || j1 < 0) {
+				break;
+			}
+			j = j1;
+			if (j2 = j1 + 1 >> 0, j2 < n && !h.Less(j1, j2)) {
+				j = j2;
+			}
+			if (!h.Less(j, i)) {
+				break;
+			}
+			h.Swap(i, j);
+			i = j;
+		}
+	};
+	go$pkg.init = function() {
+	};

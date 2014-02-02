@@ -1,0 +1,500 @@
+0‚VÆ‚
+cpackage sort
+type @"".Float64Slice []float64
+func (? @"".Float64Slice) @"".Len() (? int)
+func (? @"".Float64Slice) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".Float64Slice) @"".Search(@"".x float64) (? int)
+func (? @"".Float64Slice) @"".Sort() ()
+func (? @"".Float64Slice) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".Float64Slice) @"".Len() (? int)
+func (? *@"".Float64Slice) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".Float64Slice) @"".Search(@"".x float64) (? int)
+func (? *@"".Float64Slice) @"".Sort() ()
+func (? *@"".Float64Slice) @"".Swap(@"".i int, @"".j int) ()
+func @"".Float64s(@"".a []float64) ()
+func @"".Float64sAreSorted(@"".a []float64) (? bool)
+type @"".IntSlice []int
+func (? @"".IntSlice) @"".Len() (? int)
+func (? @"".IntSlice) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".IntSlice) @"".Search(@"".x int) (? int)
+func (? @"".IntSlice) @"".Sort() ()
+func (? @"".IntSlice) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".IntSlice) @"".Len() (? int)
+func (? *@"".IntSlice) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".IntSlice) @"".Search(@"".x int) (? int)
+func (? *@"".IntSlice) @"".Sort() ()
+func (? *@"".IntSlice) @"".Swap(@"".i int, @"".j int) ()
+type @"".Interface interface { @"".Len() (? int); @"".Less(@"".i int, @"".j int) (? bool); @"".Swap(@"".i int, @"".j int) () }
+func @"".Ints(@"".a []int) ()
+func @"".IntsAreSorted(@"".a []int) (? bool)
+func @"".IsSorted(@"".data @"".Interface) (? bool)
+func @"".Reverse(@"".data @"".Interface) (? @"".Interface)
+func @"".Search(@"".n int, @"".f func (? int) (? bool)) (? int)
+func @"".SearchFloat64s(@"".a []float64, @"".x float64) (? int)
+func @"".SearchInts(@"".a []int, @"".x int) (? int)
+func @"".SearchStrings(@"".a []string, @"".x string) (? int)
+func @"".Sort(@"".data @"".Interface) ()
+func @"".Stable(@"".data @"".Interface) ()
+type @"".StringSlice []string
+func (? @"".StringSlice) @"".Len() (? int)
+func (? @"".StringSlice) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".StringSlice) @"".Search(@"".x string) (? int)
+func (? @"".StringSlice) @"".Sort() ()
+func (? @"".StringSlice) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".StringSlice) @"".Len() (? int)
+func (? *@"".StringSlice) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".StringSlice) @"".Search(@"".x string) (? int)
+func (? *@"".StringSlice) @"".Sort() ()
+func (? *@"".StringSlice) @"".Swap(@"".i int, @"".j int) ()
+func @"".Strings(@"".a []string) ()
+func @"".StringsAreSorted(@"".a []string) (? bool)
+type @"".reverse struct { ? @"".Interface }
+func (? @"".reverse) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".reverse) @"".Less(@"".i int, @"".j int) (? bool)
+$$
+0runtimesort‚LJ	var Interface;
+	Interface = go$newType(0, "Interface", "sort.Interface", "Interface", "sort", null);
+	go$pkg.Interface = Interface;
+	var reverse;
+	reverse = go$newType(0, "Struct", "sort.reverse", "reverse", "sort", function(Interface_) {
+		this.go$val = this;
+		this.Interface = Interface_ !== undefined ? Interface_ : null;
+	});
+	reverse.prototype.Len = function() { return this.go$val.Len(); };
+	reverse.Ptr.prototype.Len = function() { return this.Interface.Len(); };
+	reverse.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
+	reverse.Ptr.prototype.Less = function(i, j) { return this.Interface.Less(i, j); };
+	reverse.prototype.Swap = function(i, j) { return this.go$val.Swap(i, j); };
+	reverse.Ptr.prototype.Swap = function(i, j) { return this.Interface.Swap(i, j); };
+	go$pkg.reverse = reverse;
+	var IntSlice;
+	IntSlice = go$newType(0, "Slice", "sort.IntSlice", "IntSlice", "sort", null);
+	go$pkg.IntSlice = IntSlice;
+	var Float64Slice;
+	Float64Slice = go$newType(0, "Slice", "sort.Float64Slice", "Float64Slice", "sort", null);
+	go$pkg.Float64Slice = Float64Slice;
+	var StringSlice;
+	StringSlice = go$newType(0, "Slice", "sort.StringSlice", "StringSlice", "sort", null);
+	go$pkg.StringSlice = StringSlice;
+	Interface.init([["Len", "", (go$funcType([], [Go$Int], false))], ["Less", "", (go$funcType([Go$Int, Go$Int], [Go$Bool], false))], ["Swap", "", (go$funcType([Go$Int, Go$Int], [], false))]]);
+	reverse.init([["", "", Interface, ""]]);
+	reverse.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(reverse)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	IntSlice.init(Go$Int);
+	IntSlice.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Search", "", [Go$Int], [Go$Int], false], ["Sort", "", [], [], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(IntSlice)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Search", "", [Go$Int], [Go$Int], false], ["Sort", "", [], [], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	Float64Slice.init(Go$Float64);
+	Float64Slice.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Search", "", [Go$Float64], [Go$Int], false], ["Sort", "", [], [], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(Float64Slice)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Search", "", [Go$Float64], [Go$Int], false], ["Sort", "", [], [], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	StringSlice.init(Go$String);
+	StringSlice.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Search", "", [Go$String], [Go$Int], false], ["Sort", "", [], [], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(StringSlice)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Search", "", [Go$String], [Go$Int], false], ["Sort", "", [], [], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	var Search = go$pkg.Search = function(n, f) {
+		var _tuple, i, j, _q, h;
+		_tuple = [0, n], i = _tuple[0], j = _tuple[1];
+		while (i < j) {
+			h = i + (_q = ((j - i >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+			if (!f(h)) {
+				i = h + 1 >> 0;
+			} else {
+				j = h;
+			}
+		}
+		return i;
+	};
+	var SearchInts = go$pkg.SearchInts = function(a, x) {
+		return Search(a.length, (function(i) {
+			var _slice, _index;
+			return (_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= x;
+		}));
+	};
+	var SearchFloat64s = go$pkg.SearchFloat64s = function(a, x) {
+		return Search(a.length, (function(i) {
+			var _slice, _index;
+			return (_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= x;
+		}));
+	};
+	var SearchStrings = go$pkg.SearchStrings = function(a, x) {
+		return Search(a.length, (function(i) {
+			var _slice, _index;
+			return (_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= x;
+		}));
+	};
+	IntSlice.prototype.Search = function(x) {
+		var p;
+		p = this;
+		return SearchInts(go$subslice(new (go$sliceType(Go$Int))(p.array), p.offset, p.offset + p.length), x);
+	};
+	go$ptrType(IntSlice).prototype.Search = function(x) { return this.go$get().Search(x); };
+	Float64Slice.prototype.Search = function(x) {
+		var p;
+		p = this;
+		return SearchFloat64s(go$subslice(new (go$sliceType(Go$Float64))(p.array), p.offset, p.offset + p.length), x);
+	};
+	go$ptrType(Float64Slice).prototype.Search = function(x) { return this.go$get().Search(x); };
+	StringSlice.prototype.Search = function(x) {
+		var p;
+		p = this;
+		return SearchStrings(go$subslice(new (go$sliceType(Go$String))(p.array), p.offset, p.offset + p.length), x);
+	};
+	go$ptrType(StringSlice).prototype.Search = function(x) { return this.go$get().Search(x); };
+	var min = function(a, b) {
+		if (a < b) {
+			return a;
+		}
+		return b;
+	};
+	var insertionSort = function(data, a, b) {
+		var i, j;
+		i = a + 1 >> 0;
+		while (i < b) {
+			j = i;
+			while (j > a && data.Less(j, j - 1 >> 0)) {
+				data.Swap(j, j - 1 >> 0);
+				j = j - 1 >> 0;
+			}
+			i = i + 1 >> 0;
+		}
+	};
+	var siftDown = function(data, lo, hi, first) {
+		var root, x, child;
+		root = lo;
+		while (true) {
+			child = (x = 2, (((x >>> 16 << 16) * root >> 0) + (x << 16 >>> 16) * root) >> 0) + 1 >> 0;
+			if (child >= hi) {
+				break;
+			}
+			if ((child + 1 >> 0) < hi && data.Less(first + child >> 0, (first + child >> 0) + 1 >> 0)) {
+				child = child + 1 >> 0;
+			}
+			if (!data.Less(first + root >> 0, first + child >> 0)) {
+				return;
+			}
+			data.Swap(first + root >> 0, first + child >> 0);
+			root = child;
+		}
+	};
+	var heapSort = function(data, a, b) {
+		var first, lo, hi, _q, i, i$1;
+		first = a;
+		lo = 0;
+		hi = b - a >> 0;
+		i = (_q = ((hi - 1 >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+		while (i >= 0) {
+			siftDown(data, i, hi, first);
+			i = i - 1 >> 0;
+		}
+		i$1 = hi - 1 >> 0;
+		while (i$1 >= 0) {
+			data.Swap(first, first + i$1 >> 0);
+			siftDown(data, lo, i$1, first);
+			i$1 = i$1 - 1 >> 0;
+		}
+	};
+	var medianOfThree = function(data, a, b, c) {
+		var m0, m1, m2;
+		m0 = b;
+		m1 = a;
+		m2 = c;
+		if (data.Less(m1, m0)) {
+			data.Swap(m1, m0);
+		}
+		if (data.Less(m2, m1)) {
+			data.Swap(m2, m1);
+		}
+		if (data.Less(m1, m0)) {
+			data.Swap(m1, m0);
+		}
+	};
+	var swapRange = function(data, a, b, n) {
+		var i;
+		i = 0;
+		while (i < n) {
+			data.Swap(a + i >> 0, b + i >> 0);
+			i = i + 1 >> 0;
+		}
+	};
+	var doPivot = function(data, lo, hi) {
+		var midlo, midhi, _q, m, _q$1, s, x, x$1, pivot, _tuple, a, b, c, d, n, _tuple$1;
+		midlo = 0;
+		midhi = 0;
+		m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+		if ((hi - lo >> 0) > 40) {
+			s = (_q$1 = ((hi - lo >> 0)) / 8, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero"));
+			medianOfThree(data, lo, lo + s >> 0, lo + (x = 2, (((x >>> 16 << 16) * s >> 0) + (x << 16 >>> 16) * s) >> 0) >> 0);
+			medianOfThree(data, m, m - s >> 0, m + s >> 0);
+			medianOfThree(data, hi - 1 >> 0, (hi - 1 >> 0) - s >> 0, (hi - 1 >> 0) - (x$1 = 2, (((x$1 >>> 16 << 16) * s >> 0) + (x$1 << 16 >>> 16) * s) >> 0) >> 0);
+		}
+		medianOfThree(data, lo, m, hi - 1 >> 0);
+		pivot = lo;
+		_tuple = [lo + 1 >> 0, lo + 1 >> 0, hi, hi], a = _tuple[0], b = _tuple[1], c = _tuple[2], d = _tuple[3];
+		while (true) {
+			while (b < c) {
+				if (data.Less(b, pivot)) {
+					b = b + 1 >> 0;
+				} else if (!data.Less(pivot, b)) {
+					data.Swap(a, b);
+					a = a + 1 >> 0;
+					b = b + 1 >> 0;
+				} else {
+					break;
+				}
+			}
+			while (b < c) {
+				if (data.Less(pivot, c - 1 >> 0)) {
+					c = c - 1 >> 0;
+				} else if (!data.Less(c - 1 >> 0, pivot)) {
+					data.Swap(c - 1 >> 0, d - 1 >> 0);
+					c = c - 1 >> 0;
+					d = d - 1 >> 0;
+				} else {
+					break;
+				}
+			}
+			if (b >= c) {
+				break;
+			}
+			data.Swap(b, c - 1 >> 0);
+			b = b + 1 >> 0;
+			c = c - 1 >> 0;
+		}
+		n = min(b - a >> 0, a - lo >> 0);
+		swapRange(data, lo, b - n >> 0, n);
+		n = min(hi - d >> 0, d - c >> 0);
+		swapRange(data, c, hi - n >> 0, n);
+		_tuple$1 = [(lo + b >> 0) - a >> 0, hi - ((d - c >> 0)) >> 0], midlo = _tuple$1[0], midhi = _tuple$1[1];
+		return [midlo, midhi];
+	};
+	var quickSort = function(data, a, b, maxDepth) {
+		var _tuple, mlo, mhi;
+		while ((b - a >> 0) > 7) {
+			if (maxDepth === 0) {
+				heapSort(data, a, b);
+				return;
+			}
+			maxDepth = maxDepth - 1 >> 0;
+			_tuple = doPivot(data, a, b), mlo = _tuple[0], mhi = _tuple[1];
+			if ((mlo - a >> 0) < (b - mhi >> 0)) {
+				quickSort(data, a, mlo, maxDepth);
+				a = mhi;
+			} else {
+				quickSort(data, mhi, b, maxDepth);
+				b = mlo;
+			}
+		}
+		if ((b - a >> 0) > 1) {
+			insertionSort(data, a, b);
+		}
+	};
+	var Sort = go$pkg.Sort = function(data) {
+		var n, maxDepth, i, x;
+		n = data.Len();
+		maxDepth = 0;
+		i = n;
+		while (i > 0) {
+			maxDepth = maxDepth + 1 >> 0;
+			i = i >> 1 >> 0;
+		}
+		maxDepth = (x = 2, (((maxDepth >>> 16 << 16) * x >> 0) + (maxDepth << 16 >>> 16) * x) >> 0);
+		quickSort(data, 0, n, maxDepth);
+	};
+	reverse.Ptr.prototype.Less = function(i, j) {
+		var _struct, r;
+		r = (_struct = this, new reverse.Ptr(_struct.Interface));
+		return r.Interface.Less(j, i);
+	};
+	reverse.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
+	var Reverse = go$pkg.Reverse = function(data) {
+		return new reverse.Ptr(data);
+	};
+	var IsSorted = go$pkg.IsSorted = function(data) {
+		var n, i;
+		n = data.Len();
+		i = n - 1 >> 0;
+		while (i > 0) {
+			if (data.Less(i, i - 1 >> 0)) {
+				return false;
+			}
+			i = i - 1 >> 0;
+		}
+		return true;
+	};
+	IntSlice.prototype.Len = function() {
+		var p;
+		p = this;
+		return p.length;
+	};
+	go$ptrType(IntSlice).prototype.Len = function() { return this.go$get().Len(); };
+	IntSlice.prototype.Less = function(i, j) {
+		var p, _slice, _index, _slice$1, _index$1;
+		p = this;
+		return (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < (_slice$1 = p, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+	};
+	go$ptrType(IntSlice).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
+	IntSlice.prototype.Swap = function(i, j) {
+		var p, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		p = this;
+		_tuple = [(_slice = p, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = p, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	go$ptrType(IntSlice).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+	IntSlice.prototype.Sort = function() {
+		var p;
+		p = this;
+		Sort(p);
+	};
+	go$ptrType(IntSlice).prototype.Sort = function() { return this.go$get().Sort(); };
+	Float64Slice.prototype.Len = function() {
+		var p;
+		p = this;
+		return p.length;
+	};
+	go$ptrType(Float64Slice).prototype.Len = function() { return this.go$get().Len(); };
+	Float64Slice.prototype.Less = function(i, j) {
+		var p, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
+		p = this;
+		return (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < (_slice$1 = p, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) || isNaN((_slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) && !isNaN((_slice$3 = p, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")));
+	};
+	go$ptrType(Float64Slice).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
+	Float64Slice.prototype.Swap = function(i, j) {
+		var p, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		p = this;
+		_tuple = [(_slice = p, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = p, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	go$ptrType(Float64Slice).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+	var isNaN = function(f) {
+		return !((f === f));
+	};
+	Float64Slice.prototype.Sort = function() {
+		var p;
+		p = this;
+		Sort(p);
+	};
+	go$ptrType(Float64Slice).prototype.Sort = function() { return this.go$get().Sort(); };
+	StringSlice.prototype.Len = function() {
+		var p;
+		p = this;
+		return p.length;
+	};
+	go$ptrType(StringSlice).prototype.Len = function() { return this.go$get().Len(); };
+	StringSlice.prototype.Less = function(i, j) {
+		var p, _slice, _index, _slice$1, _index$1;
+		p = this;
+		return (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < (_slice$1 = p, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+	};
+	go$ptrType(StringSlice).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
+	StringSlice.prototype.Swap = function(i, j) {
+		var p, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		p = this;
+		_tuple = [(_slice = p, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = p, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	go$ptrType(StringSlice).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+	StringSlice.prototype.Sort = function() {
+		var p;
+		p = this;
+		Sort(p);
+	};
+	go$ptrType(StringSlice).prototype.Sort = function() { return this.go$get().Sort(); };
+	var Ints = go$pkg.Ints = function(a) {
+		Sort(go$subslice(new IntSlice(a.array), a.offset, a.offset + a.length));
+	};
+	var Float64s = go$pkg.Float64s = function(a) {
+		Sort(go$subslice(new Float64Slice(a.array), a.offset, a.offset + a.length));
+	};
+	var Strings = go$pkg.Strings = function(a) {
+		Sort(go$subslice(new StringSlice(a.array), a.offset, a.offset + a.length));
+	};
+	var IntsAreSorted = go$pkg.IntsAreSorted = function(a) {
+		return IsSorted(go$subslice(new IntSlice(a.array), a.offset, a.offset + a.length));
+	};
+	var Float64sAreSorted = go$pkg.Float64sAreSorted = function(a) {
+		return IsSorted(go$subslice(new Float64Slice(a.array), a.offset, a.offset + a.length));
+	};
+	var StringsAreSorted = go$pkg.StringsAreSorted = function(a) {
+		return IsSorted(go$subslice(new StringSlice(a.array), a.offset, a.offset + a.length));
+	};
+	var Stable = go$pkg.Stable = function(data) {
+		var n, blockSize, _tuple, a, b, x, _tuple$1, x$1, x$2;
+		n = data.Len();
+		blockSize = 20;
+		_tuple = [0, blockSize], a = _tuple[0], b = _tuple[1];
+		while (b <= n) {
+			insertionSort(data, a, b);
+			a = b;
+			b = b + (blockSize) >> 0;
+		}
+		insertionSort(data, a, n);
+		while (blockSize < n) {
+			_tuple$1 = [0, (x = 2, (((x >>> 16 << 16) * blockSize >> 0) + (x << 16 >>> 16) * blockSize) >> 0)], a = _tuple$1[0], b = _tuple$1[1];
+			while (b <= n) {
+				symMerge(data, a, a + blockSize >> 0, b);
+				a = b;
+				b = b + ((x$1 = 2, (((x$1 >>> 16 << 16) * blockSize >> 0) + (x$1 << 16 >>> 16) * blockSize) >> 0)) >> 0;
+			}
+			symMerge(data, a, a + blockSize >> 0, n);
+			blockSize = (x$2 = 2, (((blockSize >>> 16 << 16) * x$2 >> 0) + (blockSize << 16 >>> 16) * x$2) >> 0);
+		}
+	};
+	var symMerge = function(data, a, m, b) {
+		var _q, mid, n, start, _tuple, r, p, _q$1, c, _tuple$1, r$1, p$1, _q$2, c$1, end;
+		if (a >= m || m >= b) {
+			return;
+		}
+		mid = a + (_q = ((b - a >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+		n = mid + m >> 0;
+		start = 0;
+		if (m > mid) {
+			start = n - b >> 0;
+			_tuple = [mid, n - 1 >> 0], r = _tuple[0], p = _tuple[1];
+			while (start < r) {
+				c = start + (_q$1 = ((r - start >> 0)) / 2, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+				if (!data.Less(p - c >> 0, c)) {
+					start = c + 1 >> 0;
+				} else {
+					r = c;
+				}
+			}
+		} else {
+			start = a;
+			_tuple$1 = [m, n - 1 >> 0], r$1 = _tuple$1[0], p$1 = _tuple$1[1];
+			while (start < r$1) {
+				c$1 = start + (_q$2 = ((r$1 - start >> 0)) / 2, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+				if (!data.Less(p$1 - c$1 >> 0, c$1)) {
+					start = c$1 + 1 >> 0;
+				} else {
+					r$1 = c$1;
+				}
+			}
+		}
+		end = n - start >> 0;
+		rotate(data, start, m, end);
+		symMerge(data, a, start, mid);
+		symMerge(data, mid, end, b);
+	};
+	var rotate = function(data, a, m, b) {
+		var i, j, p;
+		i = m - a >> 0;
+		if (i === 0) {
+			return;
+		}
+		j = b - m >> 0;
+		if (j === 0) {
+			return;
+		}
+		if (i === j) {
+			swapRange(data, a, m, i);
+			return;
+		}
+		p = a + i >> 0;
+		while (!((i === j))) {
+			if (i > j) {
+				swapRange(data, p - i >> 0, p, j);
+				i = i - (j) >> 0;
+			} else {
+				swapRange(data, p - i >> 0, (p + j >> 0) - i >> 0, i);
+				j = j - (i) >> 0;
+			}
+		}
+		swapRange(data, p - i >> 0, p, i);
+	};
+	go$pkg.init = function() {
+	};

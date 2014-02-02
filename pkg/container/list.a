@@ -1,0 +1,240 @@
+0‚%Ù‚4package list
+type @"".Element struct { @"".next *@"".Element; @"".prev *@"".Element; @"".list *@"".List; @"".Value interface {  } }
+func (? *@"".Element) @"".Next() (? *@"".Element)
+func (? *@"".Element) @"".Prev() (? *@"".Element)
+type @"".List struct { @"".root @"".Element; @"".len int }
+func (? *@"".List) @"".Back() (? *@"".Element)
+func (? *@"".List) @"".Front() (? *@"".Element)
+func (? *@"".List) @"".Init() (? *@"".List)
+func (? *@"".List) @"".InsertAfter(@"".v interface {  }, @"".mark *@"".Element) (? *@"".Element)
+func (? *@"".List) @"".InsertBefore(@"".v interface {  }, @"".mark *@"".Element) (? *@"".Element)
+func (? *@"".List) @"".Len() (? int)
+func (? *@"".List) @"".MoveAfter(@"".e *@"".Element, @"".mark *@"".Element) ()
+func (? *@"".List) @"".MoveBefore(@"".e *@"".Element, @"".mark *@"".Element) ()
+func (? *@"".List) @"".MoveToBack(@"".e *@"".Element) ()
+func (? *@"".List) @"".MoveToFront(@"".e *@"".Element) ()
+func (? *@"".List) @"".PushBack(@"".v interface {  }) (? *@"".Element)
+func (? *@"".List) @"".PushBackList(@"".other *@"".List) ()
+func (? *@"".List) @"".PushFront(@"".v interface {  }) (? *@"".Element)
+func (? *@"".List) @"".PushFrontList(@"".other *@"".List) ()
+func (? *@"".List) @"".Remove(@"".e *@"".Element) (? interface {  })
+func (? *@"".List) @"".insert(@"".e *@"".Element, @"".at *@"".Element) (? *@"".Element)
+func (? *@"".List) @"".insertValue(@"".v interface {  }, @"".at *@"".Element) (? *@"".Element)
+func (? *@"".List) @"".lazyInit() ()
+func (? *@"".List) @"".remove(@"".e *@"".Element) (? *@"".Element)
+func @"".New() (? *@"".List)
+$$
+0runtimecontainer/list‚‚	var Element;
+	Element = go$newType(0, "Struct", "list.Element", "Element", "container/list", function(next_, prev_, list_, Value_) {
+		this.go$val = this;
+		this.next = next_ !== undefined ? next_ : (go$ptrType(Element)).nil;
+		this.prev = prev_ !== undefined ? prev_ : (go$ptrType(Element)).nil;
+		this.list = list_ !== undefined ? list_ : (go$ptrType(List)).nil;
+		this.Value = Value_ !== undefined ? Value_ : null;
+	});
+	go$pkg.Element = Element;
+	var List;
+	List = go$newType(0, "Struct", "list.List", "List", "container/list", function(root_, len_) {
+		this.go$val = this;
+		this.root = root_ !== undefined ? root_ : new Element.Ptr();
+		this.len = len_ !== undefined ? len_ : 0;
+	});
+	go$pkg.List = List;
+	Element.init([["next", "container/list", (go$ptrType(Element)), ""], ["prev", "container/list", (go$ptrType(Element)), ""], ["list", "container/list", (go$ptrType(List)), ""], ["Value", "", go$emptyInterface, ""]]);
+	(go$ptrType(Element)).methods = [["Next", "", [], [(go$ptrType(Element))], false], ["Prev", "", [], [(go$ptrType(Element))], false]];
+	List.init([["root", "container/list", Element, ""], ["len", "container/list", Go$Int, ""]]);
+	(go$ptrType(List)).methods = [["Back", "", [], [(go$ptrType(Element))], false], ["Front", "", [], [(go$ptrType(Element))], false], ["Init", "", [], [(go$ptrType(List))], false], ["InsertAfter", "", [go$emptyInterface, (go$ptrType(Element))], [(go$ptrType(Element))], false], ["InsertBefore", "", [go$emptyInterface, (go$ptrType(Element))], [(go$ptrType(Element))], false], ["Len", "", [], [Go$Int], false], ["MoveAfter", "", [(go$ptrType(Element)), (go$ptrType(Element))], [], false], ["MoveBefore", "", [(go$ptrType(Element)), (go$ptrType(Element))], [], false], ["MoveToBack", "", [(go$ptrType(Element))], [], false], ["MoveToFront", "", [(go$ptrType(Element))], [], false], ["PushBack", "", [go$emptyInterface], [(go$ptrType(Element))], false], ["PushBackList", "", [(go$ptrType(List))], [], false], ["PushFront", "", [go$emptyInterface], [(go$ptrType(Element))], false], ["PushFrontList", "", [(go$ptrType(List))], [], false], ["Remove", "", [(go$ptrType(Element))], [go$emptyInterface], false], ["insert", "container/list", [(go$ptrType(Element)), (go$ptrType(Element))], [(go$ptrType(Element))], false], ["insertValue", "container/list", [go$emptyInterface, (go$ptrType(Element))], [(go$ptrType(Element))], false], ["lazyInit", "container/list", [], [], false], ["remove", "container/list", [(go$ptrType(Element))], [(go$ptrType(Element))], false]];
+	Element.Ptr.prototype.Next = function() {
+		var e, p;
+		e = this;
+		if (p = e.next, !(e.list === (go$ptrType(List)).nil) && !(p === e.list.root)) {
+			return p;
+		}
+		return (go$ptrType(Element)).nil;
+	};
+	Element.prototype.Next = function() { return this.go$val.Next(); };
+	Element.Ptr.prototype.Prev = function() {
+		var e, p;
+		e = this;
+		if (p = e.prev, !(e.list === (go$ptrType(List)).nil) && !(p === e.list.root)) {
+			return p;
+		}
+		return (go$ptrType(Element)).nil;
+	};
+	Element.prototype.Prev = function() { return this.go$val.Prev(); };
+	List.Ptr.prototype.Init = function() {
+		var l;
+		l = this;
+		l.root.next = l.root;
+		l.root.prev = l.root;
+		l.len = 0;
+		return l;
+	};
+	List.prototype.Init = function() { return this.go$val.Init(); };
+	var New = go$pkg.New = function() {
+		return new List.Ptr().Init();
+	};
+	List.Ptr.prototype.Len = function() {
+		var l;
+		l = this;
+		return l.len;
+	};
+	List.prototype.Len = function() { return this.go$val.Len(); };
+	List.Ptr.prototype.Front = function() {
+		var l;
+		l = this;
+		if (l.len === 0) {
+			return (go$ptrType(Element)).nil;
+		}
+		return l.root.next;
+	};
+	List.prototype.Front = function() { return this.go$val.Front(); };
+	List.Ptr.prototype.Back = function() {
+		var l;
+		l = this;
+		if (l.len === 0) {
+			return (go$ptrType(Element)).nil;
+		}
+		return l.root.prev;
+	};
+	List.prototype.Back = function() { return this.go$val.Back(); };
+	List.Ptr.prototype.lazyInit = function() {
+		var l;
+		l = this;
+		if (l.root.next === (go$ptrType(Element)).nil) {
+			l.Init();
+		}
+	};
+	List.prototype.lazyInit = function() { return this.go$val.lazyInit(); };
+	List.Ptr.prototype.insert = function(e, at) {
+		var l, n;
+		l = this;
+		n = at.next;
+		at.next = e;
+		e.prev = at;
+		e.next = n;
+		n.prev = e;
+		e.list = l;
+		l.len = l.len + 1 >> 0;
+		return e;
+	};
+	List.prototype.insert = function(e, at) { return this.go$val.insert(e, at); };
+	List.Ptr.prototype.insertValue = function(v, at) {
+		var l;
+		l = this;
+		return l.insert(new Element.Ptr((go$ptrType(Element)).nil, (go$ptrType(Element)).nil, (go$ptrType(List)).nil, v), at);
+	};
+	List.prototype.insertValue = function(v, at) { return this.go$val.insertValue(v, at); };
+	List.Ptr.prototype.remove = function(e) {
+		var l;
+		l = this;
+		e.prev.next = e.next;
+		e.next.prev = e.prev;
+		e.next = (go$ptrType(Element)).nil;
+		e.prev = (go$ptrType(Element)).nil;
+		e.list = (go$ptrType(List)).nil;
+		l.len = l.len - 1 >> 0;
+		return e;
+	};
+	List.prototype.remove = function(e) { return this.go$val.remove(e); };
+	List.Ptr.prototype.Remove = function(e) {
+		var l;
+		l = this;
+		if (e.list === l) {
+			l.remove(e);
+		}
+		return e.Value;
+	};
+	List.prototype.Remove = function(e) { return this.go$val.Remove(e); };
+	List.Ptr.prototype.PushFront = function(v) {
+		var l;
+		l = this;
+		l.lazyInit();
+		return l.insertValue(v, l.root);
+	};
+	List.prototype.PushFront = function(v) { return this.go$val.PushFront(v); };
+	List.Ptr.prototype.PushBack = function(v) {
+		var l;
+		l = this;
+		l.lazyInit();
+		return l.insertValue(v, l.root.prev);
+	};
+	List.prototype.PushBack = function(v) { return this.go$val.PushBack(v); };
+	List.Ptr.prototype.InsertBefore = function(v, mark) {
+		var l;
+		l = this;
+		if (!(mark.list === l)) {
+			return (go$ptrType(Element)).nil;
+		}
+		return l.insertValue(v, mark.prev);
+	};
+	List.prototype.InsertBefore = function(v, mark) { return this.go$val.InsertBefore(v, mark); };
+	List.Ptr.prototype.InsertAfter = function(v, mark) {
+		var l;
+		l = this;
+		if (!(mark.list === l)) {
+			return (go$ptrType(Element)).nil;
+		}
+		return l.insertValue(v, mark);
+	};
+	List.prototype.InsertAfter = function(v, mark) { return this.go$val.InsertAfter(v, mark); };
+	List.Ptr.prototype.MoveToFront = function(e) {
+		var l;
+		l = this;
+		if (!(e.list === l) || l.root.next === e) {
+			return;
+		}
+		l.insert(l.remove(e), l.root);
+	};
+	List.prototype.MoveToFront = function(e) { return this.go$val.MoveToFront(e); };
+	List.Ptr.prototype.MoveToBack = function(e) {
+		var l;
+		l = this;
+		if (!(e.list === l) || l.root.prev === e) {
+			return;
+		}
+		l.insert(l.remove(e), l.root.prev);
+	};
+	List.prototype.MoveToBack = function(e) { return this.go$val.MoveToBack(e); };
+	List.Ptr.prototype.MoveBefore = function(e, mark) {
+		var l;
+		l = this;
+		if (!(e.list === l) || e === mark) {
+			return;
+		}
+		l.insert(l.remove(e), mark.prev);
+	};
+	List.prototype.MoveBefore = function(e, mark) { return this.go$val.MoveBefore(e, mark); };
+	List.Ptr.prototype.MoveAfter = function(e, mark) {
+		var l;
+		l = this;
+		if (!(e.list === l) || e === mark) {
+			return;
+		}
+		l.insert(l.remove(e), mark);
+	};
+	List.prototype.MoveAfter = function(e, mark) { return this.go$val.MoveAfter(e, mark); };
+	List.Ptr.prototype.PushBackList = function(other) {
+		var l, _tuple, i, e, _tuple$1;
+		l = this;
+		l.lazyInit();
+		_tuple = [other.Len(), other.Front()], i = _tuple[0], e = _tuple[1];
+		while (i > 0) {
+			l.insertValue(e.Value, l.root.prev);
+			_tuple$1 = [i - 1 >> 0, e.Next()], i = _tuple$1[0], e = _tuple$1[1];
+		}
+	};
+	List.prototype.PushBackList = function(other) { return this.go$val.PushBackList(other); };
+	List.Ptr.prototype.PushFrontList = function(other) {
+		var l, _tuple, i, e, _tuple$1;
+		l = this;
+		l.lazyInit();
+		_tuple = [other.Len(), other.Back()], i = _tuple[0], e = _tuple[1];
+		while (i > 0) {
+			l.insertValue(e.Value, l.root);
+			_tuple$1 = [i - 1 >> 0, e.Prev()], i = _tuple$1[0], e = _tuple$1[1];
+		}
+	};
+	List.prototype.PushFrontList = function(other) { return this.go$val.PushFrontList(other); };
+	go$pkg.init = function() {
+	};

@@ -1,0 +1,3235 @@
+0ƒê$‚hèpackage xml
+import bufio "bufio"
+import bytes "bytes"
+import encoding "encoding"
+import fmt "fmt"
+import io "io"
+import reflect "reflect"
+import strconv "strconv"
+import strings "strings"
+import errors "errors"
+import sync "sync"
+import unicode "unicode"
+import utf8 "unicode/utf8"
+type @"".Attr struct { @"".Name @"".Name; @"".Value string }
+type @"".CharData []byte
+func (? @"".CharData) @"".Copy() (? @"".CharData)
+func (? *@"".CharData) @"".Copy() (? @"".CharData)
+type @"".Comment []byte
+func (? @"".Comment) @"".Copy() (? @"".Comment)
+func (? *@"".Comment) @"".Copy() (? @"".Comment)
+func @"".CopyToken(@"".t @"".Token) (? @"".Token)
+type @"".Decoder struct { @"".Strict bool; @"".AutoClose []string; @"".Entity map[string]string; @"".CharsetReader func (@"".charset string, @"".input @"io".Reader) (? @"io".Reader, ? error); @"".DefaultSpace string; @"".r @"io".ByteReader; @"".buf @"bytes".Buffer; @"".saved *@"bytes".Buffer; @"".stk *@"".stack; @"".free *@"".stack; @"".needClose bool; @"".toClose @"".Name; @"".nextToken @"".Token; @"".nextByte int; @"".ns map[string]string; @"".err error; @"".line int; @"".unmarshalDepth int }
+func (? *@"".Decoder) @"".Decode(@"".v interface {  }) (? error)
+func (? *@"".Decoder) @"".DecodeElement(@"".v interface {  }, @"".start *@"".StartElement) (? error)
+func (? *@"".Decoder) @"".RawToken() (? @"".Token, ? error)
+func (? *@"".Decoder) @"".Skip() (? error)
+func (? *@"".Decoder) @"".Token() (@"".t @"".Token, @"".err error)
+func (? *@"".Decoder) @"".attrval() (? []byte)
+func (? *@"".Decoder) @"".autoClose(@"".t @"".Token) (? @"".Token, ? bool)
+func (? *@"".Decoder) @"".getc() (@"".b byte, @"".ok bool)
+func (? *@"".Decoder) @"".mustgetc() (@"".b byte, @"".ok bool)
+func (? *@"".Decoder) @"".name() (@"".s string, @"".ok bool)
+func (? *@"".Decoder) @"".nsname() (@"".name @"".Name, @"".ok bool)
+func (? *@"".Decoder) @"".pop() (? *@"".stack)
+func (? *@"".Decoder) @"".popEOF() (? bool)
+func (? *@"".Decoder) @"".popElement(@"".t *@"".EndElement) (? bool)
+func (? *@"".Decoder) @"".push(@"".kind int) (? *@"".stack)
+func (? *@"".Decoder) @"".pushEOF() ()
+func (? *@"".Decoder) @"".pushElement(@"".name @"".Name) ()
+func (? *@"".Decoder) @"".pushNs(@"".local string, @"".url string, @"".ok bool) ()
+func (? *@"".Decoder) @"".rawToken() (? @"".Token, ? error)
+func (? *@"".Decoder) @"".readName() (@"".ok bool)
+func (? *@"".Decoder) @"".savedOffset() (? int)
+func (? *@"".Decoder) @"".space() ()
+func (? *@"".Decoder) @"".switchToReader(@"".r @"io".Reader) ()
+func (? *@"".Decoder) @"".syntaxError(@"".msg string) (? error)
+func (? *@"".Decoder) @"".text(@"".quote int, @"".cdata bool) (? []byte)
+func (? *@"".Decoder) @"".translate(@"".n *@"".Name, @"".isElementName bool) ()
+func (? *@"".Decoder) @"".ungetc(@"".b byte) ()
+func (? *@"".Decoder) @"".unmarshal(@"".val @"reflect".Value, @"".start *@"".StartElement) (? error)
+func (? *@"".Decoder) @"".unmarshalAttr(@"".val @"reflect".Value, @"".attr @"".Attr) (? error)
+func (? *@"".Decoder) @"".unmarshalInterface(@"".val @"".Unmarshaler, @"".start *@"".StartElement) (? error)
+func (? *@"".Decoder) @"".unmarshalPath(@"".tinfo *@"".typeInfo, @"".sv @"reflect".Value, @"".parents []string, @"".start *@"".StartElement) (@"".consumed bool, @"".err error)
+func (? *@"".Decoder) @"".unmarshalTextInterface(@"".val @"encoding".TextUnmarshaler, @"".start *@"".StartElement) (? error)
+type @"".Directive []byte
+func (? @"".Directive) @"".Copy() (? @"".Directive)
+func (? *@"".Directive) @"".Copy() (? @"".Directive)
+type @"".Encoder struct { @"".p @"".printer }
+func (? *@"".Encoder) @"".Encode(@"".v interface {  }) (? error)
+func (? *@"".Encoder) @"".EncodeElement(@"".v interface {  }, @"".start @"".StartElement) (? error)
+func (? *@"".Encoder) @"".EncodeToken(@"".t @"".Token) (? error)
+func (? *@"".Encoder) @"".Flush() (? error)
+func (? *@"".Encoder) @"".Indent(@"".prefix string, @"".indent string) ()
+type @"".EndElement struct { @"".Name @"".Name }
+func @"".Escape(@"".w @"io".Writer, @"".s []byte) ()
+func @"".EscapeText(@"".w @"io".Writer, @"".s []byte) (? error)
+var @"".HTMLAutoClose []string
+var @"".HTMLEntity map[string]string
+const @"".Header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+func @"".Marshal(@"".v interface {  }) (? []byte, ? error)
+func @"".MarshalIndent(@"".v interface {  }, @"".prefix string, @"".indent string) (? []byte, ? error)
+type @"".Marshaler interface { @"".MarshalXML(@"".e *@"".Encoder, @"".start @"".StartElement) (? error) }
+type @"".MarshalerAttr interface { @"".MarshalXMLAttr(@"".name @"".Name) (? @"".Attr, ? error) }
+type @"".Name struct { @"".Space string; @"".Local string }
+func @"".NewDecoder(@"".r @"io".Reader) (? *@"".Decoder)
+func @"".NewEncoder(@"".w @"io".Writer) (? *@"".Encoder)
+type @"".ProcInst struct { @"".Target string; @"".Inst []byte }
+func (? @"".ProcInst) @"".Copy() (? @"".ProcInst)
+func (? *@"".ProcInst) @"".Copy() (? @"".ProcInst)
+type @"".StartElement struct { @"".Name @"".Name; @"".Attr []@"".Attr }
+func (? @"".StartElement) @"".Copy() (? @"".StartElement)
+func (? @"".StartElement) @"".End() (? @"".EndElement)
+func (? *@"".StartElement) @"".Copy() (? @"".StartElement)
+func (? *@"".StartElement) @"".End() (? @"".EndElement)
+type @"".SyntaxError struct { @"".Msg string; @"".Line int }
+func (? *@"".SyntaxError) @"".Error() (? string)
+type @"".TagPathError struct { @"".Struct @"reflect".Type; @"".Field1 string; @"".Tag1 string; @"".Field2 string; @"".Tag2 string }
+func (? *@"".TagPathError) @"".Error() (? string)
+type @"".Token interface {  }
+func @"".Unmarshal(@"".data []byte, @"".v interface {  }) (? error)
+type @"".UnmarshalError string
+func (? @"".UnmarshalError) @"".Error() (? string)
+func (? *@"".UnmarshalError) @"".Error() (? string)
+type @"".Unmarshaler interface { @"".UnmarshalXML(@"".d *@"".Decoder, @"".start @"".StartElement) (? error) }
+type @"".UnmarshalerAttr interface { @"".UnmarshalXMLAttr(@"".attr @"".Attr) (? error) }
+type @"".UnsupportedTypeError struct { @"".Type @"reflect".Type }
+func (? *@"".UnsupportedTypeError) @"".Error() (? string)
+type @"".fieldFlags int
+type @"".fieldInfo struct { @"".idx []int; @"".name string; @"".xmlns string; @"".flags @"".fieldFlags; @"".parents []string }
+func (? *@"".fieldInfo) @"".value(@"".v @"reflect".Value) (? @"reflect".Value)
+type @"".parentStack struct { @"".p *@"".printer; @"".stack []string }
+func (? *@"".parentStack) @"".push(@"".parents []string) (? error)
+func (? *@"".parentStack) @"".trim(@"".parents []string) (? error)
+type @"".printer struct { ? *@"bufio".Writer; @"".encoder *@"".Encoder; @"".seq int; @"".indent string; @"".prefix string; @"".depth int; @"".indentedIn bool; @"".putNewline bool; @"".attrNS map[string]string; @"".attrPrefix map[string]string; @"".prefixes []string; @"".tags []@"".Name }
+func (? *@"".printer) @"".EscapeString(@"".s string) ()
+func (? *@"".printer) @"".cachedWriteError() (? error)
+func (? *@"".printer) @"".createAttrPrefix(@"".url string) (? string)
+func (? *@"".printer) @"".deleteAttrPrefix(@"".prefix string) ()
+func (? *@"".printer) @"".markPrefix() ()
+func (? *@"".printer) @"".marshalInterface(@"".val @"".Marshaler, @"".start @"".StartElement) (? error)
+func (? *@"".printer) @"".marshalSimple(@"".typ @"reflect".Type, @"".val @"reflect".Value) (? string, ? []byte, ? error)
+func (? *@"".printer) @"".marshalStruct(@"".tinfo *@"".typeInfo, @"".val @"reflect".Value) (? error)
+func (? *@"".printer) @"".marshalTextInterface(@"".val @"encoding".TextMarshaler, @"".start @"".StartElement) (? error)
+func (? *@"".printer) @"".marshalValue(@"".val @"reflect".Value, @"".finfo *@"".fieldInfo, @"".startTemplate *@"".StartElement) (? error)
+func (? *@"".printer) @"".popPrefix() ()
+func (? *@"".printer) @"".writeEnd(@"".name @"".Name) (? error)
+func (? *@"".printer) @"".writeIndent(@"".depthDelta int) ()
+func (? *@"".printer) @"".writeStart(@"".start *@"".StartElement) (? error)
+type @"".stack struct { @"".next *@"".stack; @"".kind int; @"".name @"".Name; @"".ok bool }
+type @"".typeInfo struct { @"".xmlname *@"".fieldInfo; @"".fields []@"".fieldInfo }
+type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"io".ByteReader interface { @"io".ReadByte() (@"".c byte, @"".err error) }
+type @"bytes".Buffer struct { @"bytes".buf []byte; @"bytes".off int; @"bytes".runeBytes [4]byte; @"bytes".bootstrap [64]byte; @"bytes".lastRead @"bytes".readOp }
+func (? *@"bytes".Buffer) @"bytes".Bytes() (? []byte)
+func (? *@"bytes".Buffer) @"bytes".Grow(@"".n int) ()
+func (? *@"bytes".Buffer) @"bytes".Len() (? int)
+func (? *@"bytes".Buffer) @"bytes".Next(@"".n int) (? []byte)
+func (? *@"bytes".Buffer) @"bytes".Read(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadByte() (@"".c byte, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadBytes(@"".delim byte) (@"".line []byte, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadFrom(@"".r @"io".Reader) (@"".n int64, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadRune() (@"".r rune, @"".size int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".ReadString(@"".delim byte) (@"".line string, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".Reset() ()
+func (? *@"bytes".Buffer) @"bytes".String() (? string)
+func (? *@"bytes".Buffer) @"bytes".Truncate(@"".n int) ()
+func (? *@"bytes".Buffer) @"bytes".UnreadByte() (? error)
+func (? *@"bytes".Buffer) @"bytes".UnreadRune() (? error)
+func (? *@"bytes".Buffer) @"bytes".Write(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteByte(@"".c byte) (? error)
+func (? *@"bytes".Buffer) @"bytes".WriteRune(@"".r rune) (@"".n int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteString(@"".s string) (@"".n int, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".WriteTo(@"".w @"io".Writer) (@"".n int64, @"".err error)
+func (? *@"bytes".Buffer) @"bytes".grow(@"".n int) (? int)
+func (? *@"bytes".Buffer) @"bytes".readSlice(@"".delim byte) (@"".line []byte, @"".err error)
+type @"reflect".Value struct { @"reflect".typ *@"reflect".rtype; @"reflect".val @"unsafe".Pointer; ? @"reflect".flag }
+func (? @"reflect".Value) @"reflect".Addr() (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Bool() (? bool)
+func (? @"reflect".Value) @"reflect".Bytes() (? []byte)
+func (? @"reflect".Value) @"reflect".Call(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".CallSlice(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".CanAddr() (? bool)
+func (? @"reflect".Value) @"reflect".CanInterface() (? bool)
+func (? @"reflect".Value) @"reflect".CanSet() (? bool)
+func (? @"reflect".Value) @"reflect".Cap() (? int)
+func (? @"reflect".Value) @"reflect".Close() ()
+func (? @"reflect".Value) @"reflect".Complex() (? complex128)
+func (? @"reflect".Value) @"reflect".Convert(@"".t @"reflect".Type) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Elem() (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Field(@"".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByIndex(@"".index []int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByName(@"".name string) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Float() (? float64)
+func (? @"reflect".Value) @"reflect".Index(@"".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Int() (? int64)
+func (? @"reflect".Value) @"reflect".Interface() (@"".i interface {  })
+func (? @"reflect".Value) @"reflect".InterfaceData() (? [2]uintptr)
+func (? @"reflect".Value) @"reflect".IsNil() (? bool)
+func (? @"reflect".Value) @"reflect".IsValid() (? bool)
+func (? @"reflect".Value) @"reflect".Kind() (? @"reflect".Kind)
+func (? @"reflect".Value) @"reflect".Len() (? int)
+func (? @"reflect".Value) @"reflect".MapIndex(@"".key @"reflect".Value) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".MapKeys() (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".Method(@"".i int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".MethodByName(@"".name string) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".NumField() (? int)
+func (? @"reflect".Value) @"reflect".NumMethod() (? int)
+func (? @"reflect".Value) @"reflect".OverflowComplex(@"".x complex128) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowFloat(@"".x float64) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowInt(@"".x int64) (? bool)
+func (? @"reflect".Value) @"reflect".OverflowUint(@"".x uint64) (? bool)
+func (? @"reflect".Value) @"reflect".Pointer() (? uintptr)
+func (? @"reflect".Value) @"reflect".Recv() (@"".x @"reflect".Value, @"".ok bool)
+func (? @"reflect".Value) @"reflect".Send(@"".x @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".Set(@"".x @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".SetBool(@"".x bool) ()
+func (? @"reflect".Value) @"reflect".SetBytes(@"".x []byte) ()
+func (? @"reflect".Value) @"reflect".SetCap(@"".n int) ()
+func (? @"reflect".Value) @"reflect".SetComplex(@"".x complex128) ()
+func (? @"reflect".Value) @"reflect".SetFloat(@"".x float64) ()
+func (? @"reflect".Value) @"reflect".SetInt(@"".x int64) ()
+func (? @"reflect".Value) @"reflect".SetLen(@"".n int) ()
+func (? @"reflect".Value) @"reflect".SetMapIndex(@"".key @"reflect".Value, @"".val @"reflect".Value) ()
+func (? @"reflect".Value) @"reflect".SetPointer(@"".x @"unsafe".Pointer) ()
+func (? @"reflect".Value) @"reflect".SetString(@"".x string) ()
+func (? @"reflect".Value) @"reflect".SetUint(@"".x uint64) ()
+func (? @"reflect".Value) @"reflect".Slice(@"".i int, @"".j int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".Slice3(@"".i int, @"".j int, @"".k int) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".String() (? string)
+func (? @"reflect".Value) @"reflect".TryRecv() (@"".x @"reflect".Value, @"".ok bool)
+func (? @"reflect".Value) @"reflect".TrySend(@"".x @"reflect".Value) (? bool)
+func (? @"reflect".Value) @"reflect".Type() (? @"reflect".Type)
+func (? @"reflect".Value) @"reflect".Uint() (? uint64)
+func (? @"reflect".Value) @"reflect".UnsafeAddr() (? uintptr)
+func (? @"reflect".Value) @"reflect".assignTo(@"".context string, @"".dst *@"reflect".rtype, @"".target *interface {  }) (? @"reflect".Value)
+func (? @"reflect".Value) @"reflect".call(@"".op string, @"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? @"reflect".Value) @"reflect".iword() (? @"reflect".iword)
+func (? @"reflect".Value) @"reflect".recv(@"".nb bool) (@"".val @"reflect".Value, @"".ok bool)
+func (? @"reflect".Value) @"reflect".runes() (? []rune)
+func (? @"reflect".Value) @"reflect".send(@"".x @"reflect".Value, @"".nb bool) (@"".selected bool)
+func (? @"reflect".Value) @"reflect".setRunes(@"".x []rune) ()
+func (? *@"reflect".Value) @"reflect".Addr() (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Bool() (? bool)
+func (? *@"reflect".Value) @"reflect".Bytes() (? []byte)
+func (? *@"reflect".Value) @"reflect".Call(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".CallSlice(@"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".CanAddr() (? bool)
+func (? *@"reflect".Value) @"reflect".CanInterface() (? bool)
+func (? *@"reflect".Value) @"reflect".CanSet() (? bool)
+func (? *@"reflect".Value) @"reflect".Cap() (? int)
+func (? *@"reflect".Value) @"reflect".Close() ()
+func (? *@"reflect".Value) @"reflect".Complex() (? complex128)
+func (? *@"reflect".Value) @"reflect".Convert(@"".t @"reflect".Type) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Elem() (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Field(@"".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByIndex(@"".index []int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByName(@"".name string) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Float() (? float64)
+func (? *@"reflect".Value) @"reflect".Index(@"".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Int() (? int64)
+func (? *@"reflect".Value) @"reflect".Interface() (@"".i interface {  })
+func (? *@"reflect".Value) @"reflect".InterfaceData() (? [2]uintptr)
+func (? *@"reflect".Value) @"reflect".IsNil() (? bool)
+func (? *@"reflect".Value) @"reflect".IsValid() (? bool)
+func (? *@"reflect".Value) @"reflect".Kind() (? @"reflect".Kind)
+func (? *@"reflect".Value) @"reflect".Len() (? int)
+func (? *@"reflect".Value) @"reflect".MapIndex(@"".key @"reflect".Value) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".MapKeys() (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Method(@"".i int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".MethodByName(@"".name string) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".NumField() (? int)
+func (? *@"reflect".Value) @"reflect".NumMethod() (? int)
+func (? *@"reflect".Value) @"reflect".OverflowComplex(@"".x complex128) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowFloat(@"".x float64) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowInt(@"".x int64) (? bool)
+func (? *@"reflect".Value) @"reflect".OverflowUint(@"".x uint64) (? bool)
+func (? *@"reflect".Value) @"reflect".Pointer() (? uintptr)
+func (? *@"reflect".Value) @"reflect".Recv() (@"".x @"reflect".Value, @"".ok bool)
+func (? *@"reflect".Value) @"reflect".Send(@"".x @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".Set(@"".x @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".SetBool(@"".x bool) ()
+func (? *@"reflect".Value) @"reflect".SetBytes(@"".x []byte) ()
+func (? *@"reflect".Value) @"reflect".SetCap(@"".n int) ()
+func (? *@"reflect".Value) @"reflect".SetComplex(@"".x complex128) ()
+func (? *@"reflect".Value) @"reflect".SetFloat(@"".x float64) ()
+func (? *@"reflect".Value) @"reflect".SetInt(@"".x int64) ()
+func (? *@"reflect".Value) @"reflect".SetLen(@"".n int) ()
+func (? *@"reflect".Value) @"reflect".SetMapIndex(@"".key @"reflect".Value, @"".val @"reflect".Value) ()
+func (? *@"reflect".Value) @"reflect".SetPointer(@"".x @"unsafe".Pointer) ()
+func (? *@"reflect".Value) @"reflect".SetString(@"".x string) ()
+func (? *@"reflect".Value) @"reflect".SetUint(@"".x uint64) ()
+func (? *@"reflect".Value) @"reflect".Slice(@"".i int, @"".j int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".Slice3(@"".i int, @"".j int, @"".k int) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".String() (? string)
+func (? *@"reflect".Value) @"reflect".TryRecv() (@"".x @"reflect".Value, @"".ok bool)
+func (? *@"reflect".Value) @"reflect".TrySend(@"".x @"reflect".Value) (? bool)
+func (? *@"reflect".Value) @"reflect".Type() (? @"reflect".Type)
+func (? *@"reflect".Value) @"reflect".Uint() (? uint64)
+func (? *@"reflect".Value) @"reflect".UnsafeAddr() (? uintptr)
+func (? *@"reflect".Value) @"reflect".assignTo(@"".context string, @"".dst *@"reflect".rtype, @"".target *interface {  }) (? @"reflect".Value)
+func (? *@"reflect".Value) @"reflect".call(@"".op string, @"".in []@"reflect".Value) (? []@"reflect".Value)
+func (? *@"reflect".Value) @"reflect".iword() (? @"reflect".iword)
+func (? *@"reflect".Value) @"reflect".recv(@"".nb bool) (@"".val @"reflect".Value, @"".ok bool)
+func (? *@"reflect".Value) @"reflect".runes() (? []rune)
+func (? *@"reflect".Value) @"reflect".send(@"".x @"reflect".Value, @"".nb bool) (@"".selected bool)
+func (? *@"reflect".Value) @"reflect".setRunes(@"".x []rune) ()
+type @"encoding".TextUnmarshaler interface { @"encoding".UnmarshalText(@"encoding".text []byte) (? error) }
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"reflect".Type interface { @"reflect".Align() (? int); @"reflect".AssignableTo(@"".u @"reflect".Type) (? bool); @"reflect".Bits() (? int); @"reflect".ChanDir() (? @"reflect".ChanDir); @"reflect".ConvertibleTo(@"".u @"reflect".Type) (? bool); @"reflect".Elem() (? @"reflect".Type); @"reflect".Field(@"".i int) (? @"reflect".StructField); @"reflect".FieldAlign() (? int); @"reflect".FieldByIndex(@"".index []int) (? @"reflect".StructField); @"reflect".FieldByName(@"".name string) (? @"reflect".StructField, ? bool); @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".StructField, ? bool); @"reflect".Implements(@"".u @"reflect".Type) (? bool); @"reflect".In(@"".i int) (? @"reflect".Type); @"reflect".IsVariadic() (? bool); @"reflect".Key() (? @"reflect".Type); @"reflect".Kind() (? @"reflect".Kind); @"reflect".Len() (? int); @"reflect".Method(? int) (? @"reflect".Method); @"reflect".MethodByName(? string) (? @"reflect".Method, ? bool); @"reflect".Name() (? string); @"reflect".NumField() (? int); @"reflect".NumIn() (? int); @"reflect".NumMethod() (? int); @"reflect".NumOut() (? int); @"reflect".Out(@"".i int) (? @"reflect".Type); @"reflect".PkgPath() (? string); @"reflect".Size() (? uintptr); @"reflect".String() (? string); @"reflect".common() (? *@"reflect".rtype); @"reflect".uncommon() (? *@"reflect".uncommonType) }
+type @"bufio".Writer struct { @"bufio".err error; @"bufio".buf []byte; @"bufio".n int; @"bufio".wr @"io".Writer }
+func (? *@"bufio".Writer) @"bufio".Available() (? int)
+func (? *@"bufio".Writer) @"bufio".Buffered() (? int)
+func (? *@"bufio".Writer) @"bufio".Flush() (? error)
+func (? *@"bufio".Writer) @"bufio".ReadFrom(@"".r @"io".Reader) (@"".n int64, @"".err error)
+func (? *@"bufio".Writer) @"bufio".Reset(@"".w @"io".Writer) ()
+func (? *@"bufio".Writer) @"bufio".Write(@"".p []byte) (@"".nn int, @"".err error)
+func (? *@"bufio".Writer) @"bufio".WriteByte(@"".c byte) (? error)
+func (? *@"bufio".Writer) @"bufio".WriteRune(@"".r rune) (@"".size int, @"".err error)
+func (? *@"bufio".Writer) @"bufio".WriteString(@"".s string) (? int, ? error)
+func (? *@"bufio".Writer) @"bufio".flush() (? error)
+type @"encoding".TextMarshaler interface { @"encoding".MarshalText() (@"encoding".text []byte, @"encoding".err error) }
+type @"bytes".readOp int
+type @"reflect".rtype struct { @"reflect".size uintptr; @"reflect".hash uint32; _ uint8; @"reflect".align uint8; @"reflect".fieldAlign uint8; @"reflect".kind uint8; @"reflect".alg *uintptr; @"reflect".gc @"unsafe".Pointer; @"reflect".string *string; ? *@"reflect".uncommonType; @"reflect".ptrToThis *@"reflect".rtype }
+func (? *@"reflect".rtype) @"reflect".Align() (? int)
+func (? *@"reflect".rtype) @"reflect".AssignableTo(@"".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".Bits() (? int)
+func (? *@"reflect".rtype) @"reflect".ChanDir() (? @"reflect".ChanDir)
+func (? *@"reflect".rtype) @"reflect".ConvertibleTo(@"".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".Elem() (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".Field(@"".i int) (? @"reflect".StructField)
+func (? *@"reflect".rtype) @"reflect".FieldAlign() (? int)
+func (? *@"reflect".rtype) @"reflect".FieldByIndex(@"".index []int) (? @"reflect".StructField)
+func (? *@"reflect".rtype) @"reflect".FieldByName(@"".name string) (? @"reflect".StructField, ? bool)
+func (? *@"reflect".rtype) @"reflect".FieldByNameFunc(@"".match func (? string) (? bool)) (? @"reflect".StructField, ? bool)
+func (? *@"reflect".rtype) @"reflect".Implements(@"".u @"reflect".Type) (? bool)
+func (? *@"reflect".rtype) @"reflect".In(@"".i int) (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".IsVariadic() (? bool)
+func (? *@"reflect".rtype) @"reflect".Key() (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".Kind() (? @"reflect".Kind)
+func (? *@"reflect".rtype) @"reflect".Len() (? int)
+func (? *@"reflect".rtype) @"reflect".Method(@"".i int) (@"".m @"reflect".Method)
+func (? *@"reflect".rtype) @"reflect".MethodByName(@"".name string) (@"".m @"reflect".Method, @"".ok bool)
+func (? *@"reflect".rtype) @"reflect".Name() (? string)
+func (? *@"reflect".rtype) @"reflect".NumField() (? int)
+func (? *@"reflect".rtype) @"reflect".NumIn() (? int)
+func (? *@"reflect".rtype) @"reflect".NumMethod() (? int)
+func (? *@"reflect".rtype) @"reflect".NumOut() (? int)
+func (? *@"reflect".rtype) @"reflect".Out(@"".i int) (? @"reflect".Type)
+func (? *@"reflect".rtype) @"reflect".PkgPath() (? string)
+func (? *@"reflect".rtype) @"reflect".Size() (? uintptr)
+func (? *@"reflect".rtype) @"reflect".String() (? string)
+func (? *@"reflect".rtype) @"reflect".common() (? *@"reflect".rtype)
+func (? *@"reflect".rtype) @"reflect".ptrTo() (? *@"reflect".rtype)
+type @"reflect".flag uintptr
+func (? @"reflect".flag) @"reflect".kind() (? @"reflect".Kind)
+func (? @"reflect".flag) @"reflect".mustBe(@"".expected @"reflect".Kind) ()
+func (? @"reflect".flag) @"reflect".mustBeAssignable() ()
+func (? @"reflect".flag) @"reflect".mustBeExported() ()
+func (? *@"reflect".flag) @"reflect".kind() (? @"reflect".Kind)
+func (? *@"reflect".flag) @"reflect".mustBe(@"".expected @"reflect".Kind) ()
+func (? *@"reflect".flag) @"reflect".mustBeAssignable() ()
+func (? *@"reflect".flag) @"reflect".mustBeExported() ()
+type @"reflect".Kind uint
+func (? @"reflect".Kind) @"reflect".String() (? string)
+func (? *@"reflect".Kind) @"reflect".String() (? string)
+type @"reflect".iword @"unsafe".Pointer
+type @"reflect".ChanDir int
+func (? @"reflect".ChanDir) @"reflect".String() (? string)
+func (? *@"reflect".ChanDir) @"reflect".String() (? string)
+type @"reflect".StructField struct { @"reflect".Name string; @"reflect".PkgPath string; @"reflect".Type @"reflect".Type; @"reflect".Tag @"reflect".StructTag; @"reflect".Offset uintptr; @"reflect".Index []int; @"reflect".Anonymous bool }
+type @"reflect".Method struct { @"reflect".Name string; @"reflect".PkgPath string; @"reflect".Type @"reflect".Type; @"reflect".Func @"reflect".Value; @"reflect".Index int }
+type @"reflect".uncommonType struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".methods []@"reflect".method }
+func (? *@"reflect".uncommonType) @"reflect".Method(@"".i int) (@"".m @"reflect".Method)
+func (? *@"reflect".uncommonType) @"reflect".MethodByName(@"".name string) (@"".m @"reflect".Method, @"".ok bool)
+func (? *@"reflect".uncommonType) @"reflect".Name() (? string)
+func (? *@"reflect".uncommonType) @"reflect".NumMethod() (? int)
+func (? *@"reflect".uncommonType) @"reflect".PkgPath() (? string)
+func (? *@"reflect".uncommonType) @"reflect".uncommon() (? *@"reflect".uncommonType)
+type @"reflect".StructTag string
+func (? @"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
+func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
+type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
+$$
+0žruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioencodingmathsyscalltimeosstrconvreflectfmtstringsencoding/xmlƒ€’	var bufio = go$packages["bufio"];
+	var bytes = go$packages["bytes"];
+	var encoding = go$packages["encoding"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var reflect = go$packages["reflect"];
+	var strconv = go$packages["strconv"];
+	var strings = go$packages["strings"];
+	var errors = go$packages["errors"];
+	var sync = go$packages["sync"];
+	var unicode = go$packages["unicode"];
+	var utf8 = go$packages["unicode/utf8"];
+	var Marshaler;
+	Marshaler = go$newType(0, "Interface", "xml.Marshaler", "Marshaler", "encoding/xml", null);
+	go$pkg.Marshaler = Marshaler;
+	var MarshalerAttr;
+	MarshalerAttr = go$newType(0, "Interface", "xml.MarshalerAttr", "MarshalerAttr", "encoding/xml", null);
+	go$pkg.MarshalerAttr = MarshalerAttr;
+	var Encoder;
+	Encoder = go$newType(0, "Struct", "xml.Encoder", "Encoder", "encoding/xml", function(p_) {
+		this.go$val = this;
+		this.p = p_ !== undefined ? p_ : new printer.Ptr();
+	});
+	go$pkg.Encoder = Encoder;
+	var printer;
+	printer = go$newType(0, "Struct", "xml.printer", "printer", "encoding/xml", function(Writer_, encoder_, seq_, indent_, prefix_, depth_, indentedIn_, putNewline_, attrNS_, attrPrefix_, prefixes_, tags_) {
+		this.go$val = this;
+		this.Writer = Writer_ !== undefined ? Writer_ : (go$ptrType(bufio.Writer)).nil;
+		this.encoder = encoder_ !== undefined ? encoder_ : (go$ptrType(Encoder)).nil;
+		this.seq = seq_ !== undefined ? seq_ : 0;
+		this.indent = indent_ !== undefined ? indent_ : "";
+		this.prefix = prefix_ !== undefined ? prefix_ : "";
+		this.depth = depth_ !== undefined ? depth_ : 0;
+		this.indentedIn = indentedIn_ !== undefined ? indentedIn_ : false;
+		this.putNewline = putNewline_ !== undefined ? putNewline_ : false;
+		this.attrNS = attrNS_ !== undefined ? attrNS_ : false;
+		this.attrPrefix = attrPrefix_ !== undefined ? attrPrefix_ : false;
+		this.prefixes = prefixes_ !== undefined ? prefixes_ : (go$sliceType(Go$String)).nil;
+		this.tags = tags_ !== undefined ? tags_ : (go$sliceType(Name)).nil;
+	});
+	printer.prototype.Available = function() { return this.go$val.Available(); };
+	printer.Ptr.prototype.Available = function() { return this.Writer.Available(); };
+	printer.prototype.Buffered = function() { return this.go$val.Buffered(); };
+	printer.Ptr.prototype.Buffered = function() { return this.Writer.Buffered(); };
+	printer.prototype.Flush = function() { return this.go$val.Flush(); };
+	printer.Ptr.prototype.Flush = function() { return this.Writer.Flush(); };
+	printer.prototype.ReadFrom = function(r) { return this.go$val.ReadFrom(r); };
+	printer.Ptr.prototype.ReadFrom = function(r) { return this.Writer.ReadFrom(r); };
+	printer.prototype.Reset = function(w) { return this.go$val.Reset(w); };
+	printer.Ptr.prototype.Reset = function(w) { return this.Writer.Reset(w); };
+	printer.prototype.Write = function(p) { return this.go$val.Write(p); };
+	printer.Ptr.prototype.Write = function(p) { return this.Writer.Write(p); };
+	printer.prototype.WriteByte = function(c) { return this.go$val.WriteByte(c); };
+	printer.Ptr.prototype.WriteByte = function(c) { return this.Writer.WriteByte(c); };
+	printer.prototype.WriteRune = function(r) { return this.go$val.WriteRune(r); };
+	printer.Ptr.prototype.WriteRune = function(r) { return this.Writer.WriteRune(r); };
+	printer.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
+	printer.Ptr.prototype.WriteString = function(s) { return this.Writer.WriteString(s); };
+	printer.prototype.flush = function() { return this.go$val.flush(); };
+	printer.Ptr.prototype.flush = function() { return this.Writer.flush(); };
+	go$pkg.printer = printer;
+	var parentStack;
+	parentStack = go$newType(0, "Struct", "xml.parentStack", "parentStack", "encoding/xml", function(p_, stack_) {
+		this.go$val = this;
+		this.p = p_ !== undefined ? p_ : (go$ptrType(printer)).nil;
+		this.stack = stack_ !== undefined ? stack_ : (go$sliceType(Go$String)).nil;
+	});
+	go$pkg.parentStack = parentStack;
+	var UnsupportedTypeError;
+	UnsupportedTypeError = go$newType(0, "Struct", "xml.UnsupportedTypeError", "UnsupportedTypeError", "encoding/xml", function(Type_) {
+		this.go$val = this;
+		this.Type = Type_ !== undefined ? Type_ : null;
+	});
+	go$pkg.UnsupportedTypeError = UnsupportedTypeError;
+	var UnmarshalError;
+	UnmarshalError = go$newType(0, "String", "xml.UnmarshalError", "UnmarshalError", "encoding/xml", null);
+	go$pkg.UnmarshalError = UnmarshalError;
+	var Unmarshaler;
+	Unmarshaler = go$newType(0, "Interface", "xml.Unmarshaler", "Unmarshaler", "encoding/xml", null);
+	go$pkg.Unmarshaler = Unmarshaler;
+	var UnmarshalerAttr;
+	UnmarshalerAttr = go$newType(0, "Interface", "xml.UnmarshalerAttr", "UnmarshalerAttr", "encoding/xml", null);
+	go$pkg.UnmarshalerAttr = UnmarshalerAttr;
+	var typeInfo;
+	typeInfo = go$newType(0, "Struct", "xml.typeInfo", "typeInfo", "encoding/xml", function(xmlname_, fields_) {
+		this.go$val = this;
+		this.xmlname = xmlname_ !== undefined ? xmlname_ : (go$ptrType(fieldInfo)).nil;
+		this.fields = fields_ !== undefined ? fields_ : (go$sliceType(fieldInfo)).nil;
+	});
+	go$pkg.typeInfo = typeInfo;
+	var fieldInfo;
+	fieldInfo = go$newType(0, "Struct", "xml.fieldInfo", "fieldInfo", "encoding/xml", function(idx_, name_, xmlns_, flags_, parents_) {
+		this.go$val = this;
+		this.idx = idx_ !== undefined ? idx_ : (go$sliceType(Go$Int)).nil;
+		this.name = name_ !== undefined ? name_ : "";
+		this.xmlns = xmlns_ !== undefined ? xmlns_ : "";
+		this.flags = flags_ !== undefined ? flags_ : 0;
+		this.parents = parents_ !== undefined ? parents_ : (go$sliceType(Go$String)).nil;
+	});
+	go$pkg.fieldInfo = fieldInfo;
+	var fieldFlags;
+	fieldFlags = go$newType(4, "Int", "xml.fieldFlags", "fieldFlags", "encoding/xml", null);
+	go$pkg.fieldFlags = fieldFlags;
+	var TagPathError;
+	TagPathError = go$newType(0, "Struct", "xml.TagPathError", "TagPathError", "encoding/xml", function(Struct_, Field1_, Tag1_, Field2_, Tag2_) {
+		this.go$val = this;
+		this.Struct = Struct_ !== undefined ? Struct_ : null;
+		this.Field1 = Field1_ !== undefined ? Field1_ : "";
+		this.Tag1 = Tag1_ !== undefined ? Tag1_ : "";
+		this.Field2 = Field2_ !== undefined ? Field2_ : "";
+		this.Tag2 = Tag2_ !== undefined ? Tag2_ : "";
+	});
+	go$pkg.TagPathError = TagPathError;
+	var SyntaxError;
+	SyntaxError = go$newType(0, "Struct", "xml.SyntaxError", "SyntaxError", "encoding/xml", function(Msg_, Line_) {
+		this.go$val = this;
+		this.Msg = Msg_ !== undefined ? Msg_ : "";
+		this.Line = Line_ !== undefined ? Line_ : 0;
+	});
+	go$pkg.SyntaxError = SyntaxError;
+	var Name;
+	Name = go$newType(0, "Struct", "xml.Name", "Name", "encoding/xml", function(Space_, Local_) {
+		this.go$val = this;
+		this.Space = Space_ !== undefined ? Space_ : "";
+		this.Local = Local_ !== undefined ? Local_ : "";
+	});
+	go$pkg.Name = Name;
+	var Attr;
+	Attr = go$newType(0, "Struct", "xml.Attr", "Attr", "encoding/xml", function(Name_, Value_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : new Name.Ptr();
+		this.Value = Value_ !== undefined ? Value_ : "";
+	});
+	go$pkg.Attr = Attr;
+	var Token;
+	Token = go$newType(0, "Interface", "xml.Token", "Token", "encoding/xml", null);
+	go$pkg.Token = Token;
+	var StartElement;
+	StartElement = go$newType(0, "Struct", "xml.StartElement", "StartElement", "encoding/xml", function(Name_, Attr_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : new Name.Ptr();
+		this.Attr = Attr_ !== undefined ? Attr_ : (go$sliceType(Attr)).nil;
+	});
+	go$pkg.StartElement = StartElement;
+	var EndElement;
+	EndElement = go$newType(0, "Struct", "xml.EndElement", "EndElement", "encoding/xml", function(Name_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : new Name.Ptr();
+	});
+	go$pkg.EndElement = EndElement;
+	var CharData;
+	CharData = go$newType(0, "Slice", "xml.CharData", "CharData", "encoding/xml", null);
+	go$pkg.CharData = CharData;
+	var Comment;
+	Comment = go$newType(0, "Slice", "xml.Comment", "Comment", "encoding/xml", null);
+	go$pkg.Comment = Comment;
+	var ProcInst;
+	ProcInst = go$newType(0, "Struct", "xml.ProcInst", "ProcInst", "encoding/xml", function(Target_, Inst_) {
+		this.go$val = this;
+		this.Target = Target_ !== undefined ? Target_ : "";
+		this.Inst = Inst_ !== undefined ? Inst_ : (go$sliceType(Go$Uint8)).nil;
+	});
+	go$pkg.ProcInst = ProcInst;
+	var Directive;
+	Directive = go$newType(0, "Slice", "xml.Directive", "Directive", "encoding/xml", null);
+	go$pkg.Directive = Directive;
+	var Decoder;
+	Decoder = go$newType(0, "Struct", "xml.Decoder", "Decoder", "encoding/xml", function(Strict_, AutoClose_, Entity_, CharsetReader_, DefaultSpace_, r_, buf_, saved_, stk_, free_, needClose_, toClose_, nextToken_, nextByte_, ns_, err_, line_, unmarshalDepth_) {
+		this.go$val = this;
+		this.Strict = Strict_ !== undefined ? Strict_ : false;
+		this.AutoClose = AutoClose_ !== undefined ? AutoClose_ : (go$sliceType(Go$String)).nil;
+		this.Entity = Entity_ !== undefined ? Entity_ : false;
+		this.CharsetReader = CharsetReader_ !== undefined ? CharsetReader_ : go$throwNilPointerError;
+		this.DefaultSpace = DefaultSpace_ !== undefined ? DefaultSpace_ : "";
+		this.r = r_ !== undefined ? r_ : null;
+		this.buf = buf_ !== undefined ? buf_ : new bytes.Buffer.Ptr();
+		this.saved = saved_ !== undefined ? saved_ : (go$ptrType(bytes.Buffer)).nil;
+		this.stk = stk_ !== undefined ? stk_ : (go$ptrType(stack)).nil;
+		this.free = free_ !== undefined ? free_ : (go$ptrType(stack)).nil;
+		this.needClose = needClose_ !== undefined ? needClose_ : false;
+		this.toClose = toClose_ !== undefined ? toClose_ : new Name.Ptr();
+		this.nextToken = nextToken_ !== undefined ? nextToken_ : null;
+		this.nextByte = nextByte_ !== undefined ? nextByte_ : 0;
+		this.ns = ns_ !== undefined ? ns_ : false;
+		this.err = err_ !== undefined ? err_ : null;
+		this.line = line_ !== undefined ? line_ : 0;
+		this.unmarshalDepth = unmarshalDepth_ !== undefined ? unmarshalDepth_ : 0;
+	});
+	go$pkg.Decoder = Decoder;
+	var stack;
+	stack = go$newType(0, "Struct", "xml.stack", "stack", "encoding/xml", function(next_, kind_, name_, ok_) {
+		this.go$val = this;
+		this.next = next_ !== undefined ? next_ : (go$ptrType(stack)).nil;
+		this.kind = kind_ !== undefined ? kind_ : 0;
+		this.name = name_ !== undefined ? name_ : new Name.Ptr();
+		this.ok = ok_ !== undefined ? ok_ : false;
+	});
+	go$pkg.stack = stack;
+	Marshaler.init([["MarshalXML", "", (go$funcType([(go$ptrType(Encoder)), StartElement], [go$error], false))]]);
+	MarshalerAttr.init([["MarshalXMLAttr", "", (go$funcType([Name], [Attr, go$error], false))]]);
+	Encoder.init([["p", "encoding/xml", printer, ""]]);
+	(go$ptrType(Encoder)).methods = [["Encode", "", [go$emptyInterface], [go$error], false], ["EncodeElement", "", [go$emptyInterface, StartElement], [go$error], false], ["EncodeToken", "", [Token], [go$error], false], ["Flush", "", [], [go$error], false], ["Indent", "", [Go$String, Go$String], [], false]];
+	printer.init([["", "", (go$ptrType(bufio.Writer)), ""], ["encoder", "encoding/xml", (go$ptrType(Encoder)), ""], ["seq", "encoding/xml", Go$Int, ""], ["indent", "encoding/xml", Go$String, ""], ["prefix", "encoding/xml", Go$String, ""], ["depth", "encoding/xml", Go$Int, ""], ["indentedIn", "encoding/xml", Go$Bool, ""], ["putNewline", "encoding/xml", Go$Bool, ""], ["attrNS", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["attrPrefix", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["prefixes", "encoding/xml", (go$sliceType(Go$String)), ""], ["tags", "encoding/xml", (go$sliceType(Name)), ""]]);
+	printer.methods = [["Available", "", [], [Go$Int], false], ["Buffered", "", [], [Go$Int], false], ["Flush", "", [], [go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["flush", "bufio", [], [go$error], false]];
+	(go$ptrType(printer)).methods = [["Available", "", [], [Go$Int], false], ["Buffered", "", [], [Go$Int], false], ["EscapeString", "", [Go$String], [], false], ["Flush", "", [], [go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["flush", "bufio", [], [go$error], false], ["cachedWriteError", "encoding/xml", [], [go$error], false], ["createAttrPrefix", "encoding/xml", [Go$String], [Go$String], false], ["deleteAttrPrefix", "encoding/xml", [Go$String], [], false], ["markPrefix", "encoding/xml", [], [], false], ["marshalInterface", "encoding/xml", [Marshaler, StartElement], [go$error], false], ["marshalSimple", "encoding/xml", [reflect.Type, reflect.Value], [Go$String, (go$sliceType(Go$Uint8)), go$error], false], ["marshalStruct", "encoding/xml", [(go$ptrType(typeInfo)), reflect.Value], [go$error], false], ["marshalTextInterface", "encoding/xml", [encoding.TextMarshaler, StartElement], [go$error], false], ["marshalValue", "encoding/xml", [reflect.Value, (go$ptrType(fieldInfo)), (go$ptrType(StartElement))], [go$error], false], ["popPrefix", "encoding/xml", [], [], false], ["writeEnd", "encoding/xml", [Name], [go$error], false], ["writeIndent", "encoding/xml", [Go$Int], [], false], ["writeStart", "encoding/xml", [(go$ptrType(StartElement))], [go$error], false]];
+	parentStack.init([["p", "encoding/xml", (go$ptrType(printer)), ""], ["stack", "encoding/xml", (go$sliceType(Go$String)), ""]]);
+	(go$ptrType(parentStack)).methods = [["push", "encoding/xml", [(go$sliceType(Go$String))], [go$error], false], ["trim", "encoding/xml", [(go$sliceType(Go$String))], [go$error], false]];
+	UnsupportedTypeError.init([["Type", "", reflect.Type, ""]]);
+	(go$ptrType(UnsupportedTypeError)).methods = [["Error", "", [], [Go$String], false]];
+	UnmarshalError.methods = [["Error", "", [], [Go$String], false]];
+	(go$ptrType(UnmarshalError)).methods = [["Error", "", [], [Go$String], false]];
+	Unmarshaler.init([["UnmarshalXML", "", (go$funcType([(go$ptrType(Decoder)), StartElement], [go$error], false))]]);
+	UnmarshalerAttr.init([["UnmarshalXMLAttr", "", (go$funcType([Attr], [go$error], false))]]);
+	typeInfo.init([["xmlname", "encoding/xml", (go$ptrType(fieldInfo)), ""], ["fields", "encoding/xml", (go$sliceType(fieldInfo)), ""]]);
+	fieldInfo.init([["idx", "encoding/xml", (go$sliceType(Go$Int)), ""], ["name", "encoding/xml", Go$String, ""], ["xmlns", "encoding/xml", Go$String, ""], ["flags", "encoding/xml", fieldFlags, ""], ["parents", "encoding/xml", (go$sliceType(Go$String)), ""]]);
+	(go$ptrType(fieldInfo)).methods = [["value", "encoding/xml", [reflect.Value], [reflect.Value], false]];
+	TagPathError.init([["Struct", "", reflect.Type, ""], ["Field1", "", Go$String, ""], ["Tag1", "", Go$String, ""], ["Field2", "", Go$String, ""], ["Tag2", "", Go$String, ""]]);
+	(go$ptrType(TagPathError)).methods = [["Error", "", [], [Go$String], false]];
+	SyntaxError.init([["Msg", "", Go$String, ""], ["Line", "", Go$Int, ""]]);
+	(go$ptrType(SyntaxError)).methods = [["Error", "", [], [Go$String], false]];
+	Name.init([["Space", "", Go$String, ""], ["Local", "", Go$String, ""]]);
+	Attr.init([["Name", "", Name, ""], ["Value", "", Go$String, ""]]);
+	Token.init([]);
+	StartElement.init([["Name", "", Name, ""], ["Attr", "", (go$sliceType(Attr)), ""]]);
+	StartElement.methods = [["Copy", "", [], [StartElement], false], ["End", "", [], [EndElement], false]];
+	(go$ptrType(StartElement)).methods = [["Copy", "", [], [StartElement], false], ["End", "", [], [EndElement], false]];
+	EndElement.init([["Name", "", Name, ""]]);
+	CharData.init(Go$Uint8);
+	CharData.methods = [["Copy", "", [], [CharData], false]];
+	(go$ptrType(CharData)).methods = [["Copy", "", [], [CharData], false]];
+	Comment.init(Go$Uint8);
+	Comment.methods = [["Copy", "", [], [Comment], false]];
+	(go$ptrType(Comment)).methods = [["Copy", "", [], [Comment], false]];
+	ProcInst.init([["Target", "", Go$String, ""], ["Inst", "", (go$sliceType(Go$Uint8)), ""]]);
+	ProcInst.methods = [["Copy", "", [], [ProcInst], false]];
+	(go$ptrType(ProcInst)).methods = [["Copy", "", [], [ProcInst], false]];
+	Directive.init(Go$Uint8);
+	Directive.methods = [["Copy", "", [], [Directive], false]];
+	(go$ptrType(Directive)).methods = [["Copy", "", [], [Directive], false]];
+	Decoder.init([["Strict", "", Go$Bool, ""], ["AutoClose", "", (go$sliceType(Go$String)), ""], ["Entity", "", (go$mapType(Go$String, Go$String)), ""], ["CharsetReader", "", (go$funcType([Go$String, io.Reader], [io.Reader, go$error], false)), ""], ["DefaultSpace", "", Go$String, ""], ["r", "encoding/xml", io.ByteReader, ""], ["buf", "encoding/xml", bytes.Buffer, ""], ["saved", "encoding/xml", (go$ptrType(bytes.Buffer)), ""], ["stk", "encoding/xml", (go$ptrType(stack)), ""], ["free", "encoding/xml", (go$ptrType(stack)), ""], ["needClose", "encoding/xml", Go$Bool, ""], ["toClose", "encoding/xml", Name, ""], ["nextToken", "encoding/xml", Token, ""], ["nextByte", "encoding/xml", Go$Int, ""], ["ns", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["err", "encoding/xml", go$error, ""], ["line", "encoding/xml", Go$Int, ""], ["unmarshalDepth", "encoding/xml", Go$Int, ""]]);
+	(go$ptrType(Decoder)).methods = [["Decode", "", [go$emptyInterface], [go$error], false], ["DecodeElement", "", [go$emptyInterface, (go$ptrType(StartElement))], [go$error], false], ["RawToken", "", [], [Token, go$error], false], ["Skip", "", [], [go$error], false], ["Token", "", [], [Token, go$error], false], ["attrval", "encoding/xml", [], [(go$sliceType(Go$Uint8))], false], ["autoClose", "encoding/xml", [Token], [Token, Go$Bool], false], ["getc", "encoding/xml", [], [Go$Uint8, Go$Bool], false], ["mustgetc", "encoding/xml", [], [Go$Uint8, Go$Bool], false], ["name", "encoding/xml", [], [Go$String, Go$Bool], false], ["nsname", "encoding/xml", [], [Name, Go$Bool], false], ["pop", "encoding/xml", [], [(go$ptrType(stack))], false], ["popEOF", "encoding/xml", [], [Go$Bool], false], ["popElement", "encoding/xml", [(go$ptrType(EndElement))], [Go$Bool], false], ["push", "encoding/xml", [Go$Int], [(go$ptrType(stack))], false], ["pushEOF", "encoding/xml", [], [], false], ["pushElement", "encoding/xml", [Name], [], false], ["pushNs", "encoding/xml", [Go$String, Go$String, Go$Bool], [], false], ["rawToken", "encoding/xml", [], [Token, go$error], false], ["readName", "encoding/xml", [], [Go$Bool], false], ["savedOffset", "encoding/xml", [], [Go$Int], false], ["space", "encoding/xml", [], [], false], ["switchToReader", "encoding/xml", [io.Reader], [], false], ["syntaxError", "encoding/xml", [Go$String], [go$error], false], ["text", "encoding/xml", [Go$Int, Go$Bool], [(go$sliceType(Go$Uint8))], false], ["translate", "encoding/xml", [(go$ptrType(Name)), Go$Bool], [], false], ["ungetc", "encoding/xml", [Go$Uint8], [], false], ["unmarshal", "encoding/xml", [reflect.Value, (go$ptrType(StartElement))], [go$error], false], ["unmarshalAttr", "encoding/xml", [reflect.Value, Attr], [go$error], false], ["unmarshalInterface", "encoding/xml", [Unmarshaler, (go$ptrType(StartElement))], [go$error], false], ["unmarshalPath", "encoding/xml", [(go$ptrType(typeInfo)), reflect.Value, (go$sliceType(Go$String)), (go$ptrType(StartElement))], [Go$Bool, go$error], false], ["unmarshalTextInterface", "encoding/xml", [encoding.TextUnmarshaler, (go$ptrType(StartElement))], [go$error], false]];
+	stack.init([["next", "encoding/xml", (go$ptrType(stack)), ""], ["kind", "encoding/xml", Go$Int, ""], ["name", "encoding/xml", Name, ""], ["ok", "encoding/xml", Go$Bool, ""]]);
+	var Marshal = go$pkg.Marshal = function(v) {
+		var b, err;
+		b = new bytes.Buffer.Ptr();
+		if (err = NewEncoder(b).Encode(v), !(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Go$Uint8)).nil, err];
+		}
+		return [b.Bytes(), null];
+	};
+	var MarshalIndent = go$pkg.MarshalIndent = function(v, prefix, indent) {
+		var b, enc, err;
+		b = new bytes.Buffer.Ptr();
+		enc = NewEncoder(b);
+		enc.Indent(prefix, indent);
+		if (err = enc.Encode(v), !(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Go$Uint8)).nil, err];
+		}
+		return [b.Bytes(), null];
+	};
+	var NewEncoder = go$pkg.NewEncoder = function(w) {
+		var e;
+		e = new Encoder.Ptr(new printer.Ptr(bufio.NewWriter(w), (go$ptrType(Encoder)).nil, 0, "", "", 0, false, false, false, false, (go$sliceType(Go$String)).nil, (go$sliceType(Name)).nil));
+		e.p.encoder = e;
+		return e;
+	};
+	Encoder.Ptr.prototype.Indent = function(prefix, indent) {
+		var enc;
+		enc = this;
+		enc.p.prefix = prefix;
+		enc.p.indent = indent;
+	};
+	Encoder.prototype.Indent = function(prefix, indent) { return this.go$val.Indent(prefix, indent); };
+	Encoder.Ptr.prototype.Encode = function(v) {
+		var enc, _struct, err;
+		enc = this;
+		err = enc.p.marshalValue((_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), (go$ptrType(fieldInfo)).nil, (go$ptrType(StartElement)).nil);
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		return enc.p.Writer.Flush();
+	};
+	Encoder.prototype.Encode = function(v) { return this.go$val.Encode(v); };
+	Encoder.Ptr.prototype.EncodeElement = function(v, start) {
+		var enc, _struct, err;
+		enc = this;
+		err = enc.p.marshalValue((_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), (go$ptrType(fieldInfo)).nil, start);
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		return enc.p.Writer.Flush();
+	};
+	Encoder.prototype.EncodeElement = function(v, start) { return this.go$val.EncodeElement(v, start); };
+	Encoder.Ptr.prototype.EncodeToken = function(t) {
+		var enc, p, t$1, _ref, _type, err, err$1, _struct;
+		enc = this;
+		p = enc.p;
+		_ref = t;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === StartElement) {
+			t$1 = _ref.go$val;
+			if (err = p.writeStart(t$1), !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+		} else if (_type === EndElement) {
+			t$1 = _ref.go$val;
+			if (err$1 = p.writeEnd((_struct = t$1.Name, new Name.Ptr(_struct.Space, _struct.Local))), !(go$interfaceIsEqual(err$1, null))) {
+				return err$1;
+			}
+		} else if (_type === CharData) {
+			t$1 = _ref.go$val;
+			EscapeText(p, go$subslice(new (go$sliceType(Go$Uint8))(t$1.array), t$1.offset, t$1.offset + t$1.length));
+		} else if (_type === Comment) {
+			t$1 = _ref.go$val;
+			if (bytes.Contains(go$subslice(new (go$sliceType(Go$Uint8))(t$1.array), t$1.offset, t$1.offset + t$1.length), endComment)) {
+				return fmt.Errorf("xml: EncodeToken of Comment containing --> marker", new (go$sliceType(go$emptyInterface))([]));
+			}
+			p.Writer.WriteString("<!--");
+			p.Writer.Write(go$subslice(new (go$sliceType(Go$Uint8))(t$1.array), t$1.offset, t$1.offset + t$1.length));
+			p.Writer.WriteString("-->");
+			return p.cachedWriteError();
+		} else if (_type === ProcInst) {
+			t$1 = _ref.go$val;
+			if (t$1.Target === "xml" || !isNameString(t$1.Target)) {
+				return fmt.Errorf("xml: EncodeToken of ProcInst with invalid Target", new (go$sliceType(go$emptyInterface))([]));
+			}
+			if (bytes.Contains(t$1.Inst, endProcInst)) {
+				return fmt.Errorf("xml: EncodeToken of ProcInst containing ?> marker", new (go$sliceType(go$emptyInterface))([]));
+			}
+			p.Writer.WriteString("<?");
+			p.Writer.WriteString(t$1.Target);
+			if (t$1.Inst.length > 0) {
+				p.Writer.WriteByte(32);
+				p.Writer.Write(t$1.Inst);
+			}
+			p.Writer.WriteString("?>");
+		} else if (_type === Directive) {
+			t$1 = _ref.go$val;
+			if (bytes.Contains(go$subslice(new (go$sliceType(Go$Uint8))(t$1.array), t$1.offset, t$1.offset + t$1.length), endDirective)) {
+				return fmt.Errorf("xml: EncodeToken of Directive containing > marker", new (go$sliceType(go$emptyInterface))([]));
+			}
+			p.Writer.WriteString("<!");
+			p.Writer.Write(go$subslice(new (go$sliceType(Go$Uint8))(t$1.array), t$1.offset, t$1.offset + t$1.length));
+			p.Writer.WriteString(">");
+		}
+		return p.cachedWriteError();
+	};
+	Encoder.prototype.EncodeToken = function(t) { return this.go$val.EncodeToken(t); };
+	Encoder.Ptr.prototype.Flush = function() {
+		var enc;
+		enc = this;
+		return enc.p.Writer.Flush();
+	};
+	Encoder.prototype.Flush = function() { return this.go$val.Flush(); };
+	printer.Ptr.prototype.createAttrPrefix = function(url) {
+		var p, prefix, _entry, prefix$1, i, _entry$1, id, _entry$2, _key, _key$1;
+		p = this;
+		if (prefix = (_entry = p.attrPrefix[url], _entry !== undefined ? _entry.v : ""), !(prefix === "")) {
+			return prefix;
+		}
+		if (url === "http://www.w3.org/XML/1998/namespace") {
+			return "xml";
+		}
+		if (p.attrPrefix === false) {
+			p.attrPrefix = new Go$Map();
+			p.attrNS = new Go$Map();
+		}
+		prefix$1 = strings.TrimRight(url, "/");
+		if (i = strings.LastIndex(prefix$1, "/"), i >= 0) {
+			prefix$1 = prefix$1.substring((i + 1 >> 0));
+		}
+		if (prefix$1 === "" || !isName(new (go$sliceType(Go$Uint8))(go$stringToBytes(prefix$1))) || strings.Contains(prefix$1, ":")) {
+			prefix$1 = "_";
+		}
+		if (strings.HasPrefix(prefix$1, "xml")) {
+			prefix$1 = "_" + prefix$1;
+		}
+		if (!((_entry$1 = p.attrNS[prefix$1], _entry$1 !== undefined ? _entry$1.v : "") === "")) {
+			p.seq = p.seq + 1 >> 0;
+			while (true) {
+				if (id = prefix$1 + "_" + strconv.Itoa(p.seq), (_entry$2 = p.attrNS[id], _entry$2 !== undefined ? _entry$2.v : "") === "") {
+					prefix$1 = id;
+					break;
+				}
+				p.seq = p.seq + 1 >> 0;
+			}
+		}
+		_key = url, (p.attrPrefix || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: prefix$1 };
+		_key$1 = prefix$1, (p.attrNS || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: url };
+		p.Writer.WriteString("xmlns:");
+		p.Writer.WriteString(prefix$1);
+		p.Writer.WriteString("=\"");
+		EscapeText(p, new (go$sliceType(Go$Uint8))(go$stringToBytes(url)));
+		p.Writer.WriteString("\" ");
+		p.prefixes = go$append(p.prefixes, prefix$1);
+		return prefix$1;
+	};
+	printer.prototype.createAttrPrefix = function(url) { return this.go$val.createAttrPrefix(url); };
+	printer.Ptr.prototype.deleteAttrPrefix = function(prefix) {
+		var p, _entry;
+		p = this;
+		delete p.attrPrefix[(_entry = p.attrNS[prefix], _entry !== undefined ? _entry.v : "")];
+		delete p.attrNS[prefix];
+	};
+	printer.prototype.deleteAttrPrefix = function(prefix) { return this.go$val.deleteAttrPrefix(prefix); };
+	printer.Ptr.prototype.markPrefix = function() {
+		var p;
+		p = this;
+		p.prefixes = go$append(p.prefixes, "");
+	};
+	printer.prototype.markPrefix = function() { return this.go$val.markPrefix(); };
+	printer.Ptr.prototype.popPrefix = function() {
+		var p, _slice, _index, prefix;
+		p = this;
+		while (p.prefixes.length > 0) {
+			prefix = (_slice = p.prefixes, _index = (p.prefixes.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			p.prefixes = go$subslice(p.prefixes, 0, (p.prefixes.length - 1 >> 0));
+			if (prefix === "") {
+				break;
+			}
+			p.deleteAttrPrefix(prefix);
+		}
+	};
+	printer.prototype.popPrefix = function() { return this.go$val.popPrefix(); };
+	printer.Ptr.prototype.marshalValue = function(val, finfo, startTemplate) {
+		var p, _struct, _struct$1, kind, typ, x, _struct$2, _struct$3, _struct$4, pv, x$1, _struct$5, _struct$6, x$2, _struct$7, _struct$8, _struct$9, pv$1, x$3, _struct$10, _struct$11, _tuple, i, n, err, _struct$12, _tuple$1, tinfo, err$1, start, _struct$13, xmlname, ok, v, _tuple$2, _tuple$3, x$4, _struct$14, _struct$15, _struct$16, _tuple$4, name, _ref, _i, i$1, _slice, _index, finfo$1, _struct$17, _struct$18, fv, name$1, _struct$19, _tuple$5, x$5, _struct$20, _struct$21, _struct$22, attr, err$2, _struct$23, _struct$24, _struct$25, pv$2, _tuple$6, x$6, _struct$26, _struct$27, _struct$28, attr$1, err$3, _struct$29, _struct$30, _tuple$7, x$7, text, err$4, _struct$31, _struct$32, pv$3, _tuple$8, x$8, text$1, err$5, _struct$33, _ref$1, _struct$34, _tuple$9, _struct$35, s, b, err$6, _struct$36, err$7, _struct$37, _tuple$10, _struct$38, s$1, b$1, err1, err$8, _struct$39;
+		p = this;
+		if (!(startTemplate === (go$ptrType(StartElement)).nil) && startTemplate.Name.Local === "") {
+			return fmt.Errorf("xml: EncodeElement of StartElement with missing name", new (go$sliceType(go$emptyInterface))([]));
+		}
+		if (!val.IsValid()) {
+			return null;
+		}
+		if (!(finfo === (go$ptrType(fieldInfo)).nil) && !(((finfo.flags & 64) === 0)) && isEmptyValue((_struct = val, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)))) {
+			return null;
+		}
+		while ((val.Kind() === 20) || (val.Kind() === 22)) {
+			if (val.IsNil()) {
+				return null;
+			}
+			val = (_struct$1 = val.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		}
+		kind = val.Kind();
+		typ = val.Type();
+		if (val.CanInterface() && typ.Implements(marshalerType)) {
+			return p.marshalInterface((x = val.Interface(), (x !== null && Marshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, Marshaler))), (_struct$2 = defaultStart(typ, finfo, startTemplate), new StartElement.Ptr((_struct$3 = _struct$2.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local)), _struct$2.Attr)));
+		}
+		if (val.CanAddr()) {
+			pv = (_struct$4 = val.Addr(), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
+			if (pv.CanInterface() && pv.Type().Implements(marshalerType)) {
+				return p.marshalInterface((x$1 = pv.Interface(), (x$1 !== null && Marshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, Marshaler))), (_struct$5 = defaultStart(pv.Type(), finfo, startTemplate), new StartElement.Ptr((_struct$6 = _struct$5.Name, new Name.Ptr(_struct$6.Space, _struct$6.Local)), _struct$5.Attr)));
+			}
+		}
+		if (val.CanInterface() && typ.Implements(textMarshalerType)) {
+			return p.marshalTextInterface((x$2 = val.Interface(), (x$2 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, encoding.TextMarshaler))), (_struct$7 = defaultStart(typ, finfo, startTemplate), new StartElement.Ptr((_struct$8 = _struct$7.Name, new Name.Ptr(_struct$8.Space, _struct$8.Local)), _struct$7.Attr)));
+		}
+		if (val.CanAddr()) {
+			pv$1 = (_struct$9 = val.Addr(), new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag));
+			if (pv$1.CanInterface() && pv$1.Type().Implements(textMarshalerType)) {
+				return p.marshalTextInterface((x$3 = pv$1.Interface(), (x$3 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.TextMarshaler))), (_struct$10 = defaultStart(pv$1.Type(), finfo, startTemplate), new StartElement.Ptr((_struct$11 = _struct$10.Name, new Name.Ptr(_struct$11.Space, _struct$11.Local)), _struct$10.Attr)));
+			}
+		}
+		if (((kind === 23) || (kind === 17)) && !((typ.Elem().Kind() === 8))) {
+			_tuple = [0, val.Len()], i = _tuple[0], n = _tuple[1];
+			while (i < n) {
+				if (err = p.marshalValue((_struct$12 = val.Index(i), new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)), finfo, startTemplate), !(go$interfaceIsEqual(err, null))) {
+					return err;
+				}
+				i = i + 1 >> 0;
+			}
+			return null;
+		}
+		_tuple$1 = getTypeInfo(typ), tinfo = _tuple$1[0], err$1 = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
+			return err$1;
+		}
+		start = new StartElement.Ptr();
+		if (!(startTemplate === (go$ptrType(StartElement)).nil)) {
+			start.Name = (_struct$13 = startTemplate.Name, new Name.Ptr(_struct$13.Space, _struct$13.Local));
+			start.Attr = go$appendSlice(start.Attr, startTemplate.Attr);
+		} else if (!(tinfo.xmlname === (go$ptrType(fieldInfo)).nil)) {
+			xmlname = tinfo.xmlname;
+			if (!(xmlname.name === "")) {
+				_tuple$2 = [xmlname.xmlns, xmlname.name], start.Name.Space = _tuple$2[0], start.Name.Local = _tuple$2[1];
+			} else if (_tuple$3 = (x$4 = xmlname.value((_struct$14 = val, new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag))).Interface(), (x$4 !== null && x$4.constructor === Name ? [x$4.go$val, true] : [new Name.Ptr(), false])), v = (_struct$15 = _tuple$3[0], new Name.Ptr(_struct$15.Space, _struct$15.Local)), ok = _tuple$3[1], ok && !(v.Local === "")) {
+				start.Name = (_struct$16 = v, new Name.Ptr(_struct$16.Space, _struct$16.Local));
+			}
+		}
+		if (start.Name.Local === "" && !(finfo === (go$ptrType(fieldInfo)).nil)) {
+			_tuple$4 = [finfo.xmlns, finfo.name], start.Name.Space = _tuple$4[0], start.Name.Local = _tuple$4[1];
+		}
+		if (start.Name.Local === "") {
+			name = typ.Name();
+			if (name === "") {
+				return new UnsupportedTypeError.Ptr(typ);
+			}
+			start.Name.Local = name;
+		}
+		_ref = tinfo.fields;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i$1 = _i;
+			finfo$1 = (_slice = tinfo.fields, _index = i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if ((finfo$1.flags & 2) === 0) {
+				continue;
+			}
+			fv = (_struct$18 = finfo$1.value((_struct$17 = val, new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag))), new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag));
+			name$1 = new Name.Ptr(finfo$1.xmlns, finfo$1.name);
+			if (!(((finfo$1.flags & 64) === 0)) && isEmptyValue((_struct$19 = fv, new reflect.Value.Ptr(_struct$19.typ, _struct$19.val, _struct$19.flag)))) {
+				continue;
+			}
+			if ((fv.Kind() === 20) && fv.IsNil()) {
+				continue;
+			}
+			if (fv.CanInterface() && fv.Type().Implements(marshalerAttrType)) {
+				_tuple$5 = (x$5 = fv.Interface(), (x$5 !== null && MarshalerAttr.implementedBy.indexOf(x$5.constructor) !== -1 ? x$5 : go$typeAssertionFailed(x$5, MarshalerAttr))).MarshalXMLAttr((_struct$20 = name$1, new Name.Ptr(_struct$20.Space, _struct$20.Local))), attr = (_struct$21 = _tuple$5[0], new Attr.Ptr((_struct$22 = _struct$21.Name, new Name.Ptr(_struct$22.Space, _struct$22.Local)), _struct$21.Value)), err$2 = _tuple$5[1];
+				if (!(go$interfaceIsEqual(err$2, null))) {
+					return err$2;
+				}
+				if (!(attr.Name.Local === "")) {
+					start.Attr = go$append(start.Attr, (_struct$23 = attr, new Attr.Ptr((_struct$24 = _struct$23.Name, new Name.Ptr(_struct$24.Space, _struct$24.Local)), _struct$23.Value)));
+				}
+				continue;
+			}
+			if (fv.CanAddr()) {
+				pv$2 = (_struct$25 = fv.Addr(), new reflect.Value.Ptr(_struct$25.typ, _struct$25.val, _struct$25.flag));
+				if (pv$2.CanInterface() && pv$2.Type().Implements(marshalerAttrType)) {
+					_tuple$6 = (x$6 = pv$2.Interface(), (x$6 !== null && MarshalerAttr.implementedBy.indexOf(x$6.constructor) !== -1 ? x$6 : go$typeAssertionFailed(x$6, MarshalerAttr))).MarshalXMLAttr((_struct$26 = name$1, new Name.Ptr(_struct$26.Space, _struct$26.Local))), attr$1 = (_struct$27 = _tuple$6[0], new Attr.Ptr((_struct$28 = _struct$27.Name, new Name.Ptr(_struct$28.Space, _struct$28.Local)), _struct$27.Value)), err$3 = _tuple$6[1];
+					if (!(go$interfaceIsEqual(err$3, null))) {
+						return err$3;
+					}
+					if (!(attr$1.Name.Local === "")) {
+						start.Attr = go$append(start.Attr, (_struct$29 = attr$1, new Attr.Ptr((_struct$30 = _struct$29.Name, new Name.Ptr(_struct$30.Space, _struct$30.Local)), _struct$29.Value)));
+					}
+					continue;
+				}
+			}
+			if (fv.CanInterface() && fv.Type().Implements(textMarshalerType)) {
+				_tuple$7 = (x$7 = fv.Interface(), (x$7 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$7.constructor) !== -1 ? x$7 : go$typeAssertionFailed(x$7, encoding.TextMarshaler))).MarshalText(), text = _tuple$7[0], err$4 = _tuple$7[1];
+				if (!(go$interfaceIsEqual(err$4, null))) {
+					return err$4;
+				}
+				start.Attr = go$append(start.Attr, new Attr.Ptr((_struct$31 = name$1, new Name.Ptr(_struct$31.Space, _struct$31.Local)), go$bytesToString(text)));
+				continue;
+			}
+			if (fv.CanAddr()) {
+				pv$3 = (_struct$32 = fv.Addr(), new reflect.Value.Ptr(_struct$32.typ, _struct$32.val, _struct$32.flag));
+				if (pv$3.CanInterface() && pv$3.Type().Implements(textMarshalerType)) {
+					_tuple$8 = (x$8 = pv$3.Interface(), (x$8 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$8.constructor) !== -1 ? x$8 : go$typeAssertionFailed(x$8, encoding.TextMarshaler))).MarshalText(), text$1 = _tuple$8[0], err$5 = _tuple$8[1];
+					if (!(go$interfaceIsEqual(err$5, null))) {
+						return err$5;
+					}
+					start.Attr = go$append(start.Attr, new Attr.Ptr((_struct$33 = name$1, new Name.Ptr(_struct$33.Space, _struct$33.Local)), go$bytesToString(text$1)));
+					continue;
+				}
+			}
+			_ref$1 = fv.Kind();
+			if (_ref$1 === 22 || _ref$1 === 20) {
+				if (fv.IsNil()) {
+					continue;
+				}
+				fv = (_struct$34 = fv.Elem(), new reflect.Value.Ptr(_struct$34.typ, _struct$34.val, _struct$34.flag));
+			}
+			_tuple$9 = p.marshalSimple(fv.Type(), (_struct$35 = fv, new reflect.Value.Ptr(_struct$35.typ, _struct$35.val, _struct$35.flag))), s = _tuple$9[0], b = _tuple$9[1], err$6 = _tuple$9[2];
+			if (!(go$interfaceIsEqual(err$6, null))) {
+				return err$6;
+			}
+			if (!(b === (go$sliceType(Go$Uint8)).nil)) {
+				s = go$bytesToString(b);
+			}
+			start.Attr = go$append(start.Attr, new Attr.Ptr((_struct$36 = name$1, new Name.Ptr(_struct$36.Space, _struct$36.Local)), s));
+		}
+		if (err$7 = p.writeStart(start), !(go$interfaceIsEqual(err$7, null))) {
+			return err$7;
+		}
+		if (val.Kind() === 25) {
+			err$1 = p.marshalStruct(tinfo, (_struct$37 = val, new reflect.Value.Ptr(_struct$37.typ, _struct$37.val, _struct$37.flag)));
+		} else {
+			_tuple$10 = p.marshalSimple(typ, (_struct$38 = val, new reflect.Value.Ptr(_struct$38.typ, _struct$38.val, _struct$38.flag))), s$1 = _tuple$10[0], b$1 = _tuple$10[1], err1 = _tuple$10[2];
+			if (!(go$interfaceIsEqual(err1, null))) {
+				err$1 = err1;
+			} else if (!(b$1 === (go$sliceType(Go$Uint8)).nil)) {
+				EscapeText(p, b$1);
+			} else {
+				p.EscapeString(s$1);
+			}
+		}
+		if (!(go$interfaceIsEqual(err$1, null))) {
+			return err$1;
+		}
+		if (err$8 = p.writeEnd((_struct$39 = start.Name, new Name.Ptr(_struct$39.Space, _struct$39.Local))), !(go$interfaceIsEqual(err$8, null))) {
+			return err$8;
+		}
+		return p.cachedWriteError();
+	};
+	printer.prototype.marshalValue = function(val, finfo, startTemplate) { return this.go$val.marshalValue(val, finfo, startTemplate); };
+	var defaultStart = function(typ, finfo, startTemplate) {
+		var start, _struct, _struct$1, _struct$2;
+		start = new StartElement.Ptr();
+		if (!(startTemplate === (go$ptrType(StartElement)).nil)) {
+			start.Name = (_struct = startTemplate.Name, new Name.Ptr(_struct.Space, _struct.Local));
+			start.Attr = go$appendSlice(start.Attr, startTemplate.Attr);
+		} else if (!(finfo === (go$ptrType(fieldInfo)).nil) && !(finfo.name === "")) {
+			start.Name.Local = finfo.name;
+			start.Name.Space = finfo.xmlns;
+		} else if (!(typ.Name() === "")) {
+			start.Name.Local = typ.Name();
+		} else {
+			start.Name.Local = typ.Elem().Name();
+		}
+		return (_struct$1 = start, new StartElement.Ptr((_struct$2 = _struct$1.Name, new Name.Ptr(_struct$2.Space, _struct$2.Local)), _struct$1.Attr));
+	};
+	printer.Ptr.prototype.marshalInterface = function(val, start) {
+		var p, n, _struct, _struct$1, err, _slice, _index;
+		p = this;
+		p.tags = go$append(p.tags, new Name.Ptr("", ""));
+		n = p.tags.length;
+		err = val.MarshalXML(p.encoder, (_struct = start, new StartElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), _struct.Attr)));
+		if (!(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		if (p.tags.length > n) {
+			return fmt.Errorf("xml: %s.MarshalXML wrote invalid XML: <%s> not closed", new (go$sliceType(go$emptyInterface))([new Go$String(receiverType(val)), new Go$String((_slice = p.tags, _index = (p.tags.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Local)]));
+		}
+		p.tags = go$subslice(p.tags, 0, (n - 1 >> 0));
+		return null;
+	};
+	printer.prototype.marshalInterface = function(val, start) { return this.go$val.marshalInterface(val, start); };
+	printer.Ptr.prototype.marshalTextInterface = function(val, start) {
+		var p, err, _tuple, text, err$1, _struct;
+		p = this;
+		if (err = p.writeStart(start), !(go$interfaceIsEqual(err, null))) {
+			return err;
+		}
+		_tuple = val.MarshalText(), text = _tuple[0], err$1 = _tuple[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
+			return err$1;
+		}
+		EscapeText(p, text);
+		return p.writeEnd((_struct = start.Name, new Name.Ptr(_struct.Space, _struct.Local)));
+	};
+	printer.prototype.marshalTextInterface = function(val, start) { return this.go$val.marshalTextInterface(val, start); };
+	printer.Ptr.prototype.writeStart = function(start) {
+		var p, _struct, _ref, _i, _slice, _index, _struct$1, _struct$2, attr, _struct$3, name;
+		p = this;
+		if (start.Name.Local === "") {
+			return fmt.Errorf("xml: start tag with no name", new (go$sliceType(go$emptyInterface))([]));
+		}
+		p.tags = go$append(p.tags, (_struct = start.Name, new Name.Ptr(_struct.Space, _struct.Local)));
+		p.markPrefix();
+		p.writeIndent(1);
+		p.Writer.WriteByte(60);
+		p.Writer.WriteString(start.Name.Local);
+		if (!(start.Name.Space === "")) {
+			p.Writer.WriteString(" xmlns=\"");
+			p.EscapeString(start.Name.Space);
+			p.Writer.WriteByte(34);
+		}
+		_ref = start.Attr;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			attr = (_struct$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Attr.Ptr((_struct$2 = _struct$1.Name, new Name.Ptr(_struct$2.Space, _struct$2.Local)), _struct$1.Value));
+			name = (_struct$3 = attr.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local));
+			if (name.Local === "") {
+				continue;
+			}
+			p.Writer.WriteByte(32);
+			if (!(name.Space === "")) {
+				p.Writer.WriteString(p.createAttrPrefix(name.Space));
+				p.Writer.WriteByte(58);
+			}
+			p.Writer.WriteString(name.Local);
+			p.Writer.WriteString("=\"");
+			p.EscapeString(attr.Value);
+			p.Writer.WriteByte(34);
+		}
+		p.Writer.WriteByte(62);
+		return null;
+	};
+	printer.prototype.writeStart = function(start) { return this.go$val.writeStart(start); };
+	printer.Ptr.prototype.writeEnd = function(name) {
+		var p, _slice, _index, x, y, top, _slice$1, _index$1, _struct;
+		p = this;
+		if (name.Local === "") {
+			return fmt.Errorf("xml: end tag with no name", new (go$sliceType(go$emptyInterface))([]));
+		}
+		if ((p.tags.length === 0) || (_slice = p.tags, _index = (p.tags.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Local === "") {
+			return fmt.Errorf("xml: end tag </%s> without start tag", new (go$sliceType(go$emptyInterface))([new Go$String(name.Local)]));
+		}
+		if (top = (_struct = (_slice$1 = p.tags, _index$1 = (p.tags.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Name.Ptr(_struct.Space, _struct.Local)), !((x = top, y = name, x.Space === y.Space && x.Local === y.Local))) {
+			if (!(top.Local === name.Local)) {
+				return fmt.Errorf("xml: end tag </%s> does not match start tag <%s>", new (go$sliceType(go$emptyInterface))([new Go$String(name.Local), new Go$String(top.Local)]));
+			}
+			return fmt.Errorf("xml: end tag </%s> in namespace %s does not match start tag <%s> in namespace %s", new (go$sliceType(go$emptyInterface))([new Go$String(name.Local), new Go$String(name.Space), new Go$String(top.Local), new Go$String(top.Space)]));
+		}
+		p.tags = go$subslice(p.tags, 0, (p.tags.length - 1 >> 0));
+		p.writeIndent(-1);
+		p.Writer.WriteByte(60);
+		p.Writer.WriteByte(47);
+		p.Writer.WriteString(name.Local);
+		p.Writer.WriteByte(62);
+		p.popPrefix();
+		return null;
+	};
+	printer.prototype.writeEnd = function(name) { return this.go$val.writeEnd(name); };
+	printer.Ptr.prototype.marshalSimple = function(typ, val) {
+		var p, _ref, bytes$1, _struct, _struct$1;
+		p = this;
+		_ref = val.Kind();
+		switch (undefined) {
+		default:
+			if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
+				return [strconv.FormatInt(val.Int(), 10), (go$sliceType(Go$Uint8)).nil, null];
+			} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
+				return [strconv.FormatUint(val.Uint(), 10), (go$sliceType(Go$Uint8)).nil, null];
+			} else if (_ref === 13 || _ref === 14) {
+				return [strconv.FormatFloat(val.Float(), 103, -1, val.Type().Bits()), (go$sliceType(Go$Uint8)).nil, null];
+			} else if (_ref === 24) {
+				return [val.String(), (go$sliceType(Go$Uint8)).nil, null];
+			} else if (_ref === 1) {
+				return [strconv.FormatBool(val.Bool()), (go$sliceType(Go$Uint8)).nil, null];
+			} else if (_ref === 17) {
+				if (!((typ.Elem().Kind() === 8))) {
+					break;
+				}
+				bytes$1 = (go$sliceType(Go$Uint8)).nil;
+				if (val.CanAddr()) {
+					bytes$1 = val.Slice(0, val.Len()).Bytes();
+				} else {
+					bytes$1 = (go$sliceType(Go$Uint8)).make(val.Len(), 0, function() { return 0; });
+					reflect.Copy((_struct = reflect.ValueOf(bytes$1), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), (_struct$1 = val, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)));
+				}
+				return ["", bytes$1, null];
+			} else if (_ref === 23) {
+				if (!((typ.Elem().Kind() === 8))) {
+					break;
+				}
+				return ["", val.Bytes(), null];
+			}
+		}
+		return ["", (go$sliceType(Go$Uint8)).nil, new UnsupportedTypeError.Ptr(typ)];
+	};
+	printer.prototype.marshalSimple = function(typ, val) { return this.go$val.marshalSimple(typ, val); };
+	printer.Ptr.prototype.marshalStruct = function(tinfo, val) {
+		var p, s, _ref, _i, i, _slice, _index, finfo, _struct, _struct$1, vf, _ref$1, _struct$2, _ref$2, _tuple, x, data, err, _struct$3, pv, _tuple$1, x$1, data$1, err$1, scratch, _ref$3, err$2, ok, _tuple$2, x$2, elem, err$3, k, dashDash, dashLast, _ref$4, s$1, b, _slice$1, _index$1, iface, raw, _ref$5, _type, err$4, err$5, err$6, _struct$4;
+		p = this;
+		s = new parentStack.Ptr(p, (go$sliceType(Go$String)).nil);
+		_ref = tinfo.fields;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			finfo = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (!(((finfo.flags & 2) === 0))) {
+				continue;
+			}
+			vf = (_struct$1 = finfo.value((_struct = val, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+			_ref$1 = vf.Kind();
+			if (_ref$1 === 22 || _ref$1 === 20) {
+				if (!vf.IsNil()) {
+					vf = (_struct$2 = vf.Elem(), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+				}
+			}
+			_ref$2 = finfo.flags & 63;
+			if (_ref$2 === 4) {
+				if (vf.CanInterface() && vf.Type().Implements(textMarshalerType)) {
+					_tuple = (x = vf.Interface(), (x !== null && encoding.TextMarshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, encoding.TextMarshaler))).MarshalText(), data = _tuple[0], err = _tuple[1];
+					if (!(go$interfaceIsEqual(err, null))) {
+						return err;
+					}
+					Escape(p, data);
+					continue;
+				}
+				if (vf.CanAddr()) {
+					pv = (_struct$3 = vf.Addr(), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
+					if (pv.CanInterface() && pv.Type().Implements(textMarshalerType)) {
+						_tuple$1 = (x$1 = pv.Interface(), (x$1 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, encoding.TextMarshaler))).MarshalText(), data$1 = _tuple$1[0], err$1 = _tuple$1[1];
+						if (!(go$interfaceIsEqual(err$1, null))) {
+							return err$1;
+						}
+						Escape(p, data$1);
+						continue;
+					}
+				}
+				scratch = go$makeNativeArray("Uint8", 64, function() { return 0; });
+				_ref$3 = vf.Kind();
+				if (_ref$3 === 2 || _ref$3 === 3 || _ref$3 === 4 || _ref$3 === 5 || _ref$3 === 6) {
+					Escape(p, strconv.AppendInt(go$subslice(new (go$sliceType(Go$Uint8))(scratch), 0, 0), vf.Int(), 10));
+				} else if (_ref$3 === 7 || _ref$3 === 8 || _ref$3 === 9 || _ref$3 === 10 || _ref$3 === 11 || _ref$3 === 12) {
+					Escape(p, strconv.AppendUint(go$subslice(new (go$sliceType(Go$Uint8))(scratch), 0, 0), vf.Uint(), 10));
+				} else if (_ref$3 === 13 || _ref$3 === 14) {
+					Escape(p, strconv.AppendFloat(go$subslice(new (go$sliceType(Go$Uint8))(scratch), 0, 0), vf.Float(), 103, -1, vf.Type().Bits()));
+				} else if (_ref$3 === 1) {
+					Escape(p, strconv.AppendBool(go$subslice(new (go$sliceType(Go$Uint8))(scratch), 0, 0), vf.Bool()));
+				} else if (_ref$3 === 24) {
+					if (err$2 = EscapeText(p, new (go$sliceType(Go$Uint8))(go$stringToBytes(vf.String()))), !(go$interfaceIsEqual(err$2, null))) {
+						return err$2;
+					}
+				} else if (_ref$3 === 23) {
+					if (_tuple$2 = (x$2 = vf.Interface(), (x$2 !== null && x$2.constructor === (go$sliceType(Go$Uint8)) ? [x$2.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), elem = _tuple$2[0], ok = _tuple$2[1], ok) {
+						if (err$3 = EscapeText(p, elem), !(go$interfaceIsEqual(err$3, null))) {
+							return err$3;
+						}
+					}
+				}
+				continue;
+			} else if (_ref$2 === 16) {
+				k = vf.Kind();
+				if (!((k === 24) || (k === 23) && (vf.Type().Elem().Kind() === 8))) {
+					return fmt.Errorf("xml: bad type for comment field of %s", new (go$sliceType(go$emptyInterface))([val.Type()]));
+				}
+				if (vf.Len() === 0) {
+					continue;
+				}
+				p.writeIndent(0);
+				p.Writer.WriteString("<!--");
+				dashDash = false;
+				dashLast = false;
+				_ref$4 = k;
+				if (_ref$4 === 24) {
+					s$1 = vf.String();
+					dashDash = strings.Index(s$1, "--") >= 0;
+					dashLast = s$1.charCodeAt((s$1.length - 1 >> 0)) === 45;
+					if (!dashDash) {
+						p.Writer.WriteString(s$1);
+					}
+				} else if (_ref$4 === 23) {
+					b = vf.Bytes();
+					dashDash = bytes.Index(b, ddBytes) >= 0;
+					dashLast = (_slice$1 = b, _index$1 = (b.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 45;
+					if (!dashDash) {
+						p.Writer.Write(b);
+					}
+				} else {
+					throw go$panic(new Go$String("can't happen"));
+				}
+				if (dashDash) {
+					return fmt.Errorf("xml: comments must not contain \"--\"", new (go$sliceType(go$emptyInterface))([]));
+				}
+				if (dashLast) {
+					p.Writer.WriteByte(32);
+				}
+				p.Writer.WriteString("-->");
+				continue;
+			} else if (_ref$2 === 8) {
+				iface = vf.Interface();
+				_ref$5 = iface;
+				_type = _ref$5 !== null ? _ref$5.constructor : null;
+				if (_type === (go$sliceType(Go$Uint8))) {
+					raw = _ref$5.go$val;
+					p.Writer.Write(raw);
+					continue;
+				} else if (_type === Go$String) {
+					raw = _ref$5.go$val;
+					p.Writer.WriteString(raw);
+					continue;
+				}
+			} else if (_ref$2 === 1 || _ref$2 === 33) {
+				if (err$4 = s.trim(finfo.parents), !(go$interfaceIsEqual(err$4, null))) {
+					return err$4;
+				}
+				if (finfo.parents.length > s.stack.length) {
+					if (!((vf.Kind() === 22)) && !((vf.Kind() === 20)) || !vf.IsNil()) {
+						if (err$5 = s.push(go$subslice(finfo.parents, s.stack.length)), !(go$interfaceIsEqual(err$5, null))) {
+							return err$5;
+						}
+					}
+				}
+			}
+			if (err$6 = p.marshalValue((_struct$4 = vf, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), finfo, (go$ptrType(StartElement)).nil), !(go$interfaceIsEqual(err$6, null))) {
+				return err$6;
+			}
+		}
+		s.trim((go$sliceType(Go$String)).nil);
+		return p.cachedWriteError();
+	};
+	printer.prototype.marshalStruct = function(tinfo, val) { return this.go$val.marshalStruct(tinfo, val); };
+	printer.Ptr.prototype.cachedWriteError = function() {
+		var p, _tuple, err;
+		p = this;
+		_tuple = p.Writer.Write((go$sliceType(Go$Uint8)).nil), err = _tuple[1];
+		return err;
+	};
+	printer.prototype.cachedWriteError = function() { return this.go$val.cachedWriteError(); };
+	printer.Ptr.prototype.writeIndent = function(depthDelta) {
+		var p, i;
+		p = this;
+		if ((p.prefix.length === 0) && (p.indent.length === 0)) {
+			return;
+		}
+		if (depthDelta < 0) {
+			p.depth = p.depth - 1 >> 0;
+			if (p.indentedIn) {
+				p.indentedIn = false;
+				return;
+			}
+			p.indentedIn = false;
+		}
+		if (p.putNewline) {
+			p.Writer.WriteByte(10);
+		} else {
+			p.putNewline = true;
+		}
+		if (p.prefix.length > 0) {
+			p.Writer.WriteString(p.prefix);
+		}
+		if (p.indent.length > 0) {
+			i = 0;
+			while (i < p.depth) {
+				p.Writer.WriteString(p.indent);
+				i = i + 1 >> 0;
+			}
+		}
+		if (depthDelta > 0) {
+			p.depth = p.depth + 1 >> 0;
+			p.indentedIn = true;
+		}
+	};
+	printer.prototype.writeIndent = function(depthDelta) { return this.go$val.writeIndent(depthDelta); };
+	parentStack.Ptr.prototype.trim = function(parents) {
+		var s, split, _slice, _index, _slice$1, _index$1, i, err, _slice$2, _index$2;
+		s = this;
+		split = 0;
+		while (split < parents.length && split < s.stack.length) {
+			if (!((_slice = parents, _index = split, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === (_slice$1 = s.stack, _index$1 = split, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))) {
+				break;
+			}
+			split = split + 1 >> 0;
+		}
+		i = s.stack.length - 1 >> 0;
+		while (i >= split) {
+			if (err = s.p.writeEnd(new Name.Ptr("", (_slice$2 = s.stack, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))), !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			i = i - 1 >> 0;
+		}
+		s.stack = go$subslice(parents, 0, split);
+		return null;
+	};
+	parentStack.prototype.trim = function(parents) { return this.go$val.trim(parents); };
+	parentStack.Ptr.prototype.push = function(parents) {
+		var s, i, err, _slice, _index;
+		s = this;
+		i = 0;
+		while (i < parents.length) {
+			if (err = s.p.writeStart(new StartElement.Ptr(new Name.Ptr("", (_slice = parents, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), (go$sliceType(Attr)).nil)), !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			i = i + 1 >> 0;
+		}
+		s.stack = go$appendSlice(s.stack, parents);
+		return null;
+	};
+	parentStack.prototype.push = function(parents) { return this.go$val.push(parents); };
+	UnsupportedTypeError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return "xml: unsupported type: " + e.Type.String();
+	};
+	UnsupportedTypeError.prototype.Error = function() { return this.go$val.Error(); };
+	var isEmptyValue = function(v) {
+		var _ref, x, x$1;
+		_ref = v.Kind();
+		if (_ref === 17 || _ref === 21 || _ref === 23 || _ref === 24) {
+			return v.Len() === 0;
+		} else if (_ref === 1) {
+			return !v.Bool();
+		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
+			return (x = v.Int(), (x.high === 0 && x.low === 0));
+		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
+			return (x$1 = v.Uint(), (x$1.high === 0 && x$1.low === 0));
+		} else if (_ref === 13 || _ref === 14) {
+			return v.Float() === 0;
+		} else if (_ref === 20 || _ref === 22) {
+			return v.IsNil();
+		}
+		return false;
+	};
+	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
+		return NewDecoder(bytes.NewBuffer(data)).Decode(v);
+	};
+	Decoder.Ptr.prototype.Decode = function(v) {
+		var d;
+		d = this;
+		return d.DecodeElement(v, (go$ptrType(StartElement)).nil);
+	};
+	Decoder.prototype.Decode = function(v) { return this.go$val.Decode(v); };
+	Decoder.Ptr.prototype.DecodeElement = function(v, start) {
+		var d, _struct, val, _struct$1;
+		d = this;
+		val = (_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		if (!((val.Kind() === 22))) {
+			return errors.New("non-pointer passed to Unmarshal");
+		}
+		return d.unmarshal((_struct$1 = val.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), start);
+	};
+	Decoder.prototype.DecodeElement = function(v, start) { return this.go$val.DecodeElement(v, start); };
+	UnmarshalError.prototype.Error = function() {
+		var e;
+		e = this.go$val;
+		return e;
+	};
+	go$ptrType(UnmarshalError).prototype.Error = function() { return new UnmarshalError(this.go$get()).Error(); };
+	var receiverType = function(val) {
+		var t;
+		t = reflect.TypeOf(val);
+		if (!(t.Name() === "")) {
+			return t.String();
+		}
+		return "(" + t.String() + ")";
+	};
+	Decoder.Ptr.prototype.unmarshalInterface = function(val, start) {
+		var p, _struct, _struct$1, err;
+		p = this;
+		p.pushEOF();
+		p.unmarshalDepth = p.unmarshalDepth + 1 >> 0;
+		err = val.UnmarshalXML(p, (_struct = start, new StartElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), _struct.Attr)));
+		p.unmarshalDepth = p.unmarshalDepth - 1 >> 0;
+		if (!(go$interfaceIsEqual(err, null))) {
+			p.popEOF();
+			return err;
+		}
+		if (!p.popEOF()) {
+			return fmt.Errorf("xml: %s.UnmarshalXML did not consume entire <%s> element", new (go$sliceType(go$emptyInterface))([new Go$String(receiverType(val)), new Go$String(start.Name.Local)]));
+		}
+		return null;
+	};
+	Decoder.prototype.unmarshalInterface = function(val, start) { return this.go$val.unmarshalInterface(val, start); };
+	Decoder.Ptr.prototype.unmarshalTextInterface = function(val, start) {
+		var p, buf, depth, _tuple, t, err, t$1, _ref, _type;
+		p = this;
+		buf = (go$sliceType(Go$Uint8)).nil;
+		depth = 1;
+		while (depth > 0) {
+			_tuple = p.Token(), t = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			_ref = t;
+			_type = _ref !== null ? _ref.constructor : null;
+			if (_type === CharData) {
+				t$1 = _ref.go$val;
+				if (depth === 1) {
+					buf = go$appendSlice(buf, t$1);
+				}
+			} else if (_type === StartElement) {
+				t$1 = _ref.go$val;
+				depth = depth + 1 >> 0;
+			} else if (_type === EndElement) {
+				t$1 = _ref.go$val;
+				depth = depth - 1 >> 0;
+			}
+		}
+		return val.UnmarshalText(buf);
+	};
+	Decoder.prototype.unmarshalTextInterface = function(val, start) { return this.go$val.unmarshalTextInterface(val, start); };
+	Decoder.Ptr.prototype.unmarshalAttr = function(val, attr) {
+		var p, _struct, _struct$1, x, _struct$2, _struct$3, _struct$4, pv, x$1, _struct$5, _struct$6, x$2, _struct$7, pv$1, x$3, _struct$8;
+		p = this;
+		if (val.Kind() === 22) {
+			if (val.IsNil()) {
+				val.Set((_struct = reflect.New(val.Type().Elem()), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
+			}
+			val = (_struct$1 = val.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		}
+		if (val.CanInterface() && val.Type().Implements(unmarshalerAttrType)) {
+			return (x = val.Interface(), (x !== null && UnmarshalerAttr.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, UnmarshalerAttr))).UnmarshalXMLAttr((_struct$2 = attr, new Attr.Ptr((_struct$3 = _struct$2.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local)), _struct$2.Value)));
+		}
+		if (val.CanAddr()) {
+			pv = (_struct$4 = val.Addr(), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
+			if (pv.CanInterface() && pv.Type().Implements(unmarshalerAttrType)) {
+				return (x$1 = pv.Interface(), (x$1 !== null && UnmarshalerAttr.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, UnmarshalerAttr))).UnmarshalXMLAttr((_struct$5 = attr, new Attr.Ptr((_struct$6 = _struct$5.Name, new Name.Ptr(_struct$6.Space, _struct$6.Local)), _struct$5.Value)));
+			}
+		}
+		if (val.CanInterface() && val.Type().Implements(textUnmarshalerType)) {
+			return (x$2 = val.Interface(), (x$2 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, encoding.TextUnmarshaler))).UnmarshalText(new (go$sliceType(Go$Uint8))(go$stringToBytes(attr.Value)));
+		}
+		if (val.CanAddr()) {
+			pv$1 = (_struct$7 = val.Addr(), new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
+			if (pv$1.CanInterface() && pv$1.Type().Implements(textUnmarshalerType)) {
+				return (x$3 = pv$1.Interface(), (x$3 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.TextUnmarshaler))).UnmarshalText(new (go$sliceType(Go$Uint8))(go$stringToBytes(attr.Value)));
+			}
+		}
+		copyValue((_struct$8 = val, new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)), new (go$sliceType(Go$Uint8))(go$stringToBytes(attr.Value)));
+		return null;
+	};
+	Decoder.prototype.unmarshalAttr = function(val, attr) { return this.go$val.unmarshalAttr(val, attr); };
+	Decoder.Ptr.prototype.unmarshal = function(val, start) {
+		var p, _tuple, tok, err, ok, _tuple$1, _struct, _struct$1, t, _struct$2, _struct$3, x, _struct$4, pv, x$1, x$2, _struct$5, pv$1, x$3, data, saveData, comment, saveComment, saveXML, saveXMLIndex, saveXMLData, saveAny, sv, tinfo, err$1, _struct$6, v, _ref, typ, _struct$7, n, x$4, ncap, _struct$8, new$1, _struct$9, _struct$10, _struct$11, err$2, _struct$12, _struct$13, typ$1, x$5, _struct$14, _struct$15, _tuple$2, finfo, e, _struct$16, _struct$17, fv, ok$1, _tuple$3, x$6, x$7, _struct$18, _ref$1, _i, i, _slice, _index, finfo$1, _ref$2, _struct$19, _struct$20, strv, _ref$3, _i$1, _slice$1, _index$1, _struct$21, _struct$22, a, err$3, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, savedOffset, _tuple$4, tok$1, err$4, t$1, _ref$4, _type, consumed, _tuple$5, _struct$34, err$5, _struct$35, err$6, err$7, x$8, _struct$36, pv$2, err$8, x$9, err$9, _struct$37, _struct$38, t$2, _ref$5, _struct$39, _struct$40, t$3, _ref$6, _struct$41;
+		p = this;
+		if (start === (go$ptrType(StartElement)).nil) {
+			while (true) {
+				_tuple = p.Token(), tok = _tuple[0], err = _tuple[1];
+				if (!(go$interfaceIsEqual(err, null))) {
+					return err;
+				}
+				if (_tuple$1 = (tok !== null && tok.constructor === StartElement ? [tok.go$val, true] : [new StartElement.Ptr(), false]), t = (_struct = _tuple$1[0], new StartElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), _struct.Attr)), ok = _tuple$1[1], ok) {
+					start = t;
+					break;
+				}
+			}
+		}
+		if (val.Kind() === 22) {
+			if (val.IsNil()) {
+				val.Set((_struct$2 = reflect.New(val.Type().Elem()), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)));
+			}
+			val = (_struct$3 = val.Elem(), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
+		}
+		if (val.CanInterface() && val.Type().Implements(unmarshalerType)) {
+			return p.unmarshalInterface((x = val.Interface(), (x !== null && Unmarshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, Unmarshaler))), start);
+		}
+		if (val.CanAddr()) {
+			pv = (_struct$4 = val.Addr(), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
+			if (pv.CanInterface() && pv.Type().Implements(unmarshalerType)) {
+				return p.unmarshalInterface((x$1 = pv.Interface(), (x$1 !== null && Unmarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, Unmarshaler))), start);
+			}
+		}
+		if (val.CanInterface() && val.Type().Implements(textUnmarshalerType)) {
+			return p.unmarshalTextInterface((x$2 = val.Interface(), (x$2 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, encoding.TextUnmarshaler))), start);
+		}
+		if (val.CanAddr()) {
+			pv$1 = (_struct$5 = val.Addr(), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
+			if (pv$1.CanInterface() && pv$1.Type().Implements(textUnmarshalerType)) {
+				return p.unmarshalTextInterface((x$3 = pv$1.Interface(), (x$3 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.TextUnmarshaler))), start);
+			}
+		}
+		data = (go$sliceType(Go$Uint8)).nil, saveData = new reflect.Value.Ptr(), comment = (go$sliceType(Go$Uint8)).nil, saveComment = new reflect.Value.Ptr(), saveXML = new reflect.Value.Ptr(), saveXMLIndex = 0, saveXMLData = (go$sliceType(Go$Uint8)).nil, saveAny = new reflect.Value.Ptr(), sv = new reflect.Value.Ptr(), tinfo = (go$ptrType(typeInfo)).nil, err$1 = null;
+		v = (_struct$6 = val, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag));
+		_ref = v.Kind();
+		switch (undefined) {
+		default:
+			if (_ref === 20) {
+				return p.Skip();
+			} else if (_ref === 23) {
+				typ = v.Type();
+				if (typ.Elem().Kind() === 8) {
+					saveData = (_struct$7 = v, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
+					break;
+				}
+				n = v.Len();
+				if (n >= v.Cap()) {
+					ncap = (x$4 = 2, (((x$4 >>> 16 << 16) * n >> 0) + (x$4 << 16 >>> 16) * n) >> 0);
+					if (ncap < 4) {
+						ncap = 4;
+					}
+					new$1 = (_struct$8 = reflect.MakeSlice(typ, n, ncap), new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag));
+					reflect.Copy((_struct$9 = new$1, new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), (_struct$10 = v, new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)));
+					v.Set((_struct$11 = new$1, new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag)));
+				}
+				v.SetLen(n + 1 >> 0);
+				if (err$2 = p.unmarshal((_struct$12 = v.Index(n), new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)), start), !(go$interfaceIsEqual(err$2, null))) {
+					v.SetLen(n);
+					return err$2;
+				}
+				return null;
+			} else if (_ref === 1 || _ref === 13 || _ref === 14 || _ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6 || _ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12 || _ref === 24) {
+				saveData = (_struct$13 = v, new reflect.Value.Ptr(_struct$13.typ, _struct$13.val, _struct$13.flag));
+			} else if (_ref === 25) {
+				typ$1 = v.Type();
+				if (go$interfaceIsEqual(typ$1, nameType)) {
+					v.Set((_struct$14 = reflect.ValueOf((x$5 = start.Name, new x$5.constructor.Struct(x$5))), new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag)));
+					break;
+				}
+				sv = (_struct$15 = v, new reflect.Value.Ptr(_struct$15.typ, _struct$15.val, _struct$15.flag));
+				_tuple$2 = getTypeInfo(typ$1), tinfo = _tuple$2[0], err$1 = _tuple$2[1];
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					return err$1;
+				}
+				if (!(tinfo.xmlname === (go$ptrType(fieldInfo)).nil)) {
+					finfo = tinfo.xmlname;
+					if (!(finfo.name === "") && !(finfo.name === start.Name.Local)) {
+						return new UnmarshalError("expected element type <" + finfo.name + "> but have <" + start.Name.Local + ">");
+					}
+					if (!(finfo.xmlns === "") && !(finfo.xmlns === start.Name.Space)) {
+						e = "expected element <" + finfo.name + "> in name space " + finfo.xmlns + " but have ";
+						if (start.Name.Space === "") {
+							e = e + "no name space";
+						} else {
+							e = e + (start.Name.Space);
+						}
+						return new UnmarshalError(e);
+					}
+					fv = (_struct$17 = finfo.value((_struct$16 = sv, new reflect.Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag))), new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag));
+					if (_tuple$3 = (x$6 = fv.Interface(), (x$6 !== null && x$6.constructor === Name ? [x$6.go$val, true] : [new Name.Ptr(), false])), ok$1 = _tuple$3[1], ok$1) {
+						fv.Set((_struct$18 = reflect.ValueOf((x$7 = start.Name, new x$7.constructor.Struct(x$7))), new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag)));
+					}
+				}
+				_ref$1 = tinfo.fields;
+				_i = 0;
+				for (; _i < _ref$1.length; _i += 1) {
+					i = _i;
+					finfo$1 = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+					_ref$2 = finfo$1.flags & 63;
+					if (_ref$2 === 2) {
+						strv = (_struct$20 = finfo$1.value((_struct$19 = sv, new reflect.Value.Ptr(_struct$19.typ, _struct$19.val, _struct$19.flag))), new reflect.Value.Ptr(_struct$20.typ, _struct$20.val, _struct$20.flag));
+						_ref$3 = start.Attr;
+						_i$1 = 0;
+						for (; _i$1 < _ref$3.length; _i$1 += 1) {
+							a = (_struct$21 = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Attr.Ptr((_struct$22 = _struct$21.Name, new Name.Ptr(_struct$22.Space, _struct$22.Local)), _struct$21.Value));
+							if (a.Name.Local === finfo$1.name && (finfo$1.xmlns === "" || finfo$1.xmlns === a.Name.Space)) {
+								if (err$3 = p.unmarshalAttr((_struct$23 = strv, new reflect.Value.Ptr(_struct$23.typ, _struct$23.val, _struct$23.flag)), (_struct$24 = a, new Attr.Ptr((_struct$25 = _struct$24.Name, new Name.Ptr(_struct$25.Space, _struct$25.Local)), _struct$24.Value))), !(go$interfaceIsEqual(err$3, null))) {
+									return err$3;
+								}
+								break;
+							}
+						}
+					} else if (_ref$2 === 4) {
+						if (!saveData.IsValid()) {
+							saveData = (_struct$27 = finfo$1.value((_struct$26 = sv, new reflect.Value.Ptr(_struct$26.typ, _struct$26.val, _struct$26.flag))), new reflect.Value.Ptr(_struct$27.typ, _struct$27.val, _struct$27.flag));
+						}
+					} else if (_ref$2 === 16) {
+						if (!saveComment.IsValid()) {
+							saveComment = (_struct$29 = finfo$1.value((_struct$28 = sv, new reflect.Value.Ptr(_struct$28.typ, _struct$28.val, _struct$28.flag))), new reflect.Value.Ptr(_struct$29.typ, _struct$29.val, _struct$29.flag));
+						}
+					} else if (_ref$2 === 32 || _ref$2 === 33) {
+						if (!saveAny.IsValid()) {
+							saveAny = (_struct$31 = finfo$1.value((_struct$30 = sv, new reflect.Value.Ptr(_struct$30.typ, _struct$30.val, _struct$30.flag))), new reflect.Value.Ptr(_struct$31.typ, _struct$31.val, _struct$31.flag));
+						}
+					} else if (_ref$2 === 8) {
+						if (!saveXML.IsValid()) {
+							saveXML = (_struct$33 = finfo$1.value((_struct$32 = sv, new reflect.Value.Ptr(_struct$32.typ, _struct$32.val, _struct$32.flag))), new reflect.Value.Ptr(_struct$33.typ, _struct$33.val, _struct$33.flag));
+							if (p.saved === (go$ptrType(bytes.Buffer)).nil) {
+								saveXMLIndex = 0;
+								p.saved = new bytes.Buffer.Ptr();
+							} else {
+								saveXMLIndex = p.savedOffset();
+							}
+						}
+					}
+				}
+			} else {
+				return errors.New("unknown type " + v.Type().String());
+			}
+		}
+		Loop: while (true) {
+			savedOffset = 0;
+			if (saveXML.IsValid()) {
+				savedOffset = p.savedOffset();
+			}
+			_tuple$4 = p.Token(), tok$1 = _tuple$4[0], err$4 = _tuple$4[1];
+			if (!(go$interfaceIsEqual(err$4, null))) {
+				return err$4;
+			}
+			_ref$4 = tok$1;
+			_type = _ref$4 !== null ? _ref$4.constructor : null;
+			if (_type === StartElement) {
+				t$1 = _ref$4.go$val;
+				consumed = false;
+				if (sv.IsValid()) {
+					_tuple$5 = p.unmarshalPath(tinfo, (_struct$34 = sv, new reflect.Value.Ptr(_struct$34.typ, _struct$34.val, _struct$34.flag)), (go$sliceType(Go$String)).nil, t$1), consumed = _tuple$5[0], err$4 = _tuple$5[1];
+					if (!(go$interfaceIsEqual(err$4, null))) {
+						return err$4;
+					}
+					if (!consumed && saveAny.IsValid()) {
+						consumed = true;
+						if (err$5 = p.unmarshal((_struct$35 = saveAny, new reflect.Value.Ptr(_struct$35.typ, _struct$35.val, _struct$35.flag)), t$1), !(go$interfaceIsEqual(err$5, null))) {
+							return err$5;
+						}
+					}
+				}
+				if (!consumed) {
+					if (err$6 = p.Skip(), !(go$interfaceIsEqual(err$6, null))) {
+						return err$6;
+					}
+				}
+			} else if (_type === EndElement) {
+				t$1 = _ref$4.go$val;
+				if (saveXML.IsValid()) {
+					saveXMLData = go$subslice(p.saved.Bytes(), saveXMLIndex, savedOffset);
+					if (saveXMLIndex === 0) {
+						p.saved = (go$ptrType(bytes.Buffer)).nil;
+					}
+				}
+				break Loop;
+			} else if (_type === CharData) {
+				t$1 = _ref$4.go$val;
+				if (saveData.IsValid()) {
+					data = go$appendSlice(data, t$1);
+				}
+			} else if (_type === Comment) {
+				t$1 = _ref$4.go$val;
+				if (saveComment.IsValid()) {
+					comment = go$appendSlice(comment, t$1);
+				}
+			}
+		}
+		if (saveData.IsValid() && saveData.CanInterface() && saveData.Type().Implements(textUnmarshalerType)) {
+			if (err$7 = (x$8 = saveData.Interface(), (x$8 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$8.constructor) !== -1 ? x$8 : go$typeAssertionFailed(x$8, encoding.TextUnmarshaler))).UnmarshalText(data), !(go$interfaceIsEqual(err$7, null))) {
+				return err$7;
+			}
+			saveData = new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0);
+		}
+		if (saveData.IsValid() && saveData.CanAddr()) {
+			pv$2 = (_struct$36 = saveData.Addr(), new reflect.Value.Ptr(_struct$36.typ, _struct$36.val, _struct$36.flag));
+			if (pv$2.CanInterface() && pv$2.Type().Implements(textUnmarshalerType)) {
+				if (err$8 = (x$9 = pv$2.Interface(), (x$9 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$9.constructor) !== -1 ? x$9 : go$typeAssertionFailed(x$9, encoding.TextUnmarshaler))).UnmarshalText(data), !(go$interfaceIsEqual(err$8, null))) {
+					return err$8;
+				}
+				saveData = new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0);
+			}
+		}
+		if (err$9 = copyValue((_struct$37 = saveData, new reflect.Value.Ptr(_struct$37.typ, _struct$37.val, _struct$37.flag)), data), !(go$interfaceIsEqual(err$9, null))) {
+			return err$9;
+		}
+		t$2 = (_struct$38 = saveComment, new reflect.Value.Ptr(_struct$38.typ, _struct$38.val, _struct$38.flag));
+		_ref$5 = t$2.Kind();
+		if (_ref$5 === 24) {
+			t$2.SetString(go$bytesToString(comment));
+		} else if (_ref$5 === 23) {
+			t$2.Set((_struct$39 = reflect.ValueOf(comment), new reflect.Value.Ptr(_struct$39.typ, _struct$39.val, _struct$39.flag)));
+		}
+		t$3 = (_struct$40 = saveXML, new reflect.Value.Ptr(_struct$40.typ, _struct$40.val, _struct$40.flag));
+		_ref$6 = t$3.Kind();
+		if (_ref$6 === 24) {
+			t$3.SetString(go$bytesToString(saveXMLData));
+		} else if (_ref$6 === 23) {
+			t$3.Set((_struct$41 = reflect.ValueOf(saveXMLData), new reflect.Value.Ptr(_struct$41.typ, _struct$41.val, _struct$41.flag)));
+		}
+		return null;
+	};
+	Decoder.prototype.unmarshal = function(val, start) { return this.go$val.unmarshal(val, start); };
+	var copyValue = function(dst, src) {
+		var err, _struct, dst0, _struct$1, _struct$2, _ref, _tuple, itmp, err$1, _tuple$1, utmp, err$2, _tuple$2, ftmp, err$3, _tuple$3, value, err$4;
+		err = null;
+		dst0 = (_struct = dst, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		if (dst.Kind() === 22) {
+			if (dst.IsNil()) {
+				dst.Set((_struct$1 = reflect.New(dst.Type().Elem()), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)));
+			}
+			dst = (_struct$2 = dst.Elem(), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+		}
+		_ref = dst.Kind();
+		if (_ref === 0) {
+		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
+			_tuple = strconv.ParseInt(go$bytesToString(src), 10, dst.Type().Bits()), itmp = _tuple[0], err$1 = _tuple[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				err = err$1;
+				return err;
+			}
+			dst.SetInt(itmp);
+		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
+			_tuple$1 = strconv.ParseUint(go$bytesToString(src), 10, dst.Type().Bits()), utmp = _tuple$1[0], err$2 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$2, null))) {
+				err = err$2;
+				return err;
+			}
+			dst.SetUint(utmp);
+		} else if (_ref === 13 || _ref === 14) {
+			_tuple$2 = strconv.ParseFloat(go$bytesToString(src), dst.Type().Bits()), ftmp = _tuple$2[0], err$3 = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err$3, null))) {
+				err = err$3;
+				return err;
+			}
+			dst.SetFloat(ftmp);
+		} else if (_ref === 1) {
+			_tuple$3 = strconv.ParseBool(strings.TrimSpace(go$bytesToString(src))), value = _tuple$3[0], err$4 = _tuple$3[1];
+			if (!(go$interfaceIsEqual(err$4, null))) {
+				err = err$4;
+				return err;
+			}
+			dst.SetBool(value);
+		} else if (_ref === 24) {
+			dst.SetString(go$bytesToString(src));
+		} else if (_ref === 23) {
+			if (src.length === 0) {
+				src = new (go$sliceType(Go$Uint8))([]);
+			}
+			dst.SetBytes(src);
+		} else {
+			err = errors.New("cannot unmarshal into " + dst0.Type().String());
+			return err;
+		}
+		err = null;
+		return err;
+	};
+	Decoder.Ptr.prototype.unmarshalPath = function(tinfo, sv, parents, start) {
+		var consumed, err, p, recurse, _ref, _i, i, _slice, _index, finfo, _ref$1, _i$1, j, _slice$1, _index$1, _slice$2, _index$2, _struct, _struct$1, _tuple, _slice$3, _index$3, _tuple$1, tok, _tuple$2, _tuple$3, t, _ref$2, _type, _tuple$4, _struct$2, consumed2, err$1, _tuple$5, err$2, _tuple$6, _tuple$7;
+		consumed = false;
+		err = null;
+		p = this;
+		recurse = false;
+		_ref = tinfo.fields;
+		_i = 0;
+		Loop: for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			finfo = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (((finfo.flags & 1) === 0) || finfo.parents.length < parents.length || !(finfo.xmlns === "") && !(finfo.xmlns === start.Name.Space)) {
+				continue;
+			}
+			_ref$1 = parents;
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				j = _i$1;
+				if (!((_slice$1 = parents, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = finfo.parents, _index$2 = j, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) {
+					continue Loop;
+				}
+			}
+			if ((finfo.parents.length === parents.length) && finfo.name === start.Name.Local) {
+				_tuple = [true, p.unmarshal((_struct$1 = finfo.value((_struct = sv, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), start)], consumed = _tuple[0], err = _tuple[1];
+				return [consumed, err];
+			}
+			if (finfo.parents.length > parents.length && (_slice$3 = finfo.parents, _index$3 = parents.length, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) === start.Name.Local) {
+				recurse = true;
+				parents = go$subslice(finfo.parents, 0, (parents.length + 1 >> 0));
+				break;
+			}
+		}
+		if (!recurse) {
+			_tuple$1 = [false, null], consumed = _tuple$1[0], err = _tuple$1[1];
+			return [consumed, err];
+		}
+		while (true) {
+			tok = null;
+			_tuple$2 = p.Token(), tok = _tuple$2[0], err = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				_tuple$3 = [true, err], consumed = _tuple$3[0], err = _tuple$3[1];
+				return [consumed, err];
+			}
+			_ref$2 = tok;
+			_type = _ref$2 !== null ? _ref$2.constructor : null;
+			if (_type === StartElement) {
+				t = _ref$2.go$val;
+				_tuple$4 = p.unmarshalPath(tinfo, (_struct$2 = sv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), parents, t), consumed2 = _tuple$4[0], err$1 = _tuple$4[1];
+				if (!(go$interfaceIsEqual(err$1, null))) {
+					_tuple$5 = [true, err$1], consumed = _tuple$5[0], err = _tuple$5[1];
+					return [consumed, err];
+				}
+				if (!consumed2) {
+					if (err$2 = p.Skip(), !(go$interfaceIsEqual(err$2, null))) {
+						_tuple$6 = [true, err$2], consumed = _tuple$6[0], err = _tuple$6[1];
+						return [consumed, err];
+					}
+				}
+			} else if (_type === EndElement) {
+				t = _ref$2.go$val;
+				_tuple$7 = [true, null], consumed = _tuple$7[0], err = _tuple$7[1];
+				return [consumed, err];
+			}
+		}
+	};
+	Decoder.prototype.unmarshalPath = function(tinfo, sv, parents, start) { return this.go$val.unmarshalPath(tinfo, sv, parents, start); };
+	Decoder.Ptr.prototype.Skip = function() {
+		var d, _tuple, tok, err, _ref, _type, err$1;
+		d = this;
+		while (true) {
+			_tuple = d.Token(), tok = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			_ref = tok;
+			_type = _ref !== null ? _ref.constructor : null;
+			if (_type === StartElement) {
+				if (err$1 = d.Skip(), !(go$interfaceIsEqual(err$1, null))) {
+					return err$1;
+				}
+			} else if (_type === EndElement) {
+				return null;
+			}
+		}
+	};
+	Decoder.prototype.Skip = function() { return this.go$val.Skip(); };
+	var getTypeInfo = function(typ) {
+		var _tuple, _entry, tinfo, ok, n, i, _struct, f, t, _tuple$1, inner, err, _ref, _i, _slice, _index, _struct$1, finfo, err$1, _tuple$2, finfo$1, err$2, err$3, _key;
+		tinfoLock.RLock();
+		_tuple = (_entry = tinfoMap[(typ || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(typeInfo)).nil, false]), tinfo = _tuple[0], ok = _tuple[1];
+		tinfoLock.RUnlock();
+		if (ok) {
+			return [tinfo, null];
+		}
+		tinfo = new typeInfo.Ptr((go$ptrType(fieldInfo)).nil, (go$sliceType(fieldInfo)).nil);
+		if ((typ.Kind() === 25) && !(go$interfaceIsEqual(typ, nameType))) {
+			n = typ.NumField();
+			i = 0;
+			while (i < n) {
+				f = (_struct = typ.Field(i), new reflect.StructField.Ptr(_struct.Name, _struct.PkgPath, _struct.Type, _struct.Tag, _struct.Offset, _struct.Index, _struct.Anonymous));
+				if (!(f.PkgPath === "") || (new reflect.StructTag(f.Tag)).Get("xml") === "-") {
+					i = i + 1 >> 0;
+					continue;
+				}
+				if (f.Anonymous) {
+					t = f.Type;
+					if (t.Kind() === 22) {
+						t = t.Elem();
+					}
+					if (t.Kind() === 25) {
+						_tuple$1 = getTypeInfo(t), inner = _tuple$1[0], err = _tuple$1[1];
+						if (!(go$interfaceIsEqual(err, null))) {
+							return [(go$ptrType(typeInfo)).nil, err];
+						}
+						_ref = inner.fields;
+						_i = 0;
+						for (; _i < _ref.length; _i += 1) {
+							finfo = (_struct$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new fieldInfo.Ptr(_struct$1.idx, _struct$1.name, _struct$1.xmlns, _struct$1.flags, _struct$1.parents));
+							finfo.idx = go$appendSlice(new (go$sliceType(Go$Int))([i]), finfo.idx);
+							if (err$1 = addFieldInfo(typ, tinfo, finfo), !(go$interfaceIsEqual(err$1, null))) {
+								return [(go$ptrType(typeInfo)).nil, err$1];
+							}
+						}
+						i = i + 1 >> 0;
+						continue;
+					}
+				}
+				_tuple$2 = structFieldInfo(typ, f), finfo$1 = _tuple$2[0], err$2 = _tuple$2[1];
+				if (!(go$interfaceIsEqual(err$2, null))) {
+					return [(go$ptrType(typeInfo)).nil, err$2];
+				}
+				if (f.Name === "XMLName") {
+					tinfo.xmlname = finfo$1;
+					i = i + 1 >> 0;
+					continue;
+				}
+				if (err$3 = addFieldInfo(typ, tinfo, finfo$1), !(go$interfaceIsEqual(err$3, null))) {
+					return [(go$ptrType(typeInfo)).nil, err$3];
+				}
+				i = i + 1 >> 0;
+			}
+		}
+		tinfoLock.Lock();
+		_key = typ, (tinfoMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: tinfo };
+		tinfoLock.Unlock();
+		return [tinfo, null];
+	};
+	var structFieldInfo = function(typ, f) {
+		var finfo, tag, i, _tuple, tokens, _slice, _index, _ref, _i, _slice$1, _index$1, flag, _ref$1, valid, mode, _ref$2, xmlname, _tuple$1, parents, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, ftyp, xmlname$1;
+		finfo = new fieldInfo.Ptr(f.Index, "", "", 0, (go$sliceType(Go$String)).nil);
+		tag = (new reflect.StructTag(f.Tag)).Get("xml");
+		if (i = strings.Index(tag, " "), i >= 0) {
+			_tuple = [tag.substring(0, i), tag.substring((i + 1 >> 0))], finfo.xmlns = _tuple[0], tag = _tuple[1];
+		}
+		tokens = strings.Split(tag, ",");
+		if (tokens.length === 1) {
+			finfo.flags = 1;
+		} else {
+			tag = (_slice = tokens, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_ref = go$subslice(tokens, 1);
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				flag = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				_ref$1 = flag;
+				if (_ref$1 === "attr") {
+					finfo.flags = finfo.flags | 2;
+				} else if (_ref$1 === "chardata") {
+					finfo.flags = finfo.flags | 4;
+				} else if (_ref$1 === "innerxml") {
+					finfo.flags = finfo.flags | 8;
+				} else if (_ref$1 === "comment") {
+					finfo.flags = finfo.flags | 16;
+				} else if (_ref$1 === "any") {
+					finfo.flags = finfo.flags | 32;
+				} else if (_ref$1 === "omitempty") {
+					finfo.flags = finfo.flags | 64;
+				}
+			}
+			valid = true;
+			mode = finfo.flags & 63;
+			_ref$2 = mode;
+			if (_ref$2 === 0) {
+				finfo.flags = finfo.flags | 1;
+			} else if (_ref$2 === 2 || _ref$2 === 4 || _ref$2 === 8 || _ref$2 === 16 || _ref$2 === 32) {
+				if (f.Name === "XMLName" || !(tag === "") && !((mode === 2))) {
+					valid = false;
+				}
+			} else {
+				valid = false;
+			}
+			if ((finfo.flags & 63) === 32) {
+				finfo.flags = finfo.flags | 1;
+			}
+			if (!(((finfo.flags & 64) === 0)) && ((finfo.flags & 3) === 0)) {
+				valid = false;
+			}
+			if (!valid) {
+				return [(go$ptrType(fieldInfo)).nil, fmt.Errorf("xml: invalid tag in field %s of type %s: %q", new (go$sliceType(go$emptyInterface))([new Go$String(f.Name), typ, new Go$String((new reflect.StructTag(f.Tag)).Get("xml"))]))];
+			}
+		}
+		if (!(finfo.xmlns === "") && tag === "") {
+			return [(go$ptrType(fieldInfo)).nil, fmt.Errorf("xml: namespace without name in field %s of type %s: %q", new (go$sliceType(go$emptyInterface))([new Go$String(f.Name), typ, new Go$String((new reflect.StructTag(f.Tag)).Get("xml"))]))];
+		}
+		if (f.Name === "XMLName") {
+			finfo.name = tag;
+			return [finfo, null];
+		}
+		if (tag === "") {
+			if (xmlname = lookupXMLName(f.Type), !(xmlname === (go$ptrType(fieldInfo)).nil)) {
+				_tuple$1 = [xmlname.xmlns, xmlname.name], finfo.xmlns = _tuple$1[0], finfo.name = _tuple$1[1];
+			} else {
+				finfo.name = f.Name;
+			}
+			return [finfo, null];
+		}
+		parents = strings.Split(tag, ">");
+		if ((_slice$2 = parents, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === "") {
+			_slice$3 = parents, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = f.Name) : go$throwRuntimeError("index out of range");
+		}
+		if ((_slice$4 = parents, _index$4 = (parents.length - 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) === "") {
+			return [(go$ptrType(fieldInfo)).nil, fmt.Errorf("xml: trailing '>' in field %s of type %s", new (go$sliceType(go$emptyInterface))([new Go$String(f.Name), typ]))];
+		}
+		finfo.name = (_slice$5 = parents, _index$5 = (parents.length - 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+		if (parents.length > 1) {
+			if (((finfo.flags & 1)) === 0) {
+				return [(go$ptrType(fieldInfo)).nil, fmt.Errorf("xml: %s chain not valid with %s flag", new (go$sliceType(go$emptyInterface))([new Go$String(tag), new Go$String(strings.Join(go$subslice(tokens, 1), ","))]))];
+			}
+			finfo.parents = go$subslice(parents, 0, (parents.length - 1 >> 0));
+		}
+		if (!(((finfo.flags & 1) === 0))) {
+			ftyp = f.Type;
+			xmlname$1 = lookupXMLName(ftyp);
+			if (!(xmlname$1 === (go$ptrType(fieldInfo)).nil) && !(xmlname$1.name === finfo.name)) {
+				return [(go$ptrType(fieldInfo)).nil, fmt.Errorf("xml: name %q in tag of %s.%s conflicts with name %q in %s.XMLName", new (go$sliceType(go$emptyInterface))([new Go$String(finfo.name), typ, new Go$String(f.Name), new Go$String(xmlname$1.name), ftyp]))];
+			}
+		}
+		return [finfo, null];
+	};
+	var lookupXMLName = function(typ) {
+		var xmlname, _tuple, i, n, _struct, f, _tuple$1, finfo, err;
+		xmlname = (go$ptrType(fieldInfo)).nil;
+		while (typ.Kind() === 22) {
+			typ = typ.Elem();
+		}
+		if (!((typ.Kind() === 25))) {
+			xmlname = (go$ptrType(fieldInfo)).nil;
+			return xmlname;
+		}
+		_tuple = [0, typ.NumField()], i = _tuple[0], n = _tuple[1];
+		while (i < n) {
+			f = (_struct = typ.Field(i), new reflect.StructField.Ptr(_struct.Name, _struct.PkgPath, _struct.Type, _struct.Tag, _struct.Offset, _struct.Index, _struct.Anonymous));
+			if (!(f.Name === "XMLName")) {
+				i = i + 1 >> 0;
+				continue;
+			}
+			_tuple$1 = structFieldInfo(typ, f), finfo = _tuple$1[0], err = _tuple$1[1];
+			if (!(finfo.name === "") && go$interfaceIsEqual(err, null)) {
+				xmlname = finfo;
+				return xmlname;
+			}
+			break;
+		}
+		xmlname = (go$ptrType(fieldInfo)).nil;
+		return xmlname;
+	};
+	var min = function(a, b) {
+		if (a <= b) {
+			return a;
+		}
+		return b;
+	};
+	var addFieldInfo = function(typ, tinfo, newf) {
+		var conflicts, _ref, _i, i, _slice, _index, oldf, minl, p, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _struct, _ref$1, _i$1, _slice$5, _index$5, i$1, _slice$6, _index$6, _ref$2, _i$2, _slice$7, _index$7, i$2, _slice$8, _index$8, oldf$1, _struct$1, f1, _struct$2, f2, c, _slice$9, _index$9, i$3, _struct$3;
+		conflicts = (go$sliceType(Go$Int)).nil;
+		_ref = tinfo.fields;
+		_i = 0;
+		Loop: for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			oldf = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (!(((oldf.flags & 63) === (newf.flags & 63)))) {
+				continue;
+			}
+			if (!(oldf.xmlns === "") && !(newf.xmlns === "") && !(oldf.xmlns === newf.xmlns)) {
+				continue;
+			}
+			minl = min(newf.parents.length, oldf.parents.length);
+			p = 0;
+			while (p < minl) {
+				if (!((_slice$1 = oldf.parents, _index$1 = p, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = newf.parents, _index$2 = p, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) {
+					continue Loop;
+				}
+				p = p + 1 >> 0;
+			}
+			if (oldf.parents.length > newf.parents.length) {
+				if ((_slice$3 = oldf.parents, _index$3 = newf.parents.length, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) === newf.name) {
+					conflicts = go$append(conflicts, i);
+				}
+			} else if (oldf.parents.length < newf.parents.length) {
+				if ((_slice$4 = newf.parents, _index$4 = oldf.parents.length, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) === oldf.name) {
+					conflicts = go$append(conflicts, i);
+				}
+			} else {
+				if (newf.name === oldf.name) {
+					conflicts = go$append(conflicts, i);
+				}
+			}
+		}
+		if (conflicts === (go$sliceType(Go$Int)).nil) {
+			tinfo.fields = go$append(tinfo.fields, (_struct = newf, new fieldInfo.Ptr(_struct.idx, _struct.name, _struct.xmlns, _struct.flags, _struct.parents)));
+			return null;
+		}
+		_ref$1 = conflicts;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			i$1 = (_slice$5 = _ref$1, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+			if ((_slice$6 = tinfo.fields, _index$6 = i$1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).idx.length < newf.idx.length) {
+				return null;
+			}
+		}
+		_ref$2 = conflicts;
+		_i$2 = 0;
+		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+			i$2 = (_slice$7 = _ref$2, _index$7 = _i$2, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+			oldf$1 = (_slice$8 = tinfo.fields, _index$8 = i$2, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
+			if (oldf$1.idx.length === newf.idx.length) {
+				f1 = (_struct$1 = typ.FieldByIndex(oldf$1.idx), new reflect.StructField.Ptr(_struct$1.Name, _struct$1.PkgPath, _struct$1.Type, _struct$1.Tag, _struct$1.Offset, _struct$1.Index, _struct$1.Anonymous));
+				f2 = (_struct$2 = typ.FieldByIndex(newf.idx), new reflect.StructField.Ptr(_struct$2.Name, _struct$2.PkgPath, _struct$2.Type, _struct$2.Tag, _struct$2.Offset, _struct$2.Index, _struct$2.Anonymous));
+				return new TagPathError.Ptr(typ, f1.Name, (new reflect.StructTag(f1.Tag)).Get("xml"), f2.Name, (new reflect.StructTag(f2.Tag)).Get("xml"));
+			}
+		}
+		c = conflicts.length - 1 >> 0;
+		while (c >= 0) {
+			i$3 = (_slice$9 = conflicts, _index$9 = c, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range"));
+			go$copySlice(go$subslice(tinfo.fields, i$3), go$subslice(tinfo.fields, (i$3 + 1 >> 0)));
+			tinfo.fields = go$subslice(tinfo.fields, 0, (tinfo.fields.length - 1 >> 0));
+			c = c - 1 >> 0;
+		}
+		tinfo.fields = go$append(tinfo.fields, (_struct$3 = newf, new fieldInfo.Ptr(_struct$3.idx, _struct$3.name, _struct$3.xmlns, _struct$3.flags, _struct$3.parents)));
+		return null;
+	};
+	TagPathError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return fmt.Sprintf("%s field %q with tag %q conflicts with field %q with tag %q", new (go$sliceType(go$emptyInterface))([e.Struct, new Go$String(e.Field1), new Go$String(e.Tag1), new Go$String(e.Field2), new Go$String(e.Tag2)]));
+	};
+	TagPathError.prototype.Error = function() { return this.go$val.Error(); };
+	fieldInfo.Ptr.prototype.value = function(v) {
+		var finfo, _ref, _i, _slice, _index, x, i, t, _struct, _struct$1, _struct$2, _struct$3;
+		finfo = this;
+		_ref = finfo.idx;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			if (i > 0) {
+				t = v.Type();
+				if ((t.Kind() === 22) && (t.Elem().Kind() === 25)) {
+					if (v.IsNil()) {
+						v.Set((_struct = reflect.New(v.Type().Elem()), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
+					}
+					v = (_struct$1 = v.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+				}
+			}
+			v = (_struct$2 = v.Field(x), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+		}
+		return (_struct$3 = v, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
+	};
+	fieldInfo.prototype.value = function(v) { return this.go$val.value(v); };
+	SyntaxError.Ptr.prototype.Error = function() {
+		var e;
+		e = this;
+		return "XML syntax error on line " + strconv.Itoa(e.Line) + ": " + e.Msg;
+	};
+	SyntaxError.prototype.Error = function() { return this.go$val.Error(); };
+	StartElement.Ptr.prototype.Copy = function() {
+		var _struct, _struct$1, e, attrs, _struct$2, _struct$3;
+		e = (_struct = this, new StartElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), _struct.Attr));
+		attrs = (go$sliceType(Attr)).make(e.Attr.length, 0, function() { return new Attr.Ptr(); });
+		go$copySlice(attrs, e.Attr);
+		e.Attr = attrs;
+		return (_struct$2 = e, new StartElement.Ptr((_struct$3 = _struct$2.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local)), _struct$2.Attr));
+	};
+	StartElement.prototype.Copy = function() { return this.go$val.Copy(); };
+	StartElement.Ptr.prototype.End = function() {
+		var _struct, _struct$1, e, _struct$2;
+		e = (_struct = this, new StartElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), _struct.Attr));
+		return new EndElement.Ptr((_struct$2 = e.Name, new Name.Ptr(_struct$2.Space, _struct$2.Local)));
+	};
+	StartElement.prototype.End = function() { return this.go$val.End(); };
+	var makeCopy = function(b) {
+		var b1;
+		b1 = (go$sliceType(Go$Uint8)).make(b.length, 0, function() { return 0; });
+		go$copySlice(b1, b);
+		return b1;
+	};
+	CharData.prototype.Copy = function() {
+		var c, x;
+		c = this;
+		return (x = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(c.array), c.offset, c.offset + c.length)), go$subslice(new CharData(x.array), x.offset, x.offset + x.length));
+	};
+	go$ptrType(CharData).prototype.Copy = function() { return this.go$get().Copy(); };
+	Comment.prototype.Copy = function() {
+		var c, x;
+		c = this;
+		return (x = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(c.array), c.offset, c.offset + c.length)), go$subslice(new Comment(x.array), x.offset, x.offset + x.length));
+	};
+	go$ptrType(Comment).prototype.Copy = function() { return this.go$get().Copy(); };
+	ProcInst.Ptr.prototype.Copy = function() {
+		var _struct, p, _struct$1;
+		p = (_struct = this, new ProcInst.Ptr(_struct.Target, _struct.Inst));
+		p.Inst = makeCopy(p.Inst);
+		return (_struct$1 = p, new ProcInst.Ptr(_struct$1.Target, _struct$1.Inst));
+	};
+	ProcInst.prototype.Copy = function() { return this.go$val.Copy(); };
+	Directive.prototype.Copy = function() {
+		var d, x;
+		d = this;
+		return (x = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(d.array), d.offset, d.offset + d.length)), go$subslice(new Directive(x.array), x.offset, x.offset + x.length));
+	};
+	go$ptrType(Directive).prototype.Copy = function() { return this.go$get().Copy(); };
+	var CopyToken = go$pkg.CopyToken = function(t) {
+		var v, _ref, _type, x, x$1;
+		_ref = t;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === CharData) {
+			v = _ref.go$val;
+			return v.Copy();
+		} else if (_type === Comment) {
+			v = _ref.go$val;
+			return v.Copy();
+		} else if (_type === Directive) {
+			v = _ref.go$val;
+			return v.Copy();
+		} else if (_type === ProcInst) {
+			v = _ref.go$val;
+			return (x = v.Copy(), new x.constructor.Struct(x));
+		} else if (_type === StartElement) {
+			v = _ref.go$val;
+			return (x$1 = v.Copy(), new x$1.constructor.Struct(x$1));
+		}
+		return t;
+	};
+	var NewDecoder = go$pkg.NewDecoder = function(r) {
+		var d;
+		d = new Decoder.Ptr(true, (go$sliceType(Go$String)).nil, false, go$throwNilPointerError, "", null, new bytes.Buffer.Ptr(), (go$ptrType(bytes.Buffer)).nil, (go$ptrType(stack)).nil, (go$ptrType(stack)).nil, false, new Name.Ptr(), null, -1, new Go$Map(), null, 1, 0);
+		d.switchToReader(r);
+		return d;
+	};
+	Decoder.Ptr.prototype.Token = function() {
+		var t, err, d, _tuple, ok, _tuple$1, t1, t1$1, _ref, _type, _ref$1, _i, _slice, _index, _struct, _struct$1, a, _tuple$2, _entry, v, ok$1, _key, _tuple$3, _entry$1, v$1, ok$2, _key$1, _ref$2, _i$1, i, _slice$1, _index$1, _struct$2, _tuple$4;
+		t = null;
+		err = null;
+		d = this;
+		if (!(d.stk === (go$ptrType(stack)).nil) && (d.stk.kind === 2)) {
+			err = io.EOF;
+			return [t, err];
+		}
+		if (!(go$interfaceIsEqual(d.nextToken, null))) {
+			t = d.nextToken;
+			d.nextToken = null;
+		} else if (_tuple = d.rawToken(), t = _tuple[0], err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			return [t, err];
+		}
+		if (!d.Strict) {
+			if (_tuple$1 = d.autoClose(t), t1 = _tuple$1[0], ok = _tuple$1[1], ok) {
+				d.nextToken = t;
+				t = t1;
+			}
+		}
+		_ref = t;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === StartElement) {
+			t1$1 = _ref.go$val;
+			_ref$1 = t1$1.Attr;
+			_i = 0;
+			for (; _i < _ref$1.length; _i += 1) {
+				a = (_struct = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Attr.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), _struct.Value));
+				if (a.Name.Space === "xmlns") {
+					_tuple$2 = (_entry = d.ns[a.Name.Local], _entry !== undefined ? [_entry.v, true] : ["", false]), v = _tuple$2[0], ok$1 = _tuple$2[1];
+					d.pushNs(a.Name.Local, v, ok$1);
+					_key = a.Name.Local, (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: a.Value };
+				}
+				if (a.Name.Space === "" && a.Name.Local === "xmlns") {
+					_tuple$3 = (_entry$1 = d.ns[""], _entry$1 !== undefined ? [_entry$1.v, true] : ["", false]), v$1 = _tuple$3[0], ok$2 = _tuple$3[1];
+					d.pushNs("", v$1, ok$2);
+					_key$1 = "", (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: a.Value };
+				}
+			}
+			d.translate(t1$1.Name, true);
+			_ref$2 = t1$1.Attr;
+			_i$1 = 0;
+			for (; _i$1 < _ref$2.length; _i$1 += 1) {
+				i = _i$1;
+				d.translate((_slice$1 = t1$1.Attr, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name, false);
+			}
+			d.pushElement((_struct$2 = t1$1.Name, new Name.Ptr(_struct$2.Space, _struct$2.Local)));
+			t = new t1$1.constructor.Struct(t1$1);
+		} else if (_type === EndElement) {
+			t1$1 = _ref.go$val;
+			d.translate(t1$1.Name, true);
+			if (!d.popElement(t1$1)) {
+				_tuple$4 = [null, d.err], t = _tuple$4[0], err = _tuple$4[1];
+				return [t, err];
+			}
+			t = new t1$1.constructor.Struct(t1$1);
+		}
+		return [t, err];
+	};
+	Decoder.prototype.Token = function() { return this.go$val.Token(); };
+	Decoder.Ptr.prototype.translate = function(n, isElementName) {
+		var d, ok, _tuple, _entry, v;
+		d = this;
+		if (n.Space === "xmlns") {
+			return;
+		} else if (n.Space === "" && !isElementName) {
+			return;
+		} else if (n.Space === "xml") {
+			n.Space = "http://www.w3.org/XML/1998/namespace";
+		} else if (n.Space === "" && n.Local === "xmlns") {
+			return;
+		}
+		if (_tuple = (_entry = d.ns[n.Space], _entry !== undefined ? [_entry.v, true] : ["", false]), v = _tuple[0], ok = _tuple[1], ok) {
+			n.Space = v;
+		} else if (n.Space === "") {
+			n.Space = d.DefaultSpace;
+		}
+	};
+	Decoder.prototype.translate = function(n, isElementName) { return this.go$val.translate(n, isElementName); };
+	Decoder.Ptr.prototype.switchToReader = function(r) {
+		var d, ok, _tuple, rb;
+		d = this;
+		if (_tuple = (r !== null && io.ByteReader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rb = _tuple[0], ok = _tuple[1], ok) {
+			d.r = rb;
+		} else {
+			d.r = bufio.NewReader(r);
+		}
+	};
+	Decoder.prototype.switchToReader = function(r) { return this.go$val.switchToReader(r); };
+	Decoder.Ptr.prototype.push = function(kind) {
+		var d, s;
+		d = this;
+		s = d.free;
+		if (!(s === (go$ptrType(stack)).nil)) {
+			d.free = s.next;
+		} else {
+			s = new stack.Ptr();
+		}
+		s.next = d.stk;
+		s.kind = kind;
+		d.stk = s;
+		return s;
+	};
+	Decoder.prototype.push = function(kind) { return this.go$val.push(kind); };
+	Decoder.Ptr.prototype.pop = function() {
+		var d, s;
+		d = this;
+		s = d.stk;
+		if (!(s === (go$ptrType(stack)).nil)) {
+			d.stk = s.next;
+			s.next = d.free;
+			d.free = s;
+		}
+		return s;
+	};
+	Decoder.prototype.pop = function() { return this.go$val.pop(); };
+	Decoder.Ptr.prototype.pushEOF = function() {
+		var d, start, s;
+		d = this;
+		start = d.stk;
+		while (!((start.kind === 0))) {
+			start = start.next;
+		}
+		while (!(start.next === (go$ptrType(stack)).nil) && (start.next.kind === 1)) {
+			start = start.next;
+		}
+		s = d.free;
+		if (!(s === (go$ptrType(stack)).nil)) {
+			d.free = s.next;
+		} else {
+			s = new stack.Ptr();
+		}
+		s.kind = 2;
+		s.next = start.next;
+		start.next = s;
+	};
+	Decoder.prototype.pushEOF = function() { return this.go$val.pushEOF(); };
+	Decoder.Ptr.prototype.popEOF = function() {
+		var d;
+		d = this;
+		if (d.stk === (go$ptrType(stack)).nil || !((d.stk.kind === 2))) {
+			return false;
+		}
+		d.pop();
+		return true;
+	};
+	Decoder.prototype.popEOF = function() { return this.go$val.popEOF(); };
+	Decoder.Ptr.prototype.pushElement = function(name) {
+		var d, s, _struct;
+		d = this;
+		s = d.push(0);
+		s.name = (_struct = name, new Name.Ptr(_struct.Space, _struct.Local));
+	};
+	Decoder.prototype.pushElement = function(name) { return this.go$val.pushElement(name); };
+	Decoder.Ptr.prototype.pushNs = function(local, url, ok) {
+		var d, s;
+		d = this;
+		s = d.push(1);
+		s.name.Local = local;
+		s.name.Space = url;
+		s.ok = ok;
+	};
+	Decoder.prototype.pushNs = function(local, url, ok) { return this.go$val.pushNs(local, url, ok); };
+	Decoder.Ptr.prototype.syntaxError = function(msg) {
+		var d;
+		d = this;
+		return new SyntaxError.Ptr(msg, d.line);
+	};
+	Decoder.prototype.syntaxError = function(msg) { return this.go$val.syntaxError(msg); };
+	Decoder.Ptr.prototype.popElement = function(t) {
+		var d, s, _struct, name, _struct$1, _struct$2, s$1, _key;
+		d = this;
+		s = d.pop();
+		name = (_struct = t.Name, new Name.Ptr(_struct.Space, _struct.Local));
+		if (s === (go$ptrType(stack)).nil || !((s.kind === 0))) {
+			d.err = d.syntaxError("unexpected end element </" + name.Local + ">");
+			return false;
+		} else if (!(s.name.Local === name.Local)) {
+			if (!d.Strict) {
+				d.needClose = true;
+				d.toClose = (_struct$1 = t.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local));
+				t.Name = (_struct$2 = s.name, new Name.Ptr(_struct$2.Space, _struct$2.Local));
+				return true;
+			}
+			d.err = d.syntaxError("element <" + s.name.Local + "> closed by </" + name.Local + ">");
+			return false;
+		} else if (!(s.name.Space === name.Space)) {
+			d.err = d.syntaxError("element <" + s.name.Local + "> in space " + s.name.Space + "closed by </" + name.Local + "> in space " + name.Space);
+			return false;
+		}
+		while (!(d.stk === (go$ptrType(stack)).nil) && !((d.stk.kind === 0)) && !((d.stk.kind === 2))) {
+			s$1 = d.pop();
+			if (s$1.ok) {
+				_key = s$1.name.Local, (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: s$1.name.Space };
+			} else {
+				delete d.ns[s$1.name.Local];
+			}
+		}
+		return true;
+	};
+	Decoder.prototype.popElement = function(t) { return this.go$val.popElement(t); };
+	Decoder.Ptr.prototype.autoClose = function(t) {
+		var d, name, _ref, _i, _slice, _index, s, _tuple, _struct, _struct$1, et, ok, x, _struct$2;
+		d = this;
+		if (d.stk === (go$ptrType(stack)).nil || !((d.stk.kind === 0))) {
+			return [null, false];
+		}
+		name = strings.ToLower(d.stk.name.Local);
+		_ref = d.AutoClose;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (strings.ToLower(s) === name) {
+				_tuple = (t !== null && t.constructor === EndElement ? [t.go$val, true] : [new EndElement.Ptr(), false]), et = (_struct = _tuple[0], new EndElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)))), ok = _tuple[1];
+				if (!ok || !(et.Name.Local === name)) {
+					return [(x = new EndElement.Ptr((_struct$2 = d.stk.name, new Name.Ptr(_struct$2.Space, _struct$2.Local))), new x.constructor.Struct(x)), true];
+				}
+				break;
+			}
+		}
+		return [null, false];
+	};
+	Decoder.prototype.autoClose = function(t) { return this.go$val.autoClose(t); };
+	Decoder.Ptr.prototype.RawToken = function() {
+		var d;
+		d = this;
+		if (d.unmarshalDepth > 0) {
+			return [null, errRawToken];
+		}
+		return d.rawToken();
+	};
+	Decoder.prototype.RawToken = function() { return this.go$val.RawToken(); };
+	Decoder.Ptr.prototype.rawToken = function() {
+		var d, x, _struct, _tuple, b, ok, data, _tuple$1, _ref, name, _tuple$2, _struct$1, _tuple$3, x$1, _struct$2, target, _tuple$4, b0, _tuple$5, data$1, enc, _tuple$6, x$2, newr, err, x$3, _tuple$7, _ref$1, _tuple$8, _tuple$9, b0$1, b1, _tuple$10, _tuple$11, data$2, i, _tuple$12, data$3, inquote, depth, _tuple$13, s, i$1, _tuple$14, j, _tuple$15, b0$2, b1$1, _tuple$16, _tuple$17, x$4, name$1, empty, attr, _tuple$18, _struct$3, _tuple$19, _tuple$20, n, x$5, x$6, nattr, _slice, _index, a, _tuple$21, _struct$4, _tuple$22, data$4, _struct$5, x$7, _struct$6;
+		d = this;
+		if (!(go$interfaceIsEqual(d.err, null))) {
+			return [null, d.err];
+		}
+		if (d.needClose) {
+			d.needClose = false;
+			return [(x = new EndElement.Ptr((_struct = d.toClose, new Name.Ptr(_struct.Space, _struct.Local))), new x.constructor.Struct(x)), null];
+		}
+		_tuple = d.getc(), b = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			return [null, d.err];
+		}
+		if (!((b === 60))) {
+			d.ungetc(b);
+			data = d.text(-1, false);
+			if (data === (go$sliceType(Go$Uint8)).nil) {
+				return [null, d.err];
+			}
+			return [go$subslice(new CharData(data.array), data.offset, data.offset + data.length), null];
+		}
+		if (_tuple$1 = d.mustgetc(), b = _tuple$1[0], ok = _tuple$1[1], !ok) {
+			return [null, d.err];
+		}
+		_ref = b;
+		if (_ref === 47) {
+			name = new Name.Ptr();
+			if (_tuple$2 = d.nsname(), name = (_struct$1 = _tuple$2[0], new Name.Ptr(_struct$1.Space, _struct$1.Local)), ok = _tuple$2[1], !ok) {
+				if (go$interfaceIsEqual(d.err, null)) {
+					d.err = d.syntaxError("expected element name after </");
+				}
+				return [null, d.err];
+			}
+			d.space();
+			if (_tuple$3 = d.mustgetc(), b = _tuple$3[0], ok = _tuple$3[1], !ok) {
+				return [null, d.err];
+			}
+			if (!((b === 62))) {
+				d.err = d.syntaxError("invalid characters between </" + name.Local + " and >");
+				return [null, d.err];
+			}
+			return [(x$1 = new EndElement.Ptr((_struct$2 = name, new Name.Ptr(_struct$2.Space, _struct$2.Local))), new x$1.constructor.Struct(x$1)), null];
+		} else if (_ref === 63) {
+			target = "";
+			if (_tuple$4 = d.name(), target = _tuple$4[0], ok = _tuple$4[1], !ok) {
+				if (go$interfaceIsEqual(d.err, null)) {
+					d.err = d.syntaxError("expected target name after <?");
+				}
+				return [null, d.err];
+			}
+			d.space();
+			d.buf.Reset();
+			b0 = 0;
+			while (true) {
+				if (_tuple$5 = d.mustgetc(), b = _tuple$5[0], ok = _tuple$5[1], !ok) {
+					return [null, d.err];
+				}
+				d.buf.WriteByte(b);
+				if ((b0 === 63) && (b === 62)) {
+					break;
+				}
+				b0 = b;
+			}
+			data$1 = d.buf.Bytes();
+			data$1 = go$subslice(data$1, 0, (data$1.length - 2 >> 0));
+			if (target === "xml") {
+				enc = procInstEncoding(go$bytesToString(data$1));
+				if (!(enc === "") && !(enc === "utf-8") && !(enc === "UTF-8")) {
+					if (d.CharsetReader === go$throwNilPointerError) {
+						d.err = fmt.Errorf("xml: encoding %q declared but Decoder.CharsetReader is nil", new (go$sliceType(go$emptyInterface))([new Go$String(enc)]));
+						return [null, d.err];
+					}
+					_tuple$6 = d.CharsetReader(enc, (x$2 = d.r, (x$2 !== null && io.Reader.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, io.Reader)))), newr = _tuple$6[0], err = _tuple$6[1];
+					if (!(go$interfaceIsEqual(err, null))) {
+						d.err = fmt.Errorf("xml: opening charset %q: %v", new (go$sliceType(go$emptyInterface))([new Go$String(enc), err]));
+						return [null, d.err];
+					}
+					if (go$interfaceIsEqual(newr, null)) {
+						throw go$panic(new Go$String("CharsetReader returned a nil Reader for charset " + enc));
+					}
+					d.switchToReader(newr);
+				}
+			}
+			return [(x$3 = new ProcInst.Ptr(target, data$1), new x$3.constructor.Struct(x$3)), null];
+		} else if (_ref === 33) {
+			if (_tuple$7 = d.mustgetc(), b = _tuple$7[0], ok = _tuple$7[1], !ok) {
+				return [null, d.err];
+			}
+			_ref$1 = b;
+			if (_ref$1 === 45) {
+				if (_tuple$8 = d.mustgetc(), b = _tuple$8[0], ok = _tuple$8[1], !ok) {
+					return [null, d.err];
+				}
+				if (!((b === 45))) {
+					d.err = d.syntaxError("invalid sequence <!- not part of <!--");
+					return [null, d.err];
+				}
+				d.buf.Reset();
+				_tuple$9 = [0, 0], b0$1 = _tuple$9[0], b1 = _tuple$9[1];
+				while (true) {
+					if (_tuple$10 = d.mustgetc(), b = _tuple$10[0], ok = _tuple$10[1], !ok) {
+						return [null, d.err];
+					}
+					d.buf.WriteByte(b);
+					if ((b0$1 === 45) && (b1 === 45) && (b === 62)) {
+						break;
+					}
+					_tuple$11 = [b1, b], b0$1 = _tuple$11[0], b1 = _tuple$11[1];
+				}
+				data$2 = d.buf.Bytes();
+				data$2 = go$subslice(data$2, 0, (data$2.length - 3 >> 0));
+				return [go$subslice(new Comment(data$2.array), data$2.offset, data$2.offset + data$2.length), null];
+			} else if (_ref$1 === 91) {
+				i = 0;
+				while (i < 6) {
+					if (_tuple$12 = d.mustgetc(), b = _tuple$12[0], ok = _tuple$12[1], !ok) {
+						return [null, d.err];
+					}
+					if (!((b === "CDATA[".charCodeAt(i)))) {
+						d.err = d.syntaxError("invalid <![ sequence");
+						return [null, d.err];
+					}
+					i = i + 1 >> 0;
+				}
+				data$3 = d.text(-1, true);
+				if (data$3 === (go$sliceType(Go$Uint8)).nil) {
+					return [null, d.err];
+				}
+				return [go$subslice(new CharData(data$3.array), data$3.offset, data$3.offset + data$3.length), null];
+			}
+			d.buf.Reset();
+			d.buf.WriteByte(b);
+			inquote = 0;
+			depth = 0;
+			while (true) {
+				if (_tuple$13 = d.mustgetc(), b = _tuple$13[0], ok = _tuple$13[1], !ok) {
+					return [null, d.err];
+				}
+				if ((inquote === 0) && (b === 62) && (depth === 0)) {
+					break;
+				}
+				HandleB: while (true) {
+					d.buf.WriteByte(b);
+					if (b === inquote) {
+						inquote = 0;
+					} else if (!((inquote === 0))) {
+					} else if ((b === 39) || (b === 34)) {
+						inquote = b;
+					} else if ((b === 62) && (inquote === 0)) {
+						depth = depth - 1 >> 0;
+					} else if ((b === 60) && (inquote === 0)) {
+						s = "!--";
+						i$1 = 0;
+						while (i$1 < s.length) {
+							if (_tuple$14 = d.mustgetc(), b = _tuple$14[0], ok = _tuple$14[1], !ok) {
+								return [null, d.err];
+							}
+							if (!((b === s.charCodeAt(i$1)))) {
+								j = 0;
+								while (j < i$1) {
+									d.buf.WriteByte(s.charCodeAt(j));
+									j = j + 1 >> 0;
+								}
+								depth = depth + 1 >> 0;
+								continue HandleB;
+							}
+							i$1 = i$1 + 1 >> 0;
+						}
+						d.buf.Truncate(d.buf.Len() - 1 >> 0);
+						_tuple$15 = [0, 0], b0$2 = _tuple$15[0], b1$1 = _tuple$15[1];
+						while (true) {
+							if (_tuple$16 = d.mustgetc(), b = _tuple$16[0], ok = _tuple$16[1], !ok) {
+								return [null, d.err];
+							}
+							if ((b0$2 === 45) && (b1$1 === 45) && (b === 62)) {
+								break;
+							}
+							_tuple$17 = [b1$1, b], b0$2 = _tuple$17[0], b1$1 = _tuple$17[1];
+						}
+					}
+					break;
+				}
+			}
+			return [(x$4 = d.buf.Bytes(), go$subslice(new Directive(x$4.array), x$4.offset, x$4.offset + x$4.length)), null];
+		}
+		d.ungetc(b);
+		name$1 = new Name.Ptr(), empty = false, attr = (go$sliceType(Attr)).nil;
+		if (_tuple$18 = d.nsname(), name$1 = (_struct$3 = _tuple$18[0], new Name.Ptr(_struct$3.Space, _struct$3.Local)), ok = _tuple$18[1], !ok) {
+			if (go$interfaceIsEqual(d.err, null)) {
+				d.err = d.syntaxError("expected element name after <");
+			}
+			return [null, d.err];
+		}
+		attr = (go$sliceType(Attr)).make(0, 4, function() { return new Attr.Ptr(); });
+		while (true) {
+			d.space();
+			if (_tuple$19 = d.mustgetc(), b = _tuple$19[0], ok = _tuple$19[1], !ok) {
+				return [null, d.err];
+			}
+			if (b === 47) {
+				empty = true;
+				if (_tuple$20 = d.mustgetc(), b = _tuple$20[0], ok = _tuple$20[1], !ok) {
+					return [null, d.err];
+				}
+				if (!((b === 62))) {
+					d.err = d.syntaxError("expected /> in element");
+					return [null, d.err];
+				}
+				break;
+			}
+			if (b === 62) {
+				break;
+			}
+			d.ungetc(b);
+			n = attr.length;
+			if (n >= attr.capacity) {
+				nattr = (go$sliceType(Attr)).make(n, (x$5 = 2, x$6 = attr.capacity, (((x$5 >>> 16 << 16) * x$6 >> 0) + (x$5 << 16 >>> 16) * x$6) >> 0), function() { return new Attr.Ptr(); });
+				go$copySlice(nattr, attr);
+				attr = nattr;
+			}
+			attr = go$subslice(attr, 0, (n + 1 >> 0));
+			a = (_slice = attr, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (_tuple$21 = d.nsname(), a.Name = (_struct$4 = _tuple$21[0], new Name.Ptr(_struct$4.Space, _struct$4.Local)), ok = _tuple$21[1], !ok) {
+				if (go$interfaceIsEqual(d.err, null)) {
+					d.err = d.syntaxError("expected attribute name in element");
+				}
+				return [null, d.err];
+			}
+			d.space();
+			if (_tuple$22 = d.mustgetc(), b = _tuple$22[0], ok = _tuple$22[1], !ok) {
+				return [null, d.err];
+			}
+			if (!((b === 61))) {
+				if (d.Strict) {
+					d.err = d.syntaxError("attribute name without = in element");
+					return [null, d.err];
+				} else {
+					d.ungetc(b);
+					a.Value = a.Name.Local;
+				}
+			} else {
+				d.space();
+				data$4 = d.attrval();
+				if (data$4 === (go$sliceType(Go$Uint8)).nil) {
+					return [null, d.err];
+				}
+				a.Value = go$bytesToString(data$4);
+			}
+		}
+		if (empty) {
+			d.needClose = true;
+			d.toClose = (_struct$5 = name$1, new Name.Ptr(_struct$5.Space, _struct$5.Local));
+		}
+		return [(x$7 = new StartElement.Ptr((_struct$6 = name$1, new Name.Ptr(_struct$6.Space, _struct$6.Local)), attr), new x$7.constructor.Struct(x$7)), null];
+	};
+	Decoder.prototype.rawToken = function() { return this.go$val.rawToken(); };
+	Decoder.Ptr.prototype.attrval = function() {
+		var d, _tuple, b, ok, _tuple$1;
+		d = this;
+		_tuple = d.mustgetc(), b = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			return (go$sliceType(Go$Uint8)).nil;
+		}
+		if ((b === 34) || (b === 39)) {
+			return d.text((b >> 0), false);
+		}
+		if (d.Strict) {
+			d.err = d.syntaxError("unquoted or missing attribute value in element");
+			return (go$sliceType(Go$Uint8)).nil;
+		}
+		d.ungetc(b);
+		d.buf.Reset();
+		while (true) {
+			_tuple$1 = d.mustgetc(), b = _tuple$1[0], ok = _tuple$1[1];
+			if (!ok) {
+				return (go$sliceType(Go$Uint8)).nil;
+			}
+			if (97 <= b && b <= 122 || 65 <= b && b <= 90 || 48 <= b && b <= 57 || (b === 95) || (b === 58) || (b === 45)) {
+				d.buf.WriteByte(b);
+			} else {
+				d.ungetc(b);
+				break;
+			}
+		}
+		return d.buf.Bytes();
+	};
+	Decoder.prototype.attrval = function() { return this.go$val.attrval(); };
+	Decoder.Ptr.prototype.space = function() {
+		var d, _tuple, b, ok, _ref;
+		d = this;
+		while (true) {
+			_tuple = d.getc(), b = _tuple[0], ok = _tuple[1];
+			if (!ok) {
+				return;
+			}
+			_ref = b;
+			if (_ref === 32 || _ref === 13 || _ref === 10 || _ref === 9) {
+			} else {
+				d.ungetc(b);
+				return;
+			}
+		}
+	};
+	Decoder.prototype.space = function() { return this.go$val.space(); };
+	Decoder.Ptr.prototype.getc = function() {
+		var b, ok, d, _tuple, _tuple$1, _tuple$2, _tuple$3;
+		b = 0;
+		ok = false;
+		d = this;
+		if (!(go$interfaceIsEqual(d.err, null))) {
+			_tuple = [0, false], b = _tuple[0], ok = _tuple[1];
+			return [b, ok];
+		}
+		if (d.nextByte >= 0) {
+			b = (d.nextByte << 24 >>> 24);
+			d.nextByte = -1;
+		} else {
+			_tuple$1 = d.r.ReadByte(), b = _tuple$1[0], d.err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(d.err, null))) {
+				_tuple$2 = [0, false], b = _tuple$2[0], ok = _tuple$2[1];
+				return [b, ok];
+			}
+			if (!(d.saved === (go$ptrType(bytes.Buffer)).nil)) {
+				d.saved.WriteByte(b);
+			}
+		}
+		if (b === 10) {
+			d.line = d.line + 1 >> 0;
+		}
+		_tuple$3 = [b, true], b = _tuple$3[0], ok = _tuple$3[1];
+		return [b, ok];
+	};
+	Decoder.prototype.getc = function() { return this.go$val.getc(); };
+	Decoder.Ptr.prototype.savedOffset = function() {
+		var d, n;
+		d = this;
+		n = d.saved.Len();
+		if (d.nextByte >= 0) {
+			n = n - 1 >> 0;
+		}
+		return n;
+	};
+	Decoder.prototype.savedOffset = function() { return this.go$val.savedOffset(); };
+	Decoder.Ptr.prototype.mustgetc = function() {
+		var b, ok, d, _tuple;
+		b = 0;
+		ok = false;
+		d = this;
+		if (_tuple = d.getc(), b = _tuple[0], ok = _tuple[1], !ok) {
+			if (go$interfaceIsEqual(d.err, io.EOF)) {
+				d.err = d.syntaxError("unexpected EOF");
+			}
+		}
+		return [b, ok];
+	};
+	Decoder.prototype.mustgetc = function() { return this.go$val.mustgetc(); };
+	Decoder.Ptr.prototype.ungetc = function(b) {
+		var d;
+		d = this;
+		if (b === 10) {
+			d.line = d.line - 1 >> 0;
+		}
+		d.nextByte = (b >> 0);
+	};
+	Decoder.prototype.ungetc = function(b) { return this.go$val.ungetc(b); };
+	Decoder.Ptr.prototype.text = function(quote, cdata) {
+		var d, _tuple, b0, b1, trunc, _tuple$1, b, ok, before, ok$1, text, haveText, _tuple$2, _tuple$3, base, _tuple$4, start, _tuple$5, s, _tuple$6, n, err, _tuple$7, name, s$1, ok$2, _tuple$8, _entry, r, _tuple$9, _entry$1, _tuple$10, _tuple$11, ent, _tuple$12, data, buf, _tuple$13, r$1, size;
+		d = this;
+		_tuple = [0, 0], b0 = _tuple[0], b1 = _tuple[1];
+		trunc = 0;
+		d.buf.Reset();
+		Input: while (true) {
+			_tuple$1 = d.getc(), b = _tuple$1[0], ok = _tuple$1[1];
+			if (!ok) {
+				if (cdata) {
+					if (go$interfaceIsEqual(d.err, io.EOF)) {
+						d.err = d.syntaxError("unexpected EOF in CDATA section");
+					}
+					return (go$sliceType(Go$Uint8)).nil;
+				}
+				break Input;
+			}
+			if ((b0 === 93) && (b1 === 93) && (b === 62)) {
+				if (cdata) {
+					trunc = 2;
+					break Input;
+				}
+				d.err = d.syntaxError("unescaped ]]> not in CDATA section");
+				return (go$sliceType(Go$Uint8)).nil;
+			}
+			if ((b === 60) && !cdata) {
+				if (quote >= 0) {
+					d.err = d.syntaxError("unescaped < inside quoted string");
+					return (go$sliceType(Go$Uint8)).nil;
+				}
+				d.ungetc(60);
+				break Input;
+			}
+			if (quote >= 0 && (b === (quote << 24 >>> 24))) {
+				break Input;
+			}
+			if ((b === 38) && !cdata) {
+				before = d.buf.Len();
+				d.buf.WriteByte(38);
+				ok$1 = false;
+				text = "";
+				haveText = false;
+				if (_tuple$2 = d.mustgetc(), b = _tuple$2[0], ok$1 = _tuple$2[1], !ok$1) {
+					return (go$sliceType(Go$Uint8)).nil;
+				}
+				if (b === 35) {
+					d.buf.WriteByte(b);
+					if (_tuple$3 = d.mustgetc(), b = _tuple$3[0], ok$1 = _tuple$3[1], !ok$1) {
+						return (go$sliceType(Go$Uint8)).nil;
+					}
+					base = 10;
+					if (b === 120) {
+						base = 16;
+						d.buf.WriteByte(b);
+						if (_tuple$4 = d.mustgetc(), b = _tuple$4[0], ok$1 = _tuple$4[1], !ok$1) {
+							return (go$sliceType(Go$Uint8)).nil;
+						}
+					}
+					start = d.buf.Len();
+					while (48 <= b && b <= 57 || (base === 16) && 97 <= b && b <= 102 || (base === 16) && 65 <= b && b <= 70) {
+						d.buf.WriteByte(b);
+						if (_tuple$5 = d.mustgetc(), b = _tuple$5[0], ok$1 = _tuple$5[1], !ok$1) {
+							return (go$sliceType(Go$Uint8)).nil;
+						}
+					}
+					if (!((b === 59))) {
+						d.ungetc(b);
+					} else {
+						s = go$bytesToString(go$subslice(d.buf.Bytes(), start));
+						d.buf.WriteByte(59);
+						_tuple$6 = strconv.ParseUint(s, base, 64), n = _tuple$6[0], err = _tuple$6[1];
+						if (go$interfaceIsEqual(err, null) && (n.high < 0 || (n.high === 0 && n.low <= 1114111))) {
+							text = go$encodeRune(n.low);
+							haveText = true;
+						}
+					}
+				} else {
+					d.ungetc(b);
+					if (!d.readName()) {
+						if (!(go$interfaceIsEqual(d.err, null))) {
+							return (go$sliceType(Go$Uint8)).nil;
+						}
+						ok$1 = false;
+					}
+					if (_tuple$7 = d.mustgetc(), b = _tuple$7[0], ok$1 = _tuple$7[1], !ok$1) {
+						return (go$sliceType(Go$Uint8)).nil;
+					}
+					if (!((b === 59))) {
+						d.ungetc(b);
+					} else {
+						name = go$subslice(d.buf.Bytes(), (before + 1 >> 0));
+						d.buf.WriteByte(59);
+						if (isName(name)) {
+							s$1 = go$bytesToString(name);
+							if (_tuple$8 = (_entry = entity[s$1], _entry !== undefined ? [_entry.v, true] : [0, false]), r = _tuple$8[0], ok$2 = _tuple$8[1], ok$2) {
+								text = go$encodeRune(r);
+								haveText = true;
+							} else if (!(d.Entity === false)) {
+								_tuple$9 = (_entry$1 = d.Entity[s$1], _entry$1 !== undefined ? [_entry$1.v, true] : ["", false]), text = _tuple$9[0], haveText = _tuple$9[1];
+							}
+						}
+					}
+				}
+				if (haveText) {
+					d.buf.Truncate(before);
+					d.buf.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(text)));
+					_tuple$10 = [0, 0], b0 = _tuple$10[0], b1 = _tuple$10[1];
+					continue Input;
+				}
+				if (!d.Strict) {
+					_tuple$11 = [0, 0], b0 = _tuple$11[0], b1 = _tuple$11[1];
+					continue Input;
+				}
+				ent = go$bytesToString(go$subslice(d.buf.Bytes(), before));
+				if (!((ent.charCodeAt((ent.length - 1 >> 0)) === 59))) {
+					ent = ent + " (no semicolon)";
+				}
+				d.err = d.syntaxError("invalid character entity " + ent);
+				return (go$sliceType(Go$Uint8)).nil;
+			}
+			if (b === 13) {
+				d.buf.WriteByte(10);
+			} else if ((b1 === 13) && (b === 10)) {
+			} else {
+				d.buf.WriteByte(b);
+			}
+			_tuple$12 = [b1, b], b0 = _tuple$12[0], b1 = _tuple$12[1];
+		}
+		data = d.buf.Bytes();
+		data = go$subslice(data, 0, (data.length - trunc >> 0));
+		buf = data;
+		while (buf.length > 0) {
+			_tuple$13 = utf8.DecodeRune(buf), r$1 = _tuple$13[0], size = _tuple$13[1];
+			if ((r$1 === 65533) && (size === 1)) {
+				d.err = d.syntaxError("invalid UTF-8");
+				return (go$sliceType(Go$Uint8)).nil;
+			}
+			buf = go$subslice(buf, size);
+			if (!isInCharacterRange(r$1)) {
+				d.err = d.syntaxError(fmt.Sprintf("illegal character code %U", new (go$sliceType(go$emptyInterface))([new Go$Int32(r$1)])));
+				return (go$sliceType(Go$Uint8)).nil;
+			}
+		}
+		return data;
+	};
+	Decoder.prototype.text = function(quote, cdata) { return this.go$val.text(quote, cdata); };
+	var isInCharacterRange = function(r) {
+		var inrange;
+		inrange = false;
+		inrange = (r === 9) || (r === 10) || (r === 13) || r >= 32 && r <= 57207 || r >= 57344 && r <= 65533 || r >= 65536 && r <= 1114111;
+		return inrange;
+	};
+	Decoder.Ptr.prototype.nsname = function() {
+		var name, ok, d, _tuple, s, _struct, i, _struct$1, _tuple$1, _struct$2;
+		name = new Name.Ptr();
+		ok = false;
+		d = this;
+		_tuple = d.name(), s = _tuple[0], ok = _tuple[1];
+		if (!ok) {
+			return [(_struct = name, new Name.Ptr(_struct.Space, _struct.Local)), ok];
+		}
+		i = strings.Index(s, ":");
+		if (i < 0) {
+			name.Local = s;
+		} else {
+			name.Space = s.substring(0, i);
+			name.Local = s.substring((i + 1 >> 0));
+		}
+		_tuple$1 = [(_struct$1 = name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), true], name = _tuple$1[0], ok = _tuple$1[1];
+		return [(_struct$2 = name, new Name.Ptr(_struct$2.Space, _struct$2.Local)), ok];
+	};
+	Decoder.prototype.nsname = function() { return this.go$val.nsname(); };
+	Decoder.Ptr.prototype.name = function() {
+		var s, ok, d, _tuple, _tuple$1, _tuple$2;
+		s = "";
+		ok = false;
+		d = this;
+		d.buf.Reset();
+		if (!d.readName()) {
+			_tuple = ["", false], s = _tuple[0], ok = _tuple[1];
+			return [s, ok];
+		}
+		s = d.buf.String();
+		if (!isName(new (go$sliceType(Go$Uint8))(go$stringToBytes(s)))) {
+			d.err = d.syntaxError("invalid XML name: " + s);
+			_tuple$1 = ["", false], s = _tuple$1[0], ok = _tuple$1[1];
+			return [s, ok];
+		}
+		_tuple$2 = [s, true], s = _tuple$2[0], ok = _tuple$2[1];
+		return [s, ok];
+	};
+	Decoder.prototype.name = function() { return this.go$val.name(); };
+	Decoder.Ptr.prototype.readName = function() {
+		var ok, d, b, _tuple, _tuple$1;
+		ok = false;
+		d = this;
+		b = 0;
+		if (_tuple = d.mustgetc(), b = _tuple[0], ok = _tuple[1], !ok) {
+			return ok;
+		}
+		if (b < 128 && !isNameByte(b)) {
+			d.ungetc(b);
+			ok = false;
+			return ok;
+		}
+		d.buf.WriteByte(b);
+		while (true) {
+			if (_tuple$1 = d.mustgetc(), b = _tuple$1[0], ok = _tuple$1[1], !ok) {
+				return ok;
+			}
+			if (b < 128 && !isNameByte(b)) {
+				d.ungetc(b);
+				break;
+			}
+			d.buf.WriteByte(b);
+		}
+		ok = true;
+		return ok;
+	};
+	Decoder.prototype.readName = function() { return this.go$val.readName(); };
+	var isNameByte = function(c) {
+		return 65 <= c && c <= 90 || 97 <= c && c <= 122 || 48 <= c && c <= 57 || (c === 95) || (c === 58) || (c === 46) || (c === 45);
+	};
+	var isName = function(s) {
+		var _tuple, c, n, _tuple$1;
+		if (s.length === 0) {
+			return false;
+		}
+		_tuple = utf8.DecodeRune(s), c = _tuple[0], n = _tuple[1];
+		if ((c === 65533) && (n === 1)) {
+			return false;
+		}
+		if (!unicode.Is(first, c)) {
+			return false;
+		}
+		while (n < s.length) {
+			s = go$subslice(s, n);
+			_tuple$1 = utf8.DecodeRune(s), c = _tuple$1[0], n = _tuple$1[1];
+			if ((c === 65533) && (n === 1)) {
+				return false;
+			}
+			if (!unicode.Is(first, c) && !unicode.Is(second, c)) {
+				return false;
+			}
+		}
+		return true;
+	};
+	var isNameString = function(s) {
+		var _tuple, c, n, _tuple$1;
+		if (s.length === 0) {
+			return false;
+		}
+		_tuple = utf8.DecodeRuneInString(s), c = _tuple[0], n = _tuple[1];
+		if ((c === 65533) && (n === 1)) {
+			return false;
+		}
+		if (!unicode.Is(first, c)) {
+			return false;
+		}
+		while (n < s.length) {
+			s = s.substring(n);
+			_tuple$1 = utf8.DecodeRuneInString(s), c = _tuple$1[0], n = _tuple$1[1];
+			if ((c === 65533) && (n === 1)) {
+				return false;
+			}
+			if (!unicode.Is(first, c) && !unicode.Is(second, c)) {
+				return false;
+			}
+		}
+		return true;
+	};
+	var EscapeText = go$pkg.EscapeText = function(w, s) {
+		var esc, last, i, _tuple, r, width, _ref, err, _tuple$1, err$1, _tuple$2, err$2, _tuple$3;
+		esc = (go$sliceType(Go$Uint8)).nil;
+		last = 0;
+		i = 0;
+		while (i < s.length) {
+			_tuple = utf8.DecodeRune(go$subslice(s, i)), r = _tuple[0], width = _tuple[1];
+			i = i + (width) >> 0;
+			_ref = r;
+			switch (undefined) {
+			default:
+				if (_ref === 34) {
+					esc = esc_quot;
+				} else if (_ref === 39) {
+					esc = esc_apos;
+				} else if (_ref === 38) {
+					esc = esc_amp;
+				} else if (_ref === 60) {
+					esc = esc_lt;
+				} else if (_ref === 62) {
+					esc = esc_gt;
+				} else if (_ref === 9) {
+					esc = esc_tab;
+				} else if (_ref === 10) {
+					esc = esc_nl;
+				} else if (_ref === 13) {
+					esc = esc_cr;
+				} else {
+					if (!isInCharacterRange(r) || ((r === 65533) && (width === 1))) {
+						esc = esc_fffd;
+						break;
+					}
+					continue;
+				}
+			}
+			if (_tuple$1 = w.Write(go$subslice(s, last, (i - width >> 0))), err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
+				return err;
+			}
+			if (_tuple$2 = w.Write(esc), err$1 = _tuple$2[1], !(go$interfaceIsEqual(err$1, null))) {
+				return err$1;
+			}
+			last = i;
+		}
+		if (_tuple$3 = w.Write(go$subslice(s, last)), err$2 = _tuple$3[1], !(go$interfaceIsEqual(err$2, null))) {
+			return err$2;
+		}
+		return null;
+	};
+	printer.Ptr.prototype.EscapeString = function(s) {
+		var p, esc, last, i, _tuple, r, width, _ref;
+		p = this;
+		esc = (go$sliceType(Go$Uint8)).nil;
+		last = 0;
+		i = 0;
+		while (i < s.length) {
+			_tuple = utf8.DecodeRuneInString(s.substring(i)), r = _tuple[0], width = _tuple[1];
+			i = i + (width) >> 0;
+			_ref = r;
+			switch (undefined) {
+			default:
+				if (_ref === 34) {
+					esc = esc_quot;
+				} else if (_ref === 39) {
+					esc = esc_apos;
+				} else if (_ref === 38) {
+					esc = esc_amp;
+				} else if (_ref === 60) {
+					esc = esc_lt;
+				} else if (_ref === 62) {
+					esc = esc_gt;
+				} else if (_ref === 9) {
+					esc = esc_tab;
+				} else if (_ref === 10) {
+					esc = esc_nl;
+				} else if (_ref === 13) {
+					esc = esc_cr;
+				} else {
+					if (!isInCharacterRange(r) || ((r === 65533) && (width === 1))) {
+						esc = esc_fffd;
+						break;
+					}
+					continue;
+				}
+			}
+			p.Writer.WriteString(s.substring(last, (i - width >> 0)));
+			p.Writer.Write(esc);
+			last = i;
+		}
+		p.Writer.WriteString(s.substring(last));
+	};
+	printer.prototype.EscapeString = function(s) { return this.go$val.EscapeString(s); };
+	var Escape = go$pkg.Escape = function(w, s) {
+		EscapeText(w, s);
+	};
+	var procInstEncoding = function(s) {
+		var idx, v;
+		idx = strings.Index(s, "encoding=");
+		if (idx === -1) {
+			return "";
+		}
+		v = s.substring((idx + 9 >> 0));
+		if (v === "") {
+			return "";
+		}
+		if (!((v.charCodeAt(0) === 39)) && !((v.charCodeAt(0) === 34))) {
+			return "";
+		}
+		idx = strings.IndexRune(v.substring(1), (v.charCodeAt(0) >> 0));
+		if (idx === -1) {
+			return "";
+		}
+		return v.substring(1, (idx + 1 >> 0));
+	};
+	go$pkg.Header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+	var fElement = 1;
+	var fAttr = 2;
+	var fCharData = 4;
+	var fInnerXml = 8;
+	var fComment = 16;
+	var fAny = 32;
+	var fOmitEmpty = 64;
+	var fMode = 63;
+	var xmlURL = "http://www.w3.org/XML/1998/namespace";
+	var stkStart = 0;
+	var stkNs = 1;
+	var stkEOF = 2;
+	var endComment = (go$sliceType(Go$Uint8)).nil;
+	var endProcInst = (go$sliceType(Go$Uint8)).nil;
+	var endDirective = (go$sliceType(Go$Uint8)).nil;
+	var marshalerType = null;
+	var marshalerAttrType = null;
+	var textMarshalerType = null;
+	var ddBytes = (go$sliceType(Go$Uint8)).nil;
+	var unmarshalerType = null;
+	var unmarshalerAttrType = null;
+	var textUnmarshalerType = null;
+	var tinfoMap = false;
+	var tinfoLock = new sync.RWMutex.Ptr();
+	var nameType = null;
+	var errRawToken = null;
+	var entity = false;
+	var first = (go$ptrType(unicode.RangeTable)).nil;
+	var second = (go$ptrType(unicode.RangeTable)).nil;
+	go$pkg.HTMLEntity = false;
+	var htmlEntity = false;
+	go$pkg.HTMLAutoClose = (go$sliceType(Go$String)).nil;
+	var htmlAutoClose = (go$sliceType(Go$String)).nil;
+	var esc_quot = (go$sliceType(Go$Uint8)).nil;
+	var esc_apos = (go$sliceType(Go$Uint8)).nil;
+	var esc_amp = (go$sliceType(Go$Uint8)).nil;
+	var esc_lt = (go$sliceType(Go$Uint8)).nil;
+	var esc_gt = (go$sliceType(Go$Uint8)).nil;
+	var esc_tab = (go$sliceType(Go$Uint8)).nil;
+	var esc_nl = (go$sliceType(Go$Uint8)).nil;
+	var esc_cr = (go$sliceType(Go$Uint8)).nil;
+	var esc_fffd = (go$sliceType(Go$Uint8)).nil;
+	go$pkg.init = function() {
+		var x, _map, _key, _map$1, _key$1;
+		endComment = new (go$sliceType(Go$Uint8))(go$stringToBytes("-->"));
+		endProcInst = new (go$sliceType(Go$Uint8))(go$stringToBytes("?>"));
+		endDirective = new (go$sliceType(Go$Uint8))(go$stringToBytes(">"));
+		marshalerType = reflect.TypeOf((go$ptrType(Marshaler)).nil).Elem();
+		marshalerAttrType = reflect.TypeOf((go$ptrType(MarshalerAttr)).nil).Elem();
+		textMarshalerType = reflect.TypeOf((go$ptrType(encoding.TextMarshaler)).nil).Elem();
+		ddBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("--"));
+		unmarshalerType = reflect.TypeOf((go$ptrType(Unmarshaler)).nil).Elem();
+		unmarshalerAttrType = reflect.TypeOf((go$ptrType(UnmarshalerAttr)).nil).Elem();
+		textUnmarshalerType = reflect.TypeOf((go$ptrType(encoding.TextUnmarshaler)).nil).Elem();
+		tinfoMap = new Go$Map();
+		nameType = reflect.TypeOf((x = new Name.Ptr("", ""), new x.constructor.Struct(x)));
+		errRawToken = errors.New("xml: cannot use RawToken from UnmarshalXML method");
+		entity = (_map = new Go$Map(), _key = "lt", _map[_key] = { k: _key, v: 60 }, _key = "gt", _map[_key] = { k: _key, v: 62 }, _key = "amp", _map[_key] = { k: _key, v: 38 }, _key = "apos", _map[_key] = { k: _key, v: 39 }, _key = "quot", _map[_key] = { k: _key, v: 34 }, _map);
+		first = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(58, 58, 1), new unicode.Range16.Ptr(65, 90, 1), new unicode.Range16.Ptr(95, 95, 1), new unicode.Range16.Ptr(97, 122, 1), new unicode.Range16.Ptr(192, 214, 1), new unicode.Range16.Ptr(216, 246, 1), new unicode.Range16.Ptr(248, 255, 1), new unicode.Range16.Ptr(256, 305, 1), new unicode.Range16.Ptr(308, 318, 1), new unicode.Range16.Ptr(321, 328, 1), new unicode.Range16.Ptr(330, 382, 1), new unicode.Range16.Ptr(384, 451, 1), new unicode.Range16.Ptr(461, 496, 1), new unicode.Range16.Ptr(500, 501, 1), new unicode.Range16.Ptr(506, 535, 1), new unicode.Range16.Ptr(592, 680, 1), new unicode.Range16.Ptr(699, 705, 1), new unicode.Range16.Ptr(902, 902, 1), new unicode.Range16.Ptr(904, 906, 1), new unicode.Range16.Ptr(908, 908, 1), new unicode.Range16.Ptr(910, 929, 1), new unicode.Range16.Ptr(931, 974, 1), new unicode.Range16.Ptr(976, 982, 1), new unicode.Range16.Ptr(986, 992, 2), new unicode.Range16.Ptr(994, 1011, 1), new unicode.Range16.Ptr(1025, 1036, 1), new unicode.Range16.Ptr(1038, 1103, 1), new unicode.Range16.Ptr(1105, 1116, 1), new unicode.Range16.Ptr(1118, 1153, 1), new unicode.Range16.Ptr(1168, 1220, 1), new unicode.Range16.Ptr(1223, 1224, 1), new unicode.Range16.Ptr(1227, 1228, 1), new unicode.Range16.Ptr(1232, 1259, 1), new unicode.Range16.Ptr(1262, 1269, 1), new unicode.Range16.Ptr(1272, 1273, 1), new unicode.Range16.Ptr(1329, 1366, 1), new unicode.Range16.Ptr(1369, 1369, 1), new unicode.Range16.Ptr(1377, 1414, 1), new unicode.Range16.Ptr(1488, 1514, 1), new unicode.Range16.Ptr(1520, 1522, 1), new unicode.Range16.Ptr(1569, 1594, 1), new unicode.Range16.Ptr(1601, 1610, 1), new unicode.Range16.Ptr(1649, 1719, 1), new unicode.Range16.Ptr(1722, 1726, 1), new unicode.Range16.Ptr(1728, 1742, 1), new unicode.Range16.Ptr(1744, 1747, 1), new unicode.Range16.Ptr(1749, 1749, 1), new unicode.Range16.Ptr(1765, 1766, 1), new unicode.Range16.Ptr(2309, 2361, 1), new unicode.Range16.Ptr(2365, 2365, 1), new unicode.Range16.Ptr(2392, 2401, 1), new unicode.Range16.Ptr(2437, 2444, 1), new unicode.Range16.Ptr(2447, 2448, 1), new unicode.Range16.Ptr(2451, 2472, 1), new unicode.Range16.Ptr(2474, 2480, 1), new unicode.Range16.Ptr(2482, 2482, 1), new unicode.Range16.Ptr(2486, 2489, 1), new unicode.Range16.Ptr(2524, 2525, 1), new unicode.Range16.Ptr(2527, 2529, 1), new unicode.Range16.Ptr(2544, 2545, 1), new unicode.Range16.Ptr(2565, 2570, 1), new unicode.Range16.Ptr(2575, 2576, 1), new unicode.Range16.Ptr(2579, 2600, 1), new unicode.Range16.Ptr(2602, 2608, 1), new unicode.Range16.Ptr(2610, 2611, 1), new unicode.Range16.Ptr(2613, 2614, 1), new unicode.Range16.Ptr(2616, 2617, 1), new unicode.Range16.Ptr(2649, 2652, 1), new unicode.Range16.Ptr(2654, 2654, 1), new unicode.Range16.Ptr(2674, 2676, 1), new unicode.Range16.Ptr(2693, 2699, 1), new unicode.Range16.Ptr(2701, 2701, 1), new unicode.Range16.Ptr(2703, 2705, 1), new unicode.Range16.Ptr(2707, 2728, 1), new unicode.Range16.Ptr(2730, 2736, 1), new unicode.Range16.Ptr(2738, 2739, 1), new unicode.Range16.Ptr(2741, 2745, 1), new unicode.Range16.Ptr(2749, 2784, 35), new unicode.Range16.Ptr(2821, 2828, 1), new unicode.Range16.Ptr(2831, 2832, 1), new unicode.Range16.Ptr(2835, 2856, 1), new unicode.Range16.Ptr(2858, 2864, 1), new unicode.Range16.Ptr(2866, 2867, 1), new unicode.Range16.Ptr(2870, 2873, 1), new unicode.Range16.Ptr(2877, 2877, 1), new unicode.Range16.Ptr(2908, 2909, 1), new unicode.Range16.Ptr(2911, 2913, 1), new unicode.Range16.Ptr(2949, 2954, 1), new unicode.Range16.Ptr(2958, 2960, 1), new unicode.Range16.Ptr(2962, 2965, 1), new unicode.Range16.Ptr(2969, 2970, 1), new unicode.Range16.Ptr(2972, 2972, 1), new unicode.Range16.Ptr(2974, 2975, 1), new unicode.Range16.Ptr(2979, 2980, 1), new unicode.Range16.Ptr(2984, 2986, 1), new unicode.Range16.Ptr(2990, 2997, 1), new unicode.Range16.Ptr(2999, 3001, 1), new unicode.Range16.Ptr(3077, 3084, 1), new unicode.Range16.Ptr(3086, 3088, 1), new unicode.Range16.Ptr(3090, 3112, 1), new unicode.Range16.Ptr(3114, 3123, 1), new unicode.Range16.Ptr(3125, 3129, 1), new unicode.Range16.Ptr(3168, 3169, 1), new unicode.Range16.Ptr(3205, 3212, 1), new unicode.Range16.Ptr(3214, 3216, 1), new unicode.Range16.Ptr(3218, 3240, 1), new unicode.Range16.Ptr(3242, 3251, 1), new unicode.Range16.Ptr(3253, 3257, 1), new unicode.Range16.Ptr(3294, 3294, 1), new unicode.Range16.Ptr(3296, 3297, 1), new unicode.Range16.Ptr(3333, 3340, 1), new unicode.Range16.Ptr(3342, 3344, 1), new unicode.Range16.Ptr(3346, 3368, 1), new unicode.Range16.Ptr(3370, 3385, 1), new unicode.Range16.Ptr(3424, 3425, 1), new unicode.Range16.Ptr(3585, 3630, 1), new unicode.Range16.Ptr(3632, 3632, 1), new unicode.Range16.Ptr(3634, 3635, 1), new unicode.Range16.Ptr(3648, 3653, 1), new unicode.Range16.Ptr(3713, 3714, 1), new unicode.Range16.Ptr(3716, 3716, 1), new unicode.Range16.Ptr(3719, 3720, 1), new unicode.Range16.Ptr(3722, 3725, 3), new unicode.Range16.Ptr(3732, 3735, 1), new unicode.Range16.Ptr(3737, 3743, 1), new unicode.Range16.Ptr(3745, 3747, 1), new unicode.Range16.Ptr(3749, 3751, 2), new unicode.Range16.Ptr(3754, 3755, 1), new unicode.Range16.Ptr(3757, 3758, 1), new unicode.Range16.Ptr(3760, 3760, 1), new unicode.Range16.Ptr(3762, 3763, 1), new unicode.Range16.Ptr(3773, 3773, 1), new unicode.Range16.Ptr(3776, 3780, 1), new unicode.Range16.Ptr(3904, 3911, 1), new unicode.Range16.Ptr(3913, 3945, 1), new unicode.Range16.Ptr(4256, 4293, 1), new unicode.Range16.Ptr(4304, 4342, 1), new unicode.Range16.Ptr(4352, 4352, 1), new unicode.Range16.Ptr(4354, 4355, 1), new unicode.Range16.Ptr(4357, 4359, 1), new unicode.Range16.Ptr(4361, 4361, 1), new unicode.Range16.Ptr(4363, 4364, 1), new unicode.Range16.Ptr(4366, 4370, 1), new unicode.Range16.Ptr(4412, 4416, 2), new unicode.Range16.Ptr(4428, 4432, 2), new unicode.Range16.Ptr(4436, 4437, 1), new unicode.Range16.Ptr(4441, 4441, 1), new unicode.Range16.Ptr(4447, 4449, 1), new unicode.Range16.Ptr(4451, 4457, 2), new unicode.Range16.Ptr(4461, 4462, 1), new unicode.Range16.Ptr(4466, 4467, 1), new unicode.Range16.Ptr(4469, 4510, 41), new unicode.Range16.Ptr(4520, 4523, 3), new unicode.Range16.Ptr(4526, 4527, 1), new unicode.Range16.Ptr(4535, 4536, 1), new unicode.Range16.Ptr(4538, 4538, 1), new unicode.Range16.Ptr(4540, 4546, 1), new unicode.Range16.Ptr(4587, 4592, 5), new unicode.Range16.Ptr(4601, 4601, 1), new unicode.Range16.Ptr(7680, 7835, 1), new unicode.Range16.Ptr(7840, 7929, 1), new unicode.Range16.Ptr(7936, 7957, 1), new unicode.Range16.Ptr(7960, 7965, 1), new unicode.Range16.Ptr(7968, 8005, 1), new unicode.Range16.Ptr(8008, 8013, 1), new unicode.Range16.Ptr(8016, 8023, 1), new unicode.Range16.Ptr(8025, 8027, 2), new unicode.Range16.Ptr(8029, 8029, 1), new unicode.Range16.Ptr(8031, 8061, 1), new unicode.Range16.Ptr(8064, 8116, 1), new unicode.Range16.Ptr(8118, 8124, 1), new unicode.Range16.Ptr(8126, 8126, 1), new unicode.Range16.Ptr(8130, 8132, 1), new unicode.Range16.Ptr(8134, 8140, 1), new unicode.Range16.Ptr(8144, 8147, 1), new unicode.Range16.Ptr(8150, 8155, 1), new unicode.Range16.Ptr(8160, 8172, 1), new unicode.Range16.Ptr(8178, 8180, 1), new unicode.Range16.Ptr(8182, 8188, 1), new unicode.Range16.Ptr(8486, 8486, 1), new unicode.Range16.Ptr(8490, 8491, 1), new unicode.Range16.Ptr(8494, 8494, 1), new unicode.Range16.Ptr(8576, 8578, 1), new unicode.Range16.Ptr(12295, 12295, 1), new unicode.Range16.Ptr(12321, 12329, 1), new unicode.Range16.Ptr(12353, 12436, 1), new unicode.Range16.Ptr(12449, 12538, 1), new unicode.Range16.Ptr(12549, 12588, 1), new unicode.Range16.Ptr(19968, 40869, 1), new unicode.Range16.Ptr(44032, 55203, 1)]), (go$sliceType(unicode.Range32)).nil, 0);
+		second = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(45, 46, 1), new unicode.Range16.Ptr(48, 57, 1), new unicode.Range16.Ptr(183, 183, 1), new unicode.Range16.Ptr(720, 721, 1), new unicode.Range16.Ptr(768, 837, 1), new unicode.Range16.Ptr(864, 865, 1), new unicode.Range16.Ptr(903, 903, 1), new unicode.Range16.Ptr(1155, 1158, 1), new unicode.Range16.Ptr(1425, 1441, 1), new unicode.Range16.Ptr(1443, 1465, 1), new unicode.Range16.Ptr(1467, 1469, 1), new unicode.Range16.Ptr(1471, 1471, 1), new unicode.Range16.Ptr(1473, 1474, 1), new unicode.Range16.Ptr(1476, 1600, 124), new unicode.Range16.Ptr(1611, 1618, 1), new unicode.Range16.Ptr(1632, 1641, 1), new unicode.Range16.Ptr(1648, 1648, 1), new unicode.Range16.Ptr(1750, 1756, 1), new unicode.Range16.Ptr(1757, 1759, 1), new unicode.Range16.Ptr(1760, 1764, 1), new unicode.Range16.Ptr(1767, 1768, 1), new unicode.Range16.Ptr(1770, 1773, 1), new unicode.Range16.Ptr(1776, 1785, 1), new unicode.Range16.Ptr(2305, 2307, 1), new unicode.Range16.Ptr(2364, 2364, 1), new unicode.Range16.Ptr(2366, 2380, 1), new unicode.Range16.Ptr(2381, 2381, 1), new unicode.Range16.Ptr(2385, 2388, 1), new unicode.Range16.Ptr(2402, 2403, 1), new unicode.Range16.Ptr(2406, 2415, 1), new unicode.Range16.Ptr(2433, 2435, 1), new unicode.Range16.Ptr(2492, 2492, 1), new unicode.Range16.Ptr(2494, 2495, 1), new unicode.Range16.Ptr(2496, 2500, 1), new unicode.Range16.Ptr(2503, 2504, 1), new unicode.Range16.Ptr(2507, 2509, 1), new unicode.Range16.Ptr(2519, 2519, 1), new unicode.Range16.Ptr(2530, 2531, 1), new unicode.Range16.Ptr(2534, 2543, 1), new unicode.Range16.Ptr(2562, 2620, 58), new unicode.Range16.Ptr(2622, 2623, 1), new unicode.Range16.Ptr(2624, 2626, 1), new unicode.Range16.Ptr(2631, 2632, 1), new unicode.Range16.Ptr(2635, 2637, 1), new unicode.Range16.Ptr(2662, 2671, 1), new unicode.Range16.Ptr(2672, 2673, 1), new unicode.Range16.Ptr(2689, 2691, 1), new unicode.Range16.Ptr(2748, 2748, 1), new unicode.Range16.Ptr(2750, 2757, 1), new unicode.Range16.Ptr(2759, 2761, 1), new unicode.Range16.Ptr(2763, 2765, 1), new unicode.Range16.Ptr(2790, 2799, 1), new unicode.Range16.Ptr(2817, 2819, 1), new unicode.Range16.Ptr(2876, 2876, 1), new unicode.Range16.Ptr(2878, 2883, 1), new unicode.Range16.Ptr(2887, 2888, 1), new unicode.Range16.Ptr(2891, 2893, 1), new unicode.Range16.Ptr(2902, 2903, 1), new unicode.Range16.Ptr(2918, 2927, 1), new unicode.Range16.Ptr(2946, 2947, 1), new unicode.Range16.Ptr(3006, 3010, 1), new unicode.Range16.Ptr(3014, 3016, 1), new unicode.Range16.Ptr(3018, 3021, 1), new unicode.Range16.Ptr(3031, 3031, 1), new unicode.Range16.Ptr(3047, 3055, 1), new unicode.Range16.Ptr(3073, 3075, 1), new unicode.Range16.Ptr(3134, 3140, 1), new unicode.Range16.Ptr(3142, 3144, 1), new unicode.Range16.Ptr(3146, 3149, 1), new unicode.Range16.Ptr(3157, 3158, 1), new unicode.Range16.Ptr(3174, 3183, 1), new unicode.Range16.Ptr(3202, 3203, 1), new unicode.Range16.Ptr(3262, 3268, 1), new unicode.Range16.Ptr(3270, 3272, 1), new unicode.Range16.Ptr(3274, 3277, 1), new unicode.Range16.Ptr(3285, 3286, 1), new unicode.Range16.Ptr(3302, 3311, 1), new unicode.Range16.Ptr(3330, 3331, 1), new unicode.Range16.Ptr(3390, 3395, 1), new unicode.Range16.Ptr(3398, 3400, 1), new unicode.Range16.Ptr(3402, 3405, 1), new unicode.Range16.Ptr(3415, 3415, 1), new unicode.Range16.Ptr(3430, 3439, 1), new unicode.Range16.Ptr(3633, 3633, 1), new unicode.Range16.Ptr(3636, 3642, 1), new unicode.Range16.Ptr(3654, 3654, 1), new unicode.Range16.Ptr(3655, 3662, 1), new unicode.Range16.Ptr(3664, 3673, 1), new unicode.Range16.Ptr(3761, 3761, 1), new unicode.Range16.Ptr(3764, 3769, 1), new unicode.Range16.Ptr(3771, 3772, 1), new unicode.Range16.Ptr(3782, 3782, 1), new unicode.Range16.Ptr(3784, 3789, 1), new unicode.Range16.Ptr(3792, 3801, 1), new unicode.Range16.Ptr(3864, 3865, 1), new unicode.Range16.Ptr(3872, 3881, 1), new unicode.Range16.Ptr(3893, 3897, 2), new unicode.Range16.Ptr(3902, 3903, 1), new unicode.Range16.Ptr(3953, 3972, 1), new unicode.Range16.Ptr(3974, 3979, 1), new unicode.Range16.Ptr(3984, 3989, 1), new unicode.Range16.Ptr(3991, 3991, 1), new unicode.Range16.Ptr(3993, 4013, 1), new unicode.Range16.Ptr(4017, 4023, 1), new unicode.Range16.Ptr(4025, 4025, 1), new unicode.Range16.Ptr(8400, 8412, 1), new unicode.Range16.Ptr(8417, 12293, 3876), new unicode.Range16.Ptr(12330, 12335, 1), new unicode.Range16.Ptr(12337, 12341, 1), new unicode.Range16.Ptr(12441, 12442, 1), new unicode.Range16.Ptr(12445, 12446, 1), new unicode.Range16.Ptr(12540, 12542, 1)]), (go$sliceType(unicode.Range32)).nil, 0);
+		htmlEntity = (_map$1 = new Go$Map(), _key$1 = "nbsp", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA0" }, _key$1 = "iexcl", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA1" }, _key$1 = "cent", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA2" }, _key$1 = "pound", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA3" }, _key$1 = "curren", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA4" }, _key$1 = "yen", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA5" }, _key$1 = "brvbar", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA6" }, _key$1 = "sect", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA7" }, _key$1 = "uml", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA8" }, _key$1 = "copy", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA9" }, _key$1 = "ordf", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAA" }, _key$1 = "laquo", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAB" }, _key$1 = "not", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAC" }, _key$1 = "shy", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAD" }, _key$1 = "reg", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAE" }, _key$1 = "macr", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAF" }, _key$1 = "deg", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB0" }, _key$1 = "plusmn", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB1" }, _key$1 = "sup2", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB2" }, _key$1 = "sup3", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB3" }, _key$1 = "acute", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB4" }, _key$1 = "micro", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB5" }, _key$1 = "para", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB6" }, _key$1 = "middot", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB7" }, _key$1 = "cedil", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB8" }, _key$1 = "sup1", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB9" }, _key$1 = "ordm", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBA" }, _key$1 = "raquo", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBB" }, _key$1 = "frac14", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBC" }, _key$1 = "frac12", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBD" }, _key$1 = "frac34", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBE" }, _key$1 = "iquest", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBF" }, _key$1 = "Agrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x80" }, _key$1 = "Aacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x81" }, _key$1 = "Acirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x82" }, _key$1 = "Atilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\x83" }, _key$1 = "Auml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x84" }, _key$1 = "Aring", _map$1[_key$1] = { k: _key$1, v: "\xC3\x85" }, _key$1 = "AElig", _map$1[_key$1] = { k: _key$1, v: "\xC3\x86" }, _key$1 = "Ccedil", _map$1[_key$1] = { k: _key$1, v: "\xC3\x87" }, _key$1 = "Egrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x88" }, _key$1 = "Eacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x89" }, _key$1 = "Ecirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8A" }, _key$1 = "Euml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8B" }, _key$1 = "Igrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8C" }, _key$1 = "Iacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8D" }, _key$1 = "Icirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8E" }, _key$1 = "Iuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8F" }, _key$1 = "ETH", _map$1[_key$1] = { k: _key$1, v: "\xC3\x90" }, _key$1 = "Ntilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\x91" }, _key$1 = "Ograve", _map$1[_key$1] = { k: _key$1, v: "\xC3\x92" }, _key$1 = "Oacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x93" }, _key$1 = "Ocirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x94" }, _key$1 = "Otilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\x95" }, _key$1 = "Ouml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x96" }, _key$1 = "times", _map$1[_key$1] = { k: _key$1, v: "\xC3\x97" }, _key$1 = "Oslash", _map$1[_key$1] = { k: _key$1, v: "\xC3\x98" }, _key$1 = "Ugrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x99" }, _key$1 = "Uacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9A" }, _key$1 = "Ucirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9B" }, _key$1 = "Uuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9C" }, _key$1 = "Yacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9D" }, _key$1 = "THORN", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9E" }, _key$1 = "szlig", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9F" }, _key$1 = "agrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA0" }, _key$1 = "aacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA1" }, _key$1 = "acirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA2" }, _key$1 = "atilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA3" }, _key$1 = "auml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA4" }, _key$1 = "aring", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA5" }, _key$1 = "aelig", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA6" }, _key$1 = "ccedil", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA7" }, _key$1 = "egrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA8" }, _key$1 = "eacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA9" }, _key$1 = "ecirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAA" }, _key$1 = "euml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAB" }, _key$1 = "igrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAC" }, _key$1 = "iacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAD" }, _key$1 = "icirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAE" }, _key$1 = "iuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAF" }, _key$1 = "eth", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB0" }, _key$1 = "ntilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB1" }, _key$1 = "ograve", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB2" }, _key$1 = "oacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB3" }, _key$1 = "ocirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB4" }, _key$1 = "otilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB5" }, _key$1 = "ouml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB6" }, _key$1 = "divide", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB7" }, _key$1 = "oslash", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB8" }, _key$1 = "ugrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB9" }, _key$1 = "uacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBA" }, _key$1 = "ucirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBB" }, _key$1 = "uuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBC" }, _key$1 = "yacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBD" }, _key$1 = "thorn", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBE" }, _key$1 = "yuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBF" }, _key$1 = "fnof", _map$1[_key$1] = { k: _key$1, v: "\xC6\x92" }, _key$1 = "Alpha", _map$1[_key$1] = { k: _key$1, v: "\xCE\x91" }, _key$1 = "Beta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x92" }, _key$1 = "Gamma", _map$1[_key$1] = { k: _key$1, v: "\xCE\x93" }, _key$1 = "Delta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x94" }, _key$1 = "Epsilon", _map$1[_key$1] = { k: _key$1, v: "\xCE\x95" }, _key$1 = "Zeta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x96" }, _key$1 = "Eta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x97" }, _key$1 = "Theta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x98" }, _key$1 = "Iota", _map$1[_key$1] = { k: _key$1, v: "\xCE\x99" }, _key$1 = "Kappa", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9A" }, _key$1 = "Lambda", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9B" }, _key$1 = "Mu", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9C" }, _key$1 = "Nu", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9D" }, _key$1 = "Xi", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9E" }, _key$1 = "Omicron", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9F" }, _key$1 = "Pi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA0" }, _key$1 = "Rho", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA1" }, _key$1 = "Sigma", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA3" }, _key$1 = "Tau", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA4" }, _key$1 = "Upsilon", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA5" }, _key$1 = "Phi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA6" }, _key$1 = "Chi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA7" }, _key$1 = "Psi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA8" }, _key$1 = "Omega", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA9" }, _key$1 = "alpha", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB1" }, _key$1 = "beta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB2" }, _key$1 = "gamma", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB3" }, _key$1 = "delta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB4" }, _key$1 = "epsilon", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB5" }, _key$1 = "zeta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB6" }, _key$1 = "eta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB7" }, _key$1 = "theta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB8" }, _key$1 = "iota", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB9" }, _key$1 = "kappa", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBA" }, _key$1 = "lambda", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBB" }, _key$1 = "mu", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBC" }, _key$1 = "nu", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBD" }, _key$1 = "xi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBE" }, _key$1 = "omicron", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBF" }, _key$1 = "pi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x80" }, _key$1 = "rho", _map$1[_key$1] = { k: _key$1, v: "\xCF\x81" }, _key$1 = "sigmaf", _map$1[_key$1] = { k: _key$1, v: "\xCF\x82" }, _key$1 = "sigma", _map$1[_key$1] = { k: _key$1, v: "\xCF\x83" }, _key$1 = "tau", _map$1[_key$1] = { k: _key$1, v: "\xCF\x84" }, _key$1 = "upsilon", _map$1[_key$1] = { k: _key$1, v: "\xCF\x85" }, _key$1 = "phi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x86" }, _key$1 = "chi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x87" }, _key$1 = "psi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x88" }, _key$1 = "omega", _map$1[_key$1] = { k: _key$1, v: "\xCF\x89" }, _key$1 = "thetasym", _map$1[_key$1] = { k: _key$1, v: "\xCF\x91" }, _key$1 = "upsih", _map$1[_key$1] = { k: _key$1, v: "\xCF\x92" }, _key$1 = "piv", _map$1[_key$1] = { k: _key$1, v: "\xCF\x96" }, _key$1 = "bull", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA2" }, _key$1 = "hellip", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA6" }, _key$1 = "prime", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB2" }, _key$1 = "Prime", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB3" }, _key$1 = "oline", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xBE" }, _key$1 = "frasl", _map$1[_key$1] = { k: _key$1, v: "\xE2\x81\x84" }, _key$1 = "weierp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\x98" }, _key$1 = "image", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\x91" }, _key$1 = "real", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\x9C" }, _key$1 = "trade", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\xA2" }, _key$1 = "alefsym", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\xB5" }, _key$1 = "larr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x90" }, _key$1 = "uarr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x91" }, _key$1 = "rarr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x92" }, _key$1 = "darr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x93" }, _key$1 = "harr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x94" }, _key$1 = "crarr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\xB5" }, _key$1 = "lArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x90" }, _key$1 = "uArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x91" }, _key$1 = "rArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x92" }, _key$1 = "dArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x93" }, _key$1 = "hArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x94" }, _key$1 = "forall", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x80" }, _key$1 = "part", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x82" }, _key$1 = "exist", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x83" }, _key$1 = "empty", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x85" }, _key$1 = "nabla", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x87" }, _key$1 = "isin", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x88" }, _key$1 = "notin", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x89" }, _key$1 = "ni", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x8B" }, _key$1 = "prod", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x8F" }, _key$1 = "sum", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x91" }, _key$1 = "minus", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x92" }, _key$1 = "lowast", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x97" }, _key$1 = "radic", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x9A" }, _key$1 = "prop", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x9D" }, _key$1 = "infin", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x9E" }, _key$1 = "ang", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA0" }, _key$1 = "and", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA7" }, _key$1 = "or", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA8" }, _key$1 = "cap", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA9" }, _key$1 = "cup", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xAA" }, _key$1 = "int", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xAB" }, _key$1 = "there4", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xB4" }, _key$1 = "sim", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xBC" }, _key$1 = "cong", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\x85" }, _key$1 = "asymp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\x88" }, _key$1 = "ne", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA0" }, _key$1 = "equiv", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA1" }, _key$1 = "le", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA4" }, _key$1 = "ge", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA5" }, _key$1 = "sub", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x82" }, _key$1 = "sup", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x83" }, _key$1 = "nsub", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x84" }, _key$1 = "sube", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x86" }, _key$1 = "supe", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x87" }, _key$1 = "oplus", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x95" }, _key$1 = "otimes", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x97" }, _key$1 = "perp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\xA5" }, _key$1 = "sdot", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8B\x85" }, _key$1 = "lceil", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x88" }, _key$1 = "rceil", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x89" }, _key$1 = "lfloor", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x8A" }, _key$1 = "rfloor", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x8B" }, _key$1 = "lang", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\xA9" }, _key$1 = "rang", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\xAA" }, _key$1 = "loz", _map$1[_key$1] = { k: _key$1, v: "\xE2\x97\x8A" }, _key$1 = "spades", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA0" }, _key$1 = "clubs", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA3" }, _key$1 = "hearts", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA5" }, _key$1 = "diams", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA6" }, _key$1 = "quot", _map$1[_key$1] = { k: _key$1, v: "\"" }, _key$1 = "amp", _map$1[_key$1] = { k: _key$1, v: "&" }, _key$1 = "lt", _map$1[_key$1] = { k: _key$1, v: "<" }, _key$1 = "gt", _map$1[_key$1] = { k: _key$1, v: ">" }, _key$1 = "OElig", _map$1[_key$1] = { k: _key$1, v: "\xC5\x92" }, _key$1 = "oelig", _map$1[_key$1] = { k: _key$1, v: "\xC5\x93" }, _key$1 = "Scaron", _map$1[_key$1] = { k: _key$1, v: "\xC5\xA0" }, _key$1 = "scaron", _map$1[_key$1] = { k: _key$1, v: "\xC5\xA1" }, _key$1 = "Yuml", _map$1[_key$1] = { k: _key$1, v: "\xC5\xB8" }, _key$1 = "circ", _map$1[_key$1] = { k: _key$1, v: "\xCB\x86" }, _key$1 = "tilde", _map$1[_key$1] = { k: _key$1, v: "\xCB\x9C" }, _key$1 = "ensp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x82" }, _key$1 = "emsp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x83" }, _key$1 = "thinsp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x89" }, _key$1 = "zwnj", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8C" }, _key$1 = "zwj", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8D" }, _key$1 = "lrm", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8E" }, _key$1 = "rlm", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8F" }, _key$1 = "ndash", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x93" }, _key$1 = "mdash", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x94" }, _key$1 = "lsquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x98" }, _key$1 = "rsquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x99" }, _key$1 = "sbquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9A" }, _key$1 = "ldquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9C" }, _key$1 = "rdquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9D" }, _key$1 = "bdquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9E" }, _key$1 = "dagger", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA0" }, _key$1 = "Dagger", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA1" }, _key$1 = "permil", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB0" }, _key$1 = "lsaquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB9" }, _key$1 = "rsaquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xBA" }, _key$1 = "euro", _map$1[_key$1] = { k: _key$1, v: "\xE2\x82\xAC" }, _map$1);
+		go$pkg.HTMLEntity = htmlEntity;
+		htmlAutoClose = new (go$sliceType(Go$String))(["basefont", "br", "area", "link", "img", "param", "hr", "input", "col", "frame", "isindex", "base", "meta"]);
+		go$pkg.HTMLAutoClose = htmlAutoClose;
+		esc_quot = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#34;"));
+		esc_apos = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#39;"));
+		esc_amp = new (go$sliceType(Go$Uint8))(go$stringToBytes("&amp;"));
+		esc_lt = new (go$sliceType(Go$Uint8))(go$stringToBytes("&lt;"));
+		esc_gt = new (go$sliceType(Go$Uint8))(go$stringToBytes("&gt;"));
+		esc_tab = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#x9;"));
+		esc_nl = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#xA;"));
+		esc_cr = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#xD;"));
+		esc_fffd = new (go$sliceType(Go$Uint8))(go$stringToBytes("\xEF\xBF\xBD"));
+	};

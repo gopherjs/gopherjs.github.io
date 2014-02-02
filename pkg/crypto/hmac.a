@@ -1,0 +1,110 @@
+0‚v‚Fpackage hmac
+import subtle "crypto/subtle"
+import hash "hash"
+func @"".Equal(@"".mac1 []byte, @"".mac2 []byte) (? bool)
+func @"".New(@"".h func () (? @"hash".Hash), @"".key []byte) (? @"hash".Hash)
+type @"".hmac struct { @"".size int; @"".blocksize int; @"".key []byte; @"".tmp []byte; @"".outer @"hash".Hash; @"".inner @"hash".Hash }
+func (? *@"".hmac) @"".BlockSize() (? int)
+func (? *@"".hmac) @"".Reset() ()
+func (? *@"".hmac) @"".Size() (? int)
+func (? *@"".hmac) @"".Sum(@"".in []byte) (? []byte)
+func (? *@"".hmac) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"".hmac) @"".tmpPad(@"".xor byte) ()
+import io "io"
+type @"hash".Hash interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+$$
+0Jruntimecrypto/subtleerrorssync/atomicsynciohashcrypto/hmac‚Ü	var subtle = go$packages["crypto/subtle"];
+	var hash = go$packages["hash"];
+	var hmac;
+	hmac = go$newType(0, "Struct", "hmac.hmac", "hmac", "crypto/hmac", function(size_, blocksize_, key_, tmp_, outer_, inner_) {
+		this.go$val = this;
+		this.size = size_ !== undefined ? size_ : 0;
+		this.blocksize = blocksize_ !== undefined ? blocksize_ : 0;
+		this.key = key_ !== undefined ? key_ : (go$sliceType(Go$Uint8)).nil;
+		this.tmp = tmp_ !== undefined ? tmp_ : (go$sliceType(Go$Uint8)).nil;
+		this.outer = outer_ !== undefined ? outer_ : null;
+		this.inner = inner_ !== undefined ? inner_ : null;
+	});
+	go$pkg.hmac = hmac;
+	hmac.init([["size", "crypto/hmac", Go$Int, ""], ["blocksize", "crypto/hmac", Go$Int, ""], ["key", "crypto/hmac", (go$sliceType(Go$Uint8)), ""], ["tmp", "crypto/hmac", (go$sliceType(Go$Uint8)), ""], ["outer", "crypto/hmac", hash.Hash, ""], ["inner", "crypto/hmac", hash.Hash, ""]]);
+	(go$ptrType(hmac)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["tmpPad", "crypto/hmac", [Go$Uint8], [], false]];
+	hmac.Ptr.prototype.tmpPad = function(xor) {
+		var h, _ref, _i, _slice, _index, k, i, _slice$1, _index$1, i$1, _slice$2, _index$2;
+		h = this;
+		_ref = h.key;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			k = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			_slice$1 = h.tmp, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (xor ^ k) << 24 >>> 24) : go$throwRuntimeError("index out of range");
+		}
+		i$1 = h.key.length;
+		while (i$1 < h.blocksize) {
+			_slice$2 = h.tmp, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = xor) : go$throwRuntimeError("index out of range");
+			i$1 = i$1 + 1 >> 0;
+		}
+	};
+	hmac.prototype.tmpPad = function(xor) { return this.go$val.tmpPad(xor); };
+	hmac.Ptr.prototype.Sum = function(in$1) {
+		var h, origLen;
+		h = this;
+		origLen = in$1.length;
+		in$1 = h.inner.Sum(in$1);
+		h.tmpPad(92);
+		go$copySlice(go$subslice(h.tmp, h.blocksize), go$subslice(in$1, origLen));
+		h.outer.Reset();
+		h.outer.Write(h.tmp);
+		return h.outer.Sum(go$subslice(in$1, 0, origLen));
+	};
+	hmac.prototype.Sum = function(in$1) { return this.go$val.Sum(in$1); };
+	hmac.Ptr.prototype.Write = function(p) {
+		var n, err, h, _tuple;
+		n = 0;
+		err = null;
+		h = this;
+		_tuple = h.inner.Write(p), n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	hmac.prototype.Write = function(p) { return this.go$val.Write(p); };
+	hmac.Ptr.prototype.Size = function() {
+		var h;
+		h = this;
+		return h.size;
+	};
+	hmac.prototype.Size = function() { return this.go$val.Size(); };
+	hmac.Ptr.prototype.BlockSize = function() {
+		var h;
+		h = this;
+		return h.blocksize;
+	};
+	hmac.prototype.BlockSize = function() { return this.go$val.BlockSize(); };
+	hmac.Ptr.prototype.Reset = function() {
+		var h;
+		h = this;
+		h.inner.Reset();
+		h.tmpPad(54);
+		h.inner.Write(go$subslice(h.tmp, 0, h.blocksize));
+	};
+	hmac.prototype.Reset = function() { return this.go$val.Reset(); };
+	var New = go$pkg.New = function(h, key) {
+		var hm;
+		hm = new hmac.Ptr();
+		hm.outer = h();
+		hm.inner = h();
+		hm.size = hm.inner.Size();
+		hm.blocksize = hm.inner.BlockSize();
+		hm.tmp = (go$sliceType(Go$Uint8)).make(hm.blocksize + hm.size >> 0, 0, function() { return 0; });
+		if (key.length > hm.blocksize) {
+			hm.outer.Write(key);
+			key = hm.outer.Sum((go$sliceType(Go$Uint8)).nil);
+		}
+		hm.key = (go$sliceType(Go$Uint8)).make(key.length, 0, function() { return 0; });
+		go$copySlice(hm.key, key);
+		hm.Reset();
+		return hm;
+	};
+	var Equal = go$pkg.Equal = function(mac1, mac2) {
+		return (mac1.length === mac2.length) && (subtle.ConstantTimeCompare(mac1, mac2) === 1);
+	};
+	go$pkg.init = function() {
+	};

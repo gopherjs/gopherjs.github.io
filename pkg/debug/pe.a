@@ -1,0 +1,523 @@
+0‚€€‚%ópackage pe
+import dwarf "debug/dwarf"
+import binary "encoding/binary"
+import errors "errors"
+import fmt "fmt"
+import io "io"
+import os "os"
+import strconv "strconv"
+type @"".COFFSymbol struct { @"".Name [8]uint8; @"".Value uint32; @"".SectionNumber int16; @"".Type uint16; @"".StorageClass uint8; @"".NumberOfAuxSymbols uint8 }
+const @"".COFFSymbolSize = 0x12
+type @"".File struct { ? @"".FileHeader; @"".Sections []*@"".Section; @"".Symbols []*@"".Symbol; @"".closer @"io".Closer }
+func (? *@"".File) @"".Close() (? error)
+func (? *@"".File) @"".DWARF() (? *@"debug/dwarf".Data, ? error)
+func (? *@"".File) @"".ImportedLibraries() (? []string, ? error)
+func (? *@"".File) @"".ImportedSymbols() (? []string, ? error)
+func (? *@"".File) @"".Section(@"".name string) (? *@"".Section)
+type @"".FileHeader struct { @"".Machine uint16; @"".NumberOfSections uint16; @"".TimeDateStamp uint32; @"".PointerToSymbolTable uint32; @"".NumberOfSymbols uint32; @"".SizeOfOptionalHeader uint16; @"".Characteristics uint16 }
+type @"".FormatError struct { @"".off int64; @"".msg string; @"".val interface {  } }
+func (? *@"".FormatError) @"".Error() (? string)
+const @"".IMAGE_FILE_MACHINE_AM33 = 0x1d3
+const @"".IMAGE_FILE_MACHINE_AMD64 = 0x8664
+const @"".IMAGE_FILE_MACHINE_ARM = 0x1c0
+const @"".IMAGE_FILE_MACHINE_EBC = 0xebc
+const @"".IMAGE_FILE_MACHINE_I386 = 0x14c
+const @"".IMAGE_FILE_MACHINE_IA64 = 0x200
+const @"".IMAGE_FILE_MACHINE_M32R = 0x9041
+const @"".IMAGE_FILE_MACHINE_MIPS16 = 0x266
+const @"".IMAGE_FILE_MACHINE_MIPSFPU = 0x366
+const @"".IMAGE_FILE_MACHINE_MIPSFPU16 = 0x466
+const @"".IMAGE_FILE_MACHINE_POWERPC = 0x1f0
+const @"".IMAGE_FILE_MACHINE_POWERPCFP = 0x1f1
+const @"".IMAGE_FILE_MACHINE_R4000 = 0x166
+const @"".IMAGE_FILE_MACHINE_SH3 = 0x1a2
+const @"".IMAGE_FILE_MACHINE_SH3DSP = 0x1a3
+const @"".IMAGE_FILE_MACHINE_SH4 = 0x1a6
+const @"".IMAGE_FILE_MACHINE_SH5 = 0x1a8
+const @"".IMAGE_FILE_MACHINE_THUMB = 0x1c2
+const @"".IMAGE_FILE_MACHINE_UNKNOWN = 0x0
+const @"".IMAGE_FILE_MACHINE_WCEMIPSV2 = 0x169
+type @"".ImportDirectory struct { @"".OriginalFirstThunk uint32; @"".TimeDateStamp uint32; @"".ForwarderChain uint32; @"".Name uint32; @"".FirstThunk uint32; @"".dll string }
+func @"".NewFile(@"".r @"io".ReaderAt) (? *@"".File, ? error)
+func @"".Open(@"".name string) (? *@"".File, ? error)
+type @"".Section struct { ? @"".SectionHeader; ? @"io".ReaderAt; @"".sr *@"io".SectionReader }
+func (? *@"".Section) @"".Data() (? []byte, ? error)
+func (? *@"".Section) @"".Open() (? @"io".ReadSeeker)
+type @"".SectionHeader struct { @"".Name string; @"".VirtualSize uint32; @"".VirtualAddress uint32; @"".Size uint32; @"".Offset uint32; @"".PointerToRelocations uint32; @"".PointerToLineNumbers uint32; @"".NumberOfRelocations uint16; @"".NumberOfLineNumbers uint16; @"".Characteristics uint32 }
+type @"".SectionHeader32 struct { @"".Name [8]uint8; @"".VirtualSize uint32; @"".VirtualAddress uint32; @"".SizeOfRawData uint32; @"".PointerToRawData uint32; @"".PointerToRelocations uint32; @"".PointerToLineNumbers uint32; @"".NumberOfRelocations uint16; @"".NumberOfLineNumbers uint16; @"".Characteristics uint32 }
+type @"".Symbol struct { @"".Name string; @"".Value uint32; @"".SectionNumber int16; @"".Type uint16; @"".StorageClass uint8 }
+type @"io".Closer interface { @"io".Close() (? error) }
+type @"debug/dwarf".Data struct { @"debug/dwarf".abbrev []byte; @"debug/dwarf".aranges []byte; @"debug/dwarf".frame []byte; @"debug/dwarf".info []byte; @"debug/dwarf".line []byte; @"debug/dwarf".pubnames []byte; @"debug/dwarf".ranges []byte; @"debug/dwarf".str []byte; @"debug/dwarf".abbrevCache map[uint32]@"debug/dwarf".abbrevTable; @"debug/dwarf".addrsize int; @"debug/dwarf".order @"encoding/binary".ByteOrder; @"debug/dwarf".typeCache map[@"debug/dwarf".Offset]@"debug/dwarf".Type; @"debug/dwarf".unit []@"debug/dwarf".unit }
+func (? *@"debug/dwarf".Data) @"debug/dwarf".Reader() (? *@"debug/dwarf".Reader)
+func (? *@"debug/dwarf".Data) @"debug/dwarf".Type(@"debug/dwarf".off @"debug/dwarf".Offset) (? @"debug/dwarf".Type, ? error)
+func (? *@"debug/dwarf".Data) @"debug/dwarf".parseAbbrev(@"debug/dwarf".off uint32) (? @"debug/dwarf".abbrevTable, ? error)
+func (? *@"debug/dwarf".Data) @"debug/dwarf".parseUnits() (? []@"debug/dwarf".unit, ? error)
+type @"io".ReaderAt interface { @"io".ReadAt(@"".p []byte, @"".off int64) (@"".n int, @"".err error) }
+type @"io".SectionReader struct { @"io".r @"io".ReaderAt; @"io".base int64; @"io".off int64; @"io".limit int64 }
+func (? *@"io".SectionReader) @"io".Read(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"io".SectionReader) @"io".ReadAt(@"".p []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"io".SectionReader) @"io".Seek(@"".offset int64, @"".whence int) (? int64, ? error)
+func (? *@"io".SectionReader) @"io".Size() (? int64)
+type @"io".ReadSeeker interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error); @"io".Seek(@"".offset int64, @"".whence int) (? int64, ? error) }
+type @"debug/dwarf".abbrevTable map[uint32]@"debug/dwarf".abbrev
+type @"encoding/binary".ByteOrder interface { @"encoding/binary".PutUint16(? []byte, ? uint16) (); @"encoding/binary".PutUint32(? []byte, ? uint32) (); @"encoding/binary".PutUint64(? []byte, ? uint64) (); @"encoding/binary".String() (? string); @"encoding/binary".Uint16(? []byte) (? uint16); @"encoding/binary".Uint32(? []byte) (? uint32); @"encoding/binary".Uint64(? []byte) (? uint64) }
+type @"debug/dwarf".Offset uint32
+type @"debug/dwarf".Type interface { @"debug/dwarf".Common() (? *@"debug/dwarf".CommonType); @"debug/dwarf".Size() (? int64); @"debug/dwarf".String() (? string) }
+type @"debug/dwarf".unit struct { @"debug/dwarf".base @"debug/dwarf".Offset; @"debug/dwarf".off @"debug/dwarf".Offset; @"debug/dwarf".data []byte; @"debug/dwarf".atable @"debug/dwarf".abbrevTable; @"debug/dwarf".asize int; @"debug/dwarf".vers int; @"debug/dwarf".is64 bool }
+func (? *@"debug/dwarf".unit) @"debug/dwarf".addrsize() (? int)
+func (? *@"debug/dwarf".unit) @"debug/dwarf".dwarf64() (? bool, ? bool)
+func (? *@"debug/dwarf".unit) @"debug/dwarf".version() (? int)
+type @"debug/dwarf".Reader struct { @"debug/dwarf".b @"debug/dwarf".buf; @"debug/dwarf".d *@"debug/dwarf".Data; @"debug/dwarf".err error; @"debug/dwarf".unit int; @"debug/dwarf".lastChildren bool; @"debug/dwarf".lastSibling @"debug/dwarf".Offset }
+func (? *@"debug/dwarf".Reader) @"debug/dwarf".Next() (? *@"debug/dwarf".Entry, ? error)
+func (? *@"debug/dwarf".Reader) @"debug/dwarf".Seek(@"debug/dwarf".off @"debug/dwarf".Offset) ()
+func (? *@"debug/dwarf".Reader) @"debug/dwarf".SkipChildren() ()
+func (? *@"debug/dwarf".Reader) @"debug/dwarf".maybeNextUnit() ()
+type @"debug/dwarf".abbrev struct { @"debug/dwarf".tag @"debug/dwarf".Tag; @"debug/dwarf".children bool; @"debug/dwarf".field []@"debug/dwarf".afield }
+type @"debug/dwarf".CommonType struct { @"debug/dwarf".ByteSize int64; @"debug/dwarf".Name string }
+func (? *@"debug/dwarf".CommonType) @"debug/dwarf".Common() (? *@"debug/dwarf".CommonType)
+func (? *@"debug/dwarf".CommonType) @"debug/dwarf".Size() (? int64)
+type @"debug/dwarf".buf struct { @"debug/dwarf".dwarf *@"debug/dwarf".Data; @"debug/dwarf".order @"encoding/binary".ByteOrder; @"debug/dwarf".format @"debug/dwarf".dataFormat; @"debug/dwarf".name string; @"debug/dwarf".off @"debug/dwarf".Offset; @"debug/dwarf".data []byte; @"debug/dwarf".err error }
+func (? *@"debug/dwarf".buf) @"debug/dwarf".addr() (? uint64)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".bytes(@"debug/dwarf".n int) (? []byte)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".entry(@"debug/dwarf".atab @"debug/dwarf".abbrevTable, @"debug/dwarf".ubase @"debug/dwarf".Offset) (? *@"debug/dwarf".Entry)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".error(@"debug/dwarf".s string) ()
+func (? *@"debug/dwarf".buf) @"debug/dwarf".int() (? int64)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".skip(@"debug/dwarf".n int) ()
+func (? *@"debug/dwarf".buf) @"debug/dwarf".string() (? string)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint() (? uint64)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint16() (? uint16)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint32() (? uint32)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint64() (? uint64)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".uint8() (? uint8)
+func (? *@"debug/dwarf".buf) @"debug/dwarf".varint() (@"debug/dwarf".c uint64, @"debug/dwarf".bits uint)
+type @"debug/dwarf".Entry struct { @"debug/dwarf".Offset @"debug/dwarf".Offset; @"debug/dwarf".Tag @"debug/dwarf".Tag; @"debug/dwarf".Children bool; @"debug/dwarf".Field []@"debug/dwarf".Field }
+func (? *@"debug/dwarf".Entry) @"debug/dwarf".Val(@"debug/dwarf".a @"debug/dwarf".Attr) (? interface {  })
+type @"debug/dwarf".Tag uint32
+func (? @"debug/dwarf".Tag) @"debug/dwarf".GoString() (? string)
+func (? @"debug/dwarf".Tag) @"debug/dwarf".String() (? string)
+func (? *@"debug/dwarf".Tag) @"debug/dwarf".GoString() (? string)
+func (? *@"debug/dwarf".Tag) @"debug/dwarf".String() (? string)
+type @"debug/dwarf".afield struct { @"debug/dwarf".attr @"debug/dwarf".Attr; @"debug/dwarf".fmt @"debug/dwarf".format }
+type @"debug/dwarf".dataFormat interface { @"debug/dwarf".addrsize() (? int); @"debug/dwarf".dwarf64() (@"debug/dwarf".dwarf64 bool, @"debug/dwarf".isKnown bool); @"debug/dwarf".version() (? int) }
+type @"debug/dwarf".Field struct { @"debug/dwarf".Attr @"debug/dwarf".Attr; @"debug/dwarf".Val interface {  } }
+type @"debug/dwarf".Attr uint32
+func (? @"debug/dwarf".Attr) @"debug/dwarf".GoString() (? string)
+func (? @"debug/dwarf".Attr) @"debug/dwarf".String() (? string)
+func (? *@"debug/dwarf".Attr) @"debug/dwarf".GoString() (? string)
+func (? *@"debug/dwarf".Attr) @"debug/dwarf".String() (? string)
+type @"debug/dwarf".format uint32
+$$
+0Žruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarydebug/dwarfsyscalltimeosfmtdebug/pe‚Yô	var dwarf = go$packages["debug/dwarf"];
+	var binary = go$packages["encoding/binary"];
+	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var os = go$packages["os"];
+	var strconv = go$packages["strconv"];
+	var File;
+	File = go$newType(0, "Struct", "pe.File", "File", "debug/pe", function(FileHeader_, Sections_, Symbols_, closer_) {
+		this.go$val = this;
+		this.FileHeader = FileHeader_ !== undefined ? FileHeader_ : new FileHeader.Ptr();
+		this.Sections = Sections_ !== undefined ? Sections_ : (go$sliceType((go$ptrType(Section)))).nil;
+		this.Symbols = Symbols_ !== undefined ? Symbols_ : (go$sliceType((go$ptrType(Symbol)))).nil;
+		this.closer = closer_ !== undefined ? closer_ : null;
+	});
+	go$pkg.File = File;
+	var SectionHeader;
+	SectionHeader = go$newType(0, "Struct", "pe.SectionHeader", "SectionHeader", "debug/pe", function(Name_, VirtualSize_, VirtualAddress_, Size_, Offset_, PointerToRelocations_, PointerToLineNumbers_, NumberOfRelocations_, NumberOfLineNumbers_, Characteristics_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.VirtualSize = VirtualSize_ !== undefined ? VirtualSize_ : 0;
+		this.VirtualAddress = VirtualAddress_ !== undefined ? VirtualAddress_ : 0;
+		this.Size = Size_ !== undefined ? Size_ : 0;
+		this.Offset = Offset_ !== undefined ? Offset_ : 0;
+		this.PointerToRelocations = PointerToRelocations_ !== undefined ? PointerToRelocations_ : 0;
+		this.PointerToLineNumbers = PointerToLineNumbers_ !== undefined ? PointerToLineNumbers_ : 0;
+		this.NumberOfRelocations = NumberOfRelocations_ !== undefined ? NumberOfRelocations_ : 0;
+		this.NumberOfLineNumbers = NumberOfLineNumbers_ !== undefined ? NumberOfLineNumbers_ : 0;
+		this.Characteristics = Characteristics_ !== undefined ? Characteristics_ : 0;
+	});
+	go$pkg.SectionHeader = SectionHeader;
+	var Section;
+	Section = go$newType(0, "Struct", "pe.Section", "Section", "debug/pe", function(SectionHeader_, ReaderAt_, sr_) {
+		this.go$val = this;
+		this.SectionHeader = SectionHeader_ !== undefined ? SectionHeader_ : new SectionHeader.Ptr();
+		this.ReaderAt = ReaderAt_ !== undefined ? ReaderAt_ : null;
+		this.sr = sr_ !== undefined ? sr_ : (go$ptrType(io.SectionReader)).nil;
+	});
+	Section.prototype.ReadAt = function(p, off) { return this.go$val.ReadAt(p, off); };
+	Section.Ptr.prototype.ReadAt = function(p, off) { return this.ReaderAt.ReadAt(p, off); };
+	go$pkg.Section = Section;
+	var Symbol;
+	Symbol = go$newType(0, "Struct", "pe.Symbol", "Symbol", "debug/pe", function(Name_, Value_, SectionNumber_, Type_, StorageClass_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : "";
+		this.Value = Value_ !== undefined ? Value_ : 0;
+		this.SectionNumber = SectionNumber_ !== undefined ? SectionNumber_ : 0;
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.StorageClass = StorageClass_ !== undefined ? StorageClass_ : 0;
+	});
+	go$pkg.Symbol = Symbol;
+	var ImportDirectory;
+	ImportDirectory = go$newType(0, "Struct", "pe.ImportDirectory", "ImportDirectory", "debug/pe", function(OriginalFirstThunk_, TimeDateStamp_, ForwarderChain_, Name_, FirstThunk_, dll_) {
+		this.go$val = this;
+		this.OriginalFirstThunk = OriginalFirstThunk_ !== undefined ? OriginalFirstThunk_ : 0;
+		this.TimeDateStamp = TimeDateStamp_ !== undefined ? TimeDateStamp_ : 0;
+		this.ForwarderChain = ForwarderChain_ !== undefined ? ForwarderChain_ : 0;
+		this.Name = Name_ !== undefined ? Name_ : 0;
+		this.FirstThunk = FirstThunk_ !== undefined ? FirstThunk_ : 0;
+		this.dll = dll_ !== undefined ? dll_ : "";
+	});
+	go$pkg.ImportDirectory = ImportDirectory;
+	var FormatError;
+	FormatError = go$newType(0, "Struct", "pe.FormatError", "FormatError", "debug/pe", function(off_, msg_, val_) {
+		this.go$val = this;
+		this.off = off_ !== undefined ? off_ : new Go$Int64(0, 0);
+		this.msg = msg_ !== undefined ? msg_ : "";
+		this.val = val_ !== undefined ? val_ : null;
+	});
+	go$pkg.FormatError = FormatError;
+	var FileHeader;
+	FileHeader = go$newType(0, "Struct", "pe.FileHeader", "FileHeader", "debug/pe", function(Machine_, NumberOfSections_, TimeDateStamp_, PointerToSymbolTable_, NumberOfSymbols_, SizeOfOptionalHeader_, Characteristics_) {
+		this.go$val = this;
+		this.Machine = Machine_ !== undefined ? Machine_ : 0;
+		this.NumberOfSections = NumberOfSections_ !== undefined ? NumberOfSections_ : 0;
+		this.TimeDateStamp = TimeDateStamp_ !== undefined ? TimeDateStamp_ : 0;
+		this.PointerToSymbolTable = PointerToSymbolTable_ !== undefined ? PointerToSymbolTable_ : 0;
+		this.NumberOfSymbols = NumberOfSymbols_ !== undefined ? NumberOfSymbols_ : 0;
+		this.SizeOfOptionalHeader = SizeOfOptionalHeader_ !== undefined ? SizeOfOptionalHeader_ : 0;
+		this.Characteristics = Characteristics_ !== undefined ? Characteristics_ : 0;
+	});
+	go$pkg.FileHeader = FileHeader;
+	var SectionHeader32;
+	SectionHeader32 = go$newType(0, "Struct", "pe.SectionHeader32", "SectionHeader32", "debug/pe", function(Name_, VirtualSize_, VirtualAddress_, SizeOfRawData_, PointerToRawData_, PointerToRelocations_, PointerToLineNumbers_, NumberOfRelocations_, NumberOfLineNumbers_, Characteristics_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : go$makeNativeArray("Uint8", 8, function() { return 0; });
+		this.VirtualSize = VirtualSize_ !== undefined ? VirtualSize_ : 0;
+		this.VirtualAddress = VirtualAddress_ !== undefined ? VirtualAddress_ : 0;
+		this.SizeOfRawData = SizeOfRawData_ !== undefined ? SizeOfRawData_ : 0;
+		this.PointerToRawData = PointerToRawData_ !== undefined ? PointerToRawData_ : 0;
+		this.PointerToRelocations = PointerToRelocations_ !== undefined ? PointerToRelocations_ : 0;
+		this.PointerToLineNumbers = PointerToLineNumbers_ !== undefined ? PointerToLineNumbers_ : 0;
+		this.NumberOfRelocations = NumberOfRelocations_ !== undefined ? NumberOfRelocations_ : 0;
+		this.NumberOfLineNumbers = NumberOfLineNumbers_ !== undefined ? NumberOfLineNumbers_ : 0;
+		this.Characteristics = Characteristics_ !== undefined ? Characteristics_ : 0;
+	});
+	go$pkg.SectionHeader32 = SectionHeader32;
+	var COFFSymbol;
+	COFFSymbol = go$newType(0, "Struct", "pe.COFFSymbol", "COFFSymbol", "debug/pe", function(Name_, Value_, SectionNumber_, Type_, StorageClass_, NumberOfAuxSymbols_) {
+		this.go$val = this;
+		this.Name = Name_ !== undefined ? Name_ : go$makeNativeArray("Uint8", 8, function() { return 0; });
+		this.Value = Value_ !== undefined ? Value_ : 0;
+		this.SectionNumber = SectionNumber_ !== undefined ? SectionNumber_ : 0;
+		this.Type = Type_ !== undefined ? Type_ : 0;
+		this.StorageClass = StorageClass_ !== undefined ? StorageClass_ : 0;
+		this.NumberOfAuxSymbols = NumberOfAuxSymbols_ !== undefined ? NumberOfAuxSymbols_ : 0;
+	});
+	go$pkg.COFFSymbol = COFFSymbol;
+	File.init([["", "", FileHeader, ""], ["Sections", "", (go$sliceType((go$ptrType(Section)))), ""], ["Symbols", "", (go$sliceType((go$ptrType(Symbol)))), ""], ["closer", "debug/pe", io.Closer, ""]]);
+	(go$ptrType(File)).methods = [["Close", "", [], [go$error], false], ["DWARF", "", [], [(go$ptrType(dwarf.Data)), go$error], false], ["ImportedLibraries", "", [], [(go$sliceType(Go$String)), go$error], false], ["ImportedSymbols", "", [], [(go$sliceType(Go$String)), go$error], false], ["Section", "", [Go$String], [(go$ptrType(Section))], false]];
+	SectionHeader.init([["Name", "", Go$String, ""], ["VirtualSize", "", Go$Uint32, ""], ["VirtualAddress", "", Go$Uint32, ""], ["Size", "", Go$Uint32, ""], ["Offset", "", Go$Uint32, ""], ["PointerToRelocations", "", Go$Uint32, ""], ["PointerToLineNumbers", "", Go$Uint32, ""], ["NumberOfRelocations", "", Go$Uint16, ""], ["NumberOfLineNumbers", "", Go$Uint16, ""], ["Characteristics", "", Go$Uint32, ""]]);
+	Section.init([["", "", SectionHeader, ""], ["", "", io.ReaderAt, ""], ["sr", "debug/pe", (go$ptrType(io.SectionReader)), ""]]);
+	Section.methods = [["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
+	(go$ptrType(Section)).methods = [["Data", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Open", "", [], [io.ReadSeeker], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
+	Symbol.init([["Name", "", Go$String, ""], ["Value", "", Go$Uint32, ""], ["SectionNumber", "", Go$Int16, ""], ["Type", "", Go$Uint16, ""], ["StorageClass", "", Go$Uint8, ""]]);
+	ImportDirectory.init([["OriginalFirstThunk", "", Go$Uint32, ""], ["TimeDateStamp", "", Go$Uint32, ""], ["ForwarderChain", "", Go$Uint32, ""], ["Name", "", Go$Uint32, ""], ["FirstThunk", "", Go$Uint32, ""], ["dll", "debug/pe", Go$String, ""]]);
+	FormatError.init([["off", "debug/pe", Go$Int64, ""], ["msg", "debug/pe", Go$String, ""], ["val", "debug/pe", go$emptyInterface, ""]]);
+	(go$ptrType(FormatError)).methods = [["Error", "", [], [Go$String], false]];
+	FileHeader.init([["Machine", "", Go$Uint16, ""], ["NumberOfSections", "", Go$Uint16, ""], ["TimeDateStamp", "", Go$Uint32, ""], ["PointerToSymbolTable", "", Go$Uint32, ""], ["NumberOfSymbols", "", Go$Uint32, ""], ["SizeOfOptionalHeader", "", Go$Uint16, ""], ["Characteristics", "", Go$Uint16, ""]]);
+	SectionHeader32.init([["Name", "", (go$arrayType(Go$Uint8, 8)), ""], ["VirtualSize", "", Go$Uint32, ""], ["VirtualAddress", "", Go$Uint32, ""], ["SizeOfRawData", "", Go$Uint32, ""], ["PointerToRawData", "", Go$Uint32, ""], ["PointerToRelocations", "", Go$Uint32, ""], ["PointerToLineNumbers", "", Go$Uint32, ""], ["NumberOfRelocations", "", Go$Uint16, ""], ["NumberOfLineNumbers", "", Go$Uint16, ""], ["Characteristics", "", Go$Uint32, ""]]);
+	COFFSymbol.init([["Name", "", (go$arrayType(Go$Uint8, 8)), ""], ["Value", "", Go$Uint32, ""], ["SectionNumber", "", Go$Int16, ""], ["Type", "", Go$Uint16, ""], ["StorageClass", "", Go$Uint8, ""], ["NumberOfAuxSymbols", "", Go$Uint8, ""]]);
+	Section.Ptr.prototype.Data = function() {
+		var s, dat, _tuple, n, err;
+		s = this;
+		dat = (go$sliceType(Go$Uint8)).make(go$flatten64(s.sr.Size()), 0, function() { return 0; });
+		_tuple = s.sr.ReadAt(dat, new Go$Int64(0, 0)), n = _tuple[0], err = _tuple[1];
+		return [go$subslice(dat, 0, n), err];
+	};
+	Section.prototype.Data = function() { return this.go$val.Data(); };
+	Section.Ptr.prototype.Open = function() {
+		var s;
+		s = this;
+		return io.NewSectionReader(s.sr, new Go$Int64(0, 0), new Go$Int64(2147483647, 4294967295));
+	};
+	Section.prototype.Open = function() { return this.go$val.Open(); };
+	FormatError.Ptr.prototype.Error = function() {
+		var e, msg;
+		e = this;
+		msg = e.msg;
+		if (!(go$interfaceIsEqual(e.val, null))) {
+			msg = msg + (fmt.Sprintf(" '%v'", new (go$sliceType(go$emptyInterface))([e.val])));
+		}
+		msg = msg + (fmt.Sprintf(" in record at byte %#x", new (go$sliceType(go$emptyInterface))([e.off])));
+		return msg;
+	};
+	FormatError.prototype.Error = function() { return this.go$val.Error(); };
+	var Open = go$pkg.Open = function(name) {
+		var _tuple, f, err, _tuple$1, ff;
+		_tuple = os.Open(name), f = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(File)).nil, err];
+		}
+		_tuple$1 = NewFile(f), ff = _tuple$1[0], err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			f.Close();
+			return [(go$ptrType(File)).nil, err];
+		}
+		ff.closer = f;
+		return [ff, null];
+	};
+	File.Ptr.prototype.Close = function() {
+		var f, err;
+		f = this;
+		err = null;
+		if (!(go$interfaceIsEqual(f.closer, null))) {
+			err = f.closer.Close();
+			f.closer = null;
+		}
+		return err;
+	};
+	File.prototype.Close = function() { return this.go$val.Close(); };
+	var NewFile = go$pkg.NewFile = function(r) {
+		var f, sr, dosheader, err, _tuple, base, signoff, sign, err$1, x, ss, x$1, l, err$2, x$2, v, err$3, _tuple$1, x$3, aux, i, cs, err$4, x$4, name, si, _tuple$2, s, x$5, i$1, sh, err$5, x$6, name$1, _tuple$3, si$1, _tuple$4, s$1, _slice, _index;
+		f = new File.Ptr();
+		sr = io.NewSectionReader(r, new Go$Int64(0, 0), new Go$Int64(2147483647, 4294967295));
+		dosheader = go$makeNativeArray("Uint8", 96, function() { return 0; });
+		if (_tuple = r.ReadAt(go$subslice(new (go$sliceType(Go$Uint8))(dosheader), 0), new Go$Int64(0, 0)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			return [(go$ptrType(File)).nil, err];
+		}
+		base = new Go$Int64(0, 0);
+		if ((dosheader[0] === 77) && (dosheader[1] === 90)) {
+			signoff = new Go$Int64(0, binary.LittleEndian.Uint32(go$subslice(new (go$sliceType(Go$Uint8))(dosheader), 60)));
+			sign = go$makeNativeArray("Uint8", 4, function() { return 0; });
+			r.ReadAt(new (go$sliceType(Go$Uint8))(sign), signoff);
+			if (!((sign[0] === 80) && (sign[1] === 69) && (sign[2] === 0) && (sign[3] === 0))) {
+				return [(go$ptrType(File)).nil, errors.New("Invalid PE File Format.")];
+			}
+			base = new Go$Int64(signoff.high + 0, signoff.low + 4);
+		} else {
+			base = new Go$Int64(0, 0);
+		}
+		sr.Seek(base, 0);
+		if (err$1 = binary.Read(sr, (x = binary.LittleEndian, new x.constructor.Struct(x)), f.FileHeader), !(go$interfaceIsEqual(err$1, null))) {
+			return [(go$ptrType(File)).nil, err$1];
+		}
+		if (!((f.FileHeader.Machine === 0)) && !((f.FileHeader.Machine === 34404)) && !((f.FileHeader.Machine === 332))) {
+			return [(go$ptrType(File)).nil, errors.New("Invalid PE File Format.")];
+		}
+		ss = (go$sliceType(Go$Uint8)).nil;
+		if (f.FileHeader.NumberOfSymbols > 0) {
+			sr.Seek(new Go$Int64(0, (f.FileHeader.PointerToSymbolTable + (x$1 = f.FileHeader.NumberOfSymbols, (((18 >>> 16 << 16) * x$1 >>> 0) + (18 << 16 >>> 16) * x$1) >>> 0) >>> 0)), 0);
+			l = 0;
+			if (err$2 = binary.Read(sr, (x$2 = binary.LittleEndian, new x$2.constructor.Struct(x$2)), new (go$ptrType(Go$Uint32))(function() { return l; }, function(v) { l = v; })), !(go$interfaceIsEqual(err$2, null))) {
+				return [(go$ptrType(File)).nil, err$2];
+			}
+			ss = (go$sliceType(Go$Uint8)).make(l, 0, function() { return 0; });
+			if (_tuple$1 = r.ReadAt(ss, new Go$Int64(0, (f.FileHeader.PointerToSymbolTable + (x$3 = f.FileHeader.NumberOfSymbols, (((18 >>> 16 << 16) * x$3 >>> 0) + (18 << 16 >>> 16) * x$3) >>> 0) >>> 0))), err$3 = _tuple$1[1], !(go$interfaceIsEqual(err$3, null))) {
+				return [(go$ptrType(File)).nil, err$3];
+			}
+			sr.Seek(new Go$Int64(0, f.FileHeader.PointerToSymbolTable), 0);
+			aux = 0;
+			i = 0;
+			while (i < (f.FileHeader.NumberOfSymbols >> 0)) {
+				cs = new COFFSymbol.Ptr();
+				if (err$4 = binary.Read(sr, (x$4 = binary.LittleEndian, new x$4.constructor.Struct(x$4)), cs), !(go$interfaceIsEqual(err$4, null))) {
+					return [(go$ptrType(File)).nil, err$4];
+				}
+				if (aux > 0) {
+					aux = aux - 1 << 24 >>> 24;
+					i = i + 1 >> 0;
+					continue;
+				}
+				name = "";
+				if ((cs.Name[0] === 0) && (cs.Name[1] === 0) && (cs.Name[2] === 0) && (cs.Name[3] === 0)) {
+					si = (binary.LittleEndian.Uint32(go$subslice(new (go$sliceType(Go$Uint8))(cs.Name), 4)) >> 0);
+					_tuple$2 = getString(ss, si), name = _tuple$2[0];
+				} else {
+					name = cstring(new (go$sliceType(Go$Uint8))(cs.Name));
+				}
+				aux = cs.NumberOfAuxSymbols;
+				s = new Symbol.Ptr(name, cs.Value, cs.SectionNumber, cs.Type, cs.StorageClass);
+				f.Symbols = go$append(f.Symbols, s);
+				i = i + 1 >> 0;
+			}
+		}
+		sr.Seek(base, 0);
+		binary.Read(sr, (x$5 = binary.LittleEndian, new x$5.constructor.Struct(x$5)), f.FileHeader);
+		sr.Seek(new Go$Int64(0, f.FileHeader.SizeOfOptionalHeader), 1);
+		f.Sections = (go$sliceType((go$ptrType(Section)))).make(f.FileHeader.NumberOfSections, 0, function() { return (go$ptrType(Section)).nil; });
+		i$1 = 0;
+		while (i$1 < (f.FileHeader.NumberOfSections >> 0)) {
+			sh = new SectionHeader32.Ptr();
+			if (err$5 = binary.Read(sr, (x$6 = binary.LittleEndian, new x$6.constructor.Struct(x$6)), sh), !(go$interfaceIsEqual(err$5, null))) {
+				return [(go$ptrType(File)).nil, err$5];
+			}
+			name$1 = "";
+			if (sh.Name[0] === 47) {
+				_tuple$3 = strconv.Atoi(cstring(go$subslice(new (go$sliceType(Go$Uint8))(sh.Name), 1))), si$1 = _tuple$3[0];
+				_tuple$4 = getString(ss, si$1), name$1 = _tuple$4[0];
+			} else {
+				name$1 = cstring(go$subslice(new (go$sliceType(Go$Uint8))(sh.Name), 0));
+			}
+			s$1 = new Section.Ptr();
+			s$1.SectionHeader = new SectionHeader.Ptr(name$1, sh.VirtualSize, sh.VirtualAddress, sh.SizeOfRawData, sh.PointerToRawData, sh.PointerToRelocations, sh.PointerToLineNumbers, sh.NumberOfRelocations, sh.NumberOfLineNumbers, sh.Characteristics);
+			s$1.sr = io.NewSectionReader(r, new Go$Int64(0, s$1.SectionHeader.Offset), new Go$Int64(0, s$1.SectionHeader.Size));
+			s$1.ReaderAt = s$1.sr;
+			_slice = f.Sections, _index = i$1, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = s$1) : go$throwRuntimeError("index out of range");
+			i$1 = i$1 + 1 >> 0;
+		}
+		return [f, null];
+	};
+	var cstring = function(b) {
+		var i, _slice, _index;
+		i = 0;
+		i = 0;
+		while (i < b.length && !(((_slice = b, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0))) {
+			i = i + 1 >> 0;
+		}
+		return go$bytesToString(go$subslice(b, 0, i));
+	};
+	var getString = function(section, start) {
+		var end, _slice, _index;
+		if (start < 0 || start >= section.length) {
+			return ["", false];
+		}
+		end = start;
+		while (end < section.length) {
+			if ((_slice = section, _index = end, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0) {
+				return [go$bytesToString(go$subslice(section, start, end)), true];
+			}
+			end = end + 1 >> 0;
+		}
+		return ["", false];
+	};
+	File.Ptr.prototype.Section = function(name) {
+		var f, _ref, _i, _slice, _index, s;
+		f = this;
+		_ref = f.Sections;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (s.SectionHeader.Name === name) {
+				return s;
+			}
+		}
+		return (go$ptrType(Section)).nil;
+	};
+	File.prototype.Section = function(name) { return this.go$val.Section(name); };
+	File.Ptr.prototype.DWARF = function() {
+		var f, names, dat, _ref, _i, name, i, s, _tuple, b, err, _tuple$1, abbrev, info, str;
+		f = this;
+		names = go$toNativeArray("String", ["abbrev", "info", "str"]);
+		dat = go$makeNativeArray("Slice", 3, function() { return (go$sliceType(Go$Uint8)).nil; });
+		_ref = names;
+		_i = 0;
+		for (; _i < 3; _i += 1) {
+			name = _ref[_i];
+			i = _i;
+			name = ".debug_" + name;
+			s = f.Section(name);
+			if (s === (go$ptrType(Section)).nil) {
+				continue;
+			}
+			_tuple = s.Data(), b = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null)) && (b.length >>> 0) < s.SectionHeader.Size) {
+				return [(go$ptrType(dwarf.Data)).nil, err];
+			}
+			dat[i] = b;
+		}
+		_tuple$1 = [dat[0], dat[1], dat[2]], abbrev = _tuple$1[0], info = _tuple$1[1], str = _tuple$1[2];
+		return dwarf.New(abbrev, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, info, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, str);
+	};
+	File.prototype.DWARF = function() { return this.go$val.DWARF(); };
+	File.Ptr.prototype.ImportedSymbols = function() {
+		var f, pe64, ds, _tuple, d, err, ida, dt, _struct, _tuple$1, names, all, _ref, _i, _slice, _index, _struct$1, dt$1, _tuple$2, _tuple$3, va, x, _tuple$4, fn, va$1, _tuple$5, fn$1;
+		f = this;
+		pe64 = f.FileHeader.Machine === 34404;
+		ds = f.Section(".idata");
+		if (ds === (go$ptrType(Section)).nil) {
+			return [(go$sliceType(Go$String)).nil, null];
+		}
+		_tuple = ds.Data(), d = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [(go$sliceType(Go$String)).nil, err];
+		}
+		ida = (go$sliceType(ImportDirectory)).nil;
+		while (d.length > 0) {
+			dt = new ImportDirectory.Ptr();
+			dt.OriginalFirstThunk = binary.LittleEndian.Uint32(go$subslice(d, 0, 4));
+			dt.Name = binary.LittleEndian.Uint32(go$subslice(d, 12, 16));
+			dt.FirstThunk = binary.LittleEndian.Uint32(go$subslice(d, 16, 20));
+			d = go$subslice(d, 20);
+			if (dt.OriginalFirstThunk === 0) {
+				break;
+			}
+			ida = go$append(ida, (_struct = dt, new ImportDirectory.Ptr(_struct.OriginalFirstThunk, _struct.TimeDateStamp, _struct.ForwarderChain, _struct.Name, _struct.FirstThunk, _struct.dll)));
+		}
+		_tuple$1 = ds.Data(), names = _tuple$1[0];
+		all = (go$sliceType(Go$String)).nil;
+		_ref = ida;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			dt$1 = (_struct$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new ImportDirectory.Ptr(_struct$1.OriginalFirstThunk, _struct$1.TimeDateStamp, _struct$1.ForwarderChain, _struct$1.Name, _struct$1.FirstThunk, _struct$1.dll));
+			_tuple$2 = getString(names, ((dt$1.Name - ds.SectionHeader.VirtualAddress >>> 0) >> 0)), dt$1.dll = _tuple$2[0];
+			_tuple$3 = ds.Data(), d = _tuple$3[0];
+			d = go$subslice(d, (dt$1.OriginalFirstThunk - ds.SectionHeader.VirtualAddress >>> 0));
+			while (d.length > 0) {
+				if (pe64) {
+					va = binary.LittleEndian.Uint64(go$subslice(d, 0, 8));
+					d = go$subslice(d, 8);
+					if ((va.high === 0 && va.low === 0)) {
+						break;
+					}
+					if ((x = new Go$Uint64(va.high & 2147483648, (va.low & 0) >>> 0), (x.high > 0 || (x.high === 0 && x.low > 0)))) {
+					} else {
+						_tuple$4 = getString(names, ((((va.low >>> 0) - ds.SectionHeader.VirtualAddress >>> 0) + 2 >>> 0) >> 0)), fn = _tuple$4[0];
+						all = go$append(all, fn + ":" + dt$1.dll);
+					}
+				} else {
+					va$1 = binary.LittleEndian.Uint32(go$subslice(d, 0, 4));
+					d = go$subslice(d, 4);
+					if (va$1 === 0) {
+						break;
+					}
+					if (((va$1 & 2147483648) >>> 0) > 0) {
+					} else {
+						_tuple$5 = getString(names, (((va$1 - ds.SectionHeader.VirtualAddress >>> 0) + 2 >>> 0) >> 0)), fn$1 = _tuple$5[0];
+						all = go$append(all, fn$1 + ":" + dt$1.dll);
+					}
+				}
+			}
+		}
+		return [all, null];
+	};
+	File.prototype.ImportedSymbols = function() { return this.go$val.ImportedSymbols(); };
+	File.Ptr.prototype.ImportedLibraries = function() {
+		var f;
+		f = this;
+		return [(go$sliceType(Go$String)).nil, null];
+	};
+	File.prototype.ImportedLibraries = function() { return this.go$val.ImportedLibraries(); };
+	go$pkg.COFFSymbolSize = 18;
+	go$pkg.IMAGE_FILE_MACHINE_UNKNOWN = 0;
+	go$pkg.IMAGE_FILE_MACHINE_AM33 = 467;
+	go$pkg.IMAGE_FILE_MACHINE_AMD64 = 34404;
+	go$pkg.IMAGE_FILE_MACHINE_ARM = 448;
+	go$pkg.IMAGE_FILE_MACHINE_EBC = 3772;
+	go$pkg.IMAGE_FILE_MACHINE_I386 = 332;
+	go$pkg.IMAGE_FILE_MACHINE_IA64 = 512;
+	go$pkg.IMAGE_FILE_MACHINE_M32R = 36929;
+	go$pkg.IMAGE_FILE_MACHINE_MIPS16 = 614;
+	go$pkg.IMAGE_FILE_MACHINE_MIPSFPU = 870;
+	go$pkg.IMAGE_FILE_MACHINE_MIPSFPU16 = 1126;
+	go$pkg.IMAGE_FILE_MACHINE_POWERPC = 496;
+	go$pkg.IMAGE_FILE_MACHINE_POWERPCFP = 497;
+	go$pkg.IMAGE_FILE_MACHINE_R4000 = 358;
+	go$pkg.IMAGE_FILE_MACHINE_SH3 = 418;
+	go$pkg.IMAGE_FILE_MACHINE_SH3DSP = 419;
+	go$pkg.IMAGE_FILE_MACHINE_SH4 = 422;
+	go$pkg.IMAGE_FILE_MACHINE_SH5 = 424;
+	go$pkg.IMAGE_FILE_MACHINE_THUMB = 450;
+	go$pkg.IMAGE_FILE_MACHINE_WCEMIPSV2 = 361;
+	go$pkg.init = function() {
+	};

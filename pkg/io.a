@@ -1,0 +1,693 @@
+0‚}´‚:package io
+import errors "errors"
+import sync "sync"
+type @"".ByteReader interface { @"".ReadByte() (@"".c byte, @"".err error) }
+type @"".ByteScanner interface { @"".ReadByte() (@"".c byte, @"".err error); @"".UnreadByte() (? error) }
+type @"".ByteWriter interface { @"".WriteByte(@"".c byte) (? error) }
+type @"".Closer interface { @"".Close() (? error) }
+func @"".Copy(@"".dst @"".Writer, @"".src @"".Reader) (@"".written int64, @"".err error)
+func @"".CopyN(@"".dst @"".Writer, @"".src @"".Reader, @"".n int64) (@"".written int64, @"".err error)
+var @"".EOF error
+var @"".ErrClosedPipe error
+var @"".ErrNoProgress error
+var @"".ErrShortBuffer error
+var @"".ErrShortWrite error
+var @"".ErrUnexpectedEOF error
+func @"".LimitReader(@"".r @"".Reader, @"".n int64) (? @"".Reader)
+type @"".LimitedReader struct { @"".R @"".Reader; @"".N int64 }
+func (? *@"".LimitedReader) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+func @"".MultiReader(@"".readers ...@"".Reader) (? @"".Reader)
+func @"".MultiWriter(@"".writers ...@"".Writer) (? @"".Writer)
+func @"".NewSectionReader(@"".r @"".ReaderAt, @"".off int64, @"".n int64) (? *@"".SectionReader)
+func @"".Pipe() (? *@"".PipeReader, ? *@"".PipeWriter)
+type @"".PipeReader struct { @"".p *@"".pipe }
+func (? *@"".PipeReader) @"".Close() (? error)
+func (? *@"".PipeReader) @"".CloseWithError(@"".err error) (? error)
+func (? *@"".PipeReader) @"".Read(@"".data []byte) (@"".n int, @"".err error)
+type @"".PipeWriter struct { @"".p *@"".pipe }
+func (? *@"".PipeWriter) @"".Close() (? error)
+func (? *@"".PipeWriter) @"".CloseWithError(@"".err error) (? error)
+func (? *@"".PipeWriter) @"".Write(@"".data []byte) (@"".n int, @"".err error)
+func @"".ReadAtLeast(@"".r @"".Reader, @"".buf []byte, @"".min int) (@"".n int, @"".err error)
+type @"".ReadCloser interface { @"".Close() (? error); @"".Read(@"".p []byte) (@"".n int, @"".err error) }
+func @"".ReadFull(@"".r @"".Reader, @"".buf []byte) (@"".n int, @"".err error)
+type @"".ReadSeeker interface { @"".Read(@"".p []byte) (@"".n int, @"".err error); @"".Seek(@"".offset int64, @"".whence int) (? int64, ? error) }
+type @"".ReadWriteCloser interface { @"".Close() (? error); @"".Read(@"".p []byte) (@"".n int, @"".err error); @"".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"".ReadWriteSeeker interface { @"".Read(@"".p []byte) (@"".n int, @"".err error); @"".Seek(@"".offset int64, @"".whence int) (? int64, ? error); @"".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"".ReadWriter interface { @"".Read(@"".p []byte) (@"".n int, @"".err error); @"".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"".Reader interface { @"".Read(@"".p []byte) (@"".n int, @"".err error) }
+type @"".ReaderAt interface { @"".ReadAt(@"".p []byte, @"".off int64) (@"".n int, @"".err error) }
+type @"".ReaderFrom interface { @"".ReadFrom(@"".r @"".Reader) (@"".n int64, @"".err error) }
+type @"".RuneReader interface { @"".ReadRune() (@"".r rune, @"".size int, @"".err error) }
+type @"".RuneScanner interface { @"".ReadRune() (@"".r rune, @"".size int, @"".err error); @"".UnreadRune() (? error) }
+type @"".SectionReader struct { @"".r @"".ReaderAt; @"".base int64; @"".off int64; @"".limit int64 }
+func (? *@"".SectionReader) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+func (? *@"".SectionReader) @"".ReadAt(@"".p []byte, @"".off int64) (@"".n int, @"".err error)
+func (? *@"".SectionReader) @"".Seek(@"".offset int64, @"".whence int) (? int64, ? error)
+func (? *@"".SectionReader) @"".Size() (? int64)
+type @"".Seeker interface { @"".Seek(@"".offset int64, @"".whence int) (? int64, ? error) }
+func @"".TeeReader(@"".r @"".Reader, @"".w @"".Writer) (? @"".Reader)
+type @"".WriteCloser interface { @"".Close() (? error); @"".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"".WriteSeeker interface { @"".Seek(@"".offset int64, @"".whence int) (? int64, ? error); @"".Write(@"".p []byte) (@"".n int, @"".err error) }
+func @"".WriteString(@"".w @"".Writer, @"".s string) (@"".n int, @"".err error)
+type @"".Writer interface { @"".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"".WriterAt interface { @"".WriteAt(@"".p []byte, @"".off int64) (@"".n int, @"".err error) }
+type @"".WriterTo interface { @"".WriteTo(@"".w @"".Writer) (@"".n int64, @"".err error) }
+type @"".multiReader struct { @"".readers []@"".Reader }
+func (? *@"".multiReader) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+type @"".multiWriter struct { @"".writers []@"".Writer }
+func (? *@"".multiWriter) @"".Write(@"".p []byte) (@"".n int, @"".err error)
+type @"".pipe struct { @"".rl @"sync".Mutex; @"".wl @"sync".Mutex; @"".l @"sync".Mutex; @"".data []byte; @"".rwait @"sync".Cond; @"".wwait @"sync".Cond; @"".rerr error; @"".werr error }
+func (? *@"".pipe) @"".rclose(@"".err error) ()
+func (? *@"".pipe) @"".read(@"".b []byte) (@"".n int, @"".err error)
+func (? *@"".pipe) @"".wclose(@"".err error) ()
+func (? *@"".pipe) @"".write(@"".b []byte) (@"".n int, @"".err error)
+type @"".pipeResult struct { @"".n int; @"".err error }
+type @"".stringWriter interface { @"".WriteString(@"".s string) (@"".n int, @"".err error) }
+type @"".teeReader struct { @"".r @"".Reader; @"".w @"".Writer }
+func (? *@"".teeReader) @"".Read(@"".p []byte) (@"".n int, @"".err error)
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"sync".Cond struct { @"sync".L @"sync".Locker; @"sync".sema @"sync".syncSema; @"sync".waiters uint32; @"sync".checker @"sync".copyChecker }
+func (? *@"sync".Cond) @"sync".Broadcast() ()
+func (? *@"sync".Cond) @"sync".Signal() ()
+func (? *@"sync".Cond) @"sync".Wait() ()
+func (? *@"sync".Cond) @"sync".signalImpl(@"sync".all bool) ()
+type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
+type @"sync".syncSema [3]uintptr
+type @"sync".copyChecker uintptr
+func (? *@"sync".copyChecker) @"sync".check() ()
+$$
+0(runtimeerrorssync/atomicsyncio‚fH	var errors = go$packages["errors"];
+	var sync = go$packages["sync"];
+	var Reader;
+	Reader = go$newType(0, "Interface", "io.Reader", "Reader", "io", null);
+	go$pkg.Reader = Reader;
+	var Writer;
+	Writer = go$newType(0, "Interface", "io.Writer", "Writer", "io", null);
+	go$pkg.Writer = Writer;
+	var Closer;
+	Closer = go$newType(0, "Interface", "io.Closer", "Closer", "io", null);
+	go$pkg.Closer = Closer;
+	var Seeker;
+	Seeker = go$newType(0, "Interface", "io.Seeker", "Seeker", "io", null);
+	go$pkg.Seeker = Seeker;
+	var ReadWriter;
+	ReadWriter = go$newType(0, "Interface", "io.ReadWriter", "ReadWriter", "io", null);
+	go$pkg.ReadWriter = ReadWriter;
+	var ReadCloser;
+	ReadCloser = go$newType(0, "Interface", "io.ReadCloser", "ReadCloser", "io", null);
+	go$pkg.ReadCloser = ReadCloser;
+	var WriteCloser;
+	WriteCloser = go$newType(0, "Interface", "io.WriteCloser", "WriteCloser", "io", null);
+	go$pkg.WriteCloser = WriteCloser;
+	var ReadWriteCloser;
+	ReadWriteCloser = go$newType(0, "Interface", "io.ReadWriteCloser", "ReadWriteCloser", "io", null);
+	go$pkg.ReadWriteCloser = ReadWriteCloser;
+	var ReadSeeker;
+	ReadSeeker = go$newType(0, "Interface", "io.ReadSeeker", "ReadSeeker", "io", null);
+	go$pkg.ReadSeeker = ReadSeeker;
+	var WriteSeeker;
+	WriteSeeker = go$newType(0, "Interface", "io.WriteSeeker", "WriteSeeker", "io", null);
+	go$pkg.WriteSeeker = WriteSeeker;
+	var ReadWriteSeeker;
+	ReadWriteSeeker = go$newType(0, "Interface", "io.ReadWriteSeeker", "ReadWriteSeeker", "io", null);
+	go$pkg.ReadWriteSeeker = ReadWriteSeeker;
+	var ReaderFrom;
+	ReaderFrom = go$newType(0, "Interface", "io.ReaderFrom", "ReaderFrom", "io", null);
+	go$pkg.ReaderFrom = ReaderFrom;
+	var WriterTo;
+	WriterTo = go$newType(0, "Interface", "io.WriterTo", "WriterTo", "io", null);
+	go$pkg.WriterTo = WriterTo;
+	var ReaderAt;
+	ReaderAt = go$newType(0, "Interface", "io.ReaderAt", "ReaderAt", "io", null);
+	go$pkg.ReaderAt = ReaderAt;
+	var WriterAt;
+	WriterAt = go$newType(0, "Interface", "io.WriterAt", "WriterAt", "io", null);
+	go$pkg.WriterAt = WriterAt;
+	var ByteReader;
+	ByteReader = go$newType(0, "Interface", "io.ByteReader", "ByteReader", "io", null);
+	go$pkg.ByteReader = ByteReader;
+	var ByteScanner;
+	ByteScanner = go$newType(0, "Interface", "io.ByteScanner", "ByteScanner", "io", null);
+	go$pkg.ByteScanner = ByteScanner;
+	var ByteWriter;
+	ByteWriter = go$newType(0, "Interface", "io.ByteWriter", "ByteWriter", "io", null);
+	go$pkg.ByteWriter = ByteWriter;
+	var RuneReader;
+	RuneReader = go$newType(0, "Interface", "io.RuneReader", "RuneReader", "io", null);
+	go$pkg.RuneReader = RuneReader;
+	var RuneScanner;
+	RuneScanner = go$newType(0, "Interface", "io.RuneScanner", "RuneScanner", "io", null);
+	go$pkg.RuneScanner = RuneScanner;
+	var stringWriter;
+	stringWriter = go$newType(0, "Interface", "io.stringWriter", "stringWriter", "io", null);
+	go$pkg.stringWriter = stringWriter;
+	var LimitedReader;
+	LimitedReader = go$newType(0, "Struct", "io.LimitedReader", "LimitedReader", "io", function(R_, N_) {
+		this.go$val = this;
+		this.R = R_ !== undefined ? R_ : null;
+		this.N = N_ !== undefined ? N_ : new Go$Int64(0, 0);
+	});
+	go$pkg.LimitedReader = LimitedReader;
+	var SectionReader;
+	SectionReader = go$newType(0, "Struct", "io.SectionReader", "SectionReader", "io", function(r_, base_, off_, limit_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+		this.base = base_ !== undefined ? base_ : new Go$Int64(0, 0);
+		this.off = off_ !== undefined ? off_ : new Go$Int64(0, 0);
+		this.limit = limit_ !== undefined ? limit_ : new Go$Int64(0, 0);
+	});
+	go$pkg.SectionReader = SectionReader;
+	var teeReader;
+	teeReader = go$newType(0, "Struct", "io.teeReader", "teeReader", "io", function(r_, w_) {
+		this.go$val = this;
+		this.r = r_ !== undefined ? r_ : null;
+		this.w = w_ !== undefined ? w_ : null;
+	});
+	go$pkg.teeReader = teeReader;
+	var multiReader;
+	multiReader = go$newType(0, "Struct", "io.multiReader", "multiReader", "io", function(readers_) {
+		this.go$val = this;
+		this.readers = readers_ !== undefined ? readers_ : (go$sliceType(Reader)).nil;
+	});
+	go$pkg.multiReader = multiReader;
+	var multiWriter;
+	multiWriter = go$newType(0, "Struct", "io.multiWriter", "multiWriter", "io", function(writers_) {
+		this.go$val = this;
+		this.writers = writers_ !== undefined ? writers_ : (go$sliceType(Writer)).nil;
+	});
+	go$pkg.multiWriter = multiWriter;
+	var pipeResult;
+	pipeResult = go$newType(0, "Struct", "io.pipeResult", "pipeResult", "io", function(n_, err_) {
+		this.go$val = this;
+		this.n = n_ !== undefined ? n_ : 0;
+		this.err = err_ !== undefined ? err_ : null;
+	});
+	go$pkg.pipeResult = pipeResult;
+	var pipe;
+	pipe = go$newType(0, "Struct", "io.pipe", "pipe", "io", function(rl_, wl_, l_, data_, rwait_, wwait_, rerr_, werr_) {
+		this.go$val = this;
+		this.rl = rl_ !== undefined ? rl_ : new sync.Mutex.Ptr();
+		this.wl = wl_ !== undefined ? wl_ : new sync.Mutex.Ptr();
+		this.l = l_ !== undefined ? l_ : new sync.Mutex.Ptr();
+		this.data = data_ !== undefined ? data_ : (go$sliceType(Go$Uint8)).nil;
+		this.rwait = rwait_ !== undefined ? rwait_ : new sync.Cond.Ptr();
+		this.wwait = wwait_ !== undefined ? wwait_ : new sync.Cond.Ptr();
+		this.rerr = rerr_ !== undefined ? rerr_ : null;
+		this.werr = werr_ !== undefined ? werr_ : null;
+	});
+	go$pkg.pipe = pipe;
+	var PipeReader;
+	PipeReader = go$newType(0, "Struct", "io.PipeReader", "PipeReader", "io", function(p_) {
+		this.go$val = this;
+		this.p = p_ !== undefined ? p_ : (go$ptrType(pipe)).nil;
+	});
+	go$pkg.PipeReader = PipeReader;
+	var PipeWriter;
+	PipeWriter = go$newType(0, "Struct", "io.PipeWriter", "PipeWriter", "io", function(p_) {
+		this.go$val = this;
+		this.p = p_ !== undefined ? p_ : (go$ptrType(pipe)).nil;
+	});
+	go$pkg.PipeWriter = PipeWriter;
+	Reader.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	Writer.init([["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	Closer.init([["Close", "", (go$funcType([], [go$error], false))]]);
+	Seeker.init([["Seek", "", (go$funcType([Go$Int64, Go$Int], [Go$Int64, go$error], false))]]);
+	ReadWriter.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	ReadCloser.init([["Close", "", (go$funcType([], [go$error], false))], ["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	WriteCloser.init([["Close", "", (go$funcType([], [go$error], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	ReadWriteCloser.init([["Close", "", (go$funcType([], [go$error], false))], ["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	ReadSeeker.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["Seek", "", (go$funcType([Go$Int64, Go$Int], [Go$Int64, go$error], false))]]);
+	WriteSeeker.init([["Seek", "", (go$funcType([Go$Int64, Go$Int], [Go$Int64, go$error], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	ReadWriteSeeker.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["Seek", "", (go$funcType([Go$Int64, Go$Int], [Go$Int64, go$error], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
+	ReaderFrom.init([["ReadFrom", "", (go$funcType([Reader], [Go$Int64, go$error], false))]]);
+	WriterTo.init([["WriteTo", "", (go$funcType([Writer], [Go$Int64, go$error], false))]]);
+	ReaderAt.init([["ReadAt", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false))]]);
+	WriterAt.init([["WriteAt", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false))]]);
+	ByteReader.init([["ReadByte", "", (go$funcType([], [Go$Uint8, go$error], false))]]);
+	ByteScanner.init([["ReadByte", "", (go$funcType([], [Go$Uint8, go$error], false))], ["UnreadByte", "", (go$funcType([], [go$error], false))]]);
+	ByteWriter.init([["WriteByte", "", (go$funcType([Go$Uint8], [go$error], false))]]);
+	RuneReader.init([["ReadRune", "", (go$funcType([], [Go$Int32, Go$Int, go$error], false))]]);
+	RuneScanner.init([["ReadRune", "", (go$funcType([], [Go$Int32, Go$Int, go$error], false))], ["UnreadRune", "", (go$funcType([], [go$error], false))]]);
+	stringWriter.init([["WriteString", "", (go$funcType([Go$String], [Go$Int, go$error], false))]]);
+	LimitedReader.init([["R", "", Reader, ""], ["N", "", Go$Int64, ""]]);
+	(go$ptrType(LimitedReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	SectionReader.init([["r", "io", ReaderAt, ""], ["base", "io", Go$Int64, ""], ["off", "io", Go$Int64, ""], ["limit", "io", Go$Int64, ""]]);
+	(go$ptrType(SectionReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["Size", "", [], [Go$Int64], false]];
+	teeReader.init([["r", "io", Reader, ""], ["w", "io", Writer, ""]]);
+	(go$ptrType(teeReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	multiReader.init([["readers", "io", (go$sliceType(Reader)), ""]]);
+	(go$ptrType(multiReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	multiWriter.init([["writers", "io", (go$sliceType(Writer)), ""]]);
+	(go$ptrType(multiWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	pipeResult.init([["n", "io", Go$Int, ""], ["err", "io", go$error, ""]]);
+	pipe.init([["rl", "io", sync.Mutex, ""], ["wl", "io", sync.Mutex, ""], ["l", "io", sync.Mutex, ""], ["data", "io", (go$sliceType(Go$Uint8)), ""], ["rwait", "io", sync.Cond, ""], ["wwait", "io", sync.Cond, ""], ["rerr", "io", go$error, ""], ["werr", "io", go$error, ""]]);
+	(go$ptrType(pipe)).methods = [["rclose", "io", [go$error], [], false], ["read", "io", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["wclose", "io", [go$error], [], false], ["write", "io", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	PipeReader.init([["p", "io", (go$ptrType(pipe)), ""]]);
+	(go$ptrType(PipeReader)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	PipeWriter.init([["p", "io", (go$ptrType(pipe)), ""]]);
+	(go$ptrType(PipeWriter)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+	var WriteString = go$pkg.WriteString = function(w, s) {
+		var n, err, ok, _tuple, sw, _tuple$1, _tuple$2;
+		n = 0;
+		err = null;
+		if (_tuple = (w !== null && stringWriter.implementedBy.indexOf(w.constructor) !== -1 ? [w, true] : [null, false]), sw = _tuple[0], ok = _tuple[1], ok) {
+			_tuple$1 = sw.WriteString(s), n = _tuple$1[0], err = _tuple$1[1];
+			return [n, err];
+		}
+		_tuple$2 = w.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), n = _tuple$2[0], err = _tuple$2[1];
+		return [n, err];
+	};
+	var ReadAtLeast = go$pkg.ReadAtLeast = function(r, buf, min) {
+		var n, err, _tuple, nn, _tuple$1;
+		n = 0;
+		err = null;
+		if (buf.length < min) {
+			_tuple = [0, go$pkg.ErrShortBuffer], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		while (n < min && go$interfaceIsEqual(err, null)) {
+			nn = 0;
+			_tuple$1 = r.Read(go$subslice(buf, n)), nn = _tuple$1[0], err = _tuple$1[1];
+			n = n + (nn) >> 0;
+		}
+		if (n >= min) {
+			err = null;
+		} else if (n > 0 && go$interfaceIsEqual(err, go$pkg.EOF)) {
+			err = go$pkg.ErrUnexpectedEOF;
+		}
+		return [n, err];
+	};
+	var ReadFull = go$pkg.ReadFull = function(r, buf) {
+		var n, err, _tuple;
+		n = 0;
+		err = null;
+		_tuple = ReadAtLeast(r, buf, buf.length), n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	var CopyN = go$pkg.CopyN = function(dst, src, n) {
+		var written, err, _tuple, _tuple$1;
+		written = new Go$Int64(0, 0);
+		err = null;
+		_tuple = Copy(dst, LimitReader(src, n)), written = _tuple[0], err = _tuple[1];
+		if ((written.high === n.high && written.low === n.low)) {
+			_tuple$1 = [n, null], written = _tuple$1[0], err = _tuple$1[1];
+			return [written, err];
+		}
+		if ((written.high < n.high || (written.high === n.high && written.low < n.low)) && go$interfaceIsEqual(err, null)) {
+			err = go$pkg.EOF;
+		}
+		return [written, err];
+	};
+	var Copy = go$pkg.Copy = function(dst, src) {
+		var written, err, ok, _tuple, wt, _tuple$1, ok$1, _tuple$2, rt, _tuple$3, buf, _tuple$4, nr, er, _tuple$5, nw, ew, x, _tuple$6;
+		written = new Go$Int64(0, 0);
+		err = null;
+		if (_tuple = (src !== null && WriterTo.implementedBy.indexOf(src.constructor) !== -1 ? [src, true] : [null, false]), wt = _tuple[0], ok = _tuple[1], ok) {
+			_tuple$1 = wt.WriteTo(dst), written = _tuple$1[0], err = _tuple$1[1];
+			return [written, err];
+		}
+		if (_tuple$2 = (dst !== null && ReaderFrom.implementedBy.indexOf(dst.constructor) !== -1 ? [dst, true] : [null, false]), rt = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
+			_tuple$3 = rt.ReadFrom(src), written = _tuple$3[0], err = _tuple$3[1];
+			return [written, err];
+		}
+		buf = (go$sliceType(Go$Uint8)).make(32768, 0, function() { return 0; });
+		while (true) {
+			_tuple$4 = src.Read(buf), nr = _tuple$4[0], er = _tuple$4[1];
+			if (nr > 0) {
+				_tuple$5 = dst.Write(go$subslice(buf, 0, nr)), nw = _tuple$5[0], ew = _tuple$5[1];
+				if (nw > 0) {
+					written = (x = new Go$Int64(0, nw), new Go$Int64(written.high + x.high, written.low + x.low));
+				}
+				if (!(go$interfaceIsEqual(ew, null))) {
+					err = ew;
+					break;
+				}
+				if (!((nr === nw))) {
+					err = go$pkg.ErrShortWrite;
+					break;
+				}
+			}
+			if (go$interfaceIsEqual(er, go$pkg.EOF)) {
+				break;
+			}
+			if (!(go$interfaceIsEqual(er, null))) {
+				err = er;
+				break;
+			}
+		}
+		_tuple$6 = [written, err], written = _tuple$6[0], err = _tuple$6[1];
+		return [written, err];
+	};
+	var LimitReader = go$pkg.LimitReader = function(r, n) {
+		return new LimitedReader.Ptr(r, n);
+	};
+	LimitedReader.Ptr.prototype.Read = function(p) {
+		var n, err, l, x, _tuple, x$1, x$2, _tuple$1, x$3, x$4;
+		n = 0;
+		err = null;
+		l = this;
+		if ((x = l.N, (x.high < 0 || (x.high === 0 && x.low <= 0)))) {
+			_tuple = [0, go$pkg.EOF], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if ((x$1 = new Go$Int64(0, p.length), x$2 = l.N, (x$1.high > x$2.high || (x$1.high === x$2.high && x$1.low > x$2.low)))) {
+			p = go$subslice(p, 0, go$flatten64(l.N));
+		}
+		_tuple$1 = l.R.Read(p), n = _tuple$1[0], err = _tuple$1[1];
+		l.N = (x$3 = l.N, x$4 = new Go$Int64(0, n), new Go$Int64(x$3.high - x$4.high, x$3.low - x$4.low));
+		return [n, err];
+	};
+	LimitedReader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	var NewSectionReader = go$pkg.NewSectionReader = function(r, off, n) {
+		return new SectionReader.Ptr(r, off, off, new Go$Int64(off.high + n.high, off.low + n.low));
+	};
+	SectionReader.Ptr.prototype.Read = function(p) {
+		var n, err, s, x, x$1, _tuple, x$2, max, x$3, x$4, _tuple$1, x$5, x$6;
+		n = 0;
+		err = null;
+		s = this;
+		if ((x = s.off, x$1 = s.limit, (x.high > x$1.high || (x.high === x$1.high && x.low >= x$1.low)))) {
+			_tuple = [0, go$pkg.EOF], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		if (max = (x$3 = s.limit, x$4 = s.off, new Go$Int64(x$3.high - x$4.high, x$3.low - x$4.low)), (x$2 = new Go$Int64(0, p.length), (x$2.high > max.high || (x$2.high === max.high && x$2.low > max.low)))) {
+			p = go$subslice(p, 0, go$flatten64(max));
+		}
+		_tuple$1 = s.r.ReadAt(p, s.off), n = _tuple$1[0], err = _tuple$1[1];
+		s.off = (x$5 = s.off, x$6 = new Go$Int64(0, n), new Go$Int64(x$5.high + x$6.high, x$5.low + x$6.low));
+		return [n, err];
+	};
+	SectionReader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	SectionReader.Ptr.prototype.Seek = function(offset, whence) {
+		var s, _ref, x, x$1, x$2, x$3, x$4;
+		s = this;
+		_ref = whence;
+		if (_ref === 0) {
+			offset = (x = s.base, new Go$Int64(offset.high + x.high, offset.low + x.low));
+		} else if (_ref === 1) {
+			offset = (x$1 = s.off, new Go$Int64(offset.high + x$1.high, offset.low + x$1.low));
+		} else if (_ref === 2) {
+			offset = (x$2 = s.limit, new Go$Int64(offset.high + x$2.high, offset.low + x$2.low));
+		} else {
+			return [new Go$Int64(0, 0), errWhence];
+		}
+		if ((x$3 = s.base, (offset.high < x$3.high || (offset.high === x$3.high && offset.low < x$3.low)))) {
+			return [new Go$Int64(0, 0), errOffset];
+		}
+		s.off = offset;
+		return [(x$4 = s.base, new Go$Int64(offset.high - x$4.high, offset.low - x$4.low)), null];
+	};
+	SectionReader.prototype.Seek = function(offset, whence) { return this.go$val.Seek(offset, whence); };
+	SectionReader.Ptr.prototype.ReadAt = function(p, off) {
+		var n, err, s, x, x$1, x$2, _tuple, x$3, x$4, max, x$5, _tuple$1, _tuple$2, _tuple$3;
+		n = 0;
+		err = null;
+		s = this;
+		if ((off.high < 0 || (off.high === 0 && off.low < 0)) || (x = (x$1 = s.limit, x$2 = s.base, new Go$Int64(x$1.high - x$2.high, x$1.low - x$2.low)), (off.high > x.high || (off.high === x.high && off.low >= x.low)))) {
+			_tuple = [0, go$pkg.EOF], n = _tuple[0], err = _tuple[1];
+			return [n, err];
+		}
+		off = (x$3 = s.base, new Go$Int64(off.high + x$3.high, off.low + x$3.low));
+		if (max = (x$5 = s.limit, new Go$Int64(x$5.high - off.high, x$5.low - off.low)), (x$4 = new Go$Int64(0, p.length), (x$4.high > max.high || (x$4.high === max.high && x$4.low > max.low)))) {
+			p = go$subslice(p, 0, go$flatten64(max));
+			_tuple$1 = s.r.ReadAt(p, off), n = _tuple$1[0], err = _tuple$1[1];
+			if (go$interfaceIsEqual(err, null)) {
+				err = go$pkg.EOF;
+			}
+			_tuple$2 = [n, err], n = _tuple$2[0], err = _tuple$2[1];
+			return [n, err];
+		}
+		_tuple$3 = s.r.ReadAt(p, off), n = _tuple$3[0], err = _tuple$3[1];
+		return [n, err];
+	};
+	SectionReader.prototype.ReadAt = function(p, off) { return this.go$val.ReadAt(p, off); };
+	SectionReader.Ptr.prototype.Size = function() {
+		var s, x, x$1;
+		s = this;
+		return (x = s.limit, x$1 = s.base, new Go$Int64(x.high - x$1.high, x.low - x$1.low));
+	};
+	SectionReader.prototype.Size = function() { return this.go$val.Size(); };
+	var TeeReader = go$pkg.TeeReader = function(r, w) {
+		return new teeReader.Ptr(r, w);
+	};
+	teeReader.Ptr.prototype.Read = function(p) {
+		var n, err, t, _tuple, err$1, _tuple$1, n$1, _tuple$2;
+		n = 0;
+		err = null;
+		t = this;
+		_tuple = t.r.Read(p), n = _tuple[0], err = _tuple[1];
+		if (n > 0) {
+			if (_tuple$1 = t.w.Write(go$subslice(p, 0, n)), n$1 = _tuple$1[0], err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+				_tuple$2 = [n$1, err$1], n = _tuple$2[0], err = _tuple$2[1];
+				return [n, err];
+			}
+		}
+		return [n, err];
+	};
+	teeReader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	multiReader.Ptr.prototype.Read = function(p) {
+		var n, err, mr, _tuple, _slice, _index, _tuple$1;
+		n = 0;
+		err = null;
+		mr = this;
+		while (mr.readers.length > 0) {
+			_tuple = (_slice = mr.readers, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Read(p), n = _tuple[0], err = _tuple[1];
+			if (n > 0 || !(go$interfaceIsEqual(err, go$pkg.EOF))) {
+				if (go$interfaceIsEqual(err, go$pkg.EOF)) {
+					err = null;
+				}
+				return [n, err];
+			}
+			mr.readers = go$subslice(mr.readers, 1);
+		}
+		_tuple$1 = [0, go$pkg.EOF], n = _tuple$1[0], err = _tuple$1[1];
+		return [n, err];
+	};
+	multiReader.prototype.Read = function(p) { return this.go$val.Read(p); };
+	var MultiReader = go$pkg.MultiReader = function(readers) {
+		return new multiReader.Ptr(readers);
+	};
+	multiWriter.Ptr.prototype.Write = function(p) {
+		var n, err, t, _ref, _i, _slice, _index, w, _tuple, _tuple$1;
+		n = 0;
+		err = null;
+		t = this;
+		_ref = t.writers;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			w = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			_tuple = w.Write(p), n = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [n, err];
+			}
+			if (!((n === p.length))) {
+				err = go$pkg.ErrShortWrite;
+				return [n, err];
+			}
+		}
+		_tuple$1 = [p.length, null], n = _tuple$1[0], err = _tuple$1[1];
+		return [n, err];
+	};
+	multiWriter.prototype.Write = function(p) { return this.go$val.Write(p); };
+	var MultiWriter = go$pkg.MultiWriter = function(writers) {
+		return new multiWriter.Ptr(writers);
+	};
+	pipe.Ptr.prototype.read = function(b) {
+		var n, err, p, _tuple, _tuple$1;
+		n = 0;
+		err = null;
+		var go$deferred = [];
+		try {
+			p = this;
+			p.rl.Lock();
+			go$deferred.push({ recv: p.rl, method: "Unlock", args: [] });
+			p.l.Lock();
+			go$deferred.push({ recv: p.l, method: "Unlock", args: [] });
+			while (true) {
+				if (!(go$interfaceIsEqual(p.rerr, null))) {
+					_tuple = [0, go$pkg.ErrClosedPipe], n = _tuple[0], err = _tuple[1];
+					return [n, err];
+				}
+				if (!(p.data === (go$sliceType(Go$Uint8)).nil)) {
+					break;
+				}
+				if (!(go$interfaceIsEqual(p.werr, null))) {
+					_tuple$1 = [0, p.werr], n = _tuple$1[0], err = _tuple$1[1];
+					return [n, err];
+				}
+				p.rwait.Wait();
+			}
+			n = go$copySlice(b, p.data);
+			p.data = go$subslice(p.data, n);
+			if (p.data.length === 0) {
+				p.data = (go$sliceType(Go$Uint8)).nil;
+				p.wwait.Signal();
+			}
+			return [n, err];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [n, err];
+		}
+	};
+	pipe.prototype.read = function(b) { return this.go$val.read(b); };
+	pipe.Ptr.prototype.write = function(b) {
+		var n, err, p;
+		n = 0;
+		err = null;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (b === (go$sliceType(Go$Uint8)).nil) {
+				b = new (go$sliceType(Go$Uint8))(zero);
+			}
+			p.wl.Lock();
+			go$deferred.push({ recv: p.wl, method: "Unlock", args: [] });
+			p.l.Lock();
+			go$deferred.push({ recv: p.l, method: "Unlock", args: [] });
+			if (!(go$interfaceIsEqual(p.werr, null))) {
+				err = go$pkg.ErrClosedPipe;
+				return [n, err];
+			}
+			p.data = b;
+			p.rwait.Signal();
+			while (true) {
+				if (p.data === (go$sliceType(Go$Uint8)).nil) {
+					break;
+				}
+				if (!(go$interfaceIsEqual(p.rerr, null))) {
+					err = p.rerr;
+					break;
+				}
+				if (!(go$interfaceIsEqual(p.werr, null))) {
+					err = go$pkg.ErrClosedPipe;
+				}
+				p.wwait.Wait();
+			}
+			n = b.length - p.data.length >> 0;
+			p.data = (go$sliceType(Go$Uint8)).nil;
+			return [n, err];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+			return [n, err];
+		}
+	};
+	pipe.prototype.write = function(b) { return this.go$val.write(b); };
+	pipe.Ptr.prototype.rclose = function(err) {
+		var p;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (go$interfaceIsEqual(err, null)) {
+				err = go$pkg.ErrClosedPipe;
+			}
+			p.l.Lock();
+			go$deferred.push({ recv: p.l, method: "Unlock", args: [] });
+			p.rerr = err;
+			p.rwait.Signal();
+			p.wwait.Signal();
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	pipe.prototype.rclose = function(err) { return this.go$val.rclose(err); };
+	pipe.Ptr.prototype.wclose = function(err) {
+		var p;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (go$interfaceIsEqual(err, null)) {
+				err = go$pkg.EOF;
+			}
+			p.l.Lock();
+			go$deferred.push({ recv: p.l, method: "Unlock", args: [] });
+			p.werr = err;
+			p.rwait.Signal();
+			p.wwait.Signal();
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	pipe.prototype.wclose = function(err) { return this.go$val.wclose(err); };
+	PipeReader.Ptr.prototype.Read = function(data) {
+		var n, err, r, _tuple;
+		n = 0;
+		err = null;
+		r = this;
+		_tuple = r.p.read(data), n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	PipeReader.prototype.Read = function(data) { return this.go$val.Read(data); };
+	PipeReader.Ptr.prototype.Close = function() {
+		var r;
+		r = this;
+		return r.CloseWithError(null);
+	};
+	PipeReader.prototype.Close = function() { return this.go$val.Close(); };
+	PipeReader.Ptr.prototype.CloseWithError = function(err) {
+		var r;
+		r = this;
+		r.p.rclose(err);
+		return null;
+	};
+	PipeReader.prototype.CloseWithError = function(err) { return this.go$val.CloseWithError(err); };
+	PipeWriter.Ptr.prototype.Write = function(data) {
+		var n, err, w, _tuple;
+		n = 0;
+		err = null;
+		w = this;
+		_tuple = w.p.write(data), n = _tuple[0], err = _tuple[1];
+		return [n, err];
+	};
+	PipeWriter.prototype.Write = function(data) { return this.go$val.Write(data); };
+	PipeWriter.Ptr.prototype.Close = function() {
+		var w;
+		w = this;
+		return w.CloseWithError(null);
+	};
+	PipeWriter.prototype.Close = function() { return this.go$val.Close(); };
+	PipeWriter.Ptr.prototype.CloseWithError = function(err) {
+		var w;
+		w = this;
+		w.p.wclose(err);
+		return null;
+	};
+	PipeWriter.prototype.CloseWithError = function(err) { return this.go$val.CloseWithError(err); };
+	var Pipe = go$pkg.Pipe = function() {
+		var p, r, w;
+		p = new pipe.Ptr();
+		p.rwait.L = p.l;
+		p.wwait.L = p.l;
+		r = new PipeReader.Ptr(p);
+		w = new PipeWriter.Ptr(p);
+		return [r, w];
+	};
+	go$pkg.ErrShortWrite = null;
+	go$pkg.ErrShortBuffer = null;
+	go$pkg.EOF = null;
+	go$pkg.ErrUnexpectedEOF = null;
+	go$pkg.ErrNoProgress = null;
+	var errWhence = null;
+	var errOffset = null;
+	go$pkg.ErrClosedPipe = null;
+	var zero = go$makeNativeArray("Uint8", 0, function() { return 0; });
+	go$pkg.init = function() {
+		go$pkg.ErrShortWrite = errors.New("short write");
+		go$pkg.ErrShortBuffer = errors.New("short buffer");
+		go$pkg.EOF = errors.New("EOF");
+		go$pkg.ErrUnexpectedEOF = errors.New("unexpected EOF");
+		go$pkg.ErrNoProgress = errors.New("multiple Read calls return no data or error");
+		errWhence = errors.New("Seek: invalid whence");
+		errOffset = errors.New("Seek: invalid offset");
+		go$pkg.ErrClosedPipe = errors.New("io: read/write on closed pipe");
+	};

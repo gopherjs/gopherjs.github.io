@@ -1,0 +1,721 @@
+0ÇñhÇpackage pprof
+import bufio "bufio"
+import bytes "bytes"
+import fmt "fmt"
+import io "io"
+import runtime "runtime"
+import sort "sort"
+import strings "strings"
+import sync "sync"
+import tabwriter "text/tabwriter"
+func @"".Lookup(@"".name string) (? *@"".Profile)
+func @"".NewProfile(@"".name string) (? *@"".Profile)
+type @"".Profile struct { @"".name string; @"".mu @"sync".Mutex; @"".m map[interface {  }][]uintptr; @"".count func () (? int); @"".write func (? @"io".Writer, ? int) (? error) }
+func (? *@"".Profile) @"".Add(@"".value interface {  }, @"".skip int) ()
+func (? *@"".Profile) @"".Count() (? int)
+func (? *@"".Profile) @"".Name() (? string)
+func (? *@"".Profile) @"".Remove(@"".value interface {  }) ()
+func (? *@"".Profile) @"".WriteTo(@"".w @"io".Writer, @"".debug int) (? error)
+func @"".Profiles() (? []*@"".Profile)
+func @"".StartCPUProfile(@"".w @"io".Writer) (? error)
+func @"".StopCPUProfile() ()
+func @"".WriteHeapProfile(@"".w @"io".Writer) (? error)
+type @"".byCycles []@"runtime".BlockProfileRecord
+func (? @"".byCycles) @"".Len() (? int)
+func (? @"".byCycles) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".byCycles) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".byCycles) @"".Len() (? int)
+func (? *@"".byCycles) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".byCycles) @"".Swap(@"".i int, @"".j int) ()
+type @"".byInUseBytes []@"runtime".MemProfileRecord
+func (? @"".byInUseBytes) @"".Len() (? int)
+func (? @"".byInUseBytes) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".byInUseBytes) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".byInUseBytes) @"".Len() (? int)
+func (? *@"".byInUseBytes) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".byInUseBytes) @"".Swap(@"".i int, @"".j int) ()
+type @"".byName []*@"".Profile
+func (? @"".byName) @"".Len() (? int)
+func (? @"".byName) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".byName) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".byName) @"".Len() (? int)
+func (? *@"".byName) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".byName) @"".Swap(@"".i int, @"".j int) ()
+type @"".countProfile interface { @"".Len() (? int); @"".Stack(@"".i int) (? []uintptr) }
+type @"".runtimeProfile []@"runtime".StackRecord
+func (? @"".runtimeProfile) @"".Len() (? int)
+func (? @"".runtimeProfile) @"".Stack(@"".i int) (? []uintptr)
+func (? *@"".runtimeProfile) @"".Len() (? int)
+func (? *@"".runtimeProfile) @"".Stack(@"".i int) (? []uintptr)
+type @"".stackProfile [][]uintptr
+func (? @"".stackProfile) @"".Len() (? int)
+func (? @"".stackProfile) @"".Less(@"".i int, @"".j int) (? bool)
+func (? @"".stackProfile) @"".Stack(@"".i int) (? []uintptr)
+func (? @"".stackProfile) @"".Swap(@"".i int, @"".j int) ()
+func (? *@"".stackProfile) @"".Len() (? int)
+func (? *@"".stackProfile) @"".Less(@"".i int, @"".j int) (? bool)
+func (? *@"".stackProfile) @"".Stack(@"".i int) (? []uintptr)
+func (? *@"".stackProfile) @"".Swap(@"".i int, @"".j int) ()
+type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+func (? *@"sync".Mutex) @"sync".Lock() ()
+func (? *@"sync".Mutex) @"sync".Unlock() ()
+type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
+type @"runtime".BlockProfileRecord struct { @"runtime".Count int64; @"runtime".Cycles int64; ? @"runtime".StackRecord }
+type @"runtime".MemProfileRecord struct { @"runtime".AllocBytes int64; @"runtime".FreeBytes int64; @"runtime".AllocObjects int64; @"runtime".FreeObjects int64; @"runtime".Stack0 [32]uintptr }
+func (? *@"runtime".MemProfileRecord) @"runtime".InUseBytes() (? int64)
+func (? *@"runtime".MemProfileRecord) @"runtime".InUseObjects() (? int64)
+func (? *@"runtime".MemProfileRecord) @"runtime".Stack() (? []uintptr)
+type @"runtime".StackRecord struct { @"runtime".Stack0 [32]uintptr }
+func (? *@"runtime".StackRecord) @"runtime".Stack() (? []uintptr)
+$$
+0Å´runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortstringstext/tabwriterruntime/pprofÇÜ∞	var bufio = go$packages["bufio"];
+	var bytes = go$packages["bytes"];
+	var fmt = go$packages["fmt"];
+	var io = go$packages["io"];
+	var runtime = go$packages["runtime"];
+	var sort = go$packages["sort"];
+	var strings = go$packages["strings"];
+	var sync = go$packages["sync"];
+	var tabwriter = go$packages["text/tabwriter"];
+	var Profile;
+	Profile = go$newType(0, "Struct", "pprof.Profile", "Profile", "runtime/pprof", function(name_, mu_, m_, count_, write_) {
+		this.go$val = this;
+		this.name = name_ !== undefined ? name_ : "";
+		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
+		this.m = m_ !== undefined ? m_ : false;
+		this.count = count_ !== undefined ? count_ : go$throwNilPointerError;
+		this.write = write_ !== undefined ? write_ : go$throwNilPointerError;
+	});
+	go$pkg.Profile = Profile;
+	var byName;
+	byName = go$newType(0, "Slice", "pprof.byName", "byName", "runtime/pprof", null);
+	go$pkg.byName = byName;
+	var stackProfile;
+	stackProfile = go$newType(0, "Slice", "pprof.stackProfile", "stackProfile", "runtime/pprof", null);
+	go$pkg.stackProfile = stackProfile;
+	var countProfile;
+	countProfile = go$newType(0, "Interface", "pprof.countProfile", "countProfile", "runtime/pprof", null);
+	go$pkg.countProfile = countProfile;
+	var byInUseBytes;
+	byInUseBytes = go$newType(0, "Slice", "pprof.byInUseBytes", "byInUseBytes", "runtime/pprof", null);
+	go$pkg.byInUseBytes = byInUseBytes;
+	var runtimeProfile;
+	runtimeProfile = go$newType(0, "Slice", "pprof.runtimeProfile", "runtimeProfile", "runtime/pprof", null);
+	go$pkg.runtimeProfile = runtimeProfile;
+	var byCycles;
+	byCycles = go$newType(0, "Slice", "pprof.byCycles", "byCycles", "runtime/pprof", null);
+	go$pkg.byCycles = byCycles;
+	Profile.init([["name", "runtime/pprof", Go$String, ""], ["mu", "runtime/pprof", sync.Mutex, ""], ["m", "runtime/pprof", (go$mapType(go$emptyInterface, (go$sliceType(Go$Uintptr)))), ""], ["count", "runtime/pprof", (go$funcType([], [Go$Int], false)), ""], ["write", "runtime/pprof", (go$funcType([io.Writer, Go$Int], [go$error], false)), ""]]);
+	(go$ptrType(Profile)).methods = [["Add", "", [go$emptyInterface, Go$Int], [], false], ["Count", "", [], [Go$Int], false], ["Name", "", [], [Go$String], false], ["Remove", "", [go$emptyInterface], [], false], ["WriteTo", "", [io.Writer, Go$Int], [go$error], false]];
+	byName.init((go$ptrType(Profile)));
+	byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	stackProfile.init((go$sliceType(Go$Uintptr)));
+	stackProfile.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Stack", "", [Go$Int], [(go$sliceType(Go$Uintptr))], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(stackProfile)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Stack", "", [Go$Int], [(go$sliceType(Go$Uintptr))], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	countProfile.init([["Len", "", (go$funcType([], [Go$Int], false))], ["Stack", "", (go$funcType([Go$Int], [(go$sliceType(Go$Uintptr))], false))]]);
+	byInUseBytes.init(runtime.MemProfileRecord);
+	byInUseBytes.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(byInUseBytes)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	runtimeProfile.init(runtime.StackRecord);
+	runtimeProfile.methods = [["Len", "", [], [Go$Int], false], ["Stack", "", [Go$Int], [(go$sliceType(Go$Uintptr))], false]];
+	(go$ptrType(runtimeProfile)).methods = [["Len", "", [], [Go$Int], false], ["Stack", "", [Go$Int], [(go$sliceType(Go$Uintptr))], false]];
+	byCycles.init(runtime.BlockProfileRecord);
+	byCycles.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	(go$ptrType(byCycles)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+	var lockProfiles = function() {
+		var _map, _key;
+		profiles.mu.Lock();
+		if (profiles.m === false) {
+			profiles.m = (_map = new Go$Map(), _key = "goroutine", _map[_key] = { k: _key, v: goroutineProfile }, _key = "threadcreate", _map[_key] = { k: _key, v: threadcreateProfile }, _key = "heap", _map[_key] = { k: _key, v: heapProfile }, _key = "block", _map[_key] = { k: _key, v: blockProfile }, _map);
+		}
+	};
+	var unlockProfiles = function() {
+		profiles.mu.Unlock();
+	};
+	var NewProfile = go$pkg.NewProfile = function(name) {
+		var _entry, _map, _key, p, _key$1;
+		var go$deferred = [];
+		try {
+			lockProfiles();
+			go$deferred.push({ fun: unlockProfiles, args: [] });
+			if (name === "") {
+				throw go$panic(new Go$String("pprof: NewProfile with empty name"));
+			}
+			if (!((_entry = profiles.m[name], _entry !== undefined ? _entry.v : (go$ptrType(Profile)).nil) === (go$ptrType(Profile)).nil)) {
+				throw go$panic(new Go$String("pprof: NewProfile name already in use: " + name));
+			}
+			p = new Profile.Ptr(name, new sync.Mutex.Ptr(), (_map = new Go$Map(), _map), go$throwNilPointerError, go$throwNilPointerError);
+			_key$1 = name, (profiles.m || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: p };
+			return p;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(Profile)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	var Lookup = go$pkg.Lookup = function(name) {
+		var _entry;
+		var go$deferred = [];
+		try {
+			lockProfiles();
+			go$deferred.push({ fun: unlockProfiles, args: [] });
+			return (_entry = profiles.m[name], _entry !== undefined ? _entry.v : (go$ptrType(Profile)).nil);
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$ptrType(Profile)).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	var Profiles = go$pkg.Profiles = function() {
+		var all, _ref, _i, _keys, _entry, p;
+		var go$deferred = [];
+		try {
+			lockProfiles();
+			go$deferred.push({ fun: unlockProfiles, args: [] });
+			all = (go$sliceType((go$ptrType(Profile)))).nil;
+			_ref = profiles.m;
+			_i = 0;
+			_keys = go$keys(_ref);
+			for (; _i < _keys.length; _i += 1) {
+				_entry = _ref[_keys[_i]];
+				p = _entry.v;
+				all = go$append(all, p);
+			}
+			sort.Sort(go$subslice(new byName(all.array), all.offset, all.offset + all.length));
+			return all;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return (go$sliceType((go$ptrType(Profile)))).nil;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	byName.prototype.Len = function() {
+		var x;
+		x = this;
+		return x.length;
+	};
+	go$ptrType(byName).prototype.Len = function() { return this.go$get().Len(); };
+	byName.prototype.Swap = function(i, j) {
+		var x, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		x = this;
+		_tuple = [(_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	go$ptrType(byName).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+	byName.prototype.Less = function(i, j) {
+		var x, _slice, _index, _slice$1, _index$1;
+		x = this;
+		return (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).name < (_slice$1 = x, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).name;
+	};
+	go$ptrType(byName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
+	Profile.Ptr.prototype.Name = function() {
+		var p;
+		p = this;
+		return p.name;
+	};
+	Profile.prototype.Name = function() { return this.go$val.Name(); };
+	Profile.Ptr.prototype.Count = function() {
+		var p;
+		var go$deferred = [];
+		try {
+			p = this;
+			p.mu.Lock();
+			go$deferred.push({ recv: p.mu, method: "Unlock", args: [] });
+			if (!(p.count === go$throwNilPointerError)) {
+				return p.count();
+			}
+			return go$keys(p.m).length;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return 0;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Profile.prototype.Count = function() { return this.go$val.Count(); };
+	Profile.Ptr.prototype.Add = function(value, skip) {
+		var p, stk, n, _entry, _key;
+		var go$deferred = [];
+		try {
+			p = this;
+			if (p.name === "") {
+				throw go$panic(new Go$String("pprof: use of uninitialized Profile"));
+			}
+			if (!(p.write === go$throwNilPointerError)) {
+				throw go$panic(new Go$String("pprof: Add called on built-in Profile " + p.name));
+			}
+			stk = (go$sliceType(Go$Uintptr)).make(32, 0, function() { return 0; });
+			n = runtime.Callers(skip + 1 >> 0, stk);
+			p.mu.Lock();
+			go$deferred.push({ recv: p.mu, method: "Unlock", args: [] });
+			if (!((_entry = p.m[(value || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : (go$sliceType(Go$Uintptr)).nil) === (go$sliceType(Go$Uintptr)).nil)) {
+				throw go$panic(new Go$String("pprof: Profile.Add of duplicate value"));
+			}
+			_key = value, (p.m || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: go$subslice(stk, 0, n) };
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Profile.prototype.Add = function(value, skip) { return this.go$val.Add(value, skip); };
+	Profile.Ptr.prototype.Remove = function(value) {
+		var p;
+		var go$deferred = [];
+		try {
+			p = this;
+			p.mu.Lock();
+			go$deferred.push({ recv: p.mu, method: "Unlock", args: [] });
+			delete p.m[(value || go$interfaceNil).go$key()];
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	Profile.prototype.Remove = function(value) { return this.go$val.Remove(value); };
+	Profile.Ptr.prototype.WriteTo = function(w, debug) {
+		var p, all, _ref, _i, _keys, _entry, stk;
+		p = this;
+		if (p.name === "") {
+			throw go$panic(new Go$String("pprof: use of zero Profile"));
+		}
+		if (!(p.write === go$throwNilPointerError)) {
+			return p.write(w, debug);
+		}
+		all = (go$sliceType((go$sliceType(Go$Uintptr)))).nil;
+		p.mu.Lock();
+		_ref = p.m;
+		_i = 0;
+		_keys = go$keys(_ref);
+		for (; _i < _keys.length; _i += 1) {
+			_entry = _ref[_keys[_i]];
+			stk = _entry.v;
+			all = go$append(all, stk);
+		}
+		p.mu.Unlock();
+		sort.Sort(go$subslice(new stackProfile(all.array), all.offset, all.offset + all.length));
+		return printCountProfile(w, debug, p.name, go$subslice(new stackProfile(all.array), all.offset, all.offset + all.length));
+	};
+	Profile.prototype.WriteTo = function(w, debug) { return this.go$val.WriteTo(w, debug); };
+	stackProfile.prototype.Len = function() {
+		var x;
+		x = this;
+		return x.length;
+	};
+	go$ptrType(stackProfile).prototype.Len = function() { return this.go$get().Len(); };
+	stackProfile.prototype.Stack = function(i) {
+		var x, _slice, _index;
+		x = this;
+		return (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+	};
+	go$ptrType(stackProfile).prototype.Stack = function(i) { return this.go$get().Stack(i); };
+	stackProfile.prototype.Swap = function(i, j) {
+		var x, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		x = this;
+		_tuple = [(_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	go$ptrType(stackProfile).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+	stackProfile.prototype.Less = function(i, j) {
+		var x, _slice, _index, _slice$1, _index$1, _tuple, t, u, k, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
+		x = this;
+		_tuple = [(_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], t = _tuple[0], u = _tuple[1];
+		k = 0;
+		while (k < t.length && k < u.length) {
+			if (!(((_slice$2 = t, _index$2 = k, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === (_slice$3 = u, _index$3 = k, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))))) {
+				return (_slice$4 = t, _index$4 = k, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) < (_slice$5 = u, _index$5 = k, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+			}
+			k = k + 1 >> 0;
+		}
+		return t.length < u.length;
+	};
+	go$ptrType(stackProfile).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
+	var printCountProfile = function(w, debug, name, p) {
+		var b, tw, buf, key, _map, _key, m, n, i, _lhs, _index, _entry, _key$1, i$1, stk, s, count, _entry$1;
+		b = bufio.NewWriter(w);
+		tw = (go$ptrType(tabwriter.Writer)).nil;
+		w = b;
+		if (debug > 0) {
+			tw = tabwriter.NewWriter(w, 1, 8, 1, 9, 0);
+			w = tw;
+		}
+		fmt.Fprintf(w, "%s profile: total %d\n", new (go$sliceType(go$emptyInterface))([new Go$String(name), new Go$Int(p.Len())]));
+		buf = new bytes.Buffer.Ptr();
+		key = (function(stk) {
+			var _ref, _i, _slice, _index, pc;
+			buf.Reset();
+			fmt.Fprintf(buf, "@", new (go$sliceType(go$emptyInterface))([]));
+			_ref = stk;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				pc = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				fmt.Fprintf(buf, " %#x", new (go$sliceType(go$emptyInterface))([new Go$Uintptr(pc)]));
+			}
+			return buf.String();
+		});
+		m = (_map = new Go$Map(), _map);
+		n = p.Len();
+		i = 0;
+		while (i < n) {
+			_lhs = m, _index = key(p.Stack(i)), _key$1 = _index, (_lhs || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: (_entry = _lhs[_index], _entry !== undefined ? _entry.v : 0) + 1 >> 0 };
+			i = i + 1 >> 0;
+		}
+		i$1 = 0;
+		while (i$1 < n) {
+			stk = p.Stack(i$1);
+			s = key(stk);
+			if (count = (_entry$1 = m[s], _entry$1 !== undefined ? _entry$1.v : 0), !((count === 0))) {
+				fmt.Fprintf(w, "%d %s\n", new (go$sliceType(go$emptyInterface))([new Go$Int(count), new Go$String(s)]));
+				if (debug > 0) {
+					printStackRecord(w, stk, false);
+				}
+				delete m[s];
+			}
+			i$1 = i$1 + 1 >> 0;
+		}
+		if (!(tw === (go$ptrType(tabwriter.Writer)).nil)) {
+			tw.Flush();
+		}
+		return b.Flush();
+	};
+	var printStackRecord = function(w, stk, allFrames) {
+		var show, wasPanic, _ref, _i, _slice, _index, pc, i, f, tracepc, _tuple, file, line, name;
+		show = allFrames;
+		wasPanic = false;
+		_ref = stk;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			pc = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			i = _i;
+			f = runtime.FuncForPC(pc);
+			if (f === (go$ptrType(runtime.Func)).nil) {
+				show = true;
+				fmt.Fprintf(w, "#\t%#x\n", new (go$sliceType(go$emptyInterface))([new Go$Uintptr(pc)]));
+				wasPanic = false;
+			} else {
+				tracepc = pc;
+				if (i > 0 && pc > f.Entry() && !wasPanic) {
+					tracepc = tracepc - 4 >>> 0;
+				}
+				_tuple = f.FileLine(tracepc), file = _tuple[0], line = _tuple[1];
+				name = f.Name();
+				wasPanic = name === "runtime.panic";
+				if (name === "runtime.goexit" || !show && strings.HasPrefix(name, "runtime.")) {
+					continue;
+				}
+				show = true;
+				fmt.Fprintf(w, "#\t%#x\t%s+%#x\t%s:%d\n", new (go$sliceType(go$emptyInterface))([new Go$Uintptr(pc), new Go$String(name), new Go$Uintptr((pc - f.Entry() >>> 0)), new Go$String(file), new Go$Int(line)]));
+			}
+		}
+		if (!show) {
+			printStackRecord(w, stk, true);
+			return;
+		}
+		fmt.Fprintf(w, "\n", new (go$sliceType(go$emptyInterface))([]));
+	};
+	byInUseBytes.prototype.Len = function() {
+		var x;
+		x = this;
+		return x.length;
+	};
+	go$ptrType(byInUseBytes).prototype.Len = function() { return this.go$get().Len(); };
+	byInUseBytes.prototype.Swap = function(i, j) {
+		var x, _slice, _index, _struct, _slice$1, _index$1, _struct$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		x = this;
+		_tuple = [(_struct = (_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new runtime.MemProfileRecord.Ptr(_struct.AllocBytes, _struct.FreeBytes, _struct.AllocObjects, _struct.FreeObjects, go$mapArray(_struct.Stack0, function(entry) { return entry; }))), (_struct$1 = (_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new runtime.MemProfileRecord.Ptr(_struct$1.AllocBytes, _struct$1.FreeBytes, _struct$1.AllocObjects, _struct$1.FreeObjects, go$mapArray(_struct$1.Stack0, function(entry) { return entry; })))], _slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	go$ptrType(byInUseBytes).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+	byInUseBytes.prototype.Less = function(i, j) {
+		var x, x$1, _slice, _index, x$2, _slice$1, _index$1;
+		x = this;
+		return (x$1 = (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).InUseBytes(), x$2 = (_slice$1 = x, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).InUseBytes(), (x$1.high > x$2.high || (x$1.high === x$2.high && x$1.low > x$2.low)));
+	};
+	go$ptrType(byInUseBytes).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
+	var WriteHeapProfile = go$pkg.WriteHeapProfile = function(w) {
+		return writeHeap(w, 0);
+	};
+	var countHeap = function() {
+		var _tuple, n;
+		_tuple = runtime.MemProfile((go$sliceType(runtime.MemProfileRecord)).nil, true), n = _tuple[0];
+		return n;
+	};
+	var writeHeap = function(w, debug) {
+		var p, _tuple, n, ok, _tuple$1, b, tw, total, _ref, _i, i, _slice, _index, r, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, _ref$1, _i$1, i$1, _slice$1, _index$1, r$1, _ref$2, _i$2, _slice$2, _index$2, pc, s;
+		p = (go$sliceType(runtime.MemProfileRecord)).nil;
+		_tuple = runtime.MemProfile((go$sliceType(runtime.MemProfileRecord)).nil, true), n = _tuple[0], ok = _tuple[1];
+		while (true) {
+			p = (go$sliceType(runtime.MemProfileRecord)).make(n + 50 >> 0, 0, function() { return new runtime.MemProfileRecord.Ptr(); });
+			_tuple$1 = runtime.MemProfile(p, true), n = _tuple$1[0], ok = _tuple$1[1];
+			if (ok) {
+				p = go$subslice(p, 0, n);
+				break;
+			}
+		}
+		sort.Sort(go$subslice(new byInUseBytes(p.array), p.offset, p.offset + p.length));
+		b = bufio.NewWriter(w);
+		tw = (go$ptrType(tabwriter.Writer)).nil;
+		w = b;
+		if (debug > 0) {
+			tw = tabwriter.NewWriter(w, 1, 8, 1, 9, 0);
+			w = tw;
+		}
+		total = new runtime.MemProfileRecord.Ptr();
+		_ref = p;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			r = (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			total.AllocBytes = (x = total.AllocBytes, x$1 = r.AllocBytes, new Go$Int64(x.high + x$1.high, x.low + x$1.low));
+			total.AllocObjects = (x$2 = total.AllocObjects, x$3 = r.AllocObjects, new Go$Int64(x$2.high + x$3.high, x$2.low + x$3.low));
+			total.FreeBytes = (x$4 = total.FreeBytes, x$5 = r.FreeBytes, new Go$Int64(x$4.high + x$5.high, x$4.low + x$5.low));
+			total.FreeObjects = (x$6 = total.FreeObjects, x$7 = r.FreeObjects, new Go$Int64(x$6.high + x$7.high, x$6.low + x$7.low));
+		}
+		fmt.Fprintf(w, "heap profile: %d: %d [%d: %d] @ heap/%d\n", new (go$sliceType(go$emptyInterface))([total.InUseObjects(), total.InUseBytes(), total.AllocObjects, total.AllocBytes, new Go$Int((x$8 = 2, x$9 = runtime.MemProfileRate, (((x$8 >>> 16 << 16) * x$9 >> 0) + (x$8 << 16 >>> 16) * x$9) >> 0))]));
+		_ref$1 = p;
+		_i$1 = 0;
+		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			i$1 = _i$1;
+			r$1 = (_slice$1 = p, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			fmt.Fprintf(w, "%d: %d [%d: %d] @", new (go$sliceType(go$emptyInterface))([r$1.InUseObjects(), r$1.InUseBytes(), r$1.AllocObjects, r$1.AllocBytes]));
+			_ref$2 = r$1.Stack();
+			_i$2 = 0;
+			for (; _i$2 < _ref$2.length; _i$2 += 1) {
+				pc = (_slice$2 = _ref$2, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				fmt.Fprintf(w, " %#x", new (go$sliceType(go$emptyInterface))([new Go$Uintptr(pc)]));
+			}
+			fmt.Fprintf(w, "\n", new (go$sliceType(go$emptyInterface))([]));
+			if (debug > 0) {
+				printStackRecord(w, r$1.Stack(), false);
+			}
+		}
+		if (debug > 0) {
+			s = new runtime.MemStats.Ptr();
+			runtime.ReadMemStats(s);
+			fmt.Fprintf(w, "\n# runtime.MemStats\n", new (go$sliceType(go$emptyInterface))([]));
+			fmt.Fprintf(w, "# Alloc = %d\n", new (go$sliceType(go$emptyInterface))([s.Alloc]));
+			fmt.Fprintf(w, "# TotalAlloc = %d\n", new (go$sliceType(go$emptyInterface))([s.TotalAlloc]));
+			fmt.Fprintf(w, "# Sys = %d\n", new (go$sliceType(go$emptyInterface))([s.Sys]));
+			fmt.Fprintf(w, "# Lookups = %d\n", new (go$sliceType(go$emptyInterface))([s.Lookups]));
+			fmt.Fprintf(w, "# Mallocs = %d\n", new (go$sliceType(go$emptyInterface))([s.Mallocs]));
+			fmt.Fprintf(w, "# Frees = %d\n", new (go$sliceType(go$emptyInterface))([s.Frees]));
+			fmt.Fprintf(w, "# HeapAlloc = %d\n", new (go$sliceType(go$emptyInterface))([s.HeapAlloc]));
+			fmt.Fprintf(w, "# HeapSys = %d\n", new (go$sliceType(go$emptyInterface))([s.HeapSys]));
+			fmt.Fprintf(w, "# HeapIdle = %d\n", new (go$sliceType(go$emptyInterface))([s.HeapIdle]));
+			fmt.Fprintf(w, "# HeapInuse = %d\n", new (go$sliceType(go$emptyInterface))([s.HeapInuse]));
+			fmt.Fprintf(w, "# HeapReleased = %d\n", new (go$sliceType(go$emptyInterface))([s.HeapReleased]));
+			fmt.Fprintf(w, "# HeapObjects = %d\n", new (go$sliceType(go$emptyInterface))([s.HeapObjects]));
+			fmt.Fprintf(w, "# Stack = %d / %d\n", new (go$sliceType(go$emptyInterface))([s.StackInuse, s.StackSys]));
+			fmt.Fprintf(w, "# MSpan = %d / %d\n", new (go$sliceType(go$emptyInterface))([s.MSpanInuse, s.MSpanSys]));
+			fmt.Fprintf(w, "# MCache = %d / %d\n", new (go$sliceType(go$emptyInterface))([s.MCacheInuse, s.MCacheSys]));
+			fmt.Fprintf(w, "# BuckHashSys = %d\n", new (go$sliceType(go$emptyInterface))([s.BuckHashSys]));
+			fmt.Fprintf(w, "# NextGC = %d\n", new (go$sliceType(go$emptyInterface))([s.NextGC]));
+			fmt.Fprintf(w, "# PauseNs = %d\n", new (go$sliceType(go$emptyInterface))([new (go$arrayType(Go$Uint64, 256))(s.PauseNs)]));
+			fmt.Fprintf(w, "# NumGC = %d\n", new (go$sliceType(go$emptyInterface))([new Go$Uint32(s.NumGC)]));
+			fmt.Fprintf(w, "# EnableGC = %v\n", new (go$sliceType(go$emptyInterface))([new Go$Bool(s.EnableGC)]));
+			fmt.Fprintf(w, "# DebugGC = %v\n", new (go$sliceType(go$emptyInterface))([new Go$Bool(s.DebugGC)]));
+		}
+		if (!(tw === (go$ptrType(tabwriter.Writer)).nil)) {
+			tw.Flush();
+		}
+		return b.Flush();
+	};
+	var countThreadCreate = function() {
+		var _tuple, n;
+		_tuple = runtime.ThreadCreateProfile((go$sliceType(runtime.StackRecord)).nil), n = _tuple[0];
+		return n;
+	};
+	var writeThreadCreate = function(w, debug) {
+		return writeRuntimeProfile(w, debug, "threadcreate", runtime.ThreadCreateProfile);
+	};
+	var countGoroutine = function() {
+		return runtime.NumGoroutine();
+	};
+	var writeGoroutine = function(w, debug) {
+		if (debug >= 2) {
+			return writeGoroutineStacks(w);
+		}
+		return writeRuntimeProfile(w, debug, "goroutine", runtime.GoroutineProfile);
+	};
+	var writeGoroutineStacks = function(w) {
+		var buf, i, n, x, x$1, _tuple, err;
+		buf = (go$sliceType(Go$Uint8)).make(1048576, 0, function() { return 0; });
+		i = 0;
+		while (true) {
+			n = runtime.Stack(buf, true);
+			if (n < buf.length) {
+				buf = go$subslice(buf, 0, n);
+				break;
+			}
+			if (buf.length >= 67108864) {
+				break;
+			}
+			buf = (go$sliceType(Go$Uint8)).make((x = 2, x$1 = buf.length, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0), 0, function() { return 0; });
+			i = i + 1 >> 0;
+		}
+		_tuple = w.Write(buf), err = _tuple[1];
+		return err;
+	};
+	var writeRuntimeProfile = function(w, debug, name, fetch) {
+		var p, _tuple, n, ok, _tuple$1;
+		p = (go$sliceType(runtime.StackRecord)).nil;
+		_tuple = fetch((go$sliceType(runtime.StackRecord)).nil), n = _tuple[0], ok = _tuple[1];
+		while (true) {
+			p = (go$sliceType(runtime.StackRecord)).make(n + 10 >> 0, 0, function() { return new runtime.StackRecord.Ptr(); });
+			_tuple$1 = fetch(p), n = _tuple$1[0], ok = _tuple$1[1];
+			if (ok) {
+				p = go$subslice(p, 0, n);
+				break;
+			}
+		}
+		return printCountProfile(w, debug, name, go$subslice(new runtimeProfile(p.array), p.offset, p.offset + p.length));
+	};
+	runtimeProfile.prototype.Len = function() {
+		var p;
+		p = this;
+		return p.length;
+	};
+	go$ptrType(runtimeProfile).prototype.Len = function() { return this.go$get().Len(); };
+	runtimeProfile.prototype.Stack = function(i) {
+		var p, _slice, _index;
+		p = this;
+		return (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Stack();
+	};
+	go$ptrType(runtimeProfile).prototype.Stack = function(i) { return this.go$get().Stack(i); };
+	var StartCPUProfile = go$pkg.StartCPUProfile = function(w) {
+		var go$deferred = [];
+		try {
+			if (cpu.profiling) {
+				return fmt.Errorf("cpu profiling already in use", new (go$sliceType(go$emptyInterface))([]));
+			}
+			cpu.Mutex.Lock();
+			go$deferred.push({ recv: cpu, method: "Unlock", args: [] });
+			if (cpu.done === (go$chanType(Go$Bool, false, false)).nil) {
+				cpu.done = new (go$chanType(Go$Bool, false, false))();
+			}
+			if (cpu.profiling) {
+				return fmt.Errorf("cpu profiling already in use", new (go$sliceType(go$emptyInterface))([]));
+			}
+			cpu.profiling = true;
+			runtime.SetCPUProfileRate(100);
+			go$notSupported("go")
+			return null;
+		} catch(go$err) {
+			go$pushErr(go$err);
+			return null;
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	var profileWriter = function(w) {
+		var data;
+		while (true) {
+			data = runtime.CPUProfile();
+			if (data === (go$sliceType(Go$Uint8)).nil) {
+				break;
+			}
+			w.Write(data);
+		}
+		go$notSupported("send");
+	};
+	var StopCPUProfile = go$pkg.StopCPUProfile = function() {
+		var go$deferred = [];
+		try {
+			cpu.Mutex.Lock();
+			go$deferred.push({ recv: cpu, method: "Unlock", args: [] });
+			if (!cpu.profiling) {
+				return;
+			}
+			cpu.profiling = false;
+			runtime.SetCPUProfileRate(0);
+			undefined;
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
+		}
+	};
+	byCycles.prototype.Len = function() {
+		var x;
+		x = this;
+		return x.length;
+	};
+	go$ptrType(byCycles).prototype.Len = function() { return this.go$get().Len(); };
+	byCycles.prototype.Swap = function(i, j) {
+		var x, _slice, _index, _struct, _struct$1, _slice$1, _index$1, _struct$2, _struct$3, _tuple, _slice$2, _index$2, _slice$3, _index$3;
+		x = this;
+		_tuple = [(_struct = (_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new runtime.BlockProfileRecord.Ptr(_struct.Count, _struct.Cycles, (_struct$1 = _struct.StackRecord, new runtime.StackRecord.Ptr(go$mapArray(_struct$1.Stack0, function(entry) { return entry; }))))), (_struct$2 = (_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new runtime.BlockProfileRecord.Ptr(_struct$2.Count, _struct$2.Cycles, (_struct$3 = _struct$2.StackRecord, new runtime.StackRecord.Ptr(go$mapArray(_struct$3.Stack0, function(entry) { return entry; })))))], _slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
+	};
+	go$ptrType(byCycles).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+	byCycles.prototype.Less = function(i, j) {
+		var x, x$1, _slice, _index, x$2, _slice$1, _index$1;
+		x = this;
+		return (x$1 = (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Cycles, x$2 = (_slice$1 = x, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Cycles, (x$1.high > x$2.high || (x$1.high === x$2.high && x$1.low > x$2.low)));
+	};
+	go$ptrType(byCycles).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
+	var countBlock = function() {
+		var _tuple, n;
+		_tuple = runtime.BlockProfile((go$sliceType(runtime.BlockProfileRecord)).nil), n = _tuple[0];
+		return n;
+	};
+	var writeBlock = function(w, debug) {
+		var p, _tuple, n, ok, _tuple$1, b, tw, _ref, _i, i, _slice, _index, r, _ref$1, _i$1, _slice$1, _index$1, pc;
+		p = (go$sliceType(runtime.BlockProfileRecord)).nil;
+		_tuple = runtime.BlockProfile((go$sliceType(runtime.BlockProfileRecord)).nil), n = _tuple[0], ok = _tuple[1];
+		while (true) {
+			p = (go$sliceType(runtime.BlockProfileRecord)).make(n + 50 >> 0, 0, function() { return new runtime.BlockProfileRecord.Ptr(); });
+			_tuple$1 = runtime.BlockProfile(p), n = _tuple$1[0], ok = _tuple$1[1];
+			if (ok) {
+				p = go$subslice(p, 0, n);
+				break;
+			}
+		}
+		sort.Sort(go$subslice(new byCycles(p.array), p.offset, p.offset + p.length));
+		b = bufio.NewWriter(w);
+		tw = (go$ptrType(tabwriter.Writer)).nil;
+		w = b;
+		if (debug > 0) {
+			tw = tabwriter.NewWriter(w, 1, 8, 1, 9, 0);
+			w = tw;
+		}
+		fmt.Fprintf(w, "--- contention:\n", new (go$sliceType(go$emptyInterface))([]));
+		fmt.Fprintf(w, "cycles/second=%v\n", new (go$sliceType(go$emptyInterface))([runtime_cyclesPerSecond()]));
+		_ref = p;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			i = _i;
+			r = (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			fmt.Fprintf(w, "%v %v @", new (go$sliceType(go$emptyInterface))([r.Cycles, r.Count]));
+			_ref$1 = r.StackRecord.Stack();
+			_i$1 = 0;
+			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				pc = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				fmt.Fprintf(w, " %#x", new (go$sliceType(go$emptyInterface))([new Go$Uintptr(pc)]));
+			}
+			fmt.Fprint(w, new (go$sliceType(go$emptyInterface))([new Go$String("\n")]));
+			if (debug > 0) {
+				printStackRecord(w, r.StackRecord.Stack(), true);
+			}
+		}
+		if (!(tw === (go$ptrType(tabwriter.Writer)).nil)) {
+			tw.Flush();
+		}
+		return b.Flush();
+	};
+	var runtime_cyclesPerSecond = function() {
+		throw go$panic("Native function not implemented: runtime_cyclesPerSecond");
+	};
+	var profiles = new (go$structType([["mu", "runtime/pprof", sync.Mutex, ""], ["m", "runtime/pprof", (go$mapType(Go$String, (go$ptrType(Profile)))), ""]])).Ptr(new sync.Mutex.Ptr(), false);
+	var goroutineProfile = (go$ptrType(Profile)).nil;
+	var threadcreateProfile = (go$ptrType(Profile)).nil;
+	var heapProfile = (go$ptrType(Profile)).nil;
+	var blockProfile = (go$ptrType(Profile)).nil;
+	var cpu = new (go$structType([["", "", sync.Mutex, ""], ["profiling", "runtime/pprof", Go$Bool, ""], ["done", "runtime/pprof", (go$chanType(Go$Bool, false, false)), ""]])).Ptr(new sync.Mutex.Ptr(), false, (go$chanType(Go$Bool, false, false)).nil);
+	go$pkg.init = function() {
+		goroutineProfile = new Profile.Ptr("goroutine", new sync.Mutex.Ptr(), false, countGoroutine, writeGoroutine);
+		threadcreateProfile = new Profile.Ptr("threadcreate", new sync.Mutex.Ptr(), false, countThreadCreate, writeThreadCreate);
+		heapProfile = new Profile.Ptr("heap", new sync.Mutex.Ptr(), false, countHeap, writeHeap);
+		blockProfile = new Profile.Ptr("block", new sync.Mutex.Ptr(), false, countBlock, writeBlock);
+	};

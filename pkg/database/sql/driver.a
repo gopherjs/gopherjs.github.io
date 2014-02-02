@@ -1,0 +1,367 @@
+0‚Kù‚ëpackage driver
+import errors "errors"
+import fmt "fmt"
+import reflect "reflect"
+import strconv "strconv"
+import time "time"
+var @"".Bool @"".boolType
+type @"".ColumnConverter interface { @"".ColumnConverter(@"".idx int) (? @"".ValueConverter) }
+type @"".Conn interface { @"".Begin() (? @"".Tx, ? error); @"".Close() (? error); @"".Prepare(@"".query string) (? @"".Stmt, ? error) }
+var @"".DefaultParameterConverter @"".defaultConverter
+type @"".Driver interface { @"".Open(@"".name string) (? @"".Conn, ? error) }
+var @"".ErrBadConn error
+var @"".ErrSkip error
+type @"".Execer interface { @"".Exec(@"".query string, @"".args []@"".Value) (? @"".Result, ? error) }
+var @"".Int32 @"".int32Type
+func @"".IsScanValue(@"".v interface {  }) (? bool)
+func @"".IsValue(@"".v interface {  }) (? bool)
+type @"".NotNull struct { @"".Converter @"".ValueConverter }
+func (? @"".NotNull) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+func (? *@"".NotNull) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+type @"".Null struct { @"".Converter @"".ValueConverter }
+func (? @"".Null) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+func (? *@"".Null) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+type @"".Queryer interface { @"".Query(@"".query string, @"".args []@"".Value) (? @"".Rows, ? error) }
+type @"".Result interface { @"".LastInsertId() (? int64, ? error); @"".RowsAffected() (? int64, ? error) }
+var @"".ResultNoRows @"".noRows
+type @"".Rows interface { @"".Close() (? error); @"".Columns() (? []string); @"".Next(@"".dest []@"".Value) (? error) }
+type @"".RowsAffected int64
+func (? @"".RowsAffected) @"".LastInsertId() (? int64, ? error)
+func (? @"".RowsAffected) @"".RowsAffected() (? int64, ? error)
+func (? *@"".RowsAffected) @"".LastInsertId() (? int64, ? error)
+func (? *@"".RowsAffected) @"".RowsAffected() (? int64, ? error)
+type @"".Stmt interface { @"".Close() (? error); @"".Exec(@"".args []@"".Value) (? @"".Result, ? error); @"".NumInput() (? int); @"".Query(@"".args []@"".Value) (? @"".Rows, ? error) }
+var @"".String @"".stringType
+type @"".Tx interface { @"".Commit() (? error); @"".Rollback() (? error) }
+type @"".Value interface {  }
+type @"".ValueConverter interface { @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error) }
+type @"".Valuer interface { @"".Value() (? @"".Value, ? error) }
+type @"".boolType struct {  }
+func (? @"".boolType) @"".ConvertValue(@"".src interface {  }) (? @"".Value, ? error)
+func (? @"".boolType) @"".String() (? string)
+func (? *@"".boolType) @"".ConvertValue(@"".src interface {  }) (? @"".Value, ? error)
+func (? *@"".boolType) @"".String() (? string)
+type @"".defaultConverter struct {  }
+func (? @"".defaultConverter) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+func (? *@"".defaultConverter) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+type @"".int32Type struct {  }
+func (? @"".int32Type) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+func (? *@"".int32Type) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+type @"".noRows struct {  }
+func (? @"".noRows) @"".LastInsertId() (? int64, ? error)
+func (? @"".noRows) @"".RowsAffected() (? int64, ? error)
+func (? *@"".noRows) @"".LastInsertId() (? int64, ? error)
+func (? *@"".noRows) @"".RowsAffected() (? int64, ? error)
+type @"".stringType struct {  }
+func (? @"".stringType) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+func (? *@"".stringType) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
+$$
+0{runtimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtdatabase/sql/driver‚=‰	var errors = go$packages["errors"];
+	var fmt = go$packages["fmt"];
+	var reflect = go$packages["reflect"];
+	var strconv = go$packages["strconv"];
+	var time = go$packages["time"];
+	var Value;
+	Value = go$newType(0, "Interface", "driver.Value", "Value", "database/sql/driver", null);
+	go$pkg.Value = Value;
+	var Driver;
+	Driver = go$newType(0, "Interface", "driver.Driver", "Driver", "database/sql/driver", null);
+	go$pkg.Driver = Driver;
+	var Execer;
+	Execer = go$newType(0, "Interface", "driver.Execer", "Execer", "database/sql/driver", null);
+	go$pkg.Execer = Execer;
+	var Queryer;
+	Queryer = go$newType(0, "Interface", "driver.Queryer", "Queryer", "database/sql/driver", null);
+	go$pkg.Queryer = Queryer;
+	var Conn;
+	Conn = go$newType(0, "Interface", "driver.Conn", "Conn", "database/sql/driver", null);
+	go$pkg.Conn = Conn;
+	var Result;
+	Result = go$newType(0, "Interface", "driver.Result", "Result", "database/sql/driver", null);
+	go$pkg.Result = Result;
+	var Stmt;
+	Stmt = go$newType(0, "Interface", "driver.Stmt", "Stmt", "database/sql/driver", null);
+	go$pkg.Stmt = Stmt;
+	var ColumnConverter;
+	ColumnConverter = go$newType(0, "Interface", "driver.ColumnConverter", "ColumnConverter", "database/sql/driver", null);
+	go$pkg.ColumnConverter = ColumnConverter;
+	var Rows;
+	Rows = go$newType(0, "Interface", "driver.Rows", "Rows", "database/sql/driver", null);
+	go$pkg.Rows = Rows;
+	var Tx;
+	Tx = go$newType(0, "Interface", "driver.Tx", "Tx", "database/sql/driver", null);
+	go$pkg.Tx = Tx;
+	var RowsAffected;
+	RowsAffected = go$newType(8, "Int64", "driver.RowsAffected", "RowsAffected", "database/sql/driver", null);
+	go$pkg.RowsAffected = RowsAffected;
+	var noRows;
+	noRows = go$newType(0, "Struct", "driver.noRows", "noRows", "database/sql/driver", function() {
+		this.go$val = this;
+	});
+	go$pkg.noRows = noRows;
+	var ValueConverter;
+	ValueConverter = go$newType(0, "Interface", "driver.ValueConverter", "ValueConverter", "database/sql/driver", null);
+	go$pkg.ValueConverter = ValueConverter;
+	var Valuer;
+	Valuer = go$newType(0, "Interface", "driver.Valuer", "Valuer", "database/sql/driver", null);
+	go$pkg.Valuer = Valuer;
+	var boolType;
+	boolType = go$newType(0, "Struct", "driver.boolType", "boolType", "database/sql/driver", function() {
+		this.go$val = this;
+	});
+	go$pkg.boolType = boolType;
+	var int32Type;
+	int32Type = go$newType(0, "Struct", "driver.int32Type", "int32Type", "database/sql/driver", function() {
+		this.go$val = this;
+	});
+	go$pkg.int32Type = int32Type;
+	var stringType;
+	stringType = go$newType(0, "Struct", "driver.stringType", "stringType", "database/sql/driver", function() {
+		this.go$val = this;
+	});
+	go$pkg.stringType = stringType;
+	var Null;
+	Null = go$newType(0, "Struct", "driver.Null", "Null", "database/sql/driver", function(Converter_) {
+		this.go$val = this;
+		this.Converter = Converter_ !== undefined ? Converter_ : null;
+	});
+	go$pkg.Null = Null;
+	var NotNull;
+	NotNull = go$newType(0, "Struct", "driver.NotNull", "NotNull", "database/sql/driver", function(Converter_) {
+		this.go$val = this;
+		this.Converter = Converter_ !== undefined ? Converter_ : null;
+	});
+	go$pkg.NotNull = NotNull;
+	var defaultConverter;
+	defaultConverter = go$newType(0, "Struct", "driver.defaultConverter", "defaultConverter", "database/sql/driver", function() {
+		this.go$val = this;
+	});
+	go$pkg.defaultConverter = defaultConverter;
+	Value.init([]);
+	Driver.init([["Open", "", (go$funcType([Go$String], [Conn, go$error], false))]]);
+	Execer.init([["Exec", "", (go$funcType([Go$String, (go$sliceType(Value))], [Result, go$error], false))]]);
+	Queryer.init([["Query", "", (go$funcType([Go$String, (go$sliceType(Value))], [Rows, go$error], false))]]);
+	Conn.init([["Begin", "", (go$funcType([], [Tx, go$error], false))], ["Close", "", (go$funcType([], [go$error], false))], ["Prepare", "", (go$funcType([Go$String], [Stmt, go$error], false))]]);
+	Result.init([["LastInsertId", "", (go$funcType([], [Go$Int64, go$error], false))], ["RowsAffected", "", (go$funcType([], [Go$Int64, go$error], false))]]);
+	Stmt.init([["Close", "", (go$funcType([], [go$error], false))], ["Exec", "", (go$funcType([(go$sliceType(Value))], [Result, go$error], false))], ["NumInput", "", (go$funcType([], [Go$Int], false))], ["Query", "", (go$funcType([(go$sliceType(Value))], [Rows, go$error], false))]]);
+	ColumnConverter.init([["ColumnConverter", "", (go$funcType([Go$Int], [ValueConverter], false))]]);
+	Rows.init([["Close", "", (go$funcType([], [go$error], false))], ["Columns", "", (go$funcType([], [(go$sliceType(Go$String))], false))], ["Next", "", (go$funcType([(go$sliceType(Value))], [go$error], false))]]);
+	Tx.init([["Commit", "", (go$funcType([], [go$error], false))], ["Rollback", "", (go$funcType([], [go$error], false))]]);
+	RowsAffected.methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["RowsAffected", "", [], [Go$Int64, go$error], false]];
+	(go$ptrType(RowsAffected)).methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["RowsAffected", "", [], [Go$Int64, go$error], false]];
+	noRows.init([]);
+	noRows.methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["RowsAffected", "", [], [Go$Int64, go$error], false]];
+	(go$ptrType(noRows)).methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["RowsAffected", "", [], [Go$Int64, go$error], false]];
+	ValueConverter.init([["ConvertValue", "", (go$funcType([go$emptyInterface], [Value, go$error], false))]]);
+	Valuer.init([["Value", "", (go$funcType([], [Value, go$error], false))]]);
+	boolType.init([]);
+	boolType.methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false], ["String", "", [], [Go$String], false]];
+	(go$ptrType(boolType)).methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false], ["String", "", [], [Go$String], false]];
+	int32Type.init([]);
+	int32Type.methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	(go$ptrType(int32Type)).methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	stringType.init([]);
+	stringType.methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	(go$ptrType(stringType)).methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	Null.init([["Converter", "", ValueConverter, ""]]);
+	Null.methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	(go$ptrType(Null)).methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	NotNull.init([["Converter", "", ValueConverter, ""]]);
+	NotNull.methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	(go$ptrType(NotNull)).methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	defaultConverter.init([]);
+	defaultConverter.methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	(go$ptrType(defaultConverter)).methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
+	RowsAffected.prototype.LastInsertId = function() {
+		return [new Go$Int64(0, 0), errors.New("no LastInsertId available")];
+	};
+	go$ptrType(RowsAffected).prototype.LastInsertId = function() { return this.go$get().LastInsertId(); };
+	RowsAffected.prototype.RowsAffected = function() {
+		var v;
+		v = this;
+		return [new Go$Int64(v.high, v.low), null];
+	};
+	go$ptrType(RowsAffected).prototype.RowsAffected = function() { return this.go$get().RowsAffected(); };
+	noRows.Ptr.prototype.LastInsertId = function() {
+		return [new Go$Int64(0, 0), errors.New("no LastInsertId available after DDL statement")];
+	};
+	noRows.prototype.LastInsertId = function() { return this.go$val.LastInsertId(); };
+	noRows.Ptr.prototype.RowsAffected = function() {
+		return [new Go$Int64(0, 0), errors.New("no RowsAffected available after DDL statement")];
+	};
+	noRows.prototype.RowsAffected = function() { return this.go$val.RowsAffected(); };
+	boolType.Ptr.prototype.String = function() {
+		return "Bool";
+	};
+	boolType.prototype.String = function() { return this.go$val.String(); };
+	boolType.Ptr.prototype.ConvertValue = function(src) {
+		var s, _ref, _type, _tuple, b, err, _tuple$1, b$1, err$1, _struct, sv, _ref$1, iv, uv;
+		_ref = src;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === Go$Bool) {
+			s = _ref.go$val;
+			return [new Go$Bool(s), null];
+		} else if (_type === Go$String) {
+			s = _ref.go$val;
+			_tuple = strconv.ParseBool(s), b = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [null, fmt.Errorf("sql/driver: couldn't convert %q into type bool", new (go$sliceType(go$emptyInterface))([new Go$String(s)]))];
+			}
+			return [new Go$Bool(b), null];
+		} else if (_type === (go$sliceType(Go$Uint8))) {
+			s = _ref.go$val;
+			_tuple$1 = strconv.ParseBool(go$bytesToString(s)), b$1 = _tuple$1[0], err$1 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [null, fmt.Errorf("sql/driver: couldn't convert %q into type bool", new (go$sliceType(go$emptyInterface))([s]))];
+			}
+			return [new Go$Bool(b$1), null];
+		}
+		sv = (_struct = reflect.ValueOf(src), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		_ref$1 = sv.Kind();
+		if (_ref$1 === 2 || _ref$1 === 3 || _ref$1 === 4 || _ref$1 === 5 || _ref$1 === 6) {
+			iv = sv.Int();
+			if ((iv.high === 0 && iv.low === 1) || (iv.high === 0 && iv.low === 0)) {
+				return [new Go$Bool((iv.high === 0 && iv.low === 1)), null];
+			}
+			return [null, fmt.Errorf("sql/driver: couldn't convert %d into type bool", new (go$sliceType(go$emptyInterface))([iv]))];
+		} else if (_ref$1 === 7 || _ref$1 === 8 || _ref$1 === 9 || _ref$1 === 10 || _ref$1 === 11) {
+			uv = sv.Uint();
+			if ((uv.high === 0 && uv.low === 1) || (uv.high === 0 && uv.low === 0)) {
+				return [new Go$Bool((uv.high === 0 && uv.low === 1)), null];
+			}
+			return [null, fmt.Errorf("sql/driver: couldn't convert %d into type bool", new (go$sliceType(go$emptyInterface))([uv]))];
+		}
+		return [null, fmt.Errorf("sql/driver: couldn't convert %v (%T) into type bool", new (go$sliceType(go$emptyInterface))([src, src]))];
+	};
+	boolType.prototype.ConvertValue = function(src) { return this.go$val.ConvertValue(src); };
+	int32Type.Ptr.prototype.ConvertValue = function(v) {
+		var _struct, rv, _ref, i64, u64, _tuple, i, err;
+		rv = (_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		_ref = rv.Kind();
+		if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
+			i64 = rv.Int();
+			if ((i64.high > 0 || (i64.high === 0 && i64.low > 2147483647)) || (i64.high < -1 || (i64.high === -1 && i64.low < 2147483648))) {
+				return [null, fmt.Errorf("sql/driver: value %d overflows int32", new (go$sliceType(go$emptyInterface))([v]))];
+			}
+			return [i64, null];
+		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11) {
+			u64 = rv.Uint();
+			if ((u64.high > 0 || (u64.high === 0 && u64.low > 2147483647))) {
+				return [null, fmt.Errorf("sql/driver: value %d overflows int32", new (go$sliceType(go$emptyInterface))([v]))];
+			}
+			return [new Go$Int64(u64.high, u64.low), null];
+		} else if (_ref === 24) {
+			_tuple = strconv.Atoi(rv.String()), i = _tuple[0], err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [null, fmt.Errorf("sql/driver: value %q can't be converted to int32", new (go$sliceType(go$emptyInterface))([v]))];
+			}
+			return [new Go$Int64(0, i), null];
+		}
+		return [null, fmt.Errorf("sql/driver: unsupported value %v (type %T) converting to int32", new (go$sliceType(go$emptyInterface))([v, v]))];
+	};
+	int32Type.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
+	stringType.Ptr.prototype.ConvertValue = function(v) {
+		var _ref, _type;
+		_ref = v;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === Go$String || _type === (go$sliceType(Go$Uint8))) {
+			return [v, null];
+		}
+		return [new Go$String(fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([v]))), null];
+	};
+	stringType.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
+	Null.Ptr.prototype.ConvertValue = function(v) {
+		var _struct, n;
+		n = (_struct = this, new Null.Ptr(_struct.Converter));
+		if (go$interfaceIsEqual(v, null)) {
+			return [null, null];
+		}
+		return n.Converter.ConvertValue(v);
+	};
+	Null.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
+	NotNull.Ptr.prototype.ConvertValue = function(v) {
+		var _struct, n;
+		n = (_struct = this, new NotNull.Ptr(_struct.Converter));
+		if (go$interfaceIsEqual(v, null)) {
+			return [null, fmt.Errorf("nil value not allowed", new (go$sliceType(go$emptyInterface))([]))];
+		}
+		return n.Converter.ConvertValue(v);
+	};
+	NotNull.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
+	var IsValue = go$pkg.IsValue = function(v) {
+		var ok, _tuple;
+		if (IsScanValue(v)) {
+			return true;
+		}
+		if (_tuple = (v !== null && v.constructor === Go$String ? [v.go$val, true] : ["", false]), ok = _tuple[1], ok) {
+			return true;
+		}
+		return false;
+	};
+	var IsScanValue = go$pkg.IsScanValue = function(v) {
+		var _ref, _type;
+		if (go$interfaceIsEqual(v, null)) {
+			return true;
+		}
+		_ref = v;
+		_type = _ref !== null ? _ref.constructor : null;
+		if (_type === Go$Int64 || _type === Go$Float64 || _type === (go$sliceType(Go$Uint8)) || _type === Go$Bool || _type === time.Time) {
+			return true;
+		}
+		return false;
+	};
+	defaultConverter.Ptr.prototype.ConvertValue = function(v) {
+		var ok, _tuple, svi, _tuple$1, sv, err, _struct, rv, _ref, x, u64;
+		if (IsValue(v)) {
+			return [v, null];
+		}
+		if (_tuple = (v !== null && Valuer.implementedBy.indexOf(v.constructor) !== -1 ? [v, true] : [null, false]), svi = _tuple[0], ok = _tuple[1], ok) {
+			_tuple$1 = svi.Value(), sv = _tuple$1[0], err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err, null))) {
+				return [null, err];
+			}
+			if (!IsValue(sv)) {
+				return [null, fmt.Errorf("non-Value type %T returned from Value", new (go$sliceType(go$emptyInterface))([sv]))];
+			}
+			return [sv, null];
+		}
+		rv = (_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		_ref = rv.Kind();
+		if (_ref === 22) {
+			if (rv.IsNil()) {
+				return [null, null];
+			} else {
+				return new defaultConverter.Ptr().ConvertValue(rv.Elem().Interface());
+			}
+		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
+			return [rv.Int(), null];
+		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10) {
+			return [(x = rv.Uint(), new Go$Int64(x.high, x.low)), null];
+		} else if (_ref === 11) {
+			u64 = rv.Uint();
+			if ((u64.high > 2147483648 || (u64.high === 2147483648 && u64.low >= 0))) {
+				return [null, fmt.Errorf("uint64 values with high bit set are not supported", new (go$sliceType(go$emptyInterface))([]))];
+			}
+			return [new Go$Int64(u64.high, u64.low), null];
+		} else if (_ref === 13 || _ref === 14) {
+			return [new Go$Float64(rv.Float()), null];
+		}
+		return [null, fmt.Errorf("unsupported type %T, a %s", new (go$sliceType(go$emptyInterface))([v, new reflect.Kind(rv.Kind())]))];
+	};
+	defaultConverter.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
+	go$pkg.ErrSkip = null;
+	go$pkg.ErrBadConn = null;
+	var _ = null;
+	go$pkg.ResultNoRows = new noRows.Ptr();
+	var _$1 = null;
+	go$pkg.Bool = new boolType.Ptr();
+	var _$2 = null;
+	go$pkg.Int32 = new int32Type.Ptr();
+	var _$3 = null;
+	go$pkg.String = new stringType.Ptr();
+	go$pkg.DefaultParameterConverter = new defaultConverter.Ptr();
+	var _$4 = null;
+	go$pkg.init = function() {
+		go$pkg.ErrSkip = errors.New("driver: skip fast-path; continue as if unimplemented");
+		go$pkg.ErrBadConn = errors.New("driver: bad connection");
+	};

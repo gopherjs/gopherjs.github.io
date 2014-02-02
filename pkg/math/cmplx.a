@@ -1,0 +1,338 @@
+0‚%¿‚package cmplx
+import math "math"
+func @"".Abs(@"".x complex128) (? float64)
+func @"".Acos(@"".x complex128) (? complex128)
+func @"".Acosh(@"".x complex128) (? complex128)
+func @"".Asin(@"".x complex128) (? complex128)
+func @"".Asinh(@"".x complex128) (? complex128)
+func @"".Atan(@"".x complex128) (? complex128)
+func @"".Atanh(@"".x complex128) (? complex128)
+func @"".Conj(@"".x complex128) (? complex128)
+func @"".Cos(@"".x complex128) (? complex128)
+func @"".Cosh(@"".x complex128) (? complex128)
+func @"".Cot(@"".x complex128) (? complex128)
+func @"".Exp(@"".x complex128) (? complex128)
+func @"".Inf() (? complex128)
+func @"".IsInf(@"".x complex128) (? bool)
+func @"".IsNaN(@"".x complex128) (? bool)
+func @"".Log(@"".x complex128) (? complex128)
+func @"".Log10(@"".x complex128) (? complex128)
+func @"".NaN() (? complex128)
+func @"".Phase(@"".x complex128) (? float64)
+func @"".Polar(@"".x complex128) (@"".r float64, @"".Î¸ float64)
+func @"".Pow(@"".x complex128, @"".y complex128) (? complex128)
+func @"".Rect(@"".r float64, @"".Î¸ float64) (? complex128)
+func @"".Sin(@"".x complex128) (? complex128)
+func @"".Sinh(@"".x complex128) (? complex128)
+func @"".Sqrt(@"".x complex128) (? complex128)
+func @"".Tan(@"".x complex128) (? complex128)
+func @"".Tanh(@"".x complex128) (? complex128)
+$$
+0runtimemath
+math/cmplx‚ …	var math = go$packages["math"];
+	var Abs = go$pkg.Abs = function(x) {
+		return math.Hypot(x.real, x.imag);
+	};
+	var Asin = go$pkg.Asin = function(x) {
+		var ct, xx, x1, x2, w;
+		if (x.imag === 0) {
+			if (math.Abs(x.real) > 1) {
+				return new Go$Complex128(1.5707963267948966, 0);
+			}
+			return new Go$Complex128(math.Asin(x.real), 0);
+		}
+		ct = new Go$Complex128(-x.imag, x.real);
+		xx = new Go$Complex128(x.real * x.real - x.imag * x.imag, x.real * x.imag + x.imag * x.real);
+		x1 = new Go$Complex128(1 - xx.real, -xx.imag);
+		x2 = Sqrt(x1);
+		w = Log(new Go$Complex128(ct.real + x2.real, ct.imag + x2.imag));
+		return new Go$Complex128(w.imag, -w.real);
+	};
+	var Asinh = go$pkg.Asinh = function(x) {
+		var xx, x1, x$1;
+		if (x.imag === 0) {
+			if (math.Abs(x.real) > 1) {
+				return new Go$Complex128(1.5707963267948966, 0);
+			}
+			return new Go$Complex128(math.Asinh(x.real), 0);
+		}
+		xx = new Go$Complex128(x.real * x.real - x.imag * x.imag, x.real * x.imag + x.imag * x.real);
+		x1 = new Go$Complex128(1 + xx.real, xx.imag);
+		return Log((x$1 = Sqrt(x1), new Go$Complex128(x.real + x$1.real, x.imag + x$1.imag)));
+	};
+	var Acos = go$pkg.Acos = function(x) {
+		var w;
+		w = Asin(x);
+		return new Go$Complex128(1.5707963267948966 - w.real, -w.imag);
+	};
+	var Acosh = go$pkg.Acosh = function(x) {
+		var w;
+		w = Acos(x);
+		if (w.imag <= 0) {
+			return new Go$Complex128(-w.imag, w.real);
+		}
+		return new Go$Complex128(w.imag, -w.real);
+	};
+	var Atan = go$pkg.Atan = function(x) {
+		var x2, a, t, w, b, c;
+		if ((x.real === 0) && x.imag > 1) {
+			return NaN();
+		}
+		x2 = x.real * x.real;
+		a = 1 - x2 - x.imag * x.imag;
+		if (a === 0) {
+			return NaN();
+		}
+		t = 0.5 * math.Atan2(2 * x.real, a);
+		w = reducePi(t);
+		t = x.imag - 1;
+		b = x2 + t * t;
+		if (b === 0) {
+			return NaN();
+		}
+		t = x.imag + 1;
+		c = (x2 + t * t) / b;
+		return new Go$Complex128(w, 0.25 * math.Log(c));
+	};
+	var Atanh = go$pkg.Atanh = function(x) {
+		var z;
+		z = new Go$Complex128(-x.imag, x.real);
+		z = Atan(z);
+		return new Go$Complex128(z.imag, -z.real);
+	};
+	var Conj = go$pkg.Conj = function(x) {
+		return new Go$Complex128(x.real, -x.imag);
+	};
+	var Exp = go$pkg.Exp = function(x) {
+		var r, _tuple, s, c;
+		r = math.Exp(x.real);
+		_tuple = math.Sincos(x.imag), s = _tuple[0], c = _tuple[1];
+		return new Go$Complex128(r * c, r * s);
+	};
+	var IsInf = go$pkg.IsInf = function(x) {
+		if (math.IsInf(x.real, 0) || math.IsInf(x.imag, 0)) {
+			return true;
+		}
+		return false;
+	};
+	var Inf = go$pkg.Inf = function() {
+		var inf;
+		inf = math.Inf(1);
+		return new Go$Complex128(inf, inf);
+	};
+	var IsNaN = go$pkg.IsNaN = function(x) {
+		if (math.IsInf(x.real, 0) || math.IsInf(x.imag, 0)) {
+			return false;
+		} else if (math.IsNaN(x.real) || math.IsNaN(x.imag)) {
+			return true;
+		}
+		return false;
+	};
+	var NaN = go$pkg.NaN = function() {
+		var nan;
+		nan = math.NaN();
+		return new Go$Complex128(nan, nan);
+	};
+	var Log = go$pkg.Log = function(x) {
+		return new Go$Complex128(math.Log(Abs(x)), Phase(x));
+	};
+	var Log10 = go$pkg.Log10 = function(x) {
+		var x$1;
+		return (x$1 = Log(x), new Go$Complex128(0.4342944819032518 * x$1.real - 0 * x$1.imag, 0.4342944819032518 * x$1.imag + 0 * x$1.real));
+	};
+	var Phase = go$pkg.Phase = function(x) {
+		return math.Atan2(x.imag, x.real);
+	};
+	var Polar = go$pkg.Polar = function(x) {
+		var r, nonAsciiName, _tuple;
+		r = 0;
+		nonAsciiName = 0;
+		_tuple = [Abs(x), Phase(x)], r = _tuple[0], nonAsciiName = _tuple[1];
+		return [r, nonAsciiName];
+	};
+	var Pow = go$pkg.Pow = function(x, y) {
+		var modulus, r, arg, theta, _tuple, s, c;
+		modulus = Abs(x);
+		if (modulus === 0) {
+			return new Go$Complex128(0, 0);
+		}
+		r = math.Pow(modulus, y.real);
+		arg = Phase(x);
+		theta = y.real * arg;
+		if (!((y.imag === 0))) {
+			r = r * (math.Exp(-y.imag * arg));
+			theta = theta + (y.imag * math.Log(modulus));
+		}
+		_tuple = math.Sincos(theta), s = _tuple[0], c = _tuple[1];
+		return new Go$Complex128(r * c, r * s);
+	};
+	var Rect = go$pkg.Rect = function(r, nonAsciiName) {
+		var _tuple, s, c;
+		_tuple = math.Sincos(nonAsciiName), s = _tuple[0], c = _tuple[1];
+		return new Go$Complex128(r * c, r * s);
+	};
+	var Sin = go$pkg.Sin = function(x) {
+		var _tuple, s, c, _tuple$1, sh, ch;
+		_tuple = math.Sincos(x.real), s = _tuple[0], c = _tuple[1];
+		_tuple$1 = sinhcosh(x.imag), sh = _tuple$1[0], ch = _tuple$1[1];
+		return new Go$Complex128(s * ch, c * sh);
+	};
+	var Sinh = go$pkg.Sinh = function(x) {
+		var _tuple, s, c, _tuple$1, sh, ch;
+		_tuple = math.Sincos(x.imag), s = _tuple[0], c = _tuple[1];
+		_tuple$1 = sinhcosh(x.real), sh = _tuple$1[0], ch = _tuple$1[1];
+		return new Go$Complex128(c * sh, s * ch);
+	};
+	var Cos = go$pkg.Cos = function(x) {
+		var _tuple, s, c, _tuple$1, sh, ch;
+		_tuple = math.Sincos(x.real), s = _tuple[0], c = _tuple[1];
+		_tuple$1 = sinhcosh(x.imag), sh = _tuple$1[0], ch = _tuple$1[1];
+		return new Go$Complex128(c * ch, -s * sh);
+	};
+	var Cosh = go$pkg.Cosh = function(x) {
+		var _tuple, s, c, _tuple$1, sh, ch;
+		_tuple = math.Sincos(x.imag), s = _tuple[0], c = _tuple[1];
+		_tuple$1 = sinhcosh(x.real), sh = _tuple$1[0], ch = _tuple$1[1];
+		return new Go$Complex128(c * ch, s * sh);
+	};
+	var sinhcosh = function(x) {
+		var sh, ch, _tuple, e, ei, _tuple$1;
+		sh = 0;
+		ch = 0;
+		if (math.Abs(x) <= 0.5) {
+			_tuple = [math.Sinh(x), math.Cosh(x)], sh = _tuple[0], ch = _tuple[1];
+			return [sh, ch];
+		}
+		e = math.Exp(x);
+		ei = 0.5 / e;
+		e = e * 0.5;
+		_tuple$1 = [e - ei, e + ei], sh = _tuple$1[0], ch = _tuple$1[1];
+		return [sh, ch];
+	};
+	var Sqrt = go$pkg.Sqrt = function(x) {
+		var r, r$1, a, b, scale, r$2, t;
+		if (x.imag === 0) {
+			if (x.real === 0) {
+				return new Go$Complex128(0, 0);
+			}
+			if (x.real < 0) {
+				return new Go$Complex128(0, math.Sqrt(-x.real));
+			}
+			return new Go$Complex128(math.Sqrt(x.real), 0);
+		}
+		if (x.real === 0) {
+			if (x.imag < 0) {
+				r = math.Sqrt(-0.5 * x.imag);
+				return new Go$Complex128(r, -r);
+			}
+			r$1 = math.Sqrt(0.5 * x.imag);
+			return new Go$Complex128(r$1, r$1);
+		}
+		a = x.real;
+		b = x.imag;
+		scale = 0;
+		if (math.Abs(a) > 4 || math.Abs(b) > 4) {
+			a = a * 0.25;
+			b = b * 0.25;
+			scale = 2;
+		} else {
+			a = a * 1.8014398509481984e+16;
+			b = b * 1.8014398509481984e+16;
+			scale = 7.450580596923828e-09;
+		}
+		r$2 = math.Hypot(a, b);
+		t = 0;
+		if (a > 0) {
+			t = math.Sqrt(0.5 * r$2 + 0.5 * a);
+			r$2 = scale * math.Abs((0.5 * b) / t);
+			t = t * (scale);
+		} else {
+			r$2 = math.Sqrt(0.5 * r$2 - 0.5 * a);
+			t = scale * math.Abs((0.5 * b) / r$2);
+			r$2 = r$2 * (scale);
+		}
+		if (b < 0) {
+			return new Go$Complex128(t, -r$2);
+		}
+		return new Go$Complex128(t, r$2);
+	};
+	var Tan = go$pkg.Tan = function(x) {
+		var d;
+		d = math.Cos(2 * x.real) + math.Cosh(2 * x.imag);
+		if (math.Abs(d) < 0.25) {
+			d = tanSeries(x);
+		}
+		if (d === 0) {
+			return Inf();
+		}
+		return new Go$Complex128(math.Sin(2 * x.real) / d, math.Sinh(2 * x.imag) / d);
+	};
+	var Tanh = go$pkg.Tanh = function(x) {
+		var d;
+		d = math.Cosh(2 * x.real) + math.Cos(2 * x.imag);
+		if (d === 0) {
+			return Inf();
+		}
+		return new Go$Complex128(math.Sinh(2 * x.real) / d, math.Sin(2 * x.imag) / d);
+	};
+	var reducePi = function(x) {
+		var t;
+		t = x / 3.141592653589793;
+		if (t >= 0) {
+			t = t + 0.5;
+		} else {
+			t = t - 0.5;
+		}
+		t = go$flatten64(new Go$Int64(0, t));
+		return ((x - t * 3.141592651605606) - t * 1.9841871479187034e-09) - t * 1.1442377452219664e-17;
+	};
+	var tanSeries = function(z) {
+		var x, y, x2, y2, f, rn, d, t;
+		x = math.Abs(2 * z.real);
+		y = math.Abs(2 * z.imag);
+		x = reducePi(x);
+		x = x * x;
+		y = y * y;
+		x2 = 1;
+		y2 = 1;
+		f = 1;
+		rn = 0;
+		d = 0;
+		while (true) {
+			rn = rn + 1;
+			f = f * (rn);
+			rn = rn + 1;
+			f = f * (rn);
+			x2 = x2 * (x);
+			y2 = y2 * (y);
+			t = y2 + x2;
+			t = t / (f);
+			d = d + (t);
+			rn = rn + 1;
+			f = f * (rn);
+			rn = rn + 1;
+			f = f * (rn);
+			x2 = x2 * (x);
+			y2 = y2 * (y);
+			t = y2 - x2;
+			t = t / (f);
+			d = d + (t);
+			if (math.Abs(t / d) <= 1.1102230246251565e-16) {
+				break;
+			}
+		}
+		return d;
+	};
+	var Cot = go$pkg.Cot = function(x) {
+		var d;
+		d = math.Cosh(2 * x.imag) - math.Cos(2 * x.real);
+		if (math.Abs(d) < 0.25) {
+			d = tanSeries(x);
+		}
+		if (d === 0) {
+			return Inf();
+		}
+		return new Go$Complex128(math.Sin(2 * x.real) / d, -math.Sinh(2 * x.imag) / d);
+	};
+	go$pkg.init = function() {
+	};
