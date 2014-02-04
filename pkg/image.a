@@ -1,4 +1,4 @@
-0É‚¯Ç>√package image
+0ÉÍ#imageÇ>√package image
 import bufio "bufio"
 import errors "errors"
 import io "io"
@@ -215,12 +215,7 @@ type @"image/color".RGBA64 struct { @"image/color".R uint16; @"image/color".G ui
 func (? @"image/color".RGBA64) @"image/color".RGBA() (@"image/color".r uint32, @"image/color".g uint32, @"image/color".b uint32, @"image/color".a uint32)
 func (? *@"image/color".RGBA64) @"image/color".RGBA() (@"image/color".r uint32, @"image/color".g uint32, @"image/color".b uint32, @"image/color".a uint32)
 $$
-0pruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimageÉ£∫	var bufio = go$packages["bufio"];
-	var errors = go$packages["errors"];
-	var io = go$packages["io"];
-	var strconv = go$packages["strconv"];
-	var color = go$packages["image/color"];
-	var format;
+0pruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage0V0bufiobufio0errorserrors0ioio0strconvstrconv0image/colorcolorÇ;u	var format;
 	format = go$newType(0, "Struct", "image.format", "format", "image", function(name_, magic_, decode_, decodeConfig_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : "";
@@ -389,17 +384,25 @@ $$
 	(go$ptrType(YCbCrSubsampleRatio)).methods = [["String", "", [], [Go$String], false]];
 	YCbCr.init([["Y", "", (go$sliceType(Go$Uint8)), ""], ["Cb", "", (go$sliceType(Go$Uint8)), ""], ["Cr", "", (go$sliceType(Go$Uint8)), ""], ["YStride", "", Go$Int, ""], ["CStride", "", Go$Int, ""], ["SubsampleRatio", "", YCbCrSubsampleRatio, ""], ["Rect", "", Rectangle, ""]]);
 	(go$ptrType(YCbCr)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["COffset", "", [Go$Int, Go$Int], [Go$Int], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["SubImage", "", [Rectangle], [Image], false], ["YOffset", "", [Go$Int, Go$Int], [Go$Int], false]];
-	var RegisterFormat = go$pkg.RegisterFormat = function(name, magic, decode, decodeConfig) {
+Ç8	go$pkg.ErrFormat = null;
+	var formats = (go$sliceType(format)).nil;
+	go$pkg.ZP = new Point.Ptr();
+	go$pkg.ZR = new Rectangle.Ptr();
+	go$pkg.Black = (go$ptrType(Uniform)).nil;
+	go$pkg.White = (go$ptrType(Uniform)).nil;
+	go$pkg.Transparent = (go$ptrType(Uniform)).nil;
+	go$pkg.Opaque = (go$ptrType(Uniform)).nil;
+0Ém—0Å∆RegisterFormatÅ≥	var RegisterFormat = go$pkg.RegisterFormat = function(name, magic, decode, decodeConfig) {
 		formats = go$append(formats, new format.Ptr(name, magic, decode, decodeConfig));
 	};
-	var asReader = function(r) {
+0Ç	asReaderÅ¸	var asReader = function(r) {
 		var ok, _tuple, rr;
 		if (_tuple = (r !== null && reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
 			return rr;
 		}
 		return bufio.NewReader(r);
 	};
-	var match = function(magic, b) {
+0ÇÛmatchÇË	var match = function(magic, b) {
 		var _ref, _i, _slice, _index, c, i;
 		if (!((magic.length === b.length))) {
 			return false;
@@ -415,7 +418,7 @@ $$
 		}
 		return true;
 	};
-	var sniff = function(r) {
+0Ç	sniffÇ˛	var sniff = function(r) {
 		var _ref, _i, _slice, _index, _struct, f, _tuple, b, err, _struct$1;
 		_ref = formats;
 		_i = 0;
@@ -428,7 +431,7 @@ $$
 		}
 		return new format.Ptr("", "", go$throwNilPointerError, go$throwNilPointerError);
 	};
-	var Decode = go$pkg.Decode = function(r) {
+0ÇîDecodeÇà	var Decode = go$pkg.Decode = function(r) {
 		var rr, _struct, f, _tuple, m, err;
 		rr = asReader(r);
 		f = (_struct = sniff(rr), new format.Ptr(_struct.name, _struct.magic, _struct.decode, _struct.decodeConfig));
@@ -438,7 +441,7 @@ $$
 		_tuple = f.decode(rr), m = _tuple[0], err = _tuple[1];
 		return [m, f.name, err];
 	};
-	var DecodeConfig = go$pkg.DecodeConfig = function(r) {
+0ÇåDecodeConfigÇz	var DecodeConfig = go$pkg.DecodeConfig = function(r) {
 		var rr, _struct, f, _tuple, _struct$1, c, err, _struct$2;
 		rr = asReader(r);
 		f = (_struct = sniff(rr), new format.Ptr(_struct.name, _struct.magic, _struct.decode, _struct.decodeConfig));
@@ -448,43 +451,43 @@ $$
 		_tuple = f.decodeConfig(rr), c = (_struct$1 = _tuple[0], new Config.Ptr(_struct$1.ColorModel, _struct$1.Width, _struct$1.Height)), err = _tuple[1];
 		return [(_struct$2 = c, new Config.Ptr(_struct$2.ColorModel, _struct$2.Width, _struct$2.Height)), f.name, err];
 	};
-	Point.Ptr.prototype.String = function() {
+0ÇStringÇ	Point.Ptr.prototype.String = function() {
 		var _struct, p;
 		p = (_struct = this, new Point.Ptr(_struct.X, _struct.Y));
 		return "(" + strconv.Itoa(p.X) + "," + strconv.Itoa(p.Y) + ")";
 	};
 	Point.prototype.String = function() { return this.go$val.String(); };
-	Point.Ptr.prototype.Add = function(q) {
+0ÅˇAddÅ˜	Point.Ptr.prototype.Add = function(q) {
 		var _struct, p;
 		p = (_struct = this, new Point.Ptr(_struct.X, _struct.Y));
 		return new Point.Ptr(p.X + q.X >> 0, p.Y + q.Y >> 0);
 	};
 	Point.prototype.Add = function(q) { return this.go$val.Add(q); };
-	Point.Ptr.prototype.Sub = function(q) {
+0ÅˇSubÅ˜	Point.Ptr.prototype.Sub = function(q) {
 		var _struct, p;
 		p = (_struct = this, new Point.Ptr(_struct.X, _struct.Y));
 		return new Point.Ptr(p.X - q.X >> 0, p.Y - q.Y >> 0);
 	};
 	Point.prototype.Sub = function(q) { return this.go$val.Sub(q); };
-	Point.Ptr.prototype.Mul = function(k) {
+0ÇzMulÇq	Point.Ptr.prototype.Mul = function(k) {
 		var _struct, p, x, x$1;
 		p = (_struct = this, new Point.Ptr(_struct.X, _struct.Y));
 		return new Point.Ptr((x = p.X, (((x >>> 16 << 16) * k >> 0) + (x << 16 >>> 16) * k) >> 0), (x$1 = p.Y, (((x$1 >>> 16 << 16) * k >> 0) + (x$1 << 16 >>> 16) * k) >> 0));
 	};
 	Point.prototype.Mul = function(k) { return this.go$val.Mul(k); };
-	Point.Ptr.prototype.Div = function(k) {
+0Ç‡DivÇ◊	Point.Ptr.prototype.Div = function(k) {
 		var _struct, p, _q, _q$1;
 		p = (_struct = this, new Point.Ptr(_struct.X, _struct.Y));
 		return new Point.Ptr((_q = p.X / k, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), (_q$1 = p.Y / k, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")));
 	};
 	Point.prototype.Div = function(k) { return this.go$val.Div(k); };
-	Point.Ptr.prototype.In = function(r) {
+0ÇInÇ		Point.Ptr.prototype.In = function(r) {
 		var _struct, p;
 		p = (_struct = this, new Point.Ptr(_struct.X, _struct.Y));
 		return r.Min.X <= p.X && p.X < r.Max.X && r.Min.Y <= p.Y && p.Y < r.Max.Y;
 	};
 	Point.prototype.In = function(r) { return this.go$val.In(r); };
-	Point.Ptr.prototype.Mod = function(r) {
+0ÇdModÇ[	Point.Ptr.prototype.Mod = function(r) {
 		var _struct, p, _tuple, w, h, _struct$1, _struct$2, _r, _r$1, _struct$3, _struct$4;
 		p = (_struct = this, new Point.Ptr(_struct.X, _struct.Y));
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
@@ -500,52 +503,52 @@ $$
 		return (_struct$4 = p.Add((_struct$3 = r.Min, new Point.Ptr(_struct$3.X, _struct$3.Y))), new Point.Ptr(_struct$4.X, _struct$4.Y));
 	};
 	Point.prototype.Mod = function(r) { return this.go$val.Mod(r); };
-	Point.Ptr.prototype.Eq = function(q) {
+0ÅÏEqÅÂ	Point.Ptr.prototype.Eq = function(q) {
 		var _struct, p;
 		p = (_struct = this, new Point.Ptr(_struct.X, _struct.Y));
 		return (p.X === q.X) && (p.Y === q.Y);
 	};
 	Point.prototype.Eq = function(q) { return this.go$val.Eq(q); };
-	var Pt = go$pkg.Pt = function(X, Y) {
+0OPtI	var Pt = go$pkg.Pt = function(X, Y) {
 		return new Point.Ptr(X, Y);
 	};
-	Rectangle.Ptr.prototype.String = function() {
+0ÇïStringÇâ	Rectangle.Ptr.prototype.String = function() {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		return r.Min.String() + "-" + r.Max.String();
 	};
 	Rectangle.prototype.String = function() { return this.go$val.String(); };
-	Rectangle.Ptr.prototype.Dx = function() {
+0ÇvDxÇn	Rectangle.Ptr.prototype.Dx = function() {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		return r.Max.X - r.Min.X >> 0;
 	};
 	Rectangle.prototype.Dx = function() { return this.go$val.Dx(); };
-	Rectangle.Ptr.prototype.Dy = function() {
+0ÇvDyÇn	Rectangle.Ptr.prototype.Dy = function() {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		return r.Max.Y - r.Min.Y >> 0;
 	};
 	Rectangle.prototype.Dy = function() { return this.go$val.Dy(); };
-	Rectangle.Ptr.prototype.Size = function() {
+0Ç•SizeÇõ	Rectangle.Ptr.prototype.Size = function() {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		return new Point.Ptr(r.Max.X - r.Min.X >> 0, r.Max.Y - r.Min.Y >> 0);
 	};
 	Rectangle.prototype.Size = function() { return this.go$val.Size(); };
-	Rectangle.Ptr.prototype.Add = function(p) {
+0ÇÊAddÇ›	Rectangle.Ptr.prototype.Add = function(p) {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		return new Rectangle.Ptr(new Point.Ptr(r.Min.X + p.X >> 0, r.Min.Y + p.Y >> 0), new Point.Ptr(r.Max.X + p.X >> 0, r.Max.Y + p.Y >> 0));
 	};
 	Rectangle.prototype.Add = function(p) { return this.go$val.Add(p); };
-	Rectangle.Ptr.prototype.Sub = function(p) {
+0ÇÊSubÇ›	Rectangle.Ptr.prototype.Sub = function(p) {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		return new Rectangle.Ptr(new Point.Ptr(r.Min.X - p.X >> 0, r.Min.Y - p.Y >> 0), new Point.Ptr(r.Max.X - p.X >> 0, r.Max.Y - p.Y >> 0));
 	};
 	Rectangle.prototype.Sub = function(p) { return this.go$val.Sub(p); };
-	Rectangle.Ptr.prototype.Inset = function(n) {
+0ÇInsetÇ	Rectangle.Ptr.prototype.Inset = function(n) {
 		var _struct, _struct$1, _struct$2, r, x, _q, x$1, _q$1, _struct$3, _struct$4, _struct$5;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (r.Dx() < (x = 2, (((x >>> 16 << 16) * n >> 0) + (x << 16 >>> 16) * n) >> 0)) {
@@ -565,7 +568,7 @@ $$
 		return (_struct$3 = r, new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
 	};
 	Rectangle.prototype.Inset = function(n) { return this.go$val.Inset(n); };
-	Rectangle.Ptr.prototype.Intersect = function(s) {
+0Ç9	IntersectÇ*	Rectangle.Ptr.prototype.Intersect = function(s) {
 		var _struct, _struct$1, _struct$2, r, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (r.Min.X < s.Min.X) {
@@ -586,7 +589,7 @@ $$
 		return (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y))));
 	};
 	Rectangle.prototype.Intersect = function(s) { return this.go$val.Intersect(s); };
-	Rectangle.Ptr.prototype.Union = function(s) {
+0ÇUnionÇ	Rectangle.Ptr.prototype.Union = function(s) {
 		var _struct, _struct$1, _struct$2, r, _struct$3, _struct$4, _struct$5;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (r.Min.X > s.Min.X) {
@@ -604,25 +607,25 @@ $$
 		return (_struct$3 = r, new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
 	};
 	Rectangle.prototype.Union = function(s) { return this.go$val.Union(s); };
-	Rectangle.Ptr.prototype.Empty = function() {
+0ÇîEmptyÇâ	Rectangle.Ptr.prototype.Empty = function() {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		return r.Min.X >= r.Max.X || r.Min.Y >= r.Max.Y;
 	};
 	Rectangle.prototype.Empty = function() { return this.go$val.Empty(); };
-	Rectangle.Ptr.prototype.Eq = function(s) {
+0Ç√EqÇª	Rectangle.Ptr.prototype.Eq = function(s) {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		return (r.Min.X === s.Min.X) && (r.Min.Y === s.Min.Y) && (r.Max.X === s.Max.X) && (r.Max.Y === s.Max.Y);
 	};
 	Rectangle.prototype.Eq = function(s) { return this.go$val.Eq(s); };
-	Rectangle.Ptr.prototype.Overlaps = function(s) {
+0ÇÀOverlapsÇΩ	Rectangle.Ptr.prototype.Overlaps = function(s) {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		return r.Min.X < s.Max.X && s.Min.X < r.Max.X && r.Min.Y < s.Max.Y && s.Min.Y < r.Max.Y;
 	};
 	Rectangle.prototype.Overlaps = function(s) { return this.go$val.Overlaps(s); };
-	Rectangle.Ptr.prototype.In = function(s) {
+0ÇﬁInÇ÷	Rectangle.Ptr.prototype.In = function(s) {
 		var _struct, _struct$1, _struct$2, r;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (r.Empty()) {
@@ -631,7 +634,7 @@ $$
 		return s.Min.X <= r.Min.X && r.Max.X <= s.Max.X && s.Min.Y <= r.Min.Y && r.Max.Y <= s.Max.Y;
 	};
 	Rectangle.prototype.In = function(s) { return this.go$val.In(s); };
-	Rectangle.Ptr.prototype.Canon = function() {
+0Ç%CanonÇ	Rectangle.Ptr.prototype.Canon = function() {
 		var _struct, _struct$1, _struct$2, r, _tuple, _tuple$1, _struct$3, _struct$4, _struct$5;
 		r = (_struct = this, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (r.Max.X < r.Min.X) {
@@ -643,7 +646,7 @@ $$
 		return (_struct$3 = r, new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
 	};
 	Rectangle.prototype.Canon = function() { return this.go$val.Canon(); };
-	var Rect = go$pkg.Rect = function(x0, y0, x1, y1) {
+0ÇARectÇ7	var Rect = go$pkg.Rect = function(x0, y0, x1, y1) {
 		var _tuple, _tuple$1;
 		if (x0 > x1) {
 			_tuple = [x1, x0], x0 = _tuple[0], x1 = _tuple[1];
@@ -653,19 +656,20 @@ $$
 		}
 		return new Rectangle.Ptr(new Point.Ptr(x0, y0), new Point.Ptr(x1, y1));
 	};
-	RGBA.Ptr.prototype.ColorModel = function() {
+0Åæ
+ColorModelÅØ	RGBA.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return color.RGBAModel;
 	};
 	RGBA.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	RGBA.Ptr.prototype.Bounds = function() {
+0ÇlBoundsÇ`	RGBA.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	RGBA.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	RGBA.Ptr.prototype.At = function(x, y) {
+0ÇYAtÇQ	RGBA.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, x$1, i, x$2, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -675,13 +679,13 @@ $$
 		return (x$2 = new color.RGBA.Ptr((_slice = p.Pix, _index = (i + 0 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p.Pix, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = p.Pix, _index$2 = (i + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (_slice$3 = p.Pix, _index$3 = (i + 3 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))), new x$2.constructor.Struct(x$2));
 	};
 	RGBA.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	RGBA.Ptr.prototype.PixOffset = function(x, y) {
+0Ç±	PixOffsetÇ¢	RGBA.Ptr.prototype.PixOffset = function(x, y) {
 		var p, x$1, x$2, x$3, x$4;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + (x$3 = (x - p.Rect.Min.X >> 0), x$4 = 4, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) >> 0;
 	};
 	RGBA.prototype.PixOffset = function(x, y) { return this.go$val.PixOffset(x, y); };
-	RGBA.Ptr.prototype.Set = function(x, y, c) {
+0ÇËSetÇﬂ	RGBA.Ptr.prototype.Set = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, x$1, _struct$3, c1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -695,7 +699,7 @@ $$
 		_slice$3 = p.Pix, _index$3 = i + 3 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = c1.A) : go$throwRuntimeError("index out of range");
 	};
 	RGBA.prototype.Set = function(x, y, c) { return this.go$val.Set(x, y, c); };
-	RGBA.Ptr.prototype.SetRGBA = function(x, y, c) {
+0ÇˆSetRGBAÇÈ	RGBA.Ptr.prototype.SetRGBA = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -708,7 +712,7 @@ $$
 		_slice$3 = p.Pix, _index$3 = i + 3 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = c.A) : go$throwRuntimeError("index out of range");
 	};
 	RGBA.prototype.SetRGBA = function(x, y, c) { return this.go$val.SetRGBA(x, y, c); };
-	RGBA.Ptr.prototype.SubImage = function(r) {
+0ÇÂSubImageÇ◊	RGBA.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, i, _struct$6, _struct$7, _struct$8;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -719,7 +723,7 @@ $$
 		return new RGBA.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y)))));
 	};
 	RGBA.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	RGBA.Ptr.prototype.Opaque = function() {
+0ÇOpaqueÇ	RGBA.Ptr.prototype.Opaque = function() {
 		var p, x, x$1, _tuple, i0, i1, y, i, _slice, _index;
 		p = this;
 		if (p.Rect.Empty()) {
@@ -742,25 +746,26 @@ $$
 		return true;
 	};
 	RGBA.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewRGBA = go$pkg.NewRGBA = function(r) {
+0ÇûNewRGBAÇë	var NewRGBA = go$pkg.NewRGBA = function(r) {
 		var _tuple, w, h, x, x$1, buf, x$2, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
 		buf = (go$sliceType(Go$Uint8)).make((x = (x$1 = 4, (((x$1 >>> 16 << 16) * w >> 0) + (x$1 << 16 >>> 16) * w) >> 0), (((x >>> 16 << 16) * h >> 0) + (x << 16 >>> 16) * h) >> 0), 0, function() { return 0; });
 		return new RGBA.Ptr(buf, (x$2 = 4, (((x$2 >>> 16 << 16) * w >> 0) + (x$2 << 16 >>> 16) * w) >> 0), (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-	RGBA64.Ptr.prototype.ColorModel = function() {
+0Åƒ
+ColorModelÅµ	RGBA64.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return color.RGBA64Model;
 	};
 	RGBA64.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	RGBA64.Ptr.prototype.Bounds = function() {
+0ÇpBoundsÇd	RGBA64.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	RGBA64.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	RGBA64.Ptr.prototype.At = function(x, y) {
+0Ç	uAtÇ	m	RGBA64.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, x$1, i, x$2, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -770,13 +775,14 @@ $$
 		return (x$2 = new color.RGBA64.Ptr(((((_slice = p.Pix, _index = (i + 0 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$1 = p.Pix, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0, ((((_slice$2 = p.Pix, _index$2 = (i + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$3 = p.Pix, _index$3 = (i + 3 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0, ((((_slice$4 = p.Pix, _index$4 = (i + 4 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$5 = p.Pix, _index$5 = (i + 5 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0, ((((_slice$6 = p.Pix, _index$6 = (i + 6 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$7 = p.Pix, _index$7 = (i + 7 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0), new x$2.constructor.Struct(x$2));
 	};
 	RGBA64.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	RGBA64.Ptr.prototype.PixOffset = function(x, y) {
+0Çµ	PixOffsetÇ¶	RGBA64.Ptr.prototype.PixOffset = function(x, y) {
 		var p, x$1, x$2, x$3, x$4;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + (x$3 = (x - p.Rect.Min.X >> 0), x$4 = 8, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) >> 0;
 	};
 	RGBA64.prototype.PixOffset = function(x, y) { return this.go$val.PixOffset(x, y); };
-	RGBA64.Ptr.prototype.Set = function(x, y, c) {
+0Ç
+SetÇ	˚	RGBA64.Ptr.prototype.Set = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, x$1, _struct$3, c1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -794,7 +800,7 @@ $$
 		_slice$7 = p.Pix, _index$7 = i + 7 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (c1.A << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
 	RGBA64.prototype.Set = function(x, y, c) { return this.go$val.Set(x, y, c); };
-	RGBA64.Ptr.prototype.SetRGBA64 = function(x, y, c) {
+0Ç		SetRGBA64Çˇ	RGBA64.Ptr.prototype.SetRGBA64 = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -811,7 +817,7 @@ $$
 		_slice$7 = p.Pix, _index$7 = i + 7 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (c.A << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
 	RGBA64.prototype.SetRGBA64 = function(x, y, c) { return this.go$val.SetRGBA64(x, y, c); };
-	RGBA64.Ptr.prototype.SubImage = function(r) {
+0ÇÌSubImageÇﬂ	RGBA64.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, i, _struct$6, _struct$7, _struct$8;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -822,7 +828,7 @@ $$
 		return new RGBA64.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y)))));
 	};
 	RGBA64.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	RGBA64.Ptr.prototype.Opaque = function() {
+0Ç¯OpaqueÇÏ	RGBA64.Ptr.prototype.Opaque = function() {
 		var p, x, x$1, _tuple, i0, i1, y, i, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (p.Rect.Empty()) {
@@ -845,25 +851,26 @@ $$
 		return true;
 	};
 	RGBA64.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewRGBA64 = go$pkg.NewRGBA64 = function(r) {
+0Ç¶	NewRGBA64Çó	var NewRGBA64 = go$pkg.NewRGBA64 = function(r) {
 		var _tuple, w, h, x, x$1, pix, x$2, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
 		pix = (go$sliceType(Go$Uint8)).make((x = (x$1 = 8, (((x$1 >>> 16 << 16) * w >> 0) + (x$1 << 16 >>> 16) * w) >> 0), (((x >>> 16 << 16) * h >> 0) + (x << 16 >>> 16) * h) >> 0), 0, function() { return 0; });
 		return new RGBA64.Ptr(pix, (x$2 = 8, (((x$2 >>> 16 << 16) * w >> 0) + (x$2 << 16 >>> 16) * w) >> 0), (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-	NRGBA.Ptr.prototype.ColorModel = function() {
+0Å¡
+ColorModelÅ≤	NRGBA.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return color.NRGBAModel;
 	};
 	NRGBA.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	NRGBA.Ptr.prototype.Bounds = function() {
+0ÇnBoundsÇb	NRGBA.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	NRGBA.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	NRGBA.Ptr.prototype.At = function(x, y) {
+0Ç]AtÇU	NRGBA.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, x$1, i, x$2, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -873,13 +880,13 @@ $$
 		return (x$2 = new color.NRGBA.Ptr((_slice = p.Pix, _index = (i + 0 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p.Pix, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = p.Pix, _index$2 = (i + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (_slice$3 = p.Pix, _index$3 = (i + 3 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))), new x$2.constructor.Struct(x$2));
 	};
 	NRGBA.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	NRGBA.Ptr.prototype.PixOffset = function(x, y) {
+0Ç≥	PixOffsetÇ§	NRGBA.Ptr.prototype.PixOffset = function(x, y) {
 		var p, x$1, x$2, x$3, x$4;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + (x$3 = (x - p.Rect.Min.X >> 0), x$4 = 4, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) >> 0;
 	};
 	NRGBA.prototype.PixOffset = function(x, y) { return this.go$val.PixOffset(x, y); };
-	NRGBA.Ptr.prototype.Set = function(x, y, c) {
+0ÇÓSetÇÂ	NRGBA.Ptr.prototype.Set = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, x$1, _struct$3, c1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -893,7 +900,7 @@ $$
 		_slice$3 = p.Pix, _index$3 = i + 3 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = c1.A) : go$throwRuntimeError("index out of range");
 	};
 	NRGBA.prototype.Set = function(x, y, c) { return this.go$val.Set(x, y, c); };
-	NRGBA.Ptr.prototype.SetNRGBA = function(x, y, c) {
+0Ç¸SetNRGBAÇÓ	NRGBA.Ptr.prototype.SetNRGBA = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -906,7 +913,7 @@ $$
 		_slice$3 = p.Pix, _index$3 = i + 3 >> 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = c.A) : go$throwRuntimeError("index out of range");
 	};
 	NRGBA.prototype.SetNRGBA = function(x, y, c) { return this.go$val.SetNRGBA(x, y, c); };
-	NRGBA.Ptr.prototype.SubImage = function(r) {
+0ÇÈSubImageÇ€	NRGBA.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, i, _struct$6, _struct$7, _struct$8;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -917,7 +924,7 @@ $$
 		return new NRGBA.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y)))));
 	};
 	NRGBA.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	NRGBA.Ptr.prototype.Opaque = function() {
+0ÇOpaqueÇ	NRGBA.Ptr.prototype.Opaque = function() {
 		var p, x, x$1, _tuple, i0, i1, y, i, _slice, _index;
 		p = this;
 		if (p.Rect.Empty()) {
@@ -940,25 +947,26 @@ $$
 		return true;
 	};
 	NRGBA.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewNRGBA = go$pkg.NewNRGBA = function(r) {
+0Ç¢NewNRGBAÇî	var NewNRGBA = go$pkg.NewNRGBA = function(r) {
 		var _tuple, w, h, x, x$1, pix, x$2, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
 		pix = (go$sliceType(Go$Uint8)).make((x = (x$1 = 4, (((x$1 >>> 16 << 16) * w >> 0) + (x$1 << 16 >>> 16) * w) >> 0), (((x >>> 16 << 16) * h >> 0) + (x << 16 >>> 16) * h) >> 0), 0, function() { return 0; });
 		return new NRGBA.Ptr(pix, (x$2 = 4, (((x$2 >>> 16 << 16) * w >> 0) + (x$2 << 16 >>> 16) * w) >> 0), (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-	NRGBA64.Ptr.prototype.ColorModel = function() {
+0Å«
+ColorModelÅ∏	NRGBA64.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return color.NRGBA64Model;
 	};
 	NRGBA64.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	NRGBA64.Ptr.prototype.Bounds = function() {
+0ÇrBoundsÇf	NRGBA64.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	NRGBA64.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	NRGBA64.Ptr.prototype.At = function(x, y) {
+0Ç	yAtÇ	q	NRGBA64.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, x$1, i, x$2, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -968,13 +976,16 @@ $$
 		return (x$2 = new color.NRGBA64.Ptr(((((_slice = p.Pix, _index = (i + 0 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$1 = p.Pix, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0, ((((_slice$2 = p.Pix, _index$2 = (i + 2 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$3 = p.Pix, _index$3 = (i + 3 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0, ((((_slice$4 = p.Pix, _index$4 = (i + 4 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$5 = p.Pix, _index$5 = (i + 5 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0, ((((_slice$6 = p.Pix, _index$6 = (i + 6 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$7 = p.Pix, _index$7 = (i + 7 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0), new x$2.constructor.Struct(x$2));
 	};
 	NRGBA64.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	NRGBA64.Ptr.prototype.PixOffset = function(x, y) {
+0Ç∑	PixOffsetÇ®	NRGBA64.Ptr.prototype.PixOffset = function(x, y) {
 		var p, x$1, x$2, x$3, x$4;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + (x$3 = (x - p.Rect.Min.X >> 0), x$4 = 8, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) >> 0;
 	};
 	NRGBA64.prototype.PixOffset = function(x, y) { return this.go$val.PixOffset(x, y); };
-	NRGBA64.Ptr.prototype.Set = function(x, y, c) {
+0Ç
+
+SetÇ
+	NRGBA64.Ptr.prototype.Set = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, x$1, _struct$3, c1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -992,7 +1003,8 @@ $$
 		_slice$7 = p.Pix, _index$7 = i + 7 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (c1.A << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
 	NRGBA64.prototype.Set = function(x, y, c) { return this.go$val.Set(x, y, c); };
-	NRGBA64.Ptr.prototype.SetNRGBA64 = function(x, y, c) {
+0Ç	
+SetNRGBA64Ç		NRGBA64.Ptr.prototype.SetNRGBA64 = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1009,7 +1021,7 @@ $$
 		_slice$7 = p.Pix, _index$7 = i + 7 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (c.A << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
 	NRGBA64.prototype.SetNRGBA64 = function(x, y, c) { return this.go$val.SetNRGBA64(x, y, c); };
-	NRGBA64.Ptr.prototype.SubImage = function(r) {
+0ÇÒSubImageÇ„	NRGBA64.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, i, _struct$6, _struct$7, _struct$8;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -1020,7 +1032,7 @@ $$
 		return new NRGBA64.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y)))));
 	};
 	NRGBA64.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	NRGBA64.Ptr.prototype.Opaque = function() {
+0Ç˙OpaqueÇÓ	NRGBA64.Ptr.prototype.Opaque = function() {
 		var p, x, x$1, _tuple, i0, i1, y, i, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (p.Rect.Empty()) {
@@ -1043,25 +1055,27 @@ $$
 		return true;
 	};
 	NRGBA64.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewNRGBA64 = go$pkg.NewNRGBA64 = function(r) {
+0Ç™
+NewNRGBA64Çö	var NewNRGBA64 = go$pkg.NewNRGBA64 = function(r) {
 		var _tuple, w, h, x, x$1, pix, x$2, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
 		pix = (go$sliceType(Go$Uint8)).make((x = (x$1 = 8, (((x$1 >>> 16 << 16) * w >> 0) + (x$1 << 16 >>> 16) * w) >> 0), (((x >>> 16 << 16) * h >> 0) + (x << 16 >>> 16) * h) >> 0), 0, function() { return 0; });
 		return new NRGBA64.Ptr(pix, (x$2 = 8, (((x$2 >>> 16 << 16) * w >> 0) + (x$2 << 16 >>> 16) * w) >> 0), (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-	Alpha.Ptr.prototype.ColorModel = function() {
+0Å¡
+ColorModelÅ≤	Alpha.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return color.AlphaModel;
 	};
 	Alpha.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	Alpha.Ptr.prototype.Bounds = function() {
+0ÇnBoundsÇb	Alpha.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	Alpha.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	Alpha.Ptr.prototype.At = function(x, y) {
+0ÇÎAtÇ„	Alpha.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, x$1, i, x$2, _slice, _index;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1071,13 +1085,13 @@ $$
 		return (x$2 = new color.Alpha.Ptr((_slice = p.Pix, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), new x$2.constructor.Struct(x$2));
 	};
 	Alpha.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	Alpha.Ptr.prototype.PixOffset = function(x, y) {
+0Ç≥	PixOffsetÇ§	Alpha.Ptr.prototype.PixOffset = function(x, y) {
 		var p, x$1, x$2, x$3, x$4;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + (x$3 = (x - p.Rect.Min.X >> 0), x$4 = 1, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) >> 0;
 	};
 	Alpha.prototype.PixOffset = function(x, y) { return this.go$val.PixOffset(x, y); };
-	Alpha.Ptr.prototype.Set = function(x, y, c) {
+0ÇSetÇ¯	Alpha.Ptr.prototype.Set = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, x$1, _slice, _index;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1087,7 +1101,7 @@ $$
 		_slice = p.Pix, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (x$1 = color.AlphaModel.Convert(c), (x$1 !== null && x$1.constructor === color.Alpha ? x$1.go$val : go$typeAssertionFailed(x$1, color.Alpha))).A) : go$throwRuntimeError("index out of range");
 	};
 	Alpha.prototype.Set = function(x, y, c) { return this.go$val.Set(x, y, c); };
-	Alpha.Ptr.prototype.SetAlpha = function(x, y, c) {
+0ÇÉSetAlphaÇu	Alpha.Ptr.prototype.SetAlpha = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1097,7 +1111,7 @@ $$
 		_slice = p.Pix, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = c.A) : go$throwRuntimeError("index out of range");
 	};
 	Alpha.prototype.SetAlpha = function(x, y, c) { return this.go$val.SetAlpha(x, y, c); };
-	Alpha.Ptr.prototype.SubImage = function(r) {
+0ÇÈSubImageÇ€	Alpha.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, i, _struct$6, _struct$7, _struct$8;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -1108,7 +1122,7 @@ $$
 		return new Alpha.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y)))));
 	};
 	Alpha.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	Alpha.Ptr.prototype.Opaque = function() {
+0ÇºOpaqueÇ∞	Alpha.Ptr.prototype.Opaque = function() {
 		var p, _tuple, i0, i1, y, i, _slice, _index;
 		p = this;
 		if (p.Rect.Empty()) {
@@ -1131,25 +1145,26 @@ $$
 		return true;
 	};
 	Alpha.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewAlpha = go$pkg.NewAlpha = function(r) {
+0Ç¢NewAlphaÇî	var NewAlpha = go$pkg.NewAlpha = function(r) {
 		var _tuple, w, h, x, x$1, pix, x$2, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
 		pix = (go$sliceType(Go$Uint8)).make((x = (x$1 = 1, (((x$1 >>> 16 << 16) * w >> 0) + (x$1 << 16 >>> 16) * w) >> 0), (((x >>> 16 << 16) * h >> 0) + (x << 16 >>> 16) * h) >> 0), 0, function() { return 0; });
 		return new Alpha.Ptr(pix, (x$2 = 1, (((x$2 >>> 16 << 16) * w >> 0) + (x$2 << 16 >>> 16) * w) >> 0), (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-	Alpha16.Ptr.prototype.ColorModel = function() {
+0Å«
+ColorModelÅ∏	Alpha16.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return color.Alpha16Model;
 	};
 	Alpha16.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	Alpha16.Ptr.prototype.Bounds = function() {
+0ÇrBoundsÇf	Alpha16.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	Alpha16.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	Alpha16.Ptr.prototype.At = function(x, y) {
+0ÇAtÇ˚	Alpha16.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, x$1, i, x$2, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1159,13 +1174,13 @@ $$
 		return (x$2 = new color.Alpha16.Ptr(((((_slice = p.Pix, _index = (i + 0 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$1 = p.Pix, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0), new x$2.constructor.Struct(x$2));
 	};
 	Alpha16.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	Alpha16.Ptr.prototype.PixOffset = function(x, y) {
+0Ç∑	PixOffsetÇ®	Alpha16.Ptr.prototype.PixOffset = function(x, y) {
 		var p, x$1, x$2, x$3, x$4;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + (x$3 = (x - p.Rect.Min.X >> 0), x$4 = 2, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) >> 0;
 	};
 	Alpha16.prototype.PixOffset = function(x, y) { return this.go$val.PixOffset(x, y); };
-	Alpha16.Ptr.prototype.Set = function(x, y, c) {
+0ÇdSetÇ[	Alpha16.Ptr.prototype.Set = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, x$1, _struct$3, c1, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1177,7 +1192,8 @@ $$
 		_slice$1 = p.Pix, _index$1 = i + 1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (c1.A << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
 	Alpha16.prototype.Set = function(x, y, c) { return this.go$val.Set(x, y, c); };
-	Alpha16.Ptr.prototype.SetAlpha16 = function(x, y, c) {
+0Çõ
+SetAlpha16Çã	Alpha16.Ptr.prototype.SetAlpha16 = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1188,7 +1204,7 @@ $$
 		_slice$1 = p.Pix, _index$1 = i + 1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (c.A << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
 	Alpha16.prototype.SetAlpha16 = function(x, y, c) { return this.go$val.SetAlpha16(x, y, c); };
-	Alpha16.Ptr.prototype.SubImage = function(r) {
+0ÇÒSubImageÇ„	Alpha16.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, i, _struct$6, _struct$7, _struct$8;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -1199,7 +1215,7 @@ $$
 		return new Alpha16.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y)))));
 	};
 	Alpha16.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	Alpha16.Ptr.prototype.Opaque = function() {
+0Ç˙OpaqueÇÓ	Alpha16.Ptr.prototype.Opaque = function() {
 		var p, x, x$1, _tuple, i0, i1, y, i, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (p.Rect.Empty()) {
@@ -1222,25 +1238,27 @@ $$
 		return true;
 	};
 	Alpha16.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewAlpha16 = go$pkg.NewAlpha16 = function(r) {
+0Ç™
+NewAlpha16Çö	var NewAlpha16 = go$pkg.NewAlpha16 = function(r) {
 		var _tuple, w, h, x, x$1, pix, x$2, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
 		pix = (go$sliceType(Go$Uint8)).make((x = (x$1 = 2, (((x$1 >>> 16 << 16) * w >> 0) + (x$1 << 16 >>> 16) * w) >> 0), (((x >>> 16 << 16) * h >> 0) + (x << 16 >>> 16) * h) >> 0), 0, function() { return 0; });
 		return new Alpha16.Ptr(pix, (x$2 = 2, (((x$2 >>> 16 << 16) * w >> 0) + (x$2 << 16 >>> 16) * w) >> 0), (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-	Gray.Ptr.prototype.ColorModel = function() {
+0Åæ
+ColorModelÅØ	Gray.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return color.GrayModel;
 	};
 	Gray.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	Gray.Ptr.prototype.Bounds = function() {
+0ÇlBoundsÇ`	Gray.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	Gray.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	Gray.Ptr.prototype.At = function(x, y) {
+0ÇÁAtÇﬂ	Gray.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, x$1, i, x$2, _slice, _index;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1250,13 +1268,13 @@ $$
 		return (x$2 = new color.Gray.Ptr((_slice = p.Pix, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), new x$2.constructor.Struct(x$2));
 	};
 	Gray.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	Gray.Ptr.prototype.PixOffset = function(x, y) {
+0Ç±	PixOffsetÇ¢	Gray.Ptr.prototype.PixOffset = function(x, y) {
 		var p, x$1, x$2, x$3, x$4;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + (x$3 = (x - p.Rect.Min.X >> 0), x$4 = 1, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) >> 0;
 	};
 	Gray.prototype.PixOffset = function(x, y) { return this.go$val.PixOffset(x, y); };
-	Gray.Ptr.prototype.Set = function(x, y, c) {
+0Ç¸SetÇÛ	Gray.Ptr.prototype.Set = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, x$1, _slice, _index;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1266,7 +1284,7 @@ $$
 		_slice = p.Pix, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (x$1 = color.GrayModel.Convert(c), (x$1 !== null && x$1.constructor === color.Gray ? x$1.go$val : go$typeAssertionFailed(x$1, color.Gray))).Y) : go$throwRuntimeError("index out of range");
 	};
 	Gray.prototype.Set = function(x, y, c) { return this.go$val.Set(x, y, c); };
-	Gray.Ptr.prototype.SetGray = function(x, y, c) {
+0Ç}SetGrayÇp	Gray.Ptr.prototype.SetGray = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1276,7 +1294,7 @@ $$
 		_slice = p.Pix, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = c.Y) : go$throwRuntimeError("index out of range");
 	};
 	Gray.prototype.SetGray = function(x, y, c) { return this.go$val.SetGray(x, y, c); };
-	Gray.Ptr.prototype.SubImage = function(r) {
+0ÇÂSubImageÇ◊	Gray.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, i, _struct$6, _struct$7, _struct$8;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -1287,31 +1305,32 @@ $$
 		return new Gray.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y)))));
 	};
 	Gray.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	Gray.Ptr.prototype.Opaque = function() {
+0Å£OpaqueÅò	Gray.Ptr.prototype.Opaque = function() {
 		var p;
 		p = this;
 		return true;
 	};
 	Gray.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewGray = go$pkg.NewGray = function(r) {
+0ÇûNewGrayÇë	var NewGray = go$pkg.NewGray = function(r) {
 		var _tuple, w, h, x, x$1, pix, x$2, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
 		pix = (go$sliceType(Go$Uint8)).make((x = (x$1 = 1, (((x$1 >>> 16 << 16) * w >> 0) + (x$1 << 16 >>> 16) * w) >> 0), (((x >>> 16 << 16) * h >> 0) + (x << 16 >>> 16) * h) >> 0), 0, function() { return 0; });
 		return new Gray.Ptr(pix, (x$2 = 1, (((x$2 >>> 16 << 16) * w >> 0) + (x$2 << 16 >>> 16) * w) >> 0), (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-	Gray16.Ptr.prototype.ColorModel = function() {
+0Åƒ
+ColorModelÅµ	Gray16.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return color.Gray16Model;
 	};
 	Gray16.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	Gray16.Ptr.prototype.Bounds = function() {
+0ÇpBoundsÇd	Gray16.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	Gray16.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	Gray16.Ptr.prototype.At = function(x, y) {
+0ÇˇAtÇ˜	Gray16.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, x$1, i, x$2, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1321,13 +1340,13 @@ $$
 		return (x$2 = new color.Gray16.Ptr(((((_slice = p.Pix, _index = (i + 0 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16) | ((_slice$1 = p.Pix, _index$1 = (i + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16)) >>> 0), new x$2.constructor.Struct(x$2));
 	};
 	Gray16.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	Gray16.Ptr.prototype.PixOffset = function(x, y) {
+0Çµ	PixOffsetÇ¶	Gray16.Ptr.prototype.PixOffset = function(x, y) {
 		var p, x$1, x$2, x$3, x$4;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + (x$3 = (x - p.Rect.Min.X >> 0), x$4 = 2, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) >> 0;
 	};
 	Gray16.prototype.PixOffset = function(x, y) { return this.go$val.PixOffset(x, y); };
-	Gray16.Ptr.prototype.Set = function(x, y, c) {
+0Ç^SetÇU	Gray16.Ptr.prototype.Set = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, x$1, _struct$3, c1, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1339,7 +1358,7 @@ $$
 		_slice$1 = p.Pix, _index$1 = i + 1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (c1.Y << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
 	Gray16.prototype.Set = function(x, y, c) { return this.go$val.Set(x, y, c); };
-	Gray16.Ptr.prototype.SetGray16 = function(x, y, c) {
+0Çï	SetGray16ÇÜ	Gray16.Ptr.prototype.SetGray16 = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1350,7 +1369,7 @@ $$
 		_slice$1 = p.Pix, _index$1 = i + 1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (c.Y << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
 	Gray16.prototype.SetGray16 = function(x, y, c) { return this.go$val.SetGray16(x, y, c); };
-	Gray16.Ptr.prototype.SubImage = function(r) {
+0ÇÌSubImageÇﬂ	Gray16.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, i, _struct$6, _struct$7, _struct$8;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -1361,31 +1380,32 @@ $$
 		return new Gray16.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y)))));
 	};
 	Gray16.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	Gray16.Ptr.prototype.Opaque = function() {
+0ÅßOpaqueÅú	Gray16.Ptr.prototype.Opaque = function() {
 		var p;
 		p = this;
 		return true;
 	};
 	Gray16.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewGray16 = go$pkg.NewGray16 = function(r) {
+0Ç¶	NewGray16Çó	var NewGray16 = go$pkg.NewGray16 = function(r) {
 		var _tuple, w, h, x, x$1, pix, x$2, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
 		pix = (go$sliceType(Go$Uint8)).make((x = (x$1 = 2, (((x$1 >>> 16 << 16) * w >> 0) + (x$1 << 16 >>> 16) * w) >> 0), (((x >>> 16 << 16) * h >> 0) + (x << 16 >>> 16) * h) >> 0), 0, function() { return 0; });
 		return new Gray16.Ptr(pix, (x$2 = 2, (((x$2 >>> 16 << 16) * w >> 0) + (x$2 << 16 >>> 16) * w) >> 0), (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-	Paletted.Ptr.prototype.ColorModel = function() {
+0Å¿
+ColorModelÅ±	Paletted.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return p.Palette;
 	};
 	Paletted.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	Paletted.Ptr.prototype.Bounds = function() {
+0ÇtBoundsÇh	Paletted.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	Paletted.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	Paletted.Ptr.prototype.At = function(x, y) {
+0ÇAtÇ	Paletted.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, _slice, _index, i, _slice$1, _index$1, _slice$2, _index$2;
 		p = this;
 		if (p.Palette.length === 0) {
@@ -1398,13 +1418,13 @@ $$
 		return (_slice$1 = p.Palette, _index$1 = (_slice$2 = p.Pix, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 	};
 	Paletted.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	Paletted.Ptr.prototype.PixOffset = function(x, y) {
+0Çπ	PixOffsetÇ™	Paletted.Ptr.prototype.PixOffset = function(x, y) {
 		var p, x$1, x$2, x$3, x$4;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.Stride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + (x$3 = (x - p.Rect.Min.X >> 0), x$4 = 1, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) >> 0;
 	};
 	Paletted.prototype.PixOffset = function(x, y) { return this.go$val.PixOffset(x, y); };
-	Paletted.Ptr.prototype.Set = function(x, y, c) {
+0ÇìSetÇä	Paletted.Ptr.prototype.Set = function(x, y, c) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1414,7 +1434,7 @@ $$
 		_slice = p.Pix, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (p.Palette.Index(c) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
 	Paletted.prototype.Set = function(x, y, c) { return this.go$val.Set(x, y, c); };
-	Paletted.Ptr.prototype.ColorIndexAt = function(x, y) {
+0ÇìColorIndexAtÇÅ	Paletted.Ptr.prototype.ColorIndexAt = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1424,7 +1444,7 @@ $$
 		return (_slice = p.Pix, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 	};
 	Paletted.prototype.ColorIndexAt = function(x, y) { return this.go$val.ColorIndexAt(x, y); };
-	Paletted.Ptr.prototype.SetColorIndex = function(x, y, index) {
+0Ç´SetColorIndexÇò	Paletted.Ptr.prototype.SetColorIndex = function(x, y, index) {
 		var p, _struct, _struct$1, _struct$2, i, _slice, _index;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1434,7 +1454,7 @@ $$
 		_slice = p.Pix, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = index) : go$throwRuntimeError("index out of range");
 	};
 	Paletted.prototype.SetColorIndex = function(x, y, index) { return this.go$val.SetColorIndex(x, y, index); };
-	Paletted.Ptr.prototype.SubImage = function(r) {
+0ÇÛSubImageÇÂ	Paletted.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, i, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -1445,7 +1465,7 @@ $$
 		return new Paletted.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$9 = p.Rect.Intersect((_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y))))), new Rectangle.Ptr((_struct$10 = _struct$9.Min, new Point.Ptr(_struct$10.X, _struct$10.Y)), (_struct$11 = _struct$9.Max, new Point.Ptr(_struct$11.X, _struct$11.Y)))), p.Palette);
 	};
 	Paletted.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	Paletted.Ptr.prototype.Opaque = function() {
+0Ç‹OpaqueÇ–	Paletted.Ptr.prototype.Opaque = function() {
 		var p, present, _tuple, i0, i1, y, _ref, _i, _slice, _index, c, _ref$1, _i$1, _slice$1, _index$1, c$1, i, _tuple$1, a;
 		p = this;
 		present = go$makeNativeArray("Bool", 256, function() { return false; });
@@ -1478,13 +1498,13 @@ $$
 		return true;
 	};
 	Paletted.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewPaletted = go$pkg.NewPaletted = function(r, p) {
+0Ç¥NewPalettedÇ£	var NewPaletted = go$pkg.NewPaletted = function(r, p) {
 		var _tuple, w, h, x, x$1, pix, x$2, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy()], w = _tuple[0], h = _tuple[1];
 		pix = (go$sliceType(Go$Uint8)).make((x = (x$1 = 1, (((x$1 >>> 16 << 16) * w >> 0) + (x$1 << 16 >>> 16) * w) >> 0), (((x >>> 16 << 16) * h >> 0) + (x << 16 >>> 16) * h) >> 0), 0, function() { return 0; });
 		return new Paletted.Ptr(pix, (x$2 = 1, (((x$2 >>> 16 << 16) * w >> 0) + (x$2 << 16 >>> 16) * w) >> 0), (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))), p);
 	};
-	Uniform.Ptr.prototype.RGBA = function() {
+0Ç5RGBAÇ+	Uniform.Ptr.prototype.RGBA = function() {
 		var r, g, b, a, c, _tuple;
 		r = 0;
 		g = 0;
@@ -1495,41 +1515,43 @@ $$
 		return [r, g, b, a];
 	};
 	Uniform.prototype.RGBA = function() { return this.go$val.RGBA(); };
-	Uniform.Ptr.prototype.ColorModel = function() {
+0Å∂
+ColorModelÅß	Uniform.Ptr.prototype.ColorModel = function() {
 		var c;
 		c = this;
 		return c;
 	};
 	Uniform.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	Uniform.Ptr.prototype.Convert = function() {
+0Å¨ConvertÅ†	Uniform.Ptr.prototype.Convert = function() {
 		var c;
 		c = this;
 		return c.C;
 	};
 	Uniform.prototype.Convert = function() { return this.go$val.Convert(); };
-	Uniform.Ptr.prototype.Bounds = function() {
+0ÇBoundsÅ˚	Uniform.Ptr.prototype.Bounds = function() {
 		var c;
 		c = this;
 		return new Rectangle.Ptr(new Point.Ptr(-1000000000, -1000000000), new Point.Ptr(1000000000, 1000000000));
 	};
 	Uniform.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	Uniform.Ptr.prototype.At = function(x, y) {
+0Å§AtÅù	Uniform.Ptr.prototype.At = function(x, y) {
 		var c;
 		c = this;
 		return c.C;
 	};
 	Uniform.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	Uniform.Ptr.prototype.Opaque = function() {
+0Å·OpaqueÅ÷	Uniform.Ptr.prototype.Opaque = function() {
 		var c, _tuple, a;
 		c = this;
 		_tuple = c.C.RGBA(), a = _tuple[3];
 		return a === 65535;
 	};
 	Uniform.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewUniform = go$pkg.NewUniform = function(c) {
+0c
+NewUniformU	var NewUniform = go$pkg.NewUniform = function(c) {
 		return new Uniform.Ptr(c);
 	};
-	YCbCrSubsampleRatio.prototype.String = function() {
+0ÇStringÇ	YCbCrSubsampleRatio.prototype.String = function() {
 		var s, _ref;
 		s = this.go$val;
 		_ref = s;
@@ -1545,19 +1567,20 @@ $$
 		return "YCbCrSubsampleRatioUnknown";
 	};
 	go$ptrType(YCbCrSubsampleRatio).prototype.String = function() { return new YCbCrSubsampleRatio(this.go$get()).String(); };
-	YCbCr.Ptr.prototype.ColorModel = function() {
+0Å¡
+ColorModelÅ≤	YCbCr.Ptr.prototype.ColorModel = function() {
 		var p;
 		p = this;
 		return color.YCbCrModel;
 	};
 	YCbCr.prototype.ColorModel = function() { return this.go$val.ColorModel(); };
-	YCbCr.Ptr.prototype.Bounds = function() {
+0ÇnBoundsÇb	YCbCr.Ptr.prototype.Bounds = function() {
 		var p, _struct, _struct$1, _struct$2;
 		p = this;
 		return (_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))));
 	};
 	YCbCr.prototype.Bounds = function() { return this.go$val.Bounds(); };
-	YCbCr.Ptr.prototype.At = function(x, y) {
+0ÇäAtÇÇ	YCbCr.Ptr.prototype.At = function(x, y) {
 		var p, _struct, _struct$1, _struct$2, x$1, yi, ci, x$2, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		p = this;
 		if (!(new Point.Ptr(x, y).In((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))))) {
@@ -1568,13 +1591,13 @@ $$
 		return (x$2 = new color.YCbCr.Ptr((_slice = p.Y, _index = yi, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p.Cb, _index$1 = ci, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = p.Cr, _index$2 = ci, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))), new x$2.constructor.Struct(x$2));
 	};
 	YCbCr.prototype.At = function(x, y) { return this.go$val.At(x, y); };
-	YCbCr.Ptr.prototype.YOffset = function(x, y) {
+0ÇPYOffsetÇC	YCbCr.Ptr.prototype.YOffset = function(x, y) {
 		var p, x$1, x$2;
 		p = this;
 		return (x$1 = (y - p.Rect.Min.Y >> 0), x$2 = p.YStride, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0) + ((x - p.Rect.Min.X >> 0)) >> 0;
 	};
 	YCbCr.prototype.YOffset = function(x, y) { return this.go$val.YOffset(x, y); };
-	YCbCr.Ptr.prototype.COffset = function(x, y) {
+0ÇøCOffsetÇ≤	YCbCr.Ptr.prototype.COffset = function(x, y) {
 		var p, _ref, x$1, x$2, _q, _q$1, x$3, _q$2, _q$3, x$4, _q$4, _q$5, x$5, _q$6, _q$7, x$6, x$7, x$8;
 		p = this;
 		_ref = p.SubsampleRatio;
@@ -1588,7 +1611,7 @@ $$
 		return (x$7 = (y - p.Rect.Min.Y >> 0), x$8 = p.CStride, (((x$7 >>> 16 << 16) * x$8 >> 0) + (x$7 << 16 >>> 16) * x$8) >> 0) + ((x - p.Rect.Min.X >> 0)) >> 0;
 	};
 	YCbCr.prototype.COffset = function(x, y) { return this.go$val.COffset(x, y); };
-	YCbCr.Ptr.prototype.SubImage = function(r) {
+0Ç≠SubImageÇü	YCbCr.Ptr.prototype.SubImage = function(r) {
 		var p, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, yi, ci, _struct$6, _struct$7, _struct$8;
 		p = this;
 		r = (_struct$3 = r.Intersect((_struct = p.Rect, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y))))), new Rectangle.Ptr((_struct$4 = _struct$3.Min, new Point.Ptr(_struct$4.X, _struct$4.Y)), (_struct$5 = _struct$3.Max, new Point.Ptr(_struct$5.X, _struct$5.Y))));
@@ -1600,13 +1623,13 @@ $$
 		return new YCbCr.Ptr(go$subslice(p.Y, yi), go$subslice(p.Cb, ci), go$subslice(p.Cr, ci), p.YStride, p.CStride, p.SubsampleRatio, (_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y)))));
 	};
 	YCbCr.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-	YCbCr.Ptr.prototype.Opaque = function() {
+0Å•OpaqueÅö	YCbCr.Ptr.prototype.Opaque = function() {
 		var p;
 		p = this;
 		return true;
 	};
 	YCbCr.prototype.Opaque = function() { return this.go$val.Opaque(); };
-	var NewYCbCr = go$pkg.NewYCbCr = function(r, subsampleRatio) {
+0Ç<NewYCbCrÇ.	var NewYCbCr = go$pkg.NewYCbCr = function(r, subsampleRatio) {
 		var _tuple, w, h, cw, ch, _ref, _q, _q$1, _q$2, _q$3, _q$4, _q$5, _q$6, _q$7, x, x$1, b, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, _struct, _struct$1, _struct$2;
 		_tuple = [r.Dx(), r.Dy(), 0, 0], w = _tuple[0], h = _tuple[1], cw = _tuple[2], ch = _tuple[3];
 		_ref = subsampleRatio;
@@ -1626,19 +1649,7 @@ $$
 		b = (go$sliceType(Go$Uint8)).make(((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x = (x$1 = 2, (((x$1 >>> 16 << 16) * cw >> 0) + (x$1 << 16 >>> 16) * cw) >> 0), (((x >>> 16 << 16) * ch >> 0) + (x << 16 >>> 16) * ch) >> 0) >> 0, 0, function() { return 0; });
 		return new YCbCr.Ptr(go$subslice(b, 0, ((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0)), go$subslice(b, ((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x$2 = (x$3 = 0, (((x$3 >>> 16 << 16) * cw >> 0) + (x$3 << 16 >>> 16) * cw) >> 0), (((x$2 >>> 16 << 16) * ch >> 0) + (x$2 << 16 >>> 16) * ch) >> 0) >> 0, (((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x$4 = (x$5 = 1, (((x$5 >>> 16 << 16) * cw >> 0) + (x$5 << 16 >>> 16) * cw) >> 0), (((x$4 >>> 16 << 16) * ch >> 0) + (x$4 << 16 >>> 16) * ch) >> 0) >> 0)), go$subslice(b, ((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x$6 = (x$7 = 1, (((x$7 >>> 16 << 16) * cw >> 0) + (x$7 << 16 >>> 16) * cw) >> 0), (((x$6 >>> 16 << 16) * ch >> 0) + (x$6 << 16 >>> 16) * ch) >> 0) >> 0, (((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x$8 = (x$9 = 2, (((x$9 >>> 16 << 16) * cw >> 0) + (x$9 << 16 >>> 16) * cw) >> 0), (((x$8 >>> 16 << 16) * ch >> 0) + (x$8 << 16 >>> 16) * ch) >> 0) >> 0)), w, cw, subsampleRatio, (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-	go$pkg.YCbCrSubsampleRatio444 = 0;
-	go$pkg.YCbCrSubsampleRatio422 = 1;
-	go$pkg.YCbCrSubsampleRatio420 = 2;
-	go$pkg.YCbCrSubsampleRatio440 = 3;
-	go$pkg.ErrFormat = null;
-	var formats = (go$sliceType(format)).nil;
-	go$pkg.ZP = new Point.Ptr();
-	go$pkg.ZR = new Rectangle.Ptr();
-	go$pkg.Black = (go$ptrType(Uniform)).nil;
-	go$pkg.White = (go$ptrType(Uniform)).nil;
-	go$pkg.Transparent = (go$ptrType(Uniform)).nil;
-	go$pkg.Opaque = (go$ptrType(Uniform)).nil;
-	go$pkg.init = function() {
+0Ç–initÇ∆	go$pkg.init = function() {
 		var x, x$1, x$2, x$3;
 		go$pkg.ErrFormat = errors.New("image: unknown format");
 		go$pkg.Black = NewUniform((x = color.Black, new x.constructor.Struct(x)));

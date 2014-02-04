@@ -1,4 +1,4 @@
-0É›†Ç[package flate
+0ÉﬁÎcompress/flateÇ[package flate
 import fmt "fmt"
 import io "io"
 import math "math"
@@ -101,13 +101,8 @@ type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error
 type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
-0Åìruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flateÉø¶	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var math = go$packages["math"];
-	var sort = go$packages["sort"];
-	var bufio = go$packages["bufio"];
-	var strconv = go$packages["strconv"];
-	var compressionLevel;
+0Åìruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flate0V0
+fmtfmt0ioio0mathmath0sortsort0bufiobufio0strconvstrconvÇIp	var compressionLevel;
 	compressionLevel = go$newType(0, "Struct", "flate.compressionLevel", "compressionLevel", "compress/flate", function(good_, lazy_, nice_, chain_, fastSkipHashing_) {
 		this.go$val = this;
 		this.good = good_ !== undefined ? good_ : 0;
@@ -298,7 +293,22 @@ $$
 	(go$ptrType(decompressor)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["copyData", "compress/flate", [], [], false], ["copyHist", "compress/flate", [], [Go$Bool], false], ["copyHuff", "compress/flate", [], [], false], ["dataBlock", "compress/flate", [], [], false], ["flush", "compress/flate", [(go$funcType([(go$ptrType(decompressor))], [], false))], [], false], ["huffSym", "compress/flate", [(go$ptrType(huffmanDecoder))], [Go$Int, go$error], false], ["huffmanBlock", "compress/flate", [], [], false], ["moreBits", "compress/flate", [], [go$error], false], ["nextBlock", "compress/flate", [], [], false], ["readHuffman", "compress/flate", [], [go$error], false], ["setDict", "compress/flate", [(go$sliceType(Go$Uint8))], [], false]];
 	token.methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
 	(go$ptrType(token)).methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
-	var forwardCopy = function(mem, dst, src, n) {
+Ç¨	var levels = (go$sliceType(compressionLevel)).nil;
+	var zeroes = go$makeNativeArray("Int", 32, function() { return 0; });
+	var bzeroes = go$makeNativeArray("Uint8", 256, function() { return 0; });
+	var fixedHuffmanDecoder = new huffmanDecoder.Ptr();
+	var lengthExtraBits = (go$sliceType(Go$Int8)).nil;
+	var lengthBase = (go$sliceType(Go$Uint32)).nil;
+	var offsetExtraBits = (go$sliceType(Go$Int8)).nil;
+	var offsetBase = (go$sliceType(Go$Uint32)).nil;
+	var codegenOrder = (go$sliceType(Go$Uint32)).nil;
+	var fixedLiteralEncoding = (go$ptrType(huffmanEncoder)).nil;
+	var fixedOffsetEncoding = (go$ptrType(huffmanEncoder)).nil;
+	var codeOrder = go$makeNativeArray("Int", 19, function() { return 0; });
+	var reverseByte = go$makeNativeArray("Uint8", 256, function() { return 0; });
+	var lengthCodes = go$makeNativeArray("Uint32", 256, function() { return 0; });
+	var offsetCodes = go$makeNativeArray("Uint32", 256, function() { return 0; });
+0Ése0ÇforwardCopyÇ		var forwardCopy = function(mem, dst, src, n) {
 		var k;
 		if (dst <= src) {
 			go$copySlice(go$subslice(mem, dst, (dst + n >> 0)), go$subslice(mem, src, (src + n >> 0)));
@@ -315,7 +325,7 @@ $$
 			dst = dst + (k) >> 0;
 		}
 	};
-	compressor.Ptr.prototype.fillDeflate = function(b) {
+0ÇFfillDeflateÇ5	compressor.Ptr.prototype.fillDeflate = function(b) {
 		var d, delta, _ref, _i, _slice, _index, v, i, _lhs, _index$1, _slice$1, _index$2, _slice$2, _index$3, _slice$3, _index$4, _ref$1, _i$1, _slice$4, _index$5, v$1, i$1, _lhs$1, _index$6, _slice$5, _index$7, _slice$6, _index$8, _slice$7, _index$9, n;
 		d = this;
 		if (d.index >= 65275) {
@@ -361,7 +371,8 @@ $$
 		return n;
 	};
 	compressor.prototype.fillDeflate = function(b) { return this.go$val.fillDeflate(b); };
-	compressor.Ptr.prototype.writeBlock = function(tokens, index, eof) {
+0Ç¯
+writeBlockÇË	compressor.Ptr.prototype.writeBlock = function(tokens, index, eof) {
 		var d, window;
 		d = this;
 		if (index > 0 || eof) {
@@ -376,7 +387,7 @@ $$
 		return null;
 	};
 	compressor.prototype.writeBlock = function(tokens, index, eof) { return this.go$val.writeBlock(tokens, index, eof); };
-	compressor.Ptr.prototype.findMatch = function(pos, prevHead, prevLength, lookahead) {
+0Ç%	findMatchÇ	compressor.Ptr.prototype.findMatch = function(pos, prevHead, prevLength, lookahead) {
 		var length, offset, ok, d, minMatchLook, win, nice, tries, _slice, _index, w0, _slice$1, _index$1, w1, _slice$2, _index$2, wEnd, minIndex, i, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, n, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9;
 		length = 0;
 		offset = 0;
@@ -428,7 +439,7 @@ $$
 		return [length, offset, ok];
 	};
 	compressor.prototype.findMatch = function(pos, prevHead, prevLength, lookahead) { return this.go$val.findMatch(pos, prevHead, prevLength, lookahead); };
-	compressor.Ptr.prototype.writeStoredBlock = function(buf) {
+0ÇkwriteStoredBlockÇU	compressor.Ptr.prototype.writeStoredBlock = function(buf) {
 		var d;
 		d = this;
 		if (d.w.writeStoredHeader(buf.length, false), !(go$interfaceIsEqual(d.w.err, null))) {
@@ -438,7 +449,7 @@ $$
 		return d.w.err;
 	};
 	compressor.prototype.writeStoredBlock = function(buf) { return this.go$val.writeStoredBlock(buf); };
-	compressor.Ptr.prototype.initDeflate = function() {
+0ÇsinitDeflateÇb	compressor.Ptr.prototype.initDeflate = function() {
 		var d;
 		d = this;
 		d.hashHead = (go$sliceType(Go$Int)).make(131072, 0, function() { return 0; });
@@ -454,7 +465,7 @@ $$
 		d.chainHead = -1;
 	};
 	compressor.prototype.initDeflate = function() { return this.go$val.initDeflate(); };
-	compressor.Ptr.prototype.deflate = function() {
+0ÇPdeflateÇC	compressor.Ptr.prototype.deflate = function() {
 		var d, _slice, _index, _slice$1, _index$1, lookahead, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, prevLength, prevOffset, minIndex, ok, _tuple, newLength, newOffset, newIndex, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, i, _slice$13, _index$13;
 		d = this;
 		if ((d.windowEnd - d.index >> 0) < 261 && !d.sync) {
@@ -570,7 +581,7 @@ $$
 		}
 	};
 	compressor.prototype.deflate = function() { return this.go$val.deflate(); };
-	compressor.Ptr.prototype.fillStore = function(b) {
+0Ç"	fillStoreÇ	compressor.Ptr.prototype.fillStore = function(b) {
 		var d, n;
 		d = this;
 		n = go$copySlice(go$subslice(d.window, d.windowEnd), b);
@@ -578,7 +589,7 @@ $$
 		return n;
 	};
 	compressor.prototype.fillStore = function(b) { return this.go$val.fillStore(b); };
-	compressor.Ptr.prototype.store = function() {
+0ÇstoreÇ	compressor.Ptr.prototype.store = function() {
 		var d;
 		d = this;
 		if (d.windowEnd > 0) {
@@ -587,7 +598,7 @@ $$
 		d.windowEnd = 0;
 	};
 	compressor.prototype.store = function() { return this.go$val.store(); };
-	compressor.Ptr.prototype.write = function(b) {
+0ÇïwriteÇä	compressor.Ptr.prototype.write = function(b) {
 		var n, err, d, _tuple;
 		n = 0;
 		err = null;
@@ -602,7 +613,7 @@ $$
 		return [n, err];
 	};
 	compressor.prototype.write = function(b) { return this.go$val.write(b); };
-	compressor.Ptr.prototype.syncFlush = function() {
+0Çc	syncFlushÇT	compressor.Ptr.prototype.syncFlush = function() {
 		var d;
 		d = this;
 		d.sync = true;
@@ -616,7 +627,7 @@ $$
 		return d.err;
 	};
 	compressor.prototype.syncFlush = function() { return this.go$val.syncFlush(); };
-	compressor.Ptr.prototype.init = function(w, level) {
+0Ç»initÇæ	compressor.Ptr.prototype.init = function(w, level) {
 		var err, d, b, _slice, _index, _struct, b$1, _slice$1, _index$1, _struct$1, b$2;
 		err = null;
 		d = this;
@@ -644,7 +655,7 @@ $$
 		return err;
 	};
 	compressor.prototype.init = function(w, level) { return this.go$val.init(w, level); };
-	compressor.Ptr.prototype.reset = function(w) {
+0Ç¶resetÇõ	compressor.Ptr.prototype.reset = function(w) {
 		var d, _ref, _ref$1, _i, i, _slice, _index, s, n, s$1, _tuple, s$2, n$1, _tuple$1, i$1, _slice$1, _index$1;
 		d = this;
 		d.w.reset(w);
@@ -693,7 +704,7 @@ $$
 		}
 	};
 	compressor.prototype.reset = function(w) { return this.go$val.reset(w); };
-	compressor.Ptr.prototype.close = function() {
+0ÇÑcloseÇy	compressor.Ptr.prototype.close = function() {
 		var d;
 		d = this;
 		d.sync = true;
@@ -708,7 +719,7 @@ $$
 		return d.w.err;
 	};
 	compressor.prototype.close = function() { return this.go$val.close(); };
-	var NewWriter = go$pkg.NewWriter = function(w, level) {
+0Å˝	NewWriterÅÔ	var NewWriter = go$pkg.NewWriter = function(w, level) {
 		var dw, err;
 		dw = new Writer.Ptr();
 		if (err = dw.d.init(w, level), !(go$interfaceIsEqual(err, null))) {
@@ -716,7 +727,7 @@ $$
 		}
 		return [dw, null];
 	};
-	var NewWriterDict = go$pkg.NewWriterDict = function(w, level, dict) {
+0ÇÆNewWriterDictÇõ	var NewWriterDict = go$pkg.NewWriterDict = function(w, level, dict) {
 		var dw, _tuple, zw, err;
 		dw = new dictWriter.Ptr(w, false);
 		_tuple = NewWriter(dw, level), zw = _tuple[0], err = _tuple[1];
@@ -729,7 +740,7 @@ $$
 		zw.dict = go$appendSlice(zw.dict, dict);
 		return [zw, err];
 	};
-	dictWriter.Ptr.prototype.Write = function(b) {
+0ÇåWriteÇÅ	dictWriter.Ptr.prototype.Write = function(b) {
 		var n, err, w, _tuple, _tuple$1;
 		n = 0;
 		err = null;
@@ -742,7 +753,7 @@ $$
 		return [n, err];
 	};
 	dictWriter.prototype.Write = function(b) { return this.go$val.Write(b); };
-	Writer.Ptr.prototype.Write = function(data) {
+0ÇWriteÇ	Writer.Ptr.prototype.Write = function(data) {
 		var n, err, w, _tuple;
 		n = 0;
 		err = null;
@@ -751,19 +762,19 @@ $$
 		return [n, err];
 	};
 	Writer.prototype.Write = function(data) { return this.go$val.Write(data); };
-	Writer.Ptr.prototype.Flush = function() {
+0ÅÆFlushÅ§	Writer.Ptr.prototype.Flush = function() {
 		var w;
 		w = this;
 		return w.d.syncFlush();
 	};
 	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
-	Writer.Ptr.prototype.Close = function() {
+0Å™CloseÅ†	Writer.Ptr.prototype.Close = function() {
 		var w;
 		w = this;
 		return w.d.close();
 	};
 	Writer.prototype.Close = function() { return this.go$val.Close(); };
-	Writer.Ptr.prototype.Reset = function(dst) {
+0Ç˛ResetÇÛ	Writer.Ptr.prototype.Reset = function(dst) {
 		var w, ok, _tuple, x, dw;
 		w = this;
 		if (_tuple = (x = w.d.w.w, (x !== null && x.constructor === (go$ptrType(dictWriter)) ? [x.go$val, true] : [(go$ptrType(dictWriter)).nil, false])), dw = _tuple[0], ok = _tuple[1], ok) {
@@ -778,10 +789,10 @@ $$
 		}
 	};
 	Writer.prototype.Reset = function(dst) { return this.go$val.Reset(dst); };
-	var newHuffmanBitWriter = function(w) {
+0Ç˛newHuffmanBitWriterÇÂ	var newHuffmanBitWriter = function(w) {
 		return new huffmanBitWriter.Ptr(w, 0, 0, go$makeNativeArray("Uint8", 64, function() { return 0; }), 0, (go$sliceType(Go$Int32)).make(286, 0, function() { return 0; }), (go$sliceType(Go$Int32)).make(30, 0, function() { return 0; }), (go$sliceType(Go$Uint8)).make(317, 0, function() { return 0; }), (go$sliceType(Go$Int32)).make(19, 0, function() { return 0; }), newHuffmanEncoder(286), newHuffmanEncoder(30), newHuffmanEncoder(19), null);
 	};
-	huffmanBitWriter.Ptr.prototype.reset = function(writer) {
+0Ç∆resetÇª	huffmanBitWriter.Ptr.prototype.reset = function(writer) {
 		var w, _tuple, _ref, _i, i, _slice, _index, _ref$1, _i$1, s, _ref$2, _i$2, i$1, _slice$1, _index$1, _ref$3, _i$3, enc, _ref$4, _i$4, i$2, _slice$2, _index$2, _ref$5, _i$5, i$3, _slice$3, _index$3;
 		w = this;
 		w.w = writer;
@@ -823,7 +834,7 @@ $$
 		}
 	};
 	huffmanBitWriter.prototype.reset = function(writer) { return this.go$val.reset(writer); };
-	huffmanBitWriter.Ptr.prototype.flushBits = function() {
+0Çv	flushBitsÇg	huffmanBitWriter.Ptr.prototype.flushBits = function() {
 		var w, bits, n, _tuple;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -843,7 +854,7 @@ $$
 		w.nbytes = n;
 	};
 	huffmanBitWriter.prototype.flushBits = function() { return this.go$val.flushBits(); };
-	huffmanBitWriter.Ptr.prototype.flush = function() {
+0ÇáflushÇ|	huffmanBitWriter.Ptr.prototype.flush = function() {
 		var w, n, _tuple;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -867,7 +878,7 @@ $$
 		w.nbytes = 0;
 	};
 	huffmanBitWriter.prototype.flush = function() { return this.go$val.flush(); };
-	huffmanBitWriter.Ptr.prototype.writeBits = function(b, nb) {
+0Çt	writeBitsÇe	huffmanBitWriter.Ptr.prototype.writeBits = function(b, nb) {
 		var w, y;
 		w = this;
 		w.bits = (w.bits | (((y = w.nbits, y < 32 ? ((b >>> 0) << y) : 0) >>> 0))) >>> 0;
@@ -876,7 +887,8 @@ $$
 		}
 	};
 	huffmanBitWriter.prototype.writeBits = function(b, nb) { return this.go$val.writeBits(b, nb); };
-	huffmanBitWriter.Ptr.prototype.writeBytes = function(bytes) {
+0Çˇ
+writeBytesÇÔ	huffmanBitWriter.Ptr.prototype.writeBytes = function(bytes) {
 		var w, n, _tuple, _tuple$1;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -902,7 +914,7 @@ $$
 		_tuple$1 = w.w.Write(bytes), w.err = _tuple$1[1];
 	};
 	huffmanBitWriter.prototype.writeBytes = function(bytes) { return this.go$val.writeBytes(bytes); };
-	huffmanBitWriter.Ptr.prototype.generateCodegen = function(numLiterals, numOffsets) {
+0ÇgenerateCodegenÇ˚	huffmanBitWriter.Ptr.prototype.generateCodegen = function(numLiterals, numOffsets) {
 		var w, _ref, _i, i, _slice, _index, codegen, _slice$1, _index$1, _slice$2, _index$2, size, count, outIndex, inIndex, _slice$3, _index$3, nextSize, _slice$4, _index$4, _lhs, _index$5, _slice$5, _index$6, _slice$6, _index$7, n, _slice$7, _index$8, _slice$8, _index$9, _lhs$1, _index$10, _slice$9, _index$11, _slice$10, _index$12, n$1, _slice$11, _index$13, _slice$12, _index$14, _lhs$2, _index$15, _slice$13, _index$16, _slice$14, _index$17, _slice$15, _index$18, _slice$16, _index$19, _lhs$3, _index$20, _slice$17, _index$21, _slice$18, _index$22, _slice$19, _index$23, _lhs$4, _index$24, _slice$20, _index$25, _slice$21, _index$26, _slice$22, _index$27;
 		w = this;
 		_ref = w.codegenFreq;
@@ -979,7 +991,7 @@ $$
 		_slice$22 = codegen, _index$27 = outIndex, (_index$27 >= 0 && _index$27 < _slice$22.length) ? (_slice$22.array[_slice$22.offset + _index$27] = 255) : go$throwRuntimeError("index out of range");
 	};
 	huffmanBitWriter.prototype.generateCodegen = function(numLiterals, numOffsets) { return this.go$val.generateCodegen(numLiterals, numOffsets); };
-	huffmanBitWriter.Ptr.prototype.writeCode = function(code, literal) {
+0Çª	writeCodeÇ¨	huffmanBitWriter.Ptr.prototype.writeCode = function(code, literal) {
 		var w, _slice, _index, _slice$1, _index$1;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -988,7 +1000,7 @@ $$
 		w.writeBits(((_slice = code.code, _index = literal, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0), ((_slice$1 = code.codeBits, _index$1 = literal, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0));
 	};
 	huffmanBitWriter.prototype.writeCode = function(code, literal) { return this.go$val.writeCode(code, literal); };
-	huffmanBitWriter.Ptr.prototype.writeDynamicHeader = function(numLiterals, numOffsets, numCodegens, isEof) {
+0Ç	ØwriteDynamicHeaderÇ	ó	huffmanBitWriter.Ptr.prototype.writeDynamicHeader = function(numLiterals, numOffsets, numCodegens, isEof) {
 		var w, firstBits, i, _slice, _index, _slice$1, _index$1, value, i$1, _slice$2, _index$2, codeWord, _ref, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -1036,7 +1048,7 @@ $$
 		}
 	};
 	huffmanBitWriter.prototype.writeDynamicHeader = function(numLiterals, numOffsets, numCodegens, isEof) { return this.go$val.writeDynamicHeader(numLiterals, numOffsets, numCodegens, isEof); };
-	huffmanBitWriter.Ptr.prototype.writeStoredHeader = function(length, isEof) {
+0ÇˆwriteStoredHeaderÇﬂ	huffmanBitWriter.Ptr.prototype.writeStoredHeader = function(length, isEof) {
 		var w, flag;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -1052,7 +1064,7 @@ $$
 		w.writeBits(((~(length << 16 >>> 16) << 16 >>> 16) >> 0), 16);
 	};
 	huffmanBitWriter.prototype.writeStoredHeader = function(length, isEof) { return this.go$val.writeStoredHeader(length, isEof); };
-	huffmanBitWriter.Ptr.prototype.writeFixedHeader = function(isEof) {
+0ÇnwriteFixedHeaderÇX	huffmanBitWriter.Ptr.prototype.writeFixedHeader = function(isEof) {
 		var w, value;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -1065,7 +1077,8 @@ $$
 		w.writeBits(value, 3);
 	};
 	huffmanBitWriter.prototype.writeFixedHeader = function(isEof) { return this.go$val.writeFixedHeader(isEof); };
-	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof, input) {
+0Ç.Ø
+writeBlockÇ.ü	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof, input) {
 		var w, _ref, _i, i, _slice, _index, _ref$1, _i$1, i$1, _slice$1, _index$1, n, _slice$2, _index$2, _ref$2, _i$2, _slice$3, _index$3, t, _ref$3, _lhs, _index$4, _slice$4, _index$5, _slice$5, _index$6, length, offset, _lhs$1, _index$7, _slice$6, _index$8, _slice$7, _index$9, _lhs$2, _index$10, _slice$8, _index$11, _slice$9, _index$12, numLiterals, _slice$10, _index$13, numOffsets, _slice$11, _index$14, _slice$12, _index$15, storedBytes, extraBits, storedSize, x, x$1, lengthCode$1, x$2, _slice$13, _index$16, _slice$14, _index$17, offsetCode$1, x$3, _slice$15, _index$18, _slice$16, _index$19, x$4, x$5, x$6, x$7, size, literalEncoding, offsetEncoding, numCodegens, _slice$17, _index$20, _slice$18, _index$21, x$8, x$9, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, _slice$19, _index$22, x$18, x$19, x$20, _slice$20, _index$23, x$21, x$22, x$23, _slice$21, _index$24, x$24, dynamicHeader, x$25, x$26, x$27, dynamicSize, _ref$4, _i$3, _slice$22, _index$25, t$1, _ref$5, length$1, lengthCode$2, _slice$23, _index$26, extraLengthBits, _slice$24, _index$27, extraLength, offset$1, offsetCode$2, _slice$25, _index$28, extraOffsetBits, _slice$26, _index$29, extraOffset;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -1195,13 +1208,13 @@ $$
 		}
 	};
 	huffmanBitWriter.prototype.writeBlock = function(tokens, eof, input) { return this.go$val.writeBlock(tokens, eof, input); };
-	var maxNode = function() {
+0\maxNodeQ	var maxNode = function() {
 		return new literalNode.Ptr(65535, 2147483647);
 	};
-	var newHuffmanEncoder = function(size) {
+0ÅÍnewHuffmanEncoderÅ‘	var newHuffmanEncoder = function(size) {
 		return new huffmanEncoder.Ptr((go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; }), (go$sliceType(Go$Uint16)).make(size, 0, function() { return 0; }));
 	};
-	var generateFixedLiteralEncoding = function() {
+0ÇhgenerateFixedLiteralEncodingÇF	var generateFixedLiteralEncoding = function() {
 		var h, codeBits, code, ch, bits, size, _slice, _index, _slice$1, _index$1;
 		h = newHuffmanEncoder(286);
 		codeBits = h.codeBits;
@@ -1236,7 +1249,7 @@ $$
 		}
 		return h;
 	};
-	var generateFixedOffsetEncoding = function() {
+0ÇëgenerateFixedOffsetEncodingÇp	var generateFixedOffsetEncoding = function() {
 		var h, codeBits, code, ch, _slice, _index, _slice$1, _index$1;
 		h = newHuffmanEncoder(30);
 		codeBits = h.codeBits;
@@ -1249,7 +1262,7 @@ $$
 		}
 		return h;
 	};
-	huffmanEncoder.Ptr.prototype.bitLength = function(freq) {
+0Ç`	bitLengthÇQ	huffmanEncoder.Ptr.prototype.bitLength = function(freq) {
 		var h, total, _ref, _i, _slice, _index, f, i, x, _slice$1, _index$1;
 		h = this;
 		total = new Go$Int64(0, 0);
@@ -1265,7 +1278,7 @@ $$
 		return total;
 	};
 	huffmanEncoder.prototype.bitLength = function(freq) { return this.go$val.bitLength(freq); };
-	huffmanEncoder.Ptr.prototype.bitCounts = function(list, maxBits) {
+0Ç”	bitCountsÇƒ	huffmanEncoder.Ptr.prototype.bitCounts = function(list, maxBits) {
 		var h, n, _struct, _slice, _index, levels$1, leafCounts, level, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, x, level$1, l, prevFreq, n$1, _slice$5, _index$5, bitCount, bits, counts, level$2, _slice$6, _index$6;
 		h = this;
 		if (maxBits >= 16) {
@@ -1336,7 +1349,7 @@ $$
 		return bitCount;
 	};
 	huffmanEncoder.prototype.bitCounts = function(list, maxBits) { return this.go$val.bitCounts(list, maxBits); };
-	huffmanEncoder.Ptr.prototype.assignEncodingAndSize = function(bitCount, list) {
+0Ç∞assignEncodingAndSizeÇï	huffmanEncoder.Ptr.prototype.assignEncodingAndSize = function(bitCount, list) {
 		var h, code, _ref, _i, _slice, _index, bits, n, chunk, _ref$1, _i$1, _slice$1, _index$1, _struct, node, _slice$2, _index$2, _slice$3, _index$3;
 		h = this;
 		code = 0;
@@ -1363,7 +1376,7 @@ $$
 		}
 	};
 	huffmanEncoder.prototype.assignEncodingAndSize = function(bitCount, list) { return this.go$val.assignEncodingAndSize(bitCount, list); };
-	huffmanEncoder.Ptr.prototype.generate = function(freq, maxBits) {
+0Ç¥generateÇ¶	huffmanEncoder.Ptr.prototype.generate = function(freq, maxBits) {
 		var h, list, count, _ref, _i, _slice, _index, f, i, _slice$1, _index$1, _slice$2, _index$2, _ref$1, _i$1, _slice$3, _index$3, _struct, node, i$1, _slice$4, _index$4, _slice$5, _index$5, bitCount;
 		h = this;
 		list = (go$sliceType(literalNode)).make(freq.length + 1 >> 0, 0, function() { return new literalNode.Ptr(); });
@@ -1398,25 +1411,26 @@ $$
 		h.assignEncodingAndSize(bitCount, list);
 	};
 	huffmanEncoder.prototype.generate = function(freq, maxBits) { return this.go$val.generate(freq, maxBits); };
-	literalNodeSorter.Ptr.prototype.Len = function() {
+0Ç LenÅ¯	literalNodeSorter.Ptr.prototype.Len = function() {
 		var _struct, s;
 		s = (_struct = this, new literalNodeSorter.Ptr(_struct.a, _struct.less));
 		return s.a.length;
 	};
 	literalNodeSorter.prototype.Len = function() { return this.go$val.Len(); };
-	literalNodeSorter.Ptr.prototype.Less = function(i, j) {
+0ÇLessÇ		literalNodeSorter.Ptr.prototype.Less = function(i, j) {
 		var _struct, s;
 		s = (_struct = this, new literalNodeSorter.Ptr(_struct.a, _struct.less));
 		return s.less(i, j);
 	};
 	literalNodeSorter.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
-	literalNodeSorter.Ptr.prototype.Swap = function(i, j) {
+0Ç´SwapÇ°	literalNodeSorter.Ptr.prototype.Swap = function(i, j) {
 		var _struct, s, _slice, _index, _struct$1, _slice$1, _index$1, _struct$2, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		s = (_struct = this, new literalNodeSorter.Ptr(_struct.a, _struct.less));
 		_tuple = [(_struct$1 = (_slice = s.a, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new literalNode.Ptr(_struct$1.literal, _struct$1.freq)), (_struct$2 = (_slice$1 = s.a, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new literalNode.Ptr(_struct$2.literal, _struct$2.freq))], _slice$2 = s.a, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = s.a, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	literalNodeSorter.prototype.Swap = function(i, j) { return this.go$val.Swap(i, j); };
-	var sortByFreq = function(a) {
+0Ç*
+sortByFreqÇ	var sortByFreq = function(a) {
 		var s;
 		s = new literalNodeSorter.Ptr(a, (function(i, j) {
 			var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
@@ -1427,7 +1441,7 @@ $$
 		}));
 		sort.Sort(s);
 	};
-	var sortByLiteral = function(a) {
+0ÇsortByLiteralÇ 	var sortByLiteral = function(a) {
 		var s;
 		s = new literalNodeSorter.Ptr(a, (function(i, j) {
 			var _slice, _index, _slice$1, _index$1;
@@ -1435,31 +1449,31 @@ $$
 		}));
 		sort.Sort(s);
 	};
-	CorruptInputError.prototype.Error = function() {
+0ÇErrorÇ	CorruptInputError.prototype.Error = function() {
 		var e;
 		e = this;
 		return "flate: corrupt input before offset " + strconv.FormatInt(new Go$Int64(e.high, e.low), 10);
 	};
 	go$ptrType(CorruptInputError).prototype.Error = function() { return this.go$get().Error(); };
-	InternalError.prototype.Error = function() {
+0ÅÓErrorÅ‰	InternalError.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return "flate: internal error: " + e;
 	};
 	go$ptrType(InternalError).prototype.Error = function() { return new InternalError(this.go$get()).Error(); };
-	ReadError.Ptr.prototype.Error = function() {
+0Å¸ErrorÅÚ	ReadError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "flate: read error at offset " + strconv.FormatInt(e.Offset, 10) + ": " + e.Err.Error();
 	};
 	ReadError.prototype.Error = function() { return this.go$val.Error(); };
-	WriteError.Ptr.prototype.Error = function() {
+0ÅˇErrorÅı	WriteError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "flate: write error at offset " + strconv.FormatInt(e.Offset, 10) + ": " + e.Err.Error();
 	};
 	WriteError.prototype.Error = function() { return this.go$val.Error(); };
-	huffmanDecoder.Ptr.prototype.init = function(bits) {
+0ÇlinitÇb	huffmanDecoder.Ptr.prototype.init = function(bits) {
 		var h, l, r, count, _tuple, min, max, _ref, _i, _slice, _index, n, _lhs, _index$1, linkBits, numLinks, y, code, nextcode, i, link, j, reverse, off, y$1, _slice$1, _index$2, n$1, _ref$1, _i$1, _slice$2, _index$3, n$2, i$1, code$1, _lhs$1, _index$4, chunk, reverse$1, off$1, y$2, value, _slice$3, _index$5, linktab, off$2, _slice$4, _index$6, y$3;
 		h = this;
 		if (!((h.min === 0))) {
@@ -1555,7 +1569,7 @@ $$
 		return true;
 	};
 	huffmanDecoder.prototype.init = function(bits) { return this.go$val.init(bits); };
-	decompressor.Ptr.prototype.nextBlock = function() {
+0Ç6	nextBlockÇ'	decompressor.Ptr.prototype.nextBlock = function() {
 		var f, typ, _ref, x;
 		f = this;
 		if (f.final$15) {
@@ -1598,7 +1612,7 @@ $$
 		}
 	};
 	decompressor.prototype.nextBlock = function() { return this.go$val.nextBlock(); };
-	decompressor.Ptr.prototype.Read = function(b) {
+0ÇïReadÇã	decompressor.Ptr.prototype.Read = function(b) {
 		var f, n;
 		f = this;
 		while (true) {
@@ -1614,7 +1628,7 @@ $$
 		}
 	};
 	decompressor.prototype.Read = function(b) { return this.go$val.Read(b); };
-	decompressor.Ptr.prototype.Close = function() {
+0ÅCloseÅÊ	decompressor.Ptr.prototype.Close = function() {
 		var f;
 		f = this;
 		if (go$interfaceIsEqual(f.err, io.EOF)) {
@@ -1623,7 +1637,8 @@ $$
 		return f.err;
 	};
 	decompressor.prototype.Close = function() { return this.go$val.Close(); };
-	decompressor.Ptr.prototype.readHuffman = function() {
+0Ç readHuffmanÇ
+Ô	decompressor.Ptr.prototype.readHuffman = function() {
 		var f, err, nlit, x, ndist, nclen, i, err$1, i$1, x$1, _tuple, i$2, n, _tuple$1, x$2, err$2, rep, nb, b, _ref, x$3, err$3, y, y$1, x$4, j, x$5;
 		f = this;
 		while (f.nb < 14) {
@@ -1718,7 +1733,7 @@ $$
 		return null;
 	};
 	decompressor.prototype.readHuffman = function() { return this.go$val.readHuffman(); };
-	decompressor.Ptr.prototype.huffmanBlock = function() {
+0ÇåhuffmanBlockÇz	decompressor.Ptr.prototype.huffmanBlock = function() {
 		var f, _tuple, v, err, n, length, x, x$1, x$2, x$3, x$4, y, y$1, dist, _tuple$1, x$5, nb, y$2, extra, y$3, y$4, y$5, x$6, _tuple$2;
 		f = this;
 		while (true) {
@@ -1824,7 +1839,7 @@ $$
 		}
 	};
 	decompressor.prototype.huffmanBlock = function() { return this.go$val.huffmanBlock(); };
-	decompressor.Ptr.prototype.copyHist = function() {
+0Ç€copyHistÇÕ	decompressor.Ptr.prototype.copyHist = function() {
 		var f, p, n, x, x$1;
 		f = this;
 		p = f.hp - f.copyDist >> 0;
@@ -1854,7 +1869,7 @@ $$
 		return false;
 	};
 	decompressor.prototype.copyHist = function() { return this.go$val.copyHist(); };
-	decompressor.Ptr.prototype.copyHuff = function() {
+0ÅÂcopyHuffÅÿ	decompressor.Ptr.prototype.copyHuff = function() {
 		var f;
 		f = this;
 		if (f.copyHist()) {
@@ -1863,7 +1878,7 @@ $$
 		f.huffmanBlock();
 	};
 	decompressor.prototype.copyHuff = function() { return this.go$val.copyHuff(); };
-	decompressor.Ptr.prototype.dataBlock = function() {
+0Ç≤	dataBlockÇ£	decompressor.Ptr.prototype.dataBlock = function() {
 		var f, _tuple, nr, err, x, x$1, n, nn, x$2;
 		f = this;
 		f.nb = 0;
@@ -1888,7 +1903,7 @@ $$
 		f.copyData();
 	};
 	decompressor.prototype.dataBlock = function() { return this.go$val.dataBlock(); };
-	decompressor.Ptr.prototype.copyData = function() {
+0ÇkcopyDataÇ]	decompressor.Ptr.prototype.copyData = function() {
 		var f, n, m, _tuple, err, x, x$1;
 		f = this;
 		n = f.copyLen;
@@ -1914,7 +1929,7 @@ $$
 		f.step = (function(recv) { return recv.nextBlock(); });
 	};
 	decompressor.prototype.copyData = function() { return this.go$val.copyData(); };
-	decompressor.Ptr.prototype.setDict = function(dict) {
+0ÇùsetDictÇê	decompressor.Ptr.prototype.setDict = function(dict) {
 		var f;
 		f = this;
 		if (dict.length > 32768) {
@@ -1928,7 +1943,7 @@ $$
 		f.hw = f.hp;
 	};
 	decompressor.prototype.setDict = function(dict) { return this.go$val.setDict(dict); };
-	decompressor.Ptr.prototype.moreBits = function() {
+0ÇBmoreBitsÇ4	decompressor.Ptr.prototype.moreBits = function() {
 		var f, _tuple, c, err, x, y;
 		f = this;
 		_tuple = f.r.ReadByte(), c = _tuple[0], err = _tuple[1];
@@ -1944,7 +1959,7 @@ $$
 		return null;
 	};
 	decompressor.prototype.moreBits = function() { return this.go$val.moreBits(); };
-	decompressor.Ptr.prototype.huffSym = function(h) {
+0Ç®huffSymÇõ	decompressor.Ptr.prototype.huffSym = function(h) {
 		var f, n, err, chunk, _slice, _index, _slice$1, _index$1, x, y;
 		f = this;
 		n = (h.min >>> 0);
@@ -1972,7 +1987,7 @@ $$
 		}
 	};
 	decompressor.prototype.huffSym = function(h) { return this.go$val.huffSym(h); };
-	decompressor.Ptr.prototype.flush = function(step) {
+0ÇÊflushÇ€	decompressor.Ptr.prototype.flush = function(step) {
 		var f, x, x$1;
 		f = this;
 		f.toRead = go$subslice(new (go$sliceType(Go$Uint8))(f.hist), f.hw, f.hp);
@@ -1986,14 +2001,15 @@ $$
 		f.step = step;
 	};
 	decompressor.prototype.flush = function(step) { return this.go$val.flush(step); };
-	var makeReader = function(r) {
+0Ç
+makeReaderÅ˛	var makeReader = function(r) {
 		var ok, _tuple, rr;
 		if (_tuple = (r !== null && Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
 			return rr;
 		}
 		return bufio.NewReader(r);
 	};
-	var NewReader = go$pkg.NewReader = function(r) {
+0Çü	NewReaderÇê	var NewReader = go$pkg.NewReader = function(r) {
 		var f;
 		f = new decompressor.Ptr();
 		f.bits = go$makeNativeArray("Int", 318, function() { return 0; });
@@ -2003,7 +2019,7 @@ $$
 		f.step = (function(recv) { return recv.nextBlock(); });
 		return f;
 	};
-	var NewReaderDict = go$pkg.NewReaderDict = function(r, dict) {
+0ÇƒNewReaderDictÇ±	var NewReaderDict = go$pkg.NewReaderDict = function(r, dict) {
 		var f;
 		f = new decompressor.Ptr();
 		f.r = makeReader(r);
@@ -2014,47 +2030,50 @@ $$
 		f.setDict(dict);
 		return f;
 	};
-	var reverseUint16 = function(v) {
+0Å¬reverseUint16Å∞	var reverseUint16 = function(v) {
 		return ((reverseByte[(v >>> 8 << 16 >>> 16)] << 16 >>> 16) | ((reverseByte[((v & 255) >>> 0)] << 16 >>> 16) << 8 << 16 >>> 16)) >>> 0;
 	};
-	var reverseBits = function(number, bitLength) {
+0Å¥reverseBitsÅ§	var reverseBits = function(number, bitLength) {
 		var y;
 		return reverseUint16((y = (16 - bitLength << 24 >>> 24), y < 32 ? (number << y) : 0) << 16 >>> 16);
 	};
-	var literalToken = function(literal) {
+0bliteralTokenR	var literalToken = function(literal) {
 		return ((0 + literal >>> 0) >>> 0);
 	};
-	var matchToken = function(xlength, xoffset) {
+0Åë
+matchTokenÅÇ	var matchToken = function(xlength, xoffset) {
 		return (((1073741824 + (xlength << 22 >>> 0) >>> 0) + xoffset >>> 0) >>> 0);
 	};
-	token.prototype.typ = function() {
+0ÅœtypÅ«	token.prototype.typ = function() {
 		var t;
 		t = this.go$val;
 		return ((t >>> 0) & 3221225472) >>> 0;
 	};
 	go$ptrType(token).prototype.typ = function() { return new token(this.go$get()).typ(); };
-	token.prototype.literal = function() {
+0Å÷literalÅ 	token.prototype.literal = function() {
 		var t;
 		t = this.go$val;
 		return ((t - 0 >>> 0) >>> 0);
 	};
 	go$ptrType(token).prototype.literal = function() { return new token(this.go$get()).literal(); };
-	token.prototype.offset = function() {
+0ÅÿoffsetÅÕ	token.prototype.offset = function() {
 		var t;
 		t = this.go$val;
 		return ((t >>> 0) & 4194303) >>> 0;
 	};
 	go$ptrType(token).prototype.offset = function() { return new token(this.go$get()).offset(); };
-	token.prototype.length = function() {
+0ÅÏlengthÅ·	token.prototype.length = function() {
 		var t;
 		t = this.go$val;
 		return ((((t - 1073741824 >>> 0)) >>> 22 >>> 0) >>> 0);
 	};
 	go$ptrType(token).prototype.length = function() { return new token(this.go$get()).length(); };
-	var lengthCode = function(len) {
+0O
+lengthCodeA	var lengthCode = function(len) {
 		return lengthCodes[len];
 	};
-	var offsetCode = function(off) {
+0Ç
+offsetCodeÅ˜	var offsetCode = function(off) {
 		if (off < 256) {
 			return offsetCodes[off];
 		} else if ((off >>> 7 >>> 0) < 256) {
@@ -2063,62 +2082,7 @@ $$
 			return offsetCodes[(off >>> 14 >>> 0)] + 28 >>> 0;
 		}
 	};
-	go$pkg.NoCompression = 0;
-	go$pkg.BestSpeed = 1;
-	var fastCompression = 3;
-	go$pkg.BestCompression = 9;
-	go$pkg.DefaultCompression = -1;
-	var logWindowSize = 15;
-	var windowSize = 32768;
-	var windowMask = 32767;
-	var logMaxOffsetSize = 15;
-	var minMatchLength = 3;
-	var maxMatchLength = 258;
-	var minOffsetSize = 1;
-	var maxFlateBlockTokens = 16384;
-	var maxStoreBlockSize = 65535;
-	var hashBits = 17;
-	var hashSize = 131072;
-	var hashMask = 131071;
-	var hashShift = 6;
-	var maxHashOffset = 16777216;
-	var skipNever = 2147483647;
-	var offsetCodeCount = 30;
-	var endBlockMarker = 256;
-	var lengthCodesStart = 257;
-	var codegenCodeCount = 19;
-	var badCode = 255;
-	var maxBitsLimit = 16;
-	var maxCodeLen = 16;
-	var maxHist = 32768;
-	var maxLit = 286;
-	var maxDist = 32;
-	var numCodes = 19;
-	var huffmanChunkBits = 9;
-	var huffmanNumChunks = 512;
-	var huffmanCountMask = 15;
-	var huffmanValueShift = 4;
-	var lengthShift = 22;
-	var offsetMask = 4194303;
-	var typeMask = 3221225472;
-	var literalType = 0;
-	var matchType = 1073741824;
-	var levels = (go$sliceType(compressionLevel)).nil;
-	var zeroes = go$makeNativeArray("Int", 32, function() { return 0; });
-	var bzeroes = go$makeNativeArray("Uint8", 256, function() { return 0; });
-	var fixedHuffmanDecoder = new huffmanDecoder.Ptr();
-	var lengthExtraBits = (go$sliceType(Go$Int8)).nil;
-	var lengthBase = (go$sliceType(Go$Uint32)).nil;
-	var offsetExtraBits = (go$sliceType(Go$Int8)).nil;
-	var offsetBase = (go$sliceType(Go$Uint32)).nil;
-	var codegenOrder = (go$sliceType(Go$Uint32)).nil;
-	var fixedLiteralEncoding = (go$ptrType(huffmanEncoder)).nil;
-	var fixedOffsetEncoding = (go$ptrType(huffmanEncoder)).nil;
-	var codeOrder = go$makeNativeArray("Int", 19, function() { return 0; });
-	var reverseByte = go$makeNativeArray("Uint8", 256, function() { return 0; });
-	var lengthCodes = go$makeNativeArray("Uint32", 256, function() { return 0; });
-	var offsetCodes = go$makeNativeArray("Uint32", 256, function() { return 0; });
-	go$pkg.init = function() {
+0Ç¨initÇ¢	go$pkg.init = function() {
 		levels = new (go$sliceType(compressionLevel))([new compressionLevel.Ptr(0, 0, 0, 0, 0), new compressionLevel.Ptr(3, 0, 8, 4, 4), new compressionLevel.Ptr(3, 0, 16, 8, 5), new compressionLevel.Ptr(3, 0, 32, 32, 6), new compressionLevel.Ptr(4, 4, 16, 16, 2147483647), new compressionLevel.Ptr(8, 16, 32, 32, 2147483647), new compressionLevel.Ptr(8, 16, 128, 128, 2147483647), new compressionLevel.Ptr(8, 32, 128, 256, 2147483647), new compressionLevel.Ptr(32, 128, 258, 1024, 2147483647), new compressionLevel.Ptr(32, 258, 258, 4096, 2147483647)]);
 		fixedHuffmanDecoder = new huffmanDecoder.Ptr(7, go$toNativeArray("Uint32", [4103, 1288, 264, 4488, 4359, 1800, 776, 3081, 4231, 1544, 520, 2569, 8, 2056, 1032, 3593, 4167, 1416, 392, 2313, 4423, 1928, 904, 3337, 4295, 1672, 648, 2825, 136, 2184, 1160, 3849, 4135, 1352, 328, 4552, 4391, 1864, 840, 3209, 4263, 1608, 584, 2697, 72, 2120, 1096, 3721, 4199, 1480, 456, 2441, 4455, 1992, 968, 3465, 4327, 1736, 712, 2953, 200, 2248, 1224, 3977, 4119, 1320, 296, 4520, 4375, 1832, 808, 3145, 4247, 1576, 552, 2633, 40, 2088, 1064, 3657, 4183, 1448, 424, 2377, 4439, 1960, 936, 3401, 4311, 1704, 680, 2889, 168, 2216, 1192, 3913, 4151, 1384, 360, 4584, 4407, 1896, 872, 3273, 4279, 1640, 616, 2761, 104, 2152, 1128, 3785, 4215, 1512, 488, 2505, 4471, 2024, 1000, 3529, 4343, 1768, 744, 3017, 232, 2280, 1256, 4041, 4103, 1304, 280, 4504, 4359, 1816, 792, 3113, 4231, 1560, 536, 2601, 24, 2072, 1048, 3625, 4167, 1432, 408, 2345, 4423, 1944, 920, 3369, 4295, 1688, 664, 2857, 152, 2200, 1176, 3881, 4135, 1368, 344, 4568, 4391, 1880, 856, 3241, 4263, 1624, 600, 2729, 88, 2136, 1112, 3753, 4199, 1496, 472, 2473, 4455, 2008, 984, 3497, 4327, 1752, 728, 2985, 216, 2264, 1240, 4009, 4119, 1336, 312, 4536, 4375, 1848, 824, 3177, 4247, 1592, 568, 2665, 56, 2104, 1080, 3689, 4183, 1464, 440, 2409, 4439, 1976, 952, 3433, 4311, 1720, 696, 2921, 184, 2232, 1208, 3945, 4151, 1400, 376, 4600, 4407, 1912, 888, 3305, 4279, 1656, 632, 2793, 120, 2168, 1144, 3817, 4215, 1528, 504, 2537, 4471, 2040, 1016, 3561, 4343, 1784, 760, 3049, 248, 2296, 1272, 4073, 4103, 1288, 264, 4488, 4359, 1800, 776, 3097, 4231, 1544, 520, 2585, 8, 2056, 1032, 3609, 4167, 1416, 392, 2329, 4423, 1928, 904, 3353, 4295, 1672, 648, 2841, 136, 2184, 1160, 3865, 4135, 1352, 328, 4552, 4391, 1864, 840, 3225, 4263, 1608, 584, 2713, 72, 2120, 1096, 3737, 4199, 1480, 456, 2457, 4455, 1992, 968, 3481, 4327, 1736, 712, 2969, 200, 2248, 1224, 3993, 4119, 1320, 296, 4520, 4375, 1832, 808, 3161, 4247, 1576, 552, 2649, 40, 2088, 1064, 3673, 4183, 1448, 424, 2393, 4439, 1960, 936, 3417, 4311, 1704, 680, 2905, 168, 2216, 1192, 3929, 4151, 1384, 360, 4584, 4407, 1896, 872, 3289, 4279, 1640, 616, 2777, 104, 2152, 1128, 3801, 4215, 1512, 488, 2521, 4471, 2024, 1000, 3545, 4343, 1768, 744, 3033, 232, 2280, 1256, 4057, 4103, 1304, 280, 4504, 4359, 1816, 792, 3129, 4231, 1560, 536, 2617, 24, 2072, 1048, 3641, 4167, 1432, 408, 2361, 4423, 1944, 920, 3385, 4295, 1688, 664, 2873, 152, 2200, 1176, 3897, 4135, 1368, 344, 4568, 4391, 1880, 856, 3257, 4263, 1624, 600, 2745, 88, 2136, 1112, 3769, 4199, 1496, 472, 2489, 4455, 2008, 984, 3513, 4327, 1752, 728, 3001, 216, 2264, 1240, 4025, 4119, 1336, 312, 4536, 4375, 1848, 824, 3193, 4247, 1592, 568, 2681, 56, 2104, 1080, 3705, 4183, 1464, 440, 2425, 4439, 1976, 952, 3449, 4311, 1720, 696, 2937, 184, 2232, 1208, 3961, 4151, 1400, 376, 4600, 4407, 1912, 888, 3321, 4279, 1656, 632, 2809, 120, 2168, 1144, 3833, 4215, 1528, 504, 2553, 4471, 2040, 1016, 3577, 4343, 1784, 760, 3065, 248, 2296, 1272, 4089]), (go$sliceType((go$sliceType(Go$Uint32)))).nil, 0);
 		lengthExtraBits = new (go$sliceType(Go$Int8))([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0]);

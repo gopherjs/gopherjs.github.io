@@ -1,4 +1,4 @@
-0Ç≠(Ç˝package bzip2
+0ÇÆåcompress/bzip2Ç˝package bzip2
 import bufio "bufio"
 import io "io"
 import sort "sort"
@@ -44,10 +44,7 @@ func (? *@"".reader) @"".setup(@"".needMagic bool) (? error)
 type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
 type @"io".ByteReader interface { @"io".ReadByte() (@"".c byte, @"".err error) }
 $$
-0cruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiosortcompress/bzip2Ç†æ	var bufio = go$packages["bufio"];
-	var io = go$packages["io"];
-	var sort = go$packages["sort"];
-	var bitReader;
+0cruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiosortcompress/bzip20(0bufiobufio0ioio0sortsortÇ 	var bitReader;
 	bitReader = go$newType(0, "Struct", "bzip2.bitReader", "bitReader", "compress/bzip2", function(r_, n_, bits_, err_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
@@ -146,7 +143,8 @@ $$
 	(go$ptrType(huffmanCodes)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	moveToFrontDecoder.init([["symbols", "compress/bzip2", (go$arrayType(Go$Uint8, 256)), ""], ["next", "compress/bzip2", (go$arrayType(Go$Uint8, 256)), ""], ["prev", "compress/bzip2", (go$arrayType(Go$Uint8, 256)), ""], ["head", "compress/bzip2", Go$Uint8, ""], ["len", "compress/bzip2", Go$Int, ""]]);
 	(go$ptrType(moveToFrontDecoder)).methods = [["Decode", "", [Go$Int], [Go$Uint8], false], ["First", "", [], [Go$Uint8], false], ["threadLinkedList", "compress/bzip2", [], [], false]];
-	var newBitReader = function(r) {
+K	var crctab = go$makeNativeArray("Uint32", 256, function() { return 0; });
+0ÇÅã0ÇWnewBitReaderÇE	var newBitReader = function(r) {
 		var _tuple, byter, ok;
 		_tuple = (r !== null && io.ByteReader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), byter = _tuple[0], ok = _tuple[1];
 		if (!ok) {
@@ -154,7 +152,8 @@ $$
 		}
 		return new bitReader.Ptr(byter, new Go$Uint64(0, 0), 0, null);
 	};
-	bitReader.Ptr.prototype.ReadBits64 = function(bits) {
+0Çﬂ
+ReadBits64Çœ	bitReader.Ptr.prototype.ReadBits64 = function(bits) {
 		var n, br, _tuple, b, err, x, x$1, x$2, x$3, x$4;
 		n = new Go$Uint64(0, 0);
 		br = this;
@@ -177,7 +176,7 @@ $$
 		return n;
 	};
 	bitReader.prototype.ReadBits64 = function(bits) { return this.go$val.ReadBits64(bits); };
-	bitReader.Ptr.prototype.ReadBits = function(bits) {
+0ÇReadBitsÅ˜	bitReader.Ptr.prototype.ReadBits = function(bits) {
 		var n, br, n64;
 		n = 0;
 		br = this;
@@ -186,14 +185,15 @@ $$
 		return n;
 	};
 	bitReader.prototype.ReadBits = function(bits) { return this.go$val.ReadBits(bits); };
-	bitReader.Ptr.prototype.ReadBit = function() {
+0Å‘ReadBitÅ»	bitReader.Ptr.prototype.ReadBit = function() {
 		var br, n;
 		br = this;
 		n = br.ReadBits(1);
 		return !((n === 0));
 	};
 	bitReader.prototype.ReadBit = function() { return this.go$val.ReadBit(); };
-	bitReader.Ptr.prototype.TryReadBit = function() {
+0Ç˝
+TryReadBitÇÌ	bitReader.Ptr.prototype.TryReadBit = function() {
 		var bit, ok, br, _tuple, _tuple$1;
 		bit = 0;
 		ok = false;
@@ -207,25 +207,25 @@ $$
 		return [bit, ok];
 	};
 	bitReader.prototype.TryReadBit = function() { return this.go$val.TryReadBit(); };
-	bitReader.Ptr.prototype.Err = function() {
+0Å•ErrÅù	bitReader.Ptr.prototype.Err = function() {
 		var br;
 		br = this;
 		return br.err;
 	};
 	bitReader.prototype.Err = function() { return this.go$val.Err(); };
-	StructuralError.prototype.Error = function() {
+0ÅÒErrorÅÁ	StructuralError.prototype.Error = function() {
 		var s;
 		s = this.go$val;
 		return "bzip2 data invalid: " + s;
 	};
 	go$ptrType(StructuralError).prototype.Error = function() { return new StructuralError(this.go$get()).Error(); };
-	var NewReader = go$pkg.NewReader = function(r) {
+0ÅÏ	NewReaderÅﬁ	var NewReader = go$pkg.NewReader = function(r) {
 		var bz2, _struct;
 		bz2 = new reader.Ptr();
 		bz2.br = (_struct = newBitReader(r), new bitReader.Ptr(_struct.r, _struct.n, _struct.bits, _struct.err));
 		return bz2;
 	};
-	reader.Ptr.prototype.setup = function(needMagic) {
+0ÇtsetupÇi	reader.Ptr.prototype.setup = function(needMagic) {
 		var bz2, br, magic, t, level, x, x$1;
 		bz2 = this;
 		br = bz2.br;
@@ -251,7 +251,7 @@ $$
 		return null;
 	};
 	reader.prototype.setup = function(needMagic) { return this.go$val.setup(needMagic); };
-	reader.Ptr.prototype.Read = function(buf) {
+0Ç,ReadÇ"	reader.Ptr.prototype.Read = function(buf) {
 		var n, err, bz2, _tuple, brErr, _tuple$1, _tuple$2, brErr$1;
 		n = 0;
 		err = null;
@@ -280,7 +280,7 @@ $$
 		return [n, err];
 	};
 	reader.prototype.Read = function(buf) { return this.go$val.Read(buf); };
-	reader.Ptr.prototype.readFromBlock = function(buf) {
+0ÇÃreadFromBlockÇπ	reader.Ptr.prototype.readFromBlock = function(buf) {
 		var bz2, n, _slice, _index, _slice$1, _index$1, b, _slice$2, _index$2;
 		bz2 = this;
 		n = 0;
@@ -315,7 +315,7 @@ $$
 		return n;
 	};
 	reader.prototype.readFromBlock = function(buf) { return this.go$val.readFromBlock(buf); };
-	reader.Ptr.prototype.read = function(buf) {
+0ÇfreadÇ\	reader.Ptr.prototype.read = function(buf) {
 		var bz2, n, br, _ref, err, wantFileCRC, _r, _r$1, _tuple, b, err$1, _tuple$1, z, err$2;
 		bz2 = this;
 		while (true) {
@@ -377,7 +377,7 @@ $$
 		}
 	};
 	reader.prototype.read = function(buf) { return this.go$val.read(buf); };
-	reader.Ptr.prototype.readBlock = function() {
+0ÇU	readBlockÇF	reader.Ptr.prototype.readBlock = function() {
 		var err, bz2, br, randomized, origPtr, symbolRangeUsedBitmap, symbolPresent, numSymbols, symRange, y, bits, symbol, y$1, _slice, _index, x, numHuffmanTrees, numSelectors, treeIndexes, mtfTreeDecoder, _ref, _i, i, c, inc, _slice$1, _index$1, symbols, nextSymbol, i$1, _slice$2, _index$2, _slice$3, _index$3, mtf, huffmanTrees, lengths, i$2, length, j, _slice$4, _index$4, _tuple, _struct, _slice$5, _index$5, selectorIndex, _slice$6, _index$6, _slice$7, _index$7, _struct$1, currentHuffmanTree, bufIndex, repeat, repeat_power, _ref$1, _i$1, i$3, decoded, _slice$8, _index$8, _slice$9, _index$9, _struct$2, v, y$2, i$4, b, _slice$10, _index$10, _lhs, _index$11, b$1, _slice$11, _index$12, _lhs$1, _index$13;
 		err = null;
 		bz2 = this;
@@ -551,7 +551,8 @@ $$
 		return err;
 	};
 	reader.prototype.readBlock = function() { return this.go$val.readBlock(); };
-	var inverseBWT = function(tt, origPtr, c) {
+0Ç	B
+inverseBWTÇ	2	var inverseBWT = function(tt, origPtr, c) {
 		var sum, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _ref, _i, i$1, _slice$3, _index$3, b, _lhs, _index$4, _slice$4, _index$5, _slice$5, _index$6, _slice$6, _index$7, _lhs$1, _index$8, _slice$7, _index$9, _slice$8, _index$10, _slice$9, _index$11;
 		sum = 0;
 		i = 0;
@@ -570,7 +571,7 @@ $$
 		}
 		return (_slice$9 = tt, _index$11 = origPtr, (_index$11 >= 0 && _index$11 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$11] : go$throwRuntimeError("index out of range")) >>> 8 >>> 0;
 	};
-	var updateCRC = function(val, b) {
+0Ç–	updateCRCÇ¡	var updateCRC = function(val, b) {
 		var crc, _ref, _i, _slice, _index, v;
 		crc = ~val >>> 0;
 		_ref = b;
@@ -581,7 +582,7 @@ $$
 		}
 		return ~crc >>> 0;
 	};
-	huffmanTree.Ptr.prototype.Decode = function(br) {
+0Ç'DecodeÇ	huffmanTree.Ptr.prototype.Decode = function(br) {
 		var v, t, nodeIndex, _slice, _index, node, _tuple, bit, ok;
 		v = 0;
 		t = this;
@@ -608,7 +609,7 @@ $$
 		}
 	};
 	huffmanTree.prototype.Decode = function(br) { return this.go$val.Decode(br); };
-	var newHuffmanTree = function(lengths) {
+0ÇnewHuffmanTreeÇ	var newHuffmanTree = function(lengths) {
 		var t, x, pairs, _ref, _i, _slice, _index, length, i, _slice$1, _index$1, _slice$2, _index$2, code, length$1, x$1, codes, i$1, _slice$3, _index$3, y, _slice$4, _index$4, y$1, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, y$2, _tuple, err, _struct;
 		if (lengths.length < 2) {
 			throw go$panic(new Go$String("newHuffmanTree: too few symbols"));
@@ -645,13 +646,13 @@ $$
 		_tuple = buildHuffmanNode(t, go$subslice(new (go$sliceType(huffmanCode))(codes.array), codes.offset, codes.offset + codes.length), 0), err = _tuple[1];
 		return [(_struct = t, new huffmanTree.Ptr(_struct.nodes, _struct.nextNode)), err];
 	};
-	huffmanSymbolLengthPairs.prototype.Len = function() {
+0ÅÕLenÅ≈	huffmanSymbolLengthPairs.prototype.Len = function() {
 		var h;
 		h = this;
 		return h.length;
 	};
 	go$ptrType(huffmanSymbolLengthPairs).prototype.Len = function() { return this.go$get().Len(); };
-	huffmanSymbolLengthPairs.prototype.Less = function(i, j) {
+0Ç©LessÇü	huffmanSymbolLengthPairs.prototype.Less = function(i, j) {
 		var h, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		h = this;
 		if ((_slice = h, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).length < (_slice$1 = h, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).length) {
@@ -666,31 +667,31 @@ $$
 		return false;
 	};
 	go$ptrType(huffmanSymbolLengthPairs).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	huffmanSymbolLengthPairs.prototype.Swap = function(i, j) {
+0ÇÇSwapÇx	huffmanSymbolLengthPairs.prototype.Swap = function(i, j) {
 		var h, _slice, _index, _struct, _slice$1, _index$1, _struct$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		h = this;
 		_tuple = [(_struct = (_slice = h, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new huffmanSymbolLengthPair.Ptr(_struct.value, _struct.length)), (_struct$1 = (_slice$1 = h, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new huffmanSymbolLengthPair.Ptr(_struct$1.value, _struct$1.length))], _slice$2 = h, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = h, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(huffmanSymbolLengthPairs).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	huffmanCodes.prototype.Len = function() {
+0ÅµLenÅ≠	huffmanCodes.prototype.Len = function() {
 		var n;
 		n = this;
 		return n.length;
 	};
 	go$ptrType(huffmanCodes).prototype.Len = function() { return this.go$get().Len(); };
-	huffmanCodes.prototype.Less = function(i, j) {
+0Ç)LessÇ	huffmanCodes.prototype.Less = function(i, j) {
 		var n, _slice, _index, _slice$1, _index$1;
 		n = this;
 		return (_slice = n, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).code < (_slice$1 = n, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).code;
 	};
 	go$ptrType(huffmanCodes).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	huffmanCodes.prototype.Swap = function(i, j) {
+0ÇrSwapÇh	huffmanCodes.prototype.Swap = function(i, j) {
 		var n, _slice, _index, _struct, _slice$1, _index$1, _struct$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		n = this;
 		_tuple = [(_struct = (_slice = n, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new huffmanCode.Ptr(_struct.code, _struct.codeLen, _struct.value)), (_struct$1 = (_slice$1 = n, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new huffmanCode.Ptr(_struct$1.code, _struct$1.codeLen, _struct$1.value))], _slice$2 = n, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = n, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(huffmanCodes).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	var buildHuffmanNode = function(t, codes, level) {
+0Ç®buildHuffmanNodeÇí	var buildHuffmanNode = function(t, codes, level) {
 		var nodeIndex, err, y, test, firstRightIndex, _ref, _i, _slice, _index, _struct, code, i, left, right, _tuple, _slice$1, _index$1, node, _slice$2, _index$2, _tuple$1, _slice$3, _index$3, _tuple$2;
 		nodeIndex = 0;
 		err = null;
@@ -732,7 +733,7 @@ $$
 		}
 		return [nodeIndex, err];
 	};
-	var newMTFDecoder = function(symbols) {
+0ÇEnewMTFDecoderÇ2	var newMTFDecoder = function(symbols) {
 		var m;
 		if (symbols.length > 256) {
 			throw go$panic(new Go$String("too many symbols"));
@@ -743,7 +744,7 @@ $$
 		m.threadLinkedList();
 		return m;
 	};
-	var newMTFDecoderWithRange = function(n) {
+0Ç~newMTFDecoderWithRangeÇb	var newMTFDecoderWithRange = function(n) {
 		var m, i;
 		if (n > 256) {
 			throw go$panic(new Go$String("newMTFDecoderWithRange: cannot have > 256 symbols"));
@@ -758,7 +759,7 @@ $$
 		m.threadLinkedList();
 		return m;
 	};
-	moveToFrontDecoder.Ptr.prototype.threadLinkedList = function() {
+0ÇÂthreadLinkedListÇœ	moveToFrontDecoder.Ptr.prototype.threadLinkedList = function() {
 		var m, i;
 		m = this;
 		if (m.len === 0) {
@@ -774,7 +775,7 @@ $$
 		m.next[m.len - 1 >> 0] = 0;
 	};
 	moveToFrontDecoder.prototype.threadLinkedList = function() { return this.go$val.threadLinkedList(); };
-	moveToFrontDecoder.Ptr.prototype.Decode = function(n) {
+0Ç,DecodeÇ 	moveToFrontDecoder.Ptr.prototype.Decode = function(n) {
 		var b, m, i, j;
 		b = 0;
 		m = this;
@@ -799,18 +800,13 @@ $$
 		return b;
 	};
 	moveToFrontDecoder.prototype.Decode = function(n) { return this.go$val.Decode(n); };
-	moveToFrontDecoder.Ptr.prototype.First = function() {
+0Å»FirstÅæ	moveToFrontDecoder.Ptr.prototype.First = function() {
 		var m;
 		m = this;
 		return m.symbols[m.head];
 	};
 	moveToFrontDecoder.prototype.First = function() { return this.go$val.First(); };
-	var bzip2FileMagic = 16986;
-	var bzip2BlockMagic = 54156738319193;
-	var bzip2FinalMagic = 25779555029136;
-	var invalidNodeValue = 65535;
-	var crctab = go$makeNativeArray("Uint32", 256, function() { return 0; });
-	go$pkg.init = function() {
+0ÇàinitÇ~	go$pkg.init = function() {
 		var _ref, _i, i, crc, j;
 		_ref = crctab;
 		_i = 0;

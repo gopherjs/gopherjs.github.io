@@ -1,4 +1,4 @@
-0É≠ Ç2‚package doc
+0É∞¡go/docÇ2‚package doc
 import io "io"
 import regexp "regexp"
 import strings "strings"
@@ -162,18 +162,7 @@ func (? @"go/ast".ObjKind) @"go/ast".String() (? string)
 func (? *@"go/ast".ObjKind) @"go/ast".String() (? string)
 $$
 0Çruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
-go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/docÉyº	var io = go$packages["io"];
-	var regexp = go$packages["regexp"];
-	var strings = go$packages["strings"];
-	var template = go$packages["text/template"];
-	var unicode = go$packages["unicode"];
-	var utf8 = go$packages["unicode/utf8"];
-	var ast = go$packages["go/ast"];
-	var token = go$packages["go/token"];
-	var path = go$packages["path"];
-	var sort = go$packages["sort"];
-	var strconv = go$packages["strconv"];
-	var op;
+go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc0Å«0ioio0regexpregexp0stringsstrings0text/templatetemplate0unicodeunicode0unicode/utf8utf80go/astast0go/tokentoken0pathpath0sortsort0strconvstrconvÇ3Ë	var op;
 	op = go$newType(4, "Int", "doc.op", "op", "go/doc", null);
 	go$pkg.op = op;
 	var block;
@@ -339,7 +328,33 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 	(go$ptrType(reader)).methods = [["cleanupTypes", "go/doc", [], [], false], ["collectEmbeddedMethods", "go/doc", [methodSet, (go$ptrType(namedType)), Go$String, Go$Bool, Go$Int, embeddedSet], [], false], ["computeMethodSets", "go/doc", [], [], false], ["fileExports", "go/doc", [(go$ptrType(ast.File))], [], false], ["filterDecl", "go/doc", [ast.Decl], [Go$Bool], false], ["filterFieldList", "go/doc", [(go$ptrType(namedType)), (go$ptrType(ast.FieldList)), (go$ptrType(ast.InterfaceType))], [Go$Bool], false], ["filterParamList", "go/doc", [(go$ptrType(ast.FieldList))], [], false], ["filterSpec", "go/doc", [ast.Spec], [Go$Bool], false], ["filterSpecList", "go/doc", [(go$sliceType(ast.Spec))], [(go$sliceType(ast.Spec))], false], ["filterType", "go/doc", [(go$ptrType(namedType)), ast.Expr], [], false], ["isVisible", "go/doc", [Go$String], [Go$Bool], false], ["lookupType", "go/doc", [Go$String], [(go$ptrType(namedType))], false], ["readDoc", "go/doc", [(go$ptrType(ast.CommentGroup))], [], false], ["readFile", "go/doc", [(go$ptrType(ast.File))], [], false], ["readFunc", "go/doc", [(go$ptrType(ast.FuncDecl))], [], false], ["readNote", "go/doc", [(go$sliceType((go$ptrType(ast.Comment))))], [], false], ["readNotes", "go/doc", [(go$sliceType((go$ptrType(ast.CommentGroup))))], [], false], ["readPackage", "go/doc", [(go$ptrType(ast.Package)), Mode], [], false], ["readType", "go/doc", [(go$ptrType(ast.GenDecl)), (go$ptrType(ast.TypeSpec))], [], false], ["readValue", "go/doc", [(go$ptrType(ast.GenDecl))], [], false], ["recordAnonymousField", "go/doc", [(go$ptrType(namedType)), ast.Expr], [Go$String], false], ["remember", "go/doc", [(go$ptrType(ast.InterfaceType))], [], false]];
 	data.init([["n", "go/doc", Go$Int, ""], ["swap", "go/doc", (go$funcType([Go$Int, Go$Int], [], false)), ""], ["less", "go/doc", (go$funcType([Go$Int, Go$Int], [Go$Bool], false)), ""]]);
 	(go$ptrType(data)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	var commentEscape = function(w, text, nice) {
+ÇÑ	var ldquo = (go$sliceType(Go$Uint8)).nil;
+	var rdquo = (go$sliceType(Go$Uint8)).nil;
+	var matchRx = (go$ptrType(regexp.Regexp)).nil;
+	var html_a = (go$sliceType(Go$Uint8)).nil;
+	var html_aq = (go$sliceType(Go$Uint8)).nil;
+	var html_enda = (go$sliceType(Go$Uint8)).nil;
+	var html_i = (go$sliceType(Go$Uint8)).nil;
+	var html_endi = (go$sliceType(Go$Uint8)).nil;
+	var html_p = (go$sliceType(Go$Uint8)).nil;
+	var html_endp = (go$sliceType(Go$Uint8)).nil;
+	var html_pre = (go$sliceType(Go$Uint8)).nil;
+	var html_endpre = (go$sliceType(Go$Uint8)).nil;
+	var html_h = (go$sliceType(Go$Uint8)).nil;
+	var html_hq = (go$sliceType(Go$Uint8)).nil;
+	var html_endh = (go$sliceType(Go$Uint8)).nil;
+	var nonAlphaNumRx = (go$ptrType(regexp.Regexp)).nil;
+	var nl = (go$sliceType(Go$Uint8)).nil;
+	var space = (go$sliceType(Go$Uint8)).nil;
+	var outputPrefix = (go$ptrType(regexp.Regexp)).nil;
+	var noteMarker = "";
+	var noteMarkerRx = (go$ptrType(regexp.Regexp)).nil;
+	var noteCommentRx = (go$ptrType(regexp.Regexp)).nil;
+	var predeclaredTypes = false;
+	var predeclaredFuncs = false;
+	var predeclaredConstants = false;
+	go$pkg.IllegalPrefixes = (go$sliceType(Go$String)).nil;
+0ÉCm0Ç™commentEscapeÇó	var commentEscape = function(w, text, nice) {
 		var last, i, ch, _ref;
 		last = 0;
 		if (nice) {
@@ -362,7 +377,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		template.HTMLEscape(w, new (go$sliceType(Go$Uint8))(go$stringToBytes(text.substring(last))));
 	};
-	var emphasize = function(w, line, words, nice) {
+0Çn	emphasizeÇ_	var emphasize = function(w, line, words, nice) {
 		var m, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, match, url, italics, _tuple, _entry, _slice$3, _index$3, _slice$4, _index$4;
 		while (true) {
 			m = matchRx.FindStringSubmatchIndex(line);
@@ -401,7 +416,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		commentEscape(w, line, nice);
 	};
-	var indentLen = function(s) {
+0Å∏	indentLenÅ™	var indentLen = function(s) {
 		var i;
 		i = 0;
 		while (i < s.length && ((s.charCodeAt(i) === 32) || (s.charCodeAt(i) === 9))) {
@@ -409,10 +424,10 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return i;
 	};
-	var isBlank = function(s) {
+0yisBlankn	var isBlank = function(s) {
 		return (s.length === 0) || ((s.length === 1) && (s.charCodeAt(0) === 10));
 	};
-	var commonPrefix = function(a, b) {
+0Å—commonPrefixÅ¿	var commonPrefix = function(a, b) {
 		var i;
 		i = 0;
 		while (i < a.length && i < b.length && (a.charCodeAt(i) === b.charCodeAt(i))) {
@@ -420,7 +435,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return a.substring(0, i);
 	};
-	var unindent = function(block$1) {
+0ÇﬁunindentÇ–	var unindent = function(block$1) {
 		var _slice, _index, _slice$1, _index$1, prefix, _ref, _i, _slice$2, _index$2, line, n, _ref$1, _i$1, _slice$3, _index$3, line$1, i, _slice$4, _index$4;
 		if (block$1.length === 0) {
 			return;
@@ -445,7 +460,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 			}
 		}
 	};
-	var heading = function(line) {
+0ÇMheadingÇ@	var heading = function(line) {
 		var _tuple, r, _tuple$1, b, i;
 		line = strings.TrimSpace(line);
 		if (line.length === 0) {
@@ -475,10 +490,10 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return line;
 	};
-	var anchorID = function(line) {
+0nanchorIDb	var anchorID = function(line) {
 		return "hdr-" + nonAlphaNumRx.ReplaceAllString(line, "_");
 	};
-	var ToHTML = go$pkg.ToHTML = function(w, text, words) {
+0ÇöToHTMLÇé	var ToHTML = go$pkg.ToHTML = function(w, text, words) {
 		var _ref, _i, _slice, _index, _struct, b, _ref$1, _ref$2, _i$1, _slice$1, _index$1, line, id, _ref$3, _i$2, _slice$2, _index$2, line$1, _ref$4, _i$3, _slice$3, _index$3, line$2;
 		_ref = blocks(text);
 		_i = 0;
@@ -524,7 +539,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 			}
 		}
 	};
-	var blocks = function(text) {
+0Ç”blocksÇ«	var blocks = function(text) {
 		var out, para, lastWasBlank, lastWasHeading, close, lines, i, _slice, _index, line, j, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, pre, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, head, _slice$7, _index$7;
 		out = (go$sliceType(block)).nil, para = (go$sliceType(Go$String)).nil, lastWasBlank = false, lastWasHeading = false;
 		close = (function() {
@@ -577,7 +592,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		close();
 		return out;
 	};
-	var ToText = go$pkg.ToText = function(w, text, indent, preIndent, width) {
+0Ç9ToTextÇ-	var ToText = go$pkg.ToText = function(w, text, indent, preIndent, width) {
 		var l, _ref, _i, _slice, _index, _struct, b, _ref$1, _ref$2, _i$1, _slice$1, _index$1, line, _ref$3, _i$2, _slice$2, _index$2, line$1, _ref$4, _i$3, _slice$3, _index$3, line$2;
 		l = new lineWrapper.Ptr(w, false, width, indent, 0, 0);
 		_ref = blocks(text);
@@ -616,7 +631,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 			}
 		}
 	};
-	lineWrapper.Ptr.prototype.write = function(text) {
+0ÇÃwriteÇ¡	lineWrapper.Ptr.prototype.write = function(text) {
 		var l, _ref, _i, _slice, _index, f, w;
 		l = this;
 		if ((l.n === 0) && l.printed) {
@@ -643,7 +658,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	lineWrapper.prototype.write = function(text) { return this.go$val.write(text); };
-	lineWrapper.Ptr.prototype.flush = function() {
+0ÅÒflushÅÁ	lineWrapper.Ptr.prototype.flush = function() {
 		var l;
 		l = this;
 		if (l.n === 0) {
@@ -654,7 +669,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		l.n = 0;
 	};
 	lineWrapper.prototype.flush = function() { return this.go$val.flush(); };
-	var New = go$pkg.New = function(pkg, importPath, mode) {
+0ÇNewÇ	var New = go$pkg.New = function(pkg, importPath, mode) {
 		var r, _entry;
 		r = new reader.Ptr();
 		r.readPackage(pkg, mode);
@@ -662,7 +677,9 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		r.cleanupTypes();
 		return new Package.Ptr(r.doc, pkg.Name, importPath, sortedKeys(r.imports), r.filenames, r.notes, noteBodies((_entry = r.notes["BUG"], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(Note)))).nil)), sortedValues(r.values, 64), sortedTypes(r.types, !(((mode & 2) === 0))), sortedValues(r.values, 85), sortedFuncs(r.funcs, true));
 	};
-	var Examples = go$pkg.Examples = function(files) {
+0Ç
+>ExamplesÇ
+0	var Examples = go$pkg.Examples = function(files) {
 		var list, _ref, _i, _slice, _index, file, hasTests, numDecl, flist, _ref$1, _i$1, _slice$1, _index$1, decl, ok, g, _tuple, _tuple$1, f, ok$1, name, doc, _tuple$2, output, hasOutput, _slice$2, _index$2, _slice$3, _index$3;
 		list = (go$sliceType((go$ptrType(Example)))).nil;
 		_ref = files;
@@ -709,7 +726,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		sort.Sort(go$subslice(new exampleByName(list.array), list.offset, list.offset + list.length));
 		return list;
 	};
-	var exampleOutput = function(b, comments) {
+0ÇâexampleOutputÇv	var exampleOutput = function(b, comments) {
 		var output, ok, last, _tuple, text, loc, _slice, _index, _tuple$1, _tuple$2;
 		output = "";
 		ok = false;
@@ -728,7 +745,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		_tuple$2 = ["", false], output = _tuple$2[0], ok = _tuple$2[1];
 		return [output, ok];
 	};
-	var isTest = function(name, prefix) {
+0Ç;isTestÇ/	var isTest = function(name, prefix) {
 		var _tuple, rune;
 		if (!strings.HasPrefix(name, prefix)) {
 			return false;
@@ -739,25 +756,25 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		_tuple = utf8.DecodeRuneInString(name.substring(prefix.length)), rune = _tuple[0];
 		return !unicode.IsLower(rune);
 	};
-	exampleByName.prototype.Len = function() {
+0Å∑LenÅØ	exampleByName.prototype.Len = function() {
 		var s;
 		s = this;
 		return s.length;
 	};
 	go$ptrType(exampleByName).prototype.Len = function() { return this.go$get().Len(); };
-	exampleByName.prototype.Swap = function(i, j) {
+0Ç∫SwapÇ∞	exampleByName.prototype.Swap = function(i, j) {
 		var s, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		s = this;
 		_tuple = [(_slice = s, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = s, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = s, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = s, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(exampleByName).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	exampleByName.prototype.Less = function(i, j) {
+0Ç+LessÇ!	exampleByName.prototype.Less = function(i, j) {
 		var s, _slice, _index, _slice$1, _index$1;
 		s = this;
 		return (_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name < (_slice$1 = s, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name;
 	};
 	go$ptrType(exampleByName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	var playExample = function(file, body) {
+0Ç®playExampleÇó	var playExample = function(file, body) {
 		var topDecls, _ref, _i, _slice, _index, decl, d, _ref$1, _type, _key, _ref$2, _i$1, _slice$1, _index$1, spec, s, _ref$3, _type$1, _key$1, _ref$4, _i$2, _slice$2, _index$2, id, _key$2, unresolved, usesTopDecl, inspectFunc, _ref$5, _i$3, _keys, _entry, n, _entry$1, _entry$2, _entry$3, namedImports, blankImports, _ref$6, _i$4, _slice$3, _index$3, s$1, _tuple, p, err, n$1, _ref$7, _entry$4, _key$3, comments, _ref$8, _i$5, _slice$4, _index$4, s$2, c, _ref$9, _i$6, _slice$5, _index$5, c$1, _tuple$1, importDecl, _ref$10, _i$7, _keys$1, _entry$5, p$1, n$2, s$3, funcDecl;
 		if (!strings.HasSuffix(file.Name.Name, "_test")) {
 			return (go$ptrType(ast.File)).nil;
@@ -896,7 +913,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		funcDecl = new ast.FuncDecl.Ptr((go$ptrType(ast.CommentGroup)).nil, (go$ptrType(ast.FieldList)).nil, ast.NewIdent("main"), new ast.FuncType.Ptr(0, new ast.FieldList.Ptr(0, (go$sliceType((go$ptrType(ast.Field)))).nil, 0), (go$ptrType(ast.FieldList)).nil), body);
 		return new ast.File.Ptr((go$ptrType(ast.CommentGroup)).nil, 0, ast.NewIdent("main"), new (go$sliceType(ast.Decl))([importDecl, funcDecl]), (go$ptrType(ast.Scope)).nil, (go$sliceType((go$ptrType(ast.ImportSpec)))).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, comments);
 	};
-	var playExampleFile = function(file) {
+0Ç6playExampleFileÇ!	var playExampleFile = function(file) {
 		var comments, _slice, _index, decls, _ref, _i, _slice$1, _index$1, d, ok, f, _tuple, _struct, newF, _tuple$1, _struct$1, f$1;
 		comments = file.Comments;
 		if (comments.length > 0 && strings.HasPrefix((_slice = comments, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Text(), "Copyright")) {
@@ -921,7 +938,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		f$1.Comments = comments;
 		return f$1;
 	};
-	var stripOutputComment = function(body, comments) {
+0Ç◊stripOutputCommentÇø	var stripOutputComment = function(body, comments) {
 		var _tuple, i, last, newBody, newComments;
 		_tuple = lastComment(body, comments), i = _tuple[0], last = _tuple[1];
 		if (last === (go$ptrType(ast.CommentGroup)).nil || !outputPrefix.MatchString(last.Text())) {
@@ -933,7 +950,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		go$copySlice(go$subslice(newComments, i), go$subslice(comments, (i + 1 >> 0)));
 		return [newBody, newComments];
 	};
-	var lastComment = function(b, c) {
+0ÇèlastCommentÇ~	var lastComment = function(b, c) {
 		var i, last, _tuple, pos, end, _ref, _i, _slice, _index, cg, j, _tuple$1;
 		i = 0;
 		last = (go$ptrType(ast.CommentGroup)).nil;
@@ -953,7 +970,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return [i, last];
 	};
-	var filterIdentList = function(list) {
+0ÇwfilterIdentListÇb	var filterIdentList = function(list) {
 		var j, _ref, _i, _slice, _index, x, _slice$1, _index$1;
 		j = 0;
 		_ref = list;
@@ -967,7 +984,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return go$subslice(list, 0, j);
 	};
-	var removeErrorField = function(ityp) {
+0Ç±removeErrorFieldÇõ	var removeErrorField = function(ityp) {
 		var list, j, _ref, _i, _slice, _index, field, keepField, n, fname, _tuple, _slice$1, _index$1;
 		list = ityp.Methods.List;
 		j = 0;
@@ -991,7 +1008,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		ityp.Methods.List = go$subslice(list, 0, j);
 	};
-	reader.Ptr.prototype.filterFieldList = function(parent, fields$1, ityp) {
+0ÇlfilterFieldListÇW	reader.Ptr.prototype.filterFieldList = function(parent, fields$1, ityp) {
 		var removedFields, r, list, j, _ref, _i, _slice, _index, field, keepField, n, fname, _slice$1, _index$1;
 		removedFields = false;
 		r = this;
@@ -1035,7 +1052,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return removedFields;
 	};
 	reader.prototype.filterFieldList = function(parent, fields$1, ityp) { return this.go$val.filterFieldList(parent, fields$1, ityp); };
-	reader.Ptr.prototype.filterParamList = function(fields$1) {
+0ÇYfilterParamListÇD	reader.Ptr.prototype.filterParamList = function(fields$1) {
 		var r, _ref, _i, _slice, _index, f;
 		r = this;
 		if (!(fields$1 === (go$ptrType(ast.FieldList)).nil)) {
@@ -1048,7 +1065,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	reader.prototype.filterParamList = function(fields$1) { return this.go$val.filterParamList(fields$1); };
-	reader.Ptr.prototype.filterType = function(parent, typ) {
+0Çr
+filterTypeÇb	reader.Ptr.prototype.filterType = function(parent, typ) {
 		var r, t, _ref, _type;
 		r = this;
 		_ref = typ;
@@ -1085,7 +1103,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	reader.prototype.filterType = function(parent, typ) { return this.go$val.filterType(parent, typ); };
-	reader.Ptr.prototype.filterSpec = function(spec) {
+0ÇQ
+filterSpecÇA	reader.Ptr.prototype.filterSpec = function(spec) {
 		var r, s, _ref, _type, name;
 		r = this;
 		_ref = spec;
@@ -1112,7 +1131,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return false;
 	};
 	reader.prototype.filterSpec = function(spec) { return this.go$val.filterSpec(spec); };
-	reader.Ptr.prototype.filterSpecList = function(list) {
+0ÇÓfilterSpecListÇ⁄	reader.Ptr.prototype.filterSpecList = function(list) {
 		var r, j, _ref, _i, _slice, _index, s, _slice$1, _index$1;
 		r = this;
 		j = 0;
@@ -1128,7 +1147,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return go$subslice(list, 0, j);
 	};
 	reader.prototype.filterSpecList = function(list) { return this.go$val.filterSpecList(list); };
-	reader.Ptr.prototype.filterDecl = function(decl) {
+0Ç
+filterDeclÇ	reader.Ptr.prototype.filterDecl = function(decl) {
 		var r, d, _ref, _type;
 		r = this;
 		_ref = decl;
@@ -1144,7 +1164,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return false;
 	};
 	reader.prototype.filterDecl = function(decl) { return this.go$val.filterDecl(decl); };
-	reader.Ptr.prototype.fileExports = function(src) {
+0ÇÛfileExportsÇ‚	reader.Ptr.prototype.fileExports = function(src) {
 		var r, j, _ref, _i, _slice, _index, d, _slice$1, _index$1;
 		r = this;
 		j = 0;
@@ -1160,7 +1180,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		src.Decls = go$subslice(src.Decls, 0, j);
 	};
 	reader.prototype.fileExports = function(src) { return this.go$val.fileExports(src); };
-	var matchFields = function(fields$1, f) {
+0ÇmatchFieldsÇ	var matchFields = function(fields$1, f) {
 		var _ref, _i, _slice, _index, field, _ref$1, _i$1, _slice$1, _index$1, name;
 		if (!(fields$1 === (go$ptrType(ast.FieldList)).nil)) {
 			_ref = fields$1.List;
@@ -1179,7 +1199,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return false;
 	};
-	var matchDecl = function(d, f) {
+0Çs	matchDeclÇd	var matchDecl = function(d, f) {
 		var _ref, _i, _slice, _index, d$1, v, _ref$1, _type, _ref$2, _i$1, _slice$1, _index$1, name, t, _ref$3, _type$1;
 		_ref = d.Specs;
 		_i = 0;
@@ -1219,7 +1239,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return false;
 	};
-	var filterValues = function(a, f) {
+0ÇjfilterValuesÇX	var filterValues = function(a, f) {
 		var w, _ref, _i, _slice, _index, vd, _slice$1, _index$1;
 		w = 0;
 		_ref = a;
@@ -1233,7 +1253,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return go$subslice(a, 0, w);
 	};
-	var filterFuncs = function(a, f) {
+0Ç]filterFuncsÇL	var filterFuncs = function(a, f) {
 		var w, _ref, _i, _slice, _index, fd, _slice$1, _index$1;
 		w = 0;
 		_ref = a;
@@ -1247,7 +1267,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return go$subslice(a, 0, w);
 	};
-	var filterTypes = function(a, f) {
+0ÇºfilterTypesÇ´	var filterTypes = function(a, f) {
 		var w, _ref, _i, _slice, _index, td, n, _slice$1, _index$1;
 		w = 0;
 		_ref = a;
@@ -1271,7 +1291,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return go$subslice(a, 0, w);
 	};
-	Package.Ptr.prototype.Filter = function(f) {
+0ÇBFilterÇ6	Package.Ptr.prototype.Filter = function(f) {
 		var p;
 		p = this;
 		p.Consts = filterValues(p.Consts, f);
@@ -1281,7 +1301,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		p.Doc = "";
 	};
 	Package.prototype.Filter = function(f) { return this.go$val.Filter(f); };
-	var recvString = function(recv) {
+0Çb
+recvStringÇR	var recvString = function(recv) {
 		var t, _ref, _type;
 		_ref = recv;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -1294,7 +1315,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return "BADRECV";
 	};
-	methodSet.prototype.set = function(f) {
+0ÇƒsetÇª	methodSet.prototype.set = function(f) {
 		var mset, name, g, _entry, recv, typ, list, _slice, _index, _key;
 		mset = this.go$val;
 		name = f.Name.Name;
@@ -1313,7 +1334,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		f.Doc = (go$ptrType(ast.CommentGroup)).nil;
 	};
 	go$ptrType(methodSet).prototype.set = function(f) { return new methodSet(this.go$get()).set(f); };
-	methodSet.prototype.add = function(m) {
+0ÇÙaddÇÎ	methodSet.prototype.add = function(m) {
 		var mset, _entry, old, _key, _key$1;
 		mset = this.go$val;
 		old = (_entry = mset[m.Name], _entry !== undefined ? _entry.v : (go$ptrType(Func)).nil);
@@ -1326,7 +1347,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	go$ptrType(methodSet).prototype.add = function(m) { return new methodSet(this.go$get()).add(m); };
-	var baseTypeName = function(x) {
+0ÇŒbaseTypeNameÇº	var baseTypeName = function(x) {
 		var name, imported, t, _ref, _type, _tuple, ok, _tuple$1, x$1, _tuple$2, _tuple$3;
 		name = "";
 		imported = false;
@@ -1349,13 +1370,14 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return [name, imported];
 	};
-	reader.Ptr.prototype.isVisible = function(name) {
+0ÅÍ	isVisibleÅ‹	reader.Ptr.prototype.isVisible = function(name) {
 		var r;
 		r = this;
 		return !(((r.mode & 1) === 0)) || ast.IsExported(name);
 	};
 	reader.prototype.isVisible = function(name) { return this.go$val.isVisible(name); };
-	reader.Ptr.prototype.lookupType = function(name) {
+0Ç
+lookupTypeÇ 	reader.Ptr.prototype.lookupType = function(name) {
 		var r, found, _tuple, _entry, typ, typ$1, _key;
 		r = this;
 		if (name === "" || name === "_") {
@@ -1369,7 +1391,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return typ$1;
 	};
 	reader.prototype.lookupType = function(name) { return this.go$val.lookupType(name); };
-	reader.Ptr.prototype.recordAnonymousField = function(parent, fieldType) {
+0ÇårecordAnonymousFieldÇr	reader.Ptr.prototype.recordAnonymousField = function(parent, fieldType) {
 		var fname, r, _tuple, imp, ftype, _tuple$1, ptr, _key;
 		fname = "";
 		r = this;
@@ -1385,7 +1407,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return fname;
 	};
 	reader.prototype.recordAnonymousField = function(parent, fieldType) { return this.go$val.recordAnonymousField(parent, fieldType); };
-	reader.Ptr.prototype.readDoc = function(comment) {
+0Ç(readDocÇ	reader.Ptr.prototype.readDoc = function(comment) {
 		var r, text;
 		r = this;
 		text = comment.Text();
@@ -1396,13 +1418,13 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		r.doc = r.doc + ("\n" + text);
 	};
 	reader.prototype.readDoc = function(comment) { return this.go$val.readDoc(comment); };
-	reader.Ptr.prototype.remember = function(typ) {
+0Å“rememberÅ≈	reader.Ptr.prototype.remember = function(typ) {
 		var r;
 		r = this;
 		r.fixlist = go$append(r.fixlist, typ);
 	};
 	reader.prototype.remember = function(typ) { return this.go$val.remember(typ); };
-	var specNames = function(specs) {
+0Çé	specNamesÇ	var specNames = function(specs) {
 		var names, _ref, _i, _slice, _index, s, _ref$1, _i$1, _slice$1, _index$1, ident;
 		names = (go$sliceType(Go$String)).make(0, specs.length, function() { return ""; });
 		_ref = specs;
@@ -1418,7 +1440,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return names;
 	};
-	reader.Ptr.prototype.readValue = function(decl) {
+0Çh	readValueÇY	reader.Ptr.prototype.readValue = function(decl) {
 		var r, domName, domFreq, prev, n, _ref, _i, _slice, _index, spec, _tuple, s, ok, name, imp, _tuple$1, n$1, v, values, typ, v$1;
 		r = this;
 		domName = "";
@@ -1465,7 +1487,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		decl.Doc = (go$ptrType(ast.CommentGroup)).nil;
 	};
 	reader.prototype.readValue = function(decl) { return this.go$val.readValue(decl); };
-	var fields = function(typ) {
+0ÇcfieldsÇW	var fields = function(typ) {
 		var list, isStruct, fields$1, t, _ref, _type;
 		list = (go$sliceType((go$ptrType(ast.Field)))).nil;
 		isStruct = false;
@@ -1485,7 +1507,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return [list, isStruct];
 	};
-	reader.Ptr.prototype.readType = function(decl, spec) {
+0ÇreadTypeÇÙ	reader.Ptr.prototype.readType = function(decl, spec) {
 		var r, typ, doc, list, _tuple, _ref, _i, _slice, _index, field;
 		r = this;
 		typ = r.lookupType(spec.Name.Name);
@@ -1512,7 +1534,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	reader.prototype.readType = function(decl, spec) { return this.go$val.readType(decl, spec); };
-	reader.Ptr.prototype.readFunc = function(fun) {
+0ÇSreadFuncÇE	reader.Ptr.prototype.readFunc = function(fun) {
 		var r, _tuple, _slice, _index, recvTypeName, imp, typ, _slice$1, _index$1, res, imp$1, n, _tuple$1, typ$1;
 		r = this;
 		fun.Body = (go$ptrType(ast.BlockStmt)).nil;
@@ -1540,7 +1562,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		(new methodSet(r.funcs)).set(fun);
 	};
 	reader.prototype.readFunc = function(fun) { return this.go$val.readFunc(fun); };
-	reader.Ptr.prototype.readNote = function(list) {
+0Ç¯readNoteÇÍ	reader.Ptr.prototype.readNote = function(list) {
 		var r, text, m, _slice, _index, body, _slice$1, _index$1, _slice$2, _index$2, marker, _entry, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _key;
 		r = this;
 		text = (new ast.CommentGroup.Ptr(list)).Text();
@@ -1553,7 +1575,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	reader.prototype.readNote = function(list) { return this.go$val.readNote(list); };
-	reader.Ptr.prototype.readNotes = function(comments) {
+0ÇÛ	readNotesÇ‰	reader.Ptr.prototype.readNotes = function(comments) {
 		var r, _ref, _i, _slice, _index, group, i, list, _ref$1, _i$1, _slice$1, _index$1, c, j;
 		r = this;
 		_ref = comments;
@@ -1580,7 +1602,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	reader.prototype.readNotes = function(comments) { return this.go$val.readNotes(comments); };
-	reader.Ptr.prototype.readFile = function(src) {
+0Ç†readFileÇí	reader.Ptr.prototype.readFile = function(src) {
 		var r, _ref, _i, _slice, _index, decl, d, _ref$1, _type, _ref$2, _ref$3, _i$1, _slice$1, _index$1, spec, ok, _tuple, s, err, _tuple$1, import_, _key, ok$1, _tuple$2, x, _slice$2, _index$2, s$1, _ref$4, _i$2, _slice$3, _index$3, spec$1, ok$2, _tuple$3, s$2, fake;
 		r = this;
 		if (!(src.Doc === (go$ptrType(ast.CommentGroup)).nil)) {
@@ -1638,7 +1660,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		src.Comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 	};
 	reader.prototype.readFile = function(src) { return this.go$val.readFile(src); };
-	reader.Ptr.prototype.readPackage = function(pkg, mode) {
+0ÇdreadPackageÇS	reader.Ptr.prototype.readPackage = function(pkg, mode) {
 		var r, i, _ref, _i, _keys, _entry, filename, _slice, _index, _ref$1, _i$1, _slice$1, _index$1, filename$1, _entry$1, f;
 		r = this;
 		r.filenames = (go$sliceType(Go$String)).make(go$keys(pkg.Files).length, 0, function() { return ""; });
@@ -1670,7 +1692,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	reader.prototype.readPackage = function(pkg, mode) { return this.go$val.readPackage(pkg, mode); };
-	var customizeRecv = function(f, recvTypeName, embeddedIsPtr, level) {
+0ÇcustomizeRecvÇ	var customizeRecv = function(f, recvTypeName, embeddedIsPtr, level) {
 		var _slice, _index, _struct, newField, origPos, _tuple, x, origRecvIsPtr, newIdent, typ, _struct$1, newFieldList, _struct$2, newFuncDecl, _struct$3, newF;
 		if (f === (go$ptrType(Func)).nil || f.Decl === (go$ptrType(ast.FuncDecl)).nil || f.Decl.Recv === (go$ptrType(ast.FieldList)).nil || !((f.Decl.Recv.List.length === 1))) {
 			return f;
@@ -1695,7 +1717,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		newF.Level = level;
 		return newF;
 	};
-	reader.Ptr.prototype.collectEmbeddedMethods = function(mset, typ, recvTypeName, embeddedIsPtr, level, visited) {
+0Ç_collectEmbeddedMethodsÇC	reader.Ptr.prototype.collectEmbeddedMethods = function(mset, typ, recvTypeName, embeddedIsPtr, level, visited) {
 		var r, _key, _ref, _i, _keys, _entry, isPtr, embedded, thisEmbeddedIsPtr, _ref$1, _i$1, _keys$1, _entry$1, m, _entry$2;
 		r = this;
 		_key = typ, (visited || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: true };
@@ -1724,7 +1746,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		delete visited[typ.go$key()];
 	};
 	reader.prototype.collectEmbeddedMethods = function(mset, typ, recvTypeName, embeddedIsPtr, level, visited) { return this.go$val.collectEmbeddedMethods(mset, typ, recvTypeName, embeddedIsPtr, level, visited); };
-	reader.Ptr.prototype.computeMethodSets = function() {
+0Ç:computeMethodSetsÇ#	reader.Ptr.prototype.computeMethodSets = function() {
 		var r, _ref, _i, _keys, _entry, t, _ref$1, _i$1, _slice, _index, ityp;
 		r = this;
 		_ref = r.types;
@@ -1748,7 +1770,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	reader.prototype.computeMethodSets = function() { return this.go$val.computeMethodSets(); };
-	reader.Ptr.prototype.cleanupTypes = function() {
+0ÇucleanupTypesÇc	reader.Ptr.prototype.cleanupTypes = function() {
 		var r, _ref, _i, _keys, _entry, t, visible, _entry$1, _ref$1, _i$1, _keys$1, _entry$2, f, name, _key, _ref$2, _i$2, _keys$2, _entry$3, m, name$1, found, _tuple, _entry$4, _key$1;
 		r = this;
 		_ref = r.types;
@@ -1787,28 +1809,29 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	reader.prototype.cleanupTypes = function() { return this.go$val.cleanupTypes(); };
-	data.Ptr.prototype.Len = function() {
+0ÅñLenÅé	data.Ptr.prototype.Len = function() {
 		var d;
 		d = this;
 		return d.n;
 	};
 	data.prototype.Len = function() { return this.go$val.Len(); };
-	data.Ptr.prototype.Swap = function(i, j) {
+0Å®SwapÅü	data.Ptr.prototype.Swap = function(i, j) {
 		var d;
 		d = this;
 		d.swap(i, j);
 	};
 	data.prototype.Swap = function(i, j) { return this.go$val.Swap(i, j); };
-	data.Ptr.prototype.Less = function(i, j) {
+0ÅØLessÅ¶	data.Ptr.prototype.Less = function(i, j) {
 		var d;
 		d = this;
 		return d.less(i, j);
 	};
 	data.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
-	var sortBy = function(less, swap, n) {
+0`sortByV	var sortBy = function(less, swap, n) {
 		sort.Sort(new data.Ptr(n, swap, less));
 	};
-	var sortedKeys = function(m) {
+0Ç9
+sortedKeysÇ)	var sortedKeys = function(m) {
 		var list, i, _ref, _i, _keys, _entry, key, _slice, _index;
 		list = (go$sliceType(Go$String)).make(go$keys(m).length, 0, function() { return ""; });
 		i = 0;
@@ -1824,7 +1847,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		sort.Strings(list);
 		return list;
 	};
-	var sortingName = function(d) {
+0Ç∏sortingNameÇß	var sortingName = function(d) {
 		var ok, _tuple, x, _slice, _index, s, _slice$1, _index$1;
 		if (d.Specs.length === 1) {
 			if (_tuple = (x = (_slice = d.Specs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.ValueSpec)) ? [x.go$val, true] : [(go$ptrType(ast.ValueSpec)).nil, false])), s = _tuple[0], ok = _tuple[1], ok) {
@@ -1833,7 +1856,9 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return "";
 	};
-	var sortedValues = function(m, tok) {
+0Ç
+sortedValuesÇ
+	var sortedValues = function(m, tok) {
 		var list, i, _ref, _i, _slice, _index, val, _slice$1, _index$1;
 		list = (go$sliceType((go$ptrType(Value)))).make(m.length, 0, function() { return (go$ptrType(Value)).nil; });
 		i = 0;
@@ -1859,7 +1884,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}), list.length);
 		return list;
 	};
-	var sortedTypes = function(m, allMethods) {
+0Ç¯sortedTypesÇÁ	var sortedTypes = function(m, allMethods) {
 		var list, i, _ref, _i, _keys, _entry, t, _slice, _index;
 		list = (go$sliceType((go$ptrType(Type)))).make(go$keys(m).length, 0, function() { return (go$ptrType(Type)).nil; });
 		i = 0;
@@ -1881,12 +1906,14 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}), list.length);
 		return list;
 	};
-	var removeStar = function(s) {
+0Åè
+removeStarÅÄ	var removeStar = function(s) {
 		if (s.length > 0 && (s.charCodeAt(0) === 42)) {
 			return s.substring(1);
 		}
 		return s;
 	};
+0ÇsortedFuncsÇ
 	var sortedFuncs = function(m, allMethods) {
 		var list, i, _ref, _i, _keys, _entry, m$1, _slice, _index;
 		list = (go$sliceType((go$ptrType(Func)))).make(go$keys(m).length, 0, function() { return (go$ptrType(Func)).nil; });
@@ -1913,7 +1940,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}), list.length);
 		return list;
 	};
-	var noteBodies = function(notes) {
+0Ç°
+noteBodiesÇë	var noteBodies = function(notes) {
 		var list, _ref, _i, _slice, _index, n;
 		list = (go$sliceType(Go$String)).nil;
 		_ref = notes;
@@ -1924,7 +1952,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return list;
 	};
-	var firstSentenceLen = function(s) {
+0ÇêfirstSentenceLenÇz	var firstSentenceLen = function(s) {
 		var _tuple, ppp, pp, p, _ref, _i, _rune, q, i, _tuple$1;
 		_tuple = [0, 0, 0], ppp = _tuple[0], pp = _tuple[1], p = _tuple[2];
 		_ref = s;
@@ -1946,7 +1974,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return s.length;
 	};
-	var clean = function(s, flags) {
+0ÇÊcleanÇ€	var clean = function(s, flags) {
 		var b, p, i, q, n;
 		b = (go$sliceType(Go$Uint8)).nil;
 		p = 32;
@@ -1967,7 +1995,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return go$bytesToString(b);
 	};
-	var Synopsis = go$pkg.Synopsis = function(s) {
+0ÇÛSynopsisÇÂ	var Synopsis = go$pkg.Synopsis = function(s) {
 		var _ref, _i, _slice, _index, prefix;
 		s = clean(s.substring(0, firstSentenceLen(s)), 0);
 		_ref = go$pkg.IllegalPrefixes;
@@ -1980,44 +2008,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return s;
 	};
-	var identRx = "[a-zA-Z_][a-zA-Z_0-9]*";
-	var protocol = "(https?|ftp|file|gopher|mailto|news|nntp|telnet|wais|prospero):";
-	var hostPart = "[a-zA-Z0-9_@\\-]+";
-	var filePart = "[a-zA-Z0-9_?%#~&/\\-+=]+";
-	var urlRx = "(https?|ftp|file|gopher|mailto|news|nntp|telnet|wais|prospero)://[a-zA-Z0-9_@\\-]+([.:][a-zA-Z0-9_@\\-]+)*/?[a-zA-Z0-9_?%#~&/\\-+=]+([:.,][a-zA-Z0-9_?%#~&/\\-+=]+)*";
-	var opPara = 0;
-	var opHead = 1;
-	var opPre = 2;
-	go$pkg.AllDecls = 1;
-	go$pkg.AllMethods = 2;
-	var keepNL = 1;
-	var ldquo = (go$sliceType(Go$Uint8)).nil;
-	var rdquo = (go$sliceType(Go$Uint8)).nil;
-	var matchRx = (go$ptrType(regexp.Regexp)).nil;
-	var html_a = (go$sliceType(Go$Uint8)).nil;
-	var html_aq = (go$sliceType(Go$Uint8)).nil;
-	var html_enda = (go$sliceType(Go$Uint8)).nil;
-	var html_i = (go$sliceType(Go$Uint8)).nil;
-	var html_endi = (go$sliceType(Go$Uint8)).nil;
-	var html_p = (go$sliceType(Go$Uint8)).nil;
-	var html_endp = (go$sliceType(Go$Uint8)).nil;
-	var html_pre = (go$sliceType(Go$Uint8)).nil;
-	var html_endpre = (go$sliceType(Go$Uint8)).nil;
-	var html_h = (go$sliceType(Go$Uint8)).nil;
-	var html_hq = (go$sliceType(Go$Uint8)).nil;
-	var html_endh = (go$sliceType(Go$Uint8)).nil;
-	var nonAlphaNumRx = (go$ptrType(regexp.Regexp)).nil;
-	var nl = (go$sliceType(Go$Uint8)).nil;
-	var space = (go$sliceType(Go$Uint8)).nil;
-	var outputPrefix = (go$ptrType(regexp.Regexp)).nil;
-	var noteMarker = "";
-	var noteMarkerRx = (go$ptrType(regexp.Regexp)).nil;
-	var noteCommentRx = (go$ptrType(regexp.Regexp)).nil;
-	var predeclaredTypes = false;
-	var predeclaredFuncs = false;
-	var predeclaredConstants = false;
-	go$pkg.IllegalPrefixes = (go$sliceType(Go$String)).nil;
-	go$pkg.init = function() {
+0ÇinitÇ	go$pkg.init = function() {
 		var _map, _key, _map$1, _key$1, _map$2, _key$2;
 		ldquo = new (go$sliceType(Go$Uint8))(go$stringToBytes("&ldquo;"));
 		rdquo = new (go$sliceType(Go$Uint8))(go$stringToBytes("&rdquo;"));

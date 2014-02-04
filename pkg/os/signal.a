@@ -1,4 +1,4 @@
-0‚¾‚Ÿpackage signal
+0‚S	os/signal‚Ÿpackage signal
 import os "os"
 import sync "sync"
 import syscall "syscall"
@@ -9,10 +9,7 @@ func (? *@"".handler) @"".set(@"".sig int) ()
 func (? *@"".handler) @"".want(@"".sig int) (? bool)
 type @"os".Signal interface { @"os".Signal() (); @"os".String() (? string) }
 $$
-0Fruntimeerrorssync/atomicsynciosyscalltimeos	os/signal‚Ï	var os = go$packages["os"];
-	var sync = go$packages["sync"];
-	var syscall = go$packages["syscall"];
-	var handler;
+0Fruntimeerrorssync/atomicsynciosyscalltimeos	os/signal0,0osos0syncsync0syscallsyscall‚Õ	var handler;
 	handler = go$newType(0, "Struct", "signal.handler", "handler", "os/signal", function(mask_) {
 		this.go$val = this;
 		this.mask = mask_ !== undefined ? mask_ : go$makeNativeArray("Uint32", 3, function() { return 0; });
@@ -20,19 +17,20 @@ $$
 	go$pkg.handler = handler;
 	handler.init([["mask", "os/signal", (go$arrayType(Go$Uint32, 3)), ""]]);
 	(go$ptrType(handler)).methods = [["set", "os/signal", [Go$Int], [], false], ["want", "os/signal", [Go$Int], [Go$Bool], false]];
-	handler.Ptr.prototype.want = function(sig) {
+‚J	var handlers = new (go$structType([["", "", sync.Mutex, ""], ["m", "os/signal", (go$mapType((go$chanType(os.Signal, true, false)), (go$ptrType(handler)))), ""], ["ref", "os/signal", (go$arrayType(Go$Int64, 65)), ""]])).Ptr(new sync.Mutex.Ptr(), false, go$makeNativeArray("Int64", 65, function() { return new Go$Int64(0, 0); }));
+0‚0‚|want‚r	handler.Ptr.prototype.want = function(sig) {
 		var h, y, _q;
 		h = this;
 		return !(((((((y = ((sig & 31) >>> 0), y < 32 ? (h.mask[(_q = sig / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))] >>> y) : 0) >>> 0)) & 1) >>> 0) === 0));
 	};
 	handler.prototype.want = function(sig) { return this.go$val.want(sig); };
-	handler.Ptr.prototype.set = function(sig) {
+0‚žset‚•	handler.Ptr.prototype.set = function(sig) {
 		var h, _lhs, _index, _q, y;
 		h = this;
 		_lhs = h.mask, _index = (_q = sig / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), _lhs[_index] = (_lhs[_index] | (((y = ((sig & 31) >>> 0), y < 32 ? (1 << y) : 0) >>> 0))) >>> 0;
 	};
 	handler.prototype.set = function(sig) { return this.go$val.set(sig); };
-	var Notify = go$pkg.Notify = function(c, sig) {
+0‚)Notify‚	var Notify = go$pkg.Notify = function(c, sig) {
 		var _entry, h, _key, add, n, _ref, _i, _slice, _index, s;
 		var go$deferred = [];
 		try {
@@ -82,7 +80,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var Stop = go$pkg.Stop = function(c) {
+0‚'Stop‚	var Stop = go$pkg.Stop = function(c) {
 		var _entry, h, n, _lhs, _index, x, x$1;
 		var go$deferred = [];
 		try {
@@ -109,7 +107,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var process = function(sig) {
+0‚Nprocess‚A	var process = function(sig) {
 		var n, _ref, _i, _keys, _entry, h, c;
 		var go$deferred = [];
 		try {
@@ -136,21 +134,21 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var signal_disable = function() {
+0~signal_disablel	var signal_disable = function() {
 		throw go$panic("Native function not implemented: signal_disable");
 	};
-	var signal_enable = function() {
+0{signal_enablej	var signal_enable = function() {
 		throw go$panic("Native function not implemented: signal_enable");
 	};
-	var signal_recv = function() {
+0usignal_recvf	var signal_recv = function() {
 		throw go$panic("Native function not implemented: signal_recv");
 	};
-	var loop = function() {
+0plooph	var loop = function() {
 		while (true) {
 			process(new syscall.Signal((signal_recv() >> 0)));
 		}
 	};
-	var signum = function(sig) {
+0‚Esignum‚9	var signum = function(sig) {
 		var sig$1, _ref, _type, i;
 		_ref = sig;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -166,15 +164,13 @@ $$
 			return -1;
 		}
 	};
-	var enableSignal = function(sig) {
+0VenableSignalF	var enableSignal = function(sig) {
 		signal_enable((sig >>> 0));
 	};
-	var disableSignal = function(sig) {
+0YdisableSignalH	var disableSignal = function(sig) {
 		signal_disable((sig >>> 0));
 	};
-	var numSig = 65;
-	var handlers = new (go$structType([["", "", sync.Mutex, ""], ["m", "os/signal", (go$mapType((go$chanType(os.Signal, true, false)), (go$ptrType(handler)))), ""], ["ref", "os/signal", (go$arrayType(Go$Int64, 65)), ""]])).Ptr(new sync.Mutex.Ptr(), false, go$makeNativeArray("Int64", 65, function() { return new Go$Int64(0, 0); }));
-	go$pkg.init = function() {
+0TinitL	go$pkg.init = function() {
 		signal_enable(0);
 		go$notSupported("go")
 	};

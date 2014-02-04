@@ -1,4 +1,4 @@
-0Ç{∂Çpackage token
+0Çvågo/tokenÇpackage token
 import fmt "fmt"
 import sort "sort"
 import sync "sync"
@@ -147,11 +147,8 @@ func (? *@"sync".Mutex) @"sync".Lock() ()
 func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
-0vruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortgo/tokenÇb4	var fmt = go$packages["fmt"];
-	var sort = go$packages["sort"];
-	var sync = go$packages["sync"];
-	var strconv = go$packages["strconv"];
-	var Position;
+0vruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortgo/token0<0
+fmtfmt0sortsort0syncsync0strconvstrconvÇ	var Position;
 	Position = go$newType(0, "Struct", "token.Position", "Position", "go/token", function(Filename_, Offset_, Line_, Column_) {
 		this.go$val = this;
 		this.Filename = Filename_ !== undefined ? Filename_ : "";
@@ -225,13 +222,15 @@ $$
 	serializedFileSet.init([["Base", "", Go$Int, ""], ["Files", "", (go$sliceType(serializedFile)), ""]]);
 	Token.methods = [["IsKeyword", "", [], [Go$Bool], false], ["IsLiteral", "", [], [Go$Bool], false], ["IsOperator", "", [], [Go$Bool], false], ["Precedence", "", [], [Go$Int], false], ["String", "", [], [Go$String], false]];
 	(go$ptrType(Token)).methods = [["IsKeyword", "", [], [Go$Bool], false], ["IsLiteral", "", [], [Go$Bool], false], ["IsOperator", "", [], [Go$Bool], false], ["Precedence", "", [], [Go$Int], false], ["String", "", [], [Go$String], false]];
-	Position.Ptr.prototype.IsValid = function() {
+b	var tokens = go$makeNativeArray("String", 86, function() { return ""; });
+	var keywords = false;
+0ÇEH0ÅªIsValidÅØ	Position.Ptr.prototype.IsValid = function() {
 		var pos;
 		pos = this;
 		return pos.Line > 0;
 	};
 	Position.prototype.IsValid = function() { return this.go$val.IsValid(); };
-	Position.Ptr.prototype.String = function() {
+0ÇStringÇ	Position.Ptr.prototype.String = function() {
 		var _struct, pos, s;
 		pos = (_struct = this, new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
 		s = pos.Filename;
@@ -247,31 +246,31 @@ $$
 		return s;
 	};
 	Position.prototype.String = function() { return this.go$val.String(); };
-	Pos.prototype.IsValid = function() {
+0Å«IsValidÅª	Pos.prototype.IsValid = function() {
 		var p;
 		p = this.go$val;
 		return !((p === 0));
 	};
 	go$ptrType(Pos).prototype.IsValid = function() { return new Pos(this.go$get()).IsValid(); };
-	File.Ptr.prototype.Name = function() {
+0ÅùNameÅî	File.Ptr.prototype.Name = function() {
 		var f;
 		f = this;
 		return f.name;
 	};
 	File.prototype.Name = function() { return this.go$val.Name(); };
-	File.Ptr.prototype.Base = function() {
+0ÅùBaseÅî	File.Ptr.prototype.Base = function() {
 		var f;
 		f = this;
 		return f.base;
 	};
 	File.prototype.Base = function() { return this.go$val.Base(); };
-	File.Ptr.prototype.Size = function() {
+0ÅùSizeÅî	File.Ptr.prototype.Size = function() {
 		var f;
 		f = this;
 		return f.size;
 	};
 	File.prototype.Size = function() { return this.go$val.Size(); };
-	File.Ptr.prototype.LineCount = function() {
+0Åı	LineCountÅÁ	File.Ptr.prototype.LineCount = function() {
 		var f, n;
 		f = this;
 		f.set.mutex.RLock();
@@ -280,7 +279,7 @@ $$
 		return n;
 	};
 	File.prototype.LineCount = function() { return this.go$val.LineCount(); };
-	File.Ptr.prototype.AddLine = function(offset) {
+0ÇAddLineÇ˚	File.Ptr.prototype.AddLine = function(offset) {
 		var f, i, _slice, _index;
 		f = this;
 		f.set.mutex.Lock();
@@ -290,7 +289,7 @@ $$
 		f.set.mutex.Unlock();
 	};
 	File.prototype.AddLine = function(offset) { return this.go$val.AddLine(offset); };
-	File.Ptr.prototype.MergeLine = function(line) {
+0Ç	MergeLineÇ·	File.Ptr.prototype.MergeLine = function(line) {
 		var f;
 		var go$deferred = [];
 		try {
@@ -312,7 +311,7 @@ $$
 		}
 	};
 	File.prototype.MergeLine = function(line) { return this.go$val.MergeLine(line); };
-	File.Ptr.prototype.SetLines = function(lines) {
+0Ç=SetLinesÇ/	File.Ptr.prototype.SetLines = function(lines) {
 		var f, size, _ref, _i, _slice, _index, offset, i, _slice$1, _index$1;
 		f = this;
 		size = f.size;
@@ -331,7 +330,7 @@ $$
 		return true;
 	};
 	File.prototype.SetLines = function(lines) { return this.go$val.SetLines(lines); };
-	File.Ptr.prototype.SetLinesForContent = function(content) {
+0ÇˆSetLinesForContentÇﬁ	File.Ptr.prototype.SetLinesForContent = function(content) {
 		var f, lines, line, _ref, _i, _slice, _index, b, offset;
 		f = this;
 		lines = (go$sliceType(Go$Int)).nil;
@@ -354,7 +353,7 @@ $$
 		f.set.mutex.Unlock();
 	};
 	File.prototype.SetLinesForContent = function(content) { return this.go$val.SetLinesForContent(content); };
-	File.Ptr.prototype.AddLineInfo = function(offset, filename, line) {
+0ÇoAddLineInfoÇ^	File.Ptr.prototype.AddLineInfo = function(offset, filename, line) {
 		var f, i, _slice, _index;
 		f = this;
 		f.set.mutex.Lock();
@@ -364,7 +363,7 @@ $$
 		f.set.mutex.Unlock();
 	};
 	File.prototype.AddLineInfo = function(offset, filename, line) { return this.go$val.AddLineInfo(offset, filename, line); };
-	File.Ptr.prototype.Pos = function(offset) {
+0ÇPosÇ	File.Ptr.prototype.Pos = function(offset) {
 		var f;
 		f = this;
 		if (offset > f.size) {
@@ -373,7 +372,7 @@ $$
 		return ((f.base + offset >> 0) >> 0);
 	};
 	File.prototype.Pos = function(offset) { return this.go$val.Pos(offset); };
-	File.Ptr.prototype.Offset = function(p) {
+0Ç4OffsetÇ(	File.Ptr.prototype.Offset = function(p) {
 		var f;
 		f = this;
 		if ((p >> 0) < f.base || (p >> 0) > (f.base + f.size >> 0)) {
@@ -382,19 +381,19 @@ $$
 		return (p >> 0) - f.base >> 0;
 	};
 	File.prototype.Offset = function(p) { return this.go$val.Offset(p); };
-	File.Ptr.prototype.Line = function(p) {
+0Å¨LineÅ£	File.Ptr.prototype.Line = function(p) {
 		var f;
 		f = this;
 		return f.Position(p).Line;
 	};
 	File.prototype.Line = function(p) { return this.go$val.Line(p); };
-	var searchLineInfos = function(a, x) {
+0ÇBsearchLineInfosÇ-	var searchLineInfos = function(a, x) {
 		return sort.Search(a.length, (function(i) {
 			var _slice, _index;
 			return (_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Offset > x;
 		})) - 1 >> 0;
 	};
-	File.Ptr.prototype.info = function(offset) {
+0Ç6infoÇ,	File.Ptr.prototype.info = function(offset) {
 		var filename, line, column, f, i, _slice, _index, _tuple, i$1, _slice$1, _index$1, alt, i$2;
 		filename = "";
 		line = 0;
@@ -416,7 +415,7 @@ $$
 		return [filename, line, column];
 	};
 	File.prototype.info = function(offset) { return this.go$val.info(offset); };
-	File.Ptr.prototype.position = function(p) {
+0Ç„positionÇ’	File.Ptr.prototype.position = function(p) {
 		var pos, f, offset, _tuple, _struct;
 		pos = new Position.Ptr();
 		f = this;
@@ -426,7 +425,7 @@ $$
 		return (_struct = pos, new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
 	};
 	File.prototype.position = function(p) { return this.go$val.position(p); };
-	File.Ptr.prototype.Position = function(p) {
+0ÇYPositionÇK	File.Ptr.prototype.Position = function(p) {
 		var pos, f, _struct, _struct$1;
 		pos = new Position.Ptr();
 		f = this;
@@ -439,10 +438,11 @@ $$
 		return (_struct$1 = pos, new Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column));
 	};
 	File.prototype.Position = function(p) { return this.go$val.Position(p); };
-	var NewFileSet = go$pkg.NewFileSet = function() {
+0Åª
+NewFileSetÅ¨	var NewFileSet = go$pkg.NewFileSet = function() {
 		return new FileSet.Ptr(new sync.RWMutex.Ptr(), 1, (go$sliceType((go$ptrType(File)))).nil, (go$ptrType(File)).nil);
 	};
-	FileSet.Ptr.prototype.Base = function() {
+0Å◊BaseÅŒ	FileSet.Ptr.prototype.Base = function() {
 		var s, b;
 		s = this;
 		s.mutex.RLock();
@@ -451,7 +451,7 @@ $$
 		return b;
 	};
 	FileSet.prototype.Base = function() { return this.go$val.Base(); };
-	FileSet.Ptr.prototype.AddFile = function(filename, base, size) {
+0Ç«AddFileÇ∫	FileSet.Ptr.prototype.AddFile = function(filename, base, size) {
 		var s, f;
 		var go$deferred = [];
 		try {
@@ -481,7 +481,7 @@ $$
 		}
 	};
 	FileSet.prototype.AddFile = function(filename, base, size) { return this.go$val.AddFile(filename, base, size); };
-	FileSet.Ptr.prototype.Iterate = function(f) {
+0ÇHIterateÇ;	FileSet.Ptr.prototype.Iterate = function(f) {
 		var s, i, file, _slice, _index;
 		s = this;
 		i = 0;
@@ -499,13 +499,13 @@ $$
 		}
 	};
 	FileSet.prototype.Iterate = function(f) { return this.go$val.Iterate(f); };
-	var searchFiles = function(a, x) {
+0Ç8searchFilesÇ'	var searchFiles = function(a, x) {
 		return sort.Search(a.length, (function(i) {
 			var _slice, _index;
 			return (_slice = a, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).base > x;
 		})) - 1 >> 0;
 	};
-	FileSet.Ptr.prototype.file = function(p) {
+0Ç	fileÇˇ	FileSet.Ptr.prototype.file = function(p) {
 		var s, f, i, _slice, _index, f$1;
 		s = this;
 		s.mutex.RLock();
@@ -527,7 +527,7 @@ $$
 		return (go$ptrType(File)).nil;
 	};
 	FileSet.prototype.file = function(p) { return this.go$val.file(p); };
-	FileSet.Ptr.prototype.File = function(p) {
+0ÅÓFileÅÂ	FileSet.Ptr.prototype.File = function(p) {
 		var f, s;
 		f = (go$ptrType(File)).nil;
 		s = this;
@@ -537,7 +537,7 @@ $$
 		return f;
 	};
 	FileSet.prototype.File = function(p) { return this.go$val.File(p); };
-	FileSet.Ptr.prototype.Position = function(p) {
+0Ç#PositionÇ	FileSet.Ptr.prototype.Position = function(p) {
 		var pos, s, f, _struct, _struct$1;
 		pos = new Position.Ptr();
 		s = this;
@@ -549,7 +549,8 @@ $$
 		return (_struct$1 = pos, new Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column));
 	};
 	FileSet.prototype.Position = function(p) { return this.go$val.Position(p); };
-	var searchInts = function(a, x) {
+0Ç*
+searchIntsÇ	var searchInts = function(a, x) {
 		var _tuple, i, j, _q, h, _slice, _index;
 		_tuple = [0, a.length], i = _tuple[0], j = _tuple[1];
 		while (i < j) {
@@ -562,7 +563,7 @@ $$
 		}
 		return i - 1 >> 0;
 	};
-	FileSet.Ptr.prototype.Read = function(decode) {
+0ÇReadÇ	FileSet.Ptr.prototype.Read = function(decode) {
 		var s, ss, err, files, i, _slice, _index, f, _slice$1, _index$1;
 		s = this;
 		ss = new serializedFileSet.Ptr();
@@ -584,7 +585,7 @@ $$
 		return null;
 	};
 	FileSet.prototype.Read = function(decode) { return this.go$val.Read(decode); };
-	FileSet.Ptr.prototype.Write = function(encode) {
+0Ç·WriteÇ÷	FileSet.Ptr.prototype.Write = function(encode) {
 		var s, ss, files, _ref, _i, _slice, _index, f, i, _slice$1, _index$1;
 		s = this;
 		ss = new serializedFileSet.Ptr();
@@ -603,7 +604,7 @@ $$
 		return encode(new ss.constructor.Struct(ss));
 	};
 	FileSet.prototype.Write = function(encode) { return this.go$val.Write(encode); };
-	Token.prototype.String = function() {
+0ÇNStringÇB	Token.prototype.String = function() {
 		var tok, s;
 		tok = this.go$val;
 		s = "";
@@ -616,7 +617,8 @@ $$
 		return s;
 	};
 	go$ptrType(Token).prototype.String = function() { return new Token(this.go$get()).String(); };
-	Token.prototype.Precedence = function() {
+0ÇÄ
+PrecedenceÇp	Token.prototype.Precedence = function() {
 		var op, _ref;
 		op = this.go$val;
 		_ref = op;
@@ -634,125 +636,33 @@ $$
 		return 0;
 	};
 	go$ptrType(Token).prototype.Precedence = function() { return new Token(this.go$get()).Precedence(); };
-	var Lookup = go$pkg.Lookup = function(ident) {
+0ÇLookupÇ	var Lookup = go$pkg.Lookup = function(ident) {
 		var is_keyword, _tuple, _entry, tok;
 		if (_tuple = (_entry = keywords[ident], _entry !== undefined ? [_entry.v, true] : [0, false]), tok = _tuple[0], is_keyword = _tuple[1], is_keyword) {
 			return tok;
 		}
 		return 4;
 	};
-	Token.prototype.IsLiteral = function() {
+0Å‡	IsLiteralÅ“	Token.prototype.IsLiteral = function() {
 		var tok;
 		tok = this.go$val;
 		return 3 < tok && tok < 10;
 	};
 	go$ptrType(Token).prototype.IsLiteral = function() { return new Token(this.go$get()).IsLiteral(); };
-	Token.prototype.IsOperator = function() {
+0ÅÂ
+IsOperatorÅ÷	Token.prototype.IsOperator = function() {
 		var tok;
 		tok = this.go$val;
 		return 11 < tok && tok < 59;
 	};
 	go$ptrType(Token).prototype.IsOperator = function() { return new Token(this.go$get()).IsOperator(); };
-	Token.prototype.IsKeyword = function() {
+0Å·	IsKeywordÅ”	Token.prototype.IsKeyword = function() {
 		var tok;
 		tok = this.go$val;
 		return 60 < tok && tok < 86;
 	};
 	go$ptrType(Token).prototype.IsKeyword = function() { return new Token(this.go$get()).IsKeyword(); };
-	go$pkg.NoPos = 0;
-	go$pkg.ILLEGAL = 0;
-	go$pkg.EOF = 1;
-	go$pkg.COMMENT = 2;
-	var literal_beg = 3;
-	go$pkg.IDENT = 4;
-	go$pkg.INT = 5;
-	go$pkg.FLOAT = 6;
-	go$pkg.IMAG = 7;
-	go$pkg.CHAR = 8;
-	go$pkg.STRING = 9;
-	var literal_end = 10;
-	var operator_beg = 11;
-	go$pkg.ADD = 12;
-	go$pkg.SUB = 13;
-	go$pkg.MUL = 14;
-	go$pkg.QUO = 15;
-	go$pkg.REM = 16;
-	go$pkg.AND = 17;
-	go$pkg.OR = 18;
-	go$pkg.XOR = 19;
-	go$pkg.SHL = 20;
-	go$pkg.SHR = 21;
-	go$pkg.AND_NOT = 22;
-	go$pkg.ADD_ASSIGN = 23;
-	go$pkg.SUB_ASSIGN = 24;
-	go$pkg.MUL_ASSIGN = 25;
-	go$pkg.QUO_ASSIGN = 26;
-	go$pkg.REM_ASSIGN = 27;
-	go$pkg.AND_ASSIGN = 28;
-	go$pkg.OR_ASSIGN = 29;
-	go$pkg.XOR_ASSIGN = 30;
-	go$pkg.SHL_ASSIGN = 31;
-	go$pkg.SHR_ASSIGN = 32;
-	go$pkg.AND_NOT_ASSIGN = 33;
-	go$pkg.LAND = 34;
-	go$pkg.LOR = 35;
-	go$pkg.ARROW = 36;
-	go$pkg.INC = 37;
-	go$pkg.DEC = 38;
-	go$pkg.EQL = 39;
-	go$pkg.LSS = 40;
-	go$pkg.GTR = 41;
-	go$pkg.ASSIGN = 42;
-	go$pkg.NOT = 43;
-	go$pkg.NEQ = 44;
-	go$pkg.LEQ = 45;
-	go$pkg.GEQ = 46;
-	go$pkg.DEFINE = 47;
-	go$pkg.ELLIPSIS = 48;
-	go$pkg.LPAREN = 49;
-	go$pkg.LBRACK = 50;
-	go$pkg.LBRACE = 51;
-	go$pkg.COMMA = 52;
-	go$pkg.PERIOD = 53;
-	go$pkg.RPAREN = 54;
-	go$pkg.RBRACK = 55;
-	go$pkg.RBRACE = 56;
-	go$pkg.SEMICOLON = 57;
-	go$pkg.COLON = 58;
-	var operator_end = 59;
-	var keyword_beg = 60;
-	go$pkg.BREAK = 61;
-	go$pkg.CASE = 62;
-	go$pkg.CHAN = 63;
-	go$pkg.CONST = 64;
-	go$pkg.CONTINUE = 65;
-	go$pkg.DEFAULT = 66;
-	go$pkg.DEFER = 67;
-	go$pkg.ELSE = 68;
-	go$pkg.FALLTHROUGH = 69;
-	go$pkg.FOR = 70;
-	go$pkg.FUNC = 71;
-	go$pkg.GO = 72;
-	go$pkg.GOTO = 73;
-	go$pkg.IF = 74;
-	go$pkg.IMPORT = 75;
-	go$pkg.INTERFACE = 76;
-	go$pkg.MAP = 77;
-	go$pkg.PACKAGE = 78;
-	go$pkg.RANGE = 79;
-	go$pkg.RETURN = 80;
-	go$pkg.SELECT = 81;
-	go$pkg.STRUCT = 82;
-	go$pkg.SWITCH = 83;
-	go$pkg.TYPE = 84;
-	go$pkg.VAR = 85;
-	var keyword_end = 86;
-	go$pkg.LowestPrec = 0;
-	go$pkg.UnaryPrec = 6;
-	go$pkg.HighestPrec = 7;
-	var tokens = go$makeNativeArray("String", 86, function() { return ""; });
-	var keywords = false;
-	go$pkg.init = function() {
+0ÇwinitÇm	go$pkg.init = function() {
 		var i, _key;
 		tokens = go$toNativeArray("String", ["ILLEGAL", "EOF", "COMMENT", "", "IDENT", "INT", "FLOAT", "IMAG", "CHAR", "STRING", "", "", "+", "-", "*", "/", "%", "&", "|", "^", "<<", ">>", "&^", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>=", "&^=", "&&", "||", "<-", "++", "--", "==", "<", ">", "=", "!", "!=", "<=", ">=", ":=", "...", "(", "[", "{", ",", ".", ")", "]", "}", ";", ":", "", "", "break", "case", "chan", "const", "continue", "default", "defer", "else", "fallthrough", "for", "func", "go", "goto", "if", "import", "interface", "map", "package", "range", "return", "select", "struct", "switch", "type", "var"]);
 		keywords = new Go$Map();

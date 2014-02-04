@@ -1,4 +1,4 @@
-0ÉòÇâpackage parser
+0É÷	go/parserÇâpackage parser
 import bytes "bytes"
 import errors "errors"
 import ast "go/ast"
@@ -443,20 +443,9 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0Å»runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
-go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
-	var errors = go$packages["errors"];
-	var ast = go$packages["go/ast"];
-	var token = go$packages["go/token"];
-	var io = go$packages["io"];
-	var ioutil = go$packages["io/ioutil"];
-	var os = go$packages["os"];
-	var filepath = go$packages["path/filepath"];
-	var strings = go$packages["strings"];
-	var fmt = go$packages["fmt"];
-	var scanner = go$packages["go/scanner"];
-	var strconv = go$packages["strconv"];
-	var unicode = go$packages["unicode"];
-	var Mode;
+go/scannergo/ast	io/ioutil	go/parser0ÅÁ0bytesbytes0errorserrors0go/astast0go/tokentoken0ioio0	io/ioutilioutil0osos0path/filepathfilepath0stringsstrings0
+fmtfmt0
+go/scannerscanner0strconvstrconv0unicodeunicodeÇ(	var Mode;
 	Mode = go$newType(4, "Uint", "parser.Mode", "Mode", "go/parser", null);
 	go$pkg.Mode = Mode;
 	var parser;
@@ -498,7 +487,9 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 	(go$ptrType(parser)).methods = [["atComma", "go/parser", [Go$String], [Go$Bool], false], ["checkExpr", "go/parser", [ast.Expr], [ast.Expr], false], ["checkExprOrType", "go/parser", [ast.Expr], [ast.Expr], false], ["closeLabelScope", "go/parser", [], [], false], ["closeScope", "go/parser", [], [], false], ["consumeComment", "go/parser", [], [(go$ptrType(ast.Comment)), Go$Int], false], ["consumeCommentGroup", "go/parser", [Go$Int], [(go$ptrType(ast.CommentGroup)), Go$Int], false], ["declare", "go/parser", [go$emptyInterface, go$emptyInterface, (go$ptrType(ast.Scope)), ast.ObjKind, (go$sliceType((go$ptrType(ast.Ident))))], [], true], ["error", "go/parser", [token.Pos, Go$String], [], false], ["errorExpected", "go/parser", [token.Pos, Go$String], [], false], ["expect", "go/parser", [token.Token], [token.Pos], false], ["expectClosing", "go/parser", [token.Token, Go$String], [token.Pos], false], ["expectSemi", "go/parser", [], [], false], ["init", "go/parser", [(go$ptrType(token.FileSet)), Go$String, (go$sliceType(Go$Uint8)), Mode], [], false], ["makeExpr", "go/parser", [ast.Stmt], [ast.Expr], false], ["makeIdentList", "go/parser", [(go$sliceType(ast.Expr))], [(go$sliceType((go$ptrType(ast.Ident))))], false], ["next", "go/parser", [], [], false], ["next0", "go/parser", [], [], false], ["openLabelScope", "go/parser", [], [], false], ["openScope", "go/parser", [], [], false], ["parseArrayType", "go/parser", [], [ast.Expr], false], ["parseBinaryExpr", "go/parser", [Go$Bool, Go$Int], [ast.Expr], false], ["parseBlockStmt", "go/parser", [], [(go$ptrType(ast.BlockStmt))], false], ["parseBody", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.BlockStmt))], false], ["parseBranchStmt", "go/parser", [token.Token], [(go$ptrType(ast.BranchStmt))], false], ["parseCallExpr", "go/parser", [], [(go$ptrType(ast.CallExpr))], false], ["parseCallOrConversion", "go/parser", [ast.Expr], [(go$ptrType(ast.CallExpr))], false], ["parseCaseClause", "go/parser", [Go$Bool], [(go$ptrType(ast.CaseClause))], false], ["parseChanType", "go/parser", [], [(go$ptrType(ast.ChanType))], false], ["parseCommClause", "go/parser", [], [(go$ptrType(ast.CommClause))], false], ["parseDecl", "go/parser", [(go$funcType([(go$ptrType(parser))], [], false))], [ast.Decl], false], ["parseDeferStmt", "go/parser", [], [ast.Stmt], false], ["parseElement", "go/parser", [Go$Bool], [ast.Expr], false], ["parseElementList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseExpr", "go/parser", [Go$Bool], [ast.Expr], false], ["parseExprList", "go/parser", [Go$Bool], [(go$sliceType(ast.Expr))], false], ["parseFieldDecl", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.Field))], false], ["parseFile", "go/parser", [], [(go$ptrType(ast.File))], false], ["parseForStmt", "go/parser", [], [ast.Stmt], false], ["parseFuncDecl", "go/parser", [], [(go$ptrType(ast.FuncDecl))], false], ["parseFuncType", "go/parser", [], [(go$ptrType(ast.FuncType)), (go$ptrType(ast.Scope))], false], ["parseFuncTypeOrLit", "go/parser", [], [ast.Expr], false], ["parseGenDecl", "go/parser", [token.Token, parseSpecFunction], [(go$ptrType(ast.GenDecl))], false], ["parseGoStmt", "go/parser", [], [ast.Stmt], false], ["parseIdent", "go/parser", [], [(go$ptrType(ast.Ident))], false], ["parseIdentList", "go/parser", [], [(go$sliceType((go$ptrType(ast.Ident))))], false], ["parseIfStmt", "go/parser", [], [(go$ptrType(ast.IfStmt))], false], ["parseImportSpec", "go/parser", [(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false], ["parseIndexOrSlice", "go/parser", [ast.Expr], [ast.Expr], false], ["parseInterfaceType", "go/parser", [], [(go$ptrType(ast.InterfaceType))], false], ["parseLhsList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseLiteralValue", "go/parser", [ast.Expr], [ast.Expr], false], ["parseMapType", "go/parser", [], [(go$ptrType(ast.MapType))], false], ["parseMethodSpec", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.Field))], false], ["parseOperand", "go/parser", [Go$Bool], [ast.Expr], false], ["parseParameterList", "go/parser", [(go$ptrType(ast.Scope)), Go$Bool], [(go$sliceType((go$ptrType(ast.Field))))], false], ["parseParameters", "go/parser", [(go$ptrType(ast.Scope)), Go$Bool], [(go$ptrType(ast.FieldList))], false], ["parsePointerType", "go/parser", [], [(go$ptrType(ast.StarExpr))], false], ["parsePrimaryExpr", "go/parser", [Go$Bool], [ast.Expr], false], ["parseReceiver", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.FieldList))], false], ["parseResult", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.FieldList))], false], ["parseReturnStmt", "go/parser", [], [(go$ptrType(ast.ReturnStmt))], false], ["parseRhs", "go/parser", [], [ast.Expr], false], ["parseRhsList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseRhsOrType", "go/parser", [], [ast.Expr], false], ["parseSelectStmt", "go/parser", [], [(go$ptrType(ast.SelectStmt))], false], ["parseSelector", "go/parser", [ast.Expr], [ast.Expr], false], ["parseSignature", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.FieldList)), (go$ptrType(ast.FieldList))], false], ["parseSimpleStmt", "go/parser", [Go$Int], [ast.Stmt, Go$Bool], false], ["parseStmt", "go/parser", [], [ast.Stmt], false], ["parseStmtList", "go/parser", [], [(go$sliceType(ast.Stmt))], false], ["parseStructType", "go/parser", [], [(go$ptrType(ast.StructType))], false], ["parseSwitchStmt", "go/parser", [], [ast.Stmt], false], ["parseType", "go/parser", [], [ast.Expr], false], ["parseTypeAssertion", "go/parser", [ast.Expr], [ast.Expr], false], ["parseTypeList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseTypeName", "go/parser", [], [ast.Expr], false], ["parseTypeSpec", "go/parser", [(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false], ["parseUnaryExpr", "go/parser", [Go$Bool], [ast.Expr], false], ["parseValueSpec", "go/parser", [(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false], ["parseVarList", "go/parser", [Go$Bool], [(go$sliceType(ast.Expr)), ast.Expr], false], ["parseVarType", "go/parser", [Go$Bool], [ast.Expr], false], ["printTrace", "go/parser", [(go$sliceType(go$emptyInterface))], [], true], ["resolve", "go/parser", [ast.Expr], [], false], ["shortVarDecl", "go/parser", [(go$ptrType(ast.AssignStmt)), (go$sliceType(ast.Expr))], [], false], ["tokPrec", "go/parser", [], [token.Token, Go$Int], false], ["tryIdentOrType", "go/parser", [], [ast.Expr], false], ["tryResolve", "go/parser", [ast.Expr, Go$Bool], [], false], ["tryType", "go/parser", [], [ast.Expr], false], ["tryVarType", "go/parser", [Go$Bool], [ast.Expr], false]];
 	bailout.init([]);
 	parseSpecFunction.init([(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false);
-	var readSource = function(filename, src) {
+0	var unresolved = (go$ptrType(ast.Object)).nil;
+0ÉjC0Ç‰
+readSourceÇ‘	var readSource = function(filename, src) {
 		var s, _ref, _type, buf, err, _tuple;
 		if (!(go$interfaceIsEqual(src, null))) {
 			_ref = src;
@@ -526,7 +517,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 		return ioutil.ReadFile(filename);
 	};
-	var ParseFile = go$pkg.ParseFile = function(fset, filename, src, mode) {
+0Ç∑	ParseFileÇ®	var ParseFile = go$pkg.ParseFile = function(fset, filename, src, mode) {
 		var f, err, _tuple, text, _tuple$1, p;
 		f = (go$ptrType(ast.File)).nil;
 		err = null;
@@ -558,7 +549,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 			return [f, err];
 		}
 	};
-	var ParseDir = go$pkg.ParseDir = function(fset, path, filter, mode) {
+0ÇyParseDirÇk	var ParseDir = go$pkg.ParseDir = function(fset, path, filter, mode) {
 		var pkgs, first, _tuple, fd, err, _tuple$1, _tuple$2, list, _tuple$3, _ref, _i, _slice, _index, d, filename, err$1, _tuple$4, src, name, _tuple$5, _entry, pkg, found, _key, _key$1;
 		pkgs = false;
 		first = null;
@@ -603,7 +594,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 			return [pkgs, first];
 		}
 	};
-	var ParseExpr = go$pkg.ParseExpr = function(x) {
+0ÇŒ	ParseExprÇø	var ParseExpr = go$pkg.ParseExpr = function(x) {
 		var p, e;
 		p = new parser.Ptr();
 		p.init(token.NewFileSet(), "", new (go$sliceType(Go$Uint8))(go$stringToBytes(x)), 0);
@@ -618,7 +609,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 		return [e, null];
 	};
-	parser.Ptr.prototype.init = function(fset, filename, src, mode) {
+0Ç‘initÇ 	parser.Ptr.prototype.init = function(fset, filename, src, mode) {
 		var p, m, eh;
 		p = this;
 		p.file = fset.AddFile(filename, -1, src.length);
@@ -636,26 +627,27 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		p.next();
 	};
 	parser.prototype.init = function(fset, filename, src, mode) { return this.go$val.init(fset, filename, src, mode); };
-	parser.Ptr.prototype.openScope = function() {
+0ÅÕ	openScopeÅø	parser.Ptr.prototype.openScope = function() {
 		var p;
 		p = this;
 		p.topScope = ast.NewScope(p.topScope);
 	};
 	parser.prototype.openScope = function() { return this.go$val.openScope(); };
-	parser.Ptr.prototype.closeScope = function() {
+0Å…
+closeScopeÅ∫	parser.Ptr.prototype.closeScope = function() {
 		var p;
 		p = this;
 		p.topScope = p.topScope.Outer;
 	};
 	parser.prototype.closeScope = function() { return this.go$val.closeScope(); };
-	parser.Ptr.prototype.openLabelScope = function() {
+0Ç?openLabelScopeÇ+	parser.Ptr.prototype.openLabelScope = function() {
 		var p;
 		p = this;
 		p.labelScope = ast.NewScope(p.labelScope);
 		p.targetStack = go$append(p.targetStack, (go$sliceType((go$ptrType(ast.Ident)))).nil);
 	};
 	parser.prototype.openLabelScope = function() { return this.go$val.openLabelScope(); };
-	parser.Ptr.prototype.closeLabelScope = function() {
+0Ç0closeLabelScopeÇ	parser.Ptr.prototype.closeLabelScope = function() {
 		var p, n, scope, _ref, _slice, _index, _i, _slice$1, _index$1, ident;
 		p = this;
 		n = p.targetStack.length - 1 >> 0;
@@ -673,7 +665,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		p.labelScope = p.labelScope.Outer;
 	};
 	parser.prototype.closeLabelScope = function() { return this.go$val.closeLabelScope(); };
-	parser.Ptr.prototype.declare = function(decl, data, scope, kind, idents) {
+0Ç!declareÇ	parser.Ptr.prototype.declare = function(decl, data, scope, kind, idents) {
 		var p, _ref, _i, _slice, _index, ident, obj, alt, prevDecl, pos, x;
 		p = this;
 		_ref = idents;
@@ -697,7 +689,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.declare = function(decl, data, scope, kind, idents) { return this.go$val.declare(decl, data, scope, kind, idents); };
-	parser.Ptr.prototype.shortVarDecl = function(decl, list) {
+0Ç¶shortVarDeclÇî	parser.Ptr.prototype.shortVarDecl = function(decl, list) {
 		var p, n, _ref, _i, _slice, _index, x, isIdent, _tuple, ident, obj, alt, _slice$1, _index$1;
 		p = this;
 		n = 0;
@@ -726,7 +718,8 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.shortVarDecl = function(decl, list) { return this.go$val.shortVarDecl(decl, list); };
-	parser.Ptr.prototype.tryResolve = function(x, collectUnresolved) {
+0Çê
+tryResolveÇÄ	parser.Ptr.prototype.tryResolve = function(x, collectUnresolved) {
 		var p, _tuple, ident, s, obj;
 		p = this;
 		_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0];
@@ -751,13 +744,14 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.tryResolve = function(x, collectUnresolved) { return this.go$val.tryResolve(x, collectUnresolved); };
-	parser.Ptr.prototype.resolve = function(x) {
+0Å∏resolveÅ¨	parser.Ptr.prototype.resolve = function(x) {
 		var p;
 		p = this;
 		p.tryResolve(x, true);
 	};
 	parser.prototype.resolve = function(x) { return this.go$val.resolve(x); };
-	parser.Ptr.prototype.printTrace = function(a) {
+0Çy
+printTraceÇi	parser.Ptr.prototype.printTrace = function(a) {
 		var p, _struct, pos, x, x$1, i;
 		p = this;
 		pos = (_struct = p.file.Position(p.pos), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
@@ -771,16 +765,16 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		fmt.Println(a);
 	};
 	parser.prototype.printTrace = function(a) { return this.go$val.printTrace(a); };
-	var trace = function(p, msg) {
+0ÅªtraceÅ±	var trace = function(p, msg) {
 		p.printTrace(new (go$sliceType(go$emptyInterface))([new Go$String(msg), new Go$String("(")]));
 		p.indent = p.indent + 1 >> 0;
 		return p;
 	};
-	var un = function(p) {
+0ÅêunÅâ	var un = function(p) {
 		p.indent = p.indent - 1 >> 0;
 		p.printTrace(new (go$sliceType(go$emptyInterface))([new Go$String(")")]));
 	};
-	parser.Ptr.prototype.next0 = function() {
+0Çnext0Ç¯	parser.Ptr.prototype.next0 = function() {
 		var p, s, _tuple;
 		p = this;
 		if (p.trace && (new token.Pos(p.pos)).IsValid()) {
@@ -796,7 +790,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		_tuple = p.scanner.Scan(), p.pos = _tuple[0], p.tok = _tuple[1], p.lit = _tuple[2];
 	};
 	parser.prototype.next0 = function() { return this.go$val.next0(); };
-	parser.Ptr.prototype.consumeComment = function() {
+0Ç7consumeCommentÇ#	parser.Ptr.prototype.consumeComment = function() {
 		var comment, endline, p, i;
 		comment = (go$ptrType(ast.Comment)).nil;
 		endline = 0;
@@ -816,7 +810,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return [comment, endline];
 	};
 	parser.prototype.consumeComment = function() { return this.go$val.consumeComment(); };
-	parser.Ptr.prototype.consumeCommentGroup = function(n) {
+0ÇÒconsumeCommentGroupÇÿ	parser.Ptr.prototype.consumeCommentGroup = function(n) {
 		var comments, endline, p, list, comment, _tuple;
 		comments = (go$ptrType(ast.CommentGroup)).nil;
 		endline = 0;
@@ -833,7 +827,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return [comments, endline];
 	};
 	parser.prototype.consumeCommentGroup = function(n) { return this.go$val.consumeCommentGroup(n); };
-	parser.Ptr.prototype.next = function() {
+0ÇVnextÇL	parser.Ptr.prototype.next = function() {
 		var p, prev, comment, endline, _tuple, _tuple$1;
 		p = this;
 		p.leadComment = (go$ptrType(ast.CommentGroup)).nil;
@@ -859,7 +853,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.next = function() { return this.go$val.next(); };
-	parser.Ptr.prototype.error = function(pos, msg) {
+0ÇœerrorÇƒ	parser.Ptr.prototype.error = function(pos, msg) {
 		var p, _struct, epos, n, _slice, _index, x, v, _struct$1;
 		p = this;
 		epos = (_struct = p.file.Position(pos), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
@@ -875,7 +869,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		(new (go$ptrType(scanner.ErrorList))(function() { return p.errors; }, function(v) { p.errors = v; })).Add((_struct$1 = epos, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), msg);
 	};
 	parser.prototype.error = function(pos, msg) { return this.go$val.error(pos, msg); };
-	parser.Ptr.prototype.errorExpected = function(pos, msg) {
+0ÇerrorExpectedÇ	parser.Ptr.prototype.errorExpected = function(pos, msg) {
 		var p;
 		p = this;
 		msg = "expected " + msg;
@@ -892,7 +886,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		p.error(pos, msg);
 	};
 	parser.prototype.errorExpected = function(pos, msg) { return this.go$val.errorExpected(pos, msg); };
-	parser.Ptr.prototype.expect = function(tok) {
+0Ç6expectÇ*	parser.Ptr.prototype.expect = function(tok) {
 		var p, pos;
 		p = this;
 		pos = p.pos;
@@ -903,7 +897,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return pos;
 	};
 	parser.prototype.expect = function(tok) { return this.go$val.expect(tok); };
-	parser.Ptr.prototype.expectClosing = function(tok, context) {
+0ÇÅexpectClosingÇn	parser.Ptr.prototype.expectClosing = function(tok, context) {
 		var p;
 		p = this;
 		if (!((p.tok === tok)) && (p.tok === 57) && p.lit === "\n") {
@@ -913,7 +907,8 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return p.expect(tok);
 	};
 	parser.prototype.expectClosing = function(tok, context) { return this.go$val.expectClosing(tok, context); };
-	parser.Ptr.prototype.expectSemi = function() {
+0ÇG
+expectSemiÇ7	parser.Ptr.prototype.expectSemi = function() {
 		var p;
 		p = this;
 		if (!((p.tok === 54)) && !((p.tok === 56))) {
@@ -926,7 +921,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.expectSemi = function() { return this.go$val.expectSemi(); };
-	parser.Ptr.prototype.atComma = function(context) {
+0ÇiatCommaÇ\	parser.Ptr.prototype.atComma = function(context) {
 		var p;
 		p = this;
 		if (p.tok === 52) {
@@ -939,12 +934,12 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return false;
 	};
 	parser.prototype.atComma = function(context) { return this.go$val.atComma(context); };
-	var assert = function(cond, msg) {
+0ÅåassertÅÅ	var assert = function(cond, msg) {
 		if (!cond) {
 			throw go$panic(new Go$String("go/parser internal error: " + msg));
 		}
 	};
-	var syncStmt = function(p) {
+0Ç<syncStmtÇ.	var syncStmt = function(p) {
 		var _ref;
 		while (true) {
 			_ref = p.tok;
@@ -964,7 +959,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 			p.next();
 		}
 	};
-	var syncDecl = function(p) {
+0ÇósyncDeclÇâ	var syncDecl = function(p) {
 		var _ref;
 		while (true) {
 			_ref = p.tok;
@@ -984,7 +979,8 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 			p.next();
 		}
 	};
-	parser.Ptr.prototype.parseIdent = function() {
+0Çh
+parseIdentÇX	parser.Ptr.prototype.parseIdent = function() {
 		var p, pos, name;
 		p = this;
 		pos = p.pos;
@@ -998,7 +994,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return new ast.Ident.Ptr(pos, name, (go$ptrType(ast.Object)).nil);
 	};
 	parser.prototype.parseIdent = function() { return this.go$val.parseIdent(); };
-	parser.Ptr.prototype.parseIdentList = function() {
+0ÇqparseIdentListÇ]	parser.Ptr.prototype.parseIdentList = function() {
 		var list, p;
 		list = (go$sliceType((go$ptrType(ast.Ident)))).nil;
 		var go$deferred = [];
@@ -1021,7 +1017,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseIdentList = function() { return this.go$val.parseIdentList(); };
-	parser.Ptr.prototype.parseExprList = function(lhs) {
+0ÇäparseExprListÇw	parser.Ptr.prototype.parseExprList = function(lhs) {
 		var list, p;
 		list = (go$sliceType(ast.Expr)).nil;
 		var go$deferred = [];
@@ -1044,7 +1040,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseExprList = function(lhs) { return this.go$val.parseExprList(lhs); };
-	parser.Ptr.prototype.parseLhsList = function() {
+0ÇóparseLhsListÇÖ	parser.Ptr.prototype.parseLhsList = function() {
 		var p, old, list, _ref, _ref$1, _i, _slice, _index, x;
 		p = this;
 		old = p.inRhs;
@@ -1065,7 +1061,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return list;
 	};
 	parser.prototype.parseLhsList = function() { return this.go$val.parseLhsList(); };
-	parser.Ptr.prototype.parseRhsList = function() {
+0Ç parseRhsListÇ	parser.Ptr.prototype.parseRhsList = function() {
 		var p, old, list;
 		p = this;
 		old = p.inRhs;
@@ -1075,7 +1071,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return list;
 	};
 	parser.prototype.parseRhsList = function() { return this.go$val.parseRhsList(); };
-	parser.Ptr.prototype.parseType = function() {
+0ÇR	parseTypeÇC	parser.Ptr.prototype.parseType = function() {
 		var p, typ, pos;
 		var go$deferred = [];
 		try {
@@ -1099,7 +1095,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseType = function() { return this.go$val.parseType(); };
-	parser.Ptr.prototype.parseTypeName = function() {
+0Ç_parseTypeNameÇL	parser.Ptr.prototype.parseTypeName = function() {
 		var p, ident, sel;
 		var go$deferred = [];
 		try {
@@ -1123,7 +1119,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseTypeName = function() { return this.go$val.parseTypeName(); };
-	parser.Ptr.prototype.parseArrayType = function() {
+0Ç parseArrayTypeÇ∂	parser.Ptr.prototype.parseArrayType = function() {
 		var p, lbrack, len, elt;
 		var go$deferred = [];
 		try {
@@ -1150,7 +1146,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseArrayType = function() { return this.go$val.parseArrayType(); };
-	parser.Ptr.prototype.makeIdentList = function(list) {
+0ÇEmakeIdentListÇ2	parser.Ptr.prototype.makeIdentList = function(list) {
 		var p, idents, _ref, _i, _slice, _index, x, i, _tuple, ident, isIdent, isBad, _tuple$1, _slice$1, _index$1;
 		p = this;
 		idents = (go$sliceType((go$ptrType(ast.Ident)))).make(list.length, 0, function() { return (go$ptrType(ast.Ident)).nil; });
@@ -1171,7 +1167,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return idents;
 	};
 	parser.prototype.makeIdentList = function(list) { return this.go$val.makeIdentList(list); };
-	parser.Ptr.prototype.parseFieldDecl = function(scope) {
+0ÇQparseFieldDeclÇ=	parser.Ptr.prototype.parseFieldDecl = function(scope) {
 		var p, doc, _tuple, list, typ, tag, idents, _slice, _index, n, pos, _slice$1, _index$1, field;
 		var go$deferred = [];
 		try {
@@ -1210,7 +1206,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseFieldDecl = function(scope) { return this.go$val.parseFieldDecl(scope); };
-	parser.Ptr.prototype.parseStructType = function() {
+0ÇpparseStructTypeÇ[	parser.Ptr.prototype.parseStructType = function() {
 		var p, pos, lbrace, scope, list, rbrace;
 		var go$deferred = [];
 		try {
@@ -1235,7 +1231,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseStructType = function() { return this.go$val.parseStructType(); };
-	parser.Ptr.prototype.parsePointerType = function() {
+0Ç.parsePointerTypeÇ	parser.Ptr.prototype.parsePointerType = function() {
 		var p, star, base;
 		var go$deferred = [];
 		try {
@@ -1254,7 +1250,8 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parsePointerType = function() { return this.go$val.parsePointerType(); };
-	parser.Ptr.prototype.tryVarType = function(isParam) {
+0Ç!
+tryVarTypeÇ	parser.Ptr.prototype.tryVarType = function(isParam) {
 		var p, pos, typ;
 		p = this;
 		if (isParam && (p.tok === 48)) {
@@ -1272,7 +1269,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return p.tryIdentOrType();
 	};
 	parser.prototype.tryVarType = function(isParam) { return this.go$val.tryVarType(isParam); };
-	parser.Ptr.prototype.parseVarType = function(isParam) {
+0ÇëparseVarTypeÇ	parser.Ptr.prototype.parseVarType = function(isParam) {
 		var p, typ, pos;
 		p = this;
 		typ = p.tryVarType(isParam);
@@ -1285,7 +1282,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return typ;
 	};
 	parser.prototype.parseVarType = function(isParam) { return this.go$val.parseVarType(isParam); };
-	parser.Ptr.prototype.parseVarList = function(isParam) {
+0ÇparseVarListÇ¸	parser.Ptr.prototype.parseVarList = function(isParam) {
 		var list, typ, p, typ$1;
 		list = (go$sliceType(ast.Expr)).nil;
 		typ = null;
@@ -1314,7 +1311,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseVarList = function(isParam) { return this.go$val.parseVarList(isParam); };
-	parser.Ptr.prototype.parseParameterList = function(scope, ellipsisOk) {
+0Ç	_parseParameterListÇ	G	parser.Ptr.prototype.parseParameterList = function(scope, ellipsisOk) {
 		var params, p, _tuple, list, typ, idents, field, idents$1, typ$1, field$1, _ref, _i, _slice, _index, typ$2, i, _slice$1, _index$1;
 		params = (go$sliceType((go$ptrType(ast.Field)))).nil;
 		var go$deferred = [];
@@ -1365,7 +1362,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseParameterList = function(scope, ellipsisOk) { return this.go$val.parseParameterList(scope, ellipsisOk); };
-	parser.Ptr.prototype.parseParameters = function(scope, ellipsisOk) {
+0Ç	parseParametersÇÙ	parser.Ptr.prototype.parseParameters = function(scope, ellipsisOk) {
 		var p, params, lparen, rparen;
 		var go$deferred = [];
 		try {
@@ -1388,7 +1385,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseParameters = function(scope, ellipsisOk) { return this.go$val.parseParameters(scope, ellipsisOk); };
-	parser.Ptr.prototype.parseResult = function(scope) {
+0Ç~parseResultÇm	parser.Ptr.prototype.parseResult = function(scope) {
 		var p, typ, list, _slice, _index;
 		var go$deferred = [];
 		try {
@@ -1414,7 +1411,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseResult = function(scope) { return this.go$val.parseResult(scope); };
-	parser.Ptr.prototype.parseSignature = function(scope) {
+0ÇìparseSignatureÇ	parser.Ptr.prototype.parseSignature = function(scope) {
 		var params, results, p;
 		params = (go$ptrType(ast.FieldList)).nil;
 		results = (go$ptrType(ast.FieldList)).nil;
@@ -1435,7 +1432,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseSignature = function(scope) { return this.go$val.parseSignature(scope); };
-	parser.Ptr.prototype.parseFuncType = function() {
+0Ç√parseFuncTypeÇ∞	parser.Ptr.prototype.parseFuncType = function() {
 		var p, pos, scope, _tuple, params, results;
 		var go$deferred = [];
 		try {
@@ -1455,7 +1452,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseFuncType = function() { return this.go$val.parseFuncType(); };
-	parser.Ptr.prototype.parseMethodSpec = function(scope) {
+0ÇMparseMethodSpecÇ8	parser.Ptr.prototype.parseMethodSpec = function(scope) {
 		var p, doc, idents, typ, x, isIdent, _tuple, ident, scope$1, _tuple$1, params, results, spec;
 		var go$deferred = [];
 		try {
@@ -1488,7 +1485,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseMethodSpec = function(scope) { return this.go$val.parseMethodSpec(scope); };
-	parser.Ptr.prototype.parseInterfaceType = function() {
+0Ç`parseInterfaceTypeÇH	parser.Ptr.prototype.parseInterfaceType = function() {
 		var p, pos, lbrace, scope, list, rbrace;
 		var go$deferred = [];
 		try {
@@ -1513,7 +1510,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseInterfaceType = function() { return this.go$val.parseInterfaceType(); };
-	parser.Ptr.prototype.parseMapType = function() {
+0Ç\parseMapTypeÇJ	parser.Ptr.prototype.parseMapType = function() {
 		var p, pos, key, value;
 		var go$deferred = [];
 		try {
@@ -1535,7 +1532,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseMapType = function() { return this.go$val.parseMapType(); };
-	parser.Ptr.prototype.parseChanType = function() {
+0ÇparseChanTypeÇı	parser.Ptr.prototype.parseChanType = function() {
 		var p, pos, dir, arrow, value;
 		var go$deferred = [];
 		try {
@@ -1568,7 +1565,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseChanType = function() { return this.go$val.parseChanType(); };
-	parser.Ptr.prototype.tryIdentOrType = function() {
+0Ç©tryIdentOrTypeÇï	parser.Ptr.prototype.tryIdentOrType = function() {
 		var p, _ref, _tuple, typ, lparen, typ$1, rparen;
 		p = this;
 		_ref = p.tok;
@@ -1599,7 +1596,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return null;
 	};
 	parser.prototype.tryIdentOrType = function() { return this.go$val.tryIdentOrType(); };
-	parser.Ptr.prototype.tryType = function() {
+0ÇtryTypeÇ	parser.Ptr.prototype.tryType = function() {
 		var p, typ;
 		p = this;
 		typ = p.tryIdentOrType();
@@ -1609,7 +1606,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return typ;
 	};
 	parser.prototype.tryType = function() { return this.go$val.tryType(); };
-	parser.Ptr.prototype.parseStmtList = function() {
+0ÇkparseStmtListÇX	parser.Ptr.prototype.parseStmtList = function() {
 		var list, p;
 		list = (go$sliceType(ast.Stmt)).nil;
 		var go$deferred = [];
@@ -1630,7 +1627,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseStmtList = function() { return this.go$val.parseStmtList(); };
-	parser.Ptr.prototype.parseBody = function(scope) {
+0Ç©	parseBodyÇö	parser.Ptr.prototype.parseBody = function(scope) {
 		var p, lbrace, list, rbrace;
 		var go$deferred = [];
 		try {
@@ -1654,7 +1651,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseBody = function(scope) { return this.go$val.parseBody(scope); };
-	parser.Ptr.prototype.parseBlockStmt = function() {
+0ÇparseBlockStmtÇk	parser.Ptr.prototype.parseBlockStmt = function() {
 		var p, lbrace, list, rbrace;
 		var go$deferred = [];
 		try {
@@ -1676,7 +1673,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseBlockStmt = function() { return this.go$val.parseBlockStmt(); };
-	parser.Ptr.prototype.parseFuncTypeOrLit = function() {
+0Ç—parseFuncTypeOrLitÇπ	parser.Ptr.prototype.parseFuncTypeOrLit = function() {
 		var p, _tuple, typ, scope, body;
 		var go$deferred = [];
 		try {
@@ -1700,7 +1697,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseFuncTypeOrLit = function() { return this.go$val.parseFuncTypeOrLit(); };
-	parser.Ptr.prototype.parseOperand = function(lhs) {
+0Ç–parseOperandÇæ	parser.Ptr.prototype.parseOperand = function(lhs) {
 		var p, _ref, x, x$1, lparen, x$2, rparen, typ, _tuple, isIdent, pos;
 		var go$deferred = [];
 		try {
@@ -1747,7 +1744,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseOperand = function(lhs) { return this.go$val.parseOperand(lhs); };
-	parser.Ptr.prototype.parseSelector = function(x) {
+0ÇÈparseSelectorÇ÷	parser.Ptr.prototype.parseSelector = function(x) {
 		var p, sel;
 		var go$deferred = [];
 		try {
@@ -1765,7 +1762,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseSelector = function(x) { return this.go$val.parseSelector(x); };
-	parser.Ptr.prototype.parseTypeAssertion = function(x) {
+0ÇùparseTypeAssertionÇÖ	parser.Ptr.prototype.parseTypeAssertion = function(x) {
 		var p, lparen, typ, rparen;
 		var go$deferred = [];
 		try {
@@ -1790,7 +1787,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseTypeAssertion = function(x) { return this.go$val.parseTypeAssertion(x); };
-	parser.Ptr.prototype.parseIndexOrSlice = function(x) {
+0ÇpparseIndexOrSliceÇY	parser.Ptr.prototype.parseIndexOrSlice = function(x) {
 		var p, lbrack, index, ncolons, rbrack;
 		var go$deferred = [];
 		try {
@@ -1826,7 +1823,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseIndexOrSlice = function(x) { return this.go$val.parseIndexOrSlice(x); };
-	parser.Ptr.prototype.parseCallOrConversion = function(fun) {
+0Ç2parseCallOrConversionÇ	parser.Ptr.prototype.parseCallOrConversion = function(fun) {
 		var p, lparen, list, ellipsis, rparen;
 		var go$deferred = [];
 		try {
@@ -1860,7 +1857,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseCallOrConversion = function(fun) { return this.go$val.parseCallOrConversion(fun); };
-	parser.Ptr.prototype.parseElement = function(keyOk) {
+0ÇÛparseElementÇ·	parser.Ptr.prototype.parseElement = function(keyOk) {
 		var p, x, colon;
 		var go$deferred = [];
 		try {
@@ -1890,7 +1887,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseElement = function(keyOk) { return this.go$val.parseElement(keyOk); };
-	parser.Ptr.prototype.parseElementList = function() {
+0ÇùparseElementListÇá	parser.Ptr.prototype.parseElementList = function() {
 		var list, p;
 		list = (go$sliceType(ast.Expr)).nil;
 		var go$deferred = [];
@@ -1915,7 +1912,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseElementList = function() { return this.go$val.parseElementList(); };
-	parser.Ptr.prototype.parseLiteralValue = function(typ) {
+0ÇparseLiteralValueÇ˜	parser.Ptr.prototype.parseLiteralValue = function(typ) {
 		var p, lbrace, elts, rbrace;
 		var go$deferred = [];
 		try {
@@ -1940,7 +1937,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseLiteralValue = function(typ) { return this.go$val.parseLiteralValue(typ); };
-	parser.Ptr.prototype.checkExpr = function(x) {
+0Çê	checkExprÇÅ	parser.Ptr.prototype.checkExpr = function(x) {
 		var p, _ref, _type;
 		p = this;
 		_ref = unparen(x);
@@ -1967,7 +1964,8 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return x;
 	};
 	parser.prototype.checkExpr = function(x) { return this.go$val.checkExpr(x); };
-	var isTypeName = function(x) {
+0Çk
+isTypeNameÇ[	var isTypeName = function(x) {
 		var t, _ref, _type, _tuple, x$1, isIdent;
 		_ref = x;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -1985,7 +1983,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 		return true;
 	};
-	var isLiteralType = function(x) {
+0ÇNisLiteralTypeÇ;	var isLiteralType = function(x) {
 		var t, _ref, _type, _tuple, x$1, isIdent;
 		_ref = x;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -2009,21 +2007,21 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 		return true;
 	};
-	var deref = function(x) {
+0ÇderefÇ	var deref = function(x) {
 		var isPtr, _tuple, p;
 		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.StarExpr)) ? [x.go$val, true] : [(go$ptrType(ast.StarExpr)).nil, false]), p = _tuple[0], isPtr = _tuple[1], isPtr) {
 			x = p.X;
 		}
 		return x;
 	};
-	var unparen = function(x) {
+0Ç(unparenÇ	var unparen = function(x) {
 		var isParen, _tuple, p;
 		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), p = _tuple[0], isParen = _tuple[1], isParen) {
 			x = unparen(p.X);
 		}
 		return x;
 	};
-	parser.Ptr.prototype.checkExprOrType = function(x) {
+0ÇócheckExprOrTypeÇÇ	parser.Ptr.prototype.checkExprOrType = function(x) {
 		var p, t, _ref, _type, isEllipsis, _tuple, x$1, len;
 		p = this;
 		_ref = unparen(x);
@@ -2043,7 +2041,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return x;
 	};
 	parser.prototype.checkExprOrType = function(x) { return this.go$val.checkExprOrType(x); };
-	parser.Ptr.prototype.parsePrimaryExpr = function(lhs) {
+0ÇºparsePrimaryExprÇ¶	parser.Ptr.prototype.parsePrimaryExpr = function(lhs) {
 		var p, x, _ref, _ref$1, pos;
 		var go$deferred = [];
 		try {
@@ -2103,7 +2101,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parsePrimaryExpr = function(lhs) { return this.go$val.parsePrimaryExpr(lhs); };
-	parser.Ptr.prototype.parseUnaryExpr = function(lhs) {
+0Ç∏parseUnaryExprÇ§	parser.Ptr.prototype.parseUnaryExpr = function(lhs) {
 		var p, _ref, _tuple, pos, op, x, arrow, x$1, ok, _tuple$1, typ, dir, _tuple$2, _tuple$3, _tuple$4, x$2, pos$1, x$3;
 		var go$deferred = [];
 		try {
@@ -2152,7 +2150,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseUnaryExpr = function(lhs) { return this.go$val.parseUnaryExpr(lhs); };
-	parser.Ptr.prototype.tokPrec = function() {
+0ÇtokPrecÇ	parser.Ptr.prototype.tokPrec = function() {
 		var p, tok;
 		p = this;
 		tok = p.tok;
@@ -2162,7 +2160,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return [tok, (new token.Token(tok)).Precedence()];
 	};
 	parser.prototype.tokPrec = function() { return this.go$val.tokPrec(); };
-	parser.Ptr.prototype.parseBinaryExpr = function(lhs, prec1) {
+0ÇÊparseBinaryExprÇ—	parser.Ptr.prototype.parseBinaryExpr = function(lhs, prec1) {
 		var p, x, _tuple, prec, _tuple$1, op, oprec, pos, y;
 		var go$deferred = [];
 		try {
@@ -2197,7 +2195,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseBinaryExpr = function(lhs, prec1) { return this.go$val.parseBinaryExpr(lhs, prec1); };
-	parser.Ptr.prototype.parseExpr = function(lhs) {
+0Çº	parseExprÇ≠	parser.Ptr.prototype.parseExpr = function(lhs) {
 		var p;
 		var go$deferred = [];
 		try {
@@ -2214,7 +2212,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseExpr = function(lhs) { return this.go$val.parseExpr(lhs); };
-	parser.Ptr.prototype.parseRhs = function() {
+0ÇparseRhsÇ	parser.Ptr.prototype.parseRhs = function() {
 		var p, old, x;
 		p = this;
 		old = p.inRhs;
@@ -2224,7 +2222,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return x;
 	};
 	parser.prototype.parseRhs = function() { return this.go$val.parseRhs(); };
-	parser.Ptr.prototype.parseRhsOrType = function() {
+0Ç.parseRhsOrTypeÇ	parser.Ptr.prototype.parseRhsOrType = function() {
 		var p, old, x;
 		p = this;
 		old = p.inRhs;
@@ -2234,7 +2232,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return x;
 	};
 	parser.prototype.parseRhsOrType = function() { return this.go$val.parseRhsOrType(); };
-	parser.Ptr.prototype.parseSimpleStmt = function(mode) {
+0ÇrparseSimpleStmtÇ]	parser.Ptr.prototype.parseSimpleStmt = function(mode) {
 		var p, x, _ref, _tuple, pos, tok, y, isRange, pos$1, as, _slice, _index, _ref$1, colon, isIdent, _tuple$1, x$1, _slice$1, _index$1, label, stmt, _slice$2, _index$2, arrow, y$1, _slice$3, _index$3, _slice$4, _index$4, s, _slice$5, _index$5;
 		var go$deferred = [];
 		try {
@@ -2296,7 +2294,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseSimpleStmt = function(mode) { return this.go$val.parseSimpleStmt(mode); };
-	parser.Ptr.prototype.parseCallExpr = function() {
+0Ç“parseCallExprÇø	parser.Ptr.prototype.parseCallExpr = function() {
 		var p, x, isCall, _tuple, call, isBad, _tuple$1;
 		p = this;
 		x = p.parseRhsOrType();
@@ -2309,7 +2307,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return (go$ptrType(ast.CallExpr)).nil;
 	};
 	parser.prototype.parseCallExpr = function() { return this.go$val.parseCallExpr(); };
-	parser.Ptr.prototype.parseGoStmt = function() {
+0ÇwparseGoStmtÇf	parser.Ptr.prototype.parseGoStmt = function() {
 		var p, pos, call;
 		var go$deferred = [];
 		try {
@@ -2332,7 +2330,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseGoStmt = function() { return this.go$val.parseGoStmt(); };
-	parser.Ptr.prototype.parseDeferStmt = function() {
+0ÇâparseDeferStmtÇu	parser.Ptr.prototype.parseDeferStmt = function() {
 		var p, pos, call;
 		var go$deferred = [];
 		try {
@@ -2355,7 +2353,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseDeferStmt = function() { return this.go$val.parseDeferStmt(); };
-	parser.Ptr.prototype.parseReturnStmt = function() {
+0ÇùparseReturnStmtÇà	parser.Ptr.prototype.parseReturnStmt = function() {
 		var p, pos, x;
 		var go$deferred = [];
 		try {
@@ -2379,7 +2377,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseReturnStmt = function() { return this.go$val.parseReturnStmt(); };
-	parser.Ptr.prototype.parseBranchStmt = function(tok) {
+0ÇdparseBranchStmtÇO	parser.Ptr.prototype.parseBranchStmt = function(tok) {
 		var p, pos, label, n, _slice, _index, _slice$1, _index$1;
 		var go$deferred = [];
 		try {
@@ -2404,7 +2402,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseBranchStmt = function(tok) { return this.go$val.parseBranchStmt(tok); };
-	parser.Ptr.prototype.makeExpr = function(s) {
+0Ç=makeExprÇ/	parser.Ptr.prototype.makeExpr = function(s) {
 		var p, isExpr, _tuple, es;
 		p = this;
 		if (go$interfaceIsEqual(s, null)) {
@@ -2417,7 +2415,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		return new ast.BadExpr.Ptr(s.Pos(), s.End());
 	};
 	parser.prototype.makeExpr = function(s) { return this.go$val.makeExpr(s); };
-	parser.Ptr.prototype.parseIfStmt = function() {
+0ÇuparseIfStmtÇd	parser.Ptr.prototype.parseIfStmt = function() {
 		var p, pos, s, x, prevLev, _tuple, body, else_;
 		var go$deferred = [];
 		try {
@@ -2465,7 +2463,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseIfStmt = function() { return this.go$val.parseIfStmt(); };
-	parser.Ptr.prototype.parseTypeList = function() {
+0Ç[parseTypeListÇH	parser.Ptr.prototype.parseTypeList = function() {
 		var list, p;
 		list = (go$sliceType(ast.Expr)).nil;
 		var go$deferred = [];
@@ -2488,7 +2486,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseTypeList = function() { return this.go$val.parseTypeList(); };
-	parser.Ptr.prototype.parseCaseClause = function(typeSwitch) {
+0ÇsparseCaseClauseÇ^	parser.Ptr.prototype.parseCaseClause = function(typeSwitch) {
 		var p, pos, list, colon, body;
 		var go$deferred = [];
 		try {
@@ -2521,12 +2519,12 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseCaseClause = function(typeSwitch) { return this.go$val.parseCaseClause(typeSwitch); };
-	var isTypeSwitchAssert = function(x) {
+0Ç<isTypeSwitchAssertÇ$	var isTypeSwitchAssert = function(x) {
 		var _tuple, a, ok;
 		_tuple = (x !== null && x.constructor === (go$ptrType(ast.TypeAssertExpr)) ? [x.go$val, true] : [(go$ptrType(ast.TypeAssertExpr)).nil, false]), a = _tuple[0], ok = _tuple[1];
 		return ok && go$interfaceIsEqual(a.Type, null);
 	};
-	var isTypeSwitchGuard = function(s) {
+0ÇfisTypeSwitchGuardÇO	var isTypeSwitchGuard = function(s) {
 		var t, _ref, _type, _slice, _index;
 		_ref = s;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -2539,7 +2537,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 		return false;
 	};
-	parser.Ptr.prototype.parseSwitchStmt = function() {
+0Ç:parseSwitchStmtÇ%	parser.Ptr.prototype.parseSwitchStmt = function() {
 		var p, pos, _tuple, s1, s2, prevLev, _tuple$1, _tuple$2, typeSwitch, lbrace, list, rbrace, body;
 		var go$deferred = [];
 		try {
@@ -2590,7 +2588,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseSwitchStmt = function() { return this.go$val.parseSwitchStmt(); };
-	parser.Ptr.prototype.parseCommClause = function() {
+0Ç	∆parseCommClauseÇ	±	parser.Ptr.prototype.parseCommClause = function() {
 		var p, pos, comm, lhs, _slice, _index, arrow, rhs, _slice$1, _index$1, tok, _slice$2, _index$2, pos$1, rhs$1, as, _slice$3, _index$3, _slice$4, _index$4, colon, body;
 		var go$deferred = [];
 		try {
@@ -2648,7 +2646,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseCommClause = function() { return this.go$val.parseCommClause(); };
-	parser.Ptr.prototype.parseSelectStmt = function() {
+0Ç1parseSelectStmtÇ	parser.Ptr.prototype.parseSelectStmt = function() {
 		var p, pos, lbrace, list, rbrace, body;
 		var go$deferred = [];
 		try {
@@ -2674,7 +2672,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseSelectStmt = function() { return this.go$val.parseSelectStmt(); };
-	parser.Ptr.prototype.parseForStmt = function() {
+0ÇÊparseForStmtÇ‘	parser.Ptr.prototype.parseForStmt = function() {
 		var p, pos, _tuple, s1, s2, s3, isRange, prevLev, _tuple$1, _tuple$2, _tuple$3, body, as, _tuple$4, key, value, _ref, _slice, _index, _slice$1, _index$1, _tuple$5, _slice$2, _index$2, _slice$3, _index$3, x, _slice$4, _index$4, x$1;
 		var go$deferred = [];
 		try {
@@ -2733,7 +2731,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseForStmt = function() { return this.go$val.parseForStmt(); };
-	parser.Ptr.prototype.parseStmt = function() {
+0ÇΩ	parseStmtÇÆ	parser.Ptr.prototype.parseStmt = function() {
 		var s, p, _ref, _tuple, isLabeledStmt, _tuple$1, pos;
 		s = null;
 		var go$deferred = [];
@@ -2789,7 +2787,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseStmt = function() { return this.go$val.parseStmt(); };
-	var isValidImport = function(lit) {
+0Ç∂isValidImportÇ£	var isValidImport = function(lit) {
 		var _tuple, s, _ref, _i, _rune, r;
 		_tuple = strconv.Unquote(lit), s = _tuple[0];
 		_ref = s;
@@ -2803,7 +2801,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 		return !(s === "");
 	};
-	parser.Ptr.prototype.parseImportSpec = function(doc, param, param$1) {
+0ÇaparseImportSpecÇL	parser.Ptr.prototype.parseImportSpec = function(doc, param, param$1) {
 		var p, ident, _ref, pos, path, spec;
 		var go$deferred = [];
 		try {
@@ -2842,7 +2840,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseImportSpec = function(doc, param, param$1) { return this.go$val.parseImportSpec(doc, param, param$1); };
-	parser.Ptr.prototype.parseValueSpec = function(doc, keyword, iota) {
+0Ç®parseValueSpecÇî	parser.Ptr.prototype.parseValueSpec = function(doc, keyword, iota) {
 		var p, idents, typ, values, spec, kind;
 		var go$deferred = [];
 		try {
@@ -2873,7 +2871,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseValueSpec = function(doc, keyword, iota) { return this.go$val.parseValueSpec(doc, keyword, iota); };
-	parser.Ptr.prototype.parseTypeSpec = function(doc, param, param$1) {
+0ÇparseTypeSpecÇ	parser.Ptr.prototype.parseTypeSpec = function(doc, param, param$1) {
 		var p, ident, spec;
 		var go$deferred = [];
 		try {
@@ -2896,7 +2894,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseTypeSpec = function(doc, param, param$1) { return this.go$val.parseTypeSpec(doc, param, param$1); };
-	parser.Ptr.prototype.parseGenDecl = function(keyword, f) {
+0ÇrparseGenDeclÇ`	parser.Ptr.prototype.parseGenDecl = function(keyword, f) {
 		var p, doc, pos, _tuple, lparen, rparen, list, iota;
 		var go$deferred = [];
 		try {
@@ -2930,7 +2928,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseGenDecl = function(keyword, f) { return this.go$val.parseGenDecl(keyword, f); };
-	parser.Ptr.prototype.parseReceiver = function(scope) {
+0ÇWparseReceiverÇD	parser.Ptr.prototype.parseReceiver = function(scope) {
 		var p, par, _slice, _index, recv, base, isIdent, _tuple, isBad, _tuple$1;
 		var go$deferred = [];
 		try {
@@ -2961,7 +2959,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseReceiver = function(scope) { return this.go$val.parseReceiver(scope); };
-	parser.Ptr.prototype.parseFuncDecl = function() {
+0Ç‘parseFuncDeclÇ¡	parser.Ptr.prototype.parseFuncDecl = function() {
 		var p, doc, pos, scope, recv, ident, _tuple, params, results, body, decl;
 		var go$deferred = [];
 		try {
@@ -2998,7 +2996,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseFuncDecl = function() { return this.go$val.parseFuncDecl(); };
-	parser.Ptr.prototype.parseDecl = function(sync) {
+0Ç˚	parseDeclÇÏ	parser.Ptr.prototype.parseDecl = function(sync) {
 		var p, f, _ref, doc, keyword, iota, _recv, doc$1, _, _$1, _recv$1, pos;
 		var go$deferred = [];
 		try {
@@ -3029,7 +3027,7 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseDecl = function(sync) { return this.go$val.parseDecl(sync); };
-	parser.Ptr.prototype.parseFile = function() {
+0Ç‰	parseFileÇ’	parser.Ptr.prototype.parseFile = function() {
 		var p, doc, pos, ident, decls, doc$1, _, _$1, _recv, i, _ref, _i, _slice, _index, ident$1, _slice$1, _index$1;
 		var go$deferred = [];
 		try {
@@ -3087,17 +3085,6 @@ go/scannergo/ast	io/ioutil	go/parserÉåØ	var bytes = go$packages["bytes"];
 		}
 	};
 	parser.prototype.parseFile = function() { return this.go$val.parseFile(); };
-	go$pkg.PackageClauseOnly = 1;
-	go$pkg.ImportsOnly = 2;
-	go$pkg.ParseComments = 4;
-	go$pkg.Trace = 8;
-	go$pkg.DeclarationErrors = 16;
-	go$pkg.SpuriousErrors = 32;
-	go$pkg.AllErrors = 32;
-	var basic = 0;
-	var labelOk = 1;
-	var rangeOk = 2;
-	var unresolved = (go$ptrType(ast.Object)).nil;
-	go$pkg.init = function() {
+0MinitE	go$pkg.init = function() {
 		unresolved = new ast.Object.Ptr();
 	};

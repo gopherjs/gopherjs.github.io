@@ -1,4 +1,4 @@
-0‚Pw‚$ìpackage log
+0‚QOlog‚$ìpackage log
 import fmt "fmt"
 import io "io"
 import os "os"
@@ -150,13 +150,8 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0kruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtlog‚+	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var os = go$packages["os"];
-	var runtime = go$packages["runtime"];
-	var sync = go$packages["sync"];
-	var time = go$packages["time"];
-	var Logger;
+0kruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtlog0P0
+fmtfmt0ioio0osos0runtimeruntime0syncsync0timetime‚<	var Logger;
 	Logger = go$newType(0, "Struct", "log.Logger", "Logger", "log", function(mu_, prefix_, flag_, out_, buf_) {
 		this.go$val = this;
 		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
@@ -168,10 +163,11 @@ $$
 	go$pkg.Logger = Logger;
 	Logger.init([["mu", "log", sync.Mutex, ""], ["prefix", "log", Go$String, ""], ["flag", "log", Go$Int, ""], ["out", "log", io.Writer, ""], ["buf", "log", (go$sliceType(Go$Uint8)), ""]]);
 	(go$ptrType(Logger)).methods = [["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fatalln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Flags", "", [], [Go$Int], false], ["Output", "", [Go$Int, Go$String], [go$error], false], ["Panic", "", [(go$sliceType(go$emptyInterface))], [], true], ["Panicf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Panicln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Prefix", "", [], [Go$String], false], ["Print", "", [(go$sliceType(go$emptyInterface))], [], true], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Println", "", [(go$sliceType(go$emptyInterface))], [], true], ["SetFlags", "", [Go$Int], [], false], ["SetPrefix", "", [Go$String], [], false], ["formatHeader", "log", [(go$ptrType((go$sliceType(Go$Uint8)))), time.Time, Go$String, Go$Int], [], false]];
-	var New = go$pkg.New = function(out, prefix, flag) {
+%	var std = (go$ptrType(Logger)).nil;
+0‚%00¢Newš	var New = go$pkg.New = function(out, prefix, flag) {
 		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
 	};
-	var itoa = function(buf, i, wid) {
+0‚¤itoa‚š	var itoa = function(buf, i, wid) {
 		var u, b, bp, _r, _q;
 		u = (i >>> 0);
 		if ((u === 0) && wid <= 1) {
@@ -188,7 +184,7 @@ $$
 		}
 		buf.go$set(go$appendSlice(buf.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(b), bp)));
 	};
-	Logger.Ptr.prototype.formatHeader = function(buf, t, file, line) {
+0‚jformatHeader‚X	Logger.Ptr.prototype.formatHeader = function(buf, t, file, line) {
 		var l, _tuple, year, month, day, _tuple$1, hour, min, sec, _q, short$1, i;
 		l = this;
 		buf.go$set(go$appendSlice(buf.go$get(), new (go$sliceType(Go$Uint8))(go$stringToBytes(l.prefix))));
@@ -236,7 +232,7 @@ $$
 		}
 	};
 	Logger.prototype.formatHeader = function(buf, t, file, line) { return this.go$val.formatHeader(buf, t, file, line); };
-	Logger.Ptr.prototype.Output = function(calldepth, s) {
+0‚LOutput‚@	Logger.Ptr.prototype.Output = function(calldepth, s) {
 		var l, _struct, now, file, line, ok, _tuple, v, _struct$1, _tuple$1, err;
 		var go$deferred = [];
 		try {
@@ -272,46 +268,46 @@ $$
 		}
 	};
 	Logger.prototype.Output = function(calldepth, s) { return this.go$val.Output(calldepth, s); };
-	Logger.Ptr.prototype.Printf = function(format, v) {
+0ÚPrintfÏ	Logger.Ptr.prototype.Printf = function(format, v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprintf(format, v));
 	};
 	Logger.prototype.Printf = function(format, v) { return this.go$val.Printf(format, v); };
-	Logger.Ptr.prototype.Print = function(v) {
+0µPrint«	Logger.Ptr.prototype.Print = function(v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprint(v));
 	};
 	Logger.prototype.Print = function(v) { return this.go$val.Print(v); };
-	Logger.Ptr.prototype.Println = function(v) {
+0¿Println³	Logger.Ptr.prototype.Println = function(v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprintln(v));
 	};
 	Logger.prototype.Println = function(v) { return this.go$val.Println(v); };
-	Logger.Ptr.prototype.Fatal = function(v) {
+0ÃFatal¹	Logger.Ptr.prototype.Fatal = function(v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprint(v));
 		os.Exit(1);
 	};
 	Logger.prototype.Fatal = function(v) { return this.go$val.Fatal(v); };
-	Logger.Ptr.prototype.Fatalf = function(format, v) {
+0èFatalfÝ	Logger.Ptr.prototype.Fatalf = function(format, v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprintf(format, v));
 		os.Exit(1);
 	};
 	Logger.prototype.Fatalf = function(format, v) { return this.go$val.Fatalf(format, v); };
-	Logger.Ptr.prototype.Fatalln = function(v) {
+0ÍFatallnÁ	Logger.Ptr.prototype.Fatalln = function(v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprintln(v));
 		os.Exit(1);
 	};
 	Logger.prototype.Fatalln = function(v) { return this.go$val.Fatalln(v); };
-	Logger.Ptr.prototype.Panic = function(v) {
+0åPanicÛ	Logger.Ptr.prototype.Panic = function(v) {
 		var l, s;
 		l = this;
 		s = fmt.Sprint(v);
@@ -319,7 +315,8 @@ $$
 		throw go$panic(new Go$String(s));
 	};
 	Logger.prototype.Panic = function(v) { return this.go$val.Panic(v); };
-	Logger.Ptr.prototype.Panicf = function(format, v) {
+0‚
+Panicfÿ	Logger.Ptr.prototype.Panicf = function(format, v) {
 		var l, s;
 		l = this;
 		s = fmt.Sprintf(format, v);
@@ -327,7 +324,7 @@ $$
 		throw go$panic(new Go$String(s));
 	};
 	Logger.prototype.Panicf = function(format, v) { return this.go$val.Panicf(format, v); };
-	Logger.Ptr.prototype.Panicln = function(v) {
+0ïPaniclnã	Logger.Ptr.prototype.Panicln = function(v) {
 		var l, s;
 		l = this;
 		s = fmt.Sprintln(v);
@@ -335,7 +332,7 @@ $$
 		throw go$panic(new Go$String(s));
 	};
 	Logger.prototype.Panicln = function(v) { return this.go$val.Panicln(v); };
-	Logger.Ptr.prototype.Flags = function() {
+0‚„Flags‚y	Logger.Ptr.prototype.Flags = function() {
 		var l;
 		var go$deferred = [];
 		try {
@@ -351,7 +348,7 @@ $$
 		}
 	};
 	Logger.prototype.Flags = function() { return this.go$val.Flags(); };
-	Logger.Ptr.prototype.SetFlags = function(flag) {
+0‚SetFlags‚	Logger.Ptr.prototype.SetFlags = function(flag) {
 		var l;
 		var go$deferred = [];
 		try {
@@ -366,7 +363,7 @@ $$
 		}
 	};
 	Logger.prototype.SetFlags = function(flag) { return this.go$val.SetFlags(flag); };
-	Logger.Ptr.prototype.Prefix = function() {
+0‚‹Prefix‚	Logger.Ptr.prototype.Prefix = function() {
 		var l;
 		var go$deferred = [];
 		try {
@@ -382,7 +379,7 @@ $$
 		}
 	};
 	Logger.prototype.Prefix = function() { return this.go$val.Prefix(); };
-	Logger.Ptr.prototype.SetPrefix = function(prefix) {
+0‚	SetPrefix‚Ž	Logger.Ptr.prototype.SetPrefix = function(prefix) {
 		var l;
 		var go$deferred = [];
 		try {
@@ -397,7 +394,7 @@ $$
 		}
 	};
 	Logger.prototype.SetPrefix = function(prefix) { return this.go$val.SetPrefix(prefix); };
-	var SetOutput = go$pkg.SetOutput = function(w) {
+0‚(	SetOutput‚	var SetOutput = go$pkg.SetOutput = function(w) {
 		var go$deferred = [];
 		try {
 			std.mu.Lock();
@@ -409,64 +406,57 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var Flags = go$pkg.Flags = function() {
+0LFlagsC	var Flags = go$pkg.Flags = function() {
 		return std.Flags();
 	};
-	var SetFlags = go$pkg.SetFlags = function(flag) {
+0YSetFlagsM	var SetFlags = go$pkg.SetFlags = function(flag) {
 		std.SetFlags(flag);
 	};
-	var Prefix = go$pkg.Prefix = function() {
+0PPrefixF	var Prefix = go$pkg.Prefix = function() {
 		return std.Prefix();
 	};
-	var SetPrefix = go$pkg.SetPrefix = function(prefix) {
+0a	SetPrefixT	var SetPrefix = go$pkg.SetPrefix = function(prefix) {
 		std.SetPrefix(prefix);
 	};
-	var Print = go$pkg.Print = function(v) {
+0WPrintN	var Print = go$pkg.Print = function(v) {
 		std.Output(2, fmt.Sprint(v));
 	};
-	var Printf = go$pkg.Printf = function(format, v) {
+0kPrintfa	var Printf = go$pkg.Printf = function(format, v) {
 		std.Output(2, fmt.Sprintf(format, v));
 	};
-	var Println = go$pkg.Println = function(v) {
+0_PrintlnT	var Println = go$pkg.Println = function(v) {
 		std.Output(2, fmt.Sprintln(v));
 	};
-	var Fatal = go$pkg.Fatal = function(v) {
+0eFatal\	var Fatal = go$pkg.Fatal = function(v) {
 		std.Output(2, fmt.Sprint(v));
 		os.Exit(1);
 	};
-	var Fatalf = go$pkg.Fatalf = function(format, v) {
+0yFatalfo	var Fatalf = go$pkg.Fatalf = function(format, v) {
 		std.Output(2, fmt.Sprintf(format, v));
 		os.Exit(1);
 	};
-	var Fatalln = go$pkg.Fatalln = function(v) {
+0mFatallnb	var Fatalln = go$pkg.Fatalln = function(v) {
 		std.Output(2, fmt.Sprintln(v));
 		os.Exit(1);
 	};
-	var Panic = go$pkg.Panic = function(v) {
+0ŽPanic„	var Panic = go$pkg.Panic = function(v) {
 		var s;
 		s = fmt.Sprint(v);
 		std.Output(2, s);
 		throw go$panic(new Go$String(s));
 	};
-	var Panicf = go$pkg.Panicf = function(format, v) {
+0¢Panicf—	var Panicf = go$pkg.Panicf = function(format, v) {
 		var s;
 		s = fmt.Sprintf(format, v);
 		std.Output(2, s);
 		throw go$panic(new Go$String(s));
 	};
-	var Panicln = go$pkg.Panicln = function(v) {
+0–PaniclnŠ	var Panicln = go$pkg.Panicln = function(v) {
 		var s;
 		s = fmt.Sprintln(v);
 		std.Output(2, s);
 		throw go$panic(new Go$String(s));
 	};
-	go$pkg.Ldate = 1;
-	go$pkg.Ltime = 2;
-	go$pkg.Lmicroseconds = 4;
-	go$pkg.Llongfile = 8;
-	go$pkg.Lshortfile = 16;
-	go$pkg.LstdFlags = 3;
-	var std = (go$ptrType(Logger)).nil;
-	go$pkg.init = function() {
+0Ginit?	go$pkg.init = function() {
 		std = New(os.Stderr, "", 3);
 	};

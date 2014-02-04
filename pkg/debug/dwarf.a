@@ -1,4 +1,4 @@
-0ÉlÙÇ-Âpackage dwarf
+0ÉZñdebug/dwarfÇ-Âpackage dwarf
 import binary "encoding/binary"
 import strconv "strconv"
 import errors "errors"
@@ -229,10 +229,7 @@ func (? *@"".unknownFormat) @"".dwarf64() (? bool, ? bool)
 func (? *@"".unknownFormat) @"".version() (? int)
 type @"encoding/binary".ByteOrder interface { @"encoding/binary".PutUint16(? []byte, ? uint16) (); @"encoding/binary".PutUint32(? []byte, ? uint32) (); @"encoding/binary".PutUint64(? []byte, ? uint64) (); @"encoding/binary".String() (? string); @"encoding/binary".Uint16(? []byte) (? uint16); @"encoding/binary".Uint32(? []byte) (? uint32); @"encoding/binary".Uint64(? []byte) (? uint64) }
 $$
-0lruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarydebug/dwarfÉ>ò	var binary = go$packages["encoding/binary"];
-	var strconv = go$packages["strconv"];
-	var errors = go$packages["errors"];
-	var buf;
+0lruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarydebug/dwarf0A0encoding/binarybinary0strconvstrconv0errorserrorsÇz~	var buf;
 	buf = go$newType(0, "Struct", "dwarf.buf", "buf", "debug/dwarf", function(dwarf_, order_, format_, name_, off_, data_, err_) {
 		this.go$val = this;
 		this.dwarf = dwarf_ !== undefined ? dwarf_ : (go$ptrType(Data)).nil;
@@ -670,28 +667,30 @@ $$
 	(go$ptrType(TypedefType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
 	unit.init([["base", "debug/dwarf", Offset, ""], ["off", "debug/dwarf", Offset, ""], ["data", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["atable", "debug/dwarf", abbrevTable, ""], ["asize", "debug/dwarf", Go$Int, ""], ["vers", "debug/dwarf", Go$Int, ""], ["is64", "debug/dwarf", Go$Bool, ""]]);
 	(go$ptrType(unit)).methods = [["addrsize", "debug/dwarf", [], [Go$Int], false], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false], ["version", "debug/dwarf", [], [Go$Int], false]];
-	unknownFormat.Ptr.prototype.version = function() {
+Åõ	var attrNames = go$makeNativeArray("String", 91, function() { return ""; });
+	var tagNames = go$makeNativeArray("String", 63, function() { return ""; });
+0Ç∞À0Å‰versionÅÿ	unknownFormat.Ptr.prototype.version = function() {
 		var _struct, u;
 		u = (_struct = this, new unknownFormat.Ptr());
 		return 0;
 	};
 	unknownFormat.prototype.version = function() { return this.go$val.version(); };
-	unknownFormat.Ptr.prototype.dwarf64 = function() {
+0ÅÒdwarf64ÅÂ	unknownFormat.Ptr.prototype.dwarf64 = function() {
 		var _struct, u;
 		u = (_struct = this, new unknownFormat.Ptr());
 		return [false, false];
 	};
 	unknownFormat.prototype.dwarf64 = function() { return this.go$val.dwarf64(); };
-	unknownFormat.Ptr.prototype.addrsize = function() {
+0ÅËaddrsizeÅ€	unknownFormat.Ptr.prototype.addrsize = function() {
 		var _struct, u;
 		u = (_struct = this, new unknownFormat.Ptr());
 		return 0;
 	};
 	unknownFormat.prototype.addrsize = function() { return this.go$val.addrsize(); };
-	var makeBuf = function(d, format$1, name, off, data) {
+0ÅämakeBuf	var makeBuf = function(d, format$1, name, off, data) {
 		return new buf.Ptr(d, d.order, format$1, name, off, data, null);
 	};
-	buf.Ptr.prototype.uint8 = function() {
+0ÇŸuint8ÇŒ	buf.Ptr.prototype.uint8 = function() {
 		var b, _slice, _index, val;
 		b = this;
 		if (b.data.length < 1) {
@@ -704,7 +703,7 @@ $$
 		return val;
 	};
 	buf.prototype.uint8 = function() { return this.go$val.uint8(); };
-	buf.Ptr.prototype.bytes = function(n) {
+0ÇsbytesÇh	buf.Ptr.prototype.bytes = function(n) {
 		var b, data;
 		b = this;
 		if (b.data.length < n) {
@@ -717,13 +716,13 @@ $$
 		return data;
 	};
 	buf.prototype.bytes = function(n) { return this.go$val.bytes(n); };
-	buf.Ptr.prototype.skip = function(n) {
+0ÅõskipÅí	buf.Ptr.prototype.skip = function(n) {
 		var b;
 		b = this;
 		b.bytes(n);
 	};
 	buf.prototype.skip = function(n) { return this.go$val.skip(n); };
-	buf.Ptr.prototype.string = function() {
+0ÇastringÇU	buf.Ptr.prototype.string = function() {
 		var b, i, _slice, _index, s;
 		b = this;
 		i = 0;
@@ -740,7 +739,7 @@ $$
 		return "";
 	};
 	buf.prototype.string = function() { return this.go$val.string(); };
-	buf.Ptr.prototype.uint16 = function() {
+0Ç uint16Åı	buf.Ptr.prototype.uint16 = function() {
 		var b, a;
 		b = this;
 		a = b.bytes(2);
@@ -750,7 +749,7 @@ $$
 		return b.order.Uint16(a);
 	};
 	buf.prototype.uint16 = function() { return this.go$val.uint16(); };
-	buf.Ptr.prototype.uint32 = function() {
+0Ç uint32Åı	buf.Ptr.prototype.uint32 = function() {
 		var b, a;
 		b = this;
 		a = b.bytes(4);
@@ -760,7 +759,7 @@ $$
 		return b.order.Uint32(a);
 	};
 	buf.prototype.uint32 = function() { return this.go$val.uint32(); };
-	buf.Ptr.prototype.uint64 = function() {
+0Çuint64Ç	buf.Ptr.prototype.uint64 = function() {
 		var b, a;
 		b = this;
 		a = b.bytes(8);
@@ -770,7 +769,7 @@ $$
 		return b.order.Uint64(a);
 	};
 	buf.prototype.uint64 = function() { return this.go$val.uint64(); };
-	buf.Ptr.prototype.varint = function() {
+0Ç¥varintÇ®	buf.Ptr.prototype.varint = function() {
 		var c, bits, b, i, _slice, _index, byte$1, x, _tuple, _tuple$1;
 		c = new Go$Uint64(0, 0);
 		bits = 0;
@@ -792,14 +791,14 @@ $$
 		return [c, bits];
 	};
 	buf.prototype.varint = function() { return this.go$val.varint(); };
-	buf.Ptr.prototype.uint = function() {
+0Å«uintÅæ	buf.Ptr.prototype.uint = function() {
 		var b, _tuple, x;
 		b = this;
 		_tuple = b.varint(), x = _tuple[0];
 		return x;
 	};
 	buf.prototype.uint = function() { return this.go$val.uint(); };
-	buf.Ptr.prototype.int$ = function() {
+0ÇIintÇ@	buf.Ptr.prototype.int$ = function() {
 		var b, _tuple, ux, bits, x, x$1, x$2, x$3;
 		b = this;
 		_tuple = b.varint(), ux = _tuple[0], bits = _tuple[1];
@@ -810,7 +809,7 @@ $$
 		return x;
 	};
 	buf.prototype.int$ = function() { return this.go$val.int$(); };
-	buf.Ptr.prototype.addr = function() {
+0ÇÊaddrÇ‹	buf.Ptr.prototype.addr = function() {
 		var b, _ref;
 		b = this;
 		_ref = b.format.addrsize();
@@ -827,7 +826,7 @@ $$
 		return new Go$Uint64(0, 0);
 	};
 	buf.prototype.addr = function() { return this.go$val.addr(); };
-	buf.Ptr.prototype.error = function(s) {
+0ÇBerrorÇ7	buf.Ptr.prototype.error = function(s) {
 		var b, x;
 		b = this;
 		if (go$interfaceIsEqual(b.err, null)) {
@@ -836,13 +835,13 @@ $$
 		}
 	};
 	buf.prototype.error = function(s) { return this.go$val.error(s); };
-	DecodeError.Ptr.prototype.Error = function() {
+0ÇuErrorÇj	DecodeError.Ptr.prototype.Error = function() {
 		var _struct, e;
 		e = (_struct = this, new DecodeError.Ptr(_struct.Name, _struct.Offset, _struct.Err));
 		return "decoding dwarf section " + e.Name + " at offset 0x" + strconv.FormatInt(new Go$Int64(0, e.Offset), 16) + ": " + e.Err;
 	};
 	DecodeError.prototype.Error = function() { return this.go$val.Error(); };
-	Attr.prototype.String = function() {
+0Ç-StringÇ!	Attr.prototype.String = function() {
 		var a, s;
 		a = this.go$val;
 		if ((a >> 0) < 91) {
@@ -854,7 +853,7 @@ $$
 		return strconv.Itoa((a >> 0));
 	};
 	go$ptrType(Attr).prototype.String = function() { return new Attr(this.go$get()).String(); };
-	Attr.prototype.GoString = function() {
+0ÇmGoStringÇ_	Attr.prototype.GoString = function() {
 		var a, s;
 		a = this.go$val;
 		if ((a >> 0) < 91) {
@@ -866,7 +865,7 @@ $$
 		return "dwarf.Attr(" + strconv.FormatInt(new Go$Int64(0, a), 10) + ")";
 	};
 	go$ptrType(Attr).prototype.GoString = function() { return new Attr(this.go$get()).GoString(); };
-	Tag.prototype.String = function() {
+0Ç)StringÇ	Tag.prototype.String = function() {
 		var t, s;
 		t = this.go$val;
 		if ((t >> 0) < 63) {
@@ -878,7 +877,7 @@ $$
 		return strconv.Itoa((t >> 0));
 	};
 	go$ptrType(Tag).prototype.String = function() { return new Tag(this.go$get()).String(); };
-	Tag.prototype.GoString = function() {
+0ÇgGoStringÇY	Tag.prototype.GoString = function() {
 		var t, s;
 		t = this.go$val;
 		if ((t >> 0) < 63) {
@@ -890,7 +889,7 @@ $$
 		return "dwarf.Tag(" + strconv.FormatInt(new Go$Int64(0, t), 10) + ")";
 	};
 	go$ptrType(Tag).prototype.GoString = function() { return new Tag(this.go$get()).GoString(); };
-	Data.Ptr.prototype.parseAbbrev = function(off) {
+0Ç	‡parseAbbrevÇ	œ	Data.Ptr.prototype.parseAbbrev = function(off) {
 		var d, ok, _tuple, _entry, m, data, x, _struct, b, m$1, id, n, _struct$1, b1, tag, fmt, a, _ref, _i, i, _slice, _index, _slice$1, _index$1, _struct$2, _key, _key$1;
 		d = this;
 		if (_tuple = (_entry = d.abbrevCache[off], _entry !== undefined ? [_entry.v, true] : [false, false]), m = _tuple[0], ok = _tuple[1], ok) {
@@ -946,7 +945,7 @@ $$
 		return [m$1, null];
 	};
 	Data.prototype.parseAbbrev = function(off) { return this.go$val.parseAbbrev(off); };
-	Entry.Ptr.prototype.Val = function(a) {
+0ÇValÇ	Entry.Ptr.prototype.Val = function(a) {
 		var e, _ref, _i, _slice, _index, _struct, f;
 		e = this;
 		_ref = e.Field;
@@ -960,7 +959,7 @@ $$
 		return null;
 	};
 	Entry.prototype.Val = function(a) { return this.go$val.Val(a); };
-	buf.Ptr.prototype.entry = function(atab, ubase) {
+0ÇÆentryÇ£	buf.Ptr.prototype.entry = function(atab, ubase) {
 		var b, off, id, _tuple, _entry, _struct, a, ok, e, _ref, _i, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, fmt, val, _ref$1, x, x$1, vers, _tuple$1, is64, known, off$1, x$2, _struct$1, b1, _tuple$2, is64$1, known$1, x$3, _slice$3, _index$3;
 		b = this;
 		off = b.off;
@@ -1075,7 +1074,7 @@ $$
 		return e;
 	};
 	buf.prototype.entry = function(atab, ubase) { return this.go$val.entry(atab, ubase); };
-	Data.Ptr.prototype.Reader = function() {
+0ÅÎReaderÅ‡	Data.Ptr.prototype.Reader = function() {
 		var d, r;
 		d = this;
 		r = new Reader.Ptr(new buf.Ptr(), d, null, 0, false, 0);
@@ -1083,7 +1082,7 @@ $$
 		return r;
 	};
 	Data.prototype.Reader = function() { return this.go$val.Reader(); };
-	Reader.Ptr.prototype.Seek = function(off) {
+0Ç}SeekÇs	Reader.Ptr.prototype.Seek = function(off) {
 		var r, d, _slice, _index, u, _struct, i, u$1, _ref, _i, _slice$1, _index$1, _struct$1;
 		r = this;
 		d = r.d;
@@ -1114,7 +1113,7 @@ $$
 		r.err = errors.New("offset out of range");
 	};
 	Reader.prototype.Seek = function(off) { return this.go$val.Seek(off); };
-	Reader.Ptr.prototype.maybeNextUnit = function() {
+0ÇïmaybeNextUnitÇÇ	Reader.Ptr.prototype.maybeNextUnit = function() {
 		var r, _slice, _index, u, _struct;
 		r = this;
 		while ((r.b.data.length === 0) && (r.unit + 1 >> 0) < r.d.unit.length) {
@@ -1124,7 +1123,7 @@ $$
 		}
 	};
 	Reader.prototype.maybeNextUnit = function() { return this.go$val.maybeNextUnit(); };
-	Reader.Ptr.prototype.Next = function() {
+0ÇŸNextÇœ	Reader.Ptr.prototype.Next = function() {
 		var r, _slice, _index, u, e, _tuple, x;
 		r = this;
 		if (!(go$interfaceIsEqual(r.err, null))) {
@@ -1151,7 +1150,7 @@ $$
 		return [e, null];
 	};
 	Reader.prototype.Next = function() { return this.go$val.Next(); };
-	Reader.Ptr.prototype.SkipChildren = function() {
+0ÇDSkipChildrenÇ2	Reader.Ptr.prototype.SkipChildren = function() {
 		var r, _tuple, e, err;
 		r = this;
 		if (!(go$interfaceIsEqual(r.err, null)) || !r.lastChildren) {
@@ -1172,7 +1171,7 @@ $$
 		}
 	};
 	Reader.prototype.SkipChildren = function() { return this.go$val.SkipChildren(); };
-	var New = go$pkg.New = function(abbrev$1, aranges, frame, info, line, pubnames, ranges, str) {
+0ÇBNewÇ9	var New = go$pkg.New = function(abbrev$1, aranges, frame, info, line, pubnames, ranges, str) {
 		var d, x, _slice, _index, _slice$1, _index$1, _tuple, x$1, y, x$2, x$3, x$4, x$5, _tuple$1, u, err;
 		d = new Data.Ptr(abbrev$1, aranges, frame, info, line, pubnames, ranges, str, new Go$Map(), 0, null, new Go$Map(), (go$sliceType(unit)).nil);
 		if (d.info.length < 6) {
@@ -1195,25 +1194,25 @@ $$
 		d.unit = u;
 		return [d, null];
 	};
-	CommonType.Ptr.prototype.Common = function() {
+0Å¨CommonÅ°	CommonType.Ptr.prototype.Common = function() {
 		var c;
 		c = this;
 		return c;
 	};
 	CommonType.prototype.Common = function() { return this.go$val.Common(); };
-	CommonType.Ptr.prototype.Size = function() {
+0Å≠SizeÅ§	CommonType.Ptr.prototype.Size = function() {
 		var c;
 		c = this;
 		return c.ByteSize;
 	};
 	CommonType.prototype.Size = function() { return this.go$val.Size(); };
-	BasicType.Ptr.prototype.Basic = function() {
+0Å¶BasicÅú	BasicType.Ptr.prototype.Basic = function() {
 		var b;
 		b = this;
 		return b;
 	};
 	BasicType.prototype.Basic = function() { return this.go$val.Basic(); };
-	BasicType.Ptr.prototype.String = function() {
+0ÅÚStringÅÁ	BasicType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		if (!(t.CommonType.Name === "")) {
@@ -1222,43 +1221,43 @@ $$
 		return "?";
 	};
 	BasicType.prototype.String = function() { return this.go$val.String(); };
-	QualType.Ptr.prototype.String = function() {
+0Å≈StringÅ∫	QualType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return t.Qual + " " + t.Type.String();
 	};
 	QualType.prototype.String = function() { return this.go$val.String(); };
-	QualType.Ptr.prototype.Size = function() {
+0Å¨SizeÅ£	QualType.Ptr.prototype.Size = function() {
 		var t;
 		t = this;
 		return t.Type.Size();
 	};
 	QualType.prototype.Size = function() { return this.go$val.Size(); };
-	ArrayType.Ptr.prototype.String = function() {
+0ÅÂStringÅ⁄	ArrayType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return "[" + strconv.FormatInt(t.Count, 10) + "]" + t.Type.String();
 	};
 	ArrayType.prototype.String = function() { return this.go$val.String(); };
-	ArrayType.Ptr.prototype.Size = function() {
+0Å¡SizeÅ∏	ArrayType.Ptr.prototype.Size = function() {
 		var t;
 		t = this;
 		return go$mul64(t.Count, t.Type.Size());
 	};
 	ArrayType.prototype.Size = function() { return this.go$val.Size(); };
-	VoidType.Ptr.prototype.String = function() {
+0Å≠StringÅ¢	VoidType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return "void";
 	};
 	VoidType.prototype.String = function() { return this.go$val.String(); };
-	PtrType.Ptr.prototype.String = function() {
+0Å∫StringÅØ	PtrType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return "*" + t.Type.String();
 	};
 	PtrType.prototype.String = function() { return this.go$val.String(); };
-	StructType.Ptr.prototype.String = function() {
+0Å˛StringÅÛ	StructType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		if (!(t.StructName === "")) {
@@ -1267,7 +1266,7 @@ $$
 		return t.Defn();
 	};
 	StructType.prototype.String = function() { return this.go$val.String(); };
-	StructType.Ptr.prototype.Defn = function() {
+0ÇΩDefnÇ≥	StructType.Ptr.prototype.Defn = function() {
 		var t, s, _ref, _i, _slice, _index, f, i, x;
 		t = this;
 		s = t.Kind;
@@ -1298,7 +1297,7 @@ $$
 		return s;
 	};
 	StructType.prototype.Defn = function() { return this.go$val.Defn(); };
-	EnumType.Ptr.prototype.String = function() {
+0ÇåStringÇÄ	EnumType.Ptr.prototype.String = function() {
 		var t, s, _ref, _i, _slice, _index, v, i;
 		t = this;
 		s = "enum";
@@ -1320,7 +1319,7 @@ $$
 		return s;
 	};
 	EnumType.prototype.String = function() { return this.go$val.String(); };
-	FuncType.Ptr.prototype.String = function() {
+0ÇâStringÇ}	FuncType.Ptr.prototype.String = function() {
 		var t, s, _ref, _i, _slice, _index, t$1, i;
 		t = this;
 		s = "func(";
@@ -1341,25 +1340,25 @@ $$
 		return s;
 	};
 	FuncType.prototype.String = function() { return this.go$val.String(); };
-	DotDotDotType.Ptr.prototype.String = function() {
+0Å∂StringÅ´	DotDotDotType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return "...";
 	};
 	DotDotDotType.prototype.String = function() { return this.go$val.String(); };
-	TypedefType.Ptr.prototype.String = function() {
+0ÅæStringÅ≥	TypedefType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return t.CommonType.Name;
 	};
 	TypedefType.prototype.String = function() { return this.go$val.String(); };
-	TypedefType.Ptr.prototype.Size = function() {
+0Å≤SizeÅ©	TypedefType.Ptr.prototype.Size = function() {
 		var t;
 		t = this;
 		return t.Type.Size();
 	};
 	TypedefType.prototype.Size = function() { return this.go$val.Size(); };
-	Data.Ptr.prototype.Type = function(off) {
+0Ç6FTypeÇ6<	Data.Ptr.prototype.Type = function(off) {
 		var d, ok, _tuple, _entry, t, r, _tuple$1, e, err, x, typ, nextDepth, next, typeOf, _ref, t$1, _key, _tuple$2, x$1, ndim, kid, _ref$1, _tuple$3, x$2, max, ok$1, x$3, _tuple$4, x$4, name, _tuple$5, x$5, enc, ok$2, x$6, _ref$2, x$7, _key$1, t$2, _tuple$6, x$8, _tuple$7, x$9, t$3, _key$2, _ref$3, _tuple$8, x$10, lastFieldType, lastFieldBitOffset, kid$1, f, ok$3, _tuple$9, x$11, loc, x$12, _struct, b, x$13, x$14, haveBitOffset, _tuple$10, x$15, _tuple$11, x$16, _tuple$12, x$17, _tuple$13, x$18, bito, _tuple$14, x$19, b$1, ok$4, x$20, t$4, _key$3, _ref$4, t$5, _key$4, _tuple$15, x$21, kid$2, f$1, _tuple$16, x$22, _tuple$17, x$23, n, x$24, val, _slice, _index, t$6, _key$5, t$7, _key$6, kid$3, tkid, _ref$5, t$8, _key$7, _tuple$18, x$25, _tuple$19, x$26, b$2, ok$5;
 		d = this;
 		if (_tuple = (_entry = d.typeCache[off], _entry !== undefined ? [_entry.v, true] : [null, false]), t = _tuple[0], ok = _tuple[1], ok) {
@@ -1642,7 +1641,7 @@ $$
 		return [null, err];
 	};
 	Data.prototype.Type = function(off) { return this.go$val.Type(off); };
-	var zeroArray = function(t) {
+0ÇN	zeroArrayÇ?	var zeroArray = function(t) {
 		var _tuple, at, ok;
 		while (true) {
 			_tuple = (t !== null && t.constructor === (go$ptrType(ArrayType)) ? [t.go$val, true] : [(go$ptrType(ArrayType)).nil, false]), at = _tuple[0], ok = _tuple[1];
@@ -1653,25 +1652,26 @@ $$
 			t = at.Type;
 		}
 	};
-	unit.Ptr.prototype.version = function() {
+0Å©versionÅù	unit.Ptr.prototype.version = function() {
 		var u;
 		u = this;
 		return u.vers;
 	};
 	unit.prototype.version = function() { return this.go$val.version(); };
-	unit.Ptr.prototype.dwarf64 = function() {
+0Å±dwarf64Å•	unit.Ptr.prototype.dwarf64 = function() {
 		var u;
 		u = this;
 		return [u.is64, true];
 	};
 	unit.prototype.dwarf64 = function() { return this.go$val.dwarf64(); };
-	unit.Ptr.prototype.addrsize = function() {
+0ÅÆaddrsizeÅ°	unit.Ptr.prototype.addrsize = function() {
 		var u;
 		u = this;
 		return u.asize;
 	};
 	unit.prototype.addrsize = function() { return this.go$val.addrsize(); };
-	Data.Ptr.prototype.parseUnits = function() {
+0ÇÎ
+parseUnitsÇ€	Data.Ptr.prototype.parseUnits = function() {
 		var d, nunit, x, _struct, b, len, len64, x$1, x$2, _struct$1, units, _ref, _i, i, _slice, _index, u, n, vers, _tuple, atable, err;
 		d = this;
 		nunit = 0;
@@ -1729,227 +1729,7 @@ $$
 		return [units, null];
 	};
 	Data.prototype.parseUnits = function() { return this.go$val.parseUnits(); };
-	go$pkg.AttrSibling = 1;
-	go$pkg.AttrLocation = 2;
-	go$pkg.AttrName = 3;
-	go$pkg.AttrOrdering = 9;
-	go$pkg.AttrByteSize = 11;
-	go$pkg.AttrBitOffset = 12;
-	go$pkg.AttrBitSize = 13;
-	go$pkg.AttrStmtList = 16;
-	go$pkg.AttrLowpc = 17;
-	go$pkg.AttrHighpc = 18;
-	go$pkg.AttrLanguage = 19;
-	go$pkg.AttrDiscr = 21;
-	go$pkg.AttrDiscrValue = 22;
-	go$pkg.AttrVisibility = 23;
-	go$pkg.AttrImport = 24;
-	go$pkg.AttrStringLength = 25;
-	go$pkg.AttrCommonRef = 26;
-	go$pkg.AttrCompDir = 27;
-	go$pkg.AttrConstValue = 28;
-	go$pkg.AttrContainingType = 29;
-	go$pkg.AttrDefaultValue = 30;
-	go$pkg.AttrInline = 32;
-	go$pkg.AttrIsOptional = 33;
-	go$pkg.AttrLowerBound = 34;
-	go$pkg.AttrProducer = 37;
-	go$pkg.AttrPrototyped = 39;
-	go$pkg.AttrReturnAddr = 42;
-	go$pkg.AttrStartScope = 44;
-	go$pkg.AttrStrideSize = 46;
-	go$pkg.AttrUpperBound = 47;
-	go$pkg.AttrAbstractOrigin = 49;
-	go$pkg.AttrAccessibility = 50;
-	go$pkg.AttrAddrClass = 51;
-	go$pkg.AttrArtificial = 52;
-	go$pkg.AttrBaseTypes = 53;
-	go$pkg.AttrCalling = 54;
-	go$pkg.AttrCount = 55;
-	go$pkg.AttrDataMemberLoc = 56;
-	go$pkg.AttrDeclColumn = 57;
-	go$pkg.AttrDeclFile = 58;
-	go$pkg.AttrDeclLine = 59;
-	go$pkg.AttrDeclaration = 60;
-	go$pkg.AttrDiscrList = 61;
-	go$pkg.AttrEncoding = 62;
-	go$pkg.AttrExternal = 63;
-	go$pkg.AttrFrameBase = 64;
-	go$pkg.AttrFriend = 65;
-	go$pkg.AttrIdentifierCase = 66;
-	go$pkg.AttrMacroInfo = 67;
-	go$pkg.AttrNamelistItem = 68;
-	go$pkg.AttrPriority = 69;
-	go$pkg.AttrSegment = 70;
-	go$pkg.AttrSpecification = 71;
-	go$pkg.AttrStaticLink = 72;
-	go$pkg.AttrType = 73;
-	go$pkg.AttrUseLocation = 74;
-	go$pkg.AttrVarParam = 75;
-	go$pkg.AttrVirtuality = 76;
-	go$pkg.AttrVtableElemLoc = 77;
-	go$pkg.AttrAllocated = 78;
-	go$pkg.AttrAssociated = 79;
-	go$pkg.AttrDataLocation = 80;
-	go$pkg.AttrStride = 81;
-	go$pkg.AttrEntrypc = 82;
-	go$pkg.AttrUseUTF8 = 83;
-	go$pkg.AttrExtension = 84;
-	go$pkg.AttrRanges = 85;
-	go$pkg.AttrTrampoline = 86;
-	go$pkg.AttrCallColumn = 87;
-	go$pkg.AttrCallFile = 88;
-	go$pkg.AttrCallLine = 89;
-	go$pkg.AttrDescription = 90;
-	var formAddr = 1;
-	var formDwarfBlock2 = 3;
-	var formDwarfBlock4 = 4;
-	var formData2 = 5;
-	var formData4 = 6;
-	var formData8 = 7;
-	var formString = 8;
-	var formDwarfBlock = 9;
-	var formDwarfBlock1 = 10;
-	var formData1 = 11;
-	var formFlag = 12;
-	var formSdata = 13;
-	var formStrp = 14;
-	var formUdata = 15;
-	var formRefAddr = 16;
-	var formRef1 = 17;
-	var formRef2 = 18;
-	var formRef4 = 19;
-	var formRef8 = 20;
-	var formRefUdata = 21;
-	var formIndirect = 22;
-	var formSecOffset = 23;
-	var formExprloc = 24;
-	var formFlagPresent = 25;
-	var formRefSig8 = 32;
-	go$pkg.TagArrayType = 1;
-	go$pkg.TagClassType = 2;
-	go$pkg.TagEntryPoint = 3;
-	go$pkg.TagEnumerationType = 4;
-	go$pkg.TagFormalParameter = 5;
-	go$pkg.TagImportedDeclaration = 8;
-	go$pkg.TagLabel = 10;
-	go$pkg.TagLexDwarfBlock = 11;
-	go$pkg.TagMember = 13;
-	go$pkg.TagPointerType = 15;
-	go$pkg.TagReferenceType = 16;
-	go$pkg.TagCompileUnit = 17;
-	go$pkg.TagStringType = 18;
-	go$pkg.TagStructType = 19;
-	go$pkg.TagSubroutineType = 21;
-	go$pkg.TagTypedef = 22;
-	go$pkg.TagUnionType = 23;
-	go$pkg.TagUnspecifiedParameters = 24;
-	go$pkg.TagVariant = 25;
-	go$pkg.TagCommonDwarfBlock = 26;
-	go$pkg.TagCommonInclusion = 27;
-	go$pkg.TagInheritance = 28;
-	go$pkg.TagInlinedSubroutine = 29;
-	go$pkg.TagModule = 30;
-	go$pkg.TagPtrToMemberType = 31;
-	go$pkg.TagSetType = 32;
-	go$pkg.TagSubrangeType = 33;
-	go$pkg.TagWithStmt = 34;
-	go$pkg.TagAccessDeclaration = 35;
-	go$pkg.TagBaseType = 36;
-	go$pkg.TagCatchDwarfBlock = 37;
-	go$pkg.TagConstType = 38;
-	go$pkg.TagConstant = 39;
-	go$pkg.TagEnumerator = 40;
-	go$pkg.TagFileType = 41;
-	go$pkg.TagFriend = 42;
-	go$pkg.TagNamelist = 43;
-	go$pkg.TagNamelistItem = 44;
-	go$pkg.TagPackedType = 45;
-	go$pkg.TagSubprogram = 46;
-	go$pkg.TagTemplateTypeParameter = 47;
-	go$pkg.TagTemplateValueParameter = 48;
-	go$pkg.TagThrownType = 49;
-	go$pkg.TagTryDwarfBlock = 50;
-	go$pkg.TagVariantPart = 51;
-	go$pkg.TagVariable = 52;
-	go$pkg.TagVolatileType = 53;
-	go$pkg.TagDwarfProcedure = 54;
-	go$pkg.TagRestrictType = 55;
-	go$pkg.TagInterfaceType = 56;
-	go$pkg.TagNamespace = 57;
-	go$pkg.TagImportedModule = 58;
-	go$pkg.TagUnspecifiedType = 59;
-	go$pkg.TagPartialUnit = 60;
-	go$pkg.TagImportedUnit = 61;
-	go$pkg.TagMutableType = 62;
-	var opAddr = 3;
-	var opDeref = 6;
-	var opConst1u = 8;
-	var opConst1s = 9;
-	var opConst2u = 10;
-	var opConst2s = 11;
-	var opConst4u = 12;
-	var opConst4s = 13;
-	var opConst8u = 14;
-	var opConst8s = 15;
-	var opConstu = 16;
-	var opConsts = 17;
-	var opDup = 18;
-	var opDrop = 19;
-	var opOver = 20;
-	var opPick = 21;
-	var opSwap = 22;
-	var opRot = 23;
-	var opXderef = 24;
-	var opAbs = 25;
-	var opAnd = 26;
-	var opDiv = 27;
-	var opMinus = 28;
-	var opMod = 29;
-	var opMul = 30;
-	var opNeg = 31;
-	var opNot = 32;
-	var opOr = 33;
-	var opPlus = 34;
-	var opPlusUconst = 35;
-	var opShl = 36;
-	var opShr = 37;
-	var opShra = 38;
-	var opXor = 39;
-	var opSkip = 47;
-	var opBra = 40;
-	var opEq = 41;
-	var opGe = 42;
-	var opGt = 43;
-	var opLe = 44;
-	var opLt = 45;
-	var opNe = 46;
-	var opLit0 = 48;
-	var opReg0 = 80;
-	var opBreg0 = 112;
-	var opRegx = 144;
-	var opFbreg = 145;
-	var opBregx = 146;
-	var opPiece = 147;
-	var opDerefSize = 148;
-	var opXderefSize = 149;
-	var opNop = 150;
-	var opPushObjAddr = 151;
-	var opCall2 = 152;
-	var opCall4 = 153;
-	var opCallRef = 154;
-	var encAddress = 1;
-	var encBoolean = 2;
-	var encComplexFloat = 3;
-	var encFloat = 4;
-	var encSigned = 5;
-	var encSignedChar = 6;
-	var encUnsigned = 7;
-	var encUnsignedChar = 8;
-	var encImaginaryFloat = 9;
-	var attrNames = go$makeNativeArray("String", 91, function() { return ""; });
-	var tagNames = go$makeNativeArray("String", 63, function() { return ""; });
-	go$pkg.init = function() {
+0Ç˘initÇÔ	go$pkg.init = function() {
 		attrNames = go$toNativeArray("String", ["", "Sibling", "Location", "Name", "", "", "", "", "", "Ordering", "", "ByteSize", "BitOffset", "BitSize", "", "", "StmtList", "Lowpc", "Highpc", "Language", "", "Discr", "DiscrValue", "Visibility", "Import", "StringLength", "CommonRef", "CompDir", "ConstValue", "ContainingType", "DefaultValue", "", "Inline", "IsOptional", "LowerBound", "", "", "Producer", "", "Prototyped", "", "", "ReturnAddr", "", "StartScope", "", "StrideSize", "UpperBound", "", "AbstractOrigin", "Accessibility", "AddrClass", "Artificial", "BaseTypes", "Calling", "Count", "DataMemberLoc", "DeclColumn", "DeclFile", "DeclLine", "Declaration", "DiscrList", "Encoding", "External", "FrameBase", "Friend", "IdentifierCase", "MacroInfo", "NamelistItem", "Priority", "Segment", "Specification", "StaticLink", "Type", "UseLocation", "VarParam", "Virtuality", "VtableElemLoc", "Allocated", "Associated", "DataLocation", "Stride", "Entrypc", "UseUTF8", "Extension", "Ranges", "Trampoline", "CallColumn", "CallFile", "CallLine", "Description"]);
 		tagNames = go$toNativeArray("String", ["", "ArrayType", "ClassType", "EntryPoint", "EnumerationType", "FormalParameter", "", "", "ImportedDeclaration", "", "Label", "LexDwarfBlock", "", "Member", "", "PointerType", "ReferenceType", "CompileUnit", "StringType", "StructType", "", "SubroutineType", "Typedef", "UnionType", "UnspecifiedParameters", "Variant", "CommonDwarfBlock", "CommonInclusion", "Inheritance", "InlinedSubroutine", "Module", "PtrToMemberType", "SetType", "SubrangeType", "WithStmt", "AccessDeclaration", "BaseType", "CatchDwarfBlock", "ConstType", "Constant", "Enumerator", "FileType", "Friend", "Namelist", "NamelistItem", "PackedType", "Subprogram", "TemplateTypeParameter", "TemplateValueParameter", "ThrownType", "TryDwarfBlock", "VariantPart", "Variable", "VolatileType", "DwarfProcedure", "RestrictType", "InterfaceType", "Namespace", "ImportedModule", "UnspecifiedType", "PartialUnit", "ImportedUnit", "MutableType"]);
 	};

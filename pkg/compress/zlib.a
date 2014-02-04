@@ -1,4 +1,4 @@
-0ÇNÏÇ"ppackage zlib
+0ÇN⁄compress/zlibÇ"ppackage zlib
 import bufio "bufio"
 import flate "compress/flate"
 import errors "errors"
@@ -80,14 +80,8 @@ func (? *@"compress/flate".huffmanEncoder) @"compress/flate".bitLength(@"compres
 func (? *@"compress/flate".huffmanEncoder) @"compress/flate".generate(@"compress/flate".freq []int32, @"compress/flate".maxBits int32) ()
 type @"compress/flate".literalNode struct { @"compress/flate".literal uint16; @"compress/flate".freq int32 }
 $$
-0Å∂runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flatehashhash/adler32compress/zlibÇ+ª	var bufio = go$packages["bufio"];
-	var flate = go$packages["compress/flate"];
-	var errors = go$packages["errors"];
-	var hash = go$packages["hash"];
-	var adler32 = go$packages["hash/adler32"];
-	var io = go$packages["io"];
-	var fmt = go$packages["fmt"];
-	var reader;
+0Å∂runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flatehashhash/adler32compress/zlib0x0bufiobufio0compress/flateflate0errorserrors0hashhash0hash/adler32adler320ioio0
+fmtfmtÇ	P	var reader;
 	reader = go$newType(0, "Struct", "zlib.reader", "reader", "compress/zlib", function(r_, decompressor_, digest_, err_, scratch_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
@@ -114,10 +108,13 @@ $$
 	(go$ptrType(reader)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	Writer.init([["w", "compress/zlib", io.Writer, ""], ["level", "compress/zlib", Go$Int, ""], ["dict", "compress/zlib", (go$sliceType(Go$Uint8)), ""], ["compressor", "compress/zlib", (go$ptrType(flate.Writer)), ""], ["digest", "compress/zlib", hash.Hash32, ""], ["err", "compress/zlib", go$error, ""], ["scratch", "compress/zlib", (go$arrayType(Go$Uint8, 4)), ""], ["wroteHeader", "compress/zlib", Go$Bool, ""]]);
 	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["writeHeader", "compress/zlib", [], [go$error], false]];
-	var NewReader = go$pkg.NewReader = function(r) {
+T	go$pkg.ErrChecksum = null;
+	go$pkg.ErrDictionary = null;
+	go$pkg.ErrHeader = null;
+0Ç!v0|	NewReadero	var NewReader = go$pkg.NewReader = function(r) {
 		return NewReaderDict(r, (go$sliceType(Go$Uint8)).nil);
 	};
-	var NewReaderDict = go$pkg.NewReaderDict = function(r, dict) {
+0ÇœNewReaderDictÇº	var NewReaderDict = go$pkg.NewReaderDict = function(r, dict) {
 		var z, ok, _tuple, fr, _tuple$1, err, h, _r, _tuple$2, checksum;
 		z = new reader.Ptr();
 		if (_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), fr = _tuple[0], ok = _tuple[1], ok) {
@@ -149,7 +146,7 @@ $$
 		z.digest = adler32.New();
 		return [z, null];
 	};
-	reader.Ptr.prototype.Read = function(p) {
+0Ç"ReadÇ	reader.Ptr.prototype.Read = function(p) {
 		var n, err, z, _tuple, _tuple$1, _tuple$2, err$1, _tuple$3, _tuple$4, checksum, _tuple$5;
 		n = 0;
 		err = null;
@@ -182,7 +179,7 @@ $$
 		return [n, err];
 	};
 	reader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	reader.Ptr.prototype.Close = function() {
+0ÇCloseÅ˛	reader.Ptr.prototype.Close = function() {
 		var z;
 		z = this;
 		if (!(go$interfaceIsEqual(z.err, null))) {
@@ -192,21 +189,21 @@ $$
 		return z.err;
 	};
 	reader.prototype.Close = function() { return this.go$val.Close(); };
-	var NewWriter = go$pkg.NewWriter = function(w) {
+0Å¥	NewWriterÅ¶	var NewWriter = go$pkg.NewWriter = function(w) {
 		var _tuple, z;
 		_tuple = NewWriterLevelDict(w, -1, (go$sliceType(Go$Uint8)).nil), z = _tuple[0];
 		return z;
 	};
-	var NewWriterLevel = go$pkg.NewWriterLevel = function(w, level) {
+0ÅüNewWriterLevelÅå	var NewWriterLevel = go$pkg.NewWriterLevel = function(w, level) {
 		return NewWriterLevelDict(w, level, (go$sliceType(Go$Uint8)).nil);
 	};
-	var NewWriterLevelDict = go$pkg.NewWriterLevelDict = function(w, level, dict) {
+0Ç≈NewWriterLevelDictÇ≠	var NewWriterLevelDict = go$pkg.NewWriterLevelDict = function(w, level, dict) {
 		if (level < -1 || level > 9) {
 			return [(go$ptrType(Writer)).nil, fmt.Errorf("zlib: invalid compression level: %d", new (go$sliceType(go$emptyInterface))([new Go$Int(level)]))];
 		}
 		return [new Writer.Ptr(w, level, dict, (go$ptrType(flate.Writer)).nil, null, null, go$makeNativeArray("Uint8", 4, function() { return 0; }), false), null];
 	};
-	Writer.Ptr.prototype.Reset = function(w) {
+0Ç∑ResetÇ¨	Writer.Ptr.prototype.Reset = function(w) {
 		var z;
 		z = this;
 		z.w = w;
@@ -221,7 +218,7 @@ $$
 		z.wroteHeader = false;
 	};
 	Writer.prototype.Reset = function(w) { return this.go$val.Reset(w); };
-	Writer.Ptr.prototype.writeHeader = function() {
+0Ç3writeHeaderÇ"	Writer.Ptr.prototype.writeHeader = function() {
 		var err, z, _ref, _lhs, _index, _lhs$1, _index$1, _r, _tuple, checksum, _tuple$1, _tuple$2;
 		err = null;
 		z = this;
@@ -270,7 +267,7 @@ $$
 		return err;
 	};
 	Writer.prototype.writeHeader = function() { return this.go$val.writeHeader(); };
-	Writer.Ptr.prototype.Write = function(p) {
+0Ç∏WriteÇ≠	Writer.Ptr.prototype.Write = function(p) {
 		var n, err, z, _tuple, _tuple$1, _tuple$2;
 		n = 0;
 		err = null;
@@ -295,7 +292,7 @@ $$
 		return [n, err];
 	};
 	Writer.prototype.Write = function(p) { return this.go$val.Write(p); };
-	Writer.Ptr.prototype.Flush = function() {
+0Ç?FlushÇ4	Writer.Ptr.prototype.Flush = function() {
 		var z;
 		z = this;
 		if (!z.wroteHeader) {
@@ -308,7 +305,7 @@ $$
 		return z.err;
 	};
 	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
-	Writer.Ptr.prototype.Close = function() {
+0Ç˘CloseÇÓ	Writer.Ptr.prototype.Close = function() {
 		var z, checksum, _tuple;
 		z = this;
 		if (!z.wroteHeader) {
@@ -330,15 +327,7 @@ $$
 		return z.err;
 	};
 	Writer.prototype.Close = function() { return this.go$val.Close(); };
-	var zlibDeflate = 8;
-	go$pkg.NoCompression = 0;
-	go$pkg.BestSpeed = 1;
-	go$pkg.BestCompression = 9;
-	go$pkg.DefaultCompression = -1;
-	go$pkg.ErrChecksum = null;
-	go$pkg.ErrDictionary = null;
-	go$pkg.ErrHeader = null;
-	go$pkg.init = function() {
+0Å‡initÅ◊	go$pkg.init = function() {
 		go$pkg.ErrChecksum = errors.New("zlib: invalid checksum");
 		go$pkg.ErrDictionary = errors.New("zlib: invalid dictionary");
 		go$pkg.ErrHeader = errors.New("zlib: invalid header");

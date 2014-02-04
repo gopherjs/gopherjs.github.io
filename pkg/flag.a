@@ -1,4 +1,4 @@
-0ÇÆÄÇ¯package flag
+0Ç≥âflagÇ¯package flag
 import errors "errors"
 import fmt "fmt"
 import io "io"
@@ -127,14 +127,8 @@ func (? *@"time".Duration) @"time".Seconds() (? float64)
 func (? *@"time".Duration) @"time".String() (? string)
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
-0rruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortflagÇè	var errors = go$packages["errors"];
-	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var os = go$packages["os"];
-	var sort = go$packages["sort"];
-	var strconv = go$packages["strconv"];
-	var time = go$packages["time"];
-	var boolValue;
+0rruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortflag0b0errorserrors0
+fmtfmt0ioio0osos0sortsort0strconvstrconv0timetimeÇ∂	var boolValue;
 	boolValue = go$newType(0, "Bool", "flag.boolValue", "boolValue", "flag", null);
 	go$pkg.boolValue = boolValue;
 	var boolFlag;
@@ -207,11 +201,14 @@ $$
 	FlagSet.init([["Usage", "", (go$funcType([], [], false)), ""], ["name", "flag", Go$String, ""], ["parsed", "flag", Go$Bool, ""], ["actual", "flag", (go$mapType(Go$String, (go$ptrType(Flag)))), ""], ["formal", "flag", (go$mapType(Go$String, (go$ptrType(Flag)))), ""], ["args", "flag", (go$sliceType(Go$String)), ""], ["exitOnError", "flag", Go$Bool, ""], ["errorHandling", "flag", ErrorHandling, ""], ["output", "flag", io.Writer, ""]]);
 	(go$ptrType(FlagSet)).methods = [["Arg", "", [Go$Int], [Go$String], false], ["Args", "", [], [(go$sliceType(Go$String))], false], ["Bool", "", [Go$String, Go$Bool, Go$String], [(go$ptrType(Go$Bool))], false], ["BoolVar", "", [(go$ptrType(Go$Bool)), Go$String, Go$Bool, Go$String], [], false], ["Duration", "", [Go$String, time.Duration, Go$String], [(go$ptrType(time.Duration))], false], ["DurationVar", "", [(go$ptrType(time.Duration)), Go$String, time.Duration, Go$String], [], false], ["Float64", "", [Go$String, Go$Float64, Go$String], [(go$ptrType(Go$Float64))], false], ["Float64Var", "", [(go$ptrType(Go$Float64)), Go$String, Go$Float64, Go$String], [], false], ["Init", "", [Go$String, ErrorHandling], [], false], ["Int", "", [Go$String, Go$Int, Go$String], [(go$ptrType(Go$Int))], false], ["Int64", "", [Go$String, Go$Int64, Go$String], [(go$ptrType(Go$Int64))], false], ["Int64Var", "", [(go$ptrType(Go$Int64)), Go$String, Go$Int64, Go$String], [], false], ["IntVar", "", [(go$ptrType(Go$Int)), Go$String, Go$Int, Go$String], [], false], ["Lookup", "", [Go$String], [(go$ptrType(Flag))], false], ["NArg", "", [], [Go$Int], false], ["NFlag", "", [], [Go$Int], false], ["Parse", "", [(go$sliceType(Go$String))], [go$error], false], ["Parsed", "", [], [Go$Bool], false], ["PrintDefaults", "", [], [], false], ["Set", "", [Go$String, Go$String], [go$error], false], ["SetOutput", "", [io.Writer], [], false], ["String", "", [Go$String, Go$String, Go$String], [(go$ptrType(Go$String))], false], ["StringVar", "", [(go$ptrType(Go$String)), Go$String, Go$String, Go$String], [], false], ["Uint", "", [Go$String, Go$Uint, Go$String], [(go$ptrType(Go$Uint))], false], ["Uint64", "", [Go$String, Go$Uint64, Go$String], [(go$ptrType(Go$Uint64))], false], ["Uint64Var", "", [(go$ptrType(Go$Uint64)), Go$String, Go$Uint64, Go$String], [], false], ["UintVar", "", [(go$ptrType(Go$Uint)), Go$String, Go$Uint, Go$String], [], false], ["Var", "", [Value, Go$String, Go$String], [], false], ["Visit", "", [(go$funcType([(go$ptrType(Flag))], [], false))], [], false], ["VisitAll", "", [(go$funcType([(go$ptrType(Flag))], [], false))], [], false], ["failf", "flag", [Go$String, (go$sliceType(go$emptyInterface))], [go$error], true], ["out", "flag", [], [io.Writer], false], ["parseOne", "flag", [], [Go$Bool, go$error], false], ["usage", "flag", [], [], false]];
 	Flag.init([["Name", "", Go$String, ""], ["Usage", "", Go$String, ""], ["Value", "", Value, ""], ["DefValue", "", Go$String, ""]]);
-	var newBoolValue = function(val, p) {
+r	go$pkg.ErrHelp = null;
+	go$pkg.Usage = go$throwNilPointerError;
+	go$pkg.CommandLine = (go$ptrType(FlagSet)).nil;
+0Çu}0ÅÜnewBoolValuev	var newBoolValue = function(val, p) {
 		p.go$set(val);
 		return new (go$ptrType(boolValue))(p.go$get, p.go$set);
 	};
-	go$ptrType(boolValue).prototype.Set = function(s) {
+0ÇWSetÇN	go$ptrType(boolValue).prototype.Set = function(s) {
 		var b, _tuple, v, err;
 		b = this;
 		_tuple = strconv.ParseBool(s), v = _tuple[0], err = _tuple[1];
@@ -219,29 +216,30 @@ $$
 		return err;
 	};
 	boolValue.prototype.Set = function(s) { var obj = this.go$val; return (new (go$ptrType(boolValue))(function() { return obj; }, null)).Set(s); };
-	go$ptrType(boolValue).prototype.Get = function() {
+0ÇGetÅˇ	go$ptrType(boolValue).prototype.Get = function() {
 		var b;
 		b = this;
 		return new Go$Bool(b.go$get());
 	};
 	boolValue.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(boolValue))(function() { return obj; }, null)).Get(); };
-	go$ptrType(boolValue).prototype.String = function() {
+0ÇRStringÇF	go$ptrType(boolValue).prototype.String = function() {
 		var b;
 		b = this;
 		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([new boolValue(b.go$get())]));
 	};
 	boolValue.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(boolValue))(function() { return obj; }, null)).String(); };
-	go$ptrType(boolValue).prototype.IsBoolFlag = function() {
+0Ç
+IsBoolFlagÇ	go$ptrType(boolValue).prototype.IsBoolFlag = function() {
 		var b;
 		b = this;
 		return true;
 	};
 	boolValue.prototype.IsBoolFlag = function() { var obj = this.go$val; return (new (go$ptrType(boolValue))(function() { return obj; }, null)).IsBoolFlag(); };
-	var newIntValue = function(val, p) {
+0ÅÉnewIntValuet	var newIntValue = function(val, p) {
 		p.go$set(val);
 		return new (go$ptrType(intValue))(p.go$get, p.go$set);
 	};
-	go$ptrType(intValue).prototype.Set = function(s) {
+0ÇáSetÇ~	go$ptrType(intValue).prototype.Set = function(s) {
 		var i, _tuple, v, err;
 		i = this;
 		_tuple = strconv.ParseInt(s, 0, 64), v = _tuple[0], err = _tuple[1];
@@ -249,23 +247,23 @@ $$
 		return err;
 	};
 	intValue.prototype.Set = function(s) { var obj = this.go$val; return (new (go$ptrType(intValue))(function() { return obj; }, null)).Set(s); };
-	go$ptrType(intValue).prototype.Get = function() {
+0ÇGetÇ	go$ptrType(intValue).prototype.Get = function() {
 		var i;
 		i = this;
 		return new Go$Int((i.go$get() >> 0));
 	};
 	intValue.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(intValue))(function() { return obj; }, null)).Get(); };
-	go$ptrType(intValue).prototype.String = function() {
+0ÇNStringÇB	go$ptrType(intValue).prototype.String = function() {
 		var i;
 		i = this;
 		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([new intValue(i.go$get())]));
 	};
 	intValue.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(intValue))(function() { return obj; }, null)).String(); };
-	var newInt64Value = function(val, p) {
+0ÅânewInt64Valuex	var newInt64Value = function(val, p) {
 		p.go$set(val);
 		return new (go$ptrType(int64Value))(p.go$get, p.go$set);
 	};
-	go$ptrType(int64Value).prototype.Set = function(s) {
+0ÇuSetÇl	go$ptrType(int64Value).prototype.Set = function(s) {
 		var i, _tuple, v, err;
 		i = this;
 		_tuple = strconv.ParseInt(s, 0, 64), v = _tuple[0], err = _tuple[1];
@@ -273,23 +271,23 @@ $$
 		return err;
 	};
 	int64Value.prototype.Set = function(s) { var obj = this; return (new (go$ptrType(int64Value))(function() { return obj; }, null)).Set(s); };
-	go$ptrType(int64Value).prototype.Get = function() {
+0ÇGetÇ	go$ptrType(int64Value).prototype.Get = function() {
 		var i, x;
 		i = this;
 		return (x = i.go$get(), new Go$Int64(x.high, x.low));
 	};
 	int64Value.prototype.Get = function() { var obj = this; return (new (go$ptrType(int64Value))(function() { return obj; }, null)).Get(); };
-	go$ptrType(int64Value).prototype.String = function() {
+0Ç?StringÇ3	go$ptrType(int64Value).prototype.String = function() {
 		var i;
 		i = this;
 		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([i.go$get()]));
 	};
 	int64Value.prototype.String = function() { var obj = this; return (new (go$ptrType(int64Value))(function() { return obj; }, null)).String(); };
-	var newUintValue = function(val, p) {
+0ÅÜnewUintValuev	var newUintValue = function(val, p) {
 		p.go$set(val);
 		return new (go$ptrType(uintValue))(p.go$get, p.go$set);
 	};
-	go$ptrType(uintValue).prototype.Set = function(s) {
+0ÇjSetÇa	go$ptrType(uintValue).prototype.Set = function(s) {
 		var i, _tuple, v, err;
 		i = this;
 		_tuple = strconv.ParseUint(s, 0, 64), v = _tuple[0], err = _tuple[1];
@@ -297,23 +295,23 @@ $$
 		return err;
 	};
 	uintValue.prototype.Set = function(s) { var obj = this.go$val; return (new (go$ptrType(uintValue))(function() { return obj; }, null)).Set(s); };
-	go$ptrType(uintValue).prototype.Get = function() {
+0ÇGetÇ	go$ptrType(uintValue).prototype.Get = function() {
 		var i;
 		i = this;
 		return new Go$Uint((i.go$get() >>> 0));
 	};
 	uintValue.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(uintValue))(function() { return obj; }, null)).Get(); };
-	go$ptrType(uintValue).prototype.String = function() {
+0ÇRStringÇF	go$ptrType(uintValue).prototype.String = function() {
 		var i;
 		i = this;
 		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([new uintValue(i.go$get())]));
 	};
 	uintValue.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(uintValue))(function() { return obj; }, null)).String(); };
-	var newUint64Value = function(val, p) {
+0ÅånewUint64Valuez	var newUint64Value = function(val, p) {
 		p.go$set(val);
 		return new (go$ptrType(uint64Value))(p.go$get, p.go$set);
 	};
-	go$ptrType(uint64Value).prototype.Set = function(s) {
+0ÇzSetÇq	go$ptrType(uint64Value).prototype.Set = function(s) {
 		var i, _tuple, v, err;
 		i = this;
 		_tuple = strconv.ParseUint(s, 0, 64), v = _tuple[0], err = _tuple[1];
@@ -321,46 +319,46 @@ $$
 		return err;
 	};
 	uint64Value.prototype.Set = function(s) { var obj = this; return (new (go$ptrType(uint64Value))(function() { return obj; }, null)).Set(s); };
-	go$ptrType(uint64Value).prototype.Get = function() {
+0Ç!GetÇ	go$ptrType(uint64Value).prototype.Get = function() {
 		var i, x;
 		i = this;
 		return (x = i.go$get(), new Go$Uint64(x.high, x.low));
 	};
 	uint64Value.prototype.Get = function() { var obj = this; return (new (go$ptrType(uint64Value))(function() { return obj; }, null)).Get(); };
-	go$ptrType(uint64Value).prototype.String = function() {
+0ÇBStringÇ6	go$ptrType(uint64Value).prototype.String = function() {
 		var i;
 		i = this;
 		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([i.go$get()]));
 	};
 	uint64Value.prototype.String = function() { var obj = this; return (new (go$ptrType(uint64Value))(function() { return obj; }, null)).String(); };
-	var newStringValue = function(val, p) {
+0ÅånewStringValuez	var newStringValue = function(val, p) {
 		p.go$set(val);
 		return new (go$ptrType(stringValue))(p.go$get, p.go$set);
 	};
-	go$ptrType(stringValue).prototype.Set = function(val) {
+0ÇSetÇ	go$ptrType(stringValue).prototype.Set = function(val) {
 		var s;
 		s = this;
 		s.go$set(val);
 		return null;
 	};
 	stringValue.prototype.Set = function(val) { var obj = this.go$val; return (new (go$ptrType(stringValue))(function() { return obj; }, null)).Set(val); };
-	go$ptrType(stringValue).prototype.Get = function() {
+0ÇGetÇ	go$ptrType(stringValue).prototype.Get = function() {
 		var s;
 		s = this;
 		return new Go$String(s.go$get());
 	};
 	stringValue.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(stringValue))(function() { return obj; }, null)).Get(); };
-	go$ptrType(stringValue).prototype.String = function() {
+0ÇZStringÇN	go$ptrType(stringValue).prototype.String = function() {
 		var s;
 		s = this;
 		return fmt.Sprintf("%s", new (go$sliceType(go$emptyInterface))([new stringValue(s.go$get())]));
 	};
 	stringValue.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(stringValue))(function() { return obj; }, null)).String(); };
-	var newFloat64Value = function(val, p) {
+0ÅènewFloat64Value|	var newFloat64Value = function(val, p) {
 		p.go$set(val);
 		return new (go$ptrType(float64Value))(p.go$get, p.go$set);
 	};
-	go$ptrType(float64Value).prototype.Set = function(s) {
+0ÇeSetÇ\	go$ptrType(float64Value).prototype.Set = function(s) {
 		var f, _tuple, v, err;
 		f = this;
 		_tuple = strconv.ParseFloat(s, 64), v = _tuple[0], err = _tuple[1];
@@ -368,23 +366,23 @@ $$
 		return err;
 	};
 	float64Value.prototype.Set = function(s) { var obj = this.go$val; return (new (go$ptrType(float64Value))(function() { return obj; }, null)).Set(s); };
-	go$ptrType(float64Value).prototype.Get = function() {
+0ÇGetÇ	go$ptrType(float64Value).prototype.Get = function() {
 		var f;
 		f = this;
 		return new Go$Float64(f.go$get());
 	};
 	float64Value.prototype.Get = function() { var obj = this.go$val; return (new (go$ptrType(float64Value))(function() { return obj; }, null)).Get(); };
-	go$ptrType(float64Value).prototype.String = function() {
+0Ç^StringÇR	go$ptrType(float64Value).prototype.String = function() {
 		var f;
 		f = this;
 		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([new float64Value(f.go$get())]));
 	};
 	float64Value.prototype.String = function() { var obj = this.go$val; return (new (go$ptrType(float64Value))(function() { return obj; }, null)).String(); };
-	var newDurationValue = function(val, p) {
+0ÅínewDurationValue~	var newDurationValue = function(val, p) {
 		p.go$set(val);
 		return new (go$ptrType(durationValue))(p.go$get, p.go$set);
 	};
-	go$ptrType(durationValue).prototype.Set = function(s) {
+0Ç|SetÇs	go$ptrType(durationValue).prototype.Set = function(s) {
 		var d, _tuple, v, err;
 		d = this;
 		_tuple = time.ParseDuration(s), v = _tuple[0], err = _tuple[1];
@@ -392,18 +390,19 @@ $$
 		return err;
 	};
 	durationValue.prototype.Set = function(s) { var obj = this; return (new (go$ptrType(durationValue))(function() { return obj; }, null)).Set(s); };
-	go$ptrType(durationValue).prototype.Get = function() {
+0Ç+GetÇ"	go$ptrType(durationValue).prototype.Get = function() {
 		var d, x;
 		d = this;
 		return (x = d.go$get(), new time.Duration(x.high, x.low));
 	};
 	durationValue.prototype.Get = function() { var obj = this; return (new (go$ptrType(durationValue))(function() { return obj; }, null)).Get(); };
-	go$ptrType(durationValue).prototype.String = function() {
+0Ç>StringÇ2	go$ptrType(durationValue).prototype.String = function() {
 		var d;
 		d = this;
 		return new (go$ptrType(time.Duration))(d.go$get, d.go$set).String();
 	};
 	durationValue.prototype.String = function() { var obj = this; return (new (go$ptrType(durationValue))(function() { return obj; }, null)).String(); };
+0Ç	sortFlagsÇ
 	var sortFlags = function(flags) {
 		var list, i, _ref, _i, _keys, _entry, f, _slice, _index, result, _ref$1, _i$1, _slice$1, _index$1, name, i$1, _entry$1, _slice$2, _index$2;
 		list = sort.StringSlice.make(go$keys(flags).length, 0, function() { return ""; });
@@ -428,7 +427,7 @@ $$
 		}
 		return result;
 	};
-	FlagSet.Ptr.prototype.out = function() {
+0ÅÁoutÅﬂ	FlagSet.Ptr.prototype.out = function() {
 		var f;
 		f = this;
 		if (go$interfaceIsEqual(f.output, null)) {
@@ -437,13 +436,13 @@ $$
 		return f.output;
 	};
 	FlagSet.prototype.out = function() { return this.go$val.out(); };
-	FlagSet.Ptr.prototype.SetOutput = function(output) {
+0ÅÕ	SetOutputÅø	FlagSet.Ptr.prototype.SetOutput = function(output) {
 		var f;
 		f = this;
 		f.output = output;
 	};
 	FlagSet.prototype.SetOutput = function(output) { return this.go$val.SetOutput(output); };
-	FlagSet.Ptr.prototype.VisitAll = function(fn) {
+0ÇÕVisitAllÇø	FlagSet.Ptr.prototype.VisitAll = function(fn) {
 		var f, _ref, _i, _slice, _index, flag;
 		f = this;
 		_ref = sortFlags(f.formal);
@@ -454,10 +453,10 @@ $$
 		}
 	};
 	FlagSet.prototype.VisitAll = function(fn) { return this.go$val.VisitAll(fn); };
-	var VisitAll = go$pkg.VisitAll = function(fn) {
+0dVisitAllX	var VisitAll = go$pkg.VisitAll = function(fn) {
 		go$pkg.CommandLine.VisitAll(fn);
 	};
-	FlagSet.Ptr.prototype.Visit = function(fn) {
+0Ç¡VisitÇ∂	FlagSet.Ptr.prototype.Visit = function(fn) {
 		var f, _ref, _i, _slice, _index, flag;
 		f = this;
 		_ref = sortFlags(f.actual);
@@ -468,20 +467,20 @@ $$
 		}
 	};
 	FlagSet.prototype.Visit = function(fn) { return this.go$val.Visit(fn); };
-	var Visit = go$pkg.Visit = function(fn) {
+0XVisitO	var Visit = go$pkg.Visit = function(fn) {
 		go$pkg.CommandLine.Visit(fn);
 	};
-	FlagSet.Ptr.prototype.Lookup = function(name) {
+0ÇLookupÇ	FlagSet.Ptr.prototype.Lookup = function(name) {
 		var f, _entry;
 		f = this;
 		return (_entry = f.formal[name], _entry !== undefined ? _entry.v : (go$ptrType(Flag)).nil);
 	};
 	FlagSet.prototype.Lookup = function(name) { return this.go$val.Lookup(name); };
-	var Lookup = go$pkg.Lookup = function(name) {
+0ÅªLookupÅ∞	var Lookup = go$pkg.Lookup = function(name) {
 		var _entry;
 		return (_entry = go$pkg.CommandLine.formal[name], _entry !== undefined ? _entry.v : (go$ptrType(Flag)).nil);
 	};
-	FlagSet.Ptr.prototype.Set = function(name, value) {
+0Ç˚SetÇÚ	FlagSet.Ptr.prototype.Set = function(name, value) {
 		var f, _tuple, _entry, flag, ok, err, _key;
 		f = this;
 		_tuple = (_entry = f.formal[name], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(Flag)).nil, false]), flag = _tuple[0], ok = _tuple[1];
@@ -499,10 +498,10 @@ $$
 		return null;
 	};
 	FlagSet.prototype.Set = function(name, value) { return this.go$val.Set(name, value); };
-	var Set = go$pkg.Set = function(name, value) {
+0iSetb	var Set = go$pkg.Set = function(name, value) {
 		return go$pkg.CommandLine.Set(name, value);
 	};
-	FlagSet.Ptr.prototype.PrintDefaults = function() {
+0ÇãPrintDefaultsÇx	FlagSet.Ptr.prototype.PrintDefaults = function() {
 		var f;
 		f = this;
 		f.VisitAll((function(flag) {
@@ -515,10 +514,10 @@ $$
 		}));
 	};
 	FlagSet.prototype.PrintDefaults = function() { return this.go$val.PrintDefaults(); };
-	var PrintDefaults = go$pkg.PrintDefaults = function() {
+0tPrintDefaultsc	var PrintDefaults = go$pkg.PrintDefaults = function() {
 		go$pkg.CommandLine.PrintDefaults();
 	};
-	var defaultUsage = function(f) {
+0Ç.defaultUsageÇ	var defaultUsage = function(f) {
 		if (f.name === "") {
 			fmt.Fprintf(f.out(), "Usage:\n", new (go$sliceType(go$emptyInterface))([]));
 		} else {
@@ -526,16 +525,16 @@ $$
 		}
 		f.PrintDefaults();
 	};
-	FlagSet.Ptr.prototype.NFlag = function() {
+0ÅπNFlagÅØ	FlagSet.Ptr.prototype.NFlag = function() {
 		var f;
 		f = this;
 		return go$keys(f.actual).length;
 	};
 	FlagSet.prototype.NFlag = function() { return this.go$val.NFlag(); };
-	var NFlag = go$pkg.NFlag = function() {
+0jNFlaga	var NFlag = go$pkg.NFlag = function() {
 		return go$keys(go$pkg.CommandLine.actual).length;
 	};
-	FlagSet.Ptr.prototype.Arg = function(i) {
+0Ç~ArgÇu	FlagSet.Ptr.prototype.Arg = function(i) {
 		var f, _slice, _index;
 		f = this;
 		if (i < 0 || i >= f.args.length) {
@@ -544,37 +543,37 @@ $$
 		return (_slice = f.args, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 	};
 	FlagSet.prototype.Arg = function(i) { return this.go$val.Arg(i); };
-	var Arg = go$pkg.Arg = function(i) {
+0UArgN	var Arg = go$pkg.Arg = function(i) {
 		return go$pkg.CommandLine.Arg(i);
 	};
-	FlagSet.Ptr.prototype.NArg = function() {
+0Å™NArgÅ°	FlagSet.Ptr.prototype.NArg = function() {
 		var f;
 		f = this;
 		return f.args.length;
 	};
 	FlagSet.prototype.NArg = function() { return this.go$val.NArg(); };
-	var NArg = go$pkg.NArg = function() {
+0\NArgT	var NArg = go$pkg.NArg = function() {
 		return go$pkg.CommandLine.args.length;
 	};
-	FlagSet.Ptr.prototype.Args = function() {
+0Å£ArgsÅö	FlagSet.Ptr.prototype.Args = function() {
 		var f;
 		f = this;
 		return f.args;
 	};
 	FlagSet.prototype.Args = function() { return this.go$val.Args(); };
-	var Args = go$pkg.Args = function() {
+0UArgsM	var Args = go$pkg.Args = function() {
 		return go$pkg.CommandLine.args;
 	};
-	FlagSet.Ptr.prototype.BoolVar = function(p, name, value, usage) {
+0ÇBoolVarÅˇ	FlagSet.Ptr.prototype.BoolVar = function(p, name, value, usage) {
 		var f;
 		f = this;
 		f.Var(newBoolValue(value, p), name, usage);
 	};
 	FlagSet.prototype.BoolVar = function(p, name, value, usage) { return this.go$val.BoolVar(p, name, value, usage); };
-	var BoolVar = go$pkg.BoolVar = function(p, name, value, usage) {
+0ÅëBoolVarÅÖ	var BoolVar = go$pkg.BoolVar = function(p, name, value, usage) {
 		go$pkg.CommandLine.Var(newBoolValue(value, p), name, usage);
 	};
-	FlagSet.Ptr.prototype.Bool = function(name, value, usage) {
+0Ç3BoolÇ)	FlagSet.Ptr.prototype.Bool = function(name, value, usage) {
 		var f, p;
 		f = this;
 		p = go$newDataPointer(false, (go$ptrType(Go$Bool)));
@@ -582,19 +581,19 @@ $$
 		return p;
 	};
 	FlagSet.prototype.Bool = function(name, value, usage) { return this.go$val.Bool(name, value, usage); };
-	var Bool = go$pkg.Bool = function(name, value, usage) {
+0{Bools	var Bool = go$pkg.Bool = function(name, value, usage) {
 		return go$pkg.CommandLine.Bool(name, value, usage);
 	};
-	FlagSet.Ptr.prototype.IntVar = function(p, name, value, usage) {
+0ÇIntVarÅ˚	FlagSet.Ptr.prototype.IntVar = function(p, name, value, usage) {
 		var f;
 		f = this;
 		f.Var(newIntValue(value, p), name, usage);
 	};
 	FlagSet.prototype.IntVar = function(p, name, value, usage) { return this.go$val.IntVar(p, name, value, usage); };
-	var IntVar = go$pkg.IntVar = function(p, name, value, usage) {
+0ÅçIntVarÅÇ	var IntVar = go$pkg.IntVar = function(p, name, value, usage) {
 		go$pkg.CommandLine.Var(newIntValue(value, p), name, usage);
 	};
-	FlagSet.Ptr.prototype.Int = function(name, value, usage) {
+0Ç)IntÇ 	FlagSet.Ptr.prototype.Int = function(name, value, usage) {
 		var f, p;
 		f = this;
 		p = go$newDataPointer(0, (go$ptrType(Go$Int)));
@@ -602,19 +601,19 @@ $$
 		return p;
 	};
 	FlagSet.prototype.Int = function(name, value, usage) { return this.go$val.Int(name, value, usage); };
-	var Int = go$pkg.Int = function(name, value, usage) {
+0wIntp	var Int = go$pkg.Int = function(name, value, usage) {
 		return go$pkg.CommandLine.Int(name, value, usage);
 	};
-	FlagSet.Ptr.prototype.Int64Var = function(p, name, value, usage) {
+0ÇInt64VarÇ	FlagSet.Ptr.prototype.Int64Var = function(p, name, value, usage) {
 		var f;
 		f = this;
 		f.Var(newInt64Value(value, p), name, usage);
 	};
 	FlagSet.prototype.Int64Var = function(p, name, value, usage) { return this.go$val.Int64Var(p, name, value, usage); };
-	var Int64Var = go$pkg.Int64Var = function(p, name, value, usage) {
+0ÅïInt64VarÅà	var Int64Var = go$pkg.Int64Var = function(p, name, value, usage) {
 		go$pkg.CommandLine.Var(newInt64Value(value, p), name, usage);
 	};
-	FlagSet.Ptr.prototype.Int64 = function(name, value, usage) {
+0ÇFInt64Ç;	FlagSet.Ptr.prototype.Int64 = function(name, value, usage) {
 		var f, p;
 		f = this;
 		p = go$newDataPointer(new Go$Int64(0, 0), (go$ptrType(Go$Int64)));
@@ -622,19 +621,19 @@ $$
 		return p;
 	};
 	FlagSet.prototype.Int64 = function(name, value, usage) { return this.go$val.Int64(name, value, usage); };
-	var Int64 = go$pkg.Int64 = function(name, value, usage) {
+0Int64v	var Int64 = go$pkg.Int64 = function(name, value, usage) {
 		return go$pkg.CommandLine.Int64(name, value, usage);
 	};
-	FlagSet.Ptr.prototype.UintVar = function(p, name, value, usage) {
+0ÇUintVarÅˇ	FlagSet.Ptr.prototype.UintVar = function(p, name, value, usage) {
 		var f;
 		f = this;
 		f.Var(newUintValue(value, p), name, usage);
 	};
 	FlagSet.prototype.UintVar = function(p, name, value, usage) { return this.go$val.UintVar(p, name, value, usage); };
-	var UintVar = go$pkg.UintVar = function(p, name, value, usage) {
+0ÅëUintVarÅÖ	var UintVar = go$pkg.UintVar = function(p, name, value, usage) {
 		go$pkg.CommandLine.Var(newUintValue(value, p), name, usage);
 	};
-	FlagSet.Ptr.prototype.Uint = function(name, value, usage) {
+0Ç/UintÇ%	FlagSet.Ptr.prototype.Uint = function(name, value, usage) {
 		var f, p;
 		f = this;
 		p = go$newDataPointer(0, (go$ptrType(Go$Uint)));
@@ -642,19 +641,19 @@ $$
 		return p;
 	};
 	FlagSet.prototype.Uint = function(name, value, usage) { return this.go$val.Uint(name, value, usage); };
-	var Uint = go$pkg.Uint = function(name, value, usage) {
+0{Uints	var Uint = go$pkg.Uint = function(name, value, usage) {
 		return go$pkg.CommandLine.Uint(name, value, usage);
 	};
-	FlagSet.Ptr.prototype.Uint64Var = function(p, name, value, usage) {
+0Ç	Uint64VarÇ	FlagSet.Ptr.prototype.Uint64Var = function(p, name, value, usage) {
 		var f;
 		f = this;
 		f.Var(newUint64Value(value, p), name, usage);
 	};
 	FlagSet.prototype.Uint64Var = function(p, name, value, usage) { return this.go$val.Uint64Var(p, name, value, usage); };
-	var Uint64Var = go$pkg.Uint64Var = function(p, name, value, usage) {
+0Åô	Uint64VarÅã	var Uint64Var = go$pkg.Uint64Var = function(p, name, value, usage) {
 		go$pkg.CommandLine.Var(newUint64Value(value, p), name, usage);
 	};
-	FlagSet.Ptr.prototype.Uint64 = function(name, value, usage) {
+0ÇMUint64ÇA	FlagSet.Ptr.prototype.Uint64 = function(name, value, usage) {
 		var f, p;
 		f = this;
 		p = go$newDataPointer(new Go$Uint64(0, 0), (go$ptrType(Go$Uint64)));
@@ -662,19 +661,19 @@ $$
 		return p;
 	};
 	FlagSet.prototype.Uint64 = function(name, value, usage) { return this.go$val.Uint64(name, value, usage); };
-	var Uint64 = go$pkg.Uint64 = function(name, value, usage) {
+0ÅÉUint64y	var Uint64 = go$pkg.Uint64 = function(name, value, usage) {
 		return go$pkg.CommandLine.Uint64(name, value, usage);
 	};
-	FlagSet.Ptr.prototype.StringVar = function(p, name, value, usage) {
+0Ç	StringVarÇ	FlagSet.Ptr.prototype.StringVar = function(p, name, value, usage) {
 		var f;
 		f = this;
 		f.Var(newStringValue(value, p), name, usage);
 	};
 	FlagSet.prototype.StringVar = function(p, name, value, usage) { return this.go$val.StringVar(p, name, value, usage); };
-	var StringVar = go$pkg.StringVar = function(p, name, value, usage) {
+0Åô	StringVarÅã	var StringVar = go$pkg.StringVar = function(p, name, value, usage) {
 		go$pkg.CommandLine.Var(newStringValue(value, p), name, usage);
 	};
-	FlagSet.Ptr.prototype.String = function(name, value, usage) {
+0Ç<StringÇ0	FlagSet.Ptr.prototype.String = function(name, value, usage) {
 		var f, p;
 		f = this;
 		p = go$newDataPointer("", (go$ptrType(Go$String)));
@@ -682,19 +681,21 @@ $$
 		return p;
 	};
 	FlagSet.prototype.String = function(name, value, usage) { return this.go$val.String(name, value, usage); };
-	var String = go$pkg.String = function(name, value, usage) {
+0ÅÉStringy	var String = go$pkg.String = function(name, value, usage) {
 		return go$pkg.CommandLine.String(name, value, usage);
 	};
-	FlagSet.Ptr.prototype.Float64Var = function(p, name, value, usage) {
+0Ç
+Float64VarÇ	FlagSet.Ptr.prototype.Float64Var = function(p, name, value, usage) {
 		var f;
 		f = this;
 		f.Var(newFloat64Value(value, p), name, usage);
 	};
 	FlagSet.prototype.Float64Var = function(p, name, value, usage) { return this.go$val.Float64Var(p, name, value, usage); };
-	var Float64Var = go$pkg.Float64Var = function(p, name, value, usage) {
+0Åù
+Float64VarÅé	var Float64Var = go$pkg.Float64Var = function(p, name, value, usage) {
 		go$pkg.CommandLine.Var(newFloat64Value(value, p), name, usage);
 	};
-	FlagSet.Ptr.prototype.Float64 = function(name, value, usage) {
+0ÇAFloat64Ç4	FlagSet.Ptr.prototype.Float64 = function(name, value, usage) {
 		var f, p;
 		f = this;
 		p = go$newDataPointer(0, (go$ptrType(Go$Float64)));
@@ -702,19 +703,19 @@ $$
 		return p;
 	};
 	FlagSet.prototype.Float64 = function(name, value, usage) { return this.go$val.Float64(name, value, usage); };
-	var Float64 = go$pkg.Float64 = function(name, value, usage) {
+0ÅáFloat64|	var Float64 = go$pkg.Float64 = function(name, value, usage) {
 		return go$pkg.CommandLine.Float64(name, value, usage);
 	};
-	FlagSet.Ptr.prototype.DurationVar = function(p, name, value, usage) {
+0Ç DurationVarÇ	FlagSet.Ptr.prototype.DurationVar = function(p, name, value, usage) {
 		var f;
 		f = this;
 		f.Var(newDurationValue(value, p), name, usage);
 	};
 	FlagSet.prototype.DurationVar = function(p, name, value, usage) { return this.go$val.DurationVar(p, name, value, usage); };
-	var DurationVar = go$pkg.DurationVar = function(p, name, value, usage) {
+0Å°DurationVarÅë	var DurationVar = go$pkg.DurationVar = function(p, name, value, usage) {
 		go$pkg.CommandLine.Var(newDurationValue(value, p), name, usage);
 	};
-	FlagSet.Ptr.prototype.Duration = function(name, value, usage) {
+0Ç_DurationÇQ	FlagSet.Ptr.prototype.Duration = function(name, value, usage) {
 		var f, p;
 		f = this;
 		p = go$newDataPointer(new time.Duration(0, 0), (go$ptrType(time.Duration)));
@@ -722,10 +723,10 @@ $$
 		return p;
 	};
 	FlagSet.prototype.Duration = function(name, value, usage) { return this.go$val.Duration(name, value, usage); };
-	var Duration = go$pkg.Duration = function(name, value, usage) {
+0ÅãDuration	var Duration = go$pkg.Duration = function(name, value, usage) {
 		return go$pkg.CommandLine.Duration(name, value, usage);
 	};
-	FlagSet.Ptr.prototype.Var = function(value, name, usage) {
+0Ç&VarÇ	FlagSet.Ptr.prototype.Var = function(value, name, usage) {
 		var f, flag, _tuple, _entry, alreadythere, msg, _key;
 		f = this;
 		flag = new Flag.Ptr(name, usage, value, value.String());
@@ -746,10 +747,10 @@ $$
 		_key = name, (f.formal || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: flag };
 	};
 	FlagSet.prototype.Var = function(value, name, usage) { return this.go$val.Var(value, name, usage); };
-	var Var = go$pkg.Var = function(value, name, usage) {
+0pVari	var Var = go$pkg.Var = function(value, name, usage) {
 		go$pkg.CommandLine.Var(value, name, usage);
 	};
-	FlagSet.Ptr.prototype.failf = function(format, a) {
+0Ç8failfÇ-	FlagSet.Ptr.prototype.failf = function(format, a) {
 		var f, err;
 		f = this;
 		err = fmt.Errorf(format, a);
@@ -758,7 +759,7 @@ $$
 		return err;
 	};
 	FlagSet.prototype.failf = function(format, a) { return this.go$val.failf(format, a); };
-	FlagSet.Ptr.prototype.usage = function() {
+0Ç1usageÇ&	FlagSet.Ptr.prototype.usage = function() {
 		var f;
 		f = this;
 		if (f === go$pkg.CommandLine) {
@@ -770,7 +771,7 @@ $$
 		}
 	};
 	FlagSet.prototype.usage = function() { return this.go$val.usage(); };
-	FlagSet.Ptr.prototype.parseOne = function() {
+0ÇtparseOneÇf	FlagSet.Ptr.prototype.parseOne = function() {
 		var f, _slice, _index, s, num_minuses, name, has_value, value, i, m, _tuple, _entry, flag, alreadythere, ok, fv, _tuple$1, x, err, _slice$1, _index$1, _tuple$2, err$1, _key;
 		f = this;
 		if (f.args.length === 0) {
@@ -841,7 +842,7 @@ $$
 		return [true, null];
 	};
 	FlagSet.prototype.parseOne = function() { return this.go$val.parseOne(); };
-	FlagSet.Ptr.prototype.Parse = function(arguments$1) {
+0Ç^ParseÇS	FlagSet.Ptr.prototype.Parse = function(arguments$1) {
 		var f, _tuple, seen, err, _ref;
 		f = this;
 		f.parsed = true;
@@ -866,37 +867,32 @@ $$
 		return null;
 	};
 	FlagSet.prototype.Parse = function(arguments$1) { return this.go$val.Parse(arguments$1); };
-	FlagSet.Ptr.prototype.Parsed = function() {
+0Å≠ParsedÅ¢	FlagSet.Ptr.prototype.Parsed = function() {
 		var f;
 		f = this;
 		return f.parsed;
 	};
 	FlagSet.prototype.Parsed = function() { return this.go$val.Parsed(); };
-	var Parse = go$pkg.Parse = function() {
+0kParseb	var Parse = go$pkg.Parse = function() {
 		go$pkg.CommandLine.Parse(go$subslice(os.Args, 1));
 	};
-	var Parsed = go$pkg.Parsed = function() {
+0_ParsedU	var Parsed = go$pkg.Parsed = function() {
 		return go$pkg.CommandLine.Parsed();
 	};
-	var NewFlagSet = go$pkg.NewFlagSet = function(name, errorHandling) {
+0ÅÙ
+NewFlagSetÅÂ	var NewFlagSet = go$pkg.NewFlagSet = function(name, errorHandling) {
 		var f;
 		f = new FlagSet.Ptr(go$throwNilPointerError, name, false, false, false, (go$sliceType(Go$String)).nil, false, errorHandling, null);
 		return f;
 	};
-	FlagSet.Ptr.prototype.Init = function(name, errorHandling) {
+0ÅˇInitÅˆ	FlagSet.Ptr.prototype.Init = function(name, errorHandling) {
 		var f;
 		f = this;
 		f.name = name;
 		f.errorHandling = errorHandling;
 	};
 	FlagSet.prototype.Init = function(name, errorHandling) { return this.go$val.Init(name, errorHandling); };
-	go$pkg.ContinueOnError = 0;
-	go$pkg.ExitOnError = 1;
-	go$pkg.PanicOnError = 2;
-	go$pkg.ErrHelp = null;
-	go$pkg.Usage = go$throwNilPointerError;
-	go$pkg.CommandLine = (go$ptrType(FlagSet)).nil;
-	go$pkg.init = function() {
+0Ç†initÇñ	go$pkg.init = function() {
 		var _slice, _index;
 		go$pkg.ErrHelp = errors.New("flag: help requested");
 		go$pkg.CommandLine = NewFlagSet((_slice = os.Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), 1);

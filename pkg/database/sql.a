@@ -1,4 +1,4 @@
-0ÉhÇ0_package sql
+0Él≠database/sqlÇ0_package sql
 import driver "database/sql/driver"
 import errors "errors"
 import fmt "fmt"
@@ -144,16 +144,8 @@ func (? *@"container/list".Element) @"container/list".Prev() (? *@"container/lis
 type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 type @"database/sql/driver".Result interface { @"database/sql/driver".LastInsertId() (? int64, ? error); @"database/sql/driver".RowsAffected() (? int64, ? error) }
 $$
-0Åôruntimecontainer/listerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtdatabase/sql/driverdatabase/sqlÉ7	var driver = go$packages["database/sql/driver"];
-	var errors = go$packages["errors"];
-	var fmt = go$packages["fmt"];
-	var reflect = go$packages["reflect"];
-	var strconv = go$packages["strconv"];
-	var list = go$packages["container/list"];
-	var io = go$packages["io"];
-	var runtime = go$packages["runtime"];
-	var sync = go$packages["sync"];
-	var RawBytes;
+0Åôruntimecontainer/listerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtdatabase/sql/driverdatabase/sql0Å©0database/sql/driverdriver0errorserrors0
+fmtfmt0reflectreflect0strconvstrconv0container/listlist0ioio0runtimeruntime0syncsyncÇBû	var RawBytes;
 	RawBytes = go$newType(0, "Slice", "sql.RawBytes", "RawBytes", "database/sql", null);
 	go$pkg.RawBytes = RawBytes;
 	var NullString;
@@ -344,7 +336,18 @@ $$
 	driverResult.init([["", "", sync.Locker, ""], ["resi", "database/sql", driver.Result, ""]]);
 	driverResult.methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
 	(go$ptrType(driverResult)).methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
-	var driverArgs = function(ds, args) {
+Ç-	var errNilPtr = null;
+	var drivers = false;
+	go$pkg.ErrNoRows = null;
+	var connectionRequestQueueSize = 0;
+	var errDBClosed = null;
+	var errConnClosed = null;
+	var errConnBusy = null;
+	var putConnHook = go$throwNilPointerError;
+	go$pkg.ErrTxDone = null;
+	var rowsCloseHook = go$throwNilPointerError;
+0Ç˜0Ç
+driverArgsÇ‡	var driverArgs = function(ds, args) {
 		var dargs, si, _tuple, cc, ok, _ref, _i, _slice, _index, arg, n, err, _tuple$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, arg$1, n$1, ok$1, _tuple$2, svi, _tuple$3, sv, err$1, err$2, _tuple$4, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		dargs = (go$sliceType(driver.Value)).make(args.length, 0, function() { return null; });
 		si = null;
@@ -394,7 +397,7 @@ $$
 		}
 		return [dargs, null];
 	};
-	var convertAssign = function(dest, src) {
+0ÇconvertAssignÇl	var convertAssign = function(dest, src) {
 		var s, _ref, _type, d, _ref$1, _type$1, d$1, _ref$2, _type$2, d$2, _ref$3, _type$3, sv, d$3, _ref$4, _type$4, _struct, _ref$5, _struct$1, _ref$6, _struct$2, _ref$7, _tuple, bv, err, ok, _tuple$1, scanner, _struct$3, dpv, _struct$4, _struct$5, _struct$6, dv, _struct$7, _ref$8, _struct$8, _struct$9, s$1, _tuple$2, i64, err$1, s$2, _tuple$3, u64, err$2, s$3, _tuple$4, f64, err$3;
 		_ref = src;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -570,7 +573,8 @@ $$
 		}
 		return fmt.Errorf("unsupported driver -> Scan pair: %T -> %T", new (go$sliceType(go$emptyInterface))([src, dest]));
 	};
-	var cloneBytes = function(b) {
+0Ç
+cloneBytesÇ	var cloneBytes = function(b) {
 		var c;
 		if (b === (go$sliceType(Go$Uint8)).nil) {
 			return (go$sliceType(Go$Uint8)).nil;
@@ -580,7 +584,7 @@ $$
 			return c;
 		}
 	};
-	var asString = function(src) {
+0Ç{asStringÇm	var asString = function(src) {
 		var v, _ref, _type;
 		_ref = src;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -593,7 +597,7 @@ $$
 		}
 		return fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([src]));
 	};
-	var Register = go$pkg.Register = function(name, driver$1) {
+0Ç(RegisterÇ	var Register = go$pkg.Register = function(name, driver$1) {
 		var dup, _tuple, _entry, _key;
 		if (go$interfaceIsEqual(driver$1, null)) {
 			throw go$panic(new Go$String("sql: Register driver is nil"));
@@ -603,7 +607,7 @@ $$
 		}
 		_key = name, (drivers || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: driver$1 };
 	};
-	NullString.Ptr.prototype.Scan = function(value) {
+0Ç ScanÇ¿	NullString.Ptr.prototype.Scan = function(value) {
 		var ns, _tuple, v;
 		ns = this;
 		if (go$interfaceIsEqual(value, null)) {
@@ -614,7 +618,7 @@ $$
 		return convertAssign(new (go$ptrType(Go$String))(function() { return ns.String; }, function(v) { ns.String = v; }), value);
 	};
 	NullString.prototype.Scan = function(value) { return this.go$val.Scan(value); };
-	NullString.Ptr.prototype.Value = function() {
+0ÇAValueÇ6	NullString.Ptr.prototype.Value = function() {
 		var _struct, ns;
 		ns = (_struct = this, new NullString.Ptr(_struct.String, _struct.Valid));
 		if (!ns.Valid) {
@@ -623,7 +627,7 @@ $$
 		return [new Go$String(ns.String), null];
 	};
 	NullString.prototype.Value = function() { return this.go$val.Value(); };
-	NullInt64.Ptr.prototype.Scan = function(value) {
+0ÇÕScanÇ√	NullInt64.Ptr.prototype.Scan = function(value) {
 		var n, _tuple, v;
 		n = this;
 		if (go$interfaceIsEqual(value, null)) {
@@ -634,7 +638,7 @@ $$
 		return convertAssign(new (go$ptrType(Go$Int64))(function() { return n.Int64; }, function(v) { n.Int64 = v; }), value);
 	};
 	NullInt64.prototype.Scan = function(value) { return this.go$val.Scan(value); };
-	NullInt64.Ptr.prototype.Value = function() {
+0Ç)ValueÇ	NullInt64.Ptr.prototype.Value = function() {
 		var _struct, n;
 		n = (_struct = this, new NullInt64.Ptr(_struct.Int64, _struct.Valid));
 		if (!n.Valid) {
@@ -643,7 +647,7 @@ $$
 		return [n.Int64, null];
 	};
 	NullInt64.prototype.Value = function() { return this.go$val.Value(); };
-	NullFloat64.Ptr.prototype.Scan = function(value) {
+0Ç»ScanÇæ	NullFloat64.Ptr.prototype.Scan = function(value) {
 		var n, _tuple, v;
 		n = this;
 		if (go$interfaceIsEqual(value, null)) {
@@ -654,7 +658,7 @@ $$
 		return convertAssign(new (go$ptrType(Go$Float64))(function() { return n.Float64; }, function(v) { n.Float64 = v; }), value);
 	};
 	NullFloat64.prototype.Scan = function(value) { return this.go$val.Scan(value); };
-	NullFloat64.Ptr.prototype.Value = function() {
+0ÇCValueÇ8	NullFloat64.Ptr.prototype.Value = function() {
 		var _struct, n;
 		n = (_struct = this, new NullFloat64.Ptr(_struct.Float64, _struct.Valid));
 		if (!n.Valid) {
@@ -663,7 +667,7 @@ $$
 		return [new Go$Float64(n.Float64), null];
 	};
 	NullFloat64.prototype.Value = function() { return this.go$val.Value(); };
-	NullBool.Ptr.prototype.Scan = function(value) {
+0Ç∫ScanÇ∞	NullBool.Ptr.prototype.Scan = function(value) {
 		var n, _tuple, v;
 		n = this;
 		if (go$interfaceIsEqual(value, null)) {
@@ -674,7 +678,7 @@ $$
 		return convertAssign(new (go$ptrType(Go$Bool))(function() { return n.Bool; }, function(v) { n.Bool = v; }), value);
 	};
 	NullBool.prototype.Scan = function(value) { return this.go$val.Scan(value); };
-	NullBool.Ptr.prototype.Value = function() {
+0Ç1ValueÇ&	NullBool.Ptr.prototype.Value = function() {
 		var _struct, n;
 		n = (_struct = this, new NullBool.Ptr(_struct.Bool, _struct.Valid));
 		if (!n.Valid) {
@@ -683,13 +687,13 @@ $$
 		return [new Go$Bool(n.Bool), null];
 	};
 	NullBool.prototype.Value = function() { return this.go$val.Value(); };
-	driverConn.Ptr.prototype.releaseConn = function(err) {
+0ÅŸreleaseConnÅ…	driverConn.Ptr.prototype.releaseConn = function(err) {
 		var dc;
 		dc = this;
 		dc.db.putConn(dc, err);
 	};
 	driverConn.prototype.releaseConn = function(err) { return this.go$val.releaseConn(err); };
-	driverConn.Ptr.prototype.removeOpenStmt = function(si) {
+0Ç‘removeOpenStmtÇ¿	driverConn.Ptr.prototype.removeOpenStmt = function(si) {
 		var dc;
 		var go$deferred = [];
 		try {
@@ -704,7 +708,7 @@ $$
 		}
 	};
 	driverConn.prototype.removeOpenStmt = function(si) { return this.go$val.removeOpenStmt(si); };
-	driverConn.Ptr.prototype.prepareLocked = function(query) {
+0Ç>prepareLockedÇ+	driverConn.Ptr.prototype.prepareLocked = function(query) {
 		var dc, _tuple, si, err, _key;
 		dc = this;
 		_tuple = dc.ci.Prepare(query), si = _tuple[0], err = _tuple[1];
@@ -717,7 +721,7 @@ $$
 		return [si, err];
 	};
 	driverConn.prototype.prepareLocked = function(query) { return this.go$val.prepareLocked(query); };
-	driverConn.Ptr.prototype.closeDBLocked = function() {
+0ÇgcloseDBLockedÇT	driverConn.Ptr.prototype.closeDBLocked = function() {
 		var dc;
 		var go$deferred = [];
 		try {
@@ -739,7 +743,7 @@ $$
 		}
 	};
 	driverConn.prototype.closeDBLocked = function() { return this.go$val.closeDBLocked(); };
-	driverConn.Ptr.prototype.Close = function() {
+0Ç∫CloseÇØ	driverConn.Ptr.prototype.Close = function() {
 		var dc, fn;
 		dc = this;
 		dc.Mutex.Lock();
@@ -756,7 +760,8 @@ $$
 		return fn();
 	};
 	driverConn.prototype.Close = function() { return this.go$val.Close(); };
-	driverConn.Ptr.prototype.finalClose = function() {
+0Çy
+finalCloseÇi	driverConn.Ptr.prototype.finalClose = function() {
 		var dc, _ref, _i, _keys, _entry, si, err;
 		dc = this;
 		dc.Mutex.Lock();
@@ -780,7 +785,7 @@ $$
 		return err;
 	};
 	driverConn.prototype.finalClose = function() { return this.go$val.finalClose(); };
-	driverStmt.Ptr.prototype.Close = function() {
+0ÇõCloseÇê	driverStmt.Ptr.prototype.Close = function() {
 		var ds;
 		var go$deferred = [];
 		try {
@@ -796,7 +801,7 @@ $$
 		}
 	};
 	driverStmt.prototype.Close = function() { return this.go$val.Close(); };
-	DB.Ptr.prototype.addDep = function(x, dep) {
+0ÇìaddDepÇá	DB.Ptr.prototype.addDep = function(x, dep) {
 		var db;
 		var go$deferred = [];
 		try {
@@ -811,7 +816,7 @@ $$
 		}
 	};
 	DB.prototype.addDep = function(x, dep) { return this.go$val.addDep(x, dep); };
-	DB.Ptr.prototype.addDepLocked = function(x, dep) {
+0Ç»addDepLockedÇ∂	DB.Ptr.prototype.addDepLocked = function(x, dep) {
 		var db, _entry, xdep, _key, _key$1;
 		db = this;
 		if (db.dep === false) {
@@ -825,7 +830,7 @@ $$
 		_key$1 = dep, (xdep || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: true };
 	};
 	DB.prototype.addDepLocked = function(x, dep) { return this.go$val.addDepLocked(x, dep); };
-	DB.Ptr.prototype.removeDep = function(x, dep) {
+0Ç	removeDepÅ˙	DB.Ptr.prototype.removeDep = function(x, dep) {
 		var db, fn;
 		db = this;
 		db.mu.Lock();
@@ -834,7 +839,7 @@ $$
 		return fn();
 	};
 	DB.prototype.removeDep = function(x, dep) { return this.go$val.removeDep(x, dep); };
-	DB.Ptr.prototype.removeDepLocked = function(x, dep) {
+0Ç˙removeDepLockedÇÂ	DB.Ptr.prototype.removeDepLocked = function(x, dep) {
 		var db, _tuple, _entry, xdep, ok, l0, _ref, _recv;
 		db = this;
 		_tuple = (_entry = db.dep[(x || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [false, false]), xdep = _tuple[0], ok = _tuple[1];
@@ -856,7 +861,7 @@ $$
 		}
 	};
 	DB.prototype.removeDepLocked = function(x, dep) { return this.go$val.removeDepLocked(x, dep); };
-	var Open = go$pkg.Open = function(driverName, dataSourceName) {
+0ÇıOpenÇÎ	var Open = go$pkg.Open = function(driverName, dataSourceName) {
 		var _tuple, _entry, driveri, ok, db;
 		_tuple = (_entry = drivers[driverName], _entry !== undefined ? [_entry.v, true] : [null, false]), driveri = _tuple[0], ok = _tuple[1];
 		if (!ok) {
@@ -868,7 +873,7 @@ $$
 		go$notSupported("go")
 		return [db, null];
 	};
-	DB.Ptr.prototype.Ping = function() {
+0Ç8PingÇ.	DB.Ptr.prototype.Ping = function() {
 		var db, _tuple, dc, err;
 		db = this;
 		_tuple = db.conn(), dc = _tuple[0], err = _tuple[1];
@@ -879,7 +884,7 @@ $$
 		return null;
 	};
 	DB.prototype.Ping = function() { return this.go$val.Ping(); };
-	DB.Ptr.prototype.Close = function() {
+0ÇÍCloseÇﬂ	DB.Ptr.prototype.Close = function() {
 		var db, err, fns, x, dc, x$1, req, _ref, _i, _slice, _index, fn, err1;
 		db = this;
 		db.mu.Lock();
@@ -915,7 +920,7 @@ $$
 		return err;
 	};
 	DB.prototype.Close = function() { return this.go$val.Close(); };
-	DB.Ptr.prototype.maxIdleConnsLocked = function() {
+0Ç5maxIdleConnsLockedÇ	DB.Ptr.prototype.maxIdleConnsLocked = function() {
 		var db, n;
 		db = this;
 		n = db.maxIdle;
@@ -928,7 +933,7 @@ $$
 		}
 	};
 	DB.prototype.maxIdleConnsLocked = function() { return this.go$val.maxIdleConnsLocked(); };
-	DB.Ptr.prototype.SetMaxIdleConns = function(n) {
+0Ç@SetMaxIdleConnsÇ+	DB.Ptr.prototype.SetMaxIdleConns = function(n) {
 		var db, closing, x, dc, _ref, _i, _slice, _index, c;
 		db = this;
 		db.mu.Lock();
@@ -956,7 +961,7 @@ $$
 		}
 	};
 	DB.prototype.SetMaxIdleConns = function(n) { return this.go$val.SetMaxIdleConns(n); };
-	DB.Ptr.prototype.SetMaxOpenConns = function(n) {
+0ÇúSetMaxOpenConnsÇá	DB.Ptr.prototype.SetMaxOpenConns = function(n) {
 		var db, syncMaxIdle;
 		db = this;
 		db.mu.Lock();
@@ -971,7 +976,7 @@ $$
 		}
 	};
 	DB.prototype.SetMaxOpenConns = function(n) { return this.go$val.SetMaxOpenConns(n); };
-	DB.Ptr.prototype.maybeOpenNewConnections = function() {
+0ÇkmaybeOpenNewConnectionsÇN	DB.Ptr.prototype.maybeOpenNewConnections = function() {
 		var db, numRequests, numCanOpen;
 		db = this;
 		numRequests = db.connRequests.Len() - db.pendingOpens >> 0;
@@ -988,14 +993,14 @@ $$
 		}
 	};
 	DB.prototype.maybeOpenNewConnections = function() { return this.go$val.maybeOpenNewConnections(); };
-	DB.Ptr.prototype.connectionOpener = function() {
+0Å‰connectionOpenerÅœ	DB.Ptr.prototype.connectionOpener = function() {
 		var db, _ref, _i;
 		db = this;
 		_ref = db.openerCh;
 		_i = 0;
 	};
 	DB.prototype.connectionOpener = function() { return this.go$val.connectionOpener(); };
-	DB.Ptr.prototype.openNewConnection = function() {
+0Ç1openNewConnectionÇ	DB.Ptr.prototype.openNewConnection = function() {
 		var db, _tuple, ci, err, dc;
 		var go$deferred = [];
 		try {
@@ -1028,7 +1033,7 @@ $$
 		}
 	};
 	DB.prototype.openNewConnection = function() { return this.go$val.openNewConnection(); };
-	DB.Ptr.prototype.conn = function() {
+0ÇwconnÇm	DB.Ptr.prototype.conn = function() {
 		var db, ch, req, _tuple, ret, ok, _ref, _type, f, x, conn, _tuple$1, ci, err, dc;
 		db = this;
 		db.mu.Lock();
@@ -1078,7 +1083,8 @@ $$
 		return [dc, null];
 	};
 	DB.prototype.conn = function() { return this.go$val.conn(); };
-	DB.Ptr.prototype.connIfFree = function(wanted) {
+0Çu
+connIfFreeÇe	DB.Ptr.prototype.connIfFree = function(wanted) {
 		var db;
 		var go$deferred = [];
 		try {
@@ -1106,7 +1112,7 @@ $$
 		}
 	};
 	DB.prototype.connIfFree = function(wanted) { return this.go$val.connIfFree(wanted); };
-	DB.Ptr.prototype.noteUnusedDriverStatement = function(c, si) {
+0Ç∞noteUnusedDriverStatementÇë	DB.Ptr.prototype.noteUnusedDriverStatement = function(c, si) {
 		var db;
 		var go$deferred = [];
 		try {
@@ -1131,7 +1137,7 @@ $$
 		}
 	};
 	DB.prototype.noteUnusedDriverStatement = function(c, si) { return this.go$val.noteUnusedDriverStatement(c, si); };
-	DB.Ptr.prototype.putConn = function(dc, err) {
+0Ç√putConnÇ∂	DB.Ptr.prototype.putConn = function(dc, err) {
 		var db, _ref, _i, _slice, _index, fn, added;
 		db = this;
 		db.mu.Lock();
@@ -1162,7 +1168,7 @@ $$
 		}
 	};
 	DB.prototype.putConn = function(dc, err) { return this.go$val.putConn(dc, err); };
-	DB.Ptr.prototype.putConnDBLocked = function(dc, err) {
+0Ç3putConnDBLockedÇ	DB.Ptr.prototype.putConnDBLocked = function(dc, err) {
 		var db, x, req;
 		db = this;
 		if (db.connRequests.Len() > 0) {
@@ -1182,7 +1188,7 @@ $$
 		return false;
 	};
 	DB.prototype.putConnDBLocked = function(dc, err) { return this.go$val.putConnDBLocked(dc, err); };
-	DB.Ptr.prototype.Prepare = function(query) {
+0ÇøPrepareÇ≤	DB.Ptr.prototype.Prepare = function(query) {
 		var db, stmt, err, i, _tuple;
 		db = this;
 		stmt = (go$ptrType(Stmt)).nil;
@@ -1198,7 +1204,7 @@ $$
 		return [stmt, err];
 	};
 	DB.prototype.Prepare = function(query) { return this.go$val.Prepare(query); };
-	DB.Ptr.prototype.prepare = function(query) {
+0ÇPprepareÇC	DB.Ptr.prototype.prepare = function(query) {
 		var db, _tuple, dc, err, _tuple$1, si, stmt;
 		db = this;
 		_tuple = db.conn(), dc = _tuple[0], err = _tuple[1];
@@ -1218,7 +1224,7 @@ $$
 		return [stmt, null];
 	};
 	DB.prototype.prepare = function(query) { return this.go$val.prepare(query); };
-	DB.Ptr.prototype.Exec = function(query, args) {
+0Ç≤ExecÇ®	DB.Ptr.prototype.Exec = function(query, args) {
 		var db, res, err, i, _tuple;
 		db = this;
 		res = null;
@@ -1234,7 +1240,7 @@ $$
 		return [res, err];
 	};
 	DB.prototype.Exec = function(query, args) { return this.go$val.Exec(query, args); };
-	DB.Ptr.prototype.exec = function(query, args) {
+0ÇùexecÇì	DB.Ptr.prototype.exec = function(query, args) {
 		var res, err, db, _tuple, dc, _tuple$1, ok, _tuple$2, x, execer, _tuple$3, dargs, err$1, _tuple$4, _tuple$5, resi, _tuple$6, x$1, _tuple$7, _tuple$8, si, _tuple$9, _tuple$10;
 		res = null;
 		err = null;
@@ -1287,7 +1293,7 @@ $$
 		}
 	};
 	DB.prototype.exec = function(query, args) { return this.go$val.exec(query, args); };
-	DB.Ptr.prototype.Query = function(query, args) {
+0ÇÕQueryÇ¬	DB.Ptr.prototype.Query = function(query, args) {
 		var db, rows, err, i, _tuple;
 		db = this;
 		rows = (go$ptrType(Rows)).nil;
@@ -1303,7 +1309,7 @@ $$
 		return [rows, err];
 	};
 	DB.prototype.Query = function(query, args) { return this.go$val.Query(query, args); };
-	DB.Ptr.prototype.query = function(query, args) {
+0Ç queryÇø	DB.Ptr.prototype.query = function(query, args) {
 		var db, _tuple, ci, err, err$1, _recv;
 		db = this;
 		_tuple = db.conn(), ci = _tuple[0], err = _tuple[1];
@@ -1313,7 +1319,7 @@ $$
 		return db.queryConn(ci, (_recv = ci, function(err$1) { return _recv.releaseConn(err$1); }), query, args);
 	};
 	DB.prototype.query = function(query, args) { return this.go$val.query(query, args); };
-	DB.Ptr.prototype.queryConn = function(dc, releaseConn, query, args) {
+0Çq	queryConnÇb	DB.Ptr.prototype.queryConn = function(dc, releaseConn, query, args) {
 		var db, ok, _tuple, x, queryer, _tuple$1, dargs, err, _tuple$2, rowsi, rows, _tuple$3, si, err$1, ds, _tuple$4, _struct, rowsi$1, rows$1;
 		db = this;
 		if (_tuple = (x = dc.ci, (x !== null && driver.Queryer.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), queryer = _tuple[0], ok = _tuple[1], ok) {
@@ -1354,14 +1360,14 @@ $$
 		return [rows$1, null];
 	};
 	DB.prototype.queryConn = function(dc, releaseConn, query, args) { return this.go$val.queryConn(dc, releaseConn, query, args); };
-	DB.Ptr.prototype.QueryRow = function(query, args) {
+0Ç5QueryRowÇ'	DB.Ptr.prototype.QueryRow = function(query, args) {
 		var db, _tuple, rows, err;
 		db = this;
 		_tuple = db.Query(query, args), rows = _tuple[0], err = _tuple[1];
 		return new Row.Ptr(err, rows);
 	};
 	DB.prototype.QueryRow = function(query, args) { return this.go$val.QueryRow(query, args); };
-	DB.Ptr.prototype.Begin = function() {
+0ÇóBeginÇå	DB.Ptr.prototype.Begin = function() {
 		var db, tx, err, i, _tuple;
 		db = this;
 		tx = (go$ptrType(Tx)).nil;
@@ -1377,7 +1383,7 @@ $$
 		return [tx, err];
 	};
 	DB.prototype.Begin = function() { return this.go$val.Begin(); };
-	DB.Ptr.prototype.begin = function() {
+0ÇKbeginÇ@	DB.Ptr.prototype.begin = function() {
 		var tx, err, db, _tuple, dc, _tuple$1, _tuple$2, txi, _tuple$3, _tuple$4;
 		tx = (go$ptrType(Tx)).nil;
 		err = null;
@@ -1399,13 +1405,13 @@ $$
 		return [tx, err];
 	};
 	DB.prototype.begin = function() { return this.go$val.begin(); };
-	DB.Ptr.prototype.Driver = function() {
+0Å¶DriverÅõ	DB.Ptr.prototype.Driver = function() {
 		var db;
 		db = this;
 		return db.driver;
 	};
 	DB.prototype.Driver = function() { return this.go$val.Driver(); };
-	Tx.Ptr.prototype.close = function() {
+0Ç?closeÇ4	Tx.Ptr.prototype.close = function() {
 		var tx;
 		tx = this;
 		if (tx.done) {
@@ -1417,7 +1423,7 @@ $$
 		tx.txi = null;
 	};
 	Tx.prototype.close = function() { return this.go$val.close(); };
-	Tx.Ptr.prototype.grabConn = function() {
+0ÇgrabConnÅˆ	Tx.Ptr.prototype.grabConn = function() {
 		var tx;
 		tx = this;
 		if (tx.done) {
@@ -1426,7 +1432,7 @@ $$
 		return [tx.dc, null];
 	};
 	Tx.prototype.grabConn = function() { return this.go$val.grabConn(); };
-	Tx.Ptr.prototype.Commit = function() {
+0ÇCommitÇ¸	Tx.Ptr.prototype.Commit = function() {
 		var tx;
 		var go$deferred = [];
 		try {
@@ -1446,7 +1452,7 @@ $$
 		}
 	};
 	Tx.prototype.Commit = function() { return this.go$val.Commit(); };
-	Tx.Ptr.prototype.Rollback = function() {
+0ÇRollbackÇ	Tx.Ptr.prototype.Rollback = function() {
 		var tx;
 		var go$deferred = [];
 		try {
@@ -1466,7 +1472,7 @@ $$
 		}
 	};
 	Tx.prototype.Rollback = function() { return this.go$val.Rollback(); };
-	Tx.Ptr.prototype.Prepare = function(query) {
+0Ç€PrepareÇŒ	Tx.Ptr.prototype.Prepare = function(query) {
 		var tx, _tuple, dc, err, _tuple$1, si, stmt;
 		tx = this;
 		_tuple = tx.grabConn(), dc = _tuple[0], err = _tuple[1];
@@ -1483,6 +1489,7 @@ $$
 		return [stmt, null];
 	};
 	Tx.prototype.Prepare = function(query) { return this.go$val.Prepare(query); };
+0ÇStmtÇ
 	Tx.Ptr.prototype.Stmt = function(stmt) {
 		var tx, _tuple, dc, err, _tuple$1, si;
 		tx = this;
@@ -1499,7 +1506,7 @@ $$
 		return new Stmt.Ptr(tx.db, stmt.query, err, new sync.RWMutex.Ptr(), tx, new driverStmt.Ptr(dc, si), new sync.Mutex.Ptr(), false, (go$sliceType(connStmt)).nil);
 	};
 	Tx.prototype.Stmt = function(stmt) { return this.go$val.Stmt(stmt); };
-	Tx.Ptr.prototype.Exec = function(query, args) {
+0Ç]ExecÇS	Tx.Ptr.prototype.Exec = function(query, args) {
 		var tx, _tuple, dc, err, ok, _tuple$1, x, execer, _tuple$2, dargs, err$1, _tuple$3, resi, x$1, _tuple$4, si;
 		var go$deferred = [];
 		try {
@@ -1541,7 +1548,7 @@ $$
 		}
 	};
 	Tx.prototype.Exec = function(query, args) { return this.go$val.Exec(query, args); };
-	Tx.Ptr.prototype.Query = function(query, args) {
+0ÇΩQueryÇ≤	Tx.Ptr.prototype.Query = function(query, args) {
 		var tx, _tuple, dc, err, releaseConn;
 		tx = this;
 		_tuple = tx.grabConn(), dc = _tuple[0], err = _tuple[1];
@@ -1553,14 +1560,14 @@ $$
 		return tx.db.queryConn(dc, releaseConn, query, args);
 	};
 	Tx.prototype.Query = function(query, args) { return this.go$val.Query(query, args); };
-	Tx.Ptr.prototype.QueryRow = function(query, args) {
+0Ç5QueryRowÇ'	Tx.Ptr.prototype.QueryRow = function(query, args) {
 		var tx, _tuple, rows, err;
 		tx = this;
 		_tuple = tx.Query(query, args), rows = _tuple[0], err = _tuple[1];
 		return new Row.Ptr(err, rows);
 	};
 	Tx.prototype.QueryRow = function(query, args) { return this.go$val.QueryRow(query, args); };
-	Stmt.Ptr.prototype.Exec = function(args) {
+0Ç÷ExecÇÃ	Stmt.Ptr.prototype.Exec = function(args) {
 		var s, _tuple, dc, releaseConn, si, err;
 		var go$deferred = [];
 		try {
@@ -1581,7 +1588,7 @@ $$
 		}
 	};
 	Stmt.prototype.Exec = function(args) { return this.go$val.Exec(args); };
-	var resultFromStatement = function(ds, args) {
+0Ç5resultFromStatementÇ	var resultFromStatement = function(ds, args) {
 		var want, _tuple, dargs, err, _tuple$1, resi, x;
 		ds.Locker.Lock();
 		want = ds.si.NumInput();
@@ -1601,7 +1608,7 @@ $$
 		}
 		return [(x = new driverResult.Ptr(ds.Locker, resi), new x.constructor.Struct(x)), null];
 	};
-	Stmt.Ptr.prototype.connStmt = function() {
+0ÇconnStmtÇ	Stmt.Ptr.prototype.connStmt = function() {
 		var ci, releaseConn, si, err, s, _tuple, _tuple$1, cs, match, i, _slice, _index, _struct, v, _tuple$2, err$1, _struct$1, _slice$1, _index$1, _struct$2, _slice$2, _index$2, i$1, _tuple$3, dc, err$2, _tuple$4, _tuple$5, si$1, _tuple$6, _struct$3, conn, err$3, _recv, _tuple$7;
 		ci = (go$ptrType(driverConn)).nil;
 		releaseConn = go$throwNilPointerError;
@@ -1678,7 +1685,7 @@ $$
 		return [ci, releaseConn, si, err];
 	};
 	Stmt.prototype.connStmt = function() { return this.go$val.connStmt(); };
-	Stmt.Ptr.prototype.Query = function(args) {
+0Ç‘QueryÇ…	Stmt.Ptr.prototype.Query = function(args) {
 		var s, _tuple, dc, releaseConn, si, err, ds, _tuple$1, _struct, rowsi, rows;
 		var go$deferred = [];
 		try {
@@ -1710,7 +1717,7 @@ $$
 		}
 	};
 	Stmt.prototype.Query = function(args) { return this.go$val.Query(args); };
-	var rowsiFromStatement = function(ds, args) {
+0ÇˆrowsiFromStatementÇﬁ	var rowsiFromStatement = function(ds, args) {
 		var want, _tuple, dargs, err, _tuple$1, rowsi;
 		ds.Locker.Lock();
 		want = ds.si.NumInput();
@@ -1730,7 +1737,7 @@ $$
 		}
 		return [rowsi, null];
 	};
-	Stmt.Ptr.prototype.QueryRow = function(args) {
+0Ç~QueryRowÇp	Stmt.Ptr.prototype.QueryRow = function(args) {
 		var s, _tuple, rows, err;
 		s = this;
 		_tuple = s.Query(args), rows = _tuple[0], err = _tuple[1];
@@ -1740,7 +1747,7 @@ $$
 		return new Row.Ptr(null, rows);
 	};
 	Stmt.prototype.QueryRow = function(args) { return this.go$val.QueryRow(args); };
-	Stmt.Ptr.prototype.Close = function() {
+0Ç∆CloseÇª	Stmt.Ptr.prototype.Close = function() {
 		var s;
 		var go$deferred = [];
 		try {
@@ -1771,7 +1778,8 @@ $$
 		}
 	};
 	Stmt.prototype.Close = function() { return this.go$val.Close(); };
-	Stmt.Ptr.prototype.finalClose = function() {
+0Çï
+finalCloseÇÖ	Stmt.Ptr.prototype.finalClose = function() {
 		var s, _ref, _i, _slice, _index, _struct, v;
 		var go$deferred = [];
 		try {
@@ -1797,7 +1805,7 @@ $$
 		}
 	};
 	Stmt.prototype.finalClose = function() { return this.go$val.finalClose(); };
-	Rows.Ptr.prototype.Next = function() {
+0ÇÙNextÇÍ	Rows.Ptr.prototype.Next = function() {
 		var rs;
 		rs = this;
 		if (rs.closed) {
@@ -1814,7 +1822,7 @@ $$
 		return true;
 	};
 	Rows.prototype.Next = function() { return this.go$val.Next(); };
-	Rows.Ptr.prototype.Err = function() {
+0Å‰ErrÅ‹	Rows.Ptr.prototype.Err = function() {
 		var rs;
 		rs = this;
 		if (go$interfaceIsEqual(rs.lasterr, io.EOF)) {
@@ -1823,7 +1831,7 @@ $$
 		return rs.lasterr;
 	};
 	Rows.prototype.Err = function() { return this.go$val.Err(); };
-	Rows.Ptr.prototype.Columns = function() {
+0Ç®ColumnsÇõ	Rows.Ptr.prototype.Columns = function() {
 		var rs;
 		rs = this;
 		if (rs.closed) {
@@ -1835,7 +1843,7 @@ $$
 		return [rs.rowsi.Columns(), null];
 	};
 	Rows.prototype.Columns = function() { return this.go$val.Columns(); };
-	Rows.Ptr.prototype.Scan = function(dest) {
+0Ç˙ScanÇ	Rows.Ptr.prototype.Scan = function(dest) {
 		var rs, _ref, _i, _slice, _index, sv, i, _slice$1, _index$1, err;
 		rs = this;
 		if (rs.closed) {
@@ -1860,7 +1868,8 @@ $$
 		return null;
 	};
 	Rows.prototype.Scan = function(dest) { return this.go$val.Scan(dest); };
-	Rows.Ptr.prototype.Close = function() {
+0Ç
+CloseÇˇ	Rows.Ptr.prototype.Close = function() {
 		var rs, err, fn, v;
 		rs = this;
 		if (rs.closed) {
@@ -1878,7 +1887,7 @@ $$
 		return err;
 	};
 	Rows.prototype.Close = function() { return this.go$val.Close(); };
-	Row.Ptr.prototype.Scan = function(dest) {
+0ÇUScanÇK	Row.Ptr.prototype.Scan = function(dest) {
 		var r, _ref, _i, _slice, _index, dp, ok, _tuple, err;
 		var go$deferred = [];
 		try {
@@ -1911,7 +1920,7 @@ $$
 		}
 	};
 	Row.prototype.Scan = function(dest) { return this.go$val.Scan(dest); };
-	driverResult.Ptr.prototype.LastInsertId = function() {
+0Ç#LastInsertIdÇ	driverResult.Ptr.prototype.LastInsertId = function() {
 		var _struct, dr;
 		var go$deferred = [];
 		try {
@@ -1927,7 +1936,7 @@ $$
 		}
 	};
 	driverResult.prototype.LastInsertId = function() { return this.go$val.LastInsertId(); };
-	driverResult.Ptr.prototype.RowsAffected = function() {
+0Ç#RowsAffectedÇ	driverResult.Ptr.prototype.RowsAffected = function() {
 		var _struct, dr;
 		var go$deferred = [];
 		try {
@@ -1943,29 +1952,17 @@ $$
 		}
 	};
 	driverResult.prototype.RowsAffected = function() { return this.go$val.RowsAffected(); };
-	var stack = function() {
+0ÅˇstackÅı	var stack = function() {
 		var buf;
 		buf = go$makeNativeArray("Uint8", 2048, function() { return 0; });
 		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, runtime.Stack(new (go$sliceType(Go$Uint8))(buf), false)));
 	};
-	var withLock = function(lk, fn) {
+0WwithLockK	var withLock = function(lk, fn) {
 		lk.Lock();
 		fn();
 		lk.Unlock();
 	};
-	var defaultMaxIdleConns = 2;
-	var debugGetPut = false;
-	var errNilPtr = null;
-	var drivers = false;
-	go$pkg.ErrNoRows = null;
-	var connectionRequestQueueSize = 0;
-	var errDBClosed = null;
-	var errConnClosed = null;
-	var errConnBusy = null;
-	var putConnHook = go$throwNilPointerError;
-	go$pkg.ErrTxDone = null;
-	var rowsCloseHook = go$throwNilPointerError;
-	go$pkg.init = function() {
+0Ç#initÇ	go$pkg.init = function() {
 		errNilPtr = errors.New("destination pointer is nil");
 		drivers = new Go$Map();
 		go$pkg.ErrNoRows = errors.New("sql: no rows in result set");

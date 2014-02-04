@@ -1,4 +1,4 @@
-0Ç¥RÇspackage bufio
+0Ç∂ÕbufioÇspackage bufio
 import bytes "bytes"
 import errors "errors"
 import io "io"
@@ -63,11 +63,7 @@ func (? *@"".Writer) @"".flush() (? error)
 type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
 type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
 $$
-0Mruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioÇ§à	var bytes = go$packages["bytes"];
-	var errors = go$packages["errors"];
-	var io = go$packages["io"];
-	var utf8 = go$packages["unicode/utf8"];
-	var Reader;
+0Mruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufio0B0bytesbytes0errorserrors0ioio0unicode/utf8utf8Ç/ 	var Reader;
 	Reader = go$newType(0, "Struct", "bufio.Reader", "Reader", "bufio", function(buf_, rd_, r_, w_, err_, lastByte_, lastRuneSize_) {
 		this.go$val = this;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
@@ -175,7 +171,16 @@ $$
 	Scanner.init([["r", "bufio", io.Reader, ""], ["split", "bufio", SplitFunc, ""], ["maxTokenSize", "bufio", Go$Int, ""], ["token", "bufio", (go$sliceType(Go$Uint8)), ""], ["buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["start", "bufio", Go$Int, ""], ["end", "bufio", Go$Int, ""], ["err", "bufio", go$error, ""]]);
 	(go$ptrType(Scanner)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Err", "", [], [go$error], false], ["Scan", "", [], [Go$Bool], false], ["Split", "", [SplitFunc], [], false], ["Text", "", [], [Go$String], false], ["advance", "bufio", [Go$Int], [Go$Bool], false], ["setErr", "bufio", [go$error], [], false]];
 	SplitFunc.init([(go$sliceType(Go$Uint8)), Go$Bool], [Go$Int, (go$sliceType(Go$Uint8)), go$error], false);
-	var NewReaderSize = go$pkg.NewReaderSize = function(rd, size) {
+Ç4	go$pkg.ErrInvalidUnreadByte = null;
+	go$pkg.ErrInvalidUnreadRune = null;
+	go$pkg.ErrBufferFull = null;
+	go$pkg.ErrNegativeCount = null;
+	var errNegativeRead = null;
+	go$pkg.ErrTooLong = null;
+	go$pkg.ErrNegativeAdvance = null;
+	go$pkg.ErrAdvanceTooFar = null;
+	var errorRune = (go$sliceType(Go$Uint8)).nil;
+0Çv\0Ç€NewReaderSizeÇ»	var NewReaderSize = go$pkg.NewReaderSize = function(rd, size) {
 		var _tuple, b, ok, r;
 		_tuple = (rd !== null && rd.constructor === (go$ptrType(Reader)) ? [rd.go$val, true] : [(go$ptrType(Reader)).nil, false]), b = _tuple[0], ok = _tuple[1];
 		if (ok && b.buf.length >= size) {
@@ -188,22 +193,22 @@ $$
 		r.reset((go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; }), rd);
 		return r;
 	};
-	var NewReader = go$pkg.NewReader = function(rd) {
+0f	NewReaderY	var NewReader = go$pkg.NewReader = function(rd) {
 		return NewReaderSize(rd, 4096);
 	};
-	Reader.Ptr.prototype.Reset = function(r) {
+0Å¨ResetÅ¢	Reader.Ptr.prototype.Reset = function(r) {
 		var b;
 		b = this;
 		b.reset(b.buf, r);
 	};
 	Reader.prototype.Reset = function(r) { return this.go$val.Reset(r); };
-	Reader.Ptr.prototype.reset = function(buf, r) {
+0ÇsresetÇh	Reader.Ptr.prototype.reset = function(buf, r) {
 		var b, l, r$1;
 		b = this;
 		l = b, r$1 = new Reader.Ptr(buf, r, 0, 0, null, -1, -1), l.buf = r$1.buf, l.rd = r$1.rd, l.r = r$1.r, l.w = r$1.w, l.err = r$1.err, l.lastByte = r$1.lastByte, l.lastRuneSize = r$1.lastRuneSize;
 	};
 	Reader.prototype.reset = function(buf, r) { return this.go$val.reset(buf, r); };
-	Reader.Ptr.prototype.fill = function() {
+0ÇfillÇÊ	Reader.Ptr.prototype.fill = function() {
 		var b, _tuple, n, err;
 		b = this;
 		if (b.r > 0) {
@@ -221,7 +226,7 @@ $$
 		}
 	};
 	Reader.prototype.fill = function() { return this.go$val.fill(); };
-	Reader.Ptr.prototype.readErr = function() {
+0ÅŒreadErrÅ¬	Reader.Ptr.prototype.readErr = function() {
 		var b, err;
 		b = this;
 		err = b.err;
@@ -229,7 +234,7 @@ $$
 		return err;
 	};
 	Reader.prototype.readErr = function() { return this.go$val.readErr(); };
-	Reader.Ptr.prototype.Peek = function(n) {
+0ÇóPeekÇç	Reader.Ptr.prototype.Peek = function(n) {
 		var b, m, err;
 		b = this;
 		if (n < 0) {
@@ -255,7 +260,7 @@ $$
 		return [go$subslice(b.buf, b.r, (b.r + m >> 0)), err];
 	};
 	Reader.prototype.Peek = function(n) { return this.go$val.Peek(n); };
-	Reader.Ptr.prototype.Read = function(p) {
+0Ç%ReadÇ	Reader.Ptr.prototype.Read = function(p) {
 		var n, err, b, _tuple, _tuple$1, _tuple$2, _slice, _index, _tuple$3, _tuple$4, _slice$1, _index$1, _tuple$5;
 		n = 0;
 		err = null;
@@ -296,7 +301,7 @@ $$
 		return [n, err];
 	};
 	Reader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	Reader.Ptr.prototype.ReadByte = function() {
+0Ç ReadByteÇº	Reader.Ptr.prototype.ReadByte = function() {
 		var c, err, b, _tuple, _slice, _index, _tuple$1;
 		c = 0;
 		err = null;
@@ -316,7 +321,8 @@ $$
 		return [c, err];
 	};
 	Reader.prototype.ReadByte = function() { return this.go$val.ReadByte(); };
-	Reader.Ptr.prototype.UnreadByte = function() {
+0Çi
+UnreadByteÇY	Reader.Ptr.prototype.UnreadByte = function() {
 		var b, _slice, _index;
 		b = this;
 		b.lastRuneSize = -1;
@@ -335,7 +341,7 @@ $$
 		return null;
 	};
 	Reader.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
-	Reader.Ptr.prototype.ReadRune = function() {
+0ÇReadRuneÇı	Reader.Ptr.prototype.ReadRune = function() {
 		var r, size, err, b, _tuple, _slice, _index, _tuple$1, _tuple$2, _slice$1, _index$1, _tuple$3;
 		r = 0;
 		size = 0;
@@ -360,7 +366,8 @@ $$
 		return [r, size, err];
 	};
 	Reader.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
-	Reader.Ptr.prototype.UnreadRune = function() {
+0Ç]
+UnreadRuneÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		var b;
 		b = this;
 		if (b.lastRuneSize < 0 || (b.r === 0)) {
@@ -372,13 +379,13 @@ $$
 		return null;
 	};
 	Reader.prototype.UnreadRune = function() { return this.go$val.UnreadRune(); };
-	Reader.Ptr.prototype.Buffered = function() {
+0ÅπBufferedÅ¨	Reader.Ptr.prototype.Buffered = function() {
 		var b;
 		b = this;
 		return b.w - b.r >> 0;
 	};
 	Reader.prototype.Buffered = function() { return this.go$val.Buffered(); };
-	Reader.Ptr.prototype.ReadSlice = function(delim) {
+0Ç	ReadSliceÇˆ	Reader.Ptr.prototype.ReadSlice = function(delim) {
 		var line, err, b, i, line1, _tuple, line$1, _tuple$1, n, i$1, line$2, _tuple$2, _tuple$3;
 		line = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -412,7 +419,7 @@ $$
 		}
 	};
 	Reader.prototype.ReadSlice = function(delim) { return this.go$val.ReadSlice(delim); };
-	Reader.Ptr.prototype.ReadLine = function() {
+0ÇΩReadLineÇØ	Reader.Ptr.prototype.ReadLine = function() {
 		var line, isPrefix, err, b, _tuple, _slice, _index, _tuple$1, _slice$1, _index$1, drop, _slice$2, _index$2;
 		line = (go$sliceType(Go$Uint8)).nil;
 		isPrefix = false;
@@ -447,7 +454,7 @@ $$
 		return [line, isPrefix, err];
 	};
 	Reader.prototype.ReadLine = function() { return this.go$val.ReadLine(); };
-	Reader.Ptr.prototype.ReadBytes = function(delim) {
+0Çë	ReadBytesÇÇ	Reader.Ptr.prototype.ReadBytes = function(delim) {
 		var line, err, b, frag, full, e, _tuple, buf, n, _ref, _i, i, _slice, _index, buf$1, _ref$1, _i$1, i$1, _slice$1, _index$1, _tuple$1;
 		line = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -490,7 +497,8 @@ $$
 		return [line, err];
 	};
 	Reader.prototype.ReadBytes = function(delim) { return this.go$val.ReadBytes(delim); };
-	Reader.Ptr.prototype.ReadString = function(delim) {
+0Çπ
+ReadStringÇ©	Reader.Ptr.prototype.ReadString = function(delim) {
 		var line, err, b, _tuple, bytes$1, _tuple$1;
 		line = "";
 		err = null;
@@ -501,7 +509,7 @@ $$
 		return [line, err];
 	};
 	Reader.prototype.ReadString = function(delim) { return this.go$val.ReadString(delim); };
-	Reader.Ptr.prototype.WriteTo = function(w) {
+0ÇWriteToÇ	Reader.Ptr.prototype.WriteTo = function(w) {
 		var n, err, b, _tuple, ok, _tuple$1, x, r, _tuple$2, m, err$1, x$1, _tuple$3, _tuple$4, m$1, err$2, x$2, _tuple$5, _tuple$6;
 		n = new Go$Int64(0, 0);
 		err = null;
@@ -533,7 +541,7 @@ $$
 		return [n, err];
 	};
 	Reader.prototype.WriteTo = function(w) { return this.go$val.WriteTo(w); };
-	Reader.Ptr.prototype.writeBuf = function(w) {
+0ÇBwriteBufÇ4	Reader.Ptr.prototype.writeBuf = function(w) {
 		var b, _tuple, n, err;
 		b = this;
 		_tuple = w.Write(go$subslice(b.buf, b.r, b.w)), n = _tuple[0], err = _tuple[1];
@@ -541,7 +549,7 @@ $$
 		return [new Go$Int64(0, n), err];
 	};
 	Reader.prototype.writeBuf = function(w) { return this.go$val.writeBuf(w); };
-	var NewWriterSize = go$pkg.NewWriterSize = function(w, size) {
+0Ç»NewWriterSizeÇµ	var NewWriterSize = go$pkg.NewWriterSize = function(w, size) {
 		var _tuple, b, ok;
 		_tuple = (w !== null && w.constructor === (go$ptrType(Writer)) ? [w.go$val, true] : [(go$ptrType(Writer)).nil, false]), b = _tuple[0], ok = _tuple[1];
 		if (ok && b.buf.length >= size) {
@@ -552,10 +560,10 @@ $$
 		}
 		return new Writer.Ptr(null, (go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; }), 0, w);
 	};
-	var NewWriter = go$pkg.NewWriter = function(w) {
+0d	NewWriterW	var NewWriter = go$pkg.NewWriter = function(w) {
 		return NewWriterSize(w, 4096);
 	};
-	Writer.Ptr.prototype.Reset = function(w) {
+0ÅæResetÅ¥	Writer.Ptr.prototype.Reset = function(w) {
 		var b;
 		b = this;
 		b.err = null;
@@ -563,14 +571,14 @@ $$
 		b.wr = w;
 	};
 	Writer.prototype.Reset = function(w) { return this.go$val.Reset(w); };
-	Writer.Ptr.prototype.Flush = function() {
+0Å∫FlushÅ∞	Writer.Ptr.prototype.Flush = function() {
 		var b, err;
 		b = this;
 		err = b.flush();
 		return err;
 	};
 	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
-	Writer.Ptr.prototype.flush = function() {
+0Ç©flushÇû	Writer.Ptr.prototype.flush = function() {
 		var b, _tuple, n, err;
 		b = this;
 		if (!(go$interfaceIsEqual(b.err, null))) {
@@ -595,19 +603,19 @@ $$
 		return null;
 	};
 	Writer.prototype.flush = function() { return this.go$val.flush(); };
-	Writer.Ptr.prototype.Available = function() {
+0Å∆	AvailableÅ∏	Writer.Ptr.prototype.Available = function() {
 		var b;
 		b = this;
 		return b.buf.length - b.n >> 0;
 	};
 	Writer.prototype.Available = function() { return this.go$val.Available(); };
-	Writer.Ptr.prototype.Buffered = function() {
+0ÅÆBufferedÅ°	Writer.Ptr.prototype.Buffered = function() {
 		var b;
 		b = this;
 		return b.n;
 	};
 	Writer.prototype.Buffered = function() { return this.go$val.Buffered(); };
-	Writer.Ptr.prototype.Write = function(p) {
+0ÇhWriteÇ]	Writer.Ptr.prototype.Write = function(p) {
 		var nn, err, b, n, _tuple, _tuple$1, n$1, _tuple$2;
 		nn = 0;
 		err = null;
@@ -635,7 +643,7 @@ $$
 		return [nn, err];
 	};
 	Writer.prototype.Write = function(p) { return this.go$val.Write(p); };
-	Writer.Ptr.prototype.WriteByte = function(c) {
+0Ç	WriteByteÇ	Writer.Ptr.prototype.WriteByte = function(c) {
 		var b, _slice, _index;
 		b = this;
 		if (!(go$interfaceIsEqual(b.err, null))) {
@@ -649,7 +657,7 @@ $$
 		return null;
 	};
 	Writer.prototype.WriteByte = function(c) { return this.go$val.WriteByte(c); };
-	Writer.Ptr.prototype.WriteRune = function(r) {
+0Ç≠	WriteRuneÇû	Writer.Ptr.prototype.WriteRune = function(r) {
 		var size, err, b, _tuple, _tuple$1, _tuple$2, n, _tuple$3, _tuple$4, _tuple$5;
 		size = 0;
 		err = null;
@@ -685,7 +693,7 @@ $$
 		return [size, err];
 	};
 	Writer.prototype.WriteRune = function(r) { return this.go$val.WriteRune(r); };
-	Writer.Ptr.prototype.WriteString = function(s) {
+0Ç\WriteStringÇK	Writer.Ptr.prototype.WriteString = function(s) {
 		var b, nn, n, n$1;
 		b = this;
 		nn = 0;
@@ -705,7 +713,7 @@ $$
 		return [nn, null];
 	};
 	Writer.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
-	Writer.Ptr.prototype.ReadFrom = function(r) {
+0ÇReadFromÇ˝	Writer.Ptr.prototype.ReadFrom = function(r) {
 		var n, err, b, ok, _tuple, x, w, _tuple$1, m, err1, _tuple$2, _tuple$3, x$1, _tuple$4;
 		n = new Go$Int64(0, 0);
 		err = null;
@@ -745,13 +753,14 @@ $$
 		return [n, err];
 	};
 	Writer.prototype.ReadFrom = function(r) { return this.go$val.ReadFrom(r); };
-	var NewReadWriter = go$pkg.NewReadWriter = function(r, w) {
+0uNewReadWriterd	var NewReadWriter = go$pkg.NewReadWriter = function(r, w) {
 		return new ReadWriter.Ptr(r, w);
 	};
-	var NewScanner = go$pkg.NewScanner = function(r) {
+0Å‚
+NewScannerÅ”	var NewScanner = go$pkg.NewScanner = function(r) {
 		return new Scanner.Ptr(r, ScanLines, 65536, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).make(4096, 0, function() { return 0; }), 0, 0, null);
 	};
-	Scanner.Ptr.prototype.Err = function() {
+0ÅﬁErrÅ÷	Scanner.Ptr.prototype.Err = function() {
 		var s;
 		s = this;
 		if (go$interfaceIsEqual(s.err, io.EOF)) {
@@ -760,19 +769,19 @@ $$
 		return s.err;
 	};
 	Scanner.prototype.Err = function() { return this.go$val.Err(); };
-	Scanner.Ptr.prototype.Bytes = function() {
+0Å®BytesÅû	Scanner.Ptr.prototype.Bytes = function() {
 		var s;
 		s = this;
 		return s.token;
 	};
 	Scanner.prototype.Bytes = function() { return this.go$val.Bytes(); };
-	Scanner.Ptr.prototype.Text = function() {
+0Å∂TextÅ≠	Scanner.Ptr.prototype.Text = function() {
 		var s;
 		s = this;
 		return go$bytesToString(s.token);
 	};
 	Scanner.prototype.Text = function() { return this.go$val.Text(); };
-	Scanner.Ptr.prototype.Scan = function() {
+0ÇÌScanÇ„	Scanner.Ptr.prototype.Scan = function() {
 		var s, _tuple, advance, token, err, _q, x, x$1, newSize, newBuf, loop, _tuple$1, n, err$1;
 		s = this;
 		while (true) {
@@ -836,7 +845,7 @@ $$
 		}
 	};
 	Scanner.prototype.Scan = function() { return this.go$val.Scan(); };
-	Scanner.Ptr.prototype.advance = function(n) {
+0Ç|advanceÇo	Scanner.Ptr.prototype.advance = function(n) {
 		var s;
 		s = this;
 		if (n < 0) {
@@ -851,7 +860,7 @@ $$
 		return true;
 	};
 	Scanner.prototype.advance = function(n) { return this.go$val.advance(n); };
-	Scanner.Ptr.prototype.setErr = function(err) {
+0ÇsetErrÅ¸	Scanner.Ptr.prototype.setErr = function(err) {
 		var s;
 		s = this;
 		if (go$interfaceIsEqual(s.err, null) || go$interfaceIsEqual(s.err, io.EOF)) {
@@ -859,13 +868,14 @@ $$
 		}
 	};
 	Scanner.prototype.setErr = function(err) { return this.go$val.setErr(err); };
-	Scanner.Ptr.prototype.Split = function(split) {
+0Å∏SplitÅÆ	Scanner.Ptr.prototype.Split = function(split) {
 		var s;
 		s = this;
 		s.split = split;
 	};
 	Scanner.prototype.Split = function(split) { return this.go$val.Split(split); };
-	var ScanBytes = go$pkg.ScanBytes = function(data, atEOF) {
+0Ç
+	ScanBytesÇ˚	var ScanBytes = go$pkg.ScanBytes = function(data, atEOF) {
 		var advance, token, err, _tuple, _tuple$1;
 		advance = 0;
 		token = (go$sliceType(Go$Uint8)).nil;
@@ -877,7 +887,7 @@ $$
 		_tuple$1 = [1, go$subslice(data, 0, 1), null], advance = _tuple$1[0], token = _tuple$1[1], err = _tuple$1[2];
 		return [advance, token, err];
 	};
-	var ScanRunes = go$pkg.ScanRunes = function(data, atEOF) {
+0Ç&	ScanRunesÇ	var ScanRunes = go$pkg.ScanRunes = function(data, atEOF) {
 		var advance, token, err, _tuple, _slice, _index, _tuple$1, _tuple$2, width, _tuple$3, _tuple$4, _tuple$5;
 		advance = 0;
 		token = (go$sliceType(Go$Uint8)).nil;
@@ -902,14 +912,14 @@ $$
 		_tuple$5 = [1, errorRune, null], advance = _tuple$5[0], token = _tuple$5[1], err = _tuple$5[2];
 		return [advance, token, err];
 	};
-	var dropCR = function(data) {
+0ÇcdropCRÇW	var dropCR = function(data) {
 		var _slice, _index;
 		if (data.length > 0 && ((_slice = data, _index = (data.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 13)) {
 			return go$subslice(data, 0, (data.length - 1 >> 0));
 		}
 		return data;
 	};
-	var ScanLines = go$pkg.ScanLines = function(data, atEOF) {
+0Ç†	ScanLinesÇë	var ScanLines = go$pkg.ScanLines = function(data, atEOF) {
 		var advance, token, err, _tuple, i, _tuple$1, _tuple$2, _tuple$3;
 		advance = 0;
 		token = (go$sliceType(Go$Uint8)).nil;
@@ -929,7 +939,7 @@ $$
 		_tuple$3 = [0, (go$sliceType(Go$Uint8)).nil, null], advance = _tuple$3[0], token = _tuple$3[1], err = _tuple$3[2];
 		return [advance, token, err];
 	};
-	var isSpace = function(r) {
+0ÇisSpaceÇ	var isSpace = function(r) {
 		var _ref, _ref$1;
 		if (r <= 255) {
 			_ref = r;
@@ -949,7 +959,7 @@ $$
 		}
 		return false;
 	};
-	var ScanWords = go$pkg.ScanWords = function(data, atEOF) {
+0Çƒ	ScanWordsÇµ	var ScanWords = go$pkg.ScanWords = function(data, atEOF) {
 		var advance, token, err, start, width, r, _tuple, _tuple$1, _tuple$2, width$1, i, r$1, _tuple$3, _tuple$4, _tuple$5, _tuple$6;
 		advance = 0;
 		token = (go$sliceType(Go$Uint8)).nil;
@@ -985,19 +995,7 @@ $$
 		_tuple$6 = [0, (go$sliceType(Go$Uint8)).nil, null], advance = _tuple$6[0], token = _tuple$6[1], err = _tuple$6[2];
 		return [advance, token, err];
 	};
-	var defaultBufSize = 4096;
-	var minReadBufferSize = 16;
-	go$pkg.MaxScanTokenSize = 65536;
-	go$pkg.ErrInvalidUnreadByte = null;
-	go$pkg.ErrInvalidUnreadRune = null;
-	go$pkg.ErrBufferFull = null;
-	go$pkg.ErrNegativeCount = null;
-	var errNegativeRead = null;
-	go$pkg.ErrTooLong = null;
-	go$pkg.ErrNegativeAdvance = null;
-	go$pkg.ErrAdvanceTooFar = null;
-	var errorRune = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.init = function() {
+0ÇˆinitÇÏ	go$pkg.init = function() {
 		go$pkg.ErrInvalidUnreadByte = errors.New("bufio: invalid use of UnreadByte");
 		go$pkg.ErrInvalidUnreadRune = errors.New("bufio: invalid use of UnreadRune");
 		go$pkg.ErrBufferFull = errors.New("bufio: buffer full");

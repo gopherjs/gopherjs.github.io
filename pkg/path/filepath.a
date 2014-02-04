@@ -1,4 +1,4 @@
-0ÇÖÇ&package filepath
+0ÇÜäpath/filepathÇ&package filepath
 import errors "errors"
 import os "os"
 import runtime "runtime"
@@ -155,14 +155,7 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0wruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathÇ^å	var errors = go$packages["errors"];
-	var os = go$packages["os"];
-	var runtime = go$packages["runtime"];
-	var sort = go$packages["sort"];
-	var strings = go$packages["strings"];
-	var utf8 = go$packages["unicode/utf8"];
-	var bytes = go$packages["bytes"];
-	var lazybuf;
+0wruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepath0x0errorserrors0osos0runtimeruntime0sortsort0stringsstrings0unicode/utf8utf80bytesbytesÇ+	var lazybuf;
 	lazybuf = go$newType(0, "Struct", "filepath.lazybuf", "lazybuf", "path/filepath", function(path_, buf_, w_, volAndPath_, volLen_) {
 		this.go$val = this;
 		this.path = path_ !== undefined ? path_ : "";
@@ -184,7 +177,9 @@ $$
 	byName.init(os.FileInfo);
 	byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	var Match = go$pkg.Match = function(pattern, name) {
+6	go$pkg.ErrBadPattern = null;
+	go$pkg.SkipDir = null;
+0ÇY	0ÇñMatchÇã	var Match = go$pkg.Match = function(pattern, name) {
 		var matched, err, star, chunk, _tuple, _tuple$1, _tuple$2, t, ok, err$1, _tuple$3, i, _tuple$4, t$1, ok$1, err$2, _tuple$5, _tuple$6, _tuple$7;
 		matched = false;
 		err = null;
@@ -230,7 +225,7 @@ $$
 		_tuple$7 = [name.length === 0, null], matched = _tuple$7[0], err = _tuple$7[1];
 		return [matched, err];
 	};
-	var scanChunk = function(pattern) {
+0Ç1	scanChunkÇ"	var scanChunk = function(pattern) {
 		var star, chunk, rest, inrange, i, _ref, _tuple;
 		star = false;
 		chunk = "";
@@ -262,7 +257,8 @@ $$
 		_tuple = [star, pattern.substring(0, i), pattern.substring(i)], star = _tuple[0], chunk = _tuple[1], rest = _tuple[2];
 		return [star, chunk, rest];
 	};
-	var matchChunk = function(chunk, s) {
+0Ç	
+matchChunkÇˆ	var matchChunk = function(chunk, s) {
 		var rest, ok, err, _ref, _tuple, r, n, negated, match, nrange, _tuple$1, lo, hi, _tuple$2, _tuple$3, _tuple$4, n$1, _tuple$5;
 		rest = "";
 		ok = false;
@@ -338,7 +334,7 @@ $$
 		_tuple$5 = [s, true, null], rest = _tuple$5[0], ok = _tuple$5[1], err = _tuple$5[2];
 		return [rest, ok, err];
 	};
-	var getEsc = function(chunk) {
+0ÇŒgetEscÇ¬	var getEsc = function(chunk) {
 		var r, nchunk, err, _tuple, n;
 		r = 0;
 		nchunk = "";
@@ -364,7 +360,7 @@ $$
 		}
 		return [r, nchunk, err];
 	};
-	var Glob = go$pkg.Glob = function(pattern) {
+0Ç2GlobÇ(	var Glob = go$pkg.Glob = function(pattern) {
 		var matches, err, _tuple, _tuple$1, _tuple$2, _tuple$3, dir, file, _ref, _tuple$4, m, _tuple$5, _ref$1, _i, _slice, _index, d, _tuple$6;
 		matches = (go$sliceType(Go$String)).nil;
 		err = null;
@@ -404,7 +400,7 @@ $$
 		}
 		return [matches, err];
 	};
-	var glob = function(dir, pattern, matches) {
+0ÇŒglobÇƒ	var glob = function(dir, pattern, matches) {
 		var m, e, _tuple, fi, err, _tuple$1, d, _tuple$2, names, _ref, _i, _slice, _index, n, _tuple$3, matched, err$1, _tuple$4;
 		m = (go$sliceType(Go$String)).nil;
 		e = null;
@@ -449,10 +445,10 @@ $$
 			return [m, e];
 		}
 	};
-	var hasMeta = function(path) {
+0\hasMetaQ	var hasMeta = function(path) {
 		return strings.IndexAny(path, "*?[") >= 0;
 	};
-	lazybuf.Ptr.prototype.index = function(i) {
+0Ç•indexÇö	lazybuf.Ptr.prototype.index = function(i) {
 		var b, _slice, _index;
 		b = this;
 		if (!(b.buf === (go$sliceType(Go$Uint8)).nil)) {
@@ -461,7 +457,7 @@ $$
 		return b.path.charCodeAt(i);
 	};
 	lazybuf.prototype.index = function(i) { return this.go$val.index(i); };
-	lazybuf.Ptr.prototype.append = function(c) {
+0ÇçappendÇÅ	lazybuf.Ptr.prototype.append = function(c) {
 		var b, _slice, _index;
 		b = this;
 		if (b.buf === (go$sliceType(Go$Uint8)).nil) {
@@ -476,7 +472,7 @@ $$
 		b.w = b.w + 1 >> 0;
 	};
 	lazybuf.prototype.append = function(c) { return this.go$val.append(c); };
-	lazybuf.Ptr.prototype.string = function() {
+0ÇhstringÇ\	lazybuf.Ptr.prototype.string = function() {
 		var b;
 		b = this;
 		if (b.buf === (go$sliceType(Go$Uint8)).nil) {
@@ -485,7 +481,7 @@ $$
 		return b.volAndPath.substring(0, b.volLen) + go$bytesToString(go$subslice(b.buf, 0, b.w));
 	};
 	lazybuf.prototype.string = function() { return this.go$val.string(); };
-	var Clean = go$pkg.Clean = function(path) {
+0Ç CleanÇø	var Clean = go$pkg.Clean = function(path) {
 		var originalPath, volLen, rooted, n, out, _tuple, r, dotdot, _tuple$1;
 		originalPath = path;
 		volLen = volumeNameLen(path);
@@ -539,18 +535,18 @@ $$
 		}
 		return FromSlash(out.string());
 	};
-	var ToSlash = go$pkg.ToSlash = function(path) {
+0}ToSlashr	var ToSlash = go$pkg.ToSlash = function(path) {
 		return path;
 		return strings.Replace(path, "/", "/", -1);
 	};
-	var FromSlash = go$pkg.FromSlash = function(path) {
+0ÅÉ	FromSlashv	var FromSlash = go$pkg.FromSlash = function(path) {
 		return path;
 		return strings.Replace(path, "/", "/", -1);
 	};
-	var SplitList = go$pkg.SplitList = function(path) {
+0`	SplitListS	var SplitList = go$pkg.SplitList = function(path) {
 		return splitList(path);
 	};
-	var Split = go$pkg.Split = function(path) {
+0ÇèSplitÇÑ	var Split = go$pkg.Split = function(path) {
 		var dir, file, vol, i, _tuple;
 		dir = "";
 		file = "";
@@ -562,7 +558,7 @@ $$
 		_tuple = [path.substring(0, (i + 1 >> 0)), path.substring((i + 1 >> 0))], dir = _tuple[0], file = _tuple[1];
 		return [dir, file];
 	};
-	var Join = go$pkg.Join = function(elem) {
+0Ç≤JoinÇ®	var Join = go$pkg.Join = function(elem) {
 		var _ref, _i, _slice, _index, e, i;
 		_ref = elem;
 		_i = 0;
@@ -575,7 +571,7 @@ $$
 		}
 		return "";
 	};
-	var Ext = go$pkg.Ext = function(path) {
+0ÇExtÅ˚	var Ext = go$pkg.Ext = function(path) {
 		var i;
 		i = path.length - 1 >> 0;
 		while (i >= 0 && !os.IsPathSeparator(path.charCodeAt(i))) {
@@ -586,10 +582,10 @@ $$
 		}
 		return "";
 	};
-	var EvalSymlinks = go$pkg.EvalSymlinks = function(path) {
+0lEvalSymlinks\	var EvalSymlinks = go$pkg.EvalSymlinks = function(path) {
 		return evalSymlinks(path);
 	};
-	var Abs = go$pkg.Abs = function(path) {
+0ÇCAbsÇ:	var Abs = go$pkg.Abs = function(path) {
 		var _tuple, wd, err;
 		if (IsAbs(path)) {
 			return [Clean(path), null];
@@ -600,7 +596,7 @@ $$
 		}
 		return [Join(new (go$sliceType(Go$String))([wd, path])), null];
 	};
-	var Rel = go$pkg.Rel = function(basepath, targpath) {
+0Ç	éRelÇ	Ö	var Rel = go$pkg.Rel = function(basepath, targpath) {
 		var baseVol, targVol, base, targ, baseSlashed, targSlashed, bl, tl, _tuple, b0, bi, t0, ti, seps, x, size, buf, n, i, _slice, _index, _slice$1, _index$1;
 		baseVol = VolumeName(basepath);
 		targVol = VolumeName(targpath);
@@ -667,7 +663,7 @@ $$
 		}
 		return [targ.substring(t0), null];
 	};
-	var walk = function(path, info, walkFn) {
+0Ç◊walkÇÕ	var walk = function(path, info, walkFn) {
 		var err, _tuple, list, _ref, _i, _slice, _index, fileInfo;
 		err = walkFn(path, info, null);
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -696,7 +692,7 @@ $$
 		}
 		return null;
 	};
-	var Walk = go$pkg.Walk = function(root, walkFn) {
+0ÇWalkÇ	var Walk = go$pkg.Walk = function(root, walkFn) {
 		var _tuple, info, err;
 		_tuple = os.Lstat(root), info = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -704,7 +700,7 @@ $$
 		}
 		return walk(root, info, walkFn);
 	};
-	var readDir = function(dirname) {
+0ÇreadDirÇ	var readDir = function(dirname) {
 		var _tuple, f, err, _tuple$1, list;
 		_tuple = os.Open(dirname), f = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -718,24 +714,25 @@ $$
 		sort.Sort(go$subslice(new byName(list.array), list.offset, list.offset + list.length));
 		return [list, null];
 	};
-	byName.prototype.Len = function() {
+0Å©LenÅ°	byName.prototype.Len = function() {
 		var f;
 		f = this;
 		return f.length;
 	};
 	go$ptrType(byName).prototype.Len = function() { return this.go$get().Len(); };
-	byName.prototype.Less = function(i, j) {
+0Ç!LessÇ	byName.prototype.Less = function(i, j) {
 		var f, _slice, _index, _slice$1, _index$1;
 		f = this;
 		return (_slice = f, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name() < (_slice$1 = f, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name();
 	};
 	go$ptrType(byName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	byName.prototype.Swap = function(i, j) {
+0Ç¨SwapÇ¢	byName.prototype.Swap = function(i, j) {
 		var f, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		f = this;
 		_tuple = [(_slice = f, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = f, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = f, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = f, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(byName).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
+0ÇBaseÇ
 	var Base = go$pkg.Base = function(path) {
 		var i;
 		if (path === "") {
@@ -757,7 +754,7 @@ $$
 		}
 		return path;
 	};
-	var Dir = go$pkg.Dir = function(path) {
+0Ç◊DirÇŒ	var Dir = go$pkg.Dir = function(path) {
 		var vol, i, dir, last;
 		vol = VolumeName(path);
 		i = path.length - 1 >> 0;
@@ -774,28 +771,29 @@ $$
 		}
 		return vol + dir;
 	};
-	var VolumeName = go$pkg.VolumeName = function(path) {
+0Åó
+VolumeNameÅà	var VolumeName = go$pkg.VolumeName = function(path) {
 		var v;
 		v = "";
 		v = path.substring(0, volumeNameLen(path));
 		return v;
 	};
-	var IsAbs = go$pkg.IsAbs = function(path) {
+0aIsAbsX	var IsAbs = go$pkg.IsAbs = function(path) {
 		return strings.HasPrefix(path, "/");
 	};
-	var volumeNameLen = function(path) {
+0GvolumeNameLen6	var volumeNameLen = function(path) {
 		return 0;
 	};
-	var HasPrefix = go$pkg.HasPrefix = function(p, prefix) {
+0r	HasPrefixe	var HasPrefix = go$pkg.HasPrefix = function(p, prefix) {
 		return strings.HasPrefix(p, prefix);
 	};
-	var splitList = function(path) {
+0Åù	splitListÅè	var splitList = function(path) {
 		if (path === "") {
 			return new (go$sliceType(Go$String))([]);
 		}
 		return strings.Split(path, ":");
 	};
-	var evalSymlinks = function(path) {
+0ÇevalSymlinksÇˆ	var evalSymlinks = function(path) {
 		var originalPath, b, n, i, p, _tuple, _tuple$1, _tuple$2, fi, err, _tuple$3, dest;
 		originalPath = path;
 		b = new bytes.Buffer.Ptr();
@@ -842,11 +840,7 @@ $$
 		}
 		return [Clean(b.String()), null];
 	};
-	go$pkg.Separator = 47;
-	go$pkg.ListSeparator = 58;
-	go$pkg.ErrBadPattern = null;
-	go$pkg.SkipDir = null;
-	go$pkg.init = function() {
+0ÅüinitÅñ	go$pkg.init = function() {
 		go$pkg.ErrBadPattern = errors.New("syntax error in pattern");
 		go$pkg.SkipDir = errors.New("skip this directory");
 	};

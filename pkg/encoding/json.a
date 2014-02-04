@@ -1,4 +1,4 @@
-0ÉNÇfpackage json
+0ÉV6encoding/jsonÇfpackage json
 import encoding "encoding"
 import base64 "encoding/base64"
 import errors "errors"
@@ -354,23 +354,8 @@ func (? *@"reflect".flag) @"reflect".mustBeExported() ()
 type @"reflect".iword @"unsafe".Pointer
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
-0Åæruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesencodingmathstrconvstringsencoding/base64syscalltimeosreflectfmtsortunicode/utf16encoding/jsonÉÁ+	var encoding = go$packages["encoding"];
-	var base64 = go$packages["encoding/base64"];
-	var errors = go$packages["errors"];
-	var fmt = go$packages["fmt"];
-	var reflect = go$packages["reflect"];
-	var runtime = go$packages["runtime"];
-	var strconv = go$packages["strconv"];
-	var strings = go$packages["strings"];
-	var unicode = go$packages["unicode"];
-	var utf16 = go$packages["unicode/utf16"];
-	var utf8 = go$packages["unicode/utf8"];
-	var bytes = go$packages["bytes"];
-	var math = go$packages["math"];
-	var sort = go$packages["sort"];
-	var sync = go$packages["sync"];
-	var io = go$packages["io"];
-	var Unmarshaler;
+0Åæruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesencodingmathstrconvstringsencoding/base64syscalltimeosreflectfmtsortunicode/utf16encoding/json0Ç%0encodingencoding0encoding/base64base640errorserrors0
+fmtfmt0reflectreflect0runtimeruntime0strconvstrconv0stringsstrings0unicodeunicode0unicode/utf16utf160unicode/utf8utf80bytesbytes0mathmath0sortsort0syncsync0ioioÇYK	var Unmarshaler;
 	Unmarshaler = go$newType(0, "Interface", "json.Unmarshaler", "Unmarshaler", "encoding/json", null);
 	go$pkg.Unmarshaler = Unmarshaler;
 	var UnmarshalTypeError;
@@ -656,7 +641,20 @@ $$
 	(go$ptrType(RawMessage)).methods = [["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["UnmarshalJSON", "", [(go$sliceType(Go$Uint8))], [go$error], false]];
 	tagOptions.methods = [["Contains", "", [Go$String], [Go$Bool], false]];
 	(go$ptrType(tagOptions)).methods = [["Contains", "", [Go$String], [Go$Bool], false]];
-	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
+Ç…	var errPhase = null;
+	var numberType = null;
+	var hex = "";
+	var encodeStatePool = (go$chanType((go$ptrType(encodeState)), false, false)).nil;
+	var byteSliceType = null;
+	var encoderCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, encoderFunc)), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+	var marshalerType = null;
+	var textMarshalerType = null;
+	var float32Encoder = go$throwNilPointerError;
+	var float64Encoder = go$throwNilPointerError;
+	var fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, (go$sliceType(field)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+	var _ = null;
+	var _$1 = null;
+0Éí0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
 		var d, err;
 		d = new decodeState.Ptr();
 		err = checkValid(data, d.scan);
@@ -666,19 +664,19 @@ $$
 		d.init(data);
 		return d.unmarshal(v);
 	};
-	UnmarshalTypeError.Ptr.prototype.Error = function() {
+0ÇErrorÅ˛	UnmarshalTypeError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "json: cannot unmarshal " + e.Value + " into Go value of type " + e.Type.String();
 	};
 	UnmarshalTypeError.prototype.Error = function() { return this.go$val.Error(); };
-	UnmarshalFieldError.Ptr.prototype.Error = function() {
+0Ç@ErrorÇ5	UnmarshalFieldError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "json: cannot unmarshal object key " + strconv.Quote(e.Key) + " into unexported field " + e.Field.Name + " of type " + e.Type.String();
 	};
 	UnmarshalFieldError.prototype.Error = function() { return this.go$val.Error(); };
-	InvalidUnmarshalError.Ptr.prototype.Error = function() {
+0Ç¶ErrorÇõ	InvalidUnmarshalError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		if (go$interfaceIsEqual(e.Type, null)) {
@@ -690,7 +688,7 @@ $$
 		return "json: Unmarshal(nil " + e.Type.String() + ")";
 	};
 	InvalidUnmarshalError.prototype.Error = function() { return this.go$val.Error(); };
-	decodeState.Ptr.prototype.unmarshal = function(v) {
+0ÇÆ	unmarshalÇü	decodeState.Ptr.prototype.unmarshal = function(v) {
 		var err, d, _struct, rv, _struct$1;
 		err = null;
 		var go$deferred = [];
@@ -722,25 +720,25 @@ $$
 		}
 	};
 	decodeState.prototype.unmarshal = function(v) { return this.go$val.unmarshal(v); };
-	Number.prototype.String = function() {
+0Å¡StringÅ∂	Number.prototype.String = function() {
 		var n;
 		n = this.go$val;
 		return n;
 	};
 	go$ptrType(Number).prototype.String = function() { return new Number(this.go$get()).String(); };
-	Number.prototype.Float64 = function() {
+0Å›Float64Å—	Number.prototype.Float64 = function() {
 		var n;
 		n = this.go$val;
 		return strconv.ParseFloat(n, 64);
 	};
 	go$ptrType(Number).prototype.Float64 = function() { return new Number(this.go$get()).Float64(); };
-	Number.prototype.Int64 = function() {
+0Å◊Int64ÅÕ	Number.prototype.Int64 = function() {
 		var n;
 		n = this.go$val;
 		return strconv.ParseInt(n, 10, 64);
 	};
 	go$ptrType(Number).prototype.Int64 = function() { return new Number(this.go$get()).Int64(); };
-	decodeState.Ptr.prototype.init = function(data) {
+0ÅÁinitÅﬁ	decodeState.Ptr.prototype.init = function(data) {
 		var d;
 		d = this;
 		d.data = data;
@@ -749,13 +747,13 @@ $$
 		return d;
 	};
 	decodeState.prototype.init = function(data) { return this.go$val.init(data); };
-	decodeState.Ptr.prototype.error = function(err) {
+0ÅæerrorÅ¥	decodeState.Ptr.prototype.error = function(err) {
 		var d;
 		d = this;
 		throw go$panic(err);
 	};
 	decodeState.prototype.error = function(err) { return this.go$val.error(err); };
-	decodeState.Ptr.prototype.saveError = function(err) {
+0Ç	saveErrorÅı	decodeState.Ptr.prototype.saveError = function(err) {
 		var d;
 		d = this;
 		if (go$interfaceIsEqual(d.savedError, null)) {
@@ -763,7 +761,7 @@ $$
 		}
 	};
 	decodeState.prototype.saveError = function(err) { return this.go$val.saveError(err); };
-	decodeState.Ptr.prototype.next = function() {
+0Ç∂nextÇ¨	decodeState.Ptr.prototype.next = function() {
 		var d, _slice, _index, c, _tuple, item, rest, err;
 		d = this;
 		c = (_slice = d.data, _index = d.off, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -780,7 +778,7 @@ $$
 		return item;
 	};
 	decodeState.prototype.next = function() { return this.go$val.next(); };
-	decodeState.Ptr.prototype.scanWhile = function(op) {
+0Çå	scanWhileÇ}	decodeState.Ptr.prototype.scanWhile = function(op) {
 		var d, newOp, _slice, _index, c;
 		d = this;
 		newOp = 0;
@@ -800,7 +798,7 @@ $$
 		return newOp;
 	};
 	decodeState.prototype.scanWhile = function(op) { return this.go$val.scanWhile(op); };
-	decodeState.Ptr.prototype.value = function(v) {
+0ÇívalueÇá	decodeState.Ptr.prototype.value = function(v) {
 		var d, _tuple, rest, err, n, _slice, _index, op, _ref, _struct, _struct$1, _struct$2;
 		d = this;
 		if (!v.IsValid()) {
@@ -837,7 +835,7 @@ $$
 		}
 	};
 	decodeState.prototype.value = function(v) { return this.go$val.value(v); };
-	decodeState.Ptr.prototype.indirect = function(v, decodingNull) {
+0Ç≤indirectÇ§	decodeState.Ptr.prototype.indirect = function(v, decodingNull) {
 		var d, _struct, _struct$1, e, _struct$2, _struct$3, ok, _tuple, x, u, ok$1, _tuple$1, x$1, u$1, _struct$4, _struct$5;
 		d = this;
 		if (!((v.Kind() === 22)) && !(v.Type().Name() === "") && v.CanAddr()) {
@@ -873,7 +871,7 @@ $$
 		return [null, null, (_struct$5 = v, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))];
 	};
 	decodeState.prototype.indirect = function(v, decodingNull) { return this.go$val.indirect(v, decodingNull); };
-	decodeState.Ptr.prototype.array = function(v) {
+0ÇGarrayÇ<	decodeState.Ptr.prototype.array = function(v) {
 		var d, _tuple, _struct, u, ut, _struct$1, pv, err, _struct$2, _ref, _struct$3, i, op, _q, newcap, _struct$4, newv, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, z, _struct$10, _struct$11;
 		d = this;
 		_tuple = d.indirect((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false), u = _tuple[0], ut = _tuple[1], pv = (_struct$1 = _tuple[2], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -966,7 +964,7 @@ $$
 		}
 	};
 	decodeState.prototype.array = function(v) { return this.go$val.array(v); };
-	decodeState.Ptr.prototype.object = function(v) {
+0ÇYobjectÇM	decodeState.Ptr.prototype.object = function(v) {
 		var d, _tuple, _struct, u, ut, _struct$1, pv, err, _struct$2, _struct$3, _ref, t, _struct$4, mapElem, op, start, item, _tuple$1, key, ok, subv, destring, elemType, _struct$5, _struct$6, _struct$7, f, fields, _ref$1, _i, i, _slice, _index, ff, _struct$8, _ref$2, _i$1, _slice$1, _index$1, i$1, _struct$9, _struct$10, _struct$11, v$1, _struct$12, _struct$13, _struct$14, _struct$15, kv, _struct$16, _struct$17;
 		d = this;
 		_tuple = d.indirect((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false), u = _tuple[0], ut = _tuple[1], pv = (_struct$1 = _tuple[2], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1094,7 +1092,7 @@ $$
 		}
 	};
 	decodeState.prototype.object = function(v) { return this.go$val.object(v); };
-	decodeState.Ptr.prototype.literal = function(v) {
+0Ç¶literalÇô	decodeState.Ptr.prototype.literal = function(v) {
 		var d, start, op, _struct;
 		d = this;
 		start = d.off - 1 >> 0;
@@ -1104,7 +1102,7 @@ $$
 		d.literalStore(go$subslice(d.data, start, d.off), (_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 	};
 	decodeState.prototype.literal = function(v) { return this.go$val.literal(v); };
-	decodeState.Ptr.prototype.convertNumber = function(s) {
+0ÇconvertNumberÇÚ	decodeState.Ptr.prototype.convertNumber = function(s) {
 		var d, _tuple, f, err;
 		d = this;
 		if (d.useNumber) {
@@ -1117,7 +1115,7 @@ $$
 		return [new Go$Float64(f), null];
 	};
 	decodeState.prototype.convertNumber = function(s) { return this.go$val.convertNumber(s); };
-	decodeState.Ptr.prototype.literalStore = function(item, v, fromQuoted) {
+0Ç´literalStoreÇô	decodeState.Ptr.prototype.literalStore = function(item, v, fromQuoted) {
 		var d, _slice, _index, wantptr, _tuple, _struct, u, ut, _struct$1, pv, err, _slice$1, _index$1, _tuple$1, s, ok, err$1, _struct$2, _slice$2, _index$2, c, _ref, _ref$1, _struct$3, value, _ref$2, _struct$4, _tuple$2, s$1, ok$1, _ref$3, b, _tuple$3, n, err$2, _struct$5, _struct$6, s$2, _ref$4, _tuple$4, n$1, err$3, _struct$7, _tuple$5, n$2, err$4, _tuple$6, n$3, err$5, _tuple$7, n$4, err$6;
 		d = this;
 		if (item.length === 0) {
@@ -1276,7 +1274,7 @@ $$
 		}
 	};
 	decodeState.prototype.literalStore = function(item, v, fromQuoted) { return this.go$val.literalStore(item, v, fromQuoted); };
-	decodeState.Ptr.prototype.valueInterface = function() {
+0ÇvalueInterfaceÇ˚	decodeState.Ptr.prototype.valueInterface = function() {
 		var d, _ref;
 		d = this;
 		_ref = d.scanWhile(9);
@@ -1292,7 +1290,7 @@ $$
 		}
 	};
 	decodeState.prototype.valueInterface = function() { return this.go$val.valueInterface(); };
-	decodeState.Ptr.prototype.arrayInterface = function() {
+0Ç>arrayInterfaceÇ*	decodeState.Ptr.prototype.arrayInterface = function() {
 		var d, v, op;
 		d = this;
 		v = (go$sliceType(go$emptyInterface)).make(0, 0, function() { return null; });
@@ -1315,7 +1313,7 @@ $$
 		return v;
 	};
 	decodeState.prototype.arrayInterface = function() { return this.go$val.arrayInterface(); };
-	decodeState.Ptr.prototype.objectInterface = function() {
+0Ç¥objectInterfaceÇü	decodeState.Ptr.prototype.objectInterface = function() {
 		var d, m, op, start, item, _tuple, key, ok, _key;
 		d = this;
 		m = new Go$Map();
@@ -1352,7 +1350,7 @@ $$
 		return m;
 	};
 	decodeState.prototype.objectInterface = function() { return this.go$val.objectInterface(); };
-	decodeState.Ptr.prototype.literalInterface = function() {
+0ÇgliteralInterfaceÇQ	decodeState.Ptr.prototype.literalInterface = function() {
 		var d, start, op, item, _slice, _index, c, _ref, _tuple, s, ok, _tuple$1, n, err;
 		d = this;
 		start = d.off - 1 >> 0;
@@ -1384,7 +1382,7 @@ $$
 		}
 	};
 	decodeState.prototype.literalInterface = function() { return this.go$val.literalInterface(); };
-	var getu4 = function(s) {
+0Ç©getu4Çû	var getu4 = function(s) {
 		var _slice, _index, _slice$1, _index$1, _tuple, r, err;
 		if (s.length < 6 || !(((_slice = s, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 92)) || !(((_slice$1 = s, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 117))) {
 			return -1;
@@ -1395,7 +1393,7 @@ $$
 		}
 		return (r.low >> 0);
 	};
-	var unquote = function(s) {
+0Å¬unquoteÅ∂	var unquote = function(s) {
 		var t, ok, _tuple;
 		t = "";
 		ok = false;
@@ -1403,7 +1401,7 @@ $$
 		t = go$bytesToString(s);
 		return [t, ok];
 	};
-	var unquoteBytes = function(s) {
+0ÇıunquoteBytesÇ„	var unquoteBytes = function(s) {
 		var t, ok, _slice, _index, _slice$1, _index$1, r, _slice$2, _index$2, c, _tuple, rr, size, _tuple$1, b, w, x, x$1, nb, _slice$3, _index$3, c$1, _ref, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, rr$1, rr1, dec, _slice$12, _index$12, _tuple$2, rr$2, size$1, _tuple$3;
 		t = (go$sliceType(Go$Uint8)).nil;
 		ok = false;
@@ -1508,7 +1506,7 @@ $$
 		_tuple$3 = [go$subslice(b, 0, w), true], t = _tuple$3[0], ok = _tuple$3[1];
 		return [t, ok];
 	};
-	var Marshal = go$pkg.Marshal = function(v) {
+0ÇRMarshalÇE	var Marshal = go$pkg.Marshal = function(v) {
 		var e, err;
 		e = new encodeState.Ptr(new bytes.Buffer.Ptr(), go$makeNativeArray("Uint8", 64, function() { return 0; }));
 		err = e.marshal(v);
@@ -1517,7 +1515,7 @@ $$
 		}
 		return [e.Buffer.Bytes(), null];
 	};
-	var MarshalIndent = go$pkg.MarshalIndent = function(v, prefix, indent) {
+0Ç’MarshalIndentÇ¬	var MarshalIndent = go$pkg.MarshalIndent = function(v, prefix, indent) {
 		var _tuple, b, err, buf;
 		_tuple = Marshal(v), b = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -1530,7 +1528,8 @@ $$
 		}
 		return [buf.Bytes(), null];
 	};
-	var HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
+0ÇA
+HTMLEscapeÇ1	var HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
 		var start, _ref, _i, _slice, _index, c, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		start = 0;
 		_ref = src;
@@ -1560,31 +1559,42 @@ $$
 			dst.Write(go$subslice(src, start));
 		}
 	};
-	UnsupportedTypeError.Ptr.prototype.Error = function() {
+0ÅÁErrorÅ›	UnsupportedTypeError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "json: unsupported type: " + e.Type.String();
 	};
 	UnsupportedTypeError.prototype.Error = function() { return this.go$val.Error(); };
-	UnsupportedValueError.Ptr.prototype.Error = function() {
+0Å‡ErrorÅ÷	UnsupportedValueError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "json: unsupported value: " + e.Str;
 	};
 	UnsupportedValueError.prototype.Error = function() { return this.go$val.Error(); };
-	InvalidUTF8Error.Ptr.prototype.Error = function() {
+0ÅÈErrorÅﬂ	InvalidUTF8Error.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "json: invalid UTF-8 in string: " + strconv.Quote(e.S);
 	};
 	InvalidUTF8Error.prototype.Error = function() { return this.go$val.Error(); };
-	MarshalerError.Ptr.prototype.Error = function() {
+0ÇErrorÅ˘	MarshalerError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "json: error calling MarshalJSON for type " + e.Type.String() + ": " + e.Err.Error();
 	};
 	MarshalerError.prototype.Error = function() { return this.go$val.Error(); };
-	encodeState.Ptr.prototype.marshal = function(v) {
+0Å∑newEncodeStateÅ§	var newEncodeState = function() {
+			var e = encodeStates.pop();
+			if (e !== undefined) {
+				e.Reset();
+				return e;
+			}
+			return new encodeState.Ptr();
+		};
+0TputEncodeStateB	var putEncodeState = function(e) {
+			encodeStates.push(e);
+		};
+0ÇvmarshalÇi	encodeState.Ptr.prototype.marshal = function(v) {
 		var err, e, _struct;
 		err = null;
 		var go$deferred = [];
@@ -1613,13 +1623,13 @@ $$
 		}
 	};
 	encodeState.prototype.marshal = function(v) { return this.go$val.marshal(v); };
-	encodeState.Ptr.prototype.error = function(err) {
+0ÅæerrorÅ¥	encodeState.Ptr.prototype.error = function(err) {
 		var e;
 		e = this;
 		throw go$panic(err);
 	};
 	encodeState.prototype.error = function(err) { return this.go$val.error(err); };
-	var isEmptyValue = function(v) {
+0Ç≤isEmptyValueÇ†	var isEmptyValue = function(v) {
 		var _ref, x, x$1;
 		_ref = v.Kind();
 		if (_ref === 17 || _ref === 21 || _ref === 23 || _ref === 24) {
@@ -1637,19 +1647,19 @@ $$
 		}
 		return false;
 	};
-	encodeState.Ptr.prototype.reflectValue = function(v) {
+0ÇêreflectValueÇ~	encodeState.Ptr.prototype.reflectValue = function(v) {
 		var e, _struct, _struct$1;
 		e = this;
 		valueEncoder((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)))(e, (_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), false);
 	};
 	encodeState.prototype.reflectValue = function(v) { return this.go$val.reflectValue(v); };
-	var valueEncoder = function(v) {
+0ÅèvalueEncoder	var valueEncoder = function(v) {
 		if (!v.IsValid()) {
 			return invalidValueEncoder;
 		}
 		return typeEncoder(v.Type());
 	};
-	var typeEncoder = function(t) {
+0ÇAtypeEncoderÇ0	var typeEncoder = function(t) {
 		var _entry, f, wg, _key, _key$1;
 		encoderCache.RWMutex.RLock();
 		f = (_entry = encoderCache.m[(t || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : go$throwNilPointerError);
@@ -1676,7 +1686,7 @@ $$
 		encoderCache.RWMutex.Unlock();
 		return f;
 	};
-	var newTypeEncoder = function(t, allowAddr) {
+0Ç®newTypeEncoderÇî	var newTypeEncoder = function(t, allowAddr) {
 		var _ref;
 		if (t.Implements(marshalerType)) {
 			return marshalerEncoder;
@@ -1723,10 +1733,10 @@ $$
 			return unsupportedTypeEncoder;
 		}
 	};
-	var invalidValueEncoder = function(e, v, quoted) {
+0oinvalidValueEncoderX	var invalidValueEncoder = function(e, v, quoted) {
 		e.Buffer.WriteString("null");
 	};
-	var marshalerEncoder = function(e, v, quoted) {
+0Ç;marshalerEncoderÇ%	var marshalerEncoder = function(e, v, quoted) {
 		var x, m, _tuple, b, err;
 		if ((v.Kind() === 22) && v.IsNil()) {
 			e.Buffer.WriteString("null");
@@ -1741,7 +1751,7 @@ $$
 			e.error(new MarshalerError.Ptr(v.Type(), err));
 		}
 	};
-	var addrMarshalerEncoder = function(e, v, quoted) {
+0ÇôaddrMarshalerEncoderÇ	var addrMarshalerEncoder = function(e, v, quoted) {
 		var _struct, va, x, m, _tuple, b, err;
 		va = (_struct = v.Addr(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (va.IsNil()) {
@@ -1757,7 +1767,7 @@ $$
 			e.error(new MarshalerError.Ptr(v.Type(), err));
 		}
 	};
-	var textMarshalerEncoder = function(e, v, quoted) {
+0ÇutextMarshalerEncoderÇ[	var textMarshalerEncoder = function(e, v, quoted) {
 		var x, m, _tuple, b, err, _tuple$1;
 		if ((v.Kind() === 22) && v.IsNil()) {
 			e.Buffer.WriteString("null");
@@ -1772,7 +1782,7 @@ $$
 			e.error(new MarshalerError.Ptr(v.Type(), err));
 		}
 	};
-	var addrTextMarshalerEncoder = function(e, v, quoted) {
+0Ç”addrTextMarshalerEncoderÇµ	var addrTextMarshalerEncoder = function(e, v, quoted) {
 		var _struct, va, x, m, _tuple, b, err, _tuple$1;
 		va = (_struct = v.Addr(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (va.IsNil()) {
@@ -1788,7 +1798,7 @@ $$
 			e.error(new MarshalerError.Ptr(v.Type(), err));
 		}
 	};
-	var boolEncoder = function(e, v, quoted) {
+0ÇboolEncoderÅÚ	var boolEncoder = function(e, v, quoted) {
 		if (quoted) {
 			e.Buffer.WriteByte(34);
 		}
@@ -1801,7 +1811,8 @@ $$
 			e.Buffer.WriteByte(34);
 		}
 	};
-	var intEncoder = function(e, v, quoted) {
+0Ç
+intEncoderÇ	var intEncoder = function(e, v, quoted) {
 		var b;
 		b = strconv.AppendInt(go$subslice(new (go$sliceType(Go$Uint8))(e.scratch), 0, 0), v.Int(), 10);
 		if (quoted) {
@@ -1812,7 +1823,7 @@ $$
 			e.Buffer.WriteByte(34);
 		}
 	};
-	var uintEncoder = function(e, v, quoted) {
+0Ç!uintEncoderÇ	var uintEncoder = function(e, v, quoted) {
 		var b;
 		b = strconv.AppendUint(go$subslice(new (go$sliceType(Go$Uint8))(e.scratch), 0, 0), v.Uint(), 10);
 		if (quoted) {
@@ -1823,7 +1834,7 @@ $$
 			e.Buffer.WriteByte(34);
 		}
 	};
-	floatEncoder.prototype.encode = function(e, v, quoted) {
+0ÇÀencodeÇø	floatEncoder.prototype.encode = function(e, v, quoted) {
 		var bits, f, _struct, b;
 		bits = this.go$val;
 		f = v.Float();
@@ -1840,7 +1851,7 @@ $$
 		}
 	};
 	go$ptrType(floatEncoder).prototype.encode = function(e, v, quoted) { return new floatEncoder(this.go$get()).encode(e, v, quoted); };
-	var stringEncoder = function(e, v, quoted) {
+0Ç˝stringEncoderÇÍ	var stringEncoder = function(e, v, quoted) {
 		var numStr, _tuple, sb, err;
 		if (go$interfaceIsEqual(v.Type(), numberType)) {
 			numStr = v.String();
@@ -1860,7 +1871,7 @@ $$
 			e.string(v.String());
 		}
 	};
-	var interfaceEncoder = function(e, v, quoted) {
+0ÇinterfaceEncoderÅÓ	var interfaceEncoder = function(e, v, quoted) {
 		var _struct;
 		if (v.IsNil()) {
 			e.Buffer.WriteString("null");
@@ -1868,10 +1879,10 @@ $$
 		}
 		e.reflectValue((_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
 	};
-	var unsupportedTypeEncoder = function(e, v, quoted) {
+0ÅàunsupportedTypeEncodern	var unsupportedTypeEncoder = function(e, v, quoted) {
 		e.error(new UnsupportedTypeError.Ptr(v.Type()));
 	};
-	structEncoder.Ptr.prototype.encode = function(e, v, quoted) {
+0ÇÛencodeÇÁ	structEncoder.Ptr.prototype.encode = function(e, v, quoted) {
 		var se, first, _ref, _i, _slice, _index, _struct, f, i, _struct$1, _struct$2, fv, _struct$3, _slice$1, _index$1, _struct$4;
 		se = this;
 		e.Buffer.WriteByte(123);
@@ -1897,7 +1908,7 @@ $$
 		e.Buffer.WriteByte(125);
 	};
 	structEncoder.prototype.encode = function(e, v, quoted) { return this.go$val.encode(e, v, quoted); };
-	var newStructEncoder = function(t) {
+0ÇÁnewStructEncoderÇ—	var newStructEncoder = function(t) {
 		var fields, se, _ref, _i, _slice, _index, _struct, f, i, _slice$1, _index$1, e, v, quoted, _recv;
 		fields = cachedTypeFields(t);
 		se = new structEncoder.Ptr(fields, (go$sliceType(encoderFunc)).make(fields.length, 0, function() { return go$throwNilPointerError; }));
@@ -1910,7 +1921,7 @@ $$
 		}
 		return (_recv = se, function(e, v, quoted) { return _recv.encode(e, v, quoted); });
 	};
-	mapEncoder.Ptr.prototype.encode = function(e, v, param) {
+0ÇaencodeÇU	mapEncoder.Ptr.prototype.encode = function(e, v, param) {
 		var me, x, sv, _ref, _i, _slice, _index, _struct, k, i, _struct$1, _struct$2;
 		me = this;
 		if (v.IsNil()) {
@@ -1935,15 +1946,15 @@ $$
 		e.Buffer.WriteByte(125);
 	};
 	mapEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
-	var newMapEncoder = function(t) {
-		var me, e, v, _, _recv;
+0Ç"newMapEncoderÇ	var newMapEncoder = function(t) {
+		var me, e, v, _$2, _recv;
 		if (!((t.Key().Kind() === 24))) {
 			return unsupportedTypeEncoder;
 		}
 		me = new mapEncoder.Ptr(typeEncoder(t.Elem()));
-		return (_recv = me, function(e, v, _) { return _recv.encode(e, v, _); });
+		return (_recv = me, function(e, v, _$2) { return _recv.encode(e, v, _$2); });
 	};
-	var encodeByteSlice = function(e, v, param) {
+0ÇencodeByteSliceÇˆ	var encodeByteSlice = function(e, v, param) {
 		var s, dst, enc;
 		if (v.IsNil()) {
 			e.Buffer.WriteString("null");
@@ -1962,7 +1973,7 @@ $$
 		}
 		e.Buffer.WriteByte(34);
 	};
-	sliceEncoder.Ptr.prototype.encode = function(e, v, param) {
+0Ç{encodeÇo	sliceEncoder.Ptr.prototype.encode = function(e, v, param) {
 		var se, _struct;
 		se = this;
 		if (v.IsNil()) {
@@ -1972,15 +1983,15 @@ $$
 		se.arrayEnc(e, (_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 	};
 	sliceEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
-	var newSliceEncoder = function(t) {
-		var enc, e, v, _, _recv;
+0ÇnewSliceEncoderÇ	var newSliceEncoder = function(t) {
+		var enc, e, v, _$2, _recv;
 		if (t.Elem().Kind() === 8) {
 			return encodeByteSlice;
 		}
 		enc = new sliceEncoder.Ptr(newArrayEncoder(t));
-		return (_recv = enc, function(e, v, _) { return _recv.encode(e, v, _); });
+		return (_recv = enc, function(e, v, _$2) { return _recv.encode(e, v, _$2); });
 	};
-	arrayEncoder.Ptr.prototype.encode = function(e, v, param) {
+0ÇÌencodeÇ·	arrayEncoder.Ptr.prototype.encode = function(e, v, param) {
 		var ae, n, i, _struct;
 		ae = this;
 		e.Buffer.WriteByte(91);
@@ -1996,12 +2007,12 @@ $$
 		e.Buffer.WriteByte(93);
 	};
 	arrayEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
-	var newArrayEncoder = function(t) {
-		var enc, e, v, _, _recv;
+0Å‡newArrayEncoderÅÃ	var newArrayEncoder = function(t) {
+		var enc, e, v, _$2, _recv;
 		enc = new arrayEncoder.Ptr(typeEncoder(t.Elem()));
-		return (_recv = enc, function(e, v, _) { return _recv.encode(e, v, _); });
+		return (_recv = enc, function(e, v, _$2) { return _recv.encode(e, v, _$2); });
 	};
-	ptrEncoder.Ptr.prototype.encode = function(e, v, param) {
+0Ç}encodeÇq	ptrEncoder.Ptr.prototype.encode = function(e, v, param) {
 		var pe, _struct;
 		pe = this;
 		if (v.IsNil()) {
@@ -2011,12 +2022,12 @@ $$
 		pe.elemEnc(e, (_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 	};
 	ptrEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
-	var newPtrEncoder = function(t) {
-		var enc, e, v, _, _recv;
+0Å⁄newPtrEncoderÅ»	var newPtrEncoder = function(t) {
+		var enc, e, v, _$2, _recv;
 		enc = new ptrEncoder.Ptr(typeEncoder(t.Elem()));
-		return (_recv = enc, function(e, v, _) { return _recv.encode(e, v, _); });
+		return (_recv = enc, function(e, v, _$2) { return _recv.encode(e, v, _$2); });
 	};
-	condAddrEncoder.Ptr.prototype.encode = function(e, v, quoted) {
+0Ç‰encodeÇÿ	condAddrEncoder.Ptr.prototype.encode = function(e, v, quoted) {
 		var ce, _struct, _struct$1;
 		ce = this;
 		if (v.CanAddr()) {
@@ -2026,12 +2037,13 @@ $$
 		}
 	};
 	condAddrEncoder.prototype.encode = function(e, v, quoted) { return this.go$val.encode(e, v, quoted); };
-	var newCondAddrEncoder = function(canAddrEnc, elseEnc) {
+0ÇnewCondAddrEncoderÅÎ	var newCondAddrEncoder = function(canAddrEnc, elseEnc) {
 		var enc, e, v, quoted, _recv;
 		enc = new condAddrEncoder.Ptr(canAddrEnc, elseEnc);
 		return (_recv = enc, function(e, v, quoted) { return _recv.encode(e, v, quoted); });
 	};
-	var isValidTag = function(s) {
+0Ç¢
+isValidTagÇí	var isValidTag = function(s) {
 		var _ref, _i, _rune, c;
 		if (s === "") {
 			return false;
@@ -2050,7 +2062,7 @@ $$
 		}
 		return true;
 	};
-	var fieldByIndex = function(v, index) {
+0ÇfieldByIndexÇ˚	var fieldByIndex = function(v, index) {
 		var _ref, _i, _slice, _index, i, _struct, _struct$1, _struct$2;
 		_ref = index;
 		_i = 0;
@@ -2066,7 +2078,7 @@ $$
 		}
 		return (_struct$2 = v, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 	};
-	var typeByIndex = function(t, index) {
+0ÇõtypeByIndexÇä	var typeByIndex = function(t, index) {
 		var _ref, _i, _slice, _index, i;
 		_ref = index;
 		_i = 0;
@@ -2079,31 +2091,31 @@ $$
 		}
 		return t;
 	};
-	stringValues.prototype.Len = function() {
+0Å∏LenÅ∞	stringValues.prototype.Len = function() {
 		var sv;
 		sv = this;
 		return sv.length;
 	};
 	go$ptrType(stringValues).prototype.Len = function() { return this.go$get().Len(); };
-	stringValues.prototype.Swap = function(i, j) {
+0ÇpSwapÇf	stringValues.prototype.Swap = function(i, j) {
 		var sv, _slice, _index, _struct, _slice$1, _index$1, _struct$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		sv = this;
 		_tuple = [(_struct = (_slice = sv, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), (_struct$1 = (_slice$1 = sv, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))], _slice$2 = sv, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = sv, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(stringValues).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	stringValues.prototype.Less = function(i, j) {
+0Å‘LessÅÀ	stringValues.prototype.Less = function(i, j) {
 		var sv;
 		sv = this;
 		return sv.get(i) < sv.get(j);
 	};
 	go$ptrType(stringValues).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	stringValues.prototype.get = function(i) {
+0ÇbgetÇY	stringValues.prototype.get = function(i) {
 		var sv, _slice, _index;
 		sv = this;
 		return (_slice = sv, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).String();
 	};
 	go$ptrType(stringValues).prototype.get = function(i) { return this.go$get().get(i); };
-	encodeState.Ptr.prototype.string = function(s) {
+0ÇstringÇ	encodeState.Ptr.prototype.string = function(s) {
 		var e, len0, start, i, b, _ref, _tuple, c, size;
 		e = this;
 		len0 = e.Buffer.Len();
@@ -2167,7 +2179,7 @@ $$
 		return [e.Buffer.Len() - len0 >> 0, null];
 	};
 	encodeState.prototype.string = function(s) { return this.go$val.string(s); };
-	encodeState.Ptr.prototype.stringBytes = function(s) {
+0Ç∑stringBytesÇ¶	encodeState.Ptr.prototype.stringBytes = function(s) {
 		var e, len0, start, i, b, _slice, _index, _ref, _tuple, c, size;
 		e = this;
 		len0 = e.Buffer.Len();
@@ -2231,19 +2243,19 @@ $$
 		return [e.Buffer.Len() - len0 >> 0, null];
 	};
 	encodeState.prototype.stringBytes = function(s) { return this.go$val.stringBytes(s); };
-	byName.prototype.Len = function() {
+0Å©LenÅ°	byName.prototype.Len = function() {
 		var x;
 		x = this;
 		return x.length;
 	};
 	go$ptrType(byName).prototype.Len = function() { return this.go$get().Len(); };
-	byName.prototype.Swap = function(i, j) {
+0Ç∏SwapÇÆ	byName.prototype.Swap = function(i, j) {
 		var x, _slice, _index, _struct, _slice$1, _index$1, _struct$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		x = this;
 		_tuple = [(_struct = (_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct.name, _struct.tag, _struct.index, _struct.typ, _struct.omitEmpty, _struct.quoted)), (_struct$1 = (_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct$1.name, _struct$1.tag, _struct$1.index, _struct$1.typ, _struct$1.omitEmpty, _struct$1.quoted))], _slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(byName).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	byName.prototype.Less = function(i, j) {
+0Ç	®LessÇ	û	byName.prototype.Less = function(i, j) {
 		var x, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10;
 		x = this;
 		if (!((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).name === (_slice$1 = x, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).name)) {
@@ -2258,19 +2270,19 @@ $$
 		return go$subslice(new byIndex(x.array), x.offset, x.offset + x.length).Less(i, j);
 	};
 	go$ptrType(byName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	byIndex.prototype.Len = function() {
+0Å´LenÅ£	byIndex.prototype.Len = function() {
 		var x;
 		x = this;
 		return x.length;
 	};
 	go$ptrType(byIndex).prototype.Len = function() { return this.go$get().Len(); };
-	byIndex.prototype.Swap = function(i, j) {
+0Ç∫SwapÇ∞	byIndex.prototype.Swap = function(i, j) {
 		var x, _slice, _index, _struct, _slice$1, _index$1, _struct$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		x = this;
 		_tuple = [(_struct = (_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct.name, _struct.tag, _struct.index, _struct.typ, _struct.omitEmpty, _struct.quoted)), (_struct$1 = (_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct$1.name, _struct$1.tag, _struct$1.index, _struct$1.typ, _struct$1.omitEmpty, _struct$1.quoted))], _slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(byIndex).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	byIndex.prototype.Less = function(i, j) {
+0ÇLessÇ	byIndex.prototype.Less = function(i, j) {
 		var x, _ref, _slice, _index, _i, _slice$1, _index$1, xik, k, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8;
 		x = this;
 		_ref = (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).index;
@@ -2288,7 +2300,8 @@ $$
 		return (_slice$7 = x, _index$7 = i, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")).index.length < (_slice$8 = x, _index$8 = j, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")).index.length;
 	};
 	go$ptrType(byIndex).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	var typeFields = function(t) {
+0Çq
+typeFieldsÇa	var typeFields = function(t) {
 		var current, next, _map, _key, count, _map$1, _key$1, nextCount, _map$2, _key$2, visited, fields, _tuple, _map$3, _key$3, _tuple$1, _ref, _i, _slice, _index, _struct, f, _entry, _key$4, i, _struct$1, sf, tag, _tuple$2, name, opts, index, _slice$1, _index$1, ft, tagged, _entry$1, _slice$2, _index$2, _struct$2, _lhs, _index$3, _entry$2, _key$5, _entry$3, out, _tuple$3, advance, i$1, _slice$3, _index$4, _struct$3, fi, name$1, _slice$4, _index$5, _struct$4, fj, _struct$5, _tuple$4, _struct$6, dominant, ok, _struct$7;
 		current = new (go$sliceType(field))([]);
 		next = new (go$sliceType(field))([new field.Ptr("", false, (go$sliceType(Go$Int)).nil, t, false, false)]);
@@ -2379,7 +2392,7 @@ $$
 		sort.Sort(go$subslice(new byIndex(fields.array), fields.offset, fields.offset + fields.length));
 		return fields;
 	};
-	var dominantField = function(fields) {
+0Ç dominantFieldÇ	var dominantField = function(fields) {
 		var _slice, _index, length, tagged, _ref, _i, _slice$1, _index$1, _struct, f, i, _slice$2, _index$2, _struct$1, _slice$3, _index$3, _struct$2;
 		length = (_slice = fields, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).index.length;
 		tagged = -1;
@@ -2407,7 +2420,7 @@ $$
 		}
 		return [(_struct$2 = (_slice$3 = fields, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct$2.name, _struct$2.tag, _struct$2.index, _struct$2.typ, _struct$2.omitEmpty, _struct$2.quoted)), true];
 	};
-	var cachedTypeFields = function(t) {
+0ÇÙcachedTypeFieldsÇﬁ	var cachedTypeFields = function(t) {
 		var _entry, f, _map, _key, _key$1;
 		fieldCache.RWMutex.RLock();
 		f = (_entry = fieldCache.m[(t || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : (go$sliceType(field)).nil);
@@ -2427,10 +2440,10 @@ $$
 		fieldCache.RWMutex.Unlock();
 		return f;
 	};
-	var Compact = go$pkg.Compact = function(dst, src) {
+0gCompact\	var Compact = go$pkg.Compact = function(dst, src) {
 		return compact(dst, src, false);
 	};
-	var compact = function(dst, src, escape) {
+0Ç©compactÇú	var compact = function(dst, src, escape) {
 		var origLen, scan, start, _ref, _i, _slice, _index, c, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, v;
 		origLen = dst.Len();
 		scan = new scanner.Ptr();
@@ -2478,7 +2491,7 @@ $$
 		}
 		return null;
 	};
-	var newline = function(dst, prefix, indent, depth) {
+0Å—newlineÅ≈	var newline = function(dst, prefix, indent, depth) {
 		var i;
 		dst.WriteByte(10);
 		dst.WriteString(prefix);
@@ -2488,7 +2501,7 @@ $$
 			i = i + 1 >> 0;
 		}
 	};
-	var Indent = go$pkg.Indent = function(dst, src, prefix, indent) {
+0Ç÷IndentÇ 	var Indent = go$pkg.Indent = function(dst, src, prefix, indent) {
 		var origLen, scan, needIndent, depth, _ref, _i, _slice, _index, c, x, v, _ref$1;
 		origLen = dst.Len();
 		scan = new scanner.Ptr();
@@ -2544,7 +2557,8 @@ $$
 		}
 		return null;
 	};
-	var checkValid = function(data, scan) {
+0Ç&
+checkValidÇ	var checkValid = function(data, scan) {
 		var _ref, _i, _slice, _index, c, x;
 		scan.reset();
 		_ref = data;
@@ -2561,7 +2575,7 @@ $$
 		}
 		return null;
 	};
-	var nextValue = function(data, scan) {
+0Ç9	nextValueÇ*	var nextValue = function(data, scan) {
 		var value, rest, err, _ref, _i, _slice, _index, c, i, v, _ref$1, _tuple, _tuple$1, _tuple$2, _tuple$3;
 		value = (go$sliceType(Go$Uint8)).nil;
 		rest = (go$sliceType(Go$Uint8)).nil;
@@ -2591,13 +2605,13 @@ $$
 		_tuple$3 = [data, (go$sliceType(Go$Uint8)).nil, null], value = _tuple$3[0], rest = _tuple$3[1], err = _tuple$3[2];
 		return [value, rest, err];
 	};
-	SyntaxError.Ptr.prototype.Error = function() {
+0ÅÆErrorÅ§	SyntaxError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return e.msg;
 	};
 	SyntaxError.prototype.Error = function() { return this.go$val.Error(); };
-	scanner.Ptr.prototype.reset = function() {
+0ÇresetÇ	scanner.Ptr.prototype.reset = function() {
 		var s;
 		s = this;
 		s.step = stateBeginValue;
@@ -2607,7 +2621,7 @@ $$
 		s.endTop = false;
 	};
 	scanner.prototype.reset = function() { return this.go$val.reset(); };
-	scanner.Ptr.prototype.eof = function() {
+0Ç´eofÇ¢	scanner.Ptr.prototype.eof = function() {
 		var s;
 		s = this;
 		if (!(go$interfaceIsEqual(s.err, null))) {
@@ -2626,13 +2640,13 @@ $$
 		return 11;
 	};
 	scanner.prototype.eof = function() { return this.go$val.eof(); };
-	scanner.Ptr.prototype.pushParseState = function(p) {
+0ÅÍpushParseStateÅ◊	scanner.Ptr.prototype.pushParseState = function(p) {
 		var s;
 		s = this;
 		s.parseState = go$append(s.parseState, p);
 	};
 	scanner.prototype.pushParseState = function(p) { return this.go$val.pushParseState(p); };
-	scanner.Ptr.prototype.popParseState = function() {
+0ÇäpopParseStateÇw	scanner.Ptr.prototype.popParseState = function() {
 		var s, n;
 		s = this;
 		n = s.parseState.length - 1 >> 0;
@@ -2646,10 +2660,10 @@ $$
 		}
 	};
 	scanner.prototype.popParseState = function() { return this.go$val.popParseState(); };
-	var isSpace = function(c) {
+0jisSpace_	var isSpace = function(c) {
 		return (c === 32) || (c === 9) || (c === 13) || (c === 10);
 	};
-	var stateBeginValueOrEmpty = function(s, c) {
+0Å⁄stateBeginValueOrEmptyÅø	var stateBeginValueOrEmpty = function(s, c) {
 		if (c <= 32 && isSpace((c >> 0))) {
 			return 9;
 		}
@@ -2658,7 +2672,7 @@ $$
 		}
 		return stateBeginValue(s, c);
 	};
-	var stateBeginValue = function(s, c) {
+0ÇKstateBeginValueÇ6	var stateBeginValue = function(s, c) {
 		var _ref;
 		if (c <= 32 && isSpace((c >> 0))) {
 			return 9;
@@ -2697,7 +2711,7 @@ $$
 		}
 		return s.error(c, "looking for beginning of value");
 	};
-	var stateBeginStringOrEmpty = function(s, c) {
+0Ç∆stateBeginStringOrEmptyÇ©	var stateBeginStringOrEmpty = function(s, c) {
 		var n, _slice, _index;
 		if (c <= 32 && isSpace((c >> 0))) {
 			return 9;
@@ -2709,7 +2723,7 @@ $$
 		}
 		return stateBeginString(s, c);
 	};
-	var stateBeginString = function(s, c) {
+0Å˙stateBeginStringÅÂ	var stateBeginString = function(s, c) {
 		if (c <= 32 && isSpace((c >> 0))) {
 			return 9;
 		}
@@ -2719,7 +2733,7 @@ $$
 		}
 		return s.error(c, "looking for beginning of object key string");
 	};
-	var stateEndValue = function(s, c) {
+0Ç÷stateEndValueÇ√	var stateEndValue = function(s, c) {
 		var n, _slice, _index, ps, _ref, _slice$1, _index$1, _slice$2, _index$2;
 		n = s.parseState.length;
 		if (n === 0) {
@@ -2764,13 +2778,13 @@ $$
 		}
 		return s.error(c, "");
 	};
-	var stateEndTop = function(s, c) {
+0Å∫stateEndTopÅ™	var stateEndTop = function(s, c) {
 		if (!((c === 32)) && !((c === 9)) && !((c === 13)) && !((c === 10))) {
 			s.error(c, "after top-level value");
 		}
 		return 10;
 	};
-	var stateInString = function(s, c) {
+0ÇstateInStringÅÙ	var stateInString = function(s, c) {
 		if (c === 34) {
 			s.step = stateEndValue;
 			return 0;
@@ -2784,7 +2798,7 @@ $$
 		}
 		return 0;
 	};
-	var stateInStringEsc = function(s, c) {
+0ÇzstateInStringEscÇd	var stateInStringEsc = function(s, c) {
 		var _ref;
 		_ref = c;
 		if (_ref === 98 || _ref === 102 || _ref === 110 || _ref === 114 || _ref === 116 || _ref === 92 || _ref === 47 || _ref === 34) {
@@ -2797,35 +2811,35 @@ $$
 		}
 		return s.error(c, "in string escape code");
 	};
-	var stateInStringEscU = function(s, c) {
+0Å˙stateInStringEscUÅ‰	var stateInStringEscU = function(s, c) {
 		if (48 <= c && c <= 57 || 97 <= c && c <= 102 || 65 <= c && c <= 70) {
 			s.step = stateInStringEscU1;
 			return 0;
 		}
 		return s.error(c, "in \\u hexadecimal character escape");
 	};
-	var stateInStringEscU1 = function(s, c) {
+0Å˝stateInStringEscU1ÅÊ	var stateInStringEscU1 = function(s, c) {
 		if (48 <= c && c <= 57 || 97 <= c && c <= 102 || 65 <= c && c <= 70) {
 			s.step = stateInStringEscU12;
 			return 0;
 		}
 		return s.error(c, "in \\u hexadecimal character escape");
 	};
-	var stateInStringEscU12 = function(s, c) {
+0Ç stateInStringEscU12ÅË	var stateInStringEscU12 = function(s, c) {
 		if (48 <= c && c <= 57 || 97 <= c && c <= 102 || 65 <= c && c <= 70) {
 			s.step = stateInStringEscU123;
 			return 0;
 		}
 		return s.error(c, "in \\u hexadecimal character escape");
 	};
-	var stateInStringEscU123 = function(s, c) {
+0Å˚stateInStringEscU123Å‚	var stateInStringEscU123 = function(s, c) {
 		if (48 <= c && c <= 57 || 97 <= c && c <= 102 || 65 <= c && c <= 70) {
 			s.step = stateInString;
 			return 0;
 		}
 		return s.error(c, "in \\u hexadecimal character escape");
 	};
-	var stateNeg = function(s, c) {
+0Å’stateNegÅ»	var stateNeg = function(s, c) {
 		if (c === 48) {
 			s.step = state0;
 			return 0;
@@ -2836,14 +2850,14 @@ $$
 		}
 		return s.error(c, "in numeric literal");
 	};
-	var state1 = function(s, c) {
+0ÅÖstate1{	var state1 = function(s, c) {
 		if (48 <= c && c <= 57) {
 			s.step = state1;
 			return 0;
 		}
 		return state0(s, c);
 	};
-	var state0 = function(s, c) {
+0ÅÕstate0Å¬	var state0 = function(s, c) {
 		if (c === 46) {
 			s.step = stateDot;
 			return 0;
@@ -2854,14 +2868,14 @@ $$
 		}
 		return stateEndValue(s, c);
 	};
-	var stateDot = function(s, c) {
+0ÅµstateDotÅ®	var stateDot = function(s, c) {
 		if (48 <= c && c <= 57) {
 			s.step = stateDot0;
 			return 0;
 		}
 		return s.error(c, "after decimal point in numeric literal");
 	};
-	var stateDot0 = function(s, c) {
+0Åﬁ	stateDot0Å–	var stateDot0 = function(s, c) {
 		if (48 <= c && c <= 57) {
 			s.step = stateDot0;
 			return 0;
@@ -2872,7 +2886,7 @@ $$
 		}
 		return stateEndValue(s, c);
 	};
-	var stateE = function(s, c) {
+0ÅøstateEÅ¥	var stateE = function(s, c) {
 		if (c === 43) {
 			s.step = stateESign;
 			return 0;
@@ -2883,94 +2897,96 @@ $$
 		}
 		return stateESign(s, c);
 	};
-	var stateESign = function(s, c) {
+0ÅØ
+stateESignÅ†	var stateESign = function(s, c) {
 		if (48 <= c && c <= 57) {
 			s.step = stateE0;
 			return 0;
 		}
 		return s.error(c, "in exponent of numeric literal");
 	};
-	var stateE0 = function(s, c) {
+0ÅêstateE0ÅÑ	var stateE0 = function(s, c) {
 		if (48 <= c && c <= 57) {
 			s.step = stateE0;
 			return 0;
 		}
 		return stateEndValue(s, c);
 	};
-	var stateT = function(s, c) {
+0ÅüstateTÅî	var stateT = function(s, c) {
 		if (c === 114) {
 			s.step = stateTr;
 			return 0;
 		}
 		return s.error(c, "in literal true (expecting 'r')");
 	};
-	var stateTr = function(s, c) {
+0Å¢stateTrÅñ	var stateTr = function(s, c) {
 		if (c === 117) {
 			s.step = stateTru;
 			return 0;
 		}
 		return s.error(c, "in literal true (expecting 'u')");
 	};
-	var stateTru = function(s, c) {
+0Å©stateTruÅú	var stateTru = function(s, c) {
 		if (c === 101) {
 			s.step = stateEndValue;
 			return 0;
 		}
 		return s.error(c, "in literal true (expecting 'e')");
 	};
-	var stateF = function(s, c) {
+0ÅüstateFÅî	var stateF = function(s, c) {
 		if (c === 97) {
 			s.step = stateFa;
 			return 0;
 		}
 		return s.error(c, "in literal false (expecting 'a')");
 	};
-	var stateFa = function(s, c) {
+0Å£stateFaÅó	var stateFa = function(s, c) {
 		if (c === 108) {
 			s.step = stateFal;
 			return 0;
 		}
 		return s.error(c, "in literal false (expecting 'l')");
 	};
-	var stateFal = function(s, c) {
+0Å¶stateFalÅô	var stateFal = function(s, c) {
 		if (c === 115) {
 			s.step = stateFals;
 			return 0;
 		}
 		return s.error(c, "in literal false (expecting 's')");
 	};
-	var stateFals = function(s, c) {
+0Å¨	stateFalsÅû	var stateFals = function(s, c) {
 		if (c === 101) {
 			s.step = stateEndValue;
 			return 0;
 		}
 		return s.error(c, "in literal false (expecting 'e')");
 	};
-	var stateN = function(s, c) {
+0ÅüstateNÅî	var stateN = function(s, c) {
 		if (c === 117) {
 			s.step = stateNu;
 			return 0;
 		}
 		return s.error(c, "in literal null (expecting 'u')");
 	};
-	var stateNu = function(s, c) {
+0Å¢stateNuÅñ	var stateNu = function(s, c) {
 		if (c === 108) {
 			s.step = stateNul;
 			return 0;
 		}
 		return s.error(c, "in literal null (expecting 'l')");
 	};
-	var stateNul = function(s, c) {
+0Å©stateNulÅú	var stateNul = function(s, c) {
 		if (c === 108) {
 			s.step = stateEndValue;
 			return 0;
 		}
 		return s.error(c, "in literal null (expecting 'l')");
 	};
-	var stateError = function(s, c) {
+0B
+stateError4	var stateError = function(s, c) {
 		return 11;
 	};
-	scanner.Ptr.prototype.error = function(c, context) {
+0Ç6errorÇ+	scanner.Ptr.prototype.error = function(c, context) {
 		var s;
 		s = this;
 		s.step = stateError;
@@ -2978,7 +2994,7 @@ $$
 		return 11;
 	};
 	scanner.prototype.error = function(c, context) { return this.go$val.error(c, context); };
-	var quoteChar = function(c) {
+0ÅÏ	quoteCharÅﬁ	var quoteChar = function(c) {
 		var s;
 		if (c === 39) {
 			return "'\\''";
@@ -2989,7 +3005,7 @@ $$
 		s = strconv.Quote(go$encodeRune(c));
 		return "'" + s.substring(1, (s.length - 1 >> 0)) + "'";
 	};
-	scanner.Ptr.prototype.undo = function(scanCode) {
+0ÇYundoÇO	scanner.Ptr.prototype.undo = function(scanCode) {
 		var s;
 		s = this;
 		if (s.redo) {
@@ -3001,21 +3017,22 @@ $$
 		s.redo = true;
 	};
 	scanner.prototype.undo = function(scanCode) { return this.go$val.undo(scanCode); };
-	var stateRedo = function(s, c) {
+0r	stateRedoe	var stateRedo = function(s, c) {
 		s.redo = false;
 		s.step = s.redoState;
 		return s.redoCode;
 	};
-	var NewDecoder = go$pkg.NewDecoder = function(r) {
+0Å≤
+NewDecoderÅ£	var NewDecoder = go$pkg.NewDecoder = function(r) {
 		return new Decoder.Ptr(r, (go$sliceType(Go$Uint8)).nil, new decodeState.Ptr(), new scanner.Ptr(), null);
 	};
-	Decoder.Ptr.prototype.UseNumber = function() {
+0Åƒ	UseNumberÅ∂	Decoder.Ptr.prototype.UseNumber = function() {
 		var dec;
 		dec = this;
 		dec.d.useNumber = true;
 	};
 	Decoder.prototype.UseNumber = function() { return this.go$val.UseNumber(); };
-	Decoder.Ptr.prototype.Decode = function(v) {
+0Ç0DecodeÇ$	Decoder.Ptr.prototype.Decode = function(v) {
 		var dec, _tuple, n, err, rest;
 		dec = this;
 		if (!(go$interfaceIsEqual(dec.err, null))) {
@@ -3032,13 +3049,13 @@ $$
 		return err;
 	};
 	Decoder.prototype.Decode = function(v) { return this.go$val.Decode(v); };
-	Decoder.Ptr.prototype.Buffered = function() {
+0Å…BufferedÅº	Decoder.Ptr.prototype.Buffered = function() {
 		var dec;
 		dec = this;
 		return bytes.NewReader(dec.buf);
 	};
 	Decoder.prototype.Buffered = function() { return this.go$val.Buffered(); };
-	Decoder.Ptr.prototype.readValue = function() {
+0ÇB	readValueÇ3	Decoder.Ptr.prototype.readValue = function() {
 		var dec, scanp, err, _ref, _i, _slice, _index, c, i, x, v, x$1, x$2, newBuf, n, _tuple;
 		dec = this;
 		dec.scan.reset();
@@ -3090,7 +3107,7 @@ $$
 		return [scanp, null];
 	};
 	Decoder.prototype.readValue = function() { return this.go$val.readValue(); };
-	var nonSpace = function(b) {
+0ÇxnonSpaceÇj	var nonSpace = function(b) {
 		var _ref, _i, _slice, _index, c;
 		_ref = b;
 		_i = 0;
@@ -3102,10 +3119,11 @@ $$
 		}
 		return false;
 	};
-	var NewEncoder = go$pkg.NewEncoder = function(w) {
+0ÅÄ
+NewEncoderr	var NewEncoder = go$pkg.NewEncoder = function(w) {
 		return new Encoder.Ptr(w, new encodeState.Ptr(), null);
 	};
-	Encoder.Ptr.prototype.Encode = function(v) {
+0ÇEncodeÇ	Encoder.Ptr.prototype.Encode = function(v) {
 		var enc, e, err, _tuple;
 		enc = this;
 		if (!(go$interfaceIsEqual(enc.err, null))) {
@@ -3124,13 +3142,13 @@ $$
 		return err;
 	};
 	Encoder.prototype.Encode = function(v) { return this.go$val.Encode(v); };
-	go$ptrType(RawMessage).prototype.MarshalJSON = function() {
+0Ç{MarshalJSONÇj	go$ptrType(RawMessage).prototype.MarshalJSON = function() {
 		var m, x;
 		m = this;
 		return [(x = m.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length)), null];
 	};
 	RawMessage.prototype.MarshalJSON = function() { var obj = this; return (new (go$ptrType(RawMessage))(function() { return obj; }, null)).MarshalJSON(); };
-	go$ptrType(RawMessage).prototype.UnmarshalJSON = function(data) {
+0ÇÔUnmarshalJSONÇ‹	go$ptrType(RawMessage).prototype.UnmarshalJSON = function(data) {
 		var m;
 		m = this;
 		if (go$pointerIsEqual(m, (go$ptrType(RawMessage)).nil)) {
@@ -3140,14 +3158,14 @@ $$
 		return null;
 	};
 	RawMessage.prototype.UnmarshalJSON = function(data) { var obj = this; return (new (go$ptrType(RawMessage))(function() { return obj; }, null)).UnmarshalJSON(data); };
-	var parseTag = function(tag) {
+0ÅŒparseTagÅ¡	var parseTag = function(tag) {
 		var idx;
 		if (idx = strings.Index(tag, ","), !((idx === -1))) {
 			return [tag.substring(0, idx), tag.substring((idx + 1 >> 0))];
 		}
 		return [tag, ""];
 	};
-	tagOptions.prototype.Contains = function(optionName) {
+0Ç<ContainsÇ.	tagOptions.prototype.Contains = function(optionName) {
 		var o, s, next, i, _tuple;
 		o = this.go$val;
 		if (o.length === 0) {
@@ -3168,46 +3186,7 @@ $$
 		return false;
 	};
 	go$ptrType(tagOptions).prototype.Contains = function(optionName) { return new tagOptions(this.go$get()).Contains(optionName); };
-	var newEncodeState = function() {
-			var e = encodeStates.pop();
-			if (e !== undefined) {
-				e.Reset();
-				return e;
-			}
-			return new encodeState.Ptr();
-		};
-	var putEncodeState = function(e) {
-			encodeStates.push(e);
-		};
-	var scanContinue = 0;
-	var scanBeginLiteral = 1;
-	var scanBeginObject = 2;
-	var scanObjectKey = 3;
-	var scanObjectValue = 4;
-	var scanEndObject = 5;
-	var scanBeginArray = 6;
-	var scanArrayValue = 7;
-	var scanEndArray = 8;
-	var scanSkipSpace = 9;
-	var scanEnd = 10;
-	var scanError = 11;
-	var parseObjectKey = 0;
-	var parseObjectValue = 1;
-	var parseArrayValue = 2;
-	var errPhase = null;
-	var numberType = null;
-	var hex = "";
-	var encodeStatePool = (go$chanType((go$ptrType(encodeState)), false, false)).nil;
-	var byteSliceType = null;
-	var encoderCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, encoderFunc)), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-	var marshalerType = null;
-	var textMarshalerType = null;
-	var float32Encoder = go$throwNilPointerError;
-	var float64Encoder = go$throwNilPointerError;
-	var fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, (go$sliceType(field)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-	var _ = null;
-	var _$1 = null;
-
+0ÇlinitÇb
 		  var encodeStates = [];
 			go$pkg.init = function() {
 		var e, v, quoted, _recv, e$1, v$1, quoted$1, _recv$1;

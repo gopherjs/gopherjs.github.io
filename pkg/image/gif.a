@@ -1,4 +1,4 @@
-0‚«@‚$package gif
+0‚«Q	image/gif‚$package gif
 import bufio "bufio"
 import lzw "compress/lzw"
 import errors "errors"
@@ -111,16 +111,9 @@ func (? *@"image".Point) @"image".String() (? string)
 func (? *@"image".Point) @"image".Sub(@"image".q @"image".Point) (? @"image".Point)
 $$
 0Ëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtcompress/lzwimage/colorimageimage/color/palette
-image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
-	var lzw = go$packages["compress/lzw"];
-	var errors = go$packages["errors"];
-	var fmt = go$packages["fmt"];
-	var image = go$packages["image"];
-	var color = go$packages["image/color"];
-	var io = go$packages["io"];
-	var palette = go$packages["image/color/palette"];
-	var draw = go$packages["image/draw"];
-	var reader;
+image/draw	image/gif0§0bufiobufio0compress/lzwlzw0errorserrors0
+fmtfmt0imageimage0image/colorcolor0ioio0image/color/palettepalette0
+image/drawdraw‚	var reader;
 	reader = go$newType(0, "Interface", "gif.reader", "reader", "image/gif", null);
 	go$pkg.reader = reader;
 	var decoder;
@@ -209,7 +202,12 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 	blockWriter.methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	(go$ptrType(blockWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	Options.init([["NumColors", "", Go$Int, ""], ["Quantizer", "", draw.Quantizer, ""], ["Drawer", "", draw.Drawer, ""]]);
-	blockReader.Ptr.prototype.Read = function(p) {
+Ë	var errNotEnough = null;
+	var errTooMuch = null;
+	var errBadPixel = null;
+	var interlacing = (go$sliceType(interlaceScan)).nil;
+	var log2Lookup = go$makeNativeArray("Int", 8, function() { return 0; });
+0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		var b, blockLen, _tuple, _tuple$1, n;
 		b = this;
 		if (!(go$interfaceIsEqual(b.err, null))) {
@@ -238,7 +236,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		return [n, null];
 	};
 	blockReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	decoder.Ptr.prototype.decode = function(r, configOnly) {
+0‚	decode‚ý	decoder.Ptr.prototype.decode = function(r, configOnly) {
 		var d, ok, _tuple, rr, err, _tuple$1, _tuple$2, c, err$1, _ref, _tuple$3, m, err$2, _tuple$4, _tuple$5, litWidth, br, lzwr, _tuple$6, n, err$3, _tuple$7, n$1, err$4, _tuple$8, _ref$1, _i, _slice, _index, pixel;
 		var go$deferred = [];
 		try {
@@ -344,7 +342,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		}
 	};
 	decoder.prototype.decode = function(r, configOnly) { return this.go$val.decode(r, configOnly); };
-	decoder.Ptr.prototype.readHeaderAndScreenDescriptor = function() {
+0‚ïreadHeaderAndScreenDescriptor‚Ì	decoder.Ptr.prototype.readHeaderAndScreenDescriptor = function() {
 		var d, _tuple, err;
 		d = this;
 		_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 13)), err = _tuple[1];
@@ -365,7 +363,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		return null;
 	};
 	decoder.prototype.readHeaderAndScreenDescriptor = function() { return this.go$val.readHeaderAndScreenDescriptor(); };
-	decoder.Ptr.prototype.readColorMap = function() {
+0‚readColorMap‚	decoder.Ptr.prototype.readColorMap = function() {
 		var d, y, numColors, y$1, x, numValues, _tuple, err, colorMap, j, _ref, _i, i, x$1, _slice, _index;
 		d = this;
 		if (d.pixelSize > 8) {
@@ -392,7 +390,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		return [colorMap, null];
 	};
 	decoder.prototype.readColorMap = function() { return this.go$val.readColorMap(); };
-	decoder.Ptr.prototype.readExtension = function() {
+0‚†readExtension‚s	decoder.Ptr.prototype.readExtension = function() {
 		var d, _tuple, extension, err, size, _ref, _tuple$1, b, err$1, err$2, _tuple$2, _tuple$3, n, err$3, _tuple$4, n$1, err$4;
 		d = this;
 		_tuple = d.r.ReadByte(), extension = _tuple[0], err = _tuple[1];
@@ -437,7 +435,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		}
 	};
 	decoder.prototype.readExtension = function() { return this.go$val.readExtension(); };
-	decoder.Ptr.prototype.readGraphicControl = function() {
+0‚²readGraphicControl‚š	decoder.Ptr.prototype.readGraphicControl = function() {
 		var d, err, _tuple;
 		d = this;
 		if (_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 6)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
@@ -452,7 +450,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		return null;
 	};
 	decoder.prototype.readGraphicControl = function() { return this.go$val.readGraphicControl(); };
-	decoder.Ptr.prototype.setTransparency = function(colorMap) {
+0‚setTransparency‚	decoder.Ptr.prototype.setTransparency = function(colorMap) {
 		var d, x, _slice, _index;
 		d = this;
 		if ((d.transparentIndex >> 0) < colorMap.length) {
@@ -460,7 +458,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		}
 	};
 	decoder.prototype.setTransparency = function(colorMap) { return this.go$val.setTransparency(colorMap); };
-	decoder.Ptr.prototype.newImageFromDescriptor = function() {
+0‚ºnewImageFromDescriptor‚ž	decoder.Ptr.prototype.newImageFromDescriptor = function() {
 		var d, err, _tuple, left, top, width, height, _struct, _struct$1, _struct$2, bounds, x, y, x$1, y$1, x$2, y$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8;
 		d = this;
 		if (_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 9)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
@@ -478,7 +476,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		return [image.NewPaletted((_struct$6 = bounds, new image.Rectangle.Ptr((_struct$7 = _struct$6.Min, new image.Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new image.Point.Ptr(_struct$8.X, _struct$8.Y)))), color.Palette.nil), null];
 	};
 	decoder.prototype.newImageFromDescriptor = function() { return this.go$val.newImageFromDescriptor(); };
-	decoder.Ptr.prototype.readBlock = function() {
+0‚•	readBlock‚†	decoder.Ptr.prototype.readBlock = function() {
 		var d, _tuple, n, err;
 		d = this;
 		_tuple = d.r.ReadByte(), n = _tuple[0], err = _tuple[1];
@@ -488,7 +486,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		return io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, n));
 	};
 	decoder.prototype.readBlock = function() { return this.go$val.readBlock(); };
-	var uninterlace = function(m) {
+0‚duninterlace‚S	var uninterlace = function(m) {
 		var nPix, dx, dy, offset, _ref, _i, _slice, _index, _struct, pass, x, nOffset, y, x$1;
 		nPix = (go$sliceType(Go$Uint8)).nil;
 		dx = m.Bounds().Dx();
@@ -510,7 +508,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		}
 		m.Pix = nPix;
 	};
-	var Decode = go$pkg.Decode = function(r) {
+0‚Decode‚u	var Decode = go$pkg.Decode = function(r) {
 		var d, err, _slice, _index;
 		d = new decoder.Ptr();
 		if (err = d.decode(r, false), !(go$interfaceIsEqual(err, null))) {
@@ -518,7 +516,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		}
 		return [(_slice = d.image, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), null];
 	};
-	var DecodeAll = go$pkg.DecodeAll = function(r) {
+0‚,	DecodeAll‚	var DecodeAll = go$pkg.DecodeAll = function(r) {
 		var d, err, gif;
 		d = new decoder.Ptr();
 		if (err = d.decode(r, false), !(go$interfaceIsEqual(err, null))) {
@@ -527,7 +525,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		gif = new GIF.Ptr(d.image, d.delay, d.loopCount);
 		return [gif, null];
 	};
-	var DecodeConfig = go$pkg.DecodeConfig = function(r) {
+0‚<DecodeConfig‚*	var DecodeConfig = go$pkg.DecodeConfig = function(r) {
 		var d, err;
 		d = new decoder.Ptr();
 		if (err = d.decode(r, true), !(go$interfaceIsEqual(err, null))) {
@@ -535,7 +533,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		}
 		return [new image.Config.Ptr(d.globalColorMap, d.width, d.height), null];
 	};
-	var log2 = function(x) {
+0Élog2À	var log2 = function(x) {
 		var _ref, _i, v, i;
 		_ref = log2Lookup;
 		_i = 0;
@@ -548,12 +546,12 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		}
 		return -1;
 	};
-	var writeUint16 = function(b, u) {
+0‚àwriteUint16‚Ï	var writeUint16 = function(b, u) {
 		var _slice, _index, _slice$1, _index$1;
 		_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (u << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 		_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((u >>> 8 << 16 >>> 16) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
-	blockWriter.Ptr.prototype.Write = function(data) {
+0‚7Write‚,	blockWriter.Ptr.prototype.Write = function(data) {
 		var _struct, b, total, n, _tuple;
 		b = (_struct = this, new blockWriter.Ptr(_struct.e));
 		if (!(go$interfaceIsEqual(b.e.err, null))) {
@@ -575,7 +573,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		return [total, b.e.err];
 	};
 	blockWriter.prototype.Write = function(data) { return this.go$val.Write(data); };
-	encoder.Ptr.prototype.flush = function() {
+0éflushß	encoder.Ptr.prototype.flush = function() {
 		var e;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -584,7 +582,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		e.err = e.w.Flush();
 	};
 	encoder.prototype.flush = function() { return this.go$val.flush(); };
-	encoder.Ptr.prototype.write = function(p) {
+0‚	writeÿ	encoder.Ptr.prototype.write = function(p) {
 		var e, _tuple;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -593,7 +591,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		_tuple = e.w.Write(p), e.err = _tuple[1];
 	};
 	encoder.prototype.write = function(p) { return this.go$val.write(p); };
-	encoder.Ptr.prototype.writeByte = function(b) {
+0‚	writeByteó	encoder.Ptr.prototype.writeByte = function(b) {
 		var e;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -602,7 +600,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		e.err = e.w.WriteByte(b);
 	};
 	encoder.prototype.writeByte = function(b) { return this.go$val.writeByte(b); };
-	encoder.Ptr.prototype.writeHeader = function() {
+0‚¶writeHeader‚¥	encoder.Ptr.prototype.writeHeader = function() {
 		var e, _tuple, _slice, _index, pm, _tuple$1;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -637,7 +635,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		}
 	};
 	encoder.prototype.writeHeader = function() { return this.go$val.writeHeader(); };
-	encoder.Ptr.prototype.writeColorTable = function(p, size) {
+0‚ÞwriteColorTable‚É	encoder.Ptr.prototype.writeColorTable = function(p, size) {
 		var e, i, _tuple, _slice, _index, r, g, b, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -660,7 +658,9 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		e.write(go$subslice(new (go$sliceType(Go$Uint8))(e.buf), 0, (x$6 = 3, x$7 = log2Lookup[size], (((x$6 >>> 16 << 16) * x$7 >> 0) + (x$6 << 16 >>> 16) * x$7) >> 0)));
 	};
 	encoder.prototype.writeColorTable = function(p, size) { return this.go$val.writeColorTable(p, size); };
-	encoder.Ptr.prototype.writeImageBlock = function(pm, delay) {
+0‚
+áwriteImageBlock‚
+Ì	encoder.Ptr.prototype.writeImageBlock = function(pm, delay) {
 		var e, _struct, _struct$1, _struct$2, b, transparentIndex, _ref, _i, _slice, _index, c, i, a, _tuple, paddedSize, litWidth, x, lzww, _tuple$1;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -728,7 +728,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		e.writeByte(0);
 	};
 	encoder.prototype.writeImageBlock = function(pm, delay) { return this.go$val.writeImageBlock(pm, delay); };
-	var EncodeAll = go$pkg.EncodeAll = function(w, g) {
+0‚Ë	EncodeAll‚¼	var EncodeAll = go$pkg.EncodeAll = function(w, g) {
 		var e, ok, _tuple, ww, _ref, _i, _slice, _index, pm, i, _slice$1, _index$1;
 		if (g.Image.length === 0) {
 			return errors.New("gif: must provide at least one image");
@@ -757,7 +757,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		e.flush();
 		return e.err;
 	};
-	var Encode = go$pkg.Encode = function(w, m, o) {
+0‚Encode‚	var Encode = go$pkg.Encode = function(w, m, o) {
 		var _struct, _struct$1, _struct$2, b, opts, _struct$3, _tuple, pm, ok, _struct$4, _struct$5, _struct$6, x, _struct$7, _struct$8, _struct$9, _struct$10;
 		b = (_struct = m.Bounds(), new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (b.Dx() >= 65536 || b.Dy() >= 65536) {
@@ -783,26 +783,7 @@ image/draw	image/gif‚†h	var bufio = go$packages["bufio"];
 		}
 		return EncodeAll(w, new GIF.Ptr(new (go$sliceType((go$ptrType(image.Paletted))))([pm]), new (go$sliceType(Go$Int))([0]), 0));
 	};
-	var fColorMapFollows = 128;
-	var ifLocalColorTable = 128;
-	var ifInterlace = 64;
-	var ifPixelSizeMask = 7;
-	var gcTransparentColorSet = 1;
-	var sExtension = 33;
-	var sImageDescriptor = 44;
-	var sTrailer = 59;
-	var eText = 1;
-	var eGraphicControl = 249;
-	var eComment = 254;
-	var eApplication = 255;
-	var gcLabel = 249;
-	var gcBlockSize = 4;
-	var errNotEnough = null;
-	var errTooMuch = null;
-	var errBadPixel = null;
-	var interlacing = (go$sliceType(interlaceScan)).nil;
-	var log2Lookup = go$makeNativeArray("Int", 8, function() { return 0; });
-	go$pkg.init = function() {
+0‚init‚û	go$pkg.init = function() {
 		errNotEnough = errors.New("gif: not enough image data");
 		errTooMuch = errors.New("gif: too much image data");
 		errBadPixel = errors.New("gif: invalid pixel value");

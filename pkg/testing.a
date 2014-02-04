@@ -1,4 +1,4 @@
-0ÉTÇ0*package testing
+0ÉotestingÇ0*package testing
 import runtime "runtime"
 import flag "flag"
 import fmt "fmt"
@@ -183,18 +183,8 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0Å∫runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortflagbufiostringstext/tabwriterruntime/pproftestingÇ€e	var runtime = go$packages["runtime"];
-	var flag = go$packages["flag"];
-	var fmt = go$packages["fmt"];
-	var os = go$packages["os"];
-	var sync = go$packages["sync"];
-	var time = go$packages["time"];
-	var bytes = go$packages["bytes"];
-	var io = go$packages["io"];
-	var strings = go$packages["strings"];
-	var pprof = go$packages["runtime/pprof"];
-	var strconv = go$packages["strconv"];
-	var InternalBenchmark;
+0Å∫runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortflagbufiostringstext/tabwriterruntime/pproftesting0ÅÆ0runtimeruntime0flagflag0
+fmtfmt0osos0syncsync0timetime0bytesbytes0ioio0stringsstrings0runtime/pprofpprof0strconvstrconvÇ?	var InternalBenchmark;
 	InternalBenchmark = go$newType(0, "Struct", "testing.InternalBenchmark", "InternalBenchmark", "testing", function(Name_, F_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -364,7 +354,31 @@ $$
 	T.init([["", "testing", common, ""], ["name", "testing", Go$String, ""], ["startParallel", "testing", (go$chanType(Go$Bool, false, false)), ""]]);
 	(go$ptrType(T)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fail", "", [], [], false], ["FailNow", "", [], [], false], ["Failed", "", [], [Go$Bool], false], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Parallel", "", [], [], false], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true], ["SkipNow", "", [], [], false], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skipped", "", [], [Go$Bool], false], ["log", "testing", [Go$String], [], false], ["private", "testing", [], [], false], ["report", "testing", [], [], false], ["skip", "testing", [], [], false]];
 	InternalTest.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([(go$ptrType(T))], [], false)), ""]]);
-	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
+ÇÙ	var matchBenchmarks = (go$ptrType(Go$String)).nil;
+	var benchTime = (go$ptrType(time.Duration)).nil;
+	var benchmarkMemory = (go$ptrType(Go$Bool)).nil;
+	var benchmarkLock = new sync.Mutex.Ptr();
+	var memStats = new runtime.MemStats.Ptr();
+	var cover = new Cover.Ptr();
+	var short$1 = (go$ptrType(Go$Bool)).nil;
+	var outputDir = (go$ptrType(Go$String)).nil;
+	var chatty = (go$ptrType(Go$Bool)).nil;
+	var coverProfile = (go$ptrType(Go$String)).nil;
+	var match = (go$ptrType(Go$String)).nil;
+	var memProfile = (go$ptrType(Go$String)).nil;
+	var memProfileRate = (go$ptrType(Go$Int)).nil;
+	var cpuProfile = (go$ptrType(Go$String)).nil;
+	var blockProfile = (go$ptrType(Go$String)).nil;
+	var blockProfileRate = (go$ptrType(Go$Int)).nil;
+	var timeout = (go$ptrType(time.Duration)).nil;
+	var cpuListStr = (go$ptrType(Go$String)).nil;
+	var parallel = (go$ptrType(Go$Int)).nil;
+	var haveExamples = false;
+	var cpuList = (go$sliceType(Go$Int)).nil;
+	var _ = null;
+	var _$1 = null;
+	var timer = (go$ptrType(time.Timer)).nil;
+0Çö…0Ç5AllocsPerRunÇ#	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
 		var avg, memstats, x, mallocs, i, x$1;
 		avg = 0;
 		var go$deferred = [];
@@ -390,7 +404,8 @@ $$
 			return avg;
 		}
 	};
-	B.Ptr.prototype.StartTimer = function() {
+0Ç´
+StartTimerÇõ	B.Ptr.prototype.StartTimer = function() {
 		var b, _struct;
 		b = this;
 		if (!b.timerOn) {
@@ -402,7 +417,7 @@ $$
 		}
 	};
 	B.prototype.StartTimer = function() { return this.go$val.StartTimer(); };
-	B.Ptr.prototype.StopTimer = function() {
+0Çä	StopTimerÇ{	B.Ptr.prototype.StopTimer = function() {
 		var b, x, x$1, _struct, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
 		b = this;
 		if (b.timerOn) {
@@ -414,7 +429,8 @@ $$
 		}
 	};
 	B.prototype.StopTimer = function() { return this.go$val.StopTimer(); };
-	B.Ptr.prototype.ResetTimer = function() {
+0Ç
+ResetTimerÇ˝	B.Ptr.prototype.ResetTimer = function() {
 		var b, _struct;
 		b = this;
 		if (b.timerOn) {
@@ -428,19 +444,19 @@ $$
 		b.netBytes = new Go$Uint64(0, 0);
 	};
 	B.prototype.ResetTimer = function() { return this.go$val.ResetTimer(); };
-	B.Ptr.prototype.SetBytes = function(n) {
+0Å®SetBytesÅõ	B.Ptr.prototype.SetBytes = function(n) {
 		var b;
 		b = this;
 		b.bytes = n;
 	};
 	B.prototype.SetBytes = function(n) { return this.go$val.SetBytes(n); };
-	B.Ptr.prototype.ReportAllocs = function() {
+0Å¬ReportAllocsÅ±	B.Ptr.prototype.ReportAllocs = function() {
 		var b;
 		b = this;
 		b.showAllocResult = true;
 	};
 	B.prototype.ReportAllocs = function() { return this.go$val.ReportAllocs(); };
-	B.Ptr.prototype.nsPerOp = function() {
+0ÇnsPerOpÇ	B.Ptr.prototype.nsPerOp = function() {
 		var b;
 		b = this;
 		if (b.N <= 0) {
@@ -449,7 +465,7 @@ $$
 		return go$div64(b.common.duration.Nanoseconds(), new Go$Int64(0, b.N), false);
 	};
 	B.prototype.nsPerOp = function() { return this.go$val.nsPerOp(); };
-	B.Ptr.prototype.runN = function(n) {
+0Ç÷runNÇÃ	B.Ptr.prototype.runN = function(n) {
 		var b;
 		var go$deferred = [];
 		try {
@@ -469,19 +485,19 @@ $$
 		}
 	};
 	B.prototype.runN = function(n) { return this.go$val.runN(n); };
-	var min = function(x, y) {
+0SminL	var min = function(x, y) {
 		if (x > y) {
 			return y;
 		}
 		return x;
 	};
-	var max = function(x, y) {
+0SmaxL	var max = function(x, y) {
 		if (x < y) {
 			return y;
 		}
 		return x;
 	};
-	var roundDown10 = function(n) {
+0ÇªroundDown10Ç™	var roundDown10 = function(n) {
 		var tens, _q, result, i, x;
 		tens = 0;
 		while (n >= 10) {
@@ -496,7 +512,7 @@ $$
 		}
 		return result;
 	};
-	var roundUp = function(n) {
+0ÇqroundUpÇd	var roundUp = function(n) {
 		var base, x, x$1, x$2, x$3, x$4;
 		base = roundDown10(n);
 		if (n <= base) {
@@ -509,7 +525,7 @@ $$
 			return (x$4 = 10, (((x$4 >>> 16 << 16) * base >> 0) + (x$4 << 16 >>> 16) * base) >> 0);
 		}
 	};
-	B.Ptr.prototype.run = function() {
+0Ç3runÇ*	B.Ptr.prototype.run = function() {
 		var b, _struct;
 		b = this;
 		go$notSupported("go")
@@ -517,7 +533,7 @@ $$
 		return (_struct = b.result, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
 	};
 	B.prototype.run = function() { return this.go$val.run(); };
-	B.Ptr.prototype.launch = function() {
+0Ç•launchÇô	B.Ptr.prototype.launch = function() {
 		var b, n, d, x, last, x$1, x$2, _q, x$3;
 		var go$deferred = [];
 		try {
@@ -547,7 +563,7 @@ $$
 		}
 	};
 	B.prototype.launch = function() { return this.go$val.launch(); };
-	BenchmarkResult.Ptr.prototype.NsPerOp = function() {
+0ÇûNsPerOpÇë	BenchmarkResult.Ptr.prototype.NsPerOp = function() {
 		var _struct, r;
 		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
 		if (r.N <= 0) {
@@ -556,6 +572,7 @@ $$
 		return go$div64(r.T.Nanoseconds(), new Go$Int64(0, r.N), false);
 	};
 	BenchmarkResult.prototype.NsPerOp = function() { return this.go$val.NsPerOp(); };
+0ÇmbPerSecÇ
 	BenchmarkResult.Ptr.prototype.mbPerSec = function() {
 		var _struct, r, x, x$1;
 		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
@@ -565,7 +582,7 @@ $$
 		return (go$flatten64(r.Bytes) * r.N / 1e+06) / r.T.Seconds();
 	};
 	BenchmarkResult.prototype.mbPerSec = function() { return this.go$val.mbPerSec(); };
-	BenchmarkResult.Ptr.prototype.AllocsPerOp = function() {
+0ÇŒAllocsPerOpÇΩ	BenchmarkResult.Ptr.prototype.AllocsPerOp = function() {
 		var _struct, r, x;
 		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
 		if (r.N <= 0) {
@@ -574,7 +591,7 @@ $$
 		return go$div64((x = r.MemAllocs, new Go$Int64(x.high, x.low)), new Go$Int64(0, r.N), false);
 	};
 	BenchmarkResult.prototype.AllocsPerOp = function() { return this.go$val.AllocsPerOp(); };
-	BenchmarkResult.Ptr.prototype.AllocedBytesPerOp = function() {
+0ÇÂAllocedBytesPerOpÇŒ	BenchmarkResult.Ptr.prototype.AllocedBytesPerOp = function() {
 		var _struct, r, x;
 		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
 		if (r.N <= 0) {
@@ -583,7 +600,7 @@ $$
 		return go$div64((x = r.MemBytes, new Go$Int64(x.high, x.low)), new Go$Int64(0, r.N), false);
 	};
 	BenchmarkResult.prototype.AllocedBytesPerOp = function() { return this.go$val.AllocedBytesPerOp(); };
-	BenchmarkResult.Ptr.prototype.String = function() {
+0ÇlStringÇ`	BenchmarkResult.Ptr.prototype.String = function() {
 		var _struct, r, mbs, mb, nsop, ns;
 		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
 		mbs = r.mbPerSec();
@@ -603,13 +620,13 @@ $$
 		return fmt.Sprintf("%8d\t%s%s", new (go$sliceType(go$emptyInterface))([new Go$Int(r.N), new Go$String(ns), new Go$String(mb)]));
 	};
 	BenchmarkResult.prototype.String = function() { return this.go$val.String(); };
-	BenchmarkResult.Ptr.prototype.MemString = function() {
+0Ç±	MemStringÇ¢	BenchmarkResult.Ptr.prototype.MemString = function() {
 		var _struct, r;
 		r = (_struct = this, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
 		return fmt.Sprintf("%8d B/op\t%8d allocs/op", new (go$sliceType(go$emptyInterface))([r.AllocedBytesPerOp(), r.AllocsPerOp()]));
 	};
 	BenchmarkResult.prototype.MemString = function() { return this.go$val.MemString(); };
-	var RunBenchmarks = go$pkg.RunBenchmarks = function(matchString, benchmarks) {
+0Ç|RunBenchmarksÇi	var RunBenchmarks = go$pkg.RunBenchmarks = function(matchString, benchmarks) {
 		var _ref, _i, _slice, _index, _struct, Benchmark$1, _tuple, matched, err, _ref$1, _i$1, _slice$1, _index$1, procs, _struct$1, b, benchName, _struct$2, r, results, p;
 		if (matchBenchmarks.go$get().length === 0) {
 			return;
@@ -657,7 +674,8 @@ $$
 			}
 		}
 	};
-	B.Ptr.prototype.trimOutput = function() {
+0Çÿ
+trimOutputÇ»	B.Ptr.prototype.trimOutput = function() {
 		var b, _tuple, nlCount, j, _slice, _index;
 		b = this;
 		_tuple = [0, 0], nlCount = _tuple[0], j = _tuple[1];
@@ -673,22 +691,22 @@ $$
 		}
 	};
 	B.prototype.trimOutput = function() { return this.go$val.trimOutput(); };
-	var Benchmark = go$pkg.Benchmark = function(f) {
+0Ç]	BenchmarkÇN	var Benchmark = go$pkg.Benchmark = function(f) {
 		var b, _struct;
 		b = new B.Ptr(new common.Ptr(new sync.RWMutex.Ptr(), (go$sliceType(Go$Uint8)).nil, false, false, new time.Time.Ptr(), new time.Duration(0, 0), null, new (go$chanType(go$emptyInterface, false, false))()), 0, new InternalBenchmark.Ptr("", f), new Go$Int64(0, 0), false, false, new BenchmarkResult.Ptr(), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0));
 		return (_struct = b.run(), new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
 	};
-	var RegisterCover = go$pkg.RegisterCover = function(c) {
+0Å–RegisterCoverÅæ	var RegisterCover = go$pkg.RegisterCover = function(c) {
 		var _struct;
 		cover = (_struct = c, new Cover.Ptr(_struct.Mode, _struct.Counters, _struct.Blocks, _struct.CoveredPackages));
 	};
-	var mustBeNil = function(err) {
+0ÅÀ	mustBeNilÅΩ	var mustBeNil = function(err) {
 		if (!(go$interfaceIsEqual(err, null))) {
 			fmt.Fprintf(os.Stderr, "testing: %s\n", new (go$sliceType(go$emptyInterface))([err]));
 			os.Exit(2);
 		}
 	};
-	var coverReport = function() {
+0Ç£coverReportÇí	var coverReport = function() {
 		var f, err, _tuple, _tuple$1, active, total, _ref, _i, _keys, _entry, counts, name, _entry$1, blocks, _ref$1, _i$1, _slice, _index, count, i, _slice$1, _index$1, stmts, x, x$1, _tuple$2, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, err$1;
 		var go$deferred = [];
 		try {
@@ -737,7 +755,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var RunExamples = go$pkg.RunExamples = function(matchString, examples) {
+0ÇRunExamplesÇﬂ	var RunExamples = go$pkg.RunExamples = function(matchString, examples) {
 		var ok, eg, _ref, _i, _slice, _index, _struct, _tuple, matched, err, _struct$1;
 		ok = false;
 		ok = true;
@@ -760,7 +778,8 @@ $$
 		}
 		return ok;
 	};
-	var runExample = function(eg) {
+0ÇÇ
+runExampleÇr	var runExample = function(eg) {
 		var ok, stdout, _tuple, r, w, err, outC, _struct, start;
 		ok = false;
 		var go$deferred = [];
@@ -809,13 +828,13 @@ $$
 			return ok;
 		}
 	};
-	var Short = go$pkg.Short = function() {
+0QShortH	var Short = go$pkg.Short = function() {
 		return short$1.go$get();
 	};
-	var Verbose = go$pkg.Verbose = function() {
+0VVerboseK	var Verbose = go$pkg.Verbose = function() {
 		return chatty.go$get();
 	};
-	var decorate = function(s) {
+0ÇPdecorateÇB	var decorate = function(s) {
 		var _tuple, file, line, ok, index, buf, lines, l, _slice, _index, _ref, _i, _slice$1, _index$1, line$1, i;
 		_tuple = runtime.Caller(3), file = _tuple[1], line = _tuple[2], ok = _tuple[3];
 		if (ok) {
@@ -848,12 +867,12 @@ $$
 		buf.WriteByte(10);
 		return buf.String();
 	};
-	common.Ptr.prototype.private$ = function() {
+0ÅüprivateÅì	common.Ptr.prototype.private$ = function() {
 		var c;
 		c = this;
 	};
 	common.prototype.private$ = function() { return this.go$val.private$(); };
-	common.Ptr.prototype.Fail = function() {
+0ÇuFailÇk	common.Ptr.prototype.Fail = function() {
 		var c;
 		var go$deferred = [];
 		try {
@@ -868,7 +887,7 @@ $$
 		}
 	};
 	common.prototype.Fail = function() { return this.go$val.Fail(); };
-	common.Ptr.prototype.Failed = function() {
+0ÇêFailedÇÑ	common.Ptr.prototype.Failed = function() {
 		var c;
 		var go$deferred = [];
 		try {
@@ -884,14 +903,14 @@ $$
 		}
 	};
 	common.prototype.Failed = function() { return this.go$val.Failed(); };
-	common.Ptr.prototype.FailNow = function() {
+0ÅºFailNowÅ∞	common.Ptr.prototype.FailNow = function() {
 		var c;
 		c = this;
 		c.Fail();
 		runtime.Goexit();
 	};
 	common.prototype.FailNow = function() { return this.go$val.FailNow(); };
-	common.Ptr.prototype.log = function(s) {
+0Ç≈logÇº	common.Ptr.prototype.log = function(s) {
 		var c;
 		var go$deferred = [];
 		try {
@@ -906,68 +925,68 @@ $$
 		}
 	};
 	common.prototype.log = function(s) { return this.go$val.log(s); };
-	common.Ptr.prototype.Log = function(args) {
+0ÅµLogÅ≠	common.Ptr.prototype.Log = function(args) {
 		var c;
 		c = this;
 		c.log(fmt.Sprintln(args));
 	};
 	common.prototype.Log = function(args) { return this.go$val.Log(args); };
-	common.Ptr.prototype.Logf = function(format, args) {
+0ÅÿLogfÅœ	common.Ptr.prototype.Logf = function(format, args) {
 		var c;
 		c = this;
 		c.log(fmt.Sprintf(format, args));
 	};
 	common.prototype.Logf = function(format, args) { return this.go$val.Logf(format, args); };
-	common.Ptr.prototype.Error = function(args) {
+0Å…ErrorÅø	common.Ptr.prototype.Error = function(args) {
 		var c;
 		c = this;
 		c.log(fmt.Sprintln(args));
 		c.Fail();
 	};
 	common.prototype.Error = function(args) { return this.go$val.Error(args); };
-	common.Ptr.prototype.Errorf = function(format, args) {
+0ÅÏErrorfÅ·	common.Ptr.prototype.Errorf = function(format, args) {
 		var c;
 		c = this;
 		c.log(fmt.Sprintf(format, args));
 		c.Fail();
 	};
 	common.prototype.Errorf = function(format, args) { return this.go$val.Errorf(format, args); };
-	common.Ptr.prototype.Fatal = function(args) {
+0ÅÃFatalÅ¬	common.Ptr.prototype.Fatal = function(args) {
 		var c;
 		c = this;
 		c.log(fmt.Sprintln(args));
 		c.FailNow();
 	};
 	common.prototype.Fatal = function(args) { return this.go$val.Fatal(args); };
-	common.Ptr.prototype.Fatalf = function(format, args) {
+0ÅÔFatalfÅ‰	common.Ptr.prototype.Fatalf = function(format, args) {
 		var c;
 		c = this;
 		c.log(fmt.Sprintf(format, args));
 		c.FailNow();
 	};
 	common.prototype.Fatalf = function(format, args) { return this.go$val.Fatalf(format, args); };
-	common.Ptr.prototype.Skip = function(args) {
+0Å»SkipÅø	common.Ptr.prototype.Skip = function(args) {
 		var c;
 		c = this;
 		c.log(fmt.Sprintln(args));
 		c.SkipNow();
 	};
 	common.prototype.Skip = function(args) { return this.go$val.Skip(args); };
-	common.Ptr.prototype.Skipf = function(format, args) {
+0ÅÎSkipfÅ·	common.Ptr.prototype.Skipf = function(format, args) {
 		var c;
 		c = this;
 		c.log(fmt.Sprintf(format, args));
 		c.SkipNow();
 	};
 	common.prototype.Skipf = function(format, args) { return this.go$val.Skipf(format, args); };
-	common.Ptr.prototype.SkipNow = function() {
+0ÅºSkipNowÅ∞	common.Ptr.prototype.SkipNow = function() {
 		var c;
 		c = this;
 		c.skip();
 		runtime.Goexit();
 	};
 	common.prototype.SkipNow = function() { return this.go$val.SkipNow(); };
-	common.Ptr.prototype.skip = function() {
+0ÇvskipÇl	common.Ptr.prototype.skip = function() {
 		var c;
 		var go$deferred = [];
 		try {
@@ -982,7 +1001,7 @@ $$
 		}
 	};
 	common.prototype.skip = function() { return this.go$val.skip(); };
-	common.Ptr.prototype.Skipped = function() {
+0ÇïSkippedÇà	common.Ptr.prototype.Skipped = function() {
 		var c;
 		var go$deferred = [];
 		try {
@@ -998,7 +1017,7 @@ $$
 		}
 	};
 	common.prototype.Skipped = function() { return this.go$val.Skipped(); };
-	T.Ptr.prototype.Parallel = function() {
+0Ç.ParallelÇ 	T.Ptr.prototype.Parallel = function() {
 		var t, _struct;
 		t = this;
 		go$notSupported("send");
@@ -1006,7 +1025,7 @@ $$
 		t.common.start = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 	};
 	T.prototype.Parallel = function() { return this.go$val.Parallel(); };
-	var tRunner = function(t, test) {
+0Ç≠tRunnerÇ†	var tRunner = function(t, test) {
 		var _struct;
 		var go$deferred = [];
 		try {
@@ -1028,7 +1047,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var Main = go$pkg.Main = function(matchString, tests, benchmarks, examples) {
+0ÇJMainÇ@	var Main = go$pkg.Main = function(matchString, tests, benchmarks, examples) {
 		var testOk, exampleOk;
 		flag.Parse();
 		parseCpuList();
@@ -1046,7 +1065,7 @@ $$
 		RunBenchmarks(matchString, benchmarks);
 		after();
 	};
-	T.Ptr.prototype.report = function() {
+0ÇfreportÇZ	T.Ptr.prototype.report = function() {
 		var t, tstr, format;
 		t = this;
 		tstr = fmt.Sprintf("(%.2f seconds)", new (go$sliceType(go$emptyInterface))([new Go$Float64(t.common.duration.Seconds())]));
@@ -1062,7 +1081,7 @@ $$
 		}
 	};
 	T.prototype.report = function() { return this.go$val.report(); };
-	var RunTests = go$pkg.RunTests = function(matchString, tests) {
+0Ç◊RunTestsÇ…	var RunTests = go$pkg.RunTests = function(matchString, tests) {
 		var ok, _ref, _i, _slice, _index, procs, collector, numParallel, startParallel, i, t, _tuple, _slice$1, _index$1, matched, err, _slice$2, _index$2, testName, _slice$3, _index$3, x, out, running, x$1, t$1;
 		ok = false;
 		ok = true;
@@ -1127,7 +1146,7 @@ $$
 		}
 		return ok;
 	};
-	var before = function() {
+0Ç)beforeÇ	var before = function() {
 		var _tuple, f, err, err$1;
 		if (memProfileRate.go$get() > 0) {
 			runtime.MemProfileRate = memProfileRate.go$get();
@@ -1152,7 +1171,7 @@ $$
 			os.Exit(2);
 		}
 	};
-	var after = function() {
+0ÇWafterÇL	var after = function() {
 		var _tuple, f, err, _tuple$1, f$1, err$1;
 		if (!(cpuProfile.go$get() === "")) {
 			pprof.StopCPUProfile();
@@ -1185,7 +1204,7 @@ $$
 			coverReport();
 		}
 	};
-	var toOutputDir = function(path) {
+0ÇVtoOutputDirÇE	var toOutputDir = function(path) {
 		if (outputDir.go$get() === "" || path === "") {
 			return path;
 		}
@@ -1194,7 +1213,8 @@ $$
 		}
 		return fmt.Sprintf("%s%c%s", new (go$sliceType(go$emptyInterface))([new Go$String(outputDir.go$get()), new Go$Int32(47), new Go$String(path)]));
 	};
-	var startAlarm = function() {
+0ÇU
+startAlarmÇE	var startAlarm = function() {
 		var x;
 		if ((x = timeout.go$get(), (x.high > 0 || (x.high === 0 && x.low > 0)))) {
 			timer = time.AfterFunc(timeout.go$get(), (function() {
@@ -1202,13 +1222,13 @@ $$
 			}));
 		}
 	};
-	var stopAlarm = function() {
+0Åõ	stopAlarmÅç	var stopAlarm = function() {
 		var x;
 		if ((x = timeout.go$get(), (x.high > 0 || (x.high === 0 && x.low > 0)))) {
 			timer.Stop();
 		}
 	};
-	var parseCpuList = function() {
+0ÇhparseCpuListÇV	var parseCpuList = function() {
 		var _ref, _i, _slice, _index, val, _tuple, cpu, err;
 		_ref = strings.Split(cpuListStr.go$get(), ",");
 		_i = 0;
@@ -1229,31 +1249,7 @@ $$
 			cpuList = go$append(cpuList, runtime.GOMAXPROCS(-1));
 		}
 	};
-	var matchBenchmarks = (go$ptrType(Go$String)).nil;
-	var benchTime = (go$ptrType(time.Duration)).nil;
-	var benchmarkMemory = (go$ptrType(Go$Bool)).nil;
-	var benchmarkLock = new sync.Mutex.Ptr();
-	var memStats = new runtime.MemStats.Ptr();
-	var cover = new Cover.Ptr();
-	var short$1 = (go$ptrType(Go$Bool)).nil;
-	var outputDir = (go$ptrType(Go$String)).nil;
-	var chatty = (go$ptrType(Go$Bool)).nil;
-	var coverProfile = (go$ptrType(Go$String)).nil;
-	var match = (go$ptrType(Go$String)).nil;
-	var memProfile = (go$ptrType(Go$String)).nil;
-	var memProfileRate = (go$ptrType(Go$Int)).nil;
-	var cpuProfile = (go$ptrType(Go$String)).nil;
-	var blockProfile = (go$ptrType(Go$String)).nil;
-	var blockProfileRate = (go$ptrType(Go$Int)).nil;
-	var timeout = (go$ptrType(time.Duration)).nil;
-	var cpuListStr = (go$ptrType(Go$String)).nil;
-	var parallel = (go$ptrType(Go$Int)).nil;
-	var haveExamples = false;
-	var cpuList = (go$sliceType(Go$Int)).nil;
-	var _ = null;
-	var _$1 = null;
-	var timer = (go$ptrType(time.Timer)).nil;
-
+0ÇrinitÇh
 			go$pkg.RunTests2 = function(pkgPath, dir, names, tests) {
 				if (tests.length === 0) {
 					console.log("?   \t" + pkgPath + "\t[no test files]");

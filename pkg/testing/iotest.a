@@ -1,4 +1,4 @@
-0‚&‚²package iotest
+0‚&ätesting/iotest‚²package iotest
 import io "io"
 import log "log"
 import errors "errors"
@@ -27,10 +27,8 @@ func (? *@"".writeLogger) @"".Write(@"".p []byte) (@"".n int, @"".err error)
 type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
-0{runtimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtlogtesting/iotest‚Û	var io = go$packages["io"];
-	var log = go$packages["log"];
-	var errors = go$packages["errors"];
-	var writeLogger;
+0{runtimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtlogtesting/iotest0(0ioio0
+loglog0errorserrors‚à	var writeLogger;
 	writeLogger = go$newType(0, "Struct", "iotest.writeLogger", "writeLogger", "testing/iotest", function(prefix_, w_) {
 		this.go$val = this;
 		this.prefix = prefix_ !== undefined ? prefix_ : "";
@@ -92,7 +90,8 @@ $$
 	(go$ptrType(timeoutReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	truncateWriter.init([["w", "testing/iotest", io.Writer, ""], ["n", "testing/iotest", Go$Int64, ""]]);
 	(go$ptrType(truncateWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	writeLogger.Ptr.prototype.Write = function(p) {
+	go$pkg.ErrTimeout = null;
+0‚r0‚8Write‚-	writeLogger.Ptr.prototype.Write = function(p) {
 		var n, err, l, _tuple;
 		n = 0;
 		err = null;
@@ -106,10 +105,10 @@ $$
 		return [n, err];
 	};
 	writeLogger.prototype.Write = function(p) { return this.go$val.Write(p); };
-	var NewWriteLogger = go$pkg.NewWriteLogger = function(prefix, w) {
+0ƒNewWriteLoggerq	var NewWriteLogger = go$pkg.NewWriteLogger = function(prefix, w) {
 		return new writeLogger.Ptr(prefix, w);
 	};
-	readLogger.Ptr.prototype.Read = function(p) {
+0‚1Read‚'	readLogger.Ptr.prototype.Read = function(p) {
 		var n, err, l, _tuple;
 		n = 0;
 		err = null;
@@ -123,13 +122,13 @@ $$
 		return [n, err];
 	};
 	readLogger.prototype.Read = function(p) { return this.go$val.Read(p); };
-	var NewReadLogger = go$pkg.NewReadLogger = function(prefix, r) {
+0NewReadLoggern	var NewReadLogger = go$pkg.NewReadLogger = function(prefix, r) {
 		return new readLogger.Ptr(prefix, r);
 	};
-	var OneByteReader = go$pkg.OneByteReader = function(r) {
+0rOneByteReadera	var OneByteReader = go$pkg.OneByteReader = function(r) {
 		return new oneByteReader.Ptr(r);
 	};
-	oneByteReader.Ptr.prototype.Read = function(p) {
+0ûReadò	oneByteReader.Ptr.prototype.Read = function(p) {
 		var r;
 		r = this;
 		if (p.length === 0) {
@@ -138,19 +137,20 @@ $$
 		return r.r.Read(go$subslice(p, 0, 1));
 	};
 	oneByteReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	var HalfReader = go$pkg.HalfReader = function(r) {
+0f
+HalfReaderX	var HalfReader = go$pkg.HalfReader = function(r) {
 		return new halfReader.Ptr(r);
 	};
-	halfReader.Ptr.prototype.Read = function(p) {
+0‚MRead‚C	halfReader.Ptr.prototype.Read = function(p) {
 		var r, _q;
 		r = this;
 		return r.r.Read(go$subslice(p, 0, (_q = ((p.length + 1 >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))));
 	};
 	halfReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	var DataErrReader = go$pkg.DataErrReader = function(r) {
+0ÓDataErrReaderÁ	var DataErrReader = go$pkg.DataErrReader = function(r) {
 		return new dataErrReader.Ptr(r, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).make(1024, 0, function() { return 0; }));
 	};
-	dataErrReader.Ptr.prototype.Read = function(p) {
+0‚+Read‚!	dataErrReader.Ptr.prototype.Read = function(p) {
 		var n, err, r, _tuple, n1, err1;
 		n = 0;
 		err = null;
@@ -170,10 +170,10 @@ $$
 		return [n, err];
 	};
 	dataErrReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	var TimeoutReader = go$pkg.TimeoutReader = function(r) {
+0uTimeoutReaderd	var TimeoutReader = go$pkg.TimeoutReader = function(r) {
 		return new timeoutReader.Ptr(r, 0);
 	};
-	timeoutReader.Ptr.prototype.Read = function(p) {
+0‚Read‚		timeoutReader.Ptr.prototype.Read = function(p) {
 		var r;
 		r = this;
 		r.count = r.count + 1 >> 0;
@@ -183,10 +183,10 @@ $$
 		return r.r.Read(p);
 	};
 	timeoutReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	var TruncateWriter = go$pkg.TruncateWriter = function(w, n) {
+0|TruncateWriterj	var TruncateWriter = go$pkg.TruncateWriter = function(w, n) {
 		return new truncateWriter.Ptr(w, n);
 	};
-	truncateWriter.Ptr.prototype.Write = function(p) {
+0‚cWrite‚X	truncateWriter.Ptr.prototype.Write = function(p) {
 		var n, err, t, x, _tuple, x$1, x$2, x$3, _tuple$1, x$4, x$5;
 		n = 0;
 		err = null;
@@ -207,7 +207,6 @@ $$
 		return [n, err];
 	};
 	truncateWriter.prototype.Write = function(p) { return this.go$val.Write(p); };
-	go$pkg.ErrTimeout = null;
-	go$pkg.init = function() {
+0UinitM	go$pkg.init = function() {
 		go$pkg.ErrTimeout = errors.New("timeout");
 	};

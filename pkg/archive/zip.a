@@ -1,4 +1,4 @@
-0É;‡Ç;package zip
+0É;:archive/zipÇ;package zip
 import bufio "bufio"
 import binary "encoding/binary"
 import errors "errors"
@@ -227,19 +227,8 @@ type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time"
 type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
 $$
 0ÅÏruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flateencoding/binaryhash
-hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio = go$packages["bufio"];
-	var binary = go$packages["encoding/binary"];
-	var errors = go$packages["errors"];
-	var hash = go$packages["hash"];
-	var crc32 = go$packages["hash/crc32"];
-	var io = go$packages["io"];
-	var os = go$packages["os"];
-	var flate = go$packages["compress/flate"];
-	var ioutil = go$packages["io/ioutil"];
-	var sync = go$packages["sync"];
-	var path = go$packages["path"];
-	var time = go$packages["time"];
-	var Reader;
+hash/crc32stringspath/filepath	io/ioutilpatharchive/zip0ÅÃ0bufiobufio0encoding/binarybinary0errorserrors0hashhash0
+hash/crc32crc320ioio0osos0compress/flateflate0	io/ioutilioutil0syncsync0pathpath0timetimeÇAâ	var Reader;
 	Reader = go$newType(0, "Struct", "zip.Reader", "Reader", "archive/zip", function(r_, File_, Comment_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
@@ -438,13 +427,20 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 	(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	writeBuf.init(Go$Uint8);
 	(go$ptrType(writeBuf)).methods = [["uint16", "archive/zip", [Go$Uint16], [], false], ["uint32", "archive/zip", [Go$Uint32], [], false], ["uint64", "archive/zip", [Go$Uint64], [], false]];
-	File.Ptr.prototype.hasDataDescriptor = function() {
+Å´	go$pkg.ErrFormat = null;
+	go$pkg.ErrAlgorithm = null;
+	go$pkg.ErrChecksum = null;
+	var mu = new sync.RWMutex.Ptr();
+	var compressors = false;
+	var decompressors = false;
+0Çº0ÅˆhasDataDescriptorÅ‡	File.Ptr.prototype.hasDataDescriptor = function() {
 		var f;
 		f = this;
 		return !((((f.FileHeader.Flags & 8) >>> 0) === 0));
 	};
 	File.prototype.hasDataDescriptor = function() { return this.go$val.hasDataDescriptor(); };
-	var OpenReader = go$pkg.OpenReader = function(name) {
+0Çâ
+OpenReaderÇy	var OpenReader = go$pkg.OpenReader = function(name) {
 		var _tuple, f, err, _tuple$1, fi, r, err$1;
 		_tuple = os.Open(name), f = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -463,7 +459,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		r.f = f;
 		return [r, null];
 	};
-	var NewReader = go$pkg.NewReader = function(r, size) {
+0Å˘	NewReaderÅÎ	var NewReader = go$pkg.NewReader = function(r, size) {
 		var zr, err;
 		zr = new Reader.Ptr();
 		if (err = zr.init(r, size), !(go$interfaceIsEqual(err, null))) {
@@ -471,7 +467,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		}
 		return [zr, null];
 	};
-	Reader.Ptr.prototype.init = function(r, size) {
+0Ç“initÇ»	Reader.Ptr.prototype.init = function(r, size) {
 		var z, _tuple, end, err, rs, _tuple$1, x, buf, f;
 		z = this;
 		_tuple = readDirectoryEnd(r, size), end = _tuple[0], err = _tuple[1];
@@ -503,13 +499,14 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return null;
 	};
 	Reader.prototype.init = function(r, size) { return this.go$val.init(r, size); };
-	ReadCloser.Ptr.prototype.Close = function() {
+0ÅµCloseÅ´	ReadCloser.Ptr.prototype.Close = function() {
 		var rc;
 		rc = this;
 		return rc.f.Close();
 	};
 	ReadCloser.prototype.Close = function() { return this.go$val.Close(); };
-	File.Ptr.prototype.DataOffset = function() {
+0Ç<
+DataOffsetÇ,	File.Ptr.prototype.DataOffset = function() {
 		var offset, err, f, _tuple, bodyOffset, x, _tuple$1;
 		offset = new Go$Int64(0, 0);
 		err = null;
@@ -522,7 +519,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return [offset, err];
 	};
 	File.prototype.DataOffset = function() { return this.go$val.DataOffset(); };
-	File.Ptr.prototype.Open = function() {
+0ÇJOpenÇ@	File.Ptr.prototype.Open = function() {
 		var rc, err, f, _tuple, bodyOffset, x, size, x$1, r, dcomp, desr, x$2, x$3;
 		rc = null;
 		err = null;
@@ -547,7 +544,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return [rc, err];
 	};
 	File.prototype.Open = function() { return this.go$val.Open(); };
-	checksumReader.Ptr.prototype.Read = function(b) {
+0ÇÿReadÇŒ	checksumReader.Ptr.prototype.Read = function(b) {
 		var n, err, r, _tuple, _tuple$1, err1;
 		n = 0;
 		err = null;
@@ -578,13 +575,13 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return [n, err];
 	};
 	checksumReader.prototype.Read = function(b) { return this.go$val.Read(b); };
-	checksumReader.Ptr.prototype.Close = function() {
+0ÅªCloseÅ±	checksumReader.Ptr.prototype.Close = function() {
 		var r;
 		r = this;
 		return r.rc.Close();
 	};
 	checksumReader.prototype.Close = function() { return this.go$val.Close(); };
-	File.Ptr.prototype.findBodyOffset = function() {
+0ÇWfindBodyOffsetÇC	File.Ptr.prototype.findBodyOffset = function() {
 		var f, buf, err, _tuple, x, b, sig, v, v$1, filenameLen, v$2, extraLen;
 		f = this;
 		buf = go$makeNativeArray("Uint8", 30, function() { return 0; });
@@ -601,7 +598,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return [new Go$Int64(0, ((30 + filenameLen >> 0) + extraLen >> 0)), null];
 	};
 	File.prototype.findBodyOffset = function() { return this.go$val.findBodyOffset(); };
-	var readDirectoryHeader = function(f, r) {
+0ÇÃreadDirectoryHeaderÇ≥	var readDirectoryHeader = function(f, r) {
 		var buf, err, _tuple, x, b, sig, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v$10, filenameLen, v$11, extraLen, v$12, commentLen, v$13, v$14, d, err$1, _tuple$1, x$1, b$1, v$15, tag, v$16, size, eb, v$17, v$18, x$2, v$19;
 		buf = go$makeNativeArray("Uint8", 46, function() { return 0; });
 		if (_tuple = io.ReadFull(r, new (go$sliceType(Go$Uint8))(buf)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
@@ -663,7 +660,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		}
 		return null;
 	};
-	var readDataDescriptor = function(r, f) {
+0ÇêreadDataDescriptorÇx	var readDataDescriptor = function(r, f) {
 		var buf, err, _tuple, off, x, maybeSig, v, err$1, _tuple$1, x$1, b, v$1;
 		buf = go$makeNativeArray("Uint8", 16, function() { return 0; });
 		if (_tuple = io.ReadFull(r, go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, 4)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
@@ -683,7 +680,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		}
 		return null;
 	};
-	var readDirectoryEnd = function(r, size) {
+0ÇareadDirectoryEndÇK	var readDirectoryEnd = function(r, size) {
 		var dir, err, buf, directoryEndOffset, _ref, _i, _slice, _index, bLen, i, err$1, _tuple, _tuple$1, p, x, x$1, _tuple$2, x$2, b, v, v$1, v$2, v$3, v$4, v$5, v$6, d, l, _tuple$3, _tuple$4, p$1, _tuple$5, o, x$3, _tuple$6, _tuple$7;
 		dir = (go$ptrType(directoryEnd)).nil;
 		err = null;
@@ -735,7 +732,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		_tuple$7 = [d, null], dir = _tuple$7[0], err = _tuple$7[1];
 		return [dir, err];
 	};
-	var findDirectory64End = function(r, directoryEndOffset) {
+0ÇÍfindDirectory64EndÇ“	var findDirectory64End = function(r, directoryEndOffset) {
 		var locOffset, buf, err, _tuple, b, sig, v, v$1, p;
 		locOffset = new Go$Int64(directoryEndOffset.high - 0, directoryEndOffset.low - 20);
 		if ((locOffset.high < 0 || (locOffset.high === 0 && locOffset.low < 0))) {
@@ -753,7 +750,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		p = (new (go$ptrType(readBuf))(function() { return b; }, function(v$1) { b = v$1; })).uint64();
 		return [new Go$Int64(p.high, p.low), null];
 	};
-	var readDirectory64End = function(r, offset, d) {
+0ÇCreadDirectory64EndÇ+	var readDirectory64End = function(r, offset, d) {
 		var err, buf, err$1, _tuple, b, sig, v, v$1, v$2, v$3, v$4, v$5, v$6;
 		err = null;
 		buf = (go$sliceType(Go$Uint8)).make(56, 0, function() { return 0; });
@@ -776,7 +773,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		err = null;
 		return err;
 	};
-	var findSignatureInBlock = function(b) {
+0Ç‡findSignatureInBlockÇ∆	var findSignatureInBlock = function(b) {
 		var i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, n;
 		i = b.length - 22 >> 0;
 		while (i >= 0) {
@@ -790,7 +787,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		}
 		return -1;
 	};
-	go$ptrType(readBuf).prototype.uint16 = function() {
+0Ç®uint16Çú	go$ptrType(readBuf).prototype.uint16 = function() {
 		var b, x, v;
 		b = this;
 		v = binary.LittleEndian.Uint16((x = b.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length)));
@@ -798,7 +795,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return v;
 	};
 	readBuf.prototype.uint16 = function() { var obj = this; return (new (go$ptrType(readBuf))(function() { return obj; }, null)).uint16(); };
-	go$ptrType(readBuf).prototype.uint32 = function() {
+0Ç®uint32Çú	go$ptrType(readBuf).prototype.uint32 = function() {
 		var b, x, v;
 		b = this;
 		v = binary.LittleEndian.Uint32((x = b.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length)));
@@ -806,7 +803,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return v;
 	};
 	readBuf.prototype.uint32 = function() { var obj = this; return (new (go$ptrType(readBuf))(function() { return obj; }, null)).uint32(); };
-	go$ptrType(readBuf).prototype.uint64 = function() {
+0Ç®uint64Çú	go$ptrType(readBuf).prototype.uint64 = function() {
 		var b, x, v;
 		b = this;
 		v = binary.LittleEndian.Uint64((x = b.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length)));
@@ -814,7 +811,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return v;
 	};
 	readBuf.prototype.uint64 = function() { var obj = this; return (new (go$ptrType(readBuf))(function() { return obj; }, null)).uint64(); };
-	var RegisterDecompressor = go$pkg.RegisterDecompressor = function(method, d) {
+0ÇØRegisterDecompressorÇï	var RegisterDecompressor = go$pkg.RegisterDecompressor = function(method, d) {
 		var ok, _tuple, _entry, _key;
 		var go$deferred = [];
 		try {
@@ -830,7 +827,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 			go$callDeferred(go$deferred);
 		}
 	};
-	var RegisterCompressor = go$pkg.RegisterCompressor = function(method, comp) {
+0Ç©RegisterCompressorÇë	var RegisterCompressor = go$pkg.RegisterCompressor = function(method, comp) {
 		var ok, _tuple, _entry, _key;
 		var go$deferred = [];
 		try {
@@ -846,7 +843,8 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 			go$callDeferred(go$deferred);
 		}
 	};
-	var compressor = function(method) {
+0Çú
+compressorÇå	var compressor = function(method) {
 		var _entry;
 		var go$deferred = [];
 		try {
@@ -860,7 +858,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 			go$callDeferred(go$deferred);
 		}
 	};
-	var decompressor = function(method) {
+0Ç¢decompressorÇê	var decompressor = function(method) {
 		var _entry;
 		var go$deferred = [];
 		try {
@@ -874,19 +872,19 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 			go$callDeferred(go$deferred);
 		}
 	};
-	FileHeader.Ptr.prototype.FileInfo = function() {
+0ÅÚFileInfoÅÂ	FileHeader.Ptr.prototype.FileInfo = function() {
 		var h, x;
 		h = this;
 		return (x = new headerFileInfo.Ptr(h), new x.constructor.Struct(x));
 	};
 	FileHeader.prototype.FileInfo = function() { return this.go$val.FileInfo(); };
-	headerFileInfo.Ptr.prototype.Name = function() {
+0Å˚NameÅÚ	headerFileInfo.Ptr.prototype.Name = function() {
 		var _struct, fi;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.fh));
 		return path.Base(fi.fh.Name);
 	};
 	headerFileInfo.prototype.Name = function() { return this.go$val.Name(); };
-	headerFileInfo.Ptr.prototype.Size = function() {
+0ÇºSizeÇ≤	headerFileInfo.Ptr.prototype.Size = function() {
 		var _struct, fi, x, x$1;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.fh));
 		if ((x = fi.fh.UncompressedSize64, (x.high > 0 || (x.high === 0 && x.low > 0)))) {
@@ -895,31 +893,31 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return new Go$Int64(0, fi.fh.UncompressedSize);
 	};
 	headerFileInfo.prototype.Size = function() { return this.go$val.Size(); };
-	headerFileInfo.Ptr.prototype.IsDir = function() {
+0ÇIsDirÇ	headerFileInfo.Ptr.prototype.IsDir = function() {
 		var _struct, fi;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.fh));
 		return (new os.FileMode(fi.Mode())).IsDir();
 	};
 	headerFileInfo.prototype.IsDir = function() { return this.go$val.IsDir(); };
-	headerFileInfo.Ptr.prototype.ModTime = function() {
+0Ç\ModTimeÇO	headerFileInfo.Ptr.prototype.ModTime = function() {
 		var _struct, fi, _struct$1;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.fh));
 		return (_struct$1 = fi.fh.ModTime(), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
 	};
 	headerFileInfo.prototype.ModTime = function() { return this.go$val.ModTime(); };
-	headerFileInfo.Ptr.prototype.Mode = function() {
+0ÅÚModeÅÈ	headerFileInfo.Ptr.prototype.Mode = function() {
 		var _struct, fi;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.fh));
 		return fi.fh.Mode();
 	};
 	headerFileInfo.prototype.Mode = function() { return this.go$val.Mode(); };
-	headerFileInfo.Ptr.prototype.Sys = function() {
+0ÅÁSysÅﬂ	headerFileInfo.Ptr.prototype.Sys = function() {
 		var _struct, fi;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.fh));
 		return fi.fh;
 	};
 	headerFileInfo.prototype.Sys = function() { return this.go$val.Sys(); };
-	var FileInfoHeader = go$pkg.FileInfoHeader = function(fi) {
+0ÇÉFileInfoHeaderÇo	var FileInfoHeader = go$pkg.FileInfoHeader = function(fi) {
 		var size, fh, _struct, x;
 		size = fi.Size();
 		fh = new FileHeader.Ptr(fi.Name(), 0, 0, 0, 0, 0, 0, 0, 0, 0, new Go$Uint64(0, 0), new Go$Uint64(size.high, size.low), (go$sliceType(Go$Uint8)).nil, 0, "");
@@ -932,11 +930,11 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		}
 		return [fh, null];
 	};
-	var msDosTimeToTime = function(dosDate, dosTime) {
+0ÇﬁmsDosTimeToTimeÇ…	var msDosTimeToTime = function(dosDate, dosTime) {
 		var _struct;
 		return (_struct = time.Date((((dosDate >>> 9 << 16 >>> 16) + 1980 << 16 >>> 16) >> 0), ((((dosDate >>> 5 << 16 >>> 16) & 15) >>> 0) >> 0), (((dosDate & 31) >>> 0) >> 0), ((dosTime >>> 11 << 16 >>> 16) >> 0), ((((dosTime >>> 5 << 16 >>> 16) & 63) >>> 0) >> 0), ((((dosTime & 31) >>> 0) * 2 << 16 >>> 16) >> 0), 0, time.UTC), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 	};
-	var timeToMsDosTime = function(t) {
+0Ç9timeToMsDosTimeÇ$	var timeToMsDosTime = function(t) {
 		var fDate, fTime, _struct, _q;
 		fDate = 0;
 		fTime = 0;
@@ -945,19 +943,20 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		fTime = ((((_q = t.Second() / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) + (t.Minute() << 5 >> 0) >> 0) + (t.Hour() << 11 >> 0) >> 0) << 16 >>> 16);
 		return [fDate, fTime];
 	};
-	FileHeader.Ptr.prototype.ModTime = function() {
+0Ç/ModTimeÇ"	FileHeader.Ptr.prototype.ModTime = function() {
 		var h, _struct;
 		h = this;
 		return (_struct = msDosTimeToTime(h.ModifiedDate, h.ModifiedTime), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 	};
 	FileHeader.prototype.ModTime = function() { return this.go$val.ModTime(); };
-	FileHeader.Ptr.prototype.SetModTime = function(t) {
+0Çc
+SetModTimeÇS	FileHeader.Ptr.prototype.SetModTime = function(t) {
 		var h, _tuple, _struct;
 		h = this;
 		_tuple = timeToMsDosTime((_struct = t, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc))), h.ModifiedDate = _tuple[0], h.ModifiedTime = _tuple[1];
 	};
 	FileHeader.prototype.SetModTime = function(t) { return this.go$val.SetModTime(t); };
-	FileHeader.Ptr.prototype.Mode = function() {
+0ÇEModeÇ;	FileHeader.Ptr.prototype.Mode = function() {
 		var mode, h, _ref;
 		mode = 0;
 		h = this;
@@ -974,7 +973,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return mode;
 	};
 	FileHeader.prototype.Mode = function() { return this.go$val.Mode(); };
-	FileHeader.Ptr.prototype.SetMode = function(mode) {
+0ÇÒSetModeÇ‰	FileHeader.Ptr.prototype.SetMode = function(mode) {
 		var h;
 		h = this;
 		h.CreatorVersion = (((h.CreatorVersion & 255) >>> 0) | 768) >>> 0;
@@ -987,13 +986,13 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		}
 	};
 	FileHeader.prototype.SetMode = function(mode) { return this.go$val.SetMode(mode); };
-	FileHeader.Ptr.prototype.isZip64 = function() {
+0ÇfisZip64ÇY	FileHeader.Ptr.prototype.isZip64 = function() {
 		var fh, x, x$1;
 		fh = this;
 		return (x = fh.CompressedSize64, (x.high > 0 || (x.high === 0 && x.low > 4294967295))) || (x$1 = fh.UncompressedSize64, (x$1.high > 0 || (x$1.high === 0 && x$1.low > 4294967295)));
 	};
 	FileHeader.prototype.isZip64 = function() { return this.go$val.isZip64(); };
-	var msdosModeToFileMode = function(m) {
+0ÇmsdosModeToFileModeÅ˚	var msdosModeToFileMode = function(m) {
 		var mode;
 		mode = 0;
 		if (!((((m & 16) >>> 0) === 0))) {
@@ -1007,7 +1006,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		mode = mode;
 		return mode;
 	};
-	var fileModeToUnixMode = function(mode) {
+0ÇÈfileModeToUnixModeÇ—	var fileModeToUnixMode = function(mode) {
 		var m, _ref;
 		m = 0;
 		_ref = (mode & 2399141888) >>> 0;
@@ -1039,7 +1038,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		}
 		return (m | (((mode & 511) >>> 0) >>> 0)) >>> 0;
 	};
-	var unixModeToFileMode = function(m) {
+0Ç4unixModeToFileModeÇ	var unixModeToFileMode = function(m) {
 		var mode, _ref;
 		mode = (((m & 511) >>> 0) >>> 0);
 		_ref = (m & 61440) >>> 0;
@@ -1068,10 +1067,10 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		}
 		return mode;
 	};
-	var NewWriter = go$pkg.NewWriter = function(w) {
+0ÅÈ	NewWriterÅ€	var NewWriter = go$pkg.NewWriter = function(w) {
 		return new Writer.Ptr(new countWriter.Ptr(bufio.NewWriter(w), new Go$Int64(0, 0)), (go$sliceType((go$ptrType(header)))).nil, (go$ptrType(fileWriter)).nil, false);
 	};
-	Writer.Ptr.prototype.Close = function() {
+0Ç"jCloseÇ"_	Writer.Ptr.prototype.Close = function() {
 		var w, err, start, _ref, _i, _slice, _index, h, buf, x, b, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, x$1, v$8, v$9, buf$1, x$2, eb, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$20, x$3, v$21, v$22, err$1, _tuple, err$2, _tuple$1, err$3, _tuple$2, err$4, _tuple$3, end, records, x$4, size, offset, buf$2, x$5, b$1, v$23, v$24, v$25, v$26, v$27, v$28, v$29, v$30, v$31, v$32, v$33, v$34, v$35, v$36, err$5, _tuple$4, buf$3, x$6, b$2, v$37, v$38, v$39, v$40, v$41, err$6, _tuple$5, x$7;
 		w = this;
 		if (!(w.last === (go$ptrType(fileWriter)).nil) && !w.last.closed) {
@@ -1179,14 +1178,14 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return (x$7 = w.cw.w, (x$7 !== null && x$7.constructor === (go$ptrType(bufio.Writer)) ? x$7.go$val : go$typeAssertionFailed(x$7, (go$ptrType(bufio.Writer))))).Flush();
 	};
 	Writer.prototype.Close = function() { return this.go$val.Close(); };
-	Writer.Ptr.prototype.Create = function(name) {
+0ÇcCreateÇW	Writer.Ptr.prototype.Create = function(name) {
 		var w, header$1;
 		w = this;
 		header$1 = new FileHeader.Ptr(name, 0, 0, 0, 8, 0, 0, 0, 0, 0, new Go$Uint64(0, 0), new Go$Uint64(0, 0), (go$sliceType(Go$Uint8)).nil, 0, "");
 		return w.CreateHeader(header$1);
 	};
 	Writer.prototype.Create = function(name) { return this.go$val.Create(name); };
-	Writer.Ptr.prototype.CreateHeader = function(fh) {
+0ÇCreateHeaderÇ	Writer.Ptr.prototype.CreateHeader = function(fh) {
 		var w, err, fw, comp, err$1, _tuple, x, h, err$2;
 		w = this;
 		if (!(w.last === (go$ptrType(fileWriter)).nil) && !w.last.closed) {
@@ -1218,7 +1217,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return [fw, null];
 	};
 	Writer.prototype.CreateHeader = function(fh) { return this.go$val.CreateHeader(fh); };
-	var writeHeader = function(w, h) {
+0Ç:writeHeaderÇ)	var writeHeader = function(w, h) {
 		var buf, x, b, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v$10, err, _tuple, err$1, _tuple$1, _tuple$2, err$2;
 		buf = go$makeNativeArray("Uint8", 30, function() { return 0; });
 		b = (x = new (go$sliceType(Go$Uint8))(buf), go$subslice(new writeBuf(x.array), x.offset, x.offset + x.length));
@@ -1242,7 +1241,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		_tuple$2 = w.Write(h.Extra), err$2 = _tuple$2[1];
 		return err$2;
 	};
-	fileWriter.Ptr.prototype.Write = function(p) {
+0Ç WriteÇ	fileWriter.Ptr.prototype.Write = function(p) {
 		var w;
 		w = this;
 		if (w.closed) {
@@ -1252,7 +1251,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return w.rawCount.Write(p);
 	};
 	fileWriter.prototype.Write = function(p) { return this.go$val.Write(p); };
-	fileWriter.Ptr.prototype.close = function() {
+0ÇìcloseÇà	fileWriter.Ptr.prototype.close = function() {
 		var w, err, fh, x, x$1, buf, b, v, v$1, v$2, v$3, v$4, v$5, _tuple, err$1;
 		w = this;
 		if (w.closed) {
@@ -1294,7 +1293,7 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return err$1;
 	};
 	fileWriter.prototype.close = function() { return this.go$val.close(); };
-	countWriter.Ptr.prototype.Write = function(p) {
+0ÇmWriteÇb	countWriter.Ptr.prototype.Write = function(p) {
 		var w, _tuple, n, err, x, x$1;
 		w = this;
 		_tuple = w.w.Write(p), n = _tuple[0], err = _tuple[1];
@@ -1302,78 +1301,34 @@ hash/crc32stringspath/filepath	io/ioutilpatharchive/zipÇˇ‘	var bufio =
 		return [n, err];
 	};
 	countWriter.prototype.Write = function(p) { return this.go$val.Write(p); };
-	nopCloser.Ptr.prototype.Close = function() {
+0Å·CloseÅ◊	nopCloser.Ptr.prototype.Close = function() {
 		var _struct, w;
 		w = (_struct = this, new nopCloser.Ptr(_struct.Writer));
 		return null;
 	};
 	nopCloser.prototype.Close = function() { return this.go$val.Close(); };
-	go$ptrType(writeBuf).prototype.uint16 = function(v) {
+0Ç°uint16Çï	go$ptrType(writeBuf).prototype.uint16 = function(v) {
 		var b, x;
 		b = this;
 		binary.LittleEndian.PutUint16((x = b.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length)), v);
 		b.go$set(go$subslice((b.go$get()), 2));
 	};
 	writeBuf.prototype.uint16 = function(v) { var obj = this; return (new (go$ptrType(writeBuf))(function() { return obj; }, null)).uint16(v); };
-	go$ptrType(writeBuf).prototype.uint32 = function(v) {
+0Ç°uint32Çï	go$ptrType(writeBuf).prototype.uint32 = function(v) {
 		var b, x;
 		b = this;
 		binary.LittleEndian.PutUint32((x = b.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length)), v);
 		b.go$set(go$subslice((b.go$get()), 4));
 	};
 	writeBuf.prototype.uint32 = function(v) { var obj = this; return (new (go$ptrType(writeBuf))(function() { return obj; }, null)).uint32(v); };
-	go$ptrType(writeBuf).prototype.uint64 = function(v) {
+0Ç°uint64Çï	go$ptrType(writeBuf).prototype.uint64 = function(v) {
 		var b, x;
 		b = this;
 		binary.LittleEndian.PutUint64((x = b.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length)), v);
 		b.go$set(go$subslice((b.go$get()), 8));
 	};
 	writeBuf.prototype.uint64 = function(v) { var obj = this; return (new (go$ptrType(writeBuf))(function() { return obj; }, null)).uint64(v); };
-	go$pkg.Store = 0;
-	go$pkg.Deflate = 8;
-	var fileHeaderSignature = 67324752;
-	var directoryHeaderSignature = 33639248;
-	var directoryEndSignature = 101010256;
-	var directory64LocSignature = 117853008;
-	var directory64EndSignature = 101075792;
-	var dataDescriptorSignature = 134695760;
-	var fileHeaderLen = 30;
-	var directoryHeaderLen = 46;
-	var directoryEndLen = 22;
-	var dataDescriptorLen = 16;
-	var dataDescriptor64Len = 24;
-	var directory64LocLen = 20;
-	var directory64EndLen = 56;
-	var creatorFAT = 0;
-	var creatorUnix = 3;
-	var creatorNTFS = 11;
-	var creatorVFAT = 14;
-	var creatorMacOSX = 19;
-	var zipVersion20 = 20;
-	var zipVersion45 = 45;
-	var uint16max = 65535;
-	var uint32max = 4294967295;
-	var zip64ExtraId = 1;
-	var s_IFMT = 61440;
-	var s_IFSOCK = 49152;
-	var s_IFLNK = 40960;
-	var s_IFREG = 32768;
-	var s_IFBLK = 24576;
-	var s_IFDIR = 16384;
-	var s_IFCHR = 8192;
-	var s_IFIFO = 4096;
-	var s_ISUID = 2048;
-	var s_ISGID = 1024;
-	var s_ISVTX = 512;
-	var msdosDir = 16;
-	var msdosReadOnly = 1;
-	go$pkg.ErrFormat = null;
-	go$pkg.ErrAlgorithm = null;
-	go$pkg.ErrChecksum = null;
-	var mu = new sync.RWMutex.Ptr();
-	var compressors = false;
-	var decompressors = false;
-	go$pkg.init = function() {
+0Ç¥initÇ™	go$pkg.init = function() {
 		var _map, _key, _map$1, _key$1;
 		go$pkg.ErrFormat = errors.New("zip: not a valid zip file");
 		go$pkg.ErrAlgorithm = errors.New("zip: unsupported compression algorithm");

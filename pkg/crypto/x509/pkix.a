@@ -1,4 +1,4 @@
-0Çï—Ç\Ôpackage pkix
+0Çñcrypto/x509/pkixÇ\Ôpackage pkix
 import asn1 "encoding/asn1"
 import big "math/big"
 import time "time"
@@ -277,10 +277,7 @@ type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time"
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
 $$
-0Å∆runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/binary	math/randstringsmath/bigencoding/asn1crypto/x509/pkixÇ8	var asn1 = go$packages["encoding/asn1"];
-	var big = go$packages["math/big"];
-	var time = go$packages["time"];
-	var AlgorithmIdentifier;
+0Å∆runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/binary	math/randstringsmath/bigencoding/asn1crypto/x509/pkix060encoding/asn1asn10math/bigbig0timetimeÇi	var AlgorithmIdentifier;
 	AlgorithmIdentifier = go$newType(0, "Struct", "pkix.AlgorithmIdentifier", "AlgorithmIdentifier", "crypto/x509/pkix", function(Algorithm_, Parameters_) {
 		this.go$val = this;
 		this.Algorithm = Algorithm_ !== undefined ? Algorithm_ : asn1.ObjectIdentifier.nil;
@@ -364,7 +361,18 @@ $$
 	(go$ptrType(CertificateList)).methods = [["HasExpired", "", [time.Time], [Go$Bool], false]];
 	TBSCertificateList.init([["Raw", "", asn1.RawContent, ""], ["Version", "", Go$Int, "asn1:\"optional,default:2\""], ["Signature", "", AlgorithmIdentifier, ""], ["Issuer", "", RDNSequence, ""], ["ThisUpdate", "", time.Time, ""], ["NextUpdate", "", time.Time, ""], ["RevokedCertificates", "", (go$sliceType(RevokedCertificate)), "asn1:\"optional\""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"tag:0,optional,explicit\""]]);
 	RevokedCertificate.init([["SerialNumber", "", (go$ptrType(big.Int)), ""], ["RevocationTime", "", time.Time, ""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"optional\""]]);
-	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
+Ç¡	var oidCountry = (go$sliceType(Go$Int)).nil;
+	var oidOrganization = (go$sliceType(Go$Int)).nil;
+	var oidOrganizationalUnit = (go$sliceType(Go$Int)).nil;
+	var oidCommonName = (go$sliceType(Go$Int)).nil;
+	var oidSerialNumber = (go$sliceType(Go$Int)).nil;
+	var oidLocality = (go$sliceType(Go$Int)).nil;
+	var oidProvince = (go$sliceType(Go$Int)).nil;
+	var oidStreetAddress = (go$sliceType(Go$Int)).nil;
+	var oidPostalCode = (go$sliceType(Go$Int)).nil;
+0Ç‚0Ç
+éFillFromRDNSequenceÇ
+u	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
 		var n, _ref, _i, _slice, _index, rdn, _slice$1, _index$1, _struct, atv, _struct$1, _tuple, x, value, ok, t, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _slice$5, _index$5;
 		n = this;
 		_ref = rdns.go$get();
@@ -406,7 +414,8 @@ $$
 		}
 	};
 	Name.prototype.FillFromRDNSequence = function(rdns) { return this.go$val.FillFromRDNSequence(rdns); };
-	var appendRDNs = function(in$1, values, oid) {
+0Ç)
+appendRDNsÇ	var appendRDNs = function(in$1, values, oid) {
 		var s, _ref, _i, _slice, _index, value, i, _slice$1, _index$1, _slice$2, _index$2;
 		if (values.length === 0) {
 			return in$1;
@@ -422,7 +431,7 @@ $$
 		}
 		return go$append(in$1, go$subslice(new RelativeDistinguishedNameSET(s.array), s.offset, s.offset + s.length));
 	};
-	Name.Ptr.prototype.ToRDNSequence = function() {
+0ÇoToRDNSequenceÇ\	Name.Ptr.prototype.ToRDNSequence = function() {
 		var ret, _struct, n;
 		ret = RDNSequence.nil;
 		n = (_struct = this, new Name.Ptr(_struct.Country, _struct.Organization, _struct.OrganizationalUnit, _struct.Locality, _struct.Province, _struct.StreetAddress, _struct.PostalCode, _struct.SerialNumber, _struct.CommonName, _struct.Names));
@@ -443,22 +452,14 @@ $$
 		return ret;
 	};
 	Name.prototype.ToRDNSequence = function() { return this.go$val.ToRDNSequence(); };
-	CertificateList.Ptr.prototype.HasExpired = function(now) {
+0ÇW
+HasExpiredÇG	CertificateList.Ptr.prototype.HasExpired = function(now) {
 		var certList, _struct;
 		certList = this;
 		return now.After((_struct = certList.TBSCertList.NextUpdate, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)));
 	};
 	CertificateList.prototype.HasExpired = function(now) { return this.go$val.HasExpired(now); };
-	var oidCountry = (go$sliceType(Go$Int)).nil;
-	var oidOrganization = (go$sliceType(Go$Int)).nil;
-	var oidOrganizationalUnit = (go$sliceType(Go$Int)).nil;
-	var oidCommonName = (go$sliceType(Go$Int)).nil;
-	var oidSerialNumber = (go$sliceType(Go$Int)).nil;
-	var oidLocality = (go$sliceType(Go$Int)).nil;
-	var oidProvince = (go$sliceType(Go$Int)).nil;
-	var oidStreetAddress = (go$sliceType(Go$Int)).nil;
-	var oidPostalCode = (go$sliceType(Go$Int)).nil;
-	go$pkg.init = function() {
+0ÇQinitÇG	go$pkg.init = function() {
 		oidCountry = new (go$sliceType(Go$Int))([2, 5, 4, 6]);
 		oidOrganization = new (go$sliceType(Go$Int))([2, 5, 4, 10]);
 		oidOrganizationalUnit = new (go$sliceType(Go$Int))([2, 5, 4, 11]);

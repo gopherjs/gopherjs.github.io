@@ -1,4 +1,5 @@
-0Çâ‘Ç<package scanner
+0ÇãC
+go/scannerÇ<package scanner
 import fmt "fmt"
 import token "go/token"
 import io "io"
@@ -108,16 +109,8 @@ func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
 0Å™runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
-go/scannerÇk„	var fmt = go$packages["fmt"];
-	var token = go$packages["go/token"];
-	var io = go$packages["io"];
-	var sort = go$packages["sort"];
-	var bytes = go$packages["bytes"];
-	var filepath = go$packages["path/filepath"];
-	var strconv = go$packages["strconv"];
-	var unicode = go$packages["unicode"];
-	var utf8 = go$packages["unicode/utf8"];
-	var Error;
+go/scanner0Å†0
+fmtfmt0go/tokentoken0ioio0sortsort0bytesbytes0path/filepathfilepath0strconvstrconv0unicodeunicode0unicode/utf8utf8Çw	var Error;
 	Error = go$newType(0, "Struct", "scanner.Error", "Error", "go/scanner", function(Pos_, Msg_) {
 		this.go$val = this;
 		this.Pos = Pos_ !== undefined ? Pos_ : new token.Position.Ptr();
@@ -158,7 +151,8 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 	ErrorHandler.init([token.Position, Go$String], [], false);
 	Scanner.init([["file", "go/scanner", (go$ptrType(token.File)), ""], ["dir", "go/scanner", Go$String, ""], ["src", "go/scanner", (go$sliceType(Go$Uint8)), ""], ["err", "go/scanner", ErrorHandler, ""], ["mode", "go/scanner", Mode, ""], ["ch", "go/scanner", Go$Int32, ""], ["offset", "go/scanner", Go$Int, ""], ["rdOffset", "go/scanner", Go$Int, ""], ["lineOffset", "go/scanner", Go$Int, ""], ["insertSemi", "go/scanner", Go$Bool, ""], ["ErrorCount", "", Go$Int, ""]]);
 	(go$ptrType(Scanner)).methods = [["Init", "", [(go$ptrType(token.File)), (go$sliceType(Go$Uint8)), ErrorHandler, Mode], [], false], ["Scan", "", [], [token.Pos, token.Token, Go$String], false], ["error", "go/scanner", [Go$Int, Go$String], [], false], ["findLineEnd", "go/scanner", [], [Go$Bool], false], ["interpretLineComment", "go/scanner", [(go$sliceType(Go$Uint8))], [], false], ["next", "go/scanner", [], [], false], ["scanChar", "go/scanner", [], [Go$String], false], ["scanComment", "go/scanner", [], [Go$String], false], ["scanEscape", "go/scanner", [Go$Int32], [], false], ["scanIdentifier", "go/scanner", [], [Go$String], false], ["scanMantissa", "go/scanner", [Go$Int], [], false], ["scanNumber", "go/scanner", [Go$Bool], [token.Token, Go$String], false], ["scanRawString", "go/scanner", [], [Go$String], false], ["scanString", "go/scanner", [], [Go$String], false], ["skipWhitespace", "go/scanner", [], [], false], ["switch2", "go/scanner", [token.Token, token.Token], [token.Token], false], ["switch3", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token], [token.Token], false], ["switch4", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token, token.Token], [token.Token], false]];
-	Error.Ptr.prototype.Error = function() {
+,	var prefix = (go$sliceType(Go$Uint8)).nil;
+0Ç[˙0ÇºErrorÇ±	Error.Ptr.prototype.Error = function() {
 		var _struct, _struct$1, e;
 		e = (_struct = this, new Error.Ptr((_struct$1 = _struct.Pos, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), _struct.Msg));
 		if (!(e.Pos.Filename === "") || e.Pos.IsValid()) {
@@ -167,31 +161,31 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return e.Msg;
 	};
 	Error.prototype.Error = function() { return this.go$val.Error(); };
-	go$ptrType(ErrorList).prototype.Add = function(pos, msg) {
+0Ç†AddÇó	go$ptrType(ErrorList).prototype.Add = function(pos, msg) {
 		var p, _struct;
 		p = this;
 		p.go$set(go$append(p.go$get(), new Error.Ptr((_struct = pos, new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)), msg)));
 	};
 	ErrorList.prototype.Add = function(pos, msg) { var obj = this; return (new (go$ptrType(ErrorList))(function() { return obj; }, null)).Add(pos, msg); };
-	go$ptrType(ErrorList).prototype.Reset = function() {
+0ÇResetÇ		go$ptrType(ErrorList).prototype.Reset = function() {
 		var p;
 		p = this;
 		p.go$set(go$subslice((p.go$get()), 0, 0));
 	};
 	ErrorList.prototype.Reset = function() { var obj = this; return (new (go$ptrType(ErrorList))(function() { return obj; }, null)).Reset(); };
-	ErrorList.prototype.Len = function() {
+0ÅØLenÅß	ErrorList.prototype.Len = function() {
 		var p;
 		p = this;
 		return p.length;
 	};
 	go$ptrType(ErrorList).prototype.Len = function() { return this.go$get().Len(); };
-	ErrorList.prototype.Swap = function(i, j) {
+0Ç≤SwapÇ®	ErrorList.prototype.Swap = function(i, j) {
 		var p, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		p = this;
 		_tuple = [(_slice = p, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = p, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(ErrorList).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	ErrorList.prototype.Less = function(i, j) {
+0ÇLessÇ¸	ErrorList.prototype.Less = function(i, j) {
 		var p, _slice, _index, e, _slice$1, _index$1, f;
 		p = this;
 		e = (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos;
@@ -210,13 +204,13 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return false;
 	};
 	go$ptrType(ErrorList).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	ErrorList.prototype.Sort = function() {
+0Å∞SortÅß	ErrorList.prototype.Sort = function() {
 		var p;
 		p = this;
 		sort.Sort(p);
 	};
 	go$ptrType(ErrorList).prototype.Sort = function() { return this.go$get().Sort(); };
-	go$ptrType(ErrorList).prototype.RemoveMultiples = function() {
+0Ç<RemoveMultiplesÇ'	go$ptrType(ErrorList).prototype.RemoveMultiples = function() {
 		var p, last, i, _ref, _i, _slice, _index, e, _struct, _slice$1, _index$1;
 		p = this;
 		sort.Sort(p);
@@ -235,7 +229,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		p.go$set(go$subslice((p.go$get()), 0, i));
 	};
 	ErrorList.prototype.RemoveMultiples = function() { var obj = this; return (new (go$ptrType(ErrorList))(function() { return obj; }, null)).RemoveMultiples(); };
-	ErrorList.prototype.Error = function() {
+0Ç˜ErrorÇÏ	ErrorList.prototype.Error = function() {
 		var p, _ref, _slice, _index, _slice$1, _index$1;
 		p = this;
 		_ref = p.length;
@@ -247,7 +241,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return fmt.Sprintf("%s (and %d more errors)", new (go$sliceType(go$emptyInterface))([(_slice$1 = p, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Go$Int((p.length - 1 >> 0))]));
 	};
 	go$ptrType(ErrorList).prototype.Error = function() { return this.go$get().Error(); };
-	ErrorList.prototype.Err = function() {
+0Å‘ErrÅÃ	ErrorList.prototype.Err = function() {
 		var p;
 		p = this;
 		if (p.length === 0) {
@@ -256,7 +250,8 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return p;
 	};
 	go$ptrType(ErrorList).prototype.Err = function() { return this.go$get().Err(); };
-	var PrintError = go$pkg.PrintError = function(w, err) {
+0Ç…
+PrintErrorÇπ	var PrintError = go$pkg.PrintError = function(w, err) {
 		var ok, _tuple, list, _ref, _i, _slice, _index, e;
 		if (_tuple = (err !== null && err.constructor === ErrorList ? [err.go$val, true] : [ErrorList.nil, false]), list = _tuple[0], ok = _tuple[1], ok) {
 			_ref = list;
@@ -269,7 +264,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 			fmt.Fprintf(w, "%s\n", new (go$sliceType(go$emptyInterface))([err]));
 		}
 	};
-	Scanner.Ptr.prototype.next = function() {
+0ÇonextÇe	Scanner.Ptr.prototype.next = function() {
 		var s, _slice, _index, _tuple, r, w, _tuple$1;
 		s = this;
 		if (s.rdOffset < s.src.length) {
@@ -301,7 +296,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		}
 	};
 	Scanner.prototype.next = function() { return this.go$val.next(); };
-	Scanner.Ptr.prototype.Init = function(file, src, err, mode) {
+0Ç⁄InitÇ–	Scanner.Ptr.prototype.Init = function(file, src, err, mode) {
 		var s, _tuple;
 		s = this;
 		if (!((file.Size() === src.length))) {
@@ -324,7 +319,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		}
 	};
 	Scanner.prototype.Init = function(file, src, err, mode) { return this.go$val.Init(file, src, err, mode); };
-	Scanner.Ptr.prototype.error = function(offs, msg) {
+0Ç´errorÇ†	Scanner.Ptr.prototype.error = function(offs, msg) {
 		var s, _struct;
 		s = this;
 		if (!(s.err === go$throwNilPointerError)) {
@@ -333,7 +328,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		s.ErrorCount = s.ErrorCount + 1 >> 0;
 	};
 	Scanner.prototype.error = function(offs, msg) { return this.go$val.error(offs, msg); };
-	Scanner.Ptr.prototype.interpretLineComment = function(text) {
+0ÇRinterpretLineCommentÇ8	Scanner.Ptr.prototype.interpretLineComment = function(text) {
 		var s, i, err, line, _tuple, filename;
 		s = this;
 		if (bytes.HasPrefix(text, prefix)) {
@@ -349,7 +344,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		}
 	};
 	Scanner.prototype.interpretLineComment = function(text) { return this.go$val.interpretLineComment(text); };
-	Scanner.Ptr.prototype.scanComment = function() {
+0ÇnscanCommentÇ]	Scanner.Ptr.prototype.scanComment = function() {
 		var s, offs, hasCR, ch, lit;
 		s = this;
 		offs = s.offset - 1 >> 0;
@@ -389,7 +384,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return go$bytesToString(lit);
 	};
 	Scanner.prototype.scanComment = function() { return this.go$val.scanComment(); };
-	Scanner.Ptr.prototype.findLineEnd = function() {
+0Ç∏findLineEndÇß	Scanner.Ptr.prototype.findLineEnd = function() {
 		var s, ch;
 		var go$deferred = [];
 		try {
@@ -434,13 +429,13 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		}
 	};
 	Scanner.prototype.findLineEnd = function() { return this.go$val.findLineEnd(); };
-	var isLetter = function(ch) {
+0ÅúisLetterÅè	var isLetter = function(ch) {
 		return 97 <= ch && ch <= 122 || 65 <= ch && ch <= 90 || (ch === 95) || ch >= 128 && unicode.IsLetter(ch);
 	};
-	var isDigit = function(ch) {
+0pisDigite	var isDigit = function(ch) {
 		return 48 <= ch && ch <= 57 || ch >= 128 && unicode.IsDigit(ch);
 	};
-	Scanner.Ptr.prototype.scanIdentifier = function() {
+0ÇPscanIdentifierÇ<	Scanner.Ptr.prototype.scanIdentifier = function() {
 		var s, offs;
 		s = this;
 		offs = s.offset;
@@ -450,7 +445,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return go$bytesToString(go$subslice(s.src, offs, s.offset));
 	};
 	Scanner.prototype.scanIdentifier = function() { return this.go$val.scanIdentifier(); };
-	var digitVal = function(ch) {
+0Ç&digitValÇ	var digitVal = function(ch) {
 		if (48 <= ch && ch <= 57) {
 			return ((ch - 48 >> 0) >> 0);
 		} else if (97 <= ch && ch <= 102) {
@@ -460,7 +455,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		}
 		return 16;
 	};
-	Scanner.Ptr.prototype.scanMantissa = function(base) {
+0ÅÒscanMantissaÅ‡	Scanner.Ptr.prototype.scanMantissa = function(base) {
 		var s;
 		s = this;
 		while (digitVal(s.ch) < base) {
@@ -468,7 +463,8 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		}
 	};
 	Scanner.prototype.scanMantissa = function(base) { return this.go$val.scanMantissa(base); };
-	Scanner.Ptr.prototype.scanNumber = function(seenDecimalPoint) {
+0Ç
+scanNumberÇˆ	Scanner.Ptr.prototype.scanNumber = function(seenDecimalPoint) {
 		var s, offs, tok, offs$1, seenDecimalDigit;
 		s = this;
 		offs = s.offset;
@@ -527,7 +523,8 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return [tok, go$bytesToString(go$subslice(s.src, offs, s.offset))];
 	};
 	Scanner.prototype.scanNumber = function(seenDecimalPoint) { return this.go$val.scanNumber(seenDecimalPoint); };
-	Scanner.Ptr.prototype.scanEscape = function(quote) {
+0Çÿ
+scanEscapeÇ»	Scanner.Ptr.prototype.scanEscape = function(quote) {
 		var s, offs, _tuple, i, base, max, _ref, _tuple$1, _tuple$2, _tuple$3, _tuple$4, x, d;
 		s = this;
 		offs = s.offset;
@@ -572,7 +569,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		}
 	};
 	Scanner.prototype.scanEscape = function(quote) { return this.go$val.scanEscape(quote); };
-	Scanner.Ptr.prototype.scanChar = function() {
+0ÇYscanCharÇK	Scanner.Ptr.prototype.scanChar = function() {
 		var s, offs, n, ch;
 		s = this;
 		offs = s.offset - 1 >> 0;
@@ -597,7 +594,8 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return go$bytesToString(go$subslice(s.src, offs, s.offset));
 	};
 	Scanner.prototype.scanChar = function() { return this.go$val.scanChar(); };
-	Scanner.Ptr.prototype.scanString = function() {
+0Ç„
+scanStringÇ”	Scanner.Ptr.prototype.scanString = function() {
 		var s, offs, ch;
 		s = this;
 		offs = s.offset - 1 >> 0;
@@ -616,7 +614,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return go$bytesToString(go$subslice(s.src, offs, s.offset));
 	};
 	Scanner.prototype.scanString = function() { return this.go$val.scanString(); };
-	var stripCR = function(b) {
+0Ç•stripCRÇò	var stripCR = function(b) {
 		var c, i, _ref, _i, _slice, _index, ch, _slice$1, _index$1;
 		c = (go$sliceType(Go$Uint8)).make(b.length, 0, function() { return 0; });
 		i = 0;
@@ -631,7 +629,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		}
 		return go$subslice(c, 0, i);
 	};
-	Scanner.Ptr.prototype.scanRawString = function() {
+0Ç0scanRawStringÇ	Scanner.Ptr.prototype.scanRawString = function() {
 		var s, offs, hasCR, ch, lit;
 		s = this;
 		offs = s.offset - 1 >> 0;
@@ -655,7 +653,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return go$bytesToString(lit);
 	};
 	Scanner.prototype.scanRawString = function() { return this.go$val.scanRawString(); };
-	Scanner.Ptr.prototype.skipWhitespace = function() {
+0Ç)skipWhitespaceÇ	Scanner.Ptr.prototype.skipWhitespace = function() {
 		var s;
 		s = this;
 		while ((s.ch === 32) || (s.ch === 9) || (s.ch === 10) && !s.insertSemi || (s.ch === 13)) {
@@ -663,7 +661,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		}
 	};
 	Scanner.prototype.skipWhitespace = function() { return this.go$val.skipWhitespace(); };
-	Scanner.Ptr.prototype.switch2 = function(tok0, tok1) {
+0Çswitch2Åı	Scanner.Ptr.prototype.switch2 = function(tok0, tok1) {
 		var s;
 		s = this;
 		if (s.ch === 61) {
@@ -673,7 +671,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return tok0;
 	};
 	Scanner.prototype.switch2 = function(tok0, tok1) { return this.go$val.switch2(tok0, tok1); };
-	Scanner.Ptr.prototype.switch3 = function(tok0, tok1, ch2, tok2) {
+0ÇZswitch3ÇM	Scanner.Ptr.prototype.switch3 = function(tok0, tok1, ch2, tok2) {
 		var s;
 		s = this;
 		if (s.ch === 61) {
@@ -687,7 +685,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return tok0;
 	};
 	Scanner.prototype.switch3 = function(tok0, tok1, ch2, tok2) { return this.go$val.switch3(tok0, tok1, ch2, tok2); };
-	Scanner.Ptr.prototype.switch4 = function(tok0, tok1, ch2, tok2, tok3) {
+0Ç¶switch4Çô	Scanner.Ptr.prototype.switch4 = function(tok0, tok1, ch2, tok2, tok3) {
 		var s;
 		s = this;
 		if (s.ch === 61) {
@@ -705,7 +703,7 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return tok0;
 	};
 	Scanner.prototype.switch4 = function(tok0, tok1, ch2, tok2, tok3) { return this.go$val.switch4(tok0, tok1, ch2, tok2, tok3); };
-	Scanner.Ptr.prototype.Scan = function() {
+0ÇæScanÇ¥	Scanner.Ptr.prototype.Scan = function() {
 		var pos, tok, lit, s, insertSemi, ch, _ref, _tuple, _ref$1, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5;
 		pos = 0;
 		tok = 0;
@@ -864,10 +862,6 @@ go/scannerÇk„	var fmt = go$packages["fmt"];
 		return [pos, tok, lit];
 	};
 	Scanner.prototype.Scan = function() { return this.go$val.Scan(); };
-	var bom = 65279;
-	go$pkg.ScanComments = 1;
-	var dontInsertSemis = 2;
-	var prefix = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.init = function() {
+0ninitf	go$pkg.init = function() {
 		prefix = new (go$sliceType(Go$Uint8))(go$stringToBytes("//line "));
 	};

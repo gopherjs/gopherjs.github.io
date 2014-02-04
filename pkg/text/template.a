@@ -1,4 +1,4 @@
-0ƒr‹‚¦package template
+0ƒwŠtext/template‚¦package template
 import bytes "bytes"
 import fmt "fmt"
 import io "io"
@@ -420,21 +420,9 @@ type @"container/list".Element struct { @"container/list".next *@"container/list
 func (? *@"container/list".Element) @"container/list".Next() (? *@"container/list".Element)
 func (? *@"container/list".Element) @"container/list".Prev() (? *@"container/list".Element)
 $$
-0Üruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilnet/urlcontainer/listtext/template/parsetext/templateƒË	var bytes = go$packages["bytes"];
-	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var reflect = go$packages["reflect"];
-	var runtime = go$packages["runtime"];
-	var sort = go$packages["sort"];
-	var strings = go$packages["strings"];
-	var parse = go$packages["text/template/parse"];
-	var errors = go$packages["errors"];
-	var url = go$packages["net/url"];
-	var unicode = go$packages["unicode"];
-	var utf8 = go$packages["unicode/utf8"];
-	var ioutil = go$packages["io/ioutil"];
-	var filepath = go$packages["path/filepath"];
-	var state;
+0Üruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilnet/urlcontainer/listtext/template/parsetext/template0‚
+0bytesbytes0
+fmtfmt0ioio0reflectreflect0runtimeruntime0sortsort0stringsstrings0text/template/parseparse0errorserrors0net/urlurl0unicodeunicode0unicode/utf8utf80	io/ioutilioutil0path/filepathfilepath‚\	var state;
 	state = go$newType(0, "Struct", "template.state", "state", "text/template", function(tmpl_, wr_, node_, vars_) {
 		this.go$val = this;
 		this.tmpl = tmpl_ !== undefined ? tmpl_ : (go$ptrType(Template)).nil;
@@ -616,31 +604,51 @@ $$
 	Template.init([["name", "text/template", Go$String, ""], ["", "", (go$ptrType(parse.Tree)), ""], ["", "text/template", (go$ptrType(common)), ""], ["leftDelim", "text/template", Go$String, ""], ["rightDelim", "text/template", Go$String, ""]]);
 	Template.methods = [["Copy", "", [], [(go$ptrType(parse.Tree))], false], ["ErrorContext", "", [parse.Node], [Go$String, Go$String], false], ["action", "text/template/parse", [], [parse.Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [parse.item], [], false], ["backup3", "text/template/parse", [parse.item, parse.item], [], false], ["command", "text/template/parse", [], [(go$ptrType(parse.CommandNode))], false], ["elseControl", "text/template/parse", [], [parse.Node], false], ["endControl", "text/template/parse", [], [parse.Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [parse.itemType, Go$String], [parse.item], false], ["expectOneOf", "text/template/parse", [parse.itemType, parse.itemType, Go$String], [parse.item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [parse.Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(parse.ListNode)), parse.Node], false], ["next", "text/template/parse", [], [parse.item], false], ["nextNonSpace", "text/template/parse", [], [parse.item], false], ["operand", "text/template/parse", [], [parse.Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [parse.Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [parse.Pos, Go$Int, (go$ptrType(parse.PipeNode)), (go$ptrType(parse.ListNode)), (go$ptrType(parse.ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["peek", "text/template/parse", [], [parse.item], false], ["peekNonSpace", "text/template/parse", [], [parse.item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(parse.PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [parse.Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(parse.lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [parse.Node], false], ["term", "text/template/parse", [], [parse.Node], false], ["textOrAction", "text/template/parse", [], [parse.Node], false], ["unexpected", "text/template/parse", [parse.item, Go$String], [], false], ["useVar", "text/template/parse", [parse.Pos, Go$String], [parse.Node], false], ["withControl", "text/template/parse", [], [parse.Node], false]];
 	(go$ptrType(Template)).methods = [["AddParseTree", "", [Go$String, (go$ptrType(parse.Tree))], [(go$ptrType(Template)), go$error], false], ["Clone", "", [], [(go$ptrType(Template)), go$error], false], ["Copy", "", [], [(go$ptrType(parse.Tree))], false], ["Delims", "", [Go$String, Go$String], [(go$ptrType(Template))], false], ["ErrorContext", "", [parse.Node], [Go$String, Go$String], false], ["Execute", "", [io.Writer, go$emptyInterface], [go$error], false], ["ExecuteTemplate", "", [io.Writer, Go$String, go$emptyInterface], [go$error], false], ["Funcs", "", [FuncMap], [(go$ptrType(Template))], false], ["Lookup", "", [Go$String], [(go$ptrType(Template))], false], ["Name", "", [], [Go$String], false], ["New", "", [Go$String], [(go$ptrType(Template))], false], ["Parse", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["ParseFiles", "", [(go$sliceType(Go$String))], [(go$ptrType(Template)), go$error], true], ["ParseGlob", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["Templates", "", [], [(go$sliceType((go$ptrType(Template))))], false], ["associate", "text/template", [(go$ptrType(Template)), (go$ptrType(parse.Tree))], [Go$Bool, go$error], false], ["copy", "text/template", [(go$ptrType(common))], [(go$ptrType(Template))], false], ["init", "text/template", [], [], false], ["action", "text/template/parse", [], [parse.Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [parse.item], [], false], ["backup3", "text/template/parse", [parse.item, parse.item], [], false], ["command", "text/template/parse", [], [(go$ptrType(parse.CommandNode))], false], ["elseControl", "text/template/parse", [], [parse.Node], false], ["endControl", "text/template/parse", [], [parse.Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [parse.itemType, Go$String], [parse.item], false], ["expectOneOf", "text/template/parse", [parse.itemType, parse.itemType, Go$String], [parse.item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [parse.Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(parse.ListNode)), parse.Node], false], ["next", "text/template/parse", [], [parse.item], false], ["nextNonSpace", "text/template/parse", [], [parse.item], false], ["operand", "text/template/parse", [], [parse.Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [parse.Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [parse.Pos, Go$Int, (go$ptrType(parse.PipeNode)), (go$ptrType(parse.ListNode)), (go$ptrType(parse.ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["peek", "text/template/parse", [], [parse.item], false], ["peekNonSpace", "text/template/parse", [], [parse.item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(parse.PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [parse.Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(parse.lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [parse.Node], false], ["term", "text/template/parse", [], [parse.Node], false], ["textOrAction", "text/template/parse", [], [parse.Node], false], ["unexpected", "text/template/parse", [parse.item, Go$String], [], false], ["useVar", "text/template/parse", [parse.Pos, Go$String], [parse.Node], false], ["withControl", "text/template/parse", [], [parse.Node], false]];
-	state.Ptr.prototype.push = function(name, value) {
+‚ı	var zero = new reflect.Value.Ptr();
+	var errorType = null;
+	var fmtStringerType = null;
+	var builtins = false;
+	var builtinFuncs = false;
+	var errBadComparisonType = null;
+	var errBadComparison = null;
+	var errNoComparison = null;
+	var htmlQuot = (go$sliceType(Go$Uint8)).nil;
+	var htmlApos = (go$sliceType(Go$Uint8)).nil;
+	var htmlAmp = (go$sliceType(Go$Uint8)).nil;
+	var htmlLt = (go$sliceType(Go$Uint8)).nil;
+	var htmlGt = (go$sliceType(Go$Uint8)).nil;
+	var jsLowUni = (go$sliceType(Go$Uint8)).nil;
+	var hex = (go$sliceType(Go$Uint8)).nil;
+	var jsBackslash = (go$sliceType(Go$Uint8)).nil;
+	var jsApos = (go$sliceType(Go$Uint8)).nil;
+	var jsQuot = (go$sliceType(Go$Uint8)).nil;
+	var jsLt = (go$sliceType(Go$Uint8)).nil;
+	var jsGt = (go$sliceType(Go$Uint8)).nil;
+0ƒph0‚Apush‚7	state.Ptr.prototype.push = function(name, value) {
 		var s, _struct;
 		s = this;
 		s.vars = go$append(s.vars, new variable.Ptr(name, (_struct = value, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))));
 	};
 	state.prototype.push = function(name, value) { return this.go$val.push(name, value); };
-	state.Ptr.prototype.mark = function() {
+0¦mark	state.Ptr.prototype.mark = function() {
 		var s;
 		s = this;
 		return s.vars.length;
 	};
 	state.prototype.mark = function() { return this.go$val.mark(); };
-	state.Ptr.prototype.pop = function(mark) {
+0¿pop·	state.Ptr.prototype.pop = function(mark) {
 		var s;
 		s = this;
 		s.vars = go$subslice(s.vars, 0, mark);
 	};
 	state.prototype.pop = function(mark) { return this.go$val.pop(mark); };
-	state.Ptr.prototype.setVar = function(n, value) {
+0‚ÖsetVar‚Ê	state.Ptr.prototype.setVar = function(n, value) {
 		var s, _struct, _slice, _index;
 		s = this;
 		(_slice = s.vars, _index = (s.vars.length - n >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).value = (_struct = value, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
 	state.prototype.setVar = function(n, value) { return this.go$val.setVar(n, value); };
-	state.Ptr.prototype.varValue = function(name) {
+0‚¯varValue‚¡	state.Ptr.prototype.varValue = function(name) {
 		var s, i, _slice, _index, _slice$1, _index$1, _struct, _struct$1;
 		s = this;
 		i = s.mark() - 1 >> 0;
@@ -654,19 +662,19 @@ $$
 		return (_struct$1 = zero, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 	};
 	state.prototype.varValue = function(name) { return this.go$val.varValue(name); };
-	state.Ptr.prototype.at = function(node) {
+0£atœ	state.Ptr.prototype.at = function(node) {
 		var s;
 		s = this;
 		s.node = node;
 	};
 	state.prototype.at = function(node) { return this.go$val.at(node); };
-	var doublePercent = function(str) {
+0ŸdoublePercent	var doublePercent = function(str) {
 		if (strings.Contains(str, "%")) {
 			str = strings.Replace(str, "%", "%%", -1);
 		}
 		return str;
 	};
-	state.Ptr.prototype.errorf = function(format, args) {
+0‚errorf‚	state.Ptr.prototype.errorf = function(format, args) {
 		var s, name, _tuple, location, context;
 		s = this;
 		name = doublePercent(s.tmpl.Name());
@@ -679,7 +687,8 @@ $$
 		throw go$panic(fmt.Errorf(format, args));
 	};
 	state.prototype.errorf = function(format, args) { return this.go$val.errorf(format, args); };
-	var errRecover = function(errp) {
+0‚Ó
+errRecover‚Ã	var errRecover = function(errp) {
 		var e, err, _ref, _type;
 		e = go$recover();
 		if (!(go$interfaceIsEqual(e, null))) {
@@ -697,7 +706,7 @@ $$
 			}
 		}
 	};
-	Template.Ptr.prototype.ExecuteTemplate = function(wr, name, data) {
+0‚UExecuteTemplate‚@	Template.Ptr.prototype.ExecuteTemplate = function(wr, name, data) {
 		var t, _entry, tmpl;
 		t = this;
 		tmpl = (_entry = t.common.tmpl[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil);
@@ -707,7 +716,7 @@ $$
 		return tmpl.Execute(wr, data);
 	};
 	Template.prototype.ExecuteTemplate = function(wr, name, data) { return this.go$val.ExecuteTemplate(wr, name, data); };
-	Template.Ptr.prototype.Execute = function(wr, data) {
+0‚CExecute‚6	Template.Ptr.prototype.Execute = function(wr, data) {
 		var err, t, v, _struct, value, _struct$1, state$1, b, _ref, _i, _keys, _entry, tmpl, name, s, _struct$2;
 		err = null;
 		var go$deferred = [];
@@ -750,7 +759,9 @@ $$
 		}
 	};
 	Template.prototype.Execute = function(wr, data) { return this.go$val.Execute(wr, data); };
-	state.Ptr.prototype.walk = function(dot, node) {
+0‚
+walk‚
+	state.Ptr.prototype.walk = function(dot, node) {
 		var s, node$1, _ref, _type, _struct, _struct$1, val, _struct$2, _struct$3, _ref$1, _i, _slice, _index, node$2, _struct$4, _struct$5, _struct$6, err, _tuple, _struct$7;
 		s = this;
 		s.at(node);
@@ -793,7 +804,7 @@ $$
 		}
 	};
 	state.prototype.walk = function(dot, node) { return this.go$val.walk(dot, node); };
-	state.Ptr.prototype.walkIfOrWith = function(typ, dot, pipe, list, elseList) {
+0‚ÁwalkIfOrWith‚¯	state.Ptr.prototype.walkIfOrWith = function(typ, dot, pipe, list, elseList) {
 		var s, _struct, _struct$1, val, _tuple, _struct$2, truth$1, ok, _struct$3, _struct$4, _struct$5;
 		var go$deferred = [];
 		try {
@@ -820,7 +831,7 @@ $$
 		}
 	};
 	state.prototype.walkIfOrWith = function(typ, dot, pipe, list, elseList) { return this.go$val.walkIfOrWith(typ, dot, pipe, list, elseList); };
-	var isTrue = function(val) {
+0‚ÁisTrue‚µ	var isTrue = function(val) {
 		var truth$1, ok, _tuple, _ref, x, x$1, x$2, _tuple$1;
 		truth$1 = false;
 		ok = false;
@@ -851,7 +862,7 @@ $$
 		_tuple$1 = [truth$1, true], truth$1 = _tuple$1[0], ok = _tuple$1[1];
 		return [truth$1, ok];
 	};
-	state.Ptr.prototype.walkRange = function(dot, r) {
+0‚	walkRange‚~	state.Ptr.prototype.walkRange = function(dot, r) {
 		var s, _tuple, _struct, _struct$1, _struct$2, val, mark, oneIteration, _ref, i, _struct$3, _struct$4, _ref$1, _i, _slice, _index, _struct$5, key, _struct$6, _struct$7, _struct$8, i$1, _tuple$1, _struct$9, elem, ok, _struct$10, _struct$11, _struct$12;
 		var go$deferred = [];
 		try {
@@ -928,7 +939,7 @@ $$
 		}
 	};
 	state.prototype.walkRange = function(dot, r) { return this.go$val.walkRange(dot, r); };
-	state.Ptr.prototype.walkTemplate = function(dot, t) {
+0‚€walkTemplate‚n	state.Ptr.prototype.walkTemplate = function(dot, t) {
 		var s, _entry, tmpl, _struct, _struct$1, _struct$2, newState, _struct$3, _struct$4;
 		s = this;
 		s.at(t);
@@ -943,7 +954,7 @@ $$
 		newState.walk((_struct$4 = dot, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), tmpl.Tree.Root);
 	};
 	state.prototype.walkTemplate = function(dot, t) { return this.go$val.walkTemplate(dot, t); };
-	state.Ptr.prototype.evalPipeline = function(dot, pipe) {
+0‚evalPipeline‚		state.Ptr.prototype.evalPipeline = function(dot, pipe) {
 		var value, s, _struct, _ref, _i, _slice, _index, cmd, _struct$1, _struct$2, _struct$3, _struct$4, _ref$1, _i$1, _slice$1, _index$1, variable$1, _slice$2, _index$2, _struct$5, _struct$6, _struct$7;
 		value = new reflect.Value.Ptr();
 		s = this;
@@ -970,7 +981,7 @@ $$
 		return (_struct$7 = value, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
 	};
 	state.prototype.evalPipeline = function(dot, pipe) { return this.go$val.evalPipeline(dot, pipe); };
-	state.Ptr.prototype.notAFunction = function(args, final$1) {
+0‚notAFunction‚ 	state.Ptr.prototype.notAFunction = function(args, final$1) {
 		var s, _slice, _index;
 		s = this;
 		if (args.length > 1 || final$1.IsValid()) {
@@ -978,7 +989,7 @@ $$
 		}
 	};
 	state.prototype.notAFunction = function(args, final$1) { return this.go$val.notAFunction(args, final$1); };
-	state.Ptr.prototype.evalCommand = function(dot, cmd, final$1) {
+0‚FevalCommand‚5	state.Ptr.prototype.evalCommand = function(dot, cmd, final$1) {
 		var s, _slice, _index, firstWord, n, _ref, _type, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, word, _ref$1, _type$1, _struct$15, _struct$16, _struct$17, _struct$18;
 		s = this;
 		firstWord = (_slice = cmd.Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -1024,7 +1035,7 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalCommand = function(dot, cmd, final$1) { return this.go$val.evalCommand(dot, cmd, final$1); };
-	state.Ptr.prototype.idealConstant = function(constant) {
+0‚?idealConstant‚,	state.Ptr.prototype.idealConstant = function(constant) {
 		var s, _struct, _struct$1, x, n, x$1, x$2, _struct$2, _struct$3;
 		s = this;
 		s.at(constant);
@@ -1044,14 +1055,14 @@ $$
 		return (_struct$3 = zero, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 	};
 	state.prototype.idealConstant = function(constant) { return this.go$val.idealConstant(constant); };
-	state.Ptr.prototype.evalFieldNode = function(dot, field, args, final$1) {
+0‚ÃevalFieldNode‚°	state.Ptr.prototype.evalFieldNode = function(dot, field, args, final$1) {
 		var s, _struct, _struct$1, _struct$2, _struct$3;
 		s = this;
 		s.at(field);
 		return (_struct$3 = s.evalFieldChain((_struct = dot, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), (_struct$1 = dot, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), field, field.Ident, args, (_struct$2 = final$1, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag))), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 	};
 	state.prototype.evalFieldNode = function(dot, field, args, final$1) { return this.go$val.evalFieldNode(dot, field, args, final$1); };
-	state.Ptr.prototype.evalChainNode = function(dot, chain, args, final$1) {
+0‚=evalChainNode‚*	state.Ptr.prototype.evalChainNode = function(dot, chain, args, final$1) {
 		var s, _struct, _struct$1, pipe, _struct$2, _struct$3, _struct$4, _struct$5;
 		s = this;
 		s.at(chain);
@@ -1062,7 +1073,7 @@ $$
 		return (_struct$5 = s.evalFieldChain((_struct$2 = dot, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), (_struct$3 = pipe, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), chain, chain.Field, args, (_struct$4 = final$1, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag))), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
 	};
 	state.prototype.evalChainNode = function(dot, chain, args, final$1) { return this.go$val.evalChainNode(dot, chain, args, final$1); };
-	state.Ptr.prototype.evalVariableNode = function(dot, variable$1, args, final$1) {
+0‚JevalVariableNode‚4	state.Ptr.prototype.evalVariableNode = function(dot, variable$1, args, final$1) {
 		var s, _slice, _index, _struct, value, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6;
 		s = this;
 		s.at(variable$1);
@@ -1074,7 +1085,7 @@ $$
 		return (_struct$6 = s.evalFieldChain((_struct$3 = dot, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), (_struct$4 = value, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), variable$1, go$subslice(variable$1.Ident, 1), args, (_struct$5 = final$1, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag));
 	};
 	state.prototype.evalVariableNode = function(dot, variable$1, args, final$1) { return this.go$val.evalVariableNode(dot, variable$1, args, final$1); };
-	state.Ptr.prototype.evalFieldChain = function(dot, receiver, node, ident, args, final$1) {
+0‚tevalFieldChain‚`	state.Ptr.prototype.evalFieldChain = function(dot, receiver, node, ident, args, final$1) {
 		var s, n, i, _struct, _slice, _index, _struct$1, _struct$2, _struct$3, _struct$4, _slice$1, _index$1, _struct$5, _struct$6, _struct$7;
 		s = this;
 		n = ident.length;
@@ -1086,7 +1097,7 @@ $$
 		return (_struct$7 = s.evalField((_struct$4 = dot, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), (_slice$1 = ident, _index$1 = (n - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), node, args, (_struct$5 = final$1, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag)), (_struct$6 = receiver, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag))), new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
 	};
 	state.prototype.evalFieldChain = function(dot, receiver, node, ident, args, final$1) { return this.go$val.evalFieldChain(dot, receiver, node, ident, args, final$1); };
-	state.Ptr.prototype.evalFunction = function(dot, node, cmd, args, final$1) {
+0‚evalFunction‚	state.Ptr.prototype.evalFunction = function(dot, node, cmd, args, final$1) {
 		var s, name, _tuple, _struct, function$1, ok, _struct$1, _struct$2, _struct$3, _struct$4;
 		s = this;
 		s.at(node);
@@ -1098,7 +1109,7 @@ $$
 		return (_struct$4 = s.evalCall((_struct$1 = dot, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), (_struct$2 = function$1, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), cmd, name, args, (_struct$3 = final$1, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag))), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 	};
 	state.prototype.evalFunction = function(dot, node, cmd, args, final$1) { return this.go$val.evalFunction(dot, node, cmd, args, final$1); };
-	state.Ptr.prototype.evalField = function(dot, fieldName, node, args, final$1, receiver) {
+0‚±	evalField‚¢	state.Ptr.prototype.evalField = function(dot, fieldName, node, args, final$1, receiver) {
 		var s, _struct, typ, _tuple, _struct$1, _struct$2, _struct$3, ptr, _struct$4, method, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, hasArgs, _tuple$1, _struct$10, _struct$11, isNil, _ref, _tuple$2, _struct$12, tField, ok, _struct$13, field, _struct$14, _struct$15, nameVal, _struct$16, _struct$17;
 		s = this;
 		if (!receiver.IsValid()) {
@@ -1145,7 +1156,7 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalField = function(dot, fieldName, node, args, final$1, receiver) { return this.go$val.evalField(dot, fieldName, node, args, final$1, receiver); };
-	state.Ptr.prototype.evalCall = function(dot, fun, node, name, args, final$1) {
+0‚¡evalCall‚“	state.Ptr.prototype.evalCall = function(dot, fun, node, name, args, final$1) {
 		var s, typ, numIn, numFixed, argv, i, _struct, _slice, _index, _struct$1, _slice$1, _index$1, argType, _struct$2, _slice$2, _index$2, _struct$3, _slice$3, _index$3, t, _struct$4, _struct$5, _slice$4, _index$4, result, _slice$5, _index$5, x, _slice$6, _index$6, _slice$7, _index$7, _struct$6;
 		s = this;
 		if (!(args === (go$sliceType(parse.Node)).nil)) {
@@ -1196,7 +1207,7 @@ $$
 		return (_struct$6 = (_slice$7 = result, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag));
 	};
 	state.prototype.evalCall = function(dot, fun, node, name, args, final$1) { return this.go$val.evalCall(dot, fun, node, name, args, final$1); };
-	var canBeNil = function(typ) {
+0ÖcanBeNilÉ	var canBeNil = function(typ) {
 		var _ref;
 		_ref = typ.Kind();
 		if (_ref === 18 || _ref === 19 || _ref === 20 || _ref === 21 || _ref === 22 || _ref === 23) {
@@ -1204,7 +1215,7 @@ $$
 		}
 		return false;
 	};
-	state.Ptr.prototype.validateType = function(value, typ) {
+0‚validateType‚	state.Ptr.prototype.validateType = function(value, typ) {
 		var s, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5;
 		s = this;
 		if (!value.IsValid()) {
@@ -1231,7 +1242,7 @@ $$
 		return (_struct$5 = value, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
 	};
 	state.prototype.validateType = function(value, typ) { return this.go$val.validateType(value, typ); };
-	state.Ptr.prototype.evalArg = function(dot, typ, n) {
+0‚©evalArg‚œ	state.Ptr.prototype.evalArg = function(dot, typ, n) {
 		var s, arg, _ref, _type, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, _struct$15, _struct$16, _ref$1, _struct$17, _struct$18, _struct$19, _struct$20, _struct$21, _struct$22, _struct$23, _struct$24;
 		s = this;
 		s.at(n);
@@ -1281,7 +1292,7 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalArg = function(dot, typ, n) { return this.go$val.evalArg(dot, typ, n); };
-	state.Ptr.prototype.evalBool = function(typ, n) {
+0‚evalBool‚	state.Ptr.prototype.evalBool = function(typ, n) {
 		var s, ok, _tuple, n$1, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
@@ -1294,7 +1305,8 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalBool = function(typ, n) { return this.go$val.evalBool(typ, n); };
-	state.Ptr.prototype.evalString = function(typ, n) {
+0‚#
+evalString‚	state.Ptr.prototype.evalString = function(typ, n) {
 		var s, ok, _tuple, n$1, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
@@ -1307,7 +1319,7 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalString = function(typ, n) { return this.go$val.evalString(typ, n); };
-	state.Ptr.prototype.evalInteger = function(typ, n) {
+0‚3evalInteger‚"	state.Ptr.prototype.evalInteger = function(typ, n) {
 		var s, ok, n$1, _tuple, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
@@ -1320,7 +1332,7 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalInteger = function(typ, n) { return this.go$val.evalInteger(typ, n); };
-	state.Ptr.prototype.evalUnsignedInteger = function(typ, n) {
+0‚_evalUnsignedInteger‚F	state.Ptr.prototype.evalUnsignedInteger = function(typ, n) {
 		var s, ok, n$1, _tuple, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
@@ -1333,7 +1345,7 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalUnsignedInteger = function(typ, n) { return this.go$val.evalUnsignedInteger(typ, n); };
-	state.Ptr.prototype.evalFloat = function(typ, n) {
+0‚/	evalFloat‚ 	state.Ptr.prototype.evalFloat = function(typ, n) {
 		var s, ok, n$1, _tuple, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
@@ -1346,7 +1358,7 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalFloat = function(typ, n) { return this.go$val.evalFloat(typ, n); };
-	state.Ptr.prototype.evalComplex = function(typ, n) {
+0‚5evalComplex‚$	state.Ptr.prototype.evalComplex = function(typ, n) {
 		var s, ok, n$1, _tuple, _struct, value, _struct$1;
 		s = this;
 		if (_tuple = (n !== null && n.constructor === (go$ptrType(parse.NumberNode)) ? [n.go$val, true] : [(go$ptrType(parse.NumberNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1], ok && n$1.IsComplex) {
@@ -1358,7 +1370,7 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalComplex = function(typ, n) { return this.go$val.evalComplex(typ, n); };
-	state.Ptr.prototype.evalEmptyInterface = function(dot, n) {
+0‚-evalEmptyInterface‚	state.Ptr.prototype.evalEmptyInterface = function(dot, n) {
 		var s, n$1, _ref, _type, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14;
 		s = this;
 		s.at(n);
@@ -1396,7 +1408,7 @@ $$
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalEmptyInterface = function(dot, n) { return this.go$val.evalEmptyInterface(dot, n); };
-	var indirect = function(v) {
+0‚›indirect‚	var indirect = function(v) {
 		var rv, isNil, _struct, _tuple, _struct$1, _struct$2, _struct$3, _tuple$1, _struct$4;
 		rv = new reflect.Value.Ptr();
 		isNil = false;
@@ -1413,7 +1425,8 @@ $$
 		_tuple$1 = [(_struct$3 = v, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), false], rv = _tuple$1[0], isNil = _tuple$1[1];
 		return [(_struct$4 = rv, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), isNil];
 	};
-	state.Ptr.prototype.printValue = function(n, v) {
+0‚
+printValue‚	state.Ptr.prototype.printValue = function(n, v) {
 		var s, _tuple, _struct, iface, ok;
 		s = this;
 		s.at(n);
@@ -1424,7 +1437,7 @@ $$
 		fmt.Fprint(s.wr, new (go$sliceType(go$emptyInterface))([iface]));
 	};
 	state.prototype.printValue = function(n, v) { return this.go$val.printValue(n, v); };
-	var printableValue = function(v) {
+0‚cprintableValue‚O	var printableValue = function(v) {
 		var _tuple, _struct, _struct$1, _struct$2, _ref;
 		if (v.Kind() === 22) {
 			_tuple = indirect((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), v = (_struct$1 = _tuple[0], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1444,43 +1457,43 @@ $$
 		}
 		return [v.Interface(), true];
 	};
-	rvs.prototype.Len = function() {
+0£Len›	rvs.prototype.Len = function() {
 		var x;
 		x = this;
 		return x.length;
 	};
 	go$ptrType(rvs).prototype.Len = function() { return this.go$get().Len(); };
-	rvs.prototype.Swap = function(i, j) {
+0‚XSwap‚N	rvs.prototype.Swap = function(i, j) {
 		var x, _slice, _index, _struct, _slice$1, _index$1, _struct$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		x = this;
 		_tuple = [(_struct = (_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), (_struct$1 = (_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))], _slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(rvs).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	rvInts.Ptr.prototype.Less = function(i, j) {
+0‚­Less‚£	rvInts.Ptr.prototype.Less = function(i, j) {
 		var _struct, x, x$1, _slice, _index, x$2, _slice$1, _index$1;
 		x = (_struct = this, new rvInts.Ptr(_struct.rvs));
 		return (x$1 = (_slice = x.rvs, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Int(), x$2 = (_slice$1 = x.rvs, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Int(), (x$1.high < x$2.high || (x$1.high === x$2.high && x$1.low < x$2.low)));
 	};
 	rvInts.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
-	rvUints.Ptr.prototype.Less = function(i, j) {
+0‚²Less‚¨	rvUints.Ptr.prototype.Less = function(i, j) {
 		var _struct, x, x$1, _slice, _index, x$2, _slice$1, _index$1;
 		x = (_struct = this, new rvUints.Ptr(_struct.rvs));
 		return (x$1 = (_slice = x.rvs, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Uint(), x$2 = (_slice$1 = x.rvs, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Uint(), (x$1.high < x$2.high || (x$1.high === x$2.high && x$1.low < x$2.low)));
 	};
 	rvUints.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
-	rvFloats.Ptr.prototype.Less = function(i, j) {
+0‚YLess‚O	rvFloats.Ptr.prototype.Less = function(i, j) {
 		var _struct, x, _slice, _index, _slice$1, _index$1;
 		x = (_struct = this, new rvFloats.Ptr(_struct.rvs));
 		return (_slice = x.rvs, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Float() < (_slice$1 = x.rvs, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Float();
 	};
 	rvFloats.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
-	rvStrings.Ptr.prototype.Less = function(i, j) {
+0‚^Less‚T	rvStrings.Ptr.prototype.Less = function(i, j) {
 		var _struct, x, _slice, _index, _slice$1, _index$1;
 		x = (_struct = this, new rvStrings.Ptr(_struct.rvs));
 		return (_slice = x.rvs, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).String() < (_slice$1 = x.rvs, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).String();
 	};
 	rvStrings.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
-	var sortKeys = function(v) {
+0‚HsortKeys‚:	var sortKeys = function(v) {
 		var _ref, _slice, _index, x, x$1, x$2, x$3;
 		if (v.length <= 1) {
 			return v;
@@ -1497,13 +1510,13 @@ $$
 		}
 		return v;
 	};
-	var createValueFuncs = function(funcMap) {
+0ŠcreateValueFuncsv	var createValueFuncs = function(funcMap) {
 		var m;
 		m = new Go$Map();
 		addValueFuncs(m, funcMap);
 		return m;
 	};
-	var addValueFuncs = function(out, in$1) {
+0‚‘addValueFuncs‚~	var addValueFuncs = function(out, in$1) {
 		var _ref, _i, _keys, _entry, fn, name, _struct, v, _struct$1, _key;
 		_ref = in$1;
 		_i = 0;
@@ -1522,7 +1535,7 @@ $$
 			_key = name, (out || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: (_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)) };
 		}
 	};
-	var addFuncs = function(out, in$1) {
+0‚saddFuncs‚e	var addFuncs = function(out, in$1) {
 		var _ref, _i, _keys, _entry, fn, name, _key;
 		_ref = in$1;
 		_i = 0;
@@ -1534,7 +1547,7 @@ $$
 			_key = name, (out || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: fn };
 		}
 	};
-	var goodFunc = function(typ) {
+0ÔgoodFuncÇ	var goodFunc = function(typ) {
 		if (typ.NumOut() === 1) {
 			return true;
 		} else if ((typ.NumOut() === 2) && go$interfaceIsEqual(typ.Out(1), errorType)) {
@@ -1542,7 +1555,7 @@ $$
 		}
 		return false;
 	};
-	var findFunction = function(name, tmpl) {
+0‚ºfindFunction‚¨	var findFunction = function(name, tmpl) {
 		var fn, _entry, _struct, _struct$1, fn$1, _entry$1, _struct$2, _struct$3;
 		if (!(tmpl === (go$ptrType(Template)).nil) && !(tmpl.common === (go$ptrType(common)).nil)) {
 			if (fn = (_struct = (_entry = tmpl.common.execFuncs[name], _entry !== undefined ? _entry.v : new reflect.Value.Ptr()), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), fn.IsValid()) {
@@ -1554,7 +1567,7 @@ $$
 		}
 		return [new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0), false];
 	};
-	var index = function(item, indices) {
+0‚úindex‚ï	var index = function(item, indices) {
 		var _struct, v, _ref, _i, _slice, _index, i, _struct$1, index$1, isNil, _tuple, _struct$2, _struct$3, _ref$1, x, _ref$2, x$1, x$2, _struct$4, _struct$5, x$3, _struct$6, _struct$7, _struct$8, _struct$9;
 		v = (_struct = reflect.ValueOf(item), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		_ref = indices;
@@ -1599,7 +1612,7 @@ $$
 		}
 		return [v.Interface(), null];
 	};
-	var length = function(item) {
+0‚length‚’	var length = function(item) {
 		var _tuple, _struct, _struct$1, v, isNil, _ref;
 		_tuple = indirect((_struct = reflect.ValueOf(item), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), v = (_struct$1 = _tuple[0], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), isNil = _tuple[1];
 		if (isNil) {
@@ -1611,7 +1624,7 @@ $$
 		}
 		return [0, fmt.Errorf("len of type %s", new (go$sliceType(go$emptyInterface))([v.Type()]))];
 	};
-	var call = function(fn, args) {
+0‚scall‚i	var call = function(fn, args) {
 		var _struct, v, typ, numIn, dddType, argv, _ref, _i, _slice, _index, arg, i, _struct$1, value, argType, _struct$2, _struct$3, _slice$1, _index$1, result, _slice$2, _index$2, _slice$3, _index$3, x, _slice$4, _index$4, _slice$5, _index$5;
 		v = (_struct = reflect.ValueOf(fn), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		typ = v.Type();
@@ -1660,12 +1673,12 @@ $$
 		}
 		return [(_slice$5 = result, _index$5 = 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).Interface(), null];
 	};
-	var truth = function(a) {
+0ĞtruthÆ	var truth = function(a) {
 		var _tuple, _struct, t;
 		_tuple = isTrue((_struct = reflect.ValueOf(a), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), t = _tuple[0];
 		return t;
 	};
-	var and = function(arg0, args) {
+0‚¤and‚›	var and = function(arg0, args) {
 		var _ref, _i, i, _slice, _index;
 		if (!truth(arg0)) {
 			return arg0;
@@ -1681,7 +1694,7 @@ $$
 		}
 		return arg0;
 	};
-	var or = function(arg0, args) {
+0‚ or‚˜	var or = function(arg0, args) {
 		var _ref, _i, i, _slice, _index;
 		if (truth(arg0)) {
 			return arg0;
@@ -1697,14 +1710,14 @@ $$
 		}
 		return arg0;
 	};
-	var not = function(arg) {
+0‚not‚	var not = function(arg) {
 		var truth$1, _tuple, _struct;
 		truth$1 = false;
 		_tuple = isTrue((_struct = reflect.ValueOf(arg), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), truth$1 = _tuple[0];
 		truth$1 = !truth$1;
 		return truth$1;
 	};
-	var basicKind = function(v) {
+0‚4	basicKind‚%	var basicKind = function(v) {
 		var _ref;
 		_ref = v.Kind();
 		if (_ref === 1) {
@@ -1722,7 +1735,7 @@ $$
 		}
 		return [0, errBadComparisonType];
 	};
-	var eq = function(arg1, arg2) {
+0‚×eq‚Ï	var eq = function(arg1, arg2) {
 		var _struct, v1, _tuple, _struct$1, k1, err, _ref, _i, _slice, _index, arg, _struct$2, v2, _tuple$1, _struct$3, k2, err$1, truth$1, _ref$1, x, x$1, x$2, x$3, x$4, x$5;
 		v1 = (_struct = reflect.ValueOf(arg1), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		_tuple = basicKind((_struct$1 = v1, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), k1 = _tuple[0], err = _tuple[1];
@@ -1767,12 +1780,12 @@ $$
 		}
 		return [false, null];
 	};
-	var ne = function(arg1, arg2) {
+0Æne¿	var ne = function(arg1, arg2) {
 		var _tuple, equal, err;
 		_tuple = eq(arg1, new (go$sliceType(go$emptyInterface))([arg2])), equal = _tuple[0], err = _tuple[1];
 		return [!equal, err];
 	};
-	var lt = function(arg1, arg2) {
+0‚Ölt‚Î	var lt = function(arg1, arg2) {
 		var _struct, v1, _tuple, _struct$1, k1, err, _struct$2, v2, _tuple$1, _struct$3, k2, truth$1, _ref, x, x$1, x$2, x$3;
 		v1 = (_struct = reflect.ValueOf(arg1), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		_tuple = basicKind((_struct$1 = v1, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), k1 = _tuple[0], err = _tuple[1];
@@ -1804,7 +1817,7 @@ $$
 		}
 		return [truth$1, null];
 	};
-	var le = function(arg1, arg2) {
+0‚$le‚	var le = function(arg1, arg2) {
 		var _tuple, lessThan, err;
 		_tuple = lt(arg1, arg2), lessThan = _tuple[0], err = _tuple[1];
 		if (lessThan || !(go$interfaceIsEqual(err, null))) {
@@ -1812,7 +1825,7 @@ $$
 		}
 		return eq(arg1, new (go$sliceType(go$emptyInterface))([arg2]));
 	};
-	var gt = function(arg1, arg2) {
+0÷gtğ	var gt = function(arg1, arg2) {
 		var _tuple, lessOrEqual, err;
 		_tuple = le(arg1, arg2), lessOrEqual = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -1820,7 +1833,7 @@ $$
 		}
 		return [!lessOrEqual, null];
 	};
-	var ge = function(arg1, arg2) {
+0îgeç	var ge = function(arg1, arg2) {
 		var _tuple, lessThan, err;
 		_tuple = lt(arg1, arg2), lessThan = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -1828,7 +1841,8 @@ $$
 		}
 		return [!lessThan, null];
 	};
-	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
+0‚:
+HTMLEscape‚*	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		var last, _ref, _i, _slice, _index, c, i, html, _ref$1;
 		last = 0;
 		_ref = b;
@@ -1857,7 +1871,7 @@ $$
 		}
 		w.Write(go$subslice(b, last));
 	};
-	var HTMLEscapeString = go$pkg.HTMLEscapeString = function(s) {
+0‚HTMLEscapeString‚ 	var HTMLEscapeString = go$pkg.HTMLEscapeString = function(s) {
 		var b;
 		if (strings.IndexAny(s, "'\"&<>") < 0) {
 			return s;
@@ -1866,10 +1880,10 @@ $$
 		HTMLEscape(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
 		return b.String();
 	};
-	var HTMLEscaper = go$pkg.HTMLEscaper = function(args) {
+0wHTMLEscaperh	var HTMLEscaper = go$pkg.HTMLEscaper = function(args) {
 		return HTMLEscapeString(evalArgs(args));
 	};
-	var JSEscape = go$pkg.JSEscape = function(w, b) {
+0‚vJSEscape‚h	var JSEscape = go$pkg.JSEscape = function(w, b) {
 		var last, i, _slice, _index, c, _ref, _tuple, t, b$1, _tuple$1, r, size;
 		last = 0;
 		i = 0;
@@ -1912,7 +1926,7 @@ $$
 		}
 		w.Write(go$subslice(b, last));
 	};
-	var JSEscapeString = go$pkg.JSEscapeString = function(s) {
+0‚JSEscapeStringş	var JSEscapeString = go$pkg.JSEscapeString = function(s) {
 		var b;
 		if (strings.IndexFunc(s, jsIsSpecial) < 0) {
 			return s;
@@ -1921,7 +1935,7 @@ $$
 		JSEscape(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
 		return b.String();
 	};
-	var jsIsSpecial = function(r) {
+0ÏjsIsSpecial¿	var jsIsSpecial = function(r) {
 		var _ref;
 		_ref = r;
 		if (_ref === 92 || _ref === 39 || _ref === 34 || _ref === 60 || _ref === 62) {
@@ -1929,13 +1943,13 @@ $$
 		}
 		return r < 32 || 128 <= r;
 	};
-	var JSEscaper = go$pkg.JSEscaper = function(args) {
+0o	JSEscaperb	var JSEscaper = go$pkg.JSEscaper = function(args) {
 		return JSEscapeString(evalArgs(args));
 	};
-	var URLQueryEscaper = go$pkg.URLQueryEscaper = function(args) {
+0‚URLQueryEscapero	var URLQueryEscaper = go$pkg.URLQueryEscaper = function(args) {
 		return url.QueryEscape(evalArgs(args));
 	};
-	var evalArgs = function(args) {
+0‚­evalArgs‚Ÿ	var evalArgs = function(args) {
 		var ok, s, _tuple, x, _slice, _index, _ref, _i, _slice$1, _index$1, arg, i, _tuple$1, _struct, a, ok$1, _slice$2, _index$2;
 		ok = false;
 		s = "";
@@ -1957,22 +1971,25 @@ $$
 		}
 		return s;
 	};
-	var Must = go$pkg.Must = function(t, err) {
+0Must„	var Must = go$pkg.Must = function(t, err) {
 		if (!(go$interfaceIsEqual(err, null))) {
 			throw go$panic(err);
 		}
 		return t;
 	};
-	var ParseFiles = go$pkg.ParseFiles = function(filenames) {
+0Š
+ParseFiles|	var ParseFiles = go$pkg.ParseFiles = function(filenames) {
 		return parseFiles((go$ptrType(Template)).nil, filenames);
 	};
-	Template.Ptr.prototype.ParseFiles = function(filenames) {
+0ê
+ParseFilesÛ	Template.Ptr.prototype.ParseFiles = function(filenames) {
 		var t;
 		t = this;
 		return parseFiles(t, filenames);
 	};
 	Template.prototype.ParseFiles = function(filenames) { return this.go$val.ParseFiles(filenames); };
-	var parseFiles = function(t, filenames) {
+0‚|
+parseFiles‚l	var parseFiles = function(t, filenames) {
 		var _ref, _i, _slice, _index, filename, _tuple, b, err, s, name, tmpl, _tuple$1;
 		if (filenames.length === 0) {
 			return [(go$ptrType(Template)).nil, fmt.Errorf("template: no files named in call to ParseFiles", new (go$sliceType(go$emptyInterface))([]))];
@@ -2003,16 +2020,16 @@ $$
 		}
 		return [t, null];
 	};
-	var ParseGlob = go$pkg.ParseGlob = function(pattern) {
+0‚	ParseGlobu	var ParseGlob = go$pkg.ParseGlob = function(pattern) {
 		return parseGlob((go$ptrType(Template)).nil, pattern);
 	};
-	Template.Ptr.prototype.ParseGlob = function(pattern) {
+0İ	ParseGlobÏ	Template.Ptr.prototype.ParseGlob = function(pattern) {
 		var t;
 		t = this;
 		return parseGlob(t, pattern);
 	};
 	Template.prototype.ParseGlob = function(pattern) { return this.go$val.ParseGlob(pattern); };
-	var parseGlob = function(t, pattern) {
+0‚ç	parseGlob‚Ø	var parseGlob = function(t, pattern) {
 		var _tuple, filenames, err;
 		_tuple = filepath.Glob(pattern), filenames = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -2023,23 +2040,23 @@ $$
 		}
 		return parseFiles(t, filenames);
 	};
-	var New = go$pkg.New = function(name) {
+0–New	var New = go$pkg.New = function(name) {
 		return new Template.Ptr(name, (go$ptrType(parse.Tree)).nil, (go$ptrType(common)).nil, "", "");
 	};
-	Template.Ptr.prototype.Name = function() {
+0¥Nameœ	Template.Ptr.prototype.Name = function() {
 		var t;
 		t = this;
 		return t.name;
 	};
 	Template.prototype.Name = function() { return this.go$val.Name(); };
-	Template.Ptr.prototype.New = function(name) {
+0‚New‚	Template.Ptr.prototype.New = function(name) {
 		var t;
 		t = this;
 		t.init();
 		return new Template.Ptr(name, (go$ptrType(parse.Tree)).nil, t.common, t.leftDelim, t.rightDelim);
 	};
 	Template.prototype.New = function(name) { return this.go$val.New(name); };
-	Template.Ptr.prototype.init = function() {
+0‚Vinit‚L	Template.Ptr.prototype.init = function() {
 		var t;
 		t = this;
 		if (t.common === (go$ptrType(common)).nil) {
@@ -2050,7 +2067,7 @@ $$
 		}
 	};
 	Template.prototype.init = function() { return this.go$val.init(); };
-	Template.Ptr.prototype.Clone = function() {
+0‚KClone‚@	Template.Ptr.prototype.Clone = function() {
 		var t, nt, _key, _ref, _i, _keys, _entry, v, k, tmpl, _key$1, _ref$1, _i$1, _keys$1, _entry$1, v$1, k$1, _key$2, _ref$2, _i$2, _keys$2, _entry$2, v$2, k$2, _struct, _key$3;
 		t = this;
 		nt = t.copy((go$ptrType(common)).nil);
@@ -2090,7 +2107,7 @@ $$
 		return [nt, null];
 	};
 	Template.prototype.Clone = function() { return this.go$val.Clone(); };
-	Template.Ptr.prototype.copy = function(c) {
+0‚ copy‚	Template.Ptr.prototype.copy = function(c) {
 		var t, nt;
 		t = this;
 		nt = New(t.name);
@@ -2101,7 +2118,7 @@ $$
 		return nt;
 	};
 	Template.prototype.copy = function(c) { return this.go$val.copy(c); };
-	Template.Ptr.prototype.AddParseTree = function(name, tree) {
+0‚¼AddParseTree‚ª	Template.Ptr.prototype.AddParseTree = function(name, tree) {
 		var t, _entry, nt, _key;
 		t = this;
 		if (!((_entry = t.common.tmpl[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil) === (go$ptrType(Template)).nil)) {
@@ -2113,7 +2130,7 @@ $$
 		return [nt, null];
 	};
 	Template.prototype.AddParseTree = function(name, tree) { return this.go$val.AddParseTree(name, tree); };
-	Template.Ptr.prototype.Templates = function() {
+0‚q	Templates‚b	Template.Ptr.prototype.Templates = function() {
 		var t, m, _ref, _i, _keys, _entry, v;
 		t = this;
 		if (t.common === (go$ptrType(common)).nil) {
@@ -2131,7 +2148,7 @@ $$
 		return m;
 	};
 	Template.prototype.Templates = function() { return this.go$val.Templates(); };
-	Template.Ptr.prototype.Delims = function(left, right) {
+0÷Delimsì	Template.Ptr.prototype.Delims = function(left, right) {
 		var t;
 		t = this;
 		t.leftDelim = left;
@@ -2139,7 +2156,7 @@ $$
 		return t;
 	};
 	Template.prototype.Delims = function(left, right) { return this.go$val.Delims(left, right); };
-	Template.Ptr.prototype.Funcs = function(funcMap) {
+0‚Funcs‚	Template.Ptr.prototype.Funcs = function(funcMap) {
 		var t;
 		t = this;
 		t.init();
@@ -2148,7 +2165,7 @@ $$
 		return t;
 	};
 	Template.prototype.Funcs = function(funcMap) { return this.go$val.Funcs(funcMap); };
-	Template.Ptr.prototype.Lookup = function(name) {
+0‚qLookup‚e	Template.Ptr.prototype.Lookup = function(name) {
 		var t, _entry;
 		t = this;
 		if (t.common === (go$ptrType(common)).nil) {
@@ -2157,7 +2174,7 @@ $$
 		return (_entry = t.common.tmpl[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil);
 	};
 	Template.prototype.Lookup = function(name) { return this.go$val.Lookup(name); };
-	Template.Ptr.prototype.Parse = function(text) {
+0‚PParse‚E	Template.Ptr.prototype.Parse = function(text) {
 		var t, _tuple, trees, err, _ref, _i, _keys, _entry, tree, name, tmpl, err$1, replace, _tuple$1;
 		t = this;
 		t.init();
@@ -2187,7 +2204,7 @@ $$
 		return [t, null];
 	};
 	Template.prototype.Parse = function(text) { return this.go$val.Parse(text); };
-	Template.Ptr.prototype.associate = function(new$1, tree) {
+0‚à	associate‚Ñ	Template.Ptr.prototype.associate = function(new$1, tree) {
 		var t, name, old, _entry, oldIsEmpty, newIsEmpty, _key;
 		t = this;
 		if (!(new$1.common === t.common)) {
@@ -2208,35 +2225,7 @@ $$
 		return [true, null];
 	};
 	Template.prototype.associate = function(new$1, tree) { return this.go$val.associate(new$1, tree); };
-	var invalidKind = 0;
-	var boolKind = 1;
-	var complexKind = 2;
-	var intKind = 3;
-	var floatKind = 4;
-	var integerKind = 5;
-	var stringKind = 6;
-	var uintKind = 7;
-	var zero = new reflect.Value.Ptr();
-	var errorType = null;
-	var fmtStringerType = null;
-	var builtins = false;
-	var builtinFuncs = false;
-	var errBadComparisonType = null;
-	var errBadComparison = null;
-	var errNoComparison = null;
-	var htmlQuot = (go$sliceType(Go$Uint8)).nil;
-	var htmlApos = (go$sliceType(Go$Uint8)).nil;
-	var htmlAmp = (go$sliceType(Go$Uint8)).nil;
-	var htmlLt = (go$sliceType(Go$Uint8)).nil;
-	var htmlGt = (go$sliceType(Go$Uint8)).nil;
-	var jsLowUni = (go$sliceType(Go$Uint8)).nil;
-	var hex = (go$sliceType(Go$Uint8)).nil;
-	var jsBackslash = (go$sliceType(Go$Uint8)).nil;
-	var jsApos = (go$sliceType(Go$Uint8)).nil;
-	var jsQuot = (go$sliceType(Go$Uint8)).nil;
-	var jsLt = (go$sliceType(Go$Uint8)).nil;
-	var jsGt = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.init = function() {
+0‚Ğinit‚Æ	go$pkg.init = function() {
 		var _map, _key;
 		errorType = reflect.TypeOf((go$ptrType(go$error)).nil).Elem();
 		fmtStringerType = reflect.TypeOf((go$ptrType(fmt.Stringer)).nil).Elem();

@@ -1,4 +1,4 @@
-0ÇµMÇ@hpackage exec
+0Ç∂Qos/execÇ@hpackage exec
 import bytes "bytes"
 import errors "errors"
 import io "io"
@@ -242,15 +242,7 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0zruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeosmathstrconvstringsos/execÇta	var bytes = go$packages["bytes"];
-	var errors = go$packages["errors"];
-	var io = go$packages["io"];
-	var os = go$packages["os"];
-	var strconv = go$packages["strconv"];
-	var sync = go$packages["sync"];
-	var syscall = go$packages["syscall"];
-	var strings = go$packages["strings"];
-	var Error;
+0zruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeosmathstrconvstringsos/exec0ÅÄ0bytesbytes0errorserrors0ioio0osos0strconvstrconv0syncsync0syscallsyscall0stringsstringsÇ=ò	var Error;
 	Error = go$newType(0, "Struct", "exec.Error", "Error", "os/exec", function(Name_, Err_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -382,13 +374,14 @@ $$
 	closeOnce.init([["", "", (go$ptrType(os.File)), ""], ["close", "os/exec", sync.Once, ""], ["closeErr", "os/exec", go$error, ""]]);
 	closeOnce.methods = [["Chdir", "", [], [go$error], false], ["Chmod", "", [os.FileMode], [go$error], false], ["Chown", "", [Go$Int, Go$Int], [go$error], false], ["Fd", "", [], [Go$Uintptr], false], ["Name", "", [], [Go$String], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["Readdir", "", [Go$Int], [(go$sliceType(os.FileInfo)), go$error], false], ["Readdirnames", "", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["Stat", "", [], [os.FileInfo, go$error], false], ["Sync", "", [], [go$error], false], ["Truncate", "", [Go$Int64], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["close", "os", [], [go$error], false], ["pread", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["pwrite", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["read", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["readdir", "os", [Go$Int], [(go$sliceType(os.FileInfo)), go$error], false], ["readdirnames", "os", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["seek", "os", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["write", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	(go$ptrType(closeOnce)).methods = [["Chdir", "", [], [go$error], false], ["Chmod", "", [os.FileMode], [go$error], false], ["Chown", "", [Go$Int, Go$Int], [go$error], false], ["Close", "", [], [go$error], false], ["Fd", "", [], [Go$Uintptr], false], ["Name", "", [], [Go$String], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["Readdir", "", [Go$Int], [(go$sliceType(os.FileInfo)), go$error], false], ["Readdirnames", "", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["Stat", "", [], [os.FileInfo, go$error], false], ["Sync", "", [], [go$error], false], ["Truncate", "", [Go$Int64], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["close", "os", [], [go$error], false], ["pread", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["pwrite", "os", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["read", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["readdir", "os", [Go$Int], [(go$sliceType(os.FileInfo)), go$error], false], ["readdirnames", "os", [Go$Int], [(go$sliceType(Go$String)), go$error], false], ["seek", "os", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["write", "os", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	Error.Ptr.prototype.Error = function() {
+	go$pkg.ErrNotFound = null;
+0Ç70Å‘ErrorÅ 	Error.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "exec: " + strconv.Quote(e.Name) + ": " + e.Err.Error();
 	};
 	Error.prototype.Error = function() { return this.go$val.Error(); };
-	var Command = go$pkg.Command = function(name, arg) {
+0Ç€CommandÇŒ	var Command = go$pkg.Command = function(name, arg) {
 		var _tuple, aname, err;
 		_tuple = LookPath(name), aname = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -396,7 +389,7 @@ $$
 		}
 		return new Cmd.Ptr(aname, go$appendSlice(new (go$sliceType(Go$String))([name]), arg), (go$sliceType(Go$String)).nil, "", null, null, null, (go$sliceType((go$ptrType(os.File)))).nil, (go$ptrType(syscall.SysProcAttr)).nil, (go$ptrType(os.Process)).nil, (go$ptrType(os.ProcessState)).nil, err, false, (go$sliceType((go$ptrType(os.File)))).nil, (go$sliceType(io.Closer)).nil, (go$sliceType(io.Closer)).nil, (go$sliceType((go$funcType([], [go$error], false)))).nil, (go$chanType(go$error, false, false)).nil);
 	};
-	var interfaceEqual = function(a, b) {
+0ÇBinterfaceEqualÇ.	var interfaceEqual = function(a, b) {
 		var go$deferred = [];
 		try {
 			go$deferred.push({ fun: (function() {
@@ -410,7 +403,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	Cmd.Ptr.prototype.envv = function() {
+0ÅÍenvvÅ·	Cmd.Ptr.prototype.envv = function() {
 		var c;
 		c = this;
 		if (!(c.Env === (go$sliceType(Go$String)).nil)) {
@@ -419,7 +412,7 @@ $$
 		return os.Environ();
 	};
 	Cmd.prototype.envv = function() { return this.go$val.envv(); };
-	Cmd.Ptr.prototype.argv = function() {
+0ÅÌargvÅ‰	Cmd.Ptr.prototype.argv = function() {
 		var c;
 		c = this;
 		if (c.Args.length > 0) {
@@ -428,7 +421,7 @@ $$
 		return new (go$sliceType(Go$String))([c.Path]);
 	};
 	Cmd.prototype.argv = function() { return this.go$val.argv(); };
-	Cmd.Ptr.prototype.stdin = function() {
+0ÇjstdinÇ_	Cmd.Ptr.prototype.stdin = function() {
 		var f, err, c, _tuple, ok, _tuple$1, x, f$1, _tuple$2, _tuple$3, pr, pw, _tuple$4;
 		f = (go$ptrType(os.File)).nil;
 		err = null;
@@ -463,7 +456,7 @@ $$
 		return [f, err];
 	};
 	Cmd.prototype.stdin = function() { return this.go$val.stdin(); };
-	Cmd.Ptr.prototype.stdout = function() {
+0Ç.stdoutÇ"	Cmd.Ptr.prototype.stdout = function() {
 		var f, err, c, _tuple;
 		f = (go$ptrType(os.File)).nil;
 		err = null;
@@ -472,7 +465,7 @@ $$
 		return [f, err];
 	};
 	Cmd.prototype.stdout = function() { return this.go$val.stdout(); };
-	Cmd.Ptr.prototype.stderr = function() {
+0ÇístderrÇÜ	Cmd.Ptr.prototype.stderr = function() {
 		var f, err, c, _slice, _index, _tuple, _tuple$1;
 		f = (go$ptrType(os.File)).nil;
 		err = null;
@@ -485,7 +478,7 @@ $$
 		return [f, err];
 	};
 	Cmd.prototype.stderr = function() { return this.go$val.stderr(); };
-	Cmd.Ptr.prototype.writerDescriptor = function(w) {
+0Ç*writerDescriptorÇ	Cmd.Ptr.prototype.writerDescriptor = function(w) {
 		var f, err, c, _tuple, ok, _tuple$1, f$1, _tuple$2, _tuple$3, pr, pw, _tuple$4;
 		f = (go$ptrType(os.File)).nil;
 		err = null;
@@ -517,7 +510,7 @@ $$
 		return [f, err];
 	};
 	Cmd.prototype.writerDescriptor = function(w) { return this.go$val.writerDescriptor(w); };
-	Cmd.Ptr.prototype.closeDescriptors = function(closers) {
+0ÇÊcloseDescriptorsÇ–	Cmd.Ptr.prototype.closeDescriptors = function(closers) {
 		var c, _ref, _i, _slice, _index, fd;
 		c = this;
 		_ref = closers;
@@ -528,7 +521,7 @@ $$
 		}
 	};
 	Cmd.prototype.closeDescriptors = function(closers) { return this.go$val.closeDescriptors(closers); };
-	Cmd.Ptr.prototype.Run = function() {
+0ÅÌRunÅÂ	Cmd.Ptr.prototype.Run = function() {
 		var c, err;
 		c = this;
 		if (err = c.Start(), !(go$interfaceIsEqual(err, null))) {
@@ -537,7 +530,7 @@ $$
 		return c.Wait();
 	};
 	Cmd.prototype.Run = function() { return this.go$val.Run(); };
-	Cmd.Ptr.prototype.Start = function() {
+0ÇStartÇ	Cmd.Ptr.prototype.Start = function() {
 		var c, F, _ref, _i, _slice, _index, setupFd, _tuple, fd, err, err$1, _tuple$1, _ref$1, _i$1, _slice$1, _index$1, fn;
 		c = this;
 		if (!(go$interfaceIsEqual(c.err, null))) {
@@ -581,13 +574,13 @@ $$
 		return null;
 	};
 	Cmd.prototype.Start = function() { return this.go$val.Start(); };
-	ExitError.Ptr.prototype.Error = function() {
+0ÅºErrorÅ≤	ExitError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return e.ProcessState.String();
 	};
 	ExitError.prototype.Error = function() { return this.go$val.Error(); };
-	Cmd.Ptr.prototype.Wait = function() {
+0ÇWaitÇu	Cmd.Ptr.prototype.Wait = function() {
 		var c, _tuple, state, err, copyError, _ref, _i, err$1;
 		c = this;
 		if (c.Process === (go$ptrType(os.Process)).nil) {
@@ -616,7 +609,7 @@ $$
 		return copyError;
 	};
 	Cmd.prototype.Wait = function() { return this.go$val.Wait(); };
-	Cmd.Ptr.prototype.Output = function() {
+0Ç{OutputÇo	Cmd.Ptr.prototype.Output = function() {
 		var c, b, err;
 		c = this;
 		if (!(go$interfaceIsEqual(c.Stdout, null))) {
@@ -628,7 +621,7 @@ $$
 		return [b.Bytes(), err];
 	};
 	Cmd.prototype.Output = function() { return this.go$val.Output(); };
-	Cmd.Ptr.prototype.CombinedOutput = function() {
+0Ç1CombinedOutputÇ	Cmd.Ptr.prototype.CombinedOutput = function() {
 		var c, b, err;
 		c = this;
 		if (!(go$interfaceIsEqual(c.Stdout, null))) {
@@ -644,7 +637,7 @@ $$
 		return [b.Bytes(), err];
 	};
 	Cmd.prototype.CombinedOutput = function() { return this.go$val.CombinedOutput(); };
-	Cmd.Ptr.prototype.StdinPipe = function() {
+0Çˇ	StdinPipeÇ	Cmd.Ptr.prototype.StdinPipe = function() {
 		var c, _tuple, pr, pw, err, wc;
 		c = this;
 		if (!(go$interfaceIsEqual(c.Stdin, null))) {
@@ -664,7 +657,7 @@ $$
 		return [wc, null];
 	};
 	Cmd.prototype.StdinPipe = function() { return this.go$val.StdinPipe(); };
-	closeOnce.Ptr.prototype.Close = function() {
+0ÅÒCloseÅÁ	closeOnce.Ptr.prototype.Close = function() {
 		var c;
 		c = this;
 		c.close.Do((function() {
@@ -673,7 +666,8 @@ $$
 		return c.closeErr;
 	};
 	closeOnce.prototype.Close = function() { return this.go$val.Close(); };
-	Cmd.Ptr.prototype.StdoutPipe = function() {
+0Ç 
+StdoutPipeÇ∫	Cmd.Ptr.prototype.StdoutPipe = function() {
 		var c, _tuple, pr, pw, err;
 		c = this;
 		if (!(go$interfaceIsEqual(c.Stdout, null))) {
@@ -692,7 +686,8 @@ $$
 		return [pr, null];
 	};
 	Cmd.prototype.StdoutPipe = function() { return this.go$val.StdoutPipe(); };
-	Cmd.Ptr.prototype.StderrPipe = function() {
+0Ç 
+StderrPipeÇ∫	Cmd.Ptr.prototype.StderrPipe = function() {
 		var c, _tuple, pr, pw, err;
 		c = this;
 		if (!(go$interfaceIsEqual(c.Stderr, null))) {
@@ -711,7 +706,7 @@ $$
 		return [pr, null];
 	};
 	Cmd.prototype.StderrPipe = function() { return this.go$val.StderrPipe(); };
-	var findExecutable = function(file) {
+0ÇSfindExecutableÇ?	var findExecutable = function(file) {
 		var _tuple, d, err, m;
 		_tuple = os.Stat(file), d = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -722,7 +717,7 @@ $$
 		}
 		return os.ErrPermission;
 	};
-	var LookPath = go$pkg.LookPath = function(file) {
+0ÇîLookPathÇÜ	var LookPath = go$pkg.LookPath = function(file) {
 		var err, pathenv, _ref, _i, _slice, _index, dir, path, err$1;
 		if (strings.Contains(file, "/")) {
 			err = findExecutable(file);
@@ -749,7 +744,6 @@ $$
 		}
 		return ["", new Error.Ptr(file, go$pkg.ErrNotFound)];
 	};
-	go$pkg.ErrNotFound = null;
-	go$pkg.init = function() {
+0qiniti	go$pkg.init = function() {
 		go$pkg.ErrNotFound = errors.New("executable file not found in $PATH");
 	};

@@ -1,4 +1,4 @@
-0Ç´ÙÇlpackage cipher
+0ÇÆUcrypto/cipherÇlpackage cipher
 import subtle "crypto/subtle"
 import errors "errors"
 import io "io"
@@ -50,10 +50,7 @@ func (? *@"".ofb) @"".XORKeyStream(@"".dst []byte, @"".src []byte) ()
 type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error) }
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
-0Fruntimecrypto/subtleerrorssync/atomicsynciocrypto/cipherÇú8	var subtle = go$packages["crypto/subtle"];
-	var errors = go$packages["errors"];
-	var io = go$packages["io"];
-	var cbc;
+0Fruntimecrypto/subtleerrorssync/atomicsynciocrypto/cipher050crypto/subtlesubtle0errorserrors0ioioÇ#Õ	var cbc;
 	cbc = go$newType(0, "Struct", "cipher.cbc", "cbc", "crypto/cipher", function(b_, blockSize_, iv_, tmp_) {
 		this.go$val = this;
 		this.b = b_ !== undefined ? b_ : null;
@@ -171,23 +168,25 @@ $$
 	(go$ptrType(StreamWriter)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	ofb.init([["b", "crypto/cipher", Block, ""], ["out", "crypto/cipher", (go$sliceType(Go$Uint8)), ""], ["outUsed", "crypto/cipher", Go$Int, ""]]);
 	(go$ptrType(ofb)).methods = [["XORKeyStream", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [], false]];
-	var newCBC = function(b, iv) {
+M	var errOpen = null;
+	var gcmReductionTable = (go$sliceType(Go$Uint16)).nil;
+0Çz30Å´newCBCÅ†	var newCBC = function(b, iv) {
 		return new cbc.Ptr(b, b.BlockSize(), dup(iv), (go$sliceType(Go$Uint8)).make(b.BlockSize(), 0, function() { return 0; }));
 	};
-	var NewCBCEncrypter = go$pkg.NewCBCEncrypter = function(b, iv) {
+0ÇfNewCBCEncrypterÇQ	var NewCBCEncrypter = go$pkg.NewCBCEncrypter = function(b, iv) {
 		var _struct;
 		if (!((iv.length === b.BlockSize()))) {
 			throw go$panic(new Go$String("cipher.NewCBCEncrypter: IV length must equal block size"));
 		}
 		return (_struct = newCBC(b, iv), new cbcEncrypter.Ptr(_struct.b, _struct.blockSize, _struct.iv, _struct.tmp));
 	};
-	cbcEncrypter.Ptr.prototype.BlockSize = function() {
+0Å∆	BlockSizeÅ∏	cbcEncrypter.Ptr.prototype.BlockSize = function() {
 		var x;
 		x = this;
 		return x.blockSize;
 	};
 	cbcEncrypter.prototype.BlockSize = function() { return this.go$val.BlockSize(); };
-	cbcEncrypter.Ptr.prototype.CryptBlocks = function(dst, src) {
+0Ç!CryptBlocksÇ	cbcEncrypter.Ptr.prototype.CryptBlocks = function(dst, src) {
 		var x, _r, i, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _slice$2, _index$3, i$1, _slice$3, _index$4, _slice$4, _index$5;
 		x = this;
 		if (!(((_r = src.length % x.blockSize, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
@@ -213,7 +212,7 @@ $$
 		}
 	};
 	cbcEncrypter.prototype.CryptBlocks = function(dst, src) { return this.go$val.CryptBlocks(dst, src); };
-	cbcEncrypter.Ptr.prototype.SetIV = function(iv) {
+0Ç.SetIVÇ#	cbcEncrypter.Ptr.prototype.SetIV = function(iv) {
 		var x;
 		x = this;
 		if (!((iv.length === x.iv.length))) {
@@ -222,20 +221,20 @@ $$
 		go$copySlice(x.iv, iv);
 	};
 	cbcEncrypter.prototype.SetIV = function(iv) { return this.go$val.SetIV(iv); };
-	var NewCBCDecrypter = go$pkg.NewCBCDecrypter = function(b, iv) {
+0ÇfNewCBCDecrypterÇQ	var NewCBCDecrypter = go$pkg.NewCBCDecrypter = function(b, iv) {
 		var _struct;
 		if (!((iv.length === b.BlockSize()))) {
 			throw go$panic(new Go$String("cipher.NewCBCDecrypter: IV length must equal block size"));
 		}
 		return (_struct = newCBC(b, iv), new cbcDecrypter.Ptr(_struct.b, _struct.blockSize, _struct.iv, _struct.tmp));
 	};
-	cbcDecrypter.Ptr.prototype.BlockSize = function() {
+0Å∆	BlockSizeÅ∏	cbcDecrypter.Ptr.prototype.BlockSize = function() {
 		var x;
 		x = this;
 		return x.blockSize;
 	};
 	cbcDecrypter.prototype.BlockSize = function() { return this.go$val.BlockSize(); };
-	cbcDecrypter.Ptr.prototype.CryptBlocks = function(dst, src) {
+0ÇpCryptBlocksÇ_	cbcDecrypter.Ptr.prototype.CryptBlocks = function(dst, src) {
 		var x, _r, i, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _slice$2, _index$3, _slice$3, _index$4, _slice$4, _index$5, _slice$5, _index$6, _slice$6, _index$7;
 		x = this;
 		if (!(((_r = src.length % x.blockSize, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
@@ -258,7 +257,7 @@ $$
 		}
 	};
 	cbcDecrypter.prototype.CryptBlocks = function(dst, src) { return this.go$val.CryptBlocks(dst, src); };
-	cbcDecrypter.Ptr.prototype.SetIV = function(iv) {
+0Ç.SetIVÇ#	cbcDecrypter.Ptr.prototype.SetIV = function(iv) {
 		var x;
 		x = this;
 		if (!((iv.length === x.iv.length))) {
@@ -267,19 +266,19 @@ $$
 		go$copySlice(x.iv, iv);
 	};
 	cbcDecrypter.prototype.SetIV = function(iv) { return this.go$val.SetIV(iv); };
-	var NewCFBEncrypter = go$pkg.NewCFBEncrypter = function(block, iv) {
+0ÇNewCFBEncrypterÅ¸	var NewCFBEncrypter = go$pkg.NewCFBEncrypter = function(block, iv) {
 		if (!((iv.length === block.BlockSize()))) {
 			throw go$panic(new Go$String("cipher.NewCBFEncrypter: IV length must equal block size"));
 		}
 		return newCFB(block, iv, false);
 	};
-	var NewCFBDecrypter = go$pkg.NewCFBDecrypter = function(block, iv) {
+0ÇNewCFBDecrypterÅ˚	var NewCFBDecrypter = go$pkg.NewCFBDecrypter = function(block, iv) {
 		if (!((iv.length === block.BlockSize()))) {
 			throw go$panic(new Go$String("cipher.NewCBFEncrypter: IV length must equal block size"));
 		}
 		return newCFB(block, iv, true);
 	};
-	var newCFB = function(block, iv, decrypt) {
+0ÇAnewCFBÇ5	var newCFB = function(block, iv, decrypt) {
 		var blockSize, x;
 		blockSize = block.BlockSize();
 		if (!((iv.length === blockSize))) {
@@ -289,7 +288,7 @@ $$
 		block.Encrypt(x.out, iv);
 		return x;
 	};
-	cfb.Ptr.prototype.XORKeyStream = function(dst, src) {
+0Ç	ûXORKeyStreamÇ	å	cfb.Ptr.prototype.XORKeyStream = function(dst, src) {
 		var x, i, _slice, _index, t, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _lhs, _index$5, _slice$5, _index$6, _slice$6, _index$7, _slice$7, _index$8, _slice$8, _index$9, _slice$9, _index$10;
 		x = this;
 		i = 0;
@@ -311,7 +310,8 @@ $$
 		}
 	};
 	cfb.prototype.XORKeyStream = function(dst, src) { return this.go$val.XORKeyStream(dst, src); };
-	var shift1 = function(dst, src) {
+0Ç
+shift1Ç˛	var shift1 = function(dst, src) {
 		var b, i, _slice, _index, bb, _slice$1, _index$1, _slice$2, _index$2;
 		b = 0;
 		i = src.length - 1 >> 0;
@@ -323,19 +323,19 @@ $$
 		}
 		return b;
 	};
-	var dup = function(p) {
+0ÅúdupÅî	var dup = function(p) {
 		var q;
 		q = (go$sliceType(Go$Uint8)).make(p.length, 0, function() { return 0; });
 		go$copySlice(q, p);
 		return q;
 	};
-	var NewCTR = go$pkg.NewCTR = function(block, iv) {
+0ÇBNewCTRÇ6	var NewCTR = go$pkg.NewCTR = function(block, iv) {
 		if (!((iv.length === block.BlockSize()))) {
 			throw go$panic(new Go$String("cipher.NewCTR: IV length must equal block size"));
 		}
 		return new ctr.Ptr(block, dup(iv), (go$sliceType(Go$Uint8)).make(iv.length, 0, function() { return 0; }), iv.length);
 	};
-	ctr.Ptr.prototype.XORKeyStream = function(dst, src) {
+0ÇŸXORKeyStreamÇ«	ctr.Ptr.prototype.XORKeyStream = function(dst, src) {
 		var x, i, i$1, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _slice$2, _index$3, _slice$3, _index$4, _slice$4, _index$5, _slice$5, _index$6;
 		x = this;
 		i = 0;
@@ -358,7 +358,7 @@ $$
 		}
 	};
 	ctr.prototype.XORKeyStream = function(dst, src) { return this.go$val.XORKeyStream(dst, src); };
-	var NewGCM = go$pkg.NewGCM = function(cipher) {
+0ÇÍNewGCMÇﬁ	var NewGCM = go$pkg.NewGCM = function(cipher) {
 		var key, g, x, _struct, i, _q, _struct$1, _struct$2;
 		if (!((cipher.BlockSize() === 16))) {
 			return [null, errors.New("cipher: NewGCM requires 128-bit block cipher")];
@@ -376,15 +376,15 @@ $$
 		}
 		return [g, null];
 	};
-	gcm.Ptr.prototype.NonceSize = function() {
+0Åñ	NonceSizeÅà	gcm.Ptr.prototype.NonceSize = function() {
 		return 12;
 	};
 	gcm.prototype.NonceSize = function() { return this.go$val.NonceSize(); };
-	gcm.Ptr.prototype.Overhead = function() {
+0ÅíOverheadÅÖ	gcm.Ptr.prototype.Overhead = function() {
 		return 16;
 	};
 	gcm.prototype.Overhead = function() { return this.go$val.Overhead(); };
-	gcm.Ptr.prototype.Seal = function(dst, nonce, plaintext, data) {
+0Ç˜SealÇÌ	gcm.Ptr.prototype.Seal = function(dst, nonce, plaintext, data) {
 		var g, _tuple, ret, out, _tuple$1, counter, tagMask;
 		g = this;
 		if (!((nonce.length === 12))) {
@@ -401,7 +401,7 @@ $$
 		return ret;
 	};
 	gcm.prototype.Seal = function(dst, nonce, plaintext, data) { return this.go$val.Seal(dst, nonce, plaintext, data); };
-	gcm.Ptr.prototype.Open = function(dst, nonce, ciphertext, data) {
+0Ç∫OpenÇ∞	gcm.Ptr.prototype.Open = function(dst, nonce, ciphertext, data) {
 		var g, tag, _tuple, counter, tagMask, expectedTag, _tuple$1, ret, out;
 		g = this;
 		if (!((nonce.length === 12))) {
@@ -427,16 +427,16 @@ $$
 		return [ret, null];
 	};
 	gcm.prototype.Open = function(dst, nonce, ciphertext, data) { return this.go$val.Open(dst, nonce, ciphertext, data); };
-	var reverseBits = function(i) {
+0ÅµreverseBitsÅ•	var reverseBits = function(i) {
 		i = ((((i << 2 >> 0)) & 12)) | ((((i >> 2 >> 0)) & 3));
 		i = ((((i << 1 >> 0)) & 10)) | ((((i >> 1 >> 0)) & 5));
 		return i;
 	};
-	var gcmAdd = function(x, y) {
+0Ç#gcmAddÇ	var gcmAdd = function(x, y) {
 		var x$1, x$2, x$3, x$4;
 		return new gcmFieldElement.Ptr((x$1 = x.low, x$2 = y.low, new Go$Uint64(x$1.high ^ x$2.high, (x$1.low ^ x$2.low) >>> 0)), (x$3 = x.high, x$4 = y.high, new Go$Uint64(x$3.high ^ x$4.high, (x$3.low ^ x$4.low) >>> 0)));
 	};
-	var gcmDouble = function(x) {
+0Ç¡	gcmDoubleÇ≤	var gcmDouble = function(x) {
 		var double$1, x$1, x$2, msbSet, x$3, x$4, x$5, _struct;
 		double$1 = new gcmFieldElement.Ptr();
 		msbSet = (x$1 = (x$2 = x.high, new Go$Uint64(x$2.high & 0, (x$2.low & 1) >>> 0)), (x$1.high === 0 && x$1.low === 1));
@@ -448,7 +448,7 @@ $$
 		}
 		return (_struct = double$1, new gcmFieldElement.Ptr(_struct.low, _struct.high));
 	};
-	gcm.Ptr.prototype.mul = function(y) {
+0ÇŒmulÇ≈	gcm.Ptr.prototype.mul = function(y) {
 		var g, z, i, word, j, x, msw, x$1, x$2, x$3, x$4, _slice, _index, t, x$5, x$6, x$7, x$8, _struct, l, r;
 		g = this;
 		z = new gcmFieldElement.Ptr();
@@ -476,6 +476,7 @@ $$
 		l = y, r = (_struct = z, new gcmFieldElement.Ptr(_struct.low, _struct.high)), l.low = r.low, l.high = r.high;
 	};
 	gcm.prototype.mul = function(y) { return this.go$val.mul(y); };
+0ÇupdateBlocksÇ
 	gcm.Ptr.prototype.updateBlocks = function(y, blocks) {
 		var g, x, x$1, x$2, x$3;
 		g = this;
@@ -487,7 +488,7 @@ $$
 		}
 	};
 	gcm.prototype.updateBlocks = function(y, blocks) { return this.go$val.updateBlocks(y, blocks); };
-	gcm.Ptr.prototype.update = function(y, data) {
+0ÇEupdateÇ9	gcm.Ptr.prototype.update = function(y, data) {
 		var g, fullBlocks, partialBlock;
 		g = this;
 		fullBlocks = ((data.length >> 4 >> 0)) << 4 >> 0;
@@ -499,7 +500,7 @@ $$
 		}
 	};
 	gcm.prototype.update = function(y, data) { return this.go$val.update(y, data); };
-	var gcmInc32 = function(counterBlock) {
+0ÅÈgcmInc32Å‹	var gcmInc32 = function(counterBlock) {
 		var c, i;
 		c = 1;
 		i = 15;
@@ -510,7 +511,7 @@ $$
 			i = i - 1 >> 0;
 		}
 	};
-	var sliceForAppend = function(in$1, n) {
+0Ç«sliceForAppendÇ≥	var sliceForAppend = function(in$1, n) {
 		var head, tail, total;
 		head = (go$sliceType(Go$Uint8)).nil;
 		tail = (go$sliceType(Go$Uint8)).nil;
@@ -523,7 +524,7 @@ $$
 		tail = go$subslice(head, in$1.length);
 		return [head, tail];
 	};
-	gcm.Ptr.prototype.counterCrypt = function(out, in$1, counter) {
+0ÇÖcounterCryptÇs	gcm.Ptr.prototype.counterCrypt = function(out, in$1, counter) {
 		var g, mask, _ref, _i, i, _slice, _index, _slice$1, _index$1, _ref$1, _i$1, i$1, _slice$2, _index$2, _slice$3, _index$3;
 		g = this;
 		mask = go$makeNativeArray("Uint8", 16, function() { return 0; });
@@ -551,7 +552,7 @@ $$
 		}
 	};
 	gcm.prototype.counterCrypt = function(out, in$1, counter) { return this.go$val.counterCrypt(out, in$1, counter); };
-	gcm.Ptr.prototype.auth = function(out, ciphertext, additionalData, tagMask) {
+0ÇauthÇ	gcm.Ptr.prototype.auth = function(out, ciphertext, additionalData, tagMask) {
 		var g, y, x, x$1, x$2, x$3, _ref, _i, i, _lhs, _index, _slice, _index$1, _slice$1, _index$2;
 		g = this;
 		y = new gcmFieldElement.Ptr();
@@ -570,12 +571,12 @@ $$
 		}
 	};
 	gcm.prototype.auth = function(out, ciphertext, additionalData, tagMask) { return this.go$val.auth(out, ciphertext, additionalData, tagMask); };
-	var getUint64 = function(data) {
+0Ç	∞	getUint64Ç	°	var getUint64 = function(data) {
 		var x, x$1, x$2, x$3, x$4, x$5, x$6, _slice, _index, x$7, _slice$1, _index$1, x$8, _slice$2, _index$2, x$9, _slice$3, _index$3, x$10, _slice$4, _index$4, x$11, _slice$5, _index$5, x$12, _slice$6, _index$6, x$13, _slice$7, _index$7, r;
 		r = (x = (x$1 = (x$2 = (x$3 = (x$4 = (x$5 = (x$6 = go$shiftLeft64(new Go$Uint64(0, (_slice = data, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), 56), x$7 = go$shiftLeft64(new Go$Uint64(0, (_slice$1 = data, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))), 48), new Go$Uint64(x$6.high | x$7.high, (x$6.low | x$7.low) >>> 0)), x$8 = go$shiftLeft64(new Go$Uint64(0, (_slice$2 = data, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))), 40), new Go$Uint64(x$5.high | x$8.high, (x$5.low | x$8.low) >>> 0)), x$9 = go$shiftLeft64(new Go$Uint64(0, (_slice$3 = data, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))), 32), new Go$Uint64(x$4.high | x$9.high, (x$4.low | x$9.low) >>> 0)), x$10 = go$shiftLeft64(new Go$Uint64(0, (_slice$4 = data, _index$4 = 4, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))), 24), new Go$Uint64(x$3.high | x$10.high, (x$3.low | x$10.low) >>> 0)), x$11 = go$shiftLeft64(new Go$Uint64(0, (_slice$5 = data, _index$5 = 5, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))), 16), new Go$Uint64(x$2.high | x$11.high, (x$2.low | x$11.low) >>> 0)), x$12 = go$shiftLeft64(new Go$Uint64(0, (_slice$6 = data, _index$6 = 6, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))), 8), new Go$Uint64(x$1.high | x$12.high, (x$1.low | x$12.low) >>> 0)), x$13 = new Go$Uint64(0, (_slice$7 = data, _index$7 = 7, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))), new Go$Uint64(x.high | x$13.high, (x.low | x$13.low) >>> 0));
 		return r;
 	};
-	var putUint64 = function(out, v) {
+0Çá	putUint64Çx	var putUint64 = function(out, v) {
 		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		_slice = out, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (go$shiftRightUint64(v, 56).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 		_slice$1 = out, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (go$shiftRightUint64(v, 48).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
@@ -586,7 +587,7 @@ $$
 		_slice$6 = out, _index$6 = 6, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = (go$shiftRightUint64(v, 8).low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 		_slice$7 = out, _index$7 = 7, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = (v.low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
-	StreamReader.Ptr.prototype.Read = function(dst) {
+0ÇüReadÇï	StreamReader.Ptr.prototype.Read = function(dst) {
 		var n, err, _struct, r, _tuple;
 		n = 0;
 		err = null;
@@ -596,7 +597,7 @@ $$
 		return [n, err];
 	};
 	StreamReader.prototype.Read = function(dst) { return this.go$val.Read(dst); };
-	StreamWriter.Ptr.prototype.Write = function(src) {
+0ÇEWriteÇ:	StreamWriter.Ptr.prototype.Write = function(src) {
 		var n, err, _struct, w, c, _tuple;
 		n = 0;
 		err = null;
@@ -612,7 +613,7 @@ $$
 		return [n, err];
 	};
 	StreamWriter.prototype.Write = function(src) { return this.go$val.Write(src); };
-	StreamWriter.Ptr.prototype.Close = function() {
+0ÇÀCloseÇ¿	StreamWriter.Ptr.prototype.Close = function() {
 		var _struct, w, ok, _tuple, x, c;
 		w = (_struct = this, new StreamWriter.Ptr(_struct.S, _struct.W, _struct.Err));
 		if (_tuple = (x = w.W, (x !== null && io.Closer.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), c = _tuple[0], ok = _tuple[1], ok) {
@@ -621,7 +622,7 @@ $$
 		return null;
 	};
 	StreamWriter.prototype.Close = function() { return this.go$val.Close(); };
-	var NewOFB = go$pkg.NewOFB = function(b, iv) {
+0Ç/NewOFBÇ#	var NewOFB = go$pkg.NewOFB = function(b, iv) {
 		var blockSize, x;
 		blockSize = b.BlockSize();
 		if (!((iv.length === blockSize))) {
@@ -631,7 +632,7 @@ $$
 		b.Encrypt(x.out, iv);
 		return x;
 	};
-	ofb.Ptr.prototype.XORKeyStream = function(dst, src) {
+0ÇÏXORKeyStreamÇ⁄	ofb.Ptr.prototype.XORKeyStream = function(dst, src) {
 		var x, _ref, _i, _slice, _index, s, i, _slice$1, _index$1, _slice$2, _index$2;
 		x = this;
 		_ref = src;
@@ -648,12 +649,7 @@ $$
 		}
 	};
 	ofb.prototype.XORKeyStream = function(dst, src) { return this.go$val.XORKeyStream(dst, src); };
-	var gcmBlockSize = 16;
-	var gcmTagSize = 16;
-	var gcmNonceSize = 12;
-	var errOpen = null;
-	var gcmReductionTable = (go$sliceType(Go$Uint16)).nil;
-	go$pkg.init = function() {
+0ÇinitÇ	go$pkg.init = function() {
 		errOpen = errors.New("cipher: message authentication failed");
 		gcmReductionTable = new (go$sliceType(Go$Uint16))([0, 7200, 14400, 9312, 28800, 27808, 18624, 21728, 57600, 64800, 55616, 50528, 37248, 36256, 43456, 46560]);
 	};

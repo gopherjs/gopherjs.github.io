@@ -1,4 +1,5 @@
-0Éﬁ‰ÇB0package printer
+0É·’
+go/printerÇB0package printer
 import bytes "bytes"
 import ast "go/ast"
 import token "go/token"
@@ -203,18 +204,8 @@ func (? *@"go/ast".ObjKind) @"go/ast".String() (? string)
 $$
 0ÅŒruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/asttext/tabwriter
-go/printerÉõ⁄	var bytes = go$packages["bytes"];
-	var ast = go$packages["go/ast"];
-	var token = go$packages["go/token"];
-	var utf8 = go$packages["unicode/utf8"];
-	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var os = go$packages["os"];
-	var strconv = go$packages["strconv"];
-	var strings = go$packages["strings"];
-	var tabwriter = go$packages["text/tabwriter"];
-	var unicode = go$packages["unicode"];
-	var exprListMode;
+go/printer0Å¡0bytesbytes0go/astast0go/tokentoken0unicode/utf8utf80
+fmtfmt0ioio0osos0strconvstrconv0stringsstrings0text/tabwriter	tabwriter0unicodeunicodeÇ%S	var exprListMode;
 	exprListMode = go$newType(4, "Uint", "printer.exprListMode", "exprListMode", "go/printer", null);
 	go$pkg.exprListMode = exprListMode;
 	var whiteSpace;
@@ -285,7 +276,8 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 	Config.init([["Mode", "", Mode, ""], ["Tabwidth", "", Go$Int, ""], ["Indent", "", Go$Int, ""]]);
 	(go$ptrType(Config)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false]];
 	CommentedNode.init([["Node", "", go$emptyInterface, ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
-	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
+.	var aNewline = (go$sliceType(Go$Uint8)).nil;
+0Éxt0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
 		var printedBreak, p, n;
 		printedBreak = false;
 		p = this;
@@ -308,7 +300,8 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return printedBreak;
 	};
 	printer.prototype.linebreak = function(line, min, ws, newSection) { return this.go$val.linebreak(line, min, ws, newSection); };
-	printer.Ptr.prototype.setComment = function(g) {
+0Ç˘
+setCommentÇÈ	printer.Ptr.prototype.setComment = function(g) {
 		var p, _slice, _index, _struct, _slice$1, _index$1;
 		p = this;
 		if (g === (go$ptrType(ast.CommentGroup)).nil || !p.useNodeComments) {
@@ -328,7 +321,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.setComment = function(g) { return this.go$val.setComment(g); };
-	printer.Ptr.prototype.identList = function(list, indent$1) {
+0ÇV	identListÇG	printer.Ptr.prototype.identList = function(list, indent) {
 		var p, xlist, _ref, _i, _slice, _index, x, i, _slice$1, _index$1, mode;
 		p = this;
 		xlist = (go$sliceType(ast.Expr)).make(list.length, 0, function() { return null; });
@@ -340,13 +333,13 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 			_slice$1 = xlist, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = x) : go$throwRuntimeError("index out of range");
 		}
 		mode = 0;
-		if (!indent$1) {
+		if (!indent) {
 			mode = 2;
 		}
 		p.exprList(0, xlist, 1, mode, 0);
 	};
-	printer.prototype.identList = function(list, indent$1) { return this.go$val.identList(list, indent$1); };
-	printer.Ptr.prototype.exprList = function(prev0, list, depth, mode, next0) {
+	printer.prototype.identList = function(list, indent) { return this.go$val.identList(list, indent); };
+0Ç}exprListÇo	printer.Ptr.prototype.exprList = function(prev0, list, depth, mode, next0) {
 		var p, _struct, prev, _struct$1, next, _slice, _index, line, _slice$1, _index$1, endLine, _ref, _i, _slice$2, _index$2, x, i, ws, prevBreak, size, _ref$1, _i$1, _slice$3, _index$3, x$1, i$1, prevLine, useFF, prevSize, _tuple, pair, isPair, ratio, needsLinebreak, needsBlank;
 		p = this;
 		if (list.length === 0) {
@@ -444,7 +437,8 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.exprList = function(prev0, list, depth, mode, next0) { return this.go$val.exprList(prev0, list, depth, mode, next0); };
-	printer.Ptr.prototype.parameters = function(fields) {
+0Çü
+parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 		var p, prevLine, ws, _ref, _i, _slice, _index, par, i, parLineBeg, _slice$1, _index$1, parLineEnd, needsLinebreak, closing;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(fields.Opening), new token.Token(49)]));
@@ -493,7 +487,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(fields.Closing), new token.Token(54)]));
 	};
 	printer.prototype.parameters = function(fields) { return this.go$val.parameters(fields); };
-	printer.Ptr.prototype.signature = function(params, result) {
+0Ç	signatureÇ		printer.Ptr.prototype.signature = function(params, result) {
 		var p, n, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (!(params === (go$ptrType(ast.FieldList)).nil)) {
@@ -512,7 +506,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.signature = function(params, result) { return this.go$val.signature(params, result); };
-	var identListSize = function(list, maxSize) {
+0ÇidentListSizeÇ˚	var identListSize = function(list, maxSize) {
 		var size, _ref, _i, _slice, _index, x, i;
 		size = 0;
 		_ref = list;
@@ -530,7 +524,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return size;
 	};
-	printer.Ptr.prototype.isOneLineFieldList = function(list) {
+0Ç˝isOneLineFieldListÇÂ	printer.Ptr.prototype.isOneLineFieldList = function(list) {
 		var p, _slice, _index, f, namesSize, typeSize;
 		p = this;
 		if (!((list.length === 1))) {
@@ -548,19 +542,19 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return (namesSize + typeSize >> 0) <= 30;
 	};
 	printer.prototype.isOneLineFieldList = function(list) { return this.go$val.isOneLineFieldList(list); };
-	printer.Ptr.prototype.setLineComment = function(text) {
+0Ç@setLineCommentÇ,	printer.Ptr.prototype.setLineComment = function(text) {
 		var p;
 		p = this;
 		p.setComment(new ast.CommentGroup.Ptr(new (go$sliceType((go$ptrType(ast.Comment))))([new ast.Comment.Ptr(0, text)])));
 	};
 	printer.prototype.setLineComment = function(text) { return this.go$val.setLineComment(text); };
-	printer.Ptr.prototype.isMultiLine = function(n) {
+0ÅÓisMultiLineÅﬁ	printer.Ptr.prototype.isMultiLine = function(n) {
 		var p;
 		p = this;
 		return (p.lineFor(n.End()) - p.lineFor(n.Pos()) >> 0) > 0;
 	};
 	printer.prototype.isMultiLine = function(n) { return this.go$val.isMultiLine(n); };
-	printer.Ptr.prototype.fieldList = function(fields, isStruct, isIncomplete) {
+0Ç¯	fieldListÇÈ	printer.Ptr.prototype.fieldList = function(fields, isStruct, isIncomplete) {
 		var p, lbrace, list, rbrace, _struct, hasComments, srcIsOneLine, _slice, _index, f, _ref, _i, _slice$1, _index$1, x, i, sep, newSection, _ref$1, _i$1, _slice$2, _index$2, f$1, i$1, extraTabs, _struct$1, newSection$1, _ref$2, _i$2, _slice$3, _index$3, f$2, i$2, isFtyp, _tuple, x$1, ftyp, _slice$4, _index$4, _struct$2;
 		p = this;
 		lbrace = fields.Opening;
@@ -677,7 +671,8 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12), new token.Pos(rbrace), new token.Token(56)]));
 	};
 	printer.prototype.fieldList = function(fields, isStruct, isIncomplete) { return this.go$val.fieldList(fields, isStruct, isIncomplete); };
-	var walkBinary = function(e) {
+0Ç<
+walkBinaryÇ,	var walkBinary = function(e) {
 		var has4, has5, maxProblem, _ref, l, _ref$1, _type, _tuple, h4, h5, mp, r, _ref$2, _type$1, _tuple$1, h4$1, h5$1, mp$1, _ref$3;
 		has4 = false;
 		has5 = false;
@@ -739,7 +734,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return [has4, has5, maxProblem];
 	};
-	var cutoff = function(e, depth) {
+0ÇlcutoffÇ`	var cutoff = function(e, depth) {
 		var _tuple, has4, has5, maxProblem;
 		_tuple = walkBinary(e), has4 = _tuple[0], has5 = _tuple[1], maxProblem = _tuple[2];
 		if (maxProblem > 0) {
@@ -756,7 +751,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return 4;
 	};
-	var diffPrec = function(expr, prec) {
+0Ç`diffPrecÇR	var diffPrec = function(expr, prec) {
 		var _tuple, x, ok;
 		_tuple = (expr !== null && expr.constructor === (go$ptrType(ast.BinaryExpr)) ? [expr.go$val, true] : [(go$ptrType(ast.BinaryExpr)).nil, false]), x = _tuple[0], ok = _tuple[1];
 		if (!ok || !((prec === (new token.Token(x.Op)).Precedence()))) {
@@ -764,14 +759,15 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return 0;
 	};
-	var reduceDepth = function(depth) {
+0ÅáreduceDepthx	var reduceDepth = function(depth) {
 		depth = depth - 1 >> 0;
 		if (depth < 1) {
 			depth = 1;
 		}
 		return depth;
 	};
-	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, depth) {
+0Ç 
+binaryExprÇ	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, depth) {
 		var p, prec, printBlank, ws, xline, yline;
 		p = this;
 		prec = (new token.Token(x.Op)).Precedence();
@@ -805,12 +801,12 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.binaryExpr = function(x, prec1, cutoff$1, depth) { return this.go$val.binaryExpr(x, prec1, cutoff$1, depth); };
-	var isBinary = function(expr) {
+0ÅÙisBinaryÅÁ	var isBinary = function(expr) {
 		var _tuple, ok;
 		_tuple = (expr !== null && expr.constructor === (go$ptrType(ast.BinaryExpr)) ? [expr.go$val, true] : [(go$ptrType(ast.BinaryExpr)).nil, false]), ok = _tuple[1];
 		return ok;
 	};
-	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) {
+0Ç$°expr1Ç$ñ	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) {
 		var p, x, _ref, _type, hasParens, _tuple, x$1, line, indices, _ref$1, _i, _slice, _index, y, i, _slice$1, _index$1, x$2, ok, _tuple$1, x$3, _ref$2;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(expr.Pos())]));
@@ -1007,19 +1003,19 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return;
 	};
 	printer.prototype.expr1 = function(expr, prec1, depth) { return this.go$val.expr1(expr, prec1, depth); };
-	printer.Ptr.prototype.expr0 = function(x, depth) {
+0Å∆expr0Åº	printer.Ptr.prototype.expr0 = function(x, depth) {
 		var p;
 		p = this;
 		p.expr1(x, 0, depth);
 	};
 	printer.prototype.expr0 = function(x, depth) { return this.go$val.expr0(x, depth); };
-	printer.Ptr.prototype.expr = function(x) {
+0Å©exprÅ†	printer.Ptr.prototype.expr = function(x) {
 		var p;
 		p = this;
 		p.expr1(x, 0, 1);
 	};
 	printer.prototype.expr = function(x) { return this.go$val.expr(x); };
-	printer.Ptr.prototype.stmtList = function(list, nindent, nextIsRBrace) {
+0ÇõstmtListÇç	printer.Ptr.prototype.stmtList = function(list, nindent, nextIsRBrace) {
 		var p, multiLine, i, _ref, _i, _slice, _index, s, isEmpty, _tuple;
 		p = this;
 		if (nindent > 0) {
@@ -1045,7 +1041,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.stmtList = function(list, nindent, nextIsRBrace) { return this.go$val.stmtList(list, nindent, nextIsRBrace); };
-	printer.Ptr.prototype.block = function(b, nindent) {
+0ÇŒblockÇ√	printer.Ptr.prototype.block = function(b, nindent) {
 		var p;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(b.Lbrace), new token.Token(51)]));
@@ -1054,7 +1050,8 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(b.Rbrace), new token.Token(56)]));
 	};
 	printer.prototype.block = function(b, nindent) { return this.go$val.block(b, nindent); };
-	var isTypeName = function(x) {
+0ÇT
+isTypeNameÇD	var isTypeName = function(x) {
 		var t, _ref, _type;
 		_ref = x;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -1067,7 +1064,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return false;
 	};
-	var stripParens = function(x) {
+0ÇÔstripParensÇﬁ	var stripParens = function(x) {
 		var strip, _tuple, px;
 		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), px = _tuple[0], strip = _tuple[1], strip) {
 			ast.Inspect(px.X, (function(node) {
@@ -1092,14 +1089,14 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return x;
 	};
-	var stripParensAlways = function(x) {
+0Ç@stripParensAlwaysÇ)	var stripParensAlways = function(x) {
 		var ok, _tuple, x$1;
 		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), x$1 = _tuple[0], ok = _tuple[1], ok) {
 			return stripParensAlways(x$1.X);
 		}
 		return x;
 	};
-	printer.Ptr.prototype.controlClause = function(isForStmt, init, expr, post) {
+0ÇùcontrolClauseÇä	printer.Ptr.prototype.controlClause = function(isForStmt, init, expr, post) {
 		var p, needsBlank;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
@@ -1132,7 +1129,8 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.controlClause = function(isForStmt, init, expr, post) { return this.go$val.controlClause(isForStmt, init, expr, post); };
-	printer.Ptr.prototype.indentList = function(list) {
+0Çø
+indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		var p, _slice, _index, b, _slice$1, _index$1, e, n, line, _ref, _i, _slice$2, _index$2, x, xb, xe;
 		p = this;
 		if (list.length >= 2) {
@@ -1161,7 +1159,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return false;
 	};
 	printer.prototype.indentList = function(list) { return this.go$val.indentList(list); };
-	printer.Ptr.prototype.stmt = function(stmt, nextIsRBrace) {
+0Ç˘stmtÇÔ	printer.Ptr.prototype.stmt = function(stmt, nextIsRBrace) {
 		var p, s, _ref, _type, isEmpty, _tuple, x, e, depth, _ref$1, _type$1, body, _struct;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(stmt.Pos())]));
@@ -1331,7 +1329,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return;
 	};
 	printer.prototype.stmt = function(stmt, nextIsRBrace) { return this.go$val.stmt(stmt, nextIsRBrace); };
-	var keepTypeColumn = function(specs) {
+0ÇˇkeepTypeColumnÇÎ	var keepTypeColumn = function(specs) {
 		var m, populate, i0, keepType, _ref, _i, _slice, _index, s, i, t;
 		m = (go$sliceType(Go$Bool)).make(specs.length, 0, function() { return false; });
 		populate = (function(i, j, keepType) {
@@ -1371,7 +1369,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return m;
 	};
-	printer.Ptr.prototype.valueSpec = function(s, keepType) {
+0ÇË	valueSpecÇŸ	printer.Ptr.prototype.valueSpec = function(s, keepType) {
 		var p, extraTabs;
 		p = this;
 		p.setComment(s.Doc);
@@ -1398,7 +1396,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.valueSpec = function(s, keepType) { return this.go$val.valueSpec(s, keepType); };
-	printer.Ptr.prototype.spec = function(spec, n, doIndent) {
+0Ç∆specÇº	printer.Ptr.prototype.spec = function(spec, n, doIndent) {
 		var p, s, _ref, _type;
 		p = this;
 		_ref = spec;
@@ -1446,7 +1444,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.spec = function(spec, n, doIndent) { return this.go$val.spec(spec, n, doIndent); };
-	printer.Ptr.prototype.genDecl = function(d) {
+0Ç	®genDeclÇ	õ	printer.Ptr.prototype.genDecl = function(d) {
 		var p, n, keepType, newSection, _ref, _i, _slice, _index, s, i, _slice$1, _index$1, newSection$1, _ref$1, _i$1, _slice$2, _index$2, s$1, i$1, _slice$3, _index$3;
 		p = this;
 		p.setComment(d.Doc);
@@ -1491,7 +1489,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.genDecl = function(d) { return this.go$val.genDecl(d); };
-	printer.Ptr.prototype.nodeSize = function(n, maxSize) {
+0ÇUnodeSizeÇG	printer.Ptr.prototype.nodeSize = function(n, maxSize) {
 		var size, p, found, _tuple, _entry, size$1, _key, cfg, buf, err, _ref, _i, _slice, _index, ch, _key$1;
 		size = 0;
 		p = this;
@@ -1521,7 +1519,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return size;
 	};
 	printer.prototype.nodeSize = function(n, maxSize) { return this.go$val.nodeSize(n, maxSize); };
-	printer.Ptr.prototype.bodySize = function(b, maxSize) {
+0ÇbodySizeÇı	printer.Ptr.prototype.bodySize = function(b, maxSize) {
 		var p, pos1, pos2, _struct, bodySize, _ref, _i, _slice, _index, s, i;
 		p = this;
 		pos1 = b.Pos();
@@ -1546,7 +1544,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return bodySize;
 	};
 	printer.prototype.bodySize = function(b, maxSize) { return this.go$val.bodySize(b, maxSize); };
-	printer.Ptr.prototype.adjBlock = function(headerSize, sep, b) {
+0Ç+adjBlockÇ	printer.Ptr.prototype.adjBlock = function(headerSize, sep, b) {
 		var p, _ref, _i, _slice, _index, s, i;
 		p = this;
 		if (b === (go$ptrType(ast.BlockStmt)).nil) {
@@ -1577,7 +1575,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.block(b, 1);
 	};
 	printer.prototype.adjBlock = function(headerSize, sep, b) { return this.go$val.adjBlock(headerSize, sep, b); };
-	printer.Ptr.prototype.distanceFrom = function(from) {
+0ÇÊdistanceFromÇ‘	printer.Ptr.prototype.distanceFrom = function(from) {
 		var p, f, _struct;
 		p = this;
 		if ((new token.Pos(from)).IsValid() && p.pos.IsValid()) {
@@ -1588,7 +1586,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return 1073741824;
 	};
 	printer.prototype.distanceFrom = function(from) { return this.go$val.distanceFrom(from); };
-	printer.Ptr.prototype.funcDecl = function(d) {
+0ÇBfuncDeclÇ4	printer.Ptr.prototype.funcDecl = function(d) {
 		var p;
 		p = this;
 		p.setComment(d.Doc);
@@ -1602,7 +1600,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.adjBlock(p.distanceFrom(d.Pos()), 11, d.Body);
 	};
 	printer.prototype.funcDecl = function(d) { return this.go$val.funcDecl(d); };
-	printer.Ptr.prototype.decl = function(decl) {
+0ÇödeclÇê	printer.Ptr.prototype.decl = function(decl) {
 		var p, d, _ref, _type;
 		p = this;
 		_ref = decl;
@@ -1622,7 +1620,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.decl = function(decl) { return this.go$val.decl(decl); };
-	var declToken = function(decl) {
+0Ça	declTokenÇR	var declToken = function(decl) {
 		var tok, d, _ref, _type;
 		tok = 0;
 		tok = 0;
@@ -1637,7 +1635,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return tok;
 	};
-	printer.Ptr.prototype.declList = function(list) {
+0ÇÃdeclListÇæ	printer.Ptr.prototype.declList = function(list) {
 		var p, tok, _ref, _i, _slice, _index, d, prev, min;
 		p = this;
 		tok = 0;
@@ -1658,7 +1656,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.declList = function(list) { return this.go$val.declList(list); };
-	printer.Ptr.prototype.file = function(src) {
+0Ç°fileÇó	printer.Ptr.prototype.file = function(src) {
 		var p;
 		p = this;
 		p.setComment(src.Doc);
@@ -1668,7 +1666,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10)]));
 	};
 	printer.prototype.file = function(src) { return this.go$val.file(src); };
-	printer.Ptr.prototype.init = function(cfg, fset, nodeSizes) {
+0Ç"initÇ	printer.Ptr.prototype.init = function(cfg, fset, nodeSizes) {
 		var p, _struct;
 		p = this;
 		p.Config = (_struct = cfg, new Config.Ptr(_struct.Mode, _struct.Tabwidth, _struct.Indent));
@@ -1680,7 +1678,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.cachedPos = -1;
 	};
 	printer.prototype.init = function(cfg, fset, nodeSizes) { return this.go$val.init(cfg, fset, nodeSizes); };
-	printer.Ptr.prototype.commentsHaveNewline = function(list) {
+0ÇVcommentsHaveNewlineÇ=	printer.Ptr.prototype.commentsHaveNewline = function(list) {
 		var p, _slice, _index, line, _ref, _i, _slice$1, _index$1, c, i, _slice$2, _index$2, t;
 		p = this;
 		line = p.lineFor((_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos());
@@ -1699,7 +1697,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return false;
 	};
 	printer.prototype.commentsHaveNewline = function(list) { return this.go$val.commentsHaveNewline(list); };
-	printer.Ptr.prototype.nextComment = function() {
+0ÇPnextCommentÇ?	printer.Ptr.prototype.nextComment = function() {
 		var p, _slice, _index, c, list, _slice$1, _index$1;
 		p = this;
 		while (p.cindex < p.comments.length) {
@@ -1715,18 +1713,18 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.commentOffset = 1073741824;
 	};
 	printer.prototype.nextComment = function() { return this.go$val.nextComment(); };
-	printer.Ptr.prototype.internalError = function(msg) {
+0ÅøinternalErrorÅ≠	printer.Ptr.prototype.internalError = function(msg) {
 		var p;
 		p = this;
 	};
 	printer.prototype.internalError = function(msg) { return this.go$val.internalError(msg); };
-	printer.Ptr.prototype.posFor = function(pos) {
+0Ç0posForÇ$	printer.Ptr.prototype.posFor = function(pos) {
 		var p, _struct;
 		p = this;
 		return (_struct = p.fset.Position(pos), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
 	};
 	printer.prototype.posFor = function(pos) { return this.go$val.posFor(pos); };
-	printer.Ptr.prototype.lineFor = function(pos) {
+0Ç(lineForÇ	printer.Ptr.prototype.lineFor = function(pos) {
 		var p;
 		p = this;
 		if (!((pos === p.cachedPos))) {
@@ -1736,7 +1734,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return p.cachedLine;
 	};
 	printer.prototype.lineFor = function(pos) { return this.go$val.lineFor(pos); };
-	printer.Ptr.prototype.atLineBegin = function(pos) {
+0ÇßatLineBeginÇñ	printer.Ptr.prototype.atLineBegin = function(pos) {
 		var p, n, i;
 		p = this;
 		if (!((((p.Config.Mode & 8) >>> 0) === 0)) && pos.IsValid() && (!((p.out.Line === pos.Line)) || !(p.out.Filename === pos.Filename))) {
@@ -1757,7 +1755,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.out.Column = p.out.Column + (n) >> 0;
 	};
 	printer.prototype.atLineBegin = function(pos) { return this.go$val.atLineBegin(pos); };
-	printer.Ptr.prototype.writeByte = function(ch, n) {
+0Ç·	writeByteÇ“	printer.Ptr.prototype.writeByte = function(ch, n) {
 		var p, _struct, i;
 		p = this;
 		if (p.out.Column === 1) {
@@ -1780,7 +1778,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.out.Column = p.out.Column + (n) >> 0;
 	};
 	printer.prototype.writeByte = function(ch, n) { return this.go$val.writeByte(ch, n); };
-	printer.Ptr.prototype.writeString = function(pos, s, isLit) {
+0ÇÅwriteStringÇp	printer.Ptr.prototype.writeString = function(pos, s, isLit) {
 		var p, _struct, _struct$1, nlines, li, i, c, _struct$2;
 		p = this;
 		if (p.out.Column === 1) {
@@ -1820,7 +1818,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.last = (_struct$2 = p.pos, new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column));
 	};
 	printer.prototype.writeString = function(pos, s, isLit) { return this.go$val.writeString(pos, s, isLit); };
-	printer.Ptr.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) {
+0ÇKwriteCommentPrefixÇ3	printer.Ptr.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) {
 		var p, hasSep, j, _ref, _i, _slice, _index, ch, i, _ref$1, _slice$1, _index$1, sep, droppedLinebreak, j$1, _ref$2, _i$1, _slice$2, _index$2, ch$1, i$1, _ref$3, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, n;
 		p = this;
 		if (p.output.length === 0) {
@@ -1909,7 +1907,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) { return this.go$val.writeCommentPrefix(pos, next, prev, comment, tok); };
-	var isBlank = function(s) {
+0Å¥isBlankÅ®	var isBlank = function(s) {
 		var i;
 		i = 0;
 		while (i < s.length) {
@@ -1920,7 +1918,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return true;
 	};
-	var commonPrefix = function(a, b) {
+0ÇcommonPrefixÅ˜	var commonPrefix = function(a, b) {
 		var i;
 		i = 0;
 		while (i < a.length && i < b.length && (a.charCodeAt(i) === b.charCodeAt(i)) && (a.charCodeAt(i) <= 32 || (a.charCodeAt(i) === 42))) {
@@ -1928,10 +1926,10 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return a.substring(0, i);
 	};
-	var trimRight = function(s) {
+0d	trimRightW	var trimRight = function(s) {
 		return strings.TrimRightFunc(s, unicode.IsSpace);
 	};
-	var stripCommonPrefix = function(lines) {
+0Ç˜stripCommonPrefixÇ‡	var stripCommonPrefix = function(lines) {
 		var prefix, first, _ref, _i, _slice, _index, line, i, _slice$1, _index$1, _slice$2, _index$2, line$1, lineOfStars, i$1, _slice$3, _index$3, first$1, i$2, n, suffix, n$1, _slice$4, _index$4, _slice$5, _index$5, _tuple, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, last, closing, i$3, _slice$9, _index$9, _ref$1, _i$1, _slice$10, _index$10, line$2, i$4, _slice$11, _index$11;
 		if (lines.length <= 1) {
 			return;
@@ -2014,8 +2012,10 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 			}
 		}
 	};
-	printer.Ptr.prototype.writeComment = function(comment) {
-		var p, text, _struct, pos, ldir, i, err, line, _tuple, indent$1, _struct$1, lines, _ref, _i, _slice, _index, line$1, i$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, line$2, i$2, _struct$2, _struct$3;
+0Ç
+¬writeCommentÇ
+∞	printer.Ptr.prototype.writeComment = function(comment) {
+		var p, text, _struct, pos, ldir, i, err, line, _tuple, indent, _struct$1, lines, _ref, _i, _slice, _index, line$1, i$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, line$2, i$2, _struct$2, _struct$3;
 		var go$deferred = [];
 		try {
 			p = this;
@@ -2025,13 +2025,13 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 				ldir = strings.TrimSpace(text.substring(7));
 				if (i = strings.LastIndex(ldir, ":"), i >= 0) {
 					if (_tuple = strconv.Atoi(ldir.substring((i + 1 >> 0))), line = _tuple[0], err = _tuple[1], go$interfaceIsEqual(err, null) && line > 0) {
-						indent$1 = p.indent;
+						indent = p.indent;
 						p.indent = 0;
 						go$deferred.push({ fun: (function() {
 							p.pos.Filename = ldir.substring(0, i);
 							p.pos.Line = line;
 							p.pos.Column = 1;
-							p.indent = indent$1;
+							p.indent = indent;
 						}), args: [] });
 					}
 				}
@@ -2071,7 +2071,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.writeComment = function(comment) { return this.go$val.writeComment(comment); };
-	printer.Ptr.prototype.writeCommentSuffix = function(needsLinebreak) {
+0Ç∂writeCommentSuffixÇû	printer.Ptr.prototype.writeCommentSuffix = function(needsLinebreak) {
 		var wroteNewline, droppedFF, p, _ref, _i, _slice, _index, ch, i, _ref$1, _slice$1, _index$1, _slice$2, _index$2;
 		wroteNewline = false;
 		droppedFF = false;
@@ -2105,7 +2105,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return [wroteNewline, droppedFF];
 	};
 	printer.prototype.writeCommentSuffix = function(needsLinebreak) { return this.go$val.writeCommentSuffix(needsLinebreak); };
-	printer.Ptr.prototype.intersperseComments = function(next, tok) {
+0ÇintersperseCommentsÇ¸	printer.Ptr.prototype.intersperseComments = function(next, tok) {
 		var wroteNewline, droppedFF, p, last, _struct, _ref, _i, _slice, _index, c, _struct$1, _struct$2, needsLinebreak, _tuple;
 		wroteNewline = false;
 		droppedFF = false;
@@ -2134,7 +2134,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return [wroteNewline, droppedFF];
 	};
 	printer.prototype.intersperseComments = function(next, tok) { return this.go$val.intersperseComments(next, tok); };
-	printer.Ptr.prototype.writeWhitespace = function(n) {
+0ÇîwriteWhitespaceÇ	printer.Ptr.prototype.writeWhitespace = function(n) {
 		var p, i, _slice, _index, ch, _ref, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3, i$1, _slice$4, _index$4, _slice$5, _index$5;
 		p = this;
 		i = 0;
@@ -2172,13 +2172,14 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		p.wsbuf = go$subslice(p.wsbuf, 0, i$1);
 	};
 	printer.prototype.writeWhitespace = function(n) { return this.go$val.writeWhitespace(n); };
-	var nlimit = function(n) {
+0SnlimitI	var nlimit = function(n) {
 		if (n > 2) {
 			n = 2;
 		}
 		return n;
 	};
-	var mayCombine = function(prev, next) {
+0Ç∂
+mayCombineÇ¶	var mayCombine = function(prev, next) {
 		var b, _ref;
 		b = false;
 		_ref = prev;
@@ -2197,7 +2198,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return b;
 	};
-	printer.Ptr.prototype.print = function(args) {
+0Ç·printÇ÷	printer.Ptr.prototype.print = function(args) {
 		var p, _ref, _i, _slice, _index, arg, data, isLit, impliedSemi, x, _ref$1, _type, i, _slice$1, _index$1, s, _slice$2, _index$2, _ref$2, _struct, _struct$1, next, _tuple, _struct$2, wroteNewline, droppedFF, n, ch, _struct$3;
 		p = this;
 		_ref = args;
@@ -2295,7 +2296,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 	};
 	printer.prototype.print = function(args) { return this.go$val.print(args); };
-	printer.Ptr.prototype.commentBefore = function(next) {
+0ÇAcommentBeforeÇ.	printer.Ptr.prototype.commentBefore = function(next) {
 		var result, p;
 		result = false;
 		p = this;
@@ -2303,7 +2304,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return result;
 	};
 	printer.prototype.commentBefore = function(next) { return this.go$val.commentBefore(next); };
-	printer.Ptr.prototype.flush = function(next, tok) {
+0ÇΩflushÇ≤	printer.Ptr.prototype.flush = function(next, tok) {
 		var wroteNewline, droppedFF, p, _struct, _tuple, _struct$1;
 		wroteNewline = false;
 		droppedFF = false;
@@ -2316,7 +2317,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return [wroteNewline, droppedFF];
 	};
 	printer.prototype.flush = function(next, tok) { return this.go$val.flush(next, tok); };
-	var getDoc = function(n) {
+0Ç:getDocÇ.	var getDoc = function(n) {
 		var n$1, _ref, _type;
 		_ref = n;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -2344,7 +2345,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		}
 		return (go$ptrType(ast.CommentGroup)).nil;
 	};
-	printer.Ptr.prototype.printNode = function(node) {
+0Ç:	printNodeÇ+	printer.Ptr.prototype.printNode = function(node) {
 		var p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, _tuple$2, n$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
 		p = this;
 		comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
@@ -2419,14 +2420,15 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return null;
 	};
 	printer.prototype.printNode = function(node) { return this.go$val.printNode(node); };
-	trimmer.Ptr.prototype.resetSpace = function() {
+0Å·
+resetSpaceÅ“	trimmer.Ptr.prototype.resetSpace = function() {
 		var p;
 		p = this;
 		p.state = 0;
 		p.space = go$subslice(p.space, 0, 0);
 	};
 	trimmer.prototype.resetSpace = function() { return this.go$val.resetSpace(); };
-	trimmer.Ptr.prototype.Write = function(data) {
+0Ç•WriteÇö	trimmer.Ptr.prototype.Write = function(data) {
 		var n, err, p, m, b, _ref, _i, _slice, _index, _ref$1, _ref$2, _tuple, _tuple$1, _tuple$2, _tuple$3, _ref$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _ref$4, _tuple$8;
 		n = 0;
 		err = null;
@@ -2494,7 +2496,7 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return [n, err];
 	};
 	trimmer.prototype.Write = function(data) { return this.go$val.Write(data); };
-	Config.Ptr.prototype.fprint = function(output, fset, node, nodeSizes) {
+0ÇLfprintÇ@	Config.Ptr.prototype.fprint = function(output, fset, node, nodeSizes) {
 		var err, cfg, p, minwidth, padchar, twmode, _tuple, tw, _tuple$1;
 		err = null;
 		cfg = this;
@@ -2528,36 +2530,15 @@ go/printerÉõ⁄	var bytes = go$packages["bytes"];
 		return err;
 	};
 	Config.prototype.fprint = function(output, fset, node, nodeSizes) { return this.go$val.fprint(output, fset, node, nodeSizes); };
-	Config.Ptr.prototype.Fprint = function(output, fset, node) {
+0Ç	FprintÅ˛	Config.Ptr.prototype.Fprint = function(output, fset, node) {
 		var cfg;
 		cfg = this;
 		return cfg.fprint(output, fset, node, new Go$Map());
 	};
 	Config.prototype.Fprint = function(output, fset, node) { return this.go$val.Fprint(output, fset, node); };
-	var Fprint = go$pkg.Fprint = function(output, fset, node) {
+0ÅãFprintÅÄ	var Fprint = go$pkg.Fprint = function(output, fset, node) {
 		return (new Config.Ptr(0, 8, 0)).Fprint(output, fset, node);
 	};
-	var commaTerm = 1;
-	var noIndent = 2;
-	var maxNewlines = 2;
-	var debug = false;
-	var infinity = 1073741824;
-	var ignore = 0;
-	var blank = 32;
-	var vtab = 11;
-	var newline = 10;
-	var formfeed = 12;
-	var indent = 62;
-	var unindent = 60;
-	var noExtraLinebreak = 1;
-	var inSpace = 0;
-	var inEscape = 1;
-	var inText = 2;
-	go$pkg.RawFormat = 1;
-	go$pkg.TabIndent = 2;
-	go$pkg.UseSpaces = 4;
-	go$pkg.SourcePos = 8;
-	var aNewline = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.init = function() {
+0kinitc	go$pkg.init = function() {
 		aNewline = new (go$sliceType(Go$Uint8))(go$stringToBytes("\n"));
 	};

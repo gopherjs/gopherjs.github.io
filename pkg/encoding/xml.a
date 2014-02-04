@@ -1,4 +1,4 @@
-0ÉÍ$ÇhËpackage xml
+0ÉÓ|encoding/xmlÇhËpackage xml
 import bufio "bufio"
 import bytes "bytes"
 import encoding "encoding"
@@ -353,19 +353,8 @@ func (? @"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
-0Åûruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioencodingmathsyscalltimeosstrconvreflectfmtstringsencoding/xmlÉÄí	var bufio = go$packages["bufio"];
-	var bytes = go$packages["bytes"];
-	var encoding = go$packages["encoding"];
-	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var reflect = go$packages["reflect"];
-	var strconv = go$packages["strconv"];
-	var strings = go$packages["strings"];
-	var errors = go$packages["errors"];
-	var sync = go$packages["sync"];
-	var unicode = go$packages["unicode"];
-	var utf8 = go$packages["unicode/utf8"];
-	var Marshaler;
+0Åûruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioencodingmathsyscalltimeosstrconvreflectfmtstringsencoding/xml0Å“0bufiobufio0bytesbytes0encodingencoding0
+fmtfmt0ioio0reflectreflect0strconvstrconv0stringsstrings0errorserrors0syncsync0unicodeunicode0unicode/utf8utf8ÇKm	var Marshaler;
 	Marshaler = go$newType(0, "Interface", "xml.Marshaler", "Marshaler", "encoding/xml", null);
 	go$pkg.Marshaler = Marshaler;
 	var MarshalerAttr;
@@ -595,7 +584,37 @@ $$
 	Decoder.init([["Strict", "", Go$Bool, ""], ["AutoClose", "", (go$sliceType(Go$String)), ""], ["Entity", "", (go$mapType(Go$String, Go$String)), ""], ["CharsetReader", "", (go$funcType([Go$String, io.Reader], [io.Reader, go$error], false)), ""], ["DefaultSpace", "", Go$String, ""], ["r", "encoding/xml", io.ByteReader, ""], ["buf", "encoding/xml", bytes.Buffer, ""], ["saved", "encoding/xml", (go$ptrType(bytes.Buffer)), ""], ["stk", "encoding/xml", (go$ptrType(stack)), ""], ["free", "encoding/xml", (go$ptrType(stack)), ""], ["needClose", "encoding/xml", Go$Bool, ""], ["toClose", "encoding/xml", Name, ""], ["nextToken", "encoding/xml", Token, ""], ["nextByte", "encoding/xml", Go$Int, ""], ["ns", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["err", "encoding/xml", go$error, ""], ["line", "encoding/xml", Go$Int, ""], ["unmarshalDepth", "encoding/xml", Go$Int, ""]]);
 	(go$ptrType(Decoder)).methods = [["Decode", "", [go$emptyInterface], [go$error], false], ["DecodeElement", "", [go$emptyInterface, (go$ptrType(StartElement))], [go$error], false], ["RawToken", "", [], [Token, go$error], false], ["Skip", "", [], [go$error], false], ["Token", "", [], [Token, go$error], false], ["attrval", "encoding/xml", [], [(go$sliceType(Go$Uint8))], false], ["autoClose", "encoding/xml", [Token], [Token, Go$Bool], false], ["getc", "encoding/xml", [], [Go$Uint8, Go$Bool], false], ["mustgetc", "encoding/xml", [], [Go$Uint8, Go$Bool], false], ["name", "encoding/xml", [], [Go$String, Go$Bool], false], ["nsname", "encoding/xml", [], [Name, Go$Bool], false], ["pop", "encoding/xml", [], [(go$ptrType(stack))], false], ["popEOF", "encoding/xml", [], [Go$Bool], false], ["popElement", "encoding/xml", [(go$ptrType(EndElement))], [Go$Bool], false], ["push", "encoding/xml", [Go$Int], [(go$ptrType(stack))], false], ["pushEOF", "encoding/xml", [], [], false], ["pushElement", "encoding/xml", [Name], [], false], ["pushNs", "encoding/xml", [Go$String, Go$String, Go$Bool], [], false], ["rawToken", "encoding/xml", [], [Token, go$error], false], ["readName", "encoding/xml", [], [Go$Bool], false], ["savedOffset", "encoding/xml", [], [Go$Int], false], ["space", "encoding/xml", [], [], false], ["switchToReader", "encoding/xml", [io.Reader], [], false], ["syntaxError", "encoding/xml", [Go$String], [go$error], false], ["text", "encoding/xml", [Go$Int, Go$Bool], [(go$sliceType(Go$Uint8))], false], ["translate", "encoding/xml", [(go$ptrType(Name)), Go$Bool], [], false], ["ungetc", "encoding/xml", [Go$Uint8], [], false], ["unmarshal", "encoding/xml", [reflect.Value, (go$ptrType(StartElement))], [go$error], false], ["unmarshalAttr", "encoding/xml", [reflect.Value, Attr], [go$error], false], ["unmarshalInterface", "encoding/xml", [Unmarshaler, (go$ptrType(StartElement))], [go$error], false], ["unmarshalPath", "encoding/xml", [(go$ptrType(typeInfo)), reflect.Value, (go$sliceType(Go$String)), (go$ptrType(StartElement))], [Go$Bool, go$error], false], ["unmarshalTextInterface", "encoding/xml", [encoding.TextUnmarshaler, (go$ptrType(StartElement))], [go$error], false]];
 	stack.init([["next", "encoding/xml", (go$ptrType(stack)), ""], ["kind", "encoding/xml", Go$Int, ""], ["name", "encoding/xml", Name, ""], ["ok", "encoding/xml", Go$Bool, ""]]);
-	var Marshal = go$pkg.Marshal = function(v) {
+Çó	var endComment = (go$sliceType(Go$Uint8)).nil;
+	var endProcInst = (go$sliceType(Go$Uint8)).nil;
+	var endDirective = (go$sliceType(Go$Uint8)).nil;
+	var marshalerType = null;
+	var marshalerAttrType = null;
+	var textMarshalerType = null;
+	var ddBytes = (go$sliceType(Go$Uint8)).nil;
+	var unmarshalerType = null;
+	var unmarshalerAttrType = null;
+	var textUnmarshalerType = null;
+	var tinfoMap = false;
+	var tinfoLock = new sync.RWMutex.Ptr();
+	var nameType = null;
+	var errRawToken = null;
+	var entity = false;
+	var first = (go$ptrType(unicode.RangeTable)).nil;
+	var second = (go$ptrType(unicode.RangeTable)).nil;
+	go$pkg.HTMLEntity = false;
+	var htmlEntity = false;
+	go$pkg.HTMLAutoClose = (go$sliceType(Go$String)).nil;
+	var htmlAutoClose = (go$sliceType(Go$String)).nil;
+	var esc_quot = (go$sliceType(Go$Uint8)).nil;
+	var esc_apos = (go$sliceType(Go$Uint8)).nil;
+	var esc_amp = (go$sliceType(Go$Uint8)).nil;
+	var esc_lt = (go$sliceType(Go$Uint8)).nil;
+	var esc_gt = (go$sliceType(Go$Uint8)).nil;
+	var esc_tab = (go$sliceType(Go$Uint8)).nil;
+	var esc_nl = (go$sliceType(Go$Uint8)).nil;
+	var esc_cr = (go$sliceType(Go$Uint8)).nil;
+	var esc_fffd = (go$sliceType(Go$Uint8)).nil;
+0É3˚0ÇMarshalÅ˜	var Marshal = go$pkg.Marshal = function(v) {
 		var b, err;
 		b = new bytes.Buffer.Ptr();
 		if (err = NewEncoder(b).Encode(v), !(go$interfaceIsEqual(err, null))) {
@@ -603,7 +622,7 @@ $$
 		}
 		return [b.Bytes(), null];
 	};
-	var MarshalIndent = go$pkg.MarshalIndent = function(v, prefix, indent) {
+0ÇVMarshalIndentÇC	var MarshalIndent = go$pkg.MarshalIndent = function(v, prefix, indent) {
 		var b, enc, err;
 		b = new bytes.Buffer.Ptr();
 		enc = NewEncoder(b);
@@ -613,20 +632,21 @@ $$
 		}
 		return [b.Bytes(), null];
 	};
-	var NewEncoder = go$pkg.NewEncoder = function(w) {
+0Ç*
+NewEncoderÇ	var NewEncoder = go$pkg.NewEncoder = function(w) {
 		var e;
 		e = new Encoder.Ptr(new printer.Ptr(bufio.NewWriter(w), (go$ptrType(Encoder)).nil, 0, "", "", 0, false, false, false, false, (go$sliceType(Go$String)).nil, (go$sliceType(Name)).nil));
 		e.p.encoder = e;
 		return e;
 	};
-	Encoder.Ptr.prototype.Indent = function(prefix, indent) {
+0Å˙IndentÅÔ	Encoder.Ptr.prototype.Indent = function(prefix, indent) {
 		var enc;
 		enc = this;
 		enc.p.prefix = prefix;
 		enc.p.indent = indent;
 	};
 	Encoder.prototype.Indent = function(prefix, indent) { return this.go$val.Indent(prefix, indent); };
-	Encoder.Ptr.prototype.Encode = function(v) {
+0Ç≈EncodeÇπ	Encoder.Ptr.prototype.Encode = function(v) {
 		var enc, _struct, err;
 		enc = this;
 		err = enc.p.marshalValue((_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), (go$ptrType(fieldInfo)).nil, (go$ptrType(StartElement)).nil);
@@ -636,7 +656,7 @@ $$
 		return enc.p.Writer.Flush();
 	};
 	Encoder.prototype.Encode = function(v) { return this.go$val.Encode(v); };
-	Encoder.Ptr.prototype.EncodeElement = function(v, start) {
+0Ç›EncodeElementÇ 	Encoder.Ptr.prototype.EncodeElement = function(v, start) {
 		var enc, _struct, err;
 		enc = this;
 		err = enc.p.marshalValue((_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), (go$ptrType(fieldInfo)).nil, start);
@@ -646,7 +666,7 @@ $$
 		return enc.p.Writer.Flush();
 	};
 	Encoder.prototype.EncodeElement = function(v, start) { return this.go$val.EncodeElement(v, start); };
-	Encoder.Ptr.prototype.EncodeToken = function(t) {
+0Ç	ùEncodeTokenÇ	å	Encoder.Ptr.prototype.EncodeToken = function(t) {
 		var enc, p, t$1, _ref, _type, err, err$1, _struct;
 		enc = this;
 		p = enc.p;
@@ -701,13 +721,13 @@ $$
 		return p.cachedWriteError();
 	};
 	Encoder.prototype.EncodeToken = function(t) { return this.go$val.EncodeToken(t); };
-	Encoder.Ptr.prototype.Flush = function() {
+0ÅπFlushÅØ	Encoder.Ptr.prototype.Flush = function() {
 		var enc;
 		enc = this;
 		return enc.p.Writer.Flush();
 	};
 	Encoder.prototype.Flush = function() { return this.go$val.Flush(); };
-	printer.Ptr.prototype.createAttrPrefix = function(url) {
+0ÇcreateAttrPrefixÇÚ	printer.Ptr.prototype.createAttrPrefix = function(url) {
 		var p, prefix, _entry, prefix$1, i, _entry$1, id, _entry$2, _key, _key$1;
 		p = this;
 		if (prefix = (_entry = p.attrPrefix[url], _entry !== undefined ? _entry.v : ""), !(prefix === "")) {
@@ -751,20 +771,21 @@ $$
 		return prefix$1;
 	};
 	printer.prototype.createAttrPrefix = function(url) { return this.go$val.createAttrPrefix(url); };
-	printer.Ptr.prototype.deleteAttrPrefix = function(prefix) {
+0ÇRdeleteAttrPrefixÇ<	printer.Ptr.prototype.deleteAttrPrefix = function(prefix) {
 		var p, _entry;
 		p = this;
 		delete p.attrPrefix[(_entry = p.attrNS[prefix], _entry !== undefined ? _entry.v : "")];
 		delete p.attrNS[prefix];
 	};
 	printer.prototype.deleteAttrPrefix = function(prefix) { return this.go$val.deleteAttrPrefix(prefix); };
-	printer.Ptr.prototype.markPrefix = function() {
+0Å‘
+markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 		var p;
 		p = this;
 		p.prefixes = go$append(p.prefixes, "");
 	};
 	printer.prototype.markPrefix = function() { return this.go$val.markPrefix(); };
-	printer.Ptr.prototype.popPrefix = function() {
+0Ç=	popPrefixÇ.	printer.Ptr.prototype.popPrefix = function() {
 		var p, _slice, _index, prefix;
 		p = this;
 		while (p.prefixes.length > 0) {
@@ -777,7 +798,7 @@ $$
 		}
 	};
 	printer.prototype.popPrefix = function() { return this.go$val.popPrefix(); };
-	printer.Ptr.prototype.marshalValue = function(val, finfo, startTemplate) {
+0Ç+|marshalValueÇ+j	printer.Ptr.prototype.marshalValue = function(val, finfo, startTemplate) {
 		var p, _struct, _struct$1, kind, typ, x, _struct$2, _struct$3, _struct$4, pv, x$1, _struct$5, _struct$6, x$2, _struct$7, _struct$8, _struct$9, pv$1, x$3, _struct$10, _struct$11, _tuple, i, n, err, _struct$12, _tuple$1, tinfo, err$1, start, _struct$13, xmlname, ok, v, _tuple$2, _tuple$3, x$4, _struct$14, _struct$15, _struct$16, _tuple$4, name, _ref, _i, i$1, _slice, _index, finfo$1, _struct$17, _struct$18, fv, name$1, _struct$19, _tuple$5, x$5, _struct$20, _struct$21, _struct$22, attr, err$2, _struct$23, _struct$24, _struct$25, pv$2, _tuple$6, x$6, _struct$26, _struct$27, _struct$28, attr$1, err$3, _struct$29, _struct$30, _tuple$7, x$7, text, err$4, _struct$31, _struct$32, pv$3, _tuple$8, x$8, text$1, err$5, _struct$33, _ref$1, _struct$34, _tuple$9, _struct$35, s, b, err$6, _struct$36, err$7, _struct$37, _tuple$10, _struct$38, s$1, b$1, err1, err$8, _struct$39;
 		p = this;
 		if (!(startTemplate === (go$ptrType(StartElement)).nil) && startTemplate.Name.Local === "") {
@@ -949,7 +970,7 @@ $$
 		return p.cachedWriteError();
 	};
 	printer.prototype.marshalValue = function(val, finfo, startTemplate) { return this.go$val.marshalValue(val, finfo, startTemplate); };
-	var defaultStart = function(typ, finfo, startTemplate) {
+0ÇdefaultStartÇ	var defaultStart = function(typ, finfo, startTemplate) {
 		var start, _struct, _struct$1, _struct$2;
 		start = new StartElement.Ptr();
 		if (!(startTemplate === (go$ptrType(StartElement)).nil)) {
@@ -965,7 +986,7 @@ $$
 		}
 		return (_struct$1 = start, new StartElement.Ptr((_struct$2 = _struct$1.Name, new Name.Ptr(_struct$2.Space, _struct$2.Local)), _struct$1.Attr));
 	};
-	printer.Ptr.prototype.marshalInterface = function(val, start) {
+0Ç˚marshalInterfaceÇÂ	printer.Ptr.prototype.marshalInterface = function(val, start) {
 		var p, n, _struct, _struct$1, err, _slice, _index;
 		p = this;
 		p.tags = go$append(p.tags, new Name.Ptr("", ""));
@@ -981,7 +1002,7 @@ $$
 		return null;
 	};
 	printer.prototype.marshalInterface = function(val, start) { return this.go$val.marshalInterface(val, start); };
-	printer.Ptr.prototype.marshalTextInterface = function(val, start) {
+0ÇbmarshalTextInterfaceÇH	printer.Ptr.prototype.marshalTextInterface = function(val, start) {
 		var p, err, _tuple, text, err$1, _struct;
 		p = this;
 		if (err = p.writeStart(start), !(go$interfaceIsEqual(err, null))) {
@@ -995,7 +1016,8 @@ $$
 		return p.writeEnd((_struct = start.Name, new Name.Ptr(_struct.Space, _struct.Local)));
 	};
 	printer.prototype.marshalTextInterface = function(val, start) { return this.go$val.marshalTextInterface(val, start); };
-	printer.Ptr.prototype.writeStart = function(start) {
+0Ç
+writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		var p, _struct, _ref, _i, _slice, _index, _struct$1, _struct$2, attr, _struct$3, name;
 		p = this;
 		if (start.Name.Local === "") {
@@ -1033,7 +1055,7 @@ $$
 		return null;
 	};
 	printer.prototype.writeStart = function(start) { return this.go$val.writeStart(start); };
-	printer.Ptr.prototype.writeEnd = function(name) {
+0Ç—writeEndÇ√	printer.Ptr.prototype.writeEnd = function(name) {
 		var p, _slice, _index, x, y, top, _slice$1, _index$1, _struct;
 		p = this;
 		if (name.Local === "") {
@@ -1058,7 +1080,7 @@ $$
 		return null;
 	};
 	printer.prototype.writeEnd = function(name) { return this.go$val.writeEnd(name); };
-	printer.Ptr.prototype.marshalSimple = function(typ, val) {
+0Ç‡marshalSimpleÇÕ	printer.Ptr.prototype.marshalSimple = function(typ, val) {
 		var p, _ref, bytes$1, _struct, _struct$1;
 		p = this;
 		_ref = val.Kind();
@@ -1096,7 +1118,7 @@ $$
 		return ["", (go$sliceType(Go$Uint8)).nil, new UnsupportedTypeError.Ptr(typ)];
 	};
 	printer.prototype.marshalSimple = function(typ, val) { return this.go$val.marshalSimple(typ, val); };
-	printer.Ptr.prototype.marshalStruct = function(tinfo, val) {
+0Ç˚marshalStructÇË	printer.Ptr.prototype.marshalStruct = function(tinfo, val) {
 		var p, s, _ref, _i, i, _slice, _index, finfo, _struct, _struct$1, vf, _ref$1, _struct$2, _ref$2, _tuple, x, data, err, _struct$3, pv, _tuple$1, x$1, data$1, err$1, scratch, _ref$3, err$2, ok, _tuple$2, x$2, elem, err$3, k, dashDash, dashLast, _ref$4, s$1, b, _slice$1, _index$1, iface, raw, _ref$5, _type, err$4, err$5, err$6, _struct$4;
 		p = this;
 		s = new parentStack.Ptr(p, (go$sliceType(Go$String)).nil);
@@ -1229,14 +1251,14 @@ $$
 		return p.cachedWriteError();
 	};
 	printer.prototype.marshalStruct = function(tinfo, val) { return this.go$val.marshalStruct(tinfo, val); };
-	printer.Ptr.prototype.cachedWriteError = function() {
+0Ç(cachedWriteErrorÇ	printer.Ptr.prototype.cachedWriteError = function() {
 		var p, _tuple, err;
 		p = this;
 		_tuple = p.Writer.Write((go$sliceType(Go$Uint8)).nil), err = _tuple[1];
 		return err;
 	};
 	printer.prototype.cachedWriteError = function() { return this.go$val.cachedWriteError(); };
-	printer.Ptr.prototype.writeIndent = function(depthDelta) {
+0Ç!writeIndentÇ	printer.Ptr.prototype.writeIndent = function(depthDelta) {
 		var p, i;
 		p = this;
 		if ((p.prefix.length === 0) && (p.indent.length === 0)) {
@@ -1271,7 +1293,7 @@ $$
 		}
 	};
 	printer.prototype.writeIndent = function(depthDelta) { return this.go$val.writeIndent(depthDelta); };
-	parentStack.Ptr.prototype.trim = function(parents) {
+0ÇmtrimÇc	parentStack.Ptr.prototype.trim = function(parents) {
 		var s, split, _slice, _index, _slice$1, _index$1, i, err, _slice$2, _index$2;
 		s = this;
 		split = 0;
@@ -1292,7 +1314,7 @@ $$
 		return null;
 	};
 	parentStack.prototype.trim = function(parents) { return this.go$val.trim(parents); };
-	parentStack.Ptr.prototype.push = function(parents) {
+0ÇzpushÇp	parentStack.Ptr.prototype.push = function(parents) {
 		var s, i, err, _slice, _index;
 		s = this;
 		i = 0;
@@ -1306,13 +1328,13 @@ $$
 		return null;
 	};
 	parentStack.prototype.push = function(parents) { return this.go$val.push(parents); };
-	UnsupportedTypeError.Ptr.prototype.Error = function() {
+0ÅÊErrorÅ‹	UnsupportedTypeError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "xml: unsupported type: " + e.Type.String();
 	};
 	UnsupportedTypeError.prototype.Error = function() { return this.go$val.Error(); };
-	var isEmptyValue = function(v) {
+0Ç≤isEmptyValueÇ†	var isEmptyValue = function(v) {
 		var _ref, x, x$1;
 		_ref = v.Kind();
 		if (_ref === 17 || _ref === 21 || _ref === 23 || _ref === 24) {
@@ -1330,16 +1352,16 @@ $$
 		}
 		return false;
 	};
-	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
+0	Unmarshalr	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
 		return NewDecoder(bytes.NewBuffer(data)).Decode(v);
 	};
-	Decoder.Ptr.prototype.Decode = function(v) {
+0Å⁄DecodeÅœ	Decoder.Ptr.prototype.Decode = function(v) {
 		var d;
 		d = this;
 		return d.DecodeElement(v, (go$ptrType(StartElement)).nil);
 	};
 	Decoder.prototype.Decode = function(v) { return this.go$val.Decode(v); };
-	Decoder.Ptr.prototype.DecodeElement = function(v, start) {
+0Ç(DecodeElementÇ	Decoder.Ptr.prototype.DecodeElement = function(v, start) {
 		var d, _struct, val, _struct$1;
 		d = this;
 		val = (_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -1349,13 +1371,13 @@ $$
 		return d.unmarshal((_struct$1 = val.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), start);
 	};
 	Decoder.prototype.DecodeElement = function(v, start) { return this.go$val.DecodeElement(v, start); };
-	UnmarshalError.prototype.Error = function() {
+0Å’ErrorÅÀ	UnmarshalError.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return e;
 	};
 	go$ptrType(UnmarshalError).prototype.Error = function() { return new UnmarshalError(this.go$get()).Error(); };
-	var receiverType = function(val) {
+0Å¥receiverTypeÅ£	var receiverType = function(val) {
 		var t;
 		t = reflect.TypeOf(val);
 		if (!(t.Name() === "")) {
@@ -1363,7 +1385,7 @@ $$
 		}
 		return "(" + t.String() + ")";
 	};
-	Decoder.Ptr.prototype.unmarshalInterface = function(val, start) {
+0ÇDunmarshalInterfaceÇ,	Decoder.Ptr.prototype.unmarshalInterface = function(val, start) {
 		var p, _struct, _struct$1, err;
 		p = this;
 		p.pushEOF();
@@ -1380,7 +1402,7 @@ $$
 		return null;
 	};
 	Decoder.prototype.unmarshalInterface = function(val, start) { return this.go$val.unmarshalInterface(val, start); };
-	Decoder.Ptr.prototype.unmarshalTextInterface = function(val, start) {
+0Ç}unmarshalTextInterfaceÇa	Decoder.Ptr.prototype.unmarshalTextInterface = function(val, start) {
 		var p, buf, depth, _tuple, t, err, t$1, _ref, _type;
 		p = this;
 		buf = (go$sliceType(Go$Uint8)).nil;
@@ -1408,7 +1430,7 @@ $$
 		return val.UnmarshalText(buf);
 	};
 	Decoder.prototype.unmarshalTextInterface = function(val, start) { return this.go$val.unmarshalTextInterface(val, start); };
-	Decoder.Ptr.prototype.unmarshalAttr = function(val, attr) {
+0Ç	”unmarshalAttrÇ	¿	Decoder.Ptr.prototype.unmarshalAttr = function(val, attr) {
 		var p, _struct, _struct$1, x, _struct$2, _struct$3, _struct$4, pv, x$1, _struct$5, _struct$6, x$2, _struct$7, pv$1, x$3, _struct$8;
 		p = this;
 		if (val.Kind() === 22) {
@@ -1439,7 +1461,7 @@ $$
 		return null;
 	};
 	Decoder.prototype.unmarshalAttr = function(val, attr) { return this.go$val.unmarshalAttr(val, attr); };
-	Decoder.Ptr.prototype.unmarshal = function(val, start) {
+0Ç5	unmarshalÇ5	Decoder.Ptr.prototype.unmarshal = function(val, start) {
 		var p, _tuple, tok, err, ok, _tuple$1, _struct, _struct$1, t, _struct$2, _struct$3, x, _struct$4, pv, x$1, x$2, _struct$5, pv$1, x$3, data, saveData, comment, saveComment, saveXML, saveXMLIndex, saveXMLData, saveAny, sv, tinfo, err$1, _struct$6, v, _ref, typ, _struct$7, n, x$4, ncap, _struct$8, new$1, _struct$9, _struct$10, _struct$11, err$2, _struct$12, _struct$13, typ$1, x$5, _struct$14, _struct$15, _tuple$2, finfo, e, _struct$16, _struct$17, fv, ok$1, _tuple$3, x$6, x$7, _struct$18, _ref$1, _i, i, _slice, _index, finfo$1, _ref$2, _struct$19, _struct$20, strv, _ref$3, _i$1, _slice$1, _index$1, _struct$21, _struct$22, a, err$3, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, savedOffset, _tuple$4, tok$1, err$4, t$1, _ref$4, _type, consumed, _tuple$5, _struct$34, err$5, _struct$35, err$6, err$7, x$8, _struct$36, pv$2, err$8, x$9, err$9, _struct$37, _struct$38, t$2, _ref$5, _struct$39, _struct$40, t$3, _ref$6, _struct$41;
 		p = this;
 		if (start === (go$ptrType(StartElement)).nil) {
@@ -1673,7 +1695,7 @@ $$
 		return null;
 	};
 	Decoder.prototype.unmarshal = function(val, start) { return this.go$val.unmarshal(val, start); };
-	var copyValue = function(dst, src) {
+0Ç8	copyValueÇ)	var copyValue = function(dst, src) {
 		var err, _struct, dst0, _struct$1, _struct$2, _ref, _tuple, itmp, err$1, _tuple$1, utmp, err$2, _tuple$2, ftmp, err$3, _tuple$3, value, err$4;
 		err = null;
 		dst0 = (_struct = dst, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -1727,7 +1749,7 @@ $$
 		err = null;
 		return err;
 	};
-	Decoder.Ptr.prototype.unmarshalPath = function(tinfo, sv, parents, start) {
+0ÇïunmarshalPathÇÇ	Decoder.Ptr.prototype.unmarshalPath = function(tinfo, sv, parents, start) {
 		var consumed, err, p, recurse, _ref, _i, i, _slice, _index, finfo, _ref$1, _i$1, j, _slice$1, _index$1, _slice$2, _index$2, _struct, _struct$1, _tuple, _slice$3, _index$3, _tuple$1, tok, _tuple$2, _tuple$3, t, _ref$2, _type, _tuple$4, _struct$2, consumed2, err$1, _tuple$5, err$2, _tuple$6, _tuple$7;
 		consumed = false;
 		err = null;
@@ -1793,7 +1815,7 @@ $$
 		}
 	};
 	Decoder.prototype.unmarshalPath = function(tinfo, sv, parents, start) { return this.go$val.unmarshalPath(tinfo, sv, parents, start); };
-	Decoder.Ptr.prototype.Skip = function() {
+0ÇBSkipÇ8	Decoder.Ptr.prototype.Skip = function() {
 		var d, _tuple, tok, err, _ref, _type, err$1;
 		d = this;
 		while (true) {
@@ -1813,7 +1835,9 @@ $$
 		}
 	};
 	Decoder.prototype.Skip = function() { return this.go$val.Skip(); };
-	var getTypeInfo = function(typ) {
+0Ç
+EgetTypeInfoÇ
+4	var getTypeInfo = function(typ) {
 		var _tuple, _entry, tinfo, ok, n, i, _struct, f, t, _tuple$1, inner, err, _ref, _i, _slice, _index, _struct$1, finfo, err$1, _tuple$2, finfo$1, err$2, err$3, _key;
 		tinfoLock.RLock();
 		_tuple = (_entry = tinfoMap[(typ || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(typeInfo)).nil, false]), tinfo = _tuple[0], ok = _tuple[1];
@@ -1874,7 +1898,7 @@ $$
 		tinfoLock.Unlock();
 		return [tinfo, null];
 	};
-	var structFieldInfo = function(typ, f) {
+0ÇÓstructFieldInfoÇŸ	var structFieldInfo = function(typ, f) {
 		var finfo, tag, i, _tuple, tokens, _slice, _index, _ref, _i, _slice$1, _index$1, flag, _ref$1, valid, mode, _ref$2, xmlname, _tuple$1, parents, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, ftyp, xmlname$1;
 		finfo = new fieldInfo.Ptr(f.Index, "", "", 0, (go$sliceType(Go$String)).nil);
 		tag = (new reflect.StructTag(f.Tag)).Get("xml");
@@ -1965,7 +1989,7 @@ $$
 		}
 		return [finfo, null];
 	};
-	var lookupXMLName = function(typ) {
+0ÇÜlookupXMLNameÇs	var lookupXMLName = function(typ) {
 		var xmlname, _tuple, i, n, _struct, f, _tuple$1, finfo, err;
 		xmlname = (go$ptrType(fieldInfo)).nil;
 		while (typ.Kind() === 22) {
@@ -1992,13 +2016,13 @@ $$
 		xmlname = (go$ptrType(fieldInfo)).nil;
 		return xmlname;
 	};
-	var min = function(a, b) {
+0TminM	var min = function(a, b) {
 		if (a <= b) {
 			return a;
 		}
 		return b;
 	};
-	var addFieldInfo = function(typ, tinfo, newf) {
+0Ç”addFieldInfoÇ¡	var addFieldInfo = function(typ, tinfo, newf) {
 		var conflicts, _ref, _i, i, _slice, _index, oldf, minl, p, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _struct, _ref$1, _i$1, _slice$5, _index$5, i$1, _slice$6, _index$6, _ref$2, _i$2, _slice$7, _index$7, i$2, _slice$8, _index$8, oldf$1, _struct$1, f1, _struct$2, f2, c, _slice$9, _index$9, i$3, _struct$3;
 		conflicts = (go$sliceType(Go$Int)).nil;
 		_ref = tinfo.fields;
@@ -2067,13 +2091,13 @@ $$
 		tinfo.fields = go$append(tinfo.fields, (_struct$3 = newf, new fieldInfo.Ptr(_struct$3.idx, _struct$3.name, _struct$3.xmlns, _struct$3.flags, _struct$3.parents)));
 		return null;
 	};
-	TagPathError.Ptr.prototype.Error = function() {
+0ÇâErrorÇ~	TagPathError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return fmt.Sprintf("%s field %q with tag %q conflicts with field %q with tag %q", new (go$sliceType(go$emptyInterface))([e.Struct, new Go$String(e.Field1), new Go$String(e.Tag1), new Go$String(e.Field2), new Go$String(e.Tag2)]));
 	};
 	TagPathError.prototype.Error = function() { return this.go$val.Error(); };
-	fieldInfo.Ptr.prototype.value = function(v) {
+0ÇvalueÇ	fieldInfo.Ptr.prototype.value = function(v) {
 		var finfo, _ref, _i, _slice, _index, x, i, t, _struct, _struct$1, _struct$2, _struct$3;
 		finfo = this;
 		_ref = finfo.idx;
@@ -2095,13 +2119,13 @@ $$
 		return (_struct$3 = v, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 	};
 	fieldInfo.prototype.value = function(v) { return this.go$val.value(v); };
-	SyntaxError.Ptr.prototype.Error = function() {
+0ÅÍErrorÅ‡	SyntaxError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "XML syntax error on line " + strconv.Itoa(e.Line) + ": " + e.Msg;
 	};
 	SyntaxError.prototype.Error = function() { return this.go$val.Error(); };
-	StartElement.Ptr.prototype.Copy = function() {
+0ÇgCopyÇ]	StartElement.Ptr.prototype.Copy = function() {
 		var _struct, _struct$1, e, attrs, _struct$2, _struct$3;
 		e = (_struct = this, new StartElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), _struct.Attr));
 		attrs = (go$sliceType(Attr)).make(e.Attr.length, 0, function() { return new Attr.Ptr(); });
@@ -2110,44 +2134,44 @@ $$
 		return (_struct$2 = e, new StartElement.Ptr((_struct$3 = _struct$2.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local)), _struct$2.Attr));
 	};
 	StartElement.prototype.Copy = function() { return this.go$val.Copy(); };
-	StartElement.Ptr.prototype.End = function() {
+0ÇóEndÇé	StartElement.Ptr.prototype.End = function() {
 		var _struct, _struct$1, e, _struct$2;
 		e = (_struct = this, new StartElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), _struct.Attr));
 		return new EndElement.Ptr((_struct$2 = e.Name, new Name.Ptr(_struct$2.Space, _struct$2.Local)));
 	};
 	StartElement.prototype.End = function() { return this.go$val.End(); };
-	var makeCopy = function(b) {
+0Å™makeCopyÅù	var makeCopy = function(b) {
 		var b1;
 		b1 = (go$sliceType(Go$Uint8)).make(b.length, 0, function() { return 0; });
 		go$copySlice(b1, b);
 		return b1;
 	};
-	CharData.prototype.Copy = function() {
+0ÇQCopyÇG	CharData.prototype.Copy = function() {
 		var c, x;
 		c = this;
 		return (x = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(c.array), c.offset, c.offset + c.length)), go$subslice(new CharData(x.array), x.offset, x.offset + x.length));
 	};
 	go$ptrType(CharData).prototype.Copy = function() { return this.go$get().Copy(); };
-	Comment.prototype.Copy = function() {
+0ÇNCopyÇD	Comment.prototype.Copy = function() {
 		var c, x;
 		c = this;
 		return (x = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(c.array), c.offset, c.offset + c.length)), go$subslice(new Comment(x.array), x.offset, x.offset + x.length));
 	};
 	go$ptrType(Comment).prototype.Copy = function() { return this.go$get().Copy(); };
-	ProcInst.Ptr.prototype.Copy = function() {
+0ÇPCopyÇF	ProcInst.Ptr.prototype.Copy = function() {
 		var _struct, p, _struct$1;
 		p = (_struct = this, new ProcInst.Ptr(_struct.Target, _struct.Inst));
 		p.Inst = makeCopy(p.Inst);
 		return (_struct$1 = p, new ProcInst.Ptr(_struct$1.Target, _struct$1.Inst));
 	};
 	ProcInst.prototype.Copy = function() { return this.go$val.Copy(); };
-	Directive.prototype.Copy = function() {
+0ÇTCopyÇJ	Directive.prototype.Copy = function() {
 		var d, x;
 		d = this;
 		return (x = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(d.array), d.offset, d.offset + d.length)), go$subslice(new Directive(x.array), x.offset, x.offset + x.length));
 	};
 	go$ptrType(Directive).prototype.Copy = function() { return this.go$get().Copy(); };
-	var CopyToken = go$pkg.CopyToken = function(t) {
+0Çr	CopyTokenÇc	var CopyToken = go$pkg.CopyToken = function(t) {
 		var v, _ref, _type, x, x$1;
 		_ref = t;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -2169,13 +2193,16 @@ $$
 		}
 		return t;
 	};
-	var NewDecoder = go$pkg.NewDecoder = function(r) {
+0Ç
+NewDecoderÇo	var NewDecoder = go$pkg.NewDecoder = function(r) {
 		var d;
 		d = new Decoder.Ptr(true, (go$sliceType(Go$String)).nil, false, go$throwNilPointerError, "", null, new bytes.Buffer.Ptr(), (go$ptrType(bytes.Buffer)).nil, (go$ptrType(stack)).nil, (go$ptrType(stack)).nil, false, new Name.Ptr(), null, -1, new Go$Map(), null, 1, 0);
 		d.switchToReader(r);
 		return d;
 	};
-	Decoder.Ptr.prototype.Token = function() {
+0Ç
+ıTokenÇ
+Í	Decoder.Ptr.prototype.Token = function() {
 		var t, err, d, _tuple, ok, _tuple$1, t1, t1$1, _ref, _type, _ref$1, _i, _slice, _index, _struct, _struct$1, a, _tuple$2, _entry, v, ok$1, _key, _tuple$3, _entry$1, v$1, ok$2, _key$1, _ref$2, _i$1, i, _slice$1, _index$1, _struct$2, _tuple$4;
 		t = null;
 		err = null;
@@ -2236,7 +2263,7 @@ $$
 		return [t, err];
 	};
 	Decoder.prototype.Token = function() { return this.go$val.Token(); };
-	Decoder.Ptr.prototype.translate = function(n, isElementName) {
+0Ç√	translateÇ¥	Decoder.Ptr.prototype.translate = function(n, isElementName) {
 		var d, ok, _tuple, _entry, v;
 		d = this;
 		if (n.Space === "xmlns") {
@@ -2255,7 +2282,7 @@ $$
 		}
 	};
 	Decoder.prototype.translate = function(n, isElementName) { return this.go$val.translate(n, isElementName); };
-	Decoder.Ptr.prototype.switchToReader = function(r) {
+0Ç£switchToReaderÇè	Decoder.Ptr.prototype.switchToReader = function(r) {
 		var d, ok, _tuple, rb;
 		d = this;
 		if (_tuple = (r !== null && io.ByteReader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rb = _tuple[0], ok = _tuple[1], ok) {
@@ -2265,7 +2292,7 @@ $$
 		}
 	};
 	Decoder.prototype.switchToReader = function(r) { return this.go$val.switchToReader(r); };
-	Decoder.Ptr.prototype.push = function(kind) {
+0ÇQpushÇG	Decoder.Ptr.prototype.push = function(kind) {
 		var d, s;
 		d = this;
 		s = d.free;
@@ -2280,7 +2307,7 @@ $$
 		return s;
 	};
 	Decoder.prototype.push = function(kind) { return this.go$val.push(kind); };
-	Decoder.Ptr.prototype.pop = function() {
+0ÇpopÇ	Decoder.Ptr.prototype.pop = function() {
 		var d, s;
 		d = this;
 		s = d.stk;
@@ -2292,7 +2319,7 @@ $$
 		return s;
 	};
 	Decoder.prototype.pop = function() { return this.go$val.pop(); };
-	Decoder.Ptr.prototype.pushEOF = function() {
+0ÇpushEOFÇ 	Decoder.Ptr.prototype.pushEOF = function() {
 		var d, start, s;
 		d = this;
 		start = d.stk;
@@ -2313,7 +2340,7 @@ $$
 		start.next = s;
 	};
 	Decoder.prototype.pushEOF = function() { return this.go$val.pushEOF(); };
-	Decoder.Ptr.prototype.popEOF = function() {
+0ÇpopEOFÇ	Decoder.Ptr.prototype.popEOF = function() {
 		var d;
 		d = this;
 		if (d.stk === (go$ptrType(stack)).nil || !((d.stk.kind === 2))) {
@@ -2323,14 +2350,14 @@ $$
 		return true;
 	};
 	Decoder.prototype.popEOF = function() { return this.go$val.popEOF(); };
-	Decoder.Ptr.prototype.pushElement = function(name) {
+0Ç!pushElementÇ	Decoder.Ptr.prototype.pushElement = function(name) {
 		var d, s, _struct;
 		d = this;
 		s = d.push(0);
 		s.name = (_struct = name, new Name.Ptr(_struct.Space, _struct.Local));
 	};
 	Decoder.prototype.pushElement = function(name) { return this.go$val.pushElement(name); };
-	Decoder.Ptr.prototype.pushNs = function(local, url, ok) {
+0ÇpushNsÇ	Decoder.Ptr.prototype.pushNs = function(local, url, ok) {
 		var d, s;
 		d = this;
 		s = d.push(1);
@@ -2339,13 +2366,14 @@ $$
 		s.ok = ok;
 	};
 	Decoder.prototype.pushNs = function(local, url, ok) { return this.go$val.pushNs(local, url, ok); };
-	Decoder.Ptr.prototype.syntaxError = function(msg) {
+0Å‚syntaxErrorÅ“	Decoder.Ptr.prototype.syntaxError = function(msg) {
 		var d;
 		d = this;
 		return new SyntaxError.Ptr(msg, d.line);
 	};
 	Decoder.prototype.syntaxError = function(msg) { return this.go$val.syntaxError(msg); };
-	Decoder.Ptr.prototype.popElement = function(t) {
+0Çz
+popElementÇj	Decoder.Ptr.prototype.popElement = function(t) {
 		var d, s, _struct, name, _struct$1, _struct$2, s$1, _key;
 		d = this;
 		s = d.pop();
@@ -2377,7 +2405,7 @@ $$
 		return true;
 	};
 	Decoder.prototype.popElement = function(t) { return this.go$val.popElement(t); };
-	Decoder.Ptr.prototype.autoClose = function(t) {
+0Çá	autoCloseÇx	Decoder.Ptr.prototype.autoClose = function(t) {
 		var d, name, _ref, _i, _slice, _index, s, _tuple, _struct, _struct$1, et, ok, x, _struct$2;
 		d = this;
 		if (d.stk === (go$ptrType(stack)).nil || !((d.stk.kind === 0))) {
@@ -2399,7 +2427,7 @@ $$
 		return [null, false];
 	};
 	Decoder.prototype.autoClose = function(t) { return this.go$val.autoClose(t); };
-	Decoder.Ptr.prototype.RawToken = function() {
+0Å˙RawTokenÅÌ	Decoder.Ptr.prototype.RawToken = function() {
 		var d;
 		d = this;
 		if (d.unmarshalDepth > 0) {
@@ -2408,7 +2436,7 @@ $$
 		return d.rawToken();
 	};
 	Decoder.prototype.RawToken = function() { return this.go$val.RawToken(); };
-	Decoder.Ptr.prototype.rawToken = function() {
+0Ç%0rawTokenÇ%"	Decoder.Ptr.prototype.rawToken = function() {
 		var d, x, _struct, _tuple, b, ok, data, _tuple$1, _ref, name, _tuple$2, _struct$1, _tuple$3, x$1, _struct$2, target, _tuple$4, b0, _tuple$5, data$1, enc, _tuple$6, x$2, newr, err, x$3, _tuple$7, _ref$1, _tuple$8, _tuple$9, b0$1, b1, _tuple$10, _tuple$11, data$2, i, _tuple$12, data$3, inquote, depth, _tuple$13, s, i$1, _tuple$14, j, _tuple$15, b0$2, b1$1, _tuple$16, _tuple$17, x$4, name$1, empty, attr, _tuple$18, _struct$3, _tuple$19, _tuple$20, n, x$5, x$6, nattr, _slice, _index, a, _tuple$21, _struct$4, _tuple$22, data$4, _struct$5, x$7, _struct$6;
 		d = this;
 		if (!(go$interfaceIsEqual(d.err, null))) {
@@ -2665,7 +2693,7 @@ $$
 		return [(x$7 = new StartElement.Ptr((_struct$6 = name$1, new Name.Ptr(_struct$6.Space, _struct$6.Local)), attr), new x$7.constructor.Struct(x$7)), null];
 	};
 	Decoder.prototype.rawToken = function() { return this.go$val.rawToken(); };
-	Decoder.Ptr.prototype.attrval = function() {
+0Ç}attrvalÇp	Decoder.Ptr.prototype.attrval = function() {
 		var d, _tuple, b, ok, _tuple$1;
 		d = this;
 		_tuple = d.mustgetc(), b = _tuple[0], ok = _tuple[1];
@@ -2696,7 +2724,7 @@ $$
 		return d.buf.Bytes();
 	};
 	Decoder.prototype.attrval = function() { return this.go$val.attrval(); };
-	Decoder.Ptr.prototype.space = function() {
+0ÇíspaceÇá	Decoder.Ptr.prototype.space = function() {
 		var d, _tuple, b, ok, _ref;
 		d = this;
 		while (true) {
@@ -2713,7 +2741,7 @@ $$
 		}
 	};
 	Decoder.prototype.space = function() { return this.go$val.space(); };
-	Decoder.Ptr.prototype.getc = function() {
+0ÇPgetcÇF	Decoder.Ptr.prototype.getc = function() {
 		var b, ok, d, _tuple, _tuple$1, _tuple$2, _tuple$3;
 		b = 0;
 		ok = false;
@@ -2742,7 +2770,7 @@ $$
 		return [b, ok];
 	};
 	Decoder.prototype.getc = function() { return this.go$val.getc(); };
-	Decoder.Ptr.prototype.savedOffset = function() {
+0ÇsavedOffsetÅÚ	Decoder.Ptr.prototype.savedOffset = function() {
 		var d, n;
 		d = this;
 		n = d.saved.Len();
@@ -2752,7 +2780,7 @@ $$
 		return n;
 	};
 	Decoder.prototype.savedOffset = function() { return this.go$val.savedOffset(); };
-	Decoder.Ptr.prototype.mustgetc = function() {
+0Ç}mustgetcÇo	Decoder.Ptr.prototype.mustgetc = function() {
 		var b, ok, d, _tuple;
 		b = 0;
 		ok = false;
@@ -2765,7 +2793,7 @@ $$
 		return [b, ok];
 	};
 	Decoder.prototype.mustgetc = function() { return this.go$val.mustgetc(); };
-	Decoder.Ptr.prototype.ungetc = function(b) {
+0ÅÈungetcÅﬁ	Decoder.Ptr.prototype.ungetc = function(b) {
 		var d;
 		d = this;
 		if (b === 10) {
@@ -2774,7 +2802,7 @@ $$
 		d.nextByte = (b >> 0);
 	};
 	Decoder.prototype.ungetc = function(b) { return this.go$val.ungetc(b); };
-	Decoder.Ptr.prototype.text = function(quote, cdata) {
+0Ç¡textÇ∑	Decoder.Ptr.prototype.text = function(quote, cdata) {
 		var d, _tuple, b0, b1, trunc, _tuple$1, b, ok, before, ok$1, text, haveText, _tuple$2, _tuple$3, base, _tuple$4, start, _tuple$5, s, _tuple$6, n, err, _tuple$7, name, s$1, ok$2, _tuple$8, _entry, r, _tuple$9, _entry$1, _tuple$10, _tuple$11, ent, _tuple$12, data, buf, _tuple$13, r$1, size;
 		d = this;
 		_tuple = [0, 0], b0 = _tuple[0], b1 = _tuple[1];
@@ -2920,13 +2948,13 @@ $$
 		return data;
 	};
 	Decoder.prototype.text = function(quote, cdata) { return this.go$val.text(quote, cdata); };
-	var isInCharacterRange = function(r) {
+0Å˝isInCharacterRangeÅÊ	var isInCharacterRange = function(r) {
 		var inrange;
 		inrange = false;
 		inrange = (r === 9) || (r === 10) || (r === 13) || r >= 32 && r <= 57207 || r >= 57344 && r <= 65533 || r >= 65536 && r <= 1114111;
 		return inrange;
 	};
-	Decoder.Ptr.prototype.nsname = function() {
+0ÇnsnameÇ¯	Decoder.Ptr.prototype.nsname = function() {
 		var name, ok, d, _tuple, s, _struct, i, _struct$1, _tuple$1, _struct$2;
 		name = new Name.Ptr();
 		ok = false;
@@ -2946,7 +2974,7 @@ $$
 		return [(_struct$2 = name, new Name.Ptr(_struct$2.Space, _struct$2.Local)), ok];
 	};
 	Decoder.prototype.nsname = function() { return this.go$val.nsname(); };
-	Decoder.Ptr.prototype.name = function() {
+0ÇunameÇk	Decoder.Ptr.prototype.name = function() {
 		var s, ok, d, _tuple, _tuple$1, _tuple$2;
 		s = "";
 		ok = false;
@@ -2966,7 +2994,7 @@ $$
 		return [s, ok];
 	};
 	Decoder.prototype.name = function() { return this.go$val.name(); };
-	Decoder.Ptr.prototype.readName = function() {
+0Ç{readNameÇm	Decoder.Ptr.prototype.readName = function() {
 		var ok, d, b, _tuple, _tuple$1;
 		ok = false;
 		d = this;
@@ -2994,10 +3022,11 @@ $$
 		return ok;
 	};
 	Decoder.prototype.readName = function() { return this.go$val.readName(); };
-	var isNameByte = function(c) {
+0Åµ
+isNameByteÅ¶	var isNameByte = function(c) {
 		return 65 <= c && c <= 90 || 97 <= c && c <= 122 || 48 <= c && c <= 57 || (c === 95) || (c === 58) || (c === 46) || (c === 45);
 	};
-	var isName = function(s) {
+0Ç8isNameÇ,	var isName = function(s) {
 		var _tuple, c, n, _tuple$1;
 		if (s.length === 0) {
 			return false;
@@ -3021,7 +3050,7 @@ $$
 		}
 		return true;
 	};
-	var isNameString = function(s) {
+0ÇQisNameStringÇ?	var isNameString = function(s) {
 		var _tuple, c, n, _tuple$1;
 		if (s.length === 0) {
 			return false;
@@ -3045,7 +3074,8 @@ $$
 		}
 		return true;
 	};
-	var EscapeText = go$pkg.EscapeText = function(w, s) {
+0ÇZ
+EscapeTextÇJ	var EscapeText = go$pkg.EscapeText = function(w, s) {
 		var esc, last, i, _tuple, r, width, _ref, err, _tuple$1, err$1, _tuple$2, err$2, _tuple$3;
 		esc = (go$sliceType(Go$Uint8)).nil;
 		last = 0;
@@ -3093,7 +3123,7 @@ $$
 		}
 		return null;
 	};
-	printer.Ptr.prototype.EscapeString = function(s) {
+0ÇÅEscapeStringÇo	printer.Ptr.prototype.EscapeString = function(s) {
 		var p, esc, last, i, _tuple, r, width, _ref;
 		p = this;
 		esc = (go$sliceType(Go$Uint8)).nil;
@@ -3136,10 +3166,10 @@ $$
 		p.Writer.WriteString(s.substring(last));
 	};
 	printer.prototype.EscapeString = function(s) { return this.go$val.EscapeString(s); };
-	var Escape = go$pkg.Escape = function(w, s) {
+0QEscapeG	var Escape = go$pkg.Escape = function(w, s) {
 		EscapeText(w, s);
 	};
-	var procInstEncoding = function(s) {
+0Ç procInstEncodingÇ¥	var procInstEncoding = function(s) {
 		var idx, v;
 		idx = strings.Index(s, "encoding=");
 		if (idx === -1) {
@@ -3158,50 +3188,7 @@ $$
 		}
 		return v.substring(1, (idx + 1 >> 0));
 	};
-	go$pkg.Header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-	var fElement = 1;
-	var fAttr = 2;
-	var fCharData = 4;
-	var fInnerXml = 8;
-	var fComment = 16;
-	var fAny = 32;
-	var fOmitEmpty = 64;
-	var fMode = 63;
-	var xmlURL = "http://www.w3.org/XML/1998/namespace";
-	var stkStart = 0;
-	var stkNs = 1;
-	var stkEOF = 2;
-	var endComment = (go$sliceType(Go$Uint8)).nil;
-	var endProcInst = (go$sliceType(Go$Uint8)).nil;
-	var endDirective = (go$sliceType(Go$Uint8)).nil;
-	var marshalerType = null;
-	var marshalerAttrType = null;
-	var textMarshalerType = null;
-	var ddBytes = (go$sliceType(Go$Uint8)).nil;
-	var unmarshalerType = null;
-	var unmarshalerAttrType = null;
-	var textUnmarshalerType = null;
-	var tinfoMap = false;
-	var tinfoLock = new sync.RWMutex.Ptr();
-	var nameType = null;
-	var errRawToken = null;
-	var entity = false;
-	var first = (go$ptrType(unicode.RangeTable)).nil;
-	var second = (go$ptrType(unicode.RangeTable)).nil;
-	go$pkg.HTMLEntity = false;
-	var htmlEntity = false;
-	go$pkg.HTMLAutoClose = (go$sliceType(Go$String)).nil;
-	var htmlAutoClose = (go$sliceType(Go$String)).nil;
-	var esc_quot = (go$sliceType(Go$Uint8)).nil;
-	var esc_apos = (go$sliceType(Go$Uint8)).nil;
-	var esc_amp = (go$sliceType(Go$Uint8)).nil;
-	var esc_lt = (go$sliceType(Go$Uint8)).nil;
-	var esc_gt = (go$sliceType(Go$Uint8)).nil;
-	var esc_tab = (go$sliceType(Go$Uint8)).nil;
-	var esc_nl = (go$sliceType(Go$Uint8)).nil;
-	var esc_cr = (go$sliceType(Go$Uint8)).nil;
-	var esc_fffd = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.init = function() {
+0ÇyáinitÇy}	go$pkg.init = function() {
 		var x, _map, _key, _map$1, _key$1;
 		endComment = new (go$sliceType(Go$Uint8))(go$stringToBytes("-->"));
 		endProcInst = new (go$sliceType(Go$Uint8))(go$stringToBytes("?>"));

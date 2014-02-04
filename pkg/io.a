@@ -1,4 +1,4 @@
-0‚}´‚:package io
+0‚xio‚:package io
 import errors "errors"
 import sync "sync"
 type @"".ByteReader interface { @"".ReadByte() (@"".c byte, @"".err error) }
@@ -79,9 +79,7 @@ type @"sync".syncSema [3]uintptr
 type @"sync".copyChecker uintptr
 func (? *@"sync".copyChecker) @"sync".check() ()
 $$
-0(runtimeerrorssync/atomicsyncio‚fH	var errors = go$packages["errors"];
-	var sync = go$packages["sync"];
-	var Reader;
+0(runtimeerrorssync/atomicsyncio0 0errorserrors0syncsync‚)ý	var Reader;
 	Reader = go$newType(0, "Interface", "io.Reader", "Reader", "io", null);
 	go$pkg.Reader = Reader;
 	var Writer;
@@ -249,7 +247,16 @@ $$
 	(go$ptrType(PipeReader)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	PipeWriter.init([["p", "io", (go$ptrType(pipe)), ""]]);
 	(go$ptrType(PipeWriter)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	var WriteString = go$pkg.WriteString = function(w, s) {
+‚"	go$pkg.ErrShortWrite = null;
+	go$pkg.ErrShortBuffer = null;
+	go$pkg.EOF = null;
+	go$pkg.ErrUnexpectedEOF = null;
+	go$pkg.ErrNoProgress = null;
+	var errWhence = null;
+	var errOffset = null;
+	go$pkg.ErrClosedPipe = null;
+	var zero = go$makeNativeArray("Uint8", 0, function() { return 0; });
+0‚<¿0‚WriteString‚þ	var WriteString = go$pkg.WriteString = function(w, s) {
 		var n, err, ok, _tuple, sw, _tuple$1, _tuple$2;
 		n = 0;
 		err = null;
@@ -260,7 +267,7 @@ $$
 		_tuple$2 = w.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), n = _tuple$2[0], err = _tuple$2[1];
 		return [n, err];
 	};
-	var ReadAtLeast = go$pkg.ReadAtLeast = function(r, buf, min) {
+0‚MReadAtLeast‚<	var ReadAtLeast = go$pkg.ReadAtLeast = function(r, buf, min) {
 		var n, err, _tuple, nn, _tuple$1;
 		n = 0;
 		err = null;
@@ -280,14 +287,14 @@ $$
 		}
 		return [n, err];
 	};
-	var ReadFull = go$pkg.ReadFull = function(r, buf) {
+0ÒReadFullÅ	var ReadFull = go$pkg.ReadFull = function(r, buf) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = ReadAtLeast(r, buf, buf.length), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
-	var CopyN = go$pkg.CopyN = function(dst, src, n) {
+0‚.CopyN‚#	var CopyN = go$pkg.CopyN = function(dst, src, n) {
 		var written, err, _tuple, _tuple$1;
 		written = new Go$Int64(0, 0);
 		err = null;
@@ -301,7 +308,7 @@ $$
 		}
 		return [written, err];
 	};
-	var Copy = go$pkg.Copy = function(dst, src) {
+0‚Copy‚	var Copy = go$pkg.Copy = function(dst, src) {
 		var written, err, ok, _tuple, wt, _tuple$1, ok$1, _tuple$2, rt, _tuple$3, buf, _tuple$4, nr, er, _tuple$5, nw, ew, x, _tuple$6;
 		written = new Go$Int64(0, 0);
 		err = null;
@@ -341,10 +348,10 @@ $$
 		_tuple$6 = [written, err], written = _tuple$6[0], err = _tuple$6[1];
 		return [written, err];
 	};
-	var LimitReader = go$pkg.LimitReader = function(r, n) {
+0rLimitReaderc	var LimitReader = go$pkg.LimitReader = function(r, n) {
 		return new LimitedReader.Ptr(r, n);
 	};
-	LimitedReader.Ptr.prototype.Read = function(p) {
+0‚äRead‚Ú	LimitedReader.Ptr.prototype.Read = function(p) {
 		var n, err, l, x, _tuple, x$1, x$2, _tuple$1, x$3, x$4;
 		n = 0;
 		err = null;
@@ -361,10 +368,10 @@ $$
 		return [n, err];
 	};
 	LimitedReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	var NewSectionReader = go$pkg.NewSectionReader = function(r, off, n) {
+0ÀNewSectionReader«	var NewSectionReader = go$pkg.NewSectionReader = function(r, off, n) {
 		return new SectionReader.Ptr(r, off, off, new Go$Int64(off.high + n.high, off.low + n.low));
 	};
-	SectionReader.Ptr.prototype.Read = function(p) {
+0‚tRead‚j	SectionReader.Ptr.prototype.Read = function(p) {
 		var n, err, s, x, x$1, _tuple, x$2, max, x$3, x$4, _tuple$1, x$5, x$6;
 		n = 0;
 		err = null;
@@ -381,7 +388,7 @@ $$
 		return [n, err];
 	};
 	SectionReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	SectionReader.Ptr.prototype.Seek = function(offset, whence) {
+0‚ƒSeek‚y	SectionReader.Ptr.prototype.Seek = function(offset, whence) {
 		var s, _ref, x, x$1, x$2, x$3, x$4;
 		s = this;
 		_ref = whence;
@@ -401,7 +408,7 @@ $$
 		return [(x$4 = s.base, new Go$Int64(offset.high - x$4.high, offset.low - x$4.low)), null];
 	};
 	SectionReader.prototype.Seek = function(offset, whence) { return this.go$val.Seek(offset, whence); };
-	SectionReader.Ptr.prototype.ReadAt = function(p, off) {
+0‚¾ReadAt‚²	SectionReader.Ptr.prototype.ReadAt = function(p, off) {
 		var n, err, s, x, x$1, x$2, _tuple, x$3, x$4, max, x$5, _tuple$1, _tuple$2, _tuple$3;
 		n = 0;
 		err = null;
@@ -424,16 +431,16 @@ $$
 		return [n, err];
 	};
 	SectionReader.prototype.ReadAt = function(p, off) { return this.go$val.ReadAt(p, off); };
-	SectionReader.Ptr.prototype.Size = function() {
+0þSizeõ	SectionReader.Ptr.prototype.Size = function() {
 		var s, x, x$1;
 		s = this;
 		return (x = s.limit, x$1 = s.base, new Go$Int64(x.high - x$1.high, x.low - x$1.low));
 	};
 	SectionReader.prototype.Size = function() { return this.go$val.Size(); };
-	var TeeReader = go$pkg.TeeReader = function(r, w) {
+0h	TeeReader[	var TeeReader = go$pkg.TeeReader = function(r, w) {
 		return new teeReader.Ptr(r, w);
 	};
-	teeReader.Ptr.prototype.Read = function(p) {
+0‚Read‚	teeReader.Ptr.prototype.Read = function(p) {
 		var n, err, t, _tuple, err$1, _tuple$1, n$1, _tuple$2;
 		n = 0;
 		err = null;
@@ -448,7 +455,7 @@ $$
 		return [n, err];
 	};
 	teeReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	multiReader.Ptr.prototype.Read = function(p) {
+0‚øRead‚î	multiReader.Ptr.prototype.Read = function(p) {
 		var n, err, mr, _tuple, _slice, _index, _tuple$1;
 		n = 0;
 		err = null;
@@ -467,10 +474,10 @@ $$
 		return [n, err];
 	};
 	multiReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	var MultiReader = go$pkg.MultiReader = function(readers) {
+0vMultiReaderg	var MultiReader = go$pkg.MultiReader = function(readers) {
 		return new multiReader.Ptr(readers);
 	};
-	multiWriter.Ptr.prototype.Write = function(p) {
+0‚Write‚û	multiWriter.Ptr.prototype.Write = function(p) {
 		var n, err, t, _ref, _i, _slice, _index, w, _tuple, _tuple$1;
 		n = 0;
 		err = null;
@@ -492,10 +499,10 @@ $$
 		return [n, err];
 	};
 	multiWriter.prototype.Write = function(p) { return this.go$val.Write(p); };
-	var MultiWriter = go$pkg.MultiWriter = function(writers) {
+0vMultiWriterg	var MultiWriter = go$pkg.MultiWriter = function(writers) {
 		return new multiWriter.Ptr(writers);
 	};
-	pipe.Ptr.prototype.read = function(b) {
+0‚Eread‚;	pipe.Ptr.prototype.read = function(b) {
 		var n, err, p, _tuple, _tuple$1;
 		n = 0;
 		err = null;
@@ -535,7 +542,7 @@ $$
 		}
 	};
 	pipe.prototype.read = function(b) { return this.go$val.read(b); };
-	pipe.Ptr.prototype.write = function(b) {
+0‚Qwrite‚F	pipe.Ptr.prototype.write = function(b) {
 		var n, err, p;
 		n = 0;
 		err = null;
@@ -579,7 +586,7 @@ $$
 		}
 	};
 	pipe.prototype.write = function(b) { return this.go$val.write(b); };
-	pipe.Ptr.prototype.rclose = function(err) {
+0‚õrclose‚é	pipe.Ptr.prototype.rclose = function(err) {
 		var p;
 		var go$deferred = [];
 		try {
@@ -599,7 +606,7 @@ $$
 		}
 	};
 	pipe.prototype.rclose = function(err) { return this.go$val.rclose(err); };
-	pipe.Ptr.prototype.wclose = function(err) {
+0‚ëwclose‚ß	pipe.Ptr.prototype.wclose = function(err) {
 		var p;
 		var go$deferred = [];
 		try {
@@ -619,7 +626,7 @@ $$
 		}
 	};
 	pipe.prototype.wclose = function(err) { return this.go$val.wclose(err); };
-	PipeReader.Ptr.prototype.Read = function(data) {
+0‚Read‚	PipeReader.Ptr.prototype.Read = function(data) {
 		var n, err, r, _tuple;
 		n = 0;
 		err = null;
@@ -628,20 +635,20 @@ $$
 		return [n, err];
 	};
 	PipeReader.prototype.Read = function(data) { return this.go$val.Read(data); };
-	PipeReader.Ptr.prototype.Close = function() {
+0½Close³	PipeReader.Ptr.prototype.Close = function() {
 		var r;
 		r = this;
 		return r.CloseWithError(null);
 	};
 	PipeReader.prototype.Close = function() { return this.go$val.Close(); };
-	PipeReader.Ptr.prototype.CloseWithError = function(err) {
+0ëCloseWithErrorØ	PipeReader.Ptr.prototype.CloseWithError = function(err) {
 		var r;
 		r = this;
 		r.p.rclose(err);
 		return null;
 	};
 	PipeReader.prototype.CloseWithError = function(err) { return this.go$val.CloseWithError(err); };
-	PipeWriter.Ptr.prototype.Write = function(data) {
+0‚Write‚	PipeWriter.Ptr.prototype.Write = function(data) {
 		var n, err, w, _tuple;
 		n = 0;
 		err = null;
@@ -650,20 +657,20 @@ $$
 		return [n, err];
 	};
 	PipeWriter.prototype.Write = function(data) { return this.go$val.Write(data); };
-	PipeWriter.Ptr.prototype.Close = function() {
+0½Close³	PipeWriter.Ptr.prototype.Close = function() {
 		var w;
 		w = this;
 		return w.CloseWithError(null);
 	};
 	PipeWriter.prototype.Close = function() { return this.go$val.Close(); };
-	PipeWriter.Ptr.prototype.CloseWithError = function(err) {
+0ëCloseWithErrorØ	PipeWriter.Ptr.prototype.CloseWithError = function(err) {
 		var w;
 		w = this;
 		w.p.wclose(err);
 		return null;
 	};
 	PipeWriter.prototype.CloseWithError = function(err) { return this.go$val.CloseWithError(err); };
-	var Pipe = go$pkg.Pipe = function() {
+0ÊPipeÁ	var Pipe = go$pkg.Pipe = function() {
 		var p, r, w;
 		p = new pipe.Ptr();
 		p.rwait.L = p.l;
@@ -672,16 +679,7 @@ $$
 		w = new PipeWriter.Ptr(p);
 		return [r, w];
 	};
-	go$pkg.ErrShortWrite = null;
-	go$pkg.ErrShortBuffer = null;
-	go$pkg.EOF = null;
-	go$pkg.ErrUnexpectedEOF = null;
-	go$pkg.ErrNoProgress = null;
-	var errWhence = null;
-	var errOffset = null;
-	go$pkg.ErrClosedPipe = null;
-	var zero = go$makeNativeArray("Uint8", 0, function() { return 0; });
-	go$pkg.init = function() {
+0‚îinit‚ä	go$pkg.init = function() {
 		go$pkg.ErrShortWrite = errors.New("short write");
 		go$pkg.ErrShortBuffer = errors.New("short buffer");
 		go$pkg.EOF = errors.New("EOF");

@@ -1,4 +1,4 @@
-0‚)¼‚Jpackage hex
+0‚*Dencoding/hex‚Jpackage hex
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -21,11 +21,8 @@ func (? *@"".dumper) @"".Write(@"".data []byte) (@"".n int, @"".err error)
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 type @"io".WriteCloser interface { @"io".Close() (? error); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
-0„runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/hex‚$ã	var bytes = go$packages["bytes"];
-	var errors = go$packages["errors"];
-	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var InvalidByteError;
+0„runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/hex080bytesbytes0errorserrors0
+fmtfmt0ioio‚è	var InvalidByteError;
 	InvalidByteError = go$newType(1, "Uint8", "hex.InvalidByteError", "InvalidByteError", "encoding/hex", null);
 	go$pkg.InvalidByteError = InvalidByteError;
 	var dumper;
@@ -42,11 +39,13 @@ $$
 	(go$ptrType(InvalidByteError)).methods = [["Error", "", [], [Go$String], false]];
 	dumper.init([["w", "encoding/hex", io.Writer, ""], ["rightChars", "encoding/hex", (go$arrayType(Go$Uint8, 18)), ""], ["buf", "encoding/hex", (go$arrayType(Go$Uint8, 14)), ""], ["used", "encoding/hex", Go$Int, ""], ["n", "encoding/hex", Go$Uint, ""]]);
 	(go$ptrType(dumper)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	var EncodedLen = go$pkg.EncodedLen = function(n) {
+	go$pkg.ErrLength = null;
+0‚ 0
+EncodedLenŽ	var EncodedLen = go$pkg.EncodedLen = function(n) {
 		var x;
 		return (x = 2, (((n >>> 16 << 16) * x >> 0) + (n << 16 >>> 16) * x) >> 0);
 	};
-	var Encode = go$pkg.Encode = function(dst, src) {
+0‚NEncode‚B	var Encode = go$pkg.Encode = function(dst, src) {
 		var _ref, _i, _slice, _index, v, i, _slice$1, _index$1, x, _slice$2, _index$2, x$1, x$2, x$3;
 		_ref = src;
 		_i = 0;
@@ -58,17 +57,18 @@ $$
 		}
 		return (x$2 = src.length, x$3 = 2, (((x$2 >>> 16 << 16) * x$3 >> 0) + (x$2 << 16 >>> 16) * x$3) >> 0);
 	};
-	InvalidByteError.prototype.Error = function() {
+0‚JError‚?	InvalidByteError.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return fmt.Sprintf("encoding/hex: invalid byte: %#U", new (go$sliceType(go$emptyInterface))([new Go$Int32((e >> 0))]));
 	};
 	go$ptrType(InvalidByteError).prototype.Error = function() { return new InvalidByteError(this.go$get()).Error(); };
-	var DecodedLen = go$pkg.DecodedLen = function(x) {
+0Í
+DecodedLen¾	var DecodedLen = go$pkg.DecodedLen = function(x) {
 		var _q;
 		return (_q = x / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
 	};
-	var Decode = go$pkg.Decode = function(dst, src) {
+0‚ODecode‚C	var Decode = go$pkg.Decode = function(dst, src) {
 		var _r, i, _q, _tuple, _slice, _index, x, a, ok, _slice$1, _index$1, x$1, _tuple$1, _slice$2, _index$2, x$2, b, _slice$3, _index$3, x$3, _slice$4, _index$4, _q$1;
 		if ((_r = src.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 1) {
 			return [0, go$pkg.ErrLength];
@@ -88,7 +88,7 @@ $$
 		}
 		return [(_q$1 = src.length / 2, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")), null];
 	};
-	var fromHexChar = function(c) {
+0‚OfromHexChar‚>	var fromHexChar = function(c) {
 		if (48 <= c && c <= 57) {
 			return [c - 48 << 24 >>> 24, true];
 		} else if (97 <= c && c <= 102) {
@@ -98,13 +98,13 @@ $$
 		}
 		return [0, false];
 	};
-	var EncodeToString = go$pkg.EncodeToString = function(src) {
+0ðEncodeToStringÝ	var EncodeToString = go$pkg.EncodeToString = function(src) {
 		var dst;
 		dst = (go$sliceType(Go$Uint8)).make(EncodedLen(src.length), 0, function() { return 0; });
 		Encode(dst, src);
 		return go$bytesToString(dst);
 	};
-	var DecodeString = go$pkg.DecodeString = function(s) {
+0‚¤DecodeString‚’	var DecodeString = go$pkg.DecodeString = function(s) {
 		var src, dst, _tuple, err;
 		src = new (go$sliceType(Go$Uint8))(go$stringToBytes(s));
 		dst = (go$sliceType(Go$Uint8)).make(DecodedLen(src.length), 0, function() { return 0; });
@@ -114,7 +114,7 @@ $$
 		}
 		return [dst, null];
 	};
-	var Dump = go$pkg.Dump = function(data) {
+0ÛDumpÒ	var Dump = go$pkg.Dump = function(data) {
 		var buf, dumper$1;
 		buf = new bytes.Buffer.Ptr();
 		dumper$1 = Dumper(buf);
@@ -122,16 +122,16 @@ $$
 		dumper$1.Close();
 		return go$bytesToString(buf.Bytes());
 	};
-	var Dumper = go$pkg.Dumper = function(w) {
+0ÓDumperÈ	var Dumper = go$pkg.Dumper = function(w) {
 		return new dumper.Ptr(w, go$makeNativeArray("Uint8", 18, function() { return 0; }), go$makeNativeArray("Uint8", 14, function() { return 0; }), 0, 0);
 	};
-	var toChar = function(b) {
+0ctoCharY	var toChar = function(b) {
 		if (b < 32 || b > 126) {
 			return 46;
 		}
 		return b;
 	};
-	dumper.Ptr.prototype.Write = function(data) {
+0‚ßWrite‚Ô	dumper.Ptr.prototype.Write = function(data) {
 		var n, err, h, _ref, _i, i, _tuple, l, _tuple$1, _slice, _index, _tuple$2;
 		n = 0;
 		err = null;
@@ -182,7 +182,7 @@ $$
 		return [n, err];
 	};
 	dumper.prototype.Write = function(data) { return this.go$val.Write(data); };
-	dumper.Ptr.prototype.Close = function() {
+0‚XClose‚M	dumper.Ptr.prototype.Close = function() {
 		var err, h, nBytes, l, _tuple, _tuple$1;
 		err = null;
 		h = this;
@@ -214,8 +214,6 @@ $$
 		return err;
 	};
 	dumper.prototype.Close = function() { return this.go$val.Close(); };
-	var hextable = "0123456789abcdef";
-	go$pkg.ErrLength = null;
-	go$pkg.init = function() {
+0pinith	go$pkg.init = function() {
 		go$pkg.ErrLength = errors.New("encoding/hex: odd length hex string");
 	};

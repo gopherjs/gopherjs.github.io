@@ -1,4 +1,4 @@
-0Ç[◊Çâpackage scanner
+0Ç[Ytext/scannerÇâpackage scanner
 import bytes "bytes"
 import fmt "fmt"
 import io "io"
@@ -75,13 +75,8 @@ func (? *@"bytes".Buffer) @"bytes".readSlice(@"bytes".delim byte) (@"bytes".line
 type @"bytes".readOp int
 type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
 $$
-0ÅÑruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmttext/scannerÇIø	var bytes = go$packages["bytes"];
-	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var os = go$packages["os"];
-	var unicode = go$packages["unicode"];
-	var utf8 = go$packages["unicode/utf8"];
-	var Position;
+0ÅÑruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmttext/scanner0Z0bytesbytes0
+fmtfmt0ioio0osos0unicodeunicode0unicode/utf8utf8Çè	var Position;
 	Position = go$newType(0, "Struct", "scanner.Position", "Position", "text/scanner", function(Filename_, Offset_, Line_, Column_) {
 		this.go$val = this;
 		this.Filename = Filename_ !== undefined ? Filename_ : "";
@@ -123,13 +118,14 @@ $$
 	Scanner.init([["src", "text/scanner", io.Reader, ""], ["srcBuf", "text/scanner", (go$arrayType(Go$Uint8, 1025)), ""], ["srcPos", "text/scanner", Go$Int, ""], ["srcEnd", "text/scanner", Go$Int, ""], ["srcBufOffset", "text/scanner", Go$Int, ""], ["line", "text/scanner", Go$Int, ""], ["column", "text/scanner", Go$Int, ""], ["lastLineLen", "text/scanner", Go$Int, ""], ["lastCharLen", "text/scanner", Go$Int, ""], ["tokBuf", "text/scanner", bytes.Buffer, ""], ["tokPos", "text/scanner", Go$Int, ""], ["tokEnd", "text/scanner", Go$Int, ""], ["ch", "text/scanner", Go$Int32, ""], ["Error", "", (go$funcType([(go$ptrType(Scanner)), Go$String], [], false)), ""], ["ErrorCount", "", Go$Int, ""], ["Mode", "", Go$Uint, ""], ["Whitespace", "", Go$Uint64, ""], ["", "", Position, ""]]);
 	Scanner.methods = [["String", "", [], [Go$String], false]];
 	(go$ptrType(Scanner)).methods = [["Init", "", [io.Reader], [(go$ptrType(Scanner))], false], ["IsValid", "", [], [Go$Bool], false], ["Next", "", [], [Go$Int32], false], ["Peek", "", [], [Go$Int32], false], ["Pos", "", [], [Position], false], ["Scan", "", [], [Go$Int32], false], ["String", "", [], [Go$String], false], ["TokenText", "", [], [Go$String], false], ["error", "text/scanner", [Go$String], [], false], ["next", "text/scanner", [], [Go$Int32], false], ["scanChar", "text/scanner", [], [], false], ["scanComment", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanDigits", "text/scanner", [Go$Int32, Go$Int, Go$Int], [Go$Int32], false], ["scanEscape", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanExponent", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanFraction", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanIdentifier", "text/scanner", [], [Go$Int32], false], ["scanMantissa", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanNumber", "text/scanner", [Go$Int32], [Go$Int32, Go$Int32], false], ["scanRawString", "text/scanner", [], [], false], ["scanString", "text/scanner", [Go$Int32], [Go$Int], false]];
-	Position.Ptr.prototype.IsValid = function() {
+	var tokenString = false;
+0Ç7(0ÅªIsValidÅØ	Position.Ptr.prototype.IsValid = function() {
 		var pos;
 		pos = this;
 		return pos.Line > 0;
 	};
 	Position.prototype.IsValid = function() { return this.go$val.IsValid(); };
-	Position.Ptr.prototype.String = function() {
+0ÇStringÇ	Position.Ptr.prototype.String = function() {
 		var _struct, pos, s;
 		pos = (_struct = this, new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
 		s = pos.Filename;
@@ -145,14 +141,14 @@ $$
 		return s;
 	};
 	Position.prototype.String = function() { return this.go$val.String(); };
-	var TokenString = go$pkg.TokenString = function(tok) {
+0ÇtTokenStringÇc	var TokenString = go$pkg.TokenString = function(tok) {
 		var found, _tuple, _entry, s;
 		if (_tuple = (_entry = tokenString[tok], _entry !== undefined ? [_entry.v, true] : ["", false]), s = _tuple[0], found = _tuple[1], found) {
 			return s;
 		}
 		return fmt.Sprintf("%q", new (go$sliceType(go$emptyInterface))([new Go$String(go$encodeRune(tok))]));
 	};
-	Scanner.Ptr.prototype.Init = function(src) {
+0ÇÚInitÇË	Scanner.Ptr.prototype.Init = function(src) {
 		var s;
 		s = this;
 		s.src = src;
@@ -174,7 +170,7 @@ $$
 		return s;
 	};
 	Scanner.prototype.Init = function(src) { return this.go$val.Init(src); };
-	Scanner.Ptr.prototype.next = function() {
+0Ç‰nextÇ⁄	Scanner.Ptr.prototype.next = function() {
 		var s, _tuple, ch, width, i, _tuple$1, n, err, _tuple$2, _ref;
 		s = this;
 		_tuple = [(s.srcBuf[s.srcPos] >> 0), 1], ch = _tuple[0], width = _tuple[1];
@@ -231,7 +227,7 @@ $$
 		return ch;
 	};
 	Scanner.prototype.next = function() { return this.go$val.next(); };
-	Scanner.Ptr.prototype.Next = function() {
+0ÅÔNextÅÊ	Scanner.Ptr.prototype.Next = function() {
 		var s, ch;
 		s = this;
 		s.tokPos = -1;
@@ -241,7 +237,7 @@ $$
 		return ch;
 	};
 	Scanner.prototype.Next = function() { return this.go$val.Next(); };
-	Scanner.Ptr.prototype.Peek = function() {
+0Å˛PeekÅı	Scanner.Ptr.prototype.Peek = function() {
 		var s;
 		s = this;
 		if (s.ch < 0) {
@@ -253,7 +249,7 @@ $$
 		return s.ch;
 	};
 	Scanner.prototype.Peek = function() { return this.go$val.Peek(); };
-	Scanner.Ptr.prototype.error = function(msg) {
+0Ç¿errorÇµ	Scanner.Ptr.prototype.error = function(msg) {
 		var s, _struct, pos, _struct$1;
 		s = this;
 		s.ErrorCount = s.ErrorCount + 1 >> 0;
@@ -268,7 +264,7 @@ $$
 		fmt.Fprintf(os.Stderr, "%s: %s\n", new (go$sliceType(go$emptyInterface))([new pos.constructor.Struct(pos), new Go$String(msg)]));
 	};
 	Scanner.prototype.error = function(msg) { return this.go$val.error(msg); };
-	Scanner.Ptr.prototype.scanIdentifier = function() {
+0Ç:scanIdentifierÇ&	Scanner.Ptr.prototype.scanIdentifier = function() {
 		var s, ch;
 		s = this;
 		ch = s.next();
@@ -278,7 +274,7 @@ $$
 		return ch;
 	};
 	Scanner.prototype.scanIdentifier = function() { return this.go$val.scanIdentifier(); };
-	var digitVal = function(ch) {
+0Ç&digitValÇ	var digitVal = function(ch) {
 		if (48 <= ch && ch <= 57) {
 			return ((ch - 48 >> 0) >> 0);
 		} else if (97 <= ch && ch <= 102) {
@@ -288,10 +284,10 @@ $$
 		}
 		return 16;
 	};
-	var isDecimal = function(ch) {
+0P	isDecimalC	var isDecimal = function(ch) {
 		return 48 <= ch && ch <= 57;
 	};
-	Scanner.Ptr.prototype.scanMantissa = function(ch) {
+0ÅıscanMantissaÅ‰	Scanner.Ptr.prototype.scanMantissa = function(ch) {
 		var s;
 		s = this;
 		while (isDecimal(ch)) {
@@ -300,7 +296,7 @@ $$
 		return ch;
 	};
 	Scanner.prototype.scanMantissa = function(ch) { return this.go$val.scanMantissa(ch); };
-	Scanner.Ptr.prototype.scanFraction = function(ch) {
+0Å˛scanFractionÅÌ	Scanner.Ptr.prototype.scanFraction = function(ch) {
 		var s;
 		s = this;
 		if (ch === 46) {
@@ -309,7 +305,7 @@ $$
 		return ch;
 	};
 	Scanner.prototype.scanFraction = function(ch) { return this.go$val.scanFraction(ch); };
-	Scanner.Ptr.prototype.scanExponent = function(ch) {
+0ÇZscanExponentÇH	Scanner.Ptr.prototype.scanExponent = function(ch) {
 		var s;
 		s = this;
 		if ((ch === 101) || (ch === 69)) {
@@ -322,7 +318,8 @@ $$
 		return ch;
 	};
 	Scanner.prototype.scanExponent = function(ch) { return this.go$val.scanExponent(ch); };
-	Scanner.Ptr.prototype.scanNumber = function(ch) {
+0ÇK
+scanNumberÇ;	Scanner.Ptr.prototype.scanNumber = function(ch) {
 		var s, hasMantissa, has8or9;
 		s = this;
 		if (ch === 48) {
@@ -365,7 +362,8 @@ $$
 		return [-3, ch];
 	};
 	Scanner.prototype.scanNumber = function(ch) { return this.go$val.scanNumber(ch); };
-	Scanner.Ptr.prototype.scanDigits = function(ch, base, n) {
+0Ça
+scanDigitsÇQ	Scanner.Ptr.prototype.scanDigits = function(ch, base, n) {
 		var s;
 		s = this;
 		while (n > 0 && digitVal(ch) < base) {
@@ -378,7 +376,8 @@ $$
 		return ch;
 	};
 	Scanner.prototype.scanDigits = function(ch, base, n) { return this.go$val.scanDigits(ch, base, n); };
-	Scanner.Ptr.prototype.scanEscape = function(quote) {
+0Ç8
+scanEscapeÇ(	Scanner.Ptr.prototype.scanEscape = function(quote) {
 		var s, ch, _ref;
 		s = this;
 		ch = s.next();
@@ -399,7 +398,8 @@ $$
 		return ch;
 	};
 	Scanner.prototype.scanEscape = function(quote) { return this.go$val.scanEscape(quote); };
-	Scanner.Ptr.prototype.scanString = function(quote) {
+0ÇÃ
+scanStringÇº	Scanner.Ptr.prototype.scanString = function(quote) {
 		var n, s, ch;
 		n = 0;
 		s = this;
@@ -419,7 +419,7 @@ $$
 		return n;
 	};
 	Scanner.prototype.scanString = function(quote) { return this.go$val.scanString(quote); };
-	Scanner.Ptr.prototype.scanRawString = function() {
+0ÇFscanRawStringÇ3	Scanner.Ptr.prototype.scanRawString = function() {
 		var s, ch;
 		s = this;
 		ch = s.next();
@@ -432,7 +432,7 @@ $$
 		}
 	};
 	Scanner.prototype.scanRawString = function() { return this.go$val.scanRawString(); };
-	Scanner.Ptr.prototype.scanChar = function() {
+0ÅÔscanCharÅ‚	Scanner.Ptr.prototype.scanChar = function() {
 		var s;
 		s = this;
 		if (!((s.scanString(39) === 1))) {
@@ -440,7 +440,7 @@ $$
 		}
 	};
 	Scanner.prototype.scanChar = function() { return this.go$val.scanChar(); };
-	Scanner.Ptr.prototype.scanComment = function(ch) {
+0ÇscanCommentÇ	Scanner.Ptr.prototype.scanComment = function(ch) {
 		var s, ch0;
 		s = this;
 		if (ch === 47) {
@@ -466,7 +466,7 @@ $$
 		return ch;
 	};
 	Scanner.prototype.scanComment = function(ch) { return this.go$val.scanComment(ch); };
-	Scanner.Ptr.prototype.Scan = function() {
+0Ç¢ScanÇò	Scanner.Ptr.prototype.Scan = function() {
 		var s, ch, x, x$1, x$2, tok, _tuple, _ref;
 		s = this;
 		ch = s.Peek();
@@ -548,7 +548,7 @@ $$
 		}
 	};
 	Scanner.prototype.Scan = function() { return this.go$val.Scan(); };
-	Scanner.Ptr.prototype.Pos = function() {
+0ÇjPosÇa	Scanner.Ptr.prototype.Pos = function() {
 		var pos, s, _struct;
 		pos = new Position.Ptr();
 		s = this;
@@ -567,7 +567,7 @@ $$
 		return (_struct = pos, new Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
 	};
 	Scanner.prototype.Pos = function() { return this.go$val.Pos(); };
-	Scanner.Ptr.prototype.TokenText = function() {
+0Ç	TokenTextÇ	Scanner.Ptr.prototype.TokenText = function() {
 		var s;
 		s = this;
 		if (s.tokPos < 0) {
@@ -584,28 +584,7 @@ $$
 		return s.tokBuf.String();
 	};
 	Scanner.prototype.TokenText = function() { return this.go$val.TokenText(); };
-	go$pkg.ScanIdents = 4;
-	go$pkg.ScanInts = 8;
-	go$pkg.ScanFloats = 16;
-	go$pkg.ScanChars = 32;
-	go$pkg.ScanStrings = 64;
-	go$pkg.ScanRawStrings = 128;
-	go$pkg.ScanComments = 256;
-	go$pkg.SkipComments = 512;
-	go$pkg.GoTokens = 1012;
-	go$pkg.EOF = -1;
-	go$pkg.Ident = -2;
-	go$pkg.Int = -3;
-	go$pkg.Float = -4;
-	go$pkg.Char = -5;
-	go$pkg.String = -6;
-	go$pkg.RawString = -7;
-	go$pkg.Comment = -8;
-	var skipComment = -9;
-	go$pkg.GoWhitespace = 4294977024;
-	var bufLen = 1024;
-	var tokenString = false;
-	go$pkg.init = function() {
+0ÇÛinitÇÈ	go$pkg.init = function() {
 		var _map, _key;
 		tokenString = (_map = new Go$Map(), _key = -1, _map[_key] = { k: _key, v: "EOF" }, _key = -2, _map[_key] = { k: _key, v: "Ident" }, _key = -3, _map[_key] = { k: _key, v: "Int" }, _key = -4, _map[_key] = { k: _key, v: "Float" }, _key = -5, _map[_key] = { k: _key, v: "Char" }, _key = -6, _map[_key] = { k: _key, v: "String" }, _key = -7, _map[_key] = { k: _key, v: "RawString" }, _key = -8, _map[_key] = { k: _key, v: "Comment" }, _map);
 	};

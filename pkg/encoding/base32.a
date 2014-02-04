@@ -1,4 +1,4 @@
-0‚Ñu‚package base32
+0‚Ññencoding/base32‚package base32
 import bytes "bytes"
 import io "io"
 import strconv "strconv"
@@ -30,11 +30,7 @@ type @"io".Reader interface { @"io".Read(@"".p []byte) (@"".n int, @"".err error
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 type @"io".WriteCloser interface { @"io".Close() (? error); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
-0oruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvstringsencoding/base32‚Èï	var bytes = go$packages["bytes"];
-	var io = go$packages["io"];
-	var strconv = go$packages["strconv"];
-	var strings = go$packages["strings"];
-	var Encoding;
+0oruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvstringsencoding/base320B0bytesbytes0ioio0strconvstrconv0stringsstrings‚»	var Encoding;
 	Encoding = go$newType(0, "Struct", "base32.Encoding", "Encoding", "encoding/base32", function(encode_, decodeMap_) {
 		this.go$val = this;
 		this.encode = encode_ !== undefined ? encode_ : "";
@@ -84,7 +80,10 @@ $$
 	(go$ptrType(decoder)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	newlineFilteringReader.init([["wrapped", "encoding/base32", io.Reader, ""]]);
 	(go$ptrType(newlineFilteringReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	var NewEncoding = go$pkg.NewEncoding = function(encoder$1) {
+™	go$pkg.StdEncoding = (go$ptrType(Encoding)).nil;
+	go$pkg.HexEncoding = (go$ptrType(Encoding)).nil;
+	var removeNewlinesMapper = go$throwNilPointerError;
+0‚·»0‚xNewEncoding‚g	var NewEncoding = go$pkg.NewEncoding = function(encoder$1) {
 		var e, i, i$1;
 		e = new Encoding.Ptr();
 		e.encode = encoder$1;
@@ -100,7 +99,7 @@ $$
 		}
 		return e;
 	};
-	Encoding.Ptr.prototype.Encode = function(dst, src) {
+0‚uÖEncode‚uÊ	Encoding.Ptr.prototype.Encode = function(dst, src) {
 		var enc, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _ref, _lhs, _index$8, _slice$8, _index$9, _slice$9, _index$10, _slice$10, _index$11, _lhs$1, _index$12, _slice$11, _index$13, _slice$12, _index$14, _slice$13, _index$15, _lhs$2, _index$16, _slice$14, _index$17, _slice$15, _index$18, _slice$16, _index$19, _lhs$3, _index$20, _slice$17, _index$21, _slice$18, _index$22, _slice$19, _index$23, _lhs$4, _index$24, _slice$20, _index$25, _slice$21, _index$26, _slice$22, _index$27, _lhs$5, _index$28, _slice$23, _index$29, _slice$24, _index$30, _slice$25, _index$31, _lhs$6, _index$32, _slice$26, _index$33, _slice$27, _index$34, _slice$28, _index$35, _lhs$7, _index$36, _slice$29, _index$37, _slice$30, _index$38, _slice$31, _index$39, _lhs$8, _index$40, _slice$32, _index$41, _slice$33, _index$42, _slice$34, _index$43, _lhs$9, _index$44, _slice$35, _index$45, _slice$36, _index$46, _slice$37, _index$47, _lhs$10, _index$48, _slice$38, _index$49, _slice$39, _index$50, _slice$40, _index$51, _lhs$11, _index$52, _slice$41, _index$53, _slice$42, _index$54, _slice$43, _index$55, _lhs$12, _index$56, _slice$44, _index$57, _slice$45, _index$58, _slice$46, _index$59, _lhs$13, _index$60, _slice$47, _index$61, _slice$48, _index$62, _slice$49, _index$63, _lhs$14, _index$64, _slice$50, _index$65, _slice$51, _index$66, _slice$52, _index$67, _lhs$15, _index$68, _slice$53, _index$69, _slice$54, _index$70, _slice$55, _index$71, _lhs$16, _index$72, _slice$56, _index$73, _slice$57, _index$74, _slice$58, _index$75, _lhs$17, _index$76, _slice$59, _index$77, _slice$60, _index$78, _slice$61, _index$79, _lhs$18, _index$80, _slice$62, _index$81, _slice$63, _index$82, _slice$64, _index$83, _lhs$19, _index$84, _slice$65, _index$85, _slice$66, _index$86, _slice$67, _index$87, _lhs$20, _index$88, _slice$68, _index$89, _slice$69, _index$90, _slice$70, _index$91, _lhs$21, _index$92, _slice$71, _index$93, _slice$72, _index$94, _slice$73, _index$95, _lhs$22, _index$96, _slice$74, _index$97, _slice$75, _index$98, _slice$76, _index$99, _lhs$23, _index$100, _slice$77, _index$101, _slice$78, _index$102, _slice$79, _index$103, _lhs$24, _index$104, _slice$80, _index$105, _slice$81, _index$106, _slice$82, _index$107, _lhs$25, _index$108, _slice$83, _index$109, _slice$84, _index$110, _slice$85, _index$111, _lhs$26, _index$112, _slice$86, _index$113, _slice$87, _index$114, _slice$88, _index$115, _lhs$27, _index$116, _slice$89, _index$117, _slice$90, _index$118, _slice$91, _index$119, _lhs$28, _index$120, _slice$92, _index$121, _slice$93, _index$122, _slice$94, _index$123, _lhs$29, _index$124, _slice$95, _index$125, _slice$96, _index$126, _slice$97, _index$127, _lhs$30, _index$128, _slice$98, _index$129, _slice$99, _index$130, _slice$100, _index$131, _lhs$31, _index$132, _slice$101, _index$133, _slice$102, _index$134, _slice$103, _index$135, _lhs$32, _index$136, _slice$104, _index$137, _slice$105, _index$138, _slice$106, _index$139, _lhs$33, _index$140, _slice$107, _index$141, _slice$108, _index$142, _slice$109, _index$143, _lhs$34, _index$144, _slice$110, _index$145, _slice$111, _index$146, _slice$112, _index$147, _lhs$35, _index$148, _slice$113, _index$149, _slice$114, _index$150, _slice$115, _index$151, j, _slice$116, _index$152, _slice$117, _index$153, _slice$118, _index$154, _slice$119, _index$155, _slice$120, _index$156, _slice$121, _index$157, _slice$122, _index$158, _slice$123, _index$159;
 		enc = this;
 		if (src.length === 0) {
@@ -183,7 +182,7 @@ $$
 		}
 	};
 	Encoding.prototype.Encode = function(dst, src) { return this.go$val.Encode(dst, src); };
-	Encoding.Ptr.prototype.EncodeToString = function(src) {
+0‚gEncodeToString‚S	Encoding.Ptr.prototype.EncodeToString = function(src) {
 		var enc, buf;
 		enc = this;
 		buf = (go$sliceType(Go$Uint8)).make(enc.EncodedLen(src.length), 0, function() { return 0; });
@@ -191,7 +190,7 @@ $$
 		return go$bytesToString(buf);
 	};
 	Encoding.prototype.EncodeToString = function(src) { return this.go$val.EncodeToString(src); };
-	encoder.Ptr.prototype.Write = function(p) {
+0‚üWrite‚ñ	encoder.Ptr.prototype.Write = function(p) {
 		var n, err, e, _tuple, i, _slice, _index, _tuple$1, _tuple$2, nn, _r, _tuple$3, x, _q, x$1, _tuple$4, i$1, _slice$1, _index$1;
 		n = 0;
 		err = null;
@@ -246,7 +245,7 @@ $$
 		return [n, err];
 	};
 	encoder.prototype.Write = function(p) { return this.go$val.Write(p); };
-	encoder.Ptr.prototype.Close = function() {
+0‚ßClose‚Ô	encoder.Ptr.prototype.Close = function() {
 		var e, _tuple;
 		e = this;
 		if (go$interfaceIsEqual(e.err, null) && e.nbuf > 0) {
@@ -257,22 +256,24 @@ $$
 		return e.err;
 	};
 	encoder.prototype.Close = function() { return this.go$val.Close(); };
-	var NewEncoder = go$pkg.NewEncoder = function(enc, w) {
+0î
+NewEncoderß	var NewEncoder = go$pkg.NewEncoder = function(enc, w) {
 		return new encoder.Ptr(null, enc, w, go$makeNativeArray("Uint8", 5, function() { return 0; }), 0, go$makeNativeArray("Uint8", 1024, function() { return 0; }));
 	};
-	Encoding.Ptr.prototype.EncodedLen = function(n) {
+0‚—
+EncodedLen‚‡	Encoding.Ptr.prototype.EncodedLen = function(n) {
 		var enc, x, _q, x$1;
 		enc = this;
 		return (x = (_q = ((n + 4 >> 0)) / 5, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), x$1 = 8, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
 	};
 	Encoding.prototype.EncodedLen = function(n) { return this.go$val.EncodedLen(n); };
-	CorruptInputError.prototype.Error = function() {
+0‚Error‚	CorruptInputError.prototype.Error = function() {
 		var e;
 		e = this;
 		return "illegal base32 data at input byte " + strconv.FormatInt(new Go$Int64(e.high, e.low), 10);
 	};
 	go$ptrType(CorruptInputError).prototype.Error = function() { return this.go$get().Error(); };
-	Encoding.Ptr.prototype.decode = function(dst, src) {
+0‚|decode‚p	Encoding.Ptr.prototype.decode = function(dst, src) {
 		var n, end, err, enc, olen, dbuf, dlen, j, _tuple, _slice, _index, in$1, _tuple$1, k, _slice$1, _index$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _ref, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _ref$1, _tuple$6;
 		n = 0;
 		end = false;
@@ -357,7 +358,7 @@ $$
 		return [n, end, err];
 	};
 	Encoding.prototype.decode = function(dst, src) { return this.go$val.decode(dst, src); };
-	Encoding.Ptr.prototype.Decode = function(dst, src) {
+0‚bDecode‚V	Encoding.Ptr.prototype.Decode = function(dst, src) {
 		var n, err, enc, _tuple;
 		n = 0;
 		err = null;
@@ -367,7 +368,7 @@ $$
 		return [n, err];
 	};
 	Encoding.prototype.Decode = function(dst, src) { return this.go$val.Decode(dst, src); };
-	Encoding.Ptr.prototype.DecodeString = function(s) {
+0‚öDecodeString‚ä	Encoding.Ptr.prototype.DecodeString = function(s) {
 		var enc, dbuf, _tuple, n, err;
 		enc = this;
 		s = strings.Map(removeNewlinesMapper, s);
@@ -376,7 +377,7 @@ $$
 		return [go$subslice(dbuf, 0, n), err];
 	};
 	Encoding.prototype.DecodeString = function(s) { return this.go$val.DecodeString(s); };
-	decoder.Ptr.prototype.Read = function(p) {
+0‚	eRead‚	[	decoder.Ptr.prototype.Read = function(p) {
 		var n, err, d, _tuple, _tuple$1, x, _q, x$1, nn, _tuple$2, _tuple$3, x$2, _q$1, x$3, nr, x$4, _q$2, x$5, nw, _tuple$4, _tuple$5, i, _tuple$6;
 		n = 0;
 		err = null;
@@ -427,7 +428,7 @@ $$
 		return [n, err];
 	};
 	decoder.prototype.Read = function(p) { return this.go$val.Read(p); };
-	newlineFilteringReader.Ptr.prototype.Read = function(p) {
+0‚)Read‚	newlineFilteringReader.Ptr.prototype.Read = function(p) {
 		var r, _tuple, n, err, offset, _ref, _i, _slice, _index, b, i, _slice$1, _index$1, _tuple$1;
 		r = this;
 		_tuple = r.wrapped.Read(p), n = _tuple[0], err = _tuple[1];
@@ -453,21 +454,18 @@ $$
 		return [n, err];
 	};
 	newlineFilteringReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-	var NewDecoder = go$pkg.NewDecoder = function(enc, r) {
+0‚6
+NewDecoder‚&	var NewDecoder = go$pkg.NewDecoder = function(enc, r) {
 		return new decoder.Ptr(null, enc, new newlineFilteringReader.Ptr(r), false, go$makeNativeArray("Uint8", 1024, function() { return 0; }), 0, (go$sliceType(Go$Uint8)).nil, go$makeNativeArray("Uint8", 640, function() { return 0; }));
 	};
-	Encoding.Ptr.prototype.DecodedLen = function(n) {
+0‚Š
+DecodedLen‚z	Encoding.Ptr.prototype.DecodedLen = function(n) {
 		var enc, x, _q, x$1;
 		enc = this;
 		return (x = (_q = n / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), x$1 = 5, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
 	};
 	Encoding.prototype.DecodedLen = function(n) { return this.go$val.DecodedLen(n); };
-	var encodeStd = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-	var encodeHex = "0123456789ABCDEFGHIJKLMNOPQRSTUV";
-	go$pkg.StdEncoding = (go$ptrType(Encoding)).nil;
-	go$pkg.HexEncoding = (go$ptrType(Encoding)).nil;
-	var removeNewlinesMapper = go$throwNilPointerError;
-	go$pkg.init = function() {
+0‚,init‚"	go$pkg.init = function() {
 		go$pkg.StdEncoding = NewEncoding("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
 		go$pkg.HexEncoding = NewEncoding("0123456789ABCDEFGHIJKLMNOPQRSTUV");
 		removeNewlinesMapper = (function(r) {

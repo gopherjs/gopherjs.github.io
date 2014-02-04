@@ -1,4 +1,4 @@
-0ÇK˘ÇÎpackage driver
+0ÇLÕdatabase/sql/driverÇÎpackage driver
 import errors "errors"
 import fmt "fmt"
 import reflect "reflect"
@@ -56,12 +56,8 @@ type @"".stringType struct {  }
 func (? @"".stringType) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
 func (? *@"".stringType) @"".ConvertValue(@"".v interface {  }) (? @"".Value, ? error)
 $$
-0{runtimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtdatabase/sql/driverÇ=â	var errors = go$packages["errors"];
-	var fmt = go$packages["fmt"];
-	var reflect = go$packages["reflect"];
-	var strconv = go$packages["strconv"];
-	var time = go$packages["time"];
-	var Value;
+0{runtimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtdatabase/sql/driver0T0errorserrors0
+fmtfmt0reflectreflect0strconvstrconv0timetimeÇä	var Value;
 	Value = go$newType(0, "Interface", "driver.Value", "Value", "database/sql/driver", null);
 	go$pkg.Value = Value;
 	var Driver;
@@ -172,29 +168,41 @@ $$
 	defaultConverter.init([]);
 	defaultConverter.methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
 	(go$ptrType(defaultConverter)).methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
-	RowsAffected.prototype.LastInsertId = function() {
+Ç^	go$pkg.ErrSkip = null;
+	go$pkg.ErrBadConn = null;
+	var _ = null;
+	go$pkg.ResultNoRows = new noRows.Ptr();
+	var _$1 = null;
+	go$pkg.Bool = new boolType.Ptr();
+	var _$2 = null;
+	go$pkg.Int32 = new int32Type.Ptr();
+	var _$3 = null;
+	go$pkg.String = new stringType.Ptr();
+	go$pkg.DefaultParameterConverter = new defaultConverter.Ptr();
+	var _$4 = null;
+0Ç"0Å˘LastInsertIdÅË	RowsAffected.prototype.LastInsertId = function() {
 		return [new Go$Int64(0, 0), errors.New("no LastInsertId available")];
 	};
 	go$ptrType(RowsAffected).prototype.LastInsertId = function() { return this.go$get().LastInsertId(); };
-	RowsAffected.prototype.RowsAffected = function() {
+0ÅÙRowsAffectedÅ„	RowsAffected.prototype.RowsAffected = function() {
 		var v;
 		v = this;
 		return [new Go$Int64(v.high, v.low), null];
 	};
 	go$ptrType(RowsAffected).prototype.RowsAffected = function() { return this.go$get().RowsAffected(); };
-	noRows.Ptr.prototype.LastInsertId = function() {
+0Å˜LastInsertIdÅÊ	noRows.Ptr.prototype.LastInsertId = function() {
 		return [new Go$Int64(0, 0), errors.New("no LastInsertId available after DDL statement")];
 	};
 	noRows.prototype.LastInsertId = function() { return this.go$val.LastInsertId(); };
-	noRows.Ptr.prototype.RowsAffected = function() {
+0Å˜RowsAffectedÅÊ	noRows.Ptr.prototype.RowsAffected = function() {
 		return [new Go$Int64(0, 0), errors.New("no RowsAffected available after DDL statement")];
 	};
 	noRows.prototype.RowsAffected = function() { return this.go$val.RowsAffected(); };
-	boolType.Ptr.prototype.String = function() {
+0ÅòStringÅç	boolType.Ptr.prototype.String = function() {
 		return "Bool";
 	};
 	boolType.prototype.String = function() { return this.go$val.String(); };
-	boolType.Ptr.prototype.ConvertValue = function(src) {
+0ÇmConvertValueÇ[	boolType.Ptr.prototype.ConvertValue = function(src) {
 		var s, _ref, _type, _tuple, b, err, _tuple$1, b$1, err$1, _struct, sv, _ref$1, iv, uv;
 		_ref = src;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -234,7 +242,7 @@ $$
 		return [null, fmt.Errorf("sql/driver: couldn't convert %v (%T) into type bool", new (go$sliceType(go$emptyInterface))([src, src]))];
 	};
 	boolType.prototype.ConvertValue = function(src) { return this.go$val.ConvertValue(src); };
-	int32Type.Ptr.prototype.ConvertValue = function(v) {
+0ÇÈConvertValueÇ◊	int32Type.Ptr.prototype.ConvertValue = function(v) {
 		var _struct, rv, _ref, i64, u64, _tuple, i, err;
 		rv = (_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		_ref = rv.Kind();
@@ -260,7 +268,7 @@ $$
 		return [null, fmt.Errorf("sql/driver: unsupported value %v (type %T) converting to int32", new (go$sliceType(go$emptyInterface))([v, v]))];
 	};
 	int32Type.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
-	stringType.Ptr.prototype.ConvertValue = function(v) {
+0Ç¥ConvertValueÇ¢	stringType.Ptr.prototype.ConvertValue = function(v) {
 		var _ref, _type;
 		_ref = v;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -270,7 +278,7 @@ $$
 		return [new Go$String(fmt.Sprintf("%v", new (go$sliceType(go$emptyInterface))([v]))), null];
 	};
 	stringType.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
-	Null.Ptr.prototype.ConvertValue = function(v) {
+0ÇNConvertValueÇ<	Null.Ptr.prototype.ConvertValue = function(v) {
 		var _struct, n;
 		n = (_struct = this, new Null.Ptr(_struct.Converter));
 		if (go$interfaceIsEqual(v, null)) {
@@ -279,7 +287,7 @@ $$
 		return n.Converter.ConvertValue(v);
 	};
 	Null.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
-	NotNull.Ptr.prototype.ConvertValue = function(v) {
+0Ç°ConvertValueÇè	NotNull.Ptr.prototype.ConvertValue = function(v) {
 		var _struct, n;
 		n = (_struct = this, new NotNull.Ptr(_struct.Converter));
 		if (go$interfaceIsEqual(v, null)) {
@@ -288,7 +296,7 @@ $$
 		return n.Converter.ConvertValue(v);
 	};
 	NotNull.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
-	var IsValue = go$pkg.IsValue = function(v) {
+0ÇIsValueÇ	var IsValue = go$pkg.IsValue = function(v) {
 		var ok, _tuple;
 		if (IsScanValue(v)) {
 			return true;
@@ -298,7 +306,7 @@ $$
 		}
 		return false;
 	};
-	var IsScanValue = go$pkg.IsScanValue = function(v) {
+0ÇÅIsScanValueÇp	var IsScanValue = go$pkg.IsScanValue = function(v) {
 		var _ref, _type;
 		if (go$interfaceIsEqual(v, null)) {
 			return true;
@@ -310,7 +318,7 @@ $$
 		}
 		return false;
 	};
-	defaultConverter.Ptr.prototype.ConvertValue = function(v) {
+0ÇConvertValueÇ	defaultConverter.Ptr.prototype.ConvertValue = function(v) {
 		var ok, _tuple, svi, _tuple$1, sv, err, _struct, rv, _ref, x, u64;
 		if (IsValue(v)) {
 			return [v, null];
@@ -349,19 +357,7 @@ $$
 		return [null, fmt.Errorf("unsupported type %T, a %s", new (go$sliceType(go$emptyInterface))([v, new reflect.Kind(rv.Kind())]))];
 	};
 	defaultConverter.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
-	go$pkg.ErrSkip = null;
-	go$pkg.ErrBadConn = null;
-	var _ = null;
-	go$pkg.ResultNoRows = new noRows.Ptr();
-	var _$1 = null;
-	go$pkg.Bool = new boolType.Ptr();
-	var _$2 = null;
-	go$pkg.Int32 = new int32Type.Ptr();
-	var _$3 = null;
-	go$pkg.String = new stringType.Ptr();
-	go$pkg.DefaultParameterConverter = new defaultConverter.Ptr();
-	var _$4 = null;
-	go$pkg.init = function() {
+0ÅºinitÅ≥	go$pkg.init = function() {
 		go$pkg.ErrSkip = errors.New("driver: skip fast-path; continue as if unimplemented");
 		go$pkg.ErrBadConn = errors.New("driver: bad connection");
 	};

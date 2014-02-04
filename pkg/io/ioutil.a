@@ -1,4 +1,4 @@
-0ÇWbÇ.ipackage ioutil
+0ÇX	io/ioutilÇ.ipackage ioutil
 import bytes "bytes"
 import io "io"
 import os "os"
@@ -177,15 +177,7 @@ type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutilÇ(]	var bytes = go$packages["bytes"];
-	var io = go$packages["io"];
-	var os = go$packages["os"];
-	var sort = go$packages["sort"];
-	var filepath = go$packages["path/filepath"];
-	var strconv = go$packages["strconv"];
-	var sync = go$packages["sync"];
-	var time = go$packages["time"];
-	var byName;
+0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutil0}0bytesbytes0ioio0osos0sortsort0path/filepathfilepath0strconvstrconv0syncsync0timetimeÇ≤	var byName;
 	byName = go$newType(0, "Slice", "ioutil.byName", "byName", "io/ioutil", null);
 	go$pkg.byName = byName;
 	var nopCloser;
@@ -207,7 +199,18 @@ $$
 	(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
 	(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-	var readAll = function(r, capacity) {
+Å©	var blackHoleBuf = (go$chanType((go$sliceType(Go$Uint8)), false, false)).nil;
+	var _ = null;
+	go$pkg.Discard = null;
+	var rand = 0;
+	var randmu = new sync.Mutex.Ptr();
+0Ç!,0Åè	blackHoleÅÅ	var blackHole = function() {
+			return blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });
+		};
+0NblackHolePut>	var blackHolePut = function(p) {
+			blackHoles.push(p);
+		};
+0ÇŸreadAllÇÃ	var readAll = function(r, capacity) {
 		var b, err, buf, _tuple, _tuple$1;
 		b = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -236,10 +239,10 @@ $$
 			return [b, err];
 		}
 	};
-	var ReadAll = go$pkg.ReadAll = function(r) {
+0hReadAll]	var ReadAll = go$pkg.ReadAll = function(r) {
 		return readAll(r, new Go$Int64(0, 512));
 	};
-	var ReadFile = go$pkg.ReadFile = function(filename) {
+0Ç<ReadFileÇ.	var ReadFile = go$pkg.ReadFile = function(filename) {
 		var _tuple, f, err, n, err$1, _tuple$1, fi, size;
 		var go$deferred = [];
 		try {
@@ -262,7 +265,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var WriteFile = go$pkg.WriteFile = function(filename, data, perm) {
+0Ç	WriteFileÇÛ	var WriteFile = go$pkg.WriteFile = function(filename, data, perm) {
 		var _tuple, f, err, _tuple$1, n, err1;
 		_tuple = os.OpenFile(filename, 1537, perm), f = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -277,25 +280,25 @@ $$
 		}
 		return err;
 	};
-	byName.prototype.Len = function() {
+0Å©LenÅ°	byName.prototype.Len = function() {
 		var f;
 		f = this;
 		return f.length;
 	};
 	go$ptrType(byName).prototype.Len = function() { return this.go$get().Len(); };
-	byName.prototype.Less = function(i, j) {
+0Ç!LessÇ	byName.prototype.Less = function(i, j) {
 		var f, _slice, _index, _slice$1, _index$1;
 		f = this;
 		return (_slice = f, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name() < (_slice$1 = f, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name();
 	};
 	go$ptrType(byName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	byName.prototype.Swap = function(i, j) {
+0Ç¨SwapÇ¢	byName.prototype.Swap = function(i, j) {
 		var f, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		f = this;
 		_tuple = [(_slice = f, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = f, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = f, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = f, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(byName).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	var ReadDir = go$pkg.ReadDir = function(dirname) {
+0Ç+ReadDirÇ	var ReadDir = go$pkg.ReadDir = function(dirname) {
 		var _tuple, f, err, _tuple$1, list;
 		_tuple = os.Open(dirname), f = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -309,23 +312,23 @@ $$
 		sort.Sort(go$subslice(new byName(list.array), list.offset, list.offset + list.length));
 		return [list, null];
 	};
-	nopCloser.Ptr.prototype.Close = function() {
+0ÅîCloseÅä	nopCloser.Ptr.prototype.Close = function() {
 		return null;
 	};
 	nopCloser.prototype.Close = function() { return this.go$val.Close(); };
-	var NopCloser = go$pkg.NopCloser = function(r) {
+0Åè	NopCloserÅÅ	var NopCloser = go$pkg.NopCloser = function(r) {
 		var x;
 		return (x = new nopCloser.Ptr(r), new x.constructor.Struct(x));
 	};
-	devNull.prototype.Write = function(p) {
+0Å∂WriteÅ¨	devNull.prototype.Write = function(p) {
 		return [p.length, null];
 	};
 	go$ptrType(devNull).prototype.Write = function(p) { return new devNull(this.go$get()).Write(p); };
-	devNull.prototype.WriteString = function(s) {
+0ÅŒWriteStringÅæ	devNull.prototype.WriteString = function(s) {
 		return [s.length, null];
 	};
 	go$ptrType(devNull).prototype.WriteString = function(s) { return new devNull(this.go$get()).WriteString(s); };
-	devNull.prototype.ReadFrom = function(r) {
+0ÇwReadFromÇi	devNull.prototype.ReadFrom = function(r) {
 		var n, err, buf, readSize, _tuple, x, _tuple$1;
 		n = new Go$Int64(0, 0);
 		err = null;
@@ -353,11 +356,12 @@ $$
 		}
 	};
 	go$ptrType(devNull).prototype.ReadFrom = function(r) { return new devNull(this.go$get()).ReadFrom(r); };
-	var reseed = function() {
+0Å¿reseedÅµ	var reseed = function() {
 		var x, x$1;
 		return ((x = time.Now().UnixNano(), x$1 = new Go$Int64(0, os.Getpid()), new Go$Int64(x.high + x$1.high, x.low + x$1.low)).low >>> 0);
 	};
-	var nextSuffix = function() {
+0Ç¢
+nextSuffixÇí	var nextSuffix = function() {
 		var r, x, _r;
 		randmu.Lock();
 		r = rand;
@@ -369,7 +373,7 @@ $$
 		randmu.Unlock();
 		return strconv.Itoa(((1000000000 + (_r = r % 1000000000, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0) >> 0)).substring(1);
 	};
-	var TempFile = go$pkg.TempFile = function(dir, prefix) {
+0Ç\TempFileÇN	var TempFile = go$pkg.TempFile = function(dir, prefix) {
 		var f, err, nconflict, i, name, _tuple;
 		f = (go$ptrType(os.File)).nil;
 		err = null;
@@ -392,7 +396,7 @@ $$
 		}
 		return [f, err];
 	};
-	var TempDir = go$pkg.TempDir = function(dir, prefix) {
+0ÇZTempDirÇM	var TempDir = go$pkg.TempDir = function(dir, prefix) {
 		var name, err, nconflict, i, try$1;
 		name = "";
 		err = null;
@@ -418,18 +422,7 @@ $$
 		}
 		return [name, err];
 	};
-	var blackHole = function() {
-			return blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });
-		};
-	var blackHolePut = function(p) {
-			blackHoles.push(p);
-		};
-	var blackHoleBuf = (go$chanType((go$sliceType(Go$Uint8)), false, false)).nil;
-	var _ = null;
-	go$pkg.Discard = null;
-	var rand = 0;
-	var randmu = new sync.Mutex.Ptr();
-
+0ÅµinitÅ¨
 			var blackHoles = [];
 			go$pkg.init = function() {
 		blackHoleBuf = new (go$chanType((go$sliceType(Go$Uint8)), false, false))();

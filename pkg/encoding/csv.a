@@ -1,4 +1,4 @@
-0‚Uû‚êpackage csv
+0‚V“encoding/csv‚êpackage csv
 import bufio "bufio"
 import bytes "bytes"
 import errors "errors"
@@ -86,15 +86,8 @@ func (? *@"bufio".Writer) @"bufio".WriteString(@"".s string) (? int, ? error)
 func (? *@"bufio".Writer) @"bufio".flush() (? error)
 type @"bytes".readOp int
 $$
-0”runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtstringsencoding/csv‚>r	var bufio = go$packages["bufio"];
-	var bytes = go$packages["bytes"];
-	var errors = go$packages["errors"];
-	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var unicode = go$packages["unicode"];
-	var strings = go$packages["strings"];
-	var utf8 = go$packages["unicode/utf8"];
-	var ParseError;
+0”runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtstringsencoding/csv0†0bufiobufio0bytesbytes0errorserrors0
+fmtfmt0ioio0unicodeunicode0stringsstrings0unicode/utf8utf8‚~	var ParseError;
 	ParseError = go$newType(0, "Struct", "csv.ParseError", "ParseError", "encoding/csv", function(Line_, Column_, Err_) {
 		this.go$val = this;
 		this.Line = Line_ !== undefined ? Line_ : 0;
@@ -131,22 +124,26 @@ $$
 	(go$ptrType(Reader)).methods = [["Read", "", [], [(go$sliceType(Go$String)), go$error], false], ["ReadAll", "", [], [(go$sliceType((go$sliceType(Go$String)))), go$error], false], ["error", "encoding/csv", [go$error], [go$error], false], ["parseField", "encoding/csv", [], [Go$Bool, Go$Int32, go$error], false], ["parseRecord", "encoding/csv", [], [(go$sliceType(Go$String)), go$error], false], ["readRune", "encoding/csv", [], [Go$Int32, go$error], false], ["skip", "encoding/csv", [Go$Int32], [go$error], false], ["unreadRune", "encoding/csv", [], [], false]];
 	Writer.init([["Comma", "", Go$Int32, ""], ["UseCRLF", "", Go$Bool, ""], ["w", "encoding/csv", (go$ptrType(bufio.Writer)), ""]]);
 	(go$ptrType(Writer)).methods = [["Error", "", [], [go$error], false], ["Flush", "", [], [], false], ["Write", "", [(go$sliceType(Go$String))], [go$error], false], ["WriteAll", "", [(go$sliceType((go$sliceType(Go$String))))], [go$error], false], ["fieldNeedsQuotes", "encoding/csv", [Go$String], [Go$Bool], false]];
-	ParseError.Ptr.prototype.Error = function() {
+u	go$pkg.ErrTrailingComma = null;
+	go$pkg.ErrBareQuote = null;
+	go$pkg.ErrQuote = null;
+	go$pkg.ErrFieldCount = null;
+0‚1z0‚'Error‚	ParseError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return fmt.Sprintf("line %d, column %d: %s", new (go$sliceType(go$emptyInterface))([new Go$Int(e.Line), new Go$Int(e.Column), e.Err]));
 	};
 	ParseError.prototype.Error = function() { return this.go$val.Error(); };
-	var NewReader = go$pkg.NewReader = function(r) {
+0®	NewReader 	var NewReader = go$pkg.NewReader = function(r) {
 		return new Reader.Ptr(44, 0, 0, false, false, false, 0, 0, bufio.NewReader(r), new bytes.Buffer.Ptr());
 	};
-	Reader.Ptr.prototype.error = function(err) {
+0ÑerrorÇ	Reader.Ptr.prototype.error = function(err) {
 		var r;
 		r = this;
 		return new ParseError.Ptr(r.line, r.column, err);
 	};
 	Reader.prototype.error = function(err) { return this.go$val.error(err); };
-	Reader.Ptr.prototype.Read = function() {
+0‚ÖRead‚Ì	Reader.Ptr.prototype.Read = function() {
 		var record, err, r, _tuple, _tuple$1, _tuple$2, _tuple$3;
 		record = (go$sliceType(Go$String)).nil;
 		err = null;
@@ -174,7 +171,7 @@ $$
 		return [record, err];
 	};
 	Reader.prototype.Read = function() { return this.go$val.Read(); };
-	Reader.Ptr.prototype.ReadAll = function() {
+0‚ðReadAll‚ã	Reader.Ptr.prototype.ReadAll = function() {
 		var records, err, r, _tuple, record, err$1, _tuple$1, _tuple$2;
 		records = (go$sliceType((go$sliceType(Go$String)))).nil;
 		err = null;
@@ -193,7 +190,7 @@ $$
 		}
 	};
 	Reader.prototype.ReadAll = function() { return this.go$val.ReadAll(); };
-	Reader.Ptr.prototype.readRune = function() {
+0‚ùreadRune‚ë	Reader.Ptr.prototype.readRune = function() {
 		var r, _tuple, r1, err, _tuple$1;
 		r = this;
 		_tuple = r.r.ReadRune(), r1 = _tuple[0], err = _tuple[2];
@@ -210,14 +207,15 @@ $$
 		return [r1, err];
 	};
 	Reader.prototype.readRune = function() { return this.go$val.readRune(); };
-	Reader.Ptr.prototype.unreadRune = function() {
+0Ü
+unreadRuneÍ	Reader.Ptr.prototype.unreadRune = function() {
 		var r;
 		r = this;
 		r.r.UnreadRune();
 		r.column = r.column - 1 >> 0;
 	};
 	Reader.prototype.unreadRune = function() { return this.go$val.unreadRune(); };
-	Reader.Ptr.prototype.skip = function(delim) {
+0‚oskip‚e	Reader.Ptr.prototype.skip = function(delim) {
 		var r, _tuple, r1, err;
 		r = this;
 		while (true) {
@@ -231,7 +229,7 @@ $$
 		}
 	};
 	Reader.prototype.skip = function(delim) { return this.go$val.skip(delim); };
-	Reader.Ptr.prototype.parseRecord = function() {
+0‚7parseRecord‚&	Reader.Ptr.prototype.parseRecord = function() {
 		var fields, err, r, _tuple, r1, _tuple$1, _tuple$2, _tuple$3, haveField, delim, err$1, _tuple$4, _tuple$5;
 		fields = (go$sliceType(Go$String)).nil;
 		err = null;
@@ -263,7 +261,8 @@ $$
 		}
 	};
 	Reader.prototype.parseRecord = function() { return this.go$val.parseRecord(); };
-	Reader.Ptr.prototype.parseField = function() {
+0‚º
+parseField‚ª	Reader.Ptr.prototype.parseField = function() {
 		var haveField, delim, err, r, _tuple, r1, _tuple$1, _tuple$2, _tuple$3, _ref, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _ref$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18;
 		haveField = false;
 		delim = 0;
@@ -359,10 +358,10 @@ $$
 		return [haveField, delim, err];
 	};
 	Reader.prototype.parseField = function() { return this.go$val.parseField(); };
-	var NewWriter = go$pkg.NewWriter = function(w) {
+0{	NewWritern	var NewWriter = go$pkg.NewWriter = function(w) {
 		return new Writer.Ptr(44, false, bufio.NewWriter(w));
 	};
-	Writer.Ptr.prototype.Write = function(record) {
+0‚2Write‚'	Writer.Ptr.prototype.Write = function(record) {
 		var err, w, _ref, _i, _slice, _index, field, n, _tuple, _tuple$1, _ref$1, _i$1, _rune, r1, _ref$2, _tuple$2, _tuple$3, _tuple$4, _tuple$5;
 		err = null;
 		w = this;
@@ -422,20 +421,20 @@ $$
 		return err;
 	};
 	Writer.prototype.Write = function(record) { return this.go$val.Write(record); };
-	Writer.Ptr.prototype.Flush = function() {
+0£Flush™	Writer.Ptr.prototype.Flush = function() {
 		var w;
 		w = this;
 		w.w.Flush();
 	};
 	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
-	Writer.Ptr.prototype.Error = function() {
+0ôErrorê	Writer.Ptr.prototype.Error = function() {
 		var w, _tuple, err;
 		w = this;
 		_tuple = w.w.Write((go$sliceType(Go$Uint8)).nil), err = _tuple[1];
 		return err;
 	};
 	Writer.prototype.Error = function() { return this.go$val.Error(); };
-	Writer.Ptr.prototype.WriteAll = function(records) {
+0‚eWriteAll‚W	Writer.Ptr.prototype.WriteAll = function(records) {
 		var err, w, _ref, _i, _slice, _index, record;
 		err = null;
 		w = this;
@@ -453,7 +452,7 @@ $$
 		return err;
 	};
 	Writer.prototype.WriteAll = function(records) { return this.go$val.WriteAll(records); };
-	Writer.Ptr.prototype.fieldNeedsQuotes = function(field) {
+0‚»fieldNeedsQuotes‚¥	Writer.Ptr.prototype.fieldNeedsQuotes = function(field) {
 		var w, _tuple, r1;
 		w = this;
 		if ((field.length === 0) || strings.IndexRune(field, w.Comma) >= 0 || strings.IndexAny(field, "\"\r\n") >= 0) {
@@ -463,11 +462,7 @@ $$
 		return unicode.IsSpace(r1);
 	};
 	Writer.prototype.fieldNeedsQuotes = function(field) { return this.go$val.fieldNeedsQuotes(field); };
-	go$pkg.ErrTrailingComma = null;
-	go$pkg.ErrBareQuote = null;
-	go$pkg.ErrQuote = null;
-	go$pkg.ErrFieldCount = null;
-	go$pkg.init = function() {
+0‚8init‚.	go$pkg.init = function() {
 		go$pkg.ErrTrailingComma = errors.New("extra delimiter at end of line");
 		go$pkg.ErrBareQuote = errors.New("bare \" in non-quoted-field");
 		go$pkg.ErrQuote = errors.New("extraneous \" in field");

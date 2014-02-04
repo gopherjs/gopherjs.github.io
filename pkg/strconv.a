@@ -1,4 +1,4 @@
-0É∞@Çpackage strconv
+0É≥ÒstrconvÇpackage strconv
 import math "math"
 import errors "errors"
 import utf8 "unicode/utf8"
@@ -57,10 +57,7 @@ func (? *@"".extFloat) @"".frexp10() (@"".exp10 int, @"".index int)
 type @"".floatInfo struct { @"".mantbits uint; @"".expbits uint; @"".bias int }
 type @"".leftCheat struct { @"".delta int; @"".cutoff string }
 $$
-0.runtimeerrorsmathunicode/utf8strconvÉ°à	var math = go$packages["math"];
-	var errors = go$packages["errors"];
-	var utf8 = go$packages["unicode/utf8"];
-	var NumError;
+0.runtimeerrorsmathunicode/utf8strconv060mathmath0errorserrors0unicode/utf8utf8Çr	var NumError;
 	NumError = go$newType(0, "Struct", "strconv.NumError", "NumError", "strconv", function(Func_, Num_, Err_) {
 		this.go$val = this;
 		this.Func = Func_ !== undefined ? Func_ : "";
@@ -119,7 +116,24 @@ $$
 	(go$ptrType(extFloat)).methods = [["AssignComputeBounds", "", [Go$Uint64, Go$Int, Go$Bool, (go$ptrType(floatInfo))], [extFloat, extFloat], false], ["AssignDecimal", "", [Go$Uint64, Go$Int, Go$Bool, Go$Bool, (go$ptrType(floatInfo))], [Go$Bool], false], ["FixedDecimal", "", [(go$ptrType(decimalSlice)), Go$Int], [Go$Bool], false], ["Multiply", "", [extFloat], [], false], ["Normalize", "", [], [Go$Uint], false], ["ShortestDecimal", "", [(go$ptrType(decimalSlice)), (go$ptrType(extFloat)), (go$ptrType(extFloat))], [Go$Bool], false], ["floatBits", "strconv", [(go$ptrType(floatInfo))], [Go$Uint64, Go$Bool], false], ["frexp10", "strconv", [], [Go$Int, Go$Int], false]];
 	floatInfo.init([["mantbits", "strconv", Go$Uint, ""], ["expbits", "strconv", Go$Uint, ""], ["bias", "strconv", Go$Int, ""]]);
 	decimalSlice.init([["d", "strconv", (go$sliceType(Go$Uint8)), ""], ["nd", "strconv", Go$Int, ""], ["dp", "strconv", Go$Int, ""], ["neg", "strconv", Go$Bool, ""]]);
-	var ParseBool = go$pkg.ParseBool = function(str) {
+Çê	var optimize = false;
+	var powtab = (go$sliceType(Go$Int)).nil;
+	var float64pow10 = (go$sliceType(Go$Float64)).nil;
+	var float32pow10 = (go$sliceType(Go$Float32)).nil;
+	go$pkg.ErrRange = null;
+	go$pkg.ErrSyntax = null;
+	var leftcheats = (go$sliceType(leftCheat)).nil;
+	var smallPowersOfTen = go$makeNativeArray("Struct", 8, function() { return new extFloat.Ptr(); });
+	var powersOfTen = go$makeNativeArray("Struct", 87, function() { return new extFloat.Ptr(); });
+	var uint64pow10 = go$makeNativeArray("Uint64", 20, function() { return new Go$Uint64(0, 0); });
+	var float32info = new floatInfo.Ptr();
+	var float64info = new floatInfo.Ptr();
+	var isPrint16 = (go$sliceType(Go$Uint16)).nil;
+	var isNotPrint16 = (go$sliceType(Go$Uint16)).nil;
+	var isPrint32 = (go$sliceType(Go$Uint32)).nil;
+	var isNotPrint32 = (go$sliceType(Go$Uint16)).nil;
+	var shifts = go$makeNativeArray("Uint", 37, function() { return 0; });
+0ÉêÓ0Çª	ParseBoolÇ¨	var ParseBool = go$pkg.ParseBool = function(str) {
 		var value, err, _ref, _tuple, _tuple$1, _tuple$2;
 		value = false;
 		err = null;
@@ -134,19 +148,21 @@ $$
 		_tuple$2 = [false, syntaxError("ParseBool", str)], value = _tuple$2[0], err = _tuple$2[1];
 		return [value, err];
 	};
-	var FormatBool = go$pkg.FormatBool = function(b) {
+0y
+FormatBoolk	var FormatBool = go$pkg.FormatBool = function(b) {
 		if (b) {
 			return "true";
 		}
 		return "false";
 	};
-	var AppendBool = go$pkg.AppendBool = function(dst, b) {
+0Ç	
+AppendBoolÅ˙	var AppendBool = go$pkg.AppendBool = function(dst, b) {
 		if (b) {
 			return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes("true")));
 		}
 		return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes("false")));
 	};
-	var equalIgnoreCase = function(s1, s2) {
+0Ç¬equalIgnoreCaseÇ≠	var equalIgnoreCase = function(s1, s2) {
 		var i, c1, c2;
 		if (!((s1.length === s2.length))) {
 			return false;
@@ -168,7 +184,7 @@ $$
 		}
 		return true;
 	};
-	var special = function(s) {
+0Ç¯specialÇÎ	var special = function(s) {
 		var f, ok, _ref, _tuple, _tuple$1, _tuple$2, _tuple$3;
 		f = 0;
 		ok = false;
@@ -201,7 +217,7 @@ $$
 		}
 		return [f, ok];
 	};
-	decimal.Ptr.prototype.set = function(s) {
+0ÇÖsetÇ|	decimal.Ptr.prototype.set = function(s) {
 		var ok, b, i, sawdot, sawdigits, esign, e, x;
 		ok = false;
 		b = this;
@@ -283,7 +299,7 @@ $$
 		return ok;
 	};
 	decimal.prototype.set = function(s) { return this.go$val.set(s); };
-	var readFloat = function(s) {
+0Ç	7	readFloatÇ	(	var readFloat = function(s) {
 		var mantissa, exp, neg, trunc, ok, i, sawdot, sawdigits, nd, ndMant, dp, c, _ref, x, esign, e, x$1;
 		mantissa = new Go$Uint64(0, 0);
 		exp = 0;
@@ -373,7 +389,7 @@ $$
 		ok = true;
 		return [mantissa, exp, neg, trunc, ok];
 	};
-	decimal.Ptr.prototype.floatBits = function(flt) {
+0ÇΩ	floatBitsÇÆ	decimal.Ptr.prototype.floatBits = function(flt) {
 		var d, exp, mant, assembleBits, overflow, n, _slice, _index, n$1, _slice$1, _index$1, n$2, y, x, y$1, x$1, x$2;
 		d = this;
 		exp = 0;
@@ -451,7 +467,7 @@ $$
 		return [assembleBits(), false];
 	};
 	decimal.prototype.floatBits = function(flt) { return this.go$val.floatBits(flt); };
-	decimal.Ptr.prototype.atof32int = function() {
+0ÇA	atof32intÇ2	decimal.Ptr.prototype.atof32int = function() {
 		var d, f, i;
 		d = this;
 		f = 0;
@@ -466,7 +482,7 @@ $$
 		return f;
 	};
 	decimal.prototype.atof32int = function() { return this.go$val.atof32int(); };
-	var atof64exact = function(mantissa, exp, neg) {
+0Ç]atof64exactÇL	var atof64exact = function(mantissa, exp, neg) {
 		var f, ok, x, _tuple, _slice, _index, _slice$1, _index$1, _tuple$1, _slice$2, _index$2, _tuple$2;
 		f = 0;
 		ok = false;
@@ -496,7 +512,7 @@ $$
 		}
 		return [f, ok];
 	};
-	var atof32exact = function(mantissa, exp, neg) {
+0Ç]atof32exactÇL	var atof32exact = function(mantissa, exp, neg) {
 		var f, ok, x, _tuple, _slice, _index, _slice$1, _index$1, _tuple$1, _slice$2, _index$2, _tuple$2;
 		f = 0;
 		ok = false;
@@ -526,7 +542,7 @@ $$
 		}
 		return [f, ok];
 	};
-	var atof32 = function(s) {
+0ÇPatof32ÇD	var atof32 = function(s) {
 		var f, err, ok, _tuple, val, _tuple$1, _tuple$2, mantissa, exp, neg, trunc, ok$1, ok$2, _tuple$3, f$1, _tuple$4, ext, ok$3, _tuple$5, b, ovf, _tuple$6, d, _tuple$7, _tuple$8, b$1, ovf$1, _tuple$9;
 		f = 0;
 		err = null;
@@ -568,7 +584,7 @@ $$
 		_tuple$9 = [f, err], f = _tuple$9[0], err = _tuple$9[1];
 		return [f, err];
 	};
-	var atof64 = function(s) {
+0Ç8atof64Ç,	var atof64 = function(s) {
 		var f, err, ok, _tuple, val, _tuple$1, _tuple$2, mantissa, exp, neg, trunc, ok$1, ok$2, _tuple$3, f$1, _tuple$4, ext, ok$3, _tuple$5, b, ovf, _tuple$6, d, _tuple$7, _tuple$8, b$1, ovf$1, _tuple$9;
 		f = 0;
 		err = null;
@@ -610,7 +626,8 @@ $$
 		_tuple$9 = [f, err], f = _tuple$9[0], err = _tuple$9[1];
 		return [f, err];
 	};
-	var ParseFloat = go$pkg.ParseFloat = function(s, bitSize) {
+0ÇÒ
+ParseFloatÇ·	var ParseFloat = go$pkg.ParseFloat = function(s, bitSize) {
 		var f, err, _tuple, f1, err1, _tuple$1, _tuple$2, f1$1, err1$1, _tuple$3;
 		f = 0;
 		err = null;
@@ -623,26 +640,27 @@ $$
 		_tuple$3 = [f1$1, err1$1], f = _tuple$3[0], err = _tuple$3[1];
 		return [f, err];
 	};
-	NumError.Ptr.prototype.Error = function() {
+0ÅErrorÅÊ	NumError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "strconv." + e.Func + ": " + "parsing " + Quote(e.Num) + ": " + e.Err.Error();
 	};
 	NumError.prototype.Error = function() { return this.go$val.Error(); };
-	var syntaxError = function(fn, str) {
+0psyntaxErrora	var syntaxError = function(fn, str) {
 		return new NumError.Ptr(fn, str, go$pkg.ErrSyntax);
 	};
-	var rangeError = function(fn, str) {
+0m
+rangeError_	var rangeError = function(fn, str) {
 		return new NumError.Ptr(fn, str, go$pkg.ErrRange);
 	};
-	var cutoff64 = function(base) {
+0Åıcutoff64ÅË	var cutoff64 = function(base) {
 		var x;
 		if (base < 2) {
 			return new Go$Uint64(0, 0);
 		}
 		return (x = go$div64(new Go$Uint64(4294967295, 4294967295), new Go$Uint64(0, base), false), new Go$Uint64(x.high + 0, x.low + 1));
 	};
-	var ParseUint = go$pkg.ParseUint = function(s, base, bitSize) {
+0Çú	ParseUintÇç	var ParseUint = go$pkg.ParseUint = function(s, base, bitSize) {
 		var n, err, _tuple, cutoff, maxVal, s0, _tuple$1, _tuple$2, _tuple$3, x, i, v, d, _tuple$4, _tuple$5, _tuple$6, x$1, n1, _tuple$7, _tuple$8;
 		n = new Go$Uint64(0, 0);
 		err = null;
@@ -720,7 +738,7 @@ $$
 		_tuple$8 = [n, null], n = _tuple$8[0], err = _tuple$8[1];
 		return [n, err];
 	};
-	var ParseInt = go$pkg.ParseInt = function(s, base, bitSize) {
+0Ç0ParseIntÇ"	var ParseInt = go$pkg.ParseInt = function(s, base, bitSize) {
 		var i, err, _tuple, s0, neg, un, _tuple$1, _tuple$2, cutoff, x, _tuple$3, x$1, _tuple$4, n, _tuple$5;
 		i = new Go$Int64(0, 0);
 		err = null;
@@ -763,7 +781,7 @@ $$
 		_tuple$5 = [n, null], i = _tuple$5[0], err = _tuple$5[1];
 		return [i, err];
 	};
-	var Atoi = go$pkg.Atoi = function(s) {
+0Ç2AtoiÇ(	var Atoi = go$pkg.Atoi = function(s) {
 		var i, err, _tuple, i64, _tuple$1;
 		i = 0;
 		err = null;
@@ -771,7 +789,7 @@ $$
 		_tuple$1 = [((i64.low + ((i64.high >> 31) * 4294967296)) >> 0), err], i = _tuple$1[0], err = _tuple$1[1];
 		return [i, err];
 	};
-	decimal.Ptr.prototype.String = function() {
+0Ç»StringÇº	decimal.Ptr.prototype.String = function() {
 		var a, n, buf, w, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		a = this;
 		n = 10 + a.nd >> 0;
@@ -804,7 +822,7 @@ $$
 		return go$bytesToString(go$subslice(buf, 0, w));
 	};
 	decimal.prototype.String = function() { return this.go$val.String(); };
-	var digitZero = function(dst) {
+0ÇZ	digitZeroÇK	var digitZero = function(dst) {
 		var _ref, _i, i, _slice, _index;
 		_ref = dst;
 		_i = 0;
@@ -814,7 +832,7 @@ $$
 		}
 		return dst.length;
 	};
-	var trim = function(a) {
+0ÅütrimÅñ	var trim = function(a) {
 		while (a.nd > 0 && (a.d[(a.nd - 1 >> 0)] === 48)) {
 			a.nd = a.nd - 1 >> 0;
 		}
@@ -822,7 +840,7 @@ $$
 			a.dp = 0;
 		}
 	};
-	decimal.Ptr.prototype.Assign = function(v) {
+0ÇΩAssignÇ±	decimal.Ptr.prototype.Assign = function(v) {
 		var a, buf, n, v1, x;
 		a = this;
 		buf = go$makeNativeArray("Uint8", 24, function() { return 0; });
@@ -845,7 +863,8 @@ $$
 		trim(a);
 	};
 	decimal.prototype.Assign = function(v) { return this.go$val.Assign(v); };
-	var rightShift = function(a, k) {
+0Ç$
+rightShiftÇ	var rightShift = function(a, k) {
 		var r, w, n, x, c, x$1, c$1, dig, y, x$2, dig$1, y$1, x$3;
 		r = 0;
 		w = 0;
@@ -890,7 +909,7 @@ $$
 		a.nd = w;
 		trim(a);
 	};
-	var prefixIsLessThan = function(b, s) {
+0ÇiprefixIsLessThanÇS	var prefixIsLessThan = function(b, s) {
 		var i, _slice, _index, _slice$1, _index$1;
 		i = 0;
 		while (i < s.length) {
@@ -904,7 +923,7 @@ $$
 		}
 		return false;
 	};
-	var leftShift = function(a, k) {
+0Çµ	leftShiftÇ¶	var leftShift = function(a, k) {
 		var _slice, _index, delta, _slice$1, _index$1, r, w, n, y, _q, quo, x, rem, _q$1, quo$1, x$1, rem$1;
 		delta = (_slice = leftcheats, _index = k, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).delta;
 		if (prefixIsLessThan(go$subslice(new (go$sliceType(Go$Uint8))(a.d), 0, a.nd), (_slice$1 = leftcheats, _index$1 = k, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).cutoff)) {
@@ -945,7 +964,7 @@ $$
 		a.dp = a.dp + (delta) >> 0;
 		trim(a);
 	};
-	decimal.Ptr.prototype.Shift = function(k) {
+0Ç¢ShiftÇó	decimal.Ptr.prototype.Shift = function(k) {
 		var a;
 		a = this;
 		if (a.nd === 0) {
@@ -964,7 +983,7 @@ $$
 		}
 	};
 	decimal.prototype.Shift = function(k) { return this.go$val.Shift(k); };
-	var shouldRoundUp = function(a, nd) {
+0ÇäshouldRoundUpÇw	var shouldRoundUp = function(a, nd) {
 		var _r;
 		if (nd < 0 || nd >= a.nd) {
 			return false;
@@ -977,7 +996,7 @@ $$
 		}
 		return a.d[nd] >= 53;
 	};
-	decimal.Ptr.prototype.Round = function(nd) {
+0ÇRoundÇ	decimal.Ptr.prototype.Round = function(nd) {
 		var a;
 		a = this;
 		if (nd < 0 || nd >= a.nd) {
@@ -990,7 +1009,7 @@ $$
 		}
 	};
 	decimal.prototype.Round = function(nd) { return this.go$val.Round(nd); };
-	decimal.Ptr.prototype.RoundDown = function(nd) {
+0ÅÒ	RoundDownÅ„	decimal.Ptr.prototype.RoundDown = function(nd) {
 		var a;
 		a = this;
 		if (nd < 0 || nd >= a.nd) {
@@ -1000,7 +1019,7 @@ $$
 		trim(a);
 	};
 	decimal.prototype.RoundDown = function(nd) { return this.go$val.RoundDown(nd); };
-	decimal.Ptr.prototype.RoundUp = function(nd) {
+0ÇËRoundUpÇ€	decimal.Ptr.prototype.RoundUp = function(nd) {
 		var a, i, c, _lhs, _index;
 		a = this;
 		if (nd < 0 || nd >= a.nd) {
@@ -1021,7 +1040,7 @@ $$
 		a.dp = a.dp + 1 >> 0;
 	};
 	decimal.prototype.RoundUp = function(nd) { return this.go$val.RoundUp(nd); };
-	decimal.Ptr.prototype.RoundedInteger = function() {
+0Ç¿RoundedIntegerÇ¨	decimal.Ptr.prototype.RoundedInteger = function() {
 		var a, i, n, x, x$1;
 		a = this;
 		if (a.dp > 20) {
@@ -1044,7 +1063,7 @@ $$
 		return n;
 	};
 	decimal.prototype.RoundedInteger = function() { return this.go$val.RoundedInteger(); };
-	extFloat.Ptr.prototype.floatBits = function(flt) {
+0Ç	floatBitsÇ	extFloat.Ptr.prototype.floatBits = function(flt) {
 		var bits, overflow, f, exp, n, mant, x, x$1, x$2, x$3, y, x$4, x$5, y$1, x$6, x$7, x$8, y$2, x$9;
 		bits = new Go$Uint64(0, 0);
 		overflow = false;
@@ -1079,7 +1098,7 @@ $$
 		return [bits, overflow];
 	};
 	extFloat.prototype.floatBits = function(flt) { return this.go$val.floatBits(flt); };
-	extFloat.Ptr.prototype.AssignComputeBounds = function(mant, exp, neg, flt) {
+0ÇäAssignComputeBoundsÇq	extFloat.Ptr.prototype.AssignComputeBounds = function(mant, exp, neg, flt) {
 		var lower, upper, f, x, _struct, _struct$1, _tuple, _struct$2, _struct$3, expBiased, x$1, x$2, x$3, x$4, _struct$4, _struct$5;
 		lower = new extFloat.Ptr();
 		upper = new extFloat.Ptr();
@@ -1103,7 +1122,7 @@ $$
 		return [(_struct$4 = lower, new extFloat.Ptr(_struct$4.mant, _struct$4.exp, _struct$4.neg)), (_struct$5 = upper, new extFloat.Ptr(_struct$5.mant, _struct$5.exp, _struct$5.neg))];
 	};
 	extFloat.prototype.AssignComputeBounds = function(mant, exp, neg, flt) { return this.go$val.AssignComputeBounds(mant, exp, neg, flt); };
-	extFloat.Ptr.prototype.Normalize = function() {
+0Ç^	NormalizeÇO	extFloat.Ptr.prototype.Normalize = function() {
 		var shift, f, _tuple, mant, exp, x, x$1, x$2, x$3, x$4, x$5, _tuple$1;
 		shift = 0;
 		f = this;
@@ -1141,7 +1160,7 @@ $$
 		return shift;
 	};
 	extFloat.prototype.Normalize = function() { return this.go$val.Normalize(); };
-	extFloat.Ptr.prototype.Multiply = function(g) {
+0ÇMultiplyÇ	extFloat.Ptr.prototype.Multiply = function(g) {
 		var f, _tuple, fhi, flo, _tuple$1, ghi, glo, cross1, cross2, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, rem, x$8, x$9;
 		f = this;
 		_tuple = [go$shiftRightUint64(f.mant, 32), new Go$Uint64(0, (f.mant.low >>> 0))], fhi = _tuple[0], flo = _tuple[1];
@@ -1155,7 +1174,9 @@ $$
 		f.exp = (f.exp + g.exp >> 0) + 64 >> 0;
 	};
 	extFloat.prototype.Multiply = function(g) { return this.go$val.Multiply(g); };
-	extFloat.Ptr.prototype.AssignDecimal = function(mantissa, exp10, neg, trunc, flt) {
+0Ç
+àAssignDecimalÇ
+u	extFloat.Ptr.prototype.AssignDecimal = function(mantissa, exp10, neg, trunc, flt) {
 		var ok, f, errors$1, _q, i, _r, adjExp, x, _struct, _struct$1, shift, y, denormalExp, extrabits, halfway, x$1, x$2, x$3, mant_extra, x$4, x$5, x$6, x$7, x$8, x$9, x$10, x$11;
 		ok = false;
 		f = this;
@@ -1204,7 +1225,7 @@ $$
 		return ok;
 	};
 	extFloat.prototype.AssignDecimal = function(mantissa, exp10, neg, trunc, flt) { return this.go$val.AssignDecimal(mantissa, exp10, neg, trunc, flt); };
-	extFloat.Ptr.prototype.frexp10 = function() {
+0ÇNfrexp10ÇA	extFloat.Ptr.prototype.frexp10 = function() {
 		var exp10, index, f, _q, x, x$1, approxExp10, _q$1, i, exp, _struct, _tuple;
 		exp10 = 0;
 		index = 0;
@@ -1226,7 +1247,7 @@ $$
 		return [exp10, index];
 	};
 	extFloat.prototype.frexp10 = function() { return this.go$val.frexp10(); };
-	var frexp10Many = function(a, b, c) {
+0Çèfrexp10ManyÇ~	var frexp10Many = function(a, b, c) {
 		var exp10, _tuple, i, _struct, _struct$1;
 		exp10 = 0;
 		_tuple = c.frexp10(), exp10 = _tuple[0], i = _tuple[1];
@@ -1234,7 +1255,7 @@ $$
 		b.Multiply((_struct$1 = powersOfTen[i], new extFloat.Ptr(_struct$1.mant, _struct$1.exp, _struct$1.neg)));
 		return exp10;
 	};
-	extFloat.Ptr.prototype.FixedDecimal = function(d, n) {
+0Ç>FixedDecimalÇ,	extFloat.Ptr.prototype.FixedDecimal = function(d, n) {
 		var f, x, _tuple, exp10, shift, integer, x$1, x$2, fraction, nonAsciiName, needed, integerDigits, pow10, _tuple$1, i, pow, x$3, rest, _q, x$4, buf, pos, v, _q$1, v1, x$5, i$1, _slice, _index, nd, x$6, x$7, digit, _slice$1, _index$1, x$8, x$9, ok, i$2, _slice$2, _index$2;
 		f = this;
 		if ((x = f.mant, (x.high === 0 && x.low === 0))) {
@@ -1324,7 +1345,7 @@ $$
 		return true;
 	};
 	extFloat.prototype.FixedDecimal = function(d, n) { return this.go$val.FixedDecimal(d, n); };
-	var adjustLastDigitFixed = function(d, num, den, shift, nonAsciiName) {
+0ÇWadjustLastDigitFixedÇ=	var adjustLastDigitFixed = function(d, num, den, shift, nonAsciiName) {
 		var x, x$1, x$2, x$3, x$4, x$5, x$6, i, _slice, _index, _slice$1, _index$1, _lhs, _index$2, _slice$2, _index$3, _slice$3, _index$4;
 		if ((x = go$shiftLeft64(den, shift), (num.high > x.high || (num.high === x.high && num.low > x.low)))) {
 			throw go$panic(new Go$String("strconv: num > den<<shift in adjustLastDigitFixed"));
@@ -1356,7 +1377,7 @@ $$
 		}
 		return false;
 	};
-	extFloat.Ptr.prototype.ShortestDecimal = function(d, lower, upper) {
+0ÇyShortestDecimalÇd	extFloat.Ptr.prototype.ShortestDecimal = function(d, lower, upper) {
 		var f, x, x$1, y, x$2, y$1, buf, n, v, v1, x$3, nd, i, _slice, _index, _tuple, _slice$1, _index$1, exp10, x$4, x$5, shift, integer, x$6, x$7, fraction, x$8, x$9, allowance, x$10, x$11, targetDiff, integerDigits, _tuple$1, i$1, pow, x$12, i$2, pow$1, _q, digit, _slice$2, _index$2, x$13, currentDiff, x$14, digit$1, multiplier, _slice$3, _index$3, x$15, x$16;
 		f = this;
 		if ((x = f.mant, (x.high === 0 && x.low === 0))) {
@@ -1451,7 +1472,7 @@ $$
 		}
 	};
 	extFloat.prototype.ShortestDecimal = function(d, lower, upper) { return this.go$val.ShortestDecimal(d, lower, upper); };
-	var adjustLastDigit = function(d, currentDiff, targetDiff, maxDiff, ulpDecimal, ulpBinary) {
+0ÇùadjustLastDigitÇà	var adjustLastDigit = function(d, currentDiff, targetDiff, maxDiff, ulpDecimal, ulpBinary) {
 		var x, x$1, x$2, x$3, _lhs, _index, _slice, _index$1, _slice$1, _index$2, x$4, x$5, x$6, x$7, x$8, x$9, _slice$2, _index$3;
 		if ((x = go$mul64(new Go$Uint64(0, 2), ulpBinary), (ulpDecimal.high < x.high || (ulpDecimal.high === x.high && ulpDecimal.low < x.low)))) {
 			return false;
@@ -1472,14 +1493,14 @@ $$
 		}
 		return true;
 	};
-	var FormatFloat = go$pkg.FormatFloat = function(f, fmt, prec, bitSize) {
+0ÅÒFormatFloatÅ·	var FormatFloat = go$pkg.FormatFloat = function(f, fmt, prec, bitSize) {
 		return go$bytesToString(genericFtoa((go$sliceType(Go$Uint8)).make(0, max(prec + 4 >> 0, 24), function() { return 0; }), f, fmt, prec, bitSize));
 	};
-	var AppendFloat = go$pkg.AppendFloat = function(dst, f, fmt, prec, bitSize) {
+0ÅïAppendFloatÅÖ	var AppendFloat = go$pkg.AppendFloat = function(dst, f, fmt, prec, bitSize) {
 		return genericFtoa(dst, f, fmt, prec, bitSize);
 	};
-	var genericFtoa = function(dst, val, fmt, prec, bitSize) {
-		var bits, flt, _ref, x, neg, y, exp, x$1, x$2, mant, _ref$1, y$1, s, x$3, digs, ok, shortest, f, _tuple, _struct, lower, _struct$1, upper, buf, _ref$2, digits$1, _ref$3, buf$1, f$1, _struct$2;
+0ÇgenericFtoaÇ˙	var genericFtoa = function(dst, val, fmt, prec, bitSize) {
+		var bits, flt, _ref, x, neg, y, exp, x$1, x$2, mant, _ref$1, y$1, s, x$3, digs, ok, shortest, f, _tuple, _struct, lower, _struct$1, upper, buf, _ref$2, digits, _ref$3, buf$1, f$1, _struct$2;
 		bits = new Go$Uint64(0, 0);
 		flt = (go$ptrType(floatInfo)).nil;
 		_ref = bitSize;
@@ -1539,21 +1560,21 @@ $$
 				prec = digs.nd;
 			}
 		} else if (!((fmt === 102))) {
-			digits$1 = prec;
+			digits = prec;
 			_ref$3 = fmt;
 			if (_ref$3 === 101 || _ref$3 === 69) {
-				digits$1 = digits$1 + 1 >> 0;
+				digits = digits + 1 >> 0;
 			} else if (_ref$3 === 103 || _ref$3 === 71) {
 				if (prec === 0) {
 					prec = 1;
 				}
-				digits$1 = prec;
+				digits = prec;
 			}
-			if (digits$1 <= 15) {
+			if (digits <= 15) {
 				buf$1 = go$makeNativeArray("Uint8", 24, function() { return 0; });
 				digs.d = new (go$sliceType(Go$Uint8))(buf$1);
 				f$1 = new extFloat.Ptr(mant, exp - (flt.mantbits >> 0) >> 0, neg);
-				ok = f$1.FixedDecimal(digs, digits$1);
+				ok = f$1.FixedDecimal(digs, digits);
 			}
 		}
 		if (!ok) {
@@ -1561,7 +1582,7 @@ $$
 		}
 		return formatDigits(dst, shortest, neg, (_struct$2 = digs, new decimalSlice.Ptr(_struct$2.d, _struct$2.nd, _struct$2.dp, _struct$2.neg)), prec, fmt);
 	};
-	var bigFtoa = function(dst, prec, fmt, neg, mant, exp, flt) {
+0ÇybigFtoaÇl	var bigFtoa = function(dst, prec, fmt, neg, mant, exp, flt) {
 		var d, digs, shortest, _ref, _ref$1, _struct;
 		d = new decimal.Ptr();
 		d.Assign(mant);
@@ -1595,7 +1616,7 @@ $$
 		}
 		return formatDigits(dst, shortest, neg, (_struct = digs, new decimalSlice.Ptr(_struct.d, _struct.nd, _struct.dp, _struct.neg)), prec, fmt);
 	};
-	var formatDigits = function(dst, shortest, neg, digs, prec, fmt) {
+0ÇªformatDigitsÇ©	var formatDigits = function(dst, shortest, neg, digs, prec, fmt) {
 		var _ref, _struct, _struct$1, eprec, exp, _struct$2, _struct$3;
 		_ref = fmt;
 		if (_ref === 101 || _ref === 69) {
@@ -1624,7 +1645,7 @@ $$
 		}
 		return go$append(dst, 37, fmt);
 	};
-	var roundShortest = function(d, mant, exp, flt) {
+0ÇJroundShortestÇ7	var roundShortest = function(d, mant, exp, flt) {
 		var minexp, x, x$1, x$2, x$3, upper, x$4, mantlo, explo, x$5, x$6, lower, x$7, x$8, inclusive, i, _tuple, l, m, u, okdown, okup;
 		if ((mant.high === 0 && mant.low === 0)) {
 			d.nd = 0;
@@ -1679,7 +1700,7 @@ $$
 			i = i + 1 >> 0;
 		}
 	};
-	var fmtE = function(dst, neg, d, prec, fmt) {
+0Ç¿fmtEÇ∂	var fmtE = function(dst, neg, d, prec, fmt) {
 		var ch, _slice, _index, i, m, _slice$1, _index$1, exp, buf, i$1, _r, _q, _ref;
 		if (neg) {
 			dst = go$append(dst, 45);
@@ -1733,7 +1754,7 @@ $$
 		}
 		return dst;
 	};
-	var fmtF = function(dst, neg, d, prec) {
+0Ç≈fmtFÇª	var fmtF = function(dst, neg, d, prec) {
 		var i, _slice, _index, i$1, ch, j, _slice$1, _index$1;
 		if (neg) {
 			dst = go$append(dst, 45);
@@ -1766,7 +1787,7 @@ $$
 		}
 		return dst;
 	};
-	var fmtB = function(dst, neg, mant, exp, flt) {
+0ÇYfmtBÇO	var fmtB = function(dst, neg, mant, exp, flt) {
 		var buf, w, esign, n, _r, _q, x;
 		buf = go$makeNativeArray("Uint8", 50, function() { return 0; });
 		w = 50;
@@ -1800,36 +1821,39 @@ $$
 		}
 		return go$appendSlice(dst, go$subslice(new (go$sliceType(Go$Uint8))(buf), w));
 	};
-	var max = function(a, b) {
+0SmaxL	var max = function(a, b) {
 		if (a > b) {
 			return a;
 		}
 		return b;
 	};
-	var FormatUint = go$pkg.FormatUint = function(i, base) {
+0Å≈
+FormatUintÅ∂	var FormatUint = go$pkg.FormatUint = function(i, base) {
 		var _tuple, s;
 		_tuple = formatBits((go$sliceType(Go$Uint8)).nil, i, base, false, false), s = _tuple[1];
 		return s;
 	};
-	var FormatInt = go$pkg.FormatInt = function(i, base) {
+0Ç	FormatIntÅı	var FormatInt = go$pkg.FormatInt = function(i, base) {
 		var _tuple, s;
 		_tuple = formatBits((go$sliceType(Go$Uint8)).nil, new Go$Uint64(i.high, i.low), base, (i.high < 0 || (i.high === 0 && i.low < 0)), false), s = _tuple[1];
 		return s;
 	};
-	var Itoa = go$pkg.Itoa = function(i) {
+0`ItoaX	var Itoa = go$pkg.Itoa = function(i) {
 		return FormatInt(new Go$Int64(0, i), 10);
 	};
-	var AppendInt = go$pkg.AppendInt = function(dst, i, base) {
+0ÅÔ	AppendIntÅ·	var AppendInt = go$pkg.AppendInt = function(dst, i, base) {
 		var _tuple;
 		_tuple = formatBits(dst, new Go$Uint64(i.high, i.low), base, (i.high < 0 || (i.high === 0 && i.low < 0)), true), dst = _tuple[0];
 		return dst;
 	};
-	var AppendUint = go$pkg.AppendUint = function(dst, i, base) {
+0Å±
+AppendUintÅ¢	var AppendUint = go$pkg.AppendUint = function(dst, i, base) {
 		var _tuple;
 		_tuple = formatBits(dst, i, base, false, true), dst = _tuple[0];
 		return dst;
 	};
-	var formatBits = function(dst, u, base, neg, append_) {
+0Ç—
+formatBitsÇ¡	var formatBits = function(dst, u, base, neg, append_) {
 		var d, s, a, i, s$1, q, x, j, q$1, x$1, b, m, b$1;
 		d = (go$sliceType(Go$Uint8)).nil;
 		s = "";
@@ -1885,7 +1909,7 @@ $$
 		s = go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(a), i));
 		return [d, s];
 	};
-	var quoteWith = function(s, quote, ASCIIonly) {
+0Çf	quoteWithÇW	var quoteWith = function(s, quote, ASCIIonly) {
 		var runeTmp, _q, x, x$1, buf, width, r, _tuple, n, _ref, s$1, s$2;
 		runeTmp = go$makeNativeArray("Uint8", 4, function() { return 0; });
 		buf = (go$sliceType(Go$Uint8)).make(0, (_q = (x = 3, x$1 = s.length, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), function() { return 0; });
@@ -1971,31 +1995,31 @@ $$
 		buf = go$append(buf, quote);
 		return go$bytesToString(buf);
 	};
-	var Quote = go$pkg.Quote = function(s) {
+0YQuoteP	var Quote = go$pkg.Quote = function(s) {
 		return quoteWith(s, 34, false);
 	};
-	var AppendQuote = go$pkg.AppendQuote = function(dst, s) {
+0ÅßAppendQuoteÅó	var AppendQuote = go$pkg.AppendQuote = function(dst, s) {
 		return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(Quote(s))));
 	};
-	var QuoteToASCII = go$pkg.QuoteToASCII = function(s) {
+0mQuoteToASCII]	var QuoteToASCII = go$pkg.QuoteToASCII = function(s) {
 		return quoteWith(s, 34, true);
 	};
-	var AppendQuoteToASCII = go$pkg.AppendQuoteToASCII = function(dst, s) {
+0Å√AppendQuoteToASCIIÅ¨	var AppendQuoteToASCII = go$pkg.AppendQuoteToASCII = function(dst, s) {
 		return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(QuoteToASCII(s))));
 	};
-	var QuoteRune = go$pkg.QuoteRune = function(r) {
+0t	QuoteRuneg	var QuoteRune = go$pkg.QuoteRune = function(r) {
 		return quoteWith(go$encodeRune(r), 39, false);
 	};
-	var AppendQuoteRune = go$pkg.AppendQuoteRune = function(dst, r) {
+0Å∑AppendQuoteRuneÅ£	var AppendQuoteRune = go$pkg.AppendQuoteRune = function(dst, r) {
 		return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(QuoteRune(r))));
 	};
-	var QuoteRuneToASCII = go$pkg.QuoteRuneToASCII = function(r) {
+0ÅàQuoteRuneToASCIIt	var QuoteRuneToASCII = go$pkg.QuoteRuneToASCII = function(r) {
 		return quoteWith(go$encodeRune(r), 39, true);
 	};
-	var AppendQuoteRuneToASCII = go$pkg.AppendQuoteRuneToASCII = function(dst, r) {
+0Å”AppendQuoteRuneToASCIIÅ∏	var AppendQuoteRuneToASCII = go$pkg.AppendQuoteRuneToASCII = function(dst, r) {
 		return go$appendSlice(dst, new (go$sliceType(Go$Uint8))(go$stringToBytes(QuoteRuneToASCII(r))));
 	};
-	var CanBackquote = go$pkg.CanBackquote = function(s) {
+0ÇCanBackquoteÅˇ	var CanBackquote = go$pkg.CanBackquote = function(s) {
 		var i;
 		i = 0;
 		while (i < s.length) {
@@ -2006,7 +2030,7 @@ $$
 		}
 		return true;
 	};
-	var unhex = function(b) {
+0ÇunhexÇ	var unhex = function(b) {
 		var v, ok, c, _tuple, _tuple$1, _tuple$2;
 		v = 0;
 		ok = false;
@@ -2023,7 +2047,7 @@ $$
 		}
 		return [v, ok];
 	};
-	var UnquoteChar = go$pkg.UnquoteChar = function(s, quote) {
+0ÇœUnquoteCharÇæ	var UnquoteChar = go$pkg.UnquoteChar = function(s, quote) {
 		var value, multibyte, tail, err, c, _tuple, r, size, _tuple$1, _tuple$2, c$1, _ref, n, _ref$1, v, j, _tuple$3, x, ok, v$1, j$1, x$1;
 		value = 0;
 		multibyte = false;
@@ -2138,7 +2162,9 @@ $$
 		tail = s;
 		return [value, multibyte, tail, err];
 	};
-	var Unquote = go$pkg.Unquote = function(s) {
+0Ç
+πUnquoteÇ
+¨	var Unquote = go$pkg.Unquote = function(s) {
 		var t, err, n, _tuple, quote, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _ref, _tuple$6, _tuple$7, r, size, _tuple$8, runeTmp, _q, x, x$1, buf, _tuple$9, c, multibyte, ss, err$1, _tuple$10, n$1, _tuple$11, _tuple$12;
 		t = "";
 		err = null;
@@ -2205,7 +2231,7 @@ $$
 		_tuple$12 = [go$bytesToString(buf), null], t = _tuple$12[0], err = _tuple$12[1];
 		return [t, err];
 	};
-	var contains = function(s, c) {
+0Å∫containsÅ≠	var contains = function(s, c) {
 		var i;
 		i = 0;
 		while (i < s.length) {
@@ -2216,7 +2242,7 @@ $$
 		}
 		return false;
 	};
-	var bsearch16 = function(a, x) {
+0Ç	bsearch16Ç	var bsearch16 = function(a, x) {
 		var _tuple, i, j, _q, h, _slice, _index;
 		_tuple = [0, a.length], i = _tuple[0], j = _tuple[1];
 		while (i < j) {
@@ -2229,7 +2255,7 @@ $$
 		}
 		return i;
 	};
-	var bsearch32 = function(a, x) {
+0Ç	bsearch32Ç	var bsearch32 = function(a, x) {
 		var _tuple, i, j, _q, h, _slice, _index;
 		_tuple = [0, a.length], i = _tuple[0], j = _tuple[1];
 		while (i < j) {
@@ -2242,7 +2268,7 @@ $$
 		}
 		return i;
 	};
-	var IsPrint = go$pkg.IsPrint = function(r) {
+0ÇΩIsPrintÇ∞	var IsPrint = go$pkg.IsPrint = function(r) {
 		var _tuple, rr, isPrint, isNotPrint, i, _slice, _index, _slice$1, _index$1, j, _slice$2, _index$2, _tuple$1, rr$1, isPrint$1, isNotPrint$1, i$1, _slice$3, _index$3, _slice$4, _index$4, j$1, _slice$5, _index$5;
 		if (r <= 255) {
 			if (32 <= r && r <= 126) {
@@ -2274,34 +2300,7 @@ $$
 		j$1 = bsearch16(isNotPrint$1, (r << 16 >>> 16));
 		return j$1 >= isNotPrint$1.length || !(((_slice$5 = isNotPrint$1, _index$5 = j$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) === (r << 16 >>> 16)));
 	};
-	var fnParseFloat = "ParseFloat";
-	var intSize = 32;
-	go$pkg.IntSize = 32;
-	var maxShift = 27;
-	var firstPowerOfTen = -348;
-	var stepPowerOfTen = 8;
-	var digits = "0123456789abcdefghijklmnopqrstuvwxyz";
-	var digits01 = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
-	var digits10 = "0000000000111111111122222222223333333333444444444455555555556666666666777777777788888888889999999999";
-	var lowerhex = "0123456789abcdef";
-	var optimize = false;
-	var powtab = (go$sliceType(Go$Int)).nil;
-	var float64pow10 = (go$sliceType(Go$Float64)).nil;
-	var float32pow10 = (go$sliceType(Go$Float32)).nil;
-	go$pkg.ErrRange = null;
-	go$pkg.ErrSyntax = null;
-	var leftcheats = (go$sliceType(leftCheat)).nil;
-	var smallPowersOfTen = go$makeNativeArray("Struct", 8, function() { return new extFloat.Ptr(); });
-	var powersOfTen = go$makeNativeArray("Struct", 87, function() { return new extFloat.Ptr(); });
-	var uint64pow10 = go$makeNativeArray("Uint64", 20, function() { return new Go$Uint64(0, 0); });
-	var float32info = new floatInfo.Ptr();
-	var float64info = new floatInfo.Ptr();
-	var isPrint16 = (go$sliceType(Go$Uint16)).nil;
-	var isNotPrint16 = (go$sliceType(Go$Uint16)).nil;
-	var isPrint32 = (go$sliceType(Go$Uint32)).nil;
-	var isNotPrint32 = (go$sliceType(Go$Uint16)).nil;
-	var shifts = go$makeNativeArray("Uint", 37, function() { return 0; });
-	go$pkg.init = function() {
+0Ç;initÇ;	go$pkg.init = function() {
 		optimize = true;
 		powtab = new (go$sliceType(Go$Int))([1, 3, 6, 9, 13, 16, 19, 23, 26]);
 		float64pow10 = new (go$sliceType(Go$Float64))([1, 10, 100, 1000, 10000, 100000, 1e+06, 1e+07, 1e+08, 1e+09, 1e+10, 1e+11, 1e+12, 1e+13, 1e+14, 1e+15, 1e+16, 1e+17, 1e+18, 1e+19, 1e+20, 1e+21, 1e+22]);

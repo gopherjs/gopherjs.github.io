@@ -1,4 +1,4 @@
-0ƒ»‚/΄package big
+0ƒ!Omath/big‚/΄package big
 import errors "errors"
 import fmt "fmt"
 import io "io"
@@ -184,15 +184,8 @@ type @"fmt".ScanState interface { @"fmt".Read(@"fmt".buf []byte) (@"fmt".n int, 
 type @"io".RuneScanner interface { @"io".ReadRune() (@"io".r rune, @"io".size int, @"io".err error); @"io".UnreadRune() (? error) }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"math/rand".seed int64) () }
 $$
-0runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigƒη]	var errors = go$packages["errors"];
-	var fmt = go$packages["fmt"];
-	var io = go$packages["io"];
-	var rand = go$packages["math/rand"];
-	var strings = go$packages["strings"];
-	var math = go$packages["math"];
-	var sync = go$packages["sync"];
-	var binary = go$packages["encoding/binary"];
-	var Word;
+0runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/big0†0errorserrors0
+fmtfmt0ioio0	math/randrand0stringsstrings0mathmath0syncsync0encoding/binarybinary‚)…	var Word;
 	Word = go$newType(4, "Uintptr", "big.Word", "Word", "math/big", null);
 	go$pkg.Word = Word;
 	var Int;
@@ -228,7 +221,16 @@ $$
 	divisor.init([["bbb", "math/big", nat, ""], ["nbits", "math/big", Go$Int, ""], ["ndigits", "math/big", Go$Int, ""]]);
 	Rat.init([["a", "math/big", Int, ""], ["b", "math/big", Int, ""]]);
 	(go$ptrType(Rat)).methods = [["Abs", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Add", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Cmp", "", [(go$ptrType(Rat))], [Go$Int], false], ["Denom", "", [], [(go$ptrType(Int))], false], ["Float64", "", [], [Go$Float64, Go$Bool], false], ["FloatString", "", [Go$Int], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Inv", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["IsInt", "", [], [Go$Bool], false], ["Mul", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Neg", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Num", "", [], [(go$ptrType(Int))], false], ["Quo", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["RatString", "", [], [Go$String], false], ["Scan", "", [fmt.ScanState, Go$Int32], [go$error], false], ["Set", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["SetFloat64", "", [Go$Float64], [(go$ptrType(Rat))], false], ["SetFrac", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetFrac64", "", [Go$Int64, Go$Int64], [(go$ptrType(Rat))], false], ["SetInt", "", [(go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetInt64", "", [Go$Int64], [(go$ptrType(Rat))], false], ["SetString", "", [Go$String], [(go$ptrType(Rat)), Go$Bool], false], ["Sign", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["norm", "math/big", [], [(go$ptrType(Rat))], false]];
-	var addWW_g = function(x, y, c) {
+‚θ	var intOne = (go$ptrType(Int)).nil;
+	var natOne = nat.nil;
+	var natTwo = nat.nil;
+	var natTen = nat.nil;
+	var karatsubaThreshold = 0;
+	var leafSize = 0;
+	var cacheBase10 = new (go$structType([["", "", sync.Mutex, ""], ["table", "math/big", (go$arrayType(divisor, 64)), ""]])).Ptr(new sync.Mutex.Ptr(), go$makeNativeArray("Struct", 64, function() { return new divisor.Ptr(); }));
+	var deBruijn32Lookup = (go$sliceType(Go$Uint8)).nil;
+	var deBruijn64Lookup = (go$sliceType(Go$Uint8)).nil;
+0ƒΔι0ΎaddWW_g²	var addWW_g = function(x, y, c) {
 		var z1, z0, yc;
 		z1 = 0;
 		z0 = 0;
@@ -239,7 +241,7 @@ $$
 		}
 		return [z1, z0];
 	};
-	var subWW_g = function(x, y, c) {
+0ΎsubWW_g²	var subWW_g = function(x, y, c) {
 		var z1, z0, yc;
 		z1 = 0;
 		z0 = 0;
@@ -250,7 +252,7 @@ $$
 		}
 		return [z1, z0];
 	};
-	var mulWW_g = function(x, y) {
+0‚ΟmulWW_g‚Β	var mulWW_g = function(x, y) {
 		var z1, z0, x0, x1, y0, y1, w0, t, w1, w2;
 		z1 = 0;
 		z0 = 0;
@@ -267,7 +269,7 @@ $$
 		z0 = (((x >>> 16 << 16) * y >>> 0) + (x << 16 >>> 16) * y) >>> 0;
 		return [z1, z0];
 	};
-	var mulAddWWW_g = function(x, y, c) {
+0φmulAddWWW_gζ	var mulAddWWW_g = function(x, y, c) {
 		var z1, z0, _tuple, zz0;
 		z1 = 0;
 		z0 = 0;
@@ -277,7 +279,7 @@ $$
 		}
 		return [z1, z0];
 	};
-	var bitLen_g = function(x) {
+0‚tbitLen_g‚f	var bitLen_g = function(x) {
 		var n;
 		n = 0;
 		while (x >= 32768) {
@@ -301,13 +303,13 @@ $$
 		}
 		return n;
 	};
-	var log2 = function(x) {
+0Clog2;	var log2 = function(x) {
 		return bitLen(x) - 1 >> 0;
 	};
-	var leadingZeros = function(x) {
+0^leadingZerosN	var leadingZeros = function(x) {
 		return ((32 - bitLen(x) >> 0) >>> 0);
 	};
-	var divWW_g = function(u1, u0, v) {
+0‚›divWW_g‚	var divWW_g = function(u1, u0, v) {
 		var q, r, _tuple, s, y, vn1, vn0, y$1, y$2, un32, y$3, un10, un1, un0, _q, q1, rhat, un21, _q$1, q0, y$4, _tuple$1;
 		q = 0;
 		r = 0;
@@ -345,7 +347,7 @@ $$
 		_tuple$1 = [((((q1 >>> 16 << 16) * 65536 >>> 0) + (q1 << 16 >>> 16) * 65536) >>> 0) + q0 >>> 0, (y$4 = s, y$4 < 32 ? ((((((((un21 >>> 16 << 16) * 65536 >>> 0) + (un21 << 16 >>> 16) * 65536) >>> 0) + un0 >>> 0) - ((((q0 >>> 16 << 16) * v >>> 0) + (q0 << 16 >>> 16) * v) >>> 0) >>> 0)) >>> y$4) : 0) >>> 0], q = _tuple$1[0], r = _tuple$1[1];
 		return [q, r];
 	};
-	var addVV_g = function(z, x, y) {
+0‚addVV_g‚υ	var addVV_g = function(z, x, y) {
 		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		c = 0;
 		_ref = z;
@@ -356,7 +358,7 @@ $$
 		}
 		return c;
 	};
-	var subVV_g = function(z, x, y) {
+0‚subVV_g‚υ	var subVV_g = function(z, x, y) {
 		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		c = 0;
 		_ref = z;
@@ -367,7 +369,7 @@ $$
 		}
 		return c;
 	};
-	var addVW_g = function(z, x, y) {
+0‚SaddVW_g‚F	var addVW_g = function(z, x, y) {
 		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1;
 		c = 0;
 		c = y;
@@ -379,7 +381,7 @@ $$
 		}
 		return c;
 	};
-	var subVW_g = function(z, x, y) {
+0‚SsubVW_g‚F	var subVW_g = function(z, x, y) {
 		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1;
 		c = 0;
 		c = y;
@@ -391,7 +393,7 @@ $$
 		}
 		return c;
 	};
-	var shlVU_g = function(z, x, s) {
+0‚μshlVU_g‚ί	var shlVU_g = function(z, x, s) {
 		var c, n, nonAsciiName, _slice, _index, w1, y, i, w, _slice$1, _index$1, y$1, y$2, _slice$2, _index$2, y$3, _slice$3, _index$3;
 		c = 0;
 		if (n = z.length, n > 0) {
@@ -409,7 +411,7 @@ $$
 		}
 		return c;
 	};
-	var shrVU_g = function(z, x, s) {
+0‚μshrVU_g‚ί	var shrVU_g = function(z, x, s) {
 		var c, n, nonAsciiName, _slice, _index, w1, y, i, w, _slice$1, _index$1, y$1, y$2, _slice$2, _index$2, y$3, _slice$3, _index$3;
 		c = 0;
 		if (n = z.length, n > 0) {
@@ -427,7 +429,7 @@ $$
 		}
 		return c;
 	};
-	var mulAddVWW_g = function(z, x, y, r) {
+0‚bmulAddVWW_g‚Q	var mulAddVWW_g = function(z, x, y, r) {
 		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1;
 		c = 0;
 		c = r;
@@ -439,7 +441,7 @@ $$
 		}
 		return c;
 	};
-	var addMulVVW_g = function(z, x, y) {
+0‚|addMulVVW_g‚k	var addMulVVW_g = function(z, x, y) {
 		var c, _ref, _i, i, _tuple, _slice, _index, _slice$1, _index$1, z1, z0, _tuple$1, _slice$2, _index$2;
 		c = 0;
 		_ref = z;
@@ -452,7 +454,7 @@ $$
 		}
 		return c;
 	};
-	var divWVW_g = function(z, xn, x, y) {
+0‚HdivWVW_g‚:	var divWVW_g = function(z, xn, x, y) {
 		var r, i, _tuple, _slice, _index, _slice$1, _index$1;
 		r = 0;
 		r = xn;
@@ -463,7 +465,19 @@ $$
 		}
 		return r;
 	};
-	Int.Ptr.prototype.Sign = function() {
+0@mulWW7	var mulWW = function(x, y) { return mulWW_g(x, y); };
+0JdivWWA	var divWW = function(x1, x0, y) { return divWW_g(x1, x0, y); };
+0FaddVV=	var addVV = function(z, x, y) { return addVV_g(z, x, y); };
+0FsubVV=	var subVV = function(z, x, y) { return subVV_g(z, x, y); };
+0FaddVW=	var addVW = function(z, x, y) { return addVW_g(z, x, y); };
+0FsubVW=	var subVW = function(z, x, y) { return subVW_g(z, x, y); };
+0FshlVU=	var shlVU = function(z, x, s) { return shlVU_g(z, x, s); };
+0FshrVU=	var shrVU = function(z, x, s) { return shrVU_g(z, x, s); };
+0X	mulAddVWWK	var mulAddVWW = function(z, x, y, r) { return mulAddVWW_g(z, x, y, r); };
+0R	addMulVVWE	var addMulVVW = function(z, x, y) { return addMulVVW_g(z, x, y); };
+0QdivWVWG	var divWVW = function(z, xn, x, y) { return divWVW_g(z, xn, x, y); };
+0=bitLen3	var bitLen = function(x) { return bitLen_g(x); };
+0δSignΫ	Int.Ptr.prototype.Sign = function() {
 		var x;
 		x = this;
 		if (x.abs.length === 0) {
@@ -475,7 +489,7 @@ $$
 		return 1;
 	};
 	Int.prototype.Sign = function() { return this.go$val.Sign(); };
-	Int.Ptr.prototype.SetInt64 = function(x) {
+0‚tSetInt64‚f	Int.Ptr.prototype.SetInt64 = function(x) {
 		var z, neg;
 		z = this;
 		neg = false;
@@ -488,7 +502,7 @@ $$
 		return z;
 	};
 	Int.prototype.SetInt64 = function(x) { return this.go$val.SetInt64(x); };
-	Int.Ptr.prototype.SetUint64 = function(x) {
+0ά	SetUint64Ξ	Int.Ptr.prototype.SetUint64 = function(x) {
 		var z;
 		z = this;
 		z.abs = z.abs.setUint64(x);
@@ -496,10 +510,10 @@ $$
 		return z;
 	};
 	Int.prototype.SetUint64 = function(x) { return this.go$val.SetUint64(x); };
-	var NewInt = go$pkg.NewInt = function(x) {
+0^NewIntT	var NewInt = go$pkg.NewInt = function(x) {
 		return new Int.Ptr().SetInt64(x);
 	};
-	Int.Ptr.prototype.Set = function(x) {
+0άSetΤ	Int.Ptr.prototype.Set = function(x) {
 		var z;
 		z = this;
 		if (!(z === x)) {
@@ -509,13 +523,13 @@ $$
 		return z;
 	};
 	Int.prototype.Set = function(x) { return this.go$val.Set(x); };
-	Int.Ptr.prototype.Bits = function() {
+0ώBitsυ	Int.Ptr.prototype.Bits = function() {
 		var x, x$1;
 		x = this;
 		return (x$1 = x.abs, go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length));
 	};
 	Int.prototype.Bits = function() { return this.go$val.Bits(); };
-	Int.Ptr.prototype.SetBits = function(abs) {
+0‚SetBits‚	Int.Ptr.prototype.SetBits = function(abs) {
 		var z;
 		z = this;
 		z.abs = go$subslice(new nat(abs.array), abs.offset, abs.offset + abs.length).norm();
@@ -523,7 +537,7 @@ $$
 		return z;
 	};
 	Int.prototype.SetBits = function(abs) { return this.go$val.SetBits(abs); };
-	Int.Ptr.prototype.Abs = function(x) {
+0²Absª	Int.Ptr.prototype.Abs = function(x) {
 		var z;
 		z = this;
 		z.Set(x);
@@ -531,7 +545,7 @@ $$
 		return z;
 	};
 	Int.prototype.Abs = function(x) { return this.go$val.Abs(x); };
-	Int.Ptr.prototype.Neg = function(x) {
+0ΗNegΏ	Int.Ptr.prototype.Neg = function(x) {
 		var z;
 		z = this;
 		z.Set(x);
@@ -539,7 +553,7 @@ $$
 		return z;
 	};
 	Int.prototype.Neg = function(x) { return this.go$val.Neg(x); };
-	Int.Ptr.prototype.Add = function(x, y) {
+0‚­Add‚¤	Int.Ptr.prototype.Add = function(x, y) {
 		var z, neg;
 		z = this;
 		neg = x.neg;
@@ -557,7 +571,7 @@ $$
 		return z;
 	};
 	Int.prototype.Add = function(x, y) { return this.go$val.Add(x, y); };
-	Int.Ptr.prototype.Sub = function(x, y) {
+0‚°Sub‚§	Int.Ptr.prototype.Sub = function(x, y) {
 		var z, neg;
 		z = this;
 		neg = x.neg;
@@ -575,7 +589,7 @@ $$
 		return z;
 	};
 	Int.prototype.Sub = function(x, y) { return this.go$val.Sub(x, y); };
-	Int.Ptr.prototype.Mul = function(x, y) {
+0σMulλ	Int.Ptr.prototype.Mul = function(x, y) {
 		var z;
 		z = this;
 		z.abs = z.abs.mul(x.abs, y.abs);
@@ -583,7 +597,7 @@ $$
 		return z;
 	};
 	Int.prototype.Mul = function(x, y) { return this.go$val.Mul(x, y); };
-	Int.Ptr.prototype.MulRange = function(a, b) {
+0‚|MulRange‚n	Int.Ptr.prototype.MulRange = function(a, b) {
 		var z, neg, x, x$1, _tuple;
 		z = this;
 		if ((a.high > b.high || (a.high === b.high && a.low > b.low))) {
@@ -601,7 +615,7 @@ $$
 		return z;
 	};
 	Int.prototype.MulRange = function(a, b) { return this.go$val.MulRange(a, b); };
-	Int.Ptr.prototype.Binomial = function(n, k) {
+0‚¦Binomial‚	Int.Ptr.prototype.Binomial = function(n, k) {
 		var z, _tuple, a, b, x;
 		z = this;
 		_tuple = [new Int.Ptr(), new Int.Ptr()], a = _tuple[0], b = _tuple[1];
@@ -610,7 +624,7 @@ $$
 		return z.Quo(a, b);
 	};
 	Int.prototype.Binomial = function(n, k) { return this.go$val.Binomial(n, k); };
-	Int.Ptr.prototype.Quo = function(x, y) {
+0‚Quo‚	Int.Ptr.prototype.Quo = function(x, y) {
 		var z, _tuple;
 		z = this;
 		_tuple = z.abs.div(nat.nil, x.abs, y.abs), z.abs = _tuple[0];
@@ -618,7 +632,7 @@ $$
 		return z;
 	};
 	Int.prototype.Quo = function(x, y) { return this.go$val.Quo(x, y); };
-	Int.Ptr.prototype.Rem = function(x, y) {
+0‚Rem‚	Int.Ptr.prototype.Rem = function(x, y) {
 		var z, _tuple;
 		z = this;
 		_tuple = nat.nil.div(z.abs, x.abs, y.abs), z.abs = _tuple[1];
@@ -626,7 +640,7 @@ $$
 		return z;
 	};
 	Int.prototype.Rem = function(x, y) { return this.go$val.Rem(x, y); };
-	Int.Ptr.prototype.QuoRem = function(x, y, r) {
+0‚QuoRem‚	Int.Ptr.prototype.QuoRem = function(x, y, r) {
 		var z, _tuple, _tuple$1;
 		z = this;
 		_tuple = z.abs.div(r.abs, x.abs, y.abs), z.abs = _tuple[0], r.abs = _tuple[1];
@@ -634,7 +648,7 @@ $$
 		return [z, r];
 	};
 	Int.prototype.QuoRem = function(x, y, r) { return this.go$val.QuoRem(x, y, r); };
-	Int.Ptr.prototype.Div = function(x, y) {
+0‚DDiv‚;	Int.Ptr.prototype.Div = function(x, y) {
 		var z, y_neg, r;
 		z = this;
 		y_neg = y.neg;
@@ -650,7 +664,7 @@ $$
 		return z;
 	};
 	Int.prototype.Div = function(x, y) { return this.go$val.Div(x, y); };
-	Int.Ptr.prototype.Mod = function(x, y) {
+0‚}Mod‚t	Int.Ptr.prototype.Mod = function(x, y) {
 		var z, y0, q;
 		z = this;
 		y0 = y;
@@ -669,7 +683,7 @@ $$
 		return z;
 	};
 	Int.prototype.Mod = function(x, y) { return this.go$val.Mod(x, y); };
-	Int.Ptr.prototype.DivMod = function(x, y, m) {
+0‚«DivMod‚	Int.Ptr.prototype.DivMod = function(x, y, m) {
 		var z, y0;
 		z = this;
 		y0 = y;
@@ -689,7 +703,7 @@ $$
 		return [z, m];
 	};
 	Int.prototype.DivMod = function(x, y, m) { return this.go$val.DivMod(x, y, m); };
-	Int.Ptr.prototype.Cmp = function(y) {
+0‚/Cmp‚&	Int.Ptr.prototype.Cmp = function(y) {
 		var r, x;
 		r = 0;
 		x = this;
@@ -706,7 +720,7 @@ $$
 		return r;
 	};
 	Int.prototype.Cmp = function(y) { return this.go$val.Cmp(y); };
-	Int.Ptr.prototype.String = function() {
+0‚,String‚ 	Int.Ptr.prototype.String = function() {
 		var x;
 		x = this;
 		if (x === (go$ptrType(Int)).nil) {
@@ -717,7 +731,7 @@ $$
 		return x.abs.decimalString();
 	};
 	Int.prototype.String = function() { return this.go$val.String(); };
-	var charset = function(ch) {
+0‚Ncharset‚A	var charset = function(ch) {
 		var _ref;
 		_ref = ch;
 		if (_ref === 98) {
@@ -733,7 +747,7 @@ $$
 		}
 		return "";
 	};
-	var writeMultiple = function(s, text, count) {
+0ρwriteMultipleί	var writeMultiple = function(s, text, count) {
 		var b;
 		if (text.length > 0) {
 			b = new (go$sliceType(Go$Uint8))(go$stringToBytes(text));
@@ -743,7 +757,7 @@ $$
 			}
 		}
 	};
-	Int.Ptr.prototype.Format = function(s, ch) {
+0‚ωFormat‚ν	Int.Ptr.prototype.Format = function(s, ch) {
 		var x, cs, sign, prefix, _ref, digits, left, zeroes, right, _tuple, precision, precisionSet, length, widthSet, width, _tuple$1, d;
 		x = this;
 		cs = charset(ch);
@@ -804,7 +818,7 @@ $$
 		writeMultiple(s, " ", right);
 	};
 	Int.prototype.Format = function(s, ch) { return this.go$val.Format(s, ch); };
-	Int.Ptr.prototype.scan = function(r, base) {
+0‚Πscan‚Ζ	Int.Ptr.prototype.scan = function(r, base) {
 		var z, _tuple, ch, err, neg, _ref, _tuple$1;
 		z = this;
 		_tuple = r.ReadRune(), ch = _tuple[0], err = _tuple[2];
@@ -827,7 +841,7 @@ $$
 		return [z, base, null];
 	};
 	Int.prototype.scan = function(r, base) { return this.go$val.scan(r, base); };
-	Int.Ptr.prototype.Scan = function(s, ch) {
+0‚5Scan‚+	Int.Ptr.prototype.Scan = function(s, ch) {
 		var z, base, _ref, _tuple, err;
 		z = this;
 		s.SkipSpace();
@@ -849,7 +863,7 @@ $$
 		return err;
 	};
 	Int.prototype.Scan = function(s, ch) { return this.go$val.Scan(s, ch); };
-	Int.Ptr.prototype.Int64 = function() {
+0‚Int64‚	Int.Ptr.prototype.Int64 = function() {
 		var x, x$1, v;
 		x = this;
 		v = (x$1 = x.Uint64(), new Go$Int64(x$1.high, x$1.low));
@@ -859,7 +873,7 @@ $$
 		return v;
 	};
 	Int.prototype.Int64 = function() { return this.go$val.Int64(); };
-	Int.Ptr.prototype.Uint64 = function() {
+0‚dUint64‚X	Int.Ptr.prototype.Uint64 = function() {
 		var x, x$1, _slice, _index, v, x$2, x$3, _slice$1, _index$1;
 		x = this;
 		if (x.abs.length === 0) {
@@ -872,7 +886,7 @@ $$
 		return v;
 	};
 	Int.prototype.Uint64 = function() { return this.go$val.Uint64(); };
-	Int.Ptr.prototype.SetString = function(s, base) {
+0‚	SetString‚ώ	Int.Ptr.prototype.SetString = function(s, base) {
 		var z, r, _tuple, err, _tuple$1;
 		z = this;
 		r = strings.NewReader(s);
@@ -887,7 +901,7 @@ $$
 		return [z, true];
 	};
 	Int.prototype.SetString = function(s, base) { return this.go$val.SetString(s, base); };
-	Int.Ptr.prototype.SetBytes = function(buf) {
+0ίSetBytesÒ	Int.Ptr.prototype.SetBytes = function(buf) {
 		var z;
 		z = this;
 		z.abs = z.abs.setBytes(buf);
@@ -895,20 +909,20 @@ $$
 		return z;
 	};
 	Int.prototype.SetBytes = function(buf) { return this.go$val.SetBytes(buf); };
-	Int.Ptr.prototype.Bytes = function() {
+0‚_Bytes‚T	Int.Ptr.prototype.Bytes = function() {
 		var x, x$1, buf;
 		x = this;
 		buf = (go$sliceType(Go$Uint8)).make((x$1 = x.abs.length, (((x$1 >>> 16 << 16) * 4 >> 0) + (x$1 << 16 >>> 16) * 4) >> 0), 0, function() { return 0; });
 		return go$subslice(buf, x.abs.bytes(buf));
 	};
 	Int.prototype.Bytes = function() { return this.go$val.Bytes(); };
-	Int.Ptr.prototype.BitLen = function() {
+0«BitLen 	Int.Ptr.prototype.BitLen = function() {
 		var x;
 		x = this;
 		return x.abs.bitLen();
 	};
 	Int.prototype.BitLen = function() { return this.go$val.BitLen(); };
-	Int.Ptr.prototype.Exp = function(x, y, m) {
+0‚mExp‚d	Int.Ptr.prototype.Exp = function(x, y, m) {
 		var z, mWords, _slice, _index;
 		z = this;
 		if (y.neg || (y.abs.length === 0)) {
@@ -923,7 +937,7 @@ $$
 		return z;
 	};
 	Int.prototype.Exp = function(x, y, m) { return this.go$val.Exp(x, y, m); };
-	Int.Ptr.prototype.GCD = function(x, y, a, b) {
+0‚•GCD‚	Int.Ptr.prototype.GCD = function(x, y, a, b) {
 		var z, A, B, X, Y, lastX, lastY, q, temp, r, _tuple, _tuple$1, _struct, l, r$1, _struct$1, l$1, r$2, _struct$2, l$2, r$3;
 		z = this;
 		if (a.Sign() <= 0 || b.Sign() <= 0) {
@@ -972,7 +986,7 @@ $$
 		return z;
 	};
 	Int.prototype.GCD = function(x, y, a, b) { return this.go$val.GCD(x, y, a, b); };
-	Int.Ptr.prototype.binaryGCD = function(a, b) {
+0‚u	binaryGCD‚f	Int.Ptr.prototype.binaryGCD = function(a, b) {
 		var z, u, v, k, vk, t, _slice, _index, _tuple, _tuple$1;
 		z = this;
 		u = z;
@@ -1015,13 +1029,13 @@ $$
 		return z.Lsh(u, k);
 	};
 	Int.prototype.binaryGCD = function(a, b) { return this.go$val.binaryGCD(a, b); };
-	Int.Ptr.prototype.ProbablyPrime = function(n) {
+0άProbablyPrimeΚ	Int.Ptr.prototype.ProbablyPrime = function(n) {
 		var x;
 		x = this;
 		return !x.neg && x.abs.probablyPrime(n);
 	};
 	Int.prototype.ProbablyPrime = function(n) { return this.go$val.ProbablyPrime(n); };
-	Int.Ptr.prototype.Rand = function(rnd, n) {
+0‚CRand‚9	Int.Ptr.prototype.Rand = function(rnd, n) {
 		var z;
 		z = this;
 		z.neg = false;
@@ -1033,7 +1047,8 @@ $$
 		return z;
 	};
 	Int.prototype.Rand = function(rnd, n) { return this.go$val.Rand(rnd, n); };
-	Int.Ptr.prototype.ModInverse = function(g, p) {
+0‚
+ModInverse‚	Int.Ptr.prototype.ModInverse = function(g, p) {
 		var z, d;
 		z = this;
 		d = new Int.Ptr();
@@ -1044,7 +1059,7 @@ $$
 		return z;
 	};
 	Int.prototype.ModInverse = function(g, p) { return this.go$val.ModInverse(g, p); };
-	Int.Ptr.prototype.Lsh = function(x, n) {
+0ΞLshΖ	Int.Ptr.prototype.Lsh = function(x, n) {
 		var z;
 		z = this;
 		z.abs = z.abs.shl(x.abs, n);
@@ -1052,7 +1067,7 @@ $$
 		return z;
 	};
 	Int.prototype.Lsh = function(x, n) { return this.go$val.Lsh(x, n); };
-	Int.Ptr.prototype.Rsh = function(x, n) {
+0‚URsh‚L	Int.Ptr.prototype.Rsh = function(x, n) {
 		var z, t;
 		z = this;
 		if (x.neg) {
@@ -1067,7 +1082,7 @@ $$
 		return z;
 	};
 	Int.prototype.Rsh = function(x, n) { return this.go$val.Rsh(x, n); };
-	Int.Ptr.prototype.Bit = function(i) {
+0‚cBit‚Z	Int.Ptr.prototype.Bit = function(i) {
 		var x, _slice, _index, t;
 		x = this;
 		if (i === 0) {
@@ -1086,7 +1101,7 @@ $$
 		return x.abs.bit((i >>> 0));
 	};
 	Int.prototype.Bit = function(i) { return this.go$val.Bit(i); };
-	Int.Ptr.prototype.SetBit = function(x, i, b) {
+0‚ιSetBit‚έ	Int.Ptr.prototype.SetBit = function(x, i, b) {
 		var z, t;
 		z = this;
 		if (i < 0) {
@@ -1104,7 +1119,7 @@ $$
 		return z;
 	};
 	Int.prototype.SetBit = function(x, i, b) { return this.go$val.SetBit(x, i, b); };
-	Int.Ptr.prototype.And = function(x, y) {
+0‚eAnd‚\	Int.Ptr.prototype.And = function(x, y) {
 		var z, x1, y1, _tuple, y1$1;
 		z = this;
 		if (x.neg === y.neg) {
@@ -1128,7 +1143,7 @@ $$
 		return z;
 	};
 	Int.prototype.And = function(x, y) { return this.go$val.And(x, y); };
-	Int.Ptr.prototype.AndNot = function(x, y) {
+0‚¨AndNot‚	Int.Ptr.prototype.AndNot = function(x, y) {
 		var z, x1, y1, x1$1, y1$1;
 		z = this;
 		if (x.neg === y.neg) {
@@ -1155,7 +1170,7 @@ $$
 		return z;
 	};
 	Int.prototype.AndNot = function(x, y) { return this.go$val.AndNot(x, y); };
-	Int.Ptr.prototype.Or = function(x, y) {
+0‚sOr‚k	Int.Ptr.prototype.Or = function(x, y) {
 		var z, x1, y1, _tuple, y1$1;
 		z = this;
 		if (x.neg === y.neg) {
@@ -1179,7 +1194,7 @@ $$
 		return z;
 	};
 	Int.prototype.Or = function(x, y) { return this.go$val.Or(x, y); };
-	Int.Ptr.prototype.Xor = function(x, y) {
+0‚cXor‚Z	Int.Ptr.prototype.Xor = function(x, y) {
 		var z, x1, y1, _tuple, y1$1;
 		z = this;
 		if (x.neg === y.neg) {
@@ -1203,7 +1218,7 @@ $$
 		return z;
 	};
 	Int.prototype.Xor = function(x, y) { return this.go$val.Xor(x, y); };
-	Int.Ptr.prototype.Not = function(x) {
+0‚!Not‚	Int.Ptr.prototype.Not = function(x) {
 		var z;
 		z = this;
 		if (x.neg) {
@@ -1216,7 +1231,7 @@ $$
 		return z;
 	};
 	Int.prototype.Not = function(x) { return this.go$val.Not(x); };
-	Int.Ptr.prototype.GobEncode = function() {
+0‚Ò	GobEncode‚Γ	Int.Ptr.prototype.GobEncode = function() {
 		var x, x$1, buf, i, b, _slice, _index;
 		x = this;
 		if (x === (go$ptrType(Int)).nil) {
@@ -1232,7 +1247,7 @@ $$
 		return [go$subslice(buf, i), null];
 	};
 	Int.prototype.GobEncode = function() { return this.go$val.GobEncode(); };
-	Int.Ptr.prototype.GobDecode = function(buf) {
+0‚	GobDecode‚	Int.Ptr.prototype.GobDecode = function(buf) {
 		var z, l, r, _slice, _index, b;
 		z = this;
 		if (buf.length === 0) {
@@ -1248,13 +1263,13 @@ $$
 		return null;
 	};
 	Int.prototype.GobDecode = function(buf) { return this.go$val.GobDecode(buf); };
-	Int.Ptr.prototype.MarshalJSON = function() {
+0σMarshalJSONγ	Int.Ptr.prototype.MarshalJSON = function() {
 		var x;
 		x = this;
 		return [new (go$sliceType(Go$Uint8))(go$stringToBytes(x.String())), null];
 	};
 	Int.prototype.MarshalJSON = function() { return this.go$val.MarshalJSON(); };
-	Int.Ptr.prototype.UnmarshalJSON = function(x) {
+0‚‘UnmarshalJSON‚~	Int.Ptr.prototype.UnmarshalJSON = function(x) {
 		var z, _tuple, ok;
 		z = this;
 		_tuple = z.SetString(go$bytesToString(x), 0), ok = _tuple[1];
@@ -1264,7 +1279,7 @@ $$
 		return null;
 	};
 	Int.prototype.UnmarshalJSON = function(x) { return this.go$val.UnmarshalJSON(x); };
-	nat.prototype.clear = function() {
+0‚clear‚”	nat.prototype.clear = function() {
 		var z, _ref, _i, i, _slice, _index;
 		z = this;
 		_ref = z;
@@ -1275,7 +1290,7 @@ $$
 		}
 	};
 	go$ptrType(nat).prototype.clear = function() { return this.go$get().clear(); };
-	nat.prototype.norm = function() {
+0‚¬norm‚Ά	nat.prototype.norm = function() {
 		var z, i, _slice, _index;
 		z = this;
 		i = z.length;
@@ -1285,7 +1300,7 @@ $$
 		return go$subslice(z, 0, i);
 	};
 	go$ptrType(nat).prototype.norm = function() { return this.go$get().norm(); };
-	nat.prototype.make = function(n) {
+0‚make‚	nat.prototype.make = function(n) {
 		var z;
 		z = this;
 		if (n <= z.capacity) {
@@ -1294,7 +1309,7 @@ $$
 		return nat.make(n, n + 4 >> 0, function() { return 0; });
 	};
 	go$ptrType(nat).prototype.make = function(n) { return this.go$get().make(n); };
-	nat.prototype.setWord = function(x) {
+0‚setWord‚‹	nat.prototype.setWord = function(x) {
 		var z, _slice, _index;
 		z = this;
 		if (x === 0) {
@@ -1305,7 +1320,7 @@ $$
 		return z;
 	};
 	go$ptrType(nat).prototype.setWord = function(x) { return this.go$get().setWord(x); };
-	nat.prototype.setUint64 = function(x) {
+0‚c	setUint64‚T	nat.prototype.setUint64 = function(x) {
 		var z, x$1, w, n, t, _ref, _i, i, _slice, _index;
 		z = this;
 		if (w = (x.low >>> 0), (x$1 = new Go$Uint64(0, w.constructor === Number ? w : 1), (x$1.high === x.high && x$1.low === x.low))) {
@@ -1328,7 +1343,7 @@ $$
 		return z;
 	};
 	go$ptrType(nat).prototype.setUint64 = function(x) { return this.go$get().setUint64(x); };
-	nat.prototype.set = function(x) {
+0ΝsetΕ	nat.prototype.set = function(x) {
 		var z;
 		z = this;
 		z = z.make(x.length);
@@ -1336,7 +1351,7 @@ $$
 		return z;
 	};
 	go$ptrType(nat).prototype.set = function(x) { return this.go$get().set(x); };
-	nat.prototype.add = function(x, y) {
+0‚]add‚T	nat.prototype.add = function(x, y) {
 		var z, m, n, x$1, c, x$2, x$3, _slice, _index;
 		z = this;
 		m = x.length;
@@ -1357,7 +1372,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.add = function(x, y) { return this.go$get().add(x, y); };
-	nat.prototype.sub = function(x, y) {
+0‚sub‚ό	nat.prototype.sub = function(x, y) {
 		var z, m, n, x$1, c, x$2, x$3;
 		z = this;
 		m = x.length;
@@ -1380,7 +1395,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.sub = function(x, y) { return this.go$get().sub(x, y); };
-	nat.prototype.cmp = function(y) {
+0‚cmp‚	nat.prototype.cmp = function(y) {
 		var r, x, m, n, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		r = 0;
 		x = this;
@@ -1406,7 +1421,7 @@ $$
 		return r;
 	};
 	go$ptrType(nat).prototype.cmp = function(y) { return this.go$get().cmp(y); };
-	nat.prototype.mulAddWW = function(x, y, r) {
+0‚ΊmulAddWW‚¬	nat.prototype.mulAddWW = function(x, y, r) {
 		var z, m, x$1, _slice, _index;
 		z = this;
 		m = x.length;
@@ -1418,7 +1433,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.mulAddWW = function(x, y, r) { return this.go$get().mulAddWW(x, y, r); };
-	var basicMul = function(z, x, y) {
+0‚WbasicMul‚I	var basicMul = function(z, x, y) {
 		var _ref, _i, _slice, _index, d, i, x$1, _slice$1, _index$1;
 		go$subslice(z, 0, (x.length + y.length >> 0)).clear();
 		_ref = y;
@@ -1431,19 +1446,19 @@ $$
 			}
 		}
 	};
-	var karatsubaAdd = function(z, x, n) {
+0‚™karatsubaAdd‚‡	var karatsubaAdd = function(z, x, n) {
 		var c, x$1, x$2, x$3;
 		if (c = addVV((x$1 = go$subslice(z, 0, n), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(z.array), z.offset, z.offset + z.length), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length)), !((c === 0))) {
 			addVW((x$2 = go$subslice(z, n, (n + (n >> 1 >> 0) >> 0)), go$subslice(new (go$sliceType(Word))(x$2.array), x$2.offset, x$2.offset + x$2.length)), (x$3 = go$subslice(z, n), go$subslice(new (go$sliceType(Word))(x$3.array), x$3.offset, x$3.offset + x$3.length)), c);
 		}
 	};
-	var karatsubaSub = function(z, x, n) {
+0‚™karatsubaSub‚‡	var karatsubaSub = function(z, x, n) {
 		var c, x$1, x$2, x$3;
 		if (c = subVV((x$1 = go$subslice(z, 0, n), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(z.array), z.offset, z.offset + z.length), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length)), !((c === 0))) {
 			subVW((x$2 = go$subslice(z, n, (n + (n >> 1 >> 0) >> 0)), go$subslice(new (go$sliceType(Word))(x$2.array), x$2.offset, x$2.offset + x$2.length)), (x$3 = go$subslice(z, n), go$subslice(new (go$sliceType(Word))(x$3.array), x$3.offset, x$3.offset + x$3.length)), c);
 		}
 	};
-	var karatsuba = function(z, x, y) {
+0‚	ψ	karatsuba‚	ι	var karatsuba = function(z, x, y) {
 		var n, n2, _tuple, x1, x0, _tuple$1, y1, y0, s, x$1, x$2, xd, x$3, x$4, yd, x$5, p, x$6, r, x$7;
 		n = y.length;
 		if (!(((n & 1) === 0)) || n < karatsubaThreshold || n < 2) {
@@ -1478,10 +1493,10 @@ $$
 			karatsubaSub(go$subslice(z, n2), p, n);
 		}
 	};
-	var alias = function(x, y) {
+0ΦaliasΜ	var alias = function(x, y) {
 		return x.capacity > 0 && y.capacity > 0 && go$sliceIsEqual(go$subslice(x, 0, x.capacity), (x.capacity - 1 >> 0), go$subslice(y, 0, y.capacity), (y.capacity - 1 >> 0));
 	};
-	var addAt = function(z, x, i) {
+0‚addAt‚φ	var addAt = function(z, x, i) {
 		var n, c, x$1, x$2, j, x$3, x$4;
 		if (n = x.length, n > 0) {
 			if (c = addVV((x$1 = go$subslice(z, i, (i + n >> 0)), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), (x$2 = go$subslice(z, i), go$subslice(new (go$sliceType(Word))(x$2.array), x$2.offset, x$2.offset + x$2.length)), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length)), !((c === 0))) {
@@ -1492,13 +1507,13 @@ $$
 			}
 		}
 	};
-	var max = function(x, y) {
+0SmaxL	var max = function(x, y) {
 		if (x > y) {
 			return x;
 		}
 		return y;
 	};
-	var karatsubaLen = function(n) {
+0ΙkaratsubaLenΈ	var karatsubaLen = function(n) {
 		var i, y;
 		i = 0;
 		while (n > karatsubaThreshold) {
@@ -1507,7 +1522,7 @@ $$
 		}
 		return (y = i, y < 32 ? (n << y) : 0) >> 0;
 	};
-	nat.prototype.mul = function(x, y) {
+0‚χmul‚ξ	nat.prototype.mul = function(x, y) {
 		var z, m, n, _slice, _index, k, x0, y0, x$1, x$2, t, x0$1, y1, y0$1, i, xi;
 		z = this;
 		m = x.length;
@@ -1558,7 +1573,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.mul = function(x, y) { return this.go$get().mul(x, y); };
-	nat.prototype.mulRange = function(a, b) {
+0‚5mulRange‚'	nat.prototype.mulRange = function(a, b) {
 		var z, x, m;
 		z = this;
 		if ((a.high === 0 && a.low === 0)) {
@@ -1574,7 +1589,7 @@ $$
 		return z.mul(nat.nil.mulRange(a, m), nat.nil.mulRange(new Go$Uint64(m.high + 0, m.low + 1), b));
 	};
 	go$ptrType(nat).prototype.mulRange = function(a, b) { return this.go$get().mulRange(a, b); };
-	nat.prototype.divW = function(x, y) {
+0‚xdivW‚n	nat.prototype.divW = function(x, y) {
 		var q, r, z, m;
 		q = nat.nil;
 		r = 0;
@@ -1595,7 +1610,7 @@ $$
 		return [q, r];
 	};
 	go$ptrType(nat).prototype.divW = function(x, y) { return this.go$get().divW(x, y); };
-	nat.prototype.div = function(z2, u, v) {
+0‚div‚ÿ	nat.prototype.div = function(z2, u, v) {
 		var q, r, z, r2, _tuple, _slice, _index, _tuple$1;
 		q = nat.nil;
 		r = nat.nil;
@@ -1618,7 +1633,7 @@ $$
 		return [q, r];
 	};
 	go$ptrType(nat).prototype.div = function(z2, u, v) { return this.go$get().div(z2, u, v); };
-	nat.prototype.divLarge = function(u, uIn, v) {
+0‚LdivLarge‚>	nat.prototype.divLarge = function(u, uIn, v) {
 		var q, r, z, n, m, qhatv, _slice, _index, shift, v1, x, _slice$1, _index$1, j, qhat, _slice$2, _index$2, _slice$3, _index$3, rhat, _tuple, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _tuple$1, _slice$7, _index$7, x1, x2, _slice$8, _index$8, prevRhat, _slice$9, _index$9, _tuple$2, _slice$10, _index$10, x$1, _slice$11, _index$11, x$2, x$3, c, x$4, x$5, c$1, _lhs, _index$12, _slice$12, _index$13, _slice$13, _index$14, _slice$14, _index$15, _tuple$3;
 		q = nat.nil;
 		r = nat.nil;
@@ -1676,7 +1691,7 @@ $$
 		return [q, r];
 	};
 	go$ptrType(nat).prototype.divLarge = function(u, uIn, v) { return this.go$get().divLarge(u, uIn, v); };
-	nat.prototype.bitLen = function() {
+0‚ΥbitLen‚Ι	nat.prototype.bitLen = function() {
 		var x, i, _slice, _index;
 		x = this;
 		if (i = x.length - 1 >> 0, i >= 0) {
@@ -1685,7 +1700,7 @@ $$
 		return 0;
 	};
 	go$ptrType(nat).prototype.bitLen = function() { return this.go$get().bitLen(); };
-	var hexValue = function(ch) {
+0‚7hexValue‚)	var hexValue = function(ch) {
 		var d;
 		d = 37;
 		if (48 <= ch && ch <= 57) {
@@ -1697,7 +1712,7 @@ $$
 		}
 		return (d >>> 0);
 	};
-	nat.prototype.scan = function(r, base) {
+0‚scan‚w	nat.prototype.scan = function(r, base) {
 		var z, _tuple, ch, err, b, _tuple$1, _ref, _ref$1, _tuple$2, bb, dd, _q, max$1, d, x, _tuple$3;
 		z = this;
 		if (base < 0 || (base === 1) || 36 < base) {
@@ -1768,13 +1783,13 @@ $$
 		return [z.norm(), (b >> 0), null];
 	};
 	go$ptrType(nat).prototype.scan = function(r, base) { return this.go$get().scan(r, base); };
-	nat.prototype.decimalString = function() {
+0‚decimalStringς	nat.prototype.decimalString = function() {
 		var x;
 		x = this;
 		return x.string("0123456789abcdefghijklmnopqrstuvwxyz".substring(0, 10));
 	};
 	go$ptrType(nat).prototype.decimalString = function() { return this.go$get().decimalString(); };
-	nat.prototype.string = function(charset$1) {
+0‚ string‚	nat.prototype.string = function(charset$1) {
 		var x, b, i, s, shift, y, mask, _slice, _index, w, nbits, k, _slice$1, _index$1, y$1, _slice$2, _index$2, y$2, _slice$3, _index$3, _slice$4, _index$4, y$3, _slice$5, _index$5, _slice$6, _index$6, y$4, bb, ndigits, _q, max$1, x$1, table, q, zero, _slice$7, _index$7;
 		x = this;
 		b = (charset$1.length >>> 0);
@@ -1836,7 +1851,7 @@ $$
 		return go$bytesToString(go$subslice(s, i));
 	};
 	go$ptrType(nat).prototype.string = function(charset$1) { return this.go$get().string(charset$1); };
-	nat.prototype.convertWords = function(s, charset$1, b, ndigits, bb, table) {
+0‚convertWords‚	nat.prototype.convertWords = function(s, charset$1, b, ndigits, bb, table) {
 		var q, r, index, maxLength, minLength, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _tuple, _slice$3, _index$3, _slice$4, _index$4, h, i, r$1, _tuple$1, j, _q, t, _slice$5, _index$5, _tuple$2, j$1, _r, _slice$6, _index$6, _q$1, zero, _slice$7, _index$7;
 		q = this;
 		if (!(table === (go$sliceType(divisor)).nil)) {
@@ -1893,13 +1908,13 @@ $$
 		}
 	};
 	go$ptrType(nat).prototype.convertWords = function(s, charset$1, b, ndigits, bb, table) { return this.go$get().convertWords(s, charset$1, b, ndigits, bb, table); };
-	nat.prototype.expWW = function(x, y) {
+0ηexpWWέ	nat.prototype.expWW = function(x, y) {
 		var z;
 		z = this;
 		return z.expNN(nat.nil.setWord(x), nat.nil.setWord(y), nat.nil);
 	};
 	go$ptrType(nat).prototype.expWW = function(x, y) { return this.go$get().expWW(x, y); };
-	var divisors = function(m, b, ndigits, bb) {
+0‚ϋdivisors‚ν	var divisors = function(m, b, ndigits, bb) {
 		var k, words, table, _slice, _index, larger, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, x, x$1, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15;
 		if ((leafSize === 0) || m <= leafSize) {
 			return (go$sliceType(divisor)).nil;
@@ -1944,7 +1959,7 @@ $$
 		}
 		return table;
 	};
-	var trailingZeroBits = function(x) {
+0‚‹trailingZeroBits‚u	var trailingZeroBits = function(x) {
 		var _ref, _slice, _index, x$1, _slice$1, _index$1, x$2, x$3;
 		_ref = 32;
 		if (_ref === 32) {
@@ -1955,7 +1970,7 @@ $$
 			throw go$panic(new Go$String("unknown word size"));
 		}
 	};
-	nat.prototype.trailingZeroBits = function() {
+0‚θtrailingZeroBits‚Ò	nat.prototype.trailingZeroBits = function() {
 		var x, i, _slice, _index, _slice$1, _index$1;
 		x = this;
 		if (x.length === 0) {
@@ -1968,7 +1983,7 @@ $$
 		return ((((i >>> 16 << 16) * 32 >>> 0) + (i << 16 >>> 16) * 32) >>> 0) + trailingZeroBits((_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) >>> 0;
 	};
 	go$ptrType(nat).prototype.trailingZeroBits = function() { return this.go$get().trailingZeroBits(); };
-	nat.prototype.shl = function(x, s) {
+0‚›shl‚’	nat.prototype.shl = function(x, s) {
 		var z, m, _q, n, x$1, _r, _slice, _index;
 		z = this;
 		m = x.length;
@@ -1982,7 +1997,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.shl = function(x, s) { return this.go$get().shl(x, s); };
-	nat.prototype.shr = function(x, s) {
+0‚½shr‚΄	nat.prototype.shr = function(x, s) {
 		var z, m, _q, n, x$1, _r;
 		z = this;
 		m = x.length;
@@ -1995,7 +2010,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.shr = function(x, s) { return this.go$get().shr(x, s); };
-	nat.prototype.setBit = function(x, i, b) {
+0‚ΎsetBit‚²	nat.prototype.setBit = function(x, i, b) {
 		var z, _q, j, y, _r, m, n, _ref, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _lhs$1, _index$3, _slice$2, _index$4, _slice$3, _index$5;
 		z = this;
 		j = ((_q = i / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
@@ -2024,7 +2039,7 @@ $$
 		throw go$panic(new Go$String("set bit is not 0 or 1"));
 	};
 	go$ptrType(nat).prototype.setBit = function(x, i, b) { return this.go$get().setBit(x, i, b); };
-	nat.prototype.bit = function(i) {
+0‚‡bit‚~	nat.prototype.bit = function(i) {
 		var z, _q, j, y, _r, _slice, _index;
 		z = this;
 		j = ((_q = i / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
@@ -2034,7 +2049,7 @@ $$
 		return (((((y = ((_r = i % 32, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"))), y < 32 ? ((_slice = z, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> y) : 0) >>> 0) & 1) >>> 0) >>> 0);
 	};
 	go$ptrType(nat).prototype.bit = function(i) { return this.go$get().bit(i); };
-	nat.prototype.and = function(x, y) {
+0‚cand‚Z	nat.prototype.and = function(x, y) {
 		var z, m, n, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		z = this;
 		m = x.length;
@@ -2051,7 +2066,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.and = function(x, y) { return this.go$get().and(x, y); };
-	nat.prototype.andNot = function(x, y) {
+0‚¤andNot‚	nat.prototype.andNot = function(x, y) {
 		var z, m, n, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		z = this;
 		m = x.length;
@@ -2069,7 +2084,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.andNot = function(x, y) { return this.go$get().andNot(x, y); };
-	nat.prototype.or = function(x, y) {
+0‚αor‚Ω	nat.prototype.or = function(x, y) {
 		var z, m, n, s, _tuple, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		z = this;
 		m = x.length;
@@ -2089,7 +2104,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.or = function(x, y) { return this.go$get().or(x, y); };
-	nat.prototype.xor = function(x, y) {
+0‚εxor‚ά	nat.prototype.xor = function(x, y) {
 		var z, m, n, s, _tuple, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		z = this;
 		m = x.length;
@@ -2109,10 +2124,10 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.xor = function(x, y) { return this.go$get().xor(x, y); };
-	var greaterThan = function(x1, x2, y1, y2) {
+0mgreaterThan^	var greaterThan = function(x1, x2, y1, y2) {
 		return x1 > y1 || (x1 === y1) && x2 > y2;
 	};
-	nat.prototype.modW = function(d) {
+0‚modW‚‚	nat.prototype.modW = function(d) {
 		var r, x, q;
 		r = 0;
 		x = this;
@@ -2122,7 +2137,7 @@ $$
 		return r;
 	};
 	go$ptrType(nat).prototype.modW = function(d) { return this.go$get().modW(d); };
-	nat.prototype.random = function(rand$1, limit, n) {
+0‚’random‚†	nat.prototype.random = function(rand$1, limit, n) {
 		var z, _r, bitLengthOfMSW, y, mask, _ref, _ref$1, _i, i, _slice, _index, _ref$2, _i$1, i$1, _slice$1, _index$1, _lhs, _index$2, _slice$2, _index$3, _slice$3, _index$4;
 		z = this;
 		if (alias(z, limit)) {
@@ -2161,7 +2176,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.random = function(rand$1, limit, n) { return this.go$get().random(rand$1, limit, n); };
-	nat.prototype.expNN = function(x, y, m) {
+0‚	‹expNN‚	€	nat.prototype.expNN = function(x, y, m) {
 		var z, _slice, _index, _slice$1, _index$1, v, shift, y$1, q, w, _tuple, zz, r, j, _tuple$1, _tuple$2, _tuple$3, _tuple$4, i, _slice$2, _index$2, j$1, _tuple$5, _tuple$6, _tuple$7, _tuple$8;
 		z = this;
 		if (alias(z, x) || alias(z, y)) {
@@ -2223,7 +2238,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.expNN = function(x, y, m) { return this.go$get().expNN(x, y, m); };
-	nat.prototype.expNNWindowed = function(x, y, m) {
+0‚ΆexpNNWindowed‚	nat.prototype.expNNWindowed = function(x, y, m) {
 		var z, _tuple, zz, r, powers, i, v, _q, _q$1, v$1, v$2, _tuple$1, p2, p, p1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, i$1, _slice, _index, yi, j, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$20;
 		z = this;
 		_tuple = [nat.nil, nat.nil], zz = _tuple[0], r = _tuple[1];
@@ -2277,7 +2292,7 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.expNNWindowed = function(x, y, m) { return this.go$get().expNNWindowed(x, y, m); };
-	nat.prototype.probablyPrime = function(reps) {
+0‚ÒprobablyPrime‚Ώ	nat.prototype.probablyPrime = function(reps) {
 		var n, _slice, _index, _r, _slice$1, _index$1, _slice$2, _index$2, _ref, _slice$3, _index$3, r, _ref$1, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, nm1, k, q, nm3, x, _slice$4, _index$4, rand$1, _tuple, x$1, y, quotient, nm3Len, i, j, _tuple$1;
 		n = this;
 		if (n.length === 0) {
@@ -2341,7 +2356,7 @@ $$
 		return true;
 	};
 	go$ptrType(nat).prototype.probablyPrime = function(reps) { return this.go$get().probablyPrime(reps); };
-	nat.prototype.bytes = function(buf) {
+0‚όbytes‚ρ	nat.prototype.bytes = function(buf) {
 		var i, z, _ref, _i, _slice, _index, d, j, _slice$1, _index$1, _slice$2, _index$2;
 		i = 0;
 		z = this;
@@ -2364,7 +2379,7 @@ $$
 		return i;
 	};
 	go$ptrType(nat).prototype.bytes = function(buf) { return this.go$get().bytes(buf); };
-	nat.prototype.setBytes = function(buf) {
+0‚΄setBytes‚¦	nat.prototype.setBytes = function(buf) {
 		var z, _q, k, s, d, i, y, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		z = this;
 		z = z.make((_q = (((buf.length + 4 >> 0) - 1 >> 0)) / 4, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")));
@@ -2388,10 +2403,11 @@ $$
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.setBytes = function(buf) { return this.go$get().setBytes(buf); };
-	var NewRat = go$pkg.NewRat = function(a, b) {
+0eNewRat[	var NewRat = go$pkg.NewRat = function(a, b) {
 		return new Rat.Ptr().SetFrac64(a, b);
 	};
-	Rat.Ptr.prototype.SetFloat64 = function(f) {
+0‚9
+SetFloat64‚)	Rat.Ptr.prototype.SetFloat64 = function(f) {
 		var z, bits, mantissa, x, exp, _ref, shift, x$1;
 		z = this;
 		bits = math.Float64bits(f);
@@ -2422,10 +2438,10 @@ $$
 		return z.norm();
 	};
 	Rat.prototype.SetFloat64 = function(f) { return this.go$val.SetFloat64(f); };
-	var isFinite = function(f) {
+0_isFiniteS	var isFinite = function(f) {
 		return math.Abs(f) <= 1.7976931348623157e+308;
 	};
-	var low64 = function(z) {
+0‚οlow64‚δ	var low64 = function(z) {
 		var x, x$1, _slice, _index, x$2, x$3, _slice$1, _index$1, x$4, _slice$2, _index$2;
 		if (z.length === 0) {
 			return new Go$Uint64(0, 0);
@@ -2435,7 +2451,7 @@ $$
 		}
 		return (x$4 = (_slice$2 = z, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), new Go$Uint64(0, x$4.constructor === Number ? x$4 : 1));
 	};
-	var quotToFloat = function(a, b) {
+0‚	quotToFloat‚χ	var quotToFloat = function(a, b) {
 		var f, exact, alen, _tuple, blen, exp, _tuple$1, a2, b2, shift, q, _tuple$2, r, mantissa, haveRem, x, x$1, shift$1, x$2, x$3, lostbits, x$4, x$5;
 		f = 0;
 		exact = false;
@@ -2492,7 +2508,7 @@ $$
 		}
 		return [f, exact];
 	};
-	Rat.Ptr.prototype.Float64 = function() {
+0‚‚Float64‚u	Rat.Ptr.prototype.Float64 = function() {
 		var f, exact, x, b, _tuple;
 		f = 0;
 		exact = false;
@@ -2508,7 +2524,7 @@ $$
 		return [f, exact];
 	};
 	Rat.prototype.Float64 = function() { return this.go$val.Float64(); };
-	Rat.Ptr.prototype.SetFrac = function(a, b) {
+0‚ΜSetFrac‚Ώ	Rat.Ptr.prototype.SetFrac = function(a, b) {
 		var z, babs;
 		z = this;
 		z.a.neg = !(a.neg === b.neg);
@@ -2524,7 +2540,7 @@ $$
 		return z.norm();
 	};
 	Rat.prototype.SetFrac = function(a, b) { return this.go$val.SetFrac(a, b); };
-	Rat.Ptr.prototype.SetFrac64 = function(a, b) {
+0‚ε	SetFrac64‚Φ	Rat.Ptr.prototype.SetFrac64 = function(a, b) {
 		var z;
 		z = this;
 		z.a.SetInt64(a);
@@ -2539,7 +2555,7 @@ $$
 		return z.norm();
 	};
 	Rat.prototype.SetFrac64 = function(a, b) { return this.go$val.SetFrac64(a, b); };
-	Rat.Ptr.prototype.SetInt = function(x) {
+0ΜSetIntΑ	Rat.Ptr.prototype.SetInt = function(x) {
 		var z;
 		z = this;
 		z.a.Set(x);
@@ -2547,7 +2563,7 @@ $$
 		return z;
 	};
 	Rat.prototype.SetInt = function(x) { return this.go$val.SetInt(x); };
-	Rat.Ptr.prototype.SetInt64 = function(x) {
+0ΩSetInt64Μ	Rat.Ptr.prototype.SetInt64 = function(x) {
 		var z;
 		z = this;
 		z.a.SetInt64(x);
@@ -2555,7 +2571,7 @@ $$
 		return z;
 	};
 	Rat.prototype.SetInt64 = function(x) { return this.go$val.SetInt64(x); };
-	Rat.Ptr.prototype.Set = function(x) {
+0ΟSetΗ	Rat.Ptr.prototype.Set = function(x) {
 		var z;
 		z = this;
 		if (!(z === x)) {
@@ -2565,7 +2581,7 @@ $$
 		return z;
 	};
 	Rat.prototype.Set = function(x) { return this.go$val.Set(x); };
-	Rat.Ptr.prototype.Abs = function(x) {
+0΄Abs¬	Rat.Ptr.prototype.Abs = function(x) {
 		var z;
 		z = this;
 		z.Set(x);
@@ -2573,7 +2589,7 @@ $$
 		return z;
 	};
 	Rat.prototype.Abs = function(x) { return this.go$val.Abs(x); };
-	Rat.Ptr.prototype.Neg = function(x) {
+0ΝNegΕ	Rat.Ptr.prototype.Neg = function(x) {
 		var z;
 		z = this;
 		z.Set(x);
@@ -2581,7 +2597,7 @@ $$
 		return z;
 	};
 	Rat.prototype.Neg = function(x) { return this.go$val.Neg(x); };
-	Rat.Ptr.prototype.Inv = function(x) {
+0‚ΘInv‚Ώ	Rat.Ptr.prototype.Inv = function(x) {
 		var z, a, b, _tuple;
 		z = this;
 		if (x.a.abs.length === 0) {
@@ -2600,25 +2616,25 @@ $$
 		return z;
 	};
 	Rat.prototype.Inv = function(x) { return this.go$val.Inv(x); };
-	Rat.Ptr.prototype.Sign = function() {
+0Sign–	Rat.Ptr.prototype.Sign = function() {
 		var x;
 		x = this;
 		return x.a.Sign();
 	};
 	Rat.prototype.Sign = function() { return this.go$val.Sign(); };
-	Rat.Ptr.prototype.IsInt = function() {
+0ΞIsIntΔ	Rat.Ptr.prototype.IsInt = function() {
 		var x;
 		x = this;
 		return (x.b.abs.length === 0) || (x.b.abs.cmp(natOne) === 0);
 	};
 	Rat.prototype.IsInt = function() { return this.go$val.IsInt(); };
-	Rat.Ptr.prototype.Num = function() {
+0”Num	Rat.Ptr.prototype.Num = function() {
 		var x;
 		x = this;
 		return x.a;
 	};
 	Rat.prototype.Num = function() { return this.go$val.Num(); };
-	Rat.Ptr.prototype.Denom = function() {
+0σDenomι	Rat.Ptr.prototype.Denom = function() {
 		var x;
 		x = this;
 		x.b.neg = false;
@@ -2628,7 +2644,7 @@ $$
 		return x.b;
 	};
 	Rat.prototype.Denom = function() { return this.go$val.Denom(); };
-	Rat.Ptr.prototype.norm = function() {
+0‚norm‚ϊ	Rat.Ptr.prototype.norm = function() {
 		var z, neg, f, _tuple, _tuple$1;
 		z = this;
 		if (z.a.abs.length === 0) {
@@ -2653,7 +2669,7 @@ $$
 		return z;
 	};
 	Rat.prototype.norm = function() { return this.go$val.norm(); };
-	var mulDenom = function(z, x, y) {
+0®mulDenom΅	var mulDenom = function(z, x, y) {
 		if (x.length === 0) {
 			return z.set(y);
 		} else if (y.length === 0) {
@@ -2661,7 +2677,8 @@ $$
 		}
 		return z.mul(x, y);
 	};
-	var scaleDenom = function(x, f) {
+0ΐ
+scaleDenom±	var scaleDenom = function(x, f) {
 		var z;
 		z = new Int.Ptr();
 		if (f.length === 0) {
@@ -2671,13 +2688,13 @@ $$
 		z.neg = x.neg;
 		return z;
 	};
-	Rat.Ptr.prototype.Cmp = function(y) {
+0ΚCmpΒ	Rat.Ptr.prototype.Cmp = function(y) {
 		var x;
 		x = this;
 		return scaleDenom(x.a, y.b.abs).Cmp(scaleDenom(y.a, x.b.abs));
 	};
 	Rat.prototype.Cmp = function(y) { return this.go$val.Cmp(y); };
-	Rat.Ptr.prototype.Add = function(x, y) {
+0‚4Add‚+	Rat.Ptr.prototype.Add = function(x, y) {
 		var z, a1, a2;
 		z = this;
 		a1 = scaleDenom(x.a, y.b.abs);
@@ -2687,7 +2704,7 @@ $$
 		return z.norm();
 	};
 	Rat.prototype.Add = function(x, y) { return this.go$val.Add(x, y); };
-	Rat.Ptr.prototype.Sub = function(x, y) {
+0‚4Sub‚+	Rat.Ptr.prototype.Sub = function(x, y) {
 		var z, a1, a2;
 		z = this;
 		a1 = scaleDenom(x.a, y.b.abs);
@@ -2697,7 +2714,7 @@ $$
 		return z.norm();
 	};
 	Rat.prototype.Sub = function(x, y) { return this.go$val.Sub(x, y); };
-	Rat.Ptr.prototype.Mul = function(x, y) {
+0λMulγ	Rat.Ptr.prototype.Mul = function(x, y) {
 		var z;
 		z = this;
 		z.a.Mul(x.a, y.a);
@@ -2705,7 +2722,7 @@ $$
 		return z.norm();
 	};
 	Rat.prototype.Mul = function(x, y) { return this.go$val.Mul(x, y); };
-	Rat.Ptr.prototype.Quo = function(x, y) {
+0‚Quo‚	Rat.Ptr.prototype.Quo = function(x, y) {
 		var z, a, b;
 		z = this;
 		if (y.a.abs.length === 0) {
@@ -2719,10 +2736,10 @@ $$
 		return z.norm();
 	};
 	Rat.prototype.Quo = function(x, y) { return this.go$val.Quo(x, y); };
-	var ratTok = function(ch) {
+0dratTokZ	var ratTok = function(ch) {
 		return strings.IndexRune("+-/0123456789.eE", ch) >= 0;
 	};
-	Rat.Ptr.prototype.Scan = function(s, ch) {
+0‚1Scan‚'	Rat.Ptr.prototype.Scan = function(s, ch) {
 		var z, _tuple, tok, err, ok, _tuple$1;
 		z = this;
 		_tuple = s.Token(true, ratTok), tok = _tuple[0], err = _tuple[1];
@@ -2738,7 +2755,7 @@ $$
 		return null;
 	};
 	Rat.prototype.Scan = function(s, ch) { return this.go$val.Scan(s, ch); };
-	Rat.Ptr.prototype.SetString = function(s) {
+0‚	SetString‚	Rat.Ptr.prototype.SetString = function(s) {
 		var z, sep, ok, _tuple, err, _tuple$1, e, exp, ok$1, _tuple$2, ok$2, _tuple$3, powTen;
 		z = this;
 		if (s.length === 0) {
@@ -2786,7 +2803,7 @@ $$
 		return [z, true];
 	};
 	Rat.prototype.SetString = function(s) { return this.go$val.SetString(s); };
-	Rat.Ptr.prototype.String = function() {
+0‚	Stringώ	Rat.Ptr.prototype.String = function() {
 		var x, s;
 		x = this;
 		s = "/1";
@@ -2796,7 +2813,7 @@ $$
 		return x.a.String() + s;
 	};
 	Rat.prototype.String = function() { return this.go$val.String(); };
-	Rat.Ptr.prototype.RatString = function() {
+0β	RatStringΤ	Rat.Ptr.prototype.RatString = function() {
 		var x;
 		x = this;
 		if (x.IsInt()) {
@@ -2805,7 +2822,7 @@ $$
 		return x.String();
 	};
 	Rat.prototype.RatString = function() { return this.go$val.RatString(); };
-	Rat.Ptr.prototype.FloatString = function(prec) {
+0‚-FloatString‚	Rat.Ptr.prototype.FloatString = function(prec) {
 		var x, s, _tuple, q, r, p, _tuple$1, r2, s$1, rs, leadingZeros$1;
 		x = this;
 		if (x.IsInt()) {
@@ -2842,7 +2859,7 @@ $$
 		return s$1;
 	};
 	Rat.prototype.FloatString = function(prec) { return this.go$val.FloatString(prec); };
-	Rat.Ptr.prototype.GobEncode = function() {
+0‚	GobEncode‚ώ	Rat.Ptr.prototype.GobEncode = function() {
 		var x, x$1, buf, i, j, n, b, _slice, _index;
 		x = this;
 		if (x === (go$ptrType(Rat)).nil) {
@@ -2865,7 +2882,7 @@ $$
 		return [go$subslice(buf, j), null];
 	};
 	Rat.prototype.GobEncode = function() { return this.go$val.GobEncode(); };
-	Rat.Ptr.prototype.GobDecode = function(buf) {
+0‚–	GobDecode‚‡	Rat.Ptr.prototype.GobDecode = function(buf) {
 		var z, l, r, _slice, _index, b, i;
 		z = this;
 		if (buf.length === 0) {
@@ -2883,44 +2900,7 @@ $$
 		return null;
 	};
 	Rat.prototype.GobDecode = function(buf) { return this.go$val.GobDecode(buf); };
-	var mulWW = mulWW_g;
-	var divWW = divWW_g;
-	var addVV = addVV_g;
-	var subVV = subVV_g;
-	var addVW = addVW_g;
-	var subVW = subVW_g;
-	var shlVU = shlVU_g;
-	var shrVU = shrVU_g;
-	var mulAddVWW = mulAddVWW_g;
-	var addMulVVW = addMulVVW_g;
-	var divWVW = divWVW_g;
-	var bitLen = bitLen_g;
-	var _m = 4294967295;
-	var _logS = 2;
-	var _S = 4;
-	var _W = 32;
-	var _B = 4294967296;
-	var _M = 4294967295;
-	var _W2 = 16;
-	var _B2 = 65536;
-	var _M2 = 65535;
-	var intGobVersion = 1;
-	go$pkg.MaxBase = 36;
-	var lowercaseDigits = "0123456789abcdefghijklmnopqrstuvwxyz";
-	var uppercaseDigits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	var deBruijn32 = 125613361;
-	var deBruijn64 = 285870213051353865;
-	var ratGobVersion = 1;
-	var intOne = (go$ptrType(Int)).nil;
-	var natOne = nat.nil;
-	var natTwo = nat.nil;
-	var natTen = nat.nil;
-	var karatsubaThreshold = 0;
-	var leafSize = 0;
-	var cacheBase10 = new (go$structType([["", "", sync.Mutex, ""], ["table", "math/big", (go$arrayType(divisor, 64)), ""]])).Ptr(new sync.Mutex.Ptr(), go$makeNativeArray("Struct", 64, function() { return new divisor.Ptr(); }));
-	var deBruijn32Lookup = (go$sliceType(Go$Uint8)).nil;
-	var deBruijn64Lookup = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.init = function() {
+0‚init‚”	go$pkg.init = function() {
 		natOne = new nat([1]);
 		intOne = new Int.Ptr(false, natOne);
 		natTwo = new nat([2]);

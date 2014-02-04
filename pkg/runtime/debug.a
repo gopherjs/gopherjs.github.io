@@ -1,4 +1,4 @@
-0ÇDäÇepackage debug
+0ÇE`runtime/debugÇepackage debug
 import runtime "runtime"
 import sort "sort"
 import time "time"
@@ -125,14 +125,8 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0ÅÆruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilruntime/debugÇ%l	var runtime = go$packages["runtime"];
-	var sort = go$packages["sort"];
-	var time = go$packages["time"];
-	var bytes = go$packages["bytes"];
-	var fmt = go$packages["fmt"];
-	var ioutil = go$packages["io/ioutil"];
-	var os = go$packages["os"];
-	var GCStats;
+0ÅÆruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilruntime/debug0k0runtimeruntime0sortsort0timetime0bytesbytes0
+fmtfmt0	io/ioutilioutil0ososÇE	var GCStats;
 	GCStats = go$newType(0, "Struct", "debug.GCStats", "GCStats", "runtime/debug", function(LastGC_, NumGC_, PauseTotal_, Pause_, PauseQuantiles_) {
 		this.go$val = this;
 		this.LastGC = LastGC_ !== undefined ? LastGC_ : new time.Time.Ptr();
@@ -149,25 +143,28 @@ $$
 	byDuration.init(time.Duration);
 	byDuration.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byDuration)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	var readGCStats = function() {
+ÅÉ	var dunno = (go$sliceType(Go$Uint8)).nil;
+	var centerDot = (go$sliceType(Go$Uint8)).nil;
+	var dot = (go$sliceType(Go$Uint8)).nil;
+0Ç˜0ureadGCStatsf	var readGCStats = function() {
 		throw go$panic("Native function not implemented: readGCStats");
 	};
-	var enableGC = function() {
+0lenableGC`	var enableGC = function() {
 		throw go$panic("Native function not implemented: enableGC");
 	};
-	var setGCPercent = function() {
+0xsetGCPercenth	var setGCPercent = function() {
 		throw go$panic("Native function not implemented: setGCPercent");
 	};
-	var freeOSMemory = function() {
+0xfreeOSMemoryh	var freeOSMemory = function() {
 		throw go$panic("Native function not implemented: freeOSMemory");
 	};
-	var setMaxStack = function() {
+0usetMaxStackf	var setMaxStack = function() {
 		throw go$panic("Native function not implemented: setMaxStack");
 	};
-	var setMaxThreads = function() {
+0{setMaxThreadsj	var setMaxThreads = function() {
 		throw go$panic("Native function not implemented: setMaxThreads");
 	};
-	var ReadGCStats = go$pkg.ReadGCStats = function(stats) {
+0Ç!ReadGCStatsÇ	var ReadGCStats = go$pkg.ReadGCStats = function(stats) {
 		var v, n, x, _slice, _index, _struct, x$1, _slice$1, _index$1, _slice$2, _index$2, _ref, _i, i, _slice$3, _index$3, sorted, nq, i$1, _slice$4, _index$4, _q, x$2, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		if (stats.Pause.capacity < 512) {
 			stats.Pause = (go$sliceType(time.Duration)).make(512, 0, function() { return new time.Duration(0, 0); });
@@ -200,43 +197,44 @@ $$
 			}
 		}
 	};
-	byDuration.prototype.Len = function() {
+0Å±LenÅ©	byDuration.prototype.Len = function() {
 		var x;
 		x = this;
 		return x.length;
 	};
 	go$ptrType(byDuration).prototype.Len = function() { return this.go$get().Len(); };
-	byDuration.prototype.Swap = function(i, j) {
+0Ç¥SwapÇ™	byDuration.prototype.Swap = function(i, j) {
 		var x, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		x = this;
 		_tuple = [(_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = x, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(byDuration).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-	byDuration.prototype.Less = function(i, j) {
+0ÇyLessÇo	byDuration.prototype.Less = function(i, j) {
 		var x, x$1, _slice, _index, x$2, _slice$1, _index$1;
 		x = this;
 		return (x$1 = (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), x$2 = (_slice$1 = x, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (x$1.high < x$2.high || (x$1.high === x$2.high && x$1.low < x$2.low)));
 	};
 	go$ptrType(byDuration).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-	var SetGCPercent = go$pkg.SetGCPercent = function(percent) {
+0rSetGCPercentb	var SetGCPercent = go$pkg.SetGCPercent = function(percent) {
 		return setGCPercent(percent);
 	};
-	var FreeOSMemory = go$pkg.FreeOSMemory = function() {
+0]FreeOSMemoryM	var FreeOSMemory = go$pkg.FreeOSMemory = function() {
 		freeOSMemory();
 	};
-	var SetMaxStack = go$pkg.SetMaxStack = function(bytes$1) {
+0nSetMaxStack_	var SetMaxStack = go$pkg.SetMaxStack = function(bytes$1) {
 		return setMaxStack(bytes$1);
 	};
-	var SetMaxThreads = go$pkg.SetMaxThreads = function(threads) {
+0vSetMaxThreadse	var SetMaxThreads = go$pkg.SetMaxThreads = function(threads) {
 		return setMaxThreads(threads);
 	};
-	var PrintStack = go$pkg.PrintStack = function() {
+0a
+PrintStackS	var PrintStack = go$pkg.PrintStack = function() {
 		os.Stderr.Write(stack());
 	};
-	var Stack = go$pkg.Stack = function() {
+0HStack?	var Stack = go$pkg.Stack = function() {
 		return stack();
 	};
-	var stack = function() {
+0ÇﬂstackÇ‘	var stack = function() {
 		var buf, lines, lastFile, i, _tuple, pc, file, line, ok, _tuple$1, data, err;
 		buf = new bytes.Buffer.Ptr();
 		lines = (go$sliceType((go$sliceType(Go$Uint8)))).nil;
@@ -263,14 +261,14 @@ $$
 		}
 		return buf.Bytes();
 	};
-	var source = function(lines, n) {
+0Ç9sourceÇ-	var source = function(lines, n) {
 		var _slice, _index;
 		if (n < 0 || n >= lines.length) {
 			return dunno;
 		}
 		return bytes.Trim((_slice = lines, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), " \t");
 	};
-	var function$1 = function(pc) {
+0ÇúfunctionÇé	var function$1 = function(pc) {
 		var fn, name, period;
 		fn = runtime.FuncForPC(pc);
 		if (fn === (go$ptrType(runtime.Func)).nil) {
@@ -283,10 +281,7 @@ $$
 		name = bytes.Replace(name, centerDot, dot, -1);
 		return name;
 	};
-	var dunno = (go$sliceType(Go$Uint8)).nil;
-	var centerDot = (go$sliceType(Go$Uint8)).nil;
-	var dot = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.init = function() {
+0ÅÒinitÅË	go$pkg.init = function() {
 		dunno = new (go$sliceType(Go$Uint8))(go$stringToBytes("???"));
 		centerDot = new (go$sliceType(Go$Uint8))(go$stringToBytes("\xC2\xB7"));
 		dot = new (go$sliceType(Go$Uint8))(go$stringToBytes("."));

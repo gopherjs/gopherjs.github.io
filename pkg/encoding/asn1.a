@@ -1,4 +1,4 @@
-0ÉIúÇàpackage asn1
+0ÉKÆencoding/asn1Çàpackage asn1
 import fmt "fmt"
 import big "math/big"
 import reflect "reflect"
@@ -63,17 +63,8 @@ type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".er
 type @"bytes".readOp int
 type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
 $$
-0Å¥runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/binary	math/randstringsmath/bigencoding/asn1É8T	var fmt = go$packages["fmt"];
-	var big = go$packages["math/big"];
-	var reflect = go$packages["reflect"];
-	var time = go$packages["time"];
-	var strconv = go$packages["strconv"];
-	var strings = go$packages["strings"];
-	var bytes = go$packages["bytes"];
-	var errors = go$packages["errors"];
-	var io = go$packages["io"];
-	var utf8 = go$packages["unicode/utf8"];
-	var StructuralError;
+0Å¥runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/binary	math/randstringsmath/bigencoding/asn10Å©0
+fmtfmt0math/bigbig0reflectreflect0timetime0strconvstrconv0stringsstrings0bytesbytes0errorserrors0ioio0unicode/utf8utf8Ç.„	var StructuralError;
 	StructuralError = go$newType(0, "Struct", "asn1.StructuralError", "StructuralError", "encoding/asn1", function(Msg_) {
 		this.go$val = this;
 		this.Msg = Msg_ !== undefined ? Msg_ : "";
@@ -207,19 +198,28 @@ $$
 	forkableWriter.init([["", "", (go$ptrType(bytes.Buffer)), ""], ["pre", "encoding/asn1", (go$ptrType(forkableWriter)), ""], ["post", "encoding/asn1", (go$ptrType(forkableWriter)), ""]]);
 	forkableWriter.methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false]];
 	(go$ptrType(forkableWriter)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Len", "", [], [Go$Int], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["fork", "encoding/asn1", [], [(go$ptrType(forkableWriter)), (go$ptrType(forkableWriter))], false], ["writeTo", "encoding/asn1", [io.Writer], [Go$Int, go$error], false]];
-	StructuralError.Ptr.prototype.Error = function() {
+Å˝	var bigOne = (go$ptrType(big.Int)).nil;
+	var bitStringType = null;
+	var objectIdentifierType = null;
+	var enumeratedType = null;
+	var flagType = null;
+	var timeType = null;
+	var rawValueType = null;
+	var rawContentsType = null;
+	var bigIntType = null;
+0É	ƒ0ÇErrorÇ	StructuralError.Ptr.prototype.Error = function() {
 		var _struct, e;
 		e = (_struct = this, new StructuralError.Ptr(_struct.Msg));
 		return "asn1: structure error: " + e.Msg;
 	};
 	StructuralError.prototype.Error = function() { return this.go$val.Error(); };
-	SyntaxError.Ptr.prototype.Error = function() {
+0Å˛ErrorÅÙ	SyntaxError.Ptr.prototype.Error = function() {
 		var _struct, e;
 		e = (_struct = this, new SyntaxError.Ptr(_struct.Msg));
 		return "asn1: syntax error: " + e.Msg;
 	};
 	SyntaxError.prototype.Error = function() { return this.go$val.Error(); };
-	var parseBool = function(bytes$1) {
+0Çà	parseBoolÇy	var parseBool = function(bytes$1) {
 		var ret, err, x, _ref, _slice, _index, x$1;
 		ret = false;
 		err = null;
@@ -237,7 +237,8 @@ $$
 		}
 		return [ret, err];
 	};
-	var parseInt64 = function(bytes$1) {
+0Çè
+parseInt64Ç	var parseInt64 = function(bytes$1) {
 		var ret, err, x, bytesRead, x$1, _slice, _index;
 		ret = new Go$Int64(0, 0);
 		err = null;
@@ -255,7 +256,8 @@ $$
 		ret = go$shiftRightInt64(ret, ((64 - ((bytes$1.length << 24 >>> 24) * 8 << 24 >>> 24) << 24 >>> 24)));
 		return [ret, err];
 	};
-	var parseInt32 = function(bytes$1) {
+0Ç 
+parseInt32Ç	var parseInt32 = function(bytes$1) {
 		var _tuple, ret64, err, x, x$1;
 		_tuple = parseInt64(bytes$1), ret64 = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -266,7 +268,7 @@ $$
 		}
 		return [((ret64.low + ((ret64.high >> 31) * 4294967296)) >> 0), null];
 	};
-	var parseBigInt = function(bytes$1) {
+0Ç$parseBigIntÇ	var parseBigInt = function(bytes$1) {
 		var ret, _slice, _index, notBytes, _ref, _i, i, _slice$1, _index$1, _slice$2, _index$2;
 		ret = new big.Int.Ptr();
 		if (bytes$1.length > 0 && ((((_slice = bytes$1, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & 128) >>> 0) === 128)) {
@@ -285,7 +287,7 @@ $$
 		ret.SetBytes(bytes$1);
 		return ret;
 	};
-	BitString.Ptr.prototype.At = function(i) {
+0Ç˜AtÇÔ	BitString.Ptr.prototype.At = function(i) {
 		var _struct, b, _q, x, _r, y, y$1, _slice, _index;
 		b = (_struct = this, new BitString.Ptr(_struct.Bytes, _struct.BitLength));
 		if (i < 0 || i >= b.BitLength) {
@@ -296,7 +298,8 @@ $$
 		return (((y$1 = y, y$1 < 32 ? ((_slice = b.Bytes, _index = x, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> y$1) : 0) << 24 >>> 24) >> 0) & 1;
 	};
 	BitString.prototype.At = function(i) { return this.go$val.At(i); };
-	BitString.Ptr.prototype.RightAlign = function() {
+0Çî
+RightAlignÇÑ	BitString.Ptr.prototype.RightAlign = function() {
 		var _struct, b, _r, shift, a, y, _slice, _index, _slice$1, _index$1, i, y$1, _slice$2, _index$2, _slice$3, _index$3, _lhs, _index$4, _slice$4, _index$5, y$2, _slice$5, _index$6, _slice$6, _index$7;
 		b = (_struct = this, new BitString.Ptr(_struct.Bytes, _struct.BitLength));
 		shift = ((8 - ((_r = b.BitLength % 8, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"))) >> 0) >>> 0);
@@ -314,7 +317,7 @@ $$
 		return a;
 	};
 	BitString.prototype.RightAlign = function() { return this.go$val.RightAlign(); };
-	var parseBitString = function(bytes$1) {
+0ÇvparseBitStringÇb	var parseBitString = function(bytes$1) {
 		var ret, err, x, _struct, _slice, _index, paddingBits, _slice$1, _index$1, y, _slice$2, _index$2, x$1, _struct$1, x$2, x$3, _struct$2;
 		ret = new BitString.Ptr();
 		err = null;
@@ -331,7 +334,7 @@ $$
 		ret.Bytes = go$subslice(bytes$1, 1);
 		return [(_struct$2 = ret, new BitString.Ptr(_struct$2.Bytes, _struct$2.BitLength)), err];
 	};
-	ObjectIdentifier.prototype.Equal = function(other) {
+0Ç›EqualÇ“	ObjectIdentifier.prototype.Equal = function(other) {
 		var oi, i, _slice, _index, _slice$1, _index$1;
 		oi = this;
 		if (!((oi.length === other.length))) {
@@ -347,7 +350,7 @@ $$
 		return true;
 	};
 	go$ptrType(ObjectIdentifier).prototype.Equal = function(other) { return this.go$get().Equal(other); };
-	var parseObjectIdentifier = function(bytes$1) {
+0Ç	parseObjectIdentifierÇÓ	var parseObjectIdentifier = function(bytes$1) {
 		var s, err, x, _tuple, v, offset, _q, _slice, _index, _r, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, i, _tuple$1, _slice$4, _index$4;
 		s = (go$sliceType(Go$Int)).nil;
 		err = null;
@@ -379,7 +382,7 @@ $$
 		s = go$subslice(s, 0, i);
 		return [s, err];
 	};
-	var parseBase128Int = function(bytes$1, initOffset) {
+0ÇéparseBase128IntÇy	var parseBase128Int = function(bytes$1, initOffset) {
 		var ret, offset, err, shifted, x, _slice, _index, b, x$1;
 		ret = 0;
 		offset = 0;
@@ -403,7 +406,7 @@ $$
 		err = (x$1 = new SyntaxError.Ptr("truncated base 128 integer"), new x$1.constructor.Struct(x$1));
 		return [ret, offset, err];
 	};
-	var parseUTCTime = function(bytes$1) {
+0Ç\parseUTCTimeÇJ	var parseUTCTime = function(bytes$1) {
 		var ret, err, s, _tuple, _struct, _tuple$1, _struct$1, _struct$2, _struct$3;
 		ret = new time.Time.Ptr();
 		err = null;
@@ -417,14 +420,14 @@ $$
 		}
 		return [(_struct$3 = ret, new time.Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc)), err];
 	};
-	var parseGeneralizedTime = function(bytes$1) {
+0ÇªparseGeneralizedTimeÇ°	var parseGeneralizedTime = function(bytes$1) {
 		var ret, err, _tuple, _struct, _struct$1;
 		ret = new time.Time.Ptr();
 		err = null;
 		_tuple = time.Parse("20060102150405Z0700", go$bytesToString(bytes$1)), ret = (_struct = _tuple[0], new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)), err = _tuple[1];
 		return [(_struct$1 = ret, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)), err];
 	};
-	var parsePrintableString = function(bytes$1) {
+0Ç^parsePrintableStringÇD	var parsePrintableString = function(bytes$1) {
 		var ret, err, _ref, _i, _slice, _index, b, x;
 		ret = "";
 		err = null;
@@ -440,10 +443,10 @@ $$
 		ret = go$bytesToString(bytes$1);
 		return [ret, err];
 	};
-	var isPrintable = function(b) {
+0ÅÒisPrintableÅ·	var isPrintable = function(b) {
 		return 97 <= b && b <= 122 || 65 <= b && b <= 90 || 48 <= b && b <= 57 || 39 <= b && b <= 41 || 43 <= b && b <= 47 || (b === 32) || (b === 58) || (b === 61) || (b === 63) || (b === 42);
 	};
-	var parseIA5String = function(bytes$1) {
+0ÇEparseIA5StringÇ1	var parseIA5String = function(bytes$1) {
 		var ret, err, _ref, _i, _slice, _index, b, x;
 		ret = "";
 		err = null;
@@ -459,21 +462,21 @@ $$
 		ret = go$bytesToString(bytes$1);
 		return [ret, err];
 	};
-	var parseT61String = function(bytes$1) {
+0ÅÿparseT61StringÅ≈	var parseT61String = function(bytes$1) {
 		var ret, err, _tuple;
 		ret = "";
 		err = null;
 		_tuple = [go$bytesToString(bytes$1), null], ret = _tuple[0], err = _tuple[1];
 		return [ret, err];
 	};
-	var parseUTF8String = function(bytes$1) {
+0Å⁄parseUTF8StringÅ∆	var parseUTF8String = function(bytes$1) {
 		var ret, err, _tuple;
 		ret = "";
 		err = null;
 		_tuple = [go$bytesToString(bytes$1), null], ret = _tuple[0], err = _tuple[1];
 		return [ret, err];
 	};
-	var parseTagAndLength = function(bytes$1, initOffset) {
+0Ç√parseTagAndLengthÇ¨	var parseTagAndLength = function(bytes$1, initOffset) {
 		var ret, offset, err, _slice, _index, b, _tuple, _struct, x, _struct$1, _slice$1, _index$1, numBytes, x$1, _struct$2, i, x$2, _struct$3, _slice$2, _index$2, x$3, _struct$4, x$4, _struct$5, _struct$6;
 		ret = new tagAndLength.Ptr();
 		offset = 0;
@@ -528,7 +531,7 @@ $$
 		}
 		return [(_struct$6 = ret, new tagAndLength.Ptr(_struct$6.class$0, _struct$6.tag, _struct$6.length, _struct$6.isCompound)), offset, err];
 	};
-	var parseSequenceOf = function(bytes$1, sliceType, elemType) {
+0Ç3parseSequenceOfÇ	var parseSequenceOf = function(bytes$1, sliceType, elemType) {
 		var ret, err, _tuple, expectedTag, compoundType, ok, x, _struct, numElements, offset, t, _tuple$1, _struct$1, _struct$2, x$1, _struct$3, x$2, _struct$4, _struct$5, params, offset$1, i, _tuple$2, _struct$6, _struct$7, _struct$8, _struct$9;
 		ret = new reflect.Value.Ptr();
 		err = null;
@@ -572,10 +575,11 @@ $$
 		}
 		return [(_struct$9 = ret, new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), err];
 	};
-	var invalidLength = function(offset, length, sliceLength) {
+0Å•invalidLengthÅì	var invalidLength = function(offset, length, sliceLength) {
 		return (offset + length >> 0) < offset || (offset + length >> 0) > sliceLength;
 	};
-	var parseField = function(v, bytes$1, initOffset, params) {
+0Ç<Í
+parseFieldÇ<⁄	var parseField = function(v, bytes$1, initOffset, params) {
 		var offset, err, fieldType, _struct, _struct$1, x, t, _tuple, _struct$2, x$1, result, _struct$3, ifaceType, t$1, _tuple$1, _struct$4, x$2, result$1, innerBytes, _ref, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _struct$5, _tuple$10, universalTag, compoundType, ok1, x$3, _tuple$11, _struct$6, t$2, expectedClass, _tuple$12, _struct$7, x$4, _struct$8, _struct$9, ok, x$5, _ref$1, expectedClass$1, expectedTag, _struct$10, _struct$11, ok$1, x$6, x$7, innerBytes$1, _ref$2, _tuple$13, newSlice, err1, _struct$12, _struct$13, _struct$14, _tuple$14, _struct$15, bs, err1$1, _struct$16, time$1, err1$2, _tuple$15, _struct$17, _tuple$16, _struct$18, _struct$19, _tuple$17, parsedInt, err1$3, parsedInt$1, _struct$20, _struct$21, val, _ref$3, _tuple$18, parsedBool, err1$4, _tuple$19, parsedInt$2, err1$5, _tuple$20, parsedInt$3, err1$6, structType, bytes$2, _struct$22, innerOffset, i, _struct$23, field, _tuple$21, _struct$24, _struct$25, sliceType, _struct$26, _struct$27, _struct$28, _tuple$22, _struct$29, newSlice$1, err1$7, _struct$30, v$1, _ref$4, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, x$8, x$9;
 		offset = 0;
 		err = null;
@@ -844,7 +848,7 @@ $$
 		err = (x$9 = new StructuralError.Ptr("unsupported: " + v.Type().String()), new x$9.constructor.Struct(x$9));
 		return [offset, err];
 	};
-	var setDefaultValue = function(v, params) {
+0Ç˛setDefaultValueÇÈ	var setDefaultValue = function(v, params) {
 		var ok, _struct, val, _ref;
 		ok = false;
 		if (!params.optional) {
@@ -861,14 +865,14 @@ $$
 		}
 		return ok;
 	};
-	var Unmarshal = go$pkg.Unmarshal = function(b, val) {
+0Å¸	UnmarshalÅÓ	var Unmarshal = go$pkg.Unmarshal = function(b, val) {
 		var rest, err, _tuple;
 		rest = (go$sliceType(Go$Uint8)).nil;
 		err = null;
 		_tuple = UnmarshalWithParams(b, val, ""), rest = _tuple[0], err = _tuple[1];
 		return [rest, err];
 	};
-	var UnmarshalWithParams = go$pkg.UnmarshalWithParams = function(b, val, params) {
+0ÇÒUnmarshalWithParamsÇÿ	var UnmarshalWithParams = go$pkg.UnmarshalWithParams = function(b, val, params) {
 		var rest, err, _struct, v, _tuple, _struct$1, _struct$2, offset, _tuple$1, _tuple$2;
 		rest = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -881,7 +885,7 @@ $$
 		_tuple$2 = [go$subslice(b, offset), null], rest = _tuple$2[0], err = _tuple$2[1];
 		return [rest, err];
 	};
-	var parseFieldParameters = function(str) {
+0Ç≤parseFieldParametersÇò	var parseFieldParameters = function(str) {
 		var ret, _ref, _i, _slice, _index, part, _tuple, i, err, _tuple$1, i$1, err$1, _struct;
 		ret = new fieldParameters.Ptr();
 		_ref = strings.Split(str, ",");
@@ -926,7 +930,9 @@ $$
 		}
 		return (_struct = ret, new fieldParameters.Ptr(_struct.optional, _struct.explicit, _struct.application, _struct.defaultValue, _struct.tag, _struct.stringType, _struct.set, _struct.omitEmpty));
 	};
-	var getUniversalType = function(t) {
+0Ç
+∞getUniversalTypeÇ
+ö	var getUniversalType = function(t) {
 		var tagNumber, isCompound, ok, _ref, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _ref$1, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12;
 		tagNumber = 0;
 		isCompound = false;
@@ -976,10 +982,10 @@ $$
 		_tuple$12 = [0, false, false], tagNumber = _tuple$12[0], isCompound = _tuple$12[1], ok = _tuple$12[2];
 		return [tagNumber, isCompound, ok];
 	};
-	var newForkableWriter = function() {
+0ÅΩnewForkableWriterÅß	var newForkableWriter = function() {
 		return new forkableWriter.Ptr(new bytes.Buffer.Ptr(), (go$ptrType(forkableWriter)).nil, (go$ptrType(forkableWriter)).nil);
 	};
-	forkableWriter.Ptr.prototype.fork = function() {
+0ÇCforkÇ9	forkableWriter.Ptr.prototype.fork = function() {
 		var pre, post, f, _tuple;
 		pre = (go$ptrType(forkableWriter)).nil;
 		post = (go$ptrType(forkableWriter)).nil;
@@ -993,7 +999,7 @@ $$
 		return [pre, post];
 	};
 	forkableWriter.prototype.fork = function() { return this.go$val.fork(); };
-	forkableWriter.Ptr.prototype.Len = function() {
+0ÇåLenÇÉ	forkableWriter.Ptr.prototype.Len = function() {
 		var l, f;
 		l = 0;
 		f = this;
@@ -1007,7 +1013,7 @@ $$
 		return l;
 	};
 	forkableWriter.prototype.Len = function() { return this.go$val.Len(); };
-	forkableWriter.Ptr.prototype.writeTo = function(out) {
+0ÇwriteToÇ	forkableWriter.Ptr.prototype.writeTo = function(out) {
 		var n, err, f, _tuple, nn, _tuple$1, _tuple$2;
 		n = 0;
 		err = null;
@@ -1031,7 +1037,7 @@ $$
 		return [n, err];
 	};
 	forkableWriter.prototype.writeTo = function(out) { return this.go$val.writeTo(out); };
-	var marshalBase128Int = function(out, n) {
+0Ç‚marshalBase128IntÇÀ	var marshalBase128Int = function(out, n) {
 		var err, l, i, i$1, x, o;
 		err = null;
 		if ((n.high === 0 && n.low === 0)) {
@@ -1060,7 +1066,7 @@ $$
 		err = null;
 		return err;
 	};
-	var marshalInt64 = function(out, i) {
+0Ç™marshalInt64Çò	var marshalInt64 = function(out, i) {
 		var err, n, x, x$1;
 		err = null;
 		n = int64Length(i);
@@ -1074,7 +1080,7 @@ $$
 		err = null;
 		return err;
 	};
-	var int64Length = function(i) {
+0ÇÇint64LengthÇq	var int64Length = function(i) {
 		var numBytes;
 		numBytes = 0;
 		numBytes = 1;
@@ -1088,7 +1094,7 @@ $$
 		}
 		return numBytes;
 	};
-	var marshalBigInt = function(out, n) {
+0ÇﬂmarshalBigIntÇÃ	var marshalBigInt = function(out, n) {
 		var err, nMinus1, bytes$1, _ref, _i, i, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _slice$2, _index$3, _tuple, bytes$2, _slice$3, _index$4, _tuple$1;
 		err = null;
 		if (n.Sign() < 0) {
@@ -1122,7 +1128,7 @@ $$
 		}
 		return err;
 	};
-	var marshalLength = function(out, i) {
+0Ç¨marshalLengthÇô	var marshalLength = function(out, i) {
 		var err, n, x, x$1;
 		err = null;
 		n = lengthLength(i);
@@ -1136,7 +1142,7 @@ $$
 		err = null;
 		return err;
 	};
-	var lengthLength = function(i) {
+0Å«lengthLengthÅ∂	var lengthLength = function(i) {
 		var numBytes;
 		numBytes = 0;
 		numBytes = 1;
@@ -1146,7 +1152,7 @@ $$
 		}
 		return numBytes;
 	};
-	var marshalTagAndLength = function(out, t) {
+0Ç7marshalTagAndLengthÇ	var marshalTagAndLength = function(out, t) {
 		var err, b, l;
 		err = null;
 		b = (t.class$0 << 24 >>> 24) << 6 << 24 >>> 24;
@@ -1189,7 +1195,7 @@ $$
 		err = null;
 		return err;
 	};
-	var marshalBitString = function(out, b) {
+0ÇmarshalBitStringÇÓ	var marshalBitString = function(out, b) {
 		var err, _r, _r$1, paddingBits, _tuple;
 		err = null;
 		paddingBits = ((_r = ((8 - (_r$1 = b.BitLength % 8, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) >> 0)) % 8, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) << 24 >>> 24);
@@ -1200,7 +1206,7 @@ $$
 		_tuple = out.Buffer.Write(b.Bytes), err = _tuple[1];
 		return err;
 	};
-	var marshalObjectIdentifier = function(out, oid) {
+0ÇmarshalObjectIdentifierÇÊ	var marshalObjectIdentifier = function(out, oid) {
 		var err, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, x, x$1, _slice$3, _index$3, x$2, _slice$4, _index$4, i, _slice$5, _index$5;
 		err = null;
 		if (oid.length < 2 || (_slice = oid, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) > 2 || ((_slice$1 = oid, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) < 2 && (_slice$2 = oid, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >= 40)) {
@@ -1221,7 +1227,7 @@ $$
 		}
 		return err;
 	};
-	var marshalPrintableString = function(out, s) {
+0ÇímarshalPrintableStringÇv	var marshalPrintableString = function(out, s) {
 		var err, b, _ref, _i, _slice, _index, c, x, _tuple;
 		err = null;
 		b = new (go$sliceType(Go$Uint8))(go$stringToBytes(s));
@@ -1237,7 +1243,7 @@ $$
 		_tuple = out.Buffer.Write(b), err = _tuple[1];
 		return err;
 	};
-	var marshalIA5String = function(out, s) {
+0ÇxmarshalIA5StringÇb	var marshalIA5String = function(out, s) {
 		var err, b, _ref, _i, _slice, _index, c, x, _tuple;
 		err = null;
 		b = new (go$sliceType(Go$Uint8))(go$stringToBytes(s));
@@ -1253,13 +1259,13 @@ $$
 		_tuple = out.Buffer.Write(b), err = _tuple[1];
 		return err;
 	};
-	var marshalUTF8String = function(out, s) {
+0Å÷marshalUTF8StringÅ¿	var marshalUTF8String = function(out, s) {
 		var err, _tuple;
 		err = null;
 		_tuple = out.Buffer.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), err = _tuple[1];
 		return err;
 	};
-	var marshalTwoDigits = function(out, v) {
+0ÇEmarshalTwoDigitsÇ/	var marshalTwoDigits = function(out, v) {
 		var err, _r, _q, _r$1;
 		err = null;
 		err = out.Buffer.WriteByte(((48 + (_r = ((_q = v / 10, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))) % 10, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >> 0) << 24 >>> 24));
@@ -1269,7 +1275,7 @@ $$
 		err = out.Buffer.WriteByte(((48 + (_r$1 = v % 10, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) >> 0) << 24 >>> 24));
 		return err;
 	};
-	var marshalUTCTime = function(out, t) {
+0ÇƒmarshalUTCTimeÇ∞	var marshalUTCTime = function(out, t) {
 		var err, _tuple, year, month, day, x, _tuple$1, hour, min, sec, _tuple$2, offset, _q, _q$1, offsetMinutes, _q$2, _r;
 		err = null;
 		_tuple = t.Date(), year = _tuple[0], month = _tuple[1], day = _tuple[2];
@@ -1328,7 +1334,7 @@ $$
 		err = marshalTwoDigits(out, (_r = offsetMinutes % 60, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")));
 		return err;
 	};
-	var stripTagAndLength = function(in$1) {
+0ÇstripTagAndLengthÅ¯	var stripTagAndLength = function(in$1) {
 		var _tuple, offset, err;
 		_tuple = parseTagAndLength(in$1, 0), offset = _tuple[1], err = _tuple[2];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -1336,7 +1342,7 @@ $$
 		}
 		return go$subslice(in$1, offset);
 	};
-	var marshalBody = function(out, value, params) {
+0Ç¯marshalBodyÇÁ	var marshalBody = function(out, value, params) {
 		var err, _ref, x, _struct, x$1, _struct$1, x$2, x$3, x$4, _struct$2, v, _ref$1, t, startingField, _struct$3, s, bytes$1, i, _slice, _index, _tuple, i$1, pre, _tuple$1, _struct$4, _struct$5, sliceType, bytes$2, i$2, _slice$1, _index$1, _tuple$2, fp, i$3, pre$1, _tuple$3, _struct$6, _struct$7, _ref$2, x$5;
 		err = null;
 		_ref = value.Type();
@@ -1435,7 +1441,7 @@ $$
 		err = (x$5 = new StructuralError.Ptr("unknown Go type"), new x$5.constructor.Struct(x$5));
 		return err;
 	};
-	var marshalField = function(out, v, params) {
+0ÇmarshalFieldÇÒ	var marshalField = function(out, v, params) {
 		var err, _struct, _struct$1, x, _struct$2, rv, _tuple, _tuple$1, _tuple$2, tag, isCompound, ok, x$1, class$1, x$2, _ref, _i, _rune, r, x$3, _tuple$3, tags, body, _struct$3, _struct$4, bodyLen, explicitTag, _tuple$4;
 		err = null;
 		if ((v.Kind() === 20) && (v.Type().NumMethod() === 0)) {
@@ -1522,7 +1528,7 @@ $$
 		err = null;
 		return err;
 	};
-	var Marshal = go$pkg.Marshal = function(val) {
+0Ç°MarshalÇî	var Marshal = go$pkg.Marshal = function(val) {
 		var out, _struct, v, f, _struct$1, err, _tuple;
 		out = new bytes.Buffer.Ptr();
 		v = (_struct = reflect.ValueOf(val), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -1534,35 +1540,7 @@ $$
 		_tuple = f.writeTo(out), err = _tuple[1];
 		return [out.Bytes(), null];
 	};
-	var tagBoolean = 1;
-	var tagInteger = 2;
-	var tagBitString = 3;
-	var tagOctetString = 4;
-	var tagOID = 6;
-	var tagEnum = 10;
-	var tagUTF8String = 12;
-	var tagSequence = 16;
-	var tagSet = 17;
-	var tagPrintableString = 19;
-	var tagT61String = 20;
-	var tagIA5String = 22;
-	var tagUTCTime = 23;
-	var tagGeneralizedTime = 24;
-	var tagGeneralString = 27;
-	var classUniversal = 0;
-	var classApplication = 1;
-	var classContextSpecific = 2;
-	var classPrivate = 3;
-	var bigOne = (go$ptrType(big.Int)).nil;
-	var bitStringType = null;
-	var objectIdentifierType = null;
-	var enumeratedType = null;
-	var flagType = null;
-	var timeType = null;
-	var rawValueType = null;
-	var rawContentsType = null;
-	var bigIntType = null;
-	go$pkg.init = function() {
+0Ç$initÇ	go$pkg.init = function() {
 		var x, x$1, x$2;
 		bigOne = big.NewInt(new Go$Int64(0, 1));
 		bitStringType = reflect.TypeOf((x = new BitString.Ptr((go$sliceType(Go$Uint8)).nil, 0), new x.constructor.Struct(x)));

@@ -1,4 +1,4 @@
-0ÇÇpackage user
+0ÇYos/userÇpackage user
 import fmt "fmt"
 import runtime "runtime"
 import strconv "strconv"
@@ -13,10 +13,8 @@ func (? @"".UnknownUserIdError) @"".Error() (? string)
 func (? *@"".UnknownUserIdError) @"".Error() (? string)
 type @"".User struct { @"".Uid string; @"".Gid string; @"".Username string; @"".Name string; @"".HomeDir string }
 $$
-0oruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtos/userÇ	var fmt = go$packages["fmt"];
-	var runtime = go$packages["runtime"];
-	var strconv = go$packages["strconv"];
-	var User;
+0oruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtos/user040
+fmtfmt0runtimeruntime0strconvstrconvÇÏ	var User;
 	User = go$newType(0, "Struct", "user.User", "User", "os/user", function(Uid_, Gid_, Username_, Name_, HomeDir_) {
 		this.go$val = this;
 		this.Uid = Uid_ !== undefined ? Uid_ : "";
@@ -37,38 +35,38 @@ $$
 	(go$ptrType(UnknownUserIdError)).methods = [["Error", "", [], [Go$String], false]];
 	UnknownUserError.methods = [["Error", "", [], [Go$String], false]];
 	(go$ptrType(UnknownUserError)).methods = [["Error", "", [], [Go$String], false]];
-	var Current = go$pkg.Current = function() {
+	var implemented = false;
+0Ç0PCurrentE	var Current = go$pkg.Current = function() {
 		return current();
 	};
-	var Lookup = go$pkg.Lookup = function(username) {
+0\LookupR	var Lookup = go$pkg.Lookup = function(username) {
 		return lookup(username);
 	};
-	var LookupId = go$pkg.LookupId = function(uid) {
+0ZLookupIdN	var LookupId = go$pkg.LookupId = function(uid) {
 		return lookupId(uid);
 	};
-	var current = function() {
+0Å‹currentÅ–	var current = function() {
 		return [(go$ptrType(User)).nil, fmt.Errorf("user: Current not implemented on %s/%s", new (go$sliceType(go$emptyInterface))([new Go$String("darwin"), new Go$String("js")]))];
 	};
-	var lookup = function(username) {
+0Å·lookupÅ÷	var lookup = function(username) {
 		return [(go$ptrType(User)).nil, fmt.Errorf("user: Lookup not implemented on %s/%s", new (go$sliceType(go$emptyInterface))([new Go$String("darwin"), new Go$String("js")]))];
 	};
-	var lookupId = function(uid) {
+0Å‚lookupIdÅ’	var lookupId = function(uid) {
 		return [(go$ptrType(User)).nil, fmt.Errorf("user: LookupId not implemented on %s/%s", new (go$sliceType(go$emptyInterface))([new Go$String("darwin"), new Go$String("js")]))];
 	};
-	UnknownUserIdError.prototype.Error = function() {
+0ÇErrorÇ	UnknownUserIdError.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return "user: unknown userid " + strconv.Itoa((e >> 0));
 	};
 	go$ptrType(UnknownUserIdError).prototype.Error = function() { return new UnknownUserIdError(this.go$get()).Error(); };
-	UnknownUserError.prototype.Error = function() {
+0ÅÛErrorÅÈ	UnknownUserError.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return "user: unknown user " + e;
 	};
 	go$ptrType(UnknownUserError).prototype.Error = function() { return new UnknownUserError(this.go$get()).Error(); };
-	var implemented = false;
-	go$pkg.init = function() {
+0UinitM	go$pkg.init = function() {
 		implemented = true;
 		implemented = false;
 	};

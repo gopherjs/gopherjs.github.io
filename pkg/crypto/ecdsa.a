@@ -1,4 +1,4 @@
-0‚m°‚Fÿpackage ecdsa
+0‚m÷crypto/ecdsa‚Fÿpackage ecdsa
 import elliptic "crypto/elliptic"
 import io "io"
 import big "math/big"
@@ -167,10 +167,7 @@ type @"io".RuneScanner interface { @"io".ReadRune() (@"".r rune, @"".size int, @
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
 $$
-0½runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/ellipticcrypto/ecdsa‚%é	var elliptic = go$packages["crypto/elliptic"];
-	var io = go$packages["io"];
-	var big = go$packages["math/big"];
-	var PublicKey;
+0½runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/ellipticcrypto/ecdsa080crypto/ellipticelliptic0ioio0math/bigbig‚	var PublicKey;
 	PublicKey = go$newType(0, "Struct", "ecdsa.PublicKey", "PublicKey", "crypto/ecdsa", function(Curve_, X_, Y_) {
 		this.go$val = this;
 		this.Curve = Curve_ !== undefined ? Curve_ : null;
@@ -215,7 +212,8 @@ $$
 	PrivateKey.init([["", "", PublicKey, ""], ["D", "", (go$ptrType(big.Int)), ""]]);
 	PrivateKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
 	(go$ptrType(PrivateKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
-	var randFieldElement = function(c, rand) {
+&	var one = (go$ptrType(big.Int)).nil;
+0‚=0‚xrandFieldElement‚b	var randFieldElement = function(c, rand) {
 		var k, err, params, _q, b, _tuple, n;
 		k = (go$ptrType(big.Int)).nil;
 		err = null;
@@ -231,7 +229,7 @@ $$
 		k.Add(k, one);
 		return [k, err];
 	};
-	var GenerateKey = go$pkg.GenerateKey = function(c, rand) {
+0‚GenerateKey‚ð	var GenerateKey = go$pkg.GenerateKey = function(c, rand) {
 		var priv, err, _tuple, k, _tuple$1;
 		priv = (go$ptrType(PrivateKey)).nil;
 		err = null;
@@ -245,7 +243,7 @@ $$
 		_tuple$1 = c.ScalarBaseMult(k.Bytes()), priv.PublicKey.X = _tuple$1[0], priv.PublicKey.Y = _tuple$1[1];
 		return [priv, err];
 	};
-	var hashToInt = function(hash, c) {
+0‚d	hashToInt‚U	var hashToInt = function(hash, c) {
 		var orderBits, _q, orderBytes, ret, x, x$1, excess;
 		orderBits = c.Params().N.BitLen();
 		orderBytes = (_q = ((orderBits + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
@@ -259,7 +257,7 @@ $$
 		}
 		return ret;
 	};
-	var Sign = go$pkg.Sign = function(rand, priv, hash) {
+0‚ÎSign‚Ä	var Sign = go$pkg.Sign = function(rand, priv, hash) {
 		var r, s, err, c, N, _tuple, k, kInv, _tuple$1, _tuple$2, e;
 		r = (go$ptrType(big.Int)).nil;
 		s = (go$ptrType(big.Int)).nil;
@@ -292,7 +290,7 @@ $$
 		}
 		return [r, s, err];
 	};
-	var Verify = go$pkg.Verify = function(pub, hash, r, s) {
+0‚Verify‚	var Verify = go$pkg.Verify = function(pub, hash, r, s) {
 		var c, N, e, w, u1, u2, _tuple, x1, y1, _tuple$1, x2, y2, _tuple$2, x, y;
 		c = pub.Curve;
 		N = c.Params().N;
@@ -317,7 +315,6 @@ $$
 		x.Mod(x, N);
 		return x.Cmp(r) === 0;
 	};
-	var one = (go$ptrType(big.Int)).nil;
-	go$pkg.init = function() {
+0`initX	go$pkg.init = function() {
 		one = new big.Int.Ptr().SetInt64(new Go$Int64(0, 1));
 	};

@@ -1,4 +1,5 @@
-0‚d‚†package crc32
+0‚è
+hash/crc32‚†package crc32
 import hash "hash"
 import sync "sync"
 const @"".Castagnoli = 0x82f63b78
@@ -24,9 +25,7 @@ import io "io"
 type @"hash".Hash32 interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"hash".Sum32() (? uint32); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
 0:runtimeerrorssync/atomicsynciohash
-hash/crc32‚š	var hash = go$packages["hash"];
-	var sync = go$packages["sync"];
-	var Table;
+hash/crc3200hashhash0syncsync‚G	var Table;
 	Table = go$newType(0, "Array", "crc32.Table", "Table", "hash/crc32", null);
 	go$pkg.Table = Table;
 	var digest;
@@ -39,10 +38,13 @@ hash/crc32‚š	var hash = go$packages["hash"];
 	Table.init(Go$Uint32, 256);
 	digest.init([["crc", "hash/crc32", Go$Uint32, ""], ["tab", "hash/crc32", (go$ptrType(Table)), ""]]);
 	(go$ptrType(digest)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Sum32", "", [], [Go$Uint32], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	var castagnoliInit = function() {
+ˆ	var castagnoliTable = (go$ptrType(Table)).nil;
+	var castagnoliOnce = new sync.Once.Ptr();
+	go$pkg.IEEETable = (go$ptrType(Table)).nil;
+0‚0dcastagnoliInitR	var castagnoliInit = function() {
 		castagnoliTable = makeTable(2197175160);
 	};
-	var MakeTable = go$pkg.MakeTable = function(poly) {
+0‚	MakeTable‚	var MakeTable = go$pkg.MakeTable = function(poly) {
 		var _ref;
 		_ref = poly;
 		if (_ref === 3988292384) {
@@ -53,7 +55,7 @@ hash/crc32‚š	var hash = go$packages["hash"];
 		}
 		return makeTable(poly);
 	};
-	var makeTable = function(poly) {
+0‚¦	makeTable‚—	var makeTable = function(poly) {
 		var t, i, crc, j;
 		t = go$makeNativeArray("Uint32", 256, function() { return 0; });
 		i = 0;
@@ -73,31 +75,31 @@ hash/crc32‚š	var hash = go$packages["hash"];
 		}
 		return t;
 	};
-	var New = go$pkg.New = function(tab) {
+0TNewM	var New = go$pkg.New = function(tab) {
 		return new digest.Ptr(0, tab);
 	};
-	var NewIEEE = go$pkg.NewIEEE = function() {
+0\NewIEEEQ	var NewIEEE = go$pkg.NewIEEE = function() {
 		return New(go$pkg.IEEETable);
 	};
-	digest.Ptr.prototype.Size = function() {
+0œSize“	digest.Ptr.prototype.Size = function() {
 		var d;
 		d = this;
 		return 4;
 	};
 	digest.prototype.Size = function() { return this.go$val.Size(); };
-	digest.Ptr.prototype.BlockSize = function() {
+0°	BlockSize¢	digest.Ptr.prototype.BlockSize = function() {
 		var d;
 		d = this;
 		return 1;
 	};
 	digest.prototype.BlockSize = function() { return this.go$val.BlockSize(); };
-	digest.Ptr.prototype.Reset = function() {
+0¡Reset—	digest.Ptr.prototype.Reset = function() {
 		var d;
 		d = this;
 		d.crc = 0;
 	};
 	digest.prototype.Reset = function() { return this.go$val.Reset(); };
-	var update = function(crc, tab, p) {
+0‚¹update‚­	var update = function(crc, tab, p) {
 		var _ref, _i, _slice, _index, v;
 		crc = ~crc >>> 0;
 		_ref = p;
@@ -108,13 +110,13 @@ hash/crc32‚š	var hash = go$packages["hash"];
 		}
 		return ~crc >>> 0;
 	};
-	var Update = go$pkg.Update = function(crc, tab, p) {
+0ºUpdate¯	var Update = go$pkg.Update = function(crc, tab, p) {
 		if (go$arrayIsEqual(tab, castagnoliTable)) {
 			return updateCastagnoli(crc, p);
 		}
 		return update(crc, tab, p);
 	};
-	digest.Ptr.prototype.Write = function(p) {
+0‚2Write‚'	digest.Ptr.prototype.Write = function(p) {
 		var n, err, d, _tuple;
 		n = 0;
 		err = null;
@@ -124,35 +126,28 @@ hash/crc32‚š	var hash = go$packages["hash"];
 		return [n, err];
 	};
 	digest.prototype.Write = function(p) { return this.go$val.Write(p); };
-	digest.Ptr.prototype.Sum32 = function() {
+0¤Sum32š	digest.Ptr.prototype.Sum32 = function() {
 		var d;
 		d = this;
 		return d.crc;
 	};
 	digest.prototype.Sum32 = function() { return this.go$val.Sum32(); };
-	digest.Ptr.prototype.Sum = function(in$1) {
+0‚;Sum‚2	digest.Ptr.prototype.Sum = function(in$1) {
 		var d, s;
 		d = this;
 		s = d.Sum32();
 		return go$append(in$1, ((s >>> 24 >>> 0) << 24 >>> 24), ((s >>> 16 >>> 0) << 24 >>> 24), ((s >>> 8 >>> 0) << 24 >>> 24), (s << 24 >>> 24));
 	};
 	digest.prototype.Sum = function(in$1) { return this.go$val.Sum(in$1); };
-	var Checksum = go$pkg.Checksum = function(data, tab) {
+0gChecksum[	var Checksum = go$pkg.Checksum = function(data, tab) {
 		return Update(0, tab, data);
 	};
-	var ChecksumIEEE = go$pkg.ChecksumIEEE = function(data) {
+0{ChecksumIEEEk	var ChecksumIEEE = go$pkg.ChecksumIEEE = function(data) {
 		return update(0, go$pkg.IEEETable, data);
 	};
-	var updateCastagnoli = function(crc, p) {
+0mupdateCastagnoliY	var updateCastagnoli = function(crc, p) {
 		return update(crc, castagnoliTable, p);
 	};
-	go$pkg.Size = 4;
-	go$pkg.IEEE = 3988292384;
-	go$pkg.Castagnoli = 2197175160;
-	go$pkg.Koopman = 3945912366;
-	var castagnoliTable = (go$ptrType(Table)).nil;
-	var castagnoliOnce = new sync.Once.Ptr();
-	go$pkg.IEEETable = (go$ptrType(Table)).nil;
-	go$pkg.init = function() {
+0TinitL	go$pkg.init = function() {
 		go$pkg.IEEETable = makeTable(3988292384);
 	};

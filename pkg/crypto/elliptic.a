@@ -1,4 +1,4 @@
-0É'»ÇK}package elliptic
+0É+Ÿcrypto/ellipticÇK}package elliptic
 import io "io"
 import big "math/big"
 import sync "sync"
@@ -191,10 +191,7 @@ type @"io".RuneScanner interface { @"io".ReadRune() (@"".r rune, @"".size int, @
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
 $$
-0ÅØruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/ellipticÉ€ê	var io = go$packages["io"];
-	var big = go$packages["math/big"];
-	var sync = go$packages["sync"];
-	var Curve;
+0ÅØruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/elliptic0)0ioio0math/bigbig0syncsyncÇ5w	var Curve;
 	Curve = go$newType(0, "Interface", "elliptic.Curve", "Curve", "crypto/elliptic", null);
 	go$pkg.Curve = Curve;
 	var CurveParams;
@@ -276,13 +273,29 @@ $$
 	p256Curve.init([["", "", (go$ptrType(CurveParams)), ""]]);
 	p256Curve.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["addJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["affineFromJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["doubleJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
 	(go$ptrType(p256Curve)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["addJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["affineFromJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["doubleJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
-	CurveParams.Ptr.prototype.Params = function() {
+ÇΩ	var mask = (go$sliceType(Go$Uint8)).nil;
+	var initonce = new sync.Once.Ptr();
+	var p384 = (go$ptrType(CurveParams)).nil;
+	var p521 = (go$ptrType(CurveParams)).nil;
+	var p224 = new p224Curve.Ptr();
+	var p224P = go$makeNativeArray("Uint32", 8, function() { return 0; });
+	var p224ZeroModP31 = (go$sliceType(Go$Uint32)).nil;
+	var p224ZeroModP63 = go$makeNativeArray("Uint64", 8, function() { return new Go$Uint64(0, 0); });
+	var p256 = new p256Curve.Ptr();
+	var p256RInverse = (go$ptrType(big.Int)).nil;
+	var p256One = go$makeNativeArray("Uint32", 9, function() { return 0; });
+	var p256Zero = go$makeNativeArray("Uint32", 9, function() { return 0; });
+	var p256P = go$makeNativeArray("Uint32", 9, function() { return 0; });
+	var p2562P = go$makeNativeArray("Uint32", 9, function() { return 0; });
+	var p256Precomputed = go$makeNativeArray("Uint32", 540, function() { return 0; });
+	var p256Zero31 = go$makeNativeArray("Uint32", 9, function() { return 0; });
+0É¶)0Å∫ParamsÅØ	CurveParams.Ptr.prototype.Params = function() {
 		var curve;
 		curve = this;
 		return curve;
 	};
 	CurveParams.prototype.Params = function() { return this.go$val.Params(); };
-	CurveParams.Ptr.prototype.IsOnCurve = function(x, y) {
+0Ç„	IsOnCurveÇ‘	CurveParams.Ptr.prototype.IsOnCurve = function(x, y) {
 		var curve, y2, x3, threeX;
 		curve = this;
 		y2 = new big.Int.Ptr().Mul(y, y);
@@ -297,7 +310,8 @@ $$
 		return x3.Cmp(y2) === 0;
 	};
 	CurveParams.prototype.IsOnCurve = function(x, y) { return this.go$val.IsOnCurve(x, y); };
-	var zForAffine = function(x, y) {
+0Åø
+zForAffineÅ∞	var zForAffine = function(x, y) {
 		var z;
 		z = new big.Int.Ptr();
 		if (!((x.Sign() === 0)) || !((y.Sign() === 0))) {
@@ -305,7 +319,7 @@ $$
 		}
 		return z;
 	};
-	CurveParams.Ptr.prototype.affineFromJacobian = function(x, y, z) {
+0ÇaffineFromJacobianÇÓ	CurveParams.Ptr.prototype.affineFromJacobian = function(x, y, z) {
 		var xOut, yOut, curve, _tuple, zinv, zinvsq;
 		xOut = (go$ptrType(big.Int)).nil;
 		yOut = (go$ptrType(big.Int)).nil;
@@ -324,7 +338,7 @@ $$
 		return [xOut, yOut];
 	};
 	CurveParams.prototype.affineFromJacobian = function(x, y, z) { return this.go$val.affineFromJacobian(x, y, z); };
-	CurveParams.Ptr.prototype.Add = function(x1, y1, x2, y2) {
+0ÇâAddÇÄ	CurveParams.Ptr.prototype.Add = function(x1, y1, x2, y2) {
 		var curve, z1, z2, _tuple;
 		curve = this;
 		z1 = zForAffine(x1, y1);
@@ -332,7 +346,7 @@ $$
 		return (_tuple = curve.addJacobian(x1, y1, z1, x2, y2, z2), curve.affineFromJacobian(_tuple[0], _tuple[1], _tuple[2]));
 	};
 	CurveParams.prototype.Add = function(x1, y1, x2, y2) { return this.go$val.Add(x1, y1, x2, y2); };
-	CurveParams.Ptr.prototype.addJacobian = function(x1, y1, z1, x2, y2, z2) {
+0ÇUaddJacobianÇD	CurveParams.Ptr.prototype.addJacobian = function(x1, y1, z1, x2, y2, z2) {
 		var curve, _tuple, x3, y3, z3, z1z1, z2z2, u1, u2, h, xEqual, i, j, s1, s2, r, yEqual, v;
 		curve = this;
 		_tuple = [new big.Int.Ptr(), new big.Int.Ptr(), new big.Int.Ptr()], x3 = _tuple[0], y3 = _tuple[1], z3 = _tuple[2];
@@ -402,14 +416,14 @@ $$
 		return [x3, y3, z3];
 	};
 	CurveParams.prototype.addJacobian = function(x1, y1, z1, x2, y2, z2) { return this.go$val.addJacobian(x1, y1, z1, x2, y2, z2); };
-	CurveParams.Ptr.prototype.Double = function(x1, y1) {
+0ÇUDoubleÇI	CurveParams.Ptr.prototype.Double = function(x1, y1) {
 		var curve, z1, _tuple;
 		curve = this;
 		z1 = zForAffine(x1, y1);
 		return (_tuple = curve.doubleJacobian(x1, y1, z1), curve.affineFromJacobian(_tuple[0], _tuple[1], _tuple[2]));
 	};
 	CurveParams.prototype.Double = function(x1, y1) { return this.go$val.Double(x1, y1); };
-	CurveParams.Ptr.prototype.doubleJacobian = function(x, y, z) {
+0Ç£doubleJacobianÇè	CurveParams.Ptr.prototype.doubleJacobian = function(x, y, z) {
 		var curve, delta, gamma, alpha, alpha2, beta, x3, beta8, z3, y3;
 		curve = this;
 		delta = new big.Int.Ptr().Mul(z, z);
@@ -461,7 +475,8 @@ $$
 		return [x3, y3, z3];
 	};
 	CurveParams.prototype.doubleJacobian = function(x, y, z) { return this.go$val.doubleJacobian(x, y, z); };
-	CurveParams.Ptr.prototype.ScalarMult = function(Bx, By, k) {
+0ÇS
+ScalarMultÇC	CurveParams.Ptr.prototype.ScalarMult = function(Bx, By, k) {
 		var curve, Bz, _tuple, x, y, z, _ref, _i, _slice, _index, byte$1, bitNum, _tuple$1, _tuple$2;
 		curve = this;
 		Bz = new big.Int.Ptr().SetInt64(new Go$Int64(0, 1));
@@ -483,13 +498,13 @@ $$
 		return curve.affineFromJacobian(x, y, z);
 	};
 	CurveParams.prototype.ScalarMult = function(Bx, By, k) { return this.go$val.ScalarMult(Bx, By, k); };
-	CurveParams.Ptr.prototype.ScalarBaseMult = function(k) {
+0ÅˇScalarBaseMultÅÏ	CurveParams.Ptr.prototype.ScalarBaseMult = function(k) {
 		var curve;
 		curve = this;
 		return curve.ScalarMult(curve.Gx, curve.Gy, k);
 	};
 	CurveParams.prototype.ScalarBaseMult = function(k) { return this.go$val.ScalarBaseMult(k); };
-	var GenerateKey = go$pkg.GenerateKey = function(curve, rand) {
+0Ç]GenerateKeyÇL	var GenerateKey = go$pkg.GenerateKey = function(curve, rand) {
 		var priv, x, y, err, bitSize, byteLen, _tuple, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _r, _slice$2, _index$3, _lhs$1, _index$4, _slice$3, _index$5, _slice$4, _index$6, _tuple$1;
 		priv = (go$sliceType(Go$Uint8)).nil;
 		x = (go$ptrType(big.Int)).nil;
@@ -509,7 +524,7 @@ $$
 		}
 		return [priv, x, y, err];
 	};
-	var Marshal = go$pkg.Marshal = function(curve, x, y) {
+0Ç5MarshalÇ(	var Marshal = go$pkg.Marshal = function(curve, x, y) {
 		var byteLen, x$1, ret, _slice, _index, xBytes, yBytes, x$2;
 		byteLen = ((curve.Params().BitSize + 7 >> 0)) >> 3 >> 0;
 		ret = (go$sliceType(Go$Uint8)).make(1 + (x$1 = 2, (((x$1 >>> 16 << 16) * byteLen >> 0) + (x$1 << 16 >>> 16) * byteLen) >> 0) >> 0, 0, function() { return 0; });
@@ -520,7 +535,7 @@ $$
 		go$copySlice(go$subslice(ret, ((1 + (x$2 = 2, (((x$2 >>> 16 << 16) * byteLen >> 0) + (x$2 << 16 >>> 16) * byteLen) >> 0) >> 0) - yBytes.length >> 0)), yBytes);
 		return ret;
 	};
-	var Unmarshal = go$pkg.Unmarshal = function(curve, data) {
+0ÇÛ	UnmarshalÇ‰	var Unmarshal = go$pkg.Unmarshal = function(curve, data) {
 		var x, y, byteLen, x$1, _slice, _index;
 		x = (go$ptrType(big.Int)).nil;
 		y = (go$ptrType(big.Int)).nil;
@@ -535,13 +550,13 @@ $$
 		y = new big.Int.Ptr().SetBytes(go$subslice(data, (1 + byteLen >> 0)));
 		return [x, y];
 	};
-	var initAll = function() {
+0cinitAllX	var initAll = function() {
 		initP224();
 		initP256();
 		initP384();
 		initP521();
 	};
-	var initP384 = function() {
+0Ç	initP384Ç˚	var initP384 = function() {
 		var _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4;
 		p384 = new CurveParams.Ptr();
 		_tuple = new big.Int.Ptr().SetString("39402006196394479212279040100143613805079739270465446667948293404245721771496870329047266088258938001861606973112319", 10), p384.P = _tuple[0];
@@ -551,7 +566,7 @@ $$
 		_tuple$4 = new big.Int.Ptr().SetString("3617de4a96262c6f5d9e98bf9292dc29f8f41dbd289a147ce9da3113b5f0b8c00a60b1ce1d7e819d7a431d7c90ea0e5f", 16), p384.Gy = _tuple$4[0];
 		p384.BitSize = 384;
 	};
-	var initP521 = function() {
+0Ç√initP521Çµ	var initP521 = function() {
 		var _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4;
 		p521 = new CurveParams.Ptr();
 		_tuple = new big.Int.Ptr().SetString("6864797660130609714981900799081393217269435300143305409394463459185543183397656052122559640661454554977296311391480858037121987999716643812574028291115057151", 10), p521.P = _tuple[0];
@@ -561,19 +576,20 @@ $$
 		_tuple$4 = new big.Int.Ptr().SetString("11839296a789a3bc0045c8a5fb42c7d1bd998f54449579b446817afbd17273e662c97ee72995ef42640c550b9013fad0761353c7086a272c24088be94769fd16650", 16), p521.Gy = _tuple$4[0];
 		p521.BitSize = 521;
 	};
-	var P256 = go$pkg.P256 = function() {
+0wP256o	var P256 = go$pkg.P256 = function() {
 		initonce.Do(initAll);
 		return new p256.constructor.Struct(p256);
 	};
-	var P384 = go$pkg.P384 = function() {
+0ZP384R	var P384 = go$pkg.P384 = function() {
 		initonce.Do(initAll);
 		return p384;
 	};
-	var P521 = go$pkg.P521 = function() {
+0ZP521R	var P521 = go$pkg.P521 = function() {
 		initonce.Do(initAll);
 		return p521;
 	};
-	var initP224 = function() {
+0Ç
+initP224Ç¸	var initP224 = function() {
 		var _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4;
 		p224.CurveParams = new CurveParams.Ptr();
 		_tuple = new big.Int.Ptr().SetString("26959946667150639794667015087019630673557916260026308143510066298881", 10), p224.CurveParams.P = _tuple[0];
@@ -586,17 +602,17 @@ $$
 		p224FromBig(p224.gy, p224.CurveParams.Gy);
 		p224FromBig(p224.b, p224.CurveParams.B);
 	};
-	var P224 = go$pkg.P224 = function() {
+0wP224o	var P224 = go$pkg.P224 = function() {
 		initonce.Do(initAll);
 		return new p224.constructor.Struct(p224);
 	};
-	p224Curve.Ptr.prototype.Params = function() {
+0Ç≥ParamsÇß	p224Curve.Ptr.prototype.Params = function() {
 		var _struct, curve;
 		curve = (_struct = this, new p224Curve.Ptr(_struct.CurveParams, go$mapArray(_struct.gx, function(entry) { return entry; }), go$mapArray(_struct.gy, function(entry) { return entry; }), go$mapArray(_struct.b, function(entry) { return entry; })));
 		return curve.CurveParams;
 	};
 	p224Curve.prototype.Params = function() { return this.go$val.Params(); };
-	p224Curve.Ptr.prototype.IsOnCurve = function(bigX, bigY) {
+0Ça	IsOnCurveÇR	p224Curve.Ptr.prototype.IsOnCurve = function(bigX, bigY) {
 		var _struct, curve, _tuple, x, y, tmp, x3, i, _lhs, _index, x$1, x$2, i$1;
 		curve = (_struct = this, new p224Curve.Ptr(_struct.CurveParams, go$mapArray(_struct.gx, function(entry) { return entry; }), go$mapArray(_struct.gy, function(entry) { return entry; }), go$mapArray(_struct.b, function(entry) { return entry; })));
 		_tuple = [go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; })], x = _tuple[0], y = _tuple[1];
@@ -627,7 +643,7 @@ $$
 		return true;
 	};
 	p224Curve.prototype.IsOnCurve = function(bigX, bigY) { return this.go$val.IsOnCurve(bigX, bigY); };
-	p224Curve.Ptr.prototype.Add = function(bigX1, bigY1, bigX2, bigY2) {
+0ÇïAddÇå	p224Curve.Ptr.prototype.Add = function(bigX1, bigY1, bigX2, bigY2) {
 		var x, y, _tuple, x1, y1, z1, x2, y2, z2, x3, y3, z3, _tuple$1;
 		x = (go$ptrType(big.Int)).nil;
 		y = (go$ptrType(big.Int)).nil;
@@ -647,7 +663,7 @@ $$
 		return [x, y];
 	};
 	p224Curve.prototype.Add = function(bigX1, bigY1, bigX2, bigY2) { return this.go$val.Add(bigX1, bigY1, bigX2, bigY2); };
-	p224Curve.Ptr.prototype.Double = function(bigX1, bigY1) {
+0ÇæDoubleÇ≤	p224Curve.Ptr.prototype.Double = function(bigX1, bigY1) {
 		var x, y, _tuple, x1, y1, z1, x2, y2, z2, _tuple$1;
 		x = (go$ptrType(big.Int)).nil;
 		y = (go$ptrType(big.Int)).nil;
@@ -660,7 +676,8 @@ $$
 		return [x, y];
 	};
 	p224Curve.prototype.Double = function(bigX1, bigY1) { return this.go$val.Double(bigX1, bigY1); };
-	p224Curve.Ptr.prototype.ScalarMult = function(bigX1, bigY1, scalar) {
+0ÇÍ
+ScalarMultÇ⁄	p224Curve.Ptr.prototype.ScalarMult = function(bigX1, bigY1, scalar) {
 		var x, y, _tuple, x1, y1, z1, x2, y2, z2, _tuple$1;
 		x = (go$ptrType(big.Int)).nil;
 		y = (go$ptrType(big.Int)).nil;
@@ -673,7 +690,7 @@ $$
 		return [x, y];
 	};
 	p224Curve.prototype.ScalarMult = function(bigX1, bigY1, scalar) { return this.go$val.ScalarMult(bigX1, bigY1, scalar); };
-	p224Curve.Ptr.prototype.ScalarBaseMult = function(scalar) {
+0ÇScalarBaseMultÇ˝	p224Curve.Ptr.prototype.ScalarBaseMult = function(scalar) {
 		var x, y, _struct, curve, _tuple, z1, x2, y2, z2, _tuple$1;
 		x = (go$ptrType(big.Int)).nil;
 		y = (go$ptrType(big.Int)).nil;
@@ -685,7 +702,8 @@ $$
 		return [x, y];
 	};
 	p224Curve.prototype.ScalarBaseMult = function(scalar) { return this.go$val.ScalarBaseMult(scalar); };
-	var p224IsZero = function(a) {
+0ÇÌ
+p224IsZeroÇ›	var p224IsZero = function(a) {
 		var minimal, _tuple, isZero, isP, _ref, _i, v, i, result;
 		minimal = go$makeNativeArray("Uint32", 8, function() { return 0; });
 		p224Contract(minimal, a);
@@ -712,7 +730,7 @@ $$
 		result = (((~result >>> 0)) & 1) >>> 0;
 		return result;
 	};
-	var p224Add = function(out, a, b) {
+0Åèp224AddÅÉ	var p224Add = function(out, a, b) {
 		var i;
 		i = 0;
 		while (i < 8) {
@@ -720,7 +738,7 @@ $$
 			i = i + 1 >> 0;
 		}
 	};
-	var p224Sub = function(out, a, b) {
+0ÇMp224SubÇ@	var p224Sub = function(out, a, b) {
 		var i, _slice, _index;
 		i = 0;
 		while (i < 8) {
@@ -728,7 +746,7 @@ $$
 			i = i + 1 >> 0;
 		}
 	};
-	var p224Mul = function(out, a, b, tmp) {
+0Çp224MulÇı	var p224Mul = function(out, a, b, tmp) {
 		var i, i$1, j, _lhs, _index, x, x$1;
 		i = 0;
 		while (i < 15) {
@@ -746,7 +764,8 @@ $$
 		}
 		p224ReduceLarge(out, tmp);
 	};
-	var p224Square = function(out, a, tmp) {
+0Ç
+p224SquareÇ˜	var p224Square = function(out, a, tmp) {
 		var i, i$1, j, r, _lhs, _index, x, x$1, _lhs$1, _index$1, x$2, x$3;
 		i = 0;
 		while (i < 15) {
@@ -769,7 +788,7 @@ $$
 		}
 		p224ReduceLarge(out, tmp);
 	};
-	var p224ReduceLarge = function(out, in$1) {
+0Ç	äp224ReduceLargeÇ	u	var p224ReduceLarge = function(out, in$1) {
 		var i, _lhs, _index, x, x$1, i$1, _lhs$1, _index$1, x$2, x$3, _lhs$2, _index$2, x$4, x$5, x$6, _lhs$3, _index$3, x$7, x$8, i$2, _lhs$4, _index$4, x$9, x$10, x$11, _lhs$5, _index$5, x$12, x$13, _lhs$6, _index$6, x$14, _lhs$7, _index$7, x$15, _lhs$8, _index$8, x$16, _lhs$9, _index$9;
 		i = 0;
 		while (i < 8) {
@@ -797,7 +816,8 @@ $$
 		_lhs$8 = out, _index$8 = 1, _lhs$8[_index$8] = _lhs$8[_index$8] + (((x$16 = go$shiftRightUint64(in$1[0], 28), new Go$Uint64(x$16.high & 0, (x$16.low & 268435455) >>> 0)).low >>> 0)) >>> 0;
 		_lhs$9 = out, _index$9 = 2, _lhs$9[_index$9] = _lhs$9[_index$9] + ((go$shiftRightUint64(in$1[0], 56).low >>> 0)) >>> 0;
 	};
-	var p224Reduce = function(a) {
+0ÇG
+p224ReduceÇ7	var p224Reduce = function(a) {
 		var i, _lhs, _index, _lhs$1, _index$1, top, _lhs$2, _index$2, mask$1, _lhs$3, _index$3, _lhs$4, _index$4, _lhs$5, _index$5, _lhs$6, _index$6, _lhs$7, _index$7, _lhs$8, _index$8;
 		i = 0;
 		while (i < 7) {
@@ -819,7 +839,8 @@ $$
 		_lhs$7 = a, _index$7 = 1, _lhs$7[_index$7] = _lhs$7[_index$7] + (((mask$1 & 268435455) >>> 0)) >>> 0;
 		_lhs$8 = a, _index$8 = 0, _lhs$8[_index$8] = _lhs$8[_index$8] + (((mask$1 & 268435456) >>> 0)) >>> 0;
 	};
-	var p224Invert = function(out, in$1) {
+0Çé
+p224InvertÇ~	var p224Invert = function(out, in$1) {
 		var _tuple, f1, f2, f3, f4, c, i, i$1, i$2, i$3, i$4, i$5, i$6;
 		_tuple = [go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; })], f1 = _tuple[0], f2 = _tuple[1], f3 = _tuple[2], f4 = _tuple[3];
 		c = go$makeNativeArray("Uint64", 15, function() { return new Go$Uint64(0, 0); });
@@ -881,7 +902,7 @@ $$
 		}
 		p224Mul(out, f1, f3, c);
 	};
-	var p224Contract = function(out, in$1) {
+0Çãp224ContractÇy	var p224Contract = function(out, in$1) {
 		var i, _lhs, _index, _lhs$1, _index$1, top, _lhs$2, _index$2, _lhs$3, _index$3, _lhs$4, _index$4, i$1, mask$1, _lhs$5, _index$5, _lhs$6, _index$6, i$2, _lhs$7, _index$7, _lhs$8, _index$8, _lhs$9, _index$9, _lhs$10, _index$10, _lhs$11, _index$11, i$3, mask$2, _lhs$12, _index$12, _lhs$13, _index$13, top4AllOnes, i$4, bottom3NonZero, n, out3Equal, out3GT, mask$3, _lhs$14, _index$14, _lhs$15, _index$15, _lhs$16, _index$16, _lhs$17, _index$17, _lhs$18, _index$18, _lhs$19, _index$19;
 		go$copySlice(new (go$sliceType(Go$Uint32))(out), new (go$sliceType(Go$Uint32))(in$1));
 		i = 0;
@@ -955,7 +976,7 @@ $$
 		_lhs$18 = out, _index$18 = 6, _lhs$18[_index$18] = _lhs$18[_index$18] - (((268435455 & mask$3) >>> 0)) >>> 0;
 		_lhs$19 = out, _index$19 = 7, _lhs$19[_index$19] = _lhs$19[_index$19] - (((268435455 & mask$3) >>> 0)) >>> 0;
 	};
-	var p224AddJacobian = function(x3, y3, z3, x1, y1, z1, x2, y2, z2) {
+0Çxp224AddJacobianÇc	var p224AddJacobian = function(x3, y3, z3, x1, y1, z1, x2, y2, z2) {
 		var _tuple, z1z1, z2z2, u1, u2, s1, s2, h, i, j, r, v, c, z1IsZero, z2IsZero, xEqual, j$1, yEqual, i$1, _lhs, _index, i$2, i$3, _lhs$1, _index$1;
 		_tuple = [go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; })], z1z1 = _tuple[0], z2z2 = _tuple[1], u1 = _tuple[2], u2 = _tuple[3], s1 = _tuple[4], s2 = _tuple[5], h = _tuple[6], i = _tuple[7], j = _tuple[8], r = _tuple[9], v = _tuple[10];
 		c = go$makeNativeArray("Uint64", 15, function() { return new Go$Uint64(0, 0); });
@@ -1029,6 +1050,7 @@ $$
 		p224CopyConditional(z3, z2, z1IsZero);
 		p224CopyConditional(z3, z1, z2IsZero);
 	};
+0Ç"p224DoubleJacobianÇ
 	var p224DoubleJacobian = function(x3, y3, z3, x1, y1, z1) {
 		var _tuple, delta, gamma, beta, alpha, t, c, i, _lhs, _index, i$1, i$2, _lhs$1, _index$1, i$3, _lhs$2, _index$2;
 		_tuple = [go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; })], delta = _tuple[0], gamma = _tuple[1], beta = _tuple[2], alpha = _tuple[3], t = _tuple[4];
@@ -1080,7 +1102,7 @@ $$
 		p224Sub(y3, y3, gamma);
 		p224Reduce(y3);
 	};
-	var p224CopyConditional = function(out, in$1, control) {
+0Çgp224CopyConditionalÇN	var p224CopyConditional = function(out, in$1, control) {
 		var i, _lhs, _index;
 		control = control << 31 >>> 0;
 		control = (((control >> 0) >> 31 >> 0) >>> 0);
@@ -1090,7 +1112,7 @@ $$
 			i = i + 1 >> 0;
 		}
 	};
-	var p224ScalarMult = function(outX, outY, outZ, inX, inY, inZ, scalar) {
+0Çòp224ScalarMultÇÑ	var p224ScalarMult = function(outX, outY, outZ, inX, inY, inZ, scalar) {
 		var _tuple, xx, yy, zz, i, _ref, _i, _slice, _index, byte$1, bitNum, y, bit;
 		_tuple = [go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; })], xx = _tuple[0], yy = _tuple[1], zz = _tuple[2];
 		i = 0;
@@ -1116,7 +1138,7 @@ $$
 			}
 		}
 	};
-	var p224ToAffine = function(x, y, z) {
+0Çäp224ToAffineÇx	var p224ToAffine = function(x, y, z) {
 		var _tuple, zinv, zinvsq, outx, outy, tmp, isPointAtInfinity;
 		_tuple = [go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; })], zinv = _tuple[0], zinvsq = _tuple[1], outx = _tuple[2], outy = _tuple[3];
 		tmp = go$makeNativeArray("Uint64", 15, function() { return new Go$Uint64(0, 0); });
@@ -1132,7 +1154,7 @@ $$
 		p224Contract(outy, y);
 		return [p224ToBig(outx), p224ToBig(outy)];
 	};
-	var get28BitsFromEnd = function(buf, shift) {
+0Ç‚get28BitsFromEndÇÃ	var get28BitsFromEnd = function(buf, shift) {
 		var ret, i, b, l, _slice, _index, y, y$1, x;
 		ret = 0;
 		i = 0;
@@ -1150,7 +1172,7 @@ $$
 		ret = (ret & 268435455) >>> 0;
 		return [ret, buf];
 	};
-	var p224FromBig = function(out, in$1) {
+0ÇKp224FromBigÇ:	var p224FromBig = function(out, in$1) {
 		var bytes, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7;
 		bytes = in$1.Bytes();
 		_tuple = get28BitsFromEnd(bytes, 0), out[0] = _tuple[0], bytes = _tuple[1];
@@ -1162,7 +1184,7 @@ $$
 		_tuple$6 = get28BitsFromEnd(bytes, 0), out[6] = _tuple$6[0], bytes = _tuple$6[1];
 		_tuple$7 = get28BitsFromEnd(bytes, 4), out[7] = _tuple$7[0], bytes = _tuple$7[1];
 	};
-	var p224ToBig = function(in$1) {
+0Ç)	p224ToBigÇ	var p224ToBig = function(in$1) {
 		var buf;
 		buf = go$makeNativeArray("Uint8", 28, function() { return 0; });
 		buf[27] = (in$1[0] << 24 >>> 24);
@@ -1195,7 +1217,7 @@ $$
 		buf[0] = ((in$1[7] >>> 20 >>> 0) << 24 >>> 24);
 		return new big.Int.Ptr().SetBytes(new (go$sliceType(Go$Uint8))(buf));
 	};
-	var initP256 = function() {
+0ÇIinitP256Ç;	var initP256 = function() {
 		var _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5;
 		p256.CurveParams = new CurveParams.Ptr();
 		_tuple = new big.Int.Ptr().SetString("115792089210356248762697446949407573530086143415290314195533631308867097853951", 10), p256.CurveParams.P = _tuple[0];
@@ -1206,13 +1228,13 @@ $$
 		p256.CurveParams.BitSize = 256;
 		_tuple$5 = new big.Int.Ptr().SetString("7fffffff00000001fffffffe8000000100000000ffffffff0000000180000000", 16), p256RInverse = _tuple$5[0];
 	};
-	p256Curve.Ptr.prototype.Params = function() {
+0ÅˇParamsÅÙ	p256Curve.Ptr.prototype.Params = function() {
 		var _struct, curve;
 		curve = (_struct = this, new p256Curve.Ptr(_struct.CurveParams));
 		return curve.CurveParams;
 	};
 	p256Curve.prototype.Params = function() { return this.go$val.Params(); };
-	var p256GetScalar = function(out, in$1) {
+0ÇÜp256GetScalarÇs	var p256GetScalar = function(out, in$1) {
 		var n, scalarBytes, _ref, _i, _slice, _index, v, i;
 		n = new big.Int.Ptr().SetBytes(in$1);
 		scalarBytes = (go$sliceType(Go$Uint8)).nil;
@@ -1230,7 +1252,7 @@ $$
 			out[scalarBytes.length - ((1 + i >> 0)) >> 0] = v;
 		}
 	};
-	p256Curve.Ptr.prototype.ScalarBaseMult = function(scalar) {
+0Ç)ScalarBaseMultÇ	p256Curve.Ptr.prototype.ScalarBaseMult = function(scalar) {
 		var x, y, scalarReversed, _tuple, x1, y1, z1, _tuple$1;
 		x = (go$ptrType(big.Int)).nil;
 		y = (go$ptrType(big.Int)).nil;
@@ -1242,7 +1264,8 @@ $$
 		return [x, y];
 	};
 	p256Curve.prototype.ScalarBaseMult = function(scalar) { return this.go$val.ScalarBaseMult(scalar); };
-	p256Curve.Ptr.prototype.ScalarMult = function(bigX, bigY, scalar) {
+0Ç
+ScalarMultÇ	p256Curve.Ptr.prototype.ScalarMult = function(bigX, bigY, scalar) {
 		var x, y, scalarReversed, _tuple, px, py, x1, y1, z1, _tuple$1;
 		x = (go$ptrType(big.Int)).nil;
 		y = (go$ptrType(big.Int)).nil;
@@ -1256,10 +1279,10 @@ $$
 		return [x, y];
 	};
 	p256Curve.prototype.ScalarMult = function(bigX, bigY, scalar) { return this.go$val.ScalarMult(bigX, bigY, scalar); };
-	var nonZeroToAllOnes = function(x) {
+0snonZeroToAllOnes_	var nonZeroToAllOnes = function(x) {
 		return ((((x - 1 >>> 0)) >>> 31 >>> 0)) - 1 >>> 0;
 	};
-	var p256ReduceCarry = function(inout, carry) {
+0Ç»p256ReduceCarryÇ≥	var p256ReduceCarry = function(inout, carry) {
 		var carry_mask, _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, _lhs$3, _index$3, _lhs$4, _index$4, _lhs$5, _index$5, _lhs$6, _index$6, _lhs$7, _index$7, _lhs$8, _index$8;
 		carry_mask = nonZeroToAllOnes(carry);
 		_lhs = inout, _index = 0, _lhs[_index] = _lhs[_index] + ((carry << 1 >>> 0)) >>> 0;
@@ -1272,7 +1295,7 @@ $$
 		_lhs$7 = inout, _index$7 = 7, _lhs$7[_index$7] = _lhs$7[_index$7] - (((1 & carry_mask) >>> 0)) >>> 0;
 		_lhs$8 = inout, _index$8 = 7, _lhs$8[_index$8] = _lhs$8[_index$8] + ((carry << 25 >>> 0)) >>> 0;
 	};
-	var p256Sum = function(out, in$1, in2) {
+0Çıp256SumÇË	var p256Sum = function(out, in$1, in2) {
 		var carry, i, _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, _lhs$3, _index$3;
 		carry = 0;
 		i = 0;
@@ -1293,7 +1316,7 @@ $$
 		}
 		p256ReduceCarry(out, carry);
 	};
-	var p256Diff = function(out, in$1, in2) {
+0Ç”p256DiffÇ≈	var p256Diff = function(out, in$1, in2) {
 		var carry, i, _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, _lhs$3, _index$3, _lhs$4, _index$4, _lhs$5, _index$5;
 		carry = 0;
 		i = 0;
@@ -1316,7 +1339,7 @@ $$
 		}
 		p256ReduceCarry(out, carry);
 	};
-	var p256ReduceDegree = function(out, tmp) {
+0Çúp256ReduceDegreeÇÜ	var p256ReduceDegree = function(out, tmp) {
 		var tmp2, _tuple, carry, x, xMask, _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, i, _lhs$3, _index$3, _lhs$4, _index$4, _lhs$5, _index$5, _lhs$6, _index$6, _lhs$7, _index$7, _lhs$8, _index$8, _lhs$9, _index$9, _lhs$10, _index$10, _lhs$11, _index$11, _lhs$12, _index$12, _lhs$13, _index$13, _lhs$14, _index$14, _lhs$15, _index$15, i$1, _lhs$16, _index$16, _lhs$17, _index$17, _lhs$18, _index$18, _lhs$19, _index$19, _lhs$20, _index$20, _lhs$21, _index$21, _lhs$22, _index$22, _lhs$23, _index$23, _lhs$24, _index$24, _lhs$25, _index$25, _lhs$26, _index$26, _lhs$27, _index$27, _lhs$28, _index$28, _lhs$29, _index$29, _lhs$30, _index$30, _lhs$31, _index$31, _lhs$32, _index$32, _lhs$33, _index$33, _lhs$34, _index$34, _lhs$35, _index$35, _lhs$36, _index$36, _lhs$37, _index$37, _lhs$38, _index$38, _lhs$39, _index$39, _lhs$40, _index$40, i$2, _lhs$41, _index$41, _lhs$42, _index$42, _lhs$43, _index$43, _lhs$44, _index$44, _lhs$45, _index$45, _lhs$46, _index$46, _lhs$47, _index$47;
 		tmp2 = go$makeNativeArray("Uint32", 18, function() { return 0; });
 		_tuple = [0, 0, 0], carry = _tuple[0], x = _tuple[1], xMask = _tuple[2];
@@ -1411,7 +1434,8 @@ $$
 		_lhs$47 = out, _index$47 = 8, _lhs$47[_index$47] = (_lhs$47[_index$47] & 536870911) >>> 0;
 		p256ReduceCarry(out, carry);
 	};
-	var p256Square = function(out, in$1) {
+0Çâ
+p256SquareÇy	var p256Square = function(out, in$1) {
 		var tmp, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$40, x$41, x$42, x$43, x$44, x$45, x$46, x$47, x$48, x$49, x$50, x$51, x$52, x$53, x$54, x$55;
 		tmp = go$makeNativeArray("Uint64", 17, function() { return new Go$Uint64(0, 0); });
 		tmp[0] = go$mul64(new Go$Uint64(0, in$1[0]), new Go$Uint64(0, in$1[0]));
@@ -1433,7 +1457,7 @@ $$
 		tmp[16] = go$mul64(new Go$Uint64(0, in$1[8]), new Go$Uint64(0, in$1[8]));
 		p256ReduceDegree(out, go$mapArray(tmp, function(entry) { return entry; }));
 	};
-	var p256Mul = function(out, in$1, in2) {
+0Ç2+p256MulÇ2	var p256Mul = function(out, in$1, in2) {
 		var tmp, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$40, x$41, x$42, x$43, x$44, x$45, x$46, x$47, x$48, x$49, x$50, x$51, x$52, x$53, x$54, x$55, x$56, x$57, x$58, x$59, x$60, x$61, x$62, x$63, x$64, x$65, x$66, x$67, x$68, x$69, x$70, x$71, x$72, x$73, x$74, x$75, x$76, x$77, x$78, x$79, x$80, x$81, x$82, x$83, x$84, x$85, x$86, x$87, x$88, x$89, x$90, x$91, x$92, x$93, x$94, x$95, x$96, x$97, x$98, x$99, x$100, x$101, x$102, x$103, x$104, x$105, x$106, x$107, x$108, x$109, x$110, x$111, x$112, x$113, x$114, x$115, x$116, x$117, x$118, x$119, x$120, x$121, x$122, x$123, x$124, x$125, x$126, x$127;
 		tmp = go$makeNativeArray("Uint64", 17, function() { return new Go$Uint64(0, 0); });
 		tmp[0] = go$mul64(new Go$Uint64(0, in$1[0]), new Go$Uint64(0, in2[0]));
@@ -1455,10 +1479,12 @@ $$
 		tmp[16] = go$mul64(new Go$Uint64(0, in$1[8]), (go$shiftLeft64(new Go$Uint64(0, in2[8]), 0)));
 		p256ReduceDegree(out, go$mapArray(tmp, function(entry) { return entry; }));
 	};
-	var p256Assign = function(out, in$1) {
+0ÅÖ
+p256Assignw	var p256Assign = function(out, in$1) {
 		go$copyArray(out, go$mapArray(in$1, function(entry) { return entry; }));
 	};
-	var p256Invert = function(out, in$1) {
+0Ç®
+p256InvertÇò	var p256Invert = function(out, in$1) {
 		var _tuple, ftmp, ftmp2, _tuple$1, e2, e4, e8, e16, e32, e64, i, i$1, i$2, i$3, i$4, i$5, i$6;
 		_tuple = [go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; })], ftmp = _tuple[0], ftmp2 = _tuple[1];
 		_tuple$1 = [go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; })], e2 = _tuple$1[0], e4 = _tuple$1[1], e8 = _tuple$1[2], e16 = _tuple$1[3], e32 = _tuple$1[4], e64 = _tuple$1[5];
@@ -1528,7 +1554,7 @@ $$
 		p256Mul(ftmp2, ftmp2, in$1);
 		p256Mul(out, ftmp2, ftmp);
 	};
-	var p256Scalar3 = function(out) {
+0Çp256Scalar3Ç˝	var p256Scalar3 = function(out) {
 		var carry, i, _lhs, _index, x, x$1, _lhs$1, _index$1, _lhs$2, _index$2, _lhs$3, _index$3, x$2, x$3, _lhs$4, _index$4, _lhs$5, _index$5;
 		carry = 0;
 		i = 0;
@@ -1549,7 +1575,7 @@ $$
 		}
 		p256ReduceCarry(out, carry);
 	};
-	var p256Scalar4 = function(out) {
+0Ç˜p256Scalar4ÇÊ	var p256Scalar4 = function(out) {
 		var _tuple, carry, nextCarry, i, _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, _lhs$3, _index$3, _lhs$4, _index$4, _lhs$5, _index$5, _lhs$6, _index$6, _lhs$7, _index$7;
 		_tuple = [0, 0], carry = _tuple[0], nextCarry = _tuple[1];
 		i = 0;
@@ -1574,7 +1600,7 @@ $$
 		}
 		p256ReduceCarry(out, carry);
 	};
-	var p256Scalar8 = function(out) {
+0Ç˜p256Scalar8ÇÊ	var p256Scalar8 = function(out) {
 		var _tuple, carry, nextCarry, i, _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, _lhs$3, _index$3, _lhs$4, _index$4, _lhs$5, _index$5, _lhs$6, _index$6, _lhs$7, _index$7;
 		_tuple = [0, 0], carry = _tuple[0], nextCarry = _tuple[1];
 		i = 0;
@@ -1599,7 +1625,7 @@ $$
 		}
 		p256ReduceCarry(out, carry);
 	};
-	var p256PointDouble = function(xOut, yOut, zOut, x, y, z) {
+0Çvp256PointDoubleÇa	var p256PointDouble = function(xOut, yOut, zOut, x, y, z) {
 		var _tuple, delta, gamma, alpha, beta, tmp, tmp2;
 		_tuple = [go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; })], delta = _tuple[0], gamma = _tuple[1], alpha = _tuple[2], beta = _tuple[3], tmp = _tuple[4], tmp2 = _tuple[5];
 		p256Square(delta, z);
@@ -1623,7 +1649,7 @@ $$
 		p256Scalar8(tmp2);
 		p256Diff(yOut, tmp, tmp2);
 	};
-	var p256PointAddMixed = function(xOut, yOut, zOut, x1, y1, z1, x2, y2) {
+0Çˇp256PointAddMixedÇË	var p256PointAddMixed = function(xOut, yOut, zOut, x1, y1, z1, x2, y2) {
 		var _tuple, z1z1, z1z1z1, s2, u2, h, i, j, r, rr, v, tmp;
 		_tuple = [go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; })], z1z1 = _tuple[0], z1z1z1 = _tuple[1], s2 = _tuple[2], u2 = _tuple[3], h = _tuple[4], i = _tuple[5], j = _tuple[6], r = _tuple[7], rr = _tuple[8], v = _tuple[9], tmp = _tuple[10];
 		p256Square(z1z1, z1);
@@ -1649,7 +1675,7 @@ $$
 		p256Diff(yOut, yOut, tmp);
 		p256Diff(yOut, yOut, tmp);
 	};
-	var p256PointAdd = function(xOut, yOut, zOut, x1, y1, z1, x2, y2, z2) {
+0Ç˛p256PointAddÇÏ	var p256PointAdd = function(xOut, yOut, zOut, x1, y1, z1, x2, y2, z2) {
 		var _tuple, z1z1, z1z1z1, z2z2, z2z2z2, s1, s2, u1, u2, h, i, j, r, rr, v, tmp;
 		_tuple = [go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; })], z1z1 = _tuple[0], z1z1z1 = _tuple[1], z2z2 = _tuple[2], z2z2z2 = _tuple[3], s1 = _tuple[4], s2 = _tuple[5], u1 = _tuple[6], u2 = _tuple[7], h = _tuple[8], i = _tuple[9], j = _tuple[10], r = _tuple[11], rr = _tuple[12], v = _tuple[13], tmp = _tuple[14];
 		p256Square(z1z1, z1);
@@ -1682,7 +1708,7 @@ $$
 		p256Diff(yOut, yOut, tmp);
 		p256Diff(yOut, yOut, tmp);
 	};
-	var p256CopyConditional = function(out, in$1, mask$1) {
+0Ç$p256CopyConditionalÇ	var p256CopyConditional = function(out, in$1, mask$1) {
 		var i, tmp, _lhs, _index;
 		i = 0;
 		while (i < 9) {
@@ -1691,7 +1717,7 @@ $$
 			i = i + 1 >> 0;
 		}
 	};
-	var p256SelectAffinePoint = function(xOut, yOut, table, index) {
+0Ç≥p256SelectAffinePointÇò	var p256SelectAffinePoint = function(xOut, yOut, table, index) {
 		var _ref, _i, i, _ref$1, _i$1, i$1, i$2, mask$1, _ref$2, _i$2, j, _lhs, _index, _slice, _index$1, _ref$3, _i$3, j$1, _lhs$1, _index$2, _slice$1, _index$3;
 		_ref = xOut;
 		_i = 0;
@@ -1729,7 +1755,7 @@ $$
 			i$2 = i$2 + 1 >>> 0;
 		}
 	};
-	var p256SelectJacobianPoint = function(xOut, yOut, zOut, table, index) {
+0Çíp256SelectJacobianPointÇu	var p256SelectJacobianPoint = function(xOut, yOut, zOut, table, index) {
 		var _ref, _i, i, _ref$1, _i$1, i$1, _ref$2, _i$2, i$2, i$3, mask$1, _ref$3, _i$3, j, _lhs, _index, _ref$4, _i$4, j$1, _lhs$1, _index$1, _ref$5, _i$5, j$2, _lhs$2, _index$2;
 		_ref = xOut;
 		_i = 0;
@@ -1777,11 +1803,12 @@ $$
 			i$3 = i$3 + 1 >>> 0;
 		}
 	};
-	var p256GetBit = function(scalar, bit) {
+0Å√
+p256GetBitÅ¥	var p256GetBit = function(scalar, bit) {
 		var y;
 		return ((((((y = (((bit & 7) >>> 0)), y < 32 ? ((scalar[(bit >>> 3 >>> 0)]) >>> y) : 0) << 24 >>> 24)) & 1) >>> 0) >>> 0);
 	};
-	var p256ScalarBaseMult = function(xOut, yOut, zOut, scalar) {
+0Ç	Hp256ScalarBaseMultÇ	0	var p256ScalarBaseMult = function(xOut, yOut, zOut, scalar) {
 		var nIsInfinityMask, _tuple, pIsNoninfiniteMask, mask$1, tableOffset, _tuple$1, px, py, tx, ty, tz, _ref, _i, i, _ref$1, _i$1, i$1, _ref$2, _i$2, i$2, i$3, j, bit0, bit1, bit2, bit3, index;
 		nIsInfinityMask = 4294967295;
 		_tuple = [0, 0, 0], pIsNoninfiniteMask = _tuple[0], mask$1 = _tuple[1], tableOffset = _tuple[2];
@@ -1834,7 +1861,7 @@ $$
 			i$3 = i$3 + 1 >>> 0;
 		}
 	};
-	var p256PointToAffine = function(xOut, yOut, x, y, z) {
+0Ç°p256PointToAffineÇä	var p256PointToAffine = function(xOut, yOut, x, y, z) {
 		var _tuple, zInv, zInvSq;
 		_tuple = [go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; })], zInv = _tuple[0], zInvSq = _tuple[1];
 		p256Invert(zInv, z);
@@ -1843,7 +1870,7 @@ $$
 		p256Mul(zInv, zInv, zInvSq);
 		p256Mul(yOut, y, zInv);
 	};
-	var p256ToAffine = function(x, y, z) {
+0ÇÁp256ToAffineÇ’	var p256ToAffine = function(x, y, z) {
 		var xOut, yOut, _tuple, xx, yy, _tuple$1;
 		xOut = (go$ptrType(big.Int)).nil;
 		yOut = (go$ptrType(big.Int)).nil;
@@ -1852,7 +1879,7 @@ $$
 		_tuple$1 = [p256ToBig(xx), p256ToBig(yy)], xOut = _tuple$1[0], yOut = _tuple$1[1];
 		return [xOut, yOut];
 	};
-	var p256ScalarMult = function(xOut, yOut, zOut, x, y, scalar) {
+0Çsp256ScalarMultÇ_	var p256ScalarMult = function(xOut, yOut, zOut, x, y, scalar) {
 		var _tuple, px, py, pz, tx, ty, tz, precomp, _tuple$1, nIsInfinityMask, index, pIsNoninfiniteMask, mask$1, i, _q, _q$1, _q$2, _ref, _i, i$1, _ref$1, _i$1, i$2, _ref$2, _i$2, i$3, i$4, _q$3;
 		_tuple = [go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; })], px = _tuple[0], py = _tuple[1], pz = _tuple[2], tx = _tuple[3], ty = _tuple[4], tz = _tuple[5];
 		precomp = go$makeNativeArray("Array", 16, function() { return go$makeNativeArray("Array", 3, function() { return go$makeNativeArray("Uint32", 9, function() { return 0; }); }); });
@@ -1913,7 +1940,7 @@ $$
 			i$4 = i$4 + 1 >> 0;
 		}
 	};
-	var p256FromBig = function(out, in$1) {
+0Çïp256FromBigÇÑ	var p256FromBig = function(out, in$1) {
 		var tmp, i, bits, _slice, _index, bits$1, _slice$1, _index$1;
 		tmp = new big.Int.Ptr().Lsh(in$1, 257);
 		tmp.Mod(tmp, p256.CurveParams.P);
@@ -1938,7 +1965,7 @@ $$
 			i = i + 1 >> 0;
 		}
 	};
-	var p256ToBig = function(in$1) {
+0Ç	p256ToBigÇ	var p256ToBig = function(in$1) {
 		var _tuple, result, tmp, i;
 		_tuple = [new big.Int.Ptr(), new big.Int.Ptr()], result = _tuple[0], tmp = _tuple[1];
 		result.SetInt64(new Go$Int64(0, in$1[8]));
@@ -1957,38 +1984,7 @@ $$
 		result.Mod(result, p256.CurveParams.P);
 		return result;
 	};
-	var two31p3 = 2147483656;
-	var two31m3 = 2147483640;
-	var two31m15m3 = 2147450872;
-	var two63p35 = -9223372002495037440;
-	var two63m35 = 9223372002495037440;
-	var two63m35m19 = 9223372002494513152;
-	var bottom12Bits = 4095;
-	var bottom28Bits = 268435455;
-	var p256Limbs = 9;
-	var bottom29Bits = 536870911;
-	var two30m2 = 1073741820;
-	var two30p13m2 = 1073750012;
-	var two31m2 = 2147483644;
-	var two31p24m2 = 2164260860;
-	var two30m27m2 = 939524092;
-	var mask = (go$sliceType(Go$Uint8)).nil;
-	var initonce = new sync.Once.Ptr();
-	var p384 = (go$ptrType(CurveParams)).nil;
-	var p521 = (go$ptrType(CurveParams)).nil;
-	var p224 = new p224Curve.Ptr();
-	var p224P = go$makeNativeArray("Uint32", 8, function() { return 0; });
-	var p224ZeroModP31 = (go$sliceType(Go$Uint32)).nil;
-	var p224ZeroModP63 = go$makeNativeArray("Uint64", 8, function() { return new Go$Uint64(0, 0); });
-	var p256 = new p256Curve.Ptr();
-	var p256RInverse = (go$ptrType(big.Int)).nil;
-	var p256One = go$makeNativeArray("Uint32", 9, function() { return 0; });
-	var p256Zero = go$makeNativeArray("Uint32", 9, function() { return 0; });
-	var p256P = go$makeNativeArray("Uint32", 9, function() { return 0; });
-	var p2562P = go$makeNativeArray("Uint32", 9, function() { return 0; });
-	var p256Precomputed = go$makeNativeArray("Uint32", 540, function() { return 0; });
-	var p256Zero31 = go$makeNativeArray("Uint32", 9, function() { return 0; });
-	go$pkg.init = function() {
+0ÇÄinitÇv	go$pkg.init = function() {
 		mask = new (go$sliceType(Go$Uint8))([255, 1, 3, 7, 15, 31, 63, 127]);
 		p224P = go$toNativeArray("Uint32", [1, 0, 0, 268431360, 268435455, 268435455, 268435455, 268435455]);
 		p224ZeroModP31 = new (go$sliceType(Go$Uint32))([2147483656, 2147483640, 2147483640, 2147450872, 2147483640, 2147483640, 2147483640, 2147483640]);

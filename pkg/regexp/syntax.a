@@ -1,4 +1,4 @@
-0ÉCæÇ#package syntax
+0ÉBregexp/syntaxÇ#package syntax
 import unicode "unicode"
 import sort "sort"
 import strings "strings"
@@ -159,13 +159,7 @@ func (? *@"".ranges) @"".Len() (? int)
 func (? *@"".ranges) @"".Less(@"".i int, @"".j int) (? bool)
 func (? *@"".ranges) @"".Swap(@"".i int, @"".j int) ()
 $$
-0sruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxÉ¡	var unicode = go$packages["unicode"];
-	var sort = go$packages["sort"];
-	var strings = go$packages["strings"];
-	var utf8 = go$packages["unicode/utf8"];
-	var bytes = go$packages["bytes"];
-	var strconv = go$packages["strconv"];
-	var patchList;
+0sruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntax0p0unicodeunicode0sortsort0stringsstrings0unicode/utf8utf80bytesbytes0strconvstrconvÇ*E	var patchList;
 	patchList = go$newType(4, "Uint32", "syntax.patchList", "patchList", "regexp/syntax", null);
 	go$pkg.patchList = patchList;
 	var frag;
@@ -280,7 +274,29 @@ $$
 	(go$ptrType(Inst)).methods = [["MatchEmptyWidth", "", [Go$Int32, Go$Int32], [Go$Bool], false], ["MatchRune", "", [Go$Int32], [Go$Bool], false], ["String", "", [], [Go$String], false], ["op", "regexp/syntax", [], [InstOp], false]];
 	Regexp.init([["Op", "", Op, ""], ["Flags", "", Flags, ""], ["Sub", "", (go$sliceType((go$ptrType(Regexp)))), ""], ["Sub0", "", (go$arrayType((go$ptrType(Regexp)), 1)), ""], ["Rune", "", (go$sliceType(Go$Int32)), ""], ["Rune0", "", (go$arrayType(Go$Int32, 2)), ""], ["Min", "", Go$Int, ""], ["Max", "", Go$Int, ""], ["Cap", "", Go$Int, ""], ["Name", "", Go$String, ""]]);
 	(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
-	patchList.prototype.next = function(p) {
+Ç©	var anyRuneNotNL = (go$sliceType(Go$Int32)).nil;
+	var anyRune = (go$sliceType(Go$Int32)).nil;
+	var anyTable = (go$ptrType(unicode.RangeTable)).nil;
+	var code1 = (go$sliceType(Go$Int32)).nil;
+	var code2 = (go$sliceType(Go$Int32)).nil;
+	var code3 = (go$sliceType(Go$Int32)).nil;
+	var perlGroup = false;
+	var code4 = (go$sliceType(Go$Int32)).nil;
+	var code5 = (go$sliceType(Go$Int32)).nil;
+	var code6 = (go$sliceType(Go$Int32)).nil;
+	var code7 = (go$sliceType(Go$Int32)).nil;
+	var code8 = (go$sliceType(Go$Int32)).nil;
+	var code9 = (go$sliceType(Go$Int32)).nil;
+	var code10 = (go$sliceType(Go$Int32)).nil;
+	var code11 = (go$sliceType(Go$Int32)).nil;
+	var code12 = (go$sliceType(Go$Int32)).nil;
+	var code13 = (go$sliceType(Go$Int32)).nil;
+	var code14 = (go$sliceType(Go$Int32)).nil;
+	var code15 = (go$sliceType(Go$Int32)).nil;
+	var code16 = (go$sliceType(Go$Int32)).nil;
+	var code17 = (go$sliceType(Go$Int32)).nil;
+	var posixGroup = false;
+0ÉÔ©0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		var l, _slice, _index, i;
 		l = this.go$val;
 		i = (_slice = p.Inst, _index = (l >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -290,7 +306,7 @@ $$
 		return (i.Arg >>> 0);
 	};
 	go$ptrType(patchList).prototype.next = function(p) { return new patchList(this.go$get()).next(p); };
-	patchList.prototype.patch = function(p, val) {
+0Ç/patchÇ$	patchList.prototype.patch = function(p, val) {
 		var l, _slice, _index, i;
 		l = this.go$val;
 		while (!((l === 0))) {
@@ -305,7 +321,7 @@ $$
 		}
 	};
 	go$ptrType(patchList).prototype.patch = function(p, val) { return new patchList(this.go$get()).patch(p, val); };
-	patchList.prototype.append = function(p, l2) {
+0Ç÷appendÇ 	patchList.prototype.append = function(p, l2) {
 		var l1, last, next, _slice, _index, i;
 		l1 = this.go$val;
 		if (l1 === 0) {
@@ -331,7 +347,7 @@ $$
 		return l1;
 	};
 	go$ptrType(patchList).prototype.append = function(p, l2) { return new patchList(this.go$get()).append(p, l2); };
-	var Compile = go$pkg.Compile = function(re) {
+0Ç$CompileÇ	var Compile = go$pkg.Compile = function(re) {
 		var c, _struct, f;
 		c = new compiler.Ptr();
 		c.init();
@@ -340,7 +356,7 @@ $$
 		c.p.Start = (f.i >> 0);
 		return [c.p, null];
 	};
-	compiler.Ptr.prototype.init = function() {
+0ÅÀinitÅ¬	compiler.Ptr.prototype.init = function() {
 		var c;
 		c = this;
 		c.p = new Prog.Ptr();
@@ -348,7 +364,7 @@ $$
 		c.inst(5);
 	};
 	compiler.prototype.init = function() { return this.go$val.init(); };
-	compiler.Ptr.prototype.compile = function(re) {
+0ÇÃcompileÇø	compiler.Ptr.prototype.compile = function(re) {
 		var c, _ref, _struct, _struct$1, _struct$2, f, _ref$1, _i, j, _struct$3, f1, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, _struct$15, _struct$16, _struct$17, _struct$18, bra, _slice, _index, _struct$19, sub, _struct$20, ket, _struct$21, _struct$22, _struct$23, _struct$24, _struct$25, _slice$1, _index$1, _struct$26, _struct$27, _slice$2, _index$2, _struct$28, _struct$29, _slice$3, _index$3, _struct$30, _struct$31, _struct$32, f$1, _ref$2, _i$1, _slice$4, _index$4, sub$1, i, _struct$33, _struct$34, _struct$35, _struct$36, _struct$37, f$2, _ref$3, _i$2, _slice$5, _index$5, sub$2, _struct$38, _struct$39, _struct$40, _struct$41;
 		c = this;
 		_ref = re.Op;
@@ -432,7 +448,7 @@ $$
 		throw go$panic(new Go$String("regexp: unhandled case in compile"));
 	};
 	compiler.prototype.compile = function(re) { return this.go$val.compile(re); };
-	compiler.Ptr.prototype.inst = function(op) {
+0ÇminstÇc	compiler.Ptr.prototype.inst = function(op) {
 		var c, f, _struct;
 		c = this;
 		f = new frag.Ptr((c.p.Inst.length >>> 0), 0);
@@ -440,7 +456,7 @@ $$
 		return (_struct = f, new frag.Ptr(_struct.i, _struct.out));
 	};
 	compiler.prototype.inst = function(op) { return this.go$val.inst(op); };
-	compiler.Ptr.prototype.nop = function() {
+0ÇSnopÇJ	compiler.Ptr.prototype.nop = function() {
 		var c, _struct, f, _struct$1;
 		c = this;
 		f = (_struct = c.inst(6), new frag.Ptr(_struct.i, _struct.out));
@@ -448,13 +464,13 @@ $$
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.nop = function() { return this.go$val.nop(); };
-	compiler.Ptr.prototype.fail = function() {
+0Å±failÅ®	compiler.Ptr.prototype.fail = function() {
 		var c;
 		c = this;
 		return new frag.Ptr(0, 0);
 	};
 	compiler.prototype.fail = function() { return this.go$val.fail(); };
-	compiler.Ptr.prototype.cap = function(arg) {
+0ÇmcapÇd	compiler.Ptr.prototype.cap = function(arg) {
 		var c, _struct, f, _slice, _index, _struct$1;
 		c = this;
 		f = (_struct = c.inst(2), new frag.Ptr(_struct.i, _struct.out));
@@ -466,7 +482,7 @@ $$
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.cap = function(arg) { return this.go$val.cap(arg); };
-	compiler.Ptr.prototype.cat = function(f1, f2) {
+0Ç<catÇ3	compiler.Ptr.prototype.cat = function(f1, f2) {
 		var c;
 		c = this;
 		if ((f1.i === 0) || (f2.i === 0)) {
@@ -476,7 +492,7 @@ $$
 		return new frag.Ptr(f1.i, f2.out);
 	};
 	compiler.prototype.cat = function(f1, f2) { return this.go$val.cat(f1, f2); };
-	compiler.Ptr.prototype.alt = function(f1, f2) {
+0Ç#altÇ	compiler.Ptr.prototype.alt = function(f1, f2) {
 		var c, _struct, _struct$1, _struct$2, f, _slice, _index, i, _struct$3;
 		c = this;
 		if (f1.i === 0) {
@@ -493,7 +509,7 @@ $$
 		return (_struct$3 = f, new frag.Ptr(_struct$3.i, _struct$3.out));
 	};
 	compiler.prototype.alt = function(f1, f2) { return this.go$val.alt(f1, f2); };
-	compiler.Ptr.prototype.quest = function(f1, nongreedy) {
+0ÇÈquestÇﬁ	compiler.Ptr.prototype.quest = function(f1, nongreedy) {
 		var c, _struct, f, _slice, _index, i, _struct$1;
 		c = this;
 		f = (_struct = c.inst(0), new frag.Ptr(_struct.i, _struct.out));
@@ -509,7 +525,7 @@ $$
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.quest = function(f1, nongreedy) { return this.go$val.quest(f1, nongreedy); };
-	compiler.Ptr.prototype.star = function(f1, nongreedy) {
+0Ç⁄starÇ–	compiler.Ptr.prototype.star = function(f1, nongreedy) {
 		var c, _struct, f, _slice, _index, i, _struct$1;
 		c = this;
 		f = (_struct = c.inst(0), new frag.Ptr(_struct.i, _struct.out));
@@ -525,13 +541,13 @@ $$
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.star = function(f1, nongreedy) { return this.go$val.star(f1, nongreedy); };
-	compiler.Ptr.prototype.plus = function(f1, nongreedy) {
+0Ç/plusÇ%	compiler.Ptr.prototype.plus = function(f1, nongreedy) {
 		var c, _struct;
 		c = this;
 		return new frag.Ptr(f1.i, c.star((_struct = f1, new frag.Ptr(_struct.i, _struct.out)), nongreedy).out);
 	};
 	compiler.prototype.plus = function(f1, nongreedy) { return this.go$val.plus(f1, nongreedy); };
-	compiler.Ptr.prototype.empty = function(op) {
+0Ç$emptyÇ	compiler.Ptr.prototype.empty = function(op) {
 		var c, _struct, f, _slice, _index, _struct$1;
 		c = this;
 		f = (_struct = c.inst(3), new frag.Ptr(_struct.i, _struct.out));
@@ -540,7 +556,7 @@ $$
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.empty = function(op) { return this.go$val.empty(op); };
-	compiler.Ptr.prototype.rune = function(r, flags) {
+0Ç$runeÇ	compiler.Ptr.prototype.rune = function(r, flags) {
 		var c, _struct, f, _slice, _index, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _struct$1;
 		c = this;
 		f = (_struct = c.inst(7), new frag.Ptr(_struct.i, _struct.out));
@@ -562,19 +578,19 @@ $$
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.rune = function(r, flags) { return this.go$val.rune(r, flags); };
-	Error.Ptr.prototype.Error = function() {
+0ÅÔErrorÅÂ	Error.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "error parsing regexp: " + (new ErrorCode(e.Code)).String() + ": `" + e.Expr + "`";
 	};
 	Error.prototype.Error = function() { return this.go$val.Error(); };
-	ErrorCode.prototype.String = function() {
+0Å StringÅø	ErrorCode.prototype.String = function() {
 		var e;
 		e = this.go$val;
 		return e;
 	};
 	go$ptrType(ErrorCode).prototype.String = function() { return new ErrorCode(this.go$get()).String(); };
-	parser.Ptr.prototype.newRegexp = function(op) {
+0ÇÒ	newRegexpÇ‚	parser.Ptr.prototype.newRegexp = function(op) {
 		var p, re, l, r;
 		p = this;
 		re = p.free;
@@ -588,14 +604,14 @@ $$
 		return re;
 	};
 	parser.prototype.newRegexp = function(op) { return this.go$val.newRegexp(op); };
-	parser.Ptr.prototype.reuse = function(re) {
+0Å¿reuseÅ∂	parser.Ptr.prototype.reuse = function(re) {
 		var p;
 		p = this;
 		re.Sub0[0] = p.free;
 		p.free = re;
 	};
 	parser.prototype.reuse = function(re) { return this.go$val.reuse(re); };
-	parser.Ptr.prototype.push = function(re) {
+0Ç9pushÇ/	parser.Ptr.prototype.push = function(re) {
 		var p, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17;
 		p = this;
 		if ((re.Op === 4) && (re.Rune.length === 2) && ((_slice = re.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === (_slice$1 = re.Rune, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))) {
@@ -619,7 +635,7 @@ $$
 		return re;
 	};
 	parser.prototype.push = function(re) { return this.go$val.push(re); };
-	parser.Ptr.prototype.maybeConcat = function(r, flags) {
+0ÇÚmaybeConcatÇ·	parser.Ptr.prototype.maybeConcat = function(r, flags) {
 		var p, n, _slice, _index, re1, _slice$1, _index$1, re2, _slice$2, _index$2;
 		p = this;
 		n = p.stack.length;
@@ -643,7 +659,8 @@ $$
 		return false;
 	};
 	parser.prototype.maybeConcat = function(r, flags) { return this.go$val.maybeConcat(r, flags); };
-	parser.Ptr.prototype.newLiteral = function(r, flags) {
+0Çö
+newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		var p, re;
 		p = this;
 		re = p.newRegexp(3);
@@ -656,7 +673,7 @@ $$
 		return re;
 	};
 	parser.prototype.newLiteral = function(r, flags) { return this.go$val.newLiteral(r, flags); };
-	var minFoldRune = function(r) {
+0ÇminFoldRuneÇ	var minFoldRune = function(r) {
 		var min, r0;
 		if (r < 65 || r > 66639) {
 			return r;
@@ -672,13 +689,13 @@ $$
 		}
 		return min;
 	};
-	parser.Ptr.prototype.literal = function(r) {
+0Å√literalÅ∑	parser.Ptr.prototype.literal = function(r) {
 		var p;
 		p = this;
 		p.push(p.newLiteral(r, p.flags));
 	};
 	parser.prototype.literal = function(r) { return this.go$val.literal(r); };
-	parser.Ptr.prototype.op = function(op) {
+0Å’opÅŒ	parser.Ptr.prototype.op = function(op) {
 		var p, re;
 		p = this;
 		re = p.newRegexp(op);
@@ -686,7 +703,7 @@ $$
 		return p.push(re);
 	};
 	parser.prototype.op = function(op) { return this.go$val.op(op); };
-	parser.Ptr.prototype.repeat = function(op, min, max, before, after, lastRepeat) {
+0ÇÚrepeatÇÊ	parser.Ptr.prototype.repeat = function(op, min, max, before, after, lastRepeat) {
 		var p, flags, n, _slice, _index, sub, re, _slice$1, _index$1, _slice$2, _index$2;
 		p = this;
 		flags = p.flags;
@@ -717,7 +734,7 @@ $$
 		return [after, null];
 	};
 	parser.prototype.repeat = function(op, min, max, before, after, lastRepeat) { return this.go$val.repeat(op, min, max, before, after, lastRepeat); };
-	parser.Ptr.prototype.concat = function() {
+0ÇnconcatÇb	parser.Ptr.prototype.concat = function() {
 		var p, i, _slice, _index, subs;
 		p = this;
 		p.maybeConcat(-1, 0);
@@ -733,7 +750,7 @@ $$
 		return p.push(p.collapse(subs, 18));
 	};
 	parser.prototype.concat = function() { return this.go$val.concat(); };
-	parser.Ptr.prototype.alternate = function() {
+0Ç_	alternateÇP	parser.Ptr.prototype.alternate = function() {
 		var p, i, _slice, _index, subs, _slice$1, _index$1;
 		p = this;
 		i = p.stack.length;
@@ -751,7 +768,7 @@ $$
 		return p.push(p.collapse(subs, 19));
 	};
 	parser.prototype.alternate = function() { return this.go$val.alternate(); };
-	var cleanAlt = function(re) {
+0Ç cleanAltÇ	var cleanAlt = function(re) {
 		var _ref, v, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		_ref = re.Op;
 		if (_ref === 4) {
@@ -771,7 +788,7 @@ $$
 			}
 		}
 	};
-	parser.Ptr.prototype.collapse = function(subs, op) {
+0Ç˛collapseÇ	parser.Ptr.prototype.collapse = function(subs, op) {
 		var p, _slice, _index, re, _ref, _i, _slice$1, _index$1, sub, old, _slice$2, _index$2;
 		p = this;
 		if (subs.length === 1) {
@@ -801,7 +818,7 @@ $$
 		return re;
 	};
 	parser.prototype.collapse = function(subs, op) { return this.go$val.collapse(subs, op); };
-	parser.Ptr.prototype.factor = function(sub, flags) {
+0Ç%ífactorÇ%Ü	parser.Ptr.prototype.factor = function(sub, flags) {
 		var p, str, strflags, start, out, i, istr, iflags, _tuple, _slice, _index, same, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, prefix, j, _slice$4, _index$4, _slice$5, _index$5, suffix, re, first, i$1, ifirst, _slice$6, _index$6, _slice$7, _index$7, prefix$1, j$1, reuse, _slice$8, _index$8, _slice$9, _index$9, suffix$1, re$1, i$2, _slice$10, _index$10, _slice$11, _index$11, max, j$2, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17, _slice$18, _index$18, _slice$19, _index$19, _tuple$1, _slice$20, _index$20, _slice$21, _index$21, j$3, _slice$22, _index$22, _slice$23, _index$23, _slice$24, _index$24, _slice$25, _index$25, _slice$26, _index$26, _slice$27, _index$27, _ref, _i, i$3, _slice$28, _index$28, _slice$29, _index$29, _slice$30, _index$30;
 		p = this;
 		if (sub.length < 2) {
@@ -938,7 +955,7 @@ $$
 		return sub;
 	};
 	parser.prototype.factor = function(sub, flags) { return this.go$val.factor(sub, flags); };
-	parser.Ptr.prototype.leadingString = function(re) {
+0ÇleadingStringÇ	parser.Ptr.prototype.leadingString = function(re) {
 		var p, _slice, _index;
 		p = this;
 		if ((re.Op === 18) && re.Sub.length > 0) {
@@ -950,7 +967,7 @@ $$
 		return [re.Rune, (re.Flags & 1) >>> 0];
 	};
 	parser.prototype.leadingString = function(re) { return this.go$val.leadingString(re); };
-	parser.Ptr.prototype.removeLeadingString = function(re, n) {
+0Ç√removeLeadingStringÇ™	parser.Ptr.prototype.removeLeadingString = function(re, n) {
 		var p, _slice, _index, sub, _slice$1, _index$1, _ref, old, _slice$2, _index$2;
 		p = this;
 		if ((re.Op === 18) && re.Sub.length > 0) {
@@ -983,7 +1000,7 @@ $$
 		return re;
 	};
 	parser.prototype.removeLeadingString = function(re, n) { return this.go$val.removeLeadingString(re, n); };
-	parser.Ptr.prototype.leadingRegexp = function(re) {
+0Ç@leadingRegexpÇ-	parser.Ptr.prototype.leadingRegexp = function(re) {
 		var p, _slice, _index, sub;
 		p = this;
 		if (re.Op === 2) {
@@ -999,7 +1016,7 @@ $$
 		return re;
 	};
 	parser.prototype.leadingRegexp = function(re) { return this.go$val.leadingRegexp(re); };
-	parser.Ptr.prototype.removeLeadingRegexp = function(re, reuse) {
+0ÇremoveLeadingRegexpÇÛ	parser.Ptr.prototype.removeLeadingRegexp = function(re, reuse) {
 		var p, _slice, _index, _ref, old, _slice$1, _index$1;
 		p = this;
 		if ((re.Op === 18) && re.Sub.length > 0) {
@@ -1024,7 +1041,7 @@ $$
 		return p.newRegexp(2);
 	};
 	parser.prototype.removeLeadingRegexp = function(re, reuse) { return this.go$val.removeLeadingRegexp(re, reuse); };
-	var literalRegexp = function(s, flags) {
+0Ç‡literalRegexpÇÕ	var literalRegexp = function(s, flags) {
 		var re, _ref, _i, _rune, c;
 		re = new Regexp.Ptr(3, 0, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, "");
 		re.Flags = flags;
@@ -1042,7 +1059,7 @@ $$
 		}
 		return re;
 	};
-	var Parse = go$pkg.Parse = function(s, flags) {
+0Ç∏ParseÇ≠	var Parse = go$pkg.Parse = function(s, flags) {
 		var err, p, err$1, c, op, lastRepeat, _tuple, min, max, t, repeat, _ref, _tuple$1, _lhs, _tuple$2, before, _ref$1, after, _tuple$3, before$1, _tuple$4, min$1, max$1, after$1, ok, _tuple$5, _ref$2, lit, i, re, _tuple$6, r, rest, err$2, r$1, _tuple$7, rest$1, _tuple$8, _tuple$9, n, _slice, _index;
 		if (!((((flags & 2) >>> 0) === 0))) {
 			if (err = checkUTF8(s), !(go$interfaceIsEqual(err, null))) {
@@ -1216,7 +1233,7 @@ $$
 		}
 		return [(_slice = p.stack, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), null];
 	};
-	parser.Ptr.prototype.parseRepeat = function(s) {
+0ÇIparseRepeatÇ8	parser.Ptr.prototype.parseRepeat = function(s) {
 		var min, max, rest, ok, p, ok1, _tuple, _tuple$1;
 		min = 0;
 		max = 0;
@@ -1257,7 +1274,9 @@ $$
 		return [min, max, rest, ok];
 	};
 	parser.prototype.parseRepeat = function(s) { return this.go$val.parseRepeat(s); };
-	parser.Ptr.prototype.parsePerlFlags = function(s) {
+0Ç
+®parsePerlFlagsÇ
+î	parser.Ptr.prototype.parsePerlFlags = function(s) {
 		var rest, err, p, t, end, _tuple, _tuple$1, capture, name, _tuple$2, _tuple$3, re, _tuple$4, c, flags, sign, sawFlag, _tuple$5, _tuple$6, _ref, _tuple$7, _tuple$8;
 		rest = "";
 		err = null;
@@ -1341,7 +1360,7 @@ $$
 		return [rest, err];
 	};
 	parser.prototype.parsePerlFlags = function(s) { return this.go$val.parsePerlFlags(s); };
-	var isValidCaptureName = function(name) {
+0ÇWisValidCaptureNameÇ?	var isValidCaptureName = function(name) {
 		var _ref, _i, _rune, c;
 		if (name === "") {
 			return false;
@@ -1357,7 +1376,7 @@ $$
 		}
 		return true;
 	};
-	parser.Ptr.prototype.parseInt = function(s) {
+0ÇtparseIntÇf	parser.Ptr.prototype.parseInt = function(s) {
 		var n, rest, ok, p, t, i, x;
 		n = 0;
 		rest = "";
@@ -1388,10 +1407,10 @@ $$
 		return [n, rest, ok];
 	};
 	parser.prototype.parseInt = function(s) { return this.go$val.parseInt(s); };
-	var isCharClass = function(re) {
+0ÅõisCharClassÅã	var isCharClass = function(re) {
 		return (re.Op === 3) && (re.Rune.length === 1) || (re.Op === 4) || (re.Op === 5) || (re.Op === 6);
 	};
-	var matchRune = function(re, r) {
+0Çﬂ	matchRuneÇ–	var matchRune = function(re, r) {
 		var _ref, _slice, _index, i, _slice$1, _index$1, _slice$2, _index$2;
 		_ref = re.Op;
 		if (_ref === 3) {
@@ -1412,7 +1431,7 @@ $$
 		}
 		return false;
 	};
-	parser.Ptr.prototype.parseVerticalBar = function() {
+0ÇparseVerticalBarÅ¯	parser.Ptr.prototype.parseVerticalBar = function() {
 		var p;
 		p = this;
 		p.concat();
@@ -1422,7 +1441,7 @@ $$
 		return null;
 	};
 	parser.prototype.parseVerticalBar = function() { return this.go$val.parseVerticalBar(); };
-	var mergeCharClass = function(dst, src) {
+0Ç6mergeCharClassÇ"	var mergeCharClass = function(dst, src) {
 		var _ref, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
 		_ref = dst.Op;
 		switch (undefined) {
@@ -1448,7 +1467,7 @@ $$
 			}
 		}
 	};
-	parser.Ptr.prototype.swapVerticalBar = function() {
+0ÇuswapVerticalBarÇ`	parser.Ptr.prototype.swapVerticalBar = function() {
 		var p, n, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, re1, _slice$4, _index$4, re3, _tuple, _slice$5, _index$5, _slice$6, _index$6, re1$1, _slice$7, _index$7, re2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10;
 		p = this;
 		n = p.stack.length;
@@ -1479,7 +1498,7 @@ $$
 		return false;
 	};
 	parser.prototype.swapVerticalBar = function() { return this.go$val.swapVerticalBar(); };
-	parser.Ptr.prototype.parseRightParen = function() {
+0ÇfparseRightParenÇQ	parser.Ptr.prototype.parseRightParen = function() {
 		var p, n, _slice, _index, re1, _slice$1, _index$1, re2, _slice$2, _index$2;
 		p = this;
 		p.concat();
@@ -1509,7 +1528,7 @@ $$
 		return null;
 	};
 	parser.prototype.parseRightParen = function() { return this.go$val.parseRightParen(); };
-	parser.Ptr.prototype.parseEscape = function(s) {
+0ÇÇparseEscapeÇq	parser.Ptr.prototype.parseEscape = function(s) {
 		var r, rest, err, p, t, _tuple, _tuple$1, c, _tuple$2, _ref, i, x, _tuple$3, x$1, _tuple$4, _tuple$5, _tuple$6, nhex, _tuple$7, _tuple$8, v, x$2, _tuple$9, x$3, _tuple$10, _tuple$11, y, x$4, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$20;
 		r = 0;
 		rest = "";
@@ -1635,7 +1654,7 @@ $$
 		return [r, rest, err];
 	};
 	parser.prototype.parseEscape = function(s) { return this.go$val.parseEscape(s); };
-	parser.Ptr.prototype.parseClassChar = function(s, wholeClass) {
+0Ç÷parseClassCharÇ¬	parser.Ptr.prototype.parseClassChar = function(s, wholeClass) {
 		var r, rest, err, p, _tuple, _tuple$1, _tuple$2;
 		r = 0;
 		rest = "";
@@ -1653,7 +1672,7 @@ $$
 		return [r, rest, err];
 	};
 	parser.prototype.parseClassChar = function(s, wholeClass) { return this.go$val.parseClassChar(s, wholeClass); };
-	parser.Ptr.prototype.parsePerlClassEscape = function(s, r) {
+0Ç8parsePerlClassEscapeÇ	parser.Ptr.prototype.parsePerlClassEscape = function(s, r) {
 		var out, rest, p, _entry, _struct, g, _struct$1, _tuple;
 		out = (go$sliceType(Go$Int32)).nil;
 		rest = "";
@@ -1669,7 +1688,7 @@ $$
 		return [out, rest];
 	};
 	parser.prototype.parsePerlClassEscape = function(s, r) { return this.go$val.parsePerlClassEscape(s, r); };
-	parser.Ptr.prototype.parseNamedClass = function(s, r) {
+0Ç€parseNamedClassÇ∆	parser.Ptr.prototype.parseNamedClass = function(s, r) {
 		var out, rest, err, p, i, _tuple, name, _entry, _struct, g, _tuple$1, _struct$1, _tuple$2;
 		out = (go$sliceType(Go$Int32)).nil;
 		rest = "";
@@ -1693,7 +1712,7 @@ $$
 		return [out, rest, err];
 	};
 	parser.prototype.parseNamedClass = function(s, r) { return this.go$val.parseNamedClass(s, r); };
-	parser.Ptr.prototype.appendGroup = function(r, g) {
+0Ç…appendGroupÇ∏	parser.Ptr.prototype.appendGroup = function(r, g) {
 		var p, tmp, v;
 		p = this;
 		if (((p.flags & 1) >>> 0) === 0) {
@@ -1716,7 +1735,7 @@ $$
 		return r;
 	};
 	parser.prototype.appendGroup = function(r, g) { return this.go$val.appendGroup(r, g); };
-	var unicodeTable = function(name) {
+0ÇiunicodeTableÇW	var unicodeTable = function(name) {
 		var t, _entry, _entry$1, t$1, _entry$2, _entry$3;
 		if (name === "Any") {
 			return [anyTable, anyTable];
@@ -1729,7 +1748,9 @@ $$
 		}
 		return [(go$ptrType(unicode.RangeTable)).nil, (go$ptrType(unicode.RangeTable)).nil];
 	};
-	parser.Ptr.prototype.parseUnicodeClass = function(s, r) {
+0Ç
+ÜparseUnicodeClassÇ
+o	parser.Ptr.prototype.parseUnicodeClass = function(s, r) {
 		var out, rest, err, p, sign, t, _tuple, c, _tuple$1, seq, name, end, _tuple$2, _tuple$3, _tuple$4, tab, fold, _tuple$5, tmp, v, _tuple$6;
 		out = (go$sliceType(Go$Int32)).nil;
 		rest = "";
@@ -1797,7 +1818,8 @@ $$
 		return [out, rest, err];
 	};
 	parser.prototype.parseUnicodeClass = function(s, r) { return this.go$val.parseUnicodeClass(s, r); };
-	parser.Ptr.prototype.parseClass = function(s) {
+0Ç
+parseClassÇ	parser.Ptr.prototype.parseClass = function(s) {
 		var rest, err, p, t, re, sign, class$1, first, _tuple, size, _tuple$1, _tuple$2, nclass, nt, err$1, _tuple$3, _tuple$4, _tuple$5, nclass$1, nt$1, err$2, _tuple$6, _tuple$7, nclass$2, _tuple$8, nt$2, _tuple$9, rng, _tuple$10, lo, hi, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, v, _tuple$16;
 		rest = "";
 		err = null;
@@ -1884,7 +1906,8 @@ $$
 		return [rest, err];
 	};
 	parser.prototype.parseClass = function(s) { return this.go$val.parseClass(s); };
-	var cleanClass = function(rp) {
+0Ç#
+cleanClassÇ	var cleanClass = function(rp) {
 		var x, r, w, i, _slice, _index, _slice$1, _index$1, _tuple, lo, hi, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6;
 		sort.Sort((x = new ranges.Ptr(rp), new x.constructor.Struct(x)));
 		r = rp.go$get();
@@ -1909,13 +1932,13 @@ $$
 		}
 		return go$subslice(r, 0, w);
 	};
-	var appendLiteral = function(r, x, flags) {
+0Å¥appendLiteralÅ¢	var appendLiteral = function(r, x, flags) {
 		if (!((((flags & 1) >>> 0) === 0))) {
 			return appendFoldedRange(r, x, x);
 		}
 		return appendRange(r, x, x);
 	};
-	var appendRange = function(r, lo, hi) {
+0Ç∂appendRangeÇ•	var appendRange = function(r, lo, hi) {
 		var n, i, _slice, _index, _slice$1, _index$1, _tuple, rlo, rhi, _slice$2, _index$2, _slice$3, _index$3;
 		n = r.length;
 		i = 2;
@@ -1936,7 +1959,7 @@ $$
 		}
 		return go$append(r, lo, hi);
 	};
-	var appendFoldedRange = function(r, lo, hi) {
+0ÇCappendFoldedRangeÇ,	var appendFoldedRange = function(r, lo, hi) {
 		var c, f;
 		if (lo <= 65 && hi >= 66639) {
 			return appendRange(r, lo, hi);
@@ -1964,7 +1987,7 @@ $$
 		}
 		return r;
 	};
-	var appendClass = function(r, x) {
+0ÇappendClassÇ˙	var appendClass = function(r, x) {
 		var i, _slice, _index, _slice$1, _index$1;
 		i = 0;
 		while (i < x.length) {
@@ -1973,7 +1996,7 @@ $$
 		}
 		return r;
 	};
-	var appendFoldedClass = function(r, x) {
+0ÇappendFoldedClassÇ	var appendFoldedClass = function(r, x) {
 		var i, _slice, _index, _slice$1, _index$1;
 		i = 0;
 		while (i < x.length) {
@@ -1982,7 +2005,8 @@ $$
 		}
 		return r;
 	};
-	var appendNegatedClass = function(r, x) {
+0Ç
+appendNegatedClassÇÚ	var appendNegatedClass = function(r, x) {
 		var nextLo, i, _slice, _index, _slice$1, _index$1, _tuple, lo, hi;
 		nextLo = 0;
 		i = 0;
@@ -1999,7 +2023,7 @@ $$
 		}
 		return r;
 	};
-	var appendTable = function(r, x) {
+0Ç—appendTableÇ¿	var appendTable = function(r, x) {
 		var _ref, _i, _slice, _index, _struct, xr, _tuple, lo, hi, stride, c, _ref$1, _i$1, _slice$1, _index$1, _struct$1, xr$1, _tuple$1, lo$1, hi$1, stride$1, c$1;
 		_ref = x.R16;
 		_i = 0;
@@ -2033,7 +2057,7 @@ $$
 		}
 		return r;
 	};
-	var appendNegatedTable = function(r, x) {
+0ÇÇappendNegatedTableÇj	var appendNegatedTable = function(r, x) {
 		var nextLo, _ref, _i, _slice, _index, _struct, xr, _tuple, lo, hi, stride, c, _ref$1, _i$1, _slice$1, _index$1, _struct$1, xr$1, _tuple$1, lo$1, hi$1, stride$1, c$1;
 		nextLo = 0;
 		_ref = x.R16;
@@ -2083,7 +2107,7 @@ $$
 		}
 		return r;
 	};
-	var negateClass = function(r) {
+0Ç§negateClassÇì	var negateClass = function(r) {
 		var nextLo, w, i, _slice, _index, _slice$1, _index$1, _tuple, lo, hi, _slice$2, _index$2, _slice$3, _index$3;
 		nextLo = 0;
 		w = 0;
@@ -2104,7 +2128,7 @@ $$
 		}
 		return r;
 	};
-	ranges.Ptr.prototype.Less = function(i, j) {
+0ÇLessÇ˜	ranges.Ptr.prototype.Less = function(i, j) {
 		var _struct, ra, p, x, x$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		ra = (_struct = this, new ranges.Ptr(_struct.p));
 		p = ra.p.go$get();
@@ -2113,13 +2137,13 @@ $$
 		return (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < (_slice$1 = p, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) || ((_slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === (_slice$3 = p, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) && (_slice$4 = p, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) > (_slice$5 = p, _index$5 = (j + 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 	};
 	ranges.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
-	ranges.Ptr.prototype.Len = function() {
+0ÇRLenÇI	ranges.Ptr.prototype.Len = function() {
 		var _struct, ra, _q;
 		ra = (_struct = this, new ranges.Ptr(_struct.p));
 		return (_q = ra.p.go$get().length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
 	};
 	ranges.prototype.Len = function() { return this.go$val.Len(); };
-	ranges.Ptr.prototype.Swap = function(i, j) {
+0Ç∫SwapÇ∞	ranges.Ptr.prototype.Swap = function(i, j) {
 		var _struct, ra, p, x, x$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		ra = (_struct = this, new ranges.Ptr(_struct.p));
 		p = ra.p.go$get();
@@ -2128,7 +2152,7 @@ $$
 		_tuple = [(_slice = p, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p, _index$1 = (j + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (_slice$3 = p, _index$3 = (i + 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))], _slice$4 = p, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$5 = p, _index$5 = i + 1 >> 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = _tuple[1]) : go$throwRuntimeError("index out of range"), _slice$6 = p, _index$6 = j, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = _tuple[2]) : go$throwRuntimeError("index out of range"), _slice$7 = p, _index$7 = j + 1 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = _tuple[3]) : go$throwRuntimeError("index out of range");
 	};
 	ranges.prototype.Swap = function(i, j) { return this.go$val.Swap(i, j); };
-	var checkUTF8 = function(s) {
+0Ç;	checkUTF8Ç,	var checkUTF8 = function(s) {
 		var _tuple, rune, size;
 		while (!(s === "")) {
 			_tuple = utf8.DecodeRuneInString(s), rune = _tuple[0], size = _tuple[1];
@@ -2139,7 +2163,7 @@ $$
 		}
 		return null;
 	};
-	var nextRune = function(s) {
+0ÇÛnextRuneÇÂ	var nextRune = function(s) {
 		var c, t, err, _tuple, size, _tuple$1, _tuple$2;
 		c = 0;
 		t = "";
@@ -2152,10 +2176,10 @@ $$
 		_tuple$2 = [c, s.substring(size), null], c = _tuple$2[0], t = _tuple$2[1], err = _tuple$2[2];
 		return [c, t, err];
 	};
-	var isalnum = function(c) {
+0visalnumk	var isalnum = function(c) {
 		return 48 <= c && c <= 57 || 65 <= c && c <= 90 || 97 <= c && c <= 122;
 	};
-	var unhex = function(c) {
+0ÅÙunhexÅÍ	var unhex = function(c) {
 		if (48 <= c && c <= 57) {
 			return c - 48 >> 0;
 		}
@@ -2167,7 +2191,7 @@ $$
 		}
 		return -1;
 	};
-	var EmptyOpContext = go$pkg.EmptyOpContext = function(r1, r2) {
+0ÇEmptyOpContextÇ˘	var EmptyOpContext = go$pkg.EmptyOpContext = function(r1, r2) {
 		var op, boundary;
 		op = 32;
 		boundary = 0;
@@ -2190,10 +2214,11 @@ $$
 		}
 		return op;
 	};
-	var IsWordChar = go$pkg.IsWordChar = function(r) {
+0Åü
+IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return 65 <= r && r <= 90 || 97 <= r && r <= 122 || 48 <= r && r <= 57 || (r === 95);
 	};
-	Prog.Ptr.prototype.String = function() {
+0Å‹StringÅ—	Prog.Ptr.prototype.String = function() {
 		var p, b;
 		p = this;
 		b = new bytes.Buffer.Ptr();
@@ -2201,7 +2226,7 @@ $$
 		return b.String();
 	};
 	Prog.prototype.String = function() { return this.go$val.String(); };
-	Prog.Ptr.prototype.skipNop = function(pc) {
+0ÇeskipNopÇX	Prog.Ptr.prototype.skipNop = function(pc) {
 		var p, _slice, _index, i, _slice$1, _index$1;
 		p = this;
 		i = (_slice = p.Inst, _index = pc, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -2212,7 +2237,7 @@ $$
 		return i;
 	};
 	Prog.prototype.skipNop = function(pc) { return this.go$val.skipNop(pc); };
-	Inst.Ptr.prototype.op = function() {
+0ÅıopÅÓ	Inst.Ptr.prototype.op = function() {
 		var i, op, _ref;
 		i = this;
 		op = i.Op;
@@ -2223,7 +2248,7 @@ $$
 		return op;
 	};
 	Inst.prototype.op = function() { return this.go$val.op(); };
-	Prog.Ptr.prototype.Prefix = function() {
+0ÇxPrefixÇl	Prog.Ptr.prototype.Prefix = function() {
 		var prefix, complete, p, i, _tuple, buf, _slice, _index, _tuple$1;
 		prefix = "";
 		complete = false;
@@ -2242,7 +2267,7 @@ $$
 		return [prefix, complete];
 	};
 	Prog.prototype.Prefix = function() { return this.go$val.Prefix(); };
-	Prog.Ptr.prototype.StartCond = function() {
+0ÇZ	StartCondÇK	Prog.Ptr.prototype.StartCond = function() {
 		var p, flag, pc, _slice, _index, i, _ref, _slice$1, _index$1;
 		p = this;
 		flag = 0;
@@ -2264,7 +2289,7 @@ $$
 		return flag;
 	};
 	Prog.prototype.StartCond = function() { return this.go$val.StartCond(); };
-	Inst.Ptr.prototype.MatchRune = function(r) {
+0Ç™	MatchRuneÇõ	Inst.Ptr.prototype.MatchRune = function(r) {
 		var i, rune, _slice, _index, r0, r1, j, _slice$1, _index$1, _slice$2, _index$2, lo, _q, hi, _q$1, m, c, _slice$3, _index$3, x, _slice$4, _index$4, x$1;
 		i = this;
 		rune = i.Rune;
@@ -2310,10 +2335,10 @@ $$
 		return false;
 	};
 	Inst.prototype.MatchRune = function(r) { return this.go$val.MatchRune(r); };
-	var wordRune = function(r) {
+0ÅçwordRuneÅÄ	var wordRune = function(r) {
 		return (r === 95) || (65 <= r && r <= 90) || (97 <= r && r <= 122) || (48 <= r && r <= 57);
 	};
-	Inst.Ptr.prototype.MatchEmptyWidth = function(before, after) {
+0Ç–MatchEmptyWidthÇª	Inst.Ptr.prototype.MatchEmptyWidth = function(before, after) {
 		var i, _ref;
 		i = this;
 		_ref = (i.Arg << 24 >>> 24);
@@ -2333,7 +2358,7 @@ $$
 		throw go$panic(new Go$String("unknown empty width arg"));
 	};
 	Inst.prototype.MatchEmptyWidth = function(before, after) { return this.go$val.MatchEmptyWidth(before, after); };
-	Inst.Ptr.prototype.String = function() {
+0Å‹StringÅ—	Inst.Ptr.prototype.String = function() {
 		var i, b;
 		i = this;
 		b = new bytes.Buffer.Ptr();
@@ -2341,7 +2366,7 @@ $$
 		return b.String();
 	};
 	Inst.prototype.String = function() { return this.go$val.String(); };
-	var bw = function(b, args) {
+0ÇGbwÇ?	var bw = function(b, args) {
 		var _ref, _i, _slice, _index, s;
 		_ref = args;
 		_i = 0;
@@ -2350,7 +2375,7 @@ $$
 			b.WriteString(s);
 		}
 	};
-	var dumpProg = function(b, p) {
+0Ç^dumpProgÇP	var dumpProg = function(b, p) {
 		var _ref, _i, j, _slice, _index, i, pc;
 		_ref = p.Inst;
 		_i = 0;
@@ -2369,10 +2394,10 @@ $$
 			bw(b, new (go$sliceType(Go$String))(["\n"]));
 		}
 	};
-	var u32 = function(i) {
+0Zu32S	var u32 = function(i) {
 		return strconv.FormatUint(new Go$Uint64(0, i), 10);
 	};
-	var dumpInst = function(b, i) {
+0Ç¯dumpInstÇÍ	var dumpInst = function(b, i) {
 		var _ref;
 		_ref = i.Op;
 		if (_ref === 0) {
@@ -2406,7 +2431,7 @@ $$
 			bw(b, new (go$sliceType(Go$String))(["anynotnl -> ", u32(i.Out)]));
 		}
 	};
-	Regexp.Ptr.prototype.Equal = function(y) {
+0ÇEqualÇ	Regexp.Ptr.prototype.Equal = function(y) {
 		var x, _ref, _ref$1, _i, _slice, _index, r, i, _slice$1, _index$1, _ref$2, _i$1, _slice$2, _index$2, sub, i$1, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9;
 		x = this;
 		if (x === (go$ptrType(Regexp)).nil || y === (go$ptrType(Regexp)).nil) {
@@ -2462,7 +2487,7 @@ $$
 		return true;
 	};
 	Regexp.prototype.Equal = function(y) { return this.go$val.Equal(y); };
-	var writeRegexp = function(b, re) {
+0ÇwriteRegexpÇ˝	var writeRegexp = function(b, re) {
 		var _ref, _ref$1, _i, _slice, _index, r, _r, _slice$1, _index$1, _slice$2, _index$2, i, _slice$3, _index$3, _slice$4, _index$4, _tuple, lo, hi, i$1, _slice$5, _index$5, _slice$6, _index$6, _tuple$1, lo$1, hi$1, _slice$7, _index$7, _slice$8, _index$8, sub, _slice$9, _index$9, _ref$2, _ref$3, _i$1, _slice$10, _index$10, sub$1, _ref$4, _i$2, _slice$11, _index$11, sub$2, i$2;
 		_ref = re.Op;
 		switch (undefined) {
@@ -2607,7 +2632,7 @@ $$
 			}
 		}
 	};
-	Regexp.Ptr.prototype.String = function() {
+0ÅÊStringÅ€	Regexp.Ptr.prototype.String = function() {
 		var re, b;
 		re = this;
 		b = new bytes.Buffer.Ptr();
@@ -2615,7 +2640,7 @@ $$
 		return b.String();
 	};
 	Regexp.prototype.String = function() { return this.go$val.String(); };
-	var escape = function(b, r, force) {
+0ÇñescapeÇä	var escape = function(b, r, force) {
 		var _ref, s;
 		if (unicode.IsPrint(r)) {
 			if (strings.IndexRune("\\.+*?()|[]{}^$", r) >= 0 || force) {
@@ -2655,7 +2680,7 @@ $$
 			}
 		}
 	};
-	Regexp.Ptr.prototype.MaxCap = function() {
+0ÇMaxCapÇ	Regexp.Ptr.prototype.MaxCap = function() {
 		var re, m, _ref, _i, _slice, _index, sub, n;
 		re = this;
 		m = 0;
@@ -2673,7 +2698,7 @@ $$
 		return m;
 	};
 	Regexp.prototype.MaxCap = function() { return this.go$val.MaxCap(); };
-	Regexp.Ptr.prototype.CapNames = function() {
+0Ç.CapNamesÇ 	Regexp.Ptr.prototype.CapNames = function() {
 		var re, names;
 		re = this;
 		names = (go$sliceType(Go$String)).make(re.MaxCap() + 1 >> 0, 0, function() { return ""; });
@@ -2681,7 +2706,7 @@ $$
 		return names;
 	};
 	Regexp.prototype.CapNames = function() { return this.go$val.CapNames(); };
-	Regexp.Ptr.prototype.capNames = function(names) {
+0ÇΩcapNamesÇØ	Regexp.Ptr.prototype.capNames = function(names) {
 		var re, _slice, _index, _ref, _i, _slice$1, _index$1, sub;
 		re = this;
 		if (re.Op === 13) {
@@ -2695,7 +2720,7 @@ $$
 		}
 	};
 	Regexp.prototype.capNames = function(names) { return this.go$val.capNames(names); };
-	Regexp.Ptr.prototype.Simplify = function() {
+0ÇSimplifyÇ	Regexp.Ptr.prototype.Simplify = function() {
 		var re, _ref, nre, _ref$1, _i, _slice, _index, sub, i, nsub, _struct, l, r, _slice$1, _index$1, sub$1, _slice$2, _index$2, sub$2, nre$1, i$1, prefix, i$2, suffix, i$3, nre2;
 		re = this;
 		if (re === (go$ptrType(Regexp)).nil) {
@@ -2781,7 +2806,7 @@ $$
 		return re;
 	};
 	Regexp.prototype.Simplify = function() { return this.go$val.Simplify(); };
-	var simplify1 = function(op, flags, sub, re) {
+0Ç	simplify1Çp	var simplify1 = function(op, flags, sub, re) {
 		var _slice, _index;
 		if (sub.Op === 2) {
 			return sub;
@@ -2796,98 +2821,7 @@ $$
 		re.Sub = go$append(go$subslice(new (go$sliceType((go$ptrType(Regexp))))(re.Sub0), 0, 0), sub);
 		return re;
 	};
-	go$pkg.ErrInternalError = "regexp/syntax: internal error";
-	go$pkg.ErrInvalidCharClass = "invalid character class";
-	go$pkg.ErrInvalidCharRange = "invalid character class range";
-	go$pkg.ErrInvalidEscape = "invalid escape sequence";
-	go$pkg.ErrInvalidNamedCapture = "invalid named capture";
-	go$pkg.ErrInvalidPerlOp = "invalid or unsupported Perl syntax";
-	go$pkg.ErrInvalidRepeatOp = "invalid nested repetition operator";
-	go$pkg.ErrInvalidRepeatSize = "invalid repeat count";
-	go$pkg.ErrInvalidUTF8 = "invalid UTF-8";
-	go$pkg.ErrMissingBracket = "missing closing ]";
-	go$pkg.ErrMissingParen = "missing closing )";
-	go$pkg.ErrMissingRepeatArgument = "missing argument to repetition operator";
-	go$pkg.ErrTrailingBackslash = "trailing backslash at end of expression";
-	go$pkg.ErrUnexpectedParen = "unexpected )";
-	go$pkg.FoldCase = 1;
-	go$pkg.Literal = 2;
-	go$pkg.ClassNL = 4;
-	go$pkg.DotNL = 8;
-	go$pkg.OneLine = 16;
-	go$pkg.NonGreedy = 32;
-	go$pkg.PerlX = 64;
-	go$pkg.UnicodeGroups = 128;
-	go$pkg.WasDollar = 256;
-	go$pkg.Simple = 512;
-	go$pkg.MatchNL = 12;
-	go$pkg.Perl = 212;
-	go$pkg.POSIX = 0;
-	var opLeftParen = 128;
-	var opVerticalBar = 129;
-	var minFold = 65;
-	var maxFold = 66639;
-	go$pkg.InstAlt = 0;
-	go$pkg.InstAltMatch = 1;
-	go$pkg.InstCapture = 2;
-	go$pkg.InstEmptyWidth = 3;
-	go$pkg.InstMatch = 4;
-	go$pkg.InstFail = 5;
-	go$pkg.InstNop = 6;
-	go$pkg.InstRune = 7;
-	go$pkg.InstRune1 = 8;
-	go$pkg.InstRuneAny = 9;
-	go$pkg.InstRuneAnyNotNL = 10;
-	go$pkg.EmptyBeginLine = 1;
-	go$pkg.EmptyEndLine = 2;
-	go$pkg.EmptyBeginText = 4;
-	go$pkg.EmptyEndText = 8;
-	go$pkg.EmptyWordBoundary = 16;
-	go$pkg.EmptyNoWordBoundary = 32;
-	go$pkg.OpNoMatch = 1;
-	go$pkg.OpEmptyMatch = 2;
-	go$pkg.OpLiteral = 3;
-	go$pkg.OpCharClass = 4;
-	go$pkg.OpAnyCharNotNL = 5;
-	go$pkg.OpAnyChar = 6;
-	go$pkg.OpBeginLine = 7;
-	go$pkg.OpEndLine = 8;
-	go$pkg.OpBeginText = 9;
-	go$pkg.OpEndText = 10;
-	go$pkg.OpWordBoundary = 11;
-	go$pkg.OpNoWordBoundary = 12;
-	go$pkg.OpCapture = 13;
-	go$pkg.OpStar = 14;
-	go$pkg.OpPlus = 15;
-	go$pkg.OpQuest = 16;
-	go$pkg.OpRepeat = 17;
-	go$pkg.OpConcat = 18;
-	go$pkg.OpAlternate = 19;
-	var opPseudo = 128;
-	var meta = "\\.+*?()|[]{}^$";
-	var anyRuneNotNL = (go$sliceType(Go$Int32)).nil;
-	var anyRune = (go$sliceType(Go$Int32)).nil;
-	var anyTable = (go$ptrType(unicode.RangeTable)).nil;
-	var code1 = (go$sliceType(Go$Int32)).nil;
-	var code2 = (go$sliceType(Go$Int32)).nil;
-	var code3 = (go$sliceType(Go$Int32)).nil;
-	var perlGroup = false;
-	var code4 = (go$sliceType(Go$Int32)).nil;
-	var code5 = (go$sliceType(Go$Int32)).nil;
-	var code6 = (go$sliceType(Go$Int32)).nil;
-	var code7 = (go$sliceType(Go$Int32)).nil;
-	var code8 = (go$sliceType(Go$Int32)).nil;
-	var code9 = (go$sliceType(Go$Int32)).nil;
-	var code10 = (go$sliceType(Go$Int32)).nil;
-	var code11 = (go$sliceType(Go$Int32)).nil;
-	var code12 = (go$sliceType(Go$Int32)).nil;
-	var code13 = (go$sliceType(Go$Int32)).nil;
-	var code14 = (go$sliceType(Go$Int32)).nil;
-	var code15 = (go$sliceType(Go$Int32)).nil;
-	var code16 = (go$sliceType(Go$Int32)).nil;
-	var code17 = (go$sliceType(Go$Int32)).nil;
-	var posixGroup = false;
-	go$pkg.init = function() {
+0Ç/initÇ%	go$pkg.init = function() {
 		var _map, _key, _map$1, _key$1;
 		anyRuneNotNL = new (go$sliceType(Go$Int32))([0, 9, 11, 1114111]);
 		anyRune = new (go$sliceType(Go$Int32))([0, 1114111]);

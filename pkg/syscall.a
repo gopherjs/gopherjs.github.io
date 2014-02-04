@@ -1,4 +1,4 @@
-0É!›É%:package syscall
+0ÉÑ?syscallÉ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -1958,10 +1958,7 @@ func (? *@"sync".Mutex) @"sync".Lock() ()
 func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
-0-runtimeerrorssync/atomicsyncsyscallÉ¸j	var sync = go$packages["sync"];
-	var runtime = go$packages["runtime"];
-	var errors$1 = go$packages["errors"];
-	var ivalue;
+0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$1Ç∆à	var ivalue;
 	ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
@@ -2702,13 +2699,29 @@ $$
 	BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
 	BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
 	Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
+ÇZ	var envOnce = new sync.Once.Ptr();
+	var envLock = new sync.RWMutex.Ptr();
+	var env = false;
+	var envs = (go$sliceType(Go$String)).nil;
+	go$pkg.ForkLock = new sync.RWMutex.Ptr();
+	var zeroProcAttr = new ProcAttr.Ptr();
+	var zeroSysProcAttr = new SysProcAttr.Ptr();
+	var _zero = 0;
+	var mapper = (go$ptrType(mmapper)).nil;
+	go$pkg.Stdin = 0;
+	go$pkg.Stdout = 0;
+	go$pkg.Stderr = 0;
+	go$pkg.SocketDisableIPv6 = false;
+	var ioSync = new Go$Int64(0, 0);
+	var errors = go$makeNativeArray("String", 106, function() { return ""; });
+	var signals = go$makeNativeArray("String", 32, function() { return ""; });
+0Éï°0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
-	var BpfJump = go$pkg.BpfJump = function(code, k, jt, jf) {
+0Å¨BpfJumpÅ†	var BpfJump = go$pkg.BpfJump = function(code, k, jt, jf) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), (jt << 24 >>> 24), (jf << 24 >>> 24), (k >>> 0));
 	};
-	var BpfBuflen = go$pkg.BpfBuflen = function(fd) {
+0ÇD	BpfBuflenÇ5	var BpfBuflen = go$pkg.BpfBuflen = function(fd) {
 		var l, _tuple, v, err;
 		l = 0;
 		_tuple = Syscall(54, (fd >>> 0), 1074020966, new (go$ptrType(Go$Int))(function() { return l; }, function(v) { l = v; })), err = _tuple[2];
@@ -2717,7 +2730,7 @@ $$
 		}
 		return [l, null];
 	};
-	var SetBpfBuflen = go$pkg.SetBpfBuflen = function(fd, l) {
+0ÇDSetBpfBuflenÇ2	var SetBpfBuflen = go$pkg.SetBpfBuflen = function(fd, l) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 3221504614, new (go$ptrType(Go$Int))(function() { return l; }, function(v) { l = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2725,7 +2738,7 @@ $$
 		}
 		return [l, null];
 	};
-	var BpfDatalink = go$pkg.BpfDatalink = function(fd) {
+0ÇJBpfDatalinkÇ9	var BpfDatalink = go$pkg.BpfDatalink = function(fd) {
 		var t, _tuple, v, err;
 		t = 0;
 		_tuple = Syscall(54, (fd >>> 0), 1074020970, new (go$ptrType(Go$Int))(function() { return t; }, function(v) { t = v; })), err = _tuple[2];
@@ -2734,7 +2747,7 @@ $$
 		}
 		return [t, null];
 	};
-	var SetBpfDatalink = go$pkg.SetBpfDatalink = function(fd, t) {
+0ÇJSetBpfDatalinkÇ6	var SetBpfDatalink = go$pkg.SetBpfDatalink = function(fd, t) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 2147762808, new (go$ptrType(Go$Int))(function() { return t; }, function(v) { t = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2742,7 +2755,7 @@ $$
 		}
 		return [t, null];
 	};
-	var SetBpfPromisc = go$pkg.SetBpfPromisc = function(fd, m) {
+0Ç<SetBpfPromiscÇ)	var SetBpfPromisc = go$pkg.SetBpfPromisc = function(fd, m) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 536887913, new (go$ptrType(Go$Int))(function() { return m; }, function(v) { m = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2750,7 +2763,7 @@ $$
 		}
 		return null;
 	};
-	var FlushBpf = go$pkg.FlushBpf = function(fd) {
+0Å›FlushBpfÅ–	var FlushBpf = go$pkg.FlushBpf = function(fd) {
 		var _tuple, err;
 		_tuple = Syscall(54, (fd >>> 0), 536887912, 0), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2758,7 +2771,7 @@ $$
 		}
 		return null;
 	};
-	var BpfInterface = go$pkg.BpfInterface = function(fd, name) {
+0Ç@BpfInterfaceÇ.	var BpfInterface = go$pkg.BpfInterface = function(fd, name) {
 		var iv, _tuple, _array, _struct, _view, err;
 		iv = new ivalue.Ptr();
 		_array = new Uint8Array(18);
@@ -2769,7 +2782,7 @@ $$
 		}
 		return [name, null];
 	};
-	var SetBpfInterface = go$pkg.SetBpfInterface = function(fd, name) {
+0Ç®SetBpfInterfaceÇì	var SetBpfInterface = go$pkg.SetBpfInterface = function(fd, name) {
 		var iv, _tuple, _array, _struct, _view, err;
 		iv = new ivalue.Ptr();
 		go$copySlice(new (go$sliceType(Go$Uint8))(iv.name), new (go$sliceType(Go$Uint8))(go$stringToBytes(name)));
@@ -2781,7 +2794,8 @@ $$
 		}
 		return null;
 	};
-	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
+0Çû
+BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		var tv, _tuple, _array, _struct, _view, err;
 		tv = new Timeval.Ptr();
 		_array = new Uint8Array(16);
@@ -2792,7 +2806,7 @@ $$
 		}
 		return [tv, null];
 	};
-	var SetBpfTimeout = go$pkg.SetBpfTimeout = function(fd, tv) {
+0ÇjSetBpfTimeoutÇW	var SetBpfTimeout = go$pkg.SetBpfTimeout = function(fd, tv) {
 		var _tuple, _array, _struct, _view, err;
 		_array = new Uint8Array(16);
 		_tuple = Syscall(54, (fd >>> 0), 2148549229, _array), err = _tuple[2];
@@ -2802,7 +2816,7 @@ $$
 		}
 		return null;
 	};
-	var BpfStats = go$pkg.BpfStats = function(fd) {
+0ÇÒBpfStatsÇ„	var BpfStats = go$pkg.BpfStats = function(fd) {
 		var s, _tuple, _array, _struct, _view, err;
 		s = new BpfStat.Ptr();
 		_array = new Uint8Array(8);
@@ -2813,7 +2827,7 @@ $$
 		}
 		return [s, null];
 	};
-	var SetBpfImmediate = go$pkg.SetBpfImmediate = function(fd, m) {
+0ÇCSetBpfImmediateÇ.	var SetBpfImmediate = go$pkg.SetBpfImmediate = function(fd, m) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 2147762800, new (go$ptrType(Go$Int))(function() { return m; }, function(v) { m = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2821,7 +2835,7 @@ $$
 		}
 		return null;
 	};
-	var SetBpf = go$pkg.SetBpf = function(fd, i) {
+0ÇóSetBpfÇã	var SetBpf = go$pkg.SetBpf = function(fd, i) {
 		var p, _array, _struct, _view, _tuple, _array$1, _struct$1, _view$1, err;
 		p = new BpfProgram.Ptr();
 		p.Len = (i.length >>> 0);
@@ -2834,7 +2848,7 @@ $$
 		}
 		return null;
 	};
-	var CheckBpfVersion = go$pkg.CheckBpfVersion = function(fd) {
+0Ç8CheckBpfVersionÇ#	var CheckBpfVersion = go$pkg.CheckBpfVersion = function(fd) {
 		var v, _tuple, _array, _struct, _view, err;
 		v = new BpfVersion.Ptr();
 		_array = new Uint8Array(4);
@@ -2848,7 +2862,7 @@ $$
 		}
 		return null;
 	};
-	var BpfHeadercmpl = go$pkg.BpfHeadercmpl = function(fd) {
+0ÇPBpfHeadercmplÇ=	var BpfHeadercmpl = go$pkg.BpfHeadercmpl = function(fd) {
 		var f, _tuple, v, err;
 		f = 0;
 		_tuple = Syscall(54, (fd >>> 0), 1074020980, new (go$ptrType(Go$Int))(function() { return f; }, function(v) { f = v; })), err = _tuple[2];
@@ -2857,7 +2871,7 @@ $$
 		}
 		return [f, null];
 	};
-	var SetBpfHeadercmpl = go$pkg.SetBpfHeadercmpl = function(fd, f) {
+0ÇFSetBpfHeadercmplÇ0	var SetBpfHeadercmpl = go$pkg.SetBpfHeadercmpl = function(fd, f) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 2147762805, new (go$ptrType(Go$Int))(function() { return f; }, function(v) { f = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2865,10 +2879,10 @@ $$
 		}
 		return null;
 	};
-	var setenv_c = function(k, v) {
+0psetenv_cd	var setenv_c = function(k, v) {
 		throw go$panic("Native function not implemented: setenv_c");
 	};
-	var copyenv = function() {
+0ÇÚcopyenvÇÂ	var copyenv = function() {
 		var _ref, _i, _slice, _index, s, i, j, key, ok, _tuple, _entry, _key;
 		env = new Go$Map();
 		_ref = envs;
@@ -2889,7 +2903,7 @@ $$
 			}
 		}
 	};
-	var Getenv = go$pkg.Getenv = function(key) {
+0Ç&GetenvÇ	var Getenv = go$pkg.Getenv = function(key) {
 		var value, found, _tuple, _tuple$1, _entry, i, ok, _tuple$2, _slice, _index, s, i$1, _tuple$3, _tuple$4;
 		value = "";
 		found = false;
@@ -2925,7 +2939,7 @@ $$
 			return [value, found];
 		}
 	};
-	var Setenv = go$pkg.Setenv = function(key, value) {
+0ÇSetenvÇ	var Setenv = go$pkg.Setenv = function(key, value) {
 		var i, i$1, _tuple, _entry, i$2, ok, kv, _slice, _index, _key;
 		var go$deferred = [];
 		try {
@@ -2967,7 +2981,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var Clearenv = go$pkg.Clearenv = function() {
+0ÇrClearenvÇd	var Clearenv = go$pkg.Clearenv = function() {
 		var go$deferred = [];
 		try {
 			envOnce.Do(copyenv);
@@ -2981,7 +2995,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var Environ = go$pkg.Environ = function() {
+0ÇÿEnvironÇÀ	var Environ = go$pkg.Environ = function() {
 		var a;
 		var go$deferred = [];
 		try {
@@ -2998,13 +3012,13 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var runtime_BeforeFork = function() {
+0Åäruntime_BeforeForkt	var runtime_BeforeFork = function() {
 		throw go$panic("Native function not implemented: runtime_BeforeFork");
 	};
-	var runtime_AfterFork = function() {
+0Åáruntime_AfterForkr	var runtime_AfterFork = function() {
 		throw go$panic("Native function not implemented: runtime_AfterFork");
 	};
-	var forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
+0Ç⁄forkAndExecInChildÇ¬	var forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
 		var pid, err, _tuple, r1, r2, err1, nextfd, i, fd, _ref, _i, _slice, _index, ufd, i$1, _slice$1, _index$1, darwin, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, cred, ngroups, groups, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _slice$2, _index$2, _slice$3, _index$3, _tuple$13, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _tuple$14, _slice$8, _index$8, _tuple$15, _slice$9, _index$9, _tuple$16, _tuple$17, _tuple$18, v;
 		pid = 0;
 		err = 0;
@@ -3156,7 +3170,7 @@ $$
 			RawSyscall(1, 253, 0, 0);
 		}
 	};
-	var forkExecPipe = function(p) {
+0Ç®forkExecPipeÇñ	var forkExecPipe = function(p) {
 		var err, _tuple, _slice, _index, _tuple$1, _slice$1, _index$1;
 		err = Pipe(p);
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -3169,7 +3183,7 @@ $$
 		_tuple$1 = fcntl((_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), 2, 1), err = _tuple$1[1];
 		return err;
 	};
-	var StringSlicePtr = go$pkg.StringSlicePtr = function(ss) {
+0ÇÅStringSlicePtrÇm	var StringSlicePtr = go$pkg.StringSlicePtr = function(ss) {
 		var bb, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		bb = (go$sliceType((go$ptrType(Go$Uint8)))).make(ss.length + 1 >> 0, 0, function() { return (go$ptrType(Go$Uint8)).nil; });
 		i = 0;
@@ -3180,7 +3194,7 @@ $$
 		_slice$2 = bb, _index$2 = ss.length, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (go$ptrType(Go$Uint8)).nil) : go$throwRuntimeError("index out of range");
 		return bb;
 	};
-	var SlicePtrFromStrings = go$pkg.SlicePtrFromStrings = function(ss) {
+0ÇKSlicePtrFromStringsÇ2	var SlicePtrFromStrings = go$pkg.SlicePtrFromStrings = function(ss) {
 		var err, bb, i, _tuple, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		err = null;
 		bb = (go$sliceType((go$ptrType(Go$Uint8)))).make(ss.length + 1 >> 0, 0, function() { return (go$ptrType(Go$Uint8)).nil; });
@@ -3195,10 +3209,10 @@ $$
 		_slice$2 = bb, _index$2 = ss.length, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (go$ptrType(Go$Uint8)).nil) : go$throwRuntimeError("index out of range");
 		return [bb, null];
 	};
-	var CloseOnExec = go$pkg.CloseOnExec = function(fd) {
+0]CloseOnExecN	var CloseOnExec = go$pkg.CloseOnExec = function(fd) {
 		fcntl(fd, 2, 1);
 	};
-	var SetNonblock = go$pkg.SetNonblock = function(fd, nonblocking) {
+0Ç±SetNonblockÇ†	var SetNonblock = go$pkg.SetNonblock = function(fd, nonblocking) {
 		var err, _tuple, flag, _tuple$1;
 		err = null;
 		_tuple = fcntl(fd, 3, 0), flag = _tuple[0], err = _tuple[1];
@@ -3215,7 +3229,7 @@ $$
 		err = err;
 		return err;
 	};
-	var forkExec = function(argv0, argv, attr) {
+0Ç≈forkExecÇ∑	var forkExec = function(argv0, argv, attr) {
 		var pid, err, p, n, err1, wstatus, sys, _tuple, argv0p, _tuple$1, _tuple$2, argvp, _tuple$3, _tuple$4, envvp, _tuple$5, _slice, _index, chroot, _tuple$6, _tuple$7, dir, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, v, _tuple$14, v$1, err1$1, _tuple$15, v$2, _tuple$16, _tuple$17;
 		pid = 0;
 		err = null;
@@ -3305,14 +3319,14 @@ $$
 		_tuple$17 = [pid, null], pid = _tuple$17[0], err = _tuple$17[1];
 		return [pid, err];
 	};
-	var ForkExec = go$pkg.ForkExec = function(argv0, argv, attr) {
+0Å·ForkExecÅ‘	var ForkExec = go$pkg.ForkExec = function(argv0, argv, attr) {
 		var pid, err, _tuple;
 		pid = 0;
 		err = null;
 		_tuple = forkExec(argv0, argv, attr), pid = _tuple[0], err = _tuple[1];
 		return [pid, err];
 	};
-	var StartProcess = go$pkg.StartProcess = function(argv0, argv, attr) {
+0ÇnStartProcessÇ\	var StartProcess = go$pkg.StartProcess = function(argv0, argv, attr) {
 		var pid, handle, err, _tuple, _tuple$1;
 		pid = 0;
 		handle = 0;
@@ -3321,7 +3335,7 @@ $$
 		_tuple$1 = [pid, 0, err], pid = _tuple$1[0], handle = _tuple$1[1], err = _tuple$1[2];
 		return [pid, handle, err];
 	};
-	var Exec = go$pkg.Exec = function(argv0, argv, envv) {
+0ÇˇExecÇı	var Exec = go$pkg.Exec = function(argv0, argv, envv) {
 		var err, _tuple, argv0p, _tuple$1, argvp, _tuple$2, envvp, _tuple$3, err1;
 		err = null;
 		_tuple = BytePtrFromString(argv0), argv0p = _tuple[0], err = _tuple[1];
@@ -3343,15 +3357,16 @@ $$
 		err = new Errno(err1);
 		return err;
 	};
-	var raceAcquire = function(addr) {
+07raceAcquire(	var raceAcquire = function(addr) {
 	};
-	var raceReleaseMerge = function(addr) {
+0AraceReleaseMerge-	var raceReleaseMerge = function(addr) {
 	};
-	var raceReadRange = function(addr, len) {
+0@raceReadRange/	var raceReadRange = function(addr, len) {
 	};
-	var raceWriteRange = function(addr, len) {
+0BraceWriteRange0	var raceWriteRange = function(addr, len) {
 	};
-	var rsaAlignOf = function(salen) {
+0Å◊
+rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		var salign;
 		salign = 8;
 		salign = 4;
@@ -3360,7 +3375,7 @@ $$
 		}
 		return (((salen + salign >> 0) - 1 >> 0)) & (~((salign - 1 >> 0)) >> 0);
 	};
-	var RouteRIB = go$pkg.RouteRIB = function(facility, param) {
+0Ç$RouteRIBÇ	var RouteRIB = go$pkg.RouteRIB = function(facility, param) {
 		var mib, n, err, v, tab, err$1, v$1, _slice, _index, _slice$1, _index$1, v$2;
 		mib = new (go$sliceType(_C_int))([4, 17, 0, 0, (facility >> 0), (param >> 0)]);
 		n = 0;
@@ -3376,7 +3391,7 @@ $$
 		}
 		return [go$subslice(tab, 0, n), null];
 	};
-	RouteMessage.Ptr.prototype.sockaddr = function() {
+0Ç«sockaddrÇπ	RouteMessage.Ptr.prototype.sockaddr = function() {
 		var m, af, sas, b, i, y, _array, _struct, _view, rsa, _ref, _tuple, _array$1, _struct$1, _array$2, _struct$2, _view$1, _view$2, sa, err, _ref$1, _array$3, _struct$3, _view$3, rsa4, sa$1, j, _array$4, _struct$4, _view$4, rsa6, sa$2, j$1;
 		m = this;
 		af = 0, sas = go$makeNativeArray("Interface", 4, function() { return null; });
@@ -3428,7 +3443,7 @@ $$
 		return new (go$sliceType(Sockaddr))(sas);
 	};
 	RouteMessage.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-	InterfaceMessage.Ptr.prototype.sockaddr = function() {
+0ÇsockaddrÇ˜	InterfaceMessage.Ptr.prototype.sockaddr = function() {
 		var sas, m, _tuple, _array, _struct, _view, sa, err;
 		sas = (go$sliceType(Sockaddr)).nil;
 		m = this;
@@ -3445,7 +3460,7 @@ $$
 		return sas;
 	};
 	InterfaceMessage.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-	InterfaceAddrMessage.Ptr.prototype.sockaddr = function() {
+0ÇØsockaddrÇ°	InterfaceAddrMessage.Ptr.prototype.sockaddr = function() {
 		var sas, m, b, preferredFamily, i, y, _array, _struct, _view, rsa, _ref, _tuple, _array$1, _struct$1, _array$2, _struct$2, _view$1, _view$2, sa, err, _ref$1, _ref$2, _tuple$1, _array$3, _struct$3, _array$4, _struct$4, _view$3, _view$4, sa$1, err$1;
 		sas = (go$sliceType(Sockaddr)).nil;
 		m = this;
@@ -3508,7 +3523,7 @@ $$
 		return sas;
 	};
 	InterfaceAddrMessage.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-	var ParseRoutingMessage = go$pkg.ParseRoutingMessage = function(b) {
+0ÇUParseRoutingMessageÇ<	var ParseRoutingMessage = go$pkg.ParseRoutingMessage = function(b) {
 		var msgs, err, _array, _struct, _view, any, _tuple, _tuple$1;
 		msgs = (go$sliceType(RoutingMessage)).nil;
 		err = null;
@@ -3524,14 +3539,14 @@ $$
 		_tuple$1 = [msgs, null], msgs = _tuple$1[0], err = _tuple$1[1];
 		return [msgs, err];
 	};
-	var ParseRoutingSockaddr = go$pkg.ParseRoutingSockaddr = function(msg) {
+0Ç#ParseRoutingSockaddrÇ		var ParseRoutingSockaddr = go$pkg.ParseRoutingSockaddr = function(msg) {
 		var sas, err, _tuple;
 		sas = (go$sliceType(Sockaddr)).nil;
 		err = null;
 		_tuple = [go$appendSlice(sas, msg.sockaddr()), null], sas = _tuple[0], err = _tuple[1];
 		return [sas, err];
 	};
-	anyMessage.Ptr.prototype.toRoutingMessage = function(b) {
+0Ç$ƒtoRoutingMessageÇ$Æ	anyMessage.Ptr.prototype.toRoutingMessage = function(b) {
 		var any, _ref, _array, _struct, _array$1, _struct$1, _view, _view$1, p, _struct$2, _struct$3, _array$2, _struct$4, _array$3, _struct$5, _view$2, _view$3, p$1, _struct$6, _struct$7, _struct$8, _array$4, _struct$9, _array$5, _struct$10, _view$4, _view$5, p$2, _struct$11, _array$6, _struct$12, _array$7, _struct$13, _view$6, _view$7, p$3, _struct$14;
 		any = this;
 		_ref = any.Type;
@@ -3559,7 +3574,7 @@ $$
 		return null;
 	};
 	anyMessage.prototype.toRoutingMessage = function(b) { return this.go$val.toRoutingMessage(b); };
-	InterfaceMulticastAddrMessage.Ptr.prototype.sockaddr = function() {
+0ÇHsockaddrÇ:	InterfaceMulticastAddrMessage.Ptr.prototype.sockaddr = function() {
 		var sas, m, b, i, y, _array, _struct, _view, rsa, _ref, _tuple, _array$1, _struct$1, _array$2, _struct$2, _view$1, _view$2, sa, e;
 		sas = (go$sliceType(Sockaddr)).nil;
 		m = this;
@@ -3593,24 +3608,24 @@ $$
 		return sas;
 	};
 	InterfaceMulticastAddrMessage.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-	var cmsgAlignOf = function(salen) {
+0ÅÆcmsgAlignOfÅû	var cmsgAlignOf = function(salen) {
 		var salign;
 		salign = 8;
 		salign = 4;
 		return (((salen + salign >> 0) - 1 >> 0)) & (~((salign - 1 >> 0)) >> 0);
 	};
-	var CmsgLen = go$pkg.CmsgLen = function(datalen) {
+0lCmsgLena	var CmsgLen = go$pkg.CmsgLen = function(datalen) {
 		return cmsgAlignOf(12) + datalen >> 0;
 	};
-	var CmsgSpace = go$pkg.CmsgSpace = function(datalen) {
+0	CmsgSpacer	var CmsgSpace = go$pkg.CmsgSpace = function(datalen) {
 		return cmsgAlignOf(12) + cmsgAlignOf(datalen) >> 0;
 	};
-	var cmsgData = function(h) {
+0ÅücmsgDataÅí	var cmsgData = function(h) {
 		var _array, _struct, _view;
 		_array = new Uint8Array(12);
 		return (_array + (cmsgAlignOf(12) >>> 0) >>> 0);
 	};
-	var ParseSocketControlMessage = go$pkg.ParseSocketControlMessage = function(b) {
+0ÇParseSocketControlMessageÇ`	var ParseSocketControlMessage = go$pkg.ParseSocketControlMessage = function(b) {
 		var msgs, i, _tuple, h, dbuf, err, _struct, m, _struct$1, _struct$2;
 		msgs = (go$sliceType(SocketControlMessage)).nil;
 		i = 0;
@@ -3625,7 +3640,7 @@ $$
 		}
 		return [msgs, null];
 	};
-	var socketControlMessageHeaderAndData = function(b) {
+0ÇB!socketControlMessageHeaderAndDataÇ	var socketControlMessageHeaderAndData = function(b) {
 		var _array, _struct, _view, h;
 		h = (_array = go$sliceToArray(b), _struct = new Cmsghdr.Ptr(), _view = new DataView(_array.buffer, _array.byteOffset), _struct.Len = _view.getUint32(0, true), _struct.Level = _view.getInt32(4, true), _struct.Type = _view.getInt32(8, true), _struct);
 		if (h.Len < 12 || (h.Len >> 0) > b.length) {
@@ -3633,7 +3648,8 @@ $$
 		}
 		return [h, go$subslice(b, cmsgAlignOf(12), h.Len), null];
 	};
-	var UnixRights = go$pkg.UnixRights = function(fds) {
+0Ç÷
+UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		var x, x$1, datalen, b, _array, _struct, _view, h, data, _ref, _i, _slice, _index, fd;
 		datalen = (x = fds.length, x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
 		b = (go$sliceType(Go$Uint8)).make(CmsgSpace(datalen), 0, function() { return 0; });
@@ -3651,7 +3667,7 @@ $$
 		}
 		return b;
 	};
-	var ParseUnixRights = go$pkg.ParseUnixRights = function(m) {
+0ÇçParseUnixRightsÇx	var ParseUnixRights = go$pkg.ParseUnixRights = function(m) {
 		var fds, _tuple, i, j, _slice, _index, _slice$1, _index$1;
 		if (!((m.Header.Level === 65535))) {
 			return [(go$sliceType(Go$Int)).nil, new Errno(22)];
@@ -3668,7 +3684,7 @@ $$
 		}
 		return [fds, null];
 	};
-	var itoa = function(val) {
+0Ç\itoaÇR	var itoa = function(val) {
 		var buf, i, _r, _q;
 		if (val < 0) {
 			return "-" + itoa(-val);
@@ -3683,7 +3699,7 @@ $$
 		buf[i] = ((val + 48 >> 0) << 24 >>> 24);
 		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(buf), i));
 	};
-	var StringByteSlice = go$pkg.StringByteSlice = function(s) {
+0ÇCStringByteSliceÇ.	var StringByteSlice = go$pkg.StringByteSlice = function(s) {
 		var _tuple, a, err;
 		_tuple = ByteSliceFromString(s), a = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -3691,7 +3707,7 @@ $$
 		}
 		return a;
 	};
-	var ByteSliceFromString = go$pkg.ByteSliceFromString = function(s) {
+0ÇáByteSliceFromStringÇn	var ByteSliceFromString = go$pkg.ByteSliceFromString = function(s) {
 		var i, a;
 		i = 0;
 		while (i < s.length) {
@@ -3704,11 +3720,11 @@ $$
 		go$copyString(a, s);
 		return [a, null];
 	};
-	var StringBytePtr = go$pkg.StringBytePtr = function(s) {
+0Ç/StringBytePtrÇ	var StringBytePtr = go$pkg.StringBytePtr = function(s) {
 		var v, _slice, _index, _slice$1, _index$1;
 		return new (go$ptrType(Go$Uint8))(function() { return (_slice = StringByteSlice(s), _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v) { _slice$1 = StringByteSlice(s), _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v) : go$throwRuntimeError("index out of range"); });
 	};
-	var BytePtrFromString = go$pkg.BytePtrFromString = function(s) {
+0Ç–BytePtrFromStringÇπ	var BytePtrFromString = go$pkg.BytePtrFromString = function(s) {
 		var _tuple, a, err, v, _slice, _index, _slice$1, _index$1;
 		_tuple = ByteSliceFromString(s), a = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -3716,7 +3732,7 @@ $$
 		}
 		return [new (go$ptrType(Go$Uint8))(function() { return (_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v) { _slice$1 = a, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v) : go$throwRuntimeError("index out of range"); }), null];
 	};
-	Timespec.Ptr.prototype.Unix = function() {
+0Ç:UnixÇ0	Timespec.Ptr.prototype.Unix = function() {
 		var sec, nsec, ts, _tuple;
 		sec = new Go$Int64(0, 0);
 		nsec = new Go$Int64(0, 0);
@@ -3725,7 +3741,7 @@ $$
 		return [sec, nsec];
 	};
 	Timespec.prototype.Unix = function() { return this.go$val.Unix(); };
-	Timeval.Ptr.prototype.Unix = function() {
+0ÇjUnixÇ`	Timeval.Ptr.prototype.Unix = function() {
 		var sec, nsec, tv, _tuple;
 		sec = new Go$Int64(0, 0);
 		nsec = new Go$Int64(0, 0);
@@ -3734,19 +3750,19 @@ $$
 		return [sec, nsec];
 	};
 	Timeval.prototype.Unix = function() { return this.go$val.Unix(); };
-	Timespec.Ptr.prototype.Nano = function() {
+0ÇNanoÇ	Timespec.Ptr.prototype.Nano = function() {
 		var ts, x, x$1;
 		ts = this;
 		return (x = go$mul64(ts.Sec, new Go$Int64(0, 1000000000)), x$1 = ts.Nsec, new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 	};
 	Timespec.prototype.Nano = function() { return this.go$val.Nano(); };
-	Timeval.Ptr.prototype.Nano = function() {
+0ÇNNanoÇD	Timeval.Ptr.prototype.Nano = function() {
 		var tv, x, x$1;
 		tv = this;
 		return (x = go$mul64(tv.Sec, new Go$Int64(0, 1000000000)), x$1 = go$mul64(new Go$Int64(0, tv.Usec), new Go$Int64(0, 1000)), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 	};
 	Timeval.prototype.Nano = function() { return this.go$val.Nano(); };
-	var Getgroups = go$pkg.Getgroups = function() {
+0Ç	GetgroupsÇÙ	var Getgroups = go$pkg.Getgroups = function() {
 		var gids, err, _tuple, n, _tuple$1, _tuple$2, _tuple$3, a, _tuple$4, v, _slice, _index, _slice$1, _index$1, _tuple$5, _ref, _i, _slice$2, _index$2, v$1, i, _slice$3, _index$3;
 		gids = (go$sliceType(Go$Int)).nil;
 		err = null;
@@ -3779,7 +3795,7 @@ $$
 		}
 		return [gids, err];
 	};
-	var Setgroups = go$pkg.Setgroups = function(gids) {
+0Ç⁄	SetgroupsÇÀ	var Setgroups = go$pkg.Setgroups = function(gids) {
 		var err, a, _ref, _i, _slice, _index, v, i, _slice$1, _index$1, v$1, _slice$2, _index$2, _slice$3, _index$3;
 		err = null;
 		if (gids.length === 0) {
@@ -3797,20 +3813,22 @@ $$
 		err = setgroups(a.length, new (go$ptrType(_Gid_t))(function() { return (_slice$2 = a, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")); }, function(v$1) { _slice$3 = a, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = v$1) : go$throwRuntimeError("index out of range"); }));
 		return err;
 	};
-	var ReadDirent = go$pkg.ReadDirent = function(fd, buf) {
+0Å„
+ReadDirentÅ‘	var ReadDirent = go$pkg.ReadDirent = function(fd, buf) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = Getdirentries(fd, buf, new Uint8Array(8)), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
-	WaitStatus.prototype.Exited = function() {
+0Å„ExitedÅÿ	WaitStatus.prototype.Exited = function() {
 		var w;
 		w = this.go$val;
 		return ((w & 127) >>> 0) === 0;
 	};
 	go$ptrType(WaitStatus).prototype.Exited = function() { return new WaitStatus(this.go$get()).Exited(); };
-	WaitStatus.prototype.ExitStatus = function() {
+0Ç+
+ExitStatusÇ	WaitStatus.prototype.ExitStatus = function() {
 		var w;
 		w = this.go$val;
 		if (!((((w & 127) >>> 0) === 0))) {
@@ -3819,13 +3837,13 @@ $$
 		return ((w >>> 8 >>> 0) >> 0);
 	};
 	go$ptrType(WaitStatus).prototype.ExitStatus = function() { return new WaitStatus(this.go$get()).ExitStatus(); };
-	WaitStatus.prototype.Signaled = function() {
+0ÇSignaledÇ	WaitStatus.prototype.Signaled = function() {
 		var w;
 		w = this.go$val;
 		return !((((w & 127) >>> 0) === 127)) && !((((w & 127) >>> 0) === 0));
 	};
 	go$ptrType(WaitStatus).prototype.Signaled = function() { return new WaitStatus(this.go$get()).Signaled(); };
-	WaitStatus.prototype.Signal = function() {
+0Ç/SignalÇ#	WaitStatus.prototype.Signal = function() {
 		var w, sig;
 		w = this.go$val;
 		sig = (((w & 127) >>> 0) >> 0);
@@ -3835,25 +3853,26 @@ $$
 		return sig;
 	};
 	go$ptrType(WaitStatus).prototype.Signal = function() { return new WaitStatus(this.go$get()).Signal(); };
-	WaitStatus.prototype.CoreDump = function() {
+0ÇCoreDumpÇ	WaitStatus.prototype.CoreDump = function() {
 		var w;
 		w = this.go$val;
 		return (new WaitStatus(w)).Signaled() && !((((w & 128) >>> 0) === 0));
 	};
 	go$ptrType(WaitStatus).prototype.CoreDump = function() { return new WaitStatus(this.go$get()).CoreDump(); };
-	WaitStatus.prototype.Stopped = function() {
+0ÇStoppedÇ	WaitStatus.prototype.Stopped = function() {
 		var w;
 		w = this.go$val;
 		return (((w & 127) >>> 0) === 127) && !((((w >>> 8 >>> 0) >> 0) === 17));
 	};
 	go$ptrType(WaitStatus).prototype.Stopped = function() { return new WaitStatus(this.go$get()).Stopped(); };
-	WaitStatus.prototype.Continued = function() {
+0Ç	ContinuedÇ	WaitStatus.prototype.Continued = function() {
 		var w;
 		w = this.go$val;
 		return (((w & 127) >>> 0) === 127) && (((w >>> 8 >>> 0) >> 0) === 17);
 	};
 	go$ptrType(WaitStatus).prototype.Continued = function() { return new WaitStatus(this.go$get()).Continued(); };
-	WaitStatus.prototype.StopSignal = function() {
+0Ç3
+StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		var w;
 		w = this.go$val;
 		if (!(new WaitStatus(w)).Stopped()) {
@@ -3862,13 +3881,13 @@ $$
 		return ((w >>> 8 >>> 0) >> 0) & 255;
 	};
 	go$ptrType(WaitStatus).prototype.StopSignal = function() { return new WaitStatus(this.go$get()).StopSignal(); };
-	WaitStatus.prototype.TrapCause = function() {
+0Å⁄	TrapCauseÅÃ	WaitStatus.prototype.TrapCause = function() {
 		var w;
 		w = this.go$val;
 		return -1;
 	};
 	go$ptrType(WaitStatus).prototype.TrapCause = function() { return new WaitStatus(this.go$get()).TrapCause(); };
-	var Wait4 = go$pkg.Wait4 = function(pid, wstatus, options, rusage) {
+0ÇƒWait4Çπ	var Wait4 = go$pkg.Wait4 = function(pid, wstatus, options, rusage) {
 		var wpid, err, status, _tuple, v;
 		wpid = 0;
 		err = null;
@@ -3879,7 +3898,7 @@ $$
 		}
 		return [wpid, err];
 	};
-	SockaddrInet4.Ptr.prototype.sockaddr = function() {
+0ÇúsockaddrÇé	SockaddrInet4.Ptr.prototype.sockaddr = function() {
 		var sa, v, p, i, _array, _struct, _view;
 		sa = this;
 		if (sa.Port < 0 || sa.Port > 65535) {
@@ -3899,7 +3918,7 @@ $$
 		return [_array, (sa.raw.Len >>> 0), null];
 	};
 	SockaddrInet4.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-	SockaddrInet6.Ptr.prototype.sockaddr = function() {
+0ÇΩsockaddrÇØ	SockaddrInet6.Ptr.prototype.sockaddr = function() {
 		var sa, v, p, i, _array, _struct, _view;
 		sa = this;
 		if (sa.Port < 0 || sa.Port > 65535) {
@@ -3920,7 +3939,7 @@ $$
 		return [_array, (sa.raw.Len >>> 0), null];
 	};
 	SockaddrInet6.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-	SockaddrUnix.Ptr.prototype.sockaddr = function() {
+0Ç2sockaddrÇ$	SockaddrUnix.Ptr.prototype.sockaddr = function() {
 		var sa, name, n, i, _array, _struct, _view;
 		sa = this;
 		name = sa.Name;
@@ -3939,7 +3958,7 @@ $$
 		return [_array, (sa.raw.Len >>> 0), null];
 	};
 	SockaddrUnix.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-	SockaddrDatalink.Ptr.prototype.sockaddr = function() {
+0ÇJsockaddrÇ<	SockaddrDatalink.Ptr.prototype.sockaddr = function() {
 		var sa, i, _array, _struct, _view;
 		sa = this;
 		if (sa.Index === 0) {
@@ -3961,7 +3980,7 @@ $$
 		return [_array, 20, null];
 	};
 	SockaddrDatalink.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-	var anyToSockaddr = function(rsa) {
+0ÇªanyToSockaddrÇ®	var anyToSockaddr = function(rsa) {
 		var _ref, _array, _struct, _array$1, _struct$1, _view, _view$1, pp, sa, i, _array$2, _struct$2, _array$3, _struct$3, _view$2, _view$3, pp$1, sa$1, n, i$1, bytes, _array$4, _struct$4, _array$5, _struct$5, _view$4, _view$5, pp$2, sa$2, v, p, i$2, _array$6, _struct$6, _array$7, _struct$7, _view$6, _view$7, pp$3, sa$3, v$1, p$1, i$3;
 		_ref = rsa.Addr.Family;
 		if (_ref === 18) {
@@ -4032,7 +4051,7 @@ $$
 		}
 		return [null, new Errno(47)];
 	};
-	var Accept = go$pkg.Accept = function(fd) {
+0Ç˚AcceptÇÔ	var Accept = go$pkg.Accept = function(fd) {
 		var nfd, sa, err, rsa, len, _tuple, v, _tuple$1, _tuple$2;
 		nfd = 0;
 		sa = null;
@@ -4055,7 +4074,7 @@ $$
 		}
 		return [nfd, sa, err];
 	};
-	var Getsockname = go$pkg.Getsockname = function(fd) {
+0Ç¿GetsocknameÇØ	var Getsockname = go$pkg.Getsockname = function(fd) {
 		var sa, err, rsa, len, v, _tuple;
 		sa = null;
 		err = null;
@@ -4067,7 +4086,7 @@ $$
 		_tuple = anyToSockaddr(rsa), sa = _tuple[0], err = _tuple[1];
 		return [sa, err];
 	};
-	var GetsockoptByte = go$pkg.GetsockoptByte = function(fd, level, opt) {
+0ÇﬁGetsockoptByteÇ 	var GetsockoptByte = go$pkg.GetsockoptByte = function(fd, level, opt) {
 		var value, err, n, vallen, v, v$1, _tuple;
 		value = 0;
 		err = null;
@@ -4077,7 +4096,7 @@ $$
 		_tuple = [n, err], value = _tuple[0], err = _tuple[1];
 		return [value, err];
 	};
-	var GetsockoptInet4Addr = go$pkg.GetsockoptInet4Addr = function(fd, level, opt) {
+0Ç[GetsockoptInet4AddrÇB	var GetsockoptInet4Addr = go$pkg.GetsockoptInet4Addr = function(fd, level, opt) {
 		var value, err, vallen, v, _tuple;
 		value = go$makeNativeArray("Uint8", 4, function() { return 0; });
 		err = null;
@@ -4086,7 +4105,7 @@ $$
 		_tuple = [go$mapArray(value, function(entry) { return entry; }), err], value = _tuple[0], err = _tuple[1];
 		return [go$mapArray(value, function(entry) { return entry; }), err];
 	};
-	var GetsockoptIPMreq = go$pkg.GetsockoptIPMreq = function(fd, level, opt) {
+0Ç¿GetsockoptIPMreqÇ™	var GetsockoptIPMreq = go$pkg.GetsockoptIPMreq = function(fd, level, opt) {
 		var value, vallen, _array, _struct, _view, v, err;
 		value = new IPMreq.Ptr();
 		vallen = 8;
@@ -4095,7 +4114,7 @@ $$
 		_struct = value, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Multiaddr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength)), _struct.Interface = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 4, _array.buffer.byteLength));
 		return [value, err];
 	};
-	var GetsockoptIPv6Mreq = go$pkg.GetsockoptIPv6Mreq = function(fd, level, opt) {
+0Ç~GetsockoptIPv6MreqÇf	var GetsockoptIPv6Mreq = go$pkg.GetsockoptIPv6Mreq = function(fd, level, opt) {
 		var value, vallen, _array, _struct, _view, v, err;
 		value = new IPv6Mreq.Ptr();
 		vallen = 20;
@@ -4104,7 +4123,7 @@ $$
 		_struct = value, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Multiaddr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength)), _struct.Interface = _view.getUint32(16, true);
 		return [value, err];
 	};
-	var GetsockoptIPv6MTUInfo = go$pkg.GetsockoptIPv6MTUInfo = function(fd, level, opt) {
+0ÇrGetsockoptIPv6MTUInfoÇW	var GetsockoptIPv6MTUInfo = go$pkg.GetsockoptIPv6MTUInfo = function(fd, level, opt) {
 		var value, vallen, _array, _struct, _view, v, err;
 		value = new IPv6MTUInfo.Ptr();
 		vallen = 32;
@@ -4113,7 +4132,7 @@ $$
 		_struct = value, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Addr.Len = _view.getUint8(0, true), _struct.Addr.Family = _view.getUint8(1, true), _struct.Addr.Port = _view.getUint16(2, true), _struct.Addr.Flowinfo = _view.getUint32(4, true), _struct.Addr.Addr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 8, _array.buffer.byteLength)), _struct.Addr.Scope_id = _view.getUint32(24, true), _struct.Mtu = _view.getUint32(28, true);
 		return [value, err];
 	};
-	var GetsockoptICMPv6Filter = go$pkg.GetsockoptICMPv6Filter = function(fd, level, opt) {
+0Ç[GetsockoptICMPv6FilterÇ?	var GetsockoptICMPv6Filter = go$pkg.GetsockoptICMPv6Filter = function(fd, level, opt) {
 		var value, vallen, _array, _struct, _view, v, err;
 		value = new ICMPv6Filter.Ptr();
 		vallen = 32;
@@ -4122,7 +4141,7 @@ $$
 		_struct = value, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Filt = new (go$nativeArray("Uint32"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength));
 		return [value, err];
 	};
-	var Recvmsg = go$pkg.Recvmsg = function(fd, p, oob, flags) {
+0Ç#RecvmsgÇ	var Recvmsg = go$pkg.Recvmsg = function(fd, p, oob, flags) {
 		var n, oobn, recvflags, from, err, msg, rsa, _array, _struct, _view, iov, dummy, v, _tuple, _tuple$1;
 		n = 0;
 		oobn = 0;
@@ -4161,7 +4180,7 @@ $$
 		}
 		return [n, oobn, recvflags, from, err];
 	};
-	var Sendmsg = go$pkg.Sendmsg = function(fd, p, oob, to, flags) {
+0Ç∫SendmsgÇ≠	var Sendmsg = go$pkg.Sendmsg = function(fd, p, oob, to, flags) {
 		var err, ptr, salen, _tuple, msg, iov, dummy, v;
 		err = null;
 		ptr = 0;
@@ -4196,7 +4215,7 @@ $$
 		}
 		return err;
 	};
-	var Kevent = go$pkg.Kevent = function(kq, changes, events, timeout) {
+0ÇÁKeventÇ€	var Kevent = go$pkg.Kevent = function(kq, changes, events, timeout) {
 		var n, err, _tuple, change, event, _tuple$1;
 		n = 0;
 		err = null;
@@ -4210,7 +4229,7 @@ $$
 		_tuple$1 = kevent(kq, change, changes.length, event, events.length, timeout), n = _tuple$1[0], err = _tuple$1[1];
 		return [n, err];
 	};
-	var Sysctl = go$pkg.Sysctl = function(name) {
+0Ç§SysctlÇò	var Sysctl = go$pkg.Sysctl = function(name) {
 		var value, err, _tuple, mib, _tuple$1, n, v, _tuple$2, _tuple$3, buf, v$1, _slice, _index, _slice$1, _index$1, v$2, _tuple$4, _slice$2, _index$2, _tuple$5;
 		value = "";
 		err = null;
@@ -4239,7 +4258,7 @@ $$
 		_tuple$5 = [go$bytesToString(go$subslice(buf, 0, n)), null], value = _tuple$5[0], err = _tuple$5[1];
 		return [value, err];
 	};
-	var SysctlUint32 = go$pkg.SysctlUint32 = function(name) {
+0ÇSysctlUint32Ç	var SysctlUint32 = go$pkg.SysctlUint32 = function(name) {
 		var value, err, _tuple, mib, _tuple$1, n, buf, v, _slice, _index, _slice$1, _index$1, v$1, _tuple$2, _tuple$3, _slice$2, _index$2, _tuple$4;
 		value = 0;
 		err = null;
@@ -4261,7 +4280,7 @@ $$
 		_tuple$4 = [(_slice$2 = buf, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), null], value = _tuple$4[0], err = _tuple$4[1];
 		return [value, err];
 	};
-	var Utimes = go$pkg.Utimes = function(path, tv) {
+0Å›UtimesÅ“	var Utimes = go$pkg.Utimes = function(path, tv) {
 		var err;
 		err = null;
 		if (!((tv.length === 2))) {
@@ -4271,7 +4290,8 @@ $$
 		err = utimes(path, go$sliceToArray(tv));
 		return err;
 	};
-	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
+0ÇM
+UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		var _slice, _index, _struct, _struct$1, _slice$1, _index$1, _struct$2, _struct$3, tv;
 		if (!((ts.length === 2))) {
 			return new Errno(22);
@@ -4279,7 +4299,7 @@ $$
 		tv = go$toNativeArray("Struct", [(_struct$1 = NsecToTimeval(TimespecToNsec((_struct = (_slice = ts, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Timespec.Ptr(_struct.Sec, _struct.Nsec)))), new Timeval.Ptr(_struct$1.Sec, _struct$1.Usec, go$mapArray(_struct$1.Pad_cgo_0, function(entry) { return entry; }))), (_struct$3 = NsecToTimeval(TimespecToNsec((_struct$2 = (_slice$1 = ts, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Timespec.Ptr(_struct$2.Sec, _struct$2.Nsec)))), new Timeval.Ptr(_struct$3.Sec, _struct$3.Usec, go$mapArray(_struct$3.Pad_cgo_0, function(entry) { return entry; })))]);
 		return utimes(path, go$sliceToArray(new (go$sliceType(Go$Uint8))(tv)));
 	};
-	var Futimes = go$pkg.Futimes = function(fd, tv) {
+0Å›FutimesÅ—	var Futimes = go$pkg.Futimes = function(fd, tv) {
 		var err;
 		err = null;
 		if (!((tv.length === 2))) {
@@ -4289,6 +4309,7 @@ $$
 		err = futimes(fd, go$sliceToArray(tv));
 		return err;
 	};
+0ÇMmapÇ
 	var Mmap = go$pkg.Mmap = function(fd, offset, length, prot, flags) {
 		var data, err, _tuple;
 		data = (go$sliceType(Go$Uint8)).nil;
@@ -4296,13 +4317,13 @@ $$
 		_tuple = mapper.Mmap(fd, offset, length, prot, flags), data = _tuple[0], err = _tuple[1];
 		return [data, err];
 	};
-	var Munmap = go$pkg.Munmap = function(b) {
+0{Munmapq	var Munmap = go$pkg.Munmap = function(b) {
 		var err;
 		err = null;
 		err = mapper.Munmap(b);
 		return err;
 	};
-	var Getwd = go$pkg.Getwd = function() {
+0Ç£GetwdÇò	var Getwd = go$pkg.Getwd = function() {
 		var buf, _tuple, attrs, err, _slice, _index, _slice$1, _index$1, wd;
 		buf = (go$sliceType(Go$Uint8)).make(2048, 0, function() { return 0; });
 		_tuple = getAttrList(".", new attrList.Ptr(0, 0, 134217728, 0, 0, 0, 0), buf, 0), attrs = _tuple[0], err = _tuple[1];
@@ -4314,7 +4335,7 @@ $$
 		}
 		return ["", new Errno(45)];
 	};
-	var nametomib = function(name) {
+0Ç		nametomibÇ˙	var nametomib = function(name) {
 		var mib, err, buf, n, p, _tuple, bytes, _tuple$1, v, v$1, _slice, _index, _slice$1, _index$1, _tuple$2, _q, _tuple$3;
 		mib = (go$sliceType(_C_int)).nil;
 		err = null;
@@ -4333,7 +4354,7 @@ $$
 		_tuple$3 = [go$subslice(new (go$sliceType(_C_int))(buf), 0, (_q = n / 4, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"))), null], mib = _tuple$3[0], err = _tuple$3[1];
 		return [mib, err];
 	};
-	var ParseDirent = go$pkg.ParseDirent = function(buf, max, names) {
+0ÇΩParseDirentÇ¨	var ParseDirent = go$pkg.ParseDirent = function(buf, max, names) {
 		var consumed, count, newnames, origlen, dirent, _array, _struct, _view, x, bytes, name, _tuple;
 		consumed = 0;
 		count = 0;
@@ -4362,19 +4383,19 @@ $$
 		_tuple = [origlen - buf.length >> 0, count, names], consumed = _tuple[0], count = _tuple[1], newnames = _tuple[2];
 		return [consumed, count, newnames];
 	};
-	var PtraceAttach = go$pkg.PtraceAttach = function(pid) {
+0ÅïPtraceAttachÅÑ	var PtraceAttach = go$pkg.PtraceAttach = function(pid) {
 		var err;
 		err = null;
 		err = ptrace(10, pid, 0, 0);
 		return err;
 	};
-	var PtraceDetach = go$pkg.PtraceDetach = function(pid) {
+0ÅïPtraceDetachÅÑ	var PtraceDetach = go$pkg.PtraceDetach = function(pid) {
 		var err;
 		err = null;
 		err = ptrace(11, pid, 0, 0);
 		return err;
 	};
-	var getAttrList = function(path, attrList$1, attrBuf, options) {
+0Ç˙getAttrListÇÈ	var getAttrList = function(path, attrList$1, attrBuf, options) {
 		var attrs, err, _tuple, _p0, _tuple$1, _tuple$2, _tuple$3, _array, _struct, _view, e1, _tuple$4, _slice, _index, size, dat, i, header, _tuple$5, _slice$1, _index$1, datOff, _slice$2, _index$2, attrLen, _tuple$6, end, r, _r;
 		attrs = (go$sliceType((go$sliceType(Go$Uint8)))).nil;
 		err = null;
@@ -4425,7 +4446,7 @@ $$
 		}
 		return [attrs, err];
 	};
-	var Pipe = go$pkg.Pipe = function(p) {
+0ÇKPipeÇA	var Pipe = go$pkg.Pipe = function(p) {
 		var err, _tuple, _slice, _index, _slice$1, _index$1;
 		err = null;
 		if (!((p.length === 2))) {
@@ -4435,31 +4456,31 @@ $$
 		_tuple = pipe(), _slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple[1]) : go$throwRuntimeError("index out of range"), err = _tuple[2];
 		return err;
 	};
-	var Kill = go$pkg.Kill = function(pid, signum) {
+0ÅãKillÅÇ	var Kill = go$pkg.Kill = function(pid, signum) {
 		var err;
 		err = null;
 		err = kill(pid, (signum >> 0), 1);
 		return err;
 	};
-	var Getpagesize = go$pkg.Getpagesize = function() {
+0WGetpagesizeH	var Getpagesize = go$pkg.Getpagesize = function() {
 		return 4096;
 	};
-	var TimespecToNsec = go$pkg.TimespecToNsec = function(ts) {
+0Å·TimespecToNsecÅŒ	var TimespecToNsec = go$pkg.TimespecToNsec = function(ts) {
 		var x, x$1;
 		return (x = go$mul64(ts.Sec, new Go$Int64(0, 1000000000)), x$1 = ts.Nsec, new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 	};
-	var NsecToTimespec = go$pkg.NsecToTimespec = function(nsec) {
+0ÇINsecToTimespecÇ5	var NsecToTimespec = go$pkg.NsecToTimespec = function(nsec) {
 		var ts, _struct;
 		ts = new Timespec.Ptr();
 		ts.Sec = go$div64(nsec, new Go$Int64(0, 1000000000), false);
 		ts.Nsec = go$div64(nsec, new Go$Int64(0, 1000000000), true);
 		return (_struct = ts, new Timespec.Ptr(_struct.Sec, _struct.Nsec));
 	};
-	var TimevalToNsec = go$pkg.TimevalToNsec = function(tv) {
+0ÇTimevalToNsecÅ˛	var TimevalToNsec = go$pkg.TimevalToNsec = function(tv) {
 		var x, x$1;
 		return (x = go$mul64(tv.Sec, new Go$Int64(0, 1000000000)), x$1 = go$mul64(new Go$Int64(0, tv.Usec), new Go$Int64(0, 1000)), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 	};
-	var NsecToTimeval = go$pkg.NsecToTimeval = function(nsec) {
+0ÇNsecToTimevalÇ		var NsecToTimeval = go$pkg.NsecToTimeval = function(nsec) {
 		var tv, x, _struct;
 		tv = new Timeval.Ptr();
 		nsec = new Go$Int64(nsec.high + 0, nsec.low + 999);
@@ -4467,7 +4488,7 @@ $$
 		tv.Sec = go$div64(nsec, new Go$Int64(0, 1000000000), false);
 		return (_struct = tv, new Timeval.Ptr(_struct.Sec, _struct.Usec, go$mapArray(_struct.Pad_cgo_0, function(entry) { return entry; })));
 	};
-	var Gettimeofday = go$pkg.Gettimeofday = function(tv) {
+0ÇGettimeofdayÅ˜	var Gettimeofday = go$pkg.Gettimeofday = function(tv) {
 		var err, _tuple, sec, usec;
 		err = null;
 		_tuple = gettimeofday(tv), sec = _tuple[0], usec = _tuple[1], err = _tuple[2];
@@ -4476,30 +4497,30 @@ $$
 		err = err;
 		return err;
 	};
-	var SetKevent = go$pkg.SetKevent = function(k, fd, mode, flags) {
+0Å∫	SetKeventÅ¨	var SetKevent = go$pkg.SetKevent = function(k, fd, mode, flags) {
 		k.Ident = new Go$Uint64(0, fd);
 		k.Filter = (mode << 16 >> 16);
 		k.Flags = (flags << 16 >>> 16);
 	};
-	Iovec.Ptr.prototype.SetLen = function(length) {
+0Å“SetLenÅ«	Iovec.Ptr.prototype.SetLen = function(length) {
 		var iov;
 		iov = this;
 		iov.Len = new Go$Uint64(0, length);
 	};
 	Iovec.prototype.SetLen = function(length) { return this.go$val.SetLen(length); };
-	Msghdr.Ptr.prototype.SetControllen = function(length) {
+0ÅˆSetControllenÅ‰	Msghdr.Ptr.prototype.SetControllen = function(length) {
 		var msghdr;
 		msghdr = this;
 		msghdr.Controllen = (length >>> 0);
 	};
 	Msghdr.prototype.SetControllen = function(length) { return this.go$val.SetControllen(length); };
-	Cmsghdr.Ptr.prototype.SetLen = function(length) {
+0ÅœSetLenÅƒ	Cmsghdr.Ptr.prototype.SetLen = function(length) {
 		var cmsg;
 		cmsg = this;
 		cmsg.Len = (length >>> 0);
 	};
 	Cmsghdr.prototype.SetLen = function(length) { return this.go$val.SetLen(length); };
-	var sendfile = function(outfd, infd, offset, count) {
+0Ç„sendfileÇ’	var sendfile = function(outfd, infd, offset, count) {
 		var written, err, length, _tuple, v, e1;
 		written = 0;
 		err = null;
@@ -4511,22 +4532,23 @@ $$
 		}
 		return [written, err];
 	};
-	var Syscall9 = go$pkg.Syscall9 = function(num, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+0Å¶Syscall9Åô	var Syscall9 = go$pkg.Syscall9 = function(num, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
 		throw go$panic("Native function not implemented: Syscall9");
 	};
-	var Syscall = go$pkg.Syscall = function(trap, a1, a2, a3) {
+0ÅäSyscall	var Syscall = go$pkg.Syscall = function(trap, a1, a2, a3) {
 		throw go$panic("Native function not implemented: Syscall");
 	};
-	var Syscall6 = go$pkg.Syscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
+0ÅõSyscall6Åé	var Syscall6 = go$pkg.Syscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
 		throw go$panic("Native function not implemented: Syscall6");
 	};
-	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
+0Åó
+RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		throw go$panic("Native function not implemented: RawSyscall");
 	};
-	var RawSyscall6 = go$pkg.RawSyscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
+0ÅßRawSyscall6Åó	var RawSyscall6 = go$pkg.RawSyscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
 		throw go$panic("Native function not implemented: RawSyscall6");
 	};
-	mmapper.Ptr.prototype.Mmap = function(fd, offset, length, prot, flags) {
+0ÇOMmapÇE	mmapper.Ptr.prototype.Mmap = function(fd, offset, length, prot, flags) {
 		var data, err, m, _tuple, _tuple$1, addr, errno, _tuple$2, sl, b, v, _slice, _index, _slice$1, _index$1, p, _key, _tuple$3;
 		data = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -4558,7 +4580,7 @@ $$
 		}
 	};
 	mmapper.prototype.Mmap = function(fd, offset, length, prot, flags) { return this.go$val.Mmap(fd, offset, length, prot, flags); };
-	mmapper.Ptr.prototype.Munmap = function(data) {
+0Ç∏MunmapÇ¨	mmapper.Ptr.prototype.Munmap = function(data) {
 		var err, m, v, _slice, _index, _slice$1, _index$1, p, _entry, b, errno;
 		err = null;
 		var go$deferred = [];
@@ -4591,7 +4613,7 @@ $$
 		}
 	};
 	mmapper.prototype.Munmap = function(data) { return this.go$val.Munmap(data); };
-	Errno.prototype.Error = function() {
+0Ç>ErrorÇ3	Errno.prototype.Error = function() {
 		var e, s;
 		e = this.go$val;
 		if (0 <= (e >> 0) && (e >> 0) < 106) {
@@ -4603,24 +4625,24 @@ $$
 		return "errno " + itoa((e >> 0));
 	};
 	go$ptrType(Errno).prototype.Error = function() { return new Errno(this.go$get()).Error(); };
-	Errno.prototype.Temporary = function() {
+0Å¸	TemporaryÅÓ	Errno.prototype.Temporary = function() {
 		var e;
 		e = this.go$val;
 		return (e === 4) || (e === 24) || (new Errno(e)).Timeout();
 	};
 	go$ptrType(Errno).prototype.Temporary = function() { return new Errno(this.go$get()).Temporary(); };
-	Errno.prototype.Timeout = function() {
+0ÅÁTimeoutÅ€	Errno.prototype.Timeout = function() {
 		var e;
 		e = this.go$val;
 		return (e === 35) || (e === 35) || (e === 60);
 	};
 	go$ptrType(Errno).prototype.Timeout = function() { return new Errno(this.go$get()).Timeout(); };
-	Signal.prototype.Signal = function() {
+0ÅµSignalÅ™	Signal.prototype.Signal = function() {
 		var s;
 		s = this.go$val;
 	};
 	go$ptrType(Signal).prototype.Signal = function() { return new Signal(this.go$get()).Signal(); };
-	Signal.prototype.String = function() {
+0ÇGStringÇ;	Signal.prototype.String = function() {
 		var s, str;
 		s = this.go$val;
 		if (0 <= s && (s >> 0) < 32) {
@@ -4632,21 +4654,21 @@ $$
 		return "signal " + itoa((s >> 0));
 	};
 	go$ptrType(Signal).prototype.String = function() { return new Signal(this.go$get()).String(); };
-	var Read = go$pkg.Read = function(fd, p) {
+0Å±ReadÅ®	var Read = go$pkg.Read = function(fd, p) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = read(fd, p), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
-	var Write = go$pkg.Write = function(fd, p) {
+0ÅµWriteÅ´	var Write = go$pkg.Write = function(fd, p) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = write(fd, p), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
-	var Bind = go$pkg.Bind = function(fd, sa) {
+0Ç#BindÇ	var Bind = go$pkg.Bind = function(fd, sa) {
 		var err, _tuple, ptr, n;
 		err = null;
 		_tuple = sa.sockaddr(), ptr = _tuple[0], n = _tuple[1], err = _tuple[2];
@@ -4657,7 +4679,7 @@ $$
 		err = bind(fd, ptr, n);
 		return err;
 	};
-	var Connect = go$pkg.Connect = function(fd, sa) {
+0Ç/ConnectÇ"	var Connect = go$pkg.Connect = function(fd, sa) {
 		var err, _tuple, ptr, n;
 		err = null;
 		_tuple = sa.sockaddr(), ptr = _tuple[0], n = _tuple[1], err = _tuple[2];
@@ -4668,7 +4690,7 @@ $$
 		err = connect(fd, ptr, n);
 		return err;
 	};
-	var Getpeername = go$pkg.Getpeername = function(fd) {
+0Ç¿GetpeernameÇØ	var Getpeername = go$pkg.Getpeername = function(fd) {
 		var sa, err, rsa, len, v, _tuple;
 		sa = null;
 		err = null;
@@ -4680,7 +4702,7 @@ $$
 		_tuple = anyToSockaddr(rsa), sa = _tuple[0], err = _tuple[1];
 		return [sa, err];
 	};
-	var GetsockoptInt = go$pkg.GetsockoptInt = function(fd, level, opt) {
+0Ç‚GetsockoptIntÇœ	var GetsockoptInt = go$pkg.GetsockoptInt = function(fd, level, opt) {
 		var value, err, n, vallen, v, v$1, _tuple;
 		value = 0;
 		err = null;
@@ -4690,7 +4712,7 @@ $$
 		_tuple = [(n >> 0), err], value = _tuple[0], err = _tuple[1];
 		return [value, err];
 	};
-	var Recvfrom = go$pkg.Recvfrom = function(fd, p, flags) {
+0Ç@RecvfromÇ2	var Recvfrom = go$pkg.Recvfrom = function(fd, p, flags) {
 		var n, from, err, rsa, len, _tuple, v, _tuple$1;
 		n = 0;
 		from = null;
@@ -4705,7 +4727,7 @@ $$
 		}
 		return [n, from, err];
 	};
-	var Sendto = go$pkg.Sendto = function(fd, p, flags, to) {
+0Ç?SendtoÇ3	var Sendto = go$pkg.Sendto = function(fd, p, flags, to) {
 		var err, _tuple, ptr, n;
 		err = null;
 		_tuple = to.sockaddr(), ptr = _tuple[0], n = _tuple[1], err = _tuple[2];
@@ -4716,26 +4738,26 @@ $$
 		err = sendto(fd, p, flags, ptr, n);
 		return err;
 	};
-	var SetsockoptByte = go$pkg.SetsockoptByte = function(fd, level, opt, value) {
+0ÇSetsockoptByteÅ˚	var SetsockoptByte = go$pkg.SetsockoptByte = function(fd, level, opt, value) {
 		var err, v;
 		err = null;
 		err = setsockopt(fd, level, opt, new (go$ptrType(Go$Uint8))(function() { return value; }, function(v) { value = v; }), 1);
 		return err;
 	};
-	var SetsockoptInt = go$pkg.SetsockoptInt = function(fd, level, opt, value) {
+0ÇSetsockoptIntÇ	var SetsockoptInt = go$pkg.SetsockoptInt = function(fd, level, opt, value) {
 		var err, n, v;
 		err = null;
 		n = (value >> 0);
 		err = setsockopt(fd, level, opt, new (go$ptrType(Go$Int32))(function() { return n; }, function(v) { n = v; }), 4);
 		return err;
 	};
-	var SetsockoptInet4Addr = go$pkg.SetsockoptInet4Addr = function(fd, level, opt, value) {
+0Å˙SetsockoptInet4AddrÅ‚	var SetsockoptInet4Addr = go$pkg.SetsockoptInet4Addr = function(fd, level, opt, value) {
 		var err;
 		err = null;
 		err = setsockopt(fd, level, opt, go$sliceToArray(new (go$sliceType(Go$Uint8))(value)), 4);
 		return err;
 	};
-	var SetsockoptIPMreq = go$pkg.SetsockoptIPMreq = function(fd, level, opt, mreq) {
+0Ç9SetsockoptIPMreqÇ#	var SetsockoptIPMreq = go$pkg.SetsockoptIPMreq = function(fd, level, opt, mreq) {
 		var err, _array, _struct, _view;
 		err = null;
 		_array = new Uint8Array(8);
@@ -4743,7 +4765,7 @@ $$
 		_struct = mreq, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Multiaddr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength)), _struct.Interface = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 4, _array.buffer.byteLength));
 		return err;
 	};
-	var SetsockoptIPv6Mreq = go$pkg.SetsockoptIPv6Mreq = function(fd, level, opt, mreq) {
+0ÇıSetsockoptIPv6MreqÇ›	var SetsockoptIPv6Mreq = go$pkg.SetsockoptIPv6Mreq = function(fd, level, opt, mreq) {
 		var err, _array, _struct, _view;
 		err = null;
 		_array = new Uint8Array(20);
@@ -4751,12 +4773,12 @@ $$
 		_struct = mreq, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Multiaddr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength)), _struct.Interface = _view.getUint32(16, true);
 		return err;
 	};
-	var SetsockoptICMPv6Filter = go$pkg.SetsockoptICMPv6Filter = function(fd, level, opt, filter) {
+0ÅÓSetsockoptICMPv6FilterÅ”	var SetsockoptICMPv6Filter = go$pkg.SetsockoptICMPv6Filter = function(fd, level, opt, filter) {
 		var _array, _struct, _view;
 		_array = new Uint8Array(32);
 		return setsockopt(fd, level, opt, _array, 32);
 	};
-	var SetsockoptLinger = go$pkg.SetsockoptLinger = function(fd, level, opt, l) {
+0ÇêSetsockoptLingerÇz	var SetsockoptLinger = go$pkg.SetsockoptLinger = function(fd, level, opt, l) {
 		var err, _array, _struct, _view;
 		err = null;
 		_array = new Uint8Array(8);
@@ -4764,13 +4786,14 @@ $$
 		_struct = l, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Onoff = _view.getInt32(0, true), _struct.Linger = _view.getInt32(4, true);
 		return err;
 	};
-	var SetsockoptString = go$pkg.SetsockoptString = function(fd, level, opt, s) {
+0Ç
+SetsockoptStringÅı	var SetsockoptString = go$pkg.SetsockoptString = function(fd, level, opt, s) {
 		var err;
 		err = null;
 		err = setsockopt(fd, level, opt, go$sliceToArray(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), (s.length >>> 0));
 		return err;
 	};
-	var SetsockoptTimeval = go$pkg.SetsockoptTimeval = function(fd, level, opt, tv) {
+0Ç8SetsockoptTimevalÇ!	var SetsockoptTimeval = go$pkg.SetsockoptTimeval = function(fd, level, opt, tv) {
 		var err, _array, _struct, _view;
 		err = null;
 		_array = new Uint8Array(16);
@@ -4778,7 +4801,7 @@ $$
 		_struct = tv, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Sec = new Go$Int64(_view.getUint32(4, true), _view.getUint32(0, true)), _struct.Usec = _view.getInt32(8, true), _struct.Pad_cgo_0 = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 12, _array.buffer.byteLength));
 		return err;
 	};
-	var Socket = go$pkg.Socket = function(domain, typ, proto) {
+0ÇxSocketÇl	var Socket = go$pkg.Socket = function(domain, typ, proto) {
 		var fd, err, _tuple, _tuple$1;
 		fd = 0;
 		err = null;
@@ -4789,7 +4812,8 @@ $$
 		_tuple$1 = socket(domain, typ, proto), fd = _tuple$1[0], err = _tuple$1[1];
 		return [fd, err];
 	};
-	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto) {
+0ÇÕ
+SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto) {
 		var fd, err, fdx;
 		fd = go$makeNativeArray("Int", 2, function() { return 0; });
 		err = null;
@@ -4801,14 +4825,14 @@ $$
 		}
 		return [go$mapArray(fd, function(entry) { return entry; }), err];
 	};
-	var Sendfile = go$pkg.Sendfile = function(outfd, infd, offset, count) {
+0ÇSendfileÅˆ	var Sendfile = go$pkg.Sendfile = function(outfd, infd, offset, count) {
 		var written, err, _tuple;
 		written = 0;
 		err = null;
 		_tuple = sendfile(outfd, infd, offset, count), written = _tuple[0], err = _tuple[1];
 		return [written, err];
 	};
-	var getgroups = function(ngid, gid) {
+0Ç	getgroupsÇ	var getgroups = function(ngid, gid) {
 		var n, err, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -4819,7 +4843,7 @@ $$
 		}
 		return [n, err];
 	};
-	var setgroups = function(ngid, gid) {
+0Å‡	setgroupsÅ“	var setgroups = function(ngid, gid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(80, (ngid >>> 0), gid, 0), e1 = _tuple[2];
@@ -4828,7 +4852,7 @@ $$
 		}
 		return err;
 	};
-	var wait4 = function(pid, wstatus, options, rusage) {
+0Çéwait4ÇÉ	var wait4 = function(pid, wstatus, options, rusage) {
 		var wpid, err, _tuple, _array, _struct, _view, r0, e1;
 		wpid = 0;
 		err = null;
@@ -4841,7 +4865,7 @@ $$
 		}
 		return [wpid, err];
 	};
-	var accept = function(s, rsa, addrlen) {
+0ÇÈacceptÇ›	var accept = function(s, rsa, addrlen) {
 		var fd, err, _tuple, _array, _struct, _view, r0, e1;
 		fd = 0;
 		err = null;
@@ -4854,7 +4878,7 @@ $$
 		}
 		return [fd, err];
 	};
-	var bind = function(s, addr, addrlen) {
+0ÅÁbindÅﬁ	var bind = function(s, addr, addrlen) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(104, (s >>> 0), addr, (addrlen >>> 0)), e1 = _tuple[2];
@@ -4863,7 +4887,7 @@ $$
 		}
 		return err;
 	};
-	var connect = function(s, addr, addrlen) {
+0ÅÏconnectÅ‡	var connect = function(s, addr, addrlen) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(98, (s >>> 0), addr, (addrlen >>> 0)), e1 = _tuple[2];
@@ -4872,7 +4896,7 @@ $$
 		}
 		return err;
 	};
-	var socket = function(domain, typ, proto) {
+0Ç4socketÇ(	var socket = function(domain, typ, proto) {
 		var fd, err, _tuple, r0, e1;
 		fd = 0;
 		err = null;
@@ -4883,7 +4907,8 @@ $$
 		}
 		return [fd, err];
 	};
-	var getsockopt = function(s, level, name, val, vallen) {
+0Ç
+getsockoptÇ	var getsockopt = function(s, level, name, val, vallen) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall6(118, (s >>> 0), (level >>> 0), (name >>> 0), val, vallen, 0), e1 = _tuple[2];
@@ -4892,7 +4917,8 @@ $$
 		}
 		return err;
 	};
-	var setsockopt = function(s, level, name, val, vallen) {
+0Ç
+setsockoptÇ	var setsockopt = function(s, level, name, val, vallen) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall6(105, (s >>> 0), (level >>> 0), (name >>> 0), val, vallen, 0), e1 = _tuple[2];
@@ -4901,7 +4927,7 @@ $$
 		}
 		return err;
 	};
-	var getpeername = function(fd, rsa, addrlen) {
+0ÇægetpeernameÇ≠	var getpeername = function(fd, rsa, addrlen) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(108);
@@ -4912,7 +4938,7 @@ $$
 		}
 		return err;
 	};
-	var getsockname = function(fd, rsa, addrlen) {
+0ÇægetsocknameÇ≠	var getsockname = function(fd, rsa, addrlen) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(108);
@@ -4923,7 +4949,7 @@ $$
 		}
 		return err;
 	};
-	var Shutdown = go$pkg.Shutdown = function(s, how) {
+0ÅShutdownÅ„	var Shutdown = go$pkg.Shutdown = function(s, how) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(134, (s >>> 0), (how >>> 0), 0), e1 = _tuple[2];
@@ -4932,7 +4958,8 @@ $$
 		}
 		return err;
 	};
-	var socketpair = function(domain, typ, proto, fd) {
+0Ç
+socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall6(135, (domain >>> 0), (typ >>> 0), (proto >>> 0), fd, 0, 0), e1 = _tuple[2];
@@ -4941,7 +4968,7 @@ $$
 		}
 		return err;
 	};
-	var recvfrom = function(fd, p, flags, from, fromlen) {
+0ÇårecvfromÇ~	var recvfrom = function(fd, p, flags, from, fromlen) {
 		var n, err, _p0, _tuple, _array, _struct, _view, r0, e1;
 		n = 0;
 		err = null;
@@ -4960,7 +4987,7 @@ $$
 		}
 		return [n, err];
 	};
-	var sendto = function(s, buf, flags, to, addrlen) {
+0ÇèsendtoÇÉ	var sendto = function(s, buf, flags, to, addrlen) {
 		var err, _p0, _tuple, e1;
 		err = null;
 		_p0 = 0;
@@ -4975,7 +5002,7 @@ $$
 		}
 		return err;
 	};
-	var recvmsg = function(s, msg, flags) {
+0ÇHrecvmsgÇ;	var recvmsg = function(s, msg, flags) {
 		var n, err, _tuple, _array, _struct, _view, r0, e1;
 		n = 0;
 		err = null;
@@ -4988,7 +5015,7 @@ $$
 		}
 		return [n, err];
 	};
-	var sendmsg = function(s, msg, flags) {
+0ÇsendmsgÇ	var sendmsg = function(s, msg, flags) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(36);
@@ -4999,7 +5026,7 @@ $$
 		}
 		return err;
 	};
-	var kevent = function(kq, change, nchange, event, nevent, timeout) {
+0ÇÜkeventÇz	var kevent = function(kq, change, nchange, event, nevent, timeout) {
 		var n, err, _tuple, _array, _struct, _view, r0, e1;
 		n = 0;
 		err = null;
@@ -5012,7 +5039,7 @@ $$
 		}
 		return [n, err];
 	};
-	var sysctl = function(mib, old, oldlen, new$1, newlen) {
+0ÇÅsysctlÇu	var sysctl = function(mib, old, oldlen, new$1, newlen) {
 		var err, _p0, _tuple, e1;
 		err = null;
 		_p0 = 0;
@@ -5027,7 +5054,7 @@ $$
 		}
 		return err;
 	};
-	var utimes = function(path, timeval) {
+0ÇìutimesÇá	var utimes = function(path, timeval) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5041,7 +5068,7 @@ $$
 		}
 		return err;
 	};
-	var futimes = function(fd, timeval) {
+0ÅﬁfutimesÅ“	var futimes = function(fd, timeval) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(139, (fd >>> 0), timeval, 0), e1 = _tuple[2];
@@ -5050,7 +5077,7 @@ $$
 		}
 		return err;
 	};
-	var fcntl = function(fd, cmd, arg) {
+0Ç'fcntlÇ	var fcntl = function(fd, cmd, arg) {
 		var val, err, _tuple, r0, e1;
 		val = 0;
 		err = null;
@@ -5061,7 +5088,7 @@ $$
 		}
 		return [val, err];
 	};
-	var ptrace = function(request, pid, addr, data) {
+0ÇptraceÅˆ	var ptrace = function(request, pid, addr, data) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall6(26, (request >>> 0), (pid >>> 0), addr, data, 0, 0), e1 = _tuple[2];
@@ -5070,7 +5097,7 @@ $$
 		}
 		return err;
 	};
-	var pipe = function() {
+0Ç+pipeÇ!	var pipe = function() {
 		var r, w, err, _tuple, r0, r1, e1;
 		r = 0;
 		w = 0;
@@ -5083,7 +5110,7 @@ $$
 		}
 		return [r, w, err];
 	};
-	var kill = function(pid, signum, posix) {
+0ÅÚkillÅÈ	var kill = function(pid, signum, posix) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(37, (pid >>> 0), (signum >>> 0), (posix >>> 0)), e1 = _tuple[2];
@@ -5092,7 +5119,7 @@ $$
 		}
 		return err;
 	};
-	var Access = go$pkg.Access = function(path, mode) {
+0Ç§AccessÇò	var Access = go$pkg.Access = function(path, mode) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5106,7 +5133,7 @@ $$
 		}
 		return err;
 	};
-	var Adjtime = go$pkg.Adjtime = function(delta, olddelta) {
+0ÇAdjtimeÇı	var Adjtime = go$pkg.Adjtime = function(delta, olddelta) {
 		var err, _tuple, _array, _struct, _view, _array$1, _struct$1, _view$1, e1;
 		err = null;
 		_array = new Uint8Array(16);
@@ -5119,7 +5146,7 @@ $$
 		}
 		return err;
 	};
-	var Chdir = go$pkg.Chdir = function(path) {
+0ÇêChdirÇÖ	var Chdir = go$pkg.Chdir = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5133,7 +5160,7 @@ $$
 		}
 		return err;
 	};
-	var Chflags = go$pkg.Chflags = function(path, flags) {
+0Ç©ChflagsÇú	var Chflags = go$pkg.Chflags = function(path, flags) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5147,7 +5174,7 @@ $$
 		}
 		return err;
 	};
-	var Chmod = go$pkg.Chmod = function(path, mode) {
+0Ç°ChmodÇñ	var Chmod = go$pkg.Chmod = function(path, mode) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5161,7 +5188,7 @@ $$
 		}
 		return err;
 	};
-	var Chown = go$pkg.Chown = function(path, uid, gid) {
+0ÇÆChownÇ£	var Chown = go$pkg.Chown = function(path, uid, gid) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5175,7 +5202,7 @@ $$
 		}
 		return err;
 	};
-	var Chroot = go$pkg.Chroot = function(path) {
+0ÇìChrootÇá	var Chroot = go$pkg.Chroot = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5189,7 +5216,7 @@ $$
 		}
 		return err;
 	};
-	var Close = go$pkg.Close = function(fd) {
+0ÅÿCloseÅŒ	var Close = go$pkg.Close = function(fd) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(6, (fd >>> 0), 0, 0), e1 = _tuple[2];
@@ -5198,7 +5225,7 @@ $$
 		}
 		return err;
 	};
-	var Dup = go$pkg.Dup = function(fd) {
+0ÇDupÇ	var Dup = go$pkg.Dup = function(fd) {
 		var nfd, err, _tuple, r0, e1;
 		nfd = 0;
 		err = null;
@@ -5209,7 +5236,7 @@ $$
 		}
 		return [nfd, err];
 	};
-	var Dup2 = go$pkg.Dup2 = function(from, to) {
+0ÅÍDup2Å·	var Dup2 = go$pkg.Dup2 = function(from, to) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(90, (from >>> 0), (to >>> 0), 0), e1 = _tuple[2];
@@ -5218,7 +5245,7 @@ $$
 		}
 		return err;
 	};
-	var Exchangedata = go$pkg.Exchangedata = function(path1, path2, options) {
+0ÇÜExchangedataÇt	var Exchangedata = go$pkg.Exchangedata = function(path1, path2, options) {
 		var err, _p0, _tuple, _p1, _tuple$1, _tuple$2, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5237,11 +5264,11 @@ $$
 		}
 		return err;
 	};
-	var Exit = go$pkg.Exit = function(code) {
+0cExit[	var Exit = go$pkg.Exit = function(code) {
 		Syscall(1, (code >>> 0), 0, 0);
 		return;
 	};
-	var Fchdir = go$pkg.Fchdir = function(fd) {
+0Å‹FchdirÅ—	var Fchdir = go$pkg.Fchdir = function(fd) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(13, (fd >>> 0), 0, 0), e1 = _tuple[2];
@@ -5250,7 +5277,7 @@ $$
 		}
 		return err;
 	};
-	var Fchflags = go$pkg.Fchflags = function(fd, flags) {
+0ÅıFchflagsÅË	var Fchflags = go$pkg.Fchflags = function(fd, flags) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(35, (fd >>> 0), (flags >>> 0), 0), e1 = _tuple[2];
@@ -5259,7 +5286,7 @@ $$
 		}
 		return err;
 	};
-	var Fchmod = go$pkg.Fchmod = function(fd, mode) {
+0ÅÓFchmodÅ„	var Fchmod = go$pkg.Fchmod = function(fd, mode) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(124, (fd >>> 0), (mode >>> 0), 0), e1 = _tuple[2];
@@ -5268,7 +5295,7 @@ $$
 		}
 		return err;
 	};
-	var Fchown = go$pkg.Fchown = function(fd, uid, gid) {
+0Å˚FchownÅ	var Fchown = go$pkg.Fchown = function(fd, uid, gid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(123, (fd >>> 0), (uid >>> 0), (gid >>> 0)), e1 = _tuple[2];
@@ -5277,7 +5304,7 @@ $$
 		}
 		return err;
 	};
-	var Flock = go$pkg.Flock = function(fd, how) {
+0ÅÈFlockÅﬂ	var Flock = go$pkg.Flock = function(fd, how) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(131, (fd >>> 0), (how >>> 0), 0), e1 = _tuple[2];
@@ -5286,7 +5313,7 @@ $$
 		}
 		return err;
 	};
-	var Fpathconf = go$pkg.Fpathconf = function(fd, name) {
+0Ç6	FpathconfÇ'	var Fpathconf = go$pkg.Fpathconf = function(fd, name) {
 		var val, err, _tuple, r0, e1;
 		val = 0;
 		err = null;
@@ -5297,7 +5324,7 @@ $$
 		}
 		return [val, err];
 	};
-	var Fstat = go$pkg.Fstat = function(fd, stat) {
+0ÇÎFstatÇ‡	var Fstat = go$pkg.Fstat = function(fd, stat) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(144);
@@ -5308,7 +5335,7 @@ $$
 		}
 		return err;
 	};
-	var Fstatfs = go$pkg.Fstatfs = function(fd, stat) {
+0ÇãFstatfsÇ~	var Fstatfs = go$pkg.Fstatfs = function(fd, stat) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(2168);
@@ -5319,7 +5346,7 @@ $$
 		}
 		return err;
 	};
-	var Fsync = go$pkg.Fsync = function(fd) {
+0ÅŸFsyncÅœ	var Fsync = go$pkg.Fsync = function(fd) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(95, (fd >>> 0), 0, 0), e1 = _tuple[2];
@@ -5328,7 +5355,7 @@ $$
 		}
 		return err;
 	};
-	var Ftruncate = go$pkg.Ftruncate = function(fd, length) {
+0Åˇ	FtruncateÅÒ	var Ftruncate = go$pkg.Ftruncate = function(fd, length) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(201, (fd >>> 0), (length.low >>> 0), 0), e1 = _tuple[2];
@@ -5337,7 +5364,7 @@ $$
 		}
 		return err;
 	};
-	var Getdirentries = go$pkg.Getdirentries = function(fd, buf, basep) {
+0Ç»GetdirentriesÇµ	var Getdirentries = go$pkg.Getdirentries = function(fd, buf, basep) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5354,28 +5381,28 @@ $$
 		}
 		return [n, err];
 	};
-	var Getdtablesize = go$pkg.Getdtablesize = function() {
+0Å«GetdtablesizeÅµ	var Getdtablesize = go$pkg.Getdtablesize = function() {
 		var size, _tuple, r0;
 		size = 0;
 		_tuple = Syscall(89, 0, 0, 0), r0 = _tuple[0];
 		size = (r0 >> 0);
 		return size;
 	};
-	var Getegid = go$pkg.Getegid = function() {
+0Å∏GetegidÅ¨	var Getegid = go$pkg.Getegid = function() {
 		var egid, _tuple, r0;
 		egid = 0;
 		_tuple = RawSyscall(43, 0, 0, 0), r0 = _tuple[0];
 		egid = (r0 >> 0);
 		return egid;
 	};
-	var Geteuid = go$pkg.Geteuid = function() {
+0Å¥GeteuidÅ®	var Geteuid = go$pkg.Geteuid = function() {
 		var uid, _tuple, r0;
 		uid = 0;
 		_tuple = RawSyscall(25, 0, 0, 0), r0 = _tuple[0];
 		uid = (r0 >> 0);
 		return uid;
 	};
-	var Getfsstat = go$pkg.Getfsstat = function(buf, flags) {
+0Ç≠	GetfsstatÇû	var Getfsstat = go$pkg.Getfsstat = function(buf, flags) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5392,14 +5419,14 @@ $$
 		}
 		return [n, err];
 	};
-	var Getgid = go$pkg.Getgid = function() {
+0Å±GetgidÅ¶	var Getgid = go$pkg.Getgid = function() {
 		var gid, _tuple, r0;
 		gid = 0;
 		_tuple = RawSyscall(47, 0, 0, 0), r0 = _tuple[0];
 		gid = (r0 >> 0);
 		return gid;
 	};
-	var Getpgid = go$pkg.Getpgid = function(pid) {
+0Ç(GetpgidÇ	var Getpgid = go$pkg.Getpgid = function(pid) {
 		var pgid, err, _tuple, r0, e1;
 		pgid = 0;
 		err = null;
@@ -5410,28 +5437,28 @@ $$
 		}
 		return [pgid, err];
 	};
-	var Getpgrp = go$pkg.Getpgrp = function() {
+0Å∏GetpgrpÅ¨	var Getpgrp = go$pkg.Getpgrp = function() {
 		var pgrp, _tuple, r0;
 		pgrp = 0;
 		_tuple = RawSyscall(81, 0, 0, 0), r0 = _tuple[0];
 		pgrp = (r0 >> 0);
 		return pgrp;
 	};
-	var Getpid = go$pkg.Getpid = function() {
+0Å±GetpidÅ¶	var Getpid = go$pkg.Getpid = function() {
 		var pid, _tuple, r0;
 		pid = 0;
 		_tuple = RawSyscall(20, 0, 0, 0), r0 = _tuple[0];
 		pid = (r0 >> 0);
 		return pid;
 	};
-	var Getppid = go$pkg.Getppid = function() {
+0Å∏GetppidÅ¨	var Getppid = go$pkg.Getppid = function() {
 		var ppid, _tuple, r0;
 		ppid = 0;
 		_tuple = RawSyscall(39, 0, 0, 0), r0 = _tuple[0];
 		ppid = (r0 >> 0);
 		return ppid;
 	};
-	var Getpriority = go$pkg.Getpriority = function(which, who) {
+0ÇDGetpriorityÇ3	var Getpriority = go$pkg.Getpriority = function(which, who) {
 		var prio, err, _tuple, r0, e1;
 		prio = 0;
 		err = null;
@@ -5442,7 +5469,7 @@ $$
 		}
 		return [prio, err];
 	};
-	var Getrlimit = go$pkg.Getrlimit = function(which, lim) {
+0Ç	GetrlimitÇ	var Getrlimit = go$pkg.Getrlimit = function(which, lim) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(16);
@@ -5453,7 +5480,7 @@ $$
 		}
 		return err;
 	};
-	var Getrusage = go$pkg.Getrusage = function(who, rusage) {
+0Ç<	GetrusageÇ-	var Getrusage = go$pkg.Getrusage = function(who, rusage) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(144);
@@ -5464,7 +5491,7 @@ $$
 		}
 		return err;
 	};
-	var Getsid = go$pkg.Getsid = function(pid) {
+0Ç!GetsidÇ	var Getsid = go$pkg.Getsid = function(pid) {
 		var sid, err, _tuple, r0, e1;
 		sid = 0;
 		err = null;
@@ -5475,21 +5502,21 @@ $$
 		}
 		return [sid, err];
 	};
-	var Getuid = go$pkg.Getuid = function() {
+0Å±GetuidÅ¶	var Getuid = go$pkg.Getuid = function() {
 		var uid, _tuple, r0;
 		uid = 0;
 		_tuple = RawSyscall(24, 0, 0, 0), r0 = _tuple[0];
 		uid = (r0 >> 0);
 		return uid;
 	};
-	var Issetugid = go$pkg.Issetugid = function() {
+0Å”	IssetugidÅ≈	var Issetugid = go$pkg.Issetugid = function() {
 		var tainted, _tuple, r0;
 		tainted = false;
 		_tuple = RawSyscall(327, 0, 0, 0), r0 = _tuple[0];
 		tainted = !((r0 === 0));
 		return tainted;
 	};
-	var Kqueue = go$pkg.Kqueue = function() {
+0ÇKqueueÇ	var Kqueue = go$pkg.Kqueue = function() {
 		var fd, err, _tuple, r0, e1;
 		fd = 0;
 		err = null;
@@ -5500,7 +5527,7 @@ $$
 		}
 		return [fd, err];
 	};
-	var Lchown = go$pkg.Lchown = function(path, uid, gid) {
+0Ç≤LchownÇ¶	var Lchown = go$pkg.Lchown = function(path, uid, gid) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5514,7 +5541,7 @@ $$
 		}
 		return err;
 	};
-	var Link = go$pkg.Link = function(path, link) {
+0ÇQLinkÇG	var Link = go$pkg.Link = function(path, link) {
 		var err, _p0, _tuple, _p1, _tuple$1, _tuple$2, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5533,7 +5560,7 @@ $$
 		}
 		return err;
 	};
-	var Listen = go$pkg.Listen = function(s, backlog) {
+0ÅÚListenÅÁ	var Listen = go$pkg.Listen = function(s, backlog) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(106, (s >>> 0), (backlog >>> 0), 0), e1 = _tuple[2];
@@ -5542,7 +5569,7 @@ $$
 		}
 		return err;
 	};
-	var Lstat = go$pkg.Lstat = function(path, stat) {
+0Ç°LstatÇñ	var Lstat = go$pkg.Lstat = function(path, stat) {
 		var err, _p0, _tuple, _tuple$1, _array, _struct, _view, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5558,7 +5585,7 @@ $$
 		}
 		return err;
 	};
-	var Mkdir = go$pkg.Mkdir = function(path, mode) {
+0Ç¢MkdirÇó	var Mkdir = go$pkg.Mkdir = function(path, mode) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5572,7 +5599,7 @@ $$
 		}
 		return err;
 	};
-	var Mkfifo = go$pkg.Mkfifo = function(path, mode) {
+0Ç•MkfifoÇô	var Mkfifo = go$pkg.Mkfifo = function(path, mode) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5586,7 +5613,7 @@ $$
 		}
 		return err;
 	};
-	var Mknod = go$pkg.Mknod = function(path, mode, dev) {
+0Ç∞MknodÇ•	var Mknod = go$pkg.Mknod = function(path, mode, dev) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5600,7 +5627,7 @@ $$
 		}
 		return err;
 	};
-	var Open = go$pkg.Open = function(path, mode, perm) {
+0ÇOpenÇÊ	var Open = go$pkg.Open = function(path, mode, perm) {
 		var fd, err, _p0, _tuple, _tuple$1, r0, e1;
 		fd = 0;
 		err = null;
@@ -5616,7 +5643,7 @@ $$
 		}
 		return [fd, err];
 	};
-	var Pathconf = go$pkg.Pathconf = function(path, name) {
+0ÇÚPathconfÇ‰	var Pathconf = go$pkg.Pathconf = function(path, name) {
 		var val, err, _p0, _tuple, _tuple$1, r0, e1;
 		val = 0;
 		err = null;
@@ -5632,7 +5659,7 @@ $$
 		}
 		return [val, err];
 	};
-	var Pread = go$pkg.Pread = function(fd, p, offset) {
+0Ç∂PreadÇ´	var Pread = go$pkg.Pread = function(fd, p, offset) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5649,7 +5676,7 @@ $$
 		}
 		return [n, err];
 	};
-	var Pwrite = go$pkg.Pwrite = function(fd, p, offset) {
+0ÇπPwriteÇ≠	var Pwrite = go$pkg.Pwrite = function(fd, p, offset) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5666,7 +5693,7 @@ $$
 		}
 		return [n, err];
 	};
-	var read = function(fd, p) {
+0ÇÄreadÇv	var read = function(fd, p) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5683,7 +5710,7 @@ $$
 		}
 		return [n, err];
 	};
-	var Readlink = go$pkg.Readlink = function(path, buf) {
+0Ç`ReadlinkÇR	var Readlink = go$pkg.Readlink = function(path, buf) {
 		var n, err, _p0, _tuple, _p1, _tuple$1, r0, e1;
 		n = 0;
 		err = null;
@@ -5705,7 +5732,7 @@ $$
 		}
 		return [n, err];
 	};
-	var Rename = go$pkg.Rename = function(from, to) {
+0ÇURenameÇI	var Rename = go$pkg.Rename = function(from, to) {
 		var err, _p0, _tuple, _p1, _tuple$1, _tuple$2, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5724,7 +5751,7 @@ $$
 		}
 		return err;
 	};
-	var Revoke = go$pkg.Revoke = function(path) {
+0ÇìRevokeÇá	var Revoke = go$pkg.Revoke = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5738,7 +5765,7 @@ $$
 		}
 		return err;
 	};
-	var Rmdir = go$pkg.Rmdir = function(path) {
+0ÇëRmdirÇÜ	var Rmdir = go$pkg.Rmdir = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5752,7 +5779,7 @@ $$
 		}
 		return err;
 	};
-	var Seek = go$pkg.Seek = function(fd, offset, whence) {
+0ÇóSeekÇç	var Seek = go$pkg.Seek = function(fd, offset, whence) {
 		var newoffset, err, _tuple, r0, e1;
 		newoffset = new Go$Int64(0, 0);
 		err = null;
@@ -5763,7 +5790,7 @@ $$
 		}
 		return [newoffset, err];
 	};
-	var Select = go$pkg.Select = function(n, r, w, e, timeout) {
+0Ç∫SelectÇÆ	var Select = go$pkg.Select = function(n, r, w, e, timeout) {
 		var err, _tuple, _array, _struct, _view, _array$1, _struct$1, _view$1, _array$2, _struct$2, _view$2, _array$3, _struct$3, _view$3, e1;
 		err = null;
 		_array = new Uint8Array(128);
@@ -5780,7 +5807,7 @@ $$
 		}
 		return err;
 	};
-	var Setegid = go$pkg.Setegid = function(egid) {
+0Å‰SetegidÅÿ	var Setegid = go$pkg.Setegid = function(egid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(182, (egid >>> 0), 0, 0), e1 = _tuple[2];
@@ -5789,7 +5816,7 @@ $$
 		}
 		return err;
 	};
-	var Seteuid = go$pkg.Seteuid = function(euid) {
+0ÅÁSeteuidÅ€	var Seteuid = go$pkg.Seteuid = function(euid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(183, (euid >>> 0), 0, 0), e1 = _tuple[2];
@@ -5798,7 +5825,7 @@ $$
 		}
 		return err;
 	};
-	var Setgid = go$pkg.Setgid = function(gid) {
+0Å‚SetgidÅ◊	var Setgid = go$pkg.Setgid = function(gid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(181, (gid >>> 0), 0, 0), e1 = _tuple[2];
@@ -5807,7 +5834,7 @@ $$
 		}
 		return err;
 	};
-	var Setlogin = go$pkg.Setlogin = function(name) {
+0ÇôSetloginÇã	var Setlogin = go$pkg.Setlogin = function(name) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5821,7 +5848,7 @@ $$
 		}
 		return err;
 	};
-	var Setpgid = go$pkg.Setpgid = function(pid, pgid) {
+0ÅıSetpgidÅÈ	var Setpgid = go$pkg.Setpgid = function(pid, pgid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(82, (pid >>> 0), (pgid >>> 0), 0), e1 = _tuple[2];
@@ -5830,7 +5857,7 @@ $$
 		}
 		return err;
 	};
-	var Setpriority = go$pkg.Setpriority = function(which, who, prio) {
+0ÇSetpriorityÇ	var Setpriority = go$pkg.Setpriority = function(which, who, prio) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(96, (which >>> 0), (who >>> 0), (prio >>> 0)), e1 = _tuple[2];
@@ -5839,7 +5866,7 @@ $$
 		}
 		return err;
 	};
-	var Setprivexec = go$pkg.Setprivexec = function(flag) {
+0ÅSetprivexecÅ‡	var Setprivexec = go$pkg.Setprivexec = function(flag) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(152, (flag >>> 0), 0, 0), e1 = _tuple[2];
@@ -5848,7 +5875,7 @@ $$
 		}
 		return err;
 	};
-	var Setregid = go$pkg.Setregid = function(rgid, egid) {
+0Å˚SetregidÅÓ	var Setregid = go$pkg.Setregid = function(rgid, egid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(127, (rgid >>> 0), (egid >>> 0), 0), e1 = _tuple[2];
@@ -5857,7 +5884,7 @@ $$
 		}
 		return err;
 	};
-	var Setreuid = go$pkg.Setreuid = function(ruid, euid) {
+0Å˚SetreuidÅÓ	var Setreuid = go$pkg.Setreuid = function(ruid, euid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(126, (ruid >>> 0), (euid >>> 0), 0), e1 = _tuple[2];
@@ -5866,7 +5893,7 @@ $$
 		}
 		return err;
 	};
-	var Setrlimit = go$pkg.Setrlimit = function(which, lim) {
+0Ç	SetrlimitÇ	var Setrlimit = go$pkg.Setrlimit = function(which, lim) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(16);
@@ -5877,7 +5904,7 @@ $$
 		}
 		return err;
 	};
-	var Setsid = go$pkg.Setsid = function() {
+0ÇSetsidÇ	var Setsid = go$pkg.Setsid = function() {
 		var pid, err, _tuple, r0, e1;
 		pid = 0;
 		err = null;
@@ -5888,7 +5915,7 @@ $$
 		}
 		return [pid, err];
 	};
-	var Settimeofday = go$pkg.Settimeofday = function(tp) {
+0ÇbSettimeofdayÇP	var Settimeofday = go$pkg.Settimeofday = function(tp) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(16);
@@ -5899,7 +5926,7 @@ $$
 		}
 		return err;
 	};
-	var Setuid = go$pkg.Setuid = function(uid) {
+0Å·SetuidÅ÷	var Setuid = go$pkg.Setuid = function(uid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(23, (uid >>> 0), 0, 0), e1 = _tuple[2];
@@ -5908,7 +5935,7 @@ $$
 		}
 		return err;
 	};
-	var Stat = go$pkg.Stat = function(path, stat) {
+0ÇûStatÇî	var Stat = go$pkg.Stat = function(path, stat) {
 		var err, _p0, _tuple, _tuple$1, _array, _struct, _view, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5924,7 +5951,7 @@ $$
 		}
 		return err;
 	};
-	var Statfs = go$pkg.Statfs = function(path, stat) {
+0Ç>StatfsÇ2	var Statfs = go$pkg.Statfs = function(path, stat) {
 		var err, _p0, _tuple, _tuple$1, _array, _struct, _view, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5940,7 +5967,7 @@ $$
 		}
 		return err;
 	};
-	var Symlink = go$pkg.Symlink = function(path, link) {
+0Ç[SymlinkÇN	var Symlink = go$pkg.Symlink = function(path, link) {
 		var err, _p0, _tuple, _p1, _tuple$1, _tuple$2, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5959,7 +5986,7 @@ $$
 		}
 		return err;
 	};
-	var Sync = go$pkg.Sync = function() {
+0ÅÀSyncÅ¬	var Sync = go$pkg.Sync = function() {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(36, 0, 0, 0), e1 = _tuple[2];
@@ -5968,7 +5995,7 @@ $$
 		}
 		return err;
 	};
-	var Truncate = go$pkg.Truncate = function(path, length) {
+0Ç≥TruncateÇ•	var Truncate = go$pkg.Truncate = function(path, length) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5982,14 +6009,14 @@ $$
 		}
 		return err;
 	};
-	var Umask = go$pkg.Umask = function(newmask) {
+0Å–UmaskÅ∆	var Umask = go$pkg.Umask = function(newmask) {
 		var oldmask, _tuple, r0;
 		oldmask = 0;
 		_tuple = Syscall(60, (newmask >>> 0), 0, 0), r0 = _tuple[0];
 		oldmask = (r0 >> 0);
 		return oldmask;
 	};
-	var Undelete = go$pkg.Undelete = function(path) {
+0ÇöUndeleteÇå	var Undelete = go$pkg.Undelete = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -6003,7 +6030,7 @@ $$
 		}
 		return err;
 	};
-	var Unlink = go$pkg.Unlink = function(path) {
+0ÇìUnlinkÇá	var Unlink = go$pkg.Unlink = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -6017,7 +6044,7 @@ $$
 		}
 		return err;
 	};
-	var Unmount = go$pkg.Unmount = function(path, flags) {
+0Ç™UnmountÇù	var Unmount = go$pkg.Unmount = function(path, flags) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -6031,7 +6058,7 @@ $$
 		}
 		return err;
 	};
-	var write = function(fd, p) {
+0ÇÇwriteÇw	var write = function(fd, p) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -6048,7 +6075,7 @@ $$
 		}
 		return [n, err];
 	};
-	var mmap = function(addr, length, prot, flag, fd, pos) {
+0ÇVmmapÇL	var mmap = function(addr, length, prot, flag, fd, pos) {
 		var ret, err, _tuple, r0, e1;
 		ret = 0;
 		err = null;
@@ -6059,7 +6086,7 @@ $$
 		}
 		return [ret, err];
 	};
-	var munmap = function(addr, length) {
+0Å’munmapÅ 	var munmap = function(addr, length) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(73, addr, length, 0), e1 = _tuple[2];
@@ -6068,7 +6095,7 @@ $$
 		}
 		return err;
 	};
-	var readlen = function(fd, buf, nbuf) {
+0ÇreadlenÇ	var readlen = function(fd, buf, nbuf) {
 		var n, err, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -6079,7 +6106,7 @@ $$
 		}
 		return [n, err];
 	};
-	var writelen = function(fd, buf, nbuf) {
+0ÇwritelenÇ	var writelen = function(fd, buf, nbuf) {
 		var n, err, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -6090,7 +6117,7 @@ $$
 		}
 		return [n, err];
 	};
-	var gettimeofday = function(tp) {
+0ÇgettimeofdayÇÛ	var gettimeofday = function(tp) {
 		var sec, usec, err, _tuple, _array, _struct, _view, r0, r1, e1;
 		sec = new Go$Int64(0, 0);
 		usec = 0;
@@ -6105,1684 +6132,7 @@ $$
 		}
 		return [sec, usec, err];
 	};
-	var raceenabled = false;
-	var anyMessageLen = 4;
-	var rtaRtMask = 15;
-	var rtaIfaMask = 164;
-	var rtaIfmaMask = 50;
-	var mask = 127;
-	var core = 128;
-	var shift = 8;
-	var exited = 0;
-	var stopped = 127;
-	go$pkg.ImplementsGetwd = true;
-	var attrBitMapCount = 5;
-	var attrCmnFullpath = 134217728;
-	var darwin64Bit = true;
-	var netbsd32Bit = false;
-	go$pkg.AF_APPLETALK = 16;
-	go$pkg.AF_CCITT = 10;
-	go$pkg.AF_CHAOS = 5;
-	go$pkg.AF_CNT = 21;
-	go$pkg.AF_COIP = 20;
-	go$pkg.AF_DATAKIT = 9;
-	go$pkg.AF_DECnet = 12;
-	go$pkg.AF_DLI = 13;
-	go$pkg.AF_E164 = 28;
-	go$pkg.AF_ECMA = 8;
-	go$pkg.AF_HYLINK = 15;
-	go$pkg.AF_IEEE80211 = 37;
-	go$pkg.AF_IMPLINK = 3;
-	go$pkg.AF_INET = 2;
-	go$pkg.AF_INET6 = 30;
-	go$pkg.AF_IPX = 23;
-	go$pkg.AF_ISDN = 28;
-	go$pkg.AF_ISO = 7;
-	go$pkg.AF_LAT = 14;
-	go$pkg.AF_LINK = 18;
-	go$pkg.AF_LOCAL = 1;
-	go$pkg.AF_MAX = 38;
-	go$pkg.AF_NATM = 31;
-	go$pkg.AF_NDRV = 27;
-	go$pkg.AF_NETBIOS = 33;
-	go$pkg.AF_NS = 6;
-	go$pkg.AF_OSI = 7;
-	go$pkg.AF_PPP = 34;
-	go$pkg.AF_PUP = 4;
-	go$pkg.AF_RESERVED_36 = 36;
-	go$pkg.AF_ROUTE = 17;
-	go$pkg.AF_SIP = 24;
-	go$pkg.AF_SNA = 11;
-	go$pkg.AF_SYSTEM = 32;
-	go$pkg.AF_UNIX = 1;
-	go$pkg.AF_UNSPEC = 0;
-	go$pkg.B0 = 0;
-	go$pkg.B110 = 110;
-	go$pkg.B115200 = 115200;
-	go$pkg.B1200 = 1200;
-	go$pkg.B134 = 134;
-	go$pkg.B14400 = 14400;
-	go$pkg.B150 = 150;
-	go$pkg.B1800 = 1800;
-	go$pkg.B19200 = 19200;
-	go$pkg.B200 = 200;
-	go$pkg.B230400 = 230400;
-	go$pkg.B2400 = 2400;
-	go$pkg.B28800 = 28800;
-	go$pkg.B300 = 300;
-	go$pkg.B38400 = 38400;
-	go$pkg.B4800 = 4800;
-	go$pkg.B50 = 50;
-	go$pkg.B57600 = 57600;
-	go$pkg.B600 = 600;
-	go$pkg.B7200 = 7200;
-	go$pkg.B75 = 75;
-	go$pkg.B76800 = 76800;
-	go$pkg.B9600 = 9600;
-	go$pkg.BIOCFLUSH = 536887912;
-	go$pkg.BIOCGBLEN = 1074020966;
-	go$pkg.BIOCGDLT = 1074020970;
-	go$pkg.BIOCGDLTLIST = 3222028921;
-	go$pkg.BIOCGETIF = 1075855979;
-	go$pkg.BIOCGHDRCMPLT = 1074020980;
-	go$pkg.BIOCGRSIG = 1074020978;
-	go$pkg.BIOCGRTIMEOUT = 1074807406;
-	go$pkg.BIOCGSEESENT = 1074020982;
-	go$pkg.BIOCGSTATS = 1074283119;
-	go$pkg.BIOCIMMEDIATE = 2147762800;
-	go$pkg.BIOCPROMISC = 536887913;
-	go$pkg.BIOCSBLEN = 3221504614;
-	go$pkg.BIOCSDLT = 2147762808;
-	go$pkg.BIOCSETF = 2148549223;
-	go$pkg.BIOCSETIF = 2149597804;
-	go$pkg.BIOCSHDRCMPLT = 2147762805;
-	go$pkg.BIOCSRSIG = 2147762803;
-	go$pkg.BIOCSRTIMEOUT = 2148549229;
-	go$pkg.BIOCSSEESENT = 2147762807;
-	go$pkg.BIOCVERSION = 1074020977;
-	go$pkg.BPF_A = 16;
-	go$pkg.BPF_ABS = 32;
-	go$pkg.BPF_ADD = 0;
-	go$pkg.BPF_ALIGNMENT = 4;
-	go$pkg.BPF_ALU = 4;
-	go$pkg.BPF_AND = 80;
-	go$pkg.BPF_B = 16;
-	go$pkg.BPF_DIV = 48;
-	go$pkg.BPF_H = 8;
-	go$pkg.BPF_IMM = 0;
-	go$pkg.BPF_IND = 64;
-	go$pkg.BPF_JA = 0;
-	go$pkg.BPF_JEQ = 16;
-	go$pkg.BPF_JGE = 48;
-	go$pkg.BPF_JGT = 32;
-	go$pkg.BPF_JMP = 5;
-	go$pkg.BPF_JSET = 64;
-	go$pkg.BPF_K = 0;
-	go$pkg.BPF_LD = 0;
-	go$pkg.BPF_LDX = 1;
-	go$pkg.BPF_LEN = 128;
-	go$pkg.BPF_LSH = 96;
-	go$pkg.BPF_MAJOR_VERSION = 1;
-	go$pkg.BPF_MAXBUFSIZE = 524288;
-	go$pkg.BPF_MAXINSNS = 512;
-	go$pkg.BPF_MEM = 96;
-	go$pkg.BPF_MEMWORDS = 16;
-	go$pkg.BPF_MINBUFSIZE = 32;
-	go$pkg.BPF_MINOR_VERSION = 1;
-	go$pkg.BPF_MISC = 7;
-	go$pkg.BPF_MSH = 160;
-	go$pkg.BPF_MUL = 32;
-	go$pkg.BPF_NEG = 128;
-	go$pkg.BPF_OR = 64;
-	go$pkg.BPF_RELEASE = 199606;
-	go$pkg.BPF_RET = 6;
-	go$pkg.BPF_RSH = 112;
-	go$pkg.BPF_ST = 2;
-	go$pkg.BPF_STX = 3;
-	go$pkg.BPF_SUB = 16;
-	go$pkg.BPF_TAX = 0;
-	go$pkg.BPF_TXA = 128;
-	go$pkg.BPF_W = 0;
-	go$pkg.BPF_X = 8;
-	go$pkg.BRKINT = 2;
-	go$pkg.CFLUSH = 15;
-	go$pkg.CLOCAL = 32768;
-	go$pkg.CREAD = 2048;
-	go$pkg.CS5 = 0;
-	go$pkg.CS6 = 256;
-	go$pkg.CS7 = 512;
-	go$pkg.CS8 = 768;
-	go$pkg.CSIZE = 768;
-	go$pkg.CSTART = 17;
-	go$pkg.CSTATUS = 20;
-	go$pkg.CSTOP = 19;
-	go$pkg.CSTOPB = 1024;
-	go$pkg.CSUSP = 26;
-	go$pkg.CTL_MAXNAME = 12;
-	go$pkg.CTL_NET = 4;
-	go$pkg.DLT_APPLE_IP_OVER_IEEE1394 = 138;
-	go$pkg.DLT_ARCNET = 7;
-	go$pkg.DLT_ATM_CLIP = 19;
-	go$pkg.DLT_ATM_RFC1483 = 11;
-	go$pkg.DLT_AX25 = 3;
-	go$pkg.DLT_CHAOS = 5;
-	go$pkg.DLT_CHDLC = 104;
-	go$pkg.DLT_C_HDLC = 104;
-	go$pkg.DLT_EN10MB = 1;
-	go$pkg.DLT_EN3MB = 2;
-	go$pkg.DLT_FDDI = 10;
-	go$pkg.DLT_IEEE802 = 6;
-	go$pkg.DLT_IEEE802_11 = 105;
-	go$pkg.DLT_IEEE802_11_RADIO = 127;
-	go$pkg.DLT_IEEE802_11_RADIO_AVS = 163;
-	go$pkg.DLT_LINUX_SLL = 113;
-	go$pkg.DLT_LOOP = 108;
-	go$pkg.DLT_NULL = 0;
-	go$pkg.DLT_PFLOG = 117;
-	go$pkg.DLT_PFSYNC = 18;
-	go$pkg.DLT_PPP = 9;
-	go$pkg.DLT_PPP_BSDOS = 16;
-	go$pkg.DLT_PPP_SERIAL = 50;
-	go$pkg.DLT_PRONET = 4;
-	go$pkg.DLT_RAW = 12;
-	go$pkg.DLT_SLIP = 8;
-	go$pkg.DLT_SLIP_BSDOS = 15;
-	go$pkg.DT_BLK = 6;
-	go$pkg.DT_CHR = 2;
-	go$pkg.DT_DIR = 4;
-	go$pkg.DT_FIFO = 1;
-	go$pkg.DT_LNK = 10;
-	go$pkg.DT_REG = 8;
-	go$pkg.DT_SOCK = 12;
-	go$pkg.DT_UNKNOWN = 0;
-	go$pkg.DT_WHT = 14;
-	go$pkg.ECHO = 8;
-	go$pkg.ECHOCTL = 64;
-	go$pkg.ECHOE = 2;
-	go$pkg.ECHOK = 4;
-	go$pkg.ECHOKE = 1;
-	go$pkg.ECHONL = 16;
-	go$pkg.ECHOPRT = 32;
-	go$pkg.EVFILT_AIO = -3;
-	go$pkg.EVFILT_FS = -9;
-	go$pkg.EVFILT_MACHPORT = -8;
-	go$pkg.EVFILT_PROC = -5;
-	go$pkg.EVFILT_READ = -1;
-	go$pkg.EVFILT_SIGNAL = -6;
-	go$pkg.EVFILT_SYSCOUNT = 12;
-	go$pkg.EVFILT_THREADMARKER = 12;
-	go$pkg.EVFILT_TIMER = -7;
-	go$pkg.EVFILT_USER = -10;
-	go$pkg.EVFILT_VM = -12;
-	go$pkg.EVFILT_VNODE = -4;
-	go$pkg.EVFILT_WRITE = -2;
-	go$pkg.EV_ADD = 1;
-	go$pkg.EV_CLEAR = 32;
-	go$pkg.EV_DELETE = 2;
-	go$pkg.EV_DISABLE = 8;
-	go$pkg.EV_DISPATCH = 128;
-	go$pkg.EV_ENABLE = 4;
-	go$pkg.EV_EOF = 32768;
-	go$pkg.EV_ERROR = 16384;
-	go$pkg.EV_FLAG0 = 4096;
-	go$pkg.EV_FLAG1 = 8192;
-	go$pkg.EV_ONESHOT = 16;
-	go$pkg.EV_OOBAND = 8192;
-	go$pkg.EV_POLL = 4096;
-	go$pkg.EV_RECEIPT = 64;
-	go$pkg.EV_SYSFLAGS = 61440;
-	go$pkg.EXTA = 19200;
-	go$pkg.EXTB = 38400;
-	go$pkg.EXTPROC = 2048;
-	go$pkg.FD_CLOEXEC = 1;
-	go$pkg.FD_SETSIZE = 1024;
-	go$pkg.FLUSHO = 8388608;
-	go$pkg.F_ADDFILESIGS = 61;
-	go$pkg.F_ADDSIGS = 59;
-	go$pkg.F_ALLOCATEALL = 4;
-	go$pkg.F_ALLOCATECONTIG = 2;
-	go$pkg.F_CHKCLEAN = 41;
-	go$pkg.F_DUPFD = 0;
-	go$pkg.F_DUPFD_CLOEXEC = 67;
-	go$pkg.F_FLUSH_DATA = 40;
-	go$pkg.F_FREEZE_FS = 53;
-	go$pkg.F_FULLFSYNC = 51;
-	go$pkg.F_GETFD = 1;
-	go$pkg.F_GETFL = 3;
-	go$pkg.F_GETLK = 7;
-	go$pkg.F_GETLKPID = 66;
-	go$pkg.F_GETNOSIGPIPE = 74;
-	go$pkg.F_GETOWN = 5;
-	go$pkg.F_GETPATH = 50;
-	go$pkg.F_GETPATH_MTMINFO = 71;
-	go$pkg.F_GETPROTECTIONCLASS = 63;
-	go$pkg.F_GLOBAL_NOCACHE = 55;
-	go$pkg.F_LOG2PHYS = 49;
-	go$pkg.F_LOG2PHYS_EXT = 65;
-	go$pkg.F_MARKDEPENDENCY = 60;
-	go$pkg.F_NOCACHE = 48;
-	go$pkg.F_NODIRECT = 62;
-	go$pkg.F_OK = 0;
-	go$pkg.F_PATHPKG_CHECK = 52;
-	go$pkg.F_PEOFPOSMODE = 3;
-	go$pkg.F_PREALLOCATE = 42;
-	go$pkg.F_RDADVISE = 44;
-	go$pkg.F_RDAHEAD = 45;
-	go$pkg.F_RDLCK = 1;
-	go$pkg.F_READBOOTSTRAP = 46;
-	go$pkg.F_SETBACKINGSTORE = 70;
-	go$pkg.F_SETFD = 2;
-	go$pkg.F_SETFL = 4;
-	go$pkg.F_SETLK = 8;
-	go$pkg.F_SETLKW = 9;
-	go$pkg.F_SETNOSIGPIPE = 73;
-	go$pkg.F_SETOWN = 6;
-	go$pkg.F_SETPROTECTIONCLASS = 64;
-	go$pkg.F_SETSIZE = 43;
-	go$pkg.F_THAW_FS = 54;
-	go$pkg.F_UNLCK = 2;
-	go$pkg.F_VOLPOSMODE = 4;
-	go$pkg.F_WRITEBOOTSTRAP = 47;
-	go$pkg.F_WRLCK = 3;
-	go$pkg.HUPCL = 16384;
-	go$pkg.ICANON = 256;
-	go$pkg.ICMP6_FILTER = 18;
-	go$pkg.ICRNL = 256;
-	go$pkg.IEXTEN = 1024;
-	go$pkg.IFF_ALLMULTI = 512;
-	go$pkg.IFF_ALTPHYS = 16384;
-	go$pkg.IFF_BROADCAST = 2;
-	go$pkg.IFF_DEBUG = 4;
-	go$pkg.IFF_LINK0 = 4096;
-	go$pkg.IFF_LINK1 = 8192;
-	go$pkg.IFF_LINK2 = 16384;
-	go$pkg.IFF_LOOPBACK = 8;
-	go$pkg.IFF_MULTICAST = 32768;
-	go$pkg.IFF_NOARP = 128;
-	go$pkg.IFF_NOTRAILERS = 32;
-	go$pkg.IFF_OACTIVE = 1024;
-	go$pkg.IFF_POINTOPOINT = 16;
-	go$pkg.IFF_PROMISC = 256;
-	go$pkg.IFF_RUNNING = 64;
-	go$pkg.IFF_SIMPLEX = 2048;
-	go$pkg.IFF_UP = 1;
-	go$pkg.IFNAMSIZ = 16;
-	go$pkg.IFT_1822 = 2;
-	go$pkg.IFT_AAL5 = 49;
-	go$pkg.IFT_ARCNET = 35;
-	go$pkg.IFT_ARCNETPLUS = 36;
-	go$pkg.IFT_ATM = 37;
-	go$pkg.IFT_BRIDGE = 209;
-	go$pkg.IFT_CARP = 248;
-	go$pkg.IFT_CELLULAR = 255;
-	go$pkg.IFT_CEPT = 19;
-	go$pkg.IFT_DS3 = 30;
-	go$pkg.IFT_ENC = 244;
-	go$pkg.IFT_EON = 25;
-	go$pkg.IFT_ETHER = 6;
-	go$pkg.IFT_FAITH = 56;
-	go$pkg.IFT_FDDI = 15;
-	go$pkg.IFT_FRELAY = 32;
-	go$pkg.IFT_FRELAYDCE = 44;
-	go$pkg.IFT_GIF = 55;
-	go$pkg.IFT_HDH1822 = 3;
-	go$pkg.IFT_HIPPI = 47;
-	go$pkg.IFT_HSSI = 46;
-	go$pkg.IFT_HY = 14;
-	go$pkg.IFT_IEEE1394 = 144;
-	go$pkg.IFT_IEEE8023ADLAG = 136;
-	go$pkg.IFT_ISDNBASIC = 20;
-	go$pkg.IFT_ISDNPRIMARY = 21;
-	go$pkg.IFT_ISO88022LLC = 41;
-	go$pkg.IFT_ISO88023 = 7;
-	go$pkg.IFT_ISO88024 = 8;
-	go$pkg.IFT_ISO88025 = 9;
-	go$pkg.IFT_ISO88026 = 10;
-	go$pkg.IFT_L2VLAN = 135;
-	go$pkg.IFT_LAPB = 16;
-	go$pkg.IFT_LOCALTALK = 42;
-	go$pkg.IFT_LOOP = 24;
-	go$pkg.IFT_MIOX25 = 38;
-	go$pkg.IFT_MODEM = 48;
-	go$pkg.IFT_NSIP = 27;
-	go$pkg.IFT_OTHER = 1;
-	go$pkg.IFT_P10 = 12;
-	go$pkg.IFT_P80 = 13;
-	go$pkg.IFT_PARA = 34;
-	go$pkg.IFT_PDP = 255;
-	go$pkg.IFT_PFLOG = 245;
-	go$pkg.IFT_PFSYNC = 246;
-	go$pkg.IFT_PPP = 23;
-	go$pkg.IFT_PROPMUX = 54;
-	go$pkg.IFT_PROPVIRTUAL = 53;
-	go$pkg.IFT_PTPSERIAL = 22;
-	go$pkg.IFT_RS232 = 33;
-	go$pkg.IFT_SDLC = 17;
-	go$pkg.IFT_SIP = 31;
-	go$pkg.IFT_SLIP = 28;
-	go$pkg.IFT_SMDSDXI = 43;
-	go$pkg.IFT_SMDSICIP = 52;
-	go$pkg.IFT_SONET = 39;
-	go$pkg.IFT_SONETPATH = 50;
-	go$pkg.IFT_SONETVT = 51;
-	go$pkg.IFT_STARLAN = 11;
-	go$pkg.IFT_STF = 57;
-	go$pkg.IFT_T1 = 18;
-	go$pkg.IFT_ULTRA = 29;
-	go$pkg.IFT_V35 = 45;
-	go$pkg.IFT_X25 = 5;
-	go$pkg.IFT_X25DDN = 4;
-	go$pkg.IFT_X25PLE = 40;
-	go$pkg.IFT_XETHER = 26;
-	go$pkg.IGNBRK = 1;
-	go$pkg.IGNCR = 128;
-	go$pkg.IGNPAR = 4;
-	go$pkg.IMAXBEL = 8192;
-	go$pkg.INLCR = 64;
-	go$pkg.INPCK = 16;
-	go$pkg.IN_CLASSA_HOST = 16777215;
-	go$pkg.IN_CLASSA_MAX = 128;
-	go$pkg.IN_CLASSA_NET = 4278190080;
-	go$pkg.IN_CLASSA_NSHIFT = 24;
-	go$pkg.IN_CLASSB_HOST = 65535;
-	go$pkg.IN_CLASSB_MAX = 65536;
-	go$pkg.IN_CLASSB_NET = 4294901760;
-	go$pkg.IN_CLASSB_NSHIFT = 16;
-	go$pkg.IN_CLASSC_HOST = 255;
-	go$pkg.IN_CLASSC_NET = 4294967040;
-	go$pkg.IN_CLASSC_NSHIFT = 8;
-	go$pkg.IN_CLASSD_HOST = 268435455;
-	go$pkg.IN_CLASSD_NET = 4026531840;
-	go$pkg.IN_CLASSD_NSHIFT = 28;
-	go$pkg.IN_LINKLOCALNETNUM = 2851995648;
-	go$pkg.IN_LOOPBACKNET = 127;
-	go$pkg.IPPROTO_3PC = 34;
-	go$pkg.IPPROTO_ADFS = 68;
-	go$pkg.IPPROTO_AH = 51;
-	go$pkg.IPPROTO_AHIP = 61;
-	go$pkg.IPPROTO_APES = 99;
-	go$pkg.IPPROTO_ARGUS = 13;
-	go$pkg.IPPROTO_AX25 = 93;
-	go$pkg.IPPROTO_BHA = 49;
-	go$pkg.IPPROTO_BLT = 30;
-	go$pkg.IPPROTO_BRSATMON = 76;
-	go$pkg.IPPROTO_CFTP = 62;
-	go$pkg.IPPROTO_CHAOS = 16;
-	go$pkg.IPPROTO_CMTP = 38;
-	go$pkg.IPPROTO_CPHB = 73;
-	go$pkg.IPPROTO_CPNX = 72;
-	go$pkg.IPPROTO_DDP = 37;
-	go$pkg.IPPROTO_DGP = 86;
-	go$pkg.IPPROTO_DIVERT = 254;
-	go$pkg.IPPROTO_DONE = 257;
-	go$pkg.IPPROTO_DSTOPTS = 60;
-	go$pkg.IPPROTO_EGP = 8;
-	go$pkg.IPPROTO_EMCON = 14;
-	go$pkg.IPPROTO_ENCAP = 98;
-	go$pkg.IPPROTO_EON = 80;
-	go$pkg.IPPROTO_ESP = 50;
-	go$pkg.IPPROTO_ETHERIP = 97;
-	go$pkg.IPPROTO_FRAGMENT = 44;
-	go$pkg.IPPROTO_GGP = 3;
-	go$pkg.IPPROTO_GMTP = 100;
-	go$pkg.IPPROTO_GRE = 47;
-	go$pkg.IPPROTO_HELLO = 63;
-	go$pkg.IPPROTO_HMP = 20;
-	go$pkg.IPPROTO_HOPOPTS = 0;
-	go$pkg.IPPROTO_ICMP = 1;
-	go$pkg.IPPROTO_ICMPV6 = 58;
-	go$pkg.IPPROTO_IDP = 22;
-	go$pkg.IPPROTO_IDPR = 35;
-	go$pkg.IPPROTO_IDRP = 45;
-	go$pkg.IPPROTO_IGMP = 2;
-	go$pkg.IPPROTO_IGP = 85;
-	go$pkg.IPPROTO_IGRP = 88;
-	go$pkg.IPPROTO_IL = 40;
-	go$pkg.IPPROTO_INLSP = 52;
-	go$pkg.IPPROTO_INP = 32;
-	go$pkg.IPPROTO_IP = 0;
-	go$pkg.IPPROTO_IPCOMP = 108;
-	go$pkg.IPPROTO_IPCV = 71;
-	go$pkg.IPPROTO_IPEIP = 94;
-	go$pkg.IPPROTO_IPIP = 4;
-	go$pkg.IPPROTO_IPPC = 67;
-	go$pkg.IPPROTO_IPV4 = 4;
-	go$pkg.IPPROTO_IPV6 = 41;
-	go$pkg.IPPROTO_IRTP = 28;
-	go$pkg.IPPROTO_KRYPTOLAN = 65;
-	go$pkg.IPPROTO_LARP = 91;
-	go$pkg.IPPROTO_LEAF1 = 25;
-	go$pkg.IPPROTO_LEAF2 = 26;
-	go$pkg.IPPROTO_MAX = 256;
-	go$pkg.IPPROTO_MAXID = 52;
-	go$pkg.IPPROTO_MEAS = 19;
-	go$pkg.IPPROTO_MHRP = 48;
-	go$pkg.IPPROTO_MICP = 95;
-	go$pkg.IPPROTO_MTP = 92;
-	go$pkg.IPPROTO_MUX = 18;
-	go$pkg.IPPROTO_ND = 77;
-	go$pkg.IPPROTO_NHRP = 54;
-	go$pkg.IPPROTO_NONE = 59;
-	go$pkg.IPPROTO_NSP = 31;
-	go$pkg.IPPROTO_NVPII = 11;
-	go$pkg.IPPROTO_OSPFIGP = 89;
-	go$pkg.IPPROTO_PGM = 113;
-	go$pkg.IPPROTO_PIGP = 9;
-	go$pkg.IPPROTO_PIM = 103;
-	go$pkg.IPPROTO_PRM = 21;
-	go$pkg.IPPROTO_PUP = 12;
-	go$pkg.IPPROTO_PVP = 75;
-	go$pkg.IPPROTO_RAW = 255;
-	go$pkg.IPPROTO_RCCMON = 10;
-	go$pkg.IPPROTO_RDP = 27;
-	go$pkg.IPPROTO_ROUTING = 43;
-	go$pkg.IPPROTO_RSVP = 46;
-	go$pkg.IPPROTO_RVD = 66;
-	go$pkg.IPPROTO_SATEXPAK = 64;
-	go$pkg.IPPROTO_SATMON = 69;
-	go$pkg.IPPROTO_SCCSP = 96;
-	go$pkg.IPPROTO_SCTP = 132;
-	go$pkg.IPPROTO_SDRP = 42;
-	go$pkg.IPPROTO_SEP = 33;
-	go$pkg.IPPROTO_SRPC = 90;
-	go$pkg.IPPROTO_ST = 7;
-	go$pkg.IPPROTO_SVMTP = 82;
-	go$pkg.IPPROTO_SWIPE = 53;
-	go$pkg.IPPROTO_TCF = 87;
-	go$pkg.IPPROTO_TCP = 6;
-	go$pkg.IPPROTO_TP = 29;
-	go$pkg.IPPROTO_TPXX = 39;
-	go$pkg.IPPROTO_TRUNK1 = 23;
-	go$pkg.IPPROTO_TRUNK2 = 24;
-	go$pkg.IPPROTO_TTP = 84;
-	go$pkg.IPPROTO_UDP = 17;
-	go$pkg.IPPROTO_VINES = 83;
-	go$pkg.IPPROTO_VISA = 70;
-	go$pkg.IPPROTO_VMTP = 81;
-	go$pkg.IPPROTO_WBEXPAK = 79;
-	go$pkg.IPPROTO_WBMON = 78;
-	go$pkg.IPPROTO_WSN = 74;
-	go$pkg.IPPROTO_XNET = 15;
-	go$pkg.IPPROTO_XTP = 36;
-	go$pkg.IPV6_2292DSTOPTS = 23;
-	go$pkg.IPV6_2292HOPLIMIT = 20;
-	go$pkg.IPV6_2292HOPOPTS = 22;
-	go$pkg.IPV6_2292NEXTHOP = 21;
-	go$pkg.IPV6_2292PKTINFO = 19;
-	go$pkg.IPV6_2292PKTOPTIONS = 25;
-	go$pkg.IPV6_2292RTHDR = 24;
-	go$pkg.IPV6_BINDV6ONLY = 27;
-	go$pkg.IPV6_BOUND_IF = 125;
-	go$pkg.IPV6_CHECKSUM = 26;
-	go$pkg.IPV6_DEFAULT_MULTICAST_HOPS = 1;
-	go$pkg.IPV6_DEFAULT_MULTICAST_LOOP = 1;
-	go$pkg.IPV6_DEFHLIM = 64;
-	go$pkg.IPV6_FAITH = 29;
-	go$pkg.IPV6_FLOWINFO_MASK = 4294967055;
-	go$pkg.IPV6_FLOWLABEL_MASK = 4294905600;
-	go$pkg.IPV6_FRAGTTL = 120;
-	go$pkg.IPV6_FW_ADD = 30;
-	go$pkg.IPV6_FW_DEL = 31;
-	go$pkg.IPV6_FW_FLUSH = 32;
-	go$pkg.IPV6_FW_GET = 34;
-	go$pkg.IPV6_FW_ZERO = 33;
-	go$pkg.IPV6_HLIMDEC = 1;
-	go$pkg.IPV6_IPSEC_POLICY = 28;
-	go$pkg.IPV6_JOIN_GROUP = 12;
-	go$pkg.IPV6_LEAVE_GROUP = 13;
-	go$pkg.IPV6_MAXHLIM = 255;
-	go$pkg.IPV6_MAXOPTHDR = 2048;
-	go$pkg.IPV6_MAXPACKET = 65535;
-	go$pkg.IPV6_MAX_GROUP_SRC_FILTER = 512;
-	go$pkg.IPV6_MAX_MEMBERSHIPS = 4095;
-	go$pkg.IPV6_MAX_SOCK_SRC_FILTER = 128;
-	go$pkg.IPV6_MIN_MEMBERSHIPS = 31;
-	go$pkg.IPV6_MMTU = 1280;
-	go$pkg.IPV6_MULTICAST_HOPS = 10;
-	go$pkg.IPV6_MULTICAST_IF = 9;
-	go$pkg.IPV6_MULTICAST_LOOP = 11;
-	go$pkg.IPV6_PORTRANGE = 14;
-	go$pkg.IPV6_PORTRANGE_DEFAULT = 0;
-	go$pkg.IPV6_PORTRANGE_HIGH = 1;
-	go$pkg.IPV6_PORTRANGE_LOW = 2;
-	go$pkg.IPV6_RECVTCLASS = 35;
-	go$pkg.IPV6_RTHDR_LOOSE = 0;
-	go$pkg.IPV6_RTHDR_STRICT = 1;
-	go$pkg.IPV6_RTHDR_TYPE_0 = 0;
-	go$pkg.IPV6_SOCKOPT_RESERVED1 = 3;
-	go$pkg.IPV6_TCLASS = 36;
-	go$pkg.IPV6_UNICAST_HOPS = 4;
-	go$pkg.IPV6_V6ONLY = 27;
-	go$pkg.IPV6_VERSION = 96;
-	go$pkg.IPV6_VERSION_MASK = 240;
-	go$pkg.IP_ADD_MEMBERSHIP = 12;
-	go$pkg.IP_ADD_SOURCE_MEMBERSHIP = 70;
-	go$pkg.IP_BLOCK_SOURCE = 72;
-	go$pkg.IP_BOUND_IF = 25;
-	go$pkg.IP_DEFAULT_MULTICAST_LOOP = 1;
-	go$pkg.IP_DEFAULT_MULTICAST_TTL = 1;
-	go$pkg.IP_DF = 16384;
-	go$pkg.IP_DROP_MEMBERSHIP = 13;
-	go$pkg.IP_DROP_SOURCE_MEMBERSHIP = 71;
-	go$pkg.IP_DUMMYNET_CONFIGURE = 60;
-	go$pkg.IP_DUMMYNET_DEL = 61;
-	go$pkg.IP_DUMMYNET_FLUSH = 62;
-	go$pkg.IP_DUMMYNET_GET = 64;
-	go$pkg.IP_FAITH = 22;
-	go$pkg.IP_FW_ADD = 40;
-	go$pkg.IP_FW_DEL = 41;
-	go$pkg.IP_FW_FLUSH = 42;
-	go$pkg.IP_FW_GET = 44;
-	go$pkg.IP_FW_RESETLOG = 45;
-	go$pkg.IP_FW_ZERO = 43;
-	go$pkg.IP_HDRINCL = 2;
-	go$pkg.IP_IPSEC_POLICY = 21;
-	go$pkg.IP_MAXPACKET = 65535;
-	go$pkg.IP_MAX_GROUP_SRC_FILTER = 512;
-	go$pkg.IP_MAX_MEMBERSHIPS = 4095;
-	go$pkg.IP_MAX_SOCK_MUTE_FILTER = 128;
-	go$pkg.IP_MAX_SOCK_SRC_FILTER = 128;
-	go$pkg.IP_MF = 8192;
-	go$pkg.IP_MIN_MEMBERSHIPS = 31;
-	go$pkg.IP_MSFILTER = 74;
-	go$pkg.IP_MSS = 576;
-	go$pkg.IP_MULTICAST_IF = 9;
-	go$pkg.IP_MULTICAST_IFINDEX = 66;
-	go$pkg.IP_MULTICAST_LOOP = 11;
-	go$pkg.IP_MULTICAST_TTL = 10;
-	go$pkg.IP_MULTICAST_VIF = 14;
-	go$pkg.IP_NAT__XXX = 55;
-	go$pkg.IP_OFFMASK = 8191;
-	go$pkg.IP_OLD_FW_ADD = 50;
-	go$pkg.IP_OLD_FW_DEL = 51;
-	go$pkg.IP_OLD_FW_FLUSH = 52;
-	go$pkg.IP_OLD_FW_GET = 54;
-	go$pkg.IP_OLD_FW_RESETLOG = 56;
-	go$pkg.IP_OLD_FW_ZERO = 53;
-	go$pkg.IP_OPTIONS = 1;
-	go$pkg.IP_PKTINFO = 26;
-	go$pkg.IP_PORTRANGE = 19;
-	go$pkg.IP_PORTRANGE_DEFAULT = 0;
-	go$pkg.IP_PORTRANGE_HIGH = 1;
-	go$pkg.IP_PORTRANGE_LOW = 2;
-	go$pkg.IP_RECVDSTADDR = 7;
-	go$pkg.IP_RECVIF = 20;
-	go$pkg.IP_RECVOPTS = 5;
-	go$pkg.IP_RECVPKTINFO = 26;
-	go$pkg.IP_RECVRETOPTS = 6;
-	go$pkg.IP_RECVTTL = 24;
-	go$pkg.IP_RETOPTS = 8;
-	go$pkg.IP_RF = 32768;
-	go$pkg.IP_RSVP_OFF = 16;
-	go$pkg.IP_RSVP_ON = 15;
-	go$pkg.IP_RSVP_VIF_OFF = 18;
-	go$pkg.IP_RSVP_VIF_ON = 17;
-	go$pkg.IP_STRIPHDR = 23;
-	go$pkg.IP_TOS = 3;
-	go$pkg.IP_TRAFFIC_MGT_BACKGROUND = 65;
-	go$pkg.IP_TTL = 4;
-	go$pkg.IP_UNBLOCK_SOURCE = 73;
-	go$pkg.ISIG = 128;
-	go$pkg.ISTRIP = 32;
-	go$pkg.IUTF8 = 16384;
-	go$pkg.IXANY = 2048;
-	go$pkg.IXOFF = 1024;
-	go$pkg.IXON = 512;
-	go$pkg.LOCK_EX = 2;
-	go$pkg.LOCK_NB = 4;
-	go$pkg.LOCK_SH = 1;
-	go$pkg.LOCK_UN = 8;
-	go$pkg.MADV_CAN_REUSE = 9;
-	go$pkg.MADV_DONTNEED = 4;
-	go$pkg.MADV_FREE = 5;
-	go$pkg.MADV_FREE_REUSABLE = 7;
-	go$pkg.MADV_FREE_REUSE = 8;
-	go$pkg.MADV_NORMAL = 0;
-	go$pkg.MADV_RANDOM = 1;
-	go$pkg.MADV_SEQUENTIAL = 2;
-	go$pkg.MADV_WILLNEED = 3;
-	go$pkg.MADV_ZERO_WIRED_PAGES = 6;
-	go$pkg.MAP_ANON = 4096;
-	go$pkg.MAP_COPY = 2;
-	go$pkg.MAP_FILE = 0;
-	go$pkg.MAP_FIXED = 16;
-	go$pkg.MAP_HASSEMAPHORE = 512;
-	go$pkg.MAP_JIT = 2048;
-	go$pkg.MAP_NOCACHE = 1024;
-	go$pkg.MAP_NOEXTEND = 256;
-	go$pkg.MAP_NORESERVE = 64;
-	go$pkg.MAP_PRIVATE = 2;
-	go$pkg.MAP_RENAME = 32;
-	go$pkg.MAP_RESERVED0080 = 128;
-	go$pkg.MAP_SHARED = 1;
-	go$pkg.MCL_CURRENT = 1;
-	go$pkg.MCL_FUTURE = 2;
-	go$pkg.MSG_CTRUNC = 32;
-	go$pkg.MSG_DONTROUTE = 4;
-	go$pkg.MSG_DONTWAIT = 128;
-	go$pkg.MSG_EOF = 256;
-	go$pkg.MSG_EOR = 8;
-	go$pkg.MSG_FLUSH = 1024;
-	go$pkg.MSG_HAVEMORE = 8192;
-	go$pkg.MSG_HOLD = 2048;
-	go$pkg.MSG_NEEDSA = 65536;
-	go$pkg.MSG_OOB = 1;
-	go$pkg.MSG_PEEK = 2;
-	go$pkg.MSG_RCVMORE = 16384;
-	go$pkg.MSG_SEND = 4096;
-	go$pkg.MSG_TRUNC = 16;
-	go$pkg.MSG_WAITALL = 64;
-	go$pkg.MSG_WAITSTREAM = 512;
-	go$pkg.MS_ASYNC = 1;
-	go$pkg.MS_DEACTIVATE = 8;
-	go$pkg.MS_INVALIDATE = 2;
-	go$pkg.MS_KILLPAGES = 4;
-	go$pkg.MS_SYNC = 16;
-	go$pkg.NAME_MAX = 255;
-	go$pkg.NET_RT_DUMP = 1;
-	go$pkg.NET_RT_DUMP2 = 7;
-	go$pkg.NET_RT_FLAGS = 2;
-	go$pkg.NET_RT_IFLIST = 3;
-	go$pkg.NET_RT_IFLIST2 = 6;
-	go$pkg.NET_RT_MAXID = 10;
-	go$pkg.NET_RT_STAT = 4;
-	go$pkg.NET_RT_TRASH = 5;
-	go$pkg.NOFLSH = 2147483648;
-	go$pkg.NOTE_ABSOLUTE = 8;
-	go$pkg.NOTE_ATTRIB = 8;
-	go$pkg.NOTE_CHILD = 4;
-	go$pkg.NOTE_DELETE = 1;
-	go$pkg.NOTE_EXEC = 536870912;
-	go$pkg.NOTE_EXIT = 2147483648;
-	go$pkg.NOTE_EXITSTATUS = 67108864;
-	go$pkg.NOTE_EXTEND = 4;
-	go$pkg.NOTE_FFAND = 1073741824;
-	go$pkg.NOTE_FFCOPY = 3221225472;
-	go$pkg.NOTE_FFCTRLMASK = 3221225472;
-	go$pkg.NOTE_FFLAGSMASK = 16777215;
-	go$pkg.NOTE_FFNOP = 0;
-	go$pkg.NOTE_FFOR = 2147483648;
-	go$pkg.NOTE_FORK = 1073741824;
-	go$pkg.NOTE_LINK = 16;
-	go$pkg.NOTE_LOWAT = 1;
-	go$pkg.NOTE_NONE = 128;
-	go$pkg.NOTE_NSECONDS = 4;
-	go$pkg.NOTE_PCTRLMASK = -1048576;
-	go$pkg.NOTE_PDATAMASK = 1048575;
-	go$pkg.NOTE_REAP = 268435456;
-	go$pkg.NOTE_RENAME = 32;
-	go$pkg.NOTE_RESOURCEEND = 33554432;
-	go$pkg.NOTE_REVOKE = 64;
-	go$pkg.NOTE_SECONDS = 1;
-	go$pkg.NOTE_SIGNAL = 134217728;
-	go$pkg.NOTE_TRACK = 1;
-	go$pkg.NOTE_TRACKERR = 2;
-	go$pkg.NOTE_TRIGGER = 16777216;
-	go$pkg.NOTE_USECONDS = 2;
-	go$pkg.NOTE_VM_ERROR = 268435456;
-	go$pkg.NOTE_VM_PRESSURE = 2147483648;
-	go$pkg.NOTE_VM_PRESSURE_SUDDEN_TERMINATE = 536870912;
-	go$pkg.NOTE_VM_PRESSURE_TERMINATE = 1073741824;
-	go$pkg.NOTE_WRITE = 2;
-	go$pkg.OCRNL = 16;
-	go$pkg.OFDEL = 131072;
-	go$pkg.OFILL = 128;
-	go$pkg.ONLCR = 2;
-	go$pkg.ONLRET = 64;
-	go$pkg.ONOCR = 32;
-	go$pkg.ONOEOT = 8;
-	go$pkg.OPOST = 1;
-	go$pkg.O_ACCMODE = 3;
-	go$pkg.O_ALERT = 536870912;
-	go$pkg.O_APPEND = 8;
-	go$pkg.O_ASYNC = 64;
-	go$pkg.O_CLOEXEC = 16777216;
-	go$pkg.O_CREAT = 512;
-	go$pkg.O_DIRECTORY = 1048576;
-	go$pkg.O_DSYNC = 4194304;
-	go$pkg.O_EVTONLY = 32768;
-	go$pkg.O_EXCL = 2048;
-	go$pkg.O_EXLOCK = 32;
-	go$pkg.O_FSYNC = 128;
-	go$pkg.O_NDELAY = 4;
-	go$pkg.O_NOCTTY = 131072;
-	go$pkg.O_NOFOLLOW = 256;
-	go$pkg.O_NONBLOCK = 4;
-	go$pkg.O_POPUP = 2147483648;
-	go$pkg.O_RDONLY = 0;
-	go$pkg.O_RDWR = 2;
-	go$pkg.O_SHLOCK = 16;
-	go$pkg.O_SYMLINK = 2097152;
-	go$pkg.O_SYNC = 128;
-	go$pkg.O_TRUNC = 1024;
-	go$pkg.O_WRONLY = 1;
-	go$pkg.PARENB = 4096;
-	go$pkg.PARMRK = 8;
-	go$pkg.PARODD = 8192;
-	go$pkg.PENDIN = 536870912;
-	go$pkg.PRIO_PGRP = 1;
-	go$pkg.PRIO_PROCESS = 0;
-	go$pkg.PRIO_USER = 2;
-	go$pkg.PROT_EXEC = 4;
-	go$pkg.PROT_NONE = 0;
-	go$pkg.PROT_READ = 1;
-	go$pkg.PROT_WRITE = 2;
-	go$pkg.PT_ATTACH = 10;
-	go$pkg.PT_ATTACHEXC = 14;
-	go$pkg.PT_CONTINUE = 7;
-	go$pkg.PT_DENY_ATTACH = 31;
-	go$pkg.PT_DETACH = 11;
-	go$pkg.PT_FIRSTMACH = 32;
-	go$pkg.PT_FORCEQUOTA = 30;
-	go$pkg.PT_KILL = 8;
-	go$pkg.PT_READ_D = 2;
-	go$pkg.PT_READ_I = 1;
-	go$pkg.PT_READ_U = 3;
-	go$pkg.PT_SIGEXC = 12;
-	go$pkg.PT_STEP = 9;
-	go$pkg.PT_THUPDATE = 13;
-	go$pkg.PT_TRACE_ME = 0;
-	go$pkg.PT_WRITE_D = 5;
-	go$pkg.PT_WRITE_I = 4;
-	go$pkg.PT_WRITE_U = 6;
-	go$pkg.RLIMIT_AS = 5;
-	go$pkg.RLIMIT_CORE = 4;
-	go$pkg.RLIMIT_CPU = 0;
-	go$pkg.RLIMIT_DATA = 2;
-	go$pkg.RLIMIT_FSIZE = 1;
-	go$pkg.RLIMIT_NOFILE = 8;
-	go$pkg.RLIMIT_STACK = 3;
-	go$pkg.RLIM_INFINITY = 9223372036854775807;
-	go$pkg.RTAX_AUTHOR = 6;
-	go$pkg.RTAX_BRD = 7;
-	go$pkg.RTAX_DST = 0;
-	go$pkg.RTAX_GATEWAY = 1;
-	go$pkg.RTAX_GENMASK = 3;
-	go$pkg.RTAX_IFA = 5;
-	go$pkg.RTAX_IFP = 4;
-	go$pkg.RTAX_MAX = 8;
-	go$pkg.RTAX_NETMASK = 2;
-	go$pkg.RTA_AUTHOR = 64;
-	go$pkg.RTA_BRD = 128;
-	go$pkg.RTA_DST = 1;
-	go$pkg.RTA_GATEWAY = 2;
-	go$pkg.RTA_GENMASK = 8;
-	go$pkg.RTA_IFA = 32;
-	go$pkg.RTA_IFP = 16;
-	go$pkg.RTA_NETMASK = 4;
-	go$pkg.RTF_BLACKHOLE = 4096;
-	go$pkg.RTF_BROADCAST = 4194304;
-	go$pkg.RTF_CLONING = 256;
-	go$pkg.RTF_CONDEMNED = 33554432;
-	go$pkg.RTF_DELCLONE = 128;
-	go$pkg.RTF_DONE = 64;
-	go$pkg.RTF_DYNAMIC = 16;
-	go$pkg.RTF_GATEWAY = 2;
-	go$pkg.RTF_HOST = 4;
-	go$pkg.RTF_IFREF = 67108864;
-	go$pkg.RTF_IFSCOPE = 16777216;
-	go$pkg.RTF_LLINFO = 1024;
-	go$pkg.RTF_LOCAL = 2097152;
-	go$pkg.RTF_MODIFIED = 32;
-	go$pkg.RTF_MULTICAST = 8388608;
-	go$pkg.RTF_PINNED = 1048576;
-	go$pkg.RTF_PRCLONING = 65536;
-	go$pkg.RTF_PROTO1 = 32768;
-	go$pkg.RTF_PROTO2 = 16384;
-	go$pkg.RTF_PROTO3 = 262144;
-	go$pkg.RTF_REJECT = 8;
-	go$pkg.RTF_STATIC = 2048;
-	go$pkg.RTF_UP = 1;
-	go$pkg.RTF_WASCLONED = 131072;
-	go$pkg.RTF_XRESOLVE = 512;
-	go$pkg.RTM_ADD = 1;
-	go$pkg.RTM_CHANGE = 3;
-	go$pkg.RTM_DELADDR = 13;
-	go$pkg.RTM_DELETE = 2;
-	go$pkg.RTM_DELMADDR = 16;
-	go$pkg.RTM_GET = 4;
-	go$pkg.RTM_GET2 = 20;
-	go$pkg.RTM_IFINFO = 14;
-	go$pkg.RTM_IFINFO2 = 18;
-	go$pkg.RTM_LOCK = 8;
-	go$pkg.RTM_LOSING = 5;
-	go$pkg.RTM_MISS = 7;
-	go$pkg.RTM_NEWADDR = 12;
-	go$pkg.RTM_NEWMADDR = 15;
-	go$pkg.RTM_NEWMADDR2 = 19;
-	go$pkg.RTM_OLDADD = 9;
-	go$pkg.RTM_OLDDEL = 10;
-	go$pkg.RTM_REDIRECT = 6;
-	go$pkg.RTM_RESOLVE = 11;
-	go$pkg.RTM_RTTUNIT = 1000000;
-	go$pkg.RTM_VERSION = 5;
-	go$pkg.RTV_EXPIRE = 4;
-	go$pkg.RTV_HOPCOUNT = 2;
-	go$pkg.RTV_MTU = 1;
-	go$pkg.RTV_RPIPE = 8;
-	go$pkg.RTV_RTT = 64;
-	go$pkg.RTV_RTTVAR = 128;
-	go$pkg.RTV_SPIPE = 16;
-	go$pkg.RTV_SSTHRESH = 32;
-	go$pkg.RUSAGE_CHILDREN = -1;
-	go$pkg.RUSAGE_SELF = 0;
-	go$pkg.SCM_CREDS = 3;
-	go$pkg.SCM_RIGHTS = 1;
-	go$pkg.SCM_TIMESTAMP = 2;
-	go$pkg.SCM_TIMESTAMP_MONOTONIC = 4;
-	go$pkg.SHUT_RD = 0;
-	go$pkg.SHUT_RDWR = 2;
-	go$pkg.SHUT_WR = 1;
-	go$pkg.SIOCADDMULTI = 2149607729;
-	go$pkg.SIOCAIFADDR = 2151704858;
-	go$pkg.SIOCALIFADDR = 2165860637;
-	go$pkg.SIOCARPIPLL = 3223349544;
-	go$pkg.SIOCATMARK = 1074033415;
-	go$pkg.SIOCAUTOADDR = 3223349542;
-	go$pkg.SIOCAUTONETMASK = 2149607719;
-	go$pkg.SIOCDELMULTI = 2149607730;
-	go$pkg.SIOCDIFADDR = 2149607705;
-	go$pkg.SIOCDIFPHYADDR = 2149607745;
-	go$pkg.SIOCDLIFADDR = 2165860639;
-	go$pkg.SIOCGDRVSPEC = 3223873915;
-	go$pkg.SIOCGETSGCNT = 3222565404;
-	go$pkg.SIOCGETVIFCNT = 3222565403;
-	go$pkg.SIOCGETVLAN = 3223349631;
-	go$pkg.SIOCGHIWAT = 1074033409;
-	go$pkg.SIOCGIFADDR = 3223349537;
-	go$pkg.SIOCGIFALTMTU = 3223349576;
-	go$pkg.SIOCGIFASYNCMAP = 3223349628;
-	go$pkg.SIOCGIFBOND = 3223349575;
-	go$pkg.SIOCGIFBRDADDR = 3223349539;
-	go$pkg.SIOCGIFCAP = 3223349595;
-	go$pkg.SIOCGIFCONF = 3222038820;
-	go$pkg.SIOCGIFDEVMTU = 3223349572;
-	go$pkg.SIOCGIFDSTADDR = 3223349538;
-	go$pkg.SIOCGIFFLAGS = 3223349521;
-	go$pkg.SIOCGIFGENERIC = 3223349562;
-	go$pkg.SIOCGIFKPI = 3223349639;
-	go$pkg.SIOCGIFMAC = 3223349634;
-	go$pkg.SIOCGIFMEDIA = 3224135992;
-	go$pkg.SIOCGIFMETRIC = 3223349527;
-	go$pkg.SIOCGIFMTU = 3223349555;
-	go$pkg.SIOCGIFNETMASK = 3223349541;
-	go$pkg.SIOCGIFPDSTADDR = 3223349568;
-	go$pkg.SIOCGIFPHYS = 3223349557;
-	go$pkg.SIOCGIFPSRCADDR = 3223349567;
-	go$pkg.SIOCGIFSTATUS = 3274795325;
-	go$pkg.SIOCGIFVLAN = 3223349631;
-	go$pkg.SIOCGIFWAKEFLAGS = 3223349640;
-	go$pkg.SIOCGLIFADDR = 3239602462;
-	go$pkg.SIOCGLIFPHYADDR = 3239602499;
-	go$pkg.SIOCGLOWAT = 1074033411;
-	go$pkg.SIOCGPGRP = 1074033417;
-	go$pkg.SIOCIFCREATE = 3223349624;
-	go$pkg.SIOCIFCREATE2 = 3223349626;
-	go$pkg.SIOCIFDESTROY = 2149607801;
-	go$pkg.SIOCRSLVMULTI = 3222300987;
-	go$pkg.SIOCSDRVSPEC = 2150132091;
-	go$pkg.SIOCSETVLAN = 2149607806;
-	go$pkg.SIOCSHIWAT = 2147775232;
-	go$pkg.SIOCSIFADDR = 2149607692;
-	go$pkg.SIOCSIFALTMTU = 2149607749;
-	go$pkg.SIOCSIFASYNCMAP = 2149607805;
-	go$pkg.SIOCSIFBOND = 2149607750;
-	go$pkg.SIOCSIFBRDADDR = 2149607699;
-	go$pkg.SIOCSIFCAP = 2149607770;
-	go$pkg.SIOCSIFDSTADDR = 2149607694;
-	go$pkg.SIOCSIFFLAGS = 2149607696;
-	go$pkg.SIOCSIFGENERIC = 2149607737;
-	go$pkg.SIOCSIFKPI = 2149607814;
-	go$pkg.SIOCSIFLLADDR = 2149607740;
-	go$pkg.SIOCSIFMAC = 2149607811;
-	go$pkg.SIOCSIFMEDIA = 3223349559;
-	go$pkg.SIOCSIFMETRIC = 2149607704;
-	go$pkg.SIOCSIFMTU = 2149607732;
-	go$pkg.SIOCSIFNETMASK = 2149607702;
-	go$pkg.SIOCSIFPHYADDR = 2151704894;
-	go$pkg.SIOCSIFPHYS = 2149607734;
-	go$pkg.SIOCSIFVLAN = 2149607806;
-	go$pkg.SIOCSLIFPHYADDR = 2165860674;
-	go$pkg.SIOCSLOWAT = 2147775234;
-	go$pkg.SIOCSPGRP = 2147775240;
-	go$pkg.SOCK_DGRAM = 2;
-	go$pkg.SOCK_MAXADDRLEN = 255;
-	go$pkg.SOCK_RAW = 3;
-	go$pkg.SOCK_RDM = 4;
-	go$pkg.SOCK_SEQPACKET = 5;
-	go$pkg.SOCK_STREAM = 1;
-	go$pkg.SOL_SOCKET = 65535;
-	go$pkg.SOMAXCONN = 128;
-	go$pkg.SO_ACCEPTCONN = 2;
-	go$pkg.SO_BROADCAST = 32;
-	go$pkg.SO_DEBUG = 1;
-	go$pkg.SO_DONTROUTE = 16;
-	go$pkg.SO_DONTTRUNC = 8192;
-	go$pkg.SO_ERROR = 4103;
-	go$pkg.SO_KEEPALIVE = 8;
-	go$pkg.SO_LABEL = 4112;
-	go$pkg.SO_LINGER = 128;
-	go$pkg.SO_LINGER_SEC = 4224;
-	go$pkg.SO_NKE = 4129;
-	go$pkg.SO_NOADDRERR = 4131;
-	go$pkg.SO_NOSIGPIPE = 4130;
-	go$pkg.SO_NOTIFYCONFLICT = 4134;
-	go$pkg.SO_NP_EXTENSIONS = 4227;
-	go$pkg.SO_NREAD = 4128;
-	go$pkg.SO_NWRITE = 4132;
-	go$pkg.SO_OOBINLINE = 256;
-	go$pkg.SO_PEERLABEL = 4113;
-	go$pkg.SO_RANDOMPORT = 4226;
-	go$pkg.SO_RCVBUF = 4098;
-	go$pkg.SO_RCVLOWAT = 4100;
-	go$pkg.SO_RCVTIMEO = 4102;
-	go$pkg.SO_RESTRICTIONS = 4225;
-	go$pkg.SO_RESTRICT_DENYIN = 1;
-	go$pkg.SO_RESTRICT_DENYOUT = 2;
-	go$pkg.SO_RESTRICT_DENYSET = 2147483648;
-	go$pkg.SO_REUSEADDR = 4;
-	go$pkg.SO_REUSEPORT = 512;
-	go$pkg.SO_REUSESHAREUID = 4133;
-	go$pkg.SO_SNDBUF = 4097;
-	go$pkg.SO_SNDLOWAT = 4099;
-	go$pkg.SO_SNDTIMEO = 4101;
-	go$pkg.SO_TIMESTAMP = 1024;
-	go$pkg.SO_TIMESTAMP_MONOTONIC = 2048;
-	go$pkg.SO_TYPE = 4104;
-	go$pkg.SO_UPCALLCLOSEWAIT = 4135;
-	go$pkg.SO_USELOOPBACK = 64;
-	go$pkg.SO_WANTMORE = 16384;
-	go$pkg.SO_WANTOOBFLAG = 32768;
-	go$pkg.S_IEXEC = 64;
-	go$pkg.S_IFBLK = 24576;
-	go$pkg.S_IFCHR = 8192;
-	go$pkg.S_IFDIR = 16384;
-	go$pkg.S_IFIFO = 4096;
-	go$pkg.S_IFLNK = 40960;
-	go$pkg.S_IFMT = 61440;
-	go$pkg.S_IFREG = 32768;
-	go$pkg.S_IFSOCK = 49152;
-	go$pkg.S_IFWHT = 57344;
-	go$pkg.S_IREAD = 256;
-	go$pkg.S_IRGRP = 32;
-	go$pkg.S_IROTH = 4;
-	go$pkg.S_IRUSR = 256;
-	go$pkg.S_IRWXG = 56;
-	go$pkg.S_IRWXO = 7;
-	go$pkg.S_IRWXU = 448;
-	go$pkg.S_ISGID = 1024;
-	go$pkg.S_ISTXT = 512;
-	go$pkg.S_ISUID = 2048;
-	go$pkg.S_ISVTX = 512;
-	go$pkg.S_IWGRP = 16;
-	go$pkg.S_IWOTH = 2;
-	go$pkg.S_IWRITE = 128;
-	go$pkg.S_IWUSR = 128;
-	go$pkg.S_IXGRP = 8;
-	go$pkg.S_IXOTH = 1;
-	go$pkg.S_IXUSR = 64;
-	go$pkg.TCIFLUSH = 1;
-	go$pkg.TCIOFLUSH = 3;
-	go$pkg.TCOFLUSH = 2;
-	go$pkg.TCP_CONNECTIONTIMEOUT = 32;
-	go$pkg.TCP_KEEPALIVE = 16;
-	go$pkg.TCP_MAXHLEN = 60;
-	go$pkg.TCP_MAXOLEN = 40;
-	go$pkg.TCP_MAXSEG = 2;
-	go$pkg.TCP_MAXWIN = 65535;
-	go$pkg.TCP_MAX_SACK = 3;
-	go$pkg.TCP_MAX_WINSHIFT = 14;
-	go$pkg.TCP_MINMSS = 216;
-	go$pkg.TCP_MINMSSOVERLOAD = 1000;
-	go$pkg.TCP_MSS = 512;
-	go$pkg.TCP_NODELAY = 1;
-	go$pkg.TCP_NOOPT = 8;
-	go$pkg.TCP_NOPUSH = 4;
-	go$pkg.TCP_RXT_CONNDROPTIME = 128;
-	go$pkg.TCP_RXT_FINDROP = 256;
-	go$pkg.TCSAFLUSH = 2;
-	go$pkg.TIOCCBRK = 536900730;
-	go$pkg.TIOCCDTR = 536900728;
-	go$pkg.TIOCCONS = 2147775586;
-	go$pkg.TIOCDCDTIMESTAMP = 1074820184;
-	go$pkg.TIOCDRAIN = 536900702;
-	go$pkg.TIOCDSIMICROCODE = 536900693;
-	go$pkg.TIOCEXCL = 536900621;
-	go$pkg.TIOCEXT = 2147775584;
-	go$pkg.TIOCFLUSH = 2147775504;
-	go$pkg.TIOCGDRAINWAIT = 1074033750;
-	go$pkg.TIOCGETA = 1078490131;
-	go$pkg.TIOCGETD = 1074033690;
-	go$pkg.TIOCGPGRP = 1074033783;
-	go$pkg.TIOCGWINSZ = 1074295912;
-	go$pkg.TIOCIXOFF = 536900736;
-	go$pkg.TIOCIXON = 536900737;
-	go$pkg.TIOCMBIC = 2147775595;
-	go$pkg.TIOCMBIS = 2147775596;
-	go$pkg.TIOCMGDTRWAIT = 1074033754;
-	go$pkg.TIOCMGET = 1074033770;
-	go$pkg.TIOCMODG = 1074033667;
-	go$pkg.TIOCMODS = 2147775492;
-	go$pkg.TIOCMSDTRWAIT = 2147775579;
-	go$pkg.TIOCMSET = 2147775597;
-	go$pkg.TIOCM_CAR = 64;
-	go$pkg.TIOCM_CD = 64;
-	go$pkg.TIOCM_CTS = 32;
-	go$pkg.TIOCM_DSR = 256;
-	go$pkg.TIOCM_DTR = 2;
-	go$pkg.TIOCM_LE = 1;
-	go$pkg.TIOCM_RI = 128;
-	go$pkg.TIOCM_RNG = 128;
-	go$pkg.TIOCM_RTS = 4;
-	go$pkg.TIOCM_SR = 16;
-	go$pkg.TIOCM_ST = 8;
-	go$pkg.TIOCNOTTY = 536900721;
-	go$pkg.TIOCNXCL = 536900622;
-	go$pkg.TIOCOUTQ = 1074033779;
-	go$pkg.TIOCPKT = 2147775600;
-	go$pkg.TIOCPKT_DATA = 0;
-	go$pkg.TIOCPKT_DOSTOP = 32;
-	go$pkg.TIOCPKT_FLUSHREAD = 1;
-	go$pkg.TIOCPKT_FLUSHWRITE = 2;
-	go$pkg.TIOCPKT_IOCTL = 64;
-	go$pkg.TIOCPKT_NOSTOP = 16;
-	go$pkg.TIOCPKT_START = 8;
-	go$pkg.TIOCPKT_STOP = 4;
-	go$pkg.TIOCPTYGNAME = 1082160211;
-	go$pkg.TIOCPTYGRANT = 536900692;
-	go$pkg.TIOCPTYUNLK = 536900690;
-	go$pkg.TIOCREMOTE = 2147775593;
-	go$pkg.TIOCSBRK = 536900731;
-	go$pkg.TIOCSCONS = 536900707;
-	go$pkg.TIOCSCTTY = 536900705;
-	go$pkg.TIOCSDRAINWAIT = 2147775575;
-	go$pkg.TIOCSDTR = 536900729;
-	go$pkg.TIOCSETA = 2152231956;
-	go$pkg.TIOCSETAF = 2152231958;
-	go$pkg.TIOCSETAW = 2152231957;
-	go$pkg.TIOCSETD = 2147775515;
-	go$pkg.TIOCSIG = 536900703;
-	go$pkg.TIOCSPGRP = 2147775606;
-	go$pkg.TIOCSTART = 536900718;
-	go$pkg.TIOCSTAT = 536900709;
-	go$pkg.TIOCSTI = 2147578994;
-	go$pkg.TIOCSTOP = 536900719;
-	go$pkg.TIOCSWINSZ = 2148037735;
-	go$pkg.TIOCTIMESTAMP = 1074820185;
-	go$pkg.TIOCUCNTL = 2147775590;
-	go$pkg.TOSTOP = 4194304;
-	go$pkg.VDISCARD = 15;
-	go$pkg.VDSUSP = 11;
-	go$pkg.VEOF = 0;
-	go$pkg.VEOL = 1;
-	go$pkg.VEOL2 = 2;
-	go$pkg.VERASE = 3;
-	go$pkg.VINTR = 8;
-	go$pkg.VKILL = 5;
-	go$pkg.VLNEXT = 14;
-	go$pkg.VMIN = 16;
-	go$pkg.VQUIT = 9;
-	go$pkg.VREPRINT = 6;
-	go$pkg.VSTART = 12;
-	go$pkg.VSTATUS = 18;
-	go$pkg.VSTOP = 13;
-	go$pkg.VSUSP = 10;
-	go$pkg.VT0 = 0;
-	go$pkg.VT1 = 65536;
-	go$pkg.VTDLY = 65536;
-	go$pkg.VTIME = 17;
-	go$pkg.VWERASE = 4;
-	go$pkg.WCONTINUED = 16;
-	go$pkg.WCOREFLAG = 128;
-	go$pkg.WEXITED = 4;
-	go$pkg.WNOHANG = 1;
-	go$pkg.WNOWAIT = 32;
-	go$pkg.WORDSIZE = 64;
-	go$pkg.WSTOPPED = 8;
-	go$pkg.WUNTRACED = 2;
-	go$pkg.E2BIG = 7;
-	go$pkg.EACCES = 13;
-	go$pkg.EADDRINUSE = 48;
-	go$pkg.EADDRNOTAVAIL = 49;
-	go$pkg.EAFNOSUPPORT = 47;
-	go$pkg.EAGAIN = 35;
-	go$pkg.EALREADY = 37;
-	go$pkg.EAUTH = 80;
-	go$pkg.EBADARCH = 86;
-	go$pkg.EBADEXEC = 85;
-	go$pkg.EBADF = 9;
-	go$pkg.EBADMACHO = 88;
-	go$pkg.EBADMSG = 94;
-	go$pkg.EBADRPC = 72;
-	go$pkg.EBUSY = 16;
-	go$pkg.ECANCELED = 89;
-	go$pkg.ECHILD = 10;
-	go$pkg.ECONNABORTED = 53;
-	go$pkg.ECONNREFUSED = 61;
-	go$pkg.ECONNRESET = 54;
-	go$pkg.EDEADLK = 11;
-	go$pkg.EDESTADDRREQ = 39;
-	go$pkg.EDEVERR = 83;
-	go$pkg.EDOM = 33;
-	go$pkg.EDQUOT = 69;
-	go$pkg.EEXIST = 17;
-	go$pkg.EFAULT = 14;
-	go$pkg.EFBIG = 27;
-	go$pkg.EFTYPE = 79;
-	go$pkg.EHOSTDOWN = 64;
-	go$pkg.EHOSTUNREACH = 65;
-	go$pkg.EIDRM = 90;
-	go$pkg.EILSEQ = 92;
-	go$pkg.EINPROGRESS = 36;
-	go$pkg.EINTR = 4;
-	go$pkg.EINVAL = 22;
-	go$pkg.EIO = 5;
-	go$pkg.EISCONN = 56;
-	go$pkg.EISDIR = 21;
-	go$pkg.ELAST = 105;
-	go$pkg.ELOOP = 62;
-	go$pkg.EMFILE = 24;
-	go$pkg.EMLINK = 31;
-	go$pkg.EMSGSIZE = 40;
-	go$pkg.EMULTIHOP = 95;
-	go$pkg.ENAMETOOLONG = 63;
-	go$pkg.ENEEDAUTH = 81;
-	go$pkg.ENETDOWN = 50;
-	go$pkg.ENETRESET = 52;
-	go$pkg.ENETUNREACH = 51;
-	go$pkg.ENFILE = 23;
-	go$pkg.ENOATTR = 93;
-	go$pkg.ENOBUFS = 55;
-	go$pkg.ENODATA = 96;
-	go$pkg.ENODEV = 19;
-	go$pkg.ENOENT = 2;
-	go$pkg.ENOEXEC = 8;
-	go$pkg.ENOLCK = 77;
-	go$pkg.ENOLINK = 97;
-	go$pkg.ENOMEM = 12;
-	go$pkg.ENOMSG = 91;
-	go$pkg.ENOPOLICY = 103;
-	go$pkg.ENOPROTOOPT = 42;
-	go$pkg.ENOSPC = 28;
-	go$pkg.ENOSR = 98;
-	go$pkg.ENOSTR = 99;
-	go$pkg.ENOSYS = 78;
-	go$pkg.ENOTBLK = 15;
-	go$pkg.ENOTCONN = 57;
-	go$pkg.ENOTDIR = 20;
-	go$pkg.ENOTEMPTY = 66;
-	go$pkg.ENOTRECOVERABLE = 104;
-	go$pkg.ENOTSOCK = 38;
-	go$pkg.ENOTSUP = 45;
-	go$pkg.ENOTTY = 25;
-	go$pkg.ENXIO = 6;
-	go$pkg.EOPNOTSUPP = 102;
-	go$pkg.EOVERFLOW = 84;
-	go$pkg.EOWNERDEAD = 105;
-	go$pkg.EPERM = 1;
-	go$pkg.EPFNOSUPPORT = 46;
-	go$pkg.EPIPE = 32;
-	go$pkg.EPROCLIM = 67;
-	go$pkg.EPROCUNAVAIL = 76;
-	go$pkg.EPROGMISMATCH = 75;
-	go$pkg.EPROGUNAVAIL = 74;
-	go$pkg.EPROTO = 100;
-	go$pkg.EPROTONOSUPPORT = 43;
-	go$pkg.EPROTOTYPE = 41;
-	go$pkg.EPWROFF = 82;
-	go$pkg.ERANGE = 34;
-	go$pkg.EREMOTE = 71;
-	go$pkg.EROFS = 30;
-	go$pkg.ERPCMISMATCH = 73;
-	go$pkg.ESHLIBVERS = 87;
-	go$pkg.ESHUTDOWN = 58;
-	go$pkg.ESOCKTNOSUPPORT = 44;
-	go$pkg.ESPIPE = 29;
-	go$pkg.ESRCH = 3;
-	go$pkg.ESTALE = 70;
-	go$pkg.ETIME = 101;
-	go$pkg.ETIMEDOUT = 60;
-	go$pkg.ETOOMANYREFS = 59;
-	go$pkg.ETXTBSY = 26;
-	go$pkg.EUSERS = 68;
-	go$pkg.EWOULDBLOCK = 35;
-	go$pkg.EXDEV = 18;
-	go$pkg.SIGABRT = 6;
-	go$pkg.SIGALRM = 14;
-	go$pkg.SIGBUS = 10;
-	go$pkg.SIGCHLD = 20;
-	go$pkg.SIGCONT = 19;
-	go$pkg.SIGEMT = 7;
-	go$pkg.SIGFPE = 8;
-	go$pkg.SIGHUP = 1;
-	go$pkg.SIGILL = 4;
-	go$pkg.SIGINFO = 29;
-	go$pkg.SIGINT = 2;
-	go$pkg.SIGIO = 23;
-	go$pkg.SIGIOT = 6;
-	go$pkg.SIGKILL = 9;
-	go$pkg.SIGPIPE = 13;
-	go$pkg.SIGPROF = 27;
-	go$pkg.SIGQUIT = 3;
-	go$pkg.SIGSEGV = 11;
-	go$pkg.SIGSTOP = 17;
-	go$pkg.SIGSYS = 12;
-	go$pkg.SIGTERM = 15;
-	go$pkg.SIGTRAP = 5;
-	go$pkg.SIGTSTP = 18;
-	go$pkg.SIGTTIN = 21;
-	go$pkg.SIGTTOU = 22;
-	go$pkg.SIGURG = 16;
-	go$pkg.SIGUSR1 = 30;
-	go$pkg.SIGUSR2 = 31;
-	go$pkg.SIGVTALRM = 26;
-	go$pkg.SIGWINCH = 28;
-	go$pkg.SIGXCPU = 24;
-	go$pkg.SIGXFSZ = 25;
-	go$pkg.SYS_SYSCALL = 0;
-	go$pkg.SYS_EXIT = 1;
-	go$pkg.SYS_FORK = 2;
-	go$pkg.SYS_READ = 3;
-	go$pkg.SYS_WRITE = 4;
-	go$pkg.SYS_OPEN = 5;
-	go$pkg.SYS_CLOSE = 6;
-	go$pkg.SYS_WAIT4 = 7;
-	go$pkg.SYS_LINK = 9;
-	go$pkg.SYS_UNLINK = 10;
-	go$pkg.SYS_CHDIR = 12;
-	go$pkg.SYS_FCHDIR = 13;
-	go$pkg.SYS_MKNOD = 14;
-	go$pkg.SYS_CHMOD = 15;
-	go$pkg.SYS_CHOWN = 16;
-	go$pkg.SYS_GETFSSTAT = 18;
-	go$pkg.SYS_GETPID = 20;
-	go$pkg.SYS_SETUID = 23;
-	go$pkg.SYS_GETUID = 24;
-	go$pkg.SYS_GETEUID = 25;
-	go$pkg.SYS_PTRACE = 26;
-	go$pkg.SYS_RECVMSG = 27;
-	go$pkg.SYS_SENDMSG = 28;
-	go$pkg.SYS_RECVFROM = 29;
-	go$pkg.SYS_ACCEPT = 30;
-	go$pkg.SYS_GETPEERNAME = 31;
-	go$pkg.SYS_GETSOCKNAME = 32;
-	go$pkg.SYS_ACCESS = 33;
-	go$pkg.SYS_CHFLAGS = 34;
-	go$pkg.SYS_FCHFLAGS = 35;
-	go$pkg.SYS_SYNC = 36;
-	go$pkg.SYS_KILL = 37;
-	go$pkg.SYS_GETPPID = 39;
-	go$pkg.SYS_DUP = 41;
-	go$pkg.SYS_PIPE = 42;
-	go$pkg.SYS_GETEGID = 43;
-	go$pkg.SYS_PROFIL = 44;
-	go$pkg.SYS_SIGACTION = 46;
-	go$pkg.SYS_GETGID = 47;
-	go$pkg.SYS_SIGPROCMASK = 48;
-	go$pkg.SYS_GETLOGIN = 49;
-	go$pkg.SYS_SETLOGIN = 50;
-	go$pkg.SYS_ACCT = 51;
-	go$pkg.SYS_SIGPENDING = 52;
-	go$pkg.SYS_SIGALTSTACK = 53;
-	go$pkg.SYS_IOCTL = 54;
-	go$pkg.SYS_REBOOT = 55;
-	go$pkg.SYS_REVOKE = 56;
-	go$pkg.SYS_SYMLINK = 57;
-	go$pkg.SYS_READLINK = 58;
-	go$pkg.SYS_EXECVE = 59;
-	go$pkg.SYS_UMASK = 60;
-	go$pkg.SYS_CHROOT = 61;
-	go$pkg.SYS_MSYNC = 65;
-	go$pkg.SYS_VFORK = 66;
-	go$pkg.SYS_MUNMAP = 73;
-	go$pkg.SYS_MPROTECT = 74;
-	go$pkg.SYS_MADVISE = 75;
-	go$pkg.SYS_MINCORE = 78;
-	go$pkg.SYS_GETGROUPS = 79;
-	go$pkg.SYS_SETGROUPS = 80;
-	go$pkg.SYS_GETPGRP = 81;
-	go$pkg.SYS_SETPGID = 82;
-	go$pkg.SYS_SETITIMER = 83;
-	go$pkg.SYS_SWAPON = 85;
-	go$pkg.SYS_GETITIMER = 86;
-	go$pkg.SYS_GETDTABLESIZE = 89;
-	go$pkg.SYS_DUP2 = 90;
-	go$pkg.SYS_FCNTL = 92;
-	go$pkg.SYS_SELECT = 93;
-	go$pkg.SYS_FSYNC = 95;
-	go$pkg.SYS_SETPRIORITY = 96;
-	go$pkg.SYS_SOCKET = 97;
-	go$pkg.SYS_CONNECT = 98;
-	go$pkg.SYS_GETPRIORITY = 100;
-	go$pkg.SYS_BIND = 104;
-	go$pkg.SYS_SETSOCKOPT = 105;
-	go$pkg.SYS_LISTEN = 106;
-	go$pkg.SYS_SIGSUSPEND = 111;
-	go$pkg.SYS_GETTIMEOFDAY = 116;
-	go$pkg.SYS_GETRUSAGE = 117;
-	go$pkg.SYS_GETSOCKOPT = 118;
-	go$pkg.SYS_READV = 120;
-	go$pkg.SYS_WRITEV = 121;
-	go$pkg.SYS_SETTIMEOFDAY = 122;
-	go$pkg.SYS_FCHOWN = 123;
-	go$pkg.SYS_FCHMOD = 124;
-	go$pkg.SYS_SETREUID = 126;
-	go$pkg.SYS_SETREGID = 127;
-	go$pkg.SYS_RENAME = 128;
-	go$pkg.SYS_FLOCK = 131;
-	go$pkg.SYS_MKFIFO = 132;
-	go$pkg.SYS_SENDTO = 133;
-	go$pkg.SYS_SHUTDOWN = 134;
-	go$pkg.SYS_SOCKETPAIR = 135;
-	go$pkg.SYS_MKDIR = 136;
-	go$pkg.SYS_RMDIR = 137;
-	go$pkg.SYS_UTIMES = 138;
-	go$pkg.SYS_FUTIMES = 139;
-	go$pkg.SYS_ADJTIME = 140;
-	go$pkg.SYS_GETHOSTUUID = 142;
-	go$pkg.SYS_SETSID = 147;
-	go$pkg.SYS_GETPGID = 151;
-	go$pkg.SYS_SETPRIVEXEC = 152;
-	go$pkg.SYS_PREAD = 153;
-	go$pkg.SYS_PWRITE = 154;
-	go$pkg.SYS_NFSSVC = 155;
-	go$pkg.SYS_STATFS = 157;
-	go$pkg.SYS_FSTATFS = 158;
-	go$pkg.SYS_UNMOUNT = 159;
-	go$pkg.SYS_GETFH = 161;
-	go$pkg.SYS_QUOTACTL = 165;
-	go$pkg.SYS_MOUNT = 167;
-	go$pkg.SYS_CSOPS = 169;
-	go$pkg.SYS_WAITID = 173;
-	go$pkg.SYS_ADD_PROFIL = 176;
-	go$pkg.SYS_KDEBUG_TRACE = 180;
-	go$pkg.SYS_SETGID = 181;
-	go$pkg.SYS_SETEGID = 182;
-	go$pkg.SYS_SETEUID = 183;
-	go$pkg.SYS_SIGRETURN = 184;
-	go$pkg.SYS_CHUD = 185;
-	go$pkg.SYS_FDATASYNC = 187;
-	go$pkg.SYS_STAT = 188;
-	go$pkg.SYS_FSTAT = 189;
-	go$pkg.SYS_LSTAT = 190;
-	go$pkg.SYS_PATHCONF = 191;
-	go$pkg.SYS_FPATHCONF = 192;
-	go$pkg.SYS_GETRLIMIT = 194;
-	go$pkg.SYS_SETRLIMIT = 195;
-	go$pkg.SYS_GETDIRENTRIES = 196;
-	go$pkg.SYS_MMAP = 197;
-	go$pkg.SYS_LSEEK = 199;
-	go$pkg.SYS_TRUNCATE = 200;
-	go$pkg.SYS_FTRUNCATE = 201;
-	go$pkg.SYS___SYSCTL = 202;
-	go$pkg.SYS_MLOCK = 203;
-	go$pkg.SYS_MUNLOCK = 204;
-	go$pkg.SYS_UNDELETE = 205;
-	go$pkg.SYS_ATSOCKET = 206;
-	go$pkg.SYS_ATGETMSG = 207;
-	go$pkg.SYS_ATPUTMSG = 208;
-	go$pkg.SYS_ATPSNDREQ = 209;
-	go$pkg.SYS_ATPSNDRSP = 210;
-	go$pkg.SYS_ATPGETREQ = 211;
-	go$pkg.SYS_ATPGETRSP = 212;
-	go$pkg.SYS_MKCOMPLEX = 216;
-	go$pkg.SYS_STATV = 217;
-	go$pkg.SYS_LSTATV = 218;
-	go$pkg.SYS_FSTATV = 219;
-	go$pkg.SYS_GETATTRLIST = 220;
-	go$pkg.SYS_SETATTRLIST = 221;
-	go$pkg.SYS_GETDIRENTRIESATTR = 222;
-	go$pkg.SYS_EXCHANGEDATA = 223;
-	go$pkg.SYS_SEARCHFS = 225;
-	go$pkg.SYS_DELETE = 226;
-	go$pkg.SYS_COPYFILE = 227;
-	go$pkg.SYS_FGETATTRLIST = 228;
-	go$pkg.SYS_FSETATTRLIST = 229;
-	go$pkg.SYS_POLL = 230;
-	go$pkg.SYS_WATCHEVENT = 231;
-	go$pkg.SYS_WAITEVENT = 232;
-	go$pkg.SYS_MODWATCH = 233;
-	go$pkg.SYS_GETXATTR = 234;
-	go$pkg.SYS_FGETXATTR = 235;
-	go$pkg.SYS_SETXATTR = 236;
-	go$pkg.SYS_FSETXATTR = 237;
-	go$pkg.SYS_REMOVEXATTR = 238;
-	go$pkg.SYS_FREMOVEXATTR = 239;
-	go$pkg.SYS_LISTXATTR = 240;
-	go$pkg.SYS_FLISTXATTR = 241;
-	go$pkg.SYS_FSCTL = 242;
-	go$pkg.SYS_INITGROUPS = 243;
-	go$pkg.SYS_POSIX_SPAWN = 244;
-	go$pkg.SYS_FFSCTL = 245;
-	go$pkg.SYS_NFSCLNT = 247;
-	go$pkg.SYS_FHOPEN = 248;
-	go$pkg.SYS_MINHERIT = 250;
-	go$pkg.SYS_SEMSYS = 251;
-	go$pkg.SYS_MSGSYS = 252;
-	go$pkg.SYS_SHMSYS = 253;
-	go$pkg.SYS_SEMCTL = 254;
-	go$pkg.SYS_SEMGET = 255;
-	go$pkg.SYS_SEMOP = 256;
-	go$pkg.SYS_MSGCTL = 258;
-	go$pkg.SYS_MSGGET = 259;
-	go$pkg.SYS_MSGSND = 260;
-	go$pkg.SYS_MSGRCV = 261;
-	go$pkg.SYS_SHMAT = 262;
-	go$pkg.SYS_SHMCTL = 263;
-	go$pkg.SYS_SHMDT = 264;
-	go$pkg.SYS_SHMGET = 265;
-	go$pkg.SYS_SHM_OPEN = 266;
-	go$pkg.SYS_SHM_UNLINK = 267;
-	go$pkg.SYS_SEM_OPEN = 268;
-	go$pkg.SYS_SEM_CLOSE = 269;
-	go$pkg.SYS_SEM_UNLINK = 270;
-	go$pkg.SYS_SEM_WAIT = 271;
-	go$pkg.SYS_SEM_TRYWAIT = 272;
-	go$pkg.SYS_SEM_POST = 273;
-	go$pkg.SYS_SEM_GETVALUE = 274;
-	go$pkg.SYS_SEM_INIT = 275;
-	go$pkg.SYS_SEM_DESTROY = 276;
-	go$pkg.SYS_OPEN_EXTENDED = 277;
-	go$pkg.SYS_UMASK_EXTENDED = 278;
-	go$pkg.SYS_STAT_EXTENDED = 279;
-	go$pkg.SYS_LSTAT_EXTENDED = 280;
-	go$pkg.SYS_FSTAT_EXTENDED = 281;
-	go$pkg.SYS_CHMOD_EXTENDED = 282;
-	go$pkg.SYS_FCHMOD_EXTENDED = 283;
-	go$pkg.SYS_ACCESS_EXTENDED = 284;
-	go$pkg.SYS_SETTID = 285;
-	go$pkg.SYS_GETTID = 286;
-	go$pkg.SYS_SETSGROUPS = 287;
-	go$pkg.SYS_GETSGROUPS = 288;
-	go$pkg.SYS_SETWGROUPS = 289;
-	go$pkg.SYS_GETWGROUPS = 290;
-	go$pkg.SYS_MKFIFO_EXTENDED = 291;
-	go$pkg.SYS_MKDIR_EXTENDED = 292;
-	go$pkg.SYS_IDENTITYSVC = 293;
-	go$pkg.SYS_SHARED_REGION_CHECK_NP = 294;
-	go$pkg.SYS_VM_PRESSURE_MONITOR = 296;
-	go$pkg.SYS_PSYNCH_RW_LONGRDLOCK = 297;
-	go$pkg.SYS_PSYNCH_RW_YIELDWRLOCK = 298;
-	go$pkg.SYS_PSYNCH_RW_DOWNGRADE = 299;
-	go$pkg.SYS_PSYNCH_RW_UPGRADE = 300;
-	go$pkg.SYS_PSYNCH_MUTEXWAIT = 301;
-	go$pkg.SYS_PSYNCH_MUTEXDROP = 302;
-	go$pkg.SYS_PSYNCH_CVBROAD = 303;
-	go$pkg.SYS_PSYNCH_CVSIGNAL = 304;
-	go$pkg.SYS_PSYNCH_CVWAIT = 305;
-	go$pkg.SYS_PSYNCH_RW_RDLOCK = 306;
-	go$pkg.SYS_PSYNCH_RW_WRLOCK = 307;
-	go$pkg.SYS_PSYNCH_RW_UNLOCK = 308;
-	go$pkg.SYS_PSYNCH_RW_UNLOCK2 = 309;
-	go$pkg.SYS_GETSID = 310;
-	go$pkg.SYS_SETTID_WITH_PID = 311;
-	go$pkg.SYS_PSYNCH_CVCLRPREPOST = 312;
-	go$pkg.SYS_AIO_FSYNC = 313;
-	go$pkg.SYS_AIO_RETURN = 314;
-	go$pkg.SYS_AIO_SUSPEND = 315;
-	go$pkg.SYS_AIO_CANCEL = 316;
-	go$pkg.SYS_AIO_ERROR = 317;
-	go$pkg.SYS_AIO_READ = 318;
-	go$pkg.SYS_AIO_WRITE = 319;
-	go$pkg.SYS_LIO_LISTIO = 320;
-	go$pkg.SYS_IOPOLICYSYS = 322;
-	go$pkg.SYS_PROCESS_POLICY = 323;
-	go$pkg.SYS_MLOCKALL = 324;
-	go$pkg.SYS_MUNLOCKALL = 325;
-	go$pkg.SYS_ISSETUGID = 327;
-	go$pkg.SYS___PTHREAD_KILL = 328;
-	go$pkg.SYS___PTHREAD_SIGMASK = 329;
-	go$pkg.SYS___SIGWAIT = 330;
-	go$pkg.SYS___DISABLE_THREADSIGNAL = 331;
-	go$pkg.SYS___PTHREAD_MARKCANCEL = 332;
-	go$pkg.SYS___PTHREAD_CANCELED = 333;
-	go$pkg.SYS___SEMWAIT_SIGNAL = 334;
-	go$pkg.SYS_PROC_INFO = 336;
-	go$pkg.SYS_SENDFILE = 337;
-	go$pkg.SYS_STAT64 = 338;
-	go$pkg.SYS_FSTAT64 = 339;
-	go$pkg.SYS_LSTAT64 = 340;
-	go$pkg.SYS_STAT64_EXTENDED = 341;
-	go$pkg.SYS_LSTAT64_EXTENDED = 342;
-	go$pkg.SYS_FSTAT64_EXTENDED = 343;
-	go$pkg.SYS_GETDIRENTRIES64 = 344;
-	go$pkg.SYS_STATFS64 = 345;
-	go$pkg.SYS_FSTATFS64 = 346;
-	go$pkg.SYS_GETFSSTAT64 = 347;
-	go$pkg.SYS___PTHREAD_CHDIR = 348;
-	go$pkg.SYS___PTHREAD_FCHDIR = 349;
-	go$pkg.SYS_AUDIT = 350;
-	go$pkg.SYS_AUDITON = 351;
-	go$pkg.SYS_GETAUID = 353;
-	go$pkg.SYS_SETAUID = 354;
-	go$pkg.SYS_GETAUDIT = 355;
-	go$pkg.SYS_SETAUDIT = 356;
-	go$pkg.SYS_GETAUDIT_ADDR = 357;
-	go$pkg.SYS_SETAUDIT_ADDR = 358;
-	go$pkg.SYS_AUDITCTL = 359;
-	go$pkg.SYS_BSDTHREAD_CREATE = 360;
-	go$pkg.SYS_BSDTHREAD_TERMINATE = 361;
-	go$pkg.SYS_KQUEUE = 362;
-	go$pkg.SYS_KEVENT = 363;
-	go$pkg.SYS_LCHOWN = 364;
-	go$pkg.SYS_STACK_SNAPSHOT = 365;
-	go$pkg.SYS_BSDTHREAD_REGISTER = 366;
-	go$pkg.SYS_WORKQ_OPEN = 367;
-	go$pkg.SYS_WORKQ_KERNRETURN = 368;
-	go$pkg.SYS_KEVENT64 = 369;
-	go$pkg.SYS___OLD_SEMWAIT_SIGNAL = 370;
-	go$pkg.SYS___OLD_SEMWAIT_SIGNAL_NOCANCEL = 371;
-	go$pkg.SYS_THREAD_SELFID = 372;
-	go$pkg.SYS___MAC_EXECVE = 380;
-	go$pkg.SYS___MAC_SYSCALL = 381;
-	go$pkg.SYS___MAC_GET_FILE = 382;
-	go$pkg.SYS___MAC_SET_FILE = 383;
-	go$pkg.SYS___MAC_GET_LINK = 384;
-	go$pkg.SYS___MAC_SET_LINK = 385;
-	go$pkg.SYS___MAC_GET_PROC = 386;
-	go$pkg.SYS___MAC_SET_PROC = 387;
-	go$pkg.SYS___MAC_GET_FD = 388;
-	go$pkg.SYS___MAC_SET_FD = 389;
-	go$pkg.SYS___MAC_GET_PID = 390;
-	go$pkg.SYS___MAC_GET_LCID = 391;
-	go$pkg.SYS___MAC_GET_LCTX = 392;
-	go$pkg.SYS___MAC_SET_LCTX = 393;
-	go$pkg.SYS_SETLCID = 394;
-	go$pkg.SYS_GETLCID = 395;
-	go$pkg.SYS_READ_NOCANCEL = 396;
-	go$pkg.SYS_WRITE_NOCANCEL = 397;
-	go$pkg.SYS_OPEN_NOCANCEL = 398;
-	go$pkg.SYS_CLOSE_NOCANCEL = 399;
-	go$pkg.SYS_WAIT4_NOCANCEL = 400;
-	go$pkg.SYS_RECVMSG_NOCANCEL = 401;
-	go$pkg.SYS_SENDMSG_NOCANCEL = 402;
-	go$pkg.SYS_RECVFROM_NOCANCEL = 403;
-	go$pkg.SYS_ACCEPT_NOCANCEL = 404;
-	go$pkg.SYS_MSYNC_NOCANCEL = 405;
-	go$pkg.SYS_FCNTL_NOCANCEL = 406;
-	go$pkg.SYS_SELECT_NOCANCEL = 407;
-	go$pkg.SYS_FSYNC_NOCANCEL = 408;
-	go$pkg.SYS_CONNECT_NOCANCEL = 409;
-	go$pkg.SYS_SIGSUSPEND_NOCANCEL = 410;
-	go$pkg.SYS_READV_NOCANCEL = 411;
-	go$pkg.SYS_WRITEV_NOCANCEL = 412;
-	go$pkg.SYS_SENDTO_NOCANCEL = 413;
-	go$pkg.SYS_PREAD_NOCANCEL = 414;
-	go$pkg.SYS_PWRITE_NOCANCEL = 415;
-	go$pkg.SYS_WAITID_NOCANCEL = 416;
-	go$pkg.SYS_POLL_NOCANCEL = 417;
-	go$pkg.SYS_MSGSND_NOCANCEL = 418;
-	go$pkg.SYS_MSGRCV_NOCANCEL = 419;
-	go$pkg.SYS_SEM_WAIT_NOCANCEL = 420;
-	go$pkg.SYS_AIO_SUSPEND_NOCANCEL = 421;
-	go$pkg.SYS___SIGWAIT_NOCANCEL = 422;
-	go$pkg.SYS___SEMWAIT_SIGNAL_NOCANCEL = 423;
-	go$pkg.SYS___MAC_MOUNT = 424;
-	go$pkg.SYS___MAC_GET_MOUNT = 425;
-	go$pkg.SYS___MAC_GETFSSTAT = 426;
-	go$pkg.SYS_FSGETPATH = 427;
-	go$pkg.SYS_AUDIT_SESSION_SELF = 428;
-	go$pkg.SYS_AUDIT_SESSION_JOIN = 429;
-	go$pkg.SYS_FILEPORT_MAKEPORT = 430;
-	go$pkg.SYS_FILEPORT_MAKEFD = 431;
-	go$pkg.SYS_AUDIT_SESSION_PORT = 432;
-	go$pkg.SYS_PID_SUSPEND = 433;
-	go$pkg.SYS_PID_RESUME = 434;
-	go$pkg.SYS_PID_HIBERNATE = 435;
-	go$pkg.SYS_PID_SHUTDOWN_SOCKETS = 436;
-	go$pkg.SYS_SHARED_REGION_MAP_AND_SLIDE_NP = 438;
-	go$pkg.SYS_MAXSYSCALL = 439;
-	var sizeofPtr = 8;
-	var sizeofShort = 2;
-	var sizeofInt = 4;
-	var sizeofLong = 8;
-	var sizeofLongLong = 8;
-	go$pkg.SizeofSockaddrInet4 = 16;
-	go$pkg.SizeofSockaddrInet6 = 28;
-	go$pkg.SizeofSockaddrAny = 108;
-	go$pkg.SizeofSockaddrUnix = 106;
-	go$pkg.SizeofSockaddrDatalink = 20;
-	go$pkg.SizeofLinger = 8;
-	go$pkg.SizeofIPMreq = 8;
-	go$pkg.SizeofIPv6Mreq = 20;
-	go$pkg.SizeofMsghdr = 48;
-	go$pkg.SizeofCmsghdr = 12;
-	go$pkg.SizeofInet4Pktinfo = 12;
-	go$pkg.SizeofInet6Pktinfo = 20;
-	go$pkg.SizeofIPv6MTUInfo = 32;
-	go$pkg.SizeofICMPv6Filter = 32;
-	go$pkg.PTRACE_TRACEME = 0;
-	go$pkg.PTRACE_CONT = 7;
-	go$pkg.PTRACE_KILL = 8;
-	go$pkg.SizeofIfMsghdr = 112;
-	go$pkg.SizeofIfData = 96;
-	go$pkg.SizeofIfaMsghdr = 20;
-	go$pkg.SizeofIfmaMsghdr = 16;
-	go$pkg.SizeofIfmaMsghdr2 = 20;
-	go$pkg.SizeofRtMsghdr = 92;
-	go$pkg.SizeofRtMetrics = 56;
-	go$pkg.SizeofBpfVersion = 4;
-	go$pkg.SizeofBpfStat = 8;
-	go$pkg.SizeofBpfProgram = 16;
-	go$pkg.SizeofBpfInsn = 8;
-	go$pkg.SizeofBpfHdr = 20;
-	var envOnce = new sync.Once.Ptr();
-	var envLock = new sync.RWMutex.Ptr();
-	var env = false;
-	var envs = (go$sliceType(Go$String)).nil;
-	go$pkg.ForkLock = new sync.RWMutex.Ptr();
-	var zeroProcAttr = new ProcAttr.Ptr();
-	var zeroSysProcAttr = new SysProcAttr.Ptr();
-	var _zero = 0;
-	var mapper = (go$ptrType(mmapper)).nil;
-	go$pkg.Stdin = 0;
-	go$pkg.Stdout = 0;
-	go$pkg.Stderr = 0;
-	go$pkg.SocketDisableIPv6 = false;
-	var ioSync = new Go$Int64(0, 0);
-	var errors = go$makeNativeArray("String", 106, function() { return ""; });
-	var signals = go$makeNativeArray("String", 32, function() { return ""; });
-
+0Ç1initÇ'
 			if (go$packages["runtime"].GOOS === "windows") {
 				Syscall = Syscall6 = Syscall9 = Syscall12 = Syscall15 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.Syscall9 = go$pkg.Syscall12 = go$pkg.Syscall15 = loadlibrary = getprocaddress = function() { throw "Syscalls not available." };
 				getStdHandle = GetCommandLine = go$pkg.GetCommandLine = function() {};

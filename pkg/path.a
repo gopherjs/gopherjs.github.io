@@ -1,4 +1,4 @@
-0‚-‚âpackage path
+0‚-Ápath‚âpackage path
 import errors "errors"
 import strings "strings"
 import utf8 "unicode/utf8"
@@ -16,10 +16,7 @@ func (? *@"".lazybuf) @"".append(@"".c byte) ()
 func (? *@"".lazybuf) @"".index(@"".i int) (? byte)
 func (? *@"".lazybuf) @"".string() (? string)
 $$
-0Nruntimeerrorssync/atomicsynciounicodeunicode/utf8stringspath‚)Ö	var errors = go$packages["errors"];
-	var strings = go$packages["strings"];
-	var utf8 = go$packages["unicode/utf8"];
-	var lazybuf;
+0Nruntimeerrorssync/atomicsynciounicodeunicode/utf8stringspath0<0errorserrors0stringsstrings0unicode/utf8utf8‚Z	var lazybuf;
 	lazybuf = go$newType(0, "Struct", "path.lazybuf", "lazybuf", "path", function(s_, buf_, w_) {
 		this.go$val = this;
 		this.s = s_ !== undefined ? s_ : "";
@@ -29,7 +26,8 @@ $$
 	go$pkg.lazybuf = lazybuf;
 	lazybuf.init([["s", "path", Go$String, ""], ["buf", "path", (go$sliceType(Go$Uint8)), ""], ["w", "path", Go$Int, ""]]);
 	(go$ptrType(lazybuf)).methods = [["append", "path", [Go$Uint8], [], false], ["index", "path", [Go$Int], [Go$Uint8], false], ["string", "path", [], [Go$String], false]];
-	var Match = go$pkg.Match = function(pattern, name) {
+	go$pkg.ErrBadPattern = null;
+0‚'Å0‚–Match‚‹	var Match = go$pkg.Match = function(pattern, name) {
 		var matched, err, star, chunk, _tuple, _tuple$1, _tuple$2, t, ok, err$1, _tuple$3, i, _tuple$4, t$1, ok$1, err$2, _tuple$5, _tuple$6, _tuple$7;
 		matched = false;
 		err = null;
@@ -75,7 +73,7 @@ $$
 		_tuple$7 = [name.length === 0, null], matched = _tuple$7[0], err = _tuple$7[1];
 		return [matched, err];
 	};
-	var scanChunk = function(pattern) {
+0‚1	scanChunk‚"	var scanChunk = function(pattern) {
 		var star, chunk, rest, inrange, i, _ref, _tuple;
 		star = false;
 		chunk = "";
@@ -107,7 +105,8 @@ $$
 		_tuple = [star, pattern.substring(0, i), pattern.substring(i)], star = _tuple[0], chunk = _tuple[1], rest = _tuple[2];
 		return [star, chunk, rest];
 	};
-	var matchChunk = function(chunk, s) {
+0‚Ü
+matchChunk‚Ì	var matchChunk = function(chunk, s) {
 		var rest, ok, err, _ref, _tuple, r, n, notNegated, match, nrange, _tuple$1, lo, hi, _tuple$2, _tuple$3, _tuple$4, n$1, _tuple$5;
 		rest = "";
 		ok = false;
@@ -180,7 +179,7 @@ $$
 		_tuple$5 = [s, true, null], rest = _tuple$5[0], ok = _tuple$5[1], err = _tuple$5[2];
 		return [rest, ok, err];
 	};
-	var getEsc = function(chunk) {
+0‚ÄgetEsc‚¸	var getEsc = function(chunk) {
 		var r, nchunk, err, _tuple, n;
 		r = 0;
 		nchunk = "";
@@ -206,7 +205,7 @@ $$
 		}
 		return [r, nchunk, err];
 	};
-	lazybuf.Ptr.prototype.index = function(i) {
+0‚¢index‚—	lazybuf.Ptr.prototype.index = function(i) {
 		var b, _slice, _index;
 		b = this;
 		if (!(b.buf === (go$sliceType(Go$Uint8)).nil)) {
@@ -215,7 +214,7 @@ $$
 		return b.s.charCodeAt(i);
 	};
 	lazybuf.prototype.index = function(i) { return this.go$val.index(i); };
-	lazybuf.Ptr.prototype.append = function(c) {
+0‚append‚u	lazybuf.Ptr.prototype.append = function(c) {
 		var b, _slice, _index;
 		b = this;
 		if (b.buf === (go$sliceType(Go$Uint8)).nil) {
@@ -230,7 +229,7 @@ $$
 		b.w = b.w + 1 >> 0;
 	};
 	lazybuf.prototype.append = function(c) { return this.go$val.append(c); };
-	lazybuf.Ptr.prototype.string = function() {
+0‚'string‚	lazybuf.Ptr.prototype.string = function() {
 		var b;
 		b = this;
 		if (b.buf === (go$sliceType(Go$Uint8)).nil) {
@@ -239,7 +238,7 @@ $$
 		return go$bytesToString(go$subslice(b.buf, 0, b.w));
 	};
 	lazybuf.prototype.string = function() { return this.go$val.string(); };
-	var Clean = go$pkg.Clean = function(path) {
+0‚~Clean‚s	var Clean = go$pkg.Clean = function(path) {
 		var rooted, n, out, _tuple, r, dotdot, _tuple$1;
 		if (path === "") {
 			return ".";
@@ -287,7 +286,7 @@ $$
 		}
 		return out.string();
 	};
-	var Split = go$pkg.Split = function(path) {
+0‚Split‚	var Split = go$pkg.Split = function(path) {
 		var dir, file, i, _tuple;
 		dir = "";
 		file = "";
@@ -295,7 +294,7 @@ $$
 		_tuple = [path.substring(0, (i + 1 >> 0)), path.substring((i + 1 >> 0))], dir = _tuple[0], file = _tuple[1];
 		return [dir, file];
 	};
-	var Join = go$pkg.Join = function(elem) {
+0‚²Join‚¨	var Join = go$pkg.Join = function(elem) {
 		var _ref, _i, _slice, _index, e, i;
 		_ref = elem;
 		_i = 0;
@@ -308,7 +307,7 @@ $$
 		}
 		return "";
 	};
-	var Ext = go$pkg.Ext = function(path) {
+0úExtò	var Ext = go$pkg.Ext = function(path) {
 		var i;
 		i = path.length - 1 >> 0;
 		while (i >= 0 && !((path.charCodeAt(i) === 47))) {
@@ -319,7 +318,7 @@ $$
 		}
 		return "";
 	};
-	var Base = go$pkg.Base = function(path) {
+0‚ˆBase‚~	var Base = go$pkg.Base = function(path) {
 		var i;
 		if (path === "") {
 			return ".";
@@ -335,10 +334,10 @@ $$
 		}
 		return path;
 	};
-	var IsAbs = go$pkg.IsAbs = function(path) {
+0sIsAbsj	var IsAbs = go$pkg.IsAbs = function(path) {
 		return path.length > 0 && (path.charCodeAt(0) === 47);
 	};
-	var Dir = go$pkg.Dir = function(path) {
+0‚6Dir‚-	var Dir = go$pkg.Dir = function(path) {
 		var _tuple, dir, last;
 		_tuple = Split(path), dir = _tuple[0];
 		dir = Clean(dir);
@@ -351,7 +350,6 @@ $$
 		}
 		return dir;
 	};
-	go$pkg.ErrBadPattern = null;
-	go$pkg.init = function() {
+0hinit`	go$pkg.init = function() {
 		go$pkg.ErrBadPattern = errors.New("syntax error in pattern");
 	};

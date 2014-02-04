@@ -1,4 +1,4 @@
-0ƒ%%‚<#package build
+0ƒ&<go/build‚<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -210,26 +210,9 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0‚@runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
-go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc	go/parserloggo/build‚ç¶	var bytes = go$packages["bytes"];
-	var errors = go$packages["errors"];
-	var fmt = go$packages["fmt"];
-	var ast = go$packages["go/ast"];
-	var doc = go$packages["go/doc"];
-	var parser = go$packages["go/parser"];
-	var token = go$packages["go/token"];
-	var io = go$packages["io"];
-	var ioutil = go$packages["io/ioutil"];
-	var log = go$packages["log"];
-	var os = go$packages["os"];
-	var path = go$packages["path"];
-	var filepath = go$packages["path/filepath"];
-	var runtime = go$packages["runtime"];
-	var sort = go$packages["sort"];
-	var strconv = go$packages["strconv"];
-	var strings = go$packages["strings"];
-	var unicode = go$packages["unicode"];
-	var bufio = go$packages["bufio"];
-	var Context;
+go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc	go/parserloggo/build0‚@0bytesbytes0errorserrors0
+fmtfmt0go/astast0go/docdoc0	go/parserparser0go/tokentoken0ioio0	io/ioutilioutil0
+loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio‚*_	var Context;
 	Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
 		this.go$val = this;
 		this.GOARCH = GOARCH_ !== undefined ? GOARCH_ : "";
@@ -319,7 +302,16 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 	(go$ptrType(NoGoError)).methods = [["Error", "", [], [Go$String], false]];
 	importReader.init([["b", "go/build", (go$ptrType(bufio.Reader)), ""], ["buf", "go/build", (go$sliceType(Go$Uint8)), ""], ["peek", "go/build", Go$Uint8, ""], ["err", "go/build", go$error, ""], ["eof", "go/build", Go$Bool, ""], ["nerr", "go/build", Go$Int, ""]]);
 	(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false], ["readByte", "go/build", [], [Go$Uint8], false], ["readIdent", "go/build", [], [], false], ["readImport", "go/build", [], [], false], ["readKeyword", "go/build", [Go$String], [], false], ["readString", "go/build", [], [], false], ["syntaxError", "go/build", [], [], false]];
-	Context.Ptr.prototype.joinPath = function(elem) {
+‚	go$pkg.Default = new Context.Ptr();
+	var cgoEnabled = false;
+	var slashslash = (go$sliceType(Go$Uint8)).nil;
+	var safeBytes = (go$sliceType(Go$Uint8)).nil;
+	var knownOS = false;
+	var knownArch = false;
+	go$pkg.ToolDir = "";
+	var errSyntax = null;
+	var errNUL = null;
+0‚¼0‚*joinPath‚	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.JoinPath, !(f === go$throwNilPointerError)) {
@@ -328,7 +320,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return filepath.Join(elem);
 	};
 	Context.prototype.joinPath = function(elem) { return this.go$val.joinPath(elem); };
-	Context.Ptr.prototype.splitPathList = function(s) {
+0‚9splitPathList‚&	Context.Ptr.prototype.splitPathList = function(s) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.SplitPathList, !(f === go$throwNilPointerError)) {
@@ -337,7 +329,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return filepath.SplitList(s);
 	};
 	Context.prototype.splitPathList = function(s) { return this.go$val.splitPathList(s); };
-	Context.Ptr.prototype.isAbsPath = function(path$1) {
+0‚:	isAbsPath‚+	Context.Ptr.prototype.isAbsPath = function(path$1) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.IsAbsPath, !(f === go$throwNilPointerError)) {
@@ -346,7 +338,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return filepath.IsAbs(path$1);
 	};
 	Context.prototype.isAbsPath = function(path$1) { return this.go$val.isAbsPath(path$1); };
-	Context.Ptr.prototype.isDir = function(path$1) {
+0‚ŠisDir‚	Context.Ptr.prototype.isDir = function(path$1) {
 		var ctxt, f, _tuple, fi, err;
 		ctxt = this;
 		if (f = ctxt.IsDir, !(f === go$throwNilPointerError)) {
@@ -356,7 +348,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return go$interfaceIsEqual(err, null) && fi.IsDir();
 	};
 	Context.prototype.isDir = function(path$1) { return this.go$val.isDir(path$1); };
-	Context.Ptr.prototype.hasSubdir = function(root, dir) {
+0‚þ	hasSubdir‚ï	Context.Ptr.prototype.hasSubdir = function(root, dir) {
 		var rel, ok, ctxt, f, _tuple, _tuple$1, _tuple$2, rootSym, _tuple$3, dirSym, _tuple$4, _tuple$5, _tuple$6;
 		rel = "";
 		ok = false;
@@ -380,7 +372,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return [rel, ok];
 	};
 	Context.prototype.hasSubdir = function(root, dir) { return this.go$val.hasSubdir(root, dir); };
-	var hasSubdir = function(root, dir) {
+0‚è	hasSubdir‚Ù	var hasSubdir = function(root, dir) {
 		var rel, ok, _tuple, _tuple$1;
 		rel = "";
 		ok = false;
@@ -396,7 +388,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		_tuple$1 = [filepath.ToSlash(dir.substring(root.length)), true], rel = _tuple$1[0], ok = _tuple$1[1];
 		return [rel, ok];
 	};
-	Context.Ptr.prototype.readDir = function(path$1) {
+0‚0readDir‚#	Context.Ptr.prototype.readDir = function(path$1) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.ReadDir, !(f === go$throwNilPointerError)) {
@@ -405,7 +397,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return ioutil.ReadDir(path$1);
 	};
 	Context.prototype.readDir = function(path$1) { return this.go$val.readDir(path$1); };
-	Context.Ptr.prototype.openFile = function(path$1) {
+0‚¾openFile‚°	Context.Ptr.prototype.openFile = function(path$1) {
 		var ctxt, fn, _tuple, f, err;
 		ctxt = this;
 		if (fn = ctxt.OpenFile, !(fn === go$throwNilPointerError)) {
@@ -418,7 +410,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return [f, null];
 	};
 	Context.prototype.openFile = function(path$1) { return this.go$val.openFile(path$1); };
-	Context.Ptr.prototype.isFile = function(path$1) {
+0‚aisFile‚U	Context.Ptr.prototype.isFile = function(path$1) {
 		var ctxt, _tuple, f, err;
 		ctxt = this;
 		_tuple = ctxt.openFile(path$1), f = _tuple[0], err = _tuple[1];
@@ -429,7 +421,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return true;
 	};
 	Context.prototype.isFile = function(path$1) { return this.go$val.isFile(path$1); };
-	Context.Ptr.prototype.gopath = function() {
+0‚†gopath‚z	Context.Ptr.prototype.gopath = function() {
 		var ctxt, all, _ref, _i, _slice, _index, p;
 		ctxt = this;
 		all = (go$sliceType(Go$String)).nil;
@@ -448,7 +440,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return all;
 	};
 	Context.prototype.gopath = function() { return this.go$val.gopath(); };
-	Context.Ptr.prototype.SrcDirs = function() {
+0‚2SrcDirs‚%	Context.Ptr.prototype.SrcDirs = function() {
 		var ctxt, all, dir, _ref, _i, _slice, _index, p, dir$1;
 		ctxt = this;
 		all = (go$sliceType(Go$String)).nil;
@@ -470,7 +462,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return all;
 	};
 	Context.prototype.SrcDirs = function() { return this.go$val.SrcDirs(); };
-	var defaultContext = function() {
+0‚HdefaultContext‚4	var defaultContext = function() {
 		var c, _ref, _entry, _struct;
 		c = new Context.Ptr();
 		c.GOARCH = envOr("GOARCH", "js");
@@ -496,7 +488,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return (_struct = c, new Context.Ptr(_struct.GOARCH, _struct.GOOS, _struct.GOROOT, _struct.GOPATH, _struct.CgoEnabled, _struct.UseAllFiles, _struct.Compiler, _struct.BuildTags, _struct.ReleaseTags, _struct.InstallSuffix, _struct.JoinPath, _struct.SplitPathList, _struct.IsAbsPath, _struct.IsDir, _struct.HasSubdir, _struct.ReadDir, _struct.OpenFile));
 	};
-	var envOr = function(name, def) {
+0envOrx	var envOr = function(name, def) {
 		var s;
 		s = os.Getenv(name);
 		if (s === "") {
@@ -504,25 +496,25 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return s;
 	};
-	Package.Ptr.prototype.IsCommand = function() {
+0Â	IsCommand´	Package.Ptr.prototype.IsCommand = function() {
 		var p;
 		p = this;
 		return p.Name === "main";
 	};
 	Package.prototype.IsCommand = function() { return this.go$val.IsCommand(); };
-	Context.Ptr.prototype.ImportDir = function(dir, mode) {
+0í	ImportDirß	Context.Ptr.prototype.ImportDir = function(dir, mode) {
 		var ctxt;
 		ctxt = this;
 		return ctxt.Import(".", dir, mode);
 	};
 	Context.prototype.ImportDir = function(dir, mode) { return this.go$val.ImportDir(dir, mode); };
-	NoGoError.Ptr.prototype.Error = function() {
+0ÏErrorÅ	NoGoError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "no buildable Go source files in " + e.Dir;
 	};
 	NoGoError.prototype.Error = function() { return this.go$val.Error(); };
-	var nameExt = function(name) {
+0šnameExtŽ	var nameExt = function(name) {
 		var i;
 		i = strings.LastIndex(name, ".");
 		if (i < 0) {
@@ -530,7 +522,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return name.substring(i);
 	};
-	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
+0‚;Import‚;	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
 		var ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, find, err, _tuple$1, dirs, err$1, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$1, _i, _slice, _index, d, name, ext, _tuple$2, match, data, filename, err$2, _ref$2, _tuple$3, pf, pkg, isTest, isXTest, isCgo, _ref$3, _i$1, _slice$1, _index$1, decl, _tuple$4, d$1, ok, _ref$4, _i$2, _slice$2, _index$2, dspec, _tuple$5, spec, ok$1, quoted, _tuple$6, path$2, err$3, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$4, _key$3, _ref$5, _i$3, _keys, _entry$3, tag, _tuple$7, _tuple$8, _tuple$9;
 		ctxt = this;
 		p = new Package.Ptr("", "", "", path$1, "", "", "", "", false, "", (go$sliceType(Go$String)).nil, "", (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false);
@@ -837,7 +829,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return [p, pkgerr];
 	};
 	Context.prototype.Import = function(path$1, srcDir, mode) { return this.go$val.Import(path$1, srcDir, mode); };
-	Context.Ptr.prototype.MatchFile = function(dir, name) {
+0‚j	MatchFile‚[	Context.Ptr.prototype.MatchFile = function(dir, name) {
 		var match, err, ctxt, _tuple;
 		match = false;
 		err = null;
@@ -846,7 +838,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return [match, err];
 	};
 	Context.prototype.MatchFile = function(dir, name) { return this.go$val.MatchFile(dir, name); };
-	Context.Ptr.prototype.matchFile = function(dir, name, returnImports, allTags) {
+0‚­	matchFile‚ž	Context.Ptr.prototype.matchFile = function(dir, name, returnImports, allTags) {
 		var match, data, filename, err, ctxt, i, ext, _ref, _tuple, f, _tuple$1, _tuple$2;
 		match = false;
 		data = (go$sliceType(Go$Uint8)).nil;
@@ -894,7 +886,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return [match, data, filename, err];
 	};
 	Context.prototype.matchFile = function(dir, name, returnImports, allTags) { return this.go$val.matchFile(dir, name, returnImports, allTags); };
-	var cleanImports = function(m) {
+0‚“cleanImports‚	var cleanImports = function(m) {
 		var all, _ref, _i, _keys, _entry, path$1;
 		all = (go$sliceType(Go$String)).make(0, go$keys(m).length, function() { return ""; });
 		_ref = m;
@@ -908,13 +900,13 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		sort.Strings(all);
 		return [all, m];
 	};
-	var Import = go$pkg.Import = function(path$1, srcDir, mode) {
+0ƒImporty	var Import = go$pkg.Import = function(path$1, srcDir, mode) {
 		return go$pkg.Default.Import(path$1, srcDir, mode);
 	};
-	var ImportDir = go$pkg.ImportDir = function(dir, mode) {
+0y	ImportDirl	var ImportDir = go$pkg.ImportDir = function(dir, mode) {
 		return go$pkg.Default.ImportDir(dir, mode);
 	};
-	Context.Ptr.prototype.shouldBuild = function(content, allTags) {
+0‚shouldBuild‚~	Context.Ptr.prototype.shouldBuild = function(content, allTags) {
 		var ctxt, end, p, line, i, _tuple, allok, line$1, i$1, _tuple$1, _slice, _index, f, _slice$1, _index$1, ok, _ref, _i, _slice$2, _index$2, tok;
 		ctxt = this;
 		end = 0;
@@ -970,7 +962,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return allok;
 	};
 	Context.prototype.shouldBuild = function(content, allTags) { return this.go$val.shouldBuild(content, allTags); };
-	Context.Ptr.prototype.saveCgo = function(filename, di, cg) {
+0‚ÑsaveCgo‚Ä	Context.Ptr.prototype.saveCgo = function(filename, di, cg) {
 		var ctxt, text, _ref, _i, _slice, _index, line, orig, i, _tuple, line$1, argstr, f, _slice$1, _index$1, _tuple$1, cond, verb, ok, _ref$1, _i$1, _slice$2, _index$2, c, _tuple$2, args, err, _ref$2, _i$2, _slice$3, _index$3, arg, _ref$3;
 		ctxt = this;
 		text = cg.Text();
@@ -1039,7 +1031,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return null;
 	};
 	Context.prototype.saveCgo = function(filename, di, cg) { return this.go$val.saveCgo(filename, di, cg); };
-	var safeCgoName = function(s) {
+0‚safeCgoName‚	var safeCgoName = function(s) {
 		var i, c;
 		if (s === "") {
 			return false;
@@ -1053,7 +1045,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return true;
 	};
-	var splitQuoted = function(s) {
+0‚ÕsplitQuoted‚Ä	var splitQuoted = function(s) {
 		var r, err, args, arg, escaped, quoted, quote, i, _ref, _i, _rune, rune, _slice, _index, _tuple;
 		r = (go$sliceType(Go$String)).nil;
 		err = null;
@@ -1104,7 +1096,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		_tuple = [args, err], r = _tuple[0], err = _tuple[1];
 		return [r, err];
 	};
-	Context.Ptr.prototype.match = function(name, allTags) {
+0‚match‚ 	Context.Ptr.prototype.match = function(name, allTags) {
 		var ctxt, _key, i, ok1, ok2, _key$1, _ref, _i, _rune, c, _ref$1, _i$1, _slice, _index, tag, _ref$2, _i$2, _slice$1, _index$1, tag$1;
 		ctxt = this;
 		if (name === "") {
@@ -1161,7 +1153,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return false;
 	};
 	Context.prototype.match = function(name, allTags) { return this.go$val.match(name, allTags); };
-	Context.Ptr.prototype.goodOSArchFile = function(name, allTags) {
+0‚DgoodOSArchFile‚0	Context.Ptr.prototype.goodOSArchFile = function(name, allTags) {
 		var ctxt, dot, l, n, _slice, _index, n$1, _slice$1, _index$1, _entry, _slice$2, _index$2, _entry$1, _key, _slice$3, _index$3, _key$1, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _entry$2, _key$2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _entry$3, _key$3, _slice$11, _index$11, _slice$12, _index$12;
 		ctxt = this;
 		if (dot = strings.Index(name, "."), !((dot === -1))) {
@@ -1194,10 +1186,10 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return true;
 	};
 	Context.prototype.goodOSArchFile = function(name, allTags) { return this.go$val.goodOSArchFile(name, allTags); };
-	var IsLocalImport = go$pkg.IsLocalImport = function(path$1) {
+0ÈIsLocalImport¶	var IsLocalImport = go$pkg.IsLocalImport = function(path$1) {
 		return path$1 === "." || path$1 === ".." || strings.HasPrefix(path$1, "./") || strings.HasPrefix(path$1, "../");
 	};
-	var ArchChar = go$pkg.ArchChar = function(goarch) {
+0‚@ArchChar‚2	var ArchChar = go$pkg.ArchChar = function(goarch) {
 		var _ref;
 		_ref = goarch;
 		if (_ref === "386") {
@@ -1209,10 +1201,10 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return ["", errors.New("unsupported GOARCH " + goarch)];
 	};
-	var isIdent = function(c) {
+0‘isIdent…	var isIdent = function(c) {
 		return 65 <= c && c <= 90 || 97 <= c && c <= 122 || 48 <= c && c <= 57 || (c === 95) || c >= 128;
 	};
-	importReader.Ptr.prototype.syntaxError = function() {
+0üsyntaxErrorì	importReader.Ptr.prototype.syntaxError = function() {
 		var r;
 		r = this;
 		if (go$interfaceIsEqual(r.err, null)) {
@@ -1220,7 +1212,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	importReader.prototype.syntaxError = function() { return this.go$val.syntaxError(); };
-	importReader.Ptr.prototype.readByte = function() {
+0‚7readByte‚)	importReader.Ptr.prototype.readByte = function() {
 		var r, _tuple, c, err;
 		r = this;
 		_tuple = r.b.ReadByte(), c = _tuple[0], err = _tuple[1];
@@ -1241,7 +1233,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return c;
 	};
 	importReader.prototype.readByte = function() { return this.go$val.readByte(); };
-	importReader.Ptr.prototype.peekByte = function(skipSpace) {
+0‚ópeekByte‚å	importReader.Ptr.prototype.peekByte = function(skipSpace) {
 		var r, c, _ref, c1, _tuple;
 		r = this;
 		if (!(go$interfaceIsEqual(r.err, null))) {
@@ -1287,7 +1279,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return r.peek;
 	};
 	importReader.prototype.peekByte = function(skipSpace) { return this.go$val.peekByte(skipSpace); };
-	importReader.Ptr.prototype.nextByte = function(skipSpace) {
+0‚nextByteô	importReader.Ptr.prototype.nextByte = function(skipSpace) {
 		var r, c;
 		r = this;
 		c = r.peekByte(skipSpace);
@@ -1295,7 +1287,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		return c;
 	};
 	importReader.prototype.nextByte = function(skipSpace) { return this.go$val.nextByte(skipSpace); };
-	importReader.Ptr.prototype.readKeyword = function(kw) {
+0‚¨readKeyword‚—	importReader.Ptr.prototype.readKeyword = function(kw) {
 		var r, i;
 		r = this;
 		r.peekByte(true);
@@ -1312,7 +1304,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	importReader.prototype.readKeyword = function(kw) { return this.go$val.readKeyword(kw); };
-	importReader.Ptr.prototype.readIdent = function() {
+0‚>	readIdent‚/	importReader.Ptr.prototype.readIdent = function() {
 		var r, c;
 		r = this;
 		c = r.peekByte(true);
@@ -1325,7 +1317,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	importReader.prototype.readIdent = function() { return this.go$val.readIdent(); };
-	importReader.Ptr.prototype.readString = function() {
+0‚¤
+readString‚”	importReader.Ptr.prototype.readString = function() {
 		var r, _ref, c;
 		r = this;
 		_ref = r.nextByte(true);
@@ -1356,7 +1349,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 	};
 	importReader.prototype.readString = function() { return this.go$val.readString(); };
-	importReader.Ptr.prototype.readImport = function() {
+0‚4
+readImport‚$	importReader.Ptr.prototype.readImport = function() {
 		var r, c;
 		r = this;
 		c = r.peekByte(true);
@@ -1368,7 +1362,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		r.readString();
 	};
 	importReader.prototype.readImport = function() { return this.go$val.readImport(); };
-	var readComments = function(f) {
+0‚BreadComments‚0	var readComments = function(f) {
 		var r;
 		r = new importReader.Ptr(bufio.NewReader(f), (go$sliceType(Go$Uint8)).nil, 0, null, false, 0);
 		r.peekByte(true);
@@ -1377,7 +1371,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return [r.buf, r.err];
 	};
-	var readImports = function(f, reportSyntaxError) {
+0‚@readImports‚/	var readImports = function(f, reportSyntaxError) {
 		var r;
 		r = new importReader.Ptr(bufio.NewReader(f), (go$sliceType(Go$Uint8)).nil, 0, null, false, 0);
 		r.readKeyword("package");
@@ -1405,20 +1399,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		}
 		return [r.buf, r.err];
 	};
-	go$pkg.FindOnly = 1;
-	go$pkg.AllowBinary = 2;
-	var goosList = "darwin dragonfly freebsd linux netbsd openbsd plan9 windows ";
-	var goarchList = "386 amd64 arm ";
-	go$pkg.Default = new Context.Ptr();
-	var cgoEnabled = false;
-	var slashslash = (go$sliceType(Go$Uint8)).nil;
-	var safeBytes = (go$sliceType(Go$Uint8)).nil;
-	var knownOS = false;
-	var knownArch = false;
-	go$pkg.ToolDir = "";
-	var errSyntax = null;
-	var errNUL = null;
-	go$pkg.init = function() {
+0‚init‚	go$pkg.init = function() {
 		var _map, _key, _struct, _ref, _i, _slice, _index, v, _key$1, _ref$1, _i$1, _slice$1, _index$1, v$1, _key$2;
 		cgoEnabled = (_map = new Go$Map(), _key = "darwin/386", _map[_key] = { k: _key, v: true }, _key = "darwin/amd64", _map[_key] = { k: _key, v: true }, _key = "dragonfly/386", _map[_key] = { k: _key, v: true }, _key = "dragonfly/amd64", _map[_key] = { k: _key, v: true }, _key = "freebsd/386", _map[_key] = { k: _key, v: true }, _key = "freebsd/amd64", _map[_key] = { k: _key, v: true }, _key = "freebsd/arm", _map[_key] = { k: _key, v: true }, _key = "linux/386", _map[_key] = { k: _key, v: true }, _key = "linux/amd64", _map[_key] = { k: _key, v: true }, _key = "linux/arm", _map[_key] = { k: _key, v: true }, _key = "netbsd/386", _map[_key] = { k: _key, v: true }, _key = "netbsd/amd64", _map[_key] = { k: _key, v: true }, _key = "netbsd/arm", _map[_key] = { k: _key, v: true }, _key = "openbsd/386", _map[_key] = { k: _key, v: true }, _key = "openbsd/amd64", _map[_key] = { k: _key, v: true }, _key = "windows/386", _map[_key] = { k: _key, v: true }, _key = "windows/amd64", _map[_key] = { k: _key, v: true }, _map);
 		go$pkg.Default = (_struct = defaultContext(), new Context.Ptr(_struct.GOARCH, _struct.GOOS, _struct.GOROOT, _struct.GOPATH, _struct.CgoEnabled, _struct.UseAllFiles, _struct.Compiler, _struct.BuildTags, _struct.ReleaseTags, _struct.InstallSuffix, _struct.JoinPath, _struct.SplitPathList, _struct.IsAbsPath, _struct.IsDir, _struct.HasSubdir, _struct.ReadDir, _struct.OpenFile));

@@ -1,4 +1,4 @@
-0ÉßlÇõ~package template
+0É©Uhtml/templateÇõ~package template
 import strings "strings"
 import fmt "fmt"
 import reflect "reflect"
@@ -441,22 +441,8 @@ type @"reflect".StructTag string
 func (? @"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 $$
-0Ç*runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesencodingmathstrconvstringsencoding/base64syscalltimeosreflectfmtsortunicode/utf16encoding/jsonhtmlpath/filepath	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatehtml/templateÉ
-∑	var strings = go$packages["strings"];
-	var fmt = go$packages["fmt"];
-	var reflect = go$packages["reflect"];
-	var bytes = go$packages["bytes"];
-	var unicode = go$packages["unicode"];
-	var utf8 = go$packages["unicode/utf8"];
-	var html = go$packages["html"];
-	var io = go$packages["io"];
-	var template = go$packages["text/template"];
-	var parse = go$packages["text/template/parse"];
-	var json = go$packages["encoding/json"];
-	var ioutil = go$packages["io/ioutil"];
-	var filepath = go$packages["path/filepath"];
-	var sync = go$packages["sync"];
-	var CSS;
+0Ç*runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesencodingmathstrconvstringsencoding/base64syscalltimeosreflectfmtsortunicode/utf16encoding/jsonhtmlpath/filepath	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatehtml/template0Ç0stringsstrings0
+fmtfmt0reflectreflect0bytesbytes0unicodeunicode0unicode/utf8utf80htmlhtml0ioio0text/templatetemplate0text/template/parseparse0encoding/jsonjson0	io/ioutilioutil0path/filepathfilepath0syncsyncÇ&N	var CSS;
 	CSS = go$newType(0, "String", "template.CSS", "CSS", "html/template", null);
 	go$pkg.CSS = CSS;
 	var HTML;
@@ -573,7 +559,39 @@ $$
 	(go$ptrType(Template)).methods = [["AddParseTree", "", [Go$String, (go$ptrType(parse.Tree))], [(go$ptrType(Template)), go$error], false], ["Clone", "", [], [(go$ptrType(Template)), go$error], false], ["Delims", "", [Go$String, Go$String], [(go$ptrType(Template))], false], ["Execute", "", [io.Writer, go$emptyInterface], [go$error], false], ["ExecuteTemplate", "", [io.Writer, Go$String, go$emptyInterface], [go$error], false], ["Funcs", "", [FuncMap], [(go$ptrType(Template))], false], ["Lookup", "", [Go$String], [(go$ptrType(Template))], false], ["Name", "", [], [Go$String], false], ["New", "", [Go$String], [(go$ptrType(Template))], false], ["Parse", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["ParseFiles", "", [(go$sliceType(Go$String))], [(go$ptrType(Template)), go$error], true], ["ParseGlob", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["Templates", "", [], [(go$sliceType((go$ptrType(Template))))], false], ["escape", "html/template", [], [go$error], false], ["lookupAndEscapeTemplate", "html/template", [Go$String], [(go$ptrType(Template)), go$error], false], ["new", "html/template", [Go$String], [(go$ptrType(Template))], false]];
 	nameSpace.init([["mu", "html/template", sync.Mutex, ""], ["set", "html/template", (go$mapType(Go$String, (go$ptrType(Template)))), ""]]);
 	FuncMap.init(Go$String, go$emptyInterface);
-	var attrType = function(name) {
+Ç&	var attrTypeMap = false;
+	var errorType = null;
+	var fmtStringerType = null;
+	var stateNames = go$makeNativeArray("String", 24, function() { return ""; });
+	var delimNames = go$makeNativeArray("String", 4, function() { return ""; });
+	var urlPartNames = go$makeNativeArray("String", 4, function() { return ""; });
+	var elementNames = go$makeNativeArray("String", 5, function() { return ""; });
+	var attrNames = go$makeNativeArray("String", 4, function() { return ""; });
+	var expressionBytes = (go$sliceType(Go$Uint8)).nil;
+	var mozBindingBytes = (go$sliceType(Go$Uint8)).nil;
+	var funcMap = false;
+	var equivEscapers = false;
+	var redundantFuncs = false;
+	var delimEnds = go$makeNativeArray("String", 4, function() { return ""; });
+	var doctypeBytes = (go$sliceType(Go$Uint8)).nil;
+	var htmlReplacementTable = (go$sliceType(Go$String)).nil;
+	var htmlNormReplacementTable = (go$sliceType(Go$String)).nil;
+	var htmlNospaceReplacementTable = (go$sliceType(Go$String)).nil;
+	var htmlNospaceNormReplacementTable = (go$sliceType(Go$String)).nil;
+	var regexpPrecederKeywords = false;
+	var jsonMarshalType = null;
+	var jsStrReplacementTable = (go$sliceType(Go$String)).nil;
+	var jsStrNormReplacementTable = (go$sliceType(Go$String)).nil;
+	var jsRegexpReplacementTable = (go$sliceType(Go$String)).nil;
+	var transitionFunc = go$makeNativeArray("Func", 24, function() { return go$throwNilPointerError; });
+	var commentStart = (go$sliceType(Go$Uint8)).nil;
+	var commentEnd = (go$sliceType(Go$Uint8)).nil;
+	var elementContentType = go$makeNativeArray("Uint8", 5, function() { return 0; });
+	var attrStartStates = go$makeNativeArray("Uint8", 4, function() { return 0; });
+	var specialTagEndMarkers = go$makeNativeArray("String", 5, function() { return ""; });
+	var blockCommentEnd = (go$sliceType(Go$Uint8)).nil;
+	var elementNameMap = false;
+0É›˝0ÇŒattrTypeÇ¿	var attrType = function(name) {
 		var colon, ok, _tuple, _entry, t;
 		name = strings.ToLower(name);
 		if (strings.HasPrefix(name, "data-")) {
@@ -595,7 +613,7 @@ $$
 		}
 		return 0;
 	};
-	var indirect = function(a) {
+0Ç·indirectÇ”	var indirect = function(a) {
 		var t, _struct, v, _struct$1;
 		if (go$interfaceIsEqual(a, null)) {
 			return null;
@@ -609,7 +627,7 @@ $$
 		}
 		return v.Interface();
 	};
-	var indirectToStringerOrError = function(a) {
+0ÇindirectToStringerOrErrorÇÁ	var indirectToStringerOrError = function(a) {
 		var _struct, v, _struct$1;
 		if (go$interfaceIsEqual(a, null)) {
 			return null;
@@ -620,7 +638,7 @@ $$
 		}
 		return v.Interface();
 	};
-	var stringify = function(args) {
+0Çä	stringifyÇ{	var stringify = function(args) {
 		var s, _ref, _type, _slice, _index, _ref$1, _i, _slice$1, _index$1, arg, i, _slice$2, _index$2;
 		if (args.length === 1) {
 			_ref = indirect((_slice = args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
@@ -657,19 +675,19 @@ $$
 		}
 		return [fmt.Sprint(args), 0];
 	};
-	context.Ptr.prototype.String = function() {
+0Ç	StringÇ˝	context.Ptr.prototype.String = function() {
 		var _struct, c;
 		c = (_struct = this, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
 		return fmt.Sprintf("{%v %v %v %v %v %v %v}", new (go$sliceType(go$emptyInterface))([new state(c.state), new delim(c.delim), new urlPart(c.urlPart), new jsCtx(c.jsCtx), new attr(c.attr), new element(c.element), c.err]));
 	};
 	context.prototype.String = function() { return this.go$val.String(); };
-	context.Ptr.prototype.eq = function(d) {
+0Ç‘eqÇÃ	context.Ptr.prototype.eq = function(d) {
 		var _struct, c;
 		c = (_struct = this, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
 		return (c.state === d.state) && (c.delim === d.delim) && (c.urlPart === d.urlPart) && (c.jsCtx === d.jsCtx) && (c.attr === d.attr) && (c.element === d.element) && c.err === d.err;
 	};
 	context.prototype.eq = function(d) { return this.go$val.eq(d); };
-	context.Ptr.prototype.mangle = function(templateName) {
+0Ç{mangleÇo	context.Ptr.prototype.mangle = function(templateName) {
 		var _struct, c, s;
 		c = (_struct = this, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
 		if (c.state === 0) {
@@ -694,7 +712,7 @@ $$
 		return s;
 	};
 	context.prototype.mangle = function(templateName) { return this.go$val.mangle(templateName); };
-	state.prototype.String = function() {
+0ÇPStringÇD	state.prototype.String = function() {
 		var s;
 		s = this.go$val;
 		if ((s >> 0) < 24) {
@@ -703,7 +721,7 @@ $$
 		return fmt.Sprintf("illegal state %d", new (go$sliceType(go$emptyInterface))([new Go$Int((s >> 0))]));
 	};
 	go$ptrType(state).prototype.String = function() { return new state(this.go$get()).String(); };
-	var isComment = function(s) {
+0ÅΩ	isCommentÅØ	var isComment = function(s) {
 		var _ref;
 		_ref = s;
 		if (_ref === 5 || _ref === 13 || _ref === 14 || _ref === 21 || _ref === 22) {
@@ -711,7 +729,7 @@ $$
 		}
 		return false;
 	};
-	var isInTag = function(s) {
+0ÅµisInTagÅ©	var isInTag = function(s) {
 		var _ref;
 		_ref = s;
 		if (_ref === 1 || _ref === 2 || _ref === 3 || _ref === 4 || _ref === 7) {
@@ -719,7 +737,7 @@ $$
 		}
 		return false;
 	};
-	delim.prototype.String = function() {
+0ÇOStringÇC	delim.prototype.String = function() {
 		var d;
 		d = this.go$val;
 		if ((d >> 0) < 4) {
@@ -728,7 +746,7 @@ $$
 		return fmt.Sprintf("illegal delim %d", new (go$sliceType(go$emptyInterface))([new Go$Int((d >> 0))]));
 	};
 	go$ptrType(delim).prototype.String = function() { return new delim(this.go$get()).String(); };
-	urlPart.prototype.String = function() {
+0ÇYStringÇM	urlPart.prototype.String = function() {
 		var u;
 		u = this.go$val;
 		if ((u >> 0) < 4) {
@@ -737,7 +755,7 @@ $$
 		return fmt.Sprintf("illegal urlPart %d", new (go$sliceType(go$emptyInterface))([new Go$Int((u >> 0))]));
 	};
 	go$ptrType(urlPart).prototype.String = function() { return new urlPart(this.go$get()).String(); };
-	jsCtx.prototype.String = function() {
+0Ç«StringÇª	jsCtx.prototype.String = function() {
 		var c, _ref;
 		c = this.go$val;
 		_ref = c;
@@ -751,7 +769,7 @@ $$
 		return fmt.Sprintf("illegal jsCtx %d", new (go$sliceType(go$emptyInterface))([new Go$Int((c >> 0))]));
 	};
 	go$ptrType(jsCtx).prototype.String = function() { return new jsCtx(this.go$get()).String(); };
-	element.prototype.String = function() {
+0ÇYStringÇM	element.prototype.String = function() {
 		var e;
 		e = this.go$val;
 		if ((e >> 0) < 5) {
@@ -760,7 +778,7 @@ $$
 		return fmt.Sprintf("illegal element %d", new (go$sliceType(go$emptyInterface))([new Go$Int((e >> 0))]));
 	};
 	go$ptrType(element).prototype.String = function() { return new element(this.go$get()).String(); };
-	attr.prototype.String = function() {
+0ÇJStringÇ>	attr.prototype.String = function() {
 		var a;
 		a = this.go$val;
 		if ((a >> 0) < 4) {
@@ -769,7 +787,7 @@ $$
 		return fmt.Sprintf("illegal attr %d", new (go$sliceType(go$emptyInterface))([new Go$Int((a >> 0))]));
 	};
 	go$ptrType(attr).prototype.String = function() { return new attr(this.go$get()).String(); };
-	var endsWithCSSKeyword = function(b, kw) {
+0ÇuendsWithCSSKeywordÇ]	var endsWithCSSKeyword = function(b, kw) {
 		var i, _tuple, r;
 		i = b.length - kw.length >> 0;
 		if (i < 0) {
@@ -783,10 +801,10 @@ $$
 		}
 		return go$bytesToString(bytes.ToLower(go$subslice(b, i))) === kw;
 	};
-	var isCSSNmchar = function(r) {
+0ÅÔisCSSNmcharÅﬂ	var isCSSNmchar = function(r) {
 		return 97 <= r && r <= 122 || 65 <= r && r <= 90 || 48 <= r && r <= 57 || (r === 45) || (r === 95) || 128 <= r && r <= 55295 || 57344 <= r && r <= 65533 || 65536 <= r && r <= 1114111;
 	};
-	var decodeCSS = function(s) {
+0ÇÅ	decodeCSSÇr	var decodeCSS = function(s) {
 		var i, b, i$1, _tuple, _slice, _index, j, _slice$1, _index$1, r, _q, _tuple$1, n, _tuple$2, _tuple$3, n$1, _tuple$4;
 		i = bytes.IndexByte(s, 92);
 		if (i === -1) {
@@ -820,10 +838,10 @@ $$
 		}
 		return b;
 	};
-	var isHex = function(c) {
+0risHexi	var isHex = function(c) {
 		return 48 <= c && c <= 57 || 97 <= c && c <= 102 || 65 <= c && c <= 70;
 	};
-	var hexDecode = function(s) {
+0ÇÈ	hexDecodeÇ⁄	var hexDecode = function(s) {
 		var n, _ref, _i, _slice, _index, c;
 		n = 0;
 		_ref = s;
@@ -843,7 +861,7 @@ $$
 		}
 		return n;
 	};
-	var skipCSSSpace = function(c) {
+0Ç≈skipCSSSpaceÇ≥	var skipCSSSpace = function(c) {
 		var _ref, _slice, _index, _slice$1, _index$1;
 		if (c.length === 0) {
 			return c;
@@ -859,7 +877,8 @@ $$
 		}
 		return c;
 	};
-	var isCSSSpace = function(b) {
+0Åø
+isCSSSpaceÅ∞	var isCSSSpace = function(b) {
 		var _ref;
 		_ref = b;
 		if (_ref === 9 || _ref === 10 || _ref === 12 || _ref === 13 || _ref === 32) {
@@ -867,7 +886,8 @@ $$
 		}
 		return false;
 	};
-	var cssEscaper = function(args) {
+0Ç§
+cssEscaperÇî	var cssEscaper = function(args) {
 		var _tuple, s, b, written, _ref, _i, _rune, r, i, repl, _ref$1;
 		_tuple = stringify(args), s = _tuple[0];
 		b = new bytes.Buffer.Ptr();
@@ -934,7 +954,7 @@ $$
 		b.WriteString(s.substring(written));
 		return b.String();
 	};
-	var cssValueFilter = function(args) {
+0ÇﬁcssValueFilterÇ 	var cssValueFilter = function(args) {
 		var _tuple, s, t, _tuple$1, b, id, _ref, _i, _slice, _index, c, i, _ref$1, _slice$1, _index$1;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 1) {
@@ -965,7 +985,7 @@ $$
 		}
 		return go$bytesToString(b);
 	};
-	Error.Ptr.prototype.Error = function() {
+0Ç0ErrorÇ%	Error.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		if (!((e.Line === 0))) {
@@ -976,10 +996,10 @@ $$
 		return "html/template: " + e.Description;
 	};
 	Error.prototype.Error = function() { return this.go$val.Error(); };
-	var errorf = function(k, line, f, args) {
+0terrorfj	var errorf = function(k, line, f, args) {
 		return new Error.Ptr(k, "", line, fmt.Sprintf(f, args));
 	};
-	var escapeTemplates = function(tmpl, names) {
+0Ç≤escapeTemplatesÇù	var escapeTemplates = function(tmpl, names) {
 		var e, _ref, _i, _slice, _index, name, _tuple, _struct, c, err, _tuple$1, _ref$1, _i$1, _slice$1, _index$1, name$1, t, _entry;
 		e = newEscaper(tmpl);
 		_ref = names;
@@ -1011,11 +1031,12 @@ $$
 		e.commit();
 		return null;
 	};
-	var newEscaper = function(t) {
+0Çu
+newEscaperÇe	var newEscaper = function(t) {
 		var _map, _key, _map$1, _key$1, _map$2, _key$2, _map$3, _key$3, _map$4, _key$4, _map$5, _key$5;
 		return new escaper.Ptr(t, (_map = new Go$Map(), _map), (_map$1 = new Go$Map(), _map$1), (_map$2 = new Go$Map(), _map$2), (_map$3 = new Go$Map(), _map$3), (_map$4 = new Go$Map(), _map$4), (_map$5 = new Go$Map(), _map$5));
 	};
-	escaper.Ptr.prototype.escape = function(c, n) {
+0ÇxescapeÇl	escaper.Ptr.prototype.escape = function(c, n) {
 		var e, n$1, _ref, _type, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13;
 		e = this;
 		_ref = n;
@@ -1045,7 +1066,7 @@ $$
 		throw go$panic(new Go$String("escaping " + n.String() + " is unimplemented"));
 	};
 	escaper.prototype.escape = function(c, n) { return this.go$val.escape(c, n); };
-	escaper.Ptr.prototype.escapeAction = function(c, n) {
+0Ç≠escapeActionÇõ	escaper.Ptr.prototype.escapeAction = function(c, n) {
 		var e, _struct, _struct$1, _struct$2, s, _ref, _struct$3, _ref$1, _ref$2, _ref$3, _ref$4, _struct$4;
 		e = this;
 		if (!((n.Pipe.Decl.length === 0))) {
@@ -1115,7 +1136,7 @@ $$
 		return (_struct$4 = c, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err));
 	};
 	escaper.prototype.escapeAction = function(c, n) { return this.go$val.escapeAction(c, n); };
-	var ensurePipelineContains = function(p, s) {
+0ÇÄensurePipelineContainsÇd	var ensurePipelineContains = function(p, s) {
 		var n, idents, i, cmd, _slice, _index, ok, _tuple, x, _slice$1, _index$1, dups, _ref, _i, _slice$2, _index$2, id, _slice$3, _index$3, x$1, _slice$4, _index$4, newCmds, _ref$1, _i$1, _slice$5, _index$5, id$1, _slice$6, _index$6, pos, x$2, _slice$7, _index$7, i$1, _ref$2, _i$2, _slice$8, _index$8, name, _ref$3, _i$3, _slice$9, _index$9, name$1;
 		if (s.length === 0) {
 			return;
@@ -1172,7 +1193,7 @@ $$
 		}
 		p.Cmds = newCmds;
 	};
-	var appendCmd = function(cmds, cmd) {
+0Ç2	appendCmdÇ#	var appendCmd = function(cmds, cmd) {
 		var n, _tuple, x, _slice, _index, _slice$1, _index$1, last, ok, _tuple$1, x$1, _slice$2, _index$2, next, _entry, _entry$1;
 		if (n = cmds.length, !((n === 0))) {
 			_tuple = (x = (_slice = (_slice$1 = cmds, _index$1 = (n - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(parse.IdentifierNode)) ? [x.go$val, true] : [(go$ptrType(parse.IdentifierNode)).nil, false])), last = _tuple[0], ok = _tuple[1];
@@ -1183,7 +1204,8 @@ $$
 		}
 		return go$append(cmds, cmd);
 	};
-	var indexOfStr = function(s, strs, eq) {
+0Çá
+indexOfStrÇw	var indexOfStr = function(s, strs, eq) {
 		var _ref, _i, _slice, _index, t, i;
 		_ref = strs;
 		_i = 0;
@@ -1196,7 +1218,7 @@ $$
 		}
 		return -1;
 	};
-	var escFnsEq = function(a, b) {
+0ÇEescFnsEqÇ7	var escFnsEq = function(a, b) {
 		var e, _entry, e$1, _entry$1;
 		if (e = (_entry = equivEscapers[a], _entry !== undefined ? _entry.v : ""), !(e === "")) {
 			a = e;
@@ -1206,10 +1228,10 @@ $$
 		}
 		return a === b;
 	};
-	var newIdentCmd = function(identifier, pos) {
+0ÅºnewIdentCmdÅ¨	var newIdentCmd = function(identifier, pos) {
 		return new parse.CommandNode.Ptr(4, 0, new (go$sliceType(parse.Node))([parse.NewIdentifier(identifier).SetPos(pos)]));
 	};
-	var nudge = function(c) {
+0ÇnudgeÇ˜	var nudge = function(c) {
 		var _ref, _tuple, _tuple$1, _struct;
 		_ref = c.state;
 		if (_ref === 1) {
@@ -1221,7 +1243,7 @@ $$
 		}
 		return (_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
 	};
-	var join = function(a, b, line, nodeName) {
+0ÇjoinÇ˝	var join = function(a, b, line, nodeName) {
 		var _struct, _struct$1, _struct$2, _struct$3, _struct$4, c, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, c$1, _struct$10, d, _struct$11, _struct$12, _struct$13, _struct$14, _struct$15, _tuple, e, _struct$16, _struct$17, _struct$18, _struct$19;
 		if (a.state === 23) {
 			return (_struct = a, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
@@ -1251,7 +1273,9 @@ $$
 		}
 		return new context.Ptr(23, 0, 0, 0, 0, 0, errorf(3, line, "{{%s}} branches end in different contexts: %v, %v", new (go$sliceType(go$emptyInterface))([new Go$String(nodeName), new a.constructor.Struct(a), new b.constructor.Struct(b)])));
 	};
-	escaper.Ptr.prototype.escapeBranch = function(c, n, nodeName) {
+0Ç
+˜escapeBranchÇ
+Â	escaper.Ptr.prototype.escapeBranch = function(c, n, nodeName) {
 		var e, _struct, _struct$1, c0, _tuple, _struct$2, _struct$3, c1, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, c1$1, _struct$10, _struct$11, _struct$12;
 		e = this;
 		c0 = (_struct$1 = e.escapeList((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), n.List), new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err));
@@ -1268,7 +1292,8 @@ $$
 		return (_struct$12 = join((_struct$10 = c0, new context.Ptr(_struct$10.state, _struct$10.delim, _struct$10.urlPart, _struct$10.jsCtx, _struct$10.attr, _struct$10.element, _struct$10.err)), (_struct$11 = c1$1, new context.Ptr(_struct$11.state, _struct$11.delim, _struct$11.urlPart, _struct$11.jsCtx, _struct$11.attr, _struct$11.element, _struct$11.err)), n.Line, nodeName), new context.Ptr(_struct$12.state, _struct$12.delim, _struct$12.urlPart, _struct$12.jsCtx, _struct$12.attr, _struct$12.element, _struct$12.err));
 	};
 	escaper.prototype.escapeBranch = function(c, n, nodeName) { return this.go$val.escapeBranch(c, n, nodeName); };
-	escaper.Ptr.prototype.escapeList = function(c, n) {
+0Çñ
+escapeListÇÜ	escaper.Ptr.prototype.escapeList = function(c, n) {
 		var e, _struct, _ref, _i, _slice, _index, m, _struct$1, _struct$2, _struct$3;
 		e = this;
 		if (n === (go$ptrType(parse.ListNode)).nil) {
@@ -1283,7 +1308,7 @@ $$
 		return (_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err));
 	};
 	escaper.prototype.escapeList = function(c, n) { return this.go$val.escapeList(c, n); };
-	escaper.Ptr.prototype.escapeListConditionally = function(c, n, filter) {
+0Ç8escapeListConditionallyÇ	escaper.Ptr.prototype.escapeListConditionally = function(c, n, filter) {
 		var e, e1, _ref, _i, _keys, _entry, v, k, _struct, _key, _struct$1, _struct$2, _struct$3, ok, _ref$1, _i$1, _keys$1, _entry$1, v$1, k$1, _struct$4, _key$1, _ref$2, _i$2, _keys$2, _entry$2, v$2, k$2, _key$2, _ref$3, _i$3, _keys$3, _entry$3, v$3, k$3, _key$3, _ref$4, _i$4, _keys$4, _entry$4, v$4, k$4, _ref$5, _i$5, _keys$5, _entry$5, v$5, k$5, _ref$6, _i$6, _keys$6, _entry$6, v$6, k$6, _struct$5;
 		e = this;
 		e1 = newEscaper(e.tmpl);
@@ -1357,7 +1382,7 @@ $$
 		return [(_struct$5 = c, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err)), ok];
 	};
 	escaper.prototype.escapeListConditionally = function(c, n, filter) { return this.go$val.escapeListConditionally(c, n, filter); };
-	escaper.Ptr.prototype.escapeTemplate = function(c, n) {
+0ÇBescapeTemplateÇ.	escaper.Ptr.prototype.escapeTemplate = function(c, n) {
 		var e, _tuple, _struct, _struct$1, name, _struct$2;
 		e = this;
 		_tuple = e.escapeTree((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), n.Name, n.Line), c = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), name = _tuple[1];
@@ -1367,7 +1392,8 @@ $$
 		return (_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err));
 	};
 	escaper.prototype.escapeTemplate = function(c, n) { return this.go$val.escapeTemplate(c, n); };
-	escaper.Ptr.prototype.escapeTree = function(c, name, line) {
+0Ç	W
+escapeTreeÇ	G	escaper.Ptr.prototype.escapeTree = function(c, name, line) {
 		var e, dname, _key, ok, _tuple, _entry, _struct, out, _struct$1, t, _entry$1, dt, _key$1, _struct$2, _struct$3;
 		e = this;
 		dname = c.mangle(name);
@@ -1394,7 +1420,7 @@ $$
 		return [(_struct$3 = e.computeOutCtx((_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), t), new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err)), dname];
 	};
 	escaper.prototype.escapeTree = function(c, name, line) { return this.go$val.escapeTree(c, name, line); };
-	escaper.Ptr.prototype.computeOutCtx = function(c, t) {
+0ÇÜcomputeOutCtxÇs	escaper.Ptr.prototype.computeOutCtx = function(c, t) {
 		var e, _tuple, _struct, _struct$1, c1, ok, ok2, _tuple$1, _struct$2, _struct$3, c2, _struct$4, _tuple$2, _struct$5;
 		e = this;
 		_tuple = e.escapeTemplateBody((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), t), c1 = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), ok = _tuple[1];
@@ -1409,7 +1435,7 @@ $$
 		return (_struct$5 = c1, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err));
 	};
 	escaper.prototype.computeOutCtx = function(c, t) { return this.go$val.computeOutCtx(c, t); };
-	escaper.Ptr.prototype.escapeTemplateBody = function(c, t) {
+0Ç8escapeTemplateBodyÇ 	escaper.Ptr.prototype.escapeTemplateBody = function(c, t) {
 		var e, filter, _struct, _key, _struct$1;
 		e = this;
 		filter = (function(e1, c1) {
@@ -1426,7 +1452,8 @@ $$
 		return e.escapeListConditionally((_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), t.Tree.Root, filter);
 	};
 	escaper.prototype.escapeTemplateBody = function(c, t) { return this.go$val.escapeTemplateBody(c, t); };
-	escaper.Ptr.prototype.escapeText = function(c, n) {
+0Ç=
+escapeTextÇ-	escaper.Ptr.prototype.escapeText = function(c, n) {
 		var e, _tuple, s, written, i, b, _tuple$1, _struct, _struct$1, c1, nread, i1, end, j, _slice, _index, j$1, _slice$1, _index$1, _ref, cs, _struct$2, _tuple$2, _struct$3;
 		e = this;
 		_tuple = [n.Text, 0, 0, new bytes.Buffer.Ptr()], s = _tuple[0], written = _tuple[1], i = _tuple[2], b = _tuple[3];
@@ -1489,7 +1516,7 @@ $$
 		return (_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err));
 	};
 	escaper.prototype.escapeText = function(c, n) { return this.go$val.escapeText(c, n); };
-	var contextAfterText = function(c, s) {
+0Ç	≥contextAfterTextÇ	ù	var contextAfterText = function(c, s) {
 		var _tuple, _struct, _struct$1, c1, i, _struct$2, _struct$3, i$1, j, u, _tuple$1, _struct$4, _struct$5, c1$1, i1, _struct$6, _tuple$2, _struct$7;
 		if (c.delim === 0) {
 			_tuple = tSpecialTagEnd((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s), c1 = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i = _tuple[1];
@@ -1520,7 +1547,7 @@ $$
 		}
 		return [new context.Ptr(1, 0, 0, 0, 0, c.element, (go$ptrType(Error)).nil), i$1];
 	};
-	escaper.Ptr.prototype.editActionNode = function(n, cmds) {
+0ÇèeditActionNodeÇ{	escaper.Ptr.prototype.editActionNode = function(n, cmds) {
 		var e, ok, _tuple, _entry, _key;
 		e = this;
 		if (_tuple = (_entry = e.actionNodeEdits[n.go$key()], _entry !== undefined ? [_entry.v, true] : [(go$sliceType(Go$String)).nil, false]), ok = _tuple[1], ok) {
@@ -1529,7 +1556,7 @@ $$
 		_key = n, (e.actionNodeEdits || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: cmds };
 	};
 	escaper.prototype.editActionNode = function(n, cmds) { return this.go$val.editActionNode(n, cmds); };
-	escaper.Ptr.prototype.editTemplateNode = function(n, callee) {
+0ÇàeditTemplateNodeÇr	escaper.Ptr.prototype.editTemplateNode = function(n, callee) {
 		var e, ok, _tuple, _entry, _key;
 		e = this;
 		if (_tuple = (_entry = e.templateNodeEdits[n.go$key()], _entry !== undefined ? [_entry.v, true] : ["", false]), ok = _tuple[1], ok) {
@@ -1538,7 +1565,7 @@ $$
 		_key = n, (e.templateNodeEdits || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: callee };
 	};
 	escaper.prototype.editTemplateNode = function(n, callee) { return this.go$val.editTemplateNode(n, callee); };
-	escaper.Ptr.prototype.editTextNode = function(n, text) {
+0ÇÇeditTextNodeÇp	escaper.Ptr.prototype.editTextNode = function(n, text) {
 		var e, ok, _tuple, _entry, _key;
 		e = this;
 		if (_tuple = (_entry = e.textNodeEdits[n.go$key()], _entry !== undefined ? [_entry.v, true] : [(go$sliceType(Go$Uint8)).nil, false]), ok = _tuple[1], ok) {
@@ -1547,7 +1574,7 @@ $$
 		_key = n, (e.textNodeEdits || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: text };
 	};
 	escaper.prototype.editTextNode = function(n, text) { return this.go$val.editTextNode(n, text); };
-	escaper.Ptr.prototype.commit = function() {
+0Ç'commitÇ	escaper.Ptr.prototype.commit = function() {
 		var e, _ref, _i, _keys, _entry, name, _ref$1, _i$1, _keys$1, _entry$1, t, err, _tuple, _ref$2, _i$2, _keys$2, _entry$2, s, n, _ref$3, _i$3, _keys$3, _entry$3, name$1, n$1, _ref$4, _i$4, _keys$4, _entry$4, s$1, n$2;
 		e = this;
 		_ref = e.output;
@@ -1597,7 +1624,7 @@ $$
 		}
 	};
 	escaper.prototype.commit = function() { return this.go$val.commit(); };
-	escaper.Ptr.prototype.template = function(name) {
+0ÇátemplateÇy	escaper.Ptr.prototype.template = function(name) {
 		var e, t, _entry;
 		e = this;
 		t = e.tmpl.text.Lookup(name);
@@ -1607,28 +1634,29 @@ $$
 		return t;
 	};
 	escaper.prototype.template = function(name) { return this.go$val.template(name); };
-	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
+0f
+HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		template.HTMLEscape(w, b);
 	};
-	var HTMLEscapeString = go$pkg.HTMLEscapeString = function(s) {
+0HTMLEscapeStringk	var HTMLEscapeString = go$pkg.HTMLEscapeString = function(s) {
 		return template.HTMLEscapeString(s);
 	};
-	var HTMLEscaper = go$pkg.HTMLEscaper = function(args) {
+0qHTMLEscaperb	var HTMLEscaper = go$pkg.HTMLEscaper = function(args) {
 		return template.HTMLEscaper(args);
 	};
-	var JSEscape = go$pkg.JSEscape = function(w, b) {
+0^JSEscapeR	var JSEscape = go$pkg.JSEscape = function(w, b) {
 		template.JSEscape(w, b);
 	};
-	var JSEscapeString = go$pkg.JSEscapeString = function(s) {
+0wJSEscapeStringe	var JSEscapeString = go$pkg.JSEscapeString = function(s) {
 		return template.JSEscapeString(s);
 	};
-	var JSEscaper = go$pkg.JSEscaper = function(args) {
+0i	JSEscaper\	var JSEscaper = go$pkg.JSEscaper = function(args) {
 		return template.JSEscaper(args);
 	};
-	var URLQueryEscaper = go$pkg.URLQueryEscaper = function(args) {
+0ÅÅURLQueryEscapern	var URLQueryEscaper = go$pkg.URLQueryEscaper = function(args) {
 		return template.URLQueryEscaper(args);
 	};
-	var htmlNospaceEscaper = function(args) {
+0Ç6htmlNospaceEscaperÇ	var htmlNospaceEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 2) {
@@ -1636,7 +1664,7 @@ $$
 		}
 		return htmlReplacer(s, htmlNospaceReplacementTable, false);
 	};
-	var attrEscaper = function(args) {
+0ÇattrEscaperÇ	var attrEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 2) {
@@ -1644,7 +1672,7 @@ $$
 		}
 		return htmlReplacer(s, htmlReplacementTable, true);
 	};
-	var rcdataEscaper = function(args) {
+0ÇrcdataEscaperÅ˛	var rcdataEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 2) {
@@ -1652,7 +1680,7 @@ $$
 		}
 		return htmlReplacer(s, htmlReplacementTable, true);
 	};
-	var htmlEscaper = function(args) {
+0ÅﬁhtmlEscaperÅŒ	var htmlEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 2) {
@@ -1660,7 +1688,7 @@ $$
 		}
 		return htmlReplacer(s, htmlReplacementTable, true);
 	};
-	var htmlReplacer = function(s, replacementTable, badRunes) {
+0ÇShtmlReplacerÇA	var htmlReplacer = function(s, replacementTable, badRunes) {
 		var _tuple, written, b, _ref, _i, _rune, r, i, repl, _slice, _index;
 		_tuple = [0, new bytes.Buffer.Ptr()], written = _tuple[0], b = _tuple[1];
 		_ref = s;
@@ -1687,7 +1715,7 @@ $$
 		b.WriteString(s.substring(written));
 		return b.String();
 	};
-	var stripTags = function(html$1) {
+0ÇF	stripTagsÇ7	var stripTags = function(html$1) {
 		var b, _tuple, s, c, i, allText, st, _tuple$1, _struct, _struct$1, d, nread, i1, j, j1, _slice, _index, _struct$2, _tuple$2, i1$1, _tuple$3;
 		b = new bytes.Buffer.Ptr();
 		_tuple = [new (go$sliceType(Go$Uint8))(go$stringToBytes(html$1)), new context.Ptr(0, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), 0, true], s = _tuple[0], c = _tuple[1], i = _tuple[2], allText = _tuple[3];
@@ -1734,7 +1762,7 @@ $$
 		}
 		return b.String();
 	};
-	var htmlNameFilter = function(args) {
+0ÇKhtmlNameFilterÇ7	var htmlNameFilter = function(args) {
 		var _tuple, s, t, t$1, _ref, _i, _rune, r;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 3) {
@@ -1760,10 +1788,10 @@ $$
 		}
 		return s;
 	};
-	var commentEscaper = function(args) {
+0JcommentEscaper8	var commentEscaper = function(args) {
 		return "";
 	};
-	var nextJSCtx = function(s, preceding) {
+0Ç¢	nextJSCtxÇì	var nextJSCtx = function(s, preceding) {
 		var _slice, _index, _tuple, c, n, _ref, start, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, j, _slice$4, _index$4, _entry;
 		s = bytes.TrimRight(s, "\t\n\f\r \xE2\x80\xA8\xE2\x80\xA9");
 		if (s.length === 0) {
@@ -1806,7 +1834,7 @@ $$
 		}
 		return 1;
 	};
-	var indirectToJSONMarshaler = function(a) {
+0Ç•indirectToJSONMarshalerÇà	var indirectToJSONMarshaler = function(a) {
 		var _struct, v, _struct$1;
 		v = (_struct = reflect.ValueOf(a), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		while (!v.Type().Implements(jsonMarshalType) && (v.Kind() === 22) && !v.IsNil()) {
@@ -1814,7 +1842,7 @@ $$
 		}
 		return v.Interface();
 	};
-	var jsValEscaper = function(args) {
+0Ç	ÍjsValEscaperÇ	ÿ	var jsValEscaper = function(args) {
 		var a, _slice, _index, t, _ref, _type, _ref$1, _i, _slice$1, _index$1, arg, i, _slice$2, _index$2, _tuple, b, err, _tuple$1, first, _tuple$2, last, buf, pad, written, i$1, _tuple$3, rune, n, repl;
 		a = null;
 		if (args.length === 1) {
@@ -1883,7 +1911,7 @@ $$
 		}
 		return go$bytesToString(b);
 	};
-	var jsStrEscaper = function(args) {
+0Å˙jsStrEscaperÅÈ	var jsStrEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 5) {
@@ -1891,7 +1919,7 @@ $$
 		}
 		return replace(s, jsStrReplacementTable);
 	};
-	var jsRegexpEscaper = function(args) {
+0Å‹jsRegexpEscaperÅ»	var jsRegexpEscaper = function(args) {
 		var _tuple, s;
 		_tuple = stringify(args), s = _tuple[0];
 		s = replace(s, jsRegexpReplacementTable);
@@ -1900,7 +1928,7 @@ $$
 		}
 		return s;
 	};
-	var replace = function(s, replacementTable) {
+0ÇFreplaceÇ9	var replace = function(s, replacementTable) {
 		var b, written, _ref, _i, _rune, r, i, repl, _slice, _index, _slice$1, _index$1;
 		b = new bytes.Buffer.Ptr();
 		written = 0;
@@ -1930,7 +1958,7 @@ $$
 		b.WriteString(s.substring(written));
 		return b.String();
 	};
-	var isJSIdentPart = function(r) {
+0Ç3isJSIdentPartÇ 	var isJSIdentPart = function(r) {
 		if (r === 36) {
 			return true;
 		} else if (48 <= r && r <= 57) {
@@ -1944,7 +1972,7 @@ $$
 		}
 		return false;
 	};
-	Template.Ptr.prototype.Templates = function() {
+0Ç%	TemplatesÇ	Template.Ptr.prototype.Templates = function() {
 		var t, ns, m, _ref, _i, _keys, _entry, v;
 		var go$deferred = [];
 		try {
@@ -1970,7 +1998,7 @@ $$
 		}
 	};
 	Template.prototype.Templates = function() { return this.go$val.Templates(); };
-	Template.Ptr.prototype.escape = function() {
+0Ç_escapeÇS	Template.Ptr.prototype.escape = function() {
 		var t, err;
 		var go$deferred = [];
 		try {
@@ -1992,7 +2020,7 @@ $$
 		}
 	};
 	Template.prototype.escape = function() { return this.go$val.escape(); };
-	Template.Ptr.prototype.Execute = function(wr, data) {
+0Ç1ExecuteÇ$	Template.Ptr.prototype.Execute = function(wr, data) {
 		var t, err;
 		t = this;
 		if (err = t.escape(), !(go$interfaceIsEqual(err, null))) {
@@ -2001,7 +2029,7 @@ $$
 		return t.text.Execute(wr, data);
 	};
 	Template.prototype.Execute = function(wr, data) { return this.go$val.Execute(wr, data); };
-	Template.Ptr.prototype.ExecuteTemplate = function(wr, name, data) {
+0Ç±ExecuteTemplateÇú	Template.Ptr.prototype.ExecuteTemplate = function(wr, name, data) {
 		var t, _tuple, tmpl, err;
 		t = this;
 		_tuple = t.lookupAndEscapeTemplate(name), tmpl = _tuple[0], err = _tuple[1];
@@ -2011,7 +2039,7 @@ $$
 		return tmpl.text.Execute(wr, data);
 	};
 	Template.prototype.ExecuteTemplate = function(wr, name, data) { return this.go$val.ExecuteTemplate(wr, name, data); };
-	Template.Ptr.prototype.lookupAndEscapeTemplate = function(name) {
+0ÇÆlookupAndEscapeTemplateÇë	Template.Ptr.prototype.lookupAndEscapeTemplate = function(name) {
 		var tmpl, err, t, _entry, _tuple, _tuple$1, _tuple$2;
 		tmpl = (go$ptrType(Template)).nil;
 		err = null;
@@ -2045,7 +2073,7 @@ $$
 		}
 	};
 	Template.prototype.lookupAndEscapeTemplate = function(name) { return this.go$val.lookupAndEscapeTemplate(name); };
-	Template.Ptr.prototype.Parse = function(src) {
+0ÇParseÇˆ	Template.Ptr.prototype.Parse = function(src) {
 		var t, _tuple, ret, err, _ref, _i, _slice, _index, v, name, _entry, tmpl;
 		var go$deferred = [];
 		try {
@@ -2081,7 +2109,7 @@ $$
 		}
 	};
 	Template.prototype.Parse = function(src) { return this.go$val.Parse(src); };
-	Template.Ptr.prototype.AddParseTree = function(name, tree) {
+0ÇTAddParseTreeÇB	Template.Ptr.prototype.AddParseTree = function(name, tree) {
 		var t, _tuple, text, err, ret, _key;
 		var go$deferred = [];
 		try {
@@ -2106,7 +2134,7 @@ $$
 		}
 	};
 	Template.prototype.AddParseTree = function(name, tree) { return this.go$val.AddParseTree(name, tree); };
-	Template.Ptr.prototype.Clone = function() {
+0Ç'CloneÇ	Template.Ptr.prototype.Clone = function() {
 		var t, _tuple, textClone, err, ret, _ref, _i, _slice, _index, x, name, _entry, src, _key;
 		var go$deferred = [];
 		try {
@@ -2142,13 +2170,13 @@ $$
 		}
 	};
 	Template.prototype.Clone = function() { return this.go$val.Clone(); };
-	var New = go$pkg.New = function(name) {
+0Ç^NewÇU	var New = go$pkg.New = function(name) {
 		var tmpl, _key;
 		tmpl = new Template.Ptr(false, template.New(name), (go$ptrType(parse.Tree)).nil, new nameSpace.Ptr(new sync.Mutex.Ptr(), new Go$Map()));
 		_key = name, (tmpl.nameSpace.set || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: tmpl };
 		return tmpl;
 	};
-	Template.Ptr.prototype.New = function(name) {
+0ÇøNewÇ∂	Template.Ptr.prototype.New = function(name) {
 		var t;
 		var go$deferred = [];
 		try {
@@ -2164,7 +2192,7 @@ $$
 		}
 	};
 	Template.prototype.New = function(name) { return this.go$val.New(name); };
-	Template.Ptr.prototype.new$ = function(name) {
+0ÇñnewÇç	Template.Ptr.prototype.new$ = function(name) {
 		var t, tmpl, _key;
 		t = this;
 		tmpl = new Template.Ptr(false, t.text.New(name), (go$ptrType(parse.Tree)).nil, t.nameSpace);
@@ -2172,27 +2200,27 @@ $$
 		return tmpl;
 	};
 	Template.prototype.new$ = function(name) { return this.go$val.new$(name); };
-	Template.Ptr.prototype.Name = function() {
+0Å¨NameÅ£	Template.Ptr.prototype.Name = function() {
 		var t;
 		t = this;
 		return t.text.Name();
 	};
 	Template.prototype.Name = function() { return this.go$val.Name(); };
-	Template.Ptr.prototype.Funcs = function(funcMap$1) {
+0Å⁄FuncsÅ–	Template.Ptr.prototype.Funcs = function(funcMap$1) {
 		var t;
 		t = this;
 		t.text.Funcs(funcMap$1);
 		return t;
 	};
 	Template.prototype.Funcs = function(funcMap$1) { return this.go$val.Funcs(funcMap$1); };
-	Template.Ptr.prototype.Delims = function(left, right) {
+0ÅÁDelimsÅ‹	Template.Ptr.prototype.Delims = function(left, right) {
 		var t;
 		t = this;
 		t.text.Delims(left, right);
 		return t;
 	};
 	Template.prototype.Delims = function(left, right) { return this.go$val.Delims(left, right); };
-	Template.Ptr.prototype.Lookup = function(name) {
+0Ç%LookupÇ	Template.Ptr.prototype.Lookup = function(name) {
 		var t, _entry;
 		var go$deferred = [];
 		try {
@@ -2208,22 +2236,25 @@ $$
 		}
 	};
 	Template.prototype.Lookup = function(name) { return this.go$val.Lookup(name); };
-	var Must = go$pkg.Must = function(t, err) {
+0ÅçMustÅÑ	var Must = go$pkg.Must = function(t, err) {
 		if (!(go$interfaceIsEqual(err, null))) {
 			throw go$panic(err);
 		}
 		return t;
 	};
-	var ParseFiles = go$pkg.ParseFiles = function(filenames) {
+0Åä
+ParseFiles|	var ParseFiles = go$pkg.ParseFiles = function(filenames) {
 		return parseFiles((go$ptrType(Template)).nil, filenames);
 	};
-	Template.Ptr.prototype.ParseFiles = function(filenames) {
+0ÅÍ
+ParseFilesÅ€	Template.Ptr.prototype.ParseFiles = function(filenames) {
 		var t;
 		t = this;
 		return parseFiles(t, filenames);
 	};
 	Template.prototype.ParseFiles = function(filenames) { return this.go$val.ParseFiles(filenames); };
-	var parseFiles = function(t, filenames) {
+0ÇÅ
+parseFilesÇq	var parseFiles = function(t, filenames) {
 		var _ref, _i, _slice, _index, filename, _tuple, b, err, s, name, tmpl, _tuple$1;
 		if (filenames.length === 0) {
 			return [(go$ptrType(Template)).nil, fmt.Errorf("html/template: no files named in call to ParseFiles", new (go$sliceType(go$emptyInterface))([]))];
@@ -2254,16 +2285,16 @@ $$
 		}
 		return [t, null];
 	};
-	var ParseGlob = go$pkg.ParseGlob = function(pattern) {
+0ÅÇ	ParseGlobu	var ParseGlob = go$pkg.ParseGlob = function(pattern) {
 		return parseGlob((go$ptrType(Template)).nil, pattern);
 	};
-	Template.Ptr.prototype.ParseGlob = function(pattern) {
+0Å›	ParseGlobÅœ	Template.Ptr.prototype.ParseGlob = function(pattern) {
 		var t;
 		t = this;
 		return parseGlob(t, pattern);
 	};
 	Template.prototype.ParseGlob = function(pattern) { return this.go$val.ParseGlob(pattern); };
-	var parseGlob = function(t, pattern) {
+0ÇÏ	parseGlobÇ›	var parseGlob = function(t, pattern) {
 		var _tuple, filenames, err;
 		_tuple = filepath.Glob(pattern), filenames = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -2274,7 +2305,7 @@ $$
 		}
 		return parseFiles(t, filenames);
 	};
-	var tText = function(c, s) {
+0Ç$tTextÇ	var tText = function(c, s) {
 		var k, i, _struct, end, _slice, _index, _struct$1, _tuple, _tuple$1, j, e;
 		k = 0;
 		while (true) {
@@ -2302,7 +2333,7 @@ $$
 			k = j;
 		}
 	};
-	var tTag = function(c, s) {
+0ÇëtTagÇá	var tTag = function(c, s) {
 		var i, _struct, _slice, _index, _tuple, j, err, _tuple$1, state$1, attr$1, _ref;
 		i = eatWhiteSpace(s, 0);
 		if (i === s.length) {
@@ -2334,7 +2365,7 @@ $$
 		}
 		return [new context.Ptr(state$1, 0, 0, 0, attr$1, c.element, (go$ptrType(Error)).nil), j];
 	};
-	var tAttrName = function(c, s) {
+0ÇÕ	tAttrNameÇæ	var tAttrName = function(c, s) {
 		var _tuple, i, err, _struct;
 		_tuple = eatAttrName(s, 0), i = _tuple[0], err = _tuple[1];
 		if (!(err === (go$ptrType(Error)).nil)) {
@@ -2344,7 +2375,8 @@ $$
 		}
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), i];
 	};
-	var tAfterName = function(c, s) {
+0Çq
+tAfterNameÇa	var tAfterName = function(c, s) {
 		var i, _slice, _index, _struct, _struct$1, _struct$2;
 		i = eatWhiteSpace(s, 0);
 		if (i === s.length) {
@@ -2356,7 +2388,7 @@ $$
 		c.state = 4;
 		return [(_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), i + 1 >> 0];
 	};
-	var tBeforeValue = function(c, s) {
+0ÇˆtBeforeValueÇ‰	var tBeforeValue = function(c, s) {
 		var i, _struct, delim$1, _ref, _slice, _index, _tuple, _tuple$1, _tuple$2, _struct$1;
 		i = eatWhiteSpace(s, 0);
 		if (i === s.length) {
@@ -2372,14 +2404,14 @@ $$
 		_tuple$2 = [attrStartStates[c.attr], delim$1, 0], c.state = _tuple$2[0], c.delim = _tuple$2[1], c.attr = _tuple$2[2];
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i];
 	};
-	var tHTMLCmt = function(c, s) {
+0ÇstHTMLCmtÇe	var tHTMLCmt = function(c, s) {
 		var i, _struct;
 		if (i = bytes.Index(s, commentEnd), !((i === -1))) {
 			return [new context.Ptr(0, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), i + 3 >> 0];
 		}
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
-	var tSpecialTagEnd = function(c, s) {
+0Ç’tSpecialTagEndÇ¡	var tSpecialTagEnd = function(c, s) {
 		var i, _struct;
 		if (!((c.element === 0))) {
 			if (i = strings.Index(strings.ToLower(go$bytesToString(s)), specialTagEndMarkers[c.element]), !((i === -1))) {
@@ -2388,11 +2420,11 @@ $$
 		}
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
-	var tAttr = function(c, s) {
+0Å⁄tAttrÅ–	var tAttr = function(c, s) {
 		var _struct;
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
-	var tURL = function(c, s) {
+0ÇrtURLÇh	var tURL = function(c, s) {
 		var _struct;
 		if (bytes.IndexAny(s, "#?") >= 0) {
 			c.urlPart = 2;
@@ -2401,7 +2433,7 @@ $$
 		}
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
-	var tJS = function(c, s) {
+0ÇªtJSÇ≤	var tJS = function(c, s) {
 		var i, _struct, _ref, _slice, _index, _tuple, _tuple$1, _slice$1, _index$1, _slice$2, _index$2, _tuple$2, _tuple$3, _struct$1;
 		i = bytes.IndexAny(s, "\"'/");
 		if (i === -1) {
@@ -2431,7 +2463,7 @@ $$
 		}
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i + 1 >> 0];
 	};
-	var tJSDelimited = function(c, s) {
+0Ç^tJSDelimitedÇL	var tJSDelimited = function(c, s) {
 		var specials, _ref, _tuple, k, inCharset, i, _ref$1, _slice, _index, _tuple$1, _struct, _struct$1;
 		specials = "\\\"";
 		_ref = c.state;
@@ -2469,7 +2501,7 @@ $$
 		}
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), s.length];
 	};
-	var tBlockCmt = function(c, s) {
+0Çö	tBlockCmtÇã	var tBlockCmt = function(c, s) {
 		var i, _struct, _ref, _struct$1;
 		i = bytes.Index(s, blockCommentEnd);
 		if (i === -1) {
@@ -2485,7 +2517,7 @@ $$
 		}
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i + 2 >> 0];
 	};
-	var tLineCmt = function(c, s) {
+0ÇïtLineCmtÇá	var tLineCmt = function(c, s) {
 		var lineTerminators, endState, _ref, _tuple, _tuple$1, i, _struct, _struct$1;
 		lineTerminators = "";
 		endState = 0;
@@ -2504,7 +2536,7 @@ $$
 		c.state = endState;
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i];
 	};
-	var tCSS = function(c, s) {
+0Ç:tCSSÇ0	var tCSS = function(c, s) {
 		var k, i, _struct, _ref, _slice, _index, p, j, _slice$1, _index$1, _slice$2, _index$2, _tuple, _tuple$1, _struct$1, _ref$1, _slice$3, _index$3, _struct$2, _struct$3, _struct$4, _struct$5;
 		k = 0;
 		while (true) {
@@ -2547,7 +2579,7 @@ $$
 			k = i + 1 >> 0;
 		}
 	};
-	var tCSSStr = function(c, s) {
+0ÇstCSSStrÇf	var tCSSStr = function(c, s) {
 		var endAndEsc, _ref, k, i, _tuple, _struct, _struct$1, c$1, nread, _struct$2, _slice, _index, _struct$3, _tuple$1, _struct$4, _struct$5;
 		endAndEsc = "";
 		_ref = c.state;
@@ -2580,11 +2612,11 @@ $$
 			k = i + 1 >> 0;
 		}
 	};
-	var tError = function(c, s) {
+0Å‹tErrorÅ—	var tError = function(c, s) {
 		var _struct;
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
-	var eatAttrName = function(s, i) {
+0ÇœeatAttrNameÇæ	var eatAttrName = function(s, i) {
 		var j, _ref, _slice, _index;
 		j = i;
 		while (j < s.length) {
@@ -2599,13 +2631,15 @@ $$
 		}
 		return [s.length, (go$ptrType(Error)).nil];
 	};
-	var asciiAlpha = function(c) {
+0f
+asciiAlphaX	var asciiAlpha = function(c) {
 		return 65 <= c && c <= 90 || 97 <= c && c <= 122;
 	};
-	var asciiAlphaNum = function(c) {
+0fasciiAlphaNumU	var asciiAlphaNum = function(c) {
 		return asciiAlpha(c) || 48 <= c && c <= 57;
 	};
-	var eatTagName = function(s, i) {
+0Ç3
+eatTagNameÇ#	var eatTagName = function(s, i) {
 		var _slice, _index, j, _slice$1, _index$1, x, _slice$2, _index$2, _entry;
 		if ((i === s.length) || !asciiAlpha((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")))) {
 			return [i, 0];
@@ -2625,7 +2659,7 @@ $$
 		}
 		return [j, (_entry = elementNameMap[strings.ToLower(go$bytesToString(go$subslice(s, i, j)))], _entry !== undefined ? _entry.v : 0)];
 	};
-	var eatWhiteSpace = function(s, i) {
+0ÇπeatWhiteSpaceÇ¶	var eatWhiteSpace = function(s, i) {
 		var j, _ref, _slice, _index;
 		j = i;
 		while (j < s.length) {
@@ -2638,7 +2672,7 @@ $$
 		}
 		return s.length;
 	};
-	var urlFilter = function(args) {
+0Ç«	urlFilterÇ∏	var urlFilter = function(args) {
 		var _tuple, s, t, i, protocol;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 6) {
@@ -2652,13 +2686,14 @@ $$
 		}
 		return s;
 	};
-	var urlEscaper = function(args) {
+0Y
+urlEscaperK	var urlEscaper = function(args) {
 		return urlProcessor(false, args);
 	};
-	var urlNormalizer = function(args) {
+0^urlNormalizerM	var urlNormalizer = function(args) {
 		return urlProcessor(true, args);
 	};
-	var urlProcessor = function(norm, args) {
+0Ç∆urlProcessorÇ¥	var urlProcessor = function(norm, args) {
 		var _tuple, s, t, b, written, _tuple$1, i, n, c, _ref;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 6) {
@@ -2708,103 +2743,7 @@ $$
 		b.WriteString(s.substring(written));
 		return b.String();
 	};
-	var contentTypePlain = 0;
-	var contentTypeCSS = 1;
-	var contentTypeHTML = 2;
-	var contentTypeHTMLAttr = 3;
-	var contentTypeJS = 4;
-	var contentTypeJSStr = 5;
-	var contentTypeURL = 6;
-	var contentTypeUnsafe = 7;
-	var stateText = 0;
-	var stateTag = 1;
-	var stateAttrName = 2;
-	var stateAfterName = 3;
-	var stateBeforeValue = 4;
-	var stateHTMLCmt = 5;
-	var stateRCDATA = 6;
-	var stateAttr = 7;
-	var stateURL = 8;
-	var stateJS = 9;
-	var stateJSDqStr = 10;
-	var stateJSSqStr = 11;
-	var stateJSRegexp = 12;
-	var stateJSBlockCmt = 13;
-	var stateJSLineCmt = 14;
-	var stateCSS = 15;
-	var stateCSSDqStr = 16;
-	var stateCSSSqStr = 17;
-	var stateCSSDqURL = 18;
-	var stateCSSSqURL = 19;
-	var stateCSSURL = 20;
-	var stateCSSBlockCmt = 21;
-	var stateCSSLineCmt = 22;
-	var stateError = 23;
-	var delimNone = 0;
-	var delimDoubleQuote = 1;
-	var delimSingleQuote = 2;
-	var delimSpaceOrTagEnd = 3;
-	var urlPartNone = 0;
-	var urlPartPreQuery = 1;
-	var urlPartQueryOrFrag = 2;
-	var urlPartUnknown = 3;
-	var jsCtxRegexp = 0;
-	var jsCtxDivOp = 1;
-	var jsCtxUnknown = 2;
-	var elementNone = 0;
-	var elementScript = 1;
-	var elementStyle = 2;
-	var elementTextarea = 3;
-	var elementTitle = 4;
-	var attrNone = 0;
-	var attrScript = 1;
-	var attrStyle = 2;
-	var attrURL = 3;
-	go$pkg.OK = 0;
-	go$pkg.ErrAmbigContext = 1;
-	go$pkg.ErrBadHTML = 2;
-	go$pkg.ErrBranchEnd = 3;
-	go$pkg.ErrEndContext = 4;
-	go$pkg.ErrNoSuchTemplate = 5;
-	go$pkg.ErrOutputContext = 6;
-	go$pkg.ErrPartialCharset = 7;
-	go$pkg.ErrPartialEscape = 8;
-	go$pkg.ErrRangeLoopReentry = 9;
-	go$pkg.ErrSlashAmbig = 10;
-	var filterFailsafe = "ZgotmplZ";
-	var attrTypeMap = false;
-	var errorType = null;
-	var fmtStringerType = null;
-	var stateNames = go$makeNativeArray("String", 24, function() { return ""; });
-	var delimNames = go$makeNativeArray("String", 4, function() { return ""; });
-	var urlPartNames = go$makeNativeArray("String", 4, function() { return ""; });
-	var elementNames = go$makeNativeArray("String", 5, function() { return ""; });
-	var attrNames = go$makeNativeArray("String", 4, function() { return ""; });
-	var expressionBytes = (go$sliceType(Go$Uint8)).nil;
-	var mozBindingBytes = (go$sliceType(Go$Uint8)).nil;
-	var funcMap = false;
-	var equivEscapers = false;
-	var redundantFuncs = false;
-	var delimEnds = go$makeNativeArray("String", 4, function() { return ""; });
-	var doctypeBytes = (go$sliceType(Go$Uint8)).nil;
-	var htmlReplacementTable = (go$sliceType(Go$String)).nil;
-	var htmlNormReplacementTable = (go$sliceType(Go$String)).nil;
-	var htmlNospaceReplacementTable = (go$sliceType(Go$String)).nil;
-	var htmlNospaceNormReplacementTable = (go$sliceType(Go$String)).nil;
-	var regexpPrecederKeywords = false;
-	var jsonMarshalType = null;
-	var jsStrReplacementTable = (go$sliceType(Go$String)).nil;
-	var jsStrNormReplacementTable = (go$sliceType(Go$String)).nil;
-	var jsRegexpReplacementTable = (go$sliceType(Go$String)).nil;
-	var transitionFunc = go$makeNativeArray("Func", 24, function() { return go$throwNilPointerError; });
-	var commentStart = (go$sliceType(Go$Uint8)).nil;
-	var commentEnd = (go$sliceType(Go$Uint8)).nil;
-	var elementContentType = go$makeNativeArray("Uint8", 5, function() { return 0; });
-	var attrStartStates = go$makeNativeArray("Uint8", 4, function() { return 0; });
-	var specialTagEndMarkers = go$makeNativeArray("String", 5, function() { return ""; });
-	var blockCommentEnd = (go$sliceType(Go$Uint8)).nil;
-	var elementNameMap = false;
-	go$pkg.init = function() {
+0Ç@UinitÇ@K	go$pkg.init = function() {
 		var _map, _key, _map$1, _key$1, _map$2, _key$2, _map$3, _key$3, _map$4, _key$4, _map$5, _key$5, _map$6, _key$6, _map$7, _key$7, _map$8, _key$8, _map$9, _key$9, _map$10, _key$10;
 		attrTypeMap = (_map = new Go$Map(), _key = "accept", _map[_key] = { k: _key, v: 0 }, _key = "accept-charset", _map[_key] = { k: _key, v: 7 }, _key = "action", _map[_key] = { k: _key, v: 6 }, _key = "alt", _map[_key] = { k: _key, v: 0 }, _key = "archive", _map[_key] = { k: _key, v: 6 }, _key = "async", _map[_key] = { k: _key, v: 7 }, _key = "autocomplete", _map[_key] = { k: _key, v: 0 }, _key = "autofocus", _map[_key] = { k: _key, v: 0 }, _key = "autoplay", _map[_key] = { k: _key, v: 0 }, _key = "background", _map[_key] = { k: _key, v: 6 }, _key = "border", _map[_key] = { k: _key, v: 0 }, _key = "checked", _map[_key] = { k: _key, v: 0 }, _key = "cite", _map[_key] = { k: _key, v: 6 }, _key = "challenge", _map[_key] = { k: _key, v: 7 }, _key = "charset", _map[_key] = { k: _key, v: 7 }, _key = "class", _map[_key] = { k: _key, v: 0 }, _key = "classid", _map[_key] = { k: _key, v: 6 }, _key = "codebase", _map[_key] = { k: _key, v: 6 }, _key = "cols", _map[_key] = { k: _key, v: 0 }, _key = "colspan", _map[_key] = { k: _key, v: 0 }, _key = "content", _map[_key] = { k: _key, v: 7 }, _key = "contenteditable", _map[_key] = { k: _key, v: 0 }, _key = "contextmenu", _map[_key] = { k: _key, v: 0 }, _key = "controls", _map[_key] = { k: _key, v: 0 }, _key = "coords", _map[_key] = { k: _key, v: 0 }, _key = "crossorigin", _map[_key] = { k: _key, v: 7 }, _key = "data", _map[_key] = { k: _key, v: 6 }, _key = "datetime", _map[_key] = { k: _key, v: 0 }, _key = "default", _map[_key] = { k: _key, v: 0 }, _key = "defer", _map[_key] = { k: _key, v: 7 }, _key = "dir", _map[_key] = { k: _key, v: 0 }, _key = "dirname", _map[_key] = { k: _key, v: 0 }, _key = "disabled", _map[_key] = { k: _key, v: 0 }, _key = "draggable", _map[_key] = { k: _key, v: 0 }, _key = "dropzone", _map[_key] = { k: _key, v: 0 }, _key = "enctype", _map[_key] = { k: _key, v: 7 }, _key = "for", _map[_key] = { k: _key, v: 0 }, _key = "form", _map[_key] = { k: _key, v: 7 }, _key = "formaction", _map[_key] = { k: _key, v: 6 }, _key = "formenctype", _map[_key] = { k: _key, v: 7 }, _key = "formmethod", _map[_key] = { k: _key, v: 7 }, _key = "formnovalidate", _map[_key] = { k: _key, v: 7 }, _key = "formtarget", _map[_key] = { k: _key, v: 0 }, _key = "headers", _map[_key] = { k: _key, v: 0 }, _key = "height", _map[_key] = { k: _key, v: 0 }, _key = "hidden", _map[_key] = { k: _key, v: 0 }, _key = "high", _map[_key] = { k: _key, v: 0 }, _key = "href", _map[_key] = { k: _key, v: 6 }, _key = "hreflang", _map[_key] = { k: _key, v: 0 }, _key = "http-equiv", _map[_key] = { k: _key, v: 7 }, _key = "icon", _map[_key] = { k: _key, v: 6 }, _key = "id", _map[_key] = { k: _key, v: 0 }, _key = "ismap", _map[_key] = { k: _key, v: 0 }, _key = "keytype", _map[_key] = { k: _key, v: 7 }, _key = "kind", _map[_key] = { k: _key, v: 0 }, _key = "label", _map[_key] = { k: _key, v: 0 }, _key = "lang", _map[_key] = { k: _key, v: 0 }, _key = "language", _map[_key] = { k: _key, v: 7 }, _key = "list", _map[_key] = { k: _key, v: 0 }, _key = "longdesc", _map[_key] = { k: _key, v: 6 }, _key = "loop", _map[_key] = { k: _key, v: 0 }, _key = "low", _map[_key] = { k: _key, v: 0 }, _key = "manifest", _map[_key] = { k: _key, v: 6 }, _key = "max", _map[_key] = { k: _key, v: 0 }, _key = "maxlength", _map[_key] = { k: _key, v: 0 }, _key = "media", _map[_key] = { k: _key, v: 0 }, _key = "mediagroup", _map[_key] = { k: _key, v: 0 }, _key = "method", _map[_key] = { k: _key, v: 7 }, _key = "min", _map[_key] = { k: _key, v: 0 }, _key = "multiple", _map[_key] = { k: _key, v: 0 }, _key = "name", _map[_key] = { k: _key, v: 0 }, _key = "novalidate", _map[_key] = { k: _key, v: 7 }, _key = "open", _map[_key] = { k: _key, v: 0 }, _key = "optimum", _map[_key] = { k: _key, v: 0 }, _key = "pattern", _map[_key] = { k: _key, v: 7 }, _key = "placeholder", _map[_key] = { k: _key, v: 0 }, _key = "poster", _map[_key] = { k: _key, v: 6 }, _key = "profile", _map[_key] = { k: _key, v: 6 }, _key = "preload", _map[_key] = { k: _key, v: 0 }, _key = "pubdate", _map[_key] = { k: _key, v: 0 }, _key = "radiogroup", _map[_key] = { k: _key, v: 0 }, _key = "readonly", _map[_key] = { k: _key, v: 0 }, _key = "rel", _map[_key] = { k: _key, v: 7 }, _key = "required", _map[_key] = { k: _key, v: 0 }, _key = "reversed", _map[_key] = { k: _key, v: 0 }, _key = "rows", _map[_key] = { k: _key, v: 0 }, _key = "rowspan", _map[_key] = { k: _key, v: 0 }, _key = "sandbox", _map[_key] = { k: _key, v: 7 }, _key = "spellcheck", _map[_key] = { k: _key, v: 0 }, _key = "scope", _map[_key] = { k: _key, v: 0 }, _key = "scoped", _map[_key] = { k: _key, v: 0 }, _key = "seamless", _map[_key] = { k: _key, v: 0 }, _key = "selected", _map[_key] = { k: _key, v: 0 }, _key = "shape", _map[_key] = { k: _key, v: 0 }, _key = "size", _map[_key] = { k: _key, v: 0 }, _key = "sizes", _map[_key] = { k: _key, v: 0 }, _key = "span", _map[_key] = { k: _key, v: 0 }, _key = "src", _map[_key] = { k: _key, v: 6 }, _key = "srcdoc", _map[_key] = { k: _key, v: 2 }, _key = "srclang", _map[_key] = { k: _key, v: 0 }, _key = "start", _map[_key] = { k: _key, v: 0 }, _key = "step", _map[_key] = { k: _key, v: 0 }, _key = "style", _map[_key] = { k: _key, v: 1 }, _key = "tabindex", _map[_key] = { k: _key, v: 0 }, _key = "target", _map[_key] = { k: _key, v: 0 }, _key = "title", _map[_key] = { k: _key, v: 0 }, _key = "type", _map[_key] = { k: _key, v: 7 }, _key = "usemap", _map[_key] = { k: _key, v: 6 }, _key = "value", _map[_key] = { k: _key, v: 7 }, _key = "width", _map[_key] = { k: _key, v: 0 }, _key = "wrap", _map[_key] = { k: _key, v: 0 }, _key = "xmlns", _map[_key] = { k: _key, v: 6 }, _map);
 		errorType = reflect.TypeOf((go$ptrType(go$error)).nil).Elem();

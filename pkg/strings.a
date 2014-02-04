@@ -1,4 +1,4 @@
-0ÇÔ˛Çpackage strings
+0Çı]stringsÇpackage strings
 import errors "errors"
 import io "io"
 import utf8 "unicode/utf8"
@@ -97,11 +97,7 @@ func (? *@"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
 type @"unicode".CaseRange struct { @"unicode".Lo uint32; @"unicode".Hi uint32; @"unicode".Delta @"unicode".d }
 type @"unicode".d [3]rune
 $$
-0Hruntimeerrorssync/atomicsynciounicodeunicode/utf8stringsÇ’ê	var errors = go$packages["errors"];
-	var io = go$packages["io"];
-	var utf8 = go$packages["unicode/utf8"];
-	var unicode = go$packages["unicode"];
-	var Reader;
+0Hruntimeerrorssync/atomicsynciounicodeunicode/utf8strings0F0errorserrors0ioio0unicode/utf8utf80unicodeunicodeÇ]	var Reader;
 	Reader = go$newType(0, "Struct", "strings.Reader", "Reader", "strings", function(s_, i_, prevRune_) {
 		this.go$val = this;
 		this.s = s_ !== undefined ? s_ : "";
@@ -205,7 +201,7 @@ $$
 	(go$ptrType(byteStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
 	stringFinder.init([["pattern", "strings", Go$String, ""], ["badCharSkip", "strings", (go$arrayType(Go$Int, 256)), ""], ["goodSuffixSkip", "strings", (go$sliceType(Go$Int)), ""]]);
 	(go$ptrType(stringFinder)).methods = [["next", "strings", [Go$String], [Go$Int], false]];
-	Reader.Ptr.prototype.Len = function() {
+ 0Çº;0ÅÿLenÅ–	Reader.Ptr.prototype.Len = function() {
 		var r;
 		r = this;
 		if (r.i >= r.s.length) {
@@ -214,7 +210,7 @@ $$
 		return r.s.length - r.i >> 0;
 	};
 	Reader.prototype.Len = function() { return this.go$val.Len(); };
-	Reader.Ptr.prototype.Read = function(b) {
+0ÇReadÇ˛	Reader.Ptr.prototype.Read = function(b) {
 		var n, err, r, _tuple, _tuple$1;
 		n = 0;
 		err = null;
@@ -233,7 +229,7 @@ $$
 		return [n, err];
 	};
 	Reader.prototype.Read = function(b) { return this.go$val.Read(b); };
-	Reader.Ptr.prototype.ReadAt = function(b, off) {
+0ÇÁReadAtÇ€	Reader.Ptr.prototype.ReadAt = function(b, off) {
 		var n, err, r, _tuple, x, _tuple$1;
 		n = 0;
 		err = null;
@@ -253,7 +249,7 @@ $$
 		return [n, err];
 	};
 	Reader.prototype.ReadAt = function(b, off) { return this.go$val.ReadAt(b, off); };
-	Reader.Ptr.prototype.ReadByte = function() {
+0ÇãReadByteÇ}	Reader.Ptr.prototype.ReadByte = function() {
 		var b, err, r, _tuple;
 		b = 0;
 		err = null;
@@ -268,7 +264,8 @@ $$
 		return [b, err];
 	};
 	Reader.prototype.ReadByte = function() { return this.go$val.ReadByte(); };
-	Reader.Ptr.prototype.UnreadByte = function() {
+0Ç7
+UnreadByteÇ'	Reader.Ptr.prototype.UnreadByte = function() {
 		var r;
 		r = this;
 		if (r.i <= 0) {
@@ -279,7 +276,7 @@ $$
 		return null;
 	};
 	Reader.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
-	Reader.Ptr.prototype.ReadRune = function() {
+0Ç·ReadRuneÇ”	Reader.Ptr.prototype.ReadRune = function() {
 		var ch, size, err, r, _tuple, c, _tuple$1, _tuple$2;
 		ch = 0;
 		size = 0;
@@ -300,7 +297,8 @@ $$
 		return [ch, size, err];
 	};
 	Reader.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
-	Reader.Ptr.prototype.UnreadRune = function() {
+0ÇH
+UnreadRuneÇ8	Reader.Ptr.prototype.UnreadRune = function() {
 		var r;
 		r = this;
 		if (r.prevRune < 0) {
@@ -311,7 +309,7 @@ $$
 		return null;
 	};
 	Reader.prototype.UnreadRune = function() { return this.go$val.UnreadRune(); };
-	Reader.Ptr.prototype.Seek = function(offset, whence) {
+0ÇÂSeekÇ€	Reader.Ptr.prototype.Seek = function(offset, whence) {
 		var r, abs, _ref, x, x$1;
 		r = this;
 		abs = new Go$Int64(0, 0);
@@ -335,7 +333,7 @@ $$
 		return [abs, null];
 	};
 	Reader.prototype.Seek = function(offset, whence) { return this.go$val.Seek(offset, whence); };
-	Reader.Ptr.prototype.WriteTo = function(w) {
+0ÇÎWriteToÇﬁ	Reader.Ptr.prototype.WriteTo = function(w) {
 		var n, err, r, _tuple, s, _tuple$1, m;
 		n = new Go$Int64(0, 0);
 		err = null;
@@ -358,16 +356,16 @@ $$
 		return [n, err];
 	};
 	Reader.prototype.WriteTo = function(w) { return this.go$val.WriteTo(w); };
-	var NewReader = go$pkg.NewReader = function(s) {
+0f	NewReaderY	var NewReader = go$pkg.NewReader = function(s) {
 		return new Reader.Ptr(s, 0, -1);
 	};
-	byteBitmap.prototype.set = function(b) {
+0ÇXsetÇO	byteBitmap.prototype.set = function(b) {
 		var m, _lhs, _index, y;
 		m = this.go$val;
 		_lhs = m, _index = b >>> 5 << 24 >>> 24, _lhs[_index] = (_lhs[_index] | (((y = (((b & 31) >>> 0)), y < 32 ? (1 << y) : 0) >>> 0))) >>> 0;
 	};
 	go$ptrType(byteBitmap).prototype.set = function(b) { return (new byteBitmap(this.go$get())).set(b); };
-	var NewReplacer = go$pkg.NewReplacer = function(oldnew) {
+0ÇCNewReplacerÇ2	var NewReplacer = go$pkg.NewReplacer = function(oldnew) {
 		var _r, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, allNewBytes, i, _slice$3, _index$3, _slice$4, _index$4, bb, i$1, _slice$5, _index$5, _slice$6, _index$6, _tuple, o, n, y, bs, i$2, _slice$7, _index$7, _slice$8, _index$8, _tuple$1, o$1, new$1, y$1;
 		if ((_r = oldnew.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 1) {
 			throw go$panic(new Go$String("strings.NewReplacer: odd argument count"));
@@ -415,13 +413,13 @@ $$
 		}
 		return new Replacer.Ptr(bs);
 	};
-	Replacer.Ptr.prototype.Replace = function(s) {
+0ÅºReplaceÅ∞	Replacer.Ptr.prototype.Replace = function(s) {
 		var r;
 		r = this;
 		return r.r.Replace(s);
 	};
 	Replacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
-	Replacer.Ptr.prototype.WriteString = function(w, s) {
+0Ç9WriteStringÇ(	Replacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, _tuple;
 		n = 0;
 		err = null;
@@ -430,7 +428,9 @@ $$
 		return [n, err];
 	};
 	Replacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
-	trieNode.Ptr.prototype.add = function(key, val, priority, r) {
+0Ç
+“addÇ
+…	trieNode.Ptr.prototype.add = function(key, val, priority, r) {
 		var t, n, prefixNode, keyNode, _slice, _index, _slice$1, _index$1, next, m, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
 		t = this;
 		if (key === "") {
@@ -483,7 +483,7 @@ $$
 		}
 	};
 	trieNode.prototype.add = function(key, val, priority, r) { return this.go$val.add(key, val, priority, r); };
-	genericReplacer.Ptr.prototype.lookup = function(s, ignoreRoot) {
+0Ç⁄lookupÇŒ	genericReplacer.Ptr.prototype.lookup = function(s, ignoreRoot) {
 		var val, keylen, found, r, bestPriority, node, n, index, _slice, _index;
 		val = "";
 		keylen = 0;
@@ -521,7 +521,7 @@ $$
 		return [val, keylen, found];
 	};
 	genericReplacer.prototype.lookup = function(s, ignoreRoot) { return this.go$val.lookup(s, ignoreRoot); };
-	var makeGenericReplacer = function(oldnew) {
+0Ç)makeGenericReplacerÇ	var makeGenericReplacer = function(oldnew) {
 		var r, i, _slice, _index, key, j, _ref, _i, b, index, _ref$1, _i$1, b$1, i$1, i$2, _slice$1, _index$1, _slice$2, _index$2;
 		r = new genericReplacer.Ptr();
 		i = 0;
@@ -561,27 +561,27 @@ $$
 		}
 		return r;
 	};
-	go$ptrType(appendSliceWriter).prototype.Write = function(p) {
+0ÇHWriteÇ=	go$ptrType(appendSliceWriter).prototype.Write = function(p) {
 		var w;
 		w = this;
 		w.go$set(go$appendSlice(w.go$get(), p));
 		return [p.length, null];
 	};
 	appendSliceWriter.prototype.Write = function(p) { var obj = this; return (new (go$ptrType(appendSliceWriter))(function() { return obj; }, null)).Write(p); };
-	go$ptrType(appendSliceWriter).prototype.WriteString = function(s) {
+0ÇâWriteStringÇx	go$ptrType(appendSliceWriter).prototype.WriteString = function(s) {
 		var w;
 		w = this;
 		w.go$set(go$appendSlice(w.go$get(), new appendSliceWriter(go$stringToBytes(s))));
 		return [s.length, null];
 	};
 	appendSliceWriter.prototype.WriteString = function(s) { var obj = this; return (new (go$ptrType(appendSliceWriter))(function() { return obj; }, null)).WriteString(s); };
-	stringWriter.Ptr.prototype.WriteString = function(s) {
+0Ç9WriteStringÇ(	stringWriter.Ptr.prototype.WriteString = function(s) {
 		var _struct, w;
 		w = (_struct = this, new stringWriter.Ptr(_struct.w));
 		return w.w.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
 	};
 	stringWriter.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
-	var getStringWriter = function(w) {
+0ÇOgetStringWriterÇ:	var getStringWriter = function(w) {
 		var _tuple, sw, ok, x;
 		_tuple = (w !== null && stringWriterIface.implementedBy.indexOf(w.constructor) !== -1 ? [w, true] : [null, false]), sw = _tuple[0], ok = _tuple[1];
 		if (!ok) {
@@ -589,7 +589,7 @@ $$
 		}
 		return sw;
 	};
-	genericReplacer.Ptr.prototype.Replace = function(s) {
+0ÇêReplaceÇÉ	genericReplacer.Ptr.prototype.Replace = function(s) {
 		var r, buf, v;
 		r = this;
 		buf = appendSliceWriter.make(0, s.length, function() { return 0; });
@@ -597,7 +597,7 @@ $$
 		return go$bytesToString(buf);
 	};
 	genericReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
-	genericReplacer.Ptr.prototype.WriteString = function(w, s) {
+0ÇËWriteStringÇ◊	genericReplacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, sw, _tuple, last, wn, prevMatchEmpty, i, _tuple$1, val, keylen, match, _tuple$2, _tuple$3, _tuple$4;
 		n = 0;
 		err = null;
@@ -633,10 +633,10 @@ $$
 		return [n, err];
 	};
 	genericReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
-	var makeSingleStringReplacer = function(pattern, value) {
+0Å•makeSingleStringReplacerÅà	var makeSingleStringReplacer = function(pattern, value) {
 		return new singleStringReplacer.Ptr(makeStringFinder(pattern), value);
 	};
-	singleStringReplacer.Ptr.prototype.Replace = function(s) {
+0ÇWReplaceÇJ	singleStringReplacer.Ptr.prototype.Replace = function(s) {
 		var r, buf, _tuple, i, matched, match;
 		r = this;
 		buf = (go$sliceType(Go$Uint8)).nil;
@@ -658,7 +658,7 @@ $$
 		return go$bytesToString(buf);
 	};
 	singleStringReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
-	singleStringReplacer.Ptr.prototype.WriteString = function(w, s) {
+0Ç¸WriteStringÇÎ	singleStringReplacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, sw, _tuple, i, wn, match, _tuple$1, _tuple$2, _tuple$3;
 		n = 0;
 		err = null;
@@ -687,7 +687,7 @@ $$
 		return [n, err];
 	};
 	singleStringReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
-	byteReplacer.Ptr.prototype.Replace = function(s) {
+0Ç:ReplaceÇ-	byteReplacer.Ptr.prototype.Replace = function(s) {
 		var r, buf, i, b, y, _slice, _index;
 		r = this;
 		buf = (go$sliceType(Go$Uint8)).nil;
@@ -708,7 +708,7 @@ $$
 		return go$bytesToString(buf);
 	};
 	byteReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
-	byteReplacer.Ptr.prototype.WriteString = function(w, s) {
+0ÇÕWriteStringÇº	byteReplacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, bufsize, buf, ncopy, _ref, _i, _slice, _index, b, i, y, _slice$1, _index$1, _tuple, wn, err$1, _tuple$1, _tuple$2;
 		n = 0;
 		err = null;
@@ -741,7 +741,7 @@ $$
 		return [n, err];
 	};
 	byteReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
-	byteStringReplacer.Ptr.prototype.Replace = function(s) {
+0Ç˙ReplaceÇÌ	byteStringReplacer.Ptr.prototype.Replace = function(s) {
 		var r, newSize, anyChanges, i, b, y, buf, bi, i$1, b$1, y$1, n, _slice, _index;
 		r = this;
 		newSize = 0;
@@ -777,7 +777,7 @@ $$
 		return go$bytesToString(buf);
 	};
 	byteStringReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
-	byteStringReplacer.Ptr.prototype.WriteString = function(w, s) {
+0ÇWriteStringÇ 	byteStringReplacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, bufsize, buf, bi, i, b, new$1, y, _tuple, nw, err$1, _tuple$1, _tuple$2, nw$1, err$2, _tuple$3, _tuple$4, nw$2, err$3, _tuple$5, _tuple$6;
 		n = 0;
 		err = null;
@@ -828,7 +828,7 @@ $$
 		return [n, err];
 	};
 	byteStringReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
-	var makeStringFinder = function(pattern) {
+0ÇÏmakeStringFinderÇ÷	var makeStringFinder = function(pattern) {
 		var f, last, _ref, _i, i, i$1, lastPrefix, i$2, _slice, _index, i$3, lenSuffix, _slice$1, _index$1;
 		f = new stringFinder.Ptr(pattern, go$makeNativeArray("Int", 256, function() { return 0; }), (go$sliceType(Go$Int)).make(pattern.length, 0, function() { return 0; }));
 		last = pattern.length - 1 >> 0;
@@ -862,7 +862,7 @@ $$
 		}
 		return f;
 	};
-	var longestCommonSuffix = function(a, b) {
+0Ç$longestCommonSuffixÇ	var longestCommonSuffix = function(a, b) {
 		var i;
 		i = 0;
 		while (i < a.length && i < b.length) {
@@ -873,7 +873,7 @@ $$
 		}
 		return i;
 	};
-	stringFinder.Ptr.prototype.next = function(text) {
+0Ç∞nextÇ¶	stringFinder.Ptr.prototype.next = function(text) {
 		var f, i, j, _slice, _index;
 		f = this;
 		i = f.pattern.length - 1 >> 0;
@@ -891,13 +891,13 @@ $$
 		return -1;
 	};
 	stringFinder.prototype.next = function(text) { return this.go$val.next(text); };
-	var max = function(a, b) {
+0SmaxL	var max = function(a, b) {
 		if (a > b) {
 			return a;
 		}
 		return b;
 	};
-	var explode = function(s, n) {
+0ÇËexplodeÇ€	var explode = function(s, n) {
 		var l, a, size, ch, _tuple, i, cur, _tuple$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		if (n === 0) {
 			return (go$sliceType(Go$String)).nil;
@@ -925,7 +925,7 @@ $$
 		}
 		return a;
 	};
-	var hashstr = function(sep) {
+0ÇàhashstrÇ{	var hashstr = function(sep) {
 		var hash, i, _tuple, pow, sq, i$1, x, x$1;
 		hash = 0;
 		i = 0;
@@ -944,7 +944,7 @@ $$
 		}
 		return [hash, pow];
 	};
-	var Count = go$pkg.Count = function(s, sep) {
+0ÇµCountÇ™	var Count = go$pkg.Count = function(s, sep) {
 		var n, c, i, _tuple, hashsep, pow, h, i$1, lastmatch, i$2, x, x$1;
 		n = 0;
 		if (sep.length === 0) {
@@ -992,16 +992,16 @@ $$
 		}
 		return n;
 	};
-	var Contains = go$pkg.Contains = function(s, substr) {
+0hContains\	var Contains = go$pkg.Contains = function(s, substr) {
 		return Index(s, substr) >= 0;
 	};
-	var ContainsAny = go$pkg.ContainsAny = function(s, chars) {
+0rContainsAnyc	var ContainsAny = go$pkg.ContainsAny = function(s, chars) {
 		return IndexAny(s, chars) >= 0;
 	};
-	var ContainsRune = go$pkg.ContainsRune = function(s, r) {
+0nContainsRune^	var ContainsRune = go$pkg.ContainsRune = function(s, r) {
 		return IndexRune(s, r) >= 0;
 	};
-	var Index = go$pkg.Index = function(s, sep) {
+0ÇSIndexÇH	var Index = go$pkg.Index = function(s, sep) {
 		var n, _tuple, hashsep, pow, h, i, i$1, x, x$1;
 		n = sep.length;
 		if (n === 0) {
@@ -1038,7 +1038,7 @@ $$
 		}
 		return -1;
 	};
-	var LastIndex = go$pkg.LastIndex = function(s, sep) {
+0Ç	LastIndexÇ 	var LastIndex = go$pkg.LastIndex = function(s, sep) {
 		var n, c, i, i$1;
 		n = sep.length;
 		if (n === 0) {
@@ -1064,7 +1064,7 @@ $$
 		}
 		return -1;
 	};
-	var IndexRune = go$pkg.IndexRune = function(s, r) {
+0Ç‡	IndexRuneÇ—	var IndexRune = go$pkg.IndexRune = function(s, r) {
 		var b, i, _ref, _i, _rune, c, i$1;
 		if (r < 128) {
 			b = (r << 24 >>> 24);
@@ -1089,7 +1089,7 @@ $$
 		}
 		return -1;
 	};
-	var IndexAny = go$pkg.IndexAny = function(s, chars) {
+0ÇIndexAnyÇˆ	var IndexAny = go$pkg.IndexAny = function(s, chars) {
 		var _ref, _i, _rune, c, i, _ref$1, _i$1, _rune$1, m;
 		if (chars.length > 0) {
 			_ref = s;
@@ -1111,7 +1111,7 @@ $$
 		}
 		return -1;
 	};
-	var LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
+0ÇLastIndexAnyÇ¸	var LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
 		var i, _tuple, rune, size, _ref, _i, _rune, m;
 		if (chars.length > 0) {
 			i = s.length;
@@ -1131,7 +1131,7 @@ $$
 		}
 		return -1;
 	};
-	var genSplit = function(s, sep, sepSave, n) {
+0ÇzgenSplitÇl	var genSplit = function(s, sep, sepSave, n) {
 		var c, start, a, na, i, _slice, _index, _slice$1, _index$1;
 		if (n === 0) {
 			return (go$sliceType(Go$String)).nil;
@@ -1159,22 +1159,24 @@ $$
 		_slice$1 = a, _index$1 = na, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = s.substring(start)) : go$throwRuntimeError("index out of range");
 		return go$subslice(a, 0, (na + 1 >> 0));
 	};
-	var SplitN = go$pkg.SplitN = function(s, sep, n) {
+0cSplitNY	var SplitN = go$pkg.SplitN = function(s, sep, n) {
 		return genSplit(s, sep, 0, n);
 	};
-	var SplitAfterN = go$pkg.SplitAfterN = function(s, sep, n) {
+0{SplitAfterNl	var SplitAfterN = go$pkg.SplitAfterN = function(s, sep, n) {
 		return genSplit(s, sep, sep.length, n);
 	};
-	var Split = go$pkg.Split = function(s, sep) {
+0^SplitU	var Split = go$pkg.Split = function(s, sep) {
 		return genSplit(s, sep, 0, -1);
 	};
-	var SplitAfter = go$pkg.SplitAfter = function(s, sep) {
+0v
+SplitAfterh	var SplitAfter = go$pkg.SplitAfter = function(s, sep) {
 		return genSplit(s, sep, sep.length, -1);
 	};
-	var Fields = go$pkg.Fields = function(s) {
+0cFieldsY	var Fields = go$pkg.Fields = function(s) {
 		return FieldsFunc(s, unicode.IsSpace);
 	};
-	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
+0Ç*
+FieldsFuncÇ	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
 		var n, inField, _ref, _i, _rune, rune, wasInField, a, na, fieldStart, _ref$1, _i$1, _rune$1, rune$1, i, _slice, _index, _slice$1, _index$1;
 		n = 0;
 		inField = false;
@@ -1213,7 +1215,7 @@ $$
 		}
 		return a;
 	};
-	var Join = go$pkg.Join = function(a, sep) {
+0ÇúJoinÇí	var Join = go$pkg.Join = function(a, sep) {
 		var _slice, _index, x, x$1, n, i, _slice$1, _index$1, b, _slice$2, _index$2, bp, _ref, _i, _slice$3, _index$3, s;
 		if (a.length === 0) {
 			return "";
@@ -1238,13 +1240,13 @@ $$
 		}
 		return go$bytesToString(b);
 	};
-	var HasPrefix = go$pkg.HasPrefix = function(s, prefix) {
+0Åú	HasPrefixÅé	var HasPrefix = go$pkg.HasPrefix = function(s, prefix) {
 		return s.length >= prefix.length && s.substring(0, prefix.length) === prefix;
 	};
-	var HasSuffix = go$pkg.HasSuffix = function(s, suffix) {
+0Å´	HasSuffixÅù	var HasSuffix = go$pkg.HasSuffix = function(s, suffix) {
 		return s.length >= suffix.length && s.substring((s.length - suffix.length >> 0)) === suffix;
 	};
-	var Map = go$pkg.Map = function(mapping, s) {
+0ÇÉMapÇz	var Map = go$pkg.Map = function(mapping, s) {
 		var maxbytes, nbytes, b, _ref, _i, _rune, c, i, r, wid, x, nb;
 		maxbytes = s.length;
 		nbytes = 0;
@@ -1282,7 +1284,7 @@ $$
 		}
 		return go$bytesToString(go$subslice(b, 0, nbytes));
 	};
-	var Repeat = go$pkg.Repeat = function(s, count) {
+0ÇÉRepeatÇw	var Repeat = go$pkg.Repeat = function(s, count) {
 		var x, b, bp, i;
 		b = (go$sliceType(Go$Uint8)).make((x = s.length, (((x >>> 16 << 16) * count >> 0) + (x << 16 >>> 16) * count) >> 0), 0, function() { return 0; });
 		bp = 0;
@@ -1293,31 +1295,31 @@ $$
 		}
 		return go$bytesToString(b);
 	};
-	var ToUpper = go$pkg.ToUpper = function(s) {
+0_ToUpperT	var ToUpper = go$pkg.ToUpper = function(s) {
 		return Map(unicode.ToUpper, s);
 	};
-	var ToLower = go$pkg.ToLower = function(s) {
+0_ToLowerT	var ToLower = go$pkg.ToLower = function(s) {
 		return Map(unicode.ToLower, s);
 	};
-	var ToTitle = go$pkg.ToTitle = function(s) {
+0_ToTitleT	var ToTitle = go$pkg.ToTitle = function(s) {
 		return Map(unicode.ToTitle, s);
 	};
-	var ToUpperSpecial = go$pkg.ToUpperSpecial = function(_case, s) {
+0ÅúToUpperSpecialÅâ	var ToUpperSpecial = go$pkg.ToUpperSpecial = function(_case, s) {
 		return Map((function(r) {
 			return _case.ToUpper(r);
 		}), s);
 	};
-	var ToLowerSpecial = go$pkg.ToLowerSpecial = function(_case, s) {
+0ÅúToLowerSpecialÅâ	var ToLowerSpecial = go$pkg.ToLowerSpecial = function(_case, s) {
 		return Map((function(r) {
 			return _case.ToLower(r);
 		}), s);
 	};
-	var ToTitleSpecial = go$pkg.ToTitleSpecial = function(_case, s) {
+0ÅúToTitleSpecialÅâ	var ToTitleSpecial = go$pkg.ToTitleSpecial = function(_case, s) {
 		return Map((function(r) {
 			return _case.ToTitle(r);
 		}), s);
 	};
-	var isSeparator = function(r) {
+0ÇéisSeparatorÇ}	var isSeparator = function(r) {
 		if (r <= 127) {
 			if (48 <= r && r <= 57) {
 				return false;
@@ -1335,7 +1337,7 @@ $$
 		}
 		return unicode.IsSpace(r);
 	};
-	var Title = go$pkg.Title = function(s) {
+0ÅﬂTitleÅ’	var Title = go$pkg.Title = function(s) {
 		var prev;
 		prev = 32;
 		return Map((function(r) {
@@ -1347,7 +1349,7 @@ $$
 			return r;
 		}), s);
 	};
-	var TrimLeftFunc = go$pkg.TrimLeftFunc = function(s, f) {
+0Å¥TrimLeftFuncÅ£	var TrimLeftFunc = go$pkg.TrimLeftFunc = function(s, f) {
 		var i;
 		i = indexFunc(s, f, false);
 		if (i === -1) {
@@ -1355,7 +1357,7 @@ $$
 		}
 		return s.substring(i);
 	};
-	var TrimRightFunc = go$pkg.TrimRightFunc = function(s, f) {
+0ÇQTrimRightFuncÇ>	var TrimRightFunc = go$pkg.TrimRightFunc = function(s, f) {
 		var i, _tuple, wid;
 		i = lastIndexFunc(s, f, false);
 		if (i >= 0 && s.charCodeAt(i) >= 128) {
@@ -1366,16 +1368,16 @@ $$
 		}
 		return s.substring(0, i);
 	};
-	var TrimFunc = go$pkg.TrimFunc = function(s, f) {
+0rTrimFuncf	var TrimFunc = go$pkg.TrimFunc = function(s, f) {
 		return TrimRightFunc(TrimLeftFunc(s, f), f);
 	};
-	var IndexFunc = go$pkg.IndexFunc = function(s, f) {
+0f	IndexFuncY	var IndexFunc = go$pkg.IndexFunc = function(s, f) {
 		return indexFunc(s, f, true);
 	};
-	var LastIndexFunc = go$pkg.LastIndexFunc = function(s, f) {
+0vLastIndexFunce	var LastIndexFunc = go$pkg.LastIndexFunc = function(s, f) {
 		return lastIndexFunc(s, f, true);
 	};
-	var indexFunc = function(s, f, truth) {
+0ÇÑ	indexFuncÇu	var indexFunc = function(s, f, truth) {
 		var start, wid, r, _tuple;
 		start = 0;
 		while (start < s.length) {
@@ -1391,7 +1393,7 @@ $$
 		}
 		return -1;
 	};
-	var lastIndexFunc = function(s, f, truth) {
+0Ç2lastIndexFuncÇ	var lastIndexFunc = function(s, f, truth) {
 		var i, _tuple, r, size;
 		i = s.length;
 		while (i > 0) {
@@ -1403,45 +1405,47 @@ $$
 		}
 		return -1;
 	};
-	var makeCutsetFunc = function(cutset) {
+0ÅÇmakeCutsetFuncp	var makeCutsetFunc = function(cutset) {
 		return (function(r) {
 			return IndexRune(cutset, r) >= 0;
 		});
 	};
-	var Trim = go$pkg.Trim = function(s, cutset) {
+0ÅüTrimÅñ	var Trim = go$pkg.Trim = function(s, cutset) {
 		if (s === "" || cutset === "") {
 			return s;
 		}
 		return TrimFunc(s, makeCutsetFunc(cutset));
 	};
-	var TrimLeft = go$pkg.TrimLeft = function(s, cutset) {
+0ÅØTrimLeftÅ¢	var TrimLeft = go$pkg.TrimLeft = function(s, cutset) {
 		if (s === "" || cutset === "") {
 			return s;
 		}
 		return TrimLeftFunc(s, makeCutsetFunc(cutset));
 	};
-	var TrimRight = go$pkg.TrimRight = function(s, cutset) {
+0Å≥	TrimRightÅ•	var TrimRight = go$pkg.TrimRight = function(s, cutset) {
 		if (s === "" || cutset === "") {
 			return s;
 		}
 		return TrimRightFunc(s, makeCutsetFunc(cutset));
 	};
-	var TrimSpace = go$pkg.TrimSpace = function(s) {
+0j	TrimSpace]	var TrimSpace = go$pkg.TrimSpace = function(s) {
 		return TrimFunc(s, unicode.IsSpace);
 	};
-	var TrimPrefix = go$pkg.TrimPrefix = function(s, prefix) {
+0Å£
+TrimPrefixÅî	var TrimPrefix = go$pkg.TrimPrefix = function(s, prefix) {
 		if (HasPrefix(s, prefix)) {
 			return s.substring(prefix.length);
 		}
 		return s;
 	};
-	var TrimSuffix = go$pkg.TrimSuffix = function(s, suffix) {
+0Å∏
+TrimSuffixÅ©	var TrimSuffix = go$pkg.TrimSuffix = function(s, suffix) {
 		if (HasSuffix(s, suffix)) {
 			return s.substring(0, (s.length - suffix.length >> 0));
 		}
 		return s;
 	};
-	var Replace = go$pkg.Replace = function(s, old, new$1, n) {
+0ÇReplaceÇ	var Replace = go$pkg.Replace = function(s, old, new$1, n) {
 		var m, x, t, w, start, i, j, _tuple, wid;
 		if (old === new$1 || (n === 0)) {
 			return s;
@@ -1473,7 +1477,7 @@ $$
 		w = w + (go$copyString(go$subslice(t, w), s.substring(start))) >> 0;
 		return go$bytesToString(go$subslice(t, 0, w));
 	};
-	var EqualFold = go$pkg.EqualFold = function(s, t) {
+0Ç0	EqualFoldÇ!	var EqualFold = go$pkg.EqualFold = function(s, t) {
 		var _tuple, sr, tr, _tuple$1, _tuple$2, r, size, _tuple$3, _tuple$4, _tuple$5, r$1, size$1, _tuple$6, _tuple$7, r$2;
 		while (!(s === "") && !(t === "")) {
 			_tuple = [0, 0], sr = _tuple[0], tr = _tuple[1];
@@ -1512,7 +1516,6 @@ $$
 		}
 		return s === t;
 	};
-	var IndexByte = go$pkg.IndexByte = function(s, c) { return s.indexOf(String.fromCharCode(c)); };
-	var primeRK = 16777619;
-	go$pkg.init = function() {
+0o	IndexByteb	var IndexByte = go$pkg.IndexByte = function(s, c) { return s.indexOf(String.fromCharCode(c)); };
+0(init 	go$pkg.init = function() {
 	};

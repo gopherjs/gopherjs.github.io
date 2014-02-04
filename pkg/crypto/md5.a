@@ -1,4 +1,5 @@
-0ÇI\Ç&package md5
+0ÇI
+crypto/md5Ç&package md5
 import crypto "crypto"
 import hash "hash"
 import runtime "runtime"
@@ -17,10 +18,7 @@ import io "io"
 type @"hash".Hash interface { @"hash".BlockSize() (? int); @"hash".Reset() (); @"hash".Size() (? int); @"hash".Sum(@"hash".b []byte) (? []byte); @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
 0_runtimeerrorssync/atomicsynciohashmathunicode/utf8strconvcrypto
-crypto/md5ÇEÕ	var crypto = go$packages["crypto"];
-	var hash = go$packages["hash"];
-	var runtime = go$packages["runtime"];
-	var digest;
+crypto/md5040cryptocrypto0hashhash0runtimeruntimeÇÙ	var digest;
 	digest = go$newType(0, "Struct", "md5.digest", "digest", "crypto/md5", function(s_, x_, nx_, len_) {
 		this.go$val = this;
 		this.s = s_ !== undefined ? s_ : go$makeNativeArray("Uint32", 4, function() { return 0; });
@@ -31,7 +29,8 @@ crypto/md5ÇEÕ	var crypto = go$packages["crypto"];
 	go$pkg.digest = digest;
 	digest.init([["s", "crypto/md5", (go$arrayType(Go$Uint32, 4)), ""], ["x", "crypto/md5", (go$arrayType(Go$Uint8, 64)), ""], ["nx", "crypto/md5", Go$Int, ""], ["len", "crypto/md5", Go$Uint64, ""]]);
 	(go$ptrType(digest)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["checkSum", "crypto/md5", [], [(go$arrayType(Go$Uint8, 16))], false]];
-	digest.Ptr.prototype.Reset = function() {
+	var littleEndian = false;
+0ÇA)0ÇResetÇ	digest.Ptr.prototype.Reset = function() {
 		var d;
 		d = this;
 		d.s[0] = 1732584193;
@@ -42,25 +41,25 @@ crypto/md5ÇEÕ	var crypto = go$packages["crypto"];
 		d.len = new Go$Uint64(0, 0);
 	};
 	digest.prototype.Reset = function() { return this.go$val.Reset(); };
-	var New = go$pkg.New = function() {
+0jNewc	var New = go$pkg.New = function() {
 		var d;
 		d = new digest.Ptr();
 		d.Reset();
 		return d;
 	};
-	digest.Ptr.prototype.Size = function() {
+0ÅùSizeÅî	digest.Ptr.prototype.Size = function() {
 		var d;
 		d = this;
 		return 16;
 	};
 	digest.prototype.Size = function() { return this.go$val.Size(); };
-	digest.Ptr.prototype.BlockSize = function() {
+0Å±	BlockSizeÅ£	digest.Ptr.prototype.BlockSize = function() {
 		var d;
 		d = this;
 		return 64;
 	};
 	digest.prototype.BlockSize = function() { return this.go$val.BlockSize(); };
-	digest.Ptr.prototype.Write = function(p) {
+0Ç!WriteÇ	digest.Ptr.prototype.Write = function(p) {
 		var nn, err, d, x, x$1, n, i, _slice, _index, n$1;
 		nn = 0;
 		err = null;
@@ -95,7 +94,7 @@ crypto/md5ÇEÕ	var crypto = go$packages["crypto"];
 		return [nn, err];
 	};
 	digest.prototype.Write = function(p) { return this.go$val.Write(p); };
-	digest.Ptr.prototype.Sum = function(in$1) {
+0ÇÚSumÇÈ	digest.Ptr.prototype.Sum = function(in$1) {
 		var d0, _struct, d, hash$1;
 		d0 = this;
 		d = (_struct = d0, new digest.Ptr(go$mapArray(_struct.s, function(entry) { return entry; }), go$mapArray(_struct.x, function(entry) { return entry; }), _struct.nx, _struct.len));
@@ -103,7 +102,7 @@ crypto/md5ÇEÕ	var crypto = go$packages["crypto"];
 		return go$appendSlice(in$1, new (go$sliceType(Go$Uint8))(hash$1));
 	};
 	digest.prototype.Sum = function(in$1) { return this.go$val.Sum(in$1); };
-	digest.Ptr.prototype.checkSum = function() {
+0ÇfcheckSumÇX	digest.Ptr.prototype.checkSum = function() {
 		var d, len, tmp, x, x$1, x$2, i, x$3, digest$1, _ref, _i, s, i$1, x$4, x$5, x$6, x$7;
 		d = this;
 		len = d.len;
@@ -138,14 +137,14 @@ crypto/md5ÇEÕ	var crypto = go$packages["crypto"];
 		return go$mapArray(digest$1, function(entry) { return entry; });
 	};
 	digest.prototype.checkSum = function() { return this.go$val.checkSum(); };
-	var Sum = go$pkg.Sum = function(data) {
+0ÅªSumÅ≥	var Sum = go$pkg.Sum = function(data) {
 		var d;
 		d = new digest.Ptr();
 		d.Reset();
 		d.Write(data);
 		return go$mapArray(d.checkSum(), function(entry) { return entry; });
 	};
-	var block = function(dig, p) {
+0Ç/EblockÇ/:	var block = function(dig, p) {
 		var a, b, c, d, X, xbuf, _tuple, aa, bb, cc, dd, j, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		a = dig.s[0];
 		b = dig.s[1];
@@ -306,16 +305,7 @@ crypto/md5ÇEÕ	var crypto = go$packages["crypto"];
 		dig.s[2] = c;
 		dig.s[3] = d;
 	};
-	go$pkg.Size = 16;
-	go$pkg.BlockSize = 64;
-	var chunk = 64;
-	var init0 = 1732584193;
-	var init1 = 4023233417;
-	var init2 = 2562383102;
-	var init3 = 271733878;
-	var x86 = false;
-	var littleEndian = false;
-	go$pkg.init = function() {
+0ÅªinitÅ≤	go$pkg.init = function() {
 		var x, y;
 		crypto.RegisterHash(2, New);
 		x = 67305985;

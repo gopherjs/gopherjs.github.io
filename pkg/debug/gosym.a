@@ -1,4 +1,4 @@
-0ÇÊPÇ˛package gosym
+0ÇËgdebug/gosymÇ˛package gosym
 import binary "encoding/binary"
 import sync "sync"
 import bytes "bytes"
@@ -55,13 +55,8 @@ func (? *@"sync".Mutex) @"sync".Lock() ()
 func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"encoding/binary".ByteOrder interface { @"encoding/binary".PutUint16(? []byte, ? uint16) (); @"encoding/binary".PutUint32(? []byte, ? uint32) (); @"encoding/binary".PutUint64(? []byte, ? uint64) (); @"encoding/binary".String() (? string); @"encoding/binary".Uint16(? []byte) (? uint16); @"encoding/binary".Uint32(? []byte) (? uint32); @"encoding/binary".Uint64(? []byte) (? uint64) }
 $$
-0Åùruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysyscalltimeosfmtstringsdebug/gosymÇ‘™	var binary = go$packages["encoding/binary"];
-	var sync = go$packages["sync"];
-	var bytes = go$packages["bytes"];
-	var fmt = go$packages["fmt"];
-	var strconv = go$packages["strconv"];
-	var strings = go$packages["strings"];
-	var LineTable;
+0Åùruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysyscalltimeosfmtstringsdebug/gosym0m0encoding/binarybinary0syncsync0bytesbytes0
+fmtfmt0strconvstrconv0stringsstringsÇ&ã	var LineTable;
 	LineTable = go$newType(0, "Struct", "gosym.LineTable", "LineTable", "debug/gosym", function(Data_, PC_, Line_, mu_, go12_, binary_, quantum_, ptrsize_, functab_, nfunctab_, filetab_, nfiletab_, fileMap_) {
 		this.go$val = this;
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
@@ -172,7 +167,10 @@ $$
 	(go$ptrType(UnknownLineError)).methods = [["Error", "", [], [Go$String], false]];
 	DecodingError.init([["off", "debug/gosym", Go$Int, ""], ["msg", "debug/gosym", Go$String, ""], ["val", "debug/gosym", go$emptyInterface, ""]]);
 	(go$ptrType(DecodingError)).methods = [["Error", "", [], [Go$String], false]];
-	LineTable.Ptr.prototype.parse = function(targetPC, targetLine) {
+Å®	var littleEndianSymtab = (go$sliceType(Go$Uint8)).nil;
+	var bigEndianSymtab = (go$sliceType(Go$Uint8)).nil;
+	var oldLittleEndianSymtab = (go$sliceType(Go$Uint8)).nil;
+0ÇØ0Ç⁄parseÇœ	LineTable.Ptr.prototype.parse = function(targetPC, targetLine) {
 		var b, pc, line, t, _tuple, _slice, _index, code, val, x, _tuple$1;
 		b = (go$sliceType(Go$Uint8)).nil;
 		pc = new Go$Uint64(0, 0);
@@ -207,14 +205,14 @@ $$
 		return [b, pc, line];
 	};
 	LineTable.prototype.parse = function(targetPC, targetLine) { return this.go$val.parse(targetPC, targetLine); };
-	LineTable.Ptr.prototype.slice = function(pc) {
+0ÇüsliceÇî	LineTable.Ptr.prototype.slice = function(pc) {
 		var t, _tuple, data, line;
 		t = this;
 		_tuple = t.parse(pc, -1), data = _tuple[0], pc = _tuple[1], line = _tuple[2];
 		return new LineTable.Ptr(data, pc, line, new sync.Mutex.Ptr(), 0, null, 0, 0, (go$sliceType(Go$Uint8)).nil, 0, (go$sliceType(Go$Uint8)).nil, 0, false);
 	};
 	LineTable.prototype.slice = function(pc) { return this.go$val.slice(pc); };
-	LineTable.Ptr.prototype.PCToLine = function(pc) {
+0Ç.PCToLineÇ 	LineTable.Ptr.prototype.PCToLine = function(pc) {
 		var t, _tuple, line;
 		t = this;
 		if (t.isGo12()) {
@@ -224,7 +222,7 @@ $$
 		return line;
 	};
 	LineTable.prototype.PCToLine = function(pc) { return this.go$val.PCToLine(pc); };
-	LineTable.Ptr.prototype.LineToPC = function(line, maxpc) {
+0Ç«LineToPCÇπ	LineTable.Ptr.prototype.LineToPC = function(line, maxpc) {
 		var t, _tuple, pc, line1;
 		t = this;
 		if (t.isGo12()) {
@@ -237,17 +235,17 @@ $$
 		return new Go$Uint64(pc.high - 0, pc.low - 1);
 	};
 	LineTable.prototype.LineToPC = function(line, maxpc) { return this.go$val.LineToPC(line, maxpc); };
-	var NewLineTable = go$pkg.NewLineTable = function(data, text) {
+0ÅÔNewLineTableÅﬁ	var NewLineTable = go$pkg.NewLineTable = function(data, text) {
 		return new LineTable.Ptr(data, text, 0, new sync.Mutex.Ptr(), 0, null, 0, 0, (go$sliceType(Go$Uint8)).nil, 0, (go$sliceType(Go$Uint8)).nil, 0, false);
 	};
-	LineTable.Ptr.prototype.isGo12 = function() {
+0Å≈isGo12Å∫	LineTable.Ptr.prototype.isGo12 = function() {
 		var t;
 		t = this;
 		t.go12Init();
 		return t.go12 === 1;
 	};
 	LineTable.prototype.isGo12 = function() { return this.go$val.isGo12(); };
-	LineTable.Ptr.prototype.uintptr = function(b) {
+0ÇuintptrÇ	LineTable.Ptr.prototype.uintptr = function(b) {
 		var t;
 		t = this;
 		if (t.ptrsize === 4) {
@@ -256,7 +254,7 @@ $$
 		return t.binary.Uint64(b);
 	};
 	LineTable.prototype.uintptr = function(b) { return this.go$val.uintptr(b); };
-	LineTable.Ptr.prototype.go12Init = function() {
+0Çﬁgo12InitÇ–	LineTable.Ptr.prototype.go12Init = function() {
 		var t, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _ref, x, x$1, _slice$6, _index$6, _slice$7, _index$7, x$2, x$3, x$4, x$5, functabsize, fileoff, x$6, x$7;
 		var go$deferred = [];
 		try {
@@ -299,7 +297,7 @@ $$
 		}
 	};
 	LineTable.prototype.go12Init = function() { return this.go$val.go12Init(); };
-	LineTable.Ptr.prototype.findFunc = function(pc) {
+0ÇÏfindFuncÇﬁ	LineTable.Ptr.prototype.findFunc = function(pc) {
 		var t, x, x$1, f, nf, _q, m, x$2, x$3, x$4, fm, x$5, x$6, x$7, x$8, x$9, x$10, x$11, x$12, x$13;
 		t = this;
 		if ((x = t.uintptr(t.functab), (pc.high < x.high || (pc.high === x.high && pc.low < x.low))) || (x$1 = t.uintptr(go$subslice(t.functab, (t.functab.length - (t.ptrsize >> 0) >> 0))), (pc.high > x$1.high || (pc.high === x$1.high && pc.low >= x$1.low)))) {
@@ -322,7 +320,8 @@ $$
 		return (go$sliceType(Go$Uint8)).nil;
 	};
 	LineTable.prototype.findFunc = function(pc) { return this.go$val.findFunc(pc); };
-	LineTable.Ptr.prototype.readvarint = function(pp) {
+0Ç«
+readvarintÇ∑	LineTable.Ptr.prototype.readvarint = function(pp) {
 		var t, _tuple, v, shift, p, _slice, _index, b, y;
 		t = this;
 		_tuple = [0, 0], v = _tuple[0], shift = _tuple[1];
@@ -341,7 +340,7 @@ $$
 		return v;
 	};
 	LineTable.prototype.readvarint = function(pp) { return this.go$val.readvarint(pp); };
-	LineTable.Ptr.prototype.string = function(off) {
+0ÇŸstringÇÕ	LineTable.Ptr.prototype.string = function(off) {
 		var t, i, _slice, _index;
 		t = this;
 		i = off;
@@ -353,7 +352,7 @@ $$
 		}
 	};
 	LineTable.prototype.string = function(off) { return this.go$val.string(off); };
-	LineTable.Ptr.prototype.step = function(p, pc, val, first) {
+0ÇIstepÇ?	LineTable.Ptr.prototype.step = function(p, pc, val, first) {
 		var t, uvdelta, vdelta, x, x$1, pcdelta, _lhs, x$2, x$3, _lhs$1;
 		t = this;
 		uvdelta = t.readvarint(p);
@@ -372,7 +371,7 @@ $$
 		return true;
 	};
 	LineTable.prototype.step = function(p, pc, val, first) { return this.go$val.step(p, pc, val, first); };
-	LineTable.Ptr.prototype.pcvalue = function(off, entry, targetpc) {
+0Ç'pcvalueÇ	LineTable.Ptr.prototype.pcvalue = function(off, entry, targetpc) {
 		var t, p, val, pc, v, v$1, v$2;
 		t = this;
 		if (off === 0) {
@@ -389,7 +388,7 @@ $$
 		return -1;
 	};
 	LineTable.prototype.pcvalue = function(off, entry, targetpc) { return this.go$val.pcvalue(off, entry, targetpc); };
-	LineTable.Ptr.prototype.findFileLine = function(entry, filetab, linetab, filenum, line) {
+0ÇfindFileLineÇ	LineTable.Ptr.prototype.findFileLine = function(entry, filetab, linetab, filenum, line) {
 		var t, fp, fl, fileVal, filePC, lineVal, linePC, fileStartPC, v, v$1, v$2, lineStartPC, v$3, v$4, v$5;
 		t = this;
 		if ((filetab === 0) || (linetab === 0)) {
@@ -422,7 +421,7 @@ $$
 		return new Go$Uint64(0, 0);
 	};
 	LineTable.prototype.findFileLine = function(entry, filetab, linetab, filenum, line) { return this.go$val.findFileLine(entry, filetab, linetab, filenum, line); };
-	LineTable.Ptr.prototype.go12PCToLine = function(pc) {
+0Çgo12PCToLineÇ	LineTable.Ptr.prototype.go12PCToLine = function(pc) {
 		var line, t, f, entry, linetab;
 		line = 0;
 		var go$deferred = [];
@@ -450,7 +449,7 @@ $$
 		}
 	};
 	LineTable.prototype.go12PCToLine = function(pc) { return this.go$val.go12PCToLine(pc); };
-	LineTable.Ptr.prototype.go12PCToFile = function(pc) {
+0Ç¿go12PCToFileÇÆ	LineTable.Ptr.prototype.go12PCToFile = function(pc) {
 		var file, t, f, entry, filetab, fno, x;
 		file = "";
 		var go$deferred = [];
@@ -483,7 +482,7 @@ $$
 		}
 	};
 	LineTable.prototype.go12PCToFile = function(pc) { return this.go$val.go12PCToFile(pc); };
-	LineTable.Ptr.prototype.go12LineToPC = function(file, line) {
+0ÇÀgo12LineToPCÇπ	LineTable.Ptr.prototype.go12LineToPC = function(file, line) {
 		var pc, t, _entry, filenum, i, x, x$1, x$2, f, entry, filetab, linetab, pc$1;
 		pc = new Go$Uint64(0, 0);
 		var go$deferred = [];
@@ -523,7 +522,7 @@ $$
 		}
 	};
 	LineTable.prototype.go12LineToPC = function(file, line) { return this.go$val.go12LineToPC(file, line); };
-	LineTable.Ptr.prototype.initFileMap = function() {
+0ÇinitFileMapÇ	LineTable.Ptr.prototype.initFileMap = function() {
 		var t, m, i, x, s, _key;
 		var go$deferred = [];
 		try {
@@ -548,7 +547,7 @@ $$
 		}
 	};
 	LineTable.prototype.initFileMap = function() { return this.go$val.initFileMap(); };
-	LineTable.Ptr.prototype.go12MapFiles = function(m, obj) {
+0Ç÷go12MapFilesÇƒ	LineTable.Ptr.prototype.go12MapFiles = function(m, obj) {
 		var t, _ref, _i, _keys, _entry, file, _key;
 		var go$deferred = [];
 		try {
@@ -572,13 +571,13 @@ $$
 		}
 	};
 	LineTable.prototype.go12MapFiles = function(m, obj) { return this.go$val.go12MapFiles(m, obj); };
-	Sym.Ptr.prototype.Static = function() {
+0Å©StaticÅû	Sym.Ptr.prototype.Static = function() {
 		var s;
 		s = this;
 		return s.Type >= 97;
 	};
 	Sym.prototype.Static = function() { return this.go$val.Static(); };
-	Sym.Ptr.prototype.PackageName = function() {
+0ÇPackageNameÇ	Sym.Ptr.prototype.PackageName = function() {
 		var s, i;
 		s = this;
 		if (i = strings.Index(s.Name, "."), !((i === -1))) {
@@ -587,7 +586,7 @@ $$
 		return "";
 	};
 	Sym.prototype.PackageName = function() { return this.go$val.PackageName(); };
-	Sym.Ptr.prototype.ReceiverName = function() {
+0ÇdReceiverNameÇR	Sym.Ptr.prototype.ReceiverName = function() {
 		var s, l, r;
 		s = this;
 		l = strings.Index(s.Name, ".");
@@ -598,6 +597,7 @@ $$
 		return s.Name.substring(l + 1 >> 0, r);
 	};
 	Sym.prototype.ReceiverName = function() { return this.go$val.ReceiverName(); };
+0ÇBaseNameÇ
 	Sym.Ptr.prototype.BaseName = function() {
 		var s, i;
 		s = this;
@@ -607,7 +607,8 @@ $$
 		return s.Name;
 	};
 	Sym.prototype.BaseName = function() { return this.go$val.BaseName(); };
-	var walksymtab = function(data, fn) {
+0Ç§
+walksymtabÇî	var walksymtab = function(data, fn) {
 		var x, order, newTable, x$1, x$2, ptrsz, _slice, _index, s, p, typ, _slice$1, _index$1, _slice$2, _index$2, wideValue, _slice$3, _index$3, goType, shift, _slice$4, _index$4, x$3, x$4, _slice$5, _index$5, x$5, x$6, _slice$6, _index$6, _slice$7, _index$7, i, nnul, _slice$8, _index$8, _ref, _slice$9, _index$9, _slice$10, _index$10, _struct;
 		order = (x = binary.BigEndian, new x.constructor.Struct(x));
 		newTable = false;
@@ -735,7 +736,7 @@ $$
 		}
 		return null;
 	};
-	var NewTable = go$pkg.NewTable = function(symtab, pcln) {
+0Ç#§NewTableÇ#ñ	var NewTable = go$pkg.NewTable = function(symtab, pcln) {
 		var n, err, t, fname, nf, nz, lasttyp, obj, _slice, _index, lastf, i, _slice$1, _index$1, sym$1, _ref, n$1, _slice$2, _index$2, end, c, _slice$3, _index$3, depth, _ref$1, _i, j, _slice$4, _index$4, s, _key, n$2, _slice$5, _index$5, _tuple, np, na, end$1, _ref$2, _slice$6, _index$6, n$3, _slice$7, _index$7, fn, j$1, _slice$8, _index$8, s$1, _ref$3, n$4, _slice$9, _index$9, n$5, _slice$10, _index$10;
 		n = 0;
 		err = walksymtab(symtab, (function(s) {
@@ -924,7 +925,7 @@ $$
 		}
 		return [t, null];
 	};
-	Table.Ptr.prototype.PCToFunc = function(pc) {
+0ÇŸPCToFuncÇÀ	Table.Ptr.prototype.PCToFunc = function(pc) {
 		var t, funcs, _q, m, _slice, _index, fn, x, x$1, x$2;
 		t = this;
 		funcs = t.Funcs;
@@ -942,7 +943,7 @@ $$
 		return (go$ptrType(Func)).nil;
 	};
 	Table.prototype.PCToFunc = function(pc) { return this.go$val.PCToFunc(pc); };
-	Table.Ptr.prototype.PCToLine = function(pc) {
+0ÇaPCToLineÇS	Table.Ptr.prototype.PCToLine = function(pc) {
 		var file, line, fn, t, _tuple;
 		file = "";
 		line = 0;
@@ -960,7 +961,7 @@ $$
 		return [file, line, fn];
 	};
 	Table.prototype.PCToLine = function(pc) { return this.go$val.PCToLine(pc); };
-	Table.Ptr.prototype.LineToPC = function(file, line) {
+0Ç LineToPCÇº	Table.Ptr.prototype.LineToPC = function(file, line) {
 		var pc, fn, err, t, _tuple, _entry, obj, ok, _tuple$1, pc$1, _tuple$2, _tuple$3, _tuple$4, abs, _ref, _i, i, _slice, _index, f, pc$2, _tuple$5, _tuple$6;
 		pc = new Go$Uint64(0, 0);
 		fn = (go$ptrType(Func)).nil;
@@ -999,7 +1000,7 @@ $$
 		return [pc, fn, err];
 	};
 	Table.prototype.LineToPC = function(file, line) { return this.go$val.LineToPC(file, line); };
-	Table.Ptr.prototype.LookupSym = function(name) {
+0Ç≈	LookupSymÇ∂	Table.Ptr.prototype.LookupSym = function(name) {
 		var t, _ref, _i, i, _slice, _index, s, _ref$1;
 		t = this;
 		_ref = t.Syms;
@@ -1017,6 +1018,8 @@ $$
 		return (go$ptrType(Sym)).nil;
 	};
 	Table.prototype.LookupSym = function(name) { return this.go$val.LookupSym(name); };
+0Ç
+LookupFuncÇ
 	Table.Ptr.prototype.LookupFunc = function(name) {
 		var t, _ref, _i, i, _slice, _index, f;
 		t = this;
@@ -1032,7 +1035,7 @@ $$
 		return (go$ptrType(Func)).nil;
 	};
 	Table.prototype.LookupFunc = function(name) { return this.go$val.LookupFunc(name); };
-	Table.Ptr.prototype.SymByAddr = function(addr) {
+0ÇÙ	SymByAddrÇÂ	Table.Ptr.prototype.SymByAddr = function(addr) {
 		var t, _ref, _i, i, _slice, _index, s, _ref$1, x;
 		t = this;
 		_ref = t.Syms;
@@ -1050,7 +1053,7 @@ $$
 		return (go$ptrType(Sym)).nil;
 	};
 	Table.prototype.SymByAddr = function(addr) { return this.go$val.SymByAddr(addr); };
-	Obj.Ptr.prototype.lineFromAline = function(aline) {
+0Ç˙lineFromAlineÇÁ	Obj.Ptr.prototype.lineFromAline = function(aline) {
 		var o, stackEnt, noPath, tos, _ref, _i, _slice, _index, _struct, s, val;
 		o = this;
 		stackEnt = go$newType(0, "Struct", "gosym.stackEnt", "stackEnt", "debug/gosym", function(path_, start_, offset_, prev_) {
@@ -1088,7 +1091,7 @@ $$
 		return [tos.path, ((aline - tos.start >> 0) - tos.offset >> 0) + 1 >> 0];
 	};
 	Obj.prototype.lineFromAline = function(aline) { return this.go$val.lineFromAline(aline); };
-	Obj.Ptr.prototype.alineFromLine = function(path, line) {
+0Ç‚alineFromLineÇœ	Obj.Ptr.prototype.alineFromLine = function(path, line) {
 		var o, _ref, _i, _slice, _index, _struct, s, i, depth, incstart, _ref$1, _i$1, _slice$1, _index$1, _struct$1, s$1, val;
 		o = this;
 		if (line < 1) {
@@ -1131,19 +1134,19 @@ $$
 		return [0, new UnknownFileError(path)];
 	};
 	Obj.prototype.alineFromLine = function(path, line) { return this.go$val.alineFromLine(path, line); };
-	UnknownFileError.prototype.Error = function() {
+0ÅÓErrorÅ‰	UnknownFileError.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return "unknown file: " + e;
 	};
 	go$ptrType(UnknownFileError).prototype.Error = function() { return new UnknownFileError(this.go$get()).Error(); };
-	UnknownLineError.Ptr.prototype.Error = function() {
+0ÅÊErrorÅ‹	UnknownLineError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "no code at " + e.File + ":" + strconv.Itoa(e.Line);
 	};
 	UnknownLineError.prototype.Error = function() { return this.go$val.Error(); };
-	DecodingError.Ptr.prototype.Error = function() {
+0Ç∂ErrorÇ´	DecodingError.Ptr.prototype.Error = function() {
 		var e, msg;
 		e = this;
 		msg = e.msg;
@@ -1154,12 +1157,7 @@ $$
 		return msg;
 	};
 	DecodingError.prototype.Error = function() { return this.go$val.Error(); };
-	var oldQuantum = 1;
-	var go12magic = 4294967291;
-	var littleEndianSymtab = (go$sliceType(Go$Uint8)).nil;
-	var bigEndianSymtab = (go$sliceType(Go$Uint8)).nil;
-	var oldLittleEndianSymtab = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.init = function() {
+0Ç#initÇ	go$pkg.init = function() {
 		littleEndianSymtab = new (go$sliceType(Go$Uint8))([253, 255, 255, 255, 0, 0, 0]);
 		bigEndianSymtab = new (go$sliceType(Go$Uint8))([255, 255, 255, 253, 0, 0, 0]);
 		oldLittleEndianSymtab = new (go$sliceType(Go$Uint8))([254, 255, 255, 255, 0, 0]);

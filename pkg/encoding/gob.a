@@ -1,4 +1,4 @@
-0É∑2Çs,package gob
+0É¬Ÿencoding/gobÇs,package gob
 import bytes "bytes"
 import encoding "encoding"
 import errors "errors"
@@ -358,19 +358,8 @@ func (? @"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
-0Åïruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioencodingmathsyscalltimeosstrconvreflectfmtencoding/gobÉCe	var bytes = go$packages["bytes"];
-	var encoding = go$packages["encoding"];
-	var errors = go$packages["errors"];
-	var io = go$packages["io"];
-	var math = go$packages["math"];
-	var reflect = go$packages["reflect"];
-	var bufio = go$packages["bufio"];
-	var sync = go$packages["sync"];
-	var fmt = go$packages["fmt"];
-	var os = go$packages["os"];
-	var unicode = go$packages["unicode"];
-	var utf8 = go$packages["unicode/utf8"];
-	var decoderState;
+0Åïruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioencodingmathsyscalltimeosstrconvreflectfmtencoding/gob0Å¬0bytesbytes0encodingencoding0errorserrors0ioio0mathmath0reflectreflect0bufiobufio0syncsync0
+fmtfmt0osos0unicodeunicode0unicode/utf8utf8ÇiÎ	var decoderState;
 	decoderState = go$newType(0, "Struct", "gob.decoderState", "decoderState", "encoding/gob", function(dec_, b_, fieldnum_, buf_, next_) {
 		this.go$val = this;
 		this.dec = dec_ !== undefined ? dec_ : (go$ptrType(Decoder)).nil;
@@ -649,7 +638,51 @@ $$
 	typeInfo.init([["id", "encoding/gob", typeId, ""], ["encoder", "encoding/gob", (go$ptrType(encEngine)), ""], ["wire", "encoding/gob", (go$ptrType(wireType)), ""]]);
 	GobEncoder.init([["GobEncode", "", (go$funcType([], [(go$sliceType(Go$Uint8)), go$error], false))]]);
 	GobDecoder.init([["GobDecode", "", (go$funcType([(go$sliceType(Go$Uint8))], [go$error], false))]]);
-	Decoder.Ptr.prototype.newDecoderState = function(buf) {
+Çg	var errBadUint = null;
+	var errBadType = null;
+	var errRange = null;
+	var decOpTable = go$makeNativeArray("Func", 25, function() { return go$throwNilPointerError; });
+	var decIgnoreOpMap = false;
+	var emptyStructType = null;
+	var errBadCount = null;
+	var debugFunc = go$throwNilPointerError;
+	var encOpTable = go$makeNativeArray("Func", 25, function() { return go$throwNilPointerError; });
+	var spaceForLength = (go$sliceType(Go$Uint8)).nil;
+	var userTypeLock = new sync.RWMutex.Ptr();
+	var userTypeCache = false;
+	var gobEncoderInterfaceType = null;
+	var gobDecoderInterfaceType = null;
+	var binaryMarshalerInterfaceType = null;
+	var binaryUnmarshalerInterfaceType = null;
+	var textMarshalerInterfaceType = null;
+	var textUnmarshalerInterfaceType = null;
+	var nextId = 0;
+	var typeLock = new sync.Mutex.Ptr();
+	var types = false;
+	var idToType = false;
+	var builtinIdToType = false;
+	var tBool = 0;
+	var tInt = 0;
+	var tUint = 0;
+	var tFloat = 0;
+	var tBytes = 0;
+	var tString = 0;
+	var tComplex = 0;
+	var tInterface = 0;
+	var tReserved7 = 0;
+	var tReserved6 = 0;
+	var tReserved5 = 0;
+	var tReserved4 = 0;
+	var tReserved3 = 0;
+	var tReserved2 = 0;
+	var tReserved1 = 0;
+	var tWireType = 0;
+	var wireTypeUserInfo = (go$ptrType(userTypeInfo)).nil;
+	var typeInfoMap = false;
+	var registerLock = new sync.RWMutex.Ptr();
+	var nameToConcreteType = false;
+	var concreteTypeToName = false;
+0Éﬁﬂ0ÇÃnewDecoderStateÇ∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
 		var dec, d;
 		dec = this;
 		d = dec.freeList;
@@ -664,17 +697,17 @@ $$
 		return d;
 	};
 	Decoder.prototype.newDecoderState = function(buf) { return this.go$val.newDecoderState(buf); };
-	Decoder.Ptr.prototype.freeDecoderState = function(d) {
+0ÅˆfreeDecoderStateÅ·	Decoder.Ptr.prototype.freeDecoderState = function(d) {
 		var dec;
 		dec = this;
 		d.next = dec.freeList;
 		dec.freeList = d;
 	};
 	Decoder.prototype.freeDecoderState = function(d) { return this.go$val.freeDecoderState(d); };
-	var overflow = function(name) {
+0qoverflowe	var overflow = function(name) {
 		return errors.New("value for \"" + name + "\" out of range");
 	};
-	var decodeUintReader = function(r, buf) {
+0ÇÿdecodeUintReaderÇ¬	var decodeUintReader = function(r, buf) {
 		var x, width, err, _tuple, n, _slice, _index, b, _tuple$1, _tuple$2, _ref, _i, _slice$1, _index$1, b$1, x$1, x$2;
 		x = new Go$Uint64(0, 0);
 		width = 0;
@@ -710,7 +743,8 @@ $$
 		width = width + 1 >> 0;
 		return [x, width, err];
 	};
-	decoderState.Ptr.prototype.decodeUint = function() {
+0Çg
+decodeUintÇW	decoderState.Ptr.prototype.decodeUint = function() {
 		var x, state, _tuple, b, err, n, _tuple$1, width, _ref, _i, _slice, _index, b$1, x$1, x$2;
 		x = new Go$Uint64(0, 0);
 		state = this;
@@ -740,7 +774,7 @@ $$
 		return x;
 	};
 	decoderState.prototype.decodeUint = function() { return this.go$val.decodeUint(); };
-	decoderState.Ptr.prototype.decodeInt = function() {
+0Ç	decodeIntÇ	decoderState.Ptr.prototype.decodeInt = function() {
 		var state, x, x$1, x$2, x$3, x$4;
 		state = this;
 		x = state.decodeUint();
@@ -750,7 +784,7 @@ $$
 		return (x$4 = go$shiftRightUint64(x, 1), new Go$Int64(x$4.high, x$4.low));
 	};
 	decoderState.prototype.decodeInt = function() { return this.go$val.decodeInt(); };
-	var decIndirect = function(p, indir) {
+0ÅÙdecIndirectÅ‰	var decIndirect = function(p, indir) {
 		while (indir > 1) {
 			if (p.go$get() === 0) {
 				p.go$set(go$newDataPointer(0, (go$ptrType(Go$UnsafePointer))));
@@ -760,14 +794,15 @@ $$
 		}
 		return p;
 	};
-	var ignoreUint = function(i, state, p) {
+0R
+ignoreUintD	var ignoreUint = function(i, state, p) {
 		state.decodeUint();
 	};
-	var ignoreTwoUints = function(i, state, p) {
+0pignoreTwoUints^	var ignoreTwoUints = function(i, state, p) {
 		state.decodeUint();
 		state.decodeUint();
 	};
-	var decBool = function(i, state, p) {
+0ÇdecBoolÇ	var decBool = function(i, state, p) {
 		var x;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -777,7 +812,7 @@ $$
 		}
 		p.go$set(!((x = state.decodeUint(), (x.high === 0 && x.low === 0))));
 	};
-	var decInt8 = function(i, state, p) {
+0Ç∏decInt8Ç´	var decInt8 = function(i, state, p) {
 		var v;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -792,7 +827,7 @@ $$
 			p.go$set(((v.low + ((v.high >> 31) * 4294967296)) << 24 >> 24));
 		}
 	};
-	var decUint8 = function(i, state, p) {
+0ÇadecUint8ÇS	var decUint8 = function(i, state, p) {
 		var v;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -807,7 +842,7 @@ $$
 			p.go$set((v.low << 24 >>> 24));
 		}
 	};
-	var decInt16 = function(i, state, p) {
+0ÇΩdecInt16ÇØ	var decInt16 = function(i, state, p) {
 		var v;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -822,7 +857,7 @@ $$
 			p.go$set(((v.low + ((v.high >> 31) * 4294967296)) << 16 >> 16));
 		}
 	};
-	var decUint16 = function(i, state, p) {
+0Çf	decUint16ÇW	var decUint16 = function(i, state, p) {
 		var v;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -837,7 +872,7 @@ $$
 			p.go$set((v.low << 16 >>> 16));
 		}
 	};
-	var decInt32 = function(i, state, p) {
+0ÇªdecInt32Ç≠	var decInt32 = function(i, state, p) {
 		var v;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -852,7 +887,7 @@ $$
 			p.go$set(((v.low + ((v.high >> 31) * 4294967296)) >> 0));
 		}
 	};
-	var decUint32 = function(i, state, p) {
+0Çd	decUint32ÇU	var decUint32 = function(i, state, p) {
 		var v;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -867,7 +902,7 @@ $$
 			p.go$set((v.low >>> 0));
 		}
 	};
-	var decInt64 = function(i, state, p) {
+0ÅÒdecInt64Å‰	var decInt64 = function(i, state, p) {
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
 				p.go$set(go$newDataPointer(new Go$Int64(0, 0), (go$ptrType(Go$Int64))));
@@ -876,7 +911,7 @@ $$
 		}
 		p.go$set(state.decodeInt());
 	};
-	var decUint64 = function(i, state, p) {
+0Åˆ	decUint64ÅË	var decUint64 = function(i, state, p) {
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
 				p.go$set(go$newDataPointer(new Go$Uint64(0, 0), (go$ptrType(Go$Uint64))));
@@ -885,7 +920,7 @@ $$
 		}
 		p.go$set(state.decodeUint());
 	};
-	var floatFromBits = function(u) {
+0ÇkfloatFromBitsÇX	var floatFromBits = function(u) {
 		var v, i, x;
 		v = new Go$Uint64(0, 0);
 		i = 0;
@@ -897,7 +932,7 @@ $$
 		}
 		return math.Float64frombits(v);
 	};
-	var storeFloat32 = function(i, state, p) {
+0ÇstoreFloat32Ç		var storeFloat32 = function(i, state, p) {
 		var v, av;
 		v = floatFromBits(state.decodeUint());
 		av = v;
@@ -910,7 +945,8 @@ $$
 			p.go$set(v);
 		}
 	};
-	var decFloat32 = function(i, state, p) {
+0Å‰
+decFloat32Å’	var decFloat32 = function(i, state, p) {
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
 				p.go$set(go$newDataPointer(0, (go$ptrType(Go$Float32))));
@@ -919,7 +955,8 @@ $$
 		}
 		storeFloat32(i, state, p);
 	};
-	var decFloat64 = function(i, state, p) {
+0Åˆ
+decFloat64ÅÁ	var decFloat64 = function(i, state, p) {
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
 				p.go$set(go$newDataPointer(0, (go$ptrType(Go$Float64))));
@@ -928,7 +965,7 @@ $$
 		}
 		p.go$set(floatFromBits(state.decodeUint()));
 	};
-	var decComplex64 = function(i, state, p) {
+0Ç)decComplex64Ç	var decComplex64 = function(i, state, p) {
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
 				p.go$set(go$newDataPointer(new Go$Complex64(0, 0), (go$ptrType(Go$Complex64))));
@@ -938,7 +975,7 @@ $$
 		storeFloat32(i, state, p);
 		storeFloat32(i, state, (p + 4 >>> 0));
 	};
-	var decComplex128 = function(i, state, p) {
+0Ç|decComplex128Çi	var decComplex128 = function(i, state, p) {
 		var real, imag;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -950,7 +987,7 @@ $$
 		imag = floatFromBits(state.decodeUint());
 		p.go$set(new Go$Complex128(real, imag));
 	};
-	var decUint8Slice = function(i, state, p) {
+0ÇdecUint8SliceÇÒ	var decUint8Slice = function(i, state, p) {
 		var n, x, slice, x$1, err, _tuple;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -972,7 +1009,7 @@ $$
 			errorf("error decoding []byte: %s", new (go$sliceType(go$emptyInterface))([err]));
 		}
 	};
-	var decString = function(i, state, p) {
+0Ç8	decStringÇ)	var decString = function(i, state, p) {
 		var n, x, b;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
@@ -988,12 +1025,12 @@ $$
 		state.b.Read(b);
 		p.go$set(b);
 	};
-	var ignoreUint8Array = function(i, state, p) {
+0Å…ignoreUint8ArrayÅ¥	var ignoreUint8Array = function(i, state, p) {
 		var b;
 		b = (go$sliceType(Go$Uint8)).make(go$flatten64(state.decodeUint()), 0, function() { return 0; });
 		state.b.Read(b);
 	};
-	var allocate = function(rtyp, p, indir) {
+0ÇallocateÇ 	var allocate = function(rtyp, p, indir) {
 		var up;
 		if (indir === 0) {
 			return p;
@@ -1007,7 +1044,7 @@ $$
 		}
 		return up.go$get();
 	};
-	Decoder.Ptr.prototype.decodeSingle = function(engine, ut, basep) {
+0ÇdecodeSingleÇ¸	Decoder.Ptr.prototype.decodeSingle = function(engine, ut, basep) {
 		var dec, state, delta, _slice, _index, instr, ptr;
 		dec = this;
 		state = dec.newDecoderState(dec.buf);
@@ -1028,7 +1065,7 @@ $$
 		dec.freeDecoderState(state);
 	};
 	Decoder.prototype.decodeSingle = function(engine, ut, basep) { return this.go$val.decodeSingle(engine, ut, basep); };
-	Decoder.Ptr.prototype.decodeStruct = function(engine, ut, p, indir) {
+0ÇÑdecodeStructÇr	Decoder.Ptr.prototype.decodeStruct = function(engine, ut, p, indir) {
 		var dec, state, basep, delta, fieldnum, _slice, _index, instr, p$1;
 		dec = this;
 		p = allocate(ut.base, p, indir);
@@ -1059,7 +1096,7 @@ $$
 		dec.freeDecoderState(state);
 	};
 	Decoder.prototype.decodeStruct = function(engine, ut, p, indir) { return this.go$val.decodeStruct(engine, ut, p, indir); };
-	Decoder.Ptr.prototype.ignoreStruct = function(engine) {
+0Ç©ignoreStructÇó	Decoder.Ptr.prototype.ignoreStruct = function(engine) {
 		var dec, state, delta, fieldnum, _slice, _index, instr;
 		dec = this;
 		state = dec.newDecoderState(dec.buf);
@@ -1083,7 +1120,7 @@ $$
 		dec.freeDecoderState(state);
 	};
 	Decoder.prototype.ignoreStruct = function(engine) { return this.go$val.ignoreStruct(engine); };
-	Decoder.Ptr.prototype.ignoreSingle = function(engine) {
+0Ç…ignoreSingleÇ∑	Decoder.Ptr.prototype.ignoreSingle = function(engine) {
 		var dec, state, delta, _slice, _index, instr;
 		dec = this;
 		state = dec.newDecoderState(dec.buf);
@@ -1097,7 +1134,7 @@ $$
 		dec.freeDecoderState(state);
 	};
 	Decoder.prototype.ignoreSingle = function(engine) { return this.go$val.ignoreSingle(engine); };
-	Decoder.Ptr.prototype.decodeArrayHelper = function(state, p, elemOp, elemWid, length, elemIndir, ovfl) {
+0ÇdecodeArrayHelperÇ 	Decoder.Ptr.prototype.decodeArrayHelper = function(state, p, elemOp, elemWid, length, elemIndir, ovfl) {
 		var dec, instr, i, up;
 		dec = this;
 		instr = new decInstr.Ptr(elemOp, 0, elemIndir, 0, ovfl);
@@ -1116,7 +1153,7 @@ $$
 		}
 	};
 	Decoder.prototype.decodeArrayHelper = function(state, p, elemOp, elemWid, length, elemIndir, ovfl) { return this.go$val.decodeArrayHelper(state, p, elemOp, elemWid, length, elemIndir, ovfl); };
-	Decoder.Ptr.prototype.decodeArray = function(atyp, state, p, elemOp, elemWid, length, indir, elemIndir, ovfl) {
+0ÇædecodeArrayÇ≠	Decoder.Ptr.prototype.decodeArray = function(atyp, state, p, elemOp, elemWid, length, indir, elemIndir, ovfl) {
 		var dec, n, x;
 		dec = this;
 		if (indir > 0) {
@@ -1128,7 +1165,7 @@ $$
 		dec.decodeArrayHelper(state, p, elemOp, elemWid, length, elemIndir, ovfl);
 	};
 	Decoder.prototype.decodeArray = function(atyp, state, p, elemOp, elemWid, length, indir, elemIndir, ovfl) { return this.go$val.decodeArray(atyp, state, p, elemOp, elemWid, length, indir, elemIndir, ovfl); };
-	var decodeIntoValue = function(state, op, indir, v, ovfl) {
+0ÇΩdecodeIntoValueÇ®	var decodeIntoValue = function(state, op, indir, v, ovfl) {
 		var instr, _struct, up, _struct$1;
 		instr = new decInstr.Ptr(op, 0, indir, 0, ovfl);
 		up = unsafeAddr((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
@@ -1138,7 +1175,7 @@ $$
 		op(instr, state, up);
 		return (_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 	};
-	Decoder.Ptr.prototype.decodeMap = function(mtyp, state, p, keyOp, elemOp, indir, keyIndir, elemIndir, ovfl) {
+0Ç—	decodeMapÇ¬	Decoder.Ptr.prototype.decodeMap = function(mtyp, state, p, keyOp, elemOp, indir, keyIndir, elemIndir, ovfl) {
 		var dec, up, _struct, v, n, i, _struct$1, _struct$2, key, _struct$3, _struct$4, elem, _struct$5, _struct$6;
 		dec = this;
 		if (indir > 0) {
@@ -1159,7 +1196,7 @@ $$
 		}
 	};
 	Decoder.prototype.decodeMap = function(mtyp, state, p, keyOp, elemOp, indir, keyIndir, elemIndir, ovfl) { return this.go$val.decodeMap(mtyp, state, p, keyOp, elemOp, indir, keyIndir, elemIndir, ovfl); };
-	Decoder.Ptr.prototype.ignoreArrayHelper = function(state, elemOp, length) {
+0Ç¨ignoreArrayHelperÇï	Decoder.Ptr.prototype.ignoreArrayHelper = function(state, elemOp, length) {
 		var dec, instr, i;
 		dec = this;
 		instr = new decInstr.Ptr(elemOp, 0, 0, 0, errors.New("no error"));
@@ -1170,7 +1207,7 @@ $$
 		}
 	};
 	Decoder.prototype.ignoreArrayHelper = function(state, elemOp, length) { return this.go$val.ignoreArrayHelper(state, elemOp, length); };
-	Decoder.Ptr.prototype.ignoreArray = function(state, elemOp, length) {
+0ÇÔignoreArrayÇﬁ	Decoder.Ptr.prototype.ignoreArray = function(state, elemOp, length) {
 		var dec, n, x;
 		dec = this;
 		if (n = state.decodeUint(), !((x = new Go$Uint64(0, length), (n.high === x.high && n.low === x.low)))) {
@@ -1179,7 +1216,7 @@ $$
 		dec.ignoreArrayHelper(state, elemOp, length);
 	};
 	Decoder.prototype.ignoreArray = function(state, elemOp, length) { return this.go$val.ignoreArray(state, elemOp, length); };
-	Decoder.Ptr.prototype.ignoreMap = function(state, keyOp, elemOp) {
+0Ç'	ignoreMapÇ	Decoder.Ptr.prototype.ignoreMap = function(state, keyOp, elemOp) {
 		var dec, n, keyInstr, elemInstr, i;
 		dec = this;
 		n = (state.decodeUint().low >> 0);
@@ -1193,7 +1230,7 @@ $$
 		}
 	};
 	Decoder.prototype.ignoreMap = function(state, keyOp, elemOp) { return this.go$val.ignoreMap(state, keyOp, elemOp); };
-	Decoder.Ptr.prototype.decodeSlice = function(atyp, state, p, elemOp, elemWid, indir, elemIndir, ovfl) {
+0ÇëdecodeSliceÇÄ	Decoder.Ptr.prototype.decodeSlice = function(atyp, state, p, elemOp, elemWid, indir, elemIndir, ovfl) {
 		var dec, nr, n, up, _struct, hdrp;
 		dec = this;
 		nr = state.decodeUint();
@@ -1214,20 +1251,20 @@ $$
 		dec.decodeArrayHelper(state, hdrp.Data, elemOp, elemWid, n, elemIndir, ovfl);
 	};
 	Decoder.prototype.decodeSlice = function(atyp, state, p, elemOp, elemWid, indir, elemIndir, ovfl) { return this.go$val.decodeSlice(atyp, state, p, elemOp, elemWid, indir, elemIndir, ovfl); };
-	Decoder.Ptr.prototype.ignoreSlice = function(state, elemOp) {
+0Ç!ignoreSliceÇ	Decoder.Ptr.prototype.ignoreSlice = function(state, elemOp) {
 		var dec;
 		dec = this;
 		dec.ignoreArrayHelper(state, elemOp, (state.decodeUint().low >> 0));
 	};
 	Decoder.prototype.ignoreSlice = function(state, elemOp) { return this.go$val.ignoreSlice(state, elemOp); };
-	var setInterfaceValue = function(ivalue, value) {
+0ÇmsetInterfaceValueÇV	var setInterfaceValue = function(ivalue, value) {
 		var _struct;
 		if (!value.Type().AssignableTo(ivalue.Type())) {
 			errorf("cannot assign value of type %s to %s", new (go$sliceType(go$emptyInterface))([value.Type(), ivalue.Type()]));
 		}
 		ivalue.Set((_struct = value, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
 	};
-	Decoder.Ptr.prototype.decodeInterface = function(ityp, state, p, indir) {
+0ÇÊdecodeInterfaceÇ—	Decoder.Ptr.prototype.decodeInterface = function(ityp, state, p, indir) {
 		var dec, _struct, ivalue, nr, b, name, _tuple, _entry, typ, ok, concreteId, _struct$1, value, _struct$2, _struct$3, _struct$4;
 		dec = this;
 		ivalue = (_struct = allocValue(ityp), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -1271,7 +1308,7 @@ $$
 		go$copyArray(p, go$mapArray(ivalue.InterfaceData(), function(entry) { return entry; }));
 	};
 	Decoder.prototype.decodeInterface = function(ityp, state, p, indir) { return this.go$val.decodeInterface(ityp, state, p, indir); };
-	Decoder.Ptr.prototype.ignoreInterface = function(state) {
+0Ç2ignoreInterfaceÇ	Decoder.Ptr.prototype.ignoreInterface = function(state) {
 		var dec, b, _tuple, err, id;
 		dec = this;
 		b = (go$sliceType(Go$Uint8)).make(go$flatten64(state.decodeUint()), 0, function() { return 0; });
@@ -1286,7 +1323,7 @@ $$
 		state.b.Next((state.decodeUint().low >> 0));
 	};
 	Decoder.prototype.ignoreInterface = function(state) { return this.go$val.ignoreInterface(state); };
-	Decoder.Ptr.prototype.decodeGobDecoder = function(ut, state, v) {
+0ÇªdecodeGobDecoderÇ•	Decoder.Ptr.prototype.decodeGobDecoder = function(ut, state, v) {
 		var dec, b, _tuple, err, _ref, x, x$1, x$2;
 		dec = this;
 		b = (go$sliceType(Go$Uint8)).make(go$flatten64(state.decodeUint()), 0, function() { return 0; });
@@ -1307,7 +1344,7 @@ $$
 		}
 	};
 	Decoder.prototype.decodeGobDecoder = function(ut, state, v) { return this.go$val.decodeGobDecoder(ut, state, v); };
-	Decoder.Ptr.prototype.ignoreGobDecoder = function(state) {
+0Ç∂ignoreGobDecoderÇ†	Decoder.Ptr.prototype.ignoreGobDecoder = function(state) {
 		var dec, b, _tuple, err;
 		dec = this;
 		b = (go$sliceType(Go$Uint8)).make(go$flatten64(state.decodeUint()), 0, function() { return 0; });
@@ -1317,7 +1354,7 @@ $$
 		}
 	};
 	Decoder.prototype.ignoreGobDecoder = function(state) { return this.go$val.ignoreGobDecoder(state); };
-	Decoder.Ptr.prototype.decOpFor = function(wireId, rt, name, inProgress) {
+0ÇPdecOpForÇB	Decoder.Ptr.prototype.decOpFor = function(wireId, rt, name, inProgress) {
 		var dec, ut, opPtr, _entry, typ, indir, op, k, v, _key, t, _ref, _entry$1, elemId, _tuple, elemOp, elemIndir, ovfl, _entry$2, keyId, _entry$3, elemId$1, _tuple$1, keyOp, keyIndir, _tuple$2, elemOp$1, elemIndir$1, ovfl$1, elemId$2, ok, _tuple$3, _entry$4, tt, _entry$5, _tuple$4, elemOp$2, elemIndir$2, ovfl$2, _tuple$5, enginePtr, err, v$1;
 		dec = this;
 		ut = userType(rt);
@@ -1395,7 +1432,9 @@ $$
 		return [new (go$ptrType(decOp))(function() { return op; }, function(v$1) { op = v$1; }), indir];
 	};
 	Decoder.prototype.decOpFor = function(wireId, rt, name, inProgress) { return this.go$val.decOpFor(wireId, rt, name, inProgress); };
-	Decoder.Ptr.prototype.decIgnoreOpFor = function(wireId) {
+0Ç
+ïdecIgnoreOpForÇ
+Å	Decoder.Ptr.prototype.decIgnoreOpFor = function(wireId) {
 		var dec, _tuple, _entry, op, ok, _entry$1, wire, elemId, elemOp, _entry$2, keyId, _entry$3, elemId$1, keyOp, elemOp$1, elemId$2, elemOp$2, _tuple$1, enginePtr, err;
 		dec = this;
 		_tuple = (_entry = decIgnoreOpMap[wireId], _entry !== undefined ? [_entry.v, true] : [go$throwNilPointerError, false]), op = _tuple[0], ok = _tuple[1];
@@ -1449,7 +1488,7 @@ $$
 		return op;
 	};
 	Decoder.prototype.decIgnoreOpFor = function(wireId) { return this.go$val.decIgnoreOpFor(wireId); };
-	Decoder.Ptr.prototype.gobDecodeOpFor = function(ut) {
+0ÇgobDecodeOpForÇ	Decoder.Ptr.prototype.gobDecodeOpFor = function(ut) {
 		var dec, rcvrType, i, op, v;
 		dec = this;
 		rcvrType = ut.user;
@@ -1481,7 +1520,7 @@ $$
 		return [new (go$ptrType(decOp))(function() { return op; }, function(v) { op = v; }), ut.indir];
 	};
 	Decoder.prototype.gobDecodeOpFor = function(ut) { return this.go$val.gobDecodeOpFor(ut); };
-	Decoder.Ptr.prototype.compatibleType = function(fr, fw, inProgress) {
+0ÇcompatibleTypeÇÚ	Decoder.Ptr.prototype.compatibleType = function(fr, fw, inProgress) {
 		var dec, ok, _tuple, _entry, rhs, _key, ut, _tuple$1, _entry$1, wire, ok$1, t, _ref, array, MapType, sw, ok$2, _tuple$2, _entry$2, tt, _tuple$3, elem;
 		dec = this;
 		if (_tuple = (_entry = inProgress[(fr || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [0, false]), rhs = _tuple[0], ok = _tuple[1], ok) {
@@ -1543,7 +1582,8 @@ $$
 		}
 	};
 	Decoder.prototype.compatibleType = function(fr, fw, inProgress) { return this.go$val.compatibleType(fr, fw, inProgress); };
-	Decoder.Ptr.prototype.typeString = function(remoteId) {
+0Ç„
+typeStringÇ”	Decoder.Ptr.prototype.typeString = function(remoteId) {
 		var dec, t, _entry, _entry$1;
 		dec = this;
 		if (t = (_entry = idToType[remoteId], _entry !== undefined ? _entry.v : null), !(go$interfaceIsEqual(t, null))) {
@@ -1552,7 +1592,7 @@ $$
 		return (_entry$1 = dec.wireType[remoteId], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(wireType)).nil).string();
 	};
 	Decoder.prototype.typeString = function(remoteId) { return this.go$val.typeString(remoteId); };
-	Decoder.Ptr.prototype.compileSingle = function(remoteId, ut) {
+0Ç7compileSingleÇ$	Decoder.Ptr.prototype.compileSingle = function(remoteId, ut) {
 		var engine, err, dec, rt, name, remoteType, _tuple, _tuple$1, _tuple$2, op, indir, ovfl, _slice, _index;
 		engine = (go$ptrType(decEngine)).nil;
 		err = null;
@@ -1577,7 +1617,7 @@ $$
 		return [engine, err];
 	};
 	Decoder.prototype.compileSingle = function(remoteId, ut) { return this.go$val.compileSingle(remoteId, ut); };
-	Decoder.Ptr.prototype.compileIgnoreSingle = function(remoteId) {
+0ÇcompileIgnoreSingleÇ˚	Decoder.Ptr.prototype.compileIgnoreSingle = function(remoteId) {
 		var engine, err, dec, op, ovfl, _slice, _index;
 		engine = (go$ptrType(decEngine)).nil;
 		err = null;
@@ -1591,7 +1631,8 @@ $$
 		return [engine, err];
 	};
 	Decoder.prototype.compileIgnoreSingle = function(remoteId) { return this.go$val.compileIgnoreSingle(remoteId); };
-	Decoder.Ptr.prototype.compileDec = function(remoteId, ut) {
+0Ç≤
+compileDecÇ¢	Decoder.Ptr.prototype.compileDec = function(remoteId, ut) {
 		var engine, err, dec, rt, srt, _tuple, wireStruct, ok, _tuple$1, _entry, t, _tuple$2, _entry$1, wire, seen, fieldnum, _slice, _index, wireField, ovfl, _tuple$3, _struct, localField, present, op, _slice$1, _index$1, _tuple$4, op$1, indir, _slice$2, _index$2;
 		engine = (go$ptrType(decEngine)).nil;
 		err = null;
@@ -1643,7 +1684,7 @@ $$
 		return [engine, err];
 	};
 	Decoder.prototype.compileDec = function(remoteId, ut) { return this.go$val.compileDec(remoteId, ut); };
-	Decoder.Ptr.prototype.getDecEnginePtr = function(remoteId, ut) {
+0ÇógetDecEnginePtrÇÇ	Decoder.Ptr.prototype.getDecEnginePtr = function(remoteId, ut) {
 		var enginePtr, err, dec, rt, _tuple, _entry, decoderMap, ok, _key, _tuple$1, _entry$1, _key$1, _tuple$2;
 		enginePtr = (go$ptrType((go$ptrType(decEngine)))).nil;
 		err = null;
@@ -1665,7 +1706,7 @@ $$
 		return [enginePtr, err];
 	};
 	Decoder.prototype.getDecEnginePtr = function(remoteId, ut) { return this.go$val.getDecEnginePtr(remoteId, ut); };
-	Decoder.Ptr.prototype.getIgnoreEnginePtr = function(wireId) {
+0Ç\getIgnoreEnginePtrÇD	Decoder.Ptr.prototype.getIgnoreEnginePtr = function(wireId) {
 		var enginePtr, err, dec, ok, _tuple, _entry, _key, _entry$1, wire, _tuple$1, _tuple$2;
 		enginePtr = (go$ptrType((go$ptrType(decEngine)))).nil;
 		err = null;
@@ -1687,7 +1728,7 @@ $$
 		return [enginePtr, err];
 	};
 	Decoder.prototype.getIgnoreEnginePtr = function(wireId) { return this.go$val.getIgnoreEnginePtr(wireId); };
-	Decoder.Ptr.prototype.decodeValue = function(wireId, val) {
+0ÇZdecodeValueÇI	Decoder.Ptr.prototype.decodeValue = function(wireId, val) {
 		var dec, v, ut, base, enginePtr, _tuple, engine, st, _entry, name, _struct, _struct$1;
 		var go$deferred = [];
 		try {
@@ -1721,7 +1762,7 @@ $$
 		}
 	};
 	Decoder.prototype.decodeValue = function(wireId, val) { return this.go$val.decodeValue(wireId, val); };
-	Decoder.Ptr.prototype.decodeIgnoredValue = function(wireId) {
+0Ç˝decodeIgnoredValueÇÂ	Decoder.Ptr.prototype.decodeIgnoredValue = function(wireId) {
 		var dec, enginePtr, _tuple, _entry, wire;
 		dec = this;
 		enginePtr = (go$ptrType((go$ptrType(decEngine)))).nil;
@@ -1737,7 +1778,8 @@ $$
 		}
 	};
 	Decoder.prototype.decodeIgnoredValue = function(wireId) { return this.go$val.decodeIgnoredValue(wireId); };
-	var unsafeAddr = function(v) {
+0Çk
+unsafeAddrÇ[	var unsafeAddr = function(v) {
 		var _struct, x, _struct$1;
 		if (v.CanAddr()) {
 			return v.UnsafeAddr();
@@ -1746,11 +1788,14 @@ $$
 		x.Set((_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)));
 		return x.UnsafeAddr();
 	};
-	var allocValue = function(t) {
+0Å≠
+allocValueÅû	var allocValue = function(t) {
 		var _struct;
 		return (_struct = reflect.New(t).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
-	Decoder.Ptr.prototype.recvType = function(id) {
+0e
+NewDecoderW	var NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("encoding/gob"); };
+0ÇÒrecvTypeÇ„	Decoder.Ptr.prototype.recvType = function(id) {
 		var dec, _entry, wire, _struct, _key;
 		dec = this;
 		if (id < 64 || !((_entry = dec.wireType[id], _entry !== undefined ? _entry.v : (go$ptrType(wireType)).nil) === (go$ptrType(wireType)).nil)) {
@@ -1765,7 +1810,7 @@ $$
 		_key = id, (dec.wireType || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: wire };
 	};
 	Decoder.prototype.recvType = function(id) { return this.go$val.recvType(id); };
-	Decoder.Ptr.prototype.recvMessage = function() {
+0ÇArecvMessageÇ0	Decoder.Ptr.prototype.recvMessage = function() {
 		var dec, _tuple, nbytes, err;
 		dec = this;
 		_tuple = decodeUintReader(dec.r, dec.countBuf), nbytes = _tuple[0], err = _tuple[2];
@@ -1781,7 +1826,7 @@ $$
 		return go$interfaceIsEqual(dec.err, null);
 	};
 	Decoder.prototype.recvMessage = function() { return this.go$val.recvMessage(); };
-	Decoder.Ptr.prototype.readMessage = function(nbytes) {
+0Ç≈readMessageÇ¥	Decoder.Ptr.prototype.readMessage = function(nbytes) {
 		var dec, nTmp, nAlloc, nRead, _tuple;
 		dec = this;
 		nTmp = nbytes;
@@ -1814,7 +1859,7 @@ $$
 		}
 	};
 	Decoder.prototype.readMessage = function(nbytes) { return this.go$val.readMessage(nbytes); };
-	var toInt = function(x) {
+0Ç'toIntÇ	var toInt = function(x) {
 		var x$1, i, x$2;
 		i = (x$1 = go$shiftRightUint64(x, 1), new Go$Int64(x$1.high, x$1.low));
 		if (!((x$2 = new Go$Uint64(x.high & 0, (x.low & 1) >>> 0), (x$2.high === 0 && x$2.low === 0)))) {
@@ -1822,7 +1867,7 @@ $$
 		}
 		return i;
 	};
-	Decoder.Ptr.prototype.nextInt = function() {
+0Ç[nextIntÇN	Decoder.Ptr.prototype.nextInt = function() {
 		var dec, _tuple, n, err;
 		dec = this;
 		_tuple = decodeUintReader(dec.buf, dec.countBuf), n = _tuple[0], err = _tuple[2];
@@ -1832,7 +1877,7 @@ $$
 		return toInt(n);
 	};
 	Decoder.prototype.nextInt = function() { return this.go$val.nextInt(); };
-	Decoder.Ptr.prototype.nextUint = function() {
+0ÇXnextUintÇJ	Decoder.Ptr.prototype.nextUint = function() {
 		var dec, _tuple, n, err;
 		dec = this;
 		_tuple = decodeUintReader(dec.buf, dec.countBuf), n = _tuple[0], err = _tuple[2];
@@ -1842,7 +1887,7 @@ $$
 		return n;
 	};
 	Decoder.prototype.nextUint = function() { return this.go$val.nextUint(); };
-	Decoder.Ptr.prototype.decodeTypeSequence = function(isInterface) {
+0Ç£decodeTypeSequenceÇã	Decoder.Ptr.prototype.decodeTypeSequence = function(isInterface) {
 		var dec, x, id;
 		dec = this;
 		while (go$interfaceIsEqual(dec.err, null)) {
@@ -1867,7 +1912,7 @@ $$
 		return -1;
 	};
 	Decoder.prototype.decodeTypeSequence = function(isInterface) { return this.go$val.decodeTypeSequence(isInterface); };
-	Decoder.Ptr.prototype.Decode = function(e) {
+0Ç£DecodeÇó	Decoder.Ptr.prototype.Decode = function(e) {
 		var dec, _struct, value, _struct$1;
 		dec = this;
 		if (go$interfaceIsEqual(e, null)) {
@@ -1881,7 +1926,7 @@ $$
 		return dec.DecodeValue((_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)));
 	};
 	Decoder.prototype.Decode = function(e) { return this.go$val.Decode(e); };
-	Decoder.Ptr.prototype.DecodeValue = function(v) {
+0ÇSDecodeValueÇB	Decoder.Ptr.prototype.DecodeValue = function(v) {
 		var dec, id, _struct;
 		var go$deferred = [];
 		try {
@@ -1909,7 +1954,7 @@ $$
 		}
 	};
 	Decoder.prototype.DecodeValue = function(v) { return this.go$val.DecodeValue(v); };
-	Encoder.Ptr.prototype.newEncoderState = function(b) {
+0Ç¢newEncoderStateÇç	Encoder.Ptr.prototype.newEncoderState = function(b) {
 		var enc, e;
 		enc = this;
 		e = enc.freeList;
@@ -1925,14 +1970,15 @@ $$
 		return e;
 	};
 	Encoder.prototype.newEncoderState = function(b) { return this.go$val.newEncoderState(b); };
-	Encoder.Ptr.prototype.freeEncoderState = function(e) {
+0ÅˆfreeEncoderStateÅ·	Encoder.Ptr.prototype.freeEncoderState = function(e) {
 		var enc;
 		enc = this;
 		e.next = enc.freeList;
 		enc.freeList = e;
 	};
 	Encoder.prototype.freeEncoderState = function(e) { return this.go$val.freeEncoderState(e); };
-	encoderState.Ptr.prototype.encodeUint = function(x) {
+0Ç
+encodeUintÇ˛	encoderState.Ptr.prototype.encodeUint = function(x) {
 		var state, err, i, _tuple, err$1;
 		state = this;
 		if ((x.high < 0 || (x.high === 0 && x.low <= 127))) {
@@ -1955,7 +2001,7 @@ $$
 		}
 	};
 	encoderState.prototype.encodeUint = function(x) { return this.go$val.encodeUint(x); };
-	encoderState.Ptr.prototype.encodeInt = function(i) {
+0Ç.	encodeIntÇ	encoderState.Ptr.prototype.encodeInt = function(i) {
 		var state, x, x$1, x$2, x$3;
 		state = this;
 		x = new Go$Uint64(0, 0);
@@ -1967,7 +2013,7 @@ $$
 		state.encodeUint(x);
 	};
 	encoderState.prototype.encodeInt = function(i) { return this.go$val.encodeInt(i); };
-	encoderState.Ptr.prototype.update = function(instr) {
+0Ç^updateÇR	encoderState.Ptr.prototype.update = function(instr) {
 		var state;
 		state = this;
 		if (!(instr === (go$ptrType(encInstr)).nil)) {
@@ -1976,7 +2022,7 @@ $$
 		}
 	};
 	encoderState.prototype.update = function(instr) { return this.go$val.update(instr); };
-	var encIndirect = function(p, indir) {
+0ÅµencIndirectÅ•	var encIndirect = function(p, indir) {
 		while (indir > 0) {
 			p = p.go$get();
 			if (p === 0) {
@@ -1986,7 +2032,7 @@ $$
 		}
 		return p;
 	};
-	var encBool = function(i, state, p) {
+0Å˙encBoolÅÓ	var encBool = function(i, state, p) {
 		var b;
 		b = p.go$get();
 		if (b || state.sendZero) {
@@ -1998,7 +2044,7 @@ $$
 			}
 		}
 	};
-	var encInt = function(i, state, p) {
+0ÅÃencIntÅ¡	var encInt = function(i, state, p) {
 		var v;
 		v = new Go$Int64(0, p.go$get());
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2006,7 +2052,7 @@ $$
 			state.encodeInt(v);
 		}
 	};
-	var encUint = function(i, state, p) {
+0Å–encUintÅƒ	var encUint = function(i, state, p) {
 		var v;
 		v = new Go$Uint64(0, p.go$get());
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2014,7 +2060,7 @@ $$
 			state.encodeUint(v);
 		}
 	};
-	var encInt8 = function(i, state, p) {
+0ÅŒencInt8Å¬	var encInt8 = function(i, state, p) {
 		var v;
 		v = new Go$Int64(0, p.go$get());
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2022,7 +2068,7 @@ $$
 			state.encodeInt(v);
 		}
 	};
-	var encUint8 = function(i, state, p) {
+0Å“encUint8Å≈	var encUint8 = function(i, state, p) {
 		var v;
 		v = new Go$Uint64(0, p.go$get());
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2030,7 +2076,7 @@ $$
 			state.encodeUint(v);
 		}
 	};
-	var encInt16 = function(i, state, p) {
+0Å–encInt16Å√	var encInt16 = function(i, state, p) {
 		var v;
 		v = new Go$Int64(0, p.go$get());
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2038,7 +2084,7 @@ $$
 			state.encodeInt(v);
 		}
 	};
-	var encUint16 = function(i, state, p) {
+0Å‘	encUint16Å∆	var encUint16 = function(i, state, p) {
 		var v;
 		v = new Go$Uint64(0, p.go$get());
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2046,7 +2092,7 @@ $$
 			state.encodeUint(v);
 		}
 	};
-	var encInt32 = function(i, state, p) {
+0Å–encInt32Å√	var encInt32 = function(i, state, p) {
 		var v;
 		v = new Go$Int64(0, p.go$get());
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2054,7 +2100,7 @@ $$
 			state.encodeInt(v);
 		}
 	};
-	var encUint32 = function(i, state, p) {
+0Å‘	encUint32Å∆	var encUint32 = function(i, state, p) {
 		var v;
 		v = new Go$Uint64(0, p.go$get());
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2062,7 +2108,7 @@ $$
 			state.encodeUint(v);
 		}
 	};
-	var encInt64 = function(i, state, p) {
+0ÅøencInt64Å≤	var encInt64 = function(i, state, p) {
 		var v;
 		v = p.go$get();
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2070,7 +2116,7 @@ $$
 			state.encodeInt(v);
 		}
 	};
-	var encUint64 = function(i, state, p) {
+0Å¬	encUint64Å¥	var encUint64 = function(i, state, p) {
 		var v;
 		v = p.go$get();
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2078,7 +2124,8 @@ $$
 			state.encodeUint(v);
 		}
 	};
-	var encUintptr = function(i, state, p) {
+0Ç
+encUintptrÅÚ	var encUintptr = function(i, state, p) {
 		var x, v;
 		v = (x = p.go$get(), new Go$Uint64(0, x.constructor === Number ? x : 1));
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
@@ -2086,7 +2133,7 @@ $$
 			state.encodeUint(v);
 		}
 	};
-	var floatBits = function(f) {
+0Çk	floatBitsÇ\	var floatBits = function(f) {
 		var u, v, i, x;
 		u = math.Float64bits(f);
 		v = new Go$Uint64(0, 0);
@@ -2099,7 +2146,8 @@ $$
 		}
 		return v;
 	};
-	var encFloat32 = function(i, state, p) {
+0Å»
+encFloat32Åπ	var encFloat32 = function(i, state, p) {
 		var f, v;
 		f = p.go$get();
 		if (!((f === 0)) || state.sendZero) {
@@ -2108,7 +2156,8 @@ $$
 			state.encodeUint(v);
 		}
 	};
-	var encFloat64 = function(i, state, p) {
+0Å»
+encFloat64Åπ	var encFloat64 = function(i, state, p) {
 		var f, v;
 		f = p.go$get();
 		if (!((f === 0)) || state.sendZero) {
@@ -2117,7 +2166,7 @@ $$
 			state.encodeUint(v);
 		}
 	};
-	var encComplex64 = function(i, state, p) {
+0Ç4encComplex64Ç"	var encComplex64 = function(i, state, p) {
 		var c, rpart, ipart;
 		c = p.go$get();
 		if (!((c.real === 0 && c.imag === 0)) || state.sendZero) {
@@ -2128,7 +2177,7 @@ $$
 			state.encodeUint(ipart);
 		}
 	};
-	var encComplex128 = function(i, state, p) {
+0Ç6encComplex128Ç#	var encComplex128 = function(i, state, p) {
 		var c, rpart, ipart;
 		c = p.go$get();
 		if (!((c.real === 0 && c.imag === 0)) || state.sendZero) {
@@ -2139,7 +2188,7 @@ $$
 			state.encodeUint(ipart);
 		}
 	};
-	var encUint8Array = function(i, state, p) {
+0Å‰encUint8ArrayÅ“	var encUint8Array = function(i, state, p) {
 		var b;
 		b = p.go$get();
 		if (b.length > 0 || state.sendZero) {
@@ -2148,7 +2197,7 @@ $$
 			state.b.Write(b);
 		}
 	};
-	var encString = function(i, state, p) {
+0Å‚	encStringÅ‘	var encString = function(i, state, p) {
 		var s;
 		s = p.go$get();
 		if (s.length > 0 || state.sendZero) {
@@ -2157,10 +2206,10 @@ $$
 			state.b.WriteString(s);
 		}
 	};
-	var encStructTerminator = function(i, state, p) {
+0wencStructTerminator`	var encStructTerminator = function(i, state, p) {
 		state.encodeUint(new Go$Uint64(0, 0));
 	};
-	Encoder.Ptr.prototype.encodeSingle = function(b, engine, basep) {
+0ÇØencodeSingleÇù	Encoder.Ptr.prototype.encodeSingle = function(b, engine, basep) {
 		var enc, state, _slice, _index, instr, p;
 		enc = this;
 		state = enc.newEncoderState(b);
@@ -2177,7 +2226,7 @@ $$
 		enc.freeEncoderState(state);
 	};
 	Encoder.prototype.encodeSingle = function(b, engine, basep) { return this.go$val.encodeSingle(b, engine, basep); };
-	Encoder.Ptr.prototype.encodeStruct = function(b, engine, basep) {
+0ÇencodeStructÇ	Encoder.Ptr.prototype.encodeStruct = function(b, engine, basep) {
 		var enc, state, i, _slice, _index, instr, p;
 		enc = this;
 		state = enc.newEncoderState(b);
@@ -2198,7 +2247,7 @@ $$
 		enc.freeEncoderState(state);
 	};
 	Encoder.prototype.encodeStruct = function(b, engine, basep) { return this.go$val.encodeStruct(b, engine, basep); };
-	Encoder.Ptr.prototype.encodeArray = function(b, p, op, elemWid, elemIndir, length) {
+0Ç(encodeArrayÇ	Encoder.Ptr.prototype.encodeArray = function(b, p, op, elemWid, elemIndir, length) {
 		var enc, state, i, elemp, up;
 		enc = this;
 		state = enc.newEncoderState(b);
@@ -2222,7 +2271,7 @@ $$
 		enc.freeEncoderState(state);
 	};
 	Encoder.prototype.encodeArray = function(b, p, op, elemWid, elemIndir, length) { return this.go$val.encodeArray(b, p, op, elemWid, elemIndir, length); };
-	var encodeReflectValue = function(state, v, op, indir) {
+0Ç{encodeReflectValueÇc	var encodeReflectValue = function(state, v, op, indir) {
 		var i, _struct, _struct$1, _struct$2;
 		i = 0;
 		while (i < indir && v.IsValid()) {
@@ -2234,7 +2283,7 @@ $$
 		}
 		op((go$ptrType(encInstr)).nil, state, unsafeAddr((_struct$2 = v, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag))));
 	};
-	Encoder.Ptr.prototype.encodeMap = function(b, mv, keyOp, elemOp, keyIndir, elemIndir) {
+0ÇŸ	encodeMapÇ 	Encoder.Ptr.prototype.encodeMap = function(b, mv, keyOp, elemOp, keyIndir, elemIndir) {
 		var enc, state, keys, _ref, _i, _slice, _index, _struct, key, _struct$1, _struct$2, _struct$3;
 		enc = this;
 		state = enc.newEncoderState(b);
@@ -2252,7 +2301,7 @@ $$
 		enc.freeEncoderState(state);
 	};
 	Encoder.prototype.encodeMap = function(b, mv, keyOp, elemOp, keyIndir, elemIndir) { return this.go$val.encodeMap(b, mv, keyOp, elemOp, keyIndir, elemIndir); };
-	Encoder.Ptr.prototype.encodeInterface = function(b, iv) {
+0ÇÎencodeInterfaceÇ÷	Encoder.Ptr.prototype.encodeInterface = function(b, iv) {
 		var enc, _struct, elem, state, ut, _tuple, _entry, name, ok, _tuple$1, err, data, _struct$1;
 		enc = this;
 		elem = (_struct = iv.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -2295,7 +2344,7 @@ $$
 		enc.freeEncoderState(state);
 	};
 	Encoder.prototype.encodeInterface = function(b, iv) { return this.go$val.encodeInterface(b, iv); };
-	var isZero = function(val) {
+0Ç~isZeroÇr	var isZero = function(val) {
 		var _ref, i, _struct, x, x$1, x$2, i$1, _struct$1;
 		_ref = val.Kind();
 		if (_ref === 17) {
@@ -2333,7 +2382,7 @@ $$
 		}
 		throw go$panic(new Go$String("unknown type in isZero " + val.Type().String()));
 	};
-	Encoder.Ptr.prototype.encodeGobEncoder = function(b, ut, v) {
+0ÇCencodeGobEncoderÇ-	Encoder.Ptr.prototype.encodeGobEncoder = function(b, ut, v) {
 		var enc, data, err, _ref, _tuple, x, _tuple$1, x$1, _tuple$2, x$2, state;
 		enc = this;
 		data = (go$sliceType(Go$Uint8)).nil;
@@ -2356,7 +2405,7 @@ $$
 		enc.freeEncoderState(state);
 	};
 	Encoder.prototype.encodeGobEncoder = function(b, ut, v) { return this.go$val.encodeGobEncoder(b, ut, v); };
-	Encoder.Ptr.prototype.encOpFor = function(rt, inProgress) {
+0ÇencOpForÇ	Encoder.Ptr.prototype.encOpFor = function(rt, inProgress) {
 		var enc, ut, opPtr, _entry, typ, indir, k, op, v, _key, t, _ref, _tuple, elemOp, elemIndir, _tuple$1, elemOp$1, elemIndir$1, _tuple$2, keyOp, keyIndir, _tuple$3, elemOp$2, elemIndir$2, info, v$1;
 		enc = this;
 		ut = userType(rt);
@@ -2440,7 +2489,7 @@ $$
 		return [new (go$ptrType(encOp))(function() { return op; }, function(v$1) { op = v$1; }), indir];
 	};
 	Encoder.prototype.encOpFor = function(rt, inProgress) { return this.go$val.encOpFor(rt, inProgress); };
-	Encoder.Ptr.prototype.gobEncodeOpFor = function(ut) {
+0Ç6gobEncodeOpForÇ"	Encoder.Ptr.prototype.gobEncodeOpFor = function(ut) {
 		var enc, rt, i, op, v;
 		enc = this;
 		rt = ut.user;
@@ -2471,7 +2520,8 @@ $$
 		return [new (go$ptrType(encOp))(function() { return op; }, function(v) { op = v; }), (ut.encIndir >> 0)];
 	};
 	Encoder.prototype.gobEncodeOpFor = function(ut) { return this.go$val.gobEncodeOpFor(ut); };
-	Encoder.Ptr.prototype.compileEnc = function(ut) {
+0Ç
+compileEncÇ	Encoder.Ptr.prototype.compileEnc = function(ut) {
 		var enc, srt, engine, seen, rt, _tuple, fieldNum, wireFieldNum, _struct, f, _tuple$1, op, indir, _tuple$2, op$1, indir$1, _slice, _index;
 		enc = this;
 		srt = ut.base;
@@ -2506,7 +2556,7 @@ $$
 		return engine;
 	};
 	Encoder.prototype.compileEnc = function(ut) { return this.go$val.compileEnc(ut); };
-	Encoder.Ptr.prototype.getEncEngine = function(ut) {
+0ÇJgetEncEngineÇ8	Encoder.Ptr.prototype.getEncEngine = function(ut) {
 		var enc, _tuple, info, err1, ok;
 		var go$deferred = [];
 		try {
@@ -2535,7 +2585,7 @@ $$
 		}
 	};
 	Encoder.prototype.getEncEngine = function(ut) { return this.go$val.getEncEngine(ut); };
-	Encoder.Ptr.prototype.lockAndGetEncEngine = function(ut) {
+0Ç¯lockAndGetEncEngineÇﬂ	Encoder.Ptr.prototype.lockAndGetEncEngine = function(ut) {
 		var enc;
 		var go$deferred = [];
 		try {
@@ -2551,7 +2601,7 @@ $$
 		}
 	};
 	Encoder.prototype.lockAndGetEncEngine = function(ut) { return this.go$val.lockAndGetEncEngine(ut); };
-	Encoder.Ptr.prototype.encode = function(b, value, ut) {
+0ÇÒencodeÇÂ	Encoder.Ptr.prototype.encode = function(b, value, ut) {
 		var enc, v, engine, indir, i, _struct, _struct$1, _struct$2, _struct$3;
 		var go$deferred = [];
 		try {
@@ -2579,25 +2629,28 @@ $$
 		}
 	};
 	Encoder.prototype.encode = function(b, value, ut) { return this.go$val.encode(b, value, ut); };
-	Encoder.Ptr.prototype.writer = function() {
+0e
+NewEncoderW	var NewEncoder = go$pkg.NewEncoder = function() { go$notSupported("encoding/gob"); };
+0ÇiwriterÇ]	Encoder.Ptr.prototype.writer = function() {
 		var enc, _slice, _index;
 		enc = this;
 		return (_slice = enc.w, _index = (enc.w.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 	};
 	Encoder.prototype.writer = function() { return this.go$val.writer(); };
-	Encoder.Ptr.prototype.pushWriter = function(w) {
+0Å–
+pushWriterÅ¡	Encoder.Ptr.prototype.pushWriter = function(w) {
 		var enc;
 		enc = this;
 		enc.w = go$append(enc.w, w);
 	};
 	Encoder.prototype.pushWriter = function(w) { return this.go$val.pushWriter(w); };
-	Encoder.Ptr.prototype.popWriter = function() {
+0Å‰	popWriterÅ÷	Encoder.Ptr.prototype.popWriter = function() {
 		var enc;
 		enc = this;
 		enc.w = go$subslice(enc.w, 0, (enc.w.length - 1 >> 0));
 	};
 	Encoder.prototype.popWriter = function() { return this.go$val.popWriter(); };
-	Encoder.Ptr.prototype.setError = function(err) {
+0ÅÒsetErrorÅ‰	Encoder.Ptr.prototype.setError = function(err) {
 		var enc;
 		enc = this;
 		if (go$interfaceIsEqual(enc.err, null)) {
@@ -2605,7 +2658,7 @@ $$
 		}
 	};
 	Encoder.prototype.setError = function(err) { return this.go$val.setError(err); };
-	Encoder.Ptr.prototype.writeMessage = function(w, b) {
+0ÇßwriteMessageÇï	Encoder.Ptr.prototype.writeMessage = function(w, b) {
 		var enc, message, messageLen, offset, _tuple, err;
 		enc = this;
 		message = b.Bytes();
@@ -2622,7 +2675,7 @@ $$
 		}
 	};
 	Encoder.prototype.writeMessage = function(w, b) { return this.go$val.writeMessage(w, b); };
-	Encoder.Ptr.prototype.sendActualType = function(w, state, ut, actual) {
+0ÇXsendActualTypeÇD	Encoder.Ptr.prototype.sendActualType = function(w, state, ut, actual) {
 		var sent, enc, alreadySent, _tuple, _entry, _tuple$1, info, err, x, _struct, _key, _key$1, st, _ref, i;
 		sent = false;
 		enc = this;
@@ -2667,7 +2720,7 @@ $$
 		return sent;
 	};
 	Encoder.prototype.sendActualType = function(w, state, ut, actual) { return this.go$val.sendActualType(w, state, ut, actual); };
-	Encoder.Ptr.prototype.sendType = function(w, state, origt) {
+0Ç;sendTypeÇ-	Encoder.Ptr.prototype.sendType = function(w, state, origt) {
 		var sent, enc, ut, rt, _ref;
 		sent = false;
 		enc = this;
@@ -2701,13 +2754,13 @@ $$
 		return sent;
 	};
 	Encoder.prototype.sendType = function(w, state, origt) { return this.go$val.sendType(w, state, origt); };
-	Encoder.Ptr.prototype.Encode = function(e) {
+0Ç$EncodeÇ	Encoder.Ptr.prototype.Encode = function(e) {
 		var enc, _struct;
 		enc = this;
 		return enc.EncodeValue((_struct = reflect.ValueOf(e), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
 	};
 	Encoder.prototype.Encode = function(e) { return this.go$val.Encode(e); };
-	Encoder.Ptr.prototype.sendTypeDescriptor = function(w, state, ut) {
+0Ç sendTypeDescriptorÇË	Encoder.Ptr.prototype.sendTypeDescriptor = function(w, state, ut) {
 		var enc, rt, alreadySent, _tuple, _entry, sent, _tuple$1, info, err, _key;
 		enc = this;
 		rt = ut.base;
@@ -2732,13 +2785,14 @@ $$
 		}
 	};
 	Encoder.prototype.sendTypeDescriptor = function(w, state, ut) { return this.go$val.sendTypeDescriptor(w, state, ut); };
-	Encoder.Ptr.prototype.sendTypeId = function(state, ut) {
+0ÇW
+sendTypeIdÇG	Encoder.Ptr.prototype.sendTypeId = function(state, ut) {
 		var enc, _entry;
 		enc = this;
 		state.encodeInt(new Go$Int64(0, (_entry = enc.sent[(ut.base || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : 0)));
 	};
 	Encoder.prototype.sendTypeId = function(state, ut) { return this.go$val.sendTypeId(state, ut); };
-	Encoder.Ptr.prototype.EncodeValue = function(value) {
+0Ç2EncodeValueÇ!	Encoder.Ptr.prototype.EncodeValue = function(value) {
 		var enc, _tuple, ut, err, state, _struct;
 		var go$deferred = [];
 		try {
@@ -2776,14 +2830,15 @@ $$
 		}
 	};
 	Encoder.prototype.EncodeValue = function(value) { return this.go$val.EncodeValue(value); };
-	var errorf = function(format, args) {
+0cerrorfY	var errorf = function(format, args) {
 		error_(fmt.Errorf("gob: " + format, args));
 	};
-	var error_ = function(err) {
+0ÅÅerror_w	var error_ = function(err) {
 		var x;
 		throw go$panic((x = new gobError.Ptr(err), new x.constructor.Struct(x)));
 	};
-	var catchError = function(err) {
+0Çñ
+catchErrorÇÜ	var catchError = function(err) {
 		var e, _tuple, _struct, ge, ok;
 		if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
 			_tuple = (e !== null && e.constructor === gobError ? [e.go$val, true] : [new gobError.Ptr(), false]), ge = (_struct = _tuple[0], new gobError.Ptr(_struct.err)), ok = _tuple[1];
@@ -2794,7 +2849,9 @@ $$
 		}
 		return;
 	};
-	var validUserType = function(rt) {
+0Ç
+~validUserTypeÇ
+k	var validUserType = function(rt) {
 		var ut, err, _entry, _entry$1, slowpoke, pt, _tuple, _r, ok, ok$1, _tuple$1, indir, _tuple$2, _tuple$3, indir$1, _tuple$4, ok$2, ok$3, _tuple$5, indir$2, _tuple$6, _tuple$7, indir$3, _tuple$8, _key;
 		ut = (go$ptrType(userTypeInfo)).nil;
 		err = null;
@@ -2849,7 +2906,7 @@ $$
 			return [ut, err];
 		}
 	};
-	var implementsInterface = function(typ, gobEncDecType) {
+0ÇÃimplementsInterfaceÇ≥	var implementsInterface = function(typ, gobEncDecType) {
 		var success, indir, rt, _tuple, p, _tuple$1, _tuple$2, _tuple$3;
 		success = false;
 		indir = 0;
@@ -2882,7 +2939,7 @@ $$
 		_tuple$3 = [false, 0], success = _tuple$3[0], indir = _tuple$3[1];
 		return [success, indir];
 	};
-	var userType = function(rt) {
+0Å“userTypeÅ≈	var userType = function(rt) {
 		var _tuple, ut, err;
 		_tuple = validUserType(rt), ut = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -2890,7 +2947,7 @@ $$
 		}
 		return ut;
 	};
-	var setTypeId = function(typ) {
+0Ç	setTypeIdÇ	var setTypeId = function(typ) {
 		var _key;
 		if (!((typ.id() === 0))) {
 			return;
@@ -2899,7 +2956,7 @@ $$
 		typ.setId(nextId);
 		_key = nextId, (idToType || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: typ };
 	};
-	typeId.prototype.gobType = function() {
+0Ç0gobTypeÇ#	typeId.prototype.gobType = function() {
 		var t, _entry;
 		t = this.go$val;
 		if (t === 0) {
@@ -2908,7 +2965,7 @@ $$
 		return (_entry = idToType[t], _entry !== undefined ? _entry.v : null);
 	};
 	go$ptrType(typeId).prototype.gobType = function() { return new typeId(this.go$get()).gobType(); };
-	typeId.prototype.string = function() {
+0Ç8stringÇ,	typeId.prototype.string = function() {
 		var t;
 		t = this.go$val;
 		if (go$interfaceIsEqual((new typeId(t)).gobType(), null)) {
@@ -2917,7 +2974,7 @@ $$
 		return (new typeId(t)).gobType().string();
 	};
 	go$ptrType(typeId).prototype.string = function() { return new typeId(this.go$get()).string(); };
-	typeId.prototype.name = function() {
+0Ç.nameÇ$	typeId.prototype.name = function() {
 		var t;
 		t = this.go$val;
 		if (go$interfaceIsEqual((new typeId(t)).gobType(), null)) {
@@ -2926,42 +2983,43 @@ $$
 		return (new typeId(t)).gobType().name();
 	};
 	go$ptrType(typeId).prototype.name = function() { return new typeId(this.go$get()).name(); };
-	CommonType.Ptr.prototype.id = function() {
+0ÅüidÅò	CommonType.Ptr.prototype.id = function() {
 		var t;
 		t = this;
 		return t.Id;
 	};
 	CommonType.prototype.id = function() { return this.go$val.id(); };
-	CommonType.Ptr.prototype.setId = function(id) {
+0ÅØsetIdÅ•	CommonType.Ptr.prototype.setId = function(id) {
 		var t;
 		t = this;
 		t.Id = id;
 	};
 	CommonType.prototype.setId = function(id) { return this.go$val.setId(id); };
-	CommonType.Ptr.prototype.string = function() {
+0Å±stringÅ¶	CommonType.Ptr.prototype.string = function() {
 		var t;
 		t = this;
 		return t.Name;
 	};
 	CommonType.prototype.string = function() { return this.go$val.string(); };
-	CommonType.Ptr.prototype.safeString = function(seen) {
+0ÅÕ
+safeStringÅæ	CommonType.Ptr.prototype.safeString = function(seen) {
 		var t;
 		t = this;
 		return t.Name;
 	};
 	CommonType.prototype.safeString = function(seen) { return this.go$val.safeString(seen); };
-	CommonType.Ptr.prototype.name = function() {
+0Å©nameÅ†	CommonType.Ptr.prototype.name = function() {
 		var t;
 		t = this;
 		return t.Name;
 	};
 	CommonType.prototype.name = function() { return this.go$val.name(); };
-	var newArrayType = function(name) {
+0ÅänewArrayTypez	var newArrayType = function(name) {
 		var a;
 		a = new arrayType.Ptr(new CommonType.Ptr(name, 0), 0, 0);
 		return a;
 	};
-	arrayType.Ptr.prototype.init = function(elem, len) {
+0ÅÊinitÅ›	arrayType.Ptr.prototype.init = function(elem, len) {
 		var a;
 		a = this;
 		setTypeId(a);
@@ -2969,7 +3027,8 @@ $$
 		a.Len = len;
 	};
 	arrayType.prototype.init = function(elem, len) { return this.go$val.init(elem, len); };
-	arrayType.Ptr.prototype.safeString = function(seen) {
+0ÇR
+safeStringÇB	arrayType.Ptr.prototype.safeString = function(seen) {
 		var a, _entry, _key;
 		a = this;
 		if ((_entry = seen[a.CommonType.Id], _entry !== undefined ? _entry.v : false)) {
@@ -2979,36 +3038,38 @@ $$
 		return fmt.Sprintf("[%d]%s", new (go$sliceType(go$emptyInterface))([new Go$Int(a.Len), new Go$String((new typeId(a.Elem)).gobType().safeString(seen))]));
 	};
 	arrayType.prototype.safeString = function(seen) { return this.go$val.safeString(seen); };
-	arrayType.Ptr.prototype.string = function() {
+0Å√stringÅ∏	arrayType.Ptr.prototype.string = function() {
 		var a;
 		a = this;
 		return a.safeString(new Go$Map());
 	};
 	arrayType.prototype.string = function() { return this.go$val.string(); };
-	var newGobEncoderType = function(name) {
+0Å§newGobEncoderTypeÅé	var newGobEncoderType = function(name) {
 		var g;
 		g = new gobEncoderType.Ptr(new CommonType.Ptr(name, 0));
 		setTypeId(g);
 		return g;
 	};
-	gobEncoderType.Ptr.prototype.safeString = function(seen) {
+0Å‡
+safeStringÅ—	gobEncoderType.Ptr.prototype.safeString = function(seen) {
 		var g;
 		g = this;
 		return g.CommonType.Name;
 	};
 	gobEncoderType.prototype.safeString = function(seen) { return this.go$val.safeString(seen); };
-	gobEncoderType.Ptr.prototype.string = function() {
+0ÅƒstringÅπ	gobEncoderType.Ptr.prototype.string = function() {
 		var g;
 		g = this;
 		return g.CommonType.Name;
 	};
 	gobEncoderType.prototype.string = function() { return this.go$val.string(); };
-	var newMapType = function(name) {
+0ÅÑ
+newMapTypev	var newMapType = function(name) {
 		var m;
 		m = new mapType.Ptr(new CommonType.Ptr(name, 0), 0, 0);
 		return m;
 	};
-	mapType.Ptr.prototype.init = function(key, elem) {
+0ÅÁinitÅﬁ	mapType.Ptr.prototype.init = function(key, elem) {
 		var m;
 		m = this;
 		setTypeId(m);
@@ -3016,7 +3077,8 @@ $$
 		m.Elem = elem.id();
 	};
 	mapType.prototype.init = function(key, elem) { return this.go$val.init(key, elem); };
-	mapType.Ptr.prototype.safeString = function(seen) {
+0Ç§
+safeStringÇî	mapType.Ptr.prototype.safeString = function(seen) {
 		var m, _entry, _key, key, elem;
 		m = this;
 		if ((_entry = seen[m.CommonType.Id], _entry !== undefined ? _entry.v : false)) {
@@ -3028,18 +3090,18 @@ $$
 		return fmt.Sprintf("map[%s]%s", new (go$sliceType(go$emptyInterface))([new Go$String(key), new Go$String(elem)]));
 	};
 	mapType.prototype.safeString = function(seen) { return this.go$val.safeString(seen); };
-	mapType.Ptr.prototype.string = function() {
+0ÅøstringÅ¥	mapType.Ptr.prototype.string = function() {
 		var m;
 		m = this;
 		return m.safeString(new Go$Map());
 	};
 	mapType.prototype.string = function() { return this.go$val.string(); };
-	var newSliceType = function(name) {
+0ÅánewSliceTypew	var newSliceType = function(name) {
 		var s;
 		s = new sliceType.Ptr(new CommonType.Ptr(name, 0), 0);
 		return s;
 	};
-	sliceType.Ptr.prototype.init = function(elem) {
+0Å˘initÅ	sliceType.Ptr.prototype.init = function(elem) {
 		var s;
 		s = this;
 		setTypeId(s);
@@ -3049,7 +3111,8 @@ $$
 		s.Elem = elem.id();
 	};
 	sliceType.prototype.init = function(elem) { return this.go$val.init(elem); };
-	sliceType.Ptr.prototype.safeString = function(seen) {
+0Ç=
+safeStringÇ-	sliceType.Ptr.prototype.safeString = function(seen) {
 		var s, _entry, _key;
 		s = this;
 		if ((_entry = seen[s.CommonType.Id], _entry !== undefined ? _entry.v : false)) {
@@ -3059,13 +3122,14 @@ $$
 		return fmt.Sprintf("[]%s", new (go$sliceType(go$emptyInterface))([new Go$String((new typeId(s.Elem)).gobType().safeString(seen))]));
 	};
 	sliceType.prototype.safeString = function(seen) { return this.go$val.safeString(seen); };
-	sliceType.Ptr.prototype.string = function() {
+0Å√stringÅ∏	sliceType.Ptr.prototype.string = function() {
 		var s;
 		s = this;
 		return s.safeString(new Go$Map());
 	};
 	sliceType.prototype.string = function() { return this.go$val.string(); };
-	structType.Ptr.prototype.safeString = function(seen) {
+0Ç3
+safeStringÇ#	structType.Ptr.prototype.safeString = function(seen) {
 		var s, ok, _tuple, _entry, _key, str, _ref, _i, _slice, _index, f;
 		s = this;
 		if (s === (go$ptrType(structType)).nil) {
@@ -3086,19 +3150,19 @@ $$
 		return str;
 	};
 	structType.prototype.safeString = function(seen) { return this.go$val.safeString(seen); };
-	structType.Ptr.prototype.string = function() {
+0Å≈stringÅ∫	structType.Ptr.prototype.string = function() {
 		var s;
 		s = this;
 		return s.safeString(new Go$Map());
 	};
 	structType.prototype.string = function() { return this.go$val.string(); };
-	var newStructType = function(name) {
+0Å≈newStructTypeÅ≥	var newStructType = function(name) {
 		var s;
 		s = new structType.Ptr(new CommonType.Ptr(name, 0), (go$sliceType((go$ptrType(fieldType)))).nil);
 		setTypeId(s);
 		return s;
 	};
-	var newTypeObject = function(name, ut, rt) {
+0ÇcnewTypeObjectÇP	var newTypeObject = function(name, ut, rt) {
 		var err, _tuple, type0, type1, t, _ref, at, _key, _tuple$1, mt, _key$1, _tuple$2, _tuple$3, st, _key$2, _tuple$4, st$1, _key$3, _key$4, i, _struct, f, typ, tname, t$1, _tuple$5, gt, err$1;
 		var go$deferred = [];
 		try {
@@ -3200,12 +3264,13 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var isExported = function(name) {
+0Å¶
+isExportedÅó	var isExported = function(name) {
 		var _tuple, rune;
 		_tuple = utf8.DecodeRuneInString(name), rune = _tuple[0];
 		return unicode.IsUpper(rune);
 	};
-	var isSent = function(field) {
+0ÇisSentÇ	var isSent = function(field) {
 		var typ;
 		if (!isExported(field.Name)) {
 			return false;
@@ -3219,12 +3284,12 @@ $$
 		}
 		return true;
 	};
-	var getBaseType = function(name, rt) {
+0getBaseTypep	var getBaseType = function(name, rt) {
 		var ut;
 		ut = userType(rt);
 		return getType(name, ut, ut.base);
 	};
-	var getType = function(name, ut, rt) {
+0ÇXgetTypeÇK	var getType = function(name, ut, rt) {
 		var _tuple, _entry, typ, present, _tuple$1, err, _key;
 		_tuple = (_entry = types[(rt || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [null, false]), typ = _tuple[0], present = _tuple[1];
 		if (present) {
@@ -3236,13 +3301,13 @@ $$
 		}
 		return [typ, err];
 	};
-	var checkId = function(want, got) {
+0ÇçcheckIdÇÄ	var checkId = function(want, got) {
 		if (!((want === got))) {
 			fmt.Fprintf(os.Stderr, "checkId: %d should be %d\n", new (go$sliceType(go$emptyInterface))([new Go$Int((got >> 0)), new Go$Int((want >> 0))]));
 			throw go$panic(new Go$String("bootstrap type wrong id: " + (new typeId(got)).name() + " " + (new typeId(got)).string() + " not " + (new typeId(want)).string()));
 		}
 	};
-	var bootstrapType = function(name, e, expect) {
+0ÇòbootstrapTypeÇÖ	var bootstrapType = function(name, e, expect) {
 		var rt, _tuple, _entry, present, typ, _key;
 		rt = reflect.TypeOf(e).Elem();
 		_tuple = (_entry = types[(rt || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [null, false]), present = _tuple[1];
@@ -3256,7 +3321,7 @@ $$
 		userType(rt);
 		return nextId;
 	};
-	wireType.Ptr.prototype.string = function() {
+0Ç’stringÇ…	wireType.Ptr.prototype.string = function() {
 		var w;
 		w = this;
 		if (w === (go$ptrType(wireType)).nil) {
@@ -3280,7 +3345,7 @@ $$
 		return "unknown type";
 	};
 	wireType.prototype.string = function() { return this.go$val.string(); };
-	var getTypeInfo = function(ut) {
+0ÇgetTypeInfoÇ˚	var getTypeInfo = function(ut) {
 		var rt, _tuple, _entry, info, ok, _tuple$1, gt, err, _tuple$2, userType$1, err$1, x, gt$1, _ref, _key, t, typ, _ref$1, _key$1;
 		rt = ut.base;
 		if (!((ut.externalEnc === 0))) {
@@ -3330,7 +3395,7 @@ $$
 		_key$1 = rt, (typeInfoMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: info };
 		return [info, null];
 	};
-	var mustGetTypeInfo = function(rt) {
+0ÇmustGetTypeInfoÇ	var mustGetTypeInfo = function(rt) {
 		var _tuple, t, err;
 		_tuple = getTypeInfo(userType(rt)), t = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -3338,7 +3403,7 @@ $$
 		}
 		return t;
 	};
-	var RegisterName = go$pkg.RegisterName = function(name, value) {
+0ÇARegisterNameÇ/	var RegisterName = go$pkg.RegisterName = function(name, value) {
 		var ut, ok, t, _tuple, _entry, ok$1, n, _tuple$1, _entry$1, _key, _key$1;
 		var go$deferred = [];
 		try {
@@ -3362,7 +3427,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-	var Register = go$pkg.Register = function(value) {
+0Ç¡RegisterÇ≥	var Register = go$pkg.Register = function(value) {
 		var rt, name, star, pt;
 		rt = reflect.TypeOf(value);
 		name = rt.String();
@@ -3382,7 +3447,7 @@ $$
 		}
 		RegisterName(name, value);
 	};
-	var registerBasics = function() {
+0ÇIregisterBasicsÇ5	var registerBasics = function() {
 		Register(new Go$Int(0));
 		Register(new Go$Int8(0));
 		Register(new Go$Int16(0));
@@ -3419,60 +3484,7 @@ $$
 		Register((go$sliceType(Go$Bool)).nil);
 		Register((go$sliceType(Go$String)).nil);
 	};
-	var NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("encoding/gob"); };
-	var NewEncoder = go$pkg.NewEncoder = function() { go$notSupported("encoding/gob"); };
-	var uint64Size = 8;
-	var singletonField = 0;
-	var maxLength = 9;
-	var xGob = 1;
-	var xBinary = 2;
-	var xText = 3;
-	var firstUserId = 64;
-	var errBadUint = null;
-	var errBadType = null;
-	var errRange = null;
-	var decOpTable = go$makeNativeArray("Func", 25, function() { return go$throwNilPointerError; });
-	var decIgnoreOpMap = false;
-	var emptyStructType = null;
-	var errBadCount = null;
-	var debugFunc = go$throwNilPointerError;
-	var encOpTable = go$makeNativeArray("Func", 25, function() { return go$throwNilPointerError; });
-	var spaceForLength = (go$sliceType(Go$Uint8)).nil;
-	var userTypeLock = new sync.RWMutex.Ptr();
-	var userTypeCache = false;
-	var gobEncoderInterfaceType = null;
-	var gobDecoderInterfaceType = null;
-	var binaryMarshalerInterfaceType = null;
-	var binaryUnmarshalerInterfaceType = null;
-	var textMarshalerInterfaceType = null;
-	var textUnmarshalerInterfaceType = null;
-	var nextId = 0;
-	var typeLock = new sync.Mutex.Ptr();
-	var types = false;
-	var idToType = false;
-	var builtinIdToType = false;
-	var tBool = 0;
-	var tInt = 0;
-	var tUint = 0;
-	var tFloat = 0;
-	var tBytes = 0;
-	var tString = 0;
-	var tComplex = 0;
-	var tInterface = 0;
-	var tReserved7 = 0;
-	var tReserved6 = 0;
-	var tReserved5 = 0;
-	var tReserved4 = 0;
-	var tReserved3 = 0;
-	var tReserved2 = 0;
-	var tReserved1 = 0;
-	var tWireType = 0;
-	var wireTypeUserInfo = (go$ptrType(userTypeInfo)).nil;
-	var typeInfoMap = false;
-	var registerLock = new sync.RWMutex.Ptr();
-	var nameToConcreteType = false;
-	var concreteTypeToName = false;
-	go$pkg.init = function() {
+0ÇüinitÇï	go$pkg.init = function() {
 		var _map, _key, x, x$1, _tuple, iop, uop, _ref, _ref$1, x$2, x$3, x$4, x$5, x$6, x$7, _ref$2, _i, _keys, _entry, v, k, _key$1;
 		errBadUint = errors.New("gob: encoded unsigned integer out of range");
 		errBadType = errors.New("gob: unknown type id or corrupted data");

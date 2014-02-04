@@ -1,4 +1,4 @@
-0É±Ç ñpackage unicode
+0É±ûunicodeÇ ñpackage unicode
 var @"".ASCII_Hex_Digit *@"".RangeTable
 var @"".Arabic *@"".RangeTable
 var @"".Armenian *@"".RangeTable
@@ -235,7 +235,8 @@ var @"".Zs *@"".RangeTable
 type @"".d [3]rune
 type @"".foldPair struct { @"".From uint16; @"".To uint16 }
 $$
-0runtimeunicodeÉêÃ	var RangeTable;
+0runtimeunicode0 Ç
+ˆ	var RangeTable;
 	RangeTable = go$newType(0, "Struct", "unicode.RangeTable", "RangeTable", "unicode", function(R16_, R32_, LatinOffset_) {
 		this.go$val = this;
 		this.R16 = R16_ !== undefined ? R16_ : (go$sliceType(Range16)).nil;
@@ -289,328 +290,7 @@ $$
 	(go$ptrType(SpecialCase)).methods = [["ToLower", "", [Go$Int32], [Go$Int32], false], ["ToTitle", "", [Go$Int32], [Go$Int32], false], ["ToUpper", "", [Go$Int32], [Go$Int32], false]];
 	d.init(Go$Int32, 3);
 	foldPair.init([["From", "", Go$Uint16, ""], ["To", "", Go$Uint16, ""]]);
-	var IsDigit = go$pkg.IsDigit = function(r) {
-		if (r <= 255) {
-			return 48 <= r && r <= 57;
-		}
-		return isExcludingLatin(go$pkg.Digit, r);
-	};
-	var IsGraphic = go$pkg.IsGraphic = function(r) {
-		if ((r >>> 0) <= 255) {
-			return !((((properties[(r << 24 >>> 24)] & 144) >>> 0) === 0));
-		}
-		return In(r, go$pkg.GraphicRanges);
-	};
-	var IsPrint = go$pkg.IsPrint = function(r) {
-		if ((r >>> 0) <= 255) {
-			return !((((properties[(r << 24 >>> 24)] & 128) >>> 0) === 0));
-		}
-		return In(r, go$pkg.PrintRanges);
-	};
-	var IsOneOf = go$pkg.IsOneOf = function(ranges, r) {
-		var _ref, _i, _slice, _index, inside;
-		_ref = ranges;
-		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
-			inside = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (Is(inside, r)) {
-				return true;
-			}
-		}
-		return false;
-	};
-	var In = go$pkg.In = function(r, ranges) {
-		var _ref, _i, _slice, _index, inside;
-		_ref = ranges;
-		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
-			inside = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (Is(inside, r)) {
-				return true;
-			}
-		}
-		return false;
-	};
-	var IsControl = go$pkg.IsControl = function(r) {
-		if ((r >>> 0) <= 255) {
-			return !((((properties[(r << 24 >>> 24)] & 1) >>> 0) === 0));
-		}
-		return false;
-	};
-	var IsLetter = go$pkg.IsLetter = function(r) {
-		if ((r >>> 0) <= 255) {
-			return !((((properties[(r << 24 >>> 24)] & 96) >>> 0) === 0));
-		}
-		return isExcludingLatin(go$pkg.Letter, r);
-	};
-	var IsMark = go$pkg.IsMark = function(r) {
-		return isExcludingLatin(go$pkg.Mark, r);
-	};
-	var IsNumber = go$pkg.IsNumber = function(r) {
-		if ((r >>> 0) <= 255) {
-			return !((((properties[(r << 24 >>> 24)] & 4) >>> 0) === 0));
-		}
-		return isExcludingLatin(go$pkg.Number, r);
-	};
-	var IsPunct = go$pkg.IsPunct = function(r) {
-		if ((r >>> 0) <= 255) {
-			return !((((properties[(r << 24 >>> 24)] & 2) >>> 0) === 0));
-		}
-		return Is(go$pkg.Punct, r);
-	};
-	var IsSpace = go$pkg.IsSpace = function(r) {
-		var _ref;
-		if ((r >>> 0) <= 255) {
-			_ref = r;
-			if (_ref === 9 || _ref === 10 || _ref === 11 || _ref === 12 || _ref === 13 || _ref === 32 || _ref === 133 || _ref === 160) {
-				return true;
-			}
-			return false;
-		}
-		return isExcludingLatin(go$pkg.White_Space, r);
-	};
-	var IsSymbol = go$pkg.IsSymbol = function(r) {
-		if ((r >>> 0) <= 255) {
-			return !((((properties[(r << 24 >>> 24)] & 8) >>> 0) === 0));
-		}
-		return isExcludingLatin(go$pkg.Symbol, r);
-	};
-	var is16 = function(ranges, r) {
-		var _ref, _i, i, _slice, _index, range_, _r, lo, hi, _q, m, _slice$1, _index$1, range_$1, _r$1;
-		if (ranges.length <= 18 || r <= 255) {
-			_ref = ranges;
-			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
-				i = _i;
-				range_ = (_slice = ranges, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-				if (r < range_.Lo) {
-					return false;
-				}
-				if (r <= range_.Hi) {
-					return (_r = ((r - range_.Lo << 16 >>> 16)) % range_.Stride, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0;
-				}
-			}
-			return false;
-		}
-		lo = 0;
-		hi = ranges.length;
-		while (lo < hi) {
-			m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
-			range_$1 = (_slice$1 = ranges, _index$1 = m, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			if (range_$1.Lo <= r && r <= range_$1.Hi) {
-				return (_r$1 = ((r - range_$1.Lo << 16 >>> 16)) % range_$1.Stride, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) === 0;
-			}
-			if (r < range_$1.Lo) {
-				hi = m;
-			} else {
-				lo = m + 1 >> 0;
-			}
-		}
-		return false;
-	};
-	var is32 = function(ranges, r) {
-		var _ref, _i, i, _slice, _index, range_, _r, lo, hi, _q, m, _slice$1, _index$1, _struct, range_$1, _r$1;
-		if (ranges.length <= 18) {
-			_ref = ranges;
-			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
-				i = _i;
-				range_ = (_slice = ranges, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-				if (r < range_.Lo) {
-					return false;
-				}
-				if (r <= range_.Hi) {
-					return (_r = ((r - range_.Lo >>> 0)) % range_.Stride, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0;
-				}
-			}
-			return false;
-		}
-		lo = 0;
-		hi = ranges.length;
-		while (lo < hi) {
-			m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
-			range_$1 = (_struct = (_slice$1 = ranges, _index$1 = m, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Range32.Ptr(_struct.Lo, _struct.Hi, _struct.Stride));
-			if (range_$1.Lo <= r && r <= range_$1.Hi) {
-				return (_r$1 = ((r - range_$1.Lo >>> 0)) % range_$1.Stride, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) === 0;
-			}
-			if (r < range_$1.Lo) {
-				hi = m;
-			} else {
-				lo = m + 1 >> 0;
-			}
-		}
-		return false;
-	};
-	var Is = go$pkg.Is = function(rangeTab, r) {
-		var r16, _slice, _index, r32, _slice$1, _index$1;
-		r16 = rangeTab.R16;
-		if (r16.length > 0 && r <= ((_slice = r16, _index = (r16.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Hi >> 0)) {
-			return is16(r16, (r << 16 >>> 16));
-		}
-		r32 = rangeTab.R32;
-		if (r32.length > 0 && r >= ((_slice$1 = r32, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Lo >> 0)) {
-			return is32(r32, (r >>> 0));
-		}
-		return false;
-	};
-	var isExcludingLatin = function(rangeTab, r) {
-		var r16, off, _slice, _index, r32, _slice$1, _index$1;
-		r16 = rangeTab.R16;
-		if (off = rangeTab.LatinOffset, r16.length > off && r <= ((_slice = r16, _index = (r16.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Hi >> 0)) {
-			return is16(go$subslice(r16, off), (r << 16 >>> 16));
-		}
-		r32 = rangeTab.R32;
-		if (r32.length > 0 && r >= ((_slice$1 = r32, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Lo >> 0)) {
-			return is32(r32, (r >>> 0));
-		}
-		return false;
-	};
-	var IsUpper = go$pkg.IsUpper = function(r) {
-		if ((r >>> 0) <= 255) {
-			return ((properties[(r << 24 >>> 24)] & 96) >>> 0) === 32;
-		}
-		return isExcludingLatin(go$pkg.Upper, r);
-	};
-	var IsLower = go$pkg.IsLower = function(r) {
-		if ((r >>> 0) <= 255) {
-			return ((properties[(r << 24 >>> 24)] & 96) >>> 0) === 64;
-		}
-		return isExcludingLatin(go$pkg.Lower, r);
-	};
-	var IsTitle = go$pkg.IsTitle = function(r) {
-		if (r <= 255) {
-			return false;
-		}
-		return isExcludingLatin(go$pkg.Title, r);
-	};
-	var to = function(_case, r, caseRange) {
-		var lo, hi, _q, m, _slice, _index, _struct, cr, delta;
-		if (_case < 0 || 3 <= _case) {
-			return 65533;
-		}
-		lo = 0;
-		hi = caseRange.length;
-		while (lo < hi) {
-			m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
-			cr = (_struct = (_slice = caseRange, _index = m, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new CaseRange.Ptr(_struct.Lo, _struct.Hi, go$mapArray(_struct.Delta, function(entry) { return entry; })));
-			if ((cr.Lo >> 0) <= r && r <= (cr.Hi >> 0)) {
-				delta = cr.Delta[_case];
-				if (delta > 1114111) {
-					return (cr.Lo >> 0) + (((((r - (cr.Lo >> 0) >> 0)) & ~1) | ((_case & 1) >> 0))) >> 0;
-				}
-				return r + delta >> 0;
-			}
-			if (r < (cr.Lo >> 0)) {
-				hi = m;
-			} else {
-				lo = m + 1 >> 0;
-			}
-		}
-		return r;
-	};
-	var To = go$pkg.To = function(_case, r) {
-		return to(_case, r, go$pkg.CaseRanges);
-	};
-	var ToUpper = go$pkg.ToUpper = function(r) {
-		if (r <= 127) {
-			if (97 <= r && r <= 122) {
-				r = r - 32 >> 0;
-			}
-			return r;
-		}
-		return To(0, r);
-	};
-	var ToLower = go$pkg.ToLower = function(r) {
-		if (r <= 127) {
-			if (65 <= r && r <= 90) {
-				r = r + 32 >> 0;
-			}
-			return r;
-		}
-		return To(1, r);
-	};
-	var ToTitle = go$pkg.ToTitle = function(r) {
-		if (r <= 127) {
-			if (97 <= r && r <= 122) {
-				r = r - 32 >> 0;
-			}
-			return r;
-		}
-		return To(2, r);
-	};
-	SpecialCase.prototype.ToUpper = function(r) {
-		var special, r1;
-		special = this;
-		r1 = to(0, r, go$subslice(new (go$sliceType(CaseRange))(special.array), special.offset, special.offset + special.length));
-		if (r1 === r) {
-			r1 = ToUpper(r);
-		}
-		return r1;
-	};
-	go$ptrType(SpecialCase).prototype.ToUpper = function(r) { return this.go$get().ToUpper(r); };
-	SpecialCase.prototype.ToTitle = function(r) {
-		var special, r1;
-		special = this;
-		r1 = to(2, r, go$subslice(new (go$sliceType(CaseRange))(special.array), special.offset, special.offset + special.length));
-		if (r1 === r) {
-			r1 = ToTitle(r);
-		}
-		return r1;
-	};
-	go$ptrType(SpecialCase).prototype.ToTitle = function(r) { return this.go$get().ToTitle(r); };
-	SpecialCase.prototype.ToLower = function(r) {
-		var special, r1;
-		special = this;
-		r1 = to(1, r, go$subslice(new (go$sliceType(CaseRange))(special.array), special.offset, special.offset + special.length));
-		if (r1 === r) {
-			r1 = ToLower(r);
-		}
-		return r1;
-	};
-	go$ptrType(SpecialCase).prototype.ToLower = function(r) { return this.go$get().ToLower(r); };
-	var SimpleFold = go$pkg.SimpleFold = function(r) {
-		var lo, hi, _q, m, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, l;
-		lo = 0;
-		hi = caseOrbit.length;
-		while (lo < hi) {
-			m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
-			if (((_slice = caseOrbit, _index = m, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).From >> 0) < r) {
-				lo = m + 1 >> 0;
-			} else {
-				hi = m;
-			}
-		}
-		if (lo < caseOrbit.length && (((_slice$1 = caseOrbit, _index$1 = lo, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).From >> 0) === r)) {
-			return ((_slice$2 = caseOrbit, _index$2 = lo, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).To >> 0);
-		}
-		if (l = ToLower(r), !((l === r))) {
-			return l;
-		}
-		return ToUpper(r);
-	};
-	var pC = 1;
-	var pP = 2;
-	var pN = 4;
-	var pS = 8;
-	var pZ = 16;
-	var pLu = 32;
-	var pLl = 64;
-	var pp = 128;
-	var pg = 144;
-	var pLo = 96;
-	var pLmask = 96;
-	go$pkg.MaxRune = 1114111;
-	go$pkg.ReplacementChar = 65533;
-	go$pkg.MaxASCII = 127;
-	go$pkg.MaxLatin1 = 255;
-	go$pkg.UpperCase = 0;
-	go$pkg.LowerCase = 1;
-	go$pkg.TitleCase = 2;
-	go$pkg.MaxCase = 3;
-	go$pkg.UpperLower = 1114112;
-	var linearMax = 18;
-	go$pkg.Version = "6.2.0";
-	go$pkg.TurkishCase = SpecialCase.nil;
+ÇEç	go$pkg.TurkishCase = SpecialCase.nil;
 	var _TurkishCase = SpecialCase.nil;
 	go$pkg.AzeriCase = SpecialCase.nil;
 	go$pkg.GraphicRanges = (go$sliceType((go$ptrType(RangeTable)))).nil;
@@ -984,7 +664,307 @@ $$
 	var foldM = (go$ptrType(RangeTable)).nil;
 	var foldMn = (go$ptrType(RangeTable)).nil;
 	go$pkg.FoldScript = false;
-	go$pkg.init = function() {
+0É@U0ÅûIsDigitÅí	var IsDigit = go$pkg.IsDigit = function(r) {
+		if (r <= 255) {
+			return 48 <= r && r <= 57;
+		}
+		return isExcludingLatin(go$pkg.Digit, r);
+	};
+0ÅÀ	IsGraphicÅΩ	var IsGraphic = go$pkg.IsGraphic = function(r) {
+		if ((r >>> 0) <= 255) {
+			return !((((properties[(r << 24 >>> 24)] & 144) >>> 0) === 0));
+		}
+		return In(r, go$pkg.GraphicRanges);
+	};
+0Å√IsPrintÅ∑	var IsPrint = go$pkg.IsPrint = function(r) {
+		if ((r >>> 0) <= 255) {
+			return !((((properties[(r << 24 >>> 24)] & 128) >>> 0) === 0));
+		}
+		return In(r, go$pkg.PrintRanges);
+	};
+0ÇôIsOneOfÇå	var IsOneOf = go$pkg.IsOneOf = function(ranges, r) {
+		var _ref, _i, _slice, _index, inside;
+		_ref = ranges;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			inside = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (Is(inside, r)) {
+				return true;
+			}
+		}
+		return false;
+	};
+0ÇäInÇÇ	var In = go$pkg.In = function(r, ranges) {
+		var _ref, _i, _slice, _index, inside;
+		_ref = ranges;
+		_i = 0;
+		for (; _i < _ref.length; _i += 1) {
+			inside = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			if (Is(inside, r)) {
+				return true;
+			}
+		}
+		return false;
+	};
+0Å≥	IsControlÅ•	var IsControl = go$pkg.IsControl = function(r) {
+		if ((r >>> 0) <= 255) {
+			return !((((properties[(r << 24 >>> 24)] & 1) >>> 0) === 0));
+		}
+		return false;
+	};
+0ÅŒIsLetterÅ¡	var IsLetter = go$pkg.IsLetter = function(r) {
+		if ((r >>> 0) <= 255) {
+			return !((((properties[(r << 24 >>> 24)] & 96) >>> 0) === 0));
+		}
+		return isExcludingLatin(go$pkg.Letter, r);
+	};
+0eIsMark[	var IsMark = go$pkg.IsMark = function(r) {
+		return isExcludingLatin(go$pkg.Mark, r);
+	};
+0ÅÕIsNumberÅ¿	var IsNumber = go$pkg.IsNumber = function(r) {
+		if ((r >>> 0) <= 255) {
+			return !((((properties[(r << 24 >>> 24)] & 4) >>> 0) === 0));
+		}
+		return isExcludingLatin(go$pkg.Number, r);
+	};
+0ÅªIsPunctÅØ	var IsPunct = go$pkg.IsPunct = function(r) {
+		if ((r >>> 0) <= 255) {
+			return !((((properties[(r << 24 >>> 24)] & 2) >>> 0) === 0));
+		}
+		return Is(go$pkg.Punct, r);
+	};
+0ÇOIsSpaceÇB	var IsSpace = go$pkg.IsSpace = function(r) {
+		var _ref;
+		if ((r >>> 0) <= 255) {
+			_ref = r;
+			if (_ref === 9 || _ref === 10 || _ref === 11 || _ref === 12 || _ref === 13 || _ref === 32 || _ref === 133 || _ref === 160) {
+				return true;
+			}
+			return false;
+		}
+		return isExcludingLatin(go$pkg.White_Space, r);
+	};
+0ÅÕIsSymbolÅ¿	var IsSymbol = go$pkg.IsSymbol = function(r) {
+		if ((r >>> 0) <= 255) {
+			return !((((properties[(r << 24 >>> 24)] & 8) >>> 0) === 0));
+		}
+		return isExcludingLatin(go$pkg.Symbol, r);
+	};
+0ÇTis16ÇJ	var is16 = function(ranges, r) {
+		var _ref, _i, i, _slice, _index, range_, _r, lo, hi, _q, m, _slice$1, _index$1, range_$1, _r$1;
+		if (ranges.length <= 18 || r <= 255) {
+			_ref = ranges;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				i = _i;
+				range_ = (_slice = ranges, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				if (r < range_.Lo) {
+					return false;
+				}
+				if (r <= range_.Hi) {
+					return (_r = ((r - range_.Lo << 16 >>> 16)) % range_.Stride, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0;
+				}
+			}
+			return false;
+		}
+		lo = 0;
+		hi = ranges.length;
+		while (lo < hi) {
+			m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+			range_$1 = (_slice$1 = ranges, _index$1 = m, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			if (range_$1.Lo <= r && r <= range_$1.Hi) {
+				return (_r$1 = ((r - range_$1.Lo << 16 >>> 16)) % range_$1.Stride, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) === 0;
+			}
+			if (r < range_$1.Lo) {
+				hi = m;
+			} else {
+				lo = m + 1 >> 0;
+			}
+		}
+		return false;
+	};
+0Çàis32Ç~	var is32 = function(ranges, r) {
+		var _ref, _i, i, _slice, _index, range_, _r, lo, hi, _q, m, _slice$1, _index$1, _struct, range_$1, _r$1;
+		if (ranges.length <= 18) {
+			_ref = ranges;
+			_i = 0;
+			for (; _i < _ref.length; _i += 1) {
+				i = _i;
+				range_ = (_slice = ranges, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				if (r < range_.Lo) {
+					return false;
+				}
+				if (r <= range_.Hi) {
+					return (_r = ((r - range_.Lo >>> 0)) % range_.Stride, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0;
+				}
+			}
+			return false;
+		}
+		lo = 0;
+		hi = ranges.length;
+		while (lo < hi) {
+			m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+			range_$1 = (_struct = (_slice$1 = ranges, _index$1 = m, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Range32.Ptr(_struct.Lo, _struct.Hi, _struct.Stride));
+			if (range_$1.Lo <= r && r <= range_$1.Hi) {
+				return (_r$1 = ((r - range_$1.Lo >>> 0)) % range_$1.Stride, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) === 0;
+			}
+			if (r < range_$1.Lo) {
+				hi = m;
+			} else {
+				lo = m + 1 >> 0;
+			}
+		}
+		return false;
+	};
+0Ç°IsÇô	var Is = go$pkg.Is = function(rangeTab, r) {
+		var r16, _slice, _index, r32, _slice$1, _index$1;
+		r16 = rangeTab.R16;
+		if (r16.length > 0 && r <= ((_slice = r16, _index = (r16.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Hi >> 0)) {
+			return is16(r16, (r << 16 >>> 16));
+		}
+		r32 = rangeTab.R32;
+		if (r32.length > 0 && r >= ((_slice$1 = r32, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Lo >> 0)) {
+			return is32(r32, (r >>> 0));
+		}
+		return false;
+	};
+0ÇÊisExcludingLatinÇ–	var isExcludingLatin = function(rangeTab, r) {
+		var r16, off, _slice, _index, r32, _slice$1, _index$1;
+		r16 = rangeTab.R16;
+		if (off = rangeTab.LatinOffset, r16.length > off && r <= ((_slice = r16, _index = (r16.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Hi >> 0)) {
+			return is16(go$subslice(r16, off), (r << 16 >>> 16));
+		}
+		r32 = rangeTab.R32;
+		if (r32.length > 0 && r >= ((_slice$1 = r32, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Lo >> 0)) {
+			return is32(r32, (r >>> 0));
+		}
+		return false;
+	};
+0Å∆IsUpperÅ∫	var IsUpper = go$pkg.IsUpper = function(r) {
+		if ((r >>> 0) <= 255) {
+			return ((properties[(r << 24 >>> 24)] & 96) >>> 0) === 32;
+		}
+		return isExcludingLatin(go$pkg.Upper, r);
+	};
+0Å∆IsLowerÅ∫	var IsLower = go$pkg.IsLower = function(r) {
+		if ((r >>> 0) <= 255) {
+			return ((properties[(r << 24 >>> 24)] & 96) >>> 0) === 64;
+		}
+		return isExcludingLatin(go$pkg.Lower, r);
+	};
+0ÅëIsTitleÅÖ	var IsTitle = go$pkg.IsTitle = function(r) {
+		if (r <= 255) {
+			return false;
+		}
+		return isExcludingLatin(go$pkg.Title, r);
+	};
+0Ç”toÇÀ	var to = function(_case, r, caseRange) {
+		var lo, hi, _q, m, _slice, _index, _struct, cr, delta;
+		if (_case < 0 || 3 <= _case) {
+			return 65533;
+		}
+		lo = 0;
+		hi = caseRange.length;
+		while (lo < hi) {
+			m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+			cr = (_struct = (_slice = caseRange, _index = m, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new CaseRange.Ptr(_struct.Lo, _struct.Hi, go$mapArray(_struct.Delta, function(entry) { return entry; })));
+			if ((cr.Lo >> 0) <= r && r <= (cr.Hi >> 0)) {
+				delta = cr.Delta[_case];
+				if (delta > 1114111) {
+					return (cr.Lo >> 0) + (((((r - (cr.Lo >> 0) >> 0)) & ~1) | ((_case & 1) >> 0))) >> 0;
+				}
+				return r + delta >> 0;
+			}
+			if (r < (cr.Lo >> 0)) {
+				hi = m;
+			} else {
+				lo = m + 1 >> 0;
+			}
+		}
+		return r;
+	};
+0_ToY	var To = go$pkg.To = function(_case, r) {
+		return to(_case, r, go$pkg.CaseRanges);
+	};
+0Å¨ToUpperÅ†	var ToUpper = go$pkg.ToUpper = function(r) {
+		if (r <= 127) {
+			if (97 <= r && r <= 122) {
+				r = r - 32 >> 0;
+			}
+			return r;
+		}
+		return To(0, r);
+	};
+0Å´ToLowerÅü	var ToLower = go$pkg.ToLower = function(r) {
+		if (r <= 127) {
+			if (65 <= r && r <= 90) {
+				r = r + 32 >> 0;
+			}
+			return r;
+		}
+		return To(1, r);
+	};
+0Å¨ToTitleÅ†	var ToTitle = go$pkg.ToTitle = function(r) {
+		if (r <= 127) {
+			if (97 <= r && r <= 122) {
+				r = r - 32 >> 0;
+			}
+			return r;
+		}
+		return To(2, r);
+	};
+0ÇxToUpperÇk	SpecialCase.prototype.ToUpper = function(r) {
+		var special, r1;
+		special = this;
+		r1 = to(0, r, go$subslice(new (go$sliceType(CaseRange))(special.array), special.offset, special.offset + special.length));
+		if (r1 === r) {
+			r1 = ToUpper(r);
+		}
+		return r1;
+	};
+	go$ptrType(SpecialCase).prototype.ToUpper = function(r) { return this.go$get().ToUpper(r); };
+0ÇxToTitleÇk	SpecialCase.prototype.ToTitle = function(r) {
+		var special, r1;
+		special = this;
+		r1 = to(2, r, go$subslice(new (go$sliceType(CaseRange))(special.array), special.offset, special.offset + special.length));
+		if (r1 === r) {
+			r1 = ToTitle(r);
+		}
+		return r1;
+	};
+	go$ptrType(SpecialCase).prototype.ToTitle = function(r) { return this.go$get().ToTitle(r); };
+0ÇxToLowerÇk	SpecialCase.prototype.ToLower = function(r) {
+		var special, r1;
+		special = this;
+		r1 = to(1, r, go$subslice(new (go$sliceType(CaseRange))(special.array), special.offset, special.offset + special.length));
+		if (r1 === r) {
+			r1 = ToLower(r);
+		}
+		return r1;
+	};
+	go$ptrType(SpecialCase).prototype.ToLower = function(r) { return this.go$get().ToLower(r); };
+0ÇI
+SimpleFoldÇ9	var SimpleFold = go$pkg.SimpleFold = function(r) {
+		var lo, hi, _q, m, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, l;
+		lo = 0;
+		hi = caseOrbit.length;
+		while (lo < hi) {
+			m = lo + (_q = ((hi - lo >> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+			if (((_slice = caseOrbit, _index = m, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).From >> 0) < r) {
+				lo = m + 1 >> 0;
+			} else {
+				hi = m;
+			}
+		}
+		if (lo < caseOrbit.length && (((_slice$1 = caseOrbit, _index$1 = lo, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).From >> 0) === r)) {
+			return ((_slice$2 = caseOrbit, _index$2 = lo, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).To >> 0);
+		}
+		if (l = ToLower(r), !((l === r))) {
+			return l;
+		}
+		return ToUpper(r);
+	};
+0É≥initÉ®	go$pkg.init = function() {
 		var _map, _key, _map$1, _key$1, _map$2, _key$2, _map$3, _key$3, _map$4, _key$4;
 		_TurkishCase = new SpecialCase([new CaseRange.Ptr(73, 73, go$toNativeArray("Int32", [0, 232, 0])), new CaseRange.Ptr(105, 105, go$toNativeArray("Int32", [199, 0, 199])), new CaseRange.Ptr(304, 304, go$toNativeArray("Int32", [0, -199, 0])), new CaseRange.Ptr(305, 305, go$toNativeArray("Int32", [-232, 0, -232]))]);
 		go$pkg.TurkishCase = _TurkishCase;

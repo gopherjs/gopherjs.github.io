@@ -1,4 +1,4 @@
-0ÇT¬Çïpackage tabwriter
+0ÇU<text/tabwriterÇïpackage tabwriter
 import bytes "bytes"
 import io "io"
 import utf8 "unicode/utf8"
@@ -56,10 +56,7 @@ func (? *@"bytes".Buffer) @"bytes".readSlice(@"bytes".delim byte) (@"bytes".line
 type @"bytes".readOp int
 type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
 $$
-0Vruntimeerrorssync/atomicsynciounicodeunicode/utf8bytestext/tabwriterÇDÕ	var bytes = go$packages["bytes"];
-	var io = go$packages["io"];
-	var utf8 = go$packages["unicode/utf8"];
-	var cell;
+0Vruntimeerrorssync/atomicsynciounicodeunicode/utf8bytestext/tabwriter000bytesbytes0ioio0unicode/utf8utf8ÇP	var cell;
 	cell = go$newType(0, "Struct", "tabwriter.cell", "cell", "text/tabwriter", function(size_, width_, htab_) {
 		this.go$val = this;
 		this.size = size_ !== undefined ? size_ : 0;
@@ -94,13 +91,17 @@ $$
 	Writer.init([["output", "text/tabwriter", io.Writer, ""], ["minwidth", "text/tabwriter", Go$Int, ""], ["tabwidth", "text/tabwriter", Go$Int, ""], ["padding", "text/tabwriter", Go$Int, ""], ["padbytes", "text/tabwriter", (go$arrayType(Go$Uint8, 8)), ""], ["flags", "text/tabwriter", Go$Uint, ""], ["buf", "text/tabwriter", bytes.Buffer, ""], ["pos", "text/tabwriter", Go$Int, ""], ["cell", "text/tabwriter", cell, ""], ["endChar", "text/tabwriter", Go$Uint8, ""], ["lines", "text/tabwriter", (go$sliceType((go$sliceType(cell)))), ""], ["widths", "text/tabwriter", (go$sliceType(Go$Int)), ""]]);
 	(go$ptrType(Writer)).methods = [["Flush", "", [], [go$error], false], ["Init", "", [io.Writer, Go$Int, Go$Int, Go$Int, Go$Uint8, Go$Uint], [(go$ptrType(Writer))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["addLine", "text/tabwriter", [], [], false], ["append", "text/tabwriter", [(go$sliceType(Go$Uint8))], [], false], ["dump", "text/tabwriter", [], [], false], ["endEscape", "text/tabwriter", [], [], false], ["format", "text/tabwriter", [Go$Int, Go$Int, Go$Int], [Go$Int], false], ["reset", "text/tabwriter", [], [], false], ["startEscape", "text/tabwriter", [Go$Uint8], [], false], ["terminateCell", "text/tabwriter", [Go$Bool], [Go$Int], false], ["updateWidth", "text/tabwriter", [], [], false], ["write0", "text/tabwriter", [(go$sliceType(Go$Uint8))], [], false], ["writeLines", "text/tabwriter", [Go$Int, Go$Int, Go$Int], [Go$Int], false], ["writeN", "text/tabwriter", [(go$sliceType(Go$Uint8)), Go$Int], [], false], ["writePadding", "text/tabwriter", [Go$Int, Go$Int, Go$Bool], [], false]];
 	osError.init([["err", "text/tabwriter", go$error, ""]]);
-	Writer.Ptr.prototype.addLine = function() {
+Å´	var newline = (go$sliceType(Go$Uint8)).nil;
+	var tabs = (go$sliceType(Go$Uint8)).nil;
+	var vbar = (go$sliceType(Go$Uint8)).nil;
+	var hbar = (go$sliceType(Go$Uint8)).nil;
+0Ç70Å⁄addLineÅŒ	Writer.Ptr.prototype.addLine = function() {
 		var b;
 		b = this;
 		b.lines = go$append(b.lines, new (go$sliceType(cell))([]));
 	};
 	Writer.prototype.addLine = function() { return this.go$val.addLine(); };
-	Writer.Ptr.prototype.reset = function() {
+0ÇKresetÇ@	Writer.Ptr.prototype.reset = function() {
 		var b;
 		b = this;
 		b.buf.Reset();
@@ -112,7 +113,7 @@ $$
 		b.addLine();
 	};
 	Writer.prototype.reset = function() { return this.go$val.reset(); };
-	Writer.Ptr.prototype.Init = function(output, minwidth, tabwidth, padding, padchar, flags) {
+0ÇﬂInitÇ’	Writer.Ptr.prototype.Init = function(output, minwidth, tabwidth, padding, padchar, flags) {
 		var b, _ref, _i, i;
 		b = this;
 		if (minwidth < 0 || tabwidth < 0 || padding < 0) {
@@ -136,7 +137,7 @@ $$
 		return b;
 	};
 	Writer.prototype.Init = function(output, minwidth, tabwidth, padding, padchar, flags) { return this.go$val.Init(output, minwidth, tabwidth, padding, padchar, flags); };
-	Writer.Ptr.prototype.dump = function() {
+0Ç dumpÇˆ	Writer.Ptr.prototype.dump = function() {
 		var b, pos, _ref, _i, _slice, _index, line, i, _ref$1, _i$1, _slice$1, _index$1, _struct, c;
 		b = this;
 		pos = 0;
@@ -158,7 +159,7 @@ $$
 		console.log("\n");
 	};
 	Writer.prototype.dump = function() { return this.go$val.dump(); };
-	Writer.Ptr.prototype.write0 = function(buf) {
+0Ç–write0Çƒ	Writer.Ptr.prototype.write0 = function(buf) {
 		var b, _tuple, n, err, x;
 		b = this;
 		_tuple = b.output.Write(buf), n = _tuple[0], err = _tuple[1];
@@ -170,7 +171,7 @@ $$
 		}
 	};
 	Writer.prototype.write0 = function(buf) { return this.go$val.write0(buf); };
-	Writer.Ptr.prototype.writeN = function(src, n) {
+0ÇwriteNÇ	Writer.Ptr.prototype.writeN = function(src, n) {
 		var b;
 		b = this;
 		while (n > src.length) {
@@ -180,7 +181,7 @@ $$
 		b.write0(go$subslice(src, 0, n));
 	};
 	Writer.prototype.writeN = function(src, n) { return this.go$val.writeN(src, n); };
-	Writer.Ptr.prototype.writePadding = function(textw, cellw, useTabs) {
+0ÇËwritePaddingÇ÷	Writer.Ptr.prototype.writePadding = function(textw, cellw, useTabs) {
 		var b, x, _q, x$1, n, _q$1;
 		b = this;
 		if ((b.padbytes[0] === 9) || useTabs) {
@@ -198,7 +199,8 @@ $$
 		b.writeN(go$subslice(new (go$sliceType(Go$Uint8))(b.padbytes), 0), cellw - textw >> 0);
 	};
 	Writer.prototype.writePadding = function(textw, cellw, useTabs) { return this.go$val.writePadding(textw, cellw, useTabs); };
-	Writer.Ptr.prototype.writeLines = function(pos0, line0, line1) {
+0Ç	G
+writeLinesÇ	7	Writer.Ptr.prototype.writeLines = function(pos0, line0, line1) {
 		var pos, b, i, _slice, _index, line, useTabs, _ref, _i, _slice$1, _index$1, _struct, c, j, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
 		pos = 0;
 		b = this;
@@ -247,7 +249,7 @@ $$
 		return pos;
 	};
 	Writer.prototype.writeLines = function(pos0, line0, line1) { return this.go$val.writeLines(pos0, line0, line1); };
-	Writer.Ptr.prototype.format = function(pos0, line0, line1) {
+0Ç)formatÇ	Writer.Ptr.prototype.format = function(pos0, line0, line1) {
 		var pos, b, column, this$1, _slice, _index, line, width, discardable, _slice$1, _index$1, _slice$2, _index$2, _struct, c, w;
 		pos = 0;
 		b = this;
@@ -290,21 +292,21 @@ $$
 		return pos;
 	};
 	Writer.prototype.format = function(pos0, line0, line1) { return this.go$val.format(pos0, line0, line1); };
-	Writer.Ptr.prototype.append = function(text) {
+0ÅÎappendÅ‡	Writer.Ptr.prototype.append = function(text) {
 		var b;
 		b = this;
 		b.buf.Write(text);
 		b.cell.size = b.cell.size + (text.length) >> 0;
 	};
 	Writer.prototype.append = function(text) { return this.go$val.append(text); };
-	Writer.Ptr.prototype.updateWidth = function() {
+0Ç+updateWidthÇ	Writer.Ptr.prototype.updateWidth = function() {
 		var b;
 		b = this;
 		b.cell.width = b.cell.width + (utf8.RuneCount(go$subslice(b.buf.Bytes(), b.pos, b.buf.Len()))) >> 0;
 		b.pos = b.buf.Len();
 	};
 	Writer.prototype.updateWidth = function() { return this.go$val.updateWidth(); };
-	Writer.Ptr.prototype.startEscape = function(ch) {
+0ÇRstartEscapeÇA	Writer.Ptr.prototype.startEscape = function(ch) {
 		var b, _ref;
 		b = this;
 		_ref = ch;
@@ -317,7 +319,7 @@ $$
 		}
 	};
 	Writer.prototype.startEscape = function(ch) { return this.go$val.startEscape(ch); };
-	Writer.Ptr.prototype.endEscape = function() {
+0ÇÀ	endEscapeÇº	Writer.Ptr.prototype.endEscape = function() {
 		var b, _ref;
 		b = this;
 		_ref = b.endChar;
@@ -334,7 +336,7 @@ $$
 		b.endChar = 0;
 	};
 	Writer.prototype.endEscape = function() { return this.go$val.endEscape(); };
-	Writer.Ptr.prototype.terminateCell = function(htab) {
+0ÇùterminateCellÇä	Writer.Ptr.prototype.terminateCell = function(htab) {
 		var b, v, _slice, _index, _slice$1, _index$1, line, _struct;
 		b = this;
 		b.cell.htab = htab;
@@ -344,13 +346,13 @@ $$
 		return line.go$get().length;
 	};
 	Writer.prototype.terminateCell = function(htab) { return this.go$val.terminateCell(htab); };
-	var handlePanic = function(err) {
+0ÅÌhandlePanicÅ›	var handlePanic = function(err) {
 		var e;
 		if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
 			err.go$set((e !== null && e.constructor === osError ? e.go$val : go$typeAssertionFailed(e, osError)).err);
 		}
 	};
-	Writer.Ptr.prototype.Flush = function() {
+0Ç¢FlushÇó	Writer.Ptr.prototype.Flush = function() {
 		var err, b, v;
 		err = null;
 		var go$deferred = [];
@@ -374,7 +376,7 @@ $$
 		}
 	};
 	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
-	Writer.Ptr.prototype.Write = function(buf) {
+0Ç0WriteÇ%	Writer.Ptr.prototype.Write = function(buf) {
 		var n, err, b, v, _ref, _i, _slice, _index, ch, i, _ref$1, ncells, j;
 		n = 0;
 		err = null;
@@ -445,21 +447,10 @@ $$
 		}
 	};
 	Writer.prototype.Write = function(buf) { return this.go$val.Write(buf); };
-	var NewWriter = go$pkg.NewWriter = function(output, minwidth, tabwidth, padding, padchar, flags) {
+0ÅÀ	NewWriterÅΩ	var NewWriter = go$pkg.NewWriter = function(output, minwidth, tabwidth, padding, padchar, flags) {
 		return new Writer.Ptr().Init(output, minwidth, tabwidth, padding, padchar, flags);
 	};
-	go$pkg.FilterHTML = 1;
-	go$pkg.StripEscape = 2;
-	go$pkg.AlignRight = 4;
-	go$pkg.DiscardEmptyColumns = 8;
-	go$pkg.TabIndent = 16;
-	go$pkg.Debug = 32;
-	go$pkg.Escape = 255;
-	var newline = (go$sliceType(Go$Uint8)).nil;
-	var tabs = (go$sliceType(Go$Uint8)).nil;
-	var vbar = (go$sliceType(Go$Uint8)).nil;
-	var hbar = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.init = function() {
+0ÇinitÇ	go$pkg.init = function() {
 		newline = new (go$sliceType(Go$Uint8))([10]);
 		tabs = new (go$sliceType(Go$Uint8))(go$stringToBytes("\t\t\t\t\t\t\t\t"));
 		vbar = new (go$sliceType(Go$Uint8))([124]);
