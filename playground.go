@@ -27,7 +27,7 @@ func main() {
 		scope.Set("showGenerated", false)
 		scope.Set("generated", `(generated code will be shown here after clicking "Run")`)
 
-		packages := make(map[string]*translator.Output)
+		packages := make(map[string]*translator.Archive)
 		fileSet := token.NewFileSet()
 		var pkgsToLoad []string
 		pkgsReceived := 0
@@ -86,12 +86,12 @@ func main() {
 				return
 			}
 
-			importPackage := func(path string) (*translator.Output, error) {
+			importPackage := func(path string) (*translator.Archive, error) {
 				if pkg, found := packages[path]; found {
 					return pkg, nil
 				}
 				pkgsToLoad = append(pkgsToLoad, path)
-				return &translator.Output{}, nil
+				return &translator.Archive{}, nil
 			}
 			mainPkg, err := translator.TranslatePackage("main", []*ast.File{file}, fileSet, importPackage)
 			packages["main"] = mainPkg
@@ -156,14 +156,13 @@ func main() {
 				return
 			}
 
-			scope.Set("generated", "go$packages[\"main\"] = (function() {\n\tvar go$pkg = {};\n"+string(packages["main"].Code)+"\treturn go$pkg;\n})();\n")
+			mainPkgCode := bytes.NewBuffer(nil)
+			packages["main"].WriteCode(mainPkgCode)
+			scope.Set("generated", mainPkgCode.String())
 
 			jsCode := bytes.NewBuffer(nil)
-
 			for _, path := range pkgsToEval {
-				jsCode.WriteString("go$packages[\"" + path + "\"] = (function() {\n\tvar go$pkg = {};\n")
-				jsCode.Write(packages[path].Code)
-				jsCode.WriteString("\treturn go$pkg;\n})();\n")
+				packages[path].WriteCode(jsCode)
 			}
 
 			translator.WriteInterfaces(mainPkg.Dependencies, jsCode, true)
