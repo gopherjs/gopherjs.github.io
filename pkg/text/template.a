@@ -1,4 +1,4 @@
-0Éu÷text/templateÇ¶package template
+0Éuôtext/templateÇ¶package template
 import bytes "bytes"
 import fmt "fmt"
 import io "io"
@@ -608,7 +608,7 @@ $$
 builtins0builtinFuncs0errBadComparisonType0errBadComparison0errNoComparison0
 htmlQuot0
 htmlApos0	htmlAmp0htmlLt0htmlGt0
-jsLowUni0hex0jsBackslash0jsApos0jsQuot0jsLt0jsGt0Ép±0ÇApushÇ7	state.Ptr.prototype.push = function(name, value) {
+jsLowUni0hex0jsBackslash0jsApos0jsQuot0jsLt0jsGt0Épt0ÇApushÇ7	state.Ptr.prototype.push = function(name, value) {
 		var s, _struct;
 		s = this;
 		s.vars = go$append(s.vars, new variable.Ptr(name, (_struct = value, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))));
@@ -849,7 +849,7 @@ errRecoverÇ√	var errRecover = function(errp) {
 		_tuple$1 = [truth$1, true], truth$1 = _tuple$1[0], ok = _tuple$1[1];
 		return [truth$1, ok];
 	};
-0Çê	walkRangeÇÅ	state.Ptr.prototype.walkRange = function(dot, r) {
+0ÇS	walkRangeÇD	state.Ptr.prototype.walkRange = function(dot, r) {
 		var s, _tuple, _struct, _struct$1, _struct$2, val, mark, oneIteration, _ref, i, _struct$3, _struct$4, _ref$1, _i, _slice, _index, _struct$5, key, _struct$6, _struct$7, _struct$8, i$1, _tuple$1, _struct$9, elem, ok, _struct$10, _struct$11, _struct$12;
 		var go$deferred = [];
 		try {
@@ -870,53 +870,50 @@ errRecoverÇ√	var errRecover = function(errp) {
 				s.pop(mark);
 			});
 			_ref = val.Kind();
-			switch (undefined) {
-			default:
-				if (_ref === 17 || _ref === 23) {
-					if (val.Len() === 0) {
-						break;
-					}
-					i = 0;
-					while (i < val.Len()) {
-						oneIteration((_struct$3 = reflect.ValueOf(new Go$Int(i)), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), (_struct$4 = val.Index(i), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
-						i = i + 1 >> 0;
-					}
-					return;
-				} else if (_ref === 21) {
-					if (val.Len() === 0) {
-						break;
-					}
-					_ref$1 = sortKeys(val.MapKeys());
-					_i = 0;
-					while (_i < _ref$1.length) {
-						key = (_struct$5 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
-						oneIteration((_struct$6 = key, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), (_struct$8 = val.MapIndex((_struct$7 = key, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag))), new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)));
-						_i++;
-					}
-					return;
-				} else if (_ref === 18) {
-					if (val.IsNil()) {
-						break;
-					}
-					i$1 = 0;
-					while (true) {
-						_tuple$1 = val.Recv(), elem = (_struct$9 = _tuple$1[0], new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), ok = _tuple$1[1];
-						if (!ok) {
-							break;
-						}
-						oneIteration((_struct$10 = reflect.ValueOf(new Go$Int(i$1)), new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)), (_struct$11 = elem, new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag)));
-						i$1 = i$1 + 1 >> 0;
-					}
-					if (i$1 === 0) {
-						break;
-					}
-					return;
-				} else if (_ref === 0) {
+			switch (0) { default: if (_ref === 17 || _ref === 23) {
+				if (val.Len() === 0) {
 					break;
-				} else {
-					s.errorf("range can't iterate over %v", new (go$sliceType(go$emptyInterface))([new val.constructor.Struct(val)]));
 				}
-			}
+				i = 0;
+				while (i < val.Len()) {
+					oneIteration((_struct$3 = reflect.ValueOf(new Go$Int(i)), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), (_struct$4 = val.Index(i), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
+					i = i + 1 >> 0;
+				}
+				return;
+			} else if (_ref === 21) {
+				if (val.Len() === 0) {
+					break;
+				}
+				_ref$1 = sortKeys(val.MapKeys());
+				_i = 0;
+				while (_i < _ref$1.length) {
+					key = (_struct$5 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
+					oneIteration((_struct$6 = key, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), (_struct$8 = val.MapIndex((_struct$7 = key, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag))), new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)));
+					_i++;
+				}
+				return;
+			} else if (_ref === 18) {
+				if (val.IsNil()) {
+					break;
+				}
+				i$1 = 0;
+				while (true) {
+					_tuple$1 = val.Recv(), elem = (_struct$9 = _tuple$1[0], new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), ok = _tuple$1[1];
+					if (!ok) {
+						break;
+					}
+					oneIteration((_struct$10 = reflect.ValueOf(new Go$Int(i$1)), new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)), (_struct$11 = elem, new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag)));
+					i$1 = i$1 + 1 >> 0;
+				}
+				if (i$1 === 0) {
+					break;
+				}
+				return;
+			} else if (_ref === 0) {
+				break;
+			} else {
+				s.errorf("range can't iterate over %v", new (go$sliceType(go$emptyInterface))([new val.constructor.Struct(val)]));
+			} }
 			if (!(r.BranchNode.ElseList === (go$ptrType(parse.ListNode)).nil)) {
 				s.walk((_struct$12 = dot, new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)), r.BranchNode.ElseList);
 			}

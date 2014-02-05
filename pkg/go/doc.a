@@ -1,4 +1,4 @@
-0ƒ®go/doc‚2âpackage doc
+0ƒ­ãgo/doc‚2âpackage doc
 import io "io"
 import regexp "regexp"
 import strings "strings"
@@ -330,7 +330,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 	(go$ptrType(data)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 0‚M0ldquo0rdquo0	matchRx0html_a0	html_aq0	html_enda0html_i0	html_endi0html_p0	html_endp0
 html_pre0html_endpre0html_h0	html_hq0	html_endh0nonAlphaNumRx0nl0space0outputPrefix0
-noteMarker0noteMarkerRx0noteCommentRx0predeclaredTypes0predeclaredFuncs0predeclaredConstants0 0ƒCú0‚ªcommentEscape‚—	var commentEscape = function(w, text, nice) {
+noteMarker0noteMarkerRx0noteCommentRx0predeclaredTypes0predeclaredFuncs0predeclaredConstants0 0ƒCÆ0‚ªcommentEscape‚—	var commentEscape = function(w, text, nice) {
 		var last, i, ch, _ref;
 		last = 0;
 		if (nice) {
@@ -1628,7 +1628,7 @@ lookupType‚ 	reader.Ptr.prototype.lookupType = function(name) {
 		}
 	};
 	reader.prototype.readNotes = function(comments) { return this.go$val.readNotes(comments); };
-0‚¨readFile‚š	reader.Ptr.prototype.readFile = function(src) {
+0‚treadFile‚f	reader.Ptr.prototype.readFile = function(src) {
 		var r, _ref, _i, _slice, _index, decl, d, _ref$1, _type, _ref$2, _ref$3, _i$1, _slice$1, _index$1, spec, ok, _tuple, s, err, _tuple$1, import_, _key, ok$1, _tuple$2, x, _slice$2, _index$2, s$1, _ref$4, _i$2, _slice$3, _index$3, spec$1, ok$2, _tuple$3, s$2, fake;
 		r = this;
 		if (!(src.Doc === (go$ptrType(ast.CommentGroup)).nil)) {
@@ -1644,41 +1644,38 @@ lookupType‚ 	reader.Ptr.prototype.lookupType = function(name) {
 			if (_type === (go$ptrType(ast.GenDecl))) {
 				d = _ref$1.go$val;
 				_ref$2 = d.Tok;
-				switch (undefined) {
-				default:
-					if (_ref$2 === 75) {
-						_ref$3 = d.Specs;
-						_i$1 = 0;
-						while (_i$1 < _ref$3.length) {
-							spec = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-							if (_tuple = (spec !== null && spec.constructor === (go$ptrType(ast.ImportSpec)) ? [spec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), s = _tuple[0], ok = _tuple[1], ok) {
-								if (_tuple$1 = strconv.Unquote(s.Path.Value), import_ = _tuple$1[0], err = _tuple$1[1], go$interfaceIsEqual(err, null)) {
-									_key = import_, (r.imports || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: 1 };
-								}
+				switch (0) { default: if (_ref$2 === 75) {
+					_ref$3 = d.Specs;
+					_i$1 = 0;
+					while (_i$1 < _ref$3.length) {
+						spec = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+						if (_tuple = (spec !== null && spec.constructor === (go$ptrType(ast.ImportSpec)) ? [spec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), s = _tuple[0], ok = _tuple[1], ok) {
+							if (_tuple$1 = strconv.Unquote(s.Path.Value), import_ = _tuple$1[0], err = _tuple$1[1], go$interfaceIsEqual(err, null)) {
+								_key = import_, (r.imports || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: 1 };
 							}
-							_i$1++;
 						}
-					} else if (_ref$2 === 64 || _ref$2 === 85) {
-						r.readValue(d);
-					} else if (_ref$2 === 84) {
-						if ((d.Specs.length === 1) && !(new token.Pos(d.Lparen)).IsValid()) {
-							if (_tuple$2 = (x = (_slice$2 = d.Specs, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.TypeSpec)) ? [x.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false])), s$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
-								r.readType(d, s$1);
-							}
-							break;
-						}
-						_ref$4 = d.Specs;
-						_i$2 = 0;
-						while (_i$2 < _ref$4.length) {
-							spec$1 = (_slice$3 = _ref$4, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
-							if (_tuple$3 = (spec$1 !== null && spec$1.constructor === (go$ptrType(ast.TypeSpec)) ? [spec$1.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false]), s$2 = _tuple$3[0], ok$2 = _tuple$3[1], ok$2) {
-								fake = new ast.GenDecl.Ptr(d.Doc, s$2.Pos(), 84, 0, new (go$sliceType(ast.Spec))([s$2]), 0);
-								r.readType(fake, s$2);
-							}
-							_i$2++;
-						}
+						_i$1++;
 					}
-				}
+				} else if (_ref$2 === 64 || _ref$2 === 85) {
+					r.readValue(d);
+				} else if (_ref$2 === 84) {
+					if ((d.Specs.length === 1) && !(new token.Pos(d.Lparen)).IsValid()) {
+						if (_tuple$2 = (x = (_slice$2 = d.Specs, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.TypeSpec)) ? [x.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false])), s$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
+							r.readType(d, s$1);
+						}
+						break;
+					}
+					_ref$4 = d.Specs;
+					_i$2 = 0;
+					while (_i$2 < _ref$4.length) {
+						spec$1 = (_slice$3 = _ref$4, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+						if (_tuple$3 = (spec$1 !== null && spec$1.constructor === (go$ptrType(ast.TypeSpec)) ? [spec$1.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false]), s$2 = _tuple$3[0], ok$2 = _tuple$3[1], ok$2) {
+							fake = new ast.GenDecl.Ptr(d.Doc, s$2.Pos(), 84, 0, new (go$sliceType(ast.Spec))([s$2]), 0);
+							r.readType(fake, s$2);
+						}
+						_i$2++;
+					}
+				} }
 			} else if (_type === (go$ptrType(ast.FuncDecl))) {
 				d = _ref$1.go$val;
 				r.readFunc(d);

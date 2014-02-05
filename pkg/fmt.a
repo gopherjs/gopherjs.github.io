@@ -1,4 +1,4 @@
-0ƒCðfmt‚lÖpackage fmt
+0ƒCAfmt‚lÖpackage fmt
 import strconv "strconv"
 import utf8 "unicode/utf8"
 import errors "errors"
@@ -484,7 +484,7 @@ falseBytes0commaSpaceBytes0nilAngleBytes0nilParenBytes0
 mapBytes0percentBangBytes0missingBytes0badIndexBytes0
 panicBytes0
 extraBytes0irparenBytes0
-bytesBytes0badWidthBytes0badPrecBytes0noVerbBytes0ppFree0	intBits0uintptrBits0space0ssFree0complexError0	boolError0ƒ›Ó0‚w
+bytesBytes0badWidthBytes0badPrecBytes0noVerbBytes0ppFree0	intBits0uintptrBits0space0ssFree0complexError0	boolError0ƒ›$0‚w
 clearflags‚g	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;
@@ -1755,7 +1755,7 @@ printValue‚S	pp.Ptr.prototype.printValue = function(value, verb, plus, goSynta
 		return wasString;
 	};
 	pp.prototype.printValue = function(value, verb, plus, goSyntax, depth) { return this.go$val.printValue(value, verb, plus, goSyntax, depth); };
-0‚&¿printReflectValue‚&¨	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
+0‚&printReflectValue‚%ù	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
 		var wasString, p, _struct, oldValue, _struct$1, _struct$2, f, _ref, x, v, v$1, v$2, v$3, keys, _ref$1, _i, _slice, _index, _struct$3, key, i, v$4, v$5, _struct$4, v$6, _struct$5, _struct$6, v$7, v$8, v$9, _struct$7, v$10, t, i$1, v$11, v$12, f$1, _struct$8, v$13, v$14, _struct$9, _struct$10, v$15, _struct$11, value$1, v$16, v$17, v$18, _struct$12, typ, bytes, _ref$2, _i$1, i$2, _slice$1, _index$1, v$19, v$20, v$21, v$22, i$3, v$23, v$24, _struct$13, v$25, v$26, v$27, _struct$14, a, _ref$3, v$28, _struct$15, v$29, _struct$16, _struct$17, _struct$18, _struct$19;
 		wasString = false;
 		p = this;
@@ -1763,170 +1763,167 @@ printValue‚S	pp.Ptr.prototype.printValue = function(value, verb, plus, goSynta
 		p.value = (_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 		f = (_struct$2 = value, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 		_ref = f.Kind();
-		BigSwitch: switch (undefined) {
-		default:
-			if (_ref === 1) {
-				p.fmtBool(f.Bool(), verb);
-			} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
-				p.fmtInt64(f.Int(), verb);
-			} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
-				p.fmtUint64(f.Uint(), verb, goSyntax);
-			} else if (_ref === 13 || _ref === 14) {
-				if (f.Type().Size() === 4) {
-					p.fmtFloat32(f.Float(), verb);
-				} else {
-					p.fmtFloat64(f.Float(), verb);
-				}
-			} else if (_ref === 15 || _ref === 16) {
-				if (f.Type().Size() === 8) {
-					p.fmtComplex64((x = f.Complex(), new Go$Complex64(x.real, x.imag)), verb);
-				} else {
-					p.fmtComplex128(f.Complex(), verb);
-				}
-			} else if (_ref === 24) {
-				p.fmtString(f.String(), verb, goSyntax);
-			} else if (_ref === 21) {
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v) { p.buf = v; })).WriteString(f.Type().String());
-					if (f.IsNil()) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$1) { p.buf = v$1; })).WriteString("(nil)");
-						break;
-					}
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$2) { p.buf = v$2; })).WriteByte(123);
-				} else {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$3) { p.buf = v$3; })).Write(mapBytes);
-				}
-				keys = f.MapKeys();
-				_ref$1 = keys;
-				_i = 0;
-				while (_i < _ref$1.length) {
-					key = (_struct$3 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
-					i = _i;
-					if (i > 0) {
-						if (goSyntax) {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$4) { p.buf = v$4; })).Write(commaSpaceBytes);
-						} else {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$5) { p.buf = v$5; })).WriteByte(32);
-						}
-					}
-					p.printValue((_struct$4 = key, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$6) { p.buf = v$6; })).WriteByte(58);
-					p.printValue((_struct$6 = f.MapIndex((_struct$5 = key, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-					_i++;
-				}
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$7) { p.buf = v$7; })).WriteByte(125);
-				} else {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$8) { p.buf = v$8; })).WriteByte(93);
-				}
-			} else if (_ref === 25) {
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$9) { p.buf = v$9; })).WriteString(value.Type().String());
-				}
-				p.add(123);
-				v$10 = (_struct$7 = f, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
-				t = v$10.Type();
-				i$1 = 0;
-				while (i$1 < v$10.NumField()) {
-					if (i$1 > 0) {
-						if (goSyntax) {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$11) { p.buf = v$11; })).Write(commaSpaceBytes);
-						} else {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$12) { p.buf = v$12; })).WriteByte(32);
-						}
-					}
-					if (plus || goSyntax) {
-						if (f$1 = (_struct$8 = t.Field(i$1), new reflect.StructField.Ptr(_struct$8.Name, _struct$8.PkgPath, _struct$8.Type, _struct$8.Tag, _struct$8.Offset, _struct$8.Index, _struct$8.Anonymous)), !(f$1.Name === "")) {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$13) { p.buf = v$13; })).WriteString(f$1.Name);
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$14) { p.buf = v$14; })).WriteByte(58);
-						}
-					}
-					p.printValue((_struct$10 = getField((_struct$9 = v$10, new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), i$1), new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-					i$1 = i$1 + 1 >> 0;
-				}
-				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$15) { p.buf = v$15; })).WriteByte(125);
-			} else if (_ref === 20) {
-				value$1 = (_struct$11 = f.Elem(), new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag));
-				if (!value$1.IsValid()) {
-					if (goSyntax) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$16) { p.buf = v$16; })).WriteString(f.Type().String());
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$17) { p.buf = v$17; })).Write(nilParenBytes);
-					} else {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$18) { p.buf = v$18; })).Write(nilAngleBytes);
-					}
-				} else {
-					wasString = p.printValue((_struct$12 = value$1, new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-				}
-			} else if (_ref === 17 || _ref === 23) {
-				if (typ = f.Type(), typ.Elem().Kind() === 8) {
-					bytes = (go$sliceType(Go$Uint8)).nil;
-					if (f.Kind() === 23) {
-						bytes = f.Bytes();
-					} else if (f.CanAddr()) {
-						bytes = f.Slice(0, f.Len()).Bytes();
-					} else {
-						bytes = (go$sliceType(Go$Uint8)).make(f.Len(), 0, function() { return 0; });
-						_ref$2 = bytes;
-						_i$1 = 0;
-						while (_i$1 < _ref$2.length) {
-							i$2 = _i$1;
-							_slice$1 = bytes, _index$1 = i$2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (f.Index(i$2).Uint().low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
-							_i$1++;
-						}
-					}
-					p.fmtBytes(bytes, verb, goSyntax, typ, depth);
-					wasString = verb === 115;
+		BigSwitch: switch (0) { default: if (_ref === 1) {
+			p.fmtBool(f.Bool(), verb);
+		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
+			p.fmtInt64(f.Int(), verb);
+		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
+			p.fmtUint64(f.Uint(), verb, goSyntax);
+		} else if (_ref === 13 || _ref === 14) {
+			if (f.Type().Size() === 4) {
+				p.fmtFloat32(f.Float(), verb);
+			} else {
+				p.fmtFloat64(f.Float(), verb);
+			}
+		} else if (_ref === 15 || _ref === 16) {
+			if (f.Type().Size() === 8) {
+				p.fmtComplex64((x = f.Complex(), new Go$Complex64(x.real, x.imag)), verb);
+			} else {
+				p.fmtComplex128(f.Complex(), verb);
+			}
+		} else if (_ref === 24) {
+			p.fmtString(f.String(), verb, goSyntax);
+		} else if (_ref === 21) {
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v) { p.buf = v; })).WriteString(f.Type().String());
+				if (f.IsNil()) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$1) { p.buf = v$1; })).WriteString("(nil)");
 					break;
 				}
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$19) { p.buf = v$19; })).WriteString(value.Type().String());
-					if ((f.Kind() === 23) && f.IsNil()) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$20) { p.buf = v$20; })).WriteString("(nil)");
-						break;
-					}
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$21) { p.buf = v$21; })).WriteByte(123);
-				} else {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$22) { p.buf = v$22; })).WriteByte(91);
-				}
-				i$3 = 0;
-				while (i$3 < f.Len()) {
-					if (i$3 > 0) {
-						if (goSyntax) {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$23) { p.buf = v$23; })).Write(commaSpaceBytes);
-						} else {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$24) { p.buf = v$24; })).WriteByte(32);
-						}
-					}
-					p.printValue((_struct$13 = f.Index(i$3), new reflect.Value.Ptr(_struct$13.typ, _struct$13.val, _struct$13.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-					i$3 = i$3 + 1 >> 0;
-				}
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$25) { p.buf = v$25; })).WriteByte(125);
-				} else {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$26) { p.buf = v$26; })).WriteByte(93);
-				}
-			} else if (_ref === 22) {
-				v$27 = f.Pointer();
-				if (!((v$27 === 0)) && (depth === 0)) {
-					a = (_struct$14 = f.Elem(), new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag));
-					_ref$3 = a.Kind();
-					if (_ref$3 === 17 || _ref$3 === 23) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$28) { p.buf = v$28; })).WriteByte(38);
-						p.printValue((_struct$15 = a, new reflect.Value.Ptr(_struct$15.typ, _struct$15.val, _struct$15.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-						break BigSwitch;
-					} else if (_ref$3 === 25) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$29) { p.buf = v$29; })).WriteByte(38);
-						p.printValue((_struct$16 = a, new reflect.Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-						break BigSwitch;
-					}
-				}
-				p.fmtPointer((_struct$17 = value, new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag)), verb, goSyntax);
-			} else if (_ref === 18 || _ref === 19 || _ref === 26) {
-				p.fmtPointer((_struct$18 = value, new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag)), verb, goSyntax);
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$2) { p.buf = v$2; })).WriteByte(123);
 			} else {
-				p.unknownType(new f.constructor.Struct(f));
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$3) { p.buf = v$3; })).Write(mapBytes);
 			}
-		}
+			keys = f.MapKeys();
+			_ref$1 = keys;
+			_i = 0;
+			while (_i < _ref$1.length) {
+				key = (_struct$3 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
+				i = _i;
+				if (i > 0) {
+					if (goSyntax) {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$4) { p.buf = v$4; })).Write(commaSpaceBytes);
+					} else {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$5) { p.buf = v$5; })).WriteByte(32);
+					}
+				}
+				p.printValue((_struct$4 = key, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$6) { p.buf = v$6; })).WriteByte(58);
+				p.printValue((_struct$6 = f.MapIndex((_struct$5 = key, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+				_i++;
+			}
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$7) { p.buf = v$7; })).WriteByte(125);
+			} else {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$8) { p.buf = v$8; })).WriteByte(93);
+			}
+		} else if (_ref === 25) {
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$9) { p.buf = v$9; })).WriteString(value.Type().String());
+			}
+			p.add(123);
+			v$10 = (_struct$7 = f, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
+			t = v$10.Type();
+			i$1 = 0;
+			while (i$1 < v$10.NumField()) {
+				if (i$1 > 0) {
+					if (goSyntax) {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$11) { p.buf = v$11; })).Write(commaSpaceBytes);
+					} else {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$12) { p.buf = v$12; })).WriteByte(32);
+					}
+				}
+				if (plus || goSyntax) {
+					if (f$1 = (_struct$8 = t.Field(i$1), new reflect.StructField.Ptr(_struct$8.Name, _struct$8.PkgPath, _struct$8.Type, _struct$8.Tag, _struct$8.Offset, _struct$8.Index, _struct$8.Anonymous)), !(f$1.Name === "")) {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$13) { p.buf = v$13; })).WriteString(f$1.Name);
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$14) { p.buf = v$14; })).WriteByte(58);
+					}
+				}
+				p.printValue((_struct$10 = getField((_struct$9 = v$10, new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), i$1), new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+				i$1 = i$1 + 1 >> 0;
+			}
+			(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$15) { p.buf = v$15; })).WriteByte(125);
+		} else if (_ref === 20) {
+			value$1 = (_struct$11 = f.Elem(), new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag));
+			if (!value$1.IsValid()) {
+				if (goSyntax) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$16) { p.buf = v$16; })).WriteString(f.Type().String());
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$17) { p.buf = v$17; })).Write(nilParenBytes);
+				} else {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$18) { p.buf = v$18; })).Write(nilAngleBytes);
+				}
+			} else {
+				wasString = p.printValue((_struct$12 = value$1, new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+			}
+		} else if (_ref === 17 || _ref === 23) {
+			if (typ = f.Type(), typ.Elem().Kind() === 8) {
+				bytes = (go$sliceType(Go$Uint8)).nil;
+				if (f.Kind() === 23) {
+					bytes = f.Bytes();
+				} else if (f.CanAddr()) {
+					bytes = f.Slice(0, f.Len()).Bytes();
+				} else {
+					bytes = (go$sliceType(Go$Uint8)).make(f.Len(), 0, function() { return 0; });
+					_ref$2 = bytes;
+					_i$1 = 0;
+					while (_i$1 < _ref$2.length) {
+						i$2 = _i$1;
+						_slice$1 = bytes, _index$1 = i$2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (f.Index(i$2).Uint().low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+						_i$1++;
+					}
+				}
+				p.fmtBytes(bytes, verb, goSyntax, typ, depth);
+				wasString = verb === 115;
+				break;
+			}
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$19) { p.buf = v$19; })).WriteString(value.Type().String());
+				if ((f.Kind() === 23) && f.IsNil()) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$20) { p.buf = v$20; })).WriteString("(nil)");
+					break;
+				}
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$21) { p.buf = v$21; })).WriteByte(123);
+			} else {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$22) { p.buf = v$22; })).WriteByte(91);
+			}
+			i$3 = 0;
+			while (i$3 < f.Len()) {
+				if (i$3 > 0) {
+					if (goSyntax) {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$23) { p.buf = v$23; })).Write(commaSpaceBytes);
+					} else {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$24) { p.buf = v$24; })).WriteByte(32);
+					}
+				}
+				p.printValue((_struct$13 = f.Index(i$3), new reflect.Value.Ptr(_struct$13.typ, _struct$13.val, _struct$13.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+				i$3 = i$3 + 1 >> 0;
+			}
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$25) { p.buf = v$25; })).WriteByte(125);
+			} else {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$26) { p.buf = v$26; })).WriteByte(93);
+			}
+		} else if (_ref === 22) {
+			v$27 = f.Pointer();
+			if (!((v$27 === 0)) && (depth === 0)) {
+				a = (_struct$14 = f.Elem(), new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag));
+				_ref$3 = a.Kind();
+				if (_ref$3 === 17 || _ref$3 === 23) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$28) { p.buf = v$28; })).WriteByte(38);
+					p.printValue((_struct$15 = a, new reflect.Value.Ptr(_struct$15.typ, _struct$15.val, _struct$15.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+					break BigSwitch;
+				} else if (_ref$3 === 25) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$29) { p.buf = v$29; })).WriteByte(38);
+					p.printValue((_struct$16 = a, new reflect.Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+					break BigSwitch;
+				}
+			}
+			p.fmtPointer((_struct$17 = value, new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag)), verb, goSyntax);
+		} else if (_ref === 18 || _ref === 19 || _ref === 26) {
+			p.fmtPointer((_struct$18 = value, new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag)), verb, goSyntax);
+		} else {
+			p.unknownType(new f.constructor.Struct(f));
+		} }
 		p.value = (_struct$19 = oldValue, new reflect.Value.Ptr(_struct$19.typ, _struct$19.val, _struct$19.flag));
 		wasString = wasString;
 		return wasString;

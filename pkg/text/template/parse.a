@@ -1,4 +1,4 @@
-0ƒ»ªtext/template/parse‚2Wpackage parse
+0ƒ»Ttext/template/parse‚2Wpackage parse
 import list "container/list"
 import fmt "fmt"
 import strings "strings"
@@ -621,7 +621,7 @@ $$
 	Tree.init([["Name", "", Go$String, ""], ["ParseName", "", Go$String, ""], ["Root", "", (go$ptrType(ListNode)), ""], ["text", "text/template/parse", Go$String, ""], ["funcs", "text/template/parse", (go$sliceType((go$mapType(Go$String, go$emptyInterface)))), ""], ["lex", "text/template/parse", (go$ptrType(lexer)), ""], ["token", "text/template/parse", (go$arrayType(item, 3)), ""], ["peekCount", "text/template/parse", Go$Int, ""], ["vars", "text/template/parse", (go$sliceType(Go$String)), ""]]);
 	(go$ptrType(Tree)).methods = [["Copy", "", [], [(go$ptrType(Tree))], false], ["ErrorContext", "", [Node], [Go$String, Go$String], false], ["Parse", "", [Go$String, Go$String, Go$String, (go$mapType(Go$String, (go$ptrType(Tree)))), (go$sliceType((go$mapType(Go$String, go$emptyInterface))))], [(go$ptrType(Tree)), go$error], true], ["action", "text/template/parse", [], [Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [item], [], false], ["backup3", "text/template/parse", [item, item], [], false], ["command", "text/template/parse", [], [(go$ptrType(CommandNode))], false], ["elseControl", "text/template/parse", [], [Node], false], ["endControl", "text/template/parse", [], [Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [itemType, Go$String], [item], false], ["expectOneOf", "text/template/parse", [itemType, itemType, Go$String], [item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(ListNode)), Node], false], ["next", "text/template/parse", [], [item], false], ["nextNonSpace", "text/template/parse", [], [item], false], ["operand", "text/template/parse", [], [Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [Pos, Go$Int, (go$ptrType(PipeNode)), (go$ptrType(ListNode)), (go$ptrType(ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["peek", "text/template/parse", [], [item], false], ["peekNonSpace", "text/template/parse", [], [item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [Node], false], ["term", "text/template/parse", [], [Node], false], ["textOrAction", "text/template/parse", [], [Node], false], ["unexpected", "text/template/parse", [item, Go$String], [], false], ["useVar", "text/template/parse", [Pos, Go$String], [Node], false], ["withControl", "text/template/parse", [], [Node], false]];
 00key0
-textFormat0‚óS0‚ŽString‚‚	item.Ptr.prototype.String = function() {
+textFormat0‚òý0‚ŽString‚‚	item.Ptr.prototype.String = function() {
 		var _struct, i;
 		i = (_struct = this, new item.Ptr(_struct.typ, _struct.pos, _struct.val));
 		if (i.typ === 6) {
@@ -927,23 +927,20 @@ lexComment‚	var lexComment = function(l) {
 		return false;
 	};
 	lexer.prototype.atTerminator = function() { return this.go$val.atTerminator(); };
-0‚JlexChar‚=	var lexChar = function(l) {
+0‚/lexChar‚"	var lexChar = function(l) {
 		var _ref, r;
 		Loop: while (true) {
 			_ref = l.next();
-			switch (undefined) {
-			default:
-				if (_ref === 92) {
-					if (r = l.next(), !((r === -1)) && !((r === 10))) {
-						break;
-					}
-					return l.errorf("unterminated character constant", new (go$sliceType(go$emptyInterface))([]));
-				} else if (_ref === -1 || _ref === 10) {
-					return l.errorf("unterminated character constant", new (go$sliceType(go$emptyInterface))([]));
-				} else if (_ref === 39) {
-					break Loop;
+			switch (0) { default: if (_ref === 92) {
+				if (r = l.next(), !((r === -1)) && !((r === 10))) {
+					break;
 				}
-			}
+				return l.errorf("unterminated character constant", new (go$sliceType(go$emptyInterface))([]));
+			} else if (_ref === -1 || _ref === 10) {
+				return l.errorf("unterminated character constant", new (go$sliceType(go$emptyInterface))([]));
+			} else if (_ref === 39) {
+				break Loop;
+			} }
 		}
 		l.emit(3);
 		return lexInsideAction;
@@ -988,23 +985,20 @@ scanNumber‚	lexer.Ptr.prototype.scanNumber = function() {
 		return true;
 	};
 	lexer.prototype.scanNumber = function() { return this.go$val.scanNumber(); };
-0‚ClexQuote‚5	var lexQuote = function(l) {
+0‚(lexQuote‚	var lexQuote = function(l) {
 		var _ref, r;
 		Loop: while (true) {
 			_ref = l.next();
-			switch (undefined) {
-			default:
-				if (_ref === 92) {
-					if (r = l.next(), !((r === -1)) && !((r === 10))) {
-						break;
-					}
-					return l.errorf("unterminated quoted string", new (go$sliceType(go$emptyInterface))([]));
-				} else if (_ref === -1 || _ref === 10) {
-					return l.errorf("unterminated quoted string", new (go$sliceType(go$emptyInterface))([]));
-				} else if (_ref === 34) {
-					break Loop;
+			switch (0) { default: if (_ref === 92) {
+				if (r = l.next(), !((r === -1)) && !((r === 10))) {
+					break;
 				}
-			}
+				return l.errorf("unterminated quoted string", new (go$sliceType(go$emptyInterface))([]));
+			} else if (_ref === -1 || _ref === 10) {
+				return l.errorf("unterminated quoted string", new (go$sliceType(go$emptyInterface))([]));
+			} else if (_ref === 34) {
+				break Loop;
+			} }
 		}
 		l.emit(17);
 		return lexInsideAction;
@@ -2075,7 +2069,7 @@ startParse‚5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		}
 	};
 	Tree.prototype.pipeline = function(context) { return this.go$val.pipeline(context); };
-0‚-parseControl‚	Tree.Ptr.prototype.parseControl = function(allowElseIf, context) {
+0‚parseControl‚û	Tree.Ptr.prototype.parseControl = function(allowElseIf, context) {
 		var pos, line, pipe, list$1, elseList, t, next, _tuple, _ref, _tuple$1, _tuple$2;
 		pos = 0;
 		line = 0;
@@ -2091,24 +2085,21 @@ startParse‚5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 			next = null;
 			_tuple = t.itemList(), list$1 = _tuple[0], next = _tuple[1];
 			_ref = next.Type();
-			switch (undefined) {
-			default:
-				if (_ref === 7) {
-				} else if (_ref === 6) {
-					if (allowElseIf) {
-						if (t.peek().typ === 25) {
-							t.next();
-							elseList = newList(next.Position());
-							elseList.append(t.ifControl());
-							break;
-						}
-					}
-					_tuple$1 = t.itemList(), elseList = _tuple$1[0], next = _tuple$1[1];
-					if (!((next.Type() === 7))) {
-						t.errorf("expected end; found %s", new (go$sliceType(go$emptyInterface))([next]));
+			switch (0) { default: if (_ref === 7) {
+			} else if (_ref === 6) {
+				if (allowElseIf) {
+					if (t.peek().typ === 25) {
+						t.next();
+						elseList = newList(next.Position());
+						elseList.append(t.ifControl());
+						break;
 					}
 				}
-			}
+				_tuple$1 = t.itemList(), elseList = _tuple$1[0], next = _tuple$1[1];
+				if (!((next.Type() === 7))) {
+					t.errorf("expected end; found %s", new (go$sliceType(go$emptyInterface))([next]));
+				}
+			} }
 			_tuple$2 = [(new Pos(pipe.Pos)).Position(), line, pipe, list$1, elseList], pos = _tuple$2[0], line = _tuple$2[1], pipe = _tuple$2[2], list$1 = _tuple$2[3], elseList = _tuple$2[4];
 			return [pos, line, pipe, list$1, elseList];
 		} catch(go$err) {

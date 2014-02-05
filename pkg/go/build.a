@@ -1,4 +1,4 @@
-0ƒ&©go/build‚<#package build
+0ƒ&go/build‚<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -304,7 +304,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 	(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false], ["readByte", "go/build", [], [Go$Uint8], false], ["readIdent", "go/build", [], [], false], ["readImport", "go/build", [], [], false], ["readKeyword", "go/build", [Go$String], [], false], ["readString", "go/build", [], [], false], ["syntaxError", "go/build", [], [], false]];
 0`0 0
 cgoEnabled0
-slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚½'0‚*joinPath‚	Context.Ptr.prototype.joinPath = function(elem) {
+slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚½0‚*joinPath‚	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.JoinPath, !(f === go$throwNilPointerError)) {
@@ -459,7 +459,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚½'0‚
 		return all;
 	};
 	Context.prototype.SrcDirs = function() { return this.go$val.SrcDirs(); };
-0‚HdefaultContext‚4	var defaultContext = function() {
+0‚/defaultContext‚	var defaultContext = function() {
 		var c, _ref, _entry, _struct;
 		c = new Context.Ptr();
 		c.GOARCH = envOr("GOARCH", "js");
@@ -469,20 +469,17 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚½'0‚
 		c.Compiler = "gc";
 		c.ReleaseTags = new (go$sliceType(Go$String))(["go1.1", "go1.2"]);
 		_ref = os.Getenv("CGO_ENABLED");
-		switch (undefined) {
-		default:
-			if (_ref === "1") {
-				c.CgoEnabled = true;
-			} else if (_ref === "0") {
-				c.CgoEnabled = false;
-			} else {
-				if ("js" === c.GOARCH && "darwin" === c.GOOS) {
-					c.CgoEnabled = (_entry = cgoEnabled[c.GOOS + "/" + c.GOARCH], _entry !== undefined ? _entry.v : false);
-					break;
-				}
-				c.CgoEnabled = false;
+		switch (0) { default: if (_ref === "1") {
+			c.CgoEnabled = true;
+		} else if (_ref === "0") {
+			c.CgoEnabled = false;
+		} else {
+			if ("js" === c.GOARCH && "darwin" === c.GOOS) {
+				c.CgoEnabled = (_entry = cgoEnabled[c.GOOS + "/" + c.GOARCH], _entry !== undefined ? _entry.v : false);
+				break;
 			}
-		}
+			c.CgoEnabled = false;
+		} }
 		return (_struct = c, new Context.Ptr(_struct.GOARCH, _struct.GOOS, _struct.GOROOT, _struct.GOPATH, _struct.CgoEnabled, _struct.UseAllFiles, _struct.Compiler, _struct.BuildTags, _struct.ReleaseTags, _struct.InstallSuffix, _struct.JoinPath, _struct.SplitPathList, _struct.IsAbsPath, _struct.IsDir, _struct.HasSubdir, _struct.ReadDir, _struct.OpenFile));
 	};
 0envOrx	var envOr = function(name, def) {

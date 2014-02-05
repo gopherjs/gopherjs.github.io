@@ -1,4 +1,4 @@
-0ÉZdebug/dwarfÇ-Âpackage dwarf
+0ÉY:debug/dwarfÇ-Âpackage dwarf
 import binary "encoding/binary"
 import strconv "strconv"
 import errors "errors"
@@ -668,7 +668,7 @@ $$
 	unit.init([["base", "debug/dwarf", Offset, ""], ["off", "debug/dwarf", Offset, ""], ["data", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["atable", "debug/dwarf", abbrevTable, ""], ["asize", "debug/dwarf", Go$Int, ""], ["vers", "debug/dwarf", Go$Int, ""], ["is64", "debug/dwarf", Go$Bool, ""]]);
 	(go$ptrType(unit)).methods = [["addrsize", "debug/dwarf", [], [Go$Int], false], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false], ["version", "debug/dwarf", [], [Go$Int], false]];
 00	attrNames0
-tagNames0Ç∞Ã0Å‰versionÅÿ	unknownFormat.Ptr.prototype.version = function() {
+tagNames0ÇØÚ0Å‰versionÅÿ	unknownFormat.Ptr.prototype.version = function() {
 		var _struct, u;
 		u = (_struct = this, new unknownFormat.Ptr());
 		return 0;
@@ -1364,7 +1364,7 @@ $$
 		return t.Type.Size();
 	};
 	TypedefType.prototype.Size = function() { return this.go$val.Size(); };
-0Ç6FTypeÇ6<	Data.Ptr.prototype.Type = function(off) {
+0Ç5lTypeÇ5b	Data.Ptr.prototype.Type = function(off) {
 		var d, ok, _tuple, _entry, t, r, _tuple$1, e, err, x, typ, nextDepth, next, typeOf, _ref, t$1, _key, _tuple$2, x$1, ndim, kid, _ref$1, _tuple$3, x$2, max, ok$1, x$3, _tuple$4, x$4, name, _tuple$5, x$5, enc, ok$2, x$6, _ref$2, x$7, _key$1, t$2, _tuple$6, x$8, _tuple$7, x$9, t$3, _key$2, _ref$3, _tuple$8, x$10, lastFieldType, lastFieldBitOffset, kid$1, f, ok$3, _tuple$9, x$11, loc, x$12, _struct, b, x$13, x$14, haveBitOffset, _tuple$10, x$15, _tuple$11, x$16, _tuple$12, x$17, _tuple$13, x$18, bito, _tuple$14, x$19, b$1, ok$4, x$20, t$4, _key$3, _ref$4, t$5, _key$4, _tuple$15, x$21, kid$2, f$1, _tuple$16, x$22, _tuple$17, x$23, n, x$24, val, _slice, _index, t$6, _key$5, t$7, _key$6, kid$3, tkid, _ref$5, t$8, _key$7, _tuple$18, x$25, _tuple$19, x$26, b$2, ok$5;
 		d = this;
 		if (_tuple = (_entry = d.typeCache[off], _entry !== undefined ? [_entry.v, true] : [null, false]), t = _tuple[0], ok = _tuple[1], ok) {
@@ -1425,213 +1425,210 @@ $$
 			return t$1;
 		});
 		_ref = e.Tag;
-		switch (undefined) {
-		default:
-			if (_ref === 1) {
-				t$1 = new ArrayType.Ptr();
-				typ = t$1;
-				_key = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: t$1 };
-				if (t$1.Type = typeOf(e), !(go$interfaceIsEqual(err, null))) {
+		switch (0) { default: if (_ref === 1) {
+			t$1 = new ArrayType.Ptr();
+			typ = t$1;
+			_key = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: t$1 };
+			if (t$1.Type = typeOf(e), !(go$interfaceIsEqual(err, null))) {
+				go$notSupported("goto");
+			}
+			_tuple$2 = (x$1 = e.Val(46), (x$1 !== null && x$1.constructor === Go$Int64 ? [x$1.go$val, true] : [new Go$Int64(0, 0), false])), t$1.StrideBitSize = _tuple$2[0];
+			ndim = 0;
+			kid = next();
+			while (!(kid === (go$ptrType(Entry)).nil)) {
+				_ref$1 = kid.Tag;
+				if (_ref$1 === 33) {
+					_tuple$3 = (x$2 = kid.Val(47), (x$2 !== null && x$2.constructor === Go$Int64 ? [x$2.go$val, true] : [new Go$Int64(0, 0), false])), max = _tuple$3[0], ok$1 = _tuple$3[1];
+					if (!ok$1) {
+						max = new Go$Int64(-1, 4294967294);
+					}
+					if (ndim === 0) {
+						t$1.Count = new Go$Int64(max.high + 0, max.low + 1);
+					} else {
+						t$1.Type = new ArrayType.Ptr(new CommonType.Ptr(), t$1.Type, new Go$Int64(0, 0), new Go$Int64(max.high + 0, max.low + 1));
+					}
+					ndim = ndim + 1 >> 0;
+				} else if (_ref$1 === 4) {
+					err = (x$3 = new DecodeError.Ptr("info", kid.Offset, "cannot handle enumeration type as array bound"), new x$3.constructor.Struct(x$3));
 					go$notSupported("goto");
 				}
-				_tuple$2 = (x$1 = e.Val(46), (x$1 !== null && x$1.constructor === Go$Int64 ? [x$1.go$val, true] : [new Go$Int64(0, 0), false])), t$1.StrideBitSize = _tuple$2[0];
-				ndim = 0;
 				kid = next();
-				while (!(kid === (go$ptrType(Entry)).nil)) {
-					_ref$1 = kid.Tag;
-					if (_ref$1 === 33) {
-						_tuple$3 = (x$2 = kid.Val(47), (x$2 !== null && x$2.constructor === Go$Int64 ? [x$2.go$val, true] : [new Go$Int64(0, 0), false])), max = _tuple$3[0], ok$1 = _tuple$3[1];
-						if (!ok$1) {
-							max = new Go$Int64(-1, 4294967294);
-						}
-						if (ndim === 0) {
-							t$1.Count = new Go$Int64(max.high + 0, max.low + 1);
-						} else {
-							t$1.Type = new ArrayType.Ptr(new CommonType.Ptr(), t$1.Type, new Go$Int64(0, 0), new Go$Int64(max.high + 0, max.low + 1));
-						}
-						ndim = ndim + 1 >> 0;
-					} else if (_ref$1 === 4) {
-						err = (x$3 = new DecodeError.Ptr("info", kid.Offset, "cannot handle enumeration type as array bound"), new x$3.constructor.Struct(x$3));
+			}
+			if (ndim === 0) {
+				t$1.Count = new Go$Int64(-1, 4294967295);
+			}
+		} else if (_ref === 36) {
+			_tuple$4 = (x$4 = e.Val(3), (x$4 !== null && x$4.constructor === Go$String ? [x$4.go$val, true] : ["", false])), name = _tuple$4[0];
+			_tuple$5 = (x$5 = e.Val(62), (x$5 !== null && x$5.constructor === Go$Int64 ? [x$5.go$val, true] : [new Go$Int64(0, 0), false])), enc = _tuple$5[0], ok$2 = _tuple$5[1];
+			if (!ok$2) {
+				err = (x$6 = new DecodeError.Ptr("info", e.Offset, "missing encoding attribute for " + name), new x$6.constructor.Struct(x$6));
+				go$notSupported("goto");
+			}
+			_ref$2 = enc;
+			if ((_ref$2.high === 0 && _ref$2.low === 1)) {
+				typ = new AddrType.Ptr();
+			} else if ((_ref$2.high === 0 && _ref$2.low === 2)) {
+				typ = new BoolType.Ptr();
+			} else if ((_ref$2.high === 0 && _ref$2.low === 3)) {
+				typ = new ComplexType.Ptr();
+			} else if ((_ref$2.high === 0 && _ref$2.low === 4)) {
+				typ = new FloatType.Ptr();
+			} else if ((_ref$2.high === 0 && _ref$2.low === 5)) {
+				typ = new IntType.Ptr();
+			} else if ((_ref$2.high === 0 && _ref$2.low === 7)) {
+				typ = new UintType.Ptr();
+			} else if ((_ref$2.high === 0 && _ref$2.low === 6)) {
+				typ = new CharType.Ptr();
+			} else if ((_ref$2.high === 0 && _ref$2.low === 8)) {
+				typ = new UcharType.Ptr();
+			} else {
+				err = (x$7 = new DecodeError.Ptr("info", e.Offset, "unrecognized encoding attribute value"), new x$7.constructor.Struct(x$7));
+				go$notSupported("goto");
+			}
+			_key$1 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: typ };
+			t$2 = (typ !== null && (go$interfaceType([["Basic", "", (go$funcType([], [(go$ptrType(BasicType))], false))]])).implementedBy.indexOf(typ.constructor) !== -1 ? typ : go$typeAssertionFailed(typ, (go$interfaceType([["Basic", "", (go$funcType([], [(go$ptrType(BasicType))], false))]])))).Basic();
+			t$2.CommonType.Name = name;
+			_tuple$6 = (x$8 = e.Val(13), (x$8 !== null && x$8.constructor === Go$Int64 ? [x$8.go$val, true] : [new Go$Int64(0, 0), false])), t$2.BitSize = _tuple$6[0];
+			_tuple$7 = (x$9 = e.Val(12), (x$9 !== null && x$9.constructor === Go$Int64 ? [x$9.go$val, true] : [new Go$Int64(0, 0), false])), t$2.BitOffset = _tuple$7[0];
+		} else if (_ref === 2 || _ref === 19 || _ref === 23) {
+			t$3 = new StructType.Ptr();
+			typ = t$3;
+			_key$2 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: t$3 };
+			_ref$3 = e.Tag;
+			if (_ref$3 === 2) {
+				t$3.Kind = "class";
+			} else if (_ref$3 === 19) {
+				t$3.Kind = "struct";
+			} else if (_ref$3 === 23) {
+				t$3.Kind = "union";
+			}
+			_tuple$8 = (x$10 = e.Val(3), (x$10 !== null && x$10.constructor === Go$String ? [x$10.go$val, true] : ["", false])), t$3.StructName = _tuple$8[0];
+			t$3.Incomplete = !(go$interfaceIsEqual(e.Val(60), null));
+			t$3.Field = (go$sliceType((go$ptrType(StructField)))).make(0, 8, function() { return (go$ptrType(StructField)).nil; });
+			lastFieldType = null;
+			lastFieldBitOffset = new Go$Int64(0, 0);
+			kid$1 = next();
+			while (!(kid$1 === (go$ptrType(Entry)).nil)) {
+				if (kid$1.Tag === 13) {
+					f = new StructField.Ptr();
+					if (f.Type = typeOf(kid$1), !(go$interfaceIsEqual(err, null))) {
 						go$notSupported("goto");
 					}
-					kid = next();
-				}
-				if (ndim === 0) {
-					t$1.Count = new Go$Int64(-1, 4294967295);
-				}
-			} else if (_ref === 36) {
-				_tuple$4 = (x$4 = e.Val(3), (x$4 !== null && x$4.constructor === Go$String ? [x$4.go$val, true] : ["", false])), name = _tuple$4[0];
-				_tuple$5 = (x$5 = e.Val(62), (x$5 !== null && x$5.constructor === Go$Int64 ? [x$5.go$val, true] : [new Go$Int64(0, 0), false])), enc = _tuple$5[0], ok$2 = _tuple$5[1];
-				if (!ok$2) {
-					err = (x$6 = new DecodeError.Ptr("info", e.Offset, "missing encoding attribute for " + name), new x$6.constructor.Struct(x$6));
-					go$notSupported("goto");
-				}
-				_ref$2 = enc;
-				if ((_ref$2.high === 0 && _ref$2.low === 1)) {
-					typ = new AddrType.Ptr();
-				} else if ((_ref$2.high === 0 && _ref$2.low === 2)) {
-					typ = new BoolType.Ptr();
-				} else if ((_ref$2.high === 0 && _ref$2.low === 3)) {
-					typ = new ComplexType.Ptr();
-				} else if ((_ref$2.high === 0 && _ref$2.low === 4)) {
-					typ = new FloatType.Ptr();
-				} else if ((_ref$2.high === 0 && _ref$2.low === 5)) {
-					typ = new IntType.Ptr();
-				} else if ((_ref$2.high === 0 && _ref$2.low === 7)) {
-					typ = new UintType.Ptr();
-				} else if ((_ref$2.high === 0 && _ref$2.low === 6)) {
-					typ = new CharType.Ptr();
-				} else if ((_ref$2.high === 0 && _ref$2.low === 8)) {
-					typ = new UcharType.Ptr();
-				} else {
-					err = (x$7 = new DecodeError.Ptr("info", e.Offset, "unrecognized encoding attribute value"), new x$7.constructor.Struct(x$7));
-					go$notSupported("goto");
-				}
-				_key$1 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: typ };
-				t$2 = (typ !== null && (go$interfaceType([["Basic", "", (go$funcType([], [(go$ptrType(BasicType))], false))]])).implementedBy.indexOf(typ.constructor) !== -1 ? typ : go$typeAssertionFailed(typ, (go$interfaceType([["Basic", "", (go$funcType([], [(go$ptrType(BasicType))], false))]])))).Basic();
-				t$2.CommonType.Name = name;
-				_tuple$6 = (x$8 = e.Val(13), (x$8 !== null && x$8.constructor === Go$Int64 ? [x$8.go$val, true] : [new Go$Int64(0, 0), false])), t$2.BitSize = _tuple$6[0];
-				_tuple$7 = (x$9 = e.Val(12), (x$9 !== null && x$9.constructor === Go$Int64 ? [x$9.go$val, true] : [new Go$Int64(0, 0), false])), t$2.BitOffset = _tuple$7[0];
-			} else if (_ref === 2 || _ref === 19 || _ref === 23) {
-				t$3 = new StructType.Ptr();
-				typ = t$3;
-				_key$2 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: t$3 };
-				_ref$3 = e.Tag;
-				if (_ref$3 === 2) {
-					t$3.Kind = "class";
-				} else if (_ref$3 === 19) {
-					t$3.Kind = "struct";
-				} else if (_ref$3 === 23) {
-					t$3.Kind = "union";
-				}
-				_tuple$8 = (x$10 = e.Val(3), (x$10 !== null && x$10.constructor === Go$String ? [x$10.go$val, true] : ["", false])), t$3.StructName = _tuple$8[0];
-				t$3.Incomplete = !(go$interfaceIsEqual(e.Val(60), null));
-				t$3.Field = (go$sliceType((go$ptrType(StructField)))).make(0, 8, function() { return (go$ptrType(StructField)).nil; });
-				lastFieldType = null;
-				lastFieldBitOffset = new Go$Int64(0, 0);
-				kid$1 = next();
-				while (!(kid$1 === (go$ptrType(Entry)).nil)) {
-					if (kid$1.Tag === 13) {
-						f = new StructField.Ptr();
-						if (f.Type = typeOf(kid$1), !(go$interfaceIsEqual(err, null))) {
+					if (_tuple$9 = (x$11 = kid$1.Val(56), (x$11 !== null && x$11.constructor === (go$sliceType(Go$Uint8)) ? [x$11.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), loc = _tuple$9[0], ok$3 = _tuple$9[1], ok$3) {
+						b = (_struct = makeBuf(d, (x$12 = new unknownFormat.Ptr(), new x$12.constructor.Struct(x$12)), "location", 0, loc), new buf.Ptr(_struct.dwarf, _struct.order, _struct.format, _struct.name, _struct.off, _struct.data, _struct.err));
+						if (!((b.uint8() === 35))) {
+							err = (x$13 = new DecodeError.Ptr("info", kid$1.Offset, "unexpected opcode"), new x$13.constructor.Struct(x$13));
 							go$notSupported("goto");
 						}
-						if (_tuple$9 = (x$11 = kid$1.Val(56), (x$11 !== null && x$11.constructor === (go$sliceType(Go$Uint8)) ? [x$11.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), loc = _tuple$9[0], ok$3 = _tuple$9[1], ok$3) {
-							b = (_struct = makeBuf(d, (x$12 = new unknownFormat.Ptr(), new x$12.constructor.Struct(x$12)), "location", 0, loc), new buf.Ptr(_struct.dwarf, _struct.order, _struct.format, _struct.name, _struct.off, _struct.data, _struct.err));
-							if (!((b.uint8() === 35))) {
-								err = (x$13 = new DecodeError.Ptr("info", kid$1.Offset, "unexpected opcode"), new x$13.constructor.Struct(x$13));
-								go$notSupported("goto");
-							}
-							f.ByteOffset = (x$14 = b.uint(), new Go$Int64(x$14.high, x$14.low));
-							if (!(go$interfaceIsEqual(b.err, null))) {
-								err = b.err;
-								go$notSupported("goto");
-							}
+						f.ByteOffset = (x$14 = b.uint(), new Go$Int64(x$14.high, x$14.low));
+						if (!(go$interfaceIsEqual(b.err, null))) {
+							err = b.err;
+							go$notSupported("goto");
 						}
-						haveBitOffset = false;
-						_tuple$10 = (x$15 = kid$1.Val(3), (x$15 !== null && x$15.constructor === Go$String ? [x$15.go$val, true] : ["", false])), f.Name = _tuple$10[0];
-						_tuple$11 = (x$16 = kid$1.Val(11), (x$16 !== null && x$16.constructor === Go$Int64 ? [x$16.go$val, true] : [new Go$Int64(0, 0), false])), f.ByteSize = _tuple$11[0];
-						_tuple$12 = (x$17 = kid$1.Val(12), (x$17 !== null && x$17.constructor === Go$Int64 ? [x$17.go$val, true] : [new Go$Int64(0, 0), false])), f.BitOffset = _tuple$12[0], haveBitOffset = _tuple$12[1];
-						_tuple$13 = (x$18 = kid$1.Val(13), (x$18 !== null && x$18.constructor === Go$Int64 ? [x$18.go$val, true] : [new Go$Int64(0, 0), false])), f.BitSize = _tuple$13[0];
-						t$3.Field = go$append(t$3.Field, f);
-						bito = f.BitOffset;
-						if (!haveBitOffset) {
-							bito = go$mul64(f.ByteOffset, new Go$Int64(0, 8));
-						}
-						if ((bito.high === lastFieldBitOffset.high && bito.low === lastFieldBitOffset.low) && !(t$3.Kind === "union")) {
-							zeroArray(lastFieldType);
-						}
-						lastFieldType = f.Type;
-						lastFieldBitOffset = bito;
 					}
-					kid$1 = next();
-				}
-				if (!(t$3.Kind === "union")) {
-					_tuple$14 = (x$19 = e.Val(11), (x$19 !== null && x$19.constructor === Go$Int64 ? [x$19.go$val, true] : [new Go$Int64(0, 0), false])), b$1 = _tuple$14[0], ok$4 = _tuple$14[1];
-					if (ok$4 && (x$20 = go$mul64(b$1, new Go$Int64(0, 8)), (x$20.high === lastFieldBitOffset.high && x$20.low === lastFieldBitOffset.low))) {
+					haveBitOffset = false;
+					_tuple$10 = (x$15 = kid$1.Val(3), (x$15 !== null && x$15.constructor === Go$String ? [x$15.go$val, true] : ["", false])), f.Name = _tuple$10[0];
+					_tuple$11 = (x$16 = kid$1.Val(11), (x$16 !== null && x$16.constructor === Go$Int64 ? [x$16.go$val, true] : [new Go$Int64(0, 0), false])), f.ByteSize = _tuple$11[0];
+					_tuple$12 = (x$17 = kid$1.Val(12), (x$17 !== null && x$17.constructor === Go$Int64 ? [x$17.go$val, true] : [new Go$Int64(0, 0), false])), f.BitOffset = _tuple$12[0], haveBitOffset = _tuple$12[1];
+					_tuple$13 = (x$18 = kid$1.Val(13), (x$18 !== null && x$18.constructor === Go$Int64 ? [x$18.go$val, true] : [new Go$Int64(0, 0), false])), f.BitSize = _tuple$13[0];
+					t$3.Field = go$append(t$3.Field, f);
+					bito = f.BitOffset;
+					if (!haveBitOffset) {
+						bito = go$mul64(f.ByteOffset, new Go$Int64(0, 8));
+					}
+					if ((bito.high === lastFieldBitOffset.high && bito.low === lastFieldBitOffset.low) && !(t$3.Kind === "union")) {
 						zeroArray(lastFieldType);
 					}
+					lastFieldType = f.Type;
+					lastFieldBitOffset = bito;
 				}
-			} else if (_ref === 38 || _ref === 53 || _ref === 55) {
-				t$4 = new QualType.Ptr();
-				typ = t$4;
-				_key$3 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: t$4 };
-				if (t$4.Type = typeOf(e), !(go$interfaceIsEqual(err, null))) {
-					go$notSupported("goto");
-				}
-				_ref$4 = e.Tag;
-				if (_ref$4 === 38) {
-					t$4.Qual = "const";
-				} else if (_ref$4 === 55) {
-					t$4.Qual = "restrict";
-				} else if (_ref$4 === 53) {
-					t$4.Qual = "volatile";
-				}
-			} else if (_ref === 4) {
-				t$5 = new EnumType.Ptr();
-				typ = t$5;
-				_key$4 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$4] = { k: _key$4, v: t$5 };
-				_tuple$15 = (x$21 = e.Val(3), (x$21 !== null && x$21.constructor === Go$String ? [x$21.go$val, true] : ["", false])), t$5.EnumName = _tuple$15[0];
-				t$5.Val = (go$sliceType((go$ptrType(EnumValue)))).make(0, 8, function() { return (go$ptrType(EnumValue)).nil; });
-				kid$2 = next();
-				while (!(kid$2 === (go$ptrType(Entry)).nil)) {
-					if (kid$2.Tag === 40) {
-						f$1 = new EnumValue.Ptr();
-						_tuple$16 = (x$22 = kid$2.Val(3), (x$22 !== null && x$22.constructor === Go$String ? [x$22.go$val, true] : ["", false])), f$1.Name = _tuple$16[0];
-						_tuple$17 = (x$23 = kid$2.Val(28), (x$23 !== null && x$23.constructor === Go$Int64 ? [x$23.go$val, true] : [new Go$Int64(0, 0), false])), f$1.Val = _tuple$17[0];
-						n = t$5.Val.length;
-						if (n >= t$5.Val.capacity) {
-							val = (go$sliceType((go$ptrType(EnumValue)))).make(n, (x$24 = 2, (((n >>> 16 << 16) * x$24 >> 0) + (n << 16 >>> 16) * x$24) >> 0), function() { return (go$ptrType(EnumValue)).nil; });
-							go$copySlice(val, t$5.Val);
-							t$5.Val = val;
-						}
-						t$5.Val = go$subslice(t$5.Val, 0, (n + 1 >> 0));
-						_slice = t$5.Val, _index = n, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = f$1) : go$throwRuntimeError("index out of range");
-					}
-					kid$2 = next();
-				}
-			} else if (_ref === 15) {
-				t$6 = new PtrType.Ptr();
-				typ = t$6;
-				_key$5 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$5] = { k: _key$5, v: t$6 };
-				if (go$interfaceIsEqual(e.Val(73), null)) {
-					t$6.Type = new VoidType.Ptr(new CommonType.Ptr());
-					break;
-				}
-				t$6.Type = typeOf(e);
-			} else if (_ref === 21) {
-				t$7 = new FuncType.Ptr();
-				typ = t$7;
-				_key$6 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$6] = { k: _key$6, v: t$7 };
-				if (t$7.ReturnType = typeOf(e), !(go$interfaceIsEqual(err, null))) {
-					go$notSupported("goto");
-				}
-				t$7.ParamType = (go$sliceType(Type)).make(0, 8, function() { return null; });
-				kid$3 = next();
-				while (!(kid$3 === (go$ptrType(Entry)).nil)) {
-					tkid = null;
-					_ref$5 = kid$3.Tag;
-					if (_ref$5 === 5) {
-						if (tkid = typeOf(kid$3), !(go$interfaceIsEqual(err, null))) {
-							go$notSupported("goto");
-						}
-					} else if (_ref$5 === 24) {
-						tkid = new DotDotDotType.Ptr(new CommonType.Ptr());
-					} else {
-						kid$3 = next();
-						continue;
-					}
-					t$7.ParamType = go$append(t$7.ParamType, tkid);
-					kid$3 = next();
-				}
-			} else if (_ref === 22) {
-				t$8 = new TypedefType.Ptr();
-				typ = t$8;
-				_key$7 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$7] = { k: _key$7, v: t$8 };
-				_tuple$18 = (x$25 = e.Val(3), (x$25 !== null && x$25.constructor === Go$String ? [x$25.go$val, true] : ["", false])), t$8.CommonType.Name = _tuple$18[0];
-				t$8.Type = typeOf(e);
+				kid$1 = next();
 			}
-		}
+			if (!(t$3.Kind === "union")) {
+				_tuple$14 = (x$19 = e.Val(11), (x$19 !== null && x$19.constructor === Go$Int64 ? [x$19.go$val, true] : [new Go$Int64(0, 0), false])), b$1 = _tuple$14[0], ok$4 = _tuple$14[1];
+				if (ok$4 && (x$20 = go$mul64(b$1, new Go$Int64(0, 8)), (x$20.high === lastFieldBitOffset.high && x$20.low === lastFieldBitOffset.low))) {
+					zeroArray(lastFieldType);
+				}
+			}
+		} else if (_ref === 38 || _ref === 53 || _ref === 55) {
+			t$4 = new QualType.Ptr();
+			typ = t$4;
+			_key$3 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: t$4 };
+			if (t$4.Type = typeOf(e), !(go$interfaceIsEqual(err, null))) {
+				go$notSupported("goto");
+			}
+			_ref$4 = e.Tag;
+			if (_ref$4 === 38) {
+				t$4.Qual = "const";
+			} else if (_ref$4 === 55) {
+				t$4.Qual = "restrict";
+			} else if (_ref$4 === 53) {
+				t$4.Qual = "volatile";
+			}
+		} else if (_ref === 4) {
+			t$5 = new EnumType.Ptr();
+			typ = t$5;
+			_key$4 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$4] = { k: _key$4, v: t$5 };
+			_tuple$15 = (x$21 = e.Val(3), (x$21 !== null && x$21.constructor === Go$String ? [x$21.go$val, true] : ["", false])), t$5.EnumName = _tuple$15[0];
+			t$5.Val = (go$sliceType((go$ptrType(EnumValue)))).make(0, 8, function() { return (go$ptrType(EnumValue)).nil; });
+			kid$2 = next();
+			while (!(kid$2 === (go$ptrType(Entry)).nil)) {
+				if (kid$2.Tag === 40) {
+					f$1 = new EnumValue.Ptr();
+					_tuple$16 = (x$22 = kid$2.Val(3), (x$22 !== null && x$22.constructor === Go$String ? [x$22.go$val, true] : ["", false])), f$1.Name = _tuple$16[0];
+					_tuple$17 = (x$23 = kid$2.Val(28), (x$23 !== null && x$23.constructor === Go$Int64 ? [x$23.go$val, true] : [new Go$Int64(0, 0), false])), f$1.Val = _tuple$17[0];
+					n = t$5.Val.length;
+					if (n >= t$5.Val.capacity) {
+						val = (go$sliceType((go$ptrType(EnumValue)))).make(n, (x$24 = 2, (((n >>> 16 << 16) * x$24 >> 0) + (n << 16 >>> 16) * x$24) >> 0), function() { return (go$ptrType(EnumValue)).nil; });
+						go$copySlice(val, t$5.Val);
+						t$5.Val = val;
+					}
+					t$5.Val = go$subslice(t$5.Val, 0, (n + 1 >> 0));
+					_slice = t$5.Val, _index = n, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = f$1) : go$throwRuntimeError("index out of range");
+				}
+				kid$2 = next();
+			}
+		} else if (_ref === 15) {
+			t$6 = new PtrType.Ptr();
+			typ = t$6;
+			_key$5 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$5] = { k: _key$5, v: t$6 };
+			if (go$interfaceIsEqual(e.Val(73), null)) {
+				t$6.Type = new VoidType.Ptr(new CommonType.Ptr());
+				break;
+			}
+			t$6.Type = typeOf(e);
+		} else if (_ref === 21) {
+			t$7 = new FuncType.Ptr();
+			typ = t$7;
+			_key$6 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$6] = { k: _key$6, v: t$7 };
+			if (t$7.ReturnType = typeOf(e), !(go$interfaceIsEqual(err, null))) {
+				go$notSupported("goto");
+			}
+			t$7.ParamType = (go$sliceType(Type)).make(0, 8, function() { return null; });
+			kid$3 = next();
+			while (!(kid$3 === (go$ptrType(Entry)).nil)) {
+				tkid = null;
+				_ref$5 = kid$3.Tag;
+				if (_ref$5 === 5) {
+					if (tkid = typeOf(kid$3), !(go$interfaceIsEqual(err, null))) {
+						go$notSupported("goto");
+					}
+				} else if (_ref$5 === 24) {
+					tkid = new DotDotDotType.Ptr(new CommonType.Ptr());
+				} else {
+					kid$3 = next();
+					continue;
+				}
+				t$7.ParamType = go$append(t$7.ParamType, tkid);
+				kid$3 = next();
+			}
+		} else if (_ref === 22) {
+			t$8 = new TypedefType.Ptr();
+			typ = t$8;
+			_key$7 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$7] = { k: _key$7, v: t$8 };
+			_tuple$18 = (x$25 = e.Val(3), (x$25 !== null && x$25.constructor === Go$String ? [x$25.go$val, true] : ["", false])), t$8.CommonType.Name = _tuple$18[0];
+			t$8.Type = typeOf(e);
+		} }
 		if (!(go$interfaceIsEqual(err, null))) {
 			go$notSupported("goto");
 		}

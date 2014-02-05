@@ -1,4 +1,4 @@
-0ƒ?regexp/syntax‚#package syntax
+0ƒ=¦regexp/syntax‚#package syntax
 import unicode "unicode"
 import sort "sort"
 import strings "strings"
@@ -276,7 +276,7 @@ $$
 	(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
 0γ0anyRuneNotNL0	anyRune0
 anyTable0code10code20code30	perlGroup0code40code50code60code70code80code90code100code110code120code130code140code150code160code170
-posixGroup0ƒορ0‚Ρnext‚Η	patchList.prototype.next = function(p) {
+posixGroup0ƒνω0‚Ρnext‚Η	patchList.prototype.next = function(p) {
 		var l, _slice, _index, i;
 		l = this.go$val;
 		i = (_slice = p.Inst, _index = (l >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -1046,7 +1046,7 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		}
 		return re;
 	};
-0‚ΈParse‚­	var Parse = go$pkg.Parse = function(s, flags) {
+0‚Parse‚	var Parse = go$pkg.Parse = function(s, flags) {
 		var err, p, err$1, c, op, lastRepeat, _tuple, min, max, t, repeat, _ref, _tuple$1, _lhs, _tuple$2, before, _ref$1, after, _tuple$3, before$1, _tuple$4, min$1, max$1, after$1, ok, _tuple$5, _ref$2, lit, i, re, _tuple$6, r, rest, err$2, r$1, _tuple$7, rest$1, _tuple$8, _tuple$9, n, _slice, _index;
 		if (!((((flags & 2) >>> 0) === 0))) {
 			if (err = checkUTF8(s), !(go$interfaceIsEqual(err, null))) {
@@ -1061,152 +1061,149 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		while (!(t === "")) {
 			repeat = "";
 			_ref = t.charCodeAt(0);
-			BigSwitch: switch (undefined) {
-			default:
-				if (_ref === 40) {
-					if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2 && (t.charCodeAt(1) === 63)) {
-						if (_tuple$1 = p.parsePerlFlags(t), t = _tuple$1[0], err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
-							return [(go$ptrType(Regexp)).nil, err$1];
-						}
-						break;
-					}
-					p.numCap = p.numCap + 1 >> 0;
-					p.op(128).Cap = p.numCap;
-					t = t.substring(1);
-				} else if (_ref === 124) {
-					if (err$1 = p.parseVerticalBar(), !(go$interfaceIsEqual(err$1, null))) {
+			BigSwitch: switch (0) { default: if (_ref === 40) {
+				if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2 && (t.charCodeAt(1) === 63)) {
+					if (_tuple$1 = p.parsePerlFlags(t), t = _tuple$1[0], err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
 						return [(go$ptrType(Regexp)).nil, err$1];
 					}
+					break;
+				}
+				p.numCap = p.numCap + 1 >> 0;
+				p.op(128).Cap = p.numCap;
+				t = t.substring(1);
+			} else if (_ref === 124) {
+				if (err$1 = p.parseVerticalBar(), !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				t = t.substring(1);
+			} else if (_ref === 41) {
+				if (err$1 = p.parseRightParen(), !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				t = t.substring(1);
+			} else if (_ref === 94) {
+				if (!((((p.flags & 16) >>> 0) === 0))) {
+					p.op(9);
+				} else {
+					p.op(7);
+				}
+				t = t.substring(1);
+			} else if (_ref === 36) {
+				if (!((((p.flags & 16) >>> 0) === 0))) {
+					_lhs = p.op(10), _lhs.Flags = (_lhs.Flags | 256) >>> 0;
+				} else {
+					p.op(8);
+				}
+				t = t.substring(1);
+			} else if (_ref === 46) {
+				if (!((((p.flags & 8) >>> 0) === 0))) {
+					p.op(6);
+				} else {
+					p.op(5);
+				}
+				t = t.substring(1);
+			} else if (_ref === 91) {
+				if (_tuple$2 = p.parseClass(t), t = _tuple$2[0], err$1 = _tuple$2[1], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+			} else if (_ref === 42 || _ref === 43 || _ref === 63) {
+				before = t;
+				_ref$1 = t.charCodeAt(0);
+				if (_ref$1 === 42) {
+					op = 14;
+				} else if (_ref$1 === 43) {
+					op = 15;
+				} else if (_ref$1 === 63) {
+					op = 16;
+				}
+				after = t.substring(1);
+				if (_tuple$3 = p.repeat(op, min, max, before, after, lastRepeat), after = _tuple$3[0], err$1 = _tuple$3[1], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				repeat = before;
+				t = after;
+			} else if (_ref === 123) {
+				op = 17;
+				before$1 = t;
+				_tuple$4 = p.parseRepeat(t), min$1 = _tuple$4[0], max$1 = _tuple$4[1], after$1 = _tuple$4[2], ok = _tuple$4[3];
+				if (!ok) {
+					p.literal(123);
 					t = t.substring(1);
-				} else if (_ref === 41) {
-					if (err$1 = p.parseRightParen(), !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					t = t.substring(1);
-				} else if (_ref === 94) {
-					if (!((((p.flags & 16) >>> 0) === 0))) {
+					break;
+				}
+				if (min$1 < 0 || min$1 > 1000 || max$1 > 1000 || max$1 >= 0 && min$1 > max$1) {
+					return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid repeat count", before$1.substring(0, (before$1.length - after$1.length >> 0)))];
+				}
+				if (_tuple$5 = p.repeat(op, min$1, max$1, before$1, after$1, lastRepeat), after$1 = _tuple$5[0], err$1 = _tuple$5[1], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				repeat = before$1;
+				t = after$1;
+			} else if (_ref === 92) {
+				if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2) {
+					_ref$2 = t.charCodeAt(1);
+					if (_ref$2 === 65) {
 						p.op(9);
-					} else {
-						p.op(7);
-					}
-					t = t.substring(1);
-				} else if (_ref === 36) {
-					if (!((((p.flags & 16) >>> 0) === 0))) {
-						_lhs = p.op(10), _lhs.Flags = (_lhs.Flags | 256) >>> 0;
-					} else {
-						p.op(8);
-					}
-					t = t.substring(1);
-				} else if (_ref === 46) {
-					if (!((((p.flags & 8) >>> 0) === 0))) {
-						p.op(6);
-					} else {
-						p.op(5);
-					}
-					t = t.substring(1);
-				} else if (_ref === 91) {
-					if (_tuple$2 = p.parseClass(t), t = _tuple$2[0], err$1 = _tuple$2[1], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-				} else if (_ref === 42 || _ref === 43 || _ref === 63) {
-					before = t;
-					_ref$1 = t.charCodeAt(0);
-					if (_ref$1 === 42) {
-						op = 14;
-					} else if (_ref$1 === 43) {
-						op = 15;
-					} else if (_ref$1 === 63) {
-						op = 16;
-					}
-					after = t.substring(1);
-					if (_tuple$3 = p.repeat(op, min, max, before, after, lastRepeat), after = _tuple$3[0], err$1 = _tuple$3[1], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					repeat = before;
-					t = after;
-				} else if (_ref === 123) {
-					op = 17;
-					before$1 = t;
-					_tuple$4 = p.parseRepeat(t), min$1 = _tuple$4[0], max$1 = _tuple$4[1], after$1 = _tuple$4[2], ok = _tuple$4[3];
-					if (!ok) {
-						p.literal(123);
-						t = t.substring(1);
-						break;
-					}
-					if (min$1 < 0 || min$1 > 1000 || max$1 > 1000 || max$1 >= 0 && min$1 > max$1) {
-						return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid repeat count", before$1.substring(0, (before$1.length - after$1.length >> 0)))];
-					}
-					if (_tuple$5 = p.repeat(op, min$1, max$1, before$1, after$1, lastRepeat), after$1 = _tuple$5[0], err$1 = _tuple$5[1], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					repeat = before$1;
-					t = after$1;
-				} else if (_ref === 92) {
-					if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2) {
-						_ref$2 = t.charCodeAt(1);
-						if (_ref$2 === 65) {
-							p.op(9);
-							t = t.substring(2);
-							break BigSwitch;
-						} else if (_ref$2 === 98) {
-							p.op(11);
-							t = t.substring(2);
-							break BigSwitch;
-						} else if (_ref$2 === 66) {
-							p.op(12);
-							t = t.substring(2);
-							break BigSwitch;
-						} else if (_ref$2 === 67) {
-							return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid escape sequence", t.substring(0, 2))];
-						} else if (_ref$2 === 81) {
-							lit = "";
-							if (i = strings.Index(t, "\\E"), i < 0) {
-								lit = t.substring(2);
-								t = "";
-							} else {
-								lit = t.substring(2, i);
-								t = t.substring((i + 2 >> 0));
-							}
-							p.push(literalRegexp(lit, p.flags));
-							break BigSwitch;
-						} else if (_ref$2 === 122) {
-							p.op(10);
-							t = t.substring(2);
-							break BigSwitch;
+						t = t.substring(2);
+						break BigSwitch;
+					} else if (_ref$2 === 98) {
+						p.op(11);
+						t = t.substring(2);
+						break BigSwitch;
+					} else if (_ref$2 === 66) {
+						p.op(12);
+						t = t.substring(2);
+						break BigSwitch;
+					} else if (_ref$2 === 67) {
+						return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid escape sequence", t.substring(0, 2))];
+					} else if (_ref$2 === 81) {
+						lit = "";
+						if (i = strings.Index(t, "\\E"), i < 0) {
+							lit = t.substring(2);
+							t = "";
+						} else {
+							lit = t.substring(2, i);
+							t = t.substring((i + 2 >> 0));
 						}
+						p.push(literalRegexp(lit, p.flags));
+						break BigSwitch;
+					} else if (_ref$2 === 122) {
+						p.op(10);
+						t = t.substring(2);
+						break BigSwitch;
 					}
-					re = p.newRegexp(4);
-					re.Flags = p.flags;
-					if (t.length >= 2 && ((t.charCodeAt(1) === 112) || (t.charCodeAt(1) === 80))) {
-						_tuple$6 = p.parseUnicodeClass(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r = _tuple$6[0], rest = _tuple$6[1], err$2 = _tuple$6[2];
-						if (!(go$interfaceIsEqual(err$2, null))) {
-							return [(go$ptrType(Regexp)).nil, err$2];
-						}
-						if (!(r === (go$sliceType(Go$Int32)).nil)) {
-							re.Rune = r;
-							t = rest;
-							p.push(re);
-							break BigSwitch;
-						}
+				}
+				re = p.newRegexp(4);
+				re.Flags = p.flags;
+				if (t.length >= 2 && ((t.charCodeAt(1) === 112) || (t.charCodeAt(1) === 80))) {
+					_tuple$6 = p.parseUnicodeClass(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r = _tuple$6[0], rest = _tuple$6[1], err$2 = _tuple$6[2];
+					if (!(go$interfaceIsEqual(err$2, null))) {
+						return [(go$ptrType(Regexp)).nil, err$2];
 					}
-					if (_tuple$7 = p.parsePerlClassEscape(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r$1 = _tuple$7[0], rest$1 = _tuple$7[1], !(r$1 === (go$sliceType(Go$Int32)).nil)) {
-						re.Rune = r$1;
-						t = rest$1;
+					if (!(r === (go$sliceType(Go$Int32)).nil)) {
+						re.Rune = r;
+						t = rest;
 						p.push(re);
 						break BigSwitch;
 					}
-					p.reuse(re);
-					if (_tuple$8 = p.parseEscape(t), c = _tuple$8[0], t = _tuple$8[1], err$1 = _tuple$8[2], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					p.literal(c);
-				} else {
-					if (_tuple$9 = nextRune(t), c = _tuple$9[0], t = _tuple$9[1], err$1 = _tuple$9[2], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					p.literal(c);
 				}
-			}
+				if (_tuple$7 = p.parsePerlClassEscape(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r$1 = _tuple$7[0], rest$1 = _tuple$7[1], !(r$1 === (go$sliceType(Go$Int32)).nil)) {
+					re.Rune = r$1;
+					t = rest$1;
+					p.push(re);
+					break BigSwitch;
+				}
+				p.reuse(re);
+				if (_tuple$8 = p.parseEscape(t), c = _tuple$8[0], t = _tuple$8[1], err$1 = _tuple$8[2], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				p.literal(c);
+			} else {
+				if (_tuple$9 = nextRune(t), c = _tuple$9[0], t = _tuple$9[1], err$1 = _tuple$9[2], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				p.literal(c);
+			} }
 			lastRepeat = repeat;
 		}
 		p.concat();
@@ -1429,31 +1426,28 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return null;
 	};
 	parser.prototype.parseVerticalBar = function() { return this.go$val.parseVerticalBar(); };
-0‚6mergeCharClass‚"	var mergeCharClass = function(dst, src) {
+0‚mergeCharClass‚	var mergeCharClass = function(dst, src) {
 		var _ref, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
 		_ref = dst.Op;
-		switch (undefined) {
-		default:
-			if (_ref === 6) {
-			} else if (_ref === 5) {
-				if (matchRune(src, 10)) {
-					dst.Op = 6;
-				}
-			} else if (_ref === 4) {
-				if (src.Op === 3) {
-					dst.Rune = appendLiteral(dst.Rune, (_slice = src.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), src.Flags);
-				} else {
-					dst.Rune = appendClass(dst.Rune, src.Rune);
-				}
-			} else if (_ref === 3) {
-				if (((_slice$1 = src.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = dst.Rune, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) && (src.Flags === dst.Flags)) {
-					break;
-				}
-				dst.Op = 4;
-				dst.Rune = appendLiteral(go$subslice(dst.Rune, 0, 0), (_slice$3 = dst.Rune, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), dst.Flags);
-				dst.Rune = appendLiteral(dst.Rune, (_slice$4 = src.Rune, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), src.Flags);
+		switch (0) { default: if (_ref === 6) {
+		} else if (_ref === 5) {
+			if (matchRune(src, 10)) {
+				dst.Op = 6;
 			}
-		}
+		} else if (_ref === 4) {
+			if (src.Op === 3) {
+				dst.Rune = appendLiteral(dst.Rune, (_slice = src.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), src.Flags);
+			} else {
+				dst.Rune = appendClass(dst.Rune, src.Rune);
+			}
+		} else if (_ref === 3) {
+			if (((_slice$1 = src.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = dst.Rune, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) && (src.Flags === dst.Flags)) {
+				break;
+			}
+			dst.Op = 4;
+			dst.Rune = appendLiteral(go$subslice(dst.Rune, 0, 0), (_slice$3 = dst.Rune, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), dst.Flags);
+			dst.Rune = appendLiteral(dst.Rune, (_slice$4 = src.Rune, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), src.Flags);
+		} }
 	};
 0‚uswapVerticalBar‚`	parser.Ptr.prototype.swapVerticalBar = function() {
 		var p, n, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, re1, _slice$4, _index$4, re3, _tuple, _slice$5, _index$5, _slice$6, _index$6, re1$1, _slice$7, _index$7, re2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10;
@@ -1516,7 +1510,7 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return null;
 	};
 	parser.prototype.parseRightParen = function() { return this.go$val.parseRightParen(); };
-0‚‚parseEscape‚q	parser.Ptr.prototype.parseEscape = function(s) {
+0‚parseEscape‚ύ	parser.Ptr.prototype.parseEscape = function(s) {
 		var r, rest, err, p, t, _tuple, _tuple$1, c, _tuple$2, _ref, i, x, _tuple$3, x$1, _tuple$4, _tuple$5, _tuple$6, nhex, _tuple$7, _tuple$8, v, x$2, _tuple$9, x$3, _tuple$10, _tuple$11, y, x$4, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$20;
 		r = 0;
 		rest = "";
@@ -1533,111 +1527,108 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 			return [r, rest, err];
 		}
 		_ref = c;
-		Switch: switch (undefined) {
-		default:
-			if (_ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
+		Switch: switch (0) { default: if (_ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
+			if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
+				break;
+			}
+			r = c - 48 >> 0;
+			i = 1;
+			while (i < 3) {
 				if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
 					break;
 				}
-				r = c - 48 >> 0;
-				i = 1;
-				while (i < 3) {
-					if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
-						break;
-					}
-					r = ((x = 8, (((r >>> 16 << 16) * x >> 0) + (r << 16 >>> 16) * x) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
-					t = t.substring(1);
-					i = i + 1 >> 0;
-				}
-				_tuple$3 = [r, t, null], r = _tuple$3[0], rest = _tuple$3[1], err = _tuple$3[2];
-				return [r, rest, err];
-			} else if (_ref === 48) {
-				r = c - 48 >> 0;
-				i = 1;
-				while (i < 3) {
-					if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
-						break;
-					}
-					r = ((x$1 = 8, (((r >>> 16 << 16) * x$1 >> 0) + (r << 16 >>> 16) * x$1) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
-					t = t.substring(1);
-					i = i + 1 >> 0;
-				}
-				_tuple$4 = [r, t, null], r = _tuple$4[0], rest = _tuple$4[1], err = _tuple$4[2];
-				return [r, rest, err];
-			} else if (_ref === 120) {
-				if (t === "") {
+				r = ((x = 8, (((r >>> 16 << 16) * x >> 0) + (r << 16 >>> 16) * x) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
+				t = t.substring(1);
+				i = i + 1 >> 0;
+			}
+			_tuple$3 = [r, t, null], r = _tuple$3[0], rest = _tuple$3[1], err = _tuple$3[2];
+			return [r, rest, err];
+		} else if (_ref === 48) {
+			r = c - 48 >> 0;
+			i = 1;
+			while (i < 3) {
+				if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
 					break;
 				}
-				if (_tuple$5 = nextRune(t), c = _tuple$5[0], t = _tuple$5[1], err = _tuple$5[2], !(go$interfaceIsEqual(err, null))) {
-					_tuple$6 = [0, "", err], r = _tuple$6[0], rest = _tuple$6[1], err = _tuple$6[2];
-					return [r, rest, err];
-				}
-				if (c === 123) {
-					nhex = 0;
-					r = 0;
-					while (true) {
-						if (t === "") {
-							break Switch;
-						}
-						if (_tuple$7 = nextRune(t), c = _tuple$7[0], t = _tuple$7[1], err = _tuple$7[2], !(go$interfaceIsEqual(err, null))) {
-							_tuple$8 = [0, "", err], r = _tuple$8[0], rest = _tuple$8[1], err = _tuple$8[2];
-							return [r, rest, err];
-						}
-						if (c === 125) {
-							break;
-						}
-						v = unhex(c);
-						if (v < 0) {
-							break Switch;
-						}
-						r = (x$2 = 16, (((r >>> 16 << 16) * x$2 >> 0) + (r << 16 >>> 16) * x$2) >> 0) + v >> 0;
-						if (r > 1114111) {
-							break Switch;
-						}
-						nhex = nhex + 1 >> 0;
-					}
-					if (nhex === 0) {
+				r = ((x$1 = 8, (((r >>> 16 << 16) * x$1 >> 0) + (r << 16 >>> 16) * x$1) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
+				t = t.substring(1);
+				i = i + 1 >> 0;
+			}
+			_tuple$4 = [r, t, null], r = _tuple$4[0], rest = _tuple$4[1], err = _tuple$4[2];
+			return [r, rest, err];
+		} else if (_ref === 120) {
+			if (t === "") {
+				break;
+			}
+			if (_tuple$5 = nextRune(t), c = _tuple$5[0], t = _tuple$5[1], err = _tuple$5[2], !(go$interfaceIsEqual(err, null))) {
+				_tuple$6 = [0, "", err], r = _tuple$6[0], rest = _tuple$6[1], err = _tuple$6[2];
+				return [r, rest, err];
+			}
+			if (c === 123) {
+				nhex = 0;
+				r = 0;
+				while (true) {
+					if (t === "") {
 						break Switch;
 					}
-					_tuple$9 = [r, t, null], r = _tuple$9[0], rest = _tuple$9[1], err = _tuple$9[2];
-					return [r, rest, err];
+					if (_tuple$7 = nextRune(t), c = _tuple$7[0], t = _tuple$7[1], err = _tuple$7[2], !(go$interfaceIsEqual(err, null))) {
+						_tuple$8 = [0, "", err], r = _tuple$8[0], rest = _tuple$8[1], err = _tuple$8[2];
+						return [r, rest, err];
+					}
+					if (c === 125) {
+						break;
+					}
+					v = unhex(c);
+					if (v < 0) {
+						break Switch;
+					}
+					r = (x$2 = 16, (((r >>> 16 << 16) * x$2 >> 0) + (r << 16 >>> 16) * x$2) >> 0) + v >> 0;
+					if (r > 1114111) {
+						break Switch;
+					}
+					nhex = nhex + 1 >> 0;
 				}
-				x$3 = unhex(c);
-				if (_tuple$10 = nextRune(t), c = _tuple$10[0], t = _tuple$10[1], err = _tuple$10[2], !(go$interfaceIsEqual(err, null))) {
-					_tuple$11 = [0, "", err], r = _tuple$11[0], rest = _tuple$11[1], err = _tuple$11[2];
-					return [r, rest, err];
+				if (nhex === 0) {
+					break Switch;
 				}
-				y = unhex(c);
-				if (x$3 < 0 || y < 0) {
-					break;
-				}
-				_tuple$12 = [(x$4 = 16, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) + y >> 0, t, null], r = _tuple$12[0], rest = _tuple$12[1], err = _tuple$12[2];
+				_tuple$9 = [r, t, null], r = _tuple$9[0], rest = _tuple$9[1], err = _tuple$9[2];
 				return [r, rest, err];
-			} else if (_ref === 97) {
-				_tuple$13 = [7, t, err], r = _tuple$13[0], rest = _tuple$13[1], err = _tuple$13[2];
-				return [r, rest, err];
-			} else if (_ref === 102) {
-				_tuple$14 = [12, t, err], r = _tuple$14[0], rest = _tuple$14[1], err = _tuple$14[2];
-				return [r, rest, err];
-			} else if (_ref === 110) {
-				_tuple$15 = [10, t, err], r = _tuple$15[0], rest = _tuple$15[1], err = _tuple$15[2];
-				return [r, rest, err];
-			} else if (_ref === 114) {
-				_tuple$16 = [13, t, err], r = _tuple$16[0], rest = _tuple$16[1], err = _tuple$16[2];
-				return [r, rest, err];
-			} else if (_ref === 116) {
-				_tuple$17 = [9, t, err], r = _tuple$17[0], rest = _tuple$17[1], err = _tuple$17[2];
-				return [r, rest, err];
-			} else if (_ref === 118) {
-				_tuple$18 = [11, t, err], r = _tuple$18[0], rest = _tuple$18[1], err = _tuple$18[2];
-				return [r, rest, err];
-			} else {
-				if (c < 128 && !isalnum(c)) {
-					_tuple$19 = [c, t, null], r = _tuple$19[0], rest = _tuple$19[1], err = _tuple$19[2];
-					return [r, rest, err];
-				}
 			}
-		}
+			x$3 = unhex(c);
+			if (_tuple$10 = nextRune(t), c = _tuple$10[0], t = _tuple$10[1], err = _tuple$10[2], !(go$interfaceIsEqual(err, null))) {
+				_tuple$11 = [0, "", err], r = _tuple$11[0], rest = _tuple$11[1], err = _tuple$11[2];
+				return [r, rest, err];
+			}
+			y = unhex(c);
+			if (x$3 < 0 || y < 0) {
+				break;
+			}
+			_tuple$12 = [(x$4 = 16, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) + y >> 0, t, null], r = _tuple$12[0], rest = _tuple$12[1], err = _tuple$12[2];
+			return [r, rest, err];
+		} else if (_ref === 97) {
+			_tuple$13 = [7, t, err], r = _tuple$13[0], rest = _tuple$13[1], err = _tuple$13[2];
+			return [r, rest, err];
+		} else if (_ref === 102) {
+			_tuple$14 = [12, t, err], r = _tuple$14[0], rest = _tuple$14[1], err = _tuple$14[2];
+			return [r, rest, err];
+		} else if (_ref === 110) {
+			_tuple$15 = [10, t, err], r = _tuple$15[0], rest = _tuple$15[1], err = _tuple$15[2];
+			return [r, rest, err];
+		} else if (_ref === 114) {
+			_tuple$16 = [13, t, err], r = _tuple$16[0], rest = _tuple$16[1], err = _tuple$16[2];
+			return [r, rest, err];
+		} else if (_ref === 116) {
+			_tuple$17 = [9, t, err], r = _tuple$17[0], rest = _tuple$17[1], err = _tuple$17[2];
+			return [r, rest, err];
+		} else if (_ref === 118) {
+			_tuple$18 = [11, t, err], r = _tuple$18[0], rest = _tuple$18[1], err = _tuple$18[2];
+			return [r, rest, err];
+		} else {
+			if (c < 128 && !isalnum(c)) {
+				_tuple$19 = [c, t, null], r = _tuple$19[0], rest = _tuple$19[1], err = _tuple$19[2];
+				return [r, rest, err];
+			}
+		} }
 		_tuple$20 = [0, "", new Error.Ptr("invalid escape sequence", s.substring(0, (s.length - t.length >> 0)))], r = _tuple$20[0], rest = _tuple$20[1], err = _tuple$20[2];
 		return [r, rest, err];
 	};
@@ -2487,153 +2478,150 @@ IsWordChar	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return true;
 	};
 	Regexp.prototype.Equal = function(y) { return this.go$val.Equal(y); };
-0‚writeRegexp‚	var writeRegexp = function(b, re) {
+0‚ywriteRegexp‚h	var writeRegexp = function(b, re) {
 		var _ref, _ref$1, _i, _slice, _index, r, _r, _slice$1, _index$1, _slice$2, _index$2, i, _slice$3, _index$3, _slice$4, _index$4, _tuple, lo, hi, i$1, _slice$5, _index$5, _slice$6, _index$6, _tuple$1, lo$1, hi$1, _slice$7, _index$7, _slice$8, _index$8, sub, _slice$9, _index$9, _ref$2, _ref$3, _i$1, _slice$10, _index$10, sub$1, _ref$4, _i$2, _slice$11, _index$11, sub$2, i$2;
 		_ref = re.Op;
-		switch (undefined) {
-		default:
-			if (_ref === 1) {
-				b.WriteString("[^\\x00-\\x{10FFFF}]");
-			} else if (_ref === 2) {
-				b.WriteString("(?:)");
-			} else if (_ref === 3) {
-				if (!((((re.Flags & 1) >>> 0) === 0))) {
-					b.WriteString("(?i:");
-				}
-				_ref$1 = re.Rune;
-				_i = 0;
-				while (_i < _ref$1.length) {
-					r = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-					escape(b, r, false);
-					_i++;
-				}
-				if (!((((re.Flags & 1) >>> 0) === 0))) {
-					b.WriteString(")");
-				}
-			} else if (_ref === 4) {
-				if (!(((_r = re.Rune.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
-					b.WriteString("[invalid char class]");
-					break;
-				}
-				b.WriteRune(91);
-				if (re.Rune.length === 0) {
-					b.WriteString("^\\x00-\\x{10FFFF}");
-				} else if (((_slice$1 = re.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$2 = re.Rune, _index$2 = (re.Rune.length - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 1114111)) {
-					b.WriteRune(94);
-					i = 1;
-					while (i < (re.Rune.length - 1 >> 0)) {
-						_tuple = [(_slice$3 = re.Rune, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) + 1 >> 0, (_slice$4 = re.Rune, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) - 1 >> 0], lo = _tuple[0], hi = _tuple[1];
-						escape(b, lo, lo === 45);
-						if (!((lo === hi))) {
-							b.WriteRune(45);
-							escape(b, hi, hi === 45);
-						}
-						i = i + 2 >> 0;
-					}
-				} else {
-					i$1 = 0;
-					while (i$1 < re.Rune.length) {
-						_tuple$1 = [(_slice$5 = re.Rune, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (_slice$6 = re.Rune, _index$6 = (i$1 + 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))], lo$1 = _tuple$1[0], hi$1 = _tuple$1[1];
-						escape(b, lo$1, lo$1 === 45);
-						if (!((lo$1 === hi$1))) {
-							b.WriteRune(45);
-							escape(b, hi$1, hi$1 === 45);
-						}
-						i$1 = i$1 + 2 >> 0;
-					}
-				}
-				b.WriteRune(93);
-			} else if (_ref === 5) {
-				b.WriteString("(?-s:.)");
-			} else if (_ref === 6) {
-				b.WriteString("(?s:.)");
-			} else if (_ref === 7) {
+		switch (0) { default: if (_ref === 1) {
+			b.WriteString("[^\\x00-\\x{10FFFF}]");
+		} else if (_ref === 2) {
+			b.WriteString("(?:)");
+		} else if (_ref === 3) {
+			if (!((((re.Flags & 1) >>> 0) === 0))) {
+				b.WriteString("(?i:");
+			}
+			_ref$1 = re.Rune;
+			_i = 0;
+			while (_i < _ref$1.length) {
+				r = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				escape(b, r, false);
+				_i++;
+			}
+			if (!((((re.Flags & 1) >>> 0) === 0))) {
+				b.WriteString(")");
+			}
+		} else if (_ref === 4) {
+			if (!(((_r = re.Rune.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
+				b.WriteString("[invalid char class]");
+				break;
+			}
+			b.WriteRune(91);
+			if (re.Rune.length === 0) {
+				b.WriteString("^\\x00-\\x{10FFFF}");
+			} else if (((_slice$1 = re.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$2 = re.Rune, _index$2 = (re.Rune.length - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 1114111)) {
 				b.WriteRune(94);
-			} else if (_ref === 8) {
-				b.WriteRune(36);
-			} else if (_ref === 9) {
-				b.WriteString("\\A");
-			} else if (_ref === 10) {
-				if (!((((re.Flags & 256) >>> 0) === 0))) {
-					b.WriteString("(?-m:$)");
-				} else {
-					b.WriteString("\\z");
-				}
-			} else if (_ref === 11) {
-				b.WriteString("\\b");
-			} else if (_ref === 12) {
-				b.WriteString("\\B");
-			} else if (_ref === 13) {
-				if (!(re.Name === "")) {
-					b.WriteString("(?P<");
-					b.WriteString(re.Name);
-					b.WriteRune(62);
-				} else {
-					b.WriteRune(40);
-				}
-				if (!(((_slice$7 = re.Sub, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")).Op === 2))) {
-					writeRegexp(b, (_slice$8 = re.Sub, _index$8 = 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")));
-				}
-				b.WriteRune(41);
-			} else if (_ref === 14 || _ref === 15 || _ref === 16 || _ref === 17) {
-				if (sub = (_slice$9 = re.Sub, _index$9 = 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")), sub.Op > 13 || (sub.Op === 3) && sub.Rune.length > 1) {
-					b.WriteString("(?:");
-					writeRegexp(b, sub);
-					b.WriteString(")");
-				} else {
-					writeRegexp(b, sub);
-				}
-				_ref$2 = re.Op;
-				if (_ref$2 === 14) {
-					b.WriteRune(42);
-				} else if (_ref$2 === 15) {
-					b.WriteRune(43);
-				} else if (_ref$2 === 16) {
-					b.WriteRune(63);
-				} else if (_ref$2 === 17) {
-					b.WriteRune(123);
-					b.WriteString(strconv.Itoa(re.Min));
-					if (!((re.Max === re.Min))) {
-						b.WriteRune(44);
-						if (re.Max >= 0) {
-							b.WriteString(strconv.Itoa(re.Max));
-						}
+				i = 1;
+				while (i < (re.Rune.length - 1 >> 0)) {
+					_tuple = [(_slice$3 = re.Rune, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) + 1 >> 0, (_slice$4 = re.Rune, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) - 1 >> 0], lo = _tuple[0], hi = _tuple[1];
+					escape(b, lo, lo === 45);
+					if (!((lo === hi))) {
+						b.WriteRune(45);
+						escape(b, hi, hi === 45);
 					}
-					b.WriteRune(125);
-				}
-				if (!((((re.Flags & 32) >>> 0) === 0))) {
-					b.WriteRune(63);
-				}
-			} else if (_ref === 18) {
-				_ref$3 = re.Sub;
-				_i$1 = 0;
-				while (_i$1 < _ref$3.length) {
-					sub$1 = (_slice$10 = _ref$3, _index$10 = _i$1, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"));
-					if (sub$1.Op === 19) {
-						b.WriteString("(?:");
-						writeRegexp(b, sub$1);
-						b.WriteString(")");
-					} else {
-						writeRegexp(b, sub$1);
-					}
-					_i$1++;
-				}
-			} else if (_ref === 19) {
-				_ref$4 = re.Sub;
-				_i$2 = 0;
-				while (_i$2 < _ref$4.length) {
-					sub$2 = (_slice$11 = _ref$4, _index$11 = _i$2, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range"));
-					i$2 = _i$2;
-					if (i$2 > 0) {
-						b.WriteRune(124);
-					}
-					writeRegexp(b, sub$2);
-					_i$2++;
+					i = i + 2 >> 0;
 				}
 			} else {
-				b.WriteString("<invalid op" + strconv.Itoa((re.Op >> 0)) + ">");
+				i$1 = 0;
+				while (i$1 < re.Rune.length) {
+					_tuple$1 = [(_slice$5 = re.Rune, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (_slice$6 = re.Rune, _index$6 = (i$1 + 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))], lo$1 = _tuple$1[0], hi$1 = _tuple$1[1];
+					escape(b, lo$1, lo$1 === 45);
+					if (!((lo$1 === hi$1))) {
+						b.WriteRune(45);
+						escape(b, hi$1, hi$1 === 45);
+					}
+					i$1 = i$1 + 2 >> 0;
+				}
 			}
-		}
+			b.WriteRune(93);
+		} else if (_ref === 5) {
+			b.WriteString("(?-s:.)");
+		} else if (_ref === 6) {
+			b.WriteString("(?s:.)");
+		} else if (_ref === 7) {
+			b.WriteRune(94);
+		} else if (_ref === 8) {
+			b.WriteRune(36);
+		} else if (_ref === 9) {
+			b.WriteString("\\A");
+		} else if (_ref === 10) {
+			if (!((((re.Flags & 256) >>> 0) === 0))) {
+				b.WriteString("(?-m:$)");
+			} else {
+				b.WriteString("\\z");
+			}
+		} else if (_ref === 11) {
+			b.WriteString("\\b");
+		} else if (_ref === 12) {
+			b.WriteString("\\B");
+		} else if (_ref === 13) {
+			if (!(re.Name === "")) {
+				b.WriteString("(?P<");
+				b.WriteString(re.Name);
+				b.WriteRune(62);
+			} else {
+				b.WriteRune(40);
+			}
+			if (!(((_slice$7 = re.Sub, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")).Op === 2))) {
+				writeRegexp(b, (_slice$8 = re.Sub, _index$8 = 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")));
+			}
+			b.WriteRune(41);
+		} else if (_ref === 14 || _ref === 15 || _ref === 16 || _ref === 17) {
+			if (sub = (_slice$9 = re.Sub, _index$9 = 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")), sub.Op > 13 || (sub.Op === 3) && sub.Rune.length > 1) {
+				b.WriteString("(?:");
+				writeRegexp(b, sub);
+				b.WriteString(")");
+			} else {
+				writeRegexp(b, sub);
+			}
+			_ref$2 = re.Op;
+			if (_ref$2 === 14) {
+				b.WriteRune(42);
+			} else if (_ref$2 === 15) {
+				b.WriteRune(43);
+			} else if (_ref$2 === 16) {
+				b.WriteRune(63);
+			} else if (_ref$2 === 17) {
+				b.WriteRune(123);
+				b.WriteString(strconv.Itoa(re.Min));
+				if (!((re.Max === re.Min))) {
+					b.WriteRune(44);
+					if (re.Max >= 0) {
+						b.WriteString(strconv.Itoa(re.Max));
+					}
+				}
+				b.WriteRune(125);
+			}
+			if (!((((re.Flags & 32) >>> 0) === 0))) {
+				b.WriteRune(63);
+			}
+		} else if (_ref === 18) {
+			_ref$3 = re.Sub;
+			_i$1 = 0;
+			while (_i$1 < _ref$3.length) {
+				sub$1 = (_slice$10 = _ref$3, _index$10 = _i$1, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"));
+				if (sub$1.Op === 19) {
+					b.WriteString("(?:");
+					writeRegexp(b, sub$1);
+					b.WriteString(")");
+				} else {
+					writeRegexp(b, sub$1);
+				}
+				_i$1++;
+			}
+		} else if (_ref === 19) {
+			_ref$4 = re.Sub;
+			_i$2 = 0;
+			while (_i$2 < _ref$4.length) {
+				sub$2 = (_slice$11 = _ref$4, _index$11 = _i$2, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range"));
+				i$2 = _i$2;
+				if (i$2 > 0) {
+					b.WriteRune(124);
+				}
+				writeRegexp(b, sub$2);
+				_i$2++;
+			}
+		} else {
+			b.WriteString("<invalid op" + strconv.Itoa((re.Op >> 0)) + ">");
+		} }
 	};
 0ζStringΫ	Regexp.Ptr.prototype.String = function() {
 		var re, b;
@@ -2643,7 +2631,7 @@ IsWordChar	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return b.String();
 	};
 	Regexp.prototype.String = function() { return this.go$val.String(); };
-0‚–escape‚	var escape = function(b, r, force) {
+0‚nescape‚b	var escape = function(b, r, force) {
 		var _ref, s;
 		if (unicode.IsPrint(r)) {
 			if (strings.IndexRune("\\.+*?()|[]{}^$", r) >= 0 || force) {
@@ -2653,35 +2641,32 @@ IsWordChar	var IsWordChar = go$pkg.IsWordChar = function(r) {
 			return;
 		}
 		_ref = r;
-		switch (undefined) {
-		default:
-			if (_ref === 7) {
-				b.WriteString("\\a");
-			} else if (_ref === 12) {
-				b.WriteString("\\f");
-			} else if (_ref === 10) {
-				b.WriteString("\\n");
-			} else if (_ref === 13) {
-				b.WriteString("\\r");
-			} else if (_ref === 9) {
-				b.WriteString("\\t");
-			} else if (_ref === 11) {
-				b.WriteString("\\v");
-			} else {
-				if (r < 256) {
-					b.WriteString("\\x");
-					s = strconv.FormatInt(new Go$Int64(0, r), 16);
-					if (s.length === 1) {
-						b.WriteRune(48);
-					}
-					b.WriteString(s);
-					break;
+		switch (0) { default: if (_ref === 7) {
+			b.WriteString("\\a");
+		} else if (_ref === 12) {
+			b.WriteString("\\f");
+		} else if (_ref === 10) {
+			b.WriteString("\\n");
+		} else if (_ref === 13) {
+			b.WriteString("\\r");
+		} else if (_ref === 9) {
+			b.WriteString("\\t");
+		} else if (_ref === 11) {
+			b.WriteString("\\v");
+		} else {
+			if (r < 256) {
+				b.WriteString("\\x");
+				s = strconv.FormatInt(new Go$Int64(0, r), 16);
+				if (s.length === 1) {
+					b.WriteRune(48);
 				}
-				b.WriteString("\\x{");
-				b.WriteString(strconv.FormatInt(new Go$Int64(0, r), 16));
-				b.WriteString("}");
+				b.WriteString(s);
+				break;
 			}
-		}
+			b.WriteString("\\x{");
+			b.WriteString(strconv.FormatInt(new Go$Int64(0, r), 16));
+			b.WriteString("}");
+		} }
 	};
 0‚MaxCap‚	Regexp.Ptr.prototype.MaxCap = function() {
 		var re, m, _ref, _i, _slice, _index, sub, n;

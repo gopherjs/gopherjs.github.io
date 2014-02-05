@@ -2980,23 +2980,23 @@ go$packages["runtime"] = (function() {
 		un0 = new Go$Uint64(un10.high & 0, (un10.low & 4294967295) >>> 0);
 		q1 = go$div64(un32, vn1, false);
 		rhat = (x$3 = go$mul64(q1, vn1), new Go$Uint64(un32.high - x$3.high, un32.low - x$3.low));
-		if ((q1.high > 1 || (q1.high === 1 && q1.low >= 0)) || (x$4 = go$mul64(q1, vn0), x$5 = (x$6 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$6.high + un1.high, x$6.low + un1.low)), (x$4.high > x$5.high || (x$4.high === x$5.high && x$4.low > x$5.low)))) {
+		again1: switch (0) { default: if ((q1.high > 1 || (q1.high === 1 && q1.low >= 0)) || (x$4 = go$mul64(q1, vn0), x$5 = (x$6 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$6.high + un1.high, x$6.low + un1.low)), (x$4.high > x$5.high || (x$4.high === x$5.high && x$4.low > x$5.low)))) {
 			q1 = new Go$Uint64(q1.high - 0, q1.low - 1);
 			rhat = (x$7 = vn1, new Go$Uint64(rhat.high + x$7.high, rhat.low + x$7.low));
 			if ((rhat.high < 1 || (rhat.high === 1 && rhat.low < 0))) {
 				go$notSupported("goto");
 			}
-		}
+		} }
 		un21 = (x$8 = (x$9 = go$mul64(un32, new Go$Uint64(1, 0)), new Go$Uint64(x$9.high + un1.high, x$9.low + un1.low)), x$10 = go$mul64(q1, v), new Go$Uint64(x$8.high - x$10.high, x$8.low - x$10.low));
 		q0 = go$div64(un21, vn1, false);
 		rhat = (x$11 = go$mul64(q0, vn1), new Go$Uint64(un21.high - x$11.high, un21.low - x$11.low));
-		if ((q0.high > 1 || (q0.high === 1 && q0.low >= 0)) || (x$12 = go$mul64(q0, vn0), x$13 = (x$14 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$14.high + un0.high, x$14.low + un0.low)), (x$12.high > x$13.high || (x$12.high === x$13.high && x$12.low > x$13.low)))) {
+		again2: switch (0) { default: if ((q0.high > 1 || (q0.high === 1 && q0.low >= 0)) || (x$12 = go$mul64(q0, vn0), x$13 = (x$14 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$14.high + un0.high, x$14.low + un0.low)), (x$12.high > x$13.high || (x$12.high === x$13.high && x$12.low > x$13.low)))) {
 			q0 = new Go$Uint64(q0.high - 0, q0.low - 1);
 			rhat = (x$15 = vn1, new Go$Uint64(rhat.high + x$15.high, rhat.low + x$15.low));
 			if ((rhat.high < 1 || (rhat.high === 1 && rhat.low < 0))) {
 				go$notSupported("goto");
 			}
-		}
+		} }
 		_tuple$1 = [(x$16 = go$mul64(q1, new Go$Uint64(1, 0)), new Go$Uint64(x$16.high + q0.high, x$16.low + q0.low)), go$shiftRightUint64(((x$17 = (x$18 = go$mul64(un21, new Go$Uint64(1, 0)), new Go$Uint64(x$18.high + un0.high, x$18.low + un0.low)), x$19 = go$mul64(q0, v), new Go$Uint64(x$17.high - x$19.high, x$17.low - x$19.low))), s)], q = _tuple$1[0], r = _tuple$1[1];
 		return [q, r];
 	};
@@ -13124,133 +13124,130 @@ go$packages["time"] = (function() {
 				_tuple$3 = absClock(abs), hour = _tuple$3[0], min = _tuple$3[1], sec = _tuple$3[2];
 			}
 			_ref = std & 65535;
-			switch (undefined) {
-			default:
-				if (_ref === 274) {
-					y = year;
-					if (y < 0) {
-						y = -y;
-					}
-					b = appendUint(b, ((_r = y % 100, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-				} else if (_ref === 273) {
-					y$1 = year;
-					if (year <= -1000) {
-						b = go$append(b, 45);
-						y$1 = -y$1;
-					} else if (year <= -100) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-0")));
-						y$1 = -y$1;
-					} else if (year <= -10) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-00")));
-						y$1 = -y$1;
-					} else if (year < 0) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-000")));
-						y$1 = -y$1;
-					} else if (year < 10) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("000")));
-					} else if (year < 100) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("00")));
-					} else if (year < 1000) {
-						b = go$append(b, 48);
-					}
-					b = appendUint(b, (y$1 >>> 0), 0);
-				} else if (_ref === 258) {
-					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Month(month)).String().substring(0, 3))));
-				} else if (_ref === 257) {
-					m = (new Month(month)).String();
-					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(m)));
-				} else if (_ref === 259) {
-					b = appendUint(b, (month >>> 0), 0);
-				} else if (_ref === 260) {
-					b = appendUint(b, (month >>> 0), 48);
-				} else if (_ref === 262) {
-					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Weekday(absWeekday(abs))).String().substring(0, 3))));
-				} else if (_ref === 261) {
-					s = (new Weekday(absWeekday(abs))).String();
-					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
-				} else if (_ref === 263) {
-					b = appendUint(b, (day >>> 0), 0);
-				} else if (_ref === 264) {
-					b = appendUint(b, (day >>> 0), 32);
-				} else if (_ref === 265) {
-					b = appendUint(b, (day >>> 0), 48);
-				} else if (_ref === 522) {
-					b = appendUint(b, (hour >>> 0), 48);
-				} else if (_ref === 523) {
-					hr = (_r$1 = hour % 12, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero"));
-					if (hr === 0) {
-						hr = 12;
-					}
-					b = appendUint(b, (hr >>> 0), 0);
-				} else if (_ref === 524) {
-					hr$1 = (_r$2 = hour % 12, _r$2 === _r$2 ? _r$2 : go$throwRuntimeError("integer divide by zero"));
-					if (hr$1 === 0) {
-						hr$1 = 12;
-					}
-					b = appendUint(b, (hr$1 >>> 0), 48);
-				} else if (_ref === 525) {
-					b = appendUint(b, (min >>> 0), 0);
-				} else if (_ref === 526) {
-					b = appendUint(b, (min >>> 0), 48);
-				} else if (_ref === 527) {
-					b = appendUint(b, (sec >>> 0), 0);
-				} else if (_ref === 528) {
-					b = appendUint(b, (sec >>> 0), 48);
-				} else if (_ref === 531) {
-					if (hour >= 12) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("PM")));
-					} else {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("AM")));
-					}
-				} else if (_ref === 532) {
-					if (hour >= 12) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("pm")));
-					} else {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("am")));
-					}
-				} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 29 || _ref === 27 || _ref === 30) {
-					if ((offset === 0) && ((std === 22) || (std === 24) || (std === 23) || (std === 25))) {
-						b = go$append(b, 90);
-						break;
-					}
-					zone$1 = (_q = offset / 60, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-					absoffset = offset;
-					if (zone$1 < 0) {
-						b = go$append(b, 45);
-						zone$1 = -zone$1;
-						absoffset = -absoffset;
-					} else {
-						b = go$append(b, 43);
-					}
-					b = appendUint(b, ((_q$1 = zone$1 / 60, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-					if ((std === 24) || (std === 29)) {
+			switch (0) { default: if (_ref === 274) {
+				y = year;
+				if (y < 0) {
+					y = -y;
+				}
+				b = appendUint(b, ((_r = y % 100, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+			} else if (_ref === 273) {
+				y$1 = year;
+				if (year <= -1000) {
+					b = go$append(b, 45);
+					y$1 = -y$1;
+				} else if (year <= -100) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-0")));
+					y$1 = -y$1;
+				} else if (year <= -10) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-00")));
+					y$1 = -y$1;
+				} else if (year < 0) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-000")));
+					y$1 = -y$1;
+				} else if (year < 10) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("000")));
+				} else if (year < 100) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("00")));
+				} else if (year < 1000) {
+					b = go$append(b, 48);
+				}
+				b = appendUint(b, (y$1 >>> 0), 0);
+			} else if (_ref === 258) {
+				b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Month(month)).String().substring(0, 3))));
+			} else if (_ref === 257) {
+				m = (new Month(month)).String();
+				b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(m)));
+			} else if (_ref === 259) {
+				b = appendUint(b, (month >>> 0), 0);
+			} else if (_ref === 260) {
+				b = appendUint(b, (month >>> 0), 48);
+			} else if (_ref === 262) {
+				b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Weekday(absWeekday(abs))).String().substring(0, 3))));
+			} else if (_ref === 261) {
+				s = (new Weekday(absWeekday(abs))).String();
+				b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
+			} else if (_ref === 263) {
+				b = appendUint(b, (day >>> 0), 0);
+			} else if (_ref === 264) {
+				b = appendUint(b, (day >>> 0), 32);
+			} else if (_ref === 265) {
+				b = appendUint(b, (day >>> 0), 48);
+			} else if (_ref === 522) {
+				b = appendUint(b, (hour >>> 0), 48);
+			} else if (_ref === 523) {
+				hr = (_r$1 = hour % 12, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero"));
+				if (hr === 0) {
+					hr = 12;
+				}
+				b = appendUint(b, (hr >>> 0), 0);
+			} else if (_ref === 524) {
+				hr$1 = (_r$2 = hour % 12, _r$2 === _r$2 ? _r$2 : go$throwRuntimeError("integer divide by zero"));
+				if (hr$1 === 0) {
+					hr$1 = 12;
+				}
+				b = appendUint(b, (hr$1 >>> 0), 48);
+			} else if (_ref === 525) {
+				b = appendUint(b, (min >>> 0), 0);
+			} else if (_ref === 526) {
+				b = appendUint(b, (min >>> 0), 48);
+			} else if (_ref === 527) {
+				b = appendUint(b, (sec >>> 0), 0);
+			} else if (_ref === 528) {
+				b = appendUint(b, (sec >>> 0), 48);
+			} else if (_ref === 531) {
+				if (hour >= 12) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("PM")));
+				} else {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("AM")));
+				}
+			} else if (_ref === 532) {
+				if (hour >= 12) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("pm")));
+				} else {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("am")));
+				}
+			} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 29 || _ref === 27 || _ref === 30) {
+				if ((offset === 0) && ((std === 22) || (std === 24) || (std === 23) || (std === 25))) {
+					b = go$append(b, 90);
+					break;
+				}
+				zone$1 = (_q = offset / 60, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+				absoffset = offset;
+				if (zone$1 < 0) {
+					b = go$append(b, 45);
+					zone$1 = -zone$1;
+					absoffset = -absoffset;
+				} else {
+					b = go$append(b, 43);
+				}
+				b = appendUint(b, ((_q$1 = zone$1 / 60, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+				if ((std === 24) || (std === 29)) {
+					b = go$append(b, 58);
+				}
+				b = appendUint(b, ((_r$3 = zone$1 % 60, _r$3 === _r$3 ? _r$3 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+				if ((std === 23) || (std === 27) || (std === 30) || (std === 25)) {
+					if ((std === 30) || (std === 25)) {
 						b = go$append(b, 58);
 					}
-					b = appendUint(b, ((_r$3 = zone$1 % 60, _r$3 === _r$3 ? _r$3 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-					if ((std === 23) || (std === 27) || (std === 30) || (std === 25)) {
-						if ((std === 30) || (std === 25)) {
-							b = go$append(b, 58);
-						}
-						b = appendUint(b, ((_r$4 = absoffset % 60, _r$4 === _r$4 ? _r$4 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-					}
-				} else if (_ref === 21) {
-					if (!(name === "")) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(name)));
-						break;
-					}
-					zone$2 = (_q$2 = offset / 60, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : go$throwRuntimeError("integer divide by zero"));
-					if (zone$2 < 0) {
-						b = go$append(b, 45);
-						zone$2 = -zone$2;
-					} else {
-						b = go$append(b, 43);
-					}
-					b = appendUint(b, ((_q$3 = zone$2 / 60, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-					b = appendUint(b, ((_r$5 = zone$2 % 60, _r$5 === _r$5 ? _r$5 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-				} else if (_ref === 31 || _ref === 32) {
-					b = formatNano(b, (t.Nanosecond() >>> 0), std >> 16 >> 0, (std & 65535) === 32);
+					b = appendUint(b, ((_r$4 = absoffset % 60, _r$4 === _r$4 ? _r$4 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
 				}
-			}
+			} else if (_ref === 21) {
+				if (!(name === "")) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(name)));
+					break;
+				}
+				zone$2 = (_q$2 = offset / 60, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : go$throwRuntimeError("integer divide by zero"));
+				if (zone$2 < 0) {
+					b = go$append(b, 45);
+					zone$2 = -zone$2;
+				} else {
+					b = go$append(b, 43);
+				}
+				b = appendUint(b, ((_q$3 = zone$2 / 60, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+				b = appendUint(b, ((_r$5 = zone$2 % 60, _r$5 === _r$5 ? _r$5 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+			} else if (_ref === 31 || _ref === 32) {
+				b = formatNano(b, (t.Nanosecond() >>> 0), std >> 16 >> 0, (std & 65535) === 32);
+			} }
 		}
 		return go$bytesToString(b);
 	};
@@ -13342,203 +13339,200 @@ go$packages["time"] = (function() {
 			layout = suffix;
 			p = "";
 			_ref = std & 65535;
-			switch (undefined) {
-			default:
-				if (_ref === 274) {
-					if (value.length < 2) {
-						err = errBad;
-						break;
-					}
-					_tuple$3 = [value.substring(0, 2), value.substring(2)], p = _tuple$3[0], value = _tuple$3[1];
-					_tuple$4 = atoi(p), year = _tuple$4[0], err = _tuple$4[1];
-					if (year >= 69) {
-						year = year + 1900 >> 0;
-					} else {
-						year = year + 2000 >> 0;
-					}
-				} else if (_ref === 273) {
-					if (value.length < 4 || !isDigit(value, 0)) {
-						err = errBad;
-						break;
-					}
-					_tuple$5 = [value.substring(0, 4), value.substring(4)], p = _tuple$5[0], value = _tuple$5[1];
-					_tuple$6 = atoi(p), year = _tuple$6[0], err = _tuple$6[1];
-				} else if (_ref === 258) {
-					_tuple$7 = lookup(shortMonthNames, value), month = _tuple$7[0], value = _tuple$7[1], err = _tuple$7[2];
-				} else if (_ref === 257) {
-					_tuple$8 = lookup(longMonthNames, value), month = _tuple$8[0], value = _tuple$8[1], err = _tuple$8[2];
-				} else if (_ref === 259 || _ref === 260) {
-					_tuple$9 = getnum(value, std === 260), month = _tuple$9[0], value = _tuple$9[1], err = _tuple$9[2];
-					if (month <= 0 || 12 < month) {
-						rangeErrString = "month";
-					}
-				} else if (_ref === 262) {
-					_tuple$10 = lookup(shortDayNames, value), value = _tuple$10[1], err = _tuple$10[2];
-				} else if (_ref === 261) {
-					_tuple$11 = lookup(longDayNames, value), value = _tuple$11[1], err = _tuple$11[2];
-				} else if (_ref === 263 || _ref === 264 || _ref === 265) {
-					if ((std === 264) && value.length > 0 && (value.charCodeAt(0) === 32)) {
-						value = value.substring(1);
-					}
-					_tuple$12 = getnum(value, std === 265), day = _tuple$12[0], value = _tuple$12[1], err = _tuple$12[2];
-					if (day < 0 || 31 < day) {
-						rangeErrString = "day";
-					}
-				} else if (_ref === 522) {
-					_tuple$13 = getnum(value, false), hour = _tuple$13[0], value = _tuple$13[1], err = _tuple$13[2];
-					if (hour < 0 || 24 <= hour) {
-						rangeErrString = "hour";
-					}
-				} else if (_ref === 523 || _ref === 524) {
-					_tuple$14 = getnum(value, std === 524), hour = _tuple$14[0], value = _tuple$14[1], err = _tuple$14[2];
-					if (hour < 0 || 12 < hour) {
-						rangeErrString = "hour";
-					}
-				} else if (_ref === 525 || _ref === 526) {
-					_tuple$15 = getnum(value, std === 526), min = _tuple$15[0], value = _tuple$15[1], err = _tuple$15[2];
-					if (min < 0 || 60 <= min) {
-						rangeErrString = "minute";
-					}
-				} else if (_ref === 527 || _ref === 528) {
-					_tuple$16 = getnum(value, std === 528), sec = _tuple$16[0], value = _tuple$16[1], err = _tuple$16[2];
-					if (sec < 0 || 60 <= sec) {
-						rangeErrString = "second";
-					}
-					if (value.length >= 2 && (value.charCodeAt(0) === 46) && isDigit(value, 1)) {
-						_tuple$17 = nextStdChunk(layout), std = _tuple$17[1];
-						std = std & 65535;
-						if ((std === 31) || (std === 32)) {
-							break;
-						}
-						n = 2;
-						while (n < value.length && isDigit(value, n)) {
-							n = n + 1 >> 0;
-						}
-						_tuple$18 = parseNanoseconds(value, n), nsec = _tuple$18[0], rangeErrString = _tuple$18[1], err = _tuple$18[2];
-						value = value.substring(n);
-					}
-				} else if (_ref === 531) {
-					if (value.length < 2) {
-						err = errBad;
-						break;
-					}
-					_tuple$19 = [value.substring(0, 2), value.substring(2)], p = _tuple$19[0], value = _tuple$19[1];
-					_ref$1 = p;
-					if (_ref$1 === "PM") {
-						pmSet = true;
-					} else if (_ref$1 === "AM") {
-						amSet = true;
-					} else {
-						err = errBad;
-					}
-				} else if (_ref === 532) {
-					if (value.length < 2) {
-						err = errBad;
-						break;
-					}
-					_tuple$20 = [value.substring(0, 2), value.substring(2)], p = _tuple$20[0], value = _tuple$20[1];
-					_ref$2 = p;
-					if (_ref$2 === "pm") {
-						pmSet = true;
-					} else if (_ref$2 === "am") {
-						amSet = true;
-					} else {
-						err = errBad;
-					}
-				} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 28 || _ref === 29 || _ref === 27 || _ref === 30) {
-					if (((std === 22) || (std === 24)) && value.length >= 1 && (value.charCodeAt(0) === 90)) {
-						value = value.substring(1);
-						z = go$pkg.UTC;
-						break;
-					}
-					_tuple$21 = ["", "", "", ""], sign = _tuple$21[0], hour$1 = _tuple$21[1], min$1 = _tuple$21[2], seconds = _tuple$21[3];
-					if ((std === 24) || (std === 29)) {
-						if (value.length < 6) {
-							err = errBad;
-							break;
-						}
-						if (!((value.charCodeAt(3) === 58))) {
-							err = errBad;
-							break;
-						}
-						_tuple$22 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), "00", value.substring(6)], sign = _tuple$22[0], hour$1 = _tuple$22[1], min$1 = _tuple$22[2], seconds = _tuple$22[3], value = _tuple$22[4];
-					} else if (std === 28) {
-						if (value.length < 3) {
-							err = errBad;
-							break;
-						}
-						_tuple$23 = [value.substring(0, 1), value.substring(1, 3), "00", "00", value.substring(3)], sign = _tuple$23[0], hour$1 = _tuple$23[1], min$1 = _tuple$23[2], seconds = _tuple$23[3], value = _tuple$23[4];
-					} else if ((std === 25) || (std === 30)) {
-						if (value.length < 9) {
-							err = errBad;
-							break;
-						}
-						if (!((value.charCodeAt(3) === 58)) || !((value.charCodeAt(6) === 58))) {
-							err = errBad;
-							break;
-						}
-						_tuple$24 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), value.substring(7, 9), value.substring(9)], sign = _tuple$24[0], hour$1 = _tuple$24[1], min$1 = _tuple$24[2], seconds = _tuple$24[3], value = _tuple$24[4];
-					} else if ((std === 23) || (std === 27)) {
-						if (value.length < 7) {
-							err = errBad;
-							break;
-						}
-						_tuple$25 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), value.substring(5, 7), value.substring(7)], sign = _tuple$25[0], hour$1 = _tuple$25[1], min$1 = _tuple$25[2], seconds = _tuple$25[3], value = _tuple$25[4];
-					} else {
-						if (value.length < 5) {
-							err = errBad;
-							break;
-						}
-						_tuple$26 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), "00", value.substring(5)], sign = _tuple$26[0], hour$1 = _tuple$26[1], min$1 = _tuple$26[2], seconds = _tuple$26[3], value = _tuple$26[4];
-					}
-					_tuple$27 = [0, 0, 0], hr = _tuple$27[0], mm = _tuple$27[1], ss = _tuple$27[2];
-					_tuple$28 = atoi(hour$1), hr = _tuple$28[0], err = _tuple$28[1];
-					if (go$interfaceIsEqual(err, null)) {
-						_tuple$29 = atoi(min$1), mm = _tuple$29[0], err = _tuple$29[1];
-					}
-					if (go$interfaceIsEqual(err, null)) {
-						_tuple$30 = atoi(seconds), ss = _tuple$30[0], err = _tuple$30[1];
-					}
-					zoneOffset = (x = ((x$1 = 60, (((hr >>> 16 << 16) * x$1 >> 0) + (hr << 16 >>> 16) * x$1) >> 0) + mm >> 0), x$2 = 60, (((x >>> 16 << 16) * x$2 >> 0) + (x << 16 >>> 16) * x$2) >> 0) + ss >> 0;
-					_ref$3 = sign.charCodeAt(0);
-					if (_ref$3 === 43) {
-					} else if (_ref$3 === 45) {
-						zoneOffset = -zoneOffset;
-					} else {
-						err = errBad;
-					}
-				} else if (_ref === 21) {
-					if (value.length >= 3 && value.substring(0, 3) === "UTC") {
-						z = go$pkg.UTC;
-						value = value.substring(3);
-						break;
-					}
-					_tuple$31 = parseTimeZone(value), n$1 = _tuple$31[0], ok = _tuple$31[1];
-					if (!ok) {
-						err = errBad;
-						break;
-					}
-					_tuple$32 = [value.substring(0, n$1), value.substring(n$1)], zoneName = _tuple$32[0], value = _tuple$32[1];
-				} else if (_ref === 31) {
-					ndigit = 1 + ((std >> 16 >> 0)) >> 0;
-					if (value.length < ndigit) {
-						err = errBad;
-						break;
-					}
-					_tuple$33 = parseNanoseconds(value, ndigit), nsec = _tuple$33[0], rangeErrString = _tuple$33[1], err = _tuple$33[2];
-					value = value.substring(ndigit);
-				} else if (_ref === 32) {
-					if (value.length < 2 || !((value.charCodeAt(0) === 46)) || value.charCodeAt(1) < 48 || 57 < value.charCodeAt(1)) {
-						break;
-					}
-					i = 0;
-					while (i < 9 && (i + 1 >> 0) < value.length && 48 <= value.charCodeAt((i + 1 >> 0)) && value.charCodeAt((i + 1 >> 0)) <= 57) {
-						i = i + 1 >> 0;
-					}
-					_tuple$34 = parseNanoseconds(value, 1 + i >> 0), nsec = _tuple$34[0], rangeErrString = _tuple$34[1], err = _tuple$34[2];
-					value = value.substring((1 + i >> 0));
+			switch (0) { default: if (_ref === 274) {
+				if (value.length < 2) {
+					err = errBad;
+					break;
 				}
-			}
+				_tuple$3 = [value.substring(0, 2), value.substring(2)], p = _tuple$3[0], value = _tuple$3[1];
+				_tuple$4 = atoi(p), year = _tuple$4[0], err = _tuple$4[1];
+				if (year >= 69) {
+					year = year + 1900 >> 0;
+				} else {
+					year = year + 2000 >> 0;
+				}
+			} else if (_ref === 273) {
+				if (value.length < 4 || !isDigit(value, 0)) {
+					err = errBad;
+					break;
+				}
+				_tuple$5 = [value.substring(0, 4), value.substring(4)], p = _tuple$5[0], value = _tuple$5[1];
+				_tuple$6 = atoi(p), year = _tuple$6[0], err = _tuple$6[1];
+			} else if (_ref === 258) {
+				_tuple$7 = lookup(shortMonthNames, value), month = _tuple$7[0], value = _tuple$7[1], err = _tuple$7[2];
+			} else if (_ref === 257) {
+				_tuple$8 = lookup(longMonthNames, value), month = _tuple$8[0], value = _tuple$8[1], err = _tuple$8[2];
+			} else if (_ref === 259 || _ref === 260) {
+				_tuple$9 = getnum(value, std === 260), month = _tuple$9[0], value = _tuple$9[1], err = _tuple$9[2];
+				if (month <= 0 || 12 < month) {
+					rangeErrString = "month";
+				}
+			} else if (_ref === 262) {
+				_tuple$10 = lookup(shortDayNames, value), value = _tuple$10[1], err = _tuple$10[2];
+			} else if (_ref === 261) {
+				_tuple$11 = lookup(longDayNames, value), value = _tuple$11[1], err = _tuple$11[2];
+			} else if (_ref === 263 || _ref === 264 || _ref === 265) {
+				if ((std === 264) && value.length > 0 && (value.charCodeAt(0) === 32)) {
+					value = value.substring(1);
+				}
+				_tuple$12 = getnum(value, std === 265), day = _tuple$12[0], value = _tuple$12[1], err = _tuple$12[2];
+				if (day < 0 || 31 < day) {
+					rangeErrString = "day";
+				}
+			} else if (_ref === 522) {
+				_tuple$13 = getnum(value, false), hour = _tuple$13[0], value = _tuple$13[1], err = _tuple$13[2];
+				if (hour < 0 || 24 <= hour) {
+					rangeErrString = "hour";
+				}
+			} else if (_ref === 523 || _ref === 524) {
+				_tuple$14 = getnum(value, std === 524), hour = _tuple$14[0], value = _tuple$14[1], err = _tuple$14[2];
+				if (hour < 0 || 12 < hour) {
+					rangeErrString = "hour";
+				}
+			} else if (_ref === 525 || _ref === 526) {
+				_tuple$15 = getnum(value, std === 526), min = _tuple$15[0], value = _tuple$15[1], err = _tuple$15[2];
+				if (min < 0 || 60 <= min) {
+					rangeErrString = "minute";
+				}
+			} else if (_ref === 527 || _ref === 528) {
+				_tuple$16 = getnum(value, std === 528), sec = _tuple$16[0], value = _tuple$16[1], err = _tuple$16[2];
+				if (sec < 0 || 60 <= sec) {
+					rangeErrString = "second";
+				}
+				if (value.length >= 2 && (value.charCodeAt(0) === 46) && isDigit(value, 1)) {
+					_tuple$17 = nextStdChunk(layout), std = _tuple$17[1];
+					std = std & 65535;
+					if ((std === 31) || (std === 32)) {
+						break;
+					}
+					n = 2;
+					while (n < value.length && isDigit(value, n)) {
+						n = n + 1 >> 0;
+					}
+					_tuple$18 = parseNanoseconds(value, n), nsec = _tuple$18[0], rangeErrString = _tuple$18[1], err = _tuple$18[2];
+					value = value.substring(n);
+				}
+			} else if (_ref === 531) {
+				if (value.length < 2) {
+					err = errBad;
+					break;
+				}
+				_tuple$19 = [value.substring(0, 2), value.substring(2)], p = _tuple$19[0], value = _tuple$19[1];
+				_ref$1 = p;
+				if (_ref$1 === "PM") {
+					pmSet = true;
+				} else if (_ref$1 === "AM") {
+					amSet = true;
+				} else {
+					err = errBad;
+				}
+			} else if (_ref === 532) {
+				if (value.length < 2) {
+					err = errBad;
+					break;
+				}
+				_tuple$20 = [value.substring(0, 2), value.substring(2)], p = _tuple$20[0], value = _tuple$20[1];
+				_ref$2 = p;
+				if (_ref$2 === "pm") {
+					pmSet = true;
+				} else if (_ref$2 === "am") {
+					amSet = true;
+				} else {
+					err = errBad;
+				}
+			} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 28 || _ref === 29 || _ref === 27 || _ref === 30) {
+				if (((std === 22) || (std === 24)) && value.length >= 1 && (value.charCodeAt(0) === 90)) {
+					value = value.substring(1);
+					z = go$pkg.UTC;
+					break;
+				}
+				_tuple$21 = ["", "", "", ""], sign = _tuple$21[0], hour$1 = _tuple$21[1], min$1 = _tuple$21[2], seconds = _tuple$21[3];
+				if ((std === 24) || (std === 29)) {
+					if (value.length < 6) {
+						err = errBad;
+						break;
+					}
+					if (!((value.charCodeAt(3) === 58))) {
+						err = errBad;
+						break;
+					}
+					_tuple$22 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), "00", value.substring(6)], sign = _tuple$22[0], hour$1 = _tuple$22[1], min$1 = _tuple$22[2], seconds = _tuple$22[3], value = _tuple$22[4];
+				} else if (std === 28) {
+					if (value.length < 3) {
+						err = errBad;
+						break;
+					}
+					_tuple$23 = [value.substring(0, 1), value.substring(1, 3), "00", "00", value.substring(3)], sign = _tuple$23[0], hour$1 = _tuple$23[1], min$1 = _tuple$23[2], seconds = _tuple$23[3], value = _tuple$23[4];
+				} else if ((std === 25) || (std === 30)) {
+					if (value.length < 9) {
+						err = errBad;
+						break;
+					}
+					if (!((value.charCodeAt(3) === 58)) || !((value.charCodeAt(6) === 58))) {
+						err = errBad;
+						break;
+					}
+					_tuple$24 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), value.substring(7, 9), value.substring(9)], sign = _tuple$24[0], hour$1 = _tuple$24[1], min$1 = _tuple$24[2], seconds = _tuple$24[3], value = _tuple$24[4];
+				} else if ((std === 23) || (std === 27)) {
+					if (value.length < 7) {
+						err = errBad;
+						break;
+					}
+					_tuple$25 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), value.substring(5, 7), value.substring(7)], sign = _tuple$25[0], hour$1 = _tuple$25[1], min$1 = _tuple$25[2], seconds = _tuple$25[3], value = _tuple$25[4];
+				} else {
+					if (value.length < 5) {
+						err = errBad;
+						break;
+					}
+					_tuple$26 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), "00", value.substring(5)], sign = _tuple$26[0], hour$1 = _tuple$26[1], min$1 = _tuple$26[2], seconds = _tuple$26[3], value = _tuple$26[4];
+				}
+				_tuple$27 = [0, 0, 0], hr = _tuple$27[0], mm = _tuple$27[1], ss = _tuple$27[2];
+				_tuple$28 = atoi(hour$1), hr = _tuple$28[0], err = _tuple$28[1];
+				if (go$interfaceIsEqual(err, null)) {
+					_tuple$29 = atoi(min$1), mm = _tuple$29[0], err = _tuple$29[1];
+				}
+				if (go$interfaceIsEqual(err, null)) {
+					_tuple$30 = atoi(seconds), ss = _tuple$30[0], err = _tuple$30[1];
+				}
+				zoneOffset = (x = ((x$1 = 60, (((hr >>> 16 << 16) * x$1 >> 0) + (hr << 16 >>> 16) * x$1) >> 0) + mm >> 0), x$2 = 60, (((x >>> 16 << 16) * x$2 >> 0) + (x << 16 >>> 16) * x$2) >> 0) + ss >> 0;
+				_ref$3 = sign.charCodeAt(0);
+				if (_ref$3 === 43) {
+				} else if (_ref$3 === 45) {
+					zoneOffset = -zoneOffset;
+				} else {
+					err = errBad;
+				}
+			} else if (_ref === 21) {
+				if (value.length >= 3 && value.substring(0, 3) === "UTC") {
+					z = go$pkg.UTC;
+					value = value.substring(3);
+					break;
+				}
+				_tuple$31 = parseTimeZone(value), n$1 = _tuple$31[0], ok = _tuple$31[1];
+				if (!ok) {
+					err = errBad;
+					break;
+				}
+				_tuple$32 = [value.substring(0, n$1), value.substring(n$1)], zoneName = _tuple$32[0], value = _tuple$32[1];
+			} else if (_ref === 31) {
+				ndigit = 1 + ((std >> 16 >> 0)) >> 0;
+				if (value.length < ndigit) {
+					err = errBad;
+					break;
+				}
+				_tuple$33 = parseNanoseconds(value, ndigit), nsec = _tuple$33[0], rangeErrString = _tuple$33[1], err = _tuple$33[2];
+				value = value.substring(ndigit);
+			} else if (_ref === 32) {
+				if (value.length < 2 || !((value.charCodeAt(0) === 46)) || value.charCodeAt(1) < 48 || 57 < value.charCodeAt(1)) {
+					break;
+				}
+				i = 0;
+				while (i < 9 && (i + 1 >> 0) < value.length && 48 <= value.charCodeAt((i + 1 >> 0)) && value.charCodeAt((i + 1 >> 0)) <= 57) {
+					i = i + 1 >> 0;
+				}
+				_tuple$34 = parseNanoseconds(value, 1 + i >> 0), nsec = _tuple$34[0], rangeErrString = _tuple$34[1], err = _tuple$34[2];
+				value = value.substring((1 + i >> 0));
+			} }
 			if (!(rangeErrString === "")) {
 				return [new Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(Location)).nil), new ParseError.Ptr(alayout, avalue, stdstr, value, ": " + rangeErrString + " out of range")];
 			}
@@ -18711,93 +18705,90 @@ go$packages["strconv"] = (function() {
 		c$1 = s.charCodeAt(1);
 		s = s.substring(2);
 		_ref = c$1;
-		switch (undefined) {
-		default:
-			if (_ref === 97) {
-				value = 7;
-			} else if (_ref === 98) {
-				value = 8;
-			} else if (_ref === 102) {
-				value = 12;
-			} else if (_ref === 110) {
-				value = 10;
-			} else if (_ref === 114) {
-				value = 13;
-			} else if (_ref === 116) {
-				value = 9;
-			} else if (_ref === 118) {
-				value = 11;
-			} else if (_ref === 120 || _ref === 117 || _ref === 85) {
-				n = 0;
-				_ref$1 = c$1;
-				if (_ref$1 === 120) {
-					n = 2;
-				} else if (_ref$1 === 117) {
-					n = 4;
-				} else if (_ref$1 === 85) {
-					n = 8;
-				}
-				v = 0;
-				if (s.length < n) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				j = 0;
-				while (j < n) {
-					_tuple$3 = unhex(s.charCodeAt(j)), x = _tuple$3[0], ok = _tuple$3[1];
-					if (!ok) {
-						err = go$pkg.ErrSyntax;
-						return [value, multibyte, tail, err];
-					}
-					v = (v << 4 >> 0) | x;
-					j = j + 1 >> 0;
-				}
-				s = s.substring(n);
-				if (c$1 === 120) {
-					value = v;
-					break;
-				}
-				if (v > 1114111) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				value = v;
-				multibyte = true;
-			} else if (_ref === 48 || _ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
-				v$1 = (c$1 >> 0) - 48 >> 0;
-				if (s.length < 2) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				j$1 = 0;
-				while (j$1 < 2) {
-					x$1 = (s.charCodeAt(j$1) >> 0) - 48 >> 0;
-					if (x$1 < 0 || x$1 > 7) {
-						err = go$pkg.ErrSyntax;
-						return [value, multibyte, tail, err];
-					}
-					v$1 = ((v$1 << 3 >> 0)) | x$1;
-					j$1 = j$1 + 1 >> 0;
-				}
-				s = s.substring(2);
-				if (v$1 > 255) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				value = v$1;
-			} else if (_ref === 92) {
-				value = 92;
-			} else if (_ref === 39 || _ref === 34) {
-				if (!((c$1 === quote))) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				value = (c$1 >> 0);
-			} else {
+		switch (0) { default: if (_ref === 97) {
+			value = 7;
+		} else if (_ref === 98) {
+			value = 8;
+		} else if (_ref === 102) {
+			value = 12;
+		} else if (_ref === 110) {
+			value = 10;
+		} else if (_ref === 114) {
+			value = 13;
+		} else if (_ref === 116) {
+			value = 9;
+		} else if (_ref === 118) {
+			value = 11;
+		} else if (_ref === 120 || _ref === 117 || _ref === 85) {
+			n = 0;
+			_ref$1 = c$1;
+			if (_ref$1 === 120) {
+				n = 2;
+			} else if (_ref$1 === 117) {
+				n = 4;
+			} else if (_ref$1 === 85) {
+				n = 8;
+			}
+			v = 0;
+			if (s.length < n) {
 				err = go$pkg.ErrSyntax;
 				return [value, multibyte, tail, err];
 			}
-		}
+			j = 0;
+			while (j < n) {
+				_tuple$3 = unhex(s.charCodeAt(j)), x = _tuple$3[0], ok = _tuple$3[1];
+				if (!ok) {
+					err = go$pkg.ErrSyntax;
+					return [value, multibyte, tail, err];
+				}
+				v = (v << 4 >> 0) | x;
+				j = j + 1 >> 0;
+			}
+			s = s.substring(n);
+			if (c$1 === 120) {
+				value = v;
+				break;
+			}
+			if (v > 1114111) {
+				err = go$pkg.ErrSyntax;
+				return [value, multibyte, tail, err];
+			}
+			value = v;
+			multibyte = true;
+		} else if (_ref === 48 || _ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
+			v$1 = (c$1 >> 0) - 48 >> 0;
+			if (s.length < 2) {
+				err = go$pkg.ErrSyntax;
+				return [value, multibyte, tail, err];
+			}
+			j$1 = 0;
+			while (j$1 < 2) {
+				x$1 = (s.charCodeAt(j$1) >> 0) - 48 >> 0;
+				if (x$1 < 0 || x$1 > 7) {
+					err = go$pkg.ErrSyntax;
+					return [value, multibyte, tail, err];
+				}
+				v$1 = ((v$1 << 3 >> 0)) | x$1;
+				j$1 = j$1 + 1 >> 0;
+			}
+			s = s.substring(2);
+			if (v$1 > 255) {
+				err = go$pkg.ErrSyntax;
+				return [value, multibyte, tail, err];
+			}
+			value = v$1;
+		} else if (_ref === 92) {
+			value = 92;
+		} else if (_ref === 39 || _ref === 34) {
+			if (!((c$1 === quote))) {
+				err = go$pkg.ErrSyntax;
+				return [value, multibyte, tail, err];
+			}
+			value = (c$1 >> 0);
+		} else {
+			err = go$pkg.ErrSyntax;
+			return [value, multibyte, tail, err];
+		} }
 		tail = s;
 		return [value, multibyte, tail, err];
 	};
@@ -22370,59 +22361,56 @@ go$packages["reflect"] = (function() {
 			rc = (_slice$1 = runcases, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			rc.dir = (c.Dir >>> 0);
 			_ref$1 = c.Dir;
-			switch (undefined) {
-			default:
-				if (_ref$1 === 3) {
-					if (haveDefault) {
-						throw go$panic(new Go$String("reflect.Select: multiple default cases"));
-					}
-					haveDefault = true;
-					if (c.Chan.IsValid()) {
-						throw go$panic(new Go$String("reflect.Select: default case has Chan value"));
-					}
-					if (c.Send.IsValid()) {
-						throw go$panic(new Go$String("reflect.Select: default case has Send value"));
-					}
-				} else if (_ref$1 === 1) {
-					ch = (_struct$3 = c.Chan, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
-					if (!ch.IsValid()) {
-						break;
-					}
-					(new flag(ch.flag)).mustBe(18);
-					(new flag(ch.flag)).mustBeExported();
-					tt = ch.typ.chanType;
-					if (((tt.dir >> 0) & 2) === 0) {
-						throw go$panic(new Go$String("reflect.Select: SendDir case using recv-only channel"));
-					}
-					rc.ch = ch.iword();
-					rc.typ = tt.rtype;
-					v = (_struct$4 = c.Send, new Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
-					if (!v.IsValid()) {
-						throw go$panic(new Go$String("reflect.Select: SendDir case missing Send value"));
-					}
-					(new flag(v.flag)).mustBeExported();
-					v = (_struct$5 = v.assignTo("reflect.Select", tt.elem, (go$ptrType(go$emptyInterface)).nil), new Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
-					rc.val = v.iword();
-				} else if (_ref$1 === 2) {
-					if (c.Send.IsValid()) {
-						throw go$panic(new Go$String("reflect.Select: RecvDir case has Send value"));
-					}
-					ch$1 = (_struct$6 = c.Chan, new Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag));
-					if (!ch$1.IsValid()) {
-						break;
-					}
-					(new flag(ch$1.flag)).mustBe(18);
-					(new flag(ch$1.flag)).mustBeExported();
-					tt$1 = ch$1.typ.chanType;
-					rc.typ = tt$1.rtype;
-					if (((tt$1.dir >> 0) & 1) === 0) {
-						throw go$panic(new Go$String("reflect.Select: RecvDir case using send-only channel"));
-					}
-					rc.ch = ch$1.iword();
-				} else {
-					throw go$panic(new Go$String("reflect.Select: invalid Dir"));
+			switch (0) { default: if (_ref$1 === 3) {
+				if (haveDefault) {
+					throw go$panic(new Go$String("reflect.Select: multiple default cases"));
 				}
-			}
+				haveDefault = true;
+				if (c.Chan.IsValid()) {
+					throw go$panic(new Go$String("reflect.Select: default case has Chan value"));
+				}
+				if (c.Send.IsValid()) {
+					throw go$panic(new Go$String("reflect.Select: default case has Send value"));
+				}
+			} else if (_ref$1 === 1) {
+				ch = (_struct$3 = c.Chan, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
+				if (!ch.IsValid()) {
+					break;
+				}
+				(new flag(ch.flag)).mustBe(18);
+				(new flag(ch.flag)).mustBeExported();
+				tt = ch.typ.chanType;
+				if (((tt.dir >> 0) & 2) === 0) {
+					throw go$panic(new Go$String("reflect.Select: SendDir case using recv-only channel"));
+				}
+				rc.ch = ch.iword();
+				rc.typ = tt.rtype;
+				v = (_struct$4 = c.Send, new Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
+				if (!v.IsValid()) {
+					throw go$panic(new Go$String("reflect.Select: SendDir case missing Send value"));
+				}
+				(new flag(v.flag)).mustBeExported();
+				v = (_struct$5 = v.assignTo("reflect.Select", tt.elem, (go$ptrType(go$emptyInterface)).nil), new Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
+				rc.val = v.iword();
+			} else if (_ref$1 === 2) {
+				if (c.Send.IsValid()) {
+					throw go$panic(new Go$String("reflect.Select: RecvDir case has Send value"));
+				}
+				ch$1 = (_struct$6 = c.Chan, new Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag));
+				if (!ch$1.IsValid()) {
+					break;
+				}
+				(new flag(ch$1.flag)).mustBe(18);
+				(new flag(ch$1.flag)).mustBeExported();
+				tt$1 = ch$1.typ.chanType;
+				rc.typ = tt$1.rtype;
+				if (((tt$1.dir >> 0) & 1) === 0) {
+					throw go$panic(new Go$String("reflect.Select: RecvDir case using send-only channel"));
+				}
+				rc.ch = ch$1.iword();
+			} else {
+				throw go$panic(new Go$String("reflect.Select: invalid Dir"));
+			} }
 			_i++;
 		}
 		_tuple = rselect(runcases), chosen = _tuple[0], word = _tuple[1], recvOK = _tuple[2];
@@ -24515,170 +24503,167 @@ go$packages["fmt"] = (function() {
 		p.value = (_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 		f = (_struct$2 = value, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 		_ref = f.Kind();
-		BigSwitch: switch (undefined) {
-		default:
-			if (_ref === 1) {
-				p.fmtBool(f.Bool(), verb);
-			} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
-				p.fmtInt64(f.Int(), verb);
-			} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
-				p.fmtUint64(f.Uint(), verb, goSyntax);
-			} else if (_ref === 13 || _ref === 14) {
-				if (f.Type().Size() === 4) {
-					p.fmtFloat32(f.Float(), verb);
-				} else {
-					p.fmtFloat64(f.Float(), verb);
-				}
-			} else if (_ref === 15 || _ref === 16) {
-				if (f.Type().Size() === 8) {
-					p.fmtComplex64((x = f.Complex(), new Go$Complex64(x.real, x.imag)), verb);
-				} else {
-					p.fmtComplex128(f.Complex(), verb);
-				}
-			} else if (_ref === 24) {
-				p.fmtString(f.String(), verb, goSyntax);
-			} else if (_ref === 21) {
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v) { p.buf = v; })).WriteString(f.Type().String());
-					if (f.IsNil()) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$1) { p.buf = v$1; })).WriteString("(nil)");
-						break;
-					}
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$2) { p.buf = v$2; })).WriteByte(123);
-				} else {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$3) { p.buf = v$3; })).Write(mapBytes);
-				}
-				keys = f.MapKeys();
-				_ref$1 = keys;
-				_i = 0;
-				while (_i < _ref$1.length) {
-					key = (_struct$3 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
-					i = _i;
-					if (i > 0) {
-						if (goSyntax) {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$4) { p.buf = v$4; })).Write(commaSpaceBytes);
-						} else {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$5) { p.buf = v$5; })).WriteByte(32);
-						}
-					}
-					p.printValue((_struct$4 = key, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$6) { p.buf = v$6; })).WriteByte(58);
-					p.printValue((_struct$6 = f.MapIndex((_struct$5 = key, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-					_i++;
-				}
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$7) { p.buf = v$7; })).WriteByte(125);
-				} else {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$8) { p.buf = v$8; })).WriteByte(93);
-				}
-			} else if (_ref === 25) {
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$9) { p.buf = v$9; })).WriteString(value.Type().String());
-				}
-				p.add(123);
-				v$10 = (_struct$7 = f, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
-				t = v$10.Type();
-				i$1 = 0;
-				while (i$1 < v$10.NumField()) {
-					if (i$1 > 0) {
-						if (goSyntax) {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$11) { p.buf = v$11; })).Write(commaSpaceBytes);
-						} else {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$12) { p.buf = v$12; })).WriteByte(32);
-						}
-					}
-					if (plus || goSyntax) {
-						if (f$1 = (_struct$8 = t.Field(i$1), new reflect.StructField.Ptr(_struct$8.Name, _struct$8.PkgPath, _struct$8.Type, _struct$8.Tag, _struct$8.Offset, _struct$8.Index, _struct$8.Anonymous)), !(f$1.Name === "")) {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$13) { p.buf = v$13; })).WriteString(f$1.Name);
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$14) { p.buf = v$14; })).WriteByte(58);
-						}
-					}
-					p.printValue((_struct$10 = getField((_struct$9 = v$10, new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), i$1), new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-					i$1 = i$1 + 1 >> 0;
-				}
-				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$15) { p.buf = v$15; })).WriteByte(125);
-			} else if (_ref === 20) {
-				value$1 = (_struct$11 = f.Elem(), new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag));
-				if (!value$1.IsValid()) {
-					if (goSyntax) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$16) { p.buf = v$16; })).WriteString(f.Type().String());
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$17) { p.buf = v$17; })).Write(nilParenBytes);
-					} else {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$18) { p.buf = v$18; })).Write(nilAngleBytes);
-					}
-				} else {
-					wasString = p.printValue((_struct$12 = value$1, new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-				}
-			} else if (_ref === 17 || _ref === 23) {
-				if (typ = f.Type(), typ.Elem().Kind() === 8) {
-					bytes = (go$sliceType(Go$Uint8)).nil;
-					if (f.Kind() === 23) {
-						bytes = f.Bytes();
-					} else if (f.CanAddr()) {
-						bytes = f.Slice(0, f.Len()).Bytes();
-					} else {
-						bytes = (go$sliceType(Go$Uint8)).make(f.Len(), 0, function() { return 0; });
-						_ref$2 = bytes;
-						_i$1 = 0;
-						while (_i$1 < _ref$2.length) {
-							i$2 = _i$1;
-							_slice$1 = bytes, _index$1 = i$2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (f.Index(i$2).Uint().low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
-							_i$1++;
-						}
-					}
-					p.fmtBytes(bytes, verb, goSyntax, typ, depth);
-					wasString = verb === 115;
+		BigSwitch: switch (0) { default: if (_ref === 1) {
+			p.fmtBool(f.Bool(), verb);
+		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
+			p.fmtInt64(f.Int(), verb);
+		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
+			p.fmtUint64(f.Uint(), verb, goSyntax);
+		} else if (_ref === 13 || _ref === 14) {
+			if (f.Type().Size() === 4) {
+				p.fmtFloat32(f.Float(), verb);
+			} else {
+				p.fmtFloat64(f.Float(), verb);
+			}
+		} else if (_ref === 15 || _ref === 16) {
+			if (f.Type().Size() === 8) {
+				p.fmtComplex64((x = f.Complex(), new Go$Complex64(x.real, x.imag)), verb);
+			} else {
+				p.fmtComplex128(f.Complex(), verb);
+			}
+		} else if (_ref === 24) {
+			p.fmtString(f.String(), verb, goSyntax);
+		} else if (_ref === 21) {
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v) { p.buf = v; })).WriteString(f.Type().String());
+				if (f.IsNil()) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$1) { p.buf = v$1; })).WriteString("(nil)");
 					break;
 				}
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$19) { p.buf = v$19; })).WriteString(value.Type().String());
-					if ((f.Kind() === 23) && f.IsNil()) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$20) { p.buf = v$20; })).WriteString("(nil)");
-						break;
-					}
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$21) { p.buf = v$21; })).WriteByte(123);
-				} else {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$22) { p.buf = v$22; })).WriteByte(91);
-				}
-				i$3 = 0;
-				while (i$3 < f.Len()) {
-					if (i$3 > 0) {
-						if (goSyntax) {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$23) { p.buf = v$23; })).Write(commaSpaceBytes);
-						} else {
-							(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$24) { p.buf = v$24; })).WriteByte(32);
-						}
-					}
-					p.printValue((_struct$13 = f.Index(i$3), new reflect.Value.Ptr(_struct$13.typ, _struct$13.val, _struct$13.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-					i$3 = i$3 + 1 >> 0;
-				}
-				if (goSyntax) {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$25) { p.buf = v$25; })).WriteByte(125);
-				} else {
-					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$26) { p.buf = v$26; })).WriteByte(93);
-				}
-			} else if (_ref === 22) {
-				v$27 = f.Pointer();
-				if (!((v$27 === 0)) && (depth === 0)) {
-					a = (_struct$14 = f.Elem(), new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag));
-					_ref$3 = a.Kind();
-					if (_ref$3 === 17 || _ref$3 === 23) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$28) { p.buf = v$28; })).WriteByte(38);
-						p.printValue((_struct$15 = a, new reflect.Value.Ptr(_struct$15.typ, _struct$15.val, _struct$15.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-						break BigSwitch;
-					} else if (_ref$3 === 25) {
-						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$29) { p.buf = v$29; })).WriteByte(38);
-						p.printValue((_struct$16 = a, new reflect.Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag)), verb, plus, goSyntax, depth + 1 >> 0);
-						break BigSwitch;
-					}
-				}
-				p.fmtPointer((_struct$17 = value, new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag)), verb, goSyntax);
-			} else if (_ref === 18 || _ref === 19 || _ref === 26) {
-				p.fmtPointer((_struct$18 = value, new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag)), verb, goSyntax);
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$2) { p.buf = v$2; })).WriteByte(123);
 			} else {
-				p.unknownType(new f.constructor.Struct(f));
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$3) { p.buf = v$3; })).Write(mapBytes);
 			}
-		}
+			keys = f.MapKeys();
+			_ref$1 = keys;
+			_i = 0;
+			while (_i < _ref$1.length) {
+				key = (_struct$3 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
+				i = _i;
+				if (i > 0) {
+					if (goSyntax) {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$4) { p.buf = v$4; })).Write(commaSpaceBytes);
+					} else {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$5) { p.buf = v$5; })).WriteByte(32);
+					}
+				}
+				p.printValue((_struct$4 = key, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$6) { p.buf = v$6; })).WriteByte(58);
+				p.printValue((_struct$6 = f.MapIndex((_struct$5 = key, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+				_i++;
+			}
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$7) { p.buf = v$7; })).WriteByte(125);
+			} else {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$8) { p.buf = v$8; })).WriteByte(93);
+			}
+		} else if (_ref === 25) {
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$9) { p.buf = v$9; })).WriteString(value.Type().String());
+			}
+			p.add(123);
+			v$10 = (_struct$7 = f, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
+			t = v$10.Type();
+			i$1 = 0;
+			while (i$1 < v$10.NumField()) {
+				if (i$1 > 0) {
+					if (goSyntax) {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$11) { p.buf = v$11; })).Write(commaSpaceBytes);
+					} else {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$12) { p.buf = v$12; })).WriteByte(32);
+					}
+				}
+				if (plus || goSyntax) {
+					if (f$1 = (_struct$8 = t.Field(i$1), new reflect.StructField.Ptr(_struct$8.Name, _struct$8.PkgPath, _struct$8.Type, _struct$8.Tag, _struct$8.Offset, _struct$8.Index, _struct$8.Anonymous)), !(f$1.Name === "")) {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$13) { p.buf = v$13; })).WriteString(f$1.Name);
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$14) { p.buf = v$14; })).WriteByte(58);
+					}
+				}
+				p.printValue((_struct$10 = getField((_struct$9 = v$10, new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), i$1), new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+				i$1 = i$1 + 1 >> 0;
+			}
+			(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$15) { p.buf = v$15; })).WriteByte(125);
+		} else if (_ref === 20) {
+			value$1 = (_struct$11 = f.Elem(), new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag));
+			if (!value$1.IsValid()) {
+				if (goSyntax) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$16) { p.buf = v$16; })).WriteString(f.Type().String());
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$17) { p.buf = v$17; })).Write(nilParenBytes);
+				} else {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$18) { p.buf = v$18; })).Write(nilAngleBytes);
+				}
+			} else {
+				wasString = p.printValue((_struct$12 = value$1, new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+			}
+		} else if (_ref === 17 || _ref === 23) {
+			if (typ = f.Type(), typ.Elem().Kind() === 8) {
+				bytes = (go$sliceType(Go$Uint8)).nil;
+				if (f.Kind() === 23) {
+					bytes = f.Bytes();
+				} else if (f.CanAddr()) {
+					bytes = f.Slice(0, f.Len()).Bytes();
+				} else {
+					bytes = (go$sliceType(Go$Uint8)).make(f.Len(), 0, function() { return 0; });
+					_ref$2 = bytes;
+					_i$1 = 0;
+					while (_i$1 < _ref$2.length) {
+						i$2 = _i$1;
+						_slice$1 = bytes, _index$1 = i$2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (f.Index(i$2).Uint().low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+						_i$1++;
+					}
+				}
+				p.fmtBytes(bytes, verb, goSyntax, typ, depth);
+				wasString = verb === 115;
+				break;
+			}
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$19) { p.buf = v$19; })).WriteString(value.Type().String());
+				if ((f.Kind() === 23) && f.IsNil()) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$20) { p.buf = v$20; })).WriteString("(nil)");
+					break;
+				}
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$21) { p.buf = v$21; })).WriteByte(123);
+			} else {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$22) { p.buf = v$22; })).WriteByte(91);
+			}
+			i$3 = 0;
+			while (i$3 < f.Len()) {
+				if (i$3 > 0) {
+					if (goSyntax) {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$23) { p.buf = v$23; })).Write(commaSpaceBytes);
+					} else {
+						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$24) { p.buf = v$24; })).WriteByte(32);
+					}
+				}
+				p.printValue((_struct$13 = f.Index(i$3), new reflect.Value.Ptr(_struct$13.typ, _struct$13.val, _struct$13.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+				i$3 = i$3 + 1 >> 0;
+			}
+			if (goSyntax) {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$25) { p.buf = v$25; })).WriteByte(125);
+			} else {
+				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$26) { p.buf = v$26; })).WriteByte(93);
+			}
+		} else if (_ref === 22) {
+			v$27 = f.Pointer();
+			if (!((v$27 === 0)) && (depth === 0)) {
+				a = (_struct$14 = f.Elem(), new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag));
+				_ref$3 = a.Kind();
+				if (_ref$3 === 17 || _ref$3 === 23) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$28) { p.buf = v$28; })).WriteByte(38);
+					p.printValue((_struct$15 = a, new reflect.Value.Ptr(_struct$15.typ, _struct$15.val, _struct$15.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+					break BigSwitch;
+				} else if (_ref$3 === 25) {
+					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$29) { p.buf = v$29; })).WriteByte(38);
+					p.printValue((_struct$16 = a, new reflect.Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+					break BigSwitch;
+				}
+			}
+			p.fmtPointer((_struct$17 = value, new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag)), verb, goSyntax);
+		} else if (_ref === 18 || _ref === 19 || _ref === 26) {
+			p.fmtPointer((_struct$18 = value, new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag)), verb, goSyntax);
+		} else {
+			p.unknownType(new f.constructor.Struct(f));
+		} }
 		p.value = (_struct$19 = oldValue, new reflect.Value.Ptr(_struct$19.typ, _struct$19.val, _struct$19.flag));
 		wasString = wasString;
 		return wasString;
@@ -43895,415 +43880,412 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 		}
 		_ref$1 = id;
-		switch (undefined) {
-		default:
-			if (_ref$1 === 0) {
-				S = x.typ;
-				T = null;
-				if (_tuple$1 = (x$1 = S.Underlying(), (x$1 !== null && x$1.constructor === (go$ptrType(Slice)) ? [x$1.go$val, true] : [(go$ptrType(Slice)).nil, false])), s = _tuple$1[0], !(s === (go$ptrType(Slice)).nil)) {
-					T = s.elem;
-				} else {
-					check.invalidArg(x.pos(), "%s is not a slice", new (go$sliceType(go$emptyInterface))([x]));
-					return _;
-				}
-				alist = new (go$sliceType(operand))([(_struct$1 = x, new operand.Ptr(_struct$1.mode, _struct$1.expr, _struct$1.typ, _struct$1.val, _struct$1.id))]);
-				if ((nargs === 2) && (new token.Pos(call.Ellipsis)).IsValid() && x.assignableTo(check.conf, NewSlice(universeByte))) {
-					arg(x, 1);
-					if (x.mode === 0) {
-						return _;
-					}
-					if (isString(x.typ)) {
-						if (!(check.Info.Types === false)) {
-							sig = makeSig(S, new (go$sliceType(Type))([S, NewSlice(universeByte)]));
-							sig.variadic = true;
-							check.recordBuiltinType(call.Fun, sig);
-						}
-						x.mode = 7;
-						x.typ = S;
-						break;
-					}
-					alist = go$append(alist, (_struct$2 = x, new operand.Ptr(_struct$2.mode, _struct$2.expr, _struct$2.typ, _struct$2.val, _struct$2.id)));
-				}
-				sig$1 = makeSig(S, new (go$sliceType(Type))([S, NewSlice(T)]));
-				sig$1.variadic = true;
-				check.arguments$(x, call, sig$1, (function(x$2, i) {
-					var _slice, _index, _struct$3, l, r;
-					if (i < alist.length) {
-						l = x$2, r = (_struct$3 = (_slice = alist, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new operand.Ptr(_struct$3.mode, _struct$3.expr, _struct$3.typ, _struct$3.val, _struct$3.id)), l.mode = r.mode, l.expr = r.expr, l.typ = r.typ, l.val = r.val, l.id = r.id;
-						return;
-					}
-					arg(x$2, i);
-				}), nargs);
-				x.mode = 7;
-				x.typ = S;
-				if (!(check.Info.Types === false)) {
-					check.recordBuiltinType(call.Fun, sig$1);
-				}
-			} else if (_ref$1 === 1 || _ref$1 === 7) {
-				mode = 0;
-				typ = null;
-				val = null;
-				typ = implicitArrayDeref(x.typ.Underlying());
-				_ref$2 = typ;
-				_type = _ref$2 !== null ? _ref$2.constructor : null;
-				if (_type === (go$ptrType(Basic))) {
-					t = _ref$2.go$val;
-					if (isString(t) && (id === 7)) {
-						if (x.mode === 4) {
-							mode = 4;
-							val = exact.MakeInt64(new Go$Int64(0, exact.StringVal(x.val).length));
-						} else {
-							mode = 7;
-						}
-					}
-				} else if (_type === (go$ptrType(Array))) {
-					t = _ref$2.go$val;
-					mode = 7;
-					if (!check.containsCallsOrReceives(x.expr)) {
-						mode = 4;
-						val = exact.MakeInt64(t.len);
-					}
-				} else if (_type === (go$ptrType(Slice)) || _type === (go$ptrType(Chan))) {
-					t = _ref$2;
-					mode = 7;
-				} else if (_type === (go$ptrType(Map))) {
-					t = _ref$2.go$val;
-					if (id === 7) {
-						mode = 7;
-					}
-				}
-				if (mode === 0) {
-					check.invalidArg(x.pos(), "%s for %s", new (go$sliceType(go$emptyInterface))([x, new Go$String(bin.name)]));
-					return _;
-				}
-				x.mode = mode;
-				x.typ = go$pkg.Typ[2];
-				x.val = val;
-				if (!(check.Info.Types === false) && !((mode === 4))) {
-					check.recordBuiltinType(call.Fun, makeSig(x.typ, new (go$sliceType(Type))([typ])));
-				}
-			} else if (_ref$1 === 2) {
-				_tuple$2 = (x$2 = x.typ.Underlying(), (x$2 !== null && x$2.constructor === (go$ptrType(Chan)) ? [x$2.go$val, true] : [(go$ptrType(Chan)).nil, false])), c = _tuple$2[0];
-				if (c === (go$ptrType(Chan)).nil) {
-					check.invalidArg(x.pos(), "%s is not a channel", new (go$sliceType(go$emptyInterface))([x]));
-					return _;
-				}
-				if (c.dir === 2) {
-					check.invalidArg(x.pos(), "%s must not be a receive-only channel", new (go$sliceType(go$emptyInterface))([x]));
-					return _;
-				}
-				x.mode = 1;
-				if (!(check.Info.Types === false)) {
-					check.recordBuiltinType(call.Fun, makeSig(null, new (go$sliceType(Type))([c])));
-				}
-			} else if (_ref$1 === 3) {
-				if (!check.complexArg(x)) {
-					return _;
-				}
-				y = new operand.Ptr();
-				arg(y, 1);
-				if (y.mode === 0) {
-					return _;
-				}
-				if (!check.complexArg(y)) {
-					return _;
-				}
-				check.convertUntyped(x, y.typ);
-				if (x.mode === 0) {
-					return _;
-				}
-				check.convertUntyped(y, x.typ);
-				if (y.mode === 0) {
-					return _;
-				}
-				if (!Identical(x.typ, y.typ)) {
-					check.invalidArg(x.pos(), "mismatched types %s and %s", new (go$sliceType(go$emptyInterface))([x.typ, y.typ]));
-					return _;
-				}
-				if ((x.mode === 4) && (y.mode === 4)) {
-					x.val = exact.BinaryOp(x.val, 12, exact.MakeImag(y.val));
-				} else {
-					x.mode = 7;
-				}
-				realT = x.typ;
-				complexT = go$pkg.Typ[0];
-				_ref$3 = (x$3 = realT.Underlying(), (x$3 !== null && x$3.constructor === (go$ptrType(Basic)) ? x$3.go$val : go$typeAssertionFailed(x$3, (go$ptrType(Basic))))).kind;
-				if (_ref$3 === 13) {
-					complexT = go$pkg.Typ[15];
-				} else if (_ref$3 === 14) {
-					complexT = go$pkg.Typ[16];
-				} else if (_ref$3 === 20 || _ref$3 === 21 || _ref$3 === 22) {
-					if (x.mode === 4) {
-						realT = (x$4 = defaultType(realT), (x$4 !== null && x$4.constructor === (go$ptrType(Basic)) ? x$4.go$val : go$typeAssertionFailed(x$4, (go$ptrType(Basic)))));
-						complexT = go$pkg.Typ[23];
-					} else {
-						realT = go$pkg.Typ[14];
-						complexT = go$pkg.Typ[16];
-					}
-				} else {
-					check.invalidArg(x.pos(), "float32 or float64 arguments expected", new (go$sliceType(go$emptyInterface))([]));
-					return _;
-				}
-				x.typ = complexT;
-				if (!(check.Info.Types === false) && !((x.mode === 4))) {
-					check.recordBuiltinType(call.Fun, makeSig(complexT, new (go$sliceType(Type))([realT, realT])));
-				}
-				if (!((x.mode === 4))) {
-					check.updateExprType(x.expr, realT, true);
-					check.updateExprType(y.expr, realT, true);
-				}
-			} else if (_ref$1 === 4) {
-				dst = null;
-				if (_tuple$3 = (x$5 = x.typ.Underlying(), (x$5 !== null && x$5.constructor === (go$ptrType(Slice)) ? [x$5.go$val, true] : [(go$ptrType(Slice)).nil, false])), t$1 = _tuple$3[0], !(t$1 === (go$ptrType(Slice)).nil)) {
-					dst = t$1.elem;
-				}
-				y$1 = new operand.Ptr();
-				arg(y$1, 1);
-				if (y$1.mode === 0) {
-					return _;
-				}
-				src = null;
-				_ref$4 = y$1.typ.Underlying();
-				_type$1 = _ref$4 !== null ? _ref$4.constructor : null;
-				if (_type$1 === (go$ptrType(Basic))) {
-					t$2 = _ref$4.go$val;
-					if (isString(y$1.typ)) {
-						src = universeByte;
-					}
-				} else if (_type$1 === (go$ptrType(Slice))) {
-					t$2 = _ref$4.go$val;
-					src = t$2.elem;
-				}
-				if (go$interfaceIsEqual(dst, null) || go$interfaceIsEqual(src, null)) {
-					check.invalidArg(x.pos(), "copy expects slice arguments; found %s and %s", new (go$sliceType(go$emptyInterface))([x, y$1]));
-					return _;
-				}
-				if (!Identical(dst, src)) {
-					check.invalidArg(x.pos(), "arguments to copy %s and %s have different element types %s and %s", new (go$sliceType(go$emptyInterface))([x, y$1, dst, src]));
-					return _;
-				}
-				x.mode = 7;
-				x.typ = go$pkg.Typ[2];
-				if (!(check.Info.Types === false)) {
-					S$1 = NewSlice(dst);
-					check.recordBuiltinType(call.Fun, makeSig(x.typ, new (go$sliceType(Type))([S$1, S$1])));
-				}
-			} else if (_ref$1 === 5) {
-				_tuple$4 = (x$6 = x.typ.Underlying(), (x$6 !== null && x$6.constructor === (go$ptrType(Map)) ? [x$6.go$val, true] : [(go$ptrType(Map)).nil, false])), m = _tuple$4[0];
-				if (m === (go$ptrType(Map)).nil) {
-					check.invalidArg(x.pos(), "%s is not a map", new (go$sliceType(go$emptyInterface))([x]));
-					return _;
-				}
+		switch (0) { default: if (_ref$1 === 0) {
+			S = x.typ;
+			T = null;
+			if (_tuple$1 = (x$1 = S.Underlying(), (x$1 !== null && x$1.constructor === (go$ptrType(Slice)) ? [x$1.go$val, true] : [(go$ptrType(Slice)).nil, false])), s = _tuple$1[0], !(s === (go$ptrType(Slice)).nil)) {
+				T = s.elem;
+			} else {
+				check.invalidArg(x.pos(), "%s is not a slice", new (go$sliceType(go$emptyInterface))([x]));
+				return _;
+			}
+			alist = new (go$sliceType(operand))([(_struct$1 = x, new operand.Ptr(_struct$1.mode, _struct$1.expr, _struct$1.typ, _struct$1.val, _struct$1.id))]);
+			if ((nargs === 2) && (new token.Pos(call.Ellipsis)).IsValid() && x.assignableTo(check.conf, NewSlice(universeByte))) {
 				arg(x, 1);
 				if (x.mode === 0) {
 					return _;
 				}
-				if (!x.assignableTo(check.conf, m.key)) {
-					check.invalidArg(x.pos(), "%s is not assignable to %s", new (go$sliceType(go$emptyInterface))([x, m.key]));
-					return _;
-				}
-				x.mode = 1;
-				if (!(check.Info.Types === false)) {
-					check.recordBuiltinType(call.Fun, makeSig(null, new (go$sliceType(Type))([m, m.key])));
-				}
-			} else if (_ref$1 === 6 || _ref$1 === 13) {
-				if (!isComplex(x.typ)) {
-					check.invalidArg(x.pos(), "%s must be a complex number", new (go$sliceType(go$emptyInterface))([x]));
-					return _;
-				}
-				if (x.mode === 4) {
-					if (id === 13) {
-						x.val = exact.Real(x.val);
-					} else {
-						x.val = exact.Imag(x.val);
+				if (isString(x.typ)) {
+					if (!(check.Info.Types === false)) {
+						sig = makeSig(S, new (go$sliceType(Type))([S, NewSlice(universeByte)]));
+						sig.variadic = true;
+						check.recordBuiltinType(call.Fun, sig);
 					}
-				} else {
 					x.mode = 7;
-				}
-				k = 0;
-				_ref$5 = (x$7 = x.typ.Underlying(), (x$7 !== null && x$7.constructor === (go$ptrType(Basic)) ? x$7.go$val : go$typeAssertionFailed(x$7, (go$ptrType(Basic))))).kind;
-				if (_ref$5 === 15) {
-					k = 13;
-				} else if (_ref$5 === 16) {
-					k = 14;
-				} else if (_ref$5 === 23) {
-					k = 22;
-				} else {
-					unreachable();
-				}
-				if (!(check.Info.Types === false) && !((x.mode === 4))) {
-					check.recordBuiltinType(call.Fun, makeSig(go$pkg.Typ[k], new (go$sliceType(Type))([x.typ])));
-				}
-				x.typ = go$pkg.Typ[k];
-			} else if (_ref$1 === 8) {
-				arg0 = (_slice = call.Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-				T$1 = check.typ(arg0, (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
-				if (go$interfaceIsEqual(T$1, go$pkg.Typ[0])) {
-					return _;
-				}
-				min = 0;
-				_ref$6 = T$1.Underlying();
-				_type$2 = _ref$6 !== null ? _ref$6.constructor : null;
-				if (_type$2 === (go$ptrType(Slice))) {
-					min = 2;
-				} else if (_type$2 === (go$ptrType(Map)) || _type$2 === (go$ptrType(Chan))) {
-					min = 1;
-				} else {
-					check.invalidArg(arg0.Pos(), "cannot make %s; type must be slice, map, or channel", new (go$sliceType(go$emptyInterface))([arg0]));
-					return _;
-				}
-				if (nargs < min || (min + 1 >> 0) < nargs) {
-					check.errorf(call.Pos(), "%s expects %d or %d arguments; found %d", new (go$sliceType(go$emptyInterface))([call, new Go$Int(min), new Go$Int((min + 1 >> 0)), new Go$Int(nargs)]));
-					return _;
-				}
-				sizes = (go$sliceType(Go$Int64)).nil;
-				_ref$7 = go$subslice(call.Args, 1);
-				_i = 0;
-				while (_i < _ref$7.length) {
-					arg$1 = (_slice$1 = _ref$7, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-					if (_tuple$5 = check.index(arg$1, new Go$Int64(-1, 4294967295)), s$1 = _tuple$5[0], ok = _tuple$5[1], ok && (s$1.high > 0 || (s$1.high === 0 && s$1.low >= 0))) {
-						sizes = go$append(sizes, s$1);
-					}
-					_i++;
-				}
-				if ((sizes.length === 2) && (x$8 = (_slice$2 = sizes, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), x$9 = (_slice$3 = sizes, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (x$8.high > x$9.high || (x$8.high === x$9.high && x$8.low > x$9.low)))) {
-					check.invalidArg((_slice$4 = call.Args, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).Pos(), "length and capacity swapped", new (go$sliceType(go$emptyInterface))([]));
-				}
-				x.mode = 5;
-				x.typ = T$1;
-				if (!(check.Info.Types === false)) {
-					params = go$toNativeArray("Interface", [T$1, go$pkg.Typ[2], go$pkg.Typ[2]]);
-					check.recordBuiltinType(call.Fun, makeSig(x.typ, go$subslice(new (go$sliceType(Type))(params), 0, (1 + sizes.length >> 0))));
-				}
-			} else if (_ref$1 === 9) {
-				T$2 = check.typ((_slice$5 = call.Args, _index$5 = 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
-				if (go$interfaceIsEqual(T$2, go$pkg.Typ[0])) {
-					return _;
-				}
-				x.mode = 5;
-				x.typ = new Pointer.Ptr(T$2, new cachedMethodSet.Ptr());
-				if (!(check.Info.Types === false)) {
-					check.recordBuiltinType(call.Fun, makeSig(x.typ, new (go$sliceType(Type))([T$2])));
-				}
-			} else if (_ref$1 === 10) {
-				T$3 = new Interface.Ptr();
-				if (!check.assignment(x, T$3)) {
-					assert(x.mode === 0);
-					return _;
-				}
-				x.mode = 1;
-				if (!(check.Info.Types === false)) {
-					check.recordBuiltinType(call.Fun, makeSig(null, new (go$sliceType(Type))([T$3])));
-				}
-			} else if (_ref$1 === 11 || _ref$1 === 12) {
-				params$1 = (go$sliceType(Type)).nil;
-				if (nargs > 0) {
-					params$1 = (go$sliceType(Type)).make(nargs, 0, function() { return null; });
-					i = 0;
-					while (i < nargs) {
-						if (i > 0) {
-							arg(x, i);
-						}
-						if (!check.assignment(x, null)) {
-							assert(x.mode === 0);
-							return _;
-						}
-						_slice$6 = params$1, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = x.typ) : go$throwRuntimeError("index out of range");
-						i = i + 1 >> 0;
-					}
-				}
-				x.mode = 1;
-				if (!(check.Info.Types === false)) {
-					check.recordBuiltinType(call.Fun, makeSig(null, params$1));
-				}
-			} else if (_ref$1 === 14) {
-				x.mode = 7;
-				x.typ = new Interface.Ptr();
-				if (!(check.Info.Types === false)) {
-					check.recordBuiltinType(call.Fun, makeSig(x.typ, new (go$sliceType(Type))([])));
-				}
-			} else if (_ref$1 === 15) {
-				if (!check.assignment(x, null)) {
-					assert(x.mode === 0);
-					return _;
-				}
-				x.mode = 4;
-				x.val = exact.MakeInt64(check.conf.alignof(x.typ));
-				x.typ = go$pkg.Typ[12];
-			} else if (_ref$1 === 16) {
-				arg0$1 = (_slice$7 = call.Args, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
-				_tuple$6 = (x$10 = unparen(arg0$1), (x$10 !== null && x$10.constructor === (go$ptrType(ast.SelectorExpr)) ? [x$10.go$val, true] : [(go$ptrType(ast.SelectorExpr)).nil, false])), selx = _tuple$6[0];
-				if (selx === (go$ptrType(ast.SelectorExpr)).nil) {
-					check.invalidArg(arg0$1.Pos(), "%s is not a selector expression", new (go$sliceType(go$emptyInterface))([arg0$1]));
-					check.rawExpr(x, arg0$1, null);
-					return _;
-				}
-				check.expr(x, selx.X);
-				if (x.mode === 0) {
-					return _;
-				}
-				base = derefStructPtr(x.typ);
-				sel = selx.Sel.Name;
-				_tuple$7 = LookupFieldOrMethod(base, check.pkg, sel), obj = _tuple$7[0], index = _tuple$7[1], indirect = _tuple$7[2];
-				_ref$8 = obj;
-				_type$3 = _ref$8 !== null ? _ref$8.constructor : null;
-				if (_type$3 === null) {
-					check.invalidArg(x.pos(), "%s has no single field %s", new (go$sliceType(go$emptyInterface))([base, new Go$String(sel)]));
-					return _;
-				} else if (_type$3 === (go$ptrType(Func))) {
-					check.invalidArg(arg0$1.Pos(), "%s is a method value", new (go$sliceType(go$emptyInterface))([arg0$1]));
-					return _;
-				}
-				if (indirect) {
-					check.invalidArg(x.pos(), "field %s is embedded via a pointer in %s", new (go$sliceType(go$emptyInterface))([new Go$String(sel), base]));
-					return _;
-				}
-				check.recordSelection(selx, 0, base, obj, index, false);
-				offs = check.conf.offsetof(base, index);
-				x.mode = 4;
-				x.val = exact.MakeInt64(offs);
-				x.typ = go$pkg.Typ[12];
-			} else if (_ref$1 === 17) {
-				if (!check.assignment(x, null)) {
-					assert(x.mode === 0);
-					return _;
-				}
-				x.mode = 4;
-				x.val = exact.MakeInt64(check.conf.sizeof(x.typ));
-				x.typ = go$pkg.Typ[12];
-			} else if (_ref$1 === 18) {
-				if (!((x.mode === 4)) || !isBoolean(x.typ)) {
-					check.invalidArg(x.pos(), "%s is not a boolean constant", new (go$sliceType(go$emptyInterface))([x]));
-					return _;
-				}
-				if (!((x.val.Kind() === 1))) {
-					check.errorf(x.pos(), "internal error: value of %s should be a boolean constant", new (go$sliceType(go$emptyInterface))([x]));
-					return _;
-				}
-				if (!exact.BoolVal(x.val)) {
-					check.errorf(call.Pos(), "%s failed", new (go$sliceType(go$emptyInterface))([call]));
-				}
-			} else if (_ref$1 === 19) {
-				if (nargs === 0) {
-					check.dump("%s: trace() without arguments", new (go$sliceType(go$emptyInterface))([new token.Pos(call.Pos())]));
-					x.mode = 1;
+					x.typ = S;
 					break;
 				}
-				t$3 = new operand.Ptr();
-				x1 = x;
-				_ref$9 = call.Args;
-				_i$1 = 0;
-				while (_i$1 < _ref$9.length) {
-					arg$2 = (_slice$8 = _ref$9, _index$8 = _i$1, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
-					check.rawExpr(x1, arg$2, null);
-					check.dump("%s: %s", new (go$sliceType(go$emptyInterface))([new token.Pos(x1.pos()), x1]));
-					x1 = t$3;
-					_i$1++;
+				alist = go$append(alist, (_struct$2 = x, new operand.Ptr(_struct$2.mode, _struct$2.expr, _struct$2.typ, _struct$2.val, _struct$2.id)));
+			}
+			sig$1 = makeSig(S, new (go$sliceType(Type))([S, NewSlice(T)]));
+			sig$1.variadic = true;
+			check.arguments$(x, call, sig$1, (function(x$2, i) {
+				var _slice, _index, _struct$3, l, r;
+				if (i < alist.length) {
+					l = x$2, r = (_struct$3 = (_slice = alist, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new operand.Ptr(_struct$3.mode, _struct$3.expr, _struct$3.typ, _struct$3.val, _struct$3.id)), l.mode = r.mode, l.expr = r.expr, l.typ = r.typ, l.val = r.val, l.id = r.id;
+					return;
 				}
+				arg(x$2, i);
+			}), nargs);
+			x.mode = 7;
+			x.typ = S;
+			if (!(check.Info.Types === false)) {
+				check.recordBuiltinType(call.Fun, sig$1);
+			}
+		} else if (_ref$1 === 1 || _ref$1 === 7) {
+			mode = 0;
+			typ = null;
+			val = null;
+			typ = implicitArrayDeref(x.typ.Underlying());
+			_ref$2 = typ;
+			_type = _ref$2 !== null ? _ref$2.constructor : null;
+			if (_type === (go$ptrType(Basic))) {
+				t = _ref$2.go$val;
+				if (isString(t) && (id === 7)) {
+					if (x.mode === 4) {
+						mode = 4;
+						val = exact.MakeInt64(new Go$Int64(0, exact.StringVal(x.val).length));
+					} else {
+						mode = 7;
+					}
+				}
+			} else if (_type === (go$ptrType(Array))) {
+				t = _ref$2.go$val;
+				mode = 7;
+				if (!check.containsCallsOrReceives(x.expr)) {
+					mode = 4;
+					val = exact.MakeInt64(t.len);
+				}
+			} else if (_type === (go$ptrType(Slice)) || _type === (go$ptrType(Chan))) {
+				t = _ref$2;
+				mode = 7;
+			} else if (_type === (go$ptrType(Map))) {
+				t = _ref$2.go$val;
+				if (id === 7) {
+					mode = 7;
+				}
+			}
+			if (mode === 0) {
+				check.invalidArg(x.pos(), "%s for %s", new (go$sliceType(go$emptyInterface))([x, new Go$String(bin.name)]));
+				return _;
+			}
+			x.mode = mode;
+			x.typ = go$pkg.Typ[2];
+			x.val = val;
+			if (!(check.Info.Types === false) && !((mode === 4))) {
+				check.recordBuiltinType(call.Fun, makeSig(x.typ, new (go$sliceType(Type))([typ])));
+			}
+		} else if (_ref$1 === 2) {
+			_tuple$2 = (x$2 = x.typ.Underlying(), (x$2 !== null && x$2.constructor === (go$ptrType(Chan)) ? [x$2.go$val, true] : [(go$ptrType(Chan)).nil, false])), c = _tuple$2[0];
+			if (c === (go$ptrType(Chan)).nil) {
+				check.invalidArg(x.pos(), "%s is not a channel", new (go$sliceType(go$emptyInterface))([x]));
+				return _;
+			}
+			if (c.dir === 2) {
+				check.invalidArg(x.pos(), "%s must not be a receive-only channel", new (go$sliceType(go$emptyInterface))([x]));
+				return _;
+			}
+			x.mode = 1;
+			if (!(check.Info.Types === false)) {
+				check.recordBuiltinType(call.Fun, makeSig(null, new (go$sliceType(Type))([c])));
+			}
+		} else if (_ref$1 === 3) {
+			if (!check.complexArg(x)) {
+				return _;
+			}
+			y = new operand.Ptr();
+			arg(y, 1);
+			if (y.mode === 0) {
+				return _;
+			}
+			if (!check.complexArg(y)) {
+				return _;
+			}
+			check.convertUntyped(x, y.typ);
+			if (x.mode === 0) {
+				return _;
+			}
+			check.convertUntyped(y, x.typ);
+			if (y.mode === 0) {
+				return _;
+			}
+			if (!Identical(x.typ, y.typ)) {
+				check.invalidArg(x.pos(), "mismatched types %s and %s", new (go$sliceType(go$emptyInterface))([x.typ, y.typ]));
+				return _;
+			}
+			if ((x.mode === 4) && (y.mode === 4)) {
+				x.val = exact.BinaryOp(x.val, 12, exact.MakeImag(y.val));
+			} else {
+				x.mode = 7;
+			}
+			realT = x.typ;
+			complexT = go$pkg.Typ[0];
+			_ref$3 = (x$3 = realT.Underlying(), (x$3 !== null && x$3.constructor === (go$ptrType(Basic)) ? x$3.go$val : go$typeAssertionFailed(x$3, (go$ptrType(Basic))))).kind;
+			if (_ref$3 === 13) {
+				complexT = go$pkg.Typ[15];
+			} else if (_ref$3 === 14) {
+				complexT = go$pkg.Typ[16];
+			} else if (_ref$3 === 20 || _ref$3 === 21 || _ref$3 === 22) {
+				if (x.mode === 4) {
+					realT = (x$4 = defaultType(realT), (x$4 !== null && x$4.constructor === (go$ptrType(Basic)) ? x$4.go$val : go$typeAssertionFailed(x$4, (go$ptrType(Basic)))));
+					complexT = go$pkg.Typ[23];
+				} else {
+					realT = go$pkg.Typ[14];
+					complexT = go$pkg.Typ[16];
+				}
+			} else {
+				check.invalidArg(x.pos(), "float32 or float64 arguments expected", new (go$sliceType(go$emptyInterface))([]));
+				return _;
+			}
+			x.typ = complexT;
+			if (!(check.Info.Types === false) && !((x.mode === 4))) {
+				check.recordBuiltinType(call.Fun, makeSig(complexT, new (go$sliceType(Type))([realT, realT])));
+			}
+			if (!((x.mode === 4))) {
+				check.updateExprType(x.expr, realT, true);
+				check.updateExprType(y.expr, realT, true);
+			}
+		} else if (_ref$1 === 4) {
+			dst = null;
+			if (_tuple$3 = (x$5 = x.typ.Underlying(), (x$5 !== null && x$5.constructor === (go$ptrType(Slice)) ? [x$5.go$val, true] : [(go$ptrType(Slice)).nil, false])), t$1 = _tuple$3[0], !(t$1 === (go$ptrType(Slice)).nil)) {
+				dst = t$1.elem;
+			}
+			y$1 = new operand.Ptr();
+			arg(y$1, 1);
+			if (y$1.mode === 0) {
+				return _;
+			}
+			src = null;
+			_ref$4 = y$1.typ.Underlying();
+			_type$1 = _ref$4 !== null ? _ref$4.constructor : null;
+			if (_type$1 === (go$ptrType(Basic))) {
+				t$2 = _ref$4.go$val;
+				if (isString(y$1.typ)) {
+					src = universeByte;
+				}
+			} else if (_type$1 === (go$ptrType(Slice))) {
+				t$2 = _ref$4.go$val;
+				src = t$2.elem;
+			}
+			if (go$interfaceIsEqual(dst, null) || go$interfaceIsEqual(src, null)) {
+				check.invalidArg(x.pos(), "copy expects slice arguments; found %s and %s", new (go$sliceType(go$emptyInterface))([x, y$1]));
+				return _;
+			}
+			if (!Identical(dst, src)) {
+				check.invalidArg(x.pos(), "arguments to copy %s and %s have different element types %s and %s", new (go$sliceType(go$emptyInterface))([x, y$1, dst, src]));
+				return _;
+			}
+			x.mode = 7;
+			x.typ = go$pkg.Typ[2];
+			if (!(check.Info.Types === false)) {
+				S$1 = NewSlice(dst);
+				check.recordBuiltinType(call.Fun, makeSig(x.typ, new (go$sliceType(Type))([S$1, S$1])));
+			}
+		} else if (_ref$1 === 5) {
+			_tuple$4 = (x$6 = x.typ.Underlying(), (x$6 !== null && x$6.constructor === (go$ptrType(Map)) ? [x$6.go$val, true] : [(go$ptrType(Map)).nil, false])), m = _tuple$4[0];
+			if (m === (go$ptrType(Map)).nil) {
+				check.invalidArg(x.pos(), "%s is not a map", new (go$sliceType(go$emptyInterface))([x]));
+				return _;
+			}
+			arg(x, 1);
+			if (x.mode === 0) {
+				return _;
+			}
+			if (!x.assignableTo(check.conf, m.key)) {
+				check.invalidArg(x.pos(), "%s is not assignable to %s", new (go$sliceType(go$emptyInterface))([x, m.key]));
+				return _;
+			}
+			x.mode = 1;
+			if (!(check.Info.Types === false)) {
+				check.recordBuiltinType(call.Fun, makeSig(null, new (go$sliceType(Type))([m, m.key])));
+			}
+		} else if (_ref$1 === 6 || _ref$1 === 13) {
+			if (!isComplex(x.typ)) {
+				check.invalidArg(x.pos(), "%s must be a complex number", new (go$sliceType(go$emptyInterface))([x]));
+				return _;
+			}
+			if (x.mode === 4) {
+				if (id === 13) {
+					x.val = exact.Real(x.val);
+				} else {
+					x.val = exact.Imag(x.val);
+				}
+			} else {
+				x.mode = 7;
+			}
+			k = 0;
+			_ref$5 = (x$7 = x.typ.Underlying(), (x$7 !== null && x$7.constructor === (go$ptrType(Basic)) ? x$7.go$val : go$typeAssertionFailed(x$7, (go$ptrType(Basic))))).kind;
+			if (_ref$5 === 15) {
+				k = 13;
+			} else if (_ref$5 === 16) {
+				k = 14;
+			} else if (_ref$5 === 23) {
+				k = 22;
 			} else {
 				unreachable();
 			}
-		}
+			if (!(check.Info.Types === false) && !((x.mode === 4))) {
+				check.recordBuiltinType(call.Fun, makeSig(go$pkg.Typ[k], new (go$sliceType(Type))([x.typ])));
+			}
+			x.typ = go$pkg.Typ[k];
+		} else if (_ref$1 === 8) {
+			arg0 = (_slice = call.Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			T$1 = check.typ(arg0, (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
+			if (go$interfaceIsEqual(T$1, go$pkg.Typ[0])) {
+				return _;
+			}
+			min = 0;
+			_ref$6 = T$1.Underlying();
+			_type$2 = _ref$6 !== null ? _ref$6.constructor : null;
+			if (_type$2 === (go$ptrType(Slice))) {
+				min = 2;
+			} else if (_type$2 === (go$ptrType(Map)) || _type$2 === (go$ptrType(Chan))) {
+				min = 1;
+			} else {
+				check.invalidArg(arg0.Pos(), "cannot make %s; type must be slice, map, or channel", new (go$sliceType(go$emptyInterface))([arg0]));
+				return _;
+			}
+			if (nargs < min || (min + 1 >> 0) < nargs) {
+				check.errorf(call.Pos(), "%s expects %d or %d arguments; found %d", new (go$sliceType(go$emptyInterface))([call, new Go$Int(min), new Go$Int((min + 1 >> 0)), new Go$Int(nargs)]));
+				return _;
+			}
+			sizes = (go$sliceType(Go$Int64)).nil;
+			_ref$7 = go$subslice(call.Args, 1);
+			_i = 0;
+			while (_i < _ref$7.length) {
+				arg$1 = (_slice$1 = _ref$7, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				if (_tuple$5 = check.index(arg$1, new Go$Int64(-1, 4294967295)), s$1 = _tuple$5[0], ok = _tuple$5[1], ok && (s$1.high > 0 || (s$1.high === 0 && s$1.low >= 0))) {
+					sizes = go$append(sizes, s$1);
+				}
+				_i++;
+			}
+			if ((sizes.length === 2) && (x$8 = (_slice$2 = sizes, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), x$9 = (_slice$3 = sizes, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (x$8.high > x$9.high || (x$8.high === x$9.high && x$8.low > x$9.low)))) {
+				check.invalidArg((_slice$4 = call.Args, _index$4 = 1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).Pos(), "length and capacity swapped", new (go$sliceType(go$emptyInterface))([]));
+			}
+			x.mode = 5;
+			x.typ = T$1;
+			if (!(check.Info.Types === false)) {
+				params = go$toNativeArray("Interface", [T$1, go$pkg.Typ[2], go$pkg.Typ[2]]);
+				check.recordBuiltinType(call.Fun, makeSig(x.typ, go$subslice(new (go$sliceType(Type))(params), 0, (1 + sizes.length >> 0))));
+			}
+		} else if (_ref$1 === 9) {
+			T$2 = check.typ((_slice$5 = call.Args, _index$5 = 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
+			if (go$interfaceIsEqual(T$2, go$pkg.Typ[0])) {
+				return _;
+			}
+			x.mode = 5;
+			x.typ = new Pointer.Ptr(T$2, new cachedMethodSet.Ptr());
+			if (!(check.Info.Types === false)) {
+				check.recordBuiltinType(call.Fun, makeSig(x.typ, new (go$sliceType(Type))([T$2])));
+			}
+		} else if (_ref$1 === 10) {
+			T$3 = new Interface.Ptr();
+			if (!check.assignment(x, T$3)) {
+				assert(x.mode === 0);
+				return _;
+			}
+			x.mode = 1;
+			if (!(check.Info.Types === false)) {
+				check.recordBuiltinType(call.Fun, makeSig(null, new (go$sliceType(Type))([T$3])));
+			}
+		} else if (_ref$1 === 11 || _ref$1 === 12) {
+			params$1 = (go$sliceType(Type)).nil;
+			if (nargs > 0) {
+				params$1 = (go$sliceType(Type)).make(nargs, 0, function() { return null; });
+				i = 0;
+				while (i < nargs) {
+					if (i > 0) {
+						arg(x, i);
+					}
+					if (!check.assignment(x, null)) {
+						assert(x.mode === 0);
+						return _;
+					}
+					_slice$6 = params$1, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = x.typ) : go$throwRuntimeError("index out of range");
+					i = i + 1 >> 0;
+				}
+			}
+			x.mode = 1;
+			if (!(check.Info.Types === false)) {
+				check.recordBuiltinType(call.Fun, makeSig(null, params$1));
+			}
+		} else if (_ref$1 === 14) {
+			x.mode = 7;
+			x.typ = new Interface.Ptr();
+			if (!(check.Info.Types === false)) {
+				check.recordBuiltinType(call.Fun, makeSig(x.typ, new (go$sliceType(Type))([])));
+			}
+		} else if (_ref$1 === 15) {
+			if (!check.assignment(x, null)) {
+				assert(x.mode === 0);
+				return _;
+			}
+			x.mode = 4;
+			x.val = exact.MakeInt64(check.conf.alignof(x.typ));
+			x.typ = go$pkg.Typ[12];
+		} else if (_ref$1 === 16) {
+			arg0$1 = (_slice$7 = call.Args, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+			_tuple$6 = (x$10 = unparen(arg0$1), (x$10 !== null && x$10.constructor === (go$ptrType(ast.SelectorExpr)) ? [x$10.go$val, true] : [(go$ptrType(ast.SelectorExpr)).nil, false])), selx = _tuple$6[0];
+			if (selx === (go$ptrType(ast.SelectorExpr)).nil) {
+				check.invalidArg(arg0$1.Pos(), "%s is not a selector expression", new (go$sliceType(go$emptyInterface))([arg0$1]));
+				check.rawExpr(x, arg0$1, null);
+				return _;
+			}
+			check.expr(x, selx.X);
+			if (x.mode === 0) {
+				return _;
+			}
+			base = derefStructPtr(x.typ);
+			sel = selx.Sel.Name;
+			_tuple$7 = LookupFieldOrMethod(base, check.pkg, sel), obj = _tuple$7[0], index = _tuple$7[1], indirect = _tuple$7[2];
+			_ref$8 = obj;
+			_type$3 = _ref$8 !== null ? _ref$8.constructor : null;
+			if (_type$3 === null) {
+				check.invalidArg(x.pos(), "%s has no single field %s", new (go$sliceType(go$emptyInterface))([base, new Go$String(sel)]));
+				return _;
+			} else if (_type$3 === (go$ptrType(Func))) {
+				check.invalidArg(arg0$1.Pos(), "%s is a method value", new (go$sliceType(go$emptyInterface))([arg0$1]));
+				return _;
+			}
+			if (indirect) {
+				check.invalidArg(x.pos(), "field %s is embedded via a pointer in %s", new (go$sliceType(go$emptyInterface))([new Go$String(sel), base]));
+				return _;
+			}
+			check.recordSelection(selx, 0, base, obj, index, false);
+			offs = check.conf.offsetof(base, index);
+			x.mode = 4;
+			x.val = exact.MakeInt64(offs);
+			x.typ = go$pkg.Typ[12];
+		} else if (_ref$1 === 17) {
+			if (!check.assignment(x, null)) {
+				assert(x.mode === 0);
+				return _;
+			}
+			x.mode = 4;
+			x.val = exact.MakeInt64(check.conf.sizeof(x.typ));
+			x.typ = go$pkg.Typ[12];
+		} else if (_ref$1 === 18) {
+			if (!((x.mode === 4)) || !isBoolean(x.typ)) {
+				check.invalidArg(x.pos(), "%s is not a boolean constant", new (go$sliceType(go$emptyInterface))([x]));
+				return _;
+			}
+			if (!((x.val.Kind() === 1))) {
+				check.errorf(x.pos(), "internal error: value of %s should be a boolean constant", new (go$sliceType(go$emptyInterface))([x]));
+				return _;
+			}
+			if (!exact.BoolVal(x.val)) {
+				check.errorf(call.Pos(), "%s failed", new (go$sliceType(go$emptyInterface))([call]));
+			}
+		} else if (_ref$1 === 19) {
+			if (nargs === 0) {
+				check.dump("%s: trace() without arguments", new (go$sliceType(go$emptyInterface))([new token.Pos(call.Pos())]));
+				x.mode = 1;
+				break;
+			}
+			t$3 = new operand.Ptr();
+			x1 = x;
+			_ref$9 = call.Args;
+			_i$1 = 0;
+			while (_i$1 < _ref$9.length) {
+				arg$2 = (_slice$8 = _ref$9, _index$8 = _i$1, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
+				check.rawExpr(x1, arg$2, null);
+				check.dump("%s: %s", new (go$sliceType(go$emptyInterface))([new token.Pos(x1.pos()), x1]));
+				x1 = t$3;
+				_i$1++;
+			}
+		} else {
+			unreachable();
+		} }
 		_ = true;
 		return _;
 	};
@@ -45729,41 +45711,38 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 		_ref = x;
 		_type = _ref !== null ? _ref.constructor : null;
-		switch (undefined) {
-		default:
-			if (_type === (go$ptrType(ast.BadExpr)) || _type === (go$ptrType(ast.FuncLit)) || _type === (go$ptrType(ast.CompositeLit)) || _type === (go$ptrType(ast.IndexExpr)) || _type === (go$ptrType(ast.SliceExpr)) || _type === (go$ptrType(ast.TypeAssertExpr)) || _type === (go$ptrType(ast.StarExpr)) || _type === (go$ptrType(ast.KeyValueExpr)) || _type === (go$ptrType(ast.ArrayType)) || _type === (go$ptrType(ast.StructType)) || _type === (go$ptrType(ast.FuncType)) || _type === (go$ptrType(ast.InterfaceType)) || _type === (go$ptrType(ast.MapType)) || _type === (go$ptrType(ast.ChanType))) {
-				x$1 = _ref;
-				return;
-			} else if (_type === (go$ptrType(ast.CallExpr))) {
-				x$1 = _ref.go$val;
-			} else if (_type === (go$ptrType(ast.Ident)) || _type === (go$ptrType(ast.BasicLit)) || _type === (go$ptrType(ast.SelectorExpr))) {
-				x$1 = _ref;
-			} else if (_type === (go$ptrType(ast.ParenExpr))) {
-				x$1 = _ref.go$val;
-				check.updateExprType(x$1.X, typ, final$1);
-			} else if (_type === (go$ptrType(ast.UnaryExpr))) {
-				x$1 = _ref.go$val;
-				if (!(go$interfaceIsEqual(old.val, null))) {
-					break;
-				}
-				check.updateExprType(x$1.X, typ, final$1);
-			} else if (_type === (go$ptrType(ast.BinaryExpr))) {
-				x$1 = _ref.go$val;
-				if (!(go$interfaceIsEqual(old.val, null))) {
-					break;
-				}
-				if (isComparison(x$1.Op)) {
-				} else if (isShift(x$1.Op)) {
-					check.updateExprType(x$1.X, typ, final$1);
-				} else {
-					check.updateExprType(x$1.X, typ, final$1);
-					check.updateExprType(x$1.Y, typ, final$1);
-				}
-			} else {
-				x$1 = _ref;
-				unreachable();
+		switch (0) { default: if (_type === (go$ptrType(ast.BadExpr)) || _type === (go$ptrType(ast.FuncLit)) || _type === (go$ptrType(ast.CompositeLit)) || _type === (go$ptrType(ast.IndexExpr)) || _type === (go$ptrType(ast.SliceExpr)) || _type === (go$ptrType(ast.TypeAssertExpr)) || _type === (go$ptrType(ast.StarExpr)) || _type === (go$ptrType(ast.KeyValueExpr)) || _type === (go$ptrType(ast.ArrayType)) || _type === (go$ptrType(ast.StructType)) || _type === (go$ptrType(ast.FuncType)) || _type === (go$ptrType(ast.InterfaceType)) || _type === (go$ptrType(ast.MapType)) || _type === (go$ptrType(ast.ChanType))) {
+			x$1 = _ref;
+			return;
+		} else if (_type === (go$ptrType(ast.CallExpr))) {
+			x$1 = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.Ident)) || _type === (go$ptrType(ast.BasicLit)) || _type === (go$ptrType(ast.SelectorExpr))) {
+			x$1 = _ref;
+		} else if (_type === (go$ptrType(ast.ParenExpr))) {
+			x$1 = _ref.go$val;
+			check.updateExprType(x$1.X, typ, final$1);
+		} else if (_type === (go$ptrType(ast.UnaryExpr))) {
+			x$1 = _ref.go$val;
+			if (!(go$interfaceIsEqual(old.val, null))) {
+				break;
 			}
-		}
+			check.updateExprType(x$1.X, typ, final$1);
+		} else if (_type === (go$ptrType(ast.BinaryExpr))) {
+			x$1 = _ref.go$val;
+			if (!(go$interfaceIsEqual(old.val, null))) {
+				break;
+			}
+			if (isComparison(x$1.Op)) {
+			} else if (isShift(x$1.Op)) {
+				check.updateExprType(x$1.X, typ, final$1);
+			} else {
+				check.updateExprType(x$1.X, typ, final$1);
+				check.updateExprType(x$1.Y, typ, final$1);
+			}
+		} else {
+			x$1 = _ref;
+			unreachable();
+		} }
 		if (!final$1 && isUntyped(typ)) {
 			old.typ = (x$2 = typ.Underlying(), (x$2 !== null && x$2.constructor === (go$ptrType(Basic)) ? x$2.go$val : go$typeAssertionFailed(x$2, (go$ptrType(Basic)))));
 			_key = x, (check.untyped || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: (_struct$1 = old, new exprInfo.Ptr(_struct$1.isLhs, _struct$1.typ, _struct$1.val)) };
@@ -46208,143 +46187,140 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			_tuple$3 = deref(typ), typ$1 = _tuple$3[0];
 			_ref$1 = typ$1.Underlying();
 			_type$1 = _ref$1 !== null ? _ref$1.constructor : null;
-			switch (undefined) {
-			default:
-				if (_type$1 === (go$ptrType(Struct))) {
-					utyp = _ref$1.go$val;
-					if (e$1.Elts.length === 0) {
-						break;
-					}
-					fields = utyp.fields;
-					if (_tuple$4 = (x$4 = (_slice = e$1.Elts, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x$4 !== null && x$4.constructor === (go$ptrType(ast.KeyValueExpr)) ? [x$4.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false])), ok$1 = _tuple$4[1], ok$1) {
-						visited = (go$sliceType(Go$Bool)).make(fields.length, 0, function() { return false; });
-						_ref$2 = e$1.Elts;
-						_i = 0;
-						while (_i < _ref$2.length) {
-							e$2 = (_slice$1 = _ref$2, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-							_tuple$5 = (e$2 !== null && e$2.constructor === (go$ptrType(ast.KeyValueExpr)) ? [e$2.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false]), kv = _tuple$5[0];
-							if (kv === (go$ptrType(ast.KeyValueExpr)).nil) {
-								check.errorf(e$2.Pos(), "mixture of field:value and value elements in struct literal", new (go$sliceType(go$emptyInterface))([]));
-								_i++;
-								continue;
-							}
-							_tuple$6 = (x$5 = kv.Key, (x$5 !== null && x$5.constructor === (go$ptrType(ast.Ident)) ? [x$5.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), key = _tuple$6[0];
-							if (key === (go$ptrType(ast.Ident)).nil) {
-								check.errorf(kv.Pos(), "invalid field name %s in struct literal", new (go$sliceType(go$emptyInterface))([kv.Key]));
-								_i++;
-								continue;
-							}
-							i = fieldIndex(utyp.fields, check.pkg, key.Name);
-							if (i < 0) {
-								check.errorf(kv.Pos(), "unknown field %s in struct literal", new (go$sliceType(go$emptyInterface))([new Go$String(key.Name)]));
-								_i++;
-								continue;
-							}
-							fld = (_slice$2 = fields, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-							check.recordObject(key, fld);
-							if ((_slice$3 = visited, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) {
-								check.errorf(kv.Pos(), "duplicate field name %s in struct literal", new (go$sliceType(go$emptyInterface))([new Go$String(key.Name)]));
-								_i++;
-								continue;
-							}
-							_slice$4 = visited, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = true) : go$throwRuntimeError("index out of range");
-							check.expr(x, kv.Value);
-							etyp = fld.object.typ;
-							if (!check.assignment(x, etyp)) {
-								if (!((x.mode === 0))) {
-									check.errorf(x.pos(), "cannot use %s as %s value in struct literal", new (go$sliceType(go$emptyInterface))([x, etyp]));
-								}
-								_i++;
-								continue;
+			switch (0) { default: if (_type$1 === (go$ptrType(Struct))) {
+				utyp = _ref$1.go$val;
+				if (e$1.Elts.length === 0) {
+					break;
+				}
+				fields = utyp.fields;
+				if (_tuple$4 = (x$4 = (_slice = e$1.Elts, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x$4 !== null && x$4.constructor === (go$ptrType(ast.KeyValueExpr)) ? [x$4.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false])), ok$1 = _tuple$4[1], ok$1) {
+					visited = (go$sliceType(Go$Bool)).make(fields.length, 0, function() { return false; });
+					_ref$2 = e$1.Elts;
+					_i = 0;
+					while (_i < _ref$2.length) {
+						e$2 = (_slice$1 = _ref$2, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+						_tuple$5 = (e$2 !== null && e$2.constructor === (go$ptrType(ast.KeyValueExpr)) ? [e$2.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false]), kv = _tuple$5[0];
+						if (kv === (go$ptrType(ast.KeyValueExpr)).nil) {
+							check.errorf(e$2.Pos(), "mixture of field:value and value elements in struct literal", new (go$sliceType(go$emptyInterface))([]));
+							_i++;
+							continue;
+						}
+						_tuple$6 = (x$5 = kv.Key, (x$5 !== null && x$5.constructor === (go$ptrType(ast.Ident)) ? [x$5.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), key = _tuple$6[0];
+						if (key === (go$ptrType(ast.Ident)).nil) {
+							check.errorf(kv.Pos(), "invalid field name %s in struct literal", new (go$sliceType(go$emptyInterface))([kv.Key]));
+							_i++;
+							continue;
+						}
+						i = fieldIndex(utyp.fields, check.pkg, key.Name);
+						if (i < 0) {
+							check.errorf(kv.Pos(), "unknown field %s in struct literal", new (go$sliceType(go$emptyInterface))([new Go$String(key.Name)]));
+							_i++;
+							continue;
+						}
+						fld = (_slice$2 = fields, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+						check.recordObject(key, fld);
+						if ((_slice$3 = visited, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) {
+							check.errorf(kv.Pos(), "duplicate field name %s in struct literal", new (go$sliceType(go$emptyInterface))([new Go$String(key.Name)]));
+							_i++;
+							continue;
+						}
+						_slice$4 = visited, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = true) : go$throwRuntimeError("index out of range");
+						check.expr(x, kv.Value);
+						etyp = fld.object.typ;
+						if (!check.assignment(x, etyp)) {
+							if (!((x.mode === 0))) {
+								check.errorf(x.pos(), "cannot use %s as %s value in struct literal", new (go$sliceType(go$emptyInterface))([x, etyp]));
 							}
 							_i++;
-						}
-					} else {
-						_ref$3 = e$1.Elts;
-						_i$1 = 0;
-						while (_i$1 < _ref$3.length) {
-							e$3 = (_slice$5 = _ref$3, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
-							i$1 = _i$1;
-							if (_tuple$7 = (e$3 !== null && e$3.constructor === (go$ptrType(ast.KeyValueExpr)) ? [e$3.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false]), kv$1 = _tuple$7[0], !(kv$1 === (go$ptrType(ast.KeyValueExpr)).nil)) {
-								check.errorf(kv$1.Pos(), "mixture of field:value and value elements in struct literal", new (go$sliceType(go$emptyInterface))([]));
-								_i$1++;
-								continue;
-							}
-							check.expr(x, e$3);
-							if (i$1 >= fields.length) {
-								check.errorf(x.pos(), "too many values in struct literal", new (go$sliceType(go$emptyInterface))([]));
-								break;
-							}
-							etyp$1 = (_slice$6 = fields, _index$6 = i$1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).object.typ;
-							if (!check.assignment(x, etyp$1)) {
-								if (!((x.mode === 0))) {
-									check.errorf(x.pos(), "cannot use %s as %s value in struct literal", new (go$sliceType(go$emptyInterface))([x, etyp$1]));
-								}
-								_i$1++;
-								continue;
-							}
-							_i$1++;
-						}
-						if (e$1.Elts.length < fields.length) {
-							check.errorf(e$1.Rbrace, "too few values in struct literal", new (go$sliceType(go$emptyInterface))([]));
-						}
-					}
-				} else if (_type$1 === (go$ptrType(Array))) {
-					utyp = _ref$1.go$val;
-					n = check.indexedElts(e$1.Elts, utyp.elem, utyp.len);
-					if (openArray) {
-						utyp.len = n;
-					}
-				} else if (_type$1 === (go$ptrType(Slice))) {
-					utyp = _ref$1.go$val;
-					check.indexedElts(e$1.Elts, utyp.elem, new Go$Int64(-1, 4294967295));
-				} else if (_type$1 === (go$ptrType(Map))) {
-					utyp = _ref$1.go$val;
-					visited$1 = new Go$Map();
-					_ref$4 = e$1.Elts;
-					_i$2 = 0;
-					while (_i$2 < _ref$4.length) {
-						e$4 = (_slice$7 = _ref$4, _index$7 = _i$2, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
-						_tuple$8 = (e$4 !== null && e$4.constructor === (go$ptrType(ast.KeyValueExpr)) ? [e$4.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false]), kv$2 = _tuple$8[0];
-						if (kv$2 === (go$ptrType(ast.KeyValueExpr)).nil) {
-							check.errorf(e$4.Pos(), "missing key in map literal", new (go$sliceType(go$emptyInterface))([]));
-							_i$2++;
 							continue;
 						}
-						check.expr(x, kv$2.Key);
-						if (!check.assignment(x, utyp.key)) {
-							if (!((x.mode === 0))) {
-								check.errorf(x.pos(), "cannot use %s as %s key in map literal", new (go$sliceType(go$emptyInterface))([x, utyp.key]));
-							}
-							_i$2++;
-							continue;
-						}
-						if (x.mode === 4) {
-							if ((_entry = visited$1[(x.val || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : false)) {
-								check.errorf(x.pos(), "duplicate key %s in map literal", new (go$sliceType(go$emptyInterface))([x.val]));
-								_i$2++;
-								continue;
-							}
-							_key = x.val, (visited$1 || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: true };
-						}
-						check.exprWithHint(x, kv$2.Value, utyp.elem);
-						if (!check.assignment(x, utyp.elem)) {
-							if (!((x.mode === 0))) {
-								check.errorf(x.pos(), "cannot use %s as %s value in map literal", new (go$sliceType(go$emptyInterface))([x, utyp.elem]));
-							}
-							_i$2++;
-							continue;
-						}
-						_i$2++;
+						_i++;
 					}
 				} else {
-					utyp = _ref$1;
-					check.errorf(e$1.Pos(), "invalid composite literal type %s", new (go$sliceType(go$emptyInterface))([typ$1]));
-					x.mode = 0;
-					x.expr = e$1;
-					return 2;
+					_ref$3 = e$1.Elts;
+					_i$1 = 0;
+					while (_i$1 < _ref$3.length) {
+						e$3 = (_slice$5 = _ref$3, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+						i$1 = _i$1;
+						if (_tuple$7 = (e$3 !== null && e$3.constructor === (go$ptrType(ast.KeyValueExpr)) ? [e$3.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false]), kv$1 = _tuple$7[0], !(kv$1 === (go$ptrType(ast.KeyValueExpr)).nil)) {
+							check.errorf(kv$1.Pos(), "mixture of field:value and value elements in struct literal", new (go$sliceType(go$emptyInterface))([]));
+							_i$1++;
+							continue;
+						}
+						check.expr(x, e$3);
+						if (i$1 >= fields.length) {
+							check.errorf(x.pos(), "too many values in struct literal", new (go$sliceType(go$emptyInterface))([]));
+							break;
+						}
+						etyp$1 = (_slice$6 = fields, _index$6 = i$1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).object.typ;
+						if (!check.assignment(x, etyp$1)) {
+							if (!((x.mode === 0))) {
+								check.errorf(x.pos(), "cannot use %s as %s value in struct literal", new (go$sliceType(go$emptyInterface))([x, etyp$1]));
+							}
+							_i$1++;
+							continue;
+						}
+						_i$1++;
+					}
+					if (e$1.Elts.length < fields.length) {
+						check.errorf(e$1.Rbrace, "too few values in struct literal", new (go$sliceType(go$emptyInterface))([]));
+					}
 				}
-			}
+			} else if (_type$1 === (go$ptrType(Array))) {
+				utyp = _ref$1.go$val;
+				n = check.indexedElts(e$1.Elts, utyp.elem, utyp.len);
+				if (openArray) {
+					utyp.len = n;
+				}
+			} else if (_type$1 === (go$ptrType(Slice))) {
+				utyp = _ref$1.go$val;
+				check.indexedElts(e$1.Elts, utyp.elem, new Go$Int64(-1, 4294967295));
+			} else if (_type$1 === (go$ptrType(Map))) {
+				utyp = _ref$1.go$val;
+				visited$1 = new Go$Map();
+				_ref$4 = e$1.Elts;
+				_i$2 = 0;
+				while (_i$2 < _ref$4.length) {
+					e$4 = (_slice$7 = _ref$4, _index$7 = _i$2, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+					_tuple$8 = (e$4 !== null && e$4.constructor === (go$ptrType(ast.KeyValueExpr)) ? [e$4.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false]), kv$2 = _tuple$8[0];
+					if (kv$2 === (go$ptrType(ast.KeyValueExpr)).nil) {
+						check.errorf(e$4.Pos(), "missing key in map literal", new (go$sliceType(go$emptyInterface))([]));
+						_i$2++;
+						continue;
+					}
+					check.expr(x, kv$2.Key);
+					if (!check.assignment(x, utyp.key)) {
+						if (!((x.mode === 0))) {
+							check.errorf(x.pos(), "cannot use %s as %s key in map literal", new (go$sliceType(go$emptyInterface))([x, utyp.key]));
+						}
+						_i$2++;
+						continue;
+					}
+					if (x.mode === 4) {
+						if ((_entry = visited$1[(x.val || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : false)) {
+							check.errorf(x.pos(), "duplicate key %s in map literal", new (go$sliceType(go$emptyInterface))([x.val]));
+							_i$2++;
+							continue;
+						}
+						_key = x.val, (visited$1 || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: true };
+					}
+					check.exprWithHint(x, kv$2.Value, utyp.elem);
+					if (!check.assignment(x, utyp.elem)) {
+						if (!((x.mode === 0))) {
+							check.errorf(x.pos(), "cannot use %s as %s value in map literal", new (go$sliceType(go$emptyInterface))([x, utyp.elem]));
+						}
+						_i$2++;
+						continue;
+					}
+					_i$2++;
+				}
+			} else {
+				utyp = _ref$1;
+				check.errorf(e$1.Pos(), "invalid composite literal type %s", new (go$sliceType(go$emptyInterface))([typ$1]));
+				x.mode = 0;
+				x.expr = e$1;
+				return 2;
+			} }
 			x.mode = 7;
 			x.typ = typ;
 		} else if (_type === (go$ptrType(ast.ParenExpr))) {
@@ -47975,18 +47951,15 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 		hasType = false;
 		_ref$1 = x.mode;
-		switch (undefined) {
-		default:
-			if (_ref$1 === 0 || _ref$1 === 1 || _ref$1 === 2 || _ref$1 === 3) {
-			} else {
-				if (isUntyped(x.typ)) {
-					buf.WriteString((x$1 = x.typ, (x$1 !== null && x$1.constructor === (go$ptrType(Basic)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(Basic))))).name);
-					buf.WriteByte(32);
-					break;
-				}
-				hasType = true;
+		switch (0) { default: if (_ref$1 === 0 || _ref$1 === 1 || _ref$1 === 2 || _ref$1 === 3) {
+		} else {
+			if (isUntyped(x.typ)) {
+				buf.WriteString((x$1 = x.typ, (x$1 !== null && x$1.constructor === (go$ptrType(Basic)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(Basic))))).name);
+				buf.WriteByte(32);
+				break;
 			}
-		}
+			hasType = true;
+		} }
 		buf.WriteString(operandModeString[x.mode]);
 		if (x.mode === 4) {
 			if (s = x.val.String(), !(s === expr)) {
@@ -52508,152 +52481,149 @@ go$packages["regexp/syntax"] = (function() {
 		while (!(t === "")) {
 			repeat = "";
 			_ref = t.charCodeAt(0);
-			BigSwitch: switch (undefined) {
-			default:
-				if (_ref === 40) {
-					if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2 && (t.charCodeAt(1) === 63)) {
-						if (_tuple$1 = p.parsePerlFlags(t), t = _tuple$1[0], err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
-							return [(go$ptrType(Regexp)).nil, err$1];
-						}
-						break;
-					}
-					p.numCap = p.numCap + 1 >> 0;
-					p.op(128).Cap = p.numCap;
-					t = t.substring(1);
-				} else if (_ref === 124) {
-					if (err$1 = p.parseVerticalBar(), !(go$interfaceIsEqual(err$1, null))) {
+			BigSwitch: switch (0) { default: if (_ref === 40) {
+				if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2 && (t.charCodeAt(1) === 63)) {
+					if (_tuple$1 = p.parsePerlFlags(t), t = _tuple$1[0], err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
 						return [(go$ptrType(Regexp)).nil, err$1];
 					}
+					break;
+				}
+				p.numCap = p.numCap + 1 >> 0;
+				p.op(128).Cap = p.numCap;
+				t = t.substring(1);
+			} else if (_ref === 124) {
+				if (err$1 = p.parseVerticalBar(), !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				t = t.substring(1);
+			} else if (_ref === 41) {
+				if (err$1 = p.parseRightParen(), !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				t = t.substring(1);
+			} else if (_ref === 94) {
+				if (!((((p.flags & 16) >>> 0) === 0))) {
+					p.op(9);
+				} else {
+					p.op(7);
+				}
+				t = t.substring(1);
+			} else if (_ref === 36) {
+				if (!((((p.flags & 16) >>> 0) === 0))) {
+					_lhs = p.op(10), _lhs.Flags = (_lhs.Flags | 256) >>> 0;
+				} else {
+					p.op(8);
+				}
+				t = t.substring(1);
+			} else if (_ref === 46) {
+				if (!((((p.flags & 8) >>> 0) === 0))) {
+					p.op(6);
+				} else {
+					p.op(5);
+				}
+				t = t.substring(1);
+			} else if (_ref === 91) {
+				if (_tuple$2 = p.parseClass(t), t = _tuple$2[0], err$1 = _tuple$2[1], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+			} else if (_ref === 42 || _ref === 43 || _ref === 63) {
+				before = t;
+				_ref$1 = t.charCodeAt(0);
+				if (_ref$1 === 42) {
+					op = 14;
+				} else if (_ref$1 === 43) {
+					op = 15;
+				} else if (_ref$1 === 63) {
+					op = 16;
+				}
+				after = t.substring(1);
+				if (_tuple$3 = p.repeat(op, min, max, before, after, lastRepeat), after = _tuple$3[0], err$1 = _tuple$3[1], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				repeat = before;
+				t = after;
+			} else if (_ref === 123) {
+				op = 17;
+				before$1 = t;
+				_tuple$4 = p.parseRepeat(t), min$1 = _tuple$4[0], max$1 = _tuple$4[1], after$1 = _tuple$4[2], ok = _tuple$4[3];
+				if (!ok) {
+					p.literal(123);
 					t = t.substring(1);
-				} else if (_ref === 41) {
-					if (err$1 = p.parseRightParen(), !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					t = t.substring(1);
-				} else if (_ref === 94) {
-					if (!((((p.flags & 16) >>> 0) === 0))) {
+					break;
+				}
+				if (min$1 < 0 || min$1 > 1000 || max$1 > 1000 || max$1 >= 0 && min$1 > max$1) {
+					return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid repeat count", before$1.substring(0, (before$1.length - after$1.length >> 0)))];
+				}
+				if (_tuple$5 = p.repeat(op, min$1, max$1, before$1, after$1, lastRepeat), after$1 = _tuple$5[0], err$1 = _tuple$5[1], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				repeat = before$1;
+				t = after$1;
+			} else if (_ref === 92) {
+				if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2) {
+					_ref$2 = t.charCodeAt(1);
+					if (_ref$2 === 65) {
 						p.op(9);
-					} else {
-						p.op(7);
-					}
-					t = t.substring(1);
-				} else if (_ref === 36) {
-					if (!((((p.flags & 16) >>> 0) === 0))) {
-						_lhs = p.op(10), _lhs.Flags = (_lhs.Flags | 256) >>> 0;
-					} else {
-						p.op(8);
-					}
-					t = t.substring(1);
-				} else if (_ref === 46) {
-					if (!((((p.flags & 8) >>> 0) === 0))) {
-						p.op(6);
-					} else {
-						p.op(5);
-					}
-					t = t.substring(1);
-				} else if (_ref === 91) {
-					if (_tuple$2 = p.parseClass(t), t = _tuple$2[0], err$1 = _tuple$2[1], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-				} else if (_ref === 42 || _ref === 43 || _ref === 63) {
-					before = t;
-					_ref$1 = t.charCodeAt(0);
-					if (_ref$1 === 42) {
-						op = 14;
-					} else if (_ref$1 === 43) {
-						op = 15;
-					} else if (_ref$1 === 63) {
-						op = 16;
-					}
-					after = t.substring(1);
-					if (_tuple$3 = p.repeat(op, min, max, before, after, lastRepeat), after = _tuple$3[0], err$1 = _tuple$3[1], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					repeat = before;
-					t = after;
-				} else if (_ref === 123) {
-					op = 17;
-					before$1 = t;
-					_tuple$4 = p.parseRepeat(t), min$1 = _tuple$4[0], max$1 = _tuple$4[1], after$1 = _tuple$4[2], ok = _tuple$4[3];
-					if (!ok) {
-						p.literal(123);
-						t = t.substring(1);
-						break;
-					}
-					if (min$1 < 0 || min$1 > 1000 || max$1 > 1000 || max$1 >= 0 && min$1 > max$1) {
-						return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid repeat count", before$1.substring(0, (before$1.length - after$1.length >> 0)))];
-					}
-					if (_tuple$5 = p.repeat(op, min$1, max$1, before$1, after$1, lastRepeat), after$1 = _tuple$5[0], err$1 = _tuple$5[1], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					repeat = before$1;
-					t = after$1;
-				} else if (_ref === 92) {
-					if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2) {
-						_ref$2 = t.charCodeAt(1);
-						if (_ref$2 === 65) {
-							p.op(9);
-							t = t.substring(2);
-							break BigSwitch;
-						} else if (_ref$2 === 98) {
-							p.op(11);
-							t = t.substring(2);
-							break BigSwitch;
-						} else if (_ref$2 === 66) {
-							p.op(12);
-							t = t.substring(2);
-							break BigSwitch;
-						} else if (_ref$2 === 67) {
-							return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid escape sequence", t.substring(0, 2))];
-						} else if (_ref$2 === 81) {
-							lit = "";
-							if (i = strings.Index(t, "\\E"), i < 0) {
-								lit = t.substring(2);
-								t = "";
-							} else {
-								lit = t.substring(2, i);
-								t = t.substring((i + 2 >> 0));
-							}
-							p.push(literalRegexp(lit, p.flags));
-							break BigSwitch;
-						} else if (_ref$2 === 122) {
-							p.op(10);
-							t = t.substring(2);
-							break BigSwitch;
+						t = t.substring(2);
+						break BigSwitch;
+					} else if (_ref$2 === 98) {
+						p.op(11);
+						t = t.substring(2);
+						break BigSwitch;
+					} else if (_ref$2 === 66) {
+						p.op(12);
+						t = t.substring(2);
+						break BigSwitch;
+					} else if (_ref$2 === 67) {
+						return [(go$ptrType(Regexp)).nil, new Error.Ptr("invalid escape sequence", t.substring(0, 2))];
+					} else if (_ref$2 === 81) {
+						lit = "";
+						if (i = strings.Index(t, "\\E"), i < 0) {
+							lit = t.substring(2);
+							t = "";
+						} else {
+							lit = t.substring(2, i);
+							t = t.substring((i + 2 >> 0));
 						}
+						p.push(literalRegexp(lit, p.flags));
+						break BigSwitch;
+					} else if (_ref$2 === 122) {
+						p.op(10);
+						t = t.substring(2);
+						break BigSwitch;
 					}
-					re = p.newRegexp(4);
-					re.Flags = p.flags;
-					if (t.length >= 2 && ((t.charCodeAt(1) === 112) || (t.charCodeAt(1) === 80))) {
-						_tuple$6 = p.parseUnicodeClass(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r = _tuple$6[0], rest = _tuple$6[1], err$2 = _tuple$6[2];
-						if (!(go$interfaceIsEqual(err$2, null))) {
-							return [(go$ptrType(Regexp)).nil, err$2];
-						}
-						if (!(r === (go$sliceType(Go$Int32)).nil)) {
-							re.Rune = r;
-							t = rest;
-							p.push(re);
-							break BigSwitch;
-						}
+				}
+				re = p.newRegexp(4);
+				re.Flags = p.flags;
+				if (t.length >= 2 && ((t.charCodeAt(1) === 112) || (t.charCodeAt(1) === 80))) {
+					_tuple$6 = p.parseUnicodeClass(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r = _tuple$6[0], rest = _tuple$6[1], err$2 = _tuple$6[2];
+					if (!(go$interfaceIsEqual(err$2, null))) {
+						return [(go$ptrType(Regexp)).nil, err$2];
 					}
-					if (_tuple$7 = p.parsePerlClassEscape(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r$1 = _tuple$7[0], rest$1 = _tuple$7[1], !(r$1 === (go$sliceType(Go$Int32)).nil)) {
-						re.Rune = r$1;
-						t = rest$1;
+					if (!(r === (go$sliceType(Go$Int32)).nil)) {
+						re.Rune = r;
+						t = rest;
 						p.push(re);
 						break BigSwitch;
 					}
-					p.reuse(re);
-					if (_tuple$8 = p.parseEscape(t), c = _tuple$8[0], t = _tuple$8[1], err$1 = _tuple$8[2], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					p.literal(c);
-				} else {
-					if (_tuple$9 = nextRune(t), c = _tuple$9[0], t = _tuple$9[1], err$1 = _tuple$9[2], !(go$interfaceIsEqual(err$1, null))) {
-						return [(go$ptrType(Regexp)).nil, err$1];
-					}
-					p.literal(c);
 				}
-			}
+				if (_tuple$7 = p.parsePerlClassEscape(t, go$subslice(new (go$sliceType(Go$Int32))(re.Rune0), 0, 0)), r$1 = _tuple$7[0], rest$1 = _tuple$7[1], !(r$1 === (go$sliceType(Go$Int32)).nil)) {
+					re.Rune = r$1;
+					t = rest$1;
+					p.push(re);
+					break BigSwitch;
+				}
+				p.reuse(re);
+				if (_tuple$8 = p.parseEscape(t), c = _tuple$8[0], t = _tuple$8[1], err$1 = _tuple$8[2], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				p.literal(c);
+			} else {
+				if (_tuple$9 = nextRune(t), c = _tuple$9[0], t = _tuple$9[1], err$1 = _tuple$9[2], !(go$interfaceIsEqual(err$1, null))) {
+					return [(go$ptrType(Regexp)).nil, err$1];
+				}
+				p.literal(c);
+			} }
 			lastRepeat = repeat;
 		}
 		p.concat();
@@ -52877,28 +52847,25 @@ go$packages["regexp/syntax"] = (function() {
 	var mergeCharClass = function(dst, src) {
 		var _ref, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
 		_ref = dst.Op;
-		switch (undefined) {
-		default:
-			if (_ref === 6) {
-			} else if (_ref === 5) {
-				if (matchRune(src, 10)) {
-					dst.Op = 6;
-				}
-			} else if (_ref === 4) {
-				if (src.Op === 3) {
-					dst.Rune = appendLiteral(dst.Rune, (_slice = src.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), src.Flags);
-				} else {
-					dst.Rune = appendClass(dst.Rune, src.Rune);
-				}
-			} else if (_ref === 3) {
-				if (((_slice$1 = src.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = dst.Rune, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) && (src.Flags === dst.Flags)) {
-					break;
-				}
-				dst.Op = 4;
-				dst.Rune = appendLiteral(go$subslice(dst.Rune, 0, 0), (_slice$3 = dst.Rune, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), dst.Flags);
-				dst.Rune = appendLiteral(dst.Rune, (_slice$4 = src.Rune, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), src.Flags);
+		switch (0) { default: if (_ref === 6) {
+		} else if (_ref === 5) {
+			if (matchRune(src, 10)) {
+				dst.Op = 6;
 			}
-		}
+		} else if (_ref === 4) {
+			if (src.Op === 3) {
+				dst.Rune = appendLiteral(dst.Rune, (_slice = src.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), src.Flags);
+			} else {
+				dst.Rune = appendClass(dst.Rune, src.Rune);
+			}
+		} else if (_ref === 3) {
+			if (((_slice$1 = src.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = dst.Rune, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))) && (src.Flags === dst.Flags)) {
+				break;
+			}
+			dst.Op = 4;
+			dst.Rune = appendLiteral(go$subslice(dst.Rune, 0, 0), (_slice$3 = dst.Rune, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), dst.Flags);
+			dst.Rune = appendLiteral(dst.Rune, (_slice$4 = src.Rune, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), src.Flags);
+		} }
 	};
 	parser.Ptr.prototype.swapVerticalBar = function() {
 		var p, n, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, re1, _slice$4, _index$4, re3, _tuple, _slice$5, _index$5, _slice$6, _index$6, re1$1, _slice$7, _index$7, re2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10;
@@ -52978,111 +52945,108 @@ go$packages["regexp/syntax"] = (function() {
 			return [r, rest, err];
 		}
 		_ref = c;
-		Switch: switch (undefined) {
-		default:
-			if (_ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
+		Switch: switch (0) { default: if (_ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
+			if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
+				break;
+			}
+			r = c - 48 >> 0;
+			i = 1;
+			while (i < 3) {
 				if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
 					break;
 				}
-				r = c - 48 >> 0;
-				i = 1;
-				while (i < 3) {
-					if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
-						break;
-					}
-					r = ((x = 8, (((r >>> 16 << 16) * x >> 0) + (r << 16 >>> 16) * x) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
-					t = t.substring(1);
-					i = i + 1 >> 0;
-				}
-				_tuple$3 = [r, t, null], r = _tuple$3[0], rest = _tuple$3[1], err = _tuple$3[2];
-				return [r, rest, err];
-			} else if (_ref === 48) {
-				r = c - 48 >> 0;
-				i = 1;
-				while (i < 3) {
-					if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
-						break;
-					}
-					r = ((x$1 = 8, (((r >>> 16 << 16) * x$1 >> 0) + (r << 16 >>> 16) * x$1) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
-					t = t.substring(1);
-					i = i + 1 >> 0;
-				}
-				_tuple$4 = [r, t, null], r = _tuple$4[0], rest = _tuple$4[1], err = _tuple$4[2];
-				return [r, rest, err];
-			} else if (_ref === 120) {
-				if (t === "") {
+				r = ((x = 8, (((r >>> 16 << 16) * x >> 0) + (r << 16 >>> 16) * x) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
+				t = t.substring(1);
+				i = i + 1 >> 0;
+			}
+			_tuple$3 = [r, t, null], r = _tuple$3[0], rest = _tuple$3[1], err = _tuple$3[2];
+			return [r, rest, err];
+		} else if (_ref === 48) {
+			r = c - 48 >> 0;
+			i = 1;
+			while (i < 3) {
+				if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
 					break;
 				}
-				if (_tuple$5 = nextRune(t), c = _tuple$5[0], t = _tuple$5[1], err = _tuple$5[2], !(go$interfaceIsEqual(err, null))) {
-					_tuple$6 = [0, "", err], r = _tuple$6[0], rest = _tuple$6[1], err = _tuple$6[2];
-					return [r, rest, err];
-				}
-				if (c === 123) {
-					nhex = 0;
-					r = 0;
-					while (true) {
-						if (t === "") {
-							break Switch;
-						}
-						if (_tuple$7 = nextRune(t), c = _tuple$7[0], t = _tuple$7[1], err = _tuple$7[2], !(go$interfaceIsEqual(err, null))) {
-							_tuple$8 = [0, "", err], r = _tuple$8[0], rest = _tuple$8[1], err = _tuple$8[2];
-							return [r, rest, err];
-						}
-						if (c === 125) {
-							break;
-						}
-						v = unhex(c);
-						if (v < 0) {
-							break Switch;
-						}
-						r = (x$2 = 16, (((r >>> 16 << 16) * x$2 >> 0) + (r << 16 >>> 16) * x$2) >> 0) + v >> 0;
-						if (r > 1114111) {
-							break Switch;
-						}
-						nhex = nhex + 1 >> 0;
-					}
-					if (nhex === 0) {
+				r = ((x$1 = 8, (((r >>> 16 << 16) * x$1 >> 0) + (r << 16 >>> 16) * x$1) >> 0) + (t.charCodeAt(0) >> 0) >> 0) - 48 >> 0;
+				t = t.substring(1);
+				i = i + 1 >> 0;
+			}
+			_tuple$4 = [r, t, null], r = _tuple$4[0], rest = _tuple$4[1], err = _tuple$4[2];
+			return [r, rest, err];
+		} else if (_ref === 120) {
+			if (t === "") {
+				break;
+			}
+			if (_tuple$5 = nextRune(t), c = _tuple$5[0], t = _tuple$5[1], err = _tuple$5[2], !(go$interfaceIsEqual(err, null))) {
+				_tuple$6 = [0, "", err], r = _tuple$6[0], rest = _tuple$6[1], err = _tuple$6[2];
+				return [r, rest, err];
+			}
+			if (c === 123) {
+				nhex = 0;
+				r = 0;
+				while (true) {
+					if (t === "") {
 						break Switch;
 					}
-					_tuple$9 = [r, t, null], r = _tuple$9[0], rest = _tuple$9[1], err = _tuple$9[2];
-					return [r, rest, err];
+					if (_tuple$7 = nextRune(t), c = _tuple$7[0], t = _tuple$7[1], err = _tuple$7[2], !(go$interfaceIsEqual(err, null))) {
+						_tuple$8 = [0, "", err], r = _tuple$8[0], rest = _tuple$8[1], err = _tuple$8[2];
+						return [r, rest, err];
+					}
+					if (c === 125) {
+						break;
+					}
+					v = unhex(c);
+					if (v < 0) {
+						break Switch;
+					}
+					r = (x$2 = 16, (((r >>> 16 << 16) * x$2 >> 0) + (r << 16 >>> 16) * x$2) >> 0) + v >> 0;
+					if (r > 1114111) {
+						break Switch;
+					}
+					nhex = nhex + 1 >> 0;
 				}
-				x$3 = unhex(c);
-				if (_tuple$10 = nextRune(t), c = _tuple$10[0], t = _tuple$10[1], err = _tuple$10[2], !(go$interfaceIsEqual(err, null))) {
-					_tuple$11 = [0, "", err], r = _tuple$11[0], rest = _tuple$11[1], err = _tuple$11[2];
-					return [r, rest, err];
+				if (nhex === 0) {
+					break Switch;
 				}
-				y = unhex(c);
-				if (x$3 < 0 || y < 0) {
-					break;
-				}
-				_tuple$12 = [(x$4 = 16, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) + y >> 0, t, null], r = _tuple$12[0], rest = _tuple$12[1], err = _tuple$12[2];
+				_tuple$9 = [r, t, null], r = _tuple$9[0], rest = _tuple$9[1], err = _tuple$9[2];
 				return [r, rest, err];
-			} else if (_ref === 97) {
-				_tuple$13 = [7, t, err], r = _tuple$13[0], rest = _tuple$13[1], err = _tuple$13[2];
-				return [r, rest, err];
-			} else if (_ref === 102) {
-				_tuple$14 = [12, t, err], r = _tuple$14[0], rest = _tuple$14[1], err = _tuple$14[2];
-				return [r, rest, err];
-			} else if (_ref === 110) {
-				_tuple$15 = [10, t, err], r = _tuple$15[0], rest = _tuple$15[1], err = _tuple$15[2];
-				return [r, rest, err];
-			} else if (_ref === 114) {
-				_tuple$16 = [13, t, err], r = _tuple$16[0], rest = _tuple$16[1], err = _tuple$16[2];
-				return [r, rest, err];
-			} else if (_ref === 116) {
-				_tuple$17 = [9, t, err], r = _tuple$17[0], rest = _tuple$17[1], err = _tuple$17[2];
-				return [r, rest, err];
-			} else if (_ref === 118) {
-				_tuple$18 = [11, t, err], r = _tuple$18[0], rest = _tuple$18[1], err = _tuple$18[2];
-				return [r, rest, err];
-			} else {
-				if (c < 128 && !isalnum(c)) {
-					_tuple$19 = [c, t, null], r = _tuple$19[0], rest = _tuple$19[1], err = _tuple$19[2];
-					return [r, rest, err];
-				}
 			}
-		}
+			x$3 = unhex(c);
+			if (_tuple$10 = nextRune(t), c = _tuple$10[0], t = _tuple$10[1], err = _tuple$10[2], !(go$interfaceIsEqual(err, null))) {
+				_tuple$11 = [0, "", err], r = _tuple$11[0], rest = _tuple$11[1], err = _tuple$11[2];
+				return [r, rest, err];
+			}
+			y = unhex(c);
+			if (x$3 < 0 || y < 0) {
+				break;
+			}
+			_tuple$12 = [(x$4 = 16, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0) + y >> 0, t, null], r = _tuple$12[0], rest = _tuple$12[1], err = _tuple$12[2];
+			return [r, rest, err];
+		} else if (_ref === 97) {
+			_tuple$13 = [7, t, err], r = _tuple$13[0], rest = _tuple$13[1], err = _tuple$13[2];
+			return [r, rest, err];
+		} else if (_ref === 102) {
+			_tuple$14 = [12, t, err], r = _tuple$14[0], rest = _tuple$14[1], err = _tuple$14[2];
+			return [r, rest, err];
+		} else if (_ref === 110) {
+			_tuple$15 = [10, t, err], r = _tuple$15[0], rest = _tuple$15[1], err = _tuple$15[2];
+			return [r, rest, err];
+		} else if (_ref === 114) {
+			_tuple$16 = [13, t, err], r = _tuple$16[0], rest = _tuple$16[1], err = _tuple$16[2];
+			return [r, rest, err];
+		} else if (_ref === 116) {
+			_tuple$17 = [9, t, err], r = _tuple$17[0], rest = _tuple$17[1], err = _tuple$17[2];
+			return [r, rest, err];
+		} else if (_ref === 118) {
+			_tuple$18 = [11, t, err], r = _tuple$18[0], rest = _tuple$18[1], err = _tuple$18[2];
+			return [r, rest, err];
+		} else {
+			if (c < 128 && !isalnum(c)) {
+				_tuple$19 = [c, t, null], r = _tuple$19[0], rest = _tuple$19[1], err = _tuple$19[2];
+				return [r, rest, err];
+			}
+		} }
 		_tuple$20 = [0, "", new Error.Ptr("invalid escape sequence", s.substring(0, (s.length - t.length >> 0)))], r = _tuple$20[0], rest = _tuple$20[1], err = _tuple$20[2];
 		return [r, rest, err];
 	};
@@ -53929,150 +53893,147 @@ go$packages["regexp/syntax"] = (function() {
 	var writeRegexp = function(b, re) {
 		var _ref, _ref$1, _i, _slice, _index, r, _r, _slice$1, _index$1, _slice$2, _index$2, i, _slice$3, _index$3, _slice$4, _index$4, _tuple, lo, hi, i$1, _slice$5, _index$5, _slice$6, _index$6, _tuple$1, lo$1, hi$1, _slice$7, _index$7, _slice$8, _index$8, sub, _slice$9, _index$9, _ref$2, _ref$3, _i$1, _slice$10, _index$10, sub$1, _ref$4, _i$2, _slice$11, _index$11, sub$2, i$2;
 		_ref = re.Op;
-		switch (undefined) {
-		default:
-			if (_ref === 1) {
-				b.WriteString("[^\\x00-\\x{10FFFF}]");
-			} else if (_ref === 2) {
-				b.WriteString("(?:)");
-			} else if (_ref === 3) {
-				if (!((((re.Flags & 1) >>> 0) === 0))) {
-					b.WriteString("(?i:");
-				}
-				_ref$1 = re.Rune;
-				_i = 0;
-				while (_i < _ref$1.length) {
-					r = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-					escape(b, r, false);
-					_i++;
-				}
-				if (!((((re.Flags & 1) >>> 0) === 0))) {
-					b.WriteString(")");
-				}
-			} else if (_ref === 4) {
-				if (!(((_r = re.Rune.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
-					b.WriteString("[invalid char class]");
-					break;
-				}
-				b.WriteRune(91);
-				if (re.Rune.length === 0) {
-					b.WriteString("^\\x00-\\x{10FFFF}");
-				} else if (((_slice$1 = re.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$2 = re.Rune, _index$2 = (re.Rune.length - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 1114111)) {
-					b.WriteRune(94);
-					i = 1;
-					while (i < (re.Rune.length - 1 >> 0)) {
-						_tuple = [(_slice$3 = re.Rune, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) + 1 >> 0, (_slice$4 = re.Rune, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) - 1 >> 0], lo = _tuple[0], hi = _tuple[1];
-						escape(b, lo, lo === 45);
-						if (!((lo === hi))) {
-							b.WriteRune(45);
-							escape(b, hi, hi === 45);
-						}
-						i = i + 2 >> 0;
-					}
-				} else {
-					i$1 = 0;
-					while (i$1 < re.Rune.length) {
-						_tuple$1 = [(_slice$5 = re.Rune, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (_slice$6 = re.Rune, _index$6 = (i$1 + 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))], lo$1 = _tuple$1[0], hi$1 = _tuple$1[1];
-						escape(b, lo$1, lo$1 === 45);
-						if (!((lo$1 === hi$1))) {
-							b.WriteRune(45);
-							escape(b, hi$1, hi$1 === 45);
-						}
-						i$1 = i$1 + 2 >> 0;
-					}
-				}
-				b.WriteRune(93);
-			} else if (_ref === 5) {
-				b.WriteString("(?-s:.)");
-			} else if (_ref === 6) {
-				b.WriteString("(?s:.)");
-			} else if (_ref === 7) {
+		switch (0) { default: if (_ref === 1) {
+			b.WriteString("[^\\x00-\\x{10FFFF}]");
+		} else if (_ref === 2) {
+			b.WriteString("(?:)");
+		} else if (_ref === 3) {
+			if (!((((re.Flags & 1) >>> 0) === 0))) {
+				b.WriteString("(?i:");
+			}
+			_ref$1 = re.Rune;
+			_i = 0;
+			while (_i < _ref$1.length) {
+				r = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				escape(b, r, false);
+				_i++;
+			}
+			if (!((((re.Flags & 1) >>> 0) === 0))) {
+				b.WriteString(")");
+			}
+		} else if (_ref === 4) {
+			if (!(((_r = re.Rune.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
+				b.WriteString("[invalid char class]");
+				break;
+			}
+			b.WriteRune(91);
+			if (re.Rune.length === 0) {
+				b.WriteString("^\\x00-\\x{10FFFF}");
+			} else if (((_slice$1 = re.Rune, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 0) && ((_slice$2 = re.Rune, _index$2 = (re.Rune.length - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 1114111)) {
 				b.WriteRune(94);
-			} else if (_ref === 8) {
-				b.WriteRune(36);
-			} else if (_ref === 9) {
-				b.WriteString("\\A");
-			} else if (_ref === 10) {
-				if (!((((re.Flags & 256) >>> 0) === 0))) {
-					b.WriteString("(?-m:$)");
-				} else {
-					b.WriteString("\\z");
-				}
-			} else if (_ref === 11) {
-				b.WriteString("\\b");
-			} else if (_ref === 12) {
-				b.WriteString("\\B");
-			} else if (_ref === 13) {
-				if (!(re.Name === "")) {
-					b.WriteString("(?P<");
-					b.WriteString(re.Name);
-					b.WriteRune(62);
-				} else {
-					b.WriteRune(40);
-				}
-				if (!(((_slice$7 = re.Sub, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")).Op === 2))) {
-					writeRegexp(b, (_slice$8 = re.Sub, _index$8 = 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")));
-				}
-				b.WriteRune(41);
-			} else if (_ref === 14 || _ref === 15 || _ref === 16 || _ref === 17) {
-				if (sub = (_slice$9 = re.Sub, _index$9 = 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")), sub.Op > 13 || (sub.Op === 3) && sub.Rune.length > 1) {
-					b.WriteString("(?:");
-					writeRegexp(b, sub);
-					b.WriteString(")");
-				} else {
-					writeRegexp(b, sub);
-				}
-				_ref$2 = re.Op;
-				if (_ref$2 === 14) {
-					b.WriteRune(42);
-				} else if (_ref$2 === 15) {
-					b.WriteRune(43);
-				} else if (_ref$2 === 16) {
-					b.WriteRune(63);
-				} else if (_ref$2 === 17) {
-					b.WriteRune(123);
-					b.WriteString(strconv.Itoa(re.Min));
-					if (!((re.Max === re.Min))) {
-						b.WriteRune(44);
-						if (re.Max >= 0) {
-							b.WriteString(strconv.Itoa(re.Max));
-						}
+				i = 1;
+				while (i < (re.Rune.length - 1 >> 0)) {
+					_tuple = [(_slice$3 = re.Rune, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) + 1 >> 0, (_slice$4 = re.Rune, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) - 1 >> 0], lo = _tuple[0], hi = _tuple[1];
+					escape(b, lo, lo === 45);
+					if (!((lo === hi))) {
+						b.WriteRune(45);
+						escape(b, hi, hi === 45);
 					}
-					b.WriteRune(125);
-				}
-				if (!((((re.Flags & 32) >>> 0) === 0))) {
-					b.WriteRune(63);
-				}
-			} else if (_ref === 18) {
-				_ref$3 = re.Sub;
-				_i$1 = 0;
-				while (_i$1 < _ref$3.length) {
-					sub$1 = (_slice$10 = _ref$3, _index$10 = _i$1, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"));
-					if (sub$1.Op === 19) {
-						b.WriteString("(?:");
-						writeRegexp(b, sub$1);
-						b.WriteString(")");
-					} else {
-						writeRegexp(b, sub$1);
-					}
-					_i$1++;
-				}
-			} else if (_ref === 19) {
-				_ref$4 = re.Sub;
-				_i$2 = 0;
-				while (_i$2 < _ref$4.length) {
-					sub$2 = (_slice$11 = _ref$4, _index$11 = _i$2, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range"));
-					i$2 = _i$2;
-					if (i$2 > 0) {
-						b.WriteRune(124);
-					}
-					writeRegexp(b, sub$2);
-					_i$2++;
+					i = i + 2 >> 0;
 				}
 			} else {
-				b.WriteString("<invalid op" + strconv.Itoa((re.Op >> 0)) + ">");
+				i$1 = 0;
+				while (i$1 < re.Rune.length) {
+					_tuple$1 = [(_slice$5 = re.Rune, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (_slice$6 = re.Rune, _index$6 = (i$1 + 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))], lo$1 = _tuple$1[0], hi$1 = _tuple$1[1];
+					escape(b, lo$1, lo$1 === 45);
+					if (!((lo$1 === hi$1))) {
+						b.WriteRune(45);
+						escape(b, hi$1, hi$1 === 45);
+					}
+					i$1 = i$1 + 2 >> 0;
+				}
 			}
-		}
+			b.WriteRune(93);
+		} else if (_ref === 5) {
+			b.WriteString("(?-s:.)");
+		} else if (_ref === 6) {
+			b.WriteString("(?s:.)");
+		} else if (_ref === 7) {
+			b.WriteRune(94);
+		} else if (_ref === 8) {
+			b.WriteRune(36);
+		} else if (_ref === 9) {
+			b.WriteString("\\A");
+		} else if (_ref === 10) {
+			if (!((((re.Flags & 256) >>> 0) === 0))) {
+				b.WriteString("(?-m:$)");
+			} else {
+				b.WriteString("\\z");
+			}
+		} else if (_ref === 11) {
+			b.WriteString("\\b");
+		} else if (_ref === 12) {
+			b.WriteString("\\B");
+		} else if (_ref === 13) {
+			if (!(re.Name === "")) {
+				b.WriteString("(?P<");
+				b.WriteString(re.Name);
+				b.WriteRune(62);
+			} else {
+				b.WriteRune(40);
+			}
+			if (!(((_slice$7 = re.Sub, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")).Op === 2))) {
+				writeRegexp(b, (_slice$8 = re.Sub, _index$8 = 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")));
+			}
+			b.WriteRune(41);
+		} else if (_ref === 14 || _ref === 15 || _ref === 16 || _ref === 17) {
+			if (sub = (_slice$9 = re.Sub, _index$9 = 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")), sub.Op > 13 || (sub.Op === 3) && sub.Rune.length > 1) {
+				b.WriteString("(?:");
+				writeRegexp(b, sub);
+				b.WriteString(")");
+			} else {
+				writeRegexp(b, sub);
+			}
+			_ref$2 = re.Op;
+			if (_ref$2 === 14) {
+				b.WriteRune(42);
+			} else if (_ref$2 === 15) {
+				b.WriteRune(43);
+			} else if (_ref$2 === 16) {
+				b.WriteRune(63);
+			} else if (_ref$2 === 17) {
+				b.WriteRune(123);
+				b.WriteString(strconv.Itoa(re.Min));
+				if (!((re.Max === re.Min))) {
+					b.WriteRune(44);
+					if (re.Max >= 0) {
+						b.WriteString(strconv.Itoa(re.Max));
+					}
+				}
+				b.WriteRune(125);
+			}
+			if (!((((re.Flags & 32) >>> 0) === 0))) {
+				b.WriteRune(63);
+			}
+		} else if (_ref === 18) {
+			_ref$3 = re.Sub;
+			_i$1 = 0;
+			while (_i$1 < _ref$3.length) {
+				sub$1 = (_slice$10 = _ref$3, _index$10 = _i$1, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"));
+				if (sub$1.Op === 19) {
+					b.WriteString("(?:");
+					writeRegexp(b, sub$1);
+					b.WriteString(")");
+				} else {
+					writeRegexp(b, sub$1);
+				}
+				_i$1++;
+			}
+		} else if (_ref === 19) {
+			_ref$4 = re.Sub;
+			_i$2 = 0;
+			while (_i$2 < _ref$4.length) {
+				sub$2 = (_slice$11 = _ref$4, _index$11 = _i$2, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range"));
+				i$2 = _i$2;
+				if (i$2 > 0) {
+					b.WriteRune(124);
+				}
+				writeRegexp(b, sub$2);
+				_i$2++;
+			}
+		} else {
+			b.WriteString("<invalid op" + strconv.Itoa((re.Op >> 0)) + ">");
+		} }
 	};
 	Regexp.Ptr.prototype.String = function() {
 		var re, b;
@@ -54092,35 +54053,32 @@ go$packages["regexp/syntax"] = (function() {
 			return;
 		}
 		_ref = r;
-		switch (undefined) {
-		default:
-			if (_ref === 7) {
-				b.WriteString("\\a");
-			} else if (_ref === 12) {
-				b.WriteString("\\f");
-			} else if (_ref === 10) {
-				b.WriteString("\\n");
-			} else if (_ref === 13) {
-				b.WriteString("\\r");
-			} else if (_ref === 9) {
-				b.WriteString("\\t");
-			} else if (_ref === 11) {
-				b.WriteString("\\v");
-			} else {
-				if (r < 256) {
-					b.WriteString("\\x");
-					s = strconv.FormatInt(new Go$Int64(0, r), 16);
-					if (s.length === 1) {
-						b.WriteRune(48);
-					}
-					b.WriteString(s);
-					break;
+		switch (0) { default: if (_ref === 7) {
+			b.WriteString("\\a");
+		} else if (_ref === 12) {
+			b.WriteString("\\f");
+		} else if (_ref === 10) {
+			b.WriteString("\\n");
+		} else if (_ref === 13) {
+			b.WriteString("\\r");
+		} else if (_ref === 9) {
+			b.WriteString("\\t");
+		} else if (_ref === 11) {
+			b.WriteString("\\v");
+		} else {
+			if (r < 256) {
+				b.WriteString("\\x");
+				s = strconv.FormatInt(new Go$Int64(0, r), 16);
+				if (s.length === 1) {
+					b.WriteRune(48);
 				}
-				b.WriteString("\\x{");
-				b.WriteString(strconv.FormatInt(new Go$Int64(0, r), 16));
-				b.WriteString("}");
+				b.WriteString(s);
+				break;
 			}
-		}
+			b.WriteString("\\x{");
+			b.WriteString(strconv.FormatInt(new Go$Int64(0, r), 16));
+			b.WriteString("}");
+		} }
 	};
 	Regexp.Ptr.prototype.MaxCap = function() {
 		var re, m, _ref, _i, _slice, _index, sub, n;
@@ -57206,19 +57164,16 @@ go$packages["text/template/parse"] = (function() {
 		var _ref, r;
 		Loop: while (true) {
 			_ref = l.next();
-			switch (undefined) {
-			default:
-				if (_ref === 92) {
-					if (r = l.next(), !((r === -1)) && !((r === 10))) {
-						break;
-					}
-					return l.errorf("unterminated character constant", new (go$sliceType(go$emptyInterface))([]));
-				} else if (_ref === -1 || _ref === 10) {
-					return l.errorf("unterminated character constant", new (go$sliceType(go$emptyInterface))([]));
-				} else if (_ref === 39) {
-					break Loop;
+			switch (0) { default: if (_ref === 92) {
+				if (r = l.next(), !((r === -1)) && !((r === 10))) {
+					break;
 				}
-			}
+				return l.errorf("unterminated character constant", new (go$sliceType(go$emptyInterface))([]));
+			} else if (_ref === -1 || _ref === 10) {
+				return l.errorf("unterminated character constant", new (go$sliceType(go$emptyInterface))([]));
+			} else if (_ref === 39) {
+				break Loop;
+			} }
 		}
 		l.emit(3);
 		return lexInsideAction;
@@ -57266,19 +57221,16 @@ go$packages["text/template/parse"] = (function() {
 		var _ref, r;
 		Loop: while (true) {
 			_ref = l.next();
-			switch (undefined) {
-			default:
-				if (_ref === 92) {
-					if (r = l.next(), !((r === -1)) && !((r === 10))) {
-						break;
-					}
-					return l.errorf("unterminated quoted string", new (go$sliceType(go$emptyInterface))([]));
-				} else if (_ref === -1 || _ref === 10) {
-					return l.errorf("unterminated quoted string", new (go$sliceType(go$emptyInterface))([]));
-				} else if (_ref === 34) {
-					break Loop;
+			switch (0) { default: if (_ref === 92) {
+				if (r = l.next(), !((r === -1)) && !((r === 10))) {
+					break;
 				}
-			}
+				return l.errorf("unterminated quoted string", new (go$sliceType(go$emptyInterface))([]));
+			} else if (_ref === -1 || _ref === 10) {
+				return l.errorf("unterminated quoted string", new (go$sliceType(go$emptyInterface))([]));
+			} else if (_ref === 34) {
+				break Loop;
+			} }
 		}
 		l.emit(17);
 		return lexInsideAction;
@@ -58359,24 +58311,21 @@ go$packages["text/template/parse"] = (function() {
 			next = null;
 			_tuple = t.itemList(), list$1 = _tuple[0], next = _tuple[1];
 			_ref = next.Type();
-			switch (undefined) {
-			default:
-				if (_ref === 7) {
-				} else if (_ref === 6) {
-					if (allowElseIf) {
-						if (t.peek().typ === 25) {
-							t.next();
-							elseList = newList(next.Position());
-							elseList.append(t.ifControl());
-							break;
-						}
-					}
-					_tuple$1 = t.itemList(), elseList = _tuple$1[0], next = _tuple$1[1];
-					if (!((next.Type() === 7))) {
-						t.errorf("expected end; found %s", new (go$sliceType(go$emptyInterface))([next]));
+			switch (0) { default: if (_ref === 7) {
+			} else if (_ref === 6) {
+				if (allowElseIf) {
+					if (t.peek().typ === 25) {
+						t.next();
+						elseList = newList(next.Position());
+						elseList.append(t.ifControl());
+						break;
 					}
 				}
-			}
+				_tuple$1 = t.itemList(), elseList = _tuple$1[0], next = _tuple$1[1];
+				if (!((next.Type() === 7))) {
+					t.errorf("expected end; found %s", new (go$sliceType(go$emptyInterface))([next]));
+				}
+			} }
 			_tuple$2 = [(new Pos(pipe.Pos)).Position(), line, pipe, list$1, elseList], pos = _tuple$2[0], line = _tuple$2[1], pipe = _tuple$2[2], list$1 = _tuple$2[3], elseList = _tuple$2[4];
 			return [pos, line, pipe, list$1, elseList];
 		} catch(go$err) {
@@ -59050,53 +58999,50 @@ go$packages["text/template"] = (function() {
 				s.pop(mark);
 			});
 			_ref = val.Kind();
-			switch (undefined) {
-			default:
-				if (_ref === 17 || _ref === 23) {
-					if (val.Len() === 0) {
-						break;
-					}
-					i = 0;
-					while (i < val.Len()) {
-						oneIteration((_struct$3 = reflect.ValueOf(new Go$Int(i)), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), (_struct$4 = val.Index(i), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
-						i = i + 1 >> 0;
-					}
-					return;
-				} else if (_ref === 21) {
-					if (val.Len() === 0) {
-						break;
-					}
-					_ref$1 = sortKeys(val.MapKeys());
-					_i = 0;
-					while (_i < _ref$1.length) {
-						key = (_struct$5 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
-						oneIteration((_struct$6 = key, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), (_struct$8 = val.MapIndex((_struct$7 = key, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag))), new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)));
-						_i++;
-					}
-					return;
-				} else if (_ref === 18) {
-					if (val.IsNil()) {
-						break;
-					}
-					i$1 = 0;
-					while (true) {
-						_tuple$1 = val.Recv(), elem = (_struct$9 = _tuple$1[0], new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), ok = _tuple$1[1];
-						if (!ok) {
-							break;
-						}
-						oneIteration((_struct$10 = reflect.ValueOf(new Go$Int(i$1)), new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)), (_struct$11 = elem, new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag)));
-						i$1 = i$1 + 1 >> 0;
-					}
-					if (i$1 === 0) {
-						break;
-					}
-					return;
-				} else if (_ref === 0) {
+			switch (0) { default: if (_ref === 17 || _ref === 23) {
+				if (val.Len() === 0) {
 					break;
-				} else {
-					s.errorf("range can't iterate over %v", new (go$sliceType(go$emptyInterface))([new val.constructor.Struct(val)]));
 				}
-			}
+				i = 0;
+				while (i < val.Len()) {
+					oneIteration((_struct$3 = reflect.ValueOf(new Go$Int(i)), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), (_struct$4 = val.Index(i), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
+					i = i + 1 >> 0;
+				}
+				return;
+			} else if (_ref === 21) {
+				if (val.Len() === 0) {
+					break;
+				}
+				_ref$1 = sortKeys(val.MapKeys());
+				_i = 0;
+				while (_i < _ref$1.length) {
+					key = (_struct$5 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
+					oneIteration((_struct$6 = key, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), (_struct$8 = val.MapIndex((_struct$7 = key, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag))), new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)));
+					_i++;
+				}
+				return;
+			} else if (_ref === 18) {
+				if (val.IsNil()) {
+					break;
+				}
+				i$1 = 0;
+				while (true) {
+					_tuple$1 = val.Recv(), elem = (_struct$9 = _tuple$1[0], new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag)), ok = _tuple$1[1];
+					if (!ok) {
+						break;
+					}
+					oneIteration((_struct$10 = reflect.ValueOf(new Go$Int(i$1)), new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)), (_struct$11 = elem, new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag)));
+					i$1 = i$1 + 1 >> 0;
+				}
+				if (i$1 === 0) {
+					break;
+				}
+				return;
+			} else if (_ref === 0) {
+				break;
+			} else {
+				s.errorf("range can't iterate over %v", new (go$sliceType(go$emptyInterface))([new val.constructor.Struct(val)]));
+			} }
 			if (!(r.BranchNode.ElseList === (go$ptrType(parse.ListNode)).nil)) {
 				s.walk((_struct$12 = dot, new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)), r.BranchNode.ElseList);
 			}
@@ -61918,41 +61864,38 @@ go$packages["go/doc"] = (function() {
 			if (_type === (go$ptrType(ast.GenDecl))) {
 				d = _ref$1.go$val;
 				_ref$2 = d.Tok;
-				switch (undefined) {
-				default:
-					if (_ref$2 === 75) {
-						_ref$3 = d.Specs;
-						_i$1 = 0;
-						while (_i$1 < _ref$3.length) {
-							spec = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-							if (_tuple = (spec !== null && spec.constructor === (go$ptrType(ast.ImportSpec)) ? [spec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), s = _tuple[0], ok = _tuple[1], ok) {
-								if (_tuple$1 = strconv.Unquote(s.Path.Value), import_ = _tuple$1[0], err = _tuple$1[1], go$interfaceIsEqual(err, null)) {
-									_key = import_, (r.imports || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: 1 };
-								}
+				switch (0) { default: if (_ref$2 === 75) {
+					_ref$3 = d.Specs;
+					_i$1 = 0;
+					while (_i$1 < _ref$3.length) {
+						spec = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+						if (_tuple = (spec !== null && spec.constructor === (go$ptrType(ast.ImportSpec)) ? [spec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), s = _tuple[0], ok = _tuple[1], ok) {
+							if (_tuple$1 = strconv.Unquote(s.Path.Value), import_ = _tuple$1[0], err = _tuple$1[1], go$interfaceIsEqual(err, null)) {
+								_key = import_, (r.imports || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: 1 };
 							}
-							_i$1++;
 						}
-					} else if (_ref$2 === 64 || _ref$2 === 85) {
-						r.readValue(d);
-					} else if (_ref$2 === 84) {
-						if ((d.Specs.length === 1) && !(new token.Pos(d.Lparen)).IsValid()) {
-							if (_tuple$2 = (x = (_slice$2 = d.Specs, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.TypeSpec)) ? [x.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false])), s$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
-								r.readType(d, s$1);
-							}
-							break;
-						}
-						_ref$4 = d.Specs;
-						_i$2 = 0;
-						while (_i$2 < _ref$4.length) {
-							spec$1 = (_slice$3 = _ref$4, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
-							if (_tuple$3 = (spec$1 !== null && spec$1.constructor === (go$ptrType(ast.TypeSpec)) ? [spec$1.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false]), s$2 = _tuple$3[0], ok$2 = _tuple$3[1], ok$2) {
-								fake = new ast.GenDecl.Ptr(d.Doc, s$2.Pos(), 84, 0, new (go$sliceType(ast.Spec))([s$2]), 0);
-								r.readType(fake, s$2);
-							}
-							_i$2++;
-						}
+						_i$1++;
 					}
-				}
+				} else if (_ref$2 === 64 || _ref$2 === 85) {
+					r.readValue(d);
+				} else if (_ref$2 === 84) {
+					if ((d.Specs.length === 1) && !(new token.Pos(d.Lparen)).IsValid()) {
+						if (_tuple$2 = (x = (_slice$2 = d.Specs, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.TypeSpec)) ? [x.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false])), s$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
+							r.readType(d, s$1);
+						}
+						break;
+					}
+					_ref$4 = d.Specs;
+					_i$2 = 0;
+					while (_i$2 < _ref$4.length) {
+						spec$1 = (_slice$3 = _ref$4, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+						if (_tuple$3 = (spec$1 !== null && spec$1.constructor === (go$ptrType(ast.TypeSpec)) ? [spec$1.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false]), s$2 = _tuple$3[0], ok$2 = _tuple$3[1], ok$2) {
+							fake = new ast.GenDecl.Ptr(d.Doc, s$2.Pos(), 84, 0, new (go$sliceType(ast.Spec))([s$2]), 0);
+							r.readType(fake, s$2);
+						}
+						_i$2++;
+					}
+				} }
 			} else if (_type === (go$ptrType(ast.FuncDecl))) {
 				d = _ref$1.go$val;
 				r.readFunc(d);
@@ -62947,20 +62890,17 @@ go$packages["go/build"] = (function() {
 		c.Compiler = "gc";
 		c.ReleaseTags = new (go$sliceType(Go$String))(["go1.1", "go1.2"]);
 		_ref = os.Getenv("CGO_ENABLED");
-		switch (undefined) {
-		default:
-			if (_ref === "1") {
-				c.CgoEnabled = true;
-			} else if (_ref === "0") {
-				c.CgoEnabled = false;
-			} else {
-				if ("js" === c.GOARCH && "darwin" === c.GOOS) {
-					c.CgoEnabled = (_entry = cgoEnabled[c.GOOS + "/" + c.GOARCH], _entry !== undefined ? _entry.v : false);
-					break;
-				}
-				c.CgoEnabled = false;
+		switch (0) { default: if (_ref === "1") {
+			c.CgoEnabled = true;
+		} else if (_ref === "0") {
+			c.CgoEnabled = false;
+		} else {
+			if ("js" === c.GOARCH && "darwin" === c.GOOS) {
+				c.CgoEnabled = (_entry = cgoEnabled[c.GOOS + "/" + c.GOARCH], _entry !== undefined ? _entry.v : false);
+				break;
 			}
-		}
+			c.CgoEnabled = false;
+		} }
 		return (_struct = c, new Context.Ptr(_struct.GOARCH, _struct.GOOS, _struct.GOROOT, _struct.GOPATH, _struct.CgoEnabled, _struct.UseAllFiles, _struct.Compiler, _struct.BuildTags, _struct.ReleaseTags, _struct.InstallSuffix, _struct.JoinPath, _struct.SplitPathList, _struct.IsAbsPath, _struct.IsDir, _struct.HasSubdir, _struct.ReadDir, _struct.OpenFile));
 	};
 	var envOr = function(name, def) {
@@ -65191,46 +65131,43 @@ go$packages["code.google.com/p/go.tools/go/gcimporter"] = (function() {
 		typ = null;
 		val = null;
 		_ref = p.tok;
-		switch (undefined) {
-		default:
-			if (_ref === -2) {
-				if (!(p.lit === "true") && !(p.lit === "false")) {
-					p.error(new Go$String("expected true or false"));
-				}
-				typ = types.Typ[19];
-				val = exact.MakeBool(p.lit === "true");
-				p.next();
-			} else if (_ref === 45 || _ref === -3) {
-				_tuple$1 = p.parseNumber(), typ = _tuple$1[0], val = _tuple$1[1];
-			} else if (_ref === 40) {
-				p.next();
-				if (p.tok === -5) {
-					p.next();
-					p.expect(43);
-					typ = types.Typ[21];
-					_tuple$2 = p.parseNumber(), val = _tuple$2[1];
-					p.expect(41);
-					break;
-				}
-				_tuple$3 = p.parseNumber(), re = _tuple$3[1];
-				p.expect(43);
-				_tuple$4 = p.parseNumber(), im = _tuple$4[1];
-				p.expectKeyword("i");
-				p.expect(41);
-				typ = types.Typ[23];
-				val = exact.BinaryOp(re, 12, exact.MakeImag(im));
-			} else if (_ref === -5) {
-				typ = types.Typ[21];
-				val = exact.MakeFromLiteral(p.lit, 8);
-				p.next();
-			} else if (_ref === -6) {
-				typ = types.Typ[24];
-				val = exact.MakeFromLiteral(p.lit, 9);
-				p.next();
-			} else {
-				p.errorf("expected literal got %s", new (go$sliceType(go$emptyInterface))([new Go$String(scanner.TokenString(p.tok))]));
+		switch (0) { default: if (_ref === -2) {
+			if (!(p.lit === "true") && !(p.lit === "false")) {
+				p.error(new Go$String("expected true or false"));
 			}
-		}
+			typ = types.Typ[19];
+			val = exact.MakeBool(p.lit === "true");
+			p.next();
+		} else if (_ref === 45 || _ref === -3) {
+			_tuple$1 = p.parseNumber(), typ = _tuple$1[0], val = _tuple$1[1];
+		} else if (_ref === 40) {
+			p.next();
+			if (p.tok === -5) {
+				p.next();
+				p.expect(43);
+				typ = types.Typ[21];
+				_tuple$2 = p.parseNumber(), val = _tuple$2[1];
+				p.expect(41);
+				break;
+			}
+			_tuple$3 = p.parseNumber(), re = _tuple$3[1];
+			p.expect(43);
+			_tuple$4 = p.parseNumber(), im = _tuple$4[1];
+			p.expectKeyword("i");
+			p.expect(41);
+			typ = types.Typ[23];
+			val = exact.BinaryOp(re, 12, exact.MakeImag(im));
+		} else if (_ref === -5) {
+			typ = types.Typ[21];
+			val = exact.MakeFromLiteral(p.lit, 8);
+			p.next();
+		} else if (_ref === -6) {
+			typ = types.Typ[24];
+			val = exact.MakeFromLiteral(p.lit, 9);
+			p.next();
+		} else {
+			p.errorf("expected literal got %s", new (go$sliceType(go$emptyInterface))([new Go$String(scanner.TokenString(p.tok))]));
+		} }
 		if (go$interfaceIsEqual(typ0, null)) {
 			typ0 = typ;
 		}
@@ -66927,41 +66864,38 @@ go$packages["github.com/neelance/gopherjs/gcexporter"] = (function() {
 				}
 				basic = (x$2 = o.object.Type().Underlying(), (x$2 !== null && x$2.constructor === (go$ptrType(types.Basic)) ? x$2.go$val : go$typeAssertionFailed(x$2, (go$ptrType(types.Basic)))));
 				val = "";
-				switch (undefined) {
-				default:
-					if (!(((basic.Info() & 1) === 0))) {
-						val = strconv.FormatBool(exact.BoolVal(o.Val()));
-					} else if (!(((basic.Info() & 2) === 0))) {
-						if (basic.Kind() === 11) {
-							_tuple$3 = exact.Uint64Val(o.Val()), d = _tuple$3[0];
-							val = fmt.Sprintf("%#x", new (go$sliceType(go$emptyInterface))([d]));
-							break;
-						}
-						_tuple$4 = exact.Int64Val(o.Val()), d$1 = _tuple$4[0];
-						if (basic.Kind() === 21) {
-							if ((d$1.high < 0 || (d$1.high === 0 && d$1.low < 0)) || (d$1.high > 0 || (d$1.high === 0 && d$1.low > 1114111))) {
-								val = fmt.Sprintf("('\\x00' + %d)", new (go$sliceType(go$emptyInterface))([d$1]));
-							} else if ((d$1.high > 0 || (d$1.high === 0 && d$1.low > 65535))) {
-								val = fmt.Sprintf("'\\U%08x'", new (go$sliceType(go$emptyInterface))([d$1]));
-							} else {
-								val = fmt.Sprintf("'\\u%04x'", new (go$sliceType(go$emptyInterface))([d$1]));
-							}
-							break;
-						}
-						val = fmt.Sprintf("%#x", new (go$sliceType(go$emptyInterface))([d$1]));
-					} else if (!(((basic.Info() & 8) === 0))) {
-						_tuple$5 = exact.Float64Val(o.Val()), f = _tuple$5[0];
-						val = strconv.FormatFloat(f, 98, -1, 64);
-					} else if (!(((basic.Info() & 16) === 0))) {
-						_tuple$6 = exact.Float64Val(exact.Real(o.Val())), r = _tuple$6[0];
-						_tuple$7 = exact.Float64Val(exact.Imag(o.Val())), i$1 = _tuple$7[0];
-						val = fmt.Sprintf("(%s+%si)", new (go$sliceType(go$emptyInterface))([new Go$String(strconv.FormatFloat(r, 98, -1, 64)), new Go$String(strconv.FormatFloat(i$1, 98, -1, 64))]));
-					} else if (!(((basic.Info() & 32) === 0))) {
-						val = fmt.Sprintf("%#v", new (go$sliceType(go$emptyInterface))([new Go$String(exact.StringVal(o.Val()))]));
-					} else {
-						throw go$panic(new Go$String("Unhandled constant type: " + basic.String()));
+				switch (0) { default: if (!(((basic.Info() & 1) === 0))) {
+					val = strconv.FormatBool(exact.BoolVal(o.Val()));
+				} else if (!(((basic.Info() & 2) === 0))) {
+					if (basic.Kind() === 11) {
+						_tuple$3 = exact.Uint64Val(o.Val()), d = _tuple$3[0];
+						val = fmt.Sprintf("%#x", new (go$sliceType(go$emptyInterface))([d]));
+						break;
 					}
-				}
+					_tuple$4 = exact.Int64Val(o.Val()), d$1 = _tuple$4[0];
+					if (basic.Kind() === 21) {
+						if ((d$1.high < 0 || (d$1.high === 0 && d$1.low < 0)) || (d$1.high > 0 || (d$1.high === 0 && d$1.low > 1114111))) {
+							val = fmt.Sprintf("('\\x00' + %d)", new (go$sliceType(go$emptyInterface))([d$1]));
+						} else if ((d$1.high > 0 || (d$1.high === 0 && d$1.low > 65535))) {
+							val = fmt.Sprintf("'\\U%08x'", new (go$sliceType(go$emptyInterface))([d$1]));
+						} else {
+							val = fmt.Sprintf("'\\u%04x'", new (go$sliceType(go$emptyInterface))([d$1]));
+						}
+						break;
+					}
+					val = fmt.Sprintf("%#x", new (go$sliceType(go$emptyInterface))([d$1]));
+				} else if (!(((basic.Info() & 8) === 0))) {
+					_tuple$5 = exact.Float64Val(o.Val()), f = _tuple$5[0];
+					val = strconv.FormatFloat(f, 98, -1, 64);
+				} else if (!(((basic.Info() & 16) === 0))) {
+					_tuple$6 = exact.Float64Val(exact.Real(o.Val())), r = _tuple$6[0];
+					_tuple$7 = exact.Float64Val(exact.Imag(o.Val())), i$1 = _tuple$7[0];
+					val = fmt.Sprintf("(%s+%si)", new (go$sliceType(go$emptyInterface))([new Go$String(strconv.FormatFloat(r, 98, -1, 64)), new Go$String(strconv.FormatFloat(i$1, 98, -1, 64))]));
+				} else if (!(((basic.Info() & 32) === 0))) {
+					val = fmt.Sprintf("%#v", new (go$sliceType(go$emptyInterface))([new Go$String(exact.StringVal(o.Val()))]));
+				} else {
+					throw go$panic(new Go$String("Unhandled constant type: " + basic.String()));
+				} }
 				out.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes("const " + e.makeName(o) + optType + " = " + val + "\n")));
 			} else if (_type === (go$ptrType(types.Var))) {
 				o = _ref$2.go$val;
@@ -67255,7 +67189,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 	ErrorList.methods = [["Error", "", [], [Go$String], false]];
 	(go$ptrType(ErrorList)).methods = [["Error", "", [], [Go$String], false]];
 	pkgContext.init([["pkg", "github.com/neelance/gopherjs/translator", (go$ptrType(types.Package)), ""], ["info", "github.com/neelance/gopherjs/translator", (go$ptrType(types.Info)), ""], ["pkgVars", "github.com/neelance/gopherjs/translator", (go$mapType(Go$String, Go$String)), ""], ["objectVars", "github.com/neelance/gopherjs/translator", (go$mapType(types.Object, Go$String)), ""], ["allVarNames", "github.com/neelance/gopherjs/translator", (go$mapType(Go$String, Go$Int)), ""], ["funcVarNames", "github.com/neelance/gopherjs/translator", (go$sliceType(Go$String)), ""], ["functionSig", "github.com/neelance/gopherjs/translator", (go$ptrType(types.Signature)), ""], ["resultNames", "github.com/neelance/gopherjs/translator", (go$sliceType(ast.Expr)), ""], ["postLoopStmt", "github.com/neelance/gopherjs/translator", (go$mapType(Go$String, Go$String)), ""], ["escapingVars", "github.com/neelance/gopherjs/translator", (go$sliceType(Go$String)), ""], ["output", "github.com/neelance/gopherjs/translator", (go$sliceType(Go$Uint8)), ""], ["delayedOutput", "github.com/neelance/gopherjs/translator", (go$sliceType(Go$Uint8)), ""], ["indentation", "github.com/neelance/gopherjs/translator", Go$Int, ""]]);
-	(go$ptrType(pkgContext)).methods = [["CatchOutput", "", [(go$funcType([], [], false))], [(go$sliceType(Go$Uint8))], false], ["Delayed", "", [(go$funcType([], [], false))], [], false], ["Indent", "", [(go$funcType([], [], false))], [], false], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["clone", "github.com/neelance/gopherjs/translator", [(go$ptrType(expression)), types.Type], [(go$ptrType(expression))], false], ["externalize", "github.com/neelance/gopherjs/translator", [Go$String, types.Type], [Go$String], false], ["fixNumber", "github.com/neelance/gopherjs/translator", [(go$ptrType(expression)), (go$ptrType(types.Basic))], [(go$ptrType(expression))], false], ["flatten64", "github.com/neelance/gopherjs/translator", [ast.Expr], [(go$ptrType(expression))], false], ["formatExpr", "github.com/neelance/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(expression))], true], ["formatExprInternal", "github.com/neelance/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface)), Go$Bool], [(go$ptrType(expression))], false], ["formatParenExpr", "github.com/neelance/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(expression))], true], ["handleEscapingVariables", "github.com/neelance/gopherjs/translator", [ast.Node, (go$funcType([], [], false))], [], false], ["identifierConstant", "github.com/neelance/gopherjs/translator", [ast.Expr], [Go$String, Go$Bool], false], ["initArgs", "github.com/neelance/gopherjs/translator", [types.Type], [Go$String], false], ["initType", "github.com/neelance/gopherjs/translator", [types.Object], [], false], ["internalize", "github.com/neelance/gopherjs/translator", [(go$ptrType(expression)), types.Type], [(go$ptrType(expression))], false], ["loadStruct", "github.com/neelance/gopherjs/translator", [Go$String, Go$String, (go$ptrType(types.Struct))], [Go$String], false], ["makeKey", "github.com/neelance/gopherjs/translator", [ast.Expr, types.Type], [Go$String], false], ["newIdent", "github.com/neelance/gopherjs/translator", [Go$String, types.Type], [(go$ptrType(ast.Ident))], false], ["newScope", "github.com/neelance/gopherjs/translator", [(go$funcType([], [], false))], [], false], ["newVariable", "github.com/neelance/gopherjs/translator", [Go$String], [Go$String], false], ["objectName", "github.com/neelance/gopherjs/translator", [types.Object], [Go$String], false], ["translateArgs", "github.com/neelance/gopherjs/translator", [(go$ptrType(types.Signature)), (go$sliceType(ast.Expr)), Go$Bool], [Go$String], false], ["translateAssign", "github.com/neelance/gopherjs/translator", [ast.Expr, Go$String], [Go$String], false], ["translateBranchingStmt", "github.com/neelance/gopherjs/translator", [(go$sliceType(ast.Stmt)), (go$sliceType(ast.Stmt)), Go$Bool, (go$funcType([ast.Expr], [(go$ptrType(expression))], false)), (go$funcType([(go$sliceType(ast.Expr))], [], false)), Go$String], [], false], ["translateConversion", "github.com/neelance/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false], ["translateConversionToSlice", "github.com/neelance/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false], ["translateExpr", "github.com/neelance/gopherjs/translator", [ast.Expr], [(go$ptrType(expression))], false], ["translateExprSlice", "github.com/neelance/gopherjs/translator", [(go$sliceType(ast.Expr)), types.Type], [(go$sliceType(Go$String))], false], ["translateFunction", "github.com/neelance/gopherjs/translator", [(go$ptrType(ast.FuncDecl)), Go$String], [], false], ["translateFunctionBody", "github.com/neelance/gopherjs/translator", [(go$sliceType(ast.Stmt)), (go$ptrType(types.Signature))], [], false], ["translateImplicitConversion", "github.com/neelance/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false], ["translateLoopingStmt", "github.com/neelance/gopherjs/translator", [Go$String, Go$String, (go$ptrType(ast.BlockStmt)), (go$funcType([], [], false)), Go$String], [], false], ["translateParams", "github.com/neelance/gopherjs/translator", [(go$ptrType(ast.FuncType))], [(go$sliceType(Go$String))], false], ["translateSelection", "github.com/neelance/gopherjs/translator", [(go$ptrType(types.Selection))], [(go$sliceType(Go$String)), Go$String], false], ["translateSimpleStmt", "github.com/neelance/gopherjs/translator", [ast.Stmt], [Go$String], false], ["translateStmt", "github.com/neelance/gopherjs/translator", [ast.Stmt, Go$String], [], false], ["translateStmtList", "github.com/neelance/gopherjs/translator", [(go$sliceType(ast.Stmt))], [], false], ["translateType", "github.com/neelance/gopherjs/translator", [(go$ptrType(types.TypeName))], [], false], ["typeArray", "github.com/neelance/gopherjs/translator", [(go$ptrType(types.Tuple))], [Go$String], false], ["typeCheck", "github.com/neelance/gopherjs/translator", [Go$String, types.Type], [Go$String], false], ["typeName", "github.com/neelance/gopherjs/translator", [types.Type], [Go$String], false], ["zeroValue", "github.com/neelance/gopherjs/translator", [types.Type], [Go$String], false]];
+	(go$ptrType(pkgContext)).methods = [["CatchOutput", "", [(go$funcType([], [], false))], [(go$sliceType(Go$Uint8))], false], ["Delayed", "", [(go$funcType([], [], false))], [], false], ["Indent", "", [(go$funcType([], [], false))], [], false], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["clone", "github.com/neelance/gopherjs/translator", [(go$ptrType(expression)), types.Type], [(go$ptrType(expression))], false], ["externalize", "github.com/neelance/gopherjs/translator", [Go$String, types.Type], [Go$String], false], ["fixNumber", "github.com/neelance/gopherjs/translator", [(go$ptrType(expression)), (go$ptrType(types.Basic))], [(go$ptrType(expression))], false], ["flatten64", "github.com/neelance/gopherjs/translator", [ast.Expr], [(go$ptrType(expression))], false], ["formatExpr", "github.com/neelance/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(expression))], true], ["formatExprInternal", "github.com/neelance/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface)), Go$Bool], [(go$ptrType(expression))], false], ["formatParenExpr", "github.com/neelance/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(expression))], true], ["identifierConstant", "github.com/neelance/gopherjs/translator", [ast.Expr], [Go$String, Go$Bool], false], ["initArgs", "github.com/neelance/gopherjs/translator", [types.Type], [Go$String], false], ["initType", "github.com/neelance/gopherjs/translator", [types.Object], [], false], ["internalize", "github.com/neelance/gopherjs/translator", [(go$ptrType(expression)), types.Type], [(go$ptrType(expression))], false], ["loadStruct", "github.com/neelance/gopherjs/translator", [Go$String, Go$String, (go$ptrType(types.Struct))], [Go$String], false], ["makeKey", "github.com/neelance/gopherjs/translator", [ast.Expr, types.Type], [Go$String], false], ["newIdent", "github.com/neelance/gopherjs/translator", [Go$String, types.Type], [(go$ptrType(ast.Ident))], false], ["newScope", "github.com/neelance/gopherjs/translator", [(go$funcType([], [], false))], [], false], ["newVariable", "github.com/neelance/gopherjs/translator", [Go$String], [Go$String], false], ["objectName", "github.com/neelance/gopherjs/translator", [types.Object], [Go$String], false], ["translateArgs", "github.com/neelance/gopherjs/translator", [(go$ptrType(types.Signature)), (go$sliceType(ast.Expr)), Go$Bool], [Go$String], false], ["translateAssign", "github.com/neelance/gopherjs/translator", [ast.Expr, Go$String], [Go$String], false], ["translateBranchingStmt", "github.com/neelance/gopherjs/translator", [(go$sliceType(ast.Stmt)), (go$sliceType(ast.Stmt)), Go$Bool, (go$funcType([ast.Expr], [(go$ptrType(expression))], false)), (go$funcType([(go$sliceType(ast.Expr))], [], false)), Go$String], [], false], ["translateConversion", "github.com/neelance/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false], ["translateConversionToSlice", "github.com/neelance/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false], ["translateExpr", "github.com/neelance/gopherjs/translator", [ast.Expr], [(go$ptrType(expression))], false], ["translateExprSlice", "github.com/neelance/gopherjs/translator", [(go$sliceType(ast.Expr)), types.Type], [(go$sliceType(Go$String))], false], ["translateFunction", "github.com/neelance/gopherjs/translator", [(go$ptrType(ast.FuncDecl)), Go$String], [], false], ["translateFunctionBody", "github.com/neelance/gopherjs/translator", [(go$sliceType(ast.Stmt)), (go$ptrType(types.Signature))], [], false], ["translateImplicitConversion", "github.com/neelance/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false], ["translateLoopingStmt", "github.com/neelance/gopherjs/translator", [Go$String, Go$String, (go$ptrType(ast.BlockStmt)), (go$funcType([], [], false)), Go$String], [], false], ["translateParams", "github.com/neelance/gopherjs/translator", [(go$ptrType(ast.FuncType))], [(go$sliceType(Go$String))], false], ["translateSelection", "github.com/neelance/gopherjs/translator", [(go$ptrType(types.Selection))], [(go$sliceType(Go$String)), Go$String], false], ["translateSimpleStmt", "github.com/neelance/gopherjs/translator", [ast.Stmt], [Go$String], false], ["translateStmt", "github.com/neelance/gopherjs/translator", [ast.Stmt, Go$String], [], false], ["translateStmtList", "github.com/neelance/gopherjs/translator", [(go$sliceType(ast.Stmt))], [], false], ["translateType", "github.com/neelance/gopherjs/translator", [(go$ptrType(types.TypeName))], [], false], ["typeArray", "github.com/neelance/gopherjs/translator", [(go$ptrType(types.Tuple))], [Go$String], false], ["typeCheck", "github.com/neelance/gopherjs/translator", [Go$String, types.Type], [Go$String], false], ["typeName", "github.com/neelance/gopherjs/translator", [types.Type], [Go$String], false], ["zeroValue", "github.com/neelance/gopherjs/translator", [types.Type], [Go$String], false]];
 	branch.init([["clause", "github.com/neelance/gopherjs/translator", (go$ptrType(ast.CaseClause)), ""], ["initStmt", "github.com/neelance/gopherjs/translator", ast.Stmt, ""], ["condition", "github.com/neelance/gopherjs/translator", Go$String, ""], ["body", "github.com/neelance/gopherjs/translator", (go$sliceType(ast.Stmt)), ""]]);
 	hasBreakVisitor.init([["hasBreak", "github.com/neelance/gopherjs/translator", Go$Bool, ""]]);
 	(go$ptrType(hasBreakVisitor)).methods = [["Visit", "", [ast.Node], [ast.Visitor], false]];
@@ -67986,129 +67920,126 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 					return strings.Join(s, ", ");
 				});
 				_ref$25 = sel$1.Kind();
-				switch (undefined) {
-				default:
-					if (_ref$25 === 1) {
-						methodName = o$1.Name();
-						if ((_entry$23 = reservedKeywords[methodName], _entry$23 !== undefined ? _entry$23.v : false)) {
-							methodName = methodName + "$";
-						}
-						fun = c.translateExpr(f$1.X);
-						t$5 = sel$1.Recv();
-						_ref$26 = go$subslice(sel$1.Index(), 0, (sel$1.Index().length - 1 >> 0));
-						_i$5 = 0;
-						while (_i$5 < _ref$26.length) {
-							index = (_slice$34 = _ref$26, _index$34 = _i$5, (_index$34 >= 0 && _index$34 < _slice$34.length) ? _slice$34.array[_slice$34.offset + _index$34] : go$throwRuntimeError("index out of range"));
-							if (_tuple$21 = (t$5 !== null && t$5.constructor === (go$ptrType(types.Pointer)) ? [t$5.go$val, true] : [(go$ptrType(types.Pointer)).nil, false]), ptr = _tuple$21[0], isPtr = _tuple$21[1], isPtr) {
-								t$5 = ptr.Elem();
-							}
-							s = (x$28 = t$5.Underlying(), (x$28 !== null && x$28.constructor === (go$ptrType(types.Struct)) ? x$28.go$val : go$typeAssertionFailed(x$28, (go$ptrType(types.Struct)))));
-							fun = c.formatExpr("%s.%s", new (go$sliceType(go$emptyInterface))([fun, new Go$String(fieldName(s, index))]));
-							t$5 = s.Field(index).object.Type();
-							_i$5++;
-						}
-						if (!(o$1.Pkg() === (go$ptrType(types.Package)).nil) && o$1.Pkg().Path() === "github.com/neelance/gopherjs/js") {
-							_ref$27 = o$1.Name();
-							if (_ref$27 === "Get") {
-								if (_tuple$22 = c.identifierConstant((_slice$35 = e.Args, _index$35 = 0, (_index$35 >= 0 && _index$35 < _slice$35.length) ? _slice$35.array[_slice$35.offset + _index$35] : go$throwRuntimeError("index out of range"))), id = _tuple$22[0], ok$2 = _tuple$22[1], ok$2) {
-									return c.formatExpr("%s.%s", new (go$sliceType(go$emptyInterface))([fun, new Go$String(id)]));
-								}
-								return c.formatExpr("%s[go$externalize(%s, Go$String)]", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$36 = e.Args, _index$36 = 0, (_index$36 >= 0 && _index$36 < _slice$36.length) ? _slice$36.array[_slice$36.offset + _index$36] : go$throwRuntimeError("index out of range")))]));
-							} else if (_ref$27 === "Set") {
-								if (_tuple$23 = c.identifierConstant((_slice$37 = e.Args, _index$37 = 0, (_index$37 >= 0 && _index$37 < _slice$37.length) ? _slice$37.array[_slice$37.offset + _index$37] : go$throwRuntimeError("index out of range"))), id$1 = _tuple$23[0], ok$3 = _tuple$23[1], ok$3) {
-									return c.formatExpr("%s.%s = %s", new (go$sliceType(go$emptyInterface))([fun, new Go$String(id$1), new Go$String(externalizeExpr((_slice$38 = e.Args, _index$38 = 1, (_index$38 >= 0 && _index$38 < _slice$38.length) ? _slice$38.array[_slice$38.offset + _index$38] : go$throwRuntimeError("index out of range"))))]));
-								}
-								return c.formatExpr("%s[go$externalize(%s, Go$String)] = %s", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$39 = e.Args, _index$39 = 0, (_index$39 >= 0 && _index$39 < _slice$39.length) ? _slice$39.array[_slice$39.offset + _index$39] : go$throwRuntimeError("index out of range"))), new Go$String(externalizeExpr((_slice$40 = e.Args, _index$40 = 1, (_index$40 >= 0 && _index$40 < _slice$40.length) ? _slice$40.array[_slice$40.offset + _index$40] : go$throwRuntimeError("index out of range"))))]));
-							} else if (_ref$27 === "Length") {
-								return c.formatExpr("go$parseInt(%s.length)", new (go$sliceType(go$emptyInterface))([fun]));
-							} else if (_ref$27 === "Index") {
-								return c.formatExpr("%s[%s]", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$41 = e.Args, _index$41 = 0, (_index$41 >= 0 && _index$41 < _slice$41.length) ? _slice$41.array[_slice$41.offset + _index$41] : go$throwRuntimeError("index out of range")))]));
-							} else if (_ref$27 === "SetIndex") {
-								return c.formatExpr("%s[%s] = %s", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$42 = e.Args, _index$42 = 0, (_index$42 >= 0 && _index$42 < _slice$42.length) ? _slice$42.array[_slice$42.offset + _index$42] : go$throwRuntimeError("index out of range"))), new Go$String(externalizeExpr((_slice$43 = e.Args, _index$43 = 1, (_index$43 >= 0 && _index$43 < _slice$43.length) ? _slice$43.array[_slice$43.offset + _index$43] : go$throwRuntimeError("index out of range"))))]));
-							} else if (_ref$27 === "Call") {
-								if (_tuple$24 = c.identifierConstant((_slice$44 = e.Args, _index$44 = 0, (_index$44 >= 0 && _index$44 < _slice$44.length) ? _slice$44.array[_slice$44.offset + _index$44] : go$throwRuntimeError("index out of range"))), id$2 = _tuple$24[0], ok$4 = _tuple$24[1], ok$4) {
-									if ((new token.Pos(e.Ellipsis)).IsValid()) {
-										objVar = c.newVariable("obj");
-										return c.formatExpr("(%s = %s, %s.%s.apply(%s, %s))", new (go$sliceType(go$emptyInterface))([new Go$String(objVar), fun, new Go$String(objVar), new Go$String(id$2), new Go$String(objVar), new Go$String(externalizeExpr((_slice$45 = e.Args, _index$45 = 1, (_index$45 >= 0 && _index$45 < _slice$45.length) ? _slice$45.array[_slice$45.offset + _index$45] : go$throwRuntimeError("index out of range"))))]));
-									}
-									return c.formatExpr("%s.%s(%s)", new (go$sliceType(go$emptyInterface))([fun, new Go$String(id$2), new Go$String(externalizeArgs(go$subslice(e.Args, 1)))]));
-								}
-								if ((new token.Pos(e.Ellipsis)).IsValid()) {
-									objVar$1 = c.newVariable("obj");
-									return c.formatExpr("(%s = %s, %s[go$externalize(%s, Go$String)].apply(%s, %s))", new (go$sliceType(go$emptyInterface))([new Go$String(objVar$1), fun, new Go$String(objVar$1), c.translateExpr((_slice$46 = e.Args, _index$46 = 0, (_index$46 >= 0 && _index$46 < _slice$46.length) ? _slice$46.array[_slice$46.offset + _index$46] : go$throwRuntimeError("index out of range"))), new Go$String(objVar$1), new Go$String(externalizeExpr((_slice$47 = e.Args, _index$47 = 1, (_index$47 >= 0 && _index$47 < _slice$47.length) ? _slice$47.array[_slice$47.offset + _index$47] : go$throwRuntimeError("index out of range"))))]));
-								}
-								return c.formatExpr("%s[go$externalize(%s, Go$String)](%s)", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$48 = e.Args, _index$48 = 0, (_index$48 >= 0 && _index$48 < _slice$48.length) ? _slice$48.array[_slice$48.offset + _index$48] : go$throwRuntimeError("index out of range"))), new Go$String(externalizeArgs(go$subslice(e.Args, 1)))]));
-							} else if (_ref$27 === "Invoke") {
-								if ((new token.Pos(e.Ellipsis)).IsValid()) {
-									return c.formatExpr("%s.apply(undefined, %s)", new (go$sliceType(go$emptyInterface))([fun, new Go$String(externalizeExpr((_slice$49 = e.Args, _index$49 = 0, (_index$49 >= 0 && _index$49 < _slice$49.length) ? _slice$49.array[_slice$49.offset + _index$49] : go$throwRuntimeError("index out of range"))))]));
-								}
-								return c.formatExpr("%s(%s)", new (go$sliceType(go$emptyInterface))([fun, new Go$String(externalizeArgs(e.Args))]));
-							} else if (_ref$27 === "New") {
-								if ((new token.Pos(e.Ellipsis)).IsValid()) {
-									return c.formatExpr("new (go$global.Function.prototype.bind.apply(%s, [undefined].concat(%s)))", new (go$sliceType(go$emptyInterface))([fun, new Go$String(externalizeExpr((_slice$50 = e.Args, _index$50 = 0, (_index$50 >= 0 && _index$50 < _slice$50.length) ? _slice$50.array[_slice$50.offset + _index$50] : go$throwRuntimeError("index out of range"))))]));
-								}
-								return c.formatExpr("new %s(%s)", new (go$sliceType(go$emptyInterface))([fun, new Go$String(externalizeArgs(e.Args))]));
-							} else if (_ref$27 === "Bool") {
-								return c.internalize(fun, types.Typ[1]);
-							} else if (_ref$27 === "String") {
-								return c.internalize(fun, types.Typ[17]);
-							} else if (_ref$27 === "Int") {
-								return c.internalize(fun, types.Typ[2]);
-							} else if (_ref$27 === "Float") {
-								return c.internalize(fun, types.Typ[14]);
-							} else if (_ref$27 === "Interface") {
-								return c.internalize(fun, types.NewInterface((go$sliceType((go$ptrType(types.Func)))).nil, (go$sliceType((go$ptrType(types.Named)))).nil));
-							} else if (_ref$27 === "IsUndefined") {
-								return c.formatParenExpr("%s === undefined", new (go$sliceType(go$emptyInterface))([fun]));
-							} else if (_ref$27 === "IsNull") {
-								return c.formatParenExpr("%s === null", new (go$sliceType(go$emptyInterface))([fun]));
-							} else {
-								throw go$panic(new Go$String("Invalid js package method: " + o$1.Name()));
-							}
-						}
-						methodsRecvType = (x$29 = o$1.Type(), (x$29 !== null && x$29.constructor === (go$ptrType(types.Signature)) ? x$29.go$val : go$typeAssertionFailed(x$29, (go$ptrType(types.Signature))))).Recv().object.Type();
-						_tuple$25 = (methodsRecvType !== null && methodsRecvType.constructor === (go$ptrType(types.Pointer)) ? [methodsRecvType.go$val, true] : [(go$ptrType(types.Pointer)).nil, false]), pointerExpected = _tuple$25[1];
-						_tuple$26 = (x$30 = t$5.Underlying(), (x$30 !== null && x$30.constructor === (go$ptrType(types.Pointer)) ? [x$30.go$val, true] : [(go$ptrType(types.Pointer)).nil, false])), isPointer$1 = _tuple$26[1];
-						_tuple$27 = (x$31 = t$5.Underlying(), (x$31 !== null && x$31.constructor === (go$ptrType(types.Struct)) ? [x$31.go$val, true] : [(go$ptrType(types.Struct)).nil, false])), isStruct = _tuple$27[1];
-						_tuple$28 = (x$32 = t$5.Underlying(), (x$32 !== null && x$32.constructor === (go$ptrType(types.Array)) ? [x$32.go$val, true] : [(go$ptrType(types.Array)).nil, false])), isArray = _tuple$28[1];
-						if (pointerExpected && !isPointer$1 && !isStruct && !isArray) {
-							vVar$1 = c.newVariable("v");
-							fun = c.formatExpr("(new %s(function() { return %s; }, function(%s) { %s = %s; })).%s", new (go$sliceType(go$emptyInterface))([new Go$String(c.typeName(methodsRecvType)), fun, new Go$String(vVar$1), fun, new Go$String(vVar$1), new Go$String(methodName)]));
-							break;
-						}
-						if (isWrapped(t$5)) {
-							fun = c.formatExpr("(new %s(%s)).%s", new (go$sliceType(go$emptyInterface))([new Go$String(c.typeName(t$5)), fun, new Go$String(methodName)]));
-							break;
-						}
-						fun = c.formatExpr("%s.%s", new (go$sliceType(go$emptyInterface))([fun, new Go$String(methodName)]));
-					} else if (_ref$25 === 3) {
-						if (!(o$1.Pkg() === (go$ptrType(types.Package)).nil) && o$1.Pkg().Path() === "github.com/neelance/gopherjs/js") {
-							_ref$28 = o$1.Name();
-							if (_ref$28 === "Global") {
-								if (_tuple$29 = c.identifierConstant((_slice$51 = e.Args, _index$51 = 0, (_index$51 >= 0 && _index$51 < _slice$51.length) ? _slice$51.array[_slice$51.offset + _index$51] : go$throwRuntimeError("index out of range"))), id$3 = _tuple$29[0], ok$5 = _tuple$29[1], ok$5) {
-									return c.formatExpr("go$global.%s", new (go$sliceType(go$emptyInterface))([new Go$String(id$3)]));
-								}
-								return c.formatExpr("go$global[go$externalize(%s, Go$String)]", new (go$sliceType(go$emptyInterface))([c.translateExpr((_slice$52 = e.Args, _index$52 = 0, (_index$52 >= 0 && _index$52 < _slice$52.length) ? _slice$52.array[_slice$52.offset + _index$52] : go$throwRuntimeError("index out of range")))]));
-							} else if (_ref$28 === "This") {
-								return c.formatExpr("this", new (go$sliceType(go$emptyInterface))([]));
-							} else {
-								throw go$panic(new Go$String("Invalid js package method: " + o$1.Name()));
-							}
-						}
-						fun = c.translateExpr(f$1);
-					} else if (_ref$25 === 0) {
-						_tuple$30 = c.translateSelection(sel$1), fields$1 = _tuple$30[0], jsTag$1 = _tuple$30[1];
-						if (!(jsTag$1 === "")) {
-							sig = (x$33 = sel$1.Type(), (x$33 !== null && x$33.constructor === (go$ptrType(types.Signature)) ? x$33.go$val : go$typeAssertionFailed(x$33, (go$ptrType(types.Signature)))));
-							return c.internalize(c.formatExpr("%s.%s.%s(%s)", new (go$sliceType(go$emptyInterface))([c.translateExpr(f$1.X), new Go$String(strings.Join(fields$1, ".")), new Go$String(jsTag$1), new Go$String(externalizeArgs(e.Args))])), sig.Results().At(0).object.Type());
-						}
-						fun = c.formatExpr("%s.%s", new (go$sliceType(go$emptyInterface))([c.translateExpr(f$1.X), new Go$String(strings.Join(fields$1, "."))]));
-					} else if (_ref$25 === 2) {
-						fun = c.translateExpr(f$1);
-					} else {
-						throw go$panic(new Go$String(""));
+				switch (0) { default: if (_ref$25 === 1) {
+					methodName = o$1.Name();
+					if ((_entry$23 = reservedKeywords[methodName], _entry$23 !== undefined ? _entry$23.v : false)) {
+						methodName = methodName + "$";
 					}
-				}
+					fun = c.translateExpr(f$1.X);
+					t$5 = sel$1.Recv();
+					_ref$26 = go$subslice(sel$1.Index(), 0, (sel$1.Index().length - 1 >> 0));
+					_i$5 = 0;
+					while (_i$5 < _ref$26.length) {
+						index = (_slice$34 = _ref$26, _index$34 = _i$5, (_index$34 >= 0 && _index$34 < _slice$34.length) ? _slice$34.array[_slice$34.offset + _index$34] : go$throwRuntimeError("index out of range"));
+						if (_tuple$21 = (t$5 !== null && t$5.constructor === (go$ptrType(types.Pointer)) ? [t$5.go$val, true] : [(go$ptrType(types.Pointer)).nil, false]), ptr = _tuple$21[0], isPtr = _tuple$21[1], isPtr) {
+							t$5 = ptr.Elem();
+						}
+						s = (x$28 = t$5.Underlying(), (x$28 !== null && x$28.constructor === (go$ptrType(types.Struct)) ? x$28.go$val : go$typeAssertionFailed(x$28, (go$ptrType(types.Struct)))));
+						fun = c.formatExpr("%s.%s", new (go$sliceType(go$emptyInterface))([fun, new Go$String(fieldName(s, index))]));
+						t$5 = s.Field(index).object.Type();
+						_i$5++;
+					}
+					if (!(o$1.Pkg() === (go$ptrType(types.Package)).nil) && o$1.Pkg().Path() === "github.com/neelance/gopherjs/js") {
+						_ref$27 = o$1.Name();
+						if (_ref$27 === "Get") {
+							if (_tuple$22 = c.identifierConstant((_slice$35 = e.Args, _index$35 = 0, (_index$35 >= 0 && _index$35 < _slice$35.length) ? _slice$35.array[_slice$35.offset + _index$35] : go$throwRuntimeError("index out of range"))), id = _tuple$22[0], ok$2 = _tuple$22[1], ok$2) {
+								return c.formatExpr("%s.%s", new (go$sliceType(go$emptyInterface))([fun, new Go$String(id)]));
+							}
+							return c.formatExpr("%s[go$externalize(%s, Go$String)]", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$36 = e.Args, _index$36 = 0, (_index$36 >= 0 && _index$36 < _slice$36.length) ? _slice$36.array[_slice$36.offset + _index$36] : go$throwRuntimeError("index out of range")))]));
+						} else if (_ref$27 === "Set") {
+							if (_tuple$23 = c.identifierConstant((_slice$37 = e.Args, _index$37 = 0, (_index$37 >= 0 && _index$37 < _slice$37.length) ? _slice$37.array[_slice$37.offset + _index$37] : go$throwRuntimeError("index out of range"))), id$1 = _tuple$23[0], ok$3 = _tuple$23[1], ok$3) {
+								return c.formatExpr("%s.%s = %s", new (go$sliceType(go$emptyInterface))([fun, new Go$String(id$1), new Go$String(externalizeExpr((_slice$38 = e.Args, _index$38 = 1, (_index$38 >= 0 && _index$38 < _slice$38.length) ? _slice$38.array[_slice$38.offset + _index$38] : go$throwRuntimeError("index out of range"))))]));
+							}
+							return c.formatExpr("%s[go$externalize(%s, Go$String)] = %s", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$39 = e.Args, _index$39 = 0, (_index$39 >= 0 && _index$39 < _slice$39.length) ? _slice$39.array[_slice$39.offset + _index$39] : go$throwRuntimeError("index out of range"))), new Go$String(externalizeExpr((_slice$40 = e.Args, _index$40 = 1, (_index$40 >= 0 && _index$40 < _slice$40.length) ? _slice$40.array[_slice$40.offset + _index$40] : go$throwRuntimeError("index out of range"))))]));
+						} else if (_ref$27 === "Length") {
+							return c.formatExpr("go$parseInt(%s.length)", new (go$sliceType(go$emptyInterface))([fun]));
+						} else if (_ref$27 === "Index") {
+							return c.formatExpr("%s[%s]", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$41 = e.Args, _index$41 = 0, (_index$41 >= 0 && _index$41 < _slice$41.length) ? _slice$41.array[_slice$41.offset + _index$41] : go$throwRuntimeError("index out of range")))]));
+						} else if (_ref$27 === "SetIndex") {
+							return c.formatExpr("%s[%s] = %s", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$42 = e.Args, _index$42 = 0, (_index$42 >= 0 && _index$42 < _slice$42.length) ? _slice$42.array[_slice$42.offset + _index$42] : go$throwRuntimeError("index out of range"))), new Go$String(externalizeExpr((_slice$43 = e.Args, _index$43 = 1, (_index$43 >= 0 && _index$43 < _slice$43.length) ? _slice$43.array[_slice$43.offset + _index$43] : go$throwRuntimeError("index out of range"))))]));
+						} else if (_ref$27 === "Call") {
+							if (_tuple$24 = c.identifierConstant((_slice$44 = e.Args, _index$44 = 0, (_index$44 >= 0 && _index$44 < _slice$44.length) ? _slice$44.array[_slice$44.offset + _index$44] : go$throwRuntimeError("index out of range"))), id$2 = _tuple$24[0], ok$4 = _tuple$24[1], ok$4) {
+								if ((new token.Pos(e.Ellipsis)).IsValid()) {
+									objVar = c.newVariable("obj");
+									return c.formatExpr("(%s = %s, %s.%s.apply(%s, %s))", new (go$sliceType(go$emptyInterface))([new Go$String(objVar), fun, new Go$String(objVar), new Go$String(id$2), new Go$String(objVar), new Go$String(externalizeExpr((_slice$45 = e.Args, _index$45 = 1, (_index$45 >= 0 && _index$45 < _slice$45.length) ? _slice$45.array[_slice$45.offset + _index$45] : go$throwRuntimeError("index out of range"))))]));
+								}
+								return c.formatExpr("%s.%s(%s)", new (go$sliceType(go$emptyInterface))([fun, new Go$String(id$2), new Go$String(externalizeArgs(go$subslice(e.Args, 1)))]));
+							}
+							if ((new token.Pos(e.Ellipsis)).IsValid()) {
+								objVar$1 = c.newVariable("obj");
+								return c.formatExpr("(%s = %s, %s[go$externalize(%s, Go$String)].apply(%s, %s))", new (go$sliceType(go$emptyInterface))([new Go$String(objVar$1), fun, new Go$String(objVar$1), c.translateExpr((_slice$46 = e.Args, _index$46 = 0, (_index$46 >= 0 && _index$46 < _slice$46.length) ? _slice$46.array[_slice$46.offset + _index$46] : go$throwRuntimeError("index out of range"))), new Go$String(objVar$1), new Go$String(externalizeExpr((_slice$47 = e.Args, _index$47 = 1, (_index$47 >= 0 && _index$47 < _slice$47.length) ? _slice$47.array[_slice$47.offset + _index$47] : go$throwRuntimeError("index out of range"))))]));
+							}
+							return c.formatExpr("%s[go$externalize(%s, Go$String)](%s)", new (go$sliceType(go$emptyInterface))([fun, c.translateExpr((_slice$48 = e.Args, _index$48 = 0, (_index$48 >= 0 && _index$48 < _slice$48.length) ? _slice$48.array[_slice$48.offset + _index$48] : go$throwRuntimeError("index out of range"))), new Go$String(externalizeArgs(go$subslice(e.Args, 1)))]));
+						} else if (_ref$27 === "Invoke") {
+							if ((new token.Pos(e.Ellipsis)).IsValid()) {
+								return c.formatExpr("%s.apply(undefined, %s)", new (go$sliceType(go$emptyInterface))([fun, new Go$String(externalizeExpr((_slice$49 = e.Args, _index$49 = 0, (_index$49 >= 0 && _index$49 < _slice$49.length) ? _slice$49.array[_slice$49.offset + _index$49] : go$throwRuntimeError("index out of range"))))]));
+							}
+							return c.formatExpr("%s(%s)", new (go$sliceType(go$emptyInterface))([fun, new Go$String(externalizeArgs(e.Args))]));
+						} else if (_ref$27 === "New") {
+							if ((new token.Pos(e.Ellipsis)).IsValid()) {
+								return c.formatExpr("new (go$global.Function.prototype.bind.apply(%s, [undefined].concat(%s)))", new (go$sliceType(go$emptyInterface))([fun, new Go$String(externalizeExpr((_slice$50 = e.Args, _index$50 = 0, (_index$50 >= 0 && _index$50 < _slice$50.length) ? _slice$50.array[_slice$50.offset + _index$50] : go$throwRuntimeError("index out of range"))))]));
+							}
+							return c.formatExpr("new %s(%s)", new (go$sliceType(go$emptyInterface))([fun, new Go$String(externalizeArgs(e.Args))]));
+						} else if (_ref$27 === "Bool") {
+							return c.internalize(fun, types.Typ[1]);
+						} else if (_ref$27 === "String") {
+							return c.internalize(fun, types.Typ[17]);
+						} else if (_ref$27 === "Int") {
+							return c.internalize(fun, types.Typ[2]);
+						} else if (_ref$27 === "Float") {
+							return c.internalize(fun, types.Typ[14]);
+						} else if (_ref$27 === "Interface") {
+							return c.internalize(fun, types.NewInterface((go$sliceType((go$ptrType(types.Func)))).nil, (go$sliceType((go$ptrType(types.Named)))).nil));
+						} else if (_ref$27 === "IsUndefined") {
+							return c.formatParenExpr("%s === undefined", new (go$sliceType(go$emptyInterface))([fun]));
+						} else if (_ref$27 === "IsNull") {
+							return c.formatParenExpr("%s === null", new (go$sliceType(go$emptyInterface))([fun]));
+						} else {
+							throw go$panic(new Go$String("Invalid js package method: " + o$1.Name()));
+						}
+					}
+					methodsRecvType = (x$29 = o$1.Type(), (x$29 !== null && x$29.constructor === (go$ptrType(types.Signature)) ? x$29.go$val : go$typeAssertionFailed(x$29, (go$ptrType(types.Signature))))).Recv().object.Type();
+					_tuple$25 = (methodsRecvType !== null && methodsRecvType.constructor === (go$ptrType(types.Pointer)) ? [methodsRecvType.go$val, true] : [(go$ptrType(types.Pointer)).nil, false]), pointerExpected = _tuple$25[1];
+					_tuple$26 = (x$30 = t$5.Underlying(), (x$30 !== null && x$30.constructor === (go$ptrType(types.Pointer)) ? [x$30.go$val, true] : [(go$ptrType(types.Pointer)).nil, false])), isPointer$1 = _tuple$26[1];
+					_tuple$27 = (x$31 = t$5.Underlying(), (x$31 !== null && x$31.constructor === (go$ptrType(types.Struct)) ? [x$31.go$val, true] : [(go$ptrType(types.Struct)).nil, false])), isStruct = _tuple$27[1];
+					_tuple$28 = (x$32 = t$5.Underlying(), (x$32 !== null && x$32.constructor === (go$ptrType(types.Array)) ? [x$32.go$val, true] : [(go$ptrType(types.Array)).nil, false])), isArray = _tuple$28[1];
+					if (pointerExpected && !isPointer$1 && !isStruct && !isArray) {
+						vVar$1 = c.newVariable("v");
+						fun = c.formatExpr("(new %s(function() { return %s; }, function(%s) { %s = %s; })).%s", new (go$sliceType(go$emptyInterface))([new Go$String(c.typeName(methodsRecvType)), fun, new Go$String(vVar$1), fun, new Go$String(vVar$1), new Go$String(methodName)]));
+						break;
+					}
+					if (isWrapped(t$5)) {
+						fun = c.formatExpr("(new %s(%s)).%s", new (go$sliceType(go$emptyInterface))([new Go$String(c.typeName(t$5)), fun, new Go$String(methodName)]));
+						break;
+					}
+					fun = c.formatExpr("%s.%s", new (go$sliceType(go$emptyInterface))([fun, new Go$String(methodName)]));
+				} else if (_ref$25 === 3) {
+					if (!(o$1.Pkg() === (go$ptrType(types.Package)).nil) && o$1.Pkg().Path() === "github.com/neelance/gopherjs/js") {
+						_ref$28 = o$1.Name();
+						if (_ref$28 === "Global") {
+							if (_tuple$29 = c.identifierConstant((_slice$51 = e.Args, _index$51 = 0, (_index$51 >= 0 && _index$51 < _slice$51.length) ? _slice$51.array[_slice$51.offset + _index$51] : go$throwRuntimeError("index out of range"))), id$3 = _tuple$29[0], ok$5 = _tuple$29[1], ok$5) {
+								return c.formatExpr("go$global.%s", new (go$sliceType(go$emptyInterface))([new Go$String(id$3)]));
+							}
+							return c.formatExpr("go$global[go$externalize(%s, Go$String)]", new (go$sliceType(go$emptyInterface))([c.translateExpr((_slice$52 = e.Args, _index$52 = 0, (_index$52 >= 0 && _index$52 < _slice$52.length) ? _slice$52.array[_slice$52.offset + _index$52] : go$throwRuntimeError("index out of range")))]));
+						} else if (_ref$28 === "This") {
+							return c.formatExpr("this", new (go$sliceType(go$emptyInterface))([]));
+						} else {
+							throw go$panic(new Go$String("Invalid js package method: " + o$1.Name()));
+						}
+					}
+					fun = c.translateExpr(f$1);
+				} else if (_ref$25 === 0) {
+					_tuple$30 = c.translateSelection(sel$1), fields$1 = _tuple$30[0], jsTag$1 = _tuple$30[1];
+					if (!(jsTag$1 === "")) {
+						sig = (x$33 = sel$1.Type(), (x$33 !== null && x$33.constructor === (go$ptrType(types.Signature)) ? x$33.go$val : go$typeAssertionFailed(x$33, (go$ptrType(types.Signature)))));
+						return c.internalize(c.formatExpr("%s.%s.%s(%s)", new (go$sliceType(go$emptyInterface))([c.translateExpr(f$1.X), new Go$String(strings.Join(fields$1, ".")), new Go$String(jsTag$1), new Go$String(externalizeArgs(e.Args))])), sig.Results().At(0).object.Type());
+					}
+					fun = c.formatExpr("%s.%s", new (go$sliceType(go$emptyInterface))([c.translateExpr(f$1.X), new Go$String(strings.Join(fields$1, "."))]));
+				} else if (_ref$25 === 2) {
+					fun = c.translateExpr(f$1);
+				} else {
+					throw go$panic(new Go$String(""));
+				} }
 			} else {
 				f$1 = _ref$19;
 				fun = c.translateExpr(plainFun);
@@ -68469,22 +68400,19 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 			i = _i;
 			_ref$1 = field.object.Type().Underlying();
 			_type = _ref$1 !== null ? _ref$1.constructor : null;
-			switch (undefined) {
-			default:
-				if (_type === (go$ptrType(types.Basic))) {
-					t = _ref$1.go$val;
-					if (!(((t.Info() & 26) === 0))) {
-						if (is64Bit(t)) {
-							code = code + (fmt.Sprintf(", %s = new %s(%s.getUint32(%d, true), %s.getUint32(%d, true))", new (go$sliceType(go$emptyInterface))([new Go$String(field.object.Name()), new Go$String(c.typeName(field.object.Type())), new Go$String(view), (x = (_slice$1 = offsets, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Go$Int64(x.high + 0, x.low + 4)), new Go$String(view), (_slice$2 = offsets, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))])));
-							break;
-						}
-						code = code + (fmt.Sprintf(", %s = %s.get%s(%d, true)", new (go$sliceType(go$emptyInterface))([new Go$String(field.object.Name()), new Go$String(view), new Go$String(toJavaScriptType(t)), (_slice$3 = offsets, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))])));
+			switch (0) { default: if (_type === (go$ptrType(types.Basic))) {
+				t = _ref$1.go$val;
+				if (!(((t.Info() & 26) === 0))) {
+					if (is64Bit(t)) {
+						code = code + (fmt.Sprintf(", %s = new %s(%s.getUint32(%d, true), %s.getUint32(%d, true))", new (go$sliceType(go$emptyInterface))([new Go$String(field.object.Name()), new Go$String(c.typeName(field.object.Type())), new Go$String(view), (x = (_slice$1 = offsets, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Go$Int64(x.high + 0, x.low + 4)), new Go$String(view), (_slice$2 = offsets, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))])));
+						break;
 					}
-				} else if (_type === (go$ptrType(types.Array))) {
-					t = _ref$1.go$val;
-					code = code + (fmt.Sprintf(", %s = new (go$nativeArray(\"%s\"))(%s.buffer, go$min(%s.byteOffset + %d, %s.buffer.byteLength))", new (go$sliceType(go$emptyInterface))([new Go$String(field.object.Name()), new Go$String(typeKind(t.Elem())), new Go$String(array), new Go$String(array), (_slice$4 = offsets, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), new Go$String(array)])));
+					code = code + (fmt.Sprintf(", %s = %s.get%s(%d, true)", new (go$sliceType(go$emptyInterface))([new Go$String(field.object.Name()), new Go$String(view), new Go$String(toJavaScriptType(t)), (_slice$3 = offsets, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))])));
 				}
-			}
+			} else if (_type === (go$ptrType(types.Array))) {
+				t = _ref$1.go$val;
+				code = code + (fmt.Sprintf(", %s = new (go$nativeArray(\"%s\"))(%s.buffer, go$min(%s.byteOffset + %d, %s.buffer.byteLength))", new (go$sliceType(go$emptyInterface))([new Go$String(field.object.Name()), new Go$String(typeKind(t.Elem())), new Go$String(array), new Go$String(array), (_slice$4 = offsets, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), new Go$String(array)])));
+			} }
 			_i++;
 		}
 		return code;
@@ -68601,63 +68529,60 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 					k = format.charCodeAt(i);
 				}
 				_ref = k;
-				switch (undefined) {
-				default:
-					if (_ref === 115) {
-						if (_tuple = (x = (_slice = a, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(expression)) ? [x.go$val, true] : [(go$ptrType(expression)).nil, false])), e = _tuple[0], ok = _tuple[1], ok) {
-							out.WriteString(e.StringWithParens());
-							break;
-						}
-						out.WriteString((x$1 = (_slice$1 = a, _index$1 = n, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (x$1 !== null && x$1.constructor === Go$String ? x$1.go$val : go$typeAssertionFailed(x$1, Go$String))));
-					} else if (_ref === 100) {
-						out.WriteString(strconv.Itoa((x$2 = (_slice$2 = a, _index$2 = n, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (x$2 !== null && x$2.constructor === Go$Int ? x$2.go$val : go$typeAssertionFailed(x$2, Go$Int)))));
-					} else if (_ref === 116) {
-						out.WriteString((new token.Token((x$3 = (_slice$3 = a, _index$3 = n, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (x$3 !== null && x$3.constructor === token.Token ? x$3.go$val : go$typeAssertionFailed(x$3, token.Token))))).String());
-					} else if (_ref === 101) {
-						out.WriteString(varFor(n));
-					} else if (_ref === 104) {
-						if (val = (_entry = c.info.Types[((x$4 = (_slice$4 = a, _index$4 = n, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (x$4 !== null && ast.Expr.implementedBy.indexOf(x$4.constructor) !== -1 ? x$4 : go$typeAssertionFailed(x$4, ast.Expr))) || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : new types.TypeAndValue.Ptr()).Value, !(go$interfaceIsEqual(val, null))) {
-							_tuple$1 = exact.Uint64Val(val), d = _tuple$1[0];
-							if ((x$5 = (_entry$1 = c.info.Types[((x$6 = (_slice$5 = a, _index$5 = n, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (x$6 !== null && ast.Expr.implementedBy.indexOf(x$6.constructor) !== -1 ? x$6 : go$typeAssertionFailed(x$6, ast.Expr))) || go$interfaceNil).go$key()], _entry$1 !== undefined ? _entry$1.v : new types.TypeAndValue.Ptr()).Type.Underlying(), (x$5 !== null && x$5.constructor === (go$ptrType(types.Basic)) ? x$5.go$val : go$typeAssertionFailed(x$5, (go$ptrType(types.Basic))))).Kind() === 6) {
-								out.WriteString(strconv.FormatInt(go$shiftRightInt64(new Go$Int64(d.high, d.low), 32), 10));
-								i = i + 1 >> 0;
-								continue;
-							}
-							out.WriteString(strconv.FormatUint(go$shiftRightUint64(d, 32), 10));
-							i = i + 1 >> 0;
-							continue;
-						}
-						out.WriteString(varFor(n) + ".high");
-					} else if (_ref === 108) {
-						if (val$1 = (_entry$2 = c.info.Types[((x$7 = (_slice$6 = a, _index$6 = n, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")), (x$7 !== null && ast.Expr.implementedBy.indexOf(x$7.constructor) !== -1 ? x$7 : go$typeAssertionFailed(x$7, ast.Expr))) || go$interfaceNil).go$key()], _entry$2 !== undefined ? _entry$2.v : new types.TypeAndValue.Ptr()).Value, !(go$interfaceIsEqual(val$1, null))) {
-							_tuple$2 = exact.Uint64Val(val$1), d$1 = _tuple$2[0];
-							out.WriteString(strconv.FormatUint(new Go$Uint64(d$1.high & 0, (d$1.low & 4294967295) >>> 0), 10));
-							i = i + 1 >> 0;
-							continue;
-						}
-						out.WriteString(varFor(n) + ".low");
-					} else if (_ref === 114) {
-						if (val$2 = (_entry$3 = c.info.Types[((x$8 = (_slice$7 = a, _index$7 = n, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), (x$8 !== null && ast.Expr.implementedBy.indexOf(x$8.constructor) !== -1 ? x$8 : go$typeAssertionFailed(x$8, ast.Expr))) || go$interfaceNil).go$key()], _entry$3 !== undefined ? _entry$3.v : new types.TypeAndValue.Ptr()).Value, !(go$interfaceIsEqual(val$2, null))) {
-							_tuple$3 = exact.Float64Val(exact.Real(val$2)), r = _tuple$3[0];
-							out.WriteString(strconv.FormatFloat(r, 103, -1, 64));
-							i = i + 1 >> 0;
-							continue;
-						}
-						out.WriteString(varFor(n) + ".real");
-					} else if (_ref === 105) {
-						if (val$3 = (_entry$4 = c.info.Types[((x$9 = (_slice$8 = a, _index$8 = n, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")), (x$9 !== null && ast.Expr.implementedBy.indexOf(x$9.constructor) !== -1 ? x$9 : go$typeAssertionFailed(x$9, ast.Expr))) || go$interfaceNil).go$key()], _entry$4 !== undefined ? _entry$4.v : new types.TypeAndValue.Ptr()).Value, !(go$interfaceIsEqual(val$3, null))) {
-							_tuple$4 = exact.Float64Val(exact.Imag(val$3)), i$1 = _tuple$4[0];
-							out.WriteString(strconv.FormatFloat(i$1, 103, -1, 64));
-							i = i + 1 >> 0;
-							continue;
-						}
-						out.WriteString(varFor(n) + ".imag");
-					} else if (_ref === 37) {
-						out.WriteRune(37);
-					} else {
-						throw go$panic(new Go$String("formatExpr: " + format.substring(i, (i + 3 >> 0))));
+				switch (0) { default: if (_ref === 115) {
+					if (_tuple = (x = (_slice = a, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(expression)) ? [x.go$val, true] : [(go$ptrType(expression)).nil, false])), e = _tuple[0], ok = _tuple[1], ok) {
+						out.WriteString(e.StringWithParens());
+						break;
 					}
-				}
+					out.WriteString((x$1 = (_slice$1 = a, _index$1 = n, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (x$1 !== null && x$1.constructor === Go$String ? x$1.go$val : go$typeAssertionFailed(x$1, Go$String))));
+				} else if (_ref === 100) {
+					out.WriteString(strconv.Itoa((x$2 = (_slice$2 = a, _index$2 = n, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (x$2 !== null && x$2.constructor === Go$Int ? x$2.go$val : go$typeAssertionFailed(x$2, Go$Int)))));
+				} else if (_ref === 116) {
+					out.WriteString((new token.Token((x$3 = (_slice$3 = a, _index$3 = n, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (x$3 !== null && x$3.constructor === token.Token ? x$3.go$val : go$typeAssertionFailed(x$3, token.Token))))).String());
+				} else if (_ref === 101) {
+					out.WriteString(varFor(n));
+				} else if (_ref === 104) {
+					if (val = (_entry = c.info.Types[((x$4 = (_slice$4 = a, _index$4 = n, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (x$4 !== null && ast.Expr.implementedBy.indexOf(x$4.constructor) !== -1 ? x$4 : go$typeAssertionFailed(x$4, ast.Expr))) || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : new types.TypeAndValue.Ptr()).Value, !(go$interfaceIsEqual(val, null))) {
+						_tuple$1 = exact.Uint64Val(val), d = _tuple$1[0];
+						if ((x$5 = (_entry$1 = c.info.Types[((x$6 = (_slice$5 = a, _index$5 = n, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), (x$6 !== null && ast.Expr.implementedBy.indexOf(x$6.constructor) !== -1 ? x$6 : go$typeAssertionFailed(x$6, ast.Expr))) || go$interfaceNil).go$key()], _entry$1 !== undefined ? _entry$1.v : new types.TypeAndValue.Ptr()).Type.Underlying(), (x$5 !== null && x$5.constructor === (go$ptrType(types.Basic)) ? x$5.go$val : go$typeAssertionFailed(x$5, (go$ptrType(types.Basic))))).Kind() === 6) {
+							out.WriteString(strconv.FormatInt(go$shiftRightInt64(new Go$Int64(d.high, d.low), 32), 10));
+							i = i + 1 >> 0;
+							continue;
+						}
+						out.WriteString(strconv.FormatUint(go$shiftRightUint64(d, 32), 10));
+						i = i + 1 >> 0;
+						continue;
+					}
+					out.WriteString(varFor(n) + ".high");
+				} else if (_ref === 108) {
+					if (val$1 = (_entry$2 = c.info.Types[((x$7 = (_slice$6 = a, _index$6 = n, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")), (x$7 !== null && ast.Expr.implementedBy.indexOf(x$7.constructor) !== -1 ? x$7 : go$typeAssertionFailed(x$7, ast.Expr))) || go$interfaceNil).go$key()], _entry$2 !== undefined ? _entry$2.v : new types.TypeAndValue.Ptr()).Value, !(go$interfaceIsEqual(val$1, null))) {
+						_tuple$2 = exact.Uint64Val(val$1), d$1 = _tuple$2[0];
+						out.WriteString(strconv.FormatUint(new Go$Uint64(d$1.high & 0, (d$1.low & 4294967295) >>> 0), 10));
+						i = i + 1 >> 0;
+						continue;
+					}
+					out.WriteString(varFor(n) + ".low");
+				} else if (_ref === 114) {
+					if (val$2 = (_entry$3 = c.info.Types[((x$8 = (_slice$7 = a, _index$7 = n, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), (x$8 !== null && ast.Expr.implementedBy.indexOf(x$8.constructor) !== -1 ? x$8 : go$typeAssertionFailed(x$8, ast.Expr))) || go$interfaceNil).go$key()], _entry$3 !== undefined ? _entry$3.v : new types.TypeAndValue.Ptr()).Value, !(go$interfaceIsEqual(val$2, null))) {
+						_tuple$3 = exact.Float64Val(exact.Real(val$2)), r = _tuple$3[0];
+						out.WriteString(strconv.FormatFloat(r, 103, -1, 64));
+						i = i + 1 >> 0;
+						continue;
+					}
+					out.WriteString(varFor(n) + ".real");
+				} else if (_ref === 105) {
+					if (val$3 = (_entry$4 = c.info.Types[((x$9 = (_slice$8 = a, _index$8 = n, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")), (x$9 !== null && ast.Expr.implementedBy.indexOf(x$9.constructor) !== -1 ? x$9 : go$typeAssertionFailed(x$9, ast.Expr))) || go$interfaceNil).go$key()], _entry$4 !== undefined ? _entry$4.v : new types.TypeAndValue.Ptr()).Value, !(go$interfaceIsEqual(val$3, null))) {
+						_tuple$4 = exact.Float64Val(exact.Imag(val$3)), i$1 = _tuple$4[0];
+						out.WriteString(strconv.FormatFloat(i$1, 103, -1, 64));
+						i = i + 1 >> 0;
+						continue;
+					}
+					out.WriteString(varFor(n) + ".imag");
+				} else if (_ref === 37) {
+					out.WriteRune(37);
+				} else {
+					throw go$panic(new Go$String("formatExpr: " + format.substring(i, (i + 3 >> 0))));
+				} }
 				n = n + 1 >> 0;
 				i = i + 1 >> 0;
 				continue;
@@ -69609,32 +69534,29 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 					results = c.resultNames;
 				}
 				_ref$7 = results.length;
-				switch (undefined) {
-				default:
-					if (_ref$7 === 0) {
-						c.Printf("return;", new (go$sliceType(go$emptyInterface))([]));
-					} else if (_ref$7 === 1) {
-						if (c.functionSig.Results().Len() > 1) {
-							c.Printf("return %s;", new (go$sliceType(go$emptyInterface))([c.translateExpr((_slice$3 = results, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")))]));
-							break;
-						}
-						v = c.translateImplicitConversion((_slice$4 = results, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), c.functionSig.Results().At(0).object.Type());
-						c.delayedOutput = (go$sliceType(Go$Uint8)).nil;
-						c.Printf("return %s;", new (go$sliceType(go$emptyInterface))([v]));
-					} else {
-						values = (go$sliceType(Go$String)).make(results.length, 0, function() { return ""; });
-						_ref$8 = results;
-						_i$1 = 0;
-						while (_i$1 < _ref$8.length) {
-							result = (_slice$5 = _ref$8, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
-							i = _i$1;
-							_slice$6 = values, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = c.translateImplicitConversion(result, c.functionSig.Results().At(i).object.Type()).String()) : go$throwRuntimeError("index out of range");
-							_i$1++;
-						}
-						c.delayedOutput = (go$sliceType(Go$Uint8)).nil;
-						c.Printf("return [%s];", new (go$sliceType(go$emptyInterface))([new Go$String(strings.Join(values, ", "))]));
+				switch (0) { default: if (_ref$7 === 0) {
+					c.Printf("return;", new (go$sliceType(go$emptyInterface))([]));
+				} else if (_ref$7 === 1) {
+					if (c.functionSig.Results().Len() > 1) {
+						c.Printf("return %s;", new (go$sliceType(go$emptyInterface))([c.translateExpr((_slice$3 = results, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")))]));
+						break;
 					}
-				}
+					v = c.translateImplicitConversion((_slice$4 = results, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), c.functionSig.Results().At(0).object.Type());
+					c.delayedOutput = (go$sliceType(Go$Uint8)).nil;
+					c.Printf("return %s;", new (go$sliceType(go$emptyInterface))([v]));
+				} else {
+					values = (go$sliceType(Go$String)).make(results.length, 0, function() { return ""; });
+					_ref$8 = results;
+					_i$1 = 0;
+					while (_i$1 < _ref$8.length) {
+						result = (_slice$5 = _ref$8, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+						i = _i$1;
+						_slice$6 = values, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = c.translateImplicitConversion(result, c.functionSig.Results().At(i).object.Type()).String()) : go$throwRuntimeError("index out of range");
+						_i$1++;
+					}
+					c.delayedOutput = (go$sliceType(Go$Uint8)).nil;
+					c.Printf("return [%s];", new (go$sliceType(go$emptyInterface))([new Go$String(strings.Join(values, ", "))]));
+				} }
 			} else if (_type === (go$ptrType(ast.DeferStmt))) {
 				s = _ref.go$val;
 				if (_tuple = (x$4 = s.Call.Fun, (x$4 !== null && x$4.constructor === (go$ptrType(ast.Ident)) ? [x$4.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), ident = _tuple[0], isIdent = _tuple[1], isIdent) {
@@ -69706,7 +69628,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 	};
 	pkgContext.prototype.translateStmt = function(stmt, label) { return this.go$val.translateStmt(stmt, label); };
 	pkgContext.Ptr.prototype.translateBranchingStmt = function(caseClauses, initStmts, isSwitch, translateCond, printCaseBodyPrefix, label) {
-		var c, branches, defaultBranch, openBranches, _ref, _i, _slice, _index, cc, i, clause, initStmt, _slice$1, _index$1, branch$1, _ref$1, _i$1, _slice$2, _index$2, openBranch, conds, _ref$2, _i$2, _slice$3, _index$3, cond, x, _slice$4, _index$4, printBody, v, _ref$3, _i$3, _slice$5, _index$5, child;
+		var c, branches, defaultBranch, openBranches, _ref, _i, _slice, _index, cc, i, clause, initStmt, _slice$1, _index$1, branch$1, _ref$1, _i$1, _slice$2, _index$2, openBranch, conds, _ref$2, _i$2, _slice$3, _index$3, cond, x, _slice$4, _index$4, hasBreak, v, _ref$3, _i$3, _slice$5, _index$5, child, prefix, _ref$4, _i$4, _slice$6, _index$6, branch$2, initStmt$1;
 		c = this;
 		branches = (go$sliceType((go$ptrType(branch)))).nil;
 		defaultBranch = (go$ptrType(branch)).nil;
@@ -69771,101 +69693,99 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 			}
 			return;
 		}
-		printBody = (function() {
-			var elsePrefix, _ref$3, _i$3, _slice$5, _index$5, branch$2, initStmt$1;
-			elsePrefix = "";
-			_ref$3 = branches;
+		hasBreak = !(label === "");
+		if (isSwitch && label === "") {
+			v = new hasBreakVisitor.Ptr(false);
+			_ref$3 = caseClauses;
 			_i$3 = 0;
 			while (_i$3 < _ref$3.length) {
-				branch$2 = (_slice$5 = _ref$3, _index$5 = _i$3, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
-				initStmt$1 = "";
-				if (!(go$interfaceIsEqual(branch$2.initStmt, null))) {
-					initStmt$1 = c.translateSimpleStmt(branch$2.initStmt) + ", ";
-				}
-				c.Printf("%sif (%s%s) {", new (go$sliceType(go$emptyInterface))([new Go$String(elsePrefix), new Go$String(initStmt$1), new Go$String(branch$2.condition)]));
-				c.Indent((function() {
-					if (!(printCaseBodyPrefix === go$throwNilPointerError)) {
-						printCaseBodyPrefix(branch$2.clause.List);
-					}
-					c.translateStmtList(branch$2.body);
-				}));
-				elsePrefix = "} else ";
+				child = (_slice$5 = _ref$3, _index$5 = _i$3, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+				ast.Walk(v, child);
 				_i$3++;
 			}
-			if (!(defaultBranch === (go$ptrType(branch)).nil)) {
-				c.Printf("} else {", new (go$sliceType(go$emptyInterface))([]));
-				c.Indent((function() {
-					if (!(printCaseBodyPrefix === go$throwNilPointerError)) {
-						printCaseBodyPrefix((go$sliceType(ast.Expr)).nil);
-					}
-					c.translateStmtList(defaultBranch.body);
-				}));
+			hasBreak = v.hasBreak;
+		}
+		prefix = "";
+		if (hasBreak) {
+			prefix = label + "switch (0) { default: ";
+		}
+		_ref$4 = branches;
+		_i$4 = 0;
+		while (_i$4 < _ref$4.length) {
+			branch$2 = (_slice$6 = _ref$4, _index$6 = _i$4, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+			initStmt$1 = "";
+			if (!(go$interfaceIsEqual(branch$2.initStmt, null))) {
+				initStmt$1 = c.translateSimpleStmt(branch$2.initStmt) + ", ";
 			}
-			c.Printf("}", new (go$sliceType(go$emptyInterface))([]));
-		});
-		if (!isSwitch) {
-			printBody();
+			c.Printf("%sif (%s%s) {", new (go$sliceType(go$emptyInterface))([new Go$String(prefix), new Go$String(initStmt$1), new Go$String(branch$2.condition)]));
+			c.Indent((function() {
+				if (!(printCaseBodyPrefix === go$throwNilPointerError)) {
+					printCaseBodyPrefix(branch$2.clause.List);
+				}
+				c.translateStmtList(branch$2.body);
+			}));
+			prefix = "} else ";
+			_i$4++;
+		}
+		if (!(defaultBranch === (go$ptrType(branch)).nil)) {
+			c.Printf("} else {", new (go$sliceType(go$emptyInterface))([]));
+			c.Indent((function() {
+				if (!(printCaseBodyPrefix === go$throwNilPointerError)) {
+					printCaseBodyPrefix((go$sliceType(ast.Expr)).nil);
+				}
+				c.translateStmtList(defaultBranch.body);
+			}));
+		}
+		if (hasBreak) {
+			c.Printf("} }", new (go$sliceType(go$emptyInterface))([]));
 			return;
 		}
-		v = new hasBreakVisitor.Ptr(false);
-		_ref$3 = caseClauses;
-		_i$3 = 0;
-		while (_i$3 < _ref$3.length) {
-			child = (_slice$5 = _ref$3, _index$5 = _i$3, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
-			ast.Walk(v, child);
-			_i$3++;
-		}
-		if (!v.hasBreak && label === "") {
-			printBody();
-			return;
-		}
-		c.Printf("%sswitch (undefined) {", new (go$sliceType(go$emptyInterface))([new Go$String(label)]));
-		c.Printf("default:", new (go$sliceType(go$emptyInterface))([]));
-		c.Indent((function() {
-			printBody();
-		}));
 		c.Printf("}", new (go$sliceType(go$emptyInterface))([]));
 	};
 	pkgContext.prototype.translateBranchingStmt = function(caseClauses, initStmts, isSwitch, translateCond, printCaseBodyPrefix, label) { return this.go$val.translateBranchingStmt(caseClauses, initStmts, isSwitch, translateCond, printCaseBodyPrefix, label); };
 	pkgContext.Ptr.prototype.translateLoopingStmt = function(cond, post, body, bodyPrefix, label) {
-		var c, _entry, p, _key, _key$1;
-		var go$deferred = [];
-		try {
-			c = this;
-			p = (_entry = c.postLoopStmt[""], _entry !== undefined ? _entry.v : "");
-			go$deferred.push({ fun: (function() {
-				var _key;
-				delete c.postLoopStmt[label];
-				_key = "", (c.postLoopStmt || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: p };
-			}), args: [] });
-			_key = "", (c.postLoopStmt || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: post };
-			_key$1 = label, (c.postLoopStmt || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: post };
-			c.Printf("%swhile (%s) {", new (go$sliceType(go$emptyInterface))([new Go$String(label), new Go$String(cond)]));
-			c.Indent((function() {
-				c.handleEscapingVariables(body, (function() {
-					var _ref, _type, _slice, _index;
-					if (!(bodyPrefix === go$throwNilPointerError)) {
-						bodyPrefix();
-					}
-					c.translateStmtList(body.List);
-					if (!(post === "")) {
-						if (!((body.List.length === 0))) {
-							_ref = (_slice = body.List, _index = (body.List.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-							_type = _ref !== null ? _ref.constructor : null;
-							if (_type === (go$ptrType(ast.ReturnStmt)) || _type === (go$ptrType(ast.BranchStmt))) {
-								return;
-							}
-						}
-						c.Printf("%s;", new (go$sliceType(go$emptyInterface))([new Go$String(post)]));
-					}
-				}));
-			}));
-			c.Printf("}", new (go$sliceType(go$emptyInterface))([]));
-		} catch(go$err) {
-			go$pushErr(go$err);
-		} finally {
-			go$callDeferred(go$deferred);
-		}
+		var c, _entry, prevPost, _key, _key$1, _key$2;
+		c = this;
+		prevPost = (_entry = c.postLoopStmt[""], _entry !== undefined ? _entry.v : "");
+		_key = "", (c.postLoopStmt || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: post };
+		_key$1 = label, (c.postLoopStmt || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: post };
+		c.Printf("%swhile (%s) {", new (go$sliceType(go$emptyInterface))([new Go$String(label), new Go$String(cond)]));
+		c.Indent((function() {
+			var v, prevEV, _ref, _i, _keys, _entry$1, escaping, _entry$2, _lhs, _index, _entry$3, _key$2, isTerminated, _ref$1, _type, _slice, _index$1;
+			v = new escapeAnalysis.Ptr(c.info, new Go$Map(), new Go$Map());
+			ast.Walk(v, body);
+			prevEV = c.escapingVars;
+			_ref = v.escaping;
+			_i = 0;
+			_keys = go$keys(_ref);
+			while (_i < _keys.length) {
+				_entry$1 = _ref[_keys[_i]];
+				escaping = _entry$1.k;
+				c.Printf("%s = [undefined];", new (go$sliceType(go$emptyInterface))([new Go$String(c.objectName(escaping))]));
+				c.escapingVars = go$append(c.escapingVars, (_entry$2 = c.objectVars[(escaping || go$interfaceNil).go$key()], _entry$2 !== undefined ? _entry$2.v : ""));
+				_lhs = c.objectVars, _index = escaping, _key$2 = _index, (_lhs || go$throwRuntimeError("assignment to entry in nil map"))[(_key$2 || go$interfaceNil).go$key()] = { k: _key$2, v: (_entry$3 = _lhs[(_index || go$interfaceNil).go$key()], _entry$3 !== undefined ? _entry$3.v : "") + "[0]" };
+				_i++;
+			}
+			if (!(bodyPrefix === go$throwNilPointerError)) {
+				bodyPrefix();
+			}
+			c.translateStmtList(body.List);
+			isTerminated = false;
+			if (!((body.List.length === 0))) {
+				_ref$1 = (_slice = body.List, _index$1 = (body.List.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice.length) ? _slice.array[_slice.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				_type = _ref$1 !== null ? _ref$1.constructor : null;
+				if (_type === (go$ptrType(ast.ReturnStmt)) || _type === (go$ptrType(ast.BranchStmt))) {
+					isTerminated = true;
+				}
+			}
+			if (!(post === "") && !isTerminated) {
+				c.Printf("%s;", new (go$sliceType(go$emptyInterface))([new Go$String(post)]));
+			}
+			c.escapingVars = prevEV;
+		}));
+		c.Printf("}", new (go$sliceType(go$emptyInterface))([]));
+		delete c.postLoopStmt[label];
+		_key$2 = "", (c.postLoopStmt || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: prevPost };
 	};
 	pkgContext.prototype.translateLoopingStmt = function(cond, post, body, bodyPrefix, label) { return this.go$val.translateLoopingStmt(cond, post, body, bodyPrefix, label); };
 	pkgContext.Ptr.prototype.translateSimpleStmt = function(stmt) {
@@ -70163,27 +70083,6 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		}
 	};
 	pkgContext.prototype.translateAssign = function(lhs, rhs) { return this.go$val.translateAssign(lhs, rhs); };
-	pkgContext.Ptr.prototype.handleEscapingVariables = function(node, f) {
-		var c, v, ev, _ref, _i, _keys, _entry, escaping, _entry$1, _lhs, _index, _entry$2, _key;
-		c = this;
-		v = new escapeAnalysis.Ptr(c.info, new Go$Map(), new Go$Map());
-		ast.Walk(v, node);
-		ev = c.escapingVars;
-		_ref = v.escaping;
-		_i = 0;
-		_keys = go$keys(_ref);
-		while (_i < _keys.length) {
-			_entry = _ref[_keys[_i]];
-			escaping = _entry.k;
-			c.Printf("%s = [undefined];", new (go$sliceType(go$emptyInterface))([new Go$String(c.objectName(escaping))]));
-			c.escapingVars = go$append(c.escapingVars, (_entry$1 = c.objectVars[(escaping || go$interfaceNil).go$key()], _entry$1 !== undefined ? _entry$1.v : ""));
-			_lhs = c.objectVars, _index = escaping, _key = _index, (_lhs || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: (_entry$2 = _lhs[(_index || go$interfaceNil).go$key()], _entry$2 !== undefined ? _entry$2.v : "") + "[0]" };
-			_i++;
-		}
-		f();
-		c.escapingVars = ev;
-	};
-	pkgContext.prototype.handleEscapingVariables = function(node, f) { return this.go$val.handleEscapingVariables(node, f); };
 	var hasFallthrough = function(caseClause) {
 		var _tuple, x, _slice, _index, b, isBranchStmt;
 		if (caseClause.Body.length === 0) {
@@ -71936,53 +71835,47 @@ go$packages["go/printer"] = (function() {
 		}
 		_ref$1 = e.X;
 		_type = _ref$1 !== null ? _ref$1.constructor : null;
-		switch (undefined) {
-		default:
-			if (_type === (go$ptrType(ast.BinaryExpr))) {
-				l = _ref$1.go$val;
-				if ((new token.Token(l.Op)).Precedence() < (new token.Token(e.Op)).Precedence()) {
-					break;
-				}
-				_tuple = walkBinary(l), h4 = _tuple[0], h5 = _tuple[1], mp = _tuple[2];
-				has4 = has4 || h4;
-				has5 = has5 || h5;
-				if (maxProblem < mp) {
-					maxProblem = mp;
-				}
+		switch (0) { default: if (_type === (go$ptrType(ast.BinaryExpr))) {
+			l = _ref$1.go$val;
+			if ((new token.Token(l.Op)).Precedence() < (new token.Token(e.Op)).Precedence()) {
+				break;
 			}
-		}
+			_tuple = walkBinary(l), h4 = _tuple[0], h5 = _tuple[1], mp = _tuple[2];
+			has4 = has4 || h4;
+			has5 = has5 || h5;
+			if (maxProblem < mp) {
+				maxProblem = mp;
+			}
+		} }
 		_ref$2 = e.Y;
 		_type$1 = _ref$2 !== null ? _ref$2.constructor : null;
-		switch (undefined) {
-		default:
-			if (_type$1 === (go$ptrType(ast.BinaryExpr))) {
-				r = _ref$2.go$val;
-				if ((new token.Token(r.Op)).Precedence() <= (new token.Token(e.Op)).Precedence()) {
-					break;
-				}
-				_tuple$1 = walkBinary(r), h4$1 = _tuple$1[0], h5$1 = _tuple$1[1], mp$1 = _tuple$1[2];
-				has4 = has4 || h4$1;
-				has5 = has5 || h5$1;
-				if (maxProblem < mp$1) {
-					maxProblem = mp$1;
-				}
-			} else if (_type$1 === (go$ptrType(ast.StarExpr))) {
-				r = _ref$2.go$val;
-				if (e.Op === 15) {
-					maxProblem = 5;
-				}
-			} else if (_type$1 === (go$ptrType(ast.UnaryExpr))) {
-				r = _ref$2.go$val;
-				_ref$3 = (new token.Token(e.Op)).String() + (new token.Token(r.Op)).String();
-				if (_ref$3 === "/*" || _ref$3 === "&&" || _ref$3 === "&^") {
-					maxProblem = 5;
-				} else if (_ref$3 === "++" || _ref$3 === "--") {
-					if (maxProblem < 4) {
-						maxProblem = 4;
-					}
+		switch (0) { default: if (_type$1 === (go$ptrType(ast.BinaryExpr))) {
+			r = _ref$2.go$val;
+			if ((new token.Token(r.Op)).Precedence() <= (new token.Token(e.Op)).Precedence()) {
+				break;
+			}
+			_tuple$1 = walkBinary(r), h4$1 = _tuple$1[0], h5$1 = _tuple$1[1], mp$1 = _tuple$1[2];
+			has4 = has4 || h4$1;
+			has5 = has5 || h5$1;
+			if (maxProblem < mp$1) {
+				maxProblem = mp$1;
+			}
+		} else if (_type$1 === (go$ptrType(ast.StarExpr))) {
+			r = _ref$2.go$val;
+			if (e.Op === 15) {
+				maxProblem = 5;
+			}
+		} else if (_type$1 === (go$ptrType(ast.UnaryExpr))) {
+			r = _ref$2.go$val;
+			_ref$3 = (new token.Token(e.Op)).String() + (new token.Token(r.Op)).String();
+			if (_ref$3 === "/*" || _ref$3 === "&&" || _ref$3 === "&^") {
+				maxProblem = 5;
+			} else if (_ref$3 === "++" || _ref$3 === "--") {
+				if (maxProblem < 4) {
+					maxProblem = 4;
 				}
 			}
-		}
+		} }
 		return [has4, has5, maxProblem];
 	};
 	var cutoff = function(e, depth) {
@@ -72416,167 +72309,164 @@ go$packages["go/printer"] = (function() {
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(stmt.Pos())]));
 		_ref = stmt;
 		_type = _ref !== null ? _ref.constructor : null;
-		switch (undefined) {
-		default:
-			if (_type === (go$ptrType(ast.BadStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new Go$String("BadStmt")]));
-			} else if (_type === (go$ptrType(ast.DeclStmt))) {
-				s = _ref.go$val;
-				p.decl(s.Decl);
-			} else if (_type === (go$ptrType(ast.EmptyStmt))) {
-				s = _ref.go$val;
-			} else if (_type === (go$ptrType(ast.LabeledStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
-				p.expr(s.Label);
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58), new whiteSpace(62)]));
-				if (_tuple = (x = s.Stmt, (x !== null && x.constructor === (go$ptrType(ast.EmptyStmt)) ? [x.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false])), e = _tuple[0], isEmpty = _tuple[1], isEmpty) {
-					if (!nextIsRBrace) {
-						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10), new token.Pos(e.Pos()), new token.Token(57)]));
-						break;
-					}
-				} else {
-					p.linebreak(p.lineFor(s.Stmt.Pos()), 1, 0, true);
+		switch (0) { default: if (_type === (go$ptrType(ast.BadStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new Go$String("BadStmt")]));
+		} else if (_type === (go$ptrType(ast.DeclStmt))) {
+			s = _ref.go$val;
+			p.decl(s.Decl);
+		} else if (_type === (go$ptrType(ast.EmptyStmt))) {
+			s = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.LabeledStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+			p.expr(s.Label);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58), new whiteSpace(62)]));
+			if (_tuple = (x = s.Stmt, (x !== null && x.constructor === (go$ptrType(ast.EmptyStmt)) ? [x.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false])), e = _tuple[0], isEmpty = _tuple[1], isEmpty) {
+				if (!nextIsRBrace) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10), new token.Pos(e.Pos()), new token.Token(57)]));
+					break;
 				}
-				p.stmt(s.Stmt, nextIsRBrace);
-			} else if (_type === (go$ptrType(ast.ExprStmt))) {
-				s = _ref.go$val;
-				p.expr0(s.X, 1);
-			} else if (_type === (go$ptrType(ast.SendStmt))) {
-				s = _ref.go$val;
-				p.expr0(s.Chan, 1);
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.Arrow), new token.Token(36), new whiteSpace(32)]));
-				p.expr0(s.Value, 1);
-			} else if (_type === (go$ptrType(ast.IncDecStmt))) {
-				s = _ref.go$val;
-				p.expr0(s.X, 2);
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.TokPos), new token.Token(s.Tok)]));
-			} else if (_type === (go$ptrType(ast.AssignStmt))) {
-				s = _ref.go$val;
-				depth = 1;
-				if (s.Lhs.length > 1 && s.Rhs.length > 1) {
-					depth = depth + 1 >> 0;
-				}
-				p.exprList(s.Pos(), s.Lhs, depth, 0, s.TokPos);
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32)]));
-				p.exprList(s.TokPos, s.Rhs, depth, 0, 0);
-			} else if (_type === (go$ptrType(ast.GoStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(72), new whiteSpace(32)]));
-				p.expr(s.Call);
-			} else if (_type === (go$ptrType(ast.DeferStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(67), new whiteSpace(32)]));
-				p.expr(s.Call);
-			} else if (_type === (go$ptrType(ast.ReturnStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(80)]));
-				if (!(s.Results === (go$sliceType(ast.Expr)).nil)) {
-					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-					if (p.indentList(s.Results)) {
-						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62)]));
-						p.exprList(s.Pos(), s.Results, 1, 2, 0);
-						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
-					} else {
-						p.exprList(s.Pos(), s.Results, 1, 0, 0);
-					}
-				}
-			} else if (_type === (go$ptrType(ast.BranchStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(s.Tok)]));
-				if (!(s.Label === (go$ptrType(ast.Ident)).nil)) {
-					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-					p.expr(s.Label);
-				}
-			} else if (_type === (go$ptrType(ast.BlockStmt))) {
-				s = _ref.go$val;
-				p.block(s, 1);
-			} else if (_type === (go$ptrType(ast.IfStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(74)]));
-				p.controlClause(false, s.Init, s.Cond, null);
-				p.block(s.Body, 1);
-				if (!(go$interfaceIsEqual(s.Else, null))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Token(68), new whiteSpace(32)]));
-					_ref$1 = s.Else;
-					_type$1 = _ref$1 !== null ? _ref$1.constructor : null;
-					if (_type$1 === (go$ptrType(ast.BlockStmt)) || _type$1 === (go$ptrType(ast.IfStmt))) {
-						p.stmt(s.Else, nextIsRBrace);
-					} else {
-						p.print(new (go$sliceType(go$emptyInterface))([new token.Token(51), new whiteSpace(62), new whiteSpace(12)]));
-						p.stmt(s.Else, true);
-						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12), new token.Token(56)]));
-					}
-				}
-			} else if (_type === (go$ptrType(ast.CaseClause))) {
-				s = _ref.go$val;
-				if (!(s.List === (go$sliceType(ast.Expr)).nil)) {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
-					p.exprList(s.Pos(), s.List, 1, 0, s.Colon);
-				} else {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
-				}
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
-				p.stmtList(s.Body, 1, nextIsRBrace);
-			} else if (_type === (go$ptrType(ast.SwitchStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
-				p.controlClause(false, s.Init, s.Tag, null);
-				p.block(s.Body, 0);
-			} else if (_type === (go$ptrType(ast.TypeSwitchStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
-				if (!(go$interfaceIsEqual(s.Init, null))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-					p.stmt(s.Init, false);
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(57)]));
-				}
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-				p.stmt(s.Assign, false);
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-				p.block(s.Body, 0);
-			} else if (_type === (go$ptrType(ast.CommClause))) {
-				s = _ref.go$val;
-				if (!(go$interfaceIsEqual(s.Comm, null))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
-					p.stmt(s.Comm, false);
-				} else {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
-				}
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
-				p.stmtList(s.Body, 1, nextIsRBrace);
-			} else if (_type === (go$ptrType(ast.SelectStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(81), new whiteSpace(32)]));
-				body = s.Body;
-				if ((body.List.length === 0) && !p.commentBefore((_struct = p.posFor(body.Rbrace), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(body.Lbrace), new token.Token(51), new token.Pos(body.Rbrace), new token.Token(56)]));
-				} else {
-					p.block(body, 0);
-				}
-			} else if (_type === (go$ptrType(ast.ForStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70)]));
-				p.controlClause(true, s.Init, s.Cond, s.Post);
-				p.block(s.Body, 1);
-			} else if (_type === (go$ptrType(ast.RangeStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70), new whiteSpace(32)]));
-				p.expr(s.Key);
-				if (!(go$interfaceIsEqual(s.Value, null))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Value.Pos()), new token.Token(52), new whiteSpace(32)]));
-					p.expr(s.Value);
-				}
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32), new token.Token(79), new whiteSpace(32)]));
-				p.expr(stripParens(s.X));
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-				p.block(s.Body, 1);
 			} else {
-				s = _ref;
-				throw go$panic(new Go$String("unreachable"));
+				p.linebreak(p.lineFor(s.Stmt.Pos()), 1, 0, true);
 			}
-		}
+			p.stmt(s.Stmt, nextIsRBrace);
+		} else if (_type === (go$ptrType(ast.ExprStmt))) {
+			s = _ref.go$val;
+			p.expr0(s.X, 1);
+		} else if (_type === (go$ptrType(ast.SendStmt))) {
+			s = _ref.go$val;
+			p.expr0(s.Chan, 1);
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.Arrow), new token.Token(36), new whiteSpace(32)]));
+			p.expr0(s.Value, 1);
+		} else if (_type === (go$ptrType(ast.IncDecStmt))) {
+			s = _ref.go$val;
+			p.expr0(s.X, 2);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.TokPos), new token.Token(s.Tok)]));
+		} else if (_type === (go$ptrType(ast.AssignStmt))) {
+			s = _ref.go$val;
+			depth = 1;
+			if (s.Lhs.length > 1 && s.Rhs.length > 1) {
+				depth = depth + 1 >> 0;
+			}
+			p.exprList(s.Pos(), s.Lhs, depth, 0, s.TokPos);
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32)]));
+			p.exprList(s.TokPos, s.Rhs, depth, 0, 0);
+		} else if (_type === (go$ptrType(ast.GoStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(72), new whiteSpace(32)]));
+			p.expr(s.Call);
+		} else if (_type === (go$ptrType(ast.DeferStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(67), new whiteSpace(32)]));
+			p.expr(s.Call);
+		} else if (_type === (go$ptrType(ast.ReturnStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(80)]));
+			if (!(s.Results === (go$sliceType(ast.Expr)).nil)) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				if (p.indentList(s.Results)) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62)]));
+					p.exprList(s.Pos(), s.Results, 1, 2, 0);
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+				} else {
+					p.exprList(s.Pos(), s.Results, 1, 0, 0);
+				}
+			}
+		} else if (_type === (go$ptrType(ast.BranchStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(s.Tok)]));
+			if (!(s.Label === (go$ptrType(ast.Ident)).nil)) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				p.expr(s.Label);
+			}
+		} else if (_type === (go$ptrType(ast.BlockStmt))) {
+			s = _ref.go$val;
+			p.block(s, 1);
+		} else if (_type === (go$ptrType(ast.IfStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(74)]));
+			p.controlClause(false, s.Init, s.Cond, null);
+			p.block(s.Body, 1);
+			if (!(go$interfaceIsEqual(s.Else, null))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Token(68), new whiteSpace(32)]));
+				_ref$1 = s.Else;
+				_type$1 = _ref$1 !== null ? _ref$1.constructor : null;
+				if (_type$1 === (go$ptrType(ast.BlockStmt)) || _type$1 === (go$ptrType(ast.IfStmt))) {
+					p.stmt(s.Else, nextIsRBrace);
+				} else {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(51), new whiteSpace(62), new whiteSpace(12)]));
+					p.stmt(s.Else, true);
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12), new token.Token(56)]));
+				}
+			}
+		} else if (_type === (go$ptrType(ast.CaseClause))) {
+			s = _ref.go$val;
+			if (!(s.List === (go$sliceType(ast.Expr)).nil)) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
+				p.exprList(s.Pos(), s.List, 1, 0, s.Colon);
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
+			p.stmtList(s.Body, 1, nextIsRBrace);
+		} else if (_type === (go$ptrType(ast.SwitchStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
+			p.controlClause(false, s.Init, s.Tag, null);
+			p.block(s.Body, 0);
+		} else if (_type === (go$ptrType(ast.TypeSwitchStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
+			if (!(go$interfaceIsEqual(s.Init, null))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				p.stmt(s.Init, false);
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(57)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			p.stmt(s.Assign, false);
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			p.block(s.Body, 0);
+		} else if (_type === (go$ptrType(ast.CommClause))) {
+			s = _ref.go$val;
+			if (!(go$interfaceIsEqual(s.Comm, null))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
+				p.stmt(s.Comm, false);
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
+			p.stmtList(s.Body, 1, nextIsRBrace);
+		} else if (_type === (go$ptrType(ast.SelectStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(81), new whiteSpace(32)]));
+			body = s.Body;
+			if ((body.List.length === 0) && !p.commentBefore((_struct = p.posFor(body.Rbrace), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(body.Lbrace), new token.Token(51), new token.Pos(body.Rbrace), new token.Token(56)]));
+			} else {
+				p.block(body, 0);
+			}
+		} else if (_type === (go$ptrType(ast.ForStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70)]));
+			p.controlClause(true, s.Init, s.Cond, s.Post);
+			p.block(s.Body, 1);
+		} else if (_type === (go$ptrType(ast.RangeStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70), new whiteSpace(32)]));
+			p.expr(s.Key);
+			if (!(go$interfaceIsEqual(s.Value, null))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Value.Pos()), new token.Token(52), new whiteSpace(32)]));
+				p.expr(s.Value);
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32), new token.Token(79), new whiteSpace(32)]));
+			p.expr(stripParens(s.X));
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			p.block(s.Body, 1);
+		} else {
+			s = _ref;
+			throw go$panic(new Go$String("unreachable"));
+		} }
 		return;
 	};
 	printer.prototype.stmt = function(stmt, nextIsRBrace) { return this.go$val.stmt(stmt, nextIsRBrace); };

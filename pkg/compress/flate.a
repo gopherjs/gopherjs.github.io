@@ -1,4 +1,4 @@
-0ƒάεcompress/flate‚[package flate
+0ƒά_compress/flate‚[package flate
 import fmt "fmt"
 import io "io"
 import math "math"
@@ -295,7 +295,7 @@ $$
 	(go$ptrType(token)).methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
 0ρ0levels0zeroes0	bzeroes0fixedHuffmanDecoder0lengthExtraBits0
 lengthBase0offsetExtraBits0
-offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	codeOrder0reverseByte0lengthCodes0offsetCodes0ƒt0‚forwardCopy‚		var forwardCopy = function(mem, dst, src, n) {
+offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	codeOrder0reverseByte0lengthCodes0offsetCodes0ƒs•0‚forwardCopy‚		var forwardCopy = function(mem, dst, src, n) {
 		var k;
 		if (dst <= src) {
 			go$copySlice(go$subslice(mem, dst, (dst + n >> 0)), go$subslice(mem, src, (src + n >> 0)));
@@ -997,7 +997,7 @@ writeBytes‚ο	huffmanBitWriter.Ptr.prototype.writeBytes = function(bytes) {
 		w.writeBits(((_slice = code.code, _index = literal, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0), ((_slice$1 = code.codeBits, _index$1 = literal, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0));
 	};
 	huffmanBitWriter.prototype.writeCode = function(code, literal) { return this.go$val.writeCode(code, literal); };
-0‚	―writeDynamicHeader‚	—	huffmanBitWriter.Ptr.prototype.writeDynamicHeader = function(numLiterals, numOffsets, numCodegens, isEof) {
+0‚	‘writeDynamicHeader‚	y	huffmanBitWriter.Ptr.prototype.writeDynamicHeader = function(numLiterals, numOffsets, numCodegens, isEof) {
 		var w, firstBits, i, _slice, _index, _slice$1, _index$1, value, i$1, _slice$2, _index$2, codeWord, _ref, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -1026,22 +1026,19 @@ writeBytes‚ο	huffmanBitWriter.Ptr.prototype.writeBytes = function(bytes) {
 			}
 			w.writeCode(w.codegenEncoding, (codeWord >>> 0));
 			_ref = codeWord;
-			switch (undefined) {
-			default:
-				if (_ref === 16) {
-					w.writeBits(((_slice$3 = w.codegen, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >> 0), 2);
-					i$1 = i$1 + 1 >> 0;
-					break;
-				} else if (_ref === 17) {
-					w.writeBits(((_slice$4 = w.codegen, _index$4 = i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) >> 0), 3);
-					i$1 = i$1 + 1 >> 0;
-					break;
-				} else if (_ref === 18) {
-					w.writeBits(((_slice$5 = w.codegen, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) >> 0), 7);
-					i$1 = i$1 + 1 >> 0;
-					break;
-				}
-			}
+			switch (0) { default: if (_ref === 16) {
+				w.writeBits(((_slice$3 = w.codegen, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >> 0), 2);
+				i$1 = i$1 + 1 >> 0;
+				break;
+			} else if (_ref === 17) {
+				w.writeBits(((_slice$4 = w.codegen, _index$4 = i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) >> 0), 3);
+				i$1 = i$1 + 1 >> 0;
+				break;
+			} else if (_ref === 18) {
+				w.writeBits(((_slice$5 = w.codegen, _index$5 = i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) >> 0), 7);
+				i$1 = i$1 + 1 >> 0;
+				break;
+			} }
 		}
 	};
 	huffmanBitWriter.prototype.writeDynamicHeader = function(numLiterals, numOffsets, numCodegens, isEof) { return this.go$val.writeDynamicHeader(numLiterals, numOffsets, numCodegens, isEof); };
@@ -1074,8 +1071,8 @@ writeBytes‚ο	huffmanBitWriter.Ptr.prototype.writeBytes = function(bytes) {
 		w.writeBits(value, 3);
 	};
 	huffmanBitWriter.prototype.writeFixedHeader = function(isEof) { return this.go$val.writeFixedHeader(isEof); };
-0‚.―
-writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof, input) {
+0‚.†
+writeBlock‚.v	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof, input) {
 		var w, _ref, _i, i, _slice, _index, _ref$1, _i$1, i$1, _slice$1, _index$1, n, _slice$2, _index$2, _ref$2, _i$2, _slice$3, _index$3, t, _ref$3, _lhs, _index$4, _slice$4, _index$5, _slice$5, _index$6, length, offset, _lhs$1, _index$7, _slice$6, _index$8, _slice$7, _index$9, _lhs$2, _index$10, _slice$8, _index$11, _slice$9, _index$12, numLiterals, _slice$10, _index$13, numOffsets, _slice$11, _index$14, _slice$12, _index$15, storedBytes, extraBits, storedSize, x, x$1, lengthCode$1, x$2, _slice$13, _index$16, _slice$14, _index$17, offsetCode$1, x$3, _slice$15, _index$18, _slice$16, _index$19, x$4, x$5, x$6, x$7, size, literalEncoding, offsetEncoding, numCodegens, _slice$17, _index$20, _slice$18, _index$21, x$8, x$9, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, _slice$19, _index$22, x$18, x$19, x$20, _slice$20, _index$23, x$21, x$22, x$23, _slice$21, _index$24, x$24, dynamicHeader, x$25, x$26, x$27, dynamicSize, _ref$4, _i$3, _slice$22, _index$25, t$1, _ref$5, length$1, lengthCode$2, _slice$23, _index$26, extraLengthBits, _slice$24, _index$27, extraLength, offset$1, offsetCode$2, _slice$25, _index$28, extraOffsetBits, _slice$26, _index$29, extraOffset;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -1178,33 +1175,30 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 		while (_i$3 < _ref$4.length) {
 			t$1 = (_slice$22 = _ref$4, _index$25 = _i$3, (_index$25 >= 0 && _index$25 < _slice$22.length) ? _slice$22.array[_slice$22.offset + _index$25] : go$throwRuntimeError("index out of range"));
 			_ref$5 = (new token(t$1)).typ();
-			switch (undefined) {
-			default:
-				if (_ref$5 === 0) {
-					w.writeCode(literalEncoding, (new token(t$1)).literal());
-					break;
-				} else if (_ref$5 === 1073741824) {
-					length$1 = (new token(t$1)).length();
-					lengthCode$2 = lengthCode(length$1);
-					w.writeCode(literalEncoding, lengthCode$2 + 257 >>> 0);
-					extraLengthBits = ((_slice$23 = lengthExtraBits, _index$26 = lengthCode$2, (_index$26 >= 0 && _index$26 < _slice$23.length) ? _slice$23.array[_slice$23.offset + _index$26] : go$throwRuntimeError("index out of range")) >> 0);
-					if (extraLengthBits > 0) {
-						extraLength = ((length$1 - (_slice$24 = lengthBase, _index$27 = lengthCode$2, (_index$27 >= 0 && _index$27 < _slice$24.length) ? _slice$24.array[_slice$24.offset + _index$27] : go$throwRuntimeError("index out of range")) >>> 0) >> 0);
-						w.writeBits(extraLength, extraLengthBits);
-					}
-					offset$1 = (new token(t$1)).offset();
-					offsetCode$2 = offsetCode(offset$1);
-					w.writeCode(offsetEncoding, offsetCode$2);
-					extraOffsetBits = ((_slice$25 = offsetExtraBits, _index$28 = offsetCode$2, (_index$28 >= 0 && _index$28 < _slice$25.length) ? _slice$25.array[_slice$25.offset + _index$28] : go$throwRuntimeError("index out of range")) >> 0);
-					if (extraOffsetBits > 0) {
-						extraOffset = ((offset$1 - (_slice$26 = offsetBase, _index$29 = offsetCode$2, (_index$29 >= 0 && _index$29 < _slice$26.length) ? _slice$26.array[_slice$26.offset + _index$29] : go$throwRuntimeError("index out of range")) >>> 0) >> 0);
-						w.writeBits(extraOffset, extraOffsetBits);
-					}
-					break;
-				} else {
-					throw go$panic(new Go$String("unknown token type: " + go$encodeRune(t$1)));
+			switch (0) { default: if (_ref$5 === 0) {
+				w.writeCode(literalEncoding, (new token(t$1)).literal());
+				break;
+			} else if (_ref$5 === 1073741824) {
+				length$1 = (new token(t$1)).length();
+				lengthCode$2 = lengthCode(length$1);
+				w.writeCode(literalEncoding, lengthCode$2 + 257 >>> 0);
+				extraLengthBits = ((_slice$23 = lengthExtraBits, _index$26 = lengthCode$2, (_index$26 >= 0 && _index$26 < _slice$23.length) ? _slice$23.array[_slice$23.offset + _index$26] : go$throwRuntimeError("index out of range")) >> 0);
+				if (extraLengthBits > 0) {
+					extraLength = ((length$1 - (_slice$24 = lengthBase, _index$27 = lengthCode$2, (_index$27 >= 0 && _index$27 < _slice$24.length) ? _slice$24.array[_slice$24.offset + _index$27] : go$throwRuntimeError("index out of range")) >>> 0) >> 0);
+					w.writeBits(extraLength, extraLengthBits);
 				}
-			}
+				offset$1 = (new token(t$1)).offset();
+				offsetCode$2 = offsetCode(offset$1);
+				w.writeCode(offsetEncoding, offsetCode$2);
+				extraOffsetBits = ((_slice$25 = offsetExtraBits, _index$28 = offsetCode$2, (_index$28 >= 0 && _index$28 < _slice$25.length) ? _slice$25.array[_slice$25.offset + _index$28] : go$throwRuntimeError("index out of range")) >> 0);
+				if (extraOffsetBits > 0) {
+					extraOffset = ((offset$1 - (_slice$26 = offsetBase, _index$29 = offsetCode$2, (_index$29 >= 0 && _index$29 < _slice$26.length) ? _slice$26.array[_slice$26.offset + _index$29] : go$throwRuntimeError("index out of range")) >>> 0) >> 0);
+					w.writeBits(extraOffset, extraOffsetBits);
+				}
+				break;
+			} else {
+				throw go$panic(new Go$String("unknown token type: " + go$encodeRune(t$1)));
+			} }
 			_i$3++;
 		}
 	};
@@ -1215,7 +1209,7 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 0κnewHuffmanEncoderΤ	var newHuffmanEncoder = function(size) {
 		return new huffmanEncoder.Ptr((go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; }), (go$sliceType(Go$Uint16)).make(size, 0, function() { return 0; }));
 	};
-0‚hgenerateFixedLiteralEncoding‚F	var generateFixedLiteralEncoding = function() {
+0‚GgenerateFixedLiteralEncoding‚%	var generateFixedLiteralEncoding = function() {
 		var h, codeBits, code, ch, bits, size, _slice, _index, _slice$1, _index$1;
 		h = newHuffmanEncoder(286);
 		codeBits = h.codeBits;
@@ -1225,25 +1219,22 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 		while (ch < 286) {
 			bits = 0;
 			size = 0;
-			switch (undefined) {
-			default:
-				if (ch < 144) {
-					bits = ch + 48 << 16 >>> 16;
-					size = 8;
-					break;
-				} else if (ch < 256) {
-					bits = (ch + 400 << 16 >>> 16) - 144 << 16 >>> 16;
-					size = 9;
-					break;
-				} else if (ch < 280) {
-					bits = ch - 256 << 16 >>> 16;
-					size = 7;
-					break;
-				} else {
-					bits = (ch + 192 << 16 >>> 16) - 280 << 16 >>> 16;
-					size = 8;
-				}
-			}
+			switch (0) { default: if (ch < 144) {
+				bits = ch + 48 << 16 >>> 16;
+				size = 8;
+				break;
+			} else if (ch < 256) {
+				bits = (ch + 400 << 16 >>> 16) - 144 << 16 >>> 16;
+				size = 9;
+				break;
+			} else if (ch < 280) {
+				bits = ch - 256 << 16 >>> 16;
+				size = 7;
+				break;
+			} else {
+				bits = (ch + 192 << 16 >>> 16) - 280 << 16 >>> 16;
+				size = 8;
+			} }
 			_slice = codeBits, _index = ch, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = size) : go$throwRuntimeError("index out of range");
 			_slice$1 = code, _index$1 = ch, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = reverseBits(bits, size)) : go$throwRuntimeError("index out of range");
 			ch = ch + 1 << 16 >>> 16;
@@ -1580,7 +1571,7 @@ sortByFreq‚	var sortByFreq = function(a) {
 		return true;
 	};
 	huffmanDecoder.prototype.init = function(bits) { return this.go$val.init(bits); };
-0‚6	nextBlock‚'	decompressor.Ptr.prototype.nextBlock = function() {
+0‚	nextBlock‚		decompressor.Ptr.prototype.nextBlock = function() {
 		var f, typ, _ref, x;
 		f = this;
 		if (f.final$15) {
@@ -1602,25 +1593,22 @@ sortByFreq‚	var sortByFreq = function(a) {
 		f.b = f.b >>> 2 >>> 0;
 		f.nb = f.nb - 3 >>> 0;
 		_ref = typ;
-		switch (undefined) {
-		default:
-			if (_ref === 0) {
-				f.dataBlock();
-			} else if (_ref === 1) {
-				f.hl = fixedHuffmanDecoder;
-				f.hd = (go$ptrType(huffmanDecoder)).nil;
-				f.huffmanBlock();
-			} else if (_ref === 2) {
-				if (f.err = f.readHuffman(), !(go$interfaceIsEqual(f.err, null))) {
-					break;
-				}
-				f.hl = f.h1;
-				f.hd = f.h2;
-				f.huffmanBlock();
-			} else {
-				f.err = (x = f.roffset, new CorruptInputError(x.high, x.low));
+		switch (0) { default: if (_ref === 0) {
+			f.dataBlock();
+		} else if (_ref === 1) {
+			f.hl = fixedHuffmanDecoder;
+			f.hd = (go$ptrType(huffmanDecoder)).nil;
+			f.huffmanBlock();
+		} else if (_ref === 2) {
+			if (f.err = f.readHuffman(), !(go$interfaceIsEqual(f.err, null))) {
+				break;
 			}
-		}
+			f.hl = f.h1;
+			f.hd = f.h2;
+			f.huffmanBlock();
+		} else {
+			f.err = (x = f.roffset, new CorruptInputError(x.high, x.low));
+		} }
 	};
 	decompressor.prototype.nextBlock = function() { return this.go$val.nextBlock(); };
 0‚•Read‚‹	decompressor.Ptr.prototype.Read = function(b) {

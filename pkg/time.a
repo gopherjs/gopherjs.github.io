@@ -1,4 +1,4 @@
-0ÉLtimeÇ$ópackage time
+0ÉÏtimeÇ$ópackage time
 import errors "errors"
 import syscall "syscall"
 import sync "sync"
@@ -288,7 +288,7 @@ $$
 daysBefore0 0utcLoc0 0
 localLoc0	localOnce0
 zoneinfo0	badData0
-zoneDirs0origZoneDirs0Éæa0Å∂startsWithLowerCaseÅû	var startsWithLowerCase = function(str) {
+zoneDirs0origZoneDirs0ÉΩ0Å∂startsWithLowerCaseÅû	var startsWithLowerCase = function(str) {
 		var c;
 		if (str.length === 0) {
 			return false;
@@ -548,7 +548,7 @@ formatNanoÇÊ	var formatNano = function(b, nanosec, n, trim) {
 		return t.Format("2006-01-02 15:04:05.999999999 -0700 MST");
 	};
 	Time.prototype.String = function() { return this.go$val.String(); };
-0ÇsFormatÇg	Time.Ptr.prototype.Format = function(layout) {
+0ÇÊFormatÇ⁄	Time.Ptr.prototype.Format = function(layout) {
 		var _struct, t, _tuple, name, offset, abs, year, month, day, hour, min, sec, b, buf, max, _tuple$1, prefix, std, suffix, _tuple$2, _tuple$3, _ref, y, _r, y$1, m, s, _r$1, hr, _r$2, hr$1, _q, zone$1, absoffset, _q$1, _r$3, _r$4, _q$2, zone$2, _q$3, _r$5;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		_tuple = t.locabs(), name = _tuple[0], offset = _tuple[1], abs = _tuple[2], year = -1, month = 0, day = 0, hour = -1, min = 0, sec = 0, b = (go$sliceType(Go$Uint8)).nil, buf = go$makeNativeArray("Uint8", 64, function() { return 0; });
@@ -574,133 +574,130 @@ formatNanoÇÊ	var formatNano = function(b, nanosec, n, trim) {
 				_tuple$3 = absClock(abs), hour = _tuple$3[0], min = _tuple$3[1], sec = _tuple$3[2];
 			}
 			_ref = std & 65535;
-			switch (undefined) {
-			default:
-				if (_ref === 274) {
-					y = year;
-					if (y < 0) {
-						y = -y;
-					}
-					b = appendUint(b, ((_r = y % 100, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-				} else if (_ref === 273) {
-					y$1 = year;
-					if (year <= -1000) {
-						b = go$append(b, 45);
-						y$1 = -y$1;
-					} else if (year <= -100) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-0")));
-						y$1 = -y$1;
-					} else if (year <= -10) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-00")));
-						y$1 = -y$1;
-					} else if (year < 0) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-000")));
-						y$1 = -y$1;
-					} else if (year < 10) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("000")));
-					} else if (year < 100) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("00")));
-					} else if (year < 1000) {
-						b = go$append(b, 48);
-					}
-					b = appendUint(b, (y$1 >>> 0), 0);
-				} else if (_ref === 258) {
-					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Month(month)).String().substring(0, 3))));
-				} else if (_ref === 257) {
-					m = (new Month(month)).String();
-					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(m)));
-				} else if (_ref === 259) {
-					b = appendUint(b, (month >>> 0), 0);
-				} else if (_ref === 260) {
-					b = appendUint(b, (month >>> 0), 48);
-				} else if (_ref === 262) {
-					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Weekday(absWeekday(abs))).String().substring(0, 3))));
-				} else if (_ref === 261) {
-					s = (new Weekday(absWeekday(abs))).String();
-					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
-				} else if (_ref === 263) {
-					b = appendUint(b, (day >>> 0), 0);
-				} else if (_ref === 264) {
-					b = appendUint(b, (day >>> 0), 32);
-				} else if (_ref === 265) {
-					b = appendUint(b, (day >>> 0), 48);
-				} else if (_ref === 522) {
-					b = appendUint(b, (hour >>> 0), 48);
-				} else if (_ref === 523) {
-					hr = (_r$1 = hour % 12, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero"));
-					if (hr === 0) {
-						hr = 12;
-					}
-					b = appendUint(b, (hr >>> 0), 0);
-				} else if (_ref === 524) {
-					hr$1 = (_r$2 = hour % 12, _r$2 === _r$2 ? _r$2 : go$throwRuntimeError("integer divide by zero"));
-					if (hr$1 === 0) {
-						hr$1 = 12;
-					}
-					b = appendUint(b, (hr$1 >>> 0), 48);
-				} else if (_ref === 525) {
-					b = appendUint(b, (min >>> 0), 0);
-				} else if (_ref === 526) {
-					b = appendUint(b, (min >>> 0), 48);
-				} else if (_ref === 527) {
-					b = appendUint(b, (sec >>> 0), 0);
-				} else if (_ref === 528) {
-					b = appendUint(b, (sec >>> 0), 48);
-				} else if (_ref === 531) {
-					if (hour >= 12) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("PM")));
-					} else {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("AM")));
-					}
-				} else if (_ref === 532) {
-					if (hour >= 12) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("pm")));
-					} else {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("am")));
-					}
-				} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 29 || _ref === 27 || _ref === 30) {
-					if ((offset === 0) && ((std === 22) || (std === 24) || (std === 23) || (std === 25))) {
-						b = go$append(b, 90);
-						break;
-					}
-					zone$1 = (_q = offset / 60, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
-					absoffset = offset;
-					if (zone$1 < 0) {
-						b = go$append(b, 45);
-						zone$1 = -zone$1;
-						absoffset = -absoffset;
-					} else {
-						b = go$append(b, 43);
-					}
-					b = appendUint(b, ((_q$1 = zone$1 / 60, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-					if ((std === 24) || (std === 29)) {
+			switch (0) { default: if (_ref === 274) {
+				y = year;
+				if (y < 0) {
+					y = -y;
+				}
+				b = appendUint(b, ((_r = y % 100, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+			} else if (_ref === 273) {
+				y$1 = year;
+				if (year <= -1000) {
+					b = go$append(b, 45);
+					y$1 = -y$1;
+				} else if (year <= -100) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-0")));
+					y$1 = -y$1;
+				} else if (year <= -10) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-00")));
+					y$1 = -y$1;
+				} else if (year < 0) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("-000")));
+					y$1 = -y$1;
+				} else if (year < 10) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("000")));
+				} else if (year < 100) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("00")));
+				} else if (year < 1000) {
+					b = go$append(b, 48);
+				}
+				b = appendUint(b, (y$1 >>> 0), 0);
+			} else if (_ref === 258) {
+				b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Month(month)).String().substring(0, 3))));
+			} else if (_ref === 257) {
+				m = (new Month(month)).String();
+				b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(m)));
+			} else if (_ref === 259) {
+				b = appendUint(b, (month >>> 0), 0);
+			} else if (_ref === 260) {
+				b = appendUint(b, (month >>> 0), 48);
+			} else if (_ref === 262) {
+				b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes((new Weekday(absWeekday(abs))).String().substring(0, 3))));
+			} else if (_ref === 261) {
+				s = (new Weekday(absWeekday(abs))).String();
+				b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
+			} else if (_ref === 263) {
+				b = appendUint(b, (day >>> 0), 0);
+			} else if (_ref === 264) {
+				b = appendUint(b, (day >>> 0), 32);
+			} else if (_ref === 265) {
+				b = appendUint(b, (day >>> 0), 48);
+			} else if (_ref === 522) {
+				b = appendUint(b, (hour >>> 0), 48);
+			} else if (_ref === 523) {
+				hr = (_r$1 = hour % 12, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero"));
+				if (hr === 0) {
+					hr = 12;
+				}
+				b = appendUint(b, (hr >>> 0), 0);
+			} else if (_ref === 524) {
+				hr$1 = (_r$2 = hour % 12, _r$2 === _r$2 ? _r$2 : go$throwRuntimeError("integer divide by zero"));
+				if (hr$1 === 0) {
+					hr$1 = 12;
+				}
+				b = appendUint(b, (hr$1 >>> 0), 48);
+			} else if (_ref === 525) {
+				b = appendUint(b, (min >>> 0), 0);
+			} else if (_ref === 526) {
+				b = appendUint(b, (min >>> 0), 48);
+			} else if (_ref === 527) {
+				b = appendUint(b, (sec >>> 0), 0);
+			} else if (_ref === 528) {
+				b = appendUint(b, (sec >>> 0), 48);
+			} else if (_ref === 531) {
+				if (hour >= 12) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("PM")));
+				} else {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("AM")));
+				}
+			} else if (_ref === 532) {
+				if (hour >= 12) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("pm")));
+				} else {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes("am")));
+				}
+			} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 29 || _ref === 27 || _ref === 30) {
+				if ((offset === 0) && ((std === 22) || (std === 24) || (std === 23) || (std === 25))) {
+					b = go$append(b, 90);
+					break;
+				}
+				zone$1 = (_q = offset / 60, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
+				absoffset = offset;
+				if (zone$1 < 0) {
+					b = go$append(b, 45);
+					zone$1 = -zone$1;
+					absoffset = -absoffset;
+				} else {
+					b = go$append(b, 43);
+				}
+				b = appendUint(b, ((_q$1 = zone$1 / 60, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+				if ((std === 24) || (std === 29)) {
+					b = go$append(b, 58);
+				}
+				b = appendUint(b, ((_r$3 = zone$1 % 60, _r$3 === _r$3 ? _r$3 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+				if ((std === 23) || (std === 27) || (std === 30) || (std === 25)) {
+					if ((std === 30) || (std === 25)) {
 						b = go$append(b, 58);
 					}
-					b = appendUint(b, ((_r$3 = zone$1 % 60, _r$3 === _r$3 ? _r$3 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-					if ((std === 23) || (std === 27) || (std === 30) || (std === 25)) {
-						if ((std === 30) || (std === 25)) {
-							b = go$append(b, 58);
-						}
-						b = appendUint(b, ((_r$4 = absoffset % 60, _r$4 === _r$4 ? _r$4 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-					}
-				} else if (_ref === 21) {
-					if (!(name === "")) {
-						b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(name)));
-						break;
-					}
-					zone$2 = (_q$2 = offset / 60, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : go$throwRuntimeError("integer divide by zero"));
-					if (zone$2 < 0) {
-						b = go$append(b, 45);
-						zone$2 = -zone$2;
-					} else {
-						b = go$append(b, 43);
-					}
-					b = appendUint(b, ((_q$3 = zone$2 / 60, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-					b = appendUint(b, ((_r$5 = zone$2 % 60, _r$5 === _r$5 ? _r$5 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
-				} else if (_ref === 31 || _ref === 32) {
-					b = formatNano(b, (t.Nanosecond() >>> 0), std >> 16 >> 0, (std & 65535) === 32);
+					b = appendUint(b, ((_r$4 = absoffset % 60, _r$4 === _r$4 ? _r$4 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
 				}
-			}
+			} else if (_ref === 21) {
+				if (!(name === "")) {
+					b = go$appendSlice(b, new (go$sliceType(Go$Uint8))(go$stringToBytes(name)));
+					break;
+				}
+				zone$2 = (_q$2 = offset / 60, (_q$2 === _q$2 && _q$2 !== 1/0 && _q$2 !== -1/0) ? _q$2 >> 0 : go$throwRuntimeError("integer divide by zero"));
+				if (zone$2 < 0) {
+					b = go$append(b, 45);
+					zone$2 = -zone$2;
+				} else {
+					b = go$append(b, 43);
+				}
+				b = appendUint(b, ((_q$3 = zone$2 / 60, (_q$3 === _q$3 && _q$3 !== 1/0 && _q$3 !== -1/0) ? _q$3 >> 0 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+				b = appendUint(b, ((_r$5 = zone$2 % 60, _r$5 === _r$5 ? _r$5 : go$throwRuntimeError("integer divide by zero")) >>> 0), 48);
+			} else if (_ref === 31 || _ref === 32) {
+				b = formatNano(b, (t.Nanosecond() >>> 0), std >> 16 >> 0, (std & 65535) === 32);
+			} }
 		}
 		return go$bytesToString(b);
 	};
@@ -768,7 +765,7 @@ formatNanoÇÊ	var formatNano = function(b, nanosec, n, trim) {
 0ÅèParseInLocation|	var ParseInLocation = go$pkg.ParseInLocation = function(layout, value, loc) {
 		return parse(layout, value, loc, loc);
 	};
-0Ç1˝parseÇ1Ú	var parse = function(layout, value, defaultLocation, local) {
+0Ç1*parseÇ1	var parse = function(layout, value, defaultLocation, local) {
 		var _tuple, alayout, avalue, rangeErrString, amSet, pmSet, year, month, day, hour, min, sec, nsec, z, zoneOffset, zoneName, err, _tuple$1, prefix, std, suffix, stdstr, _tuple$2, p, _ref, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, n, _tuple$18, _tuple$19, _ref$1, _tuple$20, _ref$2, _tuple$21, sign, hour$1, min$1, seconds, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, hr, mm, ss, _tuple$28, _tuple$29, _tuple$30, x, x$1, x$2, _ref$3, _tuple$31, n$1, ok, _tuple$32, ndigit, _tuple$33, i, _tuple$34, _struct, _struct$1, t, x$3, x$4, _tuple$35, x$5, name, offset, _struct$2, _struct$3, _struct$4, t$1, _tuple$36, x$6, offset$1, ok$1, x$7, x$8, _struct$5, _tuple$37, x$9, _struct$6, _struct$7;
 		_tuple = [layout, value], alayout = _tuple[0], avalue = _tuple[1];
 		rangeErrString = "";
@@ -792,203 +789,200 @@ formatNanoÇÊ	var formatNano = function(b, nanosec, n, trim) {
 			layout = suffix;
 			p = "";
 			_ref = std & 65535;
-			switch (undefined) {
-			default:
-				if (_ref === 274) {
-					if (value.length < 2) {
-						err = errBad;
-						break;
-					}
-					_tuple$3 = [value.substring(0, 2), value.substring(2)], p = _tuple$3[0], value = _tuple$3[1];
-					_tuple$4 = atoi(p), year = _tuple$4[0], err = _tuple$4[1];
-					if (year >= 69) {
-						year = year + 1900 >> 0;
-					} else {
-						year = year + 2000 >> 0;
-					}
-				} else if (_ref === 273) {
-					if (value.length < 4 || !isDigit(value, 0)) {
-						err = errBad;
-						break;
-					}
-					_tuple$5 = [value.substring(0, 4), value.substring(4)], p = _tuple$5[0], value = _tuple$5[1];
-					_tuple$6 = atoi(p), year = _tuple$6[0], err = _tuple$6[1];
-				} else if (_ref === 258) {
-					_tuple$7 = lookup(shortMonthNames, value), month = _tuple$7[0], value = _tuple$7[1], err = _tuple$7[2];
-				} else if (_ref === 257) {
-					_tuple$8 = lookup(longMonthNames, value), month = _tuple$8[0], value = _tuple$8[1], err = _tuple$8[2];
-				} else if (_ref === 259 || _ref === 260) {
-					_tuple$9 = getnum(value, std === 260), month = _tuple$9[0], value = _tuple$9[1], err = _tuple$9[2];
-					if (month <= 0 || 12 < month) {
-						rangeErrString = "month";
-					}
-				} else if (_ref === 262) {
-					_tuple$10 = lookup(shortDayNames, value), value = _tuple$10[1], err = _tuple$10[2];
-				} else if (_ref === 261) {
-					_tuple$11 = lookup(longDayNames, value), value = _tuple$11[1], err = _tuple$11[2];
-				} else if (_ref === 263 || _ref === 264 || _ref === 265) {
-					if ((std === 264) && value.length > 0 && (value.charCodeAt(0) === 32)) {
-						value = value.substring(1);
-					}
-					_tuple$12 = getnum(value, std === 265), day = _tuple$12[0], value = _tuple$12[1], err = _tuple$12[2];
-					if (day < 0 || 31 < day) {
-						rangeErrString = "day";
-					}
-				} else if (_ref === 522) {
-					_tuple$13 = getnum(value, false), hour = _tuple$13[0], value = _tuple$13[1], err = _tuple$13[2];
-					if (hour < 0 || 24 <= hour) {
-						rangeErrString = "hour";
-					}
-				} else if (_ref === 523 || _ref === 524) {
-					_tuple$14 = getnum(value, std === 524), hour = _tuple$14[0], value = _tuple$14[1], err = _tuple$14[2];
-					if (hour < 0 || 12 < hour) {
-						rangeErrString = "hour";
-					}
-				} else if (_ref === 525 || _ref === 526) {
-					_tuple$15 = getnum(value, std === 526), min = _tuple$15[0], value = _tuple$15[1], err = _tuple$15[2];
-					if (min < 0 || 60 <= min) {
-						rangeErrString = "minute";
-					}
-				} else if (_ref === 527 || _ref === 528) {
-					_tuple$16 = getnum(value, std === 528), sec = _tuple$16[0], value = _tuple$16[1], err = _tuple$16[2];
-					if (sec < 0 || 60 <= sec) {
-						rangeErrString = "second";
-					}
-					if (value.length >= 2 && (value.charCodeAt(0) === 46) && isDigit(value, 1)) {
-						_tuple$17 = nextStdChunk(layout), std = _tuple$17[1];
-						std = std & 65535;
-						if ((std === 31) || (std === 32)) {
-							break;
-						}
-						n = 2;
-						while (n < value.length && isDigit(value, n)) {
-							n = n + 1 >> 0;
-						}
-						_tuple$18 = parseNanoseconds(value, n), nsec = _tuple$18[0], rangeErrString = _tuple$18[1], err = _tuple$18[2];
-						value = value.substring(n);
-					}
-				} else if (_ref === 531) {
-					if (value.length < 2) {
-						err = errBad;
-						break;
-					}
-					_tuple$19 = [value.substring(0, 2), value.substring(2)], p = _tuple$19[0], value = _tuple$19[1];
-					_ref$1 = p;
-					if (_ref$1 === "PM") {
-						pmSet = true;
-					} else if (_ref$1 === "AM") {
-						amSet = true;
-					} else {
-						err = errBad;
-					}
-				} else if (_ref === 532) {
-					if (value.length < 2) {
-						err = errBad;
-						break;
-					}
-					_tuple$20 = [value.substring(0, 2), value.substring(2)], p = _tuple$20[0], value = _tuple$20[1];
-					_ref$2 = p;
-					if (_ref$2 === "pm") {
-						pmSet = true;
-					} else if (_ref$2 === "am") {
-						amSet = true;
-					} else {
-						err = errBad;
-					}
-				} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 28 || _ref === 29 || _ref === 27 || _ref === 30) {
-					if (((std === 22) || (std === 24)) && value.length >= 1 && (value.charCodeAt(0) === 90)) {
-						value = value.substring(1);
-						z = go$pkg.UTC;
-						break;
-					}
-					_tuple$21 = ["", "", "", ""], sign = _tuple$21[0], hour$1 = _tuple$21[1], min$1 = _tuple$21[2], seconds = _tuple$21[3];
-					if ((std === 24) || (std === 29)) {
-						if (value.length < 6) {
-							err = errBad;
-							break;
-						}
-						if (!((value.charCodeAt(3) === 58))) {
-							err = errBad;
-							break;
-						}
-						_tuple$22 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), "00", value.substring(6)], sign = _tuple$22[0], hour$1 = _tuple$22[1], min$1 = _tuple$22[2], seconds = _tuple$22[3], value = _tuple$22[4];
-					} else if (std === 28) {
-						if (value.length < 3) {
-							err = errBad;
-							break;
-						}
-						_tuple$23 = [value.substring(0, 1), value.substring(1, 3), "00", "00", value.substring(3)], sign = _tuple$23[0], hour$1 = _tuple$23[1], min$1 = _tuple$23[2], seconds = _tuple$23[3], value = _tuple$23[4];
-					} else if ((std === 25) || (std === 30)) {
-						if (value.length < 9) {
-							err = errBad;
-							break;
-						}
-						if (!((value.charCodeAt(3) === 58)) || !((value.charCodeAt(6) === 58))) {
-							err = errBad;
-							break;
-						}
-						_tuple$24 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), value.substring(7, 9), value.substring(9)], sign = _tuple$24[0], hour$1 = _tuple$24[1], min$1 = _tuple$24[2], seconds = _tuple$24[3], value = _tuple$24[4];
-					} else if ((std === 23) || (std === 27)) {
-						if (value.length < 7) {
-							err = errBad;
-							break;
-						}
-						_tuple$25 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), value.substring(5, 7), value.substring(7)], sign = _tuple$25[0], hour$1 = _tuple$25[1], min$1 = _tuple$25[2], seconds = _tuple$25[3], value = _tuple$25[4];
-					} else {
-						if (value.length < 5) {
-							err = errBad;
-							break;
-						}
-						_tuple$26 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), "00", value.substring(5)], sign = _tuple$26[0], hour$1 = _tuple$26[1], min$1 = _tuple$26[2], seconds = _tuple$26[3], value = _tuple$26[4];
-					}
-					_tuple$27 = [0, 0, 0], hr = _tuple$27[0], mm = _tuple$27[1], ss = _tuple$27[2];
-					_tuple$28 = atoi(hour$1), hr = _tuple$28[0], err = _tuple$28[1];
-					if (go$interfaceIsEqual(err, null)) {
-						_tuple$29 = atoi(min$1), mm = _tuple$29[0], err = _tuple$29[1];
-					}
-					if (go$interfaceIsEqual(err, null)) {
-						_tuple$30 = atoi(seconds), ss = _tuple$30[0], err = _tuple$30[1];
-					}
-					zoneOffset = (x = ((x$1 = 60, (((hr >>> 16 << 16) * x$1 >> 0) + (hr << 16 >>> 16) * x$1) >> 0) + mm >> 0), x$2 = 60, (((x >>> 16 << 16) * x$2 >> 0) + (x << 16 >>> 16) * x$2) >> 0) + ss >> 0;
-					_ref$3 = sign.charCodeAt(0);
-					if (_ref$3 === 43) {
-					} else if (_ref$3 === 45) {
-						zoneOffset = -zoneOffset;
-					} else {
-						err = errBad;
-					}
-				} else if (_ref === 21) {
-					if (value.length >= 3 && value.substring(0, 3) === "UTC") {
-						z = go$pkg.UTC;
-						value = value.substring(3);
-						break;
-					}
-					_tuple$31 = parseTimeZone(value), n$1 = _tuple$31[0], ok = _tuple$31[1];
-					if (!ok) {
-						err = errBad;
-						break;
-					}
-					_tuple$32 = [value.substring(0, n$1), value.substring(n$1)], zoneName = _tuple$32[0], value = _tuple$32[1];
-				} else if (_ref === 31) {
-					ndigit = 1 + ((std >> 16 >> 0)) >> 0;
-					if (value.length < ndigit) {
-						err = errBad;
-						break;
-					}
-					_tuple$33 = parseNanoseconds(value, ndigit), nsec = _tuple$33[0], rangeErrString = _tuple$33[1], err = _tuple$33[2];
-					value = value.substring(ndigit);
-				} else if (_ref === 32) {
-					if (value.length < 2 || !((value.charCodeAt(0) === 46)) || value.charCodeAt(1) < 48 || 57 < value.charCodeAt(1)) {
-						break;
-					}
-					i = 0;
-					while (i < 9 && (i + 1 >> 0) < value.length && 48 <= value.charCodeAt((i + 1 >> 0)) && value.charCodeAt((i + 1 >> 0)) <= 57) {
-						i = i + 1 >> 0;
-					}
-					_tuple$34 = parseNanoseconds(value, 1 + i >> 0), nsec = _tuple$34[0], rangeErrString = _tuple$34[1], err = _tuple$34[2];
-					value = value.substring((1 + i >> 0));
+			switch (0) { default: if (_ref === 274) {
+				if (value.length < 2) {
+					err = errBad;
+					break;
 				}
-			}
+				_tuple$3 = [value.substring(0, 2), value.substring(2)], p = _tuple$3[0], value = _tuple$3[1];
+				_tuple$4 = atoi(p), year = _tuple$4[0], err = _tuple$4[1];
+				if (year >= 69) {
+					year = year + 1900 >> 0;
+				} else {
+					year = year + 2000 >> 0;
+				}
+			} else if (_ref === 273) {
+				if (value.length < 4 || !isDigit(value, 0)) {
+					err = errBad;
+					break;
+				}
+				_tuple$5 = [value.substring(0, 4), value.substring(4)], p = _tuple$5[0], value = _tuple$5[1];
+				_tuple$6 = atoi(p), year = _tuple$6[0], err = _tuple$6[1];
+			} else if (_ref === 258) {
+				_tuple$7 = lookup(shortMonthNames, value), month = _tuple$7[0], value = _tuple$7[1], err = _tuple$7[2];
+			} else if (_ref === 257) {
+				_tuple$8 = lookup(longMonthNames, value), month = _tuple$8[0], value = _tuple$8[1], err = _tuple$8[2];
+			} else if (_ref === 259 || _ref === 260) {
+				_tuple$9 = getnum(value, std === 260), month = _tuple$9[0], value = _tuple$9[1], err = _tuple$9[2];
+				if (month <= 0 || 12 < month) {
+					rangeErrString = "month";
+				}
+			} else if (_ref === 262) {
+				_tuple$10 = lookup(shortDayNames, value), value = _tuple$10[1], err = _tuple$10[2];
+			} else if (_ref === 261) {
+				_tuple$11 = lookup(longDayNames, value), value = _tuple$11[1], err = _tuple$11[2];
+			} else if (_ref === 263 || _ref === 264 || _ref === 265) {
+				if ((std === 264) && value.length > 0 && (value.charCodeAt(0) === 32)) {
+					value = value.substring(1);
+				}
+				_tuple$12 = getnum(value, std === 265), day = _tuple$12[0], value = _tuple$12[1], err = _tuple$12[2];
+				if (day < 0 || 31 < day) {
+					rangeErrString = "day";
+				}
+			} else if (_ref === 522) {
+				_tuple$13 = getnum(value, false), hour = _tuple$13[0], value = _tuple$13[1], err = _tuple$13[2];
+				if (hour < 0 || 24 <= hour) {
+					rangeErrString = "hour";
+				}
+			} else if (_ref === 523 || _ref === 524) {
+				_tuple$14 = getnum(value, std === 524), hour = _tuple$14[0], value = _tuple$14[1], err = _tuple$14[2];
+				if (hour < 0 || 12 < hour) {
+					rangeErrString = "hour";
+				}
+			} else if (_ref === 525 || _ref === 526) {
+				_tuple$15 = getnum(value, std === 526), min = _tuple$15[0], value = _tuple$15[1], err = _tuple$15[2];
+				if (min < 0 || 60 <= min) {
+					rangeErrString = "minute";
+				}
+			} else if (_ref === 527 || _ref === 528) {
+				_tuple$16 = getnum(value, std === 528), sec = _tuple$16[0], value = _tuple$16[1], err = _tuple$16[2];
+				if (sec < 0 || 60 <= sec) {
+					rangeErrString = "second";
+				}
+				if (value.length >= 2 && (value.charCodeAt(0) === 46) && isDigit(value, 1)) {
+					_tuple$17 = nextStdChunk(layout), std = _tuple$17[1];
+					std = std & 65535;
+					if ((std === 31) || (std === 32)) {
+						break;
+					}
+					n = 2;
+					while (n < value.length && isDigit(value, n)) {
+						n = n + 1 >> 0;
+					}
+					_tuple$18 = parseNanoseconds(value, n), nsec = _tuple$18[0], rangeErrString = _tuple$18[1], err = _tuple$18[2];
+					value = value.substring(n);
+				}
+			} else if (_ref === 531) {
+				if (value.length < 2) {
+					err = errBad;
+					break;
+				}
+				_tuple$19 = [value.substring(0, 2), value.substring(2)], p = _tuple$19[0], value = _tuple$19[1];
+				_ref$1 = p;
+				if (_ref$1 === "PM") {
+					pmSet = true;
+				} else if (_ref$1 === "AM") {
+					amSet = true;
+				} else {
+					err = errBad;
+				}
+			} else if (_ref === 532) {
+				if (value.length < 2) {
+					err = errBad;
+					break;
+				}
+				_tuple$20 = [value.substring(0, 2), value.substring(2)], p = _tuple$20[0], value = _tuple$20[1];
+				_ref$2 = p;
+				if (_ref$2 === "pm") {
+					pmSet = true;
+				} else if (_ref$2 === "am") {
+					amSet = true;
+				} else {
+					err = errBad;
+				}
+			} else if (_ref === 22 || _ref === 24 || _ref === 23 || _ref === 25 || _ref === 26 || _ref === 28 || _ref === 29 || _ref === 27 || _ref === 30) {
+				if (((std === 22) || (std === 24)) && value.length >= 1 && (value.charCodeAt(0) === 90)) {
+					value = value.substring(1);
+					z = go$pkg.UTC;
+					break;
+				}
+				_tuple$21 = ["", "", "", ""], sign = _tuple$21[0], hour$1 = _tuple$21[1], min$1 = _tuple$21[2], seconds = _tuple$21[3];
+				if ((std === 24) || (std === 29)) {
+					if (value.length < 6) {
+						err = errBad;
+						break;
+					}
+					if (!((value.charCodeAt(3) === 58))) {
+						err = errBad;
+						break;
+					}
+					_tuple$22 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), "00", value.substring(6)], sign = _tuple$22[0], hour$1 = _tuple$22[1], min$1 = _tuple$22[2], seconds = _tuple$22[3], value = _tuple$22[4];
+				} else if (std === 28) {
+					if (value.length < 3) {
+						err = errBad;
+						break;
+					}
+					_tuple$23 = [value.substring(0, 1), value.substring(1, 3), "00", "00", value.substring(3)], sign = _tuple$23[0], hour$1 = _tuple$23[1], min$1 = _tuple$23[2], seconds = _tuple$23[3], value = _tuple$23[4];
+				} else if ((std === 25) || (std === 30)) {
+					if (value.length < 9) {
+						err = errBad;
+						break;
+					}
+					if (!((value.charCodeAt(3) === 58)) || !((value.charCodeAt(6) === 58))) {
+						err = errBad;
+						break;
+					}
+					_tuple$24 = [value.substring(0, 1), value.substring(1, 3), value.substring(4, 6), value.substring(7, 9), value.substring(9)], sign = _tuple$24[0], hour$1 = _tuple$24[1], min$1 = _tuple$24[2], seconds = _tuple$24[3], value = _tuple$24[4];
+				} else if ((std === 23) || (std === 27)) {
+					if (value.length < 7) {
+						err = errBad;
+						break;
+					}
+					_tuple$25 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), value.substring(5, 7), value.substring(7)], sign = _tuple$25[0], hour$1 = _tuple$25[1], min$1 = _tuple$25[2], seconds = _tuple$25[3], value = _tuple$25[4];
+				} else {
+					if (value.length < 5) {
+						err = errBad;
+						break;
+					}
+					_tuple$26 = [value.substring(0, 1), value.substring(1, 3), value.substring(3, 5), "00", value.substring(5)], sign = _tuple$26[0], hour$1 = _tuple$26[1], min$1 = _tuple$26[2], seconds = _tuple$26[3], value = _tuple$26[4];
+				}
+				_tuple$27 = [0, 0, 0], hr = _tuple$27[0], mm = _tuple$27[1], ss = _tuple$27[2];
+				_tuple$28 = atoi(hour$1), hr = _tuple$28[0], err = _tuple$28[1];
+				if (go$interfaceIsEqual(err, null)) {
+					_tuple$29 = atoi(min$1), mm = _tuple$29[0], err = _tuple$29[1];
+				}
+				if (go$interfaceIsEqual(err, null)) {
+					_tuple$30 = atoi(seconds), ss = _tuple$30[0], err = _tuple$30[1];
+				}
+				zoneOffset = (x = ((x$1 = 60, (((hr >>> 16 << 16) * x$1 >> 0) + (hr << 16 >>> 16) * x$1) >> 0) + mm >> 0), x$2 = 60, (((x >>> 16 << 16) * x$2 >> 0) + (x << 16 >>> 16) * x$2) >> 0) + ss >> 0;
+				_ref$3 = sign.charCodeAt(0);
+				if (_ref$3 === 43) {
+				} else if (_ref$3 === 45) {
+					zoneOffset = -zoneOffset;
+				} else {
+					err = errBad;
+				}
+			} else if (_ref === 21) {
+				if (value.length >= 3 && value.substring(0, 3) === "UTC") {
+					z = go$pkg.UTC;
+					value = value.substring(3);
+					break;
+				}
+				_tuple$31 = parseTimeZone(value), n$1 = _tuple$31[0], ok = _tuple$31[1];
+				if (!ok) {
+					err = errBad;
+					break;
+				}
+				_tuple$32 = [value.substring(0, n$1), value.substring(n$1)], zoneName = _tuple$32[0], value = _tuple$32[1];
+			} else if (_ref === 31) {
+				ndigit = 1 + ((std >> 16 >> 0)) >> 0;
+				if (value.length < ndigit) {
+					err = errBad;
+					break;
+				}
+				_tuple$33 = parseNanoseconds(value, ndigit), nsec = _tuple$33[0], rangeErrString = _tuple$33[1], err = _tuple$33[2];
+				value = value.substring(ndigit);
+			} else if (_ref === 32) {
+				if (value.length < 2 || !((value.charCodeAt(0) === 46)) || value.charCodeAt(1) < 48 || 57 < value.charCodeAt(1)) {
+					break;
+				}
+				i = 0;
+				while (i < 9 && (i + 1 >> 0) < value.length && 48 <= value.charCodeAt((i + 1 >> 0)) && value.charCodeAt((i + 1 >> 0)) <= 57) {
+					i = i + 1 >> 0;
+				}
+				_tuple$34 = parseNanoseconds(value, 1 + i >> 0), nsec = _tuple$34[0], rangeErrString = _tuple$34[1], err = _tuple$34[2];
+				value = value.substring((1 + i >> 0));
+			} }
 			if (!(rangeErrString === "")) {
 				return [new Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(Location)).nil), new ParseError.Ptr(alayout, avalue, stdstr, value, ": " + rangeErrString + " out of range")];
 			}

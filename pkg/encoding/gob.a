@@ -1,4 +1,4 @@
-0É¡9encoding/gobÇs,package gob
+0É¿ïencoding/gobÇs,package gob
 import bytes "bytes"
 import encoding "encoding"
 import errors "errors"
@@ -654,7 +654,7 @@ tReserved50
 tReserved40
 tReserved30
 tReserved20
-tReserved10	tWireType0wireTypeUserInfo0typeInfoMap0registerLock0nameToConcreteType0concreteTypeToName0ÉﬂŸ0ÇÃnewDecoderStateÇ∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
+tReserved10	tWireType0wireTypeUserInfo0typeInfoMap0registerLock0nameToConcreteType0concreteTypeToName0Éﬂ50ÇÃnewDecoderStateÇ∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
 		var dec, d;
 		dec = this;
 		d = dec.freeList;
@@ -1328,7 +1328,7 @@ decFloat64ÅÁ	var decFloat64 = function(i, state, p) {
 		}
 	};
 	Decoder.prototype.ignoreGobDecoder = function(state) { return this.go$val.ignoreGobDecoder(state); };
-0ÇPdecOpForÇB	Decoder.Ptr.prototype.decOpFor = function(wireId, rt, name, inProgress) {
+0ÇdecOpForÇ	Decoder.Ptr.prototype.decOpFor = function(wireId, rt, name, inProgress) {
 		var dec, ut, opPtr, _entry, typ, indir, op, k, v, _key, t, _ref, _entry$1, elemId, _tuple, elemOp, elemIndir, ovfl, _entry$2, keyId, _entry$3, elemId$1, _tuple$1, keyOp, keyIndir, _tuple$2, elemOp$1, elemIndir$1, ovfl$1, elemId$2, ok, _tuple$3, _entry$4, tt, _entry$5, _tuple$4, elemOp$2, elemIndir$2, ovfl$2, _tuple$5, enginePtr, err, v$1;
 		dec = this;
 		ut = userType(rt);
@@ -1349,56 +1349,53 @@ decFloat64ÅÁ	var decFloat64 = function(i, state, p) {
 			_key = rt, (inProgress || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: new (go$ptrType(decOp))(function() { return op; }, function(v) { op = v; }) };
 			t = typ;
 			_ref = t.Kind();
-			switch (undefined) {
-			default:
-				if (_ref === 17) {
-					name = "element of " + name;
-					elemId = (_entry$1 = dec.wireType[wireId], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(wireType)).nil).ArrayT.Elem;
-					_tuple = dec.decOpFor(elemId, t.Elem(), name, inProgress), elemOp = _tuple[0], elemIndir = _tuple[1];
-					ovfl = overflow(name);
-					op = (function(i, state, p) {
-						state.dec.decodeArray(t, state, p, elemOp.go$get(), t.Elem().Size(), t.Len(), i.indir, elemIndir, ovfl);
-					});
-				} else if (_ref === 21) {
-					keyId = (_entry$2 = dec.wireType[wireId], _entry$2 !== undefined ? _entry$2.v : (go$ptrType(wireType)).nil).MapT.Key;
-					elemId$1 = (_entry$3 = dec.wireType[wireId], _entry$3 !== undefined ? _entry$3.v : (go$ptrType(wireType)).nil).MapT.Elem;
-					_tuple$1 = dec.decOpFor(keyId, t.Key(), "key of " + name, inProgress), keyOp = _tuple$1[0], keyIndir = _tuple$1[1];
-					_tuple$2 = dec.decOpFor(elemId$1, t.Elem(), "element of " + name, inProgress), elemOp$1 = _tuple$2[0], elemIndir$1 = _tuple$2[1];
-					ovfl$1 = overflow(name);
-					op = (function(i, state, p) {
-						state.dec.decodeMap(t, state, p, keyOp.go$get(), elemOp$1.go$get(), i.indir, keyIndir, elemIndir$1, ovfl$1);
-					});
-				} else if (_ref === 23) {
-					name = "element of " + name;
-					if (t.Elem().Kind() === 8) {
-						op = decUint8Slice;
-						break;
-					}
-					elemId$2 = 0;
-					if (_tuple$3 = (_entry$4 = builtinIdToType[wireId], _entry$4 !== undefined ? [_entry$4.v, true] : [null, false]), tt = _tuple$3[0], ok = _tuple$3[1], ok) {
-						elemId$2 = (tt !== null && tt.constructor === (go$ptrType(sliceType)) ? tt.go$val : go$typeAssertionFailed(tt, (go$ptrType(sliceType)))).Elem;
-					} else {
-						elemId$2 = (_entry$5 = dec.wireType[wireId], _entry$5 !== undefined ? _entry$5.v : (go$ptrType(wireType)).nil).SliceT.Elem;
-					}
-					_tuple$4 = dec.decOpFor(elemId$2, t.Elem(), name, inProgress), elemOp$2 = _tuple$4[0], elemIndir$2 = _tuple$4[1];
-					ovfl$2 = overflow(name);
-					op = (function(i, state, p) {
-						state.dec.decodeSlice(t, state, p, elemOp$2.go$get(), t.Elem().Size(), i.indir, elemIndir$2, ovfl$2);
-					});
-				} else if (_ref === 25) {
-					_tuple$5 = dec.getDecEnginePtr(wireId, userType(typ)), enginePtr = _tuple$5[0], err = _tuple$5[1];
-					if (!(go$interfaceIsEqual(err, null))) {
-						error_(err);
-					}
-					op = (function(i, state, p) {
-						dec.decodeStruct(enginePtr.go$get(), userType(typ), p, i.indir);
-					});
-				} else if (_ref === 20) {
-					op = (function(i, state, p) {
-						state.dec.decodeInterface(t, state, p, i.indir);
-					});
+			switch (0) { default: if (_ref === 17) {
+				name = "element of " + name;
+				elemId = (_entry$1 = dec.wireType[wireId], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(wireType)).nil).ArrayT.Elem;
+				_tuple = dec.decOpFor(elemId, t.Elem(), name, inProgress), elemOp = _tuple[0], elemIndir = _tuple[1];
+				ovfl = overflow(name);
+				op = (function(i, state, p) {
+					state.dec.decodeArray(t, state, p, elemOp.go$get(), t.Elem().Size(), t.Len(), i.indir, elemIndir, ovfl);
+				});
+			} else if (_ref === 21) {
+				keyId = (_entry$2 = dec.wireType[wireId], _entry$2 !== undefined ? _entry$2.v : (go$ptrType(wireType)).nil).MapT.Key;
+				elemId$1 = (_entry$3 = dec.wireType[wireId], _entry$3 !== undefined ? _entry$3.v : (go$ptrType(wireType)).nil).MapT.Elem;
+				_tuple$1 = dec.decOpFor(keyId, t.Key(), "key of " + name, inProgress), keyOp = _tuple$1[0], keyIndir = _tuple$1[1];
+				_tuple$2 = dec.decOpFor(elemId$1, t.Elem(), "element of " + name, inProgress), elemOp$1 = _tuple$2[0], elemIndir$1 = _tuple$2[1];
+				ovfl$1 = overflow(name);
+				op = (function(i, state, p) {
+					state.dec.decodeMap(t, state, p, keyOp.go$get(), elemOp$1.go$get(), i.indir, keyIndir, elemIndir$1, ovfl$1);
+				});
+			} else if (_ref === 23) {
+				name = "element of " + name;
+				if (t.Elem().Kind() === 8) {
+					op = decUint8Slice;
+					break;
 				}
-			}
+				elemId$2 = 0;
+				if (_tuple$3 = (_entry$4 = builtinIdToType[wireId], _entry$4 !== undefined ? [_entry$4.v, true] : [null, false]), tt = _tuple$3[0], ok = _tuple$3[1], ok) {
+					elemId$2 = (tt !== null && tt.constructor === (go$ptrType(sliceType)) ? tt.go$val : go$typeAssertionFailed(tt, (go$ptrType(sliceType)))).Elem;
+				} else {
+					elemId$2 = (_entry$5 = dec.wireType[wireId], _entry$5 !== undefined ? _entry$5.v : (go$ptrType(wireType)).nil).SliceT.Elem;
+				}
+				_tuple$4 = dec.decOpFor(elemId$2, t.Elem(), name, inProgress), elemOp$2 = _tuple$4[0], elemIndir$2 = _tuple$4[1];
+				ovfl$2 = overflow(name);
+				op = (function(i, state, p) {
+					state.dec.decodeSlice(t, state, p, elemOp$2.go$get(), t.Elem().Size(), i.indir, elemIndir$2, ovfl$2);
+				});
+			} else if (_ref === 25) {
+				_tuple$5 = dec.getDecEnginePtr(wireId, userType(typ)), enginePtr = _tuple$5[0], err = _tuple$5[1];
+				if (!(go$interfaceIsEqual(err, null))) {
+					error_(err);
+				}
+				op = (function(i, state, p) {
+					dec.decodeStruct(enginePtr.go$get(), userType(typ), p, i.indir);
+				});
+			} else if (_ref === 20) {
+				op = (function(i, state, p) {
+					state.dec.decodeInterface(t, state, p, i.indir);
+				});
+			} }
 		}
 		if (op === go$throwNilPointerError) {
 			errorf("decode can't handle type %s", new (go$sliceType(go$emptyInterface))([rt]));
@@ -2380,7 +2377,7 @@ encFloat64Åπ	var encFloat64 = function(i, state, p) {
 		enc.freeEncoderState(state);
 	};
 	Encoder.prototype.encodeGobEncoder = function(b, ut, v) { return this.go$val.encodeGobEncoder(b, ut, v); };
-0ÇencOpForÇ	Encoder.Ptr.prototype.encOpFor = function(rt, inProgress) {
+0Ç encOpForÇº	Encoder.Ptr.prototype.encOpFor = function(rt, inProgress) {
 		var enc, ut, opPtr, _entry, typ, indir, k, op, v, _key, t, _ref, _tuple, elemOp, elemIndir, _tuple$1, elemOp$1, elemIndir$1, _tuple$2, keyOp, keyIndir, _tuple$3, elemOp$2, elemIndir$2, info, v$1;
 		enc = this;
 		ut = userType(rt);
@@ -2401,62 +2398,59 @@ encFloat64Åπ	var encFloat64 = function(i, state, p) {
 			_key = rt, (inProgress || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: new (go$ptrType(encOp))(function() { return op; }, function(v) { op = v; }) };
 			t = typ;
 			_ref = t.Kind();
-			switch (undefined) {
-			default:
-				if (_ref === 23) {
-					if (t.Elem().Kind() === 8) {
-						op = encUint8Array;
-						break;
-					}
-					_tuple = enc.encOpFor(t.Elem(), inProgress), elemOp = _tuple[0], elemIndir = _tuple[1];
-					op = (function(i, state, p) {
-						var _struct, slice;
-						slice = (_struct = p, new reflect.SliceHeader.Ptr(_struct.Data, _struct.Len, _struct.Cap));
-						if (!state.sendZero && (slice.Len === 0)) {
-							return;
-						}
-						state.update(i);
-						state.enc.encodeArray(state.b, slice.Data, elemOp.go$get(), t.Elem().Size(), elemIndir, slice.Len);
-					});
-				} else if (_ref === 17) {
-					_tuple$1 = enc.encOpFor(t.Elem(), inProgress), elemOp$1 = _tuple$1[0], elemIndir$1 = _tuple$1[1];
-					op = (function(i, state, p) {
-						state.update(i);
-						state.enc.encodeArray(state.b, p, elemOp$1.go$get(), t.Elem().Size(), elemIndir$1, t.Len());
-					});
-				} else if (_ref === 21) {
-					_tuple$2 = enc.encOpFor(t.Key(), inProgress), keyOp = _tuple$2[0], keyIndir = _tuple$2[1];
-					_tuple$3 = enc.encOpFor(t.Elem(), inProgress), elemOp$2 = _tuple$3[0], elemIndir$2 = _tuple$3[1];
-					op = (function(i, state, p) {
-						var _struct, v$1, _struct$1, _struct$2, mv, _struct$3;
-						v$1 = (_struct = reflect.NewAt(t, p).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
-						mv = (_struct$2 = reflect.Indirect((_struct$1 = v$1, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
-						if (!state.sendZero && mv.IsNil()) {
-							return;
-						}
-						state.update(i);
-						state.enc.encodeMap(state.b, (_struct$3 = mv, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), keyOp.go$get(), elemOp$2.go$get(), keyIndir, elemIndir$2);
-					});
-				} else if (_ref === 25) {
-					enc.getEncEngine(userType(typ));
-					info = mustGetTypeInfo(typ);
-					op = (function(i, state, p) {
-						state.update(i);
-						state.enc.encodeStruct(state.b, info.encoder, p);
-					});
-				} else if (_ref === 20) {
-					op = (function(i, state, p) {
-						var _struct, v$1, _struct$1, _struct$2, iv, _struct$3;
-						v$1 = (_struct = reflect.NewAt(t, p).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
-						iv = (_struct$2 = reflect.Indirect((_struct$1 = v$1, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
-						if (!state.sendZero && (!iv.IsValid() || iv.IsNil())) {
-							return;
-						}
-						state.update(i);
-						state.enc.encodeInterface(state.b, (_struct$3 = iv, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
-					});
+			switch (0) { default: if (_ref === 23) {
+				if (t.Elem().Kind() === 8) {
+					op = encUint8Array;
+					break;
 				}
-			}
+				_tuple = enc.encOpFor(t.Elem(), inProgress), elemOp = _tuple[0], elemIndir = _tuple[1];
+				op = (function(i, state, p) {
+					var _struct, slice;
+					slice = (_struct = p, new reflect.SliceHeader.Ptr(_struct.Data, _struct.Len, _struct.Cap));
+					if (!state.sendZero && (slice.Len === 0)) {
+						return;
+					}
+					state.update(i);
+					state.enc.encodeArray(state.b, slice.Data, elemOp.go$get(), t.Elem().Size(), elemIndir, slice.Len);
+				});
+			} else if (_ref === 17) {
+				_tuple$1 = enc.encOpFor(t.Elem(), inProgress), elemOp$1 = _tuple$1[0], elemIndir$1 = _tuple$1[1];
+				op = (function(i, state, p) {
+					state.update(i);
+					state.enc.encodeArray(state.b, p, elemOp$1.go$get(), t.Elem().Size(), elemIndir$1, t.Len());
+				});
+			} else if (_ref === 21) {
+				_tuple$2 = enc.encOpFor(t.Key(), inProgress), keyOp = _tuple$2[0], keyIndir = _tuple$2[1];
+				_tuple$3 = enc.encOpFor(t.Elem(), inProgress), elemOp$2 = _tuple$3[0], elemIndir$2 = _tuple$3[1];
+				op = (function(i, state, p) {
+					var _struct, v$1, _struct$1, _struct$2, mv, _struct$3;
+					v$1 = (_struct = reflect.NewAt(t, p).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+					mv = (_struct$2 = reflect.Indirect((_struct$1 = v$1, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+					if (!state.sendZero && mv.IsNil()) {
+						return;
+					}
+					state.update(i);
+					state.enc.encodeMap(state.b, (_struct$3 = mv, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), keyOp.go$get(), elemOp$2.go$get(), keyIndir, elemIndir$2);
+				});
+			} else if (_ref === 25) {
+				enc.getEncEngine(userType(typ));
+				info = mustGetTypeInfo(typ);
+				op = (function(i, state, p) {
+					state.update(i);
+					state.enc.encodeStruct(state.b, info.encoder, p);
+				});
+			} else if (_ref === 20) {
+				op = (function(i, state, p) {
+					var _struct, v$1, _struct$1, _struct$2, iv, _struct$3;
+					v$1 = (_struct = reflect.NewAt(t, p).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+					iv = (_struct$2 = reflect.Indirect((_struct$1 = v$1, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+					if (!state.sendZero && (!iv.IsValid() || iv.IsNil())) {
+						return;
+					}
+					state.update(i);
+					state.enc.encodeInterface(state.b, (_struct$3 = iv, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
+				});
+			} }
 		}
 		if (op === go$throwNilPointerError) {
 			errorf("can't happen: encode type %s", new (go$sliceType(go$emptyInterface))([rt]));
@@ -2695,7 +2689,7 @@ pushWriterÅ¡	Encoder.Ptr.prototype.pushWriter = function(w) {
 		return sent;
 	};
 	Encoder.prototype.sendActualType = function(w, state, ut, actual) { return this.go$val.sendActualType(w, state, ut, actual); };
-0Ç;sendTypeÇ-	Encoder.Ptr.prototype.sendType = function(w, state, origt) {
+0ÇsendTypeÇ	Encoder.Ptr.prototype.sendType = function(w, state, origt) {
 		var sent, enc, ut, rt, _ref;
 		sent = false;
 		enc = this;
@@ -2706,25 +2700,22 @@ pushWriterÅ¡	Encoder.Ptr.prototype.pushWriter = function(w) {
 		}
 		rt = ut.base;
 		_ref = rt.Kind();
-		switch (undefined) {
-		default:
-			if (_ref === 23) {
-				if (rt.Elem().Kind() === 8) {
-					return sent;
-				}
-				break;
-			} else if (_ref === 17) {
-				break;
-			} else if (_ref === 21) {
-				break;
-			} else if (_ref === 25) {
-				break;
-			} else if (_ref === 18 || _ref === 19) {
-				return sent;
-			} else {
+		switch (0) { default: if (_ref === 23) {
+			if (rt.Elem().Kind() === 8) {
 				return sent;
 			}
-		}
+			break;
+		} else if (_ref === 17) {
+			break;
+		} else if (_ref === 21) {
+			break;
+		} else if (_ref === 25) {
+			break;
+		} else if (_ref === 18 || _ref === 19) {
+			return sent;
+		} else {
+			return sent;
+		} }
 		sent = enc.sendActualType(w, state, ut, ut.base);
 		return sent;
 	};

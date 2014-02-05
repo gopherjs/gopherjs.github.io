@@ -1,4 +1,4 @@
-0É±@strconvÇpackage strconv
+0É∞ﬁstrconvÇpackage strconv
 import math "math"
 import errors "errors"
 import utf8 "unicode/utf8"
@@ -118,7 +118,7 @@ $$
 	decimalSlice.init([["d", "strconv", (go$sliceType(Go$Uint8)), ""], ["nd", "strconv", Go$Int, ""], ["dp", "strconv", Go$Int, ""], ["neg", "strconv", Go$Bool, ""]]);
 0Å‡0
 optimize0powtab0float64pow100float32pow100 0 0
-leftcheats0smallPowersOfTen0powersOfTen0uint64pow100float32info0float64info0	isPrint160isNotPrint160	isPrint320isNotPrint320shifts0ÉêÓ0Çª	ParseBoolÇ¨	var ParseBool = go$pkg.ParseBool = function(str) {
+leftcheats0smallPowersOfTen0powersOfTen0uint64pow100float32info0float64info0	isPrint160isNotPrint160	isPrint320isNotPrint320shifts0Éêå0Çª	ParseBoolÇ¨	var ParseBool = go$pkg.ParseBool = function(str) {
 		var value, err, _ref, _tuple, _tuple$1, _tuple$2;
 		value = false;
 		err = null;
@@ -2033,7 +2033,7 @@ formatBitsÇ¡	var formatBits = function(dst, u, base, neg, append_) {
 		}
 		return [v, ok];
 	};
-0ÇœUnquoteCharÇæ	var UnquoteChar = go$pkg.UnquoteChar = function(s, quote) {
+0ÇmUnquoteCharÇ\	var UnquoteChar = go$pkg.UnquoteChar = function(s, quote) {
 		var value, multibyte, tail, err, c, _tuple, r, size, _tuple$1, _tuple$2, c$1, _ref, n, _ref$1, v, j, _tuple$3, x, ok, v$1, j$1, x$1;
 		value = 0;
 		multibyte = false;
@@ -2058,93 +2058,90 @@ formatBitsÇ¡	var formatBits = function(dst, u, base, neg, append_) {
 		c$1 = s.charCodeAt(1);
 		s = s.substring(2);
 		_ref = c$1;
-		switch (undefined) {
-		default:
-			if (_ref === 97) {
-				value = 7;
-			} else if (_ref === 98) {
-				value = 8;
-			} else if (_ref === 102) {
-				value = 12;
-			} else if (_ref === 110) {
-				value = 10;
-			} else if (_ref === 114) {
-				value = 13;
-			} else if (_ref === 116) {
-				value = 9;
-			} else if (_ref === 118) {
-				value = 11;
-			} else if (_ref === 120 || _ref === 117 || _ref === 85) {
-				n = 0;
-				_ref$1 = c$1;
-				if (_ref$1 === 120) {
-					n = 2;
-				} else if (_ref$1 === 117) {
-					n = 4;
-				} else if (_ref$1 === 85) {
-					n = 8;
-				}
-				v = 0;
-				if (s.length < n) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				j = 0;
-				while (j < n) {
-					_tuple$3 = unhex(s.charCodeAt(j)), x = _tuple$3[0], ok = _tuple$3[1];
-					if (!ok) {
-						err = go$pkg.ErrSyntax;
-						return [value, multibyte, tail, err];
-					}
-					v = (v << 4 >> 0) | x;
-					j = j + 1 >> 0;
-				}
-				s = s.substring(n);
-				if (c$1 === 120) {
-					value = v;
-					break;
-				}
-				if (v > 1114111) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				value = v;
-				multibyte = true;
-			} else if (_ref === 48 || _ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
-				v$1 = (c$1 >> 0) - 48 >> 0;
-				if (s.length < 2) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				j$1 = 0;
-				while (j$1 < 2) {
-					x$1 = (s.charCodeAt(j$1) >> 0) - 48 >> 0;
-					if (x$1 < 0 || x$1 > 7) {
-						err = go$pkg.ErrSyntax;
-						return [value, multibyte, tail, err];
-					}
-					v$1 = ((v$1 << 3 >> 0)) | x$1;
-					j$1 = j$1 + 1 >> 0;
-				}
-				s = s.substring(2);
-				if (v$1 > 255) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				value = v$1;
-			} else if (_ref === 92) {
-				value = 92;
-			} else if (_ref === 39 || _ref === 34) {
-				if (!((c$1 === quote))) {
-					err = go$pkg.ErrSyntax;
-					return [value, multibyte, tail, err];
-				}
-				value = (c$1 >> 0);
-			} else {
+		switch (0) { default: if (_ref === 97) {
+			value = 7;
+		} else if (_ref === 98) {
+			value = 8;
+		} else if (_ref === 102) {
+			value = 12;
+		} else if (_ref === 110) {
+			value = 10;
+		} else if (_ref === 114) {
+			value = 13;
+		} else if (_ref === 116) {
+			value = 9;
+		} else if (_ref === 118) {
+			value = 11;
+		} else if (_ref === 120 || _ref === 117 || _ref === 85) {
+			n = 0;
+			_ref$1 = c$1;
+			if (_ref$1 === 120) {
+				n = 2;
+			} else if (_ref$1 === 117) {
+				n = 4;
+			} else if (_ref$1 === 85) {
+				n = 8;
+			}
+			v = 0;
+			if (s.length < n) {
 				err = go$pkg.ErrSyntax;
 				return [value, multibyte, tail, err];
 			}
-		}
+			j = 0;
+			while (j < n) {
+				_tuple$3 = unhex(s.charCodeAt(j)), x = _tuple$3[0], ok = _tuple$3[1];
+				if (!ok) {
+					err = go$pkg.ErrSyntax;
+					return [value, multibyte, tail, err];
+				}
+				v = (v << 4 >> 0) | x;
+				j = j + 1 >> 0;
+			}
+			s = s.substring(n);
+			if (c$1 === 120) {
+				value = v;
+				break;
+			}
+			if (v > 1114111) {
+				err = go$pkg.ErrSyntax;
+				return [value, multibyte, tail, err];
+			}
+			value = v;
+			multibyte = true;
+		} else if (_ref === 48 || _ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
+			v$1 = (c$1 >> 0) - 48 >> 0;
+			if (s.length < 2) {
+				err = go$pkg.ErrSyntax;
+				return [value, multibyte, tail, err];
+			}
+			j$1 = 0;
+			while (j$1 < 2) {
+				x$1 = (s.charCodeAt(j$1) >> 0) - 48 >> 0;
+				if (x$1 < 0 || x$1 > 7) {
+					err = go$pkg.ErrSyntax;
+					return [value, multibyte, tail, err];
+				}
+				v$1 = ((v$1 << 3 >> 0)) | x$1;
+				j$1 = j$1 + 1 >> 0;
+			}
+			s = s.substring(2);
+			if (v$1 > 255) {
+				err = go$pkg.ErrSyntax;
+				return [value, multibyte, tail, err];
+			}
+			value = v$1;
+		} else if (_ref === 92) {
+			value = 92;
+		} else if (_ref === 39 || _ref === 34) {
+			if (!((c$1 === quote))) {
+				err = go$pkg.ErrSyntax;
+				return [value, multibyte, tail, err];
+			}
+			value = (c$1 >> 0);
+		} else {
+			err = go$pkg.ErrSyntax;
+			return [value, multibyte, tail, err];
+		} }
 		tail = s;
 		return [value, multibyte, tail, err];
 	};

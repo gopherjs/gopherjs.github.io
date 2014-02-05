@@ -1,4 +1,4 @@
-0É‚:
+0É·K
 go/printerÇB0package printer
 import bytes "bytes"
 import ast "go/ast"
@@ -277,7 +277,7 @@ go/printer0Å¡0bytesbytes0go/astast0go/tokentoken0unicode/utf8
 	(go$ptrType(Config)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false]];
 	CommentedNode.init([["Node", "", go$emptyInterface, ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
 00
-aNewline0Éx˚0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
+aNewline0Éx0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
 		var printedBreak, p, n;
 		printedBreak = false;
 		p = this;
@@ -679,8 +679,8 @@ parametersÇê	printer.Ptr.prototype.parameters = function(fields) {
 		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12), new token.Pos(rbrace), new token.Token(56)]));
 	};
 	printer.prototype.fieldList = function(fields, isStruct, isIncomplete) { return this.go$val.fieldList(fields, isStruct, isIncomplete); };
-0Ç<
-walkBinaryÇ,	var walkBinary = function(e) {
+0Ç˘
+walkBinaryÇÈ	var walkBinary = function(e) {
 		var has4, has5, maxProblem, _ref, l, _ref$1, _type, _tuple, h4, h5, mp, r, _ref$2, _type$1, _tuple$1, h4$1, h5$1, mp$1, _ref$3;
 		has4 = false;
 		has5 = false;
@@ -693,53 +693,47 @@ walkBinaryÇ,	var walkBinary = function(e) {
 		}
 		_ref$1 = e.X;
 		_type = _ref$1 !== null ? _ref$1.constructor : null;
-		switch (undefined) {
-		default:
-			if (_type === (go$ptrType(ast.BinaryExpr))) {
-				l = _ref$1.go$val;
-				if ((new token.Token(l.Op)).Precedence() < (new token.Token(e.Op)).Precedence()) {
-					break;
-				}
-				_tuple = walkBinary(l), h4 = _tuple[0], h5 = _tuple[1], mp = _tuple[2];
-				has4 = has4 || h4;
-				has5 = has5 || h5;
-				if (maxProblem < mp) {
-					maxProblem = mp;
-				}
+		switch (0) { default: if (_type === (go$ptrType(ast.BinaryExpr))) {
+			l = _ref$1.go$val;
+			if ((new token.Token(l.Op)).Precedence() < (new token.Token(e.Op)).Precedence()) {
+				break;
 			}
-		}
+			_tuple = walkBinary(l), h4 = _tuple[0], h5 = _tuple[1], mp = _tuple[2];
+			has4 = has4 || h4;
+			has5 = has5 || h5;
+			if (maxProblem < mp) {
+				maxProblem = mp;
+			}
+		} }
 		_ref$2 = e.Y;
 		_type$1 = _ref$2 !== null ? _ref$2.constructor : null;
-		switch (undefined) {
-		default:
-			if (_type$1 === (go$ptrType(ast.BinaryExpr))) {
-				r = _ref$2.go$val;
-				if ((new token.Token(r.Op)).Precedence() <= (new token.Token(e.Op)).Precedence()) {
-					break;
-				}
-				_tuple$1 = walkBinary(r), h4$1 = _tuple$1[0], h5$1 = _tuple$1[1], mp$1 = _tuple$1[2];
-				has4 = has4 || h4$1;
-				has5 = has5 || h5$1;
-				if (maxProblem < mp$1) {
-					maxProblem = mp$1;
-				}
-			} else if (_type$1 === (go$ptrType(ast.StarExpr))) {
-				r = _ref$2.go$val;
-				if (e.Op === 15) {
-					maxProblem = 5;
-				}
-			} else if (_type$1 === (go$ptrType(ast.UnaryExpr))) {
-				r = _ref$2.go$val;
-				_ref$3 = (new token.Token(e.Op)).String() + (new token.Token(r.Op)).String();
-				if (_ref$3 === "/*" || _ref$3 === "&&" || _ref$3 === "&^") {
-					maxProblem = 5;
-				} else if (_ref$3 === "++" || _ref$3 === "--") {
-					if (maxProblem < 4) {
-						maxProblem = 4;
-					}
+		switch (0) { default: if (_type$1 === (go$ptrType(ast.BinaryExpr))) {
+			r = _ref$2.go$val;
+			if ((new token.Token(r.Op)).Precedence() <= (new token.Token(e.Op)).Precedence()) {
+				break;
+			}
+			_tuple$1 = walkBinary(r), h4$1 = _tuple$1[0], h5$1 = _tuple$1[1], mp$1 = _tuple$1[2];
+			has4 = has4 || h4$1;
+			has5 = has5 || h5$1;
+			if (maxProblem < mp$1) {
+				maxProblem = mp$1;
+			}
+		} else if (_type$1 === (go$ptrType(ast.StarExpr))) {
+			r = _ref$2.go$val;
+			if (e.Op === 15) {
+				maxProblem = 5;
+			}
+		} else if (_type$1 === (go$ptrType(ast.UnaryExpr))) {
+			r = _ref$2.go$val;
+			_ref$3 = (new token.Token(e.Op)).String() + (new token.Token(r.Op)).String();
+			if (_ref$3 === "/*" || _ref$3 === "&&" || _ref$3 === "&^") {
+				maxProblem = 5;
+			} else if (_ref$3 === "++" || _ref$3 === "--") {
+				if (maxProblem < 4) {
+					maxProblem = 4;
 				}
 			}
-		}
+		} }
 		return [has4, has5, maxProblem];
 	};
 0ÇlcutoffÇ`	var cutoff = function(e, depth) {
@@ -1170,173 +1164,170 @@ indentListÇ±	printer.Ptr.prototype.indentList = function(list) {
 		return false;
 	};
 	printer.prototype.indentList = function(list) { return this.go$val.indentList(list); };
-0Ç˘stmtÇÔ	printer.Ptr.prototype.stmt = function(stmt, nextIsRBrace) {
+0ÇMstmtÇC	printer.Ptr.prototype.stmt = function(stmt, nextIsRBrace) {
 		var p, s, _ref, _type, isEmpty, _tuple, x, e, depth, _ref$1, _type$1, body, _struct;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(stmt.Pos())]));
 		_ref = stmt;
 		_type = _ref !== null ? _ref.constructor : null;
-		switch (undefined) {
-		default:
-			if (_type === (go$ptrType(ast.BadStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new Go$String("BadStmt")]));
-			} else if (_type === (go$ptrType(ast.DeclStmt))) {
-				s = _ref.go$val;
-				p.decl(s.Decl);
-			} else if (_type === (go$ptrType(ast.EmptyStmt))) {
-				s = _ref.go$val;
-			} else if (_type === (go$ptrType(ast.LabeledStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
-				p.expr(s.Label);
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58), new whiteSpace(62)]));
-				if (_tuple = (x = s.Stmt, (x !== null && x.constructor === (go$ptrType(ast.EmptyStmt)) ? [x.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false])), e = _tuple[0], isEmpty = _tuple[1], isEmpty) {
-					if (!nextIsRBrace) {
-						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10), new token.Pos(e.Pos()), new token.Token(57)]));
-						break;
-					}
-				} else {
-					p.linebreak(p.lineFor(s.Stmt.Pos()), 1, 0, true);
+		switch (0) { default: if (_type === (go$ptrType(ast.BadStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new Go$String("BadStmt")]));
+		} else if (_type === (go$ptrType(ast.DeclStmt))) {
+			s = _ref.go$val;
+			p.decl(s.Decl);
+		} else if (_type === (go$ptrType(ast.EmptyStmt))) {
+			s = _ref.go$val;
+		} else if (_type === (go$ptrType(ast.LabeledStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+			p.expr(s.Label);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58), new whiteSpace(62)]));
+			if (_tuple = (x = s.Stmt, (x !== null && x.constructor === (go$ptrType(ast.EmptyStmt)) ? [x.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false])), e = _tuple[0], isEmpty = _tuple[1], isEmpty) {
+				if (!nextIsRBrace) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10), new token.Pos(e.Pos()), new token.Token(57)]));
+					break;
 				}
-				p.stmt(s.Stmt, nextIsRBrace);
-			} else if (_type === (go$ptrType(ast.ExprStmt))) {
-				s = _ref.go$val;
-				p.expr0(s.X, 1);
-			} else if (_type === (go$ptrType(ast.SendStmt))) {
-				s = _ref.go$val;
-				p.expr0(s.Chan, 1);
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.Arrow), new token.Token(36), new whiteSpace(32)]));
-				p.expr0(s.Value, 1);
-			} else if (_type === (go$ptrType(ast.IncDecStmt))) {
-				s = _ref.go$val;
-				p.expr0(s.X, 2);
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.TokPos), new token.Token(s.Tok)]));
-			} else if (_type === (go$ptrType(ast.AssignStmt))) {
-				s = _ref.go$val;
-				depth = 1;
-				if (s.Lhs.length > 1 && s.Rhs.length > 1) {
-					depth = depth + 1 >> 0;
-				}
-				p.exprList(s.Pos(), s.Lhs, depth, 0, s.TokPos);
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32)]));
-				p.exprList(s.TokPos, s.Rhs, depth, 0, 0);
-			} else if (_type === (go$ptrType(ast.GoStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(72), new whiteSpace(32)]));
-				p.expr(s.Call);
-			} else if (_type === (go$ptrType(ast.DeferStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(67), new whiteSpace(32)]));
-				p.expr(s.Call);
-			} else if (_type === (go$ptrType(ast.ReturnStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(80)]));
-				if (!(s.Results === (go$sliceType(ast.Expr)).nil)) {
-					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-					if (p.indentList(s.Results)) {
-						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62)]));
-						p.exprList(s.Pos(), s.Results, 1, 2, 0);
-						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
-					} else {
-						p.exprList(s.Pos(), s.Results, 1, 0, 0);
-					}
-				}
-			} else if (_type === (go$ptrType(ast.BranchStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(s.Tok)]));
-				if (!(s.Label === (go$ptrType(ast.Ident)).nil)) {
-					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-					p.expr(s.Label);
-				}
-			} else if (_type === (go$ptrType(ast.BlockStmt))) {
-				s = _ref.go$val;
-				p.block(s, 1);
-			} else if (_type === (go$ptrType(ast.IfStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(74)]));
-				p.controlClause(false, s.Init, s.Cond, null);
-				p.block(s.Body, 1);
-				if (!(go$interfaceIsEqual(s.Else, null))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Token(68), new whiteSpace(32)]));
-					_ref$1 = s.Else;
-					_type$1 = _ref$1 !== null ? _ref$1.constructor : null;
-					if (_type$1 === (go$ptrType(ast.BlockStmt)) || _type$1 === (go$ptrType(ast.IfStmt))) {
-						p.stmt(s.Else, nextIsRBrace);
-					} else {
-						p.print(new (go$sliceType(go$emptyInterface))([new token.Token(51), new whiteSpace(62), new whiteSpace(12)]));
-						p.stmt(s.Else, true);
-						p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12), new token.Token(56)]));
-					}
-				}
-			} else if (_type === (go$ptrType(ast.CaseClause))) {
-				s = _ref.go$val;
-				if (!(s.List === (go$sliceType(ast.Expr)).nil)) {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
-					p.exprList(s.Pos(), s.List, 1, 0, s.Colon);
-				} else {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
-				}
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
-				p.stmtList(s.Body, 1, nextIsRBrace);
-			} else if (_type === (go$ptrType(ast.SwitchStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
-				p.controlClause(false, s.Init, s.Tag, null);
-				p.block(s.Body, 0);
-			} else if (_type === (go$ptrType(ast.TypeSwitchStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
-				if (!(go$interfaceIsEqual(s.Init, null))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-					p.stmt(s.Init, false);
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(57)]));
-				}
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-				p.stmt(s.Assign, false);
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-				p.block(s.Body, 0);
-			} else if (_type === (go$ptrType(ast.CommClause))) {
-				s = _ref.go$val;
-				if (!(go$interfaceIsEqual(s.Comm, null))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
-					p.stmt(s.Comm, false);
-				} else {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
-				}
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
-				p.stmtList(s.Body, 1, nextIsRBrace);
-			} else if (_type === (go$ptrType(ast.SelectStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(81), new whiteSpace(32)]));
-				body = s.Body;
-				if ((body.List.length === 0) && !p.commentBefore((_struct = p.posFor(body.Rbrace), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(body.Lbrace), new token.Token(51), new token.Pos(body.Rbrace), new token.Token(56)]));
-				} else {
-					p.block(body, 0);
-				}
-			} else if (_type === (go$ptrType(ast.ForStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70)]));
-				p.controlClause(true, s.Init, s.Cond, s.Post);
-				p.block(s.Body, 1);
-			} else if (_type === (go$ptrType(ast.RangeStmt))) {
-				s = _ref.go$val;
-				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70), new whiteSpace(32)]));
-				p.expr(s.Key);
-				if (!(go$interfaceIsEqual(s.Value, null))) {
-					p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Value.Pos()), new token.Token(52), new whiteSpace(32)]));
-					p.expr(s.Value);
-				}
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32), new token.Token(79), new whiteSpace(32)]));
-				p.expr(stripParens(s.X));
-				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
-				p.block(s.Body, 1);
 			} else {
-				s = _ref;
-				throw go$panic(new Go$String("unreachable"));
+				p.linebreak(p.lineFor(s.Stmt.Pos()), 1, 0, true);
 			}
-		}
+			p.stmt(s.Stmt, nextIsRBrace);
+		} else if (_type === (go$ptrType(ast.ExprStmt))) {
+			s = _ref.go$val;
+			p.expr0(s.X, 1);
+		} else if (_type === (go$ptrType(ast.SendStmt))) {
+			s = _ref.go$val;
+			p.expr0(s.Chan, 1);
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.Arrow), new token.Token(36), new whiteSpace(32)]));
+			p.expr0(s.Value, 1);
+		} else if (_type === (go$ptrType(ast.IncDecStmt))) {
+			s = _ref.go$val;
+			p.expr0(s.X, 2);
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.TokPos), new token.Token(s.Tok)]));
+		} else if (_type === (go$ptrType(ast.AssignStmt))) {
+			s = _ref.go$val;
+			depth = 1;
+			if (s.Lhs.length > 1 && s.Rhs.length > 1) {
+				depth = depth + 1 >> 0;
+			}
+			p.exprList(s.Pos(), s.Lhs, depth, 0, s.TokPos);
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32)]));
+			p.exprList(s.TokPos, s.Rhs, depth, 0, 0);
+		} else if (_type === (go$ptrType(ast.GoStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(72), new whiteSpace(32)]));
+			p.expr(s.Call);
+		} else if (_type === (go$ptrType(ast.DeferStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(67), new whiteSpace(32)]));
+			p.expr(s.Call);
+		} else if (_type === (go$ptrType(ast.ReturnStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(80)]));
+			if (!(s.Results === (go$sliceType(ast.Expr)).nil)) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				if (p.indentList(s.Results)) {
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62)]));
+					p.exprList(s.Pos(), s.Results, 1, 2, 0);
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
+				} else {
+					p.exprList(s.Pos(), s.Results, 1, 0, 0);
+				}
+			}
+		} else if (_type === (go$ptrType(ast.BranchStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(s.Tok)]));
+			if (!(s.Label === (go$ptrType(ast.Ident)).nil)) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				p.expr(s.Label);
+			}
+		} else if (_type === (go$ptrType(ast.BlockStmt))) {
+			s = _ref.go$val;
+			p.block(s, 1);
+		} else if (_type === (go$ptrType(ast.IfStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(74)]));
+			p.controlClause(false, s.Init, s.Cond, null);
+			p.block(s.Body, 1);
+			if (!(go$interfaceIsEqual(s.Else, null))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Token(68), new whiteSpace(32)]));
+				_ref$1 = s.Else;
+				_type$1 = _ref$1 !== null ? _ref$1.constructor : null;
+				if (_type$1 === (go$ptrType(ast.BlockStmt)) || _type$1 === (go$ptrType(ast.IfStmt))) {
+					p.stmt(s.Else, nextIsRBrace);
+				} else {
+					p.print(new (go$sliceType(go$emptyInterface))([new token.Token(51), new whiteSpace(62), new whiteSpace(12)]));
+					p.stmt(s.Else, true);
+					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12), new token.Token(56)]));
+				}
+			}
+		} else if (_type === (go$ptrType(ast.CaseClause))) {
+			s = _ref.go$val;
+			if (!(s.List === (go$sliceType(ast.Expr)).nil)) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
+				p.exprList(s.Pos(), s.List, 1, 0, s.Colon);
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
+			p.stmtList(s.Body, 1, nextIsRBrace);
+		} else if (_type === (go$ptrType(ast.SwitchStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
+			p.controlClause(false, s.Init, s.Tag, null);
+			p.block(s.Body, 0);
+		} else if (_type === (go$ptrType(ast.TypeSwitchStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(83)]));
+			if (!(go$interfaceIsEqual(s.Init, null))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+				p.stmt(s.Init, false);
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(57)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			p.stmt(s.Assign, false);
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			p.block(s.Body, 0);
+		} else if (_type === (go$ptrType(ast.CommClause))) {
+			s = _ref.go$val;
+			if (!(go$interfaceIsEqual(s.Comm, null))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(62), new whiteSpace(32)]));
+				p.stmt(s.Comm, false);
+			} else {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(66)]));
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58)]));
+			p.stmtList(s.Body, 1, nextIsRBrace);
+		} else if (_type === (go$ptrType(ast.SelectStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(81), new whiteSpace(32)]));
+			body = s.Body;
+			if ((body.List.length === 0) && !p.commentBefore((_struct = p.posFor(body.Rbrace), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(body.Lbrace), new token.Token(51), new token.Pos(body.Rbrace), new token.Token(56)]));
+			} else {
+				p.block(body, 0);
+			}
+		} else if (_type === (go$ptrType(ast.ForStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70)]));
+			p.controlClause(true, s.Init, s.Cond, s.Post);
+			p.block(s.Body, 1);
+		} else if (_type === (go$ptrType(ast.RangeStmt))) {
+			s = _ref.go$val;
+			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(70), new whiteSpace(32)]));
+			p.expr(s.Key);
+			if (!(go$interfaceIsEqual(s.Value, null))) {
+				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Value.Pos()), new token.Token(52), new whiteSpace(32)]));
+				p.expr(s.Value);
+			}
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32), new token.Pos(s.TokPos), new token.Token(s.Tok), new whiteSpace(32), new token.Token(79), new whiteSpace(32)]));
+			p.expr(stripParens(s.X));
+			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
+			p.block(s.Body, 1);
+		} else {
+			s = _ref;
+			throw go$panic(new Go$String("unreachable"));
+		} }
 		return;
 	};
 	printer.prototype.stmt = function(stmt, nextIsRBrace) { return this.go$val.stmt(stmt, nextIsRBrace); };
