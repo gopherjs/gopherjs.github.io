@@ -1,4 +1,4 @@
-0ƒSî
+0ƒR’
 image/jpeg‚'ípackage jpeg
 import io "io"
 import bufio "bufio"
@@ -249,13 +249,8 @@ image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0
 	encoder.init([["w", "image/jpeg", writer, ""], ["err", "image/jpeg", go$error, ""], ["buf", "image/jpeg", (go$arrayType(Go$Uint8, 16)), ""], ["bits", "image/jpeg", Go$Uint32, ""], ["nBits", "image/jpeg", Go$Uint32, ""], ["quant", "image/jpeg", (go$arrayType((go$arrayType(Go$Uint8, 64)), 2)), ""]]);
 	(go$ptrType(encoder)).methods = [["emit", "image/jpeg", [Go$Uint32, Go$Uint32], [], false], ["emitHuff", "image/jpeg", [huffIndex, Go$Int32], [], false], ["emitHuffRLE", "image/jpeg", [huffIndex, Go$Int32, Go$Int32], [], false], ["flush", "image/jpeg", [], [], false], ["write", "image/jpeg", [(go$sliceType(Go$Uint8))], [], false], ["writeBlock", "image/jpeg", [(go$ptrType(block)), quantIndex, Go$Int32], [Go$Int32], false], ["writeByte", "image/jpeg", [Go$Uint8], [], false], ["writeDHT", "image/jpeg", [], [], false], ["writeDQT", "image/jpeg", [], [], false], ["writeMarkerHeader", "image/jpeg", [Go$Uint8, Go$Int], [], false], ["writeSOF0", "image/jpeg", [image.Point], [], false], ["writeSOS", "image/jpeg", [image.Image], [], false]];
 	Options.init([["Quality", "", Go$Int, ""]]);
-‚		var unzig = go$makeNativeArray("Int", 64, function() { return 0; });
-	var bitCount = go$makeNativeArray("Uint8", 256, function() { return 0; });
-	var unscaledQuant = go$makeNativeArray("Array", 2, function() { return go$makeNativeArray("Uint8", 64, function() { return 0; }); });
-	var theHuffmanSpec = go$makeNativeArray("Struct", 4, function() { return new huffmanSpec.Ptr(); });
-	var theHuffmanLUT = go$makeNativeArray("Slice", 4, function() { return huffmanLUT.nil; });
-	var sosHeader = (go$sliceType(Go$Uint8)).nil;
-0ƒv0‚–fdct‚Œ	var fdct = function(b) {
+0V0unzig0
+bitCount0unscaledQuant0theHuffmanSpec0theHuffmanLUT0	sosHeader0ƒÏ0‚–fdct‚Œ	var fdct = function(b) {
 		var y, x, x0, x$1, x1, x$2, x2, x$3, x3, x$4, x4, x$5, x5, x$6, x6, x$7, x7, tmp0, tmp1, tmp2, tmp3, tmp10, tmp12, tmp11, tmp13, x$8, x$9, x$10, z1, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$20, x$21, x$22, tmp0$1, tmp1$1, tmp2$1, tmp3$1, tmp10$1, tmp12$1, tmp11$1, tmp13$1, x$23, z1$1, x$24, x$25, x$26, x$27, x$28;
 		y = 0;
 		while (y < 8) {
@@ -1605,7 +1600,8 @@ writeBlock‚u	encoder.Ptr.prototype.writeBlock = function(b, q, prevDC) {
 		e.flush();
 		return e.err;
 	};
-0‚¹init‚¯	go$pkg.init = function() {
+0‚init‚	go$pkg.init = function() {
+		theHuffmanLUT = go$makeNativeArray("Slice", 4, function() { return huffmanLUT.nil; });
 		var _ref, _i, _struct, s, i, v, _struct$1;
 		unzig = go$toNativeArray("Int", [0, 1, 8, 16, 9, 2, 3, 10, 17, 24, 32, 25, 18, 11, 4, 5, 12, 19, 26, 33, 40, 48, 41, 34, 27, 20, 13, 6, 7, 14, 21, 28, 35, 42, 49, 56, 57, 50, 43, 36, 29, 22, 15, 23, 30, 37, 44, 51, 58, 59, 52, 45, 38, 31, 39, 46, 53, 60, 61, 54, 47, 55, 62, 63]);
 		bitCount = go$toNativeArray("Uint8", [0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]);

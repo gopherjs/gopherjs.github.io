@@ -1,4 +1,4 @@
-0‚NÚcompress/zlib‚"ppackage zlib
+0‚N’compress/zlib‚"ppackage zlib
 import bufio "bufio"
 import flate "compress/flate"
 import errors "errors"
@@ -108,10 +108,7 @@ $$
 	(go$ptrType(reader)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	Writer.init([["w", "compress/zlib", io.Writer, ""], ["level", "compress/zlib", Go$Int, ""], ["dict", "compress/zlib", (go$sliceType(Go$Uint8)), ""], ["compressor", "compress/zlib", (go$ptrType(flate.Writer)), ""], ["digest", "compress/zlib", hash.Hash32, ""], ["err", "compress/zlib", go$error, ""], ["scratch", "compress/zlib", (go$arrayType(Go$Uint8, 4)), ""], ["wroteHeader", "compress/zlib", Go$Bool, ""]]);
 	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["writeHeader", "compress/zlib", [], [go$error], false]];
-T	go$pkg.ErrChecksum = null;
-	go$pkg.ErrDictionary = null;
-	go$pkg.ErrHeader = null;
-0‚!v0|	NewReadero	var NewReader = go$pkg.NewReader = function(r) {
+00 0 0 0‚!v0|	NewReadero	var NewReader = go$pkg.NewReader = function(r) {
 		return NewReaderDict(r, (go$sliceType(Go$Uint8)).nil);
 	};
 0‚ÏNewReaderDict‚¼	var NewReaderDict = go$pkg.NewReaderDict = function(r, dict) {

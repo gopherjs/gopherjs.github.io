@@ -1,4 +1,4 @@
-0‚N6compress/lzw‚	package lzw
+0‚N"compress/lzw‚	package lzw
 import bufio "bufio"
 import errors "errors"
 import fmt "fmt"
@@ -90,9 +90,7 @@ $$
 	(go$ptrType(errWriteCloser)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	encoder.init([["w", "compress/lzw", writer, ""], ["order", "compress/lzw", Order, ""], ["write", "compress/lzw", (go$funcType([(go$ptrType(encoder)), Go$Uint32], [go$error], false)), ""], ["bits", "compress/lzw", Go$Uint32, ""], ["nBits", "compress/lzw", Go$Uint, ""], ["width", "compress/lzw", Go$Uint, ""], ["litWidth", "compress/lzw", Go$Uint, ""], ["hi", "compress/lzw", Go$Uint32, ""], ["overflow", "compress/lzw", Go$Uint32, ""], ["savedCode", "compress/lzw", Go$Uint32, ""], ["err", "compress/lzw", go$error, ""], ["table", "compress/lzw", (go$arrayType(Go$Uint32, 16384)), ""]]);
 	(go$ptrType(encoder)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["incHi", "compress/lzw", [], [go$error], false], ["writeLSB", "compress/lzw", [Go$Uint32], [go$error], false], ["writeMSB", "compress/lzw", [Go$Uint32], [go$error], false]];
-2	var errClosed = null;
-	var errOutOfCodes = null;
-0‚/š0‚ËreadLSB‚¾	decoder.Ptr.prototype.readLSB = function() {
+00	errClosed0errOutOfCodes0‚/š0‚ËreadLSB‚¾	decoder.Ptr.prototype.readLSB = function() {
 		var d, _tuple, x, err, y, y$1, code, y$2;
 		d = this;
 		while (d.nBits < d.width) {

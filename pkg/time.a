@@ -1,4 +1,4 @@
-0É∏timeÇ$ópackage time
+0ÉLtimeÇ$ópackage time
 import errors "errors"
 import syscall "syscall"
 import sync "sync"
@@ -284,29 +284,11 @@ $$
 	zoneTrans.init([["when", "time", Go$Int64, ""], ["index", "time", Go$Uint8, ""], ["isstd", "time", Go$Bool, ""], ["isutc", "time", Go$Bool, ""]]);
 	data.init([["p", "time", (go$sliceType(Go$Uint8)), ""], ["error", "time", Go$Bool, ""]]);
 	(go$ptrType(data)).methods = [["big4", "time", [], [Go$Uint32, Go$Bool], false], ["byte", "time", [], [Go$Uint8, Go$Bool], false], ["read", "time", [Go$Int], [(go$sliceType(Go$Uint8))], false]];
-Ç∞	var std0x = go$makeNativeArray("Int", 6, function() { return 0; });
-	var longDayNames = (go$sliceType(Go$String)).nil;
-	var shortDayNames = (go$sliceType(Go$String)).nil;
-	var shortMonthNames = (go$sliceType(Go$String)).nil;
-	var longMonthNames = (go$sliceType(Go$String)).nil;
-	var atoiError = null;
-	var errBad = null;
-	var errLeadingInt = null;
-	var unitMap = false;
-	var months = go$makeNativeArray("String", 12, function() { return ""; });
-	var days = go$makeNativeArray("String", 7, function() { return ""; });
-	var daysBefore = go$makeNativeArray("Int32", 13, function() { return 0; });
-	go$pkg.UTC = (go$ptrType(Location)).nil;
-	var utcLoc = new Location.Ptr();
-	go$pkg.Local = (go$ptrType(Location)).nil;
-	var localLoc = new Location.Ptr();
-	var localOnce = new sync.Once.Ptr();
-	var zoneinfo = "";
-	var _ = false;
-	var badData = null;
-	var zoneDirs = (go$sliceType(Go$String)).nil;
-	var origZoneDirs = (go$sliceType(Go$String)).nil;
-0Éæ0Å∂startsWithLowerCaseÅû	var startsWithLowerCase = function(str) {
+0Ç 0days0
+localLoc0std0x0shortMonthNames0errLeadingInt0	unitMap0
+daysBefore0 0 0
+zoneDirs0shortDayNames0longMonthNames0	atoiError0months0longDayNames0errBad0utcLoc0	localOnce0
+zoneinfo0	badData0origZoneDirs0Éæa0Å∂startsWithLowerCaseÅû	var startsWithLowerCase = function(str) {
 		var c;
 		if (str.length === 0) {
 			return false;
@@ -2567,7 +2549,9 @@ byteStringÇr	var byteString = function(p) {
 		}
 		return [(go$ptrType(Location)).nil, errors.New("unknown time zone " + name)];
 	};
-0ÇÅinitÇw	go$pkg.init = function() {
+0Ç≈initÇª	go$pkg.init = function() {
+		localLoc = new Location.Ptr();
+		localOnce = new sync.Once.Ptr();
 		var _map, _key, _tuple;
 		std0x = go$toNativeArray("Int", [260, 265, 524, 526, 528, 274]);
 		longDayNames = new (go$sliceType(Go$String))(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);

@@ -1,4 +1,4 @@
-0‚Š compress/gzip‚>&package gzip
+0‚‰òcompress/gzip‚>&package gzip
 import bufio "bufio"
 import flate "compress/flate"
 import errors "errors"
@@ -233,9 +233,7 @@ hash/crc32crc320ioio0timetime0
 	(go$ptrType(Reader)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["read2", "compress/gzip", [], [Go$Uint32, go$error], false], ["readHeader", "compress/gzip", [Go$Bool], [go$error], false], ["readString", "compress/gzip", [], [Go$String, go$error], false]];
 	Writer.init([["", "", Header, ""], ["w", "compress/gzip", io.Writer, ""], ["level", "compress/gzip", Go$Int, ""], ["wroteHeader", "compress/gzip", Go$Bool, ""], ["compressor", "compress/gzip", (go$ptrType(flate.Writer)), ""], ["digest", "compress/gzip", hash.Hash32, ""], ["size", "compress/gzip", Go$Uint32, ""], ["closed", "compress/gzip", Go$Bool, ""], ["buf", "compress/gzip", (go$arrayType(Go$Uint8, 10)), ""], ["err", "compress/gzip", go$error, ""]]);
 	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["init", "compress/gzip", [io.Writer, Go$Int], [], false], ["writeBytes", "compress/gzip", [(go$sliceType(Go$Uint8))], [go$error], false], ["writeString", "compress/gzip", [Go$String], [go$error], false]];
-6	go$pkg.ErrChecksum = null;
-	go$pkg.ErrHeader = null;
-0‚;Š0‚
+00 0 0‚;Š0‚
 makeReader‚	var makeReader = function(r) {
 		var ok, _tuple, rr;
 		if (_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {

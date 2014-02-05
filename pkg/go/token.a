@@ -1,4 +1,4 @@
-0Çvågo/tokenÇpackage token
+0ÇvTgo/tokenÇpackage token
 import fmt "fmt"
 import sort "sort"
 import sync "sync"
@@ -222,9 +222,8 @@ $$
 	serializedFileSet.init([["Base", "", Go$Int, ""], ["Files", "", (go$sliceType(serializedFile)), ""]]);
 	Token.methods = [["IsKeyword", "", [], [Go$Bool], false], ["IsLiteral", "", [], [Go$Bool], false], ["IsOperator", "", [], [Go$Bool], false], ["Precedence", "", [], [Go$Int], false], ["String", "", [], [Go$String], false]];
 	(go$ptrType(Token)).methods = [["IsKeyword", "", [], [Go$Bool], false], ["IsLiteral", "", [], [Go$Bool], false], ["IsOperator", "", [], [Go$Bool], false], ["Precedence", "", [], [Go$Int], false], ["String", "", [], [Go$String], false]];
-b	var tokens = go$makeNativeArray("String", 86, function() { return ""; });
-	var keywords = false;
-0ÇEH0ÅªIsValidÅØ	Position.Ptr.prototype.IsValid = function() {
+00tokens0
+keywords0ÇE\0ÅªIsValidÅØ	Position.Ptr.prototype.IsValid = function() {
 		var pos;
 		pos = this;
 		return pos.Line > 0;
@@ -662,7 +661,8 @@ IsOperatorÅ÷	Token.prototype.IsOperator = function() {
 		return 60 < tok && tok < 86;
 	};
 	go$ptrType(Token).prototype.IsKeyword = function() { return new Token(this.go$get()).IsKeyword(); };
-0ÇwinitÇm	go$pkg.init = function() {
+0ÇãinitÇÅ	go$pkg.init = function() {
+		keywords = false;
 		var i, _key;
 		tokens = go$toNativeArray("String", ["ILLEGAL", "EOF", "COMMENT", "", "IDENT", "INT", "FLOAT", "IMAG", "CHAR", "STRING", "", "", "+", "-", "*", "/", "%", "&", "|", "^", "<<", ">>", "&^", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>=", "&^=", "&&", "||", "<-", "++", "--", "==", "<", ">", "=", "!", "!=", "<=", ">=", ":=", "...", "(", "[", "{", ",", ".", ")", "]", "}", ";", ":", "", "", "break", "case", "chan", "const", "continue", "default", "defer", "else", "fallthrough", "for", "func", "go", "goto", "if", "import", "interface", "map", "package", "range", "return", "select", "struct", "switch", "type", "var"]);
 		keywords = new Go$Map();

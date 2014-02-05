@@ -1,4 +1,4 @@
-0ÇÆUcrypto/cipherÇlpackage cipher
+0ÇÆ(crypto/cipherÇlpackage cipher
 import subtle "crypto/subtle"
 import errors "errors"
 import io "io"
@@ -168,9 +168,7 @@ $$
 	(go$ptrType(StreamWriter)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	ofb.init([["b", "crypto/cipher", Block, ""], ["out", "crypto/cipher", (go$sliceType(Go$Uint8)), ""], ["outUsed", "crypto/cipher", Go$Int, ""]]);
 	(go$ptrType(ofb)).methods = [["XORKeyStream", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [], false]];
-M	var errOpen = null;
-	var gcmReductionTable = (go$sliceType(Go$Uint16)).nil;
-0Çz30Å´newCBCÅ†	var newCBC = function(b, iv) {
+0 0	errOpen0gcmReductionTable0Çz30Å´newCBCÅ†	var newCBC = function(b, iv) {
 		return new cbc.Ptr(b, b.BlockSize(), dup(iv), (go$sliceType(Go$Uint8)).make(b.BlockSize(), 0, function() { return 0; }));
 	};
 0ÇfNewCBCEncrypterÇQ	var NewCBCEncrypter = go$pkg.NewCBCEncrypter = function(b, iv) {

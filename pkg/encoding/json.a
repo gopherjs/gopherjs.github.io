@@ -1,4 +1,4 @@
-0ÉV6encoding/jsonÇfpackage json
+0ÉUaencoding/jsonÇfpackage json
 import encoding "encoding"
 import base64 "encoding/base64"
 import errors "errors"
@@ -641,20 +641,10 @@ $$
 	(go$ptrType(RawMessage)).methods = [["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["UnmarshalJSON", "", [(go$sliceType(Go$Uint8))], [go$error], false]];
 	tagOptions.methods = [["Contains", "", [Go$String], [Go$Bool], false]];
 	(go$ptrType(tagOptions)).methods = [["Contains", "", [Go$String], [Go$Bool], false]];
-Ç…	var errPhase = null;
-	var numberType = null;
-	var hex = "";
-	var encodeStatePool = (go$chanType((go$ptrType(encodeState)), false, false)).nil;
-	var byteSliceType = null;
-	var encoderCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, encoderFunc)), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-	var marshalerType = null;
-	var textMarshalerType = null;
-	var float32Encoder = go$throwNilPointerError;
-	var float64Encoder = go$throwNilPointerError;
-	var fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, (go$sliceType(field)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-	var _ = null;
-	var _$1 = null;
-0Éí0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
+0Å≠0
+numberType0byteSliceType0textMarshalerType0float32Encoder0float64Encoder0
+fieldCache0
+errPhase0hex0encodeStatePool0encoderCache0marshalerType0ÉìT0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
 		var d, err;
 		d = new decodeState.Ptr();
 		err = checkValid(data, d.scan);
@@ -1946,13 +1936,13 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 		e.Buffer.WriteByte(125);
 	};
 	mapEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
-0Ç"newMapEncoderÇ	var newMapEncoder = function(t) {
-		var me, e, v, _$2, _recv;
+0ÇnewMapEncoderÇ		var newMapEncoder = function(t) {
+		var me, e, v, _, _recv;
 		if (!((t.Key().Kind() === 24))) {
 			return unsupportedTypeEncoder;
 		}
 		me = new mapEncoder.Ptr(typeEncoder(t.Elem()));
-		return (_recv = me, function(e, v, _$2) { return _recv.encode(e, v, _$2); });
+		return (_recv = me, function(e, v, _) { return _recv.encode(e, v, _); });
 	};
 0ÇencodeByteSliceÇˆ	var encodeByteSlice = function(e, v, param) {
 		var s, dst, enc;
@@ -1983,13 +1973,13 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 		se.arrayEnc(e, (_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 	};
 	sliceEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
-0ÇnewSliceEncoderÇ	var newSliceEncoder = function(t) {
-		var enc, e, v, _$2, _recv;
+0ÇnewSliceEncoderÇ	var newSliceEncoder = function(t) {
+		var enc, e, v, _, _recv;
 		if (t.Elem().Kind() === 8) {
 			return encodeByteSlice;
 		}
 		enc = new sliceEncoder.Ptr(newArrayEncoder(t));
-		return (_recv = enc, function(e, v, _$2) { return _recv.encode(e, v, _$2); });
+		return (_recv = enc, function(e, v, _) { return _recv.encode(e, v, _); });
 	};
 0ÇÌencodeÇ·	arrayEncoder.Ptr.prototype.encode = function(e, v, param) {
 		var ae, n, i, _struct;
@@ -2007,10 +1997,10 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 		e.Buffer.WriteByte(93);
 	};
 	arrayEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
-0Å‡newArrayEncoderÅÃ	var newArrayEncoder = function(t) {
-		var enc, e, v, _$2, _recv;
+0Å⁄newArrayEncoderÅ∆	var newArrayEncoder = function(t) {
+		var enc, e, v, _, _recv;
 		enc = new arrayEncoder.Ptr(typeEncoder(t.Elem()));
-		return (_recv = enc, function(e, v, _$2) { return _recv.encode(e, v, _$2); });
+		return (_recv = enc, function(e, v, _) { return _recv.encode(e, v, _); });
 	};
 0Ç}encodeÇq	ptrEncoder.Ptr.prototype.encode = function(e, v, param) {
 		var pe, _struct;
@@ -2022,10 +2012,10 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 		pe.elemEnc(e, (_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 	};
 	ptrEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
-0Å⁄newPtrEncoderÅ»	var newPtrEncoder = function(t) {
-		var enc, e, v, _$2, _recv;
+0Å‘newPtrEncoderÅ¬	var newPtrEncoder = function(t) {
+		var enc, e, v, _, _recv;
 		enc = new ptrEncoder.Ptr(typeEncoder(t.Elem()));
-		return (_recv = enc, function(e, v, _$2) { return _recv.encode(e, v, _$2); });
+		return (_recv = enc, function(e, v, _) { return _recv.encode(e, v, _); });
 	};
 0Ç‰encodeÇÿ	condAddrEncoder.Ptr.prototype.encode = function(e, v, quoted) {
 		var ce, _struct, _struct$1;
@@ -3186,9 +3176,11 @@ NewEncoderr	var NewEncoder = go$pkg.NewEncoder = function(w) {
 		return false;
 	};
 	go$ptrType(tagOptions).prototype.Contains = function(optionName) { return new tagOptions(this.go$get()).Contains(optionName); };
-0ÇlinitÇb
+0ÇÃinitÇ¬
 		  var encodeStates = [];
 			go$pkg.init = function() {
+		fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, (go$sliceType(field)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+		encoderCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, encoderFunc)), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
 		var e, v, quoted, _recv, e$1, v$1, quoted$1, _recv$1;
 		errPhase = errors.New("JSON decoder out of sync - data changing underfoot?");
 		numberType = reflect.TypeOf(new Number(""));

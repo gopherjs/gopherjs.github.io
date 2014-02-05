@@ -1,4 +1,4 @@
-0ƒwŠtext/template‚¦package template
+0ƒu¯text/template‚¦package template
 import bytes "bytes"
 import fmt "fmt"
 import io "io"
@@ -604,27 +604,11 @@ $$
 	Template.init([["name", "text/template", Go$String, ""], ["", "", (go$ptrType(parse.Tree)), ""], ["", "text/template", (go$ptrType(common)), ""], ["leftDelim", "text/template", Go$String, ""], ["rightDelim", "text/template", Go$String, ""]]);
 	Template.methods = [["Copy", "", [], [(go$ptrType(parse.Tree))], false], ["ErrorContext", "", [parse.Node], [Go$String, Go$String], false], ["action", "text/template/parse", [], [parse.Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [parse.item], [], false], ["backup3", "text/template/parse", [parse.item, parse.item], [], false], ["command", "text/template/parse", [], [(go$ptrType(parse.CommandNode))], false], ["elseControl", "text/template/parse", [], [parse.Node], false], ["endControl", "text/template/parse", [], [parse.Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [parse.itemType, Go$String], [parse.item], false], ["expectOneOf", "text/template/parse", [parse.itemType, parse.itemType, Go$String], [parse.item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [parse.Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(parse.ListNode)), parse.Node], false], ["next", "text/template/parse", [], [parse.item], false], ["nextNonSpace", "text/template/parse", [], [parse.item], false], ["operand", "text/template/parse", [], [parse.Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [parse.Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [parse.Pos, Go$Int, (go$ptrType(parse.PipeNode)), (go$ptrType(parse.ListNode)), (go$ptrType(parse.ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["peek", "text/template/parse", [], [parse.item], false], ["peekNonSpace", "text/template/parse", [], [parse.item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(parse.PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [parse.Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(parse.lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [parse.Node], false], ["term", "text/template/parse", [], [parse.Node], false], ["textOrAction", "text/template/parse", [], [parse.Node], false], ["unexpected", "text/template/parse", [parse.item, Go$String], [], false], ["useVar", "text/template/parse", [parse.Pos, Go$String], [parse.Node], false], ["withControl", "text/template/parse", [], [parse.Node], false]];
 	(go$ptrType(Template)).methods = [["AddParseTree", "", [Go$String, (go$ptrType(parse.Tree))], [(go$ptrType(Template)), go$error], false], ["Clone", "", [], [(go$ptrType(Template)), go$error], false], ["Copy", "", [], [(go$ptrType(parse.Tree))], false], ["Delims", "", [Go$String, Go$String], [(go$ptrType(Template))], false], ["ErrorContext", "", [parse.Node], [Go$String, Go$String], false], ["Execute", "", [io.Writer, go$emptyInterface], [go$error], false], ["ExecuteTemplate", "", [io.Writer, Go$String, go$emptyInterface], [go$error], false], ["Funcs", "", [FuncMap], [(go$ptrType(Template))], false], ["Lookup", "", [Go$String], [(go$ptrType(Template))], false], ["Name", "", [], [Go$String], false], ["New", "", [Go$String], [(go$ptrType(Template))], false], ["Parse", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["ParseFiles", "", [(go$sliceType(Go$String))], [(go$ptrType(Template)), go$error], true], ["ParseGlob", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["Templates", "", [], [(go$sliceType((go$ptrType(Template))))], false], ["associate", "text/template", [(go$ptrType(Template)), (go$ptrType(parse.Tree))], [Go$Bool, go$error], false], ["copy", "text/template", [(go$ptrType(common))], [(go$ptrType(Template))], false], ["init", "text/template", [], [], false], ["action", "text/template/parse", [], [parse.Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [parse.item], [], false], ["backup3", "text/template/parse", [parse.item, parse.item], [], false], ["command", "text/template/parse", [], [(go$ptrType(parse.CommandNode))], false], ["elseControl", "text/template/parse", [], [parse.Node], false], ["endControl", "text/template/parse", [], [parse.Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [parse.itemType, Go$String], [parse.item], false], ["expectOneOf", "text/template/parse", [parse.itemType, parse.itemType, Go$String], [parse.item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [parse.Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(parse.ListNode)), parse.Node], false], ["next", "text/template/parse", [], [parse.item], false], ["nextNonSpace", "text/template/parse", [], [parse.item], false], ["operand", "text/template/parse", [], [parse.Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [parse.Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [parse.Pos, Go$Int, (go$ptrType(parse.PipeNode)), (go$ptrType(parse.ListNode)), (go$ptrType(parse.ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["peek", "text/template/parse", [], [parse.item], false], ["peekNonSpace", "text/template/parse", [], [parse.item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(parse.PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [parse.Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(parse.lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [parse.Node], false], ["term", "text/template/parse", [], [parse.Node], false], ["textOrAction", "text/template/parse", [], [parse.Node], false], ["unexpected", "text/template/parse", [parse.item, Go$String], [], false], ["useVar", "text/template/parse", [parse.Pos, Go$String], [parse.Node], false], ["withControl", "text/template/parse", [], [parse.Node], false]];
-‚ý	var zero = new reflect.Value.Ptr();
-	var errorType = null;
-	var fmtStringerType = null;
-	var builtins = false;
-	var builtinFuncs = false;
-	var errBadComparisonType = null;
-	var errBadComparison = null;
-	var errNoComparison = null;
-	var htmlQuot = (go$sliceType(Go$Uint8)).nil;
-	var htmlApos = (go$sliceType(Go$Uint8)).nil;
-	var htmlAmp = (go$sliceType(Go$Uint8)).nil;
-	var htmlLt = (go$sliceType(Go$Uint8)).nil;
-	var htmlGt = (go$sliceType(Go$Uint8)).nil;
-	var jsLowUni = (go$sliceType(Go$Uint8)).nil;
-	var hex = (go$sliceType(Go$Uint8)).nil;
-	var jsBackslash = (go$sliceType(Go$Uint8)).nil;
-	var jsApos = (go$sliceType(Go$Uint8)).nil;
-	var jsQuot = (go$sliceType(Go$Uint8)).nil;
-	var jsLt = (go$sliceType(Go$Uint8)).nil;
-	var jsGt = (go$sliceType(Go$Uint8)).nil;
-0ƒph0‚Apush‚7	state.Ptr.prototype.push = function(name, value) {
+0‚ 0zero0errBadComparison0
+htmlQuot0	htmlAmp0htmlLt0
+jsLowUni0jsApos0jsGt0
+builtins0errNoComparison0
+htmlApos0jsQuot0jsLt0fmtStringerType0	errorType0builtinFuncs0errBadComparisonType0htmlGt0hex0jsBackslash0ƒpŠ0‚Apush‚7	state.Ptr.prototype.push = function(name, value) {
 		var s, _struct;
 		s = this;
 		s.vars = go$append(s.vars, new variable.Ptr(name, (_struct = value, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))));
@@ -2225,7 +2209,8 @@ parseFiles‚l	var parseFiles = function(t, filenames) {
 		return [true, null];
 	};
 	Template.prototype.associate = function(new$1, tree) { return this.go$val.associate(new$1, tree); };
-0‚Ðinit‚Æ	go$pkg.init = function() {
+0‚òinit‚è	go$pkg.init = function() {
+		zero = new reflect.Value.Ptr();
 		var _map, _key;
 		errorType = reflect.TypeOf((go$ptrType(go$error)).nil).Elem();
 		fmtStringerType = reflect.TypeOf((go$ptrType(fmt.Stringer)).nil).Elem();

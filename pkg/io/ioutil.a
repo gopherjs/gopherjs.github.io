@@ -1,4 +1,4 @@
-0ÇX	io/ioutilÇ.ipackage ioutil
+0ÇW∆	io/ioutilÇ.ipackage ioutil
 import bytes "bytes"
 import io "io"
 import os "os"
@@ -199,12 +199,7 @@ $$
 	(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
 	(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-Å©	var blackHoleBuf = (go$chanType((go$sliceType(Go$Uint8)), false, false)).nil;
-	var _ = null;
-	go$pkg.Discard = null;
-	var rand = 0;
-	var randmu = new sync.Mutex.Ptr();
-0Ç!,0Åè	blackHoleÅÅ	var blackHole = function() {
+0&0blackHoleBuf0 0rand0randmu0Ç!Y0Åè	blackHoleÅÅ	var blackHole = function() {
 			return blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });
 		};
 0NblackHolePut>	var blackHolePut = function(p) {
@@ -422,9 +417,11 @@ nextSuffixÇí	var nextSuffix = function() {
 		}
 		return [name, err];
 	};
-0ÅµinitÅ¨
+0Å‚initÅŸ
 			var blackHoles = [];
 			go$pkg.init = function() {
+		rand = 0;
+		randmu = new sync.Mutex.Ptr();
 		blackHoleBuf = new (go$chanType((go$sliceType(Go$Uint8)), false, false))();
 		go$pkg.Discard = new devNull(0);
 	};

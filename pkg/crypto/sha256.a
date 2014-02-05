@@ -1,4 +1,4 @@
-0‚0úcrypto/sha256‚–package sha256
+0‚0×crypto/sha256‚–package sha256
 import crypto "crypto"
 import hash "hash"
 const @"".BlockSize = 0x40
@@ -30,8 +30,7 @@ $$
 	go$pkg.digest = digest;
 	digest.init([["h", "crypto/sha256", (go$arrayType(Go$Uint32, 8)), ""], ["x", "crypto/sha256", (go$arrayType(Go$Uint8, 64)), ""], ["nx", "crypto/sha256", Go$Int, ""], ["len", "crypto/sha256", Go$Uint64, ""], ["is224", "crypto/sha256", Go$Bool, ""]]);
 	(go$ptrType(digest)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["checkSum", "crypto/sha256", [], [(go$arrayType(Go$Uint8, 32))], false]];
-)	var _K = (go$sliceType(Go$Uint32)).nil;
-0‚((0‚^Reset‚S	digest.Ptr.prototype.Reset = function() {
+00_K0‚((0‚^Reset‚S	digest.Ptr.prototype.Reset = function() {
 		var d;
 		d = this;
 		if (!d.is224) {

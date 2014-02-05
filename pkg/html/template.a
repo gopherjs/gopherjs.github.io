@@ -1,4 +1,4 @@
-0ƒ©Uhtml/template‚›~package template
+0ƒ¤£html/template‚›~package template
 import strings "strings"
 import fmt "fmt"
 import reflect "reflect"
@@ -559,39 +559,10 @@ $$
 	(go$ptrType(Template)).methods = [["AddParseTree", "", [Go$String, (go$ptrType(parse.Tree))], [(go$ptrType(Template)), go$error], false], ["Clone", "", [], [(go$ptrType(Template)), go$error], false], ["Delims", "", [Go$String, Go$String], [(go$ptrType(Template))], false], ["Execute", "", [io.Writer, go$emptyInterface], [go$error], false], ["ExecuteTemplate", "", [io.Writer, Go$String, go$emptyInterface], [go$error], false], ["Funcs", "", [FuncMap], [(go$ptrType(Template))], false], ["Lookup", "", [Go$String], [(go$ptrType(Template))], false], ["Name", "", [], [Go$String], false], ["New", "", [Go$String], [(go$ptrType(Template))], false], ["Parse", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["ParseFiles", "", [(go$sliceType(Go$String))], [(go$ptrType(Template)), go$error], true], ["ParseGlob", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["Templates", "", [], [(go$sliceType((go$ptrType(Template))))], false], ["escape", "html/template", [], [go$error], false], ["lookupAndEscapeTemplate", "html/template", [Go$String], [(go$ptrType(Template)), go$error], false], ["new", "html/template", [Go$String], [(go$ptrType(Template))], false]];
 	nameSpace.init([["mu", "html/template", sync.Mutex, ""], ["set", "html/template", (go$mapType(Go$String, (go$ptrType(Template)))), ""]]);
 	FuncMap.init(Go$String, go$emptyInterface);
-‚&	var attrTypeMap = false;
-	var errorType = null;
-	var fmtStringerType = null;
-	var stateNames = go$makeNativeArray("String", 24, function() { return ""; });
-	var delimNames = go$makeNativeArray("String", 4, function() { return ""; });
-	var urlPartNames = go$makeNativeArray("String", 4, function() { return ""; });
-	var elementNames = go$makeNativeArray("String", 5, function() { return ""; });
-	var attrNames = go$makeNativeArray("String", 4, function() { return ""; });
-	var expressionBytes = (go$sliceType(Go$Uint8)).nil;
-	var mozBindingBytes = (go$sliceType(Go$Uint8)).nil;
-	var funcMap = false;
-	var equivEscapers = false;
-	var redundantFuncs = false;
-	var delimEnds = go$makeNativeArray("String", 4, function() { return ""; });
-	var doctypeBytes = (go$sliceType(Go$Uint8)).nil;
-	var htmlReplacementTable = (go$sliceType(Go$String)).nil;
-	var htmlNormReplacementTable = (go$sliceType(Go$String)).nil;
-	var htmlNospaceReplacementTable = (go$sliceType(Go$String)).nil;
-	var htmlNospaceNormReplacementTable = (go$sliceType(Go$String)).nil;
-	var regexpPrecederKeywords = false;
-	var jsonMarshalType = null;
-	var jsStrReplacementTable = (go$sliceType(Go$String)).nil;
-	var jsStrNormReplacementTable = (go$sliceType(Go$String)).nil;
-	var jsRegexpReplacementTable = (go$sliceType(Go$String)).nil;
-	var transitionFunc = go$makeNativeArray("Func", 24, function() { return go$throwNilPointerError; });
-	var commentStart = (go$sliceType(Go$Uint8)).nil;
-	var commentEnd = (go$sliceType(Go$Uint8)).nil;
-	var elementContentType = go$makeNativeArray("Uint8", 5, function() { return 0; });
-	var attrStartStates = go$makeNativeArray("Uint8", 4, function() { return 0; });
-	var specialTagEndMarkers = go$makeNativeArray("String", 5, function() { return ""; });
-	var blockCommentEnd = (go$sliceType(Go$Uint8)).nil;
-	var elementNameMap = false;
-0ƒÝý0‚ÎattrType‚À	var attrType = function(name) {
+0‚t0attrTypeMap0
+stateNames0expressionBytes0mozBindingBytes0equivEscapers0htmlNospaceReplacementTable0specialTagEndMarkers0blockCommentEnd0	funcMap0doctypeBytes0htmlNormReplacementTable0
+commentEnd0redundantFuncs0!htmlNospaceNormReplacementTable0jsonMarshalType0jsRegexpReplacementTable0elementContentType0	errorType0	attrNames0	delimEnds0urlPartNames0regexpPrecederKeywords0jsStrNormReplacementTable0elementNameMap0
+delimNames0htmlReplacementTable0transitionFunc0attrStartStates0fmtStringerType0elementNames0jsStrReplacementTable0commentStart0ƒÝý0‚ÎattrType‚À	var attrType = function(name) {
 		var colon, ok, _tuple, _entry, t;
 		name = strings.ToLower(name);
 		if (strings.HasPrefix(name, "data-")) {

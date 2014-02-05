@@ -1,4 +1,4 @@
-0‚V“encoding/csv‚êpackage csv
+0‚V.encoding/csv‚êpackage csv
 import bufio "bufio"
 import bytes "bytes"
 import errors "errors"
@@ -124,11 +124,7 @@ $$
 	(go$ptrType(Reader)).methods = [["Read", "", [], [(go$sliceType(Go$String)), go$error], false], ["ReadAll", "", [], [(go$sliceType((go$sliceType(Go$String)))), go$error], false], ["error", "encoding/csv", [go$error], [go$error], false], ["parseField", "encoding/csv", [], [Go$Bool, Go$Int32, go$error], false], ["parseRecord", "encoding/csv", [], [(go$sliceType(Go$String)), go$error], false], ["readRune", "encoding/csv", [], [Go$Int32, go$error], false], ["skip", "encoding/csv", [Go$Int32], [go$error], false], ["unreadRune", "encoding/csv", [], [], false]];
 	Writer.init([["Comma", "", Go$Int32, ""], ["UseCRLF", "", Go$Bool, ""], ["w", "encoding/csv", (go$ptrType(bufio.Writer)), ""]]);
 	(go$ptrType(Writer)).methods = [["Error", "", [], [go$error], false], ["Flush", "", [], [], false], ["Write", "", [(go$sliceType(Go$String))], [go$error], false], ["WriteAll", "", [(go$sliceType((go$sliceType(Go$String))))], [go$error], false], ["fieldNeedsQuotes", "encoding/csv", [Go$String], [Go$Bool], false]];
-u	go$pkg.ErrTrailingComma = null;
-	go$pkg.ErrBareQuote = null;
-	go$pkg.ErrQuote = null;
-	go$pkg.ErrFieldCount = null;
-0‚1z0‚'Error‚	ParseError.Ptr.prototype.Error = function() {
+00 0 0 0 0‚1z0‚'Error‚	ParseError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return fmt.Sprintf("line %d, column %d: %s", new (go$sliceType(go$emptyInterface))([new Go$Int(e.Line), new Go$Int(e.Column), e.Err]));

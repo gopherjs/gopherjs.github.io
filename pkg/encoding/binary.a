@@ -1,4 +1,4 @@
-0É#¸encoding/binaryÇSpackage binary
+0É#˛encoding/binaryÇSpackage binary
 import errors "errors"
 import io "io"
 import math "math"
@@ -319,10 +319,8 @@ $$
 	(go$ptrType(decoder)).methods = [["int16", "encoding/binary", [], [Go$Int16], false], ["int32", "encoding/binary", [], [Go$Int32], false], ["int64", "encoding/binary", [], [Go$Int64], false], ["int8", "encoding/binary", [], [Go$Int8], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [], [Go$Uint16], false], ["uint32", "encoding/binary", [], [Go$Uint32], false], ["uint64", "encoding/binary", [], [Go$Uint64], false], ["uint8", "encoding/binary", [], [Go$Uint8], false], ["value", "encoding/binary", [reflect.Value], [], false]];
 	encoder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
 	(go$ptrType(encoder)).methods = [["int16", "encoding/binary", [Go$Int16], [], false], ["int32", "encoding/binary", [Go$Int32], [], false], ["int64", "encoding/binary", [Go$Int64], [], false], ["int8", "encoding/binary", [Go$Int8], [], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [Go$Uint16], [], false], ["uint32", "encoding/binary", [Go$Uint32], [], false], ["uint64", "encoding/binary", [Go$Uint64], [], false], ["uint8", "encoding/binary", [Go$Uint8], [], false], ["value", "encoding/binary", [reflect.Value], [], false]];
-n	go$pkg.LittleEndian = new littleEndian.Ptr();
-	go$pkg.BigEndian = new bigEndian.Ptr();
-	var overflow = null;
-0ÇπÌ0Ç?Uint16Ç3	littleEndian.Ptr.prototype.Uint16 = function(b) {
+00 0 0
+overflow0Ç∫I0Ç?Uint16Ç3	littleEndian.Ptr.prototype.Uint16 = function(b) {
 		var _slice, _index, _slice$1, _index$1;
 		return (((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16)) >>> 0;
 	};
@@ -1128,6 +1126,8 @@ ReadVarintÇê	var ReadVarint = go$pkg.ReadVarint = function(r) {
 		}
 		return [x$1, err];
 	};
-0ninitf	go$pkg.init = function() {
+0Å…initÅ¿	go$pkg.init = function() {
+		go$pkg.LittleEndian = new littleEndian.Ptr();
+		go$pkg.BigEndian = new bigEndian.Ptr();
 		overflow = errors.New("binary: varint overflows a 64-bit integer");
 	};

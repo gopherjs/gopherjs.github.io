@@ -1,4 +1,4 @@
-0‚‹C
+0‚‹!
 go/scanner‚<package scanner
 import fmt "fmt"
 import token "go/token"
@@ -151,8 +151,8 @@ go/scanner0 0
 	ErrorHandler.init([token.Position, Go$String], [], false);
 	Scanner.init([["file", "go/scanner", (go$ptrType(token.File)), ""], ["dir", "go/scanner", Go$String, ""], ["src", "go/scanner", (go$sliceType(Go$Uint8)), ""], ["err", "go/scanner", ErrorHandler, ""], ["mode", "go/scanner", Mode, ""], ["ch", "go/scanner", Go$Int32, ""], ["offset", "go/scanner", Go$Int, ""], ["rdOffset", "go/scanner", Go$Int, ""], ["lineOffset", "go/scanner", Go$Int, ""], ["insertSemi", "go/scanner", Go$Bool, ""], ["ErrorCount", "", Go$Int, ""]]);
 	(go$ptrType(Scanner)).methods = [["Init", "", [(go$ptrType(token.File)), (go$sliceType(Go$Uint8)), ErrorHandler, Mode], [], false], ["Scan", "", [], [token.Pos, token.Token, Go$String], false], ["error", "go/scanner", [Go$Int, Go$String], [], false], ["findLineEnd", "go/scanner", [], [Go$Bool], false], ["interpretLineComment", "go/scanner", [(go$sliceType(Go$Uint8))], [], false], ["next", "go/scanner", [], [], false], ["scanChar", "go/scanner", [], [Go$String], false], ["scanComment", "go/scanner", [], [Go$String], false], ["scanEscape", "go/scanner", [Go$Int32], [], false], ["scanIdentifier", "go/scanner", [], [Go$String], false], ["scanMantissa", "go/scanner", [Go$Int], [], false], ["scanNumber", "go/scanner", [Go$Bool], [token.Token, Go$String], false], ["scanRawString", "go/scanner", [], [Go$String], false], ["scanString", "go/scanner", [], [Go$String], false], ["skipWhitespace", "go/scanner", [], [], false], ["switch2", "go/scanner", [token.Token, token.Token], [token.Token], false], ["switch3", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token], [token.Token], false], ["switch4", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token, token.Token], [token.Token], false]];
-,	var prefix = (go$sliceType(Go$Uint8)).nil;
-0‚[ú0‚¼Error‚±	Error.Ptr.prototype.Error = function() {
+0
+0prefix0‚[ú0‚¼Error‚±	Error.Ptr.prototype.Error = function() {
 		var _struct, _struct$1, e;
 		e = (_struct = this, new Error.Ptr((_struct$1 = _struct.Pos, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), _struct.Msg));
 		if (!(e.Pos.Filename === "") || e.Pos.IsValid()) {

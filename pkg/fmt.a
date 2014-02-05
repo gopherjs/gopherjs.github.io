@@ -1,4 +1,4 @@
-0ƒFöfmt‚lÖpackage fmt
+0ƒCÞfmt‚lÖpackage fmt
 import strconv "strconv"
 import utf8 "unicode/utf8"
 import errors "errors"
@@ -478,33 +478,13 @@ $$
 	ssave.init([["validSave", "fmt", Go$Bool, ""], ["nlIsEnd", "fmt", Go$Bool, ""], ["nlIsSpace", "fmt", Go$Bool, ""], ["argLimit", "fmt", Go$Int, ""], ["limit", "fmt", Go$Int, ""], ["maxWid", "fmt", Go$Int, ""]]);
 	readRune.init([["reader", "fmt", io.Reader, ""], ["buf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["pending", "fmt", Go$Int, ""], ["pendBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""]]);
 	(go$ptrType(readRune)).methods = [["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["readByte", "fmt", [], [Go$Uint8, go$error], false], ["unread", "fmt", [(go$sliceType(Go$Uint8))], [], false]];
-‚”	var padZeroBytes = (go$sliceType(Go$Uint8)).nil;
-	var padSpaceBytes = (go$sliceType(Go$Uint8)).nil;
-	var trueBytes = (go$sliceType(Go$Uint8)).nil;
-	var falseBytes = (go$sliceType(Go$Uint8)).nil;
-	var commaSpaceBytes = (go$sliceType(Go$Uint8)).nil;
-	var nilAngleBytes = (go$sliceType(Go$Uint8)).nil;
-	var nilParenBytes = (go$sliceType(Go$Uint8)).nil;
-	var nilBytes = (go$sliceType(Go$Uint8)).nil;
-	var mapBytes = (go$sliceType(Go$Uint8)).nil;
-	var percentBangBytes = (go$sliceType(Go$Uint8)).nil;
-	var missingBytes = (go$sliceType(Go$Uint8)).nil;
-	var badIndexBytes = (go$sliceType(Go$Uint8)).nil;
-	var panicBytes = (go$sliceType(Go$Uint8)).nil;
-	var extraBytes = (go$sliceType(Go$Uint8)).nil;
-	var irparenBytes = (go$sliceType(Go$Uint8)).nil;
-	var bytesBytes = (go$sliceType(Go$Uint8)).nil;
-	var badWidthBytes = (go$sliceType(Go$Uint8)).nil;
-	var badPrecBytes = (go$sliceType(Go$Uint8)).nil;
-	var noVerbBytes = (go$sliceType(Go$Uint8)).nil;
-	var ppFree = (go$ptrType(cache)).nil;
-	var intBits = 0;
-	var uintptrBits = 0;
-	var space = (go$sliceType((go$arrayType(Go$Uint16, 2)))).nil;
-	var ssFree = (go$ptrType(cache)).nil;
-	var complexError = null;
-	var boolError = null;
-0ƒ›Á0‚w
+0‚|0	trueBytes0
+falseBytes0missingBytes0
+panicBytes0noVerbBytes0space0	boolError0padZeroBytes0padSpaceBytes0commaSpaceBytes0
+nilBytes0
+mapBytes0	intBits0ssFree0percentBangBytes0badIndexBytes0irparenBytes0
+bytesBytes0ppFree0complexError0nilAngleBytes0nilParenBytes0
+extraBytes0badWidthBytes0badPrecBytes0uintptrBits0ƒ›Á0‚w
 clearflags‚g	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;

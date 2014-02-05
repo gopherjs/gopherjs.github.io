@@ -1,4 +1,4 @@
-0ÇLÕdatabase/sql/driverÇÎpackage driver
+0ÇLhdatabase/sql/driverÇÎpackage driver
 import errors "errors"
 import fmt "fmt"
 import reflect "reflect"
@@ -168,19 +168,7 @@ $$
 	defaultConverter.init([]);
 	defaultConverter.methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
 	(go$ptrType(defaultConverter)).methods = [["ConvertValue", "", [go$emptyInterface], [Value, go$error], false]];
-Ç^	go$pkg.ErrSkip = null;
-	go$pkg.ErrBadConn = null;
-	var _ = null;
-	go$pkg.ResultNoRows = new noRows.Ptr();
-	var _$1 = null;
-	go$pkg.Bool = new boolType.Ptr();
-	var _$2 = null;
-	go$pkg.Int32 = new int32Type.Ptr();
-	var _$3 = null;
-	go$pkg.String = new stringType.Ptr();
-	go$pkg.DefaultParameterConverter = new defaultConverter.Ptr();
-	var _$4 = null;
-0Ç"0Å˘LastInsertIdÅË	RowsAffected.prototype.LastInsertId = function() {
+00 0 0 0 0 0 0 0Ç"·0Å˘LastInsertIdÅË	RowsAffected.prototype.LastInsertId = function() {
 		return [new Go$Int64(0, 0), errors.New("no LastInsertId available")];
 	};
 	go$ptrType(RowsAffected).prototype.LastInsertId = function() { return this.go$get().LastInsertId(); };
@@ -357,7 +345,12 @@ $$
 		return [null, fmt.Errorf("unsupported type %T, a %s", new (go$sliceType(go$emptyInterface))([v, new reflect.Kind(rv.Kind())]))];
 	};
 	defaultConverter.prototype.ConvertValue = function(v) { return this.go$val.ConvertValue(v); };
-0ÅºinitÅ≥	go$pkg.init = function() {
+0ÇöinitÇê	go$pkg.init = function() {
+		go$pkg.ResultNoRows = new noRows.Ptr();
+		go$pkg.Bool = new boolType.Ptr();
+		go$pkg.Int32 = new int32Type.Ptr();
+		go$pkg.String = new stringType.Ptr();
+		go$pkg.DefaultParameterConverter = new defaultConverter.Ptr();
 		go$pkg.ErrSkip = errors.New("driver: skip fast-path; continue as if unimplemented");
 		go$pkg.ErrBadConn = errors.New("driver: bad connection");
 	};

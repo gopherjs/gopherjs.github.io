@@ -1,4 +1,4 @@
-0‚¶Íbufio‚spackage bufio
+0‚µÓbufio‚spackage bufio
 import bytes "bytes"
 import errors "errors"
 import io "io"
@@ -171,16 +171,7 @@ $$
 	Scanner.init([["r", "bufio", io.Reader, ""], ["split", "bufio", SplitFunc, ""], ["maxTokenSize", "bufio", Go$Int, ""], ["token", "bufio", (go$sliceType(Go$Uint8)), ""], ["buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["start", "bufio", Go$Int, ""], ["end", "bufio", Go$Int, ""], ["err", "bufio", go$error, ""]]);
 	(go$ptrType(Scanner)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Err", "", [], [go$error], false], ["Scan", "", [], [Go$Bool], false], ["Split", "", [SplitFunc], [], false], ["Text", "", [], [Go$String], false], ["advance", "bufio", [Go$Int], [Go$Bool], false], ["setErr", "bufio", [go$error], [], false]];
 	SplitFunc.init([(go$sliceType(Go$Uint8)), Go$Bool], [Go$Int, (go$sliceType(Go$Uint8)), go$error], false);
-‚4	go$pkg.ErrInvalidUnreadByte = null;
-	go$pkg.ErrInvalidUnreadRune = null;
-	go$pkg.ErrBufferFull = null;
-	go$pkg.ErrNegativeCount = null;
-	var errNegativeRead = null;
-	go$pkg.ErrTooLong = null;
-	go$pkg.ErrNegativeAdvance = null;
-	go$pkg.ErrAdvanceTooFar = null;
-	var errorRune = (go$sliceType(Go$Uint8)).nil;
-0‚v\0‚ÛNewReaderSize‚È	var NewReaderSize = go$pkg.NewReaderSize = function(rd, size) {
+0<0 0 0 0 0errNegativeRead0 0	errorRune0 0 0‚v\0‚ÛNewReaderSize‚È	var NewReaderSize = go$pkg.NewReaderSize = function(rd, size) {
 		var _tuple, b, ok, r;
 		_tuple = (rd !== null && rd.constructor === (go$ptrType(Reader)) ? [rd.go$val, true] : [(go$ptrType(Reader)).nil, false]), b = _tuple[0], ok = _tuple[1];
 		if (ok && b.buf.length >= size) {

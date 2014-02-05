@@ -1,4 +1,4 @@
-0ÉﬁÎcompress/flateÇ[package flate
+0É‹ªcompress/flateÇ[package flate
 import fmt "fmt"
 import io "io"
 import math "math"
@@ -293,22 +293,9 @@ $$
 	(go$ptrType(decompressor)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["copyData", "compress/flate", [], [], false], ["copyHist", "compress/flate", [], [Go$Bool], false], ["copyHuff", "compress/flate", [], [], false], ["dataBlock", "compress/flate", [], [], false], ["flush", "compress/flate", [(go$funcType([(go$ptrType(decompressor))], [], false))], [], false], ["huffSym", "compress/flate", [(go$ptrType(huffmanDecoder))], [Go$Int, go$error], false], ["huffmanBlock", "compress/flate", [], [], false], ["moreBits", "compress/flate", [], [go$error], false], ["nextBlock", "compress/flate", [], [], false], ["readHuffman", "compress/flate", [], [go$error], false], ["setDict", "compress/flate", [(go$sliceType(Go$Uint8))], [], false]];
 	token.methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
 	(go$ptrType(token)).methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
-Ç¨	var levels = (go$sliceType(compressionLevel)).nil;
-	var zeroes = go$makeNativeArray("Int", 32, function() { return 0; });
-	var bzeroes = go$makeNativeArray("Uint8", 256, function() { return 0; });
-	var fixedHuffmanDecoder = new huffmanDecoder.Ptr();
-	var lengthExtraBits = (go$sliceType(Go$Int8)).nil;
-	var lengthBase = (go$sliceType(Go$Uint32)).nil;
-	var offsetExtraBits = (go$sliceType(Go$Int8)).nil;
-	var offsetBase = (go$sliceType(Go$Uint32)).nil;
-	var codegenOrder = (go$sliceType(Go$Uint32)).nil;
-	var fixedLiteralEncoding = (go$ptrType(huffmanEncoder)).nil;
-	var fixedOffsetEncoding = (go$ptrType(huffmanEncoder)).nil;
-	var codeOrder = go$makeNativeArray("Int", 19, function() { return 0; });
-	var reverseByte = go$makeNativeArray("Uint8", 256, function() { return 0; });
-	var lengthCodes = go$makeNativeArray("Uint32", 256, function() { return 0; });
-	var offsetCodes = go$makeNativeArray("Uint32", 256, function() { return 0; });
-0Ése0ÇforwardCopyÇ		var forwardCopy = function(mem, dst, src, n) {
+0ÅÒ0codegenOrder0reverseByte0offsetCodes0levels0
+offsetBase0zeroes0fixedHuffmanDecoder0offsetExtraBits0fixedLiteralEncoding0lengthCodes0	bzeroes0lengthExtraBits0
+lengthBase0fixedOffsetEncoding0	codeOrder0ÉsÒ0ÇforwardCopyÇ		var forwardCopy = function(mem, dst, src, n) {
 		var k;
 		if (dst <= src) {
 			go$copySlice(go$subslice(mem, dst, (dst + n >> 0)), go$subslice(mem, src, (src + n >> 0)));
@@ -2082,7 +2069,9 @@ offsetCodeÅ˜	var offsetCode = function(off) {
 			return offsetCodes[(off >>> 14 >>> 0)] + 28 >>> 0;
 		}
 	};
-0Ç¨initÇ¢	go$pkg.init = function() {
+0Ç 8initÇ .	go$pkg.init = function() {
+		zeroes = go$makeNativeArray("Int", 32, function() { return 0; });
+		bzeroes = go$makeNativeArray("Uint8", 256, function() { return 0; });
 		levels = new (go$sliceType(compressionLevel))([new compressionLevel.Ptr(0, 0, 0, 0, 0), new compressionLevel.Ptr(3, 0, 8, 4, 4), new compressionLevel.Ptr(3, 0, 16, 8, 5), new compressionLevel.Ptr(3, 0, 32, 32, 6), new compressionLevel.Ptr(4, 4, 16, 16, 2147483647), new compressionLevel.Ptr(8, 16, 32, 32, 2147483647), new compressionLevel.Ptr(8, 16, 128, 128, 2147483647), new compressionLevel.Ptr(8, 32, 128, 256, 2147483647), new compressionLevel.Ptr(32, 128, 258, 1024, 2147483647), new compressionLevel.Ptr(32, 258, 258, 4096, 2147483647)]);
 		fixedHuffmanDecoder = new huffmanDecoder.Ptr(7, go$toNativeArray("Uint32", [4103, 1288, 264, 4488, 4359, 1800, 776, 3081, 4231, 1544, 520, 2569, 8, 2056, 1032, 3593, 4167, 1416, 392, 2313, 4423, 1928, 904, 3337, 4295, 1672, 648, 2825, 136, 2184, 1160, 3849, 4135, 1352, 328, 4552, 4391, 1864, 840, 3209, 4263, 1608, 584, 2697, 72, 2120, 1096, 3721, 4199, 1480, 456, 2441, 4455, 1992, 968, 3465, 4327, 1736, 712, 2953, 200, 2248, 1224, 3977, 4119, 1320, 296, 4520, 4375, 1832, 808, 3145, 4247, 1576, 552, 2633, 40, 2088, 1064, 3657, 4183, 1448, 424, 2377, 4439, 1960, 936, 3401, 4311, 1704, 680, 2889, 168, 2216, 1192, 3913, 4151, 1384, 360, 4584, 4407, 1896, 872, 3273, 4279, 1640, 616, 2761, 104, 2152, 1128, 3785, 4215, 1512, 488, 2505, 4471, 2024, 1000, 3529, 4343, 1768, 744, 3017, 232, 2280, 1256, 4041, 4103, 1304, 280, 4504, 4359, 1816, 792, 3113, 4231, 1560, 536, 2601, 24, 2072, 1048, 3625, 4167, 1432, 408, 2345, 4423, 1944, 920, 3369, 4295, 1688, 664, 2857, 152, 2200, 1176, 3881, 4135, 1368, 344, 4568, 4391, 1880, 856, 3241, 4263, 1624, 600, 2729, 88, 2136, 1112, 3753, 4199, 1496, 472, 2473, 4455, 2008, 984, 3497, 4327, 1752, 728, 2985, 216, 2264, 1240, 4009, 4119, 1336, 312, 4536, 4375, 1848, 824, 3177, 4247, 1592, 568, 2665, 56, 2104, 1080, 3689, 4183, 1464, 440, 2409, 4439, 1976, 952, 3433, 4311, 1720, 696, 2921, 184, 2232, 1208, 3945, 4151, 1400, 376, 4600, 4407, 1912, 888, 3305, 4279, 1656, 632, 2793, 120, 2168, 1144, 3817, 4215, 1528, 504, 2537, 4471, 2040, 1016, 3561, 4343, 1784, 760, 3049, 248, 2296, 1272, 4073, 4103, 1288, 264, 4488, 4359, 1800, 776, 3097, 4231, 1544, 520, 2585, 8, 2056, 1032, 3609, 4167, 1416, 392, 2329, 4423, 1928, 904, 3353, 4295, 1672, 648, 2841, 136, 2184, 1160, 3865, 4135, 1352, 328, 4552, 4391, 1864, 840, 3225, 4263, 1608, 584, 2713, 72, 2120, 1096, 3737, 4199, 1480, 456, 2457, 4455, 1992, 968, 3481, 4327, 1736, 712, 2969, 200, 2248, 1224, 3993, 4119, 1320, 296, 4520, 4375, 1832, 808, 3161, 4247, 1576, 552, 2649, 40, 2088, 1064, 3673, 4183, 1448, 424, 2393, 4439, 1960, 936, 3417, 4311, 1704, 680, 2905, 168, 2216, 1192, 3929, 4151, 1384, 360, 4584, 4407, 1896, 872, 3289, 4279, 1640, 616, 2777, 104, 2152, 1128, 3801, 4215, 1512, 488, 2521, 4471, 2024, 1000, 3545, 4343, 1768, 744, 3033, 232, 2280, 1256, 4057, 4103, 1304, 280, 4504, 4359, 1816, 792, 3129, 4231, 1560, 536, 2617, 24, 2072, 1048, 3641, 4167, 1432, 408, 2361, 4423, 1944, 920, 3385, 4295, 1688, 664, 2873, 152, 2200, 1176, 3897, 4135, 1368, 344, 4568, 4391, 1880, 856, 3257, 4263, 1624, 600, 2745, 88, 2136, 1112, 3769, 4199, 1496, 472, 2489, 4455, 2008, 984, 3513, 4327, 1752, 728, 3001, 216, 2264, 1240, 4025, 4119, 1336, 312, 4536, 4375, 1848, 824, 3193, 4247, 1592, 568, 2681, 56, 2104, 1080, 3705, 4183, 1464, 440, 2425, 4439, 1976, 952, 3449, 4311, 1720, 696, 2937, 184, 2232, 1208, 3961, 4151, 1400, 376, 4600, 4407, 1912, 888, 3321, 4279, 1656, 632, 2809, 120, 2168, 1144, 3833, 4215, 1528, 504, 2553, 4471, 2040, 1016, 3577, 4343, 1784, 760, 3065, 248, 2296, 1272, 4089]), (go$sliceType((go$sliceType(Go$Uint32)))).nil, 0);
 		lengthExtraBits = new (go$sliceType(Go$Int8))([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0]);

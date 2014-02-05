@@ -2325,59 +2325,7 @@ go$packages["runtime"] = (function() {
 	_select.init([["tcase", "runtime", Go$Uint16, ""], ["ncase", "runtime", Go$Uint16, ""], ["pollorder", "runtime", (go$ptrType(Go$Uint16)), ""], ["lockorder", "runtime", (go$ptrType((go$ptrType(hchan)))), ""], ["scase", "runtime", (go$arrayType(scase, 1)), ""]]);
 	runtimeselect.init([["dir", "runtime", Go$Uint64, ""], ["typ", "runtime", (go$ptrType(chantype)), ""], ["ch", "runtime", (go$ptrType(hchan)), ""], ["val", "runtime", Go$Uint64, ""]]);
 	parforthread.init([["pos", "runtime", Go$Uint64, ""], ["nsteal", "runtime", Go$Uint64, ""], ["nstealcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
-	go$pkg.MemProfileRate = 0;
-	var sizeof_C_MStats = 0;
-	var memStats = new MemStats.Ptr();
-	var _ = 0;
-	var precisestack = 0;
-	var algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
-	var startup_random_data = (go$ptrType(Go$Uint8)).nil;
-	var startup_random_data_len = 0;
-	var emptystring = "";
-	var zerobase = new Go$Uint64(0, 0);
-	var allg = (go$ptrType(g)).nil;
-	var lastg = (go$ptrType(g)).nil;
-	var allm = (go$ptrType(m)).nil;
-	var allp = (go$ptrType((go$ptrType(p)))).nil;
-	var gomaxprocs = 0;
-	var needextram = 0;
-	var panicking = 0;
-	var goos = (go$ptrType(Go$Int8)).nil;
-	var ncpu = 0;
-	var iscgo = 0;
-	var sysargs = go$throwNilPointerError;
-	var maxstring = new Go$Uint64(0, 0);
-	var hchansize = 0;
-	var cpuid_ecx = 0;
-	var cpuid_edx = 0;
-	var debug = new debugvars.Ptr();
-	var maxstacksize = new Go$Uint64(0, 0);
-	var blockprofilerate = new Go$Int64(0, 0);
-	var worldsema = 0;
-	var nan = 0;
-	var posinf = 0;
-	var neginf = 0;
-	var memstats = new mstats.Ptr();
-	var class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
-	var class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
-	var size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
-	var size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
-	var checking = 0;
-	var m0 = new m.Ptr();
-	var g0 = new g.Ptr();
-	var extram = (go$ptrType(m)).nil;
-	var newprocs = 0;
-	var scavenger = new funcval.Ptr();
-	var initdone = new funcval.Ptr();
-	var _cgo_thread_start = go$throwNilPointerError;
-	var prof = new _3_.Ptr();
-	var experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
-	var hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
-	var ifacelock = new lock.Ptr();
-	var typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
-	var etypelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
-	var empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
-	var hashload = 0;
+	var allm, maxstacksize, nan, scavenger, initdone, prof, hashload, memStats, startup_random_data_len, gomaxprocs, needextram, goos, debug, neginf, class_to_allocnpages, g0, extram, ncpu, cpuid_edx, posinf, class_to_size, checking, m0, newprocs, ifacelock, empty_value, precisestack, allp, blockprofilerate, worldsema, size_to_class8, size_to_class128, experiment, startup_random_data, maxstring, memstats, typelink, algarray, allg, lastg, iscgo, cpuid_ecx, etypelink, sizeof_C_MStats, emptystring, zerobase, panicking, sysargs, hchansize, _cgo_thread_start, hash;
 	var Breakpoint = go$pkg.Breakpoint = function() {
 		throw go$panic("Native function not implemented: Breakpoint");
 	};
@@ -3082,11 +3030,62 @@ go$packages["runtime"] = (function() {
 		var _tuple;
 		_tuple = f64toint(f), ret.go$set(_tuple[0]), retok.go$set(_tuple[1]);
 	};
+	go$pkg.init = function() {
+		sizeof_C_MStats = 0;
+		emptystring = "";
+		zerobase = new Go$Uint64(0, 0);
+		panicking = 0;
+		sysargs = go$throwNilPointerError;
+		hchansize = 0;
+		_cgo_thread_start = go$throwNilPointerError;
+		hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
+		allm = (go$ptrType(m)).nil;
+		maxstacksize = new Go$Uint64(0, 0);
+		nan = 0;
+		scavenger = new funcval.Ptr();
+		initdone = new funcval.Ptr();
+		prof = new _3_.Ptr();
+		hashload = 0;
+		memStats = new MemStats.Ptr();
+		startup_random_data_len = 0;
+		gomaxprocs = 0;
+		needextram = 0;
+		goos = (go$ptrType(Go$Int8)).nil;
+		debug = new debugvars.Ptr();
+		neginf = 0;
+		class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
+		g0 = new g.Ptr();
+		extram = (go$ptrType(m)).nil;
+		ncpu = 0;
+		cpuid_edx = 0;
+		posinf = 0;
+		class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
+		checking = 0;
+		m0 = new m.Ptr();
+		newprocs = 0;
+		ifacelock = new lock.Ptr();
+		empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
+		precisestack = 0;
+		allp = (go$ptrType((go$ptrType(p)))).nil;
+		blockprofilerate = new Go$Int64(0, 0);
+		worldsema = 0;
+		size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
+		size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
+		experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
+		startup_random_data = (go$ptrType(Go$Uint8)).nil;
+		maxstring = new Go$Uint64(0, 0);
+		memstats = new mstats.Ptr();
+		typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
+		algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
+		allg = (go$ptrType(g)).nil;
+		lastg = (go$ptrType(g)).nil;
+		iscgo = 0;
+		cpuid_ecx = 0;
+		etypelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
 
 			go$throwRuntimeError = function(msg) { throw go$panic(new errorString(msg)); };
 			sizeof_C_MStats = 3712;
-			go$pkg.init = function() {
-		go$pkg.MemProfileRate = 524288;
+				go$pkg.MemProfileRate = 524288;
 		if (!((sizeof_C_MStats === 3712))) {
 			console.log(sizeof_C_MStats, 3712);
 			throw go$panic(new Go$String("MStats vs MemStatsType size mismatch"));
@@ -3774,15 +3773,7 @@ go$packages["io"] = (function() {
 	(go$ptrType(PipeReader)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	PipeWriter.init([["p", "io", (go$ptrType(pipe)), ""]]);
 	(go$ptrType(PipeWriter)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	go$pkg.ErrShortWrite = null;
-	go$pkg.ErrShortBuffer = null;
-	go$pkg.EOF = null;
-	go$pkg.ErrUnexpectedEOF = null;
-	go$pkg.ErrNoProgress = null;
-	var errWhence = null;
-	var errOffset = null;
-	go$pkg.ErrClosedPipe = null;
-	var zero = go$makeNativeArray("Uint8", 0, function() { return 0; });
+	var errWhence, zero, errOffset;
 	var WriteString = go$pkg.WriteString = function(w, s) {
 		var n, err, ok, _tuple, sw, _tuple$1, _tuple$2;
 		n = 0;
@@ -4207,6 +4198,7 @@ go$packages["io"] = (function() {
 		return [r, w];
 	};
 	go$pkg.init = function() {
+		zero = go$makeNativeArray("Uint8", 0, function() { return 0; });
 		go$pkg.ErrShortWrite = errors.New("short write");
 		go$pkg.ErrShortBuffer = errors.New("short buffer");
 		go$pkg.EOF = errors.New("EOF");
@@ -4274,380 +4266,7 @@ go$packages["unicode"] = (function() {
 	(go$ptrType(SpecialCase)).methods = [["ToLower", "", [Go$Int32], [Go$Int32], false], ["ToTitle", "", [Go$Int32], [Go$Int32], false], ["ToUpper", "", [Go$Int32], [Go$Int32], false]];
 	d.init(Go$Int32, 3);
 	foldPair.init([["From", "", Go$Uint16, ""], ["To", "", Go$Uint16, ""]]);
-	go$pkg.TurkishCase = SpecialCase.nil;
-	var _TurkishCase = SpecialCase.nil;
-	go$pkg.AzeriCase = SpecialCase.nil;
-	go$pkg.GraphicRanges = (go$sliceType((go$ptrType(RangeTable)))).nil;
-	go$pkg.PrintRanges = (go$sliceType((go$ptrType(RangeTable)))).nil;
-	go$pkg.Categories = false;
-	var _C = (go$ptrType(RangeTable)).nil;
-	var _Cc = (go$ptrType(RangeTable)).nil;
-	var _Cf = (go$ptrType(RangeTable)).nil;
-	var _Co = (go$ptrType(RangeTable)).nil;
-	var _Cs = (go$ptrType(RangeTable)).nil;
-	var _L = (go$ptrType(RangeTable)).nil;
-	var _Ll = (go$ptrType(RangeTable)).nil;
-	var _Lm = (go$ptrType(RangeTable)).nil;
-	var _Lo = (go$ptrType(RangeTable)).nil;
-	var _Lt = (go$ptrType(RangeTable)).nil;
-	var _Lu = (go$ptrType(RangeTable)).nil;
-	var _M = (go$ptrType(RangeTable)).nil;
-	var _Mc = (go$ptrType(RangeTable)).nil;
-	var _Me = (go$ptrType(RangeTable)).nil;
-	var _Mn = (go$ptrType(RangeTable)).nil;
-	var _N = (go$ptrType(RangeTable)).nil;
-	var _Nd = (go$ptrType(RangeTable)).nil;
-	var _Nl = (go$ptrType(RangeTable)).nil;
-	var _No = (go$ptrType(RangeTable)).nil;
-	var _P = (go$ptrType(RangeTable)).nil;
-	var _Pc = (go$ptrType(RangeTable)).nil;
-	var _Pd = (go$ptrType(RangeTable)).nil;
-	var _Pe = (go$ptrType(RangeTable)).nil;
-	var _Pf = (go$ptrType(RangeTable)).nil;
-	var _Pi = (go$ptrType(RangeTable)).nil;
-	var _Po = (go$ptrType(RangeTable)).nil;
-	var _Ps = (go$ptrType(RangeTable)).nil;
-	var _S = (go$ptrType(RangeTable)).nil;
-	var _Sc = (go$ptrType(RangeTable)).nil;
-	var _Sk = (go$ptrType(RangeTable)).nil;
-	var _Sm = (go$ptrType(RangeTable)).nil;
-	var _So = (go$ptrType(RangeTable)).nil;
-	var _Z = (go$ptrType(RangeTable)).nil;
-	var _Zl = (go$ptrType(RangeTable)).nil;
-	var _Zp = (go$ptrType(RangeTable)).nil;
-	var _Zs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cc = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cf = (go$ptrType(RangeTable)).nil;
-	go$pkg.Co = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Digit = (go$ptrType(RangeTable)).nil;
-	go$pkg.Nd = (go$ptrType(RangeTable)).nil;
-	go$pkg.Letter = (go$ptrType(RangeTable)).nil;
-	go$pkg.L = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lm = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lo = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lower = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ll = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mark = (go$ptrType(RangeTable)).nil;
-	go$pkg.M = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mc = (go$ptrType(RangeTable)).nil;
-	go$pkg.Me = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mn = (go$ptrType(RangeTable)).nil;
-	go$pkg.Nl = (go$ptrType(RangeTable)).nil;
-	go$pkg.No = (go$ptrType(RangeTable)).nil;
-	go$pkg.Number = (go$ptrType(RangeTable)).nil;
-	go$pkg.N = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other = (go$ptrType(RangeTable)).nil;
-	go$pkg.C = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pc = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pd = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pe = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pf = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Po = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ps = (go$ptrType(RangeTable)).nil;
-	go$pkg.Punct = (go$ptrType(RangeTable)).nil;
-	go$pkg.P = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sc = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sk = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sm = (go$ptrType(RangeTable)).nil;
-	go$pkg.So = (go$ptrType(RangeTable)).nil;
-	go$pkg.Space = (go$ptrType(RangeTable)).nil;
-	go$pkg.Z = (go$ptrType(RangeTable)).nil;
-	go$pkg.Symbol = (go$ptrType(RangeTable)).nil;
-	go$pkg.S = (go$ptrType(RangeTable)).nil;
-	go$pkg.Title = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lt = (go$ptrType(RangeTable)).nil;
-	go$pkg.Upper = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lu = (go$ptrType(RangeTable)).nil;
-	go$pkg.Zl = (go$ptrType(RangeTable)).nil;
-	go$pkg.Zp = (go$ptrType(RangeTable)).nil;
-	go$pkg.Zs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Scripts = false;
-	var _Arabic = (go$ptrType(RangeTable)).nil;
-	var _Armenian = (go$ptrType(RangeTable)).nil;
-	var _Avestan = (go$ptrType(RangeTable)).nil;
-	var _Balinese = (go$ptrType(RangeTable)).nil;
-	var _Bamum = (go$ptrType(RangeTable)).nil;
-	var _Batak = (go$ptrType(RangeTable)).nil;
-	var _Bengali = (go$ptrType(RangeTable)).nil;
-	var _Bopomofo = (go$ptrType(RangeTable)).nil;
-	var _Brahmi = (go$ptrType(RangeTable)).nil;
-	var _Braille = (go$ptrType(RangeTable)).nil;
-	var _Buginese = (go$ptrType(RangeTable)).nil;
-	var _Buhid = (go$ptrType(RangeTable)).nil;
-	var _Canadian_Aboriginal = (go$ptrType(RangeTable)).nil;
-	var _Carian = (go$ptrType(RangeTable)).nil;
-	var _Chakma = (go$ptrType(RangeTable)).nil;
-	var _Cham = (go$ptrType(RangeTable)).nil;
-	var _Cherokee = (go$ptrType(RangeTable)).nil;
-	var _Common = (go$ptrType(RangeTable)).nil;
-	var _Coptic = (go$ptrType(RangeTable)).nil;
-	var _Cuneiform = (go$ptrType(RangeTable)).nil;
-	var _Cypriot = (go$ptrType(RangeTable)).nil;
-	var _Cyrillic = (go$ptrType(RangeTable)).nil;
-	var _Deseret = (go$ptrType(RangeTable)).nil;
-	var _Devanagari = (go$ptrType(RangeTable)).nil;
-	var _Egyptian_Hieroglyphs = (go$ptrType(RangeTable)).nil;
-	var _Ethiopic = (go$ptrType(RangeTable)).nil;
-	var _Georgian = (go$ptrType(RangeTable)).nil;
-	var _Glagolitic = (go$ptrType(RangeTable)).nil;
-	var _Gothic = (go$ptrType(RangeTable)).nil;
-	var _Greek = (go$ptrType(RangeTable)).nil;
-	var _Gujarati = (go$ptrType(RangeTable)).nil;
-	var _Gurmukhi = (go$ptrType(RangeTable)).nil;
-	var _Han = (go$ptrType(RangeTable)).nil;
-	var _Hangul = (go$ptrType(RangeTable)).nil;
-	var _Hanunoo = (go$ptrType(RangeTable)).nil;
-	var _Hebrew = (go$ptrType(RangeTable)).nil;
-	var _Hiragana = (go$ptrType(RangeTable)).nil;
-	var _Imperial_Aramaic = (go$ptrType(RangeTable)).nil;
-	var _Inherited = (go$ptrType(RangeTable)).nil;
-	var _Inscriptional_Pahlavi = (go$ptrType(RangeTable)).nil;
-	var _Inscriptional_Parthian = (go$ptrType(RangeTable)).nil;
-	var _Javanese = (go$ptrType(RangeTable)).nil;
-	var _Kaithi = (go$ptrType(RangeTable)).nil;
-	var _Kannada = (go$ptrType(RangeTable)).nil;
-	var _Katakana = (go$ptrType(RangeTable)).nil;
-	var _Kayah_Li = (go$ptrType(RangeTable)).nil;
-	var _Kharoshthi = (go$ptrType(RangeTable)).nil;
-	var _Khmer = (go$ptrType(RangeTable)).nil;
-	var _Lao = (go$ptrType(RangeTable)).nil;
-	var _Latin = (go$ptrType(RangeTable)).nil;
-	var _Lepcha = (go$ptrType(RangeTable)).nil;
-	var _Limbu = (go$ptrType(RangeTable)).nil;
-	var _Linear_B = (go$ptrType(RangeTable)).nil;
-	var _Lisu = (go$ptrType(RangeTable)).nil;
-	var _Lycian = (go$ptrType(RangeTable)).nil;
-	var _Lydian = (go$ptrType(RangeTable)).nil;
-	var _Malayalam = (go$ptrType(RangeTable)).nil;
-	var _Mandaic = (go$ptrType(RangeTable)).nil;
-	var _Meetei_Mayek = (go$ptrType(RangeTable)).nil;
-	var _Meroitic_Cursive = (go$ptrType(RangeTable)).nil;
-	var _Meroitic_Hieroglyphs = (go$ptrType(RangeTable)).nil;
-	var _Miao = (go$ptrType(RangeTable)).nil;
-	var _Mongolian = (go$ptrType(RangeTable)).nil;
-	var _Myanmar = (go$ptrType(RangeTable)).nil;
-	var _New_Tai_Lue = (go$ptrType(RangeTable)).nil;
-	var _Nko = (go$ptrType(RangeTable)).nil;
-	var _Ogham = (go$ptrType(RangeTable)).nil;
-	var _Ol_Chiki = (go$ptrType(RangeTable)).nil;
-	var _Old_Italic = (go$ptrType(RangeTable)).nil;
-	var _Old_Persian = (go$ptrType(RangeTable)).nil;
-	var _Old_South_Arabian = (go$ptrType(RangeTable)).nil;
-	var _Old_Turkic = (go$ptrType(RangeTable)).nil;
-	var _Oriya = (go$ptrType(RangeTable)).nil;
-	var _Osmanya = (go$ptrType(RangeTable)).nil;
-	var _Phags_Pa = (go$ptrType(RangeTable)).nil;
-	var _Phoenician = (go$ptrType(RangeTable)).nil;
-	var _Rejang = (go$ptrType(RangeTable)).nil;
-	var _Runic = (go$ptrType(RangeTable)).nil;
-	var _Samaritan = (go$ptrType(RangeTable)).nil;
-	var _Saurashtra = (go$ptrType(RangeTable)).nil;
-	var _Sharada = (go$ptrType(RangeTable)).nil;
-	var _Shavian = (go$ptrType(RangeTable)).nil;
-	var _Sinhala = (go$ptrType(RangeTable)).nil;
-	var _Sora_Sompeng = (go$ptrType(RangeTable)).nil;
-	var _Sundanese = (go$ptrType(RangeTable)).nil;
-	var _Syloti_Nagri = (go$ptrType(RangeTable)).nil;
-	var _Syriac = (go$ptrType(RangeTable)).nil;
-	var _Tagalog = (go$ptrType(RangeTable)).nil;
-	var _Tagbanwa = (go$ptrType(RangeTable)).nil;
-	var _Tai_Le = (go$ptrType(RangeTable)).nil;
-	var _Tai_Tham = (go$ptrType(RangeTable)).nil;
-	var _Tai_Viet = (go$ptrType(RangeTable)).nil;
-	var _Takri = (go$ptrType(RangeTable)).nil;
-	var _Tamil = (go$ptrType(RangeTable)).nil;
-	var _Telugu = (go$ptrType(RangeTable)).nil;
-	var _Thaana = (go$ptrType(RangeTable)).nil;
-	var _Thai = (go$ptrType(RangeTable)).nil;
-	var _Tibetan = (go$ptrType(RangeTable)).nil;
-	var _Tifinagh = (go$ptrType(RangeTable)).nil;
-	var _Ugaritic = (go$ptrType(RangeTable)).nil;
-	var _Vai = (go$ptrType(RangeTable)).nil;
-	var _Yi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Arabic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Armenian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Avestan = (go$ptrType(RangeTable)).nil;
-	go$pkg.Balinese = (go$ptrType(RangeTable)).nil;
-	go$pkg.Bamum = (go$ptrType(RangeTable)).nil;
-	go$pkg.Batak = (go$ptrType(RangeTable)).nil;
-	go$pkg.Bengali = (go$ptrType(RangeTable)).nil;
-	go$pkg.Bopomofo = (go$ptrType(RangeTable)).nil;
-	go$pkg.Brahmi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Braille = (go$ptrType(RangeTable)).nil;
-	go$pkg.Buginese = (go$ptrType(RangeTable)).nil;
-	go$pkg.Buhid = (go$ptrType(RangeTable)).nil;
-	go$pkg.Canadian_Aboriginal = (go$ptrType(RangeTable)).nil;
-	go$pkg.Carian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Chakma = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cham = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cherokee = (go$ptrType(RangeTable)).nil;
-	go$pkg.Common = (go$ptrType(RangeTable)).nil;
-	go$pkg.Coptic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cuneiform = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cypriot = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cyrillic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Deseret = (go$ptrType(RangeTable)).nil;
-	go$pkg.Devanagari = (go$ptrType(RangeTable)).nil;
-	go$pkg.Egyptian_Hieroglyphs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ethiopic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Georgian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Glagolitic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Gothic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Greek = (go$ptrType(RangeTable)).nil;
-	go$pkg.Gujarati = (go$ptrType(RangeTable)).nil;
-	go$pkg.Gurmukhi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Han = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hangul = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hanunoo = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hebrew = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hiragana = (go$ptrType(RangeTable)).nil;
-	go$pkg.Imperial_Aramaic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Inherited = (go$ptrType(RangeTable)).nil;
-	go$pkg.Inscriptional_Pahlavi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Inscriptional_Parthian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Javanese = (go$ptrType(RangeTable)).nil;
-	go$pkg.Kaithi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Kannada = (go$ptrType(RangeTable)).nil;
-	go$pkg.Katakana = (go$ptrType(RangeTable)).nil;
-	go$pkg.Kayah_Li = (go$ptrType(RangeTable)).nil;
-	go$pkg.Kharoshthi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Khmer = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lao = (go$ptrType(RangeTable)).nil;
-	go$pkg.Latin = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lepcha = (go$ptrType(RangeTable)).nil;
-	go$pkg.Limbu = (go$ptrType(RangeTable)).nil;
-	go$pkg.Linear_B = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lisu = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lycian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lydian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Malayalam = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mandaic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Meetei_Mayek = (go$ptrType(RangeTable)).nil;
-	go$pkg.Meroitic_Cursive = (go$ptrType(RangeTable)).nil;
-	go$pkg.Meroitic_Hieroglyphs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Miao = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mongolian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Myanmar = (go$ptrType(RangeTable)).nil;
-	go$pkg.New_Tai_Lue = (go$ptrType(RangeTable)).nil;
-	go$pkg.Nko = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ogham = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ol_Chiki = (go$ptrType(RangeTable)).nil;
-	go$pkg.Old_Italic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Old_Persian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Old_South_Arabian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Old_Turkic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Oriya = (go$ptrType(RangeTable)).nil;
-	go$pkg.Osmanya = (go$ptrType(RangeTable)).nil;
-	go$pkg.Phags_Pa = (go$ptrType(RangeTable)).nil;
-	go$pkg.Phoenician = (go$ptrType(RangeTable)).nil;
-	go$pkg.Rejang = (go$ptrType(RangeTable)).nil;
-	go$pkg.Runic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Samaritan = (go$ptrType(RangeTable)).nil;
-	go$pkg.Saurashtra = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sharada = (go$ptrType(RangeTable)).nil;
-	go$pkg.Shavian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sinhala = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sora_Sompeng = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sundanese = (go$ptrType(RangeTable)).nil;
-	go$pkg.Syloti_Nagri = (go$ptrType(RangeTable)).nil;
-	go$pkg.Syriac = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tagalog = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tagbanwa = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tai_Le = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tai_Tham = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tai_Viet = (go$ptrType(RangeTable)).nil;
-	go$pkg.Takri = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tamil = (go$ptrType(RangeTable)).nil;
-	go$pkg.Telugu = (go$ptrType(RangeTable)).nil;
-	go$pkg.Thaana = (go$ptrType(RangeTable)).nil;
-	go$pkg.Thai = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tibetan = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tifinagh = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ugaritic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Vai = (go$ptrType(RangeTable)).nil;
-	go$pkg.Yi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Properties = false;
-	var _ASCII_Hex_Digit = (go$ptrType(RangeTable)).nil;
-	var _Bidi_Control = (go$ptrType(RangeTable)).nil;
-	var _Dash = (go$ptrType(RangeTable)).nil;
-	var _Deprecated = (go$ptrType(RangeTable)).nil;
-	var _Diacritic = (go$ptrType(RangeTable)).nil;
-	var _Extender = (go$ptrType(RangeTable)).nil;
-	var _Hex_Digit = (go$ptrType(RangeTable)).nil;
-	var _Hyphen = (go$ptrType(RangeTable)).nil;
-	var _IDS_Binary_Operator = (go$ptrType(RangeTable)).nil;
-	var _IDS_Trinary_Operator = (go$ptrType(RangeTable)).nil;
-	var _Ideographic = (go$ptrType(RangeTable)).nil;
-	var _Join_Control = (go$ptrType(RangeTable)).nil;
-	var _Logical_Order_Exception = (go$ptrType(RangeTable)).nil;
-	var _Noncharacter_Code_Point = (go$ptrType(RangeTable)).nil;
-	var _Other_Alphabetic = (go$ptrType(RangeTable)).nil;
-	var _Other_Default_Ignorable_Code_Point = (go$ptrType(RangeTable)).nil;
-	var _Other_Grapheme_Extend = (go$ptrType(RangeTable)).nil;
-	var _Other_ID_Continue = (go$ptrType(RangeTable)).nil;
-	var _Other_ID_Start = (go$ptrType(RangeTable)).nil;
-	var _Other_Lowercase = (go$ptrType(RangeTable)).nil;
-	var _Other_Math = (go$ptrType(RangeTable)).nil;
-	var _Other_Uppercase = (go$ptrType(RangeTable)).nil;
-	var _Pattern_Syntax = (go$ptrType(RangeTable)).nil;
-	var _Pattern_White_Space = (go$ptrType(RangeTable)).nil;
-	var _Quotation_Mark = (go$ptrType(RangeTable)).nil;
-	var _Radical = (go$ptrType(RangeTable)).nil;
-	var _STerm = (go$ptrType(RangeTable)).nil;
-	var _Soft_Dotted = (go$ptrType(RangeTable)).nil;
-	var _Terminal_Punctuation = (go$ptrType(RangeTable)).nil;
-	var _Unified_Ideograph = (go$ptrType(RangeTable)).nil;
-	var _Variation_Selector = (go$ptrType(RangeTable)).nil;
-	var _White_Space = (go$ptrType(RangeTable)).nil;
-	go$pkg.ASCII_Hex_Digit = (go$ptrType(RangeTable)).nil;
-	go$pkg.Bidi_Control = (go$ptrType(RangeTable)).nil;
-	go$pkg.Dash = (go$ptrType(RangeTable)).nil;
-	go$pkg.Deprecated = (go$ptrType(RangeTable)).nil;
-	go$pkg.Diacritic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Extender = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hex_Digit = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hyphen = (go$ptrType(RangeTable)).nil;
-	go$pkg.IDS_Binary_Operator = (go$ptrType(RangeTable)).nil;
-	go$pkg.IDS_Trinary_Operator = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ideographic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Join_Control = (go$ptrType(RangeTable)).nil;
-	go$pkg.Logical_Order_Exception = (go$ptrType(RangeTable)).nil;
-	go$pkg.Noncharacter_Code_Point = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Alphabetic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Default_Ignorable_Code_Point = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Grapheme_Extend = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_ID_Continue = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_ID_Start = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Lowercase = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Math = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Uppercase = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pattern_Syntax = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pattern_White_Space = (go$ptrType(RangeTable)).nil;
-	go$pkg.Quotation_Mark = (go$ptrType(RangeTable)).nil;
-	go$pkg.Radical = (go$ptrType(RangeTable)).nil;
-	go$pkg.STerm = (go$ptrType(RangeTable)).nil;
-	go$pkg.Soft_Dotted = (go$ptrType(RangeTable)).nil;
-	go$pkg.Terminal_Punctuation = (go$ptrType(RangeTable)).nil;
-	go$pkg.Unified_Ideograph = (go$ptrType(RangeTable)).nil;
-	go$pkg.Variation_Selector = (go$ptrType(RangeTable)).nil;
-	go$pkg.White_Space = (go$ptrType(RangeTable)).nil;
-	go$pkg.CaseRanges = (go$sliceType(CaseRange)).nil;
-	var _CaseRanges = (go$sliceType(CaseRange)).nil;
-	var properties = go$makeNativeArray("Uint8", 256, function() { return 0; });
-	var caseOrbit = (go$sliceType(foldPair)).nil;
-	go$pkg.FoldCategory = false;
-	var foldCommon = (go$ptrType(RangeTable)).nil;
-	var foldGreek = (go$ptrType(RangeTable)).nil;
-	var foldInherited = (go$ptrType(RangeTable)).nil;
-	var foldL = (go$ptrType(RangeTable)).nil;
-	var foldLl = (go$ptrType(RangeTable)).nil;
-	var foldLt = (go$ptrType(RangeTable)).nil;
-	var foldLu = (go$ptrType(RangeTable)).nil;
-	var foldM = (go$ptrType(RangeTable)).nil;
-	var foldMn = (go$ptrType(RangeTable)).nil;
-	go$pkg.FoldScript = false;
+	var _Zp, _Brahmi, _Greek, _Oriya, _Other_Uppercase, _Terminal_Punctuation, _Co, _P, _Tagalog, _Kharoshthi, _Logical_Order_Exception, _White_Space, _Lu, _Me, _Cf, _Hiragana, _Inherited, _Ol_Chiki, foldL, _Sk, _Katakana, _L, _Bopomofo, _Inscriptional_Parthian, _Egyptian_Hieroglyphs, _Pd, foldLl, _Bengali, _Carian, _Cuneiform, _Imperial_Aramaic, _Noncharacter_Code_Point, properties, _Cherokee, _Meroitic_Hieroglyphs, _Old_South_Arabian, _Join_Control, _Ll, _CaseRanges, _Meetei_Mayek, _Rejang, _Cyrillic, _Lao, _No, _Bamum, _Buhid, _Gothic, _Old_Turkic, _N, _Hangul, _Limbu, _Sharada, _Tamil, _Extender, _Gurmukhi, caseOrbit, _Sc, _Arabic, _Tagbanwa, _Tai_Viet, _Pe, _Tai_Tham, _IDS_Binary_Operator, _Pattern_Syntax, _Sm, _So, _Old_Italic, _Shavian, _Thaana, _S, _ASCII_Hex_Digit, _Hyphen, _Nko, _Tifinagh, foldGreek, _Mandaic, _Hex_Digit, _Balinese, _Vai, _Pi, _Armenian, _Lydian, _Meroitic_Cursive, _Ugaritic, _Zs, _Lepcha, _Phoenician, _Radical, _Gujarati, _Hebrew, _Kaithi, _Other_Grapheme_Extend, _Canadian_Aboriginal, _Deseret, _Mongolian, _Diacritic, foldM, _Saurashtra, _IDS_Trinary_Operator, _Quotation_Mark, _Cc, _Lycian, _Ideographic, foldLu, _Cypriot, _Pattern_White_Space, _Devanagari, _Hanunoo, _Other_Lowercase, _Soft_Dotted, foldMn, _Lt, _Latin, _Runic, _Samaritan, _Yi, _Lm, _Lo, _Coptic, _Syriac, _Javanese, _Sundanese, _Telugu, _M, _Tai_Le, _Braille, _Glagolitic, _Inscriptional_Pahlavi, _Other_Alphabetic, _Pf, _Ps, _Buginese, foldCommon, _Chakma, _Phags_Pa, _Takri, _Zl, _Deprecated, _Other_Math, _C, _Pc, _Mn, _Ogham, foldInherited, _Bidi_Control, _Variation_Selector, foldLt, _Mc, _Po, _Sora_Sompeng, _Dash, _TurkishCase, _Cham, _Khmer, _Old_Persian, _Other_ID_Continue, _Malayalam, _New_Tai_Lue, _Cs, _Han, _Lisu, _Georgian, _Sinhala, _Ethiopic, _Kannada, _Nl, _Batak, _Myanmar, _Other_ID_Start, _Thai, _Nd, _Z, _Linear_B, _Kayah_Li, _Unified_Ideograph, _Avestan, _Miao, _Osmanya, _STerm, _Common, _Syloti_Nagri, _Tibetan, _Other_Default_Ignorable_Code_Point;
 	var IsDigit = go$pkg.IsDigit = function(r) {
 		if (r <= 255) {
 			return 48 <= r && r <= 57;
@@ -5739,7 +5358,6 @@ go$packages["bytes"] = (function() {
 	(go$ptrType(Buffer)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Len", "", [], [Go$Int], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false]];
 	Reader.init([["s", "bytes", (go$sliceType(Go$Uint8)), ""], ["i", "bytes", Go$Int, ""], ["prevRune", "bytes", Go$Int, ""]]);
 	(go$ptrType(Reader)).methods = [["Len", "", [], [Go$Int], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false]];
-	go$pkg.ErrTooLarge = null;
 	Buffer.Ptr.prototype.Bytes = function() {
 		var b;
 		b = this;
@@ -6868,55 +6486,7 @@ go$packages["bytes"] = (function() {
 })();
 go$packages["math"] = (function() {
 	var go$pkg = {};
-	var _gamP = go$makeNativeArray("Float64", 7, function() { return 0; });
-	var _gamQ = go$makeNativeArray("Float64", 8, function() { return 0; });
-	var _gamS = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var p0R8 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var p0S8 = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var p0R5 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var p0S5 = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var p0R3 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var p0S3 = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var p0R2 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var p0S2 = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var q0R8 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q0S8 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q0R5 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q0S5 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q0R3 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q0S3 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q0R2 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q0S2 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var p1R8 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var p1S8 = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var p1R5 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var p1S5 = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var p1R3 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var p1S3 = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var p1R2 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var p1S2 = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var q1R8 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q1S8 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q1R5 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q1S5 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q1R3 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q1S3 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q1R2 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var q1S2 = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var _lgamA = go$makeNativeArray("Float64", 12, function() { return 0; });
-	var _lgamR = go$makeNativeArray("Float64", 7, function() { return 0; });
-	var _lgamS = go$makeNativeArray("Float64", 7, function() { return 0; });
-	var _lgamT = go$makeNativeArray("Float64", 15, function() { return 0; });
-	var _lgamU = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var _lgamV = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var _lgamW = go$makeNativeArray("Float64", 7, function() { return 0; });
-	var pow10tab = go$makeNativeArray("Float64", 70, function() { return 0; });
-	var _sin = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var _cos = go$makeNativeArray("Float64", 6, function() { return 0; });
-	var _tanP = go$makeNativeArray("Float64", 3, function() { return 0; });
-	var _tanQ = go$makeNativeArray("Float64", 5, function() { return 0; });
-	var tanhP = go$makeNativeArray("Float64", 3, function() { return 0; });
-	var tanhQ = go$makeNativeArray("Float64", 3, function() { return 0; });
+	var p0S2, q0S2, p1R8, p1S8, p1S2, q1R8, q1R2, _lgamT, pow10tab, _cos, _tanQ, tanhP, _gamQ, _gamS, p0S8, p0R2, p1R2, q1S5, q1S3, _lgamV, p0R3, p1R5, p1R3, p1S3, q1S8, _lgamA, _sin, q0S3, q1S2, _lgamR, _lgamW, q0R5, q1R5, _lgamS, p0R8, p0S5, q0S8, p1S5, q1R3, _tanP, p0R5, p0S3, _lgamU, tanhQ, _gamP, q0R8, q0S5, q0R3, q0R2;
 	var Abs = go$pkg.Abs = Math.abs;
 	var abs = function(x) {
 		if (x < 0) {
@@ -8875,6 +8445,7 @@ go$packages["math"] = (function() {
 			return Ldexp((m.high * 4294967296 + m.low), e.low - 1023 - 52) * s;
 		};
 	go$pkg.init = function() {
+		pow10tab = go$makeNativeArray("Float64", 70, function() { return 0; });
 		var i, _q, m;
 		_gamP = go$toNativeArray("Float64", [0.00016011952247675185, 0.0011913514700658638, 0.010421379756176158, 0.04763678004571372, 0.20744822764843598, 0.4942148268014971, 1]);
 		_gamQ = go$toNativeArray("Float64", [-2.3158187332412014e-05, 0.0005396055804933034, -0.004456419138517973, 0.011813978522206043, 0.035823639860549865, -0.23459179571824335, 0.0714304917030273, 1]);
@@ -9681,22 +9252,7 @@ go$packages["syscall"] = (function() {
 	BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
 	BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
 	Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-	var envOnce = new sync.Once.Ptr();
-	var envLock = new sync.RWMutex.Ptr();
-	var env = false;
-	var envs = (go$sliceType(Go$String)).nil;
-	go$pkg.ForkLock = new sync.RWMutex.Ptr();
-	var zeroProcAttr = new ProcAttr.Ptr();
-	var zeroSysProcAttr = new SysProcAttr.Ptr();
-	var _zero = 0;
-	var mapper = (go$ptrType(mmapper)).nil;
-	go$pkg.Stdin = 0;
-	go$pkg.Stdout = 0;
-	go$pkg.Stderr = 0;
-	go$pkg.SocketDisableIPv6 = false;
-	var ioSync = new Go$Int64(0, 0);
-	var errors = go$makeNativeArray("String", 106, function() { return ""; });
-	var signals = go$makeNativeArray("String", 32, function() { return ""; });
+	var envLock, envs, signals, envOnce, zeroSysProcAttr, _zero, mapper, ioSync, env, errors, zeroProcAttr;
 	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
@@ -13100,6 +12656,17 @@ go$packages["syscall"] = (function() {
 		}
 		return [sec, usec, err];
 	};
+	go$pkg.init = function() {
+		zeroProcAttr = new ProcAttr.Ptr();
+		envLock = new sync.RWMutex.Ptr();
+		envs = (go$sliceType(Go$String)).nil;
+		envOnce = new sync.Once.Ptr();
+		zeroSysProcAttr = new SysProcAttr.Ptr();
+		_zero = 0;
+		go$pkg.SocketDisableIPv6 = false;
+		ioSync = new Go$Int64(0, 0);
+		env = false;
+		go$pkg.ForkLock = new sync.RWMutex.Ptr();
 
 			if (go$packages["runtime"].GOOS === "windows") {
 				Syscall = Syscall6 = Syscall9 = Syscall12 = Syscall15 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.Syscall9 = go$pkg.Syscall12 = go$pkg.Syscall15 = loadlibrary = getprocaddress = function() { throw "Syscalls not available." };
@@ -13128,8 +12695,7 @@ go$packages["syscall"] = (function() {
 					envs.array[i] = envkeys[i] + "=" + process.env[envkeys[i]];
 				}
 			}
-			go$pkg.init = function() {
-		mapper = new mmapper.Ptr(new sync.Mutex.Ptr(), new Go$Map(), mmap, munmap);
+				mapper = new mmapper.Ptr(new sync.Mutex.Ptr(), new Go$Map(), mmap, munmap);
 		go$pkg.Stdin = 0;
 		go$pkg.Stdout = 1;
 		go$pkg.Stderr = 2;
@@ -13252,28 +12818,7 @@ go$packages["time"] = (function() {
 	zoneTrans.init([["when", "time", Go$Int64, ""], ["index", "time", Go$Uint8, ""], ["isstd", "time", Go$Bool, ""], ["isutc", "time", Go$Bool, ""]]);
 	data.init([["p", "time", (go$sliceType(Go$Uint8)), ""], ["error", "time", Go$Bool, ""]]);
 	(go$ptrType(data)).methods = [["big4", "time", [], [Go$Uint32, Go$Bool], false], ["byte", "time", [], [Go$Uint8, Go$Bool], false], ["read", "time", [Go$Int], [(go$sliceType(Go$Uint8))], false]];
-	var std0x = go$makeNativeArray("Int", 6, function() { return 0; });
-	var longDayNames = (go$sliceType(Go$String)).nil;
-	var shortDayNames = (go$sliceType(Go$String)).nil;
-	var shortMonthNames = (go$sliceType(Go$String)).nil;
-	var longMonthNames = (go$sliceType(Go$String)).nil;
-	var atoiError = null;
-	var errBad = null;
-	var errLeadingInt = null;
-	var unitMap = false;
-	var months = go$makeNativeArray("String", 12, function() { return ""; });
-	var days = go$makeNativeArray("String", 7, function() { return ""; });
-	var daysBefore = go$makeNativeArray("Int32", 13, function() { return 0; });
-	go$pkg.UTC = (go$ptrType(Location)).nil;
-	var utcLoc = new Location.Ptr();
-	go$pkg.Local = (go$ptrType(Location)).nil;
-	var localLoc = new Location.Ptr();
-	var localOnce = new sync.Once.Ptr();
-	var zoneinfo = "";
-	var _ = false;
-	var badData = null;
-	var zoneDirs = (go$sliceType(Go$String)).nil;
-	var origZoneDirs = (go$sliceType(Go$String)).nil;
+	var days, localLoc, std0x, shortMonthNames, errLeadingInt, unitMap, daysBefore, zoneDirs, shortDayNames, longMonthNames, atoiError, months, longDayNames, errBad, utcLoc, localOnce, zoneinfo, badData, origZoneDirs;
 	var startsWithLowerCase = function(str) {
 		var c;
 		if (str.length === 0) {
@@ -15528,6 +15073,8 @@ go$packages["time"] = (function() {
 		return [(go$ptrType(Location)).nil, errors.New("unknown time zone " + name)];
 	};
 	go$pkg.init = function() {
+		localLoc = new Location.Ptr();
+		localOnce = new sync.Once.Ptr();
 		var _map, _key, _tuple;
 		std0x = go$toNativeArray("Int", [260, 265, 524, 526, 528, 274]);
 		longDayNames = new (go$sliceType(Go$String))(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
@@ -15676,19 +15223,7 @@ go$packages["os"] = (function() {
 	(go$ptrType(FileMode)).methods = [["IsDir", "", [], [Go$Bool], false], ["IsRegular", "", [], [Go$Bool], false], ["Perm", "", [], [FileMode], false], ["String", "", [], [Go$String], false]];
 	fileStat.init([["name", "os", Go$String, ""], ["size", "os", Go$Int64, ""], ["mode", "os", FileMode, ""], ["modTime", "os", time.Time, ""], ["sys", "os", go$emptyInterface, ""]]);
 	(go$ptrType(fileStat)).methods = [["IsDir", "", [], [Go$Bool], false], ["ModTime", "", [], [time.Time], false], ["Mode", "", [], [FileMode], false], ["Name", "", [], [Go$String], false], ["Size", "", [], [Go$Int64], false], ["Sys", "", [], [go$emptyInterface], false]];
-	go$pkg.ErrInvalid = null;
-	go$pkg.ErrPermission = null;
-	go$pkg.ErrExist = null;
-	go$pkg.ErrNotExist = null;
-	go$pkg.Interrupt = null;
-	go$pkg.Kill = null;
-	go$pkg.Stdin = (go$ptrType(File)).nil;
-	go$pkg.Stdout = (go$ptrType(File)).nil;
-	go$pkg.Stderr = (go$ptrType(File)).nil;
-	var lstat = go$throwNilPointerError;
-	var getwdCache = new (go$structType([["", "", sync.Mutex, ""], ["dir", "os", Go$String, ""]])).Ptr(new sync.Mutex.Ptr(), "");
-	var useSyscallwd = go$throwNilPointerError;
-	go$pkg.Args = (go$sliceType(Go$String)).nil;
+	var lstat, getwdCache, useSyscallwd;
 	File.Ptr.prototype.readdirnames = function(n) {
 		var names, err, f, d, size, errno, _tuple, _tuple$1, _tuple$2, nb, nc, _tuple$3, _tuple$4, _tuple$5;
 		names = (go$sliceType(Go$String)).nil;
@@ -17121,13 +16656,15 @@ go$packages["os"] = (function() {
 		return fs.sys;
 	};
 	fileStat.prototype.Sys = function() { return this.go$val.Sys(); };
+	go$pkg.init = function() {
+		getwdCache = new (go$structType([["", "", sync.Mutex, ""], ["dir", "os", Go$String, ""]])).Ptr(new sync.Mutex.Ptr(), "");
+		go$pkg.Args = (go$sliceType(Go$String)).nil;
 
 			go$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);
 			if (go$packages["runtime"].GOOS === "windows") {
 				NewFile = go$pkg.NewFile = function() { return new File.Ptr(); };
 			}
-			go$pkg.init = function() {
-		go$pkg.ErrInvalid = errors.New("invalid argument");
+				go$pkg.ErrInvalid = errors.New("invalid argument");
 		go$pkg.ErrPermission = errors.New("permission denied");
 		go$pkg.ErrExist = errors.New("file already exists");
 		go$pkg.ErrNotExist = errors.New("file does not exist");
@@ -17208,23 +16745,7 @@ go$packages["strconv"] = (function() {
 	(go$ptrType(extFloat)).methods = [["AssignComputeBounds", "", [Go$Uint64, Go$Int, Go$Bool, (go$ptrType(floatInfo))], [extFloat, extFloat], false], ["AssignDecimal", "", [Go$Uint64, Go$Int, Go$Bool, Go$Bool, (go$ptrType(floatInfo))], [Go$Bool], false], ["FixedDecimal", "", [(go$ptrType(decimalSlice)), Go$Int], [Go$Bool], false], ["Multiply", "", [extFloat], [], false], ["Normalize", "", [], [Go$Uint], false], ["ShortestDecimal", "", [(go$ptrType(decimalSlice)), (go$ptrType(extFloat)), (go$ptrType(extFloat))], [Go$Bool], false], ["floatBits", "strconv", [(go$ptrType(floatInfo))], [Go$Uint64, Go$Bool], false], ["frexp10", "strconv", [], [Go$Int, Go$Int], false]];
 	floatInfo.init([["mantbits", "strconv", Go$Uint, ""], ["expbits", "strconv", Go$Uint, ""], ["bias", "strconv", Go$Int, ""]]);
 	decimalSlice.init([["d", "strconv", (go$sliceType(Go$Uint8)), ""], ["nd", "strconv", Go$Int, ""], ["dp", "strconv", Go$Int, ""], ["neg", "strconv", Go$Bool, ""]]);
-	var optimize = false;
-	var powtab = (go$sliceType(Go$Int)).nil;
-	var float64pow10 = (go$sliceType(Go$Float64)).nil;
-	var float32pow10 = (go$sliceType(Go$Float32)).nil;
-	go$pkg.ErrRange = null;
-	go$pkg.ErrSyntax = null;
-	var leftcheats = (go$sliceType(leftCheat)).nil;
-	var smallPowersOfTen = go$makeNativeArray("Struct", 8, function() { return new extFloat.Ptr(); });
-	var powersOfTen = go$makeNativeArray("Struct", 87, function() { return new extFloat.Ptr(); });
-	var uint64pow10 = go$makeNativeArray("Uint64", 20, function() { return new Go$Uint64(0, 0); });
-	var float32info = new floatInfo.Ptr();
-	var float64info = new floatInfo.Ptr();
-	var isPrint16 = (go$sliceType(Go$Uint16)).nil;
-	var isNotPrint16 = (go$sliceType(Go$Uint16)).nil;
-	var isPrint32 = (go$sliceType(Go$Uint32)).nil;
-	var isNotPrint32 = (go$sliceType(Go$Uint16)).nil;
-	var shifts = go$makeNativeArray("Uint", 37, function() { return 0; });
+	var optimize, powtab, float64pow10, powersOfTen, isPrint32, leftcheats, smallPowersOfTen, uint64pow10, isNotPrint16, isPrint16, float32pow10, float32info, float64info, isNotPrint32, shifts;
 	var ParseBool = go$pkg.ParseBool = function(str) {
 		var value, err, _ref, _tuple, _tuple$1, _tuple$2;
 		value = false;
@@ -20304,13 +19825,7 @@ go$packages["reflect"] = (function() {
 	SliceHeader.init([["Data", "", Go$Uintptr, ""], ["Len", "", Go$Int, ""], ["Cap", "", Go$Int, ""]]);
 	runtimeSelect.init([["dir", "reflect", Go$Uintptr, ""], ["typ", "reflect", (go$ptrType(rtype)), ""], ["ch", "reflect", iword, ""], ["val", "reflect", iword, ""]]);
 	SelectCase.init([["Dir", "", SelectDir, ""], ["Chan", "", Value, ""], ["Send", "", Value, ""]]);
-	var kindNames = (go$sliceType(Go$String)).nil;
-	var ptrMap = new (go$structType([["", "", sync.RWMutex, ""], ["m", "reflect", (go$mapType((go$ptrType(rtype)), (go$ptrType(ptrType)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-	var ptrDataGCProg = new ptrDataGC.Ptr();
-	var lookupCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "reflect", (go$mapType(cacheKey, (go$ptrType(rtype)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-	var sliceEmptyGCProg = new sliceEmptyGC.Ptr();
-	var uint8Type = (go$ptrType(rtype)).nil;
-	var dummy = new (go$structType([["b", "reflect", Go$Bool, ""], ["x", "reflect", go$emptyInterface, ""]])).Ptr(false, null);
+	var kindNames, ptrMap, ptrDataGCProg, lookupCache, sliceEmptyGCProg, uint8Type, dummy;
 	var deepValueEqual = function(v1, v2, visited, depth) {
 		var hard, addr1, addr2, _tuple, typ, v, _entry, _key, _struct, _ref, i, _struct$1, _struct$2, i$1, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _tuple$1, i$2, n, _struct$9, _struct$10, _ref$1, _i, _slice, _index, _struct$11, k, _struct$12, _struct$13, _struct$14, _struct$15, _struct$16, _struct$17;
 		if (!v1.IsValid() || !v2.IsValid()) {
@@ -23523,6 +23038,9 @@ go$packages["reflect"] = (function() {
 				}
 			};
 			go$pkg.init = function() {
+		ptrMap = new (go$structType([["", "", sync.RWMutex, ""], ["m", "reflect", (go$mapType((go$ptrType(rtype)), (go$ptrType(ptrType)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+		lookupCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "reflect", (go$mapType(cacheKey, (go$ptrType(rtype)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+		dummy = new (go$structType([["b", "reflect", Go$Bool, ""], ["x", "reflect", go$emptyInterface, ""]])).Ptr(false, null);
 		var x;
 		kindNames = new (go$sliceType(Go$String))(["invalid", "bool", "int", "int8", "int16", "int32", "int64", "uint", "uint8", "uint16", "uint32", "uint64", "uintptr", "float32", "float64", "complex64", "complex128", "array", "chan", "func", "interface", "map", "ptr", "slice", "string", "struct", "unsafe.Pointer"]);
 		ptrDataGCProg = new ptrDataGC.Ptr(4, 2, 0, 0);
@@ -23669,32 +23187,7 @@ go$packages["fmt"] = (function() {
 	ssave.init([["validSave", "fmt", Go$Bool, ""], ["nlIsEnd", "fmt", Go$Bool, ""], ["nlIsSpace", "fmt", Go$Bool, ""], ["argLimit", "fmt", Go$Int, ""], ["limit", "fmt", Go$Int, ""], ["maxWid", "fmt", Go$Int, ""]]);
 	readRune.init([["reader", "fmt", io.Reader, ""], ["buf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["pending", "fmt", Go$Int, ""], ["pendBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""]]);
 	(go$ptrType(readRune)).methods = [["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["readByte", "fmt", [], [Go$Uint8, go$error], false], ["unread", "fmt", [(go$sliceType(Go$Uint8))], [], false]];
-	var padZeroBytes = (go$sliceType(Go$Uint8)).nil;
-	var padSpaceBytes = (go$sliceType(Go$Uint8)).nil;
-	var trueBytes = (go$sliceType(Go$Uint8)).nil;
-	var falseBytes = (go$sliceType(Go$Uint8)).nil;
-	var commaSpaceBytes = (go$sliceType(Go$Uint8)).nil;
-	var nilAngleBytes = (go$sliceType(Go$Uint8)).nil;
-	var nilParenBytes = (go$sliceType(Go$Uint8)).nil;
-	var nilBytes = (go$sliceType(Go$Uint8)).nil;
-	var mapBytes = (go$sliceType(Go$Uint8)).nil;
-	var percentBangBytes = (go$sliceType(Go$Uint8)).nil;
-	var missingBytes = (go$sliceType(Go$Uint8)).nil;
-	var badIndexBytes = (go$sliceType(Go$Uint8)).nil;
-	var panicBytes = (go$sliceType(Go$Uint8)).nil;
-	var extraBytes = (go$sliceType(Go$Uint8)).nil;
-	var irparenBytes = (go$sliceType(Go$Uint8)).nil;
-	var bytesBytes = (go$sliceType(Go$Uint8)).nil;
-	var badWidthBytes = (go$sliceType(Go$Uint8)).nil;
-	var badPrecBytes = (go$sliceType(Go$Uint8)).nil;
-	var noVerbBytes = (go$sliceType(Go$Uint8)).nil;
-	var ppFree = (go$ptrType(cache)).nil;
-	var intBits = 0;
-	var uintptrBits = 0;
-	var space = (go$sliceType((go$arrayType(Go$Uint16, 2)))).nil;
-	var ssFree = (go$ptrType(cache)).nil;
-	var complexError = null;
-	var boolError = null;
+	var trueBytes, falseBytes, missingBytes, panicBytes, noVerbBytes, space, boolError, padZeroBytes, padSpaceBytes, commaSpaceBytes, nilBytes, mapBytes, intBits, ssFree, percentBangBytes, badIndexBytes, irparenBytes, bytesBytes, ppFree, complexError, nilAngleBytes, nilParenBytes, extraBytes, badWidthBytes, badPrecBytes, uintptrBits;
 	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;
@@ -26696,7 +26189,6 @@ go$packages["github.com/neelance/go-angularjs"] = (function() {
 	(go$ptrType(Event)).methods = [["Bool", "", [], [Go$Bool], false], ["Call", "", [Go$String, (go$sliceType(go$emptyInterface))], [js.Object], true], ["Float", "", [], [Go$Float64], false], ["Get", "", [Go$String], [js.Object], false], ["Index", "", [Go$Int], [js.Object], false], ["Int", "", [], [Go$Int], false], ["Interface", "", [], [go$emptyInterface], false], ["Invoke", "", [(go$sliceType(go$emptyInterface))], [js.Object], true], ["IsNull", "", [], [Go$Bool], false], ["IsUndefined", "", [], [Go$Bool], false], ["Length", "", [], [Go$Int], false], ["New", "", [(go$sliceType(go$emptyInterface))], [js.Object], true], ["PreventDefault", "", [], [], false], ["Set", "", [Go$String, go$emptyInterface], [], false], ["SetIndex", "", [Go$Int, go$emptyInterface], [], false], ["String", "", [], [Go$String], false]];
 	HttpService.init([]);
 	(go$ptrType(HttpService)).methods = [["Get", "", [Go$String, (go$funcType([Go$String, Go$Int], [], false))], [], false]];
-	go$pkg.HTTP = (go$ptrType(HttpService)).nil;
 	Module.Ptr.prototype.NewController = function(name, constructor) {
 		var m;
 		m = this;
@@ -27311,8 +26803,7 @@ go$packages["go/token"] = (function() {
 	serializedFileSet.init([["Base", "", Go$Int, ""], ["Files", "", (go$sliceType(serializedFile)), ""]]);
 	Token.methods = [["IsKeyword", "", [], [Go$Bool], false], ["IsLiteral", "", [], [Go$Bool], false], ["IsOperator", "", [], [Go$Bool], false], ["Precedence", "", [], [Go$Int], false], ["String", "", [], [Go$String], false]];
 	(go$ptrType(Token)).methods = [["IsKeyword", "", [], [Go$Bool], false], ["IsLiteral", "", [], [Go$Bool], false], ["IsOperator", "", [], [Go$Bool], false], ["Precedence", "", [], [Go$Int], false], ["String", "", [], [Go$String], false]];
-	var tokens = go$makeNativeArray("String", 86, function() { return ""; });
-	var keywords = false;
+	var tokens, keywords;
 	Position.Ptr.prototype.IsValid = function() {
 		var pos;
 		pos = this;
@@ -27748,6 +27239,7 @@ go$packages["go/token"] = (function() {
 	};
 	go$ptrType(Token).prototype.IsKeyword = function() { return new Token(this.go$get()).IsKeyword(); };
 	go$pkg.init = function() {
+		keywords = false;
 		var i, _key;
 		tokens = go$toNativeArray("String", ["ILLEGAL", "EOF", "COMMENT", "", "IDENT", "INT", "FLOAT", "IMAG", "CHAR", "STRING", "", "", "+", "-", "*", "/", "%", "&", "|", "^", "<<", ">>", "&^", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>=", "&^=", "&&", "||", "<-", "++", "--", "==", "<", ">", "=", "!", "!=", "<=", ">=", ":=", "...", "(", "[", "{", ",", ".", ")", "]", "}", ";", ":", "", "", "break", "case", "chan", "const", "continue", "default", "defer", "else", "fallthrough", "for", "func", "go", "goto", "if", "import", "interface", "map", "package", "range", "return", "select", "struct", "switch", "type", "var"]);
 		keywords = new Go$Map();
@@ -27811,9 +27303,7 @@ go$packages["encoding/binary"] = (function() {
 	(go$ptrType(decoder)).methods = [["int16", "encoding/binary", [], [Go$Int16], false], ["int32", "encoding/binary", [], [Go$Int32], false], ["int64", "encoding/binary", [], [Go$Int64], false], ["int8", "encoding/binary", [], [Go$Int8], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [], [Go$Uint16], false], ["uint32", "encoding/binary", [], [Go$Uint32], false], ["uint64", "encoding/binary", [], [Go$Uint64], false], ["uint8", "encoding/binary", [], [Go$Uint8], false], ["value", "encoding/binary", [reflect.Value], [], false]];
 	encoder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
 	(go$ptrType(encoder)).methods = [["int16", "encoding/binary", [Go$Int16], [], false], ["int32", "encoding/binary", [Go$Int32], [], false], ["int64", "encoding/binary", [Go$Int64], [], false], ["int8", "encoding/binary", [Go$Int8], [], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [Go$Uint16], [], false], ["uint32", "encoding/binary", [Go$Uint32], [], false], ["uint64", "encoding/binary", [Go$Uint64], [], false], ["uint8", "encoding/binary", [Go$Uint8], [], false], ["value", "encoding/binary", [reflect.Value], [], false]];
-	go$pkg.LittleEndian = new littleEndian.Ptr();
-	go$pkg.BigEndian = new bigEndian.Ptr();
-	var overflow = null;
+	var overflow;
 	littleEndian.Ptr.prototype.Uint16 = function(b) {
 		var _slice, _index, _slice$1, _index$1;
 		return (((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16)) >>> 0;
@@ -28617,6 +28107,8 @@ go$packages["encoding/binary"] = (function() {
 		return [x$1, err];
 	};
 	go$pkg.init = function() {
+		go$pkg.LittleEndian = new littleEndian.Ptr();
+		go$pkg.BigEndian = new bigEndian.Ptr();
 		overflow = errors.New("binary: varint overflows a 64-bit integer");
 	};
 	return go$pkg;
@@ -28672,14 +28164,7 @@ go$packages["math/rand"] = (function() {
 	(go$ptrType(rngSource)).methods = [["Int63", "", [], [Go$Int64], false], ["Seed", "", [Go$Int64], [], false]];
 	Zipf.init([["r", "math/rand", (go$ptrType(Rand)), ""], ["imax", "math/rand", Go$Float64, ""], ["v", "math/rand", Go$Float64, ""], ["q", "math/rand", Go$Float64, ""], ["s", "math/rand", Go$Float64, ""], ["oneminusQ", "math/rand", Go$Float64, ""], ["oneminusQinv", "math/rand", Go$Float64, ""], ["hxm", "math/rand", Go$Float64, ""], ["hx0minusHxm", "math/rand", Go$Float64, ""]]);
 	(go$ptrType(Zipf)).methods = [["Uint64", "", [], [Go$Uint64], false], ["h", "math/rand", [Go$Float64], [Go$Float64], false], ["hinv", "math/rand", [Go$Float64], [Go$Float64], false]];
-	var ke = go$makeNativeArray("Uint32", 256, function() { return 0; });
-	var we = go$makeNativeArray("Float32", 256, function() { return 0; });
-	var fe = go$makeNativeArray("Float32", 256, function() { return 0; });
-	var kn = go$makeNativeArray("Uint32", 128, function() { return 0; });
-	var wn = go$makeNativeArray("Float32", 128, function() { return 0; });
-	var fn = go$makeNativeArray("Float32", 128, function() { return 0; });
-	var globalRand = (go$ptrType(Rand)).nil;
-	var rng_cooked = go$makeNativeArray("Int64", 607, function() { return new Go$Int64(0, 0); });
+	var ke, we, fe, kn, wn, fn, globalRand, rng_cooked;
 	Rand.Ptr.prototype.ExpFloat64 = function() {
 		var r, j, i, x;
 		r = this;
@@ -29015,8 +28500,8 @@ go$packages["math/rand"] = (function() {
 		kn = go$toNativeArray("Uint32", [1991057938, 0, 1611602771, 1826899878, 1918584482, 1969227037, 2001281515, 2023368125, 2039498179, 2051788381, 2061460127, 2069267110, 2075699398, 2081089314, 2085670119, 2089610331, 2093034710, 2096037586, 2098691595, 2101053571, 2103168620, 2105072996, 2106796166, 2108362327, 2109791536, 2111100552, 2112303493, 2113412330, 2114437283, 2115387130, 2116269447, 2117090813, 2117856962, 2118572919, 2119243101, 2119871411, 2120461303, 2121015852, 2121537798, 2122029592, 2122493434, 2122931299, 2123344971, 2123736059, 2124106020, 2124456175, 2124787725, 2125101763, 2125399283, 2125681194, 2125948325, 2126201433, 2126441213, 2126668298, 2126883268, 2127086657, 2127278949, 2127460589, 2127631985, 2127793506, 2127945490, 2128088244, 2128222044, 2128347141, 2128463758, 2128572095, 2128672327, 2128764606, 2128849065, 2128925811, 2128994934, 2129056501, 2129110560, 2129157136, 2129196237, 2129227847, 2129251929, 2129268426, 2129277255, 2129278312, 2129271467, 2129256561, 2129233410, 2129201800, 2129161480, 2129112170, 2129053545, 2128985244, 2128906855, 2128817916, 2128717911, 2128606255, 2128482298, 2128345305, 2128194452, 2128028813, 2127847342, 2127648860, 2127432031, 2127195339, 2126937058, 2126655214, 2126347546, 2126011445, 2125643893, 2125241376, 2124799783, 2124314271, 2123779094, 2123187386, 2122530867, 2121799464, 2120980787, 2120059418, 2119015917, 2117825402, 2116455471, 2114863093, 2112989789, 2110753906, 2108037662, 2104664315, 2100355223, 2094642347, 2086670106, 2074676188, 2054300022, 2010539237]);
 		wn = go$toNativeArray("Float32", [1.7290405e-09, 1.2680929e-10, 1.6897518e-10, 1.9862688e-10, 2.2232431e-10, 2.4244937e-10, 2.601613e-10, 2.7611988e-10, 2.9073963e-10, 3.042997e-10, 3.1699796e-10, 3.289802e-10, 3.4035738e-10, 3.5121603e-10, 3.616251e-10, 3.7164058e-10, 3.8130857e-10, 3.9066758e-10, 3.9975012e-10, 4.08584e-10, 4.1719309e-10, 4.2559822e-10, 4.338176e-10, 4.418672e-10, 4.497613e-10, 4.5751258e-10, 4.651324e-10, 4.7263105e-10, 4.8001775e-10, 4.87301e-10, 4.944885e-10, 5.015873e-10, 5.0860405e-10, 5.155446e-10, 5.2241467e-10, 5.2921934e-10, 5.359635e-10, 5.426517e-10, 5.4928817e-10, 5.5587696e-10, 5.624219e-10, 5.6892646e-10, 5.753941e-10, 5.818282e-10, 5.882317e-10, 5.946077e-10, 6.00959e-10, 6.072884e-10, 6.135985e-10, 6.19892e-10, 6.2617134e-10, 6.3243905e-10, 6.386974e-10, 6.449488e-10, 6.511956e-10, 6.5744005e-10, 6.6368433e-10, 6.699307e-10, 6.7618144e-10, 6.824387e-10, 6.8870465e-10, 6.949815e-10, 7.012715e-10, 7.075768e-10, 7.1389966e-10, 7.202424e-10, 7.266073e-10, 7.329966e-10, 7.394128e-10, 7.4585826e-10, 7.5233547e-10, 7.58847e-10, 7.653954e-10, 7.719835e-10, 7.7861395e-10, 7.852897e-10, 7.920138e-10, 7.987892e-10, 8.0561924e-10, 8.125073e-10, 8.194569e-10, 8.2647167e-10, 8.3355556e-10, 8.407127e-10, 8.479473e-10, 8.55264e-10, 8.6266755e-10, 8.7016316e-10, 8.777562e-10, 8.8545243e-10, 8.932582e-10, 9.0117996e-10, 9.09225e-10, 9.174008e-10, 9.2571584e-10, 9.341788e-10, 9.427997e-10, 9.515889e-10, 9.605579e-10, 9.697193e-10, 9.790869e-10, 9.88676e-10, 9.985036e-10, 1.0085882e-09, 1.0189509e-09, 1.0296151e-09, 1.0406069e-09, 1.0519566e-09, 1.063698e-09, 1.0758702e-09, 1.0885183e-09, 1.1016947e-09, 1.1154611e-09, 1.1298902e-09, 1.1450696e-09, 1.1611052e-09, 1.1781276e-09, 1.1962995e-09, 1.2158287e-09, 1.2369856e-09, 1.2601323e-09, 1.2857697e-09, 1.3146202e-09, 1.347784e-09, 1.3870636e-09, 1.4357403e-09, 1.5008659e-09, 1.6030948e-09]);
 		fn = go$toNativeArray("Float32", [1, 0.9635997, 0.9362827, 0.9130436, 0.89228165, 0.87324303, 0.8555006, 0.8387836, 0.8229072, 0.8077383, 0.793177, 0.7791461, 0.7655842, 0.7524416, 0.73967725, 0.7272569, 0.7151515, 0.7033361, 0.69178915, 0.68049186, 0.6694277, 0.658582, 0.6479418, 0.63749546, 0.6272325, 0.6171434, 0.6072195, 0.5974532, 0.58783704, 0.5783647, 0.56903, 0.5598274, 0.5507518, 0.54179835, 0.5329627, 0.52424055, 0.5156282, 0.50712204, 0.49871865, 0.49041483, 0.48220766, 0.4740943, 0.46607214, 0.4581387, 0.45029163, 0.44252872, 0.43484783, 0.427247, 0.41972435, 0.41227803, 0.40490642, 0.39760786, 0.3903808, 0.3832238, 0.37613547, 0.36911446, 0.3621595, 0.35526937, 0.34844297, 0.34167916, 0.33497685, 0.3283351, 0.3217529, 0.3152294, 0.30876362, 0.30235484, 0.29600215, 0.28970486, 0.2834622, 0.2772735, 0.27113807, 0.2650553, 0.25902456, 0.2530453, 0.24711695, 0.241239, 0.23541094, 0.22963232, 0.2239027, 0.21822165, 0.21258877, 0.20700371, 0.20146611, 0.19597565, 0.19053204, 0.18513499, 0.17978427, 0.17447963, 0.1692209, 0.16400786, 0.15884037, 0.15371831, 0.14864157, 0.14361008, 0.13862377, 0.13368265, 0.12878671, 0.12393598, 0.119130544, 0.11437051, 0.10965602, 0.104987256, 0.10036444, 0.095787846, 0.0912578, 0.08677467, 0.0823389, 0.077950984, 0.073611505, 0.06932112, 0.06508058, 0.06089077, 0.056752663, 0.0526674, 0.048636295, 0.044660863, 0.040742867, 0.03688439, 0.033087887, 0.029356318, 0.025693292, 0.022103304, 0.018592102, 0.015167298, 0.011839478, 0.008624485, 0.005548995, 0.0026696292]);
-		globalRand = New(new lockedSource.Ptr(new sync.Mutex.Ptr(), NewSource(new Go$Int64(0, 1))));
 		rng_cooked = go$toNativeArray("Int64", [new Go$Int64(1173834291, 3952672746), new Go$Int64(1081821761, 3130416987), new Go$Int64(324977939, 3414273807), new Go$Int64(1241840476, 2806224363), new Go$Int64(669549340, 1997590414), new Go$Int64(2103305448, 2402795971), new Go$Int64(1663160183, 1140819369), new Go$Int64(1120601685, 1788868961), new Go$Int64(1848035537, 1089001426), new Go$Int64(1235702047, 873593504), new Go$Int64(1911387977, 581324885), new Go$Int64(492609478, 1609182556), new Go$Int64(1069394745, 1241596776), new Go$Int64(1895445337, 1771189259), new Go$Int64(772864846, 3467012610), new Go$Int64(2006957225, 2344407434), new Go$Int64(402115761, 782467244), new Go$Int64(26335124, 3404933915), new Go$Int64(1063924276, 618867887), new Go$Int64(1178782866, 520164395), new Go$Int64(555910815, 1341358184), new Go$Int64(632398609, 665794848), new Go$Int64(1527227641, 3183648150), new Go$Int64(1781176124, 696329606), new Go$Int64(1789146075, 4151988961), new Go$Int64(60039534, 998951326), new Go$Int64(1535158725, 1364957564), new Go$Int64(63173359, 4090230633), new Go$Int64(649454641, 4009697548), new Go$Int64(248009524, 2569622517), new Go$Int64(778703922, 3742421481), new Go$Int64(1038377625, 1506914633), new Go$Int64(1738099768, 1983412561), new Go$Int64(236311649, 1436266083), new Go$Int64(1035966148, 3922894967), new Go$Int64(810508934, 1792680179), new Go$Int64(563141142, 1188796351), new Go$Int64(1349617468, 405968250), new Go$Int64(1044074554, 433754187), new Go$Int64(870549669, 4073162024), new Go$Int64(1053232044, 433121399), new Go$Int64(2451824, 4162580594), new Go$Int64(2010221076, 4132415622), new Go$Int64(611252600, 3033822028), new Go$Int64(2016407895, 824682382), new Go$Int64(2366218, 3583765414), new Go$Int64(1522878809, 535386927), new Go$Int64(1637219058, 2286693689), new Go$Int64(1453075389, 2968466525), new Go$Int64(193683513, 1351410206), new Go$Int64(1863677552, 1412813499), new Go$Int64(492736522, 4126267639), new Go$Int64(512765208, 2105529399), new Go$Int64(2132966268, 2413882233), new Go$Int64(947457634, 32226200), new Go$Int64(1149341356, 2032329073), new Go$Int64(106485445, 1356518208), new Go$Int64(79673492, 3430061722), new Go$Int64(663048513, 3820169661), new Go$Int64(481498454, 2981816134), new Go$Int64(1017155588, 4184371017), new Go$Int64(206574701, 2119206761), new Go$Int64(1295374591, 2472200560), new Go$Int64(1587026100, 2853524696), new Go$Int64(1307803389, 1681119904), new Go$Int64(1972496813, 95608918), new Go$Int64(392686347, 3690479145), new Go$Int64(941912722, 1397922290), new Go$Int64(988169623, 1516129515), new Go$Int64(1827305493, 1547420459), new Go$Int64(1311333971, 1470949486), new Go$Int64(194013850, 1336785672), new Go$Int64(2102397034, 4131677129), new Go$Int64(755205548, 4246329084), new Go$Int64(1004983461, 3788585631), new Go$Int64(2081005363, 3080389532), new Go$Int64(1501045284, 2215402037), new Go$Int64(391002300, 1171593935), new Go$Int64(1408774047, 1423855166), new Go$Int64(1628305930, 2276716302), new Go$Int64(1779030508, 2068027241), new Go$Int64(1369359303, 3427553297), new Go$Int64(189241615, 3289637845), new Go$Int64(1057480830, 3486407650), new Go$Int64(634572984, 3071877822), new Go$Int64(1159653919, 3363620705), new Go$Int64(1213226718, 4159821533), new Go$Int64(2070861710, 1894661), new Go$Int64(1472989750, 1156868282), new Go$Int64(348271067, 776219088), new Go$Int64(1646054810, 2425634259), new Go$Int64(1716021749, 680510161), new Go$Int64(1573220192, 1310101429), new Go$Int64(1095885995, 2964454134), new Go$Int64(1821788136, 3467098407), new Go$Int64(1990672920, 2109628894), new Go$Int64(7834944, 1232604732), new Go$Int64(309412934, 3261916179), new Go$Int64(1699175360, 434597899), new Go$Int64(235436061, 1624796439), new Go$Int64(521080809, 3589632480), new Go$Int64(1198416575, 864579159), new Go$Int64(208735487, 1380889830), new Go$Int64(619206309, 2654509477), new Go$Int64(1419738251, 1468209306), new Go$Int64(403198876, 100794388), new Go$Int64(956062190, 2991674471), new Go$Int64(1938816907, 2224662036), new Go$Int64(1973824487, 977097250), new Go$Int64(1351320195, 726419512), new Go$Int64(1964023751, 1747974366), new Go$Int64(1394388465, 1556430604), new Go$Int64(1097991433, 1080776742), new Go$Int64(1761636690, 280794874), new Go$Int64(117767733, 919835643), new Go$Int64(1180474222, 3434019658), new Go$Int64(196069168, 2461941785), new Go$Int64(133215641, 3615001066), new Go$Int64(417204809, 3103414427), new Go$Int64(790056561, 3380809712), new Go$Int64(879802240, 2724693469), new Go$Int64(547796833, 598827710), new Go$Int64(300924196, 3452273442), new Go$Int64(2071705424, 649274915), new Go$Int64(1346182319, 2585724112), new Go$Int64(636549385, 3165579553), new Go$Int64(1185578221, 2635894283), new Go$Int64(2094573470, 2053289721), new Go$Int64(985976581, 3169337108), new Go$Int64(1170569632, 144717764), new Go$Int64(1079216270, 1383666384), new Go$Int64(2022678706, 681540375), new Go$Int64(1375448925, 537050586), new Go$Int64(182715304, 315246468), new Go$Int64(226402871, 849323088), new Go$Int64(1262421183, 45543944), new Go$Int64(1201038398, 2319052083), new Go$Int64(2106775454, 3613090841), new Go$Int64(560472520, 2992171180), new Go$Int64(1765620479, 2068244785), new Go$Int64(917538188, 4239862634), new Go$Int64(777927839, 3892253031), new Go$Int64(720683925, 958186149), new Go$Int64(1724185863, 1877702262), new Go$Int64(1357886971, 837674867), new Go$Int64(1837048883, 1507589294), new Go$Int64(1905518400, 873336795), new Go$Int64(267722611, 2764496274), new Go$Int64(341003118, 4196182374), new Go$Int64(1080717893, 550964545), new Go$Int64(818747069, 420611474), new Go$Int64(222653272, 204265180), new Go$Int64(1549974541, 1787046383), new Go$Int64(1215581865, 3102292318), new Go$Int64(418321538, 1552199393), new Go$Int64(1243493047, 980542004), new Go$Int64(267284263, 3293718720), new Go$Int64(1179528763, 3771917473), new Go$Int64(599484404, 2195808264), new Go$Int64(252818753, 3894702887), new Go$Int64(780007692, 2099949527), new Go$Int64(1424094358, 338442522), new Go$Int64(490737398, 637158004), new Go$Int64(419862118, 281976339), new Go$Int64(574970164, 3619802330), new Go$Int64(1715552825, 3084554784), new Go$Int64(882872465, 4129772886), new Go$Int64(43084605, 1680378557), new Go$Int64(525521057, 3339087776), new Go$Int64(1680500332, 4220317857), new Go$Int64(211654685, 2959322499), new Go$Int64(1675600481, 1488354890), new Go$Int64(1312620086, 3958162143), new Go$Int64(920972075, 2773705983), new Go$Int64(1876039582, 225908689), new Go$Int64(963748535, 908216283), new Go$Int64(1541787429, 3574646075), new Go$Int64(319760557, 1936937569), new Go$Int64(1519770881, 75492235), new Go$Int64(816689472, 1935193178), new Go$Int64(2142521206, 2018250883), new Go$Int64(455141620, 3943126022), new Go$Int64(1546084160, 3066544345), new Go$Int64(1932392669, 2793082663), new Go$Int64(908474287, 3297036421), new Go$Int64(1640597065, 2206987825), new Go$Int64(1594236910, 807894872), new Go$Int64(366158341, 766252117), new Go$Int64(2060649606, 3833114345), new Go$Int64(845619743, 1255067973), new Go$Int64(1201145605, 741697208), new Go$Int64(671241040, 2810093753), new Go$Int64(1109032642, 4229340371), new Go$Int64(1462188720, 1361684224), new Go$Int64(988084219, 1906263026), new Go$Int64(475781207, 3904421704), new Go$Int64(1523946520, 1769075545), new Go$Int64(1062308525, 2621599764), new Go$Int64(1279509432, 3431891480), new Go$Int64(404732502, 1871896503), new Go$Int64(128756421, 1412808876), new Go$Int64(1605404688, 952876175), new Go$Int64(1917039957, 1824438899), new Go$Int64(1662295856, 1005035476), new Go$Int64(1990909507, 527508597), new Go$Int64(1288873303, 3066806859), new Go$Int64(565995893, 3244940914), new Go$Int64(1257737460, 209092916), new Go$Int64(1899814242, 1242699167), new Go$Int64(1433653252, 456723774), new Go$Int64(1776978905, 1001252870), new Go$Int64(1468772157, 2026725874), new Go$Int64(857254202, 2137562569), new Go$Int64(765939740, 3183366709), new Go$Int64(1533887628, 2612072960), new Go$Int64(56977098, 1727148468), new Go$Int64(949899753, 3803658212), new Go$Int64(1883670356, 479946959), new Go$Int64(685713571, 1562982345), new Go$Int64(201241205, 1766109365), new Go$Int64(700596547, 3257093788), new Go$Int64(1962768719, 2365720207), new Go$Int64(93384808, 3742754173), new Go$Int64(1689098413, 2878193673), new Go$Int64(1096135042, 2174002182), new Go$Int64(1313222695, 3573511231), new Go$Int64(1392911121, 1760299077), new Go$Int64(771856457, 2260779833), new Go$Int64(1281464374, 1452805722), new Go$Int64(917811730, 2940011802), new Go$Int64(1890251082, 1886183802), new Go$Int64(893897673, 2514369088), new Go$Int64(1644345561, 3924317791), new Go$Int64(172616216, 500935732), new Go$Int64(1403501753, 676580929), new Go$Int64(581571365, 1184984890), new Go$Int64(1455515235, 1271474274), new Go$Int64(318728910, 3163791473), new Go$Int64(2051027584, 2842487377), new Go$Int64(1511537551, 2170968612), new Go$Int64(573262976, 3535856740), new Go$Int64(94256461, 1488599718), new Go$Int64(966951817, 3408913763), new Go$Int64(60951736, 2501050084), new Go$Int64(1272353200, 1639124157), new Go$Int64(138001144, 4088176393), new Go$Int64(1574896563, 3989947576), new Go$Int64(1982239940, 3414355209), new Go$Int64(1355154361, 2275136352), new Go$Int64(89709303, 2151835223), new Go$Int64(1216338715, 1654534827), new Go$Int64(1467562197, 377892833), new Go$Int64(1664767638, 660204544), new Go$Int64(85706799, 390828249), new Go$Int64(725310955, 3402783878), new Go$Int64(678849488, 3717936603), new Go$Int64(1113532086, 2211058823), new Go$Int64(1564224320, 2692150867), new Go$Int64(1952770442, 1928910388), new Go$Int64(788716862, 3931011137), new Go$Int64(1083670504, 1112701047), new Go$Int64(2079333076, 2452299106), new Go$Int64(1251318826, 2337204777), new Go$Int64(1774877857, 273889282), new Go$Int64(1798719843, 1462008793), new Go$Int64(2138834788, 1554494002), new Go$Int64(952516517, 182675323), new Go$Int64(548928884, 1882802136), new Go$Int64(589279648, 3700220025), new Go$Int64(381039426, 3083431543), new Go$Int64(1295624457, 3622207527), new Go$Int64(338126939, 432729309), new Go$Int64(480013522, 2391914317), new Go$Int64(297925497, 235747924), new Go$Int64(2120733629, 3088823825), new Go$Int64(1402403853, 2314658321), new Go$Int64(1165929723, 2957634338), new Go$Int64(501323675, 4117056981), new Go$Int64(1564699815, 1482500298), new Go$Int64(1406657158, 840489337), new Go$Int64(799522364, 3483178565), new Go$Int64(532129761, 2074004656), new Go$Int64(724246478, 3643392642), new Go$Int64(1482330167, 1583624461), new Go$Int64(1261660694, 287473085), new Go$Int64(1667835381, 3136843981), new Go$Int64(1138806821, 1266970974), new Go$Int64(135185781, 1998688839), new Go$Int64(392094735, 1492900209), new Go$Int64(1031326774, 1538112737), new Go$Int64(76914806, 2207265429), new Go$Int64(260686035, 963263315), new Go$Int64(1671145500, 2295892134), new Go$Int64(1068469660, 2002560897), new Go$Int64(1791233343, 1369254035), new Go$Int64(33436120, 3353312708), new Go$Int64(57507843, 947771099), new Go$Int64(201728503, 1747061399), new Go$Int64(1507240140, 2047354631), new Go$Int64(720000810, 4165367136), new Go$Int64(479265078, 3388864963), new Go$Int64(1195302398, 286492130), new Go$Int64(2045622690, 2795735007), new Go$Int64(1431753082, 3703961339), new Go$Int64(1999047161, 1797825479), new Go$Int64(1429039600, 1116589674), new Go$Int64(482063550, 2593309206), new Go$Int64(1329049334, 3404995677), new Go$Int64(1396904208, 3453462936), new Go$Int64(1014767077, 3016498634), new Go$Int64(75698599, 1650371545), new Go$Int64(1592007860, 212344364), new Go$Int64(1127766888, 3843932156), new Go$Int64(1399463792, 3573129983), new Go$Int64(1256901817, 665897820), new Go$Int64(1071492673, 1675628772), new Go$Int64(243225682, 2831752928), new Go$Int64(2120298836, 1486294219), new Go$Int64(193076235, 268782709), new Go$Int64(1145360145, 4186179080), new Go$Int64(624342951, 1613720397), new Go$Int64(857179861, 2703686015), new Go$Int64(1235864944, 2205342611), new Go$Int64(1474779655, 1411666394), new Go$Int64(619028749, 677744900), new Go$Int64(270855115, 4172867247), new Go$Int64(135494707, 2163418403), new Go$Int64(849547544, 2841526879), new Go$Int64(1029966689, 1082141470), new Go$Int64(377371856, 4046134367), new Go$Int64(51415528, 2142943655), new Go$Int64(1897659315, 3124627521), new Go$Int64(998228909, 219992939), new Go$Int64(1068692697, 1756846531), new Go$Int64(1283749206, 1225118210), new Go$Int64(1621625642, 1647770243), new Go$Int64(111523943, 444807907), new Go$Int64(2036369448, 3952076173), new Go$Int64(53201823, 1461839639), new Go$Int64(315761893, 3699250910), new Go$Int64(702974850, 1373688981), new Go$Int64(734022261, 147523747), new Go$Int64(100152742, 1211276581), new Go$Int64(1294440951, 2548832680), new Go$Int64(1144696256, 1995631888), new Go$Int64(154500578, 2011457303), new Go$Int64(796460974, 3057425772), new Go$Int64(667839456, 81484597), new Go$Int64(465502760, 3646681560), new Go$Int64(775020923, 635548515), new Go$Int64(602489502, 2508044581), new Go$Int64(353263531, 1014917157), new Go$Int64(719992433, 3214891315), new Go$Int64(852684611, 959582252), new Go$Int64(226415134, 3347040449), new Go$Int64(1784615552, 4102971975), new Go$Int64(397887437, 4078022210), new Go$Int64(1610679822, 2851767182), new Go$Int64(749162636, 1540160644), new Go$Int64(598384772, 1057290595), new Go$Int64(2034890660, 3907769253), new Go$Int64(579300318, 4248952684), new Go$Int64(1092907599, 132554364), new Go$Int64(1061621234, 1029351092), new Go$Int64(697840928, 2583007416), new Go$Int64(298619124, 1486185789), new Go$Int64(55905697, 2871589073), new Go$Int64(2017643612, 723203291), new Go$Int64(146250550, 2494333952), new Go$Int64(1064490251, 2230939180), new Go$Int64(342915576, 3943232912), new Go$Int64(1768732449, 2181367922), new Go$Int64(1418222537, 2889274791), new Go$Int64(1824032949, 2046728161), new Go$Int64(1653899792, 1376052477), new Go$Int64(1022327048, 381236993), new Go$Int64(1034385958, 3188942166), new Go$Int64(2073003539, 350070824), new Go$Int64(144881592, 61758415), new Go$Int64(1405659422, 3492950336), new Go$Int64(117440928, 3093818430), new Go$Int64(1693893113, 2962480613), new Go$Int64(235432940, 3154871160), new Go$Int64(511005079, 3228564679), new Go$Int64(610731502, 888276216), new Go$Int64(1200780674, 3574998604), new Go$Int64(870415268, 1967526716), new Go$Int64(591335707, 1554691298), new Go$Int64(574459414, 339944798), new Go$Int64(1223764147, 1154515356), new Go$Int64(1825645307, 967516237), new Go$Int64(1546195135, 596588202), new Go$Int64(279882768, 3764362170), new Go$Int64(492091056, 266611402), new Go$Int64(1754227768, 2047856075), new Go$Int64(1146757215, 21444105), new Go$Int64(1198058894, 3065563181), new Go$Int64(1915064845, 1140663212), new Go$Int64(633187674, 2323741028), new Go$Int64(2126290159, 3103873707), new Go$Int64(1008658319, 2766828349), new Go$Int64(1661896145, 1970872996), new Go$Int64(1628585413, 3766615585), new Go$Int64(1552335120, 2036813414), new Go$Int64(152606527, 3105536507), new Go$Int64(13954645, 3396176938), new Go$Int64(1426081645, 1377154485), new Go$Int64(2085644467, 3807014186), new Go$Int64(543009040, 3710110597), new Go$Int64(396058129, 916420443), new Go$Int64(734556788, 2103831255), new Go$Int64(381322154, 717331943), new Go$Int64(572884752, 3550505941), new Go$Int64(45939673, 378749927), new Go$Int64(149867929, 611017331), new Go$Int64(592130075, 758907650), new Go$Int64(1012992349, 154266815), new Go$Int64(1107028706, 1407468696), new Go$Int64(469292398, 970098704), new Go$Int64(1862426162, 1971660656), new Go$Int64(998365243, 3332747885), new Go$Int64(1947089649, 1935189867), new Go$Int64(1510248801, 203520055), new Go$Int64(842317902, 3916463034), new Go$Int64(1758884993, 3474113316), new Go$Int64(1036101639, 316544223), new Go$Int64(373738757, 1650844677), new Go$Int64(1240292229, 4267565603), new Go$Int64(1077208624, 2501167616), new Go$Int64(626831785, 3929401789), new Go$Int64(56122796, 337170252), new Go$Int64(1186981558, 2061966842), new Go$Int64(1843292800, 2508461464), new Go$Int64(206012532, 2791377107), new Go$Int64(1240791848, 1227227588), new Go$Int64(1813978778, 1709681848), new Go$Int64(1153692192, 3768820575), new Go$Int64(1145186199, 2887126398), new Go$Int64(700372314, 296561685), new Go$Int64(700300844, 3729960077), new Go$Int64(575172304, 372833036), new Go$Int64(2078875613, 2409779288), new Go$Int64(1829161290, 555274064), new Go$Int64(1041887929, 4239804901), new Go$Int64(1839403216, 3723486978), new Go$Int64(498390553, 2145871984), new Go$Int64(564717933, 3565480803), new Go$Int64(578829821, 2197313814), new Go$Int64(974785092, 3613674566), new Go$Int64(438638731, 3042093666), new Go$Int64(2050927384, 3324034321), new Go$Int64(869420878, 3708873369), new Go$Int64(946682149, 1698090092), new Go$Int64(1618900382, 4213940712), new Go$Int64(304003901, 2087477361), new Go$Int64(381315848, 2407950639), new Go$Int64(851258090, 3942568569), new Go$Int64(923583198, 4088074412), new Go$Int64(723260036, 2964773675), new Go$Int64(1473561819, 1539178386), new Go$Int64(1062961552, 2694849566), new Go$Int64(460977733, 2120273838), new Go$Int64(542912908, 2484608657), new Go$Int64(880846449, 2956190677), new Go$Int64(1970902366, 4223313749), new Go$Int64(662161910, 3502682327), new Go$Int64(705634754, 4133891139), new Go$Int64(1116124348, 1166449596), new Go$Int64(1038247601, 3362705993), new Go$Int64(93734798, 3892921029), new Go$Int64(1876124043, 786869787), new Go$Int64(1057490746, 1046342263), new Go$Int64(242763728, 493777327), new Go$Int64(1293910447, 3304827646), new Go$Int64(616460742, 125356352), new Go$Int64(499300063, 74094113), new Go$Int64(1351896723, 2500816079), new Go$Int64(1657235204, 514015239), new Go$Int64(1377565129, 543520454), new Go$Int64(107706923, 3614531153), new Go$Int64(2056746300, 2356753985), new Go$Int64(1390062617, 2018141668), new Go$Int64(131272971, 2087974891), new Go$Int64(644556607, 3166972343), new Go$Int64(372256200, 1517638666), new Go$Int64(1212207984, 173466846), new Go$Int64(1451709187, 4241513471), new Go$Int64(733932806, 2783126920), new Go$Int64(1972004134, 4167264826), new Go$Int64(29260506, 3907395640), new Go$Int64(1236582087, 1539634186), new Go$Int64(1551526350, 178241987), new Go$Int64(2034206012, 182168164), new Go$Int64(1044953189, 2386154934), new Go$Int64(1379126408, 4077374341), new Go$Int64(32803926, 1732699140), new Go$Int64(1726425903, 1041306002), new Go$Int64(1860414813, 2068001749), new Go$Int64(1005320202, 3208962910), new Go$Int64(844054010, 697710380), new Go$Int64(638124245, 2228431183), new Go$Int64(1337169671, 3554678728), new Go$Int64(1396494601, 173470263), new Go$Int64(2061597383, 3848297795), new Go$Int64(1220546671, 246236185), new Go$Int64(163293187, 2066374846), new Go$Int64(1771673660, 312890749), new Go$Int64(703378057, 3573310289), new Go$Int64(1548631747, 143166754), new Go$Int64(613554316, 2081511079), new Go$Int64(1197802104, 486038032), new Go$Int64(240999859, 2982218564), new Go$Int64(364901986, 1000939191), new Go$Int64(1902782651, 2750454885), new Go$Int64(1475638791, 3375313137), new Go$Int64(503615608, 881302957), new Go$Int64(638698903, 2514186393), new Go$Int64(443860803, 360024739), new Go$Int64(1399671872, 292500025), new Go$Int64(1381210821, 2276300752), new Go$Int64(521803381, 4069087683), new Go$Int64(208500981, 1637778212), new Go$Int64(720490469, 1676670893), new Go$Int64(1067262482, 3855174429), new Go$Int64(2114075974, 2067248671), new Go$Int64(2058057389, 2884561259), new Go$Int64(1341742553, 2456511185), new Go$Int64(983726246, 561175414), new Go$Int64(427994085, 432588903), new Go$Int64(885133709, 4059399550), new Go$Int64(2054387382, 1075014784), new Go$Int64(413651020, 2728058415), new Go$Int64(1839142064, 1299703678), new Go$Int64(1262333188, 2347583393), new Go$Int64(1285481956, 2468164145), new Go$Int64(989129637, 1140014346), new Go$Int64(2033889184, 1936972070), new Go$Int64(409904655, 3870530098), new Go$Int64(1662989391, 1717789158), new Go$Int64(1914486492, 1153452491), new Go$Int64(1157059232, 3948827651), new Go$Int64(790338018, 2101413152), new Go$Int64(1495744672, 3854091229), new Go$Int64(83644069, 4215565463), new Go$Int64(762206335, 1202710438), new Go$Int64(1582574611, 2072216740), new Go$Int64(705690639, 2066751068), new Go$Int64(33900336, 173902580), new Go$Int64(1405499842, 142459001), new Go$Int64(172391592, 1889151926), new Go$Int64(1648540523, 3034199774), new Go$Int64(1618587731, 516490102), new Go$Int64(93114264, 3692577783), new Go$Int64(68662295, 2953948865), new Go$Int64(1826544975, 4041040923), new Go$Int64(204965672, 592046130), new Go$Int64(1441840008, 384297211), new Go$Int64(95834184, 265863924), new Go$Int64(2101717619, 1333136237), new Go$Int64(1499611781, 1406273556), new Go$Int64(1074670496, 426305476), new Go$Int64(125704633, 2750898176), new Go$Int64(488068495, 1633944332), new Go$Int64(2037723464, 3236349343), new Go$Int64(444060402, 4013676611), new Go$Int64(1718532237, 2265047407), new Go$Int64(1433593806, 875071080), new Go$Int64(1804436145, 1418843655), new Go$Int64(2009228711, 451657300), new Go$Int64(1229446621, 1866374663), new Go$Int64(1653472867, 1551455622), new Go$Int64(577191481, 3560962459), new Go$Int64(1669204077, 3347903778), new Go$Int64(1849156454, 2675874918), new Go$Int64(316128071, 2762991672), new Go$Int64(530492383, 3689068477), new Go$Int64(844089962, 4071997905), new Go$Int64(1508155730, 1381702441), new Go$Int64(2089931018, 2373284878), new Go$Int64(1283216186, 2143983064), new Go$Int64(308739063, 1938207195), new Go$Int64(1754949306, 1188152253), new Go$Int64(1272345009, 615870490), new Go$Int64(742653194, 2662252621), new Go$Int64(1477718295, 3839976789), new Go$Int64(56149435, 306752547), new Go$Int64(720795581, 2162363077), new Go$Int64(2090431015, 2767224719), new Go$Int64(675859549, 2628837712), new Go$Int64(1678405918, 2967771969), new Go$Int64(1694285728, 499792248), new Go$Int64(403352367, 4285253508), new Go$Int64(962357072, 2856511070), new Go$Int64(679471692, 2526409716), new Go$Int64(353777175, 1240875658), new Go$Int64(1232590226, 2577342868), new Go$Int64(1146185433, 4136853496), new Go$Int64(670368674, 2403540137), new Go$Int64(1372824515, 1371410668), new Go$Int64(1970921600, 371758825), new Go$Int64(1706420536, 1528834084), new Go$Int64(2075795018, 1504757260), new Go$Int64(685663576, 699052551), new Go$Int64(1641940109, 3347789870), new Go$Int64(1951619734, 3430604759), new Go$Int64(2119672219, 1935601723), new Go$Int64(966789690, 834676166)]);
+		globalRand = New(new lockedSource.Ptr(new sync.Mutex.Ptr(), NewSource(new Go$Int64(0, 1))));
 	};
 	return go$pkg;
 })();
@@ -30488,15 +29973,7 @@ go$packages["math/big"] = (function() {
 	divisor.init([["bbb", "math/big", nat, ""], ["nbits", "math/big", Go$Int, ""], ["ndigits", "math/big", Go$Int, ""]]);
 	Rat.init([["a", "math/big", Int, ""], ["b", "math/big", Int, ""]]);
 	(go$ptrType(Rat)).methods = [["Abs", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Add", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Cmp", "", [(go$ptrType(Rat))], [Go$Int], false], ["Denom", "", [], [(go$ptrType(Int))], false], ["Float64", "", [], [Go$Float64, Go$Bool], false], ["FloatString", "", [Go$Int], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Inv", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["IsInt", "", [], [Go$Bool], false], ["Mul", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Neg", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Num", "", [], [(go$ptrType(Int))], false], ["Quo", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["RatString", "", [], [Go$String], false], ["Scan", "", [fmt.ScanState, Go$Int32], [go$error], false], ["Set", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["SetFloat64", "", [Go$Float64], [(go$ptrType(Rat))], false], ["SetFrac", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetFrac64", "", [Go$Int64, Go$Int64], [(go$ptrType(Rat))], false], ["SetInt", "", [(go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetInt64", "", [Go$Int64], [(go$ptrType(Rat))], false], ["SetString", "", [Go$String], [(go$ptrType(Rat)), Go$Bool], false], ["Sign", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["norm", "math/big", [], [(go$ptrType(Rat))], false]];
-	var intOne = (go$ptrType(Int)).nil;
-	var natOne = nat.nil;
-	var natTwo = nat.nil;
-	var natTen = nat.nil;
-	var karatsubaThreshold = 0;
-	var leafSize = 0;
-	var cacheBase10 = new (go$structType([["", "", sync.Mutex, ""], ["table", "math/big", (go$arrayType(divisor, 64)), ""]])).Ptr(new sync.Mutex.Ptr(), go$makeNativeArray("Struct", 64, function() { return new divisor.Ptr(); }));
-	var deBruijn32Lookup = (go$sliceType(Go$Uint8)).nil;
-	var deBruijn64Lookup = (go$sliceType(Go$Uint8)).nil;
+	var intOne, natOne, natTen, karatsubaThreshold, leafSize, deBruijn32Lookup, deBruijn64Lookup, natTwo, cacheBase10;
 	var addWW_g = function(x, y, c) {
 		var z1, z0, yc;
 		z1 = 0;
@@ -33165,6 +32642,7 @@ go$packages["math/big"] = (function() {
 	};
 	Rat.prototype.GobDecode = function(buf) { return this.go$val.GobDecode(buf); };
 	go$pkg.init = function() {
+		cacheBase10 = new (go$structType([["", "", sync.Mutex, ""], ["table", "math/big", (go$arrayType(divisor, 64)), ""]])).Ptr(new sync.Mutex.Ptr(), go$makeNativeArray("Struct", 64, function() { return new divisor.Ptr(); }));
 		natOne = new nat([1]);
 		intOne = new Int.Ptr(false, natOne);
 		natTwo = new nat([2]);
@@ -33240,10 +32718,7 @@ go$packages["code.google.com/p/go.tools/go/exact"] = (function() {
 	complexVal.init([["re", "code.google.com/p/go.tools/go/exact", (go$ptrType(big.Rat)), ""], ["im", "code.google.com/p/go.tools/go/exact", (go$ptrType(big.Rat)), ""]]);
 	complexVal.methods = [["Kind", "", [], [Kind], false], ["String", "", [], [Go$String], false], ["implementsValue", "code.google.com/p/go.tools/go/exact", [], [], false]];
 	(go$ptrType(complexVal)).methods = [["Kind", "", [], [Kind], false], ["String", "", [], [Go$String], false], ["implementsValue", "code.google.com/p/go.tools/go/exact", [], [], false]];
-	var minInt64 = (go$ptrType(big.Int)).nil;
-	var maxInt64 = (go$ptrType(big.Int)).nil;
-	var int1 = (go$ptrType(big.Int)).nil;
-	var rat0 = (go$ptrType(big.Rat)).nil;
+	var minInt64, maxInt64, int1, rat0;
 	unknownVal.Ptr.prototype.Kind = function() {
 		return 0;
 	};
@@ -34230,15 +33705,7 @@ go$packages["bufio"] = (function() {
 	Scanner.init([["r", "bufio", io.Reader, ""], ["split", "bufio", SplitFunc, ""], ["maxTokenSize", "bufio", Go$Int, ""], ["token", "bufio", (go$sliceType(Go$Uint8)), ""], ["buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["start", "bufio", Go$Int, ""], ["end", "bufio", Go$Int, ""], ["err", "bufio", go$error, ""]]);
 	(go$ptrType(Scanner)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Err", "", [], [go$error], false], ["Scan", "", [], [Go$Bool], false], ["Split", "", [SplitFunc], [], false], ["Text", "", [], [Go$String], false], ["advance", "bufio", [Go$Int], [Go$Bool], false], ["setErr", "bufio", [go$error], [], false]];
 	SplitFunc.init([(go$sliceType(Go$Uint8)), Go$Bool], [Go$Int, (go$sliceType(Go$Uint8)), go$error], false);
-	go$pkg.ErrInvalidUnreadByte = null;
-	go$pkg.ErrInvalidUnreadRune = null;
-	go$pkg.ErrBufferFull = null;
-	go$pkg.ErrNegativeCount = null;
-	var errNegativeRead = null;
-	go$pkg.ErrTooLong = null;
-	go$pkg.ErrNegativeAdvance = null;
-	go$pkg.ErrAdvanceTooFar = null;
-	var errorRune = (go$sliceType(Go$Uint8)).nil;
+	var errNegativeRead, errorRune;
 	var NewReaderSize = go$pkg.NewReaderSize = function(rd, size) {
 		var _tuple, b, ok, r;
 		_tuple = (rd !== null && rd.constructor === (go$ptrType(Reader)) ? [rd.go$val, true] : [(go$ptrType(Reader)).nil, false]), b = _tuple[0], ok = _tuple[1];
@@ -35093,8 +34560,6 @@ go$packages["path/filepath"] = (function() {
 	byName.init(os.FileInfo);
 	byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	go$pkg.ErrBadPattern = null;
-	go$pkg.SkipDir = null;
 	var Match = go$pkg.Match = function(pattern, name) {
 		var matched, err, star, chunk, _tuple, _tuple$1, _tuple$2, t, ok, err$1, _tuple$3, i, _tuple$4, t$1, ok$1, err$2, _tuple$5, _tuple$6, _tuple$7;
 		matched = false;
@@ -35811,7 +35276,7 @@ go$packages["go/scanner"] = (function() {
 	ErrorHandler.init([token.Position, Go$String], [], false);
 	Scanner.init([["file", "go/scanner", (go$ptrType(token.File)), ""], ["dir", "go/scanner", Go$String, ""], ["src", "go/scanner", (go$sliceType(Go$Uint8)), ""], ["err", "go/scanner", ErrorHandler, ""], ["mode", "go/scanner", Mode, ""], ["ch", "go/scanner", Go$Int32, ""], ["offset", "go/scanner", Go$Int, ""], ["rdOffset", "go/scanner", Go$Int, ""], ["lineOffset", "go/scanner", Go$Int, ""], ["insertSemi", "go/scanner", Go$Bool, ""], ["ErrorCount", "", Go$Int, ""]]);
 	(go$ptrType(Scanner)).methods = [["Init", "", [(go$ptrType(token.File)), (go$sliceType(Go$Uint8)), ErrorHandler, Mode], [], false], ["Scan", "", [], [token.Pos, token.Token, Go$String], false], ["error", "go/scanner", [Go$Int, Go$String], [], false], ["findLineEnd", "go/scanner", [], [Go$Bool], false], ["interpretLineComment", "go/scanner", [(go$sliceType(Go$Uint8))], [], false], ["next", "go/scanner", [], [], false], ["scanChar", "go/scanner", [], [Go$String], false], ["scanComment", "go/scanner", [], [Go$String], false], ["scanEscape", "go/scanner", [Go$Int32], [], false], ["scanIdentifier", "go/scanner", [], [Go$String], false], ["scanMantissa", "go/scanner", [Go$Int], [], false], ["scanNumber", "go/scanner", [Go$Bool], [token.Token, Go$String], false], ["scanRawString", "go/scanner", [], [Go$String], false], ["scanString", "go/scanner", [], [Go$String], false], ["skipWhitespace", "go/scanner", [], [], false], ["switch2", "go/scanner", [token.Token, token.Token], [token.Token], false], ["switch3", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token], [token.Token], false], ["switch4", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token, token.Token], [token.Token], false]];
-	var prefix = (go$sliceType(Go$Uint8)).nil;
+	var prefix;
 	Error.Ptr.prototype.Error = function() {
 		var _struct, _struct$1, e;
 		e = (_struct = this, new Error.Ptr((_struct$1 = _struct.Pos, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), _struct.Msg));
@@ -37269,9 +36734,7 @@ go$packages["go/ast"] = (function() {
 	inspector.init([Node], [Go$Bool], false);
 	inspector.methods = [["Visit", "", [Node], [Visitor], false]];
 	(go$ptrType(inspector)).methods = [["Visit", "", [Node], [Visitor], false]];
-	var separator = (go$ptrType(Comment)).nil;
-	var indent = (go$sliceType(Go$Uint8)).nil;
-	var objKindStrings = go$makeNativeArray("String", 7, function() { return ""; });
+	var separator, indent, objKindStrings;
 	Comment.Ptr.prototype.Pos = function() {
 		var c;
 		c = this;
@@ -39942,11 +39405,7 @@ go$packages["io/ioutil"] = (function() {
 	(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
 	(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-	var blackHoleBuf = (go$chanType((go$sliceType(Go$Uint8)), false, false)).nil;
-	var _ = null;
-	go$pkg.Discard = null;
-	var rand = 0;
-	var randmu = new sync.Mutex.Ptr();
+	var blackHoleBuf, rand, randmu;
 	var blackHole = function() {
 			return blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });
 		};
@@ -40167,6 +39626,8 @@ go$packages["io/ioutil"] = (function() {
 
 			var blackHoles = [];
 			go$pkg.init = function() {
+		rand = 0;
+		randmu = new sync.Mutex.Ptr();
 		blackHoleBuf = new (go$chanType((go$sliceType(Go$Uint8)), false, false))();
 		go$pkg.Discard = new devNull(0);
 	};
@@ -40229,7 +39690,7 @@ go$packages["go/parser"] = (function() {
 	(go$ptrType(parser)).methods = [["atComma", "go/parser", [Go$String], [Go$Bool], false], ["checkExpr", "go/parser", [ast.Expr], [ast.Expr], false], ["checkExprOrType", "go/parser", [ast.Expr], [ast.Expr], false], ["closeLabelScope", "go/parser", [], [], false], ["closeScope", "go/parser", [], [], false], ["consumeComment", "go/parser", [], [(go$ptrType(ast.Comment)), Go$Int], false], ["consumeCommentGroup", "go/parser", [Go$Int], [(go$ptrType(ast.CommentGroup)), Go$Int], false], ["declare", "go/parser", [go$emptyInterface, go$emptyInterface, (go$ptrType(ast.Scope)), ast.ObjKind, (go$sliceType((go$ptrType(ast.Ident))))], [], true], ["error", "go/parser", [token.Pos, Go$String], [], false], ["errorExpected", "go/parser", [token.Pos, Go$String], [], false], ["expect", "go/parser", [token.Token], [token.Pos], false], ["expectClosing", "go/parser", [token.Token, Go$String], [token.Pos], false], ["expectSemi", "go/parser", [], [], false], ["init", "go/parser", [(go$ptrType(token.FileSet)), Go$String, (go$sliceType(Go$Uint8)), Mode], [], false], ["makeExpr", "go/parser", [ast.Stmt], [ast.Expr], false], ["makeIdentList", "go/parser", [(go$sliceType(ast.Expr))], [(go$sliceType((go$ptrType(ast.Ident))))], false], ["next", "go/parser", [], [], false], ["next0", "go/parser", [], [], false], ["openLabelScope", "go/parser", [], [], false], ["openScope", "go/parser", [], [], false], ["parseArrayType", "go/parser", [], [ast.Expr], false], ["parseBinaryExpr", "go/parser", [Go$Bool, Go$Int], [ast.Expr], false], ["parseBlockStmt", "go/parser", [], [(go$ptrType(ast.BlockStmt))], false], ["parseBody", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.BlockStmt))], false], ["parseBranchStmt", "go/parser", [token.Token], [(go$ptrType(ast.BranchStmt))], false], ["parseCallExpr", "go/parser", [], [(go$ptrType(ast.CallExpr))], false], ["parseCallOrConversion", "go/parser", [ast.Expr], [(go$ptrType(ast.CallExpr))], false], ["parseCaseClause", "go/parser", [Go$Bool], [(go$ptrType(ast.CaseClause))], false], ["parseChanType", "go/parser", [], [(go$ptrType(ast.ChanType))], false], ["parseCommClause", "go/parser", [], [(go$ptrType(ast.CommClause))], false], ["parseDecl", "go/parser", [(go$funcType([(go$ptrType(parser))], [], false))], [ast.Decl], false], ["parseDeferStmt", "go/parser", [], [ast.Stmt], false], ["parseElement", "go/parser", [Go$Bool], [ast.Expr], false], ["parseElementList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseExpr", "go/parser", [Go$Bool], [ast.Expr], false], ["parseExprList", "go/parser", [Go$Bool], [(go$sliceType(ast.Expr))], false], ["parseFieldDecl", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.Field))], false], ["parseFile", "go/parser", [], [(go$ptrType(ast.File))], false], ["parseForStmt", "go/parser", [], [ast.Stmt], false], ["parseFuncDecl", "go/parser", [], [(go$ptrType(ast.FuncDecl))], false], ["parseFuncType", "go/parser", [], [(go$ptrType(ast.FuncType)), (go$ptrType(ast.Scope))], false], ["parseFuncTypeOrLit", "go/parser", [], [ast.Expr], false], ["parseGenDecl", "go/parser", [token.Token, parseSpecFunction], [(go$ptrType(ast.GenDecl))], false], ["parseGoStmt", "go/parser", [], [ast.Stmt], false], ["parseIdent", "go/parser", [], [(go$ptrType(ast.Ident))], false], ["parseIdentList", "go/parser", [], [(go$sliceType((go$ptrType(ast.Ident))))], false], ["parseIfStmt", "go/parser", [], [(go$ptrType(ast.IfStmt))], false], ["parseImportSpec", "go/parser", [(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false], ["parseIndexOrSlice", "go/parser", [ast.Expr], [ast.Expr], false], ["parseInterfaceType", "go/parser", [], [(go$ptrType(ast.InterfaceType))], false], ["parseLhsList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseLiteralValue", "go/parser", [ast.Expr], [ast.Expr], false], ["parseMapType", "go/parser", [], [(go$ptrType(ast.MapType))], false], ["parseMethodSpec", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.Field))], false], ["parseOperand", "go/parser", [Go$Bool], [ast.Expr], false], ["parseParameterList", "go/parser", [(go$ptrType(ast.Scope)), Go$Bool], [(go$sliceType((go$ptrType(ast.Field))))], false], ["parseParameters", "go/parser", [(go$ptrType(ast.Scope)), Go$Bool], [(go$ptrType(ast.FieldList))], false], ["parsePointerType", "go/parser", [], [(go$ptrType(ast.StarExpr))], false], ["parsePrimaryExpr", "go/parser", [Go$Bool], [ast.Expr], false], ["parseReceiver", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.FieldList))], false], ["parseResult", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.FieldList))], false], ["parseReturnStmt", "go/parser", [], [(go$ptrType(ast.ReturnStmt))], false], ["parseRhs", "go/parser", [], [ast.Expr], false], ["parseRhsList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseRhsOrType", "go/parser", [], [ast.Expr], false], ["parseSelectStmt", "go/parser", [], [(go$ptrType(ast.SelectStmt))], false], ["parseSelector", "go/parser", [ast.Expr], [ast.Expr], false], ["parseSignature", "go/parser", [(go$ptrType(ast.Scope))], [(go$ptrType(ast.FieldList)), (go$ptrType(ast.FieldList))], false], ["parseSimpleStmt", "go/parser", [Go$Int], [ast.Stmt, Go$Bool], false], ["parseStmt", "go/parser", [], [ast.Stmt], false], ["parseStmtList", "go/parser", [], [(go$sliceType(ast.Stmt))], false], ["parseStructType", "go/parser", [], [(go$ptrType(ast.StructType))], false], ["parseSwitchStmt", "go/parser", [], [ast.Stmt], false], ["parseType", "go/parser", [], [ast.Expr], false], ["parseTypeAssertion", "go/parser", [ast.Expr], [ast.Expr], false], ["parseTypeList", "go/parser", [], [(go$sliceType(ast.Expr))], false], ["parseTypeName", "go/parser", [], [ast.Expr], false], ["parseTypeSpec", "go/parser", [(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false], ["parseUnaryExpr", "go/parser", [Go$Bool], [ast.Expr], false], ["parseValueSpec", "go/parser", [(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false], ["parseVarList", "go/parser", [Go$Bool], [(go$sliceType(ast.Expr)), ast.Expr], false], ["parseVarType", "go/parser", [Go$Bool], [ast.Expr], false], ["printTrace", "go/parser", [(go$sliceType(go$emptyInterface))], [], true], ["resolve", "go/parser", [ast.Expr], [], false], ["shortVarDecl", "go/parser", [(go$ptrType(ast.AssignStmt)), (go$sliceType(ast.Expr))], [], false], ["tokPrec", "go/parser", [], [token.Token, Go$Int], false], ["tryIdentOrType", "go/parser", [], [ast.Expr], false], ["tryResolve", "go/parser", [ast.Expr, Go$Bool], [], false], ["tryType", "go/parser", [], [ast.Expr], false], ["tryVarType", "go/parser", [Go$Bool], [ast.Expr], false]];
 	bailout.init([]);
 	parseSpecFunction.init([(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false);
-	var unresolved = (go$ptrType(ast.Object)).nil;
+	var unresolved;
 	var readSource = function(filename, src) {
 		var s, _ref, _type, buf, err, _tuple;
 		if (!(go$interfaceIsEqual(src, null))) {
@@ -42839,7 +42300,6 @@ go$packages["path"] = (function() {
 	go$pkg.lazybuf = lazybuf;
 	lazybuf.init([["s", "path", Go$String, ""], ["buf", "path", (go$sliceType(Go$Uint8)), ""], ["w", "path", Go$Int, ""]]);
 	(go$ptrType(lazybuf)).methods = [["append", "path", [Go$Uint8], [], false], ["index", "path", [Go$Int], [Go$Uint8], false], ["string", "path", [], [Go$String], false]];
-	go$pkg.ErrBadPattern = null;
 	var Match = go$pkg.Match = function(pattern, name) {
 		var matched, err, star, chunk, _tuple, _tuple$1, _tuple$2, t, ok, err$1, _tuple$3, i, _tuple$4, t$1, ok$1, err$2, _tuple$5, _tuple$6, _tuple$7;
 		matched = false;
@@ -43859,23 +43319,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 	byUniqueMethodName.init((go$ptrType(Func)));
 	byUniqueMethodName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byUniqueMethodName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	go$pkg.DefaultImport = go$throwNilPointerError;
-	var unaryOpPredicates = false;
-	var binaryOpPredicates = false;
-	var emptyMethodSet = new MethodSet.Ptr();
-	var operandModeString = go$makeNativeArray("String", 9, function() { return ""; });
-	var basicSizes = go$makeNativeArray("Uint8", 17, function() { return 0; });
-	var stdSizes = new StdSizes.Ptr();
-	go$pkg.GcCompatibilityMode = false;
-	go$pkg.Universe = (go$ptrType(Scope)).nil;
-	go$pkg.Unsafe = (go$ptrType(Package)).nil;
-	var universeIota = (go$ptrType(Const)).nil;
-	var universeByte = (go$ptrType(Basic)).nil;
-	var universeRune = (go$ptrType(Basic)).nil;
-	go$pkg.Typ = go$makeNativeArray("Ptr", 26, function() { return (go$ptrType(Basic)).nil; });
-	var aliases = go$makeNativeArray("Ptr", 2, function() { return (go$ptrType(Basic)).nil; });
-	var predeclaredConsts = go$makeNativeArray("Struct", 3, function() { return new (go$structType([["name", "code.google.com/p/go.tools/go/types", Go$String, ""], ["kind", "code.google.com/p/go.tools/go/types", BasicKind, ""], ["val", "code.google.com/p/go.tools/go/types", exact.Value, ""]])).Ptr("", 0, null); });
-	var predeclaredFuncs = go$makeNativeArray("Struct", 20, function() { return new (go$structType([["name", "code.google.com/p/go.tools/go/types", Go$String, ""], ["nargs", "code.google.com/p/go.tools/go/types", Go$Int, ""], ["variadic", "code.google.com/p/go.tools/go/types", Go$Bool, ""], ["kind", "code.google.com/p/go.tools/go/types", exprKind, ""]])).Ptr("", 0, false, 0); });
+	var basicSizes, stdSizes, aliases, unaryOpPredicates, universeIota, universeByte, universeRune, predeclaredFuncs, binaryOpPredicates, emptyMethodSet, operandModeString, predeclaredConsts;
 	var Check = go$pkg.Check = function(path$1, fset, files) {
 		var conf, _tuple, pkg, err;
 		conf = new Config.Ptr();
@@ -43920,6 +43364,11 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		return [pkg, err];
 	};
 	Config.prototype.Check = function(path$1, fset, files, info) { return this.go$val.Check(path$1, fset, files, info); };
+	var AssertableTo = go$pkg.AssertableTo = function(V, T) {
+		var _tuple, f;
+		_tuple = MissingMethod(T, V, false), f = _tuple[0];
+		return f === (go$ptrType(Func)).nil;
+	};
 	var AssignableTo = go$pkg.AssignableTo = function(V, T) {
 		var x;
 		x = new operand.Ptr(7, null, V, null, 0);
@@ -43930,9 +43379,9 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		x = new operand.Ptr(7, null, V, null, 0);
 		return x.convertibleTo((go$ptrType(Config)).nil, T);
 	};
-	var Implements = go$pkg.Implements = function(V, T, static$1) {
+	var Implements = go$pkg.Implements = function(V, T) {
 		var _tuple, f;
-		_tuple = MissingMethod(V, T, static$1), f = _tuple[0];
+		_tuple = MissingMethod(V, T, true), f = _tuple[0];
 		return f === (go$ptrType(Func)).nil;
 	};
 	checker.Ptr.prototype.assignment = function(x, T) {
@@ -45355,7 +44804,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 	};
 	checker.prototype.declare = function(scope, id, obj) { return this.go$val.declare(scope, id, obj); };
-	checker.Ptr.prototype.objDecl = function(obj, def$1, cycle) {
+	checker.Ptr.prototype.objDecl = function(obj, def$1, path$1) {
 		var check, _entry, d, oldScope, oldIota, oldDecl, obj$1, _ref, _type;
 		check = this;
 		if (!(go$interfaceIsEqual(obj.Type(), null))) {
@@ -45372,6 +44821,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		_type = _ref !== null ? _ref.constructor : null;
 		if (_type === (go$ptrType(Const))) {
 			obj$1 = _ref.go$val;
+			check.decl = d;
 			check.constDecl(obj$1, d.typ, d.init);
 		} else if (_type === (go$ptrType(Var))) {
 			obj$1 = _ref.go$val;
@@ -45379,7 +44829,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			check.varDecl(obj$1, d.lhs, d.typ, d.init);
 		} else if (_type === (go$ptrType(TypeName))) {
 			obj$1 = _ref.go$val;
-			check.typeDecl(obj$1, d.typ, def$1, cycle);
+			check.typeDecl(obj$1, d.typ, def$1, path$1);
 		} else if (_type === (go$ptrType(Func))) {
 			obj$1 = _ref.go$val;
 			check.funcDecl(obj$1, d);
@@ -45391,35 +44841,42 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		check.iota = oldIota;
 		check.topScope = oldScope;
 	};
-	checker.prototype.objDecl = function(obj, def$1, cycle) { return this.go$val.objDecl(obj, def$1, cycle); };
+	checker.prototype.objDecl = function(obj, def$1, path$1) { return this.go$val.objDecl(obj, def$1, path$1); };
 	checker.Ptr.prototype.constDecl = function(obj, typ, init) {
 		var check, t, x;
-		check = this;
-		assert(go$interfaceIsEqual(obj.object.typ, null));
-		if (obj.visited) {
-			check.errorf(obj.object.Pos(), "illegal cycle in initialization of constant %s", new (go$sliceType(go$emptyInterface))([new Go$String(obj.object.name)]));
-			obj.object.typ = go$pkg.Typ[0];
-			return;
-		}
-		obj.visited = true;
-		assert(go$interfaceIsEqual(check.iota, null));
-		check.iota = obj.val;
-		if (!(go$interfaceIsEqual(typ, null))) {
-			t = check.typ(typ, (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
-			if (!isConstType(t)) {
-				check.errorf(typ.Pos(), "invalid constant type %s", new (go$sliceType(go$emptyInterface))([t]));
+		var go$deferred = [];
+		try {
+			check = this;
+			assert(go$interfaceIsEqual(obj.object.typ, null));
+			if (obj.visited) {
 				obj.object.typ = go$pkg.Typ[0];
-				check.iota = null;
 				return;
 			}
-			obj.object.typ = t;
+			obj.visited = true;
+			assert(go$interfaceIsEqual(check.iota, null));
+			check.iota = obj.val;
+			go$deferred.push({ fun: (function() {
+				check.iota = null;
+			}), args: [] });
+			if (!(go$interfaceIsEqual(typ, null))) {
+				t = check.typ(typ, (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
+				if (!isConstType(t)) {
+					check.errorf(typ.Pos(), "invalid constant type %s", new (go$sliceType(go$emptyInterface))([t]));
+					obj.object.typ = go$pkg.Typ[0];
+					return;
+				}
+				obj.object.typ = t;
+			}
+			x = new operand.Ptr();
+			if (!(go$interfaceIsEqual(init, null))) {
+				check.expr(x, init);
+			}
+			check.initConst(obj, x);
+		} catch(go$err) {
+			go$pushErr(go$err);
+		} finally {
+			go$callDeferred(go$deferred);
 		}
-		x = new operand.Ptr();
-		if (!(go$interfaceIsEqual(init, null))) {
-			check.expr(x, init);
-		}
-		check.initConst(obj, x);
-		check.iota = null;
 	};
 	checker.prototype.constDecl = function(obj, typ, init) { return this.go$val.constDecl(obj, typ, init); };
 	checker.Ptr.prototype.varDecl = function(obj, lhs, typ, init) {
@@ -45427,7 +44884,6 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		check = this;
 		assert(go$interfaceIsEqual(obj.object.typ, null));
 		if (obj.visited) {
-			check.errorf(obj.object.Pos(), "illegal cycle in initialization of variable %s", new (go$sliceType(go$emptyInterface))([new Go$String(obj.object.name)]));
 			obj.object.typ = go$pkg.Typ[0];
 			return;
 		}
@@ -45471,7 +44927,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 	};
 	Named.prototype.setUnderlying = function(typ) { return this.go$val.setUnderlying(typ); };
-	checker.Ptr.prototype.typeDecl = function(obj, typ, def$1, cycle) {
+	checker.Ptr.prototype.typeDecl = function(obj, typ, def$1, path$1) {
 		var check, named, _entry, methods, mset, t, _tuple, x, _ref, _i, _slice, _index, fld, v, _ref$1, _i$1, _slice$1, _index$1, m, alt, v$1, _ref$2, _type, _entry$1;
 		check = this;
 		assert(go$interfaceIsEqual(obj.object.typ, null));
@@ -45479,7 +44935,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		named = new Named.Ptr(obj, null, (go$sliceType((go$ptrType(Func)))).nil, new cachedMethodSet.Ptr(), new cachedMethodSet.Ptr());
 		def$1.setUnderlying(named);
 		obj.object.typ = named;
-		check.typ(typ, named, go$append(cycle, obj));
+		check.typ(typ, named, go$append(path$1, obj));
 		named.underlying = underlying(named.underlying);
 		methods = (_entry = check.methods[obj.object.name], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(Func)))).nil);
 		if (methods.length === 0) {
@@ -45523,7 +44979,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 		delete check.methods[obj.object.name];
 	};
-	checker.prototype.typeDecl = function(obj, typ, def$1, cycle) { return this.go$val.typeDecl(obj, typ, def$1, cycle); };
+	checker.prototype.typeDecl = function(obj, typ, def$1, path$1) { return this.go$val.typeDecl(obj, typ, def$1, path$1); };
 	checker.Ptr.prototype.funcDecl = function(obj, info) {
 		var check, sig, fdecl;
 		check = this;
@@ -46206,7 +45662,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			defined = false;
 			_ref = op;
 			if (_ref === 39 || _ref === 44) {
-				defined = isComparable(x.typ) || x.isNil() && hasNil(y.typ) || y.isNil() && hasNil(x.typ);
+				defined = Comparable(x.typ) || x.isNil() && hasNil(y.typ) || y.isNil() && hasNil(x.typ);
 			} else if (_ref === 40 || _ref === 45 || _ref === 41 || _ref === 46) {
 				defined = isOrdered(x.typ);
 			} else {
@@ -48323,7 +47779,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	operand.prototype.isNil = function() { return this.go$val.isNil(); };
 	operand.Ptr.prototype.assignableTo = function(conf, T) {
-		var x, V, Vu, Tu, ok, _tuple, Ti, m, _tuple$1, ok$1, Vc, _tuple$2, ok$2, Tc, _tuple$3, t, _ref, _type, t$1, _ref$1, _type$1, Vb, _tuple$4;
+		var x, V, Vu, Tu, ok, _tuple, Ti, ok$1, Vc, _tuple$1, ok$2, Tc, _tuple$2, t, _ref, _type, t$1, _ref$1, _type$1, Vb, _tuple$3;
 		x = this;
 		if ((x.mode === 0) || go$interfaceIsEqual(T, go$pkg.Typ[0])) {
 			return true;
@@ -48335,15 +47791,15 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		Vu = V.Underlying();
 		Tu = T.Underlying();
 		if (_tuple = (Tu !== null && Tu.constructor === (go$ptrType(Interface)) ? [Tu.go$val, true] : [(go$ptrType(Interface)).nil, false]), Ti = _tuple[0], ok = _tuple[1], ok) {
-			if (_tuple$1 = MissingMethod(x.typ, Ti, true), m = _tuple$1[0], m === (go$ptrType(Func)).nil) {
+			if (Implements(x.typ, Ti)) {
 				return true;
 			}
 		}
 		if (Identical(Vu, Tu) && (!isNamed(V) || !isNamed(T))) {
 			return true;
 		}
-		if (_tuple$2 = (Vu !== null && Vu.constructor === (go$ptrType(Chan)) ? [Vu.go$val, true] : [(go$ptrType(Chan)).nil, false]), Vc = _tuple$2[0], ok$1 = _tuple$2[1], ok$1 && (Vc.dir === 0)) {
-			if (_tuple$3 = (Tu !== null && Tu.constructor === (go$ptrType(Chan)) ? [Tu.go$val, true] : [(go$ptrType(Chan)).nil, false]), Tc = _tuple$3[0], ok$2 = _tuple$3[1], ok$2 && Identical(Vc.elem, Tc.elem)) {
+		if (_tuple$1 = (Vu !== null && Vu.constructor === (go$ptrType(Chan)) ? [Vu.go$val, true] : [(go$ptrType(Chan)).nil, false]), Vc = _tuple$1[0], ok$1 = _tuple$1[1], ok$1 && (Vc.dir === 0)) {
+			if (_tuple$2 = (Tu !== null && Tu.constructor === (go$ptrType(Chan)) ? [Tu.go$val, true] : [(go$ptrType(Chan)).nil, false]), Tc = _tuple$2[0], ok$2 = _tuple$2[1], ok$2 && Identical(Vc.elem, Tc.elem)) {
 				return !isNamed(V) || !isNamed(T);
 			}
 		}
@@ -48369,7 +47825,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 				if (x.mode === 4) {
 					return representableConst(x.val, conf, t$1.kind, (go$ptrType(exact.Value)).nil);
 				}
-				if (_tuple$4 = (Vu !== null && Vu.constructor === (go$ptrType(Basic)) ? [Vu.go$val, true] : [(go$ptrType(Basic)).nil, false]), Vb = _tuple$4[0], !(Vb === (go$ptrType(Basic)).nil)) {
+				if (_tuple$3 = (Vu !== null && Vu.constructor === (go$ptrType(Basic)) ? [Vu.go$val, true] : [(go$ptrType(Basic)).nil, false]), Vb = _tuple$3[0], !(Vb === (go$ptrType(Basic)).nil)) {
 					return (Vb.kind === 19) && isBoolean(Tu);
 				}
 			} else if (_type$1 === (go$ptrType(Interface))) {
@@ -48508,9 +47964,9 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		_tuple = (x = typ.Underlying(), (x !== null && x.constructor === (go$ptrType(Interface)) ? [x.go$val, true] : [(go$ptrType(Interface)).nil, false])), ok = _tuple[1];
 		return ok;
 	};
-	var isComparable = function(typ) {
+	var Comparable = go$pkg.Comparable = function(T) {
 		var t, _ref, _type, _ref$1, _i, _slice, _index, f;
-		_ref = typ.Underlying();
+		_ref = T.Underlying();
 		_type = _ref !== null ? _ref.constructor : null;
 		if (_type === (go$ptrType(Basic))) {
 			t = _ref.go$val;
@@ -48524,14 +47980,14 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			_i = 0;
 			for (; _i < _ref$1.length; _i += 1) {
 				f = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-				if (!isComparable(f.object.typ)) {
+				if (!Comparable(f.object.typ)) {
 					return false;
 				}
 			}
 			return true;
 		} else if (_type === (go$ptrType(Array))) {
 			t = _ref.go$val;
-			return isComparable(t.elem);
+			return Comparable(t.elem);
 		}
 		return false;
 	};
@@ -48738,7 +48194,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		return [s, null];
 	};
 	checker.Ptr.prototype.resolveFiles = function(files) {
-		var check, pkg, objMap, initMap, declare, importer, seenPkgs, fileScopes, dotImports, _ref, _i, _slice, _index, file, fileScope, _ref$1, _i$1, _slice$1, _index$1, decl, d, _ref$2, _type, last, _ref$3, _i$2, _slice$2, _index$2, spec, iota, s, _ref$4, _type$1, imp, _tuple, path$1, err, err$1, _tuple$1, _entry, _key, name, obj, _ref$5, _i$3, _keys, _entry$1, obj$1, _slice$3, _index$3, posSet, _slice$4, _index$4, _key$1, _ref$6, _ref$7, _i$4, _slice$5, _index$5, name$1, i, obj$2, init, _slice$6, _index$6, lhs, d1, _slice$7, _index$7, _ref$8, _i$5, _slice$8, _index$8, name$2, i$1, obj$3, _slice$9, _index$9, d$1, init$1, _slice$10, _index$10, _key$2, obj$4, name$3, obj$5, list, _slice$11, _index$11, typ, ptr, _tuple$2, base, _tuple$3, _entry$2, _key$3, info, _key$4, _key$5, _ref$9, _i$6, _slice$12, _index$12, scope, _ref$10, _i$7, _keys$1, _entry$3, obj$6, alt, emptyCycle, _ref$11, _i$8, _slice$13, _index$13, obj$7, _ref$12, _i$9, _slice$14, _index$14, _struct, f, _ref$13, _i$10, _slice$15, _index$15, obj$8, obj$9, _tuple$4, init$2, _entry$4, _ref$14, _i$11, _slice$16, _index$16, scope$1, i$2, usedDotImports, _ref$15, _i$12, _keys$2, _entry$5, obj$10, obj$11, _ref$16, _type$2, _key$6, _ref$17, _slice$17, _index$17, _i$13, _keys$3, _entry$6, pos, pkg$1, _entry$7;
+		var check, pkg, objMap, initMap, declare, importer, seenPkgs, fileScopes, dotImports, _ref, _i, _slice, _index, file, fileScope, _ref$1, _i$1, _slice$1, _index$1, decl, d, _ref$2, _type, last, _ref$3, _i$2, _slice$2, _index$2, spec, iota, s, _ref$4, _type$1, imp, _tuple, path$1, err, err$1, _tuple$1, _entry, _key, name, obj, _ref$5, _i$3, _keys, _entry$1, obj$1, _slice$3, _index$3, posSet, _slice$4, _index$4, _key$1, _ref$6, _ref$7, _i$4, _slice$5, _index$5, name$1, i, obj$2, init, _slice$6, _index$6, d$1, _key$2, lhs, d1, _slice$7, _index$7, _ref$8, _i$5, _slice$8, _index$8, name$2, i$1, obj$3, _slice$9, _index$9, d$2, init$1, _slice$10, _index$10, _key$3, obj$4, name$3, obj$5, list, _slice$11, _index$11, typ, ptr, _tuple$2, base, _tuple$3, _entry$2, _key$4, info, _key$5, _key$6, _ref$9, _i$6, _slice$12, _index$12, scope, _ref$10, _i$7, _keys$1, _entry$3, obj$6, alt, typePath, _ref$11, _i$8, _slice$13, _index$13, obj$7, _ref$12, _i$9, _slice$14, _index$14, _struct, f, initPath, _ref$13, _i$10, _slice$15, _index$15, obj$8, _ref$14, _type$2, init$2, _entry$4, _ref$15, _i$11, _slice$16, _index$16, scope$1, i$2, usedDotImports, _ref$16, _i$12, _keys$2, _entry$5, obj$9, obj$10, _ref$17, _type$3, _key$7, _ref$18, _slice$17, _index$17, _i$13, _keys$3, _entry$6, pos, pkg$1, _entry$7;
 		check = this;
 		pkg = check.pkg;
 		objMap = new Go$Map(), initMap = new Go$Map();
@@ -48869,7 +48325,9 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 									if (i < last.Values.length) {
 										init = (_slice$6 = last.Values, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
 									}
-									declare(name$1, obj$2, new declInfo.Ptr(fileScope, (go$sliceType((go$ptrType(Var)))).nil, last.Type, init, (go$ptrType(ast.FuncDecl)).nil, false, 0));
+									d$1 = new declInfo.Ptr(fileScope, (go$sliceType((go$ptrType(Var)))).nil, last.Type, init, (go$ptrType(ast.FuncDecl)).nil, false, 0);
+									declare(name$1, obj$2, d$1);
+									_key$2 = obj$2, (initMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$2 || go$interfaceNil).go$key()] = { k: _key$2, v: d$1 };
 								}
 								check.arityMatch(s, last);
 							} else if (_ref$6 === 85) {
@@ -48885,17 +48343,17 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 									i$1 = _i$5;
 									obj$3 = NewVar(name$2.Pos(), pkg, name$2.Name, null);
 									_slice$9 = lhs, _index$9 = i$1, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = obj$3) : go$throwRuntimeError("index out of range");
-									d$1 = d1;
+									d$2 = d1;
 									init$1 = null;
-									if (d$1 === (go$ptrType(declInfo)).nil) {
+									if (d$2 === (go$ptrType(declInfo)).nil) {
 										if (i$1 < s.Values.length) {
 											init$1 = (_slice$10 = s.Values, _index$10 = i$1, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"));
 										}
-										d$1 = new declInfo.Ptr(fileScope, (go$sliceType((go$ptrType(Var)))).nil, s.Type, init$1, (go$ptrType(ast.FuncDecl)).nil, false, 0);
+										d$2 = new declInfo.Ptr(fileScope, (go$sliceType((go$ptrType(Var)))).nil, s.Type, init$1, (go$ptrType(ast.FuncDecl)).nil, false, 0);
 									}
-									declare(name$2, obj$3, d$1);
+									declare(name$2, obj$3, d$2);
 									if (!(d1 === (go$ptrType(declInfo)).nil) || !(go$interfaceIsEqual(init$1, null))) {
-										_key$2 = obj$3, (initMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$2 || go$interfaceNil).go$key()] = { k: _key$2, v: d$1 };
+										_key$3 = obj$3, (initMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$3 || go$interfaceNil).go$key()] = { k: _key$3, v: d$2 };
 									}
 								}
 								check.arityMatch(s, (go$ptrType(ast.ValueSpec)).nil);
@@ -48932,14 +48390,14 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 								typ = ptr.X;
 							}
 							if (_tuple$3 = (typ !== null && typ.constructor === (go$ptrType(ast.Ident)) ? [typ.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), base = _tuple$3[0], !(base === (go$ptrType(ast.Ident)).nil) && !(base.Name === "_")) {
-								_key$3 = base.Name, (check.methods || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: go$append((_entry$2 = check.methods[base.Name], _entry$2 !== undefined ? _entry$2.v : (go$sliceType((go$ptrType(Func)))).nil), obj$5) };
+								_key$4 = base.Name, (check.methods || go$throwRuntimeError("assignment to entry in nil map"))[_key$4] = { k: _key$4, v: go$append((_entry$2 = check.methods[base.Name], _entry$2 !== undefined ? _entry$2.v : (go$sliceType((go$ptrType(Func)))).nil), obj$5) };
 							}
 						}
 					}
 					info = new declInfo.Ptr(fileScope, (go$sliceType((go$ptrType(Var)))).nil, null, null, d, false, 0);
-					_key$4 = obj$5, (objMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$4 || go$interfaceNil).go$key()] = { k: _key$4, v: info };
+					_key$5 = obj$5, (objMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$5 || go$interfaceNil).go$key()] = { k: _key$5, v: info };
 					if (!(d.Body === (go$ptrType(ast.BlockStmt)).nil)) {
-						_key$5 = obj$5, (initMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$5 || go$interfaceNil).go$key()] = { k: _key$5, v: info };
+						_key$6 = obj$5, (initMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$6 || go$interfaceNil).go$key()] = { k: _key$6, v: info };
 					}
 				} else {
 					d = _ref$2;
@@ -48965,14 +48423,13 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 		check.initMap = initMap;
 		check.objMap = objMap;
-		emptyCycle = (go$sliceType((go$ptrType(TypeName)))).make(0, 8, function() { return (go$ptrType(TypeName)).nil; });
+		typePath = (go$sliceType((go$ptrType(TypeName)))).make(0, 8, function() { return (go$ptrType(TypeName)).nil; });
 		_ref$11 = objectsOf(check.objMap);
 		_i$8 = 0;
 		for (; _i$8 < _ref$11.length; _i$8 += 1) {
 			obj$7 = (_slice$13 = _ref$11, _index$13 = _i$8, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range"));
-			check.objDecl(obj$7, (go$ptrType(Named)).nil, emptyCycle);
+			check.objDecl(obj$7, (go$ptrType(Named)).nil, typePath);
 		}
-		emptyCycle = (go$sliceType((go$ptrType(TypeName)))).nil;
 		check.objMap = false;
 		check.methods = false;
 		_ref$12 = check.funcList;
@@ -48982,13 +48439,16 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			check.decl = f.info;
 			check.funcBody(f.name, f.sig, f.body);
 		}
+		initPath = (go$sliceType(Object)).make(0, 8, function() { return null; });
 		_ref$13 = objectsOf(initMap);
 		_i$10 = 0;
 		for (; _i$10 < _ref$13.length; _i$10 += 1) {
 			obj$8 = (_slice$15 = _ref$13, _index$15 = _i$10, (_index$15 >= 0 && _index$15 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$15] : go$throwRuntimeError("index out of range"));
-			if (_tuple$4 = (obj$8 !== null && obj$8.constructor === (go$ptrType(Var)) ? [obj$8.go$val, true] : [(go$ptrType(Var)).nil, false]), obj$9 = _tuple$4[0], !(obj$9 === (go$ptrType(Var)).nil)) {
-				if (init$2 = (_entry$4 = initMap[(obj$9 || go$interfaceNil).go$key()], _entry$4 !== undefined ? _entry$4.v : (go$ptrType(declInfo)).nil), !(init$2 === (go$ptrType(declInfo)).nil)) {
-					check.dependencies(obj$9, init$2, (go$sliceType(Object)).make(0, 8, function() { return null; }));
+			_ref$14 = obj$8;
+			_type$2 = _ref$14 !== null ? _ref$14.constructor : null;
+			if (_type$2 === (go$ptrType(Const)) || _type$2 === (go$ptrType(Var))) {
+				if (init$2 = (_entry$4 = initMap[(obj$8 || go$interfaceNil).go$key()], _entry$4 !== undefined ? _entry$4.v : (go$ptrType(declInfo)).nil), !(init$2 === (go$ptrType(declInfo)).nil)) {
+					check.dependencies(obj$8, init$2, initPath);
 				}
 			}
 		}
@@ -48996,40 +48456,40 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		if (check.conf.IgnoreFuncBodies) {
 			return;
 		}
-		_ref$14 = fileScopes;
+		_ref$15 = fileScopes;
 		_i$11 = 0;
-		for (; _i$11 < _ref$14.length; _i$11 += 1) {
-			scope$1 = (_slice$16 = _ref$14, _index$16 = _i$11, (_index$16 >= 0 && _index$16 < _slice$16.length) ? _slice$16.array[_slice$16.offset + _index$16] : go$throwRuntimeError("index out of range"));
+		for (; _i$11 < _ref$15.length; _i$11 += 1) {
+			scope$1 = (_slice$16 = _ref$15, _index$16 = _i$11, (_index$16 >= 0 && _index$16 < _slice$16.length) ? _slice$16.array[_slice$16.offset + _index$16] : go$throwRuntimeError("index out of range"));
 			i$2 = _i$11;
 			usedDotImports = false;
-			_ref$15 = scope$1.elems;
+			_ref$16 = scope$1.elems;
 			_i$12 = 0;
-			_keys$2 = go$keys(_ref$15);
+			_keys$2 = go$keys(_ref$16);
 			for (; _i$12 < _keys$2.length; _i$12 += 1) {
-				_entry$5 = _ref$15[_keys$2[_i$12]];
-				obj$10 = _entry$5.v;
-				_ref$16 = obj$10;
-				_type$2 = _ref$16 !== null ? _ref$16.constructor : null;
-				if (_type$2 === (go$ptrType(PkgName))) {
-					obj$11 = _ref$16.go$val;
-					if (!obj$11.object.used) {
-						check.errorf(obj$11.object.pos, "%q imported but not used", new (go$sliceType(go$emptyInterface))([new Go$String(obj$11.object.pkg.path)]));
+				_entry$5 = _ref$16[_keys$2[_i$12]];
+				obj$9 = _entry$5.v;
+				_ref$17 = obj$9;
+				_type$3 = _ref$17 !== null ? _ref$17.constructor : null;
+				if (_type$3 === (go$ptrType(PkgName))) {
+					obj$10 = _ref$17.go$val;
+					if (!obj$10.object.used) {
+						check.errorf(obj$10.object.pos, "%q imported but not used", new (go$sliceType(go$emptyInterface))([new Go$String(obj$10.object.pkg.path)]));
 					}
 				} else {
-					obj$11 = _ref$16;
-					if (obj$11.isUsed()) {
+					obj$10 = _ref$17;
+					if (obj$10.isUsed()) {
 						if (usedDotImports === false) {
 							usedDotImports = new Go$Map();
 						}
-						_key$6 = obj$11.Pkg(), (usedDotImports || go$throwRuntimeError("assignment to entry in nil map"))[_key$6.go$key()] = { k: _key$6, v: true };
+						_key$7 = obj$10.Pkg(), (usedDotImports || go$throwRuntimeError("assignment to entry in nil map"))[_key$7.go$key()] = { k: _key$7, v: true };
 					}
 				}
 			}
-			_ref$17 = (_slice$17 = dotImports, _index$17 = i$2, (_index$17 >= 0 && _index$17 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$17] : go$throwRuntimeError("index out of range"));
+			_ref$18 = (_slice$17 = dotImports, _index$17 = i$2, (_index$17 >= 0 && _index$17 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$17] : go$throwRuntimeError("index out of range"));
 			_i$13 = 0;
-			_keys$3 = go$keys(_ref$17);
+			_keys$3 = go$keys(_ref$18);
 			for (; _i$13 < _keys$3.length; _i$13 += 1) {
-				_entry$6 = _ref$17[_keys$3[_i$13]];
+				_entry$6 = _ref$18[_keys$3[_i$13]];
 				pos = _entry$6.v;
 				pkg$1 = _entry$6.k;
 				if (!(_entry$7 = usedDotImports[pkg$1.go$key()], _entry$7 !== undefined ? _entry$7.v : false)) {
@@ -49074,7 +48534,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	go$ptrType(inSourceOrder).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
 	checker.Ptr.prototype.dependencies = function(obj, init, path$1) {
-		var check, first, cycle, _ref, _i, _slice, _index, obj$1, i, ok, _tuple, _slice$1, _index$1, obj$2, i$1, _ref$1, _i$1, _slice$2, _index$2, _ref$2, _i$2, _slice$3, _index$3, obj$3, _entry, dep, this$1, _tuple$1, initLhs;
+		var check, first, cycle, _ref, _i, _slice, _index, obj$1, i, _ref$1, _type, _slice$1, _index$1, obj$2, i$1, _ref$2, _i$1, _slice$2, _index$2, _ref$3, _i$2, _slice$3, _index$3, obj$3, _entry, dep, this$1, _tuple, initLhs;
 		check = this;
 		if (init.mark < 0) {
 			return;
@@ -49084,21 +48544,23 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			cycle = go$subslice(path$1, (init.mark - 1 >> 0));
 			_ref = cycle;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			L: for (; _i < _ref.length; _i += 1) {
 				obj$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
-				if (_tuple = (obj$1 !== null && obj$1.constructor === (go$ptrType(Var)) ? [obj$1.go$val, true] : [(go$ptrType(Var)).nil, false]), ok = _tuple[1], ok) {
+				_ref$1 = obj$1;
+				_type = _ref$1 !== null ? _ref$1.constructor : null;
+				if (_type === (go$ptrType(Const)) || _type === (go$ptrType(Var))) {
 					first = i;
-					break;
+					break L;
 				}
 			}
 			if (first >= 0) {
 				obj$2 = (_slice$1 = cycle, _index$1 = first, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 				check.errorf(obj$2.Pos(), "initialization cycle for %s", new (go$sliceType(go$emptyInterface))([new Go$String(obj$2.Name())]));
 				i$1 = first;
-				_ref$1 = cycle;
+				_ref$2 = cycle;
 				_i$1 = 0;
-				for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				for (; _i$1 < _ref$2.length; _i$1 += 1) {
 					check.errorf(obj$2.Pos(), "\t%s refers to", new (go$sliceType(go$emptyInterface))([new Go$String(obj$2.Name())]));
 					i$1 = i$1 + 1 >> 0;
 					if (i$1 >= cycle.length) {
@@ -49106,22 +48568,22 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 					}
 					obj$2 = (_slice$2 = cycle, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 				}
-				check.errorf(obj$2.Pos(), "\t%s (cycle start)", new (go$sliceType(go$emptyInterface))([new Go$String(obj$2.Name())]));
+				check.errorf(obj$2.Pos(), "\t%s", new (go$sliceType(go$emptyInterface))([new Go$String(obj$2.Name())]));
 			}
 			init.mark = -1;
 			return;
 		}
 		path$1 = go$append(path$1, obj);
 		init.mark = path$1.length;
-		_ref$2 = objectsOf(init.deps);
+		_ref$3 = objectsOf(init.deps);
 		_i$2 = 0;
-		for (; _i$2 < _ref$2.length; _i$2 += 1) {
-			obj$3 = (_slice$3 = _ref$2, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+		for (; _i$2 < _ref$3.length; _i$2 += 1) {
+			obj$3 = (_slice$3 = _ref$3, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 			dep = (_entry = init.deps[(obj$3 || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : (go$ptrType(declInfo)).nil);
 			check.dependencies(obj$3, dep, path$1);
 		}
 		init.mark = -1;
-		if (_tuple$1 = (obj !== null && obj.constructor === (go$ptrType(Var)) ? [obj.go$val, true] : [(go$ptrType(Var)).nil, false]), this$1 = _tuple$1[0], !(this$1 === (go$ptrType(Var)).nil)) {
+		if (_tuple = (obj !== null && obj.constructor === (go$ptrType(Var)) ? [obj.go$val, true] : [(go$ptrType(Var)).nil, false]), this$1 = _tuple[0], !(this$1 === (go$ptrType(Var)).nil)) {
 			initLhs = init.lhs;
 			if (initLhs === (go$sliceType((go$ptrType(Var)))).nil) {
 				initLhs = new (go$sliceType((go$ptrType(Var))))([this$1]);
@@ -51074,8 +50536,8 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 		writeTuple(buf, this$1, sig.results, false, visited);
 	};
-	checker.Ptr.prototype.ident = function(x, e, def$1, cycle) {
-		var check, obj, typ, obj$1, _ref, _type, _ref$1, _i, _slice, _index, prev;
+	checker.Ptr.prototype.ident = function(x, e, def$1, path$1) {
+		var check, obj, typ, obj$1, _ref, _type, _ref$1, _i, _slice, _index, prev, i, _ref$2, _i$1, _slice$1, _index$1, obj$2;
 		check = this;
 		x.mode = 0;
 		x.expr = e;
@@ -51089,7 +50551,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			return;
 		}
 		check.recordObject(e, obj);
-		check.objDecl(obj, def$1, cycle);
+		check.objDecl(obj, def$1, path$1);
 		typ = obj.Type();
 		assert(!(go$interfaceIsEqual(typ, null)));
 		_ref = obj;
@@ -51101,6 +50563,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		} else if (_type === (go$ptrType(Const))) {
 			obj$1 = _ref.go$val;
 			obj$1.object.used = true;
+			check.addDeclDep(obj$1);
 			if (go$interfaceIsEqual(typ, go$pkg.Typ[0])) {
 				return;
 			}
@@ -51119,12 +50582,20 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			obj$1 = _ref.go$val;
 			obj$1.object.used = true;
 			x.mode = 3;
-			_ref$1 = cycle;
+			_ref$1 = path$1;
 			_i = 0;
 			for (; _i < _ref$1.length; _i += 1) {
 				prev = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
 				if (prev === obj$1) {
 					check.errorf(obj$1.object.pos, "illegal cycle in declaration of %s", new (go$sliceType(go$emptyInterface))([new Go$String(obj$1.object.name)]));
+					_ref$2 = go$subslice(path$1, i);
+					_i$1 = 0;
+					for (; _i$1 < _ref$2.length; _i$1 += 1) {
+						obj$2 = (_slice$1 = _ref$2, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+						check.errorf(obj$2.object.Pos(), "\t%s refers to", new (go$sliceType(go$emptyInterface))([new Go$String(obj$2.object.Name())]));
+					}
+					check.errorf(obj$1.object.Pos(), "\t%s", new (go$sliceType(go$emptyInterface))([new Go$String(obj$1.object.Name())]));
 					typ = go$pkg.Typ[0];
 					break;
 				}
@@ -51132,22 +50603,18 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		} else if (_type === (go$ptrType(Var))) {
 			obj$1 = _ref.go$val;
 			obj$1.object.used = true;
+			check.addDeclDep(obj$1);
 			x.mode = 5;
-			if (!(go$interfaceIsEqual(typ, go$pkg.Typ[0]))) {
-				check.addDeclDep(obj$1);
-			}
 		} else if (_type === (go$ptrType(Func))) {
 			obj$1 = _ref.go$val;
 			obj$1.object.used = true;
+			check.addDeclDep(obj$1);
 			x.mode = 7;
-			if (!(go$interfaceIsEqual(typ, go$pkg.Typ[0]))) {
-				check.addDeclDep(obj$1);
-			}
 		} else if (_type === (go$ptrType(Builtin))) {
 			obj$1 = _ref.go$val;
 			obj$1.object.used = true;
-			x.mode = 2;
 			x.id = obj$1.id;
+			x.mode = 2;
 		} else if (_type === (go$ptrType(Nil))) {
 			obj$1 = _ref.go$val;
 			x.mode = 7;
@@ -51157,14 +50624,14 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 		x.typ = typ;
 	};
-	checker.prototype.ident = function(x, e, def$1, cycle) { return this.go$val.ident(x, e, def$1, cycle); };
-	checker.Ptr.prototype.typ = function(e, def$1, cycle) {
+	checker.prototype.ident = function(x, e, def$1, path$1) { return this.go$val.ident(x, e, def$1, path$1); };
+	checker.Ptr.prototype.typ = function(e, def$1, path$1) {
 		var T, check;
 		T = null;
 		var go$deferred = [];
 		try {
 			check = this;
-			T = check.typInternal(e, def$1, cycle);
+			T = check.typInternal(e, def$1, path$1);
 			assert(isTyped(T));
 			check.recordTypeAndValue(e, T, null);
 			return T;
@@ -51175,7 +50642,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			return T;
 		}
 	};
-	checker.prototype.typ = function(e, def$1, cycle) { return this.go$val.typ(e, def$1, cycle); };
+	checker.prototype.typ = function(e, def$1, path$1) { return this.go$val.typ(e, def$1, path$1); };
 	checker.Ptr.prototype.funcType = function(sig, recv, ftyp) {
 		var check, scope, _tuple, recv_, _tuple$1, params, variadic, _tuple$2, results, _slice, _index, _slice$1, _index$1, recv$1, t, _tuple$3, err, T, _tuple$4, u, _ref, _type;
 		check = this;
@@ -51223,7 +50690,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		return sig;
 	};
 	checker.prototype.funcType = function(sig, recv, ftyp) { return this.go$val.funcType(sig, recv, ftyp); };
-	checker.Ptr.prototype.typInternal = function(e, def$1, cycle) {
+	checker.Ptr.prototype.typInternal = function(e, def$1, path$1) {
 		var check, e$1, _ref, _type, x, _ref$1, typ, x$1, _ref$2, typ$1, typ$2, typ$3, typ$4, typ$5, typ$6, typ$7, typ$8, typ$9, dir, _ref$3, typ$10;
 		check = this;
 		_ref = e;
@@ -51233,7 +50700,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		} else if (_type === (go$ptrType(ast.Ident))) {
 			e$1 = _ref.go$val;
 			x = new operand.Ptr();
-			check.ident(x, e$1, def$1, cycle);
+			check.ident(x, e$1, def$1, path$1);
 			_ref$1 = x.mode;
 			if (_ref$1 === 3) {
 				typ = x.typ;
@@ -51262,14 +50729,14 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 		} else if (_type === (go$ptrType(ast.ParenExpr))) {
 			e$1 = _ref.go$val;
-			return check.typ(e$1.X, def$1, cycle);
+			return check.typ(e$1.X, def$1, path$1);
 		} else if (_type === (go$ptrType(ast.ArrayType))) {
 			e$1 = _ref.go$val;
 			if (!(go$interfaceIsEqual(e$1.Len, null))) {
 				typ$2 = new Array.Ptr();
 				def$1.setUnderlying(typ$2);
 				typ$2.len = check.arrayLength(e$1.Len);
-				typ$2.elem = check.typ(e$1.Elt, (go$ptrType(Named)).nil, cycle);
+				typ$2.elem = check.typ(e$1.Elt, (go$ptrType(Named)).nil, path$1);
 				return typ$2;
 			} else {
 				typ$3 = new Slice.Ptr();
@@ -51281,7 +50748,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			e$1 = _ref.go$val;
 			typ$4 = new Struct.Ptr();
 			def$1.setUnderlying(typ$4);
-			check.structType(typ$4, e$1, cycle);
+			check.structType(typ$4, e$1, path$1);
 			return typ$4;
 		} else if (_type === (go$ptrType(ast.StarExpr))) {
 			e$1 = _ref.go$val;
@@ -51299,7 +50766,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			e$1 = _ref.go$val;
 			typ$7 = new Interface.Ptr();
 			def$1.setUnderlying(typ$7);
-			check.interfaceType(typ$7, e$1, def$1, cycle);
+			check.interfaceType(typ$7, e$1, def$1, path$1);
 			return typ$7;
 		} else if (_type === (go$ptrType(ast.MapType))) {
 			e$1 = _ref.go$val;
@@ -51308,7 +50775,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			typ$8.key = check.typ(e$1.Key, (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
 			typ$8.elem = check.typ(e$1.Value, (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
 			check.delay((function() {
-				if (!isComparable(typ$8.key)) {
+				if (!Comparable(typ$8.key)) {
 					check.errorf(e$1.Key.Pos(), "invalid map key type %s", new (go$sliceType(go$emptyInterface))([typ$8.key]));
 				}
 			}));
@@ -51338,7 +50805,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		def$1.setUnderlying(typ$10);
 		return typ$10;
 	};
-	checker.prototype.typInternal = function(e, def$1, cycle) { return this.go$val.typInternal(e, def$1, cycle); };
+	checker.prototype.typInternal = function(e, def$1, path$1) { return this.go$val.typInternal(e, def$1, path$1); };
 	checker.Ptr.prototype.typOrNil = function(e) {
 		var check, x, _ref;
 		check = this;
@@ -51440,7 +50907,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		return true;
 	};
 	checker.prototype.declareInSet = function(oset, pos, obj) { return this.go$val.declareInSet(oset, pos, obj); };
-	checker.Ptr.prototype.interfaceType = function(iface, ityp, def$1, cycle) {
+	checker.Ptr.prototype.interfaceType = function(iface, ityp, def$1, path$1) {
 		var check, recvTyp, mset, signatures, embedded, _ref, _i, _slice, _index, f, _slice$1, _index$1, name, pos, sig, m, v, _ref$1, _i$1, _slice$2, _index$2, e, pos$1, typ, _tuple, named, u, _tuple$1, embed, _ref$2, _i$2, _slice$3, _index$3, m$1, v$1, _ref$3, _i$3, _slice$4, _index$4, m$2, i, _slice$5, _index$5, expr, typ$1, _tuple$2, sig$1, x, old, _struct, l, r, x$1, x$2, x$3;
 		check = this;
 		if (ityp.Methods === (go$ptrType(ast.FieldList)).nil) {
@@ -51476,7 +50943,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		for (; _i$1 < _ref$1.length; _i$1 += 1) {
 			e = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 			pos$1 = e.Pos();
-			typ = check.typ(e, (go$ptrType(Named)).nil, cycle);
+			typ = check.typ(e, (go$ptrType(Named)).nil, path$1);
 			_tuple = (typ !== null && typ.constructor === (go$ptrType(Named)) ? [typ.go$val, true] : [(go$ptrType(Named)).nil, false]), named = _tuple[0];
 			if (named === (go$ptrType(Named)).nil) {
 				if (!(go$interfaceIsEqual(typ, go$pkg.Typ[0]))) {
@@ -51524,7 +50991,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		sort.Sort((x$2 = iface.embeddeds, go$subslice(new byUniqueTypeName(x$2.array), x$2.offset, x$2.offset + x$2.length)));
 		sort.Sort((x$3 = iface.allMethods, go$subslice(new byUniqueMethodName(x$3.array), x$3.offset, x$3.offset + x$3.length)));
 	};
-	checker.prototype.interfaceType = function(iface, ityp, def$1, cycle) { return this.go$val.interfaceType(iface, ityp, def$1, cycle); };
+	checker.prototype.interfaceType = function(iface, ityp, def$1, path$1) { return this.go$val.interfaceType(iface, ityp, def$1, path$1); };
 	byUniqueTypeName.prototype.Len = function() {
 		var a;
 		a = this;
@@ -51575,7 +51042,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		return "";
 	};
 	checker.prototype.tag = function(t) { return this.go$val.tag(t); };
-	checker.Ptr.prototype.structType = function(styp, e, cycle) {
+	checker.Ptr.prototype.structType = function(styp, e, path$1) {
 		var check, list, fields, tags, fset, typ, tag, add, _ref, _i, _slice, _index, f, _ref$1, _i$1, _slice$1, _index$1, name, pos, _tuple, t, isPtr, t$1, _ref$2, _type, u, _ref$3, _type$1;
 		check = this;
 		list = e.Fields;
@@ -51607,7 +51074,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		_i = 0;
 		for (; _i < _ref.length; _i += 1) {
 			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			typ = check.typ(f.Type, (go$ptrType(Named)).nil, cycle);
+			typ = check.typ(f.Type, (go$ptrType(Named)).nil, path$1);
 			tag = check.tag(f.Tag);
 			if (f.Names.length > 0) {
 				_ref$1 = f.Names;
@@ -51662,7 +51129,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		styp.fields = fields;
 		styp.tags = tags;
 	};
-	checker.prototype.structType = function(styp, e, cycle) { return this.go$val.structType(styp, e, cycle); };
+	checker.prototype.structType = function(styp, e, path$1) { return this.go$val.structType(styp, e, path$1); };
 	var defPredeclaredTypes = function() {
 		var _ref, _i, t, _ref$1, _i$1, t$1, res, sig, err, typ;
 		_ref = go$pkg.Typ;
@@ -51746,6 +51213,14 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 	};
 	go$pkg.init = function() {
+		go$pkg.Universe = (go$ptrType(Scope)).nil;
+		universeIota = (go$ptrType(Const)).nil;
+		universeByte = (go$ptrType(Basic)).nil;
+		universeRune = (go$ptrType(Basic)).nil;
+		emptyMethodSet = new MethodSet.Ptr();
+		go$pkg.Unsafe = (go$ptrType(Package)).nil;
+		go$pkg.DefaultImport = go$throwNilPointerError;
+		go$pkg.GcCompatibilityMode = false;
 		var _map, _key, _map$1, _key$1, x, x$1, x$2, x$3, x$4;
 		unaryOpPredicates = (_map = new Go$Map(), _key = 12, _map[_key] = { k: _key, v: isNumeric }, _key = 13, _map[_key] = { k: _key, v: isNumeric }, _key = 19, _map[_key] = { k: _key, v: isInteger }, _key = 43, _map[_key] = { k: _key, v: isBoolean }, _map);
 		binaryOpPredicates = (_map$1 = new Go$Map(), _key$1 = 12, _map$1[_key$1] = { k: _key$1, v: (function(typ) {
@@ -51894,28 +51369,7 @@ go$packages["regexp/syntax"] = (function() {
 	(go$ptrType(Inst)).methods = [["MatchEmptyWidth", "", [Go$Int32, Go$Int32], [Go$Bool], false], ["MatchRune", "", [Go$Int32], [Go$Bool], false], ["String", "", [], [Go$String], false], ["op", "regexp/syntax", [], [InstOp], false]];
 	Regexp.init([["Op", "", Op, ""], ["Flags", "", Flags, ""], ["Sub", "", (go$sliceType((go$ptrType(Regexp)))), ""], ["Sub0", "", (go$arrayType((go$ptrType(Regexp)), 1)), ""], ["Rune", "", (go$sliceType(Go$Int32)), ""], ["Rune0", "", (go$arrayType(Go$Int32, 2)), ""], ["Min", "", Go$Int, ""], ["Max", "", Go$Int, ""], ["Cap", "", Go$Int, ""], ["Name", "", Go$String, ""]]);
 	(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
-	var anyRuneNotNL = (go$sliceType(Go$Int32)).nil;
-	var anyRune = (go$sliceType(Go$Int32)).nil;
-	var anyTable = (go$ptrType(unicode.RangeTable)).nil;
-	var code1 = (go$sliceType(Go$Int32)).nil;
-	var code2 = (go$sliceType(Go$Int32)).nil;
-	var code3 = (go$sliceType(Go$Int32)).nil;
-	var perlGroup = false;
-	var code4 = (go$sliceType(Go$Int32)).nil;
-	var code5 = (go$sliceType(Go$Int32)).nil;
-	var code6 = (go$sliceType(Go$Int32)).nil;
-	var code7 = (go$sliceType(Go$Int32)).nil;
-	var code8 = (go$sliceType(Go$Int32)).nil;
-	var code9 = (go$sliceType(Go$Int32)).nil;
-	var code10 = (go$sliceType(Go$Int32)).nil;
-	var code11 = (go$sliceType(Go$Int32)).nil;
-	var code12 = (go$sliceType(Go$Int32)).nil;
-	var code13 = (go$sliceType(Go$Int32)).nil;
-	var code14 = (go$sliceType(Go$Int32)).nil;
-	var code15 = (go$sliceType(Go$Int32)).nil;
-	var code16 = (go$sliceType(Go$Int32)).nil;
-	var code17 = (go$sliceType(Go$Int32)).nil;
-	var posixGroup = false;
+	var anyRune, code7, code8, code11, code15, code16, posixGroup, code2, code3, code9, code14, code17, anyRuneNotNL, anyTable, perlGroup, code4, code5, code10, code13, code1, code6, code12;
 	patchList.prototype.next = function(p) {
 		var l, _slice, _index, i;
 		l = this.go$val;
@@ -54559,9 +54013,7 @@ go$packages["regexp"] = (function() {
 	(go$ptrType(inputBytes)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
 	inputReader.init([["r", "regexp", io.RuneReader, ""], ["atEOT", "regexp", Go$Bool, ""], ["pos", "regexp", Go$Int, ""]]);
 	(go$ptrType(inputReader)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
-	var empty = (go$sliceType(Go$Int)).nil;
-	var debug = false;
-	var specialBytes = (go$sliceType(Go$Uint8)).nil;
+	var empty, debug, specialBytes;
 	machine.Ptr.prototype.newInputBytes = function(b) {
 		var m;
 		m = this;
@@ -57051,8 +56503,7 @@ go$packages["text/template/parse"] = (function() {
 	(go$ptrType(TemplateNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
 	Tree.init([["Name", "", Go$String, ""], ["ParseName", "", Go$String, ""], ["Root", "", (go$ptrType(ListNode)), ""], ["text", "text/template/parse", Go$String, ""], ["funcs", "text/template/parse", (go$sliceType((go$mapType(Go$String, go$emptyInterface)))), ""], ["lex", "text/template/parse", (go$ptrType(lexer)), ""], ["token", "text/template/parse", (go$arrayType(item, 3)), ""], ["peekCount", "text/template/parse", Go$Int, ""], ["vars", "text/template/parse", (go$sliceType(Go$String)), ""]]);
 	(go$ptrType(Tree)).methods = [["Copy", "", [], [(go$ptrType(Tree))], false], ["ErrorContext", "", [Node], [Go$String, Go$String], false], ["Parse", "", [Go$String, Go$String, Go$String, (go$mapType(Go$String, (go$ptrType(Tree)))), (go$sliceType((go$mapType(Go$String, go$emptyInterface))))], [(go$ptrType(Tree)), go$error], true], ["action", "text/template/parse", [], [Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [item], [], false], ["backup3", "text/template/parse", [item, item], [], false], ["command", "text/template/parse", [], [(go$ptrType(CommandNode))], false], ["elseControl", "text/template/parse", [], [Node], false], ["endControl", "text/template/parse", [], [Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [itemType, Go$String], [item], false], ["expectOneOf", "text/template/parse", [itemType, itemType, Go$String], [item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(ListNode)), Node], false], ["next", "text/template/parse", [], [item], false], ["nextNonSpace", "text/template/parse", [], [item], false], ["operand", "text/template/parse", [], [Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [Pos, Go$Int, (go$ptrType(PipeNode)), (go$ptrType(ListNode)), (go$ptrType(ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["peek", "text/template/parse", [], [item], false], ["peekNonSpace", "text/template/parse", [], [item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [Node], false], ["term", "text/template/parse", [], [Node], false], ["textOrAction", "text/template/parse", [], [Node], false], ["unexpected", "text/template/parse", [item, Go$String], [], false], ["useVar", "text/template/parse", [Pos, Go$String], [Node], false], ["withControl", "text/template/parse", [], [Node], false]];
-	var key = false;
-	var textFormat = "";
+	var key, textFormat;
 	item.Ptr.prototype.String = function() {
 		var _struct, i;
 		i = (_struct = this, new item.Ptr(_struct.typ, _struct.pos, _struct.val));
@@ -58929,26 +58380,7 @@ go$packages["text/template"] = (function() {
 	Template.init([["name", "text/template", Go$String, ""], ["", "", (go$ptrType(parse.Tree)), ""], ["", "text/template", (go$ptrType(common)), ""], ["leftDelim", "text/template", Go$String, ""], ["rightDelim", "text/template", Go$String, ""]]);
 	Template.methods = [["Copy", "", [], [(go$ptrType(parse.Tree))], false], ["ErrorContext", "", [parse.Node], [Go$String, Go$String], false], ["action", "text/template/parse", [], [parse.Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [parse.item], [], false], ["backup3", "text/template/parse", [parse.item, parse.item], [], false], ["command", "text/template/parse", [], [(go$ptrType(parse.CommandNode))], false], ["elseControl", "text/template/parse", [], [parse.Node], false], ["endControl", "text/template/parse", [], [parse.Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [parse.itemType, Go$String], [parse.item], false], ["expectOneOf", "text/template/parse", [parse.itemType, parse.itemType, Go$String], [parse.item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [parse.Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(parse.ListNode)), parse.Node], false], ["next", "text/template/parse", [], [parse.item], false], ["nextNonSpace", "text/template/parse", [], [parse.item], false], ["operand", "text/template/parse", [], [parse.Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [parse.Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [parse.Pos, Go$Int, (go$ptrType(parse.PipeNode)), (go$ptrType(parse.ListNode)), (go$ptrType(parse.ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["peek", "text/template/parse", [], [parse.item], false], ["peekNonSpace", "text/template/parse", [], [parse.item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(parse.PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [parse.Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(parse.lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [parse.Node], false], ["term", "text/template/parse", [], [parse.Node], false], ["textOrAction", "text/template/parse", [], [parse.Node], false], ["unexpected", "text/template/parse", [parse.item, Go$String], [], false], ["useVar", "text/template/parse", [parse.Pos, Go$String], [parse.Node], false], ["withControl", "text/template/parse", [], [parse.Node], false]];
 	(go$ptrType(Template)).methods = [["AddParseTree", "", [Go$String, (go$ptrType(parse.Tree))], [(go$ptrType(Template)), go$error], false], ["Clone", "", [], [(go$ptrType(Template)), go$error], false], ["Copy", "", [], [(go$ptrType(parse.Tree))], false], ["Delims", "", [Go$String, Go$String], [(go$ptrType(Template))], false], ["ErrorContext", "", [parse.Node], [Go$String, Go$String], false], ["Execute", "", [io.Writer, go$emptyInterface], [go$error], false], ["ExecuteTemplate", "", [io.Writer, Go$String, go$emptyInterface], [go$error], false], ["Funcs", "", [FuncMap], [(go$ptrType(Template))], false], ["Lookup", "", [Go$String], [(go$ptrType(Template))], false], ["Name", "", [], [Go$String], false], ["New", "", [Go$String], [(go$ptrType(Template))], false], ["Parse", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["ParseFiles", "", [(go$sliceType(Go$String))], [(go$ptrType(Template)), go$error], true], ["ParseGlob", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["Templates", "", [], [(go$sliceType((go$ptrType(Template))))], false], ["associate", "text/template", [(go$ptrType(Template)), (go$ptrType(parse.Tree))], [Go$Bool, go$error], false], ["copy", "text/template", [(go$ptrType(common))], [(go$ptrType(Template))], false], ["init", "text/template", [], [], false], ["action", "text/template/parse", [], [parse.Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [parse.item], [], false], ["backup3", "text/template/parse", [parse.item, parse.item], [], false], ["command", "text/template/parse", [], [(go$ptrType(parse.CommandNode))], false], ["elseControl", "text/template/parse", [], [parse.Node], false], ["endControl", "text/template/parse", [], [parse.Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [parse.itemType, Go$String], [parse.item], false], ["expectOneOf", "text/template/parse", [parse.itemType, parse.itemType, Go$String], [parse.item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [parse.Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(parse.ListNode)), parse.Node], false], ["next", "text/template/parse", [], [parse.item], false], ["nextNonSpace", "text/template/parse", [], [parse.item], false], ["operand", "text/template/parse", [], [parse.Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [parse.Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [parse.Pos, Go$Int, (go$ptrType(parse.PipeNode)), (go$ptrType(parse.ListNode)), (go$ptrType(parse.ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["peek", "text/template/parse", [], [parse.item], false], ["peekNonSpace", "text/template/parse", [], [parse.item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(parse.PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [parse.Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(parse.lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [parse.Node], false], ["term", "text/template/parse", [], [parse.Node], false], ["textOrAction", "text/template/parse", [], [parse.Node], false], ["unexpected", "text/template/parse", [parse.item, Go$String], [], false], ["useVar", "text/template/parse", [parse.Pos, Go$String], [parse.Node], false], ["withControl", "text/template/parse", [], [parse.Node], false]];
-	var zero = new reflect.Value.Ptr();
-	var errorType = null;
-	var fmtStringerType = null;
-	var builtins = false;
-	var builtinFuncs = false;
-	var errBadComparisonType = null;
-	var errBadComparison = null;
-	var errNoComparison = null;
-	var htmlQuot = (go$sliceType(Go$Uint8)).nil;
-	var htmlApos = (go$sliceType(Go$Uint8)).nil;
-	var htmlAmp = (go$sliceType(Go$Uint8)).nil;
-	var htmlLt = (go$sliceType(Go$Uint8)).nil;
-	var htmlGt = (go$sliceType(Go$Uint8)).nil;
-	var jsLowUni = (go$sliceType(Go$Uint8)).nil;
-	var hex = (go$sliceType(Go$Uint8)).nil;
-	var jsBackslash = (go$sliceType(Go$Uint8)).nil;
-	var jsApos = (go$sliceType(Go$Uint8)).nil;
-	var jsQuot = (go$sliceType(Go$Uint8)).nil;
-	var jsLt = (go$sliceType(Go$Uint8)).nil;
-	var jsGt = (go$sliceType(Go$Uint8)).nil;
+	var zero, errBadComparison, htmlQuot, htmlAmp, htmlLt, jsLowUni, jsApos, jsGt, builtins, errNoComparison, htmlApos, jsQuot, jsLt, fmtStringerType, errorType, builtinFuncs, errBadComparisonType, htmlGt, hex, jsBackslash;
 	state.Ptr.prototype.push = function(name, value) {
 		var s, _struct;
 		s = this;
@@ -60542,6 +59974,7 @@ go$packages["text/template"] = (function() {
 	};
 	Template.prototype.associate = function(new$1, tree) { return this.go$val.associate(new$1, tree); };
 	go$pkg.init = function() {
+		zero = new reflect.Value.Ptr();
 		var _map, _key;
 		errorType = reflect.TypeOf((go$ptrType(go$error)).nil).Elem();
 		fmtStringerType = reflect.TypeOf((go$ptrType(fmt.Stringer)).nil).Elem();
@@ -60744,32 +60177,7 @@ go$packages["go/doc"] = (function() {
 	(go$ptrType(reader)).methods = [["cleanupTypes", "go/doc", [], [], false], ["collectEmbeddedMethods", "go/doc", [methodSet, (go$ptrType(namedType)), Go$String, Go$Bool, Go$Int, embeddedSet], [], false], ["computeMethodSets", "go/doc", [], [], false], ["fileExports", "go/doc", [(go$ptrType(ast.File))], [], false], ["filterDecl", "go/doc", [ast.Decl], [Go$Bool], false], ["filterFieldList", "go/doc", [(go$ptrType(namedType)), (go$ptrType(ast.FieldList)), (go$ptrType(ast.InterfaceType))], [Go$Bool], false], ["filterParamList", "go/doc", [(go$ptrType(ast.FieldList))], [], false], ["filterSpec", "go/doc", [ast.Spec], [Go$Bool], false], ["filterSpecList", "go/doc", [(go$sliceType(ast.Spec))], [(go$sliceType(ast.Spec))], false], ["filterType", "go/doc", [(go$ptrType(namedType)), ast.Expr], [], false], ["isVisible", "go/doc", [Go$String], [Go$Bool], false], ["lookupType", "go/doc", [Go$String], [(go$ptrType(namedType))], false], ["readDoc", "go/doc", [(go$ptrType(ast.CommentGroup))], [], false], ["readFile", "go/doc", [(go$ptrType(ast.File))], [], false], ["readFunc", "go/doc", [(go$ptrType(ast.FuncDecl))], [], false], ["readNote", "go/doc", [(go$sliceType((go$ptrType(ast.Comment))))], [], false], ["readNotes", "go/doc", [(go$sliceType((go$ptrType(ast.CommentGroup))))], [], false], ["readPackage", "go/doc", [(go$ptrType(ast.Package)), Mode], [], false], ["readType", "go/doc", [(go$ptrType(ast.GenDecl)), (go$ptrType(ast.TypeSpec))], [], false], ["readValue", "go/doc", [(go$ptrType(ast.GenDecl))], [], false], ["recordAnonymousField", "go/doc", [(go$ptrType(namedType)), ast.Expr], [Go$String], false], ["remember", "go/doc", [(go$ptrType(ast.InterfaceType))], [], false]];
 	data.init([["n", "go/doc", Go$Int, ""], ["swap", "go/doc", (go$funcType([Go$Int, Go$Int], [], false)), ""], ["less", "go/doc", (go$funcType([Go$Int, Go$Int], [Go$Bool], false)), ""]]);
 	(go$ptrType(data)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	var ldquo = (go$sliceType(Go$Uint8)).nil;
-	var rdquo = (go$sliceType(Go$Uint8)).nil;
-	var matchRx = (go$ptrType(regexp.Regexp)).nil;
-	var html_a = (go$sliceType(Go$Uint8)).nil;
-	var html_aq = (go$sliceType(Go$Uint8)).nil;
-	var html_enda = (go$sliceType(Go$Uint8)).nil;
-	var html_i = (go$sliceType(Go$Uint8)).nil;
-	var html_endi = (go$sliceType(Go$Uint8)).nil;
-	var html_p = (go$sliceType(Go$Uint8)).nil;
-	var html_endp = (go$sliceType(Go$Uint8)).nil;
-	var html_pre = (go$sliceType(Go$Uint8)).nil;
-	var html_endpre = (go$sliceType(Go$Uint8)).nil;
-	var html_h = (go$sliceType(Go$Uint8)).nil;
-	var html_hq = (go$sliceType(Go$Uint8)).nil;
-	var html_endh = (go$sliceType(Go$Uint8)).nil;
-	var nonAlphaNumRx = (go$ptrType(regexp.Regexp)).nil;
-	var nl = (go$sliceType(Go$Uint8)).nil;
-	var space = (go$sliceType(Go$Uint8)).nil;
-	var outputPrefix = (go$ptrType(regexp.Regexp)).nil;
-	var noteMarker = "";
-	var noteMarkerRx = (go$ptrType(regexp.Regexp)).nil;
-	var noteCommentRx = (go$ptrType(regexp.Regexp)).nil;
-	var predeclaredTypes = false;
-	var predeclaredFuncs = false;
-	var predeclaredConstants = false;
-	go$pkg.IllegalPrefixes = (go$sliceType(Go$String)).nil;
+	var rdquo, html_endp, nonAlphaNumRx, outputPrefix, noteCommentRx, predeclaredConstants, ldquo, html_a, html_aq, html_enda, html_i, html_p, predeclaredTypes, html_endi, html_hq, html_endh, noteMarkerRx, predeclaredFuncs, matchRx, html_pre, html_endpre, html_h, nl, space, noteMarker;
 	var commentEscape = function(w, text, nice) {
 		var last, i, ch, _ref;
 		last = 0;
@@ -62462,7 +61870,7 @@ go$packages["log"] = (function() {
 	go$pkg.Logger = Logger;
 	Logger.init([["mu", "log", sync.Mutex, ""], ["prefix", "log", Go$String, ""], ["flag", "log", Go$Int, ""], ["out", "log", io.Writer, ""], ["buf", "log", (go$sliceType(Go$Uint8)), ""]]);
 	(go$ptrType(Logger)).methods = [["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fatalln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Flags", "", [], [Go$Int], false], ["Output", "", [Go$Int, Go$String], [go$error], false], ["Panic", "", [(go$sliceType(go$emptyInterface))], [], true], ["Panicf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Panicln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Prefix", "", [], [Go$String], false], ["Print", "", [(go$sliceType(go$emptyInterface))], [], true], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Println", "", [(go$sliceType(go$emptyInterface))], [], true], ["SetFlags", "", [Go$Int], [], false], ["SetPrefix", "", [Go$String], [], false], ["formatHeader", "log", [(go$ptrType((go$sliceType(Go$Uint8)))), time.Time, Go$String, Go$Int], [], false]];
-	var std = (go$ptrType(Logger)).nil;
+	var std;
 	var New = go$pkg.New = function(out, prefix, flag) {
 		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
 	};
@@ -62871,15 +62279,7 @@ go$packages["go/build"] = (function() {
 	(go$ptrType(NoGoError)).methods = [["Error", "", [], [Go$String], false]];
 	importReader.init([["b", "go/build", (go$ptrType(bufio.Reader)), ""], ["buf", "go/build", (go$sliceType(Go$Uint8)), ""], ["peek", "go/build", Go$Uint8, ""], ["err", "go/build", go$error, ""], ["eof", "go/build", Go$Bool, ""], ["nerr", "go/build", Go$Int, ""]]);
 	(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false], ["readByte", "go/build", [], [Go$Uint8], false], ["readIdent", "go/build", [], [], false], ["readImport", "go/build", [], [], false], ["readKeyword", "go/build", [Go$String], [], false], ["readString", "go/build", [], [], false], ["syntaxError", "go/build", [], [], false]];
-	go$pkg.Default = new Context.Ptr();
-	var cgoEnabled = false;
-	var slashslash = (go$sliceType(Go$Uint8)).nil;
-	var safeBytes = (go$sliceType(Go$Uint8)).nil;
-	var knownOS = false;
-	var knownArch = false;
-	go$pkg.ToolDir = "";
-	var errSyntax = null;
-	var errNUL = null;
+	var cgoEnabled, slashslash, knownOS, errSyntax, safeBytes, knownArch, errNUL;
 	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
@@ -64042,7 +63442,7 @@ go$packages["text/scanner"] = (function() {
 	Scanner.init([["src", "text/scanner", io.Reader, ""], ["srcBuf", "text/scanner", (go$arrayType(Go$Uint8, 1025)), ""], ["srcPos", "text/scanner", Go$Int, ""], ["srcEnd", "text/scanner", Go$Int, ""], ["srcBufOffset", "text/scanner", Go$Int, ""], ["line", "text/scanner", Go$Int, ""], ["column", "text/scanner", Go$Int, ""], ["lastLineLen", "text/scanner", Go$Int, ""], ["lastCharLen", "text/scanner", Go$Int, ""], ["tokBuf", "text/scanner", bytes.Buffer, ""], ["tokPos", "text/scanner", Go$Int, ""], ["tokEnd", "text/scanner", Go$Int, ""], ["ch", "text/scanner", Go$Int32, ""], ["Error", "", (go$funcType([(go$ptrType(Scanner)), Go$String], [], false)), ""], ["ErrorCount", "", Go$Int, ""], ["Mode", "", Go$Uint, ""], ["Whitespace", "", Go$Uint64, ""], ["", "", Position, ""]]);
 	Scanner.methods = [["String", "", [], [Go$String], false]];
 	(go$ptrType(Scanner)).methods = [["Init", "", [io.Reader], [(go$ptrType(Scanner))], false], ["IsValid", "", [], [Go$Bool], false], ["Next", "", [], [Go$Int32], false], ["Peek", "", [], [Go$Int32], false], ["Pos", "", [], [Position], false], ["Scan", "", [], [Go$Int32], false], ["String", "", [], [Go$String], false], ["TokenText", "", [], [Go$String], false], ["error", "text/scanner", [Go$String], [], false], ["next", "text/scanner", [], [Go$Int32], false], ["scanChar", "text/scanner", [], [], false], ["scanComment", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanDigits", "text/scanner", [Go$Int32, Go$Int, Go$Int], [Go$Int32], false], ["scanEscape", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanExponent", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanFraction", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanIdentifier", "text/scanner", [], [Go$Int32], false], ["scanMantissa", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanNumber", "text/scanner", [Go$Int32], [Go$Int32, Go$Int32], false], ["scanRawString", "text/scanner", [], [], false], ["scanString", "text/scanner", [Go$Int32], [Go$Int], false]];
-	var tokenString = false;
+	var tokenString;
 	Position.Ptr.prototype.IsValid = function() {
 		var pos;
 		pos = this;
@@ -64547,7 +63947,7 @@ go$packages["code.google.com/p/go.tools/go/gcimporter"] = (function() {
 	importError.init([["pos", "code.google.com/p/go.tools/go/gcimporter", scanner.Position, ""], ["err", "code.google.com/p/go.tools/go/gcimporter", go$error, ""]]);
 	importError.methods = [["Error", "", [], [Go$String], false]];
 	(go$ptrType(importError)).methods = [["Error", "", [], [Go$String], false]];
-	var pkgExts = go$makeNativeArray("String", 4, function() { return ""; });
+	var pkgExts;
 	var readGopackHeader = function(r) {
 		var name, size, err, hdr, _tuple, s, _tuple$1, _slice, _index, _slice$1, _index$1;
 		name = "";
@@ -65555,15 +64955,7 @@ go$packages["encoding/asn1"] = (function() {
 	forkableWriter.init([["", "", (go$ptrType(bytes.Buffer)), ""], ["pre", "encoding/asn1", (go$ptrType(forkableWriter)), ""], ["post", "encoding/asn1", (go$ptrType(forkableWriter)), ""]]);
 	forkableWriter.methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false]];
 	(go$ptrType(forkableWriter)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Len", "", [], [Go$Int], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["fork", "encoding/asn1", [], [(go$ptrType(forkableWriter)), (go$ptrType(forkableWriter))], false], ["writeTo", "encoding/asn1", [io.Writer], [Go$Int, go$error], false]];
-	var bigOne = (go$ptrType(big.Int)).nil;
-	var bitStringType = null;
-	var objectIdentifierType = null;
-	var enumeratedType = null;
-	var flagType = null;
-	var timeType = null;
-	var rawValueType = null;
-	var rawContentsType = null;
-	var bigIntType = null;
+	var enumeratedType, bigOne, bitStringType, objectIdentifierType, flagType, timeType, rawValueType, rawContentsType, bigIntType;
 	StructuralError.Ptr.prototype.Error = function() {
 		var _struct, e;
 		e = (_struct = this, new StructuralError.Ptr(_struct.Msg));
@@ -67273,7 +66665,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		this.Dependencies = Dependencies_ !== undefined ? Dependencies_ : (go$sliceType(Go$String)).nil;
 		this.Imports = Imports_ !== undefined ? Imports_ : (go$sliceType(Import)).nil;
 		this.Types = Types_ !== undefined ? Types_ : (go$sliceType(Go$Uint8)).nil;
-		this.Variables = Variables_ !== undefined ? Variables_ : (go$sliceType(Go$Uint8)).nil;
+		this.Variables = Variables_ !== undefined ? Variables_ : (go$sliceType(Decl)).nil;
 		this.Functions = Functions_ !== undefined ? Functions_ : (go$sliceType(Function)).nil;
 	});
 	go$pkg.Archive = Archive;
@@ -67284,6 +66676,12 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		this.VarName = VarName_ !== undefined ? VarName_ : "";
 	});
 	go$pkg.Import = Import;
+	var Decl;
+	Decl = go$newType(0, "Struct", "translator.Decl", "Decl", "github.com/neelance/gopherjs/translator", function(Var_) {
+		this.go$val = this;
+		this.Var = Var_ !== undefined ? Var_ : "";
+	});
+	go$pkg.Decl = Decl;
 	var Function;
 	Function = go$newType(0, "Struct", "translator.Function", "Function", "github.com/neelance/gopherjs/translator", function(Name_, Code_) {
 		this.go$val = this;
@@ -67309,15 +66707,12 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 	(go$ptrType(escapeAnalysis)).methods = [["Visit", "", [ast.Node], [ast.Visitor], false]];
 	escapingObjectCollector.init([["analysis", "github.com/neelance/gopherjs/translator", (go$ptrType(escapeAnalysis)), ""]]);
 	(go$ptrType(escapingObjectCollector)).methods = [["Visit", "", [ast.Node], [ast.Visitor], false]];
-	Archive.init([["ImportPath", "", Go$String, ""], ["GcData", "", (go$sliceType(Go$Uint8)), ""], ["Dependencies", "", (go$sliceType(Go$String)), ""], ["Imports", "", (go$sliceType(Import)), ""], ["Types", "", (go$sliceType(Go$Uint8)), ""], ["Variables", "", (go$sliceType(Go$Uint8)), ""], ["Functions", "", (go$sliceType(Function)), ""]]);
+	Archive.init([["ImportPath", "", Go$String, ""], ["GcData", "", (go$sliceType(Go$Uint8)), ""], ["Dependencies", "", (go$sliceType(Go$String)), ""], ["Imports", "", (go$sliceType(Import)), ""], ["Types", "", (go$sliceType(Go$Uint8)), ""], ["Variables", "", (go$sliceType(Decl)), ""], ["Functions", "", (go$sliceType(Function)), ""]]);
 	(go$ptrType(Archive)).methods = [["AddDependenciesOf", "", [(go$ptrType(Archive))], [], false], ["AddDependency", "", [Go$String], [], false], ["WriteCode", "", [io.Writer], [], false]];
 	Import.init([["Path", "", Go$String, ""], ["VarName", "", Go$String, ""]]);
+	Decl.init([["Var", "", Go$String, ""]]);
 	Function.init([["Name", "", Go$String, ""], ["Code", "", (go$sliceType(Go$Uint8)), ""]]);
-	var pkgNatives = false;
-	var reservedKeywords = false;
-	go$pkg.Prelude = "";
-	var sizes32 = (go$ptrType(types.StdSizes)).nil;
-	var typesPackages = false;
+	var pkgNatives, reservedKeywords, sizes32, typesPackages;
 	expression.Ptr.prototype.String = function() {
 		var e;
 		e = this;
@@ -68776,7 +68171,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 	};
 	pkgContext.prototype.Delayed = function(f) { return this.go$val.Delayed(f); };
 	var TranslatePackage = go$pkg.TranslatePackage = function(importPath, files, fileSet, importPkg) {
-		var info, errList, previousErr, config, _tuple, typesPkg, err, _key, c, _ref, _i, _keys, _entry, name, _key$1, functions, initStmts, toplevelTypes, varSpecs, _ref$1, _i$1, _slice, _index, file, _ref$2, _i$2, _slice$1, _index$1, decl, d, _ref$3, _type, x, x$1, _entry$1, sig, recvType, isPtr, _tuple$1, ptr, _entry$2, _ref$4, _ref$5, _i$3, _slice$2, _index$2, spec, x$2, _entry$3, o, _ref$6, _i$4, _slice$3, _index$3, spec$1, s, _ref$7, _i$5, _slice$4, _index$4, name$1, _entry$4, gcData, archive, importedPaths, _ref$8, _i$6, _slice$5, _index$5, imp, _ref$9, _i$7, _slice$6, _index$6, impPath, _tuple$2, impOutput, err$1;
+		var info, errList, previousErr, config, _tuple, typesPkg, err, _key, c, _ref, _i, _keys, _entry, name, _key$1, functions, initStmts, toplevelTypes, vars, _ref$1, _i$1, _slice, _index, file, _ref$2, _i$2, _slice$1, _index$1, decl, d, _ref$3, _type, x, x$1, _entry$1, sig, recvType, isPtr, _tuple$1, ptr, _entry$2, _ref$4, _ref$5, _i$3, _slice$2, _index$2, spec, x$2, _entry$3, o, _ref$6, _i$4, _slice$3, _index$3, spec$1, _ref$7, _i$5, _slice$4, _index$4, name$1, x$3, _entry$4, o$1, _key$2, gcData, archive, importedPaths, _ref$8, _i$6, _slice$5, _index$5, imp, _ref$9, _i$7, _slice$6, _index$6, impPath, _tuple$2, impOutput, err$1;
 		info = new types.Info.Ptr(new Go$Map(), new Go$Map(), new Go$Map(), new Go$Map(), false, (go$sliceType((go$ptrType(types.Initializer)))).nil);
 		errList = ErrorList.nil;
 		previousErr = null;
@@ -68813,7 +68208,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		functions = (go$sliceType((go$ptrType(ast.FuncDecl)))).nil;
 		initStmts = (go$sliceType(ast.Stmt)).nil;
 		toplevelTypes = (go$sliceType((go$ptrType(types.TypeName)))).nil;
-		varSpecs = (go$sliceType((go$ptrType(ast.ValueSpec)))).nil;
+		vars = new Go$Map();
 		_ref$1 = files;
 		_i$1 = 0;
 		for (; _i$1 < _ref$1.length; _i$1 += 1) {
@@ -68862,14 +68257,14 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 						_i$4 = 0;
 						for (; _i$4 < _ref$6.length; _i$4 += 1) {
 							spec$1 = (_slice$3 = _ref$6, _index$3 = _i$4, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
-							s = (spec$1 !== null && spec$1.constructor === (go$ptrType(ast.ValueSpec)) ? spec$1.go$val : go$typeAssertionFailed(spec$1, (go$ptrType(ast.ValueSpec))));
-							varSpecs = go$append(varSpecs, s);
-							_ref$7 = s.Names;
+							_ref$7 = (spec$1 !== null && spec$1.constructor === (go$ptrType(ast.ValueSpec)) ? spec$1.go$val : go$typeAssertionFailed(spec$1, (go$ptrType(ast.ValueSpec)))).Names;
 							_i$5 = 0;
 							for (; _i$5 < _ref$7.length; _i$5 += 1) {
 								name$1 = (_slice$4 = _ref$7, _index$4 = _i$5, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
 								if (!isBlank(name$1)) {
-									c.objectName((_entry$4 = c.info.Objects[name$1.go$key()], _entry$4 !== undefined ? _entry$4.v : null));
+									o$1 = (x$3 = (_entry$4 = c.info.Objects[name$1.go$key()], _entry$4 !== undefined ? _entry$4.v : null), (x$3 !== null && x$3.constructor === (go$ptrType(types.Var)) ? x$3.go$val : go$typeAssertionFailed(x$3, (go$ptrType(types.Var)))));
+									_key$2 = o$1, (vars || go$throwRuntimeError("assignment to entry in nil map"))[_key$2.go$key()] = { k: _key$2, v: true };
+									c.objectName(o$1);
 								}
 							}
 						}
@@ -68879,69 +68274,60 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		}
 		gcData = bytes.NewBuffer((go$sliceType(Go$Uint8)).nil);
 		gcexporter.Write(typesPkg, gcData, sizes32);
-		archive = new Archive.Ptr(importPath, gcData.Bytes(), new (go$sliceType(Go$String))(["runtime"]), (go$sliceType(Import)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Function)).nil);
+		archive = new Archive.Ptr(importPath, gcData.Bytes(), new (go$sliceType(Go$String))(["runtime"]), (go$sliceType(Import)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Decl)).nil, (go$sliceType(Function)).nil);
 		c.Indent((function() {
-			var _ref$8, _i$6, _slice$5, _index$5, importedPkg, varName, _key$2, _entry$5, natives, _entry$6, nativeInit, _ref$9, _i$7, native$1, _slice$6, _index$6, fun, funName, x$3, x$4, _entry$7, recvType$1, _tuple$2, ptr$1, isPointer, _tuple$3, namedRecvType, x$5, _entry$8, f, _struct, initCode;
+			var _ref$8, _i$6, _slice$5, _index$5, importedPkg, varName, _key$3, _ref$9, _i$7, _keys$1, _entry$5, o$2, d$1, _struct, _entry$6, natives, _ref$10, _i$8, native$1, _slice$6, _index$6, fun, funName, x$4, x$5, _entry$7, recvType$1, _tuple$2, ptr$1, isPointer, _tuple$3, namedRecvType, x$6, _entry$8, f, _struct$1, initCode;
 			_ref$8 = typesPkg.Imports();
 			_i$6 = 0;
 			for (; _i$6 < _ref$8.length; _i$6 += 1) {
 				importedPkg = (_slice$5 = _ref$8, _index$5 = _i$6, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 				varName = c.newVariable(importedPkg.Name());
-				_key$2 = importedPkg.Path(), (c.pkgVars || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: varName };
+				_key$3 = importedPkg.Path(), (c.pkgVars || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: varName };
 				archive.Imports = go$append(archive.Imports, new Import.Ptr(importedPkg.Path(), varName));
 			}
 			archive.Types = c.CatchOutput((function() {
-				var _ref$9, _i$7, _slice$6, _index$6, o$1, typeName, _ref$10, _i$8, _slice$7, _index$7, o$2;
+				var _ref$9, _i$7, _slice$6, _index$6, o$2, typeName, _ref$10, _i$8, _slice$7, _index$7, o$3;
 				_ref$9 = toplevelTypes;
 				_i$7 = 0;
 				for (; _i$7 < _ref$9.length; _i$7 += 1) {
-					o$1 = (_slice$6 = _ref$9, _index$6 = _i$7, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
-					typeName = c.objectName(o$1);
+					o$2 = (_slice$6 = _ref$9, _index$6 = _i$7, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+					typeName = c.objectName(o$2);
 					c.Printf("var %s;", new (go$sliceType(go$emptyInterface))([new Go$String(typeName)]));
-					c.translateType(o$1);
+					c.translateType(o$2);
 					c.Printf("go$pkg.%s = %s;", new (go$sliceType(go$emptyInterface))([new Go$String(typeName), new Go$String(typeName)]));
 				}
 				_ref$10 = toplevelTypes;
 				_i$8 = 0;
 				for (; _i$8 < _ref$10.length; _i$8 += 1) {
-					o$2 = (_slice$7 = _ref$10, _index$7 = _i$8, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
-					c.initType(o$2);
+					o$3 = (_slice$7 = _ref$10, _index$7 = _i$8, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+					c.initType(o$3);
 				}
 			}));
-			archive.Variables = c.CatchOutput((function() {
-				var _ref$9, _i$7, _slice$6, _index$6, spec$2, _ref$10, _i$8, _slice$7, _index$7, name$2, x$3, _entry$5, o$1, varPrefix;
-				_ref$9 = varSpecs;
-				_i$7 = 0;
-				for (; _i$7 < _ref$9.length; _i$7 += 1) {
-					spec$2 = (_slice$6 = _ref$9, _index$6 = _i$7, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
-					_ref$10 = spec$2.Names;
-					_i$8 = 0;
-					for (; _i$8 < _ref$10.length; _i$8 += 1) {
-						name$2 = (_slice$7 = _ref$10, _index$7 = _i$8, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
-						o$1 = (x$3 = (_entry$5 = c.info.Objects[name$2.go$key()], _entry$5 !== undefined ? _entry$5.v : null), (x$3 !== null && x$3.constructor === (go$ptrType(types.Var)) ? x$3.go$val : go$typeAssertionFailed(x$3, (go$ptrType(types.Var)))));
-						varPrefix = "";
-						if (!o$1.object.Exported()) {
-							varPrefix = "var ";
-						}
-						c.Printf("%s%s = %s;", new (go$sliceType(go$emptyInterface))([new Go$String(varPrefix), new Go$String(c.objectName(o$1)), new Go$String(c.zeroValue(o$1.object.Type()))]));
-					}
-				}
-			}));
-			natives = (_entry$5 = pkgNatives[importPath], _entry$5 !== undefined ? _entry$5.v : false);
-			nativeInit = (_entry$6 = natives["init"], _entry$6 !== undefined ? _entry$6.v : "");
-			delete natives["init"];
-			_ref$9 = functions;
+			_ref$9 = vars;
 			_i$7 = 0;
-			for (; _i$7 < _ref$9.length; _i$7 += 1) {
+			_keys$1 = go$keys(_ref$9);
+			for (; _i$7 < _keys$1.length; _i$7 += 1) {
+				_entry$5 = _ref$9[_keys$1[_i$7]];
+				o$2 = _entry$5.k;
+				d$1 = new Decl.Ptr();
+				if (!o$2.object.Exported()) {
+					d$1.Var = c.objectName(o$2);
+				}
+				archive.Variables = go$append(archive.Variables, (_struct = d$1, new Decl.Ptr(_struct.Var)));
+			}
+			natives = (_entry$6 = pkgNatives[importPath], _entry$6 !== undefined ? _entry$6.v : false);
+			_ref$10 = functions;
+			_i$8 = 0;
+			for (; _i$8 < _ref$10.length; _i$8 += 1) {
 				native$1 = [undefined];
-				fun = (_slice$6 = _ref$9, _index$6 = _i$7, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+				fun = (_slice$6 = _ref$10, _index$6 = _i$8, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
 				funName = fun.Name.Name;
 				if (!(fun.Recv === (go$ptrType(ast.FieldList)).nil)) {
-					recvType$1 = (x$3 = (x$4 = (_entry$7 = c.info.Objects[fun.Name.go$key()], _entry$7 !== undefined ? _entry$7.v : null), (x$4 !== null && x$4.constructor === (go$ptrType(types.Func)) ? x$4.go$val : go$typeAssertionFailed(x$4, (go$ptrType(types.Func))))).object.Type(), (x$3 !== null && x$3.constructor === (go$ptrType(types.Signature)) ? x$3.go$val : go$typeAssertionFailed(x$3, (go$ptrType(types.Signature))))).Recv().object.Type();
+					recvType$1 = (x$4 = (x$5 = (_entry$7 = c.info.Objects[fun.Name.go$key()], _entry$7 !== undefined ? _entry$7.v : null), (x$5 !== null && x$5.constructor === (go$ptrType(types.Func)) ? x$5.go$val : go$typeAssertionFailed(x$5, (go$ptrType(types.Func))))).object.Type(), (x$4 !== null && x$4.constructor === (go$ptrType(types.Signature)) ? x$4.go$val : go$typeAssertionFailed(x$4, (go$ptrType(types.Signature))))).Recv().object.Type();
 					_tuple$2 = (recvType$1 !== null && recvType$1.constructor === (go$ptrType(types.Pointer)) ? [recvType$1.go$val, true] : [(go$ptrType(types.Pointer)).nil, false]), ptr$1 = _tuple$2[0], isPointer = _tuple$2[1];
 					_tuple$3 = (recvType$1 !== null && recvType$1.constructor === (go$ptrType(types.Named)) ? [recvType$1.go$val, true] : [(go$ptrType(types.Named)).nil, false]), namedRecvType = _tuple$3[0];
 					if (isPointer) {
-						namedRecvType = (x$5 = ptr$1.Elem(), (x$5 !== null && x$5.constructor === (go$ptrType(types.Named)) ? x$5.go$val : go$typeAssertionFailed(x$5, (go$ptrType(types.Named)))));
+						namedRecvType = (x$6 = ptr$1.Elem(), (x$6 !== null && x$6.constructor === (go$ptrType(types.Named)) ? x$6.go$val : go$typeAssertionFailed(x$6, (go$ptrType(types.Named)))));
 					}
 					funName = namedRecvType.Obj().object.Name() + "." + funName;
 				}
@@ -68950,39 +68336,73 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 				f = new Function.Ptr(fun.Name.Name, c.CatchOutput((function(native$1) { return function() {
 					c.translateFunction(fun, native$1[0]);
 				}; })(native$1)));
-				archive.Functions = go$append(archive.Functions, (_struct = f, new Function.Ptr(_struct.Name, _struct.Code)));
-			}
-			if (!((go$keys(natives).length === 0))) {
-				throw go$panic(new Go$String("not all natives used: " + importPath));
+				archive.Functions = go$append(archive.Functions, (_struct$1 = f, new Function.Ptr(_struct$1.Name, _struct$1.Code)));
 			}
 			initCode = c.CatchOutput((function() {
-				c.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(nativeInit)));
-				c.Printf("go$pkg.init = function() {", new (go$sliceType(go$emptyInterface))([]));
-				c.Indent((function() {
-					var initVarStmts, _ref$10, _i$8, _slice$7, _index$7, init, lhs, _ref$11, _i$9, _slice$8, _index$8, obj, i, ident, _key$3, _key$4, _slice$9, _index$9;
-					initVarStmts = (go$sliceType(ast.Stmt)).nil;
-					_ref$10 = c.info.InitOrder;
-					_i$8 = 0;
-					for (; _i$8 < _ref$10.length; _i$8 += 1) {
-						init = (_slice$7 = _ref$10, _index$7 = _i$8, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
-						lhs = (go$sliceType(ast.Expr)).make(init.Lhs.length, 0, function() { return null; });
-						_ref$11 = init.Lhs;
+				var _entry$9, initOrder, findInit, i, j, _slice$7, _index$7, _slice$8, _index$8, _tuple$4, _slice$9, _index$9, _slice$10, _index$10;
+				c.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes((_entry$9 = natives["toplevel"], _entry$9 !== undefined ? _entry$9.v : ""))));
+				delete natives["toplevel"];
+				initOrder = c.info.InitOrder;
+				if (importPath === "math/rand") {
+					findInit = (function(name$2) {
+						var _ref$11, _i$9, _slice$7, _index$7, init, i, _slice$8, _index$8;
+						_ref$11 = initOrder;
 						_i$9 = 0;
 						for (; _i$9 < _ref$11.length; _i$9 += 1) {
-							obj = (_slice$8 = _ref$11, _index$8 = _i$9, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
+							init = (_slice$7 = _ref$11, _index$7 = _i$9, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
 							i = _i$9;
-							ident = ast.NewIdent(obj.object.Name());
-							_key$3 = ident, (c.info.Types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$3 || go$interfaceNil).go$key()] = { k: _key$3, v: new types.TypeAndValue.Ptr(obj.object.Type(), null) };
-							_key$4 = ident, (c.info.Objects || go$throwRuntimeError("assignment to entry in nil map"))[_key$4.go$key()] = { k: _key$4, v: obj };
-							_slice$9 = lhs, _index$9 = i, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = ident) : go$throwRuntimeError("index out of range");
+							if ((_slice$8 = init.Lhs, _index$8 = 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")).object.Name() === name$2) {
+								return i;
+							}
+						}
+						throw go$panic(new Go$String("init not found"));
+					});
+					i = findInit("rng_cooked");
+					j = findInit("globalRand");
+					if (i > j) {
+						_tuple$4 = [(_slice$7 = initOrder, _index$7 = j, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), (_slice$8 = initOrder, _index$8 = i, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"))], _slice$9 = initOrder, _index$9 = i, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = _tuple$4[0]) : go$throwRuntimeError("index out of range"), _slice$10 = initOrder, _index$10 = j, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = _tuple$4[1]) : go$throwRuntimeError("index out of range");
+					}
+				}
+				c.Printf("go$pkg.init = function() {", new (go$sliceType(go$emptyInterface))([]));
+				c.Indent((function() {
+					var initVarStmts, _ref$11, _i$9, _slice$11, _index$11, init, lhs, _ref$12, _i$10, _slice$12, _index$12, o$3, i$1, ident, _key$4, _key$5, _slice$13, _index$13, _ref$13, _i$11, _keys$2, _entry$10, o$4, _entry$11;
+					initVarStmts = (go$sliceType(ast.Stmt)).nil;
+					_ref$11 = initOrder;
+					_i$9 = 0;
+					for (; _i$9 < _ref$11.length; _i$9 += 1) {
+						init = (_slice$11 = _ref$11, _index$11 = _i$9, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range"));
+						lhs = (go$sliceType(ast.Expr)).make(init.Lhs.length, 0, function() { return null; });
+						_ref$12 = init.Lhs;
+						_i$10 = 0;
+						for (; _i$10 < _ref$12.length; _i$10 += 1) {
+							o$3 = (_slice$12 = _ref$12, _index$12 = _i$10, (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range"));
+							i$1 = _i$10;
+							ident = ast.NewIdent(o$3.object.Name());
+							_key$4 = ident, (c.info.Types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$4 || go$interfaceNil).go$key()] = { k: _key$4, v: new types.TypeAndValue.Ptr(o$3.object.Type(), null) };
+							_key$5 = ident, (c.info.Objects || go$throwRuntimeError("assignment to entry in nil map"))[_key$5.go$key()] = { k: _key$5, v: o$3 };
+							_slice$13 = lhs, _index$13 = i$1, (_index$13 >= 0 && _index$13 < _slice$13.length) ? (_slice$13.array[_slice$13.offset + _index$13] = ident) : go$throwRuntimeError("index out of range");
+							delete vars[o$3.go$key()];
 						}
 						initVarStmts = go$append(initVarStmts, new ast.AssignStmt.Ptr(lhs, 0, 47, new (go$sliceType(ast.Expr))([init.Rhs])));
 					}
+					_ref$13 = vars;
+					_i$11 = 0;
+					_keys$2 = go$keys(_ref$13);
+					for (; _i$11 < _keys$2.length; _i$11 += 1) {
+						_entry$10 = _ref$13[_keys$2[_i$11]];
+						o$4 = _entry$10.k;
+						c.Printf("%s = %s;", new (go$sliceType(go$emptyInterface))([new Go$String(c.objectName(o$4)), new Go$String(c.zeroValue(o$4.object.Type()))]));
+					}
+					c.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes((_entry$11 = natives["init"], _entry$11 !== undefined ? _entry$11.v : ""))));
+					delete natives["init"];
 					c.translateFunctionBody(go$appendSlice(initVarStmts, initStmts), (go$ptrType(types.Signature)).nil);
 				}));
 				c.Printf("};", new (go$sliceType(go$emptyInterface))([]));
 			}));
 			archive.Functions = go$append(archive.Functions, new Function.Ptr("init", initCode));
+			if (!((go$keys(natives).length === 0))) {
+				throw go$panic(new Go$String("not all natives used: " + importPath));
+			}
 		}));
 		importedPaths = (go$sliceType(Go$String)).nil;
 		_ref$8 = typesPkg.Imports();
@@ -70289,7 +69709,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 	};
 	Archive.prototype.AddDependenciesOf = function(other) { return this.go$val.AddDependenciesOf(other); };
 	Archive.Ptr.prototype.WriteCode = function(w) {
-		var a, _ref, _i, _slice, _index, _struct, imp, _ref$1, _i$1, _slice$1, _index$1, _struct$1, f;
+		var a, _ref, _i, _slice, _index, _struct, imp, vars, _ref$1, _i$1, _slice$1, _index$1, _struct$1, d, _ref$2, _i$2, _slice$2, _index$2, _struct$2, f;
 		a = this;
 		fmt.Fprintf(w, "go$packages[\"%s\"] = (function() {\n\tvar go$pkg = {};\n", new (go$sliceType(go$emptyInterface))([new Go$String(a.ImportPath)]));
 		_ref = a.Imports;
@@ -70299,11 +69719,22 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 			fmt.Fprintf(w, "\tvar %s = go$packages[\"%s\"];\n", new (go$sliceType(go$emptyInterface))([new Go$String(imp.VarName), new Go$String(imp.Path)]));
 		}
 		w.Write(a.Types);
-		w.Write(a.Variables);
-		_ref$1 = a.Functions;
+		vars = (go$sliceType(Go$String)).nil;
+		_ref$1 = a.Variables;
 		_i$1 = 0;
 		for (; _i$1 < _ref$1.length; _i$1 += 1) {
-			f = (_struct$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Function.Ptr(_struct$1.Name, _struct$1.Code));
+			d = (_struct$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Decl.Ptr(_struct$1.Var));
+			if (!(d.Var === "")) {
+				vars = go$append(vars, d.Var);
+			}
+		}
+		if (!((vars.length === 0))) {
+			fmt.Fprintf(w, "\tvar %s;\n", new (go$sliceType(go$emptyInterface))([new Go$String(strings.Join(vars, ", "))]));
+		}
+		_ref$2 = a.Functions;
+		_i$2 = 0;
+		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+			f = (_struct$2 = (_slice$2 = _ref$2, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), new Function.Ptr(_struct$2.Name, _struct$2.Code));
 			w.Write(f.Code);
 		}
 		w.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes("\treturn go$pkg;\n})();\n")));
@@ -70923,8 +70354,8 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		typesPackages = (_map = new Go$Map(), _key = "unsafe", _map[_key] = { k: _key, v: types.Unsafe }, _map);
 		_key$2 = "bytes", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: (_map$1 = new Go$Map(), _key$1 = "Compare", _map$1[_key$1] = { k: _key$1, v: "function(a, b) {\n\t\t\tvar l = Math.min(a.length, b.length), i;\n\t\t\tfor (i = 0; i < a.length; i += 1) {\n\t\t\t\tvar va = a.array[a.offset + i];\n\t\t\t\tvar vb = b.array[b.offset + i];\n\t\t\t\tif (va < vb) {\n\t\t\t\t\treturn -1;\n\t\t\t\t}\n\t\t\t\tif (va > vb) {\n\t\t\t\t\treturn 1;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif (a.length < b.length) {\n\t\t\t\treturn -1;\n\t\t\t}\n\t\t\tif (a.length > b.length) {\n\t\t\t\treturn 1;\n\t\t\t}\n\t\t\treturn 0;\n\t\t}" }, _key$1 = "Equal", _map$1[_key$1] = { k: _key$1, v: "function(a, b) {\n\t\t\tif (a.length !== b.length) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\tvar i;\n\t\t\tfor (i = 0; i < a.length; i += 1) {\n\t\t\t\tif (a.array[a.offset + i] !== b.array[b.offset + i]) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn true;\n\t\t}" }, _key$1 = "IndexByte", _map$1[_key$1] = { k: _key$1, v: "function(s, c) {\n\t\t\tvar i;\n\t\t\tfor (i = 0; i < s.length; i += 1) {\n\t\t\t\tif (s.array[s.offset + i] === c) {\n\t\t\t\t\treturn i;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn -1;\n\t\t}" }, _map$1) };
 		_key$4 = "encoding/gob", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$4] = { k: _key$4, v: (_map$2 = new Go$Map(), _key$3 = "NewDecoder", _map$2[_key$3] = { k: _key$3, v: "function() { go$notSupported(\"encoding/gob\"); }" }, _key$3 = "NewEncoder", _map$2[_key$3] = { k: _key$3, v: "function() { go$notSupported(\"encoding/gob\"); }" }, _map$2) };
-		_key$6 = "encoding/json", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$6] = { k: _key$6, v: (_map$3 = new Go$Map(), _key$5 = "init", _map$3[_key$5] = { k: _key$5, v: "\n\t\t  var encodeStates = [];\n\t\t" }, _key$5 = "newEncodeState", _map$3[_key$5] = { k: _key$5, v: "function() {\n\t\t\tvar e = encodeStates.pop();\n\t\t\tif (e !== undefined) {\n\t\t\t\te.Reset();\n\t\t\t\treturn e;\n\t\t\t}\n\t\t\treturn new encodeState.Ptr();\n\t\t}" }, _key$5 = "putEncodeState", _map$3[_key$5] = { k: _key$5, v: "function(e) {\n\t\t\tencodeStates.push(e);\n\t\t}" }, _map$3) };
-		_key$8 = "io/ioutil", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$8] = { k: _key$8, v: (_map$4 = new Go$Map(), _key$7 = "init", _map$4[_key$7] = { k: _key$7, v: "\n\t\t\tvar blackHoles = [];\n\t\t" }, _key$7 = "blackHole", _map$4[_key$7] = { k: _key$7, v: "function() {\n\t\t\treturn blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });\n\t\t}" }, _key$7 = "blackHolePut", _map$4[_key$7] = { k: _key$7, v: "function(p) {\n\t\t\tblackHoles.push(p);\n\t\t}" }, _map$4) };
+		_key$6 = "encoding/json", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$6] = { k: _key$6, v: (_map$3 = new Go$Map(), _key$5 = "toplevel", _map$3[_key$5] = { k: _key$5, v: "\n\t\t  var encodeStates = [];\n\t\t" }, _key$5 = "newEncodeState", _map$3[_key$5] = { k: _key$5, v: "function() {\n\t\t\tvar e = encodeStates.pop();\n\t\t\tif (e !== undefined) {\n\t\t\t\te.Reset();\n\t\t\t\treturn e;\n\t\t\t}\n\t\t\treturn new encodeState.Ptr();\n\t\t}" }, _key$5 = "putEncodeState", _map$3[_key$5] = { k: _key$5, v: "function(e) {\n\t\t\tencodeStates.push(e);\n\t\t}" }, _map$3) };
+		_key$8 = "io/ioutil", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$8] = { k: _key$8, v: (_map$4 = new Go$Map(), _key$7 = "toplevel", _map$4[_key$7] = { k: _key$7, v: "\n\t\t\tvar blackHoles = [];\n\t\t" }, _key$7 = "blackHole", _map$4[_key$7] = { k: _key$7, v: "function() {\n\t\t\treturn blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });\n\t\t}" }, _key$7 = "blackHolePut", _map$4[_key$7] = { k: _key$7, v: "function(p) {\n\t\t\tblackHoles.push(p);\n\t\t}" }, _map$4) };
 		_key$10 = "math", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$10] = { k: _key$10, v: (_map$5 = new Go$Map(), _key$9 = "Abs", _map$5[_key$9] = { k: _key$9, v: "Math.abs" }, _key$9 = "Acos", _map$5[_key$9] = { k: _key$9, v: "Math.acos" }, _key$9 = "Asin", _map$5[_key$9] = { k: _key$9, v: "Math.asin" }, _key$9 = "Atan", _map$5[_key$9] = { k: _key$9, v: "Math.atan" }, _key$9 = "Atan2", _map$5[_key$9] = { k: _key$9, v: "Math.atan2" }, _key$9 = "Ceil", _map$5[_key$9] = { k: _key$9, v: "Math.ceil" }, _key$9 = "Copysign", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return (x < 0 || 1/x === 1/-0) !== (y < 0 || 1/y === 1/-0) ? -x : x; }" }, _key$9 = "Cos", _map$5[_key$9] = { k: _key$9, v: "Math.cos" }, _key$9 = "Dim", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return Math.max(x - y, 0); }" }, _key$9 = "Exp", _map$5[_key$9] = { k: _key$9, v: "Math.exp" }, _key$9 = "Exp2", _map$5[_key$9] = { k: _key$9, v: "function(x) { return Math.pow(2, x); }" }, _key$9 = "Expm1", _map$5[_key$9] = { k: _key$9, v: "function(x) { return expm1(x); }" }, _key$9 = "Floor", _map$5[_key$9] = { k: _key$9, v: "Math.floor" }, _key$9 = "Frexp", _map$5[_key$9] = { k: _key$9, v: "function(f) { return frexp(f); }" }, _key$9 = "Hypot", _map$5[_key$9] = { k: _key$9, v: "function(p, q) { return hypot(p, q); }" }, _key$9 = "Inf", _map$5[_key$9] = { k: _key$9, v: "function(sign) { return sign >= 0 ? 1/0 : -1/0; }" }, _key$9 = "IsInf", _map$5[_key$9] = { k: _key$9, v: "function(f, sign) { if (f === -1/0) { return sign <= 0; } if (f === 1/0) { return sign >= 0; } return false; }" }, _key$9 = "IsNaN", _map$5[_key$9] = { k: _key$9, v: "function(f) { return f !== f; }" }, _key$9 = "Ldexp", _map$5[_key$9] = { k: _key$9, v: "function(frac, exp) {\n\t\t\tif (frac === 0) { return frac; }\n\t\t\tif (exp >= 1024) { return frac * Math.pow(2, 1023) * Math.pow(2, exp - 1023); }\n\t\t\tif (exp <= -1024) { return frac * Math.pow(2, -1023) * Math.pow(2, exp + 1023); }\n\t\t\treturn frac * Math.pow(2, exp);\n\t\t}" }, _key$9 = "Log", _map$5[_key$9] = { k: _key$9, v: "Math.log" }, _key$9 = "Log10", _map$5[_key$9] = { k: _key$9, v: "function(x) { return log10(x); }" }, _key$9 = "Log1p", _map$5[_key$9] = { k: _key$9, v: "function(x) { return log1p(x); }" }, _key$9 = "Log2", _map$5[_key$9] = { k: _key$9, v: "function(x) { return log2(x); }" }, _key$9 = "Max", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return (x === 1/0 || y === 1/0) ? 1/0 : Math.max(x, y); }" }, _key$9 = "Min", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return (x === -1/0 || y === -1/0) ? -1/0 : Math.min(x, y); }" }, _key$9 = "Mod", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return x % y; }" }, _key$9 = "Modf", _map$5[_key$9] = { k: _key$9, v: "function(f) { if (f === -1/0 || f === 1/0) { return [f, 0/0]; } var frac = f % 1; return [f - frac, frac]; }" }, _key$9 = "NaN", _map$5[_key$9] = { k: _key$9, v: "function() { return 0/0; }" }, _key$9 = "Pow", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return ((x === 1) || (x === -1 && (y === -1/0 || y === 1/0))) ? 1 : Math.pow(x, y); }" }, _key$9 = "Remainder", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return remainder(x, y); }" }, _key$9 = "Signbit", _map$5[_key$9] = { k: _key$9, v: "function(x) { return x < 0 || 1/x === 1/-0; }" }, _key$9 = "Sin", _map$5[_key$9] = { k: _key$9, v: "Math.sin" }, _key$9 = "Sincos", _map$5[_key$9] = { k: _key$9, v: "function(x) { return [Math.sin(x), Math.cos(x)]; }" }, _key$9 = "Sqrt", _map$5[_key$9] = { k: _key$9, v: "Math.sqrt" }, _key$9 = "Tan", _map$5[_key$9] = { k: _key$9, v: "Math.tan" }, _key$9 = "Trunc", _map$5[_key$9] = { k: _key$9, v: "function(x) { return (x === 1/0 || x === -1/0 || x !== x || 1/x === 1/-0) ? x : x >> 0; }" }, _key$9 = "Float32bits", _map$5[_key$9] = { k: _key$9, v: "go$float32bits" }, _key$9 = "Float32frombits", _map$5[_key$9] = { k: _key$9, v: "function(b) {\n\t\t\tvar s, e, m;\n\t\t\ts = 1;\n\t\t\tif (!(((b & 2147483648) >>> 0) === 0)) {\n\t\t\t\ts = -1;\n\t\t\t}\n\t\t\te = (((((b >>> 23) >>> 0)) & 255) >>> 0);\n\t\t\tm = ((b & 8388607) >>> 0);\n\t\t\tif (e === 255) {\n\t\t\t\tif (m === 0) {\n\t\t\t\t\treturn s / 0;\n\t\t\t\t}\n\t\t\t\treturn 0/0;\n\t\t\t}\n\t\t\tif (!(e === 0)) {\n\t\t\t\tm = (m + (8388608) >>> 0);\n\t\t\t}\n\t\t\tif (e === 0) {\n\t\t\t\te = 1;\n\t\t\t}\n\t\t\treturn Ldexp(m, e - 127 - 23) * s;\n\t\t}" }, _key$9 = "Float64bits", _map$5[_key$9] = { k: _key$9, v: "function(f) {\n\t\t\tvar s, e, x, y, x$1, y$1, x$2, y$2;\n\t\t\tif (f === 0) {\n\t\t\t\tif (f === 0 && 1 / f === 1 / -0) {\n\t\t\t\t\treturn new Go$Uint64(2147483648, 0);\n\t\t\t\t}\n\t\t\t\treturn new Go$Uint64(0, 0);\n\t\t\t}\n\t\t\tif (!(f === f)) {\n\t\t\t\treturn new Go$Uint64(2146959360, 1);\n\t\t\t}\n\t\t\ts = new Go$Uint64(0, 0);\n\t\t\tif (f < 0) {\n\t\t\t\ts = new Go$Uint64(2147483648, 0);\n\t\t\t\tf = -f;\n\t\t\t}\n\t\t\te = 1075;\n\t\t\twhile (f >= 9.007199254740992e+15) {\n\t\t\t\tf = f / (2);\n\t\t\t\tif (e === 2047) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\te = (e + (1) >>> 0);\n\t\t\t}\n\t\t\twhile (f < 4.503599627370496e+15) {\n\t\t\t\te = (e - (1) >>> 0);\n\t\t\t\tif (e === 0) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tf = f * (2);\n\t\t\t}\n\t\t\treturn (x$2 = (x = s, y = go$shiftLeft64(new Go$Uint64(0, e), 52), new Go$Uint64(x.high | y.high, (x.low | y.low) >>> 0)), y$2 = ((x$1 = new Go$Uint64(0, f), y$1 = new Go$Uint64(1048576, 0), new Go$Uint64(x$1.high &~ y$1.high, (x$1.low &~ y$1.low) >>> 0))), new Go$Uint64(x$2.high | y$2.high, (x$2.low | y$2.low) >>> 0));\n\t\t}" }, _key$9 = "Float64frombits", _map$5[_key$9] = { k: _key$9, v: "function(b) {\n\t\t\tvar s, x, y, x$1, y$1, x$2, y$2, e, x$3, y$3, m, x$4, y$4, x$5, y$5, x$6, y$6, x$7, y$7, x$8, y$8;\n\t\t\ts = 1;\n\t\t\tif (!((x$1 = (x = b, y = new Go$Uint64(2147483648, 0), new Go$Uint64(x.high & y.high, (x.low & y.low) >>> 0)), y$1 = new Go$Uint64(0, 0), x$1.high === y$1.high && x$1.low === y$1.low))) {\n\t\t\t\ts = -1;\n\t\t\t}\n\t\t\te = (x$2 = (go$shiftRightUint64(b, 52)), y$2 = new Go$Uint64(0, 2047), new Go$Uint64(x$2.high & y$2.high, (x$2.low & y$2.low) >>> 0));\n\t\t\tm = (x$3 = b, y$3 = new Go$Uint64(1048575, 4294967295), new Go$Uint64(x$3.high & y$3.high, (x$3.low & y$3.low) >>> 0));\n\t\t\tif ((x$4 = e, y$4 = new Go$Uint64(0, 2047), x$4.high === y$4.high && x$4.low === y$4.low)) {\n\t\t\t\tif ((x$5 = m, y$5 = new Go$Uint64(0, 0), x$5.high === y$5.high && x$5.low === y$5.low)) {\n\t\t\t\t\treturn s / 0;\n\t\t\t\t}\n\t\t\t\treturn 0/0;\n\t\t\t}\n\t\t\tif (!((x$6 = e, y$6 = new Go$Uint64(0, 0), x$6.high === y$6.high && x$6.low === y$6.low))) {\n\t\t\t\tm = (x$7 = m, y$7 = (new Go$Uint64(1048576, 0)), new Go$Uint64(x$7.high + y$7.high, x$7.low + y$7.low));\n\t\t\t}\n\t\t\tif ((x$8 = e, y$8 = new Go$Uint64(0, 0), x$8.high === y$8.high && x$8.low === y$8.low)) {\n\t\t\t\te = new Go$Uint64(0, 1);\n\t\t\t}\n\t\t\treturn Ldexp((m.high * 4294967296 + m.low), e.low - 1023 - 52) * s;\n\t\t}" }, _map$5) };
 		_key$12 = "math/big", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$12] = { k: _key$12, v: (_map$6 = new Go$Map(), _key$11 = "mulWW", _map$6[_key$11] = { k: _key$11, v: "function(x, y) { return mulWW_g(x, y); }" }, _key$11 = "divWW", _map$6[_key$11] = { k: _key$11, v: "function(x1, x0, y) { return divWW_g(x1, x0, y); }" }, _key$11 = "addVV", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return addVV_g(z, x, y); }" }, _key$11 = "subVV", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return subVV_g(z, x, y); }" }, _key$11 = "addVW", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return addVW_g(z, x, y); }" }, _key$11 = "subVW", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return subVW_g(z, x, y); }" }, _key$11 = "shlVU", _map$6[_key$11] = { k: _key$11, v: "function(z, x, s) { return shlVU_g(z, x, s); }" }, _key$11 = "shrVU", _map$6[_key$11] = { k: _key$11, v: "function(z, x, s) { return shrVU_g(z, x, s); }" }, _key$11 = "mulAddVWW", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y, r) { return mulAddVWW_g(z, x, y, r); }" }, _key$11 = "addMulVVW", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return addMulVVW_g(z, x, y); }" }, _key$11 = "divWVW", _map$6[_key$11] = { k: _key$11, v: "function(z, xn, x, y) { return divWVW_g(z, xn, x, y); }" }, _key$11 = "bitLen", _map$6[_key$11] = { k: _key$11, v: "function(x) { return bitLen_g(x); }" }, _map$6) };
 		_key$14 = "os", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$14] = { k: _key$14, v: (_map$7 = new Go$Map(), _key$13 = "init", _map$7[_key$13] = { k: _key$13, v: "\n\t\t\tgo$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);\n\t\t\tif (go$packages[\"runtime\"].GOOS === \"windows\") {\n\t\t\t\tNewFile = go$pkg.NewFile = function() { return new File.Ptr(); };\n\t\t\t}\n\t\t" }, _map$7) };
@@ -70948,7 +70379,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 			keyword = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_key$31 = keyword, (reservedKeywords || go$throwRuntimeError("assignment to entry in nil map"))[_key$31] = { k: _key$31, v: true };
 		}
-		_key$33 = "reflect", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$33] = { k: _key$33, v: (_map$16 = new Go$Map(), _key$32 = "init", _map$16[_key$32] = { k: _key$32, v: "\n\t\t\tvar Invalid = 0;\n\t\t\tvar Bool = 1;\n\t\t\tvar Int = 2;\n\t\t\tvar Int8 = 3;\n\t\t\tvar Int16 = 4;\n\t\t\tvar Int32 = 5;\n\t\t\tvar Int64 = 6;\n\t\t\tvar Uint = 7;\n\t\t\tvar Uint8 = 8;\n\t\t\tvar Uint16 = 9;\n\t\t\tvar Uint32 = 10;\n\t\t\tvar Uint64 = 11;\n\t\t\tvar Uintptr = 12;\n\t\t\tvar Float32 = 13;\n\t\t\tvar Float64 = 14;\n\t\t\tvar Complex64 = 15;\n\t\t\tvar Complex128 = 16;\n\t\t\tvar Array = 17;\n\t\t\tvar Chan = 18;\n\t\t\tvar Func = 19;\n\t\t\tvar Interface = 20;\n\t\t\tvar Map = 21;\n\t\t\tvar Ptr = 22;\n\t\t\tvar Slice = 23;\n\t\t\tvar String = 24;\n\t\t\tvar Struct = 25;\n\t\t\tvar UnsafePointer = 26;\n\n\t\t\tvar RecvDir = 1;\n\t\t\tvar SendDir = 2;\n\t\t\tvar BothDir = 3;\n\n\t\t\tvar flagRO = 1;\n\t\t\tvar flagIndir = 2;\n\t\t\tvar flagAddr = 4;\n\t\t\tvar flagMethod = 8;\n\t\t\tvar flagKindShift = 4;\n\t\t\tvar flagKindWidth = 5;\n\t\t\tvar flagKindMask = 31;\n\t\t\tvar flagMethodShift = 9;\n\n\t\t\tgo$reflect = {\n\t\t\t\trtype: rtype.Ptr, uncommonType: uncommonType.Ptr, method: method.Ptr, arrayType: arrayType.Ptr, chanType: chanType.Ptr, funcType: funcType.Ptr, interfaceType: interfaceType.Ptr, mapType: mapType.Ptr, ptrType: ptrType.Ptr, sliceType: sliceType.Ptr, structType: structType.Ptr,\n\t\t\t\timethod: imethod.Ptr, structField: structField.Ptr,\n\t\t\t\tkinds: { Bool: Bool, Int: Int, Int8: Int8, Int16: Int16, Int32: Int32, Int64: Int64, Uint: Uint, Uint8: Uint8, Uint16: Uint16, Uint32: Uint32, Uint64: Uint64, Uintptr: Uintptr, Float32: Float32, Float64: Float64, Complex64: Complex64, Complex128: Complex128, Array: Array, Chan: Chan, Func: Func, Interface: Interface, Map: Map, Ptr: Ptr, Slice: Slice, String: String, Struct: Struct, UnsafePointer: UnsafePointer },\n\t\t\t\tRecvDir: RecvDir, SendDir: SendDir, BothDir: BothDir\n\t\t\t};\n\n\t\t\tvar isWrapped = function(typ) {\n\t\t\t\tswitch (typ.Kind()) {\n\t\t\t\tcase Bool:\n\t\t\t\tcase Int:\n\t\t\t\tcase Int8:\n\t\t\t\tcase Int16:\n\t\t\t\tcase Int32:\n\t\t\t\tcase Uint:\n\t\t\t\tcase Uint8:\n\t\t\t\tcase Uint16:\n\t\t\t\tcase Uint32:\n\t\t\t\tcase Uintptr:\n\t\t\t\tcase Float32:\n\t\t\t\tcase Float64:\n\t\t\t\tcase Array:\n\t\t\t\tcase Map:\n\t\t\t\tcase Func:\n\t\t\t\tcase String:\n\t\t\t\tcase Struct:\n\t\t\t\t\treturn true;\n\t\t\t\tcase Ptr:\n\t\t\t\t\treturn typ.Elem().Kind() === Array;\n\t\t\t\t}\n\t\t\t\treturn false;\n\t\t\t};\n\t\t\tvar fieldName = function(field, i) {\n\t\t\t\tif (field.name.go$get === go$throwNilPointerError) {\n\t\t\t\t\tvar ntyp = field.typ;\n\t\t\t\t\tif (ntyp.Kind() === Ptr) {\n\t\t\t\t\t\tntyp = ntyp.Elem().common();\n\t\t\t\t\t}\n\t\t\t\t\treturn ntyp.Name();\n\t\t\t\t}\n\t\t\t\tvar name = field.name.go$get();\n\t\t\t\tif (name === \"_\" || go$reservedKeywords.indexOf(name) != -1) {\n\t\t\t\t\treturn name + \"$\" + i;\n\t\t\t\t}\n\t\t\t\treturn name;\n\t\t\t};\n\t\t\tvar copyStruct = function(dst, src, typ) {\n\t\t\t\tvar fields = typ.structType.fields.array, i;\n\t\t\t\tfor (i = 0; i < fields.length; i += 1) {\n\t\t\t\t\tvar field = fields[i];\n\t\t\t\t\tvar name = fieldName(field, i);\n\t\t\t\t\tdst[name] = src[name];\n\t\t\t\t}\n\t\t\t};\n\t\t\tvar deepValueEqual = function(v1, v2, visited) {\n\t\t\t\tif (!v1.IsValid() || !v2.IsValid()) {\n\t\t\t\t\treturn !v1.IsValid() && !v2.IsValid();\n\t\t\t\t}\n\t\t\t\tif (v1.Type() !== v2.Type()) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\n\t\t\t\tvar i;\n\t\t\t\tswitch(v1.Kind()) {\n\t\t\t\tcase Array:\n\t\t\t\tcase Map:\n\t\t\t\tcase Slice:\n\t\t\t\tcase Struct:\n\t\t\t\t\tfor (i = 0; i < visited.length; i += 1) {\n\t\t\t\t\t\tvar entry = visited[i];\n\t\t\t\t\t\tif (v1.val === entry[0] && v2.val === entry[1]) {\n\t\t\t\t\t\t\treturn true;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tvisited.push([v1.val, v2.val]);\n\t\t\t\t}\n\n\t\t\t\tswitch(v1.Kind()) {\n\t\t\t\tcase Array:\n\t\t\t\tcase Slice:\n\t\t\t\t\tif (v1.Kind() === Slice) {\n\t\t\t\t\t\tif (v1.IsNil() !== v2.IsNil()) {\n\t\t\t\t\t\t\treturn false;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (v1.iword() === v2.iword()) {\n\t\t\t\t\t\t\treturn true;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tvar n = v1.Len();\n\t\t\t\t\tif (n !== v2.Len()) {\n\t\t\t\t\t\treturn false;\n\t\t\t\t\t}\n\t\t\t\t\tfor (i = 0; i < n; i += 1) {\n\t\t\t\t\t\tif (!deepValueEqual(v1.Index(i), v2.Index(i), visited)) {\n\t\t\t\t\t\t\treturn false;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn true;\n\t\t\t\tcase Interface:\n\t\t\t\t\tif (v1.IsNil() || v2.IsNil()) {\n\t\t\t\t\t\treturn v1.IsNil() && v2.IsNil();\n\t\t\t\t\t}\n\t\t\t\t\treturn deepValueEqual(v1.Elem(), v2.Elem(), visited);\n\t\t\t\tcase Ptr:\n\t\t\t\t\treturn deepValueEqual(v1.Elem(), v2.Elem(), visited);\n\t\t\t\tcase Struct:\n\t\t\t\t\tvar n = v1.NumField();\n\t\t\t\t\tfor (i = 0; i < n; i += 1) {\n\t\t\t\t\t\tif (!deepValueEqual(v1.Field(i), v2.Field(i), visited)) {\n\t\t\t\t\t\t\treturn false;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn true;\n\t\t\t\tcase Map:\n\t\t\t\t\tif (v1.IsNil() !== v2.IsNil()) {\n\t\t\t\t\t\treturn false;\n\t\t\t\t\t}\n\t\t\t\t\tif (v1.iword() === v2.iword()) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\t}\n\t\t\t\t\tvar keys = v1.MapKeys();\n\t\t\t\t\tif (keys.length !== v2.Len()) {\n\t\t\t\t\t\treturn false;\n\t\t\t\t\t}\n\t\t\t\t\tfor (i = 0; i < keys.length; i++) {\n\t\t\t\t\t\tvar k = keys.array[i];\n\t\t\t\t\t\tif (!deepValueEqual(v1.MapIndex(k), v2.MapIndex(k), visited)) {\n\t\t\t\t\t\t\treturn false;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn true;\n\t\t\t\tcase Func:\n\t\t\t\t\treturn v1.IsNil() && v2.IsNil();\n\t\t\t\t}\n\n\t\t\t\treturn go$interfaceIsEqual(valueInterface(v1, false), valueInterface(v2, false));\n\t\t\t};\n\t\t\tvar zeroVal = function(typ) {\n\t\t\t\tswitch (typ.Kind()) {\n\t\t\t\tcase Bool:\n\t\t\t\t\treturn false;\n\t\t\t\tcase Int:\n\t\t\t\tcase Int8:\n\t\t\t\tcase Int16:\n\t\t\t\tcase Int32:\n\t\t\t\tcase Uint:\n\t\t\t\tcase Uint8:\n\t\t\t\tcase Uint16:\n\t\t\t\tcase Uint32:\n\t\t\t\tcase Uintptr:\n\t\t\t\tcase Float32:\n\t\t\t\tcase Float64:\n\t\t\t\t\treturn 0;\n\t\t\t\tcase Int64:\n\t\t\t\tcase Uint64:\n\t\t\t\tcase Complex64:\n\t\t\t\tcase Complex128:\n\t\t\t\t\treturn new typ.jsType(0, 0);\n\t\t\t\tcase Array:\n\t\t\t\t\tvar elemType = typ.Elem();\n\t\t\t\t\treturn go$makeNativeArray(elemType.jsType.kind, typ.Len(), function() { return zeroVal(elemType); });\n\t\t\t\tcase Func:\n\t\t\t\t\treturn go$throwNilPointerError;\n\t\t\t\tcase Interface:\n\t\t\t\t\treturn null;\n\t\t\t\tcase Map:\n\t\t\t\t\treturn false;\n\t\t\t\tcase Chan:\n\t\t\t\tcase Ptr:\n\t\t\t\tcase Slice:\n\t\t\t\t\treturn typ.jsType.nil;\n\t\t\t\tcase String:\n\t\t\t\t\treturn \"\";\n\t\t\t\tcase Struct:\n\t\t\t\t\treturn new typ.jsType.Ptr();\n\t\t\t\tdefault:\n\t\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Zero\", this.kind()));\n\t\t\t\t}\n\t\t\t};\n\t\t" }, _key$32 = "TypeOf", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tif (i === null) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t\tif (i.constructor.kind === undefined) { // js.Object\n\t\t\t\treturn Go$String.reflectType();\n\t\t\t}\n\t\t\treturn i.constructor.reflectType();\n\t\t}" }, _key$32 = "ValueOf", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tif (i === null) {\n\t\t\t\treturn new Value.Ptr();\n\t\t\t}\n\t\t\tif (i.constructor.kind === undefined) { // js.Object\n\t\t\t\treturn new Value.Ptr(Go$String.reflectType(), String(i), String << flagKindShift);\n\t\t\t}\n\t\t\tvar typ = i.constructor.reflectType();\n\t\t\treturn new Value.Ptr(typ, i.go$val, typ.Kind() << flagKindShift);\n\t\t}" }, _key$32 = "arrayOf", _map$16[_key$32] = { k: _key$32, v: "function(n, t) {\n\t\t\treturn go$arrayType(t.jsType, n).reflectType();\n\t\t}" }, _key$32 = "ChanOf", _map$16[_key$32] = { k: _key$32, v: "function(dir, t) {\n\t\t\treturn go$chanType(t.jsType, dir === SendDir, dir === RecvDir).reflectType();\n\t\t}" }, _key$32 = "MapOf", _map$16[_key$32] = { k: _key$32, v: "function(key, elem) {\n\t\t\tswitch (key.Kind()) {\n\t\t\tcase Func:\n\t\t\tcase Map:\n\t\t\tcase Slice:\n\t\t\t\tthrow go$panic(\"reflect.MapOf: invalid key type \" + key.String());\n\t\t\t}\n\t\t\treturn go$mapType(key.jsType, elem.jsType).reflectType();\n\t\t}" }, _key$32 = "rtype.ptrTo", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\treturn go$ptrType(this.jsType).reflectType();\n\t\t}" }, _key$32 = "SliceOf", _map$16[_key$32] = { k: _key$32, v: "function(t) {\n\t\t\treturn go$sliceType(t.jsType).reflectType();\n\t\t}" }, _key$32 = "Zero", _map$16[_key$32] = { k: _key$32, v: "function(typ) {\n\t\t\treturn new Value.Ptr(typ, zeroVal(typ), typ.Kind() << flagKindShift);\n\t\t}" }, _key$32 = "unsafe_New", _map$16[_key$32] = { k: _key$32, v: "function(typ) {\n\t\t\tswitch (typ.Kind()) {\n\t\t\tcase Struct:\n\t\t\t\treturn new typ.jsType.Ptr();\n\t\t\tcase Array:\n\t\t\t\treturn zeroVal(typ);\n\t\t\tdefault:\n\t\t\t\treturn go$newDataPointer(zeroVal(typ), typ.ptrTo().jsType);\n\t\t\t}\n\t\t}" }, _key$32 = "makechan", _map$16[_key$32] = { k: _key$32, v: "function(typ, size) {\n\t\t\treturn new typ.jsType();\n\t\t}" }, _key$32 = "makeComplex", _map$16[_key$32] = { k: _key$32, v: "function(f, v, typ) {\n\t\t\treturn new Value.Ptr(typ, new typ.jsType(v.real, v.imag), f | (typ.Kind() << flagKindShift));\n\t\t}" }, _key$32 = "MakeFunc", _map$16[_key$32] = { k: _key$32, v: "function(typ, fn) {\n\t\t\tvar fv = function() {\n\t\t\t\tvar args = new Go$Array(typ.NumIn()), i;\n\t\t\t\tfor (i = 0; i < typ.NumIn(); i += 1) {\n\t\t\t\t\tvar t = typ.In(i);\n\t\t\t\t\targs[i] = new Value.Ptr(t, arguments[i], t.Kind() << flagKindShift);\n\t\t\t\t}\n\t\t\t\tvar resultsSlice = fn(new (go$sliceType(Value.Ptr))(args));\n\t\t\t\tswitch (typ.NumOut()) {\n\t\t\t\tcase 0:\n\t\t\t\t\treturn;\n\t\t\t\tcase 1:\n\t\t\t\t\treturn resultsSlice.array[resultsSlice.offset].iword();\n\t\t\t\tdefault:\n\t\t\t\t\tvar results = new Go$Array(typ.NumOut());\n\t\t\t\t\tfor (i = 0; i < typ.NumOut(); i += 1) {\n\t\t\t\t\t\tresults[i] = resultsSlice.array[resultsSlice.offset + i].iword();\n\t\t\t\t\t}\n\t\t\t\t\treturn results;\n\t\t\t\t}\n\t\t\t}\n\t\t  return new Value.Ptr(typ, fv, Func << flagKindShift);\n\t\t}" }, _key$32 = "makeInt", _map$16[_key$32] = { k: _key$32, v: "function(f, bits, typ) {\n\t\t\tvar val;\n\t\t\tswitch (typ.Kind()) {\n\t\t\tcase Int8:\n\t\t\t\tval = bits.low << 24 >> 24;\n\t\t\t\tbreak;\n\t\t\tcase Int16:\n\t\t\t\tval = bits.low << 16 >> 16;\n\t\t\t\tbreak;\n\t\t\tcase Int:\n\t\t\tcase Int32:\n\t\t\t\tval = bits.low >> 0;\n\t\t\t\tbreak;\n\t\t\tcase Int64:\n\t\t\t\treturn new Value.Ptr(typ, go$newDataPointer(new Go$Int64(bits.high, bits.low), typ.ptrTo().jsType), f | flagIndir | (Int64 << flagKindShift));\n\t\t\tcase Uint8:\n\t\t\t\tval = bits.low << 24 >>> 24;\n\t\t\t\tbreak;\n\t\t\tcase Uint16:\n\t\t\t\tval = bits.low << 16 >>> 16;\n\t\t\t\tbreak;\n\t\t\tcase Uint64:\n\t\t\t\treturn new Value.Ptr(typ, go$newDataPointer(bits, typ.ptrTo().jsType), f | flagIndir | (Int64 << flagKindShift));\n\t\t\tcase Uint:\n\t\t\tcase Uint32:\n\t\t\tcase Uintptr:\n\t\t\t\tval = bits.low >>> 0;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\treturn new Value.Ptr(typ, val, f | (typ.Kind() << flagKindShift));\n\t\t}" }, _key$32 = "MakeSlice", _map$16[_key$32] = { k: _key$32, v: "function(typ, len, cap) {\n\t\t\tif (typ.Kind() !== Slice) {\n\t\t\t\tthrow go$panic(\"reflect.MakeSlice of non-slice type\");\n\t\t\t}\n\t\t\tif (len < 0) {\n\t\t\t\tthrow go$panic(\"reflect.MakeSlice: negative len\");\n\t\t\t}\n\t\t\tif (cap < 0) {\n\t\t\t\tthrow go$panic(\"reflect.MakeSlice: negative cap\");\n\t\t\t}\n\t\t\tif (len > cap) {\n\t\t\t\tthrow go$panic(\"reflect.MakeSlice: len > cap\");\n\t\t\t}\n\t\t\treturn new Value.Ptr(typ.common(), typ.jsType.make(len, cap, function() { return zeroVal(typ.Elem()); }), Slice << flagKindShift);\n\t\t}" }, _key$32 = "cvtDirect", _map$16[_key$32] = { k: _key$32, v: "function(v, typ) {\n\t\t\tvar srcVal = v.iword();\n\t\t\tif (srcVal === v.typ.jsType.nil) {\n\t\t\t\treturn new Value.Ptr(typ, typ.jsType.nil, v.flag);\n\t\t\t}\n\n\t\t\tvar val;\n\t\t\tswitch (typ.Kind()) {\n\t\t\tcase Chan:\n\t\t\t\tval = new typ.jsType();\n\t\t\t\tbreak;\n\t\t\tcase Slice:\n\t\t\t\tval = new typ.jsType(srcVal.array);\n\t\t\t\tval.length = srcVal.length;\n\t\t\t\tval.cap = srcVal.cap;\n\t\t\t\tbreak;\n\t\t\tcase Ptr:\n\t\t\t\tif (typ.Elem().Kind() === Struct) {\n\t\t\t\t\tif (typ.Elem() === v.typ.Elem()) {\n\t\t\t\t\t\tval = srcVal;\n\t\t\t\t\t}\n\t\t\t\t\tval = new typ.jsType();\n\t\t\t\t\tcopyStruct(val, srcVal, typ.Elem());\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tval = new typ.jsType(srcVal.go$get, srcVal.go$set);\n\t\t\t\tbreak;\n\t\t\tcase Struct:\n\t\t\t\tval = new typ.jsType.Ptr();\n\t\t\t\tcopyStruct(val, srcVal, typ);\n\t\t\t\tbreak;\n\t\t\tcase Array:\n\t\t\tcase Func:\n\t\t\tcase Interface:\n\t\t\tcase Map:\n\t\t\tcase String:\n\t\t\t\tval = srcVal;\n\t\t\t\tbreak;\n\t\t\tdefault:\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Convert\", typ.Kind()));\n\t\t\t}\n\t\t\treturn new Value.Ptr(typ, val, (v.flag & flagRO) | (typ.Kind() << flagKindShift));\n\t\t}" }, _key$32 = "cvtStringBytes", _map$16[_key$32] = { k: _key$32, v: "function(v, typ) {\n\t\t\treturn new Value.Ptr(typ, new typ.jsType(go$stringToBytes(v.iword())), (v.flag & flagRO) | (Slice << flagKindShift));\n\t\t}" }, _key$32 = "cvtStringRunes", _map$16[_key$32] = { k: _key$32, v: "function(v, typ) {\n\t\t\treturn new Value.Ptr(typ, new typ.jsType(go$stringToRunes(v.iword())), (v.flag & flagRO) | (Slice << flagKindShift));\n\t\t}" }, _key$32 = "makemap", _map$16[_key$32] = { k: _key$32, v: "function(t) {\n\t\t\treturn new Go$Map();\n\t\t}" }, _key$32 = "mapaccess", _map$16[_key$32] = { k: _key$32, v: "function(t, m, key) {\n\t\t\tvar entry = m[key.go$key ? key.go$key() : key];\n\t\t\tif (entry === undefined) {\n\t\t\t\treturn [undefined, false];\n\t\t\t}\n\t\t\treturn [entry.v, true];\n\t\t}" }, _key$32 = "mapassign", _map$16[_key$32] = { k: _key$32, v: "function(t, m, key, val, ok) {\n\t\t\tif (!ok) {\n\t\t\t\tdelete m[key.go$key ? key.go$key() : key];\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tif (t.Elem().kind === Struct) {\n\t\t\t\tvar newVal = {};\n\t\t\t\tcopyStruct(newVal, val, t.Elem());\n\t\t\t\tval = newVal;\n\t\t\t}\n\t\t\tm[key.go$key ? key.go$key() : key] = { k: key, v: val };\n\t\t}" }, _key$32 = "maplen", _map$16[_key$32] = { k: _key$32, v: "function(m) {\n\t\t\treturn go$keys(m).length;\n\t\t}" }, _key$32 = "mapiterinit", _map$16[_key$32] = { k: _key$32, v: "function(t, m) {\n\t\t\treturn [m, go$keys(m), 0];\n\t\t}" }, _key$32 = "mapiterkey", _map$16[_key$32] = { k: _key$32, v: "function(it) {\n\t\t\tvar key = it[1][it[2]];\n\t\t\treturn [it[0][key].k, true];\n\t\t}" }, _key$32 = "mapiternext", _map$16[_key$32] = { k: _key$32, v: "function(it) {\n\t\t\tit[2] += 1;\n\t\t}" }, _key$32 = "chancap", _map$16[_key$32] = { k: _key$32, v: "function(ch) { go$notSupported(\"channels\"); }" }, _key$32 = "chanclose", _map$16[_key$32] = { k: _key$32, v: "function(ch) { go$notSupported(\"channels\"); }" }, _key$32 = "chanlen", _map$16[_key$32] = { k: _key$32, v: "function(ch) { go$notSupported(\"channels\"); }" }, _key$32 = "chanrecv", _map$16[_key$32] = { k: _key$32, v: "function(t, ch, nb) { go$notSupported(\"channels\"); }" }, _key$32 = "chansend", _map$16[_key$32] = { k: _key$32, v: "function(t, ch, val, nb) { go$notSupported(\"channels\"); }" }, _key$32 = "valueInterface", _map$16[_key$32] = { k: _key$32, v: "function(v, safe) {\n\t\t\tif (v.flag === 0) {\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Interface\", 0));\n\t\t\t}\n\t\t\tif (safe && (v.flag & flagRO) !== 0) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Interface: cannot return value obtained from unexported field or method\")\n\t\t\t}\n\t\t\tif ((v.flag & flagMethod) !== 0) {\n\t\t\t\tv = makeMethodValue(\"Interface\", v);\n\t\t\t}\n\t\t\tif (isWrapped(v.typ)) {\n\t\t\t\treturn new v.typ.jsType(v.iword());\n\t\t\t}\n\t\t\treturn v.iword();\n\t\t}" }, _key$32 = "makeMethodValue", _map$16[_key$32] = { k: _key$32, v: "function(op, v) {\n\t\t\tif ((v.flag & flagMethod) === 0) {\n\t\t\t\tthrow go$panic(\"reflect: internal error: invalid use of makePartialFunc\");\n\t\t\t}\n\n\t\t\tvar tuple = methodReceiver(op, v, v.flag >> flagMethodShift);\n\t\t\tvar fn = tuple[1];\n\t\t\tvar rcvr = tuple[2];\n\t\t\tvar fv = function() { return fn.apply(rcvr, arguments); };\n\t\t\treturn new Value.Ptr(v.Type(), fv, (v.flag & flagRO) | (Func << flagKindShift));\n\t\t}" }, _key$32 = "methodReceiver", _map$16[_key$32] = { k: _key$32, v: "function(op, v, i) {\n\t\t\tvar m, t;\n\t\t\tif (v.typ.Kind() === Interface) {\n\t\t\t\tvar tt = v.typ.interfaceType;\n\t\t\t\tif (i < 0 || i >= tt.methods.length) {\n\t\t\t\t\tthrow go$panic(\"reflect: internal error: invalid method index\");\n\t\t\t\t}\n\t\t\t\tif (v.IsNil()) {\n\t\t\t\t\tthrow go$panic(\"reflect: \" + op + \" of method on nil interface value\");\n\t\t\t\t}\n\t\t\t\tm = tt.methods.array[i];\n\t\t\t\tt = m.typ;\n\t\t\t} else {\n\t\t\t\tvar ut = v.typ.uncommon();\n\t\t\t\tif (ut === uncommonType.Ptr.nil || i < 0 || i >= ut.methods.length) {\n\t\t\t\t\tthrow go$panic(\"reflect: internal error: invalid method index\");\n\t\t\t\t}\n\t\t\t\tm = ut.methods.array[i];\n\t\t\t\tt = m.mtyp;\n\t\t\t}\n\t\t\tif (m.pkgPath.go$get !== go$throwNilPointerError) {\n\t\t\t\tthrow go$panic(\"reflect: \" + op + \" of unexported method\");\n\t\t\t}\n\t\t\tvar name = m.name.go$get()\n\t\t\tif (go$reservedKeywords.indexOf(name) !== -1) {\n\t\t\t\tname += \"$\";\n\t\t\t}\n\t\t\tvar rcvr = v.iword();\n\t\t\tif (isWrapped(v.typ)) {\n\t\t\t\trcvr = new v.typ.jsType(rcvr);\n\t\t\t}\n\t\t\treturn [t, rcvr[name], rcvr];\n\t\t}" }, _key$32 = "ifaceE2I", _map$16[_key$32] = { k: _key$32, v: "function(t, src, dst) {\n\t\t\tdst.go$set(src);\n\t\t}" }, _key$32 = "methodName", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\treturn \"?FIXME?\";\n\t\t}" }, _key$32 = "Copy", _map$16[_key$32] = { k: _key$32, v: "function(dst, src) {\n\t\t\tvar dk = dst.kind();\n\t\t\tif (dk !== Array && dk !== Slice) {\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Copy\", dk));\n\t\t\t}\n\t\t\tif (dk === Array) {\n\t\t\t\tdst.mustBeAssignable();\n\t\t\t}\n\t\t\tdst.mustBeExported();\n\n\t\t\tvar sk = src.kind();\n\t\t\tif (sk !== Array && sk != Slice) {\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Copy\", sk));\n\t\t\t}\n\t\t\tsrc.mustBeExported();\n\n\t\t\ttypesMustMatch(\"reflect.Copy\", dst.typ.Elem(), src.typ.Elem());\n\n\t\t\tvar dstVal = dst.iword();\n\t\t\tif (dk === Array) {\n\t\t\t\tdstVal = new (go$sliceType(dst.typ.Elem().jsType))(dstVal);\n\t\t\t}\n\t\t\tvar srcVal = src.iword();\n\t\t\tif (sk === Array) {\n\t\t\t\tsrcVal = new (go$sliceType(src.typ.Elem().jsType))(srcVal);\n\t\t\t}\n\t\t\treturn go$copySlice(dstVal, srcVal);\n\t\t}" }, _key$32 = "uncommonType.Method", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tif (this === uncommonType.Ptr.nil || i < 0 || i >= this.methods.length) {\n\t\t\t\tthrow go$panic(\"reflect: Method index out of range\");\n\t\t\t}\n\t\t\tvar p = this.methods.array[i];\n\t\t\tvar fl = Func << flagKindShift;\n\t\t\tvar pkgPath = \"\";\n\t\t\tif (p.pkgPath.go$get !== go$throwNilPointerError) {\n\t\t\t\tpkgPath = p.pkgPath.go$get();\n\t\t\t\tfl |= flagRO;\n\t\t\t}\n\t\t\tvar mt = p.typ;\n\t\t\tvar name = p.name.go$get();\n\t\t\tif (go$reservedKeywords.indexOf(name) !== -1) {\n\t\t\t\tname += \"$\";\n\t\t\t}\n\t\t\tvar fn = function(rcvr) {\n\t\t\t\treturn rcvr[name].apply(rcvr, Go$Array.prototype.slice.apply(arguments, [1]));\n\t\t\t}\n\t\t\treturn new Method.Ptr(p.name.go$get(), pkgPath, mt, new Value.Ptr(mt, fn, fl), i);\n\t\t}" }, _key$32 = "Value.iword", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tif ((this.flag & flagIndir) !== 0 && this.typ.Kind() !== Array && this.typ.Kind() !== Struct) {\n\t\t\t\treturn this.val.go$get();\n\t\t\t}\n\t\t\treturn this.val;\n\t\t}" }, _key$32 = "Value.Bytes", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tthis.mustBe(Slice);\n\t\t\tif (this.typ.Elem().Kind() !== Uint8) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Bytes of non-byte slice\");\n\t\t\t}\n\t\t\treturn this.iword();\n\t\t}" }, _key$32 = "Value.call", _map$16[_key$32] = { k: _key$32, v: "function(op, args) {\n\t\t\tvar t = this.typ, fn, rcvr;\n\n\t\t\tif ((this.flag & flagMethod) !== 0) {\n\t\t\t\tvar tuple = methodReceiver(op, this, this.flag >> flagMethodShift);\n\t\t\t\tt = tuple[0];\n\t\t\t\tfn = tuple[1];\n\t\t\t\trcvr = tuple[2];\n\t\t\t} else {\n\t\t\t\tfn = this.iword();\n\t\t\t}\n\n\t\t\tif (fn === go$throwNilPointerError) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Call: call of nil function\");\n\t\t\t}\n\n\t\t\tvar isSlice = (op === \"CallSlice\");\n\t\t\tvar n = t.NumIn();\n\t\t\tif (isSlice) {\n\t\t\t\tif (!t.IsVariadic()) {\n\t\t\t\t\tthrow go$panic(\"reflect: CallSlice of non-variadic function\");\n\t\t\t\t}\n\t\t\t\tif (args.length < n) {\n\t\t\t\t\tthrow go$panic(\"reflect: CallSlice with too few input arguments\");\n\t\t\t\t}\n\t\t\t\tif (args.length > n) {\n\t\t\t\t\tthrow go$panic(\"reflect: CallSlice with too many input arguments\");\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tif (t.IsVariadic()) {\n\t\t\t\t\tn -= 1;\n\t\t\t\t}\n\t\t\t\tif (args.length < n) {\n\t\t\t\t\tthrow go$panic(\"reflect: Call with too few input arguments\");\n\t\t\t\t}\n\t\t\t\tif (!t.IsVariadic() && args.length > n) {\n\t\t\t\t\tthrow go$panic(\"reflect: Call with too many input arguments\");\n\t\t\t\t}\n\t\t\t}\n\t\t\tvar i;\n\t\t\tfor (i = 0; i < args.length; i += 1) {\n\t\t\t\tif (args.array[args.offset + i].Kind() === Invalid) {\n\t\t\t\t\tthrow go$panic(\"reflect: \" + op + \" using zero Value argument\");\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (i = 0; i < n; i += 1) {\n\t\t\t\tvar xt = args.array[args.offset + i].Type(), targ = t.In(i);\n\t\t\t\tif (!xt.AssignableTo(targ)) {\n\t\t\t\t\tthrow go$panic(\"reflect: \" + op + \" using \" + xt.String() + \" as type \" + targ.String());\n\t\t\t\t}\n\t\t\t}\n\t\t\tif (!isSlice && t.IsVariadic()) {\n\t\t\t\tvar m = args.length - n;\n\t\t\t\tvar slice = MakeSlice(t.In(n), m, m);\n\t\t\t\tvar elem = t.In(n).Elem();\n\t\t\t\tfor (i = 0; i < m; i += 1) {\n\t\t\t\t\tvar x = args.array[args.offset + n + i];\n\t\t\t\t\tvar xt = x.Type();\n\t\t\t\t\tif (!xt.AssignableTo(elem)) {\n\t\t\t\t\t\tthrow go$panic(\"reflect: cannot use \" + xt.String() + \" as type \" + elem.String() + \" in \" + op);\n\t\t\t\t\t}\n\t\t\t\t\tslice.Index(i).Set(x);\n\t\t\t\t}\n\t\t\t\targs = new (go$sliceType(Value))(go$sliceToArray(args).slice(0, n).concat([slice]));\n\t\t\t}\n\n\t\t\tif (args.length !== t.NumIn()) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Call: wrong argument count\");\n\t\t\t}\n\n\t\t\tvar argsArray = new Go$Array(t.NumIn());\n\t\t\tfor (i = 0; i < t.NumIn(); i += 1) {\n\t\t\t\targsArray[i] = args.array[args.offset + i].assignTo(\"reflect.Value.Call\", t.In(i), go$ptrType(go$emptyInterface).nil).iword();\n\t\t\t}\n\t\t\tvar results = fn.apply(rcvr, argsArray);\n\t\t\tif (t.NumOut() === 0) {\n\t\t\t\tresults = [];\n\t\t\t} else if (t.NumOut() === 1) {\n\t\t\t\tresults = [results];\n\t\t\t}\n\t\t\tfor (i = 0; i < t.NumOut(); i += 1) {\n\t\t\t\tvar typ = t.Out(i);\n\t\t\t\tvar flag = typ.Kind() << flagKindShift;\n\t\t\t\tresults[i] = new Value.Ptr(typ, results[i], flag);\n\t\t\t}\n\t\t\treturn new (go$sliceType(Value))(results);\n\t\t}" }, _key$32 = "Value.Cap", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Slice:\n\t\t\t\treturn this.iword().capacity;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Cap\", k));\n\t\t}" }, _key$32 = "Value.Complex", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\treturn this.iword();\n\t\t}" }, _key$32 = "Value.Elem", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tswitch (this.kind()) {\n\t\t\tcase Interface:\n\t\t\t\tvar val = this.iword();\n\t\t\t\tif (val === null) {\n\t\t\t\t\treturn new Value.Ptr();\n\t\t\t\t}\n\t\t\t\tif (val.constructor.kind === undefined) { // js.Object\n\t\t\t\t\treturn new Value.Ptr(Go$String.reflectType(), String(val), String << flagKindShift);\n\t\t\t\t}\n\t\t\t\tvar typ = val.constructor.reflectType();\n\t\t\t\tvar fl = this.flag & flagRO;\n\t\t\t\tfl |= typ.Kind() << flagKindShift;\n\t\t\t\treturn new Value.Ptr(typ, val.go$val, fl);\n\n\t\t\tcase Ptr:\n\t\t\t\tvar val = this.iword();\n\t\t\t\tif (this.IsNil()) {\n\t\t\t\t\treturn new Value.Ptr();\n\t\t\t\t}\n\t\t\t\tvar tt = this.typ.ptrType;\n\t\t\t\tvar fl = (this.flag & flagRO) | flagIndir | flagAddr;\n\t\t\t\tfl |= tt.elem.Kind() << flagKindShift;\n\t\t\t\treturn new Value.Ptr(tt.elem, val, fl);\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Elem\", this.kind()));\n\t\t}" }, _key$32 = "Value.Field", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tthis.mustBe(Struct);\n\t\t\tvar tt = this.typ.structType;\n\t\t\tif (i < 0 || i >= tt.fields.length) {\n\t\t\t\tthrow go$panic(\"reflect: Field index out of range\");\n\t\t\t}\n\t\t\tvar field = tt.fields.array[i];\n\t\t\tvar name = fieldName(field, i);\n\t\t\tvar typ = field.typ;\n\t\t\tvar fl = this.flag & (flagRO | flagIndir | flagAddr);\n\t\t\tif (field.pkgPath.go$get !== go$throwNilPointerError) {\n\t\t\t\tfl |= flagRO;\n\t\t\t}\n\t\t\tfl |= typ.Kind() << flagKindShift;\n\t\t\tif ((this.flag & flagIndir) !== 0 && typ.Kind() !== Array && typ.Kind() !== Struct) {\n\t\t\t\tvar struct = this.val;\n\t\t\t\treturn new Value.Ptr(typ, new (go$ptrType(typ.jsType))(function() { return struct[name]; }, function(v) { struct[name] = v; }), fl);\n\t\t\t}\n\t\t\treturn new Value.Ptr(typ, this.val[name], fl);\n\t\t}" }, _key$32 = "Value.Index", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Array:\n\t\t\t\tvar tt = this.typ.arrayType;\n\t\t\t\tif (i < 0 || i >= tt.len) {\n\t\t\t\t\tthrow go$panic(\"reflect: array index out of range\");\n\t\t\t\t}\n\t\t\t\tvar typ = tt.elem;\n\t\t\t\tvar fl = this.flag & (flagRO | flagIndir | flagAddr);\n\t\t\t\tfl |= typ.Kind() << flagKindShift;\n\t\t\t\tif ((this.flag & flagIndir) !== 0 && typ.Kind() !== Array && typ.Kind() !== Struct) {\n\t\t\t\t\tvar array = this.val;\n\t\t\t\t\treturn new Value.Ptr(typ, new (go$ptrType(typ.jsType))(function() { return array[i]; }, function(v) { array[i] = v; }), fl);\n\t\t\t\t}\n\t\t\t\treturn new Value.Ptr(typ, this.iword()[i], fl);\n\t\t\tcase Slice:\n\t\t\t\tif (i < 0 || i >= this.iword().length) {\n\t\t\t\t\tthrow go$panic(\"reflect: slice index out of range\");\n\t\t\t\t}\n\t\t\t\tvar typ = this.typ.sliceType.elem;\n\t\t\t\tvar fl = flagAddr | flagIndir | (this.flag & flagRO);\n\t\t\t\tfl |= typ.Kind() << flagKindShift;\n\t\t\t\ti += this.iword().offset;\n\t\t\t\tvar array = this.iword().array;\n\t\t\t\tif (typ.Kind() === Struct) {\n\t\t\t\t\treturn new Value.Ptr(typ, array[i], fl);\n\t\t\t\t}\n\t\t\t\treturn new Value.Ptr(typ, new (go$ptrType(typ.jsType))(function() { return array[i]; }, function(v) { array[i] = v; }), fl);\n\t\t\tcase String:\n\t\t\t\tvar string = this.iword();\n\t\t\t\tif (i < 0 || i >= string.length) {\n\t\t\t\t\tthrow go$panic(\"reflect: string index out of range\");\n\t\t\t\t}\n\t\t\t\tvar fl = (this.flag & flagRO) | (Uint8 << flagKindShift);\n\t\t\t\treturn new Value.Ptr(uint8Type, string.charCodeAt(i), fl);\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Index\", k));\n\t\t}" }, _key$32 = "Value.IsNil", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tswitch (this.kind()) {\n\t\t\tcase Chan:\n\t\t\tcase Ptr:\n\t\t\tcase Slice:\n\t\t\t\treturn this.iword() === this.typ.jsType.nil;\n\t\t\tcase Func:\n\t\t\t\treturn this.iword() === go$throwNilPointerError;\n\t\t\tcase Map:\n\t\t\t\treturn this.iword() === false;\n\t\t\tcase Interface:\n\t\t\t\treturn this.iword() === null;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.IsNil\", this.kind()));\n\t\t}" }, _key$32 = "Value.Len", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Array:\n\t\t\tcase Slice:\n\t\t\tcase String:\n\t\t\t\treturn this.iword().length;\n\t\t\tcase Map:\n\t\t\t\treturn go$keys(this.iword()).length;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Len\", k));\n\t\t}" }, _key$32 = "Value.runes", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tthis.mustBe(Slice);\n\t\t\tif (this.typ.Elem().Kind() !== Int32) {\n\t\t\t\tthrow new go$panic(\"reflect.Value.Bytes of non-rune slice\");\n\t\t\t}\n\t\t\treturn this.iword();\n\t\t}" }, _key$32 = "Value.Pointer", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Chan:\n\t\t\tcase Map:\n\t\t\tcase Ptr:\n\t\t\tcase Slice:\n\t\t\tcase UnsafePointer:\n\t\t\t\tif (this.IsNil()) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\treturn this.iword();\n\t\t\tcase Func:\n\t\t\t\tif (this.IsNil()) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\treturn 1;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Pointer\", k));\n\t\t}" }, _key$32 = "Value.Set", _map$16[_key$32] = { k: _key$32, v: "function(x) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tx.mustBeExported();\n\t\t\tif ((this.flag & flagIndir) !== 0) {\n\t\t\t\tswitch (this.typ.Kind()) {\n\t\t\t\tcase Array:\n\t\t\t\t\tgo$copyArray(this.val, x.val);\n\t\t\t\t\treturn;\n\t\t\t\tcase Interface:\n\t\t\t\t\tthis.val.go$set(valueInterface(x, false));\n\t\t\t\t\treturn;\n\t\t\t\tcase Struct:\n\t\t\t\t\tcopyStruct(this.val, x.val, this.typ);\n\t\t\t\t\treturn;\n\t\t\t\tdefault:\n\t\t\t\t\tthis.val.go$set(x.iword());\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t}\n\t\t\tthis.val = x.val;\n\t\t}" }, _key$32 = "Value.SetInt", _map$16[_key$32] = { k: _key$32, v: "function(x) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Int:\n\t\t\tcase Int8:\n\t\t\tcase Int16:\n\t\t\tcase Int32:\n\t\t\t\tthis.val.go$set(go$flatten64(x));\n\t\t\t\treturn;\n\t\t\tcase Int64:\n\t\t\t\tthis.val.go$set(new this.typ.jsType(x.high, x.low));\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.SetInt\", k));\n\t\t}" }, _key$32 = "Value.SetUint", _map$16[_key$32] = { k: _key$32, v: "function(x) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Uint:\n\t\t\tcase Uint8:\n\t\t\tcase Uint16:\n\t\t\tcase Uint32:\n\t\t\tcase Uintptr:\n\t\t\t\tthis.val.go$set(x.low);\n\t\t\t\treturn;\n\t\t\tcase Uint64:\n\t\t\t\tthis.val.go$set(new this.typ.jsType(x.high, x.low));\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.SetUint\", k));\n\t\t}" }, _key$32 = "Value.SetComplex", _map$16[_key$32] = { k: _key$32, v: "function(x) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Complex64:\n\t\t\tcase Complex128:\n\t\t\t\tthis.val.go$set(new this.typ.jsType(x.real, x.imag));\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.SetComplex\", k));\n\t\t}" }, _key$32 = "Value.SetCap", _map$16[_key$32] = { k: _key$32, v: "function(n) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tthis.mustBe(Slice);\n\t\t\tvar s = this.val.go$get();\n\t\t\tif (n < s.length || n > s.capacity) {\n\t\t\t\tthrow go$panic(\"reflect: slice capacity out of range in SetCap\");\n\t\t\t}\n\t\t\tvar newSlice = new this.typ.jsType(s.array);\n\t\t\tnewSlice.offset = s.offset;\n\t\t\tnewSlice.length = s.length;\n\t\t\tnewSlice.capacity = n;\n\t\t\tthis.val.go$set(newSlice);\n\t\t}" }, _key$32 = "Value.SetLen", _map$16[_key$32] = { k: _key$32, v: "function(n) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tthis.mustBe(Slice);\n\t\t\tvar s = this.val.go$get();\n\t\t\tif (n < 0 || n > s.capacity) {\n\t\t\t\tthrow go$panic(\"reflect: slice length out of range in SetLen\");\n\t\t\t}\n\t\t\tvar newSlice = new this.typ.jsType(s.array);\n\t\t\tnewSlice.offset = s.offset;\n\t\t\tnewSlice.length = n;\n\t\t\tnewSlice.capacity = s.capacity;\n\t\t\tthis.val.go$set(newSlice);\n\t\t}" }, _key$32 = "Value.Slice", _map$16[_key$32] = { k: _key$32, v: "function(i, j) {\n\t\t\tvar typ, s, cap;\n\t\t\tvar kind = this.kind();\n\t\t\tswitch (kind) {\n\t\t\tcase Array:\n\t\t\t\tif ((this.flag & flagAddr) === 0) {\n\t\t\t\t\tthrow go$panic(\"reflect.Value.Slice: slice of unaddressable array\");\n\t\t\t\t}\n\t\t\t\tvar tt = this.typ.arrayType;\n\t\t\t\tcap = tt.len;\n\t\t\t\ttyp = SliceOf(tt.elem);\n\t\t\t\ts = new typ.jsType(this.iword());\n\t\t\t\tbreak;\n\t\t\tcase Slice:\n\t\t\t\ttyp = this.typ.sliceType;\n\t\t\t\ts = this.iword();\n\t\t\t\tcap = s.capacity;\n\t\t\t\tbreak;\n\t\t\tcase String:\n\t\t\t\ts = this.iword();\n\t\t\t\tif (i < 0 || j < i || j > s.length) {\n\t\t\t\t\tthrow go$panic(\"reflect.Value.Slice: string slice index out of bounds\");\n\t\t\t\t}\n\t\t\t\treturn new Value.Ptr(this.typ, s.substring(i, j), this.flag);\n\t\t\tdefault:\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Slice\", kind));\n\t\t\t}\n\n\t\t\tif (i < 0 || j < i || j > cap) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Slice: slice index out of bounds\");\n\t\t\t}\n\n\t\t\tvar fl = (this.flag & flagRO) | (Slice << flagKindShift);\n\t\t\treturn new Value.Ptr(typ.common(), go$subslice(s, i, j), fl);\n\t\t}" }, _key$32 = "Value.Slice3", _map$16[_key$32] = { k: _key$32, v: "function(i, j, k) {\n\t\t\tvar typ, s, cap;\n\t\t\tvar kind = this.kind();\n\t\t\tswitch (kind) {\n\t\t\tcase Array:\n\t\t\t\tif ((this.flag & flagAddr) === 0) {\n\t\t\t\t\tthrow go$panic(\"reflect.Value.Slice3: slice of unaddressable array\");\n\t\t\t\t}\n\t\t\t\tvar tt = this.typ.arrayType;\n\t\t\t\tcap = tt.len;\n\t\t\t\ttyp = SliceOf(tt.elem);\n\t\t\t\ts = new typ.jsType(this.iword());\n\t\t\t\tbreak;\n\t\t\tcase Slice:\n\t\t\t\ttyp = this.typ.sliceType;\n\t\t\t\ts = this.iword();\n\t\t\t\tcap = s.capacity;\n\t\t\t\tbreak;\n\t\t\tdefault:\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Slice3\", kind));\n\t\t\t}\n\n\t\t\tif (i < 0 || j < i || k < j || k > cap) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Slice3: slice index out of bounds\");\n\t\t\t}\n\n\t\t\tvar fl = (this.flag & flagRO) | (Slice << flagKindShift);\n\t\t\treturn new Value.Ptr(typ.common(), go$subslice(s, i, j, k), fl);\n\t\t}" }, _key$32 = "Value.String", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tswitch (this.kind()) {\n\t\t\tcase Invalid:\n\t\t\t\treturn \"<invalid Value>\";\n\t\t\tcase String:\n\t\t\t\treturn this.iword();\n\t\t\t}\n\t\t\treturn \"<\" + this.typ.String() + \" Value>\";\n\t\t}" }, _key$32 = "DeepEqual", _map$16[_key$32] = { k: _key$32, v: "function(a1, a2) {\n\t\t\tif (a1 === a2) {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t\tif (a1 === null || a2 === null || a1.constructor !== a2.constructor) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\treturn deepValueEqual(ValueOf(a1), ValueOf(a2), []);\n\t\t}" }, _map$16) };
+		_key$33 = "reflect", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$33] = { k: _key$33, v: (_map$16 = new Go$Map(), _key$32 = "toplevel", _map$16[_key$32] = { k: _key$32, v: "\n\t\t\tvar Invalid = 0;\n\t\t\tvar Bool = 1;\n\t\t\tvar Int = 2;\n\t\t\tvar Int8 = 3;\n\t\t\tvar Int16 = 4;\n\t\t\tvar Int32 = 5;\n\t\t\tvar Int64 = 6;\n\t\t\tvar Uint = 7;\n\t\t\tvar Uint8 = 8;\n\t\t\tvar Uint16 = 9;\n\t\t\tvar Uint32 = 10;\n\t\t\tvar Uint64 = 11;\n\t\t\tvar Uintptr = 12;\n\t\t\tvar Float32 = 13;\n\t\t\tvar Float64 = 14;\n\t\t\tvar Complex64 = 15;\n\t\t\tvar Complex128 = 16;\n\t\t\tvar Array = 17;\n\t\t\tvar Chan = 18;\n\t\t\tvar Func = 19;\n\t\t\tvar Interface = 20;\n\t\t\tvar Map = 21;\n\t\t\tvar Ptr = 22;\n\t\t\tvar Slice = 23;\n\t\t\tvar String = 24;\n\t\t\tvar Struct = 25;\n\t\t\tvar UnsafePointer = 26;\n\n\t\t\tvar RecvDir = 1;\n\t\t\tvar SendDir = 2;\n\t\t\tvar BothDir = 3;\n\n\t\t\tvar flagRO = 1;\n\t\t\tvar flagIndir = 2;\n\t\t\tvar flagAddr = 4;\n\t\t\tvar flagMethod = 8;\n\t\t\tvar flagKindShift = 4;\n\t\t\tvar flagKindWidth = 5;\n\t\t\tvar flagKindMask = 31;\n\t\t\tvar flagMethodShift = 9;\n\n\t\t\tgo$reflect = {\n\t\t\t\trtype: rtype.Ptr, uncommonType: uncommonType.Ptr, method: method.Ptr, arrayType: arrayType.Ptr, chanType: chanType.Ptr, funcType: funcType.Ptr, interfaceType: interfaceType.Ptr, mapType: mapType.Ptr, ptrType: ptrType.Ptr, sliceType: sliceType.Ptr, structType: structType.Ptr,\n\t\t\t\timethod: imethod.Ptr, structField: structField.Ptr,\n\t\t\t\tkinds: { Bool: Bool, Int: Int, Int8: Int8, Int16: Int16, Int32: Int32, Int64: Int64, Uint: Uint, Uint8: Uint8, Uint16: Uint16, Uint32: Uint32, Uint64: Uint64, Uintptr: Uintptr, Float32: Float32, Float64: Float64, Complex64: Complex64, Complex128: Complex128, Array: Array, Chan: Chan, Func: Func, Interface: Interface, Map: Map, Ptr: Ptr, Slice: Slice, String: String, Struct: Struct, UnsafePointer: UnsafePointer },\n\t\t\t\tRecvDir: RecvDir, SendDir: SendDir, BothDir: BothDir\n\t\t\t};\n\n\t\t\tvar isWrapped = function(typ) {\n\t\t\t\tswitch (typ.Kind()) {\n\t\t\t\tcase Bool:\n\t\t\t\tcase Int:\n\t\t\t\tcase Int8:\n\t\t\t\tcase Int16:\n\t\t\t\tcase Int32:\n\t\t\t\tcase Uint:\n\t\t\t\tcase Uint8:\n\t\t\t\tcase Uint16:\n\t\t\t\tcase Uint32:\n\t\t\t\tcase Uintptr:\n\t\t\t\tcase Float32:\n\t\t\t\tcase Float64:\n\t\t\t\tcase Array:\n\t\t\t\tcase Map:\n\t\t\t\tcase Func:\n\t\t\t\tcase String:\n\t\t\t\tcase Struct:\n\t\t\t\t\treturn true;\n\t\t\t\tcase Ptr:\n\t\t\t\t\treturn typ.Elem().Kind() === Array;\n\t\t\t\t}\n\t\t\t\treturn false;\n\t\t\t};\n\t\t\tvar fieldName = function(field, i) {\n\t\t\t\tif (field.name.go$get === go$throwNilPointerError) {\n\t\t\t\t\tvar ntyp = field.typ;\n\t\t\t\t\tif (ntyp.Kind() === Ptr) {\n\t\t\t\t\t\tntyp = ntyp.Elem().common();\n\t\t\t\t\t}\n\t\t\t\t\treturn ntyp.Name();\n\t\t\t\t}\n\t\t\t\tvar name = field.name.go$get();\n\t\t\t\tif (name === \"_\" || go$reservedKeywords.indexOf(name) != -1) {\n\t\t\t\t\treturn name + \"$\" + i;\n\t\t\t\t}\n\t\t\t\treturn name;\n\t\t\t};\n\t\t\tvar copyStruct = function(dst, src, typ) {\n\t\t\t\tvar fields = typ.structType.fields.array, i;\n\t\t\t\tfor (i = 0; i < fields.length; i += 1) {\n\t\t\t\t\tvar field = fields[i];\n\t\t\t\t\tvar name = fieldName(field, i);\n\t\t\t\t\tdst[name] = src[name];\n\t\t\t\t}\n\t\t\t};\n\t\t\tvar deepValueEqual = function(v1, v2, visited) {\n\t\t\t\tif (!v1.IsValid() || !v2.IsValid()) {\n\t\t\t\t\treturn !v1.IsValid() && !v2.IsValid();\n\t\t\t\t}\n\t\t\t\tif (v1.Type() !== v2.Type()) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\n\t\t\t\tvar i;\n\t\t\t\tswitch(v1.Kind()) {\n\t\t\t\tcase Array:\n\t\t\t\tcase Map:\n\t\t\t\tcase Slice:\n\t\t\t\tcase Struct:\n\t\t\t\t\tfor (i = 0; i < visited.length; i += 1) {\n\t\t\t\t\t\tvar entry = visited[i];\n\t\t\t\t\t\tif (v1.val === entry[0] && v2.val === entry[1]) {\n\t\t\t\t\t\t\treturn true;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tvisited.push([v1.val, v2.val]);\n\t\t\t\t}\n\n\t\t\t\tswitch(v1.Kind()) {\n\t\t\t\tcase Array:\n\t\t\t\tcase Slice:\n\t\t\t\t\tif (v1.Kind() === Slice) {\n\t\t\t\t\t\tif (v1.IsNil() !== v2.IsNil()) {\n\t\t\t\t\t\t\treturn false;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (v1.iword() === v2.iword()) {\n\t\t\t\t\t\t\treturn true;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tvar n = v1.Len();\n\t\t\t\t\tif (n !== v2.Len()) {\n\t\t\t\t\t\treturn false;\n\t\t\t\t\t}\n\t\t\t\t\tfor (i = 0; i < n; i += 1) {\n\t\t\t\t\t\tif (!deepValueEqual(v1.Index(i), v2.Index(i), visited)) {\n\t\t\t\t\t\t\treturn false;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn true;\n\t\t\t\tcase Interface:\n\t\t\t\t\tif (v1.IsNil() || v2.IsNil()) {\n\t\t\t\t\t\treturn v1.IsNil() && v2.IsNil();\n\t\t\t\t\t}\n\t\t\t\t\treturn deepValueEqual(v1.Elem(), v2.Elem(), visited);\n\t\t\t\tcase Ptr:\n\t\t\t\t\treturn deepValueEqual(v1.Elem(), v2.Elem(), visited);\n\t\t\t\tcase Struct:\n\t\t\t\t\tvar n = v1.NumField();\n\t\t\t\t\tfor (i = 0; i < n; i += 1) {\n\t\t\t\t\t\tif (!deepValueEqual(v1.Field(i), v2.Field(i), visited)) {\n\t\t\t\t\t\t\treturn false;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn true;\n\t\t\t\tcase Map:\n\t\t\t\t\tif (v1.IsNil() !== v2.IsNil()) {\n\t\t\t\t\t\treturn false;\n\t\t\t\t\t}\n\t\t\t\t\tif (v1.iword() === v2.iword()) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\t}\n\t\t\t\t\tvar keys = v1.MapKeys();\n\t\t\t\t\tif (keys.length !== v2.Len()) {\n\t\t\t\t\t\treturn false;\n\t\t\t\t\t}\n\t\t\t\t\tfor (i = 0; i < keys.length; i++) {\n\t\t\t\t\t\tvar k = keys.array[i];\n\t\t\t\t\t\tif (!deepValueEqual(v1.MapIndex(k), v2.MapIndex(k), visited)) {\n\t\t\t\t\t\t\treturn false;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn true;\n\t\t\t\tcase Func:\n\t\t\t\t\treturn v1.IsNil() && v2.IsNil();\n\t\t\t\t}\n\n\t\t\t\treturn go$interfaceIsEqual(valueInterface(v1, false), valueInterface(v2, false));\n\t\t\t};\n\t\t\tvar zeroVal = function(typ) {\n\t\t\t\tswitch (typ.Kind()) {\n\t\t\t\tcase Bool:\n\t\t\t\t\treturn false;\n\t\t\t\tcase Int:\n\t\t\t\tcase Int8:\n\t\t\t\tcase Int16:\n\t\t\t\tcase Int32:\n\t\t\t\tcase Uint:\n\t\t\t\tcase Uint8:\n\t\t\t\tcase Uint16:\n\t\t\t\tcase Uint32:\n\t\t\t\tcase Uintptr:\n\t\t\t\tcase Float32:\n\t\t\t\tcase Float64:\n\t\t\t\t\treturn 0;\n\t\t\t\tcase Int64:\n\t\t\t\tcase Uint64:\n\t\t\t\tcase Complex64:\n\t\t\t\tcase Complex128:\n\t\t\t\t\treturn new typ.jsType(0, 0);\n\t\t\t\tcase Array:\n\t\t\t\t\tvar elemType = typ.Elem();\n\t\t\t\t\treturn go$makeNativeArray(elemType.jsType.kind, typ.Len(), function() { return zeroVal(elemType); });\n\t\t\t\tcase Func:\n\t\t\t\t\treturn go$throwNilPointerError;\n\t\t\t\tcase Interface:\n\t\t\t\t\treturn null;\n\t\t\t\tcase Map:\n\t\t\t\t\treturn false;\n\t\t\t\tcase Chan:\n\t\t\t\tcase Ptr:\n\t\t\t\tcase Slice:\n\t\t\t\t\treturn typ.jsType.nil;\n\t\t\t\tcase String:\n\t\t\t\t\treturn \"\";\n\t\t\t\tcase Struct:\n\t\t\t\t\treturn new typ.jsType.Ptr();\n\t\t\t\tdefault:\n\t\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Zero\", this.kind()));\n\t\t\t\t}\n\t\t\t};\n\t\t" }, _key$32 = "TypeOf", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tif (i === null) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t\tif (i.constructor.kind === undefined) { // js.Object\n\t\t\t\treturn Go$String.reflectType();\n\t\t\t}\n\t\t\treturn i.constructor.reflectType();\n\t\t}" }, _key$32 = "ValueOf", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tif (i === null) {\n\t\t\t\treturn new Value.Ptr();\n\t\t\t}\n\t\t\tif (i.constructor.kind === undefined) { // js.Object\n\t\t\t\treturn new Value.Ptr(Go$String.reflectType(), String(i), String << flagKindShift);\n\t\t\t}\n\t\t\tvar typ = i.constructor.reflectType();\n\t\t\treturn new Value.Ptr(typ, i.go$val, typ.Kind() << flagKindShift);\n\t\t}" }, _key$32 = "arrayOf", _map$16[_key$32] = { k: _key$32, v: "function(n, t) {\n\t\t\treturn go$arrayType(t.jsType, n).reflectType();\n\t\t}" }, _key$32 = "ChanOf", _map$16[_key$32] = { k: _key$32, v: "function(dir, t) {\n\t\t\treturn go$chanType(t.jsType, dir === SendDir, dir === RecvDir).reflectType();\n\t\t}" }, _key$32 = "MapOf", _map$16[_key$32] = { k: _key$32, v: "function(key, elem) {\n\t\t\tswitch (key.Kind()) {\n\t\t\tcase Func:\n\t\t\tcase Map:\n\t\t\tcase Slice:\n\t\t\t\tthrow go$panic(\"reflect.MapOf: invalid key type \" + key.String());\n\t\t\t}\n\t\t\treturn go$mapType(key.jsType, elem.jsType).reflectType();\n\t\t}" }, _key$32 = "rtype.ptrTo", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\treturn go$ptrType(this.jsType).reflectType();\n\t\t}" }, _key$32 = "SliceOf", _map$16[_key$32] = { k: _key$32, v: "function(t) {\n\t\t\treturn go$sliceType(t.jsType).reflectType();\n\t\t}" }, _key$32 = "Zero", _map$16[_key$32] = { k: _key$32, v: "function(typ) {\n\t\t\treturn new Value.Ptr(typ, zeroVal(typ), typ.Kind() << flagKindShift);\n\t\t}" }, _key$32 = "unsafe_New", _map$16[_key$32] = { k: _key$32, v: "function(typ) {\n\t\t\tswitch (typ.Kind()) {\n\t\t\tcase Struct:\n\t\t\t\treturn new typ.jsType.Ptr();\n\t\t\tcase Array:\n\t\t\t\treturn zeroVal(typ);\n\t\t\tdefault:\n\t\t\t\treturn go$newDataPointer(zeroVal(typ), typ.ptrTo().jsType);\n\t\t\t}\n\t\t}" }, _key$32 = "makechan", _map$16[_key$32] = { k: _key$32, v: "function(typ, size) {\n\t\t\treturn new typ.jsType();\n\t\t}" }, _key$32 = "makeComplex", _map$16[_key$32] = { k: _key$32, v: "function(f, v, typ) {\n\t\t\treturn new Value.Ptr(typ, new typ.jsType(v.real, v.imag), f | (typ.Kind() << flagKindShift));\n\t\t}" }, _key$32 = "MakeFunc", _map$16[_key$32] = { k: _key$32, v: "function(typ, fn) {\n\t\t\tvar fv = function() {\n\t\t\t\tvar args = new Go$Array(typ.NumIn()), i;\n\t\t\t\tfor (i = 0; i < typ.NumIn(); i += 1) {\n\t\t\t\t\tvar t = typ.In(i);\n\t\t\t\t\targs[i] = new Value.Ptr(t, arguments[i], t.Kind() << flagKindShift);\n\t\t\t\t}\n\t\t\t\tvar resultsSlice = fn(new (go$sliceType(Value.Ptr))(args));\n\t\t\t\tswitch (typ.NumOut()) {\n\t\t\t\tcase 0:\n\t\t\t\t\treturn;\n\t\t\t\tcase 1:\n\t\t\t\t\treturn resultsSlice.array[resultsSlice.offset].iword();\n\t\t\t\tdefault:\n\t\t\t\t\tvar results = new Go$Array(typ.NumOut());\n\t\t\t\t\tfor (i = 0; i < typ.NumOut(); i += 1) {\n\t\t\t\t\t\tresults[i] = resultsSlice.array[resultsSlice.offset + i].iword();\n\t\t\t\t\t}\n\t\t\t\t\treturn results;\n\t\t\t\t}\n\t\t\t}\n\t\t  return new Value.Ptr(typ, fv, Func << flagKindShift);\n\t\t}" }, _key$32 = "makeInt", _map$16[_key$32] = { k: _key$32, v: "function(f, bits, typ) {\n\t\t\tvar val;\n\t\t\tswitch (typ.Kind()) {\n\t\t\tcase Int8:\n\t\t\t\tval = bits.low << 24 >> 24;\n\t\t\t\tbreak;\n\t\t\tcase Int16:\n\t\t\t\tval = bits.low << 16 >> 16;\n\t\t\t\tbreak;\n\t\t\tcase Int:\n\t\t\tcase Int32:\n\t\t\t\tval = bits.low >> 0;\n\t\t\t\tbreak;\n\t\t\tcase Int64:\n\t\t\t\treturn new Value.Ptr(typ, go$newDataPointer(new Go$Int64(bits.high, bits.low), typ.ptrTo().jsType), f | flagIndir | (Int64 << flagKindShift));\n\t\t\tcase Uint8:\n\t\t\t\tval = bits.low << 24 >>> 24;\n\t\t\t\tbreak;\n\t\t\tcase Uint16:\n\t\t\t\tval = bits.low << 16 >>> 16;\n\t\t\t\tbreak;\n\t\t\tcase Uint64:\n\t\t\t\treturn new Value.Ptr(typ, go$newDataPointer(bits, typ.ptrTo().jsType), f | flagIndir | (Int64 << flagKindShift));\n\t\t\tcase Uint:\n\t\t\tcase Uint32:\n\t\t\tcase Uintptr:\n\t\t\t\tval = bits.low >>> 0;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\treturn new Value.Ptr(typ, val, f | (typ.Kind() << flagKindShift));\n\t\t}" }, _key$32 = "MakeSlice", _map$16[_key$32] = { k: _key$32, v: "function(typ, len, cap) {\n\t\t\tif (typ.Kind() !== Slice) {\n\t\t\t\tthrow go$panic(\"reflect.MakeSlice of non-slice type\");\n\t\t\t}\n\t\t\tif (len < 0) {\n\t\t\t\tthrow go$panic(\"reflect.MakeSlice: negative len\");\n\t\t\t}\n\t\t\tif (cap < 0) {\n\t\t\t\tthrow go$panic(\"reflect.MakeSlice: negative cap\");\n\t\t\t}\n\t\t\tif (len > cap) {\n\t\t\t\tthrow go$panic(\"reflect.MakeSlice: len > cap\");\n\t\t\t}\n\t\t\treturn new Value.Ptr(typ.common(), typ.jsType.make(len, cap, function() { return zeroVal(typ.Elem()); }), Slice << flagKindShift);\n\t\t}" }, _key$32 = "cvtDirect", _map$16[_key$32] = { k: _key$32, v: "function(v, typ) {\n\t\t\tvar srcVal = v.iword();\n\t\t\tif (srcVal === v.typ.jsType.nil) {\n\t\t\t\treturn new Value.Ptr(typ, typ.jsType.nil, v.flag);\n\t\t\t}\n\n\t\t\tvar val;\n\t\t\tswitch (typ.Kind()) {\n\t\t\tcase Chan:\n\t\t\t\tval = new typ.jsType();\n\t\t\t\tbreak;\n\t\t\tcase Slice:\n\t\t\t\tval = new typ.jsType(srcVal.array);\n\t\t\t\tval.length = srcVal.length;\n\t\t\t\tval.cap = srcVal.cap;\n\t\t\t\tbreak;\n\t\t\tcase Ptr:\n\t\t\t\tif (typ.Elem().Kind() === Struct) {\n\t\t\t\t\tif (typ.Elem() === v.typ.Elem()) {\n\t\t\t\t\t\tval = srcVal;\n\t\t\t\t\t}\n\t\t\t\t\tval = new typ.jsType();\n\t\t\t\t\tcopyStruct(val, srcVal, typ.Elem());\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tval = new typ.jsType(srcVal.go$get, srcVal.go$set);\n\t\t\t\tbreak;\n\t\t\tcase Struct:\n\t\t\t\tval = new typ.jsType.Ptr();\n\t\t\t\tcopyStruct(val, srcVal, typ);\n\t\t\t\tbreak;\n\t\t\tcase Array:\n\t\t\tcase Func:\n\t\t\tcase Interface:\n\t\t\tcase Map:\n\t\t\tcase String:\n\t\t\t\tval = srcVal;\n\t\t\t\tbreak;\n\t\t\tdefault:\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Convert\", typ.Kind()));\n\t\t\t}\n\t\t\treturn new Value.Ptr(typ, val, (v.flag & flagRO) | (typ.Kind() << flagKindShift));\n\t\t}" }, _key$32 = "cvtStringBytes", _map$16[_key$32] = { k: _key$32, v: "function(v, typ) {\n\t\t\treturn new Value.Ptr(typ, new typ.jsType(go$stringToBytes(v.iword())), (v.flag & flagRO) | (Slice << flagKindShift));\n\t\t}" }, _key$32 = "cvtStringRunes", _map$16[_key$32] = { k: _key$32, v: "function(v, typ) {\n\t\t\treturn new Value.Ptr(typ, new typ.jsType(go$stringToRunes(v.iword())), (v.flag & flagRO) | (Slice << flagKindShift));\n\t\t}" }, _key$32 = "makemap", _map$16[_key$32] = { k: _key$32, v: "function(t) {\n\t\t\treturn new Go$Map();\n\t\t}" }, _key$32 = "mapaccess", _map$16[_key$32] = { k: _key$32, v: "function(t, m, key) {\n\t\t\tvar entry = m[key.go$key ? key.go$key() : key];\n\t\t\tif (entry === undefined) {\n\t\t\t\treturn [undefined, false];\n\t\t\t}\n\t\t\treturn [entry.v, true];\n\t\t}" }, _key$32 = "mapassign", _map$16[_key$32] = { k: _key$32, v: "function(t, m, key, val, ok) {\n\t\t\tif (!ok) {\n\t\t\t\tdelete m[key.go$key ? key.go$key() : key];\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tif (t.Elem().kind === Struct) {\n\t\t\t\tvar newVal = {};\n\t\t\t\tcopyStruct(newVal, val, t.Elem());\n\t\t\t\tval = newVal;\n\t\t\t}\n\t\t\tm[key.go$key ? key.go$key() : key] = { k: key, v: val };\n\t\t}" }, _key$32 = "maplen", _map$16[_key$32] = { k: _key$32, v: "function(m) {\n\t\t\treturn go$keys(m).length;\n\t\t}" }, _key$32 = "mapiterinit", _map$16[_key$32] = { k: _key$32, v: "function(t, m) {\n\t\t\treturn [m, go$keys(m), 0];\n\t\t}" }, _key$32 = "mapiterkey", _map$16[_key$32] = { k: _key$32, v: "function(it) {\n\t\t\tvar key = it[1][it[2]];\n\t\t\treturn [it[0][key].k, true];\n\t\t}" }, _key$32 = "mapiternext", _map$16[_key$32] = { k: _key$32, v: "function(it) {\n\t\t\tit[2] += 1;\n\t\t}" }, _key$32 = "chancap", _map$16[_key$32] = { k: _key$32, v: "function(ch) { go$notSupported(\"channels\"); }" }, _key$32 = "chanclose", _map$16[_key$32] = { k: _key$32, v: "function(ch) { go$notSupported(\"channels\"); }" }, _key$32 = "chanlen", _map$16[_key$32] = { k: _key$32, v: "function(ch) { go$notSupported(\"channels\"); }" }, _key$32 = "chanrecv", _map$16[_key$32] = { k: _key$32, v: "function(t, ch, nb) { go$notSupported(\"channels\"); }" }, _key$32 = "chansend", _map$16[_key$32] = { k: _key$32, v: "function(t, ch, val, nb) { go$notSupported(\"channels\"); }" }, _key$32 = "valueInterface", _map$16[_key$32] = { k: _key$32, v: "function(v, safe) {\n\t\t\tif (v.flag === 0) {\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Interface\", 0));\n\t\t\t}\n\t\t\tif (safe && (v.flag & flagRO) !== 0) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Interface: cannot return value obtained from unexported field or method\")\n\t\t\t}\n\t\t\tif ((v.flag & flagMethod) !== 0) {\n\t\t\t\tv = makeMethodValue(\"Interface\", v);\n\t\t\t}\n\t\t\tif (isWrapped(v.typ)) {\n\t\t\t\treturn new v.typ.jsType(v.iword());\n\t\t\t}\n\t\t\treturn v.iword();\n\t\t}" }, _key$32 = "makeMethodValue", _map$16[_key$32] = { k: _key$32, v: "function(op, v) {\n\t\t\tif ((v.flag & flagMethod) === 0) {\n\t\t\t\tthrow go$panic(\"reflect: internal error: invalid use of makePartialFunc\");\n\t\t\t}\n\n\t\t\tvar tuple = methodReceiver(op, v, v.flag >> flagMethodShift);\n\t\t\tvar fn = tuple[1];\n\t\t\tvar rcvr = tuple[2];\n\t\t\tvar fv = function() { return fn.apply(rcvr, arguments); };\n\t\t\treturn new Value.Ptr(v.Type(), fv, (v.flag & flagRO) | (Func << flagKindShift));\n\t\t}" }, _key$32 = "methodReceiver", _map$16[_key$32] = { k: _key$32, v: "function(op, v, i) {\n\t\t\tvar m, t;\n\t\t\tif (v.typ.Kind() === Interface) {\n\t\t\t\tvar tt = v.typ.interfaceType;\n\t\t\t\tif (i < 0 || i >= tt.methods.length) {\n\t\t\t\t\tthrow go$panic(\"reflect: internal error: invalid method index\");\n\t\t\t\t}\n\t\t\t\tif (v.IsNil()) {\n\t\t\t\t\tthrow go$panic(\"reflect: \" + op + \" of method on nil interface value\");\n\t\t\t\t}\n\t\t\t\tm = tt.methods.array[i];\n\t\t\t\tt = m.typ;\n\t\t\t} else {\n\t\t\t\tvar ut = v.typ.uncommon();\n\t\t\t\tif (ut === uncommonType.Ptr.nil || i < 0 || i >= ut.methods.length) {\n\t\t\t\t\tthrow go$panic(\"reflect: internal error: invalid method index\");\n\t\t\t\t}\n\t\t\t\tm = ut.methods.array[i];\n\t\t\t\tt = m.mtyp;\n\t\t\t}\n\t\t\tif (m.pkgPath.go$get !== go$throwNilPointerError) {\n\t\t\t\tthrow go$panic(\"reflect: \" + op + \" of unexported method\");\n\t\t\t}\n\t\t\tvar name = m.name.go$get()\n\t\t\tif (go$reservedKeywords.indexOf(name) !== -1) {\n\t\t\t\tname += \"$\";\n\t\t\t}\n\t\t\tvar rcvr = v.iword();\n\t\t\tif (isWrapped(v.typ)) {\n\t\t\t\trcvr = new v.typ.jsType(rcvr);\n\t\t\t}\n\t\t\treturn [t, rcvr[name], rcvr];\n\t\t}" }, _key$32 = "ifaceE2I", _map$16[_key$32] = { k: _key$32, v: "function(t, src, dst) {\n\t\t\tdst.go$set(src);\n\t\t}" }, _key$32 = "methodName", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\treturn \"?FIXME?\";\n\t\t}" }, _key$32 = "Copy", _map$16[_key$32] = { k: _key$32, v: "function(dst, src) {\n\t\t\tvar dk = dst.kind();\n\t\t\tif (dk !== Array && dk !== Slice) {\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Copy\", dk));\n\t\t\t}\n\t\t\tif (dk === Array) {\n\t\t\t\tdst.mustBeAssignable();\n\t\t\t}\n\t\t\tdst.mustBeExported();\n\n\t\t\tvar sk = src.kind();\n\t\t\tif (sk !== Array && sk != Slice) {\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Copy\", sk));\n\t\t\t}\n\t\t\tsrc.mustBeExported();\n\n\t\t\ttypesMustMatch(\"reflect.Copy\", dst.typ.Elem(), src.typ.Elem());\n\n\t\t\tvar dstVal = dst.iword();\n\t\t\tif (dk === Array) {\n\t\t\t\tdstVal = new (go$sliceType(dst.typ.Elem().jsType))(dstVal);\n\t\t\t}\n\t\t\tvar srcVal = src.iword();\n\t\t\tif (sk === Array) {\n\t\t\t\tsrcVal = new (go$sliceType(src.typ.Elem().jsType))(srcVal);\n\t\t\t}\n\t\t\treturn go$copySlice(dstVal, srcVal);\n\t\t}" }, _key$32 = "uncommonType.Method", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tif (this === uncommonType.Ptr.nil || i < 0 || i >= this.methods.length) {\n\t\t\t\tthrow go$panic(\"reflect: Method index out of range\");\n\t\t\t}\n\t\t\tvar p = this.methods.array[i];\n\t\t\tvar fl = Func << flagKindShift;\n\t\t\tvar pkgPath = \"\";\n\t\t\tif (p.pkgPath.go$get !== go$throwNilPointerError) {\n\t\t\t\tpkgPath = p.pkgPath.go$get();\n\t\t\t\tfl |= flagRO;\n\t\t\t}\n\t\t\tvar mt = p.typ;\n\t\t\tvar name = p.name.go$get();\n\t\t\tif (go$reservedKeywords.indexOf(name) !== -1) {\n\t\t\t\tname += \"$\";\n\t\t\t}\n\t\t\tvar fn = function(rcvr) {\n\t\t\t\treturn rcvr[name].apply(rcvr, Go$Array.prototype.slice.apply(arguments, [1]));\n\t\t\t}\n\t\t\treturn new Method.Ptr(p.name.go$get(), pkgPath, mt, new Value.Ptr(mt, fn, fl), i);\n\t\t}" }, _key$32 = "Value.iword", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tif ((this.flag & flagIndir) !== 0 && this.typ.Kind() !== Array && this.typ.Kind() !== Struct) {\n\t\t\t\treturn this.val.go$get();\n\t\t\t}\n\t\t\treturn this.val;\n\t\t}" }, _key$32 = "Value.Bytes", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tthis.mustBe(Slice);\n\t\t\tif (this.typ.Elem().Kind() !== Uint8) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Bytes of non-byte slice\");\n\t\t\t}\n\t\t\treturn this.iword();\n\t\t}" }, _key$32 = "Value.call", _map$16[_key$32] = { k: _key$32, v: "function(op, args) {\n\t\t\tvar t = this.typ, fn, rcvr;\n\n\t\t\tif ((this.flag & flagMethod) !== 0) {\n\t\t\t\tvar tuple = methodReceiver(op, this, this.flag >> flagMethodShift);\n\t\t\t\tt = tuple[0];\n\t\t\t\tfn = tuple[1];\n\t\t\t\trcvr = tuple[2];\n\t\t\t} else {\n\t\t\t\tfn = this.iword();\n\t\t\t}\n\n\t\t\tif (fn === go$throwNilPointerError) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Call: call of nil function\");\n\t\t\t}\n\n\t\t\tvar isSlice = (op === \"CallSlice\");\n\t\t\tvar n = t.NumIn();\n\t\t\tif (isSlice) {\n\t\t\t\tif (!t.IsVariadic()) {\n\t\t\t\t\tthrow go$panic(\"reflect: CallSlice of non-variadic function\");\n\t\t\t\t}\n\t\t\t\tif (args.length < n) {\n\t\t\t\t\tthrow go$panic(\"reflect: CallSlice with too few input arguments\");\n\t\t\t\t}\n\t\t\t\tif (args.length > n) {\n\t\t\t\t\tthrow go$panic(\"reflect: CallSlice with too many input arguments\");\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tif (t.IsVariadic()) {\n\t\t\t\t\tn -= 1;\n\t\t\t\t}\n\t\t\t\tif (args.length < n) {\n\t\t\t\t\tthrow go$panic(\"reflect: Call with too few input arguments\");\n\t\t\t\t}\n\t\t\t\tif (!t.IsVariadic() && args.length > n) {\n\t\t\t\t\tthrow go$panic(\"reflect: Call with too many input arguments\");\n\t\t\t\t}\n\t\t\t}\n\t\t\tvar i;\n\t\t\tfor (i = 0; i < args.length; i += 1) {\n\t\t\t\tif (args.array[args.offset + i].Kind() === Invalid) {\n\t\t\t\t\tthrow go$panic(\"reflect: \" + op + \" using zero Value argument\");\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (i = 0; i < n; i += 1) {\n\t\t\t\tvar xt = args.array[args.offset + i].Type(), targ = t.In(i);\n\t\t\t\tif (!xt.AssignableTo(targ)) {\n\t\t\t\t\tthrow go$panic(\"reflect: \" + op + \" using \" + xt.String() + \" as type \" + targ.String());\n\t\t\t\t}\n\t\t\t}\n\t\t\tif (!isSlice && t.IsVariadic()) {\n\t\t\t\tvar m = args.length - n;\n\t\t\t\tvar slice = MakeSlice(t.In(n), m, m);\n\t\t\t\tvar elem = t.In(n).Elem();\n\t\t\t\tfor (i = 0; i < m; i += 1) {\n\t\t\t\t\tvar x = args.array[args.offset + n + i];\n\t\t\t\t\tvar xt = x.Type();\n\t\t\t\t\tif (!xt.AssignableTo(elem)) {\n\t\t\t\t\t\tthrow go$panic(\"reflect: cannot use \" + xt.String() + \" as type \" + elem.String() + \" in \" + op);\n\t\t\t\t\t}\n\t\t\t\t\tslice.Index(i).Set(x);\n\t\t\t\t}\n\t\t\t\targs = new (go$sliceType(Value))(go$sliceToArray(args).slice(0, n).concat([slice]));\n\t\t\t}\n\n\t\t\tif (args.length !== t.NumIn()) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Call: wrong argument count\");\n\t\t\t}\n\n\t\t\tvar argsArray = new Go$Array(t.NumIn());\n\t\t\tfor (i = 0; i < t.NumIn(); i += 1) {\n\t\t\t\targsArray[i] = args.array[args.offset + i].assignTo(\"reflect.Value.Call\", t.In(i), go$ptrType(go$emptyInterface).nil).iword();\n\t\t\t}\n\t\t\tvar results = fn.apply(rcvr, argsArray);\n\t\t\tif (t.NumOut() === 0) {\n\t\t\t\tresults = [];\n\t\t\t} else if (t.NumOut() === 1) {\n\t\t\t\tresults = [results];\n\t\t\t}\n\t\t\tfor (i = 0; i < t.NumOut(); i += 1) {\n\t\t\t\tvar typ = t.Out(i);\n\t\t\t\tvar flag = typ.Kind() << flagKindShift;\n\t\t\t\tresults[i] = new Value.Ptr(typ, results[i], flag);\n\t\t\t}\n\t\t\treturn new (go$sliceType(Value))(results);\n\t\t}" }, _key$32 = "Value.Cap", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Slice:\n\t\t\t\treturn this.iword().capacity;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Cap\", k));\n\t\t}" }, _key$32 = "Value.Complex", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\treturn this.iword();\n\t\t}" }, _key$32 = "Value.Elem", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tswitch (this.kind()) {\n\t\t\tcase Interface:\n\t\t\t\tvar val = this.iword();\n\t\t\t\tif (val === null) {\n\t\t\t\t\treturn new Value.Ptr();\n\t\t\t\t}\n\t\t\t\tif (val.constructor.kind === undefined) { // js.Object\n\t\t\t\t\treturn new Value.Ptr(Go$String.reflectType(), String(val), String << flagKindShift);\n\t\t\t\t}\n\t\t\t\tvar typ = val.constructor.reflectType();\n\t\t\t\tvar fl = this.flag & flagRO;\n\t\t\t\tfl |= typ.Kind() << flagKindShift;\n\t\t\t\treturn new Value.Ptr(typ, val.go$val, fl);\n\n\t\t\tcase Ptr:\n\t\t\t\tvar val = this.iword();\n\t\t\t\tif (this.IsNil()) {\n\t\t\t\t\treturn new Value.Ptr();\n\t\t\t\t}\n\t\t\t\tvar tt = this.typ.ptrType;\n\t\t\t\tvar fl = (this.flag & flagRO) | flagIndir | flagAddr;\n\t\t\t\tfl |= tt.elem.Kind() << flagKindShift;\n\t\t\t\treturn new Value.Ptr(tt.elem, val, fl);\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Elem\", this.kind()));\n\t\t}" }, _key$32 = "Value.Field", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tthis.mustBe(Struct);\n\t\t\tvar tt = this.typ.structType;\n\t\t\tif (i < 0 || i >= tt.fields.length) {\n\t\t\t\tthrow go$panic(\"reflect: Field index out of range\");\n\t\t\t}\n\t\t\tvar field = tt.fields.array[i];\n\t\t\tvar name = fieldName(field, i);\n\t\t\tvar typ = field.typ;\n\t\t\tvar fl = this.flag & (flagRO | flagIndir | flagAddr);\n\t\t\tif (field.pkgPath.go$get !== go$throwNilPointerError) {\n\t\t\t\tfl |= flagRO;\n\t\t\t}\n\t\t\tfl |= typ.Kind() << flagKindShift;\n\t\t\tif ((this.flag & flagIndir) !== 0 && typ.Kind() !== Array && typ.Kind() !== Struct) {\n\t\t\t\tvar struct = this.val;\n\t\t\t\treturn new Value.Ptr(typ, new (go$ptrType(typ.jsType))(function() { return struct[name]; }, function(v) { struct[name] = v; }), fl);\n\t\t\t}\n\t\t\treturn new Value.Ptr(typ, this.val[name], fl);\n\t\t}" }, _key$32 = "Value.Index", _map$16[_key$32] = { k: _key$32, v: "function(i) {\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Array:\n\t\t\t\tvar tt = this.typ.arrayType;\n\t\t\t\tif (i < 0 || i >= tt.len) {\n\t\t\t\t\tthrow go$panic(\"reflect: array index out of range\");\n\t\t\t\t}\n\t\t\t\tvar typ = tt.elem;\n\t\t\t\tvar fl = this.flag & (flagRO | flagIndir | flagAddr);\n\t\t\t\tfl |= typ.Kind() << flagKindShift;\n\t\t\t\tif ((this.flag & flagIndir) !== 0 && typ.Kind() !== Array && typ.Kind() !== Struct) {\n\t\t\t\t\tvar array = this.val;\n\t\t\t\t\treturn new Value.Ptr(typ, new (go$ptrType(typ.jsType))(function() { return array[i]; }, function(v) { array[i] = v; }), fl);\n\t\t\t\t}\n\t\t\t\treturn new Value.Ptr(typ, this.iword()[i], fl);\n\t\t\tcase Slice:\n\t\t\t\tif (i < 0 || i >= this.iword().length) {\n\t\t\t\t\tthrow go$panic(\"reflect: slice index out of range\");\n\t\t\t\t}\n\t\t\t\tvar typ = this.typ.sliceType.elem;\n\t\t\t\tvar fl = flagAddr | flagIndir | (this.flag & flagRO);\n\t\t\t\tfl |= typ.Kind() << flagKindShift;\n\t\t\t\ti += this.iword().offset;\n\t\t\t\tvar array = this.iword().array;\n\t\t\t\tif (typ.Kind() === Struct) {\n\t\t\t\t\treturn new Value.Ptr(typ, array[i], fl);\n\t\t\t\t}\n\t\t\t\treturn new Value.Ptr(typ, new (go$ptrType(typ.jsType))(function() { return array[i]; }, function(v) { array[i] = v; }), fl);\n\t\t\tcase String:\n\t\t\t\tvar string = this.iword();\n\t\t\t\tif (i < 0 || i >= string.length) {\n\t\t\t\t\tthrow go$panic(\"reflect: string index out of range\");\n\t\t\t\t}\n\t\t\t\tvar fl = (this.flag & flagRO) | (Uint8 << flagKindShift);\n\t\t\t\treturn new Value.Ptr(uint8Type, string.charCodeAt(i), fl);\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Index\", k));\n\t\t}" }, _key$32 = "Value.IsNil", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tswitch (this.kind()) {\n\t\t\tcase Chan:\n\t\t\tcase Ptr:\n\t\t\tcase Slice:\n\t\t\t\treturn this.iword() === this.typ.jsType.nil;\n\t\t\tcase Func:\n\t\t\t\treturn this.iword() === go$throwNilPointerError;\n\t\t\tcase Map:\n\t\t\t\treturn this.iword() === false;\n\t\t\tcase Interface:\n\t\t\t\treturn this.iword() === null;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.IsNil\", this.kind()));\n\t\t}" }, _key$32 = "Value.Len", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Array:\n\t\t\tcase Slice:\n\t\t\tcase String:\n\t\t\t\treturn this.iword().length;\n\t\t\tcase Map:\n\t\t\t\treturn go$keys(this.iword()).length;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Len\", k));\n\t\t}" }, _key$32 = "Value.runes", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tthis.mustBe(Slice);\n\t\t\tif (this.typ.Elem().Kind() !== Int32) {\n\t\t\t\tthrow new go$panic(\"reflect.Value.Bytes of non-rune slice\");\n\t\t\t}\n\t\t\treturn this.iword();\n\t\t}" }, _key$32 = "Value.Pointer", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Chan:\n\t\t\tcase Map:\n\t\t\tcase Ptr:\n\t\t\tcase Slice:\n\t\t\tcase UnsafePointer:\n\t\t\t\tif (this.IsNil()) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\treturn this.iword();\n\t\t\tcase Func:\n\t\t\t\tif (this.IsNil()) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\treturn 1;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Pointer\", k));\n\t\t}" }, _key$32 = "Value.Set", _map$16[_key$32] = { k: _key$32, v: "function(x) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tx.mustBeExported();\n\t\t\tif ((this.flag & flagIndir) !== 0) {\n\t\t\t\tswitch (this.typ.Kind()) {\n\t\t\t\tcase Array:\n\t\t\t\t\tgo$copyArray(this.val, x.val);\n\t\t\t\t\treturn;\n\t\t\t\tcase Interface:\n\t\t\t\t\tthis.val.go$set(valueInterface(x, false));\n\t\t\t\t\treturn;\n\t\t\t\tcase Struct:\n\t\t\t\t\tcopyStruct(this.val, x.val, this.typ);\n\t\t\t\t\treturn;\n\t\t\t\tdefault:\n\t\t\t\t\tthis.val.go$set(x.iword());\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t}\n\t\t\tthis.val = x.val;\n\t\t}" }, _key$32 = "Value.SetInt", _map$16[_key$32] = { k: _key$32, v: "function(x) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Int:\n\t\t\tcase Int8:\n\t\t\tcase Int16:\n\t\t\tcase Int32:\n\t\t\t\tthis.val.go$set(go$flatten64(x));\n\t\t\t\treturn;\n\t\t\tcase Int64:\n\t\t\t\tthis.val.go$set(new this.typ.jsType(x.high, x.low));\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.SetInt\", k));\n\t\t}" }, _key$32 = "Value.SetUint", _map$16[_key$32] = { k: _key$32, v: "function(x) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Uint:\n\t\t\tcase Uint8:\n\t\t\tcase Uint16:\n\t\t\tcase Uint32:\n\t\t\tcase Uintptr:\n\t\t\t\tthis.val.go$set(x.low);\n\t\t\t\treturn;\n\t\t\tcase Uint64:\n\t\t\t\tthis.val.go$set(new this.typ.jsType(x.high, x.low));\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.SetUint\", k));\n\t\t}" }, _key$32 = "Value.SetComplex", _map$16[_key$32] = { k: _key$32, v: "function(x) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tvar k = this.kind();\n\t\t\tswitch (k) {\n\t\t\tcase Complex64:\n\t\t\tcase Complex128:\n\t\t\t\tthis.val.go$set(new this.typ.jsType(x.real, x.imag));\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.SetComplex\", k));\n\t\t}" }, _key$32 = "Value.SetCap", _map$16[_key$32] = { k: _key$32, v: "function(n) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tthis.mustBe(Slice);\n\t\t\tvar s = this.val.go$get();\n\t\t\tif (n < s.length || n > s.capacity) {\n\t\t\t\tthrow go$panic(\"reflect: slice capacity out of range in SetCap\");\n\t\t\t}\n\t\t\tvar newSlice = new this.typ.jsType(s.array);\n\t\t\tnewSlice.offset = s.offset;\n\t\t\tnewSlice.length = s.length;\n\t\t\tnewSlice.capacity = n;\n\t\t\tthis.val.go$set(newSlice);\n\t\t}" }, _key$32 = "Value.SetLen", _map$16[_key$32] = { k: _key$32, v: "function(n) {\n\t\t\tthis.mustBeAssignable();\n\t\t\tthis.mustBe(Slice);\n\t\t\tvar s = this.val.go$get();\n\t\t\tif (n < 0 || n > s.capacity) {\n\t\t\t\tthrow go$panic(\"reflect: slice length out of range in SetLen\");\n\t\t\t}\n\t\t\tvar newSlice = new this.typ.jsType(s.array);\n\t\t\tnewSlice.offset = s.offset;\n\t\t\tnewSlice.length = n;\n\t\t\tnewSlice.capacity = s.capacity;\n\t\t\tthis.val.go$set(newSlice);\n\t\t}" }, _key$32 = "Value.Slice", _map$16[_key$32] = { k: _key$32, v: "function(i, j) {\n\t\t\tvar typ, s, cap;\n\t\t\tvar kind = this.kind();\n\t\t\tswitch (kind) {\n\t\t\tcase Array:\n\t\t\t\tif ((this.flag & flagAddr) === 0) {\n\t\t\t\t\tthrow go$panic(\"reflect.Value.Slice: slice of unaddressable array\");\n\t\t\t\t}\n\t\t\t\tvar tt = this.typ.arrayType;\n\t\t\t\tcap = tt.len;\n\t\t\t\ttyp = SliceOf(tt.elem);\n\t\t\t\ts = new typ.jsType(this.iword());\n\t\t\t\tbreak;\n\t\t\tcase Slice:\n\t\t\t\ttyp = this.typ.sliceType;\n\t\t\t\ts = this.iword();\n\t\t\t\tcap = s.capacity;\n\t\t\t\tbreak;\n\t\t\tcase String:\n\t\t\t\ts = this.iword();\n\t\t\t\tif (i < 0 || j < i || j > s.length) {\n\t\t\t\t\tthrow go$panic(\"reflect.Value.Slice: string slice index out of bounds\");\n\t\t\t\t}\n\t\t\t\treturn new Value.Ptr(this.typ, s.substring(i, j), this.flag);\n\t\t\tdefault:\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Slice\", kind));\n\t\t\t}\n\n\t\t\tif (i < 0 || j < i || j > cap) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Slice: slice index out of bounds\");\n\t\t\t}\n\n\t\t\tvar fl = (this.flag & flagRO) | (Slice << flagKindShift);\n\t\t\treturn new Value.Ptr(typ.common(), go$subslice(s, i, j), fl);\n\t\t}" }, _key$32 = "Value.Slice3", _map$16[_key$32] = { k: _key$32, v: "function(i, j, k) {\n\t\t\tvar typ, s, cap;\n\t\t\tvar kind = this.kind();\n\t\t\tswitch (kind) {\n\t\t\tcase Array:\n\t\t\t\tif ((this.flag & flagAddr) === 0) {\n\t\t\t\t\tthrow go$panic(\"reflect.Value.Slice3: slice of unaddressable array\");\n\t\t\t\t}\n\t\t\t\tvar tt = this.typ.arrayType;\n\t\t\t\tcap = tt.len;\n\t\t\t\ttyp = SliceOf(tt.elem);\n\t\t\t\ts = new typ.jsType(this.iword());\n\t\t\t\tbreak;\n\t\t\tcase Slice:\n\t\t\t\ttyp = this.typ.sliceType;\n\t\t\t\ts = this.iword();\n\t\t\t\tcap = s.capacity;\n\t\t\t\tbreak;\n\t\t\tdefault:\n\t\t\t\tthrow go$panic(new ValueError.Ptr(\"reflect.Value.Slice3\", kind));\n\t\t\t}\n\n\t\t\tif (i < 0 || j < i || k < j || k > cap) {\n\t\t\t\tthrow go$panic(\"reflect.Value.Slice3: slice index out of bounds\");\n\t\t\t}\n\n\t\t\tvar fl = (this.flag & flagRO) | (Slice << flagKindShift);\n\t\t\treturn new Value.Ptr(typ.common(), go$subslice(s, i, j, k), fl);\n\t\t}" }, _key$32 = "Value.String", _map$16[_key$32] = { k: _key$32, v: "function() {\n\t\t\tswitch (this.kind()) {\n\t\t\tcase Invalid:\n\t\t\t\treturn \"<invalid Value>\";\n\t\t\tcase String:\n\t\t\t\treturn this.iword();\n\t\t\t}\n\t\t\treturn \"<\" + this.typ.String() + \" Value>\";\n\t\t}" }, _key$32 = "DeepEqual", _map$16[_key$32] = { k: _key$32, v: "function(a1, a2) {\n\t\t\tif (a1 === a2) {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t\tif (a1 === null || a2 === null || a1.constructor !== a2.constructor) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\treturn deepValueEqual(ValueOf(a1), ValueOf(a2), []);\n\t\t}" }, _map$16) };
 	};
 	return go$pkg;
 })();
@@ -70992,10 +70423,7 @@ go$packages["text/tabwriter"] = (function() {
 	Writer.init([["output", "text/tabwriter", io.Writer, ""], ["minwidth", "text/tabwriter", Go$Int, ""], ["tabwidth", "text/tabwriter", Go$Int, ""], ["padding", "text/tabwriter", Go$Int, ""], ["padbytes", "text/tabwriter", (go$arrayType(Go$Uint8, 8)), ""], ["flags", "text/tabwriter", Go$Uint, ""], ["buf", "text/tabwriter", bytes.Buffer, ""], ["pos", "text/tabwriter", Go$Int, ""], ["cell", "text/tabwriter", cell, ""], ["endChar", "text/tabwriter", Go$Uint8, ""], ["lines", "text/tabwriter", (go$sliceType((go$sliceType(cell)))), ""], ["widths", "text/tabwriter", (go$sliceType(Go$Int)), ""]]);
 	(go$ptrType(Writer)).methods = [["Flush", "", [], [go$error], false], ["Init", "", [io.Writer, Go$Int, Go$Int, Go$Int, Go$Uint8, Go$Uint], [(go$ptrType(Writer))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["addLine", "text/tabwriter", [], [], false], ["append", "text/tabwriter", [(go$sliceType(Go$Uint8))], [], false], ["dump", "text/tabwriter", [], [], false], ["endEscape", "text/tabwriter", [], [], false], ["format", "text/tabwriter", [Go$Int, Go$Int, Go$Int], [Go$Int], false], ["reset", "text/tabwriter", [], [], false], ["startEscape", "text/tabwriter", [Go$Uint8], [], false], ["terminateCell", "text/tabwriter", [Go$Bool], [Go$Int], false], ["updateWidth", "text/tabwriter", [], [], false], ["write0", "text/tabwriter", [(go$sliceType(Go$Uint8))], [], false], ["writeLines", "text/tabwriter", [Go$Int, Go$Int, Go$Int], [Go$Int], false], ["writeN", "text/tabwriter", [(go$sliceType(Go$Uint8)), Go$Int], [], false], ["writePadding", "text/tabwriter", [Go$Int, Go$Int, Go$Bool], [], false]];
 	osError.init([["err", "text/tabwriter", go$error, ""]]);
-	var newline = (go$sliceType(Go$Uint8)).nil;
-	var tabs = (go$sliceType(Go$Uint8)).nil;
-	var vbar = (go$sliceType(Go$Uint8)).nil;
-	var hbar = (go$sliceType(Go$Uint8)).nil;
+	var newline, tabs, vbar, hbar;
 	Writer.Ptr.prototype.addLine = function() {
 		var b;
 		b = this;
@@ -71442,7 +70870,7 @@ go$packages["go/printer"] = (function() {
 	Config.init([["Mode", "", Mode, ""], ["Tabwidth", "", Go$Int, ""], ["Indent", "", Go$Int, ""]]);
 	(go$ptrType(Config)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false]];
 	CommentedNode.init([["Node", "", go$emptyInterface, ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
-	var aNewline = (go$sliceType(Go$Uint8)).nil;
+	var aNewline;
 	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
 		var printedBreak, p, n;
 		printedBreak = false;
@@ -73710,7 +73138,7 @@ go$packages["go/format"] = (function() {
 	var token = go$packages["go/token"];
 	var io = go$packages["io"];
 	var strings = go$packages["strings"];
-	var config = new printer.Config.Ptr();
+	var config;
 	var Node = go$pkg.Node = function(dst, fset, node) {
 		var file, cnode, n, _ref, _type, ok, _tuple, x, f, buf, err, _tuple$1;
 		file = (go$ptrType(ast.File)).nil;
@@ -73864,7 +73292,7 @@ go$packages["github.com/neelance/gopherjs-playground"] = (function() {
 	Line = go$newType(0, "Map", "main.Line", "Line", "github.com/neelance/gopherjs-playground", null);
 	go$pkg.Line = Line;
 	Line.init(Go$String, Go$String);
-	var output = (go$sliceType(Line)).nil;
+	var output;
 	var main = go$pkg.main = function() {
 		var app;
 		app = angularjs.NewModule("playground", (go$sliceType(Go$String)).nil, go$throwNilPointerError);
@@ -73938,7 +73366,7 @@ go$packages["github.com/neelance/gopherjs-playground"] = (function() {
 						return [pkg, null];
 					}
 					pkgsToLoad = go$append(pkgsToLoad, path);
-					return [new translator.Archive.Ptr("", (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(translator.Import)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(translator.Function)).nil), null];
+					return [new translator.Archive.Ptr("", (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(translator.Import)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(translator.Decl)).nil, (go$sliceType(translator.Function)).nil), null];
 				});
 				_tuple$2 = translator.TranslatePackage("main", new (go$sliceType((go$ptrType(ast.File))))([file]), fileSet, importPackage), mainPkg = _tuple$2[0], err = _tuple$2[1];
 				_key$2 = "main", (packages || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: mainPkg };
@@ -74104,6 +73532,7 @@ go$packages["github.com/neelance/gopherjs-playground"] = (function() {
 		}
 	};
 	go$pkg.init = function() {
+		output = (go$sliceType(Line)).nil;
 	};
 	return go$pkg;
 })();

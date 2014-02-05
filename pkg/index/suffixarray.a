@@ -135,7 +135,7 @@ $$
 	(go$ptrType(suffixSortable)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false], ["updateGroups", "index/suffixarray", [Go$Int], [], false]];
 	Index.init([["data", "index/suffixarray", (go$sliceType(Go$Uint8)), ""], ["sa", "index/suffixarray", (go$sliceType(Go$Int)), ""]]);
 	(go$ptrType(Index)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["FindAllIndex", "", [(go$ptrType(regexp.Regexp)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["Lookup", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType(Go$Int))], false], ["Read", "", [io.Reader], [go$error], false], ["Write", "", [io.Writer], [go$error], false], ["at", "index/suffixarray", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["lookupAll", "index/suffixarray", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false]];
- 0‚X90‚½qsufsort‚¯	var qsufsort = function(data) {
+0 0‚X90‚½qsufsort‚¯	var qsufsort = function(data) {
 		var sa, inv, sufSortable, _slice, _index, pi, sl, s, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, pk, _slice$4, _index$4, x, x$1, _ref, _i, i, _slice$5, _index$5, _slice$6, _index$6;
 		sa = sortedByFirstByte(data);
 		if (sa.length < 2) {

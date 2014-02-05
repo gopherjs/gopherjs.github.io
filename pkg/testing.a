@@ -1,4 +1,4 @@
-0ÉotestingÇ0*package testing
+0É~testingÇ0*package testing
 import runtime "runtime"
 import flag "flag"
 import fmt "fmt"
@@ -354,31 +354,12 @@ $$
 	T.init([["", "testing", common, ""], ["name", "testing", Go$String, ""], ["startParallel", "testing", (go$chanType(Go$Bool, false, false)), ""]]);
 	(go$ptrType(T)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fail", "", [], [], false], ["FailNow", "", [], [], false], ["Failed", "", [], [Go$Bool], false], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Parallel", "", [], [], false], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true], ["SkipNow", "", [], [], false], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skipped", "", [], [Go$Bool], false], ["log", "testing", [Go$String], [], false], ["private", "testing", [], [], false], ["report", "testing", [], [], false], ["skip", "testing", [], [], false]];
 	InternalTest.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([(go$ptrType(T))], [], false)), ""]]);
-ÇÙ	var matchBenchmarks = (go$ptrType(Go$String)).nil;
-	var benchTime = (go$ptrType(time.Duration)).nil;
-	var benchmarkMemory = (go$ptrType(Go$Bool)).nil;
-	var benchmarkLock = new sync.Mutex.Ptr();
-	var memStats = new runtime.MemStats.Ptr();
-	var cover = new Cover.Ptr();
-	var short$1 = (go$ptrType(Go$Bool)).nil;
-	var outputDir = (go$ptrType(Go$String)).nil;
-	var chatty = (go$ptrType(Go$Bool)).nil;
-	var coverProfile = (go$ptrType(Go$String)).nil;
-	var match = (go$ptrType(Go$String)).nil;
-	var memProfile = (go$ptrType(Go$String)).nil;
-	var memProfileRate = (go$ptrType(Go$Int)).nil;
-	var cpuProfile = (go$ptrType(Go$String)).nil;
-	var blockProfile = (go$ptrType(Go$String)).nil;
-	var blockProfileRate = (go$ptrType(Go$Int)).nil;
-	var timeout = (go$ptrType(time.Duration)).nil;
-	var cpuListStr = (go$ptrType(Go$String)).nil;
-	var parallel = (go$ptrType(Go$Int)).nil;
-	var haveExamples = false;
-	var cpuList = (go$sliceType(Go$Int)).nil;
-	var _ = null;
-	var _$1 = null;
-	var timer = (go$ptrType(time.Timer)).nil;
-0Çö…0Ç5AllocsPerRunÇ#	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
+0Ç/0benchmarkLock0
+memStats0cover0match0blockProfileRate0	timeout0haveExamples0chatty0coverProfile0memProfileRate0blockProfile0
+parallel0	benchTime0	short$10	outputDir0
+memProfile0
+cpuListStr0	cpuList0matchBenchmarks0benchmarkMemory0
+cpuProfile0timer0Çõù0Ç5AllocsPerRunÇ#	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
 		var avg, memstats, x, mallocs, i, x$1;
 		avg = 0;
 		var go$deferred = [];
@@ -1249,7 +1230,14 @@ startAlarmÇE	var startAlarm = function() {
 			cpuList = go$append(cpuList, runtime.GOMAXPROCS(-1));
 		}
 	};
-0ÇrinitÇh
+0ÇFinitÇ<	go$pkg.init = function() {
+		cpuList = (go$sliceType(Go$Int)).nil;
+		timer = (go$ptrType(time.Timer)).nil;
+		benchmarkLock = new sync.Mutex.Ptr();
+		memStats = new runtime.MemStats.Ptr();
+		cover = new Cover.Ptr();
+		haveExamples = false;
+
 			go$pkg.RunTests2 = function(pkgPath, dir, names, tests) {
 				if (tests.length === 0) {
 					console.log("?   \t" + pkgPath + "\t[no test files]");
@@ -1290,8 +1278,7 @@ startAlarmÇE	var startAlarm = function() {
 				var duration = time.Now().Sub(start);
 				fmt.Printf("%s\t%s\t%.3fs\n", new (go$sliceType(go$emptyInterface))([new Go$String(status), new Go$String(pkgPath), new Go$Float64(duration.Seconds())]));
 			};
-			go$pkg.init = function() {
-		matchBenchmarks = flag.String("test.bench", "", "regular expression to select benchmarks to run");
+				matchBenchmarks = flag.String("test.bench", "", "regular expression to select benchmarks to run");
 		benchTime = flag.Duration("test.benchtime", new time.Duration(0, 1000000000), "approximate run time for each benchmark");
 		benchmarkMemory = flag.Bool("test.benchmem", false, "print memory allocations for benchmarks");
 		short$1 = flag.Bool("test.short", false, "run smaller test suite to save time");

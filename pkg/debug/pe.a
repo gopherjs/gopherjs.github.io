@@ -222,7 +222,7 @@ $$
 	FileHeader.init([["Machine", "", Go$Uint16, ""], ["NumberOfSections", "", Go$Uint16, ""], ["TimeDateStamp", "", Go$Uint32, ""], ["PointerToSymbolTable", "", Go$Uint32, ""], ["NumberOfSymbols", "", Go$Uint32, ""], ["SizeOfOptionalHeader", "", Go$Uint16, ""], ["Characteristics", "", Go$Uint16, ""]]);
 	SectionHeader32.init([["Name", "", (go$arrayType(Go$Uint8, 8)), ""], ["VirtualSize", "", Go$Uint32, ""], ["VirtualAddress", "", Go$Uint32, ""], ["SizeOfRawData", "", Go$Uint32, ""], ["PointerToRawData", "", Go$Uint32, ""], ["PointerToRelocations", "", Go$Uint32, ""], ["PointerToLineNumbers", "", Go$Uint32, ""], ["NumberOfRelocations", "", Go$Uint16, ""], ["NumberOfLineNumbers", "", Go$Uint16, ""], ["Characteristics", "", Go$Uint32, ""]]);
 	COFFSymbol.init([["Name", "", (go$arrayType(Go$Uint8, 8)), ""], ["Value", "", Go$Uint32, ""], ["SectionNumber", "", Go$Int16, ""], ["Type", "", Go$Uint16, ""], ["StorageClass", "", Go$Uint8, ""], ["NumberOfAuxSymbols", "", Go$Uint8, ""]]);
- 0‚1f0‚€Data‚v	Section.Ptr.prototype.Data = function() {
+0 0‚1f0‚€Data‚v	Section.Ptr.prototype.Data = function() {
 		var s, dat, _tuple, n, err;
 		s = this;
 		dat = (go$sliceType(Go$Uint8)).make(go$flatten64(s.sr.Size()), 0, function() { return 0; });

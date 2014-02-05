@@ -1,4 +1,4 @@
-0É±ûunicodeÇ ñpackage unicode
+0Éx7unicodeÇ ñpackage unicode
 var @"".ASCII_Hex_Digit *@"".RangeTable
 var @"".Arabic *@"".RangeTable
 var @"".Armenian *@"".RangeTable
@@ -290,381 +290,33 @@ $$
 	(go$ptrType(SpecialCase)).methods = [["ToLower", "", [Go$Int32], [Go$Int32], false], ["ToTitle", "", [Go$Int32], [Go$Int32], false], ["ToUpper", "", [Go$Int32], [Go$Int32], false]];
 	d.init(Go$Int32, 3);
 	foldPair.init([["From", "", Go$Uint16, ""], ["To", "", Go$Uint16, ""]]);
-ÇEç	go$pkg.TurkishCase = SpecialCase.nil;
-	var _TurkishCase = SpecialCase.nil;
-	go$pkg.AzeriCase = SpecialCase.nil;
-	go$pkg.GraphicRanges = (go$sliceType((go$ptrType(RangeTable)))).nil;
-	go$pkg.PrintRanges = (go$sliceType((go$ptrType(RangeTable)))).nil;
-	go$pkg.Categories = false;
-	var _C = (go$ptrType(RangeTable)).nil;
-	var _Cc = (go$ptrType(RangeTable)).nil;
-	var _Cf = (go$ptrType(RangeTable)).nil;
-	var _Co = (go$ptrType(RangeTable)).nil;
-	var _Cs = (go$ptrType(RangeTable)).nil;
-	var _L = (go$ptrType(RangeTable)).nil;
-	var _Ll = (go$ptrType(RangeTable)).nil;
-	var _Lm = (go$ptrType(RangeTable)).nil;
-	var _Lo = (go$ptrType(RangeTable)).nil;
-	var _Lt = (go$ptrType(RangeTable)).nil;
-	var _Lu = (go$ptrType(RangeTable)).nil;
-	var _M = (go$ptrType(RangeTable)).nil;
-	var _Mc = (go$ptrType(RangeTable)).nil;
-	var _Me = (go$ptrType(RangeTable)).nil;
-	var _Mn = (go$ptrType(RangeTable)).nil;
-	var _N = (go$ptrType(RangeTable)).nil;
-	var _Nd = (go$ptrType(RangeTable)).nil;
-	var _Nl = (go$ptrType(RangeTable)).nil;
-	var _No = (go$ptrType(RangeTable)).nil;
-	var _P = (go$ptrType(RangeTable)).nil;
-	var _Pc = (go$ptrType(RangeTable)).nil;
-	var _Pd = (go$ptrType(RangeTable)).nil;
-	var _Pe = (go$ptrType(RangeTable)).nil;
-	var _Pf = (go$ptrType(RangeTable)).nil;
-	var _Pi = (go$ptrType(RangeTable)).nil;
-	var _Po = (go$ptrType(RangeTable)).nil;
-	var _Ps = (go$ptrType(RangeTable)).nil;
-	var _S = (go$ptrType(RangeTable)).nil;
-	var _Sc = (go$ptrType(RangeTable)).nil;
-	var _Sk = (go$ptrType(RangeTable)).nil;
-	var _Sm = (go$ptrType(RangeTable)).nil;
-	var _So = (go$ptrType(RangeTable)).nil;
-	var _Z = (go$ptrType(RangeTable)).nil;
-	var _Zl = (go$ptrType(RangeTable)).nil;
-	var _Zp = (go$ptrType(RangeTable)).nil;
-	var _Zs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cc = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cf = (go$ptrType(RangeTable)).nil;
-	go$pkg.Co = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Digit = (go$ptrType(RangeTable)).nil;
-	go$pkg.Nd = (go$ptrType(RangeTable)).nil;
-	go$pkg.Letter = (go$ptrType(RangeTable)).nil;
-	go$pkg.L = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lm = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lo = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lower = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ll = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mark = (go$ptrType(RangeTable)).nil;
-	go$pkg.M = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mc = (go$ptrType(RangeTable)).nil;
-	go$pkg.Me = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mn = (go$ptrType(RangeTable)).nil;
-	go$pkg.Nl = (go$ptrType(RangeTable)).nil;
-	go$pkg.No = (go$ptrType(RangeTable)).nil;
-	go$pkg.Number = (go$ptrType(RangeTable)).nil;
-	go$pkg.N = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other = (go$ptrType(RangeTable)).nil;
-	go$pkg.C = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pc = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pd = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pe = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pf = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Po = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ps = (go$ptrType(RangeTable)).nil;
-	go$pkg.Punct = (go$ptrType(RangeTable)).nil;
-	go$pkg.P = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sc = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sk = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sm = (go$ptrType(RangeTable)).nil;
-	go$pkg.So = (go$ptrType(RangeTable)).nil;
-	go$pkg.Space = (go$ptrType(RangeTable)).nil;
-	go$pkg.Z = (go$ptrType(RangeTable)).nil;
-	go$pkg.Symbol = (go$ptrType(RangeTable)).nil;
-	go$pkg.S = (go$ptrType(RangeTable)).nil;
-	go$pkg.Title = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lt = (go$ptrType(RangeTable)).nil;
-	go$pkg.Upper = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lu = (go$ptrType(RangeTable)).nil;
-	go$pkg.Zl = (go$ptrType(RangeTable)).nil;
-	go$pkg.Zp = (go$ptrType(RangeTable)).nil;
-	go$pkg.Zs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Scripts = false;
-	var _Arabic = (go$ptrType(RangeTable)).nil;
-	var _Armenian = (go$ptrType(RangeTable)).nil;
-	var _Avestan = (go$ptrType(RangeTable)).nil;
-	var _Balinese = (go$ptrType(RangeTable)).nil;
-	var _Bamum = (go$ptrType(RangeTable)).nil;
-	var _Batak = (go$ptrType(RangeTable)).nil;
-	var _Bengali = (go$ptrType(RangeTable)).nil;
-	var _Bopomofo = (go$ptrType(RangeTable)).nil;
-	var _Brahmi = (go$ptrType(RangeTable)).nil;
-	var _Braille = (go$ptrType(RangeTable)).nil;
-	var _Buginese = (go$ptrType(RangeTable)).nil;
-	var _Buhid = (go$ptrType(RangeTable)).nil;
-	var _Canadian_Aboriginal = (go$ptrType(RangeTable)).nil;
-	var _Carian = (go$ptrType(RangeTable)).nil;
-	var _Chakma = (go$ptrType(RangeTable)).nil;
-	var _Cham = (go$ptrType(RangeTable)).nil;
-	var _Cherokee = (go$ptrType(RangeTable)).nil;
-	var _Common = (go$ptrType(RangeTable)).nil;
-	var _Coptic = (go$ptrType(RangeTable)).nil;
-	var _Cuneiform = (go$ptrType(RangeTable)).nil;
-	var _Cypriot = (go$ptrType(RangeTable)).nil;
-	var _Cyrillic = (go$ptrType(RangeTable)).nil;
-	var _Deseret = (go$ptrType(RangeTable)).nil;
-	var _Devanagari = (go$ptrType(RangeTable)).nil;
-	var _Egyptian_Hieroglyphs = (go$ptrType(RangeTable)).nil;
-	var _Ethiopic = (go$ptrType(RangeTable)).nil;
-	var _Georgian = (go$ptrType(RangeTable)).nil;
-	var _Glagolitic = (go$ptrType(RangeTable)).nil;
-	var _Gothic = (go$ptrType(RangeTable)).nil;
-	var _Greek = (go$ptrType(RangeTable)).nil;
-	var _Gujarati = (go$ptrType(RangeTable)).nil;
-	var _Gurmukhi = (go$ptrType(RangeTable)).nil;
-	var _Han = (go$ptrType(RangeTable)).nil;
-	var _Hangul = (go$ptrType(RangeTable)).nil;
-	var _Hanunoo = (go$ptrType(RangeTable)).nil;
-	var _Hebrew = (go$ptrType(RangeTable)).nil;
-	var _Hiragana = (go$ptrType(RangeTable)).nil;
-	var _Imperial_Aramaic = (go$ptrType(RangeTable)).nil;
-	var _Inherited = (go$ptrType(RangeTable)).nil;
-	var _Inscriptional_Pahlavi = (go$ptrType(RangeTable)).nil;
-	var _Inscriptional_Parthian = (go$ptrType(RangeTable)).nil;
-	var _Javanese = (go$ptrType(RangeTable)).nil;
-	var _Kaithi = (go$ptrType(RangeTable)).nil;
-	var _Kannada = (go$ptrType(RangeTable)).nil;
-	var _Katakana = (go$ptrType(RangeTable)).nil;
-	var _Kayah_Li = (go$ptrType(RangeTable)).nil;
-	var _Kharoshthi = (go$ptrType(RangeTable)).nil;
-	var _Khmer = (go$ptrType(RangeTable)).nil;
-	var _Lao = (go$ptrType(RangeTable)).nil;
-	var _Latin = (go$ptrType(RangeTable)).nil;
-	var _Lepcha = (go$ptrType(RangeTable)).nil;
-	var _Limbu = (go$ptrType(RangeTable)).nil;
-	var _Linear_B = (go$ptrType(RangeTable)).nil;
-	var _Lisu = (go$ptrType(RangeTable)).nil;
-	var _Lycian = (go$ptrType(RangeTable)).nil;
-	var _Lydian = (go$ptrType(RangeTable)).nil;
-	var _Malayalam = (go$ptrType(RangeTable)).nil;
-	var _Mandaic = (go$ptrType(RangeTable)).nil;
-	var _Meetei_Mayek = (go$ptrType(RangeTable)).nil;
-	var _Meroitic_Cursive = (go$ptrType(RangeTable)).nil;
-	var _Meroitic_Hieroglyphs = (go$ptrType(RangeTable)).nil;
-	var _Miao = (go$ptrType(RangeTable)).nil;
-	var _Mongolian = (go$ptrType(RangeTable)).nil;
-	var _Myanmar = (go$ptrType(RangeTable)).nil;
-	var _New_Tai_Lue = (go$ptrType(RangeTable)).nil;
-	var _Nko = (go$ptrType(RangeTable)).nil;
-	var _Ogham = (go$ptrType(RangeTable)).nil;
-	var _Ol_Chiki = (go$ptrType(RangeTable)).nil;
-	var _Old_Italic = (go$ptrType(RangeTable)).nil;
-	var _Old_Persian = (go$ptrType(RangeTable)).nil;
-	var _Old_South_Arabian = (go$ptrType(RangeTable)).nil;
-	var _Old_Turkic = (go$ptrType(RangeTable)).nil;
-	var _Oriya = (go$ptrType(RangeTable)).nil;
-	var _Osmanya = (go$ptrType(RangeTable)).nil;
-	var _Phags_Pa = (go$ptrType(RangeTable)).nil;
-	var _Phoenician = (go$ptrType(RangeTable)).nil;
-	var _Rejang = (go$ptrType(RangeTable)).nil;
-	var _Runic = (go$ptrType(RangeTable)).nil;
-	var _Samaritan = (go$ptrType(RangeTable)).nil;
-	var _Saurashtra = (go$ptrType(RangeTable)).nil;
-	var _Sharada = (go$ptrType(RangeTable)).nil;
-	var _Shavian = (go$ptrType(RangeTable)).nil;
-	var _Sinhala = (go$ptrType(RangeTable)).nil;
-	var _Sora_Sompeng = (go$ptrType(RangeTable)).nil;
-	var _Sundanese = (go$ptrType(RangeTable)).nil;
-	var _Syloti_Nagri = (go$ptrType(RangeTable)).nil;
-	var _Syriac = (go$ptrType(RangeTable)).nil;
-	var _Tagalog = (go$ptrType(RangeTable)).nil;
-	var _Tagbanwa = (go$ptrType(RangeTable)).nil;
-	var _Tai_Le = (go$ptrType(RangeTable)).nil;
-	var _Tai_Tham = (go$ptrType(RangeTable)).nil;
-	var _Tai_Viet = (go$ptrType(RangeTable)).nil;
-	var _Takri = (go$ptrType(RangeTable)).nil;
-	var _Tamil = (go$ptrType(RangeTable)).nil;
-	var _Telugu = (go$ptrType(RangeTable)).nil;
-	var _Thaana = (go$ptrType(RangeTable)).nil;
-	var _Thai = (go$ptrType(RangeTable)).nil;
-	var _Tibetan = (go$ptrType(RangeTable)).nil;
-	var _Tifinagh = (go$ptrType(RangeTable)).nil;
-	var _Ugaritic = (go$ptrType(RangeTable)).nil;
-	var _Vai = (go$ptrType(RangeTable)).nil;
-	var _Yi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Arabic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Armenian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Avestan = (go$ptrType(RangeTable)).nil;
-	go$pkg.Balinese = (go$ptrType(RangeTable)).nil;
-	go$pkg.Bamum = (go$ptrType(RangeTable)).nil;
-	go$pkg.Batak = (go$ptrType(RangeTable)).nil;
-	go$pkg.Bengali = (go$ptrType(RangeTable)).nil;
-	go$pkg.Bopomofo = (go$ptrType(RangeTable)).nil;
-	go$pkg.Brahmi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Braille = (go$ptrType(RangeTable)).nil;
-	go$pkg.Buginese = (go$ptrType(RangeTable)).nil;
-	go$pkg.Buhid = (go$ptrType(RangeTable)).nil;
-	go$pkg.Canadian_Aboriginal = (go$ptrType(RangeTable)).nil;
-	go$pkg.Carian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Chakma = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cham = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cherokee = (go$ptrType(RangeTable)).nil;
-	go$pkg.Common = (go$ptrType(RangeTable)).nil;
-	go$pkg.Coptic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cuneiform = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cypriot = (go$ptrType(RangeTable)).nil;
-	go$pkg.Cyrillic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Deseret = (go$ptrType(RangeTable)).nil;
-	go$pkg.Devanagari = (go$ptrType(RangeTable)).nil;
-	go$pkg.Egyptian_Hieroglyphs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ethiopic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Georgian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Glagolitic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Gothic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Greek = (go$ptrType(RangeTable)).nil;
-	go$pkg.Gujarati = (go$ptrType(RangeTable)).nil;
-	go$pkg.Gurmukhi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Han = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hangul = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hanunoo = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hebrew = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hiragana = (go$ptrType(RangeTable)).nil;
-	go$pkg.Imperial_Aramaic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Inherited = (go$ptrType(RangeTable)).nil;
-	go$pkg.Inscriptional_Pahlavi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Inscriptional_Parthian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Javanese = (go$ptrType(RangeTable)).nil;
-	go$pkg.Kaithi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Kannada = (go$ptrType(RangeTable)).nil;
-	go$pkg.Katakana = (go$ptrType(RangeTable)).nil;
-	go$pkg.Kayah_Li = (go$ptrType(RangeTable)).nil;
-	go$pkg.Kharoshthi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Khmer = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lao = (go$ptrType(RangeTable)).nil;
-	go$pkg.Latin = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lepcha = (go$ptrType(RangeTable)).nil;
-	go$pkg.Limbu = (go$ptrType(RangeTable)).nil;
-	go$pkg.Linear_B = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lisu = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lycian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Lydian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Malayalam = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mandaic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Meetei_Mayek = (go$ptrType(RangeTable)).nil;
-	go$pkg.Meroitic_Cursive = (go$ptrType(RangeTable)).nil;
-	go$pkg.Meroitic_Hieroglyphs = (go$ptrType(RangeTable)).nil;
-	go$pkg.Miao = (go$ptrType(RangeTable)).nil;
-	go$pkg.Mongolian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Myanmar = (go$ptrType(RangeTable)).nil;
-	go$pkg.New_Tai_Lue = (go$ptrType(RangeTable)).nil;
-	go$pkg.Nko = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ogham = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ol_Chiki = (go$ptrType(RangeTable)).nil;
-	go$pkg.Old_Italic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Old_Persian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Old_South_Arabian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Old_Turkic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Oriya = (go$ptrType(RangeTable)).nil;
-	go$pkg.Osmanya = (go$ptrType(RangeTable)).nil;
-	go$pkg.Phags_Pa = (go$ptrType(RangeTable)).nil;
-	go$pkg.Phoenician = (go$ptrType(RangeTable)).nil;
-	go$pkg.Rejang = (go$ptrType(RangeTable)).nil;
-	go$pkg.Runic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Samaritan = (go$ptrType(RangeTable)).nil;
-	go$pkg.Saurashtra = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sharada = (go$ptrType(RangeTable)).nil;
-	go$pkg.Shavian = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sinhala = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sora_Sompeng = (go$ptrType(RangeTable)).nil;
-	go$pkg.Sundanese = (go$ptrType(RangeTable)).nil;
-	go$pkg.Syloti_Nagri = (go$ptrType(RangeTable)).nil;
-	go$pkg.Syriac = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tagalog = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tagbanwa = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tai_Le = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tai_Tham = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tai_Viet = (go$ptrType(RangeTable)).nil;
-	go$pkg.Takri = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tamil = (go$ptrType(RangeTable)).nil;
-	go$pkg.Telugu = (go$ptrType(RangeTable)).nil;
-	go$pkg.Thaana = (go$ptrType(RangeTable)).nil;
-	go$pkg.Thai = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tibetan = (go$ptrType(RangeTable)).nil;
-	go$pkg.Tifinagh = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ugaritic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Vai = (go$ptrType(RangeTable)).nil;
-	go$pkg.Yi = (go$ptrType(RangeTable)).nil;
-	go$pkg.Properties = false;
-	var _ASCII_Hex_Digit = (go$ptrType(RangeTable)).nil;
-	var _Bidi_Control = (go$ptrType(RangeTable)).nil;
-	var _Dash = (go$ptrType(RangeTable)).nil;
-	var _Deprecated = (go$ptrType(RangeTable)).nil;
-	var _Diacritic = (go$ptrType(RangeTable)).nil;
-	var _Extender = (go$ptrType(RangeTable)).nil;
-	var _Hex_Digit = (go$ptrType(RangeTable)).nil;
-	var _Hyphen = (go$ptrType(RangeTable)).nil;
-	var _IDS_Binary_Operator = (go$ptrType(RangeTable)).nil;
-	var _IDS_Trinary_Operator = (go$ptrType(RangeTable)).nil;
-	var _Ideographic = (go$ptrType(RangeTable)).nil;
-	var _Join_Control = (go$ptrType(RangeTable)).nil;
-	var _Logical_Order_Exception = (go$ptrType(RangeTable)).nil;
-	var _Noncharacter_Code_Point = (go$ptrType(RangeTable)).nil;
-	var _Other_Alphabetic = (go$ptrType(RangeTable)).nil;
-	var _Other_Default_Ignorable_Code_Point = (go$ptrType(RangeTable)).nil;
-	var _Other_Grapheme_Extend = (go$ptrType(RangeTable)).nil;
-	var _Other_ID_Continue = (go$ptrType(RangeTable)).nil;
-	var _Other_ID_Start = (go$ptrType(RangeTable)).nil;
-	var _Other_Lowercase = (go$ptrType(RangeTable)).nil;
-	var _Other_Math = (go$ptrType(RangeTable)).nil;
-	var _Other_Uppercase = (go$ptrType(RangeTable)).nil;
-	var _Pattern_Syntax = (go$ptrType(RangeTable)).nil;
-	var _Pattern_White_Space = (go$ptrType(RangeTable)).nil;
-	var _Quotation_Mark = (go$ptrType(RangeTable)).nil;
-	var _Radical = (go$ptrType(RangeTable)).nil;
-	var _STerm = (go$ptrType(RangeTable)).nil;
-	var _Soft_Dotted = (go$ptrType(RangeTable)).nil;
-	var _Terminal_Punctuation = (go$ptrType(RangeTable)).nil;
-	var _Unified_Ideograph = (go$ptrType(RangeTable)).nil;
-	var _Variation_Selector = (go$ptrType(RangeTable)).nil;
-	var _White_Space = (go$ptrType(RangeTable)).nil;
-	go$pkg.ASCII_Hex_Digit = (go$ptrType(RangeTable)).nil;
-	go$pkg.Bidi_Control = (go$ptrType(RangeTable)).nil;
-	go$pkg.Dash = (go$ptrType(RangeTable)).nil;
-	go$pkg.Deprecated = (go$ptrType(RangeTable)).nil;
-	go$pkg.Diacritic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Extender = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hex_Digit = (go$ptrType(RangeTable)).nil;
-	go$pkg.Hyphen = (go$ptrType(RangeTable)).nil;
-	go$pkg.IDS_Binary_Operator = (go$ptrType(RangeTable)).nil;
-	go$pkg.IDS_Trinary_Operator = (go$ptrType(RangeTable)).nil;
-	go$pkg.Ideographic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Join_Control = (go$ptrType(RangeTable)).nil;
-	go$pkg.Logical_Order_Exception = (go$ptrType(RangeTable)).nil;
-	go$pkg.Noncharacter_Code_Point = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Alphabetic = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Default_Ignorable_Code_Point = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Grapheme_Extend = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_ID_Continue = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_ID_Start = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Lowercase = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Math = (go$ptrType(RangeTable)).nil;
-	go$pkg.Other_Uppercase = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pattern_Syntax = (go$ptrType(RangeTable)).nil;
-	go$pkg.Pattern_White_Space = (go$ptrType(RangeTable)).nil;
-	go$pkg.Quotation_Mark = (go$ptrType(RangeTable)).nil;
-	go$pkg.Radical = (go$ptrType(RangeTable)).nil;
-	go$pkg.STerm = (go$ptrType(RangeTable)).nil;
-	go$pkg.Soft_Dotted = (go$ptrType(RangeTable)).nil;
-	go$pkg.Terminal_Punctuation = (go$ptrType(RangeTable)).nil;
-	go$pkg.Unified_Ideograph = (go$ptrType(RangeTable)).nil;
-	go$pkg.Variation_Selector = (go$ptrType(RangeTable)).nil;
-	go$pkg.White_Space = (go$ptrType(RangeTable)).nil;
-	go$pkg.CaseRanges = (go$sliceType(CaseRange)).nil;
-	var _CaseRanges = (go$sliceType(CaseRange)).nil;
-	var properties = go$makeNativeArray("Uint8", 256, function() { return 0; });
-	var caseOrbit = (go$sliceType(foldPair)).nil;
-	go$pkg.FoldCategory = false;
-	var foldCommon = (go$ptrType(RangeTable)).nil;
-	var foldGreek = (go$ptrType(RangeTable)).nil;
-	var foldInherited = (go$ptrType(RangeTable)).nil;
-	var foldL = (go$ptrType(RangeTable)).nil;
-	var foldLl = (go$ptrType(RangeTable)).nil;
-	var foldLt = (go$ptrType(RangeTable)).nil;
-	var foldLu = (go$ptrType(RangeTable)).nil;
-	var foldM = (go$ptrType(RangeTable)).nil;
-	var foldMn = (go$ptrType(RangeTable)).nil;
-	go$pkg.FoldScript = false;
-0É@U0ÅûIsDigitÅí	var IsDigit = go$pkg.IsDigit = function(r) {
+0Ç&0_Zp0 0 0	_Brahmi0_Greek0_Oriya0 0_Other_Uppercase0_Terminal_Punctuation0 0_Co0_P0 0 0
+_Tagalog0 0 0_Kharoshthi0 0_Logical_Order_Exception0_White_Space0_Lu0_Me0 0 0 0 0_Cf0 0 0	_Hiragana0
+_Inherited0	_Ol_Chiki0 0 0 0foldL0_Sk0 0 0	_Katakana0 0 0_L0	_Bopomofo0_Inscriptional_Parthian0 0 0 0 0_Egyptian_Hieroglyphs0 0_Pd0foldLl0 0 0
+_Bengali0	_Carian0
+_Cuneiform0 0 0 0 0_Imperial_Aramaic0 0 0 0_Noncharacter_Code_Point0
+properties0	_Cherokee0_Meroitic_Hieroglyphs0_Old_South_Arabian0 0 0_Join_Control0 0_Ll0 0 0 0 0 0 0_CaseRanges0_Meetei_Mayek0 0 0	_Rejang0 0 0 0 0 0	_Cyrillic0_Lao0 0 0_No0 0 0 0_Bamum0_Buhid0	_Gothic0_Old_Turkic0 0_N0 0 0	_Hangul0_Limbu0
+_Sharada0_Tamil0 0	_Extender0 0	_Gurmukhi0 0	caseOrbit0_Sc0	_Arabic0	_Tagbanwa0	_Tai_Viet0 0 0_Pe0 0 0	_Tai_Tham0 0_IDS_Binary_Operator0_Pattern_Syntax0_Sm0_So0_Old_Italic0
+_Shavian0	_Thaana0 0 0_S0 0_ASCII_Hex_Digit0	_Hyphen0_Nko0	_Tifinagh0 0	foldGreek0
+_Mandaic0 0 0 0 0
+_Hex_Digit0	_Balinese0_Vai0 0 0 0 0_Pi0 0	_Armenian0	_Lydian0_Meroitic_Cursive0 0 0 0 0	_Ugaritic0_Zs0	_Lepcha0_Phoenician0 0 0
+_Radical0	_Gujarati0	_Hebrew0	_Kaithi0_Other_Grapheme_Extend0 0 0 0_Canadian_Aboriginal0 0 0 0 0 0
+_Deseret0
+_Mongolian0 0 0
+_Diacritic0foldM0 0_Saurashtra0_IDS_Trinary_Operator0_Quotation_Mark0 0 0_Cc0	_Lycian0 0 0 0 0_Ideographic0foldLu0
+_Cypriot0 0 0_Pattern_White_Space0 0_Devanagari0
+_Hanunoo0 0_Other_Lowercase0_Soft_Dotted0 0foldMn0_Lt0_Latin0_Runic0
+_Samaritan0_Yi0 0_Lm0_Lo0	_Coptic0	_Syriac0 0 0 0	_Javanese0
+_Sundanese0	_Telugu0 0_M0	_Tai_Le0 0
+_Braille0_Glagolitic0_Inscriptional_Pahlavi0_Other_Alphabetic0_Pf0_Ps0 0 0	_Buginese0 0
+foldCommon0	_Chakma0	_Phags_Pa0_Takri0 0 0 0 0 0 0_Zl0 0 0_Deprecated0_Other_Math0_C0_Pc0 0 0 0_Mn0_Ogham0 0foldInherited0 0 0_Bidi_Control0_Variation_Selector0foldLt0_Mc0_Po0 0 0_Sora_Sompeng0 0_Dash0 0 0 0_TurkishCase0 0_Cham0_Khmer0_Old_Persian0 0 0_Other_ID_Continue0 0 0
+_Malayalam0_New_Tai_Lue0 0 0_Cs0_Han0 0 0 0 0_Lisu0 0 0 0 0	_Georgian0
+_Sinhala0 0 0 0	_Ethiopic0
+_Kannada0 0 0 0_Nl0_Batak0
+_Myanmar0 0 0 0 0_Other_ID_Start0 0 0 0_Thai0 0 0 0_Nd0 0 0_Z0 0	_Linear_B0 0 0 0 0 0	_Kayah_Li0 0 0 0_Unified_Ideograph0 0 0
+_Avestan0_Miao0
+_Osmanya0 0 0_STerm0 0 0	_Common0_Syloti_Nagri0
+_Tibetan0 0 0 0%#_Other_Default_Ignorable_Code_Point0 0 0É@U0ÅûIsDigitÅí	var IsDigit = go$pkg.IsDigit = function(r) {
 		if (r <= 255) {
 			return 48 <= r && r <= 57;
 		}

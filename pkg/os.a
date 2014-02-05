@@ -1,4 +1,4 @@
-0ƒ=!os‚H÷package os
+0ƒ<os‚H÷package os
 import io "io"
 import syscall "syscall"
 import time "time"
@@ -420,20 +420,8 @@ $$
 	(go$ptrType(FileMode)).methods = [["IsDir", "", [], [Go$Bool], false], ["IsRegular", "", [], [Go$Bool], false], ["Perm", "", [], [FileMode], false], ["String", "", [], [Go$String], false]];
 	fileStat.init([["name", "os", Go$String, ""], ["size", "os", Go$Int64, ""], ["mode", "os", FileMode, ""], ["modTime", "os", time.Time, ""], ["sys", "os", go$emptyInterface, ""]]);
 	(go$ptrType(fileStat)).methods = [["IsDir", "", [], [Go$Bool], false], ["ModTime", "", [], [time.Time], false], ["Mode", "", [], [FileMode], false], ["Name", "", [], [Go$String], false], ["Size", "", [], [Go$Int64], false], ["Sys", "", [], [go$emptyInterface], false]];
-‚	go$pkg.ErrInvalid = null;
-	go$pkg.ErrPermission = null;
-	go$pkg.ErrExist = null;
-	go$pkg.ErrNotExist = null;
-	go$pkg.Interrupt = null;
-	go$pkg.Kill = null;
-	go$pkg.Stdin = (go$ptrType(File)).nil;
-	go$pkg.Stdout = (go$ptrType(File)).nil;
-	go$pkg.Stderr = (go$ptrType(File)).nil;
-	var lstat = go$throwNilPointerError;
-	var getwdCache = new (go$structType([["", "", sync.Mutex, ""], ["dir", "os", Go$String, ""]])).Ptr(new sync.Mutex.Ptr(), "");
-	var useSyscallwd = go$throwNilPointerError;
-	go$pkg.Args = (go$sliceType(Go$String)).nil;
-0‚Ì|0‚readdirnames‚	File.Ptr.prototype.readdirnames = function(n) {
+0O0 0 0 0 0 0 0 0 0 0 0lstat0
+getwdCache0useSyscallwd0‚Í'0‚readdirnames‚	File.Ptr.prototype.readdirnames = function(n) {
 		var names, err, f, d, size, errno, _tuple, _tuple$1, _tuple$2, nb, nc, _tuple$3, _tuple$4, _tuple$5;
 		names = (go$sliceType(Go$String)).nil;
 		err = null;
@@ -1873,13 +1861,15 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 		return fs.sys;
 	};
 	fileStat.prototype.Sys = function() { return this.go$val.Sys(); };
-0‚}init‚s
+0‚(init‚	go$pkg.init = function() {
+		getwdCache = new (go$structType([["", "", sync.Mutex, ""], ["dir", "os", Go$String, ""]])).Ptr(new sync.Mutex.Ptr(), "");
+		go$pkg.Args = (go$sliceType(Go$String)).nil;
+
 			go$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);
 			if (go$packages["runtime"].GOOS === "windows") {
 				NewFile = go$pkg.NewFile = function() { return new File.Ptr(); };
 			}
-			go$pkg.init = function() {
-		go$pkg.ErrInvalid = errors.New("invalid argument");
+				go$pkg.ErrInvalid = errors.New("invalid argument");
 		go$pkg.ErrPermission = errors.New("permission denied");
 		go$pkg.ErrExist = errors.New("file already exists");
 		go$pkg.ErrNotExist = errors.New("file does not exist");

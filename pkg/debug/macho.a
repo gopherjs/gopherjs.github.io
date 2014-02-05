@@ -1,4 +1,4 @@
-0Ç˘Kdebug/machoÇ2Ãpackage macho
+0Ç˘	debug/machoÇ2Ãpackage macho
 import bytes "bytes"
 import dwarf "debug/dwarf"
 import binary "encoding/binary"
@@ -518,9 +518,9 @@ $$
 	Regs386.init([["AX", "", Go$Uint32, ""], ["BX", "", Go$Uint32, ""], ["CX", "", Go$Uint32, ""], ["DX", "", Go$Uint32, ""], ["DI", "", Go$Uint32, ""], ["SI", "", Go$Uint32, ""], ["BP", "", Go$Uint32, ""], ["SP", "", Go$Uint32, ""], ["SS", "", Go$Uint32, ""], ["FLAGS", "", Go$Uint32, ""], ["IP", "", Go$Uint32, ""], ["CS", "", Go$Uint32, ""], ["DS", "", Go$Uint32, ""], ["ES", "", Go$Uint32, ""], ["FS", "", Go$Uint32, ""], ["GS", "", Go$Uint32, ""]]);
 	RegsAMD64.init([["AX", "", Go$Uint64, ""], ["BX", "", Go$Uint64, ""], ["CX", "", Go$Uint64, ""], ["DX", "", Go$Uint64, ""], ["DI", "", Go$Uint64, ""], ["SI", "", Go$Uint64, ""], ["BP", "", Go$Uint64, ""], ["SP", "", Go$Uint64, ""], ["R8", "", Go$Uint64, ""], ["R9", "", Go$Uint64, ""], ["R10", "", Go$Uint64, ""], ["R11", "", Go$Uint64, ""], ["R12", "", Go$Uint64, ""], ["R13", "", Go$Uint64, ""], ["R14", "", Go$Uint64, ""], ["R15", "", Go$Uint64, ""], ["IP", "", Go$Uint64, ""], ["FLAGS", "", Go$Uint64, ""], ["CS", "", Go$Uint64, ""], ["FS", "", Go$Uint64, ""], ["GS", "", Go$Uint64, ""]]);
 	intName.init([["i", "debug/macho", Go$Uint32, ""], ["s", "debug/macho", Go$String, ""]]);
-^	var cpuStrings = (go$sliceType(intName)).nil;
-	var cmdStrings = (go$sliceType(intName)).nil;
-0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
+00
+cpuStrings0
+cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 		var b;
 		b = this;
 		return go$subslice(new (go$sliceType(Go$Uint8))(b.array), b.offset, b.offset + b.length);

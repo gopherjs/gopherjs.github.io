@@ -1,4 +1,4 @@
-0ƒ&<go/build‚<#package build
+0ƒ%Žgo/build‚<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -302,16 +302,9 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 	(go$ptrType(NoGoError)).methods = [["Error", "", [], [Go$String], false]];
 	importReader.init([["b", "go/build", (go$ptrType(bufio.Reader)), ""], ["buf", "go/build", (go$sliceType(Go$Uint8)), ""], ["peek", "go/build", Go$Uint8, ""], ["err", "go/build", go$error, ""], ["eof", "go/build", Go$Bool, ""], ["nerr", "go/build", Go$Int, ""]]);
 	(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false], ["readByte", "go/build", [], [Go$Uint8], false], ["readIdent", "go/build", [], [], false], ["readImport", "go/build", [], [], false], ["readKeyword", "go/build", [Go$String], [], false], ["readString", "go/build", [], [], false], ["syntaxError", "go/build", [], [], false]];
-‚	go$pkg.Default = new Context.Ptr();
-	var cgoEnabled = false;
-	var slashslash = (go$sliceType(Go$Uint8)).nil;
-	var safeBytes = (go$sliceType(Go$Uint8)).nil;
-	var knownOS = false;
-	var knownArch = false;
-	go$pkg.ToolDir = "";
-	var errSyntax = null;
-	var errNUL = null;
-0‚¼0‚*joinPath‚	Context.Ptr.prototype.joinPath = function(elem) {
+0`0
+cgoEnabled0
+slashslash0	knownOS0 0	errSyntax0 0	safeBytes0	knownArch0errNUL0‚¼0‚*joinPath‚	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.JoinPath, !(f === go$throwNilPointerError)) {

@@ -1,4 +1,4 @@
-0ƒK¥	image/png‚žpackage png
+0ƒK	image/png‚žpackage png
 import zlib "compress/zlib"
 import binary "encoding/binary"
 import fmt "fmt"
@@ -145,8 +145,7 @@ hash/crc32crc320imageimage0image/colorcolor0ioio0bufiobufi
 	encoder.init([["w", "image/png", io.Writer, ""], ["m", "image/png", image.Image, ""], ["cb", "image/png", Go$Int, ""], ["err", "image/png", go$error, ""], ["header", "image/png", (go$arrayType(Go$Uint8, 8)), ""], ["footer", "image/png", (go$arrayType(Go$Uint8, 4)), ""], ["tmp", "image/png", (go$arrayType(Go$Uint8, 1024)), ""]]);
 	(go$ptrType(encoder)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["writeChunk", "image/png", [(go$sliceType(Go$Uint8)), Go$String], [], false], ["writeIDATs", "image/png", [], [], false], ["writeIEND", "image/png", [], [], false], ["writeIHDR", "image/png", [], [], false], ["writePLTEAndTRNS", "image/png", [color.Palette], [], false]];
 	opaquer.init([["Opaque", "", (go$funcType([], [Go$Bool], false))]]);
-	var chunkOrderError = "";
-0ƒü0‚bpaeth‚W	var paeth = function(a, b, c) {
+00chunkOrderError0ƒü0‚bpaeth‚W	var paeth = function(a, b, c) {
 		var pc, pa, pb;
 		pc = (c >> 0);
 		pa = (b >> 0) - pc >> 0;

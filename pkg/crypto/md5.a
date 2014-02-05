@@ -1,4 +1,4 @@
-0ÇI
+0ÇI
 crypto/md5Ç&package md5
 import crypto "crypto"
 import hash "hash"
@@ -29,8 +29,7 @@ crypto/md5040cryptocrypto0hashhash0runtimeruntimeÇÙ	var digest;
 	go$pkg.digest = digest;
 	digest.init([["s", "crypto/md5", (go$arrayType(Go$Uint32, 4)), ""], ["x", "crypto/md5", (go$arrayType(Go$Uint8, 64)), ""], ["nx", "crypto/md5", Go$Int, ""], ["len", "crypto/md5", Go$Uint64, ""]]);
 	(go$ptrType(digest)).methods = [["BlockSize", "", [], [Go$Int], false], ["Reset", "", [], [], false], ["Size", "", [], [Go$Int], false], ["Sum", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["checkSum", "crypto/md5", [], [(go$arrayType(Go$Uint8, 16))], false]];
-	var littleEndian = false;
-0ÇA)0ÇResetÇ	digest.Ptr.prototype.Reset = function() {
+00littleEndian0ÇAA0ÇResetÇ	digest.Ptr.prototype.Reset = function() {
 		var d;
 		d = this;
 		d.s[0] = 1732584193;
@@ -305,7 +304,8 @@ crypto/md5040cryptocrypto0hashhash0runtimeruntimeÇÙ	var digest;
 		dig.s[2] = c;
 		dig.s[3] = d;
 	};
-0ÅªinitÅ≤	go$pkg.init = function() {
+0Å”initÅ 	go$pkg.init = function() {
+		littleEndian = false;
 		var x, y;
 		crypto.RegisterHash(2, New);
 		x = 67305985;

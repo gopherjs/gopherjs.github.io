@@ -1,4 +1,4 @@
-0É0©regexpÇ!ypackage regexp
+0É0\regexpÇ!ypackage regexp
 import io "io"
 import syntax "regexp/syntax"
 import bytes "bytes"
@@ -198,10 +198,7 @@ $$
 	(go$ptrType(inputBytes)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
 	inputReader.init([["r", "regexp", io.RuneReader, ""], ["atEOT", "regexp", Go$Bool, ""], ["pos", "regexp", Go$Int, ""]]);
 	(go$ptrType(inputReader)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
-o	var empty = (go$sliceType(Go$Int)).nil;
-	var debug = false;
-	var specialBytes = (go$sliceType(Go$Uint8)).nil;
-0Ç‡å0ÅËnewInputBytesÅ÷	machine.Ptr.prototype.newInputBytes = function(b) {
+0"0empty0debug0specialBytes0Ç‡å0ÅËnewInputBytesÅ÷	machine.Ptr.prototype.newInputBytes = function(b) {
 		var m;
 		m = this;
 		m.inputBytes.str = b;

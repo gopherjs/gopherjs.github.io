@@ -1,4 +1,4 @@
-0‚¬crypto‚Ïpackage crypto
+0‚Kcrypto‚Ïpackage crypto
 import hash "hash"
 import strconv "strconv"
 type @"".Hash uint
@@ -36,9 +36,7 @@ $$
 	(go$ptrType(Hash)).methods = [["Available", "", [], [Go$Bool], false], ["New", "", [], [hash.Hash], false], ["Size", "", [], [Go$Int], false]];
 	PublicKey.init([]);
 	PrivateKey.init([]);
-z	var digestSizes = (go$sliceType(Go$Uint8)).nil;
-	var hashes = (go$sliceType((go$funcType([], [hash.Hash], false)))).nil;
-0‚0‚ÑSize‚Ç	Hash.prototype.Size = function() {
+00digestSizes0hashes0‚0‚ÑSize‚Ç	Hash.prototype.Size = function() {
 		var h, _slice, _index;
 		h = this.go$val;
 		if (h > 0 && h < 10) {

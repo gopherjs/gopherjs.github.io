@@ -1,4 +1,4 @@
-0É·’
+0É·≥
 go/printerÇB0package printer
 import bytes "bytes"
 import ast "go/ast"
@@ -276,8 +276,8 @@ go/printer0Å¡0bytesbytes0go/astast0go/tokentoken0unicode/utf8
 	Config.init([["Mode", "", Mode, ""], ["Tabwidth", "", Go$Int, ""], ["Indent", "", Go$Int, ""]]);
 	(go$ptrType(Config)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false]];
 	CommentedNode.init([["Node", "", go$emptyInterface, ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
-.	var aNewline = (go$sliceType(Go$Uint8)).nil;
-0Éxt0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
+00
+aNewline0Éxt0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
 		var printedBreak, p, n;
 		printedBreak = false;
 		p = this;

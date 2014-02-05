@@ -1,4 +1,4 @@
-0ƒ;:archive/zip‚;package zip
+0ƒ:ßarchive/zip‚;package zip
 import bufio "bufio"
 import binary "encoding/binary"
 import errors "errors"
@@ -427,13 +427,7 @@ hash/crc32crc320ioio0osos0compress/flateflate0	io/ioutiliou
 	(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	writeBuf.init(Go$Uint8);
 	(go$ptrType(writeBuf)).methods = [["uint16", "archive/zip", [Go$Uint16], [], false], ["uint32", "archive/zip", [Go$Uint32], [], false], ["uint64", "archive/zip", [Go$Uint64], [], false]];
-«	go$pkg.ErrFormat = null;
-	go$pkg.ErrAlgorithm = null;
-	go$pkg.ErrChecksum = null;
-	var mu = new sync.RWMutex.Ptr();
-	var compressors = false;
-	var decompressors = false;
-0‚¼0öhasDataDescriptorà	File.Ptr.prototype.hasDataDescriptor = function() {
+020 0 0 0mu0compressors0decompressors0‚¼60öhasDataDescriptorà	File.Ptr.prototype.hasDataDescriptor = function() {
 		var f;
 		f = this;
 		return !((((f.FileHeader.Flags & 8) >>> 0) === 0));
@@ -1328,7 +1322,8 @@ SetModTime‚S	FileHeader.Ptr.prototype.SetModTime = function(t) {
 		b.go$set(go$subslice((b.go$get()), 8));
 	};
 	writeBuf.prototype.uint64 = function(v) { var obj = this; return (new (go$ptrType(writeBuf))(function() { return obj; }, null)).uint64(v); };
-0‚´init‚ª	go$pkg.init = function() {
+0‚Óinit‚É	go$pkg.init = function() {
+		mu = new sync.RWMutex.Ptr();
 		var _map, _key, _map$1, _key$1;
 		go$pkg.ErrFormat = errors.New("zip: not a valid zip file");
 		go$pkg.ErrAlgorithm = errors.New("zip: unsupported compression algorithm");

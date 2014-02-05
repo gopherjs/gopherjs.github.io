@@ -1,4 +1,4 @@
-0ÉZñdebug/dwarfÇ-Âpackage dwarf
+0ÉZdebug/dwarfÇ-Âpackage dwarf
 import binary "encoding/binary"
 import strconv "strconv"
 import errors "errors"
@@ -667,9 +667,8 @@ $$
 	(go$ptrType(TypedefType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
 	unit.init([["base", "debug/dwarf", Offset, ""], ["off", "debug/dwarf", Offset, ""], ["data", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["atable", "debug/dwarf", abbrevTable, ""], ["asize", "debug/dwarf", Go$Int, ""], ["vers", "debug/dwarf", Go$Int, ""], ["is64", "debug/dwarf", Go$Bool, ""]]);
 	(go$ptrType(unit)).methods = [["addrsize", "debug/dwarf", [], [Go$Int], false], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false], ["version", "debug/dwarf", [], [Go$Int], false]];
-Åõ	var attrNames = go$makeNativeArray("String", 91, function() { return ""; });
-	var tagNames = go$makeNativeArray("String", 63, function() { return ""; });
-0Ç∞À0Å‰versionÅÿ	unknownFormat.Ptr.prototype.version = function() {
+00	attrNames0
+tagNames0Ç∞À0Å‰versionÅÿ	unknownFormat.Ptr.prototype.version = function() {
 		var _struct, u;
 		u = (_struct = this, new unknownFormat.Ptr());
 		return 0;

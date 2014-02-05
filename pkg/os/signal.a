@@ -1,4 +1,4 @@
-0ÇS	os/signalÇüpackage signal
+0Ç^	os/signalÇüpackage signal
 import os "os"
 import sync "sync"
 import syscall "syscall"
@@ -17,8 +17,8 @@ $$
 	go$pkg.handler = handler;
 	handler.init([["mask", "os/signal", (go$arrayType(Go$Uint32, 3)), ""]]);
 	(go$ptrType(handler)).methods = [["set", "os/signal", [Go$Int], [], false], ["want", "os/signal", [Go$Int], [Go$Bool], false]];
-ÇJ	var handlers = new (go$structType([["", "", sync.Mutex, ""], ["m", "os/signal", (go$mapType((go$chanType(os.Signal, true, false)), (go$ptrType(handler)))), ""], ["ref", "os/signal", (go$arrayType(Go$Int64, 65)), ""]])).Ptr(new sync.Mutex.Ptr(), false, go$makeNativeArray("Int64", 65, function() { return new Go$Int64(0, 0); }));
-0Ç0Ç|wantÇr	handler.Ptr.prototype.want = function(sig) {
+00
+handlers0ÇO0Ç|wantÇr	handler.Ptr.prototype.want = function(sig) {
 		var h, y, _q;
 		h = this;
 		return !(((((((y = ((sig & 31) >>> 0), y < 32 ? (h.mask[(_q = sig / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))] >>> y) : 0) >>> 0)) & 1) >>> 0) === 0));
@@ -170,7 +170,8 @@ $$
 0YdisableSignalH	var disableSignal = function(sig) {
 		signal_disable((sig >>> 0));
 	};
-0TinitL	go$pkg.init = function() {
+0ÇùinitÇì	go$pkg.init = function() {
+		handlers = new (go$structType([["", "", sync.Mutex, ""], ["m", "os/signal", (go$mapType((go$chanType(os.Signal, true, false)), (go$ptrType(handler)))), ""], ["ref", "os/signal", (go$arrayType(Go$Int64, 65)), ""]])).Ptr(new sync.Mutex.Ptr(), false, go$makeNativeArray("Int64", 65, function() { return new Go$Int64(0, 0); }));
 		signal_enable(0);
 		go$notSupported("go")
 	};

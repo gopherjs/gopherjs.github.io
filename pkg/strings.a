@@ -201,7 +201,7 @@ $$
 	(go$ptrType(byteStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
 	stringFinder.init([["pattern", "strings", Go$String, ""], ["badCharSkip", "strings", (go$arrayType(Go$Int, 256)), ""], ["goodSuffixSkip", "strings", (go$sliceType(Go$Int)), ""]]);
 	(go$ptrType(stringFinder)).methods = [["next", "strings", [Go$String], [Go$Int], false]];
- 0‚¼;0ØLenÐ	Reader.Ptr.prototype.Len = function() {
+0 0‚¼;0ØLenÐ	Reader.Ptr.prototype.Len = function() {
 		var r;
 		r = this;
 		if (r.i >= r.s.length) {

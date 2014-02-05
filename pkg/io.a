@@ -1,4 +1,4 @@
-0‚xio‚:package io
+0‚~Ñio‚:package io
 import errors "errors"
 import sync "sync"
 type @"".ByteReader interface { @"".ReadByte() (@"".c byte, @"".err error) }
@@ -247,16 +247,7 @@ $$
 	(go$ptrType(PipeReader)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	PipeWriter.init([["p", "io", (go$ptrType(pipe)), ""]]);
 	(go$ptrType(PipeWriter)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-‚"	go$pkg.ErrShortWrite = null;
-	go$pkg.ErrShortBuffer = null;
-	go$pkg.EOF = null;
-	go$pkg.ErrUnexpectedEOF = null;
-	go$pkg.ErrNoProgress = null;
-	var errWhence = null;
-	var errOffset = null;
-	go$pkg.ErrClosedPipe = null;
-	var zero = go$makeNativeArray("Uint8", 0, function() { return 0; });
-0‚<¿0‚WriteString‚þ	var WriteString = go$pkg.WriteString = function(w, s) {
+0:0 0 0	errWhence0zero0 0 0 0	errOffset0 0‚=0‚WriteString‚þ	var WriteString = go$pkg.WriteString = function(w, s) {
 		var n, err, ok, _tuple, sw, _tuple$1, _tuple$2;
 		n = 0;
 		err = null;
@@ -679,7 +670,8 @@ $$
 		w = new PipeWriter.Ptr(p);
 		return [r, w];
 	};
-0‚îinit‚ä	go$pkg.init = function() {
+0‚1init‚'	go$pkg.init = function() {
+		zero = go$makeNativeArray("Uint8", 0, function() { return 0; });
 		go$pkg.ErrShortWrite = errors.New("short write");
 		go$pkg.ErrShortBuffer = errors.New("short buffer");
 		go$pkg.EOF = errors.New("EOF");

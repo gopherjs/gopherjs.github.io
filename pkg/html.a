@@ -1,4 +1,4 @@
-0ƒñhtml‚package html
+0ƒœhtml‚package html
 import bytes "bytes"
 import strings "strings"
 import utf8 "unicode/utf8"
@@ -10,10 +10,7 @@ $$
 	writer = go$newType(0, "Interface", "html.writer", "writer", "html", null);
 	go$pkg.writer = writer;
 	writer.init([["WriteString", "", (go$funcType([Go$String], [Go$Int, go$error], false))]]);
-~	var entity = false;
-	var entity2 = false;
-	var replacementTable = go$makeNativeArray("Int32", 32, function() { return 0; });
-0ƒû0‚sunescapeEntity‚_	var unescapeEntity = function(b, dst, src, attribute) {
+0)0entity0	entity20replacementTable0ƒû0‚sunescapeEntity‚_	var unescapeEntity = function(b, dst, src, attribute) {
 		var dst1, src1, _tuple, i, s, _slice, _index, _slice$1, _index$1, _tuple$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _tuple$2, _slice$5, _index$5, c, hex, x, _slice$6, _index$6, x$1, x$2, x$3, x$4, _slice$7, _index$7, _slice$8, _index$8, _tuple$3, _tuple$4, _slice$9, _index$9, c$1, entityName, _slice$10, _index$10, x$5, x$6, _entry, _tuple$5, _entry$1, dst1$1, _tuple$6, maxLen, j, x$7, _entry$2, _tuple$7, _tuple$8, _tuple$9;
 		dst1 = 0;
 		src1 = 0;

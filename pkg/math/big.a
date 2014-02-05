@@ -1,4 +1,4 @@
-0É!Omath/bigÇ/¥package big
+0É ∆math/bigÇ/¥package big
 import errors "errors"
 import fmt "fmt"
 import io "io"
@@ -221,16 +221,8 @@ $$
 	divisor.init([["bbb", "math/big", nat, ""], ["nbits", "math/big", Go$Int, ""], ["ndigits", "math/big", Go$Int, ""]]);
 	Rat.init([["a", "math/big", Int, ""], ["b", "math/big", Int, ""]]);
 	(go$ptrType(Rat)).methods = [["Abs", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Add", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Cmp", "", [(go$ptrType(Rat))], [Go$Int], false], ["Denom", "", [], [(go$ptrType(Int))], false], ["Float64", "", [], [Go$Float64, Go$Bool], false], ["FloatString", "", [Go$Int], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Inv", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["IsInt", "", [], [Go$Bool], false], ["Mul", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Neg", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Num", "", [], [(go$ptrType(Int))], false], ["Quo", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["RatString", "", [], [Go$String], false], ["Scan", "", [fmt.ScanState, Go$Int32], [go$error], false], ["Set", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["SetFloat64", "", [Go$Float64], [(go$ptrType(Rat))], false], ["SetFrac", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetFrac64", "", [Go$Int64, Go$Int64], [(go$ptrType(Rat))], false], ["SetInt", "", [(go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetInt64", "", [Go$Int64], [(go$ptrType(Rat))], false], ["SetString", "", [Go$String], [(go$ptrType(Rat)), Go$Bool], false], ["Sign", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["norm", "math/big", [], [(go$ptrType(Rat))], false]];
-ÇË	var intOne = (go$ptrType(Int)).nil;
-	var natOne = nat.nil;
-	var natTwo = nat.nil;
-	var natTen = nat.nil;
-	var karatsubaThreshold = 0;
-	var leafSize = 0;
-	var cacheBase10 = new (go$structType([["", "", sync.Mutex, ""], ["table", "math/big", (go$arrayType(divisor, 64)), ""]])).Ptr(new sync.Mutex.Ptr(), go$makeNativeArray("Struct", 64, function() { return new divisor.Ptr(); }));
-	var deBruijn32Lookup = (go$sliceType(Go$Uint8)).nil;
-	var deBruijn64Lookup = (go$sliceType(Go$Uint8)).nil;
-0ÉƒÈ0ÅæaddWW_gÅ≤	var addWW_g = function(x, y, c) {
+0ÅÅ0intOne0natOne0natTen0karatsubaThreshold0
+leafSize0deBruijn32Lookup0deBruijn64Lookup0natTwo0cacheBase100É≈»0ÅæaddWW_gÅ≤	var addWW_g = function(x, y, c) {
 		var z1, z0, yc;
 		z1 = 0;
 		z0 = 0;
@@ -2900,7 +2892,8 @@ scaleDenomÅ±	var scaleDenom = function(x, f) {
 		return null;
 	};
 	Rat.prototype.GobDecode = function(buf) { return this.go$val.GobDecode(buf); };
-0ÇûinitÇî	go$pkg.init = function() {
+0Ç}initÇs	go$pkg.init = function() {
+		cacheBase10 = new (go$structType([["", "", sync.Mutex, ""], ["table", "math/big", (go$arrayType(divisor, 64)), ""]])).Ptr(new sync.Mutex.Ptr(), go$makeNativeArray("Struct", 64, function() { return new divisor.Ptr(); }));
 		natOne = new nat([1]);
 		intOne = new Int.Ptr(false, natOne);
 		natTwo = new nat([2]);

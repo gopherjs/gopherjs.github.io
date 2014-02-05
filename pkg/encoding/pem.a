@@ -1,4 +1,4 @@
-0Ç+Aencoding/pemÇ´package pem
+0Ç*⁄encoding/pemÇ´package pem
 import bytes "bytes"
 import base64 "encoding/base64"
 import io "io"
@@ -31,10 +31,8 @@ $$
 	Block.init([["Type", "", Go$String, ""], ["Headers", "", (go$mapType(Go$String, Go$String)), ""], ["Bytes", "", (go$sliceType(Go$Uint8)), ""]]);
 	lineBreaker.init([["line", "encoding/pem", (go$arrayType(Go$Uint8, 64)), ""], ["used", "encoding/pem", Go$Int, ""], ["out", "encoding/pem", io.Writer, ""]]);
 	(go$ptrType(lineBreaker)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-Åå	var pemStart = (go$sliceType(Go$Uint8)).nil;
-	var pemEnd = (go$sliceType(Go$Uint8)).nil;
-	var pemEndOfLine = (go$sliceType(Go$Uint8)).nil;
-0Ç"o0Ç¨getLineÇü	var getLine = function(data) {
+0&0
+pemStart0pemEnd0pemEndOfLine0Ç"o0Ç¨getLineÇü	var getLine = function(data) {
 		var line, rest, i, j, _slice, _index, _tuple;
 		line = (go$sliceType(Go$Uint8)).nil;
 		rest = (go$sliceType(Go$Uint8)).nil;

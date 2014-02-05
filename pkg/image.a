@@ -1,4 +1,4 @@
-0ƒê#image‚>Ãpackage image
+0ƒézimage‚>Ãpackage image
 import bufio "bufio"
 import errors "errors"
 import io "io"
@@ -384,15 +384,7 @@ $$
 	(go$ptrType(YCbCrSubsampleRatio)).methods = [["String", "", [], [Go$String], false]];
 	YCbCr.init([["Y", "", (go$sliceType(Go$Uint8)), ""], ["Cb", "", (go$sliceType(Go$Uint8)), ""], ["Cr", "", (go$sliceType(Go$Uint8)), ""], ["YStride", "", Go$Int, ""], ["CStride", "", Go$Int, ""], ["SubsampleRatio", "", YCbCrSubsampleRatio, ""], ["Rect", "", Rectangle, ""]]);
 	(go$ptrType(YCbCr)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["COffset", "", [Go$Int, Go$Int], [Go$Int], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["SubImage", "", [Rectangle], [Image], false], ["YOffset", "", [Go$Int, Go$Int], [Go$Int], false]];
-‚8	go$pkg.ErrFormat = null;
-	var formats = (go$sliceType(format)).nil;
-	go$pkg.ZP = new Point.Ptr();
-	go$pkg.ZR = new Rectangle.Ptr();
-	go$pkg.Black = (go$ptrType(Uniform)).nil;
-	go$pkg.White = (go$ptrType(Uniform)).nil;
-	go$pkg.Transparent = (go$ptrType(Uniform)).nil;
-	go$pkg.Opaque = (go$ptrType(Uniform)).nil;
-0ƒmÑ0ÆRegisterFormat³	var RegisterFormat = go$pkg.RegisterFormat = function(name, magic, decode, decodeConfig) {
+0'0 0	formats0 0 0 0 0 0 0ƒn;0ÆRegisterFormat³	var RegisterFormat = go$pkg.RegisterFormat = function(name, magic, decode, decodeConfig) {
 		formats = go$append(formats, new format.Ptr(name, magic, decode, decodeConfig));
 	};
 0‚	asReaderü	var asReader = function(r) {
@@ -1649,7 +1641,10 @@ ColorModel²	YCbCr.Ptr.prototype.ColorModel = function() {
 		b = (go$sliceType(Go$Uint8)).make(((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x = (x$1 = 2, (((x$1 >>> 16 << 16) * cw >> 0) + (x$1 << 16 >>> 16) * cw) >> 0), (((x >>> 16 << 16) * ch >> 0) + (x << 16 >>> 16) * ch) >> 0) >> 0, 0, function() { return 0; });
 		return new YCbCr.Ptr(go$subslice(b, 0, ((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0)), go$subslice(b, ((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x$2 = (x$3 = 0, (((x$3 >>> 16 << 16) * cw >> 0) + (x$3 << 16 >>> 16) * cw) >> 0), (((x$2 >>> 16 << 16) * ch >> 0) + (x$2 << 16 >>> 16) * ch) >> 0) >> 0, (((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x$4 = (x$5 = 1, (((x$5 >>> 16 << 16) * cw >> 0) + (x$5 << 16 >>> 16) * cw) >> 0), (((x$4 >>> 16 << 16) * ch >> 0) + (x$4 << 16 >>> 16) * ch) >> 0) >> 0)), go$subslice(b, ((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x$6 = (x$7 = 1, (((x$7 >>> 16 << 16) * cw >> 0) + (x$7 << 16 >>> 16) * cw) >> 0), (((x$6 >>> 16 << 16) * ch >> 0) + (x$6 << 16 >>> 16) * ch) >> 0) >> 0, (((((w >>> 16 << 16) * h >> 0) + (w << 16 >>> 16) * h) >> 0) + (x$8 = (x$9 = 2, (((x$9 >>> 16 << 16) * cw >> 0) + (x$9 << 16 >>> 16) * cw) >> 0), (((x$8 >>> 16 << 16) * ch >> 0) + (x$8 << 16 >>> 16) * ch) >> 0) >> 0)), w, cw, subsampleRatio, (_struct = r, new Rectangle.Ptr((_struct$1 = _struct.Min, new Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new Point.Ptr(_struct$2.X, _struct$2.Y)))));
 	};
-0‚Ðinit‚Æ	go$pkg.init = function() {
+0‚:init‚0	go$pkg.init = function() {
+		formats = (go$sliceType(format)).nil;
+		go$pkg.ZP = new Point.Ptr();
+		go$pkg.ZR = new Rectangle.Ptr();
 		var x, x$1, x$2, x$3;
 		go$pkg.ErrFormat = errors.New("image: unknown format");
 		go$pkg.Black = NewUniform((x = color.Black, new x.constructor.Struct(x)));

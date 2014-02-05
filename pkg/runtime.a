@@ -1,4 +1,4 @@
-0É¯”runtimeÇ=Vpackage runtime
+0É˙´runtimeÇ=Vpackage runtime
 func @"".BlockProfile(@"".p []@"".BlockProfileRecord) (@"".n int, @"".ok bool)
 type @"".BlockProfileRecord struct { @"".Count int64; @"".Cycles int64; ? @"".StackRecord }
 func @"".Breakpoint() ()
@@ -1153,60 +1153,19 @@ $$
 	_select.init([["tcase", "runtime", Go$Uint16, ""], ["ncase", "runtime", Go$Uint16, ""], ["pollorder", "runtime", (go$ptrType(Go$Uint16)), ""], ["lockorder", "runtime", (go$ptrType((go$ptrType(hchan)))), ""], ["scase", "runtime", (go$arrayType(scase, 1)), ""]]);
 	runtimeselect.init([["dir", "runtime", Go$Uint64, ""], ["typ", "runtime", (go$ptrType(chantype)), ""], ["ch", "runtime", (go$ptrType(hchan)), ""], ["val", "runtime", Go$Uint64, ""]]);
 	parforthread.init([["pos", "runtime", Go$Uint64, ""], ["nsteal", "runtime", Go$Uint64, ""], ["nstealcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
-Ç%	go$pkg.MemProfileRate = 0;
-	var sizeof_C_MStats = 0;
-	var memStats = new MemStats.Ptr();
-	var _ = 0;
-	var precisestack = 0;
-	var algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
-	var startup_random_data = (go$ptrType(Go$Uint8)).nil;
-	var startup_random_data_len = 0;
-	var emptystring = "";
-	var zerobase = new Go$Uint64(0, 0);
-	var allg = (go$ptrType(g)).nil;
-	var lastg = (go$ptrType(g)).nil;
-	var allm = (go$ptrType(m)).nil;
-	var allp = (go$ptrType((go$ptrType(p)))).nil;
-	var gomaxprocs = 0;
-	var needextram = 0;
-	var panicking = 0;
-	var goos = (go$ptrType(Go$Int8)).nil;
-	var ncpu = 0;
-	var iscgo = 0;
-	var sysargs = go$throwNilPointerError;
-	var maxstring = new Go$Uint64(0, 0);
-	var hchansize = 0;
-	var cpuid_ecx = 0;
-	var cpuid_edx = 0;
-	var debug = new debugvars.Ptr();
-	var maxstacksize = new Go$Uint64(0, 0);
-	var blockprofilerate = new Go$Int64(0, 0);
-	var worldsema = 0;
-	var nan = 0;
-	var posinf = 0;
-	var neginf = 0;
-	var memstats = new mstats.Ptr();
-	var class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
-	var class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
-	var size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
-	var size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
-	var checking = 0;
-	var m0 = new m.Ptr();
-	var g0 = new g.Ptr();
-	var extram = (go$ptrType(m)).nil;
-	var newprocs = 0;
-	var scavenger = new funcval.Ptr();
-	var initdone = new funcval.Ptr();
-	var _cgo_thread_start = go$throwNilPointerError;
-	var prof = new _3_.Ptr();
-	var experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
-	var hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
-	var ifacelock = new lock.Ptr();
-	var typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
-	var etypelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
-	var empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
-	var hashload = 0;
-0ÇwP0ÅÜ
+0Çô0allm0maxstacksize0nan0	scavenger0
+initdone0prof0
+hashload0
+memStats0startup_random_data_len0
+gomaxprocs0
+needextram0goos0debug0neginf0class_to_allocnpages0g00extram0ncpu0	cpuid_edx0posinf0class_to_size0
+checking0m00
+newprocs0	ifacelock0empty_value0 0precisestack0allp0blockprofilerate0	worldsema0size_to_class80size_to_class1280
+experiment0startup_random_data0	maxstring0
+memstats0
+typelink0
+algarray0allg0lastg0iscgo0	cpuid_ecx0	etypelink0sizeof_C_MStats0emptystring0
+zerobase0	panicking0	sysargs0	hchansize0_cgo_thread_start0hash0Ç~¥0ÅÜ
 Breakpointx	var Breakpoint = go$pkg.Breakpoint = function() {
 		throw go$panic("Native function not implemented: Breakpoint");
 	};
@@ -1919,11 +1878,62 @@ t	var fpack64 = function(sign, mant, exp, trunc) {
 		var _tuple;
 		_tuple = f64toint(f), ret.go$set(_tuple[0]), retok.go$set(_tuple[1]);
 	};
-0ÇYinitÇO
+0ÇΩinitÇ≥	go$pkg.init = function() {
+		sizeof_C_MStats = 0;
+		emptystring = "";
+		zerobase = new Go$Uint64(0, 0);
+		panicking = 0;
+		sysargs = go$throwNilPointerError;
+		hchansize = 0;
+		_cgo_thread_start = go$throwNilPointerError;
+		hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
+		allm = (go$ptrType(m)).nil;
+		maxstacksize = new Go$Uint64(0, 0);
+		nan = 0;
+		scavenger = new funcval.Ptr();
+		initdone = new funcval.Ptr();
+		prof = new _3_.Ptr();
+		hashload = 0;
+		memStats = new MemStats.Ptr();
+		startup_random_data_len = 0;
+		gomaxprocs = 0;
+		needextram = 0;
+		goos = (go$ptrType(Go$Int8)).nil;
+		debug = new debugvars.Ptr();
+		neginf = 0;
+		class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
+		g0 = new g.Ptr();
+		extram = (go$ptrType(m)).nil;
+		ncpu = 0;
+		cpuid_edx = 0;
+		posinf = 0;
+		class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
+		checking = 0;
+		m0 = new m.Ptr();
+		newprocs = 0;
+		ifacelock = new lock.Ptr();
+		empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
+		precisestack = 0;
+		allp = (go$ptrType((go$ptrType(p)))).nil;
+		blockprofilerate = new Go$Int64(0, 0);
+		worldsema = 0;
+		size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
+		size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
+		experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
+		startup_random_data = (go$ptrType(Go$Uint8)).nil;
+		maxstring = new Go$Uint64(0, 0);
+		memstats = new mstats.Ptr();
+		typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
+		algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
+		allg = (go$ptrType(g)).nil;
+		lastg = (go$ptrType(g)).nil;
+		iscgo = 0;
+		cpuid_ecx = 0;
+		etypelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
+
 			go$throwRuntimeError = function(msg) { throw go$panic(new errorString(msg)); };
 			sizeof_C_MStats = 3712;
-			go$pkg.init = function() {
-		go$pkg.MemProfileRate = 524288;
+				go$pkg.MemProfileRate = 524288;
 		if (!((sizeof_C_MStats === 3712))) {
 			console.log(sizeof_C_MStats, 3712);
 			throw go$panic(new Go$String("MStats vs MemStatsType size mismatch"));

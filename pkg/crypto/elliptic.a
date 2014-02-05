@@ -1,4 +1,4 @@
-0É+Ÿcrypto/ellipticÇK}package elliptic
+0É)±crypto/ellipticÇK}package elliptic
 import io "io"
 import big "math/big"
 import sync "sync"
@@ -273,23 +273,10 @@ $$
 	p256Curve.init([["", "", (go$ptrType(CurveParams)), ""]]);
 	p256Curve.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["addJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["affineFromJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["doubleJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
 	(go$ptrType(p256Curve)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["addJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["affineFromJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["doubleJacobian", "crypto/elliptic", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
-ÇΩ	var mask = (go$sliceType(Go$Uint8)).nil;
-	var initonce = new sync.Once.Ptr();
-	var p384 = (go$ptrType(CurveParams)).nil;
-	var p521 = (go$ptrType(CurveParams)).nil;
-	var p224 = new p224Curve.Ptr();
-	var p224P = go$makeNativeArray("Uint32", 8, function() { return 0; });
-	var p224ZeroModP31 = (go$sliceType(Go$Uint32)).nil;
-	var p224ZeroModP63 = go$makeNativeArray("Uint64", 8, function() { return new Go$Uint64(0, 0); });
-	var p256 = new p256Curve.Ptr();
-	var p256RInverse = (go$ptrType(big.Int)).nil;
-	var p256One = go$makeNativeArray("Uint32", 9, function() { return 0; });
-	var p256Zero = go$makeNativeArray("Uint32", 9, function() { return 0; });
-	var p256P = go$makeNativeArray("Uint32", 9, function() { return 0; });
-	var p2562P = go$makeNativeArray("Uint32", 9, function() { return 0; });
-	var p256Precomputed = go$makeNativeArray("Uint32", 540, function() { return 0; });
-	var p256Zero31 = go$makeNativeArray("Uint32", 9, function() { return 0; });
-0É¶)0Å∫ParamsÅØ	CurveParams.Ptr.prototype.Params = function() {
+0Åº0p3840p2240p224ZeroModP310p2560p256RInverse0p224P0p256Precomputed0mask0
+initonce0p256P0p2562P0
+p256Zero310p5210p224ZeroModP630	p256One0
+p256Zero0Éß0Å∫ParamsÅØ	CurveParams.Ptr.prototype.Params = function() {
 		var curve;
 		curve = this;
 		return curve;
@@ -1984,7 +1971,13 @@ p256GetBitÅ¥	var p256GetBit = function(scalar, bit) {
 		result.Mod(result, p256.CurveParams.P);
 		return result;
 	};
-0ÇÄinitÇv	go$pkg.init = function() {
+0ÇZinitÇP	go$pkg.init = function() {
+		p521 = (go$ptrType(CurveParams)).nil;
+		p384 = (go$ptrType(CurveParams)).nil;
+		p224 = new p224Curve.Ptr();
+		p256 = new p256Curve.Ptr();
+		p256RInverse = (go$ptrType(big.Int)).nil;
+		initonce = new sync.Once.Ptr();
 		mask = new (go$sliceType(Go$Uint8))([255, 1, 3, 7, 15, 31, 63, 127]);
 		p224P = go$toNativeArray("Uint32", [1, 0, 0, 268431360, 268435455, 268435455, 268435455, 268435455]);
 		p224ZeroModP31 = new (go$sliceType(Go$Uint32))([2147483656, 2147483640, 2147483640, 2147450872, 2147483640, 2147483640, 2147483640, 2147483640]);

@@ -1,4 +1,4 @@
-0‚[Ytext/scanner‚‰package scanner
+0‚[Ntext/scanner‚‰package scanner
 import bytes "bytes"
 import fmt "fmt"
 import io "io"
@@ -118,8 +118,7 @@ $$
 	Scanner.init([["src", "text/scanner", io.Reader, ""], ["srcBuf", "text/scanner", (go$arrayType(Go$Uint8, 1025)), ""], ["srcPos", "text/scanner", Go$Int, ""], ["srcEnd", "text/scanner", Go$Int, ""], ["srcBufOffset", "text/scanner", Go$Int, ""], ["line", "text/scanner", Go$Int, ""], ["column", "text/scanner", Go$Int, ""], ["lastLineLen", "text/scanner", Go$Int, ""], ["lastCharLen", "text/scanner", Go$Int, ""], ["tokBuf", "text/scanner", bytes.Buffer, ""], ["tokPos", "text/scanner", Go$Int, ""], ["tokEnd", "text/scanner", Go$Int, ""], ["ch", "text/scanner", Go$Int32, ""], ["Error", "", (go$funcType([(go$ptrType(Scanner)), Go$String], [], false)), ""], ["ErrorCount", "", Go$Int, ""], ["Mode", "", Go$Uint, ""], ["Whitespace", "", Go$Uint64, ""], ["", "", Position, ""]]);
 	Scanner.methods = [["String", "", [], [Go$String], false]];
 	(go$ptrType(Scanner)).methods = [["Init", "", [io.Reader], [(go$ptrType(Scanner))], false], ["IsValid", "", [], [Go$Bool], false], ["Next", "", [], [Go$Int32], false], ["Peek", "", [], [Go$Int32], false], ["Pos", "", [], [Position], false], ["Scan", "", [], [Go$Int32], false], ["String", "", [], [Go$String], false], ["TokenText", "", [], [Go$String], false], ["error", "text/scanner", [Go$String], [], false], ["next", "text/scanner", [], [Go$Int32], false], ["scanChar", "text/scanner", [], [], false], ["scanComment", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanDigits", "text/scanner", [Go$Int32, Go$Int, Go$Int], [Go$Int32], false], ["scanEscape", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanExponent", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanFraction", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanIdentifier", "text/scanner", [], [Go$Int32], false], ["scanMantissa", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanNumber", "text/scanner", [Go$Int32], [Go$Int32, Go$Int32], false], ["scanRawString", "text/scanner", [], [], false], ["scanString", "text/scanner", [Go$Int32], [Go$Int], false]];
-	var tokenString = false;
-0‚7(0»IsValid¯	Position.Ptr.prototype.IsValid = function() {
+00tokenString0‚7(0»IsValid¯	Position.Ptr.prototype.IsValid = function() {
 		var pos;
 		pos = this;
 		return pos.Line > 0;

@@ -1,4 +1,4 @@
-0Él≠database/sqlÇ0_package sql
+0Él`database/sqlÇ0_package sql
 import driver "database/sql/driver"
 import errors "errors"
 import fmt "fmt"
@@ -336,17 +336,7 @@ $$
 	driverResult.init([["", "", sync.Locker, ""], ["resi", "database/sql", driver.Result, ""]]);
 	driverResult.methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
 	(go$ptrType(driverResult)).methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
-Ç-	var errNilPtr = null;
-	var drivers = false;
-	go$pkg.ErrNoRows = null;
-	var connectionRequestQueueSize = 0;
-	var errDBClosed = null;
-	var errConnClosed = null;
-	var errConnBusy = null;
-	var putConnHook = go$throwNilPointerError;
-	go$pkg.ErrTxDone = null;
-	var rowsCloseHook = go$throwNilPointerError;
-0Ç˜0Ç
+0Åç0	drivers0 0connectionRequestQueueSize0errDBClosed0errConnClosed0errConnBusy0 0	errNilPtr0putConnHook0rowsCloseHook0Ç˜q0Ç
 driverArgsÇ‡	var driverArgs = function(ds, args) {
 		var dargs, si, _tuple, cc, ok, _ref, _i, _slice, _index, arg, n, err, _tuple$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, arg$1, n$1, ok$1, _tuple$2, svi, _tuple$3, sv, err$1, err$2, _tuple$4, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		dargs = (go$sliceType(driver.Value)).make(args.length, 0, function() { return null; });
@@ -1962,7 +1952,9 @@ finalCloseÇÖ	Stmt.Ptr.prototype.finalClose = function() {
 		fn();
 		lk.Unlock();
 	};
-0Ç#initÇ	go$pkg.init = function() {
+0ÇwinitÇm	go$pkg.init = function() {
+		putConnHook = go$throwNilPointerError;
+		rowsCloseHook = go$throwNilPointerError;
 		errNilPtr = errors.New("destination pointer is nil");
 		drivers = new Go$Map();
 		go$pkg.ErrNoRows = errors.New("sql: no rows in result set");

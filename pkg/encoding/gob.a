@@ -1,4 +1,4 @@
-0É¬Ÿencoding/gobÇs,package gob
+0É¡9encoding/gobÇs,package gob
 import bytes "bytes"
 import encoding "encoding"
 import errors "errors"
@@ -638,51 +638,23 @@ $$
 	typeInfo.init([["id", "encoding/gob", typeId, ""], ["encoder", "encoding/gob", (go$ptrType(encEngine)), ""], ["wire", "encoding/gob", (go$ptrType(wireType)), ""]]);
 	GobEncoder.init([["GobEncode", "", (go$funcType([], [(go$sliceType(Go$Uint8)), go$error], false))]]);
 	GobDecoder.init([["GobDecode", "", (go$funcType([(go$sliceType(Go$Uint8))], [go$error], false))]]);
-Çg	var errBadUint = null;
-	var errBadType = null;
-	var errRange = null;
-	var decOpTable = go$makeNativeArray("Func", 25, function() { return go$throwNilPointerError; });
-	var decIgnoreOpMap = false;
-	var emptyStructType = null;
-	var errBadCount = null;
-	var debugFunc = go$throwNilPointerError;
-	var encOpTable = go$makeNativeArray("Func", 25, function() { return go$throwNilPointerError; });
-	var spaceForLength = (go$sliceType(Go$Uint8)).nil;
-	var userTypeLock = new sync.RWMutex.Ptr();
-	var userTypeCache = false;
-	var gobEncoderInterfaceType = null;
-	var gobDecoderInterfaceType = null;
-	var binaryMarshalerInterfaceType = null;
-	var binaryUnmarshalerInterfaceType = null;
-	var textMarshalerInterfaceType = null;
-	var textUnmarshalerInterfaceType = null;
-	var nextId = 0;
-	var typeLock = new sync.Mutex.Ptr();
-	var types = false;
-	var idToType = false;
-	var builtinIdToType = false;
-	var tBool = 0;
-	var tInt = 0;
-	var tUint = 0;
-	var tFloat = 0;
-	var tBytes = 0;
-	var tString = 0;
-	var tComplex = 0;
-	var tInterface = 0;
-	var tReserved7 = 0;
-	var tReserved6 = 0;
-	var tReserved5 = 0;
-	var tReserved4 = 0;
-	var tReserved3 = 0;
-	var tReserved2 = 0;
-	var tReserved1 = 0;
-	var tWireType = 0;
-	var wireTypeUserInfo = (go$ptrType(userTypeInfo)).nil;
-	var typeInfoMap = false;
-	var registerLock = new sync.RWMutex.Ptr();
-	var nameToConcreteType = false;
-	var concreteTypeToName = false;
-0Éﬁﬂ0ÇÃnewDecoderStateÇ∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
+0ÇÕ0emptyStructType0nextId0
+tReserved20
+tReserved10
+errBadUint0	debugFunc0types0tBool0
+tReserved70
+errBadType0
+errRange0
+encOpTable0spaceForLength0gobDecoderInterfaceType0binaryMarshalerInterfaceType0
+idToType0tInt0
+tReserved50userTypeLock0textMarshalerInterfaceType0
+typeLock0tUint0	tWireType0
+decOpTable0userTypeCache0builtinIdToType0tBytes0
+tInterface0
+tReserved40decIgnoreOpMap0 binaryUnmarshalerInterfaceType0tFloat0	tString0
+tReserved60nameToConcreteType0textUnmarshalerInterfaceType0typeInfoMap0registerLock0errBadCount0gobEncoderInterfaceType0
+tComplex0
+tReserved30wireTypeUserInfo0concreteTypeToName0ÉﬂŸ0ÇÃnewDecoderStateÇ∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
 		var dec, d;
 		dec = this;
 		d = dec.freeList;
@@ -3484,7 +3456,14 @@ isExportedÅó	var isExported = function(name) {
 		Register((go$sliceType(Go$Bool)).nil);
 		Register((go$sliceType(Go$String)).nil);
 	};
-0ÇüinitÇï	go$pkg.init = function() {
+0ÇôinitÇè	go$pkg.init = function() {
+		userTypeLock = new sync.RWMutex.Ptr();
+		typeLock = new sync.Mutex.Ptr();
+		builtinIdToType = false;
+		registerLock = new sync.RWMutex.Ptr();
+		wireTypeUserInfo = (go$ptrType(userTypeInfo)).nil;
+		nextId = 0;
+		debugFunc = go$throwNilPointerError;
 		var _map, _key, x, x$1, _tuple, iop, uop, _ref, _ref$1, x$2, x$3, x$4, x$5, x$6, x$7, _ref$2, _i, _keys, _entry, v, k, _key$1;
 		errBadUint = errors.New("gob: encoded unsigned integer out of range");
 		errBadType = errors.New("gob: unknown type id or corrupted data");

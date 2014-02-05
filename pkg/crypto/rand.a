@@ -1,4 +1,4 @@
-0‚o‹crypto/rand‚<àpackage rand
+0‚oOcrypto/rand‚<àpackage rand
 import io "io"
 import bufio "bufio"
 import aes "crypto/aes"
@@ -197,10 +197,7 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 	(go$ptrType(devReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	reader.init([["mu", "crypto/rand", sync.Mutex, ""], ["budget", "crypto/rand", Go$Int, ""], ["cipher", "crypto/rand", cipher.Block, ""], ["entropy", "crypto/rand", io.Reader, ""], ["time", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""], ["seed", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""], ["dst", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""], ["key", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""]]);
 	(go$ptrType(reader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-}	go$pkg.Reader = null;
-	var smallPrimes = (go$sliceType(Go$Uint8)).nil;
-	var smallPrimesProduct = (go$ptrType(big.Int)).nil;
-0‚(÷0¿Read¶	var Read = go$pkg.Read = function(b) {
+0)0 0smallPrimes0smallPrimesProduct0‚)0¿Read¶	var Read = go$pkg.Read = function(b) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
@@ -390,7 +387,8 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 			}
 		}
 	};
-0‚>init‚4	go$pkg.init = function() {
+0‚Vinit‚L	go$pkg.init = function() {
+		go$pkg.Reader = null;
 		smallPrimes = new (go$sliceType(Go$Uint8))([3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]);
 		smallPrimesProduct = new big.Int.Ptr().SetUint64(new Go$Uint64(3793877372, 820596253));
 		go$pkg.Reader = new devReader.Ptr("/dev/urandom", null, new sync.Mutex.Ptr());

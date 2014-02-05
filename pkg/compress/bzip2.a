@@ -1,4 +1,4 @@
-0ÇÆåcompress/bzip2Ç˝package bzip2
+0ÇÆìcompress/bzip2Ç˝package bzip2
 import bufio "bufio"
 import io "io"
 import sort "sort"
@@ -143,8 +143,8 @@ $$
 	(go$ptrType(huffmanCodes)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	moveToFrontDecoder.init([["symbols", "compress/bzip2", (go$arrayType(Go$Uint8, 256)), ""], ["next", "compress/bzip2", (go$arrayType(Go$Uint8, 256)), ""], ["prev", "compress/bzip2", (go$arrayType(Go$Uint8, 256)), ""], ["head", "compress/bzip2", Go$Uint8, ""], ["len", "compress/bzip2", Go$Int, ""]]);
 	(go$ptrType(moveToFrontDecoder)).methods = [["Decode", "", [Go$Int], [Go$Uint8], false], ["First", "", [], [Go$Uint8], false], ["threadLinkedList", "compress/bzip2", [], [], false]];
-K	var crctab = go$makeNativeArray("Uint32", 256, function() { return 0; });
-0ÇÅã0ÇWnewBitReaderÇE	var newBitReader = function(r) {
+0
+0crctab0ÇÅ”0ÇWnewBitReaderÇE	var newBitReader = function(r) {
 		var _tuple, byter, ok;
 		_tuple = (r !== null && io.ByteReader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), byter = _tuple[0], ok = _tuple[1];
 		if (!ok) {
@@ -806,7 +806,8 @@ inverseBWTÇ	2	var inverseBWT = function(tt, origPtr, c) {
 		return m.symbols[m.head];
 	};
 	moveToFrontDecoder.prototype.First = function() { return this.go$val.First(); };
-0ÇàinitÇ~	go$pkg.init = function() {
+0Ç–initÇ∆	go$pkg.init = function() {
+		crctab = go$makeNativeArray("Uint32", 256, function() { return 0; });
 		var _ref, _i, i, crc, j;
 		_ref = crctab;
 		_i = 0;

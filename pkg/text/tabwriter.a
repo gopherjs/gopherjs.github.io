@@ -1,4 +1,4 @@
-0‚U<text/tabwriter‚•package tabwriter
+0‚T³text/tabwriter‚•package tabwriter
 import bytes "bytes"
 import io "io"
 import utf8 "unicode/utf8"
@@ -91,11 +91,7 @@ $$
 	Writer.init([["output", "text/tabwriter", io.Writer, ""], ["minwidth", "text/tabwriter", Go$Int, ""], ["tabwidth", "text/tabwriter", Go$Int, ""], ["padding", "text/tabwriter", Go$Int, ""], ["padbytes", "text/tabwriter", (go$arrayType(Go$Uint8, 8)), ""], ["flags", "text/tabwriter", Go$Uint, ""], ["buf", "text/tabwriter", bytes.Buffer, ""], ["pos", "text/tabwriter", Go$Int, ""], ["cell", "text/tabwriter", cell, ""], ["endChar", "text/tabwriter", Go$Uint8, ""], ["lines", "text/tabwriter", (go$sliceType((go$sliceType(cell)))), ""], ["widths", "text/tabwriter", (go$sliceType(Go$Int)), ""]]);
 	(go$ptrType(Writer)).methods = [["Flush", "", [], [go$error], false], ["Init", "", [io.Writer, Go$Int, Go$Int, Go$Int, Go$Uint8, Go$Uint], [(go$ptrType(Writer))], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["addLine", "text/tabwriter", [], [], false], ["append", "text/tabwriter", [(go$sliceType(Go$Uint8))], [], false], ["dump", "text/tabwriter", [], [], false], ["endEscape", "text/tabwriter", [], [], false], ["format", "text/tabwriter", [Go$Int, Go$Int, Go$Int], [Go$Int], false], ["reset", "text/tabwriter", [], [], false], ["startEscape", "text/tabwriter", [Go$Uint8], [], false], ["terminateCell", "text/tabwriter", [Go$Bool], [Go$Int], false], ["updateWidth", "text/tabwriter", [], [], false], ["write0", "text/tabwriter", [(go$sliceType(Go$Uint8))], [], false], ["writeLines", "text/tabwriter", [Go$Int, Go$Int, Go$Int], [Go$Int], false], ["writeN", "text/tabwriter", [(go$sliceType(Go$Uint8)), Go$Int], [], false], ["writePadding", "text/tabwriter", [Go$Int, Go$Int, Go$Bool], [], false]];
 	osError.init([["err", "text/tabwriter", go$error, ""]]);
-«	var newline = (go$sliceType(Go$Uint8)).nil;
-	var tabs = (go$sliceType(Go$Uint8)).nil;
-	var vbar = (go$sliceType(Go$Uint8)).nil;
-	var hbar = (go$sliceType(Go$Uint8)).nil;
-0‚70ÚaddLineÎ	Writer.Ptr.prototype.addLine = function() {
+0#0	newline0tabs0vbar0hbar0‚70ÚaddLineÎ	Writer.Ptr.prototype.addLine = function() {
 		var b;
 		b = this;
 		b.lines = go$append(b.lines, new (go$sliceType(cell))([]));

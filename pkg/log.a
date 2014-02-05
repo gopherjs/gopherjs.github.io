@@ -1,4 +1,4 @@
-0ÇQOlogÇ$Ïpackage log
+0ÇQ1logÇ$Ïpackage log
 import fmt "fmt"
 import io "io"
 import os "os"
@@ -163,8 +163,7 @@ $$
 	go$pkg.Logger = Logger;
 	Logger.init([["mu", "log", sync.Mutex, ""], ["prefix", "log", Go$String, ""], ["flag", "log", Go$Int, ""], ["out", "log", io.Writer, ""], ["buf", "log", (go$sliceType(Go$Uint8)), ""]]);
 	(go$ptrType(Logger)).methods = [["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fatalln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Flags", "", [], [Go$Int], false], ["Output", "", [Go$Int, Go$String], [go$error], false], ["Panic", "", [(go$sliceType(go$emptyInterface))], [], true], ["Panicf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Panicln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Prefix", "", [], [Go$String], false], ["Print", "", [(go$sliceType(go$emptyInterface))], [], true], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Println", "", [(go$sliceType(go$emptyInterface))], [], true], ["SetFlags", "", [Go$Int], [], false], ["SetPrefix", "", [Go$String], [], false], ["formatHeader", "log", [(go$ptrType((go$sliceType(Go$Uint8)))), time.Time, Go$String, Go$Int], [], false]];
-%	var std = (go$ptrType(Logger)).nil;
-0Ç%00Å¢NewÅö	var New = go$pkg.New = function(out, prefix, flag) {
+00std0Ç%00Å¢NewÅö	var New = go$pkg.New = function(out, prefix, flag) {
 		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
 	};
 0Ç§itoaÇö	var itoa = function(buf, i, wid) {

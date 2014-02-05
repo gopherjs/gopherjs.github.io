@@ -1,4 +1,4 @@
-0ƒBregexp/syntax‚#package syntax
+0ƒ?Vregexp/syntax‚#package syntax
 import unicode "unicode"
 import sort "sort"
 import strings "strings"
@@ -274,29 +274,9 @@ $$
 	(go$ptrType(Inst)).methods = [["MatchEmptyWidth", "", [Go$Int32, Go$Int32], [Go$Bool], false], ["MatchRune", "", [Go$Int32], [Go$Bool], false], ["String", "", [], [Go$String], false], ["op", "regexp/syntax", [], [InstOp], false]];
 	Regexp.init([["Op", "", Op, ""], ["Flags", "", Flags, ""], ["Sub", "", (go$sliceType((go$ptrType(Regexp)))), ""], ["Sub0", "", (go$arrayType((go$ptrType(Regexp)), 1)), ""], ["Rune", "", (go$sliceType(Go$Int32)), ""], ["Rune0", "", (go$arrayType(Go$Int32, 2)), ""], ["Min", "", Go$Int, ""], ["Max", "", Go$Int, ""], ["Cap", "", Go$Int, ""], ["Name", "", Go$String, ""]]);
 	(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
-‚©	var anyRuneNotNL = (go$sliceType(Go$Int32)).nil;
-	var anyRune = (go$sliceType(Go$Int32)).nil;
-	var anyTable = (go$ptrType(unicode.RangeTable)).nil;
-	var code1 = (go$sliceType(Go$Int32)).nil;
-	var code2 = (go$sliceType(Go$Int32)).nil;
-	var code3 = (go$sliceType(Go$Int32)).nil;
-	var perlGroup = false;
-	var code4 = (go$sliceType(Go$Int32)).nil;
-	var code5 = (go$sliceType(Go$Int32)).nil;
-	var code6 = (go$sliceType(Go$Int32)).nil;
-	var code7 = (go$sliceType(Go$Int32)).nil;
-	var code8 = (go$sliceType(Go$Int32)).nil;
-	var code9 = (go$sliceType(Go$Int32)).nil;
-	var code10 = (go$sliceType(Go$Int32)).nil;
-	var code11 = (go$sliceType(Go$Int32)).nil;
-	var code12 = (go$sliceType(Go$Int32)).nil;
-	var code13 = (go$sliceType(Go$Int32)).nil;
-	var code14 = (go$sliceType(Go$Int32)).nil;
-	var code15 = (go$sliceType(Go$Int32)).nil;
-	var code16 = (go$sliceType(Go$Int32)).nil;
-	var code17 = (go$sliceType(Go$Int32)).nil;
-	var posixGroup = false;
-0ƒï©0‚Ñnext‚Ç	patchList.prototype.next = function(p) {
+0ã0	anyRune0code70code80code110code150code160
+posixGroup0code20code30code90code140code170anyRuneNotNL0
+anyTable0	perlGroup0code40code50code100code130code10code60code120ƒï©0‚Ñnext‚Ç	patchList.prototype.next = function(p) {
 		var l, _slice, _index, i;
 		l = this.go$val;
 		i = (_slice = p.Inst, _index = (l >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));

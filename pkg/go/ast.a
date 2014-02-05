@@ -1,4 +1,4 @@
-0É†go/astÇ¨Ñpackage ast
+0Égo/astÇ¨Ñpackage ast
 import token "go/token"
 import strings "strings"
 import unicode "unicode"
@@ -1342,10 +1342,7 @@ go/scannerscannerÇπ>	var Node;
 	inspector.init([Node], [Go$Bool], false);
 	inspector.methods = [["Visit", "", [Node], [Visitor], false]];
 	(go$ptrType(inspector)).methods = [["Visit", "", [Node], [Visitor], false]];
-Å™	var separator = (go$ptrType(Comment)).nil;
-	var indent = (go$sliceType(Go$Uint8)).nil;
-	var objKindStrings = go$makeNativeArray("String", 7, function() { return ""; });
-0É≤ñ0Å†PosÅò	Comment.Ptr.prototype.Pos = function() {
+0)0	separator0indent0objKindStrings0É≤ñ0Å†PosÅò	Comment.Ptr.prototype.Pos = function() {
 		var c;
 		c = this;
 		return c.Slash;

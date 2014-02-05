@@ -1,4 +1,4 @@
-0Ç´Q	image/gifÇ$package gif
+0Ç™œ	image/gifÇ$package gif
 import bufio "bufio"
 import lzw "compress/lzw"
 import errors "errors"
@@ -202,12 +202,9 @@ image/drawdrawÇ	var reader;
 	blockWriter.methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	(go$ptrType(blockWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	Options.init([["NumColors", "", Go$Int, ""], ["Quantizer", "", draw.Quantizer, ""], ["Drawer", "", draw.Drawer, ""]]);
-ÅÀ	var errNotEnough = null;
-	var errTooMuch = null;
-	var errBadPixel = null;
-	var interlacing = (go$sliceType(interlaceScan)).nil;
-	var log2Lookup = go$makeNativeArray("Int", 8, function() { return 0; });
-0ÇhÎ0ÇjReadÇ`	blockReader.Ptr.prototype.Read = function(p) {
+0J0errNotEnough0
+errTooMuch0errBadPixel0interlacing0
+log2Lookup0ÇhÎ0ÇjReadÇ`	blockReader.Ptr.prototype.Read = function(p) {
 		var b, blockLen, _tuple, _tuple$1, n;
 		b = this;
 		if (!(go$interfaceIsEqual(b.err, null))) {

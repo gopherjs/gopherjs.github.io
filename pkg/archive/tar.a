@@ -1,4 +1,4 @@
-0Ç€Îarchive/tarÇ+œpackage tar
+0Ç€archive/tarÇ+œpackage tar
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -242,17 +242,7 @@ $$
 	(go$ptrType(Reader)).methods = [["Next", "", [], [(go$ptrType(Header)), go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["octal", "archive/tar", [(go$sliceType(Go$Uint8))], [Go$Int64], false], ["readHeader", "archive/tar", [], [(go$ptrType(Header))], false], ["skipUnread", "archive/tar", [], [], false], ["verifyChecksum", "archive/tar", [(go$sliceType(Go$Uint8))], [Go$Bool], false]];
 	Writer.init([["w", "archive/tar", io.Writer, ""], ["err", "archive/tar", go$error, ""], ["nb", "archive/tar", Go$Int64, ""], ["pad", "archive/tar", Go$Int64, ""], ["closed", "archive/tar", Go$Bool, ""], ["usedBinary", "archive/tar", Go$Bool, ""], ["preferPax", "archive/tar", Go$Bool, ""]]);
 	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteHeader", "", [(go$ptrType(Header))], [go$error], false], ["cString", "archive/tar", [(go$sliceType(Go$Uint8)), Go$String, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false], ["numeric", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false], ["octal", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64], [], false], ["splitUSTARLongName", "archive/tar", [Go$String], [Go$String, Go$String, go$error], false], ["writeHeader", "archive/tar", [(go$ptrType(Header)), Go$Bool], [go$error], false], ["writePAXHeader", "archive/tar", [(go$ptrType(Header)), (go$mapType(Go$String, Go$String))], [go$error], false]];
-ÇV	var sysStat = go$throwNilPointerError;
-	var zeroBlock = (go$sliceType(Go$Uint8)).nil;
-	go$pkg.ErrHeader = null;
-	go$pkg.ErrWriteTooLong = null;
-	go$pkg.ErrFieldTooLong = null;
-	go$pkg.ErrWriteAfterClose = null;
-	var errNameTooLong = null;
-	var errInvalidHeader = null;
-	var minTime = new time.Time.Ptr();
-	var maxTime = new time.Time.Ptr();
-0Çóö0ÅÍFileInfoÅ›	Header.Ptr.prototype.FileInfo = function() {
+0d0 0 0	minTime0	sysStat0	zeroBlock0 0 0errNameTooLong0errInvalidHeader0	maxTime0Çóø0ÅÍFileInfoÅ›	Header.Ptr.prototype.FileInfo = function() {
 		var h, x;
 		h = this;
 		return (x = new headerFileInfo.Ptr(h), new x.constructor.Struct(x));
@@ -1071,7 +1061,8 @@ readHeaderÇÕ	Reader.Ptr.prototype.readHeader = function() {
 		return tw.err;
 	};
 	Writer.prototype.Close = function() { return this.go$val.Close(); };
-0ÇÑinitÇz	go$pkg.init = function() {
+0Ç©initÇü	go$pkg.init = function() {
+		sysStat = go$throwNilPointerError;
 		var _struct, _struct$1;
 		zeroBlock = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
 		go$pkg.ErrHeader = errors.New("archive/tar: invalid tar header");

@@ -1,4 +1,4 @@
-0‚m÷crypto/ecdsa‚Fÿpackage ecdsa
+0‚mØcrypto/ecdsa‚Fÿpackage ecdsa
 import elliptic "crypto/elliptic"
 import io "io"
 import big "math/big"
@@ -212,8 +212,7 @@ $$
 	PrivateKey.init([["", "", PublicKey, ""], ["D", "", (go$ptrType(big.Int)), ""]]);
 	PrivateKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
 	(go$ptrType(PrivateKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
-&	var one = (go$ptrType(big.Int)).nil;
-0‚=0‚xrandFieldElement‚b	var randFieldElement = function(c, rand) {
+00one0‚=0‚xrandFieldElement‚b	var randFieldElement = function(c, rand) {
 		var k, err, params, _q, b, _tuple, n;
 		k = (go$ptrType(big.Int)).nil;
 		err = null;

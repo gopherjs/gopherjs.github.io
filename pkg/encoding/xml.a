@@ -1,4 +1,4 @@
-0ƒî|encoding/xml‚hèpackage xml
+0ƒë™encoding/xml‚hèpackage xml
 import bufio "bufio"
 import bytes "bytes"
 import encoding "encoding"
@@ -584,37 +584,14 @@ $$
 	Decoder.init([["Strict", "", Go$Bool, ""], ["AutoClose", "", (go$sliceType(Go$String)), ""], ["Entity", "", (go$mapType(Go$String, Go$String)), ""], ["CharsetReader", "", (go$funcType([Go$String, io.Reader], [io.Reader, go$error], false)), ""], ["DefaultSpace", "", Go$String, ""], ["r", "encoding/xml", io.ByteReader, ""], ["buf", "encoding/xml", bytes.Buffer, ""], ["saved", "encoding/xml", (go$ptrType(bytes.Buffer)), ""], ["stk", "encoding/xml", (go$ptrType(stack)), ""], ["free", "encoding/xml", (go$ptrType(stack)), ""], ["needClose", "encoding/xml", Go$Bool, ""], ["toClose", "encoding/xml", Name, ""], ["nextToken", "encoding/xml", Token, ""], ["nextByte", "encoding/xml", Go$Int, ""], ["ns", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["err", "encoding/xml", go$error, ""], ["line", "encoding/xml", Go$Int, ""], ["unmarshalDepth", "encoding/xml", Go$Int, ""]]);
 	(go$ptrType(Decoder)).methods = [["Decode", "", [go$emptyInterface], [go$error], false], ["DecodeElement", "", [go$emptyInterface, (go$ptrType(StartElement))], [go$error], false], ["RawToken", "", [], [Token, go$error], false], ["Skip", "", [], [go$error], false], ["Token", "", [], [Token, go$error], false], ["attrval", "encoding/xml", [], [(go$sliceType(Go$Uint8))], false], ["autoClose", "encoding/xml", [Token], [Token, Go$Bool], false], ["getc", "encoding/xml", [], [Go$Uint8, Go$Bool], false], ["mustgetc", "encoding/xml", [], [Go$Uint8, Go$Bool], false], ["name", "encoding/xml", [], [Go$String, Go$Bool], false], ["nsname", "encoding/xml", [], [Name, Go$Bool], false], ["pop", "encoding/xml", [], [(go$ptrType(stack))], false], ["popEOF", "encoding/xml", [], [Go$Bool], false], ["popElement", "encoding/xml", [(go$ptrType(EndElement))], [Go$Bool], false], ["push", "encoding/xml", [Go$Int], [(go$ptrType(stack))], false], ["pushEOF", "encoding/xml", [], [], false], ["pushElement", "encoding/xml", [Name], [], false], ["pushNs", "encoding/xml", [Go$String, Go$String, Go$Bool], [], false], ["rawToken", "encoding/xml", [], [Token, go$error], false], ["readName", "encoding/xml", [], [Go$Bool], false], ["savedOffset", "encoding/xml", [], [Go$Int], false], ["space", "encoding/xml", [], [], false], ["switchToReader", "encoding/xml", [io.Reader], [], false], ["syntaxError", "encoding/xml", [Go$String], [go$error], false], ["text", "encoding/xml", [Go$Int, Go$Bool], [(go$sliceType(Go$Uint8))], false], ["translate", "encoding/xml", [(go$ptrType(Name)), Go$Bool], [], false], ["ungetc", "encoding/xml", [Go$Uint8], [], false], ["unmarshal", "encoding/xml", [reflect.Value, (go$ptrType(StartElement))], [go$error], false], ["unmarshalAttr", "encoding/xml", [reflect.Value, Attr], [go$error], false], ["unmarshalInterface", "encoding/xml", [Unmarshaler, (go$ptrType(StartElement))], [go$error], false], ["unmarshalPath", "encoding/xml", [(go$ptrType(typeInfo)), reflect.Value, (go$sliceType(Go$String)), (go$ptrType(StartElement))], [Go$Bool, go$error], false], ["unmarshalTextInterface", "encoding/xml", [encoding.TextUnmarshaler, (go$ptrType(StartElement))], [go$error], false]];
 	stack.init([["next", "encoding/xml", (go$ptrType(stack)), ""], ["kind", "encoding/xml", Go$Int, ""], ["name", "encoding/xml", Name, ""], ["ok", "encoding/xml", Go$Bool, ""]]);
-‚—	var endComment = (go$sliceType(Go$Uint8)).nil;
-	var endProcInst = (go$sliceType(Go$Uint8)).nil;
-	var endDirective = (go$sliceType(Go$Uint8)).nil;
-	var marshalerType = null;
-	var marshalerAttrType = null;
-	var textMarshalerType = null;
-	var ddBytes = (go$sliceType(Go$Uint8)).nil;
-	var unmarshalerType = null;
-	var unmarshalerAttrType = null;
-	var textUnmarshalerType = null;
-	var tinfoMap = false;
-	var tinfoLock = new sync.RWMutex.Ptr();
-	var nameType = null;
-	var errRawToken = null;
-	var entity = false;
-	var first = (go$ptrType(unicode.RangeTable)).nil;
-	var second = (go$ptrType(unicode.RangeTable)).nil;
-	go$pkg.HTMLEntity = false;
-	var htmlEntity = false;
-	go$pkg.HTMLAutoClose = (go$sliceType(Go$String)).nil;
-	var htmlAutoClose = (go$sliceType(Go$String)).nil;
-	var esc_quot = (go$sliceType(Go$Uint8)).nil;
-	var esc_apos = (go$sliceType(Go$Uint8)).nil;
-	var esc_amp = (go$sliceType(Go$Uint8)).nil;
-	var esc_lt = (go$sliceType(Go$Uint8)).nil;
-	var esc_gt = (go$sliceType(Go$Uint8)).nil;
-	var esc_tab = (go$sliceType(Go$Uint8)).nil;
-	var esc_nl = (go$sliceType(Go$Uint8)).nil;
-	var esc_cr = (go$sliceType(Go$Uint8)).nil;
-	var esc_fffd = (go$sliceType(Go$Uint8)).nil;
-0ƒ3û0‚Marshal÷	var Marshal = go$pkg.Marshal = function(v) {
+0‚Ž0	ddBytes0unmarshalerType0unmarshalerAttrType0htmlAutoClose0
+endComment0endProcInst0textMarshalerType0errRawToken0first0	esc_tab0marshalerType0 0
+esc_fffd0	tinfoLock0
+htmlEntity0
+esc_apos0esc_lt0marshalerAttrType0textUnmarshalerType0
+tinfoMap0
+nameType0entity0
+esc_quot0 0	esc_amp0esc_gt0esc_nl0endDirective0second0esc_cr0ƒ4!0‚Marshal÷	var Marshal = go$pkg.Marshal = function(v) {
 		var b, err;
 		b = new bytes.Buffer.Ptr();
 		if (err = NewEncoder(b).Encode(v), !(go$interfaceIsEqual(err, null))) {
@@ -3188,7 +3165,8 @@ EscapeText‚J	var EscapeText = go$pkg.EscapeText = function(w, s) {
 		}
 		return v.substring(1, (idx + 1 >> 0));
 	};
-0‚y‡init‚y}	go$pkg.init = function() {
+0‚y­init‚y£	go$pkg.init = function() {
+		tinfoLock = new sync.RWMutex.Ptr();
 		var x, _map, _key, _map$1, _key$1;
 		endComment = new (go$sliceType(Go$Uint8))(go$stringToBytes("-->"));
 		endProcInst = new (go$sliceType(Go$Uint8))(go$stringToBytes("?>"));

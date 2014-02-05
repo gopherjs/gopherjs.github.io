@@ -1,4 +1,4 @@
-0Çò„runtime/pprofÇpackage pprof
+0Çòrruntime/pprofÇpackage pprof
 import bufio "bufio"
 import bytes "bytes"
 import fmt "fmt"
@@ -115,13 +115,8 @@ $$
 	byCycles.init(runtime.BlockProfileRecord);
 	byCycles.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byCycles)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-Ç|	var profiles = new (go$structType([["mu", "runtime/pprof", sync.Mutex, ""], ["m", "runtime/pprof", (go$mapType(Go$String, (go$ptrType(Profile)))), ""]])).Ptr(new sync.Mutex.Ptr(), false);
-	var goroutineProfile = (go$ptrType(Profile)).nil;
-	var threadcreateProfile = (go$ptrType(Profile)).nil;
-	var heapProfile = (go$ptrType(Profile)).nil;
-	var blockProfile = (go$ptrType(Profile)).nil;
-	var cpu = new (go$structType([["", "", sync.Mutex, ""], ["profiling", "runtime/pprof", Go$Bool, ""], ["done", "runtime/pprof", (go$chanType(Go$Bool, false, false)), ""]])).Ptr(new sync.Mutex.Ptr(), false, (go$chanType(Go$Bool, false, false)).nil);
-0ÇvX0ÇÆlockProfilesÇú	var lockProfiles = function() {
+0]0
+profiles0goroutineProfile0threadcreateProfile0heapProfile0blockProfile0cpu0Çx0ÇÆlockProfilesÇú	var lockProfiles = function() {
 		var _map, _key;
 		profiles.mu.Lock();
 		if (profiles.m === false) {
@@ -708,7 +703,9 @@ writeBlockÇæ	var writeBlock = function(w, debug) {
 0Åôruntime_cyclesPerSecond~	var runtime_cyclesPerSecond = function() {
 		throw go$panic("Native function not implemented: runtime_cyclesPerSecond");
 	};
-0Ç“initÇ»	go$pkg.init = function() {
+0ÇÇinitÇx	go$pkg.init = function() {
+		profiles = new (go$structType([["mu", "runtime/pprof", sync.Mutex, ""], ["m", "runtime/pprof", (go$mapType(Go$String, (go$ptrType(Profile)))), ""]])).Ptr(new sync.Mutex.Ptr(), false);
+		cpu = new (go$structType([["", "", sync.Mutex, ""], ["profiling", "runtime/pprof", Go$Bool, ""], ["done", "runtime/pprof", (go$chanType(Go$Bool, false, false)), ""]])).Ptr(new sync.Mutex.Ptr(), false, (go$chanType(Go$Bool, false, false)).nil);
 		goroutineProfile = new Profile.Ptr("goroutine", new sync.Mutex.Ptr(), false, countGoroutine, writeGoroutine);
 		threadcreateProfile = new Profile.Ptr("threadcreate", new sync.Mutex.Ptr(), false, countThreadCreate, writeThreadCreate);
 		heapProfile = new Profile.Ptr("heap", new sync.Mutex.Ptr(), false, countHeap, writeHeap);

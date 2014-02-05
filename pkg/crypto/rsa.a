@@ -1,4 +1,4 @@
-0ÇÒl
+0ÇØ
 crypto/rsaÇC£package rsa
 import crypto "crypto"
 import subtle "crypto/subtle"
@@ -237,16 +237,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 	(go$ptrType(PrivateKey)).methods = [["Precompute", "", [], [], false], ["Validate", "", [], [go$error], false]];
 	PrecomputedValues.init([["Dp", "", (go$ptrType(big.Int)), ""], ["Dq", "", (go$ptrType(big.Int)), ""], ["Qinv", "", (go$ptrType(big.Int)), ""], ["CRTValues", "", (go$sliceType(CRTValue)), ""]]);
 	CRTValue.init([["Exp", "", (go$ptrType(big.Int)), ""], ["Coeff", "", (go$ptrType(big.Int)), ""], ["R", "", (go$ptrType(big.Int)), ""]]);
-Ç4	var hashPrefixes = false;
-	var bigZero = (go$ptrType(big.Int)).nil;
-	var bigOne = (go$ptrType(big.Int)).nil;
-	var errPublicModulus = null;
-	var errPublicExponentSmall = null;
-	var errPublicExponentLarge = null;
-	go$pkg.ErrMessageTooLong = null;
-	go$pkg.ErrDecryption = null;
-	go$pkg.ErrVerification = null;
-0Çü⁄0ÇEncryptPKCS1v15Ç	var EncryptPKCS1v15 = go$pkg.EncryptPKCS1v15 = function(rand$1, pub, msg) {
+0y0errPublicExponentLarge0 0hashPrefixes0	bigZero0bigOne0errPublicModulus0errPublicExponentSmall0 0 0Çü⁄0ÇEncryptPKCS1v15Ç	var EncryptPKCS1v15 = go$pkg.EncryptPKCS1v15 = function(rand$1, pub, msg) {
 		var out, err, err$1, _tuple, _q, k, em, _slice, _index, _tuple$1, ps, mm, _slice$1, _index$1, m, c;
 		out = (go$sliceType(Go$Uint8)).nil;
 		err = null;

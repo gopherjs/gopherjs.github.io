@@ -1,4 +1,4 @@
-0Çñcrypto/x509/pkixÇ\Ôpackage pkix
+0Çî˝crypto/x509/pkixÇ\Ôpackage pkix
 import asn1 "encoding/asn1"
 import big "math/big"
 import time "time"
@@ -361,16 +361,8 @@ $$
 	(go$ptrType(CertificateList)).methods = [["HasExpired", "", [time.Time], [Go$Bool], false]];
 	TBSCertificateList.init([["Raw", "", asn1.RawContent, ""], ["Version", "", Go$Int, "asn1:\"optional,default:2\""], ["Signature", "", AlgorithmIdentifier, ""], ["Issuer", "", RDNSequence, ""], ["ThisUpdate", "", time.Time, ""], ["NextUpdate", "", time.Time, ""], ["RevokedCertificates", "", (go$sliceType(RevokedCertificate)), "asn1:\"optional\""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"tag:0,optional,explicit\""]]);
 	RevokedCertificate.init([["SerialNumber", "", (go$ptrType(big.Int)), ""], ["RevocationTime", "", time.Time, ""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"optional\""]]);
-Ç¡	var oidCountry = (go$sliceType(Go$Int)).nil;
-	var oidOrganization = (go$sliceType(Go$Int)).nil;
-	var oidOrganizationalUnit = (go$sliceType(Go$Int)).nil;
-	var oidCommonName = (go$sliceType(Go$Int)).nil;
-	var oidSerialNumber = (go$sliceType(Go$Int)).nil;
-	var oidLocality = (go$sliceType(Go$Int)).nil;
-	var oidProvince = (go$sliceType(Go$Int)).nil;
-	var oidStreetAddress = (go$sliceType(Go$Int)).nil;
-	var oidPostalCode = (go$sliceType(Go$Int)).nil;
-0Ç‚0Ç
+0Å°0oidOrganization0oidOrganizationalUnit0oidLocality0oidProvince0
+oidCountry0oidCommonName0oidSerialNumber0oidStreetAddress0oidPostalCode0Ç‚0Ç
 éFillFromRDNSequenceÇ
 u	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
 		var n, _ref, _i, _slice, _index, rdn, _slice$1, _index$1, _struct, atv, _struct$1, _tuple, x, value, ok, t, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _slice$5, _index$5;
