@@ -478,13 +478,13 @@ $$
 	ssave.init([["validSave", "fmt", Go$Bool, ""], ["nlIsEnd", "fmt", Go$Bool, ""], ["nlIsSpace", "fmt", Go$Bool, ""], ["argLimit", "fmt", Go$Int, ""], ["limit", "fmt", Go$Int, ""], ["maxWid", "fmt", Go$Int, ""]]);
 	readRune.init([["reader", "fmt", io.Reader, ""], ["buf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["pending", "fmt", Go$Int, ""], ["pendBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""]]);
 	(go$ptrType(readRune)).methods = [["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["readByte", "fmt", [], [Go$Uint8, go$error], false], ["unread", "fmt", [(go$sliceType(Go$Uint8))], [], false]];
-0‚|0	trueBytes0
-falseBytes0missingBytes0
-panicBytes0noVerbBytes0space0	boolError0padZeroBytes0padSpaceBytes0commaSpaceBytes0
+0‚|0padZeroBytes0padSpaceBytes0	trueBytes0
+falseBytes0commaSpaceBytes0nilAngleBytes0nilParenBytes0
 nilBytes0
-mapBytes0	intBits0ssFree0percentBangBytes0badIndexBytes0irparenBytes0
-bytesBytes0ppFree0complexError0nilAngleBytes0nilParenBytes0
-extraBytes0badWidthBytes0badPrecBytes0uintptrBits0ƒ›Á0‚w
+mapBytes0percentBangBytes0missingBytes0badIndexBytes0
+panicBytes0
+extraBytes0irparenBytes0
+bytesBytes0badWidthBytes0badPrecBytes0noVerbBytes0ppFree0	intBits0uintptrBits0space0ssFree0complexError0	boolError0ƒ›Á0‚w
 clearflags‚g	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;

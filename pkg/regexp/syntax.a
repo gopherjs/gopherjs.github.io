@@ -274,9 +274,9 @@ $$
 	(go$ptrType(Inst)).methods = [["MatchEmptyWidth", "", [Go$Int32, Go$Int32], [Go$Bool], false], ["MatchRune", "", [Go$Int32], [Go$Bool], false], ["String", "", [], [Go$String], false], ["op", "regexp/syntax", [], [InstOp], false]];
 	Regexp.init([["Op", "", Op, ""], ["Flags", "", Flags, ""], ["Sub", "", (go$sliceType((go$ptrType(Regexp)))), ""], ["Sub0", "", (go$arrayType((go$ptrType(Regexp)), 1)), ""], ["Rune", "", (go$sliceType(Go$Int32)), ""], ["Rune0", "", (go$arrayType(Go$Int32, 2)), ""], ["Min", "", Go$Int, ""], ["Max", "", Go$Int, ""], ["Cap", "", Go$Int, ""], ["Name", "", Go$String, ""]]);
 	(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
-0ã0	anyRune0code70code80code110code150code160
-posixGroup0code20code30code90code140code170anyRuneNotNL0
-anyTable0	perlGroup0code40code50code100code130code10code60code120ƒï©0‚Ñnext‚Ç	patchList.prototype.next = function(p) {
+0ã0anyRuneNotNL0	anyRune0
+anyTable0code10code20code30	perlGroup0code40code50code60code70code80code90code100code110code120code130code140code150code160code170
+posixGroup0ƒï©0‚Ñnext‚Ç	patchList.prototype.next = function(p) {
 		var l, _slice, _index, i;
 		l = this.go$val;
 		i = (_slice = p.Inst, _index = (l >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));

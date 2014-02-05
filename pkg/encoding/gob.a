@@ -638,23 +638,23 @@ $$
 	typeInfo.init([["id", "encoding/gob", typeId, ""], ["encoder", "encoding/gob", (go$ptrType(encEngine)), ""], ["wire", "encoding/gob", (go$ptrType(wireType)), ""]]);
 	GobEncoder.init([["GobEncode", "", (go$funcType([], [(go$sliceType(Go$Uint8)), go$error], false))]]);
 	GobDecoder.init([["GobDecode", "", (go$funcType([(go$sliceType(Go$Uint8))], [go$error], false))]]);
-0ÇÕ0emptyStructType0nextId0
-tReserved20
-tReserved10
-errBadUint0	debugFunc0types0tBool0
-tReserved70
+0ÇÕ0
+errBadUint0
 errBadType0
 errRange0
-encOpTable0spaceForLength0gobDecoderInterfaceType0binaryMarshalerInterfaceType0
-idToType0tInt0
-tReserved50userTypeLock0textMarshalerInterfaceType0
-typeLock0tUint0	tWireType0
-decOpTable0userTypeCache0builtinIdToType0tBytes0
-tInterface0
-tReserved40decIgnoreOpMap0 binaryUnmarshalerInterfaceType0tFloat0	tString0
-tReserved60nameToConcreteType0textUnmarshalerInterfaceType0typeInfoMap0registerLock0errBadCount0gobEncoderInterfaceType0
+decOpTable0decIgnoreOpMap0emptyStructType0errBadCount0	debugFunc0
+encOpTable0spaceForLength0userTypeLock0userTypeCache0gobEncoderInterfaceType0gobDecoderInterfaceType0binaryMarshalerInterfaceType0 binaryUnmarshalerInterfaceType0textMarshalerInterfaceType0textUnmarshalerInterfaceType0nextId0
+typeLock0types0
+idToType0builtinIdToType0tBool0tInt0tUint0tFloat0tBytes0	tString0
 tComplex0
-tReserved30wireTypeUserInfo0concreteTypeToName0ÉﬂŸ0ÇÃnewDecoderStateÇ∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
+tInterface0
+tReserved70
+tReserved60
+tReserved50
+tReserved40
+tReserved30
+tReserved20
+tReserved10	tWireType0wireTypeUserInfo0typeInfoMap0registerLock0nameToConcreteType0concreteTypeToName0ÉﬂŸ0ÇÃnewDecoderStateÇ∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
 		var dec, d;
 		dec = this;
 		d = dec.freeList;
@@ -3457,13 +3457,13 @@ isExportedÅó	var isExported = function(name) {
 		Register((go$sliceType(Go$String)).nil);
 	};
 0ÇôinitÇè	go$pkg.init = function() {
+		debugFunc = go$throwNilPointerError;
 		userTypeLock = new sync.RWMutex.Ptr();
+		nextId = 0;
 		typeLock = new sync.Mutex.Ptr();
 		builtinIdToType = false;
-		registerLock = new sync.RWMutex.Ptr();
 		wireTypeUserInfo = (go$ptrType(userTypeInfo)).nil;
-		nextId = 0;
-		debugFunc = go$throwNilPointerError;
+		registerLock = new sync.RWMutex.Ptr();
 		var _map, _key, x, x$1, _tuple, iop, uop, _ref, _ref$1, x$2, x$3, x$4, x$5, x$6, x$7, _ref$2, _i, _keys, _entry, v, k, _key$1;
 		errBadUint = errors.New("gob: encoded unsigned integer out of range");
 		errBadType = errors.New("gob: unknown type id or corrupted data");

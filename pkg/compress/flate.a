@@ -293,9 +293,9 @@ $$
 	(go$ptrType(decompressor)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["copyData", "compress/flate", [], [], false], ["copyHist", "compress/flate", [], [Go$Bool], false], ["copyHuff", "compress/flate", [], [], false], ["dataBlock", "compress/flate", [], [], false], ["flush", "compress/flate", [(go$funcType([(go$ptrType(decompressor))], [], false))], [], false], ["huffSym", "compress/flate", [(go$ptrType(huffmanDecoder))], [Go$Int, go$error], false], ["huffmanBlock", "compress/flate", [], [], false], ["moreBits", "compress/flate", [], [go$error], false], ["nextBlock", "compress/flate", [], [], false], ["readHuffman", "compress/flate", [], [go$error], false], ["setDict", "compress/flate", [(go$sliceType(Go$Uint8))], [], false]];
 	token.methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
 	(go$ptrType(token)).methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
-0ÅÒ0codegenOrder0reverseByte0offsetCodes0levels0
-offsetBase0zeroes0fixedHuffmanDecoder0offsetExtraBits0fixedLiteralEncoding0lengthCodes0	bzeroes0lengthExtraBits0
-lengthBase0fixedOffsetEncoding0	codeOrder0ÉsÒ0ÇforwardCopyÇ		var forwardCopy = function(mem, dst, src, n) {
+0ÅÒ0levels0zeroes0	bzeroes0fixedHuffmanDecoder0lengthExtraBits0
+lengthBase0offsetExtraBits0
+offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	codeOrder0reverseByte0lengthCodes0offsetCodes0ÉsÒ0ÇforwardCopyÇ		var forwardCopy = function(mem, dst, src, n) {
 		var k;
 		if (dst <= src) {
 			go$copySlice(go$subslice(mem, dst, (dst + n >> 0)), go$subslice(mem, src, (src + n >> 0)));

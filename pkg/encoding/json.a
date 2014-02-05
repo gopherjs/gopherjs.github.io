@@ -641,10 +641,10 @@ $$
 	(go$ptrType(RawMessage)).methods = [["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["UnmarshalJSON", "", [(go$sliceType(Go$Uint8))], [go$error], false]];
 	tagOptions.methods = [["Contains", "", [Go$String], [Go$Bool], false]];
 	(go$ptrType(tagOptions)).methods = [["Contains", "", [Go$String], [Go$Bool], false]];
-0Å≠0
-numberType0byteSliceType0textMarshalerType0float32Encoder0float64Encoder0
-fieldCache0
-errPhase0hex0encodeStatePool0encoderCache0marshalerType0ÉìT0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
+0Å≠0
+errPhase0
+numberType0hex0encodeStatePool0byteSliceType0encoderCache0marshalerType0textMarshalerType0float32Encoder0float64Encoder0
+fieldCache0ÉìT0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
 		var d, err;
 		d = new decodeState.Ptr();
 		err = checkValid(data, d.scan);
@@ -3179,8 +3179,8 @@ NewEncoderr	var NewEncoder = go$pkg.NewEncoder = function(w) {
 0ÇÃinitÇ¬
 		  var encodeStates = [];
 			go$pkg.init = function() {
-		fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, (go$sliceType(field)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
 		encoderCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, encoderFunc)), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+		fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, (go$sliceType(field)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
 		var e, v, quoted, _recv, e$1, v$1, quoted$1, _recv$1;
 		errPhase = errors.New("JSON decoder out of sync - data changing underfoot?");
 		numberType = reflect.TypeOf(new Number(""));

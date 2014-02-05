@@ -2699,7 +2699,7 @@ $$
 	BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
 	BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
 	Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-0Åé0	envLock0envs0 0	signals0	envOnce0zeroSysProcAttr0_zero0mapper0 0 0ioSync0env0 0errors0zeroProcAttr0 0ÉñÈ0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
+0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0ÉñÈ0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
 0Å¨BpfJumpÅ†	var BpfJump = go$pkg.BpfJump = function(code, k, jt, jf) {
@@ -6117,18 +6117,18 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		return [sec, usec, err];
 	};
 0ÇyinitÇo	go$pkg.init = function() {
-		zeroProcAttr = new ProcAttr.Ptr();
-		envLock = new sync.RWMutex.Ptr();
-		envs = (go$sliceType(Go$String)).nil;
 		envOnce = new sync.Once.Ptr();
+		envLock = new sync.RWMutex.Ptr();
+		env = false;
+		envs = (go$sliceType(Go$String)).nil;
+		go$pkg.ForkLock = new sync.RWMutex.Ptr();
+		zeroProcAttr = new ProcAttr.Ptr();
 		zeroSysProcAttr = new SysProcAttr.Ptr();
 		_zero = 0;
 		go$pkg.SocketDisableIPv6 = false;
 		ioSync = new Go$Int64(0, 0);
-		env = false;
-		go$pkg.ForkLock = new sync.RWMutex.Ptr();
 
-			if (go$packages["runtime"].GOOS === "windows") {
+			if (go$pkg.Syscall15 !== undefined) { // windows
 				Syscall = Syscall6 = Syscall9 = Syscall12 = Syscall15 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.Syscall9 = go$pkg.Syscall12 = go$pkg.Syscall15 = loadlibrary = getprocaddress = function() { throw "Syscalls not available." };
 				getStdHandle = GetCommandLine = go$pkg.GetCommandLine = function() {};
 				CommandLineToArgv = go$pkg.CommandLineToArgv = function() { return [null, {}]; };

@@ -2325,7 +2325,7 @@ go$packages["runtime"] = (function() {
 	_select.init([["tcase", "runtime", Go$Uint16, ""], ["ncase", "runtime", Go$Uint16, ""], ["pollorder", "runtime", (go$ptrType(Go$Uint16)), ""], ["lockorder", "runtime", (go$ptrType((go$ptrType(hchan)))), ""], ["scase", "runtime", (go$arrayType(scase, 1)), ""]]);
 	runtimeselect.init([["dir", "runtime", Go$Uint64, ""], ["typ", "runtime", (go$ptrType(chantype)), ""], ["ch", "runtime", (go$ptrType(hchan)), ""], ["val", "runtime", Go$Uint64, ""]]);
 	parforthread.init([["pos", "runtime", Go$Uint64, ""], ["nsteal", "runtime", Go$Uint64, ""], ["nstealcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
-	var allm, maxstacksize, nan, scavenger, initdone, prof, hashload, memStats, startup_random_data_len, gomaxprocs, needextram, goos, debug, neginf, class_to_allocnpages, g0, extram, ncpu, cpuid_edx, posinf, class_to_size, checking, m0, newprocs, ifacelock, empty_value, precisestack, allp, blockprofilerate, worldsema, size_to_class8, size_to_class128, experiment, startup_random_data, maxstring, memstats, typelink, algarray, allg, lastg, iscgo, cpuid_ecx, etypelink, sizeof_C_MStats, emptystring, zerobase, panicking, sysargs, hchansize, _cgo_thread_start, hash;
+	var sizeof_C_MStats, memStats, precisestack, algarray, startup_random_data, startup_random_data_len, emptystring, zerobase, allg, lastg, allm, allp, gomaxprocs, needextram, panicking, goos, ncpu, iscgo, sysargs, maxstring, hchansize, cpuid_ecx, cpuid_edx, debug, maxstacksize, blockprofilerate, worldsema, nan, posinf, neginf, memstats, class_to_size, class_to_allocnpages, size_to_class8, size_to_class128, checking, m0, g0, extram, newprocs, scavenger, initdone, _cgo_thread_start, prof, experiment, hash, ifacelock, typelink, etypelink, empty_value, hashload;
 	var Breakpoint = go$pkg.Breakpoint = function() {
 		throw go$panic("Native function not implemented: Breakpoint");
 	};
@@ -3032,56 +3032,56 @@ go$packages["runtime"] = (function() {
 	};
 	go$pkg.init = function() {
 		sizeof_C_MStats = 0;
+		memStats = new MemStats.Ptr();
+		precisestack = 0;
+		algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
+		startup_random_data = (go$ptrType(Go$Uint8)).nil;
+		startup_random_data_len = 0;
 		emptystring = "";
 		zerobase = new Go$Uint64(0, 0);
-		panicking = 0;
-		sysargs = go$throwNilPointerError;
-		hchansize = 0;
-		_cgo_thread_start = go$throwNilPointerError;
-		hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
-		allm = (go$ptrType(m)).nil;
-		maxstacksize = new Go$Uint64(0, 0);
-		nan = 0;
-		scavenger = new funcval.Ptr();
-		initdone = new funcval.Ptr();
-		prof = new _3_.Ptr();
-		hashload = 0;
-		memStats = new MemStats.Ptr();
-		startup_random_data_len = 0;
-		gomaxprocs = 0;
-		needextram = 0;
-		goos = (go$ptrType(Go$Int8)).nil;
-		debug = new debugvars.Ptr();
-		neginf = 0;
-		class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
-		g0 = new g.Ptr();
-		extram = (go$ptrType(m)).nil;
-		ncpu = 0;
-		cpuid_edx = 0;
-		posinf = 0;
-		class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
-		checking = 0;
-		m0 = new m.Ptr();
-		newprocs = 0;
-		ifacelock = new lock.Ptr();
-		empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
-		precisestack = 0;
-		allp = (go$ptrType((go$ptrType(p)))).nil;
-		blockprofilerate = new Go$Int64(0, 0);
-		worldsema = 0;
-		size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
-		size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
-		experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
-		startup_random_data = (go$ptrType(Go$Uint8)).nil;
-		maxstring = new Go$Uint64(0, 0);
-		memstats = new mstats.Ptr();
-		typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
-		algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
 		allg = (go$ptrType(g)).nil;
 		lastg = (go$ptrType(g)).nil;
+		allm = (go$ptrType(m)).nil;
+		allp = (go$ptrType((go$ptrType(p)))).nil;
+		gomaxprocs = 0;
+		needextram = 0;
+		panicking = 0;
+		goos = (go$ptrType(Go$Int8)).nil;
+		ncpu = 0;
 		iscgo = 0;
+		sysargs = go$throwNilPointerError;
+		maxstring = new Go$Uint64(0, 0);
+		hchansize = 0;
 		cpuid_ecx = 0;
+		cpuid_edx = 0;
+		debug = new debugvars.Ptr();
+		maxstacksize = new Go$Uint64(0, 0);
+		blockprofilerate = new Go$Int64(0, 0);
+		worldsema = 0;
+		nan = 0;
+		posinf = 0;
+		neginf = 0;
+		memstats = new mstats.Ptr();
+		class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
+		class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
+		size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
+		size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
+		checking = 0;
+		m0 = new m.Ptr();
+		g0 = new g.Ptr();
+		extram = (go$ptrType(m)).nil;
+		newprocs = 0;
+		scavenger = new funcval.Ptr();
+		initdone = new funcval.Ptr();
+		_cgo_thread_start = go$throwNilPointerError;
+		prof = new _3_.Ptr();
+		experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
+		hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
+		ifacelock = new lock.Ptr();
+		typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
 		etypelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
+		empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
+		hashload = 0;
 
 			go$throwRuntimeError = function(msg) { throw go$panic(new errorString(msg)); };
 			sizeof_C_MStats = 3712;
@@ -3773,7 +3773,7 @@ go$packages["io"] = (function() {
 	(go$ptrType(PipeReader)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	PipeWriter.init([["p", "io", (go$ptrType(pipe)), ""]]);
 	(go$ptrType(PipeWriter)).methods = [["Close", "", [], [go$error], false], ["CloseWithError", "", [go$error], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	var errWhence, zero, errOffset;
+	var errWhence, errOffset, zero;
 	var WriteString = go$pkg.WriteString = function(w, s) {
 		var n, err, ok, _tuple, sw, _tuple$1, _tuple$2;
 		n = 0;
@@ -4266,7 +4266,7 @@ go$packages["unicode"] = (function() {
 	(go$ptrType(SpecialCase)).methods = [["ToLower", "", [Go$Int32], [Go$Int32], false], ["ToTitle", "", [Go$Int32], [Go$Int32], false], ["ToUpper", "", [Go$Int32], [Go$Int32], false]];
 	d.init(Go$Int32, 3);
 	foldPair.init([["From", "", Go$Uint16, ""], ["To", "", Go$Uint16, ""]]);
-	var _Zp, _Brahmi, _Greek, _Oriya, _Other_Uppercase, _Terminal_Punctuation, _Co, _P, _Tagalog, _Kharoshthi, _Logical_Order_Exception, _White_Space, _Lu, _Me, _Cf, _Hiragana, _Inherited, _Ol_Chiki, foldL, _Sk, _Katakana, _L, _Bopomofo, _Inscriptional_Parthian, _Egyptian_Hieroglyphs, _Pd, foldLl, _Bengali, _Carian, _Cuneiform, _Imperial_Aramaic, _Noncharacter_Code_Point, properties, _Cherokee, _Meroitic_Hieroglyphs, _Old_South_Arabian, _Join_Control, _Ll, _CaseRanges, _Meetei_Mayek, _Rejang, _Cyrillic, _Lao, _No, _Bamum, _Buhid, _Gothic, _Old_Turkic, _N, _Hangul, _Limbu, _Sharada, _Tamil, _Extender, _Gurmukhi, caseOrbit, _Sc, _Arabic, _Tagbanwa, _Tai_Viet, _Pe, _Tai_Tham, _IDS_Binary_Operator, _Pattern_Syntax, _Sm, _So, _Old_Italic, _Shavian, _Thaana, _S, _ASCII_Hex_Digit, _Hyphen, _Nko, _Tifinagh, foldGreek, _Mandaic, _Hex_Digit, _Balinese, _Vai, _Pi, _Armenian, _Lydian, _Meroitic_Cursive, _Ugaritic, _Zs, _Lepcha, _Phoenician, _Radical, _Gujarati, _Hebrew, _Kaithi, _Other_Grapheme_Extend, _Canadian_Aboriginal, _Deseret, _Mongolian, _Diacritic, foldM, _Saurashtra, _IDS_Trinary_Operator, _Quotation_Mark, _Cc, _Lycian, _Ideographic, foldLu, _Cypriot, _Pattern_White_Space, _Devanagari, _Hanunoo, _Other_Lowercase, _Soft_Dotted, foldMn, _Lt, _Latin, _Runic, _Samaritan, _Yi, _Lm, _Lo, _Coptic, _Syriac, _Javanese, _Sundanese, _Telugu, _M, _Tai_Le, _Braille, _Glagolitic, _Inscriptional_Pahlavi, _Other_Alphabetic, _Pf, _Ps, _Buginese, foldCommon, _Chakma, _Phags_Pa, _Takri, _Zl, _Deprecated, _Other_Math, _C, _Pc, _Mn, _Ogham, foldInherited, _Bidi_Control, _Variation_Selector, foldLt, _Mc, _Po, _Sora_Sompeng, _Dash, _TurkishCase, _Cham, _Khmer, _Old_Persian, _Other_ID_Continue, _Malayalam, _New_Tai_Lue, _Cs, _Han, _Lisu, _Georgian, _Sinhala, _Ethiopic, _Kannada, _Nl, _Batak, _Myanmar, _Other_ID_Start, _Thai, _Nd, _Z, _Linear_B, _Kayah_Li, _Unified_Ideograph, _Avestan, _Miao, _Osmanya, _STerm, _Common, _Syloti_Nagri, _Tibetan, _Other_Default_Ignorable_Code_Point;
+	var _TurkishCase, _C, _Cc, _Cf, _Co, _Cs, _L, _Ll, _Lm, _Lo, _Lt, _Lu, _M, _Mc, _Me, _Mn, _N, _Nd, _Nl, _No, _P, _Pc, _Pd, _Pe, _Pf, _Pi, _Po, _Ps, _S, _Sc, _Sk, _Sm, _So, _Z, _Zl, _Zp, _Zs, _Arabic, _Armenian, _Avestan, _Balinese, _Bamum, _Batak, _Bengali, _Bopomofo, _Brahmi, _Braille, _Buginese, _Buhid, _Canadian_Aboriginal, _Carian, _Chakma, _Cham, _Cherokee, _Common, _Coptic, _Cuneiform, _Cypriot, _Cyrillic, _Deseret, _Devanagari, _Egyptian_Hieroglyphs, _Ethiopic, _Georgian, _Glagolitic, _Gothic, _Greek, _Gujarati, _Gurmukhi, _Han, _Hangul, _Hanunoo, _Hebrew, _Hiragana, _Imperial_Aramaic, _Inherited, _Inscriptional_Pahlavi, _Inscriptional_Parthian, _Javanese, _Kaithi, _Kannada, _Katakana, _Kayah_Li, _Kharoshthi, _Khmer, _Lao, _Latin, _Lepcha, _Limbu, _Linear_B, _Lisu, _Lycian, _Lydian, _Malayalam, _Mandaic, _Meetei_Mayek, _Meroitic_Cursive, _Meroitic_Hieroglyphs, _Miao, _Mongolian, _Myanmar, _New_Tai_Lue, _Nko, _Ogham, _Ol_Chiki, _Old_Italic, _Old_Persian, _Old_South_Arabian, _Old_Turkic, _Oriya, _Osmanya, _Phags_Pa, _Phoenician, _Rejang, _Runic, _Samaritan, _Saurashtra, _Sharada, _Shavian, _Sinhala, _Sora_Sompeng, _Sundanese, _Syloti_Nagri, _Syriac, _Tagalog, _Tagbanwa, _Tai_Le, _Tai_Tham, _Tai_Viet, _Takri, _Tamil, _Telugu, _Thaana, _Thai, _Tibetan, _Tifinagh, _Ugaritic, _Vai, _Yi, _ASCII_Hex_Digit, _Bidi_Control, _Dash, _Deprecated, _Diacritic, _Extender, _Hex_Digit, _Hyphen, _IDS_Binary_Operator, _IDS_Trinary_Operator, _Ideographic, _Join_Control, _Logical_Order_Exception, _Noncharacter_Code_Point, _Other_Alphabetic, _Other_Default_Ignorable_Code_Point, _Other_Grapheme_Extend, _Other_ID_Continue, _Other_ID_Start, _Other_Lowercase, _Other_Math, _Other_Uppercase, _Pattern_Syntax, _Pattern_White_Space, _Quotation_Mark, _Radical, _STerm, _Soft_Dotted, _Terminal_Punctuation, _Unified_Ideograph, _Variation_Selector, _White_Space, _CaseRanges, properties, caseOrbit, foldCommon, foldGreek, foldInherited, foldL, foldLl, foldLt, foldLu, foldM, foldMn;
 	var IsDigit = go$pkg.IsDigit = function(r) {
 		if (r <= 255) {
 			return 48 <= r && r <= 57;
@@ -6486,7 +6486,7 @@ go$packages["bytes"] = (function() {
 })();
 go$packages["math"] = (function() {
 	var go$pkg = {};
-	var p0S2, q0S2, p1R8, p1S8, p1S2, q1R8, q1R2, _lgamT, pow10tab, _cos, _tanQ, tanhP, _gamQ, _gamS, p0S8, p0R2, p1R2, q1S5, q1S3, _lgamV, p0R3, p1R5, p1R3, p1S3, q1S8, _lgamA, _sin, q0S3, q1S2, _lgamR, _lgamW, q0R5, q1R5, _lgamS, p0R8, p0S5, q0S8, p1S5, q1R3, _tanP, p0R5, p0S3, _lgamU, tanhQ, _gamP, q0R8, q0S5, q0R3, q0R2;
+	var _gamP, _gamQ, _gamS, p0R8, p0S8, p0R5, p0S5, p0R3, p0S3, p0R2, p0S2, q0R8, q0S8, q0R5, q0S5, q0R3, q0S3, q0R2, q0S2, p1R8, p1S8, p1R5, p1S5, p1R3, p1S3, p1R2, p1S2, q1R8, q1S8, q1R5, q1S5, q1R3, q1S3, q1R2, q1S2, _lgamA, _lgamR, _lgamS, _lgamT, _lgamU, _lgamV, _lgamW, pow10tab, _sin, _cos, _tanP, _tanQ, tanhP, tanhQ;
 	var Abs = go$pkg.Abs = Math.abs;
 	var abs = function(x) {
 		if (x < 0) {
@@ -9252,7 +9252,7 @@ go$packages["syscall"] = (function() {
 	BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
 	BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
 	Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-	var envLock, envs, signals, envOnce, zeroSysProcAttr, _zero, mapper, ioSync, env, errors, zeroProcAttr;
+	var envOnce, envLock, env, envs, zeroProcAttr, zeroSysProcAttr, _zero, mapper, ioSync, errors, signals;
 	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
@@ -12657,18 +12657,18 @@ go$packages["syscall"] = (function() {
 		return [sec, usec, err];
 	};
 	go$pkg.init = function() {
-		zeroProcAttr = new ProcAttr.Ptr();
-		envLock = new sync.RWMutex.Ptr();
-		envs = (go$sliceType(Go$String)).nil;
 		envOnce = new sync.Once.Ptr();
+		envLock = new sync.RWMutex.Ptr();
+		env = false;
+		envs = (go$sliceType(Go$String)).nil;
+		go$pkg.ForkLock = new sync.RWMutex.Ptr();
+		zeroProcAttr = new ProcAttr.Ptr();
 		zeroSysProcAttr = new SysProcAttr.Ptr();
 		_zero = 0;
 		go$pkg.SocketDisableIPv6 = false;
 		ioSync = new Go$Int64(0, 0);
-		env = false;
-		go$pkg.ForkLock = new sync.RWMutex.Ptr();
 
-			if (go$packages["runtime"].GOOS === "windows") {
+			if (go$pkg.Syscall15 !== undefined) { // windows
 				Syscall = Syscall6 = Syscall9 = Syscall12 = Syscall15 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.Syscall9 = go$pkg.Syscall12 = go$pkg.Syscall15 = loadlibrary = getprocaddress = function() { throw "Syscalls not available." };
 				getStdHandle = GetCommandLine = go$pkg.GetCommandLine = function() {};
 				CommandLineToArgv = go$pkg.CommandLineToArgv = function() { return [null, {}]; };
@@ -12818,7 +12818,7 @@ go$packages["time"] = (function() {
 	zoneTrans.init([["when", "time", Go$Int64, ""], ["index", "time", Go$Uint8, ""], ["isstd", "time", Go$Bool, ""], ["isutc", "time", Go$Bool, ""]]);
 	data.init([["p", "time", (go$sliceType(Go$Uint8)), ""], ["error", "time", Go$Bool, ""]]);
 	(go$ptrType(data)).methods = [["big4", "time", [], [Go$Uint32, Go$Bool], false], ["byte", "time", [], [Go$Uint8, Go$Bool], false], ["read", "time", [Go$Int], [(go$sliceType(Go$Uint8))], false]];
-	var days, localLoc, std0x, shortMonthNames, errLeadingInt, unitMap, daysBefore, zoneDirs, shortDayNames, longMonthNames, atoiError, months, longDayNames, errBad, utcLoc, localOnce, zoneinfo, badData, origZoneDirs;
+	var std0x, longDayNames, shortDayNames, shortMonthNames, longMonthNames, atoiError, errBad, errLeadingInt, unitMap, months, days, daysBefore, utcLoc, localLoc, localOnce, zoneinfo, badData, zoneDirs, origZoneDirs;
 	var startsWithLowerCase = function(str) {
 		var c;
 		if (str.length === 0) {
@@ -16661,7 +16661,7 @@ go$packages["os"] = (function() {
 		go$pkg.Args = (go$sliceType(Go$String)).nil;
 
 			go$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);
-			if (go$packages["runtime"].GOOS === "windows") {
+			if (go$packages["syscall"].Syscall15 !== undefined) { // windows
 				NewFile = go$pkg.NewFile = function() { return new File.Ptr(); };
 			}
 				go$pkg.ErrInvalid = errors.New("invalid argument");
@@ -16745,7 +16745,7 @@ go$packages["strconv"] = (function() {
 	(go$ptrType(extFloat)).methods = [["AssignComputeBounds", "", [Go$Uint64, Go$Int, Go$Bool, (go$ptrType(floatInfo))], [extFloat, extFloat], false], ["AssignDecimal", "", [Go$Uint64, Go$Int, Go$Bool, Go$Bool, (go$ptrType(floatInfo))], [Go$Bool], false], ["FixedDecimal", "", [(go$ptrType(decimalSlice)), Go$Int], [Go$Bool], false], ["Multiply", "", [extFloat], [], false], ["Normalize", "", [], [Go$Uint], false], ["ShortestDecimal", "", [(go$ptrType(decimalSlice)), (go$ptrType(extFloat)), (go$ptrType(extFloat))], [Go$Bool], false], ["floatBits", "strconv", [(go$ptrType(floatInfo))], [Go$Uint64, Go$Bool], false], ["frexp10", "strconv", [], [Go$Int, Go$Int], false]];
 	floatInfo.init([["mantbits", "strconv", Go$Uint, ""], ["expbits", "strconv", Go$Uint, ""], ["bias", "strconv", Go$Int, ""]]);
 	decimalSlice.init([["d", "strconv", (go$sliceType(Go$Uint8)), ""], ["nd", "strconv", Go$Int, ""], ["dp", "strconv", Go$Int, ""], ["neg", "strconv", Go$Bool, ""]]);
-	var optimize, powtab, float64pow10, powersOfTen, isPrint32, leftcheats, smallPowersOfTen, uint64pow10, isNotPrint16, isPrint16, float32pow10, float32info, float64info, isNotPrint32, shifts;
+	var optimize, powtab, float64pow10, float32pow10, leftcheats, smallPowersOfTen, powersOfTen, uint64pow10, float32info, float64info, isPrint16, isNotPrint16, isPrint32, isNotPrint32, shifts;
 	var ParseBool = go$pkg.ParseBool = function(str) {
 		var value, err, _ref, _tuple, _tuple$1, _tuple$2;
 		value = false;
@@ -23187,7 +23187,7 @@ go$packages["fmt"] = (function() {
 	ssave.init([["validSave", "fmt", Go$Bool, ""], ["nlIsEnd", "fmt", Go$Bool, ""], ["nlIsSpace", "fmt", Go$Bool, ""], ["argLimit", "fmt", Go$Int, ""], ["limit", "fmt", Go$Int, ""], ["maxWid", "fmt", Go$Int, ""]]);
 	readRune.init([["reader", "fmt", io.Reader, ""], ["buf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["pending", "fmt", Go$Int, ""], ["pendBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""]]);
 	(go$ptrType(readRune)).methods = [["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["readByte", "fmt", [], [Go$Uint8, go$error], false], ["unread", "fmt", [(go$sliceType(Go$Uint8))], [], false]];
-	var trueBytes, falseBytes, missingBytes, panicBytes, noVerbBytes, space, boolError, padZeroBytes, padSpaceBytes, commaSpaceBytes, nilBytes, mapBytes, intBits, ssFree, percentBangBytes, badIndexBytes, irparenBytes, bytesBytes, ppFree, complexError, nilAngleBytes, nilParenBytes, extraBytes, badWidthBytes, badPrecBytes, uintptrBits;
+	var padZeroBytes, padSpaceBytes, trueBytes, falseBytes, commaSpaceBytes, nilAngleBytes, nilParenBytes, nilBytes, mapBytes, percentBangBytes, missingBytes, badIndexBytes, panicBytes, extraBytes, irparenBytes, bytesBytes, badWidthBytes, badPrecBytes, noVerbBytes, ppFree, intBits, uintptrBits, space, ssFree, complexError, boolError;
 	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;
@@ -29973,7 +29973,7 @@ go$packages["math/big"] = (function() {
 	divisor.init([["bbb", "math/big", nat, ""], ["nbits", "math/big", Go$Int, ""], ["ndigits", "math/big", Go$Int, ""]]);
 	Rat.init([["a", "math/big", Int, ""], ["b", "math/big", Int, ""]]);
 	(go$ptrType(Rat)).methods = [["Abs", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Add", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Cmp", "", [(go$ptrType(Rat))], [Go$Int], false], ["Denom", "", [], [(go$ptrType(Int))], false], ["Float64", "", [], [Go$Float64, Go$Bool], false], ["FloatString", "", [Go$Int], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Inv", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["IsInt", "", [], [Go$Bool], false], ["Mul", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Neg", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Num", "", [], [(go$ptrType(Int))], false], ["Quo", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["RatString", "", [], [Go$String], false], ["Scan", "", [fmt.ScanState, Go$Int32], [go$error], false], ["Set", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["SetFloat64", "", [Go$Float64], [(go$ptrType(Rat))], false], ["SetFrac", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetFrac64", "", [Go$Int64, Go$Int64], [(go$ptrType(Rat))], false], ["SetInt", "", [(go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetInt64", "", [Go$Int64], [(go$ptrType(Rat))], false], ["SetString", "", [Go$String], [(go$ptrType(Rat)), Go$Bool], false], ["Sign", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["norm", "math/big", [], [(go$ptrType(Rat))], false]];
-	var intOne, natOne, natTen, karatsubaThreshold, leafSize, deBruijn32Lookup, deBruijn64Lookup, natTwo, cacheBase10;
+	var intOne, natOne, natTwo, natTen, karatsubaThreshold, leafSize, cacheBase10, deBruijn32Lookup, deBruijn64Lookup;
 	var addWW_g = function(x, y, c) {
 		var z1, z0, yc;
 		z1 = 0;
@@ -43319,7 +43319,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 	byUniqueMethodName.init((go$ptrType(Func)));
 	byUniqueMethodName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byUniqueMethodName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	var basicSizes, stdSizes, aliases, unaryOpPredicates, universeIota, universeByte, universeRune, predeclaredFuncs, binaryOpPredicates, emptyMethodSet, operandModeString, predeclaredConsts;
+	var unaryOpPredicates, binaryOpPredicates, emptyMethodSet, operandModeString, basicSizes, stdSizes, universeIota, universeByte, universeRune, aliases, predeclaredConsts, predeclaredFuncs;
 	var Check = go$pkg.Check = function(path$1, fset, files) {
 		var conf, _tuple, pkg, err;
 		conf = new Config.Ptr();
@@ -51213,14 +51213,14 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 	};
 	go$pkg.init = function() {
+		go$pkg.DefaultImport = go$throwNilPointerError;
+		emptyMethodSet = new MethodSet.Ptr();
+		go$pkg.GcCompatibilityMode = false;
 		go$pkg.Universe = (go$ptrType(Scope)).nil;
+		go$pkg.Unsafe = (go$ptrType(Package)).nil;
 		universeIota = (go$ptrType(Const)).nil;
 		universeByte = (go$ptrType(Basic)).nil;
 		universeRune = (go$ptrType(Basic)).nil;
-		emptyMethodSet = new MethodSet.Ptr();
-		go$pkg.Unsafe = (go$ptrType(Package)).nil;
-		go$pkg.DefaultImport = go$throwNilPointerError;
-		go$pkg.GcCompatibilityMode = false;
 		var _map, _key, _map$1, _key$1, x, x$1, x$2, x$3, x$4;
 		unaryOpPredicates = (_map = new Go$Map(), _key = 12, _map[_key] = { k: _key, v: isNumeric }, _key = 13, _map[_key] = { k: _key, v: isNumeric }, _key = 19, _map[_key] = { k: _key, v: isInteger }, _key = 43, _map[_key] = { k: _key, v: isBoolean }, _map);
 		binaryOpPredicates = (_map$1 = new Go$Map(), _key$1 = 12, _map$1[_key$1] = { k: _key$1, v: (function(typ) {
@@ -51369,7 +51369,7 @@ go$packages["regexp/syntax"] = (function() {
 	(go$ptrType(Inst)).methods = [["MatchEmptyWidth", "", [Go$Int32, Go$Int32], [Go$Bool], false], ["MatchRune", "", [Go$Int32], [Go$Bool], false], ["String", "", [], [Go$String], false], ["op", "regexp/syntax", [], [InstOp], false]];
 	Regexp.init([["Op", "", Op, ""], ["Flags", "", Flags, ""], ["Sub", "", (go$sliceType((go$ptrType(Regexp)))), ""], ["Sub0", "", (go$arrayType((go$ptrType(Regexp)), 1)), ""], ["Rune", "", (go$sliceType(Go$Int32)), ""], ["Rune0", "", (go$arrayType(Go$Int32, 2)), ""], ["Min", "", Go$Int, ""], ["Max", "", Go$Int, ""], ["Cap", "", Go$Int, ""], ["Name", "", Go$String, ""]]);
 	(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
-	var anyRune, code7, code8, code11, code15, code16, posixGroup, code2, code3, code9, code14, code17, anyRuneNotNL, anyTable, perlGroup, code4, code5, code10, code13, code1, code6, code12;
+	var anyRuneNotNL, anyRune, anyTable, code1, code2, code3, perlGroup, code4, code5, code6, code7, code8, code9, code10, code11, code12, code13, code14, code15, code16, code17, posixGroup;
 	patchList.prototype.next = function(p) {
 		var l, _slice, _index, i;
 		l = this.go$val;
@@ -58380,7 +58380,7 @@ go$packages["text/template"] = (function() {
 	Template.init([["name", "text/template", Go$String, ""], ["", "", (go$ptrType(parse.Tree)), ""], ["", "text/template", (go$ptrType(common)), ""], ["leftDelim", "text/template", Go$String, ""], ["rightDelim", "text/template", Go$String, ""]]);
 	Template.methods = [["Copy", "", [], [(go$ptrType(parse.Tree))], false], ["ErrorContext", "", [parse.Node], [Go$String, Go$String], false], ["action", "text/template/parse", [], [parse.Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [parse.item], [], false], ["backup3", "text/template/parse", [parse.item, parse.item], [], false], ["command", "text/template/parse", [], [(go$ptrType(parse.CommandNode))], false], ["elseControl", "text/template/parse", [], [parse.Node], false], ["endControl", "text/template/parse", [], [parse.Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [parse.itemType, Go$String], [parse.item], false], ["expectOneOf", "text/template/parse", [parse.itemType, parse.itemType, Go$String], [parse.item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [parse.Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(parse.ListNode)), parse.Node], false], ["next", "text/template/parse", [], [parse.item], false], ["nextNonSpace", "text/template/parse", [], [parse.item], false], ["operand", "text/template/parse", [], [parse.Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [parse.Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [parse.Pos, Go$Int, (go$ptrType(parse.PipeNode)), (go$ptrType(parse.ListNode)), (go$ptrType(parse.ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["peek", "text/template/parse", [], [parse.item], false], ["peekNonSpace", "text/template/parse", [], [parse.item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(parse.PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [parse.Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(parse.lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [parse.Node], false], ["term", "text/template/parse", [], [parse.Node], false], ["textOrAction", "text/template/parse", [], [parse.Node], false], ["unexpected", "text/template/parse", [parse.item, Go$String], [], false], ["useVar", "text/template/parse", [parse.Pos, Go$String], [parse.Node], false], ["withControl", "text/template/parse", [], [parse.Node], false]];
 	(go$ptrType(Template)).methods = [["AddParseTree", "", [Go$String, (go$ptrType(parse.Tree))], [(go$ptrType(Template)), go$error], false], ["Clone", "", [], [(go$ptrType(Template)), go$error], false], ["Copy", "", [], [(go$ptrType(parse.Tree))], false], ["Delims", "", [Go$String, Go$String], [(go$ptrType(Template))], false], ["ErrorContext", "", [parse.Node], [Go$String, Go$String], false], ["Execute", "", [io.Writer, go$emptyInterface], [go$error], false], ["ExecuteTemplate", "", [io.Writer, Go$String, go$emptyInterface], [go$error], false], ["Funcs", "", [FuncMap], [(go$ptrType(Template))], false], ["Lookup", "", [Go$String], [(go$ptrType(Template))], false], ["Name", "", [], [Go$String], false], ["New", "", [Go$String], [(go$ptrType(Template))], false], ["Parse", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["ParseFiles", "", [(go$sliceType(Go$String))], [(go$ptrType(Template)), go$error], true], ["ParseGlob", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["Templates", "", [], [(go$sliceType((go$ptrType(Template))))], false], ["associate", "text/template", [(go$ptrType(Template)), (go$ptrType(parse.Tree))], [Go$Bool, go$error], false], ["copy", "text/template", [(go$ptrType(common))], [(go$ptrType(Template))], false], ["init", "text/template", [], [], false], ["action", "text/template/parse", [], [parse.Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [parse.item], [], false], ["backup3", "text/template/parse", [parse.item, parse.item], [], false], ["command", "text/template/parse", [], [(go$ptrType(parse.CommandNode))], false], ["elseControl", "text/template/parse", [], [parse.Node], false], ["endControl", "text/template/parse", [], [parse.Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [parse.itemType, Go$String], [parse.item], false], ["expectOneOf", "text/template/parse", [parse.itemType, parse.itemType, Go$String], [parse.item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [parse.Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(parse.ListNode)), parse.Node], false], ["next", "text/template/parse", [], [parse.item], false], ["nextNonSpace", "text/template/parse", [], [parse.item], false], ["operand", "text/template/parse", [], [parse.Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [parse.Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [parse.Pos, Go$Int, (go$ptrType(parse.PipeNode)), (go$ptrType(parse.ListNode)), (go$ptrType(parse.ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(parse.Tree))))], [], false], ["peek", "text/template/parse", [], [parse.item], false], ["peekNonSpace", "text/template/parse", [], [parse.item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(parse.PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [parse.Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(parse.lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [parse.Node], false], ["term", "text/template/parse", [], [parse.Node], false], ["textOrAction", "text/template/parse", [], [parse.Node], false], ["unexpected", "text/template/parse", [parse.item, Go$String], [], false], ["useVar", "text/template/parse", [parse.Pos, Go$String], [parse.Node], false], ["withControl", "text/template/parse", [], [parse.Node], false]];
-	var zero, errBadComparison, htmlQuot, htmlAmp, htmlLt, jsLowUni, jsApos, jsGt, builtins, errNoComparison, htmlApos, jsQuot, jsLt, fmtStringerType, errorType, builtinFuncs, errBadComparisonType, htmlGt, hex, jsBackslash;
+	var zero, errorType, fmtStringerType, builtins, builtinFuncs, errBadComparisonType, errBadComparison, errNoComparison, htmlQuot, htmlApos, htmlAmp, htmlLt, htmlGt, jsLowUni, hex, jsBackslash, jsApos, jsQuot, jsLt, jsGt;
 	state.Ptr.prototype.push = function(name, value) {
 		var s, _struct;
 		s = this;
@@ -60177,7 +60177,7 @@ go$packages["go/doc"] = (function() {
 	(go$ptrType(reader)).methods = [["cleanupTypes", "go/doc", [], [], false], ["collectEmbeddedMethods", "go/doc", [methodSet, (go$ptrType(namedType)), Go$String, Go$Bool, Go$Int, embeddedSet], [], false], ["computeMethodSets", "go/doc", [], [], false], ["fileExports", "go/doc", [(go$ptrType(ast.File))], [], false], ["filterDecl", "go/doc", [ast.Decl], [Go$Bool], false], ["filterFieldList", "go/doc", [(go$ptrType(namedType)), (go$ptrType(ast.FieldList)), (go$ptrType(ast.InterfaceType))], [Go$Bool], false], ["filterParamList", "go/doc", [(go$ptrType(ast.FieldList))], [], false], ["filterSpec", "go/doc", [ast.Spec], [Go$Bool], false], ["filterSpecList", "go/doc", [(go$sliceType(ast.Spec))], [(go$sliceType(ast.Spec))], false], ["filterType", "go/doc", [(go$ptrType(namedType)), ast.Expr], [], false], ["isVisible", "go/doc", [Go$String], [Go$Bool], false], ["lookupType", "go/doc", [Go$String], [(go$ptrType(namedType))], false], ["readDoc", "go/doc", [(go$ptrType(ast.CommentGroup))], [], false], ["readFile", "go/doc", [(go$ptrType(ast.File))], [], false], ["readFunc", "go/doc", [(go$ptrType(ast.FuncDecl))], [], false], ["readNote", "go/doc", [(go$sliceType((go$ptrType(ast.Comment))))], [], false], ["readNotes", "go/doc", [(go$sliceType((go$ptrType(ast.CommentGroup))))], [], false], ["readPackage", "go/doc", [(go$ptrType(ast.Package)), Mode], [], false], ["readType", "go/doc", [(go$ptrType(ast.GenDecl)), (go$ptrType(ast.TypeSpec))], [], false], ["readValue", "go/doc", [(go$ptrType(ast.GenDecl))], [], false], ["recordAnonymousField", "go/doc", [(go$ptrType(namedType)), ast.Expr], [Go$String], false], ["remember", "go/doc", [(go$ptrType(ast.InterfaceType))], [], false]];
 	data.init([["n", "go/doc", Go$Int, ""], ["swap", "go/doc", (go$funcType([Go$Int, Go$Int], [], false)), ""], ["less", "go/doc", (go$funcType([Go$Int, Go$Int], [Go$Bool], false)), ""]]);
 	(go$ptrType(data)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	var rdquo, html_endp, nonAlphaNumRx, outputPrefix, noteCommentRx, predeclaredConstants, ldquo, html_a, html_aq, html_enda, html_i, html_p, predeclaredTypes, html_endi, html_hq, html_endh, noteMarkerRx, predeclaredFuncs, matchRx, html_pre, html_endpre, html_h, nl, space, noteMarker;
+	var ldquo, rdquo, matchRx, html_a, html_aq, html_enda, html_i, html_endi, html_p, html_endp, html_pre, html_endpre, html_h, html_hq, html_endh, nonAlphaNumRx, nl, space, outputPrefix, noteMarker, noteMarkerRx, noteCommentRx, predeclaredTypes, predeclaredFuncs, predeclaredConstants;
 	var commentEscape = function(w, text, nice) {
 		var last, i, ch, _ref;
 		last = 0;
@@ -62279,7 +62279,7 @@ go$packages["go/build"] = (function() {
 	(go$ptrType(NoGoError)).methods = [["Error", "", [], [Go$String], false]];
 	importReader.init([["b", "go/build", (go$ptrType(bufio.Reader)), ""], ["buf", "go/build", (go$sliceType(Go$Uint8)), ""], ["peek", "go/build", Go$Uint8, ""], ["err", "go/build", go$error, ""], ["eof", "go/build", Go$Bool, ""], ["nerr", "go/build", Go$Int, ""]]);
 	(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false], ["readByte", "go/build", [], [Go$Uint8], false], ["readIdent", "go/build", [], [], false], ["readImport", "go/build", [], [], false], ["readKeyword", "go/build", [Go$String], [], false], ["readString", "go/build", [], [], false], ["syntaxError", "go/build", [], [], false]];
-	var cgoEnabled, slashslash, knownOS, errSyntax, safeBytes, knownArch, errNUL;
+	var cgoEnabled, slashslash, safeBytes, knownOS, knownArch, errSyntax, errNUL;
 	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
@@ -64955,7 +64955,7 @@ go$packages["encoding/asn1"] = (function() {
 	forkableWriter.init([["", "", (go$ptrType(bytes.Buffer)), ""], ["pre", "encoding/asn1", (go$ptrType(forkableWriter)), ""], ["post", "encoding/asn1", (go$ptrType(forkableWriter)), ""]]);
 	forkableWriter.methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false]];
 	(go$ptrType(forkableWriter)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Len", "", [], [Go$Int], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["fork", "encoding/asn1", [], [(go$ptrType(forkableWriter)), (go$ptrType(forkableWriter))], false], ["writeTo", "encoding/asn1", [io.Writer], [Go$Int, go$error], false]];
-	var enumeratedType, bigOne, bitStringType, objectIdentifierType, flagType, timeType, rawValueType, rawContentsType, bigIntType;
+	var bigOne, bitStringType, objectIdentifierType, enumeratedType, flagType, timeType, rawValueType, rawContentsType, bigIntType;
 	StructuralError.Ptr.prototype.Error = function() {
 		var _struct, e;
 		e = (_struct = this, new StructuralError.Ptr(_struct.Msg));
@@ -68171,7 +68171,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 	};
 	pkgContext.prototype.Delayed = function(f) { return this.go$val.Delayed(f); };
 	var TranslatePackage = go$pkg.TranslatePackage = function(importPath, files, fileSet, importPkg) {
-		var info, errList, previousErr, config, _tuple, typesPkg, err, _key, c, _ref, _i, _keys, _entry, name, _key$1, functions, initStmts, toplevelTypes, vars, _ref$1, _i$1, _slice, _index, file, _ref$2, _i$2, _slice$1, _index$1, decl, d, _ref$3, _type, x, x$1, _entry$1, sig, recvType, isPtr, _tuple$1, ptr, _entry$2, _ref$4, _ref$5, _i$3, _slice$2, _index$2, spec, x$2, _entry$3, o, _ref$6, _i$4, _slice$3, _index$3, spec$1, _ref$7, _i$5, _slice$4, _index$4, name$1, x$3, _entry$4, o$1, _key$2, gcData, archive, importedPaths, _ref$8, _i$6, _slice$5, _index$5, imp, _ref$9, _i$7, _slice$6, _index$6, impPath, _tuple$2, impOutput, err$1;
+		var info, errList, previousErr, config, _tuple, typesPkg, err, _key, c, _ref, _i, _keys, _entry, name, _key$1, functions, initStmts, toplevelTypes, vars, _ref$1, _i$1, _slice, _index, file, _ref$2, _i$2, _slice$1, _index$1, decl, d, _ref$3, _type, x, x$1, _entry$1, sig, recvType, isPtr, _tuple$1, ptr, _entry$2, _ref$4, _ref$5, _i$3, _slice$2, _index$2, spec, x$2, _entry$3, o, _ref$6, _i$4, _slice$3, _index$3, spec$1, _ref$7, _i$5, _slice$4, _index$4, name$1, x$3, _entry$4, o$1, gcData, archive, importedPaths, _ref$8, _i$6, _slice$5, _index$5, imp, _ref$9, _i$7, _slice$6, _index$6, impPath, _tuple$2, impOutput, err$1;
 		info = new types.Info.Ptr(new Go$Map(), new Go$Map(), new Go$Map(), new Go$Map(), false, (go$sliceType((go$ptrType(types.Initializer)))).nil);
 		errList = ErrorList.nil;
 		previousErr = null;
@@ -68208,7 +68208,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		functions = (go$sliceType((go$ptrType(ast.FuncDecl)))).nil;
 		initStmts = (go$sliceType(ast.Stmt)).nil;
 		toplevelTypes = (go$sliceType((go$ptrType(types.TypeName)))).nil;
-		vars = new Go$Map();
+		vars = (go$sliceType((go$ptrType(types.Var)))).nil;
 		_ref$1 = files;
 		_i$1 = 0;
 		for (; _i$1 < _ref$1.length; _i$1 += 1) {
@@ -68263,7 +68263,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 								name$1 = (_slice$4 = _ref$7, _index$4 = _i$5, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
 								if (!isBlank(name$1)) {
 									o$1 = (x$3 = (_entry$4 = c.info.Objects[name$1.go$key()], _entry$4 !== undefined ? _entry$4.v : null), (x$3 !== null && x$3.constructor === (go$ptrType(types.Var)) ? x$3.go$val : go$typeAssertionFailed(x$3, (go$ptrType(types.Var)))));
-									_key$2 = o$1, (vars || go$throwRuntimeError("assignment to entry in nil map"))[_key$2.go$key()] = { k: _key$2, v: true };
+									vars = go$append(vars, o$1);
 									c.objectName(o$1);
 								}
 							}
@@ -68276,13 +68276,13 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		gcexporter.Write(typesPkg, gcData, sizes32);
 		archive = new Archive.Ptr(importPath, gcData.Bytes(), new (go$sliceType(Go$String))(["runtime"]), (go$sliceType(Import)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Decl)).nil, (go$sliceType(Function)).nil);
 		c.Indent((function() {
-			var _ref$8, _i$6, _slice$5, _index$5, importedPkg, varName, _key$3, _ref$9, _i$7, _keys$1, _entry$5, o$2, d$1, _struct, _entry$6, natives, _ref$10, _i$8, native$1, _slice$6, _index$6, fun, funName, x$4, x$5, _entry$7, recvType$1, _tuple$2, ptr$1, isPointer, _tuple$3, namedRecvType, x$6, _entry$8, f, _struct$1, initCode;
+			var _ref$8, _i$6, _slice$5, _index$5, importedPkg, varName, _key$2, _ref$9, _i$7, _slice$6, _index$6, o$2, d$1, _struct, _entry$5, natives, _ref$10, _i$8, native$1, _slice$7, _index$7, fun, funName, x$4, x$5, _entry$6, recvType$1, _tuple$2, ptr$1, isPointer, _tuple$3, namedRecvType, x$6, _entry$7, f, _struct$1, initCode;
 			_ref$8 = typesPkg.Imports();
 			_i$6 = 0;
 			for (; _i$6 < _ref$8.length; _i$6 += 1) {
 				importedPkg = (_slice$5 = _ref$8, _index$5 = _i$6, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 				varName = c.newVariable(importedPkg.Name());
-				_key$3 = importedPkg.Path(), (c.pkgVars || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: varName };
+				_key$2 = importedPkg.Path(), (c.pkgVars || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: varName };
 				archive.Imports = go$append(archive.Imports, new Import.Ptr(importedPkg.Path(), varName));
 			}
 			archive.Types = c.CatchOutput((function() {
@@ -68305,25 +68305,23 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 			}));
 			_ref$9 = vars;
 			_i$7 = 0;
-			_keys$1 = go$keys(_ref$9);
-			for (; _i$7 < _keys$1.length; _i$7 += 1) {
-				_entry$5 = _ref$9[_keys$1[_i$7]];
-				o$2 = _entry$5.k;
+			for (; _i$7 < _ref$9.length; _i$7 += 1) {
+				o$2 = (_slice$6 = _ref$9, _index$6 = _i$7, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
 				d$1 = new Decl.Ptr();
 				if (!o$2.object.Exported()) {
 					d$1.Var = c.objectName(o$2);
 				}
 				archive.Variables = go$append(archive.Variables, (_struct = d$1, new Decl.Ptr(_struct.Var)));
 			}
-			natives = (_entry$6 = pkgNatives[importPath], _entry$6 !== undefined ? _entry$6.v : false);
+			natives = (_entry$5 = pkgNatives[importPath], _entry$5 !== undefined ? _entry$5.v : false);
 			_ref$10 = functions;
 			_i$8 = 0;
 			for (; _i$8 < _ref$10.length; _i$8 += 1) {
 				native$1 = [undefined];
-				fun = (_slice$6 = _ref$10, _index$6 = _i$8, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+				fun = (_slice$7 = _ref$10, _index$7 = _i$8, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
 				funName = fun.Name.Name;
 				if (!(fun.Recv === (go$ptrType(ast.FieldList)).nil)) {
-					recvType$1 = (x$4 = (x$5 = (_entry$7 = c.info.Objects[fun.Name.go$key()], _entry$7 !== undefined ? _entry$7.v : null), (x$5 !== null && x$5.constructor === (go$ptrType(types.Func)) ? x$5.go$val : go$typeAssertionFailed(x$5, (go$ptrType(types.Func))))).object.Type(), (x$4 !== null && x$4.constructor === (go$ptrType(types.Signature)) ? x$4.go$val : go$typeAssertionFailed(x$4, (go$ptrType(types.Signature))))).Recv().object.Type();
+					recvType$1 = (x$4 = (x$5 = (_entry$6 = c.info.Objects[fun.Name.go$key()], _entry$6 !== undefined ? _entry$6.v : null), (x$5 !== null && x$5.constructor === (go$ptrType(types.Func)) ? x$5.go$val : go$typeAssertionFailed(x$5, (go$ptrType(types.Func))))).object.Type(), (x$4 !== null && x$4.constructor === (go$ptrType(types.Signature)) ? x$4.go$val : go$typeAssertionFailed(x$4, (go$ptrType(types.Signature))))).Recv().object.Type();
 					_tuple$2 = (recvType$1 !== null && recvType$1.constructor === (go$ptrType(types.Pointer)) ? [recvType$1.go$val, true] : [(go$ptrType(types.Pointer)).nil, false]), ptr$1 = _tuple$2[0], isPointer = _tuple$2[1];
 					_tuple$3 = (recvType$1 !== null && recvType$1.constructor === (go$ptrType(types.Named)) ? [recvType$1.go$val, true] : [(go$ptrType(types.Named)).nil, false]), namedRecvType = _tuple$3[0];
 					if (isPointer) {
@@ -68331,7 +68329,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 					}
 					funName = namedRecvType.Obj().object.Name() + "." + funName;
 				}
-				native$1[0] = (_entry$8 = natives[funName], _entry$8 !== undefined ? _entry$8.v : "");
+				native$1[0] = (_entry$7 = natives[funName], _entry$7 !== undefined ? _entry$7.v : "");
 				delete natives[funName];
 				f = new Function.Ptr(fun.Name.Name, c.CatchOutput((function(native$1) { return function() {
 					c.translateFunction(fun, native$1[0]);
@@ -68339,19 +68337,19 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 				archive.Functions = go$append(archive.Functions, (_struct$1 = f, new Function.Ptr(_struct$1.Name, _struct$1.Code)));
 			}
 			initCode = c.CatchOutput((function() {
-				var _entry$9, initOrder, findInit, i, j, _slice$7, _index$7, _slice$8, _index$8, _tuple$4, _slice$9, _index$9, _slice$10, _index$10;
-				c.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes((_entry$9 = natives["toplevel"], _entry$9 !== undefined ? _entry$9.v : ""))));
+				var _entry$8, initOrder, findInit, i, j, _slice$8, _index$8, _slice$9, _index$9, _tuple$4, _slice$10, _index$10, _slice$11, _index$11;
+				c.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes((_entry$8 = natives["toplevel"], _entry$8 !== undefined ? _entry$8.v : ""))));
 				delete natives["toplevel"];
 				initOrder = c.info.InitOrder;
 				if (importPath === "math/rand") {
 					findInit = (function(name$2) {
-						var _ref$11, _i$9, _slice$7, _index$7, init, i, _slice$8, _index$8;
+						var _ref$11, _i$9, _slice$8, _index$8, init, i, _slice$9, _index$9;
 						_ref$11 = initOrder;
 						_i$9 = 0;
 						for (; _i$9 < _ref$11.length; _i$9 += 1) {
-							init = (_slice$7 = _ref$11, _index$7 = _i$9, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+							init = (_slice$8 = _ref$11, _index$8 = _i$9, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
 							i = _i$9;
-							if ((_slice$8 = init.Lhs, _index$8 = 0, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")).object.Name() === name$2) {
+							if ((_slice$9 = init.Lhs, _index$9 = 0, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")).object.Name() === name$2) {
 								return i;
 							}
 						}
@@ -68360,40 +68358,41 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 					i = findInit("rng_cooked");
 					j = findInit("globalRand");
 					if (i > j) {
-						_tuple$4 = [(_slice$7 = initOrder, _index$7 = j, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), (_slice$8 = initOrder, _index$8 = i, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"))], _slice$9 = initOrder, _index$9 = i, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = _tuple$4[0]) : go$throwRuntimeError("index out of range"), _slice$10 = initOrder, _index$10 = j, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = _tuple$4[1]) : go$throwRuntimeError("index out of range");
+						_tuple$4 = [(_slice$8 = initOrder, _index$8 = j, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")), (_slice$9 = initOrder, _index$9 = i, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range"))], _slice$10 = initOrder, _index$10 = i, (_index$10 >= 0 && _index$10 < _slice$10.length) ? (_slice$10.array[_slice$10.offset + _index$10] = _tuple$4[0]) : go$throwRuntimeError("index out of range"), _slice$11 = initOrder, _index$11 = j, (_index$11 >= 0 && _index$11 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$11] = _tuple$4[1]) : go$throwRuntimeError("index out of range");
 					}
 				}
 				c.Printf("go$pkg.init = function() {", new (go$sliceType(go$emptyInterface))([]));
 				c.Indent((function() {
-					var initVarStmts, _ref$11, _i$9, _slice$11, _index$11, init, lhs, _ref$12, _i$10, _slice$12, _index$12, o$3, i$1, ident, _key$4, _key$5, _slice$13, _index$13, _ref$13, _i$11, _keys$2, _entry$10, o$4, _entry$11;
+					var initVarStmts, varsWithInit, _ref$11, _i$9, _slice$12, _index$12, init, lhs, _ref$12, _i$10, _slice$13, _index$13, o$3, i$1, ident, _key$3, _key$4, _slice$14, _index$14, _key$5, _ref$13, _i$11, _slice$15, _index$15, o$4, ok, _tuple$5, _entry$9, _entry$10;
 					initVarStmts = (go$sliceType(ast.Stmt)).nil;
+					varsWithInit = new Go$Map();
 					_ref$11 = initOrder;
 					_i$9 = 0;
 					for (; _i$9 < _ref$11.length; _i$9 += 1) {
-						init = (_slice$11 = _ref$11, _index$11 = _i$9, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range"));
+						init = (_slice$12 = _ref$11, _index$12 = _i$9, (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range"));
 						lhs = (go$sliceType(ast.Expr)).make(init.Lhs.length, 0, function() { return null; });
 						_ref$12 = init.Lhs;
 						_i$10 = 0;
 						for (; _i$10 < _ref$12.length; _i$10 += 1) {
-							o$3 = (_slice$12 = _ref$12, _index$12 = _i$10, (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range"));
+							o$3 = (_slice$13 = _ref$12, _index$13 = _i$10, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range"));
 							i$1 = _i$10;
 							ident = ast.NewIdent(o$3.object.Name());
-							_key$4 = ident, (c.info.Types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$4 || go$interfaceNil).go$key()] = { k: _key$4, v: new types.TypeAndValue.Ptr(o$3.object.Type(), null) };
-							_key$5 = ident, (c.info.Objects || go$throwRuntimeError("assignment to entry in nil map"))[_key$5.go$key()] = { k: _key$5, v: o$3 };
-							_slice$13 = lhs, _index$13 = i$1, (_index$13 >= 0 && _index$13 < _slice$13.length) ? (_slice$13.array[_slice$13.offset + _index$13] = ident) : go$throwRuntimeError("index out of range");
-							delete vars[o$3.go$key()];
+							_key$3 = ident, (c.info.Types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$3 || go$interfaceNil).go$key()] = { k: _key$3, v: new types.TypeAndValue.Ptr(o$3.object.Type(), null) };
+							_key$4 = ident, (c.info.Objects || go$throwRuntimeError("assignment to entry in nil map"))[_key$4.go$key()] = { k: _key$4, v: o$3 };
+							_slice$14 = lhs, _index$14 = i$1, (_index$14 >= 0 && _index$14 < _slice$14.length) ? (_slice$14.array[_slice$14.offset + _index$14] = ident) : go$throwRuntimeError("index out of range");
+							_key$5 = o$3, (varsWithInit || go$throwRuntimeError("assignment to entry in nil map"))[_key$5.go$key()] = { k: _key$5, v: true };
 						}
 						initVarStmts = go$append(initVarStmts, new ast.AssignStmt.Ptr(lhs, 0, 47, new (go$sliceType(ast.Expr))([init.Rhs])));
 					}
 					_ref$13 = vars;
 					_i$11 = 0;
-					_keys$2 = go$keys(_ref$13);
-					for (; _i$11 < _keys$2.length; _i$11 += 1) {
-						_entry$10 = _ref$13[_keys$2[_i$11]];
-						o$4 = _entry$10.k;
-						c.Printf("%s = %s;", new (go$sliceType(go$emptyInterface))([new Go$String(c.objectName(o$4)), new Go$String(c.zeroValue(o$4.object.Type()))]));
+					for (; _i$11 < _ref$13.length; _i$11 += 1) {
+						o$4 = (_slice$15 = _ref$13, _index$15 = _i$11, (_index$15 >= 0 && _index$15 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$15] : go$throwRuntimeError("index out of range"));
+						if (_tuple$5 = (_entry$9 = varsWithInit[o$4.go$key()], _entry$9 !== undefined ? [_entry$9.v, true] : [false, false]), ok = _tuple$5[1], !ok) {
+							c.Printf("%s = %s;", new (go$sliceType(go$emptyInterface))([new Go$String(c.objectName(o$4)), new Go$String(c.zeroValue(o$4.object.Type()))]));
+						}
 					}
-					c.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes((_entry$11 = natives["init"], _entry$11 !== undefined ? _entry$11.v : ""))));
+					c.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes((_entry$10 = natives["init"], _entry$10 !== undefined ? _entry$10.v : ""))));
 					delete natives["init"];
 					c.translateFunctionBody(go$appendSlice(initVarStmts, initStmts), (go$ptrType(types.Signature)).nil);
 				}));
@@ -70358,7 +70357,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		_key$8 = "io/ioutil", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$8] = { k: _key$8, v: (_map$4 = new Go$Map(), _key$7 = "toplevel", _map$4[_key$7] = { k: _key$7, v: "\n\t\t\tvar blackHoles = [];\n\t\t" }, _key$7 = "blackHole", _map$4[_key$7] = { k: _key$7, v: "function() {\n\t\t\treturn blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });\n\t\t}" }, _key$7 = "blackHolePut", _map$4[_key$7] = { k: _key$7, v: "function(p) {\n\t\t\tblackHoles.push(p);\n\t\t}" }, _map$4) };
 		_key$10 = "math", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$10] = { k: _key$10, v: (_map$5 = new Go$Map(), _key$9 = "Abs", _map$5[_key$9] = { k: _key$9, v: "Math.abs" }, _key$9 = "Acos", _map$5[_key$9] = { k: _key$9, v: "Math.acos" }, _key$9 = "Asin", _map$5[_key$9] = { k: _key$9, v: "Math.asin" }, _key$9 = "Atan", _map$5[_key$9] = { k: _key$9, v: "Math.atan" }, _key$9 = "Atan2", _map$5[_key$9] = { k: _key$9, v: "Math.atan2" }, _key$9 = "Ceil", _map$5[_key$9] = { k: _key$9, v: "Math.ceil" }, _key$9 = "Copysign", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return (x < 0 || 1/x === 1/-0) !== (y < 0 || 1/y === 1/-0) ? -x : x; }" }, _key$9 = "Cos", _map$5[_key$9] = { k: _key$9, v: "Math.cos" }, _key$9 = "Dim", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return Math.max(x - y, 0); }" }, _key$9 = "Exp", _map$5[_key$9] = { k: _key$9, v: "Math.exp" }, _key$9 = "Exp2", _map$5[_key$9] = { k: _key$9, v: "function(x) { return Math.pow(2, x); }" }, _key$9 = "Expm1", _map$5[_key$9] = { k: _key$9, v: "function(x) { return expm1(x); }" }, _key$9 = "Floor", _map$5[_key$9] = { k: _key$9, v: "Math.floor" }, _key$9 = "Frexp", _map$5[_key$9] = { k: _key$9, v: "function(f) { return frexp(f); }" }, _key$9 = "Hypot", _map$5[_key$9] = { k: _key$9, v: "function(p, q) { return hypot(p, q); }" }, _key$9 = "Inf", _map$5[_key$9] = { k: _key$9, v: "function(sign) { return sign >= 0 ? 1/0 : -1/0; }" }, _key$9 = "IsInf", _map$5[_key$9] = { k: _key$9, v: "function(f, sign) { if (f === -1/0) { return sign <= 0; } if (f === 1/0) { return sign >= 0; } return false; }" }, _key$9 = "IsNaN", _map$5[_key$9] = { k: _key$9, v: "function(f) { return f !== f; }" }, _key$9 = "Ldexp", _map$5[_key$9] = { k: _key$9, v: "function(frac, exp) {\n\t\t\tif (frac === 0) { return frac; }\n\t\t\tif (exp >= 1024) { return frac * Math.pow(2, 1023) * Math.pow(2, exp - 1023); }\n\t\t\tif (exp <= -1024) { return frac * Math.pow(2, -1023) * Math.pow(2, exp + 1023); }\n\t\t\treturn frac * Math.pow(2, exp);\n\t\t}" }, _key$9 = "Log", _map$5[_key$9] = { k: _key$9, v: "Math.log" }, _key$9 = "Log10", _map$5[_key$9] = { k: _key$9, v: "function(x) { return log10(x); }" }, _key$9 = "Log1p", _map$5[_key$9] = { k: _key$9, v: "function(x) { return log1p(x); }" }, _key$9 = "Log2", _map$5[_key$9] = { k: _key$9, v: "function(x) { return log2(x); }" }, _key$9 = "Max", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return (x === 1/0 || y === 1/0) ? 1/0 : Math.max(x, y); }" }, _key$9 = "Min", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return (x === -1/0 || y === -1/0) ? -1/0 : Math.min(x, y); }" }, _key$9 = "Mod", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return x % y; }" }, _key$9 = "Modf", _map$5[_key$9] = { k: _key$9, v: "function(f) { if (f === -1/0 || f === 1/0) { return [f, 0/0]; } var frac = f % 1; return [f - frac, frac]; }" }, _key$9 = "NaN", _map$5[_key$9] = { k: _key$9, v: "function() { return 0/0; }" }, _key$9 = "Pow", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return ((x === 1) || (x === -1 && (y === -1/0 || y === 1/0))) ? 1 : Math.pow(x, y); }" }, _key$9 = "Remainder", _map$5[_key$9] = { k: _key$9, v: "function(x, y) { return remainder(x, y); }" }, _key$9 = "Signbit", _map$5[_key$9] = { k: _key$9, v: "function(x) { return x < 0 || 1/x === 1/-0; }" }, _key$9 = "Sin", _map$5[_key$9] = { k: _key$9, v: "Math.sin" }, _key$9 = "Sincos", _map$5[_key$9] = { k: _key$9, v: "function(x) { return [Math.sin(x), Math.cos(x)]; }" }, _key$9 = "Sqrt", _map$5[_key$9] = { k: _key$9, v: "Math.sqrt" }, _key$9 = "Tan", _map$5[_key$9] = { k: _key$9, v: "Math.tan" }, _key$9 = "Trunc", _map$5[_key$9] = { k: _key$9, v: "function(x) { return (x === 1/0 || x === -1/0 || x !== x || 1/x === 1/-0) ? x : x >> 0; }" }, _key$9 = "Float32bits", _map$5[_key$9] = { k: _key$9, v: "go$float32bits" }, _key$9 = "Float32frombits", _map$5[_key$9] = { k: _key$9, v: "function(b) {\n\t\t\tvar s, e, m;\n\t\t\ts = 1;\n\t\t\tif (!(((b & 2147483648) >>> 0) === 0)) {\n\t\t\t\ts = -1;\n\t\t\t}\n\t\t\te = (((((b >>> 23) >>> 0)) & 255) >>> 0);\n\t\t\tm = ((b & 8388607) >>> 0);\n\t\t\tif (e === 255) {\n\t\t\t\tif (m === 0) {\n\t\t\t\t\treturn s / 0;\n\t\t\t\t}\n\t\t\t\treturn 0/0;\n\t\t\t}\n\t\t\tif (!(e === 0)) {\n\t\t\t\tm = (m + (8388608) >>> 0);\n\t\t\t}\n\t\t\tif (e === 0) {\n\t\t\t\te = 1;\n\t\t\t}\n\t\t\treturn Ldexp(m, e - 127 - 23) * s;\n\t\t}" }, _key$9 = "Float64bits", _map$5[_key$9] = { k: _key$9, v: "function(f) {\n\t\t\tvar s, e, x, y, x$1, y$1, x$2, y$2;\n\t\t\tif (f === 0) {\n\t\t\t\tif (f === 0 && 1 / f === 1 / -0) {\n\t\t\t\t\treturn new Go$Uint64(2147483648, 0);\n\t\t\t\t}\n\t\t\t\treturn new Go$Uint64(0, 0);\n\t\t\t}\n\t\t\tif (!(f === f)) {\n\t\t\t\treturn new Go$Uint64(2146959360, 1);\n\t\t\t}\n\t\t\ts = new Go$Uint64(0, 0);\n\t\t\tif (f < 0) {\n\t\t\t\ts = new Go$Uint64(2147483648, 0);\n\t\t\t\tf = -f;\n\t\t\t}\n\t\t\te = 1075;\n\t\t\twhile (f >= 9.007199254740992e+15) {\n\t\t\t\tf = f / (2);\n\t\t\t\tif (e === 2047) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\te = (e + (1) >>> 0);\n\t\t\t}\n\t\t\twhile (f < 4.503599627370496e+15) {\n\t\t\t\te = (e - (1) >>> 0);\n\t\t\t\tif (e === 0) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tf = f * (2);\n\t\t\t}\n\t\t\treturn (x$2 = (x = s, y = go$shiftLeft64(new Go$Uint64(0, e), 52), new Go$Uint64(x.high | y.high, (x.low | y.low) >>> 0)), y$2 = ((x$1 = new Go$Uint64(0, f), y$1 = new Go$Uint64(1048576, 0), new Go$Uint64(x$1.high &~ y$1.high, (x$1.low &~ y$1.low) >>> 0))), new Go$Uint64(x$2.high | y$2.high, (x$2.low | y$2.low) >>> 0));\n\t\t}" }, _key$9 = "Float64frombits", _map$5[_key$9] = { k: _key$9, v: "function(b) {\n\t\t\tvar s, x, y, x$1, y$1, x$2, y$2, e, x$3, y$3, m, x$4, y$4, x$5, y$5, x$6, y$6, x$7, y$7, x$8, y$8;\n\t\t\ts = 1;\n\t\t\tif (!((x$1 = (x = b, y = new Go$Uint64(2147483648, 0), new Go$Uint64(x.high & y.high, (x.low & y.low) >>> 0)), y$1 = new Go$Uint64(0, 0), x$1.high === y$1.high && x$1.low === y$1.low))) {\n\t\t\t\ts = -1;\n\t\t\t}\n\t\t\te = (x$2 = (go$shiftRightUint64(b, 52)), y$2 = new Go$Uint64(0, 2047), new Go$Uint64(x$2.high & y$2.high, (x$2.low & y$2.low) >>> 0));\n\t\t\tm = (x$3 = b, y$3 = new Go$Uint64(1048575, 4294967295), new Go$Uint64(x$3.high & y$3.high, (x$3.low & y$3.low) >>> 0));\n\t\t\tif ((x$4 = e, y$4 = new Go$Uint64(0, 2047), x$4.high === y$4.high && x$4.low === y$4.low)) {\n\t\t\t\tif ((x$5 = m, y$5 = new Go$Uint64(0, 0), x$5.high === y$5.high && x$5.low === y$5.low)) {\n\t\t\t\t\treturn s / 0;\n\t\t\t\t}\n\t\t\t\treturn 0/0;\n\t\t\t}\n\t\t\tif (!((x$6 = e, y$6 = new Go$Uint64(0, 0), x$6.high === y$6.high && x$6.low === y$6.low))) {\n\t\t\t\tm = (x$7 = m, y$7 = (new Go$Uint64(1048576, 0)), new Go$Uint64(x$7.high + y$7.high, x$7.low + y$7.low));\n\t\t\t}\n\t\t\tif ((x$8 = e, y$8 = new Go$Uint64(0, 0), x$8.high === y$8.high && x$8.low === y$8.low)) {\n\t\t\t\te = new Go$Uint64(0, 1);\n\t\t\t}\n\t\t\treturn Ldexp((m.high * 4294967296 + m.low), e.low - 1023 - 52) * s;\n\t\t}" }, _map$5) };
 		_key$12 = "math/big", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$12] = { k: _key$12, v: (_map$6 = new Go$Map(), _key$11 = "mulWW", _map$6[_key$11] = { k: _key$11, v: "function(x, y) { return mulWW_g(x, y); }" }, _key$11 = "divWW", _map$6[_key$11] = { k: _key$11, v: "function(x1, x0, y) { return divWW_g(x1, x0, y); }" }, _key$11 = "addVV", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return addVV_g(z, x, y); }" }, _key$11 = "subVV", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return subVV_g(z, x, y); }" }, _key$11 = "addVW", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return addVW_g(z, x, y); }" }, _key$11 = "subVW", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return subVW_g(z, x, y); }" }, _key$11 = "shlVU", _map$6[_key$11] = { k: _key$11, v: "function(z, x, s) { return shlVU_g(z, x, s); }" }, _key$11 = "shrVU", _map$6[_key$11] = { k: _key$11, v: "function(z, x, s) { return shrVU_g(z, x, s); }" }, _key$11 = "mulAddVWW", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y, r) { return mulAddVWW_g(z, x, y, r); }" }, _key$11 = "addMulVVW", _map$6[_key$11] = { k: _key$11, v: "function(z, x, y) { return addMulVVW_g(z, x, y); }" }, _key$11 = "divWVW", _map$6[_key$11] = { k: _key$11, v: "function(z, xn, x, y) { return divWVW_g(z, xn, x, y); }" }, _key$11 = "bitLen", _map$6[_key$11] = { k: _key$11, v: "function(x) { return bitLen_g(x); }" }, _map$6) };
-		_key$14 = "os", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$14] = { k: _key$14, v: (_map$7 = new Go$Map(), _key$13 = "init", _map$7[_key$13] = { k: _key$13, v: "\n\t\t\tgo$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);\n\t\t\tif (go$packages[\"runtime\"].GOOS === \"windows\") {\n\t\t\t\tNewFile = go$pkg.NewFile = function() { return new File.Ptr(); };\n\t\t\t}\n\t\t" }, _map$7) };
+		_key$14 = "os", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$14] = { k: _key$14, v: (_map$7 = new Go$Map(), _key$13 = "init", _map$7[_key$13] = { k: _key$13, v: "\n\t\t\tgo$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);\n\t\t\tif (go$packages[\"syscall\"].Syscall15 !== undefined) { // windows\n\t\t\t\tNewFile = go$pkg.NewFile = function() { return new File.Ptr(); };\n\t\t\t}\n\t\t" }, _map$7) };
 		_key$16 = "runtime", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$16] = { k: _key$16, v: (_map$8 = new Go$Map(), _key$15 = "init", _map$8[_key$15] = { k: _key$15, v: "\n\t\t\tgo$throwRuntimeError = function(msg) { throw go$panic(new errorString(msg)); };\n\t\t\tsizeof_C_MStats = 3712;\n\t\t" }, _key$15 = "getgoroot", _map$8[_key$15] = { k: _key$15, v: "function() {\n\t\t\treturn (typeof process !== 'undefined') ? (process.env[\"GOROOT\"] || \"\") : \"/\";\n\t\t}" }, _key$15 = "Caller", _map$8[_key$15] = { k: _key$15, v: "function(skip) {\n\t\t\tvar line = go$getStack()[skip + 3];\n\t\t\tif (line === undefined) {\n\t\t\t\treturn [0, \"\", 0, false];\n\t\t\t}\n\t\t\tvar parts = line.substring(line.indexOf(\"(\") + 1, line.indexOf(\")\")).split(\":\");\n\t\t\treturn [0, parts[0], parseInt(parts[1]), true];\n\t\t}" }, _key$15 = "GC", _map$8[_key$15] = { k: _key$15, v: "function() {}" }, _key$15 = "GOMAXPROCS", _map$8[_key$15] = { k: _key$15, v: "function(n) {\n\t\t\tif (n > 1) {\n\t\t\t\tgo$notSupported(\"GOMAXPROCS != 1\");\n\t\t\t}\n\t\t\treturn 1;\n\t\t}" }, _key$15 = "Goexit", _map$8[_key$15] = { k: _key$15, v: "function() {\n\t\t\tvar err = new Go$Error();\n\t\t\terr.go$exit = true;\n\t\t\tthrow err;\n\t\t}" }, _key$15 = "NumCPU", _map$8[_key$15] = { k: _key$15, v: "function() { return 1; }" }, _key$15 = "ReadMemStats", _map$8[_key$15] = { k: _key$15, v: "function() {}" }, _key$15 = "SetFinalizer", _map$8[_key$15] = { k: _key$15, v: "function() {}" }, _map$8) };
 		_key$18 = "strings", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$18] = { k: _key$18, v: (_map$9 = new Go$Map(), _key$17 = "IndexByte", _map$9[_key$17] = { k: _key$17, v: "function(s, c) { return s.indexOf(String.fromCharCode(c)); }" }, _map$9) };
 		_key$20 = "sync", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$20] = { k: _key$20, v: (_map$10 = new Go$Map(), _key$19 = "copyChecker.check", _map$10[_key$19] = { k: _key$19, v: "function() {}" }, _key$19 = "runtime_Syncsemcheck", _map$10[_key$19] = { k: _key$19, v: "function() {}" }, _map$10) };
@@ -70369,7 +70368,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		atomicStore = "function(addr, val) {\n\t\taddr.go$set(val);\n\t}";
 		atomicSwap = "function(addr, newVal) {\n\t\tvar value = addr.go$get();\n\t\taddr.go$set(newVal);\n\t\treturn value;\n\t}";
 		_key$22 = "sync/atomic", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$22] = { k: _key$22, v: (_map$11 = new Go$Map(), _key$21 = "AddInt32", _map$11[_key$21] = { k: _key$21, v: atomicAdd32 }, _key$21 = "AddUint32", _map$11[_key$21] = { k: _key$21, v: atomicAdd32 }, _key$21 = "AddUintptr", _map$11[_key$21] = { k: _key$21, v: atomicAdd32 }, _key$21 = "AddInt64", _map$11[_key$21] = { k: _key$21, v: atomicAdd64 }, _key$21 = "AddUint64", _map$11[_key$21] = { k: _key$21, v: atomicAdd64 }, _key$21 = "CompareAndSwapInt32", _map$11[_key$21] = { k: _key$21, v: atomicCompareAndSwap }, _key$21 = "CompareAndSwapInt64", _map$11[_key$21] = { k: _key$21, v: atomicCompareAndSwap }, _key$21 = "CompareAndSwapPointer", _map$11[_key$21] = { k: _key$21, v: atomicCompareAndSwap }, _key$21 = "CompareAndSwapUint32", _map$11[_key$21] = { k: _key$21, v: atomicCompareAndSwap }, _key$21 = "CompareAndSwapUint64", _map$11[_key$21] = { k: _key$21, v: atomicCompareAndSwap }, _key$21 = "CompareAndSwapUintptr", _map$11[_key$21] = { k: _key$21, v: atomicCompareAndSwap }, _key$21 = "LoadInt32", _map$11[_key$21] = { k: _key$21, v: atomicLoad }, _key$21 = "LoadInt64", _map$11[_key$21] = { k: _key$21, v: atomicLoad }, _key$21 = "LoadPointer", _map$11[_key$21] = { k: _key$21, v: atomicLoad }, _key$21 = "LoadUint32", _map$11[_key$21] = { k: _key$21, v: atomicLoad }, _key$21 = "LoadUint64", _map$11[_key$21] = { k: _key$21, v: atomicLoad }, _key$21 = "LoadUintptr", _map$11[_key$21] = { k: _key$21, v: atomicLoad }, _key$21 = "StoreInt32", _map$11[_key$21] = { k: _key$21, v: atomicStore }, _key$21 = "StoreInt64", _map$11[_key$21] = { k: _key$21, v: atomicStore }, _key$21 = "StorePointer", _map$11[_key$21] = { k: _key$21, v: atomicStore }, _key$21 = "StoreUint32", _map$11[_key$21] = { k: _key$21, v: atomicStore }, _key$21 = "StoreUint64", _map$11[_key$21] = { k: _key$21, v: atomicStore }, _key$21 = "StoreUintptr", _map$11[_key$21] = { k: _key$21, v: atomicStore }, _key$21 = "SwapInt32", _map$11[_key$21] = { k: _key$21, v: atomicSwap }, _key$21 = "SwapInt64", _map$11[_key$21] = { k: _key$21, v: atomicSwap }, _key$21 = "SwapPointer", _map$11[_key$21] = { k: _key$21, v: atomicSwap }, _key$21 = "SwapUint32", _map$11[_key$21] = { k: _key$21, v: atomicSwap }, _key$21 = "SwapUint64", _map$11[_key$21] = { k: _key$21, v: atomicSwap }, _key$21 = "SwapUintptr", _map$11[_key$21] = { k: _key$21, v: atomicSwap }, _map$11) };
-		_key$24 = "syscall", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$24] = { k: _key$24, v: (_map$12 = new Go$Map(), _key$23 = "init", _map$12[_key$23] = { k: _key$23, v: "\n\t\t\tif (go$packages[\"runtime\"].GOOS === \"windows\") {\n\t\t\t\tSyscall = Syscall6 = Syscall9 = Syscall12 = Syscall15 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.Syscall9 = go$pkg.Syscall12 = go$pkg.Syscall15 = loadlibrary = getprocaddress = function() { throw \"Syscalls not available.\" };\n\t\t\t\tgetStdHandle = GetCommandLine = go$pkg.GetCommandLine = function() {};\n\t\t\t\tCommandLineToArgv = go$pkg.CommandLineToArgv = function() { return [null, {}]; };\n\t\t\t\tGetenv = go$pkg.Getenv = function(key) { return [\"\", false]; };\n\t\t\t\tGetTimeZoneInformation = go$pkg.GetTimeZoneInformation = function() { return [undefined, true]; };\n\t\t\t} else if (typeof process === \"undefined\") {\n\t\t\t\tgo$pkg.go$setSyscall = function(f) {\n\t\t\t\t\tSyscall = Syscall6 = RawSyscall = RawSyscall6 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.RawSyscall = go$pkg.RawSyscall6 = f;\n\t\t\t\t}\n\t\t\t\tgo$pkg.go$setSyscall(function() { throw \"Syscalls not available.\" });\n\t\t\t\tenvs = new (go$sliceType(Go$String))(new Array(0));\n\t\t\t} else {\n\t\t\t\tvar syscall = require(\"syscall\");\n\t\t\t\tSyscall = go$pkg.Syscall = syscall.Syscall;\n\t\t\t\tSyscall6 = go$pkg.Syscall6 = syscall.Syscall6;\n\t\t\t\tRawSyscall = go$pkg.RawSyscall = syscall.Syscall;\n\t\t\t\tRawSyscall6 = go$pkg.RawSyscall6 = syscall.Syscall6;\n\t\t\t\tBytePtrFromString = go$pkg.BytePtrFromString = function(s) { return [go$stringToBytes(s, true), null]; };\n\n\t\t\t\tvar envkeys = Object.keys(process.env);\n\t\t\t\tenvs = new (go$sliceType(Go$String))(new Array(envkeys.length));\n\t\t\t\tvar i;\n\t\t\t\tfor(i = 0; i < envkeys.length; i += 1) {\n\t\t\t\t\tenvs.array[i] = envkeys[i] + \"=\" + process.env[envkeys[i]];\n\t\t\t\t}\n\t\t\t}\n\t\t" }, _map$12) };
+		_key$24 = "syscall", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$24] = { k: _key$24, v: (_map$12 = new Go$Map(), _key$23 = "init", _map$12[_key$23] = { k: _key$23, v: "\n\t\t\tif (go$pkg.Syscall15 !== undefined) { // windows\n\t\t\t\tSyscall = Syscall6 = Syscall9 = Syscall12 = Syscall15 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.Syscall9 = go$pkg.Syscall12 = go$pkg.Syscall15 = loadlibrary = getprocaddress = function() { throw \"Syscalls not available.\" };\n\t\t\t\tgetStdHandle = GetCommandLine = go$pkg.GetCommandLine = function() {};\n\t\t\t\tCommandLineToArgv = go$pkg.CommandLineToArgv = function() { return [null, {}]; };\n\t\t\t\tGetenv = go$pkg.Getenv = function(key) { return [\"\", false]; };\n\t\t\t\tGetTimeZoneInformation = go$pkg.GetTimeZoneInformation = function() { return [undefined, true]; };\n\t\t\t} else if (typeof process === \"undefined\") {\n\t\t\t\tgo$pkg.go$setSyscall = function(f) {\n\t\t\t\t\tSyscall = Syscall6 = RawSyscall = RawSyscall6 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.RawSyscall = go$pkg.RawSyscall6 = f;\n\t\t\t\t}\n\t\t\t\tgo$pkg.go$setSyscall(function() { throw \"Syscalls not available.\" });\n\t\t\t\tenvs = new (go$sliceType(Go$String))(new Array(0));\n\t\t\t} else {\n\t\t\t\tvar syscall = require(\"syscall\");\n\t\t\t\tSyscall = go$pkg.Syscall = syscall.Syscall;\n\t\t\t\tSyscall6 = go$pkg.Syscall6 = syscall.Syscall6;\n\t\t\t\tRawSyscall = go$pkg.RawSyscall = syscall.Syscall;\n\t\t\t\tRawSyscall6 = go$pkg.RawSyscall6 = syscall.Syscall6;\n\t\t\t\tBytePtrFromString = go$pkg.BytePtrFromString = function(s) { return [go$stringToBytes(s, true), null]; };\n\n\t\t\t\tvar envkeys = Object.keys(process.env);\n\t\t\t\tenvs = new (go$sliceType(Go$String))(new Array(envkeys.length));\n\t\t\t\tvar i;\n\t\t\t\tfor(i = 0; i < envkeys.length; i += 1) {\n\t\t\t\t\tenvs.array[i] = envkeys[i] + \"=\" + process.env[envkeys[i]];\n\t\t\t\t}\n\t\t\t}\n\t\t" }, _map$12) };
 		_key$26 = "testing", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$26] = { k: _key$26, v: (_map$13 = new Go$Map(), _key$25 = "init", _map$13[_key$25] = { k: _key$25, v: "\n\t\t\tgo$pkg.RunTests2 = function(pkgPath, dir, names, tests) {\n\t\t\t\tif (tests.length === 0) {\n\t\t\t\t\tconsole.log(\"?   \\t\" + pkgPath + \"\\t[no test files]\");\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\tos.Open(dir)[0].Chdir();\n\t\t\t\tvar start = time.Now(), status = \"ok  \", i;\n\t\t\t\tfor (i = 0; i < tests.length; i += 1) {\n\t\t\t\t\tvar t = new T.Ptr(new common.Ptr(undefined, undefined, undefined, undefined, time.Now(), undefined, undefined, undefined), names[i], null);\n\t\t\t\t\tvar err = null;\n\t\t\t\t\ttry {\n\t\t\t\t\t\tif (chatty.go$get()) {\n\t\t\t\t\t\t\tconsole.log(\"=== RUN \" + t.name);\n\t\t\t\t\t\t}\n\t\t\t\t\t\ttests[i](t);\n\t\t\t\t\t} catch (e) {\n\t\t\t\t\t\tgo$jsErr = null;\n\t\t\t\t\t\tif (e.go$exit) {\n\t\t\t\t\t\t\t// test failed or skipped\n\t\t\t\t\t\t} else if (e.go$notSupported) {\n\t\t\t\t\t\t\tt.log(e.message);\n\t\t\t\t\t\t\tt.skip();\n\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\tt.Fail();\n\t\t\t\t\t\t\t// t.log(e.message);\n\t\t\t\t\t\t\terr = e;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tt.common.duration = time.Now().Sub(t.common.start);\n\t\t\t\t\tt.report();\n\t\t\t\t\tif (err !== null) {\n\t\t\t\t\t\tthrow err;\n\t\t\t\t\t}\n\t\t\t\t\tif (t.common.failed) {\n\t\t\t\t\t\tstatus = \"FAIL\";\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tvar duration = time.Now().Sub(start);\n\t\t\t\tfmt.Printf(\"%s\\t%s\\t%.3fs\\n\", new (go$sliceType(go$emptyInterface))([new Go$String(status), new Go$String(pkgPath), new Go$Float64(duration.Seconds())]));\n\t\t\t};\n\t\t" }, _map$13) };
 		_key$28 = "time", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$28] = { k: _key$28, v: (_map$14 = new Go$Map(), _key$27 = "now", _map$14[_key$27] = { k: _key$27, v: "go$now" }, _key$27 = "After", _map$14[_key$27] = { k: _key$27, v: "function() { go$notSupported(\"time.After (use time.AfterFunc instead)\") }" }, _key$27 = "AfterFunc", _map$14[_key$27] = { k: _key$27, v: "function(d, f) {\n\t\t\tsetTimeout(f, go$div64(d, new Duration(0, 1000000)).low);\n\t\t\treturn null;\n\t\t}" }, _key$27 = "NewTimer", _map$14[_key$27] = { k: _key$27, v: "function() { go$notSupported(\"time.NewTimer (use time.AfterFunc instead)\") }" }, _key$27 = "Sleep", _map$14[_key$27] = { k: _key$27, v: "function() { go$notSupported(\"time.Sleep (use time.AfterFunc instead)\") }" }, _key$27 = "Tick", _map$14[_key$27] = { k: _key$27, v: "function() { go$notSupported(\"time.Tick (use time.AfterFunc instead)\") }" }, _map$14) };
 		_key$30 = "github.com/neelance/gopherjs/js_test", (pkgNatives || go$throwRuntimeError("assignment to entry in nil map"))[_key$30] = { k: _key$30, v: (_map$15 = new Go$Map(), _key$29 = "init", _map$15[_key$29] = { k: _key$29, v: "\n\t\t\tdummys = {\n\t\t\t\tsomeBool: true,\n\t\t\t\tsomeString: \"abc\\u1234\",\n\t\t\t\tsomeInt: 42,\n\t\t\t\tsomeFloat: 42.123,\n\t\t\t\tsomeArray: [41, 42, 43],\n\t\t\t\tadd: function(a, b) {\n\t\t\t\t\treturn a + b;\n\t\t\t\t},\n\t\t\t\tmapArray: go$mapArray,\n\t\t\t\ttoUnixTimestamp: function(d) {\n\t\t\t\t\treturn d.getTime() / 1000;\n\t\t\t\t},\n\t\t\t};\n\t\t" }, _map$15) };

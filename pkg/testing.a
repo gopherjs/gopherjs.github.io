@@ -354,12 +354,12 @@ $$
 	T.init([["", "testing", common, ""], ["name", "testing", Go$String, ""], ["startParallel", "testing", (go$chanType(Go$Bool, false, false)), ""]]);
 	(go$ptrType(T)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fail", "", [], [], false], ["FailNow", "", [], [], false], ["Failed", "", [], [Go$Bool], false], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Parallel", "", [], [], false], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true], ["SkipNow", "", [], [], false], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skipped", "", [], [Go$Bool], false], ["log", "testing", [Go$String], [], false], ["private", "testing", [], [], false], ["report", "testing", [], [], false], ["skip", "testing", [], [], false]];
 	InternalTest.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([(go$ptrType(T))], [], false)), ""]]);
-0Ç/0benchmarkLock0
-memStats0cover0match0blockProfileRate0	timeout0haveExamples0chatty0coverProfile0memProfileRate0blockProfile0
-parallel0	benchTime0	short$10	outputDir0
-memProfile0
-cpuListStr0	cpuList0matchBenchmarks0benchmarkMemory0
-cpuProfile0timer0Çõù0Ç5AllocsPerRunÇ#	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
+0Ç/0matchBenchmarks0	benchTime0benchmarkMemory0benchmarkLock0
+memStats0cover0	short$10	outputDir0chatty0coverProfile0match0
+memProfile0memProfileRate0
+cpuProfile0blockProfile0blockProfileRate0	timeout0
+cpuListStr0
+parallel0haveExamples0	cpuList0timer0Çõù0Ç5AllocsPerRunÇ#	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
 		var avg, memstats, x, mallocs, i, x$1;
 		avg = 0;
 		var go$deferred = [];
@@ -1231,12 +1231,12 @@ startAlarmÇE	var startAlarm = function() {
 		}
 	};
 0ÇFinitÇ<	go$pkg.init = function() {
-		cpuList = (go$sliceType(Go$Int)).nil;
-		timer = (go$ptrType(time.Timer)).nil;
 		benchmarkLock = new sync.Mutex.Ptr();
 		memStats = new runtime.MemStats.Ptr();
 		cover = new Cover.Ptr();
 		haveExamples = false;
+		cpuList = (go$sliceType(Go$Int)).nil;
+		timer = (go$ptrType(time.Timer)).nil;
 
 			go$pkg.RunTests2 = function(pkgPath, dir, names, tests) {
 				if (tests.length === 0) {

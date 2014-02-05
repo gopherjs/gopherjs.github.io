@@ -1153,19 +1153,19 @@ $$
 	_select.init([["tcase", "runtime", Go$Uint16, ""], ["ncase", "runtime", Go$Uint16, ""], ["pollorder", "runtime", (go$ptrType(Go$Uint16)), ""], ["lockorder", "runtime", (go$ptrType((go$ptrType(hchan)))), ""], ["scase", "runtime", (go$arrayType(scase, 1)), ""]]);
 	runtimeselect.init([["dir", "runtime", Go$Uint64, ""], ["typ", "runtime", (go$ptrType(chantype)), ""], ["ch", "runtime", (go$ptrType(hchan)), ""], ["val", "runtime", Go$Uint64, ""]]);
 	parforthread.init([["pos", "runtime", Go$Uint64, ""], ["nsteal", "runtime", Go$Uint64, ""], ["nstealcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
-0Çô0allm0maxstacksize0nan0	scavenger0
-initdone0prof0
-hashload0
-memStats0startup_random_data_len0
+0Çô0 0sizeof_C_MStats0
+memStats0precisestack0
+algarray0startup_random_data0startup_random_data_len0emptystring0
+zerobase0allg0lastg0allm0allp0
 gomaxprocs0
-needextram0goos0debug0neginf0class_to_allocnpages0g00extram0ncpu0	cpuid_edx0posinf0class_to_size0
-checking0m00
-newprocs0	ifacelock0empty_value0 0precisestack0allp0blockprofilerate0	worldsema0size_to_class80size_to_class1280
-experiment0startup_random_data0	maxstring0
-memstats0
-typelink0
-algarray0allg0lastg0iscgo0	cpuid_ecx0	etypelink0sizeof_C_MStats0emptystring0
-zerobase0	panicking0	sysargs0	hchansize0_cgo_thread_start0hash0Ç~¥0ÅÜ
+needextram0	panicking0goos0ncpu0iscgo0	sysargs0	maxstring0	hchansize0	cpuid_ecx0	cpuid_edx0debug0maxstacksize0blockprofilerate0	worldsema0nan0posinf0neginf0
+memstats0class_to_size0class_to_allocnpages0size_to_class80size_to_class1280
+checking0m00g00extram0
+newprocs0	scavenger0
+initdone0_cgo_thread_start0prof0
+experiment0hash0	ifacelock0
+typelink0	etypelink0empty_value0
+hashload0Ç~¥0ÅÜ
 Breakpointx	var Breakpoint = go$pkg.Breakpoint = function() {
 		throw go$panic("Native function not implemented: Breakpoint");
 	};
@@ -1880,56 +1880,56 @@ t	var fpack64 = function(sign, mant, exp, trunc) {
 	};
 0ÇΩinitÇ≥	go$pkg.init = function() {
 		sizeof_C_MStats = 0;
+		memStats = new MemStats.Ptr();
+		precisestack = 0;
+		algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
+		startup_random_data = (go$ptrType(Go$Uint8)).nil;
+		startup_random_data_len = 0;
 		emptystring = "";
 		zerobase = new Go$Uint64(0, 0);
-		panicking = 0;
-		sysargs = go$throwNilPointerError;
-		hchansize = 0;
-		_cgo_thread_start = go$throwNilPointerError;
-		hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
-		allm = (go$ptrType(m)).nil;
-		maxstacksize = new Go$Uint64(0, 0);
-		nan = 0;
-		scavenger = new funcval.Ptr();
-		initdone = new funcval.Ptr();
-		prof = new _3_.Ptr();
-		hashload = 0;
-		memStats = new MemStats.Ptr();
-		startup_random_data_len = 0;
-		gomaxprocs = 0;
-		needextram = 0;
-		goos = (go$ptrType(Go$Int8)).nil;
-		debug = new debugvars.Ptr();
-		neginf = 0;
-		class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
-		g0 = new g.Ptr();
-		extram = (go$ptrType(m)).nil;
-		ncpu = 0;
-		cpuid_edx = 0;
-		posinf = 0;
-		class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
-		checking = 0;
-		m0 = new m.Ptr();
-		newprocs = 0;
-		ifacelock = new lock.Ptr();
-		empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
-		precisestack = 0;
-		allp = (go$ptrType((go$ptrType(p)))).nil;
-		blockprofilerate = new Go$Int64(0, 0);
-		worldsema = 0;
-		size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
-		size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
-		experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
-		startup_random_data = (go$ptrType(Go$Uint8)).nil;
-		maxstring = new Go$Uint64(0, 0);
-		memstats = new mstats.Ptr();
-		typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
-		algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
 		allg = (go$ptrType(g)).nil;
 		lastg = (go$ptrType(g)).nil;
+		allm = (go$ptrType(m)).nil;
+		allp = (go$ptrType((go$ptrType(p)))).nil;
+		gomaxprocs = 0;
+		needextram = 0;
+		panicking = 0;
+		goos = (go$ptrType(Go$Int8)).nil;
+		ncpu = 0;
 		iscgo = 0;
+		sysargs = go$throwNilPointerError;
+		maxstring = new Go$Uint64(0, 0);
+		hchansize = 0;
 		cpuid_ecx = 0;
+		cpuid_edx = 0;
+		debug = new debugvars.Ptr();
+		maxstacksize = new Go$Uint64(0, 0);
+		blockprofilerate = new Go$Int64(0, 0);
+		worldsema = 0;
+		nan = 0;
+		posinf = 0;
+		neginf = 0;
+		memstats = new mstats.Ptr();
+		class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
+		class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
+		size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
+		size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
+		checking = 0;
+		m0 = new m.Ptr();
+		g0 = new g.Ptr();
+		extram = (go$ptrType(m)).nil;
+		newprocs = 0;
+		scavenger = new funcval.Ptr();
+		initdone = new funcval.Ptr();
+		_cgo_thread_start = go$throwNilPointerError;
+		prof = new _3_.Ptr();
+		experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
+		hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
+		ifacelock = new lock.Ptr();
+		typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
 		etypelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
+		empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
+		hashload = 0;
 
 			go$throwRuntimeError = function(msg) { throw go$panic(new errorString(msg)); };
 			sizeof_C_MStats = 3712;

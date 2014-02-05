@@ -559,10 +559,10 @@ $$
 	(go$ptrType(Template)).methods = [["AddParseTree", "", [Go$String, (go$ptrType(parse.Tree))], [(go$ptrType(Template)), go$error], false], ["Clone", "", [], [(go$ptrType(Template)), go$error], false], ["Delims", "", [Go$String, Go$String], [(go$ptrType(Template))], false], ["Execute", "", [io.Writer, go$emptyInterface], [go$error], false], ["ExecuteTemplate", "", [io.Writer, Go$String, go$emptyInterface], [go$error], false], ["Funcs", "", [FuncMap], [(go$ptrType(Template))], false], ["Lookup", "", [Go$String], [(go$ptrType(Template))], false], ["Name", "", [], [Go$String], false], ["New", "", [Go$String], [(go$ptrType(Template))], false], ["Parse", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["ParseFiles", "", [(go$sliceType(Go$String))], [(go$ptrType(Template)), go$error], true], ["ParseGlob", "", [Go$String], [(go$ptrType(Template)), go$error], false], ["Templates", "", [], [(go$sliceType((go$ptrType(Template))))], false], ["escape", "html/template", [], [go$error], false], ["lookupAndEscapeTemplate", "html/template", [Go$String], [(go$ptrType(Template)), go$error], false], ["new", "html/template", [Go$String], [(go$ptrType(Template))], false]];
 	nameSpace.init([["mu", "html/template", sync.Mutex, ""], ["set", "html/template", (go$mapType(Go$String, (go$ptrType(Template)))), ""]]);
 	FuncMap.init(Go$String, go$emptyInterface);
-0‚t0attrTypeMap0
-stateNames0expressionBytes0mozBindingBytes0equivEscapers0htmlNospaceReplacementTable0specialTagEndMarkers0blockCommentEnd0	funcMap0doctypeBytes0htmlNormReplacementTable0
-commentEnd0redundantFuncs0!htmlNospaceNormReplacementTable0jsonMarshalType0jsRegexpReplacementTable0elementContentType0	errorType0	attrNames0	delimEnds0urlPartNames0regexpPrecederKeywords0jsStrNormReplacementTable0elementNameMap0
-delimNames0htmlReplacementTable0transitionFunc0attrStartStates0fmtStringerType0elementNames0jsStrReplacementTable0commentStart0ƒÝý0‚ÎattrType‚À	var attrType = function(name) {
+0‚t0attrTypeMap0	errorType0fmtStringerType0
+stateNames0
+delimNames0urlPartNames0elementNames0	attrNames0expressionBytes0mozBindingBytes0	funcMap0equivEscapers0redundantFuncs0	delimEnds0doctypeBytes0htmlReplacementTable0htmlNormReplacementTable0htmlNospaceReplacementTable0!htmlNospaceNormReplacementTable0regexpPrecederKeywords0jsonMarshalType0jsStrReplacementTable0jsStrNormReplacementTable0jsRegexpReplacementTable0transitionFunc0commentStart0
+commentEnd0elementContentType0attrStartStates0specialTagEndMarkers0blockCommentEnd0elementNameMap0ƒÝý0‚ÎattrType‚À	var attrType = function(name) {
 		var colon, ok, _tuple, _entry, t;
 		name = strings.ToLower(name);
 		if (strings.HasPrefix(name, "data-")) {

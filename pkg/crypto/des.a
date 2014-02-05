@@ -44,8 +44,8 @@ crypto/des0H0encoding/binarybinary0crypto/ciphercipher0strconvstr
 	(go$ptrType(desCipher)).methods = [["BlockSize", "", [], [Go$Int], false], ["Decrypt", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [], false], ["Encrypt", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [], false], ["generateSubkeys", "crypto/des", [(go$sliceType(Go$Uint8))], [], false]];
 	tripleDESCipher.init([["cipher1", "crypto/des", desCipher, ""], ["cipher2", "crypto/des", desCipher, ""], ["cipher3", "crypto/des", desCipher, ""]]);
 	(go$ptrType(tripleDESCipher)).methods = [["BlockSize", "", [], [Go$Int], false], ["Decrypt", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [], false], ["Encrypt", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [], false]];
-0Å£0initialPermutation0finalPermutation0expansionFunction0permutedChoice10sBoxes0
-feistelBox0permutationFunction0permutedChoice20ksRotations0ÇH0Çä
+0Å£0
+feistelBox0initialPermutation0finalPermutation0expansionFunction0permutationFunction0permutedChoice10permutedChoice20sBoxes0ksRotations0ÇH0Çä
 cryptBlockÇz	var cryptBlock = function(subkeys, dst, src, decrypt) {
 		var b, _tuple, left, right, subkey, i, _slice, _index, _slice$1, _index$1, _tuple$1, x, x$1, preOutput;
 		b = binary.BigEndian.Uint64(src);
