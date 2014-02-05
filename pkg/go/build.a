@@ -1,4 +1,4 @@
-0ƒ%Žgo/build‚<#package build
+0ƒ&©go/build‚<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -304,7 +304,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 	(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false], ["readByte", "go/build", [], [Go$Uint8], false], ["readIdent", "go/build", [], [], false], ["readImport", "go/build", [], [], false], ["readKeyword", "go/build", [Go$String], [], false], ["readString", "go/build", [], [], false], ["syntaxError", "go/build", [], [], false]];
 0`0 0
 cgoEnabled0
-slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚*joinPath‚	Context.Ptr.prototype.joinPath = function(elem) {
+slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚½'0‚*joinPath‚	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.JoinPath, !(f === go$throwNilPointerError)) {
@@ -414,21 +414,24 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		return true;
 	};
 	Context.prototype.isFile = function(path$1) { return this.go$val.isFile(path$1); };
-0‚†gopath‚z	Context.Ptr.prototype.gopath = function() {
+0‚šgopath‚Ž	Context.Ptr.prototype.gopath = function() {
 		var ctxt, all, _ref, _i, _slice, _index, p;
 		ctxt = this;
 		all = (go$sliceType(Go$String)).nil;
 		_ref = ctxt.splitPathList(ctxt.GOPATH);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			p = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (p === "" || p === ctxt.GOROOT) {
+				_i++;
 				continue;
 			}
 			if (strings.HasPrefix(p, "~")) {
+				_i++;
 				continue;
 			}
 			all = go$append(all, p);
+			_i++;
 		}
 		return all;
 	};
@@ -445,12 +448,13 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		}
 		_ref = ctxt.gopath();
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			p = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([p, "src"]));
 			if (ctxt.isDir(dir$1)) {
 				all = go$append(all, dir$1);
 			}
+			_i++;
 		}
 		return all;
 	};
@@ -515,7 +519,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		}
 		return name.substring(i);
 	};
-0‚;Import‚;	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
+0‚;³Import‚;§	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
 		var ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, find, err, _tuple$1, dirs, err$1, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$1, _i, _slice, _index, d, name, ext, _tuple$2, match, data, filename, err$2, _ref$2, _tuple$3, pf, pkg, isTest, isXTest, isCgo, _ref$3, _i$1, _slice$1, _index$1, decl, _tuple$4, d$1, ok, _ref$4, _i$2, _slice$2, _index$2, dspec, _tuple$5, spec, ok$1, quoted, _tuple$6, path$2, err$3, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$4, _key$3, _ref$5, _i$3, _keys, _entry$3, tag, _tuple$7, _tuple$8, _tuple$9;
 		ctxt = this;
 		p = new Package.Ptr("", "", "", path$1, "", "", "", "", false, "", (go$sliceType(Go$String)).nil, "", (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false);
@@ -560,7 +564,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 				all = ctxt.gopath();
 				_ref$1 = all;
 				_i = 0;
-				for (; _i < _ref$1.length; _i += 1) {
+				while (_i < _ref$1.length) {
 					root$1 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					i = _i;
 					rootsrc = ctxt.joinPath(new (go$sliceType(Go$String))([root$1, "src"]));
@@ -573,17 +577,19 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 						}
 						_ref$2 = go$subslice(all, 0, i);
 						_i$1 = 0;
-						for (; _i$1 < _ref$2.length; _i$1 += 1) {
+						while (_i$1 < _ref$2.length) {
 							earlyRoot = (_slice$1 = _ref$2, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 							if (dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1])), ctxt.isDir(dir$2)) {
 								p.ConflictDir = dir$2;
 								return null;
 							}
+							_i$1++;
 						}
 						p.ImportPath = sub$1;
 						p.Root = root$1;
 						return null;
 					}
+					_i++;
 				}
 			} else {
 				if (strings.HasPrefix(path$1, "/")) {
@@ -604,7 +610,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 				}
 				_ref$3 = ctxt.gopath();
 				_i$2 = 0;
-				for (; _i$2 < _ref$3.length; _i$2 += 1) {
+				while (_i$2 < _ref$3.length) {
 					root$2 = (_slice$2 = _ref$3, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 					dir$4 = ctxt.joinPath(new (go$sliceType(Go$String))([root$2, "src", path$1]));
 					isDir$1 = ctxt.isDir(dir$4);
@@ -615,6 +621,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 						return null;
 					}
 					tried.gopath = go$append(tried.gopath, dir$4);
+					_i$2++;
 				}
 				paths = (go$sliceType(Go$String)).nil;
 				if (!(tried.goroot === "")) {
@@ -672,9 +679,10 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		fset = token.NewFileSet();
 		_ref$1 = dirs;
 		_i = 0;
-		for (; _i < _ref$1.length; _i += 1) {
+		while (_i < _ref$1.length) {
 			d = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (d.IsDir()) {
+				_i++;
 				continue;
 			}
 			name = d.Name();
@@ -687,32 +695,41 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 				if (ext === ".go") {
 					p.IgnoredGoFiles = go$append(p.IgnoredGoFiles, name);
 				}
+				_i++;
 				continue;
 			}
 			_ref$2 = ext;
 			if (_ref$2 === ".c") {
 				p.CFiles = go$append(p.CFiles, name);
+				_i++;
 				continue;
 			} else if (_ref$2 === ".cc" || _ref$2 === ".cpp" || _ref$2 === ".cxx") {
 				p.CXXFiles = go$append(p.CXXFiles, name);
+				_i++;
 				continue;
 			} else if (_ref$2 === ".h" || _ref$2 === ".hh" || _ref$2 === ".hpp" || _ref$2 === ".hxx") {
 				p.HFiles = go$append(p.HFiles, name);
+				_i++;
 				continue;
 			} else if (_ref$2 === ".s") {
 				p.SFiles = go$append(p.SFiles, name);
+				_i++;
 				continue;
 			} else if (_ref$2 === ".S") {
 				Sfiles = go$append(Sfiles, name);
+				_i++;
 				continue;
 			} else if (_ref$2 === ".swig") {
 				p.SwigFiles = go$append(p.SwigFiles, name);
+				_i++;
 				continue;
 			} else if (_ref$2 === ".swigcxx") {
 				p.SwigCXXFiles = go$append(p.SwigCXXFiles, name);
+				_i++;
 				continue;
 			} else if (_ref$2 === ".syso") {
 				p.SysoFiles = go$append(p.SysoFiles, name);
+				_i++;
 				continue;
 			}
 			_tuple$3 = parser.ParseFile(fset, filename, data, 6), pf = _tuple$3[0], err$2 = _tuple$3[1];
@@ -722,6 +739,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 			pkg = pf.Name.Name;
 			if (pkg === "documentation") {
 				p.IgnoredGoFiles = go$append(p.IgnoredGoFiles, name);
+				_i++;
 				continue;
 			}
 			isTest = strings.HasSuffix(name, "_test.go");
@@ -742,18 +760,20 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 			isCgo = false;
 			_ref$3 = pf.Decls;
 			_i$1 = 0;
-			for (; _i$1 < _ref$3.length; _i$1 += 1) {
+			while (_i$1 < _ref$3.length) {
 				decl = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 				_tuple$4 = (decl !== null && decl.constructor === (go$ptrType(ast.GenDecl)) ? [decl.go$val, true] : [(go$ptrType(ast.GenDecl)).nil, false]), d$1 = _tuple$4[0], ok = _tuple$4[1];
 				if (!ok) {
+					_i$1++;
 					continue;
 				}
 				_ref$4 = d$1.Specs;
 				_i$2 = 0;
-				for (; _i$2 < _ref$4.length; _i$2 += 1) {
+				while (_i$2 < _ref$4.length) {
 					dspec = (_slice$2 = _ref$4, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 					_tuple$5 = (dspec !== null && dspec.constructor === (go$ptrType(ast.ImportSpec)) ? [dspec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), spec = _tuple$5[0], ok$1 = _tuple$5[1];
 					if (!ok$1) {
+						_i$2++;
 						continue;
 					}
 					quoted = spec.Path.Value;
@@ -783,7 +803,9 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 						}
 						isCgo = true;
 					}
+					_i$2++;
 				}
+				_i$1++;
 			}
 			if (isCgo) {
 				_key$3 = "cgo", (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: true };
@@ -799,6 +821,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 			} else {
 				p.GoFiles = go$append(p.GoFiles, name);
 			}
+			_i++;
 		}
 		if ((((p.GoFiles.length + p.CgoFiles.length >> 0) + p.TestGoFiles.length >> 0) + p.XTestGoFiles.length >> 0) === 0) {
 			return [p, new NoGoError.Ptr(p.Dir)];
@@ -806,10 +829,11 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		_ref$5 = allTags;
 		_i$3 = 0;
 		_keys = go$keys(_ref$5);
-		for (; _i$3 < _keys.length; _i$3 += 1) {
+		while (_i$3 < _keys.length) {
 			_entry$3 = _ref$5[_keys[_i$3]];
 			tag = _entry$3.k;
 			p.AllTags = go$append(p.AllTags, tag);
+			_i$3++;
 		}
 		sort.Strings(p.AllTags);
 		_tuple$7 = cleanImports(imported), p.Imports = _tuple$7[0], p.ImportPos = _tuple$7[1];
@@ -885,10 +909,11 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		_ref = m;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			path$1 = _entry.k;
 			all = go$append(all, path$1);
+			_i++;
 		}
 		sort.Strings(all);
 		return [all, m];
@@ -899,7 +924,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 0y	ImportDirl	var ImportDir = go$pkg.ImportDir = function(dir, mode) {
 		return go$pkg.Default.ImportDir(dir, mode);
 	};
-0‚shouldBuild‚~	Context.Ptr.prototype.shouldBuild = function(content, allTags) {
+0‚“shouldBuild‚‚	Context.Ptr.prototype.shouldBuild = function(content, allTags) {
 		var ctxt, end, p, line, i, _tuple, allok, line$1, i$1, _tuple$1, _slice, _index, f, _slice$1, _index$1, ok, _ref, _i, _slice$2, _index$2, tok;
 		ctxt = this;
 		end = 0;
@@ -939,11 +964,12 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 						ok = false;
 						_ref = go$subslice(f, 1);
 						_i = 0;
-						for (; _i < _ref.length; _i += 1) {
+						while (_i < _ref.length) {
 							tok = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 							if (ctxt.match(tok, allTags)) {
 								ok = true;
 							}
+							_i++;
 						}
 						if (!ok) {
 							allok = false;
@@ -955,17 +981,18 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		return allok;
 	};
 	Context.prototype.shouldBuild = function(content, allTags) { return this.go$val.shouldBuild(content, allTags); };
-0‚ÑsaveCgo‚Ä	Context.Ptr.prototype.saveCgo = function(filename, di, cg) {
+0‚ésaveCgo‚Ü	Context.Ptr.prototype.saveCgo = function(filename, di, cg) {
 		var ctxt, text, _ref, _i, _slice, _index, line, orig, i, _tuple, line$1, argstr, f, _slice$1, _index$1, _tuple$1, cond, verb, ok, _ref$1, _i$1, _slice$2, _index$2, c, _tuple$2, args, err, _ref$2, _i$2, _slice$3, _index$3, arg, _ref$3;
 		ctxt = this;
 		text = cg.Text();
 		_ref = strings.Split(text, "\n");
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			line = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			orig = line;
 			line = strings.TrimSpace(line);
 			if (line.length < 5 || !(line.substring(0, 4) === "#cgo") || (!((line.charCodeAt(4) === 32)) && !((line.charCodeAt(4) === 9)))) {
+				_i++;
 				continue;
 			}
 			line = strings.TrimSpace(line.substring(4));
@@ -983,14 +1010,16 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 				ok = false;
 				_ref$1 = cond;
 				_i$1 = 0;
-				for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				while (_i$1 < _ref$1.length) {
 					c = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 					if (ctxt.match(c, false)) {
 						ok = true;
 						break;
 					}
+					_i$1++;
 				}
 				if (!ok) {
+					_i++;
 					continue;
 				}
 			}
@@ -1000,11 +1029,12 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 			}
 			_ref$2 = args;
 			_i$2 = 0;
-			for (; _i$2 < _ref$2.length; _i$2 += 1) {
+			while (_i$2 < _ref$2.length) {
 				arg = (_slice$3 = _ref$2, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 				if (!safeCgoName(arg)) {
 					return fmt.Errorf("%s: malformed #cgo argument: %s", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(arg)]));
 				}
+				_i$2++;
 			}
 			_ref$3 = verb;
 			if (_ref$3 === "CFLAGS") {
@@ -1020,6 +1050,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 			} else {
 				return fmt.Errorf("%s: invalid #cgo verb: %s", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(orig)]));
 			}
+			_i++;
 		}
 		return null;
 	};
@@ -1038,7 +1069,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		}
 		return true;
 	};
-0‚ÕsplitQuoted‚Ä	var splitQuoted = function(s) {
+0‚)splitQuoted‚	var splitQuoted = function(s) {
 		var r, err, args, arg, escaped, quoted, quote, i, _ref, _i, _rune, rune, _slice, _index, _tuple;
 		r = (go$sliceType(Go$String)).nil;
 		err = null;
@@ -1050,22 +1081,25 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		i = 0;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			rune = _rune[0];
 			if (escaped) {
 				escaped = false;
 			} else if (rune === 92) {
 				escaped = true;
+				_i += _rune[1];
 				continue;
 			} else if (!((quote === 0))) {
 				if (rune === quote) {
 					quote = 0;
+					_i += _rune[1];
 					continue;
 				}
 			} else if ((rune === 34) || (rune === 39)) {
 				quoted = true;
 				quote = rune;
+				_i += _rune[1];
 				continue;
 			} else if (unicode.IsSpace(rune)) {
 				if (quoted || i > 0) {
@@ -1073,10 +1107,12 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 					args = go$append(args, go$runesToString(go$subslice(arg, 0, i)));
 					i = 0;
 				}
+				_i += _rune[1];
 				continue;
 			}
 			_slice = arg, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = rune) : go$throwRuntimeError("index out of range");
 			i = i + 1 >> 0;
+			_i += _rune[1];
 		}
 		if (quoted || i > 0) {
 			args = go$append(args, go$runesToString(go$subslice(arg, 0, i)));
@@ -1089,7 +1125,7 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		_tuple = [args, err], r = _tuple[0], err = _tuple[1];
 		return [r, err];
 	};
-0‚match‚ 	Context.Ptr.prototype.match = function(name, allTags) {
+0‚match‚	Context.Ptr.prototype.match = function(name, allTags) {
 		var ctxt, _key, i, ok1, ok2, _key$1, _ref, _i, _rune, c, _ref$1, _i$1, _slice, _index, tag, _ref$2, _i$2, _slice$1, _index$1, tag$1;
 		ctxt = this;
 		if (name === "") {
@@ -1114,12 +1150,13 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		}
 		_ref = name;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			c = _rune[0];
 			if (!unicode.IsLetter(c) && !unicode.IsDigit(c) && !((c === 95)) && !((c === 46))) {
 				return false;
 			}
+			_i += _rune[1];
 		}
 		if (ctxt.CgoEnabled && name === "cgo") {
 			return true;
@@ -1129,19 +1166,21 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0‚¼0‚
 		}
 		_ref$1 = ctxt.BuildTags;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			tag = (_slice = _ref$1, _index = _i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (tag === name) {
 				return true;
 			}
+			_i$1++;
 		}
 		_ref$2 = ctxt.ReleaseTags;
 		_i$2 = 0;
-		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+		while (_i$2 < _ref$2.length) {
 			tag$1 = (_slice$1 = _ref$2, _index$1 = _i$2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			if (tag$1 === name) {
 				return true;
 			}
+			_i$2++;
 		}
 		return false;
 	};
@@ -1405,14 +1444,16 @@ readImport‚$	importReader.Ptr.prototype.readImport = function() {
 		errNUL = errors.New("unexpected NUL in input");
 		_ref = strings.Fields("darwin dragonfly freebsd linux netbsd openbsd plan9 windows ");
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_key$1 = v, (knownOS || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
+			_i++;
 		}
 		_ref$1 = strings.Fields("386 amd64 arm ");
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			v$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			_key$2 = v$1, (knownArch || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: true };
+			_i$1++;
 		}
 	};

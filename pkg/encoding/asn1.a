@@ -1,4 +1,4 @@
-0ƒK?encoding/asn1‚ˆpackage asn1
+0ƒKFencoding/asn1‚ˆpackage asn1
 import fmt "fmt"
 import big "math/big"
 import reflect "reflect"
@@ -201,7 +201,7 @@ $$
 0Ž0bigOne0bitStringType0objectIdentifierType0enumeratedType0
 flagType0
 timeType0rawValueType0rawContentsType0
-bigIntType0ƒ	Ä0‚Error‚	StructuralError.Ptr.prototype.Error = function() {
+bigIntType0ƒ	Ë0‚Error‚	StructuralError.Ptr.prototype.Error = function() {
 		var _struct, e;
 		e = (_struct = this, new StructuralError.Ptr(_struct.Msg));
 		return "asn1: structure error: " + e.Msg;
@@ -262,16 +262,17 @@ parseInt32‚	var parseInt32 = function(bytes$1) {
 		}
 		return [((ret64.low + ((ret64.high >> 31) * 4294967296)) >> 0), null];
 	};
-0‚$parseBigInt‚	var parseBigInt = function(bytes$1) {
+0‚%parseBigInt‚	var parseBigInt = function(bytes$1) {
 		var ret, _slice, _index, notBytes, _ref, _i, i, _slice$1, _index$1, _slice$2, _index$2;
 		ret = new big.Int.Ptr();
 		if (bytes$1.length > 0 && ((((_slice = bytes$1, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & 128) >>> 0) === 128)) {
 			notBytes = (go$sliceType(Go$Uint8)).make(bytes$1.length, 0, function() { return 0; });
 			_ref = notBytes;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				i = _i;
 				_slice$2 = notBytes, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ~(_slice$1 = bytes$1, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 24 >>> 24) : go$throwRuntimeError("index out of range");
+				_i++;
 			}
 			ret.SetBytes(notBytes);
 			ret.Add(ret, bigOne);
@@ -427,12 +428,13 @@ RightAlign‚„	BitString.Ptr.prototype.RightAlign = function() {
 		err = null;
 		_ref = bytes$1;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!isPrintable(b)) {
 				err = (x = new SyntaxError.Ptr("PrintableString contains invalid character"), new x.constructor.Struct(x));
 				return [ret, err];
 			}
+			_i++;
 		}
 		ret = go$bytesToString(bytes$1);
 		return [ret, err];
@@ -446,12 +448,13 @@ RightAlign‚„	BitString.Ptr.prototype.RightAlign = function() {
 		err = null;
 		_ref = bytes$1;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (b >= 128) {
 				err = (x = new SyntaxError.Ptr("IA5String contains invalid character"), new x.constructor.Struct(x));
 				return [ret, err];
 			}
+			_i++;
 		}
 		ret = go$bytesToString(bytes$1);
 		return [ret, err];
@@ -884,7 +887,7 @@ parseField‚<Ú	var parseField = function(v, bytes$1, initOffset, params) {
 		ret = new fieldParameters.Ptr();
 		_ref = strings.Split(str, ",");
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			part = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (part === "optional") {
 				ret.optional = true;
@@ -921,6 +924,7 @@ parseField‚<Ú	var parseField = function(v, bytes$1, initOffset, params) {
 			} else if (part === "omitempty") {
 				ret.omitEmpty = true;
 			}
+			_i++;
 		}
 		return (_struct = ret, new fieldParameters.Ptr(_struct.optional, _struct.explicit, _struct.application, _struct.defaultValue, _struct.tag, _struct.stringType, _struct.set, _struct.omitEmpty));
 	};
@@ -1088,7 +1092,7 @@ parseField‚<Ú	var parseField = function(v, bytes$1, initOffset, params) {
 		}
 		return numBytes;
 	};
-0‚ßmarshalBigInt‚Ì	var marshalBigInt = function(out, n) {
+0‚àmarshalBigInt‚Í	var marshalBigInt = function(out, n) {
 		var err, nMinus1, bytes$1, _ref, _i, i, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _slice$2, _index$3, _tuple, bytes$2, _slice$3, _index$4, _tuple$1;
 		err = null;
 		if (n.Sign() < 0) {
@@ -1097,9 +1101,10 @@ parseField‚<Ú	var parseField = function(v, bytes$1, initOffset, params) {
 			bytes$1 = nMinus1.Bytes();
 			_ref = bytes$1;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				i = _i;
 				_lhs = bytes$1, _index = i, _slice$1 = _lhs, _index$2 = _index, (_index$2 >= 0 && _index$2 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$2] = ((_slice = _lhs, _index$1 = _index, (_index$1 >= 0 && _index$1 < _slice.length) ? _slice.array[_slice.offset + _index$1] : go$throwRuntimeError("index out of range")) ^ 255) << 24 >>> 24) : go$throwRuntimeError("index out of range");
+				_i++;
 			}
 			if ((bytes$1.length === 0) || ((((_slice$2 = bytes$1, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$3] : go$throwRuntimeError("index out of range")) & 128) >>> 0) === 0)) {
 				err = out.Buffer.WriteByte(255);
@@ -1227,12 +1232,13 @@ parseField‚<Ú	var parseField = function(v, bytes$1, initOffset, params) {
 		b = new (go$sliceType(Go$Uint8))(go$stringToBytes(s));
 		_ref = b;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!isPrintable(c)) {
 				err = (x = new StructuralError.Ptr("PrintableString contains invalid character"), new x.constructor.Struct(x));
 				return err;
 			}
+			_i++;
 		}
 		_tuple = out.Buffer.Write(b), err = _tuple[1];
 		return err;
@@ -1243,12 +1249,13 @@ parseField‚<Ú	var parseField = function(v, bytes$1, initOffset, params) {
 		b = new (go$sliceType(Go$Uint8))(go$stringToBytes(s));
 		_ref = b;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (c > 127) {
 				err = (x = new StructuralError.Ptr("IA5String contains invalid character"), new x.constructor.Struct(x));
 				return err;
 			}
+			_i++;
 		}
 		_tuple = out.Buffer.Write(b), err = _tuple[1];
 		return err;
@@ -1435,7 +1442,7 @@ parseField‚<Ú	var parseField = function(v, bytes$1, initOffset, params) {
 		err = (x$5 = new StructuralError.Ptr("unknown Go type"), new x$5.constructor.Struct(x$5));
 		return err;
 	};
-0‚marshalField‚ñ	var marshalField = function(out, v, params) {
+0‚marshalField‚ö	var marshalField = function(out, v, params) {
 		var err, _struct, _struct$1, x, _struct$2, rv, _tuple, _tuple$1, _tuple$2, tag, isCompound, ok, x$1, class$1, x$2, _ref, _i, _rune, r, x$3, _tuple$3, tags, body, _struct$3, _struct$4, bodyLen, explicitTag, _tuple$4;
 		err = null;
 		if ((v.Kind() === 20) && (v.Type().NumMethod() === 0)) {
@@ -1475,7 +1482,7 @@ parseField‚<Ú	var parseField = function(v, bytes$1, initOffset, params) {
 			if (params.stringType === 0) {
 				_ref = v.String();
 				_i = 0;
-				for (; _i < _ref.length; _i += _rune[1]) {
+				while (_i < _ref.length) {
 					_rune = go$decodeRune(_ref, _i);
 					r = _rune[0];
 					if (r >= 128 || !isPrintable((r << 24 >>> 24))) {
@@ -1486,6 +1493,7 @@ parseField‚<Ú	var parseField = function(v, bytes$1, initOffset, params) {
 						tag = 12;
 						break;
 					}
+					_i += _rune[1];
 				}
 			} else {
 				tag = params.stringType;

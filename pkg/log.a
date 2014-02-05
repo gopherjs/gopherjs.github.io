@@ -167,7 +167,7 @@ $$
 		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
 	};
 0‚¤itoa‚š	var itoa = function(buf, i, wid) {
-		var u, b, bp, _r, _q;
+		var u, b, bp, _q, _r;
 		u = (i >>> 0);
 		if ((u === 0) && wid <= 1) {
 			buf.go$set(go$append(buf.go$get(), 48));

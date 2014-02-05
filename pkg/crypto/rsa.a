@@ -1,4 +1,4 @@
-0‚ð¯
+0‚ð³
 crypto/rsa‚C£package rsa
 import crypto "crypto"
 import subtle "crypto/subtle"
@@ -237,7 +237,7 @@ crypto/rsa0‹0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 	(go$ptrType(PrivateKey)).methods = [["Precompute", "", [], [], false], ["Validate", "", [], [go$error], false]];
 	PrecomputedValues.init([["Dp", "", (go$ptrType(big.Int)), ""], ["Dq", "", (go$ptrType(big.Int)), ""], ["Qinv", "", (go$ptrType(big.Int)), ""], ["CRTValues", "", (go$sliceType(CRTValue)), ""]]);
 	CRTValue.init([["Exp", "", (go$ptrType(big.Int)), ""], ["Coeff", "", (go$ptrType(big.Int)), ""], ["R", "", (go$ptrType(big.Int)), ""]]);
-0y0hashPrefixes0	bigZero0bigOne0errPublicModulus0errPublicExponentSmall0errPublicExponentLarge0 0 0 0‚ŸÚ0‚EncryptPKCS1v15‚	var EncryptPKCS1v15 = go$pkg.EncryptPKCS1v15 = function(rand$1, pub, msg) {
+0y0hashPrefixes0	bigZero0bigOne0errPublicModulus0errPublicExponentSmall0errPublicExponentLarge0 0 0 0‚ŸÞ0‚EncryptPKCS1v15‚	var EncryptPKCS1v15 = go$pkg.EncryptPKCS1v15 = function(rand$1, pub, msg) {
 		var out, err, err$1, _tuple, _q, k, em, _slice, _index, _tuple$1, ps, mm, _slice$1, _index$1, m, c;
 		out = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -470,7 +470,7 @@ crypto/rsa0‹0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		_slice$3 = em, _index$4 = emLen - 1 >> 0, (_index$4 >= 0 && _index$4 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$4] = 188) : go$throwRuntimeError("index out of range");
 		return [em, null];
 	};
-0‚emsaPSSVerify‚û	var emsaPSSVerify = function(mHash, em, emBits, sLen, hash$1) {
+0‚emsaPSSVerify‚ü	var emsaPSSVerify = function(mHash, em, emBits, sLen, hash$1) {
 		var hLen, _q, emLen, _slice, _index, db, h, _slice$1, _index$1, y, x, _lhs, _index$2, _slice$2, _index$3, y$1, x$1, _slice$3, _index$4, _ref, _slice$4, _index$5, _ref$1, _i, _slice$5, _index$6, e, _slice$6, _index$7, salt, prefix, h0;
 		hLen = hash$1.Size();
 		if (!((hLen === mHash.length))) {
@@ -510,11 +510,12 @@ crypto/rsa0‹0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		} else {
 			_ref$1 = go$subslice(db, 0, (((emLen - hLen >> 0) - sLen >> 0) - 2 >> 0));
 			_i = 0;
-			for (; _i < _ref$1.length; _i += 1) {
+			while (_i < _ref$1.length) {
 				e = (_slice$5 = _ref$1, _index$6 = _i, (_index$6 >= 0 && _index$6 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$6] : go$throwRuntimeError("index out of range"));
 				if (!((e === 0))) {
 					return go$pkg.ErrVerification;
 				}
+				_i++;
 			}
 			if (!(((_slice$6 = db, _index$7 = (((emLen - hLen >> 0) - sLen >> 0) - 2 >> 0), (_index$7 >= 0 && _index$7 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$7] : go$throwRuntimeError("index out of range")) === 1))) {
 				return go$pkg.ErrVerification;
@@ -620,18 +621,20 @@ saltLength‚	PSSOptions.Ptr.prototype.saltLength = function() {
 		}
 		_ref = priv.Primes;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			prime = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!prime.ProbablyPrime(20)) {
 				return errors.New("crypto/rsa: prime factor is composite");
 			}
+			_i++;
 		}
 		modulus = new big.Int.Ptr().Set(bigOne);
 		_ref$1 = priv.Primes;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			prime$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			modulus.Mul(modulus, prime$1);
+			_i$1++;
 		}
 		if (!((modulus.Cmp(priv.PublicKey.N) === 0))) {
 			return errors.New("crypto/rsa: invalid modulus");
@@ -641,13 +644,14 @@ saltLength‚	PSSOptions.Ptr.prototype.saltLength = function() {
 		de.Mul(de, priv.D);
 		_ref$2 = priv.Primes;
 		_i$2 = 0;
-		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+		while (_i$2 < _ref$2.length) {
 			prime$2 = (_slice$2 = _ref$2, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 			pminus1 = new big.Int.Ptr().Sub(prime$2, bigOne);
 			congruence.Mod(de, pminus1);
 			if (!((congruence.Cmp(bigOne) === 0))) {
 				return errors.New("crypto/rsa: invalid exponents");
 			}
+			_i$2++;
 		}
 		return null;
 	};
@@ -659,7 +663,7 @@ saltLength‚	PSSOptions.Ptr.prototype.saltLength = function() {
 		_tuple = GenerateMultiPrimeKey(random, 2, bits), priv = _tuple[0], err = _tuple[1];
 		return [priv, err];
 	};
-0‚GenerateMultiPrimeKey‚ô	var GenerateMultiPrimeKey = go$pkg.GenerateMultiPrimeKey = function(random, nprimes, bits) {
+0‚GenerateMultiPrimeKey‚ö	var GenerateMultiPrimeKey = go$pkg.GenerateMultiPrimeKey = function(random, nprimes, bits) {
 		var priv, err, _tuple, primes, todo, _q, i, _tuple$1, _q$1, _slice, _index, _tuple$2, _slice$1, _index$1, _ref, _i, _slice$2, _index$2, prime, i$1, j, _slice$3, _index$3, n, totient, pminus1, _ref$1, _i$1, _slice$4, _index$4, prime$1, g, y, e;
 		priv = (go$ptrType(PrivateKey)).nil;
 		err = null;
@@ -687,7 +691,7 @@ saltLength‚	PSSOptions.Ptr.prototype.saltLength = function() {
 			}
 			_ref = primes;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				prime = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 				i$1 = _i;
 				j = 0;
@@ -697,17 +701,19 @@ saltLength‚	PSSOptions.Ptr.prototype.saltLength = function() {
 					}
 					j = j + 1 >> 0;
 				}
+				_i++;
 			}
 			n = new big.Int.Ptr().Set(bigOne);
 			totient = new big.Int.Ptr().Set(bigOne);
 			pminus1 = new big.Int.Ptr();
 			_ref$1 = primes;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				prime$1 = (_slice$4 = _ref$1, _index$4 = _i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
 				n.Mul(n, prime$1);
 				pminus1.Sub(prime$1, bigOne);
 				totient.Mul(totient, pminus1);
+				_i$1++;
 			}
 			if (!((n.BitLen() === bits))) {
 				continue NextSetOfPrimes;
@@ -855,7 +861,7 @@ Precompute‚
 		}
 	};
 	PrivateKey.prototype.Precompute = function() { return this.go$val.Precompute(); };
-0‚Õdecrypt‚È	var decrypt = function(random, priv, c) {
+0‚Ödecrypt‚É	var decrypt = function(random, priv, c) {
 		var m, err, ir, r, _tuple, ok, _tuple$1, bigE, rpowe, cCopy, _slice, _index, _slice$1, _index$1, m2, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _ref, _i, _slice$5, _index$5, _struct, values, i, _slice$6, _index$6, prime;
 		m = (go$ptrType(big.Int)).nil;
 		err = null;
@@ -902,7 +908,7 @@ Precompute‚
 			m.Add(m, m2);
 			_ref = priv.Precomputed.CRTValues;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				values = (_struct = (_slice$5 = _ref, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), new CRTValue.Ptr(_struct.Exp, _struct.Coeff, _struct.R));
 				i = _i;
 				prime = (_slice$6 = priv.Primes, _index$6 = (2 + i >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
@@ -915,6 +921,7 @@ Precompute‚
 				}
 				m2.Mul(m2, values.R);
 				m.Add(m, m2);
+				_i++;
 			}
 		}
 		if (!(ir === (go$ptrType(big.Int)).nil)) {

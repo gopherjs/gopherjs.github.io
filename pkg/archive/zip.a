@@ -682,7 +682,7 @@ DataOffset‚,	File.Ptr.prototype.DataOffset = function() {
 		directoryEndOffset = new Go$Int64(0, 0);
 		_ref = new (go$sliceType(Go$Int64))([new Go$Int64(0, 1024), new Go$Int64(0, 66560)]);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			bLen = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if ((bLen.high > size.high || (bLen.high === size.high && bLen.low > size.low))) {
@@ -702,6 +702,7 @@ DataOffset‚,	File.Ptr.prototype.DataOffset = function() {
 				_tuple$2 = [(go$ptrType(directoryEnd)).nil, go$pkg.ErrFormat], dir = _tuple$2[0], err = _tuple$2[1];
 				return [dir, err];
 			}
+			_i++;
 		}
 		b = (x$2 = go$subslice(buf, 4), go$subslice(new readBuf(x$2.array), x$2.offset, x$2.offset + x$2.length));
 		d = new directoryEnd.Ptr(((new (go$ptrType(readBuf))(function() { return b; }, function(v) { b = v; })).uint16() >>> 0), ((new (go$ptrType(readBuf))(function() { return b; }, function(v$1) { b = v$1; })).uint16() >>> 0), new Go$Uint64(0, (new (go$ptrType(readBuf))(function() { return b; }, function(v$2) { b = v$2; })).uint16()), new Go$Uint64(0, (new (go$ptrType(readBuf))(function() { return b; }, function(v$3) { b = v$3; })).uint16()), new Go$Uint64(0, (new (go$ptrType(readBuf))(function() { return b; }, function(v$4) { b = v$4; })).uint32()), new Go$Uint64(0, (new (go$ptrType(readBuf))(function() { return b; }, function(v$5) { b = v$5; })).uint32()), (new (go$ptrType(readBuf))(function() { return b; }, function(v$6) { b = v$6; })).uint16(), "");
@@ -1080,7 +1081,7 @@ SetModTime‚S	FileHeader.Ptr.prototype.SetModTime = function(t) {
 		start = w.cw.count;
 		_ref = w.dir;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			h = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			buf = go$makeNativeArray("Uint8", 46, function() { return 0; });
 			b = (x = new (go$sliceType(Go$Uint8))(buf), go$subslice(new writeBuf(x.array), x.offset, x.offset + x.length));
@@ -1129,6 +1130,7 @@ SetModTime‚S	FileHeader.Ptr.prototype.SetModTime = function(t) {
 			if (_tuple$3 = io.WriteString(w.cw, h.FileHeader.Comment), err$4 = _tuple$3[1], !(go$interfaceIsEqual(err$4, null))) {
 				return err$4;
 			}
+			_i++;
 		}
 		end = w.cw.count;
 		records = new Go$Uint64(0, w.dir.length);

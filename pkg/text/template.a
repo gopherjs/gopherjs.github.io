@@ -1,4 +1,4 @@
-0ÉuØtext/templateÇ¶package template
+0Éu÷text/templateÇ¶package template
 import bytes "bytes"
 import fmt "fmt"
 import io "io"
@@ -608,7 +608,7 @@ $$
 builtins0builtinFuncs0errBadComparisonType0errBadComparison0errNoComparison0
 htmlQuot0
 htmlApos0	htmlAmp0htmlLt0htmlGt0
-jsLowUni0hex0jsBackslash0jsApos0jsQuot0jsLt0jsGt0Épä0ÇApushÇ7	state.Ptr.prototype.push = function(name, value) {
+jsLowUni0hex0jsBackslash0jsApos0jsQuot0jsLt0jsGt0Ép±0ÇApushÇ7	state.Ptr.prototype.push = function(name, value) {
 		var s, _struct;
 		s = this;
 		s.vars = go$append(s.vars, new variable.Ptr(name, (_struct = value, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))));
@@ -700,7 +700,7 @@ errRecoverÇ√	var errRecover = function(errp) {
 		return tmpl.Execute(wr, data);
 	};
 	Template.prototype.ExecuteTemplate = function(wr, name, data) { return this.go$val.ExecuteTemplate(wr, name, data); };
-0ÇCExecuteÇ6	Template.Ptr.prototype.Execute = function(wr, data) {
+0ÇQExecuteÇD	Template.Ptr.prototype.Execute = function(wr, data) {
 		var err, t, v, _struct, value, _struct$1, state$1, b, _ref, _i, _keys, _entry, tmpl, name, s, _struct$2;
 		err = null;
 		var go$deferred = [];
@@ -715,17 +715,19 @@ errRecoverÇ√	var errRecover = function(errp) {
 				_ref = t.common.tmpl;
 				_i = 0;
 				_keys = go$keys(_ref);
-				for (; _i < _keys.length; _i += 1) {
+				while (_i < _keys.length) {
 					_entry = _ref[_keys[_i]];
 					tmpl = _entry.v;
 					name = _entry.k;
 					if (tmpl.Tree === (go$ptrType(parse.Tree)).nil || tmpl.Tree.Root === (go$ptrType(parse.ListNode)).nil) {
+						_i++;
 						continue;
 					}
 					if (b.Len() > 0) {
 						b.WriteString(", ");
 					}
 					fmt.Fprintf(b, "%q", new (go$sliceType(go$emptyInterface))([new Go$String(name)]));
+					_i++;
 				}
 				s = "";
 				if (b.Len() > 0) {
@@ -744,8 +746,8 @@ errRecoverÇ√	var errRecover = function(errp) {
 	};
 	Template.prototype.Execute = function(wr, data) { return this.go$val.Execute(wr, data); };
 0Ç
-walkÇ
-	state.Ptr.prototype.walk = function(dot, node) {
+walkÇ
+	state.Ptr.prototype.walk = function(dot, node) {
 		var s, node$1, _ref, _type, _struct, _struct$1, val, _struct$2, _struct$3, _ref$1, _i, _slice, _index, node$2, _struct$4, _struct$5, _struct$6, err, _tuple, _struct$7;
 		s = this;
 		s.at(node);
@@ -764,9 +766,10 @@ errRecoverÇ√	var errRecover = function(errp) {
 			node$1 = _ref.go$val;
 			_ref$1 = node$1.Nodes;
 			_i = 0;
-			for (; _i < _ref$1.length; _i += 1) {
+			while (_i < _ref$1.length) {
 				node$2 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				s.walk((_struct$4 = dot, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), node$2);
+				_i++;
 			}
 		} else if (_type === (go$ptrType(parse.RangeNode))) {
 			node$1 = _ref.go$val;
@@ -846,7 +849,7 @@ errRecoverÇ√	var errRecover = function(errp) {
 		_tuple$1 = [truth$1, true], truth$1 = _tuple$1[0], ok = _tuple$1[1];
 		return [truth$1, ok];
 	};
-0Çç	walkRangeÇ~	state.Ptr.prototype.walkRange = function(dot, r) {
+0Çê	walkRangeÇÅ	state.Ptr.prototype.walkRange = function(dot, r) {
 		var s, _tuple, _struct, _struct$1, _struct$2, val, mark, oneIteration, _ref, i, _struct$3, _struct$4, _ref$1, _i, _slice, _index, _struct$5, key, _struct$6, _struct$7, _struct$8, i$1, _tuple$1, _struct$9, elem, ok, _struct$10, _struct$11, _struct$12;
 		var go$deferred = [];
 		try {
@@ -885,9 +888,10 @@ errRecoverÇ√	var errRecover = function(errp) {
 					}
 					_ref$1 = sortKeys(val.MapKeys());
 					_i = 0;
-					for (; _i < _ref$1.length; _i += 1) {
+					while (_i < _ref$1.length) {
 						key = (_struct$5 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
 						oneIteration((_struct$6 = key, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), (_struct$8 = val.MapIndex((_struct$7 = key, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag))), new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)));
+						_i++;
 					}
 					return;
 				} else if (_ref === 18) {
@@ -948,18 +952,20 @@ errRecoverÇ√	var errRecover = function(errp) {
 		s.at(pipe);
 		_ref = pipe.Cmds;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			cmd = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			value = (_struct$3 = s.evalCommand((_struct$1 = dot, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), cmd, (_struct$2 = value, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag))), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 			if ((value.Kind() === 20) && (value.Type().NumMethod() === 0)) {
 				value = (_struct$4 = reflect.ValueOf(value.Interface()), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 			}
+			_i++;
 		}
 		_ref$1 = pipe.Decl;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			variable$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			s.push((_slice$2 = variable$1.Ident, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (_struct$5 = value, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag)));
+			_i$1++;
 		}
 		value = (_struct$6 = value, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag));
 		return (_struct$7 = value, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
@@ -1393,18 +1399,18 @@ evalStringÇ	state.Ptr.prototype.evalString = function(typ, n) {
 	};
 	state.prototype.evalEmptyInterface = function(dot, n) { return this.go$val.evalEmptyInterface(dot, n); };
 0ÇõindirectÇç	var indirect = function(v) {
-		var rv, isNil, _struct, _tuple, _struct$1, _struct$2, _struct$3, _tuple$1, _struct$4;
+		var rv, isNil, _struct, _struct$1, _tuple, _struct$2, _struct$3, _tuple$1, _struct$4;
 		rv = new reflect.Value.Ptr();
 		isNil = false;
 		while ((v.Kind() === 22) || (v.Kind() === 20)) {
 			if (v.IsNil()) {
-				_tuple = [(_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), true], rv = _tuple[0], isNil = _tuple[1];
-				return [(_struct$1 = rv, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), isNil];
+				_tuple = [(_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), true], rv = _tuple[0], isNil = _tuple[1];
+				return [(_struct$2 = rv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), isNil];
 			}
 			if ((v.Kind() === 20) && v.NumMethod() > 0) {
 				break;
 			}
-			v = (_struct$2 = v.Elem(), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+			v = (_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		}
 		_tuple$1 = [(_struct$3 = v, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), false], rv = _tuple$1[0], isNil = _tuple$1[1];
 		return [(_struct$4 = rv, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), isNil];
@@ -1505,7 +1511,7 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 		_ref = in$1;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			fn = _entry.v;
 			name = _entry.k;
@@ -1517,6 +1523,7 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 				throw go$panic(fmt.Errorf("can't install method/function %q with %d results", new (go$sliceType(go$emptyInterface))([new Go$String(name), new Go$Int(v.Type().NumOut())])));
 			}
 			_key = name, (out || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: (_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)) };
+			_i++;
 		}
 	};
 0ÇsaddFuncsÇe	var addFuncs = function(out, in$1) {
@@ -1524,11 +1531,12 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 		_ref = in$1;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			fn = _entry.v;
 			name = _entry.k;
 			_key = name, (out || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: fn };
+			_i++;
 		}
 	};
 0Å‘goodFuncÅ«	var goodFunc = function(typ) {
@@ -1556,7 +1564,7 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 		v = (_struct = reflect.ValueOf(item), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		_ref = indices;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			index$1 = (_struct$1 = reflect.ValueOf(i), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 			isNil = false;
@@ -1593,6 +1601,7 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 			} else {
 				return [null, fmt.Errorf("can't index item of type %s", new (go$sliceType(go$emptyInterface))([v.Type()]))];
 			}
+			_i++;
 		}
 		return [v.Interface(), null];
 	};
@@ -1633,7 +1642,7 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 		argv = (go$sliceType(reflect.Value)).make(args.length, 0, function() { return new reflect.Value.Ptr(); });
 		_ref = args;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			arg = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			value = (_struct$1 = reflect.ValueOf(arg), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1650,6 +1659,7 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 				return [null, fmt.Errorf("arg %d has type %s; should be %s", new (go$sliceType(go$emptyInterface))([new Go$Int(i), value.Type(), argType]))];
 			}
 			_slice$1 = argv, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (_struct$3 = value, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag))) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		result = v.Call(argv);
 		if ((result.length === 2) && !(_slice$2 = result, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).IsNil()) {
@@ -1669,12 +1679,13 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 		}
 		_ref = args;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			arg0 = (_slice = args, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!truth(arg0)) {
 				break;
 			}
+			_i++;
 		}
 		return arg0;
 	};
@@ -1685,12 +1696,13 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 		}
 		_ref = args;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			arg0 = (_slice = args, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (truth(arg0)) {
 				break;
 			}
+			_i++;
 		}
 		return arg0;
 	};
@@ -1731,7 +1743,7 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 		}
 		_ref = arg2;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			arg = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			v2 = (_struct$2 = reflect.ValueOf(arg), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 			_tuple$1 = basicKind((_struct$3 = v2, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag))), k2 = _tuple$1[0], err$1 = _tuple$1[1];
@@ -1761,6 +1773,7 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 			if (truth$1) {
 				return [true, null];
 			}
+			_i++;
 		}
 		return [false, null];
 	};
@@ -1825,13 +1838,13 @@ printValueÇ	state.Ptr.prototype.printValue = function(n, v) {
 		}
 		return [!lessThan, null];
 	};
-0Ç:
-HTMLEscapeÇ*	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
+0ÇD
+HTMLEscapeÇ4	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		var last, _ref, _i, _slice, _index, c, i, html, _ref$1;
 		last = 0;
 		_ref = b;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			html = (go$sliceType(Go$Uint8)).nil;
@@ -1847,11 +1860,13 @@ HTMLEscapeÇ*	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 			} else if (_ref$1 === 62) {
 				html = htmlGt;
 			} else {
+				_i++;
 				continue;
 			}
 			w.Write(go$subslice(b, last, i));
 			w.Write(html);
 			last = i + 1 >> 0;
+			_i++;
 		}
 		w.Write(go$subslice(b, last));
 	};
@@ -1933,7 +1948,7 @@ HTMLEscapeÇ*	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 0ÅÇURLQueryEscapero	var URLQueryEscaper = go$pkg.URLQueryEscaper = function(args) {
 		return url.QueryEscape(evalArgs(args));
 	};
-0Ç≠evalArgsÇü	var evalArgs = function(args) {
+0ÇÆevalArgsÇ†	var evalArgs = function(args) {
 		var ok, s, _tuple, x, _slice, _index, _ref, _i, _slice$1, _index$1, arg, i, _tuple$1, _struct, a, ok$1, _slice$2, _index$2;
 		ok = false;
 		s = "";
@@ -1943,13 +1958,14 @@ HTMLEscapeÇ*	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		if (!ok) {
 			_ref = args;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				arg = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				_tuple$1 = printableValue((_struct = reflect.ValueOf(arg), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), a = _tuple$1[0], ok$1 = _tuple$1[1];
 				if (ok$1) {
 					_slice$2 = args, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = a) : go$throwRuntimeError("index out of range");
 				}
+				_i++;
 			}
 			s = fmt.Sprint(args);
 		}
@@ -1980,7 +1996,7 @@ parseFilesÇl	var parseFiles = function(t, filenames) {
 		}
 		_ref = filenames;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			filename = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_tuple = ioutil.ReadFile(filename), b = _tuple[0], err = _tuple[1];
 			if (!(go$interfaceIsEqual(err, null))) {
@@ -2001,6 +2017,7 @@ parseFilesÇl	var parseFiles = function(t, filenames) {
 			if (!(go$interfaceIsEqual(err, null))) {
 				return [(go$ptrType(Template)).nil, err];
 			}
+			_i++;
 		}
 		return [t, null];
 	};
@@ -2051,7 +2068,7 @@ parseFilesÇl	var parseFiles = function(t, filenames) {
 		}
 	};
 	Template.prototype.init = function() { return this.go$val.init(); };
-0ÇKCloneÇ@	Template.Ptr.prototype.Clone = function() {
+0ÇUCloneÇJ	Template.Ptr.prototype.Clone = function() {
 		var t, nt, _key, _ref, _i, _keys, _entry, v, k, tmpl, _key$1, _ref$1, _i$1, _keys$1, _entry$1, v$1, k$1, _key$2, _ref$2, _i$2, _keys$2, _entry$2, v$2, k$2, _struct, _key$3;
 		t = this;
 		nt = t.copy((go$ptrType(common)).nil);
@@ -2060,33 +2077,37 @@ parseFilesÇl	var parseFiles = function(t, filenames) {
 		_ref = t.common.tmpl;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			v = _entry.v;
 			k = _entry.k;
 			if (k === t.name) {
+				_i++;
 				continue;
 			}
 			tmpl = v.copy(nt.common);
 			_key$1 = k, (nt.common.tmpl || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: tmpl };
+			_i++;
 		}
 		_ref$1 = t.common.parseFuncs;
 		_i$1 = 0;
 		_keys$1 = go$keys(_ref$1);
-		for (; _i$1 < _keys$1.length; _i$1 += 1) {
+		while (_i$1 < _keys$1.length) {
 			_entry$1 = _ref$1[_keys$1[_i$1]];
 			v$1 = _entry$1.v;
 			k$1 = _entry$1.k;
 			_key$2 = k$1, (nt.common.parseFuncs || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: v$1 };
+			_i$1++;
 		}
 		_ref$2 = t.common.execFuncs;
 		_i$2 = 0;
 		_keys$2 = go$keys(_ref$2);
-		for (; _i$2 < _keys$2.length; _i$2 += 1) {
+		while (_i$2 < _keys$2.length) {
 			_entry$2 = _ref$2[_keys$2[_i$2]];
 			v$2 = _entry$2.v;
 			k$2 = _entry$2.k;
 			_key$3 = k$2, (nt.common.execFuncs || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: (_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)) };
+			_i$2++;
 		}
 		return [nt, null];
 	};
@@ -2124,10 +2145,11 @@ parseFilesÇl	var parseFiles = function(t, filenames) {
 		_ref = t.common.tmpl;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			v = _entry.v;
 			m = go$append(m, v);
+			_i++;
 		}
 		return m;
 	};
@@ -2169,7 +2191,7 @@ parseFilesÇl	var parseFiles = function(t, filenames) {
 		_ref = trees;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			tree = _entry.v;
 			name = _entry.k;
@@ -2184,6 +2206,7 @@ parseFilesÇl	var parseFiles = function(t, filenames) {
 			}
 			tmpl.leftDelim = t.leftDelim;
 			tmpl.rightDelim = t.rightDelim;
+			_i++;
 		}
 		return [t, null];
 	};

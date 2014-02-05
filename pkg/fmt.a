@@ -1,4 +1,4 @@
-0ƒCÞfmt‚lÖpackage fmt
+0ƒCðfmt‚lÖpackage fmt
 import strconv "strconv"
 import utf8 "unicode/utf8"
 import errors "errors"
@@ -484,7 +484,7 @@ falseBytes0commaSpaceBytes0nilAngleBytes0nilParenBytes0
 mapBytes0percentBangBytes0missingBytes0badIndexBytes0
 panicBytes0
 extraBytes0irparenBytes0
-bytesBytes0badWidthBytes0badPrecBytes0noVerbBytes0ppFree0	intBits0uintptrBits0space0ssFree0complexError0	boolError0ƒ›Á0‚w
+bytesBytes0badWidthBytes0badPrecBytes0noVerbBytes0ppFree0	intBits0uintptrBits0space0ssFree0complexError0	boolError0ƒ›Ó0‚w
 clearflags‚g	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;
@@ -678,14 +678,14 @@ clearflags‚g	fmt.Ptr.prototype.clearflags = function() {
 		f.pad(go$subslice(buf, i));
 	};
 	fmt.prototype.integer = function(a, base, signedness, digits) { return this.go$val.integer(a, base, signedness, digits); };
-0‚âtruncate‚Ô	fmt.Ptr.prototype.truncate = function(s) {
+0‚ætruncate‚Ø	fmt.Ptr.prototype.truncate = function(s) {
 		var f, n, _ref, _i, _rune, i;
 		f = this;
 		if (f.precPresent && f.prec < utf8.RuneCountInString(s)) {
 			n = f.prec;
 			_ref = s;
 			_i = 0;
-			for (; _i < _ref.length; _i += _rune[1]) {
+			while (_i < _ref.length) {
 				_rune = go$decodeRune(_ref, _i);
 				i = _i;
 				if (n === 0) {
@@ -693,6 +693,7 @@ clearflags‚g	fmt.Ptr.prototype.clearflags = function() {
 					break;
 				}
 				n = n - 1 >> 0;
+				_i += _rune[1];
 			}
 		}
 		return s;
@@ -1436,7 +1437,7 @@ fmtFloat64‚	pp.Ptr.prototype.fmtFloat64 = function(v, verb) {
 		}
 	};
 	pp.prototype.fmtString = function(v, verb, goSyntax) { return this.go$val.fmtString(v, verb, goSyntax); };
-0‚BfmtBytes‚4	pp.Ptr.prototype.fmtBytes = function(v, verb, goSyntax, typ, depth) {
+0‚CfmtBytes‚5	pp.Ptr.prototype.fmtBytes = function(v, verb, goSyntax, typ, depth) {
 		var p, v$1, v$2, v$3, v$4, _ref, _i, _slice, _index, c, i, v$5, v$6, v$7, v$8, _ref$1;
 		p = this;
 		if ((verb === 118) || (verb === 100)) {
@@ -1452,7 +1453,7 @@ fmtFloat64‚	pp.Ptr.prototype.fmtFloat64 = function(v, verb) {
 			}
 			_ref = v;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				if (i > 0) {
@@ -1463,6 +1464,7 @@ fmtFloat64‚	pp.Ptr.prototype.fmtFloat64 = function(v, verb) {
 					}
 				}
 				p.printArg(new Go$Uint8(c), 118, p.fmt.plus, goSyntax, depth + 1 >> 0);
+				_i++;
 			}
 			if (goSyntax) {
 				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$7) { p.buf = v$7; })).WriteByte(125);
@@ -1753,7 +1755,7 @@ printValue‚S	pp.Ptr.prototype.printValue = function(value, verb, plus, goSynta
 		return wasString;
 	};
 	pp.prototype.printValue = function(value, verb, plus, goSyntax, depth) { return this.go$val.printValue(value, verb, plus, goSyntax, depth); };
-0‚&¹printReflectValue‚&¢	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
+0‚&¿printReflectValue‚&¨	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
 		var wasString, p, _struct, oldValue, _struct$1, _struct$2, f, _ref, x, v, v$1, v$2, v$3, keys, _ref$1, _i, _slice, _index, _struct$3, key, i, v$4, v$5, _struct$4, v$6, _struct$5, _struct$6, v$7, v$8, v$9, _struct$7, v$10, t, i$1, v$11, v$12, f$1, _struct$8, v$13, v$14, _struct$9, _struct$10, v$15, _struct$11, value$1, v$16, v$17, v$18, _struct$12, typ, bytes, _ref$2, _i$1, i$2, _slice$1, _index$1, v$19, v$20, v$21, v$22, i$3, v$23, v$24, _struct$13, v$25, v$26, v$27, _struct$14, a, _ref$3, v$28, _struct$15, v$29, _struct$16, _struct$17, _struct$18, _struct$19;
 		wasString = false;
 		p = this;
@@ -1797,7 +1799,7 @@ printValue‚S	pp.Ptr.prototype.printValue = function(value, verb, plus, goSynta
 				keys = f.MapKeys();
 				_ref$1 = keys;
 				_i = 0;
-				for (; _i < _ref$1.length; _i += 1) {
+				while (_i < _ref$1.length) {
 					key = (_struct$3 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 					i = _i;
 					if (i > 0) {
@@ -1810,6 +1812,7 @@ printValue‚S	pp.Ptr.prototype.printValue = function(value, verb, plus, goSynta
 					p.printValue((_struct$4 = key, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), verb, plus, goSyntax, depth + 1 >> 0);
 					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$6) { p.buf = v$6; })).WriteByte(58);
 					p.printValue((_struct$6 = f.MapIndex((_struct$5 = key, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), verb, plus, goSyntax, depth + 1 >> 0);
+					_i++;
 				}
 				if (goSyntax) {
 					(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$7) { p.buf = v$7; })).WriteByte(125);
@@ -1865,9 +1868,10 @@ printValue‚S	pp.Ptr.prototype.printValue = function(value, verb, plus, goSynta
 						bytes = (go$sliceType(Go$Uint8)).make(f.Len(), 0, function() { return 0; });
 						_ref$2 = bytes;
 						_i$1 = 0;
-						for (; _i$1 < _ref$2.length; _i$1 += 1) {
+						while (_i$1 < _ref$2.length) {
 							i$2 = _i$1;
 							_slice$1 = bytes, _index$1 = i$2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (f.Index(i$2).Uint().low << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+							_i$1++;
 						}
 					}
 					p.fmtBytes(bytes, verb, goSyntax, typ, depth);
@@ -2351,7 +2355,7 @@ UnreadRune‚Ç	ss.Ptr.prototype.UnreadRune = function() {
 		rx = (r << 16 >>> 16);
 		_ref = space;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			rng = go$mapArray((_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), function(entry) { return entry; });
 			if (rx < rng[0]) {
 				return false;
@@ -2359,6 +2363,7 @@ UnreadRune‚Ç	ss.Ptr.prototype.UnreadRune = function() {
 			if (rx <= rng[1]) {
 				return true;
 			}
+			_i++;
 		}
 		return false;
 	};
@@ -2526,18 +2531,18 @@ UnreadRune‚Ç	ss.Ptr.prototype.UnreadRune = function() {
 		return (x = s.buf, go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length));
 	};
 	ss.prototype.token = function(skipSpace, f) { return this.go$val.token(skipSpace, f); };
-0‚
-	indexRuneü	var indexRune = function(s, r) {
+0‚	indexRuneÿ	var indexRune = function(s, r) {
 		var _ref, _i, _rune, c, i;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			c = _rune[0];
 			i = _i;
 			if (c === r) {
 				return i;
 			}
+			_i += _rune[1];
 		}
 		return -1;
 	};
@@ -2585,17 +2590,18 @@ UnreadRune‚Ç	ss.Ptr.prototype.UnreadRune = function() {
 		return s.consume(ok, true);
 	};
 	ss.prototype.accept = function(ok) { return this.go$val.accept(ok); };
-0‚ÝokVerb‚Ñ	ss.Ptr.prototype.okVerb = function(verb, okVerbs, typ) {
+0‚àokVerb‚Ô	ss.Ptr.prototype.okVerb = function(verb, okVerbs, typ) {
 		var s, _ref, _i, _rune, v;
 		s = this;
 		_ref = okVerbs;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			v = _rune[0];
 			if (v === verb) {
 				return true;
 			}
+			_i += _rune[1];
 		}
 		s.errorString("bad verb %" + go$encodeRune(verb) + " for " + typ);
 		return false;
@@ -3094,7 +3100,7 @@ floatToken‚s	ss.Ptr.prototype.floatToken = function() {
 			}
 		}
 	};
-0‚<doScan‚0	ss.Ptr.prototype.doScan = function(a) {
+0‚=doScan‚1	ss.Ptr.prototype.doScan = function(a) {
 		var numProcessed, err, s, v, _ref, _i, _slice, _index, arg, r;
 		numProcessed = 0;
 		err = null;
@@ -3104,10 +3110,11 @@ floatToken‚s	ss.Ptr.prototype.floatToken = function() {
 			go$deferred.push({ fun: errorHandler, args: [new (go$ptrType(go$error))(function() { return err; }, function(v) { err = v; })] });
 			_ref = a;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				arg = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				s.scanOne(118, arg);
 				numProcessed = numProcessed + 1 >> 0;
+				_i++;
 			}
 			if (!s.ssave.nlIsSpace) {
 				while (true) {

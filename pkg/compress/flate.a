@@ -1,4 +1,4 @@
-0ƒά»compress/flate‚[package flate
+0ƒάεcompress/flate‚[package flate
 import fmt "fmt"
 import io "io"
 import math "math"
@@ -295,7 +295,7 @@ $$
 	(go$ptrType(token)).methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
 0ρ0levels0zeroes0	bzeroes0fixedHuffmanDecoder0lengthExtraBits0
 lengthBase0offsetExtraBits0
-offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	codeOrder0reverseByte0lengthCodes0offsetCodes0ƒsρ0‚forwardCopy‚		var forwardCopy = function(mem, dst, src, n) {
+offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	codeOrder0reverseByte0lengthCodes0offsetCodes0ƒt0‚forwardCopy‚		var forwardCopy = function(mem, dst, src, n) {
 		var k;
 		if (dst <= src) {
 			go$copySlice(go$subslice(mem, dst, (dst + n >> 0)), go$subslice(mem, src, (src + n >> 0)));
@@ -312,7 +312,7 @@ offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	cod
 			dst = dst + (k) >> 0;
 		}
 	};
-0‚FfillDeflate‚5	compressor.Ptr.prototype.fillDeflate = function(b) {
+0‚JfillDeflate‚9	compressor.Ptr.prototype.fillDeflate = function(b) {
 		var d, delta, _ref, _i, _slice, _index, v, i, _lhs, _index$1, _slice$1, _index$2, _slice$2, _index$3, _slice$3, _index$4, _ref$1, _i$1, _slice$4, _index$5, v$1, i$1, _lhs$1, _index$6, _slice$5, _index$7, _slice$6, _index$8, _slice$7, _index$9, n;
 		d = this;
 		if (d.index >= 65275) {
@@ -331,7 +331,7 @@ offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	cod
 				d.chainHead = d.chainHead - (delta) >> 0;
 				_ref = d.hashPrev;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					i = _i;
 					if (v > delta) {
@@ -339,10 +339,11 @@ offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	cod
 					} else {
 						_slice$3 = d.hashPrev, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$4] = 0) : go$throwRuntimeError("index out of range");
 					}
+					_i++;
 				}
 				_ref$1 = d.hashHead;
 				_i$1 = 0;
-				for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				while (_i$1 < _ref$1.length) {
 					v$1 = (_slice$4 = _ref$1, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$5] : go$throwRuntimeError("index out of range"));
 					i$1 = _i$1;
 					if (v$1 > delta) {
@@ -350,6 +351,7 @@ offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	cod
 					} else {
 						_slice$7 = d.hashHead, _index$9 = i$1, (_index$9 >= 0 && _index$9 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$9] = 0) : go$throwRuntimeError("index out of range");
 					}
+					_i$1++;
 				}
 			}
 		}
@@ -642,7 +644,7 @@ writeBlock‚θ	compressor.Ptr.prototype.writeBlock = function(tokens, index, eof
 		return err;
 	};
 	compressor.prototype.init = function(w, level) { return this.go$val.init(w, level); };
-0‚¦reset‚›	compressor.Ptr.prototype.reset = function(w) {
+0‚§reset‚	compressor.Ptr.prototype.reset = function(w) {
 		var d, _ref, _ref$1, _i, i, _slice, _index, s, n, s$1, _tuple, s$2, n$1, _tuple$1, i$1, _slice$1, _index$1;
 		d = this;
 		d.w.reset(w);
@@ -652,9 +654,10 @@ writeBlock‚θ	compressor.Ptr.prototype.writeBlock = function(tokens, index, eof
 		if (_ref === 0) {
 			_ref$1 = d.window;
 			_i = 0;
-			for (; _i < _ref$1.length; _i += 1) {
+			while (_i < _ref$1.length) {
 				i = _i;
 				_slice = d.window, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+				_i++;
 			}
 			d.windowEnd = 0;
 		} else {
@@ -779,7 +782,7 @@ writeBlock‚θ	compressor.Ptr.prototype.writeBlock = function(tokens, index, eof
 0‚ώnewHuffmanBitWriter‚ε	var newHuffmanBitWriter = function(w) {
 		return new huffmanBitWriter.Ptr(w, 0, 0, go$makeNativeArray("Uint8", 64, function() { return 0; }), 0, (go$sliceType(Go$Int32)).make(286, 0, function() { return 0; }), (go$sliceType(Go$Int32)).make(30, 0, function() { return 0; }), (go$sliceType(Go$Uint8)).make(317, 0, function() { return 0; }), (go$sliceType(Go$Int32)).make(19, 0, function() { return 0; }), newHuffmanEncoder(286), newHuffmanEncoder(30), newHuffmanEncoder(19), null);
 	};
-0‚Ζreset‚»	huffmanBitWriter.Ptr.prototype.reset = function(writer) {
+0‚Ιreset‚Ύ	huffmanBitWriter.Ptr.prototype.reset = function(writer) {
 		var w, _tuple, _ref, _i, i, _slice, _index, _ref$1, _i$1, s, _ref$2, _i$2, i$1, _slice$1, _index$1, _ref$3, _i$3, enc, _ref$4, _i$4, i$2, _slice$2, _index$2, _ref$5, _i$5, i$3, _slice$3, _index$3;
 		w = this;
 		w.w = writer;
@@ -787,37 +790,43 @@ writeBlock‚θ	compressor.Ptr.prototype.writeBlock = function(tokens, index, eof
 		w.bytes = go$makeNativeArray("Uint8", 64, function() { return 0; });
 		_ref = w.codegen;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_slice = w.codegen, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		_ref$1 = go$toNativeArray("Slice", [w.literalFreq, w.offsetFreq, w.codegenFreq]);
 		_i$1 = 0;
-		for (; _i$1 < 3; _i$1 += 1) {
+		while (_i$1 < 3) {
 			s = _ref$1[_i$1];
 			_ref$2 = s;
 			_i$2 = 0;
-			for (; _i$2 < _ref$2.length; _i$2 += 1) {
+			while (_i$2 < _ref$2.length) {
 				i$1 = _i$2;
 				_slice$1 = s, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
+				_i$2++;
 			}
+			_i$1++;
 		}
 		_ref$3 = go$toNativeArray("Ptr", [w.literalEncoding, w.offsetEncoding, w.codegenEncoding]);
 		_i$3 = 0;
-		for (; _i$3 < 3; _i$3 += 1) {
+		while (_i$3 < 3) {
 			enc = _ref$3[_i$3];
 			_ref$4 = enc.code;
 			_i$4 = 0;
-			for (; _i$4 < _ref$4.length; _i$4 += 1) {
+			while (_i$4 < _ref$4.length) {
 				i$2 = _i$4;
 				_slice$2 = enc.code, _index$2 = i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 0) : go$throwRuntimeError("index out of range");
+				_i$4++;
 			}
 			_ref$5 = enc.codeBits;
 			_i$5 = 0;
-			for (; _i$5 < _ref$5.length; _i$5 += 1) {
+			while (_i$5 < _ref$5.length) {
 				i$3 = _i$5;
 				_slice$3 = enc.codeBits, _index$3 = i$3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = 0) : go$throwRuntimeError("index out of range");
+				_i$5++;
 			}
+			_i$3++;
 		}
 	};
 	huffmanBitWriter.prototype.reset = function(writer) { return this.go$val.reset(writer); };
@@ -906,9 +915,10 @@ writeBytes‚ο	huffmanBitWriter.Ptr.prototype.writeBytes = function(bytes) {
 		w = this;
 		_ref = w.codegenFreq;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_slice = w.codegenFreq, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		codegen = w.codegen;
 		go$copySlice(go$subslice(codegen, 0, numLiterals), w.literalEncoding.codeBits);
@@ -1073,22 +1083,24 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 		}
 		_ref = w.literalFreq;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_slice = w.literalFreq, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		_ref$1 = w.offsetFreq;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			i$1 = _i$1;
 			_slice$1 = w.offsetFreq, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
+			_i$1++;
 		}
 		n = tokens.length;
 		tokens = go$subslice(tokens, 0, (n + 1 >> 0));
 		_slice$2 = tokens, _index$2 = n, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 256) : go$throwRuntimeError("index out of range");
 		_ref$2 = tokens;
 		_i$2 = 0;
-		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+		while (_i$2 < _ref$2.length) {
 			t = (_slice$3 = _ref$2, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 			_ref$3 = (new token(t)).typ();
 			if (_ref$3 === 0) {
@@ -1099,6 +1111,7 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 				_lhs$1 = w.literalFreq, _index$7 = 257 + lengthCode(length) >>> 0, _slice$7 = _lhs$1, _index$9 = _index$7, (_index$9 >= 0 && _index$9 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$9] = (_slice$6 = _lhs$1, _index$8 = _index$7, (_index$8 >= 0 && _index$8 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$8] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
 				_lhs$2 = w.offsetFreq, _index$10 = offsetCode(offset), _slice$9 = _lhs$2, _index$12 = _index$10, (_index$12 >= 0 && _index$12 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$12] = (_slice$8 = _lhs$2, _index$11 = _index$10, (_index$11 >= 0 && _index$11 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$11] : go$throwRuntimeError("index out of range")) + 1 >> 0) : go$throwRuntimeError("index out of range");
 			}
+			_i$2++;
 		}
 		numLiterals = w.literalFreq.length;
 		while ((_slice$10 = w.literalFreq, _index$13 = (numLiterals - 1 >> 0), (_index$13 >= 0 && _index$13 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$13] : go$throwRuntimeError("index out of range")) === 0) {
@@ -1162,7 +1175,7 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 		}
 		_ref$4 = tokens;
 		_i$3 = 0;
-		for (; _i$3 < _ref$4.length; _i$3 += 1) {
+		while (_i$3 < _ref$4.length) {
 			t$1 = (_slice$22 = _ref$4, _index$25 = _i$3, (_index$25 >= 0 && _index$25 < _slice$22.length) ? _slice$22.array[_slice$22.offset + _index$25] : go$throwRuntimeError("index out of range"));
 			_ref$5 = (new token(t$1)).typ();
 			switch (undefined) {
@@ -1192,6 +1205,7 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 					throw go$panic(new Go$String("unknown token type: " + go$encodeRune(t$1)));
 				}
 			}
+			_i$3++;
 		}
 	};
 	huffmanBitWriter.prototype.writeBlock = function(tokens, eof, input) { return this.go$val.writeBlock(tokens, eof, input); };
@@ -1255,12 +1269,13 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 		total = new Go$Int64(0, 0);
 		_ref = freq;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (!((f === 0))) {
 				total = (x = go$mul64(new Go$Int64(0, f), new Go$Int64(0, (_slice$1 = h.codeBits, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))), new Go$Int64(total.high + x.high, total.low + x.low));
 			}
+			_i++;
 		}
 		return total;
 	};
@@ -1336,41 +1351,44 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 		return bitCount;
 	};
 	huffmanEncoder.prototype.bitCounts = function(list, maxBits) { return this.go$val.bitCounts(list, maxBits); };
-0‚°assignEncodingAndSize‚•	huffmanEncoder.Ptr.prototype.assignEncodingAndSize = function(bitCount, list) {
+0‚»assignEncodingAndSize‚ 	huffmanEncoder.Ptr.prototype.assignEncodingAndSize = function(bitCount, list) {
 		var h, code, _ref, _i, _slice, _index, bits, n, chunk, _ref$1, _i$1, _slice$1, _index$1, _struct, node, _slice$2, _index$2, _slice$3, _index$3;
 		h = this;
 		code = 0;
 		_ref = bitCount;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			bits = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			n = _i;
 			code = code << 1 << 16 >>> 16;
 			if ((n === 0) || (bits === 0)) {
+				_i++;
 				continue;
 			}
 			chunk = go$subslice(list, (list.length - (bits >> 0) >> 0));
 			sortByLiteral(chunk);
 			_ref$1 = chunk;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				node = (_struct = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new literalNode.Ptr(_struct.literal, _struct.freq));
 				_slice$2 = h.codeBits, _index$2 = node.literal, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (n << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 				_slice$3 = h.code, _index$3 = node.literal, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = reverseBits(code, (n << 24 >>> 24))) : go$throwRuntimeError("index out of range");
 				code = code + 1 << 16 >>> 16;
+				_i$1++;
 			}
 			list = go$subslice(list, 0, (list.length - (bits >> 0) >> 0));
+			_i++;
 		}
 	};
 	huffmanEncoder.prototype.assignEncodingAndSize = function(bitCount, list) { return this.go$val.assignEncodingAndSize(bitCount, list); };
-0‚΄generate‚¦	huffmanEncoder.Ptr.prototype.generate = function(freq, maxBits) {
+0‚µgenerate‚§	huffmanEncoder.Ptr.prototype.generate = function(freq, maxBits) {
 		var h, list, count, _ref, _i, _slice, _index, f, i, _slice$1, _index$1, _slice$2, _index$2, _ref$1, _i$1, _slice$3, _index$3, _struct, node, i$1, _slice$4, _index$4, _slice$5, _index$5, bitCount;
 		h = this;
 		list = (go$sliceType(literalNode)).make(freq.length + 1 >> 0, 0, function() { return new literalNode.Ptr(); });
 		count = 0;
 		_ref = freq;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (!((f === 0))) {
@@ -1379,17 +1397,19 @@ writeBlock‚.	huffmanBitWriter.Ptr.prototype.writeBlock = function(tokens, eof,
 			} else {
 				_slice$2 = h.codeBits, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 0) : go$throwRuntimeError("index out of range");
 			}
+			_i++;
 		}
 		h.codeBits = go$subslice(h.codeBits, 0, freq.length);
 		list = go$subslice(list, 0, count);
 		if (count <= 2) {
 			_ref$1 = list;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				node = (_struct = (_slice$3 = _ref$1, _index$3 = _i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), new literalNode.Ptr(_struct.literal, _struct.freq));
 				i$1 = _i$1;
 				_slice$4 = h.codeBits, _index$4 = node.literal, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = 1) : go$throwRuntimeError("index out of range");
 				_slice$5 = h.code, _index$5 = node.literal, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = (i$1 << 16 >>> 16)) : go$throwRuntimeError("index out of range");
+				_i$1++;
 			}
 			return;
 		}
@@ -1460,8 +1480,8 @@ sortByFreq‚	var sortByFreq = function(a) {
 		return "flate: write error at offset " + strconv.FormatInt(e.Offset, 10) + ": " + e.Err.Error();
 	};
 	WriteError.prototype.Error = function() { return this.go$val.Error(); };
-0‚linit‚b	huffmanDecoder.Ptr.prototype.init = function(bits) {
-		var h, l, r, count, _tuple, min, max, _ref, _i, _slice, _index, n, _lhs, _index$1, linkBits, numLinks, y, code, nextcode, i, link, j, reverse, off, y$1, _slice$1, _index$2, n$1, _ref$1, _i$1, _slice$2, _index$3, n$2, i$1, code$1, _lhs$1, _index$4, chunk, reverse$1, off$1, y$2, value, _slice$3, _index$5, linktab, off$2, _slice$4, _index$6, y$3;
+0‚‚init‚x	huffmanDecoder.Ptr.prototype.init = function(bits) {
+		var h, l, r, count, _tuple, min, max, _ref, _i, _slice, _index, n, _lhs, _index$1, linkBits, numLinks, y, code, nextcode, i, link, j, reverse, off, y$1, _slice$1, _index$2, n$1, _ref$1, _i$1, _slice$2, _index$3, n$2, i$1, code$1, _lhs$1, _index$4, chunk, reverse$1, off$1, y$2, value, _slice$3, _index$5, linktab, off$2, y$3, _slice$4, _index$6;
 		h = this;
 		if (!((h.min === 0))) {
 			l = h, r = new huffmanDecoder.Ptr(0, go$makeNativeArray("Uint32", 512, function() { return 0; }), (go$sliceType((go$sliceType(Go$Uint32)))).nil, 0), l.min = r.min, l.chunks = r.chunks, l.links = r.links, l.linkMask = r.linkMask;
@@ -1470,9 +1490,10 @@ sortByFreq‚	var sortByFreq = function(a) {
 		_tuple = [0, 0], min = _tuple[0], max = _tuple[1];
 		_ref = bits;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			n = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (n === 0) {
+				_i++;
 				continue;
 			}
 			if ((min === 0) || n < min) {
@@ -1482,6 +1503,7 @@ sortByFreq‚	var sortByFreq = function(a) {
 				max = n;
 			}
 			_lhs = count, _index$1 = n, _lhs[_index$1] = _lhs[_index$1] + 1 >> 0;
+			_i++;
 		}
 		if (max === 0) {
 			return false;
@@ -1522,10 +1544,11 @@ sortByFreq‚	var sortByFreq = function(a) {
 		}
 		_ref$1 = bits;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			n$2 = (_slice$2 = _ref$1, _index$3 = _i$1, (_index$3 >= 0 && _index$3 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$3] : go$throwRuntimeError("index out of range"));
 			i$1 = _i$1;
 			if (n$2 === 0) {
+				_i$1++;
 				continue;
 			}
 			code$1 = nextcode[n$2];
@@ -1552,6 +1575,7 @@ sortByFreq‚	var sortByFreq = function(a) {
 					off$2 = off$2 + (((y$3 = ((n$2 - 9 >> 0) >>> 0), y$3 < 32 ? (1 << y$3) : 0) >> 0)) >> 0;
 				}
 			}
+			_i$1++;
 		}
 		return true;
 	};

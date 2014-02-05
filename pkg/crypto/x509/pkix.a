@@ -1,4 +1,4 @@
-0Çî˝crypto/x509/pkixÇ\Ôpackage pkix
+0Çïcrypto/x509/pkixÇ\Ôpackage pkix
 import asn1 "encoding/asn1"
 import big "math/big"
 import time "time"
@@ -362,22 +362,24 @@ $$
 	TBSCertificateList.init([["Raw", "", asn1.RawContent, ""], ["Version", "", Go$Int, "asn1:\"optional,default:2\""], ["Signature", "", AlgorithmIdentifier, ""], ["Issuer", "", RDNSequence, ""], ["ThisUpdate", "", time.Time, ""], ["NextUpdate", "", time.Time, ""], ["RevokedCertificates", "", (go$sliceType(RevokedCertificate)), "asn1:\"optional\""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"tag:0,optional,explicit\""]]);
 	RevokedCertificate.init([["SerialNumber", "", (go$ptrType(big.Int)), ""], ["RevocationTime", "", time.Time, ""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"optional\""]]);
 0Å°0
-oidCountry0oidOrganization0oidOrganizationalUnit0oidCommonName0oidSerialNumber0oidLocality0oidProvince0oidStreetAddress0oidPostalCode0Ç‚0Ç
-éFillFromRDNSequenceÇ
-u	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
+oidCountry0oidOrganization0oidOrganizationalUnit0oidCommonName0oidSerialNumber0oidLocality0oidProvince0oidStreetAddress0oidPostalCode0Çˆ0Ç
+¢FillFromRDNSequenceÇ
+â	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
 		var n, _ref, _i, _slice, _index, rdn, _slice$1, _index$1, _struct, atv, _struct$1, _tuple, x, value, ok, t, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _slice$5, _index$5;
 		n = this;
 		_ref = rdns.go$get();
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			rdn = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (rdn.length === 0) {
+				_i++;
 				continue;
 			}
 			atv = (_struct = (_slice$1 = rdn, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new AttributeTypeAndValue.Ptr(_struct.Type, _struct.Value));
 			n.Names = go$append(n.Names, (_struct$1 = atv, new AttributeTypeAndValue.Ptr(_struct$1.Type, _struct$1.Value)));
 			_tuple = (x = atv.Value, (x !== null && x.constructor === Go$String ? [x.go$val, true] : ["", false])), value = _tuple[0], ok = _tuple[1];
 			if (!ok) {
+				_i++;
 				continue;
 			}
 			t = atv.Type;
@@ -403,6 +405,7 @@ u	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
 					n.PostalCode = go$append(n.PostalCode, value);
 				}
 			}
+			_i++;
 		}
 	};
 	Name.prototype.FillFromRDNSequence = function(rdns) { return this.go$val.FillFromRDNSequence(rdns); };
@@ -415,11 +418,12 @@ appendRDNsÇ	var appendRDNs = function(in$1, values, oid) {
 		s = (go$sliceType(AttributeTypeAndValue)).make(values.length, 0, function() { return new AttributeTypeAndValue.Ptr(); });
 		_ref = values;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			value = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			(_slice$1 = s, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Type = oid;
 			(_slice$2 = s, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Value = new Go$String(value);
+			_i++;
 		}
 		return go$append(in$1, go$subslice(new RelativeDistinguishedNameSET(s.array), s.offset, s.offset + s.length));
 	};

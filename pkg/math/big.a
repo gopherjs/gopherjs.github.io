@@ -1,4 +1,4 @@
-0É ∆math/bigÇ/¥package big
+0É  math/bigÇ/¥package big
 import errors "errors"
 import fmt "fmt"
 import io "io"
@@ -222,7 +222,7 @@ $$
 	Rat.init([["a", "math/big", Int, ""], ["b", "math/big", Int, ""]]);
 	(go$ptrType(Rat)).methods = [["Abs", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Add", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Cmp", "", [(go$ptrType(Rat))], [Go$Int], false], ["Denom", "", [], [(go$ptrType(Int))], false], ["Float64", "", [], [Go$Float64, Go$Bool], false], ["FloatString", "", [Go$Int], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Inv", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["IsInt", "", [], [Go$Bool], false], ["Mul", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Neg", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Num", "", [], [(go$ptrType(Int))], false], ["Quo", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["RatString", "", [], [Go$String], false], ["Scan", "", [fmt.ScanState, Go$Int32], [go$error], false], ["Set", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["SetFloat64", "", [Go$Float64], [(go$ptrType(Rat))], false], ["SetFrac", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetFrac64", "", [Go$Int64, Go$Int64], [(go$ptrType(Rat))], false], ["SetInt", "", [(go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetInt64", "", [Go$Int64], [(go$ptrType(Rat))], false], ["SetString", "", [Go$String], [(go$ptrType(Rat)), Go$Bool], false], ["Sign", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["norm", "math/big", [], [(go$ptrType(Rat))], false]];
 0ÅÅ0intOne0natOne0natTwo0natTen0karatsubaThreshold0
-leafSize0cacheBase100deBruijn32Lookup0deBruijn64Lookup0É≈»0ÅæaddWW_gÅ≤	var addWW_g = function(x, y, c) {
+leafSize0cacheBase100deBruijn32Lookup0deBruijn64Lookup0É≈Ã0ÅæaddWW_gÅ≤	var addWW_g = function(x, y, c) {
 		var z1, z0, yc;
 		z1 = 0;
 		z0 = 0;
@@ -344,9 +344,10 @@ $$
 		c = 0;
 		_ref = z;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_tuple = addWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = y, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), c), c = _tuple[0], _slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[1]) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return c;
 	};
@@ -355,9 +356,10 @@ $$
 		c = 0;
 		_ref = z;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_tuple = subWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = y, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), c), c = _tuple[0], _slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[1]) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return c;
 	};
@@ -367,9 +369,10 @@ $$
 		c = y;
 		_ref = z;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_tuple = addWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), c, 0), c = _tuple[0], _slice$1 = z, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple[1]) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return c;
 	};
@@ -379,9 +382,10 @@ $$
 		c = y;
 		_ref = z;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_tuple = subWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), c, 0), c = _tuple[0], _slice$1 = z, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple[1]) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return c;
 	};
@@ -427,9 +431,10 @@ $$
 		c = r;
 		_ref = z;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_tuple = mulAddWWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), y, c), c = _tuple[0], _slice$1 = z, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple[1]) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return c;
 	};
@@ -438,11 +443,12 @@ $$
 		c = 0;
 		_ref = z;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_tuple = mulAddWWW_g((_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), y, (_slice$1 = z, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))), z1 = _tuple[0], z0 = _tuple[1];
 			_tuple$1 = addWW_g(z0, c, 0), c = _tuple$1[0], _slice$2 = z, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple$1[1]) : go$throwRuntimeError("index out of range");
 			c = c + (z1) >>> 0;
+			_i++;
 		}
 		return c;
 	};
@@ -1276,9 +1282,10 @@ ModInverseÇ	Int.Ptr.prototype.ModInverse = function(g, p) {
 		z = this;
 		_ref = z;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_slice = z, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 	};
 	go$ptrType(nat).prototype.clear = function() { return this.go$get().clear(); };
@@ -1327,10 +1334,11 @@ ModInverseÇ	Int.Ptr.prototype.ModInverse = function(g, p) {
 		z = z.make(n);
 		_ref = z;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_slice = z, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (new Go$Uint64(x.high & 0, (x.low & 4294967295) >>> 0).low >>> 0)) : go$throwRuntimeError("index out of range");
 			x = go$shiftRightUint64(x, 32);
+			_i++;
 		}
 		return z;
 	};
@@ -1430,12 +1438,13 @@ ModInverseÇ	Int.Ptr.prototype.ModInverse = function(g, p) {
 		go$subslice(z, 0, (x.length + y.length >> 0)).clear();
 		_ref = y;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (!((d === 0))) {
 				_slice$1 = z, _index$1 = x.length + i >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = addMulVVW((x$1 = go$subslice(z, i, (i + x.length >> 0)), go$subslice(new (go$sliceType(Word))(x$1.array), x$1.offset, x$1.offset + x$1.length)), go$subslice(new (go$sliceType(Word))(x.array), x.offset, x.offset + x.length), d)) : go$throwRuntimeError("index out of range");
 			}
+			_i++;
 		}
 	};
 0ÇôkaratsubaAddÇá	var karatsubaAdd = function(z, x, n) {
@@ -2129,7 +2138,7 @@ ModInverseÇ	Int.Ptr.prototype.ModInverse = function(g, p) {
 		return r;
 	};
 	go$ptrType(nat).prototype.modW = function(d) { return this.go$get().modW(d); };
-0ÇírandomÇÜ	nat.prototype.random = function(rand$1, limit, n) {
+0ÇñrandomÇä	nat.prototype.random = function(rand$1, limit, n) {
 		var z, _r, bitLengthOfMSW, y, mask, _ref, _ref$1, _i, i, _slice, _index, _ref$2, _i$1, i$1, _slice$1, _index$1, _lhs, _index$2, _slice$2, _index$3, _slice$3, _index$4;
 		z = this;
 		if (alias(z, limit)) {
@@ -2146,16 +2155,18 @@ ModInverseÇ	Int.Ptr.prototype.ModInverse = function(g, p) {
 			if (_ref === 32) {
 				_ref$1 = z;
 				_i = 0;
-				for (; _i < _ref$1.length; _i += 1) {
+				while (_i < _ref$1.length) {
 					i = _i;
 					_slice = z, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (rand$1.Uint32() >>> 0)) : go$throwRuntimeError("index out of range");
+					_i++;
 				}
 			} else if (_ref === 64) {
 				_ref$2 = z;
 				_i$1 = 0;
-				for (; _i$1 < _ref$2.length; _i$1 += 1) {
+				while (_i$1 < _ref$2.length) {
 					i$1 = _i$1;
 					_slice$1 = z, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((rand$1.Uint32() >>> 0) | ((rand$1.Uint32() >>> 0) << 32 >>> 0)) >>> 0) : go$throwRuntimeError("index out of range");
+					_i$1++;
 				}
 			} else {
 				throw go$panic(new Go$String("unknown word size"));
@@ -2355,7 +2366,7 @@ ModInverseÇ	Int.Ptr.prototype.ModInverse = function(g, p) {
 		i = buf.length;
 		_ref = z;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			j = 0;
 			while (j < 4) {
@@ -2364,6 +2375,7 @@ ModInverseÇ	Int.Ptr.prototype.ModInverse = function(g, p) {
 				d = d >>> 8 >>> 0;
 				j = j + 1 >> 0;
 			}
+			_i++;
 		}
 		while (i < buf.length && ((_slice$2 = buf, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === 0)) {
 			i = i + 1 >> 0;

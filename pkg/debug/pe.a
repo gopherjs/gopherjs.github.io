@@ -1,4 +1,4 @@
-0Ç}ùdebug/peÇ%Ûpackage pe
+0Ç}ßdebug/peÇ%Ûpackage pe
 import dwarf "debug/dwarf"
 import binary "encoding/binary"
 import errors "errors"
@@ -222,7 +222,7 @@ $$
 	FileHeader.init([["Machine", "", Go$Uint16, ""], ["NumberOfSections", "", Go$Uint16, ""], ["TimeDateStamp", "", Go$Uint32, ""], ["PointerToSymbolTable", "", Go$Uint32, ""], ["NumberOfSymbols", "", Go$Uint32, ""], ["SizeOfOptionalHeader", "", Go$Uint16, ""], ["Characteristics", "", Go$Uint16, ""]]);
 	SectionHeader32.init([["Name", "", (go$arrayType(Go$Uint8, 8)), ""], ["VirtualSize", "", Go$Uint32, ""], ["VirtualAddress", "", Go$Uint32, ""], ["SizeOfRawData", "", Go$Uint32, ""], ["PointerToRawData", "", Go$Uint32, ""], ["PointerToRelocations", "", Go$Uint32, ""], ["PointerToLineNumbers", "", Go$Uint32, ""], ["NumberOfRelocations", "", Go$Uint16, ""], ["NumberOfLineNumbers", "", Go$Uint16, ""], ["Characteristics", "", Go$Uint32, ""]]);
 	COFFSymbol.init([["Name", "", (go$arrayType(Go$Uint8, 8)), ""], ["Value", "", Go$Uint32, ""], ["SectionNumber", "", Go$Int16, ""], ["Type", "", Go$Uint16, ""], ["StorageClass", "", Go$Uint8, ""], ["NumberOfAuxSymbols", "", Go$Uint8, ""]]);
-0 0Ç1f0ÇÄDataÇv	Section.Ptr.prototype.Data = function() {
+0 0Ç1p0ÇÄDataÇv	Section.Ptr.prototype.Data = function() {
 		var s, dat, _tuple, n, err;
 		s = this;
 		dat = (go$sliceType(Go$Uint8)).make(go$flatten64(s.sr.Size()), 0, function() { return 0; });
@@ -391,28 +391,30 @@ $$
 		f = this;
 		_ref = f.Sections;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (s.SectionHeader.Name === name) {
 				return s;
 			}
+			_i++;
 		}
 		return (go$ptrType(Section)).nil;
 	};
 	File.prototype.Section = function(name) { return this.go$val.Section(name); };
-0Ç:DWARFÇ/	File.Ptr.prototype.DWARF = function() {
+0ÇDDWARFÇ9	File.Ptr.prototype.DWARF = function() {
 		var f, names, dat, _ref, _i, name, i, s, _tuple, b, err, _tuple$1, abbrev, info, str;
 		f = this;
 		names = go$toNativeArray("String", ["abbrev", "info", "str"]);
 		dat = go$makeNativeArray("Slice", 3, function() { return (go$sliceType(Go$Uint8)).nil; });
 		_ref = names;
 		_i = 0;
-		for (; _i < 3; _i += 1) {
+		while (_i < 3) {
 			name = _ref[_i];
 			i = _i;
 			name = ".debug_" + name;
 			s = f.Section(name);
 			if (s === (go$ptrType(Section)).nil) {
+				_i++;
 				continue;
 			}
 			_tuple = s.Data(), b = _tuple[0], err = _tuple[1];
@@ -420,6 +422,7 @@ $$
 				return [(go$ptrType(dwarf.Data)).nil, err];
 			}
 			dat[i] = b;
+			_i++;
 		}
 		_tuple$1 = [dat[0], dat[1], dat[2]], abbrev = _tuple$1[0], info = _tuple$1[1], str = _tuple$1[2];
 		return dwarf.New(abbrev, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, info, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, str);
@@ -453,7 +456,7 @@ $$
 		all = (go$sliceType(Go$String)).nil;
 		_ref = ida;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			dt$1 = (_struct$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new ImportDirectory.Ptr(_struct$1.OriginalFirstThunk, _struct$1.TimeDateStamp, _struct$1.ForwarderChain, _struct$1.Name, _struct$1.FirstThunk, _struct$1.dll));
 			_tuple$2 = getString(names, ((dt$1.Name - ds.SectionHeader.VirtualAddress >>> 0) >> 0)), dt$1.dll = _tuple$2[0];
 			_tuple$3 = ds.Data(), d = _tuple$3[0];
@@ -483,6 +486,7 @@ $$
 					}
 				}
 			}
+			_i++;
 		}
 		return [all, null];
 	};

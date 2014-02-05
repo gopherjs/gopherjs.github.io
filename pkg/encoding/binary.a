@@ -1,4 +1,4 @@
-0ƒ#þencoding/binary‚Spackage binary
+0ƒ$encoding/binary‚Spackage binary
 import errors "errors"
 import io "io"
 import math "math"
@@ -320,7 +320,7 @@ $$
 	encoder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
 	(go$ptrType(encoder)).methods = [["int16", "encoding/binary", [Go$Int16], [], false], ["int32", "encoding/binary", [Go$Int32], [], false], ["int64", "encoding/binary", [Go$Int64], [], false], ["int8", "encoding/binary", [Go$Int8], [], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [Go$Uint16], [], false], ["uint32", "encoding/binary", [Go$Uint32], [], false], ["uint64", "encoding/binary", [Go$Uint64], [], false], ["uint8", "encoding/binary", [Go$Uint8], [], false], ["value", "encoding/binary", [reflect.Value], [], false]];
 00 0 0
-overflow0‚ºI0‚?Uint16‚3	littleEndian.Ptr.prototype.Uint16 = function(b) {
+overflow0‚ºe0‚?Uint16‚3	littleEndian.Ptr.prototype.Uint16 = function(b) {
 		var _slice, _index, _slice$1, _index$1;
 		return (((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16)) >>> 0;
 	};
@@ -418,7 +418,7 @@ $$
 		return "binary.BigEndian";
 	};
 	bigEndian.prototype.GoString = function() { return this.go$val.GoString(); };
-0‚åRead‚Û	var Read = go$pkg.Read = function(r, order, data) {
+0‚óRead‚é	var Read = go$pkg.Read = function(r, order, data) {
 		var n, b, bs, err, _tuple, data$1, _ref, _type, x, _ref$1, _i, _slice, _index, x$1, i, _slice$1, _index$1, _ref$2, _i$1, i$1, x$2, _slice$2, _index$2, _ref$3, _i$2, i$2, x$3, _slice$3, _index$3, _ref$4, _i$3, i$3, x$4, _slice$4, _index$4, _ref$5, _i$4, i$4, x$5, _slice$5, _index$5, _ref$6, _i$5, i$5, x$6, x$7, _slice$6, _index$6, _ref$7, _i$6, i$6, x$8, _slice$7, _index$7, v, _struct, d, _ref$8, _struct$1, _struct$2, _tuple$1, _struct$3, size, err$1, d$1, err$2, _tuple$2, _struct$4;
 		if (n = intDataSize(data), !((n === 0))) {
 			b = go$makeNativeArray("Uint8", 8, function() { return 0; });
@@ -461,10 +461,11 @@ $$
 				data$1 = _ref.go$val;
 				_ref$1 = bs;
 				_i = 0;
-				for (; _i < _ref$1.length; _i += 1) {
+				while (_i < _ref$1.length) {
 					x$1 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					i = _i;
 					_slice$1 = data$1, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (x$1 << 24 >> 24)) : go$throwRuntimeError("index out of range");
+					_i++;
 				}
 			} else if (_type === (go$sliceType(Go$Uint8))) {
 				data$1 = _ref.go$val;
@@ -473,49 +474,55 @@ $$
 				data$1 = _ref.go$val;
 				_ref$2 = data$1;
 				_i$1 = 0;
-				for (; _i$1 < _ref$2.length; _i$1 += 1) {
+				while (_i$1 < _ref$2.length) {
 					i$1 = _i$1;
 					_slice$2 = data$1, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (order.Uint16(go$subslice(bs, (x$2 = 2, (((x$2 >>> 16 << 16) * i$1 >> 0) + (x$2 << 16 >>> 16) * i$1) >> 0))) << 16 >> 16)) : go$throwRuntimeError("index out of range");
+					_i$1++;
 				}
 			} else if (_type === (go$sliceType(Go$Uint16))) {
 				data$1 = _ref.go$val;
 				_ref$3 = data$1;
 				_i$2 = 0;
-				for (; _i$2 < _ref$3.length; _i$2 += 1) {
+				while (_i$2 < _ref$3.length) {
 					i$2 = _i$2;
 					_slice$3 = data$1, _index$3 = i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = order.Uint16(go$subslice(bs, (x$3 = 2, (((x$3 >>> 16 << 16) * i$2 >> 0) + (x$3 << 16 >>> 16) * i$2) >> 0)))) : go$throwRuntimeError("index out of range");
+					_i$2++;
 				}
 			} else if (_type === (go$sliceType(Go$Int32))) {
 				data$1 = _ref.go$val;
 				_ref$4 = data$1;
 				_i$3 = 0;
-				for (; _i$3 < _ref$4.length; _i$3 += 1) {
+				while (_i$3 < _ref$4.length) {
 					i$3 = _i$3;
 					_slice$4 = data$1, _index$4 = i$3, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = (order.Uint32(go$subslice(bs, (x$4 = 4, (((x$4 >>> 16 << 16) * i$3 >> 0) + (x$4 << 16 >>> 16) * i$3) >> 0))) >> 0)) : go$throwRuntimeError("index out of range");
+					_i$3++;
 				}
 			} else if (_type === (go$sliceType(Go$Uint32))) {
 				data$1 = _ref.go$val;
 				_ref$5 = data$1;
 				_i$4 = 0;
-				for (; _i$4 < _ref$5.length; _i$4 += 1) {
+				while (_i$4 < _ref$5.length) {
 					i$4 = _i$4;
 					_slice$5 = data$1, _index$5 = i$4, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = order.Uint32(go$subslice(bs, (x$5 = 4, (((x$5 >>> 16 << 16) * i$4 >> 0) + (x$5 << 16 >>> 16) * i$4) >> 0)))) : go$throwRuntimeError("index out of range");
+					_i$4++;
 				}
 			} else if (_type === (go$sliceType(Go$Int64))) {
 				data$1 = _ref.go$val;
 				_ref$6 = data$1;
 				_i$5 = 0;
-				for (; _i$5 < _ref$6.length; _i$5 += 1) {
+				while (_i$5 < _ref$6.length) {
 					i$5 = _i$5;
 					_slice$6 = data$1, _index$6 = i$5, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = (x$6 = order.Uint64(go$subslice(bs, (x$7 = 8, (((x$7 >>> 16 << 16) * i$5 >> 0) + (x$7 << 16 >>> 16) * i$5) >> 0))), new Go$Int64(x$6.high, x$6.low))) : go$throwRuntimeError("index out of range");
+					_i$5++;
 				}
 			} else if (_type === (go$sliceType(Go$Uint64))) {
 				data$1 = _ref.go$val;
 				_ref$7 = data$1;
 				_i$6 = 0;
-				for (; _i$6 < _ref$7.length; _i$6 += 1) {
+				while (_i$6 < _ref$7.length) {
 					i$6 = _i$6;
 					_slice$7 = data$1, _index$7 = i$6, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = order.Uint64(go$subslice(bs, (x$8 = 8, (((x$8 >>> 16 << 16) * i$6 >> 0) + (x$8 << 16 >>> 16) * i$6) >> 0)))) : go$throwRuntimeError("index out of range");
+					_i$6++;
 				}
 			}
 			return null;
@@ -541,7 +548,7 @@ $$
 		d$1.value((_struct$4 = v, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
 		return null;
 	};
-0‚ÜWrite‚Ñ	var Write = go$pkg.Write = function(w, order, data) {
+0‚êWrite‚ß	var Write = go$pkg.Write = function(w, order, data) {
 		var n, b, bs, v, _ref, _type, _ref$1, _i, _slice, _index, x, i, _slice$1, _index$1, _ref$2, _i$1, _slice$2, _index$2, x$1, i$1, x$2, _ref$3, _i$2, _slice$3, _index$3, x$3, i$2, x$4, _ref$4, _i$3, _slice$4, _index$4, x$5, i$3, x$6, _ref$5, _i$4, _slice$5, _index$5, x$7, i$4, x$8, x$9, _ref$6, _i$5, _slice$6, _index$6, x$10, i$5, x$11, _ref$7, _i$6, _slice$7, _index$7, x$12, i$6, x$13, _tuple, err, _struct, _struct$1, v$1, _tuple$1, _struct$2, size, err$1, buf, e, _struct$3, _tuple$2;
 		if (n = intDataSize(data), !((n === 0))) {
 			b = go$makeNativeArray("Uint8", 8, function() { return 0; });
@@ -565,10 +572,11 @@ $$
 				v = _ref.go$val;
 				_ref$1 = v;
 				_i = 0;
-				for (; _i < _ref$1.length; _i += 1) {
+				while (_i < _ref$1.length) {
 					x = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					i = _i;
 					_slice$1 = bs, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (x << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+					_i++;
 				}
 			} else if (_type === (go$ptrType(Go$Uint8))) {
 				v = _ref.go$val;
@@ -593,10 +601,11 @@ $$
 				v = _ref.go$val;
 				_ref$2 = v;
 				_i$1 = 0;
-				for (; _i$1 < _ref$2.length; _i$1 += 1) {
+				while (_i$1 < _ref$2.length) {
 					x$1 = (_slice$2 = _ref$2, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 					i$1 = _i$1;
 					order.PutUint16(go$subslice(bs, (x$2 = 2, (((x$2 >>> 16 << 16) * i$1 >> 0) + (x$2 << 16 >>> 16) * i$1) >> 0)), (x$1 << 16 >>> 16));
+					_i$1++;
 				}
 			} else if (_type === (go$ptrType(Go$Uint16))) {
 				v = _ref.go$val;
@@ -610,10 +619,11 @@ $$
 				v = _ref.go$val;
 				_ref$3 = v;
 				_i$2 = 0;
-				for (; _i$2 < _ref$3.length; _i$2 += 1) {
+				while (_i$2 < _ref$3.length) {
 					x$3 = (_slice$3 = _ref$3, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 					i$2 = _i$2;
 					order.PutUint16(go$subslice(bs, (x$4 = 2, (((x$4 >>> 16 << 16) * i$2 >> 0) + (x$4 << 16 >>> 16) * i$2) >> 0)), x$3);
+					_i$2++;
 				}
 			} else if (_type === (go$ptrType(Go$Int32))) {
 				v = _ref.go$val;
@@ -627,10 +637,11 @@ $$
 				v = _ref.go$val;
 				_ref$4 = v;
 				_i$3 = 0;
-				for (; _i$3 < _ref$4.length; _i$3 += 1) {
+				while (_i$3 < _ref$4.length) {
 					x$5 = (_slice$4 = _ref$4, _index$4 = _i$3, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
 					i$3 = _i$3;
 					order.PutUint32(go$subslice(bs, (x$6 = 4, (((x$6 >>> 16 << 16) * i$3 >> 0) + (x$6 << 16 >>> 16) * i$3) >> 0)), (x$5 >>> 0));
+					_i$3++;
 				}
 			} else if (_type === (go$ptrType(Go$Uint32))) {
 				v = _ref.go$val;
@@ -644,10 +655,11 @@ $$
 				v = _ref.go$val;
 				_ref$5 = v;
 				_i$4 = 0;
-				for (; _i$4 < _ref$5.length; _i$4 += 1) {
+				while (_i$4 < _ref$5.length) {
 					x$7 = (_slice$5 = _ref$5, _index$5 = _i$4, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 					i$4 = _i$4;
 					order.PutUint32(go$subslice(bs, (x$8 = 4, (((x$8 >>> 16 << 16) * i$4 >> 0) + (x$8 << 16 >>> 16) * i$4) >> 0)), x$7);
+					_i$4++;
 				}
 			} else if (_type === (go$ptrType(Go$Int64))) {
 				v = _ref.go$val;
@@ -661,10 +673,11 @@ $$
 				v = _ref.go$val;
 				_ref$6 = v;
 				_i$5 = 0;
-				for (; _i$5 < _ref$6.length; _i$5 += 1) {
+				while (_i$5 < _ref$6.length) {
 					x$10 = (_slice$6 = _ref$6, _index$6 = _i$5, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
 					i$5 = _i$5;
 					order.PutUint64(go$subslice(bs, (x$11 = 8, (((x$11 >>> 16 << 16) * i$5 >> 0) + (x$11 << 16 >>> 16) * i$5) >> 0)), new Go$Uint64(x$10.high, x$10.low));
+					_i$5++;
 				}
 			} else if (_type === (go$ptrType(Go$Uint64))) {
 				v = _ref.go$val;
@@ -678,10 +691,11 @@ $$
 				v = _ref.go$val;
 				_ref$7 = v;
 				_i$6 = 0;
-				for (; _i$6 < _ref$7.length; _i$6 += 1) {
+				while (_i$6 < _ref$7.length) {
 					x$12 = (_slice$7 = _ref$7, _index$7 = _i$6, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
 					i$6 = _i$6;
 					order.PutUint64(go$subslice(bs, (x$13 = 8, (((x$13 >>> 16 << 16) * i$6 >> 0) + (x$13 << 16 >>> 16) * i$6) >> 0)), x$12);
+					_i$6++;
 				}
 			}
 			_tuple = w.Write(bs), err = _tuple[1];
@@ -996,9 +1010,10 @@ $$
 		_tuple = dataSize((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), n = _tuple[0];
 		_ref = go$subslice(e.buf, 0, n);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_slice = e.buf, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 0) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		e.buf = go$subslice(e.buf, n);
 	};
@@ -1064,7 +1079,7 @@ PutUvarint‚	var PutUvarint = go$pkg.PutUvarint = function(buf, x) {
 		s = 0;
 		_ref = buf;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (b < 128) {
@@ -1075,6 +1090,7 @@ PutUvarint‚	var PutUvarint = go$pkg.PutUvarint = function(buf, x) {
 			}
 			x = (x$2 = go$shiftLeft64(new Go$Uint64(0, ((b & 127) >>> 0)), s), new Go$Uint64(x.high | x$2.high, (x.low | x$2.low) >>> 0));
 			s = s + 7 >>> 0;
+			_i++;
 		}
 		return [new Go$Uint64(0, 0), 0];
 	};

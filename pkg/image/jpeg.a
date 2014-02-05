@@ -1,4 +1,4 @@
-0ƒR’
+0ƒR•
 image/jpeg‚'ípackage jpeg
 import io "io"
 import bufio "bufio"
@@ -250,7 +250,7 @@ image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0
 	(go$ptrType(encoder)).methods = [["emit", "image/jpeg", [Go$Uint32, Go$Uint32], [], false], ["emitHuff", "image/jpeg", [huffIndex, Go$Int32], [], false], ["emitHuffRLE", "image/jpeg", [huffIndex, Go$Int32, Go$Int32], [], false], ["flush", "image/jpeg", [], [], false], ["write", "image/jpeg", [(go$sliceType(Go$Uint8))], [], false], ["writeBlock", "image/jpeg", [(go$ptrType(block)), quantIndex, Go$Int32], [Go$Int32], false], ["writeByte", "image/jpeg", [Go$Uint8], [], false], ["writeDHT", "image/jpeg", [], [], false], ["writeDQT", "image/jpeg", [], [], false], ["writeMarkerHeader", "image/jpeg", [Go$Uint8, Go$Int], [], false], ["writeSOF0", "image/jpeg", [image.Point], [], false], ["writeSOS", "image/jpeg", [image.Image], [], false]];
 	Options.init([["Quality", "", Go$Int, ""]]);
 0V0unzig0
-bitCount0unscaledQuant0theHuffmanSpec0theHuffmanLUT0	sosHeader0ƒÏ0‚–fdct‚Œ	var fdct = function(b) {
+bitCount0unscaledQuant0theHuffmanSpec0theHuffmanLUT0	sosHeader0ƒÒ0‚–fdct‚Œ	var fdct = function(b) {
 		var y, x, x0, x$1, x1, x$2, x2, x$3, x3, x$4, x4, x$5, x5, x$6, x6, x$7, x7, tmp0, tmp1, tmp2, tmp3, tmp10, tmp12, tmp11, tmp13, x$8, x$9, x$10, z1, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$20, x$21, x$22, tmp0$1, tmp1$1, tmp2$1, tmp3$1, tmp10$1, tmp12$1, tmp11$1, tmp13$1, x$23, z1$1, x$24, x$25, x$26, x$27, x$28;
 		y = 0;
 		while (y < 8) {
@@ -712,8 +712,8 @@ processSOF‚ª	decoder.Ptr.prototype.processSOF = function(n) {
 		return null;
 	};
 	decoder.prototype.processSOF = function(n) { return this.go$val.processSOF(n); };
-0‚W
-processDQT‚G	decoder.Ptr.prototype.processDQT = function(n) {
+0‚X
+processDQT‚H	decoder.Ptr.prototype.processDQT = function(n) {
 		var d, _tuple, err, pq, tq, _ref, _i, i;
 		d = this;
 		while (n >= 65) {
@@ -731,9 +731,10 @@ processDQT‚G	decoder.Ptr.prototype.processDQT = function(n) {
 			}
 			_ref = d.quant[tq];
 			_i = 0;
-			for (; _i < 64; _i += 1) {
+			while (_i < 64) {
 				i = _i;
 				d.quant[tq][i] = (d.tmp[(i + 1 >> 0)] >> 0);
+				_i++;
 			}
 			n = n - 65 >> 0;
 		}
@@ -886,8 +887,8 @@ processDRI‚è	decoder.Ptr.prototype.processDRI = function(n) {
 		d.img3 = (x$7 = m$1.SubImage((_struct$9 = image.Rect(0, 0, d.width, d.height), new image.Rectangle.Ptr((_struct$10 = _struct$9.Min, new image.Point.Ptr(_struct$10.X, _struct$10.Y)), (_struct$11 = _struct$9.Max, new image.Point.Ptr(_struct$11.X, _struct$11.Y))))), (x$7 !== null && x$7.constructor === (go$ptrType(image.YCbCr)) ? x$7.go$val : go$typeAssertionFailed(x$7, (go$ptrType(image.YCbCr)))));
 	};
 	decoder.prototype.makeImg = function(h0, v0, mxx, myy) { return this.go$val.makeImg(h0, v0, mxx, myy); };
-0‚7Ç
-processSOS‚7·	decoder.Ptr.prototype.processSOS = function(n) {
+0‚7È
+processSOS‚7¸	decoder.Ptr.prototype.processSOS = function(n) {
 		var d, x, x$1, _r, _tuple, err, nComp, x$2, scan, i, x$3, cs, compIndex, _ref, _i, _struct, comp, j, x$4, x$5, _tuple$1, zigStart, zigEnd, ah, al, x$6, x$7, x$8, x$9, _tuple$2, h0, v0, _q, x$10, x$11, mxx, _q$1, x$12, x$13, myy, i$1, compIndex$1, x$14, x$15, x$16, x$17, _tuple$3, mcu, expectedRST, b, dc, _tuple$4, mx0, my0, blockCount, my, mx, i$2, compIndex$2, qt, j$1, x$18, x$19, x$20, x$21, _tuple$5, _r$1, _q$2, x$22, q, _r$2, _q$3, x$23, x$24, _slice, _index, x$25, x$26, err$1, y, zig, _tuple$6, value, err$2, _tuple$7, dcDelta, _lhs, _index$1, y$1, _tuple$8, value$1, err$3, val0, val1, _tuple$9, ac, err$4, y$2, y$3, _tuple$10, bits$1, err$5, _slice$1, _index$2, x$27, x$28, zig$1, _lhs$1, _index$3, x$29, x$30, _tuple$11, dst, stride, x$31, x$32, x$33, _tuple$12, _ref$1, x$34, x$35, x$36, _tuple$13, x$37, x$38, x$39, _tuple$14, x$40, x$41, x$42, _tuple$15, y$4, x$43, y8, yStride, x$44, c, _slice$2, _index$4, _r$3, _tuple$16, err$6;
 		d = this;
 		if (d.nComp === 0) {
@@ -911,12 +912,13 @@ processSOS‚7·	decoder.Ptr.prototype.processSOS = function(n) {
 			compIndex = -1;
 			_ref = d.comp;
 			_i = 0;
-			for (; _i < 3; _i += 1) {
+			while (_i < 3) {
 				comp = (_struct = _ref[_i], new component.Ptr(_struct.h, _struct.v, _struct.c, _struct.tq));
 				j = _i;
 				if (cs === comp.c) {
 					compIndex = j;
 				}
+				_i++;
 			}
 			if (compIndex < 0) {
 				return new FormatError("unknown component selector");
@@ -1253,11 +1255,12 @@ processSOS‚7·	decoder.Ptr.prototype.processSOS = function(n) {
 		maxValue = 0;
 		_ref = s.value;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if ((v >> 0) > maxValue) {
 				maxValue = (v >> 0);
 			}
+			_i++;
 		}
 		h.go$set((x = (go$sliceType(Go$Uint32)).make(maxValue + 1 >> 0, 0, function() { return 0; }), go$subslice(new huffmanLUT(x.array), x.offset, x.offset + x.length)));
 		_tuple = [0, 0], code = _tuple[0], k = _tuple[1];
@@ -1363,10 +1366,11 @@ processSOS‚7·	decoder.Ptr.prototype.processSOS = function(n) {
 		e.writeMarkerHeader(219, 132);
 		_ref = e.quant;
 		_i = 0;
-		for (; _i < 2; _i += 1) {
+		while (_i < 2) {
 			i = _i;
 			e.writeByte((i << 24 >>> 24));
 			e.write(new (go$sliceType(Go$Uint8))(e.quant[i]));
+			_i++;
 		}
 	};
 	encoder.prototype.writeDQT = function() { return this.go$val.writeDQT(); };
@@ -1396,19 +1400,21 @@ processSOS‚7·	decoder.Ptr.prototype.processSOS = function(n) {
 		markerlen = 2;
 		_ref = theHuffmanSpec;
 		_i = 0;
-		for (; _i < 4; _i += 1) {
+		while (_i < 4) {
 			s = (_struct = _ref[_i], new huffmanSpec.Ptr(go$mapArray(_struct.count, function(entry) { return entry; }), _struct.value));
 			markerlen = markerlen + ((17 + s.value.length >> 0)) >> 0;
+			_i++;
 		}
 		e.writeMarkerHeader(196, markerlen);
 		_ref$1 = theHuffmanSpec;
 		_i$1 = 0;
-		for (; _i$1 < 4; _i$1 += 1) {
+		while (_i$1 < 4) {
 			s$1 = (_struct$1 = _ref$1[_i$1], new huffmanSpec.Ptr(go$mapArray(_struct$1.count, function(entry) { return entry; }), _struct$1.value));
 			i = _i$1;
 			e.writeByte("\x00\x10\x01\x11".charCodeAt(i));
 			e.write(new (go$sliceType(Go$Uint8))(s$1.count));
 			e.write(s$1.value);
+			_i$1++;
 		}
 	};
 	encoder.prototype.writeDHT = function() { return this.go$val.writeDHT(); };
@@ -1542,7 +1548,7 @@ writeBlock‚u	encoder.Ptr.prototype.writeBlock = function(b, q, prevDC) {
 		e.emit(127, 7);
 	};
 	encoder.prototype.writeSOS = function(m) { return this.go$val.writeSOS(m); };
-0‚ZEncode‚N	var Encode = go$pkg.Encode = function(w, m, o) {
+0‚[Encode‚O	var Encode = go$pkg.Encode = function(w, m, o) {
 		var _struct, _struct$1, _struct$2, b, e, ok, _tuple, ww, quality, scale$1, _q, x, _ref, _i, i, _ref$1, _i$1, j, x$1, _q$1, _struct$3;
 		b = (_struct = m.Bounds(), new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (b.Dx() >= 65536 || b.Dy() >= 65536) {
@@ -1571,11 +1577,11 @@ writeBlock‚u	encoder.Ptr.prototype.writeBlock = function(b, q, prevDC) {
 		}
 		_ref = e.quant;
 		_i = 0;
-		for (; _i < 2; _i += 1) {
+		while (_i < 2) {
 			i = _i;
 			_ref$1 = e.quant[i];
 			_i$1 = 0;
-			for (; _i$1 < 64; _i$1 += 1) {
+			while (_i$1 < 64) {
 				j = _i$1;
 				x$1 = (unscaledQuant[i][j] >> 0);
 				x$1 = (_q$1 = ((((((x$1 >>> 16 << 16) * scale$1 >> 0) + (x$1 << 16 >>> 16) * scale$1) >> 0) + 50 >> 0)) / 100, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero"));
@@ -1585,7 +1591,9 @@ writeBlock‚u	encoder.Ptr.prototype.writeBlock = function(b, q, prevDC) {
 					x$1 = 255;
 				}
 				e.quant[i][j] = (x$1 << 24 >>> 24);
+				_i$1++;
 			}
+			_i++;
 		}
 		e.buf[0] = 255;
 		e.buf[1] = 216;
@@ -1611,9 +1619,10 @@ writeBlock‚u	encoder.Ptr.prototype.writeBlock = function(b, q, prevDC) {
 		image.RegisterFormat("jpeg", "\xFF\xD8", Decode, DecodeConfig);
 		_ref = theHuffmanSpec;
 		_i = 0;
-		for (; _i < 4; _i += 1) {
+		while (_i < 4) {
 			s = (_struct = _ref[_i], new huffmanSpec.Ptr(go$mapArray(_struct.count, function(entry) { return entry; }), _struct.value));
 			i = _i;
 			(new (go$ptrType(huffmanLUT))(function() { return theHuffmanLUT[i]; }, function(v) { theHuffmanLUT[i] = v; })).init((_struct$1 = s, new huffmanSpec.Ptr(go$mapArray(_struct$1.count, function(entry) { return entry; }), _struct$1.value)));
+			_i++;
 		}
 	};

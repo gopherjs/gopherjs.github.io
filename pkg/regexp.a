@@ -1,4 +1,4 @@
-0É0\regexpÇ!ypackage regexp
+0É0cregexpÇ!ypackage regexp
 import io "io"
 import syntax "regexp/syntax"
 import bytes "bytes"
@@ -198,7 +198,7 @@ $$
 	(go$ptrType(inputBytes)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
 	inputReader.init([["r", "regexp", io.RuneReader, ""], ["atEOT", "regexp", Go$Bool, ""], ["pos", "regexp", Go$Int, ""]]);
 	(go$ptrType(inputReader)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
-0"0empty0debug0specialBytes0Ç‡å0ÅËnewInputBytesÅ÷	machine.Ptr.prototype.newInputBytes = function(b) {
+0"0empty0debug0specialBytes0Ç‡ì0ÅËnewInputBytesÅ÷	machine.Ptr.prototype.newInputBytes = function(b) {
 		var m;
 		m = this;
 		m.inputBytes.str = b;
@@ -240,9 +240,10 @@ $$
 		m = this;
 		_ref = m.pool;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			t = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			t.cap = go$subslice(t.cap, 0, ncap);
+			_i++;
 		}
 		m.matchcap = go$subslice(m.matchcap, 0, ncap);
 	};
@@ -283,9 +284,10 @@ $$
 		m.matched = false;
 		_ref = m.matchcap;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i$1 = _i;
 			_slice = m.matchcap, _index = i$1, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = -1) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		_tuple = [m.q0, m.q1], runq = _tuple[0], nextq = _tuple[1];
 		_tuple$1 = [-1, -1], r = _tuple$1[0], r1 = _tuple$1[1];
@@ -348,16 +350,17 @@ $$
 		m = this;
 		_ref = q.dense;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			d = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new entry.Ptr(_struct.pc, _struct.t));
 			if (!(d.t === (go$ptrType(thread)).nil)) {
 				m.pool = go$append(m.pool, d.t);
 			}
+			_i++;
 		}
 		q.dense = go$subslice(q.dense, 0, 0);
 	};
 	machine.prototype.clear = function(q) { return this.go$val.clear(q); };
-0ÇªstepÇ±	machine.Ptr.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) {
+0ÇæstepÇ¥	machine.Ptr.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) {
 		var m, longest, j, _slice, _index, d, t, _slice$1, _index$1, _slice$2, _index$2, i, add, _ref, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _i, _slice$5, _index$5, _struct, d$1, _slice$6, _index$6;
 		m = this;
 		longest = m.re.longest;
@@ -385,11 +388,12 @@ $$
 				if (!longest) {
 					_ref$1 = go$subslice(runq.dense, (j + 1 >> 0));
 					_i = 0;
-					for (; _i < _ref$1.length; _i += 1) {
+					while (_i < _ref$1.length) {
 						d$1 = (_struct = (_slice$5 = _ref$1, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")), new entry.Ptr(_struct.pc, _struct.t));
 						if (!(d$1.t === (go$ptrType(thread)).nil)) {
 							m.pool = go$append(m.pool, d$1.t);
 						}
+						_i++;
 					}
 					runq.dense = go$subslice(runq.dense, 0, 0);
 				}
@@ -1043,11 +1047,12 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 		ret = (go$sliceType((go$sliceType(Go$Uint8)))).make(1 + re.numSubexp >> 0, 0, function() { return (go$sliceType(Go$Uint8)).nil; });
 		_ref = ret;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			if ((x = 2, (((x >>> 16 << 16) * i >> 0) + (x << 16 >>> 16) * i) >> 0) < a.length && (_slice = a, _index = (x$1 = 2, (((x$1 >>> 16 << 16) * i >> 0) + (x$1 << 16 >>> 16) * i) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
 				_slice$3 = ret, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = go$subslice(b, (_slice$1 = a, _index$1 = (x$2 = 2, (((x$2 >>> 16 << 16) * i >> 0) + (x$2 << 16 >>> 16) * i) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = a, _index$2 = ((x$3 = 2, (((x$3 >>> 16 << 16) * i >> 0) + (x$3 << 16 >>> 16) * i) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
 			}
+			_i++;
 		}
 		return ret;
 	};
@@ -1064,7 +1069,7 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 		return re.expand(dst, template, (go$sliceType(Go$Uint8)).nil, src, match);
 	};
 	Regexp.prototype.ExpandString = function(dst, template, src, match) { return this.go$val.ExpandString(dst, template, src, match); };
-0ÇÙexpandÇË	Regexp.Ptr.prototype.expand = function(dst, template, bsrc, src, match) {
+0ÇˆexpandÇÍ	Regexp.Ptr.prototype.expand = function(dst, template, bsrc, src, match) {
 		var re, i, _tuple, name, num, rest, ok, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3, x$4, _slice$4, _index$4, x$5, _ref, _i, _slice$5, _index$5, namei, i$1, x$6, _slice$6, _index$6, x$7, _slice$7, _index$7, x$8, _slice$8, _index$8, x$9, _slice$9, _index$9, x$10, _slice$10, _index$10, x$11;
 		re = this;
 		while (template.length > 0) {
@@ -1097,7 +1102,7 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 			} else {
 				_ref = re.subexpNames;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					namei = (_slice$5 = _ref, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 					i$1 = _i;
 					if (name === namei && ((x$6 = 2, (((x$6 >>> 16 << 16) * i$1 >> 0) + (x$6 << 16 >>> 16) * i$1) >> 0) + 1 >> 0) < match.length && (_slice$6 = match, _index$6 = (x$7 = 2, (((x$7 >>> 16 << 16) * i$1 >> 0) + (x$7 << 16 >>> 16) * i$1) >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) >= 0) {
@@ -1108,6 +1113,7 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 						}
 						break;
 					}
+					_i++;
 				}
 			}
 		}
@@ -1182,11 +1188,12 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 		ret = (go$sliceType(Go$String)).make(1 + re.numSubexp >> 0, 0, function() { return ""; });
 		_ref = ret;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			if ((x = 2, (((x >>> 16 << 16) * i >> 0) + (x << 16 >>> 16) * i) >> 0) < a.length && (_slice = a, _index = (x$1 = 2, (((x$1 >>> 16 << 16) * i >> 0) + (x$1 << 16 >>> 16) * i) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
 				_slice$3 = ret, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = s.substring((_slice$1 = a, _index$1 = (x$2 = 2, (((x$2 >>> 16 << 16) * i >> 0) + (x$2 << 16 >>> 16) * i) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = a, _index$2 = ((x$3 = 2, (((x$3 >>> 16 << 16) * i >> 0) + (x$3 << 16 >>> 16) * i) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
 			}
+			_i++;
 		}
 		return ret;
 	};
@@ -1269,7 +1276,7 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 		return result;
 	};
 	Regexp.prototype.FindAllStringIndex = function(s, n) { return this.go$val.FindAllStringIndex(s, n); };
-0Ç«FindAllSubmatchÇ≤	Regexp.Ptr.prototype.FindAllSubmatch = function(b, n) {
+0Ç»FindAllSubmatchÇ≥	Regexp.Ptr.prototype.FindAllSubmatch = function(b, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1281,11 +1288,12 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 			slice = (go$sliceType((go$sliceType(Go$Uint8)))).make((_q = match.length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 0, function() { return (go$sliceType(Go$Uint8)).nil; });
 			_ref = slice;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				j = _i;
 				if ((_slice = match, _index = (x = 2, (((x >>> 16 << 16) * j >> 0) + (x << 16 >>> 16) * j) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
 					_slice$3 = slice, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = go$subslice(b, (_slice$1 = match, _index$1 = (x$1 = 2, (((x$1 >>> 16 << 16) * j >> 0) + (x$1 << 16 >>> 16) * j) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = match, _index$2 = ((x$2 = 2, (((x$2 >>> 16 << 16) * j >> 0) + (x$2 << 16 >>> 16) * j) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
 				}
+				_i++;
 			}
 			result = go$append(result, slice);
 		}));
@@ -1311,7 +1319,7 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 		return result;
 	};
 	Regexp.prototype.FindAllSubmatchIndex = function(b, n) { return this.go$val.FindAllSubmatchIndex(b, n); };
-0Ç†FindAllStringSubmatchÇÖ	Regexp.Ptr.prototype.FindAllStringSubmatch = function(s, n) {
+0Ç°FindAllStringSubmatchÇÜ	Regexp.Ptr.prototype.FindAllStringSubmatch = function(s, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1323,11 +1331,12 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 			slice = (go$sliceType(Go$String)).make((_q = match.length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), 0, function() { return ""; });
 			_ref = slice;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				j = _i;
 				if ((_slice = match, _index = (x = 2, (((x >>> 16 << 16) * j >> 0) + (x << 16 >>> 16) * j) >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >= 0) {
 					_slice$3 = slice, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = s.substring((_slice$1 = match, _index$1 = (x$1 = 2, (((x$1 >>> 16 << 16) * j >> 0) + (x$1 << 16 >>> 16) * j) >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = match, _index$2 = ((x$2 = 2, (((x$2 >>> 16 << 16) * j >> 0) + (x$2 << 16 >>> 16) * j) >> 0) + 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) : go$throwRuntimeError("index out of range");
 				}
+				_i++;
 			}
 			result = go$append(result, slice);
 		}));
@@ -1368,7 +1377,7 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 		end = 0;
 		_ref = matches;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			match = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (n > 0 && strings$1.length >= (n - 1 >> 0)) {
 				break;
@@ -1378,6 +1387,7 @@ FindStringÇñ	Regexp.Ptr.prototype.FindString = function(s) {
 				strings$1 = go$append(strings$1, s.substring(beg, end));
 			}
 			beg = (_slice$3 = match, _index$3 = 1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
+			_i++;
 		}
 		if (!((end === s.length))) {
 			strings$1 = go$append(strings$1, s.substring(beg));

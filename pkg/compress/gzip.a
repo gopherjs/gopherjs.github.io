@@ -1,4 +1,4 @@
-0‚‰òcompress/gzip‚>&package gzip
+0‚‰ücompress/gzip‚>&package gzip
 import bufio "bufio"
 import flate "compress/flate"
 import errors "errors"
@@ -233,7 +233,7 @@ hash/crc32crc320ioio0timetime0
 	(go$ptrType(Reader)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["read2", "compress/gzip", [], [Go$Uint32, go$error], false], ["readHeader", "compress/gzip", [Go$Bool], [go$error], false], ["readString", "compress/gzip", [], [Go$String, go$error], false]];
 	Writer.init([["", "", Header, ""], ["w", "compress/gzip", io.Writer, ""], ["level", "compress/gzip", Go$Int, ""], ["wroteHeader", "compress/gzip", Go$Bool, ""], ["compressor", "compress/gzip", (go$ptrType(flate.Writer)), ""], ["digest", "compress/gzip", hash.Hash32, ""], ["size", "compress/gzip", Go$Uint32, ""], ["closed", "compress/gzip", Go$Bool, ""], ["buf", "compress/gzip", (go$arrayType(Go$Uint8, 10)), ""], ["err", "compress/gzip", go$error, ""]]);
 	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["init", "compress/gzip", [io.Writer, Go$Int], [], false], ["writeBytes", "compress/gzip", [(go$sliceType(Go$Uint8))], [go$error], false], ["writeString", "compress/gzip", [Go$String], [go$error], false]];
-00 0 0‚;Š0‚
+00 0 0‚;”0‚
 makeReader‚	var makeReader = function(r) {
 		var ok, _tuple, rr;
 		if (_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
@@ -255,8 +255,8 @@ makeReader‚	var makeReader = function(r) {
 		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		return (((((((_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) | (((_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0) << 8 >>> 0)) >>> 0) | (((_slice$2 = p, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0) << 16 >>> 0)) >>> 0) | (((_slice$3 = p, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0) << 24 >>> 0)) >>> 0;
 	};
-0‚|
-readString‚l	Reader.Ptr.prototype.readString = function() {
+0‚
+readString‚o	Reader.Ptr.prototype.readString = function() {
 		var z, err, needconv, i, _tuple, s, _ref, _i, _slice, _index, v;
 		z = this;
 		err = null;
@@ -278,9 +278,10 @@ readString‚l	Reader.Ptr.prototype.readString = function() {
 					s = (go$sliceType(Go$Int32)).make(0, i, function() { return 0; });
 					_ref = go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, i);
 					_i = 0;
-					for (; _i < _ref.length; _i += 1) {
+					while (_i < _ref.length) {
 						v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 						s = go$append(s, (v >> 0));
+						_i++;
 					}
 					return [go$runesToString(s), null];
 				}
@@ -475,14 +476,14 @@ writeBytes‚@	Writer.Ptr.prototype.writeBytes = function(b) {
 		return err;
 	};
 	Writer.prototype.writeBytes = function(b) { return this.go$val.writeBytes(b); };
-0‚¹writeString‚¨	Writer.Ptr.prototype.writeString = function(s) {
+0‚ÀwriteString‚¯	Writer.Ptr.prototype.writeString = function(s) {
 		var err, z, needconv, _ref, _i, _rune, v, b, _ref$1, _i$1, _rune$1, v$1, _tuple, _tuple$1, _tuple$2;
 		err = null;
 		z = this;
 		needconv = false;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			v = _rune[0];
 			if ((v === 0) || v > 255) {
@@ -492,15 +493,17 @@ writeBytes‚@	Writer.Ptr.prototype.writeBytes = function(b) {
 			if (v > 127) {
 				needconv = true;
 			}
+			_i += _rune[1];
 		}
 		if (needconv) {
 			b = (go$sliceType(Go$Uint8)).make(0, s.length, function() { return 0; });
 			_ref$1 = s;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += _rune$1[1]) {
+			while (_i$1 < _ref$1.length) {
 				_rune$1 = go$decodeRune(_ref$1, _i$1);
 				v$1 = _rune$1[0];
 				b = go$append(b, (v$1 << 24 >>> 24));
+				_i$1 += _rune$1[1];
 			}
 			_tuple = z.w.Write(b), err = _tuple[1];
 		} else {

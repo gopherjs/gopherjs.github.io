@@ -1,4 +1,4 @@
-0ƒ<os‚H÷package os
+0ƒ<%os‚H÷package os
 import io "io"
 import syscall "syscall"
 import time "time"
@@ -421,7 +421,7 @@ $$
 	fileStat.init([["name", "os", Go$String, ""], ["size", "os", Go$Int64, ""], ["mode", "os", FileMode, ""], ["modTime", "os", time.Time, ""], ["sys", "os", go$emptyInterface, ""]]);
 	(go$ptrType(fileStat)).methods = [["IsDir", "", [], [Go$Bool], false], ["ModTime", "", [], [time.Time], false], ["Mode", "", [], [FileMode], false], ["Name", "", [], [Go$String], false], ["Size", "", [], [Go$Int64], false], ["Sys", "", [], [go$emptyInterface], false]];
 0O0 0 0 0 0 0 0 0 0 0lstat0
-getwdCache0useSyscallwd0 0‚Í70‚readdirnames‚	File.Ptr.prototype.readdirnames = function(n) {
+getwdCache0useSyscallwd0 0‚ÍJ0‚readdirnames‚	File.Ptr.prototype.readdirnames = function(n) {
 		var names, err, f, d, size, errno, _tuple, _tuple$1, _tuple$2, nb, nc, _tuple$3, _tuple$4, _tuple$5;
 		names = (go$sliceType(Go$String)).nil;
 		err = null;
@@ -763,9 +763,10 @@ newProcessñ	var newProcess = function(pid, handle) {
 		}
 		_ref = attr.Files;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			sysattr.Files = go$append(sysattr.Files, f.Fd());
+			_i++;
 		}
 		_tuple$2 = syscall.StartProcess(name, argv, sysattr), pid = _tuple$2[0], h = _tuple$2[1], e = _tuple$2[2];
 		if (!(go$interfaceIsEqual(e, null))) {
@@ -1127,7 +1128,7 @@ systemTime‚	ProcessState.Ptr.prototype.systemTime = function() {
 		return null;
 	};
 0‚Readlink‚	var Readlink = go$pkg.Readlink = function(name) {
-		var len, b, _tuple, n, e, x;
+		var len, x, b, _tuple, n, e;
 		len = 128;
 		while (true) {
 			b = (go$sliceType(Go$Uint8)).make(len, 0, function() { return 0; });
@@ -1359,7 +1360,7 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 		_tuple$1 = [fileInfoFromStat(stat, name), null], fi = _tuple$1[0], err = _tuple$1[1];
 		return [fi, err];
 	};
-0‚Ûreaddir‚Î	File.Ptr.prototype.readdir = function(n) {
+0‚åreaddir‚Ø	File.Ptr.prototype.readdir = function(n) {
 		var fi, err, f, dirname, _tuple, names, _ref, _i, _slice, _index, filename, i, _tuple$1, fip, lerr, _slice$1, _index$1, _slice$2, _index$2, _tuple$2;
 		fi = (go$sliceType(FileInfo)).nil;
 		err = null;
@@ -1373,15 +1374,17 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 		fi = (go$sliceType(FileInfo)).make(names.length, 0, function() { return null; });
 		_ref = names;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			filename = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			_tuple$1 = lstat(dirname + filename), fip = _tuple$1[0], lerr = _tuple$1[1];
 			if (!(go$interfaceIsEqual(lerr, null))) {
 				_slice$1 = fi, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = new fileStat.Ptr(filename, new Go$Int64(0, 0), 0, new time.Time.Ptr(), null)) : go$throwRuntimeError("index out of range");
+				_i++;
 				continue;
 			}
 			_slice$2 = fi, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = fip) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		_tuple$2 = [fi, err], fi = _tuple$2[0], err = _tuple$2[1];
 		return [fi, err];
@@ -1487,7 +1490,7 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 		}
 		return dir;
 	};
-0‚ýGetwd‚ò	var Getwd = go$pkg.Getwd = function() {
+0‚ÿGetwd‚ô	var Getwd = go$pkg.Getwd = function() {
 		var pwd, err, _tuple, s, e, _tuple$1, _tuple$2, dot, _tuple$3, _tuple$4, d, err$1, _tuple$5, _tuple$6, d$1, err$2, _tuple$7, _tuple$8, root, _tuple$9, _tuple$10, parent, _tuple$11, _tuple$12, fd, err$3, _tuple$13, _tuple$14, names, err$4, _tuple$15, _ref, _i, _slice, _index, name, _tuple$16, d$2, _tuple$17, pd, _tuple$18, _tuple$19;
 		pwd = "";
 		err = null;
@@ -1549,13 +1552,14 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 				}
 				_ref = names;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					name = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					_tuple$16 = Lstat(parent + "/" + name), d$2 = _tuple$16[0];
 					if (SameFile(d$2, dot)) {
 						pwd = "/" + name + pwd;
 						break NamesLoop;
 					}
+					_i++;
 				}
 			}
 			_tuple$17 = fd.Stat(), pd = _tuple$17[0], err$3 = _tuple$17[1];
@@ -1612,7 +1616,7 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 		}
 		return null;
 	};
-0‚R	RemoveAll‚C	var RemoveAll = go$pkg.RemoveAll = function(path) {
+0‚S	RemoveAll‚D	var RemoveAll = go$pkg.RemoveAll = function(path) {
 		var err, _tuple, dir, serr, ok, serr$1, _tuple$1, _tuple$2, fd, _tuple$3, names, err1, _ref, _i, _slice, _index, name, err1$1, err1$2;
 		err = Remove(path);
 		if (go$interfaceIsEqual(err, null)) {
@@ -1637,12 +1641,13 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 			_tuple$3 = fd.Readdirnames(100), names = _tuple$3[0], err1 = _tuple$3[1];
 			_ref = names;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				name = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				err1$1 = RemoveAll(path + "/" + name);
 				if (go$interfaceIsEqual(err, null)) {
 					err = err1$1;
 				}
+				_i++;
 			}
 			if (go$interfaceIsEqual(err1, io.EOF)) {
 				break;
@@ -1762,14 +1767,14 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 0hGetpagesizeY	var Getpagesize = go$pkg.Getpagesize = function() {
 		return syscall.Getpagesize();
 	};
-0‚mString‚a	FileMode.prototype.String = function() {
+0‚sString‚g	FileMode.prototype.String = function() {
 		var m, buf, w, _ref, _i, _rune, c, i, y, _ref$1, _i$1, _rune$1, c$1, i$1, y$1;
 		m = this.go$val;
 		buf = go$makeNativeArray("Uint8", 32, function() { return 0; });
 		w = 0;
 		_ref = "dalTLDpSugct";
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			c = _rune[0];
 			i = _i;
@@ -1777,6 +1782,7 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 				buf[w] = (c << 24 >>> 24);
 				w = w + 1 >> 0;
 			}
+			_i += _rune[1];
 		}
 		if (w === 0) {
 			buf[w] = 45;
@@ -1784,7 +1790,7 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 		}
 		_ref$1 = "rwxrwxrwx";
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += _rune$1[1]) {
+		while (_i$1 < _ref$1.length) {
 			_rune$1 = go$decodeRune(_ref$1, _i$1);
 			c$1 = _rune$1[0];
 			i$1 = _i$1;
@@ -1794,6 +1800,7 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 				buf[w] = 45;
 			}
 			w = w + 1 >> 0;
+			_i$1 += _rune$1[1];
 		}
 		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, w));
 	};

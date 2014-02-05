@@ -1,4 +1,4 @@
-0‚Dùruntime/debug‚epackage debug
+0‚Dûruntime/debug‚epackage debug
 import runtime "runtime"
 import sort "sort"
 import time "time"
@@ -143,7 +143,7 @@ $$
 	byDuration.init(time.Duration);
 	byDuration.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byDuration)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-00dunno0	centerDot0dot0‚÷0ureadGCStatsf	var readGCStats = function() {
+00dunno0	centerDot0dot0‚ù0ureadGCStatsf	var readGCStats = function() {
 		throw go$panic("Native function not implemented: readGCStats");
 	};
 0lenableGC`	var enableGC = function() {
@@ -161,7 +161,7 @@ $$
 0{setMaxThreadsj	var setMaxThreads = function() {
 		throw go$panic("Native function not implemented: setMaxThreads");
 	};
-0‚!ReadGCStats‚	var ReadGCStats = go$pkg.ReadGCStats = function(stats) {
+0‚#ReadGCStats‚	var ReadGCStats = go$pkg.ReadGCStats = function(stats) {
 		var v, n, x, _slice, _index, _struct, x$1, _slice$1, _index$1, _slice$2, _index$2, _ref, _i, i, _slice$3, _index$3, sorted, nq, i$1, _slice$4, _index$4, _q, x$2, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		if (stats.Pause.capacity < 512) {
 			stats.Pause = (go$sliceType(time.Duration)).make(512, 0, function() { return new time.Duration(0, 0); });
@@ -176,9 +176,10 @@ $$
 			if (n === 0) {
 				_ref = stats.PauseQuantiles;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					i = _i;
 					_slice$3 = stats.PauseQuantiles, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = new time.Duration(0, 0)) : go$throwRuntimeError("index out of range");
+					_i++;
 				}
 			} else {
 				sorted = go$subslice(stats.Pause, n, (n + n >> 0));

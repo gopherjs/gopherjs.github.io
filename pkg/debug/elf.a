@@ -1,4 +1,4 @@
-0ƒü		debug/elf‚½package elf
+0ƒü	debug/elf‚½package elf
 import strconv "strconv"
 import bytes "bytes"
 import dwarf "debug/dwarf"
@@ -1147,7 +1147,7 @@ shtStrings0
 shfStrings0	ptStrings0	pfStrings0	dtStrings0dflagStrings0ntypeStrings0
 stbStrings0
 sttStrings0
-stvStrings0rx86_64Strings0ralphaStrings0rarmStrings0r386Strings0rppcStrings0rsparcStrings0‚ùè0ïStringä	Version.prototype.String = function() {
+stvStrings0rx86_64Strings0ralphaStrings0rarmStrings0r386Strings0rppcStrings0rsparcStrings0‚ùò0ïStringä	Version.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), versionStrings, false);
@@ -1459,7 +1459,7 @@ stringName‚	var stringName = function(i, names, goSyntax) {
 		var _ref, _i, _slice, _index, _struct, n, j, _slice$1, _index$1, _struct$1, n$1, s;
 		_ref = names;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			n = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new intName.Ptr(_struct.i, _struct.s));
 			if (n.i === i) {
 				if (goSyntax) {
@@ -1467,6 +1467,7 @@ stringName‚	var stringName = function(i, names, goSyntax) {
 				}
 				return n.s;
 			}
+			_i++;
 		}
 		j = names.length - 1 >> 0;
 		while (j >= 0) {
@@ -1487,7 +1488,7 @@ stringName‚	var stringName = function(i, names, goSyntax) {
 		s = "";
 		_ref = names;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			n = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new intName.Ptr(_struct.i, _struct.s));
 			if (((n.i & i) >>> 0) === n.i) {
 				if (s.length > 0) {
@@ -1499,6 +1500,7 @@ stringName‚	var stringName = function(i, names, goSyntax) {
 				s = s + (n.s);
 				i = i - (n.i) >>> 0;
 			}
+			_i++;
 		}
 		if (s.length === 0) {
 			return "0x" + strconv.FormatUint(new Go$Uint64(0, i), 16);
@@ -1579,11 +1581,12 @@ stringName‚	var stringName = function(i, names, goSyntax) {
 		f = this;
 		_ref = f.Sections;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (s.SectionHeader.Type === typ) {
 				return s;
 			}
+			_i++;
 		}
 		return (go$ptrType(Section)).nil;
 	};
@@ -1731,7 +1734,7 @@ stringName‚	var stringName = function(i, names, goSyntax) {
 		}
 		_ref$5 = f.Sections;
 		_i = 0;
-		for (; _i < _ref$5.length; _i += 1) {
+		while (_i < _ref$5.length) {
 			s$1 = (_slice$5 = _ref$5, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 			i$2 = _i;
 			ok = false;
@@ -1739,6 +1742,7 @@ stringName‚	var stringName = function(i, names, goSyntax) {
 			if (!ok) {
 				return [(go$ptrType(File)).nil, new FormatError.Ptr((x$10 = new Go$Int64(0, ((((i$2 >>> 16 << 16) * shentsize >> 0) + (i$2 << 16 >>> 16) * shentsize) >> 0)), new Go$Int64(shoff.high + x$10.high, shoff.low + x$10.low)), "bad section name index", new Go$Uint32((_slice$7 = names, _index$7 = i$2, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))))];
 			}
+			_i++;
 		}
 		return [f, null];
 	};
@@ -1850,11 +1854,12 @@ getSymbols‚–	File.Ptr.prototype.getSymbols = function(typ) {
 		f = this;
 		_ref = f.Sections;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (s.SectionHeader.Name === name) {
 				return s;
 			}
+			_i++;
 		}
 		return (go$ptrType(Section)).nil;
 	};
@@ -1907,19 +1912,20 @@ getSymbols‚–	File.Ptr.prototype.getSymbols = function(typ) {
 		return null;
 	};
 	File.prototype.applyRelocationsAMD64 = function(dst, rels) { return this.go$val.applyRelocationsAMD64(dst, rels); };
-0‚DWARF‚„	File.Ptr.prototype.DWARF = function() {
+0‚™DWARF‚Ž	File.Ptr.prototype.DWARF = function() {
 		var f, names, dat, _ref, _i, name, i, s, _tuple, b, err, x, x$1, rela, _tuple$1, data, err$1, _tuple$2, abbrev, info, str;
 		f = this;
 		names = go$toNativeArray("String", ["abbrev", "info", "str"]);
 		dat = go$makeNativeArray("Slice", 3, function() { return (go$sliceType(Go$Uint8)).nil; });
 		_ref = names;
 		_i = 0;
-		for (; _i < 3; _i += 1) {
+		while (_i < 3) {
 			name = _ref[_i];
 			i = _i;
 			name = ".debug_" + name;
 			s = f.Section(name);
 			if (s === (go$ptrType(Section)).nil) {
+				_i++;
 				continue;
 			}
 			_tuple = s.Data(), b = _tuple[0], err = _tuple[1];
@@ -1927,6 +1933,7 @@ getSymbols‚–	File.Ptr.prototype.getSymbols = function(typ) {
 				return [(go$ptrType(dwarf.Data)).nil, err];
 			}
 			dat[i] = b;
+			_i++;
 		}
 		rela = f.Section(".rela.debug_info");
 		if (!(rela === (go$ptrType(Section)).nil) && (rela.SectionHeader.Type === 4) && (f.FileHeader.Machine === 62)) {
@@ -1961,13 +1968,14 @@ getSymbols‚–	File.Ptr.prototype.getSymbols = function(typ) {
 		all = (go$sliceType(ImportedSymbol)).nil;
 		_ref = sym;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Symbol.Ptr(_struct.Name, _struct.Info, _struct.Other, _struct.Section, _struct.Value, _struct.Size));
 			i = _i;
 			if ((ST_BIND(s.Info) === 1) && (s.Section === 0)) {
 				all = go$append(all, new ImportedSymbol.Ptr(s.Name, "", ""));
 				f.gnuVersion(i, (_slice$1 = all, _index$1 = (all.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
 			}
+			_i++;
 		}
 		return [all, null];
 	};

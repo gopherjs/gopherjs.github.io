@@ -458,12 +458,13 @@ daysBefore0 0utcLoc0 0
 		var _ref, _i, _slice, _index, v, i;
 		_ref = tab;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (val.length >= v.length && match(val.substring(0, v.length), v)) {
 				return [i, val.substring(v.length), null];
 			}
+			_i++;
 		}
 		return [-1, val, errBad];
 	};
@@ -2196,7 +2197,7 @@ lookupName‚÷	Location.Ptr.prototype.lookupName = function(name, unix) {
 		l = l.get();
 		_ref = l.zone;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			zone$1 = (_slice = l.zone, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (zone$1.name === name) {
@@ -2206,16 +2207,18 @@ lookupName‚÷	Location.Ptr.prototype.lookupName = function(name, unix) {
 					return [offset, isDST, ok];
 				}
 			}
+			_i++;
 		}
 		_ref$1 = l.zone;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			i$1 = _i$1;
 			zone$2 = (_slice$1 = l.zone, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			if (zone$2.name === name) {
 				_tuple$2 = [zone$2.offset, zone$2.isDST, true], offset = _tuple$2[0], isDST = _tuple$2[1], ok = _tuple$2[2];
 				return [offset, isDST, ok];
 			}
+			_i$1++;
 		}
 		return [offset, isDST, ok];
 	};
@@ -2330,7 +2333,7 @@ byteString‚r	var byteString = function(p) {
 		zone$1 = (go$sliceType(zone)).make(n[4], 0, function() { return new zone.Ptr(); });
 		_ref = zone$1;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i$1 = _i;
 			ok$1 = false;
 			n$1 = 0;
@@ -2350,11 +2353,12 @@ byteString‚r	var byteString = function(p) {
 				return [l, err];
 			}
 			(_slice$4 = zone$1, _index$4 = i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).name = byteString(go$subslice(abbrev, b));
+			_i++;
 		}
 		tx = (go$sliceType(zoneTrans)).make(n[3], 0, function() { return new zoneTrans.Ptr(); });
 		_ref$1 = tx;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			i$2 = _i$1;
 			ok$2 = false;
 			n$2 = 0;
@@ -2374,6 +2378,7 @@ byteString‚r	var byteString = function(p) {
 			if (i$2 < isutc.length) {
 				(_slice$12 = tx, _index$12 = i$2, (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range")).isutc = !(((_slice$11 = isutc, _index$11 = i$2, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")) === 0));
 			}
+			_i$1++;
 		}
 		if (tx.length === 0) {
 			tx = go$append(tx, new zoneTrans.Ptr(new Go$Int64(-2147483648, 0), 0, false, false));
@@ -2382,7 +2387,7 @@ byteString‚r	var byteString = function(p) {
 		_tuple$14 = now(), sec = _tuple$14[0];
 		_ref$2 = tx;
 		_i$2 = 0;
-		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+		while (_i$2 < _ref$2.length) {
 			i$3 = _i$2;
 			if ((x$6 = (_slice$13 = tx, _index$13 = i$3, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range")).when, (x$6.high < sec.high || (x$6.high === sec.high && x$6.low <= sec.low))) && (((i$3 + 1 >> 0) === tx.length) || (x$7 = (_slice$14 = tx, _index$14 = (i$3 + 1 >> 0), (_index$14 >= 0 && _index$14 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$14] : go$throwRuntimeError("index out of range")).when, (sec.high < x$7.high || (sec.high === x$7.high && sec.low < x$7.low))))) {
 				l.cacheStart = (_slice$15 = tx, _index$15 = i$3, (_index$15 >= 0 && _index$15 < _slice$15.length) ? _slice$15.array[_slice$15.offset + _index$15] : go$throwRuntimeError("index out of range")).when;
@@ -2392,6 +2397,7 @@ byteString‚r	var byteString = function(p) {
 				}
 				l.cacheZone = (_slice$17 = l.zone, _index$17 = (_slice$18 = tx, _index$18 = i$3, (_index$18 >= 0 && _index$18 < _slice$18.length) ? _slice$18.array[_slice$18.offset + _index$18] : go$throwRuntimeError("index out of range")).index, (_index$17 >= 0 && _index$17 < _slice$17.length) ? _slice$17.array[_slice$17.offset + _index$17] : go$throwRuntimeError("index out of range"));
 			}
+			_i$2++;
 		}
 		_tuple$15 = [l, null], l = _tuple$15[0], err = _tuple$15[1];
 		return [l, err];
@@ -2540,12 +2546,13 @@ byteString‚r	var byteString = function(p) {
 		var _ref, _i, _slice, _index, zoneDir, err, _tuple, z;
 		_ref = zoneDirs;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			zoneDir = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (_tuple = loadZoneFile(zoneDir, name), z = _tuple[0], err = _tuple[1], go$interfaceIsEqual(err, null)) {
 				z.name = name;
 				return [z, null];
 			}
+			_i++;
 		}
 		return [(go$ptrType(Location)).nil, errors.New("unknown time zone " + name)];
 	};

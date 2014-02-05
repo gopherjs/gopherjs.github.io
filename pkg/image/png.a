@@ -1,4 +1,4 @@
-0ƒK	image/png‚žpackage png
+0ƒK¡	image/png‚žpackage png
 import zlib "compress/zlib"
 import binary "encoding/binary"
 import fmt "fmt"
@@ -145,7 +145,7 @@ hash/crc32crc320imageimage0image/colorcolor0ioio0bufiobufi
 	encoder.init([["w", "image/png", io.Writer, ""], ["m", "image/png", image.Image, ""], ["cb", "image/png", Go$Int, ""], ["err", "image/png", go$error, ""], ["header", "image/png", (go$arrayType(Go$Uint8, 8)), ""], ["footer", "image/png", (go$arrayType(Go$Uint8, 4)), ""], ["tmp", "image/png", (go$arrayType(Go$Uint8, 1024)), ""]]);
 	(go$ptrType(encoder)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["writeChunk", "image/png", [(go$sliceType(Go$Uint8)), Go$String], [], false], ["writeIDATs", "image/png", [], [], false], ["writeIEND", "image/png", [], [], false], ["writeIHDR", "image/png", [], [], false], ["writePLTEAndTRNS", "image/png", [color.Palette], [], false]];
 	opaquer.init([["Opaque", "", (go$funcType([], [Go$Bool], false))]]);
-00chunkOrderError0ƒü0‚bpaeth‚W	var paeth = function(a, b, c) {
+00chunkOrderError0ƒ 0‚bpaeth‚W	var paeth = function(a, b, c) {
 		var pc, pa, pb;
 		pc = (c >> 0);
 		pa = (b >> 0) - pc >> 0;
@@ -393,7 +393,7 @@ hash/crc32crc320imageimage0image/colorcolor0ioio0bufiobufi
 		return [n, err$2];
 	};
 	decoder.prototype.Read = function(p) { return this.go$val.Read(p); };
-0‚e¥decode‚e™	decoder.Ptr.prototype.decode = function() {
+0‚e¨decode‚eœ	decoder.Ptr.prototype.decode = function() {
 		var d, _tuple, r, err, bitsPerPixel, pixOffset, gray, rgba, paletted, nrgba, gray16, rgba64, nrgba64, img, _ref, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, _struct$15, _struct$16, _struct$17, _struct$18, _struct$19, _struct$20, _struct$21, _struct$22, _struct$23, _struct$24, _struct$25, _struct$26, _q, bytesPerPixel, _q$1, x, cr, _q$2, x$1, pr, y, _tuple$1, err$1, cdat, pdat, _ref$1, _slice, _index, i, _lhs, _index$1, _slice$1, _index$2, _slice$2, _index$3, _slice$3, _index$4, _ref$2, _i, _slice$4, _index$5, p, i$1, _lhs$1, _index$6, _slice$5, _index$7, _slice$6, _index$8, i$2, _lhs$2, _index$9, _slice$7, _index$10, _q$3, _slice$8, _index$11, _slice$9, _index$12, i$3, _lhs$3, _index$13, _slice$10, _index$14, _q$4, _slice$11, _index$15, _slice$12, _index$16, _slice$13, _index$17, _ref$3, x$2, _slice$14, _index$18, _q$5, b, x2, x$3, _slice$15, _index$19, _q$6, b$1, x2$1, x$4, _slice$16, _index$20, _q$7, b$2, x2$2, x$5, _slice$17, _index$21, x$6, ycol, _slice$18, _index$22, x$7, _tuple$2, pix, i$4, j, x$8, _slice$19, _index$23, _slice$20, _index$24, _slice$21, _index$25, _slice$22, _index$26, _slice$23, _index$27, _slice$24, _index$28, _slice$25, _index$29, x$9, _slice$26, _index$30, _q$8, b$3, x2$3, idx, x$10, _slice$27, _index$31, _q$9, b$4, x2$4, idx$1, x$11, _slice$28, _index$32, _q$10, b$5, x2$5, idx$2, x$12, _slice$29, _index$33, _slice$30, _index$34, x$13, _slice$31, _index$35, x$14, _slice$32, _index$36, x$15, ycol$1, x$16, _slice$33, _index$37, x$17, _slice$34, _index$38, x$18, ycol$2, _slice$35, _index$39, x$19, _slice$36, _index$40, x$20, acol, x$21, _slice$37, _index$41, x$22, _slice$38, _index$42, x$23, rcol, _slice$39, _index$43, x$24, _slice$40, _index$44, x$25, gcol, _slice$41, _index$45, x$26, _slice$42, _index$46, x$27, bcol, x$28, _slice$43, _index$47, x$29, _slice$44, _index$48, x$30, rcol$1, _slice$45, _index$49, x$31, _slice$46, _index$50, x$32, gcol$1, _slice$47, _index$51, x$33, _slice$48, _index$52, x$34, bcol$1, _slice$49, _index$53, x$35, _slice$50, _index$54, x$36, acol$1, _tuple$3, _tuple$4, n;
 		var go$deferred = [];
 		try {
@@ -466,10 +466,11 @@ hash/crc32crc320imageimage0image/colorcolor0ioio0bufiobufi
 				} else if (_ref$1 === 2) {
 					_ref$2 = pdat;
 					_i = 0;
-					for (; _i < _ref$2.length; _i += 1) {
+					while (_i < _ref$2.length) {
 						p = (_slice$4 = _ref$2, _index$5 = _i, (_index$5 >= 0 && _index$5 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$5] : go$throwRuntimeError("index out of range"));
 						i$1 = _i;
 						_lhs$1 = cdat, _index$6 = i$1, _slice$6 = _lhs$1, _index$8 = _index$6, (_index$8 >= 0 && _index$8 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$8] = (_slice$5 = _lhs$1, _index$7 = _index$6, (_index$7 >= 0 && _index$7 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$7] : go$throwRuntimeError("index out of range")) + (p) << 24 >>> 24) : go$throwRuntimeError("index out of range");
+						_i++;
 					}
 				} else if (_ref$1 === 3) {
 					i$2 = 0;
@@ -942,7 +943,7 @@ writeChunk‚Î	encoder.Ptr.prototype.writeChunk = function(b, name) {
 		last = -1;
 		_ref = p;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			c1 = (_struct = (x = color.NRGBAModel.Convert(c), (x !== null && x.constructor === color.NRGBA ? x.go$val : go$typeAssertionFailed(x, color.NRGBA))), new color.NRGBA.Ptr(_struct.R, _struct.G, _struct.B, _struct.A));
@@ -953,6 +954,7 @@ writeChunk‚Î	encoder.Ptr.prototype.writeChunk = function(b, name) {
 				last = i;
 			}
 			e.tmp[768 + i >> 0] = c1.A;
+			_i++;
 		}
 		e.writeChunk(go$subslice(new (go$sliceType(Go$Uint8))(e.tmp), 0, (x$4 = 3, x$5 = p.length, (((x$4 >>> 16 << 16) * x$5 >> 0) + (x$4 << 16 >>> 16) * x$5) >> 0)), "PLTE");
 		if (!((last === -1))) {
@@ -1063,8 +1065,8 @@ writeChunk‚Î	encoder.Ptr.prototype.writeChunk = function(b, name) {
 		}
 		return filter$1;
 	};
-0‚8*
-writeImage‚8	var writeImage = function(w, m, cb) {
+0‚8+
+writeImage‚8	var writeImage = function(w, m, cb) {
 		var zw, bpp, _ref, _struct, _struct$1, _struct$2, b, cr, _ref$1, _i, i, x, _slice, _index, x$1, pr, _tuple, gray, _tuple$1, rgba, _tuple$2, paletted, _tuple$3, nrgba, y, i$1, _ref$2, x$2, x$3, offset, x$4, x$5, _struct$3, c, _slice$1, _index$1, cr0, _tuple$4, stride, pix, _tuple$5, _tuple$6, x$6, j0, x$7, x$8, j1, j, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, x$9, _tuple$7, r, g, b$1, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, x$10, x$11, offset$1, pi, x$12, _slice$11, _index$11, x$13, x$14, offset$2, x$15, x$16, x$17, x$18, _struct$4, c$1, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15, x$19, x$20, _struct$5, c$2, _slice$16, _index$16, _slice$17, _index$17, x$21, _tuple$8, r$1, g$1, b$2, _slice$18, _index$18, _slice$19, _index$19, _slice$20, _index$20, _slice$21, _index$21, _slice$22, _index$22, _slice$23, _index$23, x$22, x$23, _struct$6, c$3, _slice$24, _index$24, _slice$25, _index$25, _slice$26, _index$26, _slice$27, _index$27, _slice$28, _index$28, _slice$29, _index$29, _slice$30, _index$30, _slice$31, _index$31, f, err, _tuple$9, _tuple$10;
 		var go$deferred = [];
 		try {
@@ -1091,10 +1093,11 @@ writeImage‚8	var writeImage = function(w, m, cb) {
 			cr = go$makeNativeArray("Slice", 5, function() { return (go$sliceType(Go$Uint8)).nil; });
 			_ref$1 = cr;
 			_i = 0;
-			for (; _i < 5; _i += 1) {
+			while (_i < 5) {
 				i = _i;
 				cr[i] = (go$sliceType(Go$Uint8)).make(1 + (x = b.Dx(), (((bpp >>> 16 << 16) * x >> 0) + (bpp << 16 >>> 16) * x) >> 0) >> 0, 0, function() { return 0; });
 				_slice = cr[i], _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (i << 24 >>> 24)) : go$throwRuntimeError("index out of range");
+				_i++;
 			}
 			pr = (go$sliceType(Go$Uint8)).make(1 + (x$1 = b.Dx(), (((bpp >>> 16 << 16) * x$1 >> 0) + (bpp << 16 >>> 16) * x$1) >> 0) >> 0, 0, function() { return 0; });
 			_tuple = (m !== null && m.constructor === (go$ptrType(image.Gray)) ? [m.go$val, true] : [(go$ptrType(image.Gray)).nil, false]), gray = _tuple[0];

@@ -1,4 +1,4 @@
-0‚ªÏ	image/gif‚$package gif
+0‚ªÓ	image/gif‚$package gif
 import bufio "bufio"
 import lzw "compress/lzw"
 import errors "errors"
@@ -204,7 +204,7 @@ image/drawdraw‚	var reader;
 	Options.init([["NumColors", "", Go$Int, ""], ["Quantizer", "", draw.Quantizer, ""], ["Drawer", "", draw.Drawer, ""]]);
 0J0errNotEnough0
 errTooMuch0errBadPixel0interlacing0
-log2Lookup0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
+log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		var b, blockLen, _tuple, _tuple$1, n;
 		b = this;
 		if (!(go$interfaceIsEqual(b.err, null))) {
@@ -233,7 +233,7 @@ log2Lookup0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		return [n, null];
 	};
 	blockReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-0‚	decode‚ý	decoder.Ptr.prototype.decode = function(r, configOnly) {
+0‚decode‚	decoder.Ptr.prototype.decode = function(r, configOnly) {
 		var d, ok, _tuple, rr, err, _tuple$1, _tuple$2, c, err$1, _ref, _tuple$3, m, err$2, _tuple$4, _tuple$5, litWidth, br, lzwr, _tuple$6, n, err$3, _tuple$7, n$1, err$4, _tuple$8, _ref$1, _i, _slice, _index, pixel;
 		var go$deferred = [];
 		try {
@@ -309,11 +309,12 @@ log2Lookup0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 					if (m.Palette.length < 256) {
 						_ref$1 = m.Pix;
 						_i = 0;
-						for (; _i < _ref$1.length; _i += 1) {
+						while (_i < _ref$1.length) {
 							pixel = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 							if ((pixel >> 0) >= m.Palette.length) {
 								return errBadPixel;
 							}
+							_i++;
 						}
 					}
 					if (!((((d.imageFields & 64) >>> 0) === 0))) {
@@ -379,10 +380,11 @@ log2Lookup0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		j = 0;
 		_ref = colorMap;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_slice = colorMap, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (x$1 = new color.RGBA.Ptr(d.tmp[(j + 0 >> 0)], d.tmp[(j + 1 >> 0)], d.tmp[(j + 2 >> 0)], 255), new x$1.constructor.Struct(x$1))) : go$throwRuntimeError("index out of range");
 			j = j + 3 >> 0;
+			_i++;
 		}
 		return [colorMap, null];
 	};
@@ -492,7 +494,7 @@ log2Lookup0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		offset = 0;
 		_ref = interlacing;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			pass = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new interlaceScan.Ptr(_struct.skip, _struct.start));
 			nOffset = (x = pass.start, (((x >>> 16 << 16) * dx >> 0) + (x << 16 >>> 16) * dx) >> 0);
 			y = pass.start;
@@ -502,6 +504,7 @@ log2Lookup0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 				nOffset = nOffset + ((x$1 = pass.skip, (((dx >>> 16 << 16) * x$1 >> 0) + (dx << 16 >>> 16) * x$1) >> 0)) >> 0;
 				y = y + (pass.skip) >> 0;
 			}
+			_i++;
 		}
 		m.Pix = nPix;
 	};
@@ -534,12 +537,13 @@ log2Lookup0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		var _ref, _i, v, i;
 		_ref = log2Lookup;
 		_i = 0;
-		for (; _i < 8; _i += 1) {
+		while (_i < 8) {
 			v = _ref[_i];
 			i = _i;
 			if (x <= v) {
 				return i;
 			}
+			_i++;
 		}
 		return -1;
 	};
@@ -675,13 +679,14 @@ log2Lookup0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		transparentIndex = -1;
 		_ref = pm.Palette;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (_tuple = c.RGBA(), a = _tuple[3], a === 0) {
 				transparentIndex = i;
 				break;
 			}
+			_i++;
 		}
 		if (delay > 0 || !((transparentIndex === -1))) {
 			e.buf[0] = 33;
@@ -745,10 +750,11 @@ log2Lookup0‚hë0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		e.writeHeader();
 		_ref = g.Image;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			pm = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			e.writeImageBlock(pm, (_slice$1 = g.Delay, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
+			_i++;
 		}
 		e.writeByte(59);
 		e.flush();

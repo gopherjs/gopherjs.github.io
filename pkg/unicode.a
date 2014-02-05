@@ -1,4 +1,4 @@
-0Éx7unicodeÇ ñpackage unicode
+0Éx9unicodeÇ ñpackage unicode
 var @"".ASCII_Hex_Digit *@"".RangeTable
 var @"".Arabic *@"".RangeTable
 var @"".Armenian *@"".RangeTable
@@ -316,7 +316,7 @@ _Diacritic0	_Extender0
 _Hex_Digit0	_Hyphen0_IDS_Binary_Operator0_IDS_Trinary_Operator0_Ideographic0_Join_Control0_Logical_Order_Exception0_Noncharacter_Code_Point0_Other_Alphabetic0%#_Other_Default_Ignorable_Code_Point0_Other_Grapheme_Extend0_Other_ID_Continue0_Other_ID_Start0_Other_Lowercase0_Other_Math0_Other_Uppercase0_Pattern_Syntax0_Pattern_White_Space0_Quotation_Mark0
 _Radical0_STerm0_Soft_Dotted0_Terminal_Punctuation0_Unified_Ideograph0_Variation_Selector0_White_Space0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0_CaseRanges0
 properties0	caseOrbit0 0
-foldCommon0	foldGreek0foldInherited0foldL0foldLl0foldLt0foldLu0foldM0foldMn0 0É@U0ÅûIsDigitÅí	var IsDigit = go$pkg.IsDigit = function(r) {
+foldCommon0	foldGreek0foldInherited0foldL0foldLl0foldLt0foldLu0foldM0foldMn0 0É@W0ÅûIsDigitÅí	var IsDigit = go$pkg.IsDigit = function(r) {
 		if (r <= 255) {
 			return 48 <= r && r <= 57;
 		}
@@ -338,11 +338,12 @@ foldCommon0	foldGreek0foldInherited0foldL0foldLl0foldLt0foldLu0
 		var _ref, _i, _slice, _index, inside;
 		_ref = ranges;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			inside = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (Is(inside, r)) {
 				return true;
 			}
+			_i++;
 		}
 		return false;
 	};
@@ -350,11 +351,12 @@ foldCommon0	foldGreek0foldInherited0foldL0foldLl0foldLt0foldLu0
 		var _ref, _i, _slice, _index, inside;
 		_ref = ranges;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			inside = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (Is(inside, r)) {
 				return true;
 			}
+			_i++;
 		}
 		return false;
 	};
@@ -402,12 +404,12 @@ foldCommon0	foldGreek0foldInherited0foldL0foldLl0foldLt0foldLu0
 		}
 		return isExcludingLatin(go$pkg.Symbol, r);
 	};
-0ÇTis16ÇJ	var is16 = function(ranges, r) {
+0ÇUis16ÇK	var is16 = function(ranges, r) {
 		var _ref, _i, i, _slice, _index, range_, _r, lo, hi, _q, m, _slice$1, _index$1, range_$1, _r$1;
 		if (ranges.length <= 18 || r <= 255) {
 			_ref = ranges;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				i = _i;
 				range_ = (_slice = ranges, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				if (r < range_.Lo) {
@@ -416,6 +418,7 @@ foldCommon0	foldGreek0foldInherited0foldL0foldLl0foldLt0foldLu0
 				if (r <= range_.Hi) {
 					return (_r = ((r - range_.Lo << 16 >>> 16)) % range_.Stride, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0;
 				}
+				_i++;
 			}
 			return false;
 		}
@@ -435,12 +438,12 @@ foldCommon0	foldGreek0foldInherited0foldL0foldLl0foldLt0foldLu0
 		}
 		return false;
 	};
-0Çàis32Ç~	var is32 = function(ranges, r) {
+0Çâis32Ç	var is32 = function(ranges, r) {
 		var _ref, _i, i, _slice, _index, range_, _r, lo, hi, _q, m, _slice$1, _index$1, _struct, range_$1, _r$1;
 		if (ranges.length <= 18) {
 			_ref = ranges;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				i = _i;
 				range_ = (_slice = ranges, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				if (r < range_.Lo) {
@@ -449,6 +452,7 @@ foldCommon0	foldGreek0foldInherited0foldL0foldLl0foldLt0foldLu0
 				if (r <= range_.Hi) {
 					return (_r = ((r - range_.Lo >>> 0)) % range_.Stride, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0;
 				}
+				_i++;
 			}
 			return false;
 		}

@@ -1,4 +1,4 @@
-0‚^	os/signal‚Ÿpackage signal
+0‚a	os/signal‚Ÿpackage signal
 import os "os"
 import sync "sync"
 import syscall "syscall"
@@ -18,7 +18,7 @@ $$
 	handler.init([["mask", "os/signal", (go$arrayType(Go$Uint32, 3)), ""]]);
 	(go$ptrType(handler)).methods = [["set", "os/signal", [Go$Int], [], false], ["want", "os/signal", [Go$Int], [Go$Bool], false]];
 00
-handlers0‚O0‚|want‚r	handler.Ptr.prototype.want = function(sig) {
+handlers0‚R0‚|want‚r	handler.Ptr.prototype.want = function(sig) {
 		var h, y, _q;
 		h = this;
 		return !(((((((y = ((sig & 31) >>> 0), y < 32 ? (h.mask[(_q = sig / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))] >>> y) : 0) >>> 0)) & 1) >>> 0) === 0));
@@ -30,7 +30,7 @@ $$
 		_lhs = h.mask, _index = (_q = sig / 32, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")), _lhs[_index] = (_lhs[_index] | (((y = ((sig & 31) >>> 0), y < 32 ? (1 << y) : 0) >>> 0))) >>> 0;
 	};
 	handler.prototype.set = function(sig) { return this.go$val.set(sig); };
-0‚)Notify‚	var Notify = go$pkg.Notify = function(c, sig) {
+0‚+Notify‚	var Notify = go$pkg.Notify = function(c, sig) {
 		var _entry, h, _key, add, n, _ref, _i, _slice, _index, s;
 		var go$deferred = [];
 		try {
@@ -69,9 +69,10 @@ $$
 			} else {
 				_ref = sig;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					add(signum(s));
+					_i++;
 				}
 			}
 		} catch(go$err) {
@@ -107,7 +108,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-0‚Nprocess‚A	var process = function(sig) {
+0‚Oprocess‚B	var process = function(sig) {
 		var n, _ref, _i, _keys, _entry, h, c;
 		var go$deferred = [];
 		try {
@@ -120,13 +121,14 @@ $$
 			_ref = handlers.m;
 			_i = 0;
 			_keys = go$keys(_ref);
-			for (; _i < _keys.length; _i += 1) {
+			while (_i < _keys.length) {
 				_entry = _ref[_keys[_i]];
 				h = _entry.v;
 				c = _entry.k;
 				if (h.want(n)) {
 					go$notSupported("select")
 				}
+				_i++;
 			}
 		} catch(go$err) {
 			go$pushErr(go$err);

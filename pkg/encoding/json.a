@@ -1,4 +1,4 @@
-0ÉUaencoding/jsonÇfpackage json
+0ÉUîencoding/jsonÇfpackage json
 import encoding "encoding"
 import base64 "encoding/base64"
 import errors "errors"
@@ -644,7 +644,7 @@ $$
 0Å≠0
 errPhase0
 numberType0hex0encodeStatePool0byteSliceType0encoderCache0marshalerType0textMarshalerType0float32Encoder0float64Encoder0
-fieldCache0ÉìT0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
+fieldCache0Éìá0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
 		var d, err;
 		d = new decodeState.Ptr();
 		err = checkValid(data, d.scan);
@@ -954,7 +954,7 @@ fieldCache0ÉìT0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(dat
 		}
 	};
 	decodeState.prototype.array = function(v) { return this.go$val.array(v); };
-0ÇYobjectÇM	decodeState.Ptr.prototype.object = function(v) {
+0Ç^objectÇR	decodeState.Ptr.prototype.object = function(v) {
 		var d, _tuple, _struct, u, ut, _struct$1, pv, err, _struct$2, _struct$3, _ref, t, _struct$4, mapElem, op, start, item, _tuple$1, key, ok, subv, destring, elemType, _struct$5, _struct$6, _struct$7, f, fields, _ref$1, _i, i, _slice, _index, ff, _struct$8, _ref$2, _i$1, _slice$1, _index$1, i$1, _struct$9, _struct$10, _struct$11, v$1, _struct$12, _struct$13, _struct$14, _struct$15, kv, _struct$16, _struct$17;
 		d = this;
 		_tuple = d.indirect((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false), u = _tuple[0], ut = _tuple[1], pv = (_struct$1 = _tuple[2], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1028,7 +1028,7 @@ fieldCache0ÉìT0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(dat
 				fields = cachedTypeFields(v.Type());
 				_ref$1 = fields;
 				_i = 0;
-				for (; _i < _ref$1.length; _i += 1) {
+				while (_i < _ref$1.length) {
 					i = _i;
 					ff = (_slice = fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					if (ff.name === key) {
@@ -1038,13 +1038,14 @@ fieldCache0ÉìT0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(dat
 					if (f === (go$ptrType(field)).nil && strings.EqualFold(ff.name, key)) {
 						f = ff;
 					}
+					_i++;
 				}
 				if (!(f === (go$ptrType(field)).nil)) {
 					subv = (_struct$8 = v, new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag));
 					destring = f.quoted;
 					_ref$2 = f.index;
 					_i$1 = 0;
-					for (; _i$1 < _ref$2.length; _i$1 += 1) {
+					while (_i$1 < _ref$2.length) {
 						i$1 = (_slice$1 = _ref$2, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 						if (subv.Kind() === 22) {
 							if (subv.IsNil()) {
@@ -1053,6 +1054,7 @@ fieldCache0ÉìT0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(dat
 							subv = (_struct$10 = subv.Elem(), new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag));
 						}
 						subv = (_struct$11 = subv.Field(i$1), new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag));
+						_i$1++;
 					}
 				}
 			}
@@ -1524,7 +1526,7 @@ HTMLEscapeÇ1	var HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
 		start = 0;
 		_ref = src;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if ((c === 60) || (c === 62) || (c === 38)) {
@@ -1544,6 +1546,7 @@ HTMLEscapeÇ1	var HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
 				dst.WriteByte(hex.charCodeAt((((_slice$3 = src, _index$3 = (i + 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) & 15) >>> 0)));
 				start = i + 3 >> 0;
 			}
+			_i++;
 		}
 		if (start < src.length) {
 			dst.Write(go$subslice(src, start));
@@ -1872,18 +1875,19 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 0ÅàunsupportedTypeEncodern	var unsupportedTypeEncoder = function(e, v, quoted) {
 		e.error(new UnsupportedTypeError.Ptr(v.Type()));
 	};
-0ÇÛencodeÇÁ	structEncoder.Ptr.prototype.encode = function(e, v, quoted) {
+0Ç˝encodeÇÒ	structEncoder.Ptr.prototype.encode = function(e, v, quoted) {
 		var se, first, _ref, _i, _slice, _index, _struct, f, i, _struct$1, _struct$2, fv, _struct$3, _slice$1, _index$1, _struct$4;
 		se = this;
 		e.Buffer.WriteByte(123);
 		first = true;
 		_ref = se.fields;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct.name, _struct.tag, _struct.index, _struct.typ, _struct.omitEmpty, _struct.quoted));
 			i = _i;
 			fv = (_struct$2 = fieldByIndex((_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), f.index), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 			if (!fv.IsValid() || f.omitEmpty && isEmptyValue((_struct$3 = fv, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)))) {
+				_i++;
 				continue;
 			}
 			if (first) {
@@ -1894,6 +1898,7 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 			e.string(f.name);
 			e.Buffer.WriteByte(58);
 			(_slice$1 = se.fieldEncs, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))(e, (_struct$4 = fv, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), f.quoted);
+			_i++;
 		}
 		e.Buffer.WriteByte(125);
 	};
@@ -1904,10 +1909,11 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 		se = new structEncoder.Ptr(fields, (go$sliceType(encoderFunc)).make(fields.length, 0, function() { return go$throwNilPointerError; }));
 		_ref = fields;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct.name, _struct.tag, _struct.index, _struct.typ, _struct.omitEmpty, _struct.quoted));
 			i = _i;
 			_slice$1 = se.fieldEncs, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = typeEncoder(typeByIndex(t, f.index))) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return (_recv = se, function(e, v, quoted) { return _recv.encode(e, v, quoted); });
 	};
@@ -1923,7 +1929,7 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 		sort.Sort(sv);
 		_ref = sv;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			k = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			i = _i;
 			if (i > 0) {
@@ -1932,6 +1938,7 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 			e.string(k.String());
 			e.Buffer.WriteByte(58);
 			me.elemEnc(e, (_struct$2 = v.MapIndex((_struct$1 = k, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), false);
+			_i++;
 		}
 		e.Buffer.WriteByte(125);
 	};
@@ -2032,15 +2039,15 @@ intEncoderÇ	var intEncoder = function(e, v, quoted) {
 		enc = new condAddrEncoder.Ptr(canAddrEnc, elseEnc);
 		return (_recv = enc, function(e, v, quoted) { return _recv.encode(e, v, quoted); });
 	};
-0Ç¢
-isValidTagÇí	var isValidTag = function(s) {
+0Ç•
+isValidTagÇï	var isValidTag = function(s) {
 		var _ref, _i, _rune, c;
 		if (s === "") {
 			return false;
 		}
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			c = _rune[0];
 			if (strings.ContainsRune("!#$%&()*+-./:<=>?@[]^_{|}~ ", c)) {
@@ -2049,6 +2056,7 @@ isValidTagÇí	var isValidTag = function(s) {
 					return false;
 				}
 			}
+			_i += _rune[1];
 		}
 		return true;
 	};
@@ -2056,7 +2064,7 @@ isValidTagÇí	var isValidTag = function(s) {
 		var _ref, _i, _slice, _index, i, _struct, _struct$1, _struct$2;
 		_ref = index;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (v.Kind() === 22) {
 				if (v.IsNil()) {
@@ -2065,6 +2073,7 @@ isValidTagÇí	var isValidTag = function(s) {
 				v = (_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			}
 			v = (_struct$1 = v.Field(i), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+			_i++;
 		}
 		return (_struct$2 = v, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 	};
@@ -2072,12 +2081,13 @@ isValidTagÇí	var isValidTag = function(s) {
 		var _ref, _i, _slice, _index, i;
 		_ref = index;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (t.Kind() === 22) {
 				t = t.Elem();
 			}
 			t = t.Field(i).Type;
+			_i++;
 		}
 		return t;
 	};
@@ -2277,7 +2287,7 @@ isValidTagÇí	var isValidTag = function(s) {
 		x = this;
 		_ref = (_slice = x, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).index;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			xik = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			k = _i;
 			if (k >= (_slice$2 = x, _index$2 = j, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).index.length) {
@@ -2286,12 +2296,13 @@ isValidTagÇí	var isValidTag = function(s) {
 			if (!((xik === (_slice$3 = (_slice$4 = x, _index$4 = j, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).index, _index$3 = k, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))))) {
 				return xik < (_slice$5 = (_slice$6 = x, _index$6 = j, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).index, _index$5 = k, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 			}
+			_i++;
 		}
 		return (_slice$7 = x, _index$7 = i, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")).index.length < (_slice$8 = x, _index$8 = j, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")).index.length;
 	};
 	go$ptrType(byIndex).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-0Çq
-typeFieldsÇa	var typeFields = function(t) {
+0Ç}
+typeFieldsÇm	var typeFields = function(t) {
 		var current, next, _map, _key, count, _map$1, _key$1, nextCount, _map$2, _key$2, visited, fields, _tuple, _map$3, _key$3, _tuple$1, _ref, _i, _slice, _index, _struct, f, _entry, _key$4, i, _struct$1, sf, tag, _tuple$2, name, opts, index, _slice$1, _index$1, ft, tagged, _entry$1, _slice$2, _index$2, _struct$2, _lhs, _index$3, _entry$2, _key$5, _entry$3, out, _tuple$3, advance, i$1, _slice$3, _index$4, _struct$3, fi, name$1, _slice$4, _index$5, _struct$4, fj, _struct$5, _tuple$4, _struct$6, dominant, ok, _struct$7;
 		current = new (go$sliceType(field))([]);
 		next = new (go$sliceType(field))([new field.Ptr("", false, (go$sliceType(Go$Int)).nil, t, false, false)]);
@@ -2304,9 +2315,10 @@ typeFieldsÇa	var typeFields = function(t) {
 			_tuple$1 = [nextCount, (_map$3 = new Go$Map(), _map$3)], count = _tuple$1[0], nextCount = _tuple$1[1];
 			_ref = current;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				f = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct.name, _struct.tag, _struct.index, _struct.typ, _struct.omitEmpty, _struct.quoted));
 				if ((_entry = visited[(f.typ || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : false)) {
+					_i++;
 					continue;
 				}
 				_key$4 = f.typ, (visited || go$throwRuntimeError("assignment to entry in nil map"))[(_key$4 || go$interfaceNil).go$key()] = { k: _key$4, v: true };
@@ -2351,6 +2363,7 @@ typeFieldsÇa	var typeFields = function(t) {
 					}
 					i = i + 1 >> 0;
 				}
+				_i++;
 			}
 		}
 		sort.Sort(go$subslice(new byName(fields.array), fields.offset, fields.offset + fields.length));
@@ -2388,7 +2401,7 @@ typeFieldsÇa	var typeFields = function(t) {
 		tagged = -1;
 		_ref = fields;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_struct = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct.name, _struct.tag, _struct.index, _struct.typ, _struct.omitEmpty, _struct.quoted));
 			i = _i;
 			if (f.index.length > length) {
@@ -2401,6 +2414,7 @@ typeFieldsÇa	var typeFields = function(t) {
 				}
 				tagged = i;
 			}
+			_i++;
 		}
 		if (tagged >= 0) {
 			return [(_struct$1 = (_slice$2 = fields, _index$2 = tagged, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct$1.name, _struct$1.tag, _struct$1.index, _struct$1.typ, _struct$1.omitEmpty, _struct$1.quoted)), true];
@@ -2441,7 +2455,7 @@ typeFieldsÇa	var typeFields = function(t) {
 		start = 0;
 		_ref = src;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (escape && ((c === 60) || (c === 62) || (c === 38))) {
@@ -2471,6 +2485,7 @@ typeFieldsÇa	var typeFields = function(t) {
 				}
 				start = i + 1 >> 0;
 			}
+			_i++;
 		}
 		if (scan.eof() === 11) {
 			dst.Truncate(origLen);
@@ -2491,7 +2506,7 @@ typeFieldsÇa	var typeFields = function(t) {
 			i = i + 1 >> 0;
 		}
 	};
-0Ç÷IndentÇ 	var Indent = go$pkg.Indent = function(dst, src, prefix, indent) {
+0ÇÍIndentÇﬁ	var Indent = go$pkg.Indent = function(dst, src, prefix, indent) {
 		var origLen, scan, needIndent, depth, _ref, _i, _slice, _index, c, x, v, _ref$1;
 		origLen = dst.Len();
 		scan = new scanner.Ptr();
@@ -2500,11 +2515,12 @@ typeFieldsÇa	var typeFields = function(t) {
 		depth = 0;
 		_ref = src;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			scan.bytes = (x = scan.bytes, new Go$Int64(x.high + 0, x.low + 1));
 			v = scan.step(scan, (c >> 0));
 			if (v === 9) {
+				_i++;
 				continue;
 			}
 			if (v === 11) {
@@ -2517,6 +2533,7 @@ typeFieldsÇa	var typeFields = function(t) {
 			}
 			if (v === 0) {
 				dst.WriteByte(c);
+				_i++;
 				continue;
 			}
 			_ref$1 = c;
@@ -2540,6 +2557,7 @@ typeFieldsÇa	var typeFields = function(t) {
 			} else {
 				dst.WriteByte(c);
 			}
+			_i++;
 		}
 		if (scan.eof() === 11) {
 			dst.Truncate(origLen);
@@ -2553,12 +2571,13 @@ checkValidÇ	var checkValid = function(data, scan) {
 		scan.reset();
 		_ref = data;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			scan.bytes = (x = scan.bytes, new Go$Int64(x.high + 0, x.low + 1));
 			if (scan.step(scan, (c >> 0)) === 11) {
 				return scan.err;
 			}
+			_i++;
 		}
 		if (scan.eof() === 11) {
 			return scan.err;
@@ -2573,7 +2592,7 @@ checkValidÇ	var checkValid = function(data, scan) {
 		scan.reset();
 		_ref = data;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			v = scan.step(scan, (c >> 0));
@@ -2587,6 +2606,7 @@ checkValidÇ	var checkValid = function(data, scan) {
 					return [value, rest, err];
 				}
 			}
+			_i++;
 		}
 		if (scan.eof() === 11) {
 			_tuple$2 = [(go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, scan.err], value = _tuple$2[0], rest = _tuple$2[1], err = _tuple$2[2];
@@ -3045,7 +3065,7 @@ NewDecoderÅ£	var NewDecoder = go$pkg.NewDecoder = function(r) {
 		return bytes.NewReader(dec.buf);
 	};
 	Decoder.prototype.Buffered = function() { return this.go$val.Buffered(); };
-0ÇB	readValueÇ3	Decoder.Ptr.prototype.readValue = function() {
+0ÇC	readValueÇ4	Decoder.Ptr.prototype.readValue = function() {
 		var dec, scanp, err, _ref, _i, _slice, _index, c, i, x, v, x$1, x$2, newBuf, n, _tuple;
 		dec = this;
 		dec.scan.reset();
@@ -3054,7 +3074,7 @@ NewDecoderÅ£	var NewDecoder = go$pkg.NewDecoder = function(r) {
 		Input: while (true) {
 			_ref = go$subslice(dec.buf, scanp);
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				dec.scan.bytes = (x = dec.scan.bytes, new Go$Int64(x.high + 0, x.low + 1));
@@ -3071,6 +3091,7 @@ NewDecoderÅ£	var NewDecoder = go$pkg.NewDecoder = function(r) {
 					dec.err = dec.scan.err;
 					return [0, dec.scan.err];
 				}
+				_i++;
 			}
 			scanp = dec.buf.length;
 			if (!(go$interfaceIsEqual(err, null))) {
@@ -3101,11 +3122,12 @@ NewDecoderÅ£	var NewDecoder = go$pkg.NewDecoder = function(r) {
 		var _ref, _i, _slice, _index, c;
 		_ref = b;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!isSpace((c >> 0))) {
 				return true;
 			}
+			_i++;
 		}
 		return false;
 	};

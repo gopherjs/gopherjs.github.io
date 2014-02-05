@@ -1,4 +1,4 @@
-0É)±crypto/ellipticÇK}package elliptic
+0É)∂crypto/ellipticÇK}package elliptic
 import io "io"
 import big "math/big"
 import sync "sync"
@@ -276,7 +276,7 @@ $$
 0Åº0mask0
 initonce0p3840p5210p2240p224P0p224ZeroModP310p224ZeroModP630p2560p256RInverse0	p256One0
 p256Zero0p256P0p2562P0p256Precomputed0
-p256Zero310Éß0Å∫ParamsÅØ	CurveParams.Ptr.prototype.Params = function() {
+p256Zero310Éß0Å∫ParamsÅØ	CurveParams.Ptr.prototype.Params = function() {
 		var curve;
 		curve = this;
 		return curve;
@@ -470,7 +470,7 @@ ScalarMultÇC	CurveParams.Ptr.prototype.ScalarMult = function(Bx, By, k) {
 		_tuple = [new big.Int.Ptr(), new big.Int.Ptr(), new big.Int.Ptr()], x = _tuple[0], y = _tuple[1], z = _tuple[2];
 		_ref = k;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			byte$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			bitNum = 0;
 			while (bitNum < 8) {
@@ -481,6 +481,7 @@ ScalarMultÇC	CurveParams.Ptr.prototype.ScalarMult = function(Bx, By, k) {
 				byte$1 = byte$1 << 1 << 24 >>> 24;
 				bitNum = bitNum + 1 >> 0;
 			}
+			_i++;
 		}
 		return curve.affineFromJacobian(x, y, z);
 	};
@@ -697,11 +698,12 @@ p224IsZeroÇ›	var p224IsZero = function(a) {
 		_tuple = [0, 0], isZero = _tuple[0], isP = _tuple[1];
 		_ref = minimal;
 		_i = 0;
-		for (; _i < 8; _i += 1) {
+		while (_i < 8) {
 			v = _ref[_i];
 			i = _i;
 			isZero = (isZero | (v)) >>> 0;
 			isP = (isP | ((v - p224P[i] >>> 0))) >>> 0;
+			_i++;
 		}
 		isZero = (isZero | ((isZero >>> 16 >>> 0))) >>> 0;
 		isZero = (isZero | ((isZero >>> 8 >>> 0))) >>> 0;
@@ -1111,7 +1113,7 @@ p224InvertÇ~	var p224Invert = function(out, in$1) {
 		}
 		_ref = scalar;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			byte$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			bitNum = 0;
 			while (bitNum < 8) {
@@ -1123,6 +1125,7 @@ p224InvertÇ~	var p224Invert = function(out, in$1) {
 				p224CopyConditional(outZ, zz, bit);
 				bitNum = bitNum + 1 >>> 0;
 			}
+			_i++;
 		}
 	};
 0Çäp224ToAffineÇx	var p224ToAffine = function(x, y, z) {
@@ -1233,10 +1236,11 @@ p224InvertÇ~	var p224Invert = function(out, in$1) {
 		}
 		_ref = scalarBytes;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			out[scalarBytes.length - ((1 + i >> 0)) >> 0] = v;
+			_i++;
 		}
 	};
 0Ç)ScalarBaseMultÇ	p256Curve.Ptr.prototype.ScalarBaseMult = function(scalar) {
@@ -1704,19 +1708,21 @@ p256InvertÇò	var p256Invert = function(out, in$1) {
 			i = i + 1 >> 0;
 		}
 	};
-0Ç≥p256SelectAffinePointÇò	var p256SelectAffinePoint = function(xOut, yOut, table, index) {
+0Çµp256SelectAffinePointÇö	var p256SelectAffinePoint = function(xOut, yOut, table, index) {
 		var _ref, _i, i, _ref$1, _i$1, i$1, i$2, mask$1, _ref$2, _i$2, j, _lhs, _index, _slice, _index$1, _ref$3, _i$3, j$1, _lhs$1, _index$2, _slice$1, _index$3;
 		_ref = xOut;
 		_i = 0;
-		for (; _i < 9; _i += 1) {
+		while (_i < 9) {
 			i = _i;
 			xOut[i] = 0;
+			_i++;
 		}
 		_ref$1 = yOut;
 		_i$1 = 0;
-		for (; _i$1 < 9; _i$1 += 1) {
+		while (_i$1 < 9) {
 			i$1 = _i$1;
 			yOut[i$1] = 0;
+			_i$1++;
 		}
 		i$2 = 1;
 		while (i$2 < 16) {
@@ -1727,40 +1733,45 @@ p256InvertÇò	var p256Invert = function(out, in$1) {
 			mask$1 = mask$1 - 1 >>> 0;
 			_ref$2 = xOut;
 			_i$2 = 0;
-			for (; _i$2 < 9; _i$2 += 1) {
+			while (_i$2 < 9) {
 				j = _i$2;
 				_lhs = xOut, _index = j, _lhs[_index] = (_lhs[_index] | ((((_slice = table, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice.length) ? _slice.array[_slice.offset + _index$1] : go$throwRuntimeError("index out of range")) & mask$1) >>> 0))) >>> 0;
 				table = go$subslice(table, 1);
+				_i$2++;
 			}
 			_ref$3 = yOut;
 			_i$3 = 0;
-			for (; _i$3 < 9; _i$3 += 1) {
+			while (_i$3 < 9) {
 				j$1 = _i$3;
 				_lhs$1 = yOut, _index$2 = j$1, _lhs$1[_index$2] = (_lhs$1[_index$2] | ((((_slice$1 = table, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$3] : go$throwRuntimeError("index out of range")) & mask$1) >>> 0))) >>> 0;
 				table = go$subslice(table, 1);
+				_i$3++;
 			}
 			i$2 = i$2 + 1 >>> 0;
 		}
 	};
-0Çíp256SelectJacobianPointÇu	var p256SelectJacobianPoint = function(xOut, yOut, zOut, table, index) {
+0Çïp256SelectJacobianPointÇx	var p256SelectJacobianPoint = function(xOut, yOut, zOut, table, index) {
 		var _ref, _i, i, _ref$1, _i$1, i$1, _ref$2, _i$2, i$2, i$3, mask$1, _ref$3, _i$3, j, _lhs, _index, _ref$4, _i$4, j$1, _lhs$1, _index$1, _ref$5, _i$5, j$2, _lhs$2, _index$2;
 		_ref = xOut;
 		_i = 0;
-		for (; _i < 9; _i += 1) {
+		while (_i < 9) {
 			i = _i;
 			xOut[i] = 0;
+			_i++;
 		}
 		_ref$1 = yOut;
 		_i$1 = 0;
-		for (; _i$1 < 9; _i$1 += 1) {
+		while (_i$1 < 9) {
 			i$1 = _i$1;
 			yOut[i$1] = 0;
+			_i$1++;
 		}
 		_ref$2 = zOut;
 		_i$2 = 0;
-		for (; _i$2 < 9; _i$2 += 1) {
+		while (_i$2 < 9) {
 			i$2 = _i$2;
 			zOut[i$2] = 0;
+			_i$2++;
 		}
 		i$3 = 1;
 		while (i$3 < 16) {
@@ -1771,21 +1782,24 @@ p256InvertÇò	var p256Invert = function(out, in$1) {
 			mask$1 = mask$1 - 1 >>> 0;
 			_ref$3 = xOut;
 			_i$3 = 0;
-			for (; _i$3 < 9; _i$3 += 1) {
+			while (_i$3 < 9) {
 				j = _i$3;
 				_lhs = xOut, _index = j, _lhs[_index] = (_lhs[_index] | (((table[i$3][0][j] & mask$1) >>> 0))) >>> 0;
+				_i$3++;
 			}
 			_ref$4 = yOut;
 			_i$4 = 0;
-			for (; _i$4 < 9; _i$4 += 1) {
+			while (_i$4 < 9) {
 				j$1 = _i$4;
 				_lhs$1 = yOut, _index$1 = j$1, _lhs$1[_index$1] = (_lhs$1[_index$1] | (((table[i$3][1][j$1] & mask$1) >>> 0))) >>> 0;
+				_i$4++;
 			}
 			_ref$5 = zOut;
 			_i$5 = 0;
-			for (; _i$5 < 9; _i$5 += 1) {
+			while (_i$5 < 9) {
 				j$2 = _i$5;
 				_lhs$2 = zOut, _index$2 = j$2, _lhs$2[_index$2] = (_lhs$2[_index$2] | (((table[i$3][2][j$2] & mask$1) >>> 0))) >>> 0;
+				_i$5++;
 			}
 			i$3 = i$3 + 1 >>> 0;
 		}
@@ -1802,21 +1816,24 @@ p256GetBitÅ¥	var p256GetBit = function(scalar, bit) {
 		_tuple$1 = [go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; }), go$makeNativeArray("Uint32", 9, function() { return 0; })], px = _tuple$1[0], py = _tuple$1[1], tx = _tuple$1[2], ty = _tuple$1[3], tz = _tuple$1[4];
 		_ref = xOut;
 		_i = 0;
-		for (; _i < 9; _i += 1) {
+		while (_i < 9) {
 			i = _i;
 			xOut[i] = 0;
+			_i++;
 		}
 		_ref$1 = yOut;
 		_i$1 = 0;
-		for (; _i$1 < 9; _i$1 += 1) {
+		while (_i$1 < 9) {
 			i$1 = _i$1;
 			yOut[i$1] = 0;
+			_i$1++;
 		}
 		_ref$2 = zOut;
 		_i$2 = 0;
-		for (; _i$2 < 9; _i$2 += 1) {
+		while (_i$2 < 9) {
 			i$2 = _i$2;
 			zOut[i$2] = 0;
+			_i$2++;
 		}
 		i$3 = 0;
 		while (i$3 < 32) {
@@ -1882,21 +1899,24 @@ p256GetBitÅ¥	var p256GetBit = function(scalar, bit) {
 		}
 		_ref = xOut;
 		_i = 0;
-		for (; _i < 9; _i += 1) {
+		while (_i < 9) {
 			i$1 = _i;
 			xOut[i$1] = 0;
+			_i++;
 		}
 		_ref$1 = yOut;
 		_i$1 = 0;
-		for (; _i$1 < 9; _i$1 += 1) {
+		while (_i$1 < 9) {
 			i$2 = _i$1;
 			yOut[i$2] = 0;
+			_i$1++;
 		}
 		_ref$2 = zOut;
 		_i$2 = 0;
-		for (; _i$2 < 9; _i$2 += 1) {
+		while (_i$2 < 9) {
 			i$3 = _i$2;
 			zOut[i$3] = 0;
+			_i$2++;
 		}
 		nIsInfinityMask = 4294967295;
 		i$4 = 0;

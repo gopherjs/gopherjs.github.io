@@ -470,18 +470,20 @@ UnreadRune‚M	Reader.Ptr.prototype.UnreadRune = function() {
 		n = 0;
 		_ref = full;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			n = n + ((_slice = full, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).length) >> 0;
+			_i++;
 		}
 		n = n + (frag.length) >> 0;
 		buf$1 = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
 		n = 0;
 		_ref$1 = full;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			i$1 = _i$1;
 			n = n + (go$copySlice(go$subslice(buf$1, n), (_slice$1 = full, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))) >> 0;
+			_i$1++;
 		}
 		go$copySlice(go$subslice(buf$1, n), frag);
 		_tuple$1 = [buf$1, err], line = _tuple$1[0], err = _tuple$1[1];

@@ -1,4 +1,4 @@
-0ÇøobytesÇ7package bytes
+0ÇøtbytesÇ7package bytes
 import errors "errors"
 import io "io"
 import utf8 "unicode/utf8"
@@ -121,7 +121,7 @@ $$
 	(go$ptrType(Buffer)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Len", "", [], [Go$Int], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false]];
 	Reader.init([["s", "bytes", (go$sliceType(Go$Uint8)), ""], ["i", "bytes", Go$Int, ""], ["prevRune", "bytes", Go$Int, ""]]);
 	(go$ptrType(Reader)).methods = [["Len", "", [], [Go$Int], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false]];
-00 0Çõ;0Å∏BytesÅÆ	Buffer.Ptr.prototype.Bytes = function() {
+00 0Çõ@0Å∏BytesÅÆ	Buffer.Ptr.prototype.Bytes = function() {
 		var b;
 		b = this;
 		return go$subslice(b.buf, b.off);
@@ -481,12 +481,13 @@ ReadStringÇî	Buffer.Ptr.prototype.ReadString = function(delim) {
 		}
 		_ref = a;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (!((c === (_slice$1 = b, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))))) {
 				return false;
 			}
+			_i++;
 		}
 		return true;
 	};
@@ -578,12 +579,13 @@ ReadStringÇî	Buffer.Ptr.prototype.ReadString = function(delim) {
 		var _ref, _i, _slice, _index, b, i;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (b === c) {
 				return i;
 			}
+			_i++;
 		}
 		return -1;
 	};
@@ -615,7 +617,7 @@ ReadStringÇî	Buffer.Ptr.prototype.ReadString = function(delim) {
 		}
 		return -1;
 	};
-0Ç¯IndexAnyÇÍ	var IndexAny = go$pkg.IndexAny = function(s, chars) {
+0Ç˝IndexAnyÇÔ	var IndexAny = go$pkg.IndexAny = function(s, chars) {
 		var r, width, i, _slice, _index, _tuple, _ref, _i, _rune, ch;
 		if (chars.length > 0) {
 			r = 0;
@@ -630,19 +632,20 @@ ReadStringÇî	Buffer.Ptr.prototype.ReadString = function(delim) {
 				}
 				_ref = chars;
 				_i = 0;
-				for (; _i < _ref.length; _i += _rune[1]) {
+				while (_i < _ref.length) {
 					_rune = go$decodeRune(_ref, _i);
 					ch = _rune[0];
 					if (r === ch) {
 						return i;
 					}
+					_i += _rune[1];
 				}
 				i = i + (width) >> 0;
 			}
 		}
 		return -1;
 	};
-0ÇLastIndexAnyÇÒ	var LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
+0ÇLastIndexAnyÇˆ	var LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
 		var i, _tuple, r, size, _ref, _i, _rune, ch;
 		if (chars.length > 0) {
 			i = s.length;
@@ -651,12 +654,13 @@ ReadStringÇî	Buffer.Ptr.prototype.ReadString = function(delim) {
 				i = i - (size) >> 0;
 				_ref = chars;
 				_i = 0;
-				for (; _i < _ref.length; _i += _rune[1]) {
+				while (_i < _ref.length) {
 					_rune = go$decodeRune(_ref, _i);
 					ch = _rune[0];
 					if (r === ch) {
 						return i;
 					}
+					_i += _rune[1];
 				}
 			}
 		}
@@ -756,18 +760,20 @@ FieldsFuncÇ‚	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
 		n = (x = sep.length, x$1 = (s.length - 1 >> 0), (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			v = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			n = n + (v.length) >> 0;
+			_i++;
 		}
 		b = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
 		bp = go$copySlice(b, (_slice$2 = s, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")));
 		_ref$1 = go$subslice(s, 1);
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			v$1 = (_slice$3 = _ref$1, _index$3 = _i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 			bp = bp + (go$copySlice(go$subslice(b, bp), sep)) >> 0;
 			bp = bp + (go$copySlice(go$subslice(b, bp), v$1)) >> 0;
+			_i$1++;
 		}
 		return b;
 	};
@@ -941,17 +947,18 @@ TrimSuffixÅ¨	var TrimSuffix = go$pkg.TrimSuffix = function(s, suffix) {
 		}
 		return -1;
 	};
-0Ç=makeCutsetFuncÇ)	var makeCutsetFunc = function(cutset) {
+0ÇAmakeCutsetFuncÇ-	var makeCutsetFunc = function(cutset) {
 		return (function(r) {
 			var _ref, _i, _rune, c;
 			_ref = cutset;
 			_i = 0;
-			for (; _i < _ref.length; _i += _rune[1]) {
+			while (_i < _ref.length) {
 				_rune = go$decodeRune(_ref, _i);
 				c = _rune[0];
 				if (c === r) {
 					return true;
 				}
+				_i += _rune[1];
 			}
 			return false;
 		});
@@ -1053,30 +1060,30 @@ TrimSuffixÅ¨	var TrimSuffix = go$pkg.TrimSuffix = function(s, suffix) {
 		}
 		return s.length === t.length;
 	};
-0Å»	IndexByteÅ∫	var IndexByte = go$pkg.IndexByte = function(s, c) {
+0Å≈	IndexByteÅ∑	var IndexByte = go$pkg.IndexByte = function(s, c) {
 			var i;
-			for (i = 0; i < s.length; i += 1) {
+			for (i = 0; i < s.length; i++) {
 				if (s.array[s.offset + i] === c) {
 					return i;
 				}
 			}
 			return -1;
 		};
-0ÇEqualÇ	var Equal = go$pkg.Equal = function(a, b) {
+0ÇEqualÇ 	var Equal = go$pkg.Equal = function(a, b) {
 			if (a.length !== b.length) {
 				return false;
 			}
 			var i;
-			for (i = 0; i < a.length; i += 1) {
+			for (i = 0; i < a.length; i++) {
 				if (a.array[a.offset + i] !== b.array[b.offset + i]) {
 					return false;
 				}
 			}
 			return true;
 		};
-0Ç§CompareÇó	var Compare = go$pkg.Compare = function(a, b) {
+0Ç°CompareÇî	var Compare = go$pkg.Compare = function(a, b) {
 			var l = Math.min(a.length, b.length), i;
-			for (i = 0; i < a.length; i += 1) {
+			for (i = 0; i < a.length; i++) {
 				var va = a.array[a.offset + i];
 				var vb = b.array[b.offset + i];
 				if (va < vb) {

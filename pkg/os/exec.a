@@ -514,9 +514,10 @@ $$
 		c = this;
 		_ref = closers;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			fd = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			fd.Close();
+			_i++;
 		}
 	};
 	Cmd.prototype.closeDescriptors = function(closers) { return this.go$val.closeDescriptors(closers); };
@@ -544,7 +545,7 @@ $$
 		F.init([(go$ptrType(Cmd))], [(go$ptrType(os.File)), go$error], false);
 		_ref = new (go$sliceType(F))([(function(recv) { return recv.stdin(); }), (function(recv) { return recv.stdout(); }), (function(recv) { return recv.stderr(); })]);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			setupFd = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_tuple = setupFd(c), fd = _tuple[0], err = _tuple[1];
 			if (!(go$interfaceIsEqual(err, null))) {
@@ -553,6 +554,7 @@ $$
 				return err;
 			}
 			c.childFiles = go$append(c.childFiles, fd);
+			_i++;
 		}
 		c.childFiles = go$appendSlice(c.childFiles, c.ExtraFiles);
 		err$1 = null;
@@ -566,9 +568,10 @@ $$
 		c.errch = new (go$chanType(go$error, false, false))();
 		_ref$1 = c.goroutine;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			fn = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			go$notSupported("go")
+			_i$1++;
 		}
 		return null;
 	};
@@ -594,10 +597,11 @@ $$
 		copyError = null;
 		_ref = c.goroutine;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			if (err$1 = undefined, !(go$interfaceIsEqual(err$1, null)) && go$interfaceIsEqual(copyError, null)) {
 				copyError = err$1;
 			}
+			_i++;
 		}
 		c.closeDescriptors(c.closeAfterWait);
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -731,7 +735,7 @@ StderrPipe‚º	Cmd.Ptr.prototype.StderrPipe = function() {
 		}
 		_ref = strings.Split(pathenv, ":");
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			dir = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (dir === "") {
 				dir = ".";
@@ -740,6 +744,7 @@ StderrPipe‚º	Cmd.Ptr.prototype.StderrPipe = function() {
 			if (err$1 = findExecutable(path), go$interfaceIsEqual(err$1, null)) {
 				return [path, null];
 			}
+			_i++;
 		}
 		return ["", new Error.Ptr(file, go$pkg.ErrNotFound)];
 	};

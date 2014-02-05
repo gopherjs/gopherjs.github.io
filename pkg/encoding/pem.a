@@ -1,4 +1,4 @@
-0‚*Úencoding/pem‚«package pem
+0‚*ñencoding/pem‚«package pem
 import bytes "bytes"
 import base64 "encoding/base64"
 import io "io"
@@ -32,7 +32,7 @@ $$
 	lineBreaker.init([["line", "encoding/pem", (go$arrayType(Go$Uint8, 64)), ""], ["used", "encoding/pem", Go$Int, ""], ["out", "encoding/pem", io.Writer, ""]]);
 	(go$ptrType(lineBreaker)).methods = [["Close", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 0&0
-pemStart0pemEnd0pemEndOfLine0‚"o0‚¬getLine‚Ÿ	var getLine = function(data) {
+pemStart0pemEnd0pemEndOfLine0‚"†0‚¬getLine‚Ÿ	var getLine = function(data) {
 		var line, rest, i, j, _slice, _index, _tuple;
 		line = (go$sliceType(Go$Uint8)).nil;
 		rest = (go$sliceType(Go$Uint8)).nil;
@@ -50,19 +50,21 @@ $$
 		_tuple = [bytes.TrimRight(go$subslice(data, 0, i), " \t"), go$subslice(data, j)], line = _tuple[0], rest = _tuple[1];
 		return [line, rest];
 	};
-0‚removeWhitespace‚ì	var removeWhitespace = function(data) {
+0‚removeWhitespace‚ö	var removeWhitespace = function(data) {
 		var result, n, _ref, _i, _slice, _index, b, _slice$1, _index$1;
 		result = (go$sliceType(Go$Uint8)).make(data.length, 0, function() { return 0; });
 		n = 0;
 		_ref = data;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if ((b === 32) || (b === 9) || (b === 13) || (b === 10)) {
+				_i++;
 				continue;
 			}
 			_slice$1 = result, _index$1 = n, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = b) : go$throwRuntimeError("index out of range");
 			n = n + 1 >> 0;
+			_i++;
 		}
 		return go$subslice(result, 0, n);
 	};
@@ -174,7 +176,7 @@ $$
 		_tuple = out.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(k + ": " + v + "\n"))), err = _tuple[1];
 		return err;
 	};
-0‚	(Encode‚		var Encode = go$pkg.Encode = function(out, b) {
+0‚	5Encode‚	)	var Encode = go$pkg.Encode = function(out, b) {
 		var err, _tuple, err$1, _tuple$1, h, hasProcType, _ref, _i, _keys, _entry, k, err$2, _entry$1, _ref$1, _i$1, _slice, _index, k$1, err$3, _entry$2, err$4, _tuple$2, breaker, b64, err$5, _tuple$3, err$6, _tuple$4, _tuple$5, err$7;
 		if (_tuple = out.Write(go$subslice(pemStart, 1)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
 			return err;
@@ -188,14 +190,16 @@ $$
 			_ref = b.Headers;
 			_i = 0;
 			_keys = go$keys(_ref);
-			for (; _i < _keys.length; _i += 1) {
+			while (_i < _keys.length) {
 				_entry = _ref[_keys[_i]];
 				k = _entry.k;
 				if (k === "Proc-Type") {
 					hasProcType = true;
+					_i++;
 					continue;
 				}
 				h = go$append(h, k);
+				_i++;
 			}
 			if (hasProcType) {
 				if (err$2 = writeHeader(out, "Proc-Type", (_entry$1 = b.Headers["Proc-Type"], _entry$1 !== undefined ? _entry$1.v : "")), !(go$interfaceIsEqual(err$2, null))) {
@@ -205,11 +209,12 @@ $$
 			sort.Strings(h);
 			_ref$1 = h;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				k$1 = (_slice = _ref$1, _index = _i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				if (err$3 = writeHeader(out, k$1, (_entry$2 = b.Headers[k$1], _entry$2 !== undefined ? _entry$2.v : "")), !(go$interfaceIsEqual(err$3, null))) {
 					return err$3;
 				}
+				_i$1++;
 			}
 			if (_tuple$2 = out.Write(new (go$sliceType(Go$Uint8))([10])), err$4 = _tuple$2[1], !(go$interfaceIsEqual(err$4, null))) {
 				return err$4;

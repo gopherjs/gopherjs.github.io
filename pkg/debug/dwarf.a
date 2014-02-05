@@ -1,4 +1,4 @@
-0ÉZdebug/dwarfÇ-Âpackage dwarf
+0ÉZdebug/dwarfÇ-Âpackage dwarf
 import binary "encoding/binary"
 import strconv "strconv"
 import errors "errors"
@@ -668,7 +668,7 @@ $$
 	unit.init([["base", "debug/dwarf", Offset, ""], ["off", "debug/dwarf", Offset, ""], ["data", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["atable", "debug/dwarf", abbrevTable, ""], ["asize", "debug/dwarf", Go$Int, ""], ["vers", "debug/dwarf", Go$Int, ""], ["is64", "debug/dwarf", Go$Bool, ""]]);
 	(go$ptrType(unit)).methods = [["addrsize", "debug/dwarf", [], [Go$Int], false], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false], ["version", "debug/dwarf", [], [Go$Int], false]];
 00	attrNames0
-tagNames0Ç∞À0Å‰versionÅÿ	unknownFormat.Ptr.prototype.version = function() {
+tagNames0Ç∞Ã0Å‰versionÅÿ	unknownFormat.Ptr.prototype.version = function() {
 		var _struct, u;
 		u = (_struct = this, new unknownFormat.Ptr());
 		return 0;
@@ -888,7 +888,7 @@ $$
 		return "dwarf.Tag(" + strconv.FormatInt(new Go$Int64(0, t), 10) + ")";
 	};
 	go$ptrType(Tag).prototype.GoString = function() { return new Tag(this.go$get()).GoString(); };
-0Ç	‡parseAbbrevÇ	œ	Data.Ptr.prototype.parseAbbrev = function(off) {
+0Ç	·parseAbbrevÇ	–	Data.Ptr.prototype.parseAbbrev = function(off) {
 		var d, ok, _tuple, _entry, m, data, x, _struct, b, m$1, id, n, _struct$1, b1, tag, fmt, a, _ref, _i, i, _slice, _index, _slice$1, _index$1, _struct$2, _key, _key$1;
 		d = this;
 		if (_tuple = (_entry = d.abbrevCache[off], _entry !== undefined ? [_entry.v, true] : [false, false]), m = _tuple[0], ok = _tuple[1], ok) {
@@ -928,10 +928,11 @@ $$
 			a.field = (go$sliceType(afield)).make(n, 0, function() { return new afield.Ptr(); });
 			_ref = a.field;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				i = _i;
 				(_slice = a.field, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).attr = (b.uint().low >>> 0);
 				(_slice$1 = a.field, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).fmt = (b.uint().low >>> 0);
+				_i++;
 			}
 			b.uint();
 			b.uint();
@@ -949,11 +950,12 @@ $$
 		e = this;
 		_ref = e.Field;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Field.Ptr(_struct.Attr, _struct.Val));
 			if (f.Attr === a) {
 				return f.Val;
 			}
+			_i++;
 		}
 		return null;
 	};
@@ -974,7 +976,7 @@ $$
 		e = new Entry.Ptr(off, a.tag, a.children, (go$sliceType(Field)).make(a.field.length, 0, function() { return new Field.Ptr(); }));
 		_ref = e.Field;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			(_slice$1 = e.Field, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Attr = (_slice = a.field, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).attr;
 			fmt = (_slice$2 = a.field, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).fmt;
@@ -1066,6 +1068,7 @@ $$
 				b.error("unknown entry attr format 0x" + strconv.FormatInt(new Go$Int64(0, fmt), 16));
 			}
 			(_slice$3 = e.Field, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Val = val;
+			_i++;
 		}
 		if (!(go$interfaceIsEqual(b.err, null))) {
 			return (go$ptrType(Entry)).nil;
@@ -1100,7 +1103,7 @@ $$
 		u$1 = (go$ptrType(unit)).nil;
 		_ref = d.unit;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			u$1 = (_slice$1 = d.unit, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			if (u$1.off <= off && off < (u$1.off + (u$1.data.length >>> 0) >>> 0)) {
@@ -1108,6 +1111,7 @@ $$
 				r.b = (_struct$1 = makeBuf(r.d, u$1, "info", off, go$subslice(u$1.data, (off - u$1.off >>> 0))), new buf.Ptr(_struct$1.dwarf, _struct$1.order, _struct$1.format, _struct$1.name, _struct$1.off, _struct$1.data, _struct$1.err));
 				return;
 			}
+			_i++;
 		}
 		r.err = errors.New("offset out of range");
 	};
@@ -1279,7 +1283,7 @@ $$
 		s = s + " {";
 		_ref = t.Field;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
@@ -1291,6 +1295,7 @@ $$
 				s = s + (" : " + strconv.FormatInt(f.BitSize, 10));
 				s = s + ("@" + strconv.FormatInt(f.BitOffset, 10));
 			}
+			_i++;
 		}
 		s = s + "}";
 		return s;
@@ -1306,13 +1311,14 @@ $$
 		s = s + " {";
 		_ref = t.Val;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
 				s = s + "; ";
 			}
 			s = s + (v.Name + "=" + strconv.FormatInt(v.Val, 10));
+			_i++;
 		}
 		s = s + "}";
 		return s;
@@ -1324,13 +1330,14 @@ $$
 		s = "func(";
 		_ref = t.ParamType;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			t$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
 				s = s + ", ";
 			}
 			s = s + (t$1.String());
+			_i++;
 		}
 		s = s + ")";
 		if (!(go$interfaceIsEqual(t.ReturnType, null))) {
@@ -1695,7 +1702,7 @@ parseUnitsÇ€	Data.Ptr.prototype.parseUnits = function() {
 		units = (go$sliceType(unit)).make(nunit, 0, function() { return new unit.Ptr(); });
 		_ref = units;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			u = (_slice = units, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			u.base = b.off;
@@ -1721,6 +1728,7 @@ parseUnitsÇ€	Data.Ptr.prototype.parseUnits = function() {
 			u.asize = (b.uint8() >> 0);
 			u.off = b.off;
 			u.data = b.bytes(((n - 7 >>> 0) >> 0));
+			_i++;
 		}
 		if (!(go$interfaceIsEqual(b.err, null))) {
 			return [(go$sliceType(unit)).nil, b.err];

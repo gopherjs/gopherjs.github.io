@@ -316,12 +316,13 @@ $$
 		size = f.size;
 		_ref = lines;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			offset = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0 && offset <= (_slice$1 = lines, _index$1 = (i - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) || size <= offset) {
 				return false;
 			}
+			_i++;
 		}
 		f.set.mutex.Lock();
 		f.lines = lines;
@@ -336,7 +337,7 @@ $$
 		line = 0;
 		_ref = content;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			offset = _i;
 			if (line >= 0) {
@@ -346,6 +347,7 @@ $$
 			if (b === 10) {
 				line = offset + 1 >> 0;
 			}
+			_i++;
 		}
 		f.set.mutex.Lock();
 		f.lines = lines;
@@ -593,10 +595,11 @@ searchInts‚	var searchInts = function(a, x) {
 		files = (go$sliceType(serializedFile)).make(s.files.length, 0, function() { return new serializedFile.Ptr(); });
 		_ref = s.files;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			_slice$1 = files, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = new serializedFile.Ptr(f.name, f.base, f.size, f.lines, f.infos)) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		ss.Files = files;
 		s.mutex.Unlock();

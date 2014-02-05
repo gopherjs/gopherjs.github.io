@@ -419,7 +419,7 @@ TryReadBit‚í	bitReader.Ptr.prototype.TryReadBit = function() {
 		mtfTreeDecoder = newMTFDecoderWithRange(numHuffmanTrees);
 		_ref = treeIndexes;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			c = 0;
 			while (true) {
@@ -434,6 +434,7 @@ TryReadBit‚í	bitReader.Ptr.prototype.TryReadBit = function() {
 				return err;
 			}
 			_slice$1 = treeIndexes, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = mtfTreeDecoder.Decode(c)) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		symbols = (go$sliceType(Go$Uint8)).make(numSymbols, 0, function() { return 0; });
 		nextSymbol = 0;
@@ -485,9 +486,10 @@ TryReadBit‚í	bitReader.Ptr.prototype.TryReadBit = function() {
 		repeat_power = 0;
 		_ref$1 = bz2.c;
 		_i$1 = 0;
-		for (; _i$1 < 256; _i$1 += 1) {
+		while (_i$1 < 256) {
 			i$3 = _i$1;
 			bz2.c[i$3] = 0;
+			_i$1++;
 		}
 		decoded = 0;
 		while (true) {
@@ -563,11 +565,12 @@ inverseBWT‚	2	var inverseBWT = function(tt, origPtr, c) {
 		}
 		_ref = tt;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i$1 = _i;
 			b = ((_slice$3 = tt, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) & 255) >>> 0;
 			_lhs = tt, _index$4 = (_slice$4 = c, _index$5 = b, (_index$5 >= 0 && _index$5 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$5] : go$throwRuntimeError("index out of range")), _slice$6 = _lhs, _index$7 = _index$4, (_index$7 >= 0 && _index$7 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$7] = ((_slice$5 = _lhs, _index$6 = _index$4, (_index$6 >= 0 && _index$6 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$6] : go$throwRuntimeError("index out of range")) | (((i$1 >>> 0) << 8 >>> 0))) >>> 0) : go$throwRuntimeError("index out of range");
 			_lhs$1 = c, _index$8 = b, _slice$8 = _lhs$1, _index$10 = _index$8, (_index$10 >= 0 && _index$10 < _slice$8.length) ? (_slice$8.array[_slice$8.offset + _index$10] = (_slice$7 = _lhs$1, _index$9 = _index$8, (_index$9 >= 0 && _index$9 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$9] : go$throwRuntimeError("index out of range")) + 1 >>> 0) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return (_slice$9 = tt, _index$11 = origPtr, (_index$11 >= 0 && _index$11 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$11] : go$throwRuntimeError("index out of range")) >>> 8 >>> 0;
 	};
@@ -576,9 +579,10 @@ inverseBWT‚	2	var inverseBWT = function(tt, origPtr, c) {
 		crc = ~val >>> 0;
 		_ref = b;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			crc = (crctab[((((crc >>> 24 >>> 0) << 24 >>> 24) ^ v) << 24 >>> 24)] ^ ((crc << 8 >>> 0))) >>> 0;
+			_i++;
 		}
 		return ~crc >>> 0;
 	};
@@ -618,11 +622,12 @@ inverseBWT‚	2	var inverseBWT = function(tt, origPtr, c) {
 		pairs = (x = (go$sliceType(huffmanSymbolLengthPair)).make(lengths.length, 0, function() { return new huffmanSymbolLengthPair.Ptr(); }), go$subslice(new huffmanSymbolLengthPairs(x.array), x.offset, x.offset + x.length));
 		_ref = lengths;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			length = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			(_slice$1 = pairs, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).value = (i << 16 >>> 16);
 			(_slice$2 = pairs, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).length = length;
+			_i++;
 		}
 		sort.Sort(pairs);
 		code = 0;
@@ -699,13 +704,14 @@ inverseBWT‚	2	var inverseBWT = function(tt, origPtr, c) {
 		firstRightIndex = codes.length;
 		_ref = codes;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			code = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new huffmanCode.Ptr(_struct.code, _struct.codeLen, _struct.value));
 			i = _i;
 			if (!((((code.code & test) >>> 0) === 0))) {
 				firstRightIndex = i;
 				break;
 			}
+			_i++;
 		}
 		left = go$subslice(codes, 0, firstRightIndex);
 		right = go$subslice(codes, firstRightIndex);
@@ -811,7 +817,7 @@ inverseBWT‚	2	var inverseBWT = function(tt, origPtr, c) {
 		var _ref, _i, i, crc, j;
 		_ref = crctab;
 		_i = 0;
-		for (; _i < 256; _i += 1) {
+		while (_i < 256) {
 			i = _i;
 			crc = (i >>> 0) << 24 >>> 0;
 			j = 0;
@@ -824,5 +830,6 @@ inverseBWT‚	2	var inverseBWT = function(tt, origPtr, c) {
 				j = j + 1 >> 0;
 			}
 			crctab[i] = crc;
+			_i++;
 		}
 	};

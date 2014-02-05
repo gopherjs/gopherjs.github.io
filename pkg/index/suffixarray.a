@@ -1,4 +1,4 @@
-0‚ˆÜindex/suffixarray‚'øpackage suffixarray
+0‚ˆßindex/suffixarray‚'øpackage suffixarray
 import sort "sort"
 import bytes "bytes"
 import binary "encoding/binary"
@@ -135,7 +135,7 @@ $$
 	(go$ptrType(suffixSortable)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false], ["updateGroups", "index/suffixarray", [Go$Int], [], false]];
 	Index.init([["data", "index/suffixarray", (go$sliceType(Go$Uint8)), ""], ["sa", "index/suffixarray", (go$sliceType(Go$Int)), ""]]);
 	(go$ptrType(Index)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["FindAllIndex", "", [(go$ptrType(regexp.Regexp)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["Lookup", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType(Go$Int))], false], ["Read", "", [io.Reader], [go$error], false], ["Write", "", [io.Writer], [go$error], false], ["at", "index/suffixarray", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["lookupAll", "index/suffixarray", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false]];
-0 0‚X90‚½qsufsort‚¯	var qsufsort = function(data) {
+0 0‚X<0‚½qsufsort‚¯	var qsufsort = function(data) {
 		var sa, inv, sufSortable, _slice, _index, pi, sl, s, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, pk, _slice$4, _index$4, x, x$1, _ref, _i, i, _slice$5, _index$5, _slice$6, _index$6;
 		sa = sortedByFirstByte(data);
 		if (sa.length < 2) {
@@ -169,9 +169,10 @@ $$
 		}
 		_ref = sa;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_slice$5 = sa, _index$5 = (_slice$6 = inv, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")), (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = i) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return sa;
 	};
@@ -180,25 +181,28 @@ $$
 		count = go$makeNativeArray("Int", 256, function() { return 0; });
 		_ref = data;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_lhs = count, _index$1 = b, _lhs[_index$1] = _lhs[_index$1] + 1 >> 0;
+			_i++;
 		}
 		sum = 0;
 		_ref$1 = count;
 		_i$1 = 0;
-		for (; _i$1 < 256; _i$1 += 1) {
+		while (_i$1 < 256) {
 			b$1 = _i$1;
 			_tuple = [sum, count[b$1] + sum >> 0], count[b$1] = _tuple[0], sum = _tuple[1];
+			_i$1++;
 		}
 		sa = (go$sliceType(Go$Int)).make(data.length, 0, function() { return 0; });
 		_ref$2 = data;
 		_i$2 = 0;
-		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+		while (_i$2 < _ref$2.length) {
 			b$2 = (_slice$1 = _ref$2, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$2] : go$throwRuntimeError("index out of range"));
 			i = _i$2;
 			_slice$2 = sa, _index$3 = count[b$2], (_index$3 >= 0 && _index$3 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$3] = i) : go$throwRuntimeError("index out of range");
 			_lhs$1 = count, _index$4 = b$2, _lhs$1[_index$4] = _lhs$1[_index$4] + 1 >> 0;
+			_i$2++;
 		}
 		return sa;
 	};
@@ -227,7 +231,7 @@ initGroups‚I	var initGroups = function(sa, data) {
 		s = -1;
 		_ref = sa;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i$1 = _i;
 			if ((_slice$9 = sa, _index$9 = i$1, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) >= 0) {
 				if (((_slice$10 = data, _index$10 = (_slice$11 = sa, _index$11 = i$1, (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")), (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range")) === lastByte) && (s === -1)) {
@@ -240,6 +244,7 @@ initGroups‚I	var initGroups = function(sa, data) {
 					break;
 				}
 			}
+			_i++;
 		}
 		return inv;
 	};
@@ -279,7 +284,7 @@ initGroups‚I	var initGroups = function(sa, data) {
 		prev = 0;
 		_ref = bounds;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b = (_slice$4 = _ref, _index$4 = _i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
 			i$1 = prev;
 			while (i$1 < b) {
@@ -290,6 +295,7 @@ initGroups‚I	var initGroups = function(sa, data) {
 				_slice$7 = x.sa, _index$7 = prev, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = -1) : go$throwRuntimeError("index out of range");
 			}
 			prev = b;
+			_i++;
 		}
 	};
 	suffixSortable.prototype.updateGroups = function(offset) { return this.go$val.updateGroups(offset); };
@@ -434,8 +440,8 @@ writeSlice‚.	var writeSlice = function(w, buf, data) {
 		return result;
 	};
 	Index.prototype.Lookup = function(s, n) { return this.go$val.Lookup(s, n); };
-0‚ÛFindAllIndex‚É	Index.Ptr.prototype.FindAllIndex = function(r, n) {
-		var result, x, _tuple, prefix, complete, lit, n1, indices, x$1, x$2, pairs, count, prev, _ref, _i, _slice, _index, i, x$3, j, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, x$4, x$5, n1$1, indices$1, prev$1, _ref$1, _i$1, _slice$4, _index$4, i$1, m, _slice$5, _index$5, _lhs, _index$6, _slice$6, _index$7, _slice$7, _index$8, _slice$8, _index$9, x$6, x$7;
+0‚ÞFindAllIndex‚Ì	Index.Ptr.prototype.FindAllIndex = function(r, n) {
+		var result, x, _tuple, prefix, complete, lit, n1, x$1, x$2, indices, x$3, x$4, pairs, count, prev, _ref, _i, _slice, _index, i, x$5, j, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, n1$1, x$6, x$7, indices$1, prev$1, _ref$1, _i$1, _slice$4, _index$4, i$1, m, _slice$5, _index$5, _lhs, _index$6, _slice$6, _index$7, _slice$7, _index$8, _slice$8, _index$9;
 		result = (go$sliceType((go$sliceType(Go$Int)))).nil;
 		x = this;
 		_tuple = r.LiteralPrefix(), prefix = _tuple[0], complete = _tuple[1];
@@ -452,31 +458,32 @@ writeSlice‚.	var writeSlice = function(w, buf, data) {
 					return result;
 				}
 				sort.Ints(indices);
-				pairs = (go$sliceType(Go$Int)).make((x$1 = 2, x$2 = indices.length, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0), 0, function() { return 0; });
+				pairs = (go$sliceType(Go$Int)).make((x$3 = 2, x$4 = indices.length, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0), 0, function() { return 0; });
 				result = (go$sliceType((go$sliceType(Go$Int)))).make(indices.length, 0, function() { return (go$sliceType(Go$Int)).nil; });
 				count = 0;
 				prev = 0;
 				_ref = indices;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					i = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					if (count === n) {
 						break;
 					}
 					if (prev <= i) {
-						j = (x$3 = 2, (((x$3 >>> 16 << 16) * count >> 0) + (x$3 << 16 >>> 16) * count) >> 0);
+						j = (x$5 = 2, (((x$5 >>> 16 << 16) * count >> 0) + (x$5 << 16 >>> 16) * count) >> 0);
 						_slice$1 = pairs, _index$1 = j + 0 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = i) : go$throwRuntimeError("index out of range");
 						_slice$2 = pairs, _index$2 = j + 1 >> 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = i + lit.length >> 0) : go$throwRuntimeError("index out of range");
 						_slice$3 = result, _index$3 = count, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = go$subslice(pairs, j, (j + 2 >> 0))) : go$throwRuntimeError("index out of range");
 						count = count + 1 >> 0;
 						prev = i + lit.length >> 0;
 					}
+					_i++;
 				}
 				result = go$subslice(result, 0, count);
 				if (result.length >= n || !((indices.length === n1))) {
 					break;
 				}
-				n1 = n1 + ((x$4 = 2, x$5 = (n - result.length >> 0), (((x$4 >>> 16 << 16) * x$5 >> 0) + (x$4 << 16 >>> 16) * x$5) >> 0)) >> 0;
+				n1 = n1 + ((x$1 = 2, x$2 = (n - result.length >> 0), (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0)) >> 0;
 			}
 			if (result.length === 0) {
 				result = (go$sliceType((go$sliceType(Go$Int)))).nil;
@@ -495,7 +502,7 @@ writeSlice‚.	var writeSlice = function(w, buf, data) {
 			prev$1 = 0;
 			_ref$1 = indices$1;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				i$1 = (_slice$4 = _ref$1, _index$4 = _i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
 				if (result.length === n) {
 					break;
@@ -507,6 +514,7 @@ writeSlice‚.	var writeSlice = function(w, buf, data) {
 					result = go$append(result, m);
 					prev$1 = (_slice$8 = m, _index$9 = 1, (_index$9 >= 0 && _index$9 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$9] : go$throwRuntimeError("index out of range"));
 				}
+				_i$1++;
 			}
 			if (result.length >= n || !((indices$1.length === n1$1))) {
 				break;

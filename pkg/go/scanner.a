@@ -1,4 +1,4 @@
-0Çã!
+0Çã"
 go/scannerÇ<package scanner
 import fmt "fmt"
 import token "go/token"
@@ -152,7 +152,7 @@ go/scanner0Å†0
 	Scanner.init([["file", "go/scanner", (go$ptrType(token.File)), ""], ["dir", "go/scanner", Go$String, ""], ["src", "go/scanner", (go$sliceType(Go$Uint8)), ""], ["err", "go/scanner", ErrorHandler, ""], ["mode", "go/scanner", Mode, ""], ["ch", "go/scanner", Go$Int32, ""], ["offset", "go/scanner", Go$Int, ""], ["rdOffset", "go/scanner", Go$Int, ""], ["lineOffset", "go/scanner", Go$Int, ""], ["insertSemi", "go/scanner", Go$Bool, ""], ["ErrorCount", "", Go$Int, ""]]);
 	(go$ptrType(Scanner)).methods = [["Init", "", [(go$ptrType(token.File)), (go$sliceType(Go$Uint8)), ErrorHandler, Mode], [], false], ["Scan", "", [], [token.Pos, token.Token, Go$String], false], ["error", "go/scanner", [Go$Int, Go$String], [], false], ["findLineEnd", "go/scanner", [], [Go$Bool], false], ["interpretLineComment", "go/scanner", [(go$sliceType(Go$Uint8))], [], false], ["next", "go/scanner", [], [], false], ["scanChar", "go/scanner", [], [Go$String], false], ["scanComment", "go/scanner", [], [Go$String], false], ["scanEscape", "go/scanner", [Go$Int32], [], false], ["scanIdentifier", "go/scanner", [], [Go$String], false], ["scanMantissa", "go/scanner", [Go$Int], [], false], ["scanNumber", "go/scanner", [Go$Bool], [token.Token, Go$String], false], ["scanRawString", "go/scanner", [], [Go$String], false], ["scanString", "go/scanner", [], [Go$String], false], ["skipWhitespace", "go/scanner", [], [], false], ["switch2", "go/scanner", [token.Token, token.Token], [token.Token], false], ["switch3", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token], [token.Token], false], ["switch4", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token, token.Token], [token.Token], false]];
 0
-0prefix0Ç[˙0ÇºErrorÇ±	Error.Ptr.prototype.Error = function() {
+0prefix0Ç[˚0ÇºErrorÇ±	Error.Ptr.prototype.Error = function() {
 		var _struct, _struct$1, e;
 		e = (_struct = this, new Error.Ptr((_struct$1 = _struct.Pos, new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), _struct.Msg));
 		if (!(e.Pos.Filename === "") || e.Pos.IsValid()) {
@@ -218,13 +218,14 @@ go/scanner0Å†0
 		i = 0;
 		_ref = p.go$get();
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			e = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!(e.Pos.Filename === last.Filename) || !((e.Pos.Line === last.Line))) {
 				last = (_struct = e.Pos, new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
 				_slice$1 = p.go$get(), _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = e) : go$throwRuntimeError("index out of range");
 				i = i + 1 >> 0;
 			}
+			_i++;
 		}
 		p.go$set(go$subslice((p.go$get()), 0, i));
 	};
@@ -250,15 +251,16 @@ go/scanner0Å†0
 		return p;
 	};
 	go$ptrType(ErrorList).prototype.Err = function() { return this.go$get().Err(); };
-0Ç…
-PrintErrorÇπ	var PrintError = go$pkg.PrintError = function(w, err) {
+0Ç 
+PrintErrorÇ∫	var PrintError = go$pkg.PrintError = function(w, err) {
 		var ok, _tuple, list, _ref, _i, _slice, _index, e;
 		if (_tuple = (err !== null && err.constructor === ErrorList ? [err.go$val, true] : [ErrorList.nil, false]), list = _tuple[0], ok = _tuple[1], ok) {
 			_ref = list;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				e = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				fmt.Fprintf(w, "%s\n", new (go$sliceType(go$emptyInterface))([e]));
+				_i++;
 			}
 		} else if (!(go$interfaceIsEqual(err, null))) {
 			fmt.Fprintf(w, "%s\n", new (go$sliceType(go$emptyInterface))([err]));
@@ -620,12 +622,13 @@ scanStringÇ”	Scanner.Ptr.prototype.scanString = function() {
 		i = 0;
 		_ref = b;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			ch = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!((ch === 13))) {
 				_slice$1 = c, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ch) : go$throwRuntimeError("index out of range");
 				i = i + 1 >> 0;
 			}
+			_i++;
 		}
 		return go$subslice(c, 0, i);
 	};

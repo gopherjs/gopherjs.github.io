@@ -1,4 +1,4 @@
-0ƒ¤£html/template‚›~package template
+0ƒ¤åhtml/template‚›~package template
 import strings "strings"
 import fmt "fmt"
 import reflect "reflect"
@@ -562,7 +562,7 @@ $$
 0‚t0attrTypeMap0	errorType0fmtStringerType0
 stateNames0
 delimNames0urlPartNames0elementNames0	attrNames0expressionBytes0mozBindingBytes0	funcMap0equivEscapers0redundantFuncs0	delimEnds0doctypeBytes0htmlReplacementTable0htmlNormReplacementTable0htmlNospaceReplacementTable0!htmlNospaceNormReplacementTable0regexpPrecederKeywords0jsonMarshalType0jsStrReplacementTable0jsStrNormReplacementTable0jsRegexpReplacementTable0transitionFunc0commentStart0
-commentEnd0elementContentType0attrStartStates0specialTagEndMarkers0blockCommentEnd0elementNameMap0ƒÝý0‚ÎattrType‚À	var attrType = function(name) {
+commentEnd0elementContentType0attrStartStates0specialTagEndMarkers0blockCommentEnd0elementNameMap0ƒÞ?0‚ÎattrType‚À	var attrType = function(name) {
 		var colon, ok, _tuple, _entry, t;
 		name = strings.ToLower(name);
 		if (strings.HasPrefix(name, "data-")) {
@@ -639,10 +639,11 @@ commentEnd0elementContentType0attrStartStates0specialTagEndMarkers0b
 		}
 		_ref$1 = args;
 		_i = 0;
-		for (; _i < _ref$1.length; _i += 1) {
+		while (_i < _ref$1.length) {
 			arg = (_slice$1 = _ref$1, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			_slice$2 = args, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = indirectToStringerOrError(arg)) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return [fmt.Sprint(args), 0];
 	};
@@ -817,7 +818,7 @@ commentEnd0elementContentType0attrStartStates0specialTagEndMarkers0b
 		n = 0;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			n = n << 4 >> 0;
 			if (48 <= c && c <= 57) {
@@ -829,6 +830,7 @@ commentEnd0elementContentType0attrStartStates0specialTagEndMarkers0b
 			} else {
 				throw go$panic(new Go$String(fmt.Sprintf("Bad hex digit in %q", new (go$sliceType(go$emptyInterface))([s]))));
 			}
+			_i++;
 		}
 		return n;
 	};
@@ -857,15 +859,15 @@ isCSSSpace°	var isCSSSpace = function(b) {
 		}
 		return false;
 	};
-0‚¤
-cssEscaper‚”	var cssEscaper = function(args) {
+0‚»
+cssEscaper‚«	var cssEscaper = function(args) {
 		var _tuple, s, b, written, _ref, _i, _rune, r, i, repl, _ref$1;
 		_tuple = stringify(args), s = _tuple[0];
 		b = new bytes.Buffer.Ptr();
 		written = 0;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			r = _rune[0];
 			i = _i;
@@ -910,6 +912,7 @@ cssEscaper‚”	var cssEscaper = function(args) {
 			} else if (_ref$1 === 125) {
 				repl = "\\7d";
 			} else {
+				_i += _rune[1];
 				continue;
 			}
 			b.WriteString(s.substring(written, i));
@@ -918,6 +921,7 @@ cssEscaper‚”	var cssEscaper = function(args) {
 			if (!(repl === "\\\\") && ((written === s.length) || isHex(s.charCodeAt(written)) || isCSSSpace(s.charCodeAt(written)))) {
 				b.WriteByte(32);
 			}
+			_i += _rune[1];
 		}
 		if (written === 0) {
 			return s;
@@ -934,7 +938,7 @@ cssEscaper‚”	var cssEscaper = function(args) {
 		_tuple$1 = [decodeCSS(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), (go$sliceType(Go$Uint8)).make(0, 64, function() { return 0; })], b = _tuple$1[0], id = _tuple$1[1];
 		_ref = b;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			_ref$1 = c;
@@ -949,6 +953,7 @@ cssEscaper‚”	var cssEscaper = function(args) {
 					id = go$append(id, c);
 				}
 			}
+			_i++;
 		}
 		id = bytes.ToLower(id);
 		if (!((bytes.Index(id, expressionBytes) === -1)) || !((bytes.Index(id, mozBindingBytes) === -1))) {
@@ -970,12 +975,12 @@ cssEscaper‚”	var cssEscaper = function(args) {
 0terrorfj	var errorf = function(k, line, f, args) {
 		return new Error.Ptr(k, "", line, fmt.Sprintf(f, args));
 	};
-0‚²escapeTemplates‚	var escapeTemplates = function(tmpl, names) {
+0‚´escapeTemplates‚Ÿ	var escapeTemplates = function(tmpl, names) {
 		var e, _ref, _i, _slice, _index, name, _tuple, _struct, c, err, _tuple$1, _ref$1, _i$1, _slice$1, _index$1, name$1, t, _entry;
 		e = newEscaper(tmpl);
 		_ref = names;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			name = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_tuple = e.escapeTree(new context.Ptr(0, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), name, 0), c = (_struct = _tuple[0], new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
 			err = null;
@@ -987,17 +992,19 @@ cssEscaper‚”	var cssEscaper = function(args) {
 			if (!(go$interfaceIsEqual(err, null))) {
 				_ref$1 = names;
 				_i$1 = 0;
-				for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				while (_i$1 < _ref$1.length) {
 					name$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 					if (t = (_entry = tmpl.nameSpace.set[name$1], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil), !(t === (go$ptrType(Template)).nil)) {
 						t.text.Tree = (go$ptrType(parse.Tree)).nil;
 						t.Tree = (go$ptrType(parse.Tree)).nil;
 					}
+					_i$1++;
 				}
 				return err;
 			}
 			tmpl.escaped = true;
 			tmpl.Tree = tmpl.text.Tree;
+			_i++;
 		}
 		e.commit();
 		return null;
@@ -1107,7 +1114,7 @@ newEscaper‚e	var newEscaper = function(t) {
 		return (_struct$4 = c, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err));
 	};
 	escaper.prototype.escapeAction = function(c, n) { return this.go$val.escapeAction(c, n); };
-0‚€ensurePipelineContains‚d	var ensurePipelineContains = function(p, s) {
+0‚‚ensurePipelineContains‚f	var ensurePipelineContains = function(p, s) {
 		var n, idents, i, cmd, _slice, _index, ok, _tuple, x, _slice$1, _index$1, dups, _ref, _i, _slice$2, _index$2, id, _slice$3, _index$3, x$1, _slice$4, _index$4, newCmds, _ref$1, _i$1, _slice$5, _index$5, id$1, _slice$6, _index$6, pos, x$2, _slice$7, _index$7, i$1, _ref$2, _i$2, _slice$8, _index$8, name, _ref$3, _i$3, _slice$9, _index$9, name$1;
 		if (s.length === 0) {
 			return;
@@ -1128,7 +1135,7 @@ newEscaper‚e	var newEscaper = function(t) {
 		dups = 0;
 		_ref = idents;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			id = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 			if (escFnsEq((_slice$3 = s, _index$3 = dups, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), ((x$1 = (_slice$4 = id.Args, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (x$1 !== null && x$1.constructor === (go$ptrType(parse.IdentifierNode)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(parse.IdentifierNode)))))).Ident)) {
 				dups = dups + 1 >> 0;
@@ -1136,31 +1143,35 @@ newEscaper‚e	var newEscaper = function(t) {
 					return;
 				}
 			}
+			_i++;
 		}
 		newCmds = (go$sliceType((go$ptrType(parse.CommandNode)))).make(n - idents.length >> 0, (n + s.length >> 0) - dups >> 0, function() { return (go$ptrType(parse.CommandNode)).nil; });
 		go$copySlice(newCmds, p.Cmds);
 		_ref$1 = idents;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			id$1 = (_slice$5 = _ref$1, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 			pos = (_slice$6 = id$1.Args, _index$6 = 0, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).Position();
 			i$1 = indexOfStr(((x$2 = (_slice$7 = id$1.Args, _index$7 = 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), (x$2 !== null && x$2.constructor === (go$ptrType(parse.IdentifierNode)) ? x$2.go$val : go$typeAssertionFailed(x$2, (go$ptrType(parse.IdentifierNode)))))).Ident, s, escFnsEq);
 			if (!((i$1 === -1))) {
 				_ref$2 = go$subslice(s, 0, i$1);
 				_i$2 = 0;
-				for (; _i$2 < _ref$2.length; _i$2 += 1) {
+				while (_i$2 < _ref$2.length) {
 					name = (_slice$8 = _ref$2, _index$8 = _i$2, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
 					newCmds = appendCmd(newCmds, newIdentCmd(name, pos));
+					_i$2++;
 				}
 				s = go$subslice(s, (i$1 + 1 >> 0));
 			}
 			newCmds = appendCmd(newCmds, id$1);
+			_i$1++;
 		}
 		_ref$3 = s;
 		_i$3 = 0;
-		for (; _i$3 < _ref$3.length; _i$3 += 1) {
+		while (_i$3 < _ref$3.length) {
 			name$1 = (_slice$9 = _ref$3, _index$9 = _i$3, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range"));
 			newCmds = appendCmd(newCmds, newIdentCmd(name$1, (new parse.Pos(p.Pos)).Position()));
+			_i$3++;
 		}
 		p.Cmds = newCmds;
 	};
@@ -1180,12 +1191,13 @@ indexOfStr‚w	var indexOfStr = function(s, strs, eq) {
 		var _ref, _i, _slice, _index, t, i;
 		_ref = strs;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			t = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (eq(s, t)) {
 				return i;
 			}
+			_i++;
 		}
 		return -1;
 	};
@@ -1272,25 +1284,27 @@ escapeList‚†	escaper.Ptr.prototype.escapeList = function(c, n) {
 		}
 		_ref = n.Nodes;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			m = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			c = (_struct$2 = e.escape((_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), m), new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err));
+			_i++;
 		}
 		return (_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err));
 	};
 	escaper.prototype.escapeList = function(c, n) { return this.go$val.escapeList(c, n); };
-0‚8escapeListConditionally‚	escaper.Ptr.prototype.escapeListConditionally = function(c, n, filter) {
+0‚>escapeListConditionally‚!	escaper.Ptr.prototype.escapeListConditionally = function(c, n, filter) {
 		var e, e1, _ref, _i, _keys, _entry, v, k, _struct, _key, _struct$1, _struct$2, _struct$3, ok, _ref$1, _i$1, _keys$1, _entry$1, v$1, k$1, _struct$4, _key$1, _ref$2, _i$2, _keys$2, _entry$2, v$2, k$2, _key$2, _ref$3, _i$3, _keys$3, _entry$3, v$3, k$3, _key$3, _ref$4, _i$4, _keys$4, _entry$4, v$4, k$4, _ref$5, _i$5, _keys$5, _entry$5, v$5, k$5, _ref$6, _i$6, _keys$6, _entry$6, v$6, k$6, _struct$5;
 		e = this;
 		e1 = newEscaper(e.tmpl);
 		_ref = e.output;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			v = _entry.v;
 			k = _entry.k;
 			_key = k, (e1.output || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: (_struct = v, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)) };
+			_i++;
 		}
 		c = (_struct$2 = e1.escapeList((_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), n), new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err));
 		ok = !(filter === go$throwNilPointerError) && filter(e1, (_struct$3 = c, new context.Ptr(_struct$3.state, _struct$3.delim, _struct$3.urlPart, _struct$3.jsCtx, _struct$3.attr, _struct$3.element, _struct$3.err)));
@@ -1298,56 +1312,62 @@ escapeList‚†	escaper.Ptr.prototype.escapeList = function(c, n) {
 			_ref$1 = e1.output;
 			_i$1 = 0;
 			_keys$1 = go$keys(_ref$1);
-			for (; _i$1 < _keys$1.length; _i$1 += 1) {
+			while (_i$1 < _keys$1.length) {
 				_entry$1 = _ref$1[_keys$1[_i$1]];
 				v$1 = _entry$1.v;
 				k$1 = _entry$1.k;
 				_key$1 = k$1, (e.output || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: (_struct$4 = v$1, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err)) };
+				_i$1++;
 			}
 			_ref$2 = e1.derived;
 			_i$2 = 0;
 			_keys$2 = go$keys(_ref$2);
-			for (; _i$2 < _keys$2.length; _i$2 += 1) {
+			while (_i$2 < _keys$2.length) {
 				_entry$2 = _ref$2[_keys$2[_i$2]];
 				v$2 = _entry$2.v;
 				k$2 = _entry$2.k;
 				_key$2 = k$2, (e.derived || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: v$2 };
+				_i$2++;
 			}
 			_ref$3 = e1.called;
 			_i$3 = 0;
 			_keys$3 = go$keys(_ref$3);
-			for (; _i$3 < _keys$3.length; _i$3 += 1) {
+			while (_i$3 < _keys$3.length) {
 				_entry$3 = _ref$3[_keys$3[_i$3]];
 				v$3 = _entry$3.v;
 				k$3 = _entry$3.k;
 				_key$3 = k$3, (e.called || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: v$3 };
+				_i$3++;
 			}
 			_ref$4 = e1.actionNodeEdits;
 			_i$4 = 0;
 			_keys$4 = go$keys(_ref$4);
-			for (; _i$4 < _keys$4.length; _i$4 += 1) {
+			while (_i$4 < _keys$4.length) {
 				_entry$4 = _ref$4[_keys$4[_i$4]];
 				v$4 = _entry$4.v;
 				k$4 = _entry$4.k;
 				e.editActionNode(k$4, v$4);
+				_i$4++;
 			}
 			_ref$5 = e1.templateNodeEdits;
 			_i$5 = 0;
 			_keys$5 = go$keys(_ref$5);
-			for (; _i$5 < _keys$5.length; _i$5 += 1) {
+			while (_i$5 < _keys$5.length) {
 				_entry$5 = _ref$5[_keys$5[_i$5]];
 				v$5 = _entry$5.v;
 				k$5 = _entry$5.k;
 				e.editTemplateNode(k$5, v$5);
+				_i$5++;
 			}
 			_ref$6 = e1.textNodeEdits;
 			_i$6 = 0;
 			_keys$6 = go$keys(_ref$6);
-			for (; _i$6 < _keys$6.length; _i$6 += 1) {
+			while (_i$6 < _keys$6.length) {
 				_entry$6 = _ref$6[_keys$6[_i$6]];
 				v$6 = _entry$6.v;
 				k$6 = _entry$6.k;
 				e.editTextNode(k$6, v$6);
+				_i$6++;
 			}
 		}
 		return [(_struct$5 = c, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err)), ok];
@@ -1551,47 +1571,52 @@ escapeText‚-	escaper.Ptr.prototype.escapeText = function(c, n) {
 		_ref = e.output;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			name = _entry.k;
 			e.template(name).Funcs(funcMap);
+			_i++;
 		}
 		_ref$1 = e.derived;
 		_i$1 = 0;
 		_keys$1 = go$keys(_ref$1);
-		for (; _i$1 < _keys$1.length; _i$1 += 1) {
+		while (_i$1 < _keys$1.length) {
 			_entry$1 = _ref$1[_keys$1[_i$1]];
 			t = _entry$1.v;
 			if (_tuple = e.tmpl.text.AddParseTree(t.Name(), t.Tree), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
 				throw go$panic(new Go$String("error adding derived template"));
 			}
+			_i$1++;
 		}
 		_ref$2 = e.actionNodeEdits;
 		_i$2 = 0;
 		_keys$2 = go$keys(_ref$2);
-		for (; _i$2 < _keys$2.length; _i$2 += 1) {
+		while (_i$2 < _keys$2.length) {
 			_entry$2 = _ref$2[_keys$2[_i$2]];
 			s = _entry$2.v;
 			n = _entry$2.k;
 			ensurePipelineContains(n.Pipe, s);
+			_i$2++;
 		}
 		_ref$3 = e.templateNodeEdits;
 		_i$3 = 0;
 		_keys$3 = go$keys(_ref$3);
-		for (; _i$3 < _keys$3.length; _i$3 += 1) {
+		while (_i$3 < _keys$3.length) {
 			_entry$3 = _ref$3[_keys$3[_i$3]];
 			name$1 = _entry$3.v;
 			n$1 = _entry$3.k;
 			n$1.Name = name$1;
+			_i$3++;
 		}
 		_ref$4 = e.textNodeEdits;
 		_i$4 = 0;
 		_keys$4 = go$keys(_ref$4);
-		for (; _i$4 < _keys$4.length; _i$4 += 1) {
+		while (_i$4 < _keys$4.length) {
 			_entry$4 = _ref$4[_keys$4[_i$4]];
 			s$1 = _entry$4.v;
 			n$2 = _entry$4.k;
 			n$2.Text = s$1;
+			_i$4++;
 		}
 	};
 	escaper.prototype.commit = function() { return this.go$val.commit(); };
@@ -1659,12 +1684,12 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		}
 		return htmlReplacer(s, htmlReplacementTable, true);
 	};
-0‚ShtmlReplacer‚A	var htmlReplacer = function(s, replacementTable, badRunes) {
+0‚VhtmlReplacer‚D	var htmlReplacer = function(s, replacementTable, badRunes) {
 		var _tuple, written, b, _ref, _i, _rune, r, i, repl, _slice, _index;
 		_tuple = [0, new bytes.Buffer.Ptr()], written = _tuple[0], b = _tuple[1];
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			r = _rune[0];
 			i = _i;
@@ -1679,6 +1704,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 				fmt.Fprintf(b, "%s&#x%x;", new (go$sliceType(go$emptyInterface))([new Go$String(s.substring(written, i)), new Go$Int32(r)]));
 				written = i + utf8.RuneLen(r) >> 0;
 			}
+			_i += _rune[1];
 		}
 		if (written === 0) {
 			return s;
@@ -1733,7 +1759,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		}
 		return b.String();
 	};
-0‚KhtmlNameFilter‚7	var htmlNameFilter = function(args) {
+0‚NhtmlNameFilter‚:	var htmlNameFilter = function(args) {
 		var _tuple, s, t, t$1, _ref, _i, _rune, r;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 3) {
@@ -1748,7 +1774,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		}
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			r = _rune[0];
 			if (48 <= r && r <= 57) {
@@ -1756,6 +1782,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 			} else {
 				return "ZgotmplZ";
 			}
+			_i += _rune[1];
 		}
 		return s;
 	};
@@ -1813,7 +1840,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		}
 		return v.Interface();
 	};
-0‚	êjsValEscaper‚	Ø	var jsValEscaper = function(args) {
+0‚	ëjsValEscaper‚	Ù	var jsValEscaper = function(args) {
 		var a, _slice, _index, t, _ref, _type, _ref$1, _i, _slice$1, _index$1, arg, i, _slice$2, _index$2, _tuple, b, err, _tuple$1, first, _tuple$2, last, buf, pad, written, i$1, _tuple$3, rune, n, repl;
 		a = null;
 		if (args.length === 1) {
@@ -1835,10 +1862,11 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		} else {
 			_ref$1 = args;
 			_i = 0;
-			for (; _i < _ref$1.length; _i += 1) {
+			while (_i < _ref$1.length) {
 				arg = (_slice$1 = _ref$1, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				_slice$2 = args, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = indirectToJSONMarshaler(arg)) : go$throwRuntimeError("index out of range");
+				_i++;
 			}
 			a = new Go$String(fmt.Sprint(args));
 		}
@@ -1899,13 +1927,13 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		}
 		return s;
 	};
-0‚Freplace‚9	var replace = function(s, replacementTable) {
+0‚]replace‚P	var replace = function(s, replacementTable) {
 		var b, written, _ref, _i, _rune, r, i, repl, _slice, _index, _slice$1, _index$1;
 		b = new bytes.Buffer.Ptr();
 		written = 0;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			r = _rune[0];
 			i = _i;
@@ -1917,11 +1945,13 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 			} else if (r === 8233) {
 				repl = "\\u2029";
 			} else {
+				_i += _rune[1];
 				continue;
 			}
 			b.WriteString(s.substring(written, i));
 			b.WriteString(repl);
 			written = i + utf8.RuneLen(r) >> 0;
+			_i += _rune[1];
 		}
 		if (written === 0) {
 			return s;
@@ -1943,7 +1973,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		}
 		return false;
 	};
-0‚%	Templates‚	Template.Ptr.prototype.Templates = function() {
+0‚&	Templates‚	Template.Ptr.prototype.Templates = function() {
 		var t, ns, m, _ref, _i, _keys, _entry, v;
 		var go$deferred = [];
 		try {
@@ -1955,10 +1985,11 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 			_ref = ns.set;
 			_i = 0;
 			_keys = go$keys(_ref);
-			for (; _i < _keys.length; _i += 1) {
+			while (_i < _keys.length) {
 				_entry = _ref[_keys[_i]];
 				v = _entry.v;
 				m = go$append(m, v);
+				_i++;
 			}
 			return m;
 		} catch(go$err) {
@@ -2044,7 +2075,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		}
 	};
 	Template.prototype.lookupAndEscapeTemplate = function(name) { return this.go$val.lookupAndEscapeTemplate(name); };
-0‚Parse‚ö	Template.Ptr.prototype.Parse = function(src) {
+0‚Parse‚÷	Template.Ptr.prototype.Parse = function(src) {
 		var t, _tuple, ret, err, _ref, _i, _slice, _index, v, name, _entry, tmpl;
 		var go$deferred = [];
 		try {
@@ -2060,7 +2091,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 			go$deferred.push({ recv: t.nameSpace.mu, method: "Unlock", args: [] });
 			_ref = ret.Templates();
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				name = v.Name();
 				tmpl = (_entry = t.nameSpace.set[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil);
@@ -2070,6 +2101,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 				tmpl.escaped = false;
 				tmpl.text = v;
 				tmpl.Tree = v.Tree;
+				_i++;
 			}
 			return [t, null];
 		} catch(go$err) {
@@ -2105,7 +2137,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		}
 	};
 	Template.prototype.AddParseTree = function(name, tree) { return this.go$val.AddParseTree(name, tree); };
-0‚'Clone‚	Template.Ptr.prototype.Clone = function() {
+0‚(Clone‚	Template.Ptr.prototype.Clone = function() {
 		var t, _tuple, textClone, err, ret, _ref, _i, _slice, _index, x, name, _entry, src, _key;
 		var go$deferred = [];
 		try {
@@ -2122,7 +2154,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 			ret = new Template.Ptr(false, textClone, textClone.Tree, new nameSpace.Ptr(new sync.Mutex.Ptr(), new Go$Map()));
 			_ref = textClone.Templates();
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				name = x.Name();
 				src = (_entry = t.nameSpace.set[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil);
@@ -2131,6 +2163,7 @@ HTMLEscapeX	var HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 				}
 				x.Tree = x.Tree.Copy();
 				_key = name, (ret.nameSpace.set || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: new Template.Ptr(false, x, x.Tree, ret.nameSpace) };
+				_i++;
 			}
 			return [ret, null];
 		} catch(go$err) {
@@ -2232,7 +2265,7 @@ parseFiles‚q	var parseFiles = function(t, filenames) {
 		}
 		_ref = filenames;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			filename = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_tuple = ioutil.ReadFile(filename), b = _tuple[0], err = _tuple[1];
 			if (!(go$interfaceIsEqual(err, null))) {
@@ -2253,6 +2286,7 @@ parseFiles‚q	var parseFiles = function(t, filenames) {
 			if (!(go$interfaceIsEqual(err, null))) {
 				return [(go$ptrType(Template)).nil, err];
 			}
+			_i++;
 		}
 		return [t, null];
 	};

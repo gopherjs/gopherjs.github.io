@@ -1,4 +1,4 @@
-0ÉÉ∫syscallÉ%:package syscall
+0ÉÉ∑syscallÉ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -2699,7 +2699,7 @@ $$
 	BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
 	BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
 	Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0ÉñÈ0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
+0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0ÉñÊ0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
 0Å¨BpfJumpÅ†	var BpfJump = go$pkg.BpfJump = function(code, k, jt, jf) {
@@ -2871,7 +2871,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		env = new Go$Map();
 		_ref = envs;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			j = 0;
@@ -2885,6 +2885,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 				}
 				j = j + 1 >> 0;
 			}
+			_i++;
 		}
 	};
 0Ç&GetenvÇ	var Getenv = go$pkg.Getenv = function(key) {
@@ -3011,13 +3012,14 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		nextfd = attr.Files.length;
 		_ref = attr.Files;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			ufd = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i$1 = _i;
 			if (nextfd < (ufd >> 0)) {
 				nextfd = (ufd >> 0);
 			}
 			_slice$1 = fd, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (ufd >> 0)) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		nextfd = nextfd + 1 >> 0;
 		darwin = true;
@@ -3644,10 +3646,11 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		data = cmsgData(h);
 		_ref = fds;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			fd = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			data.go$set((fd >> 0));
 			data = data + 4 >>> 0;
+			_i++;
 		}
 		return b;
 	};
@@ -3772,10 +3775,11 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		gids = (go$sliceType(Go$Int)).make(n, 0, function() { return 0; });
 		_ref = go$subslice(a, 0, n);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			v$1 = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			_slice$3 = gids, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (v$1 >> 0)) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return [gids, err];
 	};
@@ -3789,10 +3793,11 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		a = (go$sliceType(_Gid_t)).make(gids.length, 0, function() { return 0; });
 		_ref = gids;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			_slice$1 = a, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = (v >>> 0)) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		err = setgroups(a.length, new (go$ptrType(_Gid_t))(function() { return (_slice$2 = a, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")); }, function(v$1) { _slice$3 = a, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = v$1) : go$throwRuntimeError("index out of range"); }));
 		return err;
@@ -6116,7 +6121,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [sec, usec, err];
 	};
-0ÇyinitÇo	go$pkg.init = function() {
+0ÇvinitÇl	go$pkg.init = function() {
 		envOnce = new sync.Once.Ptr();
 		envLock = new sync.RWMutex.Ptr();
 		env = false;
@@ -6151,7 +6156,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 				var envkeys = Object.keys(process.env);
 				envs = new (go$sliceType(Go$String))(new Array(envkeys.length));
 				var i;
-				for(i = 0; i < envkeys.length; i += 1) {
+				for(i = 0; i < envkeys.length; i++) {
 					envs.array[i] = envkeys[i] + "=" + process.env[envkeys[i]];
 				}
 			}

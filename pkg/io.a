@@ -475,7 +475,7 @@ $$
 		t = this;
 		_ref = t.writers;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			w = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_tuple = w.Write(p), n = _tuple[0], err = _tuple[1];
 			if (!(go$interfaceIsEqual(err, null))) {
@@ -485,6 +485,7 @@ $$
 				err = go$pkg.ErrShortWrite;
 				return [n, err];
 			}
+			_i++;
 		}
 		_tuple$1 = [p.length, null], n = _tuple$1[0], err = _tuple$1[1];
 		return [n, err];

@@ -1,4 +1,4 @@
-0‚õ]strings‚package strings
+0‚õŽstrings‚package strings
 import errors "errors"
 import io "io"
 import utf8 "unicode/utf8"
@@ -201,7 +201,7 @@ $$
 	(go$ptrType(byteStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
 	stringFinder.init([["pattern", "strings", Go$String, ""], ["badCharSkip", "strings", (go$arrayType(Go$Int, 256)), ""], ["goodSuffixSkip", "strings", (go$sliceType(Go$Int)), ""]]);
 	(go$ptrType(stringFinder)).methods = [["next", "strings", [Go$String], [Go$Int], false]];
-0 0‚¼;0ØLenÐ	Reader.Ptr.prototype.Len = function() {
+0 0‚¼l0ØLenÐ	Reader.Ptr.prototype.Len = function() {
 		var r;
 		r = this;
 		if (r.i >= r.s.length) {
@@ -536,14 +536,15 @@ UnreadRune‚8	Reader.Ptr.prototype.UnreadRune = function() {
 		}
 		_ref = r.mapping;
 		_i = 0;
-		for (; _i < 256; _i += 1) {
+		while (_i < 256) {
 			b = _ref[_i];
 			r.tableSize = r.tableSize + ((b >> 0)) >> 0;
+			_i++;
 		}
 		index = 0;
 		_ref$1 = r.mapping;
 		_i$1 = 0;
-		for (; _i$1 < 256; _i$1 += 1) {
+		while (_i$1 < 256) {
 			b$1 = _ref$1[_i$1];
 			i$1 = _i$1;
 			if (b$1 === 0) {
@@ -552,6 +553,7 @@ UnreadRune‚8	Reader.Ptr.prototype.UnreadRune = function() {
 				r.mapping[i$1] = index;
 				index = index + 1 << 24 >>> 24;
 			}
+			_i$1++;
 		}
 		r.root.table = (go$sliceType((go$ptrType(trieNode)))).make(r.tableSize, 0, function() { return (go$ptrType(trieNode)).nil; });
 		i$2 = 0;
@@ -708,7 +710,7 @@ UnreadRune‚8	Reader.Ptr.prototype.UnreadRune = function() {
 		return go$bytesToString(buf);
 	};
 	byteReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
-0‚ÍWriteString‚¼	byteReplacer.Ptr.prototype.WriteString = function(w, s) {
+0‚ÎWriteString‚½	byteReplacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, bufsize, buf, ncopy, _ref, _i, _slice, _index, b, i, y, _slice$1, _index$1, _tuple, wn, err$1, _tuple$1, _tuple$2;
 		n = 0;
 		err = null;
@@ -723,12 +725,13 @@ UnreadRune‚8	Reader.Ptr.prototype.UnreadRune = function() {
 			s = s.substring(ncopy);
 			_ref = go$subslice(buf, 0, ncopy);
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				if (!((((r.old[(b >>> 5 << 24 >>> 24)] & ((y = (((b & 31) >>> 0)), y < 32 ? (1 << y) : 0) >>> 0)) >>> 0) === 0))) {
 					_slice$1 = buf, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = r.new$1[b]) : go$throwRuntimeError("index out of range");
 				}
+				_i++;
 			}
 			_tuple = w.Write(go$subslice(buf, 0, ncopy)), wn = _tuple[0], err$1 = _tuple[1];
 			n = n + (wn) >> 0;
@@ -834,9 +837,10 @@ UnreadRune‚8	Reader.Ptr.prototype.UnreadRune = function() {
 		last = pattern.length - 1 >> 0;
 		_ref = f.badCharSkip;
 		_i = 0;
-		for (; _i < 256; _i += 1) {
+		while (_i < 256) {
 			i = _i;
 			f.badCharSkip[i] = pattern.length;
+			_i++;
 		}
 		i$1 = 0;
 		while (i$1 < last) {
@@ -1064,7 +1068,7 @@ UnreadRune‚8	Reader.Ptr.prototype.UnreadRune = function() {
 		}
 		return -1;
 	};
-0‚à	IndexRune‚Ñ	var IndexRune = go$pkg.IndexRune = function(s, r) {
+0‚ä	IndexRune‚Õ	var IndexRune = go$pkg.IndexRune = function(s, r) {
 		var b, i, _ref, _i, _rune, c, i$1;
 		if (r < 128) {
 			b = (r << 24 >>> 24);
@@ -1078,40 +1082,43 @@ UnreadRune‚8	Reader.Ptr.prototype.UnreadRune = function() {
 		} else {
 			_ref = s;
 			_i = 0;
-			for (; _i < _ref.length; _i += _rune[1]) {
+			while (_i < _ref.length) {
 				_rune = go$decodeRune(_ref, _i);
 				c = _rune[0];
 				i$1 = _i;
 				if (c === r) {
 					return i$1;
 				}
+				_i += _rune[1];
 			}
 		}
 		return -1;
 	};
-0‚IndexAny‚ö	var IndexAny = go$pkg.IndexAny = function(s, chars) {
+0‚IndexAny‚ÿ	var IndexAny = go$pkg.IndexAny = function(s, chars) {
 		var _ref, _i, _rune, c, i, _ref$1, _i$1, _rune$1, m;
 		if (chars.length > 0) {
 			_ref = s;
 			_i = 0;
-			for (; _i < _ref.length; _i += _rune[1]) {
+			while (_i < _ref.length) {
 				_rune = go$decodeRune(_ref, _i);
 				c = _rune[0];
 				i = _i;
 				_ref$1 = chars;
 				_i$1 = 0;
-				for (; _i$1 < _ref$1.length; _i$1 += _rune$1[1]) {
+				while (_i$1 < _ref$1.length) {
 					_rune$1 = go$decodeRune(_ref$1, _i$1);
 					m = _rune$1[0];
 					if (c === m) {
 						return i;
 					}
+					_i$1 += _rune$1[1];
 				}
+				_i += _rune[1];
 			}
 		}
 		return -1;
 	};
-0‚LastIndexAny‚ü	var LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
+0‚LastIndexAny‚	var LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
 		var i, _tuple, rune, size, _ref, _i, _rune, m;
 		if (chars.length > 0) {
 			i = s.length;
@@ -1120,12 +1127,13 @@ UnreadRune‚8	Reader.Ptr.prototype.UnreadRune = function() {
 				i = i - (size) >> 0;
 				_ref = chars;
 				_i = 0;
-				for (; _i < _ref.length; _i += _rune[1]) {
+				while (_i < _ref.length) {
 					_rune = go$decodeRune(_ref, _i);
 					m = _rune[0];
 					if (rune === m) {
 						return i;
 					}
+					_i += _rune[1];
 				}
 			}
 		}
@@ -1175,14 +1183,14 @@ SplitAfterh	var SplitAfter = go$pkg.SplitAfter = function(s, sep) {
 0cFieldsY	var Fields = go$pkg.Fields = function(s) {
 		return FieldsFunc(s, unicode.IsSpace);
 	};
-0‚*
-FieldsFunc‚	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
+0‚0
+FieldsFunc‚ 	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
 		var n, inField, _ref, _i, _rune, rune, wasInField, a, na, fieldStart, _ref$1, _i$1, _rune$1, rune$1, i, _slice, _index, _slice$1, _index$1;
 		n = 0;
 		inField = false;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			rune = _rune[0];
 			wasInField = inField;
@@ -1190,13 +1198,14 @@ FieldsFunc‚	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
 			if (inField && !wasInField) {
 				n = n + 1 >> 0;
 			}
+			_i += _rune[1];
 		}
 		a = (go$sliceType(Go$String)).make(n, 0, function() { return ""; });
 		na = 0;
 		fieldStart = -1;
 		_ref$1 = s;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += _rune$1[1]) {
+		while (_i$1 < _ref$1.length) {
 			_rune$1 = go$decodeRune(_ref$1, _i$1);
 			rune$1 = _rune$1[0];
 			i = _i$1;
@@ -1209,6 +1218,7 @@ FieldsFunc‚	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
 			} else if (fieldStart === -1) {
 				fieldStart = i;
 			}
+			_i$1 += _rune$1[1];
 		}
 		if (fieldStart >= 0) {
 			_slice$1 = a, _index$1 = na, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = s.substring(fieldStart)) : go$throwRuntimeError("index out of range");
@@ -1233,10 +1243,11 @@ FieldsFunc‚	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
 		bp = go$copyString(b, (_slice$2 = a, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")));
 		_ref = go$subslice(a, 1);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice$3 = _ref, _index$3 = _i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 			bp = bp + (go$copyString(go$subslice(b, bp), sep)) >> 0;
 			bp = bp + (go$copyString(go$subslice(b, bp), s)) >> 0;
+			_i++;
 		}
 		return go$bytesToString(b);
 	};
@@ -1246,20 +1257,21 @@ FieldsFunc‚	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
 0«	HasSuffix	var HasSuffix = go$pkg.HasSuffix = function(s, suffix) {
 		return s.length >= suffix.length && s.substring((s.length - suffix.length >> 0)) === suffix;
 	};
-0‚ƒMap‚z	var Map = go$pkg.Map = function(mapping, s) {
+0‚›Map‚’	var Map = go$pkg.Map = function(mapping, s) {
 		var maxbytes, nbytes, b, _ref, _i, _rune, c, i, r, wid, x, nb;
 		maxbytes = s.length;
 		nbytes = 0;
 		b = (go$sliceType(Go$Uint8)).nil;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			c = _rune[0];
 			i = _i;
 			r = mapping(c);
 			if (b === (go$sliceType(Go$Uint8)).nil) {
 				if (r === c) {
+					_i += _rune[1];
 					continue;
 				}
 				b = (go$sliceType(Go$Uint8)).make(maxbytes, 0, function() { return 0; });
@@ -1278,6 +1290,7 @@ FieldsFunc‚	var FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
 				}
 				nbytes = nbytes + (utf8.EncodeRune(go$subslice(b, nbytes, maxbytes), r)) >> 0;
 			}
+			_i += _rune[1];
 		}
 		if (b === (go$sliceType(Go$Uint8)).nil) {
 			return s;

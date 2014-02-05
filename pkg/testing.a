@@ -1,4 +1,4 @@
-0É~testingÇ0*package testing
+0É™testingÇ0*package testing
 import runtime "runtime"
 import flag "flag"
 import fmt "fmt"
@@ -359,7 +359,7 @@ $$
 memProfile0memProfileRate0
 cpuProfile0blockProfile0blockProfileRate0	timeout0
 cpuListStr0
-parallel0haveExamples0	cpuList0timer0Çõù0Ç5AllocsPerRunÇ#	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
+parallel0haveExamples0	cpuList0timer0Çõ…0Ç5AllocsPerRunÇ#	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
 		var avg, memstats, x, mallocs, i, x$1;
 		avg = 0;
 		var go$deferred = [];
@@ -607,14 +607,14 @@ ResetTimerÇ˝	B.Ptr.prototype.ResetTimer = function() {
 		return fmt.Sprintf("%8d B/op\t%8d allocs/op", new (go$sliceType(go$emptyInterface))([r.AllocedBytesPerOp(), r.AllocsPerOp()]));
 	};
 	BenchmarkResult.prototype.MemString = function() { return this.go$val.MemString(); };
-0Ç|RunBenchmarksÇi	var RunBenchmarks = go$pkg.RunBenchmarks = function(matchString, benchmarks) {
+0ÇîRunBenchmarksÇÅ	var RunBenchmarks = go$pkg.RunBenchmarks = function(matchString, benchmarks) {
 		var _ref, _i, _slice, _index, _struct, Benchmark$1, _tuple, matched, err, _ref$1, _i$1, _slice$1, _index$1, procs, _struct$1, b, benchName, _struct$2, r, results, p;
 		if (matchBenchmarks.go$get().length === 0) {
 			return;
 		}
 		_ref = benchmarks;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			Benchmark$1 = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new InternalBenchmark.Ptr(_struct.Name, _struct.F));
 			_tuple = matchString(matchBenchmarks.go$get(), Benchmark$1.Name), matched = _tuple[0], err = _tuple[1];
 			if (!(go$interfaceIsEqual(err, null))) {
@@ -622,11 +622,12 @@ ResetTimerÇ˝	B.Ptr.prototype.ResetTimer = function() {
 				os.Exit(1);
 			}
 			if (!matched) {
+				_i++;
 				continue;
 			}
 			_ref$1 = cpuList;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				procs = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 				runtime.GOMAXPROCS(procs);
 				b = new B.Ptr(new common.Ptr(new sync.RWMutex.Ptr(), (go$sliceType(Go$Uint8)).nil, false, false, new time.Time.Ptr(), new time.Duration(0, 0), null, new (go$chanType(go$emptyInterface, false, false))()), 0, (_struct$1 = Benchmark$1, new InternalBenchmark.Ptr(_struct$1.Name, _struct$1.F)), new Go$Int64(0, 0), false, false, new BenchmarkResult.Ptr(), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0));
@@ -638,6 +639,7 @@ ResetTimerÇ˝	B.Ptr.prototype.ResetTimer = function() {
 				r = (_struct$2 = b.run(), new BenchmarkResult.Ptr(_struct$2.N, _struct$2.T, _struct$2.Bytes, _struct$2.MemAllocs, _struct$2.MemBytes));
 				if (b.common.failed) {
 					fmt.Printf("--- FAIL: %s\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(benchName), b.common.output]));
+					_i$1++;
 					continue;
 				}
 				results = r.String();
@@ -652,7 +654,9 @@ ResetTimerÇ˝	B.Ptr.prototype.ResetTimer = function() {
 				if (p = runtime.GOMAXPROCS(-1), !((p === procs))) {
 					fmt.Fprintf(os.Stderr, "testing: %s left GOMAXPROCS set to %d\n", new (go$sliceType(go$emptyInterface))([new Go$String(benchName), new Go$Int(p)]));
 				}
+				_i$1++;
 			}
+			_i++;
 		}
 	};
 0Çÿ
@@ -687,7 +691,7 @@ trimOutputÇ»	B.Ptr.prototype.trimOutput = function() {
 			os.Exit(2);
 		}
 	};
-0Ç£coverReportÇí	var coverReport = function() {
+0Ç¶coverReportÇï	var coverReport = function() {
 		var f, err, _tuple, _tuple$1, active, total, _ref, _i, _keys, _entry, counts, name, _entry$1, blocks, _ref$1, _i$1, _slice, _index, count, i, _slice$1, _index$1, stmts, x, x$1, _tuple$2, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, err$1;
 		var go$deferred = [];
 		try {
@@ -705,14 +709,14 @@ trimOutputÇ»	B.Ptr.prototype.trimOutput = function() {
 			_ref = cover.Counters;
 			_i = 0;
 			_keys = go$keys(_ref);
-			for (; _i < _keys.length; _i += 1) {
+			while (_i < _keys.length) {
 				_entry = _ref[_keys[_i]];
 				counts = _entry.v;
 				name = _entry.k;
 				blocks = (_entry$1 = cover.Blocks[name], _entry$1 !== undefined ? _entry$1.v : (go$sliceType(CoverBlock)).nil);
 				_ref$1 = counts;
 				_i$1 = 0;
-				for (; _i$1 < _ref$1.length; _i$1 += 1) {
+				while (_i$1 < _ref$1.length) {
 					count = (_slice = _ref$1, _index = _i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					i = _i$1;
 					stmts = new Go$Int64(0, (_slice$1 = blocks, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Stmts);
@@ -724,7 +728,9 @@ trimOutputÇ»	B.Ptr.prototype.trimOutput = function() {
 						_tuple$2 = fmt.Fprintf(f, "%s:%d.%d,%d.%d %d %d\n", new (go$sliceType(go$emptyInterface))([new Go$String(name), new Go$Uint32((_slice$2 = blocks, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Line0), new Go$Uint16((_slice$3 = blocks, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Col0), new Go$Uint32((_slice$4 = blocks, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).Line1), new Go$Uint16((_slice$5 = blocks, _index$5 = i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).Col1), stmts, new Go$Uint32(count)])), err$1 = _tuple$2[1];
 						mustBeNil(err$1);
 					}
+					_i$1++;
 				}
+				_i++;
 			}
 			if ((total.high === 0 && total.low === 0)) {
 				total = new Go$Int64(0, 1);
@@ -736,14 +742,14 @@ trimOutputÇ»	B.Ptr.prototype.trimOutput = function() {
 			go$callDeferred(go$deferred);
 		}
 	};
-0ÇRunExamplesÇﬂ	var RunExamples = go$pkg.RunExamples = function(matchString, examples) {
+0Ç˙RunExamplesÇÈ	var RunExamples = go$pkg.RunExamples = function(matchString, examples) {
 		var ok, eg, _ref, _i, _slice, _index, _struct, _tuple, matched, err, _struct$1;
 		ok = false;
 		ok = true;
 		eg = new InternalExample.Ptr();
 		_ref = examples;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			eg = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new InternalExample.Ptr(_struct.Name, _struct.F, _struct.Output));
 			_tuple = matchString(match.go$get(), eg.Name), matched = _tuple[0], err = _tuple[1];
 			if (!(go$interfaceIsEqual(err, null))) {
@@ -751,11 +757,13 @@ trimOutputÇ»	B.Ptr.prototype.trimOutput = function() {
 				os.Exit(1);
 			}
 			if (!matched) {
+				_i++;
 				continue;
 			}
 			if (!runExample((_struct$1 = eg, new InternalExample.Ptr(_struct$1.Name, _struct$1.F, _struct$1.Output)))) {
 				ok = false;
 			}
+			_i++;
 		}
 		return ok;
 	};
@@ -837,13 +845,14 @@ runExampleÇr	var runExample = function(eg) {
 		}
 		_ref = lines;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			line$1 = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
 				buf.WriteString("\n\t\t");
 			}
 			buf.WriteString(line$1);
+			_i++;
 		}
 		buf.WriteByte(10);
 		return buf.String();
@@ -1072,7 +1081,7 @@ runExampleÇr	var runExample = function(eg) {
 		}
 		_ref = cpuList;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			procs = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			runtime.GOMAXPROCS(procs);
 			collector = new (go$chanType(go$emptyInterface, false, false))();
@@ -1124,6 +1133,7 @@ runExampleÇr	var runExample = function(eg) {
 				ok = ok && !t$1.common.Failed();
 				running = running - 1 >> 0;
 			}
+			_i++;
 		}
 		return ok;
 	};
@@ -1209,14 +1219,15 @@ startAlarmÇE	var startAlarm = function() {
 			timer.Stop();
 		}
 	};
-0ÇhparseCpuListÇV	var parseCpuList = function() {
+0ÇrparseCpuListÇ`	var parseCpuList = function() {
 		var _ref, _i, _slice, _index, val, _tuple, cpu, err;
 		_ref = strings.Split(cpuListStr.go$get(), ",");
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			val = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			val = strings.TrimSpace(val);
 			if (val === "") {
+				_i++;
 				continue;
 			}
 			_tuple = strconv.Atoi(val), cpu = _tuple[0], err = _tuple[1];
@@ -1225,12 +1236,13 @@ startAlarmÇE	var startAlarm = function() {
 				os.Exit(1);
 			}
 			cpuList = go$append(cpuList, cpu);
+			_i++;
 		}
 		if (cpuList === (go$sliceType(Go$Int)).nil) {
 			cpuList = go$append(cpuList, runtime.GOMAXPROCS(-1));
 		}
 	};
-0ÇFinitÇ<	go$pkg.init = function() {
+0ÇCinitÇ9	go$pkg.init = function() {
 		benchmarkLock = new sync.Mutex.Ptr();
 		memStats = new runtime.MemStats.Ptr();
 		cover = new Cover.Ptr();
@@ -1245,7 +1257,7 @@ startAlarmÇE	var startAlarm = function() {
 				}
 				os.Open(dir)[0].Chdir();
 				var start = time.Now(), status = "ok  ", i;
-				for (i = 0; i < tests.length; i += 1) {
+				for (i = 0; i < tests.length; i++) {
 					var t = new T.Ptr(new common.Ptr(undefined, undefined, undefined, undefined, time.Now(), undefined, undefined, undefined), names[i], null);
 					var err = null;
 					try {

@@ -1,4 +1,4 @@
-0ƒœhtml‚package html
+0ƒŸhtml‚package html
 import bytes "bytes"
 import strings "strings"
 import utf8 "unicode/utf8"
@@ -10,7 +10,7 @@ $$
 	writer = go$newType(0, "Interface", "html.writer", "writer", "html", null);
 	go$pkg.writer = writer;
 	writer.init([["WriteString", "", (go$funcType([Go$String], [Go$Int, go$error], false))]]);
-0)0entity0	entity20replacementTable0ƒû0‚sunescapeEntity‚_	var unescapeEntity = function(b, dst, src, attribute) {
+0)0entity0	entity20replacementTable0ƒþ0‚sunescapeEntity‚_	var unescapeEntity = function(b, dst, src, attribute) {
 		var dst1, src1, _tuple, i, s, _slice, _index, _slice$1, _index$1, _tuple$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _tuple$2, _slice$5, _index$5, c, hex, x, _slice$6, _index$6, x$1, x$2, x$3, x$4, _slice$7, _index$7, _slice$8, _index$8, _tuple$3, _tuple$4, _slice$9, _index$9, c$1, entityName, _slice$10, _index$10, x$5, x$6, _entry, _tuple$5, _entry$1, dst1$1, _tuple$6, maxLen, j, x$7, _entry$2, _tuple$7, _tuple$8, _tuple$9;
 		dst1 = 0;
 		src1 = 0;
@@ -114,7 +114,7 @@ $$
 		var _ref, _i, _slice, _index, c, i, _tuple, dst, src, _slice$1, _index$1, c$1, _tuple$1, _slice$2, _index$2, _tuple$2;
 		_ref = b;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (c === 38) {
@@ -130,6 +130,7 @@ $$
 				}
 				return go$subslice(b, 0, dst);
 			}
+			_i++;
 		}
 		return b;
 	};
@@ -173,16 +174,17 @@ $$
 		escape(buf, s);
 		return buf.String();
 	};
-0‚hUnescapeString‚T	var UnescapeString = go$pkg.UnescapeString = function(s) {
+0‚kUnescapeString‚W	var UnescapeString = go$pkg.UnescapeString = function(s) {
 		var _ref, _i, _rune, c;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			c = _rune[0];
 			if (c === 38) {
 				return go$bytesToString(unescape(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))));
 			}
+			_i += _rune[1];
 		}
 		return s;
 	};

@@ -1,4 +1,4 @@
-0ÉÈzimageÇ>√package image
+0ÉÈáimageÇ>√package image
 import bufio "bufio"
 import errors "errors"
 import io "io"
@@ -384,7 +384,7 @@ $$
 	(go$ptrType(YCbCrSubsampleRatio)).methods = [["String", "", [], [Go$String], false]];
 	YCbCr.init([["Y", "", (go$sliceType(Go$Uint8)), ""], ["Cb", "", (go$sliceType(Go$Uint8)), ""], ["Cr", "", (go$sliceType(Go$Uint8)), ""], ["YStride", "", Go$Int, ""], ["CStride", "", Go$Int, ""], ["SubsampleRatio", "", YCbCrSubsampleRatio, ""], ["Rect", "", Rectangle, ""]]);
 	(go$ptrType(YCbCr)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["COffset", "", [Go$Int, Go$Int], [Go$Int], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["SubImage", "", [Rectangle], [Image], false], ["YOffset", "", [Go$Int, Go$Int], [Go$Int], false]];
-0'0 0	formats0 0 0 0 0 0 0Én;0Å∆RegisterFormatÅ≥	var RegisterFormat = go$pkg.RegisterFormat = function(name, magic, decode, decodeConfig) {
+0'0 0	formats0 0 0 0 0 0 0ÉnH0Å∆RegisterFormatÅ≥	var RegisterFormat = go$pkg.RegisterFormat = function(name, magic, decode, decodeConfig) {
 		formats = go$append(formats, new format.Ptr(name, magic, decode, decodeConfig));
 	};
 0Ç	asReaderÅ¸	var asReader = function(r) {
@@ -401,12 +401,13 @@ $$
 		}
 		_ref = b;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (!((magic.charCodeAt(i) === c)) && !((magic.charCodeAt(i) === 63))) {
 				return false;
 			}
+			_i++;
 		}
 		return true;
 	};
@@ -414,12 +415,13 @@ $$
 		var _ref, _i, _slice, _index, _struct, f, _tuple, b, err, _struct$1;
 		_ref = formats;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new format.Ptr(_struct.name, _struct.magic, _struct.decode, _struct.decodeConfig));
 			_tuple = r.Peek(f.magic.length), b = _tuple[0], err = _tuple[1];
 			if (go$interfaceIsEqual(err, null) && match(f.magic, b)) {
 				return (_struct$1 = f, new format.Ptr(_struct$1.name, _struct$1.magic, _struct$1.decode, _struct$1.decodeConfig));
 			}
+			_i++;
 		}
 		return new format.Ptr("", "", go$throwNilPointerError, go$throwNilPointerError);
 	};
@@ -1457,7 +1459,7 @@ ColorModelÅ±	Paletted.Ptr.prototype.ColorModel = function() {
 		return new Paletted.Ptr(go$subslice(p.Pix, i), p.Stride, (_struct$9 = p.Rect.Intersect((_struct$6 = r, new Rectangle.Ptr((_struct$7 = _struct$6.Min, new Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new Point.Ptr(_struct$8.X, _struct$8.Y))))), new Rectangle.Ptr((_struct$10 = _struct$9.Min, new Point.Ptr(_struct$10.X, _struct$10.Y)), (_struct$11 = _struct$9.Max, new Point.Ptr(_struct$11.X, _struct$11.Y)))), p.Palette);
 	};
 	Paletted.prototype.SubImage = function(r) { return this.go$val.SubImage(r); };
-0Ç‹OpaqueÇ–	Paletted.Ptr.prototype.Opaque = function() {
+0ÇÈOpaqueÇ›	Paletted.Ptr.prototype.Opaque = function() {
 		var p, present, _tuple, i0, i1, y, _ref, _i, _slice, _index, c, _ref$1, _i$1, _slice$1, _index$1, c$1, i, _tuple$1, a;
 		p = this;
 		present = go$makeNativeArray("Bool", 256, function() { return false; });
@@ -1466,9 +1468,10 @@ ColorModelÅ±	Paletted.Ptr.prototype.ColorModel = function() {
 		while (y < p.Rect.Max.Y) {
 			_ref = go$subslice(p.Pix, i0, i1);
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				present[c] = true;
+				_i++;
 			}
 			i0 = i0 + (p.Stride) >> 0;
 			i1 = i1 + (p.Stride) >> 0;
@@ -1476,16 +1479,18 @@ ColorModelÅ±	Paletted.Ptr.prototype.ColorModel = function() {
 		}
 		_ref$1 = p.Palette;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			c$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			i = _i$1;
 			if (!present[i]) {
+				_i$1++;
 				continue;
 			}
 			_tuple$1 = c$1.RGBA(), a = _tuple$1[3];
 			if (!((a === 65535))) {
 				return false;
 			}
+			_i$1++;
 		}
 		return true;
 	};

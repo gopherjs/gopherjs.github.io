@@ -1,4 +1,4 @@
-0‚†\path/filepath‚&package filepath
+0‚†]path/filepath‚&package filepath
 import errors "errors"
 import os "os"
 import runtime "runtime"
@@ -177,7 +177,8 @@ $$
 	byName.init(os.FileInfo);
 	byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-00 0 0‚Y	0‚–Match‚‹	var Match = go$pkg.Match = function(pattern, name) {
+00 0 0‚Y
+0‚–Match‚‹	var Match = go$pkg.Match = function(pattern, name) {
 		var matched, err, star, chunk, _tuple, _tuple$1, _tuple$2, t, ok, err$1, _tuple$3, i, _tuple$4, t$1, ok$1, err$2, _tuple$5, _tuple$6, _tuple$7;
 		matched = false;
 		err = null;
@@ -389,16 +390,17 @@ matchChunk‚ö	var matchChunk = function(chunk, s) {
 		}
 		_ref$1 = m;
 		_i = 0;
-		for (; _i < _ref$1.length; _i += 1) {
+		while (_i < _ref$1.length) {
 			d = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_tuple$6 = glob(d, file, matches), matches = _tuple$6[0], err = _tuple$6[1];
 			if (!(go$interfaceIsEqual(err, null))) {
 				return [matches, err];
 			}
+			_i++;
 		}
 		return [matches, err];
 	};
-0‚Îglob‚Ä	var glob = function(dir, pattern, matches) {
+0‚Ïglob‚Å	var glob = function(dir, pattern, matches) {
 		var m, e, _tuple, fi, err, _tuple$1, d, _tuple$2, names, _ref, _i, _slice, _index, n, _tuple$3, matched, err$1, _tuple$4;
 		m = (go$sliceType(Go$String)).nil;
 		e = null;
@@ -424,7 +426,7 @@ matchChunk‚ö	var matchChunk = function(chunk, s) {
 			sort.Strings(names);
 			_ref = names;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				n = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				_tuple$3 = Match(pattern, n), matched = _tuple$3[0], err$1 = _tuple$3[1];
 				if (!(go$interfaceIsEqual(err$1, null))) {
@@ -434,6 +436,7 @@ matchChunk‚ö	var matchChunk = function(chunk, s) {
 				if (matched) {
 					m = go$append(m, Join(new (go$sliceType(Go$String))([dir, n])));
 				}
+				_i++;
 			}
 			return [m, e];
 		} catch(go$err) {
@@ -560,12 +563,13 @@ matchChunk‚ö	var matchChunk = function(chunk, s) {
 		var _ref, _i, _slice, _index, e, i;
 		_ref = elem;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			e = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (!(e === "")) {
 				return Clean(strings.Join(go$subslice(elem, i), "/"));
 			}
+			_i++;
 		}
 		return "";
 	};
@@ -679,7 +683,7 @@ matchChunk‚ö	var matchChunk = function(chunk, s) {
 		}
 		_ref = list;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			fileInfo = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			err = walk(Join(new (go$sliceType(Go$String))([path, fileInfo.Name()])), fileInfo, walkFn);
 			if (!(go$interfaceIsEqual(err, null))) {
@@ -687,6 +691,7 @@ matchChunk‚ö	var matchChunk = function(chunk, s) {
 					return err;
 				}
 			}
+			_i++;
 		}
 		return null;
 	};

@@ -1,4 +1,4 @@
-0Ç€archive/tarÇ+œpackage tar
+0Ç€#archive/tarÇ+œpackage tar
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -242,7 +242,7 @@ $$
 	(go$ptrType(Reader)).methods = [["Next", "", [], [(go$ptrType(Header)), go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["octal", "archive/tar", [(go$sliceType(Go$Uint8))], [Go$Int64], false], ["readHeader", "archive/tar", [], [(go$ptrType(Header))], false], ["skipUnread", "archive/tar", [], [], false], ["verifyChecksum", "archive/tar", [(go$sliceType(Go$Uint8))], [Go$Bool], false]];
 	Writer.init([["w", "archive/tar", io.Writer, ""], ["err", "archive/tar", go$error, ""], ["nb", "archive/tar", Go$Int64, ""], ["pad", "archive/tar", Go$Int64, ""], ["closed", "archive/tar", Go$Bool, ""], ["usedBinary", "archive/tar", Go$Bool, ""], ["preferPax", "archive/tar", Go$Bool, ""]]);
 	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteHeader", "", [(go$ptrType(Header))], [go$error], false], ["cString", "archive/tar", [(go$sliceType(Go$Uint8)), Go$String, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false], ["numeric", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false], ["octal", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64], [], false], ["splitUSTARLongName", "archive/tar", [Go$String], [Go$String, Go$String, go$error], false], ["writeHeader", "archive/tar", [(go$ptrType(Header)), Go$Bool], [go$error], false], ["writePAXHeader", "archive/tar", [(go$ptrType(Header)), (go$mapType(Go$String, Go$String))], [go$error], false]];
-0d0	sysStat0	zeroBlock0 0 0 0 0errNameTooLong0errInvalidHeader0	minTime0	maxTime0Çóø0ÅÍFileInfoÅ›	Header.Ptr.prototype.FileInfo = function() {
+0d0	sysStat0	zeroBlock0 0 0 0 0errNameTooLong0errInvalidHeader0	minTime0	maxTime0Çó∆0ÅÍFileInfoÅ›	Header.Ptr.prototype.FileInfo = function() {
 		var h, x;
 		h = this;
 		return (x = new headerFileInfo.Ptr(h), new x.constructor.Struct(x));
@@ -409,20 +409,21 @@ $$
 		return b;
 	};
 	slicer.prototype.next = function(n) { var obj = this; return (new (go$ptrType(slicer))(function() { return obj; }, null)).next(n); };
-0Å¸isASCIIÅ	var isASCII = function(s) {
+0ÅˇisASCIIÅÛ	var isASCII = function(s) {
 		var _ref, _i, _rune, c;
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			c = _rune[0];
 			if (c >= 128) {
 				return false;
 			}
+			_i += _rune[1];
 		}
 		return true;
 	};
-0ÇatoASCIIÇT	var toASCII = function(s) {
+0ÇdtoASCIIÇW	var toASCII = function(s) {
 		var buf, _ref, _i, _rune, c;
 		if (isASCII(s)) {
 			return s;
@@ -430,12 +431,13 @@ $$
 		buf = new bytes.Buffer.Ptr();
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			c = _rune[0];
 			if (c < 128) {
 				buf.WriteByte((c << 24 >>> 24));
 			}
+			_i += _rune[1];
 		}
 		return buf.String();
 	};
@@ -491,7 +493,7 @@ $$
 		_ref = headers;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			v = _entry.v;
 			k = _entry.k;
@@ -541,6 +543,7 @@ $$
 				}
 				hdr.Size = size;
 			}
+			_i++;
 		}
 		return null;
 	};
@@ -610,20 +613,21 @@ $$
 		}
 		return go$bytesToString(go$subslice(b, 0, n));
 	};
-0Ç¨octalÇ°	Reader.Ptr.prototype.octal = function(b) {
+0Ç≠octalÇ¢	Reader.Ptr.prototype.octal = function(b) {
 		var tr, _slice, _index, x, _ref, _i, _slice$1, _index$1, c, i, x$1, x$2, _tuple, x$3, err;
 		tr = this;
 		if (b.length > 0 && !(((((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & 128) >>> 0) === 0))) {
 			x = new Go$Int64(0, 0);
 			_ref = b;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				c = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				if (i === 0) {
 					c = (c & 127) >>> 0;
 				}
 				x = (x$1 = go$shiftLeft64(x, 8), x$2 = new Go$Int64(0, c), new Go$Int64(x$1.high | x$2.high, (x$1.low | x$2.low) >>> 0));
+				_i++;
 			}
 			return x;
 		}
@@ -985,11 +989,12 @@ readHeaderÇÕ	Reader.Ptr.prototype.readHeader = function() {
 		_ref = paxHeaders;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			v = _entry.v;
 			k = _entry.k;
 			fmt.Fprint(buf, new (go$sliceType(go$emptyInterface))([new Go$String(paxHeader(k + "=" + v))]));
+			_i++;
 		}
 		ext.Size = new Go$Int64(0, buf.Bytes().length);
 		if (err = tw.writeHeader(ext, false), !(go$interfaceIsEqual(err, null))) {

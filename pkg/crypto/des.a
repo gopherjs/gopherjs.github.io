@@ -93,11 +93,12 @@ cryptBlock‚z	var cryptBlock = function(subkeys, dst, src, decrypt) {
 		block = new Go$Uint64(0, 0);
 		_ref = permutation;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			n = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			position = _i;
 			bit = (x = go$shiftRightUint64(src, n), new Go$Uint64(x.high & 0, (x.low & 1) >>> 0));
 			block = (x$1 = go$shiftLeft64(bit, ((((permutation.length - 1 >> 0)) - position >> 0) >>> 0)), new Go$Uint64(block.high | x$1.high, (block.low | x$1.low) >>> 0));
+			_i++;
 		}
 		return block;
 	};
@@ -263,7 +264,7 @@ DpermuteInitialBlock‚
 		ksRotations = go$toNativeArray("Uint8", [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1]);
 		_ref = sBoxes;
 		_i = 0;
-		for (; _i < 8; _i += 1) {
+		while (_i < 8) {
 			s = _i;
 			i = 0;
 			while (i < 4) {
@@ -276,5 +277,6 @@ DpermuteInitialBlock‚
 				}
 				i = i + 1 >> 0;
 			}
+			_i++;
 		}
 	};

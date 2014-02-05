@@ -708,9 +708,10 @@ tReserved10	tWireType0wireTypeUserInfo0typeInfoMap0registerLock0na
 		}
 		_ref = go$subslice(buf, 0, width);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b$1 = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			x = (x$1 = go$shiftLeft64(x, 8), x$2 = new Go$Uint64(0, b$1), new Go$Uint64(x$1.high | x$2.high, (x$1.low | x$2.low) >>> 0));
+			_i++;
 		}
 		width = width + 1 >> 0;
 		return [x, width, err];
@@ -738,9 +739,10 @@ decodeUintÇW	decoderState.Ptr.prototype.decodeUint = function() {
 		}
 		_ref = go$subslice(state.buf, 0, width);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			x = (x$1 = go$shiftLeft64(x, 8), x$2 = new Go$Uint64(0, b$1), new Go$Uint64(x$1.high | x$2.high, (x$1.low | x$2.low) >>> 0));
+			_i++;
 		}
 		x = x;
 		return x;
@@ -2265,10 +2267,11 @@ encFloat64Åπ	var encFloat64 = function(i, state, p) {
 		state.encodeUint(new Go$Uint64(0, keys.length));
 		_ref = keys;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			key = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			encodeReflectValue(state, (_struct$1 = key, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), keyOp, keyIndir);
 			encodeReflectValue(state, (_struct$3 = mv.MapIndex((_struct$2 = key, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag))), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), elemOp, elemIndir);
+			_i++;
 		}
 		enc.freeEncoderState(state);
 	};
@@ -3114,9 +3117,10 @@ safeStringÇ#	structType.Ptr.prototype.safeString = function(seen) {
 		str = s.CommonType.Name + " = struct { ";
 		_ref = s.Field;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			f = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			str = str + (fmt.Sprintf("%s %s; ", new (go$sliceType(go$emptyInterface))([new Go$String(f.Name), new Go$String((new typeId(f.Id)).gobType().safeString(seen))])));
+			_i++;
 		}
 		str = str + "}";
 		return str;
@@ -3535,11 +3539,12 @@ isExportedÅó	var isExported = function(name) {
 		_ref$2 = idToType;
 		_i = 0;
 		_keys = go$keys(_ref$2);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref$2[_keys[_i]];
 			v = _entry.v;
 			k = _entry.k;
 			_key$1 = k, (builtinIdToType || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: v };
+			_i++;
 		}
 		if (nextId > 64) {
 			throw go$panic(new Go$String(fmt.Sprintln(new (go$sliceType(go$emptyInterface))([new Go$String("nextId too large:"), new typeId(nextId)]))));

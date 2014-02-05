@@ -1,4 +1,4 @@
-0ÉÎôencoding/xmlÇhËpackage xml
+0ÉÏéencoding/xmlÇhËpackage xml
 import bufio "bufio"
 import bytes "bytes"
 import encoding "encoding"
@@ -591,7 +591,7 @@ endComment0endProcInst0endDirective0marshalerType0marshalerAttrType0
 htmlEntity0 0htmlAutoClose0
 esc_quot0
 esc_apos0	esc_amp0esc_lt0esc_gt0	esc_tab0esc_nl0esc_cr0
-esc_fffd0É4!0ÇMarshalÅ˜	var Marshal = go$pkg.Marshal = function(v) {
+esc_fffd0É50ÇMarshalÅ˜	var Marshal = go$pkg.Marshal = function(v) {
 		var b, err;
 		b = new bytes.Buffer.Ptr();
 		if (err = NewEncoder(b).Encode(v), !(go$interfaceIsEqual(err, null))) {
@@ -775,7 +775,7 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 		}
 	};
 	printer.prototype.popPrefix = function() { return this.go$val.popPrefix(); };
-0Ç+|marshalValueÇ+j	printer.Ptr.prototype.marshalValue = function(val, finfo, startTemplate) {
+0Ç+œmarshalValueÇ+Ω	printer.Ptr.prototype.marshalValue = function(val, finfo, startTemplate) {
 		var p, _struct, _struct$1, kind, typ, x, _struct$2, _struct$3, _struct$4, pv, x$1, _struct$5, _struct$6, x$2, _struct$7, _struct$8, _struct$9, pv$1, x$3, _struct$10, _struct$11, _tuple, i, n, err, _struct$12, _tuple$1, tinfo, err$1, start, _struct$13, xmlname, ok, v, _tuple$2, _tuple$3, x$4, _struct$14, _struct$15, _struct$16, _tuple$4, name, _ref, _i, i$1, _slice, _index, finfo$1, _struct$17, _struct$18, fv, name$1, _struct$19, _tuple$5, x$5, _struct$20, _struct$21, _struct$22, attr, err$2, _struct$23, _struct$24, _struct$25, pv$2, _tuple$6, x$6, _struct$26, _struct$27, _struct$28, attr$1, err$3, _struct$29, _struct$30, _tuple$7, x$7, text, err$4, _struct$31, _struct$32, pv$3, _tuple$8, x$8, text$1, err$5, _struct$33, _ref$1, _struct$34, _tuple$9, _struct$35, s, b, err$6, _struct$36, err$7, _struct$37, _tuple$10, _struct$38, s$1, b$1, err1, err$8, _struct$39;
 		p = this;
 		if (!(startTemplate === (go$ptrType(StartElement)).nil) && startTemplate.Name.Local === "") {
@@ -851,18 +851,21 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 		}
 		_ref = tinfo.fields;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i$1 = _i;
 			finfo$1 = (_slice = tinfo.fields, _index = i$1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if ((finfo$1.flags & 2) === 0) {
+				_i++;
 				continue;
 			}
 			fv = (_struct$18 = finfo$1.value((_struct$17 = val, new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag))), new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag));
 			name$1 = new Name.Ptr(finfo$1.xmlns, finfo$1.name);
 			if (!(((finfo$1.flags & 64) === 0)) && isEmptyValue((_struct$19 = fv, new reflect.Value.Ptr(_struct$19.typ, _struct$19.val, _struct$19.flag)))) {
+				_i++;
 				continue;
 			}
 			if ((fv.Kind() === 20) && fv.IsNil()) {
+				_i++;
 				continue;
 			}
 			if (fv.CanInterface() && fv.Type().Implements(marshalerAttrType)) {
@@ -873,6 +876,7 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 				if (!(attr.Name.Local === "")) {
 					start.Attr = go$append(start.Attr, (_struct$23 = attr, new Attr.Ptr((_struct$24 = _struct$23.Name, new Name.Ptr(_struct$24.Space, _struct$24.Local)), _struct$23.Value)));
 				}
+				_i++;
 				continue;
 			}
 			if (fv.CanAddr()) {
@@ -885,6 +889,7 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 					if (!(attr$1.Name.Local === "")) {
 						start.Attr = go$append(start.Attr, (_struct$29 = attr$1, new Attr.Ptr((_struct$30 = _struct$29.Name, new Name.Ptr(_struct$30.Space, _struct$30.Local)), _struct$29.Value)));
 					}
+					_i++;
 					continue;
 				}
 			}
@@ -894,6 +899,7 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 					return err$4;
 				}
 				start.Attr = go$append(start.Attr, new Attr.Ptr((_struct$31 = name$1, new Name.Ptr(_struct$31.Space, _struct$31.Local)), go$bytesToString(text)));
+				_i++;
 				continue;
 			}
 			if (fv.CanAddr()) {
@@ -904,12 +910,14 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 						return err$5;
 					}
 					start.Attr = go$append(start.Attr, new Attr.Ptr((_struct$33 = name$1, new Name.Ptr(_struct$33.Space, _struct$33.Local)), go$bytesToString(text$1)));
+					_i++;
 					continue;
 				}
 			}
 			_ref$1 = fv.Kind();
 			if (_ref$1 === 22 || _ref$1 === 20) {
 				if (fv.IsNil()) {
+					_i++;
 					continue;
 				}
 				fv = (_struct$34 = fv.Elem(), new reflect.Value.Ptr(_struct$34.typ, _struct$34.val, _struct$34.flag));
@@ -922,6 +930,7 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 				s = go$bytesToString(b);
 			}
 			start.Attr = go$append(start.Attr, new Attr.Ptr((_struct$36 = name$1, new Name.Ptr(_struct$36.Space, _struct$36.Local)), s));
+			_i++;
 		}
 		if (err$7 = p.writeStart(start), !(go$interfaceIsEqual(err$7, null))) {
 			return err$7;
@@ -993,8 +1002,8 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 		return p.writeEnd((_struct = start.Name, new Name.Ptr(_struct.Space, _struct.Local)));
 	};
 	printer.prototype.marshalTextInterface = function(val, start) { return this.go$val.marshalTextInterface(val, start); };
-0Ç
-writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
+0Ç
+writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		var p, _struct, _ref, _i, _slice, _index, _struct$1, _struct$2, attr, _struct$3, name;
 		p = this;
 		if (start.Name.Local === "") {
@@ -1012,10 +1021,11 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		}
 		_ref = start.Attr;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			attr = (_struct$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Attr.Ptr((_struct$2 = _struct$1.Name, new Name.Ptr(_struct$2.Space, _struct$2.Local)), _struct$1.Value));
 			name = (_struct$3 = attr.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local));
 			if (name.Local === "") {
+				_i++;
 				continue;
 			}
 			p.Writer.WriteByte(32);
@@ -1027,6 +1037,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 			p.Writer.WriteString("=\"");
 			p.EscapeString(attr.Value);
 			p.Writer.WriteByte(34);
+			_i++;
 		}
 		p.Writer.WriteByte(62);
 		return null;
@@ -1095,16 +1106,17 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		return ["", (go$sliceType(Go$Uint8)).nil, new UnsupportedTypeError.Ptr(typ)];
 	};
 	printer.prototype.marshalSimple = function(typ, val) { return this.go$val.marshalSimple(typ, val); };
-0Ç˚marshalStructÇË	printer.Ptr.prototype.marshalStruct = function(tinfo, val) {
+0ÇQmarshalStructÇ>	printer.Ptr.prototype.marshalStruct = function(tinfo, val) {
 		var p, s, _ref, _i, i, _slice, _index, finfo, _struct, _struct$1, vf, _ref$1, _struct$2, _ref$2, _tuple, x, data, err, _struct$3, pv, _tuple$1, x$1, data$1, err$1, scratch, _ref$3, err$2, ok, _tuple$2, x$2, elem, err$3, k, dashDash, dashLast, _ref$4, s$1, b, _slice$1, _index$1, iface, raw, _ref$5, _type, err$4, err$5, err$6, _struct$4;
 		p = this;
 		s = new parentStack.Ptr(p, (go$sliceType(Go$String)).nil);
 		_ref = tinfo.fields;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			finfo = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!(((finfo.flags & 2) === 0))) {
+				_i++;
 				continue;
 			}
 			vf = (_struct$1 = finfo.value((_struct = val, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1122,6 +1134,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 						return err;
 					}
 					Escape(p, data);
+					_i++;
 					continue;
 				}
 				if (vf.CanAddr()) {
@@ -1132,6 +1145,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 							return err$1;
 						}
 						Escape(p, data$1);
+						_i++;
 						continue;
 					}
 				}
@@ -1156,6 +1170,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 						}
 					}
 				}
+				_i++;
 				continue;
 			} else if (_ref$2 === 16) {
 				k = vf.Kind();
@@ -1163,6 +1178,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 					return fmt.Errorf("xml: bad type for comment field of %s", new (go$sliceType(go$emptyInterface))([val.Type()]));
 				}
 				if (vf.Len() === 0) {
+					_i++;
 					continue;
 				}
 				p.writeIndent(0);
@@ -1194,6 +1210,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 					p.Writer.WriteByte(32);
 				}
 				p.Writer.WriteString("-->");
+				_i++;
 				continue;
 			} else if (_ref$2 === 8) {
 				iface = vf.Interface();
@@ -1202,10 +1219,12 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 				if (_type === (go$sliceType(Go$Uint8))) {
 					raw = _ref$5.go$val;
 					p.Writer.Write(raw);
+					_i++;
 					continue;
 				} else if (_type === Go$String) {
 					raw = _ref$5.go$val;
 					p.Writer.WriteString(raw);
+					_i++;
 					continue;
 				}
 			} else if (_ref$2 === 1 || _ref$2 === 33) {
@@ -1223,6 +1242,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 			if (err$6 = p.marshalValue((_struct$4 = vf, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), finfo, (go$ptrType(StartElement)).nil), !(go$interfaceIsEqual(err$6, null))) {
 				return err$6;
 			}
+			_i++;
 		}
 		s.trim((go$sliceType(Go$String)).nil);
 		return p.cachedWriteError();
@@ -1438,7 +1458,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		return null;
 	};
 	Decoder.prototype.unmarshalAttr = function(val, attr) { return this.go$val.unmarshalAttr(val, attr); };
-0Ç5	unmarshalÇ5	Decoder.Ptr.prototype.unmarshal = function(val, start) {
+0Ç5%	unmarshalÇ5	Decoder.Ptr.prototype.unmarshal = function(val, start) {
 		var p, _tuple, tok, err, ok, _tuple$1, _struct, _struct$1, t, _struct$2, _struct$3, x, _struct$4, pv, x$1, x$2, _struct$5, pv$1, x$3, data, saveData, comment, saveComment, saveXML, saveXMLIndex, saveXMLData, saveAny, sv, tinfo, err$1, _struct$6, v, _ref, typ, _struct$7, n, x$4, ncap, _struct$8, new$1, _struct$9, _struct$10, _struct$11, err$2, _struct$12, _struct$13, typ$1, x$5, _struct$14, _struct$15, _tuple$2, finfo, e, _struct$16, _struct$17, fv, ok$1, _tuple$3, x$6, x$7, _struct$18, _ref$1, _i, i, _slice, _index, finfo$1, _ref$2, _struct$19, _struct$20, strv, _ref$3, _i$1, _slice$1, _index$1, _struct$21, _struct$22, a, err$3, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, savedOffset, _tuple$4, tok$1, err$4, t$1, _ref$4, _type, consumed, _tuple$5, _struct$34, err$5, _struct$35, err$6, err$7, x$8, _struct$36, pv$2, err$8, x$9, err$9, _struct$37, _struct$38, t$2, _ref$5, _struct$39, _struct$40, t$3, _ref$6, _struct$41;
 		p = this;
 		if (start === (go$ptrType(StartElement)).nil) {
@@ -1540,7 +1560,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 				}
 				_ref$1 = tinfo.fields;
 				_i = 0;
-				for (; _i < _ref$1.length; _i += 1) {
+				while (_i < _ref$1.length) {
 					i = _i;
 					finfo$1 = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					_ref$2 = finfo$1.flags & 63;
@@ -1548,7 +1568,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 						strv = (_struct$20 = finfo$1.value((_struct$19 = sv, new reflect.Value.Ptr(_struct$19.typ, _struct$19.val, _struct$19.flag))), new reflect.Value.Ptr(_struct$20.typ, _struct$20.val, _struct$20.flag));
 						_ref$3 = start.Attr;
 						_i$1 = 0;
-						for (; _i$1 < _ref$3.length; _i$1 += 1) {
+						while (_i$1 < _ref$3.length) {
 							a = (_struct$21 = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Attr.Ptr((_struct$22 = _struct$21.Name, new Name.Ptr(_struct$22.Space, _struct$22.Local)), _struct$21.Value));
 							if (a.Name.Local === finfo$1.name && (finfo$1.xmlns === "" || finfo$1.xmlns === a.Name.Space)) {
 								if (err$3 = p.unmarshalAttr((_struct$23 = strv, new reflect.Value.Ptr(_struct$23.typ, _struct$23.val, _struct$23.flag)), (_struct$24 = a, new Attr.Ptr((_struct$25 = _struct$24.Name, new Name.Ptr(_struct$25.Space, _struct$25.Local)), _struct$24.Value))), !(go$interfaceIsEqual(err$3, null))) {
@@ -1556,6 +1576,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 								}
 								break;
 							}
+							_i$1++;
 						}
 					} else if (_ref$2 === 4) {
 						if (!saveData.IsValid()) {
@@ -1580,6 +1601,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 							}
 						}
 					}
+					_i++;
 				}
 			} else {
 				return errors.New("unknown type " + v.Type().String());
@@ -1726,7 +1748,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		err = null;
 		return err;
 	};
-0ÇïunmarshalPathÇÇ	Decoder.Ptr.prototype.unmarshalPath = function(tinfo, sv, parents, start) {
+0Ç´unmarshalPathÇò	Decoder.Ptr.prototype.unmarshalPath = function(tinfo, sv, parents, start) {
 		var consumed, err, p, recurse, _ref, _i, i, _slice, _index, finfo, _ref$1, _i$1, j, _slice$1, _index$1, _slice$2, _index$2, _struct, _struct$1, _tuple, _slice$3, _index$3, _tuple$1, tok, _tuple$2, _tuple$3, t, _ref$2, _type, _tuple$4, _struct$2, consumed2, err$1, _tuple$5, err$2, _tuple$6, _tuple$7;
 		consumed = false;
 		err = null;
@@ -1734,19 +1756,22 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		recurse = false;
 		_ref = tinfo.fields;
 		_i = 0;
-		Loop: for (; _i < _ref.length; _i += 1) {
+		Loop: while (_i < _ref.length) {
 			i = _i;
 			finfo = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (((finfo.flags & 1) === 0) || finfo.parents.length < parents.length || !(finfo.xmlns === "") && !(finfo.xmlns === start.Name.Space)) {
+				_i++;
 				continue;
 			}
 			_ref$1 = parents;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				j = _i$1;
 				if (!((_slice$1 = parents, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = finfo.parents, _index$2 = j, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) {
+					_i++;
 					continue Loop;
 				}
+				_i$1++;
 			}
 			if ((finfo.parents.length === parents.length) && finfo.name === start.Name.Local) {
 				_tuple = [true, p.unmarshal((_struct$1 = finfo.value((_struct = sv, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), start)], consumed = _tuple[0], err = _tuple[1];
@@ -1757,6 +1782,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 				parents = go$subslice(finfo.parents, 0, (parents.length + 1 >> 0));
 				break;
 			}
+			_i++;
 		}
 		if (!recurse) {
 			_tuple$1 = [false, null], consumed = _tuple$1[0], err = _tuple$1[1];
@@ -1813,8 +1839,8 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 	};
 	Decoder.prototype.Skip = function() { return this.go$val.Skip(); };
 0Ç
-EgetTypeInfoÇ
-4	var getTypeInfo = function(typ) {
+IgetTypeInfoÇ
+8	var getTypeInfo = function(typ) {
 		var _tuple, _entry, tinfo, ok, n, i, _struct, f, t, _tuple$1, inner, err, _ref, _i, _slice, _index, _struct$1, finfo, err$1, _tuple$2, finfo$1, err$2, err$3, _key;
 		tinfoLock.RLock();
 		_tuple = (_entry = tinfoMap[(typ || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(typeInfo)).nil, false]), tinfo = _tuple[0], ok = _tuple[1];
@@ -1844,12 +1870,13 @@ EgetTypeInfoÇ
 						}
 						_ref = inner.fields;
 						_i = 0;
-						for (; _i < _ref.length; _i += 1) {
+						while (_i < _ref.length) {
 							finfo = (_struct$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new fieldInfo.Ptr(_struct$1.idx, _struct$1.name, _struct$1.xmlns, _struct$1.flags, _struct$1.parents));
 							finfo.idx = go$appendSlice(new (go$sliceType(Go$Int))([i]), finfo.idx);
 							if (err$1 = addFieldInfo(typ, tinfo, finfo), !(go$interfaceIsEqual(err$1, null))) {
 								return [(go$ptrType(typeInfo)).nil, err$1];
 							}
+							_i++;
 						}
 						i = i + 1 >> 0;
 						continue;
@@ -1875,7 +1902,7 @@ EgetTypeInfoÇ
 		tinfoLock.Unlock();
 		return [tinfo, null];
 	};
-0ÇÓstructFieldInfoÇŸ	var structFieldInfo = function(typ, f) {
+0ÇÔstructFieldInfoÇ⁄	var structFieldInfo = function(typ, f) {
 		var finfo, tag, i, _tuple, tokens, _slice, _index, _ref, _i, _slice$1, _index$1, flag, _ref$1, valid, mode, _ref$2, xmlname, _tuple$1, parents, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, ftyp, xmlname$1;
 		finfo = new fieldInfo.Ptr(f.Index, "", "", 0, (go$sliceType(Go$String)).nil);
 		tag = (new reflect.StructTag(f.Tag)).Get("xml");
@@ -1889,7 +1916,7 @@ EgetTypeInfoÇ
 			tag = (_slice = tokens, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_ref = go$subslice(tokens, 1);
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				flag = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 				_ref$1 = flag;
 				if (_ref$1 === "attr") {
@@ -1905,6 +1932,7 @@ EgetTypeInfoÇ
 				} else if (_ref$1 === "omitempty") {
 					finfo.flags = finfo.flags | 64;
 				}
+				_i++;
 			}
 			valid = true;
 			mode = finfo.flags & 63;
@@ -1999,24 +2027,27 @@ EgetTypeInfoÇ
 		}
 		return b;
 	};
-0Ç”addFieldInfoÇ¡	var addFieldInfo = function(typ, tinfo, newf) {
+0ÇÚaddFieldInfoÇ‡	var addFieldInfo = function(typ, tinfo, newf) {
 		var conflicts, _ref, _i, i, _slice, _index, oldf, minl, p, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _struct, _ref$1, _i$1, _slice$5, _index$5, i$1, _slice$6, _index$6, _ref$2, _i$2, _slice$7, _index$7, i$2, _slice$8, _index$8, oldf$1, _struct$1, f1, _struct$2, f2, c, _slice$9, _index$9, i$3, _struct$3;
 		conflicts = (go$sliceType(Go$Int)).nil;
 		_ref = tinfo.fields;
 		_i = 0;
-		Loop: for (; _i < _ref.length; _i += 1) {
+		Loop: while (_i < _ref.length) {
 			i = _i;
 			oldf = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!(((oldf.flags & 63) === (newf.flags & 63)))) {
+				_i++;
 				continue;
 			}
 			if (!(oldf.xmlns === "") && !(newf.xmlns === "") && !(oldf.xmlns === newf.xmlns)) {
+				_i++;
 				continue;
 			}
 			minl = min(newf.parents.length, oldf.parents.length);
 			p = 0;
 			while (p < minl) {
 				if (!((_slice$1 = oldf.parents, _index$1 = p, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === (_slice$2 = newf.parents, _index$2 = p, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))) {
+					_i++;
 					continue Loop;
 				}
 				p = p + 1 >> 0;
@@ -2034,6 +2065,7 @@ EgetTypeInfoÇ
 					conflicts = go$append(conflicts, i);
 				}
 			}
+			_i++;
 		}
 		if (conflicts === (go$sliceType(Go$Int)).nil) {
 			tinfo.fields = go$append(tinfo.fields, (_struct = newf, new fieldInfo.Ptr(_struct.idx, _struct.name, _struct.xmlns, _struct.flags, _struct.parents)));
@@ -2041,15 +2073,16 @@ EgetTypeInfoÇ
 		}
 		_ref$1 = conflicts;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			i$1 = (_slice$5 = _ref$1, _index$5 = _i$1, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 			if ((_slice$6 = tinfo.fields, _index$6 = i$1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).idx.length < newf.idx.length) {
 				return null;
 			}
+			_i$1++;
 		}
 		_ref$2 = conflicts;
 		_i$2 = 0;
-		for (; _i$2 < _ref$2.length; _i$2 += 1) {
+		while (_i$2 < _ref$2.length) {
 			i$2 = (_slice$7 = _ref$2, _index$7 = _i$2, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
 			oldf$1 = (_slice$8 = tinfo.fields, _index$8 = i$2, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
 			if (oldf$1.idx.length === newf.idx.length) {
@@ -2057,6 +2090,7 @@ EgetTypeInfoÇ
 				f2 = (_struct$2 = typ.FieldByIndex(newf.idx), new reflect.StructField.Ptr(_struct$2.Name, _struct$2.PkgPath, _struct$2.Type, _struct$2.Tag, _struct$2.Offset, _struct$2.Index, _struct$2.Anonymous));
 				return new TagPathError.Ptr(typ, f1.Name, (new reflect.StructTag(f1.Tag)).Get("xml"), f2.Name, (new reflect.StructTag(f2.Tag)).Get("xml"));
 			}
+			_i$2++;
 		}
 		c = conflicts.length - 1 >> 0;
 		while (c >= 0) {
@@ -2079,7 +2113,7 @@ EgetTypeInfoÇ
 		finfo = this;
 		_ref = finfo.idx;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
@@ -2092,6 +2126,7 @@ EgetTypeInfoÇ
 				}
 			}
 			v = (_struct$2 = v.Field(x), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+			_i++;
 		}
 		return (_struct$3 = v, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 	};
@@ -2178,8 +2213,8 @@ NewDecoderÇo	var NewDecoder = go$pkg.NewDecoder = function(r) {
 		return d;
 	};
 0Ç
-ıTokenÇ
-Í	Decoder.Ptr.prototype.Token = function() {
+˜TokenÇ
+Ï	Decoder.Ptr.prototype.Token = function() {
 		var t, err, d, _tuple, ok, _tuple$1, t1, t1$1, _ref, _type, _ref$1, _i, _slice, _index, _struct, _struct$1, a, _tuple$2, _entry, v, ok$1, _key, _tuple$3, _entry$1, v$1, ok$2, _key$1, _ref$2, _i$1, i, _slice$1, _index$1, _struct$2, _tuple$4;
 		t = null;
 		err = null;
@@ -2206,7 +2241,7 @@ NewDecoderÇo	var NewDecoder = go$pkg.NewDecoder = function(r) {
 			t1$1 = _ref.go$val;
 			_ref$1 = t1$1.Attr;
 			_i = 0;
-			for (; _i < _ref$1.length; _i += 1) {
+			while (_i < _ref$1.length) {
 				a = (_struct = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Attr.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)), _struct.Value));
 				if (a.Name.Space === "xmlns") {
 					_tuple$2 = (_entry = d.ns[a.Name.Local], _entry !== undefined ? [_entry.v, true] : ["", false]), v = _tuple$2[0], ok$1 = _tuple$2[1];
@@ -2218,13 +2253,15 @@ NewDecoderÇo	var NewDecoder = go$pkg.NewDecoder = function(r) {
 					d.pushNs("", v$1, ok$2);
 					_key$1 = "", (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: a.Value };
 				}
+				_i++;
 			}
 			d.translate(t1$1.Name, true);
 			_ref$2 = t1$1.Attr;
 			_i$1 = 0;
-			for (; _i$1 < _ref$2.length; _i$1 += 1) {
+			while (_i$1 < _ref$2.length) {
 				i = _i$1;
 				d.translate((_slice$1 = t1$1.Attr, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name, false);
+				_i$1++;
 			}
 			d.pushElement((_struct$2 = t1$1.Name, new Name.Ptr(_struct$2.Space, _struct$2.Local)));
 			t = new t1$1.constructor.Struct(t1$1);
@@ -2391,7 +2428,7 @@ popElementÇj	Decoder.Ptr.prototype.popElement = function(t) {
 		name = strings.ToLower(d.stk.name.Local);
 		_ref = d.AutoClose;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (strings.ToLower(s) === name) {
 				_tuple = (t !== null && t.constructor === EndElement ? [t.go$val, true] : [new EndElement.Ptr(), false]), et = (_struct = _tuple[0], new EndElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)))), ok = _tuple[1];
@@ -2400,6 +2437,7 @@ popElementÇj	Decoder.Ptr.prototype.popElement = function(t) {
 				}
 				break;
 			}
+			_i++;
 		}
 		return [null, false];
 	};

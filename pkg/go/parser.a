@@ -1,4 +1,4 @@
-0É¥	go/parserÇâpackage parser
+0Éº	go/parserÇâpackage parser
 import bytes "bytes"
 import errors "errors"
 import ast "go/ast"
@@ -488,7 +488,7 @@ go/scannerscanner0strconvstrconv0unicodeunicodeÇ(	var Mode;
 	bailout.init([]);
 	parseSpecFunction.init([(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false);
 00
-unresolved0ÉjC0Ç‰
+unresolved0ÉjK0Ç‰
 readSourceÇ‘	var readSource = function(filename, src) {
 		var s, _ref, _type, buf, err, _tuple;
 		if (!(go$interfaceIsEqual(src, null))) {
@@ -549,7 +549,7 @@ readSourceÇ‘	var readSource = function(filename, src) {
 			return [f, err];
 		}
 	};
-0ÇyParseDirÇk	var ParseDir = go$pkg.ParseDir = function(fset, path, filter, mode) {
+0ÇzParseDirÇl	var ParseDir = go$pkg.ParseDir = function(fset, path, filter, mode) {
 		var pkgs, first, _tuple, fd, err, _tuple$1, _tuple$2, list, _tuple$3, _ref, _i, _slice, _index, d, filename, err$1, _tuple$4, src, name, _tuple$5, _entry, pkg, found, _key, _key$1;
 		pkgs = false;
 		first = null;
@@ -569,7 +569,7 @@ readSourceÇ‘	var readSource = function(filename, src) {
 			pkgs = new Go$Map();
 			_ref = list;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				if (strings.HasSuffix(d.Name(), ".go") && (filter === go$throwNilPointerError || filter(d))) {
 					filename = filepath.Join(new (go$sliceType(Go$String))([path, d.Name()]));
@@ -585,6 +585,7 @@ readSourceÇ‘	var readSource = function(filename, src) {
 						first = err$1;
 					}
 				}
+				_i++;
 			}
 			return [pkgs, first];
 		} catch(go$err) {
@@ -654,12 +655,13 @@ closeScopeÅ∫	parser.Ptr.prototype.closeScope = function() {
 		scope = p.labelScope;
 		_ref = (_slice = p.targetStack, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			ident = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			ident.Obj = scope.Lookup(ident.Name);
 			if (ident.Obj === (go$ptrType(ast.Object)).nil && !((((p.mode & 16) >>> 0) === 0))) {
 				p.error(ident.Pos(), fmt.Sprintf("label %s undefined", new (go$sliceType(go$emptyInterface))([new Go$String(ident.Name)])));
 			}
+			_i++;
 		}
 		p.targetStack = go$subslice(p.targetStack, 0, n);
 		p.labelScope = p.labelScope.Outer;
@@ -670,7 +672,7 @@ closeScopeÅ∫	parser.Ptr.prototype.closeScope = function() {
 		p = this;
 		_ref = idents;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			ident = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			assert(ident.Obj === (go$ptrType(ast.Object)).nil, "identifier already declared or resolved");
 			obj = ast.NewObj(kind, ident.Name);
@@ -686,6 +688,7 @@ closeScopeÅ∫	parser.Ptr.prototype.closeScope = function() {
 					p.error(ident.Pos(), fmt.Sprintf("%s redeclared in this block%s", new (go$sliceType(go$emptyInterface))([new Go$String(ident.Name), new Go$String(prevDecl)])));
 				}
 			}
+			_i++;
 		}
 	};
 	parser.prototype.declare = function(decl, data, scope, kind, idents) { return this.go$val.declare(decl, data, scope, kind, idents); };
@@ -695,7 +698,7 @@ closeScopeÅ∫	parser.Ptr.prototype.closeScope = function() {
 		n = 0;
 		_ref = list;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1], isIdent) {
 				assert(ident.Obj === (go$ptrType(ast.Object)).nil, "identifier already declared or resolved");
@@ -712,6 +715,7 @@ closeScopeÅ∫	parser.Ptr.prototype.closeScope = function() {
 			} else {
 				p.errorExpected(x.Pos(), "identifier on left side of :=");
 			}
+			_i++;
 		}
 		if ((n === 0) && !((((p.mode & 16) >>> 0) === 0))) {
 			p.error((_slice$1 = list, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Pos(), "no new variables on left side of :=");
@@ -1040,7 +1044,7 @@ parseIdentÇX	parser.Ptr.prototype.parseIdent = function() {
 		}
 	};
 	parser.prototype.parseExprList = function(lhs) { return this.go$val.parseExprList(lhs); };
-0ÇóparseLhsListÇÖ	parser.Ptr.prototype.parseLhsList = function() {
+0ÇòparseLhsListÇÜ	parser.Ptr.prototype.parseLhsList = function() {
 		var p, old, list, _ref, _ref$1, _i, _slice, _index, x;
 		p = this;
 		old = p.inRhs;
@@ -1052,9 +1056,10 @@ parseIdentÇX	parser.Ptr.prototype.parseIdent = function() {
 		} else {
 			_ref$1 = list;
 			_i = 0;
-			for (; _i < _ref$1.length; _i += 1) {
+			while (_i < _ref$1.length) {
 				x = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				p.resolve(x);
+				_i++;
 			}
 		}
 		p.inRhs = old;
@@ -1152,7 +1157,7 @@ parseIdentÇX	parser.Ptr.prototype.parseIdent = function() {
 		idents = (go$sliceType((go$ptrType(ast.Ident)))).make(list.length, 0, function() { return (go$ptrType(ast.Ident)).nil; });
 		_ref = list;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1];
@@ -1163,6 +1168,7 @@ parseIdentÇX	parser.Ptr.prototype.parseIdent = function() {
 				ident = new ast.Ident.Ptr(x.Pos(), "_", (go$ptrType(ast.Object)).nil);
 			}
 			_slice$1 = idents, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ident) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return idents;
 	};
@@ -1311,7 +1317,7 @@ tryVarTypeÇ	parser.Ptr.prototype.tryVarType = function(isParam) {
 		}
 	};
 	parser.prototype.parseVarList = function(isParam) { return this.go$val.parseVarList(isParam); };
-0Ç	_parseParameterListÇ	G	parser.Ptr.prototype.parseParameterList = function(scope, ellipsisOk) {
+0Ç	aparseParameterListÇ	I	parser.Ptr.prototype.parseParameterList = function(scope, ellipsisOk) {
 		var params, p, _tuple, list, typ, idents, field, idents$1, typ$1, field$1, _ref, _i, _slice, _index, typ$2, i, _slice$1, _index$1;
 		params = (go$sliceType((go$ptrType(ast.Field)))).nil;
 		var go$deferred = [];
@@ -1346,11 +1352,12 @@ tryVarTypeÇ	parser.Ptr.prototype.tryVarType = function(isParam) {
 				params = (go$sliceType((go$ptrType(ast.Field)))).make(list.length, 0, function() { return (go$ptrType(ast.Field)).nil; });
 				_ref = list;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					typ$2 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					i = _i;
 					p.resolve(typ$2);
 					_slice$1 = params, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = new ast.Field.Ptr((go$ptrType(ast.CommentGroup)).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, typ$2, (go$ptrType(ast.BasicLit)).nil, (go$ptrType(ast.CommentGroup)).nil)) : go$throwRuntimeError("index out of range");
+					_i++;
 				}
 			}
 			return params;
@@ -2787,17 +2794,18 @@ isTypeNameÇ[	var isTypeName = function(x) {
 		}
 	};
 	parser.prototype.parseStmt = function() { return this.go$val.parseStmt(); };
-0Ç∂isValidImportÇ£	var isValidImport = function(lit) {
+0ÇπisValidImportÇ¶	var isValidImport = function(lit) {
 		var _tuple, s, _ref, _i, _rune, r;
 		_tuple = strconv.Unquote(lit), s = _tuple[0];
 		_ref = s;
 		_i = 0;
-		for (; _i < _ref.length; _i += _rune[1]) {
+		while (_i < _ref.length) {
 			_rune = go$decodeRune(_ref, _i);
 			r = _rune[0];
 			if (!unicode.IsGraphic(r) || unicode.IsSpace(r) || strings.ContainsRune("!\"#$%&'()*,:;<=>?[\\]^{|}`\xEF\xBF\xBD", r)) {
 				return false;
 			}
+			_i += _rune[1];
 		}
 		return !(s === "");
 	};
@@ -3027,7 +3035,7 @@ isTypeNameÇ[	var isTypeName = function(x) {
 		}
 	};
 	parser.prototype.parseDecl = function(sync) { return this.go$val.parseDecl(sync); };
-0Ç‰	parseFileÇ’	parser.Ptr.prototype.parseFile = function() {
+0ÇÂ	parseFileÇ÷	parser.Ptr.prototype.parseFile = function() {
 		var p, doc, pos, ident, decls, doc$1, _, _$1, _recv, i, _ref, _i, _slice, _index, ident$1, _slice$1, _index$1;
 		var go$deferred = [];
 		try {
@@ -3067,7 +3075,7 @@ isTypeNameÇ[	var isTypeName = function(x) {
 			i = 0;
 			_ref = p.unresolved;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				ident$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				assert(ident$1.Obj === unresolved, "object already resolved");
 				ident$1.Obj = p.pkgScope.Lookup(ident$1.Name);
@@ -3075,6 +3083,7 @@ isTypeNameÇ[	var isTypeName = function(x) {
 					_slice$1 = p.unresolved, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ident$1) : go$throwRuntimeError("index out of range");
 					i = i + 1 >> 0;
 				}
+				_i++;
 			}
 			return new ast.File.Ptr(doc, pos, ident, decls, p.pkgScope, p.imports, go$subslice(p.unresolved, 0, i), p.comments);
 		} catch(go$err) {

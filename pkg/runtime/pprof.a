@@ -1,4 +1,4 @@
-0Çòrruntime/pprofÇpackage pprof
+0ÇòÅruntime/pprofÇpackage pprof
 import bufio "bufio"
 import bytes "bytes"
 import fmt "fmt"
@@ -116,7 +116,7 @@ $$
 	byCycles.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byCycles)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 0]0
-profiles0goroutineProfile0threadcreateProfile0heapProfile0blockProfile0cpu0Çx0ÇÆlockProfilesÇú	var lockProfiles = function() {
+profiles0goroutineProfile0threadcreateProfile0heapProfile0blockProfile0cpu0Çx0ÇÆlockProfilesÇú	var lockProfiles = function() {
 		var _map, _key;
 		profiles.mu.Lock();
 		if (profiles.m === false) {
@@ -163,7 +163,7 @@ NewProfileÇó	var NewProfile = go$pkg.NewProfile = function(name) {
 			go$callDeferred(go$deferred);
 		}
 	};
-0ÇµProfilesÇß	var Profiles = go$pkg.Profiles = function() {
+0Ç∂ProfilesÇ®	var Profiles = go$pkg.Profiles = function() {
 		var all, _ref, _i, _keys, _entry, p;
 		var go$deferred = [];
 		try {
@@ -173,10 +173,11 @@ NewProfileÇó	var NewProfile = go$pkg.NewProfile = function(name) {
 			_ref = profiles.m;
 			_i = 0;
 			_keys = go$keys(_ref);
-			for (; _i < _keys.length; _i += 1) {
+			while (_i < _keys.length) {
 				_entry = _ref[_keys[_i]];
 				p = _entry.v;
 				all = go$append(all, p);
+				_i++;
 			}
 			sort.Sort(go$subslice(new byName(all.array), all.offset, all.offset + all.length));
 			return all;
@@ -285,10 +286,11 @@ NewProfileÇó	var NewProfile = go$pkg.NewProfile = function(name) {
 		_ref = p.m;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			stk = _entry.v;
 			all = go$append(all, stk);
+			_i++;
 		}
 		p.mu.Unlock();
 		sort.Sort(go$subslice(new stackProfile(all.array), all.offset, all.offset + all.length));
@@ -327,7 +329,7 @@ NewProfileÇó	var NewProfile = go$pkg.NewProfile = function(name) {
 		return t.length < u.length;
 	};
 	go$ptrType(stackProfile).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-0ÇprintCountProfileÇ˘	var printCountProfile = function(w, debug, name, p) {
+0ÇprintCountProfileÇ˙	var printCountProfile = function(w, debug, name, p) {
 		var b, tw, buf, key, _map, _key, m, n, i, _lhs, _index, _entry, _key$1, i$1, stk, s, count, _entry$1;
 		b = bufio.NewWriter(w);
 		tw = (go$ptrType(tabwriter.Writer)).nil;
@@ -344,9 +346,10 @@ NewProfileÇó	var NewProfile = go$pkg.NewProfile = function(name) {
 			fmt.Fprintf(buf, "@", new (go$sliceType(go$emptyInterface))([]));
 			_ref = stk;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				pc = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				fmt.Fprintf(buf, " %#x", new (go$sliceType(go$emptyInterface))([new Go$Uintptr(pc)]));
+				_i++;
 			}
 			return buf.String();
 		});
@@ -375,13 +378,13 @@ NewProfileÇó	var NewProfile = go$pkg.NewProfile = function(name) {
 		}
 		return b.Flush();
 	};
-0ÇdprintStackRecordÇN	var printStackRecord = function(w, stk, allFrames) {
+0ÇoprintStackRecordÇY	var printStackRecord = function(w, stk, allFrames) {
 		var show, wasPanic, _ref, _i, _slice, _index, pc, i, f, tracepc, _tuple, file, line, name;
 		show = allFrames;
 		wasPanic = false;
 		_ref = stk;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			pc = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			f = runtime.FuncForPC(pc);
@@ -398,11 +401,13 @@ NewProfileÇó	var NewProfile = go$pkg.NewProfile = function(name) {
 				name = f.Name();
 				wasPanic = name === "runtime.panic";
 				if (name === "runtime.goexit" || !show && strings.HasPrefix(name, "runtime.")) {
+					_i++;
 					continue;
 				}
 				show = true;
 				fmt.Fprintf(w, "#\t%#x\t%s+%#x\t%s:%d\n", new (go$sliceType(go$emptyInterface))([new Go$Uintptr(pc), new Go$String(name), new Go$Uintptr((pc - f.Entry() >>> 0)), new Go$String(file), new Go$Int(line)]));
 			}
+			_i++;
 		}
 		if (!show) {
 			printStackRecord(w, stk, true);
@@ -436,7 +441,7 @@ NewProfileÇó	var NewProfile = go$pkg.NewProfile = function(name) {
 		_tuple = runtime.MemProfile((go$sliceType(runtime.MemProfileRecord)).nil, true), n = _tuple[0];
 		return n;
 	};
-0Ç™	writeHeapÇõ	var writeHeap = function(w, debug) {
+0Ç´	writeHeapÇú	var writeHeap = function(w, debug) {
 		var p, _tuple, n, ok, _tuple$1, b, tw, total, _ref, _i, i, _slice, _index, r, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, _ref$1, _i$1, i$1, _slice$1, _index$1, r$1, _ref$2, _i$2, _slice$2, _index$2, pc, s;
 		p = (go$sliceType(runtime.MemProfileRecord)).nil;
 		_tuple = runtime.MemProfile((go$sliceType(runtime.MemProfileRecord)).nil, true), n = _tuple[0], ok = _tuple[1];
@@ -459,31 +464,34 @@ NewProfileÇó	var NewProfile = go$pkg.NewProfile = function(name) {
 		total = new runtime.MemProfileRecord.Ptr();
 		_ref = p;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			r = (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			total.AllocBytes = (x = total.AllocBytes, x$1 = r.AllocBytes, new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 			total.AllocObjects = (x$2 = total.AllocObjects, x$3 = r.AllocObjects, new Go$Int64(x$2.high + x$3.high, x$2.low + x$3.low));
 			total.FreeBytes = (x$4 = total.FreeBytes, x$5 = r.FreeBytes, new Go$Int64(x$4.high + x$5.high, x$4.low + x$5.low));
 			total.FreeObjects = (x$6 = total.FreeObjects, x$7 = r.FreeObjects, new Go$Int64(x$6.high + x$7.high, x$6.low + x$7.low));
+			_i++;
 		}
 		fmt.Fprintf(w, "heap profile: %d: %d [%d: %d] @ heap/%d\n", new (go$sliceType(go$emptyInterface))([total.InUseObjects(), total.InUseBytes(), total.AllocObjects, total.AllocBytes, new Go$Int((x$8 = 2, x$9 = runtime.MemProfileRate, (((x$8 >>> 16 << 16) * x$9 >> 0) + (x$8 << 16 >>> 16) * x$9) >> 0))]));
 		_ref$1 = p;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			i$1 = _i$1;
 			r$1 = (_slice$1 = p, _index$1 = i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			fmt.Fprintf(w, "%d: %d [%d: %d] @", new (go$sliceType(go$emptyInterface))([r$1.InUseObjects(), r$1.InUseBytes(), r$1.AllocObjects, r$1.AllocBytes]));
 			_ref$2 = r$1.Stack();
 			_i$2 = 0;
-			for (; _i$2 < _ref$2.length; _i$2 += 1) {
+			while (_i$2 < _ref$2.length) {
 				pc = (_slice$2 = _ref$2, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 				fmt.Fprintf(w, " %#x", new (go$sliceType(go$emptyInterface))([new Go$Uintptr(pc)]));
+				_i$2++;
 			}
 			fmt.Fprintf(w, "\n", new (go$sliceType(go$emptyInterface))([]));
 			if (debug > 0) {
 				printStackRecord(w, r$1.Stack(), false);
 			}
+			_i$1++;
 		}
 		if (debug > 0) {
 			s = new runtime.MemStats.Ptr();
@@ -655,8 +663,8 @@ countBlockÅ†	var countBlock = function() {
 		_tuple = runtime.BlockProfile((go$sliceType(runtime.BlockProfileRecord)).nil), n = _tuple[0];
 		return n;
 	};
-0ÇŒ
-writeBlockÇæ	var writeBlock = function(w, debug) {
+0Çœ
+writeBlockÇø	var writeBlock = function(w, debug) {
 		var p, _tuple, n, ok, _tuple$1, b, tw, _ref, _i, i, _slice, _index, r, _ref$1, _i$1, _slice$1, _index$1, pc;
 		p = (go$sliceType(runtime.BlockProfileRecord)).nil;
 		_tuple = runtime.BlockProfile((go$sliceType(runtime.BlockProfileRecord)).nil), n = _tuple[0], ok = _tuple[1];
@@ -680,20 +688,22 @@ writeBlockÇæ	var writeBlock = function(w, debug) {
 		fmt.Fprintf(w, "cycles/second=%v\n", new (go$sliceType(go$emptyInterface))([runtime_cyclesPerSecond()]));
 		_ref = p;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			r = (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			fmt.Fprintf(w, "%v %v @", new (go$sliceType(go$emptyInterface))([r.Cycles, r.Count]));
 			_ref$1 = r.StackRecord.Stack();
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				pc = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 				fmt.Fprintf(w, " %#x", new (go$sliceType(go$emptyInterface))([new Go$Uintptr(pc)]));
+				_i$1++;
 			}
 			fmt.Fprint(w, new (go$sliceType(go$emptyInterface))([new Go$String("\n")]));
 			if (debug > 0) {
 				printStackRecord(w, r.StackRecord.Stack(), true);
 			}
+			_i++;
 		}
 		if (!(tw === (go$ptrType(tabwriter.Writer)).nil)) {
 			tw.Flush();

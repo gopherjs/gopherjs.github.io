@@ -407,20 +407,22 @@ IsBoolFlag‚	go$ptrType(boolValue).prototype.IsBoolFlag = function() {
 		_ref = flags;
 		_i = 0;
 		_keys = go$keys(_ref);
-		for (; _i < _keys.length; _i += 1) {
+		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			f = _entry.v;
 			_slice = list, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = f.Name) : go$throwRuntimeError("index out of range");
 			i = i + 1 >> 0;
+			_i++;
 		}
 		list.Sort();
 		result = (go$sliceType((go$ptrType(Flag)))).make(list.length, 0, function() { return (go$ptrType(Flag)).nil; });
 		_ref$1 = list;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			name = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			i$1 = _i$1;
 			_slice$2 = result, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (_entry$1 = flags[name], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(Flag)).nil)) : go$throwRuntimeError("index out of range");
+			_i$1++;
 		}
 		return result;
 	};
@@ -444,9 +446,10 @@ IsBoolFlag‚	go$ptrType(boolValue).prototype.IsBoolFlag = function() {
 		f = this;
 		_ref = sortFlags(f.formal);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			flag = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			fn(flag);
+			_i++;
 		}
 	};
 	FlagSet.prototype.VisitAll = function(fn) { return this.go$val.VisitAll(fn); };
@@ -458,9 +461,10 @@ IsBoolFlag‚	go$ptrType(boolValue).prototype.IsBoolFlag = function() {
 		f = this;
 		_ref = sortFlags(f.actual);
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			flag = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			fn(flag);
+			_i++;
 		}
 	};
 	FlagSet.prototype.Visit = function(fn) { return this.go$val.Visit(fn); };

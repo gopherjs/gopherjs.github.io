@@ -811,9 +811,10 @@ rangeError_	var rangeError = function(fn, str) {
 		var _ref, _i, i, _slice, _index;
 		_ref = dst;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			_slice = dst, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 48) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		return dst.length;
 	};

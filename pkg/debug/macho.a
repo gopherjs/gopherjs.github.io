@@ -626,7 +626,7 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 		bo = f.ByteOrder;
 		_ref$1 = f.Loads;
 		_i = 0;
-		for (; _i < _ref$1.length; _i += 1) {
+		while (_i < _ref$1.length) {
 			i = _i;
 			if (dat.length < 8) {
 				return [(go$ptrType(File)).nil, new FormatError.Ptr(offset, "command block too small", null)];
@@ -787,6 +787,7 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 				s.sr = io.NewSectionReader(r, (x$7 = s.SegmentHeader.Offset, new Go$Int64(x$7.high, x$7.low)), (x$8 = s.SegmentHeader.Filesz, new Go$Int64(x$8.high, x$8.low)));
 				s.ReaderAt = s.sr;
 			}
+			_i++;
 		}
 		return [f, null];
 	};
@@ -798,7 +799,7 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 		b = bytes.NewBuffer(symdat);
 		_ref = symtab;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			i = _i;
 			n = new Nlist64.Ptr();
 			if (f.FileHeader.Magic === 4277009103) {
@@ -825,6 +826,7 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 			sym.Sect = n.Sect;
 			sym.Desc = n.Desc;
 			sym.Value = n.Value;
+			_i++;
 		}
 		st = new Symtab.Ptr();
 		st.LoadBytes = go$subslice(new LoadBytes(cmddat.array), cmddat.offset, cmddat.offset + cmddat.length);
@@ -854,11 +856,12 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 		f = this;
 		_ref = f.Loads;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			l = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (_tuple = (l !== null && l.constructor === (go$ptrType(Segment)) ? [l.go$val, true] : [(go$ptrType(Segment)).nil, false]), s = _tuple[0], ok = _tuple[1], ok && s.SegmentHeader.Name === name) {
 				return s;
 			}
+			_i++;
 		}
 		return (go$ptrType(Segment)).nil;
 	};
@@ -868,11 +871,12 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 		f = this;
 		_ref = f.Sections;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (s.SectionHeader.Name === name) {
 				return s;
 			}
+			_i++;
 		}
 		return (go$ptrType(Section)).nil;
 	};
@@ -884,7 +888,7 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 		dat = go$makeNativeArray("Slice", 3, function() { return (go$sliceType(Go$Uint8)).nil; });
 		_ref = names;
 		_i = 0;
-		for (; _i < 3; _i += 1) {
+		while (_i < 3) {
 			name = _ref[_i];
 			i = _i;
 			name = "__debug_" + name;
@@ -897,6 +901,7 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 				return [(go$ptrType(dwarf.Data)).nil, err];
 			}
 			dat[i] = b;
+			_i++;
 		}
 		_tuple$1 = [dat[0], dat[1], dat[2]], abbrev = _tuple$1[0], info = _tuple$1[1], str = _tuple$1[2];
 		return dwarf.New(abbrev, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, info, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, str);
@@ -913,9 +918,10 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 		all = (go$sliceType(Go$String)).nil;
 		_ref = go$subslice(st.Syms, dt.DysymtabCmd.Iundefsym, (dt.DysymtabCmd.Iundefsym + dt.DysymtabCmd.Nundefsym >>> 0));
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Symbol.Ptr(_struct.Name, _struct.Type, _struct.Sect, _struct.Desc, _struct.Value));
 			all = go$append(all, s.Name);
+			_i++;
 		}
 		return [all, null];
 	};
@@ -926,11 +932,12 @@ cmdStrings0Ç[0Å¯RawÅ	LoadBytes.prototype.Raw = function() {
 		all = (go$sliceType(Go$String)).nil;
 		_ref = f.Loads;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			l = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (_tuple = (l !== null && l.constructor === (go$ptrType(Dylib)) ? [l.go$val, true] : [(go$ptrType(Dylib)).nil, false]), lib = _tuple[0], ok = _tuple[1], ok) {
 				all = go$append(all, lib.Name);
 			}
+			_i++;
 		}
 		return [all, null];
 	};
@@ -964,7 +971,7 @@ stringNameÇ	var stringName = function(i, names, goSyntax) {
 		var _ref, _i, _slice, _index, _struct, n;
 		_ref = names;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			n = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new intName.Ptr(_struct.i, _struct.s));
 			if (n.i === i) {
 				if (goSyntax) {
@@ -972,6 +979,7 @@ stringNameÇ	var stringName = function(i, names, goSyntax) {
 				}
 				return n.s;
 			}
+			_i++;
 		}
 		return strconv.FormatUint(new Go$Uint64(0, i), 10);
 	};
@@ -980,7 +988,7 @@ stringNameÇ	var stringName = function(i, names, goSyntax) {
 		s = "";
 		_ref = names;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			n = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new intName.Ptr(_struct.i, _struct.s));
 			if (((n.i & i) >>> 0) === n.i) {
 				if (s.length > 0) {
@@ -992,6 +1000,7 @@ stringNameÇ	var stringName = function(i, names, goSyntax) {
 				s = s + (n.s);
 				i = i - (n.i) >>> 0;
 			}
+			_i++;
 		}
 		if (s.length === 0) {
 			return "0x" + strconv.FormatUint(new Go$Uint64(0, i), 16);

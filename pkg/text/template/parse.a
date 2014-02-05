@@ -1,4 +1,4 @@
-0Éªîtext/template/parseÇ2Wpackage parse
+0Éª™text/template/parseÇ2Wpackage parse
 import list "container/list"
 import fmt "fmt"
 import strings "strings"
@@ -621,7 +621,7 @@ $$
 	Tree.init([["Name", "", Go$String, ""], ["ParseName", "", Go$String, ""], ["Root", "", (go$ptrType(ListNode)), ""], ["text", "text/template/parse", Go$String, ""], ["funcs", "text/template/parse", (go$sliceType((go$mapType(Go$String, go$emptyInterface)))), ""], ["lex", "text/template/parse", (go$ptrType(lexer)), ""], ["token", "text/template/parse", (go$arrayType(item, 3)), ""], ["peekCount", "text/template/parse", Go$Int, ""], ["vars", "text/template/parse", (go$sliceType(Go$String)), ""]]);
 	(go$ptrType(Tree)).methods = [["Copy", "", [], [(go$ptrType(Tree))], false], ["ErrorContext", "", [Node], [Go$String, Go$String], false], ["Parse", "", [Go$String, Go$String, Go$String, (go$mapType(Go$String, (go$ptrType(Tree)))), (go$sliceType((go$mapType(Go$String, go$emptyInterface))))], [(go$ptrType(Tree)), go$error], true], ["action", "text/template/parse", [], [Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [item], [], false], ["backup3", "text/template/parse", [item, item], [], false], ["command", "text/template/parse", [], [(go$ptrType(CommandNode))], false], ["elseControl", "text/template/parse", [], [Node], false], ["endControl", "text/template/parse", [], [Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [itemType, Go$String], [item], false], ["expectOneOf", "text/template/parse", [itemType, itemType, Go$String], [item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(ListNode)), Node], false], ["next", "text/template/parse", [], [item], false], ["nextNonSpace", "text/template/parse", [], [item], false], ["operand", "text/template/parse", [], [Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [Pos, Go$Int, (go$ptrType(PipeNode)), (go$ptrType(ListNode)), (go$ptrType(ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["peek", "text/template/parse", [], [item], false], ["peekNonSpace", "text/template/parse", [], [item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [Node], false], ["term", "text/template/parse", [], [Node], false], ["textOrAction", "text/template/parse", [], [Node], false], ["unexpected", "text/template/parse", [item, Go$String], [], false], ["useVar", "text/template/parse", [Pos, Go$String], [Node], false], ["withControl", "text/template/parse", [], [Node], false]];
 00key0
-textFormat0ÇÛ=0ÇéStringÇÇ	item.Ptr.prototype.String = function() {
+textFormat0ÇÛS0ÇéStringÇÇ	item.Ptr.prototype.String = function() {
 		var _struct, i;
 		i = (_struct = this, new item.Ptr(_struct.typ, _struct.pos, _struct.val));
 		if (i.typ === 6) {
@@ -1063,9 +1063,10 @@ unexportedÅë	Pos.prototype.unexported = function() {
 		b = new bytes.Buffer.Ptr();
 		_ref = l.Nodes;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			n = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			fmt.Fprint(b, new (go$sliceType(go$emptyInterface))([n]));
+			_i++;
 		}
 		return b.String();
 	};
@@ -1079,9 +1080,10 @@ unexportedÅë	Pos.prototype.unexported = function() {
 		n = newList(l.Pos);
 		_ref = l.Nodes;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			elem = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			n.append(elem.Copy());
+			_i++;
 		}
 		return n;
 	};
@@ -1116,32 +1118,34 @@ unexportedÅë	Pos.prototype.unexported = function() {
 		p.Cmds = go$append(p.Cmds, command);
 	};
 	PipeNode.prototype.append = function(command) { return this.go$val.append(command); };
-0Ç≈StringÇπ	PipeNode.Ptr.prototype.String = function() {
+0Ç∆StringÇ∫	PipeNode.Ptr.prototype.String = function() {
 		var p, s, _ref, _i, _slice, _index, v, i, _ref$1, _i$1, _slice$1, _index$1, c, i$1;
 		p = this;
 		s = "";
 		if (p.Decl.length > 0) {
 			_ref = p.Decl;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				if (i > 0) {
 					s = s + ", ";
 				}
 				s = s + (v.String());
+				_i++;
 			}
 			s = s + " := ";
 		}
 		_ref$1 = p.Cmds;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			c = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			i$1 = _i$1;
 			if (i$1 > 0) {
 				s = s + " | ";
 			}
 			s = s + (c.String());
+			_i$1++;
 		}
 		return s;
 	};
@@ -1155,16 +1159,18 @@ unexportedÅë	Pos.prototype.unexported = function() {
 		decl = (go$sliceType((go$ptrType(VariableNode)))).nil;
 		_ref = p.Decl;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			decl = go$append(decl, (x = d.Copy(), (x !== null && x.constructor === (go$ptrType(VariableNode)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(VariableNode))))));
+			_i++;
 		}
 		n = newPipeline(p.Pos, p.Line, decl);
 		_ref$1 = p.Cmds;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			c = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			n.append((x$1 = c.Copy(), (x$1 !== null && x$1.constructor === (go$ptrType(CommandNode)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(CommandNode))))));
+			_i$1++;
 		}
 		return n;
 	};
@@ -1200,13 +1206,13 @@ newCommandf	var newCommand = function(pos) {
 		c.Args = go$append(c.Args, arg);
 	};
 	CommandNode.prototype.append = function(arg) { return this.go$val.append(arg); };
-0ÇStringÇ		CommandNode.Ptr.prototype.String = function() {
+0ÇStringÇ	CommandNode.Ptr.prototype.String = function() {
 		var c, s, _ref, _i, _slice, _index, arg, i, ok, _tuple, arg$1;
 		c = this;
 		s = "";
 		_ref = c.Args;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			arg = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
@@ -1214,9 +1220,11 @@ newCommandf	var newCommand = function(pos) {
 			}
 			if (_tuple = (arg !== null && arg.constructor === (go$ptrType(PipeNode)) ? [arg.go$val, true] : [(go$ptrType(PipeNode)).nil, false]), arg$1 = _tuple[0], ok = _tuple[1], ok) {
 				s = s + ("(" + arg$1.String() + ")");
+				_i++;
 				continue;
 			}
 			s = s + (arg.String());
+			_i++;
 		}
 		return s;
 	};
@@ -1230,9 +1238,10 @@ newCommandf	var newCommand = function(pos) {
 		n = newCommand(c.Pos);
 		_ref = c.Args;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			n.append(c$1.Copy());
+			_i++;
 		}
 		return n;
 	};
@@ -1269,13 +1278,14 @@ newCommandf	var newCommand = function(pos) {
 		s = "";
 		_ref = v.Ident;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			id = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
 				s = s + ".";
 			}
 			s = s + (id);
+			_i++;
 		}
 		return s;
 	};
@@ -1337,9 +1347,10 @@ newCommandf	var newCommand = function(pos) {
 		s = "";
 		_ref = f.Ident;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			id = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			s = s + ("." + id);
+			_i++;
 		}
 		return s;
 	};
@@ -1375,9 +1386,10 @@ newCommandf	var newCommand = function(pos) {
 		}
 		_ref = c.Field;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			field = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			s = s + ("." + field);
+			_i++;
 		}
 		return s;
 	};
@@ -1864,7 +1876,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		}
 	};
 	Tree.prototype.add = function(treeSet) { return this.go$val.add(treeSet); };
-0Ç”IsEmptyTreeÇ¬	var IsEmptyTree = go$pkg.IsEmptyTree = function(n) {
+0Ç‘IsEmptyTreeÇ√	var IsEmptyTree = go$pkg.IsEmptyTree = function(n) {
 		var n$1, _ref, _type, _ref$1, _i, _slice, _index, node;
 		_ref = n;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -1879,11 +1891,12 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 			n$1 = _ref.go$val;
 			_ref$1 = n$1.Nodes;
 			_i = 0;
-			for (; _i < _ref$1.length; _i += 1) {
+			while (_i < _ref$1.length) {
 				node = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				if (!IsEmptyTree(node)) {
 					return false;
 				}
+				_i++;
 			}
 			return true;
 		} else if (_type === (go$ptrType(RangeNode))) {
@@ -2263,19 +2276,21 @@ endControlÅø	Tree.Ptr.prototype.endControl = function() {
 		return null;
 	};
 	Tree.prototype.term = function() { return this.go$val.term(); };
-0ÇåhasFunctionÇ{	Tree.Ptr.prototype.hasFunction = function(name) {
+0ÇñhasFunctionÇÖ	Tree.Ptr.prototype.hasFunction = function(name) {
 		var t, _ref, _i, _slice, _index, funcMap, _entry;
 		t = this;
 		_ref = t.funcs;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			funcMap = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (funcMap === false) {
+				_i++;
 				continue;
 			}
 			if (!(go$interfaceIsEqual((_entry = funcMap[name], _entry !== undefined ? _entry.v : null), null))) {
 				return true;
 			}
+			_i++;
 		}
 		return false;
 	};
@@ -2292,11 +2307,12 @@ endControlÅø	Tree.Ptr.prototype.endControl = function() {
 		v = newVariable(pos, name);
 		_ref = t.vars;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			varName = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (varName === (_slice$1 = v.Ident, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))) {
 				return v;
 			}
+			_i++;
 		}
 		t.errorf("undefined variable %q", new (go$sliceType(go$emptyInterface))([new Go$String((_slice$2 = v.Ident, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")))]));
 		return null;

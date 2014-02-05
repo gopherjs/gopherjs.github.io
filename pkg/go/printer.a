@@ -1,4 +1,4 @@
-0É·≥
+0É‚:
 go/printerÇB0package printer
 import bytes "bytes"
 import ast "go/ast"
@@ -277,7 +277,7 @@ go/printer0Å¡0bytesbytes0go/astast0go/tokentoken0unicode/utf8
 	(go$ptrType(Config)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false]];
 	CommentedNode.init([["Node", "", go$emptyInterface, ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
 00
-aNewline0Éxt0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
+aNewline0Éx˚0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
 		var printedBreak, p, n;
 		printedBreak = false;
 		p = this;
@@ -327,10 +327,11 @@ setCommentÇÈ	printer.Ptr.prototype.setComment = function(g) {
 		xlist = (go$sliceType(ast.Expr)).make(list.length, 0, function() { return null; });
 		_ref = list;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			_slice$1 = xlist, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = x) : go$throwRuntimeError("index out of range");
+			_i++;
 		}
 		mode = 0;
 		if (!indent) {
@@ -339,7 +340,7 @@ setCommentÇÈ	printer.Ptr.prototype.setComment = function(g) {
 		p.exprList(0, xlist, 1, mode, 0);
 	};
 	printer.prototype.identList = function(list, indent) { return this.go$val.identList(list, indent); };
-0Ç}exprListÇo	printer.Ptr.prototype.exprList = function(prev0, list, depth, mode, next0) {
+0Ç~exprListÇp	printer.Ptr.prototype.exprList = function(prev0, list, depth, mode, next0) {
 		var p, _struct, prev, _struct$1, next, _slice, _index, line, _slice$1, _index$1, endLine, _ref, _i, _slice$2, _index$2, x, i, ws, prevBreak, size, _ref$1, _i$1, _slice$3, _index$3, x$1, i$1, prevLine, useFF, prevSize, _tuple, pair, isPair, ratio, needsLinebreak, needsBlank;
 		p = this;
 		if (list.length === 0) {
@@ -352,13 +353,14 @@ setCommentÇÈ	printer.Ptr.prototype.setComment = function(g) {
 		if (prev.IsValid() && (prev.Line === line) && (line === endLine)) {
 			_ref = list;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				x = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				if (i > 0) {
 					p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Pos()), new token.Token(52), new whiteSpace(32)]));
 				}
 				p.expr0(x, depth);
+				_i++;
 			}
 			return;
 		}
@@ -374,7 +376,7 @@ setCommentÇÈ	printer.Ptr.prototype.setComment = function(g) {
 		size = 0;
 		_ref$1 = list;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			x$1 = (_slice$3 = _ref$1, _index$3 = _i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 			i$1 = _i$1;
 			prevLine = line;
@@ -423,6 +425,7 @@ setCommentÇÈ	printer.Ptr.prototype.setComment = function(g) {
 			} else {
 				p.expr0(x$1, depth);
 			}
+			_i$1++;
 		}
 		if (!((((mode & 1) >>> 0) === 0)) && next.IsValid() && p.pos.Line < next.Line) {
 			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52)]));
@@ -437,8 +440,8 @@ setCommentÇÈ	printer.Ptr.prototype.setComment = function(g) {
 		}
 	};
 	printer.prototype.exprList = function(prev0, list, depth, mode, next0) { return this.go$val.exprList(prev0, list, depth, mode, next0); };
-0Çü
-parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
+0Ç†
+parametersÇê	printer.Ptr.prototype.parameters = function(fields) {
 		var p, prevLine, ws, _ref, _i, _slice, _index, par, i, parLineBeg, _slice$1, _index$1, parLineEnd, needsLinebreak, closing;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(fields.Opening), new token.Token(49)]));
@@ -447,7 +450,7 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 			ws = 62;
 			_ref = fields.List;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				par = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				parLineBeg = 0;
@@ -475,6 +478,7 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 				}
 				p.expr(stripParensAlways(par.Type));
 				prevLine = parLineEnd;
+				_i++;
 			}
 			if (closing = p.lineFor(fields.Closing), 0 < prevLine && prevLine < closing) {
 				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52)]));
@@ -511,7 +515,7 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 		size = 0;
 		_ref = list;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
@@ -521,6 +525,7 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 			if (size >= maxSize) {
 				break;
 			}
+			_i++;
 		}
 		return size;
 	};
@@ -554,7 +559,7 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 		return (p.lineFor(n.End()) - p.lineFor(n.Pos()) >> 0) > 0;
 	};
 	printer.prototype.isMultiLine = function(n) { return this.go$val.isMultiLine(n); };
-0Ç¯	fieldListÇÈ	printer.Ptr.prototype.fieldList = function(fields, isStruct, isIncomplete) {
+0Ç¸	fieldListÇÌ	printer.Ptr.prototype.fieldList = function(fields, isStruct, isIncomplete) {
 		var p, lbrace, list, rbrace, _struct, hasComments, srcIsOneLine, _slice, _index, f, _ref, _i, _slice$1, _index$1, x, i, sep, newSection, _ref$1, _i$1, _slice$2, _index$2, f$1, i$1, extraTabs, _struct$1, newSection$1, _ref$2, _i$2, _slice$3, _index$3, f$2, i$2, isFtyp, _tuple, x$1, ftyp, _slice$4, _index$4, _struct$2;
 		p = this;
 		lbrace = fields.Opening;
@@ -571,13 +576,14 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 				f = (_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				_ref = f.Names;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					x = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 					i = _i;
 					if (i > 0) {
 						p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52), new whiteSpace(32)]));
 					}
 					p.expr(x);
+					_i++;
 				}
 				if (f.Names.length > 0) {
 					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
@@ -599,7 +605,7 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 			newSection = false;
 			_ref$1 = list;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				f$1 = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 				i$1 = _i$1;
 				if (i$1 > 0) {
@@ -632,6 +638,7 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 					p.setComment(f$1.Comment);
 				}
 				newSection = p.isMultiLine(f$1);
+				_i$1++;
 			}
 			if (isIncomplete) {
 				if (list.length > 0) {
@@ -644,7 +651,7 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 			newSection$1 = false;
 			_ref$2 = list;
 			_i$2 = 0;
-			for (; _i$2 < _ref$2.length; _i$2 += 1) {
+			while (_i$2 < _ref$2.length) {
 				f$2 = (_slice$3 = _ref$2, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 				i$2 = _i$2;
 				if (i$2 > 0) {
@@ -659,6 +666,7 @@ parametersÇè	printer.Ptr.prototype.parameters = function(fields) {
 				}
 				p.setComment(f$2.Comment);
 				newSection$1 = p.isMultiLine(f$2);
+				_i$2++;
 			}
 			if (isIncomplete) {
 				if (list.length > 0) {
@@ -806,7 +814,7 @@ binaryExprÇ	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, d
 		_tuple = (expr !== null && expr.constructor === (go$ptrType(ast.BinaryExpr)) ? [expr.go$val, true] : [(go$ptrType(ast.BinaryExpr)).nil, false]), ok = _tuple[1];
 		return ok;
 	};
-0Ç$°expr1Ç$ñ	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) {
+0Ç$¢expr1Ç$ó	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) {
 		var p, x, _ref, _type, hasParens, _tuple, x$1, line, indices, _ref$1, _i, _slice, _index, y, i, _slice$1, _index$1, x$2, ok, _tuple$1, x$3, _ref$2;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(expr.Pos())]));
@@ -905,7 +913,7 @@ binaryExprÇ	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, d
 			}
 			_ref$1 = indices;
 			_i = 0;
-			for (; _i < _ref$1.length; _i += 1) {
+			while (_i < _ref$1.length) {
 				y = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				if (i > 0) {
@@ -919,6 +927,7 @@ binaryExprÇ	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, d
 				if (!(go$interfaceIsEqual(y, null))) {
 					p.expr0(y, depth + 1 >> 0);
 				}
+				_i++;
 			}
 			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Rbrack), new token.Token(55)]));
 		} else if (_type === (go$ptrType(ast.CallExpr))) {
@@ -1025,7 +1034,7 @@ binaryExprÇ	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, d
 		i = 0;
 		_ref = list;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (_tuple = (s !== null && s.constructor === (go$ptrType(ast.EmptyStmt)) ? [s.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false]), isEmpty = _tuple[1], !isEmpty) {
 				if (p.output.length > 0) {
@@ -1035,6 +1044,7 @@ binaryExprÇ	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, d
 				multiLine = p.isMultiLine(s);
 				i = i + 1 >> 0;
 			}
+			_i++;
 		}
 		if (nindent > 0) {
 			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
@@ -1129,8 +1139,8 @@ isTypeNameÇD	var isTypeName = function(x) {
 		}
 	};
 	printer.prototype.controlClause = function(isForStmt, init, expr, post) { return this.go$val.controlClause(isForStmt, init, expr, post); };
-0Çø
-indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
+0Ç¡
+indentListÇ±	printer.Ptr.prototype.indentList = function(list) {
 		var p, _slice, _index, b, _slice$1, _index$1, e, n, line, _ref, _i, _slice$2, _index$2, x, xb, xe;
 		p = this;
 		if (list.length >= 2) {
@@ -1141,7 +1151,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 				line = b;
 				_ref = list;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					x = (_slice$2 = _ref, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 					xb = p.lineFor(x.Pos());
 					xe = p.lineFor(x.End());
@@ -1152,6 +1162,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 						n = n + 1 >> 0;
 					}
 					line = xe;
+					_i++;
 				}
 				return n > 1;
 			}
@@ -1345,7 +1356,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		keepType = false;
 		_ref = specs;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			t = (s !== null && s.constructor === (go$ptrType(ast.ValueSpec)) ? s.go$val : go$typeAssertionFailed(s, (go$ptrType(ast.ValueSpec))));
@@ -1363,6 +1374,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 			if (!(go$interfaceIsEqual(t.Type, null))) {
 				keepType = true;
 			}
+			_i++;
 		}
 		if (i0 >= 0) {
 			populate(i0, specs.length, keepType);
@@ -1444,7 +1456,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		}
 	};
 	printer.prototype.spec = function(spec, n, doIndent) { return this.go$val.spec(spec, n, doIndent); };
-0Ç	®genDeclÇ	õ	printer.Ptr.prototype.genDecl = function(d) {
+0Ç	ÆgenDeclÇ	°	printer.Ptr.prototype.genDecl = function(d) {
 		var p, n, keepType, newSection, _ref, _i, _slice, _index, s, i, _slice$1, _index$1, newSection$1, _ref$1, _i$1, _slice$2, _index$2, s$1, i$1, _slice$3, _index$3;
 		p = this;
 		p.setComment(d.Doc);
@@ -1458,7 +1470,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 					newSection = false;
 					_ref = d.Specs;
 					_i = 0;
-					for (; _i < _ref.length; _i += 1) {
+					while (_i < _ref.length) {
 						s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 						i = _i;
 						if (i > 0) {
@@ -1466,12 +1478,13 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 						}
 						p.valueSpec((s !== null && s.constructor === (go$ptrType(ast.ValueSpec)) ? s.go$val : go$typeAssertionFailed(s, (go$ptrType(ast.ValueSpec)))), (_slice$1 = keepType, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
 						newSection = p.isMultiLine(s);
+						_i++;
 					}
 				} else {
 					newSection$1 = false;
 					_ref$1 = d.Specs;
 					_i$1 = 0;
-					for (; _i$1 < _ref$1.length; _i$1 += 1) {
+					while (_i$1 < _ref$1.length) {
 						s$1 = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 						i$1 = _i$1;
 						if (i$1 > 0) {
@@ -1479,6 +1492,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 						}
 						p.spec(s$1, n, false);
 						newSection$1 = p.isMultiLine(s$1);
+						_i$1++;
 					}
 				}
 				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12)]));
@@ -1489,7 +1503,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		}
 	};
 	printer.prototype.genDecl = function(d) { return this.go$val.genDecl(d); };
-0ÇUnodeSizeÇG	printer.Ptr.prototype.nodeSize = function(n, maxSize) {
+0ÇVnodeSizeÇH	printer.Ptr.prototype.nodeSize = function(n, maxSize) {
 		var size, p, found, _tuple, _entry, size$1, _key, cfg, buf, err, _ref, _i, _slice, _index, ch, _key$1;
 		size = 0;
 		p = this;
@@ -1507,11 +1521,12 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		if (buf.Len() <= maxSize) {
 			_ref = buf.Bytes();
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				ch = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				if (ch < 32) {
 					return size;
 				}
+				_i++;
 			}
 			size = buf.Len();
 			_key$1 = n, (p.nodeSizes || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: size };
@@ -1533,18 +1548,19 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		bodySize = 0;
 		_ref = b.List;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
 				bodySize = bodySize + 2 >> 0;
 			}
 			bodySize = bodySize + (p.nodeSize(s, maxSize)) >> 0;
+			_i++;
 		}
 		return bodySize;
 	};
 	printer.prototype.bodySize = function(b, maxSize) { return this.go$val.bodySize(b, maxSize); };
-0Ç+adjBlockÇ	printer.Ptr.prototype.adjBlock = function(headerSize, sep, b) {
+0Ç-adjBlockÇ	printer.Ptr.prototype.adjBlock = function(headerSize, sep, b) {
 		var p, _ref, _i, _slice, _index, s, i;
 		p = this;
 		if (b === (go$ptrType(ast.BlockStmt)).nil) {
@@ -1556,13 +1572,14 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
 				_ref = b.List;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					i = _i;
 					if (i > 0) {
 						p.print(new (go$sliceType(go$emptyInterface))([new token.Token(57), new whiteSpace(32)]));
 					}
 					p.stmt(s, i === (b.List.length - 1 >> 0));
+					_i++;
 				}
 				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
 			}
@@ -1641,7 +1658,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		tok = 0;
 		_ref = list;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			prev = tok;
 			tok = declToken(d);
@@ -1653,6 +1670,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 				p.linebreak(p.lineFor(d.Pos()), min, 0, false);
 			}
 			p.decl(d);
+			_i++;
 		}
 	};
 	printer.prototype.declList = function(list) { return this.go$val.declList(list); };
@@ -1684,7 +1702,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		line = p.lineFor((_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos());
 		_ref = list;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			c = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0 && !((p.lineFor((_slice$2 = list, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Pos()) === line))) {
@@ -1693,6 +1711,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 			if (t = c.Text, t.length >= 2 && ((t.charCodeAt(1) === 47) || strings.Contains(t, "\n"))) {
 				return true;
 			}
+			_i++;
 		}
 		return false;
 	};
@@ -1818,7 +1837,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		p.last = (_struct$2 = p.pos, new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column));
 	};
 	printer.prototype.writeString = function(pos, s, isLit) { return this.go$val.writeString(pos, s, isLit); };
-0ÇKwriteCommentPrefixÇ3	printer.Ptr.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) {
+0ÇëwriteCommentPrefixÇy	printer.Ptr.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) {
 		var p, hasSep, j, _ref, _i, _slice, _index, ch, i, _ref$1, _slice$1, _index$1, sep, droppedLinebreak, j$1, _ref$2, _i$1, _slice$2, _index$2, ch$1, i$1, _ref$3, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, n;
 		p = this;
 		if (p.output.length === 0) {
@@ -1834,17 +1853,20 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 				j = 0;
 				_ref = p.wsbuf;
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					ch = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					i = _i;
 					_ref$1 = ch;
 					if (_ref$1 === 32) {
 						_slice$1 = p.wsbuf, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 0) : go$throwRuntimeError("index out of range");
+						_i++;
 						continue;
 					} else if (_ref$1 === 11) {
 						hasSep = true;
+						_i++;
 						continue;
 					} else if (_ref$1 === 62) {
+						_i++;
 						continue;
 					}
 					j = i;
@@ -1864,20 +1886,24 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 			j$1 = 0;
 			_ref$2 = p.wsbuf;
 			_i$1 = 0;
-			for (; _i$1 < _ref$2.length; _i$1 += 1) {
+			while (_i$1 < _ref$2.length) {
 				ch$1 = (_slice$2 = _ref$2, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 				i$1 = _i$1;
 				_ref$3 = ch$1;
 				if (_ref$3 === 32 || _ref$3 === 11) {
 					_slice$3 = p.wsbuf, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = 0) : go$throwRuntimeError("index out of range");
+					_i$1++;
 					continue;
 				} else if (_ref$3 === 62) {
+					_i$1++;
 					continue;
 				} else if (_ref$3 === 60) {
 					if ((i$1 + 1 >> 0) < p.wsbuf.length && ((_slice$4 = p.wsbuf, _index$4 = (i$1 + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) === 60)) {
+						_i$1++;
 						continue;
 					}
 					if (!((tok === 56)) && (pos.Column === next.Column)) {
+						_i$1++;
 						continue;
 					}
 				} else if (_ref$3 === 10 || _ref$3 === 12) {
@@ -1929,7 +1955,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 0d	trimRightW	var trimRight = function(s) {
 		return strings.TrimRightFunc(s, unicode.IsSpace);
 	};
-0Ç˜stripCommonPrefixÇ‡	var stripCommonPrefix = function(lines) {
+0Ç¯stripCommonPrefixÇ·	var stripCommonPrefix = function(lines) {
 		var prefix, first, _ref, _i, _slice, _index, line, i, _slice$1, _index$1, _slice$2, _index$2, line$1, lineOfStars, i$1, _slice$3, _index$3, first$1, i$2, n, suffix, n$1, _slice$4, _index$4, _slice$5, _index$5, _tuple, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, last, closing, i$3, _slice$9, _index$9, _ref$1, _i$1, _slice$10, _index$10, line$2, i$4, _slice$11, _index$11;
 		if (lines.length <= 1) {
 			return;
@@ -1939,7 +1965,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 			first = true;
 			_ref = go$subslice(lines, 1, (lines.length - 1 >> 0));
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				line = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				if (isBlank(line)) {
@@ -1950,6 +1976,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 				} else {
 					prefix = commonPrefix(prefix, line);
 				}
+				_i++;
 			}
 		} else {
 			line$1 = (_slice$2 = lines, _index$2 = 1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
@@ -2004,17 +2031,18 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		}
 		_ref$1 = lines;
 		_i$1 = 0;
-		for (; _i$1 < _ref$1.length; _i$1 += 1) {
+		while (_i$1 < _ref$1.length) {
 			line$2 = (_slice$10 = _ref$1, _index$10 = _i$1, (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"));
 			i$4 = _i$1;
 			if (i$4 > 0 && !(line$2 === "")) {
 				_slice$11 = lines, _index$11 = i$4, (_index$11 >= 0 && _index$11 < _slice$11.length) ? (_slice$11.array[_slice$11.offset + _index$11] = line$2.substring(prefix.length)) : go$throwRuntimeError("index out of range");
 			}
+			_i$1++;
 		}
 	};
 0Ç
-¬writeCommentÇ
-∞	printer.Ptr.prototype.writeComment = function(comment) {
+≈writeCommentÇ
+≥	printer.Ptr.prototype.writeComment = function(comment) {
 		var p, text, _struct, pos, ldir, i, err, line, _tuple, indent, _struct$1, lines, _ref, _i, _slice, _index, line$1, i$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, line$2, i$2, _struct$2, _struct$3;
 		var go$deferred = [];
 		try {
@@ -2044,16 +2072,17 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 			if (pos.IsValid() && (pos.Column === 1) && p.indent > 0) {
 				_ref = go$subslice(lines, 1);
 				_i = 0;
-				for (; _i < _ref.length; _i += 1) {
+				while (_i < _ref.length) {
 					line$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					i$1 = _i;
 					_slice$1 = lines, _index$1 = 1 + i$1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = "   " + line$1) : go$throwRuntimeError("index out of range");
+					_i++;
 				}
 			}
 			stripCommonPrefix(lines);
 			_ref$1 = lines;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += 1) {
+			while (_i$1 < _ref$1.length) {
 				line$2 = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 				i$2 = _i$1;
 				if (i$2 > 0) {
@@ -2063,6 +2092,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 				if (line$2.length > 0) {
 					p.writeString((_struct$3 = pos, new token.Position.Ptr(_struct$3.Filename, _struct$3.Offset, _struct$3.Line, _struct$3.Column)), trimRight(line$2), true);
 				}
+				_i$1++;
 			}
 		} catch(go$err) {
 			go$pushErr(go$err);
@@ -2078,7 +2108,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		p = this;
 		_ref = p.wsbuf;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			ch = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			_ref$1 = ch;
@@ -2096,6 +2126,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 					_slice$2 = p.wsbuf, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = 0) : go$throwRuntimeError("index out of range");
 				}
 			}
+			_i++;
 		}
 		p.writeWhitespace(p.wsbuf.length);
 		if (needsLinebreak) {
@@ -2105,7 +2136,7 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		return [wroteNewline, droppedFF];
 	};
 	printer.prototype.writeCommentSuffix = function(needsLinebreak) { return this.go$val.writeCommentSuffix(needsLinebreak); };
-0ÇintersperseCommentsÇ¸	printer.Ptr.prototype.intersperseComments = function(next, tok) {
+0ÇintersperseCommentsÇ˝	printer.Ptr.prototype.intersperseComments = function(next, tok) {
 		var wroteNewline, droppedFF, p, last, _struct, _ref, _i, _slice, _index, c, _struct$1, _struct$2, needsLinebreak, _tuple;
 		wroteNewline = false;
 		droppedFF = false;
@@ -2114,11 +2145,12 @@ indentListÇØ	printer.Ptr.prototype.indentList = function(list) {
 		while (p.commentBefore((_struct = next, new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)))) {
 			_ref = p.comment.List;
 			_i = 0;
-			for (; _i < _ref.length; _i += 1) {
+			while (_i < _ref.length) {
 				c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				p.writeCommentPrefix((_struct$1 = p.posFor(c.Pos()), new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column)), (_struct$2 = next, new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column)), last, c, tok);
 				p.writeComment(c);
 				last = c;
+				_i++;
 			}
 			p.nextComment();
 		}
@@ -2198,12 +2230,13 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 		}
 		return b;
 	};
-0Ç·printÇ÷	printer.Ptr.prototype.print = function(args) {
+0Ç
+printÇˇ	printer.Ptr.prototype.print = function(args) {
 		var p, _ref, _i, _slice, _index, arg, data, isLit, impliedSemi, x, _ref$1, _type, i, _slice$1, _index$1, s, _slice$2, _index$2, _ref$2, _struct, _struct$1, next, _tuple, _struct$2, wroteNewline, droppedFF, n, ch, _struct$3;
 		p = this;
 		_ref = args;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			arg = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			data = "";
 			isLit = false;
@@ -2213,10 +2246,12 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 			if (_type === pmode) {
 				x = _ref$1.go$val;
 				p.mode = (p.mode ^ (x)) >> 0;
+				_i++;
 				continue;
 			} else if (_type === whiteSpace) {
 				x = _ref$1.go$val;
 				if (x === 0) {
+					_i++;
 					continue;
 				}
 				i = p.wsbuf.length;
@@ -2230,6 +2265,7 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 					p.impliedSemi = false;
 				}
 				p.lastTok = 0;
+				_i++;
 				continue;
 			} else if (_type === (go$ptrType(ast.Ident))) {
 				x = _ref$1.go$val;
@@ -2263,6 +2299,7 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 				if ((new token.Pos(x)).IsValid()) {
 					p.pos = (_struct = p.posFor(x), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
 				}
+				_i++;
 				continue;
 			} else if (_type === Go$String) {
 				x = _ref$1.go$val;
@@ -2293,6 +2330,7 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 			}
 			p.writeString((_struct$3 = next, new token.Position.Ptr(_struct$3.Filename, _struct$3.Offset, _struct$3.Line, _struct$3.Column)), data, isLit);
 			p.impliedSemi = impliedSemi;
+			_i++;
 		}
 	};
 	printer.prototype.print = function(args) { return this.go$val.print(args); };
@@ -2345,7 +2383,7 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 		}
 		return (go$ptrType(ast.CommentGroup)).nil;
 	};
-0Ç:	printNodeÇ+	printer.Ptr.prototype.printNode = function(node) {
+0Ç;	printNodeÇ,	printer.Ptr.prototype.printNode = function(node) {
 		var p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, _tuple$2, n$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
 		p = this;
 		comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
@@ -2400,11 +2438,12 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 			n$2 = _ref.go$val;
 			_ref$1 = n$2;
 			_i = 0;
-			for (; _i < _ref$1.length; _i += 1) {
+			while (_i < _ref$1.length) {
 				s = (_slice$2 = _ref$1, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 				if (_tuple$4 = (s !== null && s.constructor === (go$ptrType(ast.LabeledStmt)) ? [s.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), ok$4 = _tuple$4[1], ok$4) {
 					p.indent = 1;
 				}
+				_i++;
 			}
 			p.stmtList(n$2, 0, false);
 		} else if (_type === (go$sliceType(ast.Decl))) {
@@ -2437,7 +2476,7 @@ resetSpaceÅ“	trimmer.Ptr.prototype.resetSpace = function() {
 		b = 0;
 		_ref = data;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			n = _i;
 			if (b === 11) {
@@ -2486,6 +2525,7 @@ resetSpaceÅ“	trimmer.Ptr.prototype.resetSpace = function() {
 			if (!(go$interfaceIsEqual(err, null))) {
 				return [n, err];
 			}
+			_i++;
 		}
 		n = data.length;
 		_ref$4 = p.state;

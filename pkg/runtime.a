@@ -1208,12 +1208,13 @@ InUseBytes‚	MemProfileRecord.Ptr.prototype.InUseBytes = function() {
 		r = this;
 		_ref = r.Stack0;
 		_i = 0;
-		for (; _i < 32; _i += 1) {
+		while (_i < 32) {
 			v = _ref[_i];
 			i = _i;
 			if (v === 0) {
 				return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0, i);
 			}
+			_i++;
 		}
 		return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0);
 	};
@@ -1227,12 +1228,13 @@ MemProfile†	var MemProfile = go$pkg.MemProfile = function(p$1, inuseZero) {
 		r = this;
 		_ref = r.Stack0;
 		_i = 0;
-		for (; _i < 32; _i += 1) {
+		while (_i < 32) {
 			v = _ref[_i];
 			i = _i;
 			if (v === 0) {
 				return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0, i);
 			}
+			_i++;
 		}
 		return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0);
 	};

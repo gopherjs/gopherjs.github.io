@@ -125,13 +125,14 @@ crypto/md5040cryptocrypto0hashhash0runtimeruntime‚ô	var digest;
 		digest$1 = go$makeNativeArray("Uint8", 16, function() { return 0; });
 		_ref = d.s;
 		_i = 0;
-		for (; _i < 4; _i += 1) {
+		while (_i < 4) {
 			s = _ref[_i];
 			i$1 = _i;
 			digest$1[(x$4 = 4, (((i$1 >>> 16 << 16) * x$4 >> 0) + (i$1 << 16 >>> 16) * x$4) >> 0)] = (s << 24 >>> 24);
 			digest$1[(x$5 = 4, (((i$1 >>> 16 << 16) * x$5 >> 0) + (i$1 << 16 >>> 16) * x$5) >> 0) + 1 >> 0] = ((s >>> 8 >>> 0) << 24 >>> 24);
 			digest$1[(x$6 = 4, (((i$1 >>> 16 << 16) * x$6 >> 0) + (i$1 << 16 >>> 16) * x$6) >> 0) + 2 >> 0] = ((s >>> 16 >>> 0) << 24 >>> 24);
 			digest$1[(x$7 = 4, (((i$1 >>> 16 << 16) * x$7 >> 0) + (i$1 << 16 >>> 16) * x$7) >> 0) + 3 >> 0] = ((s >>> 24 >>> 0) << 24 >>> 24);
+			_i++;
 		}
 		return go$mapArray(digest$1, function(entry) { return entry; });
 	};

@@ -1,4 +1,4 @@
-0‚V.encoding/csv‚êpackage csv
+0‚V<encoding/csv‚êpackage csv
 import bufio "bufio"
 import bytes "bytes"
 import errors "errors"
@@ -124,7 +124,7 @@ $$
 	(go$ptrType(Reader)).methods = [["Read", "", [], [(go$sliceType(Go$String)), go$error], false], ["ReadAll", "", [], [(go$sliceType((go$sliceType(Go$String)))), go$error], false], ["error", "encoding/csv", [go$error], [go$error], false], ["parseField", "encoding/csv", [], [Go$Bool, Go$Int32, go$error], false], ["parseRecord", "encoding/csv", [], [(go$sliceType(Go$String)), go$error], false], ["readRune", "encoding/csv", [], [Go$Int32, go$error], false], ["skip", "encoding/csv", [Go$Int32], [go$error], false], ["unreadRune", "encoding/csv", [], [], false]];
 	Writer.init([["Comma", "", Go$Int32, ""], ["UseCRLF", "", Go$Bool, ""], ["w", "encoding/csv", (go$ptrType(bufio.Writer)), ""]]);
 	(go$ptrType(Writer)).methods = [["Error", "", [], [go$error], false], ["Flush", "", [], [], false], ["Write", "", [(go$sliceType(Go$String))], [go$error], false], ["WriteAll", "", [(go$sliceType((go$sliceType(Go$String))))], [go$error], false], ["fieldNeedsQuotes", "encoding/csv", [Go$String], [Go$Bool], false]];
-00 0 0 0 0‚1z0‚'Error‚	ParseError.Ptr.prototype.Error = function() {
+00 0 0 0 0‚1ˆ0‚'Error‚	ParseError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return fmt.Sprintf("line %d, column %d: %s", new (go$sliceType(go$emptyInterface))([new Go$Int(e.Line), new Go$Int(e.Column), e.Err]));
@@ -357,13 +357,13 @@ parseField‚ª	Reader.Ptr.prototype.parseField = function() {
 0{	NewWritern	var NewWriter = go$pkg.NewWriter = function(w) {
 		return new Writer.Ptr(44, false, bufio.NewWriter(w));
 	};
-0‚2Write‚'	Writer.Ptr.prototype.Write = function(record) {
+0‚@Write‚5	Writer.Ptr.prototype.Write = function(record) {
 		var err, w, _ref, _i, _slice, _index, field, n, _tuple, _tuple$1, _ref$1, _i$1, _rune, r1, _ref$2, _tuple$2, _tuple$3, _tuple$4, _tuple$5;
 		err = null;
 		w = this;
 		_ref = record;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			field = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			n = _i;
 			if (n > 0) {
@@ -375,6 +375,7 @@ parseField‚ª	Reader.Ptr.prototype.parseField = function() {
 				if (_tuple$1 = w.w.WriteString(field), err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
 					return err;
 				}
+				_i++;
 				continue;
 			}
 			if (err = w.w.WriteByte(34), !(go$interfaceIsEqual(err, null))) {
@@ -382,7 +383,7 @@ parseField‚ª	Reader.Ptr.prototype.parseField = function() {
 			}
 			_ref$1 = field;
 			_i$1 = 0;
-			for (; _i$1 < _ref$1.length; _i$1 += _rune[1]) {
+			while (_i$1 < _ref$1.length) {
 				_rune = go$decodeRune(_ref$1, _i$1);
 				r1 = _rune[0];
 				_ref$2 = r1;
@@ -404,10 +405,12 @@ parseField‚ª	Reader.Ptr.prototype.parseField = function() {
 				if (!(go$interfaceIsEqual(err, null))) {
 					return err;
 				}
+				_i$1 += _rune[1];
 			}
 			if (err = w.w.WriteByte(34), !(go$interfaceIsEqual(err, null))) {
 				return err;
 			}
+			_i++;
 		}
 		if (w.UseCRLF) {
 			_tuple$5 = w.w.WriteString("\r\n"), err = _tuple$5[1];
@@ -436,13 +439,14 @@ parseField‚ª	Reader.Ptr.prototype.parseField = function() {
 		w = this;
 		_ref = records;
 		_i = 0;
-		for (; _i < _ref.length; _i += 1) {
+		while (_i < _ref.length) {
 			record = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			err = w.Write(record);
 			if (!(go$interfaceIsEqual(err, null))) {
 				err = err;
 				return err;
 			}
+			_i++;
 		}
 		err = w.w.Flush();
 		return err;
