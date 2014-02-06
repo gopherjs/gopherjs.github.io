@@ -2981,24 +2981,24 @@ go$packages["runtime"] = (function() {
 		q1 = go$div64(un32, vn1, false);
 		rhat = (x$3 = go$mul64(q1, vn1), new Go$Uint64(un32.high - x$3.high, un32.low - x$3.low));
 		again1:
-		switch (0) { default: if ((q1.high > 1 || (q1.high === 1 && q1.low >= 0)) || (x$4 = go$mul64(q1, vn0), x$5 = (x$6 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$6.high + un1.high, x$6.low + un1.low)), (x$4.high > x$5.high || (x$4.high === x$5.high && x$4.low > x$5.low)))) {
+		if ((q1.high > 1 || (q1.high === 1 && q1.low >= 0)) || (x$4 = go$mul64(q1, vn0), x$5 = (x$6 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$6.high + un1.high, x$6.low + un1.low)), (x$4.high > x$5.high || (x$4.high === x$5.high && x$4.low > x$5.low)))) {
 			q1 = new Go$Uint64(q1.high - 0, q1.low - 1);
 			rhat = (x$7 = vn1, new Go$Uint64(rhat.high + x$7.high, rhat.low + x$7.low));
 			if ((rhat.high < 1 || (rhat.high === 1 && rhat.low < 0))) {
 				go$notSupported("goto");
 			}
-		} }
+		}
 		un21 = (x$8 = (x$9 = go$mul64(un32, new Go$Uint64(1, 0)), new Go$Uint64(x$9.high + un1.high, x$9.low + un1.low)), x$10 = go$mul64(q1, v), new Go$Uint64(x$8.high - x$10.high, x$8.low - x$10.low));
 		q0 = go$div64(un21, vn1, false);
 		rhat = (x$11 = go$mul64(q0, vn1), new Go$Uint64(un21.high - x$11.high, un21.low - x$11.low));
 		again2:
-		switch (0) { default: if ((q0.high > 1 || (q0.high === 1 && q0.low >= 0)) || (x$12 = go$mul64(q0, vn0), x$13 = (x$14 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$14.high + un0.high, x$14.low + un0.low)), (x$12.high > x$13.high || (x$12.high === x$13.high && x$12.low > x$13.low)))) {
+		if ((q0.high > 1 || (q0.high === 1 && q0.low >= 0)) || (x$12 = go$mul64(q0, vn0), x$13 = (x$14 = go$mul64(new Go$Uint64(1, 0), rhat), new Go$Uint64(x$14.high + un0.high, x$14.low + un0.low)), (x$12.high > x$13.high || (x$12.high === x$13.high && x$12.low > x$13.low)))) {
 			q0 = new Go$Uint64(q0.high - 0, q0.low - 1);
 			rhat = (x$15 = vn1, new Go$Uint64(rhat.high + x$15.high, rhat.low + x$15.low));
 			if ((rhat.high < 1 || (rhat.high === 1 && rhat.low < 0))) {
 				go$notSupported("goto");
 			}
-		} }
+		}
 		_tuple$1 = [(x$16 = go$mul64(q1, new Go$Uint64(1, 0)), new Go$Uint64(x$16.high + q0.high, x$16.low + q0.low)), go$shiftRightUint64(((x$17 = (x$18 = go$mul64(un21, new Go$Uint64(1, 0)), new Go$Uint64(x$18.high + un0.high, x$18.low + un0.low)), x$19 = go$mul64(q0, v), new Go$Uint64(x$17.high - x$19.high, x$17.low - x$19.low))), s)], q = _tuple$1[0], r = _tuple$1[1];
 		return [q, r];
 	};
@@ -69664,7 +69664,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 	};
 	pkgContext.prototype.translateStmt = function(stmt, label) { return this.go$val.translateStmt(stmt, label); };
 	pkgContext.Ptr.prototype.translateBranchingStmt = function(caseClauses, initStmts, isSwitch, translateCond, printCaseBodyPrefix, label) {
-		var c, branches, defaultBranch, openBranches, _ref, _i, _slice, _index, cc, i, clause, branch$1, _ref$1, _i$1, _slice$1, _index$1, openBranch, conds, _ref$2, _i$2, _slice$2, _index$2, cond, x, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, hasBreak, v, _ref$3, _i$3, _slice$6, _index$6, child, caseOffset, endCase, prevFlowData, _entry, data, _key, _key$1, prefix, jump, jumpList, _ref$4, _i$4, _slice$7, _index$7, branch$2, i$1, _ref$5, _i$5, _slice$8, _index$8, branch$3, i$2, _key$2;
+		var c, branches, defaultBranch, openBranches, _ref, _i, _slice, _index, cc, i, clause, branch$1, _ref$1, _i$1, _slice$1, _index$1, openBranch, conds, _ref$2, _i$2, _slice$2, _index$2, cond, x, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, hasBreak, _ref$3, v, _ref$4, _i$3, _slice$6, _index$6, child, caseOffset, endCase, prevFlowData, _entry, data, _key, _key$1, prefix, jump, jumpList, _ref$5, _i$4, _slice$7, _index$7, branch$2, i$1, _ref$6, _i$5, _slice$8, _index$8, branch$3, i$2, _key$2;
 		c = this;
 		branches = (go$sliceType((go$ptrType(branch)))).nil;
 		defaultBranch = (go$ptrType(branch)).nil;
@@ -69729,17 +69729,22 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 			}
 			return;
 		}
-		hasBreak = !(label === "");
-		if (isSwitch && label === "") {
-			v = new hasBreakVisitor.Ptr(false);
-			_ref$3 = caseClauses;
-			_i$3 = 0;
-			while (_i$3 < _ref$3.length) {
-				child = (_slice$6 = _ref$3, _index$6 = _i$3, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
-				ast.Walk(v, child);
-				_i$3++;
+		hasBreak = false;
+		if (isSwitch) {
+			_ref$3 = label;
+			if (_ref$3 === "") {
+				v = new hasBreakVisitor.Ptr(false);
+				_ref$4 = caseClauses;
+				_i$3 = 0;
+				while (_i$3 < _ref$4.length) {
+					child = (_slice$6 = _ref$4, _index$6 = _i$3, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+					ast.Walk(v, child);
+					_i$3++;
+				}
+				hasBreak = v.hasBreak;
+			} else {
+				hasBreak = true;
 			}
-			hasBreak = v.hasBreak;
 		}
 		caseOffset = c.f.caseCounter;
 		endCase = (caseOffset + branches.length >> 0) - 1 >> 0;
@@ -69762,10 +69767,10 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 		jump = "";
 		if (flatten) {
 			jumpList = (go$sliceType(Go$String)).nil;
-			_ref$4 = branches;
+			_ref$5 = branches;
 			_i$4 = 0;
-			while (_i$4 < _ref$4.length) {
-				branch$2 = (_slice$7 = _ref$4, _index$7 = _i$4, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
+			while (_i$4 < _ref$5.length) {
+				branch$2 = (_slice$7 = _ref$5, _index$7 = _i$4, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"));
 				i$1 = _i$4;
 				if (i$1 === 0) {
 					jumpList = go$append(jumpList, fmt.Sprintf("if (%s) {}", new (go$sliceType(go$emptyInterface))([new Go$String(branch$2.condition)])));
@@ -69778,10 +69783,10 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 			jumpList = go$append(jumpList, fmt.Sprintf("{ go$s =  %d; continue; }", new (go$sliceType(go$emptyInterface))([new Go$Int(((caseOffset + branches.length >> 0) - 1 >> 0))])));
 			jump = strings.Join(jumpList, " else ");
 		}
-		_ref$5 = branches;
+		_ref$6 = branches;
 		_i$5 = 0;
-		while (_i$5 < _ref$5.length) {
-			branch$3 = (_slice$8 = _ref$5, _index$8 = _i$5, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
+		while (_i$5 < _ref$6.length) {
+			branch$3 = (_slice$8 = _ref$6, _index$8 = _i$5, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range"));
 			i$2 = _i$5;
 			c.PrintCond(!flatten, fmt.Sprintf("%sif (%s) {", new (go$sliceType(go$emptyInterface))([new Go$String(prefix), new Go$String(branch$3.condition)])), jump);
 			c.Indent((function() {
@@ -70190,7 +70195,7 @@ go$packages["github.com/neelance/gopherjs/translator"] = (function() {
 				w = null;
 				return w;
 			}
-		} else if (_type === (go$ptrType(ast.FuncLit)) || _type === (go$ptrType(ast.ForStmt)) || _type === (go$ptrType(ast.RangeStmt)) || _type === (go$ptrType(ast.SwitchStmt)) || _type === (go$ptrType(ast.TypeSwitchStmt)) || _type === (go$ptrType(ast.SelectStmt))) {
+		} else if (_type === (go$ptrType(ast.ForStmt)) || _type === (go$ptrType(ast.RangeStmt)) || _type === (go$ptrType(ast.SwitchStmt)) || _type === (go$ptrType(ast.TypeSwitchStmt)) || _type === (go$ptrType(ast.SelectStmt)) || ast.Expr.implementedBy.indexOf(_type) !== -1) {
 			n = _ref;
 			w = null;
 			return w;
