@@ -1,4 +1,4 @@
-0ƒ—Sreflect‚E&package reflect
+0ƒ—Ureflect‚E&package reflect
 import strconv "strconv"
 import sync "sync"
 import math "math"
@@ -1184,7 +1184,7 @@ $$
 	SliceHeader.init([["Data", "", Go$Uintptr, ""], ["Len", "", Go$Int, ""], ["Cap", "", Go$Int, ""]]);
 	runtimeSelect.init([["dir", "reflect", Go$Uintptr, ""], ["typ", "reflect", (go$ptrType(rtype)), ""], ["ch", "reflect", iword, ""], ["val", "reflect", iword, ""]]);
 	SelectCase.init([["Dir", "", SelectDir, ""], ["Chan", "", Value, ""], ["Send", "", Value, ""]]);
-0a0	kindNames0ptrMap0ptrDataGCProg0lookupCache0sliceEmptyGCProg0	uint8Type0dummy0ƒV0‚UdeepValueEqual‚A	var deepValueEqual = function(v1, v2, visited, depth) {
+0a0	kindNames0ptrMap0ptrDataGCProg0lookupCache0sliceEmptyGCProg0	uint8Type0dummy0ƒX0‚UdeepValueEqual‚A	var deepValueEqual = function(v1, v2, visited, depth) {
 		var hard, addr1, addr2, _tuple, typ, v, _entry, _key, _struct, _ref, i, _struct$1, _struct$2, i$1, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _tuple$1, i$2, n, _struct$9, _struct$10, _ref$1, _i, _slice, _index, _struct$11, k, _struct$12, _struct$13, _struct$14, _struct$15, _struct$16, _struct$17;
 		if (!v1.IsValid() || !v2.IsValid()) {
 			return v1.IsValid() === v2.IsValid();
@@ -2253,11 +2253,12 @@ implements‚÷	var implements$1 = function(T, V) {
 		b.string = new (go$ptrType(Go$String))(function() { return s; }, function(v) { s = v; });
 		return b;
 	};
-0‚appendGCProgram‚	var appendGCProgram = function(gc, t) {
+0‚appendGCProgram‚	var appendGCProgram = function(gc, t) {
 		var p, argcnt, _ref, i;
 		p = t.gc;
 		p = (p + 4 >>> 0);
-		loop: while (true) {
+		loop:
+		while (true) {
 			argcnt = 0;
 			_ref = p.go$get();
 			if (_ref === 0) {

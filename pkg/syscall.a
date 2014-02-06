@@ -1,4 +1,4 @@
-0ÉÉ∑syscallÉ%:package syscall
+0ÉÉπsyscallÉ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -2699,7 +2699,7 @@ $$
 	BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
 	BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
 	Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0ÉñÊ0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
+0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0ÉñË0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
 0Å¨BpfJumpÅ†	var BpfJump = go$pkg.BpfJump = function(code, k, jt, jf) {
@@ -3003,7 +3003,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 0Åáruntime_AfterForkr	var runtime_AfterFork = function() {
 		throw go$panic("Native function not implemented: runtime_AfterFork");
 	};
-0Ç⁄forkAndExecInChildÇ¬	var forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
+0Ç‹forkAndExecInChildÇƒ	var forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
 		var pid, err, _tuple, r1, r2, err1, nextfd, i, fd, _ref, _i, _slice, _index, ufd, i$1, _slice$1, _index$1, darwin, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, cred, ngroups, groups, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _slice$2, _index$2, _slice$3, _index$3, _tuple$13, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _tuple$14, _slice$8, _index$8, _tuple$15, _slice$9, _index$9, _tuple$16, _tuple$17, _tuple$18, v;
 		pid = 0;
 		err = 0;
@@ -3151,7 +3151,8 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 			}
 		}
 		_tuple$18 = RawSyscall(59, argv0, go$sliceToArray(argv), go$sliceToArray(envv)), err1 = _tuple$18[2];
-		childerror: RawSyscall(4, (pipe$1 >>> 0), new (go$ptrType(Errno))(function() { return err1; }, function(v) { err1 = v; }), 4);
+		childerror:
+		RawSyscall(4, (pipe$1 >>> 0), new (go$ptrType(Errno))(function() { return err1; }, function(v) { err1 = v; }), 4);
 		while (true) {
 			RawSyscall(1, 253, 0, 0);
 		}

@@ -1,4 +1,4 @@
-0ƒ<%os‚H÷package os
+0ƒ<(os‚H÷package os
 import io "io"
 import syscall "syscall"
 import time "time"
@@ -421,7 +421,7 @@ $$
 	fileStat.init([["name", "os", Go$String, ""], ["size", "os", Go$Int64, ""], ["mode", "os", FileMode, ""], ["modTime", "os", time.Time, ""], ["sys", "os", go$emptyInterface, ""]]);
 	(go$ptrType(fileStat)).methods = [["IsDir", "", [], [Go$Bool], false], ["ModTime", "", [], [time.Time], false], ["Mode", "", [], [FileMode], false], ["Name", "", [], [Go$String], false], ["Size", "", [], [Go$Int64], false], ["Sys", "", [], [go$emptyInterface], false]];
 0O0 0 0 0 0 0 0 0 0 0lstat0
-getwdCache0useSyscallwd0 0‚ÍJ0‚readdirnames‚	File.Ptr.prototype.readdirnames = function(n) {
+getwdCache0useSyscallwd0 0‚ÍM0‚readdirnames‚	File.Ptr.prototype.readdirnames = function(n) {
 		var names, err, f, d, size, errno, _tuple, _tuple$1, _tuple$2, nb, nc, _tuple$3, _tuple$4, _tuple$5;
 		names = (go$sliceType(Go$String)).nil;
 		err = null;
@@ -1490,7 +1490,7 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 		}
 		return dir;
 	};
-0‚ÿGetwd‚ô	var Getwd = go$pkg.Getwd = function() {
+0‚Getwd‚÷	var Getwd = go$pkg.Getwd = function() {
 		var pwd, err, _tuple, s, e, _tuple$1, _tuple$2, dot, _tuple$3, _tuple$4, d, err$1, _tuple$5, _tuple$6, d$1, err$2, _tuple$7, _tuple$8, root, _tuple$9, _tuple$10, parent, _tuple$11, _tuple$12, fd, err$3, _tuple$13, _tuple$14, names, err$4, _tuple$15, _ref, _i, _slice, _index, name, _tuple$16, d$2, _tuple$17, pd, _tuple$18, _tuple$19;
 		pwd = "";
 		err = null;
@@ -1543,7 +1543,8 @@ epipecheck‚´	var epipecheck = function(file$1, e) {
 				_tuple$13 = ["", err$3], pwd = _tuple$13[0], err = _tuple$13[1];
 				return [pwd, err];
 			}
-			NamesLoop: while (true) {
+			NamesLoop:
+			while (true) {
 				_tuple$14 = fd.Readdirnames(100), names = _tuple$14[0], err$4 = _tuple$14[1];
 				if (!(go$interfaceIsEqual(err$4, null))) {
 					fd.Close();

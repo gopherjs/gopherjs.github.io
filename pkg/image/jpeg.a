@@ -1,4 +1,4 @@
-0ƒR•
+0ƒR˜
 image/jpeg‚'ípackage jpeg
 import io "io"
 import bufio "bufio"
@@ -250,7 +250,7 @@ image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0
 	(go$ptrType(encoder)).methods = [["emit", "image/jpeg", [Go$Uint32, Go$Uint32], [], false], ["emitHuff", "image/jpeg", [huffIndex, Go$Int32], [], false], ["emitHuffRLE", "image/jpeg", [huffIndex, Go$Int32, Go$Int32], [], false], ["flush", "image/jpeg", [], [], false], ["write", "image/jpeg", [(go$sliceType(Go$Uint8))], [], false], ["writeBlock", "image/jpeg", [(go$ptrType(block)), quantIndex, Go$Int32], [Go$Int32], false], ["writeByte", "image/jpeg", [Go$Uint8], [], false], ["writeDHT", "image/jpeg", [], [], false], ["writeDQT", "image/jpeg", [], [], false], ["writeMarkerHeader", "image/jpeg", [Go$Uint8, Go$Int], [], false], ["writeSOF0", "image/jpeg", [image.Point], [], false], ["writeSOS", "image/jpeg", [image.Image], [], false]];
 	Options.init([["Quality", "", Go$Int, ""]]);
 0V0unzig0
-bitCount0unscaledQuant0theHuffmanSpec0theHuffmanLUT0	sosHeader0ƒÒ0‚–fdct‚Œ	var fdct = function(b) {
+bitCount0unscaledQuant0theHuffmanSpec0theHuffmanLUT0	sosHeader0ƒÕ0‚–fdct‚Œ	var fdct = function(b) {
 		var y, x, x0, x$1, x1, x$2, x2, x$3, x3, x$4, x4, x$5, x5, x$6, x6, x$7, x7, tmp0, tmp1, tmp2, tmp3, tmp10, tmp12, tmp11, tmp13, x$8, x$9, x$10, z1, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$20, x$21, x$22, tmp0$1, tmp1$1, tmp2$1, tmp3$1, tmp10$1, tmp12$1, tmp11$1, tmp13$1, x$23, z1$1, x$24, x$25, x$26, x$27, x$28;
 		y = 0;
 		while (y < 8) {
@@ -1132,7 +1132,7 @@ processSOS‚7¸	decoder.Ptr.prototype.processSOS = function(n) {
 		return null;
 	};
 	decoder.prototype.processSOS = function(n) { return this.go$val.processSOS(n); };
-0‚	9refine‚	-	decoder.Ptr.prototype.refine = function(b, h, zigStart, zigEnd, delta) {
+0‚	<refine‚	0	decoder.Ptr.prototype.refine = function(b, h, zigStart, zigEnd, delta) {
 		var d, _tuple, bit, err, _lhs, _index, zig, z, _tuple$1, value, err$1, val0, val1, _ref, y, _tuple$2, bits$1, err$2, _tuple$3, bit$1, err$3, _tuple$4, err$4, _tuple$5;
 		d = this;
 		if (zigStart === 0) {
@@ -1150,7 +1150,8 @@ processSOS‚7¸	decoder.Ptr.prototype.processSOS = function(n) {
 		}
 		zig = zigStart;
 		if (d.eobRun === 0) {
-			loop: while (zig <= zigEnd) {
+			loop:
+			while (zig <= zigEnd) {
 				z = 0;
 				_tuple$1 = d.decodeHuffman(h), value = _tuple$1[0], err$1 = _tuple$1[1];
 				if (!(go$interfaceIsEqual(err$1, null))) {

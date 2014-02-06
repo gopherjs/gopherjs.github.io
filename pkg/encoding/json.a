@@ -1,4 +1,4 @@
-0ÉT≤encoding/jsonÇfpackage json
+0ÉT¥encoding/jsonÇfpackage json
 import encoding "encoding"
 import base64 "encoding/base64"
 import errors "errors"
@@ -644,7 +644,7 @@ $$
 0Å≠0
 errPhase0
 numberType0hex0encodeStatePool0byteSliceType0encoderCache0marshalerType0textMarshalerType0float32Encoder0float64Encoder0
-fieldCache0Éí•0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
+fieldCache0Éíß0Å˛	UnmarshalÅ	var Unmarshal = go$pkg.Unmarshal = function(data, v) {
 		var d, err;
 		d = new decodeState.Ptr();
 		err = checkValid(data, d.scan);
@@ -3050,13 +3050,14 @@ NewDecoderÅ£	var NewDecoder = go$pkg.NewDecoder = function(r) {
 		return bytes.NewReader(dec.buf);
 	};
 	Decoder.prototype.Buffered = function() { return this.go$val.Buffered(); };
-0ÇC	readValueÇ4	Decoder.Ptr.prototype.readValue = function() {
+0ÇE	readValueÇ6	Decoder.Ptr.prototype.readValue = function() {
 		var dec, scanp, err, _ref, _i, _slice, _index, c, i, x, v, x$1, x$2, newBuf, n, _tuple;
 		dec = this;
 		dec.scan.reset();
 		scanp = 0;
 		err = null;
-		Input: while (true) {
+		Input:
+		while (true) {
 			_ref = go$subslice(dec.buf, scanp);
 			_i = 0;
 			while (_i < _ref.length) {

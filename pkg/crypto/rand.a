@@ -1,4 +1,4 @@
-0‚oQcrypto/rand‚<àpackage rand
+0‚oTcrypto/rand‚<àpackage rand
 import io "io"
 import bufio "bufio"
 import aes "crypto/aes"
@@ -197,7 +197,7 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 	(go$ptrType(devReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
 	reader.init([["mu", "crypto/rand", sync.Mutex, ""], ["budget", "crypto/rand", Go$Int, ""], ["cipher", "crypto/rand", cipher.Block, ""], ["entropy", "crypto/rand", io.Reader, ""], ["time", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""], ["seed", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""], ["dst", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""], ["key", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""]]);
 	(go$ptrType(reader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-0)0 0smallPrimes0smallPrimesProduct0‚)0¿Read¶	var Read = go$pkg.Read = function(b) {
+0)0 0smallPrimes0smallPrimesProduct0‚)0¿Read¶	var Read = go$pkg.Read = function(b) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
@@ -304,7 +304,7 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 		}
 	};
 	reader.prototype.Read = function(b) { return this.go$val.Read(b); };
-0‚HPrime‚=	var Prime = go$pkg.Prime = function(rand, bits) {
+0‚KPrime‚@	var Prime = go$pkg.Prime = function(rand, bits) {
 		var p, err, _r, b, _q, bytes, bigMod, _tuple, _tuple$1, _lhs, _index, _slice, _index$1, y, _slice$1, _index$2, _lhs$1, _index$3, _slice$2, _index$4, y$1, _slice$3, _index$5, _lhs$2, _index$6, _slice$4, _index$7, _slice$5, _index$8, _lhs$3, _index$9, _slice$6, _index$10, _slice$7, _index$11, _lhs$4, _index$12, _slice$8, _index$13, _slice$9, _index$14, mod, delta, m, _ref, _i, _slice$10, _index$15, prime, x;
 		p = (go$ptrType(big.Int)).nil;
 		err = null;
@@ -338,7 +338,8 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 			bigMod.Mod(p, smallPrimesProduct);
 			mod = bigMod.Uint64();
 			delta = new Go$Uint64(0, 0);
-			NextDelta: while ((delta.high < 0 || (delta.high === 0 && delta.low < 1048576))) {
+			NextDelta:
+			while ((delta.high < 0 || (delta.high === 0 && delta.low < 1048576))) {
 				m = new Go$Uint64(mod.high + delta.high, mod.low + delta.low);
 				_ref = smallPrimes;
 				_i = 0;

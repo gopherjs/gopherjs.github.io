@@ -1,4 +1,4 @@
-0É‹_compress/flateÇ[package flate
+0É‹acompress/flateÇ[package flate
 import fmt "fmt"
 import io "io"
 import math "math"
@@ -295,7 +295,7 @@ $$
 	(go$ptrType(token)).methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
 0ÅÒ0levels0zeroes0	bzeroes0fixedHuffmanDecoder0lengthExtraBits0
 lengthBase0offsetExtraBits0
-offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	codeOrder0reverseByte0lengthCodes0offsetCodes0Ésï0ÇforwardCopyÇ		var forwardCopy = function(mem, dst, src, n) {
+offsetBase0codegenOrder0fixedLiteralEncoding0fixedOffsetEncoding0	codeOrder0reverseByte0lengthCodes0offsetCodes0Ésó0ÇforwardCopyÇ		var forwardCopy = function(mem, dst, src, n) {
 		var k;
 		if (dst <= src) {
 			go$copySlice(go$subslice(mem, dst, (dst + n >> 0)), go$subslice(mem, src, (src + n >> 0)));
@@ -454,7 +454,7 @@ writeBlockÇË	compressor.Ptr.prototype.writeBlock = function(tokens, index, eof
 		d.chainHead = -1;
 	};
 	compressor.prototype.initDeflate = function() { return this.go$val.initDeflate(); };
-0ÇPdeflateÇC	compressor.Ptr.prototype.deflate = function() {
+0ÇRdeflateÇE	compressor.Ptr.prototype.deflate = function() {
 		var d, _slice, _index, _slice$1, _index$1, lookahead, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, prevLength, prevOffset, minIndex, ok, _tuple, newLength, newOffset, newIndex, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, i, _slice$13, _index$13;
 		d = this;
 		if ((d.windowEnd - d.index >> 0) < 261 && !d.sync) {
@@ -464,7 +464,8 @@ writeBlockÇË	compressor.Ptr.prototype.writeBlock = function(tokens, index, eof
 		if (d.index < d.maxInsertIndex) {
 			d.hash = (((_slice = d.window, _index = d.index, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0) << 6 >> 0) + ((_slice$1 = d.window, _index$1 = (d.index + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0) >> 0;
 		}
-		Loop: while (true) {
+		Loop:
+		while (true) {
 			if (d.index > d.windowEnd) {
 				throw go$panic(new Go$String("index > windowEnd"));
 			}

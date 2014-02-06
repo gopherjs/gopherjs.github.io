@@ -1,4 +1,4 @@
-0É  math/bigÇ/¥package big
+0É Ãmath/bigÇ/¥package big
 import errors "errors"
 import fmt "fmt"
 import io "io"
@@ -222,7 +222,7 @@ $$
 	Rat.init([["a", "math/big", Int, ""], ["b", "math/big", Int, ""]]);
 	(go$ptrType(Rat)).methods = [["Abs", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Add", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Cmp", "", [(go$ptrType(Rat))], [Go$Int], false], ["Denom", "", [], [(go$ptrType(Int))], false], ["Float64", "", [], [Go$Float64, Go$Bool], false], ["FloatString", "", [Go$Int], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Inv", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["IsInt", "", [], [Go$Bool], false], ["Mul", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Neg", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Num", "", [], [(go$ptrType(Int))], false], ["Quo", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["RatString", "", [], [Go$String], false], ["Scan", "", [fmt.ScanState, Go$Int32], [go$error], false], ["Set", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["SetFloat64", "", [Go$Float64], [(go$ptrType(Rat))], false], ["SetFrac", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetFrac64", "", [Go$Int64, Go$Int64], [(go$ptrType(Rat))], false], ["SetInt", "", [(go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetInt64", "", [Go$Int64], [(go$ptrType(Rat))], false], ["SetString", "", [Go$String], [(go$ptrType(Rat)), Go$Bool], false], ["Sign", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["norm", "math/big", [], [(go$ptrType(Rat))], false]];
 0ÅÅ0intOne0natOne0natTwo0natTen0karatsubaThreshold0
-leafSize0cacheBase100deBruijn32Lookup0deBruijn64Lookup0É≈Ã0ÅæaddWW_gÅ≤	var addWW_g = function(x, y, c) {
+leafSize0cacheBase100deBruijn32Lookup0deBruijn64Lookup0É≈Œ0ÅæaddWW_gÅ≤	var addWW_g = function(x, y, c) {
 		var z1, z0, yc;
 		z1 = 0;
 		z0 = 0;
@@ -2295,7 +2295,7 @@ ModInverseÇ	Int.Ptr.prototype.ModInverse = function(g, p) {
 		return z.norm();
 	};
 	go$ptrType(nat).prototype.expNNWindowed = function(x, y, m) { return this.go$get().expNNWindowed(x, y, m); };
-0Ç“probablyPrimeÇø	nat.prototype.probablyPrime = function(reps) {
+0Ç‘probablyPrimeÇ¡	nat.prototype.probablyPrime = function(reps) {
 		var n, _slice, _index, _r, _slice$1, _index$1, _slice$2, _index$2, _ref, _slice$3, _index$3, r, _ref$1, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, nm1, k, q, nm3, x, _slice$4, _index$4, rand$1, _tuple, x$1, y, quotient, nm3Len, i, j, _tuple$1;
 		n = this;
 		if (n.length === 0) {
@@ -2333,7 +2333,8 @@ ModInverseÇ	Int.Ptr.prototype.ModInverse = function(g, p) {
 		_tuple = [nat.nil, nat.nil, nat.nil], x$1 = _tuple[0], y = _tuple[1], quotient = _tuple[2];
 		nm3Len = nm3.bitLen();
 		i = 0;
-		NextRandom: while (i < reps) {
+		NextRandom:
+		while (i < reps) {
 			x$1 = x$1.random(rand$1, nm3, nm3Len);
 			x$1 = x$1.add(x$1, natTwo);
 			y = y.expNN(x$1, q, n);

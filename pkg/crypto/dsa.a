@@ -1,4 +1,4 @@
-0Ç^ç
+0Ç^è
 crypto/dsaÇ;úpackage dsa
 import errors "errors"
 import io "io"
@@ -194,7 +194,7 @@ crypto/dsa0-0errorserrors0ioio0math/bigbigÇ”	var Parameters;
 	Parameters.init([["P", "", (go$ptrType(big.Int)), ""], ["Q", "", (go$ptrType(big.Int)), ""], ["G", "", (go$ptrType(big.Int)), ""]]);
 	PublicKey.init([["", "", Parameters, ""], ["Y", "", (go$ptrType(big.Int)), ""]]);
 	PrivateKey.init([["", "", PublicKey, ""], ["X", "", (go$ptrType(big.Int)), ""]]);
-00 0Ç$0Ç’GenerateParametersÇΩ	var GenerateParameters = go$pkg.GenerateParameters = function(params, rand, sizes) {
+00 0Ç&0Ç◊GenerateParametersÇø	var GenerateParameters = go$pkg.GenerateParameters = function(params, rand, sizes) {
 		var err, _tuple, L, N, _ref, _q, qBytes, _q$1, pBytes, q, p, rem, one, _tuple$1, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _lhs$1, _index$3, _slice$2, _index$4, _slice$3, _index$5, i, x, _tuple$2, _lhs$2, _index$6, _slice$4, _index$7, _slice$5, _index$8, _lhs$3, _index$9, _slice$6, _index$10, _slice$7, _index$11, h, g, pm1, e;
 		err = null;
 		_tuple = [0, 0], L = _tuple[0], N = _tuple[1];
@@ -222,7 +222,8 @@ crypto/dsa0-0errorserrors0ioio0math/bigbigÇ”	var Parameters;
 		rem = new big.Int.Ptr();
 		one = new big.Int.Ptr();
 		one.SetInt64(new Go$Int64(0, 1));
-		GeneratePrimes: while (true) {
+		GeneratePrimes:
+		while (true) {
 			_tuple$1 = io.ReadFull(rand, qBytes), err = _tuple$1[1];
 			if (!(go$interfaceIsEqual(err, null))) {
 				return err;

@@ -1,4 +1,4 @@
-0Éâgo/astÇ¨Ñpackage ast
+0Éãgo/astÇ¨Ñpackage ast
 import token "go/token"
 import strings "strings"
 import unicode "unicode"
@@ -1342,7 +1342,7 @@ go/scannerscannerÇπ>	var Node;
 	inspector.init([Node], [Go$Bool], false);
 	inspector.methods = [["Visit", "", [Node], [Visitor], false]];
 	(go$ptrType(inspector)).methods = [["Visit", "", [Node], [Visitor], false]];
-0)0	separator0indent0objKindStrings0É≥0Å†PosÅò	Comment.Ptr.prototype.Pos = function() {
+0)0	separator0indent0objKindStrings0É≥0Å†PosÅò	Comment.Ptr.prototype.Pos = function() {
 		var c;
 		c = this;
 		return c.Slash;
@@ -2536,12 +2536,13 @@ addCommentÇÖ	CommentMap.prototype.addComment = function(n, c) {
 		return list;
 	};
 	go$ptrType(CommentMap).prototype.Comments = function() { return new CommentMap(this.go$get()).Comments(); };
-0ÇÌsummaryÇ‡	var summary = function(list) {
+0ÇÔsummaryÇ‚	var summary = function(list) {
 		var buf, _ref, _i, _slice, _index, group, _ref$1, _i$1, _slice$1, _index$1, comment, bytes$1, _ref$2, _i$2, _slice$2, _index$2, b, i, _ref$3, _slice$3, _index$3;
 		buf = new bytes.Buffer.Ptr();
 		_ref = list;
 		_i = 0;
-		loop: while (_i < _ref.length) {
+		loop:
+		while (_i < _ref.length) {
 			group = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			_ref$1 = group.List;
 			_i$1 = 0;

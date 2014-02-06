@@ -1,4 +1,4 @@
-0ƒ»Ttext/template/parse‚2Wpackage parse
+0ƒ»\text/template/parse‚2Wpackage parse
 import list "container/list"
 import fmt "fmt"
 import strings "strings"
@@ -621,7 +621,7 @@ $$
 	Tree.init([["Name", "", Go$String, ""], ["ParseName", "", Go$String, ""], ["Root", "", (go$ptrType(ListNode)), ""], ["text", "text/template/parse", Go$String, ""], ["funcs", "text/template/parse", (go$sliceType((go$mapType(Go$String, go$emptyInterface)))), ""], ["lex", "text/template/parse", (go$ptrType(lexer)), ""], ["token", "text/template/parse", (go$arrayType(item, 3)), ""], ["peekCount", "text/template/parse", Go$Int, ""], ["vars", "text/template/parse", (go$sliceType(Go$String)), ""]]);
 	(go$ptrType(Tree)).methods = [["Copy", "", [], [(go$ptrType(Tree))], false], ["ErrorContext", "", [Node], [Go$String, Go$String], false], ["Parse", "", [Go$String, Go$String, Go$String, (go$mapType(Go$String, (go$ptrType(Tree)))), (go$sliceType((go$mapType(Go$String, go$emptyInterface))))], [(go$ptrType(Tree)), go$error], true], ["action", "text/template/parse", [], [Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [item], [], false], ["backup3", "text/template/parse", [item, item], [], false], ["command", "text/template/parse", [], [(go$ptrType(CommandNode))], false], ["elseControl", "text/template/parse", [], [Node], false], ["endControl", "text/template/parse", [], [Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [itemType, Go$String], [item], false], ["expectOneOf", "text/template/parse", [itemType, itemType, Go$String], [item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(ListNode)), Node], false], ["next", "text/template/parse", [], [item], false], ["nextNonSpace", "text/template/parse", [], [item], false], ["operand", "text/template/parse", [], [Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [Pos, Go$Int, (go$ptrType(PipeNode)), (go$ptrType(ListNode)), (go$ptrType(ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["peek", "text/template/parse", [], [item], false], ["peekNonSpace", "text/template/parse", [], [item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [Node], false], ["term", "text/template/parse", [], [Node], false], ["textOrAction", "text/template/parse", [], [Node], false], ["unexpected", "text/template/parse", [item, Go$String], [], false], ["useVar", "text/template/parse", [Pos, Go$String], [Node], false], ["withControl", "text/template/parse", [], [Node], false]];
 00key0
-textFormat0‚òý0‚ŽString‚‚	item.Ptr.prototype.String = function() {
+textFormat0‚ó0‚ŽString‚‚	item.Ptr.prototype.String = function() {
 		var _struct, i;
 		i = (_struct = this, new item.Ptr(_struct.typ, _struct.pos, _struct.val));
 		if (i.typ === 6) {
@@ -851,9 +851,10 @@ lexComment‚	var lexComment = function(l) {
 		l.emit(16);
 		return lexInsideAction;
 	};
-0‚álexIdentifier‚Î	var lexIdentifier = function(l) {
+0‚ãlexIdentifier‚Ð	var lexIdentifier = function(l) {
 		var r, word, _entry, _entry$1;
-		Loop: while (true) {
+		Loop:
+		while (true) {
 			r = l.next();
 			if (isAlphaNumeric(r)) {
 			} else {
@@ -927,9 +928,10 @@ lexComment‚	var lexComment = function(l) {
 		return false;
 	};
 	lexer.prototype.atTerminator = function() { return this.go$val.atTerminator(); };
-0‚/lexChar‚"	var lexChar = function(l) {
+0‚1lexChar‚$	var lexChar = function(l) {
 		var _ref, r;
-		Loop: while (true) {
+		Loop:
+		while (true) {
 			_ref = l.next();
 			switch (0) { default: if (_ref === 92) {
 				if (r = l.next(), !((r === -1)) && !((r === 10))) {
@@ -985,9 +987,10 @@ scanNumber‚	lexer.Ptr.prototype.scanNumber = function() {
 		return true;
 	};
 	lexer.prototype.scanNumber = function() { return this.go$val.scanNumber(); };
-0‚(lexQuote‚	var lexQuote = function(l) {
+0‚*lexQuote‚	var lexQuote = function(l) {
 		var _ref, r;
-		Loop: while (true) {
+		Loop:
+		while (true) {
 			_ref = l.next();
 			switch (0) { default: if (_ref === 92) {
 				if (r = l.next(), !((r === -1)) && !((r === 10))) {
@@ -1003,9 +1006,10 @@ scanNumber‚	lexer.Ptr.prototype.scanNumber = function() {
 		l.emit(17);
 		return lexInsideAction;
 	};
-0‚RlexRawQuote‚A	var lexRawQuote = function(l) {
+0‚TlexRawQuote‚C	var lexRawQuote = function(l) {
 		var _ref;
-		Loop: while (true) {
+		Loop:
+		while (true) {
 			_ref = l.next();
 			if (_ref === -1 || _ref === 10) {
 				return l.errorf("unterminated raw quoted string", new (go$sliceType(go$emptyInterface))([]));

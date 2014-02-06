@@ -1,4 +1,4 @@
-0‚çwdebug/gosym‚þpackage gosym
+0‚ç€debug/gosym‚þpackage gosym
 import binary "encoding/binary"
 import sync "sync"
 import bytes "bytes"
@@ -167,7 +167,7 @@ $$
 	(go$ptrType(UnknownLineError)).methods = [["Error", "", [], [Go$String], false]];
 	DecodingError.init([["off", "debug/gosym", Go$Int, ""], ["msg", "debug/gosym", Go$String, ""], ["val", "debug/gosym", go$emptyInterface, ""]]);
 	(go$ptrType(DecodingError)).methods = [["Error", "", [], [Go$String], false]];
-0B0littleEndianSymtab0bigEndianSymtab0oldLittleEndianSymtab0‚®‚0‚¹parse‚®	LineTable.Ptr.prototype.parse = function(targetPC, targetLine) {
+0B0littleEndianSymtab0bigEndianSymtab0oldLittleEndianSymtab0‚®‹0‚¹parse‚®	LineTable.Ptr.prototype.parse = function(targetPC, targetLine) {
 		var b, pc, line, t, _tuple, _slice, _index, code, val, x, _tuple$1;
 		b = (go$sliceType(Go$Uint8)).nil;
 		pc = new Go$Uint64(0, 0);
@@ -731,7 +731,7 @@ walksymtab‚”	var walksymtab = function(data, fn) {
 		}
 		return null;
 	};
-0‚#9NewTable‚#+	var NewTable = go$pkg.NewTable = function(symtab, pcln) {
+0‚#=NewTable‚#/	var NewTable = go$pkg.NewTable = function(symtab, pcln) {
 		var n, err, t, fname, nf, nz, lasttyp, obj, _slice, _index, lastf, i, _slice$1, _index$1, sym$1, _ref, n$1, _slice$2, _index$2, end, c, _slice$3, _index$3, depth, _ref$1, _i, j, _slice$4, _index$4, s, _key, n$2, _slice$5, _index$5, _tuple, np, na, end$1, _ref$2, _slice$6, _index$6, n$3, _slice$7, _index$7, fn, j$1, _slice$8, _index$8, s$1, _ref$3, n$4, _slice$9, _index$9, n$5, _slice$10, _index$10;
 		n = 0;
 		err = walksymtab(symtab, (function(s) {
@@ -866,7 +866,8 @@ walksymtab‚”	var walksymtab = function(data, fn) {
 				_tuple = [0, 0], np = _tuple[0], na = _tuple[1];
 				end$1 = 0;
 				end$1 = i + 1 >> 0;
-				countloop: while (end$1 < t.Syms.length) {
+				countloop:
+				while (end$1 < t.Syms.length) {
 					_ref$2 = (_slice$6 = t.Syms, _index$6 = end$1, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")).Type;
 					if (_ref$2 === 84 || _ref$2 === 116 || _ref$2 === 76 || _ref$2 === 108 || _ref$2 === 90 || _ref$2 === 122) {
 						break countloop;
@@ -1050,7 +1051,7 @@ LookupFunc‚
 		return (go$ptrType(Sym)).nil;
 	};
 	Table.prototype.SymByAddr = function(addr) { return this.go$val.SymByAddr(addr); };
-0‚úlineFromAline‚ç	Obj.Ptr.prototype.lineFromAline = function(aline) {
+0‚ülineFromAline‚é	Obj.Ptr.prototype.lineFromAline = function(aline) {
 		var o, stackEnt, noPath, tos, _ref, _i, _slice, _index, _struct, s, val;
 		o = this;
 		stackEnt = go$newType(0, "Struct", "gosym.stackEnt", "stackEnt", "debug/gosym", function(path_, start_, offset_, prev_) {
@@ -1065,7 +1066,8 @@ LookupFunc‚
 		tos = noPath;
 		_ref = o.Paths;
 		_i = 0;
-		pathloop: while (_i < _ref.length) {
+		pathloop:
+		while (_i < _ref.length) {
 			s = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Sym.Ptr(_struct.Value, _struct.Type, _struct.Name, _struct.GoType, _struct.Func));
 			val = (s.Value.low >> 0);
 			if (val > aline) {
@@ -1089,7 +1091,7 @@ LookupFunc‚
 		return [tos.path, ((aline - tos.start >> 0) - tos.offset >> 0) + 1 >> 0];
 	};
 	Obj.prototype.lineFromAline = function(aline) { return this.go$val.lineFromAline(aline); };
-0‚äalineFromLine‚Ñ	Obj.Ptr.prototype.alineFromLine = function(path, line) {
+0‚çalineFromLine‚Ô	Obj.Ptr.prototype.alineFromLine = function(path, line) {
 		var o, _ref, _i, _slice, _index, _struct, s, i, depth, incstart, _ref$1, _i$1, _slice$1, _index$1, _struct$1, s$1, val;
 		o = this;
 		if (line < 1) {
@@ -1109,7 +1111,8 @@ LookupFunc‚
 			line = line + ((s.Value.low >> 0)) >> 0;
 			_ref$1 = go$subslice(o.Paths, i);
 			_i$1 = 0;
-			pathloop: while (_i$1 < _ref$1.length) {
+			pathloop:
+			while (_i$1 < _ref$1.length) {
 				s$1 = (_struct$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Sym.Ptr(_struct$1.Value, _struct$1.Type, _struct$1.Name, _struct$1.GoType, _struct$1.Func));
 				val = (s$1.Value.low >> 0);
 				if ((depth === 1) && val >= line) {

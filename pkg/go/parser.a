@@ -1,4 +1,4 @@
-0ƒ¢	go/parser‚‰package parser
+0ƒ¥	go/parser‚‰package parser
 import bytes "bytes"
 import errors "errors"
 import ast "go/ast"
@@ -488,7 +488,7 @@ go/scannerscanner0strconvstrconv0unicodeunicode‚(	var Mode;
 	bailout.init([]);
 	parseSpecFunction.init([(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false);
 00
-unresolved0ƒj10‚ä
+unresolved0ƒj40‚ä
 readSource‚Ô	var readSource = function(filename, src) {
 		var s, _ref, _type, buf, err, _tuple;
 		if (!(go$interfaceIsEqual(src, null))) {
@@ -2048,7 +2048,7 @@ isTypeName‚[	var isTypeName = function(x) {
 		return x;
 	};
 	parser.prototype.checkExprOrType = function(x) { return this.go$val.checkExprOrType(x); };
-0‚¼parsePrimaryExpr‚¦	parser.Ptr.prototype.parsePrimaryExpr = function(lhs) {
+0‚¿parsePrimaryExpr‚©	parser.Ptr.prototype.parsePrimaryExpr = function(lhs) {
 		var p, x, _ref, _ref$1, pos;
 		var go$deferred = [];
 		try {
@@ -2057,7 +2057,8 @@ isTypeName‚[	var isTypeName = function(x) {
 				go$deferred.push({ fun: un, args: [trace(p, "PrimaryExpr")] });
 			}
 			x = p.parseOperand(lhs);
-			L: while (true) {
+			L:
+			while (true) {
 				_ref = p.tok;
 				if (_ref === 53) {
 					p.next();

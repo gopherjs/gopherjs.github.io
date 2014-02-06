@@ -1,4 +1,4 @@
-0ƒCAfmt‚lÖpackage fmt
+0ƒCFfmt‚lÖpackage fmt
 import strconv "strconv"
 import utf8 "unicode/utf8"
 import errors "errors"
@@ -484,7 +484,7 @@ falseBytes0commaSpaceBytes0nilAngleBytes0nilParenBytes0
 mapBytes0percentBangBytes0missingBytes0badIndexBytes0
 panicBytes0
 extraBytes0irparenBytes0
-bytesBytes0badWidthBytes0badPrecBytes0noVerbBytes0ppFree0	intBits0uintptrBits0space0ssFree0complexError0	boolError0ƒ›$0‚w
+bytesBytes0badWidthBytes0badPrecBytes0noVerbBytes0ppFree0	intBits0uintptrBits0space0ssFree0complexError0	boolError0ƒ›)0‚w
 clearflags‚g	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;
@@ -1755,7 +1755,7 @@ printValue‚S	pp.Ptr.prototype.printValue = function(value, verb, plus, goSynta
 		return wasString;
 	};
 	pp.prototype.printValue = function(value, verb, plus, goSyntax, depth) { return this.go$val.printValue(value, verb, plus, goSyntax, depth); };
-0‚&printReflectValue‚%ù	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
+0‚&printReflectValue‚%û	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
 		var wasString, p, _struct, oldValue, _struct$1, _struct$2, f, _ref, x, v, v$1, v$2, v$3, keys, _ref$1, _i, _slice, _index, _struct$3, key, i, v$4, v$5, _struct$4, v$6, _struct$5, _struct$6, v$7, v$8, v$9, _struct$7, v$10, t, i$1, v$11, v$12, f$1, _struct$8, v$13, v$14, _struct$9, _struct$10, v$15, _struct$11, value$1, v$16, v$17, v$18, _struct$12, typ, bytes, _ref$2, _i$1, i$2, _slice$1, _index$1, v$19, v$20, v$21, v$22, i$3, v$23, v$24, _struct$13, v$25, v$26, v$27, _struct$14, a, _ref$3, v$28, _struct$15, v$29, _struct$16, _struct$17, _struct$18, _struct$19;
 		wasString = false;
 		p = this;
@@ -1763,7 +1763,8 @@ printValue‚S	pp.Ptr.prototype.printValue = function(value, verb, plus, goSynta
 		p.value = (_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 		f = (_struct$2 = value, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 		_ref = f.Kind();
-		BigSwitch: switch (0) { default: if (_ref === 1) {
+		BigSwitch:
+		switch (0) { default: if (_ref === 1) {
 			p.fmtBool(f.Bool(), verb);
 		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
 			p.fmtInt64(f.Int(), verb);
@@ -1984,7 +1985,7 @@ intFromArg‚$	var intFromArg = function(a, argNum) {
 		return [newArgNum, newi, found];
 	};
 	pp.prototype.argNumber = function(argNum, format, i, numArgs) { return this.go$val.argNumber(argNum, format, i, numArgs); };
-0‚ÇdoPrintf‚¹	pp.Ptr.prototype.doPrintf = function(format, a) {
+0‚ÊdoPrintf‚¼	pp.Ptr.prototype.doPrintf = function(format, a) {
 		var p, end, argNum, afterIndex, i, lasti, v, _ref, _tuple, _tuple$1, v$1, _tuple$2, _tuple$3, _tuple$4, v$2, _tuple$5, _tuple$6, v$3, _tuple$7, c, w, v$4, v$5, v$6, v$7, v$8, _slice, _index, arg, goSyntax, plus, v$9, _slice$1, _index$1, arg$1, v$10, v$11, v$12, v$13;
 		p = this;
 		end = format.length;
@@ -2006,7 +2007,8 @@ intFromArg‚$	var intFromArg = function(a, argNum) {
 			}
 			i = i + 1 >> 0;
 			p.fmt.clearflags();
-			F: while (i < end) {
+			F:
+			while (i < end) {
 				_ref = format.charCodeAt(i);
 				if (_ref === 35) {
 					p.fmt.sharp = true;

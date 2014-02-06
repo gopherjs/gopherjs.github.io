@@ -1,4 +1,4 @@
-0ƒ=¦regexp/syntax‚#package syntax
+0ƒ=―regexp/syntax‚#package syntax
 import unicode "unicode"
 import sort "sort"
 import strings "strings"
@@ -276,7 +276,7 @@ $$
 	(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
 0γ0anyRuneNotNL0	anyRune0
 anyTable0code10code20code30	perlGroup0code40code50code60code70code80code90code100code110code120code130code140code150code160code170
-posixGroup0ƒνω0‚Ρnext‚Η	patchList.prototype.next = function(p) {
+posixGroup0ƒξ0‚Ρnext‚Η	patchList.prototype.next = function(p) {
 		var l, _slice, _index, i;
 		l = this.go$val;
 		i = (_slice = p.Inst, _index = (l >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -1046,7 +1046,7 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		}
 		return re;
 	};
-0‚Parse‚	var Parse = go$pkg.Parse = function(s, flags) {
+0‚Parse‚	var Parse = go$pkg.Parse = function(s, flags) {
 		var err, p, err$1, c, op, lastRepeat, _tuple, min, max, t, repeat, _ref, _tuple$1, _lhs, _tuple$2, before, _ref$1, after, _tuple$3, before$1, _tuple$4, min$1, max$1, after$1, ok, _tuple$5, _ref$2, lit, i, re, _tuple$6, r, rest, err$2, r$1, _tuple$7, rest$1, _tuple$8, _tuple$9, n, _slice, _index;
 		if (!((((flags & 2) >>> 0) === 0))) {
 			if (err = checkUTF8(s), !(go$interfaceIsEqual(err, null))) {
@@ -1061,7 +1061,8 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		while (!(t === "")) {
 			repeat = "";
 			_ref = t.charCodeAt(0);
-			BigSwitch: switch (0) { default: if (_ref === 40) {
+			BigSwitch:
+			switch (0) { default: if (_ref === 40) {
 				if (!((((p.flags & 64) >>> 0) === 0)) && t.length >= 2 && (t.charCodeAt(1) === 63)) {
 					if (_tuple$1 = p.parsePerlFlags(t), t = _tuple$1[0], err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
 						return [(go$ptrType(Regexp)).nil, err$1];
@@ -1259,8 +1260,8 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 	};
 	parser.prototype.parseRepeat = function(s) { return this.go$val.parseRepeat(s); };
 0‚
-¨parsePerlFlags‚
-”	parser.Ptr.prototype.parsePerlFlags = function(s) {
+ªparsePerlFlags‚
+–	parser.Ptr.prototype.parsePerlFlags = function(s) {
 		var rest, err, p, t, end, _tuple, _tuple$1, capture, name, _tuple$2, _tuple$3, re, _tuple$4, c, flags, sign, sawFlag, _tuple$5, _tuple$6, _ref, _tuple$7, _tuple$8;
 		rest = "";
 		err = null;
@@ -1298,7 +1299,8 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		flags = p.flags;
 		sign = 1;
 		sawFlag = false;
-		Loop: while (!(t === "")) {
+		Loop:
+		while (!(t === "")) {
 			if (_tuple$5 = nextRune(t), c = _tuple$5[0], t = _tuple$5[1], err = _tuple$5[2], !(go$interfaceIsEqual(err, null))) {
 				_tuple$6 = ["", err], rest = _tuple$6[0], err = _tuple$6[1];
 				return [rest, err];
@@ -1510,7 +1512,7 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return null;
 	};
 	parser.prototype.parseRightParen = function() { return this.go$val.parseRightParen(); };
-0‚parseEscape‚ύ	parser.Ptr.prototype.parseEscape = function(s) {
+0‚parseEscape‚ÿ	parser.Ptr.prototype.parseEscape = function(s) {
 		var r, rest, err, p, t, _tuple, _tuple$1, c, _tuple$2, _ref, i, x, _tuple$3, x$1, _tuple$4, _tuple$5, _tuple$6, nhex, _tuple$7, _tuple$8, v, x$2, _tuple$9, x$3, _tuple$10, _tuple$11, y, x$4, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$20;
 		r = 0;
 		rest = "";
@@ -1527,7 +1529,8 @@ newLiteral‚	parser.Ptr.prototype.newLiteral = function(r, flags) {
 			return [r, rest, err];
 		}
 		_ref = c;
-		Switch: switch (0) { default: if (_ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
+		Switch:
+		switch (0) { default: if (_ref === 49 || _ref === 50 || _ref === 51 || _ref === 52 || _ref === 53 || _ref === 54 || _ref === 55) {
 			if (t === "" || t.charCodeAt(0) < 48 || t.charCodeAt(0) > 55) {
 				break;
 			}
@@ -2254,13 +2257,14 @@ IsWordChar	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return [prefix, complete];
 	};
 	Prog.prototype.Prefix = function() { return this.go$val.Prefix(); };
-0‚Z	StartCond‚K	Prog.Ptr.prototype.StartCond = function() {
+0‚\	StartCond‚M	Prog.Ptr.prototype.StartCond = function() {
 		var p, flag, pc, _slice, _index, i, _ref, _slice$1, _index$1;
 		p = this;
 		flag = 0;
 		pc = (p.Start >>> 0);
 		i = (_slice = p.Inst, _index = pc, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-		Loop: while (true) {
+		Loop:
+		while (true) {
 			_ref = i.Op;
 			if (_ref === 3) {
 				flag = (flag | ((i.Arg << 24 >>> 24))) >>> 0;

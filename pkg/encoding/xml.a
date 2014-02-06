@@ -1,4 +1,4 @@
-0ÉÎûencoding/xmlÇhËpackage xml
+0ÉÎ™encoding/xmlÇhËpackage xml
 import bufio "bufio"
 import bytes "bytes"
 import encoding "encoding"
@@ -591,7 +591,7 @@ endComment0endProcInst0endDirective0marshalerType0marshalerAttrType0
 htmlEntity0 0htmlAutoClose0
 esc_quot0
 esc_apos0	esc_amp0esc_lt0esc_gt0	esc_tab0esc_nl0esc_cr0
-esc_fffd0É4&0ÇMarshalÅ˜	var Marshal = go$pkg.Marshal = function(v) {
+esc_fffd0É420ÇMarshalÅ˜	var Marshal = go$pkg.Marshal = function(v) {
 		var b, err;
 		b = new bytes.Buffer.Ptr();
 		if (err = NewEncoder(b).Encode(v), !(go$interfaceIsEqual(err, null))) {
@@ -1455,7 +1455,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		return null;
 	};
 	Decoder.prototype.unmarshalAttr = function(val, attr) { return this.go$val.unmarshalAttr(val, attr); };
-0Ç4Ø	unmarshalÇ4†	Decoder.Ptr.prototype.unmarshal = function(val, start) {
+0Ç4±	unmarshalÇ4¢	Decoder.Ptr.prototype.unmarshal = function(val, start) {
 		var p, _tuple, tok, err, ok, _tuple$1, _struct, _struct$1, t, _struct$2, _struct$3, x, _struct$4, pv, x$1, x$2, _struct$5, pv$1, x$3, data, saveData, comment, saveComment, saveXML, saveXMLIndex, saveXMLData, saveAny, sv, tinfo, err$1, _struct$6, v, _ref, typ, _struct$7, n, x$4, ncap, _struct$8, new$1, _struct$9, _struct$10, _struct$11, err$2, _struct$12, _struct$13, typ$1, x$5, _struct$14, _struct$15, _tuple$2, finfo, e, _struct$16, _struct$17, fv, ok$1, _tuple$3, x$6, x$7, _struct$18, _ref$1, _i, i, _slice, _index, finfo$1, _ref$2, _struct$19, _struct$20, strv, _ref$3, _i$1, _slice$1, _index$1, _struct$21, _struct$22, a, err$3, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, savedOffset, _tuple$4, tok$1, err$4, t$1, _ref$4, _type, consumed, _tuple$5, _struct$34, err$5, _struct$35, err$6, err$7, x$8, _struct$36, pv$2, err$8, x$9, err$9, _struct$37, _struct$38, t$2, _ref$5, _struct$39, _struct$40, t$3, _ref$6, _struct$41;
 		p = this;
 		if (start === (go$ptrType(StartElement)).nil) {
@@ -1601,7 +1601,8 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		} else {
 			return errors.New("unknown type " + v.Type().String());
 		} }
-		Loop: while (true) {
+		Loop:
+		while (true) {
 			savedOffset = 0;
 			if (saveXML.IsValid()) {
 				savedOffset = p.savedOffset();
@@ -1742,7 +1743,7 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		err = null;
 		return err;
 	};
-0Ç´unmarshalPathÇò	Decoder.Ptr.prototype.unmarshalPath = function(tinfo, sv, parents, start) {
+0Ç≠unmarshalPathÇö	Decoder.Ptr.prototype.unmarshalPath = function(tinfo, sv, parents, start) {
 		var consumed, err, p, recurse, _ref, _i, i, _slice, _index, finfo, _ref$1, _i$1, j, _slice$1, _index$1, _slice$2, _index$2, _struct, _struct$1, _tuple, _slice$3, _index$3, _tuple$1, tok, _tuple$2, _tuple$3, t, _ref$2, _type, _tuple$4, _struct$2, consumed2, err$1, _tuple$5, err$2, _tuple$6, _tuple$7;
 		consumed = false;
 		err = null;
@@ -1750,7 +1751,8 @@ writeStartÇ	printer.Ptr.prototype.writeStart = function(start) {
 		recurse = false;
 		_ref = tinfo.fields;
 		_i = 0;
-		Loop: while (_i < _ref.length) {
+		Loop:
+		while (_i < _ref.length) {
 			i = _i;
 			finfo = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (((finfo.flags & 1) === 0) || finfo.parents.length < parents.length || !(finfo.xmlns === "") && !(finfo.xmlns === start.Name.Space)) {
@@ -2021,12 +2023,13 @@ IgetTypeInfoÇ
 		}
 		return b;
 	};
-0ÇÚaddFieldInfoÇ‡	var addFieldInfo = function(typ, tinfo, newf) {
+0ÇÙaddFieldInfoÇ‚	var addFieldInfo = function(typ, tinfo, newf) {
 		var conflicts, _ref, _i, i, _slice, _index, oldf, minl, p, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _struct, _ref$1, _i$1, _slice$5, _index$5, i$1, _slice$6, _index$6, _ref$2, _i$2, _slice$7, _index$7, i$2, _slice$8, _index$8, oldf$1, _struct$1, f1, _struct$2, f2, c, _slice$9, _index$9, i$3, _struct$3;
 		conflicts = (go$sliceType(Go$Int)).nil;
 		_ref = tinfo.fields;
 		_i = 0;
-		Loop: while (_i < _ref.length) {
+		Loop:
+		while (_i < _ref.length) {
 			i = _i;
 			oldf = (_slice = tinfo.fields, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			if (!(((oldf.flags & 63) === (newf.flags & 63)))) {
@@ -2445,7 +2448,7 @@ popElementÇj	Decoder.Ptr.prototype.popElement = function(t) {
 		return d.rawToken();
 	};
 	Decoder.prototype.RawToken = function() { return this.go$val.RawToken(); };
-0Ç%0rawTokenÇ%"	Decoder.Ptr.prototype.rawToken = function() {
+0Ç%4rawTokenÇ%&	Decoder.Ptr.prototype.rawToken = function() {
 		var d, x, _struct, _tuple, b, ok, data, _tuple$1, _ref, name, _tuple$2, _struct$1, _tuple$3, x$1, _struct$2, target, _tuple$4, b0, _tuple$5, data$1, enc, _tuple$6, x$2, newr, err, x$3, _tuple$7, _ref$1, _tuple$8, _tuple$9, b0$1, b1, _tuple$10, _tuple$11, data$2, i, _tuple$12, data$3, inquote, depth, _tuple$13, s, i$1, _tuple$14, j, _tuple$15, b0$2, b1$1, _tuple$16, _tuple$17, x$4, name$1, empty, attr, _tuple$18, _struct$3, _tuple$19, _tuple$20, n, x$5, x$6, nattr, _slice, _index, a, _tuple$21, _struct$4, _tuple$22, data$4, _struct$5, x$7, _struct$6;
 		d = this;
 		if (!(go$interfaceIsEqual(d.err, null))) {
@@ -2587,7 +2590,8 @@ popElementÇj	Decoder.Ptr.prototype.popElement = function(t) {
 				if ((inquote === 0) && (b === 62) && (depth === 0)) {
 					break;
 				}
-				HandleB: while (true) {
+				HandleB:
+				while (true) {
 					d.buf.WriteByte(b);
 					if (b === inquote) {
 						inquote = 0;
@@ -2811,13 +2815,14 @@ popElementÇj	Decoder.Ptr.prototype.popElement = function(t) {
 		d.nextByte = (b >> 0);
 	};
 	Decoder.prototype.ungetc = function(b) { return this.go$val.ungetc(b); };
-0Ç¡textÇ∑	Decoder.Ptr.prototype.text = function(quote, cdata) {
+0Ç√textÇπ	Decoder.Ptr.prototype.text = function(quote, cdata) {
 		var d, _tuple, b0, b1, trunc, _tuple$1, b, ok, before, ok$1, text, haveText, _tuple$2, _tuple$3, base, _tuple$4, start, _tuple$5, s, _tuple$6, n, err, _tuple$7, name, s$1, ok$2, _tuple$8, _entry, r, _tuple$9, _entry$1, _tuple$10, _tuple$11, ent, _tuple$12, data, buf, _tuple$13, r$1, size;
 		d = this;
 		_tuple = [0, 0], b0 = _tuple[0], b1 = _tuple[1];
 		trunc = 0;
 		d.buf.Reset();
-		Input: while (true) {
+		Input:
+		while (true) {
 			_tuple$1 = d.getc(), b = _tuple$1[0], ok = _tuple$1[1];
 			if (!ok) {
 				if (cdata) {

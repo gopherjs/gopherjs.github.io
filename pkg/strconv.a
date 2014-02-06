@@ -1,4 +1,4 @@
-0ƒ°Þstrconv‚package strconv
+0ƒ°àstrconv‚package strconv
 import math "math"
 import errors "errors"
 import utf8 "unicode/utf8"
@@ -118,7 +118,7 @@ $$
 	decimalSlice.init([["d", "strconv", (go$sliceType(Go$Uint8)), ""], ["nd", "strconv", Go$Int, ""], ["dp", "strconv", Go$Int, ""], ["neg", "strconv", Go$Bool, ""]]);
 0à0
 optimize0powtab0float64pow100float32pow100 0 0
-leftcheats0smallPowersOfTen0powersOfTen0uint64pow100float32info0float64info0	isPrint160isNotPrint160	isPrint320isNotPrint320shifts0ƒŒ0‚»	ParseBool‚¬	var ParseBool = go$pkg.ParseBool = function(str) {
+leftcheats0smallPowersOfTen0powersOfTen0uint64pow100float32info0float64info0	isPrint160isNotPrint160	isPrint320isNotPrint320shifts0ƒŽ0‚»	ParseBool‚¬	var ParseBool = go$pkg.ParseBool = function(str) {
 		var value, err, _ref, _tuple, _tuple$1, _tuple$2;
 		value = false;
 		err = null;
@@ -1211,14 +1211,15 @@ u	extFloat.Ptr.prototype.AssignDecimal = function(mantissa, exp10, neg, trunc, f
 		return ok;
 	};
 	extFloat.prototype.AssignDecimal = function(mantissa, exp10, neg, trunc, flt) { return this.go$val.AssignDecimal(mantissa, exp10, neg, trunc, flt); };
-0‚Nfrexp10‚A	extFloat.Ptr.prototype.frexp10 = function() {
+0‚Pfrexp10‚C	extFloat.Ptr.prototype.frexp10 = function() {
 		var exp10, index, f, _q, x, x$1, approxExp10, _q$1, i, exp, _struct, _tuple;
 		exp10 = 0;
 		index = 0;
 		f = this;
 		approxExp10 = (_q = (x = (-46 - f.exp >> 0), x$1 = 28, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) / 93, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
 		i = (_q$1 = ((approxExp10 - -348 >> 0)) / 8, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero"));
-		Loop: while (true) {
+		Loop:
+		while (true) {
 			exp = (f.exp + powersOfTen[i].exp >> 0) + 64 >> 0;
 			if (exp < -60) {
 				i = i + 1 >> 0;

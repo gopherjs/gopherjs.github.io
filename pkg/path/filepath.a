@@ -1,4 +1,4 @@
-0‚†]path/filepath‚&package filepath
+0‚†apath/filepath‚&package filepath
 import errors "errors"
 import os "os"
 import runtime "runtime"
@@ -177,12 +177,12 @@ $$
 	byName.init(os.FileInfo);
 	byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 	(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-00 0 0‚Y
-0‚–Match‚‹	var Match = go$pkg.Match = function(pattern, name) {
+00 0 0‚Y0‚˜Match‚	var Match = go$pkg.Match = function(pattern, name) {
 		var matched, err, star, chunk, _tuple, _tuple$1, _tuple$2, t, ok, err$1, _tuple$3, i, _tuple$4, t$1, ok$1, err$2, _tuple$5, _tuple$6, _tuple$7;
 		matched = false;
 		err = null;
-		Pattern: while (pattern.length > 0) {
+		Pattern:
+		while (pattern.length > 0) {
 			star = false;
 			chunk = "";
 			_tuple = scanChunk(pattern), star = _tuple[0], chunk = _tuple[1], pattern = _tuple[2];
@@ -224,7 +224,7 @@ $$
 		_tuple$7 = [name.length === 0, null], matched = _tuple$7[0], err = _tuple$7[1];
 		return [matched, err];
 	};
-0‚1	scanChunk‚"	var scanChunk = function(pattern) {
+0‚3	scanChunk‚$	var scanChunk = function(pattern) {
 		var star, chunk, rest, inrange, i, _ref, _tuple;
 		star = false;
 		chunk = "";
@@ -236,7 +236,8 @@ $$
 		inrange = false;
 		i = 0;
 		i = 0;
-		Scan: while (i < pattern.length) {
+		Scan:
+		while (i < pattern.length) {
 			_ref = pattern.charCodeAt(i);
 			if (_ref === 92) {
 				if ((i + 1 >> 0) < pattern.length) {

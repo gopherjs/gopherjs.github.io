@@ -1,4 +1,4 @@
-0‚V<encoding/csv‚êpackage csv
+0‚V?encoding/csv‚êpackage csv
 import bufio "bufio"
 import bytes "bytes"
 import errors "errors"
@@ -124,7 +124,7 @@ $$
 	(go$ptrType(Reader)).methods = [["Read", "", [], [(go$sliceType(Go$String)), go$error], false], ["ReadAll", "", [], [(go$sliceType((go$sliceType(Go$String)))), go$error], false], ["error", "encoding/csv", [go$error], [go$error], false], ["parseField", "encoding/csv", [], [Go$Bool, Go$Int32, go$error], false], ["parseRecord", "encoding/csv", [], [(go$sliceType(Go$String)), go$error], false], ["readRune", "encoding/csv", [], [Go$Int32, go$error], false], ["skip", "encoding/csv", [Go$Int32], [go$error], false], ["unreadRune", "encoding/csv", [], [], false]];
 	Writer.init([["Comma", "", Go$Int32, ""], ["UseCRLF", "", Go$Bool, ""], ["w", "encoding/csv", (go$ptrType(bufio.Writer)), ""]]);
 	(go$ptrType(Writer)).methods = [["Error", "", [], [go$error], false], ["Flush", "", [], [], false], ["Write", "", [(go$sliceType(Go$String))], [go$error], false], ["WriteAll", "", [(go$sliceType((go$sliceType(Go$String))))], [go$error], false], ["fieldNeedsQuotes", "encoding/csv", [Go$String], [Go$Bool], false]];
-00 0 0 0 0‚1ˆ0‚'Error‚	ParseError.Ptr.prototype.Error = function() {
+00 0 0 0 0‚1‹0‚'Error‚	ParseError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return fmt.Sprintf("line %d, column %d: %s", new (go$sliceType(go$emptyInterface))([new Go$Int(e.Line), new Go$Int(e.Column), e.Err]));
@@ -257,8 +257,8 @@ unreadRuneÍ	Reader.Ptr.prototype.unreadRune = function() {
 		}
 	};
 	Reader.prototype.parseRecord = function() { return this.go$val.parseRecord(); };
-0‚º
-parseField‚ª	Reader.Ptr.prototype.parseField = function() {
+0‚½
+parseField‚­	Reader.Ptr.prototype.parseField = function() {
 		var haveField, delim, err, r, _tuple, r1, _tuple$1, _tuple$2, _tuple$3, _ref, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _ref$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18;
 		haveField = false;
 		delim = 0;
@@ -287,7 +287,8 @@ parseField‚ª	Reader.Ptr.prototype.parseField = function() {
 			_tuple$5 = [true, r1, null], haveField = _tuple$5[0], delim = _tuple$5[1], err = _tuple$5[2];
 			return [haveField, delim, err];
 		} else if (_ref === 34) {
-			Quoted: while (true) {
+			Quoted:
+			while (true) {
 				_tuple$6 = r.readRune(), r1 = _tuple$6[0], err = _tuple$6[1];
 				if (!(go$interfaceIsEqual(err, null))) {
 					if (go$interfaceIsEqual(err, io.EOF)) {
