@@ -1,4 +1,4 @@
-0ƒ¼	go/parser‚‰package parser
+0ƒ¢	go/parser‚‰package parser
 import bytes "bytes"
 import errors "errors"
 import ast "go/ast"
@@ -488,7 +488,7 @@ go/scannerscanner0strconvstrconv0unicodeunicode‚(	var Mode;
 	bailout.init([]);
 	parseSpecFunction.init([(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false);
 00
-unresolved0ƒjK0‚ä
+unresolved0ƒj10‚ä
 readSource‚Ô	var readSource = function(filename, src) {
 		var s, _ref, _type, buf, err, _tuple;
 		if (!(go$interfaceIsEqual(src, null))) {
@@ -2422,7 +2422,7 @@ isTypeName‚[	var isTypeName = function(x) {
 		return new ast.BadExpr.Ptr(s.Pos(), s.End());
 	};
 	parser.prototype.makeExpr = function(s) { return this.go$val.makeExpr(s); };
-0‚uparseIfStmt‚d	parser.Ptr.prototype.parseIfStmt = function() {
+0‚[parseIfStmt‚J	parser.Ptr.prototype.parseIfStmt = function() {
 		var p, pos, s, x, prevLev, _tuple, body, else_;
 		var go$deferred = [];
 		try {
@@ -2435,24 +2435,22 @@ isTypeName‚[	var isTypeName = function(x) {
 			go$deferred.push({ recv: p, method: "closeScope", args: [] });
 			s = null;
 			x = null;
-			{
-				prevLev = p.exprLev;
-				p.exprLev = -1;
+			prevLev = p.exprLev;
+			p.exprLev = -1;
+			if (p.tok === 57) {
+				p.next();
+				x = p.parseRhs();
+			} else {
+				_tuple = p.parseSimpleStmt(0), s = _tuple[0];
 				if (p.tok === 57) {
 					p.next();
 					x = p.parseRhs();
 				} else {
-					_tuple = p.parseSimpleStmt(0), s = _tuple[0];
-					if (p.tok === 57) {
-						p.next();
-						x = p.parseRhs();
-					} else {
-						x = p.makeExpr(s);
-						s = null;
-					}
+					x = p.makeExpr(s);
+					s = null;
 				}
-				p.exprLev = prevLev;
 			}
+			p.exprLev = prevLev;
 			body = p.parseBlockStmt();
 			else_ = null;
 			if (p.tok === 68) {
