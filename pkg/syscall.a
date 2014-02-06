@@ -1,4 +1,4 @@
-0ÉÉπsyscallÉ%:package syscall
+0Éè≈syscallÉ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -2699,7 +2699,7 @@ $$
 	BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
 	BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
 	Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0ÉñË0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
+0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0É¢Ù0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
 0Å¨BpfJumpÅ†	var BpfJump = go$pkg.BpfJump = function(code, k, jt, jf) {
@@ -3003,10 +3003,11 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 0Åáruntime_AfterForkr	var runtime_AfterFork = function() {
 		throw go$panic("Native function not implemented: runtime_AfterFork");
 	};
-0Ç‹forkAndExecInChildÇƒ	var forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
-		var pid, err, _tuple, r1, r2, err1, nextfd, i, fd, _ref, _i, _slice, _index, ufd, i$1, _slice$1, _index$1, darwin, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, cred, ngroups, groups, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _slice$2, _index$2, _slice$3, _index$3, _tuple$13, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _tuple$14, _slice$8, _index$8, _tuple$15, _slice$9, _index$9, _tuple$16, _tuple$17, _tuple$18, v;
+0Ç$ËforkAndExecInChildÇ$–	var forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
+		var go$this = this, pid, err, _tuple, r1, r2, err1, nextfd, i, fd, _ref, _i, _slice, _index, ufd, i$1, _slice$1, _index$1, darwin, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, cred, ngroups, groups, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _slice$2, _index$2, _slice$3, _index$3, _tuple$13, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _tuple$14, _slice$8, _index$8, _tuple$15, _slice$9, _index$9, _tuple$16, _tuple$17, _tuple$18, v;
 		pid = 0;
 		err = 0;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		_tuple = [0, 0], r1 = _tuple[0], r2 = _tuple[1], err1 = 0, nextfd = 0, i = 0;
 		fd = (go$sliceType(Go$Int)).make(attr.Files.length, 0, function() { return 0; });
 		nextfd = attr.Files.length;
@@ -3038,124 +3039,125 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 			_tuple$3 = [(r1 >> 0), 0], pid = _tuple$3[0], err = _tuple$3[1];
 			return [pid, err];
 		}
-		if (sys.Ptrace) {
+		/* if (sys.Ptrace) { */ if (sys.Ptrace) {} else { go$s = 2; continue; }
 			_tuple$4 = RawSyscall(26, 0, 0, 0), err1 = _tuple$4[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
-		}
-		if (sys.Setsid) {
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 3; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 3:
+		/* } */ case 2:
+		/* if (sys.Setsid) { */ if (sys.Setsid) {} else { go$s = 4; continue; }
 			_tuple$5 = RawSyscall(147, 0, 0, 0), err1 = _tuple$5[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
-		}
-		if (sys.Setpgid) {
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 5; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 5:
+		/* } */ case 4:
+		/* if (sys.Setpgid) { */ if (sys.Setpgid) {} else { go$s = 6; continue; }
 			_tuple$6 = RawSyscall(82, 0, 0, 0), err1 = _tuple$6[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
-		}
-		if (!(go$pointerIsEqual(chroot, (go$ptrType(Go$Uint8)).nil))) {
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 7; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 7:
+		/* } */ case 6:
+		/* if (!(go$pointerIsEqual(chroot, (go$ptrType(Go$Uint8)).nil))) { */ if (!(go$pointerIsEqual(chroot, (go$ptrType(Go$Uint8)).nil))) {} else { go$s = 8; continue; }
 			_tuple$7 = RawSyscall(61, chroot, 0, 0), err1 = _tuple$7[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
-		}
-		if (cred = sys.Credential, !(cred === (go$ptrType(Credential)).nil)) {
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 9; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 9:
+		/* } */ case 8:
+		/* if (cred = sys.Credential, !(cred === (go$ptrType(Credential)).nil)) { */ if (cred = sys.Credential, !(cred === (go$ptrType(Credential)).nil)) {} else { go$s = 10; continue; }
 			ngroups = (cred.Groups.length >>> 0);
 			groups = 0;
 			if (ngroups > 0) {
 				groups = go$sliceToArray(cred.Groups);
 			}
 			_tuple$8 = RawSyscall(80, ngroups, groups, 0), err1 = _tuple$8[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 11; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 11:
 			_tuple$9 = RawSyscall(181, (cred.Gid >>> 0), 0, 0), err1 = _tuple$9[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 12; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 12:
 			_tuple$10 = RawSyscall(23, (cred.Uid >>> 0), 0, 0), err1 = _tuple$10[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
-		}
-		if (!(go$pointerIsEqual(dir, (go$ptrType(Go$Uint8)).nil))) {
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 13; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 13:
+		/* } */ case 10:
+		/* if (!(go$pointerIsEqual(dir, (go$ptrType(Go$Uint8)).nil))) { */ if (!(go$pointerIsEqual(dir, (go$ptrType(Go$Uint8)).nil))) {} else { go$s = 14; continue; }
 			_tuple$11 = RawSyscall(12, dir, 0, 0), err1 = _tuple$11[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
-		}
-		if (pipe$1 < nextfd) {
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 15; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 15:
+		/* } */ case 14:
+		/* if (pipe$1 < nextfd) { */ if (pipe$1 < nextfd) {} else { go$s = 16; continue; }
 			_tuple$12 = RawSyscall(90, (pipe$1 >>> 0), (nextfd >>> 0), 0), err1 = _tuple$12[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 17; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 17:
 			RawSyscall(92, (nextfd >>> 0), 2, 1);
 			pipe$1 = nextfd;
 			nextfd = nextfd + 1 >> 0;
-		}
+		/* } */ case 16:
 		i = 0;
-		while (i < fd.length) {
-			if ((_slice$2 = fd, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >= 0 && (_slice$3 = fd, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) < i) {
+		/* while (i < fd.length) { */ case 18: if(!(i < fd.length)) { go$s = 19; continue; }
+			/* if ((_slice$2 = fd, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >= 0 && (_slice$3 = fd, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) < i) { */ if ((_slice$2 = fd, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >= 0 && (_slice$3 = fd, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) < i) {} else { go$s = 20; continue; }
 				_tuple$13 = RawSyscall(90, ((_slice$4 = fd, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) >>> 0), (nextfd >>> 0), 0), err1 = _tuple$13[2];
-				if (!((err1 === 0))) {
-					go$notSupported("goto");
-				}
+				/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 21; continue; }
+					/* goto childerror */ go$s = 1; continue;
+				/* } */ case 21:
 				RawSyscall(92, (nextfd >>> 0), 2, 1);
 				_slice$5 = fd, _index$5 = i, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = nextfd) : go$throwRuntimeError("index out of range");
 				nextfd = nextfd + 1 >> 0;
 				if (nextfd === pipe$1) {
 					nextfd = nextfd + 1 >> 0;
 				}
-			}
+			/* } */ case 20:
 			i = i + 1 >> 0;
-		}
+		/* } */ go$s = 18; continue; case 19:
 		i = 0;
-		while (i < fd.length) {
+		/* while (i < fd.length) { */ case 22: if(!(i < fd.length)) { go$s = 23; continue; }
 			if ((_slice$6 = fd, _index$6 = i, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) === -1) {
 				RawSyscall(6, (i >>> 0), 0, 0);
 				i = i + 1 >> 0;
-				continue;
+				/* continue; */ go$s = 22; continue;
 			}
-			if ((_slice$7 = fd, _index$7 = i, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) === i) {
+			/* if ((_slice$7 = fd, _index$7 = i, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) === i) { */ if ((_slice$7 = fd, _index$7 = i, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")) === i) {} else { go$s = 24; continue; }
 				_tuple$14 = RawSyscall(92, ((_slice$8 = fd, _index$8 = i, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")) >>> 0), 2, 0), err1 = _tuple$14[2];
-				if (!((err1 === 0))) {
-					go$notSupported("goto");
-				}
+				/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 25; continue; }
+					/* goto childerror */ go$s = 1; continue;
+				/* } */ case 25:
 				i = i + 1 >> 0;
-				continue;
-			}
+				/* continue; */ go$s = 22; continue;
+			/* } */ case 24:
 			_tuple$15 = RawSyscall(90, ((_slice$9 = fd, _index$9 = i, (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) >>> 0), (i >>> 0), 0), err1 = _tuple$15[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 26; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 26:
 			i = i + 1 >> 0;
-		}
+		/* } */ go$s = 22; continue; case 23:
 		i = fd.length;
 		while (i < 3) {
 			RawSyscall(6, (i >>> 0), 0, 0);
 			i = i + 1 >> 0;
 		}
-		if (sys.Noctty) {
+		/* if (sys.Noctty) { */ if (sys.Noctty) {} else { go$s = 27; continue; }
 			_tuple$16 = RawSyscall(54, 0, 536900721, 0), err1 = _tuple$16[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
-		}
-		if (sys.Setctty) {
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 28; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 28:
+		/* } */ case 27:
+		/* if (sys.Setctty) { */ if (sys.Setctty) {} else { go$s = 29; continue; }
 			_tuple$17 = RawSyscall(54, 0, 536900705, 0), err1 = _tuple$17[2];
-			if (!((err1 === 0))) {
-				go$notSupported("goto");
-			}
-		}
+			/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 30; continue; }
+				/* goto childerror */ go$s = 1; continue;
+			/* } */ case 30:
+		/* } */ case 29:
 		_tuple$18 = RawSyscall(59, argv0, go$sliceToArray(argv), go$sliceToArray(envv)), err1 = _tuple$18[2];
-		childerror:
+		/* childerror: */ case 1:
 		RawSyscall(4, (pipe$1 >>> 0), new (go$ptrType(Errno))(function() { return err1; }, function(v) { err1 = v; }), 4);
 		while (true) {
 			RawSyscall(1, 253, 0, 0);
 		}
+		/* */ } break; } }; return go$f();
 	};
 0Ç®forkExecPipeÇñ	var forkExecPipe = function(p) {
 		var err, _tuple, _slice, _index, _tuple$1, _slice$1, _index$1;
