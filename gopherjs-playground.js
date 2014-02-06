@@ -32300,7 +32300,7 @@ go$packages["math/big"] = (function() {
 		return (x$4 = (_slice$2 = z, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), new Go$Uint64(0, x$4.constructor === Number ? x$4 : 1));
 	};
 	var quotToFloat = function(a, b) {
-		var f, exact, alen, _tuple, blen, exp, _tuple$1, a2, b2, shift, q, _tuple$2, r, mantissa, haveRem, x, x$1, shift$1, x$2, x$3, lostbits, x$4, x$5;
+		var f, exact, alen, _tuple, blen, exp, _tuple$1, a2, b2, shift, q, _tuple$2, r, mantissa, haveRem, x, x$1, x$2, shift$1, x$3, x$4, lostbits, x$5, x$6;
 		f = 0;
 		exact = false;
 		alen = a.bitLen();
@@ -32332,17 +32332,20 @@ go$packages["math/big"] = (function() {
 			mantissa = go$shiftRightUint64(mantissa, 1);
 			exp = exp + 1 >> 0;
 		}
+		if (!((x$2 = go$shiftRightUint64(mantissa, 53), (x$2.high === 0 && x$2.low === 1)))) {
+			throw go$panic(new Go$String("expected exactly 54 bits of result"));
+		}
 		if (-1074 <= exp && exp <= -1022) {
 			shift$1 = new Go$Uint64(0, (-1022 - ((exp - 1 >> 0)) >> 0));
-			lostbits = (x$2 = (x$3 = go$shiftLeft64(new Go$Uint64(0, 1), go$flatten64(shift$1)), new Go$Uint64(x$3.high - 0, x$3.low - 1)), new Go$Uint64(mantissa.high & x$2.high, (mantissa.low & x$2.low) >>> 0));
+			lostbits = (x$3 = (x$4 = go$shiftLeft64(new Go$Uint64(0, 1), go$flatten64(shift$1)), new Go$Uint64(x$4.high - 0, x$4.low - 1)), new Go$Uint64(mantissa.high & x$3.high, (mantissa.low & x$3.low) >>> 0));
 			haveRem = haveRem || !((lostbits.high === 0 && lostbits.low === 0));
 			mantissa = go$shiftRightUint64(mantissa, go$flatten64((shift$1)));
 			exp = -1021;
 		}
 		exact = !haveRem;
-		if (!((x$4 = new Go$Uint64(mantissa.high & 0, (mantissa.low & 1) >>> 0), (x$4.high === 0 && x$4.low === 0)))) {
+		if (!((x$5 = new Go$Uint64(mantissa.high & 0, (mantissa.low & 1) >>> 0), (x$5.high === 0 && x$5.low === 0)))) {
 			exact = false;
-			if (haveRem || !((x$5 = new Go$Uint64(mantissa.high & 0, (mantissa.low & 2) >>> 0), (x$5.high === 0 && x$5.low === 0)))) {
+			if (haveRem || !((x$6 = new Go$Uint64(mantissa.high & 0, (mantissa.low & 2) >>> 0), (x$6.high === 0 && x$6.low === 0)))) {
 				if (mantissa = new Go$Uint64(mantissa.high + 0, mantissa.low + 1), (mantissa.high > 4194304 || (mantissa.high === 4194304 && mantissa.low >= 0))) {
 					mantissa = go$shiftRightUint64(mantissa, 1);
 					exp = exp + 1 >> 0;
