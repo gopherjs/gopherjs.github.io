@@ -1,4 +1,4 @@
-0É·O
+0ÉÊµ
 go/printerÇB0package printer
 import bytes "bytes"
 import ast "go/ast"
@@ -277,7 +277,7 @@ go/printer0Å¡0bytesbytes0go/astast0go/tokentoken0unicode/utf8
 	(go$ptrType(Config)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false]];
 	CommentedNode.init([["Node", "", go$emptyInterface, ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
 00
-aNewline0Éx0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
+aNewline0É}v0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
 		var printedBreak, p, n;
 		printedBreak = false;
 		p = this;
@@ -2374,19 +2374,20 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 		}
 		return (go$ptrType(ast.CommentGroup)).nil;
 	};
-0Ç?	printNodeÇ0	printer.Ptr.prototype.printNode = function(node) {
-		var p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, _tuple$2, n$1, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
-		p = this;
+0Ç•	printNodeÇñ	printer.Ptr.prototype.printNode = function(node) {
+		var go$this = this, p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, _tuple$2, n$1, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		p = go$this;
 		comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 		if (_tuple = (node !== null && node.constructor === (go$ptrType(CommentedNode)) ? [node.go$val, true] : [(go$ptrType(CommentedNode)).nil, false]), cnode = _tuple[0], ok = _tuple[1], ok) {
 			node = cnode.Node;
 			comments = cnode.Comments;
 		}
-		if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) {
+		/* if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) { */ if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) {} else if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) { go$s = 2; continue; } else { go$s = 3; continue; }
 			_tuple$2 = (node !== null && ast.Node.implementedBy.indexOf(node.constructor) !== -1 ? [node, true] : [null, false]), n$1 = _tuple$2[0], ok$2 = _tuple$2[1];
-			if (!ok$2) {
-				return fmt.Errorf("go/printer: unsupported node type %T", new (go$sliceType(go$emptyInterface))([node]));
-			}
+			/* if (!ok$2) { */ if (!ok$2) {} else { go$s = 4; continue; }
+				/* goto unsupported */ go$s = 1; continue;
+			/* } */ case 4:
 			beg = n$1.Pos();
 			end = n$1.End();
 			if (doc = getDoc(n$1), !(doc === (go$ptrType(ast.CommentGroup)).nil)) {
@@ -2403,29 +2404,29 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 			if (i < j) {
 				p.comments = go$subslice(comments, i, j);
 			}
-		} else if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) {
+		/* } else if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) { */ go$s = 3; continue; case 2: 
 			p.comments = n.Comments;
-		}
+		/* } */ case 3:
 		p.useNodeComments = p.comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 		p.nextComment();
 		_ref = node;
 		_type = _ref !== null ? _ref.constructor : null;
-		if (ast.Expr.implementedBy.indexOf(_type) !== -1) {
+		/* if (ast.Expr.implementedBy.indexOf(_type) !== -1) { */ if (ast.Expr.implementedBy.indexOf(_type) !== -1) {} else if (ast.Stmt.implementedBy.indexOf(_type) !== -1) { go$s = 5; continue; } else if (ast.Decl.implementedBy.indexOf(_type) !== -1) { go$s = 6; continue; } else if (ast.Spec.implementedBy.indexOf(_type) !== -1) { go$s = 7; continue; } else if (_type === (go$sliceType(ast.Stmt))) { go$s = 8; continue; } else if (_type === (go$sliceType(ast.Decl))) { go$s = 9; continue; } else if (_type === (go$ptrType(ast.File))) { go$s = 10; continue; } else { go$s = 11; continue; }
 			n$2 = _ref;
 			p.expr(n$2);
-		} else if (ast.Stmt.implementedBy.indexOf(_type) !== -1) {
+		/* } else if (ast.Stmt.implementedBy.indexOf(_type) !== -1) { */ go$s = 12; continue; case 5: 
 			n$2 = _ref;
 			if (_tuple$3 = (n$2 !== null && n$2.constructor === (go$ptrType(ast.LabeledStmt)) ? [n$2.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), ok$3 = _tuple$3[1], ok$3) {
 				p.indent = 1;
 			}
 			p.stmt(n$2, false);
-		} else if (ast.Decl.implementedBy.indexOf(_type) !== -1) {
+		/* } else if (ast.Decl.implementedBy.indexOf(_type) !== -1) { */ go$s = 12; continue; case 6: 
 			n$2 = _ref;
 			p.decl(n$2);
-		} else if (ast.Spec.implementedBy.indexOf(_type) !== -1) {
+		/* } else if (ast.Spec.implementedBy.indexOf(_type) !== -1) { */ go$s = 12; continue; case 7: 
 			n$2 = _ref;
 			p.spec(n$2, 1, false);
-		} else if (_type === (go$sliceType(ast.Stmt))) {
+		/* } else if (_type === (go$sliceType(ast.Stmt))) { */ go$s = 12; continue; case 8: 
 			n$2 = _ref.go$val;
 			_ref$1 = n$2;
 			_i = 0;
@@ -2437,17 +2438,20 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 				_i++;
 			}
 			p.stmtList(n$2, 0, false);
-		} else if (_type === (go$sliceType(ast.Decl))) {
+		/* } else if (_type === (go$sliceType(ast.Decl))) { */ go$s = 12; continue; case 9: 
 			n$2 = _ref.go$val;
 			p.declList(n$2);
-		} else if (_type === (go$ptrType(ast.File))) {
+		/* } else if (_type === (go$ptrType(ast.File))) { */ go$s = 12; continue; case 10: 
 			n$2 = _ref.go$val;
 			p.file(n$2);
-		} else {
+		/* } else { */ go$s = 12; continue; case 11: 
 			n$2 = _ref;
-			return fmt.Errorf("go/printer: unsupported node type %T", new (go$sliceType(go$emptyInterface))([node]));
-		}
+			/* goto unsupported */ go$s = 1; continue;
+		/* } */ case 12:
 		return null;
+		/* unsupported: */ case 1:
+		return fmt.Errorf("go/printer: unsupported node type %T", new (go$sliceType(go$emptyInterface))([node]));
+		/* */ } break; } }; return go$f();
 	};
 	printer.prototype.printNode = function(node) { return this.go$val.printNode(node); };
 0Å·

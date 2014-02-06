@@ -7105,7 +7105,8 @@ go$packages["math"] = (function() {
 		return y;
 	};
 	var Gamma = go$pkg.Gamma = function(x) {
-		var q, p, signgam, ip, z, z$1;
+		var go$this = this, q, p, signgam, ip, z, z$1;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		if (isNegInt(x) || IsInf(x, -1) || IsNaN(x)) {
 			return NaN();
 		} else if (x === 0) {
@@ -7143,26 +7144,20 @@ go$packages["math"] = (function() {
 			x = x - 1;
 			z$1 = z$1 * x;
 		}
-		while (x < 0) {
-			if (x > -1e-09) {
-				if (x === 0) {
-					return Inf(1);
-				}
-				return z$1 / ((1 + 0.5772156649015329 * x) * x);
-			}
+		/* while (x < 0) { */ case 2: if(!(x < 0)) { go$s = 3; continue; }
+			/* if (x > -1e-09) { */ if (x > -1e-09) {} else { go$s = 4; continue; }
+				/* goto small */ go$s = 1; continue;
+			/* } */ case 4:
 			z$1 = z$1 / x;
 			x = x + 1;
-		}
-		while (x < 2) {
-			if (x < 1e-09) {
-				if (x === 0) {
-					return Inf(1);
-				}
-				return z$1 / ((1 + 0.5772156649015329 * x) * x);
-			}
+		/* } */ go$s = 2; continue; case 3:
+		/* while (x < 2) { */ case 5: if(!(x < 2)) { go$s = 6; continue; }
+			/* if (x < 1e-09) { */ if (x < 1e-09) {} else { go$s = 7; continue; }
+				/* goto small */ go$s = 1; continue;
+			/* } */ case 7:
 			z$1 = z$1 / x;
 			x = x + 1;
-		}
+		/* } */ go$s = 5; continue; case 6:
 		if (x === 2) {
 			return z$1;
 		}
@@ -7170,6 +7165,12 @@ go$packages["math"] = (function() {
 		p = (((((x * _gamP[0] + _gamP[1]) * x + _gamP[2]) * x + _gamP[3]) * x + _gamP[4]) * x + _gamP[5]) * x + _gamP[6];
 		q = ((((((x * _gamQ[0] + _gamQ[1]) * x + _gamQ[2]) * x + _gamQ[3]) * x + _gamQ[4]) * x + _gamQ[5]) * x + _gamQ[6]) * x + _gamQ[7];
 		return z$1 * p / q;
+		/* small: */ case 1:
+		/* if (x === 0) { */ if (x === 0) {} else { go$s = 8; continue; }
+			return Inf(1);
+		/* } */ case 8:
+		return z$1 / ((1 + 0.5772156649015329 * x) * x);
+		/* */ } break; } }; return go$f();
 	};
 	var isNegInt = function(x) {
 		var _tuple, xf;
@@ -9792,9 +9793,10 @@ go$packages["syscall"] = (function() {
 		return err;
 	};
 	var forkExec = function(argv0, argv, attr) {
-		var pid, err, p, n, err1, wstatus, sys, _tuple, argv0p, _tuple$1, _tuple$2, argvp, _tuple$3, _tuple$4, envvp, _tuple$5, _slice, _index, chroot, _tuple$6, _tuple$7, dir, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, v, _tuple$14, v$1, err1$1, _tuple$15, v$2, _tuple$16, _tuple$17;
+		var go$this = this, pid, err, p, n, err1, wstatus, sys, _tuple, argv0p, _tuple$1, _tuple$2, argvp, _tuple$3, _tuple$4, envvp, _tuple$5, _slice, _index, chroot, _tuple$6, _tuple$7, dir, _tuple$8, _tuple$9, _tuple$10, _tuple$11, v, _tuple$12, v$1, err1$1, _tuple$13, v$2, _tuple$14, _tuple$15, _tuple$16;
 		pid = 0;
 		err = null;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		p = go$makeNativeArray("Int", 2, function() { return 0; });
 		n = 0;
 		err1 = 0;
@@ -9840,29 +9842,17 @@ go$packages["syscall"] = (function() {
 			}
 		}
 		go$pkg.ForkLock.Lock();
-		if (err = forkExecPipe(new (go$sliceType(Go$Int))(p)), !(go$interfaceIsEqual(err, null))) {
-			if (p[0] >= 0) {
-				Close(p[0]);
-				Close(p[1]);
-			}
-			go$pkg.ForkLock.Unlock();
-			_tuple$10 = [0, err], pid = _tuple$10[0], err = _tuple$10[1];
-			return [pid, err];
-		}
-		_tuple$11 = forkAndExecInChild(argv0p, argvp, envvp, chroot, dir, attr, sys, p[1]), pid = _tuple$11[0], err1 = _tuple$11[1];
-		if (!((err1 === 0))) {
+		/* if (err = forkExecPipe(new (go$sliceType(Go$Int))(p)), !(go$interfaceIsEqual(err, null))) { */ if (err = forkExecPipe(new (go$sliceType(Go$Int))(p)), !(go$interfaceIsEqual(err, null))) {} else { go$s = 2; continue; }
+			/* goto error */ go$s = 1; continue;
+		/* } */ case 2:
+		_tuple$10 = forkAndExecInChild(argv0p, argvp, envvp, chroot, dir, attr, sys, p[1]), pid = _tuple$10[0], err1 = _tuple$10[1];
+		/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 3; continue; }
 			err = new Errno(err1);
-			if (p[0] >= 0) {
-				Close(p[0]);
-				Close(p[1]);
-			}
-			go$pkg.ForkLock.Unlock();
-			_tuple$12 = [0, err], pid = _tuple$12[0], err = _tuple$12[1];
-			return [pid, err];
-		}
+			/* goto error */ go$s = 1; continue;
+		/* } */ case 3:
 		go$pkg.ForkLock.Unlock();
 		Close(p[1]);
-		_tuple$13 = readlen(p[0], new (go$ptrType(Errno))(function() { return err1; }, function(v) { err1 = v; }), 4), n = _tuple$13[0], err = _tuple$13[1];
+		_tuple$11 = readlen(p[0], new (go$ptrType(Errno))(function() { return err1; }, function(v) { err1 = v; }), 4), n = _tuple$11[0], err = _tuple$11[1];
 		Close(p[0]);
 		if (!(go$interfaceIsEqual(err, null)) || !((n === 0))) {
 			if (n === 4) {
@@ -9871,15 +9861,24 @@ go$packages["syscall"] = (function() {
 			if (go$interfaceIsEqual(err, null)) {
 				err = new Errno(32);
 			}
-			_tuple$14 = Wait4(pid, new (go$ptrType(WaitStatus))(function() { return wstatus; }, function(v$1) { wstatus = v$1; }), 0, (go$ptrType(Rusage)).nil), err1$1 = _tuple$14[1];
+			_tuple$12 = Wait4(pid, new (go$ptrType(WaitStatus))(function() { return wstatus; }, function(v$1) { wstatus = v$1; }), 0, (go$ptrType(Rusage)).nil), err1$1 = _tuple$12[1];
 			while (go$interfaceIsEqual(err1$1, new Errno(4))) {
-				_tuple$15 = Wait4(pid, new (go$ptrType(WaitStatus))(function() { return wstatus; }, function(v$2) { wstatus = v$2; }), 0, (go$ptrType(Rusage)).nil), err1$1 = _tuple$15[1];
+				_tuple$13 = Wait4(pid, new (go$ptrType(WaitStatus))(function() { return wstatus; }, function(v$2) { wstatus = v$2; }), 0, (go$ptrType(Rusage)).nil), err1$1 = _tuple$13[1];
 			}
-			_tuple$16 = [0, err], pid = _tuple$16[0], err = _tuple$16[1];
+			_tuple$14 = [0, err], pid = _tuple$14[0], err = _tuple$14[1];
 			return [pid, err];
 		}
-		_tuple$17 = [pid, null], pid = _tuple$17[0], err = _tuple$17[1];
+		_tuple$15 = [pid, null], pid = _tuple$15[0], err = _tuple$15[1];
 		return [pid, err];
+		/* error: */ case 1:
+		/* if (p[0] >= 0) { */ if (p[0] >= 0) {} else { go$s = 4; continue; }
+			Close(p[0]);
+			Close(p[1]);
+		/* } */ case 4:
+		go$pkg.ForkLock.Unlock();
+		_tuple$16 = [0, err], pid = _tuple$16[0], err = _tuple$16[1];
+		return [pid, err];
+		/* */ } break; } }; return go$f();
 	};
 	var ForkExec = go$pkg.ForkExec = function(argv0, argv, attr) {
 		var pid, err, _tuple;
@@ -16315,9 +16314,10 @@ go$packages["os"] = (function() {
 		return dir;
 	};
 	var Getwd = go$pkg.Getwd = function() {
-		var pwd, err, _tuple, s, e, _tuple$1, _tuple$2, dot, _tuple$3, _tuple$4, d, err$1, _tuple$5, _tuple$6, d$1, err$2, _tuple$7, _tuple$8, root, _tuple$9, _tuple$10, parent, _tuple$11, _tuple$12, fd, err$3, _tuple$13, _tuple$14, names, err$4, _tuple$15, _ref, _i, _slice, _index, name, _tuple$16, d$2, _tuple$17, pd, _tuple$18, _tuple$19;
+		var go$this = this, pwd, err, _tuple, s, e, _tuple$1, _tuple$2, dot, _tuple$3, _tuple$4, d, err$1, _tuple$5, _tuple$6, d$1, err$2, _tuple$7, _tuple$8, root, _tuple$9, _tuple$10, parent, _tuple$11, _tuple$12, fd, err$3, _tuple$13, _tuple$14, names, err$4, _tuple$15, _ref, _i, _slice, _index, name, _tuple$16, d$2, _tuple$17, pd, _tuple$18, _tuple$19;
 		pwd = "";
 		err = null;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		_tuple = syscall.Getwd(), s = _tuple[0], e = _tuple[1];
 		if (useSyscallwd(e)) {
 			_tuple$1 = [s, NewSyscallError("getwd", e)], pwd = _tuple$1[0], err = _tuple$1[1];
@@ -16357,7 +16357,7 @@ go$packages["os"] = (function() {
 		}
 		pwd = "";
 		parent = "..";
-		while (true) {
+		/* while (true) { */ case 2: if(!(true)) { go$s = 3; continue; }
 			if (parent.length >= 1024) {
 				_tuple$11 = ["", new syscall.Errno(63)], pwd = _tuple$11[0], err = _tuple$11[1];
 				return [pwd, err];
@@ -16367,8 +16367,7 @@ go$packages["os"] = (function() {
 				_tuple$13 = ["", err$3], pwd = _tuple$13[0], err = _tuple$13[1];
 				return [pwd, err];
 			}
-			NamesLoop:
-			while (true) {
+			/* while (true) { */ case 4: if(!(true)) { go$s = 5; continue; }
 				_tuple$14 = fd.Readdirnames(100), names = _tuple$14[0], err$4 = _tuple$14[1];
 				if (!(go$interfaceIsEqual(err$4, null))) {
 					fd.Close();
@@ -16377,16 +16376,17 @@ go$packages["os"] = (function() {
 				}
 				_ref = names;
 				_i = 0;
-				while (_i < _ref.length) {
+				/* while (_i < _ref.length) { */ case 6: if(!(_i < _ref.length)) { go$s = 7; continue; }
 					name = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 					_tuple$16 = Lstat(parent + "/" + name), d$2 = _tuple$16[0];
-					if (SameFile(d$2, dot)) {
+					/* if (SameFile(d$2, dot)) { */ if (SameFile(d$2, dot)) {} else { go$s = 8; continue; }
 						pwd = "/" + name + pwd;
-						break NamesLoop;
-					}
+						/* goto Found */ go$s = 1; continue;
+					/* } */ case 8:
 					_i++;
-				}
-			}
+				/* } */ go$s = 6; continue; case 7:
+			/* } */ go$s = 4; continue; case 5:
+			/* Found: */ case 1:
 			_tuple$17 = fd.Stat(), pd = _tuple$17[0], err$3 = _tuple$17[1];
 			if (!(go$interfaceIsEqual(err$3, null))) {
 				_tuple$18 = ["", err$3], pwd = _tuple$18[0], err = _tuple$18[1];
@@ -16394,16 +16394,17 @@ go$packages["os"] = (function() {
 			}
 			fd.Close();
 			if (SameFile(pd, root)) {
-				break;
+				/* break; */ go$s = 3; continue;
 			}
 			dot = pd;
 			parent = "../" + parent;
-		}
+		/* } */ go$s = 2; continue; case 3:
 		getwdCache.Mutex.Lock();
 		getwdCache.dir = pwd;
 		getwdCache.Mutex.Unlock();
 		_tuple$19 = [pwd, null], pwd = _tuple$19[0], err = _tuple$19[1];
 		return [pwd, err];
+		/* */ } break; } }; return go$f();
 	};
 	var useSyscallwdDarwin = function(err) {
 		return !(go$interfaceIsEqual(err, new syscall.Errno(45)));
@@ -17038,38 +17039,26 @@ go$packages["strconv"] = (function() {
 		return [mantissa, exp, neg, trunc, ok];
 	};
 	decimal.Ptr.prototype.floatBits = function(flt) {
-		var d, exp, mant, assembleBits, overflow, n, _slice, _index, n$1, _slice$1, _index$1, n$2, y, x, y$1, x$1, x$2;
-		d = this;
+		var go$this = this, b, overflow, d, exp, mant, n, _slice, _index, n$1, _slice$1, _index$1, n$2, y, x, y$1, x$1, x$2, y$2, x$3, x$4, bits, x$5, y$3, x$6, _tuple;
+		b = new Go$Uint64(0, 0);
+		overflow = false;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		d = go$this;
 		exp = 0;
 		mant = new Go$Uint64(0, 0);
-		assembleBits = (function() {
-			var x, x$1, bits, x$2, y, x$3;
-			bits = (x = (x$1 = go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), new Go$Uint64(x$1.high - 0, x$1.low - 1)), new Go$Uint64(mant.high & x.high, (mant.low & x.low) >>> 0));
-			bits = (x$2 = go$shiftLeft64(new Go$Uint64(0, (((exp - flt.bias >> 0)) & ((((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0)))), flt.mantbits), new Go$Uint64(bits.high | x$2.high, (bits.low | x$2.low) >>> 0));
-			if (d.neg) {
-				bits = (x$3 = go$shiftLeft64(go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), flt.expbits), new Go$Uint64(bits.high | x$3.high, (bits.low | x$3.low) >>> 0));
-			}
-			return bits;
-		});
-		overflow = (function() {
-			var y;
-			mant = new Go$Uint64(0, 0);
-			exp = (((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0) + flt.bias >> 0;
-			return [assembleBits(), true];
-		});
-		if (d.nd === 0) {
+		/* if (d.nd === 0) { */ if (d.nd === 0) {} else { go$s = 3; continue; }
 			mant = new Go$Uint64(0, 0);
 			exp = flt.bias;
-			return [assembleBits(), false];
-		}
-		if (d.dp > 310) {
-			return overflow();
-		}
-		if (d.dp < -330) {
+			/* goto out */ go$s = 1; continue;
+		/* } */ case 3:
+		/* if (d.dp > 310) { */ if (d.dp > 310) {} else { go$s = 4; continue; }
+			/* goto overflow */ go$s = 2; continue;
+		/* } */ case 4:
+		/* if (d.dp < -330) { */ if (d.dp < -330) {} else { go$s = 5; continue; }
 			mant = new Go$Uint64(0, 0);
 			exp = flt.bias;
-			return [assembleBits(), false];
-		}
+			/* goto out */ go$s = 1; continue;
+		/* } */ case 5:
 		exp = 0;
 		while (d.dp > 0) {
 			n = 0;
@@ -17097,22 +17086,35 @@ go$packages["strconv"] = (function() {
 			d.Shift(-n$2);
 			exp = exp + (n$2) >> 0;
 		}
-		if ((exp - flt.bias >> 0) >= (((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0)) {
-			return overflow();
-		}
+		/* if ((exp - flt.bias >> 0) >= (((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0)) { */ if ((exp - flt.bias >> 0) >= (((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0)) {} else { go$s = 6; continue; }
+			/* goto overflow */ go$s = 2; continue;
+		/* } */ case 6:
 		d.Shift(((1 + flt.mantbits >>> 0) >> 0));
 		mant = d.RoundedInteger();
-		if ((x = go$shiftLeft64(new Go$Uint64(0, 2), flt.mantbits), (mant.high === x.high && mant.low === x.low))) {
+		/* if ((x = go$shiftLeft64(new Go$Uint64(0, 2), flt.mantbits), (mant.high === x.high && mant.low === x.low))) { */ if ((x = go$shiftLeft64(new Go$Uint64(0, 2), flt.mantbits), (mant.high === x.high && mant.low === x.low))) {} else { go$s = 7; continue; }
 			mant = go$shiftRightUint64(mant, 1);
 			exp = exp + 1 >> 0;
-			if ((exp - flt.bias >> 0) >= (((y$1 = flt.expbits, y$1 < 32 ? (1 << y$1) : 0) >> 0) - 1 >> 0)) {
-				return overflow();
-			}
-		}
+			/* if ((exp - flt.bias >> 0) >= (((y$1 = flt.expbits, y$1 < 32 ? (1 << y$1) : 0) >> 0) - 1 >> 0)) { */ if ((exp - flt.bias >> 0) >= (((y$1 = flt.expbits, y$1 < 32 ? (1 << y$1) : 0) >> 0) - 1 >> 0)) {} else { go$s = 8; continue; }
+				/* goto overflow */ go$s = 2; continue;
+			/* } */ case 8:
+		/* } */ case 7:
 		if ((x$1 = (x$2 = go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), new Go$Uint64(mant.high & x$2.high, (mant.low & x$2.low) >>> 0)), (x$1.high === 0 && x$1.low === 0))) {
 			exp = flt.bias;
 		}
-		return [assembleBits(), false];
+		/* goto out */ go$s = 1; continue;
+		/* overflow: */ case 2:
+		mant = new Go$Uint64(0, 0);
+		exp = (((y$2 = flt.expbits, y$2 < 32 ? (1 << y$2) : 0) >> 0) - 1 >> 0) + flt.bias >> 0;
+		overflow = true;
+		/* out: */ case 1:
+		bits = (x$3 = (x$4 = go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), new Go$Uint64(x$4.high - 0, x$4.low - 1)), new Go$Uint64(mant.high & x$3.high, (mant.low & x$3.low) >>> 0));
+		bits = (x$5 = go$shiftLeft64(new Go$Uint64(0, (((exp - flt.bias >> 0)) & ((((y$3 = flt.expbits, y$3 < 32 ? (1 << y$3) : 0) >> 0) - 1 >> 0)))), flt.mantbits), new Go$Uint64(bits.high | x$5.high, (bits.low | x$5.low) >>> 0));
+		if (d.neg) {
+			bits = (x$6 = go$shiftLeft64(go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), flt.expbits), new Go$Uint64(bits.high | x$6.high, (bits.low | x$6.low) >>> 0));
+		}
+		_tuple = [bits, overflow], b = _tuple[0], overflow = _tuple[1];
+		return [b, overflow];
+		/* */ } break; } }; return go$f();
 	};
 	decimal.prototype.floatBits = function(flt) { return this.go$val.floatBits(flt); };
 	decimal.Ptr.prototype.atof32int = function() {
@@ -17307,82 +17309,80 @@ go$packages["strconv"] = (function() {
 		return (x = go$div64(new Go$Uint64(4294967295, 4294967295), new Go$Uint64(0, base), false), new Go$Uint64(x.high + 0, x.low + 1));
 	};
 	var ParseUint = go$pkg.ParseUint = function(s, base, bitSize) {
-		var n, err, _tuple, cutoff, maxVal, s0, _tuple$1, _tuple$2, _tuple$3, x, i, v, d, _tuple$4, _tuple$5, _tuple$6, x$1, n1, _tuple$7, _tuple$8;
+		var go$this = this, n, err, _tuple, cutoff, maxVal, s0, x, i, v, d, x$1, n1, _tuple$1, _tuple$2;
 		n = new Go$Uint64(0, 0);
 		err = null;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		_tuple = [new Go$Uint64(0, 0), new Go$Uint64(0, 0)], cutoff = _tuple[0], maxVal = _tuple[1];
 		if (bitSize === 0) {
 			bitSize = 32;
 		}
 		s0 = s;
-		if (s.length < 1) {
+		/* if (s.length < 1) { */ if (s.length < 1) {} else if (2 <= base && base <= 36) { go$s = 2; continue; } else if (base === 0) { go$s = 3; continue; } else { go$s = 4; continue; }
 			err = go$pkg.ErrSyntax;
-			_tuple$1 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$1[0], err = _tuple$1[1];
-			return [n, err];
-		} else if (2 <= base && base <= 36) {
-		} else if (base === 0) {
-			if ((s.charCodeAt(0) === 48) && s.length > 1 && ((s.charCodeAt(1) === 120) || (s.charCodeAt(1) === 88))) {
+			/* goto Error */ go$s = 1; continue;
+		/* } else if (2 <= base && base <= 36) { */ go$s = 5; continue; case 2: 
+		/* } else if (base === 0) { */ go$s = 5; continue; case 3: 
+			/* if ((s.charCodeAt(0) === 48) && s.length > 1 && ((s.charCodeAt(1) === 120) || (s.charCodeAt(1) === 88))) { */ if ((s.charCodeAt(0) === 48) && s.length > 1 && ((s.charCodeAt(1) === 120) || (s.charCodeAt(1) === 88))) {} else if (s.charCodeAt(0) === 48) { go$s = 6; continue; } else { go$s = 7; continue; }
 				base = 16;
 				s = s.substring(2);
-				if (s.length < 1) {
+				/* if (s.length < 1) { */ if (s.length < 1) {} else { go$s = 9; continue; }
 					err = go$pkg.ErrSyntax;
-					_tuple$2 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$2[0], err = _tuple$2[1];
-					return [n, err];
-				}
-			} else if (s.charCodeAt(0) === 48) {
+					/* goto Error */ go$s = 1; continue;
+				/* } */ case 9:
+			/* } else if (s.charCodeAt(0) === 48) { */ go$s = 8; continue; case 6: 
 				base = 8;
-			} else {
+			/* } else { */ go$s = 8; continue; case 7: 
 				base = 10;
-			}
-		} else {
+			/* } */ case 8:
+		/* } else { */ go$s = 5; continue; case 4: 
 			err = errors.New("invalid base " + Itoa(base));
-			_tuple$3 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$3[0], err = _tuple$3[1];
-			return [n, err];
-		}
+			/* goto Error */ go$s = 1; continue;
+		/* } */ case 5:
 		n = new Go$Uint64(0, 0);
 		cutoff = cutoff64(base);
 		maxVal = (x = go$shiftLeft64(new Go$Uint64(0, 1), (bitSize >>> 0)), new Go$Uint64(x.high - 0, x.low - 1));
 		i = 0;
-		while (i < s.length) {
+		/* while (i < s.length) { */ case 10: if(!(i < s.length)) { go$s = 11; continue; }
 			v = 0;
 			d = s.charCodeAt(i);
-			if (48 <= d && d <= 57) {
+			/* if (48 <= d && d <= 57) { */ if (48 <= d && d <= 57) {} else if (97 <= d && d <= 122) { go$s = 12; continue; } else if (65 <= d && d <= 90) { go$s = 13; continue; } else { go$s = 14; continue; }
 				v = d - 48 << 24 >>> 24;
-			} else if (97 <= d && d <= 122) {
+			/* } else if (97 <= d && d <= 122) { */ go$s = 15; continue; case 12: 
 				v = (d - 97 << 24 >>> 24) + 10 << 24 >>> 24;
-			} else if (65 <= d && d <= 90) {
+			/* } else if (65 <= d && d <= 90) { */ go$s = 15; continue; case 13: 
 				v = (d - 65 << 24 >>> 24) + 10 << 24 >>> 24;
-			} else {
+			/* } else { */ go$s = 15; continue; case 14: 
 				n = new Go$Uint64(0, 0);
 				err = go$pkg.ErrSyntax;
-				_tuple$4 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$4[0], err = _tuple$4[1];
-				return [n, err];
-			}
-			if ((v >> 0) >= base) {
+				/* goto Error */ go$s = 1; continue;
+			/* } */ case 15:
+			/* if ((v >> 0) >= base) { */ if ((v >> 0) >= base) {} else { go$s = 16; continue; }
 				n = new Go$Uint64(0, 0);
 				err = go$pkg.ErrSyntax;
-				_tuple$5 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$5[0], err = _tuple$5[1];
-				return [n, err];
-			}
-			if ((n.high > cutoff.high || (n.high === cutoff.high && n.low >= cutoff.low))) {
+				/* goto Error */ go$s = 1; continue;
+			/* } */ case 16:
+			/* if ((n.high > cutoff.high || (n.high === cutoff.high && n.low >= cutoff.low))) { */ if ((n.high > cutoff.high || (n.high === cutoff.high && n.low >= cutoff.low))) {} else { go$s = 17; continue; }
 				n = new Go$Uint64(4294967295, 4294967295);
 				err = go$pkg.ErrRange;
-				_tuple$6 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$6[0], err = _tuple$6[1];
-				return [n, err];
-			}
+				/* goto Error */ go$s = 1; continue;
+			/* } */ case 17:
 			n = go$mul64(n, (new Go$Uint64(0, base)));
 			n1 = (x$1 = new Go$Uint64(0, v), new Go$Uint64(n.high + x$1.high, n.low + x$1.low));
-			if ((n1.high < n.high || (n1.high === n.high && n1.low < n.low)) || (n1.high > maxVal.high || (n1.high === maxVal.high && n1.low > maxVal.low))) {
+			/* if ((n1.high < n.high || (n1.high === n.high && n1.low < n.low)) || (n1.high > maxVal.high || (n1.high === maxVal.high && n1.low > maxVal.low))) { */ if ((n1.high < n.high || (n1.high === n.high && n1.low < n.low)) || (n1.high > maxVal.high || (n1.high === maxVal.high && n1.low > maxVal.low))) {} else { go$s = 18; continue; }
 				n = new Go$Uint64(4294967295, 4294967295);
 				err = go$pkg.ErrRange;
-				_tuple$7 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$7[0], err = _tuple$7[1];
-				return [n, err];
-			}
+				/* goto Error */ go$s = 1; continue;
+			/* } */ case 18:
 			n = n1;
 			i = i + 1 >> 0;
-		}
-		_tuple$8 = [n, null], n = _tuple$8[0], err = _tuple$8[1];
+		/* } */ go$s = 10; continue; case 11:
+		_tuple$1 = [n, null], n = _tuple$1[0], err = _tuple$1[1];
 		return [n, err];
+		/* Error: */ case 1:
+		_tuple$2 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$2[0], err = _tuple$2[1];
+		return [n, err];
+		/* */ } break; } }; return go$f();
 	};
 	var ParseInt = go$pkg.ParseInt = function(s, base, bitSize) {
 		var i, err, _tuple, s0, neg, un, _tuple$1, _tuple$2, cutoff, x, _tuple$3, x$1, _tuple$4, n, _tuple$5;
@@ -35596,11 +35596,12 @@ go$packages["go/scanner"] = (function() {
 	};
 	Scanner.prototype.interpretLineComment = function(text) { return this.go$val.interpretLineComment(text); };
 	Scanner.Ptr.prototype.scanComment = function() {
-		var s, offs, hasCR, ch, lit;
-		s = this;
+		var go$this = this, s, offs, hasCR, ch, lit;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		s = go$this;
 		offs = s.offset - 1 >> 0;
 		hasCR = false;
-		if (s.ch === 47) {
+		/* if (s.ch === 47) { */ if (s.ch === 47) {} else { go$s = 2; continue; }
 			s.next();
 			while (!((s.ch === 10)) && s.ch >= 0) {
 				if (s.ch === 13) {
@@ -35611,28 +35612,28 @@ go$packages["go/scanner"] = (function() {
 			if (offs === s.lineOffset) {
 				s.interpretLineComment(go$subslice(s.src, offs, s.offset));
 			}
-		} else {
+			/* goto exit */ go$s = 1; continue;
+		/* } */ case 2:
+		s.next();
+		/* while (s.ch >= 0) { */ case 3: if(!(s.ch >= 0)) { go$s = 4; continue; }
+			ch = s.ch;
+			if (ch === 13) {
+				hasCR = true;
+			}
 			s.next();
-			while (s.ch >= 0) {
-				ch = s.ch;
-				if (ch === 13) {
-					hasCR = true;
-				}
+			/* if ((ch === 42) && (s.ch === 47)) { */ if ((ch === 42) && (s.ch === 47)) {} else { go$s = 5; continue; }
 				s.next();
-				if ((ch === 42) && (s.ch === 47)) {
-					s.next();
-					break;
-				}
-			}
-			if (s.ch < 0) {
-				s.error(offs, "comment not terminated");
-			}
-		}
+				/* goto exit */ go$s = 1; continue;
+			/* } */ case 5:
+		/* } */ go$s = 3; continue; case 4:
+		s.error(offs, "comment not terminated");
+		/* exit: */ case 1:
 		lit = go$subslice(s.src, offs, s.offset);
 		if (hasCR) {
 			lit = stripCR(lit);
 		}
 		return go$bytesToString(lit);
+		/* */ } break; } }; return go$f();
 	};
 	Scanner.prototype.scanComment = function() { return this.go$val.scanComment(); };
 	Scanner.Ptr.prototype.findLineEnd = function() {
@@ -35715,62 +35716,65 @@ go$packages["go/scanner"] = (function() {
 	};
 	Scanner.prototype.scanMantissa = function(base) { return this.go$val.scanMantissa(base); };
 	Scanner.Ptr.prototype.scanNumber = function(seenDecimalPoint) {
-		var s, offs, tok, offs$1, seenDecimalDigit;
-		s = this;
+		var go$this = this, s, offs, tok, offs$1, seenDecimalDigit;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		s = go$this;
 		offs = s.offset;
 		tok = 5;
-		if (seenDecimalPoint) {
+		/* if (seenDecimalPoint) { */ if (seenDecimalPoint) {} else { go$s = 4; continue; }
 			offs = offs - 1 >> 0;
 			tok = 6;
 			s.scanMantissa(10);
-		} else {
-			if (s.ch === 48) {
-				offs$1 = s.offset;
+			/* goto exponent */ go$s = 1; continue;
+		/* } */ case 4:
+		/* if (s.ch === 48) { */ if (s.ch === 48) {} else { go$s = 5; continue; }
+			offs$1 = s.offset;
+			s.next();
+			/* if ((s.ch === 120) || (s.ch === 88)) { */ if ((s.ch === 120) || (s.ch === 88)) {} else { go$s = 6; continue; }
 				s.next();
-				if ((s.ch === 120) || (s.ch === 88)) {
-					s.next();
-					s.scanMantissa(16);
-					if ((s.offset - offs$1 >> 0) <= 2) {
-						s.error(offs$1, "illegal hexadecimal number");
-					}
-					return [tok, go$bytesToString(go$subslice(s.src, offs$1, s.offset))];
-				} else {
-					seenDecimalDigit = false;
-					s.scanMantissa(8);
-					if ((s.ch === 56) || (s.ch === 57)) {
-						seenDecimalDigit = true;
-						s.scanMantissa(10);
-					}
-					if ((s.ch === 46) || (s.ch === 101) || (s.ch === 69) || (s.ch === 105)) {
-					} else {
-						if (seenDecimalDigit) {
-							s.error(offs$1, "illegal octal number");
-						}
-						return [tok, go$bytesToString(go$subslice(s.src, offs$1, s.offset))];
-					}
+				s.scanMantissa(16);
+				if ((s.offset - offs$1 >> 0) <= 2) {
+					s.error(offs$1, "illegal hexadecimal number");
 				}
-			} else {
-				s.scanMantissa(10);
-			}
-			if (s.ch === 46) {
-				tok = 6;
-				s.next();
-				s.scanMantissa(10);
-			}
-		}
-		if ((s.ch === 101) || (s.ch === 69)) {
+			/* } else { */ go$s = 7; continue; case 6: 
+				seenDecimalDigit = false;
+				s.scanMantissa(8);
+				if ((s.ch === 56) || (s.ch === 57)) {
+					seenDecimalDigit = true;
+					s.scanMantissa(10);
+				}
+				/* if ((s.ch === 46) || (s.ch === 101) || (s.ch === 69) || (s.ch === 105)) { */ if ((s.ch === 46) || (s.ch === 101) || (s.ch === 69) || (s.ch === 105)) {} else { go$s = 8; continue; }
+					/* goto fraction */ go$s = 2; continue;
+				/* } */ case 8:
+				if (seenDecimalDigit) {
+					s.error(offs$1, "illegal octal number");
+				}
+			/* } */ case 7:
+			/* goto exit */ go$s = 3; continue;
+		/* } */ case 5:
+		s.scanMantissa(10);
+		/* fraction: */ case 2:
+		/* if (s.ch === 46) { */ if (s.ch === 46) {} else { go$s = 9; continue; }
+			tok = 6;
+			s.next();
+			s.scanMantissa(10);
+		/* } */ case 9:
+		/* exponent: */ case 1:
+		/* if ((s.ch === 101) || (s.ch === 69)) { */ if ((s.ch === 101) || (s.ch === 69)) {} else { go$s = 10; continue; }
 			tok = 6;
 			s.next();
 			if ((s.ch === 45) || (s.ch === 43)) {
 				s.next();
 			}
 			s.scanMantissa(10);
-		}
+		/* } */ case 10:
 		if (s.ch === 105) {
 			tok = 7;
 			s.next();
 		}
+		/* exit: */ case 3:
 		return [tok, go$bytesToString(go$subslice(s.src, offs, s.offset))];
+		/* */ } break; } }; return go$f();
 	};
 	Scanner.prototype.scanNumber = function(seenDecimalPoint) { return this.go$val.scanNumber(seenDecimalPoint); };
 	Scanner.Ptr.prototype.scanEscape = function(quote) {
@@ -35953,16 +35957,18 @@ go$packages["go/scanner"] = (function() {
 	};
 	Scanner.prototype.switch4 = function(tok0, tok1, ch2, tok2, tok3) { return this.go$val.switch4(tok0, tok1, ch2, tok2, tok3); };
 	Scanner.Ptr.prototype.Scan = function() {
-		var pos, tok, lit, s, insertSemi, ch, _ref, _tuple, _ref$1, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5;
+		var go$this = this, pos, tok, lit, s, insertSemi, ch, _ref, _tuple, _ref$1, _tuple$1, _tuple$2, _tuple$3, _tuple$4;
 		pos = 0;
 		tok = 0;
 		lit = "";
-		s = this;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		s = go$this;
+		/* scanAgain: */ case 1:
 		s.skipWhitespace();
 		pos = s.file.Pos(s.offset);
 		insertSemi = false;
 		ch = s.ch;
-		if (isLetter(ch)) {
+		/* if (isLetter(ch)) { */ if (isLetter(ch)) {} else if (48 <= ch && ch <= 57) { go$s = 2; continue; } else { go$s = 3; continue; }
 			lit = s.scanIdentifier();
 			if (lit.length > 1) {
 				tok = token.Lookup(lit);
@@ -35974,38 +35980,38 @@ go$packages["go/scanner"] = (function() {
 				insertSemi = true;
 				tok = 4;
 			}
-		} else if (48 <= ch && ch <= 57) {
+		/* } else if (48 <= ch && ch <= 57) { */ go$s = 4; continue; case 2: 
 			insertSemi = true;
 			_tuple = s.scanNumber(false), tok = _tuple[0], lit = _tuple[1];
-		} else {
+		/* } else { */ go$s = 4; continue; case 3: 
 			s.next();
 			_ref$1 = ch;
-			if (_ref$1 === -1) {
+			/* if (_ref$1 === -1) { */ if (_ref$1 === -1) {} else if (_ref$1 === 10) { go$s = 5; continue; } else if (_ref$1 === 34) { go$s = 6; continue; } else if (_ref$1 === 39) { go$s = 7; continue; } else if (_ref$1 === 96) { go$s = 8; continue; } else if (_ref$1 === 58) { go$s = 9; continue; } else if (_ref$1 === 46) { go$s = 10; continue; } else if (_ref$1 === 44) { go$s = 11; continue; } else if (_ref$1 === 59) { go$s = 12; continue; } else if (_ref$1 === 40) { go$s = 13; continue; } else if (_ref$1 === 41) { go$s = 14; continue; } else if (_ref$1 === 91) { go$s = 15; continue; } else if (_ref$1 === 93) { go$s = 16; continue; } else if (_ref$1 === 123) { go$s = 17; continue; } else if (_ref$1 === 125) { go$s = 18; continue; } else if (_ref$1 === 43) { go$s = 19; continue; } else if (_ref$1 === 45) { go$s = 20; continue; } else if (_ref$1 === 42) { go$s = 21; continue; } else if (_ref$1 === 47) { go$s = 22; continue; } else if (_ref$1 === 37) { go$s = 23; continue; } else if (_ref$1 === 94) { go$s = 24; continue; } else if (_ref$1 === 60) { go$s = 25; continue; } else if (_ref$1 === 62) { go$s = 26; continue; } else if (_ref$1 === 61) { go$s = 27; continue; } else if (_ref$1 === 33) { go$s = 28; continue; } else if (_ref$1 === 38) { go$s = 29; continue; } else if (_ref$1 === 124) { go$s = 30; continue; } else { go$s = 31; continue; }
 				if (s.insertSemi) {
 					s.insertSemi = false;
 					_tuple$1 = [pos, 57, "\n"], pos = _tuple$1[0], tok = _tuple$1[1], lit = _tuple$1[2];
 					return [pos, tok, lit];
 				}
 				tok = 1;
-			} else if (_ref$1 === 10) {
+			/* } else if (_ref$1 === 10) { */ go$s = 32; continue; case 5: 
 				s.insertSemi = false;
 				_tuple$2 = [pos, 57, "\n"], pos = _tuple$2[0], tok = _tuple$2[1], lit = _tuple$2[2];
 				return [pos, tok, lit];
-			} else if (_ref$1 === 34) {
+			/* } else if (_ref$1 === 34) { */ go$s = 32; continue; case 6: 
 				insertSemi = true;
 				tok = 9;
 				lit = s.scanString();
-			} else if (_ref$1 === 39) {
+			/* } else if (_ref$1 === 39) { */ go$s = 32; continue; case 7: 
 				insertSemi = true;
 				tok = 8;
 				lit = s.scanChar();
-			} else if (_ref$1 === 96) {
+			/* } else if (_ref$1 === 96) { */ go$s = 32; continue; case 8: 
 				insertSemi = true;
 				tok = 9;
 				lit = s.scanRawString();
-			} else if (_ref$1 === 58) {
+			/* } else if (_ref$1 === 58) { */ go$s = 32; continue; case 9: 
 				tok = s.switch2(58, 47);
-			} else if (_ref$1 === 46) {
+			/* } else if (_ref$1 === 46) { */ go$s = 32; continue; case 10: 
 				if (48 <= s.ch && s.ch <= 57) {
 					insertSemi = true;
 					_tuple$3 = s.scanNumber(true), tok = _tuple$3[0], lit = _tuple$3[1];
@@ -36018,40 +36024,40 @@ go$packages["go/scanner"] = (function() {
 				} else {
 					tok = 53;
 				}
-			} else if (_ref$1 === 44) {
+			/* } else if (_ref$1 === 44) { */ go$s = 32; continue; case 11: 
 				tok = 52;
-			} else if (_ref$1 === 59) {
+			/* } else if (_ref$1 === 59) { */ go$s = 32; continue; case 12: 
 				tok = 57;
 				lit = ";";
-			} else if (_ref$1 === 40) {
+			/* } else if (_ref$1 === 40) { */ go$s = 32; continue; case 13: 
 				tok = 49;
-			} else if (_ref$1 === 41) {
+			/* } else if (_ref$1 === 41) { */ go$s = 32; continue; case 14: 
 				insertSemi = true;
 				tok = 54;
-			} else if (_ref$1 === 91) {
+			/* } else if (_ref$1 === 91) { */ go$s = 32; continue; case 15: 
 				tok = 50;
-			} else if (_ref$1 === 93) {
+			/* } else if (_ref$1 === 93) { */ go$s = 32; continue; case 16: 
 				insertSemi = true;
 				tok = 55;
-			} else if (_ref$1 === 123) {
+			/* } else if (_ref$1 === 123) { */ go$s = 32; continue; case 17: 
 				tok = 51;
-			} else if (_ref$1 === 125) {
+			/* } else if (_ref$1 === 125) { */ go$s = 32; continue; case 18: 
 				insertSemi = true;
 				tok = 56;
-			} else if (_ref$1 === 43) {
+			/* } else if (_ref$1 === 43) { */ go$s = 32; continue; case 19: 
 				tok = s.switch3(12, 23, 43, 37);
 				if (tok === 37) {
 					insertSemi = true;
 				}
-			} else if (_ref$1 === 45) {
+			/* } else if (_ref$1 === 45) { */ go$s = 32; continue; case 20: 
 				tok = s.switch3(13, 24, 45, 38);
 				if (tok === 38) {
 					insertSemi = true;
 				}
-			} else if (_ref$1 === 42) {
+			/* } else if (_ref$1 === 42) { */ go$s = 32; continue; case 21: 
 				tok = s.switch2(14, 25);
-			} else if (_ref$1 === 47) {
-				if ((s.ch === 47) || (s.ch === 42)) {
+			/* } else if (_ref$1 === 47) { */ go$s = 32; continue; case 22: 
+				/* if ((s.ch === 47) || (s.ch === 42)) { */ if ((s.ch === 47) || (s.ch === 42)) {} else { go$s = 33; continue; }
 					if (s.insertSemi && s.findLineEnd()) {
 						s.ch = 47;
 						s.offset = s.file.Offset(pos);
@@ -36061,54 +36067,54 @@ go$packages["go/scanner"] = (function() {
 						return [pos, tok, lit];
 					}
 					lit = s.scanComment();
-					if (((s.mode & 1) >>> 0) === 0) {
+					/* if (((s.mode & 1) >>> 0) === 0) { */ if (((s.mode & 1) >>> 0) === 0) {} else { go$s = 35; continue; }
 						s.insertSemi = false;
-						_tuple$5 = s.Scan(), pos = _tuple$5[0], tok = _tuple$5[1], lit = _tuple$5[2];
-						return [pos, tok, lit];
-					}
+						/* goto scanAgain */ go$s = 1; continue;
+					/* } */ case 35:
 					tok = 2;
-				} else {
+				/* } else { */ go$s = 34; continue; case 33: 
 					tok = s.switch2(15, 26);
-				}
-			} else if (_ref$1 === 37) {
+				/* } */ case 34:
+			/* } else if (_ref$1 === 37) { */ go$s = 32; continue; case 23: 
 				tok = s.switch2(16, 27);
-			} else if (_ref$1 === 94) {
+			/* } else if (_ref$1 === 94) { */ go$s = 32; continue; case 24: 
 				tok = s.switch2(19, 30);
-			} else if (_ref$1 === 60) {
+			/* } else if (_ref$1 === 60) { */ go$s = 32; continue; case 25: 
 				if (s.ch === 45) {
 					s.next();
 					tok = 36;
 				} else {
 					tok = s.switch4(40, 45, 60, 20, 31);
 				}
-			} else if (_ref$1 === 62) {
+			/* } else if (_ref$1 === 62) { */ go$s = 32; continue; case 26: 
 				tok = s.switch4(41, 46, 62, 21, 32);
-			} else if (_ref$1 === 61) {
+			/* } else if (_ref$1 === 61) { */ go$s = 32; continue; case 27: 
 				tok = s.switch2(42, 39);
-			} else if (_ref$1 === 33) {
+			/* } else if (_ref$1 === 33) { */ go$s = 32; continue; case 28: 
 				tok = s.switch2(43, 44);
-			} else if (_ref$1 === 38) {
+			/* } else if (_ref$1 === 38) { */ go$s = 32; continue; case 29: 
 				if (s.ch === 94) {
 					s.next();
 					tok = s.switch2(22, 33);
 				} else {
 					tok = s.switch3(17, 28, 38, 34);
 				}
-			} else if (_ref$1 === 124) {
+			/* } else if (_ref$1 === 124) { */ go$s = 32; continue; case 30: 
 				tok = s.switch3(18, 29, 124, 35);
-			} else {
+			/* } else { */ go$s = 32; continue; case 31: 
 				if (!((ch === 65279))) {
 					s.error(s.file.Offset(pos), fmt.Sprintf("illegal character %#U", new (go$sliceType(go$emptyInterface))([new Go$Int32(ch)])));
 				}
 				insertSemi = s.insertSemi;
 				tok = 0;
 				lit = go$encodeRune(ch);
-			}
-		}
+			/* } */ case 32:
+		/* } */ case 4:
 		if (((s.mode & 2) >>> 0) === 0) {
 			s.insertSemi = insertSemi;
 		}
 		return [pos, tok, lit];
+		/* */ } break; } }; return go$f();
 	};
 	Scanner.prototype.Scan = function() { return this.go$val.Scan(); };
 	go$pkg.init = function() {
@@ -62976,8 +62982,9 @@ go$packages["go/build"] = (function() {
 		return name.substring(i);
 	};
 	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
-		var ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, find, err, _tuple$1, dirs, err$1, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$1, _i, _slice, _index, d, name, ext, _tuple$2, match, data, filename, err$2, _ref$2, _tuple$3, pf, pkg, isTest, isXTest, isCgo, _ref$3, _i$1, _slice$1, _index$1, decl, _tuple$4, d$1, ok, _ref$4, _i$2, _slice$2, _index$2, dspec, _tuple$5, spec, ok$1, quoted, _tuple$6, path$2, err$3, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$4, _key$3, _ref$5, _i$3, _keys, _entry$3, tag, _tuple$7, _tuple$8, _tuple$9;
-		ctxt = this;
+		var go$this = this, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, ok, _tuple$1, sub, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, ok$1, _tuple$2, sub$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, _slice$4, _index$4, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, _slice$5, _index$5, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, _slice$6, _index$6, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$3, _key$3, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		ctxt = go$this;
 		p = new Package.Ptr("", "", "", path$1, "", "", "", "", false, "", (go$sliceType(Go$String)).nil, "", (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false);
 		if (path$1 === "") {
 			return [p, fmt.Errorf("import %q: invalid import path", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
@@ -62998,113 +63005,107 @@ go$packages["go/build"] = (function() {
 			pkgerr = fmt.Errorf("import %q: unknown compiler %q", new (go$sliceType(go$emptyInterface))([new Go$String(path$1), new Go$String(ctxt.Compiler)]));
 		}
 		binaryOnly = false;
-		find = (function() {
-			var root, ok, _tuple$1, sub, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, ok$1, _tuple$2, sub$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3;
-			if (IsLocalImport(path$1)) {
-				pkga = "";
-				if (srcDir === "") {
-					return fmt.Errorf("import %q: import relative to unknown directory", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]));
-				}
-				if (!ctxt.isAbsPath(path$1)) {
-					p.Dir = ctxt.joinPath(new (go$sliceType(Go$String))([srcDir, path$1]));
-				}
-				if (!(ctxt.GOROOT === "")) {
-					root = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg"]));
-					if (_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1], ok) {
-						p.Goroot = true;
-						p.ImportPath = sub;
-						p.Root = ctxt.GOROOT;
-						return null;
-					}
-				}
-				all = ctxt.gopath();
-				_ref$1 = all;
-				_i = 0;
-				while (_i < _ref$1.length) {
-					root$1 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-					i = _i;
-					rootsrc = ctxt.joinPath(new (go$sliceType(Go$String))([root$1, "src"]));
-					if (_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
-						if (!(ctxt.GOROOT === "")) {
-							if (dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1])), ctxt.isDir(dir$1)) {
-								p.ConflictDir = dir$1;
-								return null;
-							}
-						}
-						_ref$2 = go$subslice(all, 0, i);
-						_i$1 = 0;
-						while (_i$1 < _ref$2.length) {
-							earlyRoot = (_slice$1 = _ref$2, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-							if (dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1])), ctxt.isDir(dir$2)) {
-								p.ConflictDir = dir$2;
-								return null;
-							}
-							_i$1++;
-						}
-						p.ImportPath = sub$1;
-						p.Root = root$1;
-						return null;
-					}
-					_i++;
-				}
-			} else {
-				if (strings.HasPrefix(path$1, "/")) {
-					return fmt.Errorf("import %q: cannot import absolute path", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]));
-				}
-				tried = new (go$structType([["goroot", "go/build", Go$String, ""], ["gopath", "go/build", (go$sliceType(Go$String)), ""]])).Ptr("", (go$sliceType(Go$String)).nil);
-				if (!(ctxt.GOROOT === "")) {
-					dir$3 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", path$1]));
-					isDir = ctxt.isDir(dir$3);
-					binaryOnly = !isDir && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, pkga])));
-					if (isDir || binaryOnly) {
-						p.Dir = dir$3;
-						p.Goroot = true;
-						p.Root = ctxt.GOROOT;
-						return null;
-					}
-					tried.goroot = dir$3;
-				}
-				_ref$3 = ctxt.gopath();
-				_i$2 = 0;
-				while (_i$2 < _ref$3.length) {
-					root$2 = (_slice$2 = _ref$3, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-					dir$4 = ctxt.joinPath(new (go$sliceType(Go$String))([root$2, "src", path$1]));
-					isDir$1 = ctxt.isDir(dir$4);
-					binaryOnly = !isDir$1 && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([root$2, pkga])));
-					if (isDir$1 || binaryOnly) {
-						p.Dir = dir$4;
-						p.Root = root$2;
-						return null;
-					}
-					tried.gopath = go$append(tried.gopath, dir$4);
-					_i$2++;
-				}
-				paths = (go$sliceType(Go$String)).nil;
-				if (!(tried.goroot === "")) {
-					paths = go$append(paths, fmt.Sprintf("\t%s (from $GOROOT)", new (go$sliceType(go$emptyInterface))([new Go$String(tried.goroot)])));
-				} else {
-					paths = go$append(paths, "\t($GOROOT not set)");
-				}
-				i$1 = 0;
-				format = "\t%s (from $GOPATH)";
-				while (i$1 < tried.gopath.length) {
-					if (i$1 > 0) {
-						format = "\t%s";
-					}
-					paths = go$append(paths, fmt.Sprintf(format, new (go$sliceType(go$emptyInterface))([new Go$String((_slice$3 = tried.gopath, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")))])));
-					i$1 = i$1 + 1 >> 0;
-				}
-				if (i$1 === 0) {
-					paths = go$append(paths, "\t($GOPATH not set)");
-				}
-				return fmt.Errorf("cannot find package %q in any of:\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(path$1), new Go$String(strings.Join(paths, "\n"))]));
+		/* if (IsLocalImport(path$1)) { */ if (IsLocalImport(path$1)) {} else { go$s = 2; continue; }
+			pkga = "";
+			if (srcDir === "") {
+				return [p, fmt.Errorf("import %q: import relative to unknown directory", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
 			}
-			return null;
-		});
-		if (err = find(), !(go$interfaceIsEqual(err, null))) {
-			return [p, err];
-		}
-		if (!(p.Root === "")) {
+			if (!ctxt.isAbsPath(path$1)) {
+				p.Dir = ctxt.joinPath(new (go$sliceType(Go$String))([srcDir, path$1]));
+			}
+			/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 4; continue; }
+				root = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg"]));
+				/* if (_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1], ok) { */ if (_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1], ok) {} else { go$s = 5; continue; }
+					p.Goroot = true;
+					p.ImportPath = sub;
+					p.Root = ctxt.GOROOT;
+					/* goto Found */ go$s = 1; continue;
+				/* } */ case 5:
+			/* } */ case 4:
+			all = ctxt.gopath();
+			_ref$1 = all;
+			_i = 0;
+			/* while (_i < _ref$1.length) { */ case 6: if(!(_i < _ref$1.length)) { go$s = 7; continue; }
+				root$1 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				rootsrc = ctxt.joinPath(new (go$sliceType(Go$String))([root$1, "src"]));
+				/* if (_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) { */ if (_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {} else { go$s = 8; continue; }
+					/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 9; continue; }
+						/* if (dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1])), ctxt.isDir(dir$1)) { */ if (dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1])), ctxt.isDir(dir$1)) {} else { go$s = 10; continue; }
+							p.ConflictDir = dir$1;
+							/* goto Found */ go$s = 1; continue;
+						/* } */ case 10:
+					/* } */ case 9:
+					_ref$2 = go$subslice(all, 0, i);
+					_i$1 = 0;
+					/* while (_i$1 < _ref$2.length) { */ case 11: if(!(_i$1 < _ref$2.length)) { go$s = 12; continue; }
+						earlyRoot = (_slice$1 = _ref$2, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+						/* if (dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1])), ctxt.isDir(dir$2)) { */ if (dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1])), ctxt.isDir(dir$2)) {} else { go$s = 13; continue; }
+							p.ConflictDir = dir$2;
+							/* goto Found */ go$s = 1; continue;
+						/* } */ case 13:
+						_i$1++;
+					/* } */ go$s = 11; continue; case 12:
+					p.ImportPath = sub$1;
+					p.Root = root$1;
+					/* goto Found */ go$s = 1; continue;
+				/* } */ case 8:
+				_i++;
+			/* } */ go$s = 6; continue; case 7:
+		/* } else { */ go$s = 3; continue; case 2: 
+			if (strings.HasPrefix(path$1, "/")) {
+				return [p, fmt.Errorf("import %q: cannot import absolute path", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
+			}
+			tried = new (go$structType([["goroot", "go/build", Go$String, ""], ["gopath", "go/build", (go$sliceType(Go$String)), ""]])).Ptr("", (go$sliceType(Go$String)).nil);
+			/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 14; continue; }
+				dir$3 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", path$1]));
+				isDir = ctxt.isDir(dir$3);
+				binaryOnly = !isDir && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, pkga])));
+				/* if (isDir || binaryOnly) { */ if (isDir || binaryOnly) {} else { go$s = 15; continue; }
+					p.Dir = dir$3;
+					p.Goroot = true;
+					p.Root = ctxt.GOROOT;
+					/* goto Found */ go$s = 1; continue;
+				/* } */ case 15:
+				tried.goroot = dir$3;
+			/* } */ case 14:
+			_ref$3 = ctxt.gopath();
+			_i$2 = 0;
+			/* while (_i$2 < _ref$3.length) { */ case 16: if(!(_i$2 < _ref$3.length)) { go$s = 17; continue; }
+				root$2 = (_slice$2 = _ref$3, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				dir$4 = ctxt.joinPath(new (go$sliceType(Go$String))([root$2, "src", path$1]));
+				isDir$1 = ctxt.isDir(dir$4);
+				binaryOnly = !isDir$1 && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([root$2, pkga])));
+				/* if (isDir$1 || binaryOnly) { */ if (isDir$1 || binaryOnly) {} else { go$s = 18; continue; }
+					p.Dir = dir$4;
+					p.Root = root$2;
+					/* goto Found */ go$s = 1; continue;
+				/* } */ case 18:
+				tried.gopath = go$append(tried.gopath, dir$4);
+				_i$2++;
+			/* } */ go$s = 16; continue; case 17:
+			paths = (go$sliceType(Go$String)).nil;
+			if (!(tried.goroot === "")) {
+				paths = go$append(paths, fmt.Sprintf("\t%s (from $GOROOT)", new (go$sliceType(go$emptyInterface))([new Go$String(tried.goroot)])));
+			} else {
+				paths = go$append(paths, "\t($GOROOT not set)");
+			}
+			i$1 = 0;
+			format = "\t%s (from $GOPATH)";
+			while (i$1 < tried.gopath.length) {
+				if (i$1 > 0) {
+					format = "\t%s";
+				}
+				paths = go$append(paths, fmt.Sprintf(format, new (go$sliceType(go$emptyInterface))([new Go$String((_slice$3 = tried.gopath, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")))])));
+				i$1 = i$1 + 1 >> 0;
+			}
+			if (i$1 === 0) {
+				paths = go$append(paths, "\t($GOPATH not set)");
+			}
+			return [p, fmt.Errorf("cannot find package %q in any of:\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(path$1), new Go$String(strings.Join(paths, "\n"))]))];
+		/* } */ case 3:
+		/* Found: */ case 1:
+		/* if (!(p.Root === "")) { */ if (!(p.Root === "")) {} else { go$s = 19; continue; }
 			if (p.Goroot) {
 				p.SrcRoot = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, "src", "pkg"]));
 			} else {
@@ -63115,16 +63116,16 @@ go$packages["go/build"] = (function() {
 			if (!(pkga === "")) {
 				p.PkgObj = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, pkga]));
 			}
-		}
+		/* } */ case 19:
 		if (!((((mode & 1) >>> 0) === 0))) {
 			return [p, pkgerr];
 		}
 		if (binaryOnly && !(((((mode & 2) >>> 0)) === 0))) {
 			return [p, pkgerr];
 		}
-		_tuple$1 = ctxt.readDir(p.Dir), dirs = _tuple$1[0], err$1 = _tuple$1[1];
-		if (!(go$interfaceIsEqual(err$1, null))) {
-			return [p, err$1];
+		_tuple$3 = ctxt.readDir(p.Dir), dirs = _tuple$3[0], err = _tuple$3[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [p, err];
 		}
 		Sfiles = (go$sliceType(Go$String)).nil;
 		firstFile = "";
@@ -63133,69 +63134,69 @@ go$packages["go/build"] = (function() {
 		xTestImported = new Go$Map();
 		allTags = new Go$Map();
 		fset = token.NewFileSet();
-		_ref$1 = dirs;
-		_i = 0;
-		while (_i < _ref$1.length) {
-			d = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		_ref$4 = dirs;
+		_i$3 = 0;
+		while (_i$3 < _ref$4.length) {
+			d = (_slice$4 = _ref$4, _index$4 = _i$3, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
 			if (d.IsDir()) {
-				_i++;
+				_i$3++;
 				continue;
 			}
 			name = d.Name();
 			ext = nameExt(name);
-			_tuple$2 = ctxt.matchFile(p.Dir, name, true, allTags), match = _tuple$2[0], data = _tuple$2[1], filename = _tuple$2[2], err$2 = _tuple$2[3];
-			if (!(go$interfaceIsEqual(err$2, null))) {
-				return [p, err$2];
+			_tuple$4 = ctxt.matchFile(p.Dir, name, true, allTags), match = _tuple$4[0], data = _tuple$4[1], filename = _tuple$4[2], err$1 = _tuple$4[3];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [p, err$1];
 			}
 			if (!match) {
 				if (ext === ".go") {
 					p.IgnoredGoFiles = go$append(p.IgnoredGoFiles, name);
 				}
-				_i++;
+				_i$3++;
 				continue;
 			}
-			_ref$2 = ext;
-			if (_ref$2 === ".c") {
+			_ref$5 = ext;
+			if (_ref$5 === ".c") {
 				p.CFiles = go$append(p.CFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".cc" || _ref$2 === ".cpp" || _ref$2 === ".cxx") {
+			} else if (_ref$5 === ".cc" || _ref$5 === ".cpp" || _ref$5 === ".cxx") {
 				p.CXXFiles = go$append(p.CXXFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".h" || _ref$2 === ".hh" || _ref$2 === ".hpp" || _ref$2 === ".hxx") {
+			} else if (_ref$5 === ".h" || _ref$5 === ".hh" || _ref$5 === ".hpp" || _ref$5 === ".hxx") {
 				p.HFiles = go$append(p.HFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".s") {
+			} else if (_ref$5 === ".s") {
 				p.SFiles = go$append(p.SFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".S") {
+			} else if (_ref$5 === ".S") {
 				Sfiles = go$append(Sfiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".swig") {
+			} else if (_ref$5 === ".swig") {
 				p.SwigFiles = go$append(p.SwigFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".swigcxx") {
+			} else if (_ref$5 === ".swigcxx") {
 				p.SwigCXXFiles = go$append(p.SwigCXXFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".syso") {
+			} else if (_ref$5 === ".syso") {
 				p.SysoFiles = go$append(p.SysoFiles, name);
-				_i++;
+				_i$3++;
 				continue;
 			}
-			_tuple$3 = parser.ParseFile(fset, filename, data, 6), pf = _tuple$3[0], err$2 = _tuple$3[1];
-			if (!(go$interfaceIsEqual(err$2, null))) {
-				return [p, err$2];
+			_tuple$5 = parser.ParseFile(fset, filename, data, 6), pf = _tuple$5[0], err$1 = _tuple$5[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [p, err$1];
 			}
 			pkg = pf.Name.Name;
 			if (pkg === "documentation") {
 				p.IgnoredGoFiles = go$append(p.IgnoredGoFiles, name);
-				_i++;
+				_i$3++;
 				continue;
 			}
 			isTest = strings.HasSuffix(name, "_test.go");
@@ -63214,27 +63215,27 @@ go$packages["go/build"] = (function() {
 				p.Doc = doc.Synopsis(pf.Doc.Text());
 			}
 			isCgo = false;
-			_ref$3 = pf.Decls;
-			_i$1 = 0;
-			while (_i$1 < _ref$3.length) {
-				decl = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-				_tuple$4 = (decl !== null && decl.constructor === (go$ptrType(ast.GenDecl)) ? [decl.go$val, true] : [(go$ptrType(ast.GenDecl)).nil, false]), d$1 = _tuple$4[0], ok = _tuple$4[1];
-				if (!ok) {
-					_i$1++;
+			_ref$6 = pf.Decls;
+			_i$4 = 0;
+			while (_i$4 < _ref$6.length) {
+				decl = (_slice$5 = _ref$6, _index$5 = _i$4, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+				_tuple$6 = (decl !== null && decl.constructor === (go$ptrType(ast.GenDecl)) ? [decl.go$val, true] : [(go$ptrType(ast.GenDecl)).nil, false]), d$1 = _tuple$6[0], ok$2 = _tuple$6[1];
+				if (!ok$2) {
+					_i$4++;
 					continue;
 				}
-				_ref$4 = d$1.Specs;
-				_i$2 = 0;
-				while (_i$2 < _ref$4.length) {
-					dspec = (_slice$2 = _ref$4, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-					_tuple$5 = (dspec !== null && dspec.constructor === (go$ptrType(ast.ImportSpec)) ? [dspec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), spec = _tuple$5[0], ok$1 = _tuple$5[1];
-					if (!ok$1) {
-						_i$2++;
+				_ref$7 = d$1.Specs;
+				_i$5 = 0;
+				while (_i$5 < _ref$7.length) {
+					dspec = (_slice$6 = _ref$7, _index$6 = _i$5, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+					_tuple$7 = (dspec !== null && dspec.constructor === (go$ptrType(ast.ImportSpec)) ? [dspec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), spec = _tuple$7[0], ok$3 = _tuple$7[1];
+					if (!ok$3) {
+						_i$5++;
 						continue;
 					}
 					quoted = spec.Path.Value;
-					_tuple$6 = strconv.Unquote(quoted), path$2 = _tuple$6[0], err$3 = _tuple$6[1];
-					if (!(go$interfaceIsEqual(err$3, null))) {
+					_tuple$8 = strconv.Unquote(quoted), path$2 = _tuple$8[0], err$2 = _tuple$8[1];
+					if (!(go$interfaceIsEqual(err$2, null))) {
 						log.Panicf("%s: parser returned invalid quoted string: <%s>", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(quoted)]));
 					}
 					if (isXTest) {
@@ -63253,15 +63254,15 @@ go$packages["go/build"] = (function() {
 							cg = d$1.Doc;
 						}
 						if (!(cg === (go$ptrType(ast.CommentGroup)).nil)) {
-							if (err$4 = ctxt.saveCgo(filename, p, cg), !(go$interfaceIsEqual(err$4, null))) {
-								return [p, err$4];
+							if (err$3 = ctxt.saveCgo(filename, p, cg), !(go$interfaceIsEqual(err$3, null))) {
+								return [p, err$3];
 							}
 						}
 						isCgo = true;
 					}
-					_i$2++;
+					_i$5++;
 				}
-				_i$1++;
+				_i$4++;
 			}
 			if (isCgo) {
 				_key$3 = "cgo", (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: true };
@@ -63277,29 +63278,30 @@ go$packages["go/build"] = (function() {
 			} else {
 				p.GoFiles = go$append(p.GoFiles, name);
 			}
-			_i++;
+			_i$3++;
 		}
 		if ((((p.GoFiles.length + p.CgoFiles.length >> 0) + p.TestGoFiles.length >> 0) + p.XTestGoFiles.length >> 0) === 0) {
 			return [p, new NoGoError.Ptr(p.Dir)];
 		}
-		_ref$5 = allTags;
-		_i$3 = 0;
-		_keys = go$keys(_ref$5);
-		while (_i$3 < _keys.length) {
-			_entry$3 = _ref$5[_keys[_i$3]];
+		_ref$8 = allTags;
+		_i$6 = 0;
+		_keys = go$keys(_ref$8);
+		while (_i$6 < _keys.length) {
+			_entry$3 = _ref$8[_keys[_i$6]];
 			tag = _entry$3.k;
 			p.AllTags = go$append(p.AllTags, tag);
-			_i$3++;
+			_i$6++;
 		}
 		sort.Strings(p.AllTags);
-		_tuple$7 = cleanImports(imported), p.Imports = _tuple$7[0], p.ImportPos = _tuple$7[1];
-		_tuple$8 = cleanImports(testImported), p.TestImports = _tuple$8[0], p.TestImportPos = _tuple$8[1];
-		_tuple$9 = cleanImports(xTestImported), p.XTestImports = _tuple$9[0], p.XTestImportPos = _tuple$9[1];
+		_tuple$9 = cleanImports(imported), p.Imports = _tuple$9[0], p.ImportPos = _tuple$9[1];
+		_tuple$10 = cleanImports(testImported), p.TestImports = _tuple$10[0], p.TestImportPos = _tuple$10[1];
+		_tuple$11 = cleanImports(xTestImported), p.XTestImports = _tuple$11[0], p.XTestImportPos = _tuple$11[1];
 		if (p.CgoFiles.length > 0) {
 			p.SFiles = go$appendSlice(p.SFiles, Sfiles);
 			sort.Strings(p.SFiles);
 		}
 		return [p, pkgerr];
+		/* */ } break; } }; return go$f();
 	};
 	Context.prototype.Import = function(path$1, srcDir, mode) { return this.go$val.Import(path$1, srcDir, mode); };
 	Context.Ptr.prototype.MatchFile = function(dir, name) {
@@ -64308,85 +64310,86 @@ go$packages["text/scanner"] = (function() {
 	};
 	Scanner.prototype.scanComment = function(ch) { return this.go$val.scanComment(ch); };
 	Scanner.Ptr.prototype.Scan = function() {
-		var s, ch, x, x$1, x$2, tok, _tuple, _ref;
-		s = this;
+		var go$this = this, s, ch, x, x$1, x$2, tok, _tuple, _ref;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		s = go$this;
 		ch = s.Peek();
 		s.tokPos = -1;
 		s.Position.Line = 0;
-		while (true) {
-			while (!((x = (x$1 = s.Whitespace, x$2 = go$shiftLeft64(new Go$Uint64(0, 1), (ch >>> 0)), new Go$Uint64(x$1.high & x$2.high, (x$1.low & x$2.low) >>> 0)), (x.high === 0 && x.low === 0)))) {
+		/* redo: */ case 1:
+		/* while (!((x = (x$1 = s.Whitespace, x$2 = go$shiftLeft64(new Go$Uint64(0, 1), (ch >>> 0)), new Go$Uint64(x$1.high & x$2.high, (x$1.low & x$2.low) >>> 0)), (x.high === 0 && x.low === 0)))) { */ case 2: if(!(!((x = (x$1 = s.Whitespace, x$2 = go$shiftLeft64(new Go$Uint64(0, 1), (ch >>> 0)), new Go$Uint64(x$1.high & x$2.high, (x$1.low & x$2.low) >>> 0)), (x.high === 0 && x.low === 0))))) { go$s = 3; continue; }
+			ch = s.next();
+		/* } */ go$s = 2; continue; case 3:
+		s.tokBuf.Reset();
+		s.tokPos = s.srcPos - s.lastCharLen >> 0;
+		s.Position.Offset = s.srcBufOffset + s.tokPos >> 0;
+		if (s.column > 0) {
+			s.Position.Line = s.line;
+			s.Position.Column = s.column;
+		} else {
+			s.Position.Line = s.line - 1 >> 0;
+			s.Position.Column = s.lastLineLen;
+		}
+		tok = ch;
+		/* if (unicode.IsLetter(ch) || (ch === 95)) { */ if (unicode.IsLetter(ch) || (ch === 95)) {} else if (isDecimal(ch)) { go$s = 4; continue; } else { go$s = 5; continue; }
+			if (!((((s.Mode & 4) >>> 0) === 0))) {
+				tok = -2;
+				ch = s.scanIdentifier();
+			} else {
 				ch = s.next();
 			}
-			s.tokBuf.Reset();
-			s.tokPos = s.srcPos - s.lastCharLen >> 0;
-			s.Position.Offset = s.srcBufOffset + s.tokPos >> 0;
-			if (s.column > 0) {
-				s.Position.Line = s.line;
-				s.Position.Column = s.column;
+		/* } else if (isDecimal(ch)) { */ go$s = 6; continue; case 4: 
+			if (!((((s.Mode & 24) >>> 0) === 0))) {
+				_tuple = s.scanNumber(ch), tok = _tuple[0], ch = _tuple[1];
 			} else {
-				s.Position.Line = s.line - 1 >> 0;
-				s.Position.Column = s.lastLineLen;
+				ch = s.next();
 			}
-			tok = ch;
-			if (unicode.IsLetter(ch) || (ch === 95)) {
-				if (!((((s.Mode & 4) >>> 0) === 0))) {
-					tok = -2;
-					ch = s.scanIdentifier();
-				} else {
-					ch = s.next();
+		/* } else { */ go$s = 6; continue; case 5: 
+			_ref = ch;
+			/* if (_ref === 34) { */ if (_ref === 34) {} else if (_ref === 39) { go$s = 7; continue; } else if (_ref === 46) { go$s = 8; continue; } else if (_ref === 47) { go$s = 9; continue; } else if (_ref === 96) { go$s = 10; continue; } else { go$s = 11; continue; }
+				if (!((((s.Mode & 64) >>> 0) === 0))) {
+					s.scanString(34);
+					tok = -6;
 				}
-			} else if (isDecimal(ch)) {
-				if (!((((s.Mode & 24) >>> 0) === 0))) {
-					_tuple = s.scanNumber(ch), tok = _tuple[0], ch = _tuple[1];
-				} else {
-					ch = s.next();
+				ch = s.next();
+			/* } else if (_ref === 39) { */ go$s = 12; continue; case 7: 
+				if (!((((s.Mode & 32) >>> 0) === 0))) {
+					s.scanChar();
+					tok = -5;
 				}
-			} else {
-				_ref = ch;
-				if (_ref === 34) {
-					if (!((((s.Mode & 64) >>> 0) === 0))) {
-						s.scanString(34);
-						tok = -6;
-					}
-					ch = s.next();
-				} else if (_ref === 39) {
-					if (!((((s.Mode & 32) >>> 0) === 0))) {
-						s.scanChar();
-						tok = -5;
-					}
-					ch = s.next();
-				} else if (_ref === 46) {
-					ch = s.next();
-					if (isDecimal(ch) && !((((s.Mode & 16) >>> 0) === 0))) {
-						tok = -4;
-						ch = s.scanMantissa(ch);
-						ch = s.scanExponent(ch);
-					}
-				} else if (_ref === 47) {
-					ch = s.next();
-					if (((ch === 47) || (ch === 42)) && !((((s.Mode & 256) >>> 0) === 0))) {
-						if (!((((s.Mode & 512) >>> 0) === 0))) {
-							s.tokPos = -1;
-							ch = s.scanComment(ch);
-							continue;
-						}
+				ch = s.next();
+			/* } else if (_ref === 46) { */ go$s = 12; continue; case 8: 
+				ch = s.next();
+				if (isDecimal(ch) && !((((s.Mode & 16) >>> 0) === 0))) {
+					tok = -4;
+					ch = s.scanMantissa(ch);
+					ch = s.scanExponent(ch);
+				}
+			/* } else if (_ref === 47) { */ go$s = 12; continue; case 9: 
+				ch = s.next();
+				/* if (((ch === 47) || (ch === 42)) && !((((s.Mode & 256) >>> 0) === 0))) { */ if (((ch === 47) || (ch === 42)) && !((((s.Mode & 256) >>> 0) === 0))) {} else { go$s = 13; continue; }
+					/* if (!((((s.Mode & 512) >>> 0) === 0))) { */ if (!((((s.Mode & 512) >>> 0) === 0))) {} else { go$s = 14; continue; }
+						s.tokPos = -1;
 						ch = s.scanComment(ch);
-						tok = -8;
-					}
-				} else if (_ref === 96) {
-					if (!((((s.Mode & 128) >>> 0) === 0))) {
-						s.scanRawString();
-						tok = -6;
-					}
-					ch = s.next();
-				} else {
-					ch = s.next();
+						/* goto redo */ go$s = 1; continue;
+					/* } */ case 14:
+					ch = s.scanComment(ch);
+					tok = -8;
+				/* } */ case 13:
+			/* } else if (_ref === 96) { */ go$s = 12; continue; case 10: 
+				if (!((((s.Mode & 128) >>> 0) === 0))) {
+					s.scanRawString();
+					tok = -6;
 				}
-			}
-			s.tokEnd = s.srcPos - s.lastCharLen >> 0;
-			s.ch = ch;
-			return tok;
-		}
+				ch = s.next();
+			/* } else { */ go$s = 12; continue; case 11: 
+				ch = s.next();
+			/* } */ case 12:
+		/* } */ case 6:
+		s.tokEnd = s.srcPos - s.lastCharLen >> 0;
+		s.ch = ch;
+		return tok;
+		/* */ } break; } }; return go$f();
 	};
 	Scanner.prototype.Scan = function() { return this.go$val.Scan(); };
 	Scanner.Ptr.prototype.Pos = function() {
@@ -73704,18 +73707,19 @@ go$packages["go/printer"] = (function() {
 		return (go$ptrType(ast.CommentGroup)).nil;
 	};
 	printer.Ptr.prototype.printNode = function(node) {
-		var p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, _tuple$2, n$1, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
-		p = this;
+		var go$this = this, p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, _tuple$2, n$1, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		p = go$this;
 		comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 		if (_tuple = (node !== null && node.constructor === (go$ptrType(CommentedNode)) ? [node.go$val, true] : [(go$ptrType(CommentedNode)).nil, false]), cnode = _tuple[0], ok = _tuple[1], ok) {
 			node = cnode.Node;
 			comments = cnode.Comments;
 		}
-		if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) {
+		/* if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) { */ if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) {} else if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) { go$s = 2; continue; } else { go$s = 3; continue; }
 			_tuple$2 = (node !== null && ast.Node.implementedBy.indexOf(node.constructor) !== -1 ? [node, true] : [null, false]), n$1 = _tuple$2[0], ok$2 = _tuple$2[1];
-			if (!ok$2) {
-				return fmt.Errorf("go/printer: unsupported node type %T", new (go$sliceType(go$emptyInterface))([node]));
-			}
+			/* if (!ok$2) { */ if (!ok$2) {} else { go$s = 4; continue; }
+				/* goto unsupported */ go$s = 1; continue;
+			/* } */ case 4:
 			beg = n$1.Pos();
 			end = n$1.End();
 			if (doc = getDoc(n$1), !(doc === (go$ptrType(ast.CommentGroup)).nil)) {
@@ -73732,29 +73736,29 @@ go$packages["go/printer"] = (function() {
 			if (i < j) {
 				p.comments = go$subslice(comments, i, j);
 			}
-		} else if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) {
+		/* } else if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) { */ go$s = 3; continue; case 2: 
 			p.comments = n.Comments;
-		}
+		/* } */ case 3:
 		p.useNodeComments = p.comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 		p.nextComment();
 		_ref = node;
 		_type = _ref !== null ? _ref.constructor : null;
-		if (ast.Expr.implementedBy.indexOf(_type) !== -1) {
+		/* if (ast.Expr.implementedBy.indexOf(_type) !== -1) { */ if (ast.Expr.implementedBy.indexOf(_type) !== -1) {} else if (ast.Stmt.implementedBy.indexOf(_type) !== -1) { go$s = 5; continue; } else if (ast.Decl.implementedBy.indexOf(_type) !== -1) { go$s = 6; continue; } else if (ast.Spec.implementedBy.indexOf(_type) !== -1) { go$s = 7; continue; } else if (_type === (go$sliceType(ast.Stmt))) { go$s = 8; continue; } else if (_type === (go$sliceType(ast.Decl))) { go$s = 9; continue; } else if (_type === (go$ptrType(ast.File))) { go$s = 10; continue; } else { go$s = 11; continue; }
 			n$2 = _ref;
 			p.expr(n$2);
-		} else if (ast.Stmt.implementedBy.indexOf(_type) !== -1) {
+		/* } else if (ast.Stmt.implementedBy.indexOf(_type) !== -1) { */ go$s = 12; continue; case 5: 
 			n$2 = _ref;
 			if (_tuple$3 = (n$2 !== null && n$2.constructor === (go$ptrType(ast.LabeledStmt)) ? [n$2.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), ok$3 = _tuple$3[1], ok$3) {
 				p.indent = 1;
 			}
 			p.stmt(n$2, false);
-		} else if (ast.Decl.implementedBy.indexOf(_type) !== -1) {
+		/* } else if (ast.Decl.implementedBy.indexOf(_type) !== -1) { */ go$s = 12; continue; case 6: 
 			n$2 = _ref;
 			p.decl(n$2);
-		} else if (ast.Spec.implementedBy.indexOf(_type) !== -1) {
+		/* } else if (ast.Spec.implementedBy.indexOf(_type) !== -1) { */ go$s = 12; continue; case 7: 
 			n$2 = _ref;
 			p.spec(n$2, 1, false);
-		} else if (_type === (go$sliceType(ast.Stmt))) {
+		/* } else if (_type === (go$sliceType(ast.Stmt))) { */ go$s = 12; continue; case 8: 
 			n$2 = _ref.go$val;
 			_ref$1 = n$2;
 			_i = 0;
@@ -73766,17 +73770,20 @@ go$packages["go/printer"] = (function() {
 				_i++;
 			}
 			p.stmtList(n$2, 0, false);
-		} else if (_type === (go$sliceType(ast.Decl))) {
+		/* } else if (_type === (go$sliceType(ast.Decl))) { */ go$s = 12; continue; case 9: 
 			n$2 = _ref.go$val;
 			p.declList(n$2);
-		} else if (_type === (go$ptrType(ast.File))) {
+		/* } else if (_type === (go$ptrType(ast.File))) { */ go$s = 12; continue; case 10: 
 			n$2 = _ref.go$val;
 			p.file(n$2);
-		} else {
+		/* } else { */ go$s = 12; continue; case 11: 
 			n$2 = _ref;
-			return fmt.Errorf("go/printer: unsupported node type %T", new (go$sliceType(go$emptyInterface))([node]));
-		}
+			/* goto unsupported */ go$s = 1; continue;
+		/* } */ case 12:
 		return null;
+		/* unsupported: */ case 1:
+		return fmt.Errorf("go/printer: unsupported node type %T", new (go$sliceType(go$emptyInterface))([node]));
+		/* */ } break; } }; return go$f();
 	};
 	printer.prototype.printNode = function(node) { return this.go$val.printNode(node); };
 	trimmer.Ptr.prototype.resetSpace = function() {

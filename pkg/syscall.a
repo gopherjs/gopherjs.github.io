@@ -1,4 +1,4 @@
-0Éè≈syscallÉ%:package syscall
+0ÉësyscallÉ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -2699,7 +2699,7 @@ $$
 	BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
 	BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
 	Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0É¢Ù0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
+0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0É§:0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
 0Å¨BpfJumpÅ†	var BpfJump = go$pkg.BpfJump = function(code, k, jt, jf) {
@@ -3218,10 +3218,11 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		err = err;
 		return err;
 	};
-0Ç≈forkExecÇ∑	var forkExec = function(argv0, argv, attr) {
-		var pid, err, p, n, err1, wstatus, sys, _tuple, argv0p, _tuple$1, _tuple$2, argvp, _tuple$3, _tuple$4, envvp, _tuple$5, _slice, _index, chroot, _tuple$6, _tuple$7, dir, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, v, _tuple$14, v$1, err1$1, _tuple$15, v$2, _tuple$16, _tuple$17;
+0ÇforkExecÇ˝	var forkExec = function(argv0, argv, attr) {
+		var go$this = this, pid, err, p, n, err1, wstatus, sys, _tuple, argv0p, _tuple$1, _tuple$2, argvp, _tuple$3, _tuple$4, envvp, _tuple$5, _slice, _index, chroot, _tuple$6, _tuple$7, dir, _tuple$8, _tuple$9, _tuple$10, _tuple$11, v, _tuple$12, v$1, err1$1, _tuple$13, v$2, _tuple$14, _tuple$15, _tuple$16;
 		pid = 0;
 		err = null;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		p = go$makeNativeArray("Int", 2, function() { return 0; });
 		n = 0;
 		err1 = 0;
@@ -3267,29 +3268,17 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 			}
 		}
 		go$pkg.ForkLock.Lock();
-		if (err = forkExecPipe(new (go$sliceType(Go$Int))(p)), !(go$interfaceIsEqual(err, null))) {
-			if (p[0] >= 0) {
-				Close(p[0]);
-				Close(p[1]);
-			}
-			go$pkg.ForkLock.Unlock();
-			_tuple$10 = [0, err], pid = _tuple$10[0], err = _tuple$10[1];
-			return [pid, err];
-		}
-		_tuple$11 = forkAndExecInChild(argv0p, argvp, envvp, chroot, dir, attr, sys, p[1]), pid = _tuple$11[0], err1 = _tuple$11[1];
-		if (!((err1 === 0))) {
+		/* if (err = forkExecPipe(new (go$sliceType(Go$Int))(p)), !(go$interfaceIsEqual(err, null))) { */ if (err = forkExecPipe(new (go$sliceType(Go$Int))(p)), !(go$interfaceIsEqual(err, null))) {} else { go$s = 2; continue; }
+			/* goto error */ go$s = 1; continue;
+		/* } */ case 2:
+		_tuple$10 = forkAndExecInChild(argv0p, argvp, envvp, chroot, dir, attr, sys, p[1]), pid = _tuple$10[0], err1 = _tuple$10[1];
+		/* if (!((err1 === 0))) { */ if (!((err1 === 0))) {} else { go$s = 3; continue; }
 			err = new Errno(err1);
-			if (p[0] >= 0) {
-				Close(p[0]);
-				Close(p[1]);
-			}
-			go$pkg.ForkLock.Unlock();
-			_tuple$12 = [0, err], pid = _tuple$12[0], err = _tuple$12[1];
-			return [pid, err];
-		}
+			/* goto error */ go$s = 1; continue;
+		/* } */ case 3:
 		go$pkg.ForkLock.Unlock();
 		Close(p[1]);
-		_tuple$13 = readlen(p[0], new (go$ptrType(Errno))(function() { return err1; }, function(v) { err1 = v; }), 4), n = _tuple$13[0], err = _tuple$13[1];
+		_tuple$11 = readlen(p[0], new (go$ptrType(Errno))(function() { return err1; }, function(v) { err1 = v; }), 4), n = _tuple$11[0], err = _tuple$11[1];
 		Close(p[0]);
 		if (!(go$interfaceIsEqual(err, null)) || !((n === 0))) {
 			if (n === 4) {
@@ -3298,15 +3287,24 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 			if (go$interfaceIsEqual(err, null)) {
 				err = new Errno(32);
 			}
-			_tuple$14 = Wait4(pid, new (go$ptrType(WaitStatus))(function() { return wstatus; }, function(v$1) { wstatus = v$1; }), 0, (go$ptrType(Rusage)).nil), err1$1 = _tuple$14[1];
+			_tuple$12 = Wait4(pid, new (go$ptrType(WaitStatus))(function() { return wstatus; }, function(v$1) { wstatus = v$1; }), 0, (go$ptrType(Rusage)).nil), err1$1 = _tuple$12[1];
 			while (go$interfaceIsEqual(err1$1, new Errno(4))) {
-				_tuple$15 = Wait4(pid, new (go$ptrType(WaitStatus))(function() { return wstatus; }, function(v$2) { wstatus = v$2; }), 0, (go$ptrType(Rusage)).nil), err1$1 = _tuple$15[1];
+				_tuple$13 = Wait4(pid, new (go$ptrType(WaitStatus))(function() { return wstatus; }, function(v$2) { wstatus = v$2; }), 0, (go$ptrType(Rusage)).nil), err1$1 = _tuple$13[1];
 			}
-			_tuple$16 = [0, err], pid = _tuple$16[0], err = _tuple$16[1];
+			_tuple$14 = [0, err], pid = _tuple$14[0], err = _tuple$14[1];
 			return [pid, err];
 		}
-		_tuple$17 = [pid, null], pid = _tuple$17[0], err = _tuple$17[1];
+		_tuple$15 = [pid, null], pid = _tuple$15[0], err = _tuple$15[1];
 		return [pid, err];
+		/* error: */ case 1:
+		/* if (p[0] >= 0) { */ if (p[0] >= 0) {} else { go$s = 4; continue; }
+			Close(p[0]);
+			Close(p[1]);
+		/* } */ case 4:
+		go$pkg.ForkLock.Unlock();
+		_tuple$16 = [0, err], pid = _tuple$16[0], err = _tuple$16[1];
+		return [pid, err];
+		/* */ } break; } }; return go$f();
 	};
 0Å·ForkExecÅ‘	var ForkExec = go$pkg.ForkExec = function(argv0, argv, attr) {
 		var pid, err, _tuple;

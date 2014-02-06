@@ -1,4 +1,4 @@
-0É&êgo/buildÇ<#package build
+0É,ıgo/buildÇ<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -304,7 +304,7 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 	(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false], ["readByte", "go/build", [], [Go$Uint8], false], ["readIdent", "go/build", [], [], false], ["readImport", "go/build", [], [], false], ["readKeyword", "go/build", [Go$String], [], false], ["readString", "go/build", [], [], false], ["syntaxError", "go/build", [], [], false]];
 0`0 0
 cgoEnabled0
-slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0ÇΩ0Ç*joinPathÇ	Context.Ptr.prototype.joinPath = function(elem) {
+slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0Ç√s0Ç*joinPathÇ	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.JoinPath, !(f === go$throwNilPointerError)) {
@@ -516,9 +516,10 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0ÇΩ0Ç
 		}
 		return name.substring(i);
 	};
-0Ç;≥ImportÇ;ß	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
-		var ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, find, err, _tuple$1, dirs, err$1, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$1, _i, _slice, _index, d, name, ext, _tuple$2, match, data, filename, err$2, _ref$2, _tuple$3, pf, pkg, isTest, isXTest, isCgo, _ref$3, _i$1, _slice$1, _index$1, decl, _tuple$4, d$1, ok, _ref$4, _i$2, _slice$2, _index$2, dspec, _tuple$5, spec, ok$1, quoted, _tuple$6, path$2, err$3, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$4, _key$3, _ref$5, _i$3, _keys, _entry$3, tag, _tuple$7, _tuple$8, _tuple$9;
-		ctxt = this;
+0ÇBImportÇB	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
+		var go$this = this, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, ok, _tuple$1, sub, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, ok$1, _tuple$2, sub$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, _slice$4, _index$4, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, _slice$5, _index$5, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, _slice$6, _index$6, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$3, _key$3, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		ctxt = go$this;
 		p = new Package.Ptr("", "", "", path$1, "", "", "", "", false, "", (go$sliceType(Go$String)).nil, "", (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false);
 		if (path$1 === "") {
 			return [p, fmt.Errorf("import %q: invalid import path", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
@@ -539,113 +540,107 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0ÇΩ0Ç
 			pkgerr = fmt.Errorf("import %q: unknown compiler %q", new (go$sliceType(go$emptyInterface))([new Go$String(path$1), new Go$String(ctxt.Compiler)]));
 		}
 		binaryOnly = false;
-		find = (function() {
-			var root, ok, _tuple$1, sub, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, ok$1, _tuple$2, sub$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3;
-			if (IsLocalImport(path$1)) {
-				pkga = "";
-				if (srcDir === "") {
-					return fmt.Errorf("import %q: import relative to unknown directory", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]));
-				}
-				if (!ctxt.isAbsPath(path$1)) {
-					p.Dir = ctxt.joinPath(new (go$sliceType(Go$String))([srcDir, path$1]));
-				}
-				if (!(ctxt.GOROOT === "")) {
-					root = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg"]));
-					if (_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1], ok) {
-						p.Goroot = true;
-						p.ImportPath = sub;
-						p.Root = ctxt.GOROOT;
-						return null;
-					}
-				}
-				all = ctxt.gopath();
-				_ref$1 = all;
-				_i = 0;
-				while (_i < _ref$1.length) {
-					root$1 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-					i = _i;
-					rootsrc = ctxt.joinPath(new (go$sliceType(Go$String))([root$1, "src"]));
-					if (_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
-						if (!(ctxt.GOROOT === "")) {
-							if (dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1])), ctxt.isDir(dir$1)) {
-								p.ConflictDir = dir$1;
-								return null;
-							}
-						}
-						_ref$2 = go$subslice(all, 0, i);
-						_i$1 = 0;
-						while (_i$1 < _ref$2.length) {
-							earlyRoot = (_slice$1 = _ref$2, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-							if (dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1])), ctxt.isDir(dir$2)) {
-								p.ConflictDir = dir$2;
-								return null;
-							}
-							_i$1++;
-						}
-						p.ImportPath = sub$1;
-						p.Root = root$1;
-						return null;
-					}
-					_i++;
-				}
-			} else {
-				if (strings.HasPrefix(path$1, "/")) {
-					return fmt.Errorf("import %q: cannot import absolute path", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]));
-				}
-				tried = new (go$structType([["goroot", "go/build", Go$String, ""], ["gopath", "go/build", (go$sliceType(Go$String)), ""]])).Ptr("", (go$sliceType(Go$String)).nil);
-				if (!(ctxt.GOROOT === "")) {
-					dir$3 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", path$1]));
-					isDir = ctxt.isDir(dir$3);
-					binaryOnly = !isDir && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, pkga])));
-					if (isDir || binaryOnly) {
-						p.Dir = dir$3;
-						p.Goroot = true;
-						p.Root = ctxt.GOROOT;
-						return null;
-					}
-					tried.goroot = dir$3;
-				}
-				_ref$3 = ctxt.gopath();
-				_i$2 = 0;
-				while (_i$2 < _ref$3.length) {
-					root$2 = (_slice$2 = _ref$3, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-					dir$4 = ctxt.joinPath(new (go$sliceType(Go$String))([root$2, "src", path$1]));
-					isDir$1 = ctxt.isDir(dir$4);
-					binaryOnly = !isDir$1 && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([root$2, pkga])));
-					if (isDir$1 || binaryOnly) {
-						p.Dir = dir$4;
-						p.Root = root$2;
-						return null;
-					}
-					tried.gopath = go$append(tried.gopath, dir$4);
-					_i$2++;
-				}
-				paths = (go$sliceType(Go$String)).nil;
-				if (!(tried.goroot === "")) {
-					paths = go$append(paths, fmt.Sprintf("\t%s (from $GOROOT)", new (go$sliceType(go$emptyInterface))([new Go$String(tried.goroot)])));
-				} else {
-					paths = go$append(paths, "\t($GOROOT not set)");
-				}
-				i$1 = 0;
-				format = "\t%s (from $GOPATH)";
-				while (i$1 < tried.gopath.length) {
-					if (i$1 > 0) {
-						format = "\t%s";
-					}
-					paths = go$append(paths, fmt.Sprintf(format, new (go$sliceType(go$emptyInterface))([new Go$String((_slice$3 = tried.gopath, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")))])));
-					i$1 = i$1 + 1 >> 0;
-				}
-				if (i$1 === 0) {
-					paths = go$append(paths, "\t($GOPATH not set)");
-				}
-				return fmt.Errorf("cannot find package %q in any of:\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(path$1), new Go$String(strings.Join(paths, "\n"))]));
+		/* if (IsLocalImport(path$1)) { */ if (IsLocalImport(path$1)) {} else { go$s = 2; continue; }
+			pkga = "";
+			if (srcDir === "") {
+				return [p, fmt.Errorf("import %q: import relative to unknown directory", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
 			}
-			return null;
-		});
-		if (err = find(), !(go$interfaceIsEqual(err, null))) {
-			return [p, err];
-		}
-		if (!(p.Root === "")) {
+			if (!ctxt.isAbsPath(path$1)) {
+				p.Dir = ctxt.joinPath(new (go$sliceType(Go$String))([srcDir, path$1]));
+			}
+			/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 4; continue; }
+				root = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg"]));
+				/* if (_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1], ok) { */ if (_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1], ok) {} else { go$s = 5; continue; }
+					p.Goroot = true;
+					p.ImportPath = sub;
+					p.Root = ctxt.GOROOT;
+					/* goto Found */ go$s = 1; continue;
+				/* } */ case 5:
+			/* } */ case 4:
+			all = ctxt.gopath();
+			_ref$1 = all;
+			_i = 0;
+			/* while (_i < _ref$1.length) { */ case 6: if(!(_i < _ref$1.length)) { go$s = 7; continue; }
+				root$1 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+				i = _i;
+				rootsrc = ctxt.joinPath(new (go$sliceType(Go$String))([root$1, "src"]));
+				/* if (_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) { */ if (_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {} else { go$s = 8; continue; }
+					/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 9; continue; }
+						/* if (dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1])), ctxt.isDir(dir$1)) { */ if (dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1])), ctxt.isDir(dir$1)) {} else { go$s = 10; continue; }
+							p.ConflictDir = dir$1;
+							/* goto Found */ go$s = 1; continue;
+						/* } */ case 10:
+					/* } */ case 9:
+					_ref$2 = go$subslice(all, 0, i);
+					_i$1 = 0;
+					/* while (_i$1 < _ref$2.length) { */ case 11: if(!(_i$1 < _ref$2.length)) { go$s = 12; continue; }
+						earlyRoot = (_slice$1 = _ref$2, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+						/* if (dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1])), ctxt.isDir(dir$2)) { */ if (dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1])), ctxt.isDir(dir$2)) {} else { go$s = 13; continue; }
+							p.ConflictDir = dir$2;
+							/* goto Found */ go$s = 1; continue;
+						/* } */ case 13:
+						_i$1++;
+					/* } */ go$s = 11; continue; case 12:
+					p.ImportPath = sub$1;
+					p.Root = root$1;
+					/* goto Found */ go$s = 1; continue;
+				/* } */ case 8:
+				_i++;
+			/* } */ go$s = 6; continue; case 7:
+		/* } else { */ go$s = 3; continue; case 2: 
+			if (strings.HasPrefix(path$1, "/")) {
+				return [p, fmt.Errorf("import %q: cannot import absolute path", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
+			}
+			tried = new (go$structType([["goroot", "go/build", Go$String, ""], ["gopath", "go/build", (go$sliceType(Go$String)), ""]])).Ptr("", (go$sliceType(Go$String)).nil);
+			/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 14; continue; }
+				dir$3 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", path$1]));
+				isDir = ctxt.isDir(dir$3);
+				binaryOnly = !isDir && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, pkga])));
+				/* if (isDir || binaryOnly) { */ if (isDir || binaryOnly) {} else { go$s = 15; continue; }
+					p.Dir = dir$3;
+					p.Goroot = true;
+					p.Root = ctxt.GOROOT;
+					/* goto Found */ go$s = 1; continue;
+				/* } */ case 15:
+				tried.goroot = dir$3;
+			/* } */ case 14:
+			_ref$3 = ctxt.gopath();
+			_i$2 = 0;
+			/* while (_i$2 < _ref$3.length) { */ case 16: if(!(_i$2 < _ref$3.length)) { go$s = 17; continue; }
+				root$2 = (_slice$2 = _ref$3, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+				dir$4 = ctxt.joinPath(new (go$sliceType(Go$String))([root$2, "src", path$1]));
+				isDir$1 = ctxt.isDir(dir$4);
+				binaryOnly = !isDir$1 && !((((mode & 2) >>> 0) === 0)) && !(pkga === "") && ctxt.isFile(ctxt.joinPath(new (go$sliceType(Go$String))([root$2, pkga])));
+				/* if (isDir$1 || binaryOnly) { */ if (isDir$1 || binaryOnly) {} else { go$s = 18; continue; }
+					p.Dir = dir$4;
+					p.Root = root$2;
+					/* goto Found */ go$s = 1; continue;
+				/* } */ case 18:
+				tried.gopath = go$append(tried.gopath, dir$4);
+				_i$2++;
+			/* } */ go$s = 16; continue; case 17:
+			paths = (go$sliceType(Go$String)).nil;
+			if (!(tried.goroot === "")) {
+				paths = go$append(paths, fmt.Sprintf("\t%s (from $GOROOT)", new (go$sliceType(go$emptyInterface))([new Go$String(tried.goroot)])));
+			} else {
+				paths = go$append(paths, "\t($GOROOT not set)");
+			}
+			i$1 = 0;
+			format = "\t%s (from $GOPATH)";
+			while (i$1 < tried.gopath.length) {
+				if (i$1 > 0) {
+					format = "\t%s";
+				}
+				paths = go$append(paths, fmt.Sprintf(format, new (go$sliceType(go$emptyInterface))([new Go$String((_slice$3 = tried.gopath, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")))])));
+				i$1 = i$1 + 1 >> 0;
+			}
+			if (i$1 === 0) {
+				paths = go$append(paths, "\t($GOPATH not set)");
+			}
+			return [p, fmt.Errorf("cannot find package %q in any of:\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(path$1), new Go$String(strings.Join(paths, "\n"))]))];
+		/* } */ case 3:
+		/* Found: */ case 1:
+		/* if (!(p.Root === "")) { */ if (!(p.Root === "")) {} else { go$s = 19; continue; }
 			if (p.Goroot) {
 				p.SrcRoot = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, "src", "pkg"]));
 			} else {
@@ -656,16 +651,16 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0ÇΩ0Ç
 			if (!(pkga === "")) {
 				p.PkgObj = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, pkga]));
 			}
-		}
+		/* } */ case 19:
 		if (!((((mode & 1) >>> 0) === 0))) {
 			return [p, pkgerr];
 		}
 		if (binaryOnly && !(((((mode & 2) >>> 0)) === 0))) {
 			return [p, pkgerr];
 		}
-		_tuple$1 = ctxt.readDir(p.Dir), dirs = _tuple$1[0], err$1 = _tuple$1[1];
-		if (!(go$interfaceIsEqual(err$1, null))) {
-			return [p, err$1];
+		_tuple$3 = ctxt.readDir(p.Dir), dirs = _tuple$3[0], err = _tuple$3[1];
+		if (!(go$interfaceIsEqual(err, null))) {
+			return [p, err];
 		}
 		Sfiles = (go$sliceType(Go$String)).nil;
 		firstFile = "";
@@ -674,69 +669,69 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0ÇΩ0Ç
 		xTestImported = new Go$Map();
 		allTags = new Go$Map();
 		fset = token.NewFileSet();
-		_ref$1 = dirs;
-		_i = 0;
-		while (_i < _ref$1.length) {
-			d = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		_ref$4 = dirs;
+		_i$3 = 0;
+		while (_i$3 < _ref$4.length) {
+			d = (_slice$4 = _ref$4, _index$4 = _i$3, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
 			if (d.IsDir()) {
-				_i++;
+				_i$3++;
 				continue;
 			}
 			name = d.Name();
 			ext = nameExt(name);
-			_tuple$2 = ctxt.matchFile(p.Dir, name, true, allTags), match = _tuple$2[0], data = _tuple$2[1], filename = _tuple$2[2], err$2 = _tuple$2[3];
-			if (!(go$interfaceIsEqual(err$2, null))) {
-				return [p, err$2];
+			_tuple$4 = ctxt.matchFile(p.Dir, name, true, allTags), match = _tuple$4[0], data = _tuple$4[1], filename = _tuple$4[2], err$1 = _tuple$4[3];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [p, err$1];
 			}
 			if (!match) {
 				if (ext === ".go") {
 					p.IgnoredGoFiles = go$append(p.IgnoredGoFiles, name);
 				}
-				_i++;
+				_i$3++;
 				continue;
 			}
-			_ref$2 = ext;
-			if (_ref$2 === ".c") {
+			_ref$5 = ext;
+			if (_ref$5 === ".c") {
 				p.CFiles = go$append(p.CFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".cc" || _ref$2 === ".cpp" || _ref$2 === ".cxx") {
+			} else if (_ref$5 === ".cc" || _ref$5 === ".cpp" || _ref$5 === ".cxx") {
 				p.CXXFiles = go$append(p.CXXFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".h" || _ref$2 === ".hh" || _ref$2 === ".hpp" || _ref$2 === ".hxx") {
+			} else if (_ref$5 === ".h" || _ref$5 === ".hh" || _ref$5 === ".hpp" || _ref$5 === ".hxx") {
 				p.HFiles = go$append(p.HFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".s") {
+			} else if (_ref$5 === ".s") {
 				p.SFiles = go$append(p.SFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".S") {
+			} else if (_ref$5 === ".S") {
 				Sfiles = go$append(Sfiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".swig") {
+			} else if (_ref$5 === ".swig") {
 				p.SwigFiles = go$append(p.SwigFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".swigcxx") {
+			} else if (_ref$5 === ".swigcxx") {
 				p.SwigCXXFiles = go$append(p.SwigCXXFiles, name);
-				_i++;
+				_i$3++;
 				continue;
-			} else if (_ref$2 === ".syso") {
+			} else if (_ref$5 === ".syso") {
 				p.SysoFiles = go$append(p.SysoFiles, name);
-				_i++;
+				_i$3++;
 				continue;
 			}
-			_tuple$3 = parser.ParseFile(fset, filename, data, 6), pf = _tuple$3[0], err$2 = _tuple$3[1];
-			if (!(go$interfaceIsEqual(err$2, null))) {
-				return [p, err$2];
+			_tuple$5 = parser.ParseFile(fset, filename, data, 6), pf = _tuple$5[0], err$1 = _tuple$5[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
+				return [p, err$1];
 			}
 			pkg = pf.Name.Name;
 			if (pkg === "documentation") {
 				p.IgnoredGoFiles = go$append(p.IgnoredGoFiles, name);
-				_i++;
+				_i$3++;
 				continue;
 			}
 			isTest = strings.HasSuffix(name, "_test.go");
@@ -755,27 +750,27 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0ÇΩ0Ç
 				p.Doc = doc.Synopsis(pf.Doc.Text());
 			}
 			isCgo = false;
-			_ref$3 = pf.Decls;
-			_i$1 = 0;
-			while (_i$1 < _ref$3.length) {
-				decl = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-				_tuple$4 = (decl !== null && decl.constructor === (go$ptrType(ast.GenDecl)) ? [decl.go$val, true] : [(go$ptrType(ast.GenDecl)).nil, false]), d$1 = _tuple$4[0], ok = _tuple$4[1];
-				if (!ok) {
-					_i$1++;
+			_ref$6 = pf.Decls;
+			_i$4 = 0;
+			while (_i$4 < _ref$6.length) {
+				decl = (_slice$5 = _ref$6, _index$5 = _i$4, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
+				_tuple$6 = (decl !== null && decl.constructor === (go$ptrType(ast.GenDecl)) ? [decl.go$val, true] : [(go$ptrType(ast.GenDecl)).nil, false]), d$1 = _tuple$6[0], ok$2 = _tuple$6[1];
+				if (!ok$2) {
+					_i$4++;
 					continue;
 				}
-				_ref$4 = d$1.Specs;
-				_i$2 = 0;
-				while (_i$2 < _ref$4.length) {
-					dspec = (_slice$2 = _ref$4, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-					_tuple$5 = (dspec !== null && dspec.constructor === (go$ptrType(ast.ImportSpec)) ? [dspec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), spec = _tuple$5[0], ok$1 = _tuple$5[1];
-					if (!ok$1) {
-						_i$2++;
+				_ref$7 = d$1.Specs;
+				_i$5 = 0;
+				while (_i$5 < _ref$7.length) {
+					dspec = (_slice$6 = _ref$7, _index$6 = _i$5, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
+					_tuple$7 = (dspec !== null && dspec.constructor === (go$ptrType(ast.ImportSpec)) ? [dspec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), spec = _tuple$7[0], ok$3 = _tuple$7[1];
+					if (!ok$3) {
+						_i$5++;
 						continue;
 					}
 					quoted = spec.Path.Value;
-					_tuple$6 = strconv.Unquote(quoted), path$2 = _tuple$6[0], err$3 = _tuple$6[1];
-					if (!(go$interfaceIsEqual(err$3, null))) {
+					_tuple$8 = strconv.Unquote(quoted), path$2 = _tuple$8[0], err$2 = _tuple$8[1];
+					if (!(go$interfaceIsEqual(err$2, null))) {
 						log.Panicf("%s: parser returned invalid quoted string: <%s>", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(quoted)]));
 					}
 					if (isXTest) {
@@ -794,15 +789,15 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0ÇΩ0Ç
 							cg = d$1.Doc;
 						}
 						if (!(cg === (go$ptrType(ast.CommentGroup)).nil)) {
-							if (err$4 = ctxt.saveCgo(filename, p, cg), !(go$interfaceIsEqual(err$4, null))) {
-								return [p, err$4];
+							if (err$3 = ctxt.saveCgo(filename, p, cg), !(go$interfaceIsEqual(err$3, null))) {
+								return [p, err$3];
 							}
 						}
 						isCgo = true;
 					}
-					_i$2++;
+					_i$5++;
 				}
-				_i$1++;
+				_i$4++;
 			}
 			if (isCgo) {
 				_key$3 = "cgo", (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: true };
@@ -818,29 +813,30 @@ slashslash0	safeBytes0	knownOS0	knownArch0 0	errSyntax0errNUL0ÇΩ0Ç
 			} else {
 				p.GoFiles = go$append(p.GoFiles, name);
 			}
-			_i++;
+			_i$3++;
 		}
 		if ((((p.GoFiles.length + p.CgoFiles.length >> 0) + p.TestGoFiles.length >> 0) + p.XTestGoFiles.length >> 0) === 0) {
 			return [p, new NoGoError.Ptr(p.Dir)];
 		}
-		_ref$5 = allTags;
-		_i$3 = 0;
-		_keys = go$keys(_ref$5);
-		while (_i$3 < _keys.length) {
-			_entry$3 = _ref$5[_keys[_i$3]];
+		_ref$8 = allTags;
+		_i$6 = 0;
+		_keys = go$keys(_ref$8);
+		while (_i$6 < _keys.length) {
+			_entry$3 = _ref$8[_keys[_i$6]];
 			tag = _entry$3.k;
 			p.AllTags = go$append(p.AllTags, tag);
-			_i$3++;
+			_i$6++;
 		}
 		sort.Strings(p.AllTags);
-		_tuple$7 = cleanImports(imported), p.Imports = _tuple$7[0], p.ImportPos = _tuple$7[1];
-		_tuple$8 = cleanImports(testImported), p.TestImports = _tuple$8[0], p.TestImportPos = _tuple$8[1];
-		_tuple$9 = cleanImports(xTestImported), p.XTestImports = _tuple$9[0], p.XTestImportPos = _tuple$9[1];
+		_tuple$9 = cleanImports(imported), p.Imports = _tuple$9[0], p.ImportPos = _tuple$9[1];
+		_tuple$10 = cleanImports(testImported), p.TestImports = _tuple$10[0], p.TestImportPos = _tuple$10[1];
+		_tuple$11 = cleanImports(xTestImported), p.XTestImports = _tuple$11[0], p.XTestImportPos = _tuple$11[1];
 		if (p.CgoFiles.length > 0) {
 			p.SFiles = go$appendSlice(p.SFiles, Sfiles);
 			sort.Strings(p.SFiles);
 		}
 		return [p, pkgerr];
+		/* */ } break; } }; return go$f();
 	};
 	Context.prototype.Import = function(path$1, srcDir, mode) { return this.go$val.Import(path$1, srcDir, mode); };
 0Çj	MatchFileÇ[	Context.Ptr.prototype.MatchFile = function(dir, name) {

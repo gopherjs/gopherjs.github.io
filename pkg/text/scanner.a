@@ -1,4 +1,4 @@
-0‚[Ntext/scanner‚‰package scanner
+0‚`text/scanner‚‰package scanner
 import bytes "bytes"
 import fmt "fmt"
 import io "io"
@@ -118,7 +118,7 @@ $$
 	Scanner.init([["src", "text/scanner", io.Reader, ""], ["srcBuf", "text/scanner", (go$arrayType(Go$Uint8, 1025)), ""], ["srcPos", "text/scanner", Go$Int, ""], ["srcEnd", "text/scanner", Go$Int, ""], ["srcBufOffset", "text/scanner", Go$Int, ""], ["line", "text/scanner", Go$Int, ""], ["column", "text/scanner", Go$Int, ""], ["lastLineLen", "text/scanner", Go$Int, ""], ["lastCharLen", "text/scanner", Go$Int, ""], ["tokBuf", "text/scanner", bytes.Buffer, ""], ["tokPos", "text/scanner", Go$Int, ""], ["tokEnd", "text/scanner", Go$Int, ""], ["ch", "text/scanner", Go$Int32, ""], ["Error", "", (go$funcType([(go$ptrType(Scanner)), Go$String], [], false)), ""], ["ErrorCount", "", Go$Int, ""], ["Mode", "", Go$Uint, ""], ["Whitespace", "", Go$Uint64, ""], ["", "", Position, ""]]);
 	Scanner.methods = [["String", "", [], [Go$String], false]];
 	(go$ptrType(Scanner)).methods = [["Init", "", [io.Reader], [(go$ptrType(Scanner))], false], ["IsValid", "", [], [Go$Bool], false], ["Next", "", [], [Go$Int32], false], ["Peek", "", [], [Go$Int32], false], ["Pos", "", [], [Position], false], ["Scan", "", [], [Go$Int32], false], ["String", "", [], [Go$String], false], ["TokenText", "", [], [Go$String], false], ["error", "text/scanner", [Go$String], [], false], ["next", "text/scanner", [], [Go$Int32], false], ["scanChar", "text/scanner", [], [], false], ["scanComment", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanDigits", "text/scanner", [Go$Int32, Go$Int, Go$Int], [Go$Int32], false], ["scanEscape", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanExponent", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanFraction", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanIdentifier", "text/scanner", [], [Go$Int32], false], ["scanMantissa", "text/scanner", [Go$Int32], [Go$Int32], false], ["scanNumber", "text/scanner", [Go$Int32], [Go$Int32, Go$Int32], false], ["scanRawString", "text/scanner", [], [], false], ["scanString", "text/scanner", [Go$Int32], [Go$Int], false]];
-00tokenString0‚7(0»IsValid¯	Position.Ptr.prototype.IsValid = function() {
+00tokenString0‚;é0»IsValid¯	Position.Ptr.prototype.IsValid = function() {
 		var pos;
 		pos = this;
 		return pos.Line > 0;
@@ -465,86 +465,87 @@ scanString‚¼	Scanner.Ptr.prototype.scanString = function(quote) {
 		return ch;
 	};
 	Scanner.prototype.scanComment = function(ch) { return this.go$val.scanComment(ch); };
-0‚¢Scan‚˜	Scanner.Ptr.prototype.Scan = function() {
-		var s, ch, x, x$1, x$2, tok, _tuple, _ref;
-		s = this;
+0‚cScan‚Y	Scanner.Ptr.prototype.Scan = function() {
+		var go$this = this, s, ch, x, x$1, x$2, tok, _tuple, _ref;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		s = go$this;
 		ch = s.Peek();
 		s.tokPos = -1;
 		s.Position.Line = 0;
-		while (true) {
-			while (!((x = (x$1 = s.Whitespace, x$2 = go$shiftLeft64(new Go$Uint64(0, 1), (ch >>> 0)), new Go$Uint64(x$1.high & x$2.high, (x$1.low & x$2.low) >>> 0)), (x.high === 0 && x.low === 0)))) {
+		/* redo: */ case 1:
+		/* while (!((x = (x$1 = s.Whitespace, x$2 = go$shiftLeft64(new Go$Uint64(0, 1), (ch >>> 0)), new Go$Uint64(x$1.high & x$2.high, (x$1.low & x$2.low) >>> 0)), (x.high === 0 && x.low === 0)))) { */ case 2: if(!(!((x = (x$1 = s.Whitespace, x$2 = go$shiftLeft64(new Go$Uint64(0, 1), (ch >>> 0)), new Go$Uint64(x$1.high & x$2.high, (x$1.low & x$2.low) >>> 0)), (x.high === 0 && x.low === 0))))) { go$s = 3; continue; }
+			ch = s.next();
+		/* } */ go$s = 2; continue; case 3:
+		s.tokBuf.Reset();
+		s.tokPos = s.srcPos - s.lastCharLen >> 0;
+		s.Position.Offset = s.srcBufOffset + s.tokPos >> 0;
+		if (s.column > 0) {
+			s.Position.Line = s.line;
+			s.Position.Column = s.column;
+		} else {
+			s.Position.Line = s.line - 1 >> 0;
+			s.Position.Column = s.lastLineLen;
+		}
+		tok = ch;
+		/* if (unicode.IsLetter(ch) || (ch === 95)) { */ if (unicode.IsLetter(ch) || (ch === 95)) {} else if (isDecimal(ch)) { go$s = 4; continue; } else { go$s = 5; continue; }
+			if (!((((s.Mode & 4) >>> 0) === 0))) {
+				tok = -2;
+				ch = s.scanIdentifier();
+			} else {
 				ch = s.next();
 			}
-			s.tokBuf.Reset();
-			s.tokPos = s.srcPos - s.lastCharLen >> 0;
-			s.Position.Offset = s.srcBufOffset + s.tokPos >> 0;
-			if (s.column > 0) {
-				s.Position.Line = s.line;
-				s.Position.Column = s.column;
+		/* } else if (isDecimal(ch)) { */ go$s = 6; continue; case 4: 
+			if (!((((s.Mode & 24) >>> 0) === 0))) {
+				_tuple = s.scanNumber(ch), tok = _tuple[0], ch = _tuple[1];
 			} else {
-				s.Position.Line = s.line - 1 >> 0;
-				s.Position.Column = s.lastLineLen;
+				ch = s.next();
 			}
-			tok = ch;
-			if (unicode.IsLetter(ch) || (ch === 95)) {
-				if (!((((s.Mode & 4) >>> 0) === 0))) {
-					tok = -2;
-					ch = s.scanIdentifier();
-				} else {
-					ch = s.next();
+		/* } else { */ go$s = 6; continue; case 5: 
+			_ref = ch;
+			/* if (_ref === 34) { */ if (_ref === 34) {} else if (_ref === 39) { go$s = 7; continue; } else if (_ref === 46) { go$s = 8; continue; } else if (_ref === 47) { go$s = 9; continue; } else if (_ref === 96) { go$s = 10; continue; } else { go$s = 11; continue; }
+				if (!((((s.Mode & 64) >>> 0) === 0))) {
+					s.scanString(34);
+					tok = -6;
 				}
-			} else if (isDecimal(ch)) {
-				if (!((((s.Mode & 24) >>> 0) === 0))) {
-					_tuple = s.scanNumber(ch), tok = _tuple[0], ch = _tuple[1];
-				} else {
-					ch = s.next();
+				ch = s.next();
+			/* } else if (_ref === 39) { */ go$s = 12; continue; case 7: 
+				if (!((((s.Mode & 32) >>> 0) === 0))) {
+					s.scanChar();
+					tok = -5;
 				}
-			} else {
-				_ref = ch;
-				if (_ref === 34) {
-					if (!((((s.Mode & 64) >>> 0) === 0))) {
-						s.scanString(34);
-						tok = -6;
-					}
-					ch = s.next();
-				} else if (_ref === 39) {
-					if (!((((s.Mode & 32) >>> 0) === 0))) {
-						s.scanChar();
-						tok = -5;
-					}
-					ch = s.next();
-				} else if (_ref === 46) {
-					ch = s.next();
-					if (isDecimal(ch) && !((((s.Mode & 16) >>> 0) === 0))) {
-						tok = -4;
-						ch = s.scanMantissa(ch);
-						ch = s.scanExponent(ch);
-					}
-				} else if (_ref === 47) {
-					ch = s.next();
-					if (((ch === 47) || (ch === 42)) && !((((s.Mode & 256) >>> 0) === 0))) {
-						if (!((((s.Mode & 512) >>> 0) === 0))) {
-							s.tokPos = -1;
-							ch = s.scanComment(ch);
-							continue;
-						}
+				ch = s.next();
+			/* } else if (_ref === 46) { */ go$s = 12; continue; case 8: 
+				ch = s.next();
+				if (isDecimal(ch) && !((((s.Mode & 16) >>> 0) === 0))) {
+					tok = -4;
+					ch = s.scanMantissa(ch);
+					ch = s.scanExponent(ch);
+				}
+			/* } else if (_ref === 47) { */ go$s = 12; continue; case 9: 
+				ch = s.next();
+				/* if (((ch === 47) || (ch === 42)) && !((((s.Mode & 256) >>> 0) === 0))) { */ if (((ch === 47) || (ch === 42)) && !((((s.Mode & 256) >>> 0) === 0))) {} else { go$s = 13; continue; }
+					/* if (!((((s.Mode & 512) >>> 0) === 0))) { */ if (!((((s.Mode & 512) >>> 0) === 0))) {} else { go$s = 14; continue; }
+						s.tokPos = -1;
 						ch = s.scanComment(ch);
-						tok = -8;
-					}
-				} else if (_ref === 96) {
-					if (!((((s.Mode & 128) >>> 0) === 0))) {
-						s.scanRawString();
-						tok = -6;
-					}
-					ch = s.next();
-				} else {
-					ch = s.next();
+						/* goto redo */ go$s = 1; continue;
+					/* } */ case 14:
+					ch = s.scanComment(ch);
+					tok = -8;
+				/* } */ case 13:
+			/* } else if (_ref === 96) { */ go$s = 12; continue; case 10: 
+				if (!((((s.Mode & 128) >>> 0) === 0))) {
+					s.scanRawString();
+					tok = -6;
 				}
-			}
-			s.tokEnd = s.srcPos - s.lastCharLen >> 0;
-			s.ch = ch;
-			return tok;
-		}
+				ch = s.next();
+			/* } else { */ go$s = 12; continue; case 11: 
+				ch = s.next();
+			/* } */ case 12:
+		/* } */ case 6:
+		s.tokEnd = s.srcPos - s.lastCharLen >> 0;
+		s.ch = ch;
+		return tok;
+		/* */ } break; } }; return go$f();
 	};
 	Scanner.prototype.Scan = function() { return this.go$val.Scan(); };
 0‚jPos‚a	Scanner.Ptr.prototype.Pos = function() {

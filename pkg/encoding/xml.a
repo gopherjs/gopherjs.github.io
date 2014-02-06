@@ -1,4 +1,4 @@
-0ƒëªencoding/xml‚hèpackage xml
+0ƒïåencoding/xml‚hèpackage xml
 import bufio "bufio"
 import bytes "bytes"
 import encoding "encoding"
@@ -591,7 +591,7 @@ endComment0endProcInst0endDirective0marshalerType0marshalerAttrType0
 htmlEntity0 0htmlAutoClose0
 esc_quot0
 esc_apos0	esc_amp0esc_lt0esc_gt0	esc_tab0esc_nl0esc_cr0
-esc_fffd0ƒ420‚Marshal÷	var Marshal = go$pkg.Marshal = function(v) {
+esc_fffd0ƒ8m0‚Marshal÷	var Marshal = go$pkg.Marshal = function(v) {
 		var b, err;
 		b = new bytes.Buffer.Ptr();
 		if (err = NewEncoder(b).Encode(v), !(go$interfaceIsEqual(err, null))) {
@@ -2448,9 +2448,10 @@ popElement‚j	Decoder.Ptr.prototype.popElement = function(t) {
 		return d.rawToken();
 	};
 	Decoder.prototype.RawToken = function() { return this.go$val.RawToken(); };
-0‚%4rawToken‚%&	Decoder.Ptr.prototype.rawToken = function() {
-		var d, x, _struct, _tuple, b, ok, data, _tuple$1, _ref, name, _tuple$2, _struct$1, _tuple$3, x$1, _struct$2, target, _tuple$4, b0, _tuple$5, data$1, enc, _tuple$6, x$2, newr, err, x$3, _tuple$7, _ref$1, _tuple$8, _tuple$9, b0$1, b1, _tuple$10, _tuple$11, data$2, i, _tuple$12, data$3, inquote, depth, _tuple$13, s, i$1, _tuple$14, j, _tuple$15, b0$2, b1$1, _tuple$16, _tuple$17, x$4, name$1, empty, attr, _tuple$18, _struct$3, _tuple$19, _tuple$20, n, x$5, x$6, nattr, _slice, _index, a, _tuple$21, _struct$4, _tuple$22, data$4, _struct$5, x$7, _struct$6;
-		d = this;
+0‚)orawToken‚)a	Decoder.Ptr.prototype.rawToken = function() {
+		var go$this = this, d, x, _struct, _tuple, b, ok, data, _tuple$1, _ref, name, _tuple$2, _struct$1, _tuple$3, x$1, _struct$2, target, _tuple$4, b0, _tuple$5, data$1, enc, _tuple$6, x$2, newr, err, x$3, _tuple$7, _ref$1, _tuple$8, _tuple$9, b0$1, b1, _tuple$10, _tuple$11, data$2, i, _tuple$12, data$3, inquote, depth, _tuple$13, s, i$1, _tuple$14, j, _tuple$15, b0$2, b1$1, _tuple$16, _tuple$17, x$4, name$1, empty, attr, _tuple$18, _struct$3, _tuple$19, _tuple$20, n, x$5, x$6, nattr, _slice, _index, a, _tuple$21, _struct$4, _tuple$22, data$4, _struct$5, x$7, _struct$6;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		d = go$this;
 		if (!(go$interfaceIsEqual(d.err, null))) {
 			return [null, d.err];
 		}
@@ -2474,7 +2475,7 @@ popElement‚j	Decoder.Ptr.prototype.popElement = function(t) {
 			return [null, d.err];
 		}
 		_ref = b;
-		if (_ref === 47) {
+		/* if (_ref === 47) { */ if (_ref === 47) {} else if (_ref === 63) { go$s = 2; continue; } else if (_ref === 33) { go$s = 3; continue; } else { go$s = 4; continue; }
 			name = new Name.Ptr();
 			if (_tuple$2 = d.nsname(), name = (_struct$1 = _tuple$2[0], new Name.Ptr(_struct$1.Space, _struct$1.Local)), ok = _tuple$2[1], !ok) {
 				if (go$interfaceIsEqual(d.err, null)) {
@@ -2491,7 +2492,7 @@ popElement‚j	Decoder.Ptr.prototype.popElement = function(t) {
 				return [null, d.err];
 			}
 			return [(x$1 = new EndElement.Ptr((_struct$2 = name, new Name.Ptr(_struct$2.Space, _struct$2.Local))), new x$1.constructor.Struct(x$1)), null];
-		} else if (_ref === 63) {
+		/* } else if (_ref === 63) { */ go$s = 4; continue; case 2: 
 			target = "";
 			if (_tuple$4 = d.name(), target = _tuple$4[0], ok = _tuple$4[1], !ok) {
 				if (go$interfaceIsEqual(d.err, null)) {
@@ -2533,7 +2534,7 @@ popElement‚j	Decoder.Ptr.prototype.popElement = function(t) {
 				}
 			}
 			return [(x$3 = new ProcInst.Ptr(target, data$1), new x$3.constructor.Struct(x$3)), null];
-		} else if (_ref === 33) {
+		/* } else if (_ref === 33) { */ go$s = 4; continue; case 3: 
 			if (_tuple$7 = d.mustgetc(), b = _tuple$7[0], ok = _tuple$7[1], !ok) {
 				return [null, d.err];
 			}
@@ -2583,58 +2584,55 @@ popElement‚j	Decoder.Ptr.prototype.popElement = function(t) {
 			d.buf.WriteByte(b);
 			inquote = 0;
 			depth = 0;
-			while (true) {
+			/* while (true) { */ case 5: if(!(true)) { go$s = 6; continue; }
 				if (_tuple$13 = d.mustgetc(), b = _tuple$13[0], ok = _tuple$13[1], !ok) {
 					return [null, d.err];
 				}
 				if ((inquote === 0) && (b === 62) && (depth === 0)) {
-					break;
+					/* break; */ go$s = 6; continue;
 				}
-				HandleB:
-				while (true) {
-					d.buf.WriteByte(b);
-					if (b === inquote) {
-						inquote = 0;
-					} else if (!((inquote === 0))) {
-					} else if ((b === 39) || (b === 34)) {
-						inquote = b;
-					} else if ((b === 62) && (inquote === 0)) {
-						depth = depth - 1 >> 0;
-					} else if ((b === 60) && (inquote === 0)) {
-						s = "!--";
-						i$1 = 0;
-						while (i$1 < s.length) {
-							if (_tuple$14 = d.mustgetc(), b = _tuple$14[0], ok = _tuple$14[1], !ok) {
-								return [null, d.err];
-							}
-							if (!((b === s.charCodeAt(i$1)))) {
-								j = 0;
-								while (j < i$1) {
-									d.buf.WriteByte(s.charCodeAt(j));
-									j = j + 1 >> 0;
-								}
-								depth = depth + 1 >> 0;
-								continue HandleB;
-							}
-							i$1 = i$1 + 1 >> 0;
+				/* HandleB: */ case 1:
+				d.buf.WriteByte(b);
+				/* if (b === inquote) { */ if (b === inquote) {} else if (!((inquote === 0))) { go$s = 7; continue; } else if ((b === 39) || (b === 34)) { go$s = 8; continue; } else if ((b === 62) && (inquote === 0)) { go$s = 9; continue; } else if ((b === 60) && (inquote === 0)) { go$s = 10; continue; } else { go$s = 11; continue; }
+					inquote = 0;
+				/* } else if (!((inquote === 0))) { */ go$s = 11; continue; case 7: 
+				/* } else if ((b === 39) || (b === 34)) { */ go$s = 11; continue; case 8: 
+					inquote = b;
+				/* } else if ((b === 62) && (inquote === 0)) { */ go$s = 11; continue; case 9: 
+					depth = depth - 1 >> 0;
+				/* } else if ((b === 60) && (inquote === 0)) { */ go$s = 11; continue; case 10: 
+					s = "!--";
+					i$1 = 0;
+					/* while (i$1 < s.length) { */ case 12: if(!(i$1 < s.length)) { go$s = 13; continue; }
+						if (_tuple$14 = d.mustgetc(), b = _tuple$14[0], ok = _tuple$14[1], !ok) {
+							return [null, d.err];
 						}
-						d.buf.Truncate(d.buf.Len() - 1 >> 0);
-						_tuple$15 = [0, 0], b0$2 = _tuple$15[0], b1$1 = _tuple$15[1];
-						while (true) {
-							if (_tuple$16 = d.mustgetc(), b = _tuple$16[0], ok = _tuple$16[1], !ok) {
-								return [null, d.err];
+						/* if (!((b === s.charCodeAt(i$1)))) { */ if (!((b === s.charCodeAt(i$1)))) {} else { go$s = 14; continue; }
+							j = 0;
+							while (j < i$1) {
+								d.buf.WriteByte(s.charCodeAt(j));
+								j = j + 1 >> 0;
 							}
-							if ((b0$2 === 45) && (b1$1 === 45) && (b === 62)) {
-								break;
-							}
-							_tuple$17 = [b1$1, b], b0$2 = _tuple$17[0], b1$1 = _tuple$17[1];
+							depth = depth + 1 >> 0;
+							/* goto HandleB */ go$s = 1; continue;
+						/* } */ case 14:
+						i$1 = i$1 + 1 >> 0;
+					/* } */ go$s = 12; continue; case 13:
+					d.buf.Truncate(d.buf.Len() - 1 >> 0);
+					_tuple$15 = [0, 0], b0$2 = _tuple$15[0], b1$1 = _tuple$15[1];
+					while (true) {
+						if (_tuple$16 = d.mustgetc(), b = _tuple$16[0], ok = _tuple$16[1], !ok) {
+							return [null, d.err];
 						}
+						if ((b0$2 === 45) && (b1$1 === 45) && (b === 62)) {
+							break;
+						}
+						_tuple$17 = [b1$1, b], b0$2 = _tuple$17[0], b1$1 = _tuple$17[1];
 					}
-					break;
-				}
-			}
+				/* } */ case 11:
+			/* } */ go$s = 5; continue; case 6:
 			return [(x$4 = d.buf.Bytes(), go$subslice(new Directive(x$4.array), x$4.offset, x$4.offset + x$4.length)), null];
-		}
+		/* } */ case 4:
 		d.ungetc(b);
 		name$1 = new Name.Ptr(), empty = false, attr = (go$sliceType(Attr)).nil;
 		if (_tuple$18 = d.nsname(), name$1 = (_struct$3 = _tuple$18[0], new Name.Ptr(_struct$3.Space, _struct$3.Local)), ok = _tuple$18[1], !ok) {
@@ -2704,6 +2702,7 @@ popElement‚j	Decoder.Ptr.prototype.popElement = function(t) {
 			d.toClose = (_struct$5 = name$1, new Name.Ptr(_struct$5.Space, _struct$5.Local));
 		}
 		return [(x$7 = new StartElement.Ptr((_struct$6 = name$1, new Name.Ptr(_struct$6.Space, _struct$6.Local)), attr), new x$7.constructor.Struct(x$7)), null];
+		/* */ } break; } }; return go$f();
 	};
 	Decoder.prototype.rawToken = function() { return this.go$val.rawToken(); };
 0‚}attrval‚p	Decoder.Ptr.prototype.attrval = function() {

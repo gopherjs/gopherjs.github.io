@@ -1,4 +1,4 @@
-0É∞‡strconvÇpackage strconv
+0É∏¯strconvÇépackage strconv
 import math "math"
 import errors "errors"
 import utf8 "unicode/utf8"
@@ -42,7 +42,7 @@ func (? *@"".decimal) @"".RoundedInteger() (? uint64)
 func (? *@"".decimal) @"".Shift(@"".k int) ()
 func (? *@"".decimal) @"".String() (? string)
 func (? *@"".decimal) @"".atof32int() (? float32)
-func (? *@"".decimal) @"".floatBits(@"".flt *@"".floatInfo) (? uint64, ? bool)
+func (? *@"".decimal) @"".floatBits(@"".flt *@"".floatInfo) (@"".b uint64, @"".overflow bool)
 func (? *@"".decimal) @"".set(@"".s string) (@"".ok bool)
 type @"".decimalSlice struct { @"".d []byte; @"".nd int; @"".dp int; @"".neg bool }
 type @"".extFloat struct { @"".mant uint64; @"".exp int; @"".neg bool }
@@ -118,7 +118,7 @@ $$
 	decimalSlice.init([["d", "strconv", (go$sliceType(Go$Uint8)), ""], ["nd", "strconv", Go$Int, ""], ["dp", "strconv", Go$Int, ""], ["neg", "strconv", Go$Bool, ""]]);
 0Å‡0
 optimize0powtab0float64pow100float32pow100 0 0
-leftcheats0smallPowersOfTen0powersOfTen0uint64pow100float32info0float64info0	isPrint160isNotPrint160	isPrint320isNotPrint320shifts0Éêé0Çª	ParseBoolÇ¨	var ParseBool = go$pkg.ParseBool = function(str) {
+leftcheats0smallPowersOfTen0powersOfTen0uint64pow100float32info0float64info0	isPrint160isNotPrint160	isPrint320isNotPrint320shifts0Éòó0Çª	ParseBoolÇ¨	var ParseBool = go$pkg.ParseBool = function(str) {
 		var value, err, _ref, _tuple, _tuple$1, _tuple$2;
 		value = false;
 		err = null;
@@ -374,39 +374,27 @@ AppendBoolÅ˙	var AppendBool = go$pkg.AppendBool = function(dst, b) {
 		ok = true;
 		return [mantissa, exp, neg, trunc, ok];
 	};
-0ÇΩ	floatBitsÇÆ	decimal.Ptr.prototype.floatBits = function(flt) {
-		var d, exp, mant, assembleBits, overflow, n, _slice, _index, n$1, _slice$1, _index$1, n$2, y, x, y$1, x$1, x$2;
-		d = this;
+0Çm	floatBitsÇ^	decimal.Ptr.prototype.floatBits = function(flt) {
+		var go$this = this, b, overflow, d, exp, mant, n, _slice, _index, n$1, _slice$1, _index$1, n$2, y, x, y$1, x$1, x$2, y$2, x$3, x$4, bits, x$5, y$3, x$6, _tuple;
+		b = new Go$Uint64(0, 0);
+		overflow = false;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
+		d = go$this;
 		exp = 0;
 		mant = new Go$Uint64(0, 0);
-		assembleBits = (function() {
-			var x, x$1, bits, x$2, y, x$3;
-			bits = (x = (x$1 = go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), new Go$Uint64(x$1.high - 0, x$1.low - 1)), new Go$Uint64(mant.high & x.high, (mant.low & x.low) >>> 0));
-			bits = (x$2 = go$shiftLeft64(new Go$Uint64(0, (((exp - flt.bias >> 0)) & ((((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0)))), flt.mantbits), new Go$Uint64(bits.high | x$2.high, (bits.low | x$2.low) >>> 0));
-			if (d.neg) {
-				bits = (x$3 = go$shiftLeft64(go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), flt.expbits), new Go$Uint64(bits.high | x$3.high, (bits.low | x$3.low) >>> 0));
-			}
-			return bits;
-		});
-		overflow = (function() {
-			var y;
-			mant = new Go$Uint64(0, 0);
-			exp = (((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0) + flt.bias >> 0;
-			return [assembleBits(), true];
-		});
-		if (d.nd === 0) {
+		/* if (d.nd === 0) { */ if (d.nd === 0) {} else { go$s = 3; continue; }
 			mant = new Go$Uint64(0, 0);
 			exp = flt.bias;
-			return [assembleBits(), false];
-		}
-		if (d.dp > 310) {
-			return overflow();
-		}
-		if (d.dp < -330) {
+			/* goto out */ go$s = 1; continue;
+		/* } */ case 3:
+		/* if (d.dp > 310) { */ if (d.dp > 310) {} else { go$s = 4; continue; }
+			/* goto overflow */ go$s = 2; continue;
+		/* } */ case 4:
+		/* if (d.dp < -330) { */ if (d.dp < -330) {} else { go$s = 5; continue; }
 			mant = new Go$Uint64(0, 0);
 			exp = flt.bias;
-			return [assembleBits(), false];
-		}
+			/* goto out */ go$s = 1; continue;
+		/* } */ case 5:
 		exp = 0;
 		while (d.dp > 0) {
 			n = 0;
@@ -434,22 +422,35 @@ AppendBoolÅ˙	var AppendBool = go$pkg.AppendBool = function(dst, b) {
 			d.Shift(-n$2);
 			exp = exp + (n$2) >> 0;
 		}
-		if ((exp - flt.bias >> 0) >= (((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0)) {
-			return overflow();
-		}
+		/* if ((exp - flt.bias >> 0) >= (((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0)) { */ if ((exp - flt.bias >> 0) >= (((y = flt.expbits, y < 32 ? (1 << y) : 0) >> 0) - 1 >> 0)) {} else { go$s = 6; continue; }
+			/* goto overflow */ go$s = 2; continue;
+		/* } */ case 6:
 		d.Shift(((1 + flt.mantbits >>> 0) >> 0));
 		mant = d.RoundedInteger();
-		if ((x = go$shiftLeft64(new Go$Uint64(0, 2), flt.mantbits), (mant.high === x.high && mant.low === x.low))) {
+		/* if ((x = go$shiftLeft64(new Go$Uint64(0, 2), flt.mantbits), (mant.high === x.high && mant.low === x.low))) { */ if ((x = go$shiftLeft64(new Go$Uint64(0, 2), flt.mantbits), (mant.high === x.high && mant.low === x.low))) {} else { go$s = 7; continue; }
 			mant = go$shiftRightUint64(mant, 1);
 			exp = exp + 1 >> 0;
-			if ((exp - flt.bias >> 0) >= (((y$1 = flt.expbits, y$1 < 32 ? (1 << y$1) : 0) >> 0) - 1 >> 0)) {
-				return overflow();
-			}
-		}
+			/* if ((exp - flt.bias >> 0) >= (((y$1 = flt.expbits, y$1 < 32 ? (1 << y$1) : 0) >> 0) - 1 >> 0)) { */ if ((exp - flt.bias >> 0) >= (((y$1 = flt.expbits, y$1 < 32 ? (1 << y$1) : 0) >> 0) - 1 >> 0)) {} else { go$s = 8; continue; }
+				/* goto overflow */ go$s = 2; continue;
+			/* } */ case 8:
+		/* } */ case 7:
 		if ((x$1 = (x$2 = go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), new Go$Uint64(mant.high & x$2.high, (mant.low & x$2.low) >>> 0)), (x$1.high === 0 && x$1.low === 0))) {
 			exp = flt.bias;
 		}
-		return [assembleBits(), false];
+		/* goto out */ go$s = 1; continue;
+		/* overflow: */ case 2:
+		mant = new Go$Uint64(0, 0);
+		exp = (((y$2 = flt.expbits, y$2 < 32 ? (1 << y$2) : 0) >> 0) - 1 >> 0) + flt.bias >> 0;
+		overflow = true;
+		/* out: */ case 1:
+		bits = (x$3 = (x$4 = go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), new Go$Uint64(x$4.high - 0, x$4.low - 1)), new Go$Uint64(mant.high & x$3.high, (mant.low & x$3.low) >>> 0));
+		bits = (x$5 = go$shiftLeft64(new Go$Uint64(0, (((exp - flt.bias >> 0)) & ((((y$3 = flt.expbits, y$3 < 32 ? (1 << y$3) : 0) >> 0) - 1 >> 0)))), flt.mantbits), new Go$Uint64(bits.high | x$5.high, (bits.low | x$5.low) >>> 0));
+		if (d.neg) {
+			bits = (x$6 = go$shiftLeft64(go$shiftLeft64(new Go$Uint64(0, 1), flt.mantbits), flt.expbits), new Go$Uint64(bits.high | x$6.high, (bits.low | x$6.low) >>> 0));
+		}
+		_tuple = [bits, overflow], b = _tuple[0], overflow = _tuple[1];
+		return [b, overflow];
+		/* */ } break; } }; return go$f();
 	};
 	decimal.prototype.floatBits = function(flt) { return this.go$val.floatBits(flt); };
 0ÇA	atof32intÇ2	decimal.Ptr.prototype.atof32int = function() {
@@ -645,83 +646,81 @@ rangeError_	var rangeError = function(fn, str) {
 		}
 		return (x = go$div64(new Go$Uint64(4294967295, 4294967295), new Go$Uint64(0, base), false), new Go$Uint64(x.high + 0, x.low + 1));
 	};
-0Çú	ParseUintÇç	var ParseUint = go$pkg.ParseUint = function(s, base, bitSize) {
-		var n, err, _tuple, cutoff, maxVal, s0, _tuple$1, _tuple$2, _tuple$3, x, i, v, d, _tuple$4, _tuple$5, _tuple$6, x$1, n1, _tuple$7, _tuple$8;
+0Çı	ParseUintÇÊ	var ParseUint = go$pkg.ParseUint = function(s, base, bitSize) {
+		var go$this = this, n, err, _tuple, cutoff, maxVal, s0, x, i, v, d, x$1, n1, _tuple$1, _tuple$2;
 		n = new Go$Uint64(0, 0);
 		err = null;
+		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		_tuple = [new Go$Uint64(0, 0), new Go$Uint64(0, 0)], cutoff = _tuple[0], maxVal = _tuple[1];
 		if (bitSize === 0) {
 			bitSize = 32;
 		}
 		s0 = s;
-		if (s.length < 1) {
+		/* if (s.length < 1) { */ if (s.length < 1) {} else if (2 <= base && base <= 36) { go$s = 2; continue; } else if (base === 0) { go$s = 3; continue; } else { go$s = 4; continue; }
 			err = go$pkg.ErrSyntax;
-			_tuple$1 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$1[0], err = _tuple$1[1];
-			return [n, err];
-		} else if (2 <= base && base <= 36) {
-		} else if (base === 0) {
-			if ((s.charCodeAt(0) === 48) && s.length > 1 && ((s.charCodeAt(1) === 120) || (s.charCodeAt(1) === 88))) {
+			/* goto Error */ go$s = 1; continue;
+		/* } else if (2 <= base && base <= 36) { */ go$s = 5; continue; case 2: 
+		/* } else if (base === 0) { */ go$s = 5; continue; case 3: 
+			/* if ((s.charCodeAt(0) === 48) && s.length > 1 && ((s.charCodeAt(1) === 120) || (s.charCodeAt(1) === 88))) { */ if ((s.charCodeAt(0) === 48) && s.length > 1 && ((s.charCodeAt(1) === 120) || (s.charCodeAt(1) === 88))) {} else if (s.charCodeAt(0) === 48) { go$s = 6; continue; } else { go$s = 7; continue; }
 				base = 16;
 				s = s.substring(2);
-				if (s.length < 1) {
+				/* if (s.length < 1) { */ if (s.length < 1) {} else { go$s = 9; continue; }
 					err = go$pkg.ErrSyntax;
-					_tuple$2 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$2[0], err = _tuple$2[1];
-					return [n, err];
-				}
-			} else if (s.charCodeAt(0) === 48) {
+					/* goto Error */ go$s = 1; continue;
+				/* } */ case 9:
+			/* } else if (s.charCodeAt(0) === 48) { */ go$s = 8; continue; case 6: 
 				base = 8;
-			} else {
+			/* } else { */ go$s = 8; continue; case 7: 
 				base = 10;
-			}
-		} else {
+			/* } */ case 8:
+		/* } else { */ go$s = 5; continue; case 4: 
 			err = errors.New("invalid base " + Itoa(base));
-			_tuple$3 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$3[0], err = _tuple$3[1];
-			return [n, err];
-		}
+			/* goto Error */ go$s = 1; continue;
+		/* } */ case 5:
 		n = new Go$Uint64(0, 0);
 		cutoff = cutoff64(base);
 		maxVal = (x = go$shiftLeft64(new Go$Uint64(0, 1), (bitSize >>> 0)), new Go$Uint64(x.high - 0, x.low - 1));
 		i = 0;
-		while (i < s.length) {
+		/* while (i < s.length) { */ case 10: if(!(i < s.length)) { go$s = 11; continue; }
 			v = 0;
 			d = s.charCodeAt(i);
-			if (48 <= d && d <= 57) {
+			/* if (48 <= d && d <= 57) { */ if (48 <= d && d <= 57) {} else if (97 <= d && d <= 122) { go$s = 12; continue; } else if (65 <= d && d <= 90) { go$s = 13; continue; } else { go$s = 14; continue; }
 				v = d - 48 << 24 >>> 24;
-			} else if (97 <= d && d <= 122) {
+			/* } else if (97 <= d && d <= 122) { */ go$s = 15; continue; case 12: 
 				v = (d - 97 << 24 >>> 24) + 10 << 24 >>> 24;
-			} else if (65 <= d && d <= 90) {
+			/* } else if (65 <= d && d <= 90) { */ go$s = 15; continue; case 13: 
 				v = (d - 65 << 24 >>> 24) + 10 << 24 >>> 24;
-			} else {
+			/* } else { */ go$s = 15; continue; case 14: 
 				n = new Go$Uint64(0, 0);
 				err = go$pkg.ErrSyntax;
-				_tuple$4 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$4[0], err = _tuple$4[1];
-				return [n, err];
-			}
-			if ((v >> 0) >= base) {
+				/* goto Error */ go$s = 1; continue;
+			/* } */ case 15:
+			/* if ((v >> 0) >= base) { */ if ((v >> 0) >= base) {} else { go$s = 16; continue; }
 				n = new Go$Uint64(0, 0);
 				err = go$pkg.ErrSyntax;
-				_tuple$5 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$5[0], err = _tuple$5[1];
-				return [n, err];
-			}
-			if ((n.high > cutoff.high || (n.high === cutoff.high && n.low >= cutoff.low))) {
+				/* goto Error */ go$s = 1; continue;
+			/* } */ case 16:
+			/* if ((n.high > cutoff.high || (n.high === cutoff.high && n.low >= cutoff.low))) { */ if ((n.high > cutoff.high || (n.high === cutoff.high && n.low >= cutoff.low))) {} else { go$s = 17; continue; }
 				n = new Go$Uint64(4294967295, 4294967295);
 				err = go$pkg.ErrRange;
-				_tuple$6 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$6[0], err = _tuple$6[1];
-				return [n, err];
-			}
+				/* goto Error */ go$s = 1; continue;
+			/* } */ case 17:
 			n = go$mul64(n, (new Go$Uint64(0, base)));
 			n1 = (x$1 = new Go$Uint64(0, v), new Go$Uint64(n.high + x$1.high, n.low + x$1.low));
-			if ((n1.high < n.high || (n1.high === n.high && n1.low < n.low)) || (n1.high > maxVal.high || (n1.high === maxVal.high && n1.low > maxVal.low))) {
+			/* if ((n1.high < n.high || (n1.high === n.high && n1.low < n.low)) || (n1.high > maxVal.high || (n1.high === maxVal.high && n1.low > maxVal.low))) { */ if ((n1.high < n.high || (n1.high === n.high && n1.low < n.low)) || (n1.high > maxVal.high || (n1.high === maxVal.high && n1.low > maxVal.low))) {} else { go$s = 18; continue; }
 				n = new Go$Uint64(4294967295, 4294967295);
 				err = go$pkg.ErrRange;
-				_tuple$7 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$7[0], err = _tuple$7[1];
-				return [n, err];
-			}
+				/* goto Error */ go$s = 1; continue;
+			/* } */ case 18:
 			n = n1;
 			i = i + 1 >> 0;
-		}
-		_tuple$8 = [n, null], n = _tuple$8[0], err = _tuple$8[1];
+		/* } */ go$s = 10; continue; case 11:
+		_tuple$1 = [n, null], n = _tuple$1[0], err = _tuple$1[1];
 		return [n, err];
+		/* Error: */ case 1:
+		_tuple$2 = [n, new NumError.Ptr("ParseUint", s0, err)], n = _tuple$2[0], err = _tuple$2[1];
+		return [n, err];
+		/* */ } break; } }; return go$f();
 	};
 0Ç0ParseIntÇ"	var ParseInt = go$pkg.ParseInt = function(s, base, bitSize) {
 		var i, err, _tuple, s0, neg, un, _tuple$1, _tuple$2, cutoff, x, _tuple$3, x$1, _tuple$4, n, _tuple$5;
