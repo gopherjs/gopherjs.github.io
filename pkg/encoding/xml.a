@@ -776,7 +776,7 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 	};
 	printer.prototype.popPrefix = function() { return this.go$val.popPrefix(); };
 0Ç+œmarshalValueÇ+Ω	printer.Ptr.prototype.marshalValue = function(val, finfo, startTemplate) {
-		var p, _struct, _struct$1, kind, typ, x, _struct$2, _struct$3, _struct$4, pv, x$1, _struct$5, _struct$6, x$2, _struct$7, _struct$8, _struct$9, pv$1, x$3, _struct$10, _struct$11, _tuple, i, n, err, _struct$12, _tuple$1, tinfo, err$1, start, _struct$13, xmlname, ok, v, _tuple$2, _tuple$3, x$4, _struct$14, _struct$15, _struct$16, _tuple$4, name, _ref, _i, i$1, _slice, _index, finfo$1, _struct$17, _struct$18, fv, name$1, _struct$19, _tuple$5, x$5, _struct$20, _struct$21, _struct$22, attr, err$2, _struct$23, _struct$24, _struct$25, pv$2, _tuple$6, x$6, _struct$26, _struct$27, _struct$28, attr$1, err$3, _struct$29, _struct$30, _tuple$7, x$7, text, err$4, _struct$31, _struct$32, pv$3, _tuple$8, x$8, text$1, err$5, _struct$33, _ref$1, _struct$34, _tuple$9, _struct$35, s, b, err$6, _struct$36, err$7, _struct$37, _tuple$10, _struct$38, s$1, b$1, err1, err$8, _struct$39;
+		var p, _struct, _struct$1, kind, typ, x, _struct$2, _struct$3, _struct$4, pv, x$1, _struct$5, _struct$6, x$2, _struct$7, _struct$8, _struct$9, pv$1, x$3, _struct$10, _struct$11, _tuple, i, n, err, _struct$12, _tuple$1, tinfo, err$1, start, _struct$13, xmlname, ok, v, _tuple$2, x$4, _struct$14, _struct$15, _tuple$3, _struct$16, _tuple$4, name, _ref, _i, i$1, _slice, _index, finfo$1, _struct$17, _struct$18, fv, name$1, _struct$19, _tuple$5, x$5, _struct$20, _struct$21, _struct$22, attr, err$2, _struct$23, _struct$24, _struct$25, pv$2, _tuple$6, x$6, _struct$26, _struct$27, _struct$28, attr$1, err$3, _struct$29, _struct$30, _tuple$7, x$7, text, err$4, _struct$31, _struct$32, pv$3, _tuple$8, x$8, text$1, err$5, _struct$33, _ref$1, _struct$34, _tuple$9, _struct$35, s, b, err$6, _struct$36, err$7, _struct$37, _tuple$10, _struct$38, s$1, b$1, err1, err$8, _struct$39;
 		p = this;
 		if (!(startTemplate === (go$ptrType(StartElement)).nil) && startTemplate.Name.Local === "") {
 			return fmt.Errorf("xml: EncodeElement of StartElement with missing name", new (go$sliceType(go$emptyInterface))([]));
@@ -834,8 +834,8 @@ markPrefixÅ≈	printer.Ptr.prototype.markPrefix = function() {
 		} else if (!(tinfo.xmlname === (go$ptrType(fieldInfo)).nil)) {
 			xmlname = tinfo.xmlname;
 			if (!(xmlname.name === "")) {
-				_tuple$2 = [xmlname.xmlns, xmlname.name], start.Name.Space = _tuple$2[0], start.Name.Local = _tuple$2[1];
-			} else if (_tuple$3 = (x$4 = xmlname.value((_struct$14 = val, new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag))).Interface(), (x$4 !== null && x$4.constructor === Name ? [x$4.go$val, true] : [new Name.Ptr(), false])), v = (_struct$15 = _tuple$3[0], new Name.Ptr(_struct$15.Space, _struct$15.Local)), ok = _tuple$3[1], ok && !(v.Local === "")) {
+				_tuple$3 = [xmlname.xmlns, xmlname.name], start.Name.Space = _tuple$3[0], start.Name.Local = _tuple$3[1];
+			} else if (_tuple$2 = (x$4 = xmlname.value((_struct$14 = val, new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag))).Interface(), (x$4 !== null && x$4.constructor === Name ? [x$4.go$val, true] : [new Name.Ptr(), false])), v = (_struct$15 = _tuple$2[0], new Name.Ptr(_struct$15.Space, _struct$15.Local)), ok = _tuple$2[1], ok && !(v.Local === "")) {
 				start.Name = (_struct$16 = v, new Name.Ptr(_struct$16.Space, _struct$16.Local));
 			}
 		}

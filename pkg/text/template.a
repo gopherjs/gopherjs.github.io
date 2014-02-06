@@ -2178,7 +2178,7 @@ parseFiles‚l	var parseFiles = function(t, filenames) {
 	};
 	Template.prototype.Lookup = function(name) { return this.go$val.Lookup(name); };
 0‚PParse‚E	Template.Ptr.prototype.Parse = function(text) {
-		var t, _tuple, trees, err, _ref, _i, _keys, _entry, tree, name, tmpl, err$1, replace, _tuple$1;
+		var t, _tuple, trees, err, _ref, _i, _keys, _entry, tree, name, tmpl, err$1, _tuple$1, replace;
 		t = this;
 		t.init();
 		_tuple = parse.Parse(t.name, text, t.leftDelim, t.rightDelim, new (go$sliceType((go$mapType(Go$String, go$emptyInterface))))([t.common.parseFuncs, builtins])), trees = _tuple[0], err = _tuple[1];

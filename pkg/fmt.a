@@ -3086,7 +3086,7 @@ floatToken‚s	ss.Ptr.prototype.floatToken = function() {
 	};
 	ss.prototype.scanOne = function(verb, arg) { return this.go$val.scanOne(verb, arg); };
 0‚—errorHandler‚…	var errorHandler = function(errp) {
-		var e, ok, ok$1, eof, _tuple, _struct, se, _tuple$1;
+		var e, ok, _tuple, _struct, se, ok$1, eof, _tuple$1;
 		if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
 			if (_tuple = (e !== null && e.constructor === scanError ? [e.go$val, true] : [new scanError.Ptr(), false]), se = (_struct = _tuple[0], new scanError.Ptr(_struct.err)), ok = _tuple[1], ok) {
 				errp.go$set(se.err);

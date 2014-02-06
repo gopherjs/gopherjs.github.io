@@ -1,4 +1,4 @@
-0É·K
+0É·O
 go/printerÇB0package printer
 import bytes "bytes"
 import ast "go/ast"
@@ -277,7 +277,7 @@ go/printer0Å¡0bytesbytes0go/astast0go/tokentoken0unicode/utf8
 	(go$ptrType(Config)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false]];
 	CommentedNode.init([["Node", "", go$emptyInterface, ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
 00
-aNewline0Éx0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
+aNewline0Éx0Ç€	linebreakÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
 		var printedBreak, p, n;
 		printedBreak = false;
 		p = this;
@@ -2374,8 +2374,8 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 		}
 		return (go$ptrType(ast.CommentGroup)).nil;
 	};
-0Ç;	printNodeÇ,	printer.Ptr.prototype.printNode = function(node) {
-		var p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, _tuple$2, n$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
+0Ç?	printNodeÇ0	printer.Ptr.prototype.printNode = function(node) {
+		var p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, _tuple$2, n$1, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
 		p = this;
 		comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 		if (_tuple = (node !== null && node.constructor === (go$ptrType(CommentedNode)) ? [node.go$val, true] : [(go$ptrType(CommentedNode)).nil, false]), cnode = _tuple[0], ok = _tuple[1], ok) {
@@ -2383,13 +2383,13 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 			comments = cnode.Comments;
 		}
 		if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) {
-			_tuple$1 = (node !== null && ast.Node.implementedBy.indexOf(node.constructor) !== -1 ? [node, true] : [null, false]), n = _tuple$1[0], ok$2 = _tuple$1[1];
+			_tuple$2 = (node !== null && ast.Node.implementedBy.indexOf(node.constructor) !== -1 ? [node, true] : [null, false]), n$1 = _tuple$2[0], ok$2 = _tuple$2[1];
 			if (!ok$2) {
 				return fmt.Errorf("go/printer: unsupported node type %T", new (go$sliceType(go$emptyInterface))([node]));
 			}
-			beg = n.Pos();
-			end = n.End();
-			if (doc = getDoc(n), !(doc === (go$ptrType(ast.CommentGroup)).nil)) {
+			beg = n$1.Pos();
+			end = n$1.End();
+			if (doc = getDoc(n$1), !(doc === (go$ptrType(ast.CommentGroup)).nil)) {
 				beg = doc.Pos();
 			}
 			i = 0;
@@ -2403,8 +2403,8 @@ mayCombineÇ¶	var mayCombine = function(prev, next) {
 			if (i < j) {
 				p.comments = go$subslice(comments, i, j);
 			}
-		} else if (_tuple$2 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
-			p.comments = n$1.Comments;
+		} else if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) {
+			p.comments = n.Comments;
 		}
 		p.useNodeComments = p.comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 		p.nextComment();

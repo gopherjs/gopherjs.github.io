@@ -2818,7 +2818,7 @@ catchError‚†	var catchError = function(err) {
 0‚
 ~validUserType‚
 k	var validUserType = function(rt) {
-		var ut, err, _entry, _entry$1, slowpoke, pt, _tuple, _r, ok, ok$1, _tuple$1, indir, _tuple$2, _tuple$3, indir$1, _tuple$4, ok$2, ok$3, _tuple$5, indir$2, _tuple$6, _tuple$7, indir$3, _tuple$8, _key;
+		var ut, err, _entry, _entry$1, slowpoke, pt, _tuple, _r, ok, _tuple$1, indir, ok$1, _tuple$2, indir$1, _tuple$3, _tuple$4, ok$2, _tuple$5, indir$2, ok$3, _tuple$6, indir$3, _tuple$7, _tuple$8, _key;
 		ut = (go$ptrType(userTypeInfo)).nil;
 		err = null;
 		var go$deferred = [];
@@ -2854,13 +2854,13 @@ k	var validUserType = function(rt) {
 				ut.indir = ut.indir + 1 >> 0;
 			}
 			if (_tuple$1 = implementsInterface(ut.user, gobEncoderInterfaceType), ok = _tuple$1[0], indir = _tuple$1[1], ok) {
-				_tuple$2 = [1, indir], ut.externalEnc = _tuple$2[0], ut.encIndir = _tuple$2[1];
-			} else if (_tuple$3 = implementsInterface(ut.user, binaryMarshalerInterfaceType), ok$1 = _tuple$3[0], indir$1 = _tuple$3[1], ok$1) {
+				_tuple$3 = [1, indir], ut.externalEnc = _tuple$3[0], ut.encIndir = _tuple$3[1];
+			} else if (_tuple$2 = implementsInterface(ut.user, binaryMarshalerInterfaceType), ok$1 = _tuple$2[0], indir$1 = _tuple$2[1], ok$1) {
 				_tuple$4 = [2, indir$1], ut.externalEnc = _tuple$4[0], ut.encIndir = _tuple$4[1];
 			}
 			if (_tuple$5 = implementsInterface(ut.user, gobDecoderInterfaceType), ok$2 = _tuple$5[0], indir$2 = _tuple$5[1], ok$2) {
-				_tuple$6 = [1, indir$2], ut.externalDec = _tuple$6[0], ut.decIndir = _tuple$6[1];
-			} else if (_tuple$7 = implementsInterface(ut.user, binaryUnmarshalerInterfaceType), ok$3 = _tuple$7[0], indir$3 = _tuple$7[1], ok$3) {
+				_tuple$7 = [1, indir$2], ut.externalDec = _tuple$7[0], ut.decIndir = _tuple$7[1];
+			} else if (_tuple$6 = implementsInterface(ut.user, binaryUnmarshalerInterfaceType), ok$3 = _tuple$6[0], indir$3 = _tuple$6[1], ok$3) {
 				_tuple$8 = [2, indir$3], ut.externalDec = _tuple$8[0], ut.decIndir = _tuple$8[1];
 			}
 			_key = rt, (userTypeCache || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: ut };
