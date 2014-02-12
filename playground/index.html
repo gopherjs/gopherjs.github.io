@@ -1,0 +1,160 @@
+<!doctype html>
+<html ng-app="playground">
+  <head>
+    <title>GopherJS Playground</title>
+    <style>
+      html {
+        height: 100%;
+      }
+      body {
+        color: #000;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      a {
+        color: #009;
+      }
+      .box {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+      }
+      .yellow {
+        background: #ffd;
+        margin: 0px;
+        padding: 5px;
+      }
+      .show-generated-false #generated {
+        display: none;
+      }
+      .show-generated-true #input {
+        right: 50%;
+        margin-right: 2px;
+      }
+      .show-generated-true #generated {
+        left: 50%;
+        margin-left: 2px;
+      }
+      #code, #output, #generated, pre, .lines {
+        font-family: Menlo,Courier\ New,monospace;
+        font-size: 11pt;
+      }
+      #code {
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        border: none;
+        float: right;
+        margin: 0;
+        outline: none;
+        padding: 0;
+        resize: none;
+        wrap: off;
+      }
+      #output {
+        padding: 8px;
+        position: absolute;
+        overflow: scroll;
+      }
+      #output .system,#output .loading {
+        color: #999;
+      }
+      #output .err {
+        color: #900;
+      }
+      #output pre {
+        margin: 0;
+      }
+      #banner {
+        height: 50px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      #head {
+        float: left;
+        font-family: Georgia,serif;
+        font-size: 30px;
+        padding: 8px;
+      }
+      #controls {
+        float: left;
+        padding: 10px;
+      }
+      input[type="button"] {
+        background: #eee;
+        border: 1px solid #ccc;
+        color: #000;
+        font-size: 20px;
+        height: 30px;
+      }
+      input[type="button"]:hover {
+        background: #666;
+        color: #fff;
+      }
+      label {
+        font-family: sans-serif;
+        font-size: 16px;
+      }
+      input[type="checkbox"] {
+        height: 14px;
+      }
+      .lines {
+        float: left;
+        overflow: hidden;
+        text-align: right;
+      }
+      .lines div {
+        color: #d3d3d3;
+        padding-right: 5px;
+      }
+      .lineerror {
+        background: #fdd;
+        color: red;
+      }
+      .exit {
+        color: #d3d3d3;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+    <script src="playground.js"></script>
+  </head>
+  <body ng-controller="PlaygroundCtrl">
+    <div id="banner">
+      <div id="head" itemprop="name"><a href="https://github.com/gopherjs/gopherjs" style="color: black;">GopherJS</a> Playground</div>
+      <div id="controls">
+        <input type="button" value="Run" ng-click="run(false)" />
+        <input type="button" value="Format" ng-click="format()" />
+        <label><input ng-model="showGenerated" type="checkbox" />Show generated code for main package</label>
+      </div>
+    </div>
+    
+    <div class="box show-generated-{{showGenerated}}" style="top: 50px; bottom: 25%;">
+      <div class="box yellow" id="input">
+        <textarea ng-model="code" id="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+      </div>
+      <div class="box yellow" id="generated">
+        <pre style="margin: 0px;">{{generated}}</pre>
+      </div>
+    </div>
+    <div class="box" style="top: 75%;" id="output">
+      <pre ng-repeat="line in output" class="{{line.type}}">{{line.content}}&nbsp;</pre>
+    </div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46799660-2', 'neelance.github.io');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>

@@ -3,9 +3,9 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/neelance/go-angularjs"
-	"github.com/neelance/gopherjs/js"
-	"github.com/neelance/gopherjs/translator"
+	"github.com/gopherjs/go-angularjs"
+	"github.com/gopherjs/gopherjs/js"
+	"github.com/gopherjs/gopherjs/translator"
 	"go/ast"
 	"go/format"
 	"go/parser"
@@ -23,7 +23,7 @@ func main() {
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
-		scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/neelance/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global(\"alert\").Invoke(\"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
+		scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global(\"alert\").Invoke(\"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
 		scope.Set("showGenerated", false)
 		scope.Set("generated", `(generated code will be shown here after clicking "Run")`)
 
