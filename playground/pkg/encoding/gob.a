@@ -1,4 +1,4 @@
-0É¿ïencoding/gobÇs,package gob
+0É¿≈encoding/gobÇs,package gob
 import bytes "bytes"
 import encoding "encoding"
 import errors "errors"
@@ -654,7 +654,7 @@ tReserved50
 tReserved40
 tReserved30
 tReserved20
-tReserved10	tWireType0wireTypeUserInfo0typeInfoMap0registerLock0nameToConcreteType0concreteTypeToName0Éﬂ50ÇÃnewDecoderStateÇ∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
+tReserved10	tWireType0wireTypeUserInfo0typeInfoMap0registerLock0nameToConcreteType0concreteTypeToName0Éﬂe0ÇÃnewDecoderStateÇ∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
 		var dec, d;
 		dec = this;
 		d = dec.freeList;
@@ -2117,11 +2117,11 @@ encUintptrÅÚ	var encUintptr = function(i, state, p) {
 		}
 		return v;
 	};
-0Å»
-encFloat32Åπ	var encFloat32 = function(i, state, p) {
+0Åÿ
+encFloat32Å…	var encFloat32 = function(i, state, p) {
 		var f, v;
 		f = p.go$get();
-		if (!((f === 0)) || state.sendZero) {
+		if (!((go$float32IsEqual(f, 0))) || state.sendZero) {
 			v = floatBits(f);
 			state.update(i);
 			state.encodeUint(v);
@@ -2137,10 +2137,10 @@ encFloat64Åπ	var encFloat64 = function(i, state, p) {
 			state.encodeUint(v);
 		}
 	};
-0Ç4encComplex64Ç"	var encComplex64 = function(i, state, p) {
+0ÇTencComplex64ÇB	var encComplex64 = function(i, state, p) {
 		var c, rpart, ipart;
 		c = p.go$get();
-		if (!((c.real === 0 && c.imag === 0)) || state.sendZero) {
+		if (!((go$float32IsEqual(c.real, 0) && go$float32IsEqual(c.imag, 0))) || state.sendZero) {
 			rpart = floatBits(c.real);
 			ipart = floatBits(c.imag);
 			state.update(i);
