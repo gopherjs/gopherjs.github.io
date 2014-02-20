@@ -1,4 +1,4 @@
-0‚Õö	math/rand‚Ãpackage rand
+0‚Ö>	math/rand‚Ãpackage rand
 import math "math"
 import sync "sync"
 func @"".ExpFloat64() (? float64)
@@ -95,14 +95,14 @@ $$
 	(go$ptrType(Zipf)).methods = [["Uint64", "", [], [Go$Uint64], false], ["h", "math/rand", [Go$Float64], [Go$Float64], false], ["hinv", "math/rand", [Go$Float64], [Go$Float64], false]];
 0@0ke0we0fe0kn0wn0fn0
 globalRand0
-rng_cooked0‚¿0‚Ñ
-ExpFloat64‚Á	Rand.Ptr.prototype.ExpFloat64 = function() {
+rng_cooked0‚¿P0‚õ
+ExpFloat64‚å	Rand.Ptr.prototype.ExpFloat64 = function() {
 		var r, j, i, x;
 		r = this;
 		while (true) {
 			j = r.Uint32();
 			i = (j & 255) >>> 0;
-			x = j * we[i];
+			x = j * go$float32frombits(go$float32bits(we[i]));
 			if (j < ke[i]) {
 				return x;
 			}
@@ -121,13 +121,13 @@ ExpFloat64‚Á	Rand.Ptr.prototype.ExpFloat64 = function() {
 		}
 		return (i >>> 0);
 	};
-0‚¬NormFloat64‚›	Rand.Ptr.prototype.NormFloat64 = function() {
+0‚ÐNormFloat64‚¿	Rand.Ptr.prototype.NormFloat64 = function() {
 		var r, j, i, x, y;
 		r = this;
 		while (true) {
 			j = (r.Uint32() >> 0);
 			i = j & 127;
-			x = j * wn[i];
+			x = j * go$float32frombits(go$float32bits(wn[i]));
 			if (absInt32(j) < kn[i]) {
 				return x;
 			}

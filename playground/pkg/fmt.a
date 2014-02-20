@@ -1,4 +1,4 @@
-0ÉCFfmtÇl÷package fmt
+0ÉDfmtÇl÷package fmt
 import strconv "strconv"
 import utf8 "unicode/utf8"
 import errors "errors"
@@ -484,7 +484,7 @@ falseBytes0commaSpaceBytes0nilAngleBytes0nilParenBytes0
 mapBytes0percentBangBytes0missingBytes0badIndexBytes0
 panicBytes0
 extraBytes0irparenBytes0
-bytesBytes0badWidthBytes0badPrecBytes0noVerbBytes0ppFree0	intBits0uintptrBits0space0ssFree0complexError0	boolError0Éõ)0Çw
+bytesBytes0badWidthBytes0badPrecBytes0noVerbBytes0ppFree0	intBits0uintptrBits0space0ssFree0complexError0	boolError0Éú0Çw
 clearflagsÇg	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;
@@ -843,40 +843,40 @@ clearflagsÇg	fmt.Ptr.prototype.clearflags = function() {
 		f.formatFloat(v, 98, 0, 64);
 	};
 	fmt.prototype.fmt_fb64 = function(v) { return this.go$val.fmt_fb64(v); };
-0Åƒfmt_e32Å∏	fmt.Ptr.prototype.fmt_e32 = function(v) {
+0ÅËfmt_e32Å‹	fmt.Ptr.prototype.fmt_e32 = function(v) {
 		var f;
 		f = this;
-		f.formatFloat(v, 101, doPrec(f, 6), 32);
+		f.formatFloat(go$float32frombits(go$float32bits(v)), 101, doPrec(f, 6), 32);
 	};
 	fmt.prototype.fmt_e32 = function(v) { return this.go$val.fmt_e32(v); };
-0Å√fmt_E32Å∑	fmt.Ptr.prototype.fmt_E32 = function(v) {
+0ÅÁfmt_E32Å€	fmt.Ptr.prototype.fmt_E32 = function(v) {
 		var f;
 		f = this;
-		f.formatFloat(v, 69, doPrec(f, 6), 32);
+		f.formatFloat(go$float32frombits(go$float32bits(v)), 69, doPrec(f, 6), 32);
 	};
 	fmt.prototype.fmt_E32 = function(v) { return this.go$val.fmt_E32(v); };
-0Åƒfmt_f32Å∏	fmt.Ptr.prototype.fmt_f32 = function(v) {
+0ÅËfmt_f32Å‹	fmt.Ptr.prototype.fmt_f32 = function(v) {
 		var f;
 		f = this;
-		f.formatFloat(v, 102, doPrec(f, 6), 32);
+		f.formatFloat(go$float32frombits(go$float32bits(v)), 102, doPrec(f, 6), 32);
 	};
 	fmt.prototype.fmt_f32 = function(v) { return this.go$val.fmt_f32(v); };
-0Å≈fmt_g32Åπ	fmt.Ptr.prototype.fmt_g32 = function(v) {
+0ÅÈfmt_g32Å›	fmt.Ptr.prototype.fmt_g32 = function(v) {
 		var f;
 		f = this;
-		f.formatFloat(v, 103, doPrec(f, -1), 32);
+		f.formatFloat(go$float32frombits(go$float32bits(v)), 103, doPrec(f, -1), 32);
 	};
 	fmt.prototype.fmt_g32 = function(v) { return this.go$val.fmt_g32(v); };
-0Åƒfmt_G32Å∏	fmt.Ptr.prototype.fmt_G32 = function(v) {
+0ÅËfmt_G32Å‹	fmt.Ptr.prototype.fmt_G32 = function(v) {
 		var f;
 		f = this;
-		f.formatFloat(v, 71, doPrec(f, -1), 32);
+		f.formatFloat(go$float32frombits(go$float32bits(v)), 71, doPrec(f, -1), 32);
 	};
 	fmt.prototype.fmt_G32 = function(v) { return this.go$val.fmt_G32(v); };
-0Åºfmt_fb32ÅØ	fmt.Ptr.prototype.fmt_fb32 = function(v) {
+0Å‡fmt_fb32Å”	fmt.Ptr.prototype.fmt_fb32 = function(v) {
 		var f;
 		f = this;
-		f.formatFloat(v, 98, 0, 32);
+		f.formatFloat(go$float32frombits(go$float32bits(v)), 98, 0, 32);
 	};
 	fmt.prototype.fmt_fb32 = function(v) { return this.go$val.fmt_fb32(v); };
 0Ç–fmt_c64Ç√	fmt.Ptr.prototype.fmt_c64 = function(v, verb) {

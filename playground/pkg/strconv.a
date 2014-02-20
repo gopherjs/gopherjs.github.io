@@ -1,4 +1,4 @@
-0É∏¯strconvÇépackage strconv
+0ÉπstrconvÇépackage strconv
 import math "math"
 import errors "errors"
 import utf8 "unicode/utf8"
@@ -118,7 +118,7 @@ $$
 	decimalSlice.init([["d", "strconv", (go$sliceType(Go$Uint8)), ""], ["nd", "strconv", Go$Int, ""], ["dp", "strconv", Go$Int, ""], ["neg", "strconv", Go$Bool, ""]]);
 0Å‡0
 optimize0powtab0float64pow100float32pow100 0 0
-leftcheats0smallPowersOfTen0powersOfTen0uint64pow100float32info0float64info0	isPrint160isNotPrint160	isPrint320isNotPrint320shifts0Éòó0Çª	ParseBoolÇ¨	var ParseBool = go$pkg.ParseBool = function(str) {
+leftcheats0smallPowersOfTen0powersOfTen0uint64pow100float32info0float64info0	isPrint160isNotPrint160	isPrint320isNotPrint320shifts0Éòª0Çª	ParseBoolÇ¨	var ParseBool = go$pkg.ParseBool = function(str) {
 		var value, err, _ref, _tuple, _tuple$1, _tuple$2;
 		value = false;
 		err = null;
@@ -612,14 +612,14 @@ AppendBoolÅ˙	var AppendBool = go$pkg.AppendBool = function(dst, b) {
 		_tuple$9 = [f, err], f = _tuple$9[0], err = _tuple$9[1];
 		return [f, err];
 	};
-0ÇÒ
-ParseFloatÇ·	var ParseFloat = go$pkg.ParseFloat = function(s, bitSize) {
+0Ç
+ParseFloatÇ	var ParseFloat = go$pkg.ParseFloat = function(s, bitSize) {
 		var f, err, _tuple, f1, err1, _tuple$1, _tuple$2, f1$1, err1$1, _tuple$3;
 		f = 0;
 		err = null;
 		if (bitSize === 32) {
 			_tuple = atof32(s), f1 = _tuple[0], err1 = _tuple[1];
-			_tuple$1 = [f1, err1], f = _tuple$1[0], err = _tuple$1[1];
+			_tuple$1 = [go$float32frombits(go$float32bits(f1)), err1], f = _tuple$1[0], err = _tuple$1[1];
 			return [f, err];
 		}
 		_tuple$2 = atof64(s), f1$1 = _tuple$2[0], err1$1 = _tuple$2[1];

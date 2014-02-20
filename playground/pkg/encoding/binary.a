@@ -1,4 +1,4 @@
-0ƒ$encoding/binary‚Spackage binary
+0ƒ$†encoding/binary‚Spackage binary
 import errors "errors"
 import io "io"
 import math "math"
@@ -320,7 +320,7 @@ $$
 	encoder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
 	(go$ptrType(encoder)).methods = [["int16", "encoding/binary", [Go$Int16], [], false], ["int32", "encoding/binary", [Go$Int32], [], false], ["int64", "encoding/binary", [Go$Int64], [], false], ["int8", "encoding/binary", [Go$Int8], [], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [Go$Uint16], [], false], ["uint32", "encoding/binary", [Go$Uint32], [], false], ["uint64", "encoding/binary", [Go$Uint64], [], false], ["uint8", "encoding/binary", [Go$Uint8], [], false], ["value", "encoding/binary", [reflect.Value], [], false]];
 00 0 0
-overflow0‚ºe0‚?Uint16‚3	littleEndian.Ptr.prototype.Uint16 = function(b) {
+overflow0‚ºÑ0‚?Uint16‚3	littleEndian.Ptr.prototype.Uint16 = function(b) {
 		var _slice, _index, _slice$1, _index$1;
 		return (((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16)) >>> 0;
 	};
@@ -865,7 +865,7 @@ $$
 		e.uint64(new Go$Uint64(x.high, x.low));
 	};
 	encoder.prototype.int64 = function(x) { return this.go$val.int64(x); };
-0‚Uvalue‚J	decoder.Ptr.prototype.value = function(v) {
+0‚Ávalue‚¶	decoder.Ptr.prototype.value = function(v) {
 		var d, _ref, l, i, _struct, t, l$1, i$1, v$1, _struct$1, _struct$2, _struct$3, l$2, i$2, _struct$4;
 		d = this;
 		_ref = v.Kind();
@@ -912,11 +912,11 @@ $$
 		} else if (_ref === 11) {
 			v.SetUint(d.uint64());
 		} else if (_ref === 13) {
-			v.SetFloat(math.Float32frombits(d.uint32()));
+			v.SetFloat(go$float32frombits(go$float32bits(math.Float32frombits(d.uint32()))));
 		} else if (_ref === 14) {
 			v.SetFloat(math.Float64frombits(d.uint64()));
 		} else if (_ref === 15) {
-			v.SetComplex(new Go$Complex128(math.Float32frombits(d.uint32()), math.Float32frombits(d.uint32())));
+			v.SetComplex(new Go$Complex128(go$float32frombits(go$float32bits(math.Float32frombits(d.uint32()))), go$float32frombits(go$float32bits(math.Float32frombits(d.uint32())))));
 		} else if (_ref === 16) {
 			v.SetComplex(new Go$Complex128(math.Float64frombits(d.uint64()), math.Float64frombits(d.uint64())));
 		}

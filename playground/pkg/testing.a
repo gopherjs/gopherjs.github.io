@@ -1,4 +1,4 @@
-0ƒªtesting‚0*package testing
+0ƒ®testing‚0*package testing
 import runtime "runtime"
 import flag "flag"
 import fmt "fmt"
@@ -359,7 +359,7 @@ $$
 memProfile0memProfileRate0
 cpuProfile0blockProfile0blockProfileRate0	timeout0
 cpuListStr0
-parallel0haveExamples0	cpuList0timer0‚›É0‚5AllocsPerRun‚#	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
+parallel0haveExamples0	cpuList0timer0‚›Í0‚5AllocsPerRun‚#	var AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
 		var avg, memstats, x, mallocs, i, x$1;
 		avg = 0;
 		var go$deferred = [];
@@ -1242,7 +1242,7 @@ startAlarm‚E	var startAlarm = function() {
 			cpuList = go$append(cpuList, runtime.GOMAXPROCS(-1));
 		}
 	};
-0‚Cinit‚9	go$pkg.init = function() {
+0‚Ginit‚=	go$pkg.init = function() {
 		benchmarkLock = new sync.Mutex.Ptr();
 		memStats = new runtime.MemStats.Ptr();
 		cover = new Cover.Ptr();
@@ -1253,10 +1253,10 @@ startAlarm‚E	var startAlarm = function() {
 			go$pkg.RunTests2 = function(pkgPath, dir, names, tests) {
 				if (tests.length === 0) {
 					console.log("?   \t" + pkgPath + "\t[no test files]");
-					return;
+					return true;
 				}
 				os.Open(dir)[0].Chdir();
-				var start = time.Now(), status = "ok  ", i;
+				var start = time.Now(), ok = true, i;
 				for (i = 0; i < tests.length; i++) {
 					var t = new T.Ptr(new common.Ptr(undefined, undefined, undefined, undefined, time.Now(), undefined, undefined, undefined), names[i], null);
 					var err = null;
@@ -1283,12 +1283,11 @@ startAlarm‚E	var startAlarm = function() {
 					if (err !== null) {
 						throw err;
 					}
-					if (t.common.failed) {
-						status = "FAIL";
-					}
+					ok = ok && !t.common.failed;
 				}
 				var duration = time.Now().Sub(start);
-				fmt.Printf("%s\t%s\t%.3fs\n", new (go$sliceType(go$emptyInterface))([new Go$String(status), new Go$String(pkgPath), new Go$Float64(duration.Seconds())]));
+				fmt.Printf("%s\t%s\t%.3fs\n", new (go$sliceType(go$emptyInterface))([new Go$String(ok ? "ok  " : "FAIL"), new Go$String(pkgPath), new Go$Float64(duration.Seconds())]));
+				return ok;
 			};
 				matchBenchmarks = flag.String("test.bench", "", "regular expression to select benchmarks to run");
 		benchTime = flag.Duration("test.benchtime", new time.Duration(0, 1000000000), "approximate run time for each benchmark");
