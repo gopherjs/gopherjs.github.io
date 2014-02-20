@@ -1,4 +1,4 @@
-diff -r 1a4cb01125fd go/types/call.go
+diff -r cecf5b1a92de go/types/call.go
 --- a/go/types/call.go
 +++ b/go/types/call.go
 @@ -238,7 +238,6 @@
@@ -83,7 +83,7 @@ diff -r 1a4cb01125fd go/types/call.go
 -	x.mode = invalid
 -	x.expr = e
  }
-diff -r 1a4cb01125fd go/types/expr.go
+diff -r cecf5b1a92de go/types/expr.go
 --- a/go/types/expr.go
 +++ b/go/types/expr.go
 @@ -480,7 +480,9 @@
@@ -360,7 +360,7 @@ diff -r 1a4cb01125fd go/types/expr.go
 +			x.expr = e
 +			return statement
  		}
- 		T := check.typ(e.Type, nil, nil)
+ 		T := check.typ(e.Type)
  		if T == Typ[Invalid] {
 -			goto Error
 +			x.mode = invalid
