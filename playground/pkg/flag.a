@@ -1,4 +1,4 @@
-0‚²“flag‚øpackage flag
+0‚³flag‚øpackage flag
 import errors "errors"
 import fmt "fmt"
 import io "io"
@@ -128,7 +128,7 @@ func (? *@"time".Duration) @"time".String() (? string)
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
 0rruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortflag0b0errorserrors0
-fmtfmt0ioio0osos0sortsort0strconvstrconv0timetime0‚’³0‚H 	boolValued	boolValue = go$pkg.boolValue = go$newType(0, "Bool", "flag.boolValue", "boolValue", "flag", null);
+fmtfmt0ioio0osos0sortsort0strconvstrconv0timetime0‚“+0‚H 	boolValued	boolValue = go$pkg.boolValue = go$newType(0, "Bool", "flag.boolValue", "boolValue", "flag", null);
 Ò		(go$ptrType(boolValue)).methods = [["Get", "", [], [go$emptyInterface], false], ["IsBoolFlag", "", [], [Go$Bool], false], ["Set", "", [Go$String], [go$error], false], ["String", "", [], [Go$String], false]];
 0‚5 boolFlage	boolFlag = go$pkg.boolFlag = go$newType(0, "Interface", "flag.boolFlag", "boolFlag", "flag", null);
 ¿		boolFlag.init([["IsBoolFlag", "", (go$funcType([], [Go$Bool], false))], ["Set", "", (go$funcType([Go$String], [go$error], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
@@ -179,9 +179,9 @@ int64Valuei	int64Value = go$pkg.int64Value = go$newType(8, "Int64", "flag.int64
 0    0    0    0?   7		go$pkg.ErrHelp = errors.New("flag: help requested");
 0â   Ù		var _slice, _index;
 		go$pkg.CommandLine = NewFlagSet((_slice = os.Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), 1);
-0‚\   ‚R		go$pkg.Usage = (function() {
-			var _slice, _index;
-			fmt.Fprintf(os.Stderr, "Usage of %s:\n", new (go$sliceType(go$emptyInterface))([new Go$String((_slice = os.Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")))]));
+0‚p   ‚f		go$pkg.Usage = (function() {
+			var _slice$1, _index$1;
+			fmt.Fprintf(os.Stderr, "Usage of %s:\n", new (go$sliceType(go$emptyInterface))([new Go$String((_slice$1 = os.Args, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))]));
 			PrintDefaults();
 		});
 0† newBoolValuer	newBoolValue = function(val, p) {
@@ -381,8 +381,8 @@ int64Valuei	int64Value = go$pkg.int64Value = go$newType(8, "Int64", "flag.int64
 		return new (go$ptrType(time.Duration))(d.go$get, d.go$set).String();
 	};
 	durationValue.prototype.String = function() { var obj = this; return (new (go$ptrType(durationValue))(function() { return obj; }, null)).String(); };
- 0‚ 	sortFlags‚	sortFlags = function(flags) {
-		var list, i, _ref, _i, _keys, _entry, f, _slice, _index, result, _ref$1, _i$1, _slice$1, _index$1, name, i$1, _entry$1, _slice$2, _index$2;
+ 0‚- 	sortFlags‚	sortFlags = function(flags) {
+		var list, i, _ref, _i, _keys, _entry, f, _slice$1, _index$1, result, _ref$1, _i$1, _slice$2, _index$2, name, i$1, _entry$1, _slice$3, _index$3;
 		list = sort.StringSlice.make(go$keys(flags).length, 0, function() { return ""; });
 		i = 0;
 		_ref = flags;
@@ -391,7 +391,7 @@ int64Valuei	int64Value = go$pkg.int64Value = go$newType(8, "Int64", "flag.int64
 		while (_i < _keys.length) {
 			_entry = _ref[_keys[_i]];
 			f = _entry.v;
-			_slice = list, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = f.Name) : go$throwRuntimeError("index out of range");
+			_slice$1 = list, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = f.Name) : go$throwRuntimeError("index out of range");
 			i = i + 1 >> 0;
 			_i++;
 		}
@@ -400,9 +400,9 @@ int64Valuei	int64Value = go$pkg.int64Value = go$newType(8, "Int64", "flag.int64
 		_ref$1 = list;
 		_i$1 = 0;
 		while (_i$1 < _ref$1.length) {
-			name = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			name = (_slice$2 = _ref$1, _index$2 = _i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 			i$1 = _i$1;
-			_slice$2 = result, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (_entry$1 = flags[name], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(Flag)).nil)) : go$throwRuntimeError("index out of range");
+			_slice$3 = result, _index$3 = i$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = (_entry$1 = flags[name], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(Flag)).nil)) : go$throwRuntimeError("index out of range");
 			_i$1++;
 		}
 		return result;
@@ -422,13 +422,13 @@ int64Valuei	int64Value = go$pkg.int64Value = go$newType(8, "Int64", "flag.int64
 		f.output = output;
 	};
 	FlagSet.prototype.SetOutput = function(output) { return this.go$val.SetOutput(output); };
- 0‚É  ‚¿	FlagSet.Ptr.prototype.VisitAll = function(fn) {
-		var f, _ref, _i, _slice, _index, flag;
+ 0‚Ý  ‚Ó	FlagSet.Ptr.prototype.VisitAll = function(fn) {
+		var f, _ref, _i, _slice$1, _index$1, flag;
 		f = this;
 		_ref = sortFlags(f.formal);
 		_i = 0;
 		while (_i < _ref.length) {
-			flag = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			flag = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			fn(flag);
 			_i++;
 		}
@@ -437,13 +437,13 @@ int64Valuei	int64Value = go$pkg.int64Value = go$newType(8, "Int64", "flag.int64
  0d VisitAllT	VisitAll = go$pkg.VisitAll = function(fn) {
 		go$pkg.CommandLine.VisitAll(fn);
 	};
- 0‚À  ‚¶	FlagSet.Ptr.prototype.Visit = function(fn) {
-		var f, _ref, _i, _slice, _index, flag;
+ 0‚Ô  ‚Ê	FlagSet.Ptr.prototype.Visit = function(fn) {
+		var f, _ref, _i, _slice$1, _index$1, flag;
 		f = this;
 		_ref = sortFlags(f.actual);
 		_i = 0;
 		while (_i < _ref.length) {
-			flag = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			flag = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			fn(flag);
 			_i++;
 		}
@@ -516,13 +516,13 @@ int64Valuei	int64Value = go$pkg.int64Value = go$newType(8, "Int64", "flag.int64
  0j NFlag]	NFlag = go$pkg.NFlag = function() {
 		return go$keys(go$pkg.CommandLine.actual).length;
 	};
- 0‚  ‚u	FlagSet.Ptr.prototype.Arg = function(i) {
-		var f, _slice, _index;
+ 0‚“  ‚‰	FlagSet.Ptr.prototype.Arg = function(i) {
+		var f, _slice$1, _index$1;
 		f = this;
 		if (i < 0 || i >= f.args.length) {
 			return "";
 		}
-		return (_slice = f.args, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		return (_slice$1 = f.args, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 	};
 	FlagSet.prototype.Arg = function(i) { return this.go$val.Arg(i); };
  0U ArgJ	Arg = go$pkg.Arg = function(i) {
@@ -752,13 +752,13 @@ Float64VarŠ	Float64Var = go$pkg.Float64Var = function(p, name, value, usage) {
 		}
 	};
 	FlagSet.prototype.usage = function() { return this.go$val.usage(); };
- 0‚p  ‚f	FlagSet.Ptr.prototype.parseOne = function() {
-		var f, _slice, _index, s, num_minuses, name, has_value, value, i, m, _tuple, _entry, flag, alreadythere, ok, fv, _tuple$1, x, err, _slice$1, _index$1, _tuple$2, err$1, _key;
+ 0‚„  ‚z	FlagSet.Ptr.prototype.parseOne = function() {
+		var f, _slice$1, _index$1, s, num_minuses, name, has_value, value, i, m, _tuple, _entry, flag, alreadythere, ok, fv, _tuple$1, x, err, _slice$2, _index$2, _tuple$2, err$1, _key;
 		f = this;
 		if (f.args.length === 0) {
 			return [false, null];
 		}
-		s = (_slice = f.args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		s = (_slice$1 = f.args, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 		if ((s.length === 0) || !((s.charCodeAt(0) === 45)) || (s.length === 1)) {
 			return [false, null];
 		}
@@ -807,7 +807,7 @@ Float64VarŠ	Float64Var = go$pkg.Float64Var = function(p, name, value, usage) {
 		} else {
 			if (!has_value && f.args.length > 0) {
 				has_value = true;
-				_tuple$2 = [(_slice$1 = f.args, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), go$subslice(f.args, 1)], value = _tuple$2[0], f.args = _tuple$2[1];
+				_tuple$2 = [(_slice$2 = f.args, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), go$subslice(f.args, 1)], value = _tuple$2[0], f.args = _tuple$2[1];
 			}
 			if (!has_value) {
 				return [false, f.failf("flag needs an argument: -%s", new (go$sliceType(go$emptyInterface))([new Go$String(name)]))];

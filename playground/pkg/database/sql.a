@@ -1,4 +1,4 @@
-0Ék•database/sqlÇ0_package sql
+0Ék´database/sqlÇ0_package sql
 import driver "database/sql/driver"
 import errors "errors"
 import fmt "fmt"
@@ -145,7 +145,7 @@ type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 type @"database/sql/driver".Result interface { @"database/sql/driver".LastInsertId() (? int64, ? error); @"database/sql/driver".RowsAffected() (? int64, ? error) }
 $$
 0Åôruntimecontainer/listerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtdatabase/sql/driverdatabase/sql0Å©0database/sql/driverdriver0errorserrors0
-fmtfmt0reflectreflect0strconvstrconv0container/listlist0ioio0runtimeruntime0syncsync0É9Â0Åì RawBytesh	RawBytes = go$pkg.RawBytes = go$newType(0, "Slice", "sql.RawBytes", "RawBytes", "database/sql", null);
+fmtfmt0reflectreflect0strconvstrconv0container/listlist0ioio0runtimeruntime0syncsync0É9Î0Åì RawBytesh	RawBytes = go$pkg.RawBytes = go$newType(0, "Slice", "sql.RawBytes", "RawBytes", "database/sql", null);
 		RawBytes.init(Go$Uint8);
 0ÇQ 
 NullStringÇ	NullString = go$pkg.NullString = go$newType(0, "Struct", "sql.NullString", "NullString", "database/sql", function(String_, Valid_) {
@@ -301,7 +301,9 @@ driverStmtÇ2	driverStmt = go$pkg.driverStmt = go$newType(0, "Struct", "sql.dri
 Ç˜		driverResult.init([["", "", sync.Locker, ""], ["resi", "database/sql", driver.Result, ""]]);
 		driverResult.methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
 		(go$ptrType(driverResult)).methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
-0 	errNilPtr  0 drivers  0    0" connectionRequestQueueSize  0 errDBClosed  0 errConnClosed  0 errConnBusy  09 putConnHook &putConnHook = go$throwNilPointerError;0    0= rowsCloseHook (rowsCloseHook = go$throwNilPointerError;0@   8		errNilPtr = errors.New("destination pointer is nil");
+0 	errNilPtr  0 drivers  0    0" connectionRequestQueueSize  0 errDBClosed  0 errConnClosed  0 errConnBusy  0< putConnHook )		putConnHook = go$throwNilPointerError;
+0    0@ rowsCloseHook +		rowsCloseHook = go$throwNilPointerError;
+0@   8		errNilPtr = errors.New("destination pointer is nil");
 0"   		drivers = new Go$Map();
 0G   ?		go$pkg.ErrNoRows = errors.New("sql: no rows in result set");
 00   (		connectionRequestQueueSize = 1000000;

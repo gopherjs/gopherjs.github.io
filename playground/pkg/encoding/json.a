@@ -1,4 +1,4 @@
-0ÉSŒencoding/jsonÇfpackage json
+0ÉXtencoding/jsonÇfpackage json
 import encoding "encoding"
 import base64 "encoding/base64"
 import errors "errors"
@@ -355,7 +355,7 @@ type @"reflect".iword @"unsafe".Pointer
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
 0Åæruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesencodingmathstrconvstringsencoding/base64syscalltimeosreflectfmtsortunicode/utf16encoding/json0Ç%0encodingencoding0encoding/base64base640errorserrors0
-fmtfmt0reflectreflect0runtimeruntime0strconvstrconv0stringsstrings0unicodeunicode0unicode/utf16utf160unicode/utf8utf80bytesbytes0mathmath0sortsort0syncsync0ioio0ÉÎæ0Å¯ Unmarshalerz	Unmarshaler = go$pkg.Unmarshaler = go$newType(0, "Interface", "json.Unmarshaler", "Unmarshaler", "encoding/json", null);
+fmtfmt0reflectreflect0runtimeruntime0strconvstrconv0stringsstrings0unicodeunicode0unicode/utf16utf160unicode/utf8utf80bytesbytes0mathmath0sortsort0syncsync0ioio0Éd0Å¯ Unmarshalerz	Unmarshaler = go$pkg.Unmarshaler = go$newType(0, "Interface", "json.Unmarshaler", "Unmarshaler", "encoding/json", null);
 k		Unmarshaler.init([["UnmarshalJSON", "", (go$funcType([(go$sliceType(Go$Uint8))], [go$error], false))]]);
 0ÇÙ UnmarshalTypeErrorÇ&	UnmarshalTypeError = go$pkg.UnmarshalTypeError = go$newType(0, "Struct", "json.UnmarshalTypeError", "UnmarshalTypeError", "encoding/json", function(Value_, Type_) {
 		this.go$val = this;
@@ -586,8 +586,10 @@ tagOptionss	tagOptions = go$pkg.tagOptions = go$newType(0, "String", "json.tagO
 Å¢		tagOptions.methods = [["Contains", "", [Go$String], [Go$Bool], false]];
 		(go$ptrType(tagOptions)).methods = [["Contains", "", [Go$String], [Go$Bool], false]];
 0 errPhase  0 
-numberType  0 hex  0 encodeStatePool  0 byteSliceType  0Åæ encoderCache Å©encoderCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, encoderFunc)), ""]])).Ptr(new sync.RWMutex.Ptr(), false);0 marshalerType  0 textMarshalerType  0 float32Encoder  0 float64Encoder  0Åƒ 
-fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, (go$sliceType(field)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);0X   P		errPhase = errors.New("JSON decoder out of sync - data changing underfoot?");
+numberType  0 hex  0 encodeStatePool  0 byteSliceType  0Å¡ encoderCache Å¨		encoderCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, encoderFunc)), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+0 marshalerType  0 textMarshalerType  0 float32Encoder  0 float64Encoder  0Å« 
+fieldCache Å¥		fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "encoding/json", (go$mapType(reflect.Type, (go$sliceType(field)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+0X   P		errPhase = errors.New("JSON decoder out of sync - data changing underfoot?");
 07   /		numberType = reflect.TypeOf(new Number(""));
 0$   		hex = "0123456789abcdef";
 0Z   R		encodeStatePool = new (go$chanType((go$ptrType(encodeState)), false, false))();
@@ -596,9 +598,9 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 0t   l		textMarshalerType = reflect.TypeOf(go$newDataPointer(null, (go$ptrType(encoding.TextMarshaler)))).Elem();
 0Åò   Åè		var e, v, quoted, _recv;
 		float32Encoder = (_recv = (new floatEncoder(32)), function(e, v, quoted) { return _recv.encode(e, v, quoted); });
-0Åò   Åè		var e, v, quoted, _recv;
-		float64Encoder = (_recv = (new floatEncoder(64)), function(e, v, quoted) { return _recv.encode(e, v, quoted); });
-0    0    0Å˛ 	UnmarshalÅÏ	Unmarshal = go$pkg.Unmarshal = function(data, v) {
+0Å∞   Åß		var e$1, v$1, quoted$1, _recv$1;
+		float64Encoder = (_recv$1 = (new floatEncoder(64)), function(e$1, v$1, quoted$1) { return _recv$1.encode(e$1, v$1, quoted$1); });
+0    0    0Ç 	UnmarshalÅ	Unmarshal = go$pkg.Unmarshal = function(data, v$2) {
 		var d, err;
 		d = new decodeState.Ptr();
 		err = checkValid(data, d.scan);
@@ -606,33 +608,33 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 			return err;
 		}
 		d.init(data);
-		return d.unmarshal(v);
+		return d.unmarshal(v$2);
 	};
- 0Ç  Å˛	UnmarshalTypeError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return "json: cannot unmarshal " + e.Value + " into Go value of type " + e.Type.String();
+ 0Ç  Ç	UnmarshalTypeError.Ptr.prototype.Error = function() {
+		var e$2;
+		e$2 = this;
+		return "json: cannot unmarshal " + e$2.Value + " into Go value of type " + e$2.Type.String();
 	};
 	UnmarshalTypeError.prototype.Error = function() { return this.go$val.Error(); };
- 0Ç?  Ç5	UnmarshalFieldError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return "json: cannot unmarshal object key " + strconv.Quote(e.Key) + " into unexported field " + e.Field.Name + " of type " + e.Type.String();
+ 0ÇI  Ç?	UnmarshalFieldError.Ptr.prototype.Error = function() {
+		var e$2;
+		e$2 = this;
+		return "json: cannot unmarshal object key " + strconv.Quote(e$2.Key) + " into unexported field " + e$2.Field.Name + " of type " + e$2.Type.String();
 	};
 	UnmarshalFieldError.prototype.Error = function() { return this.go$val.Error(); };
- 0Ç•  Çõ	InvalidUnmarshalError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		if (go$interfaceIsEqual(e.Type, null)) {
+ 0Ç±  Çß	InvalidUnmarshalError.Ptr.prototype.Error = function() {
+		var e$2;
+		e$2 = this;
+		if (go$interfaceIsEqual(e$2.Type, null)) {
 			return "json: Unmarshal(nil)";
 		}
-		if (!((e.Type.Kind() === 22))) {
-			return "json: Unmarshal(non-pointer " + e.Type.String() + ")";
+		if (!((e$2.Type.Kind() === 22))) {
+			return "json: Unmarshal(non-pointer " + e$2.Type.String() + ")";
 		}
-		return "json: Unmarshal(nil " + e.Type.String() + ")";
+		return "json: Unmarshal(nil " + e$2.Type.String() + ")";
 	};
 	InvalidUnmarshalError.prototype.Error = function() { return this.go$val.Error(); };
- 0Ç©  Çü	decodeState.Ptr.prototype.unmarshal = function(v) {
+ 0Ç≥  Ç©	decodeState.Ptr.prototype.unmarshal = function(v$2) {
 		var err, d, _struct, rv, _struct$1;
 		err = null;
 		var go$deferred = [];
@@ -647,9 +649,9 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 					err = (r !== null && go$error.implementedBy.indexOf(r.constructor) !== -1 ? r : go$typeAssertionFailed(r, go$error));
 				}
 			}), args: [] });
-			rv = (_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+			rv = (_struct = reflect.ValueOf(v$2), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			if (!((rv.Kind() === 22)) || rv.IsNil()) {
-				err = new InvalidUnmarshalError.Ptr(reflect.TypeOf(v));
+				err = new InvalidUnmarshalError.Ptr(reflect.TypeOf(v$2));
 				return err;
 			}
 			d.scan.reset();
@@ -663,7 +665,7 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 			return err;
 		}
 	};
-	decodeState.prototype.unmarshal = function(v) { return this.go$val.unmarshal(v); };
+	decodeState.prototype.unmarshal = function(v$2) { return this.go$val.unmarshal(v$2); };
  0Åø  Å∂	Number.prototype.String = function() {
 		var n;
 		n = this.go$val;
@@ -742,10 +744,10 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 		return newOp;
 	};
 	decodeState.prototype.scanWhile = function(op) { return this.go$val.scanWhile(op); };
- 0Çë  Çá	decodeState.Ptr.prototype.value = function(v) {
+ 0Çü  Çï	decodeState.Ptr.prototype.value = function(v$2) {
 		var d, _tuple, rest, err, n, _slice, _index, op, _ref, _struct, _struct$1, _struct$2;
 		d = this;
-		if (!v.IsValid()) {
+		if (!v$2.IsValid()) {
 			_tuple = nextValue(go$subslice(d.data, d.off), d.nextscan), rest = _tuple[1], err = _tuple[2];
 			if (!(go$interfaceIsEqual(err, null))) {
 				d.error(err);
@@ -769,56 +771,56 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 		op = d.scanWhile(9);
 		_ref = op;
 		if (_ref === 6) {
-			d.array((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
+			d.array((_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
 		} else if (_ref === 2) {
-			d.object((_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)));
+			d.object((_struct$1 = v$2, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)));
 		} else if (_ref === 1) {
-			d.literal((_struct$2 = v, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)));
+			d.literal((_struct$2 = v$2, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)));
 		} else {
 			d.error(errPhase);
 		}
 	};
-	decodeState.prototype.value = function(v) { return this.go$val.value(v); };
- 0ÇÆ  Ç§	decodeState.Ptr.prototype.indirect = function(v, decodingNull) {
-		var d, _struct, _struct$1, e, _struct$2, _struct$3, ok, _tuple, x, u, ok$1, _tuple$1, x$1, u$1, _struct$4, _struct$5;
+	decodeState.prototype.value = function(v$2) { return this.go$val.value(v$2); };
+ 0ÇÍ  Ç‡	decodeState.Ptr.prototype.indirect = function(v$2, decodingNull) {
+		var d, _struct, _struct$1, e$2, _struct$2, _struct$3, ok, _tuple, x, u, ok$1, _tuple$1, x$1, u$1, _struct$4, _struct$5;
 		d = this;
-		if (!((v.Kind() === 22)) && !(v.Type().Name() === "") && v.CanAddr()) {
-			v = (_struct = v.Addr(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		if (!((v$2.Kind() === 22)) && !(v$2.Type().Name() === "") && v$2.CanAddr()) {
+			v$2 = (_struct = v$2.Addr(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		}
 		while (true) {
-			if ((v.Kind() === 20) && !v.IsNil()) {
-				e = (_struct$1 = v.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
-				if ((e.Kind() === 22) && !e.IsNil() && (!decodingNull || (e.Elem().Kind() === 22))) {
-					v = (_struct$2 = e, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+			if ((v$2.Kind() === 20) && !v$2.IsNil()) {
+				e$2 = (_struct$1 = v$2.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+				if ((e$2.Kind() === 22) && !e$2.IsNil() && (!decodingNull || (e$2.Elem().Kind() === 22))) {
+					v$2 = (_struct$2 = e$2, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 					continue;
 				}
 			}
-			if (!((v.Kind() === 22))) {
+			if (!((v$2.Kind() === 22))) {
 				break;
 			}
-			if (!((v.Elem().Kind() === 22)) && decodingNull && v.CanSet()) {
+			if (!((v$2.Elem().Kind() === 22)) && decodingNull && v$2.CanSet()) {
 				break;
 			}
-			if (v.IsNil()) {
-				v.Set((_struct$3 = reflect.New(v.Type().Elem()), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
+			if (v$2.IsNil()) {
+				v$2.Set((_struct$3 = reflect.New(v$2.Type().Elem()), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
 			}
-			if (v.Type().NumMethod() > 0) {
-				if (_tuple = (x = v.Interface(), (x !== null && Unmarshaler.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), u = _tuple[0], ok = _tuple[1], ok) {
+			if (v$2.Type().NumMethod() > 0) {
+				if (_tuple = (x = v$2.Interface(), (x !== null && Unmarshaler.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), u = _tuple[0], ok = _tuple[1], ok) {
 					return [u, null, new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0)];
 				}
-				if (_tuple$1 = (x$1 = v.Interface(), (x$1 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? [x$1, true] : [null, false])), u$1 = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) {
+				if (_tuple$1 = (x$1 = v$2.Interface(), (x$1 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? [x$1, true] : [null, false])), u$1 = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) {
 					return [null, u$1, new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0)];
 				}
 			}
-			v = (_struct$4 = v.Elem(), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
+			v$2 = (_struct$4 = v$2.Elem(), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 		}
-		return [null, null, (_struct$5 = v, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))];
+		return [null, null, (_struct$5 = v$2, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag))];
 	};
-	decodeState.prototype.indirect = function(v, decodingNull) { return this.go$val.indirect(v, decodingNull); };
- 0Ç&  Ç	decodeState.Ptr.prototype.array = function(v) {
+	decodeState.prototype.indirect = function(v$2, decodingNull) { return this.go$val.indirect(v$2, decodingNull); };
+ 0Çf  Ç\	decodeState.Ptr.prototype.array = function(v$2) {
 		var d, _tuple, _struct, u, ut, _struct$1, pv, err, _struct$2, _ref, _struct$3, i, op, _q, newcap, _struct$4, newv, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, z, _struct$10, _struct$11;
 		d = this;
-		_tuple = d.indirect((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false), u = _tuple[0], ut = _tuple[1], pv = (_struct$1 = _tuple[2], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		_tuple = d.indirect((_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false), u = _tuple[0], ut = _tuple[1], pv = (_struct$1 = _tuple[2], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 		if (!(go$interfaceIsEqual(u, null))) {
 			d.off = d.off - 1 >> 0;
 			err = u.UnmarshalJSON(d.next());
@@ -828,19 +830,19 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 			return;
 		}
 		if (!(go$interfaceIsEqual(ut, null))) {
-			d.saveError(new UnmarshalTypeError.Ptr("array", v.Type()));
+			d.saveError(new UnmarshalTypeError.Ptr("array", v$2.Type()));
 			d.off = d.off - 1 >> 0;
 			d.next();
 			return;
 		}
-		v = (_struct$2 = pv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
-		_ref = v.Kind();
+		v$2 = (_struct$2 = pv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+		_ref = v$2.Kind();
 		switch (0) { default: if (_ref === 20) {
-			if (v.NumMethod() === 0) {
-				v.Set((_struct$3 = reflect.ValueOf(d.arrayInterface()), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
+			if (v$2.NumMethod() === 0) {
+				v$2.Set((_struct$3 = reflect.ValueOf(d.arrayInterface()), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
 				return;
 			}
-			d.saveError(new UnmarshalTypeError.Ptr("array", v.Type()));
+			d.saveError(new UnmarshalTypeError.Ptr("array", v$2.Type()));
 			d.off = d.off - 1 >> 0;
 			d.next();
 			return;
@@ -848,7 +850,7 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 		} else if (_ref === 23) {
 			break;
 		} else {
-			d.saveError(new UnmarshalTypeError.Ptr("array", v.Type()));
+			d.saveError(new UnmarshalTypeError.Ptr("array", v$2.Type()));
 			d.off = d.off - 1 >> 0;
 			d.next();
 			return;
@@ -861,22 +863,22 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 			}
 			d.off = d.off - 1 >> 0;
 			d.scan.undo(op);
-			if (v.Kind() === 23) {
-				if (i >= v.Cap()) {
-					newcap = v.Cap() + (_q = v.Cap() / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
+			if (v$2.Kind() === 23) {
+				if (i >= v$2.Cap()) {
+					newcap = v$2.Cap() + (_q = v$2.Cap() / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0;
 					if (newcap < 4) {
 						newcap = 4;
 					}
-					newv = (_struct$4 = reflect.MakeSlice(v.Type(), v.Len(), newcap), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
-					reflect.Copy((_struct$5 = newv, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag)), (_struct$6 = v, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)));
-					v.Set((_struct$7 = newv, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)));
+					newv = (_struct$4 = reflect.MakeSlice(v$2.Type(), v$2.Len(), newcap), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
+					reflect.Copy((_struct$5 = newv, new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag)), (_struct$6 = v$2, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)));
+					v$2.Set((_struct$7 = newv, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)));
 				}
-				if (i >= v.Len()) {
-					v.SetLen(i + 1 >> 0);
+				if (i >= v$2.Len()) {
+					v$2.SetLen(i + 1 >> 0);
 				}
 			}
-			if (i < v.Len()) {
-				d.value((_struct$8 = v.Index(i), new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)));
+			if (i < v$2.Len()) {
+				d.value((_struct$8 = v$2.Index(i), new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)));
 			} else {
 				d.value(new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0));
 			}
@@ -889,26 +891,26 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 				d.error(errPhase);
 			}
 		}
-		if (i < v.Len()) {
-			if (v.Kind() === 17) {
-				z = (_struct$9 = reflect.Zero(v.Type().Elem()), new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag));
-				while (i < v.Len()) {
-					v.Index(i).Set((_struct$10 = z, new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)));
+		if (i < v$2.Len()) {
+			if (v$2.Kind() === 17) {
+				z = (_struct$9 = reflect.Zero(v$2.Type().Elem()), new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag));
+				while (i < v$2.Len()) {
+					v$2.Index(i).Set((_struct$10 = z, new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)));
 					i = i + 1 >> 0;
 				}
 			} else {
-				v.SetLen(i);
+				v$2.SetLen(i);
 			}
 		}
-		if ((i === 0) && (v.Kind() === 23)) {
-			v.Set((_struct$11 = reflect.MakeSlice(v.Type(), 0, 0), new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag)));
+		if ((i === 0) && (v$2.Kind() === 23)) {
+			v$2.Set((_struct$11 = reflect.MakeSlice(v$2.Type(), 0, 0), new reflect.Value.Ptr(_struct$11.typ, _struct$11.val, _struct$11.flag)));
 		}
 	};
-	decodeState.prototype.array = function(v) { return this.go$val.array(v); };
- 0Ç>  Ç4	decodeState.Ptr.prototype.object = function(v) {
-		var d, _tuple, _struct, u, ut, _struct$1, pv, err, _struct$2, _struct$3, _ref, t, _struct$4, mapElem, op, start, item, _tuple$1, key, ok, subv, destring, elemType, _struct$5, _struct$6, _struct$7, f, fields, _ref$1, _i, i, _slice, _index, ff, _struct$8, _ref$2, _i$1, _slice$1, _index$1, i$1, _struct$9, _struct$10, _struct$11, v$1, _struct$12, _struct$13, _struct$14, _struct$15, kv, _struct$16, _struct$17;
+	decodeState.prototype.array = function(v$2) { return this.go$val.array(v$2); };
+ 0Çj  Ç`	decodeState.Ptr.prototype.object = function(v$2) {
+		var d, _tuple, _struct, u, ut, _struct$1, pv, err, _struct$2, _struct$3, _ref, t, _struct$4, mapElem, op, start, item, _tuple$1, key, ok, subv, destring, elemType, _struct$5, _struct$6, _struct$7, f, fields, _ref$1, _i, i, _slice, _index, ff, _struct$8, _ref$2, _i$1, _slice$1, _index$1, i$1, _struct$9, _struct$10, _struct$11, v$3, _struct$12, _struct$13, _struct$14, _struct$15, kv, _struct$16, _struct$17;
 		d = this;
-		_tuple = d.indirect((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false), u = _tuple[0], ut = _tuple[1], pv = (_struct$1 = _tuple[2], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		_tuple = d.indirect((_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false), u = _tuple[0], ut = _tuple[1], pv = (_struct$1 = _tuple[2], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 		if (!(go$interfaceIsEqual(u, null))) {
 			d.off = d.off - 1 >> 0;
 			err = u.UnmarshalJSON(d.next());
@@ -918,29 +920,29 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 			return;
 		}
 		if (!(go$interfaceIsEqual(ut, null))) {
-			d.saveError(new UnmarshalTypeError.Ptr("object", v.Type()));
+			d.saveError(new UnmarshalTypeError.Ptr("object", v$2.Type()));
 			d.off = d.off - 1 >> 0;
 			d.next();
 			return;
 		}
-		v = (_struct$2 = pv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
-		if ((v.Kind() === 20) && (v.NumMethod() === 0)) {
-			v.Set((_struct$3 = reflect.ValueOf(new (go$mapType(Go$String, go$emptyInterface))(d.objectInterface())), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
+		v$2 = (_struct$2 = pv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+		if ((v$2.Kind() === 20) && (v$2.NumMethod() === 0)) {
+			v$2.Set((_struct$3 = reflect.ValueOf(new (go$mapType(Go$String, go$emptyInterface))(d.objectInterface())), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
 			return;
 		}
-		_ref = v.Kind();
+		_ref = v$2.Kind();
 		switch (0) { default: if (_ref === 21) {
-			t = v.Type();
+			t = v$2.Type();
 			if (!((t.Key().Kind() === 24))) {
-				d.saveError(new UnmarshalTypeError.Ptr("object", v.Type()));
+				d.saveError(new UnmarshalTypeError.Ptr("object", v$2.Type()));
 				break;
 			}
-			if (v.IsNil()) {
-				v.Set((_struct$4 = reflect.MakeMap(t), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
+			if (v$2.IsNil()) {
+				v$2.Set((_struct$4 = reflect.MakeMap(t), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
 			}
 		} else if (_ref === 25) {
 		} else {
-			d.saveError(new UnmarshalTypeError.Ptr("object", v.Type()));
+			d.saveError(new UnmarshalTypeError.Ptr("object", v$2.Type()));
 			d.off = d.off - 1 >> 0;
 			d.next();
 			return;
@@ -963,8 +965,8 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 			}
 			subv = new reflect.Value.Ptr();
 			destring = false;
-			if (v.Kind() === 21) {
-				elemType = v.Type().Elem();
+			if (v$2.Kind() === 21) {
+				elemType = v$2.Type().Elem();
 				if (!mapElem.IsValid()) {
 					mapElem = (_struct$5 = reflect.New(elemType).Elem(), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
 				} else {
@@ -973,7 +975,7 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 				subv = (_struct$7 = mapElem, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
 			} else {
 				f = (go$ptrType(field)).nil;
-				fields = cachedTypeFields(v.Type());
+				fields = cachedTypeFields(v$2.Type());
 				_ref$1 = fields;
 				_i = 0;
 				while (_i < _ref$1.length) {
@@ -989,7 +991,7 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 					_i++;
 				}
 				if (!(f === (go$ptrType(field)).nil)) {
-					subv = (_struct$8 = v, new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag));
+					subv = (_struct$8 = v$2, new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag));
 					destring = f.quoted;
 					_ref$2 = f.index;
 					_i$1 = 0;
@@ -1013,14 +1015,14 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 				d.error(errPhase);
 			}
 			if (destring) {
-				d.value((_struct$12 = reflect.ValueOf(new (go$ptrType(Go$String))(function() { return d.tempstr; }, function(v$1) { d.tempstr = v$1; })), new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)));
+				d.value((_struct$12 = reflect.ValueOf(new (go$ptrType(Go$String))(function() { return d.tempstr; }, function(v$3) { d.tempstr = v$3; })), new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)));
 				d.literalStore(new (go$sliceType(Go$Uint8))(go$stringToBytes(d.tempstr)), (_struct$13 = subv, new reflect.Value.Ptr(_struct$13.typ, _struct$13.val, _struct$13.flag)), true);
 			} else {
 				d.value((_struct$14 = subv, new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag)));
 			}
-			if (v.Kind() === 21) {
-				kv = (_struct$15 = reflect.ValueOf(new Go$String(key)).Convert(v.Type().Key()), new reflect.Value.Ptr(_struct$15.typ, _struct$15.val, _struct$15.flag));
-				v.SetMapIndex((_struct$16 = kv, new reflect.Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag)), (_struct$17 = subv, new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag)));
+			if (v$2.Kind() === 21) {
+				kv = (_struct$15 = reflect.ValueOf(new Go$String(key)).Convert(v$2.Type().Key()), new reflect.Value.Ptr(_struct$15.typ, _struct$15.val, _struct$15.flag));
+				v$2.SetMapIndex((_struct$16 = kv, new reflect.Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag)), (_struct$17 = subv, new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag)));
 			}
 			op = d.scanWhile(9);
 			if (op === 5) {
@@ -1031,17 +1033,17 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 			}
 		}
 	};
-	decodeState.prototype.object = function(v) { return this.go$val.object(v); };
- 0Ç£  Çô	decodeState.Ptr.prototype.literal = function(v) {
+	decodeState.prototype.object = function(v$2) { return this.go$val.object(v$2); };
+ 0Ç´  Ç°	decodeState.Ptr.prototype.literal = function(v$2) {
 		var d, start, op, _struct;
 		d = this;
 		start = d.off - 1 >> 0;
 		op = d.scanWhile(0);
 		d.off = d.off - 1 >> 0;
 		d.scan.undo(op);
-		d.literalStore(go$subslice(d.data, start, d.off), (_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
+		d.literalStore(go$subslice(d.data, start, d.off), (_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 	};
-	decodeState.prototype.literal = function(v) { return this.go$val.literal(v); };
+	decodeState.prototype.literal = function(v$2) { return this.go$val.literal(v$2); };
  0Ç¸  ÇÚ	decodeState.Ptr.prototype.convertNumber = function(s) {
 		var d, _tuple, f, err;
 		d = this;
@@ -1055,15 +1057,15 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 		return [new Go$Float64(f), null];
 	};
 	decodeState.prototype.convertNumber = function(s) { return this.go$val.convertNumber(s); };
- 0Ç?  Ç5	decodeState.Ptr.prototype.literalStore = function(item, v, fromQuoted) {
+ 0Ç°  Çó	decodeState.Ptr.prototype.literalStore = function(item, v$2, fromQuoted) {
 		var d, _slice, _index, wantptr, _tuple, _struct, u, ut, _struct$1, pv, err, _slice$1, _index$1, _tuple$1, s, ok, err$1, _struct$2, _slice$2, _index$2, c, _ref, _ref$1, _struct$3, value, _ref$2, _struct$4, _tuple$2, s$1, ok$1, _ref$3, b, _tuple$3, n, err$2, _struct$5, _struct$6, s$2, _ref$4, _tuple$4, n$1, err$3, _struct$7, _tuple$5, n$2, err$4, _tuple$6, n$3, err$5, _tuple$7, n$4, err$6;
 		d = this;
 		if (item.length === 0) {
-			d.saveError(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v.Type()])));
+			d.saveError(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v$2.Type()])));
 			return;
 		}
 		wantptr = (_slice = item, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 110;
-		_tuple = d.indirect((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), wantptr), u = _tuple[0], ut = _tuple[1], pv = (_struct$1 = _tuple[2], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		_tuple = d.indirect((_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), wantptr), u = _tuple[0], ut = _tuple[1], pv = (_struct$1 = _tuple[2], new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 		if (!(go$interfaceIsEqual(u, null))) {
 			err = u.UnmarshalJSON(item);
 			if (!(go$interfaceIsEqual(err, null))) {
@@ -1074,15 +1076,15 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 		if (!(go$interfaceIsEqual(ut, null))) {
 			if (!(((_slice$1 = item, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) === 34))) {
 				if (fromQuoted) {
-					d.saveError(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v.Type()])));
+					d.saveError(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v$2.Type()])));
 				} else {
-					d.saveError(new UnmarshalTypeError.Ptr("string", v.Type()));
+					d.saveError(new UnmarshalTypeError.Ptr("string", v$2.Type()));
 				}
 			}
 			_tuple$1 = unquoteBytes(item), s = _tuple$1[0], ok = _tuple$1[1];
 			if (!ok) {
 				if (fromQuoted) {
-					d.error(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v.Type()])));
+					d.error(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v$2.Type()])));
 				} else {
 					d.error(errPhase);
 				}
@@ -1093,45 +1095,45 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 			}
 			return;
 		}
-		v = (_struct$2 = pv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+		v$2 = (_struct$2 = pv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 		c = (_slice$2 = item, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 		_ref = c;
 		if (_ref === 110) {
-			_ref$1 = v.Kind();
+			_ref$1 = v$2.Kind();
 			if (_ref$1 === 20 || _ref$1 === 22 || _ref$1 === 21 || _ref$1 === 23) {
-				v.Set((_struct$3 = reflect.Zero(v.Type()), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
+				v$2.Set((_struct$3 = reflect.Zero(v$2.Type()), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
 			}
 		} else if (_ref === 116 || _ref === 102) {
 			value = c === 116;
-			_ref$2 = v.Kind();
+			_ref$2 = v$2.Kind();
 			if (_ref$2 === 1) {
-				v.SetBool(value);
+				v$2.SetBool(value);
 			} else if (_ref$2 === 20) {
-				if (v.NumMethod() === 0) {
-					v.Set((_struct$4 = reflect.ValueOf(new Go$Bool(value)), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
+				if (v$2.NumMethod() === 0) {
+					v$2.Set((_struct$4 = reflect.ValueOf(new Go$Bool(value)), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
 				} else {
-					d.saveError(new UnmarshalTypeError.Ptr("bool", v.Type()));
+					d.saveError(new UnmarshalTypeError.Ptr("bool", v$2.Type()));
 				}
 			} else {
 				if (fromQuoted) {
-					d.saveError(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v.Type()])));
+					d.saveError(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v$2.Type()])));
 				} else {
-					d.saveError(new UnmarshalTypeError.Ptr("bool", v.Type()));
+					d.saveError(new UnmarshalTypeError.Ptr("bool", v$2.Type()));
 				}
 			}
 		} else if (_ref === 34) {
 			_tuple$2 = unquoteBytes(item), s$1 = _tuple$2[0], ok$1 = _tuple$2[1];
 			if (!ok$1) {
 				if (fromQuoted) {
-					d.error(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v.Type()])));
+					d.error(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v$2.Type()])));
 				} else {
 					d.error(errPhase);
 				}
 			}
-			_ref$3 = v.Kind();
+			_ref$3 = v$2.Kind();
 			switch (0) { default: if (_ref$3 === 23) {
-				if (!(go$interfaceIsEqual(v.Type(), byteSliceType))) {
-					d.saveError(new UnmarshalTypeError.Ptr("string", v.Type()));
+				if (!(go$interfaceIsEqual(v$2.Type(), byteSliceType))) {
+					d.saveError(new UnmarshalTypeError.Ptr("string", v$2.Type()));
 					break;
 				}
 				b = (go$sliceType(Go$Uint8)).make(base64.StdEncoding.DecodedLen(s$1.length), 0, function() { return 0; });
@@ -1140,74 +1142,74 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 					d.saveError(err$2);
 					break;
 				}
-				v.Set((_struct$5 = reflect.ValueOf(go$subslice(b, 0, n)), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag)));
+				v$2.Set((_struct$5 = reflect.ValueOf(go$subslice(b, 0, n)), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag)));
 			} else if (_ref$3 === 24) {
-				v.SetString(go$bytesToString(s$1));
+				v$2.SetString(go$bytesToString(s$1));
 			} else if (_ref$3 === 20) {
-				if (v.NumMethod() === 0) {
-					v.Set((_struct$6 = reflect.ValueOf(new Go$String(go$bytesToString(s$1))), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)));
+				if (v$2.NumMethod() === 0) {
+					v$2.Set((_struct$6 = reflect.ValueOf(new Go$String(go$bytesToString(s$1))), new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)));
 				} else {
-					d.saveError(new UnmarshalTypeError.Ptr("string", v.Type()));
+					d.saveError(new UnmarshalTypeError.Ptr("string", v$2.Type()));
 				}
 			} else {
-				d.saveError(new UnmarshalTypeError.Ptr("string", v.Type()));
+				d.saveError(new UnmarshalTypeError.Ptr("string", v$2.Type()));
 			} }
 		} else {
 			if (!((c === 45)) && (c < 48 || c > 57)) {
 				if (fromQuoted) {
-					d.error(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v.Type()])));
+					d.error(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v$2.Type()])));
 				} else {
 					d.error(errPhase);
 				}
 			}
 			s$2 = go$bytesToString(item);
-			_ref$4 = v.Kind();
+			_ref$4 = v$2.Kind();
 			switch (0) { default: if (_ref$4 === 20) {
 				_tuple$4 = d.convertNumber(s$2), n$1 = _tuple$4[0], err$3 = _tuple$4[1];
 				if (!(go$interfaceIsEqual(err$3, null))) {
 					d.saveError(err$3);
 					break;
 				}
-				if (!((v.NumMethod() === 0))) {
-					d.saveError(new UnmarshalTypeError.Ptr("number", v.Type()));
+				if (!((v$2.NumMethod() === 0))) {
+					d.saveError(new UnmarshalTypeError.Ptr("number", v$2.Type()));
 					break;
 				}
-				v.Set((_struct$7 = reflect.ValueOf(n$1), new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)));
+				v$2.Set((_struct$7 = reflect.ValueOf(n$1), new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)));
 			} else if (_ref$4 === 2 || _ref$4 === 3 || _ref$4 === 4 || _ref$4 === 5 || _ref$4 === 6) {
 				_tuple$5 = strconv.ParseInt(s$2, 10, 64), n$2 = _tuple$5[0], err$4 = _tuple$5[1];
-				if (!(go$interfaceIsEqual(err$4, null)) || v.OverflowInt(n$2)) {
-					d.saveError(new UnmarshalTypeError.Ptr("number " + s$2, v.Type()));
+				if (!(go$interfaceIsEqual(err$4, null)) || v$2.OverflowInt(n$2)) {
+					d.saveError(new UnmarshalTypeError.Ptr("number " + s$2, v$2.Type()));
 					break;
 				}
-				v.SetInt(n$2);
+				v$2.SetInt(n$2);
 			} else if (_ref$4 === 7 || _ref$4 === 8 || _ref$4 === 9 || _ref$4 === 10 || _ref$4 === 11 || _ref$4 === 12) {
 				_tuple$6 = strconv.ParseUint(s$2, 10, 64), n$3 = _tuple$6[0], err$5 = _tuple$6[1];
-				if (!(go$interfaceIsEqual(err$5, null)) || v.OverflowUint(n$3)) {
-					d.saveError(new UnmarshalTypeError.Ptr("number " + s$2, v.Type()));
+				if (!(go$interfaceIsEqual(err$5, null)) || v$2.OverflowUint(n$3)) {
+					d.saveError(new UnmarshalTypeError.Ptr("number " + s$2, v$2.Type()));
 					break;
 				}
-				v.SetUint(n$3);
+				v$2.SetUint(n$3);
 			} else if (_ref$4 === 13 || _ref$4 === 14) {
-				_tuple$7 = strconv.ParseFloat(s$2, v.Type().Bits()), n$4 = _tuple$7[0], err$6 = _tuple$7[1];
-				if (!(go$interfaceIsEqual(err$6, null)) || v.OverflowFloat(n$4)) {
-					d.saveError(new UnmarshalTypeError.Ptr("number " + s$2, v.Type()));
+				_tuple$7 = strconv.ParseFloat(s$2, v$2.Type().Bits()), n$4 = _tuple$7[0], err$6 = _tuple$7[1];
+				if (!(go$interfaceIsEqual(err$6, null)) || v$2.OverflowFloat(n$4)) {
+					d.saveError(new UnmarshalTypeError.Ptr("number " + s$2, v$2.Type()));
 					break;
 				}
-				v.SetFloat(n$4);
+				v$2.SetFloat(n$4);
 			} else {
-				if ((v.Kind() === 24) && go$interfaceIsEqual(v.Type(), numberType)) {
-					v.SetString(s$2);
+				if ((v$2.Kind() === 24) && go$interfaceIsEqual(v$2.Type(), numberType)) {
+					v$2.SetString(s$2);
 					break;
 				}
 				if (fromQuoted) {
-					d.error(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v.Type()])));
+					d.error(fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", new (go$sliceType(go$emptyInterface))([item, v$2.Type()])));
 				} else {
-					d.error(new UnmarshalTypeError.Ptr("number", v.Type()));
+					d.error(new UnmarshalTypeError.Ptr("number", v$2.Type()));
 				}
 			} }
 		}
 	};
-	decodeState.prototype.literalStore = function(item, v, fromQuoted) { return this.go$val.literalStore(item, v, fromQuoted); };
+	decodeState.prototype.literalStore = function(item, v$2, fromQuoted) { return this.go$val.literalStore(item, v$2, fromQuoted); };
  0Ç  Ç˚	decodeState.Ptr.prototype.valueInterface = function() {
 		var d, _ref;
 		d = this;
@@ -1224,10 +1226,10 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 		}
 	};
 	decodeState.prototype.valueInterface = function() { return this.go$val.valueInterface(); };
- 0Ç4  Ç*	decodeState.Ptr.prototype.arrayInterface = function() {
-		var d, v, op;
+ 0Ç>  Ç4	decodeState.Ptr.prototype.arrayInterface = function() {
+		var d, v$2, op;
 		d = this;
-		v = (go$sliceType(go$emptyInterface)).make(0, 0, function() { return null; });
+		v$2 = (go$sliceType(go$emptyInterface)).make(0, 0, function() { return null; });
 		while (true) {
 			op = d.scanWhile(9);
 			if (op === 8) {
@@ -1235,7 +1237,7 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 			}
 			d.off = d.off - 1 >> 0;
 			d.scan.undo(op);
-			v = go$append(v, d.valueInterface());
+			v$2 = go$append(v$2, d.valueInterface());
 			op = d.scanWhile(9);
 			if (op === 8) {
 				break;
@@ -1244,7 +1246,7 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 				d.error(errPhase);
 			}
 		}
-		return v;
+		return v$2;
 	};
 	decodeState.prototype.arrayInterface = function() { return this.go$val.arrayInterface(); };
  0Ç©  Çü	decodeState.Ptr.prototype.objectInterface = function() {
@@ -1437,18 +1439,18 @@ fieldCache Å±fieldCache = new (go$structType([["", "", sync.RWMutex, ""], ["m"
 		_tuple$3 = [go$subslice(b, 0, w), true], t = _tuple$3[0], ok = _tuple$3[1];
 		return [t, ok];
 	};
- 0ÇR MarshalÇA	Marshal = go$pkg.Marshal = function(v) {
-		var e, err;
-		e = new encodeState.Ptr(new bytes.Buffer.Ptr(), go$makeNativeArray("Uint8", 64, function() { return 0; }));
-		err = e.marshal(v);
+ 0Ç^ MarshalÇM	Marshal = go$pkg.Marshal = function(v$2) {
+		var e$2, err;
+		e$2 = new encodeState.Ptr(new bytes.Buffer.Ptr(), go$makeNativeArray("Uint8", 64, function() { return 0; }));
+		err = e$2.marshal(v$2);
 		if (!(go$interfaceIsEqual(err, null))) {
 			return [(go$sliceType(Go$Uint8)).nil, err];
 		}
-		return [e.Buffer.Bytes(), null];
+		return [e$2.Buffer.Bytes(), null];
 	};
- 0Ç’ MarshalIndentÇæ	MarshalIndent = go$pkg.MarshalIndent = function(v, prefix, indent) {
+ 0ÇŸ MarshalIndentÇ¬	MarshalIndent = go$pkg.MarshalIndent = function(v$2, prefix, indent) {
 		var _tuple, b, err, buf;
-		_tuple = Marshal(v), b = _tuple[0], err = _tuple[1];
+		_tuple = Marshal(v$2), b = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
 			return [(go$sliceType(Go$Uint8)).nil, err];
 		}
@@ -1491,28 +1493,28 @@ HTMLEscapeÇ-	HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
 			dst.Write(go$subslice(src, start));
 		}
 	};
- 0ÅÊ  Å›	UnsupportedTypeError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return "json: unsupported type: " + e.Type.String();
+ 0ÅÏ  Å„	UnsupportedTypeError.Ptr.prototype.Error = function() {
+		var e$2;
+		e$2 = this;
+		return "json: unsupported type: " + e$2.Type.String();
 	};
 	UnsupportedTypeError.prototype.Error = function() { return this.go$val.Error(); };
- 0Åﬂ  Å÷	UnsupportedValueError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return "json: unsupported value: " + e.Str;
+ 0ÅÂ  Å‹	UnsupportedValueError.Ptr.prototype.Error = function() {
+		var e$2;
+		e$2 = this;
+		return "json: unsupported value: " + e$2.Str;
 	};
 	UnsupportedValueError.prototype.Error = function() { return this.go$val.Error(); };
- 0ÅË  Åﬂ	InvalidUTF8Error.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return "json: invalid UTF-8 in string: " + strconv.Quote(e.S);
+ 0ÅÓ  ÅÂ	InvalidUTF8Error.Ptr.prototype.Error = function() {
+		var e$2;
+		e$2 = this;
+		return "json: invalid UTF-8 in string: " + strconv.Quote(e$2.S);
 	};
 	InvalidUTF8Error.prototype.Error = function() { return this.go$val.Error(); };
- 0Ç  Å˘	MarshalerError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return "json: error calling MarshalJSON for type " + e.Type.String() + ": " + e.Err.Error();
+ 0Ç  Ç	MarshalerError.Ptr.prototype.Error = function() {
+		var e$2;
+		e$2 = this;
+		return "json: error calling MarshalJSON for type " + e$2.Type.String() + ": " + e$2.Err.Error();
 	};
 	MarshalerError.prototype.Error = function() { return this.go$val.Error(); };
  0Å∑ newEncodeStateÅ†	newEncodeState = function() {
@@ -1526,12 +1528,12 @@ HTMLEscapeÇ-	HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
  0T putEncodeState>	putEncodeState = function(e) {
 			encodeStates.push(e);
 		};
- 0Çs  Çi	encodeState.Ptr.prototype.marshal = function(v) {
-		var err, e, _struct;
+ 0ÇÅ  Çw	encodeState.Ptr.prototype.marshal = function(v$2) {
+		var err, e$2, _struct;
 		err = null;
 		var go$deferred = [];
 		try {
-			e = this;
+			e$2 = this;
 			go$deferred.push({ fun: (function() {
 				var r, ok, _tuple, ok$1, _tuple$1, s;
 				if (r = go$recover(), !(go$interfaceIsEqual(r, null))) {
@@ -1544,7 +1546,7 @@ HTMLEscapeÇ-	HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
 					err = (r !== null && go$error.implementedBy.indexOf(r.constructor) !== -1 ? r : go$typeAssertionFailed(r, go$error));
 				}
 			}), args: [] });
-			e.reflectValue((_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
+			e$2.reflectValue((_struct = reflect.ValueOf(v$2), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
 			err = null;
 			return err;
 		} catch(go$err) {
@@ -1554,44 +1556,44 @@ HTMLEscapeÇ-	HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
 			return err;
 		}
 	};
-	encodeState.prototype.marshal = function(v) { return this.go$val.marshal(v); };
- 0ÅΩ  Å¥	encodeState.Ptr.prototype.error = function(err) {
-		var e;
-		e = this;
+	encodeState.prototype.marshal = function(v$2) { return this.go$val.marshal(v$2); };
+ 0Å¡  Å∏	encodeState.Ptr.prototype.error = function(err) {
+		var e$2;
+		e$2 = this;
 		throw go$panic(err);
 	};
 	encodeState.prototype.error = function(err) { return this.go$val.error(err); };
- 0Ç≤ isEmptyValueÇú	isEmptyValue = function(v) {
+ 0Ç¬ isEmptyValueÇ¨	isEmptyValue = function(v$2) {
 		var _ref, x, x$1;
-		_ref = v.Kind();
+		_ref = v$2.Kind();
 		if (_ref === 17 || _ref === 21 || _ref === 23 || _ref === 24) {
-			return v.Len() === 0;
+			return v$2.Len() === 0;
 		} else if (_ref === 1) {
-			return !v.Bool();
+			return !v$2.Bool();
 		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
-			return (x = v.Int(), (x.high === 0 && x.low === 0));
+			return (x = v$2.Int(), (x.high === 0 && x.low === 0));
 		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
-			return (x$1 = v.Uint(), (x$1.high === 0 && x$1.low === 0));
+			return (x$1 = v$2.Uint(), (x$1.high === 0 && x$1.low === 0));
 		} else if (_ref === 13 || _ref === 14) {
-			return v.Float() === 0;
+			return v$2.Float() === 0;
 		} else if (_ref === 20 || _ref === 22) {
-			return v.IsNil();
+			return v$2.IsNil();
 		}
 		return false;
 	};
- 0Çà  Ç~	encodeState.Ptr.prototype.reflectValue = function(v) {
-		var e, _struct, _struct$1;
-		e = this;
-		valueEncoder((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)))(e, (_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), false);
+ 0Çò  Çé	encodeState.Ptr.prototype.reflectValue = function(v$2) {
+		var e$2, _struct, _struct$1;
+		e$2 = this;
+		valueEncoder((_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)))(e$2, (_struct$1 = v$2, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), false);
 	};
-	encodeState.prototype.reflectValue = function(v) { return this.go$val.reflectValue(v); };
- 0Åè valueEncoder{	valueEncoder = function(v) {
-		if (!v.IsValid()) {
+	encodeState.prototype.reflectValue = function(v$2) { return this.go$val.reflectValue(v$2); };
+ 0Åñ valueEncoderÅÅ	valueEncoder = function(v$2) {
+		if (!v$2.IsValid()) {
 			return invalidValueEncoder;
 		}
-		return typeEncoder(v.Type());
+		return typeEncoder(v$2.Type());
 	};
- 0ÇA typeEncoderÇ,	typeEncoder = function(t) {
+ 0ÇM typeEncoderÇ8	typeEncoder = function(t) {
 		var _entry, f, wg, _key, _key$1;
 		encoderCache.RWMutex.RLock();
 		f = (_entry = encoderCache.m[(t || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : go$throwNilPointerError);
@@ -1605,10 +1607,10 @@ HTMLEscapeÇ-	HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
 		}
 		wg = new sync.WaitGroup.Ptr();
 		wg.Add(1);
-		_key = t, (encoderCache.m || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: (function(e, v, quoted) {
+		_key = t, (encoderCache.m || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: (function(e$2, v$2, quoted$2) {
 			var _struct;
 			wg.Wait();
-			f(e, (_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), quoted);
+			f(e$2, (_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), quoted$2);
 		}) };
 		encoderCache.RWMutex.Unlock();
 		f = newTypeEncoder(t, true);
@@ -1665,166 +1667,166 @@ HTMLEscapeÇ-	HTMLEscape = go$pkg.HTMLEscape = function(dst, src) {
 			return unsupportedTypeEncoder;
 		}
 	};
- 0o invalidValueEncoderT	invalidValueEncoder = function(e, v, quoted) {
-		e.Buffer.WriteString("null");
+ 0w invalidValueEncoder\	invalidValueEncoder = function(e$2, v$2, quoted$2) {
+		e$2.Buffer.WriteString("null");
 	};
- 0Ç; marshalerEncoderÇ!	marshalerEncoder = function(e, v, quoted) {
+ 0ÇO marshalerEncoderÇ5	marshalerEncoder = function(e$2, v$2, quoted$2) {
 		var x, m, _tuple, b, err;
-		if ((v.Kind() === 22) && v.IsNil()) {
-			e.Buffer.WriteString("null");
+		if ((v$2.Kind() === 22) && v$2.IsNil()) {
+			e$2.Buffer.WriteString("null");
 			return;
 		}
-		m = (x = v.Interface(), (x !== null && Marshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, Marshaler)));
+		m = (x = v$2.Interface(), (x !== null && Marshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, Marshaler)));
 		_tuple = m.MarshalJSON(), b = _tuple[0], err = _tuple[1];
 		if (go$interfaceIsEqual(err, null)) {
-			err = compact(e.Buffer, b, true);
+			err = compact(e$2.Buffer, b, true);
 		}
 		if (!(go$interfaceIsEqual(err, null))) {
-			e.error(new MarshalerError.Ptr(v.Type(), err));
+			e$2.error(new MarshalerError.Ptr(v$2.Type(), err));
 		}
 	};
- 0Çô addrMarshalerEncoderÇ{	addrMarshalerEncoder = function(e, v, quoted) {
+ 0Ç© addrMarshalerEncoderÇã	addrMarshalerEncoder = function(e$2, v$2, quoted$2) {
 		var _struct, va, x, m, _tuple, b, err;
-		va = (_struct = v.Addr(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		va = (_struct = v$2.Addr(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (va.IsNil()) {
-			e.Buffer.WriteString("null");
+			e$2.Buffer.WriteString("null");
 			return;
 		}
 		m = (x = va.Interface(), (x !== null && Marshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, Marshaler)));
 		_tuple = m.MarshalJSON(), b = _tuple[0], err = _tuple[1];
 		if (go$interfaceIsEqual(err, null)) {
-			err = compact(e.Buffer, b, true);
+			err = compact(e$2.Buffer, b, true);
 		}
 		if (!(go$interfaceIsEqual(err, null))) {
-			e.error(new MarshalerError.Ptr(v.Type(), err));
+			e$2.error(new MarshalerError.Ptr(v$2.Type(), err));
 		}
 	};
- 0Çu textMarshalerEncoderÇW	textMarshalerEncoder = function(e, v, quoted) {
+ 0Çâ textMarshalerEncoderÇk	textMarshalerEncoder = function(e$2, v$2, quoted$2) {
 		var x, m, _tuple, b, err, _tuple$1;
-		if ((v.Kind() === 22) && v.IsNil()) {
-			e.Buffer.WriteString("null");
+		if ((v$2.Kind() === 22) && v$2.IsNil()) {
+			e$2.Buffer.WriteString("null");
 			return;
 		}
-		m = (x = v.Interface(), (x !== null && encoding.TextMarshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, encoding.TextMarshaler)));
+		m = (x = v$2.Interface(), (x !== null && encoding.TextMarshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, encoding.TextMarshaler)));
 		_tuple = m.MarshalText(), b = _tuple[0], err = _tuple[1];
 		if (go$interfaceIsEqual(err, null)) {
-			_tuple$1 = e.stringBytes(b), err = _tuple$1[1];
+			_tuple$1 = e$2.stringBytes(b), err = _tuple$1[1];
 		}
 		if (!(go$interfaceIsEqual(err, null))) {
-			e.error(new MarshalerError.Ptr(v.Type(), err));
+			e$2.error(new MarshalerError.Ptr(v$2.Type(), err));
 		}
 	};
- 0Ç” addrTextMarshalerEncoderÇ±	addrTextMarshalerEncoder = function(e, v, quoted) {
+ 0Ç„ addrTextMarshalerEncoderÇ¡	addrTextMarshalerEncoder = function(e$2, v$2, quoted$2) {
 		var _struct, va, x, m, _tuple, b, err, _tuple$1;
-		va = (_struct = v.Addr(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		va = (_struct = v$2.Addr(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (va.IsNil()) {
-			e.Buffer.WriteString("null");
+			e$2.Buffer.WriteString("null");
 			return;
 		}
 		m = (x = va.Interface(), (x !== null && encoding.TextMarshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, encoding.TextMarshaler)));
 		_tuple = m.MarshalText(), b = _tuple[0], err = _tuple[1];
 		if (go$interfaceIsEqual(err, null)) {
-			_tuple$1 = e.stringBytes(b), err = _tuple$1[1];
+			_tuple$1 = e$2.stringBytes(b), err = _tuple$1[1];
 		}
 		if (!(go$interfaceIsEqual(err, null))) {
-			e.error(new MarshalerError.Ptr(v.Type(), err));
+			e$2.error(new MarshalerError.Ptr(v$2.Type(), err));
 		}
 	};
- 0Ç boolEncoderÅÓ	boolEncoder = function(e, v, quoted) {
-		if (quoted) {
-			e.Buffer.WriteByte(34);
+ 0Ç boolEncoderÇ	boolEncoder = function(e$2, v$2, quoted$2) {
+		if (quoted$2) {
+			e$2.Buffer.WriteByte(34);
 		}
-		if (v.Bool()) {
-			e.Buffer.WriteString("true");
+		if (v$2.Bool()) {
+			e$2.Buffer.WriteString("true");
 		} else {
-			e.Buffer.WriteString("false");
+			e$2.Buffer.WriteString("false");
 		}
-		if (quoted) {
-			e.Buffer.WriteByte(34);
+		if (quoted$2) {
+			e$2.Buffer.WriteByte(34);
 		}
 	};
- 0Ç 
-intEncoderÇ		intEncoder = function(e, v, quoted) {
+ 0Ç1 
+intEncoderÇ	intEncoder = function(e$2, v$2, quoted$2) {
 		var b;
-		b = strconv.AppendInt(go$subslice(new (go$sliceType(Go$Uint8))(e.scratch), 0, 0), v.Int(), 10);
-		if (quoted) {
-			e.Buffer.WriteByte(34);
+		b = strconv.AppendInt(go$subslice(new (go$sliceType(Go$Uint8))(e$2.scratch), 0, 0), v$2.Int(), 10);
+		if (quoted$2) {
+			e$2.Buffer.WriteByte(34);
 		}
-		e.Buffer.Write(b);
-		if (quoted) {
-			e.Buffer.WriteByte(34);
+		e$2.Buffer.Write(b);
+		if (quoted$2) {
+			e$2.Buffer.WriteByte(34);
 		}
 	};
- 0Ç! uintEncoderÇ	uintEncoder = function(e, v, quoted) {
+ 0Ç5 uintEncoderÇ 	uintEncoder = function(e$2, v$2, quoted$2) {
 		var b;
-		b = strconv.AppendUint(go$subslice(new (go$sliceType(Go$Uint8))(e.scratch), 0, 0), v.Uint(), 10);
-		if (quoted) {
-			e.Buffer.WriteByte(34);
+		b = strconv.AppendUint(go$subslice(new (go$sliceType(Go$Uint8))(e$2.scratch), 0, 0), v$2.Uint(), 10);
+		if (quoted$2) {
+			e$2.Buffer.WriteByte(34);
 		}
-		e.Buffer.Write(b);
-		if (quoted) {
-			e.Buffer.WriteByte(34);
+		e$2.Buffer.Write(b);
+		if (quoted$2) {
+			e$2.Buffer.WriteByte(34);
 		}
 	};
- 0Ç…  Çø	floatEncoder.prototype.encode = function(e, v, quoted) {
+ 0ÇÌ  Ç„	floatEncoder.prototype.encode = function(e$2, v$2, quoted$2) {
 		var bits, f, _struct, b;
 		bits = this.go$val;
-		f = v.Float();
+		f = v$2.Float();
 		if (math.IsInf(f, 0) || math.IsNaN(f)) {
-			e.error(new UnsupportedValueError.Ptr((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), strconv.FormatFloat(f, 103, -1, (bits >> 0))));
+			e$2.error(new UnsupportedValueError.Ptr((_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), strconv.FormatFloat(f, 103, -1, (bits >> 0))));
 		}
-		b = strconv.AppendFloat(go$subslice(new (go$sliceType(Go$Uint8))(e.scratch), 0, 0), f, 103, -1, (bits >> 0));
-		if (quoted) {
-			e.Buffer.WriteByte(34);
+		b = strconv.AppendFloat(go$subslice(new (go$sliceType(Go$Uint8))(e$2.scratch), 0, 0), f, 103, -1, (bits >> 0));
+		if (quoted$2) {
+			e$2.Buffer.WriteByte(34);
 		}
-		e.Buffer.Write(b);
-		if (quoted) {
-			e.Buffer.WriteByte(34);
+		e$2.Buffer.Write(b);
+		if (quoted$2) {
+			e$2.Buffer.WriteByte(34);
 		}
 	};
-	go$ptrType(floatEncoder).prototype.encode = function(e, v, quoted) { return new floatEncoder(this.go$get()).encode(e, v, quoted); };
- 0Ç˝ stringEncoderÇÊ	stringEncoder = function(e, v, quoted) {
+	go$ptrType(floatEncoder).prototype.encode = function(e$2, v$2, quoted$2) { return new floatEncoder(this.go$get()).encode(e$2, v$2, quoted$2); };
+ 0Ç stringEncoderÇ˛	stringEncoder = function(e$2, v$2, quoted$2) {
 		var numStr, _tuple, sb, err;
-		if (go$interfaceIsEqual(v.Type(), numberType)) {
-			numStr = v.String();
+		if (go$interfaceIsEqual(v$2.Type(), numberType)) {
+			numStr = v$2.String();
 			if (numStr === "") {
 				numStr = "0";
 			}
-			e.Buffer.WriteString(numStr);
+			e$2.Buffer.WriteString(numStr);
 			return;
 		}
-		if (quoted) {
-			_tuple = Marshal(new Go$String(v.String())), sb = _tuple[0], err = _tuple[1];
+		if (quoted$2) {
+			_tuple = Marshal(new Go$String(v$2.String())), sb = _tuple[0], err = _tuple[1];
 			if (!(go$interfaceIsEqual(err, null))) {
-				e.error(err);
+				e$2.error(err);
 			}
-			e.string(go$bytesToString(sb));
+			e$2.string(go$bytesToString(sb));
 		} else {
-			e.string(v.String());
+			e$2.string(v$2.String());
 		}
 	};
- 0Ç interfaceEncoderÅÍ	interfaceEncoder = function(e, v, quoted) {
+ 0Ç interfaceEncoderÅ¯	interfaceEncoder = function(e$2, v$2, quoted$2) {
 		var _struct;
-		if (v.IsNil()) {
-			e.Buffer.WriteString("null");
+		if (v$2.IsNil()) {
+			e$2.Buffer.WriteString("null");
 			return;
 		}
-		e.reflectValue((_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
+		e$2.reflectValue((_struct = v$2.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
 	};
- 0Åà unsupportedTypeEncoderj	unsupportedTypeEncoder = function(e, v, quoted) {
-		e.error(new UnsupportedTypeError.Ptr(v.Type()));
+ 0Åí unsupportedTypeEncodert	unsupportedTypeEncoder = function(e$2, v$2, quoted$2) {
+		e$2.error(new UnsupportedTypeError.Ptr(v$2.Type()));
 	};
- 0Ç˚  ÇÒ	structEncoder.Ptr.prototype.encode = function(e, v, quoted) {
+ 0Ç  Ç	structEncoder.Ptr.prototype.encode = function(e$2, v$2, quoted$2) {
 		var se, first, _ref, _i, _slice, _index, _struct, f, i, _struct$1, _struct$2, fv, _struct$3, _slice$1, _index$1, _struct$4;
 		se = this;
-		e.Buffer.WriteByte(123);
+		e$2.Buffer.WriteByte(123);
 		first = true;
 		_ref = se.fields;
 		_i = 0;
 		while (_i < _ref.length) {
 			f = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new field.Ptr(_struct.name, _struct.tag, _struct.index, _struct.typ, _struct.omitEmpty, _struct.quoted));
 			i = _i;
-			fv = (_struct$2 = fieldByIndex((_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), f.index), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+			fv = (_struct$2 = fieldByIndex((_struct$1 = v$2, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), f.index), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 			if (!fv.IsValid() || f.omitEmpty && isEmptyValue((_struct$3 = fv, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)))) {
 				_i++;
 				continue;
@@ -1832,18 +1834,18 @@ intEncoderÇ		intEncoder = function(e, v, quoted) {
 			if (first) {
 				first = false;
 			} else {
-				e.Buffer.WriteByte(44);
+				e$2.Buffer.WriteByte(44);
 			}
-			e.string(f.name);
-			e.Buffer.WriteByte(58);
-			(_slice$1 = se.fieldEncs, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))(e, (_struct$4 = fv, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), f.quoted);
+			e$2.string(f.name);
+			e$2.Buffer.WriteByte(58);
+			(_slice$1 = se.fieldEncs, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))(e$2, (_struct$4 = fv, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), f.quoted);
 			_i++;
 		}
-		e.Buffer.WriteByte(125);
+		e$2.Buffer.WriteByte(125);
 	};
-	structEncoder.prototype.encode = function(e, v, quoted) { return this.go$val.encode(e, v, quoted); };
- 0ÇÁ newStructEncoderÇÕ	newStructEncoder = function(t) {
-		var fields, se, _ref, _i, _slice, _index, _struct, f, i, _slice$1, _index$1, e, v, quoted, _recv;
+	structEncoder.prototype.encode = function(e$2, v$2, quoted$2) { return this.go$val.encode(e$2, v$2, quoted$2); };
+ 0Çˇ newStructEncoderÇÂ	newStructEncoder = function(t) {
+		var fields, se, _ref, _i, _slice, _index, _struct, f, i, _slice$1, _index$1, e$2, v$2, quoted$2, _recv$2;
 		fields = cachedTypeFields(t);
 		se = new structEncoder.Ptr(fields, (go$sliceType(encoderFunc)).make(fields.length, 0, function() { return go$throwNilPointerError; }));
 		_ref = fields;
@@ -1854,17 +1856,17 @@ intEncoderÇ		intEncoder = function(e, v, quoted) {
 			_slice$1 = se.fieldEncs, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = typeEncoder(typeByIndex(t, f.index))) : go$throwRuntimeError("index out of range");
 			_i++;
 		}
-		return (_recv = se, function(e, v, quoted) { return _recv.encode(e, v, quoted); });
+		return (_recv$2 = se, function(e$2, v$2, quoted$2) { return _recv$2.encode(e$2, v$2, quoted$2); });
 	};
- 0Ç_  ÇU	mapEncoder.Ptr.prototype.encode = function(e, v, param) {
+ 0Ç  Çu	mapEncoder.Ptr.prototype.encode = function(e$2, v$2, param) {
 		var me, x, sv, _ref, _i, _slice, _index, _struct, k, i, _struct$1, _struct$2;
 		me = this;
-		if (v.IsNil()) {
-			e.Buffer.WriteString("null");
+		if (v$2.IsNil()) {
+			e$2.Buffer.WriteString("null");
 			return;
 		}
-		e.Buffer.WriteByte(123);
-		sv = (x = v.MapKeys(), go$subslice(new stringValues(x.array), x.offset, x.offset + x.length));
+		e$2.Buffer.WriteByte(123);
+		sv = (x = v$2.MapKeys(), go$subslice(new stringValues(x.array), x.offset, x.offset + x.length));
 		sort.Sort(sv);
 		_ref = sv;
 		_i = 0;
@@ -1872,111 +1874,111 @@ intEncoderÇ		intEncoder = function(e, v, quoted) {
 			k = (_struct = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			i = _i;
 			if (i > 0) {
-				e.Buffer.WriteByte(44);
+				e$2.Buffer.WriteByte(44);
 			}
-			e.string(k.String());
-			e.Buffer.WriteByte(58);
-			me.elemEnc(e, (_struct$2 = v.MapIndex((_struct$1 = k, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), false);
+			e$2.string(k.String());
+			e$2.Buffer.WriteByte(58);
+			me.elemEnc(e$2, (_struct$2 = v$2.MapIndex((_struct$1 = k, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), false);
 			_i++;
 		}
-		e.Buffer.WriteByte(125);
+		e$2.Buffer.WriteByte(125);
 	};
-	mapEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
- 0Ç newMapEncoderÇ	newMapEncoder = function(t) {
-		var me, e, v, _, _recv;
+	mapEncoder.prototype.encode = function(e$2, v$2, param) { return this.go$val.encode(e$2, v$2, param); };
+ 0Ç. newMapEncoderÇ	newMapEncoder = function(t) {
+		var me, e$2, v$2, _, _recv$2;
 		if (!((t.Key().Kind() === 24))) {
 			return unsupportedTypeEncoder;
 		}
 		me = new mapEncoder.Ptr(typeEncoder(t.Elem()));
-		return (_recv = me, function(e, v, _) { return _recv.encode(e, v, _); });
+		return (_recv$2 = me, function(e$2, v$2, _) { return _recv$2.encode(e$2, v$2, _); });
 	};
- 0Ç encodeByteSliceÇÚ	encodeByteSlice = function(e, v, param) {
+ 0Ç encodeByteSliceÇ	encodeByteSlice = function(e$2, v$2, param) {
 		var s, dst, enc;
-		if (v.IsNil()) {
-			e.Buffer.WriteString("null");
+		if (v$2.IsNil()) {
+			e$2.Buffer.WriteString("null");
 			return;
 		}
-		s = v.Bytes();
-		e.Buffer.WriteByte(34);
+		s = v$2.Bytes();
+		e$2.Buffer.WriteByte(34);
 		if (s.length < 1024) {
 			dst = (go$sliceType(Go$Uint8)).make(base64.StdEncoding.EncodedLen(s.length), 0, function() { return 0; });
 			base64.StdEncoding.Encode(dst, s);
-			e.Buffer.Write(dst);
+			e$2.Buffer.Write(dst);
 		} else {
-			enc = base64.NewEncoder(base64.StdEncoding, e);
+			enc = base64.NewEncoder(base64.StdEncoding, e$2);
 			enc.Write(s);
 			enc.Close();
 		}
-		e.Buffer.WriteByte(34);
+		e$2.Buffer.WriteByte(34);
 	};
- 0Çy  Ço	sliceEncoder.Ptr.prototype.encode = function(e, v, param) {
+ 0Çç  ÇÉ	sliceEncoder.Ptr.prototype.encode = function(e$2, v$2, param) {
 		var se, _struct;
 		se = this;
-		if (v.IsNil()) {
-			e.Buffer.WriteString("null");
+		if (v$2.IsNil()) {
+			e$2.Buffer.WriteString("null");
 			return;
 		}
-		se.arrayEnc(e, (_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
+		se.arrayEnc(e$2, (_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 	};
-	sliceEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
- 0Ç newSliceEncoderÅ˝	newSliceEncoder = function(t) {
-		var enc, e, v, _, _recv;
+	sliceEncoder.prototype.encode = function(e$2, v$2, param) { return this.go$val.encode(e$2, v$2, param); };
+ 0Ç( newSliceEncoderÇ	newSliceEncoder = function(t) {
+		var enc, e$2, v$2, _, _recv$2;
 		if (t.Elem().Kind() === 8) {
 			return encodeByteSlice;
 		}
 		enc = new sliceEncoder.Ptr(newArrayEncoder(t));
-		return (_recv = enc, function(e, v, _) { return _recv.encode(e, v, _); });
+		return (_recv$2 = enc, function(e$2, v$2, _) { return _recv$2.encode(e$2, v$2, _); });
 	};
- 0ÇÎ  Ç·	arrayEncoder.Ptr.prototype.encode = function(e, v, param) {
+ 0Ç  Ç˘	arrayEncoder.Ptr.prototype.encode = function(e$2, v$2, param) {
 		var ae, n, i, _struct;
 		ae = this;
-		e.Buffer.WriteByte(91);
-		n = v.Len();
+		e$2.Buffer.WriteByte(91);
+		n = v$2.Len();
 		i = 0;
 		while (i < n) {
 			if (i > 0) {
-				e.Buffer.WriteByte(44);
+				e$2.Buffer.WriteByte(44);
 			}
-			ae.elemEnc(e, (_struct = v.Index(i), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
+			ae.elemEnc(e$2, (_struct = v$2.Index(i), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 			i = i + 1 >> 0;
 		}
-		e.Buffer.WriteByte(93);
+		e$2.Buffer.WriteByte(93);
 	};
-	arrayEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
- 0Å⁄ newArrayEncoderÅ¬	newArrayEncoder = function(t) {
-		var enc, e, v, _, _recv;
+	arrayEncoder.prototype.encode = function(e$2, v$2, param) { return this.go$val.encode(e$2, v$2, param); };
+ 0ÅÏ newArrayEncoderÅ‘	newArrayEncoder = function(t) {
+		var enc, e$2, v$2, _, _recv$2;
 		enc = new arrayEncoder.Ptr(typeEncoder(t.Elem()));
-		return (_recv = enc, function(e, v, _) { return _recv.encode(e, v, _); });
+		return (_recv$2 = enc, function(e$2, v$2, _) { return _recv$2.encode(e$2, v$2, _); });
 	};
- 0Ç{  Çq	ptrEncoder.Ptr.prototype.encode = function(e, v, param) {
+ 0Çè  ÇÖ	ptrEncoder.Ptr.prototype.encode = function(e$2, v$2, param) {
 		var pe, _struct;
 		pe = this;
-		if (v.IsNil()) {
-			e.Buffer.WriteString("null");
+		if (v$2.IsNil()) {
+			e$2.Buffer.WriteString("null");
 			return;
 		}
-		pe.elemEnc(e, (_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
+		pe.elemEnc(e$2, (_struct = v$2.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 	};
-	ptrEncoder.prototype.encode = function(e, v, param) { return this.go$val.encode(e, v, param); };
- 0Å‘ newPtrEncoderÅæ	newPtrEncoder = function(t) {
-		var enc, e, v, _, _recv;
+	ptrEncoder.prototype.encode = function(e$2, v$2, param) { return this.go$val.encode(e$2, v$2, param); };
+ 0ÅÊ newPtrEncoderÅ–	newPtrEncoder = function(t) {
+		var enc, e$2, v$2, _, _recv$2;
 		enc = new ptrEncoder.Ptr(typeEncoder(t.Elem()));
-		return (_recv = enc, function(e, v, _) { return _recv.encode(e, v, _); });
+		return (_recv$2 = enc, function(e$2, v$2, _) { return _recv$2.encode(e$2, v$2, _); });
 	};
- 0Ç‚  Çÿ	condAddrEncoder.Ptr.prototype.encode = function(e, v, quoted) {
+ 0Ç  Ç¯	condAddrEncoder.Ptr.prototype.encode = function(e$2, v$2, quoted$2) {
 		var ce, _struct, _struct$1;
 		ce = this;
-		if (v.CanAddr()) {
-			ce.canAddrEnc(e, (_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), quoted);
+		if (v$2.CanAddr()) {
+			ce.canAddrEnc(e$2, (_struct = v$2, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), quoted$2);
 		} else {
-			ce.elseEnc(e, (_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), quoted);
+			ce.elseEnc(e$2, (_struct$1 = v$2, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), quoted$2);
 		}
 	};
-	condAddrEncoder.prototype.encode = function(e, v, quoted) { return this.go$val.encode(e, v, quoted); };
- 0Ç newCondAddrEncoderÅÁ	newCondAddrEncoder = function(canAddrEnc, elseEnc) {
-		var enc, e, v, quoted, _recv;
+	condAddrEncoder.prototype.encode = function(e$2, v$2, quoted$2) { return this.go$val.encode(e$2, v$2, quoted$2); };
+ 0Ç newCondAddrEncoderÅˇ	newCondAddrEncoder = function(canAddrEnc, elseEnc) {
+		var enc, e$2, v$2, quoted$2, _recv$2;
 		enc = new condAddrEncoder.Ptr(canAddrEnc, elseEnc);
-		return (_recv = enc, function(e, v, quoted) { return _recv.encode(e, v, quoted); });
+		return (_recv$2 = enc, function(e$2, v$2, quoted$2) { return _recv$2.encode(e$2, v$2, quoted$2); });
 	};
  0Ç• 
 isValidTagÇë	isValidTag = function(s) {
@@ -1999,22 +2001,22 @@ isValidTagÇë	isValidTag = function(s) {
 		}
 		return true;
 	};
- 0Ç fieldByIndexÇ˜	fieldByIndex = function(v, index) {
+ 0Ç fieldByIndexÇ	fieldByIndex = function(v$2, index) {
 		var _ref, _i, _slice, _index, i, _struct, _struct$1, _struct$2;
 		_ref = index;
 		_i = 0;
 		while (_i < _ref.length) {
 			i = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (v.Kind() === 22) {
-				if (v.IsNil()) {
+			if (v$2.Kind() === 22) {
+				if (v$2.IsNil()) {
 					return new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0);
 				}
-				v = (_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+				v$2 = (_struct = v$2.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			}
-			v = (_struct$1 = v.Field(i), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+			v$2 = (_struct$1 = v$2.Field(i), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 			_i++;
 		}
-		return (_struct$2 = v, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+		return (_struct$2 = v$2, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 	};
  0Çõ typeByIndexÇÜ	typeByIndex = function(t, index) {
 		var _ref, _i, _slice, _index, i;
@@ -2054,11 +2056,11 @@ isValidTagÇë	isValidTag = function(s) {
 		return (_slice = sv, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).String();
 	};
 	go$ptrType(stringValues).prototype.get = function(i) { return this.go$get().get(i); };
- 0Ç  Ç	encodeState.Ptr.prototype.string = function(s) {
-		var e, len0, start, i, b, _ref, _tuple, c, size;
-		e = this;
-		len0 = e.Buffer.Len();
-		e.Buffer.WriteByte(34);
+ 0ÇH  Ç>	encodeState.Ptr.prototype.string = function(s) {
+		var e$2, len0, start, i, b, _ref, _tuple, c, size;
+		e$2 = this;
+		len0 = e$2.Buffer.Len();
+		e$2.Buffer.WriteByte(34);
 		start = 0;
 		i = 0;
 		while (i < s.length) {
@@ -2068,22 +2070,22 @@ isValidTagÇë	isValidTag = function(s) {
 					continue;
 				}
 				if (start < i) {
-					e.Buffer.WriteString(s.substring(start, i));
+					e$2.Buffer.WriteString(s.substring(start, i));
 				}
 				_ref = b;
 				if (_ref === 92 || _ref === 34) {
-					e.Buffer.WriteByte(92);
-					e.Buffer.WriteByte(b);
+					e$2.Buffer.WriteByte(92);
+					e$2.Buffer.WriteByte(b);
 				} else if (_ref === 10) {
-					e.Buffer.WriteByte(92);
-					e.Buffer.WriteByte(110);
+					e$2.Buffer.WriteByte(92);
+					e$2.Buffer.WriteByte(110);
 				} else if (_ref === 13) {
-					e.Buffer.WriteByte(92);
-					e.Buffer.WriteByte(114);
+					e$2.Buffer.WriteByte(92);
+					e$2.Buffer.WriteByte(114);
 				} else {
-					e.Buffer.WriteString("\\u00");
-					e.Buffer.WriteByte(hex.charCodeAt((b >>> 4 << 24 >>> 24)));
-					e.Buffer.WriteByte(hex.charCodeAt(((b & 15) >>> 0)));
+					e$2.Buffer.WriteString("\\u00");
+					e$2.Buffer.WriteByte(hex.charCodeAt((b >>> 4 << 24 >>> 24)));
+					e$2.Buffer.WriteByte(hex.charCodeAt(((b & 15) >>> 0)));
 				}
 				i = i + 1 >> 0;
 				start = i;
@@ -2092,19 +2094,19 @@ isValidTagÇë	isValidTag = function(s) {
 			_tuple = utf8.DecodeRuneInString(s.substring(i)), c = _tuple[0], size = _tuple[1];
 			if ((c === 65533) && (size === 1)) {
 				if (start < i) {
-					e.Buffer.WriteString(s.substring(start, i));
+					e$2.Buffer.WriteString(s.substring(start, i));
 				}
-				e.Buffer.WriteString("\\ufffd");
+				e$2.Buffer.WriteString("\\ufffd");
 				i = i + (size) >> 0;
 				start = i;
 				continue;
 			}
 			if ((c === 8232) || (c === 8233)) {
 				if (start < i) {
-					e.Buffer.WriteString(s.substring(start, i));
+					e$2.Buffer.WriteString(s.substring(start, i));
 				}
-				e.Buffer.WriteString("\\u202");
-				e.Buffer.WriteByte(hex.charCodeAt((c & 15)));
+				e$2.Buffer.WriteString("\\u202");
+				e$2.Buffer.WriteByte(hex.charCodeAt((c & 15)));
 				i = i + (size) >> 0;
 				start = i;
 				continue;
@@ -2112,17 +2114,17 @@ isValidTagÇë	isValidTag = function(s) {
 			i = i + (size) >> 0;
 		}
 		if (start < s.length) {
-			e.Buffer.WriteString(s.substring(start));
+			e$2.Buffer.WriteString(s.substring(start));
 		}
-		e.Buffer.WriteByte(34);
-		return [e.Buffer.Len() - len0 >> 0, null];
+		e$2.Buffer.WriteByte(34);
+		return [e$2.Buffer.Len() - len0 >> 0, null];
 	};
 	encodeState.prototype.string = function(s) { return this.go$val.string(s); };
- 0Ç∞  Ç¶	encodeState.Ptr.prototype.stringBytes = function(s) {
-		var e, len0, start, i, b, _slice, _index, _ref, _tuple, c, size;
-		e = this;
-		len0 = e.Buffer.Len();
-		e.Buffer.WriteByte(34);
+ 0Ç‹  Ç“	encodeState.Ptr.prototype.stringBytes = function(s) {
+		var e$2, len0, start, i, b, _slice, _index, _ref, _tuple, c, size;
+		e$2 = this;
+		len0 = e$2.Buffer.Len();
+		e$2.Buffer.WriteByte(34);
 		start = 0;
 		i = 0;
 		while (i < s.length) {
@@ -2132,22 +2134,22 @@ isValidTagÇë	isValidTag = function(s) {
 					continue;
 				}
 				if (start < i) {
-					e.Buffer.Write(go$subslice(s, start, i));
+					e$2.Buffer.Write(go$subslice(s, start, i));
 				}
 				_ref = b;
 				if (_ref === 92 || _ref === 34) {
-					e.Buffer.WriteByte(92);
-					e.Buffer.WriteByte(b);
+					e$2.Buffer.WriteByte(92);
+					e$2.Buffer.WriteByte(b);
 				} else if (_ref === 10) {
-					e.Buffer.WriteByte(92);
-					e.Buffer.WriteByte(110);
+					e$2.Buffer.WriteByte(92);
+					e$2.Buffer.WriteByte(110);
 				} else if (_ref === 13) {
-					e.Buffer.WriteByte(92);
-					e.Buffer.WriteByte(114);
+					e$2.Buffer.WriteByte(92);
+					e$2.Buffer.WriteByte(114);
 				} else {
-					e.Buffer.WriteString("\\u00");
-					e.Buffer.WriteByte(hex.charCodeAt((b >>> 4 << 24 >>> 24)));
-					e.Buffer.WriteByte(hex.charCodeAt(((b & 15) >>> 0)));
+					e$2.Buffer.WriteString("\\u00");
+					e$2.Buffer.WriteByte(hex.charCodeAt((b >>> 4 << 24 >>> 24)));
+					e$2.Buffer.WriteByte(hex.charCodeAt(((b & 15) >>> 0)));
 				}
 				i = i + 1 >> 0;
 				start = i;
@@ -2156,19 +2158,19 @@ isValidTagÇë	isValidTag = function(s) {
 			_tuple = utf8.DecodeRune(go$subslice(s, i)), c = _tuple[0], size = _tuple[1];
 			if ((c === 65533) && (size === 1)) {
 				if (start < i) {
-					e.Buffer.Write(go$subslice(s, start, i));
+					e$2.Buffer.Write(go$subslice(s, start, i));
 				}
-				e.Buffer.WriteString("\\ufffd");
+				e$2.Buffer.WriteString("\\ufffd");
 				i = i + (size) >> 0;
 				start = i;
 				continue;
 			}
 			if ((c === 8232) || (c === 8233)) {
 				if (start < i) {
-					e.Buffer.Write(go$subslice(s, start, i));
+					e$2.Buffer.Write(go$subslice(s, start, i));
 				}
-				e.Buffer.WriteString("\\u202");
-				e.Buffer.WriteByte(hex.charCodeAt((c & 15)));
+				e$2.Buffer.WriteString("\\u202");
+				e$2.Buffer.WriteByte(hex.charCodeAt((c & 15)));
 				i = i + (size) >> 0;
 				start = i;
 				continue;
@@ -2176,10 +2178,10 @@ isValidTagÇë	isValidTag = function(s) {
 			i = i + (size) >> 0;
 		}
 		if (start < s.length) {
-			e.Buffer.Write(go$subslice(s, start));
+			e$2.Buffer.Write(go$subslice(s, start));
 		}
-		e.Buffer.WriteByte(34);
-		return [e.Buffer.Len() - len0 >> 0, null];
+		e$2.Buffer.WriteByte(34);
+		return [e$2.Buffer.Len() - len0 >> 0, null];
 	};
 	encodeState.prototype.stringBytes = function(s) { return this.go$val.stringBytes(s); };
  0Å™  Å°	byName.prototype.Len = function() {
@@ -2386,8 +2388,8 @@ typeFieldsÇi	typeFields = function(t) {
  0g CompactX	Compact = go$pkg.Compact = function(dst, src) {
 		return compact(dst, src, false);
 	};
- 0Ç© compactÇò	compact = function(dst, src, escape) {
-		var origLen, scan, start, _ref, _i, _slice, _index, c, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, v;
+ 0Ç± compactÇ†	compact = function(dst, src, escape) {
+		var origLen, scan, start, _ref, _i, _slice, _index, c, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, v$2;
 		origLen = dst.Len();
 		scan = new scanner.Ptr();
 		scan.reset();
@@ -2414,9 +2416,9 @@ typeFieldsÇi	typeFields = function(t) {
 				dst.WriteByte(hex.charCodeAt((((_slice$3 = src, _index$3 = (i + 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) & 15) >>> 0)));
 				start = i + 3 >> 0;
 			}
-			v = scan.step(scan, (c >> 0));
-			if (v >= 9) {
-				if (v === 11) {
+			v$2 = scan.step(scan, (c >> 0));
+			if (v$2 >= 9) {
+				if (v$2 === 11) {
 					break;
 				}
 				if (start < i) {
@@ -2445,8 +2447,8 @@ typeFieldsÇi	typeFields = function(t) {
 			i = i + 1 >> 0;
 		}
 	};
- 0ÇÍ IndentÇ⁄	Indent = go$pkg.Indent = function(dst, src, prefix, indent) {
-		var origLen, scan, needIndent, depth, _ref, _i, _slice, _index, c, x, v, _ref$1;
+ 0Ç¯ IndentÇË	Indent = go$pkg.Indent = function(dst, src, prefix, indent) {
+		var origLen, scan, needIndent, depth, _ref, _i, _slice, _index, c, x, v$2, _ref$1;
 		origLen = dst.Len();
 		scan = new scanner.Ptr();
 		scan.reset();
@@ -2457,20 +2459,20 @@ typeFieldsÇi	typeFields = function(t) {
 		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			scan.bytes = (x = scan.bytes, new Go$Int64(x.high + 0, x.low + 1));
-			v = scan.step(scan, (c >> 0));
-			if (v === 9) {
+			v$2 = scan.step(scan, (c >> 0));
+			if (v$2 === 9) {
 				_i++;
 				continue;
 			}
-			if (v === 11) {
+			if (v$2 === 11) {
 				break;
 			}
-			if (needIndent && !((v === 5)) && !((v === 8))) {
+			if (needIndent && !((v$2 === 5)) && !((v$2 === 8))) {
 				needIndent = false;
 				depth = depth + 1 >> 0;
 				newline(dst, prefix, indent, depth);
 			}
-			if (v === 0) {
+			if (v$2 === 0) {
 				dst.WriteByte(c);
 				_i++;
 				continue;
@@ -2523,8 +2525,8 @@ checkValidÇ	checkValid = function(data, scan) {
 		}
 		return null;
 	};
- 0Ç9 	nextValueÇ&	nextValue = function(data, scan) {
-		var value, rest, err, _ref, _i, _slice, _index, c, i, v, _ref$1, _tuple, _tuple$1, _tuple$2, _tuple$3;
+ 0ÇA 	nextValueÇ.	nextValue = function(data, scan) {
+		var value, rest, err, _ref, _i, _slice, _index, c, i, v$2, _ref$1, _tuple, _tuple$1, _tuple$2, _tuple$3;
 		value = (go$sliceType(Go$Uint8)).nil;
 		rest = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -2534,9 +2536,9 @@ checkValidÇ	checkValid = function(data, scan) {
 		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
-			v = scan.step(scan, (c >> 0));
-			if (v >= 10) {
-				_ref$1 = v;
+			v$2 = scan.step(scan, (c >> 0));
+			if (v$2 >= 10) {
+				_ref$1 = v$2;
 				if (_ref$1 === 11) {
 					_tuple = [(go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, scan.err], value = _tuple[0], rest = _tuple[1], err = _tuple[2];
 					return [value, rest, err];
@@ -2554,10 +2556,10 @@ checkValidÇ	checkValid = function(data, scan) {
 		_tuple$3 = [data, (go$sliceType(Go$Uint8)).nil, null], value = _tuple$3[0], rest = _tuple$3[1], err = _tuple$3[2];
 		return [value, rest, err];
 	};
- 0Å≠  Å§	SyntaxError.Ptr.prototype.Error = function() {
-		var e;
-		e = this;
-		return e.msg;
+ 0Å≥  Å™	SyntaxError.Ptr.prototype.Error = function() {
+		var e$2;
+		e$2 = this;
+		return e$2.msg;
 	};
 	SyntaxError.prototype.Error = function() { return this.go$val.Error(); };
  0Ç  Ç	scanner.Ptr.prototype.reset = function() {
@@ -2981,7 +2983,7 @@ NewDecoderÅü	NewDecoder = go$pkg.NewDecoder = function(r) {
 		dec.d.useNumber = true;
 	};
 	Decoder.prototype.UseNumber = function() { return this.go$val.UseNumber(); };
- 0Ç.  Ç$	Decoder.Ptr.prototype.Decode = function(v) {
+ 0Ç6  Ç,	Decoder.Ptr.prototype.Decode = function(v$2) {
 		var dec, _tuple, n, err, rest;
 		dec = this;
 		if (!(go$interfaceIsEqual(dec.err, null))) {
@@ -2992,20 +2994,20 @@ NewDecoderÅü	NewDecoder = go$pkg.NewDecoder = function(r) {
 			return err;
 		}
 		dec.d.init(go$subslice(dec.buf, 0, n));
-		err = dec.d.unmarshal(v);
+		err = dec.d.unmarshal(v$2);
 		rest = go$copySlice(dec.buf, go$subslice(dec.buf, n));
 		dec.buf = go$subslice(dec.buf, 0, rest);
 		return err;
 	};
-	Decoder.prototype.Decode = function(v) { return this.go$val.Decode(v); };
+	Decoder.prototype.Decode = function(v$2) { return this.go$val.Decode(v$2); };
  0Å≈  Åº	Decoder.Ptr.prototype.Buffered = function() {
 		var dec;
 		dec = this;
 		return bytes.NewReader(dec.buf);
 	};
 	Decoder.prototype.Buffered = function() { return this.go$val.Buffered(); };
- 0Ç@  Ç6	Decoder.Ptr.prototype.readValue = function() {
-		var dec, scanp, err, _ref, _i, _slice, _index, c, i, x, v, x$1, x$2, newBuf, n, _tuple;
+ 0ÇL  ÇB	Decoder.Ptr.prototype.readValue = function() {
+		var dec, scanp, err, _ref, _i, _slice, _index, c, i, x, v$2, x$1, x$2, newBuf, n, _tuple;
 		dec = this;
 		dec.scan.reset();
 		scanp = 0;
@@ -3018,16 +3020,16 @@ NewDecoderÅü	NewDecoder = go$pkg.NewDecoder = function(r) {
 				c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				dec.scan.bytes = (x = dec.scan.bytes, new Go$Int64(x.high + 0, x.low + 1));
-				v = dec.scan.step(dec.scan, (c >> 0));
-				if (v === 10) {
+				v$2 = dec.scan.step(dec.scan, (c >> 0));
+				if (v$2 === 10) {
 					scanp = scanp + (i) >> 0;
 					break Input;
 				}
-				if (((v === 5) || (v === 8)) && (dec.scan.step(dec.scan, 32) === 10)) {
+				if (((v$2 === 5) || (v$2 === 8)) && (dec.scan.step(dec.scan, 32) === 10)) {
 					scanp = scanp + ((i + 1 >> 0)) >> 0;
 					break Input;
 				}
-				if (v === 11) {
+				if (v$2 === 11) {
 					dec.err = dec.scan.err;
 					return [0, dec.scan.err];
 				}
@@ -3075,25 +3077,25 @@ NewDecoderÅü	NewDecoder = go$pkg.NewDecoder = function(r) {
 NewEncodern	NewEncoder = go$pkg.NewEncoder = function(w) {
 		return new Encoder.Ptr(w, new encodeState.Ptr(), null);
 	};
- 0Ç  Ç	Encoder.Ptr.prototype.Encode = function(v) {
-		var enc, e, err, _tuple;
+ 0Ç-  Ç#	Encoder.Ptr.prototype.Encode = function(v$2) {
+		var enc, e$2, err, _tuple;
 		enc = this;
 		if (!(go$interfaceIsEqual(enc.err, null))) {
 			return enc.err;
 		}
-		e = newEncodeState();
-		err = e.marshal(v);
+		e$2 = newEncodeState();
+		err = e$2.marshal(v$2);
 		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
-		e.Buffer.WriteByte(10);
-		if (_tuple = enc.w.Write(e.Buffer.Bytes()), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		e$2.Buffer.WriteByte(10);
+		if (_tuple = enc.w.Write(e$2.Buffer.Bytes()), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
 			enc.err = err;
 		}
-		putEncodeState(e);
+		putEncodeState(e$2);
 		return err;
 	};
-	Encoder.prototype.Encode = function(v) { return this.go$val.Encode(v); };
+	Encoder.prototype.Encode = function(v$2) { return this.go$val.Encode(v$2); };
  0Çt  Çj	go$ptrType(RawMessage).prototype.MarshalJSON = function() {
 		var m, x;
 		m = this;

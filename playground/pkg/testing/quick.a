@@ -1,4 +1,4 @@
-0ÇçAtesting/quickÇF7package quick
+0ÇçDtesting/quickÇF7package quick
 import flag "flag"
 import fmt "fmt"
 import math "math"
@@ -230,7 +230,7 @@ func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
 0Åûruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortflag	math/randunicodestringstesting/quick0c0flagflag0
-fmtfmt0mathmath0	math/randrand0reflectreflect0stringsstrings0ÇEÎ0ÅÙ 	Generators	Generator = go$pkg.Generator = go$newType(0, "Interface", "quick.Generator", "Generator", "testing/quick", null);
+fmtfmt0mathmath0	math/randrand0reflectreflect0stringsstrings0ÇEÓ0ÅÙ 	Generators	Generator = go$pkg.Generator = go$newType(0, "Interface", "quick.Generator", "Generator", "testing/quick", null);
 p		Generator.init([["Generate", "", (go$funcType([(go$ptrType(rand.Rand)), Go$Int], [reflect.Value], false))]]);
 0Ç` ConfigÇ«	Config = go$pkg.Config = go$newType(0, "Struct", "quick.Config", "Config", "testing/quick", function(MaxCount_, MaxCountScale_, Rand_, Values_) {
 		this.go$val = this;
@@ -263,7 +263,8 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 	CheckEqualError.Ptr.prototype.Error = function() { return this.CheckError.Error(); };
 ÅÒ		CheckEqualError.init([["", "", CheckError, ""], ["Out1", "", (go$sliceType(go$emptyInterface)), ""], ["Out2", "", (go$sliceType(go$emptyInterface)), ""]]);
 		(go$ptrType(CheckEqualError)).methods = [["Error", "", [], [Go$String], false]];
-0 defaultMaxCount  06 defaultConfig !defaultConfig = new Config.Ptr();0m   e		defaultMaxCount = flag.Int("quickchecks", 100, "The default number of iterations for each check");
+0 defaultMaxCount  09 defaultConfig $		defaultConfig = new Config.Ptr();
+0m   e		defaultMaxCount = flag.Int("quickchecks", 100, "The default number of iterations for each check");
 0Å± randFloat32Åù	randFloat32 = function(rand$1) {
 		var f;
 		f = rand$1.Float64() * 3.4028234663852886e+38;

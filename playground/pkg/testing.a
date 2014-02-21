@@ -1,4 +1,4 @@
-0ÉGtestingÇ0*package testing
+0ÉYtestingÇ0*package testing
 import runtime "runtime"
 import flag "flag"
 import fmt "fmt"
@@ -184,7 +184,7 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0Å∫runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortflagbufiostringstext/tabwriterruntime/pproftesting0ÅÆ0runtimeruntime0flagflag0
-fmtfmt0osos0syncsync0timetime0bytesbytes0ioio0stringsstrings0runtime/pprofpprof0strconvstrconv0Ç‹ú0Ç≤ InternalBenchmarkÇ"	InternalBenchmark = go$pkg.InternalBenchmark = go$newType(0, "Struct", "testing.InternalBenchmark", "InternalBenchmark", "testing", function(Name_, F_) {
+fmtfmt0osos0syncsync0timetime0bytesbytes0ioio0stringsstrings0runtime/pprofpprof0strconvstrconv0Ç‹Æ0Ç≤ InternalBenchmarkÇ"	InternalBenchmark = go$pkg.InternalBenchmark = go$newType(0, "Struct", "testing.InternalBenchmark", "InternalBenchmark", "testing", function(Name_, F_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
@@ -336,10 +336,16 @@ CoverBlockÇ©	CoverBlock = go$pkg.CoverBlock = go$newType(0, "Struct", "testing
 		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
 	});
 p		InternalTest.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([(go$ptrType(T))], [], false)), ""]]);
-0 matchBenchmarks  0 	benchTime  0 benchmarkMemory  0: benchmarkLock %benchmarkLock = new sync.Mutex.Ptr();06 memStats &memStats = new runtime.MemStats.Ptr();0% cover cover = new Cover.Ptr();0 short$1  0 	outputDir  0 chatty  0 coverProfile  0 match  0 
+0 matchBenchmarks  0 	benchTime  0 benchmarkMemory  0= benchmarkLock (		benchmarkLock = new sync.Mutex.Ptr();
+09 memStats )		memStats = new runtime.MemStats.Ptr();
+0( cover 		cover = new Cover.Ptr();
+0 short$1  0 	outputDir  0 chatty  0 coverProfile  0 match  0 
 memProfile  0 memProfileRate  0 
 cpuProfile  0 blockProfile  0 blockProfileRate  0 timeout  0 
-cpuListStr  0 parallel  0) haveExamples haveExamples = false;04 cpuList %cpuList = (go$sliceType(Go$Int)).nil;02 timer %timer = (go$ptrType(time.Timer)).nil;0m   e		matchBenchmarks = flag.String("test.bench", "", "regular expression to select benchmarks to run");
+cpuListStr  0 parallel  0, haveExamples 		haveExamples = false;
+07 cpuList (		cpuList = (go$sliceType(Go$Int)).nil;
+05 timer (		timer = (go$ptrType(time.Timer)).nil;
+0m   e		matchBenchmarks = flag.String("test.bench", "", "regular expression to select benchmarks to run");
 0ÅÑ   |		benchTime = flag.Duration("test.benchtime", new time.Duration(0, 1000000000), "approximate run time for each benchmark");
 0j   b		benchmarkMemory = flag.Bool("test.benchmem", false, "print memory allocations for benchmarks");
 0[   S		short$1 = flag.Bool("test.short", false, "run smaller test suite to save time");

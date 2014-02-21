@@ -1,4 +1,4 @@
-0Ç€Garchive/tarÇ+œpackage tar
+0Ç€“archive/tarÇ+œpackage tar
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -182,7 +182,7 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0Å≤runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilpatharchive/tar0ÅØ0bytesbytes0errorserrors0
-fmtfmt0osos0pathpath0timetime0ioio0	io/ioutilioutil0strconvstrconv0stringsstrings0syscallsyscall0Ç≠˙0Çâ HeaderÇm	Header = go$pkg.Header = go$newType(0, "Struct", "tar.Header", "Header", "archive/tar", function(Name_, Mode_, Uid_, Gid_, Size_, ModTime_, Typeflag_, Linkname_, Uname_, Gname_, Devmajor_, Devminor_, AccessTime_, ChangeTime_) {
+fmtfmt0osos0pathpath0timetime0ioio0	io/ioutilioutil0strconvstrconv0stringsstrings0syscallsyscall0ÇÆÖ0Çâ HeaderÇm	Header = go$pkg.Header = go$newType(0, "Struct", "tar.Header", "Header", "archive/tar", function(Name_, Mode_, Uid_, Gid_, Size_, ModTime_, Typeflag_, Linkname_, Uname_, Gname_, Devmajor_, Devminor_, AccessTime_, ChangeTime_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Mode = Mode_ !== undefined ? Mode_ : new Go$Int64(0, 0);
@@ -233,7 +233,8 @@ $$
 	});
 Çî		Writer.init([["w", "archive/tar", io.Writer, ""], ["err", "archive/tar", go$error, ""], ["nb", "archive/tar", Go$Int64, ""], ["pad", "archive/tar", Go$Int64, ""], ["closed", "archive/tar", Go$Bool, ""], ["usedBinary", "archive/tar", Go$Bool, ""], ["preferPax", "archive/tar", Go$Bool, ""]]);
 		(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteHeader", "", [(go$ptrType(Header))], [go$error], false], ["cString", "archive/tar", [(go$sliceType(Go$Uint8)), Go$String, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false], ["numeric", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false], ["octal", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64], [], false], ["splitUSTARLongName", "archive/tar", [Go$String], [Go$String, Go$String, go$error], false], ["writeHeader", "archive/tar", [(go$ptrType(Header)), Go$Bool], [go$error], false], ["writePAXHeader", "archive/tar", [(go$ptrType(Header)), (go$mapType(Go$String, Go$String))], [go$error], false]];
-01 sysStat "sysStat = go$throwNilPointerError;0 	zeroBlock  0    0    0    0    0 errNameTooLong  0 errInvalidHeader  0 minTime  0 maxTime  0W   O		zeroBlock = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
+04 sysStat %		sysStat = go$throwNilPointerError;
+0 	zeroBlock  0    0    0    0    0 errNameTooLong  0 errInvalidHeader  0 minTime  0 maxTime  0W   O		zeroBlock = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
 0L   D		go$pkg.ErrHeader = errors.New("archive/tar: invalid tar header");
 0N   F		go$pkg.ErrWriteTooLong = errors.New("archive/tar: write too long");
 0U   M		go$pkg.ErrFieldTooLong = errors.New("archive/tar: header field too long");
@@ -242,51 +243,51 @@ $$
 0j   b		errInvalidHeader = errors.New("archive/tar: header field too long or contains invalid values");
 0Åû   Åï		var _struct;
 		minTime = (_struct = time.Unix(new Go$Int64(0, 0), new Go$Int64(0, 0)), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
-0Å£   Åö		var _struct;
-		maxTime = (_struct = minTime.Add(new time.Duration(1999999999, 3294967296)), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+0Å≠   Å§		var _struct$1;
+		maxTime = (_struct$1 = minTime.Add(new time.Duration(1999999999, 3294967296)), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
 0ÅÊ  Å›	Header.Ptr.prototype.FileInfo = function() {
 		var h, x;
 		h = this;
 		return (x = new headerFileInfo.Ptr(h), new x.constructor.Struct(x));
 	};
 	Header.prototype.FileInfo = function() { return this.go$val.FileInfo(); };
- 0ÅÓ  ÅÂ	headerFileInfo.Ptr.prototype.Size = function() {
-		var _struct, fi;
-		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+ 0ÅÙ  ÅÎ	headerFileInfo.Ptr.prototype.Size = function() {
+		var _struct$2, fi;
+		fi = (_struct$2 = this, new headerFileInfo.Ptr(_struct$2.h));
 		return fi.h.Size;
 	};
 	headerFileInfo.prototype.Size = function() { return this.go$val.Size(); };
- 0Ç  Ç	headerFileInfo.Ptr.prototype.IsDir = function() {
-		var _struct, fi;
-		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+ 0Ç  Ç		headerFileInfo.Ptr.prototype.IsDir = function() {
+		var _struct$2, fi;
+		fi = (_struct$2 = this, new headerFileInfo.Ptr(_struct$2.h));
 		return (new os.FileMode(fi.Mode())).IsDir();
 	};
 	headerFileInfo.prototype.IsDir = function() { return this.go$val.IsDir(); };
- 0ÇU  ÇK	headerFileInfo.Ptr.prototype.ModTime = function() {
-		var _struct, fi, _struct$1;
-		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
-		return (_struct$1 = fi.h.ModTime, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+ 0Ç[  ÇQ	headerFileInfo.Ptr.prototype.ModTime = function() {
+		var _struct$2, fi, _struct$3;
+		fi = (_struct$2 = this, new headerFileInfo.Ptr(_struct$2.h));
+		return (_struct$3 = fi.h.ModTime, new time.Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc));
 	};
 	headerFileInfo.prototype.ModTime = function() { return this.go$val.ModTime(); };
- 0ÅÊ  Å›	headerFileInfo.Ptr.prototype.Sys = function() {
-		var _struct, fi;
-		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+ 0ÅÏ  Å„	headerFileInfo.Ptr.prototype.Sys = function() {
+		var _struct$2, fi;
+		fi = (_struct$2 = this, new headerFileInfo.Ptr(_struct$2.h));
 		return fi.h;
 	};
 	headerFileInfo.prototype.Sys = function() { return this.go$val.Sys(); };
- 0Ç>  Ç4	headerFileInfo.Ptr.prototype.Name = function() {
-		var _struct, fi;
-		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+ 0ÇD  Ç:	headerFileInfo.Ptr.prototype.Name = function() {
+		var _struct$2, fi;
+		fi = (_struct$2 = this, new headerFileInfo.Ptr(_struct$2.h));
 		if (fi.IsDir()) {
 			return path.Base(path.Clean(fi.h.Name));
 		}
 		return path.Base(fi.h.Name);
 	};
 	headerFileInfo.prototype.Name = function() { return this.go$val.Name(); };
- 0ÇÄ  Çv	headerFileInfo.Ptr.prototype.Mode = function() {
-		var mode, _struct, fi, x, x$1, x$2, x$3, x$4, x$5, m, _ref;
+ 0ÇÜ  Ç|	headerFileInfo.Ptr.prototype.Mode = function() {
+		var mode, _struct$2, fi, x, x$1, x$2, x$3, x$4, x$5, m, _ref;
 		mode = 0;
-		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
+		fi = (_struct$2 = this, new headerFileInfo.Ptr(_struct$2.h));
 		mode = (new os.FileMode((fi.h.Mode.low >>> 0))).Perm();
 		if (!((x = (x$1 = fi.h.Mode, new Go$Int64(x$1.high & 0, (x$1.low & 2048) >>> 0)), (x.high === 0 && x.low === 0)))) {
 			mode = (mode | 8388608) >>> 0;
@@ -334,13 +335,13 @@ $$
 		return mode;
 	};
 	headerFileInfo.prototype.Mode = function() { return this.go$val.Mode(); };
- 0Ç	 FileInfoHeaderÇ˘	FileInfoHeader = go$pkg.FileInfoHeader = function(fi, link) {
-		var fm, _struct, h, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
+ 0Ç	 FileInfoHeaderÇ		FileInfoHeader = go$pkg.FileInfoHeader = function(fi, link) {
+		var fm, _struct$2, h, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
 		if (go$interfaceIsEqual(fi, null)) {
 			return [(go$ptrType(Header)).nil, errors.New("tar: FileInfo is nil")];
 		}
 		fm = fi.Mode();
-		h = new Header.Ptr(fi.Name(), new Go$Int64(0, (new os.FileMode(fm)).Perm()), 0, 0, new Go$Int64(0, 0), (_struct = fi.ModTime(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)), 0, "", "", "", new Go$Int64(0, 0), new Go$Int64(0, 0), new time.Time.Ptr(), new time.Time.Ptr());
+		h = new Header.Ptr(fi.Name(), new Go$Int64(0, (new os.FileMode(fm)).Perm()), 0, 0, new Go$Int64(0, 0), (_struct$2 = fi.ModTime(), new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc)), 0, "", "", "", new Go$Int64(0, 0), new Go$Int64(0, 0), new time.Time.Ptr(), new time.Time.Ptr());
 		if ((new os.FileMode(fm)).IsRegular()) {
 			h.Mode = (x = h.Mode, new Go$Int64(x.high | 0, (x.low | 32768) >>> 0));
 			h.Typeflag = 48;
@@ -490,8 +491,8 @@ $$
 		return [hdr, tr.err];
 	};
 	Reader.prototype.Next = function() { return this.go$val.Next(); };
- 0Ç	Ω mergePAXÇ	´	mergePAX = function(hdr, headers) {
-		var _ref, _i, _keys, _entry, v, k, _ref$1, _tuple, uid, err, _tuple$1, gid, err$1, _tuple$2, _struct, t, err$2, _struct$1, _tuple$3, _struct$2, t$1, err$3, _struct$3, _tuple$4, _struct$4, t$2, err$4, _struct$5, _tuple$5, size, err$5;
+ 0Ç	« mergePAXÇ	µ	mergePAX = function(hdr, headers) {
+		var _ref, _i, _keys, _entry, v, k, _ref$1, _tuple, uid, err, _tuple$1, gid, err$1, _tuple$2, _struct$2, t, err$2, _struct$3, _tuple$3, _struct$4, t$1, err$3, _struct$5, _tuple$4, _struct$6, t$2, err$4, _struct$7, _tuple$5, size, err$5;
 		_ref = headers;
 		_i = 0;
 		_keys = go$keys(_ref);
@@ -521,23 +522,23 @@ $$
 				}
 				hdr.Gid = ((gid.low + ((gid.high >> 31) * 4294967296)) >> 0);
 			} else if (_ref$1 === "atime") {
-				_tuple$2 = parsePAXTime(v), t = (_struct = _tuple$2[0], new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)), err$2 = _tuple$2[1];
+				_tuple$2 = parsePAXTime(v), t = (_struct$2 = _tuple$2[0], new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc)), err$2 = _tuple$2[1];
 				if (!(go$interfaceIsEqual(err$2, null))) {
 					return err$2;
 				}
-				hdr.AccessTime = (_struct$1 = t, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+				hdr.AccessTime = (_struct$3 = t, new time.Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc));
 			} else if (_ref$1 === "mtime") {
-				_tuple$3 = parsePAXTime(v), t$1 = (_struct$2 = _tuple$3[0], new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc)), err$3 = _tuple$3[1];
+				_tuple$3 = parsePAXTime(v), t$1 = (_struct$4 = _tuple$3[0], new time.Time.Ptr(_struct$4.sec, _struct$4.nsec, _struct$4.loc)), err$3 = _tuple$3[1];
 				if (!(go$interfaceIsEqual(err$3, null))) {
 					return err$3;
 				}
-				hdr.ModTime = (_struct$3 = t$1, new time.Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc));
+				hdr.ModTime = (_struct$5 = t$1, new time.Time.Ptr(_struct$5.sec, _struct$5.nsec, _struct$5.loc));
 			} else if (_ref$1 === "ctime") {
-				_tuple$4 = parsePAXTime(v), t$2 = (_struct$4 = _tuple$4[0], new time.Time.Ptr(_struct$4.sec, _struct$4.nsec, _struct$4.loc)), err$4 = _tuple$4[1];
+				_tuple$4 = parsePAXTime(v), t$2 = (_struct$6 = _tuple$4[0], new time.Time.Ptr(_struct$6.sec, _struct$6.nsec, _struct$6.loc)), err$4 = _tuple$4[1];
 				if (!(go$interfaceIsEqual(err$4, null))) {
 					return err$4;
 				}
-				hdr.ChangeTime = (_struct$5 = t$2, new time.Time.Ptr(_struct$5.sec, _struct$5.nsec, _struct$5.loc));
+				hdr.ChangeTime = (_struct$7 = t$2, new time.Time.Ptr(_struct$7.sec, _struct$7.nsec, _struct$7.loc));
 			} else if (_ref$1 === "size") {
 				_tuple$5 = strconv.ParseInt(v, 10, 0), size = _tuple$5[0], err$5 = _tuple$5[1];
 				if (!(go$interfaceIsEqual(err$5, null))) {
@@ -549,8 +550,8 @@ $$
 		}
 		return null;
 	};
- 0ÇG parsePAXTimeÇ1	parsePAXTime = function(t) {
-		var buf, pos, _tuple, seconds, nanoseconds, err, _tuple$1, _tuple$2, nano_buf, _tuple$3, _struct, ts, _struct$1;
+ 0ÇQ parsePAXTimeÇ;	parsePAXTime = function(t) {
+		var buf, pos, _tuple, seconds, nanoseconds, err, _tuple$1, _tuple$2, nano_buf, _tuple$3, _struct$2, ts, _struct$3;
 		buf = new (go$sliceType(Go$Uint8))(go$stringToBytes(t));
 		pos = bytes.IndexByte(buf, 46);
 		_tuple = [new Go$Int64(0, 0), new Go$Int64(0, 0)], seconds = _tuple[0], nanoseconds = _tuple[1];
@@ -576,8 +577,8 @@ $$
 				return [new time.Time.Ptr(new Go$Int64(0, 0), 0, (go$ptrType(time.Location)).nil), err];
 			}
 		}
-		ts = (_struct = time.Unix(seconds, nanoseconds), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
-		return [(_struct$1 = ts, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)), null];
+		ts = (_struct$2 = time.Unix(seconds, nanoseconds), new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc));
+		return [(_struct$3 = ts, new time.Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc)), null];
 	};
  0Ç¸ parsePAXÇÍ	parsePAX = function(r) {
 		var _tuple, buf, err, headers, sp, _tuple$1, n, err$1, record, _tuple$2, eq, _tuple$3, key, value, _key;
@@ -668,8 +669,8 @@ $$
 		return (given.high === unsigned.high && given.low === unsigned.low) || (given.high === signed.high && given.low === signed.low);
 	};
 	Reader.prototype.verifyChecksum = function(header) { return this.go$val.verifyChecksum(header); };
- 0Ç◊  ÇÕ	Reader.Ptr.prototype.readHeader = function() {
-		var tr, header, _tuple, _tuple$1, hdr, s, v, v$1, x, v$2, x$1, v$3, v$4, v$5, _struct, v$6, _slice, _index, v$7, v$8, v$9, magic, format, _ref, _ref$1, v$10, v$11, v$12, devmajor, v$13, devminor, prefix, _ref$2, v$14, v$15, v$16, _struct$1, v$17, _struct$2, x$2, x$3;
+ 0Ç·  Ç◊	Reader.Ptr.prototype.readHeader = function() {
+		var tr, header, _tuple, _tuple$1, hdr, s, v, v$1, x, v$2, x$1, v$3, v$4, v$5, _struct$2, v$6, _slice, _index, v$7, v$8, v$9, magic, format, _ref, _ref$1, v$10, v$11, v$12, devmajor, v$13, devminor, prefix, _ref$2, v$14, v$15, v$16, _struct$3, v$17, _struct$4, x$2, x$3;
 		tr = this;
 		header = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
 		if (_tuple = io.ReadFull(tr.r, header), tr.err = _tuple[1], !(go$interfaceIsEqual(tr.err, null))) {
@@ -697,7 +698,7 @@ $$
 		hdr.Uid = ((x = tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$2) { s = v$2; })).next(8)), x.low + ((x.high >> 31) * 4294967296)) >> 0);
 		hdr.Gid = ((x$1 = tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$3) { s = v$3; })).next(8)), x$1.low + ((x$1.high >> 31) * 4294967296)) >> 0);
 		hdr.Size = tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$4) { s = v$4; })).next(12));
-		hdr.ModTime = (_struct = time.Unix(tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$5) { s = v$5; })).next(12)), new Go$Int64(0, 0)), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		hdr.ModTime = (_struct$2 = time.Unix(tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$5) { s = v$5; })).next(12)), new Go$Int64(0, 0)), new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc));
 		(new (go$ptrType(slicer))(function() { return s; }, function(v$6) { s = v$6; })).next(8);
 		hdr.Typeflag = (_slice = (new (go$ptrType(slicer))(function() { return s; }, function(v$7) { s = v$7; })).next(1), _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 		hdr.Linkname = cString((new (go$ptrType(slicer))(function() { return s; }, function(v$8) { s = v$8; })).next(100));
@@ -729,8 +730,8 @@ $$
 				prefix = cString((new (go$ptrType(slicer))(function() { return s; }, function(v$14) { s = v$14; })).next(155));
 			} else if (_ref$2 === "star") {
 				prefix = cString((new (go$ptrType(slicer))(function() { return s; }, function(v$15) { s = v$15; })).next(131));
-				hdr.AccessTime = (_struct$1 = time.Unix(tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$16) { s = v$16; })).next(12)), new Go$Int64(0, 0)), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
-				hdr.ChangeTime = (_struct$2 = time.Unix(tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$17) { s = v$17; })).next(12)), new Go$Int64(0, 0)), new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc));
+				hdr.AccessTime = (_struct$3 = time.Unix(tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$16) { s = v$16; })).next(12)), new Go$Int64(0, 0)), new time.Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc));
+				hdr.ChangeTime = (_struct$4 = time.Unix(tr.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$17) { s = v$17; })).next(12)), new Go$Int64(0, 0)), new time.Time.Ptr(_struct$4.sec, _struct$4.nsec, _struct$4.loc));
 			}
 			if (prefix.length > 0) {
 				hdr.Name = prefix + "/" + hdr.Name;
@@ -766,24 +767,24 @@ $$
 		return [n, err];
 	};
 	Reader.prototype.Read = function(b) { return this.go$val.Read(b); };
- 0Å⁄ 	statAtimeÅ»	statAtime = function(st) {
-		var _tuple, _struct;
-		return (_struct = (_tuple = st.Atimespec.Unix(), time.Unix(_tuple[0], _tuple[1])), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+ 0Å‰ 	statAtimeÅ“	statAtime = function(st) {
+		var _tuple, _struct$2;
+		return (_struct$2 = (_tuple = st.Atimespec.Unix(), time.Unix(_tuple[0], _tuple[1])), new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc));
 	};
- 0Å⁄ 	statCtimeÅ»	statCtime = function(st) {
-		var _tuple, _struct;
-		return (_struct = (_tuple = st.Ctimespec.Unix(), time.Unix(_tuple[0], _tuple[1])), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+ 0Å‰ 	statCtimeÅ“	statCtime = function(st) {
+		var _tuple, _struct$2;
+		return (_struct$2 = (_tuple = st.Ctimespec.Unix(), time.Unix(_tuple[0], _tuple[1])), new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc));
 	};
- 0ÇY statUnixÇG	statUnix = function(fi, h) {
-		var _tuple, x, sys, ok, _struct, _struct$1;
+ 0Çc statUnixÇQ	statUnix = function(fi, h) {
+		var _tuple, x, sys, ok, _struct$2, _struct$3;
 		_tuple = (x = fi.Sys(), (x !== null && x.constructor === (go$ptrType(syscall.Stat_t)) ? [x.go$val, true] : [(go$ptrType(syscall.Stat_t)).nil, false])), sys = _tuple[0], ok = _tuple[1];
 		if (!ok) {
 			return null;
 		}
 		h.Uid = (sys.Uid >> 0);
 		h.Gid = (sys.Gid >> 0);
-		h.AccessTime = (_struct = statAtime(sys), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
-		h.ChangeTime = (_struct$1 = statCtime(sys), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
+		h.AccessTime = (_struct$2 = statAtime(sys), new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc));
+		h.ChangeTime = (_struct$3 = statCtime(sys), new time.Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc));
 		return null;
 	};
  0Å£ 	NewWriterÅë	NewWriter = go$pkg.NewWriter = function(w) {
@@ -872,8 +873,8 @@ $$
 		return tw.writeHeader(hdr, true);
 	};
 	Writer.prototype.WriteHeader = function(hdr) { return this.go$val.WriteHeader(hdr); };
- 0Ç-  Ç#	Writer.Ptr.prototype.writeHeader = function(hdr, allowPax) {
-		var tw, paxHeaders, header, s, v, pathHeaderBytes, modTime, _struct, _struct$1, v$1, v$2, v$3, v$4, v$5, v$6, _slice, _index, v$7, v$8, v$9, v$10, v$11, v$12, v$13, v$14, prefixHeaderBytes, _tuple, _entry, paxPathUsed, suffix, prefix, err, _tuple$1, _tuple$2, chksum, _slice$1, _index$1, err$1, x, _tuple$3;
+ 0Ç7  Ç-	Writer.Ptr.prototype.writeHeader = function(hdr, allowPax) {
+		var tw, paxHeaders, header, s, v, pathHeaderBytes, modTime, _struct$2, _struct$3, v$1, v$2, v$3, v$4, v$5, v$6, _slice, _index, v$7, v$8, v$9, v$10, v$11, v$12, v$13, v$14, prefixHeaderBytes, _tuple, _entry, paxPathUsed, suffix, prefix, err, _tuple$1, _tuple$2, chksum, _slice$1, _index$1, err$1, x, _tuple$3;
 		tw = this;
 		if (tw.closed) {
 			return go$pkg.ErrWriteAfterClose;
@@ -890,7 +891,7 @@ $$
 		pathHeaderBytes = (new (go$ptrType(slicer))(function() { return s; }, function(v) { s = v; })).next(100);
 		tw.cString(pathHeaderBytes, hdr.Name, true, "path", paxHeaders);
 		modTime = new Go$Int64(0, 0);
-		if (!hdr.ModTime.Before((_struct = minTime, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc))) && !hdr.ModTime.After((_struct$1 = maxTime, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)))) {
+		if (!hdr.ModTime.Before((_struct$2 = minTime, new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc))) && !hdr.ModTime.After((_struct$3 = maxTime, new time.Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc)))) {
 			modTime = hdr.ModTime.Unix();
 		}
 		tw.octal((new (go$ptrType(slicer))(function() { return s; }, function(v$1) { s = v$1; })).next(8), hdr.Mode);
@@ -971,12 +972,12 @@ $$
 		return [prefix, suffix, err];
 	};
 	Writer.prototype.splitUSTARLongName = function(name) { return this.go$val.splitUSTARLongName(name); };
- 0ÇÍ  Ç‡	Writer.Ptr.prototype.writePAXHeader = function(hdr, paxHeaders) {
-		var tw, ext, _struct, pid, _tuple, dir, file, fullName, ascii, buf, _ref, _i, _keys, _entry, v, k, err, err$1, _tuple$1, err$2;
+ 0ÇÙ  ÇÍ	Writer.Ptr.prototype.writePAXHeader = function(hdr, paxHeaders) {
+		var tw, ext, _struct$2, pid, _tuple, dir, file, fullName, ascii, buf, _ref, _i, _keys, _entry, v, k, err, err$1, _tuple$1, err$2;
 		tw = this;
 		ext = new Header.Ptr();
 		ext.Typeflag = 120;
-		ext.ModTime = (_struct = hdr.ModTime, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
+		ext.ModTime = (_struct$2 = hdr.ModTime, new time.Time.Ptr(_struct$2.sec, _struct$2.nsec, _struct$2.loc));
 		pid = os.Getpid();
 		_tuple = path.Split(hdr.Name), dir = _tuple[0], file = _tuple[1];
 		fullName = path.Join(new (go$sliceType(Go$String))([dir, fmt.Sprintf("PaxHeaders.%d", new (go$sliceType(go$emptyInterface))([new Go$Int(pid)])), file]));

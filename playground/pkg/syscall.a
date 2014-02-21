@@ -1,4 +1,4 @@
-0Éê¢syscallÉ%:package syscall
+0Éê¿syscallÉ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -1958,7 +1958,8 @@ func (? *@"sync".Mutex) @"sync".Lock() ()
 func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
-0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$10ÉjÏ0Ç£ ivalueÇ'	ivalue = go$pkg.ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
+0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$10Ék
+0Ç£ ivalueÇ'	ivalue = go$pkg.ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.value = value_ !== undefined ? value_ : 0;
@@ -2564,8 +2565,17 @@ BpfProgramÇî	BpfProgram = go$pkg.BpfProgram = go$newType(0, "Struct", "syscall
 		this.Ospeed = Ospeed_ !== undefined ? Ospeed_ : new Go$Uint64(0, 0);
 	});
 Ç*		Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-0- envOnce envOnce = new sync.Once.Ptr();00 envLock !envLock = new sync.RWMutex.Ptr();0 env env = false;01 envs %envs = (go$sliceType(Go$String)).nil;01   )go$pkg.ForkLock = new sync.RWMutex.Ptr();06 zeroProcAttr "zeroProcAttr = new ProcAttr.Ptr();0? zeroSysProcAttr (zeroSysProcAttr = new SysProcAttr.Ptr();0 _zero 
-_zero = 0;0 mapper  0    0    0    0)   !go$pkg.SocketDisableIPv6 = false;0* ioSync ioSync = new Go$Int64(0, 0);0 errors  0 signals  0V   N		mapper = new mmapper.Ptr(new sync.Mutex.Ptr(), new Go$Map(), mmap, munmap);
+00 envOnce !		envOnce = new sync.Once.Ptr();
+03 envLock $		envLock = new sync.RWMutex.Ptr();
+0 env 		env = false;
+04 envs (		envs = (go$sliceType(Go$String)).nil;
+04   ,		go$pkg.ForkLock = new sync.RWMutex.Ptr();
+09 zeroProcAttr %		zeroProcAttr = new ProcAttr.Ptr();
+0B zeroSysProcAttr +		zeroSysProcAttr = new SysProcAttr.Ptr();
+0 _zero 		_zero = 0;
+0 mapper  0    0    0    0,   $		go$pkg.SocketDisableIPv6 = false;
+0- ioSync 		ioSync = new Go$Int64(0, 0);
+0 errors  0 signals  0V   N		mapper = new mmapper.Ptr(new sync.Mutex.Ptr(), new Go$Map(), mmap, munmap);
 0   		go$pkg.Stdin = 0;
 0   		go$pkg.Stdout = 1;
 0   		go$pkg.Stderr = 2;
