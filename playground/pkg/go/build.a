@@ -1,4 +1,4 @@
-0ƒ-<go/build‚<#package build
+0ƒ,êgo/build‚<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -212,7 +212,7 @@ $$
 0‚@runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc	go/parserloggo/build0‚@0bytesbytes0errorserrors0
 fmtfmt0go/astast0go/docdoc0	go/parserparser0go/tokentoken0ioio0	io/ioutilioutil0
-loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio0‚î}0‚ö Context‚$	Context = go$pkg.Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
+loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio0‚î+0‚ö Context‚$	Context = go$pkg.Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
 		this.go$val = this;
 		this.GOARCH = GOARCH_ !== undefined ? GOARCH_ : "";
 		this.GOOS = GOOS_ !== undefined ? GOOS_ : "";
@@ -461,8 +461,8 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 		return all;
 	};
 	Context.prototype.SrcDirs = function() { return this.go$val.SrcDirs(); };
- 0‚U defaultContext‚=	defaultContext = function() {
-		var c, _ref, _entry, _struct$1;
+ 0‚/ defaultContext‚	defaultContext = function() {
+		var c, _ref, _entry, _struct;
 		c = new Context.Ptr();
 		c.GOARCH = envOr("GOARCH", "js");
 		c.GOOS = envOr("GOOS", "darwin");
@@ -482,7 +482,7 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 			}
 			c.CgoEnabled = false;
 		} }
-		return (_struct$1 = c, new Context.Ptr(_struct$1.GOARCH, _struct$1.GOOS, _struct$1.GOROOT, _struct$1.GOPATH, _struct$1.CgoEnabled, _struct$1.UseAllFiles, _struct$1.Compiler, _struct$1.BuildTags, _struct$1.ReleaseTags, _struct$1.InstallSuffix, _struct$1.JoinPath, _struct$1.SplitPathList, _struct$1.IsAbsPath, _struct$1.IsDir, _struct$1.HasSubdir, _struct$1.ReadDir, _struct$1.OpenFile));
+		return (_struct = c, new Context.Ptr(_struct.GOARCH, _struct.GOOS, _struct.GOROOT, _struct.GOPATH, _struct.CgoEnabled, _struct.UseAllFiles, _struct.Compiler, _struct.BuildTags, _struct.ReleaseTags, _struct.InstallSuffix, _struct.JoinPath, _struct.SplitPathList, _struct.IsAbsPath, _struct.IsDir, _struct.HasSubdir, _struct.ReadDir, _struct.OpenFile));
 	};
  0 envOrt	envOr = function(name, def) {
 		var s;
@@ -518,8 +518,8 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 		}
 		return name.substring(i);
 	};
- 0‚B*  ‚B 	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
-		var go$this = this, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, ok, _tuple$1, sub, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, ok$1, _tuple$2, sub$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, _slice$4, _index$4, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, _slice$5, _index$5, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, _slice$6, _index$6, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _struct$1, _key$1, _entry$1, _struct$2, _key$2, _entry$2, _struct$3, _key$3, cg, err$3, _key$4, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
+ 0‚B  ‚B	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
+		var go$this = this, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, ok, _tuple$1, sub, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, ok$1, _tuple$2, sub$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, _slice$4, _index$4, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, _slice$5, _index$5, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, _slice$6, _index$6, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$3, _key$3, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		ctxt = go$this;
 		p = new Package.Ptr("", "", "", path$1, "", "", "", "", false, "", (go$sliceType(Go$String)).nil, "", (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false);
@@ -776,11 +776,11 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 						log.Panicf("%s: parser returned invalid quoted string: <%s>", new (go$sliceType(go$emptyInterface))([new Go$String(filename), new Go$String(quoted)]));
 					}
 					if (isXTest) {
-						_key$1 = path$2, (xTestImported || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: go$append((_entry = xTestImported[path$2], _entry !== undefined ? _entry.v : (go$sliceType(token.Position)).nil), (_struct$1 = fset.Position(spec.Pos()), new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column))) };
+						_key = path$2, (xTestImported || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: go$append((_entry = xTestImported[path$2], _entry !== undefined ? _entry.v : (go$sliceType(token.Position)).nil), (_struct = fset.Position(spec.Pos()), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column))) };
 					} else if (isTest) {
-						_key$2 = path$2, (testImported || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: go$append((_entry$1 = testImported[path$2], _entry$1 !== undefined ? _entry$1.v : (go$sliceType(token.Position)).nil), (_struct$2 = fset.Position(spec.Pos()), new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column))) };
+						_key$1 = path$2, (testImported || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: go$append((_entry$1 = testImported[path$2], _entry$1 !== undefined ? _entry$1.v : (go$sliceType(token.Position)).nil), (_struct$1 = fset.Position(spec.Pos()), new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column))) };
 					} else {
-						_key$3 = path$2, (imported || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: go$append((_entry$2 = imported[path$2], _entry$2 !== undefined ? _entry$2.v : (go$sliceType(token.Position)).nil), (_struct$3 = fset.Position(spec.Pos()), new token.Position.Ptr(_struct$3.Filename, _struct$3.Offset, _struct$3.Line, _struct$3.Column))) };
+						_key$2 = path$2, (imported || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: go$append((_entry$2 = imported[path$2], _entry$2 !== undefined ? _entry$2.v : (go$sliceType(token.Position)).nil), (_struct$2 = fset.Position(spec.Pos()), new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column))) };
 					}
 					if (path$2 === "C") {
 						if (isTest) {
@@ -802,7 +802,7 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 				_i$4++;
 			}
 			if (isCgo) {
-				_key$4 = "cgo", (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$4] = { k: _key$4, v: true };
+				_key$3 = "cgo", (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: true };
 				if (ctxt.CgoEnabled) {
 					p.CgoFiles = go$append(p.CgoFiles, name);
 				} else {
@@ -1120,12 +1120,12 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 		_tuple = [args, err], r = _tuple[0], err = _tuple[1];
 		return [r, err];
 	};
- 0‚  ‚	Context.Ptr.prototype.match = function(name, allTags) {
-		var ctxt, _key$1, i, ok1, ok2, _key$2, _ref, _i, _rune, c, _ref$1, _i$1, _slice, _index, tag, _ref$2, _i$2, _slice$1, _index$1, tag$1;
+ 0‚  ‚	Context.Ptr.prototype.match = function(name, allTags) {
+		var ctxt, _key, i, ok1, ok2, _key$1, _ref, _i, _rune, c, _ref$1, _i$1, _slice, _index, tag, _ref$2, _i$2, _slice$1, _index$1, tag$1;
 		ctxt = this;
 		if (name === "") {
 			if (!(allTags === false)) {
-				_key$1 = name, (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
+				_key = name, (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
 			}
 			return false;
 		}
@@ -1141,7 +1141,7 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 			return name.length > 1 && !ctxt.match(name.substring(1), allTags);
 		}
 		if (!(allTags === false)) {
-			_key$2 = name, (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: true };
+			_key$1 = name, (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
 		}
 		_ref = name;
 		_i = 0;
@@ -1180,8 +1180,8 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 		return false;
 	};
 	Context.prototype.match = function(name, allTags) { return this.go$val.match(name, allTags); };
- 0‚B  ‚8	Context.Ptr.prototype.goodOSArchFile = function(name, allTags) {
-		var ctxt, dot, l, n, _slice, _index, n$1, _slice$1, _index$1, _entry, _slice$2, _index$2, _entry$1, _key$1, _slice$3, _index$3, _key$2, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _entry$2, _key$3, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _entry$3, _key$4, _slice$11, _index$11, _slice$12, _index$12;
+ 0‚:  ‚0	Context.Ptr.prototype.goodOSArchFile = function(name, allTags) {
+		var ctxt, dot, l, n, _slice, _index, n$1, _slice$1, _index$1, _entry, _slice$2, _index$2, _entry$1, _key, _slice$3, _index$3, _key$1, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _entry$2, _key$2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _entry$3, _key$3, _slice$11, _index$11, _slice$12, _index$12;
 		ctxt = this;
 		if (dot = strings.Index(name, "."), !((dot === -1))) {
 			name = name.substring(0, dot);
@@ -1193,20 +1193,20 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 		n$1 = l.length;
 		if (n$1 >= 2 && (_entry = knownOS[(_slice$1 = l, _index$1 = (n$1 - 2 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _entry !== undefined ? _entry.v : false) && (_entry$1 = knownArch[(_slice$2 = l, _index$2 = (n$1 - 1 >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"))], _entry$1 !== undefined ? _entry$1.v : false)) {
 			if (!(allTags === false)) {
-				_key$1 = (_slice$3 = l, _index$3 = (n$1 - 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
-				_key$2 = (_slice$4 = l, _index$4 = (n$1 - 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: true };
+				_key = (_slice$3 = l, _index$3 = (n$1 - 2 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
+				_key$1 = (_slice$4 = l, _index$4 = (n$1 - 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
 			}
 			return (_slice$5 = l, _index$5 = (n$1 - 2 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")) === ctxt.GOOS && (_slice$6 = l, _index$6 = (n$1 - 1 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range")) === ctxt.GOARCH;
 		}
 		if (n$1 >= 1 && (_entry$2 = knownOS[(_slice$7 = l, _index$7 = (n$1 - 1 >> 0), (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range"))], _entry$2 !== undefined ? _entry$2.v : false)) {
 			if (!(allTags === false)) {
-				_key$3 = (_slice$8 = l, _index$8 = (n$1 - 1 >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: true };
+				_key$2 = (_slice$8 = l, _index$8 = (n$1 - 1 >> 0), (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: true };
 			}
 			return (_slice$9 = l, _index$9 = (n$1 - 1 >> 0), (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) === ctxt.GOOS;
 		}
 		if (n$1 >= 1 && (_entry$3 = knownArch[(_slice$10 = l, _index$10 = (n$1 - 1 >> 0), (_index$10 >= 0 && _index$10 < _slice$10.length) ? _slice$10.array[_slice$10.offset + _index$10] : go$throwRuntimeError("index out of range"))], _entry$3 !== undefined ? _entry$3.v : false)) {
 			if (!(allTags === false)) {
-				_key$4 = (_slice$11 = l, _index$11 = (n$1 - 1 >> 0), (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$4] = { k: _key$4, v: true };
+				_key$3 = (_slice$11 = l, _index$11 = (n$1 - 1 >> 0), (_index$11 >= 0 && _index$11 < _slice$11.length) ? _slice$11.array[_slice$11.offset + _index$11] : go$throwRuntimeError("index out of range")), (allTags || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: true };
 			}
 			return (_slice$12 = l, _index$12 = (n$1 - 1 >> 0), (_index$12 >= 0 && _index$12 < _slice$12.length) ? _slice$12.array[_slice$12.offset + _index$12] : go$throwRuntimeError("index out of range")) === ctxt.GOARCH;
 		}
@@ -1424,19 +1424,19 @@ slashslash  0 	safeBytes  0 knownOS  0 	knownArch  0    0
 		}
 		return [r.buf, r.err];
 	};
- 0    0‚¢   ‚˜		var _ref, _i, _slice, _index, v, _key$1, _ref$1, _i$1, _slice$1, _index$1, v$1, _key$2;
+ 0    0‚š   ‚		var _ref, _i, _slice, _index, v, _key, _ref$1, _i$1, _slice$1, _index$1, v$1, _key$1;
 		_ref = strings.Fields("darwin dragonfly freebsd linux netbsd openbsd plan9 windows ");
 		_i = 0;
 		while (_i < _ref.length) {
 			v = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			_key$1 = v, (knownOS || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
+			_key = v, (knownOS || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
 			_i++;
 		}
 		_ref$1 = strings.Fields("386 amd64 arm ");
 		_i$1 = 0;
 		while (_i$1 < _ref$1.length) {
 			v$1 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			_key$2 = v$1, (knownArch || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: true };
+			_key$1 = v$1, (knownArch || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
 			_i$1++;
 		}
 0 

@@ -1,4 +1,4 @@
-0É∫Ttext/template/parseÇ2Wpackage parse
+0É∫Ltext/template/parseÇ2Wpackage parse
 import list "container/list"
 import fmt "fmt"
 import strings "strings"
@@ -191,7 +191,7 @@ func (? *@"container/list".Element) @"container/list".Next() (? *@"container/lis
 func (? *@"container/list".Element) @"container/list".Prev() (? *@"container/list".Element)
 $$
 0Å§runtimeerrorssync/atomicsynciounicodeunicode/utf8bytescontainer/listmathsyscalltimeosstrconvreflectfmtstringstext/template/parse0Åö0container/listlist0
-fmtfmt0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0strconvstrconv0runtimeruntime0ÉÜô0ÇA itemÇ	item = go$pkg.item = go$newType(0, "Struct", "parse.item", "item", "text/template/parse", function(typ_, pos_, val_) {
+fmtfmt0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0strconvstrconv0runtimeruntime0ÉÜë0ÇA itemÇ	item = go$pkg.item = go$newType(0, "Struct", "parse.item", "item", "text/template/parse", function(typ_, pos_, val_) {
 		this.go$val = this;
 		this.typ = typ_ !== undefined ? typ_ : 0;
 		this.pos = pos_ !== undefined ? pos_ : 0;
@@ -1804,12 +1804,12 @@ newCommandb	newCommand = function(pos) {
 		}
 	};
 	Tree.prototype.Parse = function(text, leftDelim, rightDelim, treeSet, funcs) { return this.go$val.Parse(text, leftDelim, rightDelim, treeSet, funcs); };
- 0Ç|  Çr	Tree.Ptr.prototype.add = function(treeSet) {
-		var t, _entry, tree, _key$1;
+ 0Çt  Çj	Tree.Ptr.prototype.add = function(treeSet) {
+		var t, _entry, tree, _key;
 		t = this;
 		tree = (_entry = treeSet[t.Name], _entry !== undefined ? _entry.v : (go$ptrType(Tree)).nil);
 		if (tree === (go$ptrType(Tree)).nil || IsEmptyTree(tree.Root)) {
-			_key$1 = t.Name, (treeSet || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: t };
+			_key = t.Name, (treeSet || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: t };
 			return;
 		}
 		if (!IsEmptyTree(t.Root)) {

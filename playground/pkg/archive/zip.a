@@ -1,4 +1,4 @@
-0É:∏archive/zipÇ;package zip
+0É:êarchive/zipÇ;package zip
 import bufio "bufio"
 import binary "encoding/binary"
 import errors "errors"
@@ -228,7 +228,7 @@ type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
 $$
 0ÅÏruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flateencoding/binaryhash
 hash/crc32stringspath/filepath	io/ioutilpatharchive/zip0ÅÃ0bufiobufio0encoding/binarybinary0errorserrors0hashhash0
-hash/crc32crc320ioio0osos0compress/flateflate0	io/ioutilioutil0syncsync0pathpath0timetime0Ç˝Œ0ÇQ ReaderÇJ	Reader = go$pkg.Reader = go$newType(0, "Struct", "zip.Reader", "Reader", "archive/zip", function(r_, File_, Comment_) {
+hash/crc32crc320ioio0osos0compress/flateflate0	io/ioutilioutil0syncsync0pathpath0timetime0Ç˝¶0ÇQ ReaderÇJ	Reader = go$pkg.Reader = go$newType(0, "Struct", "zip.Reader", "Reader", "archive/zip", function(r_, File_, Comment_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.File = File_ !== undefined ? File_ : (go$sliceType((go$ptrType(File)))).nil;
@@ -410,8 +410,8 @@ fileWriterÇu	fileWriter = go$pkg.fileWriter = go$newType(0, "Struct", "zip.fil
 		}) }, _key = 8, _map[_key] = { k: _key, v: (function(w) {
 			return flate.NewWriter(w, 5);
 		}) }, _map);
-0Å”   Å 		var _map$1, _key$1;
-		decompressors = (_map$1 = new Go$Map(), _key$1 = 0, _map$1[_key$1] = { k: _key$1, v: ioutil.NopCloser }, _key$1 = 8, _map$1[_key$1] = { k: _key$1, v: flate.NewReader }, _map$1);
+0Åª   Å≤		var _map, _key;
+		decompressors = (_map = new Go$Map(), _key = 0, _map[_key] = { k: _key, v: ioutil.NopCloser }, _key = 8, _map[_key] = { k: _key, v: flate.NewReader }, _map);
 0ÅÈ  Å‡	File.Ptr.prototype.hasDataDescriptor = function() {
 		var f;
 		f = this;
@@ -790,8 +790,8 @@ OpenReaderÇu	OpenReader = go$pkg.OpenReader = function(name) {
 		return v;
 	};
 	readBuf.prototype.uint64 = function() { var obj = this; return (new (go$ptrType(readBuf))(function() { return obj; }, null)).uint64(); };
- 0Ç∑ RegisterDecompressorÇô	RegisterDecompressor = go$pkg.RegisterDecompressor = function(method, d) {
-		var ok, _tuple, _entry, _key$2;
+ 0ÇØ RegisterDecompressorÇë	RegisterDecompressor = go$pkg.RegisterDecompressor = function(method, d) {
+		var ok, _tuple, _entry, _key;
 		var go$deferred = [];
 		try {
 			mu.Lock();
@@ -799,15 +799,15 @@ OpenReaderÇu	OpenReader = go$pkg.OpenReader = function(name) {
 			if (_tuple = (_entry = decompressors[method], _entry !== undefined ? [_entry.v, true] : [go$throwNilPointerError, false]), ok = _tuple[1], ok) {
 				throw go$panic(new Go$String("decompressor already registered"));
 			}
-			_key$2 = method, (decompressors || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: d };
+			_key = method, (decompressors || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: d };
 		} catch(go$err) {
 			go$pushErr(go$err);
 		} finally {
 			go$callDeferred(go$deferred);
 		}
 	};
- 0Ç± RegisterCompressorÇï	RegisterCompressor = go$pkg.RegisterCompressor = function(method, comp) {
-		var ok, _tuple, _entry, _key$2;
+ 0Ç© RegisterCompressorÇç	RegisterCompressor = go$pkg.RegisterCompressor = function(method, comp) {
+		var ok, _tuple, _entry, _key;
 		var go$deferred = [];
 		try {
 			mu.Lock();
@@ -815,7 +815,7 @@ OpenReaderÇu	OpenReader = go$pkg.OpenReader = function(name) {
 			if (_tuple = (_entry = compressors[method], _entry !== undefined ? [_entry.v, true] : [go$throwNilPointerError, false]), ok = _tuple[1], ok) {
 				throw go$panic(new Go$String("compressor already registered"));
 			}
-			_key$2 = method, (compressors || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: comp };
+			_key = method, (compressors || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: comp };
 		} catch(go$err) {
 			go$pushErr(go$err);
 		} finally {
