@@ -1,4 +1,4 @@
-0Éª\text/template/parseÇ2Wpackage parse
+0É∫Ttext/template/parseÇ2Wpackage parse
 import list "container/list"
 import fmt "fmt"
 import strings "strings"
@@ -191,22 +191,19 @@ func (? *@"container/list".Element) @"container/list".Next() (? *@"container/lis
 func (? *@"container/list".Element) @"container/list".Prev() (? *@"container/list".Element)
 $$
 0Å§runtimeerrorssync/atomicsynciounicodeunicode/utf8bytescontainer/listmathsyscalltimeosstrconvreflectfmtstringstext/template/parse0Åö0container/listlist0
-fmtfmt0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0strconvstrconv0runtimeruntimeÇîÑ	var item;
-	item = go$newType(0, "Struct", "parse.item", "item", "text/template/parse", function(typ_, pos_, val_) {
+fmtfmt0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0strconvstrconv0runtimeruntime0ÉÜô0ÇA itemÇ	item = go$pkg.item = go$newType(0, "Struct", "parse.item", "item", "text/template/parse", function(typ_, pos_, val_) {
 		this.go$val = this;
 		this.typ = typ_ !== undefined ? typ_ : 0;
 		this.pos = pos_ !== undefined ? pos_ : 0;
 		this.val = val_ !== undefined ? val_ : "";
 	});
-	go$pkg.item = item;
-	var itemType;
-	itemType = go$newType(4, "Int", "parse.itemType", "itemType", "text/template/parse", null);
-	go$pkg.itemType = itemType;
-	var stateFn;
-	stateFn = go$newType(0, "Func", "parse.stateFn", "stateFn", "text/template/parse", null);
-	go$pkg.stateFn = stateFn;
-	var lexer;
-	lexer = go$newType(0, "Struct", "parse.lexer", "lexer", "text/template/parse", function(name_, input_, leftDelim_, rightDelim_, state_, pos_, start_, width_, lastPos_, items_, parenDepth_) {
+Ç		item.init([["typ", "text/template/parse", itemType, ""], ["pos", "text/template/parse", Pos, ""], ["val", "text/template/parse", Go$String, ""]]);
+		item.methods = [["String", "", [], [Go$String], false]];
+		(go$ptrType(item)).methods = [["String", "", [], [Go$String], false]];
+0 itemTypeo	itemType = go$pkg.itemType = go$newType(4, "Int", "parse.itemType", "itemType", "text/template/parse", null);
+ 0Å¥ stateFnl	stateFn = go$pkg.stateFn = go$newType(0, "Func", "parse.stateFn", "stateFn", "text/template/parse", null);
+9		stateFn.init([(go$ptrType(lexer))], [stateFn], false);
+0Çß lexerÇk	lexer = go$pkg.lexer = go$newType(0, "Struct", "parse.lexer", "lexer", "text/template/parse", function(name_, input_, leftDelim_, rightDelim_, state_, pos_, start_, width_, lastPos_, items_, parenDepth_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : "";
 		this.input = input_ !== undefined ? input_ : "";
@@ -220,18 +217,17 @@ $$
 		this.items = items_ !== undefined ? items_ : (go$ptrType(list.List)).nil;
 		this.parenDepth = parenDepth_ !== undefined ? parenDepth_ : 0;
 	});
-	go$pkg.lexer = lexer;
-	var Node;
-	Node = go$newType(0, "Interface", "parse.Node", "Node", "text/template/parse", null);
-	go$pkg.Node = Node;
-	var NodeType;
-	NodeType = go$newType(4, "Int", "parse.NodeType", "NodeType", "text/template/parse", null);
-	go$pkg.NodeType = NodeType;
-	var Pos;
-	Pos = go$newType(4, "Int", "parse.Pos", "Pos", "text/template/parse", null);
-	go$pkg.Pos = Pos;
-	var ListNode;
-	ListNode = go$newType(0, "Struct", "parse.ListNode", "ListNode", "text/template/parse", function(NodeType_, Pos_, Nodes_) {
+Ç+		lexer.init([["name", "text/template/parse", Go$String, ""], ["input", "text/template/parse", Go$String, ""], ["leftDelim", "text/template/parse", Go$String, ""], ["rightDelim", "text/template/parse", Go$String, ""], ["state", "text/template/parse", stateFn, ""], ["pos", "text/template/parse", Pos, ""], ["start", "text/template/parse", Pos, ""], ["width", "text/template/parse", Pos, ""], ["lastPos", "text/template/parse", Pos, ""], ["items", "text/template/parse", (go$ptrType(list.List)), ""], ["parenDepth", "text/template/parse", Go$Int, ""]]);
+		(go$ptrType(lexer)).methods = [["accept", "text/template/parse", [Go$String], [Go$Bool], false], ["acceptRun", "text/template/parse", [Go$String], [], false], ["atTerminator", "text/template/parse", [], [Go$Bool], false], ["backup", "text/template/parse", [], [], false], ["emit", "text/template/parse", [itemType], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [stateFn], true], ["ignore", "text/template/parse", [], [], false], ["lineNumber", "text/template/parse", [], [Go$Int], false], ["next", "text/template/parse", [], [Go$Int32], false], ["nextItem", "text/template/parse", [], [item], false], ["peek", "text/template/parse", [], [Go$Int32], false], ["scanNumber", "text/template/parse", [], [Go$Bool], false]];
+0Çï Nodee	Node = go$pkg.Node = go$newType(0, "Interface", "parse.Node", "Node", "text/template/parse", null);
+Ç"		Node.init([["Copy", "", (go$funcType([], [Node], false))], ["Position", "", (go$funcType([], [Pos], false))], ["String", "", (go$funcType([], [Go$String], false))], ["Type", "", (go$funcType([], [NodeType], false))], ["unexported", "text/template/parse", (go$funcType([], [], false))]]);
+0Ç NodeTypeo	NodeType = go$pkg.NodeType = go$newType(4, "Int", "parse.NodeType", "NodeType", "text/template/parse", null);
+ÅÜ		NodeType.methods = [["Type", "", [], [NodeType], false]];
+		(go$ptrType(NodeType)).methods = [["Type", "", [], [NodeType], false]];
+0ÇM Pos[	Pos = go$pkg.Pos = go$newType(4, "Int", "parse.Pos", "Pos", "text/template/parse", null);
+ÅÊ		Pos.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(Pos)).methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
+0Çπ ListNodeÇN	ListNode = go$pkg.ListNode = go$newType(0, "Struct", "parse.ListNode", "ListNode", "text/template/parse", function(NodeType_, Pos_, Nodes_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -243,9 +239,10 @@ $$
 	ListNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	ListNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	ListNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.ListNode = ListNode;
-	var TextNode;
-	TextNode = go$newType(0, "Struct", "parse.TextNode", "TextNode", "text/template/parse", function(NodeType_, Pos_, Text_) {
+ÇW		ListNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Nodes", "", (go$sliceType(Node)), ""]]);
+		ListNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(ListNode)).methods = [["Copy", "", [], [Node], false], ["CopyList", "", [], [(go$ptrType(ListNode))], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["append", "text/template/parse", [Node], [], false], ["unexported", "text/template/parse", [], [], false]];
+0ÇO TextNodeÇN	TextNode = go$pkg.TextNode = go$newType(0, "Struct", "parse.TextNode", "TextNode", "text/template/parse", function(NodeType_, Pos_, Text_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -257,9 +254,10 @@ $$
 	TextNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	TextNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	TextNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.TextNode = TextNode;
-	var PipeNode;
-	PipeNode = go$newType(0, "Struct", "parse.PipeNode", "PipeNode", "text/template/parse", function(NodeType_, Pos_, Line_, Decl_, Cmds_) {
+ÇÌ		TextNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Text", "", (go$sliceType(Go$Uint8)), ""]]);
+		TextNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(TextNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç‰ PipeNodeÇ¯	PipeNode = go$pkg.PipeNode = go$newType(0, "Struct", "parse.PipeNode", "PipeNode", "text/template/parse", function(NodeType_, Pos_, Line_, Decl_, Cmds_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -273,9 +271,11 @@ $$
 	PipeNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	PipeNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	PipeNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.PipeNode = PipeNode;
-	var ActionNode;
-	ActionNode = go$newType(0, "Struct", "parse.ActionNode", "ActionNode", "text/template/parse", function(NodeType_, Pos_, Line_, Pipe_) {
+Çÿ		PipeNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""], ["Decl", "", (go$sliceType((go$ptrType(VariableNode)))), ""], ["Cmds", "", (go$sliceType((go$ptrType(CommandNode)))), ""]]);
+		PipeNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(PipeNode)).methods = [["Copy", "", [], [Node], false], ["CopyPipe", "", [], [(go$ptrType(PipeNode))], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["append", "text/template/parse", [(go$ptrType(CommandNode))], [], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç∑ 
+ActionNodeÇñ	ActionNode = go$pkg.ActionNode = go$newType(0, "Struct", "parse.ActionNode", "ActionNode", "text/template/parse", function(NodeType_, Pos_, Line_, Pipe_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -288,9 +288,10 @@ $$
 	ActionNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	ActionNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	ActionNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.ActionNode = ActionNode;
-	var CommandNode;
-	CommandNode = go$newType(0, "Struct", "parse.CommandNode", "CommandNode", "text/template/parse", function(NodeType_, Pos_, Args_) {
+Ç		ActionNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""], ["Pipe", "", (go$ptrType(PipeNode)), ""]]);
+		ActionNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(ActionNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Çß CommandNodeÇh	CommandNode = go$pkg.CommandNode = go$newType(0, "Struct", "parse.CommandNode", "CommandNode", "text/template/parse", function(NodeType_, Pos_, Args_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -302,9 +303,10 @@ $$
 	CommandNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	CommandNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	CommandNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.CommandNode = CommandNode;
-	var IdentifierNode;
-	IdentifierNode = go$newType(0, "Struct", "parse.IdentifierNode", "IdentifierNode", "text/template/parse", function(NodeType_, Pos_, Ident_) {
+Ç(		CommandNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Args", "", (go$sliceType(Node)), ""]]);
+		CommandNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(CommandNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["append", "text/template/parse", [Node], [], false], ["unexported", "text/template/parse", [], [], false]];
+0ÇΩ IdentifierNodeÇt	IdentifierNode = go$pkg.IdentifierNode = go$newType(0, "Struct", "parse.IdentifierNode", "IdentifierNode", "text/template/parse", function(NodeType_, Pos_, Ident_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -316,9 +318,10 @@ $$
 	IdentifierNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	IdentifierNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	IdentifierNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.IdentifierNode = IdentifierNode;
-	var VariableNode;
-	VariableNode = go$newType(0, "Struct", "parse.VariableNode", "VariableNode", "text/template/parse", function(NodeType_, Pos_, Ident_) {
+Ç/		IdentifierNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Ident", "", Go$String, ""]]);
+		IdentifierNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(IdentifierNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["SetPos", "", [Pos], [(go$ptrType(IdentifierNode))], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Çé VariableNodeÇ{	VariableNode = go$pkg.VariableNode = go$newType(0, "Struct", "parse.VariableNode", "VariableNode", "text/template/parse", function(NodeType_, Pos_, Ident_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -330,9 +333,10 @@ $$
 	VariableNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	VariableNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	VariableNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.VariableNode = VariableNode;
-	var DotNode;
-	DotNode = go$newType(0, "Struct", "parse.DotNode", "DotNode", "text/template/parse", function(Pos_) {
+Ç˚		VariableNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Ident", "", (go$sliceType(Go$String)), ""]]);
+		VariableNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(VariableNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç£ DotNodeÇ	DotNode = go$pkg.DotNode = go$newType(0, "Struct", "parse.DotNode", "DotNode", "text/template/parse", function(Pos_) {
 		this.go$val = this;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
 	});
@@ -340,9 +344,10 @@ $$
 	DotNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	DotNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	DotNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.DotNode = DotNode;
-	var NilNode;
-	NilNode = go$newType(0, "Struct", "parse.NilNode", "NilNode", "text/template/parse", function(Pos_) {
+ÇÅ		DotNode.init([["", "", Pos, ""]]);
+		DotNode.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(DotNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç£ NilNodeÇ	NilNode = go$pkg.NilNode = go$newType(0, "Struct", "parse.NilNode", "NilNode", "text/template/parse", function(Pos_) {
 		this.go$val = this;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
 	});
@@ -350,9 +355,10 @@ $$
 	NilNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	NilNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	NilNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.NilNode = NilNode;
-	var FieldNode;
-	FieldNode = go$newType(0, "Struct", "parse.FieldNode", "FieldNode", "text/template/parse", function(NodeType_, Pos_, Ident_) {
+ÇÅ		NilNode.init([["", "", Pos, ""]]);
+		NilNode.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(NilNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Çd 	FieldNodeÇ]	FieldNode = go$pkg.FieldNode = go$newType(0, "Struct", "parse.FieldNode", "FieldNode", "text/template/parse", function(NodeType_, Pos_, Ident_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -364,9 +370,10 @@ $$
 	FieldNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	FieldNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	FieldNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.FieldNode = FieldNode;
-	var ChainNode;
-	ChainNode = go$newType(0, "Struct", "parse.ChainNode", "ChainNode", "text/template/parse", function(NodeType_, Pos_, Node_, Field_) {
+ÇÚ		FieldNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Ident", "", (go$sliceType(Go$String)), ""]]);
+		FieldNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(FieldNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç⁄ 	ChainNodeÇñ	ChainNode = go$pkg.ChainNode = go$newType(0, "Struct", "parse.ChainNode", "ChainNode", "text/template/parse", function(NodeType_, Pos_, Node_, Field_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -379,9 +386,10 @@ $$
 	ChainNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	ChainNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	ChainNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.ChainNode = ChainNode;
-	var BoolNode;
-	BoolNode = go$newType(0, "Struct", "parse.BoolNode", "BoolNode", "text/template/parse", function(NodeType_, Pos_, True_) {
+Ç/		ChainNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Node", "", Node, ""], ["Field", "", (go$sliceType(Go$String)), ""]]);
+		ChainNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(ChainNode)).methods = [["Add", "", [Go$String], [], false], ["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç' BoolNodeÇ7	BoolNode = go$pkg.BoolNode = go$newType(0, "Struct", "parse.BoolNode", "BoolNode", "text/template/parse", function(NodeType_, Pos_, True_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -393,9 +401,11 @@ $$
 	BoolNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	BoolNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	BoolNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.BoolNode = BoolNode;
-	var NumberNode;
-	NumberNode = go$newType(0, "Struct", "parse.NumberNode", "NumberNode", "text/template/parse", function(NodeType_, Pos_, IsInt_, IsUint_, IsFloat_, IsComplex_, Int64_, Uint64_, Float64_, Complex128_, Text_) {
+Ç‹		BoolNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["True", "", Go$Bool, ""]]);
+		BoolNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(BoolNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0ÇÕ 
+NumberNodeÇù	NumberNode = go$pkg.NumberNode = go$newType(0, "Struct", "parse.NumberNode", "NumberNode", "text/template/parse", function(NodeType_, Pos_, IsInt_, IsUint_, IsFloat_, IsComplex_, Int64_, Uint64_, Float64_, Complex128_, Text_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -415,9 +425,11 @@ $$
 	NumberNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	NumberNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	NumberNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.NumberNode = NumberNode;
-	var StringNode;
-	StringNode = go$newType(0, "Struct", "parse.StringNode", "StringNode", "text/template/parse", function(NodeType_, Pos_, Quoted_, Text_) {
+Ç		NumberNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["IsInt", "", Go$Bool, ""], ["IsUint", "", Go$Bool, ""], ["IsFloat", "", Go$Bool, ""], ["IsComplex", "", Go$Bool, ""], ["Int64", "", Go$Int64, ""], ["Uint64", "", Go$Uint64, ""], ["Float64", "", Go$Float64, ""], ["Complex128", "", Go$Complex128, ""], ["Text", "", Go$String, ""]]);
+		NumberNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(NumberNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["simplifyComplex", "text/template/parse", [], [], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç† 
+StringNodeÇá	StringNode = go$pkg.StringNode = go$newType(0, "Struct", "parse.StringNode", "StringNode", "text/template/parse", function(NodeType_, Pos_, Quoted_, Text_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -430,9 +442,10 @@ $$
 	StringNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	StringNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	StringNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.StringNode = StringNode;
-	var endNode;
-	endNode = go$newType(0, "Struct", "parse.endNode", "endNode", "text/template/parse", function(Pos_) {
+Ç		StringNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Quoted", "", Go$String, ""], ["Text", "", Go$String, ""]]);
+		StringNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(StringNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç£ endNodeÇ	endNode = go$pkg.endNode = go$newType(0, "Struct", "parse.endNode", "endNode", "text/template/parse", function(Pos_) {
 		this.go$val = this;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
 	});
@@ -440,9 +453,10 @@ $$
 	endNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	endNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	endNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.endNode = endNode;
-	var elseNode;
-	elseNode = go$newType(0, "Struct", "parse.elseNode", "elseNode", "text/template/parse", function(NodeType_, Pos_, Line_) {
+ÇÅ		endNode.init([["", "", Pos, ""]]);
+		endNode.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(endNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç˝ elseNodeÇ3	elseNode = go$pkg.elseNode = go$newType(0, "Struct", "parse.elseNode", "elseNode", "text/template/parse", function(NodeType_, Pos_, Line_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -454,9 +468,11 @@ $$
 	elseNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	elseNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	elseNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.elseNode = elseNode;
-	var BranchNode;
-	BranchNode = go$newType(0, "Struct", "parse.BranchNode", "BranchNode", "text/template/parse", function(NodeType_, Pos_, Line_, Pipe_, List_, ElseList_) {
+Ç∂		elseNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""]]);
+		elseNode.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(elseNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Çú 
+BranchNodeÇD	BranchNode = go$pkg.BranchNode = go$newType(0, "Struct", "parse.BranchNode", "BranchNode", "text/template/parse", function(NodeType_, Pos_, Line_, Pipe_, List_, ElseList_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -471,9 +487,10 @@ $$
 	BranchNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	BranchNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	BranchNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.BranchNode = BranchNode;
-	var IfNode;
-	IfNode = go$newType(0, "Struct", "parse.IfNode", "IfNode", "text/template/parse", function(BranchNode_) {
+ÇB		BranchNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""], ["Pipe", "", (go$ptrType(PipeNode)), ""], ["List", "", (go$ptrType(ListNode)), ""], ["ElseList", "", (go$ptrType(ListNode)), ""]]);
+		BranchNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(BranchNode)).methods = [["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç IfNodeÇZ	IfNode = go$pkg.IfNode = go$newType(0, "Struct", "parse.IfNode", "IfNode", "text/template/parse", function(BranchNode_) {
 		this.go$val = this;
 		this.BranchNode = BranchNode_ !== undefined ? BranchNode_ : new BranchNode.Ptr();
 	});
@@ -485,9 +502,10 @@ $$
 	IfNode.Ptr.prototype.Type = function() { return this.BranchNode.Type(); };
 	IfNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	IfNode.Ptr.prototype.unexported = function() { return this.BranchNode.unexported(); };
-	go$pkg.IfNode = IfNode;
-	var RangeNode;
-	RangeNode = go$newType(0, "Struct", "parse.RangeNode", "RangeNode", "text/template/parse", function(BranchNode_) {
+Ç™		IfNode.init([["", "", BranchNode, ""]]);
+		IfNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(IfNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0ÇF 	RangeNodeÇ~	RangeNode = go$pkg.RangeNode = go$newType(0, "Struct", "parse.RangeNode", "RangeNode", "text/template/parse", function(BranchNode_) {
 		this.go$val = this;
 		this.BranchNode = BranchNode_ !== undefined ? BranchNode_ : new BranchNode.Ptr();
 	});
@@ -499,9 +517,10 @@ $$
 	RangeNode.Ptr.prototype.Type = function() { return this.BranchNode.Type(); };
 	RangeNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	RangeNode.Ptr.prototype.unexported = function() { return this.BranchNode.unexported(); };
-	go$pkg.RangeNode = RangeNode;
-	var WithNode;
-	WithNode = go$newType(0, "Struct", "parse.WithNode", "WithNode", "text/template/parse", function(BranchNode_) {
+Ç≥		RangeNode.init([["", "", BranchNode, ""]]);
+		RangeNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(RangeNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç6 WithNodeÇr	WithNode = go$pkg.WithNode = go$newType(0, "Struct", "parse.WithNode", "WithNode", "text/template/parse", function(BranchNode_) {
 		this.go$val = this;
 		this.BranchNode = BranchNode_ !== undefined ? BranchNode_ : new BranchNode.Ptr();
 	});
@@ -513,9 +532,10 @@ $$
 	WithNode.Ptr.prototype.Type = function() { return this.BranchNode.Type(); };
 	WithNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	WithNode.Ptr.prototype.unexported = function() { return this.BranchNode.unexported(); };
-	go$pkg.WithNode = WithNode;
-	var TemplateNode;
-	TemplateNode = go$newType(0, "Struct", "parse.TemplateNode", "TemplateNode", "text/template/parse", function(NodeType_, Pos_, Line_, Name_, Pipe_) {
+Ç∞		WithNode.init([["", "", BranchNode, ""]]);
+		WithNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(WithNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Ç' TemplateNodeÇ·	TemplateNode = go$pkg.TemplateNode = go$newType(0, "Struct", "parse.TemplateNode", "TemplateNode", "text/template/parse", function(NodeType_, Pos_, Line_, Name_, Pipe_) {
 		this.go$val = this;
 		this.NodeType = NodeType_ !== undefined ? NodeType_ : 0;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
@@ -529,9 +549,10 @@ $$
 	TemplateNode.Ptr.prototype.Position = function() { return new Pos(this.Pos).Position(); };
 	TemplateNode.prototype.unexported = function() { return this.go$val.unexported(); };
 	TemplateNode.Ptr.prototype.unexported = function() { return new Pos(this.Pos).unexported(); };
-	go$pkg.TemplateNode = TemplateNode;
-	var Tree;
-	Tree = go$newType(0, "Struct", "parse.Tree", "Tree", "text/template/parse", function(Name_, ParseName_, Root_, text_, funcs_, lex_, token_, peekCount_, vars_) {
+Ç.		TemplateNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""], ["Name", "", Go$String, ""], ["Pipe", "", (go$ptrType(PipeNode)), ""]]);
+		TemplateNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+		(go$ptrType(TemplateNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
+0Çk TreeÇc	Tree = go$pkg.Tree = go$newType(0, "Struct", "parse.Tree", "Tree", "text/template/parse", function(Name_, ParseName_, Root_, text_, funcs_, lex_, token_, peekCount_, vars_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.ParseName = ParseName_ !== undefined ? ParseName_ : "";
@@ -543,85 +564,13 @@ $$
 		this.peekCount = peekCount_ !== undefined ? peekCount_ : 0;
 		this.vars = vars_ !== undefined ? vars_ : (go$sliceType(Go$String)).nil;
 	});
-	go$pkg.Tree = Tree;
-	item.init([["typ", "text/template/parse", itemType, ""], ["pos", "text/template/parse", Pos, ""], ["val", "text/template/parse", Go$String, ""]]);
-	item.methods = [["String", "", [], [Go$String], false]];
-	(go$ptrType(item)).methods = [["String", "", [], [Go$String], false]];
-	stateFn.init([(go$ptrType(lexer))], [stateFn], false);
-	lexer.init([["name", "text/template/parse", Go$String, ""], ["input", "text/template/parse", Go$String, ""], ["leftDelim", "text/template/parse", Go$String, ""], ["rightDelim", "text/template/parse", Go$String, ""], ["state", "text/template/parse", stateFn, ""], ["pos", "text/template/parse", Pos, ""], ["start", "text/template/parse", Pos, ""], ["width", "text/template/parse", Pos, ""], ["lastPos", "text/template/parse", Pos, ""], ["items", "text/template/parse", (go$ptrType(list.List)), ""], ["parenDepth", "text/template/parse", Go$Int, ""]]);
-	(go$ptrType(lexer)).methods = [["accept", "text/template/parse", [Go$String], [Go$Bool], false], ["acceptRun", "text/template/parse", [Go$String], [], false], ["atTerminator", "text/template/parse", [], [Go$Bool], false], ["backup", "text/template/parse", [], [], false], ["emit", "text/template/parse", [itemType], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [stateFn], true], ["ignore", "text/template/parse", [], [], false], ["lineNumber", "text/template/parse", [], [Go$Int], false], ["next", "text/template/parse", [], [Go$Int32], false], ["nextItem", "text/template/parse", [], [item], false], ["peek", "text/template/parse", [], [Go$Int32], false], ["scanNumber", "text/template/parse", [], [Go$Bool], false]];
-	Node.init([["Copy", "", (go$funcType([], [Node], false))], ["Position", "", (go$funcType([], [Pos], false))], ["String", "", (go$funcType([], [Go$String], false))], ["Type", "", (go$funcType([], [NodeType], false))], ["unexported", "text/template/parse", (go$funcType([], [], false))]]);
-	NodeType.methods = [["Type", "", [], [NodeType], false]];
-	(go$ptrType(NodeType)).methods = [["Type", "", [], [NodeType], false]];
-	Pos.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(Pos)).methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
-	ListNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Nodes", "", (go$sliceType(Node)), ""]]);
-	ListNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(ListNode)).methods = [["Copy", "", [], [Node], false], ["CopyList", "", [], [(go$ptrType(ListNode))], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["append", "text/template/parse", [Node], [], false], ["unexported", "text/template/parse", [], [], false]];
-	TextNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Text", "", (go$sliceType(Go$Uint8)), ""]]);
-	TextNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(TextNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	PipeNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""], ["Decl", "", (go$sliceType((go$ptrType(VariableNode)))), ""], ["Cmds", "", (go$sliceType((go$ptrType(CommandNode)))), ""]]);
-	PipeNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(PipeNode)).methods = [["Copy", "", [], [Node], false], ["CopyPipe", "", [], [(go$ptrType(PipeNode))], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["append", "text/template/parse", [(go$ptrType(CommandNode))], [], false], ["unexported", "text/template/parse", [], [], false]];
-	ActionNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""], ["Pipe", "", (go$ptrType(PipeNode)), ""]]);
-	ActionNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(ActionNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	CommandNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Args", "", (go$sliceType(Node)), ""]]);
-	CommandNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(CommandNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["append", "text/template/parse", [Node], [], false], ["unexported", "text/template/parse", [], [], false]];
-	IdentifierNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Ident", "", Go$String, ""]]);
-	IdentifierNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(IdentifierNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["SetPos", "", [Pos], [(go$ptrType(IdentifierNode))], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	VariableNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Ident", "", (go$sliceType(Go$String)), ""]]);
-	VariableNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(VariableNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	DotNode.init([["", "", Pos, ""]]);
-	DotNode.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(DotNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	NilNode.init([["", "", Pos, ""]]);
-	NilNode.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(NilNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	FieldNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Ident", "", (go$sliceType(Go$String)), ""]]);
-	FieldNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(FieldNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	ChainNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Node", "", Node, ""], ["Field", "", (go$sliceType(Go$String)), ""]]);
-	ChainNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(ChainNode)).methods = [["Add", "", [Go$String], [], false], ["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	BoolNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["True", "", Go$Bool, ""]]);
-	BoolNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(BoolNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	NumberNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["IsInt", "", Go$Bool, ""], ["IsUint", "", Go$Bool, ""], ["IsFloat", "", Go$Bool, ""], ["IsComplex", "", Go$Bool, ""], ["Int64", "", Go$Int64, ""], ["Uint64", "", Go$Uint64, ""], ["Float64", "", Go$Float64, ""], ["Complex128", "", Go$Complex128, ""], ["Text", "", Go$String, ""]]);
-	NumberNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(NumberNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["simplifyComplex", "text/template/parse", [], [], false], ["unexported", "text/template/parse", [], [], false]];
-	StringNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Quoted", "", Go$String, ""], ["Text", "", Go$String, ""]]);
-	StringNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(StringNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	endNode.init([["", "", Pos, ""]]);
-	endNode.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(endNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	elseNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""]]);
-	elseNode.methods = [["Position", "", [], [Pos], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(elseNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	BranchNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""], ["Pipe", "", (go$ptrType(PipeNode)), ""], ["List", "", (go$ptrType(ListNode)), ""], ["ElseList", "", (go$ptrType(ListNode)), ""]]);
-	BranchNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(BranchNode)).methods = [["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	IfNode.init([["", "", BranchNode, ""]]);
-	IfNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(IfNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	RangeNode.init([["", "", BranchNode, ""]]);
-	RangeNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(RangeNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	WithNode.init([["", "", BranchNode, ""]]);
-	WithNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(WithNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	TemplateNode.init([["", "", NodeType, ""], ["", "", Pos, ""], ["Line", "", Go$Int, ""], ["Name", "", Go$String, ""], ["Pipe", "", (go$ptrType(PipeNode)), ""]]);
-	TemplateNode.methods = [["Position", "", [], [Pos], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	(go$ptrType(TemplateNode)).methods = [["Copy", "", [], [Node], false], ["Position", "", [], [Pos], false], ["String", "", [], [Go$String], false], ["Type", "", [], [NodeType], false], ["unexported", "text/template/parse", [], [], false]];
-	Tree.init([["Name", "", Go$String, ""], ["ParseName", "", Go$String, ""], ["Root", "", (go$ptrType(ListNode)), ""], ["text", "text/template/parse", Go$String, ""], ["funcs", "text/template/parse", (go$sliceType((go$mapType(Go$String, go$emptyInterface)))), ""], ["lex", "text/template/parse", (go$ptrType(lexer)), ""], ["token", "text/template/parse", (go$arrayType(item, 3)), ""], ["peekCount", "text/template/parse", Go$Int, ""], ["vars", "text/template/parse", (go$sliceType(Go$String)), ""]]);
-	(go$ptrType(Tree)).methods = [["Copy", "", [], [(go$ptrType(Tree))], false], ["ErrorContext", "", [Node], [Go$String, Go$String], false], ["Parse", "", [Go$String, Go$String, Go$String, (go$mapType(Go$String, (go$ptrType(Tree)))), (go$sliceType((go$mapType(Go$String, go$emptyInterface))))], [(go$ptrType(Tree)), go$error], true], ["action", "text/template/parse", [], [Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [item], [], false], ["backup3", "text/template/parse", [item, item], [], false], ["command", "text/template/parse", [], [(go$ptrType(CommandNode))], false], ["elseControl", "text/template/parse", [], [Node], false], ["endControl", "text/template/parse", [], [Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [itemType, Go$String], [item], false], ["expectOneOf", "text/template/parse", [itemType, itemType, Go$String], [item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(ListNode)), Node], false], ["next", "text/template/parse", [], [item], false], ["nextNonSpace", "text/template/parse", [], [item], false], ["operand", "text/template/parse", [], [Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [Pos, Go$Int, (go$ptrType(PipeNode)), (go$ptrType(ListNode)), (go$ptrType(ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["peek", "text/template/parse", [], [item], false], ["peekNonSpace", "text/template/parse", [], [item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [Node], false], ["term", "text/template/parse", [], [Node], false], ["textOrAction", "text/template/parse", [], [Node], false], ["unexpected", "text/template/parse", [item, Go$String], [], false], ["useVar", "text/template/parse", [Pos, Go$String], [Node], false], ["withControl", "text/template/parse", [], [Node], false]];
-00key0
-textFormat0ÇÛ0ÇéStringÇÇ	item.Ptr.prototype.String = function() {
+Ç¯		Tree.init([["Name", "", Go$String, ""], ["ParseName", "", Go$String, ""], ["Root", "", (go$ptrType(ListNode)), ""], ["text", "text/template/parse", Go$String, ""], ["funcs", "text/template/parse", (go$sliceType((go$mapType(Go$String, go$emptyInterface)))), ""], ["lex", "text/template/parse", (go$ptrType(lexer)), ""], ["token", "text/template/parse", (go$arrayType(item, 3)), ""], ["peekCount", "text/template/parse", Go$Int, ""], ["vars", "text/template/parse", (go$sliceType(Go$String)), ""]]);
+		(go$ptrType(Tree)).methods = [["Copy", "", [], [(go$ptrType(Tree))], false], ["ErrorContext", "", [Node], [Go$String, Go$String], false], ["Parse", "", [Go$String, Go$String, Go$String, (go$mapType(Go$String, (go$ptrType(Tree)))), (go$sliceType((go$mapType(Go$String, go$emptyInterface))))], [(go$ptrType(Tree)), go$error], true], ["action", "text/template/parse", [], [Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [item], [], false], ["backup3", "text/template/parse", [item, item], [], false], ["command", "text/template/parse", [], [(go$ptrType(CommandNode))], false], ["elseControl", "text/template/parse", [], [Node], false], ["endControl", "text/template/parse", [], [Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [itemType, Go$String], [item], false], ["expectOneOf", "text/template/parse", [itemType, itemType, Go$String], [item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(ListNode)), Node], false], ["next", "text/template/parse", [], [item], false], ["nextNonSpace", "text/template/parse", [], [item], false], ["operand", "text/template/parse", [], [Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [Pos, Go$Int, (go$ptrType(PipeNode)), (go$ptrType(ListNode)), (go$ptrType(ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["peek", "text/template/parse", [], [item], false], ["peekNonSpace", "text/template/parse", [], [item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [Node], false], ["term", "text/template/parse", [], [Node], false], ["textOrAction", "text/template/parse", [], [Node], false], ["unexpected", "text/template/parse", [item, Go$String], [], false], ["useVar", "text/template/parse", [Pos, Go$String], [Node], false], ["withControl", "text/template/parse", [], [Node], false]];
+0 key  0 
+textFormat  0ÇÒ   ÇÁ		var _map, _key;
+		key = (_map = new Go$Map(), _key = ".", _map[_key] = { k: _key, v: 21 }, _key = "define", _map[_key] = { k: _key, v: 22 }, _key = "else", _map[_key] = { k: _key, v: 23 }, _key = "end", _map[_key] = { k: _key, v: 24 }, _key = "if", _map[_key] = { k: _key, v: 25 }, _key = "range", _map[_key] = { k: _key, v: 27 }, _key = "nil", _map[_key] = { k: _key, v: 26 }, _key = "template", _map[_key] = { k: _key, v: 28 }, _key = "with", _map[_key] = { k: _key, v: 29 }, _map);
+0   		textFormat = "%s";
+0Çå  ÇÇ	item.Ptr.prototype.String = function() {
 		var _struct, i;
 		i = (_struct = this, new item.Ptr(_struct.typ, _struct.pos, _struct.val));
 		if (i.typ === 6) {
@@ -636,7 +585,7 @@ textFormat0ÇÛ0ÇéStringÇÇ	item.Ptr.prototype.String = function() {
 		return fmt.Sprintf("%q", new (go$sliceType(go$emptyInterface))([new Go$String(i.val)]));
 	};
 	item.prototype.String = function() { return this.go$val.String(); };
-0ÇánextÇ}	lexer.Ptr.prototype.next = function() {
+ 0Çá  Ç}	lexer.Ptr.prototype.next = function() {
 		var l, _tuple, r, w;
 		l = this;
 		if ((l.pos >> 0) >= l.input.length) {
@@ -649,7 +598,7 @@ textFormat0ÇÛ0ÇéStringÇÇ	item.Ptr.prototype.String = function() {
 		return r;
 	};
 	lexer.prototype.next = function() { return this.go$val.next(); };
-0ÅªpeekÅ≤	lexer.Ptr.prototype.peek = function() {
+ 0Åª  Å≤	lexer.Ptr.prototype.peek = function() {
 		var l, r;
 		l = this;
 		r = l.next();
@@ -657,26 +606,26 @@ textFormat0ÇÛ0ÇéStringÇÇ	item.Ptr.prototype.String = function() {
 		return r;
 	};
 	lexer.prototype.peek = function() { return this.go$val.peek(); };
-0Å∏backupÅ≠	lexer.Ptr.prototype.backup = function() {
+ 0Å∂  Å≠	lexer.Ptr.prototype.backup = function() {
 		var l;
 		l = this;
 		l.pos = l.pos - (l.width) >> 0;
 	};
 	lexer.prototype.backup = function() { return this.go$val.backup(); };
-0ÇemitÇ	lexer.Ptr.prototype.emit = function(t) {
+ 0Ç  Ç	lexer.Ptr.prototype.emit = function(t) {
 		var l, x;
 		l = this;
 		l.items.PushBack((x = new item.Ptr(t, l.start, l.input.substring(l.start, l.pos)), new x.constructor.Struct(x)));
 		l.start = l.pos;
 	};
 	lexer.prototype.emit = function(t) { return this.go$val.emit(t); };
-0Å©ignoreÅû	lexer.Ptr.prototype.ignore = function() {
+ 0Åß  Åû	lexer.Ptr.prototype.ignore = function() {
 		var l;
 		l = this;
 		l.start = l.pos;
 	};
 	lexer.prototype.ignore = function() { return this.go$val.ignore(); };
-0ÇacceptÅ˝	lexer.Ptr.prototype.accept = function(valid) {
+ 0Ç  Å˝	lexer.Ptr.prototype.accept = function(valid) {
 		var l;
 		l = this;
 		if (strings.IndexRune(valid, l.next()) >= 0) {
@@ -686,7 +635,7 @@ textFormat0ÇÛ0ÇéStringÇÇ	item.Ptr.prototype.String = function() {
 		return false;
 	};
 	lexer.prototype.accept = function(valid) { return this.go$val.accept(valid); };
-0Å˜	acceptRunÅÈ	lexer.Ptr.prototype.acceptRun = function(valid) {
+ 0ÅÚ  ÅÈ	lexer.Ptr.prototype.acceptRun = function(valid) {
 		var l;
 		l = this;
 		while (strings.IndexRune(valid, l.next()) >= 0) {
@@ -694,21 +643,20 @@ textFormat0ÇÛ0ÇéStringÇÇ	item.Ptr.prototype.String = function() {
 		l.backup();
 	};
 	lexer.prototype.acceptRun = function(valid) { return this.go$val.acceptRun(valid); };
-0ÅÓ
-lineNumberÅﬂ	lexer.Ptr.prototype.lineNumber = function() {
+ 0ÅË  Åﬂ	lexer.Ptr.prototype.lineNumber = function() {
 		var l;
 		l = this;
 		return 1 + strings.Count(l.input.substring(0, l.lastPos), "\n") >> 0;
 	};
 	lexer.prototype.lineNumber = function() { return this.go$val.lineNumber(); };
-0ÇLerrorfÇ@	lexer.Ptr.prototype.errorf = function(format, args) {
+ 0ÇJ  Ç@	lexer.Ptr.prototype.errorf = function(format, args) {
 		var l, x;
 		l = this;
 		l.items.PushBack((x = new item.Ptr(0, l.start, fmt.Sprintf(format, args)), new x.constructor.Struct(x)));
 		return go$throwNilPointerError;
 	};
 	lexer.prototype.errorf = function(format, args) { return this.go$val.errorf(format, args); };
-0ÇõnextItemÇç	lexer.Ptr.prototype.nextItem = function() {
+ 0Çó  Çç	lexer.Ptr.prototype.nextItem = function() {
 		var l, element, x, _struct, item$1, _struct$1;
 		l = this;
 		element = l.items.Front();
@@ -722,7 +670,7 @@ lineNumberÅﬂ	lexer.Ptr.prototype.lineNumber = function() {
 		return (_struct$1 = item$1, new item.Ptr(_struct$1.typ, _struct$1.pos, _struct$1.val));
 	};
 	lexer.prototype.nextItem = function() { return this.go$val.nextItem(); };
-0ÇlexÇ	var lex = function(name, input, left, right) {
+ 0Ç lexÇ	lex = function(name, input, left, right) {
 		var l;
 		if (left === "") {
 			left = "{{";
@@ -734,7 +682,7 @@ lineNumberÅﬂ	lexer.Ptr.prototype.lineNumber = function() {
 		l.state = lexText;
 		return l;
 	};
-0Ç[lexTextÇN	var lexText = function(l) {
+ 0Ç[ lexTextÇJ	lexText = function(l) {
 		while (true) {
 			if (strings.HasPrefix(l.input.substring(l.pos), l.leftDelim)) {
 				if (l.pos > l.start) {
@@ -752,7 +700,7 @@ lineNumberÅﬂ	lexer.Ptr.prototype.lineNumber = function() {
 		l.emit(6);
 		return go$throwNilPointerError;
 	};
-0Å˚lexLeftDelimÅÍ	var lexLeftDelim = function(l) {
+ 0Å˚ lexLeftDelimÅÊ	lexLeftDelim = function(l) {
 		l.pos = l.pos + ((l.leftDelim.length >> 0)) >> 0;
 		if (strings.HasPrefix(l.input.substring(l.pos), "/*")) {
 			return lexComment;
@@ -761,8 +709,8 @@ lineNumberÅﬂ	lexer.Ptr.prototype.lineNumber = function() {
 		l.parenDepth = 0;
 		return lexInsideAction;
 	};
-0Ç%
-lexCommentÇ	var lexComment = function(l) {
+ 0Ç% 
+lexCommentÇ	lexComment = function(l) {
 		var i;
 		l.pos = l.pos + 2 >> 0;
 		i = strings.Index(l.input.substring(l.pos), "*/");
@@ -777,12 +725,12 @@ lexCommentÇ	var lexComment = function(l) {
 		l.ignore();
 		return lexText;
 	};
-0ÅçlexRightDelim|	var lexRightDelim = function(l) {
+ 0Åç lexRightDelimx	lexRightDelim = function(l) {
 		l.pos = l.pos + ((l.rightDelim.length >> 0)) >> 0;
 		l.emit(14);
 		return lexText;
 	};
-0Ç/lexInsideActionÇ	var lexInsideAction = function(l) {
+ 0Ç/ lexInsideActionÇ	lexInsideAction = function(l) {
 		var r, r$1;
 		if (strings.HasPrefix(l.input.substring(l.pos), l.rightDelim)) {
 			if (l.parenDepth === 0) {
@@ -844,14 +792,14 @@ lexCommentÇ	var lexComment = function(l) {
 		}
 		return lexInsideAction;
 	};
-0ÅÖlexSpacey	var lexSpace = function(l) {
+ 0ÅÖ lexSpaceu	lexSpace = function(l) {
 		while (isSpace(l.peek())) {
 			l.next();
 		}
 		l.emit(16);
 		return lexInsideAction;
 	};
-0Ç„lexIdentifierÇ–	var lexIdentifier = function(l) {
+ 0Ç„ lexIdentifierÇÃ	lexIdentifier = function(l) {
 		var r, word, _entry, _entry$1;
 		Loop:
 		while (true) {
@@ -877,17 +825,17 @@ lexCommentÇ	var lexComment = function(l) {
 		}
 		return lexInsideAction;
 	};
-0QlexFieldE	var lexField = function(l) {
+ 0Q lexFieldA	lexField = function(l) {
 		return lexFieldOrVariable(l, 7);
 	};
-0Å°lexVariableÅë	var lexVariable = function(l) {
+ 0Å° lexVariableÅç	lexVariable = function(l) {
 		if (l.atTerminator()) {
 			l.emit(19);
 			return lexInsideAction;
 		}
 		return lexFieldOrVariable(l, 19);
 	};
-0ÇËlexFieldOrVariableÇ–	var lexFieldOrVariable = function(l, typ) {
+ 0ÇË lexFieldOrVariableÇÃ	lexFieldOrVariable = function(l, typ) {
 		var r;
 		if (l.atTerminator()) {
 			if (typ === 19) {
@@ -911,7 +859,7 @@ lexCommentÇ	var lexComment = function(l) {
 		l.emit(typ);
 		return lexInsideAction;
 	};
-0ÇatTerminatorÇ	lexer.Ptr.prototype.atTerminator = function() {
+ 0Ç  Ç	lexer.Ptr.prototype.atTerminator = function() {
 		var l, r, _ref, rd, _tuple;
 		l = this;
 		r = l.peek();
@@ -928,7 +876,7 @@ lexCommentÇ	var lexComment = function(l) {
 		return false;
 	};
 	lexer.prototype.atTerminator = function() { return this.go$val.atTerminator(); };
-0Ç1lexCharÇ$	var lexChar = function(l) {
+ 0Ç1 lexCharÇ 	lexChar = function(l) {
 		var _ref, r;
 		Loop:
 		while (true) {
@@ -947,7 +895,7 @@ lexCommentÇ	var lexComment = function(l) {
 		l.emit(3);
 		return lexInsideAction;
 	};
-0Ç?	lexNumberÇ0	var lexNumber = function(l) {
+ 0Ç? 	lexNumberÇ,	lexNumber = function(l) {
 		var sign;
 		if (!l.scanNumber()) {
 			return l.errorf("bad number syntax: %q", new (go$sliceType(go$emptyInterface))([new Go$String(l.input.substring(l.start, l.pos))]));
@@ -962,8 +910,7 @@ lexCommentÇ	var lexComment = function(l) {
 		}
 		return lexInsideAction;
 	};
-0Ç(
-scanNumberÇ	lexer.Ptr.prototype.scanNumber = function() {
+ 0Ç"  Ç	lexer.Ptr.prototype.scanNumber = function() {
 		var l, digits;
 		l = this;
 		l.accept("+-");
@@ -987,7 +934,7 @@ scanNumberÇ	lexer.Ptr.prototype.scanNumber = function() {
 		return true;
 	};
 	lexer.prototype.scanNumber = function() { return this.go$val.scanNumber(); };
-0Ç*lexQuoteÇ	var lexQuote = function(l) {
+ 0Ç* lexQuoteÇ	lexQuote = function(l) {
 		var _ref, r;
 		Loop:
 		while (true) {
@@ -1006,7 +953,7 @@ scanNumberÇ	lexer.Ptr.prototype.scanNumber = function() {
 		l.emit(17);
 		return lexInsideAction;
 	};
-0ÇTlexRawQuoteÇC	var lexRawQuote = function(l) {
+ 0ÇT lexRawQuoteÇ?	lexRawQuote = function(l) {
 		var _ref;
 		Loop:
 		while (true) {
@@ -1020,41 +967,40 @@ scanNumberÇ	lexer.Ptr.prototype.scanNumber = function() {
 		l.emit(13);
 		return lexInsideAction;
 	};
-0NisSpaceC	var isSpace = function(r) {
+ 0N isSpace?	isSpace = function(r) {
 		return (r === 32) || (r === 9);
 	};
-0WisEndOfLineH	var isEndOfLine = function(r) {
+ 0W isEndOfLineD	isEndOfLine = function(r) {
 		return (r === 13) || (r === 10);
 	};
-0|isAlphaNumericj	var isAlphaNumeric = function(r) {
+ 0| isAlphaNumericf	isAlphaNumeric = function(r) {
 		return (r === 95) || unicode.IsLetter(r) || unicode.IsDigit(r);
 	};
-0Å¿PositionÅ≥	Pos.prototype.Position = function() {
+ 0Åº  Å≥	Pos.prototype.Position = function() {
 		var p;
 		p = this.go$val;
 		return p;
 	};
 	go$ptrType(Pos).prototype.Position = function() { return new Pos(this.go$get()).Position(); };
-0Å†
-unexportedÅë	Pos.prototype.unexported = function() {
+ 0Åö  Åë	Pos.prototype.unexported = function() {
 	};
 	go$ptrType(Pos).prototype.unexported = function() { return new Pos(this.go$get()).unexported(); };
-0ÅøTypeÅ∂	NodeType.prototype.Type = function() {
+ 0Åø  Å∂	NodeType.prototype.Type = function() {
 		var t;
 		t = this.go$val;
 		return t;
 	};
 	go$ptrType(NodeType).prototype.Type = function() { return new NodeType(this.go$get()).Type(); };
-0lnewLista	var newList = function(pos) {
+ 0l newList]	newList = function(pos) {
 		return new ListNode.Ptr(11, pos, (go$sliceType(Node)).nil);
 	};
-0Å¬appendÅ∑	ListNode.Ptr.prototype.append = function(n) {
+ 0Å¿  Å∑	ListNode.Ptr.prototype.append = function(n) {
 		var l;
 		l = this;
 		l.Nodes = go$append(l.Nodes, n);
 	};
 	ListNode.prototype.append = function(n) { return this.go$val.append(n); };
-0ÇStringÇ
+ 0Ç  Ç
 	ListNode.Ptr.prototype.String = function() {
 		var l, b, _ref, _i, _slice, _index, n;
 		l = this;
@@ -1069,7 +1015,7 @@ unexportedÅë	Pos.prototype.unexported = function() {
 		return b.String();
 	};
 	ListNode.prototype.String = function() { return this.go$val.String(); };
-0Ç*CopyListÇ	ListNode.Ptr.prototype.CopyList = function() {
+ 0Ç&  Ç	ListNode.Ptr.prototype.CopyList = function() {
 		var l, n, _ref, _i, _slice, _index, elem;
 		l = this;
 		if (l === (go$ptrType(ListNode)).nil) {
@@ -1086,37 +1032,37 @@ unexportedÅë	Pos.prototype.unexported = function() {
 		return n;
 	};
 	ListNode.prototype.CopyList = function() { return this.go$val.CopyList(); };
-0Å´CopyÅ¢	ListNode.Ptr.prototype.Copy = function() {
+ 0Å´  Å¢	ListNode.Ptr.prototype.Copy = function() {
 		var l;
 		l = this;
 		return l.CopyList();
 	};
 	ListNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0ÅénewTextÅÇ	var newText = function(pos, text) {
+ 0Åç newText~	newText = function(pos, text) {
 		return new TextNode.Ptr(0, pos, new (go$sliceType(Go$Uint8))(go$stringToBytes(text)));
 	};
-0ÅÔStringÅ‰	TextNode.Ptr.prototype.String = function() {
+ 0ÅÌ  Å‰	TextNode.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return fmt.Sprintf(textFormat, new (go$sliceType(go$emptyInterface))([t.Text]));
 	};
 	TextNode.prototype.String = function() { return this.go$val.String(); };
-0ÅÔCopyÅÊ	TextNode.Ptr.prototype.Copy = function() {
+ 0ÅÔ  ÅÊ	TextNode.Ptr.prototype.Copy = function() {
 		var t;
 		t = this;
 		return new TextNode.Ptr(0, 0, go$appendSlice(new (go$sliceType(Go$Uint8))([]), t.Text));
 	};
 	TextNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0Å¢newPipelineÅí	var newPipeline = function(pos, line, decl) {
+ 0Å¢ newPipelineÅé	newPipeline = function(pos, line, decl) {
 		return new PipeNode.Ptr(14, pos, line, decl, (go$sliceType((go$ptrType(CommandNode)))).nil);
 	};
-0ÅÿappendÅÕ	PipeNode.Ptr.prototype.append = function(command) {
+ 0Å÷  ÅÕ	PipeNode.Ptr.prototype.append = function(command) {
 		var p;
 		p = this;
 		p.Cmds = go$append(p.Cmds, command);
 	};
 	PipeNode.prototype.append = function(command) { return this.go$val.append(command); };
-0Ç∆StringÇ∫	PipeNode.Ptr.prototype.String = function() {
+ 0Çƒ  Ç∫	PipeNode.Ptr.prototype.String = function() {
 		var p, s, _ref, _i, _slice, _index, v, i, _ref$1, _i$1, _slice$1, _index$1, c, i$1;
 		p = this;
 		s = "";
@@ -1148,7 +1094,7 @@ unexportedÅë	Pos.prototype.unexported = function() {
 		return s;
 	};
 	PipeNode.prototype.String = function() { return this.go$val.String(); };
-0ÇﬁCopyPipeÇ–	PipeNode.Ptr.prototype.CopyPipe = function() {
+ 0Ç⁄  Ç–	PipeNode.Ptr.prototype.CopyPipe = function() {
 		var p, decl, _ref, _i, _slice, _index, d, x, n, _ref$1, _i$1, _slice$1, _index$1, c, x$1;
 		p = this;
 		if (p === (go$ptrType(PipeNode)).nil) {
@@ -1173,38 +1119,38 @@ unexportedÅë	Pos.prototype.unexported = function() {
 		return n;
 	};
 	PipeNode.prototype.CopyPipe = function() { return this.go$val.CopyPipe(); };
-0Å´CopyÅ¢	PipeNode.Ptr.prototype.Copy = function() {
+ 0Å´  Å¢	PipeNode.Ptr.prototype.Copy = function() {
 		var p;
 		p = this;
 		return p.CopyPipe();
 	};
 	PipeNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0o	newActionb	var newAction = function(pos, line, pipe) {
+ 0o 	newAction^	newAction = function(pos, line, pipe) {
 		return new ActionNode.Ptr(1, pos, line, pipe);
 	};
-0ÅÒStringÅÊ	ActionNode.Ptr.prototype.String = function() {
+ 0ÅÔ  ÅÊ	ActionNode.Ptr.prototype.String = function() {
 		var a;
 		a = this;
 		return fmt.Sprintf("{{%s}}", new (go$sliceType(go$emptyInterface))([a.Pipe]));
 	};
 	ActionNode.prototype.String = function() { return this.go$val.String(); };
-0ÅŒCopyÅ≈	ActionNode.Ptr.prototype.Copy = function() {
+ 0ÅŒ  Å≈	ActionNode.Ptr.prototype.Copy = function() {
 		var a;
 		a = this;
 		return newAction(a.Pos, a.Line, a.Pipe.CopyPipe());
 	};
 	ActionNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0t
-newCommandf	var newCommand = function(pos) {
+ 0t 
+newCommandb	newCommand = function(pos) {
 		return new CommandNode.Ptr(4, pos, (go$sliceType(Node)).nil);
 	};
-0ÅŒappendÅ√	CommandNode.Ptr.prototype.append = function(arg) {
+ 0ÅÃ  Å√	CommandNode.Ptr.prototype.append = function(arg) {
 		var c;
 		c = this;
 		c.Args = go$append(c.Args, arg);
 	};
 	CommandNode.prototype.append = function(arg) { return this.go$val.append(arg); };
-0ÇStringÇ	CommandNode.Ptr.prototype.String = function() {
+ 0Ç  Ç	CommandNode.Ptr.prototype.String = function() {
 		var c, s, _ref, _i, _slice, _index, arg, i, ok, _tuple, arg$1;
 		c = this;
 		s = "";
@@ -1227,7 +1173,7 @@ newCommandf	var newCommand = function(pos) {
 		return s;
 	};
 	CommandNode.prototype.String = function() { return this.go$val.String(); };
-0Ç"CopyÇ	CommandNode.Ptr.prototype.Copy = function() {
+ 0Ç"  Ç	CommandNode.Ptr.prototype.Copy = function() {
 		var c, n, _ref, _i, _slice, _index, c$1;
 		c = this;
 		if (c === (go$ptrType(CommandNode)).nil) {
@@ -1244,33 +1190,32 @@ newCommandf	var newCommand = function(pos) {
 		return n;
 	};
 	CommandNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0ÅÅNewIdentifierp	var NewIdentifier = go$pkg.NewIdentifier = function(ident) {
+ 0ÅÅ NewIdentifierl	NewIdentifier = go$pkg.NewIdentifier = function(ident) {
 		return new IdentifierNode.Ptr(9, 0, ident);
 	};
-0ÅÃSetPosÅ¡	IdentifierNode.Ptr.prototype.SetPos = function(pos) {
+ 0Å   Å¡	IdentifierNode.Ptr.prototype.SetPos = function(pos) {
 		var i;
 		i = this;
 		i.Pos = pos;
 		return i;
 	};
 	IdentifierNode.prototype.SetPos = function(pos) { return this.go$val.SetPos(pos); };
-0Å∫StringÅØ	IdentifierNode.Ptr.prototype.String = function() {
+ 0Å∏  ÅØ	IdentifierNode.Ptr.prototype.String = function() {
 		var i;
 		i = this;
 		return i.Ident;
 	};
 	IdentifierNode.prototype.String = function() { return this.go$val.String(); };
-0ÅœCopyÅ∆	IdentifierNode.Ptr.prototype.Copy = function() {
+ 0Åœ  Å∆	IdentifierNode.Ptr.prototype.Copy = function() {
 		var i;
 		i = this;
 		return NewIdentifier(i.Ident).SetPos(i.Pos);
 	};
 	IdentifierNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0ÅÄnewVariableq	var newVariable = function(pos, ident) {
+ 0ÅÄ newVariablem	newVariable = function(pos, ident) {
 		return new VariableNode.Ptr(18, pos, strings.Split(ident, "."));
 	};
-0Ç
-StringÇ˛	VariableNode.Ptr.prototype.String = function() {
+ 0Ç  Ç˛	VariableNode.Ptr.prototype.String = function() {
 		var v, s, _ref, _i, _slice, _index, id, i;
 		v = this;
 		s = "";
@@ -1288,58 +1233,58 @@ newCommandf	var newCommand = function(pos) {
 		return s;
 	};
 	VariableNode.prototype.String = function() { return this.go$val.String(); };
-0ÇCopyÅ˘	VariableNode.Ptr.prototype.Copy = function() {
+ 0Ç  Å˘	VariableNode.Ptr.prototype.Copy = function() {
 		var v;
 		v = this;
 		return new VariableNode.Ptr(18, v.Pos, go$appendSlice(new (go$sliceType(Go$String))([]), v.Ident));
 	};
 	VariableNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0KnewDotA	var newDot = function(pos) {
+ 0K newDot=	newDot = function(pos) {
 		return new DotNode.Ptr(pos);
 	};
-0ÅûTypeÅï	DotNode.Ptr.prototype.Type = function() {
+ 0Åû  Åï	DotNode.Ptr.prototype.Type = function() {
 		var d;
 		d = this;
 		return 5;
 	};
 	DotNode.prototype.Type = function() { return this.go$val.Type(); };
-0Å®StringÅù	DotNode.Ptr.prototype.String = function() {
+ 0Å¶  Åù	DotNode.Ptr.prototype.String = function() {
 		var d;
 		d = this;
 		return ".";
 	};
 	DotNode.prototype.String = function() { return this.go$val.String(); };
-0Å™CopyÅ°	DotNode.Ptr.prototype.Copy = function() {
+ 0Å™  Å°	DotNode.Ptr.prototype.Copy = function() {
 		var d;
 		d = this;
 		return newDot(d.Pos);
 	};
 	DotNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0KnewNilA	var newNil = function(pos) {
+ 0K newNil=	newNil = function(pos) {
 		return new NilNode.Ptr(pos);
 	};
-0ÅüTypeÅñ	NilNode.Ptr.prototype.Type = function() {
+ 0Åü  Åñ	NilNode.Ptr.prototype.Type = function() {
 		var n;
 		n = this;
 		return 12;
 	};
 	NilNode.prototype.Type = function() { return this.go$val.Type(); };
-0Å™StringÅü	NilNode.Ptr.prototype.String = function() {
+ 0Å®  Åü	NilNode.Ptr.prototype.String = function() {
 		var n;
 		n = this;
 		return "nil";
 	};
 	NilNode.prototype.String = function() { return this.go$val.String(); };
-0Å™CopyÅ°	NilNode.Ptr.prototype.Copy = function() {
+ 0Å™  Å°	NilNode.Ptr.prototype.Copy = function() {
 		var n;
 		n = this;
 		return newNil(n.Pos);
 	};
 	NilNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0ÅÉnewFieldw	var newField = function(pos, ident) {
+ 0ÅÉ newFields	newField = function(pos, ident) {
 		return new FieldNode.Ptr(8, pos, strings.Split(ident.substring(1), "."));
 	};
-0Ç÷StringÇ 	FieldNode.Ptr.prototype.String = function() {
+ 0Ç‘  Ç 	FieldNode.Ptr.prototype.String = function() {
 		var f, s, _ref, _i, _slice, _index, id;
 		f = this;
 		s = "";
@@ -1353,16 +1298,16 @@ newCommandf	var newCommand = function(pos) {
 		return s;
 	};
 	FieldNode.prototype.String = function() { return this.go$val.String(); };
-0Å¯CopyÅÔ	FieldNode.Ptr.prototype.Copy = function() {
+ 0Å¯  ÅÔ	FieldNode.Ptr.prototype.Copy = function() {
 		var f;
 		f = this;
 		return new FieldNode.Ptr(8, f.Pos, go$appendSlice(new (go$sliceType(Go$String))([]), f.Ident));
 	};
 	FieldNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0newChains	var newChain = function(pos, node) {
+ 0 newChaino	newChain = function(pos, node) {
 		return new ChainNode.Ptr(3, pos, node, (go$sliceType(Go$String)).nil);
 	};
-0Ç¨AddÇ£	ChainNode.Ptr.prototype.Add = function(field) {
+ 0Ç≠  Ç£	ChainNode.Ptr.prototype.Add = function(field) {
 		var c;
 		c = this;
 		if ((field.length === 0) || !((field.charCodeAt(0) === 46))) {
@@ -1375,7 +1320,7 @@ newCommandf	var newCommand = function(pos) {
 		c.Field = go$append(c.Field, field);
 	};
 	ChainNode.prototype.Add = function(field) { return this.go$val.Add(field); };
-0ÇªStringÇØ	ChainNode.Ptr.prototype.String = function() {
+ 0Çπ  ÇØ	ChainNode.Ptr.prototype.String = function() {
 		var c, s, ok, _tuple, x, _ref, _i, _slice, _index, field;
 		c = this;
 		s = c.Node.String();
@@ -1392,16 +1337,16 @@ newCommandf	var newCommand = function(pos) {
 		return s;
 	};
 	ChainNode.prototype.String = function() { return this.go$val.String(); };
-0Ç CopyÅ˜	ChainNode.Ptr.prototype.Copy = function() {
+ 0Ç   Å˜	ChainNode.Ptr.prototype.Copy = function() {
 		var c;
 		c = this;
 		return new ChainNode.Ptr(3, c.Pos, c.Node, go$appendSlice(new (go$sliceType(Go$String))([]), c.Field));
 	};
 	ChainNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0anewBoolV	var newBool = function(pos, true$1) {
+ 0a newBoolR	newBool = function(pos, true$1) {
 		return new BoolNode.Ptr(2, pos, true$1);
 	};
-0Å‘StringÅ…	BoolNode.Ptr.prototype.String = function() {
+ 0Å“  Å…	BoolNode.Ptr.prototype.String = function() {
 		var b;
 		b = this;
 		if (b.True) {
@@ -1410,13 +1355,13 @@ newCommandf	var newCommand = function(pos) {
 		return "false";
 	};
 	BoolNode.prototype.String = function() { return this.go$val.String(); };
-0ÅµCopyÅ¨	BoolNode.Ptr.prototype.Copy = function() {
+ 0Åµ  Å¨	BoolNode.Ptr.prototype.Copy = function() {
 		var b;
 		b = this;
 		return newBool(b.Pos, b.True);
 	};
 	BoolNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0Çé	newNumberÇ	var newNumber = function(pos, text, typ) {
+ 0Çé 	newNumberÇ{	newNumber = function(pos, text, typ) {
 		var n, _ref, _tuple, rune, tail, err, err$1, _tuple$1, v, _tuple$2, f, err$2, _tuple$3, u, err$3, _tuple$4, i, _tuple$5, f$1, err$4;
 		n = new NumberNode.Ptr(13, pos, false, false, false, false, new Go$Int64(0, 0), new Go$Uint64(0, 0), 0, new Go$Complex128(0, 0), text);
 		_ref = typ;
@@ -1492,7 +1437,7 @@ newCommandf	var newCommand = function(pos) {
 		}
 		return [n, null];
 	};
-0Ç6simplifyComplexÇ!	NumberNode.Ptr.prototype.simplifyComplex = function() {
+ 0Ç+  Ç!	NumberNode.Ptr.prototype.simplifyComplex = function() {
 		var n;
 		n = this;
 		n.IsFloat = n.Complex128.imag === 0;
@@ -1509,13 +1454,13 @@ newCommandf	var newCommand = function(pos) {
 		}
 	};
 	NumberNode.prototype.simplifyComplex = function() { return this.go$val.simplifyComplex(); };
-0Å±StringÅ¶	NumberNode.Ptr.prototype.String = function() {
+ 0ÅØ  Å¶	NumberNode.Ptr.prototype.String = function() {
 		var n;
 		n = this;
 		return n.Text;
 	};
 	NumberNode.prototype.String = function() { return this.go$val.String(); };
-0Ç™CopyÇ†	NumberNode.Ptr.prototype.Copy = function() {
+ 0Ç™  Ç†	NumberNode.Ptr.prototype.Copy = function() {
 		var n, nn, _struct, l, r;
 		n = this;
 		nn = new NumberNode.Ptr();
@@ -1523,64 +1468,64 @@ newCommandf	var newCommand = function(pos) {
 		return nn;
 	};
 	NumberNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0p	newStringc	var newString = function(pos, orig, text) {
+ 0p 	newString_	newString = function(pos, orig, text) {
 		return new StringNode.Ptr(16, pos, orig, text);
 	};
-0Å≥StringÅ®	StringNode.Ptr.prototype.String = function() {
+ 0Å±  Å®	StringNode.Ptr.prototype.String = function() {
 		var s;
 		s = this;
 		return s.Quoted;
 	};
 	StringNode.prototype.String = function() { return this.go$val.String(); };
-0Å≈CopyÅº	StringNode.Ptr.prototype.Copy = function() {
+ 0Å≈  Åº	StringNode.Ptr.prototype.Copy = function() {
 		var s;
 		s = this;
 		return newString(s.Pos, s.Quoted, s.Text);
 	};
 	StringNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0KnewEndA	var newEnd = function(pos) {
+ 0K newEnd=	newEnd = function(pos) {
 		return new endNode.Ptr(pos);
 	};
-0ÅûTypeÅï	endNode.Ptr.prototype.Type = function() {
+ 0Åû  Åï	endNode.Ptr.prototype.Type = function() {
 		var e;
 		e = this;
 		return 7;
 	};
 	endNode.prototype.Type = function() { return this.go$val.Type(); };
-0ÅÆStringÅ£	endNode.Ptr.prototype.String = function() {
+ 0Å¨  Å£	endNode.Ptr.prototype.String = function() {
 		var e;
 		e = this;
 		return "{{end}}";
 	};
 	endNode.prototype.String = function() { return this.go$val.String(); };
-0Å™CopyÅ°	endNode.Ptr.prototype.Copy = function() {
+ 0Å™  Å°	endNode.Ptr.prototype.Copy = function() {
 		var e;
 		e = this;
 		return newEnd(e.Pos);
 	};
 	endNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0]newElseR	var newElse = function(pos, line) {
+ 0] newElseN	newElse = function(pos, line) {
 		return new elseNode.Ptr(6, pos, line);
 	};
-0Å†TypeÅó	elseNode.Ptr.prototype.Type = function() {
+ 0Å†  Åó	elseNode.Ptr.prototype.Type = function() {
 		var e;
 		e = this;
 		return 6;
 	};
 	elseNode.prototype.Type = function() { return this.go$val.Type(); };
-0Å±StringÅ¶	elseNode.Ptr.prototype.String = function() {
+ 0ÅØ  Å¶	elseNode.Ptr.prototype.String = function() {
 		var e;
 		e = this;
 		return "{{else}}";
 	};
 	elseNode.prototype.String = function() { return this.go$val.String(); };
-0ÅµCopyÅ¨	elseNode.Ptr.prototype.Copy = function() {
+ 0Åµ  Å¨	elseNode.Ptr.prototype.Copy = function() {
 		var e;
 		e = this;
 		return newElse(e.Pos, e.Line);
 	};
 	elseNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0ÇﬁStringÇ“	BranchNode.Ptr.prototype.String = function() {
+ 0Ç‹  Ç“	BranchNode.Ptr.prototype.String = function() {
 		var b, name, _ref;
 		b = this;
 		name = "";
@@ -1600,37 +1545,37 @@ newCommandf	var newCommand = function(pos) {
 		return fmt.Sprintf("{{%s %s}}%s{{end}}", new (go$sliceType(go$emptyInterface))([new Go$String(name), b.Pipe, b.List]));
 	};
 	BranchNode.prototype.String = function() { return this.go$val.String(); };
-0ÅùnewIfÅì	var newIf = function(pos, line, pipe, list$1, elseList) {
+ 0Åù newIfÅè	newIf = function(pos, line, pipe, list$1, elseList) {
 		return new IfNode.Ptr(new BranchNode.Ptr(10, pos, line, pipe, list$1, elseList));
 	};
-0Ç$CopyÇ	IfNode.Ptr.prototype.Copy = function() {
+ 0Ç$  Ç	IfNode.Ptr.prototype.Copy = function() {
 		var i;
 		i = this;
 		return newIf(i.BranchNode.Pos, i.BranchNode.Line, i.BranchNode.Pipe.CopyPipe(), i.BranchNode.List.CopyList(), i.BranchNode.ElseList.CopyList());
 	};
 	IfNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0Å¶newRangeÅô	var newRange = function(pos, line, pipe, list$1, elseList) {
+ 0Å¶ newRangeÅï	newRange = function(pos, line, pipe, list$1, elseList) {
 		return new RangeNode.Ptr(new BranchNode.Ptr(15, pos, line, pipe, list$1, elseList));
 	};
-0Ç-CopyÇ#	RangeNode.Ptr.prototype.Copy = function() {
+ 0Ç-  Ç#	RangeNode.Ptr.prototype.Copy = function() {
 		var r;
 		r = this;
 		return newRange(r.BranchNode.Pos, r.BranchNode.Line, r.BranchNode.Pipe.CopyPipe(), r.BranchNode.List.CopyList(), r.BranchNode.ElseList.CopyList());
 	};
 	RangeNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0Å£newWithÅó	var newWith = function(pos, line, pipe, list$1, elseList) {
+ 0Å£ newWithÅì	newWith = function(pos, line, pipe, list$1, elseList) {
 		return new WithNode.Ptr(new BranchNode.Ptr(19, pos, line, pipe, list$1, elseList));
 	};
-0Ç*CopyÇ 	WithNode.Ptr.prototype.Copy = function() {
+ 0Ç*  Ç 	WithNode.Ptr.prototype.Copy = function() {
 		var w;
 		w = this;
 		return newWith(w.BranchNode.Pos, w.BranchNode.Line, w.BranchNode.Pipe.CopyPipe(), w.BranchNode.List.CopyList(), w.BranchNode.ElseList.CopyList());
 	};
 	WithNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0ÅÇnewTemplates	var newTemplate = function(pos, line, name, pipe) {
+ 0ÅÇ newTemplateo	newTemplate = function(pos, line, name, pipe) {
 		return new TemplateNode.Ptr(17, pos, line, name, pipe);
 	};
-0Ç∂StringÇ™	TemplateNode.Ptr.prototype.String = function() {
+ 0Ç¥  Ç™	TemplateNode.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		if (t.Pipe === (go$ptrType(PipeNode)).nil) {
@@ -1639,13 +1584,13 @@ newCommandf	var newCommand = function(pos) {
 		return fmt.Sprintf("{{template %q %s}}", new (go$sliceType(go$emptyInterface))([new Go$String(t.Name), t.Pipe]));
 	};
 	TemplateNode.prototype.String = function() { return this.go$val.String(); };
-0Å‹CopyÅ”	TemplateNode.Ptr.prototype.Copy = function() {
+ 0Å‹  Å”	TemplateNode.Ptr.prototype.Copy = function() {
 		var t;
 		t = this;
 		return newTemplate(t.Pos, t.Line, t.Name, t.Pipe.CopyPipe());
 	};
 	TemplateNode.prototype.Copy = function() { return this.go$val.Copy(); };
-0Ç„CopyÇŸ	Tree.Ptr.prototype.Copy = function() {
+ 0Ç„  ÇŸ	Tree.Ptr.prototype.Copy = function() {
 		var t;
 		t = this;
 		if (t === (go$ptrType(Tree)).nil) {
@@ -1654,7 +1599,7 @@ newCommandf	var newCommand = function(pos) {
 		return new Tree.Ptr(t.Name, t.ParseName, t.Root.CopyList(), t.text, (go$sliceType((go$mapType(Go$String, go$emptyInterface)))).nil, (go$ptrType(lexer)).nil, go$makeNativeArray("Struct", 3, function() { return new item.Ptr(); }), 0, (go$sliceType(Go$String)).nil);
 	};
 	Tree.prototype.Copy = function() { return this.go$val.Copy(); };
-0ÇãParseÇÄ	var Parse = go$pkg.Parse = function(name, text, leftDelim, rightDelim, funcs) {
+ 0Çã ParseÇ|	Parse = go$pkg.Parse = function(name, text, leftDelim, rightDelim, funcs) {
 		var treeSet, err, t, _tuple;
 		treeSet = false;
 		err = null;
@@ -1664,7 +1609,7 @@ newCommandf	var newCommand = function(pos) {
 		_tuple = t.Parse(text, leftDelim, rightDelim, treeSet, funcs), err = _tuple[1];
 		return [treeSet, err];
 	};
-0ÇªnextÇ±	Tree.Ptr.prototype.next = function() {
+ 0Çª  Ç±	Tree.Ptr.prototype.next = function() {
 		var t, _struct, _struct$1;
 		t = this;
 		if (t.peekCount > 0) {
@@ -1675,20 +1620,20 @@ newCommandf	var newCommand = function(pos) {
 		return (_struct$1 = t.token[t.peekCount], new item.Ptr(_struct$1.typ, _struct$1.pos, _struct$1.val));
 	};
 	Tree.prototype.next = function() { return this.go$val.next(); };
-0Å∫backupÅØ	Tree.Ptr.prototype.backup = function() {
+ 0Å∏  ÅØ	Tree.Ptr.prototype.backup = function() {
 		var t;
 		t = this;
 		t.peekCount = t.peekCount + 1 >> 0;
 	};
 	Tree.prototype.backup = function() { return this.go$val.backup(); };
-0Çbackup2Ç	Tree.Ptr.prototype.backup2 = function(t1) {
+ 0Ç  Ç	Tree.Ptr.prototype.backup2 = function(t1) {
 		var t, _struct;
 		t = this;
 		t.token[1] = (_struct = t1, new item.Ptr(_struct.typ, _struct.pos, _struct.val));
 		t.peekCount = 2;
 	};
 	Tree.prototype.backup2 = function(t1) { return this.go$val.backup2(t1); };
-0ÇÇbackup3Çu	Tree.Ptr.prototype.backup3 = function(t2, t1) {
+ 0Ç  Çu	Tree.Ptr.prototype.backup3 = function(t2, t1) {
 		var t, _struct, _struct$1;
 		t = this;
 		t.token[1] = (_struct = t1, new item.Ptr(_struct.typ, _struct.pos, _struct.val));
@@ -1696,7 +1641,7 @@ newCommandf	var newCommand = function(pos) {
 		t.peekCount = 3;
 	};
 	Tree.prototype.backup3 = function(t2, t1) { return this.go$val.backup3(t2, t1); };
-0ÇpeekÇ	Tree.Ptr.prototype.peek = function() {
+ 0Ç  Ç	Tree.Ptr.prototype.peek = function() {
 		var t, _struct, _struct$1, _struct$2;
 		t = this;
 		if (t.peekCount > 0) {
@@ -1707,7 +1652,7 @@ newCommandf	var newCommand = function(pos) {
 		return (_struct$2 = t.token[0], new item.Ptr(_struct$2.typ, _struct$2.pos, _struct$2.val));
 	};
 	Tree.prototype.peek = function() { return this.go$val.peek(); };
-0Ç;nextNonSpaceÇ)	Tree.Ptr.prototype.nextNonSpace = function() {
+ 0Ç3  Ç)	Tree.Ptr.prototype.nextNonSpace = function() {
 		var token, t, _struct, _struct$1, _struct$2;
 		token = new item.Ptr();
 		t = this;
@@ -1721,7 +1666,7 @@ newCommandf	var newCommand = function(pos) {
 		return (_struct$2 = token, new item.Ptr(_struct$2.typ, _struct$2.pos, _struct$2.val));
 	};
 	Tree.prototype.nextNonSpace = function() { return this.go$val.nextNonSpace(); };
-0ÇIpeekNonSpaceÇ7	Tree.Ptr.prototype.peekNonSpace = function() {
+ 0ÇA  Ç7	Tree.Ptr.prototype.peekNonSpace = function() {
 		var token, t, _struct, _struct$1, _struct$2;
 		token = new item.Ptr();
 		t = this;
@@ -1736,10 +1681,10 @@ newCommandf	var newCommand = function(pos) {
 		return (_struct$2 = token, new item.Ptr(_struct$2.typ, _struct$2.pos, _struct$2.val));
 	};
 	Tree.prototype.peekNonSpace = function() { return this.go$val.peekNonSpace(); };
-0ÇNewÅˇ	var New = go$pkg.New = function(name, funcs) {
+ 0Ç NewÅ˚	New = go$pkg.New = function(name, funcs) {
 		return new Tree.Ptr(name, "", (go$ptrType(ListNode)).nil, "", funcs, (go$ptrType(lexer)).nil, go$makeNativeArray("Struct", 3, function() { return new item.Ptr(); }), 0, (go$sliceType(Go$String)).nil);
 	};
-0Ç§ErrorContextÇí	Tree.Ptr.prototype.ErrorContext = function(n) {
+ 0Çú  Çí	Tree.Ptr.prototype.ErrorContext = function(n) {
 		var location, context, t, pos, text, byteNum, lineNum, _tuple;
 		location = "";
 		context = "";
@@ -1762,7 +1707,7 @@ newCommandf	var newCommand = function(pos) {
 		return [location, context];
 	};
 	Tree.prototype.ErrorContext = function(n) { return this.go$val.ErrorContext(n); };
-0Ç∑errorfÇ´	Tree.Ptr.prototype.errorf = function(format, args) {
+ 0Çµ  Ç´	Tree.Ptr.prototype.errorf = function(format, args) {
 		var t;
 		t = this;
 		t.Root = (go$ptrType(ListNode)).nil;
@@ -1770,13 +1715,13 @@ newCommandf	var newCommand = function(pos) {
 		throw go$panic(fmt.Errorf(format, args));
 	};
 	Tree.prototype.errorf = function(format, args) { return this.go$val.errorf(format, args); };
-0ÅŸerrorÅœ	Tree.Ptr.prototype.error = function(err) {
+ 0Åÿ  Åœ	Tree.Ptr.prototype.error = function(err) {
 		var t;
 		t = this;
 		t.errorf("%s", new (go$sliceType(go$emptyInterface))([err]));
 	};
 	Tree.prototype.error = function(err) { return this.go$val.error(err); };
-0Ç7expectÇ+	Tree.Ptr.prototype.expect = function(expected, context) {
+ 0Ç5  Ç+	Tree.Ptr.prototype.expect = function(expected, context) {
 		var t, _struct, token, _struct$1, _struct$2;
 		t = this;
 		token = (_struct = t.nextNonSpace(), new item.Ptr(_struct.typ, _struct.pos, _struct.val));
@@ -1786,7 +1731,7 @@ newCommandf	var newCommand = function(pos) {
 		return (_struct$2 = token, new item.Ptr(_struct$2.typ, _struct$2.pos, _struct$2.val));
 	};
 	Tree.prototype.expect = function(expected, context) { return this.go$val.expect(expected, context); };
-0ÇêexpectOneOfÇ	Tree.Ptr.prototype.expectOneOf = function(expected1, expected2, context) {
+ 0Çâ  Ç	Tree.Ptr.prototype.expectOneOf = function(expected1, expected2, context) {
 		var t, _struct, token, _struct$1, _struct$2;
 		t = this;
 		token = (_struct = t.nextNonSpace(), new item.Ptr(_struct.typ, _struct.pos, _struct.val));
@@ -1796,14 +1741,13 @@ newCommandf	var newCommand = function(pos) {
 		return (_struct$2 = token, new item.Ptr(_struct$2.typ, _struct$2.pos, _struct$2.val));
 	};
 	Tree.prototype.expectOneOf = function(expected1, expected2, context) { return this.go$val.expectOneOf(expected1, expected2, context); };
-0ÇX
-unexpectedÇH	Tree.Ptr.prototype.unexpected = function(token, context) {
+ 0ÇR  ÇH	Tree.Ptr.prototype.unexpected = function(token, context) {
 		var t;
 		t = this;
 		t.errorf("unexpected %s in %s", new (go$sliceType(go$emptyInterface))([new token.constructor.Struct(token), new Go$String(context)]));
 	};
 	Tree.prototype.unexpected = function(token, context) { return this.go$val.unexpected(token, context); };
-0ÇjrecoverÇ]	Tree.Ptr.prototype.recover = function(errp) {
+ 0Çg  Ç]	Tree.Ptr.prototype.recover = function(errp) {
 		var t, e, ok, _tuple;
 		t = this;
 		e = go$recover();
@@ -1819,8 +1763,7 @@ unexpectedÇH	Tree.Ptr.prototype.unexpected = function(token, context) {
 		return;
 	};
 	Tree.prototype.recover = function(errp) { return this.go$val.recover(errp); };
-0ÇE
-startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
+ 0Ç?  Ç5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		var t;
 		t = this;
 		t.Root = (go$ptrType(ListNode)).nil;
@@ -1829,7 +1772,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		t.funcs = funcs;
 	};
 	Tree.prototype.startParse = function(funcs, lex$1) { return this.go$val.startParse(funcs, lex$1); };
-0Ç:	stopParseÇ+	Tree.Ptr.prototype.stopParse = function() {
+ 0Ç5  Ç+	Tree.Ptr.prototype.stopParse = function() {
 		var t;
 		t = this;
 		t.lex = (go$ptrType(lexer)).nil;
@@ -1837,7 +1780,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		t.funcs = (go$sliceType((go$mapType(Go$String, go$emptyInterface)))).nil;
 	};
 	Tree.prototype.stopParse = function() { return this.go$val.stopParse(); };
-0ÇtParseÇi	Tree.Ptr.prototype.Parse = function(text, leftDelim, rightDelim, treeSet, funcs) {
+ 0Çs  Çi	Tree.Ptr.prototype.Parse = function(text, leftDelim, rightDelim, treeSet, funcs) {
 		var tree, err, t, v, _tuple;
 		tree = (go$ptrType(Tree)).nil;
 		err = null;
@@ -1861,12 +1804,12 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		}
 	};
 	Tree.prototype.Parse = function(text, leftDelim, rightDelim, treeSet, funcs) { return this.go$val.Parse(text, leftDelim, rightDelim, treeSet, funcs); };
-0ÇsaddÇj	Tree.Ptr.prototype.add = function(treeSet) {
-		var t, _entry, tree, _key;
+ 0Ç|  Çr	Tree.Ptr.prototype.add = function(treeSet) {
+		var t, _entry, tree, _key$1;
 		t = this;
 		tree = (_entry = treeSet[t.Name], _entry !== undefined ? _entry.v : (go$ptrType(Tree)).nil);
 		if (tree === (go$ptrType(Tree)).nil || IsEmptyTree(tree.Root)) {
-			_key = t.Name, (treeSet || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: t };
+			_key$1 = t.Name, (treeSet || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: t };
 			return;
 		}
 		if (!IsEmptyTree(t.Root)) {
@@ -1874,7 +1817,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		}
 	};
 	Tree.prototype.add = function(treeSet) { return this.go$val.add(treeSet); };
-0Ç‘IsEmptyTreeÇ√	var IsEmptyTree = go$pkg.IsEmptyTree = function(n) {
+ 0Ç‘ IsEmptyTreeÇø	IsEmptyTree = go$pkg.IsEmptyTree = function(n) {
 		var n$1, _ref, _type, _ref$1, _i, _slice, _index, node;
 		_ref = n;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -1912,7 +1855,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		}
 		return false;
 	};
-0Ç€parseÇ–	Tree.Ptr.prototype.parse = function(treeSet) {
+ 0Ç⁄  Ç–	Tree.Ptr.prototype.parse = function(treeSet) {
 		var next, t, _struct, delim, newT, _struct$1, n;
 		next = null;
 		t = this;
@@ -1940,7 +1883,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		return next;
 	};
 	Tree.prototype.parse = function(treeSet) { return this.go$val.parse(treeSet); };
-0Ç/parseDefinitionÇ	Tree.Ptr.prototype.parseDefinition = function(treeSet) {
+ 0Ç$  Ç	Tree.Ptr.prototype.parseDefinition = function(treeSet) {
 		var t, _struct, name, err, _tuple, end, _tuple$1;
 		t = this;
 		name = (_struct = t.expectOneOf(17, 13, "define clause"), new item.Ptr(_struct.typ, _struct.pos, _struct.val));
@@ -1959,7 +1902,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		t.stopParse();
 	};
 	Tree.prototype.parseDefinition = function(treeSet) { return this.go$val.parseDefinition(treeSet); };
-0ÇsitemListÇe	Tree.Ptr.prototype.itemList = function() {
+ 0Ço  Çe	Tree.Ptr.prototype.itemList = function() {
 		var list$1, next, t, n, _ref, _tuple;
 		list$1 = (go$ptrType(ListNode)).nil;
 		next = null;
@@ -1978,7 +1921,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		return [list$1, next];
 	};
 	Tree.prototype.itemList = function() { return this.go$val.itemList(); };
-0Ç6textOrActionÇ$	Tree.Ptr.prototype.textOrAction = function() {
+ 0Ç.  Ç$	Tree.Ptr.prototype.textOrAction = function() {
 		var t, _struct, token, _ref, _struct$1;
 		t = this;
 		token = (_struct = t.nextNonSpace(), new item.Ptr(_struct.typ, _struct.pos, _struct.val));
@@ -1993,7 +1936,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		return null;
 	};
 	Tree.prototype.textOrAction = function() { return this.go$val.textOrAction(); };
-0ÇactionÇ	Tree.Ptr.prototype.action = function() {
+ 0Ç  Ç	Tree.Ptr.prototype.action = function() {
 		var n, t, _struct, token, _ref;
 		n = null;
 		t = this;
@@ -2023,7 +1966,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		return n;
 	};
 	Tree.prototype.action = function() { return this.go$val.action(); };
-0Ç	ÄpipelineÇ	r	Tree.Ptr.prototype.pipeline = function(context) {
+ 0Ç	|  Ç	r	Tree.Ptr.prototype.pipeline = function(context) {
 		var pipe, t, decl, pos, v, _struct, _struct$1, tokenAfterVariable, next, _struct$2, variable, _struct$3, _struct$4, _struct$5, _struct$6, token, _ref, _struct$7;
 		pipe = (go$ptrType(PipeNode)).nil;
 		t = this;
@@ -2073,7 +2016,7 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		}
 	};
 	Tree.prototype.pipeline = function(context) { return this.go$val.pipeline(context); };
-0ÇparseControlÇ˚	Tree.Ptr.prototype.parseControl = function(allowElseIf, context) {
+ 0Ç  Ç˚	Tree.Ptr.prototype.parseControl = function(allowElseIf, context) {
 		var pos, line, pipe, list$1, elseList, t, next, _tuple, _ref, _tuple$1, _tuple$2;
 		pos = 0;
 		line = 0;
@@ -2114,32 +2057,31 @@ startParseÇ5	Tree.Ptr.prototype.startParse = function(funcs, lex$1) {
 		}
 	};
 	Tree.prototype.parseControl = function(allowElseIf, context) { return this.go$val.parseControl(allowElseIf, context); };
-0Ç	ifControlÇ	Tree.Ptr.prototype.ifControl = function() {
+ 0Ç  Ç	Tree.Ptr.prototype.ifControl = function() {
 		var t, _tuple;
 		t = this;
 		return (_tuple = t.parseControl(true, "if"), newIf(_tuple[0], _tuple[1], _tuple[2], _tuple[3], _tuple[4]));
 	};
 	Tree.prototype.ifControl = function() { return this.go$val.ifControl(); };
-0Ç*rangeControlÇ	Tree.Ptr.prototype.rangeControl = function() {
+ 0Ç"  Ç	Tree.Ptr.prototype.rangeControl = function() {
 		var t, _tuple;
 		t = this;
 		return (_tuple = t.parseControl(false, "range"), newRange(_tuple[0], _tuple[1], _tuple[2], _tuple[3], _tuple[4]));
 	};
 	Tree.prototype.rangeControl = function() { return this.go$val.rangeControl(); };
-0Ç$withControlÇ	Tree.Ptr.prototype.withControl = function() {
+ 0Ç  Ç	Tree.Ptr.prototype.withControl = function() {
 		var t, _tuple;
 		t = this;
 		return (_tuple = t.parseControl(false, "with"), newWith(_tuple[0], _tuple[1], _tuple[2], _tuple[3], _tuple[4]));
 	};
 	Tree.prototype.withControl = function() { return this.go$val.withControl(); };
-0ÅŒ
-endControlÅø	Tree.Ptr.prototype.endControl = function() {
+ 0Å»  Åø	Tree.Ptr.prototype.endControl = function() {
 		var t;
 		t = this;
 		return newEnd(t.expect(14, "end").pos);
 	};
 	Tree.prototype.endControl = function() { return this.go$val.endControl(); };
-0Ç¢elseControlÇë	Tree.Ptr.prototype.elseControl = function() {
+ 0Çõ  Çë	Tree.Ptr.prototype.elseControl = function() {
 		var t, _struct, peek;
 		t = this;
 		peek = (_struct = t.peekNonSpace(), new item.Ptr(_struct.typ, _struct.pos, _struct.val));
@@ -2149,7 +2091,7 @@ endControlÅø	Tree.Ptr.prototype.endControl = function() {
 		return newElse(t.expect(14, "else").pos, t.lex.lineNumber());
 	};
 	Tree.prototype.elseControl = function() { return this.go$val.elseControl(); };
-0Ç|templateControlÇg	Tree.Ptr.prototype.templateControl = function() {
+ 0Çq  Çg	Tree.Ptr.prototype.templateControl = function() {
 		var t, name, _struct, token, _ref, _tuple, s, err, _struct$1, pipe;
 		t = this;
 		name = "";
@@ -2172,7 +2114,7 @@ endControlÅø	Tree.Ptr.prototype.endControl = function() {
 		return newTemplate(token.pos, t.lex.lineNumber(), name, pipe);
 	};
 	Tree.prototype.templateControl = function() { return this.go$val.templateControl(); };
-0ÇÒcommandÇ‰	Tree.Ptr.prototype.command = function() {
+ 0ÇÓ  Ç‰	Tree.Ptr.prototype.command = function() {
 		var t, cmd, operand, _struct, token, _ref;
 		t = this;
 		cmd = newCommand(t.peekNonSpace().pos);
@@ -2202,7 +2144,7 @@ endControlÅø	Tree.Ptr.prototype.endControl = function() {
 		return cmd;
 	};
 	Tree.prototype.command = function() { return this.go$val.command(); };
-0ÇëoperandÇÑ	Tree.Ptr.prototype.operand = function() {
+ 0Çé  ÇÑ	Tree.Ptr.prototype.operand = function() {
 		var t, node, chain, _ref;
 		t = this;
 		node = t.term();
@@ -2226,7 +2168,7 @@ endControlÅø	Tree.Ptr.prototype.endControl = function() {
 		return node;
 	};
 	Tree.prototype.operand = function() { return this.go$val.operand(); };
-0ÇUtermÇK	Tree.Ptr.prototype.term = function() {
+ 0ÇU  ÇK	Tree.Ptr.prototype.term = function() {
 		var t, _struct, token, _ref, _tuple, number, err, pipe, token$1, _struct$1, _tuple$1, s, err$1;
 		t = this;
 		token = (_struct = t.nextNonSpace(), new item.Ptr(_struct.typ, _struct.pos, _struct.val));
@@ -2271,7 +2213,7 @@ endControlÅø	Tree.Ptr.prototype.endControl = function() {
 		return null;
 	};
 	Tree.prototype.term = function() { return this.go$val.term(); };
-0ÇñhasFunctionÇÖ	Tree.Ptr.prototype.hasFunction = function(name) {
+ 0Çè  ÇÖ	Tree.Ptr.prototype.hasFunction = function(name) {
 		var t, _ref, _i, _slice, _index, funcMap, _entry;
 		t = this;
 		_ref = t.funcs;
@@ -2290,13 +2232,13 @@ endControlÅø	Tree.Ptr.prototype.endControl = function() {
 		return false;
 	};
 	Tree.prototype.hasFunction = function(name) { return this.go$val.hasFunction(name); };
-0Å¡popVarsÅµ	Tree.Ptr.prototype.popVars = function(n) {
+ 0Åæ  Åµ	Tree.Ptr.prototype.popVars = function(n) {
 		var t;
 		t = this;
 		t.vars = go$subslice(t.vars, 0, n);
 	};
 	Tree.prototype.popVars = function(n) { return this.go$val.popVars(n); };
-0Ç˜useVarÇÎ	Tree.Ptr.prototype.useVar = function(pos, name) {
+ 0Çı  ÇÎ	Tree.Ptr.prototype.useVar = function(pos, name) {
 		var t, v, _ref, _i, _slice, _index, varName, _slice$1, _index$1, _slice$2, _index$2;
 		t = this;
 		v = newVariable(pos, name);
@@ -2313,8 +2255,4 @@ endControlÅø	Tree.Ptr.prototype.endControl = function() {
 		return null;
 	};
 	Tree.prototype.useVar = function(pos, name) { return this.go$val.useVar(pos, name); };
-0Ç&initÇ	go$pkg.init = function() {
-		var _map, _key;
-		key = (_map = new Go$Map(), _key = ".", _map[_key] = { k: _key, v: 21 }, _key = "define", _map[_key] = { k: _key, v: 22 }, _key = "else", _map[_key] = { k: _key, v: 23 }, _key = "end", _map[_key] = { k: _key, v: 24 }, _key = "if", _map[_key] = { k: _key, v: 25 }, _key = "range", _map[_key] = { k: _key, v: 27 }, _key = "nil", _map[_key] = { k: _key, v: 26 }, _key = "template", _map[_key] = { k: _key, v: 28 }, _key = "with", _map[_key] = { k: _key, v: 29 }, _map);
-		textFormat = "%s";
-	};
+ 0    0    0 

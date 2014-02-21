@@ -1,4 +1,4 @@
-0Ç∏
+0ÇÒ
 crypto/rsaÇC£package rsa
 import crypto "crypto"
 import subtle "crypto/subtle"
@@ -191,53 +191,55 @@ type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand
 $$
 0Å˝runtimeerrorssync/atomicsynciounicodeunicode/utf8byteshashmathstrconvcryptobufiocrypto/subtlecrypto/cipher
 crypto/aesreflectencoding/binarysyscalltimeosfmt	math/randstringsmath/bigcrypto/rand
-crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0ioio0math/bigbig0bytesbytes0hashhash0crypto/randrandÇ	var PSSOptions;
-	PSSOptions = go$newType(0, "Struct", "rsa.PSSOptions", "PSSOptions", "crypto/rsa", function(SaltLength_) {
+crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0ioio0math/bigbig0bytesbytes0hashhash0crypto/randrand0Ç´ø0Ç 
+PSSOptionsÅ‹	PSSOptions = go$pkg.PSSOptions = go$newType(0, "Struct", "rsa.PSSOptions", "PSSOptions", "crypto/rsa", function(SaltLength_) {
 		this.go$val = this;
 		this.SaltLength = SaltLength_ !== undefined ? SaltLength_ : 0;
 	});
-	go$pkg.PSSOptions = PSSOptions;
-	var PublicKey;
-	PublicKey = go$newType(0, "Struct", "rsa.PublicKey", "PublicKey", "crypto/rsa", function(N_, E_) {
+Åè		PSSOptions.init([["SaltLength", "", Go$Int, ""]]);
+		(go$ptrType(PSSOptions)).methods = [["saltLength", "crypto/rsa", [], [Go$Int], false]];
+0ÇY 	PublicKeyÅˆ	PublicKey = go$pkg.PublicKey = go$newType(0, "Struct", "rsa.PublicKey", "PublicKey", "crypto/rsa", function(N_, E_) {
 		this.go$val = this;
 		this.N = N_ !== undefined ? N_ : (go$ptrType(big.Int)).nil;
 		this.E = E_ !== undefined ? E_ : 0;
 	});
-	go$pkg.PublicKey = PublicKey;
-	var PrivateKey;
-	PrivateKey = go$newType(0, "Struct", "rsa.PrivateKey", "PrivateKey", "crypto/rsa", function(PublicKey_, D_, Primes_, Precomputed_) {
+Q		PublicKey.init([["N", "", (go$ptrType(big.Int)), ""], ["E", "", Go$Int, ""]]);
+0ÇB 
+PrivateKeyÇ˛	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "rsa.PrivateKey", "PrivateKey", "crypto/rsa", function(PublicKey_, D_, Primes_, Precomputed_) {
 		this.go$val = this;
 		this.PublicKey = PublicKey_ !== undefined ? PublicKey_ : new PublicKey.Ptr();
 		this.D = D_ !== undefined ? D_ : (go$ptrType(big.Int)).nil;
 		this.Primes = Primes_ !== undefined ? Primes_ : (go$sliceType((go$ptrType(big.Int)))).nil;
 		this.Precomputed = Precomputed_ !== undefined ? Precomputed_ : new PrecomputedValues.Ptr();
 	});
-	go$pkg.PrivateKey = PrivateKey;
-	var PrecomputedValues;
-	PrecomputedValues = go$newType(0, "Struct", "rsa.PrecomputedValues", "PrecomputedValues", "crypto/rsa", function(Dp_, Dq_, Qinv_, CRTValues_) {
+Ç.		PrivateKey.init([["", "", PublicKey, ""], ["D", "", (go$ptrType(big.Int)), ""], ["Primes", "", (go$sliceType((go$ptrType(big.Int)))), ""], ["Precomputed", "", PrecomputedValues, ""]]);
+		(go$ptrType(PrivateKey)).methods = [["Precompute", "", [], [], false], ["Validate", "", [], [go$error], false]];
+0Ç… PrecomputedValuesÇÈ	PrecomputedValues = go$pkg.PrecomputedValues = go$newType(0, "Struct", "rsa.PrecomputedValues", "PrecomputedValues", "crypto/rsa", function(Dp_, Dq_, Qinv_, CRTValues_) {
 		this.go$val = this;
 		this.Dp = Dp_ !== undefined ? Dp_ : (go$ptrType(big.Int)).nil;
 		this.Dq = Dq_ !== undefined ? Dq_ : (go$ptrType(big.Int)).nil;
 		this.Qinv = Qinv_ !== undefined ? Qinv_ : (go$ptrType(big.Int)).nil;
 		this.CRTValues = CRTValues_ !== undefined ? CRTValues_ : (go$sliceType(CRTValue)).nil;
 	});
-	go$pkg.PrecomputedValues = PrecomputedValues;
-	var CRTValue;
-	CRTValue = go$newType(0, "Struct", "rsa.CRTValue", "CRTValue", "crypto/rsa", function(Exp_, Coeff_, R_) {
+Åƒ		PrecomputedValues.init([["Dp", "", (go$ptrType(big.Int)), ""], ["Dq", "", (go$ptrType(big.Int)), ""], ["Qinv", "", (go$ptrType(big.Int)), ""], ["CRTValues", "", (go$sliceType(CRTValue)), ""]]);
+0Ç CRTValueÇd	CRTValue = go$pkg.CRTValue = go$newType(0, "Struct", "rsa.CRTValue", "CRTValue", "crypto/rsa", function(Exp_, Coeff_, R_) {
 		this.go$val = this;
 		this.Exp = Exp_ !== undefined ? Exp_ : (go$ptrType(big.Int)).nil;
 		this.Coeff = Coeff_ !== undefined ? Coeff_ : (go$ptrType(big.Int)).nil;
 		this.R = R_ !== undefined ? R_ : (go$ptrType(big.Int)).nil;
 	});
-	go$pkg.CRTValue = CRTValue;
-	PSSOptions.init([["SaltLength", "", Go$Int, ""]]);
-	(go$ptrType(PSSOptions)).methods = [["saltLength", "crypto/rsa", [], [Go$Int], false]];
-	PublicKey.init([["N", "", (go$ptrType(big.Int)), ""], ["E", "", Go$Int, ""]]);
-	PrivateKey.init([["", "", PublicKey, ""], ["D", "", (go$ptrType(big.Int)), ""], ["Primes", "", (go$sliceType((go$ptrType(big.Int)))), ""], ["Precomputed", "", PrecomputedValues, ""]]);
-	(go$ptrType(PrivateKey)).methods = [["Precompute", "", [], [], false], ["Validate", "", [], [go$error], false]];
-	PrecomputedValues.init([["Dp", "", (go$ptrType(big.Int)), ""], ["Dq", "", (go$ptrType(big.Int)), ""], ["Qinv", "", (go$ptrType(big.Int)), ""], ["CRTValues", "", (go$sliceType(CRTValue)), ""]]);
-	CRTValue.init([["Exp", "", (go$ptrType(big.Int)), ""], ["Coeff", "", (go$ptrType(big.Int)), ""], ["R", "", (go$ptrType(big.Int)), ""]]);
-0y0hashPrefixes0	bigZero0bigOne0errPublicModulus0errPublicExponentSmall0errPublicExponentLarge0 0 0 0Çü„0ÇEncryptPKCS1v15Ç	var EncryptPKCS1v15 = go$pkg.EncryptPKCS1v15 = function(rand$1, pub, msg) {
+Åã		CRTValue.init([["Exp", "", (go$ptrType(big.Int)), ""], ["Coeff", "", (go$ptrType(big.Int)), ""], ["R", "", (go$ptrType(big.Int)), ""]]);
+0 hashPrefixes  0 bigZero  0 bigOne  0 errPublicModulus  0 errPublicExponentSmall  0 errPublicExponentLarge  0    0    0    0Ç>   Ç4		var _map, _key;
+		hashPrefixes = (_map = new Go$Map(), _key = 2, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 32, 48, 12, 6, 8, 42, 134, 72, 134, 247, 13, 2, 5, 5, 0, 4, 16]) }, _key = 3, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 33, 48, 9, 6, 5, 43, 14, 3, 2, 26, 5, 0, 4, 20]) }, _key = 4, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 45, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 4, 5, 0, 4, 28]) }, _key = 5, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 49, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 1, 5, 0, 4, 32]) }, _key = 6, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 65, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 2, 5, 0, 4, 48]) }, _key = 7, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 81, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 3, 5, 0, 4, 64]) }, _key = 8, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([]) }, _key = 9, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 32, 48, 8, 6, 6, 40, 207, 6, 3, 0, 49, 4, 20]) }, _map);
+04   ,		bigZero = big.NewInt(new Go$Int64(0, 0));
+03   +		bigOne = big.NewInt(new Go$Int64(0, 1));
+0O   G		errPublicModulus = errors.New("crypto/rsa: missing public modulus");
+0X   P		errPublicExponentSmall = errors.New("crypto/rsa: public exponent too small");
+0X   P		errPublicExponentLarge = errors.New("crypto/rsa: public exponent too large");
+0i   a		go$pkg.ErrMessageTooLong = errors.New("crypto/rsa: message too long for RSA public key size");
+0M   E		go$pkg.ErrDecryption = errors.New("crypto/rsa: decryption error");
+0Q   I		go$pkg.ErrVerification = errors.New("crypto/rsa: verification error");
+0Ç EncryptPKCS1v15Çˇ	EncryptPKCS1v15 = go$pkg.EncryptPKCS1v15 = function(rand$1, pub, msg) {
 		var out, err, err$1, _tuple, _q, k, em, _slice, _index, _tuple$1, ps, mm, _slice$1, _index$1, m, c;
 		out = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -265,7 +267,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		out = em;
 		return [out, err];
 	};
-0ÇtDecryptPKCS1v15Ç_	var DecryptPKCS1v15 = go$pkg.DecryptPKCS1v15 = function(rand$1, priv, ciphertext) {
+ 0Çt DecryptPKCS1v15Ç[	DecryptPKCS1v15 = go$pkg.DecryptPKCS1v15 = function(rand$1, priv, ciphertext) {
 		var out, err, err$1, _tuple, _tuple$1, valid;
 		out = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -279,7 +281,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		}
 		return [out, err];
 	};
-0Ç}DecryptPKCS1v15SessionKeyÇ^	var DecryptPKCS1v15SessionKey = go$pkg.DecryptPKCS1v15SessionKey = function(rand$1, priv, ciphertext, key) {
+ 0Ç} DecryptPKCS1v15SessionKeyÇZ	DecryptPKCS1v15SessionKey = go$pkg.DecryptPKCS1v15SessionKey = function(rand$1, priv, ciphertext, key) {
 		var err, err$1, _q, k, _tuple, valid, msg;
 		err = null;
 		if (err$1 = checkPub(priv.PublicKey), !(go$interfaceIsEqual(err$1, null))) {
@@ -299,7 +301,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		subtle.ConstantTimeCopy(valid, key, msg);
 		return err;
 	};
-0Ç£decryptPKCS1v15Çé	var decryptPKCS1v15 = function(rand$1, priv, ciphertext) {
+ 0Ç£ decryptPKCS1v15Çä	decryptPKCS1v15 = function(rand$1, priv, ciphertext) {
 		var valid, msg, err, _q, k, c, _tuple, m, em, _slice, _index, firstByteIsZero, _slice$1, _index$1, secondByteIsTwo, _tuple$1, lookingForIndex, index, i, _slice$2, _index$2, equals0, validPS;
 		valid = 0;
 		msg = (go$sliceType(Go$Uint8)).nil;
@@ -331,7 +333,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		msg = go$subslice(em, (index + 1 >> 0));
 		return [valid, msg, err];
 	};
-0ÇXnonZeroRandomBytesÇ@	var nonZeroRandomBytes = function(s, rand$1) {
+ 0ÇX nonZeroRandomBytesÇ<	nonZeroRandomBytes = function(s, rand$1) {
 		var err, _tuple, i, _slice, _index, _tuple$1, _lhs, _index$1, _slice$1, _index$2, _slice$2, _index$3;
 		err = null;
 		_tuple = io.ReadFull(rand$1, s), err = _tuple[1];
@@ -351,7 +353,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		}
 		return err;
 	};
-0ÇâSignPKCS1v15Çw	var SignPKCS1v15 = go$pkg.SignPKCS1v15 = function(rand$1, priv, hash$1, hashed) {
+ 0Çâ SignPKCS1v15Çs	SignPKCS1v15 = go$pkg.SignPKCS1v15 = function(rand$1, priv, hash$1, hashed) {
 		var s, err, _tuple, hashLen, prefix, tLen, _q, k, _tuple$1, em, _slice, _index, i, _slice$1, _index$1, m, _tuple$2, c;
 		s = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -383,7 +385,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		s = em;
 		return [s, err];
 	};
-0ÇÛVerifyPKCS1v15Çﬂ	var VerifyPKCS1v15 = go$pkg.VerifyPKCS1v15 = function(pub, hash$1, hashed, sig) {
+ 0ÇÛ VerifyPKCS1v15Ç€	VerifyPKCS1v15 = go$pkg.VerifyPKCS1v15 = function(pub, hash$1, hashed, sig) {
 		var err, _tuple, hashLen, prefix, tLen, _q, k, c, m, em, _slice, _index, ok, _slice$1, _index$1, _slice$2, _index$2, i, _slice$3, _index$3;
 		err = null;
 		_tuple = pkcs1v15HashInfo(hash$1, hashed.length), hashLen = _tuple[0], prefix = _tuple[1], err = _tuple[2];
@@ -416,7 +418,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		err = null;
 		return err;
 	};
-0Çåpkcs1v15HashInfoÇv	var pkcs1v15HashInfo = function(hash$1, inLen) {
+ 0Çå pkcs1v15HashInfoÇr	pkcs1v15HashInfo = function(hash$1, inLen) {
 		var hashLen, prefix, err, _tuple, _tuple$1, _entry, ok, _tuple$2;
 		hashLen = 0;
 		prefix = (go$sliceType(Go$Uint8)).nil;
@@ -433,7 +435,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		}
 		return [hashLen, prefix, err];
 	};
-0ÇΩcopyWithLeftPadÇ®	var copyWithLeftPad = function(dest, src) {
+ 0ÇΩ copyWithLeftPadÇ§	copyWithLeftPad = function(dest, src) {
 		var numPaddingBytes, i, _slice, _index;
 		numPaddingBytes = dest.length - src.length >> 0;
 		i = 0;
@@ -443,7 +445,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		}
 		go$copySlice(go$subslice(dest, numPaddingBytes), src);
 	};
-0Ç÷emsaPSSEncodeÇ√	var emsaPSSEncode = function(mHash, emBits, salt, hash$1) {
+ 0Ç÷ emsaPSSEncodeÇø	emsaPSSEncode = function(mHash, emBits, salt, hash$1) {
 		var hLen, sLen, _q, emLen, em, db, h, prefix, _slice, _index, _lhs, _index$1, _slice$1, _index$2, y, x, _slice$2, _index$3, _slice$3, _index$4;
 		hLen = hash$1.Size();
 		sLen = salt.length;
@@ -470,7 +472,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		_slice$3 = em, _index$4 = emLen - 1 >> 0, (_index$4 >= 0 && _index$4 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$4] = 188) : go$throwRuntimeError("index out of range");
 		return [em, null];
 	};
-0ÇemsaPSSVerifyÇˇ	var emsaPSSVerify = function(mHash, em, emBits, sLen, hash$1) {
+ 0Ç emsaPSSVerifyÇ˚	emsaPSSVerify = function(mHash, em, emBits, sLen, hash$1) {
 		var hLen, _q, emLen, _slice, _index, db, h, _slice$1, _index$1, y, x, _lhs, _index$2, _slice$2, _index$3, y$1, x$1, _slice$3, _index$4, _ref, _slice$4, _index$5, _ref$1, _i, _slice$5, _index$6, e, _slice$6, _index$7, salt, prefix, h0;
 		hLen = hash$1.Size();
 		if (!((hLen === mHash.length))) {
@@ -533,7 +535,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		}
 		return null;
 	};
-0ÇVsignPSSWithSaltÇA	var signPSSWithSalt = function(rand$1, priv, hash$1, hashed, salt) {
+ 0ÇV signPSSWithSaltÇ=	signPSSWithSalt = function(rand$1, priv, hash$1, hashed, salt) {
 		var s, err, nBits, _tuple, em, m, _tuple$1, c, _q;
 		s = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -551,8 +553,7 @@ crypto/rsa0Åã0cryptocrypto0crypto/subtlesubtle0errorserrors0io
 		copyWithLeftPad(s, c.Bytes());
 		return [s, err];
 	};
-0Ç
-saltLengthÇ	PSSOptions.Ptr.prototype.saltLength = function() {
+ 0Ç  Ç	PSSOptions.Ptr.prototype.saltLength = function() {
 		var opts;
 		opts = this;
 		if (opts === (go$ptrType(PSSOptions)).nil) {
@@ -561,7 +562,7 @@ saltLengthÇ	PSSOptions.Ptr.prototype.saltLength = function() {
 		return opts.SaltLength;
 	};
 	PSSOptions.prototype.saltLength = function() { return this.go$val.saltLength(); };
-0ÇàSignPSSÇ{	var SignPSS = go$pkg.SignPSS = function(rand$1, priv, hash$1, hashed, opts) {
+ 0Çà SignPSSÇw	SignPSS = go$pkg.SignPSS = function(rand$1, priv, hash$1, hashed, opts) {
 		var s, err, saltLength, _ref, _q, salt, _tuple, _tuple$1;
 		s = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -579,10 +580,10 @@ saltLengthÇ	PSSOptions.Ptr.prototype.saltLength = function() {
 		_tuple$1 = signPSSWithSalt(rand$1, priv, hash$1, hashed, salt), s = _tuple$1[0], err = _tuple$1[1];
 		return [s, err];
 	};
-0Å¢	VerifyPSSÅî	var VerifyPSS = go$pkg.VerifyPSS = function(pub, hash$1, hashed, sig, opts) {
+ 0Å¢ 	VerifyPSSÅê	VerifyPSS = go$pkg.VerifyPSS = function(pub, hash$1, hashed, sig, opts) {
 		return verifyPSS(pub, hash$1, hashed, sig, opts.saltLength());
 	};
-0Çæ	verifyPSSÇØ	var verifyPSS = function(pub, hash$1, hashed, sig, saltLen) {
+ 0Çæ 	verifyPSSÇ´	verifyPSS = function(pub, hash$1, hashed, sig, saltLen) {
 		var nBits, _q, s, m, emBits, _q$1, emLen, em;
 		nBits = pub.N.BitLen();
 		if (!((sig.length === (_q = ((nBits + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"))))) {
@@ -602,7 +603,7 @@ saltLengthÇ	PSSOptions.Ptr.prototype.saltLength = function() {
 		}
 		return emsaPSSVerify(hashed, em, emBits, saltLen, (new crypto.Hash(hash$1)).New());
 	};
-0ÇcheckPubÅ˚	var checkPub = function(pub) {
+ 0Ç checkPubÅ˜	checkPub = function(pub) {
 		if (pub.N === (go$ptrType(big.Int)).nil) {
 			return errPublicModulus;
 		}
@@ -614,7 +615,7 @@ saltLengthÇ	PSSOptions.Ptr.prototype.saltLength = function() {
 		}
 		return null;
 	};
-0Ç&ValidateÇ	PrivateKey.Ptr.prototype.Validate = function() {
+ 0Ç"  Ç	PrivateKey.Ptr.prototype.Validate = function() {
 		var priv, err, _ref, _i, _slice, _index, prime, modulus, _ref$1, _i$1, _slice$1, _index$1, prime$1, congruence, de, _ref$2, _i$2, _slice$2, _index$2, prime$2, pminus1;
 		priv = this;
 		if (err = checkPub(priv.PublicKey), !(go$interfaceIsEqual(err, null))) {
@@ -657,14 +658,14 @@ saltLengthÇ	PSSOptions.Ptr.prototype.saltLength = function() {
 		return null;
 	};
 	PrivateKey.prototype.Validate = function() { return this.go$val.Validate(); };
-0ÇGenerateKeyÅˇ	var GenerateKey = go$pkg.GenerateKey = function(random, bits) {
+ 0Ç GenerateKeyÅ˚	GenerateKey = go$pkg.GenerateKey = function(random, bits) {
 		var priv, err, _tuple;
 		priv = (go$ptrType(PrivateKey)).nil;
 		err = null;
 		_tuple = GenerateMultiPrimeKey(random, 2, bits), priv = _tuple[0], err = _tuple[1];
 		return [priv, err];
 	};
-0ÇGenerateMultiPrimeKeyÇ¯	var GenerateMultiPrimeKey = go$pkg.GenerateMultiPrimeKey = function(random, nprimes, bits) {
+ 0Ç GenerateMultiPrimeKeyÇÙ	GenerateMultiPrimeKey = go$pkg.GenerateMultiPrimeKey = function(random, nprimes, bits) {
 		var priv, err, _tuple, primes, todo, _q, i, _tuple$1, _q$1, _slice, _index, _tuple$2, _slice$1, _index$1, _ref, _i, _slice$2, _index$2, prime, i$1, j, _slice$3, _index$3, n, totient, pminus1, _ref$1, _i$1, _slice$4, _index$4, prime$1, g, y, e;
 		priv = (go$ptrType(PrivateKey)).nil;
 		err = null;
@@ -737,8 +738,8 @@ saltLengthÇ	PSSOptions.Ptr.prototype.saltLength = function() {
 		priv.Precompute();
 		return [priv, err];
 	};
-0Ç,
-incCounterÇ	var incCounter = function(c) {
+ 0Ç, 
+incCounterÇ	incCounter = function(c) {
 		var _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, _lhs$3, _index$3;
 		if (_lhs = c, _index = 3, _lhs[_index] = _lhs[_index] + 1 << 24 >>> 24, !((c[3] === 0))) {
 			return;
@@ -751,7 +752,7 @@ incCounterÇ	var incCounter = function(c) {
 		}
 		_lhs$3 = c, _index$3 = 0, _lhs$3[_index$3] = _lhs$3[_index$3] + 1 << 24 >>> 24;
 	};
-0Ç®mgf1XORÇõ	var mgf1XOR = function(out, hash$1, seed) {
+ 0Ç® mgf1XORÇó	mgf1XOR = function(out, hash$1, seed) {
 		var counter, digest, done, i, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _slice$2, _index$3;
 		counter = go$makeNativeArray("Uint8", 4, function() { return 0; });
 		digest = (go$sliceType(Go$Uint8)).nil;
@@ -770,13 +771,13 @@ incCounterÇ	var incCounter = function(c) {
 			incCounter(counter);
 		}
 	};
-0Åâencrypt~	var encrypt = function(c, pub, m) {
+ 0Åâ encryptz	encrypt = function(c, pub, m) {
 		var e;
 		e = big.NewInt(new Go$Int64(0, pub.E));
 		c.Exp(m, e, pub.N);
 		return c;
 	};
-0ÇPEncryptOAEPÇ?	var EncryptOAEP = go$pkg.EncryptOAEP = function(hash$1, random, pub, msg, label) {
+ 0ÇP EncryptOAEPÇ;	EncryptOAEP = go$pkg.EncryptOAEP = function(hash$1, random, pub, msg, label) {
 		var out, err, err$1, _tuple, _q, k, x, x$1, lHash, em, seed, db, _slice, _index, _tuple$1, m, c, t;
 		out = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -816,8 +817,8 @@ incCounterÇ	var incCounter = function(c) {
 		}
 		return [out, err];
 	};
-0Çò
-modInverseÇà	var modInverse = function(a, n) {
+ 0Çò 
+modInverseÇÑ	modInverse = function(a, n) {
 		var ia, ok, g, x, y, _tuple;
 		ia = (go$ptrType(big.Int)).nil;
 		ok = false;
@@ -834,9 +835,8 @@ modInverseÇà	var modInverse = function(a, n) {
 		_tuple = [x, true], ia = _tuple[0], ok = _tuple[1];
 		return [ia, ok];
 	};
-0Ç
-0
-PrecomputeÇ
+ 0Ç
+*  Ç
  	PrivateKey.Ptr.prototype.Precompute = function() {
 		var priv, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, r, i, _slice$6, _index$6, prime, _slice$7, _index$7, values;
 		priv = this;
@@ -863,7 +863,7 @@ PrecomputeÇ
 		}
 	};
 	PrivateKey.prototype.Precompute = function() { return this.go$val.Precompute(); };
-0Ç÷decryptÇ…	var decrypt = function(random, priv, c) {
+ 0Ç÷ decryptÇ≈	decrypt = function(random, priv, c) {
 		var m, err, ir, r, _tuple, ok, _tuple$1, bigE, rpowe, cCopy, _slice, _index, _slice$1, _index$1, m2, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _ref, _i, _slice$5, _index$5, _struct, values, i, _slice$6, _index$6, prime;
 		m = (go$ptrType(big.Int)).nil;
 		err = null;
@@ -932,8 +932,8 @@ PrecomputeÇ
 		}
 		return [m, err];
 	};
-0ÇDecryptOAEPÇ
-˚	var DecryptOAEP = go$pkg.DecryptOAEP = function(hash$1, random, priv, ciphertext, label) {
+ 0Ç DecryptOAEPÇ
+˜	DecryptOAEP = go$pkg.DecryptOAEP = function(hash$1, random, priv, ciphertext, label) {
 		var msg, err, err$1, _tuple, _q, k, x, x$1, c, _tuple$1, m, lHash, em, _slice, _index, firstByteIsZero, seed, db, lHash2, lHash2Good, _tuple$2, lookingForIndex, index, invalid, rest, i, _slice$1, _index$1, equals0, _slice$2, _index$2, equals1;
 		msg = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -981,7 +981,7 @@ PrecomputeÇ
 		msg = go$subslice(rest, (index + 1 >> 0));
 		return [msg, err];
 	};
-0Ç;leftPadÇ.	var leftPad = function(input, size) {
+ 0Ç; leftPadÇ*	leftPad = function(input, size) {
 		var out, n;
 		out = (go$sliceType(Go$Uint8)).nil;
 		n = input.length;
@@ -992,15 +992,4 @@ PrecomputeÇ
 		go$copySlice(go$subslice(out, (out.length - n >> 0)), input);
 		return out;
 	};
-0ÇãinitÇÅ	go$pkg.init = function() {
-		var _map, _key;
-		hashPrefixes = (_map = new Go$Map(), _key = 2, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 32, 48, 12, 6, 8, 42, 134, 72, 134, 247, 13, 2, 5, 5, 0, 4, 16]) }, _key = 3, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 33, 48, 9, 6, 5, 43, 14, 3, 2, 26, 5, 0, 4, 20]) }, _key = 4, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 45, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 4, 5, 0, 4, 28]) }, _key = 5, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 49, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 1, 5, 0, 4, 32]) }, _key = 6, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 65, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 2, 5, 0, 4, 48]) }, _key = 7, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 81, 48, 13, 6, 9, 96, 134, 72, 1, 101, 3, 4, 2, 3, 5, 0, 4, 64]) }, _key = 8, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([]) }, _key = 9, _map[_key] = { k: _key, v: new (go$sliceType(Go$Uint8))([48, 32, 48, 8, 6, 6, 40, 207, 6, 3, 0, 49, 4, 20]) }, _map);
-		bigZero = big.NewInt(new Go$Int64(0, 0));
-		bigOne = big.NewInt(new Go$Int64(0, 1));
-		errPublicModulus = errors.New("crypto/rsa: missing public modulus");
-		errPublicExponentSmall = errors.New("crypto/rsa: public exponent too small");
-		errPublicExponentLarge = errors.New("crypto/rsa: public exponent too large");
-		go$pkg.ErrMessageTooLong = errors.New("crypto/rsa: message too long for RSA public key size");
-		go$pkg.ErrDecryption = errors.New("crypto/rsa: decryption error");
-		go$pkg.ErrVerification = errors.New("crypto/rsa: verification error");
-	};
+ 0    0    0 

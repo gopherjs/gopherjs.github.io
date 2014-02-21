@@ -1,4 +1,4 @@
-0ÇW∆	io/ioutilÇ.ipackage ioutil
+0ÇWÃ	io/ioutilÇ.ipackage ioutil
 import bytes "bytes"
 import io "io"
 import os "os"
@@ -177,35 +177,31 @@ type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutil0}0bytesbytes0ioio0osos0sortsort0path/filepathfilepath0strconvstrconv0syncsync0timetimeÇ≤	var byName;
-	byName = go$newType(0, "Slice", "ioutil.byName", "byName", "io/ioutil", null);
-	go$pkg.byName = byName;
-	var nopCloser;
-	nopCloser = go$newType(0, "Struct", "ioutil.nopCloser", "nopCloser", "io/ioutil", function(Reader_) {
+0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutil0}0bytesbytes0ioio0osos0sortsort0path/filepathfilepath0strconvstrconv0syncsync0timetime0Ç(;0Ç¬ byName`	byName = go$pkg.byName = go$newType(0, "Slice", "ioutil.byName", "byName", "io/ioutil", null);
+ÇR		byName.init(os.FileInfo);
+		byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+		(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+0Çπ 	nopCloserÇc	nopCloser = go$pkg.nopCloser = go$newType(0, "Struct", "ioutil.nopCloser", "nopCloser", "io/ioutil", function(Reader_) {
 		this.go$val = this;
 		this.Reader = Reader_ !== undefined ? Reader_ : null;
 	});
 	nopCloser.prototype.Read = function(p) { return this.go$val.Read(p); };
 	nopCloser.Ptr.prototype.Read = function(p) { return this.Reader.Read(p); };
-	go$pkg.nopCloser = nopCloser;
-	var devNull;
-	devNull = go$newType(4, "Int", "ioutil.devNull", "devNull", "io/ioutil", null);
-	go$pkg.devNull = devNull;
-	byName.init(os.FileInfo);
-	byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	nopCloser.init([["", "", io.Reader, ""]]);
-	nopCloser.methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-	(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-0&0blackHoleBuf0 0rand0randmu0Ç!Y0Åè	blackHoleÅÅ	var blackHole = function() {
+ÇA		nopCloser.init([["", "", io.Reader, ""]]);
+		nopCloser.methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+		(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+0Ç+ devNullb	devNull = go$pkg.devNull = go$newType(4, "Int", "ioutil.devNull", "devNull", "io/ioutil", null);
+Ç∏		devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
+		(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
+0 blackHoleBuf  0    0 rand 	rand = 0;0, randmu randmu = new sync.Mutex.Ptr();0V   N		blackHoleBuf = new (go$chanType((go$sliceType(Go$Uint8)), false, false))();
+0    0+   #		go$pkg.Discard = new devNull(0);
+0Åé 	blackHole}	blackHole = function() {
 			return blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });
 		};
-0NblackHolePut>	var blackHolePut = function(p) {
+ 0N blackHolePut:	blackHolePut = function(p) {
 			blackHoles.push(p);
 		};
-0ÇŸreadAllÇÃ	var readAll = function(r, capacity) {
+ 0ÇŸ readAllÇ»	readAll = function(r, capacity) {
 		var b, err, buf, _tuple, _tuple$1;
 		b = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -234,10 +230,10 @@ $$
 			return [b, err];
 		}
 	};
-0hReadAll]	var ReadAll = go$pkg.ReadAll = function(r) {
+ 0h ReadAllY	ReadAll = go$pkg.ReadAll = function(r) {
 		return readAll(r, new Go$Int64(0, 512));
 	};
-0Ç<ReadFileÇ.	var ReadFile = go$pkg.ReadFile = function(filename) {
+ 0Ç< ReadFileÇ*	ReadFile = go$pkg.ReadFile = function(filename) {
 		var _tuple, f, err, n, err$1, _tuple$1, fi, size;
 		var go$deferred = [];
 		try {
@@ -260,7 +256,7 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
-0Ç	WriteFileÇÛ	var WriteFile = go$pkg.WriteFile = function(filename, data, perm) {
+ 0Ç 	WriteFileÇÔ	WriteFile = go$pkg.WriteFile = function(filename, data, perm) {
 		var _tuple, f, err, _tuple$1, n, err1;
 		_tuple = os.OpenFile(filename, 1537, perm), f = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -275,25 +271,25 @@ $$
 		}
 		return err;
 	};
-0Å©LenÅ°	byName.prototype.Len = function() {
+ 0Å™  Å°	byName.prototype.Len = function() {
 		var f;
 		f = this;
 		return f.length;
 	};
 	go$ptrType(byName).prototype.Len = function() { return this.go$get().Len(); };
-0Ç!LessÇ	byName.prototype.Less = function(i, j) {
+ 0Ç!  Ç	byName.prototype.Less = function(i, j) {
 		var f, _slice, _index, _slice$1, _index$1;
 		f = this;
 		return (_slice = f, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name() < (_slice$1 = f, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name();
 	};
 	go$ptrType(byName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
-0Ç¨SwapÇ¢	byName.prototype.Swap = function(i, j) {
+ 0Ç¨  Ç¢	byName.prototype.Swap = function(i, j) {
 		var f, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		f = this;
 		_tuple = [(_slice = f, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = f, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = f, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = f, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(byName).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
-0Ç+ReadDirÇ	var ReadDir = go$pkg.ReadDir = function(dirname) {
+ 0Ç+ ReadDirÇ	ReadDir = go$pkg.ReadDir = function(dirname) {
 		var _tuple, f, err, _tuple$1, list;
 		_tuple = os.Open(dirname), f = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -307,23 +303,23 @@ $$
 		sort.Sort(go$subslice(new byName(list.array), list.offset, list.offset + list.length));
 		return [list, null];
 	};
-0ÅîCloseÅä	nopCloser.Ptr.prototype.Close = function() {
+ 0Åì  Åä	nopCloser.Ptr.prototype.Close = function() {
 		return null;
 	};
 	nopCloser.prototype.Close = function() { return this.go$val.Close(); };
-0Åè	NopCloserÅÅ	var NopCloser = go$pkg.NopCloser = function(r) {
+ 0Åé 	NopCloser}	NopCloser = go$pkg.NopCloser = function(r) {
 		var x;
 		return (x = new nopCloser.Ptr(r), new x.constructor.Struct(x));
 	};
-0Å∂WriteÅ¨	devNull.prototype.Write = function(p) {
+ 0Åµ  Å¨	devNull.prototype.Write = function(p) {
 		return [p.length, null];
 	};
 	go$ptrType(devNull).prototype.Write = function(p) { return new devNull(this.go$get()).Write(p); };
-0ÅŒWriteStringÅæ	devNull.prototype.WriteString = function(s) {
+ 0Å«  Åæ	devNull.prototype.WriteString = function(s) {
 		return [s.length, null];
 	};
 	go$ptrType(devNull).prototype.WriteString = function(s) { return new devNull(this.go$get()).WriteString(s); };
-0ÇwReadFromÇi	devNull.prototype.ReadFrom = function(r) {
+ 0Çs  Çi	devNull.prototype.ReadFrom = function(r) {
 		var n, err, buf, readSize, _tuple, x, _tuple$1;
 		n = new Go$Int64(0, 0);
 		err = null;
@@ -351,12 +347,12 @@ $$
 		}
 	};
 	go$ptrType(devNull).prototype.ReadFrom = function(r) { return new devNull(this.go$get()).ReadFrom(r); };
-0Å¿reseedÅµ	var reseed = function() {
+ 0Å¿ reseedÅ±	reseed = function() {
 		var x, x$1;
 		return ((x = time.Now().UnixNano(), x$1 = new Go$Int64(0, os.Getpid()), new Go$Int64(x.high + x$1.high, x.low + x$1.low)).low >>> 0);
 	};
-0Ç¢
-nextSuffixÇí	var nextSuffix = function() {
+ 0Ç¢ 
+nextSuffixÇé	nextSuffix = function() {
 		var r, x, _r;
 		randmu.Lock();
 		r = rand;
@@ -368,7 +364,7 @@ nextSuffixÇí	var nextSuffix = function() {
 		randmu.Unlock();
 		return strconv.Itoa(((1000000000 + (_r = r % 1000000000, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0) >> 0)).substring(1);
 	};
-0Ç\TempFileÇN	var TempFile = go$pkg.TempFile = function(dir, prefix) {
+ 0Ç\ TempFileÇJ	TempFile = go$pkg.TempFile = function(dir, prefix) {
 		var f, err, nconflict, i, name, _tuple;
 		f = (go$ptrType(os.File)).nil;
 		err = null;
@@ -391,7 +387,7 @@ nextSuffixÇí	var nextSuffix = function() {
 		}
 		return [f, err];
 	};
-0ÇZTempDirÇM	var TempDir = go$pkg.TempDir = function(dir, prefix) {
+ 0ÇZ TempDirÇI	TempDir = go$pkg.TempDir = function(dir, prefix) {
 		var name, err, nconflict, i, try$1;
 		name = "";
 		err = null;
@@ -417,11 +413,6 @@ nextSuffixÇí	var nextSuffix = function() {
 		}
 		return [name, err];
 	};
-0Å‚initÅŸ
+ 0#  
 			var blackHoles = [];
-			go$pkg.init = function() {
-		rand = 0;
-		randmu = new sync.Mutex.Ptr();
-		blackHoleBuf = new (go$chanType((go$sliceType(Go$Uint8)), false, false))();
-		go$pkg.Discard = new devNull(0);
-	};
+		 0    0 

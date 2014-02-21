@@ -1,4 +1,4 @@
-0‚ªÓ	image/gif‚$package gif
+0‚ªv	image/gif‚$package gif
 import bufio "bufio"
 import lzw "compress/lzw"
 import errors "errors"
@@ -113,11 +113,9 @@ $$
 0Ëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtcompress/lzwimage/colorimageimage/color/palette
 image/draw	image/gif0§0bufiobufio0compress/lzwlzw0errorserrors0
 fmtfmt0imageimage0image/colorcolor0ioio0image/color/palettepalette0
-image/drawdraw‚	var reader;
-	reader = go$newType(0, "Interface", "gif.reader", "reader", "image/gif", null);
-	go$pkg.reader = reader;
-	var decoder;
-	decoder = go$newType(0, "Struct", "gif.decoder", "decoder", "image/gif", function(r_, vers_, width_, height_, flags_, headerFields_, backgroundIndex_, loopCount_, delayTime_, aspect_, imageFields_, transparentIndex_, pixelSize_, globalColorMap_, delay_, image_, tmp_) {
+image/drawdraw0‚„ç0‚ readera	reader = go$pkg.reader = go$newType(0, "Interface", "gif.reader", "reader", "image/gif", null);
+§		reader.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["ReadByte", "", (go$funcType([], [Go$Uint8, go$error], false))]]);
+0‚ decoder‚¹	decoder = go$pkg.decoder = go$newType(0, "Struct", "gif.decoder", "decoder", "image/gif", function(r_, vers_, width_, height_, flags_, headerFields_, backgroundIndex_, loopCount_, delayTime_, aspect_, imageFields_, transparentIndex_, pixelSize_, globalColorMap_, delay_, image_, tmp_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.vers = vers_ !== undefined ? vers_ : "";
@@ -137,74 +135,63 @@ image/drawdraw‚	var reader;
 		this.image = image_ !== undefined ? image_ : (go$sliceType((go$ptrType(image.Paletted)))).nil;
 		this.tmp = tmp_ !== undefined ? tmp_ : go$makeNativeArray("Uint8", 1024, function() { return 0; });
 	});
-	go$pkg.decoder = decoder;
-	var blockReader;
-	blockReader = go$newType(0, "Struct", "gif.blockReader", "blockReader", "image/gif", function(r_, slice_, err_, tmp_) {
+‚I		decoder.init([["r", "image/gif", reader, ""], ["vers", "image/gif", Go$String, ""], ["width", "image/gif", Go$Int, ""], ["height", "image/gif", Go$Int, ""], ["flags", "image/gif", Go$Uint8, ""], ["headerFields", "image/gif", Go$Uint8, ""], ["backgroundIndex", "image/gif", Go$Uint8, ""], ["loopCount", "image/gif", Go$Int, ""], ["delayTime", "image/gif", Go$Int, ""], ["aspect", "image/gif", Go$Uint8, ""], ["imageFields", "image/gif", Go$Uint8, ""], ["transparentIndex", "image/gif", Go$Uint8, ""], ["pixelSize", "image/gif", Go$Uint, ""], ["globalColorMap", "image/gif", color.Palette, ""], ["delay", "image/gif", (go$sliceType(Go$Int)), ""], ["image", "image/gif", (go$sliceType((go$ptrType(image.Paletted)))), ""], ["tmp", "image/gif", (go$arrayType(Go$Uint8, 1024)), ""]]);
+		(go$ptrType(decoder)).methods = [["decode", "image/gif", [io.Reader, Go$Bool], [go$error], false], ["newImageFromDescriptor", "image/gif", [], [(go$ptrType(image.Paletted)), go$error], false], ["readBlock", "image/gif", [], [Go$Int, go$error], false], ["readColorMap", "image/gif", [], [color.Palette, go$error], false], ["readExtension", "image/gif", [], [go$error], false], ["readGraphicControl", "image/gif", [], [go$error], false], ["readHeaderAndScreenDescriptor", "image/gif", [], [go$error], false], ["setTransparency", "image/gif", [color.Palette], [], false]];
+0‚  blockReader‚³	blockReader = go$pkg.blockReader = go$newType(0, "Struct", "gif.blockReader", "blockReader", "image/gif", function(r_, slice_, err_, tmp_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.slice = slice_ !== undefined ? slice_ : (go$sliceType(Go$Uint8)).nil;
 		this.err = err_ !== undefined ? err_ : null;
 		this.tmp = tmp_ !== undefined ? tmp_ : go$makeNativeArray("Uint8", 256, function() { return 0; });
 	});
-	go$pkg.blockReader = blockReader;
-	var interlaceScan;
-	interlaceScan = go$newType(0, "Struct", "gif.interlaceScan", "interlaceScan", "image/gif", function(skip_, start_) {
+‚6		blockReader.init([["r", "image/gif", reader, ""], ["slice", "image/gif", (go$sliceType(Go$Uint8)), ""], ["err", "image/gif", go$error, ""], ["tmp", "image/gif", (go$arrayType(Go$Uint8, 256)), ""]]);
+		(go$ptrType(blockReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+0‚ interlaceScan‚		interlaceScan = go$pkg.interlaceScan = go$newType(0, "Struct", "gif.interlaceScan", "interlaceScan", "image/gif", function(skip_, start_) {
 		this.go$val = this;
 		this.skip = skip_ !== undefined ? skip_ : 0;
 		this.start = start_ !== undefined ? start_ : 0;
 	});
-	go$pkg.interlaceScan = interlaceScan;
-	var GIF;
-	GIF = go$newType(0, "Struct", "gif.GIF", "GIF", "image/gif", function(Image_, Delay_, LoopCount_) {
+_		interlaceScan.init([["skip", "image/gif", Go$Int, ""], ["start", "image/gif", Go$Int, ""]]);
+0‚ GIF‚w	GIF = go$pkg.GIF = go$newType(0, "Struct", "gif.GIF", "GIF", "image/gif", function(Image_, Delay_, LoopCount_) {
 		this.go$val = this;
 		this.Image = Image_ !== undefined ? Image_ : (go$sliceType((go$ptrType(image.Paletted)))).nil;
 		this.Delay = Delay_ !== undefined ? Delay_ : (go$sliceType(Go$Int)).nil;
 		this.LoopCount = LoopCount_ !== undefined ? LoopCount_ : 0;
 	});
-	go$pkg.GIF = GIF;
-	var writer;
-	writer = go$newType(0, "Interface", "gif.writer", "writer", "image/gif", null);
-	go$pkg.writer = writer;
-	var encoder;
-	encoder = go$newType(0, "Struct", "gif.encoder", "encoder", "image/gif", function(w_, err_, g_, buf_) {
+™		GIF.init([["Image", "", (go$sliceType((go$ptrType(image.Paletted)))), ""], ["Delay", "", (go$sliceType(Go$Int)), ""], ["LoopCount", "", Go$Int, ""]]);
+0‚L writera	writer = go$pkg.writer = go$newType(0, "Interface", "gif.writer", "writer", "image/gif", null);
+Ü		writer.init([["Flush", "", (go$funcType([], [go$error], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["WriteByte", "", (go$funcType([Go$Uint8], [go$error], false))]]);
+0‚à encoder‚	encoder = go$pkg.encoder = go$newType(0, "Struct", "gif.encoder", "encoder", "image/gif", function(w_, err_, g_, buf_) {
 		this.go$val = this;
 		this.w = w_ !== undefined ? w_ : null;
 		this.err = err_ !== undefined ? err_ : null;
 		this.g = g_ !== undefined ? g_ : (go$ptrType(GIF)).nil;
 		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 1024, function() { return 0; });
 	});
-	go$pkg.encoder = encoder;
-	var blockWriter;
-	blockWriter = go$newType(0, "Struct", "gif.blockWriter", "blockWriter", "image/gif", function(e_) {
+‚@		encoder.init([["w", "image/gif", writer, ""], ["err", "image/gif", go$error, ""], ["g", "image/gif", (go$ptrType(GIF)), ""], ["buf", "image/gif", (go$arrayType(Go$Uint8, 1024)), ""]]);
+		(go$ptrType(encoder)).methods = [["flush", "image/gif", [], [], false], ["write", "image/gif", [(go$sliceType(Go$Uint8))], [], false], ["writeByte", "image/gif", [Go$Uint8], [], false], ["writeColorTable", "image/gif", [color.Palette, Go$Int], [], false], ["writeHeader", "image/gif", [], [], false], ["writeImageBlock", "image/gif", [(go$ptrType(image.Paletted)), Go$Int], [], false]];
+0‚ü blockWriterÓ	blockWriter = go$pkg.blockWriter = go$newType(0, "Struct", "gif.blockWriter", "blockWriter", "image/gif", function(e_) {
 		this.go$val = this;
 		this.e = e_ !== undefined ? e_ : (go$ptrType(encoder)).nil;
 	});
-	go$pkg.blockWriter = blockWriter;
-	var Options;
-	Options = go$newType(0, "Struct", "gif.Options", "Options", "image/gif", function(NumColors_, Quantizer_, Drawer_) {
+‚		blockWriter.init([["e", "image/gif", (go$ptrType(encoder)), ""]]);
+		blockWriter.methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+		(go$ptrType(blockWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+0‚ã Options‚Y	Options = go$pkg.Options = go$newType(0, "Struct", "gif.Options", "Options", "image/gif", function(NumColors_, Quantizer_, Drawer_) {
 		this.go$val = this;
 		this.NumColors = NumColors_ !== undefined ? NumColors_ : 0;
 		this.Quantizer = Quantizer_ !== undefined ? Quantizer_ : null;
 		this.Drawer = Drawer_ !== undefined ? Drawer_ : null;
 	});
-	go$pkg.Options = Options;
-	reader.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["ReadByte", "", (go$funcType([], [Go$Uint8, go$error], false))]]);
-	decoder.init([["r", "image/gif", reader, ""], ["vers", "image/gif", Go$String, ""], ["width", "image/gif", Go$Int, ""], ["height", "image/gif", Go$Int, ""], ["flags", "image/gif", Go$Uint8, ""], ["headerFields", "image/gif", Go$Uint8, ""], ["backgroundIndex", "image/gif", Go$Uint8, ""], ["loopCount", "image/gif", Go$Int, ""], ["delayTime", "image/gif", Go$Int, ""], ["aspect", "image/gif", Go$Uint8, ""], ["imageFields", "image/gif", Go$Uint8, ""], ["transparentIndex", "image/gif", Go$Uint8, ""], ["pixelSize", "image/gif", Go$Uint, ""], ["globalColorMap", "image/gif", color.Palette, ""], ["delay", "image/gif", (go$sliceType(Go$Int)), ""], ["image", "image/gif", (go$sliceType((go$ptrType(image.Paletted)))), ""], ["tmp", "image/gif", (go$arrayType(Go$Uint8, 1024)), ""]]);
-	(go$ptrType(decoder)).methods = [["decode", "image/gif", [io.Reader, Go$Bool], [go$error], false], ["newImageFromDescriptor", "image/gif", [], [(go$ptrType(image.Paletted)), go$error], false], ["readBlock", "image/gif", [], [Go$Int, go$error], false], ["readColorMap", "image/gif", [], [color.Palette, go$error], false], ["readExtension", "image/gif", [], [go$error], false], ["readGraphicControl", "image/gif", [], [go$error], false], ["readHeaderAndScreenDescriptor", "image/gif", [], [go$error], false], ["setTransparency", "image/gif", [color.Palette], [], false]];
-	blockReader.init([["r", "image/gif", reader, ""], ["slice", "image/gif", (go$sliceType(Go$Uint8)), ""], ["err", "image/gif", go$error, ""], ["tmp", "image/gif", (go$arrayType(Go$Uint8, 256)), ""]]);
-	(go$ptrType(blockReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	interlaceScan.init([["skip", "image/gif", Go$Int, ""], ["start", "image/gif", Go$Int, ""]]);
-	GIF.init([["Image", "", (go$sliceType((go$ptrType(image.Paletted)))), ""], ["Delay", "", (go$sliceType(Go$Int)), ""], ["LoopCount", "", Go$Int, ""]]);
-	writer.init([["Flush", "", (go$funcType([], [go$error], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["WriteByte", "", (go$funcType([Go$Uint8], [go$error], false))]]);
-	encoder.init([["w", "image/gif", writer, ""], ["err", "image/gif", go$error, ""], ["g", "image/gif", (go$ptrType(GIF)), ""], ["buf", "image/gif", (go$arrayType(Go$Uint8, 1024)), ""]]);
-	(go$ptrType(encoder)).methods = [["flush", "image/gif", [], [], false], ["write", "image/gif", [(go$sliceType(Go$Uint8))], [], false], ["writeByte", "image/gif", [Go$Uint8], [], false], ["writeColorTable", "image/gif", [color.Palette, Go$Int], [], false], ["writeHeader", "image/gif", [], [], false], ["writeImageBlock", "image/gif", [(go$ptrType(image.Paletted)), Go$Int], [], false]];
-	blockWriter.init([["e", "image/gif", (go$ptrType(encoder)), ""]]);
-	blockWriter.methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	(go$ptrType(blockWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-	Options.init([["NumColors", "", Go$Int, ""], ["Quantizer", "", draw.Quantizer, ""], ["Drawer", "", draw.Drawer, ""]]);
-0J0errNotEnough0
-errTooMuch0errBadPixel0interlacing0
-log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
+y		Options.init([["NumColors", "", Go$Int, ""], ["Quantizer", "", draw.Quantizer, ""], ["Drawer", "", draw.Drawer, ""]]);
+0 errNotEnough  0 
+errTooMuch  0 errBadPixel  0 interlacing  0 
+log2Lookup  0C   ;		errNotEnough = errors.New("gif: not enough image data");
+0?   7		errTooMuch = errors.New("gif: too much image data");
+0@   8		errBadPixel = errors.New("gif: invalid pixel value");
+0²   ©		interlacing = new (go$sliceType(interlaceScan))([new interlaceScan.Ptr(8, 0), new interlaceScan.Ptr(8, 4), new interlaceScan.Ptr(4, 2), new interlaceScan.Ptr(2, 1)]);
+0Q   I		log2Lookup = go$toNativeArray("Int", [2, 4, 8, 16, 32, 64, 128, 256]);
+0‚j  ‚`	blockReader.Ptr.prototype.Read = function(p) {
 		var b, blockLen, _tuple, _tuple$1, n;
 		b = this;
 		if (!(go$interfaceIsEqual(b.err, null))) {
@@ -233,7 +220,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		return [n, null];
 	};
 	blockReader.prototype.Read = function(p) { return this.go$val.Read(p); };
-0‚decode‚	decoder.Ptr.prototype.decode = function(r, configOnly) {
+ 0‚  ‚	decoder.Ptr.prototype.decode = function(r, configOnly) {
 		var d, ok, _tuple, rr, err, _tuple$1, _tuple$2, c, err$1, _ref, _tuple$3, m, err$2, _tuple$4, _tuple$5, litWidth, br, lzwr, _tuple$6, n, err$3, _tuple$7, n$1, err$4, _tuple$8, _ref$1, _i, _slice, _index, pixel;
 		var go$deferred = [];
 		try {
@@ -340,7 +327,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		}
 	};
 	decoder.prototype.decode = function(r, configOnly) { return this.go$val.decode(r, configOnly); };
-0‚ïreadHeaderAndScreenDescriptor‚Ì	decoder.Ptr.prototype.readHeaderAndScreenDescriptor = function() {
+ 0‚Ö  ‚Ì	decoder.Ptr.prototype.readHeaderAndScreenDescriptor = function() {
 		var d, _tuple, err;
 		d = this;
 		_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 13)), err = _tuple[1];
@@ -361,7 +348,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		return null;
 	};
 	decoder.prototype.readHeaderAndScreenDescriptor = function() { return this.go$val.readHeaderAndScreenDescriptor(); };
-0‚readColorMap‚	decoder.Ptr.prototype.readColorMap = function() {
+ 0‚  ‚	decoder.Ptr.prototype.readColorMap = function() {
 		var d, y, numColors, y$1, x, numValues, _tuple, err, colorMap, j, _ref, _i, i, x$1, _slice, _index;
 		d = this;
 		if (d.pixelSize > 8) {
@@ -389,7 +376,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		return [colorMap, null];
 	};
 	decoder.prototype.readColorMap = function() { return this.go$val.readColorMap(); };
-0‚†readExtension‚s	decoder.Ptr.prototype.readExtension = function() {
+ 0‚}  ‚s	decoder.Ptr.prototype.readExtension = function() {
 		var d, _tuple, extension, err, size, _ref, _tuple$1, b, err$1, err$2, _tuple$2, _tuple$3, n, err$3, _tuple$4, n$1, err$4;
 		d = this;
 		_tuple = d.r.ReadByte(), extension = _tuple[0], err = _tuple[1];
@@ -434,7 +421,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		}
 	};
 	decoder.prototype.readExtension = function() { return this.go$val.readExtension(); };
-0‚²readGraphicControl‚š	decoder.Ptr.prototype.readGraphicControl = function() {
+ 0‚¤  ‚š	decoder.Ptr.prototype.readGraphicControl = function() {
 		var d, err, _tuple;
 		d = this;
 		if (_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 6)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
@@ -449,7 +436,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		return null;
 	};
 	decoder.prototype.readGraphicControl = function() { return this.go$val.readGraphicControl(); };
-0‚setTransparency‚	decoder.Ptr.prototype.setTransparency = function(colorMap) {
+ 0‚  ‚	decoder.Ptr.prototype.setTransparency = function(colorMap) {
 		var d, x, _slice, _index;
 		d = this;
 		if ((d.transparentIndex >> 0) < colorMap.length) {
@@ -457,7 +444,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		}
 	};
 	decoder.prototype.setTransparency = function(colorMap) { return this.go$val.setTransparency(colorMap); };
-0‚ºnewImageFromDescriptor‚ž	decoder.Ptr.prototype.newImageFromDescriptor = function() {
+ 0‚¨  ‚ž	decoder.Ptr.prototype.newImageFromDescriptor = function() {
 		var d, err, _tuple, left, top, width, height, _struct, _struct$1, _struct$2, bounds, x, y, x$1, y$1, x$2, y$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8;
 		d = this;
 		if (_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 9)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
@@ -475,7 +462,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		return [image.NewPaletted((_struct$6 = bounds, new image.Rectangle.Ptr((_struct$7 = _struct$6.Min, new image.Point.Ptr(_struct$7.X, _struct$7.Y)), (_struct$8 = _struct$6.Max, new image.Point.Ptr(_struct$8.X, _struct$8.Y)))), color.Palette.nil), null];
 	};
 	decoder.prototype.newImageFromDescriptor = function() { return this.go$val.newImageFromDescriptor(); };
-0‚•	readBlock‚†	decoder.Ptr.prototype.readBlock = function() {
+ 0‚  ‚†	decoder.Ptr.prototype.readBlock = function() {
 		var d, _tuple, n, err;
 		d = this;
 		_tuple = d.r.ReadByte(), n = _tuple[0], err = _tuple[1];
@@ -485,7 +472,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		return io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, n));
 	};
 	decoder.prototype.readBlock = function() { return this.go$val.readBlock(); };
-0‚duninterlace‚S	var uninterlace = function(m) {
+ 0‚d uninterlace‚O	uninterlace = function(m) {
 		var nPix, dx, dy, offset, _ref, _i, _slice, _index, _struct, pass, x, nOffset, y, x$1;
 		nPix = (go$sliceType(Go$Uint8)).nil;
 		dx = m.Bounds().Dx();
@@ -508,7 +495,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		}
 		m.Pix = nPix;
 	};
-0‚Decode‚u	var Decode = go$pkg.Decode = function(r) {
+ 0‚ Decode‚q	Decode = go$pkg.Decode = function(r) {
 		var d, err, _slice, _index;
 		d = new decoder.Ptr();
 		if (err = d.decode(r, false), !(go$interfaceIsEqual(err, null))) {
@@ -516,7 +503,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		}
 		return [(_slice = d.image, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), null];
 	};
-0‚,	DecodeAll‚	var DecodeAll = go$pkg.DecodeAll = function(r) {
+ 0‚, 	DecodeAll‚	DecodeAll = go$pkg.DecodeAll = function(r) {
 		var d, err, gif;
 		d = new decoder.Ptr();
 		if (err = d.decode(r, false), !(go$interfaceIsEqual(err, null))) {
@@ -525,7 +512,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		gif = new GIF.Ptr(d.image, d.delay, d.loopCount);
 		return [gif, null];
 	};
-0‚<DecodeConfig‚*	var DecodeConfig = go$pkg.DecodeConfig = function(r) {
+ 0‚< DecodeConfig‚&	DecodeConfig = go$pkg.DecodeConfig = function(r) {
 		var d, err;
 		d = new decoder.Ptr();
 		if (err = d.decode(r, true), !(go$interfaceIsEqual(err, null))) {
@@ -533,7 +520,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		}
 		return [new image.Config.Ptr(d.globalColorMap, d.width, d.height), null];
 	};
-0Élog2À	var log2 = function(x) {
+ 0É log2¼	log2 = function(x) {
 		var _ref, _i, v, i;
 		_ref = log2Lookup;
 		_i = 0;
@@ -547,12 +534,12 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		}
 		return -1;
 	};
-0‚àwriteUint16‚Ï	var writeUint16 = function(b, u) {
+ 0‚à writeUint16‚Ë	writeUint16 = function(b, u) {
 		var _slice, _index, _slice$1, _index$1;
 		_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = (u << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 		_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((u >>> 8 << 16 >>> 16) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
-0‚7Write‚,	blockWriter.Ptr.prototype.Write = function(data) {
+ 0‚6  ‚,	blockWriter.Ptr.prototype.Write = function(data) {
 		var _struct, b, total, n, _tuple;
 		b = (_struct = this, new blockWriter.Ptr(_struct.e));
 		if (!(go$interfaceIsEqual(b.e.err, null))) {
@@ -574,7 +561,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		return [total, b.e.err];
 	};
 	blockWriter.prototype.Write = function(data) { return this.go$val.Write(data); };
-0éflushß	encoder.Ptr.prototype.flush = function() {
+ 0è  ß	encoder.Ptr.prototype.flush = function() {
 		var e;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -583,7 +570,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		e.err = e.w.Flush();
 	};
 	encoder.prototype.flush = function() { return this.go$val.flush(); };
-0‚	writeÿ	encoder.Ptr.prototype.write = function(p) {
+ 0‚  ÿ	encoder.Ptr.prototype.write = function(p) {
 		var e, _tuple;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -592,7 +579,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		_tuple = e.w.Write(p), e.err = _tuple[1];
 	};
 	encoder.prototype.write = function(p) { return this.go$val.write(p); };
-0‚	writeByteó	encoder.Ptr.prototype.writeByte = function(b) {
+ 0ü  ó	encoder.Ptr.prototype.writeByte = function(b) {
 		var e;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -601,7 +588,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		e.err = e.w.WriteByte(b);
 	};
 	encoder.prototype.writeByte = function(b) { return this.go$val.writeByte(b); };
-0‚¶writeHeader‚¥	encoder.Ptr.prototype.writeHeader = function() {
+ 0‚¯  ‚¥	encoder.Ptr.prototype.writeHeader = function() {
 		var e, _tuple, _slice, _index, pm, _tuple$1;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -636,7 +623,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		}
 	};
 	encoder.prototype.writeHeader = function() { return this.go$val.writeHeader(); };
-0‚ÞwriteColorTable‚É	encoder.Ptr.prototype.writeColorTable = function(p, size) {
+ 0‚Ó  ‚É	encoder.Ptr.prototype.writeColorTable = function(p, size) {
 		var e, i, _tuple, _slice, _index, r, g, b, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -659,8 +646,8 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		e.write(go$subslice(new (go$sliceType(Go$Uint8))(e.buf), 0, (x$6 = 3, x$7 = log2Lookup[size], (((x$6 >>> 16 << 16) * x$7 >> 0) + (x$6 << 16 >>> 16) * x$7) >> 0)));
 	};
 	encoder.prototype.writeColorTable = function(p, size) { return this.go$val.writeColorTable(p, size); };
-0‚
-áwriteImageBlock‚
+ 0‚
+Ö  ‚
 Ì	encoder.Ptr.prototype.writeImageBlock = function(pm, delay) {
 		var e, _struct, _struct$1, _struct$2, b, transparentIndex, _ref, _i, _slice, _index, c, i, a, _tuple, paddedSize, litWidth, x, lzww, _tuple$1;
 		e = this;
@@ -730,7 +717,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		e.writeByte(0);
 	};
 	encoder.prototype.writeImageBlock = function(pm, delay) { return this.go$val.writeImageBlock(pm, delay); };
-0‚Ë	EncodeAll‚¼	var EncodeAll = go$pkg.EncodeAll = function(w, g) {
+ 0‚Ë 	EncodeAll‚¸	EncodeAll = go$pkg.EncodeAll = function(w, g) {
 		var e, ok, _tuple, ww, _ref, _i, _slice, _index, pm, i, _slice$1, _index$1;
 		if (g.Image.length === 0) {
 			return errors.New("gif: must provide at least one image");
@@ -760,7 +747,7 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		e.flush();
 		return e.err;
 	};
-0‚Encode‚	var Encode = go$pkg.Encode = function(w, m, o) {
+ 0‚ Encode‚þ	Encode = go$pkg.Encode = function(w, m, o) {
 		var _struct, _struct$1, _struct$2, b, opts, _struct$3, _tuple, pm, ok, _struct$4, _struct$5, _struct$6, x, _struct$7, _struct$8, _struct$9, _struct$10;
 		b = (_struct = m.Bounds(), new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (b.Dx() >= 65536 || b.Dy() >= 65536) {
@@ -786,11 +773,5 @@ log2Lookup0‚hï0‚jRead‚`	blockReader.Ptr.prototype.Read = function(p) {
 		}
 		return EncodeAll(w, new GIF.Ptr(new (go$sliceType((go$ptrType(image.Paletted))))([pm]), new (go$sliceType(Go$Int))([0]), 0));
 	};
-0‚init‚û	go$pkg.init = function() {
-		errNotEnough = errors.New("gif: not enough image data");
-		errTooMuch = errors.New("gif: too much image data");
-		errBadPixel = errors.New("gif: invalid pixel value");
-		interlacing = new (go$sliceType(interlaceScan))([new interlaceScan.Ptr(8, 0), new interlaceScan.Ptr(8, 4), new interlaceScan.Ptr(4, 2), new interlaceScan.Ptr(2, 1)]);
-		log2Lookup = go$toNativeArray("Int", [2, 4, 8, 16, 32, 64, 128, 256]);
-		image.RegisterFormat("gif", "GIF8?a", Decode, DecodeConfig);
-	};
+ 0    0G   ?		image.RegisterFormat("gif", "GIF8?a", Decode, DecodeConfig);
+0 

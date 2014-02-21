@@ -1,4 +1,4 @@
-0É=Øregexp/syntaxÇ#package syntax
+0É=Íregexp/syntaxÇ#package syntax
 import unicode "unicode"
 import sort "sort"
 import strings "strings"
@@ -159,37 +159,33 @@ func (? *@"".ranges) @"".Len() (? int)
 func (? *@"".ranges) @"".Less(@"".i int, @"".j int) (? bool)
 func (? *@"".ranges) @"".Swap(@"".i int, @"".j int) ()
 $$
-0sruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntax0p0unicodeunicode0sortsort0stringsstrings0unicode/utf8utf80bytesbytes0strconvstrconvÇ*E	var patchList;
-	patchList = go$newType(4, "Uint32", "syntax.patchList", "patchList", "regexp/syntax", null);
-	go$pkg.patchList = patchList;
-	var frag;
-	frag = go$newType(0, "Struct", "syntax.frag", "frag", "regexp/syntax", function(i_, out_) {
+0sruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntax0p0unicodeunicode0sortsort0stringsstrings0unicode/utf8utf80bytesbytes0strconvstrconv0Éj0ÇÄ 	patchListq	patchList = go$pkg.patchList = go$newType(4, "Uint32", "syntax.patchList", "patchList", "regexp/syntax", null);
+Ç¸		patchList.methods = [["append", "regexp/syntax", [(go$ptrType(Prog)), patchList], [patchList], false], ["next", "regexp/syntax", [(go$ptrType(Prog))], [patchList], false], ["patch", "regexp/syntax", [(go$ptrType(Prog)), Go$Uint32], [], false]];
+		(go$ptrType(patchList)).methods = [["append", "regexp/syntax", [(go$ptrType(Prog)), patchList], [patchList], false], ["next", "regexp/syntax", [(go$ptrType(Prog))], [patchList], false], ["patch", "regexp/syntax", [(go$ptrType(Prog)), Go$Uint32], [], false]];
+0ÇD fragÅÿ	frag = go$pkg.frag = go$newType(0, "Struct", "syntax.frag", "frag", "regexp/syntax", function(i_, out_) {
 		this.go$val = this;
 		this.i = i_ !== undefined ? i_ : 0;
 		this.out = out_ !== undefined ? out_ : 0;
 	});
-	go$pkg.frag = frag;
-	var compiler;
-	compiler = go$newType(0, "Struct", "syntax.compiler", "compiler", "regexp/syntax", function(p_) {
+_		frag.init([["i", "regexp/syntax", Go$Uint32, ""], ["out", "regexp/syntax", patchList, ""]]);
+0Ç compilerÅÀ	compiler = go$pkg.compiler = go$newType(0, "Struct", "syntax.compiler", "compiler", "regexp/syntax", function(p_) {
 		this.go$val = this;
 		this.p = p_ !== undefined ? p_ : (go$ptrType(Prog)).nil;
 	});
-	go$pkg.compiler = compiler;
-	var Error;
-	Error = go$newType(0, "Struct", "syntax.Error", "Error", "regexp/syntax", function(Code_, Expr_) {
+Ç?		compiler.init([["p", "regexp/syntax", (go$ptrType(Prog)), ""]]);
+		(go$ptrType(compiler)).methods = [["alt", "regexp/syntax", [frag, frag], [frag], false], ["cap", "regexp/syntax", [Go$Uint32], [frag], false], ["cat", "regexp/syntax", [frag, frag], [frag], false], ["compile", "regexp/syntax", [(go$ptrType(Regexp))], [frag], false], ["empty", "regexp/syntax", [EmptyOp], [frag], false], ["fail", "regexp/syntax", [], [frag], false], ["init", "regexp/syntax", [], [], false], ["inst", "regexp/syntax", [InstOp], [frag], false], ["nop", "regexp/syntax", [], [frag], false], ["plus", "regexp/syntax", [frag, Go$Bool], [frag], false], ["quest", "regexp/syntax", [frag, Go$Bool], [frag], false], ["rune", "regexp/syntax", [(go$sliceType(Go$Int32)), Flags], [frag], false], ["star", "regexp/syntax", [frag, Go$Bool], [frag], false]];
+0Çê ErrorÅÓ	Error = go$pkg.Error = go$newType(0, "Struct", "syntax.Error", "Error", "regexp/syntax", function(Code_, Expr_) {
 		this.go$val = this;
 		this.Code = Code_ !== undefined ? Code_ : "";
 		this.Expr = Expr_ !== undefined ? Expr_ : "";
 	});
-	go$pkg.Error = Error;
-	var ErrorCode;
-	ErrorCode = go$newType(0, "String", "syntax.ErrorCode", "ErrorCode", "regexp/syntax", null);
-	go$pkg.ErrorCode = ErrorCode;
-	var Flags;
-	Flags = go$newType(2, "Uint16", "syntax.Flags", "Flags", "regexp/syntax", null);
-	go$pkg.Flags = Flags;
-	var parser;
-	parser = go$newType(0, "Struct", "syntax.parser", "parser", "regexp/syntax", function(flags_, stack_, free_, numCap_, wholeRegexp_, tmpClass_) {
+Åì		Error.init([["Code", "", ErrorCode, ""], ["Expr", "", Go$String, ""]]);
+		(go$ptrType(Error)).methods = [["Error", "", [], [Go$String], false]];
+0Ç 	ErrorCodeq	ErrorCode = go$pkg.ErrorCode = go$newType(0, "String", "syntax.ErrorCode", "ErrorCode", "regexp/syntax", null);
+Åé		ErrorCode.methods = [["String", "", [], [Go$String], false]];
+		(go$ptrType(ErrorCode)).methods = [["String", "", [], [Go$String], false]];
+0n Flagsa	Flags = go$pkg.Flags = go$newType(2, "Uint16", "syntax.Flags", "Flags", "regexp/syntax", null);
+ 0Ç‚ parserÇ^	parser = go$pkg.parser = go$newType(0, "Struct", "syntax.parser", "parser", "regexp/syntax", function(flags_, stack_, free_, numCap_, wholeRegexp_, tmpClass_) {
 		this.go$val = this;
 		this.flags = flags_ !== undefined ? flags_ : 0;
 		this.stack = stack_ !== undefined ? stack_ : (go$sliceType((go$ptrType(Regexp)))).nil;
@@ -198,45 +194,41 @@ $$
 		this.wholeRegexp = wholeRegexp_ !== undefined ? wholeRegexp_ : "";
 		this.tmpClass = tmpClass_ !== undefined ? tmpClass_ : (go$sliceType(Go$Int32)).nil;
 	});
-	go$pkg.parser = parser;
-	var charGroup;
-	charGroup = go$newType(0, "Struct", "syntax.charGroup", "charGroup", "regexp/syntax", function(sign_, class$1_) {
+Çr		parser.init([["flags", "regexp/syntax", Flags, ""], ["stack", "regexp/syntax", (go$sliceType((go$ptrType(Regexp)))), ""], ["free", "regexp/syntax", (go$ptrType(Regexp)), ""], ["numCap", "regexp/syntax", Go$Int, ""], ["wholeRegexp", "regexp/syntax", Go$String, ""], ["tmpClass", "regexp/syntax", (go$sliceType(Go$Int32)), ""]]);
+		(go$ptrType(parser)).methods = [["alternate", "regexp/syntax", [], [(go$ptrType(Regexp))], false], ["appendGroup", "regexp/syntax", [(go$sliceType(Go$Int32)), charGroup], [(go$sliceType(Go$Int32))], false], ["collapse", "regexp/syntax", [(go$sliceType((go$ptrType(Regexp)))), Op], [(go$ptrType(Regexp))], false], ["concat", "regexp/syntax", [], [(go$ptrType(Regexp))], false], ["factor", "regexp/syntax", [(go$sliceType((go$ptrType(Regexp)))), Flags], [(go$sliceType((go$ptrType(Regexp))))], false], ["leadingRegexp", "regexp/syntax", [(go$ptrType(Regexp))], [(go$ptrType(Regexp))], false], ["leadingString", "regexp/syntax", [(go$ptrType(Regexp))], [(go$sliceType(Go$Int32)), Flags], false], ["literal", "regexp/syntax", [Go$Int32], [], false], ["maybeConcat", "regexp/syntax", [Go$Int32, Flags], [Go$Bool], false], ["newLiteral", "regexp/syntax", [Go$Int32, Flags], [(go$ptrType(Regexp))], false], ["newRegexp", "regexp/syntax", [Op], [(go$ptrType(Regexp))], false], ["op", "regexp/syntax", [Op], [(go$ptrType(Regexp))], false], ["parseClass", "regexp/syntax", [Go$String], [Go$String, go$error], false], ["parseClassChar", "regexp/syntax", [Go$String, Go$String], [Go$Int32, Go$String, go$error], false], ["parseEscape", "regexp/syntax", [Go$String], [Go$Int32, Go$String, go$error], false], ["parseInt", "regexp/syntax", [Go$String], [Go$Int, Go$String, Go$Bool], false], ["parseNamedClass", "regexp/syntax", [Go$String, (go$sliceType(Go$Int32))], [(go$sliceType(Go$Int32)), Go$String, go$error], false], ["parsePerlClassEscape", "regexp/syntax", [Go$String, (go$sliceType(Go$Int32))], [(go$sliceType(Go$Int32)), Go$String], false], ["parsePerlFlags", "regexp/syntax", [Go$String], [Go$String, go$error], false], ["parseRepeat", "regexp/syntax", [Go$String], [Go$Int, Go$Int, Go$String, Go$Bool], false], ["parseRightParen", "regexp/syntax", [], [go$error], false], ["parseUnicodeClass", "regexp/syntax", [Go$String, (go$sliceType(Go$Int32))], [(go$sliceType(Go$Int32)), Go$String, go$error], false], ["parseVerticalBar", "regexp/syntax", [], [go$error], false], ["push", "regexp/syntax", [(go$ptrType(Regexp))], [(go$ptrType(Regexp))], false], ["removeLeadingRegexp", "regexp/syntax", [(go$ptrType(Regexp)), Go$Bool], [(go$ptrType(Regexp))], false], ["removeLeadingString", "regexp/syntax", [(go$ptrType(Regexp)), Go$Int], [(go$ptrType(Regexp))], false], ["repeat", "regexp/syntax", [Op, Go$Int, Go$Int, Go$String, Go$String, Go$String], [Go$String, go$error], false], ["reuse", "regexp/syntax", [(go$ptrType(Regexp))], [], false], ["swapVerticalBar", "regexp/syntax", [], [Go$Bool], false]];
+0Ç´ 	charGroupÇ#	charGroup = go$pkg.charGroup = go$newType(0, "Struct", "syntax.charGroup", "charGroup", "regexp/syntax", function(sign_, class$1_) {
 		this.go$val = this;
 		this.sign = sign_ !== undefined ? sign_ : 0;
 		this.class$1 = class$1_ !== undefined ? class$1_ : (go$sliceType(Go$Int32)).nil;
 	});
-	go$pkg.charGroup = charGroup;
-	var ranges;
-	ranges = go$newType(0, "Struct", "syntax.ranges", "ranges", "regexp/syntax", function(p_) {
+u		charGroup.init([["sign", "regexp/syntax", Go$Int, ""], ["class", "regexp/syntax", (go$sliceType(Go$Int32)), ""]]);
+0Çs rangesÅ◊	ranges = go$pkg.ranges = go$newType(0, "Struct", "syntax.ranges", "ranges", "regexp/syntax", function(p_) {
 		this.go$val = this;
 		this.p = p_ !== undefined ? p_ : (go$ptrType((go$sliceType(Go$Int32)))).nil;
 	});
-	go$pkg.ranges = ranges;
-	var Prog;
-	Prog = go$newType(0, "Struct", "syntax.Prog", "Prog", "regexp/syntax", function(Inst_, Start_, NumCap_) {
+Çã		ranges.init([["p", "regexp/syntax", (go$ptrType((go$sliceType(Go$Int32)))), ""]]);
+		ranges.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+		(go$ptrType(ranges)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+0Ç™ ProgÇA	Prog = go$pkg.Prog = go$newType(0, "Struct", "syntax.Prog", "Prog", "regexp/syntax", function(Inst_, Start_, NumCap_) {
 		this.go$val = this;
 		this.Inst = Inst_ !== undefined ? Inst_ : (go$sliceType(Inst)).nil;
 		this.Start = Start_ !== undefined ? Start_ : 0;
 		this.NumCap = NumCap_ !== undefined ? NumCap_ : 0;
 	});
-	go$pkg.Prog = Prog;
-	var InstOp;
-	InstOp = go$newType(1, "Uint8", "syntax.InstOp", "InstOp", "regexp/syntax", null);
-	go$pkg.InstOp = InstOp;
-	var EmptyOp;
-	EmptyOp = go$newType(1, "Uint8", "syntax.EmptyOp", "EmptyOp", "regexp/syntax", null);
-	go$pkg.EmptyOp = EmptyOp;
-	var Inst;
-	Inst = go$newType(0, "Struct", "syntax.Inst", "Inst", "regexp/syntax", function(Op_, Out_, Arg_, Rune_) {
+ÇY		Prog.init([["Inst", "", (go$sliceType(Inst)), ""], ["Start", "", Go$Int, ""], ["NumCap", "", Go$Int, ""]]);
+		(go$ptrType(Prog)).methods = [["Prefix", "", [], [Go$String, Go$Bool], false], ["StartCond", "", [], [EmptyOp], false], ["String", "", [], [Go$String], false], ["skipNop", "regexp/syntax", [Go$Uint32], [(go$ptrType(Inst))], false]];
+0r InstOpd	InstOp = go$pkg.InstOp = go$newType(1, "Uint8", "syntax.InstOp", "InstOp", "regexp/syntax", null);
+ 0w EmptyOph	EmptyOp = go$pkg.EmptyOp = go$newType(1, "Uint8", "syntax.EmptyOp", "EmptyOp", "regexp/syntax", null);
+ 0Ç„ InstÇ_	Inst = go$pkg.Inst = go$newType(0, "Struct", "syntax.Inst", "Inst", "regexp/syntax", function(Op_, Out_, Arg_, Rune_) {
 		this.go$val = this;
 		this.Op = Op_ !== undefined ? Op_ : 0;
 		this.Out = Out_ !== undefined ? Out_ : 0;
 		this.Arg = Arg_ !== undefined ? Arg_ : 0;
 		this.Rune = Rune_ !== undefined ? Rune_ : (go$sliceType(Go$Int32)).nil;
 	});
-	go$pkg.Inst = Inst;
-	var Regexp;
-	Regexp = go$newType(0, "Struct", "syntax.Regexp", "Regexp", "regexp/syntax", function(Op_, Flags_, Sub_, Sub0_, Rune_, Rune0_, Min_, Max_, Cap_, Name_) {
+Çt		Inst.init([["Op", "", InstOp, ""], ["Out", "", Go$Uint32, ""], ["Arg", "", Go$Uint32, ""], ["Rune", "", (go$sliceType(Go$Int32)), ""]]);
+		(go$ptrType(Inst)).methods = [["MatchEmptyWidth", "", [Go$Int32, Go$Int32], [Go$Bool], false], ["MatchRune", "", [Go$Int32], [Go$Bool], false], ["String", "", [], [Go$String], false], ["op", "regexp/syntax", [], [InstOp], false]];
+0Ç< RegexpÇV	Regexp = go$pkg.Regexp = go$newType(0, "Struct", "syntax.Regexp", "Regexp", "regexp/syntax", function(Op_, Flags_, Sub_, Sub0_, Rune_, Rune0_, Min_, Max_, Cap_, Name_) {
 		this.go$val = this;
 		this.Op = Op_ !== undefined ? Op_ : 0;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
@@ -249,34 +241,35 @@ $$
 		this.Cap = Cap_ !== undefined ? Cap_ : 0;
 		this.Name = Name_ !== undefined ? Name_ : "";
 	});
-	go$pkg.Regexp = Regexp;
-	var Op;
-	Op = go$newType(1, "Uint8", "syntax.Op", "Op", "regexp/syntax", null);
-	go$pkg.Op = Op;
-	patchList.methods = [["append", "regexp/syntax", [(go$ptrType(Prog)), patchList], [patchList], false], ["next", "regexp/syntax", [(go$ptrType(Prog))], [patchList], false], ["patch", "regexp/syntax", [(go$ptrType(Prog)), Go$Uint32], [], false]];
-	(go$ptrType(patchList)).methods = [["append", "regexp/syntax", [(go$ptrType(Prog)), patchList], [patchList], false], ["next", "regexp/syntax", [(go$ptrType(Prog))], [patchList], false], ["patch", "regexp/syntax", [(go$ptrType(Prog)), Go$Uint32], [], false]];
-	frag.init([["i", "regexp/syntax", Go$Uint32, ""], ["out", "regexp/syntax", patchList, ""]]);
-	compiler.init([["p", "regexp/syntax", (go$ptrType(Prog)), ""]]);
-	(go$ptrType(compiler)).methods = [["alt", "regexp/syntax", [frag, frag], [frag], false], ["cap", "regexp/syntax", [Go$Uint32], [frag], false], ["cat", "regexp/syntax", [frag, frag], [frag], false], ["compile", "regexp/syntax", [(go$ptrType(Regexp))], [frag], false], ["empty", "regexp/syntax", [EmptyOp], [frag], false], ["fail", "regexp/syntax", [], [frag], false], ["init", "regexp/syntax", [], [], false], ["inst", "regexp/syntax", [InstOp], [frag], false], ["nop", "regexp/syntax", [], [frag], false], ["plus", "regexp/syntax", [frag, Go$Bool], [frag], false], ["quest", "regexp/syntax", [frag, Go$Bool], [frag], false], ["rune", "regexp/syntax", [(go$sliceType(Go$Int32)), Flags], [frag], false], ["star", "regexp/syntax", [frag, Go$Bool], [frag], false]];
-	Error.init([["Code", "", ErrorCode, ""], ["Expr", "", Go$String, ""]]);
-	(go$ptrType(Error)).methods = [["Error", "", [], [Go$String], false]];
-	ErrorCode.methods = [["String", "", [], [Go$String], false]];
-	(go$ptrType(ErrorCode)).methods = [["String", "", [], [Go$String], false]];
-	parser.init([["flags", "regexp/syntax", Flags, ""], ["stack", "regexp/syntax", (go$sliceType((go$ptrType(Regexp)))), ""], ["free", "regexp/syntax", (go$ptrType(Regexp)), ""], ["numCap", "regexp/syntax", Go$Int, ""], ["wholeRegexp", "regexp/syntax", Go$String, ""], ["tmpClass", "regexp/syntax", (go$sliceType(Go$Int32)), ""]]);
-	(go$ptrType(parser)).methods = [["alternate", "regexp/syntax", [], [(go$ptrType(Regexp))], false], ["appendGroup", "regexp/syntax", [(go$sliceType(Go$Int32)), charGroup], [(go$sliceType(Go$Int32))], false], ["collapse", "regexp/syntax", [(go$sliceType((go$ptrType(Regexp)))), Op], [(go$ptrType(Regexp))], false], ["concat", "regexp/syntax", [], [(go$ptrType(Regexp))], false], ["factor", "regexp/syntax", [(go$sliceType((go$ptrType(Regexp)))), Flags], [(go$sliceType((go$ptrType(Regexp))))], false], ["leadingRegexp", "regexp/syntax", [(go$ptrType(Regexp))], [(go$ptrType(Regexp))], false], ["leadingString", "regexp/syntax", [(go$ptrType(Regexp))], [(go$sliceType(Go$Int32)), Flags], false], ["literal", "regexp/syntax", [Go$Int32], [], false], ["maybeConcat", "regexp/syntax", [Go$Int32, Flags], [Go$Bool], false], ["newLiteral", "regexp/syntax", [Go$Int32, Flags], [(go$ptrType(Regexp))], false], ["newRegexp", "regexp/syntax", [Op], [(go$ptrType(Regexp))], false], ["op", "regexp/syntax", [Op], [(go$ptrType(Regexp))], false], ["parseClass", "regexp/syntax", [Go$String], [Go$String, go$error], false], ["parseClassChar", "regexp/syntax", [Go$String, Go$String], [Go$Int32, Go$String, go$error], false], ["parseEscape", "regexp/syntax", [Go$String], [Go$Int32, Go$String, go$error], false], ["parseInt", "regexp/syntax", [Go$String], [Go$Int, Go$String, Go$Bool], false], ["parseNamedClass", "regexp/syntax", [Go$String, (go$sliceType(Go$Int32))], [(go$sliceType(Go$Int32)), Go$String, go$error], false], ["parsePerlClassEscape", "regexp/syntax", [Go$String, (go$sliceType(Go$Int32))], [(go$sliceType(Go$Int32)), Go$String], false], ["parsePerlFlags", "regexp/syntax", [Go$String], [Go$String, go$error], false], ["parseRepeat", "regexp/syntax", [Go$String], [Go$Int, Go$Int, Go$String, Go$Bool], false], ["parseRightParen", "regexp/syntax", [], [go$error], false], ["parseUnicodeClass", "regexp/syntax", [Go$String, (go$sliceType(Go$Int32))], [(go$sliceType(Go$Int32)), Go$String, go$error], false], ["parseVerticalBar", "regexp/syntax", [], [go$error], false], ["push", "regexp/syntax", [(go$ptrType(Regexp))], [(go$ptrType(Regexp))], false], ["removeLeadingRegexp", "regexp/syntax", [(go$ptrType(Regexp)), Go$Bool], [(go$ptrType(Regexp))], false], ["removeLeadingString", "regexp/syntax", [(go$ptrType(Regexp)), Go$Int], [(go$ptrType(Regexp))], false], ["repeat", "regexp/syntax", [Op, Go$Int, Go$Int, Go$String, Go$String, Go$String], [Go$String, go$error], false], ["reuse", "regexp/syntax", [(go$ptrType(Regexp))], [], false], ["swapVerticalBar", "regexp/syntax", [], [Go$Bool], false]];
-	charGroup.init([["sign", "regexp/syntax", Go$Int, ""], ["class", "regexp/syntax", (go$sliceType(Go$Int32)), ""]]);
-	ranges.init([["p", "regexp/syntax", (go$ptrType((go$sliceType(Go$Int32)))), ""]]);
-	ranges.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	(go$ptrType(ranges)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-	Prog.init([["Inst", "", (go$sliceType(Inst)), ""], ["Start", "", Go$Int, ""], ["NumCap", "", Go$Int, ""]]);
-	(go$ptrType(Prog)).methods = [["Prefix", "", [], [Go$String, Go$Bool], false], ["StartCond", "", [], [EmptyOp], false], ["String", "", [], [Go$String], false], ["skipNop", "regexp/syntax", [Go$Uint32], [(go$ptrType(Inst))], false]];
-	Inst.init([["Op", "", InstOp, ""], ["Out", "", Go$Uint32, ""], ["Arg", "", Go$Uint32, ""], ["Rune", "", (go$sliceType(Go$Int32)), ""]]);
-	(go$ptrType(Inst)).methods = [["MatchEmptyWidth", "", [Go$Int32, Go$Int32], [Go$Bool], false], ["MatchRune", "", [Go$Int32], [Go$Bool], false], ["String", "", [], [Go$String], false], ["op", "regexp/syntax", [], [InstOp], false]];
-	Regexp.init([["Op", "", Op, ""], ["Flags", "", Flags, ""], ["Sub", "", (go$sliceType((go$ptrType(Regexp)))), ""], ["Sub0", "", (go$arrayType((go$ptrType(Regexp)), 1)), ""], ["Rune", "", (go$sliceType(Go$Int32)), ""], ["Rune0", "", (go$arrayType(Go$Int32, 2)), ""], ["Min", "", Go$Int, ""], ["Max", "", Go$Int, ""], ["Cap", "", Go$Int, ""], ["Name", "", Go$String, ""]]);
-	(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
-0Å„0anyRuneNotNL0	anyRune0
-anyTable0code10code20code30	perlGroup0code40code50code60code70code80code90code100code110code120code130code140code150code160code170
-posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
+Ç‘		Regexp.init([["Op", "", Op, ""], ["Flags", "", Flags, ""], ["Sub", "", (go$sliceType((go$ptrType(Regexp)))), ""], ["Sub0", "", (go$arrayType((go$ptrType(Regexp)), 1)), ""], ["Rune", "", (go$sliceType(Go$Int32)), ""], ["Rune0", "", (go$arrayType(Go$Int32, 2)), ""], ["Min", "", Go$Int, ""], ["Max", "", Go$Int, ""], ["Cap", "", Go$Int, ""], ["Name", "", Go$String, ""]]);
+		(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
+0^ OpT	Op = go$pkg.Op = go$newType(1, "Uint8", "syntax.Op", "Op", "regexp/syntax", null);
+ 0 anyRuneNotNL  0 anyRune  0 anyTable  0 code1  0 code2  0 code3  0 	perlGroup  0 code4  0 code5  0 code6  0 code7  0 code8  0 code9  0 code10  0 code11  0 code12  0 code13  0 code14  0 code15  0 code16  0 code17  0 
+posixGroup  0L   D		anyRuneNotNL = new (go$sliceType(Go$Int32))([0, 9, 11, 1114111]);
+0@   8		anyRune = new (go$sliceType(Go$Int32))([0, 1114111]);
+0Å’   ÅÃ		anyTable = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(0, 65535, 1)]), new (go$sliceType(unicode.Range32))([new unicode.Range32.Ptr(65536, 1114111, 1)]), 0);
+0:   2		code1 = new (go$sliceType(Go$Int32))([48, 57]);
+0I   A		code2 = new (go$sliceType(Go$Int32))([9, 10, 12, 13, 32, 32]);
+0S   K		code3 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
+0Ç˙   Ç		var _map, _key;
+		perlGroup = (_map = new Go$Map(), _key = "\\d", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code1) }, _key = "\\D", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code1) }, _key = "\\s", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code2) }, _key = "\\S", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code2) }, _key = "\\w", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code3) }, _key = "\\W", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code3) }, _map);
+0K   C		code4 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 97, 122]);
+0C   ;		code5 = new (go$sliceType(Go$Int32))([65, 90, 97, 122]);
+0:   2		code6 = new (go$sliceType(Go$Int32))([0, 127]);
+0@   8		code7 = new (go$sliceType(Go$Int32))([9, 9, 32, 32]);
+0C   ;		code8 = new (go$sliceType(Go$Int32))([0, 31, 127, 127]);
+0:   2		code9 = new (go$sliceType(Go$Int32))([48, 57]);
+0<   4		code10 = new (go$sliceType(Go$Int32))([33, 126]);
+0<   4		code11 = new (go$sliceType(Go$Int32))([97, 122]);
+0<   4		code12 = new (go$sliceType(Go$Int32))([32, 126]);
+0U   M		code13 = new (go$sliceType(Go$Int32))([33, 47, 58, 64, 91, 96, 123, 126]);
+0B   :		code14 = new (go$sliceType(Go$Int32))([9, 13, 32, 32]);
+0;   3		code15 = new (go$sliceType(Go$Int32))([65, 90]);
+0T   L		code16 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
+0L   D		code17 = new (go$sliceType(Go$Int32))([48, 57, 65, 70, 97, 102]);
+0Ç	‰   Ç	⁄		var _map$1, _key$1;
+		posixGroup = (_map$1 = new Go$Map(), _key$1 = "[:alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code4) }, _key$1 = "[:^alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code4) }, _key$1 = "[:alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code5) }, _key$1 = "[:^alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code5) }, _key$1 = "[:ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code6) }, _key$1 = "[:^ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code6) }, _key$1 = "[:blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code7) }, _key$1 = "[:^blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code7) }, _key$1 = "[:cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code8) }, _key$1 = "[:^cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code8) }, _key$1 = "[:digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code9) }, _key$1 = "[:^digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code9) }, _key$1 = "[:graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code10) }, _key$1 = "[:^graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code10) }, _key$1 = "[:lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code11) }, _key$1 = "[:^lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code11) }, _key$1 = "[:print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code12) }, _key$1 = "[:^print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code12) }, _key$1 = "[:punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code13) }, _key$1 = "[:^punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code13) }, _key$1 = "[:space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code14) }, _key$1 = "[:^space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code14) }, _key$1 = "[:upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code15) }, _key$1 = "[:^upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code15) }, _key$1 = "[:word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code16) }, _key$1 = "[:^word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code16) }, _key$1 = "[:xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code17) }, _key$1 = "[:^xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code17) }, _map$1);
+0Ç—  Ç«	patchList.prototype.next = function(p) {
 		var l, _slice, _index, i;
 		l = this.go$val;
 		i = (_slice = p.Inst, _index = (l >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -286,7 +279,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return (i.Arg >>> 0);
 	};
 	go$ptrType(patchList).prototype.next = function(p) { return new patchList(this.go$get()).next(p); };
-0Ç/patchÇ$	patchList.prototype.patch = function(p, val) {
+ 0Ç.  Ç$	patchList.prototype.patch = function(p, val) {
 		var l, _slice, _index, i;
 		l = this.go$val;
 		while (!((l === 0))) {
@@ -301,7 +294,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		}
 	};
 	go$ptrType(patchList).prototype.patch = function(p, val) { return new patchList(this.go$get()).patch(p, val); };
-0Ç÷appendÇ 	patchList.prototype.append = function(p, l2) {
+ 0Ç‘  Ç 	patchList.prototype.append = function(p, l2) {
 		var l1, last, next, _slice, _index, i;
 		l1 = this.go$val;
 		if (l1 === 0) {
@@ -327,7 +320,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return l1;
 	};
 	go$ptrType(patchList).prototype.append = function(p, l2) { return new patchList(this.go$get()).append(p, l2); };
-0Ç$CompileÇ	var Compile = go$pkg.Compile = function(re) {
+ 0Ç$ CompileÇ	Compile = go$pkg.Compile = function(re) {
 		var c, _struct, f;
 		c = new compiler.Ptr();
 		c.init();
@@ -336,7 +329,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		c.p.Start = (f.i >> 0);
 		return [c.p, null];
 	};
-0ÅÀinitÅ¬	compiler.Ptr.prototype.init = function() {
+ 0ÅÀ  Å¬	compiler.Ptr.prototype.init = function() {
 		var c;
 		c = this;
 		c.p = new Prog.Ptr();
@@ -344,7 +337,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		c.inst(5);
 	};
 	compiler.prototype.init = function() { return this.go$val.init(); };
-0ÇœcompileÇ¬	compiler.Ptr.prototype.compile = function(re) {
+ 0ÇÃ  Ç¬	compiler.Ptr.prototype.compile = function(re) {
 		var c, _ref, _struct, _struct$1, _struct$2, f, _ref$1, _i, j, _struct$3, f1, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, _struct$15, _struct$16, _struct$17, _struct$18, bra, _slice, _index, _struct$19, sub, _struct$20, ket, _struct$21, _struct$22, _struct$23, _struct$24, _struct$25, _slice$1, _index$1, _struct$26, _struct$27, _slice$2, _index$2, _struct$28, _struct$29, _slice$3, _index$3, _struct$30, _struct$31, _struct$32, f$1, _ref$2, _i$1, _slice$4, _index$4, sub$1, i, _struct$33, _struct$34, _struct$35, _struct$36, _struct$37, f$2, _ref$3, _i$2, _slice$5, _index$5, sub$2, _struct$38, _struct$39, _struct$40, _struct$41;
 		c = this;
 		_ref = re.Op;
@@ -431,7 +424,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		throw go$panic(new Go$String("regexp: unhandled case in compile"));
 	};
 	compiler.prototype.compile = function(re) { return this.go$val.compile(re); };
-0ÇminstÇc	compiler.Ptr.prototype.inst = function(op) {
+ 0Çm  Çc	compiler.Ptr.prototype.inst = function(op) {
 		var c, f, _struct;
 		c = this;
 		f = new frag.Ptr((c.p.Inst.length >>> 0), 0);
@@ -439,7 +432,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return (_struct = f, new frag.Ptr(_struct.i, _struct.out));
 	};
 	compiler.prototype.inst = function(op) { return this.go$val.inst(op); };
-0ÇSnopÇJ	compiler.Ptr.prototype.nop = function() {
+ 0ÇT  ÇJ	compiler.Ptr.prototype.nop = function() {
 		var c, _struct, f, _struct$1;
 		c = this;
 		f = (_struct = c.inst(6), new frag.Ptr(_struct.i, _struct.out));
@@ -447,13 +440,13 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.nop = function() { return this.go$val.nop(); };
-0Å±failÅ®	compiler.Ptr.prototype.fail = function() {
+ 0Å±  Å®	compiler.Ptr.prototype.fail = function() {
 		var c;
 		c = this;
 		return new frag.Ptr(0, 0);
 	};
 	compiler.prototype.fail = function() { return this.go$val.fail(); };
-0ÇmcapÇd	compiler.Ptr.prototype.cap = function(arg) {
+ 0Çn  Çd	compiler.Ptr.prototype.cap = function(arg) {
 		var c, _struct, f, _slice, _index, _struct$1;
 		c = this;
 		f = (_struct = c.inst(2), new frag.Ptr(_struct.i, _struct.out));
@@ -465,7 +458,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.cap = function(arg) { return this.go$val.cap(arg); };
-0Ç<catÇ3	compiler.Ptr.prototype.cat = function(f1, f2) {
+ 0Ç=  Ç3	compiler.Ptr.prototype.cat = function(f1, f2) {
 		var c;
 		c = this;
 		if ((f1.i === 0) || (f2.i === 0)) {
@@ -475,7 +468,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return new frag.Ptr(f1.i, f2.out);
 	};
 	compiler.prototype.cat = function(f1, f2) { return this.go$val.cat(f1, f2); };
-0Ç#altÇ	compiler.Ptr.prototype.alt = function(f1, f2) {
+ 0Ç$  Ç	compiler.Ptr.prototype.alt = function(f1, f2) {
 		var c, _struct, _struct$1, _struct$2, f, _slice, _index, i, _struct$3;
 		c = this;
 		if (f1.i === 0) {
@@ -492,7 +485,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return (_struct$3 = f, new frag.Ptr(_struct$3.i, _struct$3.out));
 	};
 	compiler.prototype.alt = function(f1, f2) { return this.go$val.alt(f1, f2); };
-0ÇÈquestÇﬁ	compiler.Ptr.prototype.quest = function(f1, nongreedy) {
+ 0ÇË  Çﬁ	compiler.Ptr.prototype.quest = function(f1, nongreedy) {
 		var c, _struct, f, _slice, _index, i, _struct$1;
 		c = this;
 		f = (_struct = c.inst(0), new frag.Ptr(_struct.i, _struct.out));
@@ -508,7 +501,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.quest = function(f1, nongreedy) { return this.go$val.quest(f1, nongreedy); };
-0Ç⁄starÇ–	compiler.Ptr.prototype.star = function(f1, nongreedy) {
+ 0Ç⁄  Ç–	compiler.Ptr.prototype.star = function(f1, nongreedy) {
 		var c, _struct, f, _slice, _index, i, _struct$1;
 		c = this;
 		f = (_struct = c.inst(0), new frag.Ptr(_struct.i, _struct.out));
@@ -524,13 +517,13 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.star = function(f1, nongreedy) { return this.go$val.star(f1, nongreedy); };
-0Ç/plusÇ%	compiler.Ptr.prototype.plus = function(f1, nongreedy) {
+ 0Ç/  Ç%	compiler.Ptr.prototype.plus = function(f1, nongreedy) {
 		var c, _struct;
 		c = this;
 		return new frag.Ptr(f1.i, c.star((_struct = f1, new frag.Ptr(_struct.i, _struct.out)), nongreedy).out);
 	};
 	compiler.prototype.plus = function(f1, nongreedy) { return this.go$val.plus(f1, nongreedy); };
-0Ç$emptyÇ	compiler.Ptr.prototype.empty = function(op) {
+ 0Ç#  Ç	compiler.Ptr.prototype.empty = function(op) {
 		var c, _struct, f, _slice, _index, _struct$1;
 		c = this;
 		f = (_struct = c.inst(3), new frag.Ptr(_struct.i, _struct.out));
@@ -539,7 +532,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.empty = function(op) { return this.go$val.empty(op); };
-0Ç$runeÇ	compiler.Ptr.prototype.rune = function(r, flags) {
+ 0Ç$  Ç	compiler.Ptr.prototype.rune = function(r, flags) {
 		var c, _struct, f, _slice, _index, i, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _struct$1;
 		c = this;
 		f = (_struct = c.inst(7), new frag.Ptr(_struct.i, _struct.out));
@@ -561,19 +554,19 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return (_struct$1 = f, new frag.Ptr(_struct$1.i, _struct$1.out));
 	};
 	compiler.prototype.rune = function(r, flags) { return this.go$val.rune(r, flags); };
-0ÅÔErrorÅÂ	Error.Ptr.prototype.Error = function() {
+ 0ÅÓ  ÅÂ	Error.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "error parsing regexp: " + (new ErrorCode(e.Code)).String() + ": `" + e.Expr + "`";
 	};
 	Error.prototype.Error = function() { return this.go$val.Error(); };
-0Å StringÅø	ErrorCode.prototype.String = function() {
+ 0Å»  Åø	ErrorCode.prototype.String = function() {
 		var e;
 		e = this.go$val;
 		return e;
 	};
 	go$ptrType(ErrorCode).prototype.String = function() { return new ErrorCode(this.go$get()).String(); };
-0ÇÒ	newRegexpÇ‚	parser.Ptr.prototype.newRegexp = function(op) {
+ 0ÇÏ  Ç‚	parser.Ptr.prototype.newRegexp = function(op) {
 		var p, re, l, r;
 		p = this;
 		re = p.free;
@@ -587,14 +580,14 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return re;
 	};
 	parser.prototype.newRegexp = function(op) { return this.go$val.newRegexp(op); };
-0Å¿reuseÅ∂	parser.Ptr.prototype.reuse = function(re) {
+ 0Åø  Å∂	parser.Ptr.prototype.reuse = function(re) {
 		var p;
 		p = this;
 		re.Sub0[0] = p.free;
 		p.free = re;
 	};
 	parser.prototype.reuse = function(re) { return this.go$val.reuse(re); };
-0Ç9pushÇ/	parser.Ptr.prototype.push = function(re) {
+ 0Ç9  Ç/	parser.Ptr.prototype.push = function(re) {
 		var p, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17;
 		p = this;
 		if ((re.Op === 4) && (re.Rune.length === 2) && ((_slice = re.Rune, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === (_slice$1 = re.Rune, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")))) {
@@ -618,7 +611,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return re;
 	};
 	parser.prototype.push = function(re) { return this.go$val.push(re); };
-0ÇÚmaybeConcatÇ·	parser.Ptr.prototype.maybeConcat = function(r, flags) {
+ 0ÇÎ  Ç·	parser.Ptr.prototype.maybeConcat = function(r, flags) {
 		var p, n, _slice, _index, re1, _slice$1, _index$1, re2, _slice$2, _index$2;
 		p = this;
 		n = p.stack.length;
@@ -642,8 +635,7 @@ posixGroup0ÉÓ0Ç—nextÇ«	patchList.prototype.next = function(p) {
 		return false;
 	};
 	parser.prototype.maybeConcat = function(r, flags) { return this.go$val.maybeConcat(r, flags); };
-0Çö
-newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
+ 0Çî  Çä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		var p, re;
 		p = this;
 		re = p.newRegexp(3);
@@ -656,7 +648,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return re;
 	};
 	parser.prototype.newLiteral = function(r, flags) { return this.go$val.newLiteral(r, flags); };
-0ÇminFoldRuneÇ	var minFoldRune = function(r) {
+ 0Ç minFoldRuneÅ˛	minFoldRune = function(r) {
 		var min, r0;
 		if (r < 65 || r > 66639) {
 			return r;
@@ -672,13 +664,13 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		}
 		return min;
 	};
-0Å√literalÅ∑	parser.Ptr.prototype.literal = function(r) {
+ 0Å¿  Å∑	parser.Ptr.prototype.literal = function(r) {
 		var p;
 		p = this;
 		p.push(p.newLiteral(r, p.flags));
 	};
 	parser.prototype.literal = function(r) { return this.go$val.literal(r); };
-0Å’opÅŒ	parser.Ptr.prototype.op = function(op) {
+ 0Å◊  ÅŒ	parser.Ptr.prototype.op = function(op) {
 		var p, re;
 		p = this;
 		re = p.newRegexp(op);
@@ -686,7 +678,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return p.push(re);
 	};
 	parser.prototype.op = function(op) { return this.go$val.op(op); };
-0ÇÚrepeatÇÊ	parser.Ptr.prototype.repeat = function(op, min, max, before, after, lastRepeat) {
+ 0Ç  ÇÊ	parser.Ptr.prototype.repeat = function(op, min, max, before, after, lastRepeat) {
 		var p, flags, n, _slice, _index, sub, re, _slice$1, _index$1, _slice$2, _index$2;
 		p = this;
 		flags = p.flags;
@@ -717,7 +709,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return [after, null];
 	};
 	parser.prototype.repeat = function(op, min, max, before, after, lastRepeat) { return this.go$val.repeat(op, min, max, before, after, lastRepeat); };
-0ÇnconcatÇb	parser.Ptr.prototype.concat = function() {
+ 0Çl  Çb	parser.Ptr.prototype.concat = function() {
 		var p, i, _slice, _index, subs;
 		p = this;
 		p.maybeConcat(-1, 0);
@@ -733,7 +725,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return p.push(p.collapse(subs, 18));
 	};
 	parser.prototype.concat = function() { return this.go$val.concat(); };
-0Ç_	alternateÇP	parser.Ptr.prototype.alternate = function() {
+ 0ÇZ  ÇP	parser.Ptr.prototype.alternate = function() {
 		var p, i, _slice, _index, subs, _slice$1, _index$1;
 		p = this;
 		i = p.stack.length;
@@ -751,7 +743,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return p.push(p.collapse(subs, 19));
 	};
 	parser.prototype.alternate = function() { return this.go$val.alternate(); };
-0Ç cleanAltÇ	var cleanAlt = function(re) {
+ 0Ç  cleanAltÇ	cleanAlt = function(re) {
 		var _ref, v, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		_ref = re.Op;
 		if (_ref === 4) {
@@ -771,7 +763,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 			}
 		}
 	};
-0Ç˛collapseÇ	parser.Ptr.prototype.collapse = function(subs, op) {
+ 0Ç˙  Ç	parser.Ptr.prototype.collapse = function(subs, op) {
 		var p, _slice, _index, re, _ref, _i, _slice$1, _index$1, sub, old, _slice$2, _index$2;
 		p = this;
 		if (subs.length === 1) {
@@ -802,7 +794,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return re;
 	};
 	parser.prototype.collapse = function(subs, op) { return this.go$val.collapse(subs, op); };
-0Ç%úfactorÇ%ê	parser.Ptr.prototype.factor = function(sub, flags) {
+ 0Ç%ö  Ç%ê	parser.Ptr.prototype.factor = function(sub, flags) {
 		var p, str, strflags, start, out, i, istr, iflags, _tuple, _slice, _index, same, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, prefix, j, _slice$4, _index$4, _slice$5, _index$5, suffix, re, first, i$1, ifirst, _slice$6, _index$6, _slice$7, _index$7, prefix$1, j$1, reuse, _slice$8, _index$8, _slice$9, _index$9, suffix$1, re$1, i$2, _slice$10, _index$10, _slice$11, _index$11, max, j$2, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17, _slice$18, _index$18, _slice$19, _index$19, _tuple$1, _slice$20, _index$20, _slice$21, _index$21, j$3, _slice$22, _index$22, _slice$23, _index$23, _slice$24, _index$24, _slice$25, _index$25, _slice$26, _index$26, _slice$27, _index$27, _ref, _i, i$3, _slice$28, _index$28, _slice$29, _index$29, _slice$30, _index$30;
 		p = this;
 		if (sub.length < 2) {
@@ -941,7 +933,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return sub;
 	};
 	parser.prototype.factor = function(sub, flags) { return this.go$val.factor(sub, flags); };
-0ÇleadingStringÇ	parser.Ptr.prototype.leadingString = function(re) {
+ 0Ç  Ç	parser.Ptr.prototype.leadingString = function(re) {
 		var p, _slice, _index;
 		p = this;
 		if ((re.Op === 18) && re.Sub.length > 0) {
@@ -953,7 +945,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return [re.Rune, (re.Flags & 1) >>> 0];
 	};
 	parser.prototype.leadingString = function(re) { return this.go$val.leadingString(re); };
-0Ç√removeLeadingStringÇ™	parser.Ptr.prototype.removeLeadingString = function(re, n) {
+ 0Ç¥  Ç™	parser.Ptr.prototype.removeLeadingString = function(re, n) {
 		var p, _slice, _index, sub, _slice$1, _index$1, _ref, old, _slice$2, _index$2;
 		p = this;
 		if ((re.Op === 18) && re.Sub.length > 0) {
@@ -986,7 +978,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return re;
 	};
 	parser.prototype.removeLeadingString = function(re, n) { return this.go$val.removeLeadingString(re, n); };
-0Ç@leadingRegexpÇ-	parser.Ptr.prototype.leadingRegexp = function(re) {
+ 0Ç7  Ç-	parser.Ptr.prototype.leadingRegexp = function(re) {
 		var p, _slice, _index, sub;
 		p = this;
 		if (re.Op === 2) {
@@ -1002,7 +994,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return re;
 	};
 	parser.prototype.leadingRegexp = function(re) { return this.go$val.leadingRegexp(re); };
-0ÇremoveLeadingRegexpÇÛ	parser.Ptr.prototype.removeLeadingRegexp = function(re, reuse) {
+ 0Ç˝  ÇÛ	parser.Ptr.prototype.removeLeadingRegexp = function(re, reuse) {
 		var p, _slice, _index, _ref, old, _slice$1, _index$1;
 		p = this;
 		if ((re.Op === 18) && re.Sub.length > 0) {
@@ -1027,7 +1019,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return p.newRegexp(2);
 	};
 	parser.prototype.removeLeadingRegexp = function(re, reuse) { return this.go$val.removeLeadingRegexp(re, reuse); };
-0Ç„literalRegexpÇ–	var literalRegexp = function(s, flags) {
+ 0Ç„ literalRegexpÇÃ	literalRegexp = function(s, flags) {
 		var re, _ref, _i, _rune, c;
 		re = new Regexp.Ptr(3, 0, (go$sliceType((go$ptrType(Regexp)))).nil, go$makeNativeArray("Ptr", 1, function() { return (go$ptrType(Regexp)).nil; }), (go$sliceType(Go$Int32)).nil, go$makeNativeArray("Int32", 2, function() { return 0; }), 0, 0, 0, "");
 		re.Flags = flags;
@@ -1046,7 +1038,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		}
 		return re;
 	};
-0ÇParseÇ	var Parse = go$pkg.Parse = function(s, flags) {
+ 0Ç ParseÇ	Parse = go$pkg.Parse = function(s, flags) {
 		var err, p, err$1, c, op, lastRepeat, _tuple, min, max, t, repeat, _ref, _tuple$1, _lhs, _tuple$2, before, _ref$1, after, _tuple$3, before$1, _tuple$4, min$1, max$1, after$1, ok, _tuple$5, _ref$2, lit, i, re, _tuple$6, r, rest, err$2, r$1, _tuple$7, rest$1, _tuple$8, _tuple$9, n, _slice, _index;
 		if (!((((flags & 2) >>> 0) === 0))) {
 			if (err = checkUTF8(s), !(go$interfaceIsEqual(err, null))) {
@@ -1218,7 +1210,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		}
 		return [(_slice = p.stack, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), null];
 	};
-0ÇIparseRepeatÇ8	parser.Ptr.prototype.parseRepeat = function(s) {
+ 0ÇB  Ç8	parser.Ptr.prototype.parseRepeat = function(s) {
 		var min, max, rest, ok, p, ok1, _tuple, _tuple$1;
 		min = 0;
 		max = 0;
@@ -1259,8 +1251,8 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return [min, max, rest, ok];
 	};
 	parser.prototype.parseRepeat = function(s) { return this.go$val.parseRepeat(s); };
-0Ç
-™parsePerlFlagsÇ
+ 0Ç
+†  Ç
 ñ	parser.Ptr.prototype.parsePerlFlags = function(s) {
 		var rest, err, p, t, end, _tuple, _tuple$1, capture, name, _tuple$2, _tuple$3, re, _tuple$4, c, flags, sign, sawFlag, _tuple$5, _tuple$6, _ref, _tuple$7, _tuple$8;
 		rest = "";
@@ -1346,7 +1338,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return [rest, err];
 	};
 	parser.prototype.parsePerlFlags = function(s) { return this.go$val.parsePerlFlags(s); };
-0ÇZisValidCaptureNameÇB	var isValidCaptureName = function(name) {
+ 0ÇZ isValidCaptureNameÇ>	isValidCaptureName = function(name) {
 		var _ref, _i, _rune, c;
 		if (name === "") {
 			return false;
@@ -1363,7 +1355,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		}
 		return true;
 	};
-0ÇtparseIntÇf	parser.Ptr.prototype.parseInt = function(s) {
+ 0Çp  Çf	parser.Ptr.prototype.parseInt = function(s) {
 		var n, rest, ok, p, t, i, x;
 		n = 0;
 		rest = "";
@@ -1394,10 +1386,10 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return [n, rest, ok];
 	};
 	parser.prototype.parseInt = function(s) { return this.go$val.parseInt(s); };
-0ÅõisCharClassÅã	var isCharClass = function(re) {
+ 0Åõ isCharClassÅá	isCharClass = function(re) {
 		return (re.Op === 3) && (re.Rune.length === 1) || (re.Op === 4) || (re.Op === 5) || (re.Op === 6);
 	};
-0Çﬂ	matchRuneÇ–	var matchRune = function(re, r) {
+ 0Çﬂ 	matchRuneÇÃ	matchRune = function(re, r) {
 		var _ref, _slice, _index, i, _slice$1, _index$1, _slice$2, _index$2;
 		_ref = re.Op;
 		if (_ref === 3) {
@@ -1418,7 +1410,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		}
 		return false;
 	};
-0ÇparseVerticalBarÅ¯	parser.Ptr.prototype.parseVerticalBar = function() {
+ 0Ç  Å¯	parser.Ptr.prototype.parseVerticalBar = function() {
 		var p;
 		p = this;
 		p.concat();
@@ -1428,7 +1420,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return null;
 	};
 	parser.prototype.parseVerticalBar = function() { return this.go$val.parseVerticalBar(); };
-0ÇmergeCharClassÇ	var mergeCharClass = function(dst, src) {
+ 0Ç mergeCharClassÇ˝	mergeCharClass = function(dst, src) {
 		var _ref, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
 		_ref = dst.Op;
 		switch (0) { default: if (_ref === 6) {
@@ -1451,7 +1443,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 			dst.Rune = appendLiteral(dst.Rune, (_slice$4 = src.Rune, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")), src.Flags);
 		} }
 	};
-0ÇuswapVerticalBarÇ`	parser.Ptr.prototype.swapVerticalBar = function() {
+ 0Çj  Ç`	parser.Ptr.prototype.swapVerticalBar = function() {
 		var p, n, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, re1, _slice$4, _index$4, re3, _tuple, _slice$5, _index$5, _slice$6, _index$6, re1$1, _slice$7, _index$7, re2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10;
 		p = this;
 		n = p.stack.length;
@@ -1482,7 +1474,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return false;
 	};
 	parser.prototype.swapVerticalBar = function() { return this.go$val.swapVerticalBar(); };
-0ÇfparseRightParenÇQ	parser.Ptr.prototype.parseRightParen = function() {
+ 0Ç[  ÇQ	parser.Ptr.prototype.parseRightParen = function() {
 		var p, n, _slice, _index, re1, _slice$1, _index$1, re2, _slice$2, _index$2;
 		p = this;
 		p.concat();
@@ -1512,7 +1504,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return null;
 	};
 	parser.prototype.parseRightParen = function() { return this.go$val.parseRightParen(); };
-0ÇparseEscapeÇˇ	parser.Ptr.prototype.parseEscape = function(s) {
+ 0Ç	  Çˇ	parser.Ptr.prototype.parseEscape = function(s) {
 		var r, rest, err, p, t, _tuple, _tuple$1, c, _tuple$2, _ref, i, x, _tuple$3, x$1, _tuple$4, _tuple$5, _tuple$6, nhex, _tuple$7, _tuple$8, v, x$2, _tuple$9, x$3, _tuple$10, _tuple$11, y, x$4, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$20;
 		r = 0;
 		rest = "";
@@ -1636,7 +1628,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return [r, rest, err];
 	};
 	parser.prototype.parseEscape = function(s) { return this.go$val.parseEscape(s); };
-0Ç÷parseClassCharÇ¬	parser.Ptr.prototype.parseClassChar = function(s, wholeClass) {
+ 0ÇÃ  Ç¬	parser.Ptr.prototype.parseClassChar = function(s, wholeClass) {
 		var r, rest, err, p, _tuple, _tuple$1, _tuple$2;
 		r = 0;
 		rest = "";
@@ -1654,7 +1646,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return [r, rest, err];
 	};
 	parser.prototype.parseClassChar = function(s, wholeClass) { return this.go$val.parseClassChar(s, wholeClass); };
-0Ç8parsePerlClassEscapeÇ	parser.Ptr.prototype.parsePerlClassEscape = function(s, r) {
+ 0Ç(  Ç	parser.Ptr.prototype.parsePerlClassEscape = function(s, r) {
 		var out, rest, p, _entry, _struct, g, _struct$1, _tuple;
 		out = (go$sliceType(Go$Int32)).nil;
 		rest = "";
@@ -1670,7 +1662,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return [out, rest];
 	};
 	parser.prototype.parsePerlClassEscape = function(s, r) { return this.go$val.parsePerlClassEscape(s, r); };
-0Ç€parseNamedClassÇ∆	parser.Ptr.prototype.parseNamedClass = function(s, r) {
+ 0Ç–  Ç∆	parser.Ptr.prototype.parseNamedClass = function(s, r) {
 		var out, rest, err, p, i, _tuple, name, _entry, _struct, g, _tuple$1, _struct$1, _tuple$2;
 		out = (go$sliceType(Go$Int32)).nil;
 		rest = "";
@@ -1694,7 +1686,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return [out, rest, err];
 	};
 	parser.prototype.parseNamedClass = function(s, r) { return this.go$val.parseNamedClass(s, r); };
-0Ç…appendGroupÇ∏	parser.Ptr.prototype.appendGroup = function(r, g) {
+ 0Ç¬  Ç∏	parser.Ptr.prototype.appendGroup = function(r, g) {
 		var p, tmp, v;
 		p = this;
 		if (((p.flags & 1) >>> 0) === 0) {
@@ -1717,7 +1709,7 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		return r;
 	};
 	parser.prototype.appendGroup = function(r, g) { return this.go$val.appendGroup(r, g); };
-0ÇiunicodeTableÇW	var unicodeTable = function(name) {
+ 0Çi unicodeTableÇS	unicodeTable = function(name) {
 		var t, _entry, _entry$1, t$1, _entry$2, _entry$3;
 		if (name === "Any") {
 			return [anyTable, anyTable];
@@ -1730,8 +1722,8 @@ newLiteralÇä	parser.Ptr.prototype.newLiteral = function(r, flags) {
 		}
 		return [(go$ptrType(unicode.RangeTable)).nil, (go$ptrType(unicode.RangeTable)).nil];
 	};
-0Ç
-ÜparseUnicodeClassÇ
+ 0Ç
+y  Ç
 o	parser.Ptr.prototype.parseUnicodeClass = function(s, r) {
 		var out, rest, err, p, sign, t, _tuple, c, _tuple$1, seq, name, end, _tuple$2, _tuple$3, _tuple$4, tab, fold, _tuple$5, tmp, v, _tuple$6;
 		out = (go$sliceType(Go$Int32)).nil;
@@ -1800,8 +1792,7 @@ o	parser.Ptr.prototype.parseUnicodeClass = function(s, r) {
 		return [out, rest, err];
 	};
 	parser.prototype.parseUnicodeClass = function(s, r) { return this.go$val.parseUnicodeClass(s, r); };
-0Ç
-parseClassÇ	parser.Ptr.prototype.parseClass = function(s) {
+ 0Ç  Ç	parser.Ptr.prototype.parseClass = function(s) {
 		var rest, err, p, t, re, sign, class$1, first, _tuple, size, _tuple$1, _tuple$2, nclass, nt, err$1, _tuple$3, _tuple$4, _tuple$5, nclass$1, nt$1, err$2, _tuple$6, _tuple$7, nclass$2, _tuple$8, nt$2, _tuple$9, rng, _tuple$10, lo, hi, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, v, _tuple$16;
 		rest = "";
 		err = null;
@@ -1888,8 +1879,8 @@ parseClassÇ	parser.Ptr.prototype.parseClass = function(s) {
 		return [rest, err];
 	};
 	parser.prototype.parseClass = function(s) { return this.go$val.parseClass(s); };
-0Ç#
-cleanClassÇ	var cleanClass = function(rp) {
+ 0Ç# 
+cleanClassÇ	cleanClass = function(rp) {
 		var x, r, w, i, _slice, _index, _slice$1, _index$1, _tuple, lo, hi, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6;
 		sort.Sort((x = new ranges.Ptr(rp), new x.constructor.Struct(x)));
 		r = rp.go$get();
@@ -1914,13 +1905,13 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return go$subslice(r, 0, w);
 	};
-0Å¥appendLiteralÅ¢	var appendLiteral = function(r, x, flags) {
+ 0Å¥ appendLiteralÅû	appendLiteral = function(r, x, flags) {
 		if (!((((flags & 1) >>> 0) === 0))) {
 			return appendFoldedRange(r, x, x);
 		}
 		return appendRange(r, x, x);
 	};
-0Ç∂appendRangeÇ•	var appendRange = function(r, lo, hi) {
+ 0Ç∂ appendRangeÇ°	appendRange = function(r, lo, hi) {
 		var n, i, _slice, _index, _slice$1, _index$1, _tuple, rlo, rhi, _slice$2, _index$2, _slice$3, _index$3;
 		n = r.length;
 		i = 2;
@@ -1941,7 +1932,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return go$append(r, lo, hi);
 	};
-0ÇCappendFoldedRangeÇ,	var appendFoldedRange = function(r, lo, hi) {
+ 0ÇC appendFoldedRangeÇ(	appendFoldedRange = function(r, lo, hi) {
 		var c, f;
 		if (lo <= 65 && hi >= 66639) {
 			return appendRange(r, lo, hi);
@@ -1969,7 +1960,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return r;
 	};
-0ÇappendClassÇ˙	var appendClass = function(r, x) {
+ 0Ç appendClassÇˆ	appendClass = function(r, x) {
 		var i, _slice, _index, _slice$1, _index$1;
 		i = 0;
 		while (i < x.length) {
@@ -1978,7 +1969,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return r;
 	};
-0ÇappendFoldedClassÇ	var appendFoldedClass = function(r, x) {
+ 0Ç appendFoldedClassÇ	appendFoldedClass = function(r, x) {
 		var i, _slice, _index, _slice$1, _index$1;
 		i = 0;
 		while (i < x.length) {
@@ -1987,8 +1978,8 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return r;
 	};
-0Ç
-appendNegatedClassÇÚ	var appendNegatedClass = function(r, x) {
+ 0Ç
+ appendNegatedClassÇÓ	appendNegatedClass = function(r, x) {
 		var nextLo, i, _slice, _index, _slice$1, _index$1, _tuple, lo, hi;
 		nextLo = 0;
 		i = 0;
@@ -2005,7 +1996,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return r;
 	};
-0ÇÁappendTableÇ÷	var appendTable = function(r, x) {
+ 0ÇÁ appendTableÇ“	appendTable = function(r, x) {
 		var _ref, _i, _slice, _index, _struct, xr, _tuple, lo, hi, stride, c, _ref$1, _i$1, _slice$1, _index$1, _struct$1, xr$1, _tuple$1, lo$1, hi$1, stride$1, c$1;
 		_ref = x.R16;
 		_i = 0;
@@ -2043,7 +2034,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return r;
 	};
-0ÇòappendNegatedTableÇÄ	var appendNegatedTable = function(r, x) {
+ 0Çò appendNegatedTableÇ|	appendNegatedTable = function(r, x) {
 		var nextLo, _ref, _i, _slice, _index, _struct, xr, _tuple, lo, hi, stride, c, _ref$1, _i$1, _slice$1, _index$1, _struct$1, xr$1, _tuple$1, lo$1, hi$1, stride$1, c$1;
 		nextLo = 0;
 		_ref = x.R16;
@@ -2097,7 +2088,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return r;
 	};
-0Ç§negateClassÇì	var negateClass = function(r) {
+ 0Ç§ negateClassÇè	negateClass = function(r) {
 		var nextLo, w, i, _slice, _index, _slice$1, _index$1, _tuple, lo, hi, _slice$2, _index$2, _slice$3, _index$3;
 		nextLo = 0;
 		w = 0;
@@ -2118,7 +2109,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return r;
 	};
-0ÇLessÇ˜	ranges.Ptr.prototype.Less = function(i, j) {
+ 0Ç  Ç˜	ranges.Ptr.prototype.Less = function(i, j) {
 		var _struct, ra, p, x, x$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		ra = (_struct = this, new ranges.Ptr(_struct.p));
 		p = ra.p.go$get();
@@ -2127,13 +2118,13 @@ cleanClassÇ	var cleanClass = function(rp) {
 		return (_slice = p, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < (_slice$1 = p, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) || ((_slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) === (_slice$3 = p, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))) && (_slice$4 = p, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")) > (_slice$5 = p, _index$5 = (j + 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"));
 	};
 	ranges.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
-0ÇRLenÇI	ranges.Ptr.prototype.Len = function() {
+ 0ÇS  ÇI	ranges.Ptr.prototype.Len = function() {
 		var _struct, ra, _q;
 		ra = (_struct = this, new ranges.Ptr(_struct.p));
 		return (_q = ra.p.go$get().length / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
 	};
 	ranges.prototype.Len = function() { return this.go$val.Len(); };
-0Ç∫SwapÇ∞	ranges.Ptr.prototype.Swap = function(i, j) {
+ 0Ç∫  Ç∞	ranges.Ptr.prototype.Swap = function(i, j) {
 		var _struct, ra, p, x, x$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		ra = (_struct = this, new ranges.Ptr(_struct.p));
 		p = ra.p.go$get();
@@ -2142,7 +2133,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		_tuple = [(_slice = p, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = p, _index$1 = (j + 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = p, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (_slice$3 = p, _index$3 = (i + 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"))], _slice$4 = p, _index$4 = i, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$5 = p, _index$5 = i + 1 >> 0, (_index$5 >= 0 && _index$5 < _slice$5.length) ? (_slice$5.array[_slice$5.offset + _index$5] = _tuple[1]) : go$throwRuntimeError("index out of range"), _slice$6 = p, _index$6 = j, (_index$6 >= 0 && _index$6 < _slice$6.length) ? (_slice$6.array[_slice$6.offset + _index$6] = _tuple[2]) : go$throwRuntimeError("index out of range"), _slice$7 = p, _index$7 = j + 1 >> 0, (_index$7 >= 0 && _index$7 < _slice$7.length) ? (_slice$7.array[_slice$7.offset + _index$7] = _tuple[3]) : go$throwRuntimeError("index out of range");
 	};
 	ranges.prototype.Swap = function(i, j) { return this.go$val.Swap(i, j); };
-0Ç;	checkUTF8Ç,	var checkUTF8 = function(s) {
+ 0Ç; 	checkUTF8Ç(	checkUTF8 = function(s) {
 		var _tuple, rune, size;
 		while (!(s === "")) {
 			_tuple = utf8.DecodeRuneInString(s), rune = _tuple[0], size = _tuple[1];
@@ -2153,7 +2144,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return null;
 	};
-0ÇÛnextRuneÇÂ	var nextRune = function(s) {
+ 0ÇÛ nextRuneÇ·	nextRune = function(s) {
 		var c, t, err, _tuple, size, _tuple$1, _tuple$2;
 		c = 0;
 		t = "";
@@ -2166,10 +2157,10 @@ cleanClassÇ	var cleanClass = function(rp) {
 		_tuple$2 = [c, s.substring(size), null], c = _tuple$2[0], t = _tuple$2[1], err = _tuple$2[2];
 		return [c, t, err];
 	};
-0visalnumk	var isalnum = function(c) {
+ 0v isalnumg	isalnum = function(c) {
 		return 48 <= c && c <= 57 || 65 <= c && c <= 90 || 97 <= c && c <= 122;
 	};
-0ÅÙunhexÅÍ	var unhex = function(c) {
+ 0ÅÙ unhexÅÊ	unhex = function(c) {
 		if (48 <= c && c <= 57) {
 			return c - 48 >> 0;
 		}
@@ -2181,7 +2172,7 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return -1;
 	};
-0ÇEmptyOpContextÇ˘	var EmptyOpContext = go$pkg.EmptyOpContext = function(r1, r2) {
+ 0Ç EmptyOpContextÇı	EmptyOpContext = go$pkg.EmptyOpContext = function(r1, r2) {
 		var op, boundary;
 		op = 32;
 		boundary = 0;
@@ -2204,11 +2195,11 @@ cleanClassÇ	var cleanClass = function(rp) {
 		}
 		return op;
 	};
-0Åü
-IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
+ 0Åü 
+IsWordCharÅå	IsWordChar = go$pkg.IsWordChar = function(r) {
 		return 65 <= r && r <= 90 || 97 <= r && r <= 122 || 48 <= r && r <= 57 || (r === 95);
 	};
-0Å‹StringÅ—	Prog.Ptr.prototype.String = function() {
+ 0Å⁄  Å—	Prog.Ptr.prototype.String = function() {
 		var p, b;
 		p = this;
 		b = new bytes.Buffer.Ptr();
@@ -2216,7 +2207,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return b.String();
 	};
 	Prog.prototype.String = function() { return this.go$val.String(); };
-0ÇeskipNopÇX	Prog.Ptr.prototype.skipNop = function(pc) {
+ 0Çb  ÇX	Prog.Ptr.prototype.skipNop = function(pc) {
 		var p, _slice, _index, i, _slice$1, _index$1;
 		p = this;
 		i = (_slice = p.Inst, _index = pc, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -2227,7 +2218,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return i;
 	};
 	Prog.prototype.skipNop = function(pc) { return this.go$val.skipNop(pc); };
-0ÅıopÅÓ	Inst.Ptr.prototype.op = function() {
+ 0Å˜  ÅÓ	Inst.Ptr.prototype.op = function() {
 		var i, op, _ref;
 		i = this;
 		op = i.Op;
@@ -2238,7 +2229,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return op;
 	};
 	Inst.prototype.op = function() { return this.go$val.op(); };
-0ÇxPrefixÇl	Prog.Ptr.prototype.Prefix = function() {
+ 0Çv  Çl	Prog.Ptr.prototype.Prefix = function() {
 		var prefix, complete, p, i, _tuple, buf, _slice, _index, _tuple$1;
 		prefix = "";
 		complete = false;
@@ -2257,7 +2248,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return [prefix, complete];
 	};
 	Prog.prototype.Prefix = function() { return this.go$val.Prefix(); };
-0Ç\	StartCondÇM	Prog.Ptr.prototype.StartCond = function() {
+ 0ÇW  ÇM	Prog.Ptr.prototype.StartCond = function() {
 		var p, flag, pc, _slice, _index, i, _ref, _slice$1, _index$1;
 		p = this;
 		flag = 0;
@@ -2280,7 +2271,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return flag;
 	};
 	Prog.prototype.StartCond = function() { return this.go$val.StartCond(); };
-0Ç™	MatchRuneÇõ	Inst.Ptr.prototype.MatchRune = function(r) {
+ 0Ç•  Çõ	Inst.Ptr.prototype.MatchRune = function(r) {
 		var i, rune, _slice, _index, r0, r1, j, _slice$1, _index$1, _slice$2, _index$2, lo, _q, hi, _q$1, m, c, _slice$3, _index$3, x, _slice$4, _index$4, x$1;
 		i = this;
 		rune = i.Rune;
@@ -2326,10 +2317,10 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return false;
 	};
 	Inst.prototype.MatchRune = function(r) { return this.go$val.MatchRune(r); };
-0ÅçwordRuneÅÄ	var wordRune = function(r) {
+ 0Åå wordRune|	wordRune = function(r) {
 		return (r === 95) || (65 <= r && r <= 90) || (97 <= r && r <= 122) || (48 <= r && r <= 57);
 	};
-0Ç–MatchEmptyWidthÇª	Inst.Ptr.prototype.MatchEmptyWidth = function(before, after) {
+ 0Ç≈  Çª	Inst.Ptr.prototype.MatchEmptyWidth = function(before, after) {
 		var i, _ref;
 		i = this;
 		_ref = (i.Arg << 24 >>> 24);
@@ -2349,7 +2340,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		throw go$panic(new Go$String("unknown empty width arg"));
 	};
 	Inst.prototype.MatchEmptyWidth = function(before, after) { return this.go$val.MatchEmptyWidth(before, after); };
-0Å‹StringÅ—	Inst.Ptr.prototype.String = function() {
+ 0Å⁄  Å—	Inst.Ptr.prototype.String = function() {
 		var i, b;
 		i = this;
 		b = new bytes.Buffer.Ptr();
@@ -2357,7 +2348,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return b.String();
 	};
 	Inst.prototype.String = function() { return this.go$val.String(); };
-0ÇGbwÇ?	var bw = function(b, args) {
+ 0ÇG bwÇ;	bw = function(b, args) {
 		var _ref, _i, _slice, _index, s;
 		_ref = args;
 		_i = 0;
@@ -2367,7 +2358,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 			_i++;
 		}
 	};
-0Ç^dumpProgÇP	var dumpProg = function(b, p) {
+ 0Ç^ dumpProgÇL	dumpProg = function(b, p) {
 		var _ref, _i, j, _slice, _index, i, pc;
 		_ref = p.Inst;
 		_i = 0;
@@ -2387,10 +2378,10 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 			_i++;
 		}
 	};
-0Zu32S	var u32 = function(i) {
+ 0Z u32O	u32 = function(i) {
 		return strconv.FormatUint(new Go$Uint64(0, i), 10);
 	};
-0Ç¯dumpInstÇÍ	var dumpInst = function(b, i) {
+ 0Ç¯ dumpInstÇÊ	dumpInst = function(b, i) {
 		var _ref;
 		_ref = i.Op;
 		if (_ref === 0) {
@@ -2424,7 +2415,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 			bw(b, new (go$sliceType(Go$String))(["anynotnl -> ", u32(i.Out)]));
 		}
 	};
-0ÇEqualÇ	Regexp.Ptr.prototype.Equal = function(y) {
+ 0Ç  Ç	Regexp.Ptr.prototype.Equal = function(y) {
 		var x, _ref, _ref$1, _i, _slice, _index, r, i, _slice$1, _index$1, _ref$2, _i$1, _slice$2, _index$2, sub, i$1, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9;
 		x = this;
 		if (x === (go$ptrType(Regexp)).nil || y === (go$ptrType(Regexp)).nil) {
@@ -2482,7 +2473,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return true;
 	};
 	Regexp.prototype.Equal = function(y) { return this.go$val.Equal(y); };
-0ÇywriteRegexpÇh	var writeRegexp = function(b, re) {
+ 0Çy writeRegexpÇd	writeRegexp = function(b, re) {
 		var _ref, _ref$1, _i, _slice, _index, r, _r, _slice$1, _index$1, _slice$2, _index$2, i, _slice$3, _index$3, _slice$4, _index$4, _tuple, lo, hi, i$1, _slice$5, _index$5, _slice$6, _index$6, _tuple$1, lo$1, hi$1, _slice$7, _index$7, _slice$8, _index$8, sub, _slice$9, _index$9, _ref$2, _ref$3, _i$1, _slice$10, _index$10, sub$1, _ref$4, _i$2, _slice$11, _index$11, sub$2, i$2;
 		_ref = re.Op;
 		switch (0) { default: if (_ref === 1) {
@@ -2627,7 +2618,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 			b.WriteString("<invalid op" + strconv.Itoa((re.Op >> 0)) + ">");
 		} }
 	};
-0ÅÊStringÅ€	Regexp.Ptr.prototype.String = function() {
+ 0Å‰  Å€	Regexp.Ptr.prototype.String = function() {
 		var re, b;
 		re = this;
 		b = new bytes.Buffer.Ptr();
@@ -2635,7 +2626,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return b.String();
 	};
 	Regexp.prototype.String = function() { return this.go$val.String(); };
-0ÇnescapeÇb	var escape = function(b, r, force) {
+ 0Çn escapeÇ^	escape = function(b, r, force) {
 		var _ref, s;
 		if (unicode.IsPrint(r)) {
 			if (strings.IndexRune("\\.+*?()|[]{}^$", r) >= 0 || force) {
@@ -2672,7 +2663,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 			b.WriteString("}");
 		} }
 	};
-0ÇMaxCapÇ	Regexp.Ptr.prototype.MaxCap = function() {
+ 0Ç  Ç	Regexp.Ptr.prototype.MaxCap = function() {
 		var re, m, _ref, _i, _slice, _index, sub, n;
 		re = this;
 		m = 0;
@@ -2691,7 +2682,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return m;
 	};
 	Regexp.prototype.MaxCap = function() { return this.go$val.MaxCap(); };
-0Ç.CapNamesÇ 	Regexp.Ptr.prototype.CapNames = function() {
+ 0Ç*  Ç 	Regexp.Ptr.prototype.CapNames = function() {
 		var re, names;
 		re = this;
 		names = (go$sliceType(Go$String)).make(re.MaxCap() + 1 >> 0, 0, function() { return ""; });
@@ -2699,7 +2690,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return names;
 	};
 	Regexp.prototype.CapNames = function() { return this.go$val.CapNames(); };
-0ÇΩcapNamesÇØ	Regexp.Ptr.prototype.capNames = function(names) {
+ 0Çπ  ÇØ	Regexp.Ptr.prototype.capNames = function(names) {
 		var re, _slice, _index, _ref, _i, _slice$1, _index$1, sub;
 		re = this;
 		if (re.Op === 13) {
@@ -2714,7 +2705,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		}
 	};
 	Regexp.prototype.capNames = function(names) { return this.go$val.capNames(names); };
-0ÇSimplifyÇ	Regexp.Ptr.prototype.Simplify = function() {
+ 0Ç  Ç	Regexp.Ptr.prototype.Simplify = function() {
 		var re, _ref, nre, _ref$1, _i, _slice, _index, sub, i, nsub, _struct, l, r, _slice$1, _index$1, sub$1, _slice$2, _index$2, sub$2, nre$1, i$1, prefix, i$2, suffix, i$3, nre2;
 		re = this;
 		if (re === (go$ptrType(Regexp)).nil) {
@@ -2801,7 +2792,7 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		return re;
 	};
 	Regexp.prototype.Simplify = function() { return this.go$val.Simplify(); };
-0Ç	simplify1Çp	var simplify1 = function(op, flags, sub, re) {
+ 0Ç 	simplify1Çl	simplify1 = function(op, flags, sub, re) {
 		var _slice, _index;
 		if (sub.Op === 2) {
 			return sub;
@@ -2816,28 +2807,4 @@ IsWordCharÅê	var IsWordChar = go$pkg.IsWordChar = function(r) {
 		re.Sub = go$append(go$subslice(new (go$sliceType((go$ptrType(Regexp))))(re.Sub0), 0, 0), sub);
 		return re;
 	};
-0Ç/initÇ%	go$pkg.init = function() {
-		var _map, _key, _map$1, _key$1;
-		anyRuneNotNL = new (go$sliceType(Go$Int32))([0, 9, 11, 1114111]);
-		anyRune = new (go$sliceType(Go$Int32))([0, 1114111]);
-		anyTable = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(0, 65535, 1)]), new (go$sliceType(unicode.Range32))([new unicode.Range32.Ptr(65536, 1114111, 1)]), 0);
-		code1 = new (go$sliceType(Go$Int32))([48, 57]);
-		code2 = new (go$sliceType(Go$Int32))([9, 10, 12, 13, 32, 32]);
-		code3 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
-		perlGroup = (_map = new Go$Map(), _key = "\\d", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code1) }, _key = "\\D", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code1) }, _key = "\\s", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code2) }, _key = "\\S", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code2) }, _key = "\\w", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code3) }, _key = "\\W", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code3) }, _map);
-		code4 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 97, 122]);
-		code5 = new (go$sliceType(Go$Int32))([65, 90, 97, 122]);
-		code6 = new (go$sliceType(Go$Int32))([0, 127]);
-		code7 = new (go$sliceType(Go$Int32))([9, 9, 32, 32]);
-		code8 = new (go$sliceType(Go$Int32))([0, 31, 127, 127]);
-		code9 = new (go$sliceType(Go$Int32))([48, 57]);
-		code10 = new (go$sliceType(Go$Int32))([33, 126]);
-		code11 = new (go$sliceType(Go$Int32))([97, 122]);
-		code12 = new (go$sliceType(Go$Int32))([32, 126]);
-		code13 = new (go$sliceType(Go$Int32))([33, 47, 58, 64, 91, 96, 123, 126]);
-		code14 = new (go$sliceType(Go$Int32))([9, 13, 32, 32]);
-		code15 = new (go$sliceType(Go$Int32))([65, 90]);
-		code16 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
-		code17 = new (go$sliceType(Go$Int32))([48, 57, 65, 70, 97, 102]);
-		posixGroup = (_map$1 = new Go$Map(), _key$1 = "[:alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code4) }, _key$1 = "[:^alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code4) }, _key$1 = "[:alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code5) }, _key$1 = "[:^alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code5) }, _key$1 = "[:ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code6) }, _key$1 = "[:^ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code6) }, _key$1 = "[:blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code7) }, _key$1 = "[:^blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code7) }, _key$1 = "[:cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code8) }, _key$1 = "[:^cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code8) }, _key$1 = "[:digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code9) }, _key$1 = "[:^digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code9) }, _key$1 = "[:graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code10) }, _key$1 = "[:^graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code10) }, _key$1 = "[:lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code11) }, _key$1 = "[:^lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code11) }, _key$1 = "[:print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code12) }, _key$1 = "[:^print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code12) }, _key$1 = "[:punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code13) }, _key$1 = "[:^punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code13) }, _key$1 = "[:space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code14) }, _key$1 = "[:^space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code14) }, _key$1 = "[:upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code15) }, _key$1 = "[:^upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code15) }, _key$1 = "[:word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code16) }, _key$1 = "[:^word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code16) }, _key$1 = "[:xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code17) }, _key$1 = "[:^xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code17) }, _map$1);
-	};
+ 0    0    0 

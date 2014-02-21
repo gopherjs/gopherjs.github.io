@@ -1,4 +1,4 @@
-0Çâ¸compress/gzipÇ>&package gzip
+0ÇâÂcompress/gzipÇ>&package gzip
 import bufio "bufio"
 import flate "compress/flate"
 import errors "errors"
@@ -190,8 +190,7 @@ $$
 0Å¥runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flatehash
 hash/crc32compress/gzip0ÅÇ0bufiobufio0compress/flateflate0errorserrors0hashhash0
 hash/crc32crc320ioio0timetime0
-fmtfmtÇ·	var Header;
-	Header = go$newType(0, "Struct", "gzip.Header", "Header", "compress/gzip", function(Comment_, Extra_, ModTime_, Name_, OS_) {
+fmtfmt0ÇJj0Çô HeaderÇ”	Header = go$pkg.Header = go$newType(0, "Struct", "gzip.Header", "Header", "compress/gzip", function(Comment_, Extra_, ModTime_, Name_, OS_) {
 		this.go$val = this;
 		this.Comment = Comment_ !== undefined ? Comment_ : "";
 		this.Extra = Extra_ !== undefined ? Extra_ : (go$sliceType(Go$Uint8)).nil;
@@ -199,9 +198,8 @@ hash/crc32crc320ioio0timetime0
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.OS = OS_ !== undefined ? OS_ : 0;
 	});
-	go$pkg.Header = Header;
-	var Reader;
-	Reader = go$newType(0, "Struct", "gzip.Reader", "Reader", "compress/gzip", function(Header_, r_, decompressor_, digest_, size_, flg_, buf_, err_) {
+Åµ		Header.init([["Comment", "", Go$String, ""], ["Extra", "", (go$sliceType(Go$Uint8)), ""], ["ModTime", "", time.Time, ""], ["Name", "", Go$String, ""], ["OS", "", Go$Uint8, ""]]);
+0Çj ReaderÇû	Reader = go$pkg.Reader = go$newType(0, "Struct", "gzip.Reader", "Reader", "compress/gzip", function(Header_, r_, decompressor_, digest_, size_, flg_, buf_, err_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new Header.Ptr();
 		this.r = r_ !== undefined ? r_ : null;
@@ -212,9 +210,9 @@ hash/crc32crc320ioio0timetime0
 		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 512, function() { return 0; });
 		this.err = err_ !== undefined ? err_ : null;
 	});
-	go$pkg.Reader = Reader;
-	var Writer;
-	Writer = go$newType(0, "Struct", "gzip.Writer", "Writer", "compress/gzip", function(Header_, w_, level_, wroteHeader_, compressor_, digest_, size_, closed_, buf_, err_) {
+Ç∫		Reader.init([["", "", Header, ""], ["r", "compress/gzip", flate.Reader, ""], ["decompressor", "compress/gzip", io.ReadCloser, ""], ["digest", "compress/gzip", hash.Hash32, ""], ["size", "compress/gzip", Go$Uint32, ""], ["flg", "compress/gzip", Go$Uint8, ""], ["buf", "compress/gzip", (go$arrayType(Go$Uint8, 512)), ""], ["err", "compress/gzip", go$error, ""]]);
+		(go$ptrType(Reader)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["read2", "compress/gzip", [], [Go$Uint32, go$error], false], ["readHeader", "compress/gzip", [Go$Bool], [go$error], false], ["readString", "compress/gzip", [], [Go$String, go$error], false]];
+0Ç÷ WriterÇO	Writer = go$pkg.Writer = go$newType(0, "Struct", "gzip.Writer", "Writer", "compress/gzip", function(Header_, w_, level_, wroteHeader_, compressor_, digest_, size_, closed_, buf_, err_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new Header.Ptr();
 		this.w = w_ !== undefined ? w_ : null;
@@ -227,21 +225,19 @@ hash/crc32crc320ioio0timetime0
 		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 10, function() { return 0; });
 		this.err = err_ !== undefined ? err_ : null;
 	});
-	go$pkg.Writer = Writer;
-	Header.init([["Comment", "", Go$String, ""], ["Extra", "", (go$sliceType(Go$Uint8)), ""], ["ModTime", "", time.Time, ""], ["Name", "", Go$String, ""], ["OS", "", Go$Uint8, ""]]);
-	Reader.init([["", "", Header, ""], ["r", "compress/gzip", flate.Reader, ""], ["decompressor", "compress/gzip", io.ReadCloser, ""], ["digest", "compress/gzip", hash.Hash32, ""], ["size", "compress/gzip", Go$Uint32, ""], ["flg", "compress/gzip", Go$Uint8, ""], ["buf", "compress/gzip", (go$arrayType(Go$Uint8, 512)), ""], ["err", "compress/gzip", go$error, ""]]);
-	(go$ptrType(Reader)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["read2", "compress/gzip", [], [Go$Uint32, go$error], false], ["readHeader", "compress/gzip", [Go$Bool], [go$error], false], ["readString", "compress/gzip", [], [Go$String, go$error], false]];
-	Writer.init([["", "", Header, ""], ["w", "compress/gzip", io.Writer, ""], ["level", "compress/gzip", Go$Int, ""], ["wroteHeader", "compress/gzip", Go$Bool, ""], ["compressor", "compress/gzip", (go$ptrType(flate.Writer)), ""], ["digest", "compress/gzip", hash.Hash32, ""], ["size", "compress/gzip", Go$Uint32, ""], ["closed", "compress/gzip", Go$Bool, ""], ["buf", "compress/gzip", (go$arrayType(Go$Uint8, 10)), ""], ["err", "compress/gzip", go$error, ""]]);
-	(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["init", "compress/gzip", [io.Writer, Go$Int], [], false], ["writeBytes", "compress/gzip", [(go$sliceType(Go$Uint8))], [go$error], false], ["writeString", "compress/gzip", [Go$String], [go$error], false]];
-00 0 0Ç;î0Ç
-makeReaderÇ	var makeReader = function(r) {
+Çu		Writer.init([["", "", Header, ""], ["w", "compress/gzip", io.Writer, ""], ["level", "compress/gzip", Go$Int, ""], ["wroteHeader", "compress/gzip", Go$Bool, ""], ["compressor", "compress/gzip", (go$ptrType(flate.Writer)), ""], ["digest", "compress/gzip", hash.Hash32, ""], ["size", "compress/gzip", Go$Uint32, ""], ["closed", "compress/gzip", Go$Bool, ""], ["buf", "compress/gzip", (go$arrayType(Go$Uint8, 10)), ""], ["err", "compress/gzip", go$error, ""]]);
+		(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["init", "compress/gzip", [io.Writer, Go$Int], [], false], ["writeBytes", "compress/gzip", [(go$sliceType(Go$Uint8))], [go$error], false], ["writeString", "compress/gzip", [Go$String], [go$error], false]];
+0    0    0E   =		go$pkg.ErrChecksum = errors.New("gzip: invalid checksum");
+0A   9		go$pkg.ErrHeader = errors.New("gzip: invalid header");
+0Ç 
+makeReaderÇ 	makeReader = function(r) {
 		var ok, _tuple, rr;
 		if (_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
 			return rr;
 		}
 		return bufio.NewReader(r);
 	};
-0Ç(	NewReaderÇ	var NewReader = go$pkg.NewReader = function(r) {
+ 0Ç( 	NewReaderÇ	NewReader = go$pkg.NewReader = function(r) {
 		var z, err;
 		z = new Reader.Ptr();
 		z.r = makeReader(r);
@@ -251,12 +247,11 @@ makeReaderÇ	var makeReader = function(r) {
 		}
 		return [z, null];
 	};
-0Çwget4Çm	var get4 = function(p) {
+ 0Çw get4Çi	get4 = function(p) {
 		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		return (((((((_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) | (((_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0) << 8 >>> 0)) >>> 0) | (((_slice$2 = p, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >>> 0) << 16 >>> 0)) >>> 0) | (((_slice$3 = p, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >>> 0) << 24 >>> 0)) >>> 0;
 	};
-0Ç
-readStringÇo	Reader.Ptr.prototype.readString = function() {
+ 0Çy  Ço	Reader.Ptr.prototype.readString = function() {
 		var z, err, needconv, i, _tuple, s, _ref, _i, _slice, _index, v;
 		z = this;
 		err = null;
@@ -291,7 +286,7 @@ readStringÇo	Reader.Ptr.prototype.readString = function() {
 		}
 	};
 	Reader.prototype.readString = function() { return this.go$val.readString(); };
-0Çñread2Çã	Reader.Ptr.prototype.read2 = function() {
+ 0Çï  Çã	Reader.Ptr.prototype.read2 = function() {
 		var z, _tuple, err;
 		z = this;
 		_tuple = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 2)), err = _tuple[1];
@@ -301,8 +296,7 @@ readStringÇo	Reader.Ptr.prototype.readString = function() {
 		return [((z.buf[0] >>> 0) | ((z.buf[1] >>> 0) << 8 >>> 0)) >>> 0, null];
 	};
 	Reader.prototype.read2 = function() { return this.go$val.read2(); };
-0Çf
-readHeaderÇV	Reader.Ptr.prototype.readHeader = function(save) {
+ 0Ç`  ÇV	Reader.Ptr.prototype.readHeader = function(save) {
 		var z, _tuple, err, _struct, _tuple$1, n, err$1, data, _tuple$2, s, _tuple$3, _tuple$4, _tuple$5, n$1, err$2, sum;
 		z = this;
 		_tuple = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 10)), err = _tuple[1];
@@ -364,7 +358,7 @@ readHeaderÇV	Reader.Ptr.prototype.readHeader = function(save) {
 		return null;
 	};
 	Reader.prototype.readHeader = function(save) { return this.go$val.readHeader(save); };
-0Ç_ReadÇU	Reader.Ptr.prototype.Read = function(p) {
+ 0Ç_  ÇU	Reader.Ptr.prototype.Read = function(p) {
 		var n, err, z, _tuple, _tuple$1, _tuple$2, err$1, _tuple$3, _tuple$4, _tuple$5, crc32$1, isize, sum, _tuple$6, _tuple$7;
 		n = 0;
 		err = null;
@@ -406,18 +400,18 @@ readHeaderÇV	Reader.Ptr.prototype.readHeader = function(save) {
 		return [n, err];
 	};
 	Reader.prototype.Read = function(p) { return this.go$val.Read(p); };
-0ÅµCloseÅ´	Reader.Ptr.prototype.Close = function() {
+ 0Å¥  Å´	Reader.Ptr.prototype.Close = function() {
 		var z;
 		z = this;
 		return z.decompressor.Close();
 	};
 	Reader.prototype.Close = function() { return this.go$val.Close(); };
-0Åí	NewWriterÅÑ	var NewWriter = go$pkg.NewWriter = function(w) {
+ 0Åí 	NewWriterÅÄ	NewWriter = go$pkg.NewWriter = function(w) {
 		var _tuple, z;
 		_tuple = NewWriterLevel(w, -1), z = _tuple[0];
 		return z;
 	};
-0Ç^NewWriterLevelÇJ	var NewWriterLevel = go$pkg.NewWriterLevel = function(w, level) {
+ 0Ç^ NewWriterLevelÇF	NewWriterLevel = go$pkg.NewWriterLevel = function(w, level) {
 		var z;
 		if (level < -1 || level > 9) {
 			return [(go$ptrType(Writer)).nil, fmt.Errorf("gzip: invalid compression level: %d", new (go$sliceType(go$emptyInterface))([new Go$Int(level)]))];
@@ -426,7 +420,7 @@ readHeaderÇV	Reader.Ptr.prototype.readHeader = function(save) {
 		z.init(w, level);
 		return [z, null];
 	};
-0Ç]initÇS	Writer.Ptr.prototype.init = function(w, level) {
+ 0Ç]  ÇS	Writer.Ptr.prototype.init = function(w, level) {
 		var z, digest, compressor, l, r;
 		z = this;
 		digest = z.digest;
@@ -442,26 +436,25 @@ readHeaderÇV	Reader.Ptr.prototype.readHeader = function(save) {
 		l = z, r = new Writer.Ptr(new Header.Ptr("", (go$sliceType(Go$Uint8)).nil, new time.Time.Ptr(), "", 255), w, level, false, compressor, digest, 0, false, go$makeNativeArray("Uint8", 10, function() { return 0; }), null), l.Header = r.Header, l.w = r.w, l.level = r.level, l.wroteHeader = r.wroteHeader, l.compressor = r.compressor, l.digest = r.digest, l.size = r.size, l.closed = r.closed, l.buf = r.buf, l.err = r.err;
 	};
 	Writer.prototype.init = function(w, level) { return this.go$val.init(w, level); };
-0Å≠ResetÅ£	Writer.Ptr.prototype.Reset = function(w) {
+ 0Å¨  Å£	Writer.Ptr.prototype.Reset = function(w) {
 		var z;
 		z = this;
 		z.init(w, z.level);
 	};
 	Writer.prototype.Reset = function(w) { return this.go$val.Reset(w); };
-0ÇÁput2Ç›	var put2 = function(p, v) {
+ 0ÇÁ put2ÇŸ	put2 = function(p, v) {
 		var _slice, _index, _slice$1, _index$1;
 		_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((v >>> 0 << 16 >>> 16) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 		_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((v >>> 8 << 16 >>> 16) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
-0Çóput4Çç	var put4 = function(p, v) {
+ 0Çó put4Çâ	put4 = function(p, v) {
 		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		_slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((v >>> 0 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 		_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((v >>> 8 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 		_slice$2 = p, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = ((v >>> 16 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 		_slice$3 = p, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = ((v >>> 24 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 	};
-0ÇP
-writeBytesÇ@	Writer.Ptr.prototype.writeBytes = function(b) {
+ 0ÇJ  Ç@	Writer.Ptr.prototype.writeBytes = function(b) {
 		var z, _tuple, err, _tuple$1;
 		z = this;
 		if (b.length > 65535) {
@@ -476,7 +469,7 @@ writeBytesÇ@	Writer.Ptr.prototype.writeBytes = function(b) {
 		return err;
 	};
 	Writer.prototype.writeBytes = function(b) { return this.go$val.writeBytes(b); };
-0Ç¿writeStringÇØ	Writer.Ptr.prototype.writeString = function(s) {
+ 0Çπ  ÇØ	Writer.Ptr.prototype.writeString = function(s) {
 		var err, z, needconv, _ref, _i, _rune, v, b, _ref$1, _i$1, _rune$1, v$1, _tuple, _tuple$1, _tuple$2;
 		err = null;
 		z = this;
@@ -519,7 +512,7 @@ writeBytesÇ@	Writer.Ptr.prototype.writeBytes = function(b) {
 		return err;
 	};
 	Writer.prototype.writeString = function(s) { return this.go$val.writeString(s); };
-0ÇWriteÇ	Writer.Ptr.prototype.Write = function(p) {
+ 0Ç  Ç	Writer.Ptr.prototype.Write = function(p) {
 		var z, n, _lhs, _index, _lhs$1, _index$1, _lhs$2, _index$2, _tuple, _tuple$1, _tuple$2;
 		z = this;
 		if (!(go$interfaceIsEqual(z.err, null))) {
@@ -582,7 +575,7 @@ writeBytesÇ@	Writer.Ptr.prototype.writeBytes = function(b) {
 		return [n, z.err];
 	};
 	Writer.prototype.Write = function(p) { return this.go$val.Write(p); };
-0Ç∏FlushÇ≠	Writer.Ptr.prototype.Flush = function() {
+ 0Ç∑  Ç≠	Writer.Ptr.prototype.Flush = function() {
 		var z;
 		z = this;
 		if (!(go$interfaceIsEqual(z.err, null))) {
@@ -601,7 +594,7 @@ writeBytesÇ@	Writer.Ptr.prototype.writeBytes = function(b) {
 		return z.err;
 	};
 	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
-0ÇCloseÇ	Writer.Ptr.prototype.Close = function() {
+ 0Ç  Ç	Writer.Ptr.prototype.Close = function() {
 		var z, _tuple;
 		z = this;
 		if (!(go$interfaceIsEqual(z.err, null))) {
@@ -627,7 +620,4 @@ writeBytesÇ@	Writer.Ptr.prototype.writeBytes = function(b) {
 		return z.err;
 	};
 	Writer.prototype.Close = function() { return this.go$val.Close(); };
-0ÅüinitÅñ	go$pkg.init = function() {
-		go$pkg.ErrChecksum = errors.New("gzip: invalid checksum");
-		go$pkg.ErrHeader = errors.New("gzip: invalid header");
-	};
+ 0    0    0 

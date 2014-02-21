@@ -1,4 +1,4 @@
-0Éë‰syscallÉ%:package syscall
+0Éê¢syscallÉ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -1958,15 +1958,13 @@ func (? *@"sync".Mutex) @"sync".Lock() ()
 func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
-0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$1Ç∆à	var ivalue;
-	ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
+0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$10ÉjÏ0Ç£ ivalueÇ'	ivalue = go$pkg.ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.value = value_ !== undefined ? value_ : 0;
 	});
-	go$pkg.ivalue = ivalue;
-	var SysProcAttr;
-	SysProcAttr = go$newType(0, "Struct", "syscall.SysProcAttr", "SysProcAttr", "syscall", function(Chroot_, Credential_, Ptrace_, Setsid_, Setpgid_, Setctty_, Noctty_) {
+l		ivalue.init([["name", "syscall", (go$arrayType(Go$Uint8, 16)), ""], ["value", "syscall", Go$Int16, ""]]);
+0Çù SysProcAttrÇç	SysProcAttr = go$pkg.SysProcAttr = go$newType(0, "Struct", "syscall.SysProcAttr", "SysProcAttr", "syscall", function(Chroot_, Credential_, Ptrace_, Setsid_, Setpgid_, Setctty_, Noctty_) {
 		this.go$val = this;
 		this.Chroot = Chroot_ !== undefined ? Chroot_ : "";
 		this.Credential = Credential_ !== undefined ? Credential_ : (go$ptrType(Credential)).nil;
@@ -1976,75 +1974,74 @@ $$
 		this.Setctty = Setctty_ !== undefined ? Setctty_ : false;
 		this.Noctty = Noctty_ !== undefined ? Noctty_ : false;
 	});
-	go$pkg.SysProcAttr = SysProcAttr;
-	var Credential;
-	Credential = go$newType(0, "Struct", "syscall.Credential", "Credential", "syscall", function(Uid_, Gid_, Groups_) {
+Å˙		SysProcAttr.init([["Chroot", "", Go$String, ""], ["Credential", "", (go$ptrType(Credential)), ""], ["Ptrace", "", Go$Bool, ""], ["Setsid", "", Go$Bool, ""], ["Setpgid", "", Go$Bool, ""], ["Setctty", "", Go$Bool, ""], ["Noctty", "", Go$Bool, ""]]);
+0Ç› 
+CredentialÇM	Credential = go$pkg.Credential = go$newType(0, "Struct", "syscall.Credential", "Credential", "syscall", function(Uid_, Gid_, Groups_) {
 		this.go$val = this;
 		this.Uid = Uid_ !== undefined ? Uid_ : 0;
 		this.Gid = Gid_ !== undefined ? Gid_ : 0;
 		this.Groups = Groups_ !== undefined ? Groups_ : (go$sliceType(Go$Uint32)).nil;
 	});
-	go$pkg.Credential = Credential;
-	var ProcAttr;
-	ProcAttr = go$newType(0, "Struct", "syscall.ProcAttr", "ProcAttr", "syscall", function(Dir_, Env_, Files_, Sys_) {
+|		Credential.init([["Uid", "", Go$Uint32, ""], ["Gid", "", Go$Uint32, ""], ["Groups", "", (go$sliceType(Go$Uint32)), ""]]);
+0Çv ProcAttrÇ≠	ProcAttr = go$pkg.ProcAttr = go$newType(0, "Struct", "syscall.ProcAttr", "ProcAttr", "syscall", function(Dir_, Env_, Files_, Sys_) {
 		this.go$val = this;
 		this.Dir = Dir_ !== undefined ? Dir_ : "";
 		this.Env = Env_ !== undefined ? Env_ : (go$sliceType(Go$String)).nil;
 		this.Files = Files_ !== undefined ? Files_ : (go$sliceType(Go$Uintptr)).nil;
 		this.Sys = Sys_ !== undefined ? Sys_ : (go$ptrType(SysProcAttr)).nil;
 	});
-	go$pkg.ProcAttr = ProcAttr;
-	var RoutingMessage;
-	RoutingMessage = go$newType(0, "Interface", "syscall.RoutingMessage", "RoutingMessage", "syscall", null);
-	go$pkg.RoutingMessage = RoutingMessage;
-	var anyMessage;
-	anyMessage = go$newType(0, "Struct", "syscall.anyMessage", "anyMessage", "syscall", function(Msglen_, Version_, Type_) {
+Å∂		ProcAttr.init([["Dir", "", Go$String, ""], ["Env", "", (go$sliceType(Go$String)), ""], ["Files", "", (go$sliceType(Go$Uintptr)), ""], ["Sys", "", (go$ptrType(SysProcAttr)), ""]]);
+0Ç RoutingMessageÅÉ	RoutingMessage = go$pkg.RoutingMessage = go$newType(0, "Interface", "syscall.RoutingMessage", "RoutingMessage", "syscall", null);
+h		RoutingMessage.init([["sockaddr", "syscall", (go$funcType([], [(go$sliceType(Sockaddr))], false))]]);
+0ÇF 
+anyMessageÇE	anyMessage = go$pkg.anyMessage = go$newType(0, "Struct", "syscall.anyMessage", "anyMessage", "syscall", function(Msglen_, Version_, Type_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : 0;
 	});
-	go$pkg.anyMessage = anyMessage;
-	var RouteMessage;
-	RouteMessage = go$newType(0, "Struct", "syscall.RouteMessage", "RouteMessage", "syscall", function(Header_, Data_) {
+ÅÏ		anyMessage.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""]]);
+		(go$ptrType(anyMessage)).methods = [["toRoutingMessage", "syscall", [(go$sliceType(Go$Uint8))], [RoutingMessage], false]];
+0Ç RouteMessageÇ7	RouteMessage = go$pkg.RouteMessage = go$newType(0, "Struct", "syscall.RouteMessage", "RouteMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new RtMsghdr.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-	go$pkg.RouteMessage = RouteMessage;
-	var InterfaceMessage;
-	InterfaceMessage = go$newType(0, "Struct", "syscall.InterfaceMessage", "InterfaceMessage", "syscall", function(Header_, Data_) {
+Å 		RouteMessage.init([["Header", "", RtMsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
+		(go$ptrType(RouteMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
+0Ç4 InterfaceMessageÇG	InterfaceMessage = go$pkg.InterfaceMessage = go$newType(0, "Struct", "syscall.InterfaceMessage", "InterfaceMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new IfMsghdr.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-	go$pkg.InterfaceMessage = InterfaceMessage;
-	var InterfaceAddrMessage;
-	InterfaceAddrMessage = go$newType(0, "Struct", "syscall.InterfaceAddrMessage", "InterfaceAddrMessage", "syscall", function(Header_, Data_) {
+Å“		InterfaceMessage.init([["Header", "", IfMsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
+		(go$ptrType(InterfaceMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
+0ÇR InterfaceAddrMessageÇX	InterfaceAddrMessage = go$pkg.InterfaceAddrMessage = go$newType(0, "Struct", "syscall.InterfaceAddrMessage", "InterfaceAddrMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new IfaMsghdr.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-	go$pkg.InterfaceAddrMessage = InterfaceAddrMessage;
-	var InterfaceMulticastAddrMessage;
-	InterfaceMulticastAddrMessage = go$newType(0, "Struct", "syscall.InterfaceMulticastAddrMessage", "InterfaceMulticastAddrMessage", "syscall", function(Header_, Data_) {
+Å€		InterfaceAddrMessage.init([["Header", "", IfaMsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
+		(go$ptrType(InterfaceAddrMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
+0Çï InterfaceMulticastAddrMessageÇ~	InterfaceMulticastAddrMessage = go$pkg.InterfaceMulticastAddrMessage = go$newType(0, "Struct", "syscall.InterfaceMulticastAddrMessage", "InterfaceMulticastAddrMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new IfmaMsghdr2.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-	go$pkg.InterfaceMulticastAddrMessage = InterfaceMulticastAddrMessage;
-	var SocketControlMessage;
-	SocketControlMessage = go$newType(0, "Struct", "syscall.SocketControlMessage", "SocketControlMessage", "syscall", function(Header_, Data_) {
+ÅÔ		InterfaceMulticastAddrMessage.init([["Header", "", IfmaMsghdr2, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
+		(go$ptrType(InterfaceMulticastAddrMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
+0Ç‹ SocketControlMessageÇV	SocketControlMessage = go$pkg.SocketControlMessage = go$newType(0, "Struct", "syscall.SocketControlMessage", "SocketControlMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new Cmsghdr.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-	go$pkg.SocketControlMessage = SocketControlMessage;
-	var WaitStatus;
-	WaitStatus = go$newType(4, "Uint32", "syscall.WaitStatus", "WaitStatus", "syscall", null);
-	go$pkg.WaitStatus = WaitStatus;
-	var SockaddrDatalink;
-	SockaddrDatalink = go$newType(0, "Struct", "syscall.SockaddrDatalink", "SockaddrDatalink", "syscall", function(Len_, Family_, Index_, Type_, Nlen_, Alen_, Slen_, Data_, raw_) {
+h		SocketControlMessage.init([["Header", "", Cmsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
+0Çé 
+WaitStatusp	WaitStatus = go$pkg.WaitStatus = go$newType(4, "Uint32", "syscall.WaitStatus", "WaitStatus", "syscall", null);
+Ç
+		WaitStatus.methods = [["Continued", "", [], [Go$Bool], false], ["CoreDump", "", [], [Go$Bool], false], ["ExitStatus", "", [], [Go$Int], false], ["Exited", "", [], [Go$Bool], false], ["Signal", "", [], [Signal], false], ["Signaled", "", [], [Go$Bool], false], ["StopSignal", "", [], [Signal], false], ["Stopped", "", [], [Go$Bool], false], ["TrapCause", "", [], [Go$Int], false]];
+		(go$ptrType(WaitStatus)).methods = [["Continued", "", [], [Go$Bool], false], ["CoreDump", "", [], [Go$Bool], false], ["ExitStatus", "", [], [Go$Int], false], ["Exited", "", [], [Go$Bool], false], ["Signal", "", [], [Signal], false], ["Signaled", "", [], [Go$Bool], false], ["StopSignal", "", [], [Signal], false], ["Stopped", "", [], [Go$Bool], false], ["TrapCause", "", [], [Go$Int], false]];
+0Ç± SockaddrDatalinkÇ‰	SockaddrDatalink = go$pkg.SockaddrDatalink = go$newType(0, "Struct", "syscall.SockaddrDatalink", "SockaddrDatalink", "syscall", function(Len_, Family_, Index_, Type_, Nlen_, Alen_, Slen_, Data_, raw_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
@@ -2056,9 +2053,9 @@ $$
 		this.Data = Data_ !== undefined ? Data_ : go$makeNativeArray("Int8", 12, function() { return 0; });
 		this.raw = raw_ !== undefined ? raw_ : new RawSockaddrDatalink.Ptr();
 	});
-	go$pkg.SockaddrDatalink = SockaddrDatalink;
-	var attrList;
-	attrList = go$newType(0, "Struct", "syscall.attrList", "attrList", "syscall", function(bitmapCount_, _$1_, CommonAttr_, VolAttr_, DirAttr_, FileAttr_, Forkattr_) {
+Ç±		SockaddrDatalink.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Index", "", Go$Uint16, ""], ["Type", "", Go$Uint8, ""], ["Nlen", "", Go$Uint8, ""], ["Alen", "", Go$Uint8, ""], ["Slen", "", Go$Uint8, ""], ["Data", "", (go$arrayType(Go$Int8, 12)), ""], ["raw", "syscall", RawSockaddrDatalink, ""]]);
+		(go$ptrType(SockaddrDatalink)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
+0ÇÅ attrListÇi	attrList = go$pkg.attrList = go$newType(0, "Struct", "syscall.attrList", "attrList", "syscall", function(bitmapCount_, _$1_, CommonAttr_, VolAttr_, DirAttr_, FileAttr_, Forkattr_) {
 		this.go$val = this;
 		this.bitmapCount = bitmapCount_ !== undefined ? bitmapCount_ : 0;
 		this._$1 = _$1_ !== undefined ? _$1_ : 0;
@@ -2068,9 +2065,8 @@ $$
 		this.FileAttr = FileAttr_ !== undefined ? FileAttr_ : 0;
 		this.Forkattr = Forkattr_ !== undefined ? Forkattr_ : 0;
 	});
-	go$pkg.attrList = attrList;
-	var mmapper;
-	mmapper = go$newType(0, "Struct", "syscall.mmapper", "mmapper", "syscall", function(Mutex_, active_, mmap_, munmap_) {
+Ç		attrList.init([["bitmapCount", "syscall", Go$Uint16, ""], ["_", "syscall", Go$Uint16, ""], ["CommonAttr", "", Go$Uint32, ""], ["VolAttr", "", Go$Uint32, ""], ["DirAttr", "", Go$Uint32, ""], ["FileAttr", "", Go$Uint32, ""], ["Forkattr", "", Go$Uint32, ""]]);
+0ÇN mmapperÇ‘	mmapper = go$pkg.mmapper = go$newType(0, "Struct", "syscall.mmapper", "mmapper", "syscall", function(Mutex_, active_, mmap_, munmap_) {
 		this.go$val = this;
 		this.Mutex = Mutex_ !== undefined ? Mutex_ : new sync.Mutex.Ptr();
 		this.active = active_ !== undefined ? active_ : false;
@@ -2081,76 +2077,66 @@ $$
 	mmapper.Ptr.prototype.Lock = function() { return this.Mutex.Lock(); };
 	mmapper.prototype.Unlock = function() { return this.go$val.Unlock(); };
 	mmapper.Ptr.prototype.Unlock = function() { return this.Mutex.Unlock(); };
-	go$pkg.mmapper = mmapper;
-	var Errno;
-	Errno = go$newType(4, "Uintptr", "syscall.Errno", "Errno", "syscall", null);
-	go$pkg.Errno = Errno;
-	var Signal;
-	Signal = go$newType(4, "Int", "syscall.Signal", "Signal", "syscall", null);
-	go$pkg.Signal = Signal;
-	var Sockaddr;
-	Sockaddr = go$newType(0, "Interface", "syscall.Sockaddr", "Sockaddr", "syscall", null);
-	go$pkg.Sockaddr = Sockaddr;
-	var SockaddrInet4;
-	SockaddrInet4 = go$newType(0, "Struct", "syscall.SockaddrInet4", "SockaddrInet4", "syscall", function(Port_, Addr_, raw_) {
+Çg		mmapper.init([["", "", sync.Mutex, ""], ["active", "syscall", (go$mapType((go$ptrType(Go$Uint8)), (go$sliceType(Go$Uint8)))), ""], ["mmap", "syscall", (go$funcType([Go$Uintptr, Go$Uintptr, Go$Int, Go$Int, Go$Int, Go$Int64], [Go$Uintptr, go$error], false)), ""], ["munmap", "syscall", (go$funcType([Go$Uintptr, Go$Uintptr], [go$error], false)), ""]]);
+		(go$ptrType(mmapper)).methods = [["Lock", "", [], [], false], ["Mmap", "", [Go$Int, Go$Int64, Go$Int, Go$Int, Go$Int], [(go$sliceType(Go$Uint8)), go$error], false], ["Munmap", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["Unlock", "", [], [], false]];
+0Çê Errno]	Errno = go$pkg.Errno = go$newType(4, "Uintptr", "syscall.Errno", "Errno", "syscall", null);
+Ç$		Errno.methods = [["Error", "", [], [Go$String], false], ["Temporary", "", [], [Go$Bool], false], ["Timeout", "", [], [Go$Bool], false]];
+		(go$ptrType(Errno)).methods = [["Error", "", [], [Go$String], false], ["Temporary", "", [], [Go$Bool], false], ["Timeout", "", [], [Go$Bool], false]];
+0Ç2 Signal]	Signal = go$pkg.Signal = go$newType(4, "Int", "syscall.Signal", "Signal", "syscall", null);
+Å∆		Signal.methods = [["Signal", "", [], [], false], ["String", "", [], [Go$String], false]];
+		(go$ptrType(Signal)).methods = [["Signal", "", [], [], false], ["String", "", [], [Go$String], false]];
+0Å„ Sockaddrk	Sockaddr = go$pkg.Sockaddr = go$newType(0, "Interface", "syscall.Sockaddr", "Sockaddr", "syscall", null);
+h		Sockaddr.init([["sockaddr", "syscall", (go$funcType([], [Go$Uintptr, _Socklen, go$error], false))]]);
+0Çú SockaddrInet4Çâ	SockaddrInet4 = go$pkg.SockaddrInet4 = go$newType(0, "Struct", "syscall.SockaddrInet4", "SockaddrInet4", "syscall", function(Port_, Addr_, raw_) {
 		this.go$val = this;
 		this.Port = Port_ !== undefined ? Port_ : 0;
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.raw = raw_ !== undefined ? raw_ : new RawSockaddrInet4.Ptr();
 	});
-	go$pkg.SockaddrInet4 = SockaddrInet4;
-	var SockaddrInet6;
-	SockaddrInet6 = go$newType(0, "Struct", "syscall.SockaddrInet6", "SockaddrInet6", "syscall", function(Port_, ZoneId_, Addr_, raw_) {
+Å˚		SockaddrInet4.init([["Port", "", Go$Int, ""], ["Addr", "", (go$arrayType(Go$Uint8, 4)), ""], ["raw", "syscall", RawSockaddrInet4, ""]]);
+		(go$ptrType(SockaddrInet4)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
+0Ç¸ SockaddrInet6Ç»	SockaddrInet6 = go$pkg.SockaddrInet6 = go$newType(0, "Struct", "syscall.SockaddrInet6", "SockaddrInet6", "syscall", function(Port_, ZoneId_, Addr_, raw_) {
 		this.go$val = this;
 		this.Port = Port_ !== undefined ? Port_ : 0;
 		this.ZoneId = ZoneId_ !== undefined ? ZoneId_ : 0;
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.raw = raw_ !== undefined ? raw_ : new RawSockaddrInet6.Ptr();
 	});
-	go$pkg.SockaddrInet6 = SockaddrInet6;
-	var SockaddrUnix;
-	SockaddrUnix = go$newType(0, "Struct", "syscall.SockaddrUnix", "SockaddrUnix", "syscall", function(Name_, raw_) {
+Ç		SockaddrInet6.init([["Port", "", Go$Int, ""], ["ZoneId", "", Go$Uint32, ""], ["Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["raw", "syscall", RawSockaddrInet6, ""]]);
+		(go$ptrType(SockaddrInet6)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
+0Ç˚ SockaddrUnixÇ	SockaddrUnix = go$pkg.SockaddrUnix = go$newType(0, "Struct", "syscall.SockaddrUnix", "SockaddrUnix", "syscall", function(Name_, raw_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.raw = raw_ !== undefined ? raw_ : new RawSockaddrUnix.Ptr();
 	});
-	go$pkg.SockaddrUnix = SockaddrUnix;
-	var _C_short;
-	_C_short = go$newType(2, "Int16", "syscall._C_short", "_C_short", "syscall", null);
-	go$pkg._C_short = _C_short;
-	var _C_int;
-	_C_int = go$newType(4, "Int32", "syscall._C_int", "_C_int", "syscall", null);
-	go$pkg._C_int = _C_int;
-	var _C_long;
-	_C_long = go$newType(8, "Int64", "syscall._C_long", "_C_long", "syscall", null);
-	go$pkg._C_long = _C_long;
-	var _C_long_long;
-	_C_long_long = go$newType(8, "Int64", "syscall._C_long_long", "_C_long_long", "syscall", null);
-	go$pkg._C_long_long = _C_long_long;
-	var Timespec;
-	Timespec = go$newType(0, "Struct", "syscall.Timespec", "Timespec", "syscall", function(Sec_, Nsec_) {
+ÅÃ		SockaddrUnix.init([["Name", "", Go$String, ""], ["raw", "syscall", RawSockaddrUnix, ""]]);
+		(go$ptrType(SockaddrUnix)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
+0w _C_shortg	_C_short = go$pkg._C_short = go$newType(2, "Int16", "syscall._C_short", "_C_short", "syscall", null);
+ 0m _C_int_	_C_int = go$pkg._C_int = go$newType(4, "Int32", "syscall._C_int", "_C_int", "syscall", null);
+ 0r _C_longc	_C_long = go$pkg._C_long = go$newType(8, "Int64", "syscall._C_long", "_C_long", "syscall", null);
+ 0Åã _C_long_longw	_C_long_long = go$pkg._C_long_long = go$newType(8, "Int64", "syscall._C_long_long", "_C_long_long", "syscall", null);
+ 0ÇÁ TimespecÇ	Timespec = go$pkg.Timespec = go$newType(0, "Struct", "syscall.Timespec", "Timespec", "syscall", function(Sec_, Nsec_) {
 		this.go$val = this;
 		this.Sec = Sec_ !== undefined ? Sec_ : new Go$Int64(0, 0);
 		this.Nsec = Nsec_ !== undefined ? Nsec_ : new Go$Int64(0, 0);
 	});
-	go$pkg.Timespec = Timespec;
-	var Timeval;
-	Timeval = go$newType(0, "Struct", "syscall.Timeval", "Timeval", "syscall", function(Sec_, Usec_, Pad_cgo_0_) {
+Å√		Timespec.init([["Sec", "", Go$Int64, ""], ["Nsec", "", Go$Int64, ""]]);
+		(go$ptrType(Timespec)).methods = [["Nano", "", [], [Go$Int64], false], ["Unix", "", [], [Go$Int64, Go$Int64], false]];
+0ÇÑ TimevalÇ}	Timeval = go$pkg.Timeval = go$newType(0, "Struct", "syscall.Timeval", "Timeval", "syscall", function(Sec_, Usec_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Sec = Sec_ !== undefined ? Sec_ : new Go$Int64(0, 0);
 		this.Usec = Usec_ !== undefined ? Usec_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 	});
-	go$pkg.Timeval = Timeval;
-	var Timeval32;
-	Timeval32 = go$newType(0, "Struct", "syscall.Timeval32", "Timeval32", "syscall", function(Sec_, Usec_) {
+Åı		Timeval.init([["Sec", "", Go$Int64, ""], ["Usec", "", Go$Int32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""]]);
+		(go$ptrType(Timeval)).methods = [["Nano", "", [], [Go$Int64], false], ["Unix", "", [], [Go$Int64, Go$Int64], false]];
+0ÇP 	Timeval32ÅÛ	Timeval32 = go$pkg.Timeval32 = go$newType(0, "Struct", "syscall.Timeval32", "Timeval32", "syscall", function(Sec_, Usec_) {
 		this.go$val = this;
 		this.Sec = Sec_ !== undefined ? Sec_ : 0;
 		this.Usec = Usec_ !== undefined ? Usec_ : 0;
 	});
-	go$pkg.Timeval32 = Timeval32;
-	var Rusage;
-	Rusage = go$newType(0, "Struct", "syscall.Rusage", "Rusage", "syscall", function(Utime_, Stime_, Maxrss_, Ixrss_, Idrss_, Isrss_, Minflt_, Majflt_, Nswap_, Inblock_, Oublock_, Msgsnd_, Msgrcv_, Nsignals_, Nvcsw_, Nivcsw_) {
+K		Timeval32.init([["Sec", "", Go$Int32, ""], ["Usec", "", Go$Int32, ""]]);
+0Ç_ RusageÇa	Rusage = go$pkg.Rusage = go$newType(0, "Struct", "syscall.Rusage", "Rusage", "syscall", function(Utime_, Stime_, Maxrss_, Ixrss_, Idrss_, Isrss_, Minflt_, Majflt_, Nswap_, Inblock_, Oublock_, Msgsnd_, Msgrcv_, Nsignals_, Nvcsw_, Nivcsw_) {
 		this.go$val = this;
 		this.Utime = Utime_ !== undefined ? Utime_ : new Timeval.Ptr();
 		this.Stime = Stime_ !== undefined ? Stime_ : new Timeval.Ptr();
@@ -2169,19 +2155,15 @@ $$
 		this.Nvcsw = Nvcsw_ !== undefined ? Nvcsw_ : new Go$Int64(0, 0);
 		this.Nivcsw = Nivcsw_ !== undefined ? Nivcsw_ : new Go$Int64(0, 0);
 	});
-	go$pkg.Rusage = Rusage;
-	var Rlimit;
-	Rlimit = go$newType(0, "Struct", "syscall.Rlimit", "Rlimit", "syscall", function(Cur_, Max_) {
+ÇÏ		Rusage.init([["Utime", "", Timeval, ""], ["Stime", "", Timeval, ""], ["Maxrss", "", Go$Int64, ""], ["Ixrss", "", Go$Int64, ""], ["Idrss", "", Go$Int64, ""], ["Isrss", "", Go$Int64, ""], ["Minflt", "", Go$Int64, ""], ["Majflt", "", Go$Int64, ""], ["Nswap", "", Go$Int64, ""], ["Inblock", "", Go$Int64, ""], ["Oublock", "", Go$Int64, ""], ["Msgsnd", "", Go$Int64, ""], ["Msgrcv", "", Go$Int64, ""], ["Nsignals", "", Go$Int64, ""], ["Nvcsw", "", Go$Int64, ""], ["Nivcsw", "", Go$Int64, ""]]);
+0Ç` RlimitÇ	Rlimit = go$pkg.Rlimit = go$newType(0, "Struct", "syscall.Rlimit", "Rlimit", "syscall", function(Cur_, Max_) {
 		this.go$val = this;
 		this.Cur = Cur_ !== undefined ? Cur_ : new Go$Uint64(0, 0);
 		this.Max = Max_ !== undefined ? Max_ : new Go$Uint64(0, 0);
 	});
-	go$pkg.Rlimit = Rlimit;
-	var _Gid_t;
-	_Gid_t = go$newType(4, "Uint32", "syscall._Gid_t", "_Gid_t", "syscall", null);
-	go$pkg._Gid_t = _Gid_t;
-	var Stat_t;
-	Stat_t = go$newType(0, "Struct", "syscall.Stat_t", "Stat_t", "syscall", function(Dev_, Mode_, Nlink_, Ino_, Uid_, Gid_, Rdev_, Pad_cgo_0_, Atimespec_, Mtimespec_, Ctimespec_, Birthtimespec_, Size_, Blocks_, Blksize_, Flags_, Gen_, Lspare_, Qspare_) {
+I		Rlimit.init([["Cur", "", Go$Uint64, ""], ["Max", "", Go$Uint64, ""]]);
+0n _Gid_t`	_Gid_t = go$pkg._Gid_t = go$newType(4, "Uint32", "syscall._Gid_t", "_Gid_t", "syscall", null);
+ 0Çã Stat_tÇ	Stat_t = go$pkg.Stat_t = go$newType(0, "Struct", "syscall.Stat_t", "Stat_t", "syscall", function(Dev_, Mode_, Nlink_, Ino_, Uid_, Gid_, Rdev_, Pad_cgo_0_, Atimespec_, Mtimespec_, Ctimespec_, Birthtimespec_, Size_, Blocks_, Blksize_, Flags_, Gen_, Lspare_, Qspare_) {
 		this.go$val = this;
 		this.Dev = Dev_ !== undefined ? Dev_ : 0;
 		this.Mode = Mode_ !== undefined ? Mode_ : 0;
@@ -2203,9 +2185,8 @@ $$
 		this.Lspare = Lspare_ !== undefined ? Lspare_ : 0;
 		this.Qspare = Qspare_ !== undefined ? Qspare_ : go$makeNativeArray("Int64", 2, function() { return new Go$Int64(0, 0); });
 	});
-	go$pkg.Stat_t = Stat_t;
-	var Statfs_t;
-	Statfs_t = go$newType(0, "Struct", "syscall.Statfs_t", "Statfs_t", "syscall", function(Bsize_, Iosize_, Blocks_, Bfree_, Bavail_, Files_, Ffree_, Fsid_, Owner_, Type_, Flags_, Fssubtype_, Fstypename_, Mntonname_, Mntfromname_, Reserved_) {
+Çu		Stat_t.init([["Dev", "", Go$Int32, ""], ["Mode", "", Go$Uint16, ""], ["Nlink", "", Go$Uint16, ""], ["Ino", "", Go$Uint64, ""], ["Uid", "", Go$Uint32, ""], ["Gid", "", Go$Uint32, ""], ["Rdev", "", Go$Int32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Atimespec", "", Timespec, ""], ["Mtimespec", "", Timespec, ""], ["Ctimespec", "", Timespec, ""], ["Birthtimespec", "", Timespec, ""], ["Size", "", Go$Int64, ""], ["Blocks", "", Go$Int64, ""], ["Blksize", "", Go$Int32, ""], ["Flags", "", Go$Uint32, ""], ["Gen", "", Go$Uint32, ""], ["Lspare", "", Go$Int32, ""], ["Qspare", "", (go$arrayType(Go$Int64, 2)), ""]]);
+0Ç0 Statfs_tÇÀ	Statfs_t = go$pkg.Statfs_t = go$newType(0, "Struct", "syscall.Statfs_t", "Statfs_t", "syscall", function(Bsize_, Iosize_, Blocks_, Bfree_, Bavail_, Files_, Ffree_, Fsid_, Owner_, Type_, Flags_, Fssubtype_, Fstypename_, Mntonname_, Mntfromname_, Reserved_) {
 		this.go$val = this;
 		this.Bsize = Bsize_ !== undefined ? Bsize_ : 0;
 		this.Iosize = Iosize_ !== undefined ? Iosize_ : 0;
@@ -2224,9 +2205,8 @@ $$
 		this.Mntfromname = Mntfromname_ !== undefined ? Mntfromname_ : go$makeNativeArray("Int8", 1024, function() { return 0; });
 		this.Reserved = Reserved_ !== undefined ? Reserved_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
 	});
-	go$pkg.Statfs_t = Statfs_t;
-	var Flock_t;
-	Flock_t = go$newType(0, "Struct", "syscall.Flock_t", "Flock_t", "syscall", function(Start_, Len_, Pid_, Type_, Whence_) {
+ÇQ		Statfs_t.init([["Bsize", "", Go$Uint32, ""], ["Iosize", "", Go$Int32, ""], ["Blocks", "", Go$Uint64, ""], ["Bfree", "", Go$Uint64, ""], ["Bavail", "", Go$Uint64, ""], ["Files", "", Go$Uint64, ""], ["Ffree", "", Go$Uint64, ""], ["Fsid", "", Fsid, ""], ["Owner", "", Go$Uint32, ""], ["Type", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Fssubtype", "", Go$Uint32, ""], ["Fstypename", "", (go$arrayType(Go$Int8, 16)), ""], ["Mntonname", "", (go$arrayType(Go$Int8, 1024)), ""], ["Mntfromname", "", (go$arrayType(Go$Int8, 1024)), ""], ["Reserved", "", (go$arrayType(Go$Uint32, 8)), ""]]);
+0Çh Flock_tÇ∑	Flock_t = go$pkg.Flock_t = go$newType(0, "Struct", "syscall.Flock_t", "Flock_t", "syscall", function(Start_, Len_, Pid_, Type_, Whence_) {
 		this.go$val = this;
 		this.Start = Start_ !== undefined ? Start_ : new Go$Int64(0, 0);
 		this.Len = Len_ !== undefined ? Len_ : new Go$Int64(0, 0);
@@ -2234,9 +2214,8 @@ $$
 		this.Type = Type_ !== undefined ? Type_ : 0;
 		this.Whence = Whence_ !== undefined ? Whence_ : 0;
 	});
-	go$pkg.Flock_t = Flock_t;
-	var Fstore_t;
-	Fstore_t = go$newType(0, "Struct", "syscall.Fstore_t", "Fstore_t", "syscall", function(Flags_, Posmode_, Offset_, Length_, Bytesalloc_) {
+Åü		Flock_t.init([["Start", "", Go$Int64, ""], ["Len", "", Go$Int64, ""], ["Pid", "", Go$Int32, ""], ["Type", "", Go$Int16, ""], ["Whence", "", Go$Int16, ""]]);
+0Ç¡ Fstore_tÇ 	Fstore_t = go$pkg.Fstore_t = go$newType(0, "Struct", "syscall.Fstore_t", "Fstore_t", "syscall", function(Flags_, Posmode_, Offset_, Length_, Bytesalloc_) {
 		this.go$val = this;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
 		this.Posmode = Posmode_ !== undefined ? Posmode_ : 0;
@@ -2244,39 +2223,35 @@ $$
 		this.Length = Length_ !== undefined ? Length_ : new Go$Int64(0, 0);
 		this.Bytesalloc = Bytesalloc_ !== undefined ? Bytesalloc_ : new Go$Int64(0, 0);
 	});
-	go$pkg.Fstore_t = Fstore_t;
-	var Radvisory_t;
-	Radvisory_t = go$newType(0, "Struct", "syscall.Radvisory_t", "Radvisory_t", "syscall", function(Offset_, Count_, Pad_cgo_0_) {
+ÅÆ		Fstore_t.init([["Flags", "", Go$Uint32, ""], ["Posmode", "", Go$Int32, ""], ["Offset", "", Go$Int64, ""], ["Length", "", Go$Int64, ""], ["Bytesalloc", "", Go$Int64, ""]]);
+0Ç8 Radvisory_tÇù	Radvisory_t = go$pkg.Radvisory_t = go$newType(0, "Struct", "syscall.Radvisory_t", "Radvisory_t", "syscall", function(Offset_, Count_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Offset = Offset_ !== undefined ? Offset_ : new Go$Int64(0, 0);
 		this.Count = Count_ !== undefined ? Count_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 	});
-	go$pkg.Radvisory_t = Radvisory_t;
-	var Fbootstraptransfer_t;
-	Fbootstraptransfer_t = go$newType(0, "Struct", "syscall.Fbootstraptransfer_t", "Fbootstraptransfer_t", "syscall", function(Offset_, Length_, Buffer_) {
+ÅÖ		Radvisory_t.init([["Offset", "", Go$Int64, ""], ["Count", "", Go$Int32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""]]);
+0ÇT Fbootstraptransfer_tÇ≠	Fbootstraptransfer_t = go$pkg.Fbootstraptransfer_t = go$newType(0, "Struct", "syscall.Fbootstraptransfer_t", "Fbootstraptransfer_t", "syscall", function(Offset_, Length_, Buffer_) {
 		this.go$val = this;
 		this.Offset = Offset_ !== undefined ? Offset_ : new Go$Int64(0, 0);
 		this.Length = Length_ !== undefined ? Length_ : new Go$Uint64(0, 0);
 		this.Buffer = Buffer_ !== undefined ? Buffer_ : (go$ptrType(Go$Uint8)).nil;
 	});
-	go$pkg.Fbootstraptransfer_t = Fbootstraptransfer_t;
-	var Log2phys_t;
-	Log2phys_t = go$newType(0, "Struct", "syscall.Log2phys_t", "Log2phys_t", "syscall", function(Flags_, Contigbytes_, Devoffset_) {
+Åà		Fbootstraptransfer_t.init([["Offset", "", Go$Int64, ""], ["Length", "", Go$Uint64, ""], ["Buffer", "", (go$ptrType(Go$Uint8)), ""]]);
+0Ç 
+Log2phys_tÇá	Log2phys_t = go$pkg.Log2phys_t = go$newType(0, "Struct", "syscall.Log2phys_t", "Log2phys_t", "syscall", function(Flags_, Contigbytes_, Devoffset_) {
 		this.go$val = this;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
 		this.Contigbytes = Contigbytes_ !== undefined ? Contigbytes_ : new Go$Int64(0, 0);
 		this.Devoffset = Devoffset_ !== undefined ? Devoffset_ : new Go$Int64(0, 0);
 	});
-	go$pkg.Log2phys_t = Log2phys_t;
-	var Fsid;
-	Fsid = go$newType(0, "Struct", "syscall.Fsid", "Fsid", "syscall", function(Val_) {
+w		Log2phys_t.init([["Flags", "", Go$Uint32, ""], ["Contigbytes", "", Go$Int64, ""], ["Devoffset", "", Go$Int64, ""]]);
+0Ç* FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.Fsid", "Fsid", "syscall", function(Val_) {
 		this.go$val = this;
 		this.Val = Val_ !== undefined ? Val_ : go$makeNativeArray("Int32", 2, function() { return 0; });
 	});
-	go$pkg.Fsid = Fsid;
-	var Dirent;
-	Dirent = go$newType(0, "Struct", "syscall.Dirent", "Dirent", "syscall", function(Ino_, Seekoff_, Reclen_, Namlen_, Type_, Name_, Pad_cgo_0_) {
+=		Fsid.init([["Val", "", (go$arrayType(Go$Int32, 2)), ""]]);
+0Ç◊ DirentÇπ	Dirent = go$pkg.Dirent = go$newType(0, "Struct", "syscall.Dirent", "Dirent", "syscall", function(Ino_, Seekoff_, Reclen_, Namlen_, Type_, Name_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Ino = Ino_ !== undefined ? Ino_ : new Go$Uint64(0, 0);
 		this.Seekoff = Seekoff_ !== undefined ? Seekoff_ : new Go$Uint64(0, 0);
@@ -2286,9 +2261,8 @@ $$
 		this.Name = Name_ !== undefined ? Name_ : go$makeNativeArray("Int8", 1024, function() { return 0; });
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 3, function() { return 0; });
 	});
-	go$pkg.Dirent = Dirent;
-	var RawSockaddrInet4;
-	RawSockaddrInet4 = go$newType(0, "Struct", "syscall.RawSockaddrInet4", "RawSockaddrInet4", "syscall", function(Len_, Family_, Port_, Addr_, Zero_) {
+Ç		Dirent.init([["Ino", "", Go$Uint64, ""], ["Seekoff", "", Go$Uint64, ""], ["Reclen", "", Go$Uint16, ""], ["Namlen", "", Go$Uint16, ""], ["Type", "", Go$Uint8, ""], ["Name", "", (go$arrayType(Go$Int8, 1024)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 3)), ""]]);
+0Ç RawSockaddrInet4Ç&	RawSockaddrInet4 = go$pkg.RawSockaddrInet4 = go$newType(0, "Struct", "syscall.RawSockaddrInet4", "RawSockaddrInet4", "syscall", function(Len_, Family_, Port_, Addr_, Zero_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
@@ -2296,9 +2270,8 @@ $$
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.Zero = Zero_ !== undefined ? Zero_ : go$makeNativeArray("Int8", 8, function() { return 0; });
 	});
-	go$pkg.RawSockaddrInet4 = RawSockaddrInet4;
-	var RawSockaddrInet6;
-	RawSockaddrInet6 = go$newType(0, "Struct", "syscall.RawSockaddrInet6", "RawSockaddrInet6", "syscall", function(Len_, Family_, Port_, Flowinfo_, Addr_, Scope_id_) {
+ÅŒ		RawSockaddrInet4.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Port", "", Go$Uint16, ""], ["Addr", "", (go$arrayType(Go$Uint8, 4)), ""], ["Zero", "", (go$arrayType(Go$Int8, 8)), ""]]);
+0ÇE RawSockaddrInet6ÇG	RawSockaddrInet6 = go$pkg.RawSockaddrInet6 = go$newType(0, "Struct", "syscall.RawSockaddrInet6", "RawSockaddrInet6", "syscall", function(Len_, Family_, Port_, Flowinfo_, Addr_, Scope_id_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
@@ -2307,17 +2280,15 @@ $$
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Scope_id = Scope_id_ !== undefined ? Scope_id_ : 0;
 	});
-	go$pkg.RawSockaddrInet6 = RawSockaddrInet6;
-	var RawSockaddrUnix;
-	RawSockaddrUnix = go$newType(0, "Struct", "syscall.RawSockaddrUnix", "RawSockaddrUnix", "syscall", function(Len_, Family_, Path_) {
+Å„		RawSockaddrInet6.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Port", "", Go$Uint16, ""], ["Flowinfo", "", Go$Uint32, ""], ["Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Scope_id", "", Go$Uint32, ""]]);
+0Ç RawSockaddrUnixÇÅ	RawSockaddrUnix = go$pkg.RawSockaddrUnix = go$newType(0, "Struct", "syscall.RawSockaddrUnix", "RawSockaddrUnix", "syscall", function(Len_, Family_, Path_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
 		this.Path = Path_ !== undefined ? Path_ : go$makeNativeArray("Int8", 104, function() { return 0; });
 	});
-	go$pkg.RawSockaddrUnix = RawSockaddrUnix;
-	var RawSockaddrDatalink;
-	RawSockaddrDatalink = go$newType(0, "Struct", "syscall.RawSockaddrDatalink", "RawSockaddrDatalink", "syscall", function(Len_, Family_, Index_, Type_, Nlen_, Alen_, Slen_, Data_) {
+ÅÉ		RawSockaddrUnix.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Path", "", (go$arrayType(Go$Int8, 104)), ""]]);
+0Ç’ RawSockaddrDatalinkÇ¢	RawSockaddrDatalink = go$pkg.RawSockaddrDatalink = go$newType(0, "Struct", "syscall.RawSockaddrDatalink", "RawSockaddrDatalink", "syscall", function(Len_, Family_, Index_, Type_, Nlen_, Alen_, Slen_, Data_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
@@ -2328,55 +2299,48 @@ $$
 		this.Slen = Slen_ !== undefined ? Slen_ : 0;
 		this.Data = Data_ !== undefined ? Data_ : go$makeNativeArray("Int8", 12, function() { return 0; });
 	});
-	go$pkg.RawSockaddrDatalink = RawSockaddrDatalink;
-	var RawSockaddr;
-	RawSockaddr = go$newType(0, "Struct", "syscall.RawSockaddr", "RawSockaddr", "syscall", function(Len_, Family_, Data_) {
+Ç		RawSockaddrDatalink.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Index", "", Go$Uint16, ""], ["Type", "", Go$Uint8, ""], ["Nlen", "", Go$Uint8, ""], ["Alen", "", Go$Uint8, ""], ["Slen", "", Go$Uint8, ""], ["Data", "", (go$arrayType(Go$Int8, 12)), ""]]);
+0Ç RawSockaddrÇp	RawSockaddr = go$pkg.RawSockaddr = go$newType(0, "Struct", "syscall.RawSockaddr", "RawSockaddr", "syscall", function(Len_, Family_, Data_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
 		this.Data = Data_ !== undefined ? Data_ : go$makeNativeArray("Int8", 14, function() { return 0; });
 	});
-	go$pkg.RawSockaddr = RawSockaddr;
-	var RawSockaddrAny;
-	RawSockaddrAny = go$newType(0, "Struct", "syscall.RawSockaddrAny", "RawSockaddrAny", "syscall", function(Addr_, Pad_) {
+~		RawSockaddr.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Data", "", (go$arrayType(Go$Int8, 14)), ""]]);
+0Ç– RawSockaddrAnyÇR	RawSockaddrAny = go$pkg.RawSockaddrAny = go$newType(0, "Struct", "syscall.RawSockaddrAny", "RawSockaddrAny", "syscall", function(Addr_, Pad_) {
 		this.go$val = this;
 		this.Addr = Addr_ !== undefined ? Addr_ : new RawSockaddr.Ptr();
 		this.Pad = Pad_ !== undefined ? Pad_ : go$makeNativeArray("Int8", 92, function() { return 0; });
 	});
-	go$pkg.RawSockaddrAny = RawSockaddrAny;
-	var _Socklen;
-	_Socklen = go$newType(4, "Uint32", "syscall._Socklen", "_Socklen", "syscall", null);
-	go$pkg._Socklen = _Socklen;
-	var Linger;
-	Linger = go$newType(0, "Struct", "syscall.Linger", "Linger", "syscall", function(Onoff_, Linger_) {
+f		RawSockaddrAny.init([["Addr", "", RawSockaddr, ""], ["Pad", "", (go$arrayType(Go$Int8, 92)), ""]]);
+0x _Socklenh	_Socklen = go$pkg._Socklen = go$newType(4, "Uint32", "syscall._Socklen", "_Socklen", "syscall", null);
+ 0ÇR LingerÅ˜	Linger = go$pkg.Linger = go$newType(0, "Struct", "syscall.Linger", "Linger", "syscall", function(Onoff_, Linger_) {
 		this.go$val = this;
 		this.Onoff = Onoff_ !== undefined ? Onoff_ : 0;
 		this.Linger = Linger_ !== undefined ? Linger_ : 0;
 	});
-	go$pkg.Linger = Linger;
-	var Iovec;
-	Iovec = go$newType(0, "Struct", "syscall.Iovec", "Iovec", "syscall", function(Base_, Len_) {
+L		Linger.init([["Onoff", "", Go$Int32, ""], ["Linger", "", Go$Int32, ""]]);
+0Çª IovecÇ	Iovec = go$pkg.Iovec = go$newType(0, "Struct", "syscall.Iovec", "Iovec", "syscall", function(Base_, Len_) {
 		this.go$val = this;
 		this.Base = Base_ !== undefined ? Base_ : (go$ptrType(Go$Uint8)).nil;
 		this.Len = Len_ !== undefined ? Len_ : new Go$Uint64(0, 0);
 	});
-	go$pkg.Iovec = Iovec;
-	var IPMreq;
-	IPMreq = go$newType(0, "Struct", "syscall.IPMreq", "IPMreq", "syscall", function(Multiaddr_, Interface_) {
+Åù		Iovec.init([["Base", "", (go$ptrType(Go$Uint8)), ""], ["Len", "", Go$Uint64, ""]]);
+		(go$ptrType(Iovec)).methods = [["SetLen", "", [Go$Int], [], false]];
+0Ç
+ IPMreqÇÅ	IPMreq = go$pkg.IPMreq = go$newType(0, "Struct", "syscall.IPMreq", "IPMreq", "syscall", function(Multiaddr_, Interface_) {
 		this.go$val = this;
 		this.Multiaddr = Multiaddr_ !== undefined ? Multiaddr_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.Interface = Interface_ !== undefined ? Interface_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 	});
-	go$pkg.IPMreq = IPMreq;
-	var IPv6Mreq;
-	IPv6Mreq = go$newType(0, "Struct", "syscall.IPv6Mreq", "IPv6Mreq", "syscall", function(Multiaddr_, Interface_) {
+y		IPMreq.init([["Multiaddr", "", (go$arrayType(Go$Uint8, 4)), ""], ["Interface", "", (go$arrayType(Go$Uint8, 4)), ""]]);
+0Çœ IPv6MreqÇS	IPv6Mreq = go$pkg.IPv6Mreq = go$newType(0, "Struct", "syscall.IPv6Mreq", "IPv6Mreq", "syscall", function(Multiaddr_, Interface_) {
 		this.go$val = this;
 		this.Multiaddr = Multiaddr_ !== undefined ? Multiaddr_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Interface = Interface_ !== undefined ? Interface_ : 0;
 	});
-	go$pkg.IPv6Mreq = IPv6Mreq;
-	var Msghdr;
-	Msghdr = go$newType(0, "Struct", "syscall.Msghdr", "Msghdr", "syscall", function(Name_, Namelen_, Pad_cgo_0_, Iov_, Iovlen_, Pad_cgo_1_, Control_, Controllen_, Flags_) {
+j		IPv6Mreq.init([["Multiaddr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Interface", "", Go$Uint32, ""]]);
+0ÇP MsghdrÇ{	Msghdr = go$pkg.Msghdr = go$newType(0, "Struct", "syscall.Msghdr", "Msghdr", "syscall", function(Name_, Namelen_, Pad_cgo_0_, Iov_, Iovlen_, Pad_cgo_1_, Control_, Controllen_, Flags_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : (go$ptrType(Go$Uint8)).nil;
 		this.Namelen = Namelen_ !== undefined ? Namelen_ : 0;
@@ -2388,45 +2352,41 @@ $$
 		this.Controllen = Controllen_ !== undefined ? Controllen_ : 0;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
 	});
-	go$pkg.Msghdr = Msghdr;
-	var Cmsghdr;
-	Cmsghdr = go$newType(0, "Struct", "syscall.Cmsghdr", "Cmsghdr", "syscall", function(Len_, Level_, Type_) {
+Ç√		Msghdr.init([["Name", "", (go$ptrType(Go$Uint8)), ""], ["Namelen", "", Go$Uint32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Iov", "", (go$ptrType(Iovec)), ""], ["Iovlen", "", Go$Int32, ""], ["Pad_cgo_1", "", (go$arrayType(Go$Uint8, 4)), ""], ["Control", "", (go$ptrType(Go$Uint8)), ""], ["Controllen", "", Go$Uint32, ""], ["Flags", "", Go$Int32, ""]]);
+		(go$ptrType(Msghdr)).methods = [["SetControllen", "", [Go$Int], [], false]];
+0ÇÁ CmsghdrÇ%	Cmsghdr = go$pkg.Cmsghdr = go$newType(0, "Struct", "syscall.Cmsghdr", "Cmsghdr", "syscall", function(Len_, Level_, Type_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Level = Level_ !== undefined ? Level_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : 0;
 	});
-	go$pkg.Cmsghdr = Cmsghdr;
-	var Inet4Pktinfo;
-	Inet4Pktinfo = go$newType(0, "Struct", "syscall.Inet4Pktinfo", "Inet4Pktinfo", "syscall", function(Ifindex_, Spec_dst_, Addr_) {
+Å∞		Cmsghdr.init([["Len", "", Go$Uint32, ""], ["Level", "", Go$Int32, ""], ["Type", "", Go$Int32, ""]]);
+		(go$ptrType(Cmsghdr)).methods = [["SetLen", "", [Go$Int], [], false]];
+0Çs Inet4PktinfoÇ√	Inet4Pktinfo = go$pkg.Inet4Pktinfo = go$newType(0, "Struct", "syscall.Inet4Pktinfo", "Inet4Pktinfo", "syscall", function(Ifindex_, Spec_dst_, Addr_) {
 		this.go$val = this;
 		this.Ifindex = Ifindex_ !== undefined ? Ifindex_ : 0;
 		this.Spec_dst = Spec_dst_ !== undefined ? Spec_dst_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 	});
-	go$pkg.Inet4Pktinfo = Inet4Pktinfo;
-	var Inet6Pktinfo;
-	Inet6Pktinfo = go$newType(0, "Struct", "syscall.Inet6Pktinfo", "Inet6Pktinfo", "syscall", function(Addr_, Ifindex_) {
+Åô		Inet4Pktinfo.init([["Ifindex", "", Go$Uint32, ""], ["Spec_dst", "", (go$arrayType(Go$Uint8, 4)), ""], ["Addr", "", (go$arrayType(Go$Uint8, 4)), ""]]);
+0Çƒ Inet6PktinfoÇG	Inet6Pktinfo = go$pkg.Inet6Pktinfo = go$newType(0, "Struct", "syscall.Inet6Pktinfo", "Inet6Pktinfo", "syscall", function(Addr_, Ifindex_) {
 		this.go$val = this;
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Ifindex = Ifindex_ !== undefined ? Ifindex_ : 0;
 	});
-	go$pkg.Inet6Pktinfo = Inet6Pktinfo;
-	var IPv6MTUInfo;
-	IPv6MTUInfo = go$newType(0, "Struct", "syscall.IPv6MTUInfo", "IPv6MTUInfo", "syscall", function(Addr_, Mtu_) {
+g		Inet6Pktinfo.init([["Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Ifindex", "", Go$Uint32, ""]]);
+0Ç IPv6MTUInfoÇ	IPv6MTUInfo = go$pkg.IPv6MTUInfo = go$newType(0, "Struct", "syscall.IPv6MTUInfo", "IPv6MTUInfo", "syscall", function(Addr_, Mtu_) {
 		this.go$val = this;
 		this.Addr = Addr_ !== undefined ? Addr_ : new RawSockaddrInet6.Ptr();
 		this.Mtu = Mtu_ !== undefined ? Mtu_ : 0;
 	});
-	go$pkg.IPv6MTUInfo = IPv6MTUInfo;
-	var ICMPv6Filter;
-	ICMPv6Filter = go$newType(0, "Struct", "syscall.ICMPv6Filter", "ICMPv6Filter", "syscall", function(Filt_) {
+V		IPv6MTUInfo.init([["Addr", "", RawSockaddrInet6, ""], ["Mtu", "", Go$Uint32, ""]]);
+0Çb ICMPv6FilterÇ	ICMPv6Filter = go$pkg.ICMPv6Filter = go$newType(0, "Struct", "syscall.ICMPv6Filter", "ICMPv6Filter", "syscall", function(Filt_) {
 		this.go$val = this;
 		this.Filt = Filt_ !== undefined ? Filt_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
 	});
-	go$pkg.ICMPv6Filter = ICMPv6Filter;
-	var Kevent_t;
-	Kevent_t = go$newType(0, "Struct", "syscall.Kevent_t", "Kevent_t", "syscall", function(Ident_, Filter_, Flags_, Fflags_, Data_, Udata_) {
+G		ICMPv6Filter.init([["Filt", "", (go$arrayType(Go$Uint32, 8)), ""]]);
+0Ç	 Kevent_tÇ#	Kevent_t = go$pkg.Kevent_t = go$newType(0, "Struct", "syscall.Kevent_t", "Kevent_t", "syscall", function(Ident_, Filter_, Flags_, Fflags_, Data_, Udata_) {
 		this.go$val = this;
 		this.Ident = Ident_ !== undefined ? Ident_ : new Go$Uint64(0, 0);
 		this.Filter = Filter_ !== undefined ? Filter_ : 0;
@@ -2435,15 +2395,13 @@ $$
 		this.Data = Data_ !== undefined ? Data_ : new Go$Int64(0, 0);
 		this.Udata = Udata_ !== undefined ? Udata_ : (go$ptrType(Go$Uint8)).nil;
 	});
-	go$pkg.Kevent_t = Kevent_t;
-	var FdSet;
-	FdSet = go$newType(0, "Struct", "syscall.FdSet", "FdSet", "syscall", function(Bits_) {
+Å”		Kevent_t.init([["Ident", "", Go$Uint64, ""], ["Filter", "", Go$Int16, ""], ["Flags", "", Go$Uint16, ""], ["Fflags", "", Go$Uint32, ""], ["Data", "", Go$Int64, ""], ["Udata", "", (go$ptrType(Go$Uint8)), ""]]);
+0Ç7 FdSetÅÈ	FdSet = go$pkg.FdSet = go$newType(0, "Struct", "syscall.FdSet", "FdSet", "syscall", function(Bits_) {
 		this.go$val = this;
 		this.Bits = Bits_ !== undefined ? Bits_ : go$makeNativeArray("Int32", 32, function() { return 0; });
 	});
-	go$pkg.FdSet = FdSet;
-	var IfMsghdr;
-	IfMsghdr = go$newType(0, "Struct", "syscall.IfMsghdr", "IfMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Data_) {
+@		FdSet.init([["Bits", "", (go$arrayType(Go$Int32, 32)), ""]]);
+0Çÿ IfMsghdrÇ±	IfMsghdr = go$pkg.IfMsghdr = go$newType(0, "Struct", "syscall.IfMsghdr", "IfMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Data_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -2454,9 +2412,8 @@ $$
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 		this.Data = Data_ !== undefined ? Data_ : new IfData.Ptr();
 	});
-	go$pkg.IfMsghdr = IfMsghdr;
-	var IfData;
-	IfData = go$newType(0, "Struct", "syscall.IfData", "IfData", "syscall", function(Type_, Typelen_, Physical_, Addrlen_, Hdrlen_, Recvquota_, Xmitquota_, Unused1_, Mtu_, Metric_, Baudrate_, Ipackets_, Ierrors_, Opackets_, Oerrors_, Collisions_, Ibytes_, Obytes_, Imcasts_, Omcasts_, Iqdrops_, Noproto_, Recvtiming_, Xmittiming_, Lastchange_, Unused2_, Hwassist_, Reserved1_, Reserved2_) {
+Ç		IfMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Data", "", IfData, ""]]);
+0Ç IfDataÇC	IfData = go$pkg.IfData = go$newType(0, "Struct", "syscall.IfData", "IfData", "syscall", function(Type_, Typelen_, Physical_, Addrlen_, Hdrlen_, Recvquota_, Xmitquota_, Unused1_, Mtu_, Metric_, Baudrate_, Ipackets_, Ierrors_, Opackets_, Oerrors_, Collisions_, Ibytes_, Obytes_, Imcasts_, Omcasts_, Iqdrops_, Noproto_, Recvtiming_, Xmittiming_, Lastchange_, Unused2_, Hwassist_, Reserved1_, Reserved2_) {
 		this.go$val = this;
 		this.Type = Type_ !== undefined ? Type_ : 0;
 		this.Typelen = Typelen_ !== undefined ? Typelen_ : 0;
@@ -2488,9 +2445,8 @@ $$
 		this.Reserved1 = Reserved1_ !== undefined ? Reserved1_ : 0;
 		this.Reserved2 = Reserved2_ !== undefined ? Reserved2_ : 0;
 	});
-	go$pkg.IfData = IfData;
-	var IfaMsghdr;
-	IfaMsghdr = go$newType(0, "Struct", "syscall.IfaMsghdr", "IfaMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Metric_) {
+Ç∑		IfData.init([["Type", "", Go$Uint8, ""], ["Typelen", "", Go$Uint8, ""], ["Physical", "", Go$Uint8, ""], ["Addrlen", "", Go$Uint8, ""], ["Hdrlen", "", Go$Uint8, ""], ["Recvquota", "", Go$Uint8, ""], ["Xmitquota", "", Go$Uint8, ""], ["Unused1", "", Go$Uint8, ""], ["Mtu", "", Go$Uint32, ""], ["Metric", "", Go$Uint32, ""], ["Baudrate", "", Go$Uint32, ""], ["Ipackets", "", Go$Uint32, ""], ["Ierrors", "", Go$Uint32, ""], ["Opackets", "", Go$Uint32, ""], ["Oerrors", "", Go$Uint32, ""], ["Collisions", "", Go$Uint32, ""], ["Ibytes", "", Go$Uint32, ""], ["Obytes", "", Go$Uint32, ""], ["Imcasts", "", Go$Uint32, ""], ["Omcasts", "", Go$Uint32, ""], ["Iqdrops", "", Go$Uint32, ""], ["Noproto", "", Go$Uint32, ""], ["Recvtiming", "", Go$Uint32, ""], ["Xmittiming", "", Go$Uint32, ""], ["Lastchange", "", Timeval32, ""], ["Unused2", "", Go$Uint32, ""], ["Hwassist", "", Go$Uint32, ""], ["Reserved1", "", Go$Uint32, ""], ["Reserved2", "", Go$Uint32, ""]]);
+0Ç€ 	IfaMsghdrÇÆ	IfaMsghdr = go$pkg.IfaMsghdr = go$newType(0, "Struct", "syscall.IfaMsghdr", "IfaMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Metric_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -2501,9 +2457,9 @@ $$
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 		this.Metric = Metric_ !== undefined ? Metric_ : 0;
 	});
-	go$pkg.IfaMsghdr = IfaMsghdr;
-	var IfmaMsghdr;
-	IfmaMsghdr = go$newType(0, "Struct", "syscall.IfmaMsghdr", "IfmaMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_) {
+Ç		IfaMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Metric", "", Go$Int32, ""]]);
+0ÇÑ 
+IfmaMsghdrÇt	IfmaMsghdr = go$pkg.IfmaMsghdr = go$newType(0, "Struct", "syscall.IfmaMsghdr", "IfmaMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -2513,9 +2469,8 @@ $$
 		this.Index = Index_ !== undefined ? Index_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 	});
-	go$pkg.IfmaMsghdr = IfmaMsghdr;
-	var IfmaMsghdr2;
-	IfmaMsghdr2 = go$newType(0, "Struct", "syscall.IfmaMsghdr2", "IfmaMsghdr2", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Refcount_) {
+Å˚		IfmaMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
+0ÇÒ IfmaMsghdr2Çæ	IfmaMsghdr2 = go$pkg.IfmaMsghdr2 = go$newType(0, "Struct", "syscall.IfmaMsghdr2", "IfmaMsghdr2", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Refcount_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -2526,9 +2481,8 @@ $$
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 		this.Refcount = Refcount_ !== undefined ? Refcount_ : 0;
 	});
-	go$pkg.IfmaMsghdr2 = IfmaMsghdr2;
-	var RtMsghdr;
-	RtMsghdr = go$newType(0, "Struct", "syscall.RtMsghdr", "RtMsghdr", "syscall", function(Msglen_, Version_, Type_, Index_, Pad_cgo_0_, Flags_, Addrs_, Pid_, Seq_, Errno_, Use_, Inits_, Rmx_) {
+Ç		IfmaMsghdr2.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Refcount", "", Go$Int32, ""]]);
+0Ço RtMsghdrÇ∫	RtMsghdr = go$pkg.RtMsghdr = go$newType(0, "Struct", "syscall.RtMsghdr", "RtMsghdr", "syscall", function(Msglen_, Version_, Type_, Index_, Pad_cgo_0_, Flags_, Addrs_, Pid_, Seq_, Errno_, Use_, Inits_, Rmx_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -2544,9 +2498,8 @@ $$
 		this.Inits = Inits_ !== undefined ? Inits_ : 0;
 		this.Rmx = Rmx_ !== undefined ? Rmx_ : new RtMetrics.Ptr();
 	});
-	go$pkg.RtMsghdr = RtMsghdr;
-	var RtMetrics;
-	RtMetrics = go$newType(0, "Struct", "syscall.RtMetrics", "RtMetrics", "syscall", function(Locks_, Mtu_, Hopcount_, Expire_, Recvpipe_, Sendpipe_, Ssthresh_, Rtt_, Rttvar_, Pksent_, Filler_) {
+Ç°		RtMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Flags", "", Go$Int32, ""], ["Addrs", "", Go$Int32, ""], ["Pid", "", Go$Int32, ""], ["Seq", "", Go$Int32, ""], ["Errno", "", Go$Int32, ""], ["Use", "", Go$Int32, ""], ["Inits", "", Go$Uint32, ""], ["Rmx", "", RtMetrics, ""]]);
+0Ç 	RtMetricsÇq	RtMetrics = go$pkg.RtMetrics = go$newType(0, "Struct", "syscall.RtMetrics", "RtMetrics", "syscall", function(Locks_, Mtu_, Hopcount_, Expire_, Recvpipe_, Sendpipe_, Ssthresh_, Rtt_, Rttvar_, Pksent_, Filler_) {
 		this.go$val = this;
 		this.Locks = Locks_ !== undefined ? Locks_ : 0;
 		this.Mtu = Mtu_ !== undefined ? Mtu_ : 0;
@@ -2560,40 +2513,37 @@ $$
 		this.Pksent = Pksent_ !== undefined ? Pksent_ : 0;
 		this.Filler = Filler_ !== undefined ? Filler_ : go$makeNativeArray("Uint32", 4, function() { return 0; });
 	});
-	go$pkg.RtMetrics = RtMetrics;
-	var BpfVersion;
-	BpfVersion = go$newType(0, "Struct", "syscall.BpfVersion", "BpfVersion", "syscall", function(Major_, Minor_) {
+Ç|		RtMetrics.init([["Locks", "", Go$Uint32, ""], ["Mtu", "", Go$Uint32, ""], ["Hopcount", "", Go$Uint32, ""], ["Expire", "", Go$Int32, ""], ["Recvpipe", "", Go$Uint32, ""], ["Sendpipe", "", Go$Uint32, ""], ["Ssthresh", "", Go$Uint32, ""], ["Rtt", "", Go$Uint32, ""], ["Rttvar", "", Go$Uint32, ""], ["Pksent", "", Go$Uint32, ""], ["Filler", "", (go$arrayType(Go$Uint32, 4)), ""]]);
+0Çh 
+BpfVersionÇ	BpfVersion = go$pkg.BpfVersion = go$newType(0, "Struct", "syscall.BpfVersion", "BpfVersion", "syscall", function(Major_, Minor_) {
 		this.go$val = this;
 		this.Major = Major_ !== undefined ? Major_ : 0;
 		this.Minor = Minor_ !== undefined ? Minor_ : 0;
 	});
-	go$pkg.BpfVersion = BpfVersion;
-	var BpfStat;
-	BpfStat = go$newType(0, "Struct", "syscall.BpfStat", "BpfStat", "syscall", function(Recv_, Drop_) {
+Q		BpfVersion.init([["Major", "", Go$Uint16, ""], ["Minor", "", Go$Uint16, ""]]);
+0ÇK BpfStatÅÔ	BpfStat = go$pkg.BpfStat = go$newType(0, "Struct", "syscall.BpfStat", "BpfStat", "syscall", function(Recv_, Drop_) {
 		this.go$val = this;
 		this.Recv = Recv_ !== undefined ? Recv_ : 0;
 		this.Drop = Drop_ !== undefined ? Drop_ : 0;
 	});
-	go$pkg.BpfStat = BpfStat;
-	var BpfProgram;
-	BpfProgram = go$newType(0, "Struct", "syscall.BpfProgram", "BpfProgram", "syscall", function(Len_, Pad_cgo_0_, Insns_) {
+L		BpfStat.init([["Recv", "", Go$Uint32, ""], ["Drop", "", Go$Uint32, ""]]);
+0Ç8 
+BpfProgramÇî	BpfProgram = go$pkg.BpfProgram = go$newType(0, "Struct", "syscall.BpfProgram", "BpfProgram", "syscall", function(Len_, Pad_cgo_0_, Insns_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.Insns = Insns_ !== undefined ? Insns_ : (go$ptrType(BpfInsn)).nil;
 	});
-	go$pkg.BpfProgram = BpfProgram;
-	var BpfInsn;
-	BpfInsn = go$newType(0, "Struct", "syscall.BpfInsn", "BpfInsn", "syscall", function(Code_, Jt_, Jf_, K_) {
+Åè		BpfProgram.init([["Len", "", Go$Uint32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Insns", "", (go$ptrType(BpfInsn)), ""]]);
+0ÇÕ BpfInsnÇ?	BpfInsn = go$pkg.BpfInsn = go$newType(0, "Struct", "syscall.BpfInsn", "BpfInsn", "syscall", function(Code_, Jt_, Jf_, K_) {
 		this.go$val = this;
 		this.Code = Code_ !== undefined ? Code_ : 0;
 		this.Jt = Jt_ !== undefined ? Jt_ : 0;
 		this.Jf = Jf_ !== undefined ? Jf_ : 0;
 		this.K = K_ !== undefined ? K_ : 0;
 	});
-	go$pkg.BpfInsn = BpfInsn;
-	var BpfHdr;
-	BpfHdr = go$newType(0, "Struct", "syscall.BpfHdr", "BpfHdr", "syscall", function(Tstamp_, Caplen_, Datalen_, Hdrlen_, Pad_cgo_0_) {
+}		BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
+0Ç· BpfHdrÇ	BpfHdr = go$pkg.BpfHdr = go$newType(0, "Struct", "syscall.BpfHdr", "BpfHdr", "syscall", function(Tstamp_, Caplen_, Datalen_, Hdrlen_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Tstamp = Tstamp_ !== undefined ? Tstamp_ : new Timeval32.Ptr();
 		this.Caplen = Caplen_ !== undefined ? Caplen_ : 0;
@@ -2601,9 +2551,8 @@ $$
 		this.Hdrlen = Hdrlen_ !== undefined ? Hdrlen_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 	});
-	go$pkg.BpfHdr = BpfHdr;
-	var Termios;
-	Termios = go$newType(0, "Struct", "syscall.Termios", "Termios", "syscall", function(Iflag_, Oflag_, Cflag_, Lflag_, Cc_, Pad_cgo_0_, Ispeed_, Ospeed_) {
+Å¬		BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
+0Çw TermiosÇ:	Termios = go$pkg.Termios = go$newType(0, "Struct", "syscall.Termios", "Termios", "syscall", function(Iflag_, Oflag_, Cflag_, Lflag_, Cc_, Pad_cgo_0_, Ispeed_, Ospeed_) {
 		this.go$val = this;
 		this.Iflag = Iflag_ !== undefined ? Iflag_ : new Go$Uint64(0, 0);
 		this.Oflag = Oflag_ !== undefined ? Oflag_ : new Go$Uint64(0, 0);
@@ -2614,98 +2563,23 @@ $$
 		this.Ispeed = Ispeed_ !== undefined ? Ispeed_ : new Go$Uint64(0, 0);
 		this.Ospeed = Ospeed_ !== undefined ? Ospeed_ : new Go$Uint64(0, 0);
 	});
-	go$pkg.Termios = Termios;
-	ivalue.init([["name", "syscall", (go$arrayType(Go$Uint8, 16)), ""], ["value", "syscall", Go$Int16, ""]]);
-	SysProcAttr.init([["Chroot", "", Go$String, ""], ["Credential", "", (go$ptrType(Credential)), ""], ["Ptrace", "", Go$Bool, ""], ["Setsid", "", Go$Bool, ""], ["Setpgid", "", Go$Bool, ""], ["Setctty", "", Go$Bool, ""], ["Noctty", "", Go$Bool, ""]]);
-	Credential.init([["Uid", "", Go$Uint32, ""], ["Gid", "", Go$Uint32, ""], ["Groups", "", (go$sliceType(Go$Uint32)), ""]]);
-	ProcAttr.init([["Dir", "", Go$String, ""], ["Env", "", (go$sliceType(Go$String)), ""], ["Files", "", (go$sliceType(Go$Uintptr)), ""], ["Sys", "", (go$ptrType(SysProcAttr)), ""]]);
-	RoutingMessage.init([["sockaddr", "syscall", (go$funcType([], [(go$sliceType(Sockaddr))], false))]]);
-	anyMessage.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""]]);
-	(go$ptrType(anyMessage)).methods = [["toRoutingMessage", "syscall", [(go$sliceType(Go$Uint8))], [RoutingMessage], false]];
-	RouteMessage.init([["Header", "", RtMsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-	(go$ptrType(RouteMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
-	InterfaceMessage.init([["Header", "", IfMsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-	(go$ptrType(InterfaceMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
-	InterfaceAddrMessage.init([["Header", "", IfaMsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-	(go$ptrType(InterfaceAddrMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
-	InterfaceMulticastAddrMessage.init([["Header", "", IfmaMsghdr2, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-	(go$ptrType(InterfaceMulticastAddrMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
-	SocketControlMessage.init([["Header", "", Cmsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-	WaitStatus.methods = [["Continued", "", [], [Go$Bool], false], ["CoreDump", "", [], [Go$Bool], false], ["ExitStatus", "", [], [Go$Int], false], ["Exited", "", [], [Go$Bool], false], ["Signal", "", [], [Signal], false], ["Signaled", "", [], [Go$Bool], false], ["StopSignal", "", [], [Signal], false], ["Stopped", "", [], [Go$Bool], false], ["TrapCause", "", [], [Go$Int], false]];
-	(go$ptrType(WaitStatus)).methods = [["Continued", "", [], [Go$Bool], false], ["CoreDump", "", [], [Go$Bool], false], ["ExitStatus", "", [], [Go$Int], false], ["Exited", "", [], [Go$Bool], false], ["Signal", "", [], [Signal], false], ["Signaled", "", [], [Go$Bool], false], ["StopSignal", "", [], [Signal], false], ["Stopped", "", [], [Go$Bool], false], ["TrapCause", "", [], [Go$Int], false]];
-	SockaddrDatalink.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Index", "", Go$Uint16, ""], ["Type", "", Go$Uint8, ""], ["Nlen", "", Go$Uint8, ""], ["Alen", "", Go$Uint8, ""], ["Slen", "", Go$Uint8, ""], ["Data", "", (go$arrayType(Go$Int8, 12)), ""], ["raw", "syscall", RawSockaddrDatalink, ""]]);
-	(go$ptrType(SockaddrDatalink)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
-	attrList.init([["bitmapCount", "syscall", Go$Uint16, ""], ["_", "syscall", Go$Uint16, ""], ["CommonAttr", "", Go$Uint32, ""], ["VolAttr", "", Go$Uint32, ""], ["DirAttr", "", Go$Uint32, ""], ["FileAttr", "", Go$Uint32, ""], ["Forkattr", "", Go$Uint32, ""]]);
-	mmapper.init([["", "", sync.Mutex, ""], ["active", "syscall", (go$mapType((go$ptrType(Go$Uint8)), (go$sliceType(Go$Uint8)))), ""], ["mmap", "syscall", (go$funcType([Go$Uintptr, Go$Uintptr, Go$Int, Go$Int, Go$Int, Go$Int64], [Go$Uintptr, go$error], false)), ""], ["munmap", "syscall", (go$funcType([Go$Uintptr, Go$Uintptr], [go$error], false)), ""]]);
-	(go$ptrType(mmapper)).methods = [["Lock", "", [], [], false], ["Mmap", "", [Go$Int, Go$Int64, Go$Int, Go$Int, Go$Int], [(go$sliceType(Go$Uint8)), go$error], false], ["Munmap", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["Unlock", "", [], [], false]];
-	Errno.methods = [["Error", "", [], [Go$String], false], ["Temporary", "", [], [Go$Bool], false], ["Timeout", "", [], [Go$Bool], false]];
-	(go$ptrType(Errno)).methods = [["Error", "", [], [Go$String], false], ["Temporary", "", [], [Go$Bool], false], ["Timeout", "", [], [Go$Bool], false]];
-	Signal.methods = [["Signal", "", [], [], false], ["String", "", [], [Go$String], false]];
-	(go$ptrType(Signal)).methods = [["Signal", "", [], [], false], ["String", "", [], [Go$String], false]];
-	Sockaddr.init([["sockaddr", "syscall", (go$funcType([], [Go$Uintptr, _Socklen, go$error], false))]]);
-	SockaddrInet4.init([["Port", "", Go$Int, ""], ["Addr", "", (go$arrayType(Go$Uint8, 4)), ""], ["raw", "syscall", RawSockaddrInet4, ""]]);
-	(go$ptrType(SockaddrInet4)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
-	SockaddrInet6.init([["Port", "", Go$Int, ""], ["ZoneId", "", Go$Uint32, ""], ["Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["raw", "syscall", RawSockaddrInet6, ""]]);
-	(go$ptrType(SockaddrInet6)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
-	SockaddrUnix.init([["Name", "", Go$String, ""], ["raw", "syscall", RawSockaddrUnix, ""]]);
-	(go$ptrType(SockaddrUnix)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
-	Timespec.init([["Sec", "", Go$Int64, ""], ["Nsec", "", Go$Int64, ""]]);
-	(go$ptrType(Timespec)).methods = [["Nano", "", [], [Go$Int64], false], ["Unix", "", [], [Go$Int64, Go$Int64], false]];
-	Timeval.init([["Sec", "", Go$Int64, ""], ["Usec", "", Go$Int32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""]]);
-	(go$ptrType(Timeval)).methods = [["Nano", "", [], [Go$Int64], false], ["Unix", "", [], [Go$Int64, Go$Int64], false]];
-	Timeval32.init([["Sec", "", Go$Int32, ""], ["Usec", "", Go$Int32, ""]]);
-	Rusage.init([["Utime", "", Timeval, ""], ["Stime", "", Timeval, ""], ["Maxrss", "", Go$Int64, ""], ["Ixrss", "", Go$Int64, ""], ["Idrss", "", Go$Int64, ""], ["Isrss", "", Go$Int64, ""], ["Minflt", "", Go$Int64, ""], ["Majflt", "", Go$Int64, ""], ["Nswap", "", Go$Int64, ""], ["Inblock", "", Go$Int64, ""], ["Oublock", "", Go$Int64, ""], ["Msgsnd", "", Go$Int64, ""], ["Msgrcv", "", Go$Int64, ""], ["Nsignals", "", Go$Int64, ""], ["Nvcsw", "", Go$Int64, ""], ["Nivcsw", "", Go$Int64, ""]]);
-	Rlimit.init([["Cur", "", Go$Uint64, ""], ["Max", "", Go$Uint64, ""]]);
-	Stat_t.init([["Dev", "", Go$Int32, ""], ["Mode", "", Go$Uint16, ""], ["Nlink", "", Go$Uint16, ""], ["Ino", "", Go$Uint64, ""], ["Uid", "", Go$Uint32, ""], ["Gid", "", Go$Uint32, ""], ["Rdev", "", Go$Int32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Atimespec", "", Timespec, ""], ["Mtimespec", "", Timespec, ""], ["Ctimespec", "", Timespec, ""], ["Birthtimespec", "", Timespec, ""], ["Size", "", Go$Int64, ""], ["Blocks", "", Go$Int64, ""], ["Blksize", "", Go$Int32, ""], ["Flags", "", Go$Uint32, ""], ["Gen", "", Go$Uint32, ""], ["Lspare", "", Go$Int32, ""], ["Qspare", "", (go$arrayType(Go$Int64, 2)), ""]]);
-	Statfs_t.init([["Bsize", "", Go$Uint32, ""], ["Iosize", "", Go$Int32, ""], ["Blocks", "", Go$Uint64, ""], ["Bfree", "", Go$Uint64, ""], ["Bavail", "", Go$Uint64, ""], ["Files", "", Go$Uint64, ""], ["Ffree", "", Go$Uint64, ""], ["Fsid", "", Fsid, ""], ["Owner", "", Go$Uint32, ""], ["Type", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Fssubtype", "", Go$Uint32, ""], ["Fstypename", "", (go$arrayType(Go$Int8, 16)), ""], ["Mntonname", "", (go$arrayType(Go$Int8, 1024)), ""], ["Mntfromname", "", (go$arrayType(Go$Int8, 1024)), ""], ["Reserved", "", (go$arrayType(Go$Uint32, 8)), ""]]);
-	Flock_t.init([["Start", "", Go$Int64, ""], ["Len", "", Go$Int64, ""], ["Pid", "", Go$Int32, ""], ["Type", "", Go$Int16, ""], ["Whence", "", Go$Int16, ""]]);
-	Fstore_t.init([["Flags", "", Go$Uint32, ""], ["Posmode", "", Go$Int32, ""], ["Offset", "", Go$Int64, ""], ["Length", "", Go$Int64, ""], ["Bytesalloc", "", Go$Int64, ""]]);
-	Radvisory_t.init([["Offset", "", Go$Int64, ""], ["Count", "", Go$Int32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""]]);
-	Fbootstraptransfer_t.init([["Offset", "", Go$Int64, ""], ["Length", "", Go$Uint64, ""], ["Buffer", "", (go$ptrType(Go$Uint8)), ""]]);
-	Log2phys_t.init([["Flags", "", Go$Uint32, ""], ["Contigbytes", "", Go$Int64, ""], ["Devoffset", "", Go$Int64, ""]]);
-	Fsid.init([["Val", "", (go$arrayType(Go$Int32, 2)), ""]]);
-	Dirent.init([["Ino", "", Go$Uint64, ""], ["Seekoff", "", Go$Uint64, ""], ["Reclen", "", Go$Uint16, ""], ["Namlen", "", Go$Uint16, ""], ["Type", "", Go$Uint8, ""], ["Name", "", (go$arrayType(Go$Int8, 1024)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 3)), ""]]);
-	RawSockaddrInet4.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Port", "", Go$Uint16, ""], ["Addr", "", (go$arrayType(Go$Uint8, 4)), ""], ["Zero", "", (go$arrayType(Go$Int8, 8)), ""]]);
-	RawSockaddrInet6.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Port", "", Go$Uint16, ""], ["Flowinfo", "", Go$Uint32, ""], ["Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Scope_id", "", Go$Uint32, ""]]);
-	RawSockaddrUnix.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Path", "", (go$arrayType(Go$Int8, 104)), ""]]);
-	RawSockaddrDatalink.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Index", "", Go$Uint16, ""], ["Type", "", Go$Uint8, ""], ["Nlen", "", Go$Uint8, ""], ["Alen", "", Go$Uint8, ""], ["Slen", "", Go$Uint8, ""], ["Data", "", (go$arrayType(Go$Int8, 12)), ""]]);
-	RawSockaddr.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Data", "", (go$arrayType(Go$Int8, 14)), ""]]);
-	RawSockaddrAny.init([["Addr", "", RawSockaddr, ""], ["Pad", "", (go$arrayType(Go$Int8, 92)), ""]]);
-	Linger.init([["Onoff", "", Go$Int32, ""], ["Linger", "", Go$Int32, ""]]);
-	Iovec.init([["Base", "", (go$ptrType(Go$Uint8)), ""], ["Len", "", Go$Uint64, ""]]);
-	(go$ptrType(Iovec)).methods = [["SetLen", "", [Go$Int], [], false]];
-	IPMreq.init([["Multiaddr", "", (go$arrayType(Go$Uint8, 4)), ""], ["Interface", "", (go$arrayType(Go$Uint8, 4)), ""]]);
-	IPv6Mreq.init([["Multiaddr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Interface", "", Go$Uint32, ""]]);
-	Msghdr.init([["Name", "", (go$ptrType(Go$Uint8)), ""], ["Namelen", "", Go$Uint32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Iov", "", (go$ptrType(Iovec)), ""], ["Iovlen", "", Go$Int32, ""], ["Pad_cgo_1", "", (go$arrayType(Go$Uint8, 4)), ""], ["Control", "", (go$ptrType(Go$Uint8)), ""], ["Controllen", "", Go$Uint32, ""], ["Flags", "", Go$Int32, ""]]);
-	(go$ptrType(Msghdr)).methods = [["SetControllen", "", [Go$Int], [], false]];
-	Cmsghdr.init([["Len", "", Go$Uint32, ""], ["Level", "", Go$Int32, ""], ["Type", "", Go$Int32, ""]]);
-	(go$ptrType(Cmsghdr)).methods = [["SetLen", "", [Go$Int], [], false]];
-	Inet4Pktinfo.init([["Ifindex", "", Go$Uint32, ""], ["Spec_dst", "", (go$arrayType(Go$Uint8, 4)), ""], ["Addr", "", (go$arrayType(Go$Uint8, 4)), ""]]);
-	Inet6Pktinfo.init([["Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Ifindex", "", Go$Uint32, ""]]);
-	IPv6MTUInfo.init([["Addr", "", RawSockaddrInet6, ""], ["Mtu", "", Go$Uint32, ""]]);
-	ICMPv6Filter.init([["Filt", "", (go$arrayType(Go$Uint32, 8)), ""]]);
-	Kevent_t.init([["Ident", "", Go$Uint64, ""], ["Filter", "", Go$Int16, ""], ["Flags", "", Go$Uint16, ""], ["Fflags", "", Go$Uint32, ""], ["Data", "", Go$Int64, ""], ["Udata", "", (go$ptrType(Go$Uint8)), ""]]);
-	FdSet.init([["Bits", "", (go$arrayType(Go$Int32, 32)), ""]]);
-	IfMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Data", "", IfData, ""]]);
-	IfData.init([["Type", "", Go$Uint8, ""], ["Typelen", "", Go$Uint8, ""], ["Physical", "", Go$Uint8, ""], ["Addrlen", "", Go$Uint8, ""], ["Hdrlen", "", Go$Uint8, ""], ["Recvquota", "", Go$Uint8, ""], ["Xmitquota", "", Go$Uint8, ""], ["Unused1", "", Go$Uint8, ""], ["Mtu", "", Go$Uint32, ""], ["Metric", "", Go$Uint32, ""], ["Baudrate", "", Go$Uint32, ""], ["Ipackets", "", Go$Uint32, ""], ["Ierrors", "", Go$Uint32, ""], ["Opackets", "", Go$Uint32, ""], ["Oerrors", "", Go$Uint32, ""], ["Collisions", "", Go$Uint32, ""], ["Ibytes", "", Go$Uint32, ""], ["Obytes", "", Go$Uint32, ""], ["Imcasts", "", Go$Uint32, ""], ["Omcasts", "", Go$Uint32, ""], ["Iqdrops", "", Go$Uint32, ""], ["Noproto", "", Go$Uint32, ""], ["Recvtiming", "", Go$Uint32, ""], ["Xmittiming", "", Go$Uint32, ""], ["Lastchange", "", Timeval32, ""], ["Unused2", "", Go$Uint32, ""], ["Hwassist", "", Go$Uint32, ""], ["Reserved1", "", Go$Uint32, ""], ["Reserved2", "", Go$Uint32, ""]]);
-	IfaMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Metric", "", Go$Int32, ""]]);
-	IfmaMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
-	IfmaMsghdr2.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Refcount", "", Go$Int32, ""]]);
-	RtMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Flags", "", Go$Int32, ""], ["Addrs", "", Go$Int32, ""], ["Pid", "", Go$Int32, ""], ["Seq", "", Go$Int32, ""], ["Errno", "", Go$Int32, ""], ["Use", "", Go$Int32, ""], ["Inits", "", Go$Uint32, ""], ["Rmx", "", RtMetrics, ""]]);
-	RtMetrics.init([["Locks", "", Go$Uint32, ""], ["Mtu", "", Go$Uint32, ""], ["Hopcount", "", Go$Uint32, ""], ["Expire", "", Go$Int32, ""], ["Recvpipe", "", Go$Uint32, ""], ["Sendpipe", "", Go$Uint32, ""], ["Ssthresh", "", Go$Uint32, ""], ["Rtt", "", Go$Uint32, ""], ["Rttvar", "", Go$Uint32, ""], ["Pksent", "", Go$Uint32, ""], ["Filler", "", (go$arrayType(Go$Uint32, 4)), ""]]);
-	BpfVersion.init([["Major", "", Go$Uint16, ""], ["Minor", "", Go$Uint16, ""]]);
-	BpfStat.init([["Recv", "", Go$Uint32, ""], ["Drop", "", Go$Uint32, ""]]);
-	BpfProgram.init([["Len", "", Go$Uint32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Insns", "", (go$ptrType(BpfInsn)), ""]]);
-	BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
-	BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
-	Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-0Åé0	envOnce0	envLock0env0envs0 0zeroProcAttr0zeroSysProcAttr0_zero0mapper0 0 0 0 0ioSync0errors0	signals0É•0ÅÉBpfStmtx	var BpfStmt = go$pkg.BpfStmt = function(code, k) {
+Ç*		Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
+0- envOnce envOnce = new sync.Once.Ptr();00 envLock !envLock = new sync.RWMutex.Ptr();0 env env = false;01 envs %envs = (go$sliceType(Go$String)).nil;01   )go$pkg.ForkLock = new sync.RWMutex.Ptr();06 zeroProcAttr "zeroProcAttr = new ProcAttr.Ptr();0? zeroSysProcAttr (zeroSysProcAttr = new SysProcAttr.Ptr();0 _zero 
+_zero = 0;0 mapper  0    0    0    0)   !go$pkg.SocketDisableIPv6 = false;0* ioSync ioSync = new Go$Int64(0, 0);0 errors  0 signals  0V   N		mapper = new mmapper.Ptr(new sync.Mutex.Ptr(), new Go$Map(), mmap, munmap);
+0   		go$pkg.Stdin = 0;
+0   		go$pkg.Stdout = 1;
+0   		go$pkg.Stderr = 2;
+0Ç
+◊   Ç
+Õ		errors = go$toNativeArray("String", ["", "operation not permitted", "no such file or directory", "no such process", "interrupted system call", "input/output error", "device not configured", "argument list too long", "exec format error", "bad file descriptor", "no child processes", "resource deadlock avoided", "cannot allocate memory", "permission denied", "bad address", "block device required", "resource busy", "file exists", "cross-device link", "operation not supported by device", "not a directory", "is a directory", "invalid argument", "too many open files in system", "too many open files", "inappropriate ioctl for device", "text file busy", "file too large", "no space left on device", "illegal seek", "read-only file system", "too many links", "broken pipe", "numerical argument out of domain", "result too large", "resource temporarily unavailable", "operation now in progress", "operation already in progress", "socket operation on non-socket", "destination address required", "message too long", "protocol wrong type for socket", "protocol not available", "protocol not supported", "socket type not supported", "operation not supported", "protocol family not supported", "address family not supported by protocol family", "address already in use", "can't assign requested address", "network is down", "network is unreachable", "network dropped connection on reset", "software caused connection abort", "connection reset by peer", "no buffer space available", "socket is already connected", "socket is not connected", "can't send after socket shutdown", "too many references: can't splice", "operation timed out", "connection refused", "too many levels of symbolic links", "file name too long", "host is down", "no route to host", "directory not empty", "too many processes", "too many users", "disc quota exceeded", "stale NFS file handle", "too many levels of remote in path", "RPC struct is bad", "RPC version wrong", "RPC prog. not avail", "program version wrong", "bad procedure for program", "no locks available", "function not implemented", "inappropriate file type or format", "authentication error", "need authenticator", "device power is off", "device error", "value too large to be stored in data type", "bad executable (or shared library)", "bad CPU type in executable", "shared library version mismatch", "malformed Mach-o file", "operation canceled", "identifier removed", "no message of desired type", "illegal byte sequence", "attribute not found", "bad message", "EMULTIHOP (Reserved)", "no message available on STREAM", "ENOLINK (Reserved)", "no STREAM resources", "not a STREAM", "protocol error", "STREAM ioctl timeout", "operation not supported on socket", "policy not found", "state not recoverable", "previous owner died"]);
+0ÇÇ   Çx		signals = go$toNativeArray("String", ["", "hangup", "interrupt", "quit", "illegal instruction", "trace/BPT trap", "abort trap", "EMT trap", "floating point exception", "killed", "bus error", "segmentation fault", "bad system call", "broken pipe", "alarm clock", "terminated", "urgent I/O condition", "suspended (signal)", "suspended", "continued", "child exited", "stopped (tty input)", "stopped (tty output)", "I/O possible", "cputime limit exceeded", "filesize limit exceeded", "virtual timer expired", "profiling timer expired", "window size changes", "information request", "user defined signal 1", "user defined signal 2"]);
+0ÅÉ BpfStmtt	BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
-0Å¨BpfJumpÅ†	var BpfJump = go$pkg.BpfJump = function(code, k, jt, jf) {
+ 0Å¨ BpfJumpÅú	BpfJump = go$pkg.BpfJump = function(code, k, jt, jf) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), (jt << 24 >>> 24), (jf << 24 >>> 24), (k >>> 0));
 	};
-0ÇD	BpfBuflenÇ5	var BpfBuflen = go$pkg.BpfBuflen = function(fd) {
+ 0ÇD 	BpfBuflenÇ1	BpfBuflen = go$pkg.BpfBuflen = function(fd) {
 		var l, _tuple, v, err;
 		l = 0;
 		_tuple = Syscall(54, (fd >>> 0), 1074020966, new (go$ptrType(Go$Int))(function() { return l; }, function(v) { l = v; })), err = _tuple[2];
@@ -2714,7 +2588,7 @@ $$
 		}
 		return [l, null];
 	};
-0ÇDSetBpfBuflenÇ2	var SetBpfBuflen = go$pkg.SetBpfBuflen = function(fd, l) {
+ 0ÇD SetBpfBuflenÇ.	SetBpfBuflen = go$pkg.SetBpfBuflen = function(fd, l) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 3221504614, new (go$ptrType(Go$Int))(function() { return l; }, function(v) { l = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2722,7 +2596,7 @@ $$
 		}
 		return [l, null];
 	};
-0ÇJBpfDatalinkÇ9	var BpfDatalink = go$pkg.BpfDatalink = function(fd) {
+ 0ÇJ BpfDatalinkÇ5	BpfDatalink = go$pkg.BpfDatalink = function(fd) {
 		var t, _tuple, v, err;
 		t = 0;
 		_tuple = Syscall(54, (fd >>> 0), 1074020970, new (go$ptrType(Go$Int))(function() { return t; }, function(v) { t = v; })), err = _tuple[2];
@@ -2731,7 +2605,7 @@ $$
 		}
 		return [t, null];
 	};
-0ÇJSetBpfDatalinkÇ6	var SetBpfDatalink = go$pkg.SetBpfDatalink = function(fd, t) {
+ 0ÇJ SetBpfDatalinkÇ2	SetBpfDatalink = go$pkg.SetBpfDatalink = function(fd, t) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 2147762808, new (go$ptrType(Go$Int))(function() { return t; }, function(v) { t = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2739,7 +2613,7 @@ $$
 		}
 		return [t, null];
 	};
-0Ç<SetBpfPromiscÇ)	var SetBpfPromisc = go$pkg.SetBpfPromisc = function(fd, m) {
+ 0Ç< SetBpfPromiscÇ%	SetBpfPromisc = go$pkg.SetBpfPromisc = function(fd, m) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 536887913, new (go$ptrType(Go$Int))(function() { return m; }, function(v) { m = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2747,7 +2621,7 @@ $$
 		}
 		return null;
 	};
-0Å›FlushBpfÅ–	var FlushBpf = go$pkg.FlushBpf = function(fd) {
+ 0Å› FlushBpfÅÃ	FlushBpf = go$pkg.FlushBpf = function(fd) {
 		var _tuple, err;
 		_tuple = Syscall(54, (fd >>> 0), 536887912, 0), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2755,7 +2629,7 @@ $$
 		}
 		return null;
 	};
-0Ç@BpfInterfaceÇ.	var BpfInterface = go$pkg.BpfInterface = function(fd, name) {
+ 0Ç@ BpfInterfaceÇ*	BpfInterface = go$pkg.BpfInterface = function(fd, name) {
 		var iv, _tuple, _array, _struct, _view, err;
 		iv = new ivalue.Ptr();
 		_array = new Uint8Array(18);
@@ -2766,7 +2640,7 @@ $$
 		}
 		return [name, null];
 	};
-0Ç®SetBpfInterfaceÇì	var SetBpfInterface = go$pkg.SetBpfInterface = function(fd, name) {
+ 0Ç® SetBpfInterfaceÇè	SetBpfInterface = go$pkg.SetBpfInterface = function(fd, name) {
 		var iv, _tuple, _array, _struct, _view, err;
 		iv = new ivalue.Ptr();
 		go$copySlice(new (go$sliceType(Go$Uint8))(iv.name), new (go$sliceType(Go$Uint8))(go$stringToBytes(name)));
@@ -2778,8 +2652,8 @@ $$
 		}
 		return null;
 	};
-0Çû
-BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
+ 0Çû 
+BpfTimeoutÇä	BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		var tv, _tuple, _array, _struct, _view, err;
 		tv = new Timeval.Ptr();
 		_array = new Uint8Array(16);
@@ -2790,7 +2664,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		return [tv, null];
 	};
-0ÇjSetBpfTimeoutÇW	var SetBpfTimeout = go$pkg.SetBpfTimeout = function(fd, tv) {
+ 0Çj SetBpfTimeoutÇS	SetBpfTimeout = go$pkg.SetBpfTimeout = function(fd, tv) {
 		var _tuple, _array, _struct, _view, err;
 		_array = new Uint8Array(16);
 		_tuple = Syscall(54, (fd >>> 0), 2148549229, _array), err = _tuple[2];
@@ -2800,7 +2674,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		return null;
 	};
-0ÇÒBpfStatsÇ„	var BpfStats = go$pkg.BpfStats = function(fd) {
+ 0ÇÒ BpfStatsÇﬂ	BpfStats = go$pkg.BpfStats = function(fd) {
 		var s, _tuple, _array, _struct, _view, err;
 		s = new BpfStat.Ptr();
 		_array = new Uint8Array(8);
@@ -2811,7 +2685,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		return [s, null];
 	};
-0ÇCSetBpfImmediateÇ.	var SetBpfImmediate = go$pkg.SetBpfImmediate = function(fd, m) {
+ 0ÇC SetBpfImmediateÇ*	SetBpfImmediate = go$pkg.SetBpfImmediate = function(fd, m) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 2147762800, new (go$ptrType(Go$Int))(function() { return m; }, function(v) { m = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2819,7 +2693,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		return null;
 	};
-0ÇóSetBpfÇã	var SetBpf = go$pkg.SetBpf = function(fd, i) {
+ 0Çó SetBpfÇá	SetBpf = go$pkg.SetBpf = function(fd, i) {
 		var p, _array, _struct, _view, _tuple, _array$1, _struct$1, _view$1, err;
 		p = new BpfProgram.Ptr();
 		p.Len = (i.length >>> 0);
@@ -2832,7 +2706,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		return null;
 	};
-0Ç8CheckBpfVersionÇ#	var CheckBpfVersion = go$pkg.CheckBpfVersion = function(fd) {
+ 0Ç8 CheckBpfVersionÇ	CheckBpfVersion = go$pkg.CheckBpfVersion = function(fd) {
 		var v, _tuple, _array, _struct, _view, err;
 		v = new BpfVersion.Ptr();
 		_array = new Uint8Array(4);
@@ -2846,7 +2720,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		return null;
 	};
-0ÇPBpfHeadercmplÇ=	var BpfHeadercmpl = go$pkg.BpfHeadercmpl = function(fd) {
+ 0ÇP BpfHeadercmplÇ9	BpfHeadercmpl = go$pkg.BpfHeadercmpl = function(fd) {
 		var f, _tuple, v, err;
 		f = 0;
 		_tuple = Syscall(54, (fd >>> 0), 1074020980, new (go$ptrType(Go$Int))(function() { return f; }, function(v) { f = v; })), err = _tuple[2];
@@ -2855,7 +2729,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		return [f, null];
 	};
-0ÇFSetBpfHeadercmplÇ0	var SetBpfHeadercmpl = go$pkg.SetBpfHeadercmpl = function(fd, f) {
+ 0ÇF SetBpfHeadercmplÇ,	SetBpfHeadercmpl = go$pkg.SetBpfHeadercmpl = function(fd, f) {
 		var _tuple, v, err;
 		_tuple = Syscall(54, (fd >>> 0), 2147762805, new (go$ptrType(Go$Int))(function() { return f; }, function(v) { f = v; })), err = _tuple[2];
 		if (!((err === 0))) {
@@ -2863,10 +2737,10 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		return null;
 	};
-0psetenv_cd	var setenv_c = function(k, v) {
+ 0p setenv_c`	setenv_c = function(k, v) {
 		throw go$panic("Native function not implemented: setenv_c");
 	};
-0ÇÚcopyenvÇÂ	var copyenv = function() {
+ 0ÇÚ copyenvÇ·	copyenv = function() {
 		var _ref, _i, _slice, _index, s, i, j, key, ok, _tuple, _entry, _key;
 		env = new Go$Map();
 		_ref = envs;
@@ -2888,7 +2762,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 			_i++;
 		}
 	};
-0Ç&GetenvÇ	var Getenv = go$pkg.Getenv = function(key) {
+ 0Ç& GetenvÇ	Getenv = go$pkg.Getenv = function(key) {
 		var value, found, _tuple, _tuple$1, _entry, i, ok, _tuple$2, _slice, _index, s, i$1, _tuple$3, _tuple$4;
 		value = "";
 		found = false;
@@ -2924,7 +2798,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 			return [value, found];
 		}
 	};
-0ÇSetenvÇ	var Setenv = go$pkg.Setenv = function(key, value) {
+ 0Ç SetenvÇ	Setenv = go$pkg.Setenv = function(key, value) {
 		var i, i$1, _tuple, _entry, i$2, ok, kv, _slice, _index, _key;
 		var go$deferred = [];
 		try {
@@ -2966,7 +2840,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 			go$callDeferred(go$deferred);
 		}
 	};
-0ÇrClearenvÇd	var Clearenv = go$pkg.Clearenv = function() {
+ 0Çr ClearenvÇ`	Clearenv = go$pkg.Clearenv = function() {
 		var go$deferred = [];
 		try {
 			envOnce.Do(copyenv);
@@ -2980,7 +2854,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 			go$callDeferred(go$deferred);
 		}
 	};
-0ÇÿEnvironÇÀ	var Environ = go$pkg.Environ = function() {
+ 0Çÿ EnvironÇ«	Environ = go$pkg.Environ = function() {
 		var a;
 		var go$deferred = [];
 		try {
@@ -2997,13 +2871,13 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 			go$callDeferred(go$deferred);
 		}
 	};
-0Åäruntime_BeforeForkt	var runtime_BeforeFork = function() {
+ 0Åä runtime_BeforeForkp	runtime_BeforeFork = function() {
 		throw go$panic("Native function not implemented: runtime_BeforeFork");
 	};
-0Åáruntime_AfterForkr	var runtime_AfterFork = function() {
+ 0Åá runtime_AfterForkn	runtime_AfterFork = function() {
 		throw go$panic("Native function not implemented: runtime_AfterFork");
 	};
-0Ç$ËforkAndExecInChildÇ$–	var forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
+ 0Ç$Ë forkAndExecInChildÇ$Ã	forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
 		var go$this = this, pid, err, _tuple, r1, r2, err1, nextfd, i, fd, _ref, _i, _slice, _index, ufd, i$1, _slice$1, _index$1, darwin, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, cred, ngroups, groups, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _slice$2, _index$2, _slice$3, _index$3, _tuple$13, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _tuple$14, _slice$8, _index$8, _tuple$15, _slice$9, _index$9, _tuple$16, _tuple$17, _tuple$18, v;
 		pid = 0;
 		err = 0;
@@ -3159,7 +3033,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		/* */ } break; } }; return go$f();
 	};
-0Ç®forkExecPipeÇñ	var forkExecPipe = function(p) {
+ 0Ç® forkExecPipeÇí	forkExecPipe = function(p) {
 		var err, _tuple, _slice, _index, _tuple$1, _slice$1, _index$1;
 		err = Pipe(p);
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -3172,7 +3046,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		_tuple$1 = fcntl((_slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), 2, 1), err = _tuple$1[1];
 		return err;
 	};
-0ÇÅStringSlicePtrÇm	var StringSlicePtr = go$pkg.StringSlicePtr = function(ss) {
+ 0ÇÅ StringSlicePtrÇi	StringSlicePtr = go$pkg.StringSlicePtr = function(ss) {
 		var bb, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		bb = (go$sliceType((go$ptrType(Go$Uint8)))).make(ss.length + 1 >> 0, 0, function() { return (go$ptrType(Go$Uint8)).nil; });
 		i = 0;
@@ -3183,7 +3057,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		_slice$2 = bb, _index$2 = ss.length, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (go$ptrType(Go$Uint8)).nil) : go$throwRuntimeError("index out of range");
 		return bb;
 	};
-0ÇKSlicePtrFromStringsÇ2	var SlicePtrFromStrings = go$pkg.SlicePtrFromStrings = function(ss) {
+ 0ÇK SlicePtrFromStringsÇ.	SlicePtrFromStrings = go$pkg.SlicePtrFromStrings = function(ss) {
 		var err, bb, i, _tuple, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		err = null;
 		bb = (go$sliceType((go$ptrType(Go$Uint8)))).make(ss.length + 1 >> 0, 0, function() { return (go$ptrType(Go$Uint8)).nil; });
@@ -3198,10 +3072,10 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		_slice$2 = bb, _index$2 = ss.length, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = (go$ptrType(Go$Uint8)).nil) : go$throwRuntimeError("index out of range");
 		return [bb, null];
 	};
-0]CloseOnExecN	var CloseOnExec = go$pkg.CloseOnExec = function(fd) {
+ 0] CloseOnExecJ	CloseOnExec = go$pkg.CloseOnExec = function(fd) {
 		fcntl(fd, 2, 1);
 	};
-0Ç±SetNonblockÇ†	var SetNonblock = go$pkg.SetNonblock = function(fd, nonblocking) {
+ 0Ç± SetNonblockÇú	SetNonblock = go$pkg.SetNonblock = function(fd, nonblocking) {
 		var err, _tuple, flag, _tuple$1;
 		err = null;
 		_tuple = fcntl(fd, 3, 0), flag = _tuple[0], err = _tuple[1];
@@ -3218,7 +3092,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		err = err;
 		return err;
 	};
-0ÇforkExecÇ˝	var forkExec = function(argv0, argv, attr) {
+ 0Ç forkExecÇ˘	forkExec = function(argv0, argv, attr) {
 		var go$this = this, pid, err, p, n, err1, wstatus, sys, _tuple, argv0p, _tuple$1, _tuple$2, argvp, _tuple$3, _tuple$4, envvp, _tuple$5, _slice, _index, chroot, _tuple$6, _tuple$7, dir, _tuple$8, _tuple$9, _tuple$10, _tuple$11, v, _tuple$12, v$1, err1$1, _tuple$13, v$2, _tuple$14, _tuple$15, _tuple$16;
 		pid = 0;
 		err = null;
@@ -3306,14 +3180,14 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		return [pid, err];
 		/* */ } break; } }; return go$f();
 	};
-0Å·ForkExecÅ‘	var ForkExec = go$pkg.ForkExec = function(argv0, argv, attr) {
+ 0Å· ForkExecÅ–	ForkExec = go$pkg.ForkExec = function(argv0, argv, attr) {
 		var pid, err, _tuple;
 		pid = 0;
 		err = null;
 		_tuple = forkExec(argv0, argv, attr), pid = _tuple[0], err = _tuple[1];
 		return [pid, err];
 	};
-0ÇnStartProcessÇ\	var StartProcess = go$pkg.StartProcess = function(argv0, argv, attr) {
+ 0Çn StartProcessÇX	StartProcess = go$pkg.StartProcess = function(argv0, argv, attr) {
 		var pid, handle, err, _tuple, _tuple$1;
 		pid = 0;
 		handle = 0;
@@ -3322,7 +3196,7 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		_tuple$1 = [pid, 0, err], pid = _tuple$1[0], handle = _tuple$1[1], err = _tuple$1[2];
 		return [pid, handle, err];
 	};
-0ÇˇExecÇı	var Exec = go$pkg.Exec = function(argv0, argv, envv) {
+ 0Çˇ ExecÇÒ	Exec = go$pkg.Exec = function(argv0, argv, envv) {
 		var err, _tuple, argv0p, _tuple$1, argvp, _tuple$2, envvp, _tuple$3, err1;
 		err = null;
 		_tuple = BytePtrFromString(argv0), argv0p = _tuple[0], err = _tuple[1];
@@ -3344,16 +3218,16 @@ BpfTimeoutÇé	var BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		err = new Errno(err1);
 		return err;
 	};
-07raceAcquire(	var raceAcquire = function(addr) {
+ 07 raceAcquire$	raceAcquire = function(addr) {
 	};
-0AraceReleaseMerge-	var raceReleaseMerge = function(addr) {
+ 0A raceReleaseMerge)	raceReleaseMerge = function(addr) {
 	};
-0@raceReadRange/	var raceReadRange = function(addr, len) {
+ 0@ raceReadRange+	raceReadRange = function(addr, len) {
 	};
-0BraceWriteRange0	var raceWriteRange = function(addr, len) {
+ 0B raceWriteRange,	raceWriteRange = function(addr, len) {
 	};
-0Å◊
-rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
+ 0Å◊ 
+rsaAlignOfÅƒ	rsaAlignOf = function(salen) {
 		var salign;
 		salign = 8;
 		salign = 4;
@@ -3362,7 +3236,7 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		}
 		return (((salen + salign >> 0) - 1 >> 0)) & (~((salign - 1 >> 0)) >> 0);
 	};
-0Ç$RouteRIBÇ	var RouteRIB = go$pkg.RouteRIB = function(facility, param) {
+ 0Ç$ RouteRIBÇ	RouteRIB = go$pkg.RouteRIB = function(facility, param) {
 		var mib, n, err, v, tab, err$1, v$1, _slice, _index, _slice$1, _index$1, v$2;
 		mib = new (go$sliceType(_C_int))([4, 17, 0, 0, (facility >> 0), (param >> 0)]);
 		n = 0;
@@ -3378,7 +3252,7 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		}
 		return [go$subslice(tab, 0, n), null];
 	};
-0Ç«sockaddrÇπ	RouteMessage.Ptr.prototype.sockaddr = function() {
+ 0Ç√  Çπ	RouteMessage.Ptr.prototype.sockaddr = function() {
 		var m, af, sas, b, i, y, _array, _struct, _view, rsa, _ref, _tuple, _array$1, _struct$1, _array$2, _struct$2, _view$1, _view$2, sa, err, _ref$1, _array$3, _struct$3, _view$3, rsa4, sa$1, j, _array$4, _struct$4, _view$4, rsa6, sa$2, j$1;
 		m = this;
 		af = 0, sas = go$makeNativeArray("Interface", 4, function() { return null; });
@@ -3430,7 +3304,7 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		return new (go$sliceType(Sockaddr))(sas);
 	};
 	RouteMessage.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-0ÇsockaddrÇ˜	InterfaceMessage.Ptr.prototype.sockaddr = function() {
+ 0Ç  Ç˜	InterfaceMessage.Ptr.prototype.sockaddr = function() {
 		var sas, m, _tuple, _array, _struct, _view, sa, err;
 		sas = (go$sliceType(Sockaddr)).nil;
 		m = this;
@@ -3447,7 +3321,7 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		return sas;
 	};
 	InterfaceMessage.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-0ÇØsockaddrÇ°	InterfaceAddrMessage.Ptr.prototype.sockaddr = function() {
+ 0Ç´  Ç°	InterfaceAddrMessage.Ptr.prototype.sockaddr = function() {
 		var sas, m, b, preferredFamily, i, y, _array, _struct, _view, rsa, _ref, _tuple, _array$1, _struct$1, _array$2, _struct$2, _view$1, _view$2, sa, err, _ref$1, _ref$2, _tuple$1, _array$3, _struct$3, _array$4, _struct$4, _view$3, _view$4, sa$1, err$1;
 		sas = (go$sliceType(Sockaddr)).nil;
 		m = this;
@@ -3510,7 +3384,7 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		return sas;
 	};
 	InterfaceAddrMessage.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-0ÇUParseRoutingMessageÇ<	var ParseRoutingMessage = go$pkg.ParseRoutingMessage = function(b) {
+ 0ÇU ParseRoutingMessageÇ8	ParseRoutingMessage = go$pkg.ParseRoutingMessage = function(b) {
 		var msgs, err, _array, _struct, _view, any, _tuple, _tuple$1;
 		msgs = (go$sliceType(RoutingMessage)).nil;
 		err = null;
@@ -3526,14 +3400,14 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		_tuple$1 = [msgs, null], msgs = _tuple$1[0], err = _tuple$1[1];
 		return [msgs, err];
 	};
-0Ç#ParseRoutingSockaddrÇ		var ParseRoutingSockaddr = go$pkg.ParseRoutingSockaddr = function(msg) {
+ 0Ç# ParseRoutingSockaddrÇ	ParseRoutingSockaddr = go$pkg.ParseRoutingSockaddr = function(msg) {
 		var sas, err, _tuple;
 		sas = (go$sliceType(Sockaddr)).nil;
 		err = null;
 		_tuple = [go$appendSlice(sas, msg.sockaddr()), null], sas = _tuple[0], err = _tuple[1];
 		return [sas, err];
 	};
-0Ç$ƒtoRoutingMessageÇ$Æ	anyMessage.Ptr.prototype.toRoutingMessage = function(b) {
+ 0Ç$∏  Ç$Æ	anyMessage.Ptr.prototype.toRoutingMessage = function(b) {
 		var any, _ref, _array, _struct, _array$1, _struct$1, _view, _view$1, p, _struct$2, _struct$3, _array$2, _struct$4, _array$3, _struct$5, _view$2, _view$3, p$1, _struct$6, _struct$7, _struct$8, _array$4, _struct$9, _array$5, _struct$10, _view$4, _view$5, p$2, _struct$11, _array$6, _struct$12, _array$7, _struct$13, _view$6, _view$7, p$3, _struct$14;
 		any = this;
 		_ref = any.Type;
@@ -3561,7 +3435,7 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		return null;
 	};
 	anyMessage.prototype.toRoutingMessage = function(b) { return this.go$val.toRoutingMessage(b); };
-0ÇHsockaddrÇ:	InterfaceMulticastAddrMessage.Ptr.prototype.sockaddr = function() {
+ 0ÇD  Ç:	InterfaceMulticastAddrMessage.Ptr.prototype.sockaddr = function() {
 		var sas, m, b, i, y, _array, _struct, _view, rsa, _ref, _tuple, _array$1, _struct$1, _array$2, _struct$2, _view$1, _view$2, sa, e;
 		sas = (go$sliceType(Sockaddr)).nil;
 		m = this;
@@ -3595,24 +3469,24 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		return sas;
 	};
 	InterfaceMulticastAddrMessage.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-0ÅÆcmsgAlignOfÅû	var cmsgAlignOf = function(salen) {
+ 0ÅÆ cmsgAlignOfÅö	cmsgAlignOf = function(salen) {
 		var salign;
 		salign = 8;
 		salign = 4;
 		return (((salen + salign >> 0) - 1 >> 0)) & (~((salign - 1 >> 0)) >> 0);
 	};
-0lCmsgLena	var CmsgLen = go$pkg.CmsgLen = function(datalen) {
+ 0l CmsgLen]	CmsgLen = go$pkg.CmsgLen = function(datalen) {
 		return cmsgAlignOf(12) + datalen >> 0;
 	};
-0	CmsgSpacer	var CmsgSpace = go$pkg.CmsgSpace = function(datalen) {
+ 0 	CmsgSpacen	CmsgSpace = go$pkg.CmsgSpace = function(datalen) {
 		return cmsgAlignOf(12) + cmsgAlignOf(datalen) >> 0;
 	};
-0ÅücmsgDataÅí	var cmsgData = function(h) {
+ 0Åü cmsgDataÅé	cmsgData = function(h) {
 		var _array, _struct, _view;
 		_array = new Uint8Array(12);
 		return (_array + (cmsgAlignOf(12) >>> 0) >>> 0);
 	};
-0ÇParseSocketControlMessageÇ`	var ParseSocketControlMessage = go$pkg.ParseSocketControlMessage = function(b) {
+ 0Ç ParseSocketControlMessageÇ\	ParseSocketControlMessage = go$pkg.ParseSocketControlMessage = function(b) {
 		var msgs, i, _tuple, h, dbuf, err, _struct, m, _struct$1, _struct$2;
 		msgs = (go$sliceType(SocketControlMessage)).nil;
 		i = 0;
@@ -3627,7 +3501,7 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		}
 		return [msgs, null];
 	};
-0ÇB!socketControlMessageHeaderAndDataÇ	var socketControlMessageHeaderAndData = function(b) {
+ 0ÇB !socketControlMessageHeaderAndDataÇ	socketControlMessageHeaderAndData = function(b) {
 		var _array, _struct, _view, h;
 		h = (_array = go$sliceToArray(b), _struct = new Cmsghdr.Ptr(), _view = new DataView(_array.buffer, _array.byteOffset), _struct.Len = _view.getUint32(0, true), _struct.Level = _view.getInt32(4, true), _struct.Type = _view.getInt32(8, true), _struct);
 		if (h.Len < 12 || (h.Len >> 0) > b.length) {
@@ -3635,8 +3509,8 @@ rsaAlignOfÅ»	var rsaAlignOf = function(salen) {
 		}
 		return [h, go$subslice(b, cmsgAlignOf(12), h.Len), null];
 	};
-0Ç÷
-UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
+ 0Ç÷ 
+UnixRightsÇ¬	UnixRights = go$pkg.UnixRights = function(fds) {
 		var x, x$1, datalen, b, _array, _struct, _view, h, data, _ref, _i, _slice, _index, fd;
 		datalen = (x = fds.length, x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
 		b = (go$sliceType(Go$Uint8)).make(CmsgSpace(datalen), 0, function() { return 0; });
@@ -3655,7 +3529,7 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		}
 		return b;
 	};
-0ÇçParseUnixRightsÇx	var ParseUnixRights = go$pkg.ParseUnixRights = function(m) {
+ 0Çç ParseUnixRightsÇt	ParseUnixRights = go$pkg.ParseUnixRights = function(m) {
 		var fds, _tuple, i, j, _slice, _index, _slice$1, _index$1;
 		if (!((m.Header.Level === 65535))) {
 			return [(go$sliceType(Go$Int)).nil, new Errno(22)];
@@ -3672,7 +3546,7 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		}
 		return [fds, null];
 	};
-0Ç\itoaÇR	var itoa = function(val) {
+ 0Ç\ itoaÇN	itoa = function(val) {
 		var buf, i, _r, _q;
 		if (val < 0) {
 			return "-" + itoa(-val);
@@ -3687,7 +3561,7 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		buf[i] = ((val + 48 >> 0) << 24 >>> 24);
 		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(buf), i));
 	};
-0ÇCStringByteSliceÇ.	var StringByteSlice = go$pkg.StringByteSlice = function(s) {
+ 0ÇC StringByteSliceÇ*	StringByteSlice = go$pkg.StringByteSlice = function(s) {
 		var _tuple, a, err;
 		_tuple = ByteSliceFromString(s), a = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -3695,7 +3569,7 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		}
 		return a;
 	};
-0ÇáByteSliceFromStringÇn	var ByteSliceFromString = go$pkg.ByteSliceFromString = function(s) {
+ 0Çá ByteSliceFromStringÇj	ByteSliceFromString = go$pkg.ByteSliceFromString = function(s) {
 		var i, a;
 		i = 0;
 		while (i < s.length) {
@@ -3708,11 +3582,11 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		go$copyString(a, s);
 		return [a, null];
 	};
-0Ç/StringBytePtrÇ	var StringBytePtr = go$pkg.StringBytePtr = function(s) {
+ 0Ç/ StringBytePtrÇ	StringBytePtr = go$pkg.StringBytePtr = function(s) {
 		var v, _slice, _index, _slice$1, _index$1;
 		return new (go$ptrType(Go$Uint8))(function() { return (_slice = StringByteSlice(s), _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v) { _slice$1 = StringByteSlice(s), _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v) : go$throwRuntimeError("index out of range"); });
 	};
-0Ç–BytePtrFromStringÇπ	var BytePtrFromString = go$pkg.BytePtrFromString = function(s) {
+ 0Ç– BytePtrFromStringÇµ	BytePtrFromString = go$pkg.BytePtrFromString = function(s) {
 		var _tuple, a, err, v, _slice, _index, _slice$1, _index$1;
 		_tuple = ByteSliceFromString(s), a = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -3720,7 +3594,7 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		}
 		return [new (go$ptrType(Go$Uint8))(function() { return (_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v) { _slice$1 = a, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v) : go$throwRuntimeError("index out of range"); }), null];
 	};
-0Ç:UnixÇ0	Timespec.Ptr.prototype.Unix = function() {
+ 0Ç:  Ç0	Timespec.Ptr.prototype.Unix = function() {
 		var sec, nsec, ts, _tuple;
 		sec = new Go$Int64(0, 0);
 		nsec = new Go$Int64(0, 0);
@@ -3729,7 +3603,7 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		return [sec, nsec];
 	};
 	Timespec.prototype.Unix = function() { return this.go$val.Unix(); };
-0ÇjUnixÇ`	Timeval.Ptr.prototype.Unix = function() {
+ 0Çj  Ç`	Timeval.Ptr.prototype.Unix = function() {
 		var sec, nsec, tv, _tuple;
 		sec = new Go$Int64(0, 0);
 		nsec = new Go$Int64(0, 0);
@@ -3738,19 +3612,19 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		return [sec, nsec];
 	};
 	Timeval.prototype.Unix = function() { return this.go$val.Unix(); };
-0ÇNanoÇ	Timespec.Ptr.prototype.Nano = function() {
+ 0Ç  Ç	Timespec.Ptr.prototype.Nano = function() {
 		var ts, x, x$1;
 		ts = this;
 		return (x = go$mul64(ts.Sec, new Go$Int64(0, 1000000000)), x$1 = ts.Nsec, new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 	};
 	Timespec.prototype.Nano = function() { return this.go$val.Nano(); };
-0ÇNNanoÇD	Timeval.Ptr.prototype.Nano = function() {
+ 0ÇN  ÇD	Timeval.Ptr.prototype.Nano = function() {
 		var tv, x, x$1;
 		tv = this;
 		return (x = go$mul64(tv.Sec, new Go$Int64(0, 1000000000)), x$1 = go$mul64(new Go$Int64(0, tv.Usec), new Go$Int64(0, 1000)), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 	};
 	Timeval.prototype.Nano = function() { return this.go$val.Nano(); };
-0Ç	GetgroupsÇÙ	var Getgroups = go$pkg.Getgroups = function() {
+ 0Ç 	GetgroupsÇ	Getgroups = go$pkg.Getgroups = function() {
 		var gids, err, _tuple, n, _tuple$1, _tuple$2, _tuple$3, a, _tuple$4, v, _slice, _index, _slice$1, _index$1, _tuple$5, _ref, _i, _slice$2, _index$2, v$1, i, _slice$3, _index$3;
 		gids = (go$sliceType(Go$Int)).nil;
 		err = null;
@@ -3784,7 +3658,7 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		}
 		return [gids, err];
 	};
-0Ç⁄	SetgroupsÇÀ	var Setgroups = go$pkg.Setgroups = function(gids) {
+ 0Ç⁄ 	SetgroupsÇ«	Setgroups = go$pkg.Setgroups = function(gids) {
 		var err, a, _ref, _i, _slice, _index, v, i, _slice$1, _index$1, v$1, _slice$2, _index$2, _slice$3, _index$3;
 		err = null;
 		if (gids.length === 0) {
@@ -3803,22 +3677,21 @@ UnixRightsÇ∆	var UnixRights = go$pkg.UnixRights = function(fds) {
 		err = setgroups(a.length, new (go$ptrType(_Gid_t))(function() { return (_slice$2 = a, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")); }, function(v$1) { _slice$3 = a, _index$3 = 0, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = v$1) : go$throwRuntimeError("index out of range"); }));
 		return err;
 	};
-0Å„
-ReadDirentÅ‘	var ReadDirent = go$pkg.ReadDirent = function(fd, buf) {
+ 0Å„ 
+ReadDirentÅ–	ReadDirent = go$pkg.ReadDirent = function(fd, buf) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = Getdirentries(fd, buf, new Uint8Array(8)), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
-0Å„ExitedÅÿ	WaitStatus.prototype.Exited = function() {
+ 0Å·  Åÿ	WaitStatus.prototype.Exited = function() {
 		var w;
 		w = this.go$val;
 		return ((w & 127) >>> 0) === 0;
 	};
 	go$ptrType(WaitStatus).prototype.Exited = function() { return new WaitStatus(this.go$get()).Exited(); };
-0Ç+
-ExitStatusÇ	WaitStatus.prototype.ExitStatus = function() {
+ 0Ç%  Ç	WaitStatus.prototype.ExitStatus = function() {
 		var w;
 		w = this.go$val;
 		if (!((((w & 127) >>> 0) === 0))) {
@@ -3827,13 +3700,13 @@ ExitStatusÇ	WaitStatus.prototype.ExitStatus = function() {
 		return ((w >>> 8 >>> 0) >> 0);
 	};
 	go$ptrType(WaitStatus).prototype.ExitStatus = function() { return new WaitStatus(this.go$get()).ExitStatus(); };
-0ÇSignaledÇ	WaitStatus.prototype.Signaled = function() {
+ 0Ç  Ç	WaitStatus.prototype.Signaled = function() {
 		var w;
 		w = this.go$val;
 		return !((((w & 127) >>> 0) === 127)) && !((((w & 127) >>> 0) === 0));
 	};
 	go$ptrType(WaitStatus).prototype.Signaled = function() { return new WaitStatus(this.go$get()).Signaled(); };
-0Ç/SignalÇ#	WaitStatus.prototype.Signal = function() {
+ 0Ç-  Ç#	WaitStatus.prototype.Signal = function() {
 		var w, sig;
 		w = this.go$val;
 		sig = (((w & 127) >>> 0) >> 0);
@@ -3843,26 +3716,25 @@ ExitStatusÇ	WaitStatus.prototype.ExitStatus = function() {
 		return sig;
 	};
 	go$ptrType(WaitStatus).prototype.Signal = function() { return new WaitStatus(this.go$get()).Signal(); };
-0ÇCoreDumpÇ	WaitStatus.prototype.CoreDump = function() {
+ 0Ç  Ç	WaitStatus.prototype.CoreDump = function() {
 		var w;
 		w = this.go$val;
 		return (new WaitStatus(w)).Signaled() && !((((w & 128) >>> 0) === 0));
 	};
 	go$ptrType(WaitStatus).prototype.CoreDump = function() { return new WaitStatus(this.go$get()).CoreDump(); };
-0ÇStoppedÇ	WaitStatus.prototype.Stopped = function() {
+ 0Ç  Ç	WaitStatus.prototype.Stopped = function() {
 		var w;
 		w = this.go$val;
 		return (((w & 127) >>> 0) === 127) && !((((w >>> 8 >>> 0) >> 0) === 17));
 	};
 	go$ptrType(WaitStatus).prototype.Stopped = function() { return new WaitStatus(this.go$get()).Stopped(); };
-0Ç	ContinuedÇ	WaitStatus.prototype.Continued = function() {
+ 0Ç  Ç	WaitStatus.prototype.Continued = function() {
 		var w;
 		w = this.go$val;
 		return (((w & 127) >>> 0) === 127) && (((w >>> 8 >>> 0) >> 0) === 17);
 	};
 	go$ptrType(WaitStatus).prototype.Continued = function() { return new WaitStatus(this.go$get()).Continued(); };
-0Ç3
-StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
+ 0Ç-  Ç#	WaitStatus.prototype.StopSignal = function() {
 		var w;
 		w = this.go$val;
 		if (!(new WaitStatus(w)).Stopped()) {
@@ -3871,13 +3743,13 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		return ((w >>> 8 >>> 0) >> 0) & 255;
 	};
 	go$ptrType(WaitStatus).prototype.StopSignal = function() { return new WaitStatus(this.go$get()).StopSignal(); };
-0Å⁄	TrapCauseÅÃ	WaitStatus.prototype.TrapCause = function() {
+ 0Å’  ÅÃ	WaitStatus.prototype.TrapCause = function() {
 		var w;
 		w = this.go$val;
 		return -1;
 	};
 	go$ptrType(WaitStatus).prototype.TrapCause = function() { return new WaitStatus(this.go$get()).TrapCause(); };
-0ÇƒWait4Çπ	var Wait4 = go$pkg.Wait4 = function(pid, wstatus, options, rusage) {
+ 0Çƒ Wait4Çµ	Wait4 = go$pkg.Wait4 = function(pid, wstatus, options, rusage) {
 		var wpid, err, status, _tuple, v;
 		wpid = 0;
 		err = null;
@@ -3888,7 +3760,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		}
 		return [wpid, err];
 	};
-0ÇúsockaddrÇé	SockaddrInet4.Ptr.prototype.sockaddr = function() {
+ 0Çò  Çé	SockaddrInet4.Ptr.prototype.sockaddr = function() {
 		var sa, v, p, i, _array, _struct, _view;
 		sa = this;
 		if (sa.Port < 0 || sa.Port > 65535) {
@@ -3908,7 +3780,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		return [_array, (sa.raw.Len >>> 0), null];
 	};
 	SockaddrInet4.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-0ÇΩsockaddrÇØ	SockaddrInet6.Ptr.prototype.sockaddr = function() {
+ 0Çπ  ÇØ	SockaddrInet6.Ptr.prototype.sockaddr = function() {
 		var sa, v, p, i, _array, _struct, _view;
 		sa = this;
 		if (sa.Port < 0 || sa.Port > 65535) {
@@ -3929,7 +3801,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		return [_array, (sa.raw.Len >>> 0), null];
 	};
 	SockaddrInet6.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-0Ç2sockaddrÇ$	SockaddrUnix.Ptr.prototype.sockaddr = function() {
+ 0Ç.  Ç$	SockaddrUnix.Ptr.prototype.sockaddr = function() {
 		var sa, name, n, i, _array, _struct, _view;
 		sa = this;
 		name = sa.Name;
@@ -3948,7 +3820,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		return [_array, (sa.raw.Len >>> 0), null];
 	};
 	SockaddrUnix.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-0ÇJsockaddrÇ<	SockaddrDatalink.Ptr.prototype.sockaddr = function() {
+ 0ÇF  Ç<	SockaddrDatalink.Ptr.prototype.sockaddr = function() {
 		var sa, i, _array, _struct, _view;
 		sa = this;
 		if (sa.Index === 0) {
@@ -3970,7 +3842,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		return [_array, 20, null];
 	};
 	SockaddrDatalink.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
-0ÇªanyToSockaddrÇ®	var anyToSockaddr = function(rsa) {
+ 0Çª anyToSockaddrÇ§	anyToSockaddr = function(rsa) {
 		var _ref, _array, _struct, _array$1, _struct$1, _view, _view$1, pp, sa, i, _array$2, _struct$2, _array$3, _struct$3, _view$2, _view$3, pp$1, sa$1, n, i$1, bytes, _array$4, _struct$4, _array$5, _struct$5, _view$4, _view$5, pp$2, sa$2, v, p, i$2, _array$6, _struct$6, _array$7, _struct$7, _view$6, _view$7, pp$3, sa$3, v$1, p$1, i$3;
 		_ref = rsa.Addr.Family;
 		if (_ref === 18) {
@@ -4041,7 +3913,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		}
 		return [null, new Errno(47)];
 	};
-0Ç˚AcceptÇÔ	var Accept = go$pkg.Accept = function(fd) {
+ 0Ç˚ AcceptÇÎ	Accept = go$pkg.Accept = function(fd) {
 		var nfd, sa, err, rsa, len, _tuple, v, _tuple$1, _tuple$2;
 		nfd = 0;
 		sa = null;
@@ -4064,7 +3936,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		}
 		return [nfd, sa, err];
 	};
-0Ç¿GetsocknameÇØ	var Getsockname = go$pkg.Getsockname = function(fd) {
+ 0Ç¿ GetsocknameÇ´	Getsockname = go$pkg.Getsockname = function(fd) {
 		var sa, err, rsa, len, v, _tuple;
 		sa = null;
 		err = null;
@@ -4076,7 +3948,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_tuple = anyToSockaddr(rsa), sa = _tuple[0], err = _tuple[1];
 		return [sa, err];
 	};
-0ÇﬁGetsockoptByteÇ 	var GetsockoptByte = go$pkg.GetsockoptByte = function(fd, level, opt) {
+ 0Çﬁ GetsockoptByteÇ∆	GetsockoptByte = go$pkg.GetsockoptByte = function(fd, level, opt) {
 		var value, err, n, vallen, v, v$1, _tuple;
 		value = 0;
 		err = null;
@@ -4086,7 +3958,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_tuple = [n, err], value = _tuple[0], err = _tuple[1];
 		return [value, err];
 	};
-0Ç[GetsockoptInet4AddrÇB	var GetsockoptInet4Addr = go$pkg.GetsockoptInet4Addr = function(fd, level, opt) {
+ 0Ç[ GetsockoptInet4AddrÇ>	GetsockoptInet4Addr = go$pkg.GetsockoptInet4Addr = function(fd, level, opt) {
 		var value, err, vallen, v, _tuple;
 		value = go$makeNativeArray("Uint8", 4, function() { return 0; });
 		err = null;
@@ -4095,7 +3967,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_tuple = [go$mapArray(value, function(entry) { return entry; }), err], value = _tuple[0], err = _tuple[1];
 		return [go$mapArray(value, function(entry) { return entry; }), err];
 	};
-0Ç¿GetsockoptIPMreqÇ™	var GetsockoptIPMreq = go$pkg.GetsockoptIPMreq = function(fd, level, opt) {
+ 0Ç¿ GetsockoptIPMreqÇ¶	GetsockoptIPMreq = go$pkg.GetsockoptIPMreq = function(fd, level, opt) {
 		var value, vallen, _array, _struct, _view, v, err;
 		value = new IPMreq.Ptr();
 		vallen = 8;
@@ -4104,7 +3976,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_struct = value, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Multiaddr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength)), _struct.Interface = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 4, _array.buffer.byteLength));
 		return [value, err];
 	};
-0Ç~GetsockoptIPv6MreqÇf	var GetsockoptIPv6Mreq = go$pkg.GetsockoptIPv6Mreq = function(fd, level, opt) {
+ 0Ç~ GetsockoptIPv6MreqÇb	GetsockoptIPv6Mreq = go$pkg.GetsockoptIPv6Mreq = function(fd, level, opt) {
 		var value, vallen, _array, _struct, _view, v, err;
 		value = new IPv6Mreq.Ptr();
 		vallen = 20;
@@ -4113,7 +3985,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_struct = value, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Multiaddr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength)), _struct.Interface = _view.getUint32(16, true);
 		return [value, err];
 	};
-0ÇrGetsockoptIPv6MTUInfoÇW	var GetsockoptIPv6MTUInfo = go$pkg.GetsockoptIPv6MTUInfo = function(fd, level, opt) {
+ 0Çr GetsockoptIPv6MTUInfoÇS	GetsockoptIPv6MTUInfo = go$pkg.GetsockoptIPv6MTUInfo = function(fd, level, opt) {
 		var value, vallen, _array, _struct, _view, v, err;
 		value = new IPv6MTUInfo.Ptr();
 		vallen = 32;
@@ -4122,7 +3994,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_struct = value, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Addr.Len = _view.getUint8(0, true), _struct.Addr.Family = _view.getUint8(1, true), _struct.Addr.Port = _view.getUint16(2, true), _struct.Addr.Flowinfo = _view.getUint32(4, true), _struct.Addr.Addr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 8, _array.buffer.byteLength)), _struct.Addr.Scope_id = _view.getUint32(24, true), _struct.Mtu = _view.getUint32(28, true);
 		return [value, err];
 	};
-0Ç[GetsockoptICMPv6FilterÇ?	var GetsockoptICMPv6Filter = go$pkg.GetsockoptICMPv6Filter = function(fd, level, opt) {
+ 0Ç[ GetsockoptICMPv6FilterÇ;	GetsockoptICMPv6Filter = go$pkg.GetsockoptICMPv6Filter = function(fd, level, opt) {
 		var value, vallen, _array, _struct, _view, v, err;
 		value = new ICMPv6Filter.Ptr();
 		vallen = 32;
@@ -4131,7 +4003,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_struct = value, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Filt = new (go$nativeArray("Uint32"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength));
 		return [value, err];
 	};
-0Ç#RecvmsgÇ	var Recvmsg = go$pkg.Recvmsg = function(fd, p, oob, flags) {
+ 0Ç# RecvmsgÇ	Recvmsg = go$pkg.Recvmsg = function(fd, p, oob, flags) {
 		var n, oobn, recvflags, from, err, msg, rsa, _array, _struct, _view, iov, dummy, v, _tuple, _tuple$1;
 		n = 0;
 		oobn = 0;
@@ -4170,7 +4042,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		}
 		return [n, oobn, recvflags, from, err];
 	};
-0Ç∫SendmsgÇ≠	var Sendmsg = go$pkg.Sendmsg = function(fd, p, oob, to, flags) {
+ 0Ç∫ SendmsgÇ©	Sendmsg = go$pkg.Sendmsg = function(fd, p, oob, to, flags) {
 		var err, ptr, salen, _tuple, msg, iov, dummy, v;
 		err = null;
 		ptr = 0;
@@ -4205,7 +4077,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		}
 		return err;
 	};
-0ÇÁKeventÇ€	var Kevent = go$pkg.Kevent = function(kq, changes, events, timeout) {
+ 0ÇÁ KeventÇ◊	Kevent = go$pkg.Kevent = function(kq, changes, events, timeout) {
 		var n, err, _tuple, change, event, _tuple$1;
 		n = 0;
 		err = null;
@@ -4219,7 +4091,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_tuple$1 = kevent(kq, change, changes.length, event, events.length, timeout), n = _tuple$1[0], err = _tuple$1[1];
 		return [n, err];
 	};
-0Ç§SysctlÇò	var Sysctl = go$pkg.Sysctl = function(name) {
+ 0Ç§ SysctlÇî	Sysctl = go$pkg.Sysctl = function(name) {
 		var value, err, _tuple, mib, _tuple$1, n, v, _tuple$2, _tuple$3, buf, v$1, _slice, _index, _slice$1, _index$1, v$2, _tuple$4, _slice$2, _index$2, _tuple$5;
 		value = "";
 		err = null;
@@ -4248,7 +4120,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_tuple$5 = [go$bytesToString(go$subslice(buf, 0, n)), null], value = _tuple$5[0], err = _tuple$5[1];
 		return [value, err];
 	};
-0ÇSysctlUint32Ç	var SysctlUint32 = go$pkg.SysctlUint32 = function(name) {
+ 0Ç SysctlUint32Ç		SysctlUint32 = go$pkg.SysctlUint32 = function(name) {
 		var value, err, _tuple, mib, _tuple$1, n, buf, v, _slice, _index, _slice$1, _index$1, v$1, _tuple$2, _tuple$3, _slice$2, _index$2, _tuple$4;
 		value = 0;
 		err = null;
@@ -4270,7 +4142,7 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		_tuple$4 = [(_slice$2 = buf, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), null], value = _tuple$4[0], err = _tuple$4[1];
 		return [value, err];
 	};
-0Å›UtimesÅ“	var Utimes = go$pkg.Utimes = function(path, tv) {
+ 0Å› UtimesÅŒ	Utimes = go$pkg.Utimes = function(path, tv) {
 		var err;
 		err = null;
 		if (!((tv.length === 2))) {
@@ -4280,8 +4152,8 @@ StopSignalÇ#	WaitStatus.prototype.StopSignal = function() {
 		err = utimes(path, go$sliceToArray(tv));
 		return err;
 	};
-0ÇM
-UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
+ 0ÇM 
+UtimesNanoÇ9	UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		var _slice, _index, _struct, _struct$1, _slice$1, _index$1, _struct$2, _struct$3, tv;
 		if (!((ts.length === 2))) {
 			return new Errno(22);
@@ -4289,7 +4161,7 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		tv = go$toNativeArray("Struct", [(_struct$1 = NsecToTimeval(TimespecToNsec((_struct = (_slice = ts, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Timespec.Ptr(_struct.Sec, _struct.Nsec)))), new Timeval.Ptr(_struct$1.Sec, _struct$1.Usec, go$mapArray(_struct$1.Pad_cgo_0, function(entry) { return entry; }))), (_struct$3 = NsecToTimeval(TimespecToNsec((_struct$2 = (_slice$1 = ts, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Timespec.Ptr(_struct$2.Sec, _struct$2.Nsec)))), new Timeval.Ptr(_struct$3.Sec, _struct$3.Usec, go$mapArray(_struct$3.Pad_cgo_0, function(entry) { return entry; })))]);
 		return utimes(path, go$sliceToArray(new (go$sliceType(Go$Uint8))(tv)));
 	};
-0Å›FutimesÅ—	var Futimes = go$pkg.Futimes = function(fd, tv) {
+ 0Å› FutimesÅÕ	Futimes = go$pkg.Futimes = function(fd, tv) {
 		var err;
 		err = null;
 		if (!((tv.length === 2))) {
@@ -4299,21 +4171,20 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		err = futimes(fd, go$sliceToArray(tv));
 		return err;
 	};
-0ÇMmapÇ
-	var Mmap = go$pkg.Mmap = function(fd, offset, length, prot, flags) {
+ 0Ç MmapÇ	Mmap = go$pkg.Mmap = function(fd, offset, length, prot, flags) {
 		var data, err, _tuple;
 		data = (go$sliceType(Go$Uint8)).nil;
 		err = null;
 		_tuple = mapper.Mmap(fd, offset, length, prot, flags), data = _tuple[0], err = _tuple[1];
 		return [data, err];
 	};
-0{Munmapq	var Munmap = go$pkg.Munmap = function(b) {
+ 0{ Munmapm	Munmap = go$pkg.Munmap = function(b) {
 		var err;
 		err = null;
 		err = mapper.Munmap(b);
 		return err;
 	};
-0Ç£GetwdÇò	var Getwd = go$pkg.Getwd = function() {
+ 0Ç£ GetwdÇî	Getwd = go$pkg.Getwd = function() {
 		var buf, _tuple, attrs, err, _slice, _index, _slice$1, _index$1, wd;
 		buf = (go$sliceType(Go$Uint8)).make(2048, 0, function() { return 0; });
 		_tuple = getAttrList(".", new attrList.Ptr(0, 0, 134217728, 0, 0, 0, 0), buf, 0), attrs = _tuple[0], err = _tuple[1];
@@ -4325,7 +4196,7 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		}
 		return ["", new Errno(45)];
 	};
-0Ç		nametomibÇ˙	var nametomib = function(name) {
+ 0Ç	 	nametomibÇˆ	nametomib = function(name) {
 		var mib, err, buf, n, p, _tuple, bytes, _tuple$1, v, v$1, _slice, _index, _slice$1, _index$1, _tuple$2, _q, _tuple$3;
 		mib = (go$sliceType(_C_int)).nil;
 		err = null;
@@ -4344,7 +4215,7 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		_tuple$3 = [go$subslice(new (go$sliceType(_C_int))(buf), 0, (_q = n / 4, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero"))), null], mib = _tuple$3[0], err = _tuple$3[1];
 		return [mib, err];
 	};
-0ÇΩParseDirentÇ¨	var ParseDirent = go$pkg.ParseDirent = function(buf, max, names) {
+ 0ÇΩ ParseDirentÇ®	ParseDirent = go$pkg.ParseDirent = function(buf, max, names) {
 		var consumed, count, newnames, origlen, dirent, _array, _struct, _view, x, bytes, name, _tuple;
 		consumed = 0;
 		count = 0;
@@ -4373,19 +4244,19 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		_tuple = [origlen - buf.length >> 0, count, names], consumed = _tuple[0], count = _tuple[1], newnames = _tuple[2];
 		return [consumed, count, newnames];
 	};
-0ÅïPtraceAttachÅÑ	var PtraceAttach = go$pkg.PtraceAttach = function(pid) {
+ 0Åï PtraceAttachÅÄ	PtraceAttach = go$pkg.PtraceAttach = function(pid) {
 		var err;
 		err = null;
 		err = ptrace(10, pid, 0, 0);
 		return err;
 	};
-0ÅïPtraceDetachÅÑ	var PtraceDetach = go$pkg.PtraceDetach = function(pid) {
+ 0Åï PtraceDetachÅÄ	PtraceDetach = go$pkg.PtraceDetach = function(pid) {
 		var err;
 		err = null;
 		err = ptrace(11, pid, 0, 0);
 		return err;
 	};
-0Ç˙getAttrListÇÈ	var getAttrList = function(path, attrList$1, attrBuf, options) {
+ 0Ç˙ getAttrListÇÂ	getAttrList = function(path, attrList$1, attrBuf, options) {
 		var attrs, err, _tuple, _p0, _tuple$1, _tuple$2, _tuple$3, _array, _struct, _view, e1, _tuple$4, _slice, _index, size, dat, i, header, _tuple$5, _slice$1, _index$1, datOff, _slice$2, _index$2, attrLen, _tuple$6, end, r, _r;
 		attrs = (go$sliceType((go$sliceType(Go$Uint8)))).nil;
 		err = null;
@@ -4436,7 +4307,7 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		}
 		return [attrs, err];
 	};
-0ÇKPipeÇA	var Pipe = go$pkg.Pipe = function(p) {
+ 0ÇK PipeÇ=	Pipe = go$pkg.Pipe = function(p) {
 		var err, _tuple, _slice, _index, _slice$1, _index$1;
 		err = null;
 		if (!((p.length === 2))) {
@@ -4446,31 +4317,31 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		_tuple = pipe(), _slice = p, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$1 = p, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = _tuple[1]) : go$throwRuntimeError("index out of range"), err = _tuple[2];
 		return err;
 	};
-0ÅãKillÅÇ	var Kill = go$pkg.Kill = function(pid, signum) {
+ 0Åä Kill~	Kill = go$pkg.Kill = function(pid, signum) {
 		var err;
 		err = null;
 		err = kill(pid, (signum >> 0), 1);
 		return err;
 	};
-0WGetpagesizeH	var Getpagesize = go$pkg.Getpagesize = function() {
+ 0W GetpagesizeD	Getpagesize = go$pkg.Getpagesize = function() {
 		return 4096;
 	};
-0Å·TimespecToNsecÅŒ	var TimespecToNsec = go$pkg.TimespecToNsec = function(ts) {
+ 0Å· TimespecToNsecÅ 	TimespecToNsec = go$pkg.TimespecToNsec = function(ts) {
 		var x, x$1;
 		return (x = go$mul64(ts.Sec, new Go$Int64(0, 1000000000)), x$1 = ts.Nsec, new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 	};
-0ÇINsecToTimespecÇ5	var NsecToTimespec = go$pkg.NsecToTimespec = function(nsec) {
+ 0ÇI NsecToTimespecÇ1	NsecToTimespec = go$pkg.NsecToTimespec = function(nsec) {
 		var ts, _struct;
 		ts = new Timespec.Ptr();
 		ts.Sec = go$div64(nsec, new Go$Int64(0, 1000000000), false);
 		ts.Nsec = go$div64(nsec, new Go$Int64(0, 1000000000), true);
 		return (_struct = ts, new Timespec.Ptr(_struct.Sec, _struct.Nsec));
 	};
-0ÇTimevalToNsecÅ˛	var TimevalToNsec = go$pkg.TimevalToNsec = function(tv) {
+ 0Ç TimevalToNsecÅ˙	TimevalToNsec = go$pkg.TimevalToNsec = function(tv) {
 		var x, x$1;
 		return (x = go$mul64(tv.Sec, new Go$Int64(0, 1000000000)), x$1 = go$mul64(new Go$Int64(0, tv.Usec), new Go$Int64(0, 1000)), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 	};
-0ÇNsecToTimevalÇ		var NsecToTimeval = go$pkg.NsecToTimeval = function(nsec) {
+ 0Ç NsecToTimevalÇ	NsecToTimeval = go$pkg.NsecToTimeval = function(nsec) {
 		var tv, x, _struct;
 		tv = new Timeval.Ptr();
 		nsec = new Go$Int64(nsec.high + 0, nsec.low + 999);
@@ -4478,7 +4349,7 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		tv.Sec = go$div64(nsec, new Go$Int64(0, 1000000000), false);
 		return (_struct = tv, new Timeval.Ptr(_struct.Sec, _struct.Usec, go$mapArray(_struct.Pad_cgo_0, function(entry) { return entry; })));
 	};
-0ÇGettimeofdayÅ˜	var Gettimeofday = go$pkg.Gettimeofday = function(tv) {
+ 0Ç GettimeofdayÅÛ	Gettimeofday = go$pkg.Gettimeofday = function(tv) {
 		var err, _tuple, sec, usec;
 		err = null;
 		_tuple = gettimeofday(tv), sec = _tuple[0], usec = _tuple[1], err = _tuple[2];
@@ -4487,30 +4358,30 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		err = err;
 		return err;
 	};
-0Å∫	SetKeventÅ¨	var SetKevent = go$pkg.SetKevent = function(k, fd, mode, flags) {
+ 0Å∫ 	SetKeventÅ®	SetKevent = go$pkg.SetKevent = function(k, fd, mode, flags) {
 		k.Ident = new Go$Uint64(0, fd);
 		k.Filter = (mode << 16 >> 16);
 		k.Flags = (flags << 16 >>> 16);
 	};
-0Å“SetLenÅ«	Iovec.Ptr.prototype.SetLen = function(length) {
+ 0Å–  Å«	Iovec.Ptr.prototype.SetLen = function(length) {
 		var iov;
 		iov = this;
 		iov.Len = new Go$Uint64(0, length);
 	};
 	Iovec.prototype.SetLen = function(length) { return this.go$val.SetLen(length); };
-0ÅˆSetControllenÅ‰	Msghdr.Ptr.prototype.SetControllen = function(length) {
+ 0ÅÌ  Å‰	Msghdr.Ptr.prototype.SetControllen = function(length) {
 		var msghdr;
 		msghdr = this;
 		msghdr.Controllen = (length >>> 0);
 	};
 	Msghdr.prototype.SetControllen = function(length) { return this.go$val.SetControllen(length); };
-0ÅœSetLenÅƒ	Cmsghdr.Ptr.prototype.SetLen = function(length) {
+ 0ÅÕ  Åƒ	Cmsghdr.Ptr.prototype.SetLen = function(length) {
 		var cmsg;
 		cmsg = this;
 		cmsg.Len = (length >>> 0);
 	};
 	Cmsghdr.prototype.SetLen = function(length) { return this.go$val.SetLen(length); };
-0Ç„sendfileÇ’	var sendfile = function(outfd, infd, offset, count) {
+ 0Ç„ sendfileÇ—	sendfile = function(outfd, infd, offset, count) {
 		var written, err, length, _tuple, v, e1;
 		written = 0;
 		err = null;
@@ -4522,23 +4393,23 @@ UtimesNanoÇ=	var UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		}
 		return [written, err];
 	};
-0Å¶Syscall9Åô	var Syscall9 = go$pkg.Syscall9 = function(num, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+ 0Å¶ Syscall9Åï	Syscall9 = go$pkg.Syscall9 = function(num, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
 		throw go$panic("Native function not implemented: Syscall9");
 	};
-0ÅäSyscall	var Syscall = go$pkg.Syscall = function(trap, a1, a2, a3) {
+ 0Åä Syscall{	Syscall = go$pkg.Syscall = function(trap, a1, a2, a3) {
 		throw go$panic("Native function not implemented: Syscall");
 	};
-0ÅõSyscall6Åé	var Syscall6 = go$pkg.Syscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
+ 0Åõ Syscall6Åä	Syscall6 = go$pkg.Syscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
 		throw go$panic("Native function not implemented: Syscall6");
 	};
-0Åó
-RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
+ 0Åó 
+RawSyscallÅÑ	RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		throw go$panic("Native function not implemented: RawSyscall");
 	};
-0ÅßRawSyscall6Åó	var RawSyscall6 = go$pkg.RawSyscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
+ 0Åß RawSyscall6Åì	RawSyscall6 = go$pkg.RawSyscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
 		throw go$panic("Native function not implemented: RawSyscall6");
 	};
-0ÇOMmapÇE	mmapper.Ptr.prototype.Mmap = function(fd, offset, length, prot, flags) {
+ 0ÇO  ÇE	mmapper.Ptr.prototype.Mmap = function(fd, offset, length, prot, flags) {
 		var data, err, m, _tuple, _tuple$1, addr, errno, _tuple$2, sl, b, v, _slice, _index, _slice$1, _index$1, p, _key, _tuple$3;
 		data = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -4570,7 +4441,7 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		}
 	};
 	mmapper.prototype.Mmap = function(fd, offset, length, prot, flags) { return this.go$val.Mmap(fd, offset, length, prot, flags); };
-0Ç∏MunmapÇ¨	mmapper.Ptr.prototype.Munmap = function(data) {
+ 0Ç∂  Ç¨	mmapper.Ptr.prototype.Munmap = function(data) {
 		var err, m, v, _slice, _index, _slice$1, _index$1, p, _entry, b, errno;
 		err = null;
 		var go$deferred = [];
@@ -4603,7 +4474,7 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		}
 	};
 	mmapper.prototype.Munmap = function(data) { return this.go$val.Munmap(data); };
-0Ç>ErrorÇ3	Errno.prototype.Error = function() {
+ 0Ç=  Ç3	Errno.prototype.Error = function() {
 		var e, s;
 		e = this.go$val;
 		if (0 <= (e >> 0) && (e >> 0) < 106) {
@@ -4615,24 +4486,24 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		return "errno " + itoa((e >> 0));
 	};
 	go$ptrType(Errno).prototype.Error = function() { return new Errno(this.go$get()).Error(); };
-0Å¸	TemporaryÅÓ	Errno.prototype.Temporary = function() {
+ 0Å˜  ÅÓ	Errno.prototype.Temporary = function() {
 		var e;
 		e = this.go$val;
 		return (e === 4) || (e === 24) || (new Errno(e)).Timeout();
 	};
 	go$ptrType(Errno).prototype.Temporary = function() { return new Errno(this.go$get()).Temporary(); };
-0ÅÁTimeoutÅ€	Errno.prototype.Timeout = function() {
+ 0Å‰  Å€	Errno.prototype.Timeout = function() {
 		var e;
 		e = this.go$val;
 		return (e === 35) || (e === 35) || (e === 60);
 	};
 	go$ptrType(Errno).prototype.Timeout = function() { return new Errno(this.go$get()).Timeout(); };
-0ÅµSignalÅ™	Signal.prototype.Signal = function() {
+ 0Å≥  Å™	Signal.prototype.Signal = function() {
 		var s;
 		s = this.go$val;
 	};
 	go$ptrType(Signal).prototype.Signal = function() { return new Signal(this.go$get()).Signal(); };
-0ÇGStringÇ;	Signal.prototype.String = function() {
+ 0ÇE  Ç;	Signal.prototype.String = function() {
 		var s, str;
 		s = this.go$val;
 		if (0 <= s && (s >> 0) < 32) {
@@ -4644,21 +4515,21 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		return "signal " + itoa((s >> 0));
 	};
 	go$ptrType(Signal).prototype.String = function() { return new Signal(this.go$get()).String(); };
-0Å±ReadÅ®	var Read = go$pkg.Read = function(fd, p) {
+ 0Å± ReadÅ§	Read = go$pkg.Read = function(fd, p) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = read(fd, p), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
-0ÅµWriteÅ´	var Write = go$pkg.Write = function(fd, p) {
+ 0Åµ WriteÅß	Write = go$pkg.Write = function(fd, p) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = write(fd, p), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
-0Ç#BindÇ	var Bind = go$pkg.Bind = function(fd, sa) {
+ 0Ç# BindÇ	Bind = go$pkg.Bind = function(fd, sa) {
 		var err, _tuple, ptr, n;
 		err = null;
 		_tuple = sa.sockaddr(), ptr = _tuple[0], n = _tuple[1], err = _tuple[2];
@@ -4669,7 +4540,7 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		err = bind(fd, ptr, n);
 		return err;
 	};
-0Ç/ConnectÇ"	var Connect = go$pkg.Connect = function(fd, sa) {
+ 0Ç/ ConnectÇ	Connect = go$pkg.Connect = function(fd, sa) {
 		var err, _tuple, ptr, n;
 		err = null;
 		_tuple = sa.sockaddr(), ptr = _tuple[0], n = _tuple[1], err = _tuple[2];
@@ -4680,7 +4551,7 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		err = connect(fd, ptr, n);
 		return err;
 	};
-0Ç¿GetpeernameÇØ	var Getpeername = go$pkg.Getpeername = function(fd) {
+ 0Ç¿ GetpeernameÇ´	Getpeername = go$pkg.Getpeername = function(fd) {
 		var sa, err, rsa, len, v, _tuple;
 		sa = null;
 		err = null;
@@ -4692,7 +4563,7 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		_tuple = anyToSockaddr(rsa), sa = _tuple[0], err = _tuple[1];
 		return [sa, err];
 	};
-0Ç‚GetsockoptIntÇœ	var GetsockoptInt = go$pkg.GetsockoptInt = function(fd, level, opt) {
+ 0Ç‚ GetsockoptIntÇÀ	GetsockoptInt = go$pkg.GetsockoptInt = function(fd, level, opt) {
 		var value, err, n, vallen, v, v$1, _tuple;
 		value = 0;
 		err = null;
@@ -4702,7 +4573,7 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		_tuple = [(n >> 0), err], value = _tuple[0], err = _tuple[1];
 		return [value, err];
 	};
-0Ç@RecvfromÇ2	var Recvfrom = go$pkg.Recvfrom = function(fd, p, flags) {
+ 0Ç@ RecvfromÇ.	Recvfrom = go$pkg.Recvfrom = function(fd, p, flags) {
 		var n, from, err, rsa, len, _tuple, v, _tuple$1;
 		n = 0;
 		from = null;
@@ -4717,7 +4588,7 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		}
 		return [n, from, err];
 	};
-0Ç?SendtoÇ3	var Sendto = go$pkg.Sendto = function(fd, p, flags, to) {
+ 0Ç? SendtoÇ/	Sendto = go$pkg.Sendto = function(fd, p, flags, to) {
 		var err, _tuple, ptr, n;
 		err = null;
 		_tuple = to.sockaddr(), ptr = _tuple[0], n = _tuple[1], err = _tuple[2];
@@ -4728,26 +4599,26 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		err = sendto(fd, p, flags, ptr, n);
 		return err;
 	};
-0ÇSetsockoptByteÅ˚	var SetsockoptByte = go$pkg.SetsockoptByte = function(fd, level, opt, value) {
+ 0Ç SetsockoptByteÅ˜	SetsockoptByte = go$pkg.SetsockoptByte = function(fd, level, opt, value) {
 		var err, v;
 		err = null;
 		err = setsockopt(fd, level, opt, new (go$ptrType(Go$Uint8))(function() { return value; }, function(v) { value = v; }), 1);
 		return err;
 	};
-0ÇSetsockoptIntÇ	var SetsockoptInt = go$pkg.SetsockoptInt = function(fd, level, opt, value) {
+ 0Ç SetsockoptIntÇ	SetsockoptInt = go$pkg.SetsockoptInt = function(fd, level, opt, value) {
 		var err, n, v;
 		err = null;
 		n = (value >> 0);
 		err = setsockopt(fd, level, opt, new (go$ptrType(Go$Int32))(function() { return n; }, function(v) { n = v; }), 4);
 		return err;
 	};
-0Å˙SetsockoptInet4AddrÅ‚	var SetsockoptInet4Addr = go$pkg.SetsockoptInet4Addr = function(fd, level, opt, value) {
+ 0Å˙ SetsockoptInet4AddrÅﬁ	SetsockoptInet4Addr = go$pkg.SetsockoptInet4Addr = function(fd, level, opt, value) {
 		var err;
 		err = null;
 		err = setsockopt(fd, level, opt, go$sliceToArray(new (go$sliceType(Go$Uint8))(value)), 4);
 		return err;
 	};
-0Ç9SetsockoptIPMreqÇ#	var SetsockoptIPMreq = go$pkg.SetsockoptIPMreq = function(fd, level, opt, mreq) {
+ 0Ç9 SetsockoptIPMreqÇ	SetsockoptIPMreq = go$pkg.SetsockoptIPMreq = function(fd, level, opt, mreq) {
 		var err, _array, _struct, _view;
 		err = null;
 		_array = new Uint8Array(8);
@@ -4755,7 +4626,7 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		_struct = mreq, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Multiaddr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength)), _struct.Interface = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 4, _array.buffer.byteLength));
 		return err;
 	};
-0ÇıSetsockoptIPv6MreqÇ›	var SetsockoptIPv6Mreq = go$pkg.SetsockoptIPv6Mreq = function(fd, level, opt, mreq) {
+ 0Çı SetsockoptIPv6MreqÇŸ	SetsockoptIPv6Mreq = go$pkg.SetsockoptIPv6Mreq = function(fd, level, opt, mreq) {
 		var err, _array, _struct, _view;
 		err = null;
 		_array = new Uint8Array(20);
@@ -4763,12 +4634,12 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		_struct = mreq, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Multiaddr = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength)), _struct.Interface = _view.getUint32(16, true);
 		return err;
 	};
-0ÅÓSetsockoptICMPv6FilterÅ”	var SetsockoptICMPv6Filter = go$pkg.SetsockoptICMPv6Filter = function(fd, level, opt, filter) {
+ 0ÅÓ SetsockoptICMPv6FilterÅœ	SetsockoptICMPv6Filter = go$pkg.SetsockoptICMPv6Filter = function(fd, level, opt, filter) {
 		var _array, _struct, _view;
 		_array = new Uint8Array(32);
 		return setsockopt(fd, level, opt, _array, 32);
 	};
-0ÇêSetsockoptLingerÇz	var SetsockoptLinger = go$pkg.SetsockoptLinger = function(fd, level, opt, l) {
+ 0Çê SetsockoptLingerÇv	SetsockoptLinger = go$pkg.SetsockoptLinger = function(fd, level, opt, l) {
 		var err, _array, _struct, _view;
 		err = null;
 		_array = new Uint8Array(8);
@@ -4776,14 +4647,14 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		_struct = l, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Onoff = _view.getInt32(0, true), _struct.Linger = _view.getInt32(4, true);
 		return err;
 	};
-0Ç
-SetsockoptStringÅı	var SetsockoptString = go$pkg.SetsockoptString = function(fd, level, opt, s) {
+ 0Ç
+ SetsockoptStringÅÒ	SetsockoptString = go$pkg.SetsockoptString = function(fd, level, opt, s) {
 		var err;
 		err = null;
 		err = setsockopt(fd, level, opt, go$sliceToArray(new (go$sliceType(Go$Uint8))(go$stringToBytes(s))), (s.length >>> 0));
 		return err;
 	};
-0Ç8SetsockoptTimevalÇ!	var SetsockoptTimeval = go$pkg.SetsockoptTimeval = function(fd, level, opt, tv) {
+ 0Ç8 SetsockoptTimevalÇ	SetsockoptTimeval = go$pkg.SetsockoptTimeval = function(fd, level, opt, tv) {
 		var err, _array, _struct, _view;
 		err = null;
 		_array = new Uint8Array(16);
@@ -4791,7 +4662,7 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		_struct = tv, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Sec = new Go$Int64(_view.getUint32(4, true), _view.getUint32(0, true)), _struct.Usec = _view.getInt32(8, true), _struct.Pad_cgo_0 = new (go$nativeArray("Uint8"))(_array.buffer, go$min(_array.byteOffset + 12, _array.buffer.byteLength));
 		return err;
 	};
-0ÇxSocketÇl	var Socket = go$pkg.Socket = function(domain, typ, proto) {
+ 0Çx SocketÇh	Socket = go$pkg.Socket = function(domain, typ, proto) {
 		var fd, err, _tuple, _tuple$1;
 		fd = 0;
 		err = null;
@@ -4802,8 +4673,8 @@ RawSyscallÅà	var RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
 		_tuple$1 = socket(domain, typ, proto), fd = _tuple$1[0], err = _tuple$1[1];
 		return [fd, err];
 	};
-0ÇÕ
-SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto) {
+ 0ÇÕ 
+SocketpairÇπ	Socketpair = go$pkg.Socketpair = function(domain, typ, proto) {
 		var fd, err, fdx;
 		fd = go$makeNativeArray("Int", 2, function() { return 0; });
 		err = null;
@@ -4815,14 +4686,14 @@ SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto)
 		}
 		return [go$mapArray(fd, function(entry) { return entry; }), err];
 	};
-0ÇSendfileÅˆ	var Sendfile = go$pkg.Sendfile = function(outfd, infd, offset, count) {
+ 0Ç SendfileÅÚ	Sendfile = go$pkg.Sendfile = function(outfd, infd, offset, count) {
 		var written, err, _tuple;
 		written = 0;
 		err = null;
 		_tuple = sendfile(outfd, infd, offset, count), written = _tuple[0], err = _tuple[1];
 		return [written, err];
 	};
-0Ç	getgroupsÇ	var getgroups = function(ngid, gid) {
+ 0Ç 	getgroupsÇ	getgroups = function(ngid, gid) {
 		var n, err, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -4833,7 +4704,7 @@ SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto)
 		}
 		return [n, err];
 	};
-0Å‡	setgroupsÅ“	var setgroups = function(ngid, gid) {
+ 0Å‡ 	setgroupsÅŒ	setgroups = function(ngid, gid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(80, (ngid >>> 0), gid, 0), e1 = _tuple[2];
@@ -4842,7 +4713,7 @@ SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto)
 		}
 		return err;
 	};
-0Çéwait4ÇÉ	var wait4 = function(pid, wstatus, options, rusage) {
+ 0Çé wait4Ç	wait4 = function(pid, wstatus, options, rusage) {
 		var wpid, err, _tuple, _array, _struct, _view, r0, e1;
 		wpid = 0;
 		err = null;
@@ -4855,7 +4726,7 @@ SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto)
 		}
 		return [wpid, err];
 	};
-0ÇÈacceptÇ›	var accept = function(s, rsa, addrlen) {
+ 0ÇÈ acceptÇŸ	accept = function(s, rsa, addrlen) {
 		var fd, err, _tuple, _array, _struct, _view, r0, e1;
 		fd = 0;
 		err = null;
@@ -4868,7 +4739,7 @@ SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto)
 		}
 		return [fd, err];
 	};
-0ÅÁbindÅﬁ	var bind = function(s, addr, addrlen) {
+ 0ÅÁ bindÅ⁄	bind = function(s, addr, addrlen) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(104, (s >>> 0), addr, (addrlen >>> 0)), e1 = _tuple[2];
@@ -4877,7 +4748,7 @@ SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto)
 		}
 		return err;
 	};
-0ÅÏconnectÅ‡	var connect = function(s, addr, addrlen) {
+ 0ÅÏ connectÅ‹	connect = function(s, addr, addrlen) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(98, (s >>> 0), addr, (addrlen >>> 0)), e1 = _tuple[2];
@@ -4886,7 +4757,7 @@ SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto)
 		}
 		return err;
 	};
-0Ç4socketÇ(	var socket = function(domain, typ, proto) {
+ 0Ç4 socketÇ$	socket = function(domain, typ, proto) {
 		var fd, err, _tuple, r0, e1;
 		fd = 0;
 		err = null;
@@ -4897,8 +4768,8 @@ SocketpairÇΩ	var Socketpair = go$pkg.Socketpair = function(domain, typ, proto)
 		}
 		return [fd, err];
 	};
-0Ç
-getsockoptÇ	var getsockopt = function(s, level, name, val, vallen) {
+ 0Ç 
+getsockoptÇ	getsockopt = function(s, level, name, val, vallen) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall6(118, (s >>> 0), (level >>> 0), (name >>> 0), val, vallen, 0), e1 = _tuple[2];
@@ -4907,8 +4778,8 @@ getsockoptÇ	var getsockopt = function(s, level, name, val, vallen) {
 		}
 		return err;
 	};
-0Ç
-setsockoptÇ	var setsockopt = function(s, level, name, val, vallen) {
+ 0Ç 
+setsockoptÇ	setsockopt = function(s, level, name, val, vallen) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall6(105, (s >>> 0), (level >>> 0), (name >>> 0), val, vallen, 0), e1 = _tuple[2];
@@ -4917,7 +4788,7 @@ setsockoptÇ	var setsockopt = function(s, level, name, val, vallen) {
 		}
 		return err;
 	};
-0ÇægetpeernameÇ≠	var getpeername = function(fd, rsa, addrlen) {
+ 0Çæ getpeernameÇ©	getpeername = function(fd, rsa, addrlen) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(108);
@@ -4928,7 +4799,7 @@ setsockoptÇ	var setsockopt = function(s, level, name, val, vallen) {
 		}
 		return err;
 	};
-0ÇægetsocknameÇ≠	var getsockname = function(fd, rsa, addrlen) {
+ 0Çæ getsocknameÇ©	getsockname = function(fd, rsa, addrlen) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(108);
@@ -4939,7 +4810,7 @@ setsockoptÇ	var setsockopt = function(s, level, name, val, vallen) {
 		}
 		return err;
 	};
-0ÅShutdownÅ„	var Shutdown = go$pkg.Shutdown = function(s, how) {
+ 0Å ShutdownÅﬂ	Shutdown = go$pkg.Shutdown = function(s, how) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(134, (s >>> 0), (how >>> 0), 0), e1 = _tuple[2];
@@ -4948,8 +4819,8 @@ setsockoptÇ	var setsockopt = function(s, level, name, val, vallen) {
 		}
 		return err;
 	};
-0Ç
-socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
+ 0Ç 
+socketpairÅ˛	socketpair = function(domain, typ, proto, fd) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall6(135, (domain >>> 0), (typ >>> 0), (proto >>> 0), fd, 0, 0), e1 = _tuple[2];
@@ -4958,7 +4829,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇårecvfromÇ~	var recvfrom = function(fd, p, flags, from, fromlen) {
+ 0Çå recvfromÇz	recvfrom = function(fd, p, flags, from, fromlen) {
 		var n, err, _p0, _tuple, _array, _struct, _view, r0, e1;
 		n = 0;
 		err = null;
@@ -4977,7 +4848,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0ÇèsendtoÇÉ	var sendto = function(s, buf, flags, to, addrlen) {
+ 0Çè sendtoÇ	sendto = function(s, buf, flags, to, addrlen) {
 		var err, _p0, _tuple, e1;
 		err = null;
 		_p0 = 0;
@@ -4992,7 +4863,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇHrecvmsgÇ;	var recvmsg = function(s, msg, flags) {
+ 0ÇH recvmsgÇ7	recvmsg = function(s, msg, flags) {
 		var n, err, _tuple, _array, _struct, _view, r0, e1;
 		n = 0;
 		err = null;
@@ -5005,7 +4876,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0ÇsendmsgÇ	var sendmsg = function(s, msg, flags) {
+ 0Ç sendmsgÇ	sendmsg = function(s, msg, flags) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(36);
@@ -5016,7 +4887,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇÜkeventÇz	var kevent = function(kq, change, nchange, event, nevent, timeout) {
+ 0ÇÜ keventÇv	kevent = function(kq, change, nchange, event, nevent, timeout) {
 		var n, err, _tuple, _array, _struct, _view, r0, e1;
 		n = 0;
 		err = null;
@@ -5029,7 +4900,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0ÇÅsysctlÇu	var sysctl = function(mib, old, oldlen, new$1, newlen) {
+ 0ÇÅ sysctlÇq	sysctl = function(mib, old, oldlen, new$1, newlen) {
 		var err, _p0, _tuple, e1;
 		err = null;
 		_p0 = 0;
@@ -5044,7 +4915,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇìutimesÇá	var utimes = function(path, timeval) {
+ 0Çì utimesÇÉ	utimes = function(path, timeval) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5058,7 +4929,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅﬁfutimesÅ“	var futimes = function(fd, timeval) {
+ 0Åﬁ futimesÅŒ	futimes = function(fd, timeval) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(139, (fd >>> 0), timeval, 0), e1 = _tuple[2];
@@ -5067,7 +4938,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç'fcntlÇ	var fcntl = function(fd, cmd, arg) {
+ 0Ç' fcntlÇ	fcntl = function(fd, cmd, arg) {
 		var val, err, _tuple, r0, e1;
 		val = 0;
 		err = null;
@@ -5078,7 +4949,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [val, err];
 	};
-0ÇptraceÅˆ	var ptrace = function(request, pid, addr, data) {
+ 0Ç ptraceÅÚ	ptrace = function(request, pid, addr, data) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall6(26, (request >>> 0), (pid >>> 0), addr, data, 0, 0), e1 = _tuple[2];
@@ -5087,7 +4958,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç+pipeÇ!	var pipe = function() {
+ 0Ç+ pipeÇ	pipe = function() {
 		var r, w, err, _tuple, r0, r1, e1;
 		r = 0;
 		w = 0;
@@ -5100,7 +4971,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [r, w, err];
 	};
-0ÅÚkillÅÈ	var kill = function(pid, signum, posix) {
+ 0ÅÚ killÅÂ	kill = function(pid, signum, posix) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(37, (pid >>> 0), (signum >>> 0), (posix >>> 0)), e1 = _tuple[2];
@@ -5109,7 +4980,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç§AccessÇò	var Access = go$pkg.Access = function(path, mode) {
+ 0Ç§ AccessÇî	Access = go$pkg.Access = function(path, mode) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5123,7 +4994,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇAdjtimeÇı	var Adjtime = go$pkg.Adjtime = function(delta, olddelta) {
+ 0Ç AdjtimeÇÒ	Adjtime = go$pkg.Adjtime = function(delta, olddelta) {
 		var err, _tuple, _array, _struct, _view, _array$1, _struct$1, _view$1, e1;
 		err = null;
 		_array = new Uint8Array(16);
@@ -5136,7 +5007,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇêChdirÇÖ	var Chdir = go$pkg.Chdir = function(path) {
+ 0Çê ChdirÇÅ	Chdir = go$pkg.Chdir = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5150,7 +5021,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç©ChflagsÇú	var Chflags = go$pkg.Chflags = function(path, flags) {
+ 0Ç© ChflagsÇò	Chflags = go$pkg.Chflags = function(path, flags) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5164,7 +5035,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç°ChmodÇñ	var Chmod = go$pkg.Chmod = function(path, mode) {
+ 0Ç° ChmodÇí	Chmod = go$pkg.Chmod = function(path, mode) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5178,7 +5049,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇÆChownÇ£	var Chown = go$pkg.Chown = function(path, uid, gid) {
+ 0ÇÆ ChownÇü	Chown = go$pkg.Chown = function(path, uid, gid) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5192,7 +5063,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇìChrootÇá	var Chroot = go$pkg.Chroot = function(path) {
+ 0Çì ChrootÇÉ	Chroot = go$pkg.Chroot = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5206,7 +5077,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅÿCloseÅŒ	var Close = go$pkg.Close = function(fd) {
+ 0Åÿ CloseÅ 	Close = go$pkg.Close = function(fd) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(6, (fd >>> 0), 0, 0), e1 = _tuple[2];
@@ -5215,7 +5086,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇDupÇ	var Dup = go$pkg.Dup = function(fd) {
+ 0Ç DupÇ	Dup = go$pkg.Dup = function(fd) {
 		var nfd, err, _tuple, r0, e1;
 		nfd = 0;
 		err = null;
@@ -5226,7 +5097,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [nfd, err];
 	};
-0ÅÍDup2Å·	var Dup2 = go$pkg.Dup2 = function(from, to) {
+ 0ÅÍ Dup2Å›	Dup2 = go$pkg.Dup2 = function(from, to) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(90, (from >>> 0), (to >>> 0), 0), e1 = _tuple[2];
@@ -5235,7 +5106,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇÜExchangedataÇt	var Exchangedata = go$pkg.Exchangedata = function(path1, path2, options) {
+ 0ÇÜ ExchangedataÇp	Exchangedata = go$pkg.Exchangedata = function(path1, path2, options) {
 		var err, _p0, _tuple, _p1, _tuple$1, _tuple$2, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5254,11 +5125,11 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0cExit[	var Exit = go$pkg.Exit = function(code) {
+ 0c ExitW	Exit = go$pkg.Exit = function(code) {
 		Syscall(1, (code >>> 0), 0, 0);
 		return;
 	};
-0Å‹FchdirÅ—	var Fchdir = go$pkg.Fchdir = function(fd) {
+ 0Å‹ FchdirÅÕ	Fchdir = go$pkg.Fchdir = function(fd) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(13, (fd >>> 0), 0, 0), e1 = _tuple[2];
@@ -5267,7 +5138,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅıFchflagsÅË	var Fchflags = go$pkg.Fchflags = function(fd, flags) {
+ 0Åı FchflagsÅ‰	Fchflags = go$pkg.Fchflags = function(fd, flags) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(35, (fd >>> 0), (flags >>> 0), 0), e1 = _tuple[2];
@@ -5276,7 +5147,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅÓFchmodÅ„	var Fchmod = go$pkg.Fchmod = function(fd, mode) {
+ 0ÅÓ FchmodÅﬂ	Fchmod = go$pkg.Fchmod = function(fd, mode) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(124, (fd >>> 0), (mode >>> 0), 0), e1 = _tuple[2];
@@ -5285,7 +5156,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Å˚FchownÅ	var Fchown = go$pkg.Fchown = function(fd, uid, gid) {
+ 0Å˚ FchownÅÏ	Fchown = go$pkg.Fchown = function(fd, uid, gid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(123, (fd >>> 0), (uid >>> 0), (gid >>> 0)), e1 = _tuple[2];
@@ -5294,7 +5165,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅÈFlockÅﬂ	var Flock = go$pkg.Flock = function(fd, how) {
+ 0ÅÈ FlockÅ€	Flock = go$pkg.Flock = function(fd, how) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(131, (fd >>> 0), (how >>> 0), 0), e1 = _tuple[2];
@@ -5303,7 +5174,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç6	FpathconfÇ'	var Fpathconf = go$pkg.Fpathconf = function(fd, name) {
+ 0Ç6 	FpathconfÇ#	Fpathconf = go$pkg.Fpathconf = function(fd, name) {
 		var val, err, _tuple, r0, e1;
 		val = 0;
 		err = null;
@@ -5314,7 +5185,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [val, err];
 	};
-0ÇÎFstatÇ‡	var Fstat = go$pkg.Fstat = function(fd, stat) {
+ 0ÇÎ FstatÇ‹	Fstat = go$pkg.Fstat = function(fd, stat) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(144);
@@ -5325,7 +5196,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇãFstatfsÇ~	var Fstatfs = go$pkg.Fstatfs = function(fd, stat) {
+ 0Çã FstatfsÇz	Fstatfs = go$pkg.Fstatfs = function(fd, stat) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(2168);
@@ -5336,7 +5207,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅŸFsyncÅœ	var Fsync = go$pkg.Fsync = function(fd) {
+ 0ÅŸ FsyncÅÀ	Fsync = go$pkg.Fsync = function(fd) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(95, (fd >>> 0), 0, 0), e1 = _tuple[2];
@@ -5345,7 +5216,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Åˇ	FtruncateÅÒ	var Ftruncate = go$pkg.Ftruncate = function(fd, length) {
+ 0Åˇ 	FtruncateÅÌ	Ftruncate = go$pkg.Ftruncate = function(fd, length) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(201, (fd >>> 0), (length.low >>> 0), 0), e1 = _tuple[2];
@@ -5354,7 +5225,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç»GetdirentriesÇµ	var Getdirentries = go$pkg.Getdirentries = function(fd, buf, basep) {
+ 0Ç» GetdirentriesÇ±	Getdirentries = go$pkg.Getdirentries = function(fd, buf, basep) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5371,28 +5242,28 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0Å«GetdtablesizeÅµ	var Getdtablesize = go$pkg.Getdtablesize = function() {
+ 0Å« GetdtablesizeÅ±	Getdtablesize = go$pkg.Getdtablesize = function() {
 		var size, _tuple, r0;
 		size = 0;
 		_tuple = Syscall(89, 0, 0, 0), r0 = _tuple[0];
 		size = (r0 >> 0);
 		return size;
 	};
-0Å∏GetegidÅ¨	var Getegid = go$pkg.Getegid = function() {
+ 0Å∏ GetegidÅ®	Getegid = go$pkg.Getegid = function() {
 		var egid, _tuple, r0;
 		egid = 0;
 		_tuple = RawSyscall(43, 0, 0, 0), r0 = _tuple[0];
 		egid = (r0 >> 0);
 		return egid;
 	};
-0Å¥GeteuidÅ®	var Geteuid = go$pkg.Geteuid = function() {
+ 0Å¥ GeteuidÅ§	Geteuid = go$pkg.Geteuid = function() {
 		var uid, _tuple, r0;
 		uid = 0;
 		_tuple = RawSyscall(25, 0, 0, 0), r0 = _tuple[0];
 		uid = (r0 >> 0);
 		return uid;
 	};
-0Ç≠	GetfsstatÇû	var Getfsstat = go$pkg.Getfsstat = function(buf, flags) {
+ 0Ç≠ 	GetfsstatÇö	Getfsstat = go$pkg.Getfsstat = function(buf, flags) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5409,14 +5280,14 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0Å±GetgidÅ¶	var Getgid = go$pkg.Getgid = function() {
+ 0Å± GetgidÅ¢	Getgid = go$pkg.Getgid = function() {
 		var gid, _tuple, r0;
 		gid = 0;
 		_tuple = RawSyscall(47, 0, 0, 0), r0 = _tuple[0];
 		gid = (r0 >> 0);
 		return gid;
 	};
-0Ç(GetpgidÇ	var Getpgid = go$pkg.Getpgid = function(pid) {
+ 0Ç( GetpgidÇ	Getpgid = go$pkg.Getpgid = function(pid) {
 		var pgid, err, _tuple, r0, e1;
 		pgid = 0;
 		err = null;
@@ -5427,28 +5298,28 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [pgid, err];
 	};
-0Å∏GetpgrpÅ¨	var Getpgrp = go$pkg.Getpgrp = function() {
+ 0Å∏ GetpgrpÅ®	Getpgrp = go$pkg.Getpgrp = function() {
 		var pgrp, _tuple, r0;
 		pgrp = 0;
 		_tuple = RawSyscall(81, 0, 0, 0), r0 = _tuple[0];
 		pgrp = (r0 >> 0);
 		return pgrp;
 	};
-0Å±GetpidÅ¶	var Getpid = go$pkg.Getpid = function() {
+ 0Å± GetpidÅ¢	Getpid = go$pkg.Getpid = function() {
 		var pid, _tuple, r0;
 		pid = 0;
 		_tuple = RawSyscall(20, 0, 0, 0), r0 = _tuple[0];
 		pid = (r0 >> 0);
 		return pid;
 	};
-0Å∏GetppidÅ¨	var Getppid = go$pkg.Getppid = function() {
+ 0Å∏ GetppidÅ®	Getppid = go$pkg.Getppid = function() {
 		var ppid, _tuple, r0;
 		ppid = 0;
 		_tuple = RawSyscall(39, 0, 0, 0), r0 = _tuple[0];
 		ppid = (r0 >> 0);
 		return ppid;
 	};
-0ÇDGetpriorityÇ3	var Getpriority = go$pkg.Getpriority = function(which, who) {
+ 0ÇD GetpriorityÇ/	Getpriority = go$pkg.Getpriority = function(which, who) {
 		var prio, err, _tuple, r0, e1;
 		prio = 0;
 		err = null;
@@ -5459,7 +5330,8 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [prio, err];
 	};
-0Ç	GetrlimitÇ	var Getrlimit = go$pkg.Getrlimit = function(which, lim) {
+ 0Ç 	GetrlimitÇ
+	Getrlimit = go$pkg.Getrlimit = function(which, lim) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(16);
@@ -5470,7 +5342,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç<	GetrusageÇ-	var Getrusage = go$pkg.Getrusage = function(who, rusage) {
+ 0Ç< 	GetrusageÇ)	Getrusage = go$pkg.Getrusage = function(who, rusage) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(144);
@@ -5481,7 +5353,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç!GetsidÇ	var Getsid = go$pkg.Getsid = function(pid) {
+ 0Ç! GetsidÇ	Getsid = go$pkg.Getsid = function(pid) {
 		var sid, err, _tuple, r0, e1;
 		sid = 0;
 		err = null;
@@ -5492,21 +5364,21 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [sid, err];
 	};
-0Å±GetuidÅ¶	var Getuid = go$pkg.Getuid = function() {
+ 0Å± GetuidÅ¢	Getuid = go$pkg.Getuid = function() {
 		var uid, _tuple, r0;
 		uid = 0;
 		_tuple = RawSyscall(24, 0, 0, 0), r0 = _tuple[0];
 		uid = (r0 >> 0);
 		return uid;
 	};
-0Å”	IssetugidÅ≈	var Issetugid = go$pkg.Issetugid = function() {
+ 0Å” 	IssetugidÅ¡	Issetugid = go$pkg.Issetugid = function() {
 		var tainted, _tuple, r0;
 		tainted = false;
 		_tuple = RawSyscall(327, 0, 0, 0), r0 = _tuple[0];
 		tainted = !((r0 === 0));
 		return tainted;
 	};
-0ÇKqueueÇ	var Kqueue = go$pkg.Kqueue = function() {
+ 0Ç KqueueÅ˝	Kqueue = go$pkg.Kqueue = function() {
 		var fd, err, _tuple, r0, e1;
 		fd = 0;
 		err = null;
@@ -5517,7 +5389,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [fd, err];
 	};
-0Ç≤LchownÇ¶	var Lchown = go$pkg.Lchown = function(path, uid, gid) {
+ 0Ç≤ LchownÇ¢	Lchown = go$pkg.Lchown = function(path, uid, gid) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5531,7 +5403,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇQLinkÇG	var Link = go$pkg.Link = function(path, link) {
+ 0ÇQ LinkÇC	Link = go$pkg.Link = function(path, link) {
 		var err, _p0, _tuple, _p1, _tuple$1, _tuple$2, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5550,7 +5422,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅÚListenÅÁ	var Listen = go$pkg.Listen = function(s, backlog) {
+ 0ÅÚ ListenÅ„	Listen = go$pkg.Listen = function(s, backlog) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(106, (s >>> 0), (backlog >>> 0), 0), e1 = _tuple[2];
@@ -5559,7 +5431,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç°LstatÇñ	var Lstat = go$pkg.Lstat = function(path, stat) {
+ 0Ç° LstatÇí	Lstat = go$pkg.Lstat = function(path, stat) {
 		var err, _p0, _tuple, _tuple$1, _array, _struct, _view, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5575,7 +5447,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç¢MkdirÇó	var Mkdir = go$pkg.Mkdir = function(path, mode) {
+ 0Ç¢ MkdirÇì	Mkdir = go$pkg.Mkdir = function(path, mode) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5589,7 +5461,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç•MkfifoÇô	var Mkfifo = go$pkg.Mkfifo = function(path, mode) {
+ 0Ç• MkfifoÇï	Mkfifo = go$pkg.Mkfifo = function(path, mode) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5603,7 +5475,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç∞MknodÇ•	var Mknod = go$pkg.Mknod = function(path, mode, dev) {
+ 0Ç∞ MknodÇ°	Mknod = go$pkg.Mknod = function(path, mode, dev) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5617,7 +5489,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇOpenÇÊ	var Open = go$pkg.Open = function(path, mode, perm) {
+ 0Ç OpenÇ‚	Open = go$pkg.Open = function(path, mode, perm) {
 		var fd, err, _p0, _tuple, _tuple$1, r0, e1;
 		fd = 0;
 		err = null;
@@ -5633,7 +5505,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [fd, err];
 	};
-0ÇÚPathconfÇ‰	var Pathconf = go$pkg.Pathconf = function(path, name) {
+ 0ÇÚ PathconfÇ‡	Pathconf = go$pkg.Pathconf = function(path, name) {
 		var val, err, _p0, _tuple, _tuple$1, r0, e1;
 		val = 0;
 		err = null;
@@ -5649,7 +5521,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [val, err];
 	};
-0Ç∂PreadÇ´	var Pread = go$pkg.Pread = function(fd, p, offset) {
+ 0Ç∂ PreadÇß	Pread = go$pkg.Pread = function(fd, p, offset) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5666,7 +5538,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0ÇπPwriteÇ≠	var Pwrite = go$pkg.Pwrite = function(fd, p, offset) {
+ 0Çπ PwriteÇ©	Pwrite = go$pkg.Pwrite = function(fd, p, offset) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5683,7 +5555,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0ÇÄreadÇv	var read = function(fd, p) {
+ 0ÇÄ readÇr	read = function(fd, p) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -5700,7 +5572,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0Ç`ReadlinkÇR	var Readlink = go$pkg.Readlink = function(path, buf) {
+ 0Ç` ReadlinkÇN	Readlink = go$pkg.Readlink = function(path, buf) {
 		var n, err, _p0, _tuple, _p1, _tuple$1, r0, e1;
 		n = 0;
 		err = null;
@@ -5722,7 +5594,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0ÇURenameÇI	var Rename = go$pkg.Rename = function(from, to) {
+ 0ÇU RenameÇE	Rename = go$pkg.Rename = function(from, to) {
 		var err, _p0, _tuple, _p1, _tuple$1, _tuple$2, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5741,7 +5613,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇìRevokeÇá	var Revoke = go$pkg.Revoke = function(path) {
+ 0Çì RevokeÇÉ	Revoke = go$pkg.Revoke = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5755,7 +5627,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇëRmdirÇÜ	var Rmdir = go$pkg.Rmdir = function(path) {
+ 0Çë RmdirÇÇ	Rmdir = go$pkg.Rmdir = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5769,7 +5641,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇóSeekÇç	var Seek = go$pkg.Seek = function(fd, offset, whence) {
+ 0Çó SeekÇâ	Seek = go$pkg.Seek = function(fd, offset, whence) {
 		var newoffset, err, _tuple, r0, e1;
 		newoffset = new Go$Int64(0, 0);
 		err = null;
@@ -5780,7 +5652,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [newoffset, err];
 	};
-0Ç∫SelectÇÆ	var Select = go$pkg.Select = function(n, r, w, e, timeout) {
+ 0Ç∫ SelectÇ™	Select = go$pkg.Select = function(n, r, w, e, timeout) {
 		var err, _tuple, _array, _struct, _view, _array$1, _struct$1, _view$1, _array$2, _struct$2, _view$2, _array$3, _struct$3, _view$3, e1;
 		err = null;
 		_array = new Uint8Array(128);
@@ -5797,7 +5669,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Å‰SetegidÅÿ	var Setegid = go$pkg.Setegid = function(egid) {
+ 0Å‰ SetegidÅ‘	Setegid = go$pkg.Setegid = function(egid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(182, (egid >>> 0), 0, 0), e1 = _tuple[2];
@@ -5806,7 +5678,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅÁSeteuidÅ€	var Seteuid = go$pkg.Seteuid = function(euid) {
+ 0ÅÁ SeteuidÅ◊	Seteuid = go$pkg.Seteuid = function(euid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(183, (euid >>> 0), 0, 0), e1 = _tuple[2];
@@ -5815,7 +5687,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Å‚SetgidÅ◊	var Setgid = go$pkg.Setgid = function(gid) {
+ 0Å‚ SetgidÅ”	Setgid = go$pkg.Setgid = function(gid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(181, (gid >>> 0), 0, 0), e1 = _tuple[2];
@@ -5824,7 +5696,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇôSetloginÇã	var Setlogin = go$pkg.Setlogin = function(name) {
+ 0Çô SetloginÇá	Setlogin = go$pkg.Setlogin = function(name) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5838,7 +5710,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅıSetpgidÅÈ	var Setpgid = go$pkg.Setpgid = function(pid, pgid) {
+ 0Åı SetpgidÅÂ	Setpgid = go$pkg.Setpgid = function(pid, pgid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(82, (pid >>> 0), (pgid >>> 0), 0), e1 = _tuple[2];
@@ -5847,7 +5719,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇSetpriorityÇ	var Setpriority = go$pkg.Setpriority = function(which, who, prio) {
+ 0Ç SetpriorityÅ˝	Setpriority = go$pkg.Setpriority = function(which, who, prio) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(96, (which >>> 0), (who >>> 0), (prio >>> 0)), e1 = _tuple[2];
@@ -5856,7 +5728,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅSetprivexecÅ‡	var Setprivexec = go$pkg.Setprivexec = function(flag) {
+ 0Å SetprivexecÅ‹	Setprivexec = go$pkg.Setprivexec = function(flag) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(152, (flag >>> 0), 0, 0), e1 = _tuple[2];
@@ -5865,7 +5737,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Å˚SetregidÅÓ	var Setregid = go$pkg.Setregid = function(rgid, egid) {
+ 0Å˚ SetregidÅÍ	Setregid = go$pkg.Setregid = function(rgid, egid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(127, (rgid >>> 0), (egid >>> 0), 0), e1 = _tuple[2];
@@ -5874,7 +5746,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Å˚SetreuidÅÓ	var Setreuid = go$pkg.Setreuid = function(ruid, euid) {
+ 0Å˚ SetreuidÅÍ	Setreuid = go$pkg.Setreuid = function(ruid, euid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(126, (ruid >>> 0), (euid >>> 0), 0), e1 = _tuple[2];
@@ -5883,7 +5755,8 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç	SetrlimitÇ	var Setrlimit = go$pkg.Setrlimit = function(which, lim) {
+ 0Ç 	SetrlimitÇ
+	Setrlimit = go$pkg.Setrlimit = function(which, lim) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(16);
@@ -5894,7 +5767,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇSetsidÇ	var Setsid = go$pkg.Setsid = function() {
+ 0Ç SetsidÇ	Setsid = go$pkg.Setsid = function() {
 		var pid, err, _tuple, r0, e1;
 		pid = 0;
 		err = null;
@@ -5905,7 +5778,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [pid, err];
 	};
-0ÇbSettimeofdayÇP	var Settimeofday = go$pkg.Settimeofday = function(tp) {
+ 0Çb SettimeofdayÇL	Settimeofday = go$pkg.Settimeofday = function(tp) {
 		var err, _tuple, _array, _struct, _view, e1;
 		err = null;
 		_array = new Uint8Array(16);
@@ -5916,7 +5789,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Å·SetuidÅ÷	var Setuid = go$pkg.Setuid = function(uid) {
+ 0Å· SetuidÅ“	Setuid = go$pkg.Setuid = function(uid) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = RawSyscall(23, (uid >>> 0), 0, 0), e1 = _tuple[2];
@@ -5925,7 +5798,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇûStatÇî	var Stat = go$pkg.Stat = function(path, stat) {
+ 0Çû StatÇê	Stat = go$pkg.Stat = function(path, stat) {
 		var err, _p0, _tuple, _tuple$1, _array, _struct, _view, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5941,7 +5814,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç>StatfsÇ2	var Statfs = go$pkg.Statfs = function(path, stat) {
+ 0Ç> StatfsÇ.	Statfs = go$pkg.Statfs = function(path, stat) {
 		var err, _p0, _tuple, _tuple$1, _array, _struct, _view, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5957,7 +5830,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç[SymlinkÇN	var Symlink = go$pkg.Symlink = function(path, link) {
+ 0Ç[ SymlinkÇJ	Symlink = go$pkg.Symlink = function(path, link) {
 		var err, _p0, _tuple, _p1, _tuple$1, _tuple$2, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5976,7 +5849,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÅÀSyncÅ¬	var Sync = go$pkg.Sync = function() {
+ 0ÅÀ SyncÅæ	Sync = go$pkg.Sync = function() {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(36, 0, 0, 0), e1 = _tuple[2];
@@ -5985,7 +5858,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç≥TruncateÇ•	var Truncate = go$pkg.Truncate = function(path, length) {
+ 0Ç≥ TruncateÇ°	Truncate = go$pkg.Truncate = function(path, length) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -5999,14 +5872,14 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Å–UmaskÅ∆	var Umask = go$pkg.Umask = function(newmask) {
+ 0Å– UmaskÅ¬	Umask = go$pkg.Umask = function(newmask) {
 		var oldmask, _tuple, r0;
 		oldmask = 0;
 		_tuple = Syscall(60, (newmask >>> 0), 0, 0), r0 = _tuple[0];
 		oldmask = (r0 >> 0);
 		return oldmask;
 	};
-0ÇöUndeleteÇå	var Undelete = go$pkg.Undelete = function(path) {
+ 0Çö UndeleteÇà	Undelete = go$pkg.Undelete = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -6020,7 +5893,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇìUnlinkÇá	var Unlink = go$pkg.Unlink = function(path) {
+ 0Çì UnlinkÇÉ	Unlink = go$pkg.Unlink = function(path) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -6034,7 +5907,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0Ç™UnmountÇù	var Unmount = go$pkg.Unmount = function(path, flags) {
+ 0Ç™ UnmountÇô	Unmount = go$pkg.Unmount = function(path, flags) {
 		var err, _p0, _tuple, _tuple$1, e1;
 		err = null;
 		_p0 = (go$ptrType(Go$Uint8)).nil;
@@ -6048,7 +5921,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇÇwriteÇw	var write = function(fd, p) {
+ 0ÇÇ writeÇs	write = function(fd, p) {
 		var n, err, _p0, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -6065,7 +5938,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0ÇVmmapÇL	var mmap = function(addr, length, prot, flag, fd, pos) {
+ 0ÇV mmapÇH	mmap = function(addr, length, prot, flag, fd, pos) {
 		var ret, err, _tuple, r0, e1;
 		ret = 0;
 		err = null;
@@ -6076,7 +5949,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [ret, err];
 	};
-0Å’munmapÅ 	var munmap = function(addr, length) {
+ 0Å’ munmapÅ∆	munmap = function(addr, length) {
 		var err, _tuple, e1;
 		err = null;
 		_tuple = Syscall(73, addr, length, 0), e1 = _tuple[2];
@@ -6085,7 +5958,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return err;
 	};
-0ÇreadlenÇ	var readlen = function(fd, buf, nbuf) {
+ 0Ç readlenÇ	readlen = function(fd, buf, nbuf) {
 		var n, err, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -6096,7 +5969,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0ÇwritelenÇ	var writelen = function(fd, buf, nbuf) {
+ 0Ç writelenÇ	writelen = function(fd, buf, nbuf) {
 		var n, err, _tuple, r0, e1;
 		n = 0;
 		err = null;
@@ -6107,7 +5980,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [n, err];
 	};
-0ÇgettimeofdayÇÛ	var gettimeofday = function(tp) {
+ 0Ç gettimeofdayÇÔ	gettimeofday = function(tp) {
 		var sec, usec, err, _tuple, _array, _struct, _view, r0, r1, e1;
 		sec = new Go$Int64(0, 0);
 		usec = 0;
@@ -6122,18 +5995,7 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 		}
 		return [sec, usec, err];
 	};
-0ÇOinitÇE	go$pkg.init = function() {
-		envOnce = new sync.Once.Ptr();
-		envLock = new sync.RWMutex.Ptr();
-		env = false;
-		envs = (go$sliceType(Go$String)).nil;
-		go$pkg.ForkLock = new sync.RWMutex.Ptr();
-		zeroProcAttr = new ProcAttr.Ptr();
-		zeroSysProcAttr = new SysProcAttr.Ptr();
-		_zero = 0;
-		go$pkg.SocketDisableIPv6 = false;
-		ioSync = new Go$Int64(0, 0);
-
+ 0Ç   Ç
 			if (go$pkg.Syscall15 !== undefined) { // windows
 				Syscall = Syscall6 = Syscall9 = Syscall12 = Syscall15 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.Syscall9 = go$pkg.Syscall12 = go$pkg.Syscall15 = loadlibrary = getprocaddress = function() { throw new Error("Syscalls not available."); };
 				getStdHandle = GetCommandLine = go$pkg.GetCommandLine = function() {};
@@ -6165,10 +6027,4 @@ socketpairÇ	var socketpair = function(domain, typ, proto, fd) {
 					envs.array[i] = envkeys[i] + "=" + process.env[envkeys[i]];
 				}
 			}
-				mapper = new mmapper.Ptr(new sync.Mutex.Ptr(), new Go$Map(), mmap, munmap);
-		go$pkg.Stdin = 0;
-		go$pkg.Stdout = 1;
-		go$pkg.Stderr = 2;
-		errors = go$toNativeArray("String", ["", "operation not permitted", "no such file or directory", "no such process", "interrupted system call", "input/output error", "device not configured", "argument list too long", "exec format error", "bad file descriptor", "no child processes", "resource deadlock avoided", "cannot allocate memory", "permission denied", "bad address", "block device required", "resource busy", "file exists", "cross-device link", "operation not supported by device", "not a directory", "is a directory", "invalid argument", "too many open files in system", "too many open files", "inappropriate ioctl for device", "text file busy", "file too large", "no space left on device", "illegal seek", "read-only file system", "too many links", "broken pipe", "numerical argument out of domain", "result too large", "resource temporarily unavailable", "operation now in progress", "operation already in progress", "socket operation on non-socket", "destination address required", "message too long", "protocol wrong type for socket", "protocol not available", "protocol not supported", "socket type not supported", "operation not supported", "protocol family not supported", "address family not supported by protocol family", "address already in use", "can't assign requested address", "network is down", "network is unreachable", "network dropped connection on reset", "software caused connection abort", "connection reset by peer", "no buffer space available", "socket is already connected", "socket is not connected", "can't send after socket shutdown", "too many references: can't splice", "operation timed out", "connection refused", "too many levels of symbolic links", "file name too long", "host is down", "no route to host", "directory not empty", "too many processes", "too many users", "disc quota exceeded", "stale NFS file handle", "too many levels of remote in path", "RPC struct is bad", "RPC version wrong", "RPC prog. not avail", "program version wrong", "bad procedure for program", "no locks available", "function not implemented", "inappropriate file type or format", "authentication error", "need authenticator", "device power is off", "device error", "value too large to be stored in data type", "bad executable (or shared library)", "bad CPU type in executable", "shared library version mismatch", "malformed Mach-o file", "operation canceled", "identifier removed", "no message of desired type", "illegal byte sequence", "attribute not found", "bad message", "EMULTIHOP (Reserved)", "no message available on STREAM", "ENOLINK (Reserved)", "no STREAM resources", "not a STREAM", "protocol error", "STREAM ioctl timeout", "operation not supported on socket", "policy not found", "state not recoverable", "previous owner died"]);
-		signals = go$toNativeArray("String", ["", "hangup", "interrupt", "quit", "illegal instruction", "trace/BPT trap", "abort trap", "EMT trap", "floating point exception", "killed", "bus error", "segmentation fault", "bad system call", "broken pipe", "alarm clock", "terminated", "urgent I/O condition", "suspended (signal)", "suspended", "continued", "child exited", "stopped (tty input)", "stopped (tty output)", "I/O possible", "cputime limit exceeded", "filesize limit exceeded", "virtual timer expired", "profiling timer expired", "window size changes", "information request", "user defined signal 1", "user defined signal 2"]);
-	};
+		0    0 
