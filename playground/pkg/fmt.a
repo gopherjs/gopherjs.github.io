@@ -447,40 +447,6 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 	});
 ‚‹		readRune.init([["reader", "fmt", io.Reader, ""], ["buf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["pending", "fmt", Go$Int, ""], ["pendBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""]]);
 		(go$ptrType(readRune)).methods = [["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["readByte", "fmt", [], [Go$Uint8, go$error], false], ["unread", "fmt", [(go$sliceType(Go$Uint8))], [], false]];
-0 padZeroBytes  0 padSpaceBytes  0 	trueBytes  0 
-falseBytes  0 commaSpaceBytes  0 nilAngleBytes  0 nilParenBytes  0 nilBytes  0 mapBytes  0 percentBangBytes  0 missingBytes  0 badIndexBytes  0 
-panicBytes  0 
-extraBytes  0 irparenBytes  0 
-bytesBytes  0 badWidthBytes  0 badPrecBytes  0 noVerbBytes  0 ppFree  0 intBits  0 uintptrBits  0 space  0 ssFree  0 complexError  0 	boolError  0Y   Q		padZeroBytes = (go$sliceType(Go$Uint8)).make(65, 0, function() { return 0; });
-0Z   R		padSpaceBytes = (go$sliceType(Go$Uint8)).make(65, 0, function() { return 0; });
-0N   F		trueBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("true"));
-0P   H		falseBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("false"));
-0R   J		commaSpaceBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes(", "));
-0S   K		nilAngleBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("<nil>"));
-0S   K		nilParenBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(nil)"));
-0L   D		nilBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("nil"));
-0M   E		mapBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("map["));
-0S   K		percentBangBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!"));
-0V   N		missingBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(MISSING)"));
-0X   P		badIndexBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(BADINDEX)"));
-0R   J		panicBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(PANIC="));
-0T   L		extraBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(EXTRA "));
-0O   G		irparenBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("i)"));
-0R   J		bytesBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("[]byte{"));
-0Z   R		badWidthBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(BADWIDTH)"));
-0X   P		badPrecBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(BADPREC)"));
-0V   N		noVerbBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(NOVERB)"));
-0I   A		ppFree = newCache((function() {
-			return new pp.Ptr();
-		}));
-0:   2		intBits = reflect.TypeOf(new Go$Int(0)).Bits();
-0B   :		uintptrBits = reflect.TypeOf(new Go$Uintptr(0)).Bits();
-0‚   ‚		space = new (go$sliceType((go$arrayType(Go$Uint16, 2))))([go$toNativeArray("Uint16", [9, 13]), go$toNativeArray("Uint16", [32, 32]), go$toNativeArray("Uint16", [133, 133]), go$toNativeArray("Uint16", [160, 160]), go$toNativeArray("Uint16", [5760, 5760]), go$toNativeArray("Uint16", [6158, 6158]), go$toNativeArray("Uint16", [8192, 8202]), go$toNativeArray("Uint16", [8232, 8233]), go$toNativeArray("Uint16", [8239, 8239]), go$toNativeArray("Uint16", [8287, 8287]), go$toNativeArray("Uint16", [12288, 12288])]);
-0I   A		ssFree = newCache((function() {
-			return new ss.Ptr();
-		}));
-0M   E		complexError = errors.New("syntax error scanning complex number");
-0C   ;		boolError = errors.New("syntax error scanning boolean");
 0‚q  ‚g	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;
@@ -3220,7 +3186,41 @@ intFromArg‚ 	intFromArg = function(a, argNum) {
 		}
 	};
 	ss.prototype.doScanf = function(format, a) { return this.go$val.doScanf(format, a); };
- 0    0‚Ï   ‚Å		var i, _slice, _index, _slice$1, _index$1;
+ 0 padZeroBytes  0 padSpaceBytes  0 	trueBytes  0 
+falseBytes  0 commaSpaceBytes  0 nilAngleBytes  0 nilParenBytes  0 nilBytes  0 mapBytes  0 percentBangBytes  0 missingBytes  0 badIndexBytes  0 
+panicBytes  0 
+extraBytes  0 irparenBytes  0 
+bytesBytes  0 badWidthBytes  0 badPrecBytes  0 noVerbBytes  0 ppFree  0 intBits  0 uintptrBits  0 space  0 ssFree  0 complexError  0 	boolError  0Y   Q		padZeroBytes = (go$sliceType(Go$Uint8)).make(65, 0, function() { return 0; });
+0Z   R		padSpaceBytes = (go$sliceType(Go$Uint8)).make(65, 0, function() { return 0; });
+0N   F		trueBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("true"));
+0P   H		falseBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("false"));
+0R   J		commaSpaceBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes(", "));
+0S   K		nilAngleBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("<nil>"));
+0S   K		nilParenBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(nil)"));
+0L   D		nilBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("nil"));
+0M   E		mapBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("map["));
+0S   K		percentBangBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!"));
+0V   N		missingBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(MISSING)"));
+0X   P		badIndexBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(BADINDEX)"));
+0R   J		panicBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(PANIC="));
+0T   L		extraBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(EXTRA "));
+0O   G		irparenBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("i)"));
+0R   J		bytesBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("[]byte{"));
+0Z   R		badWidthBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(BADWIDTH)"));
+0X   P		badPrecBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(BADPREC)"));
+0V   N		noVerbBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(NOVERB)"));
+0I   A		ppFree = newCache((function() {
+			return new pp.Ptr();
+		}));
+0:   2		intBits = reflect.TypeOf(new Go$Int(0)).Bits();
+0B   :		uintptrBits = reflect.TypeOf(new Go$Uintptr(0)).Bits();
+0‚   ‚		space = new (go$sliceType((go$arrayType(Go$Uint16, 2))))([go$toNativeArray("Uint16", [9, 13]), go$toNativeArray("Uint16", [32, 32]), go$toNativeArray("Uint16", [133, 133]), go$toNativeArray("Uint16", [160, 160]), go$toNativeArray("Uint16", [5760, 5760]), go$toNativeArray("Uint16", [6158, 6158]), go$toNativeArray("Uint16", [8192, 8202]), go$toNativeArray("Uint16", [8232, 8233]), go$toNativeArray("Uint16", [8239, 8239]), go$toNativeArray("Uint16", [8287, 8287]), go$toNativeArray("Uint16", [12288, 12288])]);
+0I   A		ssFree = newCache((function() {
+			return new ss.Ptr();
+		}));
+0M   E		complexError = errors.New("syntax error scanning complex number");
+0C   ;		boolError = errors.New("syntax error scanning boolean");
+0    0‚Ï   ‚Å		var i, _slice, _index, _slice$1, _index$1;
 		i = 0;
 		while (i < 65) {
 			_slice = padZeroBytes, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 48) : go$throwRuntimeError("index out of range");

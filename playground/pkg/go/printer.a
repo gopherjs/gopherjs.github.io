@@ -261,7 +261,6 @@ whiteSpacer	whiteSpace = go$pkg.whiteSpace = go$newType(1, "Uint8", "printer.wh
 		this.Comments = Comments_ !== undefined ? Comments_ : (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 	});
 ÅÉ		CommentedNode.init([["Node", "", go$emptyInterface, ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
-0 aNewline  0K   C		aNewline = new (go$sliceType(Go$Uint8))(go$stringToBytes("\n"));
 0Ç÷  ÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
 		var printedBreak, p, n;
 		printedBreak = false;
@@ -2553,4 +2552,5 @@ mayCombineÇ¢	mayCombine = function(prev, next) {
  0Åä Fprint|	Fprint = go$pkg.Fprint = function(output, fset, node) {
 		return (new Config.Ptr(0, 8, 0)).Fprint(output, fset, node);
 	};
- 0    0    0 
+ 0 aNewline  0K   C		aNewline = new (go$sliceType(Go$Uint8))(go$stringToBytes("\n"));
+0    0    0 

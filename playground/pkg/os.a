@@ -1,4 +1,4 @@
-0É>^osÇH˜package os
+0É>,osÇH˜package os
 import io "io"
 import syscall "syscall"
 import time "time"
@@ -304,7 +304,7 @@ func (? *@"syscall".Timeval) @"syscall".Unix() (@"syscall".sec int64, @"syscall"
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0;runtimeerrorssync/atomicsynciosyscalltimeos0w0ioio0syscallsyscall0timetime0errorserrors0runtimeruntime0sync/atomicatomic0syncsync0ÇÙ£0Ç‰ 	PathErrorÇ	PathError = go$pkg.PathError = go$newType(0, "Struct", "os.PathError", "PathError", "os", function(Op_, Path_, Err_) {
+0;runtimeerrorssync/atomicsynciosyscalltimeos0w0ioio0syscallsyscall0timetime0errorserrors0runtimeruntime0sync/atomicatomic0syncsync0ÇÙq0Ç‰ 	PathErrorÇ	PathError = go$pkg.PathError = go$newType(0, "Struct", "os.PathError", "PathError", "os", function(Op_, Path_, Err_) {
 		this.go$val = this;
 		this.Op = Op_ !== undefined ? Op_ : "";
 		this.Path = Path_ !== undefined ? Path_ : "";
@@ -394,22 +394,6 @@ $$
 	});
 Ç∆		fileStat.init([["name", "os", Go$String, ""], ["size", "os", Go$Int64, ""], ["mode", "os", FileMode, ""], ["modTime", "os", time.Time, ""], ["sys", "os", go$emptyInterface, ""]]);
 		(go$ptrType(fileStat)).methods = [["IsDir", "", [], [Go$Bool], false], ["ModTime", "", [], [time.Time], false], ["Mode", "", [], [FileMode], false], ["Name", "", [], [Go$String], false], ["Size", "", [], [Go$Int64], false], ["Sys", "", [], [go$emptyInterface], false]];
-0    0    0    0    0    0    0    0    0    0 lstat  0Åé 
-getwdCache |		getwdCache = new (go$structType([["", "", sync.Mutex, ""], ["dir", "os", Go$String, ""]])).Ptr(new sync.Mutex.Ptr(), "");
-0 useSyscallwd  07   /		go$pkg.Args = (go$sliceType(Go$String)).nil;
-0>   6		go$pkg.ErrInvalid = errors.New("invalid argument");
-0B   :		go$pkg.ErrPermission = errors.New("permission denied");
-0?   7		go$pkg.ErrExist = errors.New("file already exists");
-0B   :		go$pkg.ErrNotExist = errors.New("file does not exist");
-04   ,		go$pkg.Interrupt = new syscall.Signal(2);
-0/   '		go$pkg.Kill = new syscall.Signal(9);
-0G   ?		go$pkg.Stdin = NewFile((syscall.Stdin >>> 0), "/dev/stdin");
-0J   B		go$pkg.Stdout = NewFile((syscall.Stdout >>> 0), "/dev/stdout");
-0J   B		go$pkg.Stderr = NewFile((syscall.Stderr >>> 0), "/dev/stderr");
-0   		lstat = Lstat;
-0=   5		useSyscallwd = (function() {
-			return true;
-		});
 0Ç  Ç	File.Ptr.prototype.readdirnames = function(n) {
 		var names, err, f, d, size, errno, _tuple, _tuple$1, _tuple$2, nb, nc, _tuple$3, _tuple$4, _tuple$5;
 		names = (go$sliceType(Go$String)).nil;
@@ -1857,10 +1841,25 @@ epipecheckÇ∞	epipecheck = function(file$1, e) {
 		return fs.sys;
 	};
 	fileStat.prototype.Sys = function() { return this.go$val.Sys(); };
- 0Ç   Ç
-			go$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);
+ 0    0    0    0    0    0    0    0    0    0 lstat  0Åé 
+getwdCache |		getwdCache = new (go$structType([["", "", sync.Mutex, ""], ["dir", "os", Go$String, ""]])).Ptr(new sync.Mutex.Ptr(), "");
+0 useSyscallwd  0v   n		go$pkg.Args = new (go$sliceType(Go$String))((typeof process !== 'undefined') ? process.argv.slice(1) : []);
+0>   6		go$pkg.ErrInvalid = errors.New("invalid argument");
+0B   :		go$pkg.ErrPermission = errors.New("permission denied");
+0?   7		go$pkg.ErrExist = errors.New("file already exists");
+0B   :		go$pkg.ErrNotExist = errors.New("file does not exist");
+04   ,		go$pkg.Interrupt = new syscall.Signal(2);
+0/   '		go$pkg.Kill = new syscall.Signal(9);
+0G   ?		go$pkg.Stdin = NewFile((syscall.Stdin >>> 0), "/dev/stdin");
+0J   B		go$pkg.Stdout = NewFile((syscall.Stdout >>> 0), "/dev/stdout");
+0J   B		go$pkg.Stderr = NewFile((syscall.Stderr >>> 0), "/dev/stderr");
+0   		lstat = Lstat;
+0=   5		useSyscallwd = (function() {
+			return true;
+		});
+0Åõ  Åí
 			if (go$packages["syscall"].Syscall15 !== undefined) { // windows
 				NewFile = go$pkg.NewFile = function() { return new File.Ptr(); };
 			}
-		0-   %		useSyscallwd = useSyscallwdDarwin;
+		 0-   %		useSyscallwd = useSyscallwdDarwin;
 0 

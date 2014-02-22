@@ -161,7 +161,6 @@ $$
 	});
 Çy		Logger.init([["mu", "log", sync.Mutex, ""], ["prefix", "log", Go$String, ""], ["flag", "log", Go$Int, ""], ["out", "log", io.Writer, ""], ["buf", "log", (go$sliceType(Go$Uint8)), ""]]);
 		(go$ptrType(Logger)).methods = [["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fatalln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Flags", "", [], [Go$Int], false], ["Output", "", [Go$Int, Go$String], [go$error], false], ["Panic", "", [(go$sliceType(go$emptyInterface))], [], true], ["Panicf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Panicln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Prefix", "", [], [Go$String], false], ["Print", "", [(go$sliceType(go$emptyInterface))], [], true], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Println", "", [(go$sliceType(go$emptyInterface))], [], true], ["SetFlags", "", [Go$Int], [], false], ["SetPrefix", "", [Go$String], [], false], ["formatHeader", "log", [(go$ptrType((go$sliceType(Go$Uint8)))), time.Time, Go$String, Go$Int], [], false]];
-0 std  0'   		std = New(os.Stderr, "", 3);
 0Å¢ NewÅñ	New = go$pkg.New = function(out, prefix, flag) {
 		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
 	};
@@ -454,4 +453,5 @@ $$
 		std.Output(2, s);
 		throw go$panic(new Go$String(s));
 	};
- 0    0    0 
+ 0 std  0'   		std = New(os.Stderr, "", 3);
+0    0    0 

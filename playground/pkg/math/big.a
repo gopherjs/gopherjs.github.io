@@ -211,15 +211,6 @@ $$
 	});
 Ç¬		Rat.init([["a", "math/big", Int, ""], ["b", "math/big", Int, ""]]);
 		(go$ptrType(Rat)).methods = [["Abs", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Add", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Cmp", "", [(go$ptrType(Rat))], [Go$Int], false], ["Denom", "", [], [(go$ptrType(Int))], false], ["Float64", "", [], [Go$Float64, Go$Bool], false], ["FloatString", "", [Go$Int], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Inv", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["IsInt", "", [], [Go$Bool], false], ["Mul", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Neg", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["Num", "", [], [(go$ptrType(Int))], false], ["Quo", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["RatString", "", [], [Go$String], false], ["Scan", "", [fmt.ScanState, Go$Int32], [go$error], false], ["Set", "", [(go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["SetFloat64", "", [Go$Float64], [(go$ptrType(Rat))], false], ["SetFrac", "", [(go$ptrType(Int)), (go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetFrac64", "", [Go$Int64, Go$Int64], [(go$ptrType(Rat))], false], ["SetInt", "", [(go$ptrType(Int))], [(go$ptrType(Rat))], false], ["SetInt64", "", [Go$Int64], [(go$ptrType(Rat))], false], ["SetString", "", [Go$String], [(go$ptrType(Rat)), Go$Bool], false], ["Sign", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [(go$ptrType(Rat)), (go$ptrType(Rat))], [(go$ptrType(Rat))], false], ["norm", "math/big", [], [(go$ptrType(Rat))], false]];
-0 intOne  0 natOne  0 natTwo  0 natTen  0 karatsubaThreshold  0 leafSize  0ÅÛ cacheBase10 Åﬂ		cacheBase10 = new (go$structType([["", "", sync.Mutex, ""], ["table", "math/big", (go$arrayType(divisor, 64)), ""]])).Ptr(new sync.Mutex.Ptr(), go$makeNativeArray("Struct", 64, function() { return new divisor.Ptr(); }));
-0 deBruijn32Lookup  0 deBruijn64Lookup  0!   		natOne = new nat([1]);
-0/   '		intOne = new Int.Ptr(false, natOne);
-0!   		natTwo = new nat([2]);
-0"   		natTen = new nat([10]);
-0#   		karatsubaThreshold = 40;
-0   		leafSize = 8;
-0Å¥   Å´		deBruijn32Lookup = new (go$sliceType(Go$Uint8))([0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9]);
-0Ç5   Ç+		deBruijn64Lookup = new (go$sliceType(Go$Uint8))([0, 1, 56, 2, 57, 49, 28, 3, 61, 58, 42, 50, 38, 29, 17, 4, 62, 47, 59, 36, 45, 43, 51, 22, 53, 39, 33, 30, 24, 18, 12, 5, 63, 55, 48, 27, 60, 41, 37, 16, 46, 35, 44, 21, 52, 32, 23, 11, 54, 26, 40, 15, 34, 20, 31, 10, 25, 14, 19, 9, 13, 8, 7, 6]);
 0Åæ addWW_gÅÆ	addWW_g = function(x, y, c) {
 		var z1, z0, yc;
 		z1 = 0;
@@ -2904,4 +2895,13 @@ scaleDenomÅ≠	scaleDenom = function(x, f) {
 		return null;
 	};
 	Rat.prototype.GobDecode = function(buf) { return this.go$val.GobDecode(buf); };
- 0    0    0 
+ 0 intOne  0 natOne  0 natTwo  0 natTen  0 karatsubaThreshold  0 leafSize  0ÅÛ cacheBase10 Åﬂ		cacheBase10 = new (go$structType([["", "", sync.Mutex, ""], ["table", "math/big", (go$arrayType(divisor, 64)), ""]])).Ptr(new sync.Mutex.Ptr(), go$makeNativeArray("Struct", 64, function() { return new divisor.Ptr(); }));
+0 deBruijn32Lookup  0 deBruijn64Lookup  0!   		natOne = new nat([1]);
+0/   '		intOne = new Int.Ptr(false, natOne);
+0!   		natTwo = new nat([2]);
+0"   		natTen = new nat([10]);
+0#   		karatsubaThreshold = 40;
+0   		leafSize = 8;
+0Å¥   Å´		deBruijn32Lookup = new (go$sliceType(Go$Uint8))([0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9]);
+0Ç5   Ç+		deBruijn64Lookup = new (go$sliceType(Go$Uint8))([0, 1, 56, 2, 57, 49, 28, 3, 61, 58, 42, 50, 38, 29, 17, 4, 62, 47, 59, 36, 45, 43, 51, 22, 53, 39, 33, 30, 24, 18, 12, 5, 63, 55, 48, 27, 60, 41, 37, 16, 46, 35, 44, 21, 52, 32, 23, 11, 54, 26, 40, 15, 34, 20, 31, 10, 25, 14, 19, 9, 13, 8, 7, 6]);
+0    0    0 

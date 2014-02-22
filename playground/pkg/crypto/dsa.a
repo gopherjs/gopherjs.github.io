@@ -188,8 +188,7 @@ PrivateKeyÇ,	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "dsa.Pri
 	});
 T		PrivateKey.init([["", "", PublicKey, ""], ["X", "", (go$ptrType(big.Int)), ""]]);
 0Åí ParameterSizes|	ParameterSizes = go$pkg.ParameterSizes = go$newType(4, "Int", "dsa.ParameterSizes", "ParameterSizes", "crypto/dsa", null);
- 0    0U   M		go$pkg.ErrInvalidPublicKey = errors.New("crypto/dsa: invalid public key");
-0Ç◊ GenerateParametersÇª	GenerateParameters = go$pkg.GenerateParameters = function(params, rand, sizes) {
+ 0Ç◊ GenerateParametersÇª	GenerateParameters = go$pkg.GenerateParameters = function(params, rand, sizes) {
 		var err, _tuple, L, N, _ref, _q, qBytes, _q$1, pBytes, q, p, rem, one, _tuple$1, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _lhs$1, _index$3, _slice$2, _index$4, _slice$3, _index$5, i, x, _tuple$2, _lhs$2, _index$6, _slice$4, _index$7, _slice$5, _index$8, _lhs$3, _index$9, _slice$6, _index$10, _slice$7, _index$11, h, g, pm1, e;
 		err = null;
 		_tuple = [0, 0], L = _tuple[0], N = _tuple[1];
@@ -358,4 +357,5 @@ PrivateKeyÇ,	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "dsa.Pri
 		v.Mod(v, pub.Parameters.Q);
 		return v.Cmp(r) === 0;
 	};
- 0    0    0 
+ 0    0U   M		go$pkg.ErrInvalidPublicKey = errors.New("crypto/dsa: invalid public key");
+0    0    0 

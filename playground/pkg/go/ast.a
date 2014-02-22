@@ -1197,9 +1197,6 @@ pkgBuilderÇ0	pkgBuilder = go$pkg.pkgBuilder = go$newType(0, "Struct", "ast.pkg
 Åº		inspector.init([Node], [Go$Bool], false);
 		inspector.methods = [["Visit", "", [Node], [Visitor], false]];
 		(go$ptrType(inspector)).methods = [["Visit", "", [Node], [Visitor], false]];
-0 	separator  0 indent  0 objKindStrings  00   (		separator = new Comment.Ptr(0, "//");
-0J   B		indent = new (go$sliceType(Go$Uint8))(go$stringToBytes(".  "));
-0t   l		objKindStrings = go$toNativeArray("String", ["bad", "package", "const", "type", "var", "func", "label"]);
 0Å°  Åò	Comment.Ptr.prototype.Pos = function() {
 		var c;
 		c = this;
@@ -3906,4 +3903,7 @@ NewPackageÇ5	NewPackage = go$pkg.NewPackage = function(fset, files, importer, 
  0c InspectT	Inspect = go$pkg.Inspect = function(node, f) {
 		Walk(new inspector(f), node);
 	};
- 0    0    0 
+ 0 	separator  0 indent  0 objKindStrings  00   (		separator = new Comment.Ptr(0, "//");
+0J   B		indent = new (go$sliceType(Go$Uint8))(go$stringToBytes(".  "));
+0t   l		objKindStrings = go$toNativeArray("String", ["bad", "package", "const", "type", "var", "func", "label"]);
+0    0    0 

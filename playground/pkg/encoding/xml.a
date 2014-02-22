@@ -1,4 +1,4 @@
-0É◊encoding/xmlÇhËpackage xml
+0É/encoding/xmlÇhËpackage xml
 import bufio "bufio"
 import bytes "bytes"
 import encoding "encoding"
@@ -354,7 +354,7 @@ func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
 0Åûruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioencodingmathsyscalltimeosstrconvreflectfmtstringsencoding/xml0Å“0bufiobufio0bytesbytes0encodingencoding0
-fmtfmt0ioio0reflectreflect0strconvstrconv0stringsstrings0errorserrors0syncsync0unicodeunicode0unicode/utf8utf80ÉÜ`0ÅÚ 	Marshalerp	Marshaler = go$pkg.Marshaler = go$newType(0, "Interface", "xml.Marshaler", "Marshaler", "encoding/xml", null);
+fmtfmt0ioio0reflectreflect0strconvstrconv0stringsstrings0errorserrors0syncsync0unicodeunicode0unicode/utf8utf80ÉÖ∏0ÅÚ 	Marshalerp	Marshaler = go$pkg.Marshaler = go$newType(0, "Interface", "xml.Marshaler", "Marshaler", "encoding/xml", null);
 q		Marshaler.init([["MarshalXML", "", (go$funcType([(go$ptrType(Encoder)), StartElement], [go$error], false))]]);
 0Åˆ MarshalerAttrÅÄ	MarshalerAttr = go$pkg.MarshalerAttr = go$newType(0, "Interface", "xml.MarshalerAttr", "MarshalerAttr", "encoding/xml", null);
 `		MarshalerAttr.init([["MarshalXMLAttr", "", (go$funcType([Name], [Attr, go$error], false))]]);
@@ -538,41 +538,6 @@ EndElementÅ”	EndElement = go$pkg.EndElement = go$newType(0, "Struct", "xml.EndE
 		this.ok = ok_ !== undefined ? ok_ : false;
 	});
 Å≤		stack.init([["next", "encoding/xml", (go$ptrType(stack)), ""], ["kind", "encoding/xml", Go$Int, ""], ["name", "encoding/xml", Name, ""], ["ok", "encoding/xml", Go$Bool, ""]]);
-0 
-endComment  0 endProcInst  0 endDirective  0 marshalerType  0 marshalerAttrType  0 textMarshalerType  0 ddBytes  0 unmarshalerType  0 unmarshalerAttrType  0 textUnmarshalerType  0 tinfoMap  07 	tinfoLock &		tinfoLock = new sync.RWMutex.Ptr();
-0 nameType  0 errRawToken  0 entity  0 first  0 second  0    0 
-htmlEntity  0    0 htmlAutoClose  0 esc_quot  0 esc_apos  0 esc_amp  0 esc_lt  0 esc_gt  0 esc_tab  0 esc_nl  0 esc_cr  0 esc_fffd  0N   F		endComment = new (go$sliceType(Go$Uint8))(go$stringToBytes("-->"));
-0N   F		endProcInst = new (go$sliceType(Go$Uint8))(go$stringToBytes("?>"));
-0N   F		endDirective = new (go$sliceType(Go$Uint8))(go$stringToBytes(">"));
-0N   F		marshalerType = reflect.TypeOf((go$ptrType(Marshaler)).nil).Elem();
-0V   N		marshalerAttrType = reflect.TypeOf((go$ptrType(MarshalerAttr)).nil).Elem();
-0_   W		textMarshalerType = reflect.TypeOf((go$ptrType(encoding.TextMarshaler)).nil).Elem();
-0J   B		ddBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("--"));
-0R   J		unmarshalerType = reflect.TypeOf((go$ptrType(Unmarshaler)).nil).Elem();
-0Z   R		unmarshalerAttrType = reflect.TypeOf((go$ptrType(UnmarshalerAttr)).nil).Elem();
-0c   [		textUnmarshalerType = reflect.TypeOf((go$ptrType(encoding.TextUnmarshaler)).nil).Elem();
-0#   		tinfoMap = new Go$Map();
-0g   _		var x;
-		nameType = reflect.TypeOf((x = new Name.Ptr("", ""), new x.constructor.Struct(x)));
-0Y   Q		errRawToken = errors.New("xml: cannot use RawToken from UnmarshalXML method");
-0Ç/   Ç%		var _map, _key;
-		entity = (_map = new Go$Map(), _key = "lt", _map[_key] = { k: _key, v: 60 }, _key = "gt", _map[_key] = { k: _key, v: 62 }, _key = "amp", _map[_key] = { k: _key, v: 38 }, _key = "apos", _map[_key] = { k: _key, v: 39 }, _key = "quot", _map[_key] = { k: _key, v: 34 }, _map);
-0Ç   Ç˝		first = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(58, 58, 1), new unicode.Range16.Ptr(65, 90, 1), new unicode.Range16.Ptr(95, 95, 1), new unicode.Range16.Ptr(97, 122, 1), new unicode.Range16.Ptr(192, 214, 1), new unicode.Range16.Ptr(216, 246, 1), new unicode.Range16.Ptr(248, 255, 1), new unicode.Range16.Ptr(256, 305, 1), new unicode.Range16.Ptr(308, 318, 1), new unicode.Range16.Ptr(321, 328, 1), new unicode.Range16.Ptr(330, 382, 1), new unicode.Range16.Ptr(384, 451, 1), new unicode.Range16.Ptr(461, 496, 1), new unicode.Range16.Ptr(500, 501, 1), new unicode.Range16.Ptr(506, 535, 1), new unicode.Range16.Ptr(592, 680, 1), new unicode.Range16.Ptr(699, 705, 1), new unicode.Range16.Ptr(902, 902, 1), new unicode.Range16.Ptr(904, 906, 1), new unicode.Range16.Ptr(908, 908, 1), new unicode.Range16.Ptr(910, 929, 1), new unicode.Range16.Ptr(931, 974, 1), new unicode.Range16.Ptr(976, 982, 1), new unicode.Range16.Ptr(986, 992, 2), new unicode.Range16.Ptr(994, 1011, 1), new unicode.Range16.Ptr(1025, 1036, 1), new unicode.Range16.Ptr(1038, 1103, 1), new unicode.Range16.Ptr(1105, 1116, 1), new unicode.Range16.Ptr(1118, 1153, 1), new unicode.Range16.Ptr(1168, 1220, 1), new unicode.Range16.Ptr(1223, 1224, 1), new unicode.Range16.Ptr(1227, 1228, 1), new unicode.Range16.Ptr(1232, 1259, 1), new unicode.Range16.Ptr(1262, 1269, 1), new unicode.Range16.Ptr(1272, 1273, 1), new unicode.Range16.Ptr(1329, 1366, 1), new unicode.Range16.Ptr(1369, 1369, 1), new unicode.Range16.Ptr(1377, 1414, 1), new unicode.Range16.Ptr(1488, 1514, 1), new unicode.Range16.Ptr(1520, 1522, 1), new unicode.Range16.Ptr(1569, 1594, 1), new unicode.Range16.Ptr(1601, 1610, 1), new unicode.Range16.Ptr(1649, 1719, 1), new unicode.Range16.Ptr(1722, 1726, 1), new unicode.Range16.Ptr(1728, 1742, 1), new unicode.Range16.Ptr(1744, 1747, 1), new unicode.Range16.Ptr(1749, 1749, 1), new unicode.Range16.Ptr(1765, 1766, 1), new unicode.Range16.Ptr(2309, 2361, 1), new unicode.Range16.Ptr(2365, 2365, 1), new unicode.Range16.Ptr(2392, 2401, 1), new unicode.Range16.Ptr(2437, 2444, 1), new unicode.Range16.Ptr(2447, 2448, 1), new unicode.Range16.Ptr(2451, 2472, 1), new unicode.Range16.Ptr(2474, 2480, 1), new unicode.Range16.Ptr(2482, 2482, 1), new unicode.Range16.Ptr(2486, 2489, 1), new unicode.Range16.Ptr(2524, 2525, 1), new unicode.Range16.Ptr(2527, 2529, 1), new unicode.Range16.Ptr(2544, 2545, 1), new unicode.Range16.Ptr(2565, 2570, 1), new unicode.Range16.Ptr(2575, 2576, 1), new unicode.Range16.Ptr(2579, 2600, 1), new unicode.Range16.Ptr(2602, 2608, 1), new unicode.Range16.Ptr(2610, 2611, 1), new unicode.Range16.Ptr(2613, 2614, 1), new unicode.Range16.Ptr(2616, 2617, 1), new unicode.Range16.Ptr(2649, 2652, 1), new unicode.Range16.Ptr(2654, 2654, 1), new unicode.Range16.Ptr(2674, 2676, 1), new unicode.Range16.Ptr(2693, 2699, 1), new unicode.Range16.Ptr(2701, 2701, 1), new unicode.Range16.Ptr(2703, 2705, 1), new unicode.Range16.Ptr(2707, 2728, 1), new unicode.Range16.Ptr(2730, 2736, 1), new unicode.Range16.Ptr(2738, 2739, 1), new unicode.Range16.Ptr(2741, 2745, 1), new unicode.Range16.Ptr(2749, 2784, 35), new unicode.Range16.Ptr(2821, 2828, 1), new unicode.Range16.Ptr(2831, 2832, 1), new unicode.Range16.Ptr(2835, 2856, 1), new unicode.Range16.Ptr(2858, 2864, 1), new unicode.Range16.Ptr(2866, 2867, 1), new unicode.Range16.Ptr(2870, 2873, 1), new unicode.Range16.Ptr(2877, 2877, 1), new unicode.Range16.Ptr(2908, 2909, 1), new unicode.Range16.Ptr(2911, 2913, 1), new unicode.Range16.Ptr(2949, 2954, 1), new unicode.Range16.Ptr(2958, 2960, 1), new unicode.Range16.Ptr(2962, 2965, 1), new unicode.Range16.Ptr(2969, 2970, 1), new unicode.Range16.Ptr(2972, 2972, 1), new unicode.Range16.Ptr(2974, 2975, 1), new unicode.Range16.Ptr(2979, 2980, 1), new unicode.Range16.Ptr(2984, 2986, 1), new unicode.Range16.Ptr(2990, 2997, 1), new unicode.Range16.Ptr(2999, 3001, 1), new unicode.Range16.Ptr(3077, 3084, 1), new unicode.Range16.Ptr(3086, 3088, 1), new unicode.Range16.Ptr(3090, 3112, 1), new unicode.Range16.Ptr(3114, 3123, 1), new unicode.Range16.Ptr(3125, 3129, 1), new unicode.Range16.Ptr(3168, 3169, 1), new unicode.Range16.Ptr(3205, 3212, 1), new unicode.Range16.Ptr(3214, 3216, 1), new unicode.Range16.Ptr(3218, 3240, 1), new unicode.Range16.Ptr(3242, 3251, 1), new unicode.Range16.Ptr(3253, 3257, 1), new unicode.Range16.Ptr(3294, 3294, 1), new unicode.Range16.Ptr(3296, 3297, 1), new unicode.Range16.Ptr(3333, 3340, 1), new unicode.Range16.Ptr(3342, 3344, 1), new unicode.Range16.Ptr(3346, 3368, 1), new unicode.Range16.Ptr(3370, 3385, 1), new unicode.Range16.Ptr(3424, 3425, 1), new unicode.Range16.Ptr(3585, 3630, 1), new unicode.Range16.Ptr(3632, 3632, 1), new unicode.Range16.Ptr(3634, 3635, 1), new unicode.Range16.Ptr(3648, 3653, 1), new unicode.Range16.Ptr(3713, 3714, 1), new unicode.Range16.Ptr(3716, 3716, 1), new unicode.Range16.Ptr(3719, 3720, 1), new unicode.Range16.Ptr(3722, 3725, 3), new unicode.Range16.Ptr(3732, 3735, 1), new unicode.Range16.Ptr(3737, 3743, 1), new unicode.Range16.Ptr(3745, 3747, 1), new unicode.Range16.Ptr(3749, 3751, 2), new unicode.Range16.Ptr(3754, 3755, 1), new unicode.Range16.Ptr(3757, 3758, 1), new unicode.Range16.Ptr(3760, 3760, 1), new unicode.Range16.Ptr(3762, 3763, 1), new unicode.Range16.Ptr(3773, 3773, 1), new unicode.Range16.Ptr(3776, 3780, 1), new unicode.Range16.Ptr(3904, 3911, 1), new unicode.Range16.Ptr(3913, 3945, 1), new unicode.Range16.Ptr(4256, 4293, 1), new unicode.Range16.Ptr(4304, 4342, 1), new unicode.Range16.Ptr(4352, 4352, 1), new unicode.Range16.Ptr(4354, 4355, 1), new unicode.Range16.Ptr(4357, 4359, 1), new unicode.Range16.Ptr(4361, 4361, 1), new unicode.Range16.Ptr(4363, 4364, 1), new unicode.Range16.Ptr(4366, 4370, 1), new unicode.Range16.Ptr(4412, 4416, 2), new unicode.Range16.Ptr(4428, 4432, 2), new unicode.Range16.Ptr(4436, 4437, 1), new unicode.Range16.Ptr(4441, 4441, 1), new unicode.Range16.Ptr(4447, 4449, 1), new unicode.Range16.Ptr(4451, 4457, 2), new unicode.Range16.Ptr(4461, 4462, 1), new unicode.Range16.Ptr(4466, 4467, 1), new unicode.Range16.Ptr(4469, 4510, 41), new unicode.Range16.Ptr(4520, 4523, 3), new unicode.Range16.Ptr(4526, 4527, 1), new unicode.Range16.Ptr(4535, 4536, 1), new unicode.Range16.Ptr(4538, 4538, 1), new unicode.Range16.Ptr(4540, 4546, 1), new unicode.Range16.Ptr(4587, 4592, 5), new unicode.Range16.Ptr(4601, 4601, 1), new unicode.Range16.Ptr(7680, 7835, 1), new unicode.Range16.Ptr(7840, 7929, 1), new unicode.Range16.Ptr(7936, 7957, 1), new unicode.Range16.Ptr(7960, 7965, 1), new unicode.Range16.Ptr(7968, 8005, 1), new unicode.Range16.Ptr(8008, 8013, 1), new unicode.Range16.Ptr(8016, 8023, 1), new unicode.Range16.Ptr(8025, 8027, 2), new unicode.Range16.Ptr(8029, 8029, 1), new unicode.Range16.Ptr(8031, 8061, 1), new unicode.Range16.Ptr(8064, 8116, 1), new unicode.Range16.Ptr(8118, 8124, 1), new unicode.Range16.Ptr(8126, 8126, 1), new unicode.Range16.Ptr(8130, 8132, 1), new unicode.Range16.Ptr(8134, 8140, 1), new unicode.Range16.Ptr(8144, 8147, 1), new unicode.Range16.Ptr(8150, 8155, 1), new unicode.Range16.Ptr(8160, 8172, 1), new unicode.Range16.Ptr(8178, 8180, 1), new unicode.Range16.Ptr(8182, 8188, 1), new unicode.Range16.Ptr(8486, 8486, 1), new unicode.Range16.Ptr(8490, 8491, 1), new unicode.Range16.Ptr(8494, 8494, 1), new unicode.Range16.Ptr(8576, 8578, 1), new unicode.Range16.Ptr(12295, 12295, 1), new unicode.Range16.Ptr(12321, 12329, 1), new unicode.Range16.Ptr(12353, 12436, 1), new unicode.Range16.Ptr(12449, 12538, 1), new unicode.Range16.Ptr(12549, 12588, 1), new unicode.Range16.Ptr(19968, 40869, 1), new unicode.Range16.Ptr(44032, 55203, 1)]), (go$sliceType(unicode.Range32)).nil, 0);
-0Çˇ   Çı		second = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(45, 46, 1), new unicode.Range16.Ptr(48, 57, 1), new unicode.Range16.Ptr(183, 183, 1), new unicode.Range16.Ptr(720, 721, 1), new unicode.Range16.Ptr(768, 837, 1), new unicode.Range16.Ptr(864, 865, 1), new unicode.Range16.Ptr(903, 903, 1), new unicode.Range16.Ptr(1155, 1158, 1), new unicode.Range16.Ptr(1425, 1441, 1), new unicode.Range16.Ptr(1443, 1465, 1), new unicode.Range16.Ptr(1467, 1469, 1), new unicode.Range16.Ptr(1471, 1471, 1), new unicode.Range16.Ptr(1473, 1474, 1), new unicode.Range16.Ptr(1476, 1600, 124), new unicode.Range16.Ptr(1611, 1618, 1), new unicode.Range16.Ptr(1632, 1641, 1), new unicode.Range16.Ptr(1648, 1648, 1), new unicode.Range16.Ptr(1750, 1756, 1), new unicode.Range16.Ptr(1757, 1759, 1), new unicode.Range16.Ptr(1760, 1764, 1), new unicode.Range16.Ptr(1767, 1768, 1), new unicode.Range16.Ptr(1770, 1773, 1), new unicode.Range16.Ptr(1776, 1785, 1), new unicode.Range16.Ptr(2305, 2307, 1), new unicode.Range16.Ptr(2364, 2364, 1), new unicode.Range16.Ptr(2366, 2380, 1), new unicode.Range16.Ptr(2381, 2381, 1), new unicode.Range16.Ptr(2385, 2388, 1), new unicode.Range16.Ptr(2402, 2403, 1), new unicode.Range16.Ptr(2406, 2415, 1), new unicode.Range16.Ptr(2433, 2435, 1), new unicode.Range16.Ptr(2492, 2492, 1), new unicode.Range16.Ptr(2494, 2495, 1), new unicode.Range16.Ptr(2496, 2500, 1), new unicode.Range16.Ptr(2503, 2504, 1), new unicode.Range16.Ptr(2507, 2509, 1), new unicode.Range16.Ptr(2519, 2519, 1), new unicode.Range16.Ptr(2530, 2531, 1), new unicode.Range16.Ptr(2534, 2543, 1), new unicode.Range16.Ptr(2562, 2620, 58), new unicode.Range16.Ptr(2622, 2623, 1), new unicode.Range16.Ptr(2624, 2626, 1), new unicode.Range16.Ptr(2631, 2632, 1), new unicode.Range16.Ptr(2635, 2637, 1), new unicode.Range16.Ptr(2662, 2671, 1), new unicode.Range16.Ptr(2672, 2673, 1), new unicode.Range16.Ptr(2689, 2691, 1), new unicode.Range16.Ptr(2748, 2748, 1), new unicode.Range16.Ptr(2750, 2757, 1), new unicode.Range16.Ptr(2759, 2761, 1), new unicode.Range16.Ptr(2763, 2765, 1), new unicode.Range16.Ptr(2790, 2799, 1), new unicode.Range16.Ptr(2817, 2819, 1), new unicode.Range16.Ptr(2876, 2876, 1), new unicode.Range16.Ptr(2878, 2883, 1), new unicode.Range16.Ptr(2887, 2888, 1), new unicode.Range16.Ptr(2891, 2893, 1), new unicode.Range16.Ptr(2902, 2903, 1), new unicode.Range16.Ptr(2918, 2927, 1), new unicode.Range16.Ptr(2946, 2947, 1), new unicode.Range16.Ptr(3006, 3010, 1), new unicode.Range16.Ptr(3014, 3016, 1), new unicode.Range16.Ptr(3018, 3021, 1), new unicode.Range16.Ptr(3031, 3031, 1), new unicode.Range16.Ptr(3047, 3055, 1), new unicode.Range16.Ptr(3073, 3075, 1), new unicode.Range16.Ptr(3134, 3140, 1), new unicode.Range16.Ptr(3142, 3144, 1), new unicode.Range16.Ptr(3146, 3149, 1), new unicode.Range16.Ptr(3157, 3158, 1), new unicode.Range16.Ptr(3174, 3183, 1), new unicode.Range16.Ptr(3202, 3203, 1), new unicode.Range16.Ptr(3262, 3268, 1), new unicode.Range16.Ptr(3270, 3272, 1), new unicode.Range16.Ptr(3274, 3277, 1), new unicode.Range16.Ptr(3285, 3286, 1), new unicode.Range16.Ptr(3302, 3311, 1), new unicode.Range16.Ptr(3330, 3331, 1), new unicode.Range16.Ptr(3390, 3395, 1), new unicode.Range16.Ptr(3398, 3400, 1), new unicode.Range16.Ptr(3402, 3405, 1), new unicode.Range16.Ptr(3415, 3415, 1), new unicode.Range16.Ptr(3430, 3439, 1), new unicode.Range16.Ptr(3633, 3633, 1), new unicode.Range16.Ptr(3636, 3642, 1), new unicode.Range16.Ptr(3654, 3654, 1), new unicode.Range16.Ptr(3655, 3662, 1), new unicode.Range16.Ptr(3664, 3673, 1), new unicode.Range16.Ptr(3761, 3761, 1), new unicode.Range16.Ptr(3764, 3769, 1), new unicode.Range16.Ptr(3771, 3772, 1), new unicode.Range16.Ptr(3782, 3782, 1), new unicode.Range16.Ptr(3784, 3789, 1), new unicode.Range16.Ptr(3792, 3801, 1), new unicode.Range16.Ptr(3864, 3865, 1), new unicode.Range16.Ptr(3872, 3881, 1), new unicode.Range16.Ptr(3893, 3897, 2), new unicode.Range16.Ptr(3902, 3903, 1), new unicode.Range16.Ptr(3953, 3972, 1), new unicode.Range16.Ptr(3974, 3979, 1), new unicode.Range16.Ptr(3984, 3989, 1), new unicode.Range16.Ptr(3991, 3991, 1), new unicode.Range16.Ptr(3993, 4013, 1), new unicode.Range16.Ptr(4017, 4023, 1), new unicode.Range16.Ptr(4025, 4025, 1), new unicode.Range16.Ptr(8400, 8412, 1), new unicode.Range16.Ptr(8417, 12293, 3876), new unicode.Range16.Ptr(12330, 12335, 1), new unicode.Range16.Ptr(12337, 12341, 1), new unicode.Range16.Ptr(12441, 12442, 1), new unicode.Range16.Ptr(12445, 12446, 1), new unicode.Range16.Ptr(12540, 12542, 1)]), (go$sliceType(unicode.Range32)).nil, 0);
-0ÇAA   ÇA7		var _map$1, _key$1;
-		htmlEntity = (_map$1 = new Go$Map(), _key$1 = "nbsp", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA0" }, _key$1 = "iexcl", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA1" }, _key$1 = "cent", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA2" }, _key$1 = "pound", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA3" }, _key$1 = "curren", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA4" }, _key$1 = "yen", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA5" }, _key$1 = "brvbar", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA6" }, _key$1 = "sect", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA7" }, _key$1 = "uml", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA8" }, _key$1 = "copy", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA9" }, _key$1 = "ordf", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAA" }, _key$1 = "laquo", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAB" }, _key$1 = "not", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAC" }, _key$1 = "shy", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAD" }, _key$1 = "reg", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAE" }, _key$1 = "macr", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAF" }, _key$1 = "deg", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB0" }, _key$1 = "plusmn", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB1" }, _key$1 = "sup2", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB2" }, _key$1 = "sup3", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB3" }, _key$1 = "acute", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB4" }, _key$1 = "micro", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB5" }, _key$1 = "para", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB6" }, _key$1 = "middot", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB7" }, _key$1 = "cedil", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB8" }, _key$1 = "sup1", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB9" }, _key$1 = "ordm", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBA" }, _key$1 = "raquo", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBB" }, _key$1 = "frac14", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBC" }, _key$1 = "frac12", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBD" }, _key$1 = "frac34", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBE" }, _key$1 = "iquest", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBF" }, _key$1 = "Agrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x80" }, _key$1 = "Aacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x81" }, _key$1 = "Acirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x82" }, _key$1 = "Atilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\x83" }, _key$1 = "Auml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x84" }, _key$1 = "Aring", _map$1[_key$1] = { k: _key$1, v: "\xC3\x85" }, _key$1 = "AElig", _map$1[_key$1] = { k: _key$1, v: "\xC3\x86" }, _key$1 = "Ccedil", _map$1[_key$1] = { k: _key$1, v: "\xC3\x87" }, _key$1 = "Egrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x88" }, _key$1 = "Eacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x89" }, _key$1 = "Ecirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8A" }, _key$1 = "Euml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8B" }, _key$1 = "Igrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8C" }, _key$1 = "Iacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8D" }, _key$1 = "Icirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8E" }, _key$1 = "Iuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8F" }, _key$1 = "ETH", _map$1[_key$1] = { k: _key$1, v: "\xC3\x90" }, _key$1 = "Ntilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\x91" }, _key$1 = "Ograve", _map$1[_key$1] = { k: _key$1, v: "\xC3\x92" }, _key$1 = "Oacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x93" }, _key$1 = "Ocirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x94" }, _key$1 = "Otilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\x95" }, _key$1 = "Ouml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x96" }, _key$1 = "times", _map$1[_key$1] = { k: _key$1, v: "\xC3\x97" }, _key$1 = "Oslash", _map$1[_key$1] = { k: _key$1, v: "\xC3\x98" }, _key$1 = "Ugrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x99" }, _key$1 = "Uacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9A" }, _key$1 = "Ucirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9B" }, _key$1 = "Uuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9C" }, _key$1 = "Yacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9D" }, _key$1 = "THORN", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9E" }, _key$1 = "szlig", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9F" }, _key$1 = "agrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA0" }, _key$1 = "aacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA1" }, _key$1 = "acirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA2" }, _key$1 = "atilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA3" }, _key$1 = "auml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA4" }, _key$1 = "aring", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA5" }, _key$1 = "aelig", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA6" }, _key$1 = "ccedil", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA7" }, _key$1 = "egrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA8" }, _key$1 = "eacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA9" }, _key$1 = "ecirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAA" }, _key$1 = "euml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAB" }, _key$1 = "igrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAC" }, _key$1 = "iacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAD" }, _key$1 = "icirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAE" }, _key$1 = "iuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAF" }, _key$1 = "eth", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB0" }, _key$1 = "ntilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB1" }, _key$1 = "ograve", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB2" }, _key$1 = "oacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB3" }, _key$1 = "ocirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB4" }, _key$1 = "otilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB5" }, _key$1 = "ouml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB6" }, _key$1 = "divide", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB7" }, _key$1 = "oslash", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB8" }, _key$1 = "ugrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB9" }, _key$1 = "uacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBA" }, _key$1 = "ucirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBB" }, _key$1 = "uuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBC" }, _key$1 = "yacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBD" }, _key$1 = "thorn", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBE" }, _key$1 = "yuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBF" }, _key$1 = "fnof", _map$1[_key$1] = { k: _key$1, v: "\xC6\x92" }, _key$1 = "Alpha", _map$1[_key$1] = { k: _key$1, v: "\xCE\x91" }, _key$1 = "Beta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x92" }, _key$1 = "Gamma", _map$1[_key$1] = { k: _key$1, v: "\xCE\x93" }, _key$1 = "Delta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x94" }, _key$1 = "Epsilon", _map$1[_key$1] = { k: _key$1, v: "\xCE\x95" }, _key$1 = "Zeta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x96" }, _key$1 = "Eta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x97" }, _key$1 = "Theta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x98" }, _key$1 = "Iota", _map$1[_key$1] = { k: _key$1, v: "\xCE\x99" }, _key$1 = "Kappa", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9A" }, _key$1 = "Lambda", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9B" }, _key$1 = "Mu", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9C" }, _key$1 = "Nu", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9D" }, _key$1 = "Xi", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9E" }, _key$1 = "Omicron", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9F" }, _key$1 = "Pi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA0" }, _key$1 = "Rho", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA1" }, _key$1 = "Sigma", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA3" }, _key$1 = "Tau", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA4" }, _key$1 = "Upsilon", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA5" }, _key$1 = "Phi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA6" }, _key$1 = "Chi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA7" }, _key$1 = "Psi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA8" }, _key$1 = "Omega", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA9" }, _key$1 = "alpha", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB1" }, _key$1 = "beta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB2" }, _key$1 = "gamma", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB3" }, _key$1 = "delta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB4" }, _key$1 = "epsilon", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB5" }, _key$1 = "zeta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB6" }, _key$1 = "eta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB7" }, _key$1 = "theta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB8" }, _key$1 = "iota", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB9" }, _key$1 = "kappa", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBA" }, _key$1 = "lambda", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBB" }, _key$1 = "mu", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBC" }, _key$1 = "nu", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBD" }, _key$1 = "xi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBE" }, _key$1 = "omicron", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBF" }, _key$1 = "pi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x80" }, _key$1 = "rho", _map$1[_key$1] = { k: _key$1, v: "\xCF\x81" }, _key$1 = "sigmaf", _map$1[_key$1] = { k: _key$1, v: "\xCF\x82" }, _key$1 = "sigma", _map$1[_key$1] = { k: _key$1, v: "\xCF\x83" }, _key$1 = "tau", _map$1[_key$1] = { k: _key$1, v: "\xCF\x84" }, _key$1 = "upsilon", _map$1[_key$1] = { k: _key$1, v: "\xCF\x85" }, _key$1 = "phi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x86" }, _key$1 = "chi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x87" }, _key$1 = "psi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x88" }, _key$1 = "omega", _map$1[_key$1] = { k: _key$1, v: "\xCF\x89" }, _key$1 = "thetasym", _map$1[_key$1] = { k: _key$1, v: "\xCF\x91" }, _key$1 = "upsih", _map$1[_key$1] = { k: _key$1, v: "\xCF\x92" }, _key$1 = "piv", _map$1[_key$1] = { k: _key$1, v: "\xCF\x96" }, _key$1 = "bull", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA2" }, _key$1 = "hellip", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA6" }, _key$1 = "prime", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB2" }, _key$1 = "Prime", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB3" }, _key$1 = "oline", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xBE" }, _key$1 = "frasl", _map$1[_key$1] = { k: _key$1, v: "\xE2\x81\x84" }, _key$1 = "weierp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\x98" }, _key$1 = "image", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\x91" }, _key$1 = "real", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\x9C" }, _key$1 = "trade", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\xA2" }, _key$1 = "alefsym", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\xB5" }, _key$1 = "larr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x90" }, _key$1 = "uarr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x91" }, _key$1 = "rarr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x92" }, _key$1 = "darr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x93" }, _key$1 = "harr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x94" }, _key$1 = "crarr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\xB5" }, _key$1 = "lArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x90" }, _key$1 = "uArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x91" }, _key$1 = "rArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x92" }, _key$1 = "dArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x93" }, _key$1 = "hArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x94" }, _key$1 = "forall", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x80" }, _key$1 = "part", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x82" }, _key$1 = "exist", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x83" }, _key$1 = "empty", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x85" }, _key$1 = "nabla", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x87" }, _key$1 = "isin", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x88" }, _key$1 = "notin", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x89" }, _key$1 = "ni", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x8B" }, _key$1 = "prod", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x8F" }, _key$1 = "sum", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x91" }, _key$1 = "minus", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x92" }, _key$1 = "lowast", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x97" }, _key$1 = "radic", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x9A" }, _key$1 = "prop", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x9D" }, _key$1 = "infin", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x9E" }, _key$1 = "ang", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA0" }, _key$1 = "and", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA7" }, _key$1 = "or", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA8" }, _key$1 = "cap", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA9" }, _key$1 = "cup", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xAA" }, _key$1 = "int", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xAB" }, _key$1 = "there4", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xB4" }, _key$1 = "sim", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xBC" }, _key$1 = "cong", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\x85" }, _key$1 = "asymp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\x88" }, _key$1 = "ne", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA0" }, _key$1 = "equiv", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA1" }, _key$1 = "le", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA4" }, _key$1 = "ge", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA5" }, _key$1 = "sub", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x82" }, _key$1 = "sup", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x83" }, _key$1 = "nsub", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x84" }, _key$1 = "sube", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x86" }, _key$1 = "supe", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x87" }, _key$1 = "oplus", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x95" }, _key$1 = "otimes", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x97" }, _key$1 = "perp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\xA5" }, _key$1 = "sdot", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8B\x85" }, _key$1 = "lceil", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x88" }, _key$1 = "rceil", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x89" }, _key$1 = "lfloor", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x8A" }, _key$1 = "rfloor", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x8B" }, _key$1 = "lang", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\xA9" }, _key$1 = "rang", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\xAA" }, _key$1 = "loz", _map$1[_key$1] = { k: _key$1, v: "\xE2\x97\x8A" }, _key$1 = "spades", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA0" }, _key$1 = "clubs", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA3" }, _key$1 = "hearts", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA5" }, _key$1 = "diams", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA6" }, _key$1 = "quot", _map$1[_key$1] = { k: _key$1, v: "\"" }, _key$1 = "amp", _map$1[_key$1] = { k: _key$1, v: "&" }, _key$1 = "lt", _map$1[_key$1] = { k: _key$1, v: "<" }, _key$1 = "gt", _map$1[_key$1] = { k: _key$1, v: ">" }, _key$1 = "OElig", _map$1[_key$1] = { k: _key$1, v: "\xC5\x92" }, _key$1 = "oelig", _map$1[_key$1] = { k: _key$1, v: "\xC5\x93" }, _key$1 = "Scaron", _map$1[_key$1] = { k: _key$1, v: "\xC5\xA0" }, _key$1 = "scaron", _map$1[_key$1] = { k: _key$1, v: "\xC5\xA1" }, _key$1 = "Yuml", _map$1[_key$1] = { k: _key$1, v: "\xC5\xB8" }, _key$1 = "circ", _map$1[_key$1] = { k: _key$1, v: "\xCB\x86" }, _key$1 = "tilde", _map$1[_key$1] = { k: _key$1, v: "\xCB\x9C" }, _key$1 = "ensp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x82" }, _key$1 = "emsp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x83" }, _key$1 = "thinsp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x89" }, _key$1 = "zwnj", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8C" }, _key$1 = "zwj", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8D" }, _key$1 = "lrm", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8E" }, _key$1 = "rlm", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8F" }, _key$1 = "ndash", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x93" }, _key$1 = "mdash", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x94" }, _key$1 = "lsquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x98" }, _key$1 = "rsquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x99" }, _key$1 = "sbquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9A" }, _key$1 = "ldquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9C" }, _key$1 = "rdquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9D" }, _key$1 = "bdquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9E" }, _key$1 = "dagger", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA0" }, _key$1 = "Dagger", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA1" }, _key$1 = "permil", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB0" }, _key$1 = "lsaquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB9" }, _key$1 = "rsaquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xBA" }, _key$1 = "euro", _map$1[_key$1] = { k: _key$1, v: "\xE2\x82\xAC" }, _map$1);
-0*   "		go$pkg.HTMLEntity = htmlEntity;
-0Å®   Åü		htmlAutoClose = new (go$sliceType(Go$String))(["basefont", "br", "area", "link", "img", "param", "hr", "input", "col", "frame", "isindex", "base", "meta"]);
-00   (		go$pkg.HTMLAutoClose = htmlAutoClose;
-0N   F		esc_quot = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#34;"));
-0N   F		esc_apos = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#39;"));
-0M   E		esc_amp = new (go$sliceType(Go$Uint8))(go$stringToBytes("&amp;"));
-0K   C		esc_lt = new (go$sliceType(Go$Uint8))(go$stringToBytes("&lt;"));
-0K   C		esc_gt = new (go$sliceType(Go$Uint8))(go$stringToBytes("&gt;"));
-0M   E		esc_tab = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#x9;"));
-0L   D		esc_nl = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#xA;"));
-0L   D		esc_cr = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#xD;"));
-0U   M		esc_fffd = new (go$sliceType(Go$Uint8))(go$stringToBytes("\xEF\xBF\xBD"));
 0Ç MarshalÅÛ	Marshal = go$pkg.Marshal = function(v) {
 		var b, err;
 		b = new bytes.Buffer.Ptr();
@@ -686,8 +651,8 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		return enc.p.Writer.Flush();
 	};
 	Encoder.prototype.Flush = function() { return this.go$val.Flush(); };
- 0Ç  Ç˙	printer.Ptr.prototype.createAttrPrefix = function(url) {
-		var p, prefix, _entry, prefix$1, i, _entry$1, id, _entry$2, _key$2, _key$3;
+ 0Ç¸  ÇÚ	printer.Ptr.prototype.createAttrPrefix = function(url) {
+		var p, prefix, _entry, prefix$1, i, _entry$1, id, _entry$2, _key, _key$1;
 		p = this;
 		if (prefix = (_entry = p.attrPrefix[url], _entry !== undefined ? _entry.v : ""), !(prefix === "")) {
 			return prefix;
@@ -719,8 +684,8 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 				p.seq = p.seq + 1 >> 0;
 			}
 		}
-		_key$2 = url, (p.attrPrefix || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: prefix$1 };
-		_key$3 = prefix$1, (p.attrNS || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: url };
+		_key = url, (p.attrPrefix || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: prefix$1 };
+		_key$1 = prefix$1, (p.attrNS || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: url };
 		p.Writer.WriteString("xmlns:");
 		p.Writer.WriteString(prefix$1);
 		p.Writer.WriteString("=\"");
@@ -756,8 +721,8 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		}
 	};
 	printer.prototype.popPrefix = function() { return this.go$val.popPrefix(); };
- 0Ç+”  Ç+…	printer.Ptr.prototype.marshalValue = function(val, finfo, startTemplate) {
-		var p, _struct, _struct$1, kind, typ, x$1, _struct$2, _struct$3, _struct$4, pv, x$2, _struct$5, _struct$6, x$3, _struct$7, _struct$8, _struct$9, pv$1, x$4, _struct$10, _struct$11, _tuple, i, n, err, _struct$12, _tuple$1, tinfo, err$1, start, _struct$13, xmlname, ok, v, _tuple$2, x$5, _struct$14, _struct$15, _tuple$3, _struct$16, _tuple$4, name, _ref, _i, i$1, _slice, _index, finfo$1, _struct$17, _struct$18, fv, name$1, _struct$19, _tuple$5, x$6, _struct$20, _struct$21, _struct$22, attr, err$2, _struct$23, _struct$24, _struct$25, pv$2, _tuple$6, x$7, _struct$26, _struct$27, _struct$28, attr$1, err$3, _struct$29, _struct$30, _tuple$7, x$8, text, err$4, _struct$31, _struct$32, pv$3, _tuple$8, x$9, text$1, err$5, _struct$33, _ref$1, _struct$34, _tuple$9, _struct$35, s, b, err$6, _struct$36, err$7, _struct$37, _tuple$10, _struct$38, s$1, b$1, err1, err$8, _struct$39;
+ 0Ç+«  Ç+Ω	printer.Ptr.prototype.marshalValue = function(val, finfo, startTemplate) {
+		var p, _struct, _struct$1, kind, typ, x, _struct$2, _struct$3, _struct$4, pv, x$1, _struct$5, _struct$6, x$2, _struct$7, _struct$8, _struct$9, pv$1, x$3, _struct$10, _struct$11, _tuple, i, n, err, _struct$12, _tuple$1, tinfo, err$1, start, _struct$13, xmlname, ok, v, _tuple$2, x$4, _struct$14, _struct$15, _tuple$3, _struct$16, _tuple$4, name, _ref, _i, i$1, _slice, _index, finfo$1, _struct$17, _struct$18, fv, name$1, _struct$19, _tuple$5, x$5, _struct$20, _struct$21, _struct$22, attr, err$2, _struct$23, _struct$24, _struct$25, pv$2, _tuple$6, x$6, _struct$26, _struct$27, _struct$28, attr$1, err$3, _struct$29, _struct$30, _tuple$7, x$7, text, err$4, _struct$31, _struct$32, pv$3, _tuple$8, x$8, text$1, err$5, _struct$33, _ref$1, _struct$34, _tuple$9, _struct$35, s, b, err$6, _struct$36, err$7, _struct$37, _tuple$10, _struct$38, s$1, b$1, err1, err$8, _struct$39;
 		p = this;
 		if (!(startTemplate === (go$ptrType(StartElement)).nil) && startTemplate.Name.Local === "") {
 			return fmt.Errorf("xml: EncodeElement of StartElement with missing name", new (go$sliceType(go$emptyInterface))([]));
@@ -777,21 +742,21 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		kind = val.Kind();
 		typ = val.Type();
 		if (val.CanInterface() && typ.Implements(marshalerType)) {
-			return p.marshalInterface((x$1 = val.Interface(), (x$1 !== null && Marshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, Marshaler))), (_struct$2 = defaultStart(typ, finfo, startTemplate), new StartElement.Ptr((_struct$3 = _struct$2.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local)), _struct$2.Attr)));
+			return p.marshalInterface((x = val.Interface(), (x !== null && Marshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, Marshaler))), (_struct$2 = defaultStart(typ, finfo, startTemplate), new StartElement.Ptr((_struct$3 = _struct$2.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local)), _struct$2.Attr)));
 		}
 		if (val.CanAddr()) {
 			pv = (_struct$4 = val.Addr(), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 			if (pv.CanInterface() && pv.Type().Implements(marshalerType)) {
-				return p.marshalInterface((x$2 = pv.Interface(), (x$2 !== null && Marshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, Marshaler))), (_struct$5 = defaultStart(pv.Type(), finfo, startTemplate), new StartElement.Ptr((_struct$6 = _struct$5.Name, new Name.Ptr(_struct$6.Space, _struct$6.Local)), _struct$5.Attr)));
+				return p.marshalInterface((x$1 = pv.Interface(), (x$1 !== null && Marshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, Marshaler))), (_struct$5 = defaultStart(pv.Type(), finfo, startTemplate), new StartElement.Ptr((_struct$6 = _struct$5.Name, new Name.Ptr(_struct$6.Space, _struct$6.Local)), _struct$5.Attr)));
 			}
 		}
 		if (val.CanInterface() && typ.Implements(textMarshalerType)) {
-			return p.marshalTextInterface((x$3 = val.Interface(), (x$3 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.TextMarshaler))), (_struct$7 = defaultStart(typ, finfo, startTemplate), new StartElement.Ptr((_struct$8 = _struct$7.Name, new Name.Ptr(_struct$8.Space, _struct$8.Local)), _struct$7.Attr)));
+			return p.marshalTextInterface((x$2 = val.Interface(), (x$2 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, encoding.TextMarshaler))), (_struct$7 = defaultStart(typ, finfo, startTemplate), new StartElement.Ptr((_struct$8 = _struct$7.Name, new Name.Ptr(_struct$8.Space, _struct$8.Local)), _struct$7.Attr)));
 		}
 		if (val.CanAddr()) {
 			pv$1 = (_struct$9 = val.Addr(), new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag));
 			if (pv$1.CanInterface() && pv$1.Type().Implements(textMarshalerType)) {
-				return p.marshalTextInterface((x$4 = pv$1.Interface(), (x$4 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$4.constructor) !== -1 ? x$4 : go$typeAssertionFailed(x$4, encoding.TextMarshaler))), (_struct$10 = defaultStart(pv$1.Type(), finfo, startTemplate), new StartElement.Ptr((_struct$11 = _struct$10.Name, new Name.Ptr(_struct$11.Space, _struct$11.Local)), _struct$10.Attr)));
+				return p.marshalTextInterface((x$3 = pv$1.Interface(), (x$3 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.TextMarshaler))), (_struct$10 = defaultStart(pv$1.Type(), finfo, startTemplate), new StartElement.Ptr((_struct$11 = _struct$10.Name, new Name.Ptr(_struct$11.Space, _struct$11.Local)), _struct$10.Attr)));
 			}
 		}
 		if (((kind === 23) || (kind === 17)) && !((typ.Elem().Kind() === 8))) {
@@ -816,7 +781,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 			xmlname = tinfo.xmlname;
 			if (!(xmlname.name === "")) {
 				_tuple$3 = [xmlname.xmlns, xmlname.name], start.Name.Space = _tuple$3[0], start.Name.Local = _tuple$3[1];
-			} else if (_tuple$2 = (x$5 = xmlname.value((_struct$14 = val, new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag))).Interface(), (x$5 !== null && x$5.constructor === Name ? [x$5.go$val, true] : [new Name.Ptr(), false])), v = (_struct$15 = _tuple$2[0], new Name.Ptr(_struct$15.Space, _struct$15.Local)), ok = _tuple$2[1], ok && !(v.Local === "")) {
+			} else if (_tuple$2 = (x$4 = xmlname.value((_struct$14 = val, new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag))).Interface(), (x$4 !== null && x$4.constructor === Name ? [x$4.go$val, true] : [new Name.Ptr(), false])), v = (_struct$15 = _tuple$2[0], new Name.Ptr(_struct$15.Space, _struct$15.Local)), ok = _tuple$2[1], ok && !(v.Local === "")) {
 				start.Name = (_struct$16 = v, new Name.Ptr(_struct$16.Space, _struct$16.Local));
 			}
 		}
@@ -850,7 +815,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 				continue;
 			}
 			if (fv.CanInterface() && fv.Type().Implements(marshalerAttrType)) {
-				_tuple$5 = (x$6 = fv.Interface(), (x$6 !== null && MarshalerAttr.implementedBy.indexOf(x$6.constructor) !== -1 ? x$6 : go$typeAssertionFailed(x$6, MarshalerAttr))).MarshalXMLAttr((_struct$20 = name$1, new Name.Ptr(_struct$20.Space, _struct$20.Local))), attr = (_struct$21 = _tuple$5[0], new Attr.Ptr((_struct$22 = _struct$21.Name, new Name.Ptr(_struct$22.Space, _struct$22.Local)), _struct$21.Value)), err$2 = _tuple$5[1];
+				_tuple$5 = (x$5 = fv.Interface(), (x$5 !== null && MarshalerAttr.implementedBy.indexOf(x$5.constructor) !== -1 ? x$5 : go$typeAssertionFailed(x$5, MarshalerAttr))).MarshalXMLAttr((_struct$20 = name$1, new Name.Ptr(_struct$20.Space, _struct$20.Local))), attr = (_struct$21 = _tuple$5[0], new Attr.Ptr((_struct$22 = _struct$21.Name, new Name.Ptr(_struct$22.Space, _struct$22.Local)), _struct$21.Value)), err$2 = _tuple$5[1];
 				if (!(go$interfaceIsEqual(err$2, null))) {
 					return err$2;
 				}
@@ -863,7 +828,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 			if (fv.CanAddr()) {
 				pv$2 = (_struct$25 = fv.Addr(), new reflect.Value.Ptr(_struct$25.typ, _struct$25.val, _struct$25.flag));
 				if (pv$2.CanInterface() && pv$2.Type().Implements(marshalerAttrType)) {
-					_tuple$6 = (x$7 = pv$2.Interface(), (x$7 !== null && MarshalerAttr.implementedBy.indexOf(x$7.constructor) !== -1 ? x$7 : go$typeAssertionFailed(x$7, MarshalerAttr))).MarshalXMLAttr((_struct$26 = name$1, new Name.Ptr(_struct$26.Space, _struct$26.Local))), attr$1 = (_struct$27 = _tuple$6[0], new Attr.Ptr((_struct$28 = _struct$27.Name, new Name.Ptr(_struct$28.Space, _struct$28.Local)), _struct$27.Value)), err$3 = _tuple$6[1];
+					_tuple$6 = (x$6 = pv$2.Interface(), (x$6 !== null && MarshalerAttr.implementedBy.indexOf(x$6.constructor) !== -1 ? x$6 : go$typeAssertionFailed(x$6, MarshalerAttr))).MarshalXMLAttr((_struct$26 = name$1, new Name.Ptr(_struct$26.Space, _struct$26.Local))), attr$1 = (_struct$27 = _tuple$6[0], new Attr.Ptr((_struct$28 = _struct$27.Name, new Name.Ptr(_struct$28.Space, _struct$28.Local)), _struct$27.Value)), err$3 = _tuple$6[1];
 					if (!(go$interfaceIsEqual(err$3, null))) {
 						return err$3;
 					}
@@ -875,7 +840,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 				}
 			}
 			if (fv.CanInterface() && fv.Type().Implements(textMarshalerType)) {
-				_tuple$7 = (x$8 = fv.Interface(), (x$8 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$8.constructor) !== -1 ? x$8 : go$typeAssertionFailed(x$8, encoding.TextMarshaler))).MarshalText(), text = _tuple$7[0], err$4 = _tuple$7[1];
+				_tuple$7 = (x$7 = fv.Interface(), (x$7 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$7.constructor) !== -1 ? x$7 : go$typeAssertionFailed(x$7, encoding.TextMarshaler))).MarshalText(), text = _tuple$7[0], err$4 = _tuple$7[1];
 				if (!(go$interfaceIsEqual(err$4, null))) {
 					return err$4;
 				}
@@ -886,7 +851,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 			if (fv.CanAddr()) {
 				pv$3 = (_struct$32 = fv.Addr(), new reflect.Value.Ptr(_struct$32.typ, _struct$32.val, _struct$32.flag));
 				if (pv$3.CanInterface() && pv$3.Type().Implements(textMarshalerType)) {
-					_tuple$8 = (x$9 = pv$3.Interface(), (x$9 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$9.constructor) !== -1 ? x$9 : go$typeAssertionFailed(x$9, encoding.TextMarshaler))).MarshalText(), text$1 = _tuple$8[0], err$5 = _tuple$8[1];
+					_tuple$8 = (x$8 = pv$3.Interface(), (x$8 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$8.constructor) !== -1 ? x$8 : go$typeAssertionFailed(x$8, encoding.TextMarshaler))).MarshalText(), text$1 = _tuple$8[0], err$5 = _tuple$8[1];
 					if (!(go$interfaceIsEqual(err$5, null))) {
 						return err$5;
 					}
@@ -1023,8 +988,8 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		return null;
 	};
 	printer.prototype.writeStart = function(start) { return this.go$val.writeStart(start); };
- 0Ç’  ÇÀ	printer.Ptr.prototype.writeEnd = function(name) {
-		var p, _slice, _index, x$1, y, top, _slice$1, _index$1, _struct;
+ 0ÇÕ  Ç√	printer.Ptr.prototype.writeEnd = function(name) {
+		var p, _slice, _index, x, y, top, _slice$1, _index$1, _struct;
 		p = this;
 		if (name.Local === "") {
 			return fmt.Errorf("xml: end tag with no name", new (go$sliceType(go$emptyInterface))([]));
@@ -1032,7 +997,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		if ((p.tags.length === 0) || (_slice = p.tags, _index = (p.tags.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Local === "") {
 			return fmt.Errorf("xml: end tag </%s> without start tag", new (go$sliceType(go$emptyInterface))([new Go$String(name.Local)]));
 		}
-		if (top = (_struct = (_slice$1 = p.tags, _index$1 = (p.tags.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Name.Ptr(_struct.Space, _struct.Local)), !((x$1 = top, y = name, x$1.Space === y.Space && x$1.Local === y.Local))) {
+		if (top = (_struct = (_slice$1 = p.tags, _index$1 = (p.tags.length - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), new Name.Ptr(_struct.Space, _struct.Local)), !((x = top, y = name, x.Space === y.Space && x.Local === y.Local))) {
 			if (!(top.Local === name.Local)) {
 				return fmt.Errorf("xml: end tag </%s> does not match start tag <%s>", new (go$sliceType(go$emptyInterface))([new Go$String(name.Local), new Go$String(top.Local)]));
 			}
@@ -1083,8 +1048,8 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		return ["", (go$sliceType(Go$Uint8)).nil, new UnsupportedTypeError.Ptr(typ)];
 	};
 	printer.prototype.marshalSimple = function(typ, val) { return this.go$val.marshalSimple(typ, val); };
- 0ÇT  ÇJ	printer.Ptr.prototype.marshalStruct = function(tinfo, val) {
-		var p, s, _ref, _i, i, _slice, _index, finfo, _struct, _struct$1, vf, _ref$1, _struct$2, _ref$2, _tuple, x$1, data, err, _struct$3, pv, _tuple$1, x$2, data$1, err$1, scratch, _ref$3, err$2, ok, _tuple$2, x$3, elem, err$3, k, dashDash, dashLast, _ref$4, s$1, b, _slice$1, _index$1, iface, raw, _ref$5, _type, err$4, err$5, err$6, _struct$4;
+ 0ÇH  Ç>	printer.Ptr.prototype.marshalStruct = function(tinfo, val) {
+		var p, s, _ref, _i, i, _slice, _index, finfo, _struct, _struct$1, vf, _ref$1, _struct$2, _ref$2, _tuple, x, data, err, _struct$3, pv, _tuple$1, x$1, data$1, err$1, scratch, _ref$3, err$2, ok, _tuple$2, x$2, elem, err$3, k, dashDash, dashLast, _ref$4, s$1, b, _slice$1, _index$1, iface, raw, _ref$5, _type, err$4, err$5, err$6, _struct$4;
 		p = this;
 		s = new parentStack.Ptr(p, (go$sliceType(Go$String)).nil);
 		_ref = tinfo.fields;
@@ -1106,7 +1071,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 			_ref$2 = finfo.flags & 63;
 			if (_ref$2 === 4) {
 				if (vf.CanInterface() && vf.Type().Implements(textMarshalerType)) {
-					_tuple = (x$1 = vf.Interface(), (x$1 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, encoding.TextMarshaler))).MarshalText(), data = _tuple[0], err = _tuple[1];
+					_tuple = (x = vf.Interface(), (x !== null && encoding.TextMarshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, encoding.TextMarshaler))).MarshalText(), data = _tuple[0], err = _tuple[1];
 					if (!(go$interfaceIsEqual(err, null))) {
 						return err;
 					}
@@ -1117,7 +1082,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 				if (vf.CanAddr()) {
 					pv = (_struct$3 = vf.Addr(), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 					if (pv.CanInterface() && pv.Type().Implements(textMarshalerType)) {
-						_tuple$1 = (x$2 = pv.Interface(), (x$2 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, encoding.TextMarshaler))).MarshalText(), data$1 = _tuple$1[0], err$1 = _tuple$1[1];
+						_tuple$1 = (x$1 = pv.Interface(), (x$1 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, encoding.TextMarshaler))).MarshalText(), data$1 = _tuple$1[0], err$1 = _tuple$1[1];
 						if (!(go$interfaceIsEqual(err$1, null))) {
 							return err$1;
 						}
@@ -1141,7 +1106,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 						return err$2;
 					}
 				} else if (_ref$3 === 23) {
-					if (_tuple$2 = (x$3 = vf.Interface(), (x$3 !== null && x$3.constructor === (go$sliceType(Go$Uint8)) ? [x$3.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), elem = _tuple$2[0], ok = _tuple$2[1], ok) {
+					if (_tuple$2 = (x$2 = vf.Interface(), (x$2 !== null && x$2.constructor === (go$sliceType(Go$Uint8)) ? [x$2.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), elem = _tuple$2[0], ok = _tuple$2[1], ok) {
 						if (err$3 = EscapeText(p, elem), !(go$interfaceIsEqual(err$3, null))) {
 							return err$3;
 						}
@@ -1308,17 +1273,17 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		return "xml: unsupported type: " + e.Type.String();
 	};
 	UnsupportedTypeError.prototype.Error = function() { return this.go$val.Error(); };
- 0Ç∫ isEmptyValueÇ§	isEmptyValue = function(v) {
-		var _ref, x$1, x$2;
+ 0Ç≤ isEmptyValueÇú	isEmptyValue = function(v) {
+		var _ref, x, x$1;
 		_ref = v.Kind();
 		if (_ref === 17 || _ref === 21 || _ref === 23 || _ref === 24) {
 			return v.Len() === 0;
 		} else if (_ref === 1) {
 			return !v.Bool();
 		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
-			return (x$1 = v.Int(), (x$1.high === 0 && x$1.low === 0));
+			return (x = v.Int(), (x.high === 0 && x.low === 0));
 		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
-			return (x$2 = v.Uint(), (x$2.high === 0 && x$2.low === 0));
+			return (x$1 = v.Uint(), (x$1.high === 0 && x$1.low === 0));
 		} else if (_ref === 13 || _ref === 14) {
 			return v.Float() === 0;
 		} else if (_ref === 20 || _ref === 22) {
@@ -1404,8 +1369,8 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		return val.UnmarshalText(buf);
 	};
 	Decoder.prototype.unmarshalTextInterface = function(val, start) { return this.go$val.unmarshalTextInterface(val, start); };
- 0Ç	÷  Ç	Ã	Decoder.Ptr.prototype.unmarshalAttr = function(val, attr) {
-		var p, _struct, _struct$1, x$1, _struct$2, _struct$3, _struct$4, pv, x$2, _struct$5, _struct$6, x$3, _struct$7, pv$1, x$4, _struct$8;
+ 0Ç	   Ç	¿	Decoder.Ptr.prototype.unmarshalAttr = function(val, attr) {
+		var p, _struct, _struct$1, x, _struct$2, _struct$3, _struct$4, pv, x$1, _struct$5, _struct$6, x$2, _struct$7, pv$1, x$3, _struct$8;
 		p = this;
 		if (val.Kind() === 22) {
 			if (val.IsNil()) {
@@ -1414,29 +1379,29 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 			val = (_struct$1 = val.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 		}
 		if (val.CanInterface() && val.Type().Implements(unmarshalerAttrType)) {
-			return (x$1 = val.Interface(), (x$1 !== null && UnmarshalerAttr.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, UnmarshalerAttr))).UnmarshalXMLAttr((_struct$2 = attr, new Attr.Ptr((_struct$3 = _struct$2.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local)), _struct$2.Value)));
+			return (x = val.Interface(), (x !== null && UnmarshalerAttr.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, UnmarshalerAttr))).UnmarshalXMLAttr((_struct$2 = attr, new Attr.Ptr((_struct$3 = _struct$2.Name, new Name.Ptr(_struct$3.Space, _struct$3.Local)), _struct$2.Value)));
 		}
 		if (val.CanAddr()) {
 			pv = (_struct$4 = val.Addr(), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 			if (pv.CanInterface() && pv.Type().Implements(unmarshalerAttrType)) {
-				return (x$2 = pv.Interface(), (x$2 !== null && UnmarshalerAttr.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, UnmarshalerAttr))).UnmarshalXMLAttr((_struct$5 = attr, new Attr.Ptr((_struct$6 = _struct$5.Name, new Name.Ptr(_struct$6.Space, _struct$6.Local)), _struct$5.Value)));
+				return (x$1 = pv.Interface(), (x$1 !== null && UnmarshalerAttr.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, UnmarshalerAttr))).UnmarshalXMLAttr((_struct$5 = attr, new Attr.Ptr((_struct$6 = _struct$5.Name, new Name.Ptr(_struct$6.Space, _struct$6.Local)), _struct$5.Value)));
 			}
 		}
 		if (val.CanInterface() && val.Type().Implements(textUnmarshalerType)) {
-			return (x$3 = val.Interface(), (x$3 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.TextUnmarshaler))).UnmarshalText(new (go$sliceType(Go$Uint8))(go$stringToBytes(attr.Value)));
+			return (x$2 = val.Interface(), (x$2 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, encoding.TextUnmarshaler))).UnmarshalText(new (go$sliceType(Go$Uint8))(go$stringToBytes(attr.Value)));
 		}
 		if (val.CanAddr()) {
 			pv$1 = (_struct$7 = val.Addr(), new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
 			if (pv$1.CanInterface() && pv$1.Type().Implements(textUnmarshalerType)) {
-				return (x$4 = pv$1.Interface(), (x$4 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$4.constructor) !== -1 ? x$4 : go$typeAssertionFailed(x$4, encoding.TextUnmarshaler))).UnmarshalText(new (go$sliceType(Go$Uint8))(go$stringToBytes(attr.Value)));
+				return (x$3 = pv$1.Interface(), (x$3 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.TextUnmarshaler))).UnmarshalText(new (go$sliceType(Go$Uint8))(go$stringToBytes(attr.Value)));
 			}
 		}
 		copyValue((_struct$8 = val, new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)), new (go$sliceType(Go$Uint8))(go$stringToBytes(attr.Value)));
 		return null;
 	};
 	Decoder.prototype.unmarshalAttr = function(val, attr) { return this.go$val.unmarshalAttr(val, attr); };
- 0Ç4æ  Ç4¥	Decoder.Ptr.prototype.unmarshal = function(val, start) {
-		var p, _tuple, tok, err, ok, _tuple$1, _struct, _struct$1, t, _struct$2, _struct$3, x$1, _struct$4, pv, x$2, x$3, _struct$5, pv$1, x$4, data, saveData, comment, saveComment, saveXML, saveXMLIndex, saveXMLData, saveAny, sv, tinfo, err$1, _struct$6, v, _ref, typ, _struct$7, n, x$5, ncap, _struct$8, new$1, _struct$9, _struct$10, _struct$11, err$2, _struct$12, _struct$13, typ$1, x$6, _struct$14, _struct$15, _tuple$2, finfo, e, _struct$16, _struct$17, fv, ok$1, _tuple$3, x$7, x$8, _struct$18, _ref$1, _i, i, _slice, _index, finfo$1, _ref$2, _struct$19, _struct$20, strv, _ref$3, _i$1, _slice$1, _index$1, _struct$21, _struct$22, a, err$3, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, savedOffset, _tuple$4, tok$1, err$4, t$1, _ref$4, _type, consumed, _tuple$5, _struct$34, err$5, _struct$35, err$6, err$7, x$9, _struct$36, pv$2, err$8, x$10, err$9, _struct$37, _struct$38, t$2, _ref$5, _struct$39, _struct$40, t$3, _ref$6, _struct$41;
+ 0Ç4¨  Ç4¢	Decoder.Ptr.prototype.unmarshal = function(val, start) {
+		var p, _tuple, tok, err, ok, _tuple$1, _struct, _struct$1, t, _struct$2, _struct$3, x, _struct$4, pv, x$1, x$2, _struct$5, pv$1, x$3, data, saveData, comment, saveComment, saveXML, saveXMLIndex, saveXMLData, saveAny, sv, tinfo, err$1, _struct$6, v, _ref, typ, _struct$7, n, x$4, ncap, _struct$8, new$1, _struct$9, _struct$10, _struct$11, err$2, _struct$12, _struct$13, typ$1, x$5, _struct$14, _struct$15, _tuple$2, finfo, e, _struct$16, _struct$17, fv, ok$1, _tuple$3, x$6, x$7, _struct$18, _ref$1, _i, i, _slice, _index, finfo$1, _ref$2, _struct$19, _struct$20, strv, _ref$3, _i$1, _slice$1, _index$1, _struct$21, _struct$22, a, err$3, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, savedOffset, _tuple$4, tok$1, err$4, t$1, _ref$4, _type, consumed, _tuple$5, _struct$34, err$5, _struct$35, err$6, err$7, x$8, _struct$36, pv$2, err$8, x$9, err$9, _struct$37, _struct$38, t$2, _ref$5, _struct$39, _struct$40, t$3, _ref$6, _struct$41;
 		p = this;
 		if (start === (go$ptrType(StartElement)).nil) {
 			while (true) {
@@ -1457,21 +1422,21 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 			val = (_struct$3 = val.Elem(), new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 		}
 		if (val.CanInterface() && val.Type().Implements(unmarshalerType)) {
-			return p.unmarshalInterface((x$1 = val.Interface(), (x$1 !== null && Unmarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, Unmarshaler))), start);
+			return p.unmarshalInterface((x = val.Interface(), (x !== null && Unmarshaler.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, Unmarshaler))), start);
 		}
 		if (val.CanAddr()) {
 			pv = (_struct$4 = val.Addr(), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 			if (pv.CanInterface() && pv.Type().Implements(unmarshalerType)) {
-				return p.unmarshalInterface((x$2 = pv.Interface(), (x$2 !== null && Unmarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, Unmarshaler))), start);
+				return p.unmarshalInterface((x$1 = pv.Interface(), (x$1 !== null && Unmarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, Unmarshaler))), start);
 			}
 		}
 		if (val.CanInterface() && val.Type().Implements(textUnmarshalerType)) {
-			return p.unmarshalTextInterface((x$3 = val.Interface(), (x$3 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.TextUnmarshaler))), start);
+			return p.unmarshalTextInterface((x$2 = val.Interface(), (x$2 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, encoding.TextUnmarshaler))), start);
 		}
 		if (val.CanAddr()) {
 			pv$1 = (_struct$5 = val.Addr(), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
 			if (pv$1.CanInterface() && pv$1.Type().Implements(textUnmarshalerType)) {
-				return p.unmarshalTextInterface((x$4 = pv$1.Interface(), (x$4 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$4.constructor) !== -1 ? x$4 : go$typeAssertionFailed(x$4, encoding.TextUnmarshaler))), start);
+				return p.unmarshalTextInterface((x$3 = pv$1.Interface(), (x$3 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.TextUnmarshaler))), start);
 			}
 		}
 		data = (go$sliceType(Go$Uint8)).nil, saveData = new reflect.Value.Ptr(), comment = (go$sliceType(Go$Uint8)).nil, saveComment = new reflect.Value.Ptr(), saveXML = new reflect.Value.Ptr(), saveXMLIndex = 0, saveXMLData = (go$sliceType(Go$Uint8)).nil, saveAny = new reflect.Value.Ptr(), sv = new reflect.Value.Ptr(), tinfo = (go$ptrType(typeInfo)).nil, err$1 = null;
@@ -1487,7 +1452,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 			}
 			n = v.Len();
 			if (n >= v.Cap()) {
-				ncap = (x$5 = 2, (((x$5 >>> 16 << 16) * n >> 0) + (x$5 << 16 >>> 16) * n) >> 0);
+				ncap = (x$4 = 2, (((x$4 >>> 16 << 16) * n >> 0) + (x$4 << 16 >>> 16) * n) >> 0);
 				if (ncap < 4) {
 					ncap = 4;
 				}
@@ -1506,7 +1471,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		} else if (_ref === 25) {
 			typ$1 = v.Type();
 			if (go$interfaceIsEqual(typ$1, nameType)) {
-				v.Set((_struct$14 = reflect.ValueOf((x$6 = start.Name, new x$6.constructor.Struct(x$6))), new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag)));
+				v.Set((_struct$14 = reflect.ValueOf((x$5 = start.Name, new x$5.constructor.Struct(x$5))), new reflect.Value.Ptr(_struct$14.typ, _struct$14.val, _struct$14.flag)));
 				break;
 			}
 			sv = (_struct$15 = v, new reflect.Value.Ptr(_struct$15.typ, _struct$15.val, _struct$15.flag));
@@ -1529,8 +1494,8 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 					return new UnmarshalError(e);
 				}
 				fv = (_struct$17 = finfo.value((_struct$16 = sv, new reflect.Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag))), new reflect.Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag));
-				if (_tuple$3 = (x$7 = fv.Interface(), (x$7 !== null && x$7.constructor === Name ? [x$7.go$val, true] : [new Name.Ptr(), false])), ok$1 = _tuple$3[1], ok$1) {
-					fv.Set((_struct$18 = reflect.ValueOf((x$8 = start.Name, new x$8.constructor.Struct(x$8))), new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag)));
+				if (_tuple$3 = (x$6 = fv.Interface(), (x$6 !== null && x$6.constructor === Name ? [x$6.go$val, true] : [new Name.Ptr(), false])), ok$1 = _tuple$3[1], ok$1) {
+					fv.Set((_struct$18 = reflect.ValueOf((x$7 = start.Name, new x$7.constructor.Struct(x$7))), new reflect.Value.Ptr(_struct$18.typ, _struct$18.val, _struct$18.flag)));
 				}
 			}
 			_ref$1 = tinfo.fields;
@@ -1635,7 +1600,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 			}
 		}
 		if (saveData.IsValid() && saveData.CanInterface() && saveData.Type().Implements(textUnmarshalerType)) {
-			if (err$7 = (x$9 = saveData.Interface(), (x$9 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$9.constructor) !== -1 ? x$9 : go$typeAssertionFailed(x$9, encoding.TextUnmarshaler))).UnmarshalText(data), !(go$interfaceIsEqual(err$7, null))) {
+			if (err$7 = (x$8 = saveData.Interface(), (x$8 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$8.constructor) !== -1 ? x$8 : go$typeAssertionFailed(x$8, encoding.TextUnmarshaler))).UnmarshalText(data), !(go$interfaceIsEqual(err$7, null))) {
 				return err$7;
 			}
 			saveData = new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0);
@@ -1643,7 +1608,7 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 		if (saveData.IsValid() && saveData.CanAddr()) {
 			pv$2 = (_struct$36 = saveData.Addr(), new reflect.Value.Ptr(_struct$36.typ, _struct$36.val, _struct$36.flag));
 			if (pv$2.CanInterface() && pv$2.Type().Implements(textUnmarshalerType)) {
-				if (err$8 = (x$10 = pv$2.Interface(), (x$10 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$10.constructor) !== -1 ? x$10 : go$typeAssertionFailed(x$10, encoding.TextUnmarshaler))).UnmarshalText(data), !(go$interfaceIsEqual(err$8, null))) {
+				if (err$8 = (x$9 = pv$2.Interface(), (x$9 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$9.constructor) !== -1 ? x$9 : go$typeAssertionFailed(x$9, encoding.TextUnmarshaler))).UnmarshalText(data), !(go$interfaceIsEqual(err$8, null))) {
 					return err$8;
 				}
 				saveData = new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0);
@@ -1815,9 +1780,9 @@ NewEncoderÇ	NewEncoder = go$pkg.NewEncoder = function(w) {
 	};
 	Decoder.prototype.Skip = function() { return this.go$val.Skip(); };
  0Ç
-Q getTypeInfoÇ
-<	getTypeInfo = function(typ) {
-		var _tuple, _entry, tinfo, ok, n, i, _struct, f, t, _tuple$1, inner, err, _ref, _i, _slice, _index, _struct$1, finfo, err$1, _tuple$2, finfo$1, err$2, err$3, _key$2;
+I getTypeInfoÇ
+4	getTypeInfo = function(typ) {
+		var _tuple, _entry, tinfo, ok, n, i, _struct, f, t, _tuple$1, inner, err, _ref, _i, _slice, _index, _struct$1, finfo, err$1, _tuple$2, finfo$1, err$2, err$3, _key;
 		tinfoLock.RLock();
 		_tuple = (_entry = tinfoMap[(typ || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(typeInfo)).nil, false]), tinfo = _tuple[0], ok = _tuple[1];
 		tinfoLock.RUnlock();
@@ -1874,7 +1839,7 @@ Q getTypeInfoÇ
 			}
 		}
 		tinfoLock.Lock();
-		_key$2 = typ, (tinfoMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$2 || go$interfaceNil).go$key()] = { k: _key$2, v: tinfo };
+		_key = typ, (tinfoMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: tinfo };
 		tinfoLock.Unlock();
 		return [tinfo, null];
 	};
@@ -2085,13 +2050,13 @@ Q getTypeInfoÇ
 		return fmt.Sprintf("%s field %q with tag %q conflicts with field %q with tag %q", new (go$sliceType(go$emptyInterface))([e.Struct, new Go$String(e.Field1), new Go$String(e.Tag1), new Go$String(e.Field2), new Go$String(e.Tag2)]));
 	};
 	TagPathError.prototype.Error = function() { return this.go$val.Error(); };
- 0Ç  Ç	fieldInfo.Ptr.prototype.value = function(v) {
-		var finfo, _ref, _i, _slice, _index, x$1, i, t, _struct, _struct$1, _struct$2, _struct$3;
+ 0Ç  Ç	fieldInfo.Ptr.prototype.value = function(v) {
+		var finfo, _ref, _i, _slice, _index, x, i, t, _struct, _struct$1, _struct$2, _struct$3;
 		finfo = this;
 		_ref = finfo.idx;
 		_i = 0;
 		while (_i < _ref.length) {
-			x$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
 				t = v.Type();
@@ -2102,7 +2067,7 @@ Q getTypeInfoÇ
 					v = (_struct$1 = v.Elem(), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 				}
 			}
-			v = (_struct$2 = v.Field(x$1), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+			v = (_struct$2 = v.Field(x), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 			_i++;
 		}
 		return (_struct$3 = v, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
@@ -2135,16 +2100,16 @@ Q getTypeInfoÇ
 		go$copySlice(b1, b);
 		return b1;
 	};
- 0Ç]  ÇS	CharData.prototype.Copy = function() {
-		var c, x$1;
+ 0ÇQ  ÇG	CharData.prototype.Copy = function() {
+		var c, x;
 		c = this;
-		return (x$1 = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(c.array), c.offset, c.offset + c.length)), go$subslice(new CharData(x$1.array), x$1.offset, x$1.offset + x$1.length));
+		return (x = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(c.array), c.offset, c.offset + c.length)), go$subslice(new CharData(x.array), x.offset, x.offset + x.length));
 	};
 	go$ptrType(CharData).prototype.Copy = function() { return this.go$get().Copy(); };
- 0ÇZ  ÇP	Comment.prototype.Copy = function() {
-		var c, x$1;
+ 0ÇN  ÇD	Comment.prototype.Copy = function() {
+		var c, x;
 		c = this;
-		return (x$1 = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(c.array), c.offset, c.offset + c.length)), go$subslice(new Comment(x$1.array), x$1.offset, x$1.offset + x$1.length));
+		return (x = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(c.array), c.offset, c.offset + c.length)), go$subslice(new Comment(x.array), x.offset, x.offset + x.length));
 	};
 	go$ptrType(Comment).prototype.Copy = function() { return this.go$get().Copy(); };
  0ÇP  ÇF	ProcInst.Ptr.prototype.Copy = function() {
@@ -2154,14 +2119,14 @@ Q getTypeInfoÇ
 		return (_struct$1 = p, new ProcInst.Ptr(_struct$1.Target, _struct$1.Inst));
 	};
 	ProcInst.prototype.Copy = function() { return this.go$val.Copy(); };
- 0Ç`  ÇV	Directive.prototype.Copy = function() {
-		var d, x$1;
+ 0ÇT  ÇJ	Directive.prototype.Copy = function() {
+		var d, x;
 		d = this;
-		return (x$1 = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(d.array), d.offset, d.offset + d.length)), go$subslice(new Directive(x$1.array), x$1.offset, x$1.offset + x$1.length));
+		return (x = makeCopy(go$subslice(new (go$sliceType(Go$Uint8))(d.array), d.offset, d.offset + d.length)), go$subslice(new Directive(x.array), x.offset, x.offset + x.length));
 	};
 	go$ptrType(Directive).prototype.Copy = function() { return this.go$get().Copy(); };
- 0Çz 	CopyTokenÇg	CopyToken = go$pkg.CopyToken = function(t) {
-		var v, _ref, _type, x$1, x$2;
+ 0Çr 	CopyTokenÇ_	CopyToken = go$pkg.CopyToken = function(t) {
+		var v, _ref, _type, x, x$1;
 		_ref = t;
 		_type = _ref !== null ? _ref.constructor : null;
 		if (_type === CharData) {
@@ -2175,10 +2140,10 @@ Q getTypeInfoÇ
 			return v.Copy();
 		} else if (_type === ProcInst) {
 			v = _ref.go$val;
-			return (x$1 = v.Copy(), new x$1.constructor.Struct(x$1));
+			return (x = v.Copy(), new x.constructor.Struct(x));
 		} else if (_type === StartElement) {
 			v = _ref.go$val;
-			return (x$2 = v.Copy(), new x$2.constructor.Struct(x$2));
+			return (x$1 = v.Copy(), new x$1.constructor.Struct(x$1));
 		}
 		return t;
 	};
@@ -2190,9 +2155,9 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 		return d;
 	};
  0Ç
-˛  Ç
-Ù	Decoder.Ptr.prototype.Token = function() {
-		var t, err, d, _tuple, ok, _tuple$1, t1, t1$1, _ref, _type, _ref$1, _i, _slice, _index, _struct, _struct$1, a, _tuple$2, _entry, v, ok$1, _key$2, _tuple$3, _entry$1, v$1, ok$2, _key$3, _ref$2, _i$1, i, _slice$1, _index$1, _struct$2, _tuple$4;
+ˆ  Ç
+Ï	Decoder.Ptr.prototype.Token = function() {
+		var t, err, d, _tuple, ok, _tuple$1, t1, t1$1, _ref, _type, _ref$1, _i, _slice, _index, _struct, _struct$1, a, _tuple$2, _entry, v, ok$1, _key, _tuple$3, _entry$1, v$1, ok$2, _key$1, _ref$2, _i$1, i, _slice$1, _index$1, _struct$2, _tuple$4;
 		t = null;
 		err = null;
 		d = this;
@@ -2223,12 +2188,12 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 				if (a.Name.Space === "xmlns") {
 					_tuple$2 = (_entry = d.ns[a.Name.Local], _entry !== undefined ? [_entry.v, true] : ["", false]), v = _tuple$2[0], ok$1 = _tuple$2[1];
 					d.pushNs(a.Name.Local, v, ok$1);
-					_key$2 = a.Name.Local, (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: a.Value };
+					_key = a.Name.Local, (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: a.Value };
 				}
 				if (a.Name.Space === "" && a.Name.Local === "xmlns") {
 					_tuple$3 = (_entry$1 = d.ns[""], _entry$1 !== undefined ? [_entry$1.v, true] : ["", false]), v$1 = _tuple$3[0], ok$2 = _tuple$3[1];
 					d.pushNs("", v$1, ok$2);
-					_key$3 = "", (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: a.Value };
+					_key$1 = "", (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: a.Value };
 				}
 				_i++;
 			}
@@ -2364,8 +2329,8 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 		return new SyntaxError.Ptr(msg, d.line);
 	};
 	Decoder.prototype.syntaxError = function(msg) { return this.go$val.syntaxError(msg); };
- 0Ç|  Çr	Decoder.Ptr.prototype.popElement = function(t) {
-		var d, s, _struct, name, _struct$1, _struct$2, s$1, _key$2;
+ 0Çt  Çj	Decoder.Ptr.prototype.popElement = function(t) {
+		var d, s, _struct, name, _struct$1, _struct$2, s$1, _key;
 		d = this;
 		s = d.pop();
 		name = (_struct = t.Name, new Name.Ptr(_struct.Space, _struct.Local));
@@ -2388,7 +2353,7 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 		while (!(d.stk === (go$ptrType(stack)).nil) && !((d.stk.kind === 0)) && !((d.stk.kind === 2))) {
 			s$1 = d.pop();
 			if (s$1.ok) {
-				_key$2 = s$1.name.Local, (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: s$1.name.Space };
+				_key = s$1.name.Local, (d.ns || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: s$1.name.Space };
 			} else {
 				delete d.ns[s$1.name.Local];
 			}
@@ -2396,8 +2361,8 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 		return true;
 	};
 	Decoder.prototype.popElement = function(t) { return this.go$val.popElement(t); };
- 0Çä  ÇÄ	Decoder.Ptr.prototype.autoClose = function(t) {
-		var d, name, _ref, _i, _slice, _index, s, _tuple, _struct, _struct$1, et, ok, x$1, _struct$2;
+ 0ÇÇ  Çx	Decoder.Ptr.prototype.autoClose = function(t) {
+		var d, name, _ref, _i, _slice, _index, s, _tuple, _struct, _struct$1, et, ok, x, _struct$2;
 		d = this;
 		if (d.stk === (go$ptrType(stack)).nil || !((d.stk.kind === 0))) {
 			return [null, false];
@@ -2410,7 +2375,7 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 			if (strings.ToLower(s) === name) {
 				_tuple = (t !== null && t.constructor === EndElement ? [t.go$val, true] : [new EndElement.Ptr(), false]), et = (_struct = _tuple[0], new EndElement.Ptr((_struct$1 = _struct.Name, new Name.Ptr(_struct$1.Space, _struct$1.Local)))), ok = _tuple[1];
 				if (!ok || !(et.Name.Local === name)) {
-					return [(x$1 = new EndElement.Ptr((_struct$2 = d.stk.name, new Name.Ptr(_struct$2.Space, _struct$2.Local))), new x$1.constructor.Struct(x$1)), true];
+					return [(x = new EndElement.Ptr((_struct$2 = d.stk.name, new Name.Ptr(_struct$2.Space, _struct$2.Local))), new x.constructor.Struct(x)), true];
 				}
 				break;
 			}
@@ -2428,8 +2393,8 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 		return d.rawToken();
 	};
 	Decoder.prototype.RawToken = function() { return this.go$val.RawToken(); };
- 0Ç)s  Ç)i	Decoder.Ptr.prototype.rawToken = function() {
-		var go$this = this, d, x$1, _struct, _tuple, b, ok, data, _tuple$1, _ref, name, _tuple$2, _struct$1, _tuple$3, x$2, _struct$2, target, _tuple$4, b0, _tuple$5, data$1, enc, _tuple$6, x$3, newr, err, x$4, _tuple$7, _ref$1, _tuple$8, _tuple$9, b0$1, b1, _tuple$10, _tuple$11, data$2, i, _tuple$12, data$3, inquote, depth, _tuple$13, s, i$1, _tuple$14, j, _tuple$15, b0$2, b1$1, _tuple$16, _tuple$17, x$5, name$1, empty, attr, _tuple$18, _struct$3, _tuple$19, _tuple$20, n, x$6, x$7, nattr, _slice, _index, a, _tuple$21, _struct$4, _tuple$22, data$4, _struct$5, x$8, _struct$6;
+ 0Ç)k  Ç)a	Decoder.Ptr.prototype.rawToken = function() {
+		var go$this = this, d, x, _struct, _tuple, b, ok, data, _tuple$1, _ref, name, _tuple$2, _struct$1, _tuple$3, x$1, _struct$2, target, _tuple$4, b0, _tuple$5, data$1, enc, _tuple$6, x$2, newr, err, x$3, _tuple$7, _ref$1, _tuple$8, _tuple$9, b0$1, b1, _tuple$10, _tuple$11, data$2, i, _tuple$12, data$3, inquote, depth, _tuple$13, s, i$1, _tuple$14, j, _tuple$15, b0$2, b1$1, _tuple$16, _tuple$17, x$4, name$1, empty, attr, _tuple$18, _struct$3, _tuple$19, _tuple$20, n, x$5, x$6, nattr, _slice, _index, a, _tuple$21, _struct$4, _tuple$22, data$4, _struct$5, x$7, _struct$6;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		d = go$this;
 		if (!(go$interfaceIsEqual(d.err, null))) {
@@ -2437,7 +2402,7 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 		}
 		if (d.needClose) {
 			d.needClose = false;
-			return [(x$1 = new EndElement.Ptr((_struct = d.toClose, new Name.Ptr(_struct.Space, _struct.Local))), new x$1.constructor.Struct(x$1)), null];
+			return [(x = new EndElement.Ptr((_struct = d.toClose, new Name.Ptr(_struct.Space, _struct.Local))), new x.constructor.Struct(x)), null];
 		}
 		_tuple = d.getc(), b = _tuple[0], ok = _tuple[1];
 		if (!ok) {
@@ -2471,7 +2436,7 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 				d.err = d.syntaxError("invalid characters between </" + name.Local + " and >");
 				return [null, d.err];
 			}
-			return [(x$2 = new EndElement.Ptr((_struct$2 = name, new Name.Ptr(_struct$2.Space, _struct$2.Local))), new x$2.constructor.Struct(x$2)), null];
+			return [(x$1 = new EndElement.Ptr((_struct$2 = name, new Name.Ptr(_struct$2.Space, _struct$2.Local))), new x$1.constructor.Struct(x$1)), null];
 		/* } else if (_ref === 63) { */ go$s = 4; continue; case 2: 
 			target = "";
 			if (_tuple$4 = d.name(), target = _tuple$4[0], ok = _tuple$4[1], !ok) {
@@ -2502,7 +2467,7 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 						d.err = fmt.Errorf("xml: encoding %q declared but Decoder.CharsetReader is nil", new (go$sliceType(go$emptyInterface))([new Go$String(enc)]));
 						return [null, d.err];
 					}
-					_tuple$6 = d.CharsetReader(enc, (x$3 = d.r, (x$3 !== null && io.Reader.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, io.Reader)))), newr = _tuple$6[0], err = _tuple$6[1];
+					_tuple$6 = d.CharsetReader(enc, (x$2 = d.r, (x$2 !== null && io.Reader.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, io.Reader)))), newr = _tuple$6[0], err = _tuple$6[1];
 					if (!(go$interfaceIsEqual(err, null))) {
 						d.err = fmt.Errorf("xml: opening charset %q: %v", new (go$sliceType(go$emptyInterface))([new Go$String(enc), err]));
 						return [null, d.err];
@@ -2513,7 +2478,7 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 					d.switchToReader(newr);
 				}
 			}
-			return [(x$4 = new ProcInst.Ptr(target, data$1), new x$4.constructor.Struct(x$4)), null];
+			return [(x$3 = new ProcInst.Ptr(target, data$1), new x$3.constructor.Struct(x$3)), null];
 		/* } else if (_ref === 33) { */ go$s = 4; continue; case 3: 
 			if (_tuple$7 = d.mustgetc(), b = _tuple$7[0], ok = _tuple$7[1], !ok) {
 				return [null, d.err];
@@ -2611,7 +2576,7 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 					}
 				/* } */ case 11:
 			/* } */ go$s = 5; continue; case 6:
-			return [(x$5 = d.buf.Bytes(), go$subslice(new Directive(x$5.array), x$5.offset, x$5.offset + x$5.length)), null];
+			return [(x$4 = d.buf.Bytes(), go$subslice(new Directive(x$4.array), x$4.offset, x$4.offset + x$4.length)), null];
 		/* } */ case 4:
 		d.ungetc(b);
 		name$1 = new Name.Ptr(), empty = false, attr = (go$sliceType(Attr)).nil;
@@ -2644,7 +2609,7 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 			d.ungetc(b);
 			n = attr.length;
 			if (n >= attr.capacity) {
-				nattr = (go$sliceType(Attr)).make(n, (x$6 = 2, x$7 = attr.capacity, (((x$6 >>> 16 << 16) * x$7 >> 0) + (x$6 << 16 >>> 16) * x$7) >> 0), function() { return new Attr.Ptr(); });
+				nattr = (go$sliceType(Attr)).make(n, (x$5 = 2, x$6 = attr.capacity, (((x$5 >>> 16 << 16) * x$6 >> 0) + (x$5 << 16 >>> 16) * x$6) >> 0), function() { return new Attr.Ptr(); });
 				go$copySlice(nattr, attr);
 				attr = nattr;
 			}
@@ -2681,7 +2646,7 @@ NewDecoderÇk	NewDecoder = go$pkg.NewDecoder = function(r) {
 			d.needClose = true;
 			d.toClose = (_struct$5 = name$1, new Name.Ptr(_struct$5.Space, _struct$5.Local));
 		}
-		return [(x$8 = new StartElement.Ptr((_struct$6 = name$1, new Name.Ptr(_struct$6.Space, _struct$6.Local)), attr), new x$8.constructor.Struct(x$8)), null];
+		return [(x$7 = new StartElement.Ptr((_struct$6 = name$1, new Name.Ptr(_struct$6.Space, _struct$6.Local)), attr), new x$7.constructor.Struct(x$7)), null];
 		/* */ } break; } }; return go$f();
 	};
 	Decoder.prototype.rawToken = function() { return this.go$val.rawToken(); };
@@ -3175,4 +3140,39 @@ EscapeTextÇ	EscapeText = go$pkg.EscapeText = function(w, s) {
 		}
 		return v.substring(1, (idx + 1 >> 0));
 	};
- 0    0    0 
+ 0 
+endComment  0 endProcInst  0 endDirective  0 marshalerType  0 marshalerAttrType  0 textMarshalerType  0 ddBytes  0 unmarshalerType  0 unmarshalerAttrType  0 textUnmarshalerType  0 tinfoMap  07 	tinfoLock &		tinfoLock = new sync.RWMutex.Ptr();
+0 nameType  0 errRawToken  0 entity  0 first  0 second  0    0 
+htmlEntity  0    0 htmlAutoClose  0 esc_quot  0 esc_apos  0 esc_amp  0 esc_lt  0 esc_gt  0 esc_tab  0 esc_nl  0 esc_cr  0 esc_fffd  0N   F		endComment = new (go$sliceType(Go$Uint8))(go$stringToBytes("-->"));
+0N   F		endProcInst = new (go$sliceType(Go$Uint8))(go$stringToBytes("?>"));
+0N   F		endDirective = new (go$sliceType(Go$Uint8))(go$stringToBytes(">"));
+0N   F		marshalerType = reflect.TypeOf((go$ptrType(Marshaler)).nil).Elem();
+0V   N		marshalerAttrType = reflect.TypeOf((go$ptrType(MarshalerAttr)).nil).Elem();
+0_   W		textMarshalerType = reflect.TypeOf((go$ptrType(encoding.TextMarshaler)).nil).Elem();
+0J   B		ddBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("--"));
+0R   J		unmarshalerType = reflect.TypeOf((go$ptrType(Unmarshaler)).nil).Elem();
+0Z   R		unmarshalerAttrType = reflect.TypeOf((go$ptrType(UnmarshalerAttr)).nil).Elem();
+0c   [		textUnmarshalerType = reflect.TypeOf((go$ptrType(encoding.TextUnmarshaler)).nil).Elem();
+0#   		tinfoMap = new Go$Map();
+0g   _		var x;
+		nameType = reflect.TypeOf((x = new Name.Ptr("", ""), new x.constructor.Struct(x)));
+0Y   Q		errRawToken = errors.New("xml: cannot use RawToken from UnmarshalXML method");
+0Ç/   Ç%		var _map, _key;
+		entity = (_map = new Go$Map(), _key = "lt", _map[_key] = { k: _key, v: 60 }, _key = "gt", _map[_key] = { k: _key, v: 62 }, _key = "amp", _map[_key] = { k: _key, v: 38 }, _key = "apos", _map[_key] = { k: _key, v: 39 }, _key = "quot", _map[_key] = { k: _key, v: 34 }, _map);
+0Ç   Ç˝		first = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(58, 58, 1), new unicode.Range16.Ptr(65, 90, 1), new unicode.Range16.Ptr(95, 95, 1), new unicode.Range16.Ptr(97, 122, 1), new unicode.Range16.Ptr(192, 214, 1), new unicode.Range16.Ptr(216, 246, 1), new unicode.Range16.Ptr(248, 255, 1), new unicode.Range16.Ptr(256, 305, 1), new unicode.Range16.Ptr(308, 318, 1), new unicode.Range16.Ptr(321, 328, 1), new unicode.Range16.Ptr(330, 382, 1), new unicode.Range16.Ptr(384, 451, 1), new unicode.Range16.Ptr(461, 496, 1), new unicode.Range16.Ptr(500, 501, 1), new unicode.Range16.Ptr(506, 535, 1), new unicode.Range16.Ptr(592, 680, 1), new unicode.Range16.Ptr(699, 705, 1), new unicode.Range16.Ptr(902, 902, 1), new unicode.Range16.Ptr(904, 906, 1), new unicode.Range16.Ptr(908, 908, 1), new unicode.Range16.Ptr(910, 929, 1), new unicode.Range16.Ptr(931, 974, 1), new unicode.Range16.Ptr(976, 982, 1), new unicode.Range16.Ptr(986, 992, 2), new unicode.Range16.Ptr(994, 1011, 1), new unicode.Range16.Ptr(1025, 1036, 1), new unicode.Range16.Ptr(1038, 1103, 1), new unicode.Range16.Ptr(1105, 1116, 1), new unicode.Range16.Ptr(1118, 1153, 1), new unicode.Range16.Ptr(1168, 1220, 1), new unicode.Range16.Ptr(1223, 1224, 1), new unicode.Range16.Ptr(1227, 1228, 1), new unicode.Range16.Ptr(1232, 1259, 1), new unicode.Range16.Ptr(1262, 1269, 1), new unicode.Range16.Ptr(1272, 1273, 1), new unicode.Range16.Ptr(1329, 1366, 1), new unicode.Range16.Ptr(1369, 1369, 1), new unicode.Range16.Ptr(1377, 1414, 1), new unicode.Range16.Ptr(1488, 1514, 1), new unicode.Range16.Ptr(1520, 1522, 1), new unicode.Range16.Ptr(1569, 1594, 1), new unicode.Range16.Ptr(1601, 1610, 1), new unicode.Range16.Ptr(1649, 1719, 1), new unicode.Range16.Ptr(1722, 1726, 1), new unicode.Range16.Ptr(1728, 1742, 1), new unicode.Range16.Ptr(1744, 1747, 1), new unicode.Range16.Ptr(1749, 1749, 1), new unicode.Range16.Ptr(1765, 1766, 1), new unicode.Range16.Ptr(2309, 2361, 1), new unicode.Range16.Ptr(2365, 2365, 1), new unicode.Range16.Ptr(2392, 2401, 1), new unicode.Range16.Ptr(2437, 2444, 1), new unicode.Range16.Ptr(2447, 2448, 1), new unicode.Range16.Ptr(2451, 2472, 1), new unicode.Range16.Ptr(2474, 2480, 1), new unicode.Range16.Ptr(2482, 2482, 1), new unicode.Range16.Ptr(2486, 2489, 1), new unicode.Range16.Ptr(2524, 2525, 1), new unicode.Range16.Ptr(2527, 2529, 1), new unicode.Range16.Ptr(2544, 2545, 1), new unicode.Range16.Ptr(2565, 2570, 1), new unicode.Range16.Ptr(2575, 2576, 1), new unicode.Range16.Ptr(2579, 2600, 1), new unicode.Range16.Ptr(2602, 2608, 1), new unicode.Range16.Ptr(2610, 2611, 1), new unicode.Range16.Ptr(2613, 2614, 1), new unicode.Range16.Ptr(2616, 2617, 1), new unicode.Range16.Ptr(2649, 2652, 1), new unicode.Range16.Ptr(2654, 2654, 1), new unicode.Range16.Ptr(2674, 2676, 1), new unicode.Range16.Ptr(2693, 2699, 1), new unicode.Range16.Ptr(2701, 2701, 1), new unicode.Range16.Ptr(2703, 2705, 1), new unicode.Range16.Ptr(2707, 2728, 1), new unicode.Range16.Ptr(2730, 2736, 1), new unicode.Range16.Ptr(2738, 2739, 1), new unicode.Range16.Ptr(2741, 2745, 1), new unicode.Range16.Ptr(2749, 2784, 35), new unicode.Range16.Ptr(2821, 2828, 1), new unicode.Range16.Ptr(2831, 2832, 1), new unicode.Range16.Ptr(2835, 2856, 1), new unicode.Range16.Ptr(2858, 2864, 1), new unicode.Range16.Ptr(2866, 2867, 1), new unicode.Range16.Ptr(2870, 2873, 1), new unicode.Range16.Ptr(2877, 2877, 1), new unicode.Range16.Ptr(2908, 2909, 1), new unicode.Range16.Ptr(2911, 2913, 1), new unicode.Range16.Ptr(2949, 2954, 1), new unicode.Range16.Ptr(2958, 2960, 1), new unicode.Range16.Ptr(2962, 2965, 1), new unicode.Range16.Ptr(2969, 2970, 1), new unicode.Range16.Ptr(2972, 2972, 1), new unicode.Range16.Ptr(2974, 2975, 1), new unicode.Range16.Ptr(2979, 2980, 1), new unicode.Range16.Ptr(2984, 2986, 1), new unicode.Range16.Ptr(2990, 2997, 1), new unicode.Range16.Ptr(2999, 3001, 1), new unicode.Range16.Ptr(3077, 3084, 1), new unicode.Range16.Ptr(3086, 3088, 1), new unicode.Range16.Ptr(3090, 3112, 1), new unicode.Range16.Ptr(3114, 3123, 1), new unicode.Range16.Ptr(3125, 3129, 1), new unicode.Range16.Ptr(3168, 3169, 1), new unicode.Range16.Ptr(3205, 3212, 1), new unicode.Range16.Ptr(3214, 3216, 1), new unicode.Range16.Ptr(3218, 3240, 1), new unicode.Range16.Ptr(3242, 3251, 1), new unicode.Range16.Ptr(3253, 3257, 1), new unicode.Range16.Ptr(3294, 3294, 1), new unicode.Range16.Ptr(3296, 3297, 1), new unicode.Range16.Ptr(3333, 3340, 1), new unicode.Range16.Ptr(3342, 3344, 1), new unicode.Range16.Ptr(3346, 3368, 1), new unicode.Range16.Ptr(3370, 3385, 1), new unicode.Range16.Ptr(3424, 3425, 1), new unicode.Range16.Ptr(3585, 3630, 1), new unicode.Range16.Ptr(3632, 3632, 1), new unicode.Range16.Ptr(3634, 3635, 1), new unicode.Range16.Ptr(3648, 3653, 1), new unicode.Range16.Ptr(3713, 3714, 1), new unicode.Range16.Ptr(3716, 3716, 1), new unicode.Range16.Ptr(3719, 3720, 1), new unicode.Range16.Ptr(3722, 3725, 3), new unicode.Range16.Ptr(3732, 3735, 1), new unicode.Range16.Ptr(3737, 3743, 1), new unicode.Range16.Ptr(3745, 3747, 1), new unicode.Range16.Ptr(3749, 3751, 2), new unicode.Range16.Ptr(3754, 3755, 1), new unicode.Range16.Ptr(3757, 3758, 1), new unicode.Range16.Ptr(3760, 3760, 1), new unicode.Range16.Ptr(3762, 3763, 1), new unicode.Range16.Ptr(3773, 3773, 1), new unicode.Range16.Ptr(3776, 3780, 1), new unicode.Range16.Ptr(3904, 3911, 1), new unicode.Range16.Ptr(3913, 3945, 1), new unicode.Range16.Ptr(4256, 4293, 1), new unicode.Range16.Ptr(4304, 4342, 1), new unicode.Range16.Ptr(4352, 4352, 1), new unicode.Range16.Ptr(4354, 4355, 1), new unicode.Range16.Ptr(4357, 4359, 1), new unicode.Range16.Ptr(4361, 4361, 1), new unicode.Range16.Ptr(4363, 4364, 1), new unicode.Range16.Ptr(4366, 4370, 1), new unicode.Range16.Ptr(4412, 4416, 2), new unicode.Range16.Ptr(4428, 4432, 2), new unicode.Range16.Ptr(4436, 4437, 1), new unicode.Range16.Ptr(4441, 4441, 1), new unicode.Range16.Ptr(4447, 4449, 1), new unicode.Range16.Ptr(4451, 4457, 2), new unicode.Range16.Ptr(4461, 4462, 1), new unicode.Range16.Ptr(4466, 4467, 1), new unicode.Range16.Ptr(4469, 4510, 41), new unicode.Range16.Ptr(4520, 4523, 3), new unicode.Range16.Ptr(4526, 4527, 1), new unicode.Range16.Ptr(4535, 4536, 1), new unicode.Range16.Ptr(4538, 4538, 1), new unicode.Range16.Ptr(4540, 4546, 1), new unicode.Range16.Ptr(4587, 4592, 5), new unicode.Range16.Ptr(4601, 4601, 1), new unicode.Range16.Ptr(7680, 7835, 1), new unicode.Range16.Ptr(7840, 7929, 1), new unicode.Range16.Ptr(7936, 7957, 1), new unicode.Range16.Ptr(7960, 7965, 1), new unicode.Range16.Ptr(7968, 8005, 1), new unicode.Range16.Ptr(8008, 8013, 1), new unicode.Range16.Ptr(8016, 8023, 1), new unicode.Range16.Ptr(8025, 8027, 2), new unicode.Range16.Ptr(8029, 8029, 1), new unicode.Range16.Ptr(8031, 8061, 1), new unicode.Range16.Ptr(8064, 8116, 1), new unicode.Range16.Ptr(8118, 8124, 1), new unicode.Range16.Ptr(8126, 8126, 1), new unicode.Range16.Ptr(8130, 8132, 1), new unicode.Range16.Ptr(8134, 8140, 1), new unicode.Range16.Ptr(8144, 8147, 1), new unicode.Range16.Ptr(8150, 8155, 1), new unicode.Range16.Ptr(8160, 8172, 1), new unicode.Range16.Ptr(8178, 8180, 1), new unicode.Range16.Ptr(8182, 8188, 1), new unicode.Range16.Ptr(8486, 8486, 1), new unicode.Range16.Ptr(8490, 8491, 1), new unicode.Range16.Ptr(8494, 8494, 1), new unicode.Range16.Ptr(8576, 8578, 1), new unicode.Range16.Ptr(12295, 12295, 1), new unicode.Range16.Ptr(12321, 12329, 1), new unicode.Range16.Ptr(12353, 12436, 1), new unicode.Range16.Ptr(12449, 12538, 1), new unicode.Range16.Ptr(12549, 12588, 1), new unicode.Range16.Ptr(19968, 40869, 1), new unicode.Range16.Ptr(44032, 55203, 1)]), (go$sliceType(unicode.Range32)).nil, 0);
+0Çˇ   Çı		second = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(45, 46, 1), new unicode.Range16.Ptr(48, 57, 1), new unicode.Range16.Ptr(183, 183, 1), new unicode.Range16.Ptr(720, 721, 1), new unicode.Range16.Ptr(768, 837, 1), new unicode.Range16.Ptr(864, 865, 1), new unicode.Range16.Ptr(903, 903, 1), new unicode.Range16.Ptr(1155, 1158, 1), new unicode.Range16.Ptr(1425, 1441, 1), new unicode.Range16.Ptr(1443, 1465, 1), new unicode.Range16.Ptr(1467, 1469, 1), new unicode.Range16.Ptr(1471, 1471, 1), new unicode.Range16.Ptr(1473, 1474, 1), new unicode.Range16.Ptr(1476, 1600, 124), new unicode.Range16.Ptr(1611, 1618, 1), new unicode.Range16.Ptr(1632, 1641, 1), new unicode.Range16.Ptr(1648, 1648, 1), new unicode.Range16.Ptr(1750, 1756, 1), new unicode.Range16.Ptr(1757, 1759, 1), new unicode.Range16.Ptr(1760, 1764, 1), new unicode.Range16.Ptr(1767, 1768, 1), new unicode.Range16.Ptr(1770, 1773, 1), new unicode.Range16.Ptr(1776, 1785, 1), new unicode.Range16.Ptr(2305, 2307, 1), new unicode.Range16.Ptr(2364, 2364, 1), new unicode.Range16.Ptr(2366, 2380, 1), new unicode.Range16.Ptr(2381, 2381, 1), new unicode.Range16.Ptr(2385, 2388, 1), new unicode.Range16.Ptr(2402, 2403, 1), new unicode.Range16.Ptr(2406, 2415, 1), new unicode.Range16.Ptr(2433, 2435, 1), new unicode.Range16.Ptr(2492, 2492, 1), new unicode.Range16.Ptr(2494, 2495, 1), new unicode.Range16.Ptr(2496, 2500, 1), new unicode.Range16.Ptr(2503, 2504, 1), new unicode.Range16.Ptr(2507, 2509, 1), new unicode.Range16.Ptr(2519, 2519, 1), new unicode.Range16.Ptr(2530, 2531, 1), new unicode.Range16.Ptr(2534, 2543, 1), new unicode.Range16.Ptr(2562, 2620, 58), new unicode.Range16.Ptr(2622, 2623, 1), new unicode.Range16.Ptr(2624, 2626, 1), new unicode.Range16.Ptr(2631, 2632, 1), new unicode.Range16.Ptr(2635, 2637, 1), new unicode.Range16.Ptr(2662, 2671, 1), new unicode.Range16.Ptr(2672, 2673, 1), new unicode.Range16.Ptr(2689, 2691, 1), new unicode.Range16.Ptr(2748, 2748, 1), new unicode.Range16.Ptr(2750, 2757, 1), new unicode.Range16.Ptr(2759, 2761, 1), new unicode.Range16.Ptr(2763, 2765, 1), new unicode.Range16.Ptr(2790, 2799, 1), new unicode.Range16.Ptr(2817, 2819, 1), new unicode.Range16.Ptr(2876, 2876, 1), new unicode.Range16.Ptr(2878, 2883, 1), new unicode.Range16.Ptr(2887, 2888, 1), new unicode.Range16.Ptr(2891, 2893, 1), new unicode.Range16.Ptr(2902, 2903, 1), new unicode.Range16.Ptr(2918, 2927, 1), new unicode.Range16.Ptr(2946, 2947, 1), new unicode.Range16.Ptr(3006, 3010, 1), new unicode.Range16.Ptr(3014, 3016, 1), new unicode.Range16.Ptr(3018, 3021, 1), new unicode.Range16.Ptr(3031, 3031, 1), new unicode.Range16.Ptr(3047, 3055, 1), new unicode.Range16.Ptr(3073, 3075, 1), new unicode.Range16.Ptr(3134, 3140, 1), new unicode.Range16.Ptr(3142, 3144, 1), new unicode.Range16.Ptr(3146, 3149, 1), new unicode.Range16.Ptr(3157, 3158, 1), new unicode.Range16.Ptr(3174, 3183, 1), new unicode.Range16.Ptr(3202, 3203, 1), new unicode.Range16.Ptr(3262, 3268, 1), new unicode.Range16.Ptr(3270, 3272, 1), new unicode.Range16.Ptr(3274, 3277, 1), new unicode.Range16.Ptr(3285, 3286, 1), new unicode.Range16.Ptr(3302, 3311, 1), new unicode.Range16.Ptr(3330, 3331, 1), new unicode.Range16.Ptr(3390, 3395, 1), new unicode.Range16.Ptr(3398, 3400, 1), new unicode.Range16.Ptr(3402, 3405, 1), new unicode.Range16.Ptr(3415, 3415, 1), new unicode.Range16.Ptr(3430, 3439, 1), new unicode.Range16.Ptr(3633, 3633, 1), new unicode.Range16.Ptr(3636, 3642, 1), new unicode.Range16.Ptr(3654, 3654, 1), new unicode.Range16.Ptr(3655, 3662, 1), new unicode.Range16.Ptr(3664, 3673, 1), new unicode.Range16.Ptr(3761, 3761, 1), new unicode.Range16.Ptr(3764, 3769, 1), new unicode.Range16.Ptr(3771, 3772, 1), new unicode.Range16.Ptr(3782, 3782, 1), new unicode.Range16.Ptr(3784, 3789, 1), new unicode.Range16.Ptr(3792, 3801, 1), new unicode.Range16.Ptr(3864, 3865, 1), new unicode.Range16.Ptr(3872, 3881, 1), new unicode.Range16.Ptr(3893, 3897, 2), new unicode.Range16.Ptr(3902, 3903, 1), new unicode.Range16.Ptr(3953, 3972, 1), new unicode.Range16.Ptr(3974, 3979, 1), new unicode.Range16.Ptr(3984, 3989, 1), new unicode.Range16.Ptr(3991, 3991, 1), new unicode.Range16.Ptr(3993, 4013, 1), new unicode.Range16.Ptr(4017, 4023, 1), new unicode.Range16.Ptr(4025, 4025, 1), new unicode.Range16.Ptr(8400, 8412, 1), new unicode.Range16.Ptr(8417, 12293, 3876), new unicode.Range16.Ptr(12330, 12335, 1), new unicode.Range16.Ptr(12337, 12341, 1), new unicode.Range16.Ptr(12441, 12442, 1), new unicode.Range16.Ptr(12445, 12446, 1), new unicode.Range16.Ptr(12540, 12542, 1)]), (go$sliceType(unicode.Range32)).nil, 0);
+0ÇAA   ÇA7		var _map$1, _key$1;
+		htmlEntity = (_map$1 = new Go$Map(), _key$1 = "nbsp", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA0" }, _key$1 = "iexcl", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA1" }, _key$1 = "cent", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA2" }, _key$1 = "pound", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA3" }, _key$1 = "curren", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA4" }, _key$1 = "yen", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA5" }, _key$1 = "brvbar", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA6" }, _key$1 = "sect", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA7" }, _key$1 = "uml", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA8" }, _key$1 = "copy", _map$1[_key$1] = { k: _key$1, v: "\xC2\xA9" }, _key$1 = "ordf", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAA" }, _key$1 = "laquo", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAB" }, _key$1 = "not", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAC" }, _key$1 = "shy", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAD" }, _key$1 = "reg", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAE" }, _key$1 = "macr", _map$1[_key$1] = { k: _key$1, v: "\xC2\xAF" }, _key$1 = "deg", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB0" }, _key$1 = "plusmn", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB1" }, _key$1 = "sup2", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB2" }, _key$1 = "sup3", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB3" }, _key$1 = "acute", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB4" }, _key$1 = "micro", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB5" }, _key$1 = "para", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB6" }, _key$1 = "middot", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB7" }, _key$1 = "cedil", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB8" }, _key$1 = "sup1", _map$1[_key$1] = { k: _key$1, v: "\xC2\xB9" }, _key$1 = "ordm", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBA" }, _key$1 = "raquo", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBB" }, _key$1 = "frac14", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBC" }, _key$1 = "frac12", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBD" }, _key$1 = "frac34", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBE" }, _key$1 = "iquest", _map$1[_key$1] = { k: _key$1, v: "\xC2\xBF" }, _key$1 = "Agrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x80" }, _key$1 = "Aacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x81" }, _key$1 = "Acirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x82" }, _key$1 = "Atilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\x83" }, _key$1 = "Auml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x84" }, _key$1 = "Aring", _map$1[_key$1] = { k: _key$1, v: "\xC3\x85" }, _key$1 = "AElig", _map$1[_key$1] = { k: _key$1, v: "\xC3\x86" }, _key$1 = "Ccedil", _map$1[_key$1] = { k: _key$1, v: "\xC3\x87" }, _key$1 = "Egrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x88" }, _key$1 = "Eacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x89" }, _key$1 = "Ecirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8A" }, _key$1 = "Euml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8B" }, _key$1 = "Igrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8C" }, _key$1 = "Iacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8D" }, _key$1 = "Icirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8E" }, _key$1 = "Iuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x8F" }, _key$1 = "ETH", _map$1[_key$1] = { k: _key$1, v: "\xC3\x90" }, _key$1 = "Ntilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\x91" }, _key$1 = "Ograve", _map$1[_key$1] = { k: _key$1, v: "\xC3\x92" }, _key$1 = "Oacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x93" }, _key$1 = "Ocirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x94" }, _key$1 = "Otilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\x95" }, _key$1 = "Ouml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x96" }, _key$1 = "times", _map$1[_key$1] = { k: _key$1, v: "\xC3\x97" }, _key$1 = "Oslash", _map$1[_key$1] = { k: _key$1, v: "\xC3\x98" }, _key$1 = "Ugrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\x99" }, _key$1 = "Uacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9A" }, _key$1 = "Ucirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9B" }, _key$1 = "Uuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9C" }, _key$1 = "Yacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9D" }, _key$1 = "THORN", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9E" }, _key$1 = "szlig", _map$1[_key$1] = { k: _key$1, v: "\xC3\x9F" }, _key$1 = "agrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA0" }, _key$1 = "aacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA1" }, _key$1 = "acirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA2" }, _key$1 = "atilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA3" }, _key$1 = "auml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA4" }, _key$1 = "aring", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA5" }, _key$1 = "aelig", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA6" }, _key$1 = "ccedil", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA7" }, _key$1 = "egrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA8" }, _key$1 = "eacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xA9" }, _key$1 = "ecirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAA" }, _key$1 = "euml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAB" }, _key$1 = "igrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAC" }, _key$1 = "iacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAD" }, _key$1 = "icirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAE" }, _key$1 = "iuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xAF" }, _key$1 = "eth", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB0" }, _key$1 = "ntilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB1" }, _key$1 = "ograve", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB2" }, _key$1 = "oacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB3" }, _key$1 = "ocirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB4" }, _key$1 = "otilde", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB5" }, _key$1 = "ouml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB6" }, _key$1 = "divide", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB7" }, _key$1 = "oslash", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB8" }, _key$1 = "ugrave", _map$1[_key$1] = { k: _key$1, v: "\xC3\xB9" }, _key$1 = "uacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBA" }, _key$1 = "ucirc", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBB" }, _key$1 = "uuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBC" }, _key$1 = "yacute", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBD" }, _key$1 = "thorn", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBE" }, _key$1 = "yuml", _map$1[_key$1] = { k: _key$1, v: "\xC3\xBF" }, _key$1 = "fnof", _map$1[_key$1] = { k: _key$1, v: "\xC6\x92" }, _key$1 = "Alpha", _map$1[_key$1] = { k: _key$1, v: "\xCE\x91" }, _key$1 = "Beta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x92" }, _key$1 = "Gamma", _map$1[_key$1] = { k: _key$1, v: "\xCE\x93" }, _key$1 = "Delta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x94" }, _key$1 = "Epsilon", _map$1[_key$1] = { k: _key$1, v: "\xCE\x95" }, _key$1 = "Zeta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x96" }, _key$1 = "Eta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x97" }, _key$1 = "Theta", _map$1[_key$1] = { k: _key$1, v: "\xCE\x98" }, _key$1 = "Iota", _map$1[_key$1] = { k: _key$1, v: "\xCE\x99" }, _key$1 = "Kappa", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9A" }, _key$1 = "Lambda", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9B" }, _key$1 = "Mu", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9C" }, _key$1 = "Nu", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9D" }, _key$1 = "Xi", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9E" }, _key$1 = "Omicron", _map$1[_key$1] = { k: _key$1, v: "\xCE\x9F" }, _key$1 = "Pi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA0" }, _key$1 = "Rho", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA1" }, _key$1 = "Sigma", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA3" }, _key$1 = "Tau", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA4" }, _key$1 = "Upsilon", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA5" }, _key$1 = "Phi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA6" }, _key$1 = "Chi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA7" }, _key$1 = "Psi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA8" }, _key$1 = "Omega", _map$1[_key$1] = { k: _key$1, v: "\xCE\xA9" }, _key$1 = "alpha", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB1" }, _key$1 = "beta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB2" }, _key$1 = "gamma", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB3" }, _key$1 = "delta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB4" }, _key$1 = "epsilon", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB5" }, _key$1 = "zeta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB6" }, _key$1 = "eta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB7" }, _key$1 = "theta", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB8" }, _key$1 = "iota", _map$1[_key$1] = { k: _key$1, v: "\xCE\xB9" }, _key$1 = "kappa", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBA" }, _key$1 = "lambda", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBB" }, _key$1 = "mu", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBC" }, _key$1 = "nu", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBD" }, _key$1 = "xi", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBE" }, _key$1 = "omicron", _map$1[_key$1] = { k: _key$1, v: "\xCE\xBF" }, _key$1 = "pi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x80" }, _key$1 = "rho", _map$1[_key$1] = { k: _key$1, v: "\xCF\x81" }, _key$1 = "sigmaf", _map$1[_key$1] = { k: _key$1, v: "\xCF\x82" }, _key$1 = "sigma", _map$1[_key$1] = { k: _key$1, v: "\xCF\x83" }, _key$1 = "tau", _map$1[_key$1] = { k: _key$1, v: "\xCF\x84" }, _key$1 = "upsilon", _map$1[_key$1] = { k: _key$1, v: "\xCF\x85" }, _key$1 = "phi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x86" }, _key$1 = "chi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x87" }, _key$1 = "psi", _map$1[_key$1] = { k: _key$1, v: "\xCF\x88" }, _key$1 = "omega", _map$1[_key$1] = { k: _key$1, v: "\xCF\x89" }, _key$1 = "thetasym", _map$1[_key$1] = { k: _key$1, v: "\xCF\x91" }, _key$1 = "upsih", _map$1[_key$1] = { k: _key$1, v: "\xCF\x92" }, _key$1 = "piv", _map$1[_key$1] = { k: _key$1, v: "\xCF\x96" }, _key$1 = "bull", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA2" }, _key$1 = "hellip", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA6" }, _key$1 = "prime", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB2" }, _key$1 = "Prime", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB3" }, _key$1 = "oline", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xBE" }, _key$1 = "frasl", _map$1[_key$1] = { k: _key$1, v: "\xE2\x81\x84" }, _key$1 = "weierp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\x98" }, _key$1 = "image", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\x91" }, _key$1 = "real", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\x9C" }, _key$1 = "trade", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\xA2" }, _key$1 = "alefsym", _map$1[_key$1] = { k: _key$1, v: "\xE2\x84\xB5" }, _key$1 = "larr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x90" }, _key$1 = "uarr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x91" }, _key$1 = "rarr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x92" }, _key$1 = "darr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x93" }, _key$1 = "harr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\x94" }, _key$1 = "crarr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x86\xB5" }, _key$1 = "lArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x90" }, _key$1 = "uArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x91" }, _key$1 = "rArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x92" }, _key$1 = "dArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x93" }, _key$1 = "hArr", _map$1[_key$1] = { k: _key$1, v: "\xE2\x87\x94" }, _key$1 = "forall", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x80" }, _key$1 = "part", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x82" }, _key$1 = "exist", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x83" }, _key$1 = "empty", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x85" }, _key$1 = "nabla", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x87" }, _key$1 = "isin", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x88" }, _key$1 = "notin", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x89" }, _key$1 = "ni", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x8B" }, _key$1 = "prod", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x8F" }, _key$1 = "sum", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x91" }, _key$1 = "minus", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x92" }, _key$1 = "lowast", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x97" }, _key$1 = "radic", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x9A" }, _key$1 = "prop", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x9D" }, _key$1 = "infin", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\x9E" }, _key$1 = "ang", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA0" }, _key$1 = "and", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA7" }, _key$1 = "or", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA8" }, _key$1 = "cap", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xA9" }, _key$1 = "cup", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xAA" }, _key$1 = "int", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xAB" }, _key$1 = "there4", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xB4" }, _key$1 = "sim", _map$1[_key$1] = { k: _key$1, v: "\xE2\x88\xBC" }, _key$1 = "cong", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\x85" }, _key$1 = "asymp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\x88" }, _key$1 = "ne", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA0" }, _key$1 = "equiv", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA1" }, _key$1 = "le", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA4" }, _key$1 = "ge", _map$1[_key$1] = { k: _key$1, v: "\xE2\x89\xA5" }, _key$1 = "sub", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x82" }, _key$1 = "sup", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x83" }, _key$1 = "nsub", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x84" }, _key$1 = "sube", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x86" }, _key$1 = "supe", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x87" }, _key$1 = "oplus", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x95" }, _key$1 = "otimes", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\x97" }, _key$1 = "perp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8A\xA5" }, _key$1 = "sdot", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8B\x85" }, _key$1 = "lceil", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x88" }, _key$1 = "rceil", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x89" }, _key$1 = "lfloor", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x8A" }, _key$1 = "rfloor", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\x8B" }, _key$1 = "lang", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\xA9" }, _key$1 = "rang", _map$1[_key$1] = { k: _key$1, v: "\xE2\x8C\xAA" }, _key$1 = "loz", _map$1[_key$1] = { k: _key$1, v: "\xE2\x97\x8A" }, _key$1 = "spades", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA0" }, _key$1 = "clubs", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA3" }, _key$1 = "hearts", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA5" }, _key$1 = "diams", _map$1[_key$1] = { k: _key$1, v: "\xE2\x99\xA6" }, _key$1 = "quot", _map$1[_key$1] = { k: _key$1, v: "\"" }, _key$1 = "amp", _map$1[_key$1] = { k: _key$1, v: "&" }, _key$1 = "lt", _map$1[_key$1] = { k: _key$1, v: "<" }, _key$1 = "gt", _map$1[_key$1] = { k: _key$1, v: ">" }, _key$1 = "OElig", _map$1[_key$1] = { k: _key$1, v: "\xC5\x92" }, _key$1 = "oelig", _map$1[_key$1] = { k: _key$1, v: "\xC5\x93" }, _key$1 = "Scaron", _map$1[_key$1] = { k: _key$1, v: "\xC5\xA0" }, _key$1 = "scaron", _map$1[_key$1] = { k: _key$1, v: "\xC5\xA1" }, _key$1 = "Yuml", _map$1[_key$1] = { k: _key$1, v: "\xC5\xB8" }, _key$1 = "circ", _map$1[_key$1] = { k: _key$1, v: "\xCB\x86" }, _key$1 = "tilde", _map$1[_key$1] = { k: _key$1, v: "\xCB\x9C" }, _key$1 = "ensp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x82" }, _key$1 = "emsp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x83" }, _key$1 = "thinsp", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x89" }, _key$1 = "zwnj", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8C" }, _key$1 = "zwj", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8D" }, _key$1 = "lrm", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8E" }, _key$1 = "rlm", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x8F" }, _key$1 = "ndash", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x93" }, _key$1 = "mdash", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x94" }, _key$1 = "lsquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x98" }, _key$1 = "rsquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x99" }, _key$1 = "sbquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9A" }, _key$1 = "ldquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9C" }, _key$1 = "rdquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9D" }, _key$1 = "bdquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\x9E" }, _key$1 = "dagger", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA0" }, _key$1 = "Dagger", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xA1" }, _key$1 = "permil", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB0" }, _key$1 = "lsaquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xB9" }, _key$1 = "rsaquo", _map$1[_key$1] = { k: _key$1, v: "\xE2\x80\xBA" }, _key$1 = "euro", _map$1[_key$1] = { k: _key$1, v: "\xE2\x82\xAC" }, _map$1);
+0*   "		go$pkg.HTMLEntity = htmlEntity;
+0Å®   Åü		htmlAutoClose = new (go$sliceType(Go$String))(["basefont", "br", "area", "link", "img", "param", "hr", "input", "col", "frame", "isindex", "base", "meta"]);
+00   (		go$pkg.HTMLAutoClose = htmlAutoClose;
+0N   F		esc_quot = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#34;"));
+0N   F		esc_apos = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#39;"));
+0M   E		esc_amp = new (go$sliceType(Go$Uint8))(go$stringToBytes("&amp;"));
+0K   C		esc_lt = new (go$sliceType(Go$Uint8))(go$stringToBytes("&lt;"));
+0K   C		esc_gt = new (go$sliceType(Go$Uint8))(go$stringToBytes("&gt;"));
+0M   E		esc_tab = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#x9;"));
+0L   D		esc_nl = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#xA;"));
+0L   D		esc_cr = new (go$sliceType(Go$Uint8))(go$stringToBytes("&#xD;"));
+0U   M		esc_fffd = new (go$sliceType(Go$Uint8))(go$stringToBytes("\xEF\xBF\xBD"));
+0    0    0 

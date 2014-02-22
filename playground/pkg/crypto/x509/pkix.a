@@ -344,16 +344,6 @@ $$
 		this.Extensions = Extensions_ !== undefined ? Extensions_ : (go$sliceType(Extension)).nil;
 	});
 Åπ		RevokedCertificate.init([["SerialNumber", "", (go$ptrType(big.Int)), ""], ["RevocationTime", "", time.Time, ""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"optional\""]]);
-0 
-oidCountry  0 oidOrganization  0 oidOrganizationalUnit  0 oidCommonName  0 oidSerialNumber  0 oidLocality  0 oidProvince  0 oidStreetAddress  0 oidPostalCode  0A   9		oidCountry = new (go$sliceType(Go$Int))([2, 5, 4, 6]);
-0G   ?		oidOrganization = new (go$sliceType(Go$Int))([2, 5, 4, 10]);
-0M   E		oidOrganizationalUnit = new (go$sliceType(Go$Int))([2, 5, 4, 11]);
-0D   <		oidCommonName = new (go$sliceType(Go$Int))([2, 5, 4, 3]);
-0F   >		oidSerialNumber = new (go$sliceType(Go$Int))([2, 5, 4, 5]);
-0B   :		oidLocality = new (go$sliceType(Go$Int))([2, 5, 4, 7]);
-0B   :		oidProvince = new (go$sliceType(Go$Int))([2, 5, 4, 8]);
-0G   ?		oidStreetAddress = new (go$sliceType(Go$Int))([2, 5, 4, 9]);
-0E   =		oidPostalCode = new (go$sliceType(Go$Int))([2, 5, 4, 17]);
 0Ç
 ì  Ç
 â	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
@@ -446,4 +436,14 @@ appendRDNsÇ	appendRDNs = function(in$1, values, oid) {
 		return now.After((_struct = certList.TBSCertList.NextUpdate, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)));
 	};
 	CertificateList.prototype.HasExpired = function(now) { return this.go$val.HasExpired(now); };
- 0    0    0 
+ 0 
+oidCountry  0 oidOrganization  0 oidOrganizationalUnit  0 oidCommonName  0 oidSerialNumber  0 oidLocality  0 oidProvince  0 oidStreetAddress  0 oidPostalCode  0A   9		oidCountry = new (go$sliceType(Go$Int))([2, 5, 4, 6]);
+0G   ?		oidOrganization = new (go$sliceType(Go$Int))([2, 5, 4, 10]);
+0M   E		oidOrganizationalUnit = new (go$sliceType(Go$Int))([2, 5, 4, 11]);
+0D   <		oidCommonName = new (go$sliceType(Go$Int))([2, 5, 4, 3]);
+0F   >		oidSerialNumber = new (go$sliceType(Go$Int))([2, 5, 4, 5]);
+0B   :		oidLocality = new (go$sliceType(Go$Int))([2, 5, 4, 7]);
+0B   :		oidProvince = new (go$sliceType(Go$Int))([2, 5, 4, 8]);
+0G   ?		oidStreetAddress = new (go$sliceType(Go$Int))([2, 5, 4, 9]);
+0E   =		oidPostalCode = new (go$sliceType(Go$Int))([2, 5, 4, 17]);
+0    0    0 

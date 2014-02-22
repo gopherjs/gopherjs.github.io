@@ -1,4 +1,4 @@
-0ÉóŒreflectÇE&package reflect
+0Éñ¿reflectÇE&package reflect
 import strconv "strconv"
 import sync "sync"
 import math "math"
@@ -287,7 +287,7 @@ func (? *@"".uncommonType) @"".PkgPath() (? string)
 func (? *@"".uncommonType) @"".uncommon() (? *@"".uncommonType)
 type @"".visit struct { @"".a1 uintptr; @"".a2 uintptr; @"".typ @"".Type }
 $$
-0Jruntimematherrorsunicode/utf8strconvsync/atomicsyncreflect0D0strconvstrconv0syncsync0mathmath0runtimeruntime0ÉR0Çè visitÇ	visit = go$pkg.visit = go$newType(0, "Struct", "reflect.visit", "visit", "reflect", function(a1_, a2_, typ_) {
+0Jruntimematherrorsunicode/utf8strconvsync/atomicsyncreflect0D0strconvstrconv0syncsync0mathmath0runtimeruntime0ÉPÙ0Çè visitÇ	visit = go$pkg.visit = go$newType(0, "Struct", "reflect.visit", "visit", "reflect", function(a1_, a2_, typ_) {
 		this.go$val = this;
 		this.a1 = a1_ !== undefined ? a1_ : 0;
 		this.a2 = a2_ !== undefined ? a2_ : 0;
@@ -1106,14 +1106,6 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 		this.Send = Send_ !== undefined ? Send_ : new Value.Ptr();
 	});
 c		SelectCase.init([["Dir", "", SelectDir, ""], ["Chan", "", Value, ""], ["Send", "", Value, ""]]);
-0 	kindNames  0Å¿ ptrMap Å±		ptrMap = new (go$structType([["", "", sync.RWMutex, ""], ["m", "reflect", (go$mapType((go$ptrType(rtype)), (go$ptrType(ptrType)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-0 ptrDataGCProg  0ÅΩ lookupCache Å©		lookupCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "reflect", (go$mapType(cacheKey, (go$ptrType(rtype)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-0 sliceEmptyGCProg  0 	uint8Type  0Åá dummy z		dummy = new (go$structType([["b", "reflect", Go$Bool, ""], ["x", "reflect", go$emptyInterface, ""]])).Ptr(false, null);
-0ÇD   Ç:		kindNames = new (go$sliceType(Go$String))(["invalid", "bool", "int", "int8", "int16", "int32", "int64", "uint", "uint8", "uint16", "uint32", "uint64", "uintptr", "float32", "float64", "complex64", "complex128", "array", "chan", "func", "interface", "map", "ptr", "slice", "string", "struct", "unsafe.Pointer"]);
-09   1		ptrDataGCProg = new ptrDataGC.Ptr(4, 2, 0, 0);
-0@   8		sliceEmptyGCProg = new sliceEmptyGC.Ptr(12, 2, 0, 0);
-0Å≤   Å©		var x;
-		uint8Type = (x = TypeOf(new Go$Uint8(0)), (x !== null && x.constructor === (go$ptrType(rtype)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(rtype)))));
 0ÇU deepValueEqualÇ=	deepValueEqual = function(v1, v2, visited, depth) {
 		var hard, addr1, addr2, _tuple, typ, v, _entry, _key, _struct, _ref, i, _struct$1, _struct$2, i$1, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _tuple$1, i$2, n, _struct$9, _struct$10, _ref$1, _i, _slice, _index, _struct$11, k, _struct$12, _struct$13, _struct$14, _struct$15, _struct$16, _struct$17;
 		if (!v1.IsValid() || !v2.IsValid()) {
@@ -1316,8 +1308,8 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 		return t.size;
 	};
 	rtype.prototype.Size = function() { return this.go$val.Size(); };
- 0Ç˜  ÇÌ	rtype.Ptr.prototype.Bits = function() {
-		var t, k, x$1, x$2;
+ 0ÇÔ  ÇÂ	rtype.Ptr.prototype.Bits = function() {
+		var t, k, x, x$1;
 		t = this;
 		if (t === (go$ptrType(rtype)).nil) {
 			throw go$panic(new Go$String("reflect: Bits of nil Type"));
@@ -1326,7 +1318,7 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 		if (k < 2 || k > 16) {
 			throw go$panic(new Go$String("reflect: Bits of non-arithmetic Type " + t.String()));
 		}
-		return (x$1 = (t.size >> 0), x$2 = 8, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0);
+		return (x = (t.size >> 0), x$1 = 8, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
 	};
 	rtype.prototype.Bits = function() { return this.go$val.Bits(); };
  0Å™  Å°	rtype.Ptr.prototype.Align = function() {
@@ -1741,15 +1733,15 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 		return (_struct$1 = f, new StructField.Ptr(_struct$1.Name, _struct$1.PkgPath, _struct$1.Type, _struct$1.Tag, _struct$1.Offset, _struct$1.Index, _struct$1.Anonymous));
 	};
 	structType.prototype.Field = function(i) { return this.go$val.Field(i); };
- 0Ç  Ç¸	structType.Ptr.prototype.FieldByIndex = function(index) {
-		var f, t, _ref, _i, _slice, _index, x$1, i, ft, _struct, _struct$1;
+ 0Ç   Çˆ	structType.Ptr.prototype.FieldByIndex = function(index) {
+		var f, t, _ref, _i, _slice, _index, x, i, ft, _struct, _struct$1;
 		f = new StructField.Ptr();
 		t = this;
 		f.Type = toType(t.rtype);
 		_ref = index;
 		_i = 0;
 		while (_i < _ref.length) {
-			x$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
 				ft = f.Type;
@@ -1758,7 +1750,7 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 				}
 				f.Type = ft;
 			}
-			f = (_struct = f.Type.Field(x$1), new StructField.Ptr(_struct.Name, _struct.PkgPath, _struct.Type, _struct.Tag, _struct.Offset, _struct.Index, _struct.Anonymous));
+			f = (_struct = f.Type.Field(x), new StructField.Ptr(_struct.Name, _struct.PkgPath, _struct.Type, _struct.Tag, _struct.Offset, _struct.Index, _struct.Anonymous));
 			_i++;
 		}
 		return (_struct$1 = f, new StructField.Ptr(_struct$1.Name, _struct$1.PkgPath, _struct$1.Type, _struct$1.Tag, _struct$1.Offset, _struct$1.Index, _struct$1.Anonymous));
@@ -1897,16 +1889,16 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 			return go$ptrType(this.jsType).reflectType();
 		};
 	rtype.prototype.ptrTo = function() { return this.go$val.ptrTo(); };
- 0Çø fnv1Ç±	fnv1 = function(x$1, list) {
-		var _ref, _i, _slice, _index, b, x$2;
+ 0Çµ fnv1Çß	fnv1 = function(x, list) {
+		var _ref, _i, _slice, _index, b, x$1;
 		_ref = list;
 		_i = 0;
 		while (_i < _ref.length) {
 			b = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			x$1 = ((x$2 = 16777619, (((x$1 >>> 16 << 16) * x$2 >>> 0) + (x$1 << 16 >>> 16) * x$2) >>> 0) ^ (b >>> 0)) >>> 0;
+			x = ((x$1 = 16777619, (((x >>> 16 << 16) * x$1 >>> 0) + (x << 16 >>> 16) * x$1) >>> 0) ^ (b >>> 0)) >>> 0;
 			_i++;
 		}
-		return x$1;
+		return x;
 	};
  0Ç)  Ç	rtype.Ptr.prototype.Implements = function(u) {
 		var t;
@@ -2144,13 +2136,13 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 			}
 			return go$mapType(key.jsType, elem.jsType).reflectType();
 		};
- 0Ç< bucketOfÇ*	bucketOf = function(ktyp, etyp) {
-		var x$1, x$2, ptrsize, gc, offset, x$3, x$4, _slice, _index, _slice$1, _index$1, b, s, v;
+ 0Ç0 bucketOfÇ	bucketOf = function(ktyp, etyp) {
+		var x, x$1, ptrsize, gc, offset, x$2, x$3, _slice, _index, _slice$1, _index$1, b, s, v;
 		if (ktyp.size > 128) {
-			ktyp = (x$1 = PtrTo(ktyp), (x$1 !== null && x$1.constructor === (go$ptrType(rtype)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(rtype)))));
+			ktyp = (x = PtrTo(ktyp), (x !== null && x.constructor === (go$ptrType(rtype)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(rtype)))));
 		}
 		if (etyp.size > 128) {
-			etyp = (x$2 = PtrTo(etyp), (x$2 !== null && x$2.constructor === (go$ptrType(rtype)) ? x$2.go$val : go$typeAssertionFailed(x$2, (go$ptrType(rtype)))));
+			etyp = (x$1 = PtrTo(etyp), (x$1 !== null && x$1.constructor === (go$ptrType(rtype)) ? x$1.go$val : go$typeAssertionFailed(x$1, (go$ptrType(rtype)))));
 		}
 		ptrsize = 4;
 		gc = (go$sliceType(Go$Uintptr)).make(1, 0, function() { return 0; });
@@ -2162,13 +2154,13 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 			gc = appendGCProgram(gc, ktyp);
 			gc = go$append(gc, 4);
 		}
-		offset = offset + ((x$3 = ktyp.size, (((8 >>> 16 << 16) * x$3 >>> 0) + (8 << 16 >>> 16) * x$3) >>> 0)) >>> 0;
+		offset = offset + ((x$2 = ktyp.size, (((8 >>> 16 << 16) * x$2 >>> 0) + (8 << 16 >>> 16) * x$2) >>> 0)) >>> 0;
 		if (((etyp.kind & 128) >>> 0) === 0) {
 			gc = go$append(gc, 3, offset, 8, etyp.size);
 			gc = appendGCProgram(gc, etyp);
 			gc = go$append(gc, 4);
 		}
-		offset = offset + ((x$4 = etyp.size, (((8 >>> 16 << 16) * x$4 >>> 0) + (8 << 16 >>> 16) * x$4) >>> 0)) >>> 0;
+		offset = offset + ((x$3 = etyp.size, (((8 >>> 16 << 16) * x$3 >>> 0) + (8 << 16 >>> 16) * x$3) >>> 0)) >>> 0;
 		gc = go$append(gc, 0);
 		_slice = gc, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = offset) : go$throwRuntimeError("index out of range");
 		_slice$1 = gc, _index$1 = 3, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = go$sliceToArray(gc)) : go$throwRuntimeError("index out of range");
@@ -2209,8 +2201,8 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 		}
 		return gc;
 	};
- 0ÇÂ hMapOfÇ’	hMapOf = function(bucket) {
-		var ptrsize, gc, offset, x$1, _q, x$2, x$3, _q$1, _slice, _index, h, s, v;
+ 0Ç› hMapOfÇÕ	hMapOf = function(bucket) {
+		var ptrsize, gc, offset, x, _q, x$1, x$2, _q$1, _slice, _index, h, s, v;
 		ptrsize = 4;
 		gc = (go$sliceType(Go$Uintptr)).make(1, 0, function() { return 0; });
 		offset = 4;
@@ -2219,9 +2211,9 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 		offset = offset + 1 >>> 0;
 		offset = offset + 1 >>> 0;
 		offset = offset + 1 >>> 0;
-		offset = (x$1 = (_q = ((offset + 1 >>> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")), x$2 = 2, (((x$1 >>> 16 << 16) * x$2 >>> 0) + (x$1 << 16 >>> 16) * x$2) >>> 0);
+		offset = (x = (_q = ((offset + 1 >>> 0)) / 2, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >>> 0 : go$throwRuntimeError("integer divide by zero")), x$1 = 2, (((x >>> 16 << 16) * x$1 >>> 0) + (x << 16 >>> 16) * x$1) >>> 0);
 		offset = offset + 2 >>> 0;
-		offset = (x$3 = (_q$1 = (((offset + ptrsize >>> 0) - 1 >>> 0)) / ptrsize, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero")), (((x$3 >>> 16 << 16) * ptrsize >>> 0) + (x$3 << 16 >>> 16) * ptrsize) >>> 0);
+		offset = (x$2 = (_q$1 = (((offset + ptrsize >>> 0) - 1 >>> 0)) / ptrsize, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >>> 0 : go$throwRuntimeError("integer divide by zero")), (((x$2 >>> 16 << 16) * ptrsize >>> 0) + (x$2 << 16 >>> 16) * ptrsize) >>> 0);
 		gc = go$append(gc, 1, offset, bucket.gc);
 		offset = offset + (ptrsize) >>> 0;
 		gc = go$append(gc, 1, offset, bucket.gc);
@@ -2626,8 +2618,8 @@ storeIwordÇ	storeIword = function(p, w, n) {
 			}
 			return [t, rcvr[name], rcvr];
 		};
- 0h align[	align = function(x$1, n) {
-		return (((x$1 + n >>> 0) - 1 >>> 0)) & ~((n - 1 >>> 0));
+ 0d alignW	align = function(x, n) {
+		return (((x + n >>> 0) - 1 >>> 0)) & ~((n - 1 >>> 0));
 	};
  0ÇF 	frameSizeÇ3	frameSize = function(t, rcvr) {
 		var total, in$1, outOffset, out, nin, i, tv, nout, i$1, tv$1;
@@ -2757,21 +2749,21 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			return new Value.Ptr(typ, this.val[name], fl);
 		};
 	Value.prototype.Field = function(i) { return this.go$val.Field(i); };
- 0Ç¬  Ç∏	Value.Ptr.prototype.FieldByIndex = function(index) {
-		var _struct, v, _ref, _i, _slice, _index, x$1, i, _struct$1, _struct$2, _struct$3;
+ 0Çº  Ç≤	Value.Ptr.prototype.FieldByIndex = function(index) {
+		var _struct, v, _ref, _i, _slice, _index, x, i, _struct$1, _struct$2, _struct$3;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(25);
 		_ref = index;
 		_i = 0;
 		while (_i < _ref.length) {
-			x$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
 			if (i > 0) {
 				if ((v.Kind() === 22) && (v.Elem().Kind() === 25)) {
 					v = (_struct$1 = v.Elem(), new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 				}
 			}
-			v = (_struct$2 = v.Field(x$1), new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+			v = (_struct$2 = v.Field(x), new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 			_i++;
 		}
 		return (_struct$3 = v, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
@@ -3066,64 +3058,64 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		return tt.fields.length;
 	};
 	Value.prototype.NumField = function() { return this.go$val.NumField(); };
- 0Ç  Ç	Value.Ptr.prototype.OverflowComplex = function(x$1) {
+ 0Ç  Ç˘	Value.Ptr.prototype.OverflowComplex = function(x) {
 		var _struct, v, k, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
 		_ref = k;
 		if (_ref === 15) {
-			return overflowFloat32(x$1.real) || overflowFloat32(x$1.imag);
+			return overflowFloat32(x.real) || overflowFloat32(x.imag);
 		} else if (_ref === 16) {
 			return false;
 		}
 		throw go$panic(new ValueError.Ptr("reflect.Value.OverflowComplex", k));
 	};
-	Value.prototype.OverflowComplex = function(x$1) { return this.go$val.OverflowComplex(x$1); };
- 0Ç„  ÇŸ	Value.Ptr.prototype.OverflowFloat = function(x$1) {
+	Value.prototype.OverflowComplex = function(x) { return this.go$val.OverflowComplex(x); };
+ 0Ç€  Ç—	Value.Ptr.prototype.OverflowFloat = function(x) {
 		var _struct, v, k, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
 		_ref = k;
 		if (_ref === 13) {
-			return overflowFloat32(x$1);
+			return overflowFloat32(x);
 		} else if (_ref === 14) {
 			return false;
 		}
 		throw go$panic(new ValueError.Ptr("reflect.Value.OverflowFloat", k));
 	};
-	Value.prototype.OverflowFloat = function(x$1) { return this.go$val.OverflowFloat(x$1); };
- 0Å¨ overflowFloat32Åî	overflowFloat32 = function(x$1) {
-		if (x$1 < 0) {
-			x$1 = -x$1;
+	Value.prototype.OverflowFloat = function(x) { return this.go$val.OverflowFloat(x); };
+ 0Å† overflowFloat32Åà	overflowFloat32 = function(x) {
+		if (x < 0) {
+			x = -x;
 		}
-		return 3.4028234663852886e+38 < x$1 && x$1 <= 1.7976931348623157e+308;
+		return 3.4028234663852886e+38 < x && x <= 1.7976931348623157e+308;
 	};
- 0Çı  ÇÎ	Value.Ptr.prototype.OverflowInt = function(x$1) {
-		var _struct, v, k, _ref, x$2, x$3, bitSize, trunc;
+ 0ÇÈ  Çﬂ	Value.Ptr.prototype.OverflowInt = function(x) {
+		var _struct, v, k, _ref, x$1, x$2, bitSize, trunc;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
 		_ref = k;
 		if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
-			bitSize = (x$2 = v.typ.size, x$3 = 8, (((x$2 >>> 16 << 16) * x$3 >>> 0) + (x$2 << 16 >>> 16) * x$3) >>> 0);
-			trunc = go$shiftRightInt64((go$shiftLeft64(x$1, ((64 - bitSize >>> 0)))), ((64 - bitSize >>> 0)));
-			return !((x$1.high === trunc.high && x$1.low === trunc.low));
+			bitSize = (x$1 = v.typ.size, x$2 = 8, (((x$1 >>> 16 << 16) * x$2 >>> 0) + (x$1 << 16 >>> 16) * x$2) >>> 0);
+			trunc = go$shiftRightInt64((go$shiftLeft64(x, ((64 - bitSize >>> 0)))), ((64 - bitSize >>> 0)));
+			return !((x.high === trunc.high && x.low === trunc.low));
 		}
 		throw go$panic(new ValueError.Ptr("reflect.Value.OverflowInt", k));
 	};
-	Value.prototype.OverflowInt = function(x$1) { return this.go$val.OverflowInt(x$1); };
- 0Ç  Ç	Value.Ptr.prototype.OverflowUint = function(x$1) {
-		var _struct, v, k, _ref, x$2, x$3, bitSize, trunc;
+	Value.prototype.OverflowInt = function(x) { return this.go$val.OverflowInt(x); };
+ 0Çˇ  Çı	Value.Ptr.prototype.OverflowUint = function(x) {
+		var _struct, v, k, _ref, x$1, x$2, bitSize, trunc;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
 		_ref = k;
 		if (_ref === 7 || _ref === 12 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11) {
-			bitSize = (x$2 = v.typ.size, x$3 = 8, (((x$2 >>> 16 << 16) * x$3 >>> 0) + (x$2 << 16 >>> 16) * x$3) >>> 0);
-			trunc = go$shiftRightUint64((go$shiftLeft64(x$1, ((64 - bitSize >>> 0)))), ((64 - bitSize >>> 0)));
-			return !((x$1.high === trunc.high && x$1.low === trunc.low));
+			bitSize = (x$1 = v.typ.size, x$2 = 8, (((x$1 >>> 16 << 16) * x$2 >>> 0) + (x$1 << 16 >>> 16) * x$2) >>> 0);
+			trunc = go$shiftRightUint64((go$shiftLeft64(x, ((64 - bitSize >>> 0)))), ((64 - bitSize >>> 0)));
+			return !((x.high === trunc.high && x.low === trunc.low));
 		}
 		throw go$panic(new ValueError.Ptr("reflect.Value.OverflowUint", k));
 	};
-	Value.prototype.OverflowUint = function(x$1) { return this.go$val.OverflowUint(x$1); };
+	Value.prototype.OverflowUint = function(x) { return this.go$val.OverflowUint(x); };
  0Ç—  Ç«	Value.Ptr.prototype.Pointer = function() {
 			var k = this.kind();
 			switch (k) {
@@ -3145,15 +3137,15 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			throw go$panic(new ValueError.Ptr("reflect.Value.Pointer", k));
 		};
 	Value.prototype.Pointer = function() { return this.go$val.Pointer(); };
- 0ÇV  ÇL	Value.Ptr.prototype.Recv = function() {
-		var x$1, ok, _struct, v, _tuple, _struct$1, _struct$2;
-		x$1 = new Value.Ptr();
+ 0ÇN  ÇD	Value.Ptr.prototype.Recv = function() {
+		var x, ok, _struct, v, _tuple, _struct$1, _struct$2;
+		x = new Value.Ptr();
 		ok = false;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(18);
 		(new flag(v.flag)).mustBeExported();
-		_tuple = v.recv(false), x$1 = (_struct$1 = _tuple[0], new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), ok = _tuple[1];
-		return [(_struct$2 = x$1, new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), ok];
+		_tuple = v.recv(false), x = (_struct$1 = _tuple[0], new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), ok = _tuple[1];
+		return [(_struct$2 = x, new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), ok];
 	};
 	Value.prototype.Recv = function() { return this.go$val.Recv(); };
  0Ç4  Ç*	Value.Ptr.prototype.recv = function(nb) {
@@ -3177,15 +3169,15 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		return [(_struct$1 = val, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), ok];
 	};
 	Value.prototype.recv = function(nb) { return this.go$val.recv(nb); };
- 0Çò  Çé	Value.Ptr.prototype.Send = function(x$1) {
+ 0Çê  ÇÜ	Value.Ptr.prototype.Send = function(x) {
 		var _struct, v, _struct$1;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(18);
 		(new flag(v.flag)).mustBeExported();
-		v.send((_struct$1 = x$1, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), false);
+		v.send((_struct$1 = x, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), false);
 	};
-	Value.prototype.Send = function(x$1) { return this.go$val.Send(x$1); };
- 0Çæ  Ç¥	Value.Ptr.prototype.send = function(x$1, nb) {
+	Value.prototype.Send = function(x) { return this.go$val.Send(x); };
+ 0Ç∞  Ç¶	Value.Ptr.prototype.send = function(x, nb) {
 		var selected, _struct, v, tt, _struct$1;
 		selected = false;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3193,13 +3185,13 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		if (((tt.dir >> 0) & 2) === 0) {
 			throw go$panic(new Go$String("reflect: send on recv-only channel"));
 		}
-		(new flag(x$1.flag)).mustBeExported();
-		x$1 = (_struct$1 = x$1.assignTo("reflect.Value.Send", tt.elem, (go$ptrType(go$emptyInterface)).nil), new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
-		selected = chansend(v.typ, v.iword(), x$1.iword(), nb);
+		(new flag(x.flag)).mustBeExported();
+		x = (_struct$1 = x.assignTo("reflect.Value.Send", tt.elem, (go$ptrType(go$emptyInterface)).nil), new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+		selected = chansend(v.typ, v.iword(), x.iword(), nb);
 		return selected;
 	};
-	Value.prototype.send = function(x$1, nb) { return this.go$val.send(x$1, nb); };
- 0Ç0  Ç&	Value.Ptr.prototype.Set = function(x) {
+	Value.prototype.send = function(x, nb) { return this.go$val.send(x, nb); };
+ 0Ç,  Ç"	Value.Ptr.prototype.Set = function(x) {
 			this.mustBeAssignable();
 			x.mustBeExported();
 			if ((this.flag & flagIndir) !== 0) {
@@ -3220,16 +3212,16 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			this.val = x.val;
 		};
-	Value.prototype.Set = function(x$1) { return this.go$val.Set(x$1); };
- 0ÇK  ÇA	Value.Ptr.prototype.SetBool = function(x$1) {
+	Value.prototype.Set = function(x) { return this.go$val.Set(x); };
+ 0ÇC  Ç9	Value.Ptr.prototype.SetBool = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
 		(new flag(v.flag)).mustBe(1);
-		v.val.go$set(x$1);
+		v.val.go$set(x);
 	};
-	Value.prototype.SetBool = function(x$1) { return this.go$val.SetBool(x$1); };
- 0Ç…  Çø	Value.Ptr.prototype.SetBytes = function(x$1) {
+	Value.prototype.SetBool = function(x) { return this.go$val.SetBool(x); };
+ 0Ç¡  Ç∑	Value.Ptr.prototype.SetBytes = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
@@ -3237,10 +3229,10 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		if (!((v.typ.Elem().Kind() === 8))) {
 			throw go$panic(new Go$String("reflect.Value.SetBytes of non-byte slice"));
 		}
-		v.val.go$set(x$1);
+		v.val.go$set(x);
 	};
-	Value.prototype.SetBytes = function(x$1) { return this.go$val.SetBytes(x$1); };
- 0Ç…  Çø	Value.Ptr.prototype.setRunes = function(x$1) {
+	Value.prototype.SetBytes = function(x) { return this.go$val.SetBytes(x); };
+ 0Ç¡  Ç∑	Value.Ptr.prototype.setRunes = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
@@ -3248,10 +3240,10 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		if (!((v.typ.Elem().Kind() === 5))) {
 			throw go$panic(new Go$String("reflect.Value.setRunes of non-rune slice"));
 		}
-		v.val.go$set(x$1);
+		v.val.go$set(x);
 	};
-	Value.prototype.setRunes = function(x$1) { return this.go$val.setRunes(x$1); };
- 0Çê  ÇÜ	Value.Ptr.prototype.SetComplex = function(x) {
+	Value.prototype.setRunes = function(x) { return this.go$val.setRunes(x); };
+ 0Çå  ÇÇ	Value.Ptr.prototype.SetComplex = function(x) {
 			this.mustBeAssignable();
 			var k = this.kind();
 			switch (k) {
@@ -3262,23 +3254,23 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetComplex", k));
 		};
-	Value.prototype.SetComplex = function(x$1) { return this.go$val.SetComplex(x$1); };
- 0Çˇ  Çı	Value.Ptr.prototype.SetFloat = function(x$1) {
+	Value.prototype.SetComplex = function(x) { return this.go$val.SetComplex(x); };
+ 0Çı  ÇÎ	Value.Ptr.prototype.SetFloat = function(x) {
 		var _struct, v, k, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
 		k = (new flag(v.flag)).kind();
 		_ref = k;
 		if (_ref === 13) {
-			v.val.go$set(x$1);
+			v.val.go$set(x);
 		} else if (_ref === 14) {
-			v.val.go$set(x$1);
+			v.val.go$set(x);
 		} else {
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetFloat", k));
 		}
 	};
-	Value.prototype.SetFloat = function(x$1) { return this.go$val.SetFloat(x$1); };
- 0Ç“  Ç»	Value.Ptr.prototype.SetInt = function(x) {
+	Value.prototype.SetFloat = function(x) { return this.go$val.SetFloat(x); };
+ 0ÇŒ  Çƒ	Value.Ptr.prototype.SetInt = function(x) {
 			this.mustBeAssignable();
 			var k = this.kind();
 			switch (k) {
@@ -3294,7 +3286,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetInt", k));
 		};
-	Value.prototype.SetInt = function(x$1) { return this.go$val.SetInt(x$1); };
+	Value.prototype.SetInt = function(x) { return this.go$val.SetInt(x); };
  0ÇË  Çﬁ	Value.Ptr.prototype.SetLen = function(n) {
 			this.mustBeAssignable();
 			this.mustBe(Slice);
@@ -3338,7 +3330,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		mapassign(v.typ, v.iword(), key.iword(), val.iword(), !(val.typ === (go$ptrType(rtype)).nil));
 	};
 	Value.prototype.SetMapIndex = function(key, val) { return this.go$val.SetMapIndex(key, val); };
- 0Ç‚  Çÿ	Value.Ptr.prototype.SetUint = function(x) {
+ 0Çﬁ  Ç‘	Value.Ptr.prototype.SetUint = function(x) {
 			this.mustBeAssignable();
 			var k = this.kind();
 			switch (k) {
@@ -3355,23 +3347,23 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetUint", k));
 		};
-	Value.prototype.SetUint = function(x$1) { return this.go$val.SetUint(x$1); };
- 0ÇU  ÇK	Value.Ptr.prototype.SetPointer = function(x$1) {
+	Value.prototype.SetUint = function(x) { return this.go$val.SetUint(x); };
+ 0ÇM  ÇC	Value.Ptr.prototype.SetPointer = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
 		(new flag(v.flag)).mustBe(26);
-		v.val.go$set(x$1);
+		v.val.go$set(x);
 	};
-	Value.prototype.SetPointer = function(x$1) { return this.go$val.SetPointer(x$1); };
- 0ÇR  ÇH	Value.Ptr.prototype.SetString = function(x$1) {
+	Value.prototype.SetPointer = function(x) { return this.go$val.SetPointer(x); };
+ 0ÇJ  Ç@	Value.Ptr.prototype.SetString = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
 		(new flag(v.flag)).mustBe(24);
-		v.val.go$set(x$1);
+		v.val.go$set(x);
 	};
-	Value.prototype.SetString = function(x$1) { return this.go$val.SetString(x$1); };
+	Value.prototype.SetString = function(x) { return this.go$val.SetString(x); };
  0Çb  ÇX	Value.Ptr.prototype.Slice = function(i, j) {
 			var typ, s, cap;
 			var kind = this.kind();
@@ -3448,25 +3440,25 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			return "<" + this.typ.String() + " Value>";
 		};
 	Value.prototype.String = function() { return this.go$val.String(); };
- 0Ç^  ÇT	Value.Ptr.prototype.TryRecv = function() {
-		var x$1, ok, _struct, v, _tuple, _struct$1, _struct$2;
-		x$1 = new Value.Ptr();
+ 0ÇV  ÇL	Value.Ptr.prototype.TryRecv = function() {
+		var x, ok, _struct, v, _tuple, _struct$1, _struct$2;
+		x = new Value.Ptr();
 		ok = false;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(18);
 		(new flag(v.flag)).mustBeExported();
-		_tuple = v.recv(true), x$1 = (_struct$1 = _tuple[0], new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), ok = _tuple[1];
-		return [(_struct$2 = x$1, new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), ok];
+		_tuple = v.recv(true), x = (_struct$1 = _tuple[0], new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), ok = _tuple[1];
+		return [(_struct$2 = x, new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), ok];
 	};
 	Value.prototype.TryRecv = function() { return this.go$val.TryRecv(); };
- 0Çß  Çù	Value.Ptr.prototype.TrySend = function(x$1) {
+ 0Çü  Çï	Value.Ptr.prototype.TrySend = function(x) {
 		var _struct, v, _struct$1;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(18);
 		(new flag(v.flag)).mustBeExported();
-		return v.send((_struct$1 = x$1, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), true);
+		return v.send((_struct$1 = x, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), true);
 	};
-	Value.prototype.TrySend = function(x$1) { return this.go$val.TrySend(x$1); };
+	Value.prototype.TrySend = function(x) { return this.go$val.TrySend(x); };
  0Çﬁ  Ç‘	Value.Ptr.prototype.Type = function() {
 		var _struct, v, f, i, tt, _slice, _index, m, ut, _slice$1, _index$1, m$1;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3494,8 +3486,8 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		return m$1.mtyp;
 	};
 	Value.prototype.Type = function() { return this.go$val.Type(); };
- 0Ç√  Çπ	Value.Ptr.prototype.Uint = function() {
-		var _struct, v, k, p, v$1, _ref, x$1;
+ 0Çª  Ç±	Value.Ptr.prototype.Uint = function() {
+		var _struct, v, k, p, v$1, _ref, x;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
 		p = 0;
@@ -3516,7 +3508,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		} else if (_ref === 11) {
 			return p.go$get();
 		} else if (_ref === 12) {
-			return (x$1 = p.go$get(), new Go$Uint64(0, x$1.constructor === Number ? x$1 : 1));
+			return (x = p.go$get(), new Go$Uint64(0, x.constructor === Number ? x : 1));
 		}
 		throw go$panic(new ValueError.Ptr("reflect.Value.Uint", k));
 	};
@@ -3564,13 +3556,13 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		Copy((_struct$2 = t, new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), (_struct$3 = s, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
 		return [(_struct$4 = t, new Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), i0, i1];
 	};
- 0Çê AppendÇÄ	Append = go$pkg.Append = function(s, x$1) {
+ 0Çä AppendÇz	Append = go$pkg.Append = function(s, x) {
 		var _tuple, _struct, _struct$1, i0, i1, _tuple$1, i, j, _tuple$2, _slice, _index, _struct$2, _struct$3;
 		(new flag(s.flag)).mustBe(23);
-		_tuple = grow((_struct = s, new Value.Ptr(_struct.typ, _struct.val, _struct.flag)), x$1.length), s = (_struct$1 = _tuple[0], new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), i0 = _tuple[1], i1 = _tuple[2];
+		_tuple = grow((_struct = s, new Value.Ptr(_struct.typ, _struct.val, _struct.flag)), x.length), s = (_struct$1 = _tuple[0], new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), i0 = _tuple[1], i1 = _tuple[2];
 		_tuple$1 = [i0, 0], i = _tuple$1[0], j = _tuple$1[1];
 		while (i < i1) {
-			s.Index(i).Set((_struct$2 = (_slice = x$1, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)));
+			s.Index(i).Set((_struct$2 = (_slice = x, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)));
 			_tuple$2 = [i + 1 >> 0, j + 1 >> 0], i = _tuple$2[0], j = _tuple$2[1];
 		}
 		return (_struct$3 = s, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
@@ -3780,8 +3772,9 @@ unsafe_NewÅÊ	unsafe_New = function(typ) {
 		fl = 352;
 		return new Value.Ptr(typ.common().ptrTo(), p, fl);
 	};
- 0Ç  Ç	Value.Ptr.prototype.assignTo = function(context, dst, target) {
-		var _struct, v, _struct$1, _struct$2, fl, _struct$3, x$1;
+ 0Ç  Ç
+	Value.Ptr.prototype.assignTo = function(context, dst, target) {
+		var _struct, v, _struct$1, _struct$2, fl, _struct$3, x;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (!((((v.flag & 8) >>> 0) === 0))) {
 			v = (_struct$2 = makeMethodValue(context, (_struct$1 = v, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
@@ -3795,11 +3788,11 @@ unsafe_NewÅÊ	unsafe_New = function(typ) {
 			if (target === (go$ptrType(go$emptyInterface)).nil) {
 				target = go$newDataPointer(null, (go$ptrType(go$emptyInterface)));
 			}
-			x$1 = valueInterface((_struct$3 = v, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), false);
+			x = valueInterface((_struct$3 = v, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), false);
 			if (dst.NumMethod() === 0) {
-				target.go$set(x$1);
+				target.go$set(x);
 			} else {
-				ifaceE2I(dst, x$1, target);
+				ifaceE2I(dst, x, target);
 			}
 			return new Value.Ptr(dst, target, 322);
 		}
@@ -3960,17 +3953,17 @@ makeStringÇ6	makeString = function(f, v, t) {
 		ret.flag = ((ret.flag & ~4) | f) >>> 0;
 		return (_struct$1 = ret, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 	};
- 0Å· cvtIntÅ“	cvtInt = function(v, t) {
-		var x$1, _struct;
-		return (_struct = makeInt((v.flag & 1) >>> 0, (x$1 = v.Int(), new Go$Uint64(x$1.high, x$1.low)), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+ 0ÅŸ cvtIntÅ 	cvtInt = function(v, t) {
+		var x, _struct;
+		return (_struct = makeInt((v.flag & 1) >>> 0, (x = v.Int(), new Go$Uint64(x.high, x.low)), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
  0Åµ cvtUintÅ•	cvtUint = function(v, t) {
 		var _struct;
 		return (_struct = makeInt((v.flag & 1) >>> 0, v.Uint(), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0Å˛ cvtFloatIntÅÍ	cvtFloatInt = function(v, t) {
-		var x$1, _struct;
-		return (_struct = makeInt((v.flag & 1) >>> 0, (x$1 = new Go$Int64(0, v.Float()), new Go$Uint64(x$1.high, x$1.low)), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+ 0Åˆ cvtFloatIntÅ‚	cvtFloatInt = function(v, t) {
+		var x, _struct;
+		return (_struct = makeInt((v.flag & 1) >>> 0, (x = new Go$Int64(0, v.Float()), new Go$Uint64(x.high, x.low)), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
  0Å“ cvtFloatUintÅΩ	cvtFloatUint = function(v, t) {
 		var _struct;
@@ -4058,14 +4051,14 @@ cvtComplexÅØ	cvtComplex = function(v, t) {
 			}
 			return new Value.Ptr(typ, val, (v.flag & flagRO) | (typ.Kind() << flagKindShift));
 		};
- 0Ç1 cvtT2IÇ!	cvtT2I = function(v, typ) {
-		var target, _struct, x$1;
+ 0Ç) cvtT2IÇ	cvtT2I = function(v, typ) {
+		var target, _struct, x;
 		target = go$newDataPointer(null, (go$ptrType(go$emptyInterface)));
-		x$1 = valueInterface((_struct = v, new Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
+		x = valueInterface((_struct = v, new Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
 		if (typ.NumMethod() === 0) {
-			target.go$set(x$1);
+			target.go$set(x);
 		} else {
-			ifaceE2I((typ !== null && typ.constructor === (go$ptrType(rtype)) ? typ.go$val : go$typeAssertionFailed(typ, (go$ptrType(rtype)))), x$1, target);
+			ifaceE2I((typ !== null && typ.constructor === (go$ptrType(rtype)) ? typ.go$val : go$typeAssertionFailed(typ, (go$ptrType(rtype)))), x, target);
 		}
 		return new Value.Ptr(typ.common(), target, (((((v.flag & 1) >>> 0) | 2) >>> 0) | 320) >>> 0);
 	};
@@ -4128,12 +4121,20 @@ mapiterkeyt	mapiterkey = function(it) {
  0M ifaceE2I=	ifaceE2I = function(t, src, dst) {
 			dst.go$set(src);
 		};
- 0U escapesF	escapes = function(x$1) {
+ 0Q escapesB	escapes = function(x) {
 		if (dummy.b) {
-			dummy.x = x$1;
+			dummy.x = x;
 		}
 	};
- 0Ço  Çe
+ 0 	kindNames  0Å¿ ptrMap Å±		ptrMap = new (go$structType([["", "", sync.RWMutex, ""], ["m", "reflect", (go$mapType((go$ptrType(rtype)), (go$ptrType(ptrType)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+0 ptrDataGCProg  0ÅΩ lookupCache Å©		lookupCache = new (go$structType([["", "", sync.RWMutex, ""], ["m", "reflect", (go$mapType(cacheKey, (go$ptrType(rtype)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+0 sliceEmptyGCProg  0 	uint8Type  0Åá dummy z		dummy = new (go$structType([["b", "reflect", Go$Bool, ""], ["x", "reflect", go$emptyInterface, ""]])).Ptr(false, null);
+0ÇD   Ç:		kindNames = new (go$sliceType(Go$String))(["invalid", "bool", "int", "int8", "int16", "int32", "int64", "uint", "uint8", "uint16", "uint32", "uint64", "uintptr", "float32", "float64", "complex64", "complex128", "array", "chan", "func", "interface", "map", "ptr", "slice", "string", "struct", "unsafe.Pointer"]);
+09   1		ptrDataGCProg = new ptrDataGC.Ptr(4, 2, 0, 0);
+0@   8		sliceEmptyGCProg = new sliceEmptyGC.Ptr(12, 2, 0, 0);
+0Å≤   Å©		var x;
+		uint8Type = (x = TypeOf(new Go$Uint8(0)), (x !== null && x.constructor === (go$ptrType(rtype)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(rtype)))));
+0Ço  Çe
 			var Invalid = 0;
 			var Bool = 1;
 			var Int = 2;

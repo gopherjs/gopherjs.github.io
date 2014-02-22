@@ -263,8 +263,6 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 	CheckEqualError.Ptr.prototype.Error = function() { return this.CheckError.Error(); };
 ÅÒ		CheckEqualError.init([["", "", CheckError, ""], ["Out1", "", (go$sliceType(go$emptyInterface)), ""], ["Out2", "", (go$sliceType(go$emptyInterface)), ""]]);
 		(go$ptrType(CheckEqualError)).methods = [["Error", "", [], [Go$String], false]];
-0 defaultMaxCount  09 defaultConfig $		defaultConfig = new Config.Ptr();
-0m   e		defaultMaxCount = flag.Int("quickchecks", 100, "The default number of iterations for each check");
 0Å± randFloat32Åù	randFloat32 = function(rand$1) {
 		var f;
 		f = rand$1.Float64() * 3.4028234663852886e+38;
@@ -566,4 +564,6 @@ CheckEqualÇÚ	CheckEqual = go$pkg.CheckEqual = function(f, g, config) {
 		}
 		return strings.Join(s, ", ");
 	};
- 0    0    0 
+ 0 defaultMaxCount  09 defaultConfig $		defaultConfig = new Config.Ptr();
+0m   e		defaultMaxCount = flag.Int("quickchecks", 100, "The default number of iterations for each check");
+0    0    0 

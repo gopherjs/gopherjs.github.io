@@ -181,9 +181,6 @@ inputBytesÅ⁄	inputBytes = go$pkg.inputBytes = go$newType(0, "Struct", "regexp.i
 	});
 Ç”		inputReader.init([["r", "regexp", io.RuneReader, ""], ["atEOT", "regexp", Go$Bool, ""], ["pos", "regexp", Go$Int, ""]]);
 		(go$ptrType(inputReader)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
-0 empty  0 debug  0 specialBytes  0O   G		empty = (go$sliceType(Go$Int)).make(0, 0, function() { return 0; });
-0   		debug = false;
-0\   T		specialBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("\\.+*?()|[]{}^$"));
 0Åﬂ  Å÷	machine.Ptr.prototype.newInputBytes = function(b) {
 		var m;
 		m = this;
@@ -1376,4 +1373,7 @@ inputBytesÅ⁄	inputBytes = go$pkg.inputBytes = go$newType(0, "Struct", "regexp.i
 		return strings$1;
 	};
 	Regexp.prototype.Split = function(s, n) { return this.go$val.Split(s, n); };
- 0    0    0 
+ 0 empty  0 debug  0 specialBytes  0O   G		empty = (go$sliceType(Go$Int)).make(0, 0, function() { return 0; });
+0   		debug = false;
+0\   T		specialBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("\\.+*?()|[]{}^$"));
+0    0    0 

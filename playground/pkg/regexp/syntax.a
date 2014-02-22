@@ -244,32 +244,7 @@ $$
 Ç‘		Regexp.init([["Op", "", Op, ""], ["Flags", "", Flags, ""], ["Sub", "", (go$sliceType((go$ptrType(Regexp)))), ""], ["Sub0", "", (go$arrayType((go$ptrType(Regexp)), 1)), ""], ["Rune", "", (go$sliceType(Go$Int32)), ""], ["Rune0", "", (go$arrayType(Go$Int32, 2)), ""], ["Min", "", Go$Int, ""], ["Max", "", Go$Int, ""], ["Cap", "", Go$Int, ""], ["Name", "", Go$String, ""]]);
 		(go$ptrType(Regexp)).methods = [["CapNames", "", [], [(go$sliceType(Go$String))], false], ["Equal", "", [(go$ptrType(Regexp))], [Go$Bool], false], ["MaxCap", "", [], [Go$Int], false], ["Simplify", "", [], [(go$ptrType(Regexp))], false], ["String", "", [], [Go$String], false], ["capNames", "regexp/syntax", [(go$sliceType(Go$String))], [], false]];
 0^ OpT	Op = go$pkg.Op = go$newType(1, "Uint8", "syntax.Op", "Op", "regexp/syntax", null);
- 0 anyRuneNotNL  0 anyRune  0 anyTable  0 code1  0 code2  0 code3  0 	perlGroup  0 code4  0 code5  0 code6  0 code7  0 code8  0 code9  0 code10  0 code11  0 code12  0 code13  0 code14  0 code15  0 code16  0 code17  0 
-posixGroup  0L   D		anyRuneNotNL = new (go$sliceType(Go$Int32))([0, 9, 11, 1114111]);
-0@   8		anyRune = new (go$sliceType(Go$Int32))([0, 1114111]);
-0Å’   ÅÃ		anyTable = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(0, 65535, 1)]), new (go$sliceType(unicode.Range32))([new unicode.Range32.Ptr(65536, 1114111, 1)]), 0);
-0:   2		code1 = new (go$sliceType(Go$Int32))([48, 57]);
-0I   A		code2 = new (go$sliceType(Go$Int32))([9, 10, 12, 13, 32, 32]);
-0S   K		code3 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
-0Ç˙   Ç		var _map, _key;
-		perlGroup = (_map = new Go$Map(), _key = "\\d", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code1) }, _key = "\\D", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code1) }, _key = "\\s", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code2) }, _key = "\\S", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code2) }, _key = "\\w", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code3) }, _key = "\\W", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code3) }, _map);
-0K   C		code4 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 97, 122]);
-0C   ;		code5 = new (go$sliceType(Go$Int32))([65, 90, 97, 122]);
-0:   2		code6 = new (go$sliceType(Go$Int32))([0, 127]);
-0@   8		code7 = new (go$sliceType(Go$Int32))([9, 9, 32, 32]);
-0C   ;		code8 = new (go$sliceType(Go$Int32))([0, 31, 127, 127]);
-0:   2		code9 = new (go$sliceType(Go$Int32))([48, 57]);
-0<   4		code10 = new (go$sliceType(Go$Int32))([33, 126]);
-0<   4		code11 = new (go$sliceType(Go$Int32))([97, 122]);
-0<   4		code12 = new (go$sliceType(Go$Int32))([32, 126]);
-0U   M		code13 = new (go$sliceType(Go$Int32))([33, 47, 58, 64, 91, 96, 123, 126]);
-0B   :		code14 = new (go$sliceType(Go$Int32))([9, 13, 32, 32]);
-0;   3		code15 = new (go$sliceType(Go$Int32))([65, 90]);
-0T   L		code16 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
-0L   D		code17 = new (go$sliceType(Go$Int32))([48, 57, 65, 70, 97, 102]);
-0Ç	‰   Ç	⁄		var _map$1, _key$1;
-		posixGroup = (_map$1 = new Go$Map(), _key$1 = "[:alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code4) }, _key$1 = "[:^alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code4) }, _key$1 = "[:alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code5) }, _key$1 = "[:^alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code5) }, _key$1 = "[:ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code6) }, _key$1 = "[:^ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code6) }, _key$1 = "[:blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code7) }, _key$1 = "[:^blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code7) }, _key$1 = "[:cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code8) }, _key$1 = "[:^cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code8) }, _key$1 = "[:digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code9) }, _key$1 = "[:^digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code9) }, _key$1 = "[:graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code10) }, _key$1 = "[:^graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code10) }, _key$1 = "[:lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code11) }, _key$1 = "[:^lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code11) }, _key$1 = "[:print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code12) }, _key$1 = "[:^print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code12) }, _key$1 = "[:punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code13) }, _key$1 = "[:^punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code13) }, _key$1 = "[:space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code14) }, _key$1 = "[:^space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code14) }, _key$1 = "[:upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code15) }, _key$1 = "[:^upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code15) }, _key$1 = "[:word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code16) }, _key$1 = "[:^word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code16) }, _key$1 = "[:xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code17) }, _key$1 = "[:^xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code17) }, _map$1);
-0Ç—  Ç«	patchList.prototype.next = function(p) {
+ 0Ç—  Ç«	patchList.prototype.next = function(p) {
 		var l, _slice, _index, i;
 		l = this.go$val;
 		i = (_slice = p.Inst, _index = (l >>> 1 >>> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -2807,4 +2782,29 @@ IsWordCharÅå	IsWordChar = go$pkg.IsWordChar = function(r) {
 		re.Sub = go$append(go$subslice(new (go$sliceType((go$ptrType(Regexp))))(re.Sub0), 0, 0), sub);
 		return re;
 	};
- 0    0    0 
+ 0 anyRuneNotNL  0 anyRune  0 anyTable  0 code1  0 code2  0 code3  0 	perlGroup  0 code4  0 code5  0 code6  0 code7  0 code8  0 code9  0 code10  0 code11  0 code12  0 code13  0 code14  0 code15  0 code16  0 code17  0 
+posixGroup  0L   D		anyRuneNotNL = new (go$sliceType(Go$Int32))([0, 9, 11, 1114111]);
+0@   8		anyRune = new (go$sliceType(Go$Int32))([0, 1114111]);
+0Å’   ÅÃ		anyTable = new unicode.RangeTable.Ptr(new (go$sliceType(unicode.Range16))([new unicode.Range16.Ptr(0, 65535, 1)]), new (go$sliceType(unicode.Range32))([new unicode.Range32.Ptr(65536, 1114111, 1)]), 0);
+0:   2		code1 = new (go$sliceType(Go$Int32))([48, 57]);
+0I   A		code2 = new (go$sliceType(Go$Int32))([9, 10, 12, 13, 32, 32]);
+0S   K		code3 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
+0Ç˙   Ç		var _map, _key;
+		perlGroup = (_map = new Go$Map(), _key = "\\d", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code1) }, _key = "\\D", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code1) }, _key = "\\s", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code2) }, _key = "\\S", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code2) }, _key = "\\w", _map[_key] = { k: _key, v: new charGroup.Ptr(1, code3) }, _key = "\\W", _map[_key] = { k: _key, v: new charGroup.Ptr(-1, code3) }, _map);
+0K   C		code4 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 97, 122]);
+0C   ;		code5 = new (go$sliceType(Go$Int32))([65, 90, 97, 122]);
+0:   2		code6 = new (go$sliceType(Go$Int32))([0, 127]);
+0@   8		code7 = new (go$sliceType(Go$Int32))([9, 9, 32, 32]);
+0C   ;		code8 = new (go$sliceType(Go$Int32))([0, 31, 127, 127]);
+0:   2		code9 = new (go$sliceType(Go$Int32))([48, 57]);
+0<   4		code10 = new (go$sliceType(Go$Int32))([33, 126]);
+0<   4		code11 = new (go$sliceType(Go$Int32))([97, 122]);
+0<   4		code12 = new (go$sliceType(Go$Int32))([32, 126]);
+0U   M		code13 = new (go$sliceType(Go$Int32))([33, 47, 58, 64, 91, 96, 123, 126]);
+0B   :		code14 = new (go$sliceType(Go$Int32))([9, 13, 32, 32]);
+0;   3		code15 = new (go$sliceType(Go$Int32))([65, 90]);
+0T   L		code16 = new (go$sliceType(Go$Int32))([48, 57, 65, 90, 95, 95, 97, 122]);
+0L   D		code17 = new (go$sliceType(Go$Int32))([48, 57, 65, 70, 97, 102]);
+0Ç	‰   Ç	⁄		var _map$1, _key$1;
+		posixGroup = (_map$1 = new Go$Map(), _key$1 = "[:alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code4) }, _key$1 = "[:^alnum:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code4) }, _key$1 = "[:alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code5) }, _key$1 = "[:^alpha:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code5) }, _key$1 = "[:ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code6) }, _key$1 = "[:^ascii:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code6) }, _key$1 = "[:blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code7) }, _key$1 = "[:^blank:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code7) }, _key$1 = "[:cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code8) }, _key$1 = "[:^cntrl:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code8) }, _key$1 = "[:digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code9) }, _key$1 = "[:^digit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code9) }, _key$1 = "[:graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code10) }, _key$1 = "[:^graph:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code10) }, _key$1 = "[:lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code11) }, _key$1 = "[:^lower:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code11) }, _key$1 = "[:print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code12) }, _key$1 = "[:^print:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code12) }, _key$1 = "[:punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code13) }, _key$1 = "[:^punct:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code13) }, _key$1 = "[:space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code14) }, _key$1 = "[:^space:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code14) }, _key$1 = "[:upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code15) }, _key$1 = "[:^upper:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code15) }, _key$1 = "[:word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code16) }, _key$1 = "[:^word:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code16) }, _key$1 = "[:xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(1, code17) }, _key$1 = "[:^xdigit:]", _map$1[_key$1] = { k: _key$1, v: new charGroup.Ptr(-1, code17) }, _map$1);
+0    0    0 

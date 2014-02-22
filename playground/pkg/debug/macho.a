@@ -461,10 +461,6 @@ FileHeaderÇ	FileHeader = go$pkg.FileHeader = go$newType(0, "Struct", "macho.F
 		this.s = s_ !== undefined ? s_ : "";
 	});
 \		intName.init([["i", "debug/macho", Go$Uint32, ""], ["s", "debug/macho", Go$String, ""]]);
-0 
-cpuStrings  0 
-cmdStrings  0{   s		cpuStrings = new (go$sliceType(intName))([new intName.Ptr(7, "Cpu386"), new intName.Ptr(16777223, "CpuAmd64")]);
-0Å˘   Å		cmdStrings = new (go$sliceType(intName))([new intName.Ptr(1, "LoadCmdSegment"), new intName.Ptr(4, "LoadCmdThread"), new intName.Ptr(5, "LoadCmdUnixThread"), new intName.Ptr(12, "LoadCmdDylib"), new intName.Ptr(25, "LoadCmdSegment64")]);
 0Å˘  Å	LoadBytes.prototype.Raw = function() {
 		var b;
 		b = this;
@@ -955,4 +951,8 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		}
 		return s;
 	};
- 0    0    0 
+ 0 
+cpuStrings  0 
+cmdStrings  0{   s		cpuStrings = new (go$sliceType(intName))([new intName.Ptr(7, "Cpu386"), new intName.Ptr(16777223, "CpuAmd64")]);
+0Å˘   Å		cmdStrings = new (go$sliceType(intName))([new intName.Ptr(1, "LoadCmdSegment"), new intName.Ptr(4, "LoadCmdThread"), new intName.Ptr(5, "LoadCmdUnixThread"), new intName.Ptr(12, "LoadCmdDylib"), new intName.Ptr(25, "LoadCmdSegment64")]);
+0    0    0 

@@ -336,32 +336,7 @@ CoverBlockÇ©	CoverBlock = go$pkg.CoverBlock = go$newType(0, "Struct", "testing
 		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
 	});
 p		InternalTest.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([(go$ptrType(T))], [], false)), ""]]);
-0 matchBenchmarks  0 	benchTime  0 benchmarkMemory  0= benchmarkLock (		benchmarkLock = new sync.Mutex.Ptr();
-09 memStats )		memStats = new runtime.MemStats.Ptr();
-0( cover 		cover = new Cover.Ptr();
-0 short$1  0 	outputDir  0 chatty  0 coverProfile  0 match  0 
-memProfile  0 memProfileRate  0 
-cpuProfile  0 blockProfile  0 blockProfileRate  0 timeout  0 
-cpuListStr  0 parallel  0, haveExamples 		haveExamples = false;
-07 cpuList (		cpuList = (go$sliceType(Go$Int)).nil;
-05 timer (		timer = (go$ptrType(time.Timer)).nil;
-0m   e		matchBenchmarks = flag.String("test.bench", "", "regular expression to select benchmarks to run");
-0ÅÑ   |		benchTime = flag.Duration("test.benchtime", new time.Duration(0, 1000000000), "approximate run time for each benchmark");
-0j   b		benchmarkMemory = flag.Bool("test.benchmem", false, "print memory allocations for benchmarks");
-0[   S		short$1 = flag.Bool("test.short", false, "run smaller test suite to save time");
-0a   Y		outputDir = flag.String("test.outputdir", "", "directory in which to write profiles");
-0S   K		chatty = flag.Bool("test.v", false, "verbose: print additional output");
-0}   u		coverProfile = flag.String("test.coverprofile", "", "write a coverage profile to the named file after execution");
-0i   a		match = flag.String("test.run", "", "regular expression to select tests and examples to run");
-0w   o		memProfile = flag.String("test.memprofile", "", "write a memory profile to the named file after execution");
-0f   ^		memProfileRate = flag.Int("test.memprofilerate", 0, "if >=0, sets runtime.MemProfileRate");
-0u   m		cpuProfile = flag.String("test.cpuprofile", "", "write a cpu profile to the named file during execution");
-0Åá   		blockProfile = flag.String("test.blockprofile", "", "write a goroutine blocking profile to the named file after execution");
-0s   k		blockProfileRate = flag.Int("test.blockprofilerate", 1, "if >= 0, calls runtime.SetBlockProfileRate()");
-0Åá   		timeout = flag.Duration("test.timeout", new time.Duration(0, 0), "if positive, sets an aggregate time limit for all tests");
-0s   k		cpuListStr = flag.String("test.cpu", "", "comma-separated list of number of CPUs to use for each test");
-0c   [		parallel = flag.Int("test.parallel", runtime.GOMAXPROCS(0), "maximum test parallelism");
-0    0    0Ç5 AllocsPerRunÇ	AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
+0Ç5 AllocsPerRunÇ	AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
 		var avg, memstats, x, mallocs, i, x$1;
 		avg = 0;
 		var go$deferred = [];
@@ -1241,7 +1216,32 @@ startAlarmÇA	startAlarm = function() {
 			cpuList = go$append(cpuList, runtime.GOMAXPROCS(-1));
 		}
 	};
- 0Ç⁄   Ç–
+ 0 matchBenchmarks  0 	benchTime  0 benchmarkMemory  0= benchmarkLock (		benchmarkLock = new sync.Mutex.Ptr();
+09 memStats )		memStats = new runtime.MemStats.Ptr();
+0( cover 		cover = new Cover.Ptr();
+0 short$1  0 	outputDir  0 chatty  0 coverProfile  0 match  0 
+memProfile  0 memProfileRate  0 
+cpuProfile  0 blockProfile  0 blockProfileRate  0 timeout  0 
+cpuListStr  0 parallel  0, haveExamples 		haveExamples = false;
+07 cpuList (		cpuList = (go$sliceType(Go$Int)).nil;
+05 timer (		timer = (go$ptrType(time.Timer)).nil;
+0m   e		matchBenchmarks = flag.String("test.bench", "", "regular expression to select benchmarks to run");
+0ÅÑ   |		benchTime = flag.Duration("test.benchtime", new time.Duration(0, 1000000000), "approximate run time for each benchmark");
+0j   b		benchmarkMemory = flag.Bool("test.benchmem", false, "print memory allocations for benchmarks");
+0[   S		short$1 = flag.Bool("test.short", false, "run smaller test suite to save time");
+0a   Y		outputDir = flag.String("test.outputdir", "", "directory in which to write profiles");
+0S   K		chatty = flag.Bool("test.v", false, "verbose: print additional output");
+0}   u		coverProfile = flag.String("test.coverprofile", "", "write a coverage profile to the named file after execution");
+0i   a		match = flag.String("test.run", "", "regular expression to select tests and examples to run");
+0w   o		memProfile = flag.String("test.memprofile", "", "write a memory profile to the named file after execution");
+0f   ^		memProfileRate = flag.Int("test.memprofilerate", 0, "if >=0, sets runtime.MemProfileRate");
+0u   m		cpuProfile = flag.String("test.cpuprofile", "", "write a cpu profile to the named file during execution");
+0Åá   		blockProfile = flag.String("test.blockprofile", "", "write a goroutine blocking profile to the named file after execution");
+0s   k		blockProfileRate = flag.Int("test.blockprofilerate", 1, "if >= 0, calls runtime.SetBlockProfileRate()");
+0Åá   		timeout = flag.Duration("test.timeout", new time.Duration(0, 0), "if positive, sets an aggregate time limit for all tests");
+0s   k		cpuListStr = flag.String("test.cpu", "", "comma-separated list of number of CPUs to use for each test");
+0c   [		parallel = flag.Int("test.parallel", runtime.GOMAXPROCS(0), "maximum test parallelism");
+0    0    0Ç⁄  Ç–
 			go$pkg.RunTests2 = function(pkgPath, dir, names, tests) {
 				if (tests.length === 0) {
 					console.log("?   \t" + pkgPath + "\t[no test files]");
@@ -1281,4 +1281,4 @@ startAlarmÇA	startAlarm = function() {
 				fmt.Printf("%s\t%s\t%.3fs\n", new (go$sliceType(go$emptyInterface))([new Go$String(ok ? "ok  " : "FAIL"), new Go$String(pkgPath), new Go$Float64(duration.Seconds())]));
 				return ok;
 			};
-		0    0 
+		 0    0 

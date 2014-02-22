@@ -2565,24 +2565,6 @@ BpfProgramÇî	BpfProgram = go$pkg.BpfProgram = go$newType(0, "Struct", "syscall
 		this.Ospeed = Ospeed_ !== undefined ? Ospeed_ : new Go$Uint64(0, 0);
 	});
 Ç*		Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
-00 envOnce !		envOnce = new sync.Once.Ptr();
-03 envLock $		envLock = new sync.RWMutex.Ptr();
-0 env 		env = false;
-04 envs (		envs = (go$sliceType(Go$String)).nil;
-04   ,		go$pkg.ForkLock = new sync.RWMutex.Ptr();
-09 zeroProcAttr %		zeroProcAttr = new ProcAttr.Ptr();
-0B zeroSysProcAttr +		zeroSysProcAttr = new SysProcAttr.Ptr();
-0 _zero 		_zero = 0;
-0 mapper  0    0    0    0,   $		go$pkg.SocketDisableIPv6 = false;
-0- ioSync 		ioSync = new Go$Int64(0, 0);
-0 errors  0 signals  0V   N		mapper = new mmapper.Ptr(new sync.Mutex.Ptr(), new Go$Map(), mmap, munmap);
-0   		go$pkg.Stdin = 0;
-0   		go$pkg.Stdout = 1;
-0   		go$pkg.Stderr = 2;
-0Ç
-◊   Ç
-Õ		errors = go$toNativeArray("String", ["", "operation not permitted", "no such file or directory", "no such process", "interrupted system call", "input/output error", "device not configured", "argument list too long", "exec format error", "bad file descriptor", "no child processes", "resource deadlock avoided", "cannot allocate memory", "permission denied", "bad address", "block device required", "resource busy", "file exists", "cross-device link", "operation not supported by device", "not a directory", "is a directory", "invalid argument", "too many open files in system", "too many open files", "inappropriate ioctl for device", "text file busy", "file too large", "no space left on device", "illegal seek", "read-only file system", "too many links", "broken pipe", "numerical argument out of domain", "result too large", "resource temporarily unavailable", "operation now in progress", "operation already in progress", "socket operation on non-socket", "destination address required", "message too long", "protocol wrong type for socket", "protocol not available", "protocol not supported", "socket type not supported", "operation not supported", "protocol family not supported", "address family not supported by protocol family", "address already in use", "can't assign requested address", "network is down", "network is unreachable", "network dropped connection on reset", "software caused connection abort", "connection reset by peer", "no buffer space available", "socket is already connected", "socket is not connected", "can't send after socket shutdown", "too many references: can't splice", "operation timed out", "connection refused", "too many levels of symbolic links", "file name too long", "host is down", "no route to host", "directory not empty", "too many processes", "too many users", "disc quota exceeded", "stale NFS file handle", "too many levels of remote in path", "RPC struct is bad", "RPC version wrong", "RPC prog. not avail", "program version wrong", "bad procedure for program", "no locks available", "function not implemented", "inappropriate file type or format", "authentication error", "need authenticator", "device power is off", "device error", "value too large to be stored in data type", "bad executable (or shared library)", "bad CPU type in executable", "shared library version mismatch", "malformed Mach-o file", "operation canceled", "identifier removed", "no message of desired type", "illegal byte sequence", "attribute not found", "bad message", "EMULTIHOP (Reserved)", "no message available on STREAM", "ENOLINK (Reserved)", "no STREAM resources", "not a STREAM", "protocol error", "STREAM ioctl timeout", "operation not supported on socket", "policy not found", "state not recoverable", "previous owner died"]);
-0ÇÇ   Çx		signals = go$toNativeArray("String", ["", "hangup", "interrupt", "quit", "illegal instruction", "trace/BPT trap", "abort trap", "EMT trap", "floating point exception", "killed", "bus error", "segmentation fault", "bad system call", "broken pipe", "alarm clock", "terminated", "urgent I/O condition", "suspended (signal)", "suspended", "continued", "child exited", "stopped (tty input)", "stopped (tty output)", "I/O possible", "cputime limit exceeded", "filesize limit exceeded", "virtual timer expired", "profiling timer expired", "window size changes", "information request", "user defined signal 1", "user defined signal 2"]);
 0ÅÉ BpfStmtt	BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
@@ -6005,7 +5987,25 @@ socketpairÅ˛	socketpair = function(domain, typ, proto, fd) {
 		}
 		return [sec, usec, err];
 	};
- 0Ç   Ç
+ 00 envOnce !		envOnce = new sync.Once.Ptr();
+03 envLock $		envLock = new sync.RWMutex.Ptr();
+0 env 		env = false;
+04 envs (		envs = (go$sliceType(Go$String)).nil;
+04   ,		go$pkg.ForkLock = new sync.RWMutex.Ptr();
+09 zeroProcAttr %		zeroProcAttr = new ProcAttr.Ptr();
+0B zeroSysProcAttr +		zeroSysProcAttr = new SysProcAttr.Ptr();
+0 _zero 		_zero = 0;
+0 mapper  0    0    0    0,   $		go$pkg.SocketDisableIPv6 = false;
+0- ioSync 		ioSync = new Go$Int64(0, 0);
+0 errors  0 signals  0V   N		mapper = new mmapper.Ptr(new sync.Mutex.Ptr(), new Go$Map(), mmap, munmap);
+0   		go$pkg.Stdin = 0;
+0   		go$pkg.Stdout = 1;
+0   		go$pkg.Stderr = 2;
+0Ç
+◊   Ç
+Õ		errors = go$toNativeArray("String", ["", "operation not permitted", "no such file or directory", "no such process", "interrupted system call", "input/output error", "device not configured", "argument list too long", "exec format error", "bad file descriptor", "no child processes", "resource deadlock avoided", "cannot allocate memory", "permission denied", "bad address", "block device required", "resource busy", "file exists", "cross-device link", "operation not supported by device", "not a directory", "is a directory", "invalid argument", "too many open files in system", "too many open files", "inappropriate ioctl for device", "text file busy", "file too large", "no space left on device", "illegal seek", "read-only file system", "too many links", "broken pipe", "numerical argument out of domain", "result too large", "resource temporarily unavailable", "operation now in progress", "operation already in progress", "socket operation on non-socket", "destination address required", "message too long", "protocol wrong type for socket", "protocol not available", "protocol not supported", "socket type not supported", "operation not supported", "protocol family not supported", "address family not supported by protocol family", "address already in use", "can't assign requested address", "network is down", "network is unreachable", "network dropped connection on reset", "software caused connection abort", "connection reset by peer", "no buffer space available", "socket is already connected", "socket is not connected", "can't send after socket shutdown", "too many references: can't splice", "operation timed out", "connection refused", "too many levels of symbolic links", "file name too long", "host is down", "no route to host", "directory not empty", "too many processes", "too many users", "disc quota exceeded", "stale NFS file handle", "too many levels of remote in path", "RPC struct is bad", "RPC version wrong", "RPC prog. not avail", "program version wrong", "bad procedure for program", "no locks available", "function not implemented", "inappropriate file type or format", "authentication error", "need authenticator", "device power is off", "device error", "value too large to be stored in data type", "bad executable (or shared library)", "bad CPU type in executable", "shared library version mismatch", "malformed Mach-o file", "operation canceled", "identifier removed", "no message of desired type", "illegal byte sequence", "attribute not found", "bad message", "EMULTIHOP (Reserved)", "no message available on STREAM", "ENOLINK (Reserved)", "no STREAM resources", "not a STREAM", "protocol error", "STREAM ioctl timeout", "operation not supported on socket", "policy not found", "state not recoverable", "previous owner died"]);
+0ÇÇ   Çx		signals = go$toNativeArray("String", ["", "hangup", "interrupt", "quit", "illegal instruction", "trace/BPT trap", "abort trap", "EMT trap", "floating point exception", "killed", "bus error", "segmentation fault", "bad system call", "broken pipe", "alarm clock", "terminated", "urgent I/O condition", "suspended (signal)", "suspended", "continued", "child exited", "stopped (tty input)", "stopped (tty output)", "I/O possible", "cputime limit exceeded", "filesize limit exceeded", "virtual timer expired", "profiling timer expired", "window size changes", "information request", "user defined signal 1", "user defined signal 2"]);
+0Ç  Ç
 			if (go$pkg.Syscall15 !== undefined) { // windows
 				Syscall = Syscall6 = Syscall9 = Syscall12 = Syscall15 = go$pkg.Syscall = go$pkg.Syscall6 = go$pkg.Syscall9 = go$pkg.Syscall12 = go$pkg.Syscall15 = loadlibrary = getprocaddress = function() { throw new Error("Syscalls not available."); };
 				getStdHandle = GetCommandLine = go$pkg.GetCommandLine = function() {};
@@ -6037,4 +6037,4 @@ socketpairÅ˛	socketpair = function(domain, typ, proto, fd) {
 					envs.array[i] = envkeys[i] + "=" + process.env[envkeys[i]];
 				}
 			}
-		0    0 
+		 0    0 

@@ -301,16 +301,6 @@ driverStmt‚2	driverStmt = go$pkg.driverStmt = go$newType(0, "Struct", "sql.dri
 ‚÷		driverResult.init([["", "", sync.Locker, ""], ["resi", "database/sql", driver.Result, ""]]);
 		driverResult.methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
 		(go$ptrType(driverResult)).methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
-0 	errNilPtr  0 drivers  0    0" connectionRequestQueueSize  0 errDBClosed  0 errConnClosed  0 errConnBusy  0< putConnHook )		putConnHook = go$throwNilPointerError;
-0    0@ rowsCloseHook +		rowsCloseHook = go$throwNilPointerError;
-0@   8		errNilPtr = errors.New("destination pointer is nil");
-0"   		drivers = new Go$Map();
-0G   ?		go$pkg.ErrNoRows = errors.New("sql: no rows in result set");
-00   (		connectionRequestQueueSize = 1000000;
-0?   7		errDBClosed = errors.New("sql: database is closed");
-0_   W		errConnClosed = errors.New("database/sql: internal sentinel error: conn is closed");
-0[   S		errConnBusy = errors.New("database/sql: internal sentinel error: conn is busy");
-0g   _		go$pkg.ErrTxDone = errors.New("sql: Transaction has already been committed or rolled back");
 0‚ñ 
 driverArgs‚Ý	driverArgs = function(ds, args) {
 		var dargs, si, _tuple, cc, ok, _ref, _i, _slice, _index, arg, n, err, _tuple$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, arg$1, n$1, ok$1, _tuple$2, svi, _tuple$3, sv, err$1, err$2, _tuple$4, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
@@ -1932,4 +1922,14 @@ cloneBytesý	cloneBytes = function(b) {
 		fn();
 		lk.Unlock();
 	};
- 0    0    0 
+ 0 	errNilPtr  0 drivers  0    0" connectionRequestQueueSize  0 errDBClosed  0 errConnClosed  0 errConnBusy  0< putConnHook )		putConnHook = go$throwNilPointerError;
+0    0@ rowsCloseHook +		rowsCloseHook = go$throwNilPointerError;
+0@   8		errNilPtr = errors.New("destination pointer is nil");
+0"   		drivers = new Go$Map();
+0G   ?		go$pkg.ErrNoRows = errors.New("sql: no rows in result set");
+00   (		connectionRequestQueueSize = 1000000;
+0?   7		errDBClosed = errors.New("sql: database is closed");
+0_   W		errConnClosed = errors.New("database/sql: internal sentinel error: conn is closed");
+0[   S		errConnBusy = errors.New("database/sql: internal sentinel error: conn is busy");
+0g   _		go$pkg.ErrTxDone = errors.New("sql: Transaction has already been committed or rolled back");
+0    0    0 

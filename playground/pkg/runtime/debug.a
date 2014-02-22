@@ -140,9 +140,6 @@ byDurations	byDuration = go$pkg.byDuration = go$newType(0, "Slice", "debug.byDu
 ‚`		byDuration.init(time.Duration);
 		byDuration.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
 		(go$ptrType(byDuration)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-0 dunno  0 	centerDot  0 dot  0I   A		dunno = new (go$sliceType(Go$Uint8))(go$stringToBytes("???"));
-0R   J		centerDot = new (go$sliceType(Go$Uint8))(go$stringToBytes("\xC2\xB7"));
-0E   =		dot = new (go$sliceType(Go$Uint8))(go$stringToBytes("."));
 0u readGCStatsb	readGCStats = function() {
 		throw go$panic("Native function not implemented: readGCStats");
 	};
@@ -280,4 +277,7 @@ function$1‚Š	function$1 = function(pc) {
 		name = bytes.Replace(name, centerDot, dot, -1);
 		return name;
 	};
- 0    0    0 
+ 0 dunno  0 	centerDot  0 dot  0I   A		dunno = new (go$sliceType(Go$Uint8))(go$stringToBytes("???"));
+0R   J		centerDot = new (go$sliceType(Go$Uint8))(go$stringToBytes("\xC2\xB7"));
+0E   =		dot = new (go$sliceType(Go$Uint8))(go$stringToBytes("."));
+0    0    0 

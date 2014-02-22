@@ -193,10 +193,6 @@ $$
 0Ç+ devNullb	devNull = go$pkg.devNull = go$newType(4, "Int", "ioutil.devNull", "devNull", "io/ioutil", null);
 Ç∏		devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
 		(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-0 blackHoleBuf  0    0 rand 		rand = 0;
-0/ randmu !		randmu = new sync.Mutex.Ptr();
-0V   N		blackHoleBuf = new (go$chanType((go$sliceType(Go$Uint8)), false, false))();
-0    0+   #		go$pkg.Discard = new devNull(0);
 0Åé 	blackHole}	blackHole = function() {
 			return blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });
 		};
@@ -415,6 +411,10 @@ nextSuffixÇé	nextSuffix = function() {
 		}
 		return [name, err];
 	};
- 0#  
+ 0 blackHoleBuf  0    0 rand 		rand = 0;
+0/ randmu !		randmu = new sync.Mutex.Ptr();
+0V   N		blackHoleBuf = new (go$chanType((go$sliceType(Go$Uint8)), false, false))();
+0    0+   #		go$pkg.Discard = new devNull(0);
+0#  
 			var blackHoles = [];
 		 0    0 

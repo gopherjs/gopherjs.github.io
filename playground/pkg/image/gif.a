@@ -184,13 +184,6 @@ image/drawdraw0ÇÑÁ0Ç readera	reader = go$pkg.reader = go$newType(0, "Int
 		this.Drawer = Drawer_ !== undefined ? Drawer_ : null;
 	});
 y		Options.init([["NumColors", "", Go$Int, ""], ["Quantizer", "", draw.Quantizer, ""], ["Drawer", "", draw.Drawer, ""]]);
-0 errNotEnough  0 
-errTooMuch  0 errBadPixel  0 interlacing  0 
-log2Lookup  0C   ;		errNotEnough = errors.New("gif: not enough image data");
-0?   7		errTooMuch = errors.New("gif: too much image data");
-0@   8		errBadPixel = errors.New("gif: invalid pixel value");
-0Å≤   Å©		interlacing = new (go$sliceType(interlaceScan))([new interlaceScan.Ptr(8, 0), new interlaceScan.Ptr(8, 4), new interlaceScan.Ptr(4, 2), new interlaceScan.Ptr(2, 1)]);
-0Q   I		log2Lookup = go$toNativeArray("Int", [2, 4, 8, 16, 32, 64, 128, 256]);
 0Çj  Ç`	blockReader.Ptr.prototype.Read = function(p) {
 		var b, blockLen, _tuple, _tuple$1, n;
 		b = this;
@@ -773,5 +766,12 @@ log2Lookup  0C   ;		errNotEnough = errors.New("gif: not enough image data"
 		}
 		return EncodeAll(w, new GIF.Ptr(new (go$sliceType((go$ptrType(image.Paletted))))([pm]), new (go$sliceType(Go$Int))([0]), 0));
 	};
- 0    0G   ?		image.RegisterFormat("gif", "GIF8?a", Decode, DecodeConfig);
+ 0 errNotEnough  0 
+errTooMuch  0 errBadPixel  0 interlacing  0 
+log2Lookup  0C   ;		errNotEnough = errors.New("gif: not enough image data");
+0?   7		errTooMuch = errors.New("gif: too much image data");
+0@   8		errBadPixel = errors.New("gif: invalid pixel value");
+0Å≤   Å©		interlacing = new (go$sliceType(interlaceScan))([new interlaceScan.Ptr(8, 0), new interlaceScan.Ptr(8, 4), new interlaceScan.Ptr(4, 2), new interlaceScan.Ptr(2, 1)]);
+0Q   I		log2Lookup = go$toNativeArray("Int", [2, 4, 8, 16, 32, 64, 128, 256]);
+0    0G   ?		image.RegisterFormat("gif", "GIF8?a", Decode, DecodeConfig);
 0 

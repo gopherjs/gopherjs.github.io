@@ -1,4 +1,4 @@
-0É¬õencoding/gobÇs,package gob
+0É¡encoding/gobÇs,package gob
 import bytes "bytes"
 import encoding "encoding"
 import errors "errors"
@@ -359,7 +359,7 @@ func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
 0Åïruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioencodingmathsyscalltimeosstrconvreflectfmtencoding/gob0Å¬0bytesbytes0encodingencoding0errorserrors0ioio0mathmath0reflectreflect0bufiobufio0syncsync0
-fmtfmt0osos0unicodeunicode0unicode/utf8utf80ÉM˘0Ç€ decoderStateÇ	decoderState = go$pkg.decoderState = go$newType(0, "Struct", "gob.decoderState", "decoderState", "encoding/gob", function(dec_, b_, fieldnum_, buf_, next_) {
+fmtfmt0osos0unicodeunicode0unicode/utf8utf80ÉLr0Ç€ decoderStateÇ	decoderState = go$pkg.decoderState = go$newType(0, "Struct", "gob.decoderState", "decoderState", "encoding/gob", function(dec_, b_, fieldnum_, buf_, next_) {
 		this.go$val = this;
 		this.dec = dec_ !== undefined ? dec_ : (go$ptrType(Decoder)).nil;
 		this.b = b_ !== undefined ? b_ : (go$ptrType(bytes.Buffer)).nil;
@@ -590,65 +590,6 @@ GobEncodert	GobEncoder = go$pkg.GobEncoder = go$newType(0, "Interface", "gob.Go
 0ÅÏ 
 GobDecodert	GobDecoder = go$pkg.GobDecoder = go$newType(0, "Interface", "gob.GobDecoder", "GobDecoder", "encoding/gob", null);
 f		GobDecoder.init([["GobDecode", "", (go$funcType([(go$sliceType(Go$Uint8))], [go$error], false))]]);
-0 
-errBadUint  0 
-errBadType  0 errRange  0 
-decOpTable  0 decIgnoreOpMap  0 emptyStructType  0 errBadCount  08 	debugFunc '		debugFunc = go$throwNilPointerError;
-0 
-encOpTable  0 spaceForLength  0= userTypeLock )		userTypeLock = new sync.RWMutex.Ptr();
-0 userTypeCache  0 gobEncoderInterfaceType  0 gobDecoderInterfaceType  0$ binaryMarshalerInterfaceType  0& binaryUnmarshalerInterfaceType  0" textMarshalerInterfaceType  0$ textUnmarshalerInterfaceType  0 nextId 		nextId = 0;
-03 typeLock #		typeLock = new sync.Mutex.Ptr();
-0 types  0 idToType  02 builtinIdToType 		builtinIdToType = false;
-0 tBool  0 tInt  0 tUint  0 tFloat  0 tBytes  0 tString  0 tComplex  0 
-tInterface  0 
-tReserved7  0 
-tReserved6  0 
-tReserved5  0 
-tReserved4  0 
-tReserved3  0 
-tReserved2  0 
-tReserved1  0 	tWireType  0M wireTypeUserInfo 5		wireTypeUserInfo = (go$ptrType(userTypeInfo)).nil;
-0 typeInfoMap  0= registerLock )		registerLock = new sync.RWMutex.Ptr();
-0 nameToConcreteType  0 concreteTypeToName  0Q   I		errBadUint = errors.New("gob: encoded unsigned integer out of range");
-0M   E		errBadType = errors.New("gob: unknown type id or corrupted data");
-0O   G		errRange = errors.New("gob: bad data: field numbers out of bounds");
-0Ç„   ÇŸ		decOpTable = go$toNativeArray("Func", [go$throwNilPointerError, decBool, go$throwNilPointerError, decInt8, decInt16, decInt32, decInt64, go$throwNilPointerError, decUint8, decUint16, decUint32, decUint64, go$throwNilPointerError, decFloat32, decFloat64, decComplex64, decComplex128, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, decString]);
-0(    		userTypeCache = new Go$Map();
-0Y   Q		gobEncoderInterfaceType = reflect.TypeOf((go$ptrType(GobEncoder)).nil).Elem();
-0Y   Q		gobDecoderInterfaceType = reflect.TypeOf((go$ptrType(GobDecoder)).nil).Elem();
-0l   d		binaryMarshalerInterfaceType = reflect.TypeOf((go$ptrType(encoding.BinaryMarshaler)).nil).Elem();
-0p   h		binaryUnmarshalerInterfaceType = reflect.TypeOf((go$ptrType(encoding.BinaryUnmarshaler)).nil).Elem();
-0    		types = new Go$Map();
-0#   		idToType = new Go$Map();
-0G   ?		tBool = bootstrapType("bool", (go$ptrType(Go$Bool)).nil, 1);
-0D   <		tInt = bootstrapType("int", (go$ptrType(Go$Int)).nil, 2);
-0G   ?		tUint = bootstrapType("uint", (go$ptrType(Go$Uint)).nil, 3);
-0L   D		tFloat = bootstrapType("float", (go$ptrType(Go$Float64)).nil, 4);
-0Z   R		tBytes = bootstrapType("bytes", (go$ptrType((go$sliceType(Go$Uint8)))).nil, 5);
-0M   E		tString = bootstrapType("string", (go$ptrType(Go$String)).nil, 6);
-0S   K		tComplex = bootstrapType("complex", (go$ptrType(Go$Complex128)).nil, 7);
-0Ç„   ÇŸ		var _map, _key;
-		decIgnoreOpMap = (_map = new Go$Map(), _key = tBool, _map[_key] = { k: _key, v: ignoreUint }, _key = tInt, _map[_key] = { k: _key, v: ignoreUint }, _key = tUint, _map[_key] = { k: _key, v: ignoreUint }, _key = tFloat, _map[_key] = { k: _key, v: ignoreUint }, _key = tBytes, _map[_key] = { k: _key, v: ignoreUint8Array }, _key = tString, _map[_key] = { k: _key, v: ignoreUint8Array }, _key = tComplex, _map[_key] = { k: _key, v: ignoreTwoUints }, _map);
-0o   g		var x;
-		emptyStructType = reflect.TypeOf((x = new emptyStruct.Ptr(), new x.constructor.Struct(x)));
-0>   6		errBadCount = errors.New("invalid message length");
-0Çµ   Ç´		encOpTable = go$toNativeArray("Func", [go$throwNilPointerError, encBool, encInt, encInt8, encInt16, encInt32, encInt64, encUint, encUint8, encUint16, encUint32, encUint64, encUintptr, encFloat32, encFloat64, encComplex64, encComplex128, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, encString]);
-0Z   R		spaceForLength = (go$sliceType(Go$Uint8)).make(9, 0, function() { return 0; });
-0h   `		textMarshalerInterfaceType = reflect.TypeOf((go$ptrType(encoding.TextMarshaler)).nil).Elem();
-0l   d		textUnmarshalerInterfaceType = reflect.TypeOf((go$ptrType(encoding.TextUnmarshaler)).nil).Elem();
-0[   S		tInterface = bootstrapType("interface", (go$ptrType(go$emptyInterface)).nil, 8);
-0ÅÄ   x		tReserved7 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r7", "encoding/gob", Go$Int, ""]])))).nil, 9);
-0ÅÅ   y		tReserved6 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r6", "encoding/gob", Go$Int, ""]])))).nil, 10);
-0ÅÅ   y		tReserved5 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r5", "encoding/gob", Go$Int, ""]])))).nil, 11);
-0ÅÅ   y		tReserved4 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r4", "encoding/gob", Go$Int, ""]])))).nil, 12);
-0ÅÅ   y		tReserved3 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r3", "encoding/gob", Go$Int, ""]])))).nil, 13);
-0ÅÅ   y		tReserved2 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r2", "encoding/gob", Go$Int, ""]])))).nil, 14);
-0ÅÅ   y		tReserved1 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r1", "encoding/gob", Go$Int, ""]])))).nil, 15);
-0&   		typeInfoMap = new Go$Map();
-0Ç[   ÇQ		var x$1;
-		tWireType = mustGetTypeInfo(reflect.TypeOf((x$1 = new wireType.Ptr((go$ptrType(arrayType)).nil, (go$ptrType(sliceType)).nil, (go$ptrType(structType)).nil, (go$ptrType(mapType)).nil, (go$ptrType(gobEncoderType)).nil, (go$ptrType(gobEncoderType)).nil, (go$ptrType(gobEncoderType)).nil), new x$1.constructor.Struct(x$1)))).id;
-0-   %		nameToConcreteType = new Go$Map();
-0-   %		concreteTypeToName = new Go$Map();
 0Ç¡  Ç∑	Decoder.Ptr.prototype.newDecoderState = function(buf) {
 		var dec, d;
 		dec = this;
@@ -674,54 +615,54 @@ tReserved1  0 	tWireType  0M wireTypeUserInfo 5		wireTypeUserInfo = 
  0q overflowa	overflow = function(name) {
 		return errors.New("value for \"" + name + "\" out of range");
 	};
- 0ÇÏ decodeUintReaderÇ“	decodeUintReader = function(r, buf) {
-		var x$2, width, err, _tuple, n, _slice, _index, b, _tuple$1, _tuple$2, _ref, _i, _slice$1, _index$1, b$1, x$3, x$4;
-		x$2 = new Go$Uint64(0, 0);
+ 0Çÿ decodeUintReaderÇæ	decodeUintReader = function(r, buf) {
+		var x, width, err, _tuple, n, _slice, _index, b, _tuple$1, _tuple$2, _ref, _i, _slice$1, _index$1, b$1, x$1, x$2;
+		x = new Go$Uint64(0, 0);
 		width = 0;
 		err = null;
 		width = 1;
 		_tuple = io.ReadFull(r, go$subslice(buf, 0, width)), n = _tuple[0], err = _tuple[1];
 		if (n === 0) {
-			return [x$2, width, err];
+			return [x, width, err];
 		}
 		b = (_slice = buf, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 		if (b <= 127) {
-			_tuple$1 = [new Go$Uint64(0, b), width, null], x$2 = _tuple$1[0], width = _tuple$1[1], err = _tuple$1[2];
-			return [x$2, width, err];
+			_tuple$1 = [new Go$Uint64(0, b), width, null], x = _tuple$1[0], width = _tuple$1[1], err = _tuple$1[2];
+			return [x, width, err];
 		}
 		n = -((b << 24 >> 24) >> 0);
 		if (n > 8) {
 			err = errBadUint;
-			return [x$2, width, err];
+			return [x, width, err];
 		}
 		_tuple$2 = io.ReadFull(r, go$subslice(buf, 0, n)), width = _tuple$2[0], err = _tuple$2[1];
 		if (!(go$interfaceIsEqual(err, null))) {
 			if (go$interfaceIsEqual(err, io.EOF)) {
 				err = io.ErrUnexpectedEOF;
 			}
-			return [x$2, width, err];
+			return [x, width, err];
 		}
 		_ref = go$subslice(buf, 0, width);
 		_i = 0;
 		while (_i < _ref.length) {
 			b$1 = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			x$2 = (x$3 = go$shiftLeft64(x$2, 8), x$4 = new Go$Uint64(0, b$1), new Go$Uint64(x$3.high | x$4.high, (x$3.low | x$4.low) >>> 0));
+			x = (x$1 = go$shiftLeft64(x, 8), x$2 = new Go$Uint64(0, b$1), new Go$Uint64(x$1.high | x$2.high, (x$1.low | x$2.low) >>> 0));
 			_i++;
 		}
 		width = width + 1 >> 0;
-		return [x$2, width, err];
+		return [x, width, err];
 	};
- 0Çs  Çi	decoderState.Ptr.prototype.decodeUint = function() {
-		var x$2, state, _tuple, b, err, n, _tuple$1, width, _ref, _i, _slice, _index, b$1, x$3, x$4;
-		x$2 = new Go$Uint64(0, 0);
+ 0Ça  ÇW	decoderState.Ptr.prototype.decodeUint = function() {
+		var x, state, _tuple, b, err, n, _tuple$1, width, _ref, _i, _slice, _index, b$1, x$1, x$2;
+		x = new Go$Uint64(0, 0);
 		state = this;
 		_tuple = state.b.ReadByte(), b = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
 			error_(err);
 		}
 		if (b <= 127) {
-			x$2 = new Go$Uint64(0, b);
-			return x$2;
+			x = new Go$Uint64(0, b);
+			return x;
 		}
 		n = -((b << 24 >> 24) >> 0);
 		if (n > 8) {
@@ -735,21 +676,21 @@ tReserved1  0 	tWireType  0M wireTypeUserInfo 5		wireTypeUserInfo = 
 		_i = 0;
 		while (_i < _ref.length) {
 			b$1 = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			x$2 = (x$3 = go$shiftLeft64(x$2, 8), x$4 = new Go$Uint64(0, b$1), new Go$Uint64(x$3.high | x$4.high, (x$3.low | x$4.low) >>> 0));
+			x = (x$1 = go$shiftLeft64(x, 8), x$2 = new Go$Uint64(0, b$1), new Go$Uint64(x$1.high | x$2.high, (x$1.low | x$2.low) >>> 0));
 			_i++;
 		}
-		x$2 = x$2;
-		return x$2;
+		x = x;
+		return x;
 	};
 	decoderState.prototype.decodeUint = function() { return this.go$val.decodeUint(); };
- 0Ç%  Ç	decoderState.Ptr.prototype.decodeInt = function() {
-		var state, x$2, x$3, x$4, x$5, x$6;
+ 0Ç  Ç	decoderState.Ptr.prototype.decodeInt = function() {
+		var state, x, x$1, x$2, x$3, x$4;
 		state = this;
-		x$2 = state.decodeUint();
-		if (!((x$3 = new Go$Uint64(x$2.high & 0, (x$2.low & 1) >>> 0), (x$3.high === 0 && x$3.low === 0)))) {
-			return (x$4 = (x$5 = go$shiftRightUint64(x$2, 1), new Go$Int64(x$5.high, x$5.low)), new Go$Int64(~x$4.high, ~x$4.low >>> 0));
+		x = state.decodeUint();
+		if (!((x$1 = new Go$Uint64(x.high & 0, (x.low & 1) >>> 0), (x$1.high === 0 && x$1.low === 0)))) {
+			return (x$2 = (x$3 = go$shiftRightUint64(x, 1), new Go$Int64(x$3.high, x$3.low)), new Go$Int64(~x$2.high, ~x$2.low >>> 0));
 		}
-		return (x$6 = go$shiftRightUint64(x$2, 1), new Go$Int64(x$6.high, x$6.low));
+		return (x$4 = go$shiftRightUint64(x, 1), new Go$Int64(x$4.high, x$4.low));
 	};
 	decoderState.prototype.decodeInt = function() { return this.go$val.decodeInt(); };
  0ÅÙ decIndirectÅ‡	decIndirect = function(p, indir) {
@@ -770,15 +711,15 @@ ignoreUint@	ignoreUint = function(i, state, p) {
 		state.decodeUint();
 		state.decodeUint();
 	};
- 0Ç decBoolÇ	decBool = function(i, state, p) {
-		var x$2;
+ 0Ç decBoolÇ	decBool = function(i, state, p) {
+		var x;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
 				p.go$set(go$newDataPointer(false, (go$ptrType(Go$Bool))));
 			}
 			p = p.go$get();
 		}
-		p.go$set(!((x$2 = state.decodeUint(), (x$2.high === 0 && x$2.low === 0))));
+		p.go$set(!((x = state.decodeUint(), (x.high === 0 && x.low === 0))));
 	};
  0Ç∏ decInt8Çß	decInt8 = function(i, state, p) {
 		var v;
@@ -888,13 +829,13 @@ ignoreUint@	ignoreUint = function(i, state, p) {
 		}
 		p.go$set(state.decodeUint());
 	};
- 0Çs floatFromBitsÇ\	floatFromBits = function(u) {
-		var v, i, x$2;
+ 0Çk floatFromBitsÇT	floatFromBits = function(u) {
+		var v, i, x;
 		v = new Go$Uint64(0, 0);
 		i = 0;
 		while (i < 8) {
 			v = go$shiftLeft64(v, 8);
-			v = (x$2 = new Go$Uint64(u.high & 0, (u.low & 255) >>> 0), new Go$Uint64(v.high | x$2.high, (v.low | x$2.low) >>> 0));
+			v = (x = new Go$Uint64(u.high & 0, (u.low & 255) >>> 0), new Go$Uint64(v.high | x.high, (v.low | x.low) >>> 0));
 			u = go$shiftRightUint64(u, 8);
 			i = i + 1 >> 0;
 		}
@@ -955,8 +896,8 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		imag = floatFromBits(state.decodeUint());
 		p.go$set(new Go$Complex128(real, imag));
 	};
- 0Ç decUint8SliceÇ˜	decUint8Slice = function(i, state, p) {
-		var n, x$2, slice, x$3, err, _tuple;
+ 0Ç decUint8SliceÇÌ	decUint8Slice = function(i, state, p) {
+		var n, x, slice, x$1, err, _tuple;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
 				p.go$set(go$newDataPointer((go$sliceType(Go$Uint8)).nil, (go$ptrType((go$sliceType(Go$Uint8))))));
@@ -964,11 +905,11 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 			p = p.go$get();
 		}
 		n = state.decodeUint();
-		if ((x$2 = new Go$Uint64(0, state.b.Len()), (n.high > x$2.high || (n.high === x$2.high && n.low > x$2.low)))) {
+		if ((x = new Go$Uint64(0, state.b.Len()), (n.high > x.high || (n.high === x.high && n.low > x.low)))) {
 			errorf("length of []byte exceeds input size (%d bytes)", new (go$sliceType(go$emptyInterface))([n]));
 		}
 		slice = p;
-		if ((x$3 = new Go$Uint64(0, slice.go$get().capacity), (x$3.high < n.high || (x$3.high === n.high && x$3.low < n.low)))) {
+		if ((x$1 = new Go$Uint64(0, slice.go$get().capacity), (x$1.high < n.high || (x$1.high === n.high && x$1.low < n.low)))) {
 			slice.go$set((go$sliceType(Go$Uint8)).make(go$flatten64(n), 0, function() { return 0; }));
 		} else {
 			slice.go$set(go$subslice((slice.go$get()), 0, go$flatten64(n)));
@@ -977,8 +918,8 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 			errorf("error decoding []byte: %s", new (go$sliceType(go$emptyInterface))([err]));
 		}
 	};
- 0ÇB 	decStringÇ/	decString = function(i, state, p) {
-		var n, x$2, b;
+ 0Ç8 	decStringÇ%	decString = function(i, state, p) {
+		var n, x, b;
 		if (i.indir > 0) {
 			if (p.go$get() === 0) {
 				p.go$set(go$newDataPointer("", (go$ptrType(Go$String))));
@@ -986,7 +927,7 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 			p = p.go$get();
 		}
 		n = state.decodeUint();
-		if ((x$2 = new Go$Uint64(0, state.b.Len()), (n.high > x$2.high || (n.high === x$2.high && n.low > x$2.low)))) {
+		if ((x = new Go$Uint64(0, state.b.Len()), (n.high > x.high || (n.high === x.high && n.low > x.low)))) {
 			errorf("string length exceeds input size (%d bytes)", new (go$sliceType(go$emptyInterface))([n]));
 		}
 		b = (go$sliceType(Go$Uint8)).make(go$flatten64(n), 0, function() { return 0; });
@@ -1122,13 +1063,13 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		}
 	};
 	Decoder.prototype.decodeArrayHelper = function(state, p, elemOp, elemWid, length, elemIndir, ovfl) { return this.go$val.decodeArrayHelper(state, p, elemOp, elemWid, length, elemIndir, ovfl); };
- 0Çø  Çµ	Decoder.Ptr.prototype.decodeArray = function(atyp, state, p, elemOp, elemWid, length, indir, elemIndir, ovfl) {
-		var dec, n, x$2;
+ 0Ç∑  Ç≠	Decoder.Ptr.prototype.decodeArray = function(atyp, state, p, elemOp, elemWid, length, indir, elemIndir, ovfl) {
+		var dec, n, x;
 		dec = this;
 		if (indir > 0) {
 			p = allocate(atyp, p, 1);
 		}
-		if (n = state.decodeUint(), !((x$2 = new Go$Uint64(0, length), (n.high === x$2.high && n.low === x$2.low)))) {
+		if (n = state.decodeUint(), !((x = new Go$Uint64(0, length), (n.high === x.high && n.low === x.low)))) {
 			errorf("length mismatch in decodeArray", new (go$sliceType(go$emptyInterface))([]));
 		}
 		dec.decodeArrayHelper(state, p, elemOp, elemWid, length, elemIndir, ovfl);
@@ -1176,10 +1117,10 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		}
 	};
 	Decoder.prototype.ignoreArrayHelper = function(state, elemOp, length) { return this.go$val.ignoreArrayHelper(state, elemOp, length); };
- 0Ç  ÇÊ	Decoder.Ptr.prototype.ignoreArray = function(state, elemOp, length) {
-		var dec, n, x$2;
+ 0ÇË  Çﬁ	Decoder.Ptr.prototype.ignoreArray = function(state, elemOp, length) {
+		var dec, n, x;
 		dec = this;
-		if (n = state.decodeUint(), !((x$2 = new Go$Uint64(0, length), (n.high === x$2.high && n.low === x$2.low)))) {
+		if (n = state.decodeUint(), !((x = new Go$Uint64(0, length), (n.high === x.high && n.low === x.low)))) {
 			errorf("length mismatch in ignoreArray", new (go$sliceType(go$emptyInterface))([]));
 		}
 		dec.ignoreArrayHelper(state, elemOp, length);
@@ -1292,8 +1233,8 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		state.b.Next((state.decodeUint().low >> 0));
 	};
 	Decoder.prototype.ignoreInterface = function(state) { return this.go$val.ignoreInterface(state); };
- 0Çª  Ç±	Decoder.Ptr.prototype.decodeGobDecoder = function(ut, state, v) {
-		var dec, b, _tuple, err, _ref, x$2, x$3, x$4;
+ 0ÇØ  Ç•	Decoder.Ptr.prototype.decodeGobDecoder = function(ut, state, v) {
+		var dec, b, _tuple, err, _ref, x, x$1, x$2;
 		dec = this;
 		b = (go$sliceType(Go$Uint8)).make(go$flatten64(state.decodeUint()), 0, function() { return 0; });
 		_tuple = state.b.Read(b), err = _tuple[1];
@@ -1302,11 +1243,11 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		}
 		_ref = ut.externalDec;
 		if (_ref === 1) {
-			err = (x$2 = v.Interface(), (x$2 !== null && GobDecoder.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, GobDecoder))).GobDecode(b);
+			err = (x = v.Interface(), (x !== null && GobDecoder.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, GobDecoder))).GobDecode(b);
 		} else if (_ref === 2) {
-			err = (x$3 = v.Interface(), (x$3 !== null && encoding.BinaryUnmarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.BinaryUnmarshaler))).UnmarshalBinary(b);
+			err = (x$1 = v.Interface(), (x$1 !== null && encoding.BinaryUnmarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, encoding.BinaryUnmarshaler))).UnmarshalBinary(b);
 		} else if (_ref === 3) {
-			err = (x$4 = v.Interface(), (x$4 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$4.constructor) !== -1 ? x$4 : go$typeAssertionFailed(x$4, encoding.TextUnmarshaler))).UnmarshalText(b);
+			err = (x$2 = v.Interface(), (x$2 !== null && encoding.TextUnmarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, encoding.TextUnmarshaler))).UnmarshalText(b);
 		}
 		if (!(go$interfaceIsEqual(err, null))) {
 			error_(err);
@@ -1323,9 +1264,8 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		}
 	};
 	Decoder.prototype.ignoreGobDecoder = function(state) { return this.go$val.ignoreGobDecoder(state); };
- 0Ç  Ç
-	Decoder.Ptr.prototype.decOpFor = function(wireId, rt, name, inProgress) {
-		var dec, ut, opPtr, _entry, typ, indir, op, k, v, _key$1, t, _ref, _entry$1, elemId, _tuple, elemOp, elemIndir, ovfl, _entry$2, keyId, _entry$3, elemId$1, _tuple$1, keyOp, keyIndir, _tuple$2, elemOp$1, elemIndir$1, ovfl$1, elemId$2, ok, _tuple$3, _entry$4, tt, _entry$5, _tuple$4, elemOp$2, elemIndir$2, ovfl$2, _tuple$5, enginePtr, err, v$1;
+ 0Ç  Ç	Decoder.Ptr.prototype.decOpFor = function(wireId, rt, name, inProgress) {
+		var dec, ut, opPtr, _entry, typ, indir, op, k, v, _key, t, _ref, _entry$1, elemId, _tuple, elemOp, elemIndir, ovfl, _entry$2, keyId, _entry$3, elemId$1, _tuple$1, keyOp, keyIndir, _tuple$2, elemOp$1, elemIndir$1, ovfl$1, elemId$2, ok, _tuple$3, _entry$4, tt, _entry$5, _tuple$4, elemOp$2, elemIndir$2, ovfl$2, _tuple$5, enginePtr, err, v$1;
 		dec = this;
 		ut = userType(rt);
 		if (!((ut.externalDec === 0))) {
@@ -1342,7 +1282,7 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 			op = decOpTable[k];
 		}
 		if (op === go$throwNilPointerError) {
-			_key$1 = rt, (inProgress || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: new (go$ptrType(decOp))(function() { return op; }, function(v) { op = v; }) };
+			_key = rt, (inProgress || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: new (go$ptrType(decOp))(function() { return op; }, function(v) { op = v; }) };
 			t = typ;
 			_ref = t.Kind();
 			switch (0) { default: if (_ref === 17) {
@@ -1487,13 +1427,13 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		return [new (go$ptrType(decOp))(function() { return op; }, function(v) { op = v; }), ut.indir];
 	};
 	Decoder.prototype.gobDecodeOpFor = function(ut) { return this.go$val.gobDecodeOpFor(ut); };
- 0Ç  Ç˙	Decoder.Ptr.prototype.compatibleType = function(fr, fw, inProgress) {
-		var dec, ok, _tuple, _entry, rhs, _key$1, ut, _tuple$1, _entry$1, wire, ok$1, t, _ref, array, MapType, sw, ok$2, _tuple$2, _entry$2, tt, _tuple$3, elem;
+ 0Ç¸  ÇÚ	Decoder.Ptr.prototype.compatibleType = function(fr, fw, inProgress) {
+		var dec, ok, _tuple, _entry, rhs, _key, ut, _tuple$1, _entry$1, wire, ok$1, t, _ref, array, MapType, sw, ok$2, _tuple$2, _entry$2, tt, _tuple$3, elem;
 		dec = this;
 		if (_tuple = (_entry = inProgress[(fr || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [0, false]), rhs = _tuple[0], ok = _tuple[1], ok) {
 			return rhs === fw;
 		}
-		_key$1 = fr, (inProgress || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: fw };
+		_key = fr, (inProgress || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: fw };
 		ut = userType(fr);
 		_tuple$1 = (_entry$1 = dec.wireType[fw], _entry$1 !== undefined ? [_entry$1.v, true] : [(go$ptrType(wireType)).nil, false]), wire = _tuple$1[0], ok$1 = _tuple$1[1];
 		if (!(((ut.externalDec === 1)) === (ok$1 && !(wire.GobEncoderT === (go$ptrType(gobEncoderType)).nil))) || !(((ut.externalDec === 2)) === (ok$1 && !(wire.BinaryMarshalerT === (go$ptrType(gobEncoderType)).nil))) || !(((ut.externalDec === 3)) === (ok$1 && !(wire.TextMarshalerT === (go$ptrType(gobEncoderType)).nil)))) {
@@ -1649,8 +1589,8 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		return [engine, err];
 	};
 	Decoder.prototype.compileDec = function(remoteId, ut) { return this.go$val.compileDec(remoteId, ut); };
- 0Çî  Çä	Decoder.Ptr.prototype.getDecEnginePtr = function(remoteId, ut) {
-		var enginePtr, err, dec, rt, _tuple, _entry, decoderMap, ok, _key$1, _tuple$1, _entry$1, _key$2, _tuple$2;
+ 0Çå  ÇÇ	Decoder.Ptr.prototype.getDecEnginePtr = function(remoteId, ut) {
+		var enginePtr, err, dec, rt, _tuple, _entry, decoderMap, ok, _key, _tuple$1, _entry$1, _key$1, _tuple$2;
 		enginePtr = (go$ptrType((go$ptrType(decEngine)))).nil;
 		err = null;
 		dec = this;
@@ -1658,11 +1598,11 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		_tuple = (_entry = dec.decoderCache[(rt || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [false, false]), decoderMap = _tuple[0], ok = _tuple[1];
 		if (!ok) {
 			decoderMap = new Go$Map();
-			_key$1 = rt, (dec.decoderCache || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: decoderMap };
+			_key = rt, (dec.decoderCache || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: decoderMap };
 		}
 		if (_tuple$1 = (_entry$1 = decoderMap[remoteId], _entry$1 !== undefined ? [_entry$1.v, true] : [(go$ptrType((go$ptrType(decEngine)))).nil, false]), enginePtr = _tuple$1[0], ok = _tuple$1[1], !ok) {
 			enginePtr = go$newDataPointer((go$ptrType(decEngine)).nil, (go$ptrType((go$ptrType(decEngine)))));
-			_key$2 = remoteId, (decoderMap || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: enginePtr };
+			_key$1 = remoteId, (decoderMap || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: enginePtr };
 			_tuple$2 = dec.compileDec(remoteId, ut), enginePtr.go$set(_tuple$2[0]), err = _tuple$2[1];
 			if (!(go$interfaceIsEqual(err, null))) {
 				delete decoderMap[remoteId];
@@ -1671,15 +1611,15 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		return [enginePtr, err];
 	};
 	Decoder.prototype.getDecEnginePtr = function(remoteId, ut) { return this.go$val.getDecEnginePtr(remoteId, ut); };
- 0ÇV  ÇL	Decoder.Ptr.prototype.getIgnoreEnginePtr = function(wireId) {
-		var enginePtr, err, dec, ok, _tuple, _entry, _key$1, _entry$1, wire, _tuple$1, _tuple$2;
+ 0ÇN  ÇD	Decoder.Ptr.prototype.getIgnoreEnginePtr = function(wireId) {
+		var enginePtr, err, dec, ok, _tuple, _entry, _key, _entry$1, wire, _tuple$1, _tuple$2;
 		enginePtr = (go$ptrType((go$ptrType(decEngine)))).nil;
 		err = null;
 		dec = this;
 		ok = false;
 		if (_tuple = (_entry = dec.ignorerCache[wireId], _entry !== undefined ? [_entry.v, true] : [(go$ptrType((go$ptrType(decEngine)))).nil, false]), enginePtr = _tuple[0], ok = _tuple[1], !ok) {
 			enginePtr = go$newDataPointer((go$ptrType(decEngine)).nil, (go$ptrType((go$ptrType(decEngine)))));
-			_key$1 = wireId, (dec.ignorerCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: enginePtr };
+			_key = wireId, (dec.ignorerCache || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: enginePtr };
 			wire = (_entry$1 = dec.wireType[wireId], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(wireType)).nil);
 			if (!(wire === (go$ptrType(wireType)).nil) && !(wire.StructT === (go$ptrType(structType)).nil)) {
 				_tuple$1 = dec.compileDec(wireId, userType(emptyStructType)), enginePtr.go$set(_tuple$1[0]), err = _tuple$1[1];
@@ -1743,15 +1683,15 @@ decFloat64Å„	decFloat64 = function(i, state, p) {
 		}
 	};
 	Decoder.prototype.decodeIgnoredValue = function(wireId) { return this.go$val.decodeIgnoredValue(wireId); };
- 0Çs 
-unsafeAddrÇ_	unsafeAddr = function(v) {
-		var _struct, x$2, _struct$1;
+ 0Çk 
+unsafeAddrÇW	unsafeAddr = function(v) {
+		var _struct, x, _struct$1;
 		if (v.CanAddr()) {
 			return v.UnsafeAddr();
 		}
-		x$2 = (_struct = reflect.New(v.Type()).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
-		x$2.Set((_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)));
-		return x$2.UnsafeAddr();
+		x = (_struct = reflect.New(v.Type()).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+		x.Set((_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)));
+		return x.UnsafeAddr();
 	};
  0Å≠ 
 allocValueÅö	allocValue = function(t) {
@@ -1760,8 +1700,8 @@ allocValueÅö	allocValue = function(t) {
 	};
  0e 
 NewDecoderS	NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("encoding/gob"); };
- 0Çı  ÇÎ	Decoder.Ptr.prototype.recvType = function(id) {
-		var dec, _entry, wire, _struct, _key$1;
+ 0ÇÌ  Ç„	Decoder.Ptr.prototype.recvType = function(id) {
+		var dec, _entry, wire, _struct, _key;
 		dec = this;
 		if (id < 64 || !((_entry = dec.wireType[id], _entry !== undefined ? _entry.v : (go$ptrType(wireType)).nil) === (go$ptrType(wireType)).nil)) {
 			dec.err = errors.New("gob: duplicate type received");
@@ -1772,7 +1712,7 @@ NewDecoderS	NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("enco
 		if (!(go$interfaceIsEqual(dec.err, null))) {
 			return;
 		}
-		_key$1 = id, (dec.wireType || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: wire };
+		_key = id, (dec.wireType || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: wire };
 	};
 	Decoder.prototype.recvType = function(id) { return this.go$val.recvType(id); };
  0Ç:  Ç0	Decoder.Ptr.prototype.recvMessage = function() {
@@ -1824,10 +1764,10 @@ NewDecoderS	NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("enco
 		}
 	};
 	Decoder.prototype.readMessage = function(nbytes) { return this.go$val.readMessage(nbytes); };
- 0Ç/ toIntÇ 	toInt = function(x$2) {
-		var x$3, i, x$4;
-		i = (x$3 = go$shiftRightUint64(x$2, 1), new Go$Int64(x$3.high, x$3.low));
-		if (!((x$4 = new Go$Uint64(x$2.high & 0, (x$2.low & 1) >>> 0), (x$4.high === 0 && x$4.low === 0)))) {
+ 0Ç' toIntÇ	toInt = function(x) {
+		var x$1, i, x$2;
+		i = (x$1 = go$shiftRightUint64(x, 1), new Go$Int64(x$1.high, x$1.low));
+		if (!((x$2 = new Go$Uint64(x.high & 0, (x.low & 1) >>> 0), (x$2.high === 0 && x$2.low === 0)))) {
 			i = new Go$Int64(~i.high, ~i.low >>> 0);
 		}
 		return i;
@@ -1852,8 +1792,8 @@ NewDecoderS	NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("enco
 		return n;
 	};
 	Decoder.prototype.nextUint = function() { return this.go$val.nextUint(); };
- 0Çù  Çì	Decoder.Ptr.prototype.decodeTypeSequence = function(isInterface) {
-		var dec, x$2, id;
+ 0Çï  Çã	Decoder.Ptr.prototype.decodeTypeSequence = function(isInterface) {
+		var dec, x, id;
 		dec = this;
 		while (go$interfaceIsEqual(dec.err, null)) {
 			if (dec.buf.Len() === 0) {
@@ -1861,7 +1801,7 @@ NewDecoderS	NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("enco
 					break;
 				}
 			}
-			id = ((x$2 = dec.nextInt(), x$2.low + ((x$2.high >> 31) * 4294967296)) >> 0);
+			id = ((x = dec.nextInt(), x.low + ((x.high >> 31) * 4294967296)) >> 0);
 			if (id >= 0) {
 				return id;
 			}
@@ -1942,20 +1882,20 @@ NewDecoderS	NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("enco
 		enc.freeList = e;
 	};
 	Encoder.prototype.freeEncoderState = function(e) { return this.go$val.freeEncoderState(e); };
- 0Ç"  Ç	encoderState.Ptr.prototype.encodeUint = function(x$2) {
+ 0Ç  Ç˛	encoderState.Ptr.prototype.encodeUint = function(x) {
 		var state, err, i, _tuple, err$1;
 		state = this;
-		if ((x$2.high < 0 || (x$2.high === 0 && x$2.low <= 127))) {
-			err = state.b.WriteByte((x$2.low << 24 >>> 24));
+		if ((x.high < 0 || (x.high === 0 && x.low <= 127))) {
+			err = state.b.WriteByte((x.low << 24 >>> 24));
 			if (!(go$interfaceIsEqual(err, null))) {
 				error_(err);
 			}
 			return;
 		}
 		i = 8;
-		while ((x$2.high > 0 || (x$2.high === 0 && x$2.low > 0))) {
-			state.buf[i] = (x$2.low << 24 >>> 24);
-			x$2 = go$shiftRightUint64(x$2, 8);
+		while ((x.high > 0 || (x.high === 0 && x.low > 0))) {
+			state.buf[i] = (x.low << 24 >>> 24);
+			x = go$shiftRightUint64(x, 8);
 			i = i - 1 >> 0;
 		}
 		state.buf[i] = ((i - 8 >> 0) << 24 >>> 24);
@@ -1964,17 +1904,17 @@ NewDecoderS	NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("enco
 			error_(err$1);
 		}
 	};
-	encoderState.prototype.encodeUint = function(x$2) { return this.go$val.encodeUint(x$2); };
- 0Ç3  Ç)	encoderState.Ptr.prototype.encodeInt = function(i) {
-		var state, x$2, x$3, x$4, x$5;
+	encoderState.prototype.encodeUint = function(x) { return this.go$val.encodeUint(x); };
+ 0Ç)  Ç	encoderState.Ptr.prototype.encodeInt = function(i) {
+		var state, x, x$1, x$2, x$3;
 		state = this;
-		x$2 = new Go$Uint64(0, 0);
+		x = new Go$Uint64(0, 0);
 		if ((i.high < 0 || (i.high === 0 && i.low < 0))) {
-			x$2 = (x$3 = (x$4 = go$shiftLeft64(new Go$Int64(~i.high, ~i.low >>> 0), 1), new Go$Uint64(x$4.high, x$4.low)), new Go$Uint64(x$3.high | 0, (x$3.low | 1) >>> 0));
+			x = (x$1 = (x$2 = go$shiftLeft64(new Go$Int64(~i.high, ~i.low >>> 0), 1), new Go$Uint64(x$2.high, x$2.low)), new Go$Uint64(x$1.high | 0, (x$1.low | 1) >>> 0));
 		} else {
-			x$2 = (x$5 = go$shiftLeft64(i, 1), new Go$Uint64(x$5.high, x$5.low));
+			x = (x$3 = go$shiftLeft64(i, 1), new Go$Uint64(x$3.high, x$3.low));
 		}
-		state.encodeUint(x$2);
+		state.encodeUint(x);
 	};
 	encoderState.prototype.encodeInt = function(i) { return this.go$val.encodeInt(i); };
  0Ç\  ÇR	encoderState.Ptr.prototype.update = function(instr) {
@@ -2088,23 +2028,23 @@ NewDecoderS	NewDecoder = go$pkg.NewDecoder = function() { go$notSupported("enco
 			state.encodeUint(v);
 		}
 	};
- 0Ç	 
-encUintptrÅˆ	encUintptr = function(i, state, p) {
-		var x$2, v;
-		v = (x$2 = p.go$get(), new Go$Uint64(0, x$2.constructor === Number ? x$2 : 1));
+ 0Ç 
+encUintptrÅÓ	encUintptr = function(i, state, p) {
+		var x, v;
+		v = (x = p.go$get(), new Go$Uint64(0, x.constructor === Number ? x : 1));
 		if (!((v.high === 0 && v.low === 0)) || state.sendZero) {
 			state.update(i);
 			state.encodeUint(v);
 		}
 	};
- 0Çs 	floatBitsÇ`	floatBits = function(f) {
-		var u, v, i, x$2;
+ 0Çk 	floatBitsÇX	floatBits = function(f) {
+		var u, v, i, x;
 		u = math.Float64bits(f);
 		v = new Go$Uint64(0, 0);
 		i = 0;
 		while (i < 8) {
 			v = go$shiftLeft64(v, 8);
-			v = (x$2 = new Go$Uint64(u.high & 0, (u.low & 255) >>> 0), new Go$Uint64(v.high | x$2.high, (v.low | x$2.low) >>> 0));
+			v = (x = new Go$Uint64(u.high & 0, (u.low & 255) >>> 0), new Go$Uint64(v.high | x.high, (v.low | x.low) >>> 0));
 			u = go$shiftRightUint64(u, 8);
 			i = i + 1 >> 0;
 		}
@@ -2309,8 +2249,8 @@ encFloat64Åµ	encFloat64 = function(i, state, p) {
 		enc.freeEncoderState(state);
 	};
 	Encoder.prototype.encodeInterface = function(b, iv) { return this.go$val.encodeInterface(b, iv); };
- 0ÇÜ isZeroÇv	isZero = function(val) {
-		var _ref, i, _struct, x$2, x$3, x$4, i$1, _struct$1;
+ 0Ç~ isZeroÇn	isZero = function(val) {
+		var _ref, i, _struct, x, x$1, x$2, i$1, _struct$1;
 		_ref = val.Kind();
 		if (_ref === 17) {
 			i = 0;
@@ -2326,15 +2266,15 @@ encFloat64Åµ	encFloat64 = function(i, state, p) {
 		} else if (_ref === 1) {
 			return !val.Bool();
 		} else if (_ref === 15 || _ref === 16) {
-			return (x$2 = val.Complex(), (x$2.real === 0 && x$2.imag === 0));
+			return (x = val.Complex(), (x.real === 0 && x.imag === 0));
 		} else if (_ref === 18 || _ref === 19 || _ref === 22) {
 			return val.IsNil();
 		} else if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
-			return (x$3 = val.Int(), (x$3.high === 0 && x$3.low === 0));
+			return (x$1 = val.Int(), (x$1.high === 0 && x$1.low === 0));
 		} else if (_ref === 13 || _ref === 14) {
 			return val.Float() === 0;
 		} else if (_ref === 7 || _ref === 8 || _ref === 9 || _ref === 10 || _ref === 11 || _ref === 12) {
-			return (x$4 = val.Uint(), (x$4.high === 0 && x$4.low === 0));
+			return (x$2 = val.Uint(), (x$2.high === 0 && x$2.low === 0));
 		} else if (_ref === 25) {
 			i$1 = 0;
 			while (i$1 < val.NumField()) {
@@ -2347,18 +2287,18 @@ encFloat64Åµ	encFloat64 = function(i, state, p) {
 		}
 		throw go$panic(new Go$String("unknown type in isZero " + val.Type().String()));
 	};
- 0ÇC  Ç9	Encoder.Ptr.prototype.encodeGobEncoder = function(b, ut, v) {
-		var enc, data, err, _ref, _tuple, x$2, _tuple$1, x$3, _tuple$2, x$4, state;
+ 0Ç7  Ç-	Encoder.Ptr.prototype.encodeGobEncoder = function(b, ut, v) {
+		var enc, data, err, _ref, _tuple, x, _tuple$1, x$1, _tuple$2, x$2, state;
 		enc = this;
 		data = (go$sliceType(Go$Uint8)).nil;
 		err = null;
 		_ref = ut.externalEnc;
 		if (_ref === 1) {
-			_tuple = (x$2 = v.Interface(), (x$2 !== null && GobEncoder.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, GobEncoder))).GobEncode(), data = _tuple[0], err = _tuple[1];
+			_tuple = (x = v.Interface(), (x !== null && GobEncoder.implementedBy.indexOf(x.constructor) !== -1 ? x : go$typeAssertionFailed(x, GobEncoder))).GobEncode(), data = _tuple[0], err = _tuple[1];
 		} else if (_ref === 2) {
-			_tuple$1 = (x$3 = v.Interface(), (x$3 !== null && encoding.BinaryMarshaler.implementedBy.indexOf(x$3.constructor) !== -1 ? x$3 : go$typeAssertionFailed(x$3, encoding.BinaryMarshaler))).MarshalBinary(), data = _tuple$1[0], err = _tuple$1[1];
+			_tuple$1 = (x$1 = v.Interface(), (x$1 !== null && encoding.BinaryMarshaler.implementedBy.indexOf(x$1.constructor) !== -1 ? x$1 : go$typeAssertionFailed(x$1, encoding.BinaryMarshaler))).MarshalBinary(), data = _tuple$1[0], err = _tuple$1[1];
 		} else if (_ref === 3) {
-			_tuple$2 = (x$4 = v.Interface(), (x$4 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$4.constructor) !== -1 ? x$4 : go$typeAssertionFailed(x$4, encoding.TextMarshaler))).MarshalText(), data = _tuple$2[0], err = _tuple$2[1];
+			_tuple$2 = (x$2 = v.Interface(), (x$2 !== null && encoding.TextMarshaler.implementedBy.indexOf(x$2.constructor) !== -1 ? x$2 : go$typeAssertionFailed(x$2, encoding.TextMarshaler))).MarshalText(), data = _tuple$2[0], err = _tuple$2[1];
 		}
 		if (!(go$interfaceIsEqual(err, null))) {
 			error_(err);
@@ -2370,8 +2310,8 @@ encFloat64Åµ	encFloat64 = function(i, state, p) {
 		enc.freeEncoderState(state);
 	};
 	Encoder.prototype.encodeGobEncoder = function(b, ut, v) { return this.go$val.encodeGobEncoder(b, ut, v); };
- 0ÇŒ  Çƒ	Encoder.Ptr.prototype.encOpFor = function(rt, inProgress) {
-		var enc, ut, opPtr, _entry, typ, indir, k, op, v, _key$1, t, _ref, _tuple, elemOp, elemIndir, _tuple$1, elemOp$1, elemIndir$1, _tuple$2, keyOp, keyIndir, _tuple$3, elemOp$2, elemIndir$2, info, v$1;
+ 0Ç∆  Çº	Encoder.Ptr.prototype.encOpFor = function(rt, inProgress) {
+		var enc, ut, opPtr, _entry, typ, indir, k, op, v, _key, t, _ref, _tuple, elemOp, elemIndir, _tuple$1, elemOp$1, elemIndir$1, _tuple$2, keyOp, keyIndir, _tuple$3, elemOp$2, elemIndir$2, info, v$1;
 		enc = this;
 		ut = userType(rt);
 		if (!((ut.externalEnc === 0))) {
@@ -2388,7 +2328,7 @@ encFloat64Åµ	encFloat64 = function(i, state, p) {
 			op = encOpTable[k];
 		}
 		if (op === go$throwNilPointerError) {
-			_key$1 = rt, (inProgress || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: new (go$ptrType(encOp))(function() { return op; }, function(v) { op = v; }) };
+			_key = rt, (inProgress || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: new (go$ptrType(encOp))(function() { return op; }, function(v) { op = v; }) };
 			t = typ;
 			_ref = t.Kind();
 			switch (0) { default: if (_ref === 23) {
@@ -2635,8 +2575,8 @@ NewEncoderS	NewEncoder = go$pkg.NewEncoder = function() { go$notSupported("enco
 		}
 	};
 	Encoder.prototype.writeMessage = function(w, b) { return this.go$val.writeMessage(w, b); };
- 0Ç^  ÇT	Encoder.Ptr.prototype.sendActualType = function(w, state, ut, actual) {
-		var sent, enc, alreadySent, _tuple, _entry, _tuple$1, info, err, x$2, _struct, _key$1, _key$2, st, _ref, i;
+ 0ÇN  ÇD	Encoder.Ptr.prototype.sendActualType = function(w, state, ut, actual) {
+		var sent, enc, alreadySent, _tuple, _entry, _tuple$1, info, err, x, _struct, _key, _key$1, st, _ref, i;
 		sent = false;
 		enc = this;
 		if (_tuple = (_entry = enc.sent[(actual || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [0, false]), alreadySent = _tuple[1], alreadySent) {
@@ -2650,15 +2590,15 @@ NewEncoderS	NewEncoder = go$pkg.NewEncoder = function() { go$notSupported("enco
 			enc.setError(err);
 			return sent;
 		}
-		state.encodeInt((x$2 = new Go$Int64(0, info.id), new Go$Int64(-x$2.high, -x$2.low)));
+		state.encodeInt((x = new Go$Int64(0, info.id), new Go$Int64(-x.high, -x.low)));
 		enc.encode(state.b, (_struct = reflect.ValueOf(info.wire), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), wireTypeUserInfo);
 		enc.writeMessage(w, state.b);
 		if (!(go$interfaceIsEqual(enc.err, null))) {
 			return sent;
 		}
-		_key$1 = ut.base, (enc.sent || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: info.id };
+		_key = ut.base, (enc.sent || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: info.id };
 		if (!(go$interfaceIsEqual(ut.user, ut.base))) {
-			_key$2 = ut.user, (enc.sent || go$throwRuntimeError("assignment to entry in nil map"))[(_key$2 || go$interfaceNil).go$key()] = { k: _key$2, v: info.id };
+			_key$1 = ut.user, (enc.sent || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: info.id };
 		}
 		st = actual;
 		_ref = st.Kind();
@@ -2717,8 +2657,8 @@ NewEncoderS	NewEncoder = go$pkg.NewEncoder = function() { go$notSupported("enco
 		return enc.EncodeValue((_struct = reflect.ValueOf(e), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)));
 	};
 	Encoder.prototype.Encode = function(e) { return this.go$val.Encode(e); };
- 0Ç˙  Ç	Encoder.Ptr.prototype.sendTypeDescriptor = function(w, state, ut) {
-		var enc, rt, alreadySent, _tuple, _entry, sent, _tuple$1, info, err, _key$1;
+ 0ÇÚ  ÇË	Encoder.Ptr.prototype.sendTypeDescriptor = function(w, state, ut) {
+		var enc, rt, alreadySent, _tuple, _entry, sent, _tuple$1, info, err, _key;
 		enc = this;
 		rt = ut.base;
 		if (!((ut.externalEnc === 0))) {
@@ -2737,7 +2677,7 @@ NewEncoderS	NewEncoder = go$pkg.NewEncoder = function() { go$notSupported("enco
 					enc.setError(err);
 					return;
 				}
-				_key$1 = rt, (enc.sent || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: info.id };
+				_key = rt, (enc.sent || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: info.id };
 			}
 		}
 	};
@@ -2789,9 +2729,9 @@ NewEncoderS	NewEncoder = go$pkg.NewEncoder = function() { go$notSupported("enco
  0c errorfU	errorf = function(format, args) {
 		error_(fmt.Errorf("gob: " + format, args));
 	};
- 0Åâ error_{	error_ = function(err) {
-		var x$2;
-		throw go$panic((x$2 = new gobError.Ptr(err), new x$2.constructor.Struct(x$2)));
+ 0ÅÅ error_s	error_ = function(err) {
+		var x;
+		throw go$panic((x = new gobError.Ptr(err), new x.constructor.Struct(x)));
 	};
  0Çñ 
 catchErrorÇÇ	catchError = function(err) {
@@ -2806,9 +2746,9 @@ catchErrorÇÇ	catchError = function(err) {
 		return;
 	};
  0Ç
-Ü validUserTypeÇ
-o	validUserType = function(rt) {
-		var ut, err, _entry, _entry$1, slowpoke, pt, _tuple, _r, ok, _tuple$1, indir, ok$1, _tuple$2, indir$1, _tuple$3, _tuple$4, ok$2, _tuple$5, indir$2, ok$3, _tuple$6, indir$3, _tuple$7, _tuple$8, _key$1;
+~ validUserTypeÇ
+g	validUserType = function(rt) {
+		var ut, err, _entry, _entry$1, slowpoke, pt, _tuple, _r, ok, _tuple$1, indir, ok$1, _tuple$2, indir$1, _tuple$3, _tuple$4, ok$2, _tuple$5, indir$2, ok$3, _tuple$6, indir$3, _tuple$7, _tuple$8, _key;
 		ut = (go$ptrType(userTypeInfo)).nil;
 		err = null;
 		var go$deferred = [];
@@ -2853,7 +2793,7 @@ o	validUserType = function(rt) {
 			} else if (_tuple$6 = implementsInterface(ut.user, binaryUnmarshalerInterfaceType), ok$3 = _tuple$6[0], indir$3 = _tuple$6[1], ok$3) {
 				_tuple$8 = [2, indir$3], ut.externalDec = _tuple$8[0], ut.decIndir = _tuple$8[1];
 			}
-			_key$1 = rt, (userTypeCache || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: ut };
+			_key = rt, (userTypeCache || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: ut };
 			return [ut, err];
 		} catch(go$err) {
 			go$pushErr(go$err);
@@ -2903,14 +2843,14 @@ o	validUserType = function(rt) {
 		}
 		return ut;
 	};
- 0Ç 	setTypeIdÇ	setTypeId = function(typ) {
-		var _key$1;
+ 0Ç 	setTypeIdÅ˝	setTypeId = function(typ) {
+		var _key;
 		if (!((typ.id() === 0))) {
 			return;
 		}
 		nextId = nextId + 1 >> 0;
 		typ.setId(nextId);
-		_key$1 = nextId, (idToType || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: typ };
+		_key = nextId, (idToType || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: typ };
 	};
  0Ç-  Ç#	typeId.prototype.gobType = function() {
 		var t, _entry;
@@ -2982,13 +2922,13 @@ o	validUserType = function(rt) {
 		a.Len = len;
 	};
 	arrayType.prototype.init = function(elem, len) { return this.go$val.init(elem, len); };
- 0ÇT  ÇJ	arrayType.Ptr.prototype.safeString = function(seen) {
-		var a, _entry, _key$1;
+ 0ÇL  ÇB	arrayType.Ptr.prototype.safeString = function(seen) {
+		var a, _entry, _key;
 		a = this;
 		if ((_entry = seen[a.CommonType.Id], _entry !== undefined ? _entry.v : false)) {
 			return a.CommonType.Name;
 		}
-		_key$1 = a.CommonType.Id, (seen || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
+		_key = a.CommonType.Id, (seen || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
 		return fmt.Sprintf("[%d]%s", new (go$sliceType(go$emptyInterface))([new Go$Int(a.Len), new Go$String((new typeId(a.Elem)).gobType().safeString(seen))]));
 	};
 	arrayType.prototype.safeString = function(seen) { return this.go$val.safeString(seen); };
@@ -3030,13 +2970,13 @@ newMapTyper	newMapType = function(name) {
 		m.Elem = elem.id();
 	};
 	mapType.prototype.init = function(key, elem) { return this.go$val.init(key, elem); };
- 0Ç¶  Çú	mapType.Ptr.prototype.safeString = function(seen) {
-		var m, _entry, _key$1, key, elem;
+ 0Çû  Çî	mapType.Ptr.prototype.safeString = function(seen) {
+		var m, _entry, _key, key, elem;
 		m = this;
 		if ((_entry = seen[m.CommonType.Id], _entry !== undefined ? _entry.v : false)) {
 			return m.CommonType.Name;
 		}
-		_key$1 = m.CommonType.Id, (seen || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
+		_key = m.CommonType.Id, (seen || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
 		key = (new typeId(m.Key)).gobType().safeString(seen);
 		elem = (new typeId(m.Elem)).gobType().safeString(seen);
 		return fmt.Sprintf("map[%s]%s", new (go$sliceType(go$emptyInterface))([new Go$String(key), new Go$String(elem)]));
@@ -3063,13 +3003,13 @@ newMapTyper	newMapType = function(name) {
 		s.Elem = elem.id();
 	};
 	sliceType.prototype.init = function(elem) { return this.go$val.init(elem); };
- 0Ç?  Ç5	sliceType.Ptr.prototype.safeString = function(seen) {
-		var s, _entry, _key$1;
+ 0Ç7  Ç-	sliceType.Ptr.prototype.safeString = function(seen) {
+		var s, _entry, _key;
 		s = this;
 		if ((_entry = seen[s.CommonType.Id], _entry !== undefined ? _entry.v : false)) {
 			return s.CommonType.Name;
 		}
-		_key$1 = s.CommonType.Id, (seen || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
+		_key = s.CommonType.Id, (seen || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
 		return fmt.Sprintf("[]%s", new (go$sliceType(go$emptyInterface))([new Go$String((new typeId(s.Elem)).gobType().safeString(seen))]));
 	};
 	sliceType.prototype.safeString = function(seen) { return this.go$val.safeString(seen); };
@@ -3079,8 +3019,8 @@ newMapTyper	newMapType = function(name) {
 		return s.safeString(new Go$Map());
 	};
 	sliceType.prototype.string = function() { return this.go$val.string(); };
- 0Ç5  Ç+	structType.Ptr.prototype.safeString = function(seen) {
-		var s, ok, _tuple, _entry, _key$1, str, _ref, _i, _slice, _index, f;
+ 0Ç-  Ç#	structType.Ptr.prototype.safeString = function(seen) {
+		var s, ok, _tuple, _entry, _key, str, _ref, _i, _slice, _index, f;
 		s = this;
 		if (s === (go$ptrType(structType)).nil) {
 			return "<nil>";
@@ -3088,7 +3028,7 @@ newMapTyper	newMapType = function(name) {
 		if (_tuple = (_entry = seen[s.CommonType.Id], _entry !== undefined ? [_entry.v, true] : [false, false]), ok = _tuple[1], ok) {
 			return s.CommonType.Name;
 		}
-		_key$1 = s.CommonType.Id, (seen || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
+		_key = s.CommonType.Id, (seen || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: true };
 		str = s.CommonType.Name + " = struct { ";
 		_ref = s.Field;
 		_i = 0;
@@ -3113,8 +3053,8 @@ newMapTyper	newMapType = function(name) {
 		setTypeId(s);
 		return s;
 	};
- 0Çk newTypeObjectÇT	newTypeObject = function(name, ut, rt) {
-		var err, _tuple, type0, type1, t, _ref, at, _key$1, _tuple$1, mt, _key$2, _tuple$2, _tuple$3, st, _key$3, _tuple$4, st$1, _key$4, _key$5, i, _struct, f, typ, tname, t$1, _tuple$5, gt, err$1;
+ 0Çc newTypeObjectÇL	newTypeObject = function(name, ut, rt) {
+		var err, _tuple, type0, type1, t, _ref, at, _key, _tuple$1, mt, _key$1, _tuple$2, _tuple$3, st, _key$2, _tuple$4, st$1, _key$3, _key$4, i, _struct, f, typ, tname, t$1, _tuple$5, gt, err$1;
 		var go$deferred = [];
 		try {
 			if (!((ut.externalEnc === 0))) {
@@ -3145,7 +3085,7 @@ newMapTyper	newMapType = function(name) {
 				return [(new typeId(tInterface)).gobType(), null];
 			} else if (_ref === 17) {
 				at = newArrayType(name);
-				_key$1 = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: at };
+				_key = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: at };
 				_tuple$1 = getBaseType("", t.Elem()), type0 = _tuple$1[0], err = _tuple$1[1];
 				if (!(go$interfaceIsEqual(err, null))) {
 					return [null, err];
@@ -3154,7 +3094,7 @@ newMapTyper	newMapType = function(name) {
 				return [at, null];
 			} else if (_ref === 21) {
 				mt = newMapType(name);
-				_key$2 = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$2 || go$interfaceNil).go$key()] = { k: _key$2, v: mt };
+				_key$1 = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: mt };
 				_tuple$2 = getBaseType("", t.Key()), type0 = _tuple$2[0], err = _tuple$2[1];
 				if (!(go$interfaceIsEqual(err, null))) {
 					return [null, err];
@@ -3170,7 +3110,7 @@ newMapTyper	newMapType = function(name) {
 					return [(new typeId(tBytes)).gobType(), null];
 				}
 				st = newSliceType(name);
-				_key$3 = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$3 || go$interfaceNil).go$key()] = { k: _key$3, v: st };
+				_key$2 = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$2 || go$interfaceNil).go$key()] = { k: _key$2, v: st };
 				_tuple$4 = getBaseType(t.Elem().Name(), t.Elem()), type0 = _tuple$4[0], err = _tuple$4[1];
 				if (!(go$interfaceIsEqual(err, null))) {
 					return [null, err];
@@ -3179,8 +3119,8 @@ newMapTyper	newMapType = function(name) {
 				return [st, null];
 			} else if (_ref === 25) {
 				st$1 = newStructType(name);
-				_key$4 = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$4 || go$interfaceNil).go$key()] = { k: _key$4, v: st$1 };
-				_key$5 = st$1.CommonType.id(), (idToType || go$throwRuntimeError("assignment to entry in nil map"))[_key$5] = { k: _key$5, v: st$1 };
+				_key$3 = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$3 || go$interfaceNil).go$key()] = { k: _key$3, v: st$1 };
+				_key$4 = st$1.CommonType.id(), (idToType || go$throwRuntimeError("assignment to entry in nil map"))[_key$4] = { k: _key$4, v: st$1 };
 				i = 0;
 				while (i < t.NumField()) {
 					f = (_struct = t.Field(i), new reflect.StructField.Ptr(_struct.Name, _struct.PkgPath, _struct.Type, _struct.Tag, _struct.Offset, _struct.Index, _struct.Anonymous));
@@ -3240,15 +3180,15 @@ isExportedÅì	isExported = function(name) {
 		ut = userType(rt);
 		return getType(name, ut, ut.base);
 	};
- 0Ç` getTypeÇO	getType = function(name, ut, rt) {
-		var _tuple, _entry, typ, present, _tuple$1, err, _key$1;
+ 0ÇX getTypeÇG	getType = function(name, ut, rt) {
+		var _tuple, _entry, typ, present, _tuple$1, err, _key;
 		_tuple = (_entry = types[(rt || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [null, false]), typ = _tuple[0], present = _tuple[1];
 		if (present) {
 			return [typ, null];
 		}
 		_tuple$1 = newTypeObject(name, ut, rt), typ = _tuple$1[0], err = _tuple$1[1];
 		if (go$interfaceIsEqual(err, null)) {
-			_key$1 = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: typ };
+			_key = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: typ };
 		}
 		return [typ, err];
 	};
@@ -3258,15 +3198,15 @@ isExportedÅì	isExported = function(name) {
 			throw go$panic(new Go$String("bootstrap type wrong id: " + (new typeId(got)).name() + " " + (new typeId(got)).string() + " not " + (new typeId(want)).string()));
 		}
 	};
- 0Ç† bootstrapTypeÇâ	bootstrapType = function(name, e, expect) {
-		var rt, _tuple, _entry, present, typ, _key$1;
+ 0Çò bootstrapTypeÇÅ	bootstrapType = function(name, e, expect) {
+		var rt, _tuple, _entry, present, typ, _key;
 		rt = reflect.TypeOf(e).Elem();
 		_tuple = (_entry = types[(rt || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [null, false]), present = _tuple[1];
 		if (present) {
 			throw go$panic(new Go$String("bootstrap type already present: " + name + ", " + rt.String()));
 		}
 		typ = new CommonType.Ptr(name, 0);
-		_key$1 = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: typ };
+		_key = rt, (types || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: typ };
 		setTypeId(typ);
 		checkId(expect, nextId);
 		userType(rt);
@@ -3296,8 +3236,8 @@ isExportedÅì	isExported = function(name) {
 		return "unknown type";
 	};
 	wireType.prototype.string = function() { return this.go$val.string(); };
- 0Ç  getTypeInfoÇ	getTypeInfo = function(ut) {
-		var rt, _tuple, _entry, info, ok, _tuple$1, gt, err, _tuple$2, userType$1, err$1, x$2, gt$1, _ref, _key$1, t, typ, _ref$1, _key$2;
+ 0Ç getTypeInfoÇ˜	getTypeInfo = function(ut) {
+		var rt, _tuple, _entry, info, ok, _tuple$1, gt, err, _tuple$2, userType$1, err$1, x, gt$1, _ref, _key, t, typ, _ref$1, _key$1;
 		rt = ut.base;
 		if (!((ut.externalEnc === 0))) {
 			rt = ut.user;
@@ -3317,7 +3257,7 @@ isExportedÅì	isExported = function(name) {
 			if (!(go$interfaceIsEqual(err$1, null))) {
 				return [(go$ptrType(typeInfo)).nil, err$1];
 			}
-			gt$1 = (x$2 = (new typeId(userType$1.id())).gobType(), (x$2 !== null && x$2.constructor === (go$ptrType(gobEncoderType)) ? x$2.go$val : go$typeAssertionFailed(x$2, (go$ptrType(gobEncoderType)))));
+			gt$1 = (x = (new typeId(userType$1.id())).gobType(), (x !== null && x.constructor === (go$ptrType(gobEncoderType)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(gobEncoderType)))));
 			_ref = ut.externalEnc;
 			if (_ref === 1) {
 				info.wire = new wireType.Ptr((go$ptrType(arrayType)).nil, (go$ptrType(sliceType)).nil, (go$ptrType(structType)).nil, (go$ptrType(mapType)).nil, gt$1, (go$ptrType(gobEncoderType)).nil, (go$ptrType(gobEncoderType)).nil);
@@ -3326,7 +3266,7 @@ isExportedÅì	isExported = function(name) {
 			} else if (_ref === 3) {
 				info.wire = new wireType.Ptr((go$ptrType(arrayType)).nil, (go$ptrType(sliceType)).nil, (go$ptrType(structType)).nil, (go$ptrType(mapType)).nil, (go$ptrType(gobEncoderType)).nil, (go$ptrType(gobEncoderType)).nil, gt$1);
 			}
-			_key$1 = ut.user, (typeInfoMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: info };
+			_key = ut.user, (typeInfoMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: info };
 			return [info, null];
 		}
 		t = (new typeId(info.id)).gobType();
@@ -3343,7 +3283,7 @@ isExportedÅì	isExported = function(name) {
 		} else if (_ref$1 === 25) {
 			info.wire = new wireType.Ptr((go$ptrType(arrayType)).nil, (go$ptrType(sliceType)).nil, (t !== null && t.constructor === (go$ptrType(structType)) ? t.go$val : go$typeAssertionFailed(t, (go$ptrType(structType)))), (go$ptrType(mapType)).nil, (go$ptrType(gobEncoderType)).nil, (go$ptrType(gobEncoderType)).nil, (go$ptrType(gobEncoderType)).nil);
 		}
-		_key$2 = rt, (typeInfoMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$2 || go$interfaceNil).go$key()] = { k: _key$2, v: info };
+		_key$1 = rt, (typeInfoMap || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: info };
 		return [info, null];
 	};
  0Ç mustGetTypeInfoÅ˛	mustGetTypeInfo = function(rt) {
@@ -3354,8 +3294,8 @@ isExportedÅì	isExported = function(name) {
 		}
 		return t;
 	};
- 0ÇI RegisterNameÇ3	RegisterName = go$pkg.RegisterName = function(name, value) {
-		var ut, ok, t, _tuple, _entry, ok$1, n, _tuple$1, _entry$1, _key$1, _key$2;
+ 0ÇA RegisterNameÇ+	RegisterName = go$pkg.RegisterName = function(name, value) {
+		var ut, ok, t, _tuple, _entry, ok$1, n, _tuple$1, _entry$1, _key, _key$1;
 		var go$deferred = [];
 		try {
 			if (name === "") {
@@ -3370,8 +3310,8 @@ isExportedÅì	isExported = function(name) {
 			if (_tuple$1 = (_entry$1 = concreteTypeToName[(ut.base || go$interfaceNil).go$key()], _entry$1 !== undefined ? [_entry$1.v, true] : ["", false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1 && !(n === name)) {
 				throw go$panic(new Go$String(fmt.Sprintf("gob: registering duplicate names for %s: %q != %q", new (go$sliceType(go$emptyInterface))([ut.user, new Go$String(n), new Go$String(name)]))));
 			}
-			_key$1 = name, (nameToConcreteType || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: reflect.TypeOf(value) };
-			_key$2 = ut.base, (concreteTypeToName || go$throwRuntimeError("assignment to entry in nil map"))[(_key$2 || go$interfaceNil).go$key()] = { k: _key$2, v: name };
+			_key = name, (nameToConcreteType || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: reflect.TypeOf(value) };
+			_key$1 = ut.base, (concreteTypeToName || go$throwRuntimeError("assignment to entry in nil map"))[(_key$1 || go$interfaceNil).go$key()] = { k: _key$1, v: name };
 		} catch(go$err) {
 			go$pushErr(go$err);
 		} finally {
@@ -3435,7 +3375,66 @@ isExportedÅì	isExported = function(name) {
 		Register((go$sliceType(Go$Bool)).nil);
 		Register((go$sliceType(Go$String)).nil);
 	};
- 0    0Ç±   Çß		var _tuple, iop, uop, _ref, _ref$1, x$2, x$3, x$4, x$5, x$6, x$7, _ref$2, _i, _keys, _entry, v, k, _key$1;
+ 0 
+errBadUint  0 
+errBadType  0 errRange  0 
+decOpTable  0 decIgnoreOpMap  0 emptyStructType  0 errBadCount  08 	debugFunc '		debugFunc = go$throwNilPointerError;
+0 
+encOpTable  0 spaceForLength  0= userTypeLock )		userTypeLock = new sync.RWMutex.Ptr();
+0 userTypeCache  0 gobEncoderInterfaceType  0 gobDecoderInterfaceType  0$ binaryMarshalerInterfaceType  0& binaryUnmarshalerInterfaceType  0" textMarshalerInterfaceType  0$ textUnmarshalerInterfaceType  0 nextId 		nextId = 0;
+03 typeLock #		typeLock = new sync.Mutex.Ptr();
+0 types  0 idToType  02 builtinIdToType 		builtinIdToType = false;
+0 tBool  0 tInt  0 tUint  0 tFloat  0 tBytes  0 tString  0 tComplex  0 
+tInterface  0 
+tReserved7  0 
+tReserved6  0 
+tReserved5  0 
+tReserved4  0 
+tReserved3  0 
+tReserved2  0 
+tReserved1  0 	tWireType  0M wireTypeUserInfo 5		wireTypeUserInfo = (go$ptrType(userTypeInfo)).nil;
+0 typeInfoMap  0= registerLock )		registerLock = new sync.RWMutex.Ptr();
+0 nameToConcreteType  0 concreteTypeToName  0Q   I		errBadUint = errors.New("gob: encoded unsigned integer out of range");
+0M   E		errBadType = errors.New("gob: unknown type id or corrupted data");
+0O   G		errRange = errors.New("gob: bad data: field numbers out of bounds");
+0Ç„   ÇŸ		decOpTable = go$toNativeArray("Func", [go$throwNilPointerError, decBool, go$throwNilPointerError, decInt8, decInt16, decInt32, decInt64, go$throwNilPointerError, decUint8, decUint16, decUint32, decUint64, go$throwNilPointerError, decFloat32, decFloat64, decComplex64, decComplex128, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, decString]);
+0(    		userTypeCache = new Go$Map();
+0Y   Q		gobEncoderInterfaceType = reflect.TypeOf((go$ptrType(GobEncoder)).nil).Elem();
+0Y   Q		gobDecoderInterfaceType = reflect.TypeOf((go$ptrType(GobDecoder)).nil).Elem();
+0l   d		binaryMarshalerInterfaceType = reflect.TypeOf((go$ptrType(encoding.BinaryMarshaler)).nil).Elem();
+0p   h		binaryUnmarshalerInterfaceType = reflect.TypeOf((go$ptrType(encoding.BinaryUnmarshaler)).nil).Elem();
+0    		types = new Go$Map();
+0#   		idToType = new Go$Map();
+0G   ?		tBool = bootstrapType("bool", (go$ptrType(Go$Bool)).nil, 1);
+0D   <		tInt = bootstrapType("int", (go$ptrType(Go$Int)).nil, 2);
+0G   ?		tUint = bootstrapType("uint", (go$ptrType(Go$Uint)).nil, 3);
+0L   D		tFloat = bootstrapType("float", (go$ptrType(Go$Float64)).nil, 4);
+0Z   R		tBytes = bootstrapType("bytes", (go$ptrType((go$sliceType(Go$Uint8)))).nil, 5);
+0M   E		tString = bootstrapType("string", (go$ptrType(Go$String)).nil, 6);
+0S   K		tComplex = bootstrapType("complex", (go$ptrType(Go$Complex128)).nil, 7);
+0Ç„   ÇŸ		var _map, _key;
+		decIgnoreOpMap = (_map = new Go$Map(), _key = tBool, _map[_key] = { k: _key, v: ignoreUint }, _key = tInt, _map[_key] = { k: _key, v: ignoreUint }, _key = tUint, _map[_key] = { k: _key, v: ignoreUint }, _key = tFloat, _map[_key] = { k: _key, v: ignoreUint }, _key = tBytes, _map[_key] = { k: _key, v: ignoreUint8Array }, _key = tString, _map[_key] = { k: _key, v: ignoreUint8Array }, _key = tComplex, _map[_key] = { k: _key, v: ignoreTwoUints }, _map);
+0o   g		var x;
+		emptyStructType = reflect.TypeOf((x = new emptyStruct.Ptr(), new x.constructor.Struct(x)));
+0>   6		errBadCount = errors.New("invalid message length");
+0Çµ   Ç´		encOpTable = go$toNativeArray("Func", [go$throwNilPointerError, encBool, encInt, encInt8, encInt16, encInt32, encInt64, encUint, encUint8, encUint16, encUint32, encUint64, encUintptr, encFloat32, encFloat64, encComplex64, encComplex128, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, go$throwNilPointerError, encString]);
+0Z   R		spaceForLength = (go$sliceType(Go$Uint8)).make(9, 0, function() { return 0; });
+0h   `		textMarshalerInterfaceType = reflect.TypeOf((go$ptrType(encoding.TextMarshaler)).nil).Elem();
+0l   d		textUnmarshalerInterfaceType = reflect.TypeOf((go$ptrType(encoding.TextUnmarshaler)).nil).Elem();
+0[   S		tInterface = bootstrapType("interface", (go$ptrType(go$emptyInterface)).nil, 8);
+0ÅÄ   x		tReserved7 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r7", "encoding/gob", Go$Int, ""]])))).nil, 9);
+0ÅÅ   y		tReserved6 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r6", "encoding/gob", Go$Int, ""]])))).nil, 10);
+0ÅÅ   y		tReserved5 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r5", "encoding/gob", Go$Int, ""]])))).nil, 11);
+0ÅÅ   y		tReserved4 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r4", "encoding/gob", Go$Int, ""]])))).nil, 12);
+0ÅÅ   y		tReserved3 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r3", "encoding/gob", Go$Int, ""]])))).nil, 13);
+0ÅÅ   y		tReserved2 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r2", "encoding/gob", Go$Int, ""]])))).nil, 14);
+0ÅÅ   y		tReserved1 = bootstrapType("_reserved1", (go$ptrType((go$structType([["r1", "encoding/gob", Go$Int, ""]])))).nil, 15);
+0&   		typeInfoMap = new Go$Map();
+0Ç[   ÇQ		var x$1;
+		tWireType = mustGetTypeInfo(reflect.TypeOf((x$1 = new wireType.Ptr((go$ptrType(arrayType)).nil, (go$ptrType(sliceType)).nil, (go$ptrType(structType)).nil, (go$ptrType(mapType)).nil, (go$ptrType(gobEncoderType)).nil, (go$ptrType(gobEncoderType)).nil, (go$ptrType(gobEncoderType)).nil), new x$1.constructor.Struct(x$1)))).id;
+0-   %		nameToConcreteType = new Go$Map();
+0-   %		concreteTypeToName = new Go$Map();
+0    0Ç±   Çß		var _tuple, iop, uop, _ref, _ref$1, x$2, x$3, x$4, x$5, x$6, x$7, _ref$2, _i, _keys, _entry, v, k, _key$1;
 		_tuple = [go$throwNilPointerError, go$throwNilPointerError], iop = _tuple[0], uop = _tuple[1];
 		_ref = reflect.TypeOf(new Go$Int(0)).Bits();
 		if (_ref === 32) {

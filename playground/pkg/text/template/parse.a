@@ -1,4 +1,4 @@
-0É∫Ttext/template/parseÇ2Wpackage parse
+0É∫Ltext/template/parseÇ2Wpackage parse
 import list "container/list"
 import fmt "fmt"
 import strings "strings"
@@ -191,7 +191,7 @@ func (? *@"container/list".Element) @"container/list".Next() (? *@"container/lis
 func (? *@"container/list".Element) @"container/list".Prev() (? *@"container/list".Element)
 $$
 0Å§runtimeerrorssync/atomicsynciounicodeunicode/utf8bytescontainer/listmathsyscalltimeosstrconvreflectfmtstringstext/template/parse0Åö0container/listlist0
-fmtfmt0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0strconvstrconv0runtimeruntime0ÉÜô0ÇA itemÇ	item = go$pkg.item = go$newType(0, "Struct", "parse.item", "item", "text/template/parse", function(typ_, pos_, val_) {
+fmtfmt0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0strconvstrconv0runtimeruntime0ÉÜë0ÇA itemÇ	item = go$pkg.item = go$newType(0, "Struct", "parse.item", "item", "text/template/parse", function(typ_, pos_, val_) {
 		this.go$val = this;
 		this.typ = typ_ !== undefined ? typ_ : 0;
 		this.pos = pos_ !== undefined ? pos_ : 0;
@@ -566,10 +566,6 @@ BranchNodeÇD	BranchNode = go$pkg.BranchNode = go$newType(0, "Struct", "parse.B
 	});
 Ç¯		Tree.init([["Name", "", Go$String, ""], ["ParseName", "", Go$String, ""], ["Root", "", (go$ptrType(ListNode)), ""], ["text", "text/template/parse", Go$String, ""], ["funcs", "text/template/parse", (go$sliceType((go$mapType(Go$String, go$emptyInterface)))), ""], ["lex", "text/template/parse", (go$ptrType(lexer)), ""], ["token", "text/template/parse", (go$arrayType(item, 3)), ""], ["peekCount", "text/template/parse", Go$Int, ""], ["vars", "text/template/parse", (go$sliceType(Go$String)), ""]]);
 		(go$ptrType(Tree)).methods = [["Copy", "", [], [(go$ptrType(Tree))], false], ["ErrorContext", "", [Node], [Go$String, Go$String], false], ["Parse", "", [Go$String, Go$String, Go$String, (go$mapType(Go$String, (go$ptrType(Tree)))), (go$sliceType((go$mapType(Go$String, go$emptyInterface))))], [(go$ptrType(Tree)), go$error], true], ["action", "text/template/parse", [], [Node], false], ["add", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["backup", "text/template/parse", [], [], false], ["backup2", "text/template/parse", [item], [], false], ["backup3", "text/template/parse", [item, item], [], false], ["command", "text/template/parse", [], [(go$ptrType(CommandNode))], false], ["elseControl", "text/template/parse", [], [Node], false], ["endControl", "text/template/parse", [], [Node], false], ["error", "text/template/parse", [go$error], [], false], ["errorf", "text/template/parse", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["expect", "text/template/parse", [itemType, Go$String], [item], false], ["expectOneOf", "text/template/parse", [itemType, itemType, Go$String], [item], false], ["hasFunction", "text/template/parse", [Go$String], [Go$Bool], false], ["ifControl", "text/template/parse", [], [Node], false], ["itemList", "text/template/parse", [], [(go$ptrType(ListNode)), Node], false], ["next", "text/template/parse", [], [item], false], ["nextNonSpace", "text/template/parse", [], [item], false], ["operand", "text/template/parse", [], [Node], false], ["parse", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [Node], false], ["parseControl", "text/template/parse", [Go$Bool, Go$String], [Pos, Go$Int, (go$ptrType(PipeNode)), (go$ptrType(ListNode)), (go$ptrType(ListNode))], false], ["parseDefinition", "text/template/parse", [(go$mapType(Go$String, (go$ptrType(Tree))))], [], false], ["peek", "text/template/parse", [], [item], false], ["peekNonSpace", "text/template/parse", [], [item], false], ["pipeline", "text/template/parse", [Go$String], [(go$ptrType(PipeNode))], false], ["popVars", "text/template/parse", [Go$Int], [], false], ["rangeControl", "text/template/parse", [], [Node], false], ["recover", "text/template/parse", [(go$ptrType(go$error))], [], false], ["startParse", "text/template/parse", [(go$sliceType((go$mapType(Go$String, go$emptyInterface)))), (go$ptrType(lexer))], [], false], ["stopParse", "text/template/parse", [], [], false], ["templateControl", "text/template/parse", [], [Node], false], ["term", "text/template/parse", [], [Node], false], ["textOrAction", "text/template/parse", [], [Node], false], ["unexpected", "text/template/parse", [item, Go$String], [], false], ["useVar", "text/template/parse", [Pos, Go$String], [Node], false], ["withControl", "text/template/parse", [], [Node], false]];
-0 key  0 
-textFormat  0ÇÒ   ÇÁ		var _map, _key;
-		key = (_map = new Go$Map(), _key = ".", _map[_key] = { k: _key, v: 21 }, _key = "define", _map[_key] = { k: _key, v: 22 }, _key = "else", _map[_key] = { k: _key, v: 23 }, _key = "end", _map[_key] = { k: _key, v: 24 }, _key = "if", _map[_key] = { k: _key, v: 25 }, _key = "range", _map[_key] = { k: _key, v: 27 }, _key = "nil", _map[_key] = { k: _key, v: 26 }, _key = "template", _map[_key] = { k: _key, v: 28 }, _key = "with", _map[_key] = { k: _key, v: 29 }, _map);
-0   		textFormat = "%s";
 0Çå  ÇÇ	item.Ptr.prototype.String = function() {
 		var _struct, i;
 		i = (_struct = this, new item.Ptr(_struct.typ, _struct.pos, _struct.val));
@@ -1804,12 +1800,12 @@ newCommandb	newCommand = function(pos) {
 		}
 	};
 	Tree.prototype.Parse = function(text, leftDelim, rightDelim, treeSet, funcs) { return this.go$val.Parse(text, leftDelim, rightDelim, treeSet, funcs); };
- 0Ç|  Çr	Tree.Ptr.prototype.add = function(treeSet) {
-		var t, _entry, tree, _key$1;
+ 0Çt  Çj	Tree.Ptr.prototype.add = function(treeSet) {
+		var t, _entry, tree, _key;
 		t = this;
 		tree = (_entry = treeSet[t.Name], _entry !== undefined ? _entry.v : (go$ptrType(Tree)).nil);
 		if (tree === (go$ptrType(Tree)).nil || IsEmptyTree(tree.Root)) {
-			_key$1 = t.Name, (treeSet || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: t };
+			_key = t.Name, (treeSet || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: t };
 			return;
 		}
 		if (!IsEmptyTree(t.Root)) {
@@ -2255,4 +2251,8 @@ newCommandb	newCommand = function(pos) {
 		return null;
 	};
 	Tree.prototype.useVar = function(pos, name) { return this.go$val.useVar(pos, name); };
- 0    0    0 
+ 0 key  0 
+textFormat  0ÇÒ   ÇÁ		var _map, _key;
+		key = (_map = new Go$Map(), _key = ".", _map[_key] = { k: _key, v: 21 }, _key = "define", _map[_key] = { k: _key, v: 22 }, _key = "else", _map[_key] = { k: _key, v: 23 }, _key = "end", _map[_key] = { k: _key, v: 24 }, _key = "if", _map[_key] = { k: _key, v: 25 }, _key = "range", _map[_key] = { k: _key, v: 27 }, _key = "nil", _map[_key] = { k: _key, v: 26 }, _key = "template", _map[_key] = { k: _key, v: 28 }, _key = "with", _map[_key] = { k: _key, v: 29 }, _map);
+0   		textFormat = "%s";
+0    0    0 

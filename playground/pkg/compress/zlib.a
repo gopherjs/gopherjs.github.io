@@ -104,9 +104,6 @@ $$
 	});
 ‚³		Writer.init([["w", "compress/zlib", io.Writer, ""], ["level", "compress/zlib", Go$Int, ""], ["dict", "compress/zlib", (go$sliceType(Go$Uint8)), ""], ["compressor", "compress/zlib", (go$ptrType(flate.Writer)), ""], ["digest", "compress/zlib", hash.Hash32, ""], ["err", "compress/zlib", go$error, ""], ["scratch", "compress/zlib", (go$arrayType(Go$Uint8, 4)), ""], ["wroteHeader", "compress/zlib", Go$Bool, ""]]);
 		(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["writeHeader", "compress/zlib", [], [go$error], false]];
-0    0    0    0E   =		go$pkg.ErrChecksum = errors.New("zlib: invalid checksum");
-0I   A		go$pkg.ErrDictionary = errors.New("zlib: invalid dictionary");
-0A   9		go$pkg.ErrHeader = errors.New("zlib: invalid header");
 0| 	NewReaderk	NewReader = go$pkg.NewReader = function(r) {
 		return NewReaderDict(r, (go$sliceType(Go$Uint8)).nil);
 	};
@@ -323,4 +320,7 @@ $$
 		return z.err;
 	};
 	Writer.prototype.Close = function() { return this.go$val.Close(); };
- 0    0    0 
+ 0    0    0    0E   =		go$pkg.ErrChecksum = errors.New("zlib: invalid checksum");
+0I   A		go$pkg.ErrDictionary = errors.New("zlib: invalid dictionary");
+0A   9		go$pkg.ErrHeader = errors.New("zlib: invalid header");
+0    0    0 

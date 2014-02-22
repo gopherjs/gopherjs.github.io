@@ -227,8 +227,6 @@ hash/crc32crc320ioio0timetime0
 	});
 ‚u		Writer.init([["", "", Header, ""], ["w", "compress/gzip", io.Writer, ""], ["level", "compress/gzip", Go$Int, ""], ["wroteHeader", "compress/gzip", Go$Bool, ""], ["compressor", "compress/gzip", (go$ptrType(flate.Writer)), ""], ["digest", "compress/gzip", hash.Hash32, ""], ["size", "compress/gzip", Go$Uint32, ""], ["closed", "compress/gzip", Go$Bool, ""], ["buf", "compress/gzip", (go$arrayType(Go$Uint8, 10)), ""], ["err", "compress/gzip", go$error, ""]]);
 		(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["init", "compress/gzip", [io.Writer, Go$Int], [], false], ["writeBytes", "compress/gzip", [(go$sliceType(Go$Uint8))], [go$error], false], ["writeString", "compress/gzip", [Go$String], [go$error], false]];
-0    0    0E   =		go$pkg.ErrChecksum = errors.New("gzip: invalid checksum");
-0A   9		go$pkg.ErrHeader = errors.New("gzip: invalid header");
 0‚ 
 makeReader‚ 	makeReader = function(r) {
 		var ok, _tuple, rr;
@@ -620,4 +618,6 @@ makeReader‚ 	makeReader = function(r) {
 		return z.err;
 	};
 	Writer.prototype.Close = function() { return this.go$val.Close(); };
- 0    0    0 
+ 0    0    0E   =		go$pkg.ErrChecksum = errors.New("gzip: invalid checksum");
+0A   9		go$pkg.ErrHeader = errors.New("gzip: invalid header");
+0    0    0 
