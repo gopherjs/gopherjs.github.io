@@ -1,4 +1,4 @@
-0Éˇ=runtimeÇ=Vpackage runtime
+0ÉˇruntimeÇ=Vpackage runtime
 func @"".BlockProfile(@"".p []@"".BlockProfileRecord) (@"".n int, @"".ok bool)
 type @"".BlockProfileRecord struct { @"".Count int64; @"".Cycles int64; ? @"".StackRecord }
 func @"".Breakpoint() ()
@@ -128,7 +128,7 @@ type @"".waitq struct { @"".first *@"".sudog; @"".last *@"".sudog }
 type @"".wincall struct { @"".fn func (? @"unsafe".Pointer) (); @"".n uint64; @"".args @"unsafe".Pointer; @"".r1 uint64; @"".r2 uint64; @"".err uint64 }
 type @"".wincallbackcontext struct { @"".gobody @"unsafe".Pointer; @"".argsize uint64; @"".restorestack uint64 }
 $$
-0	runtime0 0É¡∆0ÇU MemProfileRecordÇ£	MemProfileRecord = go$pkg.MemProfileRecord = go$newType(0, "Struct", "runtime.MemProfileRecord", "MemProfileRecord", "runtime", function(AllocBytes_, FreeBytes_, AllocObjects_, FreeObjects_, Stack0_) {
+0	runtime0 0É¡ï0ÇU MemProfileRecordÇ£	MemProfileRecord = go$pkg.MemProfileRecord = go$newType(0, "Struct", "runtime.MemProfileRecord", "MemProfileRecord", "runtime", function(AllocBytes_, FreeBytes_, AllocObjects_, FreeObjects_, Stack0_) {
 		this.go$val = this;
 		this.AllocBytes = AllocBytes_ !== undefined ? AllocBytes_ : new Go$Int64(0, 0);
 		this.FreeBytes = FreeBytes_ !== undefined ? FreeBytes_ : new Go$Int64(0, 0);
@@ -1047,8 +1047,8 @@ NumCgoCallt	NumCgoCall = go$pkg.NumCgoCall = function() {
 		return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0);
 	};
 	MemProfileRecord.prototype.Stack = function() { return this.go$val.Stack(); };
- 0Åï 
-MemProfileÅÇ	MemProfile = go$pkg.MemProfile = function(p$1, inuseZero) {
+ 0ÅÜ 
+MemProfilet	MemProfile = go$pkg.MemProfile = function() {
 		throw go$panic("Native function not implemented: MemProfile");
 	};
  0Ç™  Ç†	StackRecord.Ptr.prototype.Stack = function() {
@@ -1067,26 +1067,26 @@ MemProfileÅÇ	MemProfile = go$pkg.MemProfile = function(p$1, inuseZero) {
 		return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0);
 	};
 	StackRecord.prototype.Stack = function() { return this.go$val.Stack(); };
- 0ÅÆ ThreadCreateProfileÅí	ThreadCreateProfile = go$pkg.ThreadCreateProfile = function(p$1) {
+ 0Å´ ThreadCreateProfileÅè	ThreadCreateProfile = go$pkg.ThreadCreateProfile = function() {
 		throw go$panic("Native function not implemented: ThreadCreateProfile");
 	};
- 0Å¢ GoroutineProfileÅâ	GoroutineProfile = go$pkg.GoroutineProfile = function(p$1) {
+ 0Åü GoroutineProfileÅÜ	GoroutineProfile = go$pkg.GoroutineProfile = function() {
 		throw go$panic("Native function not implemented: GoroutineProfile");
 	};
  0ÅÜ 
 CPUProfilet	CPUProfile = go$pkg.CPUProfile = function() {
 		throw go$panic("Native function not implemented: CPUProfile");
 	};
- 0Å• SetCPUProfileRateÅã	SetCPUProfileRate = go$pkg.SetCPUProfileRate = function(hz) {
+ 0Å£ SetCPUProfileRateÅâ	SetCPUProfileRate = go$pkg.SetCPUProfileRate = function() {
 		throw go$panic("Native function not implemented: SetCPUProfileRate");
 	};
- 0ÅØ SetBlockProfileRateÅì	SetBlockProfileRate = go$pkg.SetBlockProfileRate = function(rate) {
+ 0Å´ SetBlockProfileRateÅè	SetBlockProfileRate = go$pkg.SetBlockProfileRate = function() {
 		throw go$panic("Native function not implemented: SetBlockProfileRate");
 	};
- 0Åë BlockProfile}	BlockProfile = go$pkg.BlockProfile = function(p$1) {
+ 0Åé BlockProfilez	BlockProfile = go$pkg.BlockProfile = function() {
 		throw go$panic("Native function not implemented: BlockProfile");
 	};
- 0z Stackm	Stack = go$pkg.Stack = function(buf, all) {
+ 0r Stacke	Stack = go$pkg.Stack = function() {
 		throw go$panic("Native function not implemented: Stack");
 	};
  0Å´  Å¢	TypeAssertionError.Ptr.prototype.RuntimeError = function() {
@@ -1203,10 +1203,10 @@ typestring`	typestring = function() {
 			var parts = line.substring(line.indexOf("(") + 1, line.indexOf(")")).split(":");
 			return [0, parts[0], parseInt(parts[1]), true];
 		};
- 0ÅÇ Callerss	Callers = go$pkg.Callers = function(skip, pc) {
+ 0z Callersk	Callers = go$pkg.Callers = function() {
 		throw go$panic("Native function not implemented: Callers");
 	};
- 0ÅÑ 	FuncForPCs	FuncForPC = go$pkg.FuncForPC = function(pc) {
+ 0ÅÇ 	FuncForPCq	FuncForPC = go$pkg.FuncForPC = function() {
 		throw go$panic("Native function not implemented: FuncForPC");
 	};
  0Å•  Åú	Func.Ptr.prototype.Name = function() {

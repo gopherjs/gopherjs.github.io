@@ -1,4 +1,4 @@
-0Éê¿syscallÉ%:package syscall
+0Éê6syscallÉ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -1958,8 +1958,7 @@ func (? *@"sync".Mutex) @"sync".Lock() ()
 func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
-0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$10Ék
-0Ç£ ivalueÇ'	ivalue = go$pkg.ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
+0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$10ÉjÄ0Ç£ ivalueÇ'	ivalue = go$pkg.ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.value = value_ !== undefined ? value_ : 0;
@@ -2729,7 +2728,7 @@ BpfTimeoutÇä	BpfTimeout = go$pkg.BpfTimeout = function(fd) {
 		}
 		return null;
 	};
- 0p setenv_c`	setenv_c = function(k, v) {
+ 0l setenv_c\	setenv_c = function() {
 		throw go$panic("Native function not implemented: setenv_c");
 	};
  0ÇÚ copyenvÇ·	copyenv = function() {
@@ -4385,20 +4384,20 @@ UtimesNanoÇ9	UtimesNano = go$pkg.UtimesNano = function(path, ts) {
 		}
 		return [written, err];
 	};
- 0Å¶ Syscall9Åï	Syscall9 = go$pkg.Syscall9 = function(num, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+ 0~ Syscall9n	Syscall9 = go$pkg.Syscall9 = function() {
 		throw go$panic("Native function not implemented: Syscall9");
 	};
- 0Åä Syscall{	Syscall = go$pkg.Syscall = function(trap, a1, a2, a3) {
+ 0z Syscallk	Syscall = go$pkg.Syscall = function() {
 		throw go$panic("Native function not implemented: Syscall");
 	};
- 0Åõ Syscall6Åä	Syscall6 = go$pkg.Syscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
+ 0~ Syscall6n	Syscall6 = go$pkg.Syscall6 = function() {
 		throw go$panic("Native function not implemented: Syscall6");
 	};
- 0Åó 
-RawSyscallÅÑ	RawSyscall = go$pkg.RawSyscall = function(trap, a1, a2, a3) {
+ 0ÅÜ 
+RawSyscallt	RawSyscall = go$pkg.RawSyscall = function() {
 		throw go$panic("Native function not implemented: RawSyscall");
 	};
- 0Åß RawSyscall6Åì	RawSyscall6 = go$pkg.RawSyscall6 = function(trap, a1, a2, a3, a4, a5, a6) {
+ 0Åä RawSyscall6w	RawSyscall6 = go$pkg.RawSyscall6 = function() {
 		throw go$panic("Native function not implemented: RawSyscall6");
 	};
  0ÇO  ÇE	mmapper.Ptr.prototype.Mmap = function(fd, offset, length, prot, flags) {

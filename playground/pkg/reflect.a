@@ -1,4 +1,4 @@
-0Éñ¿reflectÇE&package reflect
+0Éñ~reflectÇE&package reflect
 import strconv "strconv"
 import sync "sync"
 import math "math"
@@ -287,7 +287,7 @@ func (? *@"".uncommonType) @"".PkgPath() (? string)
 func (? *@"".uncommonType) @"".uncommon() (? *@"".uncommonType)
 type @"".visit struct { @"".a1 uintptr; @"".a2 uintptr; @"".typ @"".Type }
 $$
-0Jruntimematherrorsunicode/utf8strconvsync/atomicsyncreflect0D0strconvstrconv0syncsync0mathmath0runtimeruntime0ÉPÙ0Çè visitÇ	visit = go$pkg.visit = go$newType(0, "Struct", "reflect.visit", "visit", "reflect", function(a1_, a2_, typ_) {
+0Jruntimematherrorsunicode/utf8strconvsync/atomicsyncreflect0D0strconvstrconv0syncsync0mathmath0runtimeruntime0ÉP≤0Çè visitÇ	visit = go$pkg.visit = go$newType(0, "Struct", "reflect.visit", "visit", "reflect", function(a1_, a2_, typ_) {
 		this.go$val = this;
 		this.a1 = a1_ !== undefined ? a1_ : 0;
 		this.a2 = a2_ !== undefined ? a2_ : 0;
@@ -1345,7 +1345,7 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 		return t;
 	};
 	rtype.prototype.common = function() { return this.go$val.common(); };
- 0Ç.  Ç$	uncommonType.Ptr.prototype.Method = function(i) {
+ 0Ç,  Ç"	uncommonType.Ptr.prototype.Method = function(i) {
 			if (this === uncommonType.Ptr.nil || i < 0 || i >= this.methods.length) {
 				throw go$panic("reflect: Method index out of range");
 			}
@@ -1366,7 +1366,7 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 			}
 			return new Method.Ptr(p.name.go$get(), pkgPath, mt, new Value.Ptr(mt, fn, fl), i);
 		};
-	uncommonType.prototype.Method = function(i) { return this.go$val.Method(i); };
+	uncommonType.prototype.Method = function() { return this.go$val.Method(); };
  0Ç  Å¸	uncommonType.Ptr.prototype.NumMethod = function() {
 		var t;
 		t = this;
@@ -2439,8 +2439,8 @@ storeIwordÇ	storeIword = function(p, w, n) {
 	};
 	Value.prototype.CallSlice = function(in$1) { return this.go$val.CallSlice(in$1); };
  0Ç
-Ï  Ç
-‚	Value.Ptr.prototype.call = function(op, args) {
+‹  Ç
+“	Value.Ptr.prototype.call = function(op, args) {
 			var t = this.typ, fn, rcvr;
 
 			if ((this.flag & flagMethod) !== 0) {
@@ -2527,7 +2527,7 @@ storeIwordÇ	storeIword = function(p, w, n) {
 			}
 			return new (go$sliceType(Value))(results);
 		};
-	Value.prototype.call = function(op, in$1) { return this.go$val.call(op, in$1); };
+	Value.prototype.call = function() { return this.go$val.call(); };
  0Ç callReflectÇ
 ˇ	callReflect = function(ctxt, frame) {
 		var ftyp, f, ptr, off, in$1, _ref, _i, _slice, _index, arg, typ, v, _struct, out, _ref$1, _i$1, _slice$1, _index$1, arg$1, i, typ$1, _slice$2, _index$2, _struct$1, v$1, _slice$3, _index$3, addr;
@@ -2728,7 +2728,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			throw go$panic(new ValueError.Ptr("reflect.Value.Elem", this.kind()));
 		};
 	Value.prototype.Elem = function() { return this.go$val.Elem(); };
- 0Çd  ÇZ	Value.Ptr.prototype.Field = function(i) {
+ 0Çb  ÇX	Value.Ptr.prototype.Field = function(i) {
 			this.mustBe(Struct);
 			var tt = this.typ.structType;
 			if (i < 0 || i >= tt.fields.length) {
@@ -2748,7 +2748,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			return new Value.Ptr(typ, this.val[name], fl);
 		};
-	Value.prototype.Field = function(i) { return this.go$val.Field(i); };
+	Value.prototype.Field = function() { return this.go$val.Field(); };
  0Çº  Ç≤	Value.Ptr.prototype.FieldByIndex = function(index) {
 		var _struct, v, _ref, _i, _slice, _index, x, i, _struct$1, _struct$2, _struct$3;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -2808,7 +2808,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		throw go$panic(new ValueError.Ptr("reflect.Value.Float", k));
 	};
 	Value.prototype.Float = function() { return this.go$val.Float(); };
- 0ÇX  ÇN	Value.Ptr.prototype.Index = function(i) {
+ 0ÇV  ÇL	Value.Ptr.prototype.Index = function(i) {
 			var k = this.kind();
 			switch (k) {
 			case Array:
@@ -2847,7 +2847,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			throw go$panic(new ValueError.Ptr("reflect.Value.Index", k));
 		};
-	Value.prototype.Index = function(i) { return this.go$val.Index(i); };
+	Value.prototype.Index = function() { return this.go$val.Index(); };
  0ÇB  Ç8	Value.Ptr.prototype.Int = function() {
 		var _struct, v, k, p, v$1, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3191,7 +3191,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		return selected;
 	};
 	Value.prototype.send = function(x, nb) { return this.go$val.send(x, nb); };
- 0Ç,  Ç"	Value.Ptr.prototype.Set = function(x) {
+ 0Ç*  Ç 	Value.Ptr.prototype.Set = function(x) {
 			this.mustBeAssignable();
 			x.mustBeExported();
 			if ((this.flag & flagIndir) !== 0) {
@@ -3212,7 +3212,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			this.val = x.val;
 		};
-	Value.prototype.Set = function(x) { return this.go$val.Set(x); };
+	Value.prototype.Set = function() { return this.go$val.Set(); };
  0ÇC  Ç9	Value.Ptr.prototype.SetBool = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3243,7 +3243,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		v.val.go$set(x);
 	};
 	Value.prototype.setRunes = function(x) { return this.go$val.setRunes(x); };
- 0Çå  ÇÇ	Value.Ptr.prototype.SetComplex = function(x) {
+ 0Çä  ÇÄ	Value.Ptr.prototype.SetComplex = function(x) {
 			this.mustBeAssignable();
 			var k = this.kind();
 			switch (k) {
@@ -3254,7 +3254,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetComplex", k));
 		};
-	Value.prototype.SetComplex = function(x) { return this.go$val.SetComplex(x); };
+	Value.prototype.SetComplex = function() { return this.go$val.SetComplex(); };
  0Çı  ÇÎ	Value.Ptr.prototype.SetFloat = function(x) {
 		var _struct, v, k, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3270,7 +3270,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		}
 	};
 	Value.prototype.SetFloat = function(x) { return this.go$val.SetFloat(x); };
- 0ÇŒ  Çƒ	Value.Ptr.prototype.SetInt = function(x) {
+ 0ÇÃ  Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 			this.mustBeAssignable();
 			var k = this.kind();
 			switch (k) {
@@ -3286,8 +3286,8 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetInt", k));
 		};
-	Value.prototype.SetInt = function(x) { return this.go$val.SetInt(x); };
- 0ÇË  Çﬁ	Value.Ptr.prototype.SetLen = function(n) {
+	Value.prototype.SetInt = function() { return this.go$val.SetInt(); };
+ 0ÇÊ  Ç‹	Value.Ptr.prototype.SetLen = function(n) {
 			this.mustBeAssignable();
 			this.mustBe(Slice);
 			var s = this.val.go$get();
@@ -3300,8 +3300,8 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			newSlice.capacity = s.capacity;
 			this.val.go$set(newSlice);
 		};
-	Value.prototype.SetLen = function(n) { return this.go$val.SetLen(n); };
- 0ÇÔ  ÇÂ	Value.Ptr.prototype.SetCap = function(n) {
+	Value.prototype.SetLen = function() { return this.go$val.SetLen(); };
+ 0ÇÌ  Ç„	Value.Ptr.prototype.SetCap = function(n) {
 			this.mustBeAssignable();
 			this.mustBe(Slice);
 			var s = this.val.go$get();
@@ -3314,7 +3314,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			newSlice.capacity = n;
 			this.val.go$set(newSlice);
 		};
-	Value.prototype.SetCap = function(n) { return this.go$val.SetCap(n); };
+	Value.prototype.SetCap = function() { return this.go$val.SetCap(); };
  0Ç¿  Ç∂	Value.Ptr.prototype.SetMapIndex = function(key, val) {
 		var _struct, v, tt, _struct$1, _struct$2;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3330,7 +3330,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		mapassign(v.typ, v.iword(), key.iword(), val.iword(), !(val.typ === (go$ptrType(rtype)).nil));
 	};
 	Value.prototype.SetMapIndex = function(key, val) { return this.go$val.SetMapIndex(key, val); };
- 0Çﬁ  Ç‘	Value.Ptr.prototype.SetUint = function(x) {
+ 0Ç‹  Ç“	Value.Ptr.prototype.SetUint = function(x) {
 			this.mustBeAssignable();
 			var k = this.kind();
 			switch (k) {
@@ -3347,7 +3347,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			}
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetUint", k));
 		};
-	Value.prototype.SetUint = function(x) { return this.go$val.SetUint(x); };
+	Value.prototype.SetUint = function() { return this.go$val.SetUint(); };
  0ÇM  ÇC	Value.Ptr.prototype.SetPointer = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3364,7 +3364,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		v.val.go$set(x);
 	};
 	Value.prototype.SetString = function(x) { return this.go$val.SetString(x); };
- 0Çb  ÇX	Value.Ptr.prototype.Slice = function(i, j) {
+ 0ÇZ  ÇP	Value.Ptr.prototype.Slice = function(i, j) {
 			var typ, s, cap;
 			var kind = this.kind();
 			switch (kind) {
@@ -3399,8 +3399,8 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			var fl = (this.flag & flagRO) | (Slice << flagKindShift);
 			return new Value.Ptr(typ.common(), go$subslice(s, i, j), fl);
 		};
-	Value.prototype.Slice = function(i, j) { return this.go$val.Slice(i, j); };
- 0Çó  Çç	Value.Ptr.prototype.Slice3 = function(i, j, k) {
+	Value.prototype.Slice = function() { return this.go$val.Slice(); };
+ 0Çâ  Ç	Value.Ptr.prototype.Slice3 = function(i, j, k) {
 			var typ, s, cap;
 			var kind = this.kind();
 			switch (kind) {
@@ -3429,7 +3429,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 			var fl = (this.flag & flagRO) | (Slice << flagKindShift);
 			return new Value.Ptr(typ.common(), go$subslice(s, i, j, k), fl);
 		};
-	Value.prototype.Slice3 = function(i, j, k) { return this.go$val.Slice3(i, j, k); };
+	Value.prototype.Slice3 = function() { return this.go$val.Slice3(); };
  0Ç'  Ç	Value.Ptr.prototype.String = function() {
 			switch (this.kind()) {
 			case Invalid:
@@ -4115,7 +4115,7 @@ mapiterkeyt	mapiterkey = function(it) {
  0H maplen:	maplen = function(m) {
 			return go$keys(m).length;
 		};
- 0j call^	call = function(fn, arg, n) {
+ 0` callT	call = function() {
 		throw go$panic("Native function not implemented: call");
 	};
  0M ifaceE2I=	ifaceE2I = function(t, src, dst) {
