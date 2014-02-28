@@ -1,4 +1,4 @@
-0É¸f	debug/elfÇèΩpackage elf
+0É!¥	debug/elfÇèΩpackage elf
 import strconv "strconv"
 import bytes "bytes"
 import dwarf "debug/dwarf"
@@ -721,76 +721,79 @@ func (? *@"debug/dwarf".Attr) @"debug/dwarf".String() (? string)
 type @"debug/dwarf".format uint32
 $$
 0Åüruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarydebug/dwarfsyscalltimeosfmt	debug/elf0Åá0strconvstrconv0bytesbytes0debug/dwarfdwarf0encoding/binarybinary0errorserrors0
-fmtfmt0ioio0osos0Ékg0ÇO Versiona	Version = go$pkg.Version = go$newType(1, "Uint8", "elf.Version", "Version", "debug/elf", null);
+fmtfmt0ioio0osos0Éêµ0ÇZVersiona	Version = go$pkg.Version = go$newType(1, "Uint8", "elf.Version", "Version", "debug/elf", null);
 Åﬁ		Version.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(Version)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇA ClassY	Class = go$pkg.Class = go$newType(1, "Uint8", "elf.Class", "Class", "debug/elf", null);
+0	Version0 0ÇJClassY	Class = go$pkg.Class = go$newType(1, "Uint8", "elf.Class", "Class", "debug/elf", null);
 Å⁄		Class.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(Class)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Ç: DataU	Data = go$pkg.Data = go$newType(1, "Uint8", "elf.Data", "Data", "debug/elf", null);
+0Class0 0ÇBDataU	Data = go$pkg.Data = go$newType(1, "Uint8", "elf.Data", "Data", "debug/elf", null);
 Åÿ		Data.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(Data)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇA OSABIY	OSABI = go$pkg.OSABI = go$newType(1, "Uint8", "elf.OSABI", "OSABI", "debug/elf", null);
+0Data0 0ÇJOSABIY	OSABI = go$pkg.OSABI = go$newType(1, "Uint8", "elf.OSABI", "OSABI", "debug/elf", null);
 Å⁄		OSABI.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(OSABI)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Ç; TypeV	Type = go$pkg.Type = go$newType(2, "Uint16", "elf.Type", "Type", "debug/elf", null);
+0OSABI0 0ÇCTypeV	Type = go$pkg.Type = go$newType(2, "Uint16", "elf.Type", "Type", "debug/elf", null);
 Åÿ		Type.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(Type)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇP Machineb	Machine = go$pkg.Machine = go$newType(2, "Uint16", "elf.Machine", "Machine", "debug/elf", null);
+0Type0 0Ç[Machineb	Machine = go$pkg.Machine = go$newType(2, "Uint16", "elf.Machine", "Machine", "debug/elf", null);
 Åﬁ		Machine.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(Machine)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Çp SectionIndexs	SectionIndex = go$pkg.SectionIndex = go$newType(4, "Int", "elf.SectionIndex", "SectionIndex", "debug/elf", null);
+0	Machine0 0ÇÄSectionIndexs	SectionIndex = go$pkg.SectionIndex = go$newType(4, "Int", "elf.SectionIndex", "SectionIndex", "debug/elf", null);
 ÅË		SectionIndex.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(SectionIndex)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Çl SectionTyper	SectionType = go$pkg.SectionType = go$newType(4, "Uint32", "elf.SectionType", "SectionType", "debug/elf", null);
+0SectionIndex0 0Ç{SectionTyper	SectionType = go$pkg.SectionType = go$newType(4, "Uint32", "elf.SectionType", "SectionType", "debug/elf", null);
 ÅÊ		SectionType.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(SectionType)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Çl SectionFlagr	SectionFlag = go$pkg.SectionFlag = go$newType(4, "Uint32", "elf.SectionFlag", "SectionFlag", "debug/elf", null);
+0SectionType0 0Ç{SectionFlagr	SectionFlag = go$pkg.SectionFlag = go$newType(4, "Uint32", "elf.SectionFlag", "SectionFlag", "debug/elf", null);
 ÅÊ		SectionFlag.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(SectionFlag)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇT ProgTypec	ProgType = go$pkg.ProgType = go$newType(4, "Int", "elf.ProgType", "ProgType", "debug/elf", null);
+0SectionFlag0 0Ç`ProgTypec	ProgType = go$pkg.ProgType = go$newType(4, "Int", "elf.ProgType", "ProgType", "debug/elf", null);
 Å‡		ProgType.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(ProgType)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇW ProgFlagf	ProgFlag = go$pkg.ProgFlag = go$newType(4, "Uint32", "elf.ProgFlag", "ProgFlag", "debug/elf", null);
+0
+ProgType0 0ÇcProgFlagf	ProgFlag = go$pkg.ProgFlag = go$newType(4, "Uint32", "elf.ProgFlag", "ProgFlag", "debug/elf", null);
 Å‡		ProgFlag.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(ProgFlag)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇF DynTag[	DynTag = go$pkg.DynTag = go$newType(4, "Int", "elf.DynTag", "DynTag", "debug/elf", null);
+0
+ProgFlag0 0ÇPDynTag[	DynTag = go$pkg.DynTag = go$newType(4, "Int", "elf.DynTag", "DynTag", "debug/elf", null);
 Å‹		DynTag.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(DynTag)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇM DynFlag_	DynFlag = go$pkg.DynFlag = go$newType(4, "Int", "elf.DynFlag", "DynFlag", "debug/elf", null);
+0DynTag0 0ÇXDynFlag_	DynFlag = go$pkg.DynFlag = go$newType(4, "Int", "elf.DynFlag", "DynFlag", "debug/elf", null);
 Åﬁ		DynFlag.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(DynFlag)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Ç? NTypeW	NType = go$pkg.NType = go$newType(4, "Int", "elf.NType", "NType", "debug/elf", null);
+0	DynFlag0 0ÇHNTypeW	NType = go$pkg.NType = go$newType(4, "Int", "elf.NType", "NType", "debug/elf", null);
 Å⁄		NType.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(NType)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇM SymBind_	SymBind = go$pkg.SymBind = go$newType(4, "Int", "elf.SymBind", "SymBind", "debug/elf", null);
+0NType0 0ÇXSymBind_	SymBind = go$pkg.SymBind = go$newType(4, "Int", "elf.SymBind", "SymBind", "debug/elf", null);
 Åﬁ		SymBind.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(SymBind)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇM SymType_	SymType = go$pkg.SymType = go$newType(4, "Int", "elf.SymType", "SymType", "debug/elf", null);
+0	SymBind0 0ÇXSymType_	SymType = go$pkg.SymType = go$newType(4, "Int", "elf.SymType", "SymType", "debug/elf", null);
 Åﬁ		SymType.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(SymType)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇF SymVis[	SymVis = go$pkg.SymVis = go$newType(4, "Int", "elf.SymVis", "SymVis", "debug/elf", null);
+0	SymType0 0ÇPSymVis[	SymVis = go$pkg.SymVis = go$newType(4, "Int", "elf.SymVis", "SymVis", "debug/elf", null);
 Å‹		SymVis.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(SymVis)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇT R_X86_64c	R_X86_64 = go$pkg.R_X86_64 = go$newType(4, "Int", "elf.R_X86_64", "R_X86_64", "debug/elf", null);
+0SymVis0 0Ç`R_X86_64c	R_X86_64 = go$pkg.R_X86_64 = go$newType(4, "Int", "elf.R_X86_64", "R_X86_64", "debug/elf", null);
 Å‡		R_X86_64.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(R_X86_64)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇM R_ALPHA_	R_ALPHA = go$pkg.R_ALPHA = go$newType(4, "Int", "elf.R_ALPHA", "R_ALPHA", "debug/elf", null);
+0
+R-X86-640 0ÇXR_ALPHA_	R_ALPHA = go$pkg.R_ALPHA = go$newType(4, "Int", "elf.R_ALPHA", "R_ALPHA", "debug/elf", null);
 Åﬁ		R_ALPHA.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(R_ALPHA)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Ç? R_ARMW	R_ARM = go$pkg.R_ARM = go$newType(4, "Int", "elf.R_ARM", "R_ARM", "debug/elf", null);
+0	R-ALPHA0 0ÇHR_ARMW	R_ARM = go$pkg.R_ARM = go$newType(4, "Int", "elf.R_ARM", "R_ARM", "debug/elf", null);
 Å⁄		R_ARM.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(R_ARM)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Ç? R_386W	R_386 = go$pkg.R_386 = go$newType(4, "Int", "elf.R_386", "R_386", "debug/elf", null);
+0R-ARM0 0ÇHR_386W	R_386 = go$pkg.R_386 = go$newType(4, "Int", "elf.R_386", "R_386", "debug/elf", null);
 Å⁄		R_386.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(R_386)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Ç? R_PPCW	R_PPC = go$pkg.R_PPC = go$newType(4, "Int", "elf.R_PPC", "R_PPC", "debug/elf", null);
+0R-3860 0ÇHR_PPCW	R_PPC = go$pkg.R_PPC = go$newType(4, "Int", "elf.R_PPC", "R_PPC", "debug/elf", null);
 Å⁄		R_PPC.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(R_PPC)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇM R_SPARC_	R_SPARC = go$pkg.R_SPARC = go$newType(4, "Int", "elf.R_SPARC", "R_SPARC", "debug/elf", null);
+0R-PPC0 0ÇXR_SPARC_	R_SPARC = go$pkg.R_SPARC = go$newType(4, "Int", "elf.R_SPARC", "R_SPARC", "debug/elf", null);
 Åﬁ		R_SPARC.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(R_SPARC)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Ç Header32Ç%	Header32 = go$pkg.Header32 = go$newType(0, "Struct", "elf.Header32", "Header32", "debug/elf", function(Ident_, Type_, Machine_, Version_, Entry_, Phoff_, Shoff_, Flags_, Ehsize_, Phentsize_, Phnum_, Shentsize_, Shnum_, Shstrndx_) {
+0	R-SPARC0 0ÇHeader32Ç%	Header32 = go$pkg.Header32 = go$newType(0, "Struct", "elf.Header32", "Header32", "debug/elf", function(Ident_, Type_, Machine_, Version_, Entry_, Phoff_, Shoff_, Flags_, Ehsize_, Phentsize_, Phnum_, Shentsize_, Shnum_, Shstrndx_) {
 		this.go$val = this;
 		this.Ident = Ident_ !== undefined ? Ident_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Type = Type_ !== undefined ? Type_ : 0;
@@ -808,7 +811,8 @@ $$
 		this.Shstrndx = Shstrndx_ !== undefined ? Shstrndx_ : 0;
 	});
 ÇŸ		Header32.init([["Ident", "", (go$arrayType(Go$Uint8, 16)), ""], ["Type", "", Go$Uint16, ""], ["Machine", "", Go$Uint16, ""], ["Version", "", Go$Uint32, ""], ["Entry", "", Go$Uint32, ""], ["Phoff", "", Go$Uint32, ""], ["Shoff", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Ehsize", "", Go$Uint16, ""], ["Phentsize", "", Go$Uint16, ""], ["Phnum", "", Go$Uint16, ""], ["Shentsize", "", Go$Uint16, ""], ["Shnum", "", Go$Uint16, ""], ["Shstrndx", "", Go$Uint16, ""]]);
-0Ç 	Section32Ç≈	Section32 = go$pkg.Section32 = go$newType(0, "Struct", "elf.Section32", "Section32", "debug/elf", function(Name_, Type_, Flags_, Addr_, Off_, Size_, Link_, Info_, Addralign_, Entsize_) {
+0
+Header320 0Ç%	Section32Ç≈	Section32 = go$pkg.Section32 = go$newType(0, "Struct", "elf.Section32", "Section32", "debug/elf", function(Name_, Type_, Flags_, Addr_, Off_, Size_, Link_, Info_, Addralign_, Entsize_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : 0;
@@ -822,7 +826,7 @@ $$
 		this.Entsize = Entsize_ !== undefined ? Entsize_ : 0;
 	});
 Ç>		Section32.init([["Name", "", Go$Uint32, ""], ["Type", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Addr", "", Go$Uint32, ""], ["Off", "", Go$Uint32, ""], ["Size", "", Go$Uint32, ""], ["Link", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""], ["Addralign", "", Go$Uint32, ""], ["Entsize", "", Go$Uint32, ""]]);
-0ÇU Prog32ÇE	Prog32 = go$pkg.Prog32 = go$newType(0, "Struct", "elf.Prog32", "Prog32", "debug/elf", function(Type_, Off_, Vaddr_, Paddr_, Filesz_, Memsz_, Flags_, Align_) {
+0	Section320 0Ç_Prog32ÇE	Prog32 = go$pkg.Prog32 = go$newType(0, "Struct", "elf.Prog32", "Prog32", "debug/elf", function(Type_, Off_, Vaddr_, Paddr_, Filesz_, Memsz_, Flags_, Align_) {
 		this.go$val = this;
 		this.Type = Type_ !== undefined ? Type_ : 0;
 		this.Off = Off_ !== undefined ? Off_ : 0;
@@ -834,26 +838,26 @@ $$
 		this.Align = Align_ !== undefined ? Align_ : 0;
 	});
 Åˇ		Prog32.init([["Type", "", Go$Uint32, ""], ["Off", "", Go$Uint32, ""], ["Vaddr", "", Go$Uint32, ""], ["Paddr", "", Go$Uint32, ""], ["Filesz", "", Go$Uint32, ""], ["Memsz", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Align", "", Go$Uint32, ""]]);
-0Ç2 Dyn32Å›	Dyn32 = go$pkg.Dyn32 = go$newType(0, "Struct", "elf.Dyn32", "Dyn32", "debug/elf", function(Tag_, Val_) {
+0Prog320 0Ç;Dyn32Å›	Dyn32 = go$pkg.Dyn32 = go$newType(0, "Struct", "elf.Dyn32", "Dyn32", "debug/elf", function(Tag_, Val_) {
 		this.go$val = this;
 		this.Tag = Tag_ !== undefined ? Tag_ : 0;
 		this.Val = Val_ !== undefined ? Val_ : 0;
 	});
 G		Dyn32.init([["Tag", "", Go$Int32, ""], ["Val", "", Go$Uint32, ""]]);
-0Ç8 Rel32Å·	Rel32 = go$pkg.Rel32 = go$newType(0, "Struct", "elf.Rel32", "Rel32", "debug/elf", function(Off_, Info_) {
+0Dyn320 0ÇARel32Å·	Rel32 = go$pkg.Rel32 = go$newType(0, "Struct", "elf.Rel32", "Rel32", "debug/elf", function(Off_, Info_) {
 		this.go$val = this;
 		this.Off = Off_ !== undefined ? Off_ : 0;
 		this.Info = Info_ !== undefined ? Info_ : 0;
 	});
 I		Rel32.init([["Off", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""]]);
-0Çõ Rela32Ç#	Rela32 = go$pkg.Rela32 = go$newType(0, "Struct", "elf.Rela32", "Rela32", "debug/elf", function(Off_, Info_, Addend_) {
+0Rel320 0Ç•Rela32Ç#	Rela32 = go$pkg.Rela32 = go$newType(0, "Struct", "elf.Rela32", "Rela32", "debug/elf", function(Off_, Info_, Addend_) {
 		this.go$val = this;
 		this.Off = Off_ !== undefined ? Off_ : 0;
 		this.Info = Info_ !== undefined ? Info_ : 0;
 		this.Addend = Addend_ !== undefined ? Addend_ : 0;
 	});
 h		Rela32.init([["Off", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""], ["Addend", "", Go$Int32, ""]]);
-0Çò Sym32Ç…	Sym32 = go$pkg.Sym32 = go$newType(0, "Struct", "elf.Sym32", "Sym32", "debug/elf", function(Name_, Value_, Size_, Info_, Other_, Shndx_) {
+0Rela320 0Ç°Sym32Ç…	Sym32 = go$pkg.Sym32 = go$newType(0, "Struct", "elf.Sym32", "Sym32", "debug/elf", function(Name_, Value_, Size_, Info_, Other_, Shndx_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : 0;
 		this.Value = Value_ !== undefined ? Value_ : 0;
@@ -863,7 +867,7 @@ $$
 		this.Shndx = Shndx_ !== undefined ? Shndx_ : 0;
 	});
 Åø		Sym32.init([["Name", "", Go$Uint32, ""], ["Value", "", Go$Uint32, ""], ["Size", "", Go$Uint32, ""], ["Info", "", Go$Uint8, ""], ["Other", "", Go$Uint8, ""], ["Shndx", "", Go$Uint16, ""]]);
-0ÇH Header64Ç[	Header64 = go$pkg.Header64 = go$newType(0, "Struct", "elf.Header64", "Header64", "debug/elf", function(Ident_, Type_, Machine_, Version_, Entry_, Phoff_, Shoff_, Flags_, Ehsize_, Phentsize_, Phnum_, Shentsize_, Shnum_, Shstrndx_) {
+0Sym320 0ÇTHeader64Ç[	Header64 = go$pkg.Header64 = go$newType(0, "Struct", "elf.Header64", "Header64", "debug/elf", function(Ident_, Type_, Machine_, Version_, Entry_, Phoff_, Shoff_, Flags_, Ehsize_, Phentsize_, Phnum_, Shentsize_, Shnum_, Shstrndx_) {
 		this.go$val = this;
 		this.Ident = Ident_ !== undefined ? Ident_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Type = Type_ !== undefined ? Type_ : 0;
@@ -881,7 +885,8 @@ $$
 		this.Shstrndx = Shstrndx_ !== undefined ? Shstrndx_ : 0;
 	});
 ÇŸ		Header64.init([["Ident", "", (go$arrayType(Go$Uint8, 16)), ""], ["Type", "", Go$Uint16, ""], ["Machine", "", Go$Uint16, ""], ["Version", "", Go$Uint32, ""], ["Entry", "", Go$Uint64, ""], ["Phoff", "", Go$Uint64, ""], ["Shoff", "", Go$Uint64, ""], ["Flags", "", Go$Uint32, ""], ["Ehsize", "", Go$Uint16, ""], ["Phentsize", "", Go$Uint16, ""], ["Phnum", "", Go$Uint16, ""], ["Shentsize", "", Go$Uint16, ""], ["Shnum", "", Go$Uint16, ""], ["Shstrndx", "", Go$Uint16, ""]]);
-0ÇÑ 	Section64Ç1	Section64 = go$pkg.Section64 = go$newType(0, "Struct", "elf.Section64", "Section64", "debug/elf", function(Name_, Type_, Flags_, Addr_, Off_, Size_, Link_, Info_, Addralign_, Entsize_) {
+0
+Header640 0Çë	Section64Ç1	Section64 = go$pkg.Section64 = go$newType(0, "Struct", "elf.Section64", "Section64", "debug/elf", function(Name_, Type_, Flags_, Addr_, Off_, Size_, Link_, Info_, Addralign_, Entsize_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : 0;
@@ -895,7 +900,7 @@ $$
 		this.Entsize = Entsize_ !== undefined ? Entsize_ : new Go$Uint64(0, 0);
 	});
 Ç>		Section64.init([["Name", "", Go$Uint32, ""], ["Type", "", Go$Uint32, ""], ["Flags", "", Go$Uint64, ""], ["Addr", "", Go$Uint64, ""], ["Off", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""], ["Link", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""], ["Addralign", "", Go$Uint64, ""], ["Entsize", "", Go$Uint64, ""]]);
-0Ç¡ Prog64Ç±	Prog64 = go$pkg.Prog64 = go$newType(0, "Struct", "elf.Prog64", "Prog64", "debug/elf", function(Type_, Flags_, Off_, Vaddr_, Paddr_, Filesz_, Memsz_, Align_) {
+0	Section640 0ÇÀProg64Ç±	Prog64 = go$pkg.Prog64 = go$newType(0, "Struct", "elf.Prog64", "Prog64", "debug/elf", function(Type_, Flags_, Off_, Vaddr_, Paddr_, Filesz_, Memsz_, Align_) {
 		this.go$val = this;
 		this.Type = Type_ !== undefined ? Type_ : 0;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
@@ -907,26 +912,26 @@ $$
 		this.Align = Align_ !== undefined ? Align_ : new Go$Uint64(0, 0);
 	});
 Åˇ		Prog64.init([["Type", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Off", "", Go$Uint64, ""], ["Vaddr", "", Go$Uint64, ""], ["Paddr", "", Go$Uint64, ""], ["Filesz", "", Go$Uint64, ""], ["Memsz", "", Go$Uint64, ""], ["Align", "", Go$Uint64, ""]]);
-0ÇV Dyn64Ç 	Dyn64 = go$pkg.Dyn64 = go$newType(0, "Struct", "elf.Dyn64", "Dyn64", "debug/elf", function(Tag_, Val_) {
+0Prog640 0Ç_Dyn64Ç 	Dyn64 = go$pkg.Dyn64 = go$newType(0, "Struct", "elf.Dyn64", "Dyn64", "debug/elf", function(Tag_, Val_) {
 		this.go$val = this;
 		this.Tag = Tag_ !== undefined ? Tag_ : new Go$Int64(0, 0);
 		this.Val = Val_ !== undefined ? Val_ : new Go$Uint64(0, 0);
 	});
 G		Dyn64.init([["Tag", "", Go$Int64, ""], ["Val", "", Go$Uint64, ""]]);
-0Ç] Rel64Ç	Rel64 = go$pkg.Rel64 = go$newType(0, "Struct", "elf.Rel64", "Rel64", "debug/elf", function(Off_, Info_) {
+0Dyn640 0ÇfRel64Ç	Rel64 = go$pkg.Rel64 = go$newType(0, "Struct", "elf.Rel64", "Rel64", "debug/elf", function(Off_, Info_) {
 		this.go$val = this;
 		this.Off = Off_ !== undefined ? Off_ : new Go$Uint64(0, 0);
 		this.Info = Info_ !== undefined ? Info_ : new Go$Uint64(0, 0);
 	});
 I		Rel64.init([["Off", "", Go$Uint64, ""], ["Info", "", Go$Uint64, ""]]);
-0Ç– Rela64ÇX	Rela64 = go$pkg.Rela64 = go$newType(0, "Struct", "elf.Rela64", "Rela64", "debug/elf", function(Off_, Info_, Addend_) {
+0Rel640 0Ç⁄Rela64ÇX	Rela64 = go$pkg.Rela64 = go$newType(0, "Struct", "elf.Rela64", "Rela64", "debug/elf", function(Off_, Info_, Addend_) {
 		this.go$val = this;
 		this.Off = Off_ !== undefined ? Off_ : new Go$Uint64(0, 0);
 		this.Info = Info_ !== undefined ? Info_ : new Go$Uint64(0, 0);
 		this.Addend = Addend_ !== undefined ? Addend_ : new Go$Int64(0, 0);
 	});
 h		Rela64.init([["Off", "", Go$Uint64, ""], ["Info", "", Go$Uint64, ""], ["Addend", "", Go$Int64, ""]]);
-0Çº Sym64ÇÌ	Sym64 = go$pkg.Sym64 = go$newType(0, "Struct", "elf.Sym64", "Sym64", "debug/elf", function(Name_, Info_, Other_, Shndx_, Value_, Size_) {
+0Rela640 0Ç≈Sym64ÇÌ	Sym64 = go$pkg.Sym64 = go$newType(0, "Struct", "elf.Sym64", "Sym64", "debug/elf", function(Name_, Info_, Other_, Shndx_, Value_, Size_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : 0;
 		this.Info = Info_ !== undefined ? Info_ : 0;
@@ -936,13 +941,13 @@ $$
 		this.Size = Size_ !== undefined ? Size_ : new Go$Uint64(0, 0);
 	});
 Åø		Sym64.init([["Name", "", Go$Uint32, ""], ["Info", "", Go$Uint8, ""], ["Other", "", Go$Uint8, ""], ["Shndx", "", Go$Uint16, ""], ["Value", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""]]);
-0Ç> intNameÅ÷	intName = go$pkg.intName = go$newType(0, "Struct", "elf.intName", "intName", "debug/elf", function(i_, s_) {
+0Sym640 0ÇIintNameÅ÷	intName = go$pkg.intName = go$newType(0, "Struct", "elf.intName", "intName", "debug/elf", function(i_, s_) {
 		this.go$val = this;
 		this.i = i_ !== undefined ? i_ : 0;
 		this.s = s_ !== undefined ? s_ : "";
 	});
 X		intName.init([["i", "debug/elf", Go$Uint32, ""], ["s", "debug/elf", Go$String, ""]]);
-0Ç 
+0	intName0 0Ç≥
 FileHeaderÇÿ	FileHeader = go$pkg.FileHeader = go$newType(0, "Struct", "elf.FileHeader", "FileHeader", "debug/elf", function(Class_, Data_, Version_, OSABI_, ABIVersion_, ByteOrder_, Type_, Machine_, Entry_) {
 		this.go$val = this;
 		this.Class = Class_ !== undefined ? Class_ : 0;
@@ -956,7 +961,9 @@ FileHeaderÇÿ	FileHeader = go$pkg.FileHeader = go$newType(0, "Struct", "elf.Fil
 		this.Entry = Entry_ !== undefined ? Entry_ : new Go$Uint64(0, 0);
 	});
 Ç		FileHeader.init([["Class", "", Class, ""], ["Data", "", Data, ""], ["Version", "", Version, ""], ["OSABI", "", OSABI, ""], ["ABIVersion", "", Go$Uint8, ""], ["ByteOrder", "", binary.ByteOrder, ""], ["Type", "", Type, ""], ["Machine", "", Machine, ""], ["Entry", "", Go$Uint64, ""]]);
-0Ç	B FileÇ•	File = go$pkg.File = go$newType(0, "Struct", "elf.File", "File", "debug/elf", function(FileHeader_, Sections_, Progs_, closer_, gnuNeed_, gnuVersym_) {
+0
+FileHeader0Åò0	debug/elfClass0	debug/elfData0	debug/elfVersion0	debug/elfOSABI0encoding/binary	ByteOrder0	debug/elfType0	debug/elfMachine0Ç
+'FileÇ•	File = go$pkg.File = go$newType(0, "Struct", "elf.File", "File", "debug/elf", function(FileHeader_, Sections_, Progs_, closer_, gnuNeed_, gnuVersym_) {
 		this.go$val = this;
 		this.FileHeader = FileHeader_ !== undefined ? FileHeader_ : new FileHeader.Ptr();
 		this.Sections = Sections_ !== undefined ? Sections_ : (go$sliceType((go$ptrType(Section)))).nil;
@@ -967,7 +974,8 @@ FileHeaderÇÿ	FileHeader = go$pkg.FileHeader = go$newType(0, "Struct", "elf.Fil
 	});
 Çç		File.init([["", "", FileHeader, ""], ["Sections", "", (go$sliceType((go$ptrType(Section)))), ""], ["Progs", "", (go$sliceType((go$ptrType(Prog)))), ""], ["closer", "debug/elf", io.Closer, ""], ["gnuNeed", "debug/elf", (go$sliceType(verneed)), ""], ["gnuVersym", "debug/elf", (go$sliceType(Go$Uint8)), ""]]);
 		(go$ptrType(File)).methods = [["Close", "", [], [go$error], false], ["DWARF", "", [], [(go$ptrType(dwarf.Data)), go$error], false], ["DynString", "", [DynTag], [(go$sliceType(Go$String)), go$error], false], ["ImportedLibraries", "", [], [(go$sliceType(Go$String)), go$error], false], ["ImportedSymbols", "", [], [(go$sliceType(ImportedSymbol)), go$error], false], ["Section", "", [Go$String], [(go$ptrType(Section))], false], ["SectionByType", "", [SectionType], [(go$ptrType(Section))], false], ["Symbols", "", [], [(go$sliceType(Symbol)), go$error], false], ["applyRelocations", "debug/elf", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [go$error], false], ["applyRelocationsAMD64", "debug/elf", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [go$error], false], ["getSymbols", "debug/elf", [SectionType], [(go$sliceType(Symbol)), (go$sliceType(Go$Uint8)), go$error], false], ["getSymbols32", "debug/elf", [SectionType], [(go$sliceType(Symbol)), (go$sliceType(Go$Uint8)), go$error], false], ["getSymbols64", "debug/elf", [SectionType], [(go$sliceType(Symbol)), (go$sliceType(Go$Uint8)), go$error], false], ["gnuVersion", "debug/elf", [Go$Int, (go$ptrType(ImportedSymbol))], [], false], ["gnuVersionInit", "debug/elf", [(go$sliceType(Go$Uint8))], [], false], ["stringTable", "debug/elf", [Go$Uint32], [(go$sliceType(Go$Uint8)), go$error], false]];
-0Çû SectionHeaderÇ<	SectionHeader = go$pkg.SectionHeader = go$newType(0, "Struct", "elf.SectionHeader", "SectionHeader", "debug/elf", function(Name_, Type_, Flags_, Addr_, Offset_, Size_, Link_, Info_, Addralign_, Entsize_) {
+0File0Å‹0	debug/elfSection0	debug/elfverneed0ioCloser0	debug/elfDynTag0	debug/elfSymbol0	debug/elf
+FileHeader0	debug/elfProg0debug/dwarfData0	debug/elfImportedSymbol0	debug/elfSectionType0Ç„SectionHeaderÇ<	SectionHeader = go$pkg.SectionHeader = go$newType(0, "Struct", "elf.SectionHeader", "SectionHeader", "debug/elf", function(Name_, Type_, Flags_, Addr_, Offset_, Size_, Link_, Info_, Addralign_, Entsize_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Type = Type_ !== undefined ? Type_ : 0;
@@ -981,7 +989,7 @@ FileHeaderÇÿ	FileHeader = go$pkg.FileHeader = go$newType(0, "Struct", "elf.Fil
 		this.Entsize = Entsize_ !== undefined ? Entsize_ : new Go$Uint64(0, 0);
 	});
 ÇI		SectionHeader.init([["Name", "", Go$String, ""], ["Type", "", SectionType, ""], ["Flags", "", SectionFlag, ""], ["Addr", "", Go$Uint64, ""], ["Offset", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""], ["Link", "", Go$Uint32, ""], ["Info", "", Go$Uint32, ""], ["Addralign", "", Go$Uint64, ""], ["Entsize", "", Go$Uint64, ""]]);
-0Ç SectionÇ9	Section = go$pkg.Section = go$newType(0, "Struct", "elf.Section", "Section", "debug/elf", function(SectionHeader_, ReaderAt_, sr_) {
+0SectionHeader040	debug/elfSectionType0	debug/elfSectionFlag0ÇrSectionÇ9	Section = go$pkg.Section = go$newType(0, "Struct", "elf.Section", "Section", "debug/elf", function(SectionHeader_, ReaderAt_, sr_) {
 		this.go$val = this;
 		this.SectionHeader = SectionHeader_ !== undefined ? SectionHeader_ : new SectionHeader.Ptr();
 		this.ReaderAt = ReaderAt_ !== undefined ? ReaderAt_ : null;
@@ -992,7 +1000,8 @@ FileHeaderÇÿ	FileHeader = go$pkg.FileHeader = go$newType(0, "Struct", "elf.Fil
 Ç»		Section.init([["", "", SectionHeader, ""], ["", "", io.ReaderAt, ""], ["sr", "debug/elf", (go$ptrType(io.SectionReader)), ""]]);
 		Section.methods = [["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
 		(go$ptrType(Section)).methods = [["Data", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Open", "", [], [io.ReadSeeker], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
-0Çÿ 
+0	Section0S0	debug/elfSectionHeader0ioSectionReader0ioReaderAt0io
+ReadSeeker0Ç
 ProgHeaderÇ¡	ProgHeader = go$pkg.ProgHeader = go$newType(0, "Struct", "elf.ProgHeader", "ProgHeader", "debug/elf", function(Type_, Flags_, Off_, Vaddr_, Paddr_, Filesz_, Memsz_, Align_) {
 		this.go$val = this;
 		this.Type = Type_ !== undefined ? Type_ : 0;
@@ -1005,7 +1014,8 @@ ProgHeaderÇ¡	ProgHeader = go$pkg.ProgHeader = go$newType(0, "Struct", "elf.Pro
 		this.Align = Align_ !== undefined ? Align_ : new Go$Uint64(0, 0);
 	});
 Ç		ProgHeader.init([["Type", "", ProgType, ""], ["Flags", "", ProgFlag, ""], ["Off", "", Go$Uint64, ""], ["Vaddr", "", Go$Uint64, ""], ["Paddr", "", Go$Uint64, ""], ["Filesz", "", Go$Uint64, ""], ["Memsz", "", Go$Uint64, ""], ["Align", "", Go$Uint64, ""]]);
-0Ç• ProgÇ	Prog = go$pkg.Prog = go$newType(0, "Struct", "elf.Prog", "Prog", "debug/elf", function(ProgHeader_, ReaderAt_, sr_) {
+0
+ProgHeader0.0	debug/elfProgType0	debug/elfProgFlag0Ç˝ProgÇ	Prog = go$pkg.Prog = go$newType(0, "Struct", "elf.Prog", "Prog", "debug/elf", function(ProgHeader_, ReaderAt_, sr_) {
 		this.go$val = this;
 		this.ProgHeader = ProgHeader_ !== undefined ? ProgHeader_ : new ProgHeader.Ptr();
 		this.ReaderAt = ReaderAt_ !== undefined ? ReaderAt_ : null;
@@ -1016,7 +1026,9 @@ ProgHeaderÇ¡	ProgHeader = go$pkg.ProgHeader = go$newType(0, "Struct", "elf.Pro
 Ç}		Prog.init([["", "", ProgHeader, ""], ["", "", io.ReaderAt, ""], ["sr", "debug/elf", (go$ptrType(io.SectionReader)), ""]]);
 		Prog.methods = [["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
 		(go$ptrType(Prog)).methods = [["Open", "", [], [io.ReadSeeker], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
-0Ç– SymbolÇ˙	Symbol = go$pkg.Symbol = go$newType(0, "Struct", "elf.Symbol", "Symbol", "debug/elf", function(Name_, Info_, Other_, Section_, Value_, Size_) {
+0Prog0P0	debug/elf
+ProgHeader0ioSectionReader0ioReaderAt0io
+ReadSeeker0ÇıSymbolÇ˙	Symbol = go$pkg.Symbol = go$newType(0, "Struct", "elf.Symbol", "Symbol", "debug/elf", function(Name_, Info_, Other_, Section_, Value_, Size_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Info = Info_ !== undefined ? Info_ : 0;
@@ -1026,7 +1038,7 @@ ProgHeaderÇ¡	ProgHeader = go$pkg.ProgHeader = go$newType(0, "Struct", "elf.Pro
 		this.Size = Size_ !== undefined ? Size_ : new Go$Uint64(0, 0);
 	});
 Å≈		Symbol.init([["Name", "", Go$String, ""], ["Info", "", Go$Uint8, ""], ["Other", "", Go$Uint8, ""], ["Section", "", SectionIndex, ""], ["Value", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""]]);
-0Ç- FormatErrorÇ<	FormatError = go$pkg.FormatError = go$newType(0, "Struct", "elf.FormatError", "FormatError", "debug/elf", function(off_, msg_, val_) {
+0Symbol00	debug/elfSectionIndex0Ç<FormatErrorÇ<	FormatError = go$pkg.FormatError = go$newType(0, "Struct", "elf.FormatError", "FormatError", "debug/elf", function(off_, msg_, val_) {
 		this.go$val = this;
 		this.off = off_ !== undefined ? off_ : new Go$Int64(0, 0);
 		this.msg = msg_ !== undefined ? msg_ : "";
@@ -1034,327 +1046,388 @@ ProgHeaderÇ¡	ProgHeader = go$pkg.ProgHeader = go$newType(0, "Struct", "elf.Pro
 	});
 Å€		FormatError.init([["off", "debug/elf", Go$Int64, ""], ["msg", "debug/elf", Go$String, ""], ["val", "debug/elf", go$emptyInterface, ""]]);
 		(go$ptrType(FormatError)).methods = [["Error", "", [], [Go$String], false]];
-0ÇË ImportedSymbolÇZ	ImportedSymbol = go$pkg.ImportedSymbol = go$newType(0, "Struct", "elf.ImportedSymbol", "ImportedSymbol", "debug/elf", function(Name_, Version_, Library_) {
+0FormatError0 0Ç˙ImportedSymbolÇZ	ImportedSymbol = go$pkg.ImportedSymbol = go$newType(0, "Struct", "elf.ImportedSymbol", "ImportedSymbol", "debug/elf", function(Name_, Version_, Library_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Version = Version_ !== undefined ? Version_ : "";
 		this.Library = Library_ !== undefined ? Library_ : "";
 	});
 v		ImportedSymbol.init([["Name", "", Go$String, ""], ["Version", "", Go$String, ""], ["Library", "", Go$String, ""]]);
-0ÇK verneedÅÔ	verneed = go$pkg.verneed = go$newType(0, "Struct", "elf.verneed", "verneed", "debug/elf", function(File_, Name_) {
+0ImportedSymbol0 0ÇVverneedÅÔ	verneed = go$pkg.verneed = go$newType(0, "Struct", "elf.verneed", "verneed", "debug/elf", function(File_, Name_) {
 		this.go$val = this;
 		this.File = File_ !== undefined ? File_ : "";
 		this.Name = Name_ !== undefined ? Name_ : "";
 	});
 L		verneed.init([["File", "", Go$String, ""], ["Name", "", Go$String, ""]]);
-0ÅÌ  Å‰	Version.prototype.String = function() {
+0	verneed0 0ÇD Å‰	Version.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), versionStrings, false);
 	};
 	go$ptrType(Version).prototype.String = function() { return new Version(this.go$get()).String(); };
- 0ÅÚ  ÅÈ	Version.prototype.GoString = function() {
+ 0	Version0L0	debug/elfVersion0	debug/elf
+stringName0	debug/elfversionStrings0ÇI ÅÈ	Version.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), versionStrings, true);
 	};
 	go$ptrType(Version).prototype.GoString = function() { return new Version(this.go$get()).GoString(); };
- 0ÅÂ  Å‹	Class.prototype.String = function() {
+ 0	Version0L0	debug/elfVersion0	debug/elf
+stringName0	debug/elfversionStrings0Ç6 Å‹	Class.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), classStrings, false);
 	};
 	go$ptrType(Class).prototype.String = function() { return new Class(this.go$get()).String(); };
- 0ÅÍ  Å·	Class.prototype.GoString = function() {
+ 0Class0H0	debug/elfClass0	debug/elf
+stringName0	debug/elfclassStrings0Ç; Å·	Class.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), classStrings, true);
 	};
 	go$ptrType(Class).prototype.GoString = function() { return new Class(this.go$get()).GoString(); };
- 0Å·  Åÿ	Data.prototype.String = function() {
+ 0Class0H0	debug/elfClass0	debug/elf
+stringName0	debug/elfclassStrings0Ç/ Åÿ	Data.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), dataStrings, false);
 	};
 	go$ptrType(Data).prototype.String = function() { return new Data(this.go$get()).String(); };
- 0ÅÊ  Å›	Data.prototype.GoString = function() {
+ 0Data0F0	debug/elfData0	debug/elf
+stringName0	debug/elfdataStrings0Ç4 Å›	Data.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), dataStrings, true);
 	};
 	go$ptrType(Data).prototype.GoString = function() { return new Data(this.go$get()).GoString(); };
- 0ÅÂ  Å‹	OSABI.prototype.String = function() {
+ 0Data0F0	debug/elfData0	debug/elf
+stringName0	debug/elfdataStrings0Ç6 Å‹	OSABI.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), osabiStrings, false);
 	};
 	go$ptrType(OSABI).prototype.String = function() { return new OSABI(this.go$get()).String(); };
- 0ÅÍ  Å·	OSABI.prototype.GoString = function() {
+ 0OSABI0H0	debug/elfOSABI0	debug/elf
+stringName0	debug/elfosabiStrings0Ç; Å·	OSABI.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), osabiStrings, true);
 	};
 	go$ptrType(OSABI).prototype.GoString = function() { return new OSABI(this.go$get()).GoString(); };
- 0Å·  Åÿ	Type.prototype.String = function() {
+ 0OSABI0H0	debug/elfOSABI0	debug/elf
+stringName0	debug/elfosabiStrings0Ç/ Åÿ	Type.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), typeStrings, false);
 	};
 	go$ptrType(Type).prototype.String = function() { return new Type(this.go$get()).String(); };
- 0ÅÊ  Å›	Type.prototype.GoString = function() {
+ 0Type0F0	debug/elfType0	debug/elf
+stringName0	debug/elftypeStrings0Ç4 Å›	Type.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), typeStrings, true);
 	};
 	go$ptrType(Type).prototype.GoString = function() { return new Type(this.go$get()).GoString(); };
- 0ÅÌ  Å‰	Machine.prototype.String = function() {
+ 0Type0F0	debug/elfType0	debug/elf
+stringName0	debug/elftypeStrings0ÇD Å‰	Machine.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), machineStrings, false);
 	};
 	go$ptrType(Machine).prototype.String = function() { return new Machine(this.go$get()).String(); };
- 0ÅÚ  ÅÈ	Machine.prototype.GoString = function() {
+ 0	Machine0L0	debug/elfMachine0	debug/elf
+stringName0	debug/elfmachineStrings0ÇI ÅÈ	Machine.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), machineStrings, true);
 	};
 	go$ptrType(Machine).prototype.GoString = function() { return new Machine(this.go$get()).GoString(); };
- 0Å¯  ÅÔ	SectionIndex.prototype.String = function() {
+ 0	Machine0L0	debug/elfMachine0	debug/elf
+stringName0	debug/elfmachineStrings0ÇU ÅÔ	SectionIndex.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), shnStrings, false);
 	};
 	go$ptrType(SectionIndex).prototype.String = function() { return new SectionIndex(this.go$get()).String(); };
- 0Å˝  ÅÙ	SectionIndex.prototype.GoString = function() {
+ 0SectionIndex0M0	debug/elfSectionIndex0	debug/elf
+stringName0	debug/elf
+shnStrings0ÇZ ÅÙ	SectionIndex.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), shnStrings, true);
 	};
 	go$ptrType(SectionIndex).prototype.GoString = function() { return new SectionIndex(this.go$get()).GoString(); };
- 0Åı  ÅÏ	SectionType.prototype.String = function() {
+ 0SectionIndex0M0	debug/elfSectionIndex0	debug/elf
+stringName0	debug/elf
+shnStrings0ÇP ÅÏ	SectionType.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), shtStrings, false);
 	};
 	go$ptrType(SectionType).prototype.String = function() { return new SectionType(this.go$get()).String(); };
- 0Å˙  ÅÒ	SectionType.prototype.GoString = function() {
+ 0SectionType0L0	debug/elfSectionType0	debug/elf
+stringName0	debug/elf
+shtStrings0ÇU ÅÒ	SectionType.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), shtStrings, true);
 	};
 	go$ptrType(SectionType).prototype.GoString = function() { return new SectionType(this.go$get()).GoString(); };
- 0ÅÛ  ÅÍ	SectionFlag.prototype.String = function() {
+ 0SectionType0L0	debug/elfSectionType0	debug/elf
+stringName0	debug/elf
+shtStrings0ÇL ÅÍ	SectionFlag.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return flagName((i >>> 0), shfStrings, false);
 	};
 	go$ptrType(SectionFlag).prototype.String = function() { return new SectionFlag(this.go$get()).String(); };
- 0Å¯  ÅÔ	SectionFlag.prototype.GoString = function() {
+ 0SectionFlag0J0	debug/elfSectionFlag0	debug/elfflagName0	debug/elf
+shfStrings0ÇQ ÅÔ	SectionFlag.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return flagName((i >>> 0), shfStrings, true);
 	};
 	go$ptrType(SectionFlag).prototype.GoString = function() { return new SectionFlag(this.go$get()).GoString(); };
- 0ÅÎ  Å‚	ProgType.prototype.String = function() {
+ 0SectionFlag0J0	debug/elfSectionFlag0	debug/elfflagName0	debug/elf
+shfStrings0Ç? Å‚	ProgType.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), ptStrings, false);
 	};
 	go$ptrType(ProgType).prototype.String = function() { return new ProgType(this.go$get()).String(); };
- 0Å  ÅÁ	ProgType.prototype.GoString = function() {
+ 0
+ProgType0H0	debug/elfProgType0	debug/elf
+stringName0	debug/elf	ptStrings0ÇD ÅÁ	ProgType.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), ptStrings, true);
 	};
 	go$ptrType(ProgType).prototype.GoString = function() { return new ProgType(this.go$get()).GoString(); };
- 0ÅÈ  Å‡	ProgFlag.prototype.String = function() {
+ 0
+ProgType0H0	debug/elfProgType0	debug/elf
+stringName0	debug/elf	ptStrings0Ç; Å‡	ProgFlag.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return flagName((i >>> 0), pfStrings, false);
 	};
 	go$ptrType(ProgFlag).prototype.String = function() { return new ProgFlag(this.go$get()).String(); };
- 0ÅÓ  ÅÂ	ProgFlag.prototype.GoString = function() {
+ 0
+ProgFlag0F0	debug/elfProgFlag0	debug/elfflagName0	debug/elf	pfStrings0Ç@ ÅÂ	ProgFlag.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return flagName((i >>> 0), pfStrings, true);
 	};
 	go$ptrType(ProgFlag).prototype.GoString = function() { return new ProgFlag(this.go$get()).GoString(); };
- 0ÅÂ  Å‹	DynTag.prototype.String = function() {
+ 0
+ProgFlag0F0	debug/elfProgFlag0	debug/elfflagName0	debug/elf	pfStrings0Ç5 Å‹	DynTag.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), dtStrings, false);
 	};
 	go$ptrType(DynTag).prototype.String = function() { return new DynTag(this.go$get()).String(); };
- 0ÅÍ  Å·	DynTag.prototype.GoString = function() {
+ 0DynTag0F0	debug/elfDynTag0	debug/elf
+stringName0	debug/elf	dtStrings0Ç: Å·	DynTag.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), dtStrings, true);
 	};
 	go$ptrType(DynTag).prototype.GoString = function() { return new DynTag(this.go$get()).GoString(); };
- 0ÅÈ  Å‡	DynFlag.prototype.String = function() {
+ 0DynTag0F0	debug/elfDynTag0	debug/elf
+stringName0	debug/elf	dtStrings0Ç< Å‡	DynFlag.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return flagName((i >>> 0), dflagStrings, false);
 	};
 	go$ptrType(DynFlag).prototype.String = function() { return new DynFlag(this.go$get()).String(); };
- 0ÅÓ  ÅÂ	DynFlag.prototype.GoString = function() {
+ 0	DynFlag0H0	debug/elfDynFlag0	debug/elfflagName0	debug/elfdflagStrings0ÇA ÅÂ	DynFlag.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return flagName((i >>> 0), dflagStrings, true);
 	};
 	go$ptrType(DynFlag).prototype.GoString = function() { return new DynFlag(this.go$get()).GoString(); };
- 0ÅÂ  Å‹	NType.prototype.String = function() {
+ 0	DynFlag0H0	debug/elfDynFlag0	debug/elfflagName0	debug/elfdflagStrings0Ç6 Å‹	NType.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), ntypeStrings, false);
 	};
 	go$ptrType(NType).prototype.String = function() { return new NType(this.go$get()).String(); };
- 0ÅÍ  Å·	NType.prototype.GoString = function() {
+ 0NType0H0	debug/elfNType0	debug/elf
+stringName0	debug/elfntypeStrings0Ç; Å·	NType.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), ntypeStrings, true);
 	};
 	go$ptrType(NType).prototype.GoString = function() { return new NType(this.go$get()).GoString(); };
- 0ÅÈ  Å‡	SymBind.prototype.String = function() {
+ 0NType0H0	debug/elfNType0	debug/elf
+stringName0	debug/elfntypeStrings0Ç< Å‡	SymBind.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), stbStrings, false);
 	};
 	go$ptrType(SymBind).prototype.String = function() { return new SymBind(this.go$get()).String(); };
- 0ÅÓ  ÅÂ	SymBind.prototype.GoString = function() {
+ 0	SymBind0H0	debug/elfSymBind0	debug/elf
+stringName0	debug/elf
+stbStrings0ÇA ÅÂ	SymBind.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), stbStrings, true);
 	};
 	go$ptrType(SymBind).prototype.GoString = function() { return new SymBind(this.go$get()).GoString(); };
- 0ÅÈ  Å‡	SymType.prototype.String = function() {
+ 0	SymBind0H0	debug/elfSymBind0	debug/elf
+stringName0	debug/elf
+stbStrings0Ç< Å‡	SymType.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), sttStrings, false);
 	};
 	go$ptrType(SymType).prototype.String = function() { return new SymType(this.go$get()).String(); };
- 0ÅÓ  ÅÂ	SymType.prototype.GoString = function() {
+ 0	SymType0H0	debug/elfSymType0	debug/elf
+stringName0	debug/elf
+sttStrings0ÇA ÅÂ	SymType.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), sttStrings, true);
 	};
 	go$ptrType(SymType).prototype.GoString = function() { return new SymType(this.go$get()).GoString(); };
- 0ÅÊ  Å›	SymVis.prototype.String = function() {
+ 0	SymType0H0	debug/elfSymType0	debug/elf
+stringName0	debug/elf
+sttStrings0Ç7 Å›	SymVis.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), stvStrings, false);
 	};
 	go$ptrType(SymVis).prototype.String = function() { return new SymVis(this.go$get()).String(); };
- 0ÅÎ  Å‚	SymVis.prototype.GoString = function() {
+ 0SymVis0G0	debug/elfSymVis0	debug/elf
+stringName0	debug/elf
+stvStrings0Ç< Å‚	SymVis.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), stvStrings, true);
 	};
 	go$ptrType(SymVis).prototype.GoString = function() { return new SymVis(this.go$get()).GoString(); };
- 0Å  ÅÁ	R_X86_64.prototype.String = function() {
+ 0SymVis0G0	debug/elfSymVis0	debug/elf
+stringName0	debug/elf
+stvStrings0ÇI ÅÁ	R_X86_64.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), rx86_64Strings, false);
 	};
 	go$ptrType(R_X86_64).prototype.String = function() { return new R_X86_64(this.go$get()).String(); };
- 0Åı  ÅÏ	R_X86_64.prototype.GoString = function() {
+ 0
+R-X86-640M0	debug/elfR-X86-640	debug/elf
+stringName0	debug/elfrx86-64Strings0ÇN ÅÏ	R_X86_64.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), rx86_64Strings, true);
 	};
 	go$ptrType(R_X86_64).prototype.GoString = function() { return new R_X86_64(this.go$get()).GoString(); };
- 0ÅÏ  Å„	R_ALPHA.prototype.String = function() {
+ 0
+R-X86-640M0	debug/elfR-X86-640	debug/elf
+stringName0	debug/elfrx86-64Strings0ÇB Å„	R_ALPHA.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), ralphaStrings, false);
 	};
 	go$ptrType(R_ALPHA).prototype.String = function() { return new R_ALPHA(this.go$get()).String(); };
- 0ÅÒ  ÅË	R_ALPHA.prototype.GoString = function() {
+ 0	R-ALPHA0K0	debug/elfR-ALPHA0	debug/elf
+stringName0	debug/elfralphaStrings0ÇG ÅË	R_ALPHA.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), ralphaStrings, true);
 	};
 	go$ptrType(R_ALPHA).prototype.GoString = function() { return new R_ALPHA(this.go$get()).GoString(); };
- 0Å‰  Å€	R_ARM.prototype.String = function() {
+ 0	R-ALPHA0K0	debug/elfR-ALPHA0	debug/elf
+stringName0	debug/elfralphaStrings0Ç4 Å€	R_ARM.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), rarmStrings, false);
 	};
 	go$ptrType(R_ARM).prototype.String = function() { return new R_ARM(this.go$get()).String(); };
- 0ÅÈ  Å‡	R_ARM.prototype.GoString = function() {
+ 0R-ARM0G0	debug/elfR-ARM0	debug/elf
+stringName0	debug/elfrarmStrings0Ç9 Å‡	R_ARM.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), rarmStrings, true);
 	};
 	go$ptrType(R_ARM).prototype.GoString = function() { return new R_ARM(this.go$get()).GoString(); };
- 0Å‰  Å€	R_386.prototype.String = function() {
+ 0R-ARM0G0	debug/elfR-ARM0	debug/elf
+stringName0	debug/elfrarmStrings0Ç4 Å€	R_386.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), r386Strings, false);
 	};
 	go$ptrType(R_386).prototype.String = function() { return new R_386(this.go$get()).String(); };
- 0ÅÈ  Å‡	R_386.prototype.GoString = function() {
+ 0R-3860G0	debug/elfR-3860	debug/elf
+stringName0	debug/elfr386Strings0Ç9 Å‡	R_386.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), r386Strings, true);
 	};
 	go$ptrType(R_386).prototype.GoString = function() { return new R_386(this.go$get()).GoString(); };
- 0Å‰  Å€	R_PPC.prototype.String = function() {
+ 0R-3860G0	debug/elfR-3860	debug/elf
+stringName0	debug/elfr386Strings0Ç4 Å€	R_PPC.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), rppcStrings, false);
 	};
 	go$ptrType(R_PPC).prototype.String = function() { return new R_PPC(this.go$get()).String(); };
- 0ÅÈ  Å‡	R_PPC.prototype.GoString = function() {
+ 0R-PPC0G0	debug/elfR-PPC0	debug/elf
+stringName0	debug/elfrppcStrings0Ç9 Å‡	R_PPC.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), rppcStrings, true);
 	};
 	go$ptrType(R_PPC).prototype.GoString = function() { return new R_PPC(this.go$get()).GoString(); };
- 0ÅÏ  Å„	R_SPARC.prototype.String = function() {
+ 0R-PPC0G0	debug/elfR-PPC0	debug/elf
+stringName0	debug/elfrppcStrings0ÇB Å„	R_SPARC.prototype.String = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), rsparcStrings, false);
 	};
 	go$ptrType(R_SPARC).prototype.String = function() { return new R_SPARC(this.go$get()).String(); };
- 0ÅÒ  ÅË	R_SPARC.prototype.GoString = function() {
+ 0	R-SPARC0K0	debug/elfR-SPARC0	debug/elf
+stringName0	debug/elfrsparcStrings0ÇG ÅË	R_SPARC.prototype.GoString = function() {
 		var i;
 		i = this.go$val;
 		return stringName((i >>> 0), rsparcStrings, true);
 	};
 	go$ptrType(R_SPARC).prototype.GoString = function() { return new R_SPARC(this.go$get()).GoString(); };
- 0] R_SYM32N	R_SYM32 = go$pkg.R_SYM32 = function(info) {
+ 0	R-SPARC0K0	debug/elfR-SPARC0	debug/elf
+stringName0	debug/elfrsparcStrings0hR_SYM32N	R_SYM32 = go$pkg.R_SYM32 = function(info) {
 		return (info >>> 8 >>> 0);
 	};
- 0b R_TYPE32R	R_TYPE32 = go$pkg.R_TYPE32 = function(info) {
+ 0	R-SYM320 0nR_TYPE32R	R_TYPE32 = go$pkg.R_TYPE32 = function(info) {
 		return ((info & 255) >>> 0);
 	};
- 0p R_INFO32`	R_INFO32 = go$pkg.R_INFO32 = function(sym, typ) {
+ 0
+R-TYPE320 0|R_INFO32`	R_INFO32 = go$pkg.R_INFO32 = function(sym, typ) {
 		return ((sym << 8 >>> 0) | typ) >>> 0;
 	};
- 0k ST_BIND\	ST_BIND = go$pkg.ST_BIND = function(info) {
+ 0
+R-INFO320 0vST_BIND\	ST_BIND = go$pkg.ST_BIND = function(info) {
 		return ((info >>> 4 << 24 >>> 24) >> 0);
 	};
- 0e ST_TYPEV	ST_TYPE = go$pkg.ST_TYPE = function(info) {
+ 0	ST-BIND0 0pST_TYPEV	ST_TYPE = go$pkg.ST_TYPE = function(info) {
 		return (((info & 15) >>> 0) >> 0);
 	};
- 0Å§ ST_INFOÅî	ST_INFO = go$pkg.ST_INFO = function(bind, typ) {
+ 0	ST-TYPE0 0ÅØST_INFOÅî	ST_INFO = go$pkg.ST_INFO = function(bind, typ) {
 		return (((bind << 24 >>> 24) << 4 << 24 >>> 24) | (((typ << 24 >>> 24) & 15) >>> 0)) >>> 0;
 	};
- 0x ST_VISIBILITYc	ST_VISIBILITY = go$pkg.ST_VISIBILITY = function(other) {
+ 0	ST-INFO0 0ÅâST_VISIBILITYc	ST_VISIBILITY = go$pkg.ST_VISIBILITY = function(other) {
 		return (((other & 3) >>> 0) >> 0);
 	};
- 0t R_SYM64e	R_SYM64 = go$pkg.R_SYM64 = function(info) {
+ 0ST-VISIBILITY0 0R_SYM64e	R_SYM64 = go$pkg.R_SYM64 = function(info) {
 		return (go$shiftRightUint64(info, 32).low >>> 0);
 	};
- 0^ R_TYPE64N	R_TYPE64 = go$pkg.R_TYPE64 = function(info) {
+ 0	R-SYM640 0jR_TYPE64N	R_TYPE64 = go$pkg.R_TYPE64 = function(info) {
 		return (info.low >>> 0);
 	};
- 0Å‚ R_INFOÅ”	R_INFO = go$pkg.R_INFO = function(sym, typ) {
+ 0
+R-TYPE640 0ÅÏR_INFOÅ”	R_INFO = go$pkg.R_INFO = function(sym, typ) {
 		var x, x$1;
 		return (x = go$shiftLeft64(new Go$Uint64(0, sym), 32), x$1 = new Go$Uint64(0, typ), new Go$Uint64(x.high | x$1.high, (x.low | x$1.low) >>> 0));
 	};
- 0Ç$ 
+ 0R-INFO0 0Ç_
 stringNameÇ	stringName = function(i, names, goSyntax) {
 		var _ref, _i, _slice, _index, _struct, n, j, _slice$1, _index$1, _struct$1, n$1, s;
 		_ref = names;
@@ -1383,7 +1456,9 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		}
 		return strconv.FormatUint(new Go$Uint64(0, i), 10);
 	};
- 0Ç	 flagNameÇ˜	flagName = function(i, names, goSyntax) {
+ 0
+stringName0-0	debug/elfintName0strconv
+FormatUint0ÇBflagNameÇ˜	flagName = function(i, names, goSyntax) {
 		var s, _ref, _i, _slice, _index, _struct, n;
 		s = "";
 		_ref = names;
@@ -1410,7 +1485,9 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		}
 		return s;
 	};
- 0ÇÄ  Çv	Section.Ptr.prototype.Data = function() {
+ 0
+flagName0-0	debug/elfintName0strconv
+FormatUint0Ç° Çv	Section.Ptr.prototype.Data = function() {
 		var s, dat, _tuple, n, err;
 		s = this;
 		dat = (go$sliceType(Go$Uint8)).make(go$flatten64(s.sr.Size()), 0, function() { return 0; });
@@ -1418,7 +1495,7 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return [go$subslice(dat, 0, n), err];
 	};
 	Section.prototype.Data = function() { return this.go$val.Data(); };
- 0Ç  Ç	File.Ptr.prototype.stringTable = function(link) {
+ 0	Section00	debug/elfSection0ÇC Ç	File.Ptr.prototype.stringTable = function(link) {
 		var f, _slice, _index;
 		f = this;
 		if (link <= 0 || link >= (f.Sections.length >>> 0)) {
@@ -1427,19 +1504,19 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return (_slice = f.Sections, _index = link, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Data();
 	};
 	File.prototype.stringTable = function(link) { return this.go$val.stringTable(link); };
- 0Å  ÅÁ	Section.Ptr.prototype.Open = function() {
+ 0FilestringTable0"0	debug/elfFile0errorsNew0Ç) ÅÁ	Section.Ptr.prototype.Open = function() {
 		var s;
 		s = this;
 		return io.NewSectionReader(s.sr, new Go$Int64(0, 0), new Go$Int64(2147483647, 4294967295));
 	};
 	Section.prototype.Open = function() { return this.go$val.Open(); };
- 0ÅÍ  Å·	Prog.Ptr.prototype.Open = function() {
+ 0	Section0.0	debug/elfSection0ioNewSectionReader0Ç Å·	Prog.Ptr.prototype.Open = function() {
 		var p;
 		p = this;
 		return io.NewSectionReader(p.sr, new Go$Int64(0, 0), new Go$Int64(2147483647, 4294967295));
 	};
 	Prog.prototype.Open = function() { return this.go$val.Open(); };
- 0ÇØ  Ç•	FormatError.Ptr.prototype.Error = function() {
+ 0Prog0+0	debug/elfProg0ioNewSectionReader0ÇË Ç•	FormatError.Ptr.prototype.Error = function() {
 		var e, msg;
 		e = this;
 		msg = e.msg;
@@ -1450,7 +1527,7 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return msg;
 	};
 	FormatError.prototype.Error = function() { return this.go$val.Error(); };
- 0Çπ OpenÇ´	Open = go$pkg.Open = function(name) {
+ 0FormatError0*0	debug/elfFormatError0fmtSprintf0ÇˆOpenÇ´	Open = go$pkg.Open = function(name) {
 		var _tuple, f, err, _tuple$1, ff;
 		_tuple = os.Open(name), f = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -1464,7 +1541,8 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		ff.closer = f;
 		return [ff, null];
 	};
- 0Ç  Ç
+ 0Open050
+osOpen0	debug/elfFile0	debug/elfNewFile0Ç/ Ç
 	File.Ptr.prototype.Close = function() {
 		var f, err;
 		f = this;
@@ -1476,7 +1554,7 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return err;
 	};
 	File.prototype.Close = function() { return this.go$val.Close(); };
- 0Ç  Ç	File.Ptr.prototype.SectionByType = function(typ) {
+ 0File00	debug/elfFile0ÇH Ç	File.Ptr.prototype.SectionByType = function(typ) {
 		var f, _ref, _i, _slice, _index, s;
 		f = this;
 		_ref = f.Sections;
@@ -1491,7 +1569,7 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return (go$ptrType(Section)).nil;
 	};
 	File.prototype.SectionByType = function(typ) { return this.go$val.SectionByType(typ); };
- 0Ç%H NewFileÇ%7	NewFile = go$pkg.NewFile = function(r) {
+ 0File0)0	debug/elfFile0	debug/elfSection0Ç'-NewFileÇ%7	NewFile = go$pkg.NewFile = function(r) {
 		var sr, ident, err, _tuple, f, _ref, _ref$1, x, x$1, phoff, _tuple$1, phentsize, phnum, shoff, _tuple$2, shentsize, shnum, shstrndx, _ref$2, hdr, err$1, v, hdr$1, err$2, v$1, x$2, x$3, i, x$4, off, p, _ref$3, ph, err$3, ph$1, err$4, x$5, x$6, _slice, _index, names, i$1, x$7, off$1, s, _ref$4, sh, err$5, _slice$1, _index$1, sh$1, err$6, _slice$2, _index$2, x$8, x$9, _slice$3, _index$3, _tuple$3, _slice$4, _index$4, shstrtab, err$7, _ref$5, _i, _slice$5, _index$5, s$1, i$2, ok, _tuple$4, _slice$6, _index$6, x$10, _slice$7, _index$7;
 		sr = io.NewSectionReader(r, new Go$Int64(0, 0), new Go$Int64(2147483647, 4294967295));
 		ident = go$makeNativeArray("Uint8", 16, function() { return 0; });
@@ -1646,7 +1724,8 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		}
 		return [f, null];
 	};
- 0Ç†  Çñ	File.Ptr.prototype.getSymbols = function(typ) {
+ 0	NewFile0Çÿ0encoding/binary	BigEndian0encoding/binaryRead0	debug/elfHeader640	debug/elfProg320	debug/elf
+ProgHeader0	debug/elf	Section640	debug/elf	getString0ioNewSectionReader0	debug/elfFile0	debug/elfFormatError0	debug/elfData0	debug/elfVersion0	debug/elfClass0encoding/binaryLittleEndian0	debug/elfHeader320	debug/elfProg0	debug/elfSection0	debug/elfProg640	debug/elf	Section320	debug/elfSectionHeader0Ç! Çñ	File.Ptr.prototype.getSymbols = function(typ) {
 		var f, _ref;
 		f = this;
 		_ref = f.FileHeader.Class;
@@ -1658,7 +1737,8 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return [(go$sliceType(Symbol)).nil, (go$sliceType(Go$Uint8)).nil, errors.New("not implemented")];
 	};
 	File.prototype.getSymbols = function(typ) { return this.go$val.getSymbols(typ); };
- 0ÇA  Ç7	File.Ptr.prototype.getSymbols32 = function(typ) {
+ 0File
+getSymbols0m0	debug/elfFile0	debug/elfgetSymbols640	debug/elfgetSymbols320	debug/elfSymbol0errorsNew0Ç Ç7	File.Ptr.prototype.getSymbols32 = function(typ) {
 		var f, symtabSection, _tuple, data, err, symtab, _r, _tuple$1, strdata, skip, _q, symbols, i, sym, _tuple$2, str, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		f = this;
 		symtabSection = f.SectionByType(typ);
@@ -1696,7 +1776,7 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return [symbols, strdata, null];
 	};
 	File.prototype.getSymbols32 = function(typ) { return this.go$val.getSymbols32(typ); };
- 0Ç  Ç	File.Ptr.prototype.getSymbols64 = function(typ) {
+ 0FilegetSymbols320Å¿0	debug/elfSymbol0errorsNew0bytes	NewBuffer0	debug/elfSym320encoding/binaryRead0	debug/elfFile0	debug/elfSection0	debug/elfstringTable0	debug/elf	getString0Çˆ Ç	File.Ptr.prototype.getSymbols64 = function(typ) {
 		var f, symtabSection, _tuple, data, err, symtab, _r, _tuple$1, strdata, skip, _q, symbols, i, sym, _tuple$2, str, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
 		f = this;
 		symtabSection = f.SectionByType(typ);
@@ -1734,7 +1814,7 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return [symbols, strdata, null];
 	};
 	File.prototype.getSymbols64 = function(typ) { return this.go$val.getSymbols64(typ); };
- 0Ç˛ 	getStringÇÎ	getString = function(section, start) {
+ 0FilegetSymbols640Å¿0	debug/elfSymbol0bytes	NewBuffer0	debug/elfstringTable0encoding/binaryRead0	debug/elf	getString0	debug/elfFile0	debug/elfSection0errorsNew0	debug/elfSym640Ç	getStringÇÎ	getString = function(section, start) {
 		var end, _slice, _index;
 		if (start < 0 || start >= section.length) {
 			return ["", false];
@@ -1748,7 +1828,7 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		}
 		return ["", false];
 	};
- 0Ç	  Çˇ	File.Ptr.prototype.Section = function(name) {
+ 0	getString0 0Ç: Çˇ	File.Ptr.prototype.Section = function(name) {
 		var f, _ref, _i, _slice, _index, s;
 		f = this;
 		_ref = f.Sections;
@@ -1763,7 +1843,7 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return (go$ptrType(Section)).nil;
 	};
 	File.prototype.Section = function(name) { return this.go$val.Section(name); };
- 0Çk  Ça	File.Ptr.prototype.applyRelocations = function(dst, rels) {
+ 0File0)0	debug/elfFile0	debug/elfSection0ÇÀ Ça	File.Ptr.prototype.applyRelocations = function(dst, rels) {
 		var f;
 		f = this;
 		if ((f.FileHeader.Class === 2) && (f.FileHeader.Machine === 62)) {
@@ -1772,7 +1852,8 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return errors.New("not implemented");
 	};
 	File.prototype.applyRelocations = function(dst, rels) { return this.go$val.applyRelocations(dst, rels); };
- 0Ç	™  Ç	†	File.Ptr.prototype.applyRelocationsAMD64 = function(dst, rels) {
+ 0FileapplyRelocations0F0	debug/elfFile0"	debug/elfapplyRelocationsAMD640errorsNew0Ç
+F Ç	†	File.Ptr.prototype.applyRelocationsAMD64 = function(dst, rels) {
 		var f, _r, _tuple, symbols, err, b, rela, symNo, x, t, x$1, _slice, _index, sym, _ref, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10, x$11, x$12;
 		f = this;
 		if (!(((_r = rels.length % 24, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0))) {
@@ -1811,7 +1892,8 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return null;
 	};
 	File.prototype.applyRelocationsAMD64 = function(dst, rels) { return this.go$val.applyRelocationsAMD64(dst, rels); };
- 0Çò  Çé	File.Ptr.prototype.DWARF = function() {
+ 0FileapplyRelocationsAMD640}0	debug/elfFile0errorsNew0	debug/elf
+getSymbols0bytes	NewBuffer0	debug/elfRela640encoding/binaryRead0Ç Çé	File.Ptr.prototype.DWARF = function() {
 		var f, names, dat, _ref, _i, name, i, s, _tuple, b, err, x, x$1, rela, _tuple$1, data, err$1, _tuple$2, abbrev, info, str;
 		f = this;
 		names = go$toNativeArray("String", ["abbrev", "info", "str"]);
@@ -1849,14 +1931,15 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return dwarf.New(abbrev, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, info, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil, str);
 	};
 	File.prototype.DWARF = function() { return this.go$val.DWARF(); };
- 0Å˙  ÅÒ	File.Ptr.prototype.Symbols = function() {
+ 0File0q0	debug/elfFile0	debug/elfSection0debug/dwarfData0	debug/elfapplyRelocations0debug/dwarfNew0Ç. ÅÒ	File.Ptr.prototype.Symbols = function() {
 		var f, _tuple, sym, err;
 		f = this;
 		_tuple = f.getSymbols(2), sym = _tuple[0], err = _tuple[2];
 		return [sym, err];
 	};
 	File.prototype.Symbols = function() { return this.go$val.Symbols(); };
- 0Ç   Ç¿	File.Ptr.prototype.ImportedSymbols = function() {
+ 0File0,0	debug/elfFile0	debug/elf
+getSymbols0Ç} Ç¿	File.Ptr.prototype.ImportedSymbols = function() {
 		var f, _tuple, sym, str, err, all, _ref, _i, _slice, _index, _struct, s, i, _slice$1, _index$1;
 		f = this;
 		_tuple = f.getSymbols(11), sym = _tuple[0], str = _tuple[1], err = _tuple[2];
@@ -1879,7 +1962,9 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return [all, null];
 	};
 	File.prototype.ImportedSymbols = function() { return this.go$val.ImportedSymbols(); };
- 0Ç	Q  Ç	G	File.Ptr.prototype.gnuVersionInit = function(str) {
+ 0File0Å™0	debug/elfFile0	debug/elf
+getSymbols0	debug/elfImportedSymbol0	debug/elfgnuVersionInit0	debug/elfSymbol0	debug/elfST-BIND0	debug/elf
+gnuVersion0Ç	¿ Ç	G	File.Ptr.prototype.gnuVersionInit = function(str) {
 		var f, vn, _tuple, d, need, i, vers, cnt, fileoff, aux, next, _tuple$1, file, name, j, c, other, nameoff, next$1, _tuple$2, ndx, x, x$1, a, _slice, _index, vs, _tuple$3;
 		f = this;
 		vn = f.SectionByType(1879048190);
@@ -1940,7 +2025,7 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		f.gnuVersym = d;
 	};
 	File.prototype.gnuVersionInit = function(str) { return this.go$val.gnuVersionInit(str); };
- 0Ç∂  Ç¨	File.Ptr.prototype.gnuVersion = function(i, sym) {
+ 0FilegnuVersionInit0W0	debug/elfFile0	debug/elfSection0	debug/elfverneed0	debug/elf	getString0Ç› Ç¨	File.Ptr.prototype.gnuVersion = function(i, sym) {
 		var f, x, x$1, j, _slice, _index, n;
 		f = this;
 		i = (x = (i + 1 >> 0), x$1 = 2, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
@@ -1956,13 +2041,14 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		sym.Version = n.Name;
 	};
 	File.prototype.gnuVersion = function(i, sym) { return this.go$val.gnuVersion(i, sym); };
- 0ÅÃ  Å√	File.Ptr.prototype.ImportedLibraries = function() {
+ 0File
+gnuVersion00	debug/elfFile0ÅÁ Å√	File.Ptr.prototype.ImportedLibraries = function() {
 		var f;
 		f = this;
 		return f.DynString(1);
 	};
 	File.prototype.ImportedLibraries = function() { return this.go$val.ImportedLibraries(); };
- 0Çi  Ç_	File.Ptr.prototype.DynString = function(tag) {
+ 0File00	debug/elfFile0Ç Ç_	File.Ptr.prototype.DynString = function(tag) {
 		var f, _ref, ds, _tuple, d, err, _tuple$1, str, all, t, v, _ref$1, _tuple$2, s, ok;
 		f = this;
 		_ref = tag;
@@ -2006,33 +2092,53 @@ stringNameÇ	stringName = function(i, names, goSyntax) {
 		return [all, null];
 	};
 	File.prototype.DynString = function(tag) { return this.go$val.DynString(tag); };
- 0 versionStrings  0 classStrings  0 dataStrings  0 osabiStrings  0 typeStrings  0 machineStrings  0 
-shnStrings  0 
-shtStrings  0 
-shfStrings  0 	ptStrings  0 	pfStrings  0 	dtStrings  0 dflagStrings  0 ntypeStrings  0 
-stbStrings  0 
-sttStrings  0 
-stvStrings  0 rx86_64Strings  0 ralphaStrings  0 rarmStrings  0 r386Strings  0 rppcStrings  0 rsparcStrings  0{   s		versionStrings = new (go$sliceType(intName))([new intName.Ptr(0, "EV_NONE"), new intName.Ptr(1, "EV_CURRENT")]);
-0Å°   Åò		classStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ELFCLASSNONE"), new intName.Ptr(1, "ELFCLASS32"), new intName.Ptr(2, "ELFCLASS64")]);
-0Å°   Åò		dataStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ELFDATANONE"), new intName.Ptr(1, "ELFDATA2LSB"), new intName.Ptr(2, "ELFDATA2MSB")]);
-0Çœ   Ç≈		osabiStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ELFOSABI_NONE"), new intName.Ptr(1, "ELFOSABI_HPUX"), new intName.Ptr(2, "ELFOSABI_NETBSD"), new intName.Ptr(3, "ELFOSABI_LINUX"), new intName.Ptr(4, "ELFOSABI_HURD"), new intName.Ptr(5, "ELFOSABI_86OPEN"), new intName.Ptr(6, "ELFOSABI_SOLARIS"), new intName.Ptr(7, "ELFOSABI_AIX"), new intName.Ptr(8, "ELFOSABI_IRIX"), new intName.Ptr(9, "ELFOSABI_FREEBSD"), new intName.Ptr(10, "ELFOSABI_TRU64"), new intName.Ptr(11, "ELFOSABI_MODESTO"), new intName.Ptr(12, "ELFOSABI_OPENBSD"), new intName.Ptr(13, "ELFOSABI_OPENVMS"), new intName.Ptr(14, "ELFOSABI_NSK"), new intName.Ptr(97, "ELFOSABI_ARM"), new intName.Ptr(255, "ELFOSABI_STANDALONE")]);
-0Çb   ÇX		typeStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ET_NONE"), new intName.Ptr(1, "ET_REL"), new intName.Ptr(2, "ET_EXEC"), new intName.Ptr(3, "ET_DYN"), new intName.Ptr(4, "ET_CORE"), new intName.Ptr(65024, "ET_LOOS"), new intName.Ptr(65279, "ET_HIOS"), new intName.Ptr(65280, "ET_LOPROC"), new intName.Ptr(65535, "ET_HIPROC")]);
-0ÇD   Ç:		machineStrings = new (go$sliceType(intName))([new intName.Ptr(0, "EM_NONE"), new intName.Ptr(1, "EM_M32"), new intName.Ptr(2, "EM_SPARC"), new intName.Ptr(3, "EM_386"), new intName.Ptr(4, "EM_68K"), new intName.Ptr(5, "EM_88K"), new intName.Ptr(7, "EM_860"), new intName.Ptr(8, "EM_MIPS"), new intName.Ptr(9, "EM_S370"), new intName.Ptr(10, "EM_MIPS_RS3_LE"), new intName.Ptr(15, "EM_PARISC"), new intName.Ptr(17, "EM_VPP500"), new intName.Ptr(18, "EM_SPARC32PLUS"), new intName.Ptr(19, "EM_960"), new intName.Ptr(20, "EM_PPC"), new intName.Ptr(21, "EM_PPC64"), new intName.Ptr(22, "EM_S390"), new intName.Ptr(36, "EM_V800"), new intName.Ptr(37, "EM_FR20"), new intName.Ptr(38, "EM_RH32"), new intName.Ptr(39, "EM_RCE"), new intName.Ptr(40, "EM_ARM"), new intName.Ptr(42, "EM_SH"), new intName.Ptr(43, "EM_SPARCV9"), new intName.Ptr(44, "EM_TRICORE"), new intName.Ptr(45, "EM_ARC"), new intName.Ptr(46, "EM_H8_300"), new intName.Ptr(47, "EM_H8_300H"), new intName.Ptr(48, "EM_H8S"), new intName.Ptr(49, "EM_H8_500"), new intName.Ptr(50, "EM_IA_64"), new intName.Ptr(51, "EM_MIPS_X"), new intName.Ptr(52, "EM_COLDFIRE"), new intName.Ptr(53, "EM_68HC12"), new intName.Ptr(54, "EM_MMA"), new intName.Ptr(55, "EM_PCP"), new intName.Ptr(56, "EM_NCPU"), new intName.Ptr(57, "EM_NDR1"), new intName.Ptr(58, "EM_STARCORE"), new intName.Ptr(59, "EM_ME16"), new intName.Ptr(60, "EM_ST100"), new intName.Ptr(61, "EM_TINYJ"), new intName.Ptr(62, "EM_X86_64"), new intName.Ptr(6, "EM_486"), new intName.Ptr(10, "EM_MIPS_RS4_BE"), new intName.Ptr(41, "EM_ALPHA_STD"), new intName.Ptr(36902, "EM_ALPHA")]);
-0Ç   Ç		shnStrings = new (go$sliceType(intName))([new intName.Ptr(0, "SHN_UNDEF"), new intName.Ptr(65280, "SHN_LOPROC"), new intName.Ptr(65312, "SHN_LOOS"), new intName.Ptr(65521, "SHN_ABS"), new intName.Ptr(65522, "SHN_COMMON"), new intName.Ptr(65535, "SHN_XINDEX")]);
-0Ç   Çu		shtStrings = new (go$sliceType(intName))([new intName.Ptr(0, "SHT_NULL"), new intName.Ptr(1, "SHT_PROGBITS"), new intName.Ptr(2, "SHT_SYMTAB"), new intName.Ptr(3, "SHT_STRTAB"), new intName.Ptr(4, "SHT_RELA"), new intName.Ptr(5, "SHT_HASH"), new intName.Ptr(6, "SHT_DYNAMIC"), new intName.Ptr(7, "SHT_NOTE"), new intName.Ptr(8, "SHT_NOBITS"), new intName.Ptr(9, "SHT_REL"), new intName.Ptr(10, "SHT_SHLIB"), new intName.Ptr(11, "SHT_DYNSYM"), new intName.Ptr(14, "SHT_INIT_ARRAY"), new intName.Ptr(15, "SHT_FINI_ARRAY"), new intName.Ptr(16, "SHT_PREINIT_ARRAY"), new intName.Ptr(17, "SHT_GROUP"), new intName.Ptr(18, "SHT_SYMTAB_SHNDX"), new intName.Ptr(1610612736, "SHT_LOOS"), new intName.Ptr(1879048181, "SHT_GNU_ATTRIBUTES"), new intName.Ptr(1879048182, "SHT_GNU_HASH"), new intName.Ptr(1879048183, "SHT_GNU_LIBLIST"), new intName.Ptr(1879048189, "SHT_GNU_VERDEF"), new intName.Ptr(1879048190, "SHT_GNU_VERNEED"), new intName.Ptr(1879048191, "SHT_GNU_VERSYM"), new intName.Ptr(1879048192, "SHT_LOPROC"), new intName.Ptr(2147483647, "SHT_HIPROC"), new intName.Ptr(2147483648, "SHT_LOUSER"), new intName.Ptr(4294967295, "SHT_HIUSER")]);
-0Ç¶   Çú		shfStrings = new (go$sliceType(intName))([new intName.Ptr(1, "SHF_WRITE"), new intName.Ptr(2, "SHF_ALLOC"), new intName.Ptr(4, "SHF_EXECINSTR"), new intName.Ptr(16, "SHF_MERGE"), new intName.Ptr(32, "SHF_STRINGS"), new intName.Ptr(64, "SHF_INFO_LINK"), new intName.Ptr(128, "SHF_LINK_ORDER"), new intName.Ptr(256, "SHF_OS_NONCONFORMING"), new intName.Ptr(512, "SHF_GROUP"), new intName.Ptr(1024, "SHF_TLS")]);
-0Çÿ   ÇŒ		ptStrings = new (go$sliceType(intName))([new intName.Ptr(0, "PT_NULL"), new intName.Ptr(1, "PT_LOAD"), new intName.Ptr(2, "PT_DYNAMIC"), new intName.Ptr(3, "PT_INTERP"), new intName.Ptr(4, "PT_NOTE"), new intName.Ptr(5, "PT_SHLIB"), new intName.Ptr(6, "PT_PHDR"), new intName.Ptr(7, "PT_TLS"), new intName.Ptr(1610612736, "PT_LOOS"), new intName.Ptr(1879048191, "PT_HIOS"), new intName.Ptr(1879048192, "PT_LOPROC"), new intName.Ptr(2147483647, "PT_HIPROC")]);
-0Åä   ÅÅ		pfStrings = new (go$sliceType(intName))([new intName.Ptr(1, "PF_X"), new intName.Ptr(2, "PF_W"), new intName.Ptr(4, "PF_R")]);
-0Çı   ÇÎ		dtStrings = new (go$sliceType(intName))([new intName.Ptr(0, "DT_NULL"), new intName.Ptr(1, "DT_NEEDED"), new intName.Ptr(2, "DT_PLTRELSZ"), new intName.Ptr(3, "DT_PLTGOT"), new intName.Ptr(4, "DT_HASH"), new intName.Ptr(5, "DT_STRTAB"), new intName.Ptr(6, "DT_SYMTAB"), new intName.Ptr(7, "DT_RELA"), new intName.Ptr(8, "DT_RELASZ"), new intName.Ptr(9, "DT_RELAENT"), new intName.Ptr(10, "DT_STRSZ"), new intName.Ptr(11, "DT_SYMENT"), new intName.Ptr(12, "DT_INIT"), new intName.Ptr(13, "DT_FINI"), new intName.Ptr(14, "DT_SONAME"), new intName.Ptr(15, "DT_RPATH"), new intName.Ptr(16, "DT_SYMBOLIC"), new intName.Ptr(17, "DT_REL"), new intName.Ptr(18, "DT_RELSZ"), new intName.Ptr(19, "DT_RELENT"), new intName.Ptr(20, "DT_PLTREL"), new intName.Ptr(21, "DT_DEBUG"), new intName.Ptr(22, "DT_TEXTREL"), new intName.Ptr(23, "DT_JMPREL"), new intName.Ptr(24, "DT_BIND_NOW"), new intName.Ptr(25, "DT_INIT_ARRAY"), new intName.Ptr(26, "DT_FINI_ARRAY"), new intName.Ptr(27, "DT_INIT_ARRAYSZ"), new intName.Ptr(28, "DT_FINI_ARRAYSZ"), new intName.Ptr(29, "DT_RUNPATH"), new intName.Ptr(30, "DT_FLAGS"), new intName.Ptr(32, "DT_ENCODING"), new intName.Ptr(32, "DT_PREINIT_ARRAY"), new intName.Ptr(33, "DT_PREINIT_ARRAYSZ"), new intName.Ptr(1610612749, "DT_LOOS"), new intName.Ptr(1879044096, "DT_HIOS"), new intName.Ptr(1879048176, "DT_VERSYM"), new intName.Ptr(1879048190, "DT_VERNEED"), new intName.Ptr(1879048191, "DT_VERNEEDNUM"), new intName.Ptr(1879048192, "DT_LOPROC"), new intName.Ptr(2147483647, "DT_HIPROC")]);
-0ÅË   Åﬂ		dflagStrings = new (go$sliceType(intName))([new intName.Ptr(1, "DF_ORIGIN"), new intName.Ptr(2, "DF_SYMBOLIC"), new intName.Ptr(4, "DF_TEXTREL"), new intName.Ptr(8, "DF_BIND_NOW"), new intName.Ptr(16, "DF_STATIC_TLS")]);
-0Å¢   Åô		ntypeStrings = new (go$sliceType(intName))([new intName.Ptr(1, "NT_PRSTATUS"), new intName.Ptr(2, "NT_FPREGSET"), new intName.Ptr(3, "NT_PRPSINFO")]);
-0Ç#   Ç		stbStrings = new (go$sliceType(intName))([new intName.Ptr(0, "STB_LOCAL"), new intName.Ptr(1, "STB_GLOBAL"), new intName.Ptr(2, "STB_WEAK"), new intName.Ptr(10, "STB_LOOS"), new intName.Ptr(12, "STB_HIOS"), new intName.Ptr(13, "STB_LOPROC"), new intName.Ptr(15, "STB_HIPROC")]);
-0Ç®   Çû		sttStrings = new (go$sliceType(intName))([new intName.Ptr(0, "STT_NOTYPE"), new intName.Ptr(1, "STT_OBJECT"), new intName.Ptr(2, "STT_FUNC"), new intName.Ptr(3, "STT_SECTION"), new intName.Ptr(4, "STT_FILE"), new intName.Ptr(5, "STT_COMMON"), new intName.Ptr(6, "STT_TLS"), new intName.Ptr(10, "STT_LOOS"), new intName.Ptr(12, "STT_HIOS"), new intName.Ptr(13, "STT_LOPROC"), new intName.Ptr(15, "STT_HIPROC")]);
-0Å≈   Åº		stvStrings = new (go$sliceType(intName))([new intName.Ptr(0, "STV_DEFAULT"), new intName.Ptr(1, "STV_INTERNAL"), new intName.Ptr(2, "STV_HIDDEN"), new intName.Ptr(3, "STV_PROTECTED")]);
-0Ç·   Ç◊		rx86_64Strings = new (go$sliceType(intName))([new intName.Ptr(0, "R_X86_64_NONE"), new intName.Ptr(1, "R_X86_64_64"), new intName.Ptr(2, "R_X86_64_PC32"), new intName.Ptr(3, "R_X86_64_GOT32"), new intName.Ptr(4, "R_X86_64_PLT32"), new intName.Ptr(5, "R_X86_64_COPY"), new intName.Ptr(6, "R_X86_64_GLOB_DAT"), new intName.Ptr(7, "R_X86_64_JMP_SLOT"), new intName.Ptr(8, "R_X86_64_RELATIVE"), new intName.Ptr(9, "R_X86_64_GOTPCREL"), new intName.Ptr(10, "R_X86_64_32"), new intName.Ptr(11, "R_X86_64_32S"), new intName.Ptr(12, "R_X86_64_16"), new intName.Ptr(13, "R_X86_64_PC16"), new intName.Ptr(14, "R_X86_64_8"), new intName.Ptr(15, "R_X86_64_PC8"), new intName.Ptr(16, "R_X86_64_DTPMOD64"), new intName.Ptr(17, "R_X86_64_DTPOFF64"), new intName.Ptr(18, "R_X86_64_TPOFF64"), new intName.Ptr(19, "R_X86_64_TLSGD"), new intName.Ptr(20, "R_X86_64_TLSLD"), new intName.Ptr(21, "R_X86_64_DTPOFF32"), new intName.Ptr(22, "R_X86_64_GOTTPOFF"), new intName.Ptr(23, "R_X86_64_TPOFF32")]);
-0Ç¶   Çú		ralphaStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_ALPHA_NONE"), new intName.Ptr(1, "R_ALPHA_REFLONG"), new intName.Ptr(2, "R_ALPHA_REFQUAD"), new intName.Ptr(3, "R_ALPHA_GPREL32"), new intName.Ptr(4, "R_ALPHA_LITERAL"), new intName.Ptr(5, "R_ALPHA_LITUSE"), new intName.Ptr(6, "R_ALPHA_GPDISP"), new intName.Ptr(7, "R_ALPHA_BRADDR"), new intName.Ptr(8, "R_ALPHA_HINT"), new intName.Ptr(9, "R_ALPHA_SREL16"), new intName.Ptr(10, "R_ALPHA_SREL32"), new intName.Ptr(11, "R_ALPHA_SREL64"), new intName.Ptr(12, "R_ALPHA_OP_PUSH"), new intName.Ptr(13, "R_ALPHA_OP_STORE"), new intName.Ptr(14, "R_ALPHA_OP_PSUB"), new intName.Ptr(15, "R_ALPHA_OP_PRSHIFT"), new intName.Ptr(16, "R_ALPHA_GPVALUE"), new intName.Ptr(17, "R_ALPHA_GPRELHIGH"), new intName.Ptr(18, "R_ALPHA_GPRELLOW"), new intName.Ptr(19, "R_ALPHA_IMMED_GP_16"), new intName.Ptr(20, "R_ALPHA_IMMED_GP_HI32"), new intName.Ptr(21, "R_ALPHA_IMMED_SCN_HI32"), new intName.Ptr(22, "R_ALPHA_IMMED_BR_HI32"), new intName.Ptr(23, "R_ALPHA_IMMED_LO32"), new intName.Ptr(24, "R_ALPHA_COPY"), new intName.Ptr(25, "R_ALPHA_GLOB_DAT"), new intName.Ptr(26, "R_ALPHA_JMP_SLOT"), new intName.Ptr(27, "R_ALPHA_RELATIVE")]);
-0Ç   Ç		rarmStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_ARM_NONE"), new intName.Ptr(1, "R_ARM_PC24"), new intName.Ptr(2, "R_ARM_ABS32"), new intName.Ptr(3, "R_ARM_REL32"), new intName.Ptr(4, "R_ARM_PC13"), new intName.Ptr(5, "R_ARM_ABS16"), new intName.Ptr(6, "R_ARM_ABS12"), new intName.Ptr(7, "R_ARM_THM_ABS5"), new intName.Ptr(8, "R_ARM_ABS8"), new intName.Ptr(9, "R_ARM_SBREL32"), new intName.Ptr(10, "R_ARM_THM_PC22"), new intName.Ptr(11, "R_ARM_THM_PC8"), new intName.Ptr(12, "R_ARM_AMP_VCALL9"), new intName.Ptr(13, "R_ARM_SWI24"), new intName.Ptr(14, "R_ARM_THM_SWI8"), new intName.Ptr(15, "R_ARM_XPC25"), new intName.Ptr(16, "R_ARM_THM_XPC22"), new intName.Ptr(20, "R_ARM_COPY"), new intName.Ptr(21, "R_ARM_GLOB_DAT"), new intName.Ptr(22, "R_ARM_JUMP_SLOT"), new intName.Ptr(23, "R_ARM_RELATIVE"), new intName.Ptr(24, "R_ARM_GOTOFF"), new intName.Ptr(25, "R_ARM_GOTPC"), new intName.Ptr(26, "R_ARM_GOT32"), new intName.Ptr(27, "R_ARM_PLT32"), new intName.Ptr(100, "R_ARM_GNU_VTENTRY"), new intName.Ptr(101, "R_ARM_GNU_VTINHERIT"), new intName.Ptr(250, "R_ARM_RSBREL32"), new intName.Ptr(251, "R_ARM_THM_RPC22"), new intName.Ptr(252, "R_ARM_RREL32"), new intName.Ptr(253, "R_ARM_RABS32"), new intName.Ptr(254, "R_ARM_RPC24"), new intName.Ptr(255, "R_ARM_RBASE")]);
-0ÇÎ   Ç·		r386Strings = new (go$sliceType(intName))([new intName.Ptr(0, "R_386_NONE"), new intName.Ptr(1, "R_386_32"), new intName.Ptr(2, "R_386_PC32"), new intName.Ptr(3, "R_386_GOT32"), new intName.Ptr(4, "R_386_PLT32"), new intName.Ptr(5, "R_386_COPY"), new intName.Ptr(6, "R_386_GLOB_DAT"), new intName.Ptr(7, "R_386_JMP_SLOT"), new intName.Ptr(8, "R_386_RELATIVE"), new intName.Ptr(9, "R_386_GOTOFF"), new intName.Ptr(10, "R_386_GOTPC"), new intName.Ptr(14, "R_386_TLS_TPOFF"), new intName.Ptr(15, "R_386_TLS_IE"), new intName.Ptr(16, "R_386_TLS_GOTIE"), new intName.Ptr(17, "R_386_TLS_LE"), new intName.Ptr(18, "R_386_TLS_GD"), new intName.Ptr(19, "R_386_TLS_LDM"), new intName.Ptr(24, "R_386_TLS_GD_32"), new intName.Ptr(25, "R_386_TLS_GD_PUSH"), new intName.Ptr(26, "R_386_TLS_GD_CALL"), new intName.Ptr(27, "R_386_TLS_GD_POP"), new intName.Ptr(28, "R_386_TLS_LDM_32"), new intName.Ptr(29, "R_386_TLS_LDM_PUSH"), new intName.Ptr(30, "R_386_TLS_LDM_CALL"), new intName.Ptr(31, "R_386_TLS_LDM_POP"), new intName.Ptr(32, "R_386_TLS_LDO_32"), new intName.Ptr(33, "R_386_TLS_IE_32"), new intName.Ptr(34, "R_386_TLS_LE_32"), new intName.Ptr(35, "R_386_TLS_DTPMOD32"), new intName.Ptr(36, "R_386_TLS_DTPOFF32"), new intName.Ptr(37, "R_386_TLS_TPOFF32")]);
-0Çy   Ço		rppcStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_PPC_NONE"), new intName.Ptr(1, "R_PPC_ADDR32"), new intName.Ptr(2, "R_PPC_ADDR24"), new intName.Ptr(3, "R_PPC_ADDR16"), new intName.Ptr(4, "R_PPC_ADDR16_LO"), new intName.Ptr(5, "R_PPC_ADDR16_HI"), new intName.Ptr(6, "R_PPC_ADDR16_HA"), new intName.Ptr(7, "R_PPC_ADDR14"), new intName.Ptr(8, "R_PPC_ADDR14_BRTAKEN"), new intName.Ptr(9, "R_PPC_ADDR14_BRNTAKEN"), new intName.Ptr(10, "R_PPC_REL24"), new intName.Ptr(11, "R_PPC_REL14"), new intName.Ptr(12, "R_PPC_REL14_BRTAKEN"), new intName.Ptr(13, "R_PPC_REL14_BRNTAKEN"), new intName.Ptr(14, "R_PPC_GOT16"), new intName.Ptr(15, "R_PPC_GOT16_LO"), new intName.Ptr(16, "R_PPC_GOT16_HI"), new intName.Ptr(17, "R_PPC_GOT16_HA"), new intName.Ptr(18, "R_PPC_PLTREL24"), new intName.Ptr(19, "R_PPC_COPY"), new intName.Ptr(20, "R_PPC_GLOB_DAT"), new intName.Ptr(21, "R_PPC_JMP_SLOT"), new intName.Ptr(22, "R_PPC_RELATIVE"), new intName.Ptr(23, "R_PPC_LOCAL24PC"), new intName.Ptr(24, "R_PPC_UADDR32"), new intName.Ptr(25, "R_PPC_UADDR16"), new intName.Ptr(26, "R_PPC_REL32"), new intName.Ptr(27, "R_PPC_PLT32"), new intName.Ptr(28, "R_PPC_PLTREL32"), new intName.Ptr(29, "R_PPC_PLT16_LO"), new intName.Ptr(30, "R_PPC_PLT16_HI"), new intName.Ptr(31, "R_PPC_PLT16_HA"), new intName.Ptr(32, "R_PPC_SDAREL16"), new intName.Ptr(33, "R_PPC_SECTOFF"), new intName.Ptr(34, "R_PPC_SECTOFF_LO"), new intName.Ptr(35, "R_PPC_SECTOFF_HI"), new intName.Ptr(36, "R_PPC_SECTOFF_HA"), new intName.Ptr(67, "R_PPC_TLS"), new intName.Ptr(68, "R_PPC_DTPMOD32"), new intName.Ptr(69, "R_PPC_TPREL16"), new intName.Ptr(70, "R_PPC_TPREL16_LO"), new intName.Ptr(71, "R_PPC_TPREL16_HI"), new intName.Ptr(72, "R_PPC_TPREL16_HA"), new intName.Ptr(73, "R_PPC_TPREL32"), new intName.Ptr(74, "R_PPC_DTPREL16"), new intName.Ptr(75, "R_PPC_DTPREL16_LO"), new intName.Ptr(76, "R_PPC_DTPREL16_HI"), new intName.Ptr(77, "R_PPC_DTPREL16_HA"), new intName.Ptr(78, "R_PPC_DTPREL32"), new intName.Ptr(79, "R_PPC_GOT_TLSGD16"), new intName.Ptr(80, "R_PPC_GOT_TLSGD16_LO"), new intName.Ptr(81, "R_PPC_GOT_TLSGD16_HI"), new intName.Ptr(82, "R_PPC_GOT_TLSGD16_HA"), new intName.Ptr(83, "R_PPC_GOT_TLSLD16"), new intName.Ptr(84, "R_PPC_GOT_TLSLD16_LO"), new intName.Ptr(85, "R_PPC_GOT_TLSLD16_HI"), new intName.Ptr(86, "R_PPC_GOT_TLSLD16_HA"), new intName.Ptr(87, "R_PPC_GOT_TPREL16"), new intName.Ptr(88, "R_PPC_GOT_TPREL16_LO"), new intName.Ptr(89, "R_PPC_GOT_TPREL16_HI"), new intName.Ptr(90, "R_PPC_GOT_TPREL16_HA"), new intName.Ptr(101, "R_PPC_EMB_NADDR32"), new intName.Ptr(102, "R_PPC_EMB_NADDR16"), new intName.Ptr(103, "R_PPC_EMB_NADDR16_LO"), new intName.Ptr(104, "R_PPC_EMB_NADDR16_HI"), new intName.Ptr(105, "R_PPC_EMB_NADDR16_HA"), new intName.Ptr(106, "R_PPC_EMB_SDAI16"), new intName.Ptr(107, "R_PPC_EMB_SDA2I16"), new intName.Ptr(108, "R_PPC_EMB_SDA2REL"), new intName.Ptr(109, "R_PPC_EMB_SDA21"), new intName.Ptr(110, "R_PPC_EMB_MRKREF"), new intName.Ptr(111, "R_PPC_EMB_RELSEC16"), new intName.Ptr(112, "R_PPC_EMB_RELST_LO"), new intName.Ptr(113, "R_PPC_EMB_RELST_HI"), new intName.Ptr(114, "R_PPC_EMB_RELST_HA"), new intName.Ptr(115, "R_PPC_EMB_BIT_FLD"), new intName.Ptr(116, "R_PPC_EMB_RELSDA")]);
-0Çu   Çk		rsparcStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_SPARC_NONE"), new intName.Ptr(1, "R_SPARC_8"), new intName.Ptr(2, "R_SPARC_16"), new intName.Ptr(3, "R_SPARC_32"), new intName.Ptr(4, "R_SPARC_DISP8"), new intName.Ptr(5, "R_SPARC_DISP16"), new intName.Ptr(6, "R_SPARC_DISP32"), new intName.Ptr(7, "R_SPARC_WDISP30"), new intName.Ptr(8, "R_SPARC_WDISP22"), new intName.Ptr(9, "R_SPARC_HI22"), new intName.Ptr(10, "R_SPARC_22"), new intName.Ptr(11, "R_SPARC_13"), new intName.Ptr(12, "R_SPARC_LO10"), new intName.Ptr(13, "R_SPARC_GOT10"), new intName.Ptr(14, "R_SPARC_GOT13"), new intName.Ptr(15, "R_SPARC_GOT22"), new intName.Ptr(16, "R_SPARC_PC10"), new intName.Ptr(17, "R_SPARC_PC22"), new intName.Ptr(18, "R_SPARC_WPLT30"), new intName.Ptr(19, "R_SPARC_COPY"), new intName.Ptr(20, "R_SPARC_GLOB_DAT"), new intName.Ptr(21, "R_SPARC_JMP_SLOT"), new intName.Ptr(22, "R_SPARC_RELATIVE"), new intName.Ptr(23, "R_SPARC_UA32"), new intName.Ptr(24, "R_SPARC_PLT32"), new intName.Ptr(25, "R_SPARC_HIPLT22"), new intName.Ptr(26, "R_SPARC_LOPLT10"), new intName.Ptr(27, "R_SPARC_PCPLT32"), new intName.Ptr(28, "R_SPARC_PCPLT22"), new intName.Ptr(29, "R_SPARC_PCPLT10"), new intName.Ptr(30, "R_SPARC_10"), new intName.Ptr(31, "R_SPARC_11"), new intName.Ptr(32, "R_SPARC_64"), new intName.Ptr(33, "R_SPARC_OLO10"), new intName.Ptr(34, "R_SPARC_HH22"), new intName.Ptr(35, "R_SPARC_HM10"), new intName.Ptr(36, "R_SPARC_LM22"), new intName.Ptr(37, "R_SPARC_PC_HH22"), new intName.Ptr(38, "R_SPARC_PC_HM10"), new intName.Ptr(39, "R_SPARC_PC_LM22"), new intName.Ptr(40, "R_SPARC_WDISP16"), new intName.Ptr(41, "R_SPARC_WDISP19"), new intName.Ptr(42, "R_SPARC_GLOB_JMP"), new intName.Ptr(43, "R_SPARC_7"), new intName.Ptr(44, "R_SPARC_5"), new intName.Ptr(45, "R_SPARC_6"), new intName.Ptr(46, "R_SPARC_DISP64"), new intName.Ptr(47, "R_SPARC_PLT64"), new intName.Ptr(48, "R_SPARC_HIX22"), new intName.Ptr(49, "R_SPARC_LOX10"), new intName.Ptr(50, "R_SPARC_H44"), new intName.Ptr(51, "R_SPARC_M44"), new intName.Ptr(52, "R_SPARC_L44"), new intName.Ptr(53, "R_SPARC_REGISTER"), new intName.Ptr(54, "R_SPARC_UA64"), new intName.Ptr(55, "R_SPARC_UA16")]);
-0    0    0 
+ 0File00	debug/elfFile0fmtErrorf0	debug/elfDynTag0	debug/elfSection0	debug/elfstringTable0	debug/elf	getString0(versionStrings  0versionStrings0 0$classStrings  0classStrings0 0"dataStrings  0dataStrings0 0$osabiStrings  0osabiStrings0 0"typeStrings  0typeStrings0 0(machineStrings  0machineStrings0 0 
+shnStrings  0
+shnStrings0 0 
+shtStrings  0
+shtStrings0 0 
+shfStrings  0
+shfStrings0 0	ptStrings  0	ptStrings0 0	pfStrings  0	pfStrings0 0	dtStrings  0	dtStrings0 0$dflagStrings  0dflagStrings0 0$ntypeStrings  0ntypeStrings0 0 
+stbStrings  0
+stbStrings0 0 
+sttStrings  0
+sttStrings0 0 
+stvStrings  0
+stvStrings0 0(rx86_64Strings  0rx86-64Strings0 0&ralphaStrings  0ralphaStrings0 0"rarmStrings  0rarmStrings0 0"r386Strings  0r386Strings0 0"rppcStrings  0rppcStrings0 0&rsparcStrings  0rsparcStrings0 0Å¿  s		versionStrings = new (go$sliceType(intName))([new intName.Ptr(0, "EV_NONE"), new intName.Ptr(1, "EV_CURRENT")]);
+0versionStrings030	debug/elfintName0	debug/elfversionStrings0Å‚  Åò		classStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ELFCLASSNONE"), new intName.Ptr(1, "ELFCLASS32"), new intName.Ptr(2, "ELFCLASS64")]);
+0classStrings010	debug/elfintName0	debug/elfclassStrings0Å‡  Åò		dataStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ELFDATANONE"), new intName.Ptr(1, "ELFDATA2LSB"), new intName.Ptr(2, "ELFDATA2MSB")]);
+0dataStrings000	debug/elfintName0	debug/elfdataStrings0Ç  Ç≈		osabiStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ELFOSABI_NONE"), new intName.Ptr(1, "ELFOSABI_HPUX"), new intName.Ptr(2, "ELFOSABI_NETBSD"), new intName.Ptr(3, "ELFOSABI_LINUX"), new intName.Ptr(4, "ELFOSABI_HURD"), new intName.Ptr(5, "ELFOSABI_86OPEN"), new intName.Ptr(6, "ELFOSABI_SOLARIS"), new intName.Ptr(7, "ELFOSABI_AIX"), new intName.Ptr(8, "ELFOSABI_IRIX"), new intName.Ptr(9, "ELFOSABI_FREEBSD"), new intName.Ptr(10, "ELFOSABI_TRU64"), new intName.Ptr(11, "ELFOSABI_MODESTO"), new intName.Ptr(12, "ELFOSABI_OPENBSD"), new intName.Ptr(13, "ELFOSABI_OPENVMS"), new intName.Ptr(14, "ELFOSABI_NSK"), new intName.Ptr(97, "ELFOSABI_ARM"), new intName.Ptr(255, "ELFOSABI_STANDALONE")]);
+0osabiStrings010	debug/elfintName0	debug/elfosabiStrings0Ç°  ÇX		typeStrings = new (go$sliceType(intName))([new intName.Ptr(0, "ET_NONE"), new intName.Ptr(1, "ET_REL"), new intName.Ptr(2, "ET_EXEC"), new intName.Ptr(3, "ET_DYN"), new intName.Ptr(4, "ET_CORE"), new intName.Ptr(65024, "ET_LOOS"), new intName.Ptr(65279, "ET_HIOS"), new intName.Ptr(65280, "ET_LOPROC"), new intName.Ptr(65535, "ET_HIPROC")]);
+0typeStrings000	debug/elfintName0	debug/elftypeStrings0Çâ  Ç:		machineStrings = new (go$sliceType(intName))([new intName.Ptr(0, "EM_NONE"), new intName.Ptr(1, "EM_M32"), new intName.Ptr(2, "EM_SPARC"), new intName.Ptr(3, "EM_386"), new intName.Ptr(4, "EM_68K"), new intName.Ptr(5, "EM_88K"), new intName.Ptr(7, "EM_860"), new intName.Ptr(8, "EM_MIPS"), new intName.Ptr(9, "EM_S370"), new intName.Ptr(10, "EM_MIPS_RS3_LE"), new intName.Ptr(15, "EM_PARISC"), new intName.Ptr(17, "EM_VPP500"), new intName.Ptr(18, "EM_SPARC32PLUS"), new intName.Ptr(19, "EM_960"), new intName.Ptr(20, "EM_PPC"), new intName.Ptr(21, "EM_PPC64"), new intName.Ptr(22, "EM_S390"), new intName.Ptr(36, "EM_V800"), new intName.Ptr(37, "EM_FR20"), new intName.Ptr(38, "EM_RH32"), new intName.Ptr(39, "EM_RCE"), new intName.Ptr(40, "EM_ARM"), new intName.Ptr(42, "EM_SH"), new intName.Ptr(43, "EM_SPARCV9"), new intName.Ptr(44, "EM_TRICORE"), new intName.Ptr(45, "EM_ARC"), new intName.Ptr(46, "EM_H8_300"), new intName.Ptr(47, "EM_H8_300H"), new intName.Ptr(48, "EM_H8S"), new intName.Ptr(49, "EM_H8_500"), new intName.Ptr(50, "EM_IA_64"), new intName.Ptr(51, "EM_MIPS_X"), new intName.Ptr(52, "EM_COLDFIRE"), new intName.Ptr(53, "EM_68HC12"), new intName.Ptr(54, "EM_MMA"), new intName.Ptr(55, "EM_PCP"), new intName.Ptr(56, "EM_NCPU"), new intName.Ptr(57, "EM_NDR1"), new intName.Ptr(58, "EM_STARCORE"), new intName.Ptr(59, "EM_ME16"), new intName.Ptr(60, "EM_ST100"), new intName.Ptr(61, "EM_TINYJ"), new intName.Ptr(62, "EM_X86_64"), new intName.Ptr(6, "EM_486"), new intName.Ptr(10, "EM_MIPS_RS4_BE"), new intName.Ptr(41, "EM_ALPHA_STD"), new intName.Ptr(36902, "EM_ALPHA")]);
+0machineStrings030	debug/elfintName0	debug/elfmachineStrings0ÇO  Ç		shnStrings = new (go$sliceType(intName))([new intName.Ptr(0, "SHN_UNDEF"), new intName.Ptr(65280, "SHN_LOPROC"), new intName.Ptr(65312, "SHN_LOOS"), new intName.Ptr(65521, "SHN_ABS"), new intName.Ptr(65522, "SHN_COMMON"), new intName.Ptr(65535, "SHN_XINDEX")]);
+0
+shnStrings0/0	debug/elfintName0	debug/elf
+shnStrings0Çº  Çu		shtStrings = new (go$sliceType(intName))([new intName.Ptr(0, "SHT_NULL"), new intName.Ptr(1, "SHT_PROGBITS"), new intName.Ptr(2, "SHT_SYMTAB"), new intName.Ptr(3, "SHT_STRTAB"), new intName.Ptr(4, "SHT_RELA"), new intName.Ptr(5, "SHT_HASH"), new intName.Ptr(6, "SHT_DYNAMIC"), new intName.Ptr(7, "SHT_NOTE"), new intName.Ptr(8, "SHT_NOBITS"), new intName.Ptr(9, "SHT_REL"), new intName.Ptr(10, "SHT_SHLIB"), new intName.Ptr(11, "SHT_DYNSYM"), new intName.Ptr(14, "SHT_INIT_ARRAY"), new intName.Ptr(15, "SHT_FINI_ARRAY"), new intName.Ptr(16, "SHT_PREINIT_ARRAY"), new intName.Ptr(17, "SHT_GROUP"), new intName.Ptr(18, "SHT_SYMTAB_SHNDX"), new intName.Ptr(1610612736, "SHT_LOOS"), new intName.Ptr(1879048181, "SHT_GNU_ATTRIBUTES"), new intName.Ptr(1879048182, "SHT_GNU_HASH"), new intName.Ptr(1879048183, "SHT_GNU_LIBLIST"), new intName.Ptr(1879048189, "SHT_GNU_VERDEF"), new intName.Ptr(1879048190, "SHT_GNU_VERNEED"), new intName.Ptr(1879048191, "SHT_GNU_VERSYM"), new intName.Ptr(1879048192, "SHT_LOPROC"), new intName.Ptr(2147483647, "SHT_HIPROC"), new intName.Ptr(2147483648, "SHT_LOUSER"), new intName.Ptr(4294967295, "SHT_HIUSER")]);
+0
+shtStrings0/0	debug/elfintName0	debug/elf
+shtStrings0Ç„  Çú		shfStrings = new (go$sliceType(intName))([new intName.Ptr(1, "SHF_WRITE"), new intName.Ptr(2, "SHF_ALLOC"), new intName.Ptr(4, "SHF_EXECINSTR"), new intName.Ptr(16, "SHF_MERGE"), new intName.Ptr(32, "SHF_STRINGS"), new intName.Ptr(64, "SHF_INFO_LINK"), new intName.Ptr(128, "SHF_LINK_ORDER"), new intName.Ptr(256, "SHF_OS_NONCONFORMING"), new intName.Ptr(512, "SHF_GROUP"), new intName.Ptr(1024, "SHF_TLS")]);
+0
+shfStrings0/0	debug/elfintName0	debug/elf
+shfStrings0Ç  ÇŒ		ptStrings = new (go$sliceType(intName))([new intName.Ptr(0, "PT_NULL"), new intName.Ptr(1, "PT_LOAD"), new intName.Ptr(2, "PT_DYNAMIC"), new intName.Ptr(3, "PT_INTERP"), new intName.Ptr(4, "PT_NOTE"), new intName.Ptr(5, "PT_SHLIB"), new intName.Ptr(6, "PT_PHDR"), new intName.Ptr(7, "PT_TLS"), new intName.Ptr(1610612736, "PT_LOOS"), new intName.Ptr(1879048191, "PT_HIOS"), new intName.Ptr(1879048192, "PT_LOPROC"), new intName.Ptr(2147483647, "PT_HIPROC")]);
+0	ptStrings0.0	debug/elfintName0	debug/elf	ptStrings0Å≈  ÅÅ		pfStrings = new (go$sliceType(intName))([new intName.Ptr(1, "PF_X"), new intName.Ptr(2, "PF_W"), new intName.Ptr(4, "PF_R")]);
+0	pfStrings0.0	debug/elfintName0	debug/elf	pfStrings0Ç0  ÇÎ		dtStrings = new (go$sliceType(intName))([new intName.Ptr(0, "DT_NULL"), new intName.Ptr(1, "DT_NEEDED"), new intName.Ptr(2, "DT_PLTRELSZ"), new intName.Ptr(3, "DT_PLTGOT"), new intName.Ptr(4, "DT_HASH"), new intName.Ptr(5, "DT_STRTAB"), new intName.Ptr(6, "DT_SYMTAB"), new intName.Ptr(7, "DT_RELA"), new intName.Ptr(8, "DT_RELASZ"), new intName.Ptr(9, "DT_RELAENT"), new intName.Ptr(10, "DT_STRSZ"), new intName.Ptr(11, "DT_SYMENT"), new intName.Ptr(12, "DT_INIT"), new intName.Ptr(13, "DT_FINI"), new intName.Ptr(14, "DT_SONAME"), new intName.Ptr(15, "DT_RPATH"), new intName.Ptr(16, "DT_SYMBOLIC"), new intName.Ptr(17, "DT_REL"), new intName.Ptr(18, "DT_RELSZ"), new intName.Ptr(19, "DT_RELENT"), new intName.Ptr(20, "DT_PLTREL"), new intName.Ptr(21, "DT_DEBUG"), new intName.Ptr(22, "DT_TEXTREL"), new intName.Ptr(23, "DT_JMPREL"), new intName.Ptr(24, "DT_BIND_NOW"), new intName.Ptr(25, "DT_INIT_ARRAY"), new intName.Ptr(26, "DT_FINI_ARRAY"), new intName.Ptr(27, "DT_INIT_ARRAYSZ"), new intName.Ptr(28, "DT_FINI_ARRAYSZ"), new intName.Ptr(29, "DT_RUNPATH"), new intName.Ptr(30, "DT_FLAGS"), new intName.Ptr(32, "DT_ENCODING"), new intName.Ptr(32, "DT_PREINIT_ARRAY"), new intName.Ptr(33, "DT_PREINIT_ARRAYSZ"), new intName.Ptr(1610612749, "DT_LOOS"), new intName.Ptr(1879044096, "DT_HIOS"), new intName.Ptr(1879048176, "DT_VERSYM"), new intName.Ptr(1879048190, "DT_VERNEED"), new intName.Ptr(1879048191, "DT_VERNEEDNUM"), new intName.Ptr(1879048192, "DT_LOPROC"), new intName.Ptr(2147483647, "DT_HIPROC")]);
+0	dtStrings0.0	debug/elfintName0	debug/elf	dtStrings0Ç)  Åﬂ		dflagStrings = new (go$sliceType(intName))([new intName.Ptr(1, "DF_ORIGIN"), new intName.Ptr(2, "DF_SYMBOLIC"), new intName.Ptr(4, "DF_TEXTREL"), new intName.Ptr(8, "DF_BIND_NOW"), new intName.Ptr(16, "DF_STATIC_TLS")]);
+0dflagStrings010	debug/elfintName0	debug/elfdflagStrings0Å„  Åô		ntypeStrings = new (go$sliceType(intName))([new intName.Ptr(1, "NT_PRSTATUS"), new intName.Ptr(2, "NT_FPREGSET"), new intName.Ptr(3, "NT_PRPSINFO")]);
+0ntypeStrings010	debug/elfintName0	debug/elfntypeStrings0Ç`  Ç		stbStrings = new (go$sliceType(intName))([new intName.Ptr(0, "STB_LOCAL"), new intName.Ptr(1, "STB_GLOBAL"), new intName.Ptr(2, "STB_WEAK"), new intName.Ptr(10, "STB_LOOS"), new intName.Ptr(12, "STB_HIOS"), new intName.Ptr(13, "STB_LOPROC"), new intName.Ptr(15, "STB_HIPROC")]);
+0
+stbStrings0/0	debug/elfintName0	debug/elf
+stbStrings0ÇÂ  Çû		sttStrings = new (go$sliceType(intName))([new intName.Ptr(0, "STT_NOTYPE"), new intName.Ptr(1, "STT_OBJECT"), new intName.Ptr(2, "STT_FUNC"), new intName.Ptr(3, "STT_SECTION"), new intName.Ptr(4, "STT_FILE"), new intName.Ptr(5, "STT_COMMON"), new intName.Ptr(6, "STT_TLS"), new intName.Ptr(10, "STT_LOOS"), new intName.Ptr(12, "STT_HIOS"), new intName.Ptr(13, "STT_LOPROC"), new intName.Ptr(15, "STT_HIPROC")]);
+0
+sttStrings0/0	debug/elfintName0	debug/elf
+sttStrings0Ç  Åº		stvStrings = new (go$sliceType(intName))([new intName.Ptr(0, "STV_DEFAULT"), new intName.Ptr(1, "STV_INTERNAL"), new intName.Ptr(2, "STV_HIDDEN"), new intName.Ptr(3, "STV_PROTECTED")]);
+0
+stvStrings0/0	debug/elfintName0	debug/elf
+stvStrings0Ç&  Ç◊		rx86_64Strings = new (go$sliceType(intName))([new intName.Ptr(0, "R_X86_64_NONE"), new intName.Ptr(1, "R_X86_64_64"), new intName.Ptr(2, "R_X86_64_PC32"), new intName.Ptr(3, "R_X86_64_GOT32"), new intName.Ptr(4, "R_X86_64_PLT32"), new intName.Ptr(5, "R_X86_64_COPY"), new intName.Ptr(6, "R_X86_64_GLOB_DAT"), new intName.Ptr(7, "R_X86_64_JMP_SLOT"), new intName.Ptr(8, "R_X86_64_RELATIVE"), new intName.Ptr(9, "R_X86_64_GOTPCREL"), new intName.Ptr(10, "R_X86_64_32"), new intName.Ptr(11, "R_X86_64_32S"), new intName.Ptr(12, "R_X86_64_16"), new intName.Ptr(13, "R_X86_64_PC16"), new intName.Ptr(14, "R_X86_64_8"), new intName.Ptr(15, "R_X86_64_PC8"), new intName.Ptr(16, "R_X86_64_DTPMOD64"), new intName.Ptr(17, "R_X86_64_DTPOFF64"), new intName.Ptr(18, "R_X86_64_TPOFF64"), new intName.Ptr(19, "R_X86_64_TLSGD"), new intName.Ptr(20, "R_X86_64_TLSLD"), new intName.Ptr(21, "R_X86_64_DTPOFF32"), new intName.Ptr(22, "R_X86_64_GOTTPOFF"), new intName.Ptr(23, "R_X86_64_TPOFF32")]);
+0rx86-64Strings030	debug/elfintName0	debug/elfrx86-64Strings0ÇÈ  Çú		ralphaStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_ALPHA_NONE"), new intName.Ptr(1, "R_ALPHA_REFLONG"), new intName.Ptr(2, "R_ALPHA_REFQUAD"), new intName.Ptr(3, "R_ALPHA_GPREL32"), new intName.Ptr(4, "R_ALPHA_LITERAL"), new intName.Ptr(5, "R_ALPHA_LITUSE"), new intName.Ptr(6, "R_ALPHA_GPDISP"), new intName.Ptr(7, "R_ALPHA_BRADDR"), new intName.Ptr(8, "R_ALPHA_HINT"), new intName.Ptr(9, "R_ALPHA_SREL16"), new intName.Ptr(10, "R_ALPHA_SREL32"), new intName.Ptr(11, "R_ALPHA_SREL64"), new intName.Ptr(12, "R_ALPHA_OP_PUSH"), new intName.Ptr(13, "R_ALPHA_OP_STORE"), new intName.Ptr(14, "R_ALPHA_OP_PSUB"), new intName.Ptr(15, "R_ALPHA_OP_PRSHIFT"), new intName.Ptr(16, "R_ALPHA_GPVALUE"), new intName.Ptr(17, "R_ALPHA_GPRELHIGH"), new intName.Ptr(18, "R_ALPHA_GPRELLOW"), new intName.Ptr(19, "R_ALPHA_IMMED_GP_16"), new intName.Ptr(20, "R_ALPHA_IMMED_GP_HI32"), new intName.Ptr(21, "R_ALPHA_IMMED_SCN_HI32"), new intName.Ptr(22, "R_ALPHA_IMMED_BR_HI32"), new intName.Ptr(23, "R_ALPHA_IMMED_LO32"), new intName.Ptr(24, "R_ALPHA_COPY"), new intName.Ptr(25, "R_ALPHA_GLOB_DAT"), new intName.Ptr(26, "R_ALPHA_JMP_SLOT"), new intName.Ptr(27, "R_ALPHA_RELATIVE")]);
+0ralphaStrings020	debug/elfintName0	debug/elfralphaStrings0ÇM  Ç		rarmStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_ARM_NONE"), new intName.Ptr(1, "R_ARM_PC24"), new intName.Ptr(2, "R_ARM_ABS32"), new intName.Ptr(3, "R_ARM_REL32"), new intName.Ptr(4, "R_ARM_PC13"), new intName.Ptr(5, "R_ARM_ABS16"), new intName.Ptr(6, "R_ARM_ABS12"), new intName.Ptr(7, "R_ARM_THM_ABS5"), new intName.Ptr(8, "R_ARM_ABS8"), new intName.Ptr(9, "R_ARM_SBREL32"), new intName.Ptr(10, "R_ARM_THM_PC22"), new intName.Ptr(11, "R_ARM_THM_PC8"), new intName.Ptr(12, "R_ARM_AMP_VCALL9"), new intName.Ptr(13, "R_ARM_SWI24"), new intName.Ptr(14, "R_ARM_THM_SWI8"), new intName.Ptr(15, "R_ARM_XPC25"), new intName.Ptr(16, "R_ARM_THM_XPC22"), new intName.Ptr(20, "R_ARM_COPY"), new intName.Ptr(21, "R_ARM_GLOB_DAT"), new intName.Ptr(22, "R_ARM_JUMP_SLOT"), new intName.Ptr(23, "R_ARM_RELATIVE"), new intName.Ptr(24, "R_ARM_GOTOFF"), new intName.Ptr(25, "R_ARM_GOTPC"), new intName.Ptr(26, "R_ARM_GOT32"), new intName.Ptr(27, "R_ARM_PLT32"), new intName.Ptr(100, "R_ARM_GNU_VTENTRY"), new intName.Ptr(101, "R_ARM_GNU_VTINHERIT"), new intName.Ptr(250, "R_ARM_RSBREL32"), new intName.Ptr(251, "R_ARM_THM_RPC22"), new intName.Ptr(252, "R_ARM_RREL32"), new intName.Ptr(253, "R_ARM_RABS32"), new intName.Ptr(254, "R_ARM_RPC24"), new intName.Ptr(255, "R_ARM_RBASE")]);
+0rarmStrings000	debug/elfintName0	debug/elfrarmStrings0Ç*  Ç·		r386Strings = new (go$sliceType(intName))([new intName.Ptr(0, "R_386_NONE"), new intName.Ptr(1, "R_386_32"), new intName.Ptr(2, "R_386_PC32"), new intName.Ptr(3, "R_386_GOT32"), new intName.Ptr(4, "R_386_PLT32"), new intName.Ptr(5, "R_386_COPY"), new intName.Ptr(6, "R_386_GLOB_DAT"), new intName.Ptr(7, "R_386_JMP_SLOT"), new intName.Ptr(8, "R_386_RELATIVE"), new intName.Ptr(9, "R_386_GOTOFF"), new intName.Ptr(10, "R_386_GOTPC"), new intName.Ptr(14, "R_386_TLS_TPOFF"), new intName.Ptr(15, "R_386_TLS_IE"), new intName.Ptr(16, "R_386_TLS_GOTIE"), new intName.Ptr(17, "R_386_TLS_LE"), new intName.Ptr(18, "R_386_TLS_GD"), new intName.Ptr(19, "R_386_TLS_LDM"), new intName.Ptr(24, "R_386_TLS_GD_32"), new intName.Ptr(25, "R_386_TLS_GD_PUSH"), new intName.Ptr(26, "R_386_TLS_GD_CALL"), new intName.Ptr(27, "R_386_TLS_GD_POP"), new intName.Ptr(28, "R_386_TLS_LDM_32"), new intName.Ptr(29, "R_386_TLS_LDM_PUSH"), new intName.Ptr(30, "R_386_TLS_LDM_CALL"), new intName.Ptr(31, "R_386_TLS_LDM_POP"), new intName.Ptr(32, "R_386_TLS_LDO_32"), new intName.Ptr(33, "R_386_TLS_IE_32"), new intName.Ptr(34, "R_386_TLS_LE_32"), new intName.Ptr(35, "R_386_TLS_DTPMOD32"), new intName.Ptr(36, "R_386_TLS_DTPOFF32"), new intName.Ptr(37, "R_386_TLS_TPOFF32")]);
+0r386Strings000	debug/elfintName0	debug/elfr386Strings0Ç∏  Ço		rppcStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_PPC_NONE"), new intName.Ptr(1, "R_PPC_ADDR32"), new intName.Ptr(2, "R_PPC_ADDR24"), new intName.Ptr(3, "R_PPC_ADDR16"), new intName.Ptr(4, "R_PPC_ADDR16_LO"), new intName.Ptr(5, "R_PPC_ADDR16_HI"), new intName.Ptr(6, "R_PPC_ADDR16_HA"), new intName.Ptr(7, "R_PPC_ADDR14"), new intName.Ptr(8, "R_PPC_ADDR14_BRTAKEN"), new intName.Ptr(9, "R_PPC_ADDR14_BRNTAKEN"), new intName.Ptr(10, "R_PPC_REL24"), new intName.Ptr(11, "R_PPC_REL14"), new intName.Ptr(12, "R_PPC_REL14_BRTAKEN"), new intName.Ptr(13, "R_PPC_REL14_BRNTAKEN"), new intName.Ptr(14, "R_PPC_GOT16"), new intName.Ptr(15, "R_PPC_GOT16_LO"), new intName.Ptr(16, "R_PPC_GOT16_HI"), new intName.Ptr(17, "R_PPC_GOT16_HA"), new intName.Ptr(18, "R_PPC_PLTREL24"), new intName.Ptr(19, "R_PPC_COPY"), new intName.Ptr(20, "R_PPC_GLOB_DAT"), new intName.Ptr(21, "R_PPC_JMP_SLOT"), new intName.Ptr(22, "R_PPC_RELATIVE"), new intName.Ptr(23, "R_PPC_LOCAL24PC"), new intName.Ptr(24, "R_PPC_UADDR32"), new intName.Ptr(25, "R_PPC_UADDR16"), new intName.Ptr(26, "R_PPC_REL32"), new intName.Ptr(27, "R_PPC_PLT32"), new intName.Ptr(28, "R_PPC_PLTREL32"), new intName.Ptr(29, "R_PPC_PLT16_LO"), new intName.Ptr(30, "R_PPC_PLT16_HI"), new intName.Ptr(31, "R_PPC_PLT16_HA"), new intName.Ptr(32, "R_PPC_SDAREL16"), new intName.Ptr(33, "R_PPC_SECTOFF"), new intName.Ptr(34, "R_PPC_SECTOFF_LO"), new intName.Ptr(35, "R_PPC_SECTOFF_HI"), new intName.Ptr(36, "R_PPC_SECTOFF_HA"), new intName.Ptr(67, "R_PPC_TLS"), new intName.Ptr(68, "R_PPC_DTPMOD32"), new intName.Ptr(69, "R_PPC_TPREL16"), new intName.Ptr(70, "R_PPC_TPREL16_LO"), new intName.Ptr(71, "R_PPC_TPREL16_HI"), new intName.Ptr(72, "R_PPC_TPREL16_HA"), new intName.Ptr(73, "R_PPC_TPREL32"), new intName.Ptr(74, "R_PPC_DTPREL16"), new intName.Ptr(75, "R_PPC_DTPREL16_LO"), new intName.Ptr(76, "R_PPC_DTPREL16_HI"), new intName.Ptr(77, "R_PPC_DTPREL16_HA"), new intName.Ptr(78, "R_PPC_DTPREL32"), new intName.Ptr(79, "R_PPC_GOT_TLSGD16"), new intName.Ptr(80, "R_PPC_GOT_TLSGD16_LO"), new intName.Ptr(81, "R_PPC_GOT_TLSGD16_HI"), new intName.Ptr(82, "R_PPC_GOT_TLSGD16_HA"), new intName.Ptr(83, "R_PPC_GOT_TLSLD16"), new intName.Ptr(84, "R_PPC_GOT_TLSLD16_LO"), new intName.Ptr(85, "R_PPC_GOT_TLSLD16_HI"), new intName.Ptr(86, "R_PPC_GOT_TLSLD16_HA"), new intName.Ptr(87, "R_PPC_GOT_TPREL16"), new intName.Ptr(88, "R_PPC_GOT_TPREL16_LO"), new intName.Ptr(89, "R_PPC_GOT_TPREL16_HI"), new intName.Ptr(90, "R_PPC_GOT_TPREL16_HA"), new intName.Ptr(101, "R_PPC_EMB_NADDR32"), new intName.Ptr(102, "R_PPC_EMB_NADDR16"), new intName.Ptr(103, "R_PPC_EMB_NADDR16_LO"), new intName.Ptr(104, "R_PPC_EMB_NADDR16_HI"), new intName.Ptr(105, "R_PPC_EMB_NADDR16_HA"), new intName.Ptr(106, "R_PPC_EMB_SDAI16"), new intName.Ptr(107, "R_PPC_EMB_SDA2I16"), new intName.Ptr(108, "R_PPC_EMB_SDA2REL"), new intName.Ptr(109, "R_PPC_EMB_SDA21"), new intName.Ptr(110, "R_PPC_EMB_MRKREF"), new intName.Ptr(111, "R_PPC_EMB_RELSEC16"), new intName.Ptr(112, "R_PPC_EMB_RELST_LO"), new intName.Ptr(113, "R_PPC_EMB_RELST_HI"), new intName.Ptr(114, "R_PPC_EMB_RELST_HA"), new intName.Ptr(115, "R_PPC_EMB_BIT_FLD"), new intName.Ptr(116, "R_PPC_EMB_RELSDA")]);
+0rppcStrings000	debug/elfintName0	debug/elfrppcStrings0Ç∏  Çk		rsparcStrings = new (go$sliceType(intName))([new intName.Ptr(0, "R_SPARC_NONE"), new intName.Ptr(1, "R_SPARC_8"), new intName.Ptr(2, "R_SPARC_16"), new intName.Ptr(3, "R_SPARC_32"), new intName.Ptr(4, "R_SPARC_DISP8"), new intName.Ptr(5, "R_SPARC_DISP16"), new intName.Ptr(6, "R_SPARC_DISP32"), new intName.Ptr(7, "R_SPARC_WDISP30"), new intName.Ptr(8, "R_SPARC_WDISP22"), new intName.Ptr(9, "R_SPARC_HI22"), new intName.Ptr(10, "R_SPARC_22"), new intName.Ptr(11, "R_SPARC_13"), new intName.Ptr(12, "R_SPARC_LO10"), new intName.Ptr(13, "R_SPARC_GOT10"), new intName.Ptr(14, "R_SPARC_GOT13"), new intName.Ptr(15, "R_SPARC_GOT22"), new intName.Ptr(16, "R_SPARC_PC10"), new intName.Ptr(17, "R_SPARC_PC22"), new intName.Ptr(18, "R_SPARC_WPLT30"), new intName.Ptr(19, "R_SPARC_COPY"), new intName.Ptr(20, "R_SPARC_GLOB_DAT"), new intName.Ptr(21, "R_SPARC_JMP_SLOT"), new intName.Ptr(22, "R_SPARC_RELATIVE"), new intName.Ptr(23, "R_SPARC_UA32"), new intName.Ptr(24, "R_SPARC_PLT32"), new intName.Ptr(25, "R_SPARC_HIPLT22"), new intName.Ptr(26, "R_SPARC_LOPLT10"), new intName.Ptr(27, "R_SPARC_PCPLT32"), new intName.Ptr(28, "R_SPARC_PCPLT22"), new intName.Ptr(29, "R_SPARC_PCPLT10"), new intName.Ptr(30, "R_SPARC_10"), new intName.Ptr(31, "R_SPARC_11"), new intName.Ptr(32, "R_SPARC_64"), new intName.Ptr(33, "R_SPARC_OLO10"), new intName.Ptr(34, "R_SPARC_HH22"), new intName.Ptr(35, "R_SPARC_HM10"), new intName.Ptr(36, "R_SPARC_LM22"), new intName.Ptr(37, "R_SPARC_PC_HH22"), new intName.Ptr(38, "R_SPARC_PC_HM10"), new intName.Ptr(39, "R_SPARC_PC_LM22"), new intName.Ptr(40, "R_SPARC_WDISP16"), new intName.Ptr(41, "R_SPARC_WDISP19"), new intName.Ptr(42, "R_SPARC_GLOB_JMP"), new intName.Ptr(43, "R_SPARC_7"), new intName.Ptr(44, "R_SPARC_5"), new intName.Ptr(45, "R_SPARC_6"), new intName.Ptr(46, "R_SPARC_DISP64"), new intName.Ptr(47, "R_SPARC_PLT64"), new intName.Ptr(48, "R_SPARC_HIX22"), new intName.Ptr(49, "R_SPARC_LOX10"), new intName.Ptr(50, "R_SPARC_H44"), new intName.Ptr(51, "R_SPARC_M44"), new intName.Ptr(52, "R_SPARC_L44"), new intName.Ptr(53, "R_SPARC_REGISTER"), new intName.Ptr(54, "R_SPARC_UA64"), new intName.Ptr(55, "R_SPARC_UA16")]);
+0rsparcStrings020	debug/elfintName0	debug/elfrsparcStrings0
+   0 0 0
+   0 0 0 

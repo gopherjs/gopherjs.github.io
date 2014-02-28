@@ -1,4 +1,4 @@
-0Ç^k
+0Ç`H
 crypto/dsaÇ;úpackage dsa
 import errors "errors"
 import io "io"
@@ -166,7 +166,7 @@ type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".n
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
 $$
 0Å™runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/big
-crypto/dsa0-0errorserrors0ioio0math/bigbig0Ç!›0Ç 
+crypto/dsa0-0errorserrors0ioio0math/bigbig0Ç#∫0Ç
 ParametersÇT	Parameters = go$pkg.Parameters = go$newType(0, "Struct", "dsa.Parameters", "Parameters", "crypto/dsa", function(P_, Q_, G_) {
 		this.go$val = this;
 		this.P = P_ !== undefined ? P_ : (go$ptrType(big.Int)).nil;
@@ -174,21 +174,26 @@ ParametersÇT	Parameters = go$pkg.Parameters = go$newType(0, "Struct", "dsa.Par
 		this.G = G_ !== undefined ? G_ : (go$ptrType(big.Int)).nil;
 	});
 Åá		Parameters.init([["P", "", (go$ptrType(big.Int)), ""], ["Q", "", (go$ptrType(big.Int)), ""], ["G", "", (go$ptrType(big.Int)), ""]]);
-0Çî 	PublicKeyÇ-	PublicKey = go$pkg.PublicKey = go$newType(0, "Struct", "dsa.PublicKey", "PublicKey", "crypto/dsa", function(Parameters_, Y_) {
+0
+Parameters00math/bigInt0ÇÃ	PublicKeyÇ-	PublicKey = go$pkg.PublicKey = go$newType(0, "Struct", "dsa.PublicKey", "PublicKey", "crypto/dsa", function(Parameters_, Y_) {
 		this.go$val = this;
 		this.Parameters = Parameters_ !== undefined ? Parameters_ : new Parameters.Ptr();
 		this.Y = Y_ !== undefined ? Y_ : (go$ptrType(big.Int)).nil;
 	});
 T		PublicKey.init([["", "", Parameters, ""], ["Y", "", (go$ptrType(big.Int)), ""]]);
-0Çî 
+0	PublicKey0+0
+crypto/dsa
+Parameters0math/bigInt0ÇÃ
 PrivateKeyÇ,	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "dsa.PrivateKey", "PrivateKey", "crypto/dsa", function(PublicKey_, X_) {
 		this.go$val = this;
 		this.PublicKey = PublicKey_ !== undefined ? PublicKey_ : new PublicKey.Ptr();
 		this.X = X_ !== undefined ? X_ : (go$ptrType(big.Int)).nil;
 	});
 T		PrivateKey.init([["", "", PublicKey, ""], ["X", "", (go$ptrType(big.Int)), ""]]);
-0Åí ParameterSizes|	ParameterSizes = go$pkg.ParameterSizes = go$newType(4, "Int", "dsa.ParameterSizes", "ParameterSizes", "crypto/dsa", null);
- 0Ç◊ GenerateParametersÇª	GenerateParameters = go$pkg.GenerateParameters = function(params, rand, sizes) {
+0
+PrivateKey0*0
+crypto/dsa	PublicKey0math/bigInt0Å§ParameterSizes|	ParameterSizes = go$pkg.ParameterSizes = go$newType(4, "Int", "dsa.ParameterSizes", "ParameterSizes", "crypto/dsa", null);
+ 0ParameterSizes0 0ÇGenerateParametersÇª	GenerateParameters = go$pkg.GenerateParameters = function(params, rand, sizes) {
 		var err, _tuple, L, N, _ref, _q, qBytes, _q$1, pBytes, q, p, rem, one, _tuple$1, _lhs, _index, _slice, _index$1, _slice$1, _index$2, _lhs$1, _index$3, _slice$2, _index$4, _slice$3, _index$5, i, x, _tuple$2, _lhs$2, _index$6, _slice$4, _index$7, _slice$5, _index$8, _lhs$3, _index$9, _slice$6, _index$10, _slice$7, _index$11, h, g, pm1, e;
 		err = null;
 		_tuple = [0, 0], L = _tuple[0], N = _tuple[1];
@@ -268,7 +273,7 @@ PrivateKeyÇ,	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "dsa.Pri
 			return err;
 		}
 	};
- 0Ç GenerateKeyÇ 	GenerateKey = go$pkg.GenerateKey = function(priv, rand) {
+ 0GenerateParameters000errorsNew0math/bigInt0ioReadFull0ÇTGenerateKeyÇ 	GenerateKey = go$pkg.GenerateKey = function(priv, rand) {
 		var x, _q, xBytes, _tuple, err;
 		if (priv.PublicKey.Parameters.P === (go$ptrType(big.Int)).nil || priv.PublicKey.Parameters.Q === (go$ptrType(big.Int)).nil || priv.PublicKey.Parameters.G === (go$ptrType(big.Int)).nil) {
 			return errors.New("crypto/dsa: parameters not set up before generating key");
@@ -290,7 +295,7 @@ PrivateKeyÇ,	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "dsa.Pri
 		priv.PublicKey.Y.Exp(priv.PublicKey.Parameters.G, x, priv.PublicKey.Parameters.P);
 		return null;
 	};
- 0ÇÃ SignÇæ	Sign = go$pkg.Sign = function(rand, priv, hash) {
+ 0GenerateKey000math/bigInt0errorsNew0ioReadFull0ÇSignÇæ	Sign = go$pkg.Sign = function(rand, priv, hash) {
 		var r, s, err, n, k, buf, _tuple, kInv, z;
 		r = (go$ptrType(big.Int)).nil;
 		s = (go$ptrType(big.Int)).nil;
@@ -332,7 +337,8 @@ PrivateKeyÇ,	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "dsa.Pri
 		}
 		return [r, s, err];
 	};
- 0ÇÁ VerifyÇ◊	Verify = go$pkg.Verify = function(pub, hash, r, s) {
+ 0Sign0D0math/bigInt0!
+crypto/dsaErrInvalidPublicKey0ioReadFull0ÇVerifyÇ◊	Verify = go$pkg.Verify = function(pub, hash, r, s) {
 		var w, n, z, u1, u2, v;
 		if (r.Sign() < 1 || r.Cmp(pub.Parameters.Q) >= 0) {
 			return false;
@@ -357,5 +363,8 @@ PrivateKeyÇ,	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "dsa.Pri
 		v.Mod(v, pub.Parameters.Q);
 		return v.Cmp(r) === 0;
 	};
- 0    0U   M		go$pkg.ErrInvalidPublicKey = errors.New("crypto/dsa: invalid public key");
-0    0    0 
+ 0Verify00math/bigInt0   0ErrInvalidPublicKey0 0Åâ  M		go$pkg.ErrInvalidPublicKey = errors.New("crypto/dsa: invalid public key");
+0 020errorsNew0!
+crypto/dsaErrInvalidPublicKey0
+   0 0 0
+   0 0 0 

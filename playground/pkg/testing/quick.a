@@ -1,4 +1,4 @@
-0ÇçDtesting/quickÇF7package quick
+0Çîøtesting/quickÇF7package quick
 import flag "flag"
 import fmt "fmt"
 import math "math"
@@ -230,9 +230,9 @@ func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
 0Åûruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortflag	math/randunicodestringstesting/quick0c0flagflag0
-fmtfmt0mathmath0	math/randrand0reflectreflect0stringsstrings0ÇEÓ0ÅÙ 	Generators	Generator = go$pkg.Generator = go$newType(0, "Interface", "quick.Generator", "Generator", "testing/quick", null);
+fmtfmt0mathmath0	math/randrand0reflectreflect0stringsstrings0ÇMi0Ç&	Generators	Generator = go$pkg.Generator = go$newType(0, "Interface", "quick.Generator", "Generator", "testing/quick", null);
 p		Generator.init([["Generate", "", (go$funcType([(go$ptrType(rand.Rand)), Go$Int], [reflect.Value], false))]]);
-0Ç` ConfigÇ«	Config = go$pkg.Config = go$newType(0, "Struct", "quick.Config", "Config", "testing/quick", function(MaxCount_, MaxCountScale_, Rand_, Values_) {
+0	Generator0%0	math/randRand0reflectValue0ÇèConfigÇ«	Config = go$pkg.Config = go$newType(0, "Struct", "quick.Config", "Config", "testing/quick", function(MaxCount_, MaxCountScale_, Rand_, Values_) {
 		this.go$val = this;
 		this.MaxCount = MaxCount_ !== undefined ? MaxCount_ : 0;
 		this.MaxCountScale = MaxCountScale_ !== undefined ? MaxCountScale_ : 0;
@@ -241,11 +241,12 @@ $$
 	});
 Çá		Config.init([["MaxCount", "", Go$Int, ""], ["MaxCountScale", "", Go$Float64, ""], ["Rand", "", (go$ptrType(rand.Rand)), ""], ["Values", "", (go$funcType([(go$sliceType(reflect.Value)), (go$ptrType(rand.Rand))], [], false)), ""]]);
 		(go$ptrType(Config)).methods = [["getMaxCount", "testing/quick", [], [Go$Int], false], ["getRand", "testing/quick", [], [(go$ptrType(rand.Rand))], false]];
-0Ç 
+0Config0%0	math/randRand0reflectValue0Ç#
 SetupErrort	SetupError = go$pkg.SetupError = go$newType(0, "String", "quick.SetupError", "SetupError", "testing/quick", null);
 Åé		SetupError.methods = [["Error", "", [], [Go$String], false]];
 		(go$ptrType(SetupError)).methods = [["Error", "", [], [Go$String], false]];
-0ÇÂ 
+0
+SetupError0 0ÇÛ
 CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.CheckError", "CheckError", "testing/quick", function(Count_, In_) {
 		this.go$val = this;
 		this.Count = Count_ !== undefined ? Count_ : 0;
@@ -253,7 +254,8 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 	});
 Å±		CheckError.init([["Count", "", Go$Int, ""], ["In", "", (go$sliceType(go$emptyInterface)), ""]]);
 		(go$ptrType(CheckError)).methods = [["Error", "", [], [Go$String], false]];
-0Çm CheckEqualErrorÇb	CheckEqualError = go$pkg.CheckEqualError = go$newType(0, "Struct", "quick.CheckEqualError", "CheckEqualError", "testing/quick", function(CheckError_, Out1_, Out2_) {
+0
+CheckError0 0ÇùCheckEqualErrorÇb	CheckEqualError = go$pkg.CheckEqualError = go$newType(0, "Struct", "quick.CheckEqualError", "CheckEqualError", "testing/quick", function(CheckError_, Out1_, Out2_) {
 		this.go$val = this;
 		this.CheckError = CheckError_ !== undefined ? CheckError_ : new CheckError.Ptr();
 		this.Out1 = Out1_ !== undefined ? Out1_ : (go$sliceType(go$emptyInterface)).nil;
@@ -263,7 +265,8 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 	CheckEqualError.Ptr.prototype.Error = function() { return this.CheckError.Error(); };
 ÅÒ		CheckEqualError.init([["", "", CheckError, ""], ["Out1", "", (go$sliceType(go$emptyInterface)), ""], ["Out2", "", (go$sliceType(go$emptyInterface)), ""]]);
 		(go$ptrType(CheckEqualError)).methods = [["Error", "", [], [Go$String], false]];
-0Å± randFloat32Åù	randFloat32 = function(rand$1) {
+0CheckEqualError00testing/quick
+CheckError0Å¿randFloat32Åù	randFloat32 = function(rand$1) {
 		var f;
 		f = rand$1.Float64() * 3.4028234663852886e+38;
 		if ((rand$1.Int() & 1) === 1) {
@@ -271,7 +274,7 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 		}
 		return f;
 	};
- 0Å≤ randFloat64Åû	randFloat64 = function(rand$1) {
+ 0randFloat320 0Å¡randFloat64Åû	randFloat64 = function(rand$1) {
 		var f;
 		f = rand$1.Float64() * 1.7976931348623157e+308;
 		if ((rand$1.Int() & 1) === 1) {
@@ -279,11 +282,11 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 		}
 		return f;
 	};
- 0Åã 	randInt64z	randInt64 = function(rand$1) {
+ 0randFloat640 0Åò	randInt64z	randInt64 = function(rand$1) {
 		var x;
 		return (x = rand$1.Int63(), new Go$Int64(x.high - 1073741824, x.low - 0));
 	};
- 0Ç7 ValueÇ(	Value = go$pkg.Value = function(t, rand$1) {
+ 0	randInt640 0Ç$ValueÇ(	Value = go$pkg.Value = function(t, rand$1) {
 		var value, ok, ok$1, _tuple, x, m, _struct, _tuple$1, _struct$1, _struct$2, v, concrete, _ref, x$1, x$2, x$3, x$4, x$5, x$6, numElems, _struct$3, i, _tuple$2, _struct$4, key, ok1, _tuple$3, _struct$5, value$1, ok2, _tuple$4, _struct$6, _struct$7, _struct$8, _tuple$5, _struct$9, elem, ok$2, _tuple$6, _struct$10, _struct$11, _struct$12, numElems$1, _struct$13, i$1, _tuple$7, _struct$14, elem$1, ok$3, _tuple$8, _struct$15, _struct$16, numChars, codePoints, i$2, _slice, _index, i$3, _tuple$9, _struct$17, elem$2, ok$4, _tuple$10, _struct$18, _struct$19, _tuple$11, _struct$20, _struct$21, _tuple$12, _struct$22;
 		value = new reflect.Value.Ptr();
 		ok = false;
@@ -388,7 +391,7 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 		_tuple$12 = [(_struct$21 = v, new reflect.Value.Ptr(_struct$21.typ, _struct$21.val, _struct$21.flag)), true], value = _tuple$12[0], ok = _tuple$12[1];
 		return [(_struct$22 = value, new reflect.Value.Ptr(_struct$22.typ, _struct$22.val, _struct$22.flag)), ok];
 	};
- 0Ç  Ç	Config.Ptr.prototype.getRand = function() {
+ 0Value0Å„0reflectValue0testing/quick	Generator0testing/quickrandFloat320reflectrtype0reflectZero0reflectNew0testing/quickrandFloat640testing/quick	randInt640reflectMakeMap0reflect	MakeSlice0ÇÄ Ç	Config.Ptr.prototype.getRand = function() {
 		var c;
 		c = this;
 		if (c.Rand === (go$ptrType(rand.Rand)).nil) {
@@ -397,7 +400,7 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 		return c.Rand;
 	};
 	Config.prototype.getRand = function() { return this.go$val.getRand(); };
- 0Ç©  Çü	Config.Ptr.prototype.getMaxCount = function() {
+ 0ConfiggetRand0V0testing/quickConfig0	math/randRand0	math/randNew0	math/rand	NewSource0Ç˚ Çü	Config.Ptr.prototype.getMaxCount = function() {
 		var maxCount, c;
 		maxCount = 0;
 		c = this;
@@ -412,25 +415,29 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 		return maxCount;
 	};
 	Config.prototype.getMaxCount = function() { return this.go$val.getMaxCount(); };
- 0Å»  Åø	SetupError.prototype.Error = function() {
+ 0ConfiggetMaxCount0;0testing/quickConfig0 testing/quickdefaultMaxCount0ÅÛ Åø	SetupError.prototype.Error = function() {
 		var s;
 		s = this.go$val;
 		return s;
 	};
 	go$ptrType(SetupError).prototype.Error = function() { return new SetupError(this.go$get()).Error(); };
- 0Ç*  Ç 	CheckError.Ptr.prototype.Error = function() {
+ 0
+SetupError00testing/quick
+SetupError0ÇÄ Ç 	CheckError.Ptr.prototype.Error = function() {
 		var s;
 		s = this;
 		return fmt.Sprintf("#%d: failed on input %s", new (go$sliceType(go$emptyInterface))([new Go$Int(s.Count), new Go$String(toString(s.In))]));
 	};
 	CheckError.prototype.Error = function() { return this.go$val.Error(); };
- 0Ç®  Çû	CheckEqualError.Ptr.prototype.Error = function() {
+ 0
+CheckError0H0testing/quick
+CheckError0fmtSprintf0testing/quicktoString0Ç Çû	CheckEqualError.Ptr.prototype.Error = function() {
 		var s;
 		s = this;
 		return fmt.Sprintf("#%d: failed on input %s. Output 1: %s. Output 2: %s", new (go$sliceType(go$emptyInterface))([new Go$Int(s.CheckError.Count), new Go$String(toString(s.CheckError.In)), new Go$String(toString(s.Out1)), new Go$String(toString(s.Out2))]));
 	};
 	CheckEqualError.prototype.Error = function() { return this.go$val.Error(); };
- 0Ç{ CheckÇl	Check = go$pkg.Check = function(function$1, config) {
+ 0CheckEqualError0M0 testing/quickCheckEqualError0fmtSprintf0testing/quicktoString0Ç¶CheckÇl	Check = go$pkg.Check = function(function$1, config) {
 		var err, _tuple, _struct, f, fType, ok, arguments$1, rand$1, maxCount, i, _slice, _index;
 		err = null;
 		if (config === (go$ptrType(Config)).nil) {
@@ -466,7 +473,9 @@ CheckErrorÇ	CheckError = go$pkg.CheckError = go$newType(0, "Struct", "quick.C
 		}
 		return err;
 	};
- 0Ç 
+ 0Check0Ç 0testing/quickConfig0testing/quickgetRand0testing/quickgetMaxCount0testing/quickdefaultConfig0 testing/quickfunctionAndType0reflectValue0testing/quick
+SetupError0 testing/quickarbitraryValues0testing/quicktoInterfaces0testing/quick
+CheckError0Çn
 CheckEqualÇÚ	CheckEqual = go$pkg.CheckEqual = function(f, g, config) {
 		var err, _tuple, _struct, x, xType, ok, _tuple$1, _struct$1, y, yType, arguments$1, rand$1, maxCount, i, xOut, yOut;
 		err = null;
@@ -506,7 +515,10 @@ CheckEqualÇÚ	CheckEqual = go$pkg.CheckEqual = function(f, g, config) {
 		}
 		return err;
 	};
- 0ÇC arbitraryValuesÇ*	arbitraryValues = function(args, f, config, rand$1) {
+ 0
+CheckEqual0ÇX0testing/quickConfig0 testing/quickfunctionAndType0reflectValue0testing/quick
+SetupError0testing/quickgetMaxCount0 testing/quickarbitraryValues0testing/quick
+CheckError0testing/quickdefaultConfig0testing/quickgetRand0testing/quicktoInterfaces0reflect	DeepEqual0 testing/quickCheckEqualError0Ç≠arbitraryValuesÇ*	arbitraryValues = function(args, f, config, rand$1) {
 		var err, j, ok, _tuple, _struct, _slice, _index;
 		err = null;
 		if (!(config.Values === go$throwNilPointerError)) {
@@ -525,7 +537,8 @@ CheckEqualÇÚ	CheckEqual = go$pkg.CheckEqual = function(f, g, config) {
 		}
 		return err;
 	};
- 0Ç functionAndTypeÇ¸	functionAndType = function(f) {
+ 0arbitraryValues0W0testing/quickValue0reflectValue0testing/quick
+SetupError0fmtSprintf0ÇNfunctionAndTypeÇ¸	functionAndType = function(f) {
 		var v, t, ok, _struct, _struct$1, _struct$2;
 		v = new reflect.Value.Ptr();
 		t = null;
@@ -538,7 +551,7 @@ CheckEqualÇÚ	CheckEqual = go$pkg.CheckEqual = function(f, g, config) {
 		t = v.Type();
 		return [(_struct$2 = v, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), t, ok];
 	};
- 0ÇÎ toInterfacesÇ’	toInterfaces = function(values) {
+ 0functionAndType0&0reflectValue0reflectValueOf0ÇtoInterfacesÇ’	toInterfaces = function(values) {
 		var ret, _ref, _i, _slice, _index, _struct, v, i, _slice$1, _index$1;
 		ret = (go$sliceType(go$emptyInterface)).make(values.length, 0, function() { return null; });
 		_ref = values;
@@ -551,7 +564,7 @@ CheckEqualÇÚ	CheckEqual = go$pkg.CheckEqual = function(f, g, config) {
 		}
 		return ret;
 	};
- 0ÇŒ toStringÇº	toString = function(interfaces) {
+ 0toInterfaces00reflectValue0Ç˚toStringÇº	toString = function(interfaces) {
 		var s, _ref, _i, _slice, _index, v, i, _slice$1, _index$1;
 		s = (go$sliceType(Go$String)).make(interfaces.length, 0, function() { return ""; });
 		_ref = interfaces;
@@ -564,6 +577,9 @@ CheckEqualÇÚ	CheckEqual = go$pkg.CheckEqual = function(f, g, config) {
 		}
 		return strings.Join(s, ", ");
 	};
- 0 defaultMaxCount  09 defaultConfig $		defaultConfig = new Config.Ptr();
-0m   e		defaultMaxCount = flag.Int("quickchecks", 100, "The default number of iterations for each check");
-0    0    0 
+ 0
+toString0!0fmtSprintf0stringsJoin0*defaultMaxCount  0defaultMaxCount0 0ÅÉdefaultConfig $		defaultConfig = new Config.Ptr();
+0defaultConfig090testing/quickConfig0testing/quickdefaultConfig0Åû  e		defaultMaxCount = flag.Int("quickchecks", 100, "The default number of iterations for each check");
+0 0/0flagInt0 testing/quickdefaultMaxCount0
+   0 0 0
+   0 0 0 

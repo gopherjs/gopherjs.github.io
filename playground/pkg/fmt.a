@@ -1,4 +1,4 @@
-0ÉC‚fmtÇl÷package fmt
+0ÉvfmtÇl÷package fmt
 import strconv "strconv"
 import utf8 "unicode/utf8"
 import errors "errors"
@@ -350,7 +350,7 @@ func (? @"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 func (? *@"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
-0fruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmt0ÅÄ0strconvstrconv0unicode/utf8utf80errorserrors0ioio0osos0reflectreflect0syncsync0mathmath0É÷0Ç& fmtÇ¯	fmt = go$pkg.fmt = go$newType(0, "Struct", "fmt.fmt", "fmt", "fmt", function(intbuf_, buf_, wid_, prec_, widPresent_, precPresent_, minus_, plus_, sharp_, space_, unicode_, uniQuote_, zero_) {
+0fruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmt0ÅÄ0strconvstrconv0unicode/utf8utf80errorserrors0ioio0osos0reflectreflect0syncsync0mathmath0ÉA0Ç<fmtÇ¯	fmt = go$pkg.fmt = go$newType(0, "Struct", "fmt.fmt", "fmt", "fmt", function(intbuf_, buf_, wid_, prec_, widPresent_, precPresent_, minus_, plus_, sharp_, space_, unicode_, uniQuote_, zero_) {
 		this.go$val = this;
 		this.intbuf = intbuf_ !== undefined ? intbuf_ : go$makeNativeArray("Uint8", 65, function() { return 0; });
 		this.buf = buf_ !== undefined ? buf_ : (go$ptrType(buffer)).nil;
@@ -368,19 +368,21 @@ $$
 	});
 Ç		fmt.init([["intbuf", "fmt", (go$arrayType(Go$Uint8, 65)), ""], ["buf", "fmt", (go$ptrType(buffer)), ""], ["wid", "fmt", Go$Int, ""], ["prec", "fmt", Go$Int, ""], ["widPresent", "fmt", Go$Bool, ""], ["precPresent", "fmt", Go$Bool, ""], ["minus", "fmt", Go$Bool, ""], ["plus", "fmt", Go$Bool, ""], ["sharp", "fmt", Go$Bool, ""], ["space", "fmt", Go$Bool, ""], ["unicode", "fmt", Go$Bool, ""], ["uniQuote", "fmt", Go$Bool, ""], ["zero", "fmt", Go$Bool, ""]]);
 		(go$ptrType(fmt)).methods = [["clearflags", "fmt", [], [], false], ["computePadding", "fmt", [Go$Int], [(go$sliceType(Go$Uint8)), Go$Int, Go$Int], false], ["fmt_E32", "fmt", [Go$Float32], [], false], ["fmt_E64", "fmt", [Go$Float64], [], false], ["fmt_G32", "fmt", [Go$Float32], [], false], ["fmt_G64", "fmt", [Go$Float64], [], false], ["fmt_boolean", "fmt", [Go$Bool], [], false], ["fmt_bx", "fmt", [(go$sliceType(Go$Uint8)), Go$String], [], false], ["fmt_c128", "fmt", [Go$Complex128, Go$Int32], [], false], ["fmt_c64", "fmt", [Go$Complex64, Go$Int32], [], false], ["fmt_e32", "fmt", [Go$Float32], [], false], ["fmt_e64", "fmt", [Go$Float64], [], false], ["fmt_f32", "fmt", [Go$Float32], [], false], ["fmt_f64", "fmt", [Go$Float64], [], false], ["fmt_fb32", "fmt", [Go$Float32], [], false], ["fmt_fb64", "fmt", [Go$Float64], [], false], ["fmt_g32", "fmt", [Go$Float32], [], false], ["fmt_g64", "fmt", [Go$Float64], [], false], ["fmt_q", "fmt", [Go$String], [], false], ["fmt_qc", "fmt", [Go$Int64], [], false], ["fmt_s", "fmt", [Go$String], [], false], ["fmt_sbx", "fmt", [Go$String, (go$sliceType(Go$Uint8)), Go$String], [], false], ["fmt_sx", "fmt", [Go$String, Go$String], [], false], ["formatFloat", "fmt", [Go$Float64, Go$Uint8, Go$Int, Go$Int], [], false], ["init", "fmt", [(go$ptrType(buffer))], [], false], ["integer", "fmt", [Go$Int64, Go$Uint64, Go$Bool, Go$String], [], false], ["pad", "fmt", [(go$sliceType(Go$Uint8))], [], false], ["padString", "fmt", [Go$String], [], false], ["truncate", "fmt", [Go$String], [Go$String], false], ["writePadding", "fmt", [Go$Int, (go$sliceType(Go$Uint8))], [], false]];
-0ÇÄ StateW	State = go$pkg.State = go$newType(0, "Interface", "fmt.State", "State", "fmt", null);
+0fmt00fmtbuffer0ÇâStateW	State = go$pkg.State = go$newType(0, "Interface", "fmt.State", "State", "fmt", null);
 Ç		State.init([["Flag", "", (go$funcType([Go$Int], [Go$Bool], false))], ["Precision", "", (go$funcType([], [Go$Int, Go$Bool], false))], ["Width", "", (go$funcType([], [Go$Int, Go$Bool], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
-0Å… 	Formatterg	Formatter = go$pkg.Formatter = go$newType(0, "Interface", "fmt.Formatter", "Formatter", "fmt", null);
+0State0 0Å‰	Formatterg	Formatter = go$pkg.Formatter = go$newType(0, "Interface", "fmt.Formatter", "Formatter", "fmt", null);
 Q		Formatter.init([["Format", "", (go$funcType([State, Go$Int32], [], false))]]);
-0ÅΩ Stringerc	Stringer = go$pkg.Stringer = go$newType(0, "Interface", "fmt.Stringer", "Stringer", "fmt", null);
+0	Formatter00fmtState0Å…Stringerc	Stringer = go$pkg.Stringer = go$newType(0, "Interface", "fmt.Stringer", "Stringer", "fmt", null);
 J		Stringer.init([["String", "", (go$funcType([], [Go$String], false))]]);
-0ÅÀ 
+0
+Stringer0 0ÅŸ
 GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.GoStringer", "GoStringer", "fmt", null);
 N		GoStringer.init([["GoString", "", (go$funcType([], [Go$String], false))]]);
-0Çä bufferW	buffer = go$pkg.buffer = go$newType(0, "Slice", "fmt.buffer", "buffer", "fmt", null);
+0
+GoStringer0 0ÇîbufferW	buffer = go$pkg.buffer = go$newType(0, "Slice", "fmt.buffer", "buffer", "fmt", null);
 Ç#		buffer.init(Go$Uint8);
 		(go$ptrType(buffer)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-0Ç$ ppÇ@	pp = go$pkg.pp = go$newType(0, "Struct", "fmt.pp", "pp", "fmt", function(n_, panicking_, erroring_, buf_, arg_, value_, reordered_, goodArgNum_, runeBuf_, fmt_) {
+0buffer0 0ÇhppÇ@	pp = go$pkg.pp = go$newType(0, "Struct", "fmt.pp", "pp", "fmt", function(n_, panicking_, erroring_, buf_, arg_, value_, reordered_, goodArgNum_, runeBuf_, fmt_) {
 		this.go$val = this;
 		this.n = n_ !== undefined ? n_ : 0;
 		this.panicking = panicking_ !== undefined ? panicking_ : false;
@@ -395,7 +397,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 	});
 Ç÷		pp.init([["n", "fmt", Go$Int, ""], ["panicking", "fmt", Go$Bool, ""], ["erroring", "fmt", Go$Bool, ""], ["buf", "fmt", buffer, ""], ["arg", "fmt", go$emptyInterface, ""], ["value", "fmt", reflect.Value, ""], ["reordered", "fmt", Go$Bool, ""], ["goodArgNum", "fmt", Go$Bool, ""], ["runeBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["fmt", "fmt", fmt, ""]]);
 		(go$ptrType(pp)).methods = [["Flag", "", [Go$Int], [Go$Bool], false], ["Precision", "", [], [Go$Int, Go$Bool], false], ["Width", "", [], [Go$Int, Go$Bool], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["add", "fmt", [Go$Int32], [], false], ["argNumber", "fmt", [Go$Int, Go$String, Go$Int, Go$Int], [Go$Int, Go$Int, Go$Bool], false], ["badVerb", "fmt", [Go$Int32], [], false], ["catchPanic", "fmt", [go$emptyInterface, Go$Int32], [], false], ["doPrint", "fmt", [(go$sliceType(go$emptyInterface)), Go$Bool, Go$Bool], [], false], ["doPrintf", "fmt", [Go$String, (go$sliceType(go$emptyInterface))], [], false], ["fmt0x64", "fmt", [Go$Uint64, Go$Bool], [], false], ["fmtBool", "fmt", [Go$Bool, Go$Int32], [], false], ["fmtBytes", "fmt", [(go$sliceType(Go$Uint8)), Go$Int32, Go$Bool, reflect.Type, Go$Int], [], false], ["fmtC", "fmt", [Go$Int64], [], false], ["fmtComplex128", "fmt", [Go$Complex128, Go$Int32], [], false], ["fmtComplex64", "fmt", [Go$Complex64, Go$Int32], [], false], ["fmtFloat32", "fmt", [Go$Float32, Go$Int32], [], false], ["fmtFloat64", "fmt", [Go$Float64, Go$Int32], [], false], ["fmtInt64", "fmt", [Go$Int64, Go$Int32], [], false], ["fmtPointer", "fmt", [reflect.Value, Go$Int32, Go$Bool], [], false], ["fmtString", "fmt", [Go$String, Go$Int32, Go$Bool], [], false], ["fmtUint64", "fmt", [Go$Uint64, Go$Int32, Go$Bool], [], false], ["fmtUnicode", "fmt", [Go$Int64], [], false], ["free", "fmt", [], [], false], ["handleMethods", "fmt", [Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool, Go$Bool], false], ["printArg", "fmt", [go$emptyInterface, Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool], false], ["printReflectValue", "fmt", [reflect.Value, Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool], false], ["printValue", "fmt", [reflect.Value, Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool], false], ["unknownType", "fmt", [go$emptyInterface], [], false]];
-0Ç† cacheÇb	cache = go$pkg.cache = go$newType(0, "Struct", "fmt.cache", "cache", "fmt", function(mu_, saved_, new$2_) {
+0pp0>0fmtbuffer0reflectValue0
+fmtfmt0reflectType0Ç∏cacheÇb	cache = go$pkg.cache = go$newType(0, "Struct", "fmt.cache", "cache", "fmt", function(mu_, saved_, new$2_) {
 		this.go$val = this;
 		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
 		this.saved = saved_ !== undefined ? saved_ : (go$sliceType(go$emptyInterface)).nil;
@@ -403,20 +406,20 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 	});
 Ç-		cache.init([["mu", "fmt", sync.Mutex, ""], ["saved", "fmt", (go$sliceType(go$emptyInterface)), ""], ["new", "fmt", (go$funcType([], [go$emptyInterface], false)), ""]]);
 		(go$ptrType(cache)).methods = [["get", "fmt", [], [go$emptyInterface], false], ["put", "fmt", [go$emptyInterface], [], false]];
-0Åÿ runeUnreaders	runeUnreader = go$pkg.runeUnreader = go$newType(0, "Interface", "fmt.runeUnreader", "runeUnreader", "fmt", null);
+0cache00syncMutex0ÅËruneUnreaders	runeUnreader = go$pkg.runeUnreader = go$newType(0, "Interface", "fmt.runeUnreader", "runeUnreader", "fmt", null);
 Q		runeUnreader.init([["UnreadRune", "", (go$funcType([], [go$error], false))]]);
-0ÇV 	ScanStateg	ScanState = go$pkg.ScanState = go$newType(0, "Interface", "fmt.ScanState", "ScanState", "fmt", null);
+0runeUnreader0 0Çc	ScanStateg	ScanState = go$pkg.ScanState = go$newType(0, "Interface", "fmt.ScanState", "ScanState", "fmt", null);
 Ç‹		ScanState.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["ReadRune", "", (go$funcType([], [Go$Int32, Go$Int, go$error], false))], ["SkipSpace", "", (go$funcType([], [], false))], ["Token", "", (go$funcType([Go$Bool, (go$funcType([Go$Int32], [Go$Bool], false))], [(go$sliceType(Go$Uint8)), go$error], false))], ["UnreadRune", "", (go$funcType([], [go$error], false))], ["Width", "", (go$funcType([], [Go$Int, Go$Bool], false))]]);
-0Å« Scanner_	Scanner = go$pkg.Scanner = go$newType(0, "Interface", "fmt.Scanner", "Scanner", "fmt", null);
+0	ScanState0 0Å‰Scanner_	Scanner = go$pkg.Scanner = go$newType(0, "Interface", "fmt.Scanner", "Scanner", "fmt", null);
 Y		Scanner.init([["Scan", "", (go$funcType([ScanState, Go$Int32], [go$error], false))]]);
-0ÅÚ stringReaderp	stringReader = go$pkg.stringReader = go$newType(0, "String", "fmt.stringReader", "stringReader", "fmt", null);
+0	Scanner00fmt	ScanState0ÇstringReaderp	stringReader = go$pkg.stringReader = go$newType(0, "String", "fmt.stringReader", "stringReader", "fmt", null);
 n		(go$ptrType(stringReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-0Å¸ 	scanErrorÅ∏	scanError = go$pkg.scanError = go$newType(0, "Struct", "fmt.scanError", "scanError", "fmt", function(err_) {
+0stringReader0 0Ç		scanErrorÅ∏	scanError = go$pkg.scanError = go$newType(0, "Struct", "fmt.scanError", "scanError", "fmt", function(err_) {
 		this.go$val = this;
 		this.err = err_ !== undefined ? err_ : null;
 	});
 2		scanError.init([["err", "fmt", go$error, ""]]);
-0ÇÀ ssÇ	ss = go$pkg.ss = go$newType(0, "Struct", "fmt.ss", "ss", "fmt", function(rr_, buf_, peekRune_, prevRune_, count_, atEOF_, ssave_) {
+0	scanError0 0Ç ssÇ	ss = go$pkg.ss = go$newType(0, "Struct", "fmt.ss", "ss", "fmt", function(rr_, buf_, peekRune_, prevRune_, count_, atEOF_, ssave_) {
 		this.go$val = this;
 		this.rr = rr_ !== undefined ? rr_ : null;
 		this.buf = buf_ !== undefined ? buf_ : buffer.nil;
@@ -428,7 +431,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 	});
 Ç	û		ss.init([["rr", "fmt", io.RuneReader, ""], ["buf", "fmt", buffer, ""], ["peekRune", "fmt", Go$Int32, ""], ["prevRune", "fmt", Go$Int32, ""], ["count", "fmt", Go$Int, ""], ["atEOF", "fmt", Go$Bool, ""], ["", "fmt", ssave, ""]]);
 		(go$ptrType(ss)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["SkipSpace", "", [], [], false], ["Token", "", [Go$Bool, (go$funcType([Go$Int32], [Go$Bool], false))], [(go$sliceType(Go$Uint8)), go$error], false], ["UnreadRune", "", [], [go$error], false], ["Width", "", [], [Go$Int, Go$Bool], false], ["accept", "fmt", [Go$String], [Go$Bool], false], ["advance", "fmt", [Go$String], [Go$Int], false], ["complexTokens", "fmt", [], [Go$String, Go$String], false], ["consume", "fmt", [Go$String, Go$Bool], [Go$Bool], false], ["convertFloat", "fmt", [Go$String, Go$Int], [Go$Float64], false], ["convertString", "fmt", [Go$Int32], [Go$String], false], ["doScan", "fmt", [(go$sliceType(go$emptyInterface))], [Go$Int, go$error], false], ["doScanf", "fmt", [Go$String, (go$sliceType(go$emptyInterface))], [Go$Int, go$error], false], ["error", "fmt", [go$error], [], false], ["errorString", "fmt", [Go$String], [], false], ["floatToken", "fmt", [], [Go$String], false], ["free", "fmt", [ssave], [], false], ["getBase", "fmt", [Go$Int32], [Go$Int, Go$String], false], ["getRune", "fmt", [], [Go$Int32], false], ["hexByte", "fmt", [], [Go$Uint8, Go$Bool], false], ["hexDigit", "fmt", [Go$Int32], [Go$Int], false], ["hexString", "fmt", [], [Go$String], false], ["mustReadRune", "fmt", [], [Go$Int32], false], ["notEOF", "fmt", [], [], false], ["okVerb", "fmt", [Go$Int32, Go$String, Go$String], [Go$Bool], false], ["peek", "fmt", [Go$String], [Go$Bool], false], ["quotedString", "fmt", [], [Go$String], false], ["scanBasePrefix", "fmt", [], [Go$Int, Go$String, Go$Bool], false], ["scanBool", "fmt", [Go$Int32], [Go$Bool], false], ["scanComplex", "fmt", [Go$Int32, Go$Int], [Go$Complex128], false], ["scanInt", "fmt", [Go$Int32, Go$Int], [Go$Int64], false], ["scanNumber", "fmt", [Go$String, Go$Bool], [Go$String], false], ["scanOne", "fmt", [Go$Int32, go$emptyInterface], [], false], ["scanRune", "fmt", [Go$Int], [Go$Int64], false], ["scanUint", "fmt", [Go$Int32, Go$Int], [Go$Uint64], false], ["skipSpace", "fmt", [Go$Bool], [], false], ["token", "fmt", [Go$Bool, (go$funcType([Go$Int32], [Go$Bool], false))], [(go$sliceType(Go$Uint8))], false]];
-0Ç¯ ssaveÇ	ssave = go$pkg.ssave = go$newType(0, "Struct", "fmt.ssave", "ssave", "fmt", function(validSave_, nlIsEnd_, nlIsSpace_, argLimit_, limit_, maxWid_) {
+0ss0/0fmtbuffer0fmtssave0io
+RuneReader0ÇssaveÇ	ssave = go$pkg.ssave = go$newType(0, "Struct", "fmt.ssave", "ssave", "fmt", function(validSave_, nlIsEnd_, nlIsSpace_, argLimit_, limit_, maxWid_) {
 		this.go$val = this;
 		this.validSave = validSave_ !== undefined ? validSave_ : false;
 		this.nlIsEnd = nlIsEnd_ !== undefined ? nlIsEnd_ : false;
@@ -438,7 +442,7 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		this.maxWid = maxWid_ !== undefined ? maxWid_ : 0;
 	});
 Å’		ssave.init([["validSave", "fmt", Go$Bool, ""], ["nlIsEnd", "fmt", Go$Bool, ""], ["nlIsSpace", "fmt", Go$Bool, ""], ["argLimit", "fmt", Go$Int, ""], ["limit", "fmt", Go$Int, ""], ["maxWid", "fmt", Go$Int, ""]]);
-0ÇÉ readRuneÇ‰	readRune = go$pkg.readRune = go$newType(0, "Struct", "fmt.readRune", "readRune", "fmt", function(reader_, buf_, pending_, pendBuf_) {
+0ssave0 0ÇùreadRuneÇ‰	readRune = go$pkg.readRune = go$newType(0, "Struct", "fmt.readRune", "readRune", "fmt", function(reader_, buf_, pending_, pendBuf_) {
 		this.go$val = this;
 		this.reader = reader_ !== undefined ? reader_ : null;
 		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
@@ -447,7 +451,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 	});
 Çã		readRune.init([["reader", "fmt", io.Reader, ""], ["buf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["pending", "fmt", Go$Int, ""], ["pendBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""]]);
 		(go$ptrType(readRune)).methods = [["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["readByte", "fmt", [], [Go$Uint8, go$error], false], ["unread", "fmt", [(go$sliceType(Go$Uint8))], [], false]];
-0Çq  Çg	fmt.Ptr.prototype.clearflags = function() {
+0
+readRune00ioReader0Çê Çg	fmt.Ptr.prototype.clearflags = function() {
 		var f;
 		f = this;
 		f.wid = 0;
@@ -463,14 +468,18 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		f.zero = false;
 	};
 	fmt.prototype.clearflags = function() { return this.go$val.clearflags(); };
- 0Å¥  Å´	fmt.Ptr.prototype.init = function(buf) {
+ 0fmt
+clearflags00
+fmtfmt0Å‡ Å´	fmt.Ptr.prototype.init = function(buf) {
 		var f;
 		f = this;
 		f.buf = buf;
 		f.clearflags();
 	};
 	fmt.prototype.init = function(buf) { return this.go$val.init(buf); };
- 0Ç˚  ÇÒ	fmt.Ptr.prototype.computePadding = function(width) {
+ 0fmtinit00
+fmtfmt0fmt
+clearflags0ÇI ÇÒ	fmt.Ptr.prototype.computePadding = function(width) {
 		var padding, leftWidth, rightWidth, f, left, w, _tuple, _tuple$1, _tuple$2;
 		padding = (go$sliceType(Go$Uint8)).nil;
 		leftWidth = 0;
@@ -499,7 +508,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		return [padding, leftWidth, rightWidth];
 	};
 	fmt.prototype.computePadding = function(width) { return this.go$val.computePadding(width); };
- 0ÇG  Ç=	fmt.Ptr.prototype.writePadding = function(n, padding) {
+ 0fmtcomputePadding070
+fmtfmt0fmtpadZeroBytes0fmtpadSpaceBytes0Çh Ç=	fmt.Ptr.prototype.writePadding = function(n, padding) {
 		var f, m;
 		f = this;
 		while (n > 0) {
@@ -512,7 +522,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		}
 	};
 	fmt.prototype.writePadding = function(n, padding) { return this.go$val.writePadding(n, padding); };
- 0Çÿ  ÇŒ	fmt.Ptr.prototype.pad = function(b) {
+ 0fmtwritePadding00
+fmtfmt0Ç ÇŒ	fmt.Ptr.prototype.pad = function(b) {
 		var f, _tuple, padding, left, right;
 		f = this;
 		if (!f.widPresent || (f.wid === 0)) {
@@ -529,7 +540,9 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		}
 	};
 	fmt.prototype.pad = function(b) { return this.go$val.pad(b); };
- 0Ç  Ç˝	fmt.Ptr.prototype.padString = function(s) {
+ 0
+fmtpad080
+fmtfmt0fmtcomputePadding0fmtwritePadding0Çt Ç˝	fmt.Ptr.prototype.padString = function(s) {
 		var f, _tuple, padding, left, right;
 		f = this;
 		if (!f.widPresent || (f.wid === 0)) {
@@ -546,7 +559,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		}
 	};
 	fmt.prototype.padString = function(s) { return this.go$val.padString(s); };
- 0ÅÁ  Åﬁ	fmt.Ptr.prototype.fmt_boolean = function(v) {
+ 0fmt	padString0[0
+fmtfmt0fmtcomputePadding0!unicode/utf8RuneCountInString0fmtwritePadding0Ç8 Åﬁ	fmt.Ptr.prototype.fmt_boolean = function(v) {
 		var f;
 		f = this;
 		if (v) {
@@ -556,7 +570,10 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		}
 	};
 	fmt.prototype.fmt_boolean = function(v) { return this.go$val.fmt_boolean(v); };
- 0Ç  Ç	fmt.Ptr.prototype.integer = function(a, base, signedness, digits) {
+ 0fmtfmt-boolean0=0
+fmtfmt0
+fmtpad0fmt	trueBytes0fmt
+falseBytes0ÇÜ Ç	fmt.Ptr.prototype.integer = function(a, base, signedness, digits) {
 		var f, buf, negative, prec, i, ua, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _ref, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, runeWidth, width, j, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14;
 		f = this;
 		if (f.precPresent && (f.prec === 0) && (a.high === 0 && a.low === 0)) {
@@ -640,7 +657,10 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		f.pad(go$subslice(buf, i));
 	};
 	fmt.prototype.integer = function(a, base, signedness, digits) { return this.go$val.integer(a, base, signedness, digits); };
- 0Ç‚  Çÿ	fmt.Ptr.prototype.truncate = function(s) {
+ 0fmtinteger0a0
+fmtfmt0strconvIsPrint0unicode/utf8RuneLen0unicode/utf8
+EncodeRune0
+fmtpad0Ç" Çÿ	fmt.Ptr.prototype.truncate = function(s) {
 		var f, n, _ref, _i, _rune, i;
 		f = this;
 		if (f.precPresent && f.prec < utf8.RuneCountInString(s)) {
@@ -661,14 +681,16 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		return s;
 	};
 	fmt.prototype.truncate = function(s) { return this.go$val.truncate(s); };
- 0Å∑  ÅÆ	fmt.Ptr.prototype.fmt_s = function(s) {
+ 0fmttruncate0/0
+fmtfmt0!unicode/utf8RuneCountInString0ÅÙ ÅÆ	fmt.Ptr.prototype.fmt_s = function(s) {
 		var f;
 		f = this;
 		s = f.truncate(s);
 		f.padString(s);
 	};
 	fmt.prototype.fmt_s = function(s) { return this.go$val.fmt_s(s); };
- 0Ç≥  Ç©	fmt.Ptr.prototype.fmt_sbx = function(s, b, digits) {
+ 0fmtfmt-s0/0
+fmtfmt0fmttruncate0fmt	padString0Ç€ Ç©	fmt.Ptr.prototype.fmt_sbx = function(s, b, digits) {
 		var f, n, x, buf, i, c, _slice, _index;
 		f = this;
 		n = b.length;
@@ -697,19 +719,23 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		f.pad(buf);
 	};
 	fmt.prototype.fmt_sbx = function(s, b, digits) { return this.go$val.fmt_sbx(s, b, digits); };
- 0Å·  Åÿ	fmt.Ptr.prototype.fmt_sx = function(s, digits) {
+ 0fmtfmt-sbx00
+fmtfmt0
+fmtpad0Ç Åÿ	fmt.Ptr.prototype.fmt_sx = function(s, digits) {
 		var f;
 		f = this;
 		f.fmt_sbx(s, (go$sliceType(Go$Uint8)).nil, digits);
 	};
 	fmt.prototype.fmt_sx = function(s, digits) { return this.go$val.fmt_sx(s, digits); };
- 0Å«  Åæ	fmt.Ptr.prototype.fmt_bx = function(b, digits) {
+ 0fmtfmt-sx00
+fmtfmt0fmtfmt-sbx0ÅÚ Åæ	fmt.Ptr.prototype.fmt_bx = function(b, digits) {
 		var f;
 		f = this;
 		f.fmt_sbx("", b, digits);
 	};
 	fmt.prototype.fmt_bx = function(b, digits) { return this.go$val.fmt_bx(b, digits); };
- 0Çë  Çá	fmt.Ptr.prototype.fmt_q = function(s) {
+ 0fmtfmt-bx00
+fmtfmt0fmtfmt-sbx0Ç Çá	fmt.Ptr.prototype.fmt_q = function(s) {
 		var f, quoted;
 		f = this;
 		s = f.truncate(s);
@@ -726,7 +752,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		f.padString(quoted);
 	};
 	fmt.prototype.fmt_q = function(s) { return this.go$val.fmt_q(s); };
- 0Ç  Ç	fmt.Ptr.prototype.fmt_qc = function(c) {
+ 0fmtfmt-q0s0
+fmtfmt0fmttruncate0strconvCanBackquote0strconvQuoteToASCII0strconvQuote0fmt	padString0ÇÇ Ç	fmt.Ptr.prototype.fmt_qc = function(c) {
 		var f, quoted;
 		f = this;
 		quoted = (go$sliceType(Go$Uint8)).nil;
@@ -738,13 +765,15 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		f.pad(quoted);
 	};
 	fmt.prototype.fmt_qc = function(c) { return this.go$val.fmt_qc(c); };
- 0j doPrec\	doPrec = function(f, def) {
+ 0fmtfmt-qc0W0
+fmtfmt0!strconvAppendQuoteRuneToASCII0strconvAppendQuoteRune0
+fmtpad0tdoPrec\	doPrec = function(f, def) {
 		if (f.precPresent) {
 			return f.prec;
 		}
 		return def;
 	};
- 0Ç¯  ÇÓ	fmt.Ptr.prototype.formatFloat = function(v, verb, prec, n) {
+ 0doPrec0 0Ç< ÇÓ	fmt.Ptr.prototype.formatFloat = function(v, verb, prec, n) {
 		var f, slice, _ref, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		f = this;
 		f.intbuf[0] = 32;
@@ -769,79 +798,93 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		f.pad(slice);
 	};
 	fmt.prototype.formatFloat = function(v, verb, prec, n) { return this.go$val.formatFloat(v, verb, prec, n); };
- 0Å¡  Å∏	fmt.Ptr.prototype.fmt_e64 = function(v) {
+ 0fmtformatFloat000
+fmtfmt0strconvAppendFloat0
+fmtpad0Ç  Å∏	fmt.Ptr.prototype.fmt_e64 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(v, 101, doPrec(f, 6), 64);
 	};
 	fmt.prototype.fmt_e64 = function(v) { return this.go$val.fmt_e64(v); };
- 0Å¿  Å∑	fmt.Ptr.prototype.fmt_E64 = function(v) {
+ 0fmtfmt-e640/0
+fmtfmt0fmtformatFloat0fmtdoPrec0Åˇ Å∑	fmt.Ptr.prototype.fmt_E64 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(v, 69, doPrec(f, 6), 64);
 	};
 	fmt.prototype.fmt_E64 = function(v) { return this.go$val.fmt_E64(v); };
- 0Å¡  Å∏	fmt.Ptr.prototype.fmt_f64 = function(v) {
+ 0fmtfmt-E640/0
+fmtfmt0fmtformatFloat0fmtdoPrec0Ç  Å∏	fmt.Ptr.prototype.fmt_f64 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(v, 102, doPrec(f, 6), 64);
 	};
 	fmt.prototype.fmt_f64 = function(v) { return this.go$val.fmt_f64(v); };
- 0Å¬  Åπ	fmt.Ptr.prototype.fmt_g64 = function(v) {
+ 0fmtfmt-f640/0
+fmtfmt0fmtformatFloat0fmtdoPrec0Ç Åπ	fmt.Ptr.prototype.fmt_g64 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(v, 103, doPrec(f, -1), 64);
 	};
 	fmt.prototype.fmt_g64 = function(v) { return this.go$val.fmt_g64(v); };
- 0Å¡  Å∏	fmt.Ptr.prototype.fmt_G64 = function(v) {
+ 0fmtfmt-g640/0
+fmtfmt0fmtformatFloat0fmtdoPrec0Ç  Å∏	fmt.Ptr.prototype.fmt_G64 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(v, 71, doPrec(f, -1), 64);
 	};
 	fmt.prototype.fmt_G64 = function(v) { return this.go$val.fmt_G64(v); };
- 0Å∏  ÅØ	fmt.Ptr.prototype.fmt_fb64 = function(v) {
+ 0fmtfmt-G640/0
+fmtfmt0fmtformatFloat0fmtdoPrec0ÅÈ ÅØ	fmt.Ptr.prototype.fmt_fb64 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(v, 98, 0, 64);
 	};
 	fmt.prototype.fmt_fb64 = function(v) { return this.go$val.fmt_fb64(v); };
- 0ÅÂ  Å‹	fmt.Ptr.prototype.fmt_e32 = function(v) {
+ 0fmtfmt-fb640 0
+fmtfmt0fmtformatFloat0Ç$ Å‹	fmt.Ptr.prototype.fmt_e32 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(go$float32frombits(go$float32bits(v)), 101, doPrec(f, 6), 32);
 	};
 	fmt.prototype.fmt_e32 = function(v) { return this.go$val.fmt_e32(v); };
- 0Å‰  Å€	fmt.Ptr.prototype.fmt_E32 = function(v) {
+ 0fmtfmt-e320/0
+fmtfmt0fmtformatFloat0fmtdoPrec0Ç# Å€	fmt.Ptr.prototype.fmt_E32 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(go$float32frombits(go$float32bits(v)), 69, doPrec(f, 6), 32);
 	};
 	fmt.prototype.fmt_E32 = function(v) { return this.go$val.fmt_E32(v); };
- 0ÅÂ  Å‹	fmt.Ptr.prototype.fmt_f32 = function(v) {
+ 0fmtfmt-E320/0
+fmtfmt0fmtformatFloat0fmtdoPrec0Ç$ Å‹	fmt.Ptr.prototype.fmt_f32 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(go$float32frombits(go$float32bits(v)), 102, doPrec(f, 6), 32);
 	};
 	fmt.prototype.fmt_f32 = function(v) { return this.go$val.fmt_f32(v); };
- 0ÅÊ  Å›	fmt.Ptr.prototype.fmt_g32 = function(v) {
+ 0fmtfmt-f320/0
+fmtfmt0fmtformatFloat0fmtdoPrec0Ç% Å›	fmt.Ptr.prototype.fmt_g32 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(go$float32frombits(go$float32bits(v)), 103, doPrec(f, -1), 32);
 	};
 	fmt.prototype.fmt_g32 = function(v) { return this.go$val.fmt_g32(v); };
- 0ÅÂ  Å‹	fmt.Ptr.prototype.fmt_G32 = function(v) {
+ 0fmtfmt-g320/0
+fmtfmt0fmtformatFloat0fmtdoPrec0Ç$ Å‹	fmt.Ptr.prototype.fmt_G32 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(go$float32frombits(go$float32bits(v)), 71, doPrec(f, -1), 32);
 	};
 	fmt.prototype.fmt_G32 = function(v) { return this.go$val.fmt_G32(v); };
- 0Å‹  Å”	fmt.Ptr.prototype.fmt_fb32 = function(v) {
+ 0fmtfmt-G320/0
+fmtfmt0fmtformatFloat0fmtdoPrec0Ç Å”	fmt.Ptr.prototype.fmt_fb32 = function(v) {
 		var f;
 		f = this;
 		f.formatFloat(go$float32frombits(go$float32bits(v)), 98, 0, 32);
 	};
 	fmt.prototype.fmt_fb32 = function(v) { return this.go$val.fmt_fb32(v); };
- 0ÇÕ  Ç√	fmt.Ptr.prototype.fmt_c64 = function(v, verb) {
+ 0fmtfmt-fb320 0
+fmtfmt0fmtformatFloat0Ç` Ç√	fmt.Ptr.prototype.fmt_c64 = function(v, verb) {
 		var f, r, oldPlus, i, _ref;
 		f = this;
 		f.buf.WriteByte(40);
@@ -874,7 +917,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		f.buf.Write(irparenBytes);
 	};
 	fmt.prototype.fmt_c64 = function(v, verb) { return this.go$val.fmt_c64(v, verb); };
- 0Ç–  Ç∆	fmt.Ptr.prototype.fmt_c128 = function(v, verb) {
+ 0fmtfmt-c640ÅÇ0
+fmtfmt0fmtfmt-fb320fmtfmt-e320fmtfmt-E320fmtfmt-f320fmtfmt-g320fmtfmt-G320fmtirparenBytes0Çd Ç∆	fmt.Ptr.prototype.fmt_c128 = function(v, verb) {
 		var f, r, oldPlus, i, _ref;
 		f = this;
 		f.buf.WriteByte(40);
@@ -907,7 +951,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		f.buf.Write(irparenBytes);
 	};
 	fmt.prototype.fmt_c128 = function(v, verb) { return this.go$val.fmt_c128(v, verb); };
- 0ÇÇ  Çx	go$ptrType(buffer).prototype.Write = function(p) {
+ 0fmtfmt-c1280ÅÇ0
+fmtfmt0fmtfmt-fb640fmtfmt-e640fmtfmt-E640fmtfmt-f640fmtfmt-g640fmtfmt-G640fmtirparenBytes0Çõ Çx	go$ptrType(buffer).prototype.Write = function(p) {
 		var n, err, b, _tuple;
 		n = 0;
 		err = null;
@@ -917,7 +962,7 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		return [n, err];
 	};
 	buffer.prototype.Write = function(p) { var obj = this; return (new (go$ptrType(buffer))(function() { return obj; }, null)).Write(p); };
- 0Ç≤  Ç®	go$ptrType(buffer).prototype.WriteString = function(s) {
+ 0buffer00fmtbuffer0ÇÀ Ç®	go$ptrType(buffer).prototype.WriteString = function(s) {
 		var n, err, b, _tuple;
 		n = 0;
 		err = null;
@@ -927,14 +972,14 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		return [n, err];
 	};
 	buffer.prototype.WriteString = function(s) { var obj = this; return (new (go$ptrType(buffer))(function() { return obj; }, null)).WriteString(s); };
- 0Ç!  Ç	go$ptrType(buffer).prototype.WriteByte = function(c) {
+ 0buffer00fmtbuffer0Ç: Ç	go$ptrType(buffer).prototype.WriteByte = function(c) {
 		var b;
 		b = this;
 		b.go$set(go$append(b.go$get(), c));
 		return null;
 	};
 	buffer.prototype.WriteByte = function(c) { var obj = this; return (new (go$ptrType(buffer))(function() { return obj; }, null)).WriteByte(c); };
- 0Çç  ÇÉ	go$ptrType(buffer).prototype.WriteRune = function(r) {
+ 0buffer00fmtbuffer0Ç¬ ÇÉ	go$ptrType(buffer).prototype.WriteRune = function(r) {
 		var bp, b, n, x, w;
 		bp = this;
 		if (r < 128) {
@@ -951,7 +996,8 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		return null;
 	};
 	buffer.prototype.WriteRune = function(r) { var obj = this; return (new (go$ptrType(buffer))(function() { return obj; }, null)).WriteRune(r); };
- 0Ç  Å¯	cache.Ptr.prototype.put = function(x) {
+ 0buffer0+0fmtbuffer0unicode/utf8
+EncodeRune0Ç Å¯	cache.Ptr.prototype.put = function(x) {
 		var c;
 		c = this;
 		c.mu.Lock();
@@ -961,7 +1007,7 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		c.mu.Unlock();
 	};
 	cache.prototype.put = function(x) { return this.go$val.put(x); };
- 0Ç  Ç˜	cache.Ptr.prototype.get = function() {
+ 0cacheput00fmtcache0Ç Ç˜	cache.Ptr.prototype.get = function() {
 		var c, n, _slice, _index, x;
 		c = this;
 		c.mu.Lock();
@@ -976,10 +1022,11 @@ GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.Go
 		return x;
 	};
 	cache.prototype.get = function() { return this.go$val.get(); };
- 0Å≠ newCacheÅú	newCache = function(f) {
+ 0cacheget00fmtcache0Å÷newCacheÅú	newCache = function(f) {
 		return new cache.Ptr(new sync.Mutex.Ptr(), (go$sliceType(go$emptyInterface)).make(0, 100, function() { return null; }), f);
 	};
- 0Çd 
+ 0
+newCache00syncMutex0fmtcache0Ç¥
 newPrinterÇP	newPrinter = function() {
 		var x, p, v;
 		p = (x = ppFree.get(), (x !== null && x.constructor === (go$ptrType(pp)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(pp)))));
@@ -988,7 +1035,9 @@ newPrinterÇP	newPrinter = function() {
 		p.fmt.init(new (go$ptrType(buffer))(function() { return p.buf; }, function(v) { p.buf = v; }));
 		return p;
 	};
- 0ÇF  Ç<	pp.Ptr.prototype.free = function() {
+ 0
+newPrinter0B0	fmtpp0
+fmtget0fmtppFree0fmtinit0fmtbuffer0Çú Ç<	pp.Ptr.prototype.free = function() {
 		var p;
 		p = this;
 		if (p.buf.capacity > 1024) {
@@ -1000,7 +1049,9 @@ newPrinterÇP	newPrinter = function() {
 		ppFree.put(p);
 	};
 	pp.prototype.free = function() { return this.go$val.free(); };
- 0Ç  Ç	pp.Ptr.prototype.Width = function() {
+ 0
+ppfree0J0	fmtpp0reflectrtype0reflectValue0
+fmtput0fmtppFree0Ç& Ç	pp.Ptr.prototype.Width = function() {
 		var wid, ok, p, _tuple;
 		wid = 0;
 		ok = false;
@@ -1009,7 +1060,7 @@ newPrinterÇP	newPrinter = function() {
 		return [wid, ok];
 	};
 	pp.prototype.Width = function() { return this.go$val.Width(); };
- 0Ç'  Ç	pp.Ptr.prototype.Precision = function() {
+ 0pp00	fmtpp0Ç8 Ç	pp.Ptr.prototype.Precision = function() {
 		var prec, ok, p, _tuple;
 		prec = 0;
 		ok = false;
@@ -1018,7 +1069,7 @@ newPrinterÇP	newPrinter = function() {
 		return [prec, ok];
 	};
 	pp.prototype.Precision = function() { return this.go$val.Precision(); };
- 0Ç®  Çû	pp.Ptr.prototype.Flag = function(b) {
+ 0pp00	fmtpp0Çπ Çû	pp.Ptr.prototype.Flag = function(b) {
 		var p, _ref;
 		p = this;
 		_ref = b;
@@ -1036,13 +1087,13 @@ newPrinterÇP	newPrinter = function() {
 		return false;
 	};
 	pp.prototype.Flag = function(b) { return this.go$val.Flag(b); };
- 0Å  ÅÁ	pp.Ptr.prototype.add = function(c) {
+ 0pp00	fmtpp0Ç ÅÁ	pp.Ptr.prototype.add = function(c) {
 		var p, v;
 		p = this;
 		(new (go$ptrType(buffer))(function() { return p.buf; }, function(v) { p.buf = v; })).WriteRune(c);
 	};
 	pp.prototype.add = function(c) { return this.go$val.add(c); };
- 0Ç^  ÇT	pp.Ptr.prototype.Write = function(b) {
+ 0	ppadd00	fmtpp0fmtbuffer0Ç~ ÇT	pp.Ptr.prototype.Write = function(b) {
 		var ret, err, p, _tuple, v;
 		ret = 0;
 		err = null;
@@ -1051,7 +1102,7 @@ newPrinterÇP	newPrinter = function() {
 		return [ret, err];
 	};
 	pp.prototype.Write = function(b) { return this.go$val.Write(b); };
- 0Ç] FprintfÇL	Fprintf = go$pkg.Fprintf = function(w, format, a) {
+ 0pp00	fmtpp0fmtbuffer0ÇôFprintfÇL	Fprintf = go$pkg.Fprintf = function(w, format, a) {
 		var n, err, p, _tuple, x;
 		n = 0;
 		err = null;
@@ -1061,14 +1112,15 @@ newPrinterÇP	newPrinter = function() {
 		p.free();
 		return [n, err];
 	};
- 0ÅÕ PrintfÅæ	Printf = go$pkg.Printf = function(format, a) {
+ 0	Fprintf010fmt
+newPrinter0fmtdoPrintf0fmtfree0ÅıPrintfÅæ	Printf = go$pkg.Printf = function(format, a) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = Fprintf(os.Stdout, format, a), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0Å∂ SprintfÅ¶	Sprintf = go$pkg.Sprintf = function(format, a) {
+ 0Printf00fmtFprintf0osStdout0ÅÚSprintfÅ¶	Sprintf = go$pkg.Sprintf = function(format, a) {
 		var p, s;
 		p = newPrinter();
 		p.doPrintf(format, a);
@@ -1076,10 +1128,11 @@ newPrinterÇP	newPrinter = function() {
 		p.free();
 		return s;
 	};
- 0k Errorf]	Errorf = go$pkg.Errorf = function(format, a) {
+ 0	Sprintf010fmt
+newPrinter0fmtdoPrintf0fmtfree0ÅîErrorf]	Errorf = go$pkg.Errorf = function(format, a) {
 		return errors.New(Sprintf(format, a));
 	};
- 0ÇW FprintÇG	Fprint = go$pkg.Fprint = function(w, a) {
+ 0Errorf00errorsNew0fmtSprintf0ÇëFprintÇG	Fprint = go$pkg.Fprint = function(w, a) {
 		var n, err, p, _tuple, x;
 		n = 0;
 		err = null;
@@ -1089,14 +1142,15 @@ newPrinterÇP	newPrinter = function() {
 		p.free();
 		return [n, err];
 	};
- 0Åπ PrintÅ´	Print = go$pkg.Print = function(a) {
+ 0Fprint000fmt
+newPrinter0fmtdoPrint0fmtfree0ÅﬂPrintÅ´	Print = go$pkg.Print = function(a) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = Fprint(os.Stdout, a), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0Å∞ SprintÅ°	Sprint = go$pkg.Sprint = function(a) {
+ 0Print00fmtFprint0osStdout0ÅÍSprintÅ°	Sprint = go$pkg.Sprint = function(a) {
 		var p, s;
 		p = newPrinter();
 		p.doPrint(a, false, false);
@@ -1104,7 +1158,8 @@ newPrinterÇP	newPrinter = function() {
 		p.free();
 		return s;
 	};
- 0Ç[ FprintlnÇI	Fprintln = go$pkg.Fprintln = function(w, a) {
+ 0Sprint000fmt
+newPrinter0fmtdoPrint0fmtfree0ÇóFprintlnÇI	Fprintln = go$pkg.Fprintln = function(w, a) {
 		var n, err, p, _tuple, x;
 		n = 0;
 		err = null;
@@ -1114,14 +1169,16 @@ newPrinterÇP	newPrinter = function() {
 		p.free();
 		return [n, err];
 	};
- 0Å¡ PrintlnÅ±	Println = go$pkg.Println = function(a) {
+ 0
+Fprintln000fmt
+newPrinter0fmtdoPrint0fmtfree0ÅÎPrintlnÅ±	Println = go$pkg.Println = function(a) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = Fprintln(os.Stdout, a), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0Å¥ SprintlnÅ£	Sprintln = go$pkg.Sprintln = function(a) {
+ 0	Println00fmtFprintln0osStdout0ÅSprintlnÅ£	Sprintln = go$pkg.Sprintln = function(a) {
 		var p, s;
 		p = newPrinter();
 		p.doPrint(a, true, true);
@@ -1129,7 +1186,9 @@ newPrinterÇP	newPrinter = function() {
 		p.free();
 		return s;
 	};
- 0Ç∂ getFieldÇ§	getField = function(v, i) {
+ 0
+Sprintln000fmt
+newPrinter0fmtdoPrint0fmtfree0Ç‘getFieldÇ§	getField = function(v, i) {
 		var _struct, val, _struct$1, _struct$2;
 		val = (_struct = v.Field(i), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if ((val.Kind() === 20) && !val.IsNil()) {
@@ -1137,7 +1196,8 @@ newPrinterÇP	newPrinter = function() {
 		}
 		return (_struct$2 = val, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 	};
- 0ÇC parsenumÇ1	parsenum = function(s, start, end) {
+ 0
+getField00reflectValue0ÇOparsenumÇ1	parsenum = function(s, start, end) {
 		var num, isnum, newi, _tuple, x;
 		num = 0;
 		isnum = false;
@@ -1154,7 +1214,9 @@ newPrinterÇP	newPrinter = function() {
 		}
 		return [num, isnum, newi];
 	};
- 0Ç¥  Ç™	pp.Ptr.prototype.unknownType = function(v) {
+ 0
+parsenum0 0Ç
+ Ç™	pp.Ptr.prototype.unknownType = function(v) {
 		var p, v$1, v$2, v$3, v$4;
 		p = this;
 		if (go$interfaceIsEqual(v, null)) {
@@ -1166,7 +1228,7 @@ newPrinterÇP	newPrinter = function() {
 		(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$4) { p.buf = v$4; })).WriteByte(63);
 	};
 	pp.prototype.unknownType = function(v) { return this.go$val.unknownType(v); };
- 0Çº  Ç≤	pp.Ptr.prototype.badVerb = function(verb) {
+ 0ppunknownType0C0	fmtpp0fmtbuffer0fmtnilAngleBytes0reflectTypeOf0ÇQ Ç≤	pp.Ptr.prototype.badVerb = function(verb) {
 		var p, v, v$1, _struct, v$2;
 		p = this;
 		p.erroring = true;
@@ -1189,7 +1251,9 @@ newPrinterÇP	newPrinter = function() {
 		p.erroring = false;
 	};
 	pp.prototype.badVerb = function(verb) { return this.go$val.badVerb(verb); };
- 0Ç  Ç	pp.Ptr.prototype.fmtBool = function(v, verb) {
+ 0ppbadVerb0ÅÖ0	fmtpp0
+fmtadd0fmtbuffer0reflectTypeOf0fmtprintArg0fmt
+printValue0reflectValue0fmtnilAngleBytes0Ç\ Ç	pp.Ptr.prototype.fmtBool = function(v, verb) {
 		var p, _ref;
 		p = this;
 		_ref = verb;
@@ -1200,7 +1264,7 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtBool = function(v, verb) { return this.go$val.fmtBool(v, verb); };
- 0Ç…  Çø	pp.Ptr.prototype.fmtC = function(c) {
+ 0ppfmtBool0/0	fmtpp0fmtfmt-boolean0fmtbadVerb0Ç Çø	pp.Ptr.prototype.fmtC = function(c) {
 		var p, r, x, w;
 		p = this;
 		r = ((c.low + ((c.high >> 31) * 4294967296)) >> 0);
@@ -1211,7 +1275,10 @@ newPrinterÇP	newPrinter = function() {
 		p.fmt.pad(go$subslice(new (go$sliceType(Go$Uint8))(p.runeBuf), 0, w));
 	};
 	pp.prototype.fmtC = function(c) { return this.go$val.fmtC(c); };
- 0Ç  ÇÊ	pp.Ptr.prototype.fmtInt64 = function(v, verb) {
+ 0
+ppfmtC030	fmtpp0unicode/utf8
+EncodeRune0
+fmtpad0ÇZ ÇÊ	pp.Ptr.prototype.fmtInt64 = function(v, verb) {
 		var p, _ref;
 		p = this;
 		_ref = verb;
@@ -1240,7 +1307,8 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtInt64 = function(v, verb) { return this.go$val.fmtInt64(v, verb); };
- 0Çe  Ç[	pp.Ptr.prototype.fmt0x64 = function(v, leading0x) {
+ 0ppfmtInt640Z0	fmtpp0fmtinteger0fmtfmtC0fmtfmt-qc0fmtbadVerb0fmt
+fmtUnicode0Çè Ç[	pp.Ptr.prototype.fmt0x64 = function(v, leading0x) {
 		var p, sharp;
 		p = this;
 		sharp = p.fmt.sharp;
@@ -1249,7 +1317,7 @@ newPrinterÇP	newPrinter = function() {
 		p.fmt.sharp = sharp;
 	};
 	pp.prototype.fmt0x64 = function(v, leading0x) { return this.go$val.fmt0x64(v, leading0x); };
- 0Ça  ÇW	pp.Ptr.prototype.fmtUnicode = function(v) {
+ 0ppfmt0x6400	fmtpp0fmtinteger0Çé ÇW	pp.Ptr.prototype.fmtUnicode = function(v) {
 		var p, precPresent, sharp, prec;
 		p = this;
 		precPresent = p.fmt.precPresent;
@@ -1270,7 +1338,8 @@ newPrinterÇP	newPrinter = function() {
 		p.fmt.sharp = sharp;
 	};
 	pp.prototype.fmtUnicode = function(v) { return this.go$val.fmtUnicode(v); };
- 0Çê  ÇÜ	pp.Ptr.prototype.fmtUint64 = function(v, verb, goSyntax) {
+ 0pp
+fmtUnicode00	fmtpp0fmtinteger0Ç ÇÜ	pp.Ptr.prototype.fmtUint64 = function(v, verb, goSyntax) {
 		var p, _ref;
 		p = this;
 		_ref = verb;
@@ -1305,7 +1374,8 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtUint64 = function(v, verb, goSyntax) { return this.go$val.fmtUint64(v, verb, goSyntax); };
- 0Ç  Ç	pp.Ptr.prototype.fmtFloat32 = function(v, verb) {
+ 0pp	fmtUint640j0	fmtpp0fmtinteger0fmtfmtC0fmtfmt0x640fmtfmt-qc0fmtbadVerb0fmt
+fmtUnicode0Ç© Ç	pp.Ptr.prototype.fmtFloat32 = function(v, verb) {
 		var p, _ref;
 		p = this;
 		_ref = verb;
@@ -1326,7 +1396,8 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtFloat32 = function(v, verb) { return this.go$val.fmtFloat32(v, verb); };
- 0Ç  Ç	pp.Ptr.prototype.fmtFloat64 = function(v, verb) {
+ 0pp
+fmtFloat320|0	fmtpp0fmtfmt-fb320fmtfmt-e320fmtfmt-E320fmtfmt-f320fmtfmt-g320fmtfmt-G320fmtbadVerb0Ç© Ç	pp.Ptr.prototype.fmtFloat64 = function(v, verb) {
 		var p, _ref;
 		p = this;
 		_ref = verb;
@@ -1347,7 +1418,8 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtFloat64 = function(v, verb) { return this.go$val.fmtFloat64(v, verb); };
- 0Ç≤  Ç®	pp.Ptr.prototype.fmtComplex64 = function(v, verb) {
+ 0pp
+fmtFloat640|0	fmtpp0fmtfmt-fb640fmtfmt-e640fmtfmt-E640fmtfmt-f640fmtfmt-g640fmtfmt-G640fmtbadVerb0ÇÒ Ç®	pp.Ptr.prototype.fmtComplex64 = function(v, verb) {
 		var p, _ref;
 		p = this;
 		_ref = verb;
@@ -1360,7 +1432,7 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtComplex64 = function(v, verb) { return this.go$val.fmtComplex64(v, verb); };
- 0Ç∑  Ç≠	pp.Ptr.prototype.fmtComplex128 = function(v, verb) {
+ 0ppfmtComplex640+0	fmtpp0fmtfmt-c640fmtbadVerb0Ç¯ Ç≠	pp.Ptr.prototype.fmtComplex128 = function(v, verb) {
 		var p, _ref;
 		p = this;
 		_ref = verb;
@@ -1373,7 +1445,7 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtComplex128 = function(v, verb) { return this.go$val.fmtComplex128(v, verb); };
- 0ÇN  ÇD	pp.Ptr.prototype.fmtString = function(v, verb, goSyntax) {
+ 0ppfmtComplex1280,0	fmtpp0fmtfmt-c1280fmtbadVerb0Ç• ÇD	pp.Ptr.prototype.fmtString = function(v, verb, goSyntax) {
 		var p, _ref;
 		p = this;
 		_ref = verb;
@@ -1396,7 +1468,7 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtString = function(v, verb, goSyntax) { return this.go$val.fmtString(v, verb, goSyntax); };
- 0Ç?  Ç5	pp.Ptr.prototype.fmtBytes = function(v, verb, goSyntax, typ, depth) {
+ 0pp	fmtString0F0	fmtpp0fmtfmt-q0fmtfmt-s0fmtfmt-sx0fmtbadVerb0Ç· Ç5	pp.Ptr.prototype.fmtBytes = function(v, verb, goSyntax, typ, depth) {
 		var p, v$1, v$2, v$3, v$4, _ref, _i, _slice, _index, c, i, v$5, v$6, v$7, v$8, _ref$1;
 		p = this;
 		if ((verb === 118) || (verb === 100)) {
@@ -1446,7 +1518,8 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtBytes = function(v, verb, goSyntax, typ, depth) { return this.go$val.fmtBytes(v, verb, goSyntax, typ, depth); };
- 0ÇÃ  Ç¬	pp.Ptr.prototype.fmtPointer = function(value, verb, goSyntax) {
+ 0ppfmtBytes0Åë0fmtprintArg0fmtfmt-s0fmtfmt-q0fmtbadVerb0	fmtpp0fmtbuffer0fmt
+bytesBytes0fmtcommaSpaceBytes0fmtfmt-bx0Ç] Ç¬	pp.Ptr.prototype.fmtPointer = function(value, verb, goSyntax) {
 		var p, use0x64, _ref, u, _ref$1, v, v$1, v$2;
 		p = this;
 		use0x64 = true;
@@ -1488,7 +1561,9 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.fmtPointer = function(value, verb, goSyntax) { return this.go$val.fmtPointer(value, verb, goSyntax); };
- 0Ç  Ç	pp.Ptr.prototype.catchPanic = function(arg, verb) {
+ 0pp
+fmtPointer00	fmtpp0fmtbadVerb0
+fmtadd0fmtbuffer0fmtnilBytes0fmtfmt0x640fmtnilAngleBytes0fmt	fmtUint640ÇŒ Ç	pp.Ptr.prototype.catchPanic = function(arg, verb) {
 		var p, err, v, _struct, v$1, v$2, v$3, v$4;
 		p = this;
 		if (err = go$recover(), !(go$interfaceIsEqual(err, null))) {
@@ -1509,7 +1584,10 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.catchPanic = function(arg, verb) { return this.go$val.catchPanic(arg, verb); };
- 0Ç	-  Ç	#	pp.Ptr.prototype.handleMethods = function(verb, plus, goSyntax, depth) {
+ 0pp
+catchPanic0Åü0reflectValue0fmtbuffer0
+fmtadd0fmtprintArg0	fmtpp0reflectValueOf0fmtnilAngleBytes0fmtpercentBangBytes0fmt
+panicBytes0Ç	π Ç	#	pp.Ptr.prototype.handleMethods = function(verb, plus, goSyntax, depth) {
 		var wasString, handled, p, ok, _tuple, x, formatter, ok$1, _tuple$1, x$1, stringer, _ref, v, _ref$1, _type;
 		wasString = false;
 		handled = false;
@@ -1570,7 +1648,9 @@ newPrinterÇP	newPrinter = function() {
 		}
 	};
 	pp.prototype.handleMethods = function(verb, plus, goSyntax, depth) { return this.go$val.handleMethods(verb, plus, goSyntax, depth); };
- 0ÇÓ  Ç‰	pp.Ptr.prototype.printArg = function(arg, verb, plus, goSyntax, depth) {
+ 0pphandleMethods0w0	fmtpp0fmt	Formatter0fmt
+catchPanic0fmt
+GoStringer0fmt	fmtString0fmtStringer0fmtprintArg0Çr Ç‰	pp.Ptr.prototype.printArg = function(arg, verb, plus, goSyntax, depth) {
 		var wasString, p, _ref, _struct, oldPlus, oldSharp, f, _ref$1, _type, handled, _tuple, isString, _struct$1;
 		wasString = false;
 		p = this;
@@ -1676,7 +1756,11 @@ newPrinterÇP	newPrinter = function() {
 		return wasString;
 	};
 	pp.prototype.printArg = function(arg, verb, plus, goSyntax, depth) { return this.go$val.printArg(arg, verb, plus, goSyntax, depth); };
- 0Ç]  ÇS	pp.Ptr.prototype.printValue = function(value, verb, plus, goSyntax, depth) {
+ 0ppprintArg0Çr0	fmtpp0reflectrtype0fmtbadVerb0fmt	fmtUint640fmt	fmtString0fmthandleMethods0fmtprintReflectValue0reflectValue0
+fmtpad0fmtfmtBool0fmt
+fmtFloat320fmt
+fmtFloat640fmtfmtInt640fmtfmtBytes0reflectTypeOf0fmt
+fmtPointer0reflectValueOf0fmtfmtComplex640fmtnilAngleBytes0fmtfmtComplex1280Ç ÇS	pp.Ptr.prototype.printValue = function(value, verb, plus, goSyntax, depth) {
 		var wasString, p, v, _ref, _struct, handled, _tuple, isString, _struct$1;
 		wasString = false;
 		p = this;
@@ -1711,7 +1795,9 @@ newPrinterÇP	newPrinter = function() {
 		return wasString;
 	};
 	pp.prototype.printValue = function(value, verb, plus, goSyntax, depth) { return this.go$val.printValue(value, verb, plus, goSyntax, depth); };
- 0Ç&  Ç%˚	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
+ 0pp
+printValue0Å¶0fmtnilAngleBytes0fmtbadVerb0fmtprintArg0fmt
+fmtPointer0fmthandleMethods0	fmtpp0fmtbuffer0reflectValue0fmtprintReflectValue0Ç'∑ Ç%˚	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
 		var wasString, p, _struct, oldValue, _struct$1, _struct$2, f, _ref, x, v, v$1, v$2, v$3, keys, _ref$1, _i, _slice, _index, _struct$3, key, i, v$4, v$5, _struct$4, v$6, _struct$5, _struct$6, v$7, v$8, v$9, _struct$7, v$10, t, i$1, v$11, v$12, f$1, _struct$8, v$13, v$14, _struct$9, _struct$10, v$15, _struct$11, value$1, v$16, v$17, v$18, _struct$12, typ, bytes, _ref$2, _i$1, i$2, _slice$1, _index$1, v$19, v$20, v$21, v$22, i$3, v$23, v$24, _struct$13, v$25, v$26, v$27, _struct$14, a, _ref$3, v$28, _struct$15, v$29, _struct$16, _struct$17, _struct$18, _struct$19;
 		wasString = false;
 		p = this;
@@ -1886,7 +1972,12 @@ newPrinterÇP	newPrinter = function() {
 		return wasString;
 	};
 	pp.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) { return this.go$val.printReflectValue(value, verb, plus, goSyntax, depth); };
- 0Ç4 
+ 0ppprintReflectValue0Çó0fmt
+fmtFloat640fmtbuffer0fmtcommaSpaceBytes0fmtfmtBytes0fmtunknownType0	fmtpp0fmtfmtInt640fmtfmtComplex640fmt	fmtString0fmtmapBytes0
+fmtadd0fmtnilAngleBytes0fmt
+fmtPointer0reflectValue0fmt	fmtUint640fmt
+fmtFloat320fmtfmtComplex1280fmt
+printValue0reflectStructField0fmtfmtBool0fmtgetField0fmtnilParenBytes0ÇB
 intFromArgÇ 	intFromArg = function(a, argNum) {
 		var num, isInt, newArgNum, _tuple, x, _slice, _index;
 		num = 0;
@@ -1899,7 +1990,8 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 		return [num, isInt, newArgNum];
 	};
- 0Ç# parseArgNumberÇ	parseArgNumber = function(format) {
+ 0
+intFromArg0 0ÇFparseArgNumberÇ	parseArgNumber = function(format) {
 		var index, wid, ok, i, _tuple, width, ok$1, newi, _tuple$1, _tuple$2, _tuple$3;
 		index = 0;
 		wid = 0;
@@ -1920,7 +2012,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		_tuple$3 = [0, 1, false], index = _tuple$3[0], wid = _tuple$3[1], ok = _tuple$3[2];
 		return [index, wid, ok];
 	};
- 0Ç  Ç	pp.Ptr.prototype.argNumber = function(argNum, format, i, numArgs) {
+ 0parseArgNumber00fmtparsenum0ÇE Ç	pp.Ptr.prototype.argNumber = function(argNum, format, i, numArgs) {
 		var newArgNum, newi, found, p, _tuple, _tuple$1, index, wid, ok, _tuple$2, _tuple$3;
 		newArgNum = 0;
 		newi = 0;
@@ -1941,7 +2033,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [newArgNum, newi, found];
 	};
 	pp.prototype.argNumber = function(argNum, format, i, numArgs) { return this.go$val.argNumber(argNum, format, i, numArgs); };
- 0Ç∆  Çº	pp.Ptr.prototype.doPrintf = function(format, a) {
+ 0pp	argNumber0"0	fmtpp0fmtparseArgNumber0Ç= Çº	pp.Ptr.prototype.doPrintf = function(format, a) {
 		var p, end, argNum, afterIndex, i, lasti, v, _ref, _tuple, _tuple$1, v$1, _tuple$2, _tuple$3, _tuple$4, v$2, _tuple$5, _tuple$6, v$3, _tuple$7, c, w, v$4, v$5, v$6, v$7, v$8, _slice, _index, arg, goSyntax, plus, v$9, _slice$1, _index$1, arg$1, v$10, v$11, v$12, v$13;
 		p = this;
 		end = format.length;
@@ -2064,7 +2156,11 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 	};
 	pp.prototype.doPrintf = function(format, a) { return this.go$val.doPrintf(format, a); };
- 0Ç˝  ÇÛ	pp.Ptr.prototype.doPrint = function(a, addspace, addnewline) {
+ 0ppdoPrintf0Çe0fmtbuffer0fmt	argNumber0"unicode/utf8DecodeRuneInString0fmtprintArg0fmt
+extraBytes0	fmtpp0fmtparsenum0fmtbadPrecBytes0reflectTypeOf0fmtbadWidthBytes0fmtbadIndexBytes0fmtmissingBytes0fmtcommaSpaceBytes0fmt
+clearflags0fmt
+intFromArg0fmtnoVerbBytes0fmtpercentBangBytes0
+fmtadd0Ç] ÇÛ	pp.Ptr.prototype.doPrint = function(a, addspace, addnewline) {
 		var p, prevString, argNum, _slice, _index, arg, isString, v, v$1;
 		p = this;
 		prevString = false;
@@ -2086,28 +2182,29 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 	};
 	pp.prototype.doPrint = function(a, addspace, addnewline) { return this.go$val.doPrint(a, addspace, addnewline); };
- 0Å¥ ScanÅß	Scan = go$pkg.Scan = function(a) {
+ 0ppdoPrint0Q0	fmtpp0fmt
+clearflags0reflectTypeOf0fmtbuffer0fmtprintArg0Å◊ScanÅß	Scan = go$pkg.Scan = function(a) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = Fscan(os.Stdin, a), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0Åº ScanlnÅ≠	Scanln = go$pkg.Scanln = function(a) {
+ 0Scan00fmtFscan0osStdin0Å„ScanlnÅ≠	Scanln = go$pkg.Scanln = function(a) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = Fscanln(os.Stdin, a), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0Å» ScanfÅ∫	Scanf = go$pkg.Scanf = function(format, a) {
+ 0Scanln00fmtFscanln0osStdin0ÅÌScanfÅ∫	Scanf = go$pkg.Scanf = function(format, a) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = Fscanf(os.Stdin, format, a), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0Çô  Çè	go$ptrType(stringReader).prototype.Read = function(b) {
+ 0Scanf00fmtFscanf0osStdin0Ç… Çè	go$ptrType(stringReader).prototype.Read = function(b) {
 		var n, err, r;
 		n = 0;
 		err = null;
@@ -2120,28 +2217,28 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [n, err];
 	};
 	stringReader.prototype.Read = function(b) { var obj = this.go$val; return (new (go$ptrType(stringReader))(function() { return obj; }, null)).Read(b); };
- 0ÇF SscanÇ7	Sscan = go$pkg.Sscan = function(str, a) {
+ 0stringReader0 0fmtstringReader0	ioEOF0ÇrSscanÇ7	Sscan = go$pkg.Sscan = function(str, a) {
 		var n, err, _tuple, x, v;
 		n = 0;
 		err = null;
 		_tuple = Fscan((x = new (go$ptrType(Go$String))(function() { return str; }, function(v) { str = v; }), new (go$ptrType(stringReader))(x.go$get, x.go$set)), a), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0ÇN SscanlnÇ=	Sscanln = go$pkg.Sscanln = function(str, a) {
+ 0Sscan0#0fmtFscan0fmtstringReader0Ç~SscanlnÇ=	Sscanln = go$pkg.Sscanln = function(str, a) {
 		var n, err, _tuple, x, v;
 		n = 0;
 		err = null;
 		_tuple = Fscanln((x = new (go$ptrType(Go$String))(function() { return str; }, function(v) { str = v; }), new (go$ptrType(stringReader))(x.go$get, x.go$set)), a), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0ÇZ SscanfÇJ	Sscanf = go$pkg.Sscanf = function(str, format, a) {
+ 0	Sscanln0%0fmtFscanln0fmtstringReader0ÇàSscanfÇJ	Sscanf = go$pkg.Sscanf = function(str, format, a) {
 		var n, err, _tuple, x, v;
 		n = 0;
 		err = null;
 		_tuple = Fscanf((x = new (go$ptrType(Go$String))(function() { return str; }, function(v) { str = v; }), new (go$ptrType(stringReader))(x.go$get, x.go$set)), format, a), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0ÇL FscanÇ=	Fscan = go$pkg.Fscan = function(r, a) {
+ 0Sscanf0$0fmtFscanf0fmtstringReader0ÇîFscanÇ=	Fscan = go$pkg.Fscan = function(r, a) {
 		var n, err, _tuple, s, _struct, old, _tuple$1, _struct$1;
 		n = 0;
 		err = null;
@@ -2150,7 +2247,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		s.free((_struct$1 = old, new ssave.Ptr(_struct$1.validSave, _struct$1.nlIsEnd, _struct$1.nlIsSpace, _struct$1.argLimit, _struct$1.limit, _struct$1.maxWid)));
 		return [n, err];
 	};
- 0ÇR FscanlnÇA	Fscanln = go$pkg.Fscanln = function(r, a) {
+ 0Fscan0?0fmtnewScanState0fmtssave0fmtdoScan0fmtfree0ÇúFscanlnÇA	Fscanln = go$pkg.Fscanln = function(r, a) {
 		var n, err, _tuple, s, _struct, old, _tuple$1, _struct$1;
 		n = 0;
 		err = null;
@@ -2159,7 +2256,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		s.free((_struct$1 = old, new ssave.Ptr(_struct$1.validSave, _struct$1.nlIsEnd, _struct$1.nlIsSpace, _struct$1.argLimit, _struct$1.limit, _struct$1.maxWid)));
 		return [n, err];
 	};
- 0Ça FscanfÇQ	Fscanf = go$pkg.Fscanf = function(r, format, a) {
+ 0	Fscanln0?0fmtnewScanState0fmtssave0fmtdoScan0fmtfree0Ç´FscanfÇQ	Fscanf = go$pkg.Fscanf = function(r, format, a) {
 		var n, err, _tuple, s, _struct, old, _tuple$1, _struct$1;
 		n = 0;
 		err = null;
@@ -2168,7 +2265,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		s.free((_struct$1 = old, new ssave.Ptr(_struct$1.validSave, _struct$1.nlIsEnd, _struct$1.nlIsSpace, _struct$1.argLimit, _struct$1.limit, _struct$1.maxWid)));
 		return [n, err];
 	};
- 0Ç?  Ç5	ss.Ptr.prototype.Read = function(buf) {
+ 0Fscanf0@0fmtnewScanState0fmtssave0fmtdoScanf0fmtfree0Ç_ Ç5	ss.Ptr.prototype.Read = function(buf) {
 		var n, err, s, _tuple;
 		n = 0;
 		err = null;
@@ -2177,7 +2274,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [n, err];
 	};
 	ss.prototype.Read = function(buf) { return this.go$val.Read(buf); };
- 0Ç  Ç	ss.Ptr.prototype.ReadRune = function() {
+ 0ss00	fmtss0errorsNew0Ç@ Ç	ss.Ptr.prototype.ReadRune = function() {
 		var r, size, err, s, _tuple;
 		r = 0;
 		size = 0;
@@ -2205,7 +2302,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [r, size, err];
 	};
 	ss.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
- 0Çó  Çç	ss.Ptr.prototype.Width = function() {
+ 0ss0/0	fmtss0unicode/utf8RuneLen0	ioEOF0Ç® Çç	ss.Ptr.prototype.Width = function() {
 		var wid, ok, s, _tuple, _tuple$1;
 		wid = 0;
 		ok = false;
@@ -2218,7 +2315,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [wid, ok];
 	};
 	ss.prototype.Width = function() { return this.go$val.Width(); };
- 0Çz  Çp	ss.Ptr.prototype.getRune = function() {
+ 0ss00	fmtss0Ç≠ Çp	ss.Ptr.prototype.getRune = function() {
 		var r, s, _tuple, err;
 		r = 0;
 		s = this;
@@ -2233,7 +2330,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return r;
 	};
 	ss.prototype.getRune = function() { return this.go$val.getRune(); };
- 0Ç  Å˘	ss.Ptr.prototype.mustReadRune = function() {
+ 0ssgetRune0$0	fmtss0	ioEOF0fmterror0ÇW Å˘	ss.Ptr.prototype.mustReadRune = function() {
 		var r, s;
 		r = 0;
 		s = this;
@@ -2244,7 +2341,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return r;
 	};
 	ss.prototype.mustReadRune = function() { return this.go$val.mustReadRune(); };
- 0Ç—  Ç«	ss.Ptr.prototype.UnreadRune = function() {
+ 0ssmustReadRune0A0	fmtss0fmtgetRune0fmterror0ioErrUnexpectedEOF0Ç˜ Ç«	ss.Ptr.prototype.UnreadRune = function() {
 		var s, ok, _tuple, x, u;
 		s = this;
 		if (_tuple = (x = s.rr, (x !== null && runeUnreader.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), u = _tuple[0], ok = _tuple[1], ok) {
@@ -2257,19 +2354,19 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return null;
 	};
 	ss.prototype.UnreadRune = function() { return this.go$val.UnreadRune(); };
- 0Å‰  Å€	ss.Ptr.prototype.error = function(err) {
+ 0ss0 0	fmtss0fmtruneUnreader0Ç Å€	ss.Ptr.prototype.error = function(err) {
 		var s, x;
 		s = this;
 		throw go$panic((x = new scanError.Ptr(err), new x.constructor.Struct(x)));
 	};
 	ss.prototype.error = function(err) { return this.go$val.error(err); };
- 0Ç  Å˘	ss.Ptr.prototype.errorString = function(err) {
+ 0sserror00	fmtss0fmt	scanError0ÇA Å˘	ss.Ptr.prototype.errorString = function(err) {
 		var s, x;
 		s = this;
 		throw go$panic((x = new scanError.Ptr(errors.New(err)), new x.constructor.Struct(x)));
 	};
 	ss.prototype.errorString = function(err) { return this.go$val.errorString(err); };
- 0Ç∆  Çº	ss.Ptr.prototype.Token = function(skipSpace, f) {
+ 0sserrorString0,0	fmtss0errorsNew0fmt	scanError0Ç Çº	ss.Ptr.prototype.Token = function(skipSpace, f) {
 		var tok, err, s;
 		tok = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -2300,7 +2397,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 	};
 	ss.prototype.Token = function(skipSpace, f) { return this.go$val.Token(skipSpace, f); };
- 0Ç isSpaceÇ
+ 0ss0<0	fmtss0fmt	scanError0fmtnotSpace0fmttoken0Ç4isSpaceÇ
 	isSpace = function(r) {
 		var rx, _ref, _i, _slice, _index, rng;
 		if (r >= 65536) {
@@ -2321,17 +2418,17 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 		return false;
 	};
- 0D notSpace4	notSpace = function(r) {
+ 0	isSpace00fmtspace0`notSpace4	notSpace = function(r) {
 		return !isSpace(r);
 	};
- 0Å≠  Å§	ss.Ptr.prototype.SkipSpace = function() {
+ 0
+notSpace00fmtisSpace0Å– Å§	ss.Ptr.prototype.SkipSpace = function() {
 		var s;
 		s = this;
 		s.skipSpace(false);
 	};
 	ss.prototype.SkipSpace = function() { return this.go$val.SkipSpace(); };
- 0Ç
-  Ç 	readRune.Ptr.prototype.readByte = function() {
+ 0ss00	fmtss0fmt	skipSpace0ÇA Ç 	readRune.Ptr.prototype.readByte = function() {
 		var b, err, r, _tuple, n, _tuple$1, _tuple$2;
 		b = 0;
 		err = null;
@@ -2351,14 +2448,14 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [b, err];
 	};
 	readRune.prototype.readByte = function() { return this.go$val.readByte(); };
- 0Ç'  Ç	readRune.Ptr.prototype.unread = function(buf) {
+ 0readRunereadByte0!0fmtreadRune0ioReadFull0ÇL Ç	readRune.Ptr.prototype.unread = function(buf) {
 		var r;
 		r = this;
 		go$copySlice(go$subslice(new (go$sliceType(Go$Uint8))(r.pendBuf), r.pending), buf);
 		r.pending = r.pending + (buf.length) >> 0;
 	};
 	readRune.prototype.unread = function(buf) { return this.go$val.unread(buf); };
- 0Ç~  Çt	readRune.Ptr.prototype.ReadRune = function() {
+ 0readRuneunread00fmtreadRune0Ç¸ Çt	readRune.Ptr.prototype.ReadRune = function() {
 		var rr, size, err, r, _tuple, _tuple$1, n, _tuple$2, _tuple$3;
 		rr = 0;
 		size = 0;
@@ -2393,7 +2490,9 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [rr, size, err];
 	};
 	readRune.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
- 0Ç® newScanStateÇí	newScanState = function(r, nlIsSpace, nlIsEnd) {
+ 0
+readRune0r0fmtreadRune0fmtreadByte0unicode/utf8FullRune0	ioEOF0unicode/utf8
+DecodeRune0fmtunread0ÇnewScanStateÇí	newScanState = function(r, nlIsSpace, nlIsEnd) {
 		var s, old, _tuple, ok, _struct, _struct$1, x, ok$1, _tuple$1, rr, _struct$2;
 		s = (go$ptrType(ss)).nil;
 		old = new ssave.Ptr();
@@ -2423,7 +2522,9 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		s.count = 0;
 		return [s, (_struct$2 = old, new ssave.Ptr(_struct$2.validSave, _struct$2.nlIsEnd, _struct$2.nlIsSpace, _struct$2.argLimit, _struct$2.limit, _struct$2.maxWid))];
 	};
- 0Ç»  Çæ	ss.Ptr.prototype.free = function(old) {
+ 0newScanState0W0	fmtss0fmtssave0
+fmtget0fmtssFree0io
+RuneReader0fmtreadRune0Ç Çæ	ss.Ptr.prototype.free = function(old) {
 		var s, _struct;
 		s = this;
 		if (old.validSave) {
@@ -2438,7 +2539,9 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		ssFree.put(s);
 	};
 	ss.prototype.free = function(old) { return this.go$val.free(old); };
- 0Ç+  Ç!	ss.Ptr.prototype.skipSpace = function(stopAtNewline) {
+ 0
+ssfree040	fmtss0fmtssave0
+fmtput0fmtssFree0Çà Ç!	ss.Ptr.prototype.skipSpace = function(stopAtNewline) {
 		var s, r;
 		s = this;
 		while (true) {
@@ -2466,7 +2569,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 	};
 	ss.prototype.skipSpace = function(stopAtNewline) { return this.go$val.skipSpace(stopAtNewline); };
- 0Ç6  Ç,	ss.Ptr.prototype.token = function(skipSpace, f) {
+ 0ss	skipSpace0L0	fmtss0fmtgetRune0fmtpeek0fmterrorString0fmtisSpace0Ç Ç,	ss.Ptr.prototype.token = function(skipSpace, f) {
 		var s, r, v, x;
 		s = this;
 		if (skipSpace) {
@@ -2486,7 +2589,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return (x = s.buf, go$subslice(new (go$sliceType(Go$Uint8))(x.array), x.offset, x.offset + x.length));
 	};
 	ss.prototype.token = function(skipSpace, f) { return this.go$val.token(skipSpace, f); };
- 0Ç 	indexRuneÅ˚	indexRune = function(s, r) {
+ 0sstoken0<0	fmtss0fmt	skipSpace0fmtgetRune0fmtbuffer0Ç	indexRuneÅ˚	indexRune = function(s, r) {
 		var _ref, _i, _rune, c, i;
 		_ref = s;
 		_i = 0;
@@ -2501,7 +2604,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 		return -1;
 	};
- 0ÇË  Çﬁ	ss.Ptr.prototype.consume = function(ok, accept) {
+ 0	indexRune0 0Ç3 Çﬁ	ss.Ptr.prototype.consume = function(ok, accept) {
 		var s, r, v;
 		s = this;
 		r = s.getRune();
@@ -2520,7 +2623,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return false;
 	};
 	ss.prototype.consume = function(ok, accept) { return this.go$val.consume(ok, accept); };
- 0ÅÚ  ÅÈ	ss.Ptr.prototype.peek = function(ok) {
+ 0ssconsume0<0	fmtss0fmtgetRune0fmt	indexRune0fmtbuffer0Ç+ ÅÈ	ss.Ptr.prototype.peek = function(ok) {
 		var s, r;
 		s = this;
 		r = s.getRune();
@@ -2530,7 +2633,8 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return indexRune(ok, r) >= 0;
 	};
 	ss.prototype.peek = function(ok) { return this.go$val.peek(ok); };
- 0ÅÂ  Å‹	ss.Ptr.prototype.notEOF = function() {
+ 0
+sspeek0-0	fmtss0fmtgetRune0fmt	indexRune0Ç Å‹	ss.Ptr.prototype.notEOF = function() {
 		var s, r;
 		s = this;
 		if (r = s.getRune(), r === -1) {
@@ -2539,13 +2643,13 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		s.UnreadRune();
 	};
 	ss.prototype.notEOF = function() { return this.go$val.notEOF(); };
- 0Å≤  Å©	ss.Ptr.prototype.accept = function(ok) {
+ 0ssnotEOF0&0	fmtss0fmtgetRune0	ioEOF0Å€ Å©	ss.Ptr.prototype.accept = function(ok) {
 		var s;
 		s = this;
 		return s.consume(ok, true);
 	};
 	ss.prototype.accept = function(ok) { return this.go$val.accept(ok); };
- 0Çﬁ  Ç‘	ss.Ptr.prototype.okVerb = function(verb, okVerbs, typ) {
+ 0ssaccept00	fmtss0fmtconsume0Ç Ç‘	ss.Ptr.prototype.okVerb = function(verb, okVerbs, typ) {
 		var s, _ref, _i, _rune, v;
 		s = this;
 		_ref = okVerbs;
@@ -2562,7 +2666,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return false;
 	};
 	ss.prototype.okVerb = function(verb, okVerbs, typ) { return this.go$val.okVerb(verb, okVerbs, typ); };
- 0ÇŒ  Çƒ	ss.Ptr.prototype.scanBool = function(verb) {
+ 0ssokVerb00	fmtss0fmterrorString0ÇX Çƒ	ss.Ptr.prototype.scanBool = function(verb) {
 		var s, _ref;
 		s = this;
 		s.skipSpace(false);
@@ -2589,7 +2693,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return false;
 	};
 	ss.prototype.scanBool = function(verb) { return this.go$val.scanBool(verb); };
- 0Ç,  Ç"	ss.Ptr.prototype.getBase = function(verb) {
+ 0ssscanBool0z0	fmtss0fmt	skipSpace0fmtnotEOF0fmtokVerb0fmtgetRune0fmtaccept0fmterror0fmt	boolError0ÇU Ç"	ss.Ptr.prototype.getBase = function(verb) {
 		var base, digits, s, _ref;
 		base = 0;
 		digits = "";
@@ -2611,7 +2715,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [base, digits];
 	};
 	ss.prototype.getBase = function(verb) { return this.go$val.getBase(verb); };
- 0ÇÑ  Çz	ss.Ptr.prototype.scanNumber = function(digits, haveDigits) {
+ 0ssgetBase00	fmtss0fmtokVerb0Ç” Çz	ss.Ptr.prototype.scanNumber = function(digits, haveDigits) {
 		var s;
 		s = this;
 		if (!haveDigits) {
@@ -2625,7 +2729,8 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return go$bytesToString(s.buf);
 	};
 	ss.prototype.scanNumber = function(digits, haveDigits) { return this.go$val.scanNumber(digits, haveDigits); };
- 0Ç€  Ç—	ss.Ptr.prototype.scanRune = function(bitSize) {
+ 0ss
+scanNumber0=0	fmtss0fmtnotEOF0fmtaccept0fmterrorString0Ç) Ç—	ss.Ptr.prototype.scanRune = function(bitSize) {
 		var s, r, n, x;
 		s = this;
 		s.notEOF();
@@ -2638,7 +2743,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return r;
 	};
 	ss.prototype.scanRune = function(bitSize) { return this.go$val.scanRune(bitSize); };
- 0Çµ  Ç´	ss.Ptr.prototype.scanBasePrefix = function() {
+ 0ssscanRune0>0	fmtss0fmtnotEOF0fmtgetRune0fmterrorString0Ç Ç´	ss.Ptr.prototype.scanBasePrefix = function() {
 		var base, digits, found, s, _tuple, _tuple$1, _tuple$2;
 		base = 0;
 		digits = "";
@@ -2658,7 +2763,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [base, digits, found];
 	};
 	ss.prototype.scanBasePrefix = function() { return this.go$val.scanBasePrefix(); };
- 0Çy  Ço	ss.Ptr.prototype.scanInt = function(verb, bitSize) {
+ 0ssscanBasePrefix070	fmtss0fmtpeek0fmtaccept0fmtconsume0ÇV Ço	ss.Ptr.prototype.scanInt = function(verb, bitSize) {
 		var s, _tuple, base, digits, haveDigits, _tuple$1, tok, _tuple$2, i, err, n, x;
 		s = this;
 		if (verb === 99) {
@@ -2691,7 +2796,8 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return i;
 	};
 	ss.prototype.scanInt = function(verb, bitSize) { return this.go$val.scanInt(verb, bitSize); };
- 0Çò  Çé	ss.Ptr.prototype.scanUint = function(verb, bitSize) {
+ 0ssscanInt0ÅÕ0	fmtss0fmtgetBase0fmtconsume0strconvParseInt0fmtscanRune0fmt	skipSpace0fmtnotEOF0fmterrorString0fmtaccept0fmtscanBasePrefix0fmt
+scanNumber0fmterror0Çh Çé	ss.Ptr.prototype.scanUint = function(verb, bitSize) {
 		var s, x, _tuple, base, digits, haveDigits, _tuple$1, tok, _tuple$2, i, err, n, x$1;
 		s = this;
 		if (verb === 99) {
@@ -2721,7 +2827,8 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return i;
 	};
 	ss.prototype.scanUint = function(verb, bitSize) { return this.go$val.scanUint(verb, bitSize); };
- 0Ç}  Çs	ss.Ptr.prototype.floatToken = function() {
+ 0ssscanUint0Åø0	fmtss0fmtscanRune0fmt	skipSpace0fmtgetBase0fmtconsume0fmterrorString0fmtscanBasePrefix0fmtnotEOF0fmt
+scanNumber0strconv	ParseUint0fmterror0Ç© Çs	ss.Ptr.prototype.floatToken = function() {
 		var s;
 		s = this;
 		s.buf = go$subslice(s.buf, 0, 0);
@@ -2746,7 +2853,8 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return go$bytesToString(s.buf);
 	};
 	ss.prototype.floatToken = function() { return this.go$val.floatToken(); };
- 0ÇÜ  Ç|	ss.Ptr.prototype.complexTokens = function() {
+ 0ss
+floatToken00	fmtss0fmtaccept0ÇÎ Ç|	ss.Ptr.prototype.complexTokens = function() {
 		var real, imag, s, parens, imagSign, _tuple;
 		real = "";
 		imag = "";
@@ -2769,7 +2877,8 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [real, imag];
 	};
 	ss.prototype.complexTokens = function() { return this.go$val.complexTokens(); };
- 0Ç¯  ÇÓ	ss.Ptr.prototype.convertFloat = function(str, n) {
+ 0sscomplexTokens0P0	fmtss0fmtaccept0fmt
+floatToken0fmterror0fmtcomplexError0ÇÉ ÇÓ	ss.Ptr.prototype.convertFloat = function(str, n) {
 		var s, p, _tuple, f, err, ok, _tuple$1, e, _tuple$2, m, ok$1, _tuple$3, e$1, _tuple$4, f$1, err$1;
 		s = this;
 		if (p = indexRune(str, 112), p >= 0) {
@@ -2796,7 +2905,8 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return f$1;
 	};
 	ss.prototype.convertFloat = function(str, n) { return this.go$val.convertFloat(str, n); };
- 0Ç¯  ÇÓ	ss.Ptr.prototype.scanComplex = function(verb, n) {
+ 0ssconvertFloat0w0	fmtss0fmt	indexRune0strconv
+ParseFloat0strconvNumError0fmterror0strconvAtoi0mathLdexp0Çq ÇÓ	ss.Ptr.prototype.scanComplex = function(verb, n) {
 		var s, _tuple, sreal, simag, _q, real, _q$1, imag;
 		s = this;
 		if (!s.okVerb(verb, "beEfFgGv", "complex")) {
@@ -2810,7 +2920,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return new Go$Complex128(real, imag);
 	};
 	ss.prototype.scanComplex = function(verb, n) { return this.go$val.scanComplex(verb, n); };
- 0Ç¸  ÇÚ	ss.Ptr.prototype.convertString = function(verb) {
+ 0ssscanComplex0f0	fmtss0fmtokVerb0fmt	skipSpace0fmtnotEOF0fmtcomplexTokens0fmtconvertFloat0Çì ÇÚ	ss.Ptr.prototype.convertString = function(verb) {
 		var str, s, _ref;
 		str = "";
 		s = this;
@@ -2831,7 +2941,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return str;
 	};
 	ss.prototype.convertString = function(verb) { return this.go$val.convertString(verb); };
- 0ÇÌ  Ç„	ss.Ptr.prototype.quotedString = function() {
+ 0ssconvertString0ÅÅ0	fmtss0fmtokVerb0fmt	skipSpace0fmtnotEOF0fmtquotedString0fmt	hexString0fmttoken0fmtnotSpace0ÇÜ Ç„	ss.Ptr.prototype.quotedString = function() {
 		var s, quote, _ref, r, v, v$1, r$1, v$2, v$3, _tuple, result, err;
 		s = this;
 		s.notEOF();
@@ -2868,7 +2978,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return "";
 	};
 	ss.prototype.quotedString = function() { return this.go$val.quotedString(); };
- 0Ç’  ÇÀ	ss.Ptr.prototype.hexDigit = function(d) {
+ 0ssquotedString0ÅÑ0	fmtss0fmtnotEOF0fmtgetRune0fmtmustReadRune0fmtbuffer0strconvUnquote0fmterror0fmterrorString0Ç ÇÀ	ss.Ptr.prototype.hexDigit = function(d) {
 		var s, digit, _ref;
 		s = this;
 		digit = (d >> 0);
@@ -2884,7 +2994,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return 0;
 	};
 	ss.prototype.hexDigit = function(d) { return this.go$val.hexDigit(d); };
- 0Ç  ÇÊ	ss.Ptr.prototype.hexByte = function() {
+ 0sshexDigit00	fmtss0fmterrorString0ÇP ÇÊ	ss.Ptr.prototype.hexByte = function() {
 		var b, ok, s, rune1, rune2, _tuple;
 		b = 0;
 		ok = false;
@@ -2902,7 +3012,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return [b, ok];
 	};
 	ss.prototype.hexByte = function() { return this.go$val.hexByte(); };
- 0Ç  Ç˛	ss.Ptr.prototype.hexString = function() {
+ 0sshexByte0Q0	fmtss0fmtgetRune0fmtisSpace0fmtmustReadRune0fmthexDigit0Çf Ç˛	ss.Ptr.prototype.hexString = function() {
 		var s, _tuple, b, ok, v;
 		s = this;
 		s.notEOF();
@@ -2920,7 +3030,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return go$bytesToString(s.buf);
 	};
 	ss.prototype.hexString = function() { return this.go$val.hexString(); };
- 0Ç˙  Ç	ss.Ptr.prototype.scanOne = function(verb, arg) {
+ 0ss	hexString0M0	fmtss0fmtnotEOF0fmthexByte0fmtbuffer0fmterrorString0Ç Ç	ss.Ptr.prototype.scanOne = function(verb, arg) {
 		var s, err, ok, _tuple, v, v$1, _ref, _type, x, x$1, x$2, x$3, x$4, _struct, val, _struct$1, ptr, _struct$2, v$2, _ref$1, typ, str, _struct$3, i;
 		s = this;
 		s.buf = go$subslice(s.buf, 0, 0);
@@ -3041,7 +3151,8 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 	};
 	ss.prototype.scanOne = function(verb, arg) { return this.go$val.scanOne(verb, arg); };
- 0Çó errorHandlerÇÅ	errorHandler = function(errp) {
+ 0ssscanOne0Çt0	ioEOF0fmtscanBool0fmtscanInt0fmtokVerb0reflectValueOf0fmtScanner0fmtscanUint0fmtuintptrBits0fmt
+floatToken0reflect	MakeSlice0fmtscanComplex0fmtintBits0fmt	skipSpace0fmtconvertFloat0fmterrorString0	fmtss0ioErrUnexpectedEOF0fmterror0fmtnotEOF0fmtconvertString0reflectValue0ÇƒerrorHandlerÇÅ	errorHandler = function(errp) {
 		var e, ok, _tuple, _struct, se, ok$1, eof, _tuple$1;
 		if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
 			if (_tuple = (e !== null && e.constructor === scanError ? [e.go$val, true] : [new scanError.Ptr(), false]), se = (_struct = _tuple[0], new scanError.Ptr(_struct.err)), ok = _tuple[1], ok) {
@@ -3053,7 +3164,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 			}
 		}
 	};
- 0Ç;  Ç1	ss.Ptr.prototype.doScan = function(a) {
+ 0errorHandler00fmt	scanError0	ioEOF0Ç≠ Ç1	ss.Ptr.prototype.doScan = function(a) {
 		var numProcessed, err, s, v, _ref, _i, _slice, _index, arg, r;
 		numProcessed = 0;
 		err = null;
@@ -3090,7 +3201,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 	};
 	ss.prototype.doScan = function(a) { return this.go$val.doScan(a); };
- 0Çú  Çí	ss.Ptr.prototype.advance = function(format) {
+ 0ssdoScan0d0	fmtss0fmterrorHandler0fmtscanOne0fmtgetRune0fmtisSpace0fmterrorString0Ç6 Çí	ss.Ptr.prototype.advance = function(format) {
 		var i, s, _tuple, fmtc, w, _tuple$1, nextc, sawSpace, _tuple$2, inputc, inputc$1;
 		i = 0;
 		s = this;
@@ -3131,7 +3242,7 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		return i;
 	};
 	ss.prototype.advance = function(format) { return this.go$val.advance(format); };
- 0Çd  ÇZ	ss.Ptr.prototype.doScanf = function(format, a) {
+ 0ssadvance0Åä0	fmtss0"unicode/utf8DecodeRuneInString0fmtisSpace0fmtgetRune0fmterrorString0fmt	skipSpace0fmtmustReadRune0Ç˝ ÇZ	ss.Ptr.prototype.doScanf = function(format, a) {
 		var numProcessed, err, s, v, end, i, w, widPresent, _tuple, f, _tuple$1, c, _slice, _index, arg;
 		numProcessed = 0;
 		err = null;
@@ -3186,45 +3297,62 @@ intFromArgÇ 	intFromArg = function(a, argNum) {
 		}
 	};
 	ss.prototype.doScanf = function(format, a) { return this.go$val.doScanf(format, a); };
- 0 padZeroBytes  0 padSpaceBytes  0 	trueBytes  0 
-falseBytes  0 commaSpaceBytes  0 nilAngleBytes  0 nilParenBytes  0 nilBytes  0 mapBytes  0 percentBangBytes  0 missingBytes  0 badIndexBytes  0 
-panicBytes  0 
-extraBytes  0 irparenBytes  0 
-bytesBytes  0 badWidthBytes  0 badPrecBytes  0 noVerbBytes  0 ppFree  0 intBits  0 uintptrBits  0 space  0 ssFree  0 complexError  0 	boolError  0Y   Q		padZeroBytes = (go$sliceType(Go$Uint8)).make(65, 0, function() { return 0; });
-0Z   R		padSpaceBytes = (go$sliceType(Go$Uint8)).make(65, 0, function() { return 0; });
-0N   F		trueBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("true"));
-0P   H		falseBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("false"));
-0R   J		commaSpaceBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes(", "));
-0S   K		nilAngleBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("<nil>"));
-0S   K		nilParenBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(nil)"));
-0L   D		nilBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("nil"));
-0M   E		mapBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("map["));
-0S   K		percentBangBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!"));
-0V   N		missingBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(MISSING)"));
-0X   P		badIndexBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(BADINDEX)"));
-0R   J		panicBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(PANIC="));
-0T   L		extraBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(EXTRA "));
-0O   G		irparenBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("i)"));
-0R   J		bytesBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("[]byte{"));
-0Z   R		badWidthBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(BADWIDTH)"));
-0X   P		badPrecBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(BADPREC)"));
-0V   N		noVerbBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(NOVERB)"));
-0I   A		ppFree = newCache((function() {
+ 0ssdoScanf0Åâ0	fmtss0fmterrorHandler0fmtadvance0fmterrorString0fmtparsenum0"unicode/utf8DecodeRuneInString0fmtscanOne0$padZeroBytes  0padZeroBytes0 0&padSpaceBytes  0padSpaceBytes0 0	trueBytes  0	trueBytes0 0 
+falseBytes  0
+falseBytes0 0*commaSpaceBytes  0commaSpaceBytes0 0&nilAngleBytes  0nilAngleBytes0 0&nilParenBytes  0nilParenBytes0 0nilBytes  0
+nilBytes0 0mapBytes  0
+mapBytes0 0,percentBangBytes  0percentBangBytes0 0$missingBytes  0missingBytes0 0&badIndexBytes  0badIndexBytes0 0 
+panicBytes  0
+panicBytes0 0 
+extraBytes  0
+extraBytes0 0$irparenBytes  0irparenBytes0 0 
+bytesBytes  0
+bytesBytes0 0&badWidthBytes  0badWidthBytes0 0$badPrecBytes  0badPrecBytes0 0"noVerbBytes  0noVerbBytes0 0ppFree  0ppFree0 0intBits  0	intBits0 0"uintptrBits  0uintptrBits0 0space  0space0 0ssFree  0ssFree0 0$complexError  0complexError0 0	boolError  0	boolError0 0p  Q		padZeroBytes = (go$sliceType(Go$Uint8)).make(65, 0, function() { return 0; });
+0 00fmtpadZeroBytes0r  R		padSpaceBytes = (go$sliceType(Go$Uint8)).make(65, 0, function() { return 0; });
+0 00fmtpadSpaceBytes0m  F		trueBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("true"));
+0	trueBytes00fmt	trueBytes0q  H		falseBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("false"));
+0
+falseBytes00fmt
+falseBytes0}  J		commaSpaceBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes(", "));
+0commaSpaceBytes00fmtcommaSpaceBytes0z  K		nilAngleBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("<nil>"));
+0nilAngleBytes00fmtnilAngleBytes0z  K		nilParenBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(nil)"));
+0nilParenBytes00fmtnilParenBytes0i  D		nilBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("nil"));
+0
+nilBytes00fmtnilBytes0j  E		mapBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("map["));
+0
+mapBytes00fmtmapBytes0ÅÄ  K		percentBangBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!"));
+0percentBangBytes00fmtpercentBangBytes0{  N		missingBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(MISSING)"));
+0missingBytes00fmtmissingBytes0  P		badIndexBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(BADINDEX)"));
+0badIndexBytes00fmtbadIndexBytes0s  J		panicBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("(PANIC="));
+0
+panicBytes00fmt
+panicBytes0u  L		extraBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(EXTRA "));
+0
+extraBytes00fmt
+extraBytes0t  G		irparenBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("i)"));
+0irparenBytes00fmtirparenBytes0s  J		bytesBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("[]byte{"));
+0
+bytesBytes00fmt
+bytesBytes0ÅÅ  R		badWidthBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(BADWIDTH)"));
+0badWidthBytes00fmtbadWidthBytes0}  P		badPrecBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(BADPREC)"));
+0badPrecBytes00fmtbadPrecBytes0y  N		noVerbBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("%!(NOVERB)"));
+0noVerbBytes00fmtnoVerbBytes0v  A		ppFree = newCache((function() {
 			return new pp.Ptr();
 		}));
-0:   2		intBits = reflect.TypeOf(new Go$Int(0)).Bits();
-0B   :		uintptrBits = reflect.TypeOf(new Go$Uintptr(0)).Bits();
-0Ç   Ç		space = new (go$sliceType((go$arrayType(Go$Uint16, 2))))([go$toNativeArray("Uint16", [9, 13]), go$toNativeArray("Uint16", [32, 32]), go$toNativeArray("Uint16", [133, 133]), go$toNativeArray("Uint16", [160, 160]), go$toNativeArray("Uint16", [5760, 5760]), go$toNativeArray("Uint16", [6158, 6158]), go$toNativeArray("Uint16", [8192, 8202]), go$toNativeArray("Uint16", [8232, 8233]), go$toNativeArray("Uint16", [8239, 8239]), go$toNativeArray("Uint16", [8287, 8287]), go$toNativeArray("Uint16", [12288, 12288])]);
-0I   A		ssFree = newCache((function() {
+0 0+0fmtnewCache0	fmtpp0fmtppFree0_  2		intBits = reflect.TypeOf(new Go$Int(0)).Bits();
+0 0#0reflectTypeOf0fmtintBits0k  :		uintptrBits = reflect.TypeOf(new Go$Uintptr(0)).Bits();
+0 0'0reflectTypeOf0fmtuintptrBits0Ç"  Ç		space = new (go$sliceType((go$arrayType(Go$Uint16, 2))))([go$toNativeArray("Uint16", [9, 13]), go$toNativeArray("Uint16", [32, 32]), go$toNativeArray("Uint16", [133, 133]), go$toNativeArray("Uint16", [160, 160]), go$toNativeArray("Uint16", [5760, 5760]), go$toNativeArray("Uint16", [6158, 6158]), go$toNativeArray("Uint16", [8192, 8202]), go$toNativeArray("Uint16", [8232, 8233]), go$toNativeArray("Uint16", [8239, 8239]), go$toNativeArray("Uint16", [8287, 8287]), go$toNativeArray("Uint16", [12288, 12288])]);
+0space00fmtspace0v  A		ssFree = newCache((function() {
 			return new ss.Ptr();
 		}));
-0M   E		complexError = errors.New("syntax error scanning complex number");
-0C   ;		boolError = errors.New("syntax error scanning boolean");
-0    0Çœ   Ç≈		var i, _slice, _index, _slice$1, _index$1;
+0 0+0fmtnewCache0	fmtss0fmtssFree0s  E		complexError = errors.New("syntax error scanning complex number");
+0 0$0errorsNew0fmtcomplexError0f  ;		boolError = errors.New("syntax error scanning boolean");
+0 0!0errorsNew0fmt	boolError0
+   0 0 0Ç¸  Ç≈		var i, _slice, _index, _slice$1, _index$1;
 		i = 0;
 		while (i < 65) {
 			_slice = padZeroBytes, _index = i, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = 48) : go$throwRuntimeError("index out of range");
 			_slice$1 = padSpaceBytes, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = 32) : go$throwRuntimeError("index out of range");
 			i = i + 1 >> 0;
 		}
-0 
+0 0+0fmtpadZeroBytes0fmtpadSpaceBytes0 

@@ -1,4 +1,4 @@
-0ÉgÚdebug/dwarfÇ-Âpackage dwarf
+0ÉÇ„debug/dwarfÇ-Âpackage dwarf
 import binary "encoding/binary"
 import strconv "strconv"
 import errors "errors"
@@ -229,7 +229,7 @@ func (? *@"".unknownFormat) @"".dwarf64() (? bool, ? bool)
 func (? *@"".unknownFormat) @"".version() (? int)
 type @"encoding/binary".ByteOrder interface { @"encoding/binary".PutUint16(? []byte, ? uint16) (); @"encoding/binary".PutUint32(? []byte, ? uint32) (); @"encoding/binary".PutUint64(? []byte, ? uint64) (); @"encoding/binary".String() (? string); @"encoding/binary".Uint16(? []byte) (? uint16); @"encoding/binary".Uint32(? []byte) (? uint32); @"encoding/binary".Uint64(? []byte) (? uint64) }
 $$
-0lruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarydebug/dwarf0A0encoding/binarybinary0strconvstrconv0errorserrors0É9D0Çd bufÇ1	buf = go$pkg.buf = go$newType(0, "Struct", "dwarf.buf", "buf", "debug/dwarf", function(dwarf_, order_, format_, name_, off_, data_, err_) {
+0lruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarydebug/dwarf0A0encoding/binarybinary0strconvstrconv0errorserrors0ÉT50ÇbufÇ1	buf = go$pkg.buf = go$newType(0, "Struct", "dwarf.buf", "buf", "debug/dwarf", function(dwarf_, order_, format_, name_, off_, data_, err_) {
 		this.go$val = this;
 		this.dwarf = dwarf_ !== undefined ? dwarf_ : (go$ptrType(Data)).nil;
 		this.order = order_ !== undefined ? order_ : null;
@@ -241,16 +241,18 @@ $$
 	});
 Ç$		buf.init([["dwarf", "debug/dwarf", (go$ptrType(Data)), ""], ["order", "debug/dwarf", binary.ByteOrder, ""], ["format", "debug/dwarf", dataFormat, ""], ["name", "debug/dwarf", Go$String, ""], ["off", "debug/dwarf", Offset, ""], ["data", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["err", "debug/dwarf", go$error, ""]]);
 		(go$ptrType(buf)).methods = [["addr", "debug/dwarf", [], [Go$Uint64], false], ["bytes", "debug/dwarf", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["entry", "debug/dwarf", [abbrevTable, Offset], [(go$ptrType(Entry))], false], ["error", "debug/dwarf", [Go$String], [], false], ["int", "debug/dwarf", [], [Go$Int64], false], ["skip", "debug/dwarf", [Go$Int], [], false], ["string", "debug/dwarf", [], [Go$String], false], ["uint", "debug/dwarf", [], [Go$Uint64], false], ["uint16", "debug/dwarf", [], [Go$Uint16], false], ["uint32", "debug/dwarf", [], [Go$Uint32], false], ["uint64", "debug/dwarf", [], [Go$Uint64], false], ["uint8", "debug/dwarf", [], [Go$Uint8], false], ["varint", "debug/dwarf", [], [Go$Uint64, Go$Uint], false]];
-0Çh 
+0buf0Åó0debug/dwarfData0encoding/binary	ByteOrder0debug/dwarf
+dataFormat0debug/dwarfOffset0debug/dwarfabbrevTable0debug/dwarfEntry0Çv
 dataFormatu	dataFormat = go$pkg.dataFormat = go$newType(0, "Interface", "dwarf.dataFormat", "dataFormat", "debug/dwarf", null);
 Å‡		dataFormat.init([["addrsize", "debug/dwarf", (go$funcType([], [Go$Int], false))], ["dwarf64", "debug/dwarf", (go$funcType([], [Go$Bool, Go$Bool], false))], ["version", "debug/dwarf", (go$funcType([], [Go$Int], false))]]);
-0ÇS unknownFormatÅü	unknownFormat = go$pkg.unknownFormat = go$newType(0, "Struct", "dwarf.unknownFormat", "unknownFormat", "debug/dwarf", function() {
+0
+dataFormat0 0ÇdunknownFormatÅü	unknownFormat = go$pkg.unknownFormat = go$newType(0, "Struct", "dwarf.unknownFormat", "unknownFormat", "debug/dwarf", function() {
 		this.go$val = this;
 	});
 Çú		unknownFormat.init([]);
 		unknownFormat.methods = [["addrsize", "debug/dwarf", [], [Go$Int], false], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false], ["version", "debug/dwarf", [], [Go$Int], false]];
 		(go$ptrType(unknownFormat)).methods = [["addrsize", "debug/dwarf", [], [Go$Int], false], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false], ["version", "debug/dwarf", [], [Go$Int], false]];
-0ÇN DecodeErrorÇ=	DecodeError = go$pkg.DecodeError = go$newType(0, "Struct", "dwarf.DecodeError", "DecodeError", "debug/dwarf", function(Name_, Offset_, Err_) {
+0unknownFormat0 0ÇtDecodeErrorÇ=	DecodeError = go$pkg.DecodeError = go$newType(0, "Struct", "dwarf.DecodeError", "DecodeError", "debug/dwarf", function(Name_, Offset_, Err_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Offset = Offset_ !== undefined ? Offset_ : 0;
@@ -259,29 +261,29 @@ dataFormatu	dataFormat = go$pkg.dataFormat = go$newType(0, "Interface", "dwarf.
 Å˚		DecodeError.init([["Name", "", Go$String, ""], ["Offset", "", Offset, ""], ["Err", "", Go$String, ""]]);
 		DecodeError.methods = [["Error", "", [], [Go$String], false]];
 		(go$ptrType(DecodeError)).methods = [["Error", "", [], [Go$String], false]];
-0Ç? AttrZ	Attr = go$pkg.Attr = go$newType(4, "Uint32", "dwarf.Attr", "Attr", "debug/dwarf", null);
+0DecodeError00debug/dwarfOffset0ÇGAttrZ	Attr = go$pkg.Attr = go$newType(4, "Uint32", "dwarf.Attr", "Attr", "debug/dwarf", null);
 Åÿ		Attr.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(Attr)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0p formatb	format = go$pkg.format = go$newType(4, "Uint32", "dwarf.format", "format", "debug/dwarf", null);
- 0Ç8 TagV	Tag = go$pkg.Tag = go$newType(4, "Uint32", "dwarf.Tag", "Tag", "debug/dwarf", null);
+0Attr0 0zformatb	format = go$pkg.format = go$newType(4, "Uint32", "dwarf.format", "format", "debug/dwarf", null);
+ 0format0 0Ç?TagV	Tag = go$pkg.Tag = go$newType(4, "Uint32", "dwarf.Tag", "Tag", "debug/dwarf", null);
 Å÷		Tag.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(Tag)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0ÇÛ abbrevÇP	abbrev = go$pkg.abbrev = go$newType(0, "Struct", "dwarf.abbrev", "abbrev", "debug/dwarf", function(tag_, children_, field_) {
+0Tag0 0Ç(abbrevÇP	abbrev = go$pkg.abbrev = go$newType(0, "Struct", "dwarf.abbrev", "abbrev", "debug/dwarf", function(tag_, children_, field_) {
 		this.go$val = this;
 		this.tag = tag_ !== undefined ? tag_ : 0;
 		this.children = children_ !== undefined ? children_ : false;
 		this.field = field_ !== undefined ? field_ : (go$sliceType(afield)).nil;
 	});
 Åí		abbrev.init([["tag", "debug/dwarf", Tag, ""], ["children", "debug/dwarf", Go$Bool, ""], ["field", "debug/dwarf", (go$sliceType(afield)), ""]]);
-0ÇP afieldÅÈ	afield = go$pkg.afield = go$newType(0, "Struct", "dwarf.afield", "afield", "debug/dwarf", function(attr_, fmt_) {
+0abbrev0+0debug/dwarfafield0debug/dwarfTag0ÇÜafieldÅÈ	afield = go$pkg.afield = go$newType(0, "Struct", "dwarf.afield", "afield", "debug/dwarf", function(attr_, fmt_) {
 		this.go$val = this;
 		this.attr = attr_ !== undefined ? attr_ : 0;
 		this.fmt = fmt_ !== undefined ? fmt_ : 0;
 	});
 X		afield.init([["attr", "debug/dwarf", Attr, ""], ["fmt", "debug/dwarf", format, ""]]);
-0Å≠ abbrevTables	abbrevTable = go$pkg.abbrevTable = go$newType(0, "Map", "dwarf.abbrevTable", "abbrevTable", "debug/dwarf", null);
+0afield0,0debug/dwarfAttr0debug/dwarfformat0Å”abbrevTables	abbrevTable = go$pkg.abbrevTable = go$newType(0, "Map", "dwarf.abbrevTable", "abbrevTable", "debug/dwarf", null);
 '		abbrevTable.init(Go$Uint32, abbrev);
-0Çw EntryÇâ	Entry = go$pkg.Entry = go$newType(0, "Struct", "dwarf.Entry", "Entry", "debug/dwarf", function(Offset_, Tag_, Children_, Field_) {
+0abbrevTable00debug/dwarfabbrev0Ç÷EntryÇâ	Entry = go$pkg.Entry = go$newType(0, "Struct", "dwarf.Entry", "Entry", "debug/dwarf", function(Offset_, Tag_, Children_, Field_) {
 		this.go$val = this;
 		this.Offset = Offset_ !== undefined ? Offset_ : 0;
 		this.Tag = Tag_ !== undefined ? Tag_ : 0;
@@ -290,14 +292,14 @@ dataFormatu	dataFormat = go$pkg.dataFormat = go$newType(0, "Interface", "dwarf.
 	});
 Åﬁ		Entry.init([["Offset", "", Offset, ""], ["Tag", "", Tag, ""], ["Children", "", Go$Bool, ""], ["Field", "", (go$sliceType(Field)), ""]]);
 		(go$ptrType(Entry)).methods = [["Val", "", [Attr], [go$emptyInterface], false]];
-0ÇB FieldÅË	Field = go$pkg.Field = go$newType(0, "Struct", "dwarf.Field", "Field", "debug/dwarf", function(Attr_, Val_) {
+0Entry0V0debug/dwarfField0debug/dwarfOffset0debug/dwarfTag0debug/dwarfAttr0Ç`FieldÅË	Field = go$pkg.Field = go$newType(0, "Struct", "dwarf.Field", "Field", "debug/dwarf", function(Attr_, Val_) {
 		this.go$val = this;
 		this.Attr = Attr_ !== undefined ? Attr_ : 0;
 		this.Val = Val_ !== undefined ? Val_ : null;
 	});
 L		Field.init([["Attr", "", Attr, ""], ["Val", "", go$emptyInterface, ""]]);
-0p Offsetb	Offset = go$pkg.Offset = go$newType(4, "Uint32", "dwarf.Offset", "Offset", "debug/dwarf", null);
- 0Ç¯ ReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "dwarf.Reader", "Reader", "debug/dwarf", function(b_, d_, err_, unit_, lastChildren_, lastSibling_) {
+0Field00debug/dwarfAttr0zOffsetb	Offset = go$pkg.Offset = go$newType(4, "Uint32", "dwarf.Offset", "Offset", "debug/dwarf", null);
+ 0Offset0 0ÇXReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "dwarf.Reader", "Reader", "debug/dwarf", function(b_, d_, err_, unit_, lastChildren_, lastSibling_) {
 		this.go$val = this;
 		this.b = b_ !== undefined ? b_ : new buf.Ptr();
 		this.d = d_ !== undefined ? d_ : (go$ptrType(Data)).nil;
@@ -308,7 +310,7 @@ dataFormatu	dataFormat = go$pkg.dataFormat = go$newType(0, "Interface", "dwarf.
 	});
 ÇŸ		Reader.init([["b", "debug/dwarf", buf, ""], ["d", "debug/dwarf", (go$ptrType(Data)), ""], ["err", "debug/dwarf", go$error, ""], ["unit", "debug/dwarf", Go$Int, ""], ["lastChildren", "debug/dwarf", Go$Bool, ""], ["lastSibling", "debug/dwarf", Offset, ""]]);
 		(go$ptrType(Reader)).methods = [["Next", "", [], [(go$ptrType(Entry)), go$error], false], ["Seek", "", [Offset], [], false], ["SkipChildren", "", [], [], false], ["maybeNextUnit", "debug/dwarf", [], [], false]];
-0Çµ DataÇ°	Data = go$pkg.Data = go$newType(0, "Struct", "dwarf.Data", "Data", "debug/dwarf", function(abbrev_, aranges_, frame_, info_, line_, pubnames_, ranges_, str_, abbrevCache_, addrsize_, order_, typeCache_, unit_) {
+0Reader0V0debug/dwarfbuf0debug/dwarfData0debug/dwarfOffset0debug/dwarfEntry0Ç	PDataÇ°	Data = go$pkg.Data = go$newType(0, "Struct", "dwarf.Data", "Data", "debug/dwarf", function(abbrev_, aranges_, frame_, info_, line_, pubnames_, ranges_, str_, abbrevCache_, addrsize_, order_, typeCache_, unit_) {
 		this.go$val = this;
 		this.abbrev = abbrev_ !== undefined ? abbrev_ : (go$sliceType(Go$Uint8)).nil;
 		this.aranges = aranges_ !== undefined ? aranges_ : (go$sliceType(Go$Uint8)).nil;
@@ -326,9 +328,10 @@ dataFormatu	dataFormat = go$pkg.dataFormat = go$newType(0, "Interface", "dwarf.
 	});
 Ç		Data.init([["abbrev", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["aranges", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["frame", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["info", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["line", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["pubnames", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["ranges", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["str", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["abbrevCache", "debug/dwarf", (go$mapType(Go$Uint32, abbrevTable)), ""], ["addrsize", "debug/dwarf", Go$Int, ""], ["order", "debug/dwarf", binary.ByteOrder, ""], ["typeCache", "debug/dwarf", (go$mapType(Offset, Type)), ""], ["unit", "debug/dwarf", (go$sliceType(unit)), ""]]);
 		(go$ptrType(Data)).methods = [["Reader", "", [], [(go$ptrType(Reader))], false], ["Type", "", [Offset], [Type, go$error], false], ["parseAbbrev", "debug/dwarf", [Go$Uint32], [abbrevTable, go$error], false], ["parseUnits", "debug/dwarf", [], [(go$sliceType(unit)), go$error], false]];
-0Ç* Type]	Type = go$pkg.Type = go$newType(0, "Interface", "dwarf.Type", "Type", "debug/dwarf", null);
+0Data0Åí0debug/dwarfunit0debug/dwarfabbrevTable0encoding/binary	ByteOrder0debug/dwarfOffset0debug/dwarfType0debug/dwarfReader0ÇMType]	Type = go$pkg.Type = go$newType(0, "Interface", "dwarf.Type", "Type", "debug/dwarf", null);
 Å¿		Type.init([["Common", "", (go$funcType([], [(go$ptrType(CommonType))], false))], ["Size", "", (go$funcType([], [Go$Int64], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
-0Ç	 
+0Type00debug/dwarf
+CommonType0Ç
 CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.CommonType", "CommonType", "debug/dwarf", function(ByteSize_, Name_) {
 		this.go$val = this;
 		this.ByteSize = ByteSize_ !== undefined ? ByteSize_ : new Go$Int64(0, 0);
@@ -336,7 +339,8 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	});
 Å’		CommonType.init([["ByteSize", "", Go$Int64, ""], ["Name", "", Go$String, ""]]);
 		(go$ptrType(CommonType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false]];
-0Ç2 	BasicTypeÇ–	BasicType = go$pkg.BasicType = go$newType(0, "Struct", "dwarf.BasicType", "BasicType", "debug/dwarf", function(CommonType_, BitSize_, BitOffset_) {
+0
+CommonType0 0ÇZ	BasicTypeÇ–	BasicType = go$pkg.BasicType = go$newType(0, "Struct", "dwarf.BasicType", "BasicType", "debug/dwarf", function(CommonType_, BitSize_, BitOffset_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
 		this.BitSize = BitSize_ !== undefined ? BitSize_ : new Go$Int64(0, 0);
@@ -348,7 +352,8 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	BasicType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 ÇM		BasicType.init([["", "", CommonType, ""], ["BitSize", "", Go$Int64, ""], ["BitOffset", "", Go$Int64, ""]]);
 		(go$ptrType(BasicType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false], ["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Çc CharTypeÇE	CharType = go$pkg.CharType = go$newType(0, "Struct", "dwarf.CharType", "CharType", "debug/dwarf", function(BasicType_) {
+0	BasicType00debug/dwarf
+CommonType0Ç§CharTypeÇE	CharType = go$pkg.CharType = go$newType(0, "Struct", "dwarf.CharType", "CharType", "debug/dwarf", function(BasicType_) {
 		this.go$val = this;
 		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
 	});
@@ -363,7 +368,9 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 Ç
 		CharType.init([["", "", BasicType, ""]]);
 		(go$ptrType(CharType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false], ["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Çr 	UcharTypeÇQ	UcharType = go$pkg.UcharType = go$newType(0, "Struct", "dwarf.UcharType", "UcharType", "debug/dwarf", function(BasicType_) {
+0
+CharType050debug/dwarf	BasicType0debug/dwarf
+CommonType0Ç¥	UcharTypeÇQ	UcharType = go$pkg.UcharType = go$newType(0, "Struct", "dwarf.UcharType", "UcharType", "debug/dwarf", function(BasicType_) {
 		this.go$val = this;
 		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
 	});
@@ -377,7 +384,8 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	UcharType.Ptr.prototype.String = function() { return this.BasicType.String(); };
 Ç		UcharType.init([["", "", BasicType, ""]]);
 		(go$ptrType(UcharType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false], ["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0ÇT IntTypeÇ9	IntType = go$pkg.IntType = go$newType(0, "Struct", "dwarf.IntType", "IntType", "debug/dwarf", function(BasicType_) {
+0	UcharType050debug/dwarf	BasicType0debug/dwarf
+CommonType0ÇîIntTypeÇ9	IntType = go$pkg.IntType = go$newType(0, "Struct", "dwarf.IntType", "IntType", "debug/dwarf", function(BasicType_) {
 		this.go$val = this;
 		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
 	});
@@ -391,7 +399,8 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	IntType.Ptr.prototype.String = function() { return this.BasicType.String(); };
 Ç		IntType.init([["", "", BasicType, ""]]);
 		(go$ptrType(IntType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false], ["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Çc UintTypeÇE	UintType = go$pkg.UintType = go$newType(0, "Struct", "dwarf.UintType", "UintType", "debug/dwarf", function(BasicType_) {
+0	IntType050debug/dwarf	BasicType0debug/dwarf
+CommonType0Ç§UintTypeÇE	UintType = go$pkg.UintType = go$newType(0, "Struct", "dwarf.UintType", "UintType", "debug/dwarf", function(BasicType_) {
 		this.go$val = this;
 		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
 	});
@@ -406,7 +415,9 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 Ç
 		UintType.init([["", "", BasicType, ""]]);
 		(go$ptrType(UintType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false], ["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Çr 	FloatTypeÇQ	FloatType = go$pkg.FloatType = go$newType(0, "Struct", "dwarf.FloatType", "FloatType", "debug/dwarf", function(BasicType_) {
+0
+UintType050debug/dwarf	BasicType0debug/dwarf
+CommonType0Ç¥	FloatTypeÇQ	FloatType = go$pkg.FloatType = go$newType(0, "Struct", "dwarf.FloatType", "FloatType", "debug/dwarf", function(BasicType_) {
 		this.go$val = this;
 		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
 	});
@@ -420,7 +431,8 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	FloatType.Ptr.prototype.String = function() { return this.BasicType.String(); };
 Ç		FloatType.init([["", "", BasicType, ""]]);
 		(go$ptrType(FloatType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false], ["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Çê ComplexTypeÇi	ComplexType = go$pkg.ComplexType = go$newType(0, "Struct", "dwarf.ComplexType", "ComplexType", "debug/dwarf", function(BasicType_) {
+0	FloatType050debug/dwarf	BasicType0debug/dwarf
+CommonType0Ç‘ComplexTypeÇi	ComplexType = go$pkg.ComplexType = go$newType(0, "Struct", "dwarf.ComplexType", "ComplexType", "debug/dwarf", function(BasicType_) {
 		this.go$val = this;
 		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
 	});
@@ -434,7 +446,8 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	ComplexType.Ptr.prototype.String = function() { return this.BasicType.String(); };
 Ç		ComplexType.init([["", "", BasicType, ""]]);
 		(go$ptrType(ComplexType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false], ["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Çc BoolTypeÇE	BoolType = go$pkg.BoolType = go$newType(0, "Struct", "dwarf.BoolType", "BoolType", "debug/dwarf", function(BasicType_) {
+0ComplexType050debug/dwarf	BasicType0debug/dwarf
+CommonType0Ç§BoolTypeÇE	BoolType = go$pkg.BoolType = go$newType(0, "Struct", "dwarf.BoolType", "BoolType", "debug/dwarf", function(BasicType_) {
 		this.go$val = this;
 		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
 	});
@@ -449,7 +462,9 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 Ç
 		BoolType.init([["", "", BasicType, ""]]);
 		(go$ptrType(BoolType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false], ["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Çc AddrTypeÇE	AddrType = go$pkg.AddrType = go$newType(0, "Struct", "dwarf.AddrType", "AddrType", "debug/dwarf", function(BasicType_) {
+0
+BoolType050debug/dwarf	BasicType0debug/dwarf
+CommonType0Ç§AddrTypeÇE	AddrType = go$pkg.AddrType = go$newType(0, "Struct", "dwarf.AddrType", "AddrType", "debug/dwarf", function(BasicType_) {
 		this.go$val = this;
 		this.BasicType = BasicType_ !== undefined ? BasicType_ : new BasicType.Ptr();
 	});
@@ -464,7 +479,9 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 Ç
 		AddrType.init([["", "", BasicType, ""]]);
 		(go$ptrType(AddrType)).methods = [["Basic", "", [], [(go$ptrType(BasicType))], false], ["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Ç© QualTypeÇä	QualType = go$pkg.QualType = go$newType(0, "Struct", "dwarf.QualType", "QualType", "debug/dwarf", function(CommonType_, Qual_, Type_) {
+0
+AddrType050debug/dwarf	BasicType0debug/dwarf
+CommonType0ÇÂQualTypeÇä	QualType = go$pkg.QualType = go$newType(0, "Struct", "dwarf.QualType", "QualType", "debug/dwarf", function(CommonType_, Qual_, Type_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
 		this.Qual = Qual_ !== undefined ? Qual_ : "";
@@ -476,7 +493,9 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	QualType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 Ç		QualType.init([["", "", CommonType, ""], ["Qual", "", Go$String, ""], ["Type", "", Type, ""]]);
 		(go$ptrType(QualType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0ÇX 	ArrayTypeÇ	ArrayType = go$pkg.ArrayType = go$newType(0, "Struct", "dwarf.ArrayType", "ArrayType", "debug/dwarf", function(CommonType_, Type_, StrideBitSize_, Count_) {
+0
+QualType000debug/dwarf
+CommonType0debug/dwarfType0Çï	ArrayTypeÇ	ArrayType = go$pkg.ArrayType = go$newType(0, "Struct", "dwarf.ArrayType", "ArrayType", "debug/dwarf", function(CommonType_, Type_, StrideBitSize_, Count_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
 		this.Type = Type_ !== undefined ? Type_ : null;
@@ -489,7 +508,8 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	ArrayType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 Ç2		ArrayType.init([["", "", CommonType, ""], ["Type", "", Type, ""], ["StrideBitSize", "", Go$Int64, ""], ["Count", "", Go$Int64, ""]]);
 		(go$ptrType(ArrayType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Ç VoidTypeÇ	VoidType = go$pkg.VoidType = go$newType(0, "Struct", "dwarf.VoidType", "VoidType", "debug/dwarf", function(CommonType_) {
+0	ArrayType000debug/dwarf
+CommonType0debug/dwarfType0Ç*VoidTypeÇ	VoidType = go$pkg.VoidType = go$newType(0, "Struct", "dwarf.VoidType", "VoidType", "debug/dwarf", function(CommonType_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
 	});
@@ -499,7 +519,9 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	VoidType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 Å÷		VoidType.init([["", "", CommonType, ""]]);
 		(go$ptrType(VoidType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0ÇI PtrTypeÇK	PtrType = go$pkg.PtrType = go$newType(0, "Struct", "dwarf.PtrType", "PtrType", "debug/dwarf", function(CommonType_, Type_) {
+0
+VoidType00debug/dwarf
+CommonType0ÇÑPtrTypeÇK	PtrType = go$pkg.PtrType = go$newType(0, "Struct", "dwarf.PtrType", "PtrType", "debug/dwarf", function(CommonType_, Type_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
 		this.Type = Type_ !== undefined ? Type_ : null;
@@ -510,7 +532,8 @@ CommonTypeÇ	CommonType = go$pkg.CommonType = go$newType(0, "Struct", "dwarf.C
 	PtrType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 ÅÏ		PtrType.init([["", "", CommonType, ""], ["Type", "", Type, ""]]);
 		(go$ptrType(PtrType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Ç 
+0	PtrType000debug/dwarf
+CommonType0debug/dwarfType0Çb
 StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.StructType", "StructType", "debug/dwarf", function(CommonType_, StructName_, Kind_, Field_, Incomplete_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
@@ -525,7 +548,9 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 	StructType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 Çü		StructType.init([["", "", CommonType, ""], ["StructName", "", Go$String, ""], ["Kind", "", Go$String, ""], ["Field", "", (go$sliceType((go$ptrType(StructField)))), ""], ["Incomplete", "", Go$Bool, ""]]);
 		(go$ptrType(StructType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Defn", "", [], [Go$String], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0ÇL StructFieldÇi	StructField = go$pkg.StructField = go$newType(0, "Struct", "dwarf.StructField", "StructField", "debug/dwarf", function(Name_, Type_, ByteOffset_, ByteSize_, BitOffset_, BitSize_) {
+0
+StructType070debug/dwarf
+CommonType0debug/dwarfStructField0ÇpStructFieldÇi	StructField = go$pkg.StructField = go$newType(0, "Struct", "dwarf.StructField", "StructField", "debug/dwarf", function(Name_, Type_, ByteOffset_, ByteSize_, BitOffset_, BitSize_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Type = Type_ !== undefined ? Type_ : null;
@@ -535,7 +560,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		this.BitSize = BitSize_ !== undefined ? BitSize_ : new Go$Int64(0, 0);
 	});
 ÅÕ		StructField.init([["Name", "", Go$String, ""], ["Type", "", Type, ""], ["ByteOffset", "", Go$Int64, ""], ["ByteSize", "", Go$Int64, ""], ["BitOffset", "", Go$Int64, ""], ["BitSize", "", Go$Int64, ""]]);
-0Ç EnumTypeÇΩ	EnumType = go$pkg.EnumType = go$newType(0, "Struct", "dwarf.EnumType", "EnumType", "debug/dwarf", function(CommonType_, EnumName_, Val_) {
+0StructField00debug/dwarfType0ÇCEnumTypeÇΩ	EnumType = go$pkg.EnumType = go$newType(0, "Struct", "dwarf.EnumType", "EnumType", "debug/dwarf", function(CommonType_, EnumName_, Val_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
 		this.EnumName = EnumName_ !== undefined ? EnumName_ : "";
@@ -547,13 +572,15 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 	EnumType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 Ç1		EnumType.init([["", "", CommonType, ""], ["EnumName", "", Go$String, ""], ["Val", "", (go$sliceType((go$ptrType(EnumValue)))), ""]]);
 		(go$ptrType(EnumType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Çf 	EnumValueÇ	EnumValue = go$pkg.EnumValue = go$newType(0, "Struct", "dwarf.EnumValue", "EnumValue", "debug/dwarf", function(Name_, Val_) {
+0
+EnumType050debug/dwarf
+CommonType0debug/dwarf	EnumValue0Çs	EnumValueÇ	EnumValue = go$pkg.EnumValue = go$newType(0, "Struct", "dwarf.EnumValue", "EnumValue", "debug/dwarf", function(Name_, Val_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Val = Val_ !== undefined ? Val_ : new Go$Int64(0, 0);
 	});
 L		EnumValue.init([["Name", "", Go$String, ""], ["Val", "", Go$Int64, ""]]);
-0Ç FuncTypeÇÃ	FuncType = go$pkg.FuncType = go$newType(0, "Struct", "dwarf.FuncType", "FuncType", "debug/dwarf", function(CommonType_, ReturnType_, ParamType_) {
+0	EnumValue0 0Ç=FuncTypeÇÃ	FuncType = go$pkg.FuncType = go$newType(0, "Struct", "dwarf.FuncType", "FuncType", "debug/dwarf", function(CommonType_, ReturnType_, ParamType_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
 		this.ReturnType = ReturnType_ !== undefined ? ReturnType_ : null;
@@ -565,7 +592,9 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 	FuncType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 Ç!		FuncType.init([["", "", CommonType, ""], ["ReturnType", "", Type, ""], ["ParamType", "", (go$sliceType(Type)), ""]]);
 		(go$ptrType(FuncType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Ç: DotDotDotTypeÇB	DotDotDotType = go$pkg.DotDotDotType = go$newType(0, "Struct", "dwarf.DotDotDotType", "DotDotDotType", "debug/dwarf", function(CommonType_) {
+0
+FuncType000debug/dwarf
+CommonType0debug/dwarfType0ÇfDotDotDotTypeÇB	DotDotDotType = go$pkg.DotDotDotType = go$newType(0, "Struct", "dwarf.DotDotDotType", "DotDotDotType", "debug/dwarf", function(CommonType_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
 	});
@@ -575,7 +604,8 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 	DotDotDotType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 Å‡		DotDotDotType.init([["", "", CommonType, ""]]);
 		(go$ptrType(DotDotDotType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Çu TypedefTypeÇk	TypedefType = go$pkg.TypedefType = go$newType(0, "Struct", "dwarf.TypedefType", "TypedefType", "debug/dwarf", function(CommonType_, Type_) {
+0DotDotDotType00debug/dwarf
+CommonType0Ç¥TypedefTypeÇk	TypedefType = go$pkg.TypedefType = go$newType(0, "Struct", "dwarf.TypedefType", "TypedefType", "debug/dwarf", function(CommonType_, Type_) {
 		this.go$val = this;
 		this.CommonType = CommonType_ !== undefined ? CommonType_ : new CommonType.Ptr();
 		this.Type = Type_ !== undefined ? Type_ : null;
@@ -586,7 +616,8 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 	TypedefType.Ptr.prototype.Size = function() { return this.CommonType.Size(); };
 ÅÙ		TypedefType.init([["", "", CommonType, ""], ["Type", "", Type, ""]]);
 		(go$ptrType(TypedefType)).methods = [["Common", "", [], [(go$ptrType(CommonType))], false], ["Size", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false]];
-0Ç unitÇ	unit = go$pkg.unit = go$newType(0, "Struct", "dwarf.unit", "unit", "debug/dwarf", function(base_, off_, data_, atable_, asize_, vers_, is64_) {
+0TypedefType000debug/dwarf
+CommonType0debug/dwarfType0ÇTunitÇ	unit = go$pkg.unit = go$newType(0, "Struct", "dwarf.unit", "unit", "debug/dwarf", function(base_, off_, data_, atable_, asize_, vers_, is64_) {
 		this.go$val = this;
 		this.base = base_ !== undefined ? base_ : 0;
 		this.off = off_ !== undefined ? off_ : 0;
@@ -598,28 +629,28 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 	});
 ÇÎ		unit.init([["base", "debug/dwarf", Offset, ""], ["off", "debug/dwarf", Offset, ""], ["data", "debug/dwarf", (go$sliceType(Go$Uint8)), ""], ["atable", "debug/dwarf", abbrevTable, ""], ["asize", "debug/dwarf", Go$Int, ""], ["vers", "debug/dwarf", Go$Int, ""], ["is64", "debug/dwarf", Go$Bool, ""]]);
 		(go$ptrType(unit)).methods = [["addrsize", "debug/dwarf", [], [Go$Int], false], ["dwarf64", "debug/dwarf", [], [Go$Bool, Go$Bool], false], ["version", "debug/dwarf", [], [Go$Int], false]];
-0Å·  Åÿ	unknownFormat.Ptr.prototype.version = function() {
+0unit030debug/dwarfOffset0debug/dwarfabbrevTable0Ç Åÿ	unknownFormat.Ptr.prototype.version = function() {
 		var _struct, u;
 		u = (_struct = this, new unknownFormat.Ptr());
 		return 0;
 	};
 	unknownFormat.prototype.version = function() { return this.go$val.version(); };
- 0ÅÓ  ÅÂ	unknownFormat.Ptr.prototype.dwarf64 = function() {
+ 0unknownFormatversion00debug/dwarfunknownFormat0Ç& ÅÂ	unknownFormat.Ptr.prototype.dwarf64 = function() {
 		var _struct, u;
 		u = (_struct = this, new unknownFormat.Ptr());
 		return [false, false];
 	};
 	unknownFormat.prototype.dwarf64 = function() { return this.go$val.dwarf64(); };
- 0Å‰  Å€	unknownFormat.Ptr.prototype.addrsize = function() {
+ 0unknownFormatdwarf6400debug/dwarfunknownFormat0Ç Å€	unknownFormat.Ptr.prototype.addrsize = function() {
 		var _struct, u;
 		u = (_struct = this, new unknownFormat.Ptr());
 		return 0;
 	};
 	unknownFormat.prototype.addrsize = function() { return this.go$val.addrsize(); };
- 0Åä makeBuf{	makeBuf = function(d, format$1, name, off, data) {
+ 0unknownFormataddrsize00debug/dwarfunknownFormat0Å©makeBuf{	makeBuf = function(d, format$1, name, off, data) {
 		return new buf.Ptr(d, d.order, format$1, name, off, data, null);
 	};
- 0Çÿ  ÇŒ	buf.Ptr.prototype.uint8 = function() {
+ 0	makeBuf00debug/dwarfbuf0Ç ÇŒ	buf.Ptr.prototype.uint8 = function() {
 		var b, _slice, _index, val;
 		b = this;
 		if (b.data.length < 1) {
@@ -632,7 +663,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return val;
 	};
 	buf.prototype.uint8 = function() { return this.go$val.uint8(); };
- 0Çr  Çh	buf.Ptr.prototype.bytes = function(n) {
+ 0bufuint80*0debug/dwarfbuf0debug/dwarferror0Ç™ Çh	buf.Ptr.prototype.bytes = function(n) {
 		var b, data;
 		b = this;
 		if (b.data.length < n) {
@@ -645,13 +676,13 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return data;
 	};
 	buf.prototype.bytes = function(n) { return this.go$val.bytes(n); };
- 0Åõ  Åí	buf.Ptr.prototype.skip = function(n) {
+ 0bufbytes0*0debug/dwarfbuf0debug/dwarferror0Å“ Åí	buf.Ptr.prototype.skip = function(n) {
 		var b;
 		b = this;
 		b.bytes(n);
 	};
 	buf.prototype.skip = function(n) { return this.go$val.skip(n); };
- 0Ç_  ÇU	buf.Ptr.prototype.string = function() {
+ 0bufskip0*0debug/dwarfbuf0debug/dwarfbytes0Çò ÇU	buf.Ptr.prototype.string = function() {
 		var b, i, _slice, _index, s;
 		b = this;
 		i = 0;
@@ -668,7 +699,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return "";
 	};
 	buf.prototype.string = function() { return this.go$val.string(); };
- 0Å˛  Åı	buf.Ptr.prototype.uint16 = function() {
+ 0bufstring0*0debug/dwarfbuf0debug/dwarferror0Ç7 Åı	buf.Ptr.prototype.uint16 = function() {
 		var b, a;
 		b = this;
 		a = b.bytes(2);
@@ -678,7 +709,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return b.order.Uint16(a);
 	};
 	buf.prototype.uint16 = function() { return this.go$val.uint16(); };
- 0Å˛  Åı	buf.Ptr.prototype.uint32 = function() {
+ 0bufuint160*0debug/dwarfbuf0debug/dwarfbytes0Ç7 Åı	buf.Ptr.prototype.uint32 = function() {
 		var b, a;
 		b = this;
 		a = b.bytes(4);
@@ -688,7 +719,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return b.order.Uint32(a);
 	};
 	buf.prototype.uint32 = function() { return this.go$val.uint32(); };
- 0Ç  Ç	buf.Ptr.prototype.uint64 = function() {
+ 0bufuint320*0debug/dwarfbuf0debug/dwarfbytes0ÇJ Ç	buf.Ptr.prototype.uint64 = function() {
 		var b, a;
 		b = this;
 		a = b.bytes(8);
@@ -698,7 +729,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return b.order.Uint64(a);
 	};
 	buf.prototype.uint64 = function() { return this.go$val.uint64(); };
- 0Ç≤  Ç®	buf.Ptr.prototype.varint = function() {
+ 0bufuint640*0debug/dwarfbuf0debug/dwarfbytes0Ç’ Ç®	buf.Ptr.prototype.varint = function() {
 		var c, bits, b, i, _slice, _index, byte$1, x, _tuple, _tuple$1;
 		c = new Go$Uint64(0, 0);
 		bits = 0;
@@ -720,14 +751,14 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return [c, bits];
 	};
 	buf.prototype.varint = function() { return this.go$val.varint(); };
- 0Å«  Åæ	buf.Ptr.prototype.uint = function() {
+ 0bufvarint00debug/dwarfbuf0Åˇ Åæ	buf.Ptr.prototype.uint = function() {
 		var b, _tuple, x;
 		b = this;
 		_tuple = b.varint(), x = _tuple[0];
 		return x;
 	};
 	buf.prototype.uint = function() { return this.go$val.uint(); };
- 0ÇJ  Ç@	buf.Ptr.prototype.int$ = function() {
+ 0bufuint0+0debug/dwarfbuf0debug/dwarfvarint0ÇÅ Ç@	buf.Ptr.prototype.int$ = function() {
 		var b, _tuple, ux, bits, x, x$1, x$2, x$3;
 		b = this;
 		_tuple = b.varint(), ux = _tuple[0], bits = _tuple[1];
@@ -738,7 +769,8 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return x;
 	};
 	buf.prototype.int$ = function() { return this.go$val.int$(); };
- 0ÇÊ  Ç‹	buf.Ptr.prototype.addr = function() {
+ 0
+bufint0+0debug/dwarfbuf0debug/dwarfvarint0Çí Ç‹	buf.Ptr.prototype.addr = function() {
 		var b, _ref;
 		b = this;
 		_ref = b.format.addrsize();
@@ -755,7 +787,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return new Go$Uint64(0, 0);
 	};
 	buf.prototype.addr = function() { return this.go$val.addr(); };
- 0ÇA  Ç7	buf.Ptr.prototype.error = function(s) {
+ 0bufaddr0Åû0debug/dwarfbuf0debug/dwarfaddrsize0debug/dwarfuint80debug/dwarfuint160debug/dwarfuint320debug/dwarfuint640debug/dwarferror0Ç Ç7	buf.Ptr.prototype.error = function(s) {
 		var b, x;
 		b = this;
 		if (go$interfaceIsEqual(b.err, null)) {
@@ -764,13 +796,13 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		}
 	};
 	buf.prototype.error = function(s) { return this.go$val.error(s); };
- 0Çt  Çj	DecodeError.Ptr.prototype.Error = function() {
+ 0buferror000debug/dwarfbuf0debug/dwarfDecodeError0Çµ Çj	DecodeError.Ptr.prototype.Error = function() {
 		var _struct, e;
 		e = (_struct = this, new DecodeError.Ptr(_struct.Name, _struct.Offset, _struct.Err));
 		return "decoding dwarf section " + e.Name + " at offset 0x" + strconv.FormatInt(new Go$Int64(0, e.Offset), 16) + ": " + e.Err;
 	};
 	DecodeError.prototype.Error = function() { return this.go$val.Error(); };
- 0Ç+  Ç!	Attr.prototype.String = function() {
+ 0DecodeError020debug/dwarfDecodeError0strconv	FormatInt0Çs Ç!	Attr.prototype.String = function() {
 		var a, s;
 		a = this.go$val;
 		if ((a >> 0) < 91) {
@@ -782,7 +814,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return strconv.Itoa((a >> 0));
 	};
 	go$ptrType(Attr).prototype.String = function() { return new Attr(this.go$get()).String(); };
- 0Çi  Ç_	Attr.prototype.GoString = function() {
+ 0Attr0@0debug/dwarfAttr0debug/dwarf	attrNames0strconvItoa0Ç∂ Ç_	Attr.prototype.GoString = function() {
 		var a, s;
 		a = this.go$val;
 		if ((a >> 0) < 91) {
@@ -794,7 +826,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return "dwarf.Attr(" + strconv.FormatInt(new Go$Int64(0, a), 10) + ")";
 	};
 	go$ptrType(Attr).prototype.GoString = function() { return new Attr(this.go$get()).GoString(); };
- 0Ç'  Ç	Tag.prototype.String = function() {
+ 0Attr0E0debug/dwarfAttr0debug/dwarf	attrNames0strconv	FormatInt0Çl Ç	Tag.prototype.String = function() {
 		var t, s;
 		t = this.go$val;
 		if ((t >> 0) < 63) {
@@ -806,7 +838,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return strconv.Itoa((t >> 0));
 	};
 	go$ptrType(Tag).prototype.String = function() { return new Tag(this.go$get()).String(); };
- 0Çc  ÇY	Tag.prototype.GoString = function() {
+ 0Tag0>0debug/dwarfTag0debug/dwarftagNames0strconvItoa0Ç≠ ÇY	Tag.prototype.GoString = function() {
 		var t, s;
 		t = this.go$val;
 		if ((t >> 0) < 63) {
@@ -818,7 +850,8 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return "dwarf.Tag(" + strconv.FormatInt(new Go$Int64(0, t), 10) + ")";
 	};
 	go$ptrType(Tag).prototype.GoString = function() { return new Tag(this.go$get()).GoString(); };
- 0Ç	⁄  Ç	–	Data.Ptr.prototype.parseAbbrev = function(off) {
+ 0Tag0C0debug/dwarfTag0debug/dwarftagNames0strconv	FormatInt0Ç
+® Ç	–	Data.Ptr.prototype.parseAbbrev = function(off) {
 		var d, ok, _tuple, _entry, m, data, x, _struct, b, m$1, id, n, _struct$1, b1, tag, fmt, a, _ref, _i, i, _slice, _index, _slice$1, _index$1, _struct$2, _key, _key$1;
 		d = this;
 		if (_tuple = (_entry = d.abbrevCache[off], _entry !== undefined ? [_entry.v, true] : [false, false]), m = _tuple[0], ok = _tuple[1], ok) {
@@ -875,7 +908,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return [m$1, null];
 	};
 	Data.prototype.parseAbbrev = function(off) { return this.go$val.parseAbbrev(off); };
- 0Ç  Ç	Entry.Ptr.prototype.Val = function(a) {
+ 0DataparseAbbrev0Å∏0debug/dwarfData0debug/dwarfmakeBuf0debug/dwarfunknownFormat0debug/dwarfbuf0debug/dwarfuint0debug/dwarfuint80debug/dwarfabbrev0debug/dwarfafield0ÇE Ç	Entry.Ptr.prototype.Val = function(a) {
 		var e, _ref, _i, _slice, _index, _struct, f;
 		e = this;
 		_ref = e.Field;
@@ -890,7 +923,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return null;
 	};
 	Entry.prototype.Val = function(a) { return this.go$val.Val(a); };
- 0Ç≠  Ç£	buf.Ptr.prototype.entry = function(atab, ubase) {
+ 0Entry0,0debug/dwarfEntry0debug/dwarfField0Çò Ç£	buf.Ptr.prototype.entry = function(atab, ubase) {
 		var b, off, id, _tuple, _entry, _struct, a, ok, e, _ref, _i, i, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, fmt, val, _ref$1, x, x$1, vers, _tuple$1, is64, known, off$1, x$2, _struct$1, b1, _tuple$2, is64$1, known$1, x$3, _slice$3, _index$3;
 		b = this;
 		off = b.off;
@@ -1006,7 +1039,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return e;
 	};
 	buf.prototype.entry = function(atab, ubase) { return this.go$val.entry(atab, ubase); };
- 0ÅÈ  Å‡	Data.Ptr.prototype.Reader = function() {
+ 0bufentry0Ç€0debug/dwarfunknownFormat0debug/dwarfField0debug/dwarferror0debug/dwarfaddr0debug/dwarfbytes0debug/dwarfuint320debug/dwarfversion0debug/dwarfOffset0strconv	FormatInt0debug/dwarfEntry0debug/dwarfabbrev0debug/dwarfuint80debug/dwarfuint160debug/dwarfint0debug/dwarfdwarf640debug/dwarfstring0debug/dwarfbuf0debug/dwarfuint0debug/dwarfuint640debug/dwarfmakeBuf0debug/dwarfskip0Ç1 Å‡	Data.Ptr.prototype.Reader = function() {
 		var d, r;
 		d = this;
 		r = new Reader.Ptr(new buf.Ptr(), d, null, 0, false, 0);
@@ -1014,7 +1047,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return r;
 	};
 	Data.prototype.Reader = function() { return this.go$val.Reader(); };
- 0Ç}  Çs	Reader.Ptr.prototype.Seek = function(off) {
+ 0Data0@0debug/dwarfData0debug/dwarfbuf0debug/dwarfReader0ÇÓ Çs	Reader.Ptr.prototype.Seek = function(off) {
 		var r, d, _slice, _index, u, _struct, i, u$1, _ref, _i, _slice$1, _index$1, _struct$1;
 		r = this;
 		d = r.d;
@@ -1046,7 +1079,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		r.err = errors.New("offset out of range");
 	};
 	Reader.prototype.Seek = function(off) { return this.go$val.Seek(off); };
- 0Çå  ÇÇ	Reader.Ptr.prototype.maybeNextUnit = function() {
+ 0Reader0g0debug/dwarfReader0debug/dwarfmakeBuf0debug/dwarfbuf0debug/dwarfunit0errorsNew0ÇË ÇÇ	Reader.Ptr.prototype.maybeNextUnit = function() {
 		var r, _slice, _index, u, _struct;
 		r = this;
 		while ((r.b.data.length === 0) && (r.unit + 1 >> 0) < r.d.unit.length) {
@@ -1056,7 +1089,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		}
 	};
 	Reader.prototype.maybeNextUnit = function() { return this.go$val.maybeNextUnit(); };
- 0ÇŸ  Çœ	Reader.Ptr.prototype.Next = function() {
+ 0ReadermaybeNextUnit0C0debug/dwarfReader0debug/dwarfmakeBuf0debug/dwarfbuf0Ç[ Çœ	Reader.Ptr.prototype.Next = function() {
 		var r, _slice, _index, u, e, _tuple, x;
 		r = this;
 		if (!(go$interfaceIsEqual(r.err, null))) {
@@ -1083,7 +1116,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return [e, null];
 	};
 	Reader.prototype.Next = function() { return this.go$val.Next(); };
- 0Ç<  Ç2	Reader.Ptr.prototype.SkipChildren = function() {
+ 0Reader0x0debug/dwarfReader0debug/dwarfEntry0debug/dwarfmaybeNextUnit0debug/dwarfentry0debug/dwarfOffset0Çs Ç2	Reader.Ptr.prototype.SkipChildren = function() {
 		var r, _tuple, e, err;
 		r = this;
 		if (!(go$interfaceIsEqual(r.err, null)) || !r.lastChildren) {
@@ -1104,7 +1137,7 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		}
 	};
 	Reader.prototype.SkipChildren = function() { return this.go$val.SkipChildren(); };
- 0ÇB NewÇ5	New = go$pkg.New = function(abbrev$1, aranges, frame, info, line, pubnames, ranges, str) {
+ 0Reader0-0debug/dwarfReader0debug/dwarfEntry0ÇÍNewÇ5	New = go$pkg.New = function(abbrev$1, aranges, frame, info, line, pubnames, ranges, str) {
 		var d, x, _slice, _index, _slice$1, _index$1, _tuple, x$1, y, x$2, x$3, x$4, x$5, _tuple$1, u, err;
 		d = new Data.Ptr(abbrev$1, aranges, frame, info, line, pubnames, ranges, str, new Go$Map(), 0, null, new Go$Map(), (go$sliceType(unit)).nil);
 		if (d.info.length < 6) {
@@ -1127,25 +1160,30 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		d.unit = u;
 		return [d, null];
 	};
- 0Å™  Å°	CommonType.Ptr.prototype.Common = function() {
+ 0New0Å†0debug/dwarfunit0debug/dwarfData0debug/dwarfDecodeError0encoding/binary	BigEndian0encoding/binaryLittleEndian0debug/dwarf
+parseUnits0Å” Å°	CommonType.Ptr.prototype.Common = function() {
 		var c;
 		c = this;
 		return c;
 	};
 	CommonType.prototype.Common = function() { return this.go$val.Common(); };
- 0Å≠  Å§	CommonType.Ptr.prototype.Size = function() {
+ 0
+CommonType00debug/dwarf
+CommonType0Å÷ Å§	CommonType.Ptr.prototype.Size = function() {
 		var c;
 		c = this;
 		return c.ByteSize;
 	};
 	CommonType.prototype.Size = function() { return this.go$val.Size(); };
- 0Å•  Åú	BasicType.Ptr.prototype.Basic = function() {
+ 0
+CommonType00debug/dwarf
+CommonType0ÅÃ Åú	BasicType.Ptr.prototype.Basic = function() {
 		var b;
 		b = this;
 		return b;
 	};
 	BasicType.prototype.Basic = function() { return this.go$val.Basic(); };
- 0Å  ÅÁ	BasicType.Ptr.prototype.String = function() {
+ 0	BasicType00debug/dwarf	BasicType0Ç ÅÁ	BasicType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		if (!(t.CommonType.Name === "")) {
@@ -1154,43 +1192,46 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return "?";
 	};
 	BasicType.prototype.String = function() { return this.go$val.String(); };
- 0Å√  Å∫	QualType.Ptr.prototype.String = function() {
+ 0	BasicType00debug/dwarf	BasicType0ÅË Å∫	QualType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return t.Qual + " " + t.Type.String();
 	};
 	QualType.prototype.String = function() { return this.go$val.String(); };
- 0Å¨  Å£	QualType.Ptr.prototype.Size = function() {
+ 0
+QualType00debug/dwarfQualType0Å— Å£	QualType.Ptr.prototype.Size = function() {
 		var t;
 		t = this;
 		return t.Type.Size();
 	};
 	QualType.prototype.Size = function() { return this.go$val.Size(); };
- 0Å„  Å⁄	ArrayType.Ptr.prototype.String = function() {
+ 0
+QualType00debug/dwarfQualType0Ç  Å⁄	ArrayType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return "[" + strconv.FormatInt(t.Count, 10) + "]" + t.Type.String();
 	};
 	ArrayType.prototype.String = function() { return this.go$val.String(); };
- 0Å¡  Å∏	ArrayType.Ptr.prototype.Size = function() {
+ 0	ArrayType000debug/dwarf	ArrayType0strconv	FormatInt0ÅË Å∏	ArrayType.Ptr.prototype.Size = function() {
 		var t;
 		t = this;
 		return go$mul64(t.Count, t.Type.Size());
 	};
 	ArrayType.prototype.Size = function() { return this.go$val.Size(); };
- 0Å´  Å¢	VoidType.Ptr.prototype.String = function() {
+ 0	ArrayType00debug/dwarf	ArrayType0Å– Å¢	VoidType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return "void";
 	};
 	VoidType.prototype.String = function() { return this.go$val.String(); };
- 0Å∏  ÅØ	PtrType.Ptr.prototype.String = function() {
+ 0
+VoidType00debug/dwarfVoidType0Å€ ÅØ	PtrType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return "*" + t.Type.String();
 	};
 	PtrType.prototype.String = function() { return this.go$val.String(); };
- 0Å¸  ÅÛ	StructType.Ptr.prototype.String = function() {
+ 0	PtrType00debug/dwarfPtrType0Ç% ÅÛ	StructType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		if (!(t.StructName === "")) {
@@ -1199,7 +1240,9 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return t.Defn();
 	};
 	StructType.prototype.String = function() { return this.go$val.String(); };
- 0ÇΩ  Ç≥	StructType.Ptr.prototype.Defn = function() {
+ 0
+StructType00debug/dwarf
+StructType0Ç¸ Ç≥	StructType.Ptr.prototype.Defn = function() {
 		var t, s, _ref, _i, _slice, _index, f, i, x;
 		t = this;
 		s = t.Kind;
@@ -1231,7 +1274,9 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return s;
 	};
 	StructType.prototype.Defn = function() { return this.go$val.Defn(); };
- 0Çä  ÇÄ	EnumType.Ptr.prototype.String = function() {
+ 0
+StructType010debug/dwarf
+StructType0strconv	FormatInt0Ç≈ ÇÄ	EnumType.Ptr.prototype.String = function() {
 		var t, s, _ref, _i, _slice, _index, v, i;
 		t = this;
 		s = "enum";
@@ -1254,7 +1299,8 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return s;
 	};
 	EnumType.prototype.String = function() { return this.go$val.String(); };
- 0Çá  Ç}	FuncType.Ptr.prototype.String = function() {
+ 0
+EnumType0/0debug/dwarfEnumType0strconv	FormatInt0Ç¨ Ç}	FuncType.Ptr.prototype.String = function() {
 		var t, s, _ref, _i, _slice, _index, t$1, i;
 		t = this;
 		s = "func(";
@@ -1276,25 +1322,26 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return s;
 	};
 	FuncType.prototype.String = function() { return this.go$val.String(); };
- 0Å¥  Å´	DotDotDotType.Ptr.prototype.String = function() {
+ 0
+FuncType00debug/dwarfFuncType0Å„ Å´	DotDotDotType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return "...";
 	};
 	DotDotDotType.prototype.String = function() { return this.go$val.String(); };
- 0Åº  Å≥	TypedefType.Ptr.prototype.String = function() {
+ 0DotDotDotType00debug/dwarfDotDotDotType0ÅÁ Å≥	TypedefType.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return t.CommonType.Name;
 	};
 	TypedefType.prototype.String = function() { return this.go$val.String(); };
- 0Å≤  Å©	TypedefType.Ptr.prototype.Size = function() {
+ 0TypedefType00debug/dwarfTypedefType0Å› Å©	TypedefType.Ptr.prototype.Size = function() {
 		var t;
 		t = this;
 		return t.Type.Size();
 	};
 	TypedefType.prototype.Size = function() { return this.go$val.Size(); };
- 0ÇD∞  ÇD¶	Data.Ptr.prototype.Type = function(off) {
+ 0TypedefType00debug/dwarfTypedefType0ÇGﬁ ÇD¶	Data.Ptr.prototype.Type = function(off) {
 		var go$this = this, d, ok, _tuple, _entry, t, r, _tuple$1, e, err, x, typ, nextDepth, next, typeOf, _ref, t$1, _key, _tuple$2, x$1, ndim, kid, _ref$1, _tuple$3, x$2, max, ok$1, x$3, _tuple$4, x$4, name, _tuple$5, x$5, enc, ok$2, x$6, _ref$2, x$7, _key$1, t$2, _tuple$6, x$8, _tuple$7, x$9, t$3, _key$2, _ref$3, _tuple$8, x$10, lastFieldType, lastFieldBitOffset, kid$1, f, ok$3, _tuple$9, x$11, loc, x$12, _struct, b, x$13, x$14, haveBitOffset, _tuple$10, x$15, _tuple$11, x$16, _tuple$12, x$17, _tuple$13, x$18, bito, _tuple$14, x$19, b$1, ok$4, x$20, t$4, _key$3, _ref$4, t$5, _key$4, _tuple$15, x$21, kid$2, f$1, _tuple$16, x$22, _tuple$17, x$23, n, x$24, val, _slice, _index, t$6, _key$5, t$7, _key$6, kid$3, tkid, _ref$5, t$8, _key$7, _tuple$18, x$25, _tuple$19, x$26, b$2, ok$5;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		d = go$this;
@@ -1575,7 +1622,9 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		/* */ } break; } }; return go$f();
 	};
 	Data.prototype.Type = function(off) { return this.go$val.Type(off); };
- 0ÇN 	zeroArrayÇ;	zeroArray = function(t) {
+ 0Data0Ç$0debug/dwarfuint80debug/dwarfTypedefType0debug/dwarf	UcharType0debug/dwarfQualType0debug/dwarf	EnumValue0debug/dwarf	FloatType0debug/dwarfUintType0debug/dwarfmakeBuf0debug/dwarfunknownFormat0debug/dwarfFuncType0debug/dwarfDecodeError0debug/dwarf	ArrayType0debug/dwarfBoolType0debug/dwarf	BasicType0debug/dwarfData0debug/dwarf
+CommonType0debug/dwarfIntType0debug/dwarf
+StructType0debug/dwarfuint0debug/dwarfPtrType0debug/dwarfOffset0debug/dwarfCharType0debug/dwarf	zeroArray0debug/dwarfAddrType0debug/dwarfStructField0debug/dwarfbuf0debug/dwarfDotDotDotType0debug/dwarfEntry0debug/dwarfVoidType0debug/dwarfComplexType0debug/dwarfEnumType0debug/dwarfType0Çu	zeroArrayÇ;	zeroArray = function(t) {
 		var _tuple, at, ok;
 		while (true) {
 			_tuple = (t !== null && t.constructor === (go$ptrType(ArrayType)) ? [t.go$val, true] : [(go$ptrType(ArrayType)).nil, false]), at = _tuple[0], ok = _tuple[1];
@@ -1586,25 +1635,26 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 			t = at.Type;
 		}
 	};
- 0Å¶  Åù	unit.Ptr.prototype.version = function() {
+ 0	zeroArray00debug/dwarf	ArrayType0ÅÃ Åù	unit.Ptr.prototype.version = function() {
 		var u;
 		u = this;
 		return u.vers;
 	};
 	unit.prototype.version = function() { return this.go$val.version(); };
- 0ÅÆ  Å•	unit.Ptr.prototype.dwarf64 = function() {
+ 0unitversion00debug/dwarfunit0Å‘ Å•	unit.Ptr.prototype.dwarf64 = function() {
 		var u;
 		u = this;
 		return [u.is64, true];
 	};
 	unit.prototype.dwarf64 = function() { return this.go$val.dwarf64(); };
- 0Å™  Å°	unit.Ptr.prototype.addrsize = function() {
+ 0unitdwarf6400debug/dwarfunit0Å— Å°	unit.Ptr.prototype.addrsize = function() {
 		var u;
 		u = this;
 		return u.asize;
 	};
 	unit.prototype.addrsize = function() { return this.go$val.addrsize(); };
- 0ÇÂ  Ç€	Data.Ptr.prototype.parseUnits = function() {
+ 0unitaddrsize00debug/dwarfunit0Ç
+8 Ç€	Data.Ptr.prototype.parseUnits = function() {
 		var d, nunit, x, _struct, b, len, len64, x$1, x$2, _struct$1, units, _ref, _i, i, _slice, _index, u, n, vers, _tuple, atable, err;
 		d = this;
 		nunit = 0;
@@ -1663,6 +1713,11 @@ StructTypeÇh	StructType = go$pkg.StructType = go$newType(0, "Struct", "dwarf.S
 		return [units, null];
 	};
 	Data.prototype.parseUnits = function() { return this.go$val.parseUnits(); };
- 0 	attrNames  0 tagNames  0Ç(   Ç		attrNames = go$toNativeArray("String", ["", "Sibling", "Location", "Name", "", "", "", "", "", "Ordering", "", "ByteSize", "BitOffset", "BitSize", "", "", "StmtList", "Lowpc", "Highpc", "Language", "", "Discr", "DiscrValue", "Visibility", "Import", "StringLength", "CommonRef", "CompDir", "ConstValue", "ContainingType", "DefaultValue", "", "Inline", "IsOptional", "LowerBound", "", "", "Producer", "", "Prototyped", "", "", "ReturnAddr", "", "StartScope", "", "StrideSize", "UpperBound", "", "AbstractOrigin", "Accessibility", "AddrClass", "Artificial", "BaseTypes", "Calling", "Count", "DataMemberLoc", "DeclColumn", "DeclFile", "DeclLine", "Declaration", "DiscrList", "Encoding", "External", "FrameBase", "Friend", "IdentifierCase", "MacroInfo", "NamelistItem", "Priority", "Segment", "Specification", "StaticLink", "Type", "UseLocation", "VarParam", "Virtuality", "VtableElemLoc", "Allocated", "Associated", "DataLocation", "Stride", "Entrypc", "UseUTF8", "Extension", "Ranges", "Trampoline", "CallColumn", "CallFile", "CallLine", "Description"]);
-0Çª   Ç±		tagNames = go$toNativeArray("String", ["", "ArrayType", "ClassType", "EntryPoint", "EnumerationType", "FormalParameter", "", "", "ImportedDeclaration", "", "Label", "LexDwarfBlock", "", "Member", "", "PointerType", "ReferenceType", "CompileUnit", "StringType", "StructType", "", "SubroutineType", "Typedef", "UnionType", "UnspecifiedParameters", "Variant", "CommonDwarfBlock", "CommonInclusion", "Inheritance", "InlinedSubroutine", "Module", "PtrToMemberType", "SetType", "SubrangeType", "WithStmt", "AccessDeclaration", "BaseType", "CatchDwarfBlock", "ConstType", "Constant", "Enumerator", "FileType", "Friend", "Namelist", "NamelistItem", "PackedType", "Subprogram", "TemplateTypeParameter", "TemplateValueParameter", "ThrownType", "TryDwarfBlock", "VariantPart", "Variable", "VolatileType", "DwarfProcedure", "RestrictType", "InterfaceType", "Namespace", "ImportedModule", "UnspecifiedType", "PartialUnit", "ImportedUnit", "MutableType"]);
-0    0    0 
+ 0Data
+parseUnits0Ç=0debug/dwarfData0debug/dwarfuint80debug/dwarfuint640debug/dwarfuint160debug/dwarfparseAbbrev0debug/dwarfbytes0debug/dwarfunknownFormat0strconvItoa0debug/dwarfmakeBuf0debug/dwarfbuf0debug/dwarfuint320debug/dwarferror0debug/dwarfskip0debug/dwarfunit0	attrNames  0	attrNames0 0tagNames  0
+tagNames0 0ÇO  Ç		attrNames = go$toNativeArray("String", ["", "Sibling", "Location", "Name", "", "", "", "", "", "Ordering", "", "ByteSize", "BitOffset", "BitSize", "", "", "StmtList", "Lowpc", "Highpc", "Language", "", "Discr", "DiscrValue", "Visibility", "Import", "StringLength", "CommonRef", "CompDir", "ConstValue", "ContainingType", "DefaultValue", "", "Inline", "IsOptional", "LowerBound", "", "", "Producer", "", "Prototyped", "", "", "ReturnAddr", "", "StartScope", "", "StrideSize", "UpperBound", "", "AbstractOrigin", "Accessibility", "AddrClass", "Artificial", "BaseTypes", "Calling", "Count", "DataMemberLoc", "DeclColumn", "DeclFile", "DeclLine", "Declaration", "DiscrList", "Encoding", "External", "FrameBase", "Friend", "IdentifierCase", "MacroInfo", "NamelistItem", "Priority", "Segment", "Specification", "StaticLink", "Type", "UseLocation", "VarParam", "Virtuality", "VtableElemLoc", "Allocated", "Associated", "DataLocation", "Stride", "Entrypc", "UseUTF8", "Extension", "Ranges", "Trampoline", "CallColumn", "CallFile", "CallLine", "Description"]);
+0	attrNames00debug/dwarf	attrNames0Ç‡  Ç±		tagNames = go$toNativeArray("String", ["", "ArrayType", "ClassType", "EntryPoint", "EnumerationType", "FormalParameter", "", "", "ImportedDeclaration", "", "Label", "LexDwarfBlock", "", "Member", "", "PointerType", "ReferenceType", "CompileUnit", "StringType", "StructType", "", "SubroutineType", "Typedef", "UnionType", "UnspecifiedParameters", "Variant", "CommonDwarfBlock", "CommonInclusion", "Inheritance", "InlinedSubroutine", "Module", "PtrToMemberType", "SetType", "SubrangeType", "WithStmt", "AccessDeclaration", "BaseType", "CatchDwarfBlock", "ConstType", "Constant", "Enumerator", "FileType", "Friend", "Namelist", "NamelistItem", "PackedType", "Subprogram", "TemplateTypeParameter", "TemplateValueParameter", "ThrownType", "TryDwarfBlock", "VariantPart", "Variable", "VolatileType", "DwarfProcedure", "RestrictType", "InterfaceType", "Namespace", "ImportedModule", "UnspecifiedType", "PartialUnit", "ImportedUnit", "MutableType"]);
+0
+tagNames00debug/dwarftagNames0
+   0 0 0
+   0 0 0 

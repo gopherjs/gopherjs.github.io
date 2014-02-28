@@ -1,4 +1,4 @@
-0‚o\crypto/rand‚<àpackage rand
+0‚rycrypto/rand‚<àpackage rand
 import io "io"
 import bufio "bufio"
 import aes "crypto/aes"
@@ -172,7 +172,7 @@ type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand
 $$
 0ãruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiocrypto/subtlecrypto/ciphermathstrconv
 crypto/aesreflectencoding/binarysyscalltimeosfmt	math/randstringsmath/bigcrypto/rand0£0ioio0bufiobufio0
-crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0syncsync0timetime0errorserrors0math/bigbig0‚0Ù0‚8 	devReader‚1	devReader = go$pkg.devReader = go$newType(0, "Struct", "rand.devReader", "devReader", "crypto/rand", function(name_, f_, mu_) {
+crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0syncsync0timetime0errorserrors0math/bigbig0‚3ö0‚b	devReader‚1	devReader = go$pkg.devReader = go$newType(0, "Struct", "rand.devReader", "devReader", "crypto/rand", function(name_, f_, mu_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : "";
 		this.f = f_ !== undefined ? f_ : null;
@@ -180,7 +180,7 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 	});
 ó		devReader.init([["name", "crypto/rand", Go$String, ""], ["f", "crypto/rand", io.Reader, ""], ["mu", "crypto/rand", sync.Mutex, ""]]);
 		(go$ptrType(devReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-0‚P reader‚5	reader = go$pkg.reader = go$newType(0, "Struct", "rand.reader", "reader", "crypto/rand", function(mu_, budget_, cipher_, entropy_, time_, seed_, dst_, key_) {
+0	devReader00syncMutex0ioReader0‚reader‚5	reader = go$pkg.reader = go$newType(0, "Struct", "rand.reader", "reader", "crypto/rand", function(mu_, budget_, cipher_, entropy_, time_, seed_, dst_, key_) {
 		this.go$val = this;
 		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
 		this.budget = budget_ !== undefined ? budget_ : 0;
@@ -193,14 +193,14 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 	});
 ‚			reader.init([["mu", "crypto/rand", sync.Mutex, ""], ["budget", "crypto/rand", Go$Int, ""], ["cipher", "crypto/rand", cipher.Block, ""], ["entropy", "crypto/rand", io.Reader, ""], ["time", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""], ["seed", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""], ["dst", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""], ["key", "crypto/rand", (go$arrayType(Go$Uint8, 16)), ""]]);
 		(go$ptrType(reader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-0¿ Read²	Read = go$pkg.Read = function(b) {
+0reader050syncMutex0crypto/cipherBlock0ioReader0îRead²	Read = go$pkg.Read = function(b) {
 		var n, err, _tuple;
 		n = 0;
 		err = null;
 		_tuple = io.ReadFull(go$pkg.Reader, b), n = _tuple[0], err = _tuple[1];
 		return [n, err];
 	};
- 0‚)  ‚	devReader.Ptr.prototype.Read = function(b) {
+ 0Read0'0ioReadFull0crypto/randReader0‚| ‚	devReader.Ptr.prototype.Read = function(b) {
 		var n, err, r, _tuple, f, err$1, _tuple$1, _tuple$2;
 		n = 0;
 		err = null;
@@ -227,14 +227,15 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 		}
 	};
 	devReader.prototype.Read = function(b) { return this.go$val.Read(b); };
- 0‚à 	newReader‚Í	newReader = function(entropy) {
+ 0	devReader0F0crypto/rand	devReader0
+osOpen0
+osFile0bufio	NewReader0‚-	newReader‚Í	newReader = function(entropy) {
 		if (go$interfaceIsEqual(entropy, null)) {
 			entropy = new devReader.Ptr("/dev/random", null, new sync.Mutex.Ptr());
 		}
 		return new reader.Ptr(new sync.Mutex.Ptr(), 0, null, entropy, go$makeNativeArray("Uint8", 16, function() { return 0; }), go$makeNativeArray("Uint8", 16, function() { return 0; }), go$makeNativeArray("Uint8", 16, function() { return 0; }), go$makeNativeArray("Uint8", 16, function() { return 0; }));
 	};
- 0‚
-é  ‚
+ 0	newReader0@0syncMutex0crypto/rand	devReader0crypto/randreader0‚@ ‚
 ß	reader.Ptr.prototype.Read = function(b) {
 		var n, err, r, _tuple, err$1, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, ns, i, i$1, m, _tuple$6;
 		n = 0;
@@ -300,7 +301,8 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 		}
 	};
 	reader.prototype.Read = function(b) { return this.go$val.Read(b); };
- 0‚K Prime‚<	Prime = go$pkg.Prime = function(rand, bits) {
+ 0reader0M0crypto/randreader0ioReadFull0
+crypto/aes	NewCipher0timeNow0‚ÃPrime‚<	Prime = go$pkg.Prime = function(rand, bits) {
 		var p, err, _r, b, _q, bytes, bigMod, _tuple, _tuple$1, _lhs, _index, _slice, _index$1, y, _slice$1, _index$2, _lhs$1, _index$3, _slice$2, _index$4, y$1, _slice$3, _index$5, _lhs$2, _index$6, _slice$4, _index$7, _slice$5, _index$8, _lhs$3, _index$9, _slice$6, _index$10, _slice$7, _index$11, _lhs$4, _index$12, _slice$8, _index$13, _slice$9, _index$14, mod, delta, m, _ref, _i, _slice$10, _index$15, prime, x;
 		p = (go$ptrType(big.Int)).nil;
 		err = null;
@@ -358,7 +360,7 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 			}
 		}
 	};
- 0‚§ Int‚š	Int = go$pkg.Int = function(rand, max) {
+ 0Prime0o0math/bigInt0errorsNew0ioReadFull0!crypto/randsmallPrimesProduct0crypto/randsmallPrimes0‚ÏInt‚š	Int = go$pkg.Int = function(rand, max) {
 		var n, err, _q, k, _r, b, bytes, _tuple, _tuple$1, _lhs, _index, _slice, _index$1, y, _slice$1, _index$2;
 		n = (go$ptrType(big.Int)).nil;
 		err = null;
@@ -385,8 +387,9 @@ crypto/aesaes0crypto/ciphercipher0osos0runtimeruntime0sync
 			}
 		}
 	};
- 0    		go$pkg.Reader = null;
-0 smallPrimes  0 smallPrimesProduct  0q   i		smallPrimes = new (go$sliceType(Go$Uint8))([3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]);
-0b   Z		smallPrimesProduct = new big.Int.Ptr().SetUint64(new Go$Uint64(3793877372, 820596253));
-0    0Y   Q		go$pkg.Reader = new devReader.Ptr("/dev/urandom", null, new sync.Mutex.Ptr());
-0 
+ 0Int0!0math/bigInt0ioReadFull0A  		go$pkg.Reader = null;
+0Reader00crypto/randReader0"smallPrimes  0smallPrimes0 00smallPrimesProduct  0smallPrimesProduct0 0œ  i		smallPrimes = new (go$sliceType(Go$Uint8))([3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]);
+0smallPrimes00crypto/randsmallPrimes0˜  Z		smallPrimesProduct = new big.Int.Ptr().SetUint64(new Go$Uint64(3793877372, 820596253));
+0 040math/bigInt0!crypto/randsmallPrimesProduct0
+   0 0 0›  Q		go$pkg.Reader = new devReader.Ptr("/dev/urandom", null, new sync.Mutex.Ptr());
+0 0@0syncMutex0crypto/rand	devReader0crypto/randReader0 

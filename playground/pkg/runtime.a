@@ -1,4 +1,4 @@
-0ÉˇruntimeÇ=Vpackage runtime
+0É<runtimeÇ=Vpackage runtime
 func @"".BlockProfile(@"".p []@"".BlockProfileRecord) (@"".n int, @"".ok bool)
 type @"".BlockProfileRecord struct { @"".Count int64; @"".Cycles int64; ? @"".StackRecord }
 func @"".Breakpoint() ()
@@ -128,7 +128,7 @@ type @"".waitq struct { @"".first *@"".sudog; @"".last *@"".sudog }
 type @"".wincall struct { @"".fn func (? @"unsafe".Pointer) (); @"".n uint64; @"".args @"unsafe".Pointer; @"".r1 uint64; @"".r2 uint64; @"".err uint64 }
 type @"".wincallbackcontext struct { @"".gobody @"unsafe".Pointer; @"".argsize uint64; @"".restorestack uint64 }
 $$
-0	runtime0 0É¡ï0ÇU MemProfileRecordÇ£	MemProfileRecord = go$pkg.MemProfileRecord = go$newType(0, "Struct", "runtime.MemProfileRecord", "MemProfileRecord", "runtime", function(AllocBytes_, FreeBytes_, AllocObjects_, FreeObjects_, Stack0_) {
+0	runtime0 0É‹≈0ÇiMemProfileRecordÇ£	MemProfileRecord = go$pkg.MemProfileRecord = go$newType(0, "Struct", "runtime.MemProfileRecord", "MemProfileRecord", "runtime", function(AllocBytes_, FreeBytes_, AllocObjects_, FreeObjects_, Stack0_) {
 		this.go$val = this;
 		this.AllocBytes = AllocBytes_ !== undefined ? AllocBytes_ : new Go$Int64(0, 0);
 		this.FreeBytes = FreeBytes_ !== undefined ? FreeBytes_ : new Go$Int64(0, 0);
@@ -138,13 +138,13 @@ $$
 	});
 Çñ		MemProfileRecord.init([["AllocBytes", "", Go$Int64, ""], ["FreeBytes", "", Go$Int64, ""], ["AllocObjects", "", Go$Int64, ""], ["FreeObjects", "", Go$Int64, ""], ["Stack0", "", (go$arrayType(Go$Uintptr, 32)), ""]]);
 		(go$ptrType(MemProfileRecord)).methods = [["InUseBytes", "", [], [Go$Int64], false], ["InUseObjects", "", [], [Go$Int64], false], ["Stack", "", [], [(go$sliceType(Go$Uintptr))], false]];
-0ÇÀ StackRecordÇ	StackRecord = go$pkg.StackRecord = go$newType(0, "Struct", "runtime.StackRecord", "StackRecord", "runtime", function(Stack0_) {
+0MemProfileRecord0 0Ç⁄StackRecordÇ	StackRecord = go$pkg.StackRecord = go$newType(0, "Struct", "runtime.StackRecord", "StackRecord", "runtime", function(Stack0_) {
 		this.go$val = this;
 		this.Stack0 = Stack0_ !== undefined ? Stack0_ : go$makeNativeArray("Uintptr", 32, function() { return 0; });
 	});
 Å™		StackRecord.init([["Stack0", "", (go$arrayType(Go$Uintptr, 32)), ""]]);
 		(go$ptrType(StackRecord)).methods = [["Stack", "", [], [(go$sliceType(Go$Uintptr))], false]];
-0ÇS BlockProfileRecordÇ\	BlockProfileRecord = go$pkg.BlockProfileRecord = go$newType(0, "Struct", "runtime.BlockProfileRecord", "BlockProfileRecord", "runtime", function(Count_, Cycles_, StackRecord_) {
+0StackRecord0 0ÇÅBlockProfileRecordÇ\	BlockProfileRecord = go$pkg.BlockProfileRecord = go$newType(0, "Struct", "runtime.BlockProfileRecord", "BlockProfileRecord", "runtime", function(Count_, Cycles_, StackRecord_) {
 		this.go$val = this;
 		this.Count = Count_ !== undefined ? Count_ : new Go$Int64(0, 0);
 		this.Cycles = Cycles_ !== undefined ? Cycles_ : new Go$Int64(0, 0);
@@ -154,9 +154,9 @@ $$
 	BlockProfileRecord.Ptr.prototype.Stack = function() { return this.StackRecord.Stack(); };
 Å⁄		BlockProfileRecord.init([["Count", "", Go$Int64, ""], ["Cycles", "", Go$Int64, ""], ["", "", StackRecord, ""]]);
 		(go$ptrType(BlockProfileRecord)).methods = [["Stack", "", [], [(go$sliceType(Go$Uintptr))], false]];
-0ÅÊ Error_	Error = go$pkg.Error = go$newType(0, "Interface", "runtime.Error", "Error", "runtime", null);
+0BlockProfileRecord00runtimeStackRecord0ÅÔError_	Error = go$pkg.Error = go$newType(0, "Interface", "runtime.Error", "Error", "runtime", null);
 z		Error.init([["Error", "", (go$funcType([], [Go$String], false))], ["RuntimeError", "", (go$funcType([], [], false))]]);
-0Çô TypeAssertionErrorÇ+	TypeAssertionError = go$pkg.TypeAssertionError = go$newType(0, "Struct", "runtime.TypeAssertionError", "TypeAssertionError", "runtime", function(interfaceString_, concreteString_, assertedString_, missingMethod_) {
+0Error0 0ÇØTypeAssertionErrorÇ+	TypeAssertionError = go$pkg.TypeAssertionError = go$newType(0, "Struct", "runtime.TypeAssertionError", "TypeAssertionError", "runtime", function(interfaceString_, concreteString_, assertedString_, missingMethod_) {
 		this.go$val = this;
 		this.interfaceString = interfaceString_ !== undefined ? interfaceString_ : "";
 		this.concreteString = concreteString_ !== undefined ? concreteString_ : "";
@@ -165,21 +165,22 @@ $$
 	});
 ÇP		TypeAssertionError.init([["interfaceString", "runtime", Go$String, ""], ["concreteString", "runtime", Go$String, ""], ["assertedString", "runtime", Go$String, ""], ["missingMethod", "runtime", Go$String, ""]]);
 		(go$ptrType(TypeAssertionError)).methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
-0Çb errorStringt	errorString = go$pkg.errorString = go$newType(0, "String", "runtime.errorString", "errorString", "runtime", null);
+0TypeAssertionError0 0ÇqerrorStringt	errorString = go$pkg.errorString = go$newType(0, "String", "runtime.errorString", "errorString", "runtime", null);
 Å⁄		errorString.methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
 		(go$ptrType(errorString)).methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
-0Çj errorCStringy	errorCString = go$pkg.errorCString = go$newType(4, "Uintptr", "runtime.errorCString", "errorCString", "runtime", null);
+0errorString0 0ÇzerrorCStringy	errorCString = go$pkg.errorCString = go$newType(4, "Uintptr", "runtime.errorCString", "errorCString", "runtime", null);
 Å‹		errorCString.methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
 		(go$ptrType(errorCString)).methods = [["Error", "", [], [Go$String], false], ["RuntimeError", "", [], [], false]];
-0Å≈ stringerk	stringer = go$pkg.stringer = go$newType(0, "Interface", "runtime.stringer", "stringer", "runtime", null);
+0errorCString0 0Å—stringerk	stringer = go$pkg.stringer = go$newType(0, "Interface", "runtime.stringer", "stringer", "runtime", null);
 J		stringer.init([["String", "", (go$funcType([], [Go$String], false))]]);
-0Ç… FuncÅ—	Func = go$pkg.Func = go$newType(0, "Struct", "runtime.Func", "Func", "runtime", function(opaque_) {
+0
+stringer0 0Ç—FuncÅ—	Func = go$pkg.Func = go$newType(0, "Struct", "runtime.Func", "Func", "runtime", function(opaque_) {
 		this.go$val = this;
 		this.opaque = opaque_ !== undefined ? opaque_ : new (go$structType([])).Ptr();
 	});
 ÅÍ		Func.init([["opaque", "runtime", (go$structType([])), ""]]);
 		(go$ptrType(Func)).methods = [["Entry", "", [], [Go$Uintptr], false], ["FileLine", "", [Go$Uintptr], [Go$String, Go$Int], false], ["Name", "", [], [Go$String], false]];
-0Ç¥ MemStatsÇJ	MemStats = go$pkg.MemStats = go$newType(0, "Struct", "runtime.MemStats", "MemStats", "runtime", function(Alloc_, TotalAlloc_, Sys_, Lookups_, Mallocs_, Frees_, HeapAlloc_, HeapSys_, HeapIdle_, HeapInuse_, HeapReleased_, HeapObjects_, StackInuse_, StackSys_, MSpanInuse_, MSpanSys_, MCacheInuse_, MCacheSys_, BuckHashSys_, GCSys_, OtherSys_, NextGC_, LastGC_, PauseTotalNs_, PauseNs_, NumGC_, EnableGC_, DebugGC_, BySize_) {
+0Func0 0Ç¿MemStatsÇJ	MemStats = go$pkg.MemStats = go$newType(0, "Struct", "runtime.MemStats", "MemStats", "runtime", function(Alloc_, TotalAlloc_, Sys_, Lookups_, Mallocs_, Frees_, HeapAlloc_, HeapSys_, HeapIdle_, HeapInuse_, HeapReleased_, HeapObjects_, StackInuse_, StackSys_, MSpanInuse_, MSpanSys_, MCacheInuse_, MCacheSys_, BuckHashSys_, GCSys_, OtherSys_, NextGC_, LastGC_, PauseTotalNs_, PauseNs_, NumGC_, EnableGC_, DebugGC_, BySize_) {
 		this.go$val = this;
 		this.Alloc = Alloc_ !== undefined ? Alloc_ : new Go$Uint64(0, 0);
 		this.TotalAlloc = TotalAlloc_ !== undefined ? TotalAlloc_ : new Go$Uint64(0, 0);
@@ -212,7 +213,8 @@ $$
 		this.BySize = BySize_ !== undefined ? BySize_ : go$makeNativeArray("Struct", 61, function() { return new (go$structType([["Size", "", Go$Uint32, ""], ["Mallocs", "", Go$Uint64, ""], ["Frees", "", Go$Uint64, ""]])).Ptr(0, new Go$Uint64(0, 0), new Go$Uint64(0, 0)); });
 	});
 ÇV		MemStats.init([["Alloc", "", Go$Uint64, ""], ["TotalAlloc", "", Go$Uint64, ""], ["Sys", "", Go$Uint64, ""], ["Lookups", "", Go$Uint64, ""], ["Mallocs", "", Go$Uint64, ""], ["Frees", "", Go$Uint64, ""], ["HeapAlloc", "", Go$Uint64, ""], ["HeapSys", "", Go$Uint64, ""], ["HeapIdle", "", Go$Uint64, ""], ["HeapInuse", "", Go$Uint64, ""], ["HeapReleased", "", Go$Uint64, ""], ["HeapObjects", "", Go$Uint64, ""], ["StackInuse", "", Go$Uint64, ""], ["StackSys", "", Go$Uint64, ""], ["MSpanInuse", "", Go$Uint64, ""], ["MSpanSys", "", Go$Uint64, ""], ["MCacheInuse", "", Go$Uint64, ""], ["MCacheSys", "", Go$Uint64, ""], ["BuckHashSys", "", Go$Uint64, ""], ["GCSys", "", Go$Uint64, ""], ["OtherSys", "", Go$Uint64, ""], ["NextGC", "", Go$Uint64, ""], ["LastGC", "", Go$Uint64, ""], ["PauseTotalNs", "", Go$Uint64, ""], ["PauseNs", "", (go$arrayType(Go$Uint64, 256)), ""], ["NumGC", "", Go$Uint32, ""], ["EnableGC", "", Go$Bool, ""], ["DebugGC", "", Go$Bool, ""], ["BySize", "", (go$arrayType((go$structType([["Size", "", Go$Uint32, ""], ["Mallocs", "", Go$Uint64, ""], ["Frees", "", Go$Uint64, ""]])), 61)), ""]]);
-0ÇG rtypeÇb	rtype = go$pkg.rtype = go$newType(0, "Struct", "runtime.rtype", "rtype", "runtime", function(size_, hash_, _$2_, align_, fieldAlign_, kind_, alg_, gc_, string_, uncommonType_, ptrToThis_) {
+0
+MemStats0 0ÇirtypeÇb	rtype = go$pkg.rtype = go$newType(0, "Struct", "runtime.rtype", "rtype", "runtime", function(size_, hash_, _$2_, align_, fieldAlign_, kind_, alg_, gc_, string_, uncommonType_, ptrToThis_) {
 		this.go$val = this;
 		this.size = size_ !== undefined ? size_ : 0;
 		this.hash = hash_ !== undefined ? hash_ : 0;
@@ -227,7 +229,7 @@ $$
 		this.ptrToThis = ptrToThis_ !== undefined ? ptrToThis_ : (go$ptrType(rtype)).nil;
 	});
 Ç‘		rtype.init([["size", "runtime", Go$Uintptr, ""], ["hash", "runtime", Go$Uint32, ""], ["_", "runtime", Go$Uint8, ""], ["align", "runtime", Go$Uint8, ""], ["fieldAlign", "runtime", Go$Uint8, ""], ["kind", "runtime", Go$Uint8, ""], ["alg", "runtime", Go$UnsafePointer, ""], ["gc", "runtime", Go$UnsafePointer, ""], ["string", "runtime", (go$ptrType(Go$String)), ""], ["", "runtime", (go$ptrType(uncommonType)), ""], ["ptrToThis", "runtime", (go$ptrType(rtype)), ""]]);
-0Çb _methodÇ'	_method = go$pkg._method = go$newType(0, "Struct", "runtime._method", "_method", "runtime", function(name_, pkgPath_, mtyp_, typ_, ifn_, tfn_) {
+0rtype00runtimeuncommonType0Ç_methodÇ'	_method = go$pkg._method = go$newType(0, "Struct", "runtime._method", "_method", "runtime", function(name_, pkgPath_, mtyp_, typ_, ifn_, tfn_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
@@ -237,80 +239,82 @@ $$
 		this.tfn = tfn_ !== undefined ? tfn_ : 0;
 	});
 Ç(		_method.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgPath", "runtime", (go$ptrType(Go$String)), ""], ["mtyp", "runtime", (go$ptrType(rtype)), ""], ["typ", "runtime", (go$ptrType(rtype)), ""], ["ifn", "runtime", Go$UnsafePointer, ""], ["tfn", "runtime", Go$UnsafePointer, ""]]);
-0Çi uncommonTypeÇü	uncommonType = go$pkg.uncommonType = go$newType(0, "Struct", "runtime.uncommonType", "uncommonType", "runtime", function(name_, pkgPath_, methods_) {
+0	-method00runtimertype0ÇçuncommonTypeÇü	uncommonType = go$pkg.uncommonType = go$newType(0, "Struct", "runtime.uncommonType", "uncommonType", "runtime", function(name_, pkgPath_, methods_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
 		this.methods = methods_ !== undefined ? methods_ : (go$sliceType(_method)).nil;
 	});
 Å≥		uncommonType.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgPath", "runtime", (go$ptrType(Go$String)), ""], ["methods", "runtime", (go$sliceType(_method)), ""]]);
-0Ç5 _imethodÇ{	_imethod = go$pkg._imethod = go$newType(0, "Struct", "runtime._imethod", "_imethod", "runtime", function(name_, pkgPath_, typ_) {
+0uncommonType00runtime-method0ÇS_imethodÇ{	_imethod = go$pkg._imethod = go$newType(0, "Struct", "runtime._imethod", "_imethod", "runtime", function(name_, pkgPath_, typ_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
 		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(rtype)).nil;
 	});
 Åß		_imethod.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgPath", "runtime", (go$ptrType(Go$String)), ""], ["typ", "runtime", (go$ptrType(rtype)), ""]]);
-0Ç¡ interfaceTypeÇ@	interfaceType = go$pkg.interfaceType = go$newType(0, "Struct", "runtime.interfaceType", "interfaceType", "runtime", function(rtype_, methods_) {
+0
+-imethod00runtimertype0Ç˘interfaceTypeÇ@	interfaceType = go$pkg.interfaceType = go$newType(0, "Struct", "runtime.interfaceType", "interfaceType", "runtime", function(rtype_, methods_) {
 		this.go$val = this;
 		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
 		this.methods = methods_ !== undefined ? methods_ : (go$sliceType(_imethod)).nil;
 	});
 j		interfaceType.init([["", "runtime", rtype, ""], ["methods", "runtime", (go$sliceType(_imethod)), ""]]);
-0Å˙ lockÅª	lock = go$pkg.lock = go$newType(0, "Struct", "runtime.lock", "lock", "runtime", function(key_) {
+0interfaceType0'0runtimertype0runtime-imethod0ÇlockÅª	lock = go$pkg.lock = go$newType(0, "Struct", "runtime.lock", "lock", "runtime", function(key_) {
 		this.go$val = this;
 		this.key = key_ !== undefined ? key_ : new Go$Uint64(0, 0);
 	});
 2		lock.init([["key", "runtime", Go$Uint64, ""]]);
-0Å˙ noteÅª	note = go$pkg.note = go$newType(0, "Struct", "runtime.note", "note", "runtime", function(key_) {
+0lock0 0ÇnoteÅª	note = go$pkg.note = go$newType(0, "Struct", "runtime.note", "note", "runtime", function(key_) {
 		this.go$val = this;
 		this.key = key_ !== undefined ? key_ : new Go$Uint64(0, 0);
 	});
 2		note.init([["key", "runtime", Go$Uint64, ""]]);
-0ÇÜ _stringÇ	_string = go$pkg._string = go$newType(0, "Struct", "runtime._string", "_string", "runtime", function(str_, len_) {
+0note0 0Çë_stringÇ	_string = go$pkg._string = go$newType(0, "Struct", "runtime._string", "_string", "runtime", function(str_, len_) {
 		this.go$val = this;
 		this.str = str_ !== undefined ? str_ : (go$ptrType(Go$Uint8)).nil;
 		this.len = len_ !== undefined ? len_ : new Go$Int64(0, 0);
 	});
 d		_string.init([["str", "runtime", (go$ptrType(Go$Uint8)), ""], ["len", "runtime", Go$Int64, ""]]);
-0Ç funcvalÅ«	funcval = go$pkg.funcval = go$newType(0, "Struct", "runtime.funcval", "funcval", "runtime", function(fn_) {
+0	-string0 0Ç)funcvalÅ«	funcval = go$pkg.funcval = go$newType(0, "Struct", "runtime.funcval", "funcval", "runtime", function(fn_) {
 		this.go$val = this;
 		this.fn = fn_ !== undefined ? fn_ : go$throwNilPointerError;
 	});
 G		funcval.init([["fn", "runtime", (go$funcType([], [], false)), ""]]);
-0Çm ifaceÅ¯	iface = go$pkg.iface = go$newType(0, "Struct", "runtime.iface", "iface", "runtime", function(tab_, data_) {
+0	funcval0 0ÇáifaceÅ¯	iface = go$pkg.iface = go$newType(0, "Struct", "runtime.iface", "iface", "runtime", function(tab_, data_) {
 		this.go$val = this;
 		this.tab = tab_ !== undefined ? tab_ : (go$ptrType(itab)).nil;
 		this.data = data_ !== undefined ? data_ : 0;
 	});
 g		iface.init([["tab", "runtime", (go$ptrType(itab)), ""], ["data", "runtime", Go$UnsafePointer, ""]]);
-0Çz efaceÇ	eface = go$pkg.eface = go$newType(0, "Struct", "runtime.eface", "eface", "runtime", function(_type_, data_) {
+0iface00runtimeitab0ÇïefaceÇ	eface = go$pkg.eface = go$newType(0, "Struct", "runtime.eface", "eface", "runtime", function(_type_, data_) {
 		this.go$val = this;
 		this._type = _type_ !== undefined ? _type_ : (go$ptrType(_type)).nil;
 		this.data = data_ !== undefined ? data_ : 0;
 	});
 j		eface.init([["_type", "runtime", (go$ptrType(_type)), ""], ["data", "runtime", Go$UnsafePointer, ""]]);
-0Çm 
+0eface00runtime-type0Ç{
 _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime._complex64", "_complex64", "runtime", function(real_, imag_) {
 		this.go$val = this;
 		this.real = real_ !== undefined ? real_ : 0;
 		this.imag = imag_ !== undefined ? imag_ : 0;
 	});
 _		_complex64.init([["real", "runtime", Go$Float32, ""], ["imag", "runtime", Go$Float32, ""]]);
-0Çs _complex128Åˇ	_complex128 = go$pkg._complex128 = go$newType(0, "Struct", "runtime._complex128", "_complex128", "runtime", function(real_, imag_) {
+0
+-complex640 0ÇÇ_complex128Åˇ	_complex128 = go$pkg._complex128 = go$newType(0, "Struct", "runtime._complex128", "_complex128", "runtime", function(real_, imag_) {
 		this.go$val = this;
 		this.real = real_ !== undefined ? real_ : 0;
 		this.imag = imag_ !== undefined ? imag_ : 0;
 	});
 `		_complex128.init([["real", "runtime", Go$Float64, ""], ["imag", "runtime", Go$Float64, ""]]);
-0ÇÓ sliceÇV	slice = go$pkg.slice = go$newType(0, "Struct", "runtime.slice", "slice", "runtime", function(array_, len_, cap_) {
+0-complex1280 0Ç˜sliceÇV	slice = go$pkg.slice = go$newType(0, "Struct", "runtime.slice", "slice", "runtime", function(array_, len_, cap_) {
 		this.go$val = this;
 		this.array = array_ !== undefined ? array_ : (go$ptrType(Go$Uint8)).nil;
 		this.len = len_ !== undefined ? len_ : new Go$Uint64(0, 0);
 		this.cap = cap_ !== undefined ? cap_ : new Go$Uint64(0, 0);
 	});
 Åà		slice.init([["array", "runtime", (go$ptrType(Go$Uint8)), ""], ["len", "runtime", Go$Uint64, ""], ["cap", "runtime", Go$Uint64, ""]]);
-0ÇÏ gobufÇÒ	gobuf = go$pkg.gobuf = go$newType(0, "Struct", "runtime.gobuf", "gobuf", "runtime", function(sp_, pc_, g_, ret_, ctxt_, lr_) {
+0slice0 0ÇgobufÇÒ	gobuf = go$pkg.gobuf = go$newType(0, "Struct", "runtime.gobuf", "gobuf", "runtime", function(sp_, pc_, g_, ret_, ctxt_, lr_) {
 		this.go$val = this;
 		this.sp = sp_ !== undefined ? sp_ : new Go$Uint64(0, 0);
 		this.pc = pc_ !== undefined ? pc_ : new Go$Uint64(0, 0);
@@ -320,7 +324,7 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.lr = lr_ !== undefined ? lr_ : new Go$Uint64(0, 0);
 	});
 ÅÎ		gobuf.init([["sp", "runtime", Go$Uint64, ""], ["pc", "runtime", Go$Uint64, ""], ["g", "runtime", (go$ptrType(g)), ""], ["ret", "runtime", Go$Uint64, ""], ["ctxt", "runtime", Go$UnsafePointer, ""], ["lr", "runtime", Go$Uint64, ""]]);
-0Ç6 gcstatsÇG	gcstats = go$pkg.gcstats = go$newType(0, "Struct", "runtime.gcstats", "gcstats", "runtime", function(nhandoff_, nhandoffcnt_, nprocyield_, nosyield_, nsleep_) {
+0gobuf00runtimeg0ÇAgcstatsÇG	gcstats = go$pkg.gcstats = go$newType(0, "Struct", "runtime.gcstats", "gcstats", "runtime", function(nhandoff_, nhandoffcnt_, nprocyield_, nosyield_, nsleep_) {
 		this.go$val = this;
 		this.nhandoff = nhandoff_ !== undefined ? nhandoff_ : new Go$Uint64(0, 0);
 		this.nhandoffcnt = nhandoffcnt_ !== undefined ? nhandoffcnt_ : new Go$Uint64(0, 0);
@@ -329,7 +333,7 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.nsleep = nsleep_ !== undefined ? nsleep_ : new Go$Uint64(0, 0);
 	});
 Å›		gcstats.init([["nhandoff", "runtime", Go$Uint64, ""], ["nhandoffcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""]]);
-0Ç wincallÇ˝	wincall = go$pkg.wincall = go$newType(0, "Struct", "runtime.wincall", "wincall", "runtime", function(fn_, n_, args_, r1_, r2_, err_) {
+0	gcstats0 0Ç%wincallÇ˝	wincall = go$pkg.wincall = go$newType(0, "Struct", "runtime.wincall", "wincall", "runtime", function(fn_, n_, args_, r1_, r2_, err_) {
 		this.go$val = this;
 		this.fn = fn_ !== undefined ? fn_ : go$throwNilPointerError;
 		this.n = n_ !== undefined ? n_ : new Go$Uint64(0, 0);
@@ -340,20 +344,20 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 	});
 Ç
 		wincall.init([["fn", "runtime", (go$funcType([Go$UnsafePointer], [], false)), ""], ["n", "runtime", Go$Uint64, ""], ["args", "runtime", Go$UnsafePointer, ""], ["r1", "runtime", Go$Uint64, ""], ["r2", "runtime", Go$Uint64, ""], ["err", "runtime", Go$Uint64, ""]]);
-0Ç^ sehÅÎ	seh = go$pkg.seh = go$newType(0, "Struct", "runtime.seh", "seh", "runtime", function(prev_, handler_) {
+0	wincall0 0ÇesehÅÎ	seh = go$pkg.seh = go$newType(0, "Struct", "runtime.seh", "seh", "runtime", function(prev_, handler_) {
 		this.go$val = this;
 		this.prev = prev_ !== undefined ? prev_ : 0;
 		this.handler = handler_ !== undefined ? handler_ : 0;
 	});
 g		seh.init([["prev", "runtime", Go$UnsafePointer, ""], ["handler", "runtime", Go$UnsafePointer, ""]]);
-0Çc wincallbackcontextÇ©	wincallbackcontext = go$pkg.wincallbackcontext = go$newType(0, "Struct", "runtime.wincallbackcontext", "wincallbackcontext", "runtime", function(gobody_, argsize_, restorestack_) {
+0seh0 0ÇywincallbackcontextÇ©	wincallbackcontext = go$pkg.wincallbackcontext = go$newType(0, "Struct", "runtime.wincallbackcontext", "wincallbackcontext", "runtime", function(gobody_, argsize_, restorestack_) {
 		this.go$val = this;
 		this.gobody = gobody_ !== undefined ? gobody_ : 0;
 		this.argsize = argsize_ !== undefined ? argsize_ : new Go$Uint64(0, 0);
 		this.restorestack = restorestack_ !== undefined ? restorestack_ : new Go$Uint64(0, 0);
 	});
 Åù		wincallbackcontext.init([["gobody", "runtime", Go$UnsafePointer, ""], ["argsize", "runtime", Go$Uint64, ""], ["restorestack", "runtime", Go$Uint64, ""]]);
-0Ç" gÇΩ	g = go$pkg.g = go$newType(0, "Struct", "runtime.g", "g", "runtime", function(stackguard0_, stackbase_, panicwrap_, selgen_, _defer_, _panic_, sched_, syscallstack_, syscallsp_, syscallpc_, syscallguard_, stackguard_, stack0_, stacksize_, alllink_, param_, status_, goid_, waitreason_, schedlink_, ispanic_, issystem_, isbackground_, preempt_, raceignore_, m_, lockedm_, sig_, writenbuf_, writebuf_, dchunk_, dchunknext_, sigcode0_, sigcode1_, sigpc_, gopc_, racectx_, end_) {
+0wincallbackcontext0 0ÇÑgÇΩ	g = go$pkg.g = go$newType(0, "Struct", "runtime.g", "g", "runtime", function(stackguard0_, stackbase_, panicwrap_, selgen_, _defer_, _panic_, sched_, syscallstack_, syscallsp_, syscallpc_, syscallguard_, stackguard_, stack0_, stacksize_, alllink_, param_, status_, goid_, waitreason_, schedlink_, ispanic_, issystem_, isbackground_, preempt_, raceignore_, m_, lockedm_, sig_, writenbuf_, writebuf_, dchunk_, dchunknext_, sigcode0_, sigcode1_, sigpc_, gopc_, racectx_, end_) {
 		this.go$val = this;
 		this.stackguard0 = stackguard0_ !== undefined ? stackguard0_ : new Go$Uint64(0, 0);
 		this.stackbase = stackbase_ !== undefined ? stackbase_ : new Go$Uint64(0, 0);
@@ -395,7 +399,8 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.end = end_ !== undefined ? end_ : go$makeNativeArray("Uint64", 0, function() { return new Go$Uint64(0, 0); });
 	});
 ÇX		g.init([["stackguard0", "runtime", Go$Uint64, ""], ["stackbase", "runtime", Go$Uint64, ""], ["panicwrap", "runtime", Go$Uint32, ""], ["selgen", "runtime", Go$Uint32, ""], ["_defer", "runtime", (go$ptrType(_defer)), ""], ["_panic", "runtime", (go$ptrType(_panic)), ""], ["sched", "runtime", gobuf, ""], ["syscallstack", "runtime", Go$Uint64, ""], ["syscallsp", "runtime", Go$Uint64, ""], ["syscallpc", "runtime", Go$Uint64, ""], ["syscallguard", "runtime", Go$Uint64, ""], ["stackguard", "runtime", Go$Uint64, ""], ["stack0", "runtime", Go$Uint64, ""], ["stacksize", "runtime", Go$Uint64, ""], ["alllink", "runtime", (go$ptrType(g)), ""], ["param", "runtime", Go$UnsafePointer, ""], ["status", "runtime", Go$Int16, ""], ["goid", "runtime", Go$Int64, ""], ["waitreason", "runtime", (go$ptrType(Go$Int8)), ""], ["schedlink", "runtime", (go$ptrType(g)), ""], ["ispanic", "runtime", Go$Uint8, ""], ["issystem", "runtime", Go$Uint8, ""], ["isbackground", "runtime", Go$Uint8, ""], ["preempt", "runtime", Go$Uint8, ""], ["raceignore", "runtime", Go$Int8, ""], ["m", "runtime", (go$ptrType(m)), ""], ["lockedm", "runtime", (go$ptrType(m)), ""], ["sig", "runtime", Go$Int32, ""], ["writenbuf", "runtime", Go$Int32, ""], ["writebuf", "runtime", (go$ptrType(Go$Uint8)), ""], ["dchunk", "runtime", (go$ptrType(deferchunk)), ""], ["dchunknext", "runtime", (go$ptrType(deferchunk)), ""], ["sigcode0", "runtime", Go$Uint64, ""], ["sigcode1", "runtime", Go$Uint64, ""], ["sigpc", "runtime", Go$Uint64, ""], ["gopc", "runtime", Go$Uint64, ""], ["racectx", "runtime", Go$Uint64, ""], ["end", "runtime", (go$arrayType(Go$Uint64, 0)), ""]]);
-0Ç0 mÇÇ	m = go$pkg.m = go$newType(0, "Struct", "runtime.m", "m", "runtime", function(g0_, moreargp_, morebuf_, moreframesize_, moreargsize_, cret_, procid_, gsignal_, tls_, mstartfn_, curg_, caughtsig_, p_, nextp_, id_, mallocing_, throwing_, gcing_, locks_, dying_, profilehz_, helpgc_, spinning_, fastrand_, ncgocall_, ncgo_, cgomal_, park_, alllink_, schedlink_, machport_, mcache_, stackinuse_, stackcachepos_, stackcachecnt_, stackcache_, lockedg_, createstack_, freglo_, freghi_, fflag_, locked_, nextwaitm_, waitsema_, waitsemacount_, waitsemalock_, gcstats_, racecall_, needextram_, waitunlockf_, waitlock_, settype_buf_, settype_bufsize_, seh_, end_) {
+0g0]0runtime-defer0runtime-panic0runtimegobuf0runtimem0runtime
+deferchunk0Ç–mÇÇ	m = go$pkg.m = go$newType(0, "Struct", "runtime.m", "m", "runtime", function(g0_, moreargp_, morebuf_, moreframesize_, moreargsize_, cret_, procid_, gsignal_, tls_, mstartfn_, curg_, caughtsig_, p_, nextp_, id_, mallocing_, throwing_, gcing_, locks_, dying_, profilehz_, helpgc_, spinning_, fastrand_, ncgocall_, ncgo_, cgomal_, park_, alllink_, schedlink_, machport_, mcache_, stackinuse_, stackcachepos_, stackcachecnt_, stackcache_, lockedg_, createstack_, freglo_, freghi_, fflag_, locked_, nextwaitm_, waitsema_, waitsemacount_, waitsemalock_, gcstats_, racecall_, needextram_, waitunlockf_, waitlock_, settype_buf_, settype_bufsize_, seh_, end_) {
 		this.go$val = this;
 		this.g0 = g0_ !== undefined ? g0_ : (go$ptrType(g)).nil;
 		this.moreargp = moreargp_ !== undefined ? moreargp_ : 0;
@@ -454,7 +459,7 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.end = end_ !== undefined ? end_ : go$makeNativeArray("Uint64", 0, function() { return new Go$Uint64(0, 0); });
 	});
 Ç	°		m.init([["g0", "runtime", (go$ptrType(g)), ""], ["moreargp", "runtime", Go$UnsafePointer, ""], ["morebuf", "runtime", gobuf, ""], ["moreframesize", "runtime", Go$Uint32, ""], ["moreargsize", "runtime", Go$Uint32, ""], ["cret", "runtime", Go$Uint64, ""], ["procid", "runtime", Go$Uint64, ""], ["gsignal", "runtime", (go$ptrType(g)), ""], ["tls", "runtime", (go$arrayType(Go$Uint64, 4)), ""], ["mstartfn", "runtime", (go$funcType([], [], false)), ""], ["curg", "runtime", (go$ptrType(g)), ""], ["caughtsig", "runtime", (go$ptrType(g)), ""], ["p", "runtime", (go$ptrType(p)), ""], ["nextp", "runtime", (go$ptrType(p)), ""], ["id", "runtime", Go$Int32, ""], ["mallocing", "runtime", Go$Int32, ""], ["throwing", "runtime", Go$Int32, ""], ["gcing", "runtime", Go$Int32, ""], ["locks", "runtime", Go$Int32, ""], ["dying", "runtime", Go$Int32, ""], ["profilehz", "runtime", Go$Int32, ""], ["helpgc", "runtime", Go$Int32, ""], ["spinning", "runtime", Go$Uint8, ""], ["fastrand", "runtime", Go$Uint32, ""], ["ncgocall", "runtime", Go$Uint64, ""], ["ncgo", "runtime", Go$Int32, ""], ["cgomal", "runtime", (go$ptrType(cgomal)), ""], ["park", "runtime", note, ""], ["alllink", "runtime", (go$ptrType(m)), ""], ["schedlink", "runtime", (go$ptrType(m)), ""], ["machport", "runtime", Go$Uint32, ""], ["mcache", "runtime", (go$ptrType(mcache)), ""], ["stackinuse", "runtime", Go$Int32, ""], ["stackcachepos", "runtime", Go$Uint32, ""], ["stackcachecnt", "runtime", Go$Uint32, ""], ["stackcache", "runtime", (go$arrayType(Go$UnsafePointer, 32)), ""], ["lockedg", "runtime", (go$ptrType(g)), ""], ["createstack", "runtime", (go$arrayType(Go$Uint64, 32)), ""], ["freglo", "runtime", (go$arrayType(Go$Uint32, 16)), ""], ["freghi", "runtime", (go$arrayType(Go$Uint32, 16)), ""], ["fflag", "runtime", Go$Uint32, ""], ["locked", "runtime", Go$Uint32, ""], ["nextwaitm", "runtime", (go$ptrType(m)), ""], ["waitsema", "runtime", Go$Uint64, ""], ["waitsemacount", "runtime", Go$Uint32, ""], ["waitsemalock", "runtime", Go$Uint32, ""], ["gcstats", "runtime", gcstats, ""], ["racecall", "runtime", Go$Uint8, ""], ["needextram", "runtime", Go$Uint8, ""], ["waitunlockf", "runtime", (go$funcType([(go$ptrType(lock))], [], false)), ""], ["waitlock", "runtime", Go$UnsafePointer, ""], ["settype_buf", "runtime", (go$arrayType(Go$Uint64, 1024)), ""], ["settype_bufsize", "runtime", Go$Uint64, ""], ["seh", "runtime", (go$ptrType(seh)), ""], ["end", "runtime", (go$arrayType(Go$Uint64, 0)), ""]]);
-0Ç9 pÇ≥	p = go$pkg.p = go$newType(0, "Struct", "runtime.p", "p", "runtime", function(lock_, id_, status_, link_, schedtick_, syscalltick_, m_, mcache_, runq_, runqhead_, runqtail_, runqsize_, gfree_, gfreecnt_, pad_) {
+0m0Åö0runtimeg0runtimegobuf0runtimecgomal0runtimenote0runtimemcache0runtimegcstats0runtimeseh0runtimelock0runtimep0Ç~pÇ≥	p = go$pkg.p = go$newType(0, "Struct", "runtime.p", "p", "runtime", function(lock_, id_, status_, link_, schedtick_, syscalltick_, m_, mcache_, runq_, runqhead_, runqtail_, runqsize_, gfree_, gfreecnt_, pad_) {
 		this.go$val = this;
 		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
 		this.id = id_ !== undefined ? id_ : 0;
@@ -473,7 +478,7 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.pad = pad_ !== undefined ? pad_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
 	});
 Çy		p.init([["", "runtime", lock, ""], ["id", "runtime", Go$Int32, ""], ["status", "runtime", Go$Uint32, ""], ["link", "runtime", (go$ptrType(p)), ""], ["schedtick", "runtime", Go$Uint32, ""], ["syscalltick", "runtime", Go$Uint32, ""], ["m", "runtime", (go$ptrType(m)), ""], ["mcache", "runtime", (go$ptrType(mcache)), ""], ["runq", "runtime", (go$ptrType((go$ptrType(g)))), ""], ["runqhead", "runtime", Go$Int32, ""], ["runqtail", "runtime", Go$Int32, ""], ["runqsize", "runtime", Go$Int32, ""], ["gfree", "runtime", (go$ptrType(g)), ""], ["gfreecnt", "runtime", Go$Int32, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
-0ÇE stktopÇ‰	stktop = go$pkg.stktop = go$newType(0, "Struct", "runtime.stktop", "stktop", "runtime", function(stackguard_, stackbase_, gobuf_, argsize_, panicwrap_, argp_, free_, _panic_) {
+0p0@0runtimelock0runtimem0runtimemcache0runtimeg0ÇastktopÇ‰	stktop = go$pkg.stktop = go$newType(0, "Struct", "runtime.stktop", "stktop", "runtime", function(stackguard_, stackbase_, gobuf_, argsize_, panicwrap_, argp_, free_, _panic_) {
 		this.go$val = this;
 		this.stackguard = stackguard_ !== undefined ? stackguard_ : new Go$Uint64(0, 0);
 		this.stackbase = stackbase_ !== undefined ? stackbase_ : new Go$Uint64(0, 0);
@@ -485,13 +490,13 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this._panic = _panic_ !== undefined ? _panic_ : 0;
 	});
 ÇO		stktop.init([["stackguard", "runtime", Go$Uint64, ""], ["stackbase", "runtime", Go$Uint64, ""], ["gobuf", "runtime", gobuf, ""], ["argsize", "runtime", Go$Uint32, ""], ["panicwrap", "runtime", Go$Uint32, ""], ["argp", "runtime", (go$ptrType(Go$Uint8)), ""], ["free", "runtime", Go$Uint64, ""], ["_panic", "runtime", Go$Uint8, ""]]);
-0Ç| sigtabÇ	sigtab = go$pkg.sigtab = go$newType(0, "Struct", "runtime.sigtab", "sigtab", "runtime", function(flags_, name_) {
+0stktop00runtimegobuf0ÇÜsigtabÇ	sigtab = go$pkg.sigtab = go$newType(0, "Struct", "runtime.sigtab", "sigtab", "runtime", function(flags_, name_) {
 		this.go$val = this;
 		this.flags = flags_ !== undefined ? flags_ : 0;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$Int8)).nil;
 	});
 e		sigtab.init([["flags", "runtime", Go$Int32, ""], ["name", "runtime", (go$ptrType(Go$Int8)), ""]]);
-0Ç _funcÇØ	_func = go$pkg._func = go$newType(0, "Struct", "runtime._func", "_func", "runtime", function(entry_, nameoff_, args_, frame_, pcsp_, pcfile_, pcln_, npcdata_, nfuncdata_) {
+0sigtab0 0Ç$_funcÇØ	_func = go$pkg._func = go$newType(0, "Struct", "runtime._func", "_func", "runtime", function(entry_, nameoff_, args_, frame_, pcsp_, pcfile_, pcln_, npcdata_, nfuncdata_) {
 		this.go$val = this;
 		this.entry = entry_ !== undefined ? entry_ : new Go$Uint64(0, 0);
 		this.nameoff = nameoff_ !== undefined ? nameoff_ : 0;
@@ -504,7 +509,7 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.nfuncdata = nfuncdata_ !== undefined ? nfuncdata_ : 0;
 	});
 Ç[		_func.init([["entry", "runtime", Go$Uint64, ""], ["nameoff", "runtime", Go$Int32, ""], ["args", "runtime", Go$Int32, ""], ["frame", "runtime", Go$Int32, ""], ["pcsp", "runtime", Go$Int32, ""], ["pcfile", "runtime", Go$Int32, ""], ["pcln", "runtime", Go$Int32, ""], ["npcdata", "runtime", Go$Int32, ""], ["nfuncdata", "runtime", Go$Int32, ""]]);
-0Çö itabÇX	itab = go$pkg.itab = go$newType(0, "Struct", "runtime.itab", "itab", "runtime", function(inter_, _type_, link_, bad_, unused_, fun_) {
+0-func0 0ÇŒitabÇX	itab = go$pkg.itab = go$newType(0, "Struct", "runtime.itab", "itab", "runtime", function(inter_, _type_, link_, bad_, unused_, fun_) {
 		this.go$val = this;
 		this.inter = inter_ !== undefined ? inter_ : (go$ptrType(interfacetype)).nil;
 		this._type = _type_ !== undefined ? _type_ : (go$ptrType(_type)).nil;
@@ -514,7 +519,7 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.fun = fun_ !== undefined ? fun_ : go$makeNativeArray("Func", 0, function() { return go$throwNilPointerError; });
 	});
 Ç2		itab.init([["inter", "runtime", (go$ptrType(interfacetype)), ""], ["_type", "runtime", (go$ptrType(_type)), ""], ["link", "runtime", (go$ptrType(itab)), ""], ["bad", "runtime", Go$Int32, ""], ["unused", "runtime", Go$Int32, ""], ["fun", "runtime", (go$arrayType((go$funcType([], [], false)), 0)), ""]]);
-0Ç timersÇø	timers = go$pkg.timers = go$newType(0, "Struct", "runtime.timers", "timers", "runtime", function(lock_, timerproc_, sleeping_, rescheduling_, waitnote_, t_, len_, cap_) {
+0itab0,0runtimeinterfacetype0runtime-type0ÇjtimersÇø	timers = go$pkg.timers = go$newType(0, "Struct", "runtime.timers", "timers", "runtime", function(lock_, timerproc_, sleeping_, rescheduling_, waitnote_, t_, len_, cap_) {
 		this.go$val = this;
 		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
 		this.timerproc = timerproc_ !== undefined ? timerproc_ : (go$ptrType(g)).nil;
@@ -526,7 +531,7 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.cap = cap_ !== undefined ? cap_ : 0;
 	});
 ÇM		timers.init([["", "runtime", lock, ""], ["timerproc", "runtime", (go$ptrType(g)), ""], ["sleeping", "runtime", Go$Uint8, ""], ["rescheduling", "runtime", Go$Uint8, ""], ["waitnote", "runtime", note, ""], ["t", "runtime", (go$ptrType((go$ptrType(timer)))), ""], ["len", "runtime", Go$Int32, ""], ["cap", "runtime", Go$Int32, ""]]);
-0Çñ timerÇ¡	timer = go$pkg.timer = go$newType(0, "Struct", "runtime.timer", "timer", "runtime", function(i_, when_, period_, fv_, arg_) {
+0timers0B0runtimelock0runtimeg0runtimenote0runtimetimer0Ç≈timerÇ¡	timer = go$pkg.timer = go$newType(0, "Struct", "runtime.timer", "timer", "runtime", function(i_, when_, period_, fv_, arg_) {
 		this.go$val = this;
 		this.i = i_ !== undefined ? i_ : 0;
 		this.when = when_ !== undefined ? when_ : new Go$Int64(0, 0);
@@ -535,13 +540,13 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.arg = arg_ !== undefined ? arg_ : new eface.Ptr();
 	});
 Å≈		timer.init([["i", "runtime", Go$Int32, ""], ["when", "runtime", Go$Int64, ""], ["period", "runtime", Go$Int64, ""], ["fv", "runtime", (go$ptrType(funcval)), ""], ["arg", "runtime", eface, ""]]);
-0Çó lfnodeÇ 	lfnode = go$pkg.lfnode = go$newType(0, "Struct", "runtime.lfnode", "lfnode", "runtime", function(next_, pushcnt_) {
+0timer0&0runtimefuncval0runtimeeface0Ç°lfnodeÇ 	lfnode = go$pkg.lfnode = go$newType(0, "Struct", "runtime.lfnode", "lfnode", "runtime", function(next_, pushcnt_) {
 		this.go$val = this;
 		this.next = next_ !== undefined ? next_ : (go$ptrType(lfnode)).nil;
 		this.pushcnt = pushcnt_ !== undefined ? pushcnt_ : new Go$Uint64(0, 0);
 	});
 g		lfnode.init([["next", "runtime", (go$ptrType(lfnode)), ""], ["pushcnt", "runtime", Go$Uint64, ""]]);
-0Ç" parforÇÜ	parfor = go$pkg.parfor = go$newType(0, "Struct", "runtime.parfor", "parfor", "runtime", function(body_, done_, nthr_, nthrmax_, thrseq_, cnt_, ctx_, wait_, thr_, pad_, nsteal_, nstealcnt_, nprocyield_, nosyield_, nsleep_) {
+0lfnode0 0ÇEparforÇÜ	parfor = go$pkg.parfor = go$newType(0, "Struct", "runtime.parfor", "parfor", "runtime", function(body_, done_, nthr_, nthrmax_, thrseq_, cnt_, ctx_, wait_, thr_, pad_, nsteal_, nstealcnt_, nprocyield_, nosyield_, nsleep_) {
 		this.go$val = this;
 		this.body = body_ !== undefined ? body_ : go$throwNilPointerError;
 		this.done = done_ !== undefined ? done_ : 0;
@@ -560,20 +565,20 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.nsleep = nsleep_ !== undefined ? nsleep_ : new Go$Uint64(0, 0);
 	});
 Çä		parfor.init([["body", "runtime", (go$funcType([(go$ptrType(parfor)), Go$Uint32], [], false)), ""], ["done", "runtime", Go$Uint32, ""], ["nthr", "runtime", Go$Uint32, ""], ["nthrmax", "runtime", Go$Uint32, ""], ["thrseq", "runtime", Go$Uint32, ""], ["cnt", "runtime", Go$Uint32, ""], ["ctx", "runtime", Go$UnsafePointer, ""], ["wait", "runtime", Go$Uint8, ""], ["thr", "runtime", (go$ptrType(parforthread)), ""], ["pad", "runtime", Go$Uint32, ""], ["nsteal", "runtime", Go$Uint64, ""], ["nstealcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""]]);
-0ÇÇ cgomalÇ	cgomal = go$pkg.cgomal = go$newType(0, "Struct", "runtime.cgomal", "cgomal", "runtime", function(next_, alloc_) {
+0parfor00runtimeparforthread0ÇåcgomalÇ	cgomal = go$pkg.cgomal = go$newType(0, "Struct", "runtime.cgomal", "cgomal", "runtime", function(next_, alloc_) {
 		this.go$val = this;
 		this.next = next_ !== undefined ? next_ : (go$ptrType(cgomal)).nil;
 		this.alloc = alloc_ !== undefined ? alloc_ : 0;
 	});
 l		cgomal.init([["next", "runtime", (go$ptrType(cgomal)), ""], ["alloc", "runtime", Go$UnsafePointer, ""]]);
-0Ç 	debugvarsÇm	debugvars = go$pkg.debugvars = go$newType(0, "Struct", "runtime.debugvars", "debugvars", "runtime", function(gctrace_, schedtrace_, scheddetail_) {
+0cgomal0 0Ç	debugvarsÇm	debugvars = go$pkg.debugvars = go$newType(0, "Struct", "runtime.debugvars", "debugvars", "runtime", function(gctrace_, schedtrace_, scheddetail_) {
 		this.go$val = this;
 		this.gctrace = gctrace_ !== undefined ? gctrace_ : 0;
 		this.schedtrace = schedtrace_ !== undefined ? schedtrace_ : 0;
 		this.scheddetail = scheddetail_ !== undefined ? scheddetail_ : 0;
 	});
 Åç		debugvars.init([["gctrace", "runtime", Go$Int32, ""], ["schedtrace", "runtime", Go$Int32, ""], ["scheddetail", "runtime", Go$Int32, ""]]);
-0Çg algÇ´	alg = go$pkg.alg = go$newType(0, "Struct", "runtime.alg", "alg", "runtime", function(hash_, equal_, print_, copy_) {
+0	debugvars0 0ÇnalgÇ´	alg = go$pkg.alg = go$newType(0, "Struct", "runtime.alg", "alg", "runtime", function(hash_, equal_, print_, copy_) {
 		this.go$val = this;
 		this.hash = hash_ !== undefined ? hash_ : go$throwNilPointerError;
 		this.equal = equal_ !== undefined ? equal_ : go$throwNilPointerError;
@@ -581,7 +586,7 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.copy = copy_ !== undefined ? copy_ : go$throwNilPointerError;
 	});
 Ç≠		alg.init([["hash", "runtime", (go$funcType([(go$ptrType(Go$Uint64)), Go$Uint64, Go$UnsafePointer], [], false)), ""], ["equal", "runtime", (go$funcType([(go$ptrType(Go$Uint8)), Go$Uint64, Go$UnsafePointer, Go$UnsafePointer], [], false)), ""], ["print", "runtime", (go$funcType([Go$Uint64, Go$UnsafePointer], [], false)), ""], ["copy", "runtime", (go$funcType([Go$Uint64, Go$UnsafePointer, Go$UnsafePointer], [], false)), ""]]);
-0ÇP _deferÇ«	_defer = go$pkg._defer = go$newType(0, "Struct", "runtime._defer", "_defer", "runtime", function(siz_, special_, free_, argp_, pc_, fn_, link_, args_) {
+0alg0 0Çn_deferÇ«	_defer = go$pkg._defer = go$newType(0, "Struct", "runtime._defer", "_defer", "runtime", function(siz_, special_, free_, argp_, pc_, fn_, link_, args_) {
 		this.go$val = this;
 		this.siz = siz_ !== undefined ? siz_ : 0;
 		this.special = special_ !== undefined ? special_ : 0;
@@ -593,14 +598,15 @@ _complex64Å˚	_complex64 = go$pkg._complex64 = go$newType(0, "Struct", "runtime.
 		this.args = args_ !== undefined ? args_ : go$makeNativeArray("UnsafePointer", 1, function() { return 0; });
 	});
 Çw		_defer.init([["siz", "runtime", Go$Int32, ""], ["special", "runtime", Go$Uint8, ""], ["free", "runtime", Go$Uint8, ""], ["argp", "runtime", (go$ptrType(Go$Uint8)), ""], ["pc", "runtime", (go$ptrType(Go$Uint8)), ""], ["fn", "runtime", (go$ptrType(funcval)), ""], ["link", "runtime", (go$ptrType(_defer)), ""], ["args", "runtime", (go$arrayType(Go$UnsafePointer, 1)), ""]]);
-0Ç£ 
+0-defer00runtimefuncval0Ç±
 deferchunkÇ$	deferchunk = go$pkg.deferchunk = go$newType(0, "Struct", "runtime.deferchunk", "deferchunk", "runtime", function(prev_, off_) {
 		this.go$val = this;
 		this.prev = prev_ !== undefined ? prev_ : (go$ptrType(deferchunk)).nil;
 		this.off = off_ !== undefined ? off_ : new Go$Uint64(0, 0);
 	});
 k		deferchunk.init([["prev", "runtime", (go$ptrType(deferchunk)), ""], ["off", "runtime", Go$Uint64, ""]]);
-0Çs _panicÇ≤	_panic = go$pkg._panic = go$newType(0, "Struct", "runtime._panic", "_panic", "runtime", function(arg_, stackbase_, link_, recovered_) {
+0
+deferchunk0 0Çè_panicÇ≤	_panic = go$pkg._panic = go$newType(0, "Struct", "runtime._panic", "_panic", "runtime", function(arg_, stackbase_, link_, recovered_) {
 		this.go$val = this;
 		this.arg = arg_ !== undefined ? arg_ : new eface.Ptr();
 		this.stackbase = stackbase_ !== undefined ? stackbase_ : new Go$Uint64(0, 0);
@@ -608,7 +614,7 @@ deferchunkÇ$	deferchunk = go$pkg.deferchunk = go$newType(0, "Struct", "runtime
 		this.recovered = recovered_ !== undefined ? recovered_ : 0;
 	});
 Å∞		_panic.init([["arg", "runtime", eface, ""], ["stackbase", "runtime", Go$Uint64, ""], ["link", "runtime", (go$ptrType(_panic)), ""], ["recovered", "runtime", Go$Uint8, ""]]);
-0Ç stkframeÇπ	stkframe = go$pkg.stkframe = go$newType(0, "Struct", "runtime.stkframe", "stkframe", "runtime", function(fn_, pc_, lr_, sp_, fp_, varp_, argp_, arglen_) {
+0-panic00runtimeeface0Ç:stkframeÇπ	stkframe = go$pkg.stkframe = go$newType(0, "Struct", "runtime.stkframe", "stkframe", "runtime", function(fn_, pc_, lr_, sp_, fp_, varp_, argp_, arglen_) {
 		this.go$val = this;
 		this.fn = fn_ !== undefined ? fn_ : (go$ptrType(_func)).nil;
 		this.pc = pc_ !== undefined ? pc_ : new Go$Uint64(0, 0);
@@ -620,12 +626,13 @@ deferchunkÇ$	deferchunk = go$pkg.deferchunk = go$newType(0, "Struct", "runtime
 		this.arglen = arglen_ !== undefined ? arglen_ : new Go$Uint64(0, 0);
 	});
 ÇO		stkframe.init([["fn", "runtime", (go$ptrType(_func)), ""], ["pc", "runtime", Go$Uint64, ""], ["lr", "runtime", Go$Uint64, ""], ["sp", "runtime", Go$Uint64, ""], ["fp", "runtime", Go$Uint64, ""], ["varp", "runtime", (go$ptrType(Go$Uint8)), ""], ["argp", "runtime", (go$ptrType(Go$Uint8)), ""], ["arglen", "runtime", Go$Uint64, ""]]);
-0Ç mlinkÅ«	mlink = go$pkg.mlink = go$newType(0, "Struct", "runtime.mlink", "mlink", "runtime", function(next_) {
+0
+stkframe00runtime-func0ÇmlinkÅ«	mlink = go$pkg.mlink = go$newType(0, "Struct", "runtime.mlink", "mlink", "runtime", function(next_) {
 		this.go$val = this;
 		this.next = next_ !== undefined ? next_ : (go$ptrType(mlink)).nil;
 	});
 >		mlink.init([["next", "runtime", (go$ptrType(mlink)), ""]]);
-0Ç| fixallocÇ 	fixalloc = go$pkg.fixalloc = go$newType(0, "Struct", "runtime.fixalloc", "fixalloc", "runtime", function(size_, first_, arg_, list_, chunk_, nchunk_, inuse_, stat_) {
+0mlink0 0ÇöfixallocÇ 	fixalloc = go$pkg.fixalloc = go$newType(0, "Struct", "runtime.fixalloc", "fixalloc", "runtime", function(size_, first_, arg_, list_, chunk_, nchunk_, inuse_, stat_) {
 		this.go$val = this;
 		this.size = size_ !== undefined ? size_ : new Go$Uint64(0, 0);
 		this.first = first_ !== undefined ? first_ : go$throwNilPointerError;
@@ -637,14 +644,15 @@ deferchunkÇ$	deferchunk = go$pkg.deferchunk = go$newType(0, "Struct", "runtime
 		this.stat = stat_ !== undefined ? stat_ : (go$ptrType(Go$Uint64)).nil;
 	});
 Çû		fixalloc.init([["size", "runtime", Go$Uint64, ""], ["first", "runtime", (go$funcType([Go$UnsafePointer, (go$ptrType(Go$Uint8))], [], false)), ""], ["arg", "runtime", Go$UnsafePointer, ""], ["list", "runtime", (go$ptrType(mlink)), ""], ["chunk", "runtime", (go$ptrType(Go$Uint8)), ""], ["nchunk", "runtime", Go$Uint32, ""], ["inuse", "runtime", Go$Uint64, ""], ["stat", "runtime", (go$ptrType(Go$Uint64)), ""]]);
-0Ç‘ _1_ÇI	_1_ = go$pkg._1_ = go$newType(0, "Struct", "runtime._1_", "_1_", "runtime", function(size_, nmalloc_, nfree_) {
+0
+fixalloc00runtimemlink0Ç€_1_ÇI	_1_ = go$pkg._1_ = go$newType(0, "Struct", "runtime._1_", "_1_", "runtime", function(size_, nmalloc_, nfree_) {
 		this.go$val = this;
 		this.size = size_ !== undefined ? size_ : 0;
 		this.nmalloc = nmalloc_ !== undefined ? nmalloc_ : new Go$Uint64(0, 0);
 		this.nfree = nfree_ !== undefined ? nfree_ : new Go$Uint64(0, 0);
 	});
 ~		_1_.init([["size", "runtime", Go$Uint32, ""], ["nmalloc", "runtime", Go$Uint64, ""], ["nfree", "runtime", Go$Uint64, ""]]);
-0ÇË mstatsÇ	mstats = go$pkg.mstats = go$newType(0, "Struct", "runtime.mstats", "mstats", "runtime", function(alloc_, total_alloc_, sys_, nlookup_, nmalloc_, nfree_, heap_alloc_, heap_sys_, heap_idle_, heap_inuse_, heap_released_, heap_objects_, stacks_inuse_, stacks_sys_, mspan_inuse_, mspan_sys_, mcache_inuse_, mcache_sys_, buckhash_sys_, gc_sys_, other_sys_, next_gc_, last_gc_, pause_total_ns_, pause_ns_, numgc_, enablegc_, debuggc_, by_size_) {
+0-1-0 0ÇmstatsÇ	mstats = go$pkg.mstats = go$newType(0, "Struct", "runtime.mstats", "mstats", "runtime", function(alloc_, total_alloc_, sys_, nlookup_, nmalloc_, nfree_, heap_alloc_, heap_sys_, heap_idle_, heap_inuse_, heap_released_, heap_objects_, stacks_inuse_, stacks_sys_, mspan_inuse_, mspan_sys_, mcache_inuse_, mcache_sys_, buckhash_sys_, gc_sys_, other_sys_, next_gc_, last_gc_, pause_total_ns_, pause_ns_, numgc_, enablegc_, debuggc_, by_size_) {
 		this.go$val = this;
 		this.alloc = alloc_ !== undefined ? alloc_ : new Go$Uint64(0, 0);
 		this.total_alloc = total_alloc_ !== undefined ? total_alloc_ : new Go$Uint64(0, 0);
@@ -677,14 +685,15 @@ deferchunkÇ$	deferchunk = go$pkg.deferchunk = go$newType(0, "Struct", "runtime
 		this.by_size = by_size_ !== undefined ? by_size_ : go$makeNativeArray("Struct", 61, function() { return new _1_.Ptr(); });
 	});
 Ç–		mstats.init([["alloc", "runtime", Go$Uint64, ""], ["total_alloc", "runtime", Go$Uint64, ""], ["sys", "runtime", Go$Uint64, ""], ["nlookup", "runtime", Go$Uint64, ""], ["nmalloc", "runtime", Go$Uint64, ""], ["nfree", "runtime", Go$Uint64, ""], ["heap_alloc", "runtime", Go$Uint64, ""], ["heap_sys", "runtime", Go$Uint64, ""], ["heap_idle", "runtime", Go$Uint64, ""], ["heap_inuse", "runtime", Go$Uint64, ""], ["heap_released", "runtime", Go$Uint64, ""], ["heap_objects", "runtime", Go$Uint64, ""], ["stacks_inuse", "runtime", Go$Uint64, ""], ["stacks_sys", "runtime", Go$Uint64, ""], ["mspan_inuse", "runtime", Go$Uint64, ""], ["mspan_sys", "runtime", Go$Uint64, ""], ["mcache_inuse", "runtime", Go$Uint64, ""], ["mcache_sys", "runtime", Go$Uint64, ""], ["buckhash_sys", "runtime", Go$Uint64, ""], ["gc_sys", "runtime", Go$Uint64, ""], ["other_sys", "runtime", Go$Uint64, ""], ["next_gc", "runtime", Go$Uint64, ""], ["last_gc", "runtime", Go$Uint64, ""], ["pause_total_ns", "runtime", Go$Uint64, ""], ["pause_ns", "runtime", (go$arrayType(Go$Uint64, 256)), ""], ["numgc", "runtime", Go$Uint32, ""], ["enablegc", "runtime", Go$Uint8, ""], ["debuggc", "runtime", Go$Uint8, ""], ["by_size", "runtime", (go$arrayType(_1_, 61)), ""]]);
-0Çë 
+0mstats00runtime-1-0Ç±
 mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime.mcachelist", "mcachelist", "runtime", function(list_, nlist_) {
 		this.go$val = this;
 		this.list = list_ !== undefined ? list_ : (go$ptrType(mlink)).nil;
 		this.nlist = nlist_ !== undefined ? nlist_ : 0;
 	});
 h		mcachelist.init([["list", "runtime", (go$ptrType(mlink)), ""], ["nlist", "runtime", Go$Uint32, ""]]);
-0ÇX mcacheÇ”	mcache = go$pkg.mcache = go$newType(0, "Struct", "runtime.mcache", "mcache", "runtime", function(next_sample_, local_cachealloc_, list_, local_nlookup_, local_largefree_, local_nlargefree_, local_nsmallfree_) {
+0
+mcachelist00runtimemlink0ÇymcacheÇ”	mcache = go$pkg.mcache = go$newType(0, "Struct", "runtime.mcache", "mcache", "runtime", function(next_sample_, local_cachealloc_, list_, local_nlookup_, local_largefree_, local_nlargefree_, local_nsmallfree_) {
 		this.go$val = this;
 		this.next_sample = next_sample_ !== undefined ? next_sample_ : 0;
 		this.local_cachealloc = local_cachealloc_ !== undefined ? local_cachealloc_ : new Go$Int64(0, 0);
@@ -695,13 +704,14 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.local_nsmallfree = local_nsmallfree_ !== undefined ? local_nsmallfree_ : go$makeNativeArray("Uint64", 61, function() { return new Go$Uint64(0, 0); });
 	});
 Çs		mcache.init([["next_sample", "runtime", Go$Int32, ""], ["local_cachealloc", "runtime", Go$Int64, ""], ["list", "runtime", (go$arrayType(mcachelist, 61)), ""], ["local_nlookup", "runtime", Go$Uint64, ""], ["local_largefree", "runtime", Go$Uint64, ""], ["local_nlargefree", "runtime", Go$Uint64, ""], ["local_nsmallfree", "runtime", (go$arrayType(Go$Uint64, 61)), ""]]);
-0Çà mtypesÇ	mtypes = go$pkg.mtypes = go$newType(0, "Struct", "runtime.mtypes", "mtypes", "runtime", function(compression_, data_) {
+0mcache00runtime
+mcachelist0ÇímtypesÇ	mtypes = go$pkg.mtypes = go$newType(0, "Struct", "runtime.mtypes", "mtypes", "runtime", function(compression_, data_) {
 		this.go$val = this;
 		this.compression = compression_ !== undefined ? compression_ : 0;
 		this.data = data_ !== undefined ? data_ : new Go$Uint64(0, 0);
 	});
 _		mtypes.init([["compression", "runtime", Go$Uint8, ""], ["data", "runtime", Go$Uint64, ""]]);
-0Ç≤ mspanÇx	mspan = go$pkg.mspan = go$newType(0, "Struct", "runtime.mspan", "mspan", "runtime", function(next_, prev_, start_, npages_, freelist_, ref_, sizeclass_, elemsize_, state_, unusedsince_, npreleased_, limit_, types_) {
+0mtypes0 0Ç‡mspanÇx	mspan = go$pkg.mspan = go$newType(0, "Struct", "runtime.mspan", "mspan", "runtime", function(next_, prev_, start_, npages_, freelist_, ref_, sizeclass_, elemsize_, state_, unusedsince_, npreleased_, limit_, types_) {
 		this.go$val = this;
 		this.next = next_ !== undefined ? next_ : (go$ptrType(mspan)).nil;
 		this.prev = prev_ !== undefined ? prev_ : (go$ptrType(mspan)).nil;
@@ -718,7 +728,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.types = types_ !== undefined ? types_ : new mtypes.Ptr();
 	});
 Ç)		mspan.init([["next", "runtime", (go$ptrType(mspan)), ""], ["prev", "runtime", (go$ptrType(mspan)), ""], ["start", "runtime", Go$Uint64, ""], ["npages", "runtime", Go$Uint64, ""], ["freelist", "runtime", (go$ptrType(mlink)), ""], ["ref", "runtime", Go$Uint32, ""], ["sizeclass", "runtime", Go$Int32, ""], ["elemsize", "runtime", Go$Uint64, ""], ["state", "runtime", Go$Uint32, ""], ["unusedsince", "runtime", Go$Int64, ""], ["npreleased", "runtime", Go$Uint64, ""], ["limit", "runtime", (go$ptrType(Go$Uint8)), ""], ["types", "runtime", mtypes, ""]]);
-0Çº mcentralÇÍ	mcentral = go$pkg.mcentral = go$newType(0, "Struct", "runtime.mcentral", "mcentral", "runtime", function(lock_, sizeclass_, nonempty_, empty_, nfree_) {
+0mspan0%0runtimemlink0runtimemtypes0ÇÎmcentralÇÍ	mcentral = go$pkg.mcentral = go$newType(0, "Struct", "runtime.mcentral", "mcentral", "runtime", function(lock_, sizeclass_, nonempty_, empty_, nfree_) {
 		this.go$val = this;
 		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
 		this.sizeclass = sizeclass_ !== undefined ? sizeclass_ : 0;
@@ -727,13 +737,14 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.nfree = nfree_ !== undefined ? nfree_ : 0;
 	});
 Åø		mcentral.init([["", "runtime", lock, ""], ["sizeclass", "runtime", Go$Int32, ""], ["nonempty", "runtime", mspan, ""], ["empty", "runtime", mspan, ""], ["nfree", "runtime", Go$Int32, ""]]);
-0Ç§ _2_Ç4	_2_ = go$pkg._2_ = go$newType(0, "Struct", "runtime._2_", "_2_", "runtime", function(mcentral_, pad_) {
+0
+mcentral0#0runtimelock0runtimemspan0Ç¿_2_Ç4	_2_ = go$pkg._2_ = go$newType(0, "Struct", "runtime._2_", "_2_", "runtime", function(mcentral_, pad_) {
 		this.go$val = this;
 		this.mcentral = mcentral_ !== undefined ? mcentral_ : new mcentral.Ptr();
 		this.pad = pad_ !== undefined ? pad_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
 	});
 c		_2_.init([["", "runtime", mcentral, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
-0Çf mheapÇ¬	mheap = go$pkg.mheap = go$newType(0, "Struct", "runtime.mheap", "mheap", "runtime", function(lock_, free_, large_, allspans_, nspan_, nspancap_, spans_, spans_mapped_, bitmap_, bitmap_mapped_, arena_start_, arena_used_, arena_end_, central_, spanalloc_, cachealloc_, largefree_, nlargefree_, nsmallfree_) {
+0-2-00runtimemcentral0Ç∑mheapÇ¬	mheap = go$pkg.mheap = go$newType(0, "Struct", "runtime.mheap", "mheap", "runtime", function(lock_, free_, large_, allspans_, nspan_, nspancap_, spans_, spans_mapped_, bitmap_, bitmap_mapped_, arena_start_, arena_used_, arena_end_, central_, spanalloc_, cachealloc_, largefree_, nlargefree_, nsmallfree_) {
 		this.go$val = this;
 		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
 		this.free = free_ !== undefined ? free_ : go$makeNativeArray("Struct", 256, function() { return new mspan.Ptr(); });
@@ -756,7 +767,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.nsmallfree = nsmallfree_ !== undefined ? nsmallfree_ : go$makeNativeArray("Uint64", 61, function() { return new Go$Uint64(0, 0); });
 	});
 Çì		mheap.init([["", "runtime", lock, ""], ["free", "runtime", (go$arrayType(mspan, 256)), ""], ["large", "runtime", mspan, ""], ["allspans", "runtime", (go$ptrType((go$ptrType(mspan)))), ""], ["nspan", "runtime", Go$Uint32, ""], ["nspancap", "runtime", Go$Uint32, ""], ["spans", "runtime", (go$ptrType((go$ptrType(mspan)))), ""], ["spans_mapped", "runtime", Go$Uint64, ""], ["bitmap", "runtime", (go$ptrType(Go$Uint8)), ""], ["bitmap_mapped", "runtime", Go$Uint64, ""], ["arena_start", "runtime", (go$ptrType(Go$Uint8)), ""], ["arena_used", "runtime", (go$ptrType(Go$Uint8)), ""], ["arena_end", "runtime", (go$ptrType(Go$Uint8)), ""], ["central", "runtime", (go$arrayType(_2_, 61)), ""], ["spanalloc", "runtime", fixalloc, ""], ["cachealloc", "runtime", fixalloc, ""], ["largefree", "runtime", Go$Uint64, ""], ["nlargefree", "runtime", Go$Uint64, ""], ["nsmallfree", "runtime", (go$arrayType(Go$Uint64, 61)), ""]]);
-0ÇI _typeÇ`	_type = go$pkg._type = go$newType(0, "Struct", "runtime._type", "_type", "runtime", function(size_, hash_, _unused_, align_, fieldalign_, kind_, alg_, gc_, _string_, x_, ptrto_) {
+0mheap0H0runtimelock0runtimemspan0runtime-2-0runtimefixalloc0Ç{_typeÇ`	_type = go$pkg._type = go$newType(0, "Struct", "runtime._type", "_type", "runtime", function(size_, hash_, _unused_, align_, fieldalign_, kind_, alg_, gc_, _string_, x_, ptrto_) {
 		this.go$val = this;
 		this.size = size_ !== undefined ? size_ : new Go$Uint64(0, 0);
 		this.hash = hash_ !== undefined ? hash_ : 0;
@@ -771,7 +782,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.ptrto = ptrto_ !== undefined ? ptrto_ : (go$ptrType(_type)).nil;
 	});
 Çÿ		_type.init([["size", "runtime", Go$Uint64, ""], ["hash", "runtime", Go$Uint32, ""], ["_unused", "runtime", Go$Uint8, ""], ["align", "runtime", Go$Uint8, ""], ["fieldalign", "runtime", Go$Uint8, ""], ["kind", "runtime", Go$Uint8, ""], ["alg", "runtime", (go$ptrType(alg)), ""], ["gc", "runtime", Go$UnsafePointer, ""], ["_string", "runtime", (go$ptrType(Go$String)), ""], ["x", "runtime", (go$ptrType(uncommontype)), ""], ["ptrto", "runtime", (go$ptrType(_type)), ""]]);
-0Ç† methodÇO	method = go$pkg.method = go$newType(0, "Struct", "runtime.method", "method", "runtime", function(name_, pkgpath_, mtyp_, typ_, ifn_, tfn_) {
+0-type0)0runtimealg0runtimeuncommontype0ÇºmethodÇO	method = go$pkg.method = go$newType(0, "Struct", "runtime.method", "method", "runtime", function(name_, pkgpath_, mtyp_, typ_, ifn_, tfn_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgpath = pkgpath_ !== undefined ? pkgpath_ : (go$ptrType(Go$String)).nil;
@@ -781,7 +792,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.tfn = tfn_ !== undefined ? tfn_ : go$throwNilPointerError;
 	});
 Ç?		method.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgpath", "runtime", (go$ptrType(Go$String)), ""], ["mtyp", "runtime", (go$ptrType(_type)), ""], ["typ", "runtime", (go$ptrType(_type)), ""], ["ifn", "runtime", (go$funcType([], [], false)), ""], ["tfn", "runtime", (go$funcType([], [], false)), ""]]);
-0Ç˛ uncommontypeÇ	uncommontype = go$pkg.uncommontype = go$newType(0, "Struct", "runtime.uncommontype", "uncommontype", "runtime", function(name_, pkgpath_, mhdr_, m_) {
+0method00runtime-type0Ç!uncommontypeÇ	uncommontype = go$pkg.uncommontype = go$newType(0, "Struct", "runtime.uncommontype", "uncommontype", "runtime", function(name_, pkgpath_, mhdr_, m_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgpath = pkgpath_ !== undefined ? pkgpath_ : (go$ptrType(Go$String)).nil;
@@ -789,21 +800,21 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.m = m_ !== undefined ? m_ : go$makeNativeArray("Struct", 0, function() { return new method.Ptr(); });
 	});
 Å‚		uncommontype.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgpath", "runtime", (go$ptrType(Go$String)), ""], ["mhdr", "runtime", (go$sliceType(Go$Uint8)), ""], ["m", "runtime", (go$arrayType(method, 0)), ""]]);
-0Ç9 imethodÇ	imethod = go$pkg.imethod = go$newType(0, "Struct", "runtime.imethod", "imethod", "runtime", function(name_, pkgpath_, _type_) {
+0uncommontype00runtimemethod0ÇVimethodÇ	imethod = go$pkg.imethod = go$newType(0, "Struct", "runtime.imethod", "imethod", "runtime", function(name_, pkgpath_, _type_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgpath = pkgpath_ !== undefined ? pkgpath_ : (go$ptrType(Go$String)).nil;
 		this._type = _type_ !== undefined ? _type_ : (go$ptrType(_type)).nil;
 	});
 Å®		imethod.init([["name", "runtime", (go$ptrType(Go$String)), ""], ["pkgpath", "runtime", (go$ptrType(Go$String)), ""], ["_type", "runtime", (go$ptrType(_type)), ""]]);
-0ÇW interfacetypeÇ¶	interfacetype = go$pkg.interfacetype = go$newType(0, "Struct", "runtime.interfacetype", "interfacetype", "runtime", function(_type_, mhdr_, m_) {
+0	imethod00runtime-type0ÇéinterfacetypeÇ¶	interfacetype = go$pkg.interfacetype = go$newType(0, "Struct", "runtime.interfacetype", "interfacetype", "runtime", function(_type_, mhdr_, m_) {
 		this.go$val = this;
 		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
 		this.mhdr = mhdr_ !== undefined ? mhdr_ : (go$sliceType(Go$Uint8)).nil;
 		this.m = m_ !== undefined ? m_ : go$makeNativeArray("Struct", 0, function() { return new imethod.Ptr(); });
 	});
 Åô		interfacetype.init([["", "runtime", _type, ""], ["mhdr", "runtime", (go$sliceType(Go$Uint8)), ""], ["m", "runtime", (go$arrayType(imethod, 0)), ""]]);
-0Ç¯ maptypeÇˇ	maptype = go$pkg.maptype = go$newType(0, "Struct", "runtime.maptype", "maptype", "runtime", function(_type_, key_, elem_, bucket_, hmap_) {
+0interfacetype0&0runtime-type0runtimeimethod0ÇmaptypeÇˇ	maptype = go$pkg.maptype = go$newType(0, "Struct", "runtime.maptype", "maptype", "runtime", function(_type_, key_, elem_, bucket_, hmap_) {
 		this.go$val = this;
 		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
 		this.key = key_ !== undefined ? key_ : (go$ptrType(_type)).nil;
@@ -812,20 +823,21 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.hmap = hmap_ !== undefined ? hmap_ : (go$ptrType(_type)).nil;
 	});
 ÅÁ		maptype.init([["", "runtime", _type, ""], ["key", "runtime", (go$ptrType(_type)), ""], ["elem", "runtime", (go$ptrType(_type)), ""], ["bucket", "runtime", (go$ptrType(_type)), ""], ["hmap", "runtime", (go$ptrType(_type)), ""]]);
-0ÇÚ chantypeÇ_	chantype = go$pkg.chantype = go$newType(0, "Struct", "runtime.chantype", "chantype", "runtime", function(_type_, elem_, dir_) {
+0	maptype00runtime-type0ÇchantypeÇ_	chantype = go$pkg.chantype = go$newType(0, "Struct", "runtime.chantype", "chantype", "runtime", function(_type_, elem_, dir_) {
 		this.go$val = this;
 		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
 		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(_type)).nil;
 		this.dir = dir_ !== undefined ? dir_ : new Go$Uint64(0, 0);
 	});
 ÅÄ		chantype.init([["", "runtime", _type, ""], ["elem", "runtime", (go$ptrType(_type)), ""], ["dir", "runtime", Go$Uint64, ""]]);
-0Çê 	slicetypeÇ	slicetype = go$pkg.slicetype = go$newType(0, "Struct", "runtime.slicetype", "slicetype", "runtime", function(_type_, elem_) {
+0
+chantype00runtime-type0ÇØ	slicetypeÇ	slicetype = go$pkg.slicetype = go$newType(0, "Struct", "runtime.slicetype", "slicetype", "runtime", function(_type_, elem_) {
 		this.go$val = this;
 		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
 		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(_type)).nil;
 	});
 ^		slicetype.init([["", "runtime", _type, ""], ["elem", "runtime", (go$ptrType(_type)), ""]]);
-0ÇÑ functypeÇ∑	functype = go$pkg.functype = go$newType(0, "Struct", "runtime.functype", "functype", "runtime", function(_type_, dotdotdot_, in$2_, out_) {
+0	slicetype00runtime-type0Ç¢functypeÇ∑	functype = go$pkg.functype = go$newType(0, "Struct", "runtime.functype", "functype", "runtime", function(_type_, dotdotdot_, in$2_, out_) {
 		this.go$val = this;
 		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
 		this.dotdotdot = dotdotdot_ !== undefined ? dotdotdot_ : 0;
@@ -833,14 +845,15 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.out = out_ !== undefined ? out_ : (go$sliceType(Go$Uint8)).nil;
 	});
 Å∫		functype.init([["", "runtime", _type, ""], ["dotdotdot", "runtime", Go$Uint8, ""], ["in", "runtime", (go$sliceType(Go$Uint8)), ""], ["out", "runtime", (go$sliceType(Go$Uint8)), ""]]);
-0ÇÑ ptrtypeÇ	ptrtype = go$pkg.ptrtype = go$newType(0, "Struct", "runtime.ptrtype", "ptrtype", "runtime", function(_type_, elem_) {
+0
+functype00runtime-type0Ç°ptrtypeÇ	ptrtype = go$pkg.ptrtype = go$newType(0, "Struct", "runtime.ptrtype", "ptrtype", "runtime", function(_type_, elem_) {
 		this.go$val = this;
 		this._type = _type_ !== undefined ? _type_ : new _type.Ptr();
 		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(_type)).nil;
 	});
 \		ptrtype.init([["", "runtime", _type, ""], ["elem", "runtime", (go$ptrType(_type)), ""]]);
-0Ç
-î schedÇ	sched = go$pkg.sched = go$newType(0, "Struct", "runtime.sched", "sched", "runtime", function(lock_, goidgen_, midle_, nmidle_, nmidlelocked_, mcount_, maxmcount_, pidle_, npidle_, nmspinning_, runqhead_, runqtail_, runqsize_, gflock_, gfree_, gcwaiting_, stopwait_, stopnote_, sysmonwait_, sysmonnote_, lastpoll_, profilehz_) {
+0	ptrtype00runtime-type0Ç
+ÈschedÇ	sched = go$pkg.sched = go$newType(0, "Struct", "runtime.sched", "sched", "runtime", function(lock_, goidgen_, midle_, nmidle_, nmidlelocked_, mcount_, maxmcount_, pidle_, npidle_, nmspinning_, runqhead_, runqtail_, runqsize_, gflock_, gfree_, gcwaiting_, stopwait_, stopnote_, sysmonwait_, sysmonnote_, lastpoll_, profilehz_) {
 		this.go$val = this;
 		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
 		this.goidgen = goidgen_ !== undefined ? goidgen_ : new Go$Uint64(0, 0);
@@ -866,14 +879,14 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.profilehz = profilehz_ !== undefined ? profilehz_ : 0;
 	});
 Çv		sched.init([["", "runtime", lock, ""], ["goidgen", "runtime", Go$Uint64, ""], ["midle", "runtime", (go$ptrType(m)), ""], ["nmidle", "runtime", Go$Int32, ""], ["nmidlelocked", "runtime", Go$Int32, ""], ["mcount", "runtime", Go$Int32, ""], ["maxmcount", "runtime", Go$Int32, ""], ["pidle", "runtime", (go$ptrType(p)), ""], ["npidle", "runtime", Go$Uint32, ""], ["nmspinning", "runtime", Go$Uint32, ""], ["runqhead", "runtime", (go$ptrType(g)), ""], ["runqtail", "runtime", (go$ptrType(g)), ""], ["runqsize", "runtime", Go$Int32, ""], ["gflock", "runtime", lock, ""], ["gfree", "runtime", (go$ptrType(g)), ""], ["gcwaiting", "runtime", Go$Uint32, ""], ["stopwait", "runtime", Go$Int32, ""], ["stopnote", "runtime", note, ""], ["sysmonwait", "runtime", Go$Uint32, ""], ["sysmonnote", "runtime", note, ""], ["lastpoll", "runtime", Go$Uint64, ""], ["profilehz", "runtime", Go$Int32, ""]]);
-0Ç cgothreadstartÇ[	cgothreadstart = go$pkg.cgothreadstart = go$newType(0, "Struct", "runtime.cgothreadstart", "cgothreadstart", "runtime", function(m_, g_, fn_) {
+0sched0L0runtimelock0runtimem0runtimep0runtimeg0runtimenote0Ç>cgothreadstartÇ[	cgothreadstart = go$pkg.cgothreadstart = go$newType(0, "Struct", "runtime.cgothreadstart", "cgothreadstart", "runtime", function(m_, g_, fn_) {
 		this.go$val = this;
 		this.m = m_ !== undefined ? m_ : (go$ptrType(m)).nil;
 		this.g = g_ !== undefined ? g_ : (go$ptrType(g)).nil;
 		this.fn = fn_ !== undefined ? fn_ : go$throwNilPointerError;
 	});
 Åú		cgothreadstart.init([["m", "runtime", (go$ptrType(m)), ""], ["g", "runtime", (go$ptrType(g)), ""], ["fn", "runtime", (go$funcType([], [], false)), ""]]);
-0Çñ _3_ÇÆ	_3_ = go$pkg._3_ = go$newType(0, "Struct", "runtime._3_", "_3_", "runtime", function(lock_, fn_, hz_, pcbuf_) {
+0cgothreadstart00runtimem0runtimeg0ÇÆ_3_ÇÆ	_3_ = go$pkg._3_ = go$newType(0, "Struct", "runtime._3_", "_3_", "runtime", function(lock_, fn_, hz_, pcbuf_) {
 		this.go$val = this;
 		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
 		this.fn = fn_ !== undefined ? fn_ : go$throwNilPointerError;
@@ -881,7 +894,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.pcbuf = pcbuf_ !== undefined ? pcbuf_ : go$makeNativeArray("Uint64", 100, function() { return new Go$Uint64(0, 0); });
 	});
 Å⁄		_3_.init([["", "runtime", lock, ""], ["fn", "runtime", (go$funcType([(go$ptrType(Go$Uint64)), Go$Int32], [], false)), ""], ["hz", "runtime", Go$Int32, ""], ["pcbuf", "runtime", (go$arrayType(Go$Uint64, 100)), ""]]);
-0Çõ pdescÇ’	pdesc = go$pkg.pdesc = go$newType(0, "Struct", "runtime.pdesc", "pdesc", "runtime", function(schedtick_, schedwhen_, syscalltick_, syscallwhen_) {
+0-3-00runtimelock0Ç§pdescÇ’	pdesc = go$pkg.pdesc = go$newType(0, "Struct", "runtime.pdesc", "pdesc", "runtime", function(schedtick_, schedwhen_, syscalltick_, syscallwhen_) {
 		this.go$val = this;
 		this.schedtick = schedtick_ !== undefined ? schedtick_ : 0;
 		this.schedwhen = schedwhen_ !== undefined ? schedwhen_ : new Go$Int64(0, 0);
@@ -889,14 +902,14 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.syscallwhen = syscallwhen_ !== undefined ? syscallwhen_ : new Go$Int64(0, 0);
 	});
 Å∂		pdesc.init([["schedtick", "runtime", Go$Uint32, ""], ["schedwhen", "runtime", Go$Int64, ""], ["syscalltick", "runtime", Go$Uint32, ""], ["syscallwhen", "runtime", Go$Int64, ""]]);
-0ÇÜ bucketÇ¬	bucket = go$pkg.bucket = go$newType(0, "Struct", "runtime.bucket", "bucket", "runtime", function(tophash_, overflow_, data_) {
+0pdesc0 0ÇêbucketÇ¬	bucket = go$pkg.bucket = go$newType(0, "Struct", "runtime.bucket", "bucket", "runtime", function(tophash_, overflow_, data_) {
 		this.go$val = this;
 		this.tophash = tophash_ !== undefined ? tophash_ : go$makeNativeArray("Uint8", 8, function() { return 0; });
 		this.overflow = overflow_ !== undefined ? overflow_ : (go$ptrType(bucket)).nil;
 		this.data = data_ !== undefined ? data_ : go$makeNativeArray("Uint8", 1, function() { return 0; });
 	});
 Å≥		bucket.init([["tophash", "runtime", (go$arrayType(Go$Uint8, 8)), ""], ["overflow", "runtime", (go$ptrType(bucket)), ""], ["data", "runtime", (go$arrayType(Go$Uint8, 1)), ""]]);
-0Ç hmapÇY	hmap = go$pkg.hmap = go$newType(0, "Struct", "runtime.hmap", "hmap", "runtime", function(count_, flags_, hash0_, b_, keysize_, valuesize_, bucketsize_, buckets_, oldbuckets_, nevacuate_) {
+0bucket0 0ÇhmapÇY	hmap = go$pkg.hmap = go$newType(0, "Struct", "runtime.hmap", "hmap", "runtime", function(count_, flags_, hash0_, b_, keysize_, valuesize_, bucketsize_, buckets_, oldbuckets_, nevacuate_) {
 		this.go$val = this;
 		this.count = count_ !== undefined ? count_ : new Go$Uint64(0, 0);
 		this.flags = flags_ !== undefined ? flags_ : 0;
@@ -910,7 +923,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.nevacuate = nevacuate_ !== undefined ? nevacuate_ : new Go$Uint64(0, 0);
 	});
 Ç™		hmap.init([["count", "runtime", Go$Uint64, ""], ["flags", "runtime", Go$Uint32, ""], ["hash0", "runtime", Go$Uint32, ""], ["b", "runtime", Go$Uint8, ""], ["keysize", "runtime", Go$Uint8, ""], ["valuesize", "runtime", Go$Uint8, ""], ["bucketsize", "runtime", Go$Uint16, ""], ["buckets", "runtime", (go$ptrType(Go$Uint8)), ""], ["oldbuckets", "runtime", (go$ptrType(Go$Uint8)), ""], ["nevacuate", "runtime", Go$Uint64, ""]]);
-0Ç3 	hash_iterÇ	hash_iter = go$pkg.hash_iter = go$newType(0, "Struct", "runtime.hash_iter", "hash_iter", "runtime", function(key_, value_, t_, h_, endbucket_, wrapped_, b_, buckets_, bucket_, bptr_, i_, check_bucket_) {
+0hmap0 0Çx	hash_iterÇ	hash_iter = go$pkg.hash_iter = go$newType(0, "Struct", "runtime.hash_iter", "hash_iter", "runtime", function(key_, value_, t_, h_, endbucket_, wrapped_, b_, buckets_, bucket_, bptr_, i_, check_bucket_) {
 		this.go$val = this;
 		this.key = key_ !== undefined ? key_ : (go$ptrType(Go$Uint8)).nil;
 		this.value = value_ !== undefined ? value_ : (go$ptrType(Go$Uint8)).nil;
@@ -926,7 +939,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.check_bucket = check_bucket_ !== undefined ? check_bucket_ : new Go$Int64(0, 0);
 	});
 Ç		hash_iter.init([["key", "runtime", (go$ptrType(Go$Uint8)), ""], ["value", "runtime", (go$ptrType(Go$Uint8)), ""], ["t", "runtime", (go$ptrType(maptype)), ""], ["h", "runtime", (go$ptrType(hmap)), ""], ["endbucket", "runtime", Go$Uint64, ""], ["wrapped", "runtime", Go$Uint8, ""], ["b", "runtime", Go$Uint8, ""], ["buckets", "runtime", (go$ptrType(Go$Uint8)), ""], ["bucket", "runtime", Go$Uint64, ""], ["bptr", "runtime", (go$ptrType(bucket)), ""], ["i", "runtime", Go$Uint64, ""], ["check_bucket", "runtime", Go$Int64, ""]]);
-0ÇÈ sudogÇÛ	sudog = go$pkg.sudog = go$newType(0, "Struct", "runtime.sudog", "sudog", "runtime", function(g_, selgen_, link_, releasetime_, elem_) {
+0	hash-iter080runtimemaptype0runtimehmap0runtimebucket0Ç sudogÇÛ	sudog = go$pkg.sudog = go$newType(0, "Struct", "runtime.sudog", "sudog", "runtime", function(g_, selgen_, link_, releasetime_, elem_) {
 		this.go$val = this;
 		this.g = g_ !== undefined ? g_ : (go$ptrType(g)).nil;
 		this.selgen = selgen_ !== undefined ? selgen_ : 0;
@@ -935,13 +948,13 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(Go$Uint8)).nil;
 	});
 ÅÊ		sudog.init([["g", "runtime", (go$ptrType(g)), ""], ["selgen", "runtime", Go$Uint32, ""], ["link", "runtime", (go$ptrType(sudog)), ""], ["releasetime", "runtime", Go$Int64, ""], ["elem", "runtime", (go$ptrType(Go$Uint8)), ""]]);
-0Çì waitqÇ	waitq = go$pkg.waitq = go$newType(0, "Struct", "runtime.waitq", "waitq", "runtime", function(first_, last_) {
+0sudog00runtimeg0ÇÆwaitqÇ	waitq = go$pkg.waitq = go$newType(0, "Struct", "runtime.waitq", "waitq", "runtime", function(first_, last_) {
 		this.go$val = this;
 		this.first = first_ !== undefined ? first_ : (go$ptrType(sudog)).nil;
 		this.last = last_ !== undefined ? last_ : (go$ptrType(sudog)).nil;
 	});
 m		waitq.init([["first", "runtime", (go$ptrType(sudog)), ""], ["last", "runtime", (go$ptrType(sudog)), ""]]);
-0ÇO hchanÇö	hchan = go$pkg.hchan = go$newType(0, "Struct", "runtime.hchan", "hchan", "runtime", function(qcount_, dataqsiz_, elemsize_, pad_, closed_, elemalg_, sendx_, recvx_, recvq_, sendq_, lock_) {
+0waitq00runtimesudog0ÇãhchanÇö	hchan = go$pkg.hchan = go$newType(0, "Struct", "runtime.hchan", "hchan", "runtime", function(qcount_, dataqsiz_, elemsize_, pad_, closed_, elemalg_, sendx_, recvx_, recvq_, sendq_, lock_) {
 		this.go$val = this;
 		this.qcount = qcount_ !== undefined ? qcount_ : new Go$Uint64(0, 0);
 		this.dataqsiz = dataqsiz_ !== undefined ? dataqsiz_ : new Go$Uint64(0, 0);
@@ -956,7 +969,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.lock = lock_ !== undefined ? lock_ : new lock.Ptr();
 	});
 Ç§		hchan.init([["qcount", "runtime", Go$Uint64, ""], ["dataqsiz", "runtime", Go$Uint64, ""], ["elemsize", "runtime", Go$Uint16, ""], ["pad", "runtime", Go$Uint16, ""], ["closed", "runtime", Go$Uint8, ""], ["elemalg", "runtime", (go$ptrType(alg)), ""], ["sendx", "runtime", Go$Uint64, ""], ["recvx", "runtime", Go$Uint64, ""], ["recvq", "runtime", waitq, ""], ["sendq", "runtime", waitq, ""], ["", "runtime", lock, ""]]);
-0Ç. scaseÇ	scase = go$pkg.scase = go$newType(0, "Struct", "runtime.scase", "scase", "runtime", function(sg_, _chan_, pc_, kind_, so_, receivedp_) {
+0hchan030runtimealg0runtimewaitq0runtimelock0Ç[scaseÇ	scase = go$pkg.scase = go$newType(0, "Struct", "runtime.scase", "scase", "runtime", function(sg_, _chan_, pc_, kind_, so_, receivedp_) {
 		this.go$val = this;
 		this.sg = sg_ !== undefined ? sg_ : new sudog.Ptr();
 		this._chan = _chan_ !== undefined ? _chan_ : (go$ptrType(hchan)).nil;
@@ -966,7 +979,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.receivedp = receivedp_ !== undefined ? receivedp_ : (go$ptrType(Go$Uint8)).nil;
 	});
 Ç		scase.init([["sg", "runtime", sudog, ""], ["_chan", "runtime", (go$ptrType(hchan)), ""], ["pc", "runtime", (go$ptrType(Go$Uint8)), ""], ["kind", "runtime", Go$Uint16, ""], ["so", "runtime", Go$Uint16, ""], ["receivedp", "runtime", (go$ptrType(Go$Uint8)), ""]]);
-0Çd _selectÇI	_select = go$pkg._select = go$newType(0, "Struct", "runtime._select", "_select", "runtime", function(tcase_, ncase_, pollorder_, lockorder_, scase_) {
+0scase0$0runtimesudog0runtimehchan0Çì_selectÇI	_select = go$pkg._select = go$newType(0, "Struct", "runtime._select", "_select", "runtime", function(tcase_, ncase_, pollorder_, lockorder_, scase_) {
 		this.go$val = this;
 		this.tcase = tcase_ !== undefined ? tcase_ : 0;
 		this.ncase = ncase_ !== undefined ? ncase_ : 0;
@@ -975,7 +988,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.scase = scase_ !== undefined ? scase_ : go$makeNativeArray("Struct", 1, function() { return new scase.Ptr(); });
 	});
 Ç		_select.init([["tcase", "runtime", Go$Uint16, ""], ["ncase", "runtime", Go$Uint16, ""], ["pollorder", "runtime", (go$ptrType(Go$Uint16)), ""], ["lockorder", "runtime", (go$ptrType((go$ptrType(hchan)))), ""], ["scase", "runtime", (go$arrayType(scase, 1)), ""]]);
-0ÇÑ runtimeselectÇ≤	runtimeselect = go$pkg.runtimeselect = go$newType(0, "Struct", "runtime.runtimeselect", "runtimeselect", "runtime", function(dir_, typ_, ch_, val_) {
+0	-select0$0runtimehchan0runtimescase0ÇºruntimeselectÇ≤	runtimeselect = go$pkg.runtimeselect = go$newType(0, "Struct", "runtime.runtimeselect", "runtimeselect", "runtime", function(dir_, typ_, ch_, val_) {
 		this.go$val = this;
 		this.dir = dir_ !== undefined ? dir_ : new Go$Uint64(0, 0);
 		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(chantype)).nil;
@@ -983,7 +996,7 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.val = val_ !== undefined ? val_ : new Go$Uint64(0, 0);
 	});
 Å∫		runtimeselect.init([["dir", "runtime", Go$Uint64, ""], ["typ", "runtime", (go$ptrType(chantype)), ""], ["ch", "runtime", (go$ptrType(hchan)), ""], ["val", "runtime", Go$Uint64, ""]]);
-0ÇH parforthreadÇ˘	parforthread = go$pkg.parforthread = go$newType(0, "Struct", "runtime.parforthread", "parforthread", "runtime", function(pos_, nsteal_, nstealcnt_, nprocyield_, nosyield_, nsleep_, pad_) {
+0runtimeselect0'0runtimechantype0runtimehchan0ÇXparforthreadÇ˘	parforthread = go$pkg.parforthread = go$newType(0, "Struct", "runtime.parforthread", "parforthread", "runtime", function(pos_, nsteal_, nstealcnt_, nprocyield_, nosyield_, nsleep_, pad_) {
 		this.go$val = this;
 		this.pos = pos_ !== undefined ? pos_ : new Go$Uint64(0, 0);
 		this.nsteal = nsteal_ !== undefined ? nsteal_ : new Go$Uint64(0, 0);
@@ -994,44 +1007,47 @@ mcachelistÇ	mcachelist = go$pkg.mcachelist = go$newType(0, "Struct", "runtime
 		this.pad = pad_ !== undefined ? pad_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
 	});
 Ç7		parforthread.init([["pos", "runtime", Go$Uint64, ""], ["nsteal", "runtime", Go$Uint64, ""], ["nstealcnt", "runtime", Go$Uint64, ""], ["nprocyield", "runtime", Go$Uint64, ""], ["nosyield", "runtime", Go$Uint64, ""], ["nsleep", "runtime", Go$Uint64, ""], ["pad", "runtime", (go$arrayType(Go$Uint8, 64)), ""]]);
-0ÅÜ 
+0parforthread0 0Åî
 Breakpointt	Breakpoint = go$pkg.Breakpoint = function() {
 		throw go$panic("Native function not implemented: Breakpoint");
 	};
- 0Åé LockOSThreadz	LockOSThread = go$pkg.LockOSThread = function() {
+ 0
+Breakpoint0 0ÅûLockOSThreadz	LockOSThread = go$pkg.LockOSThread = function() {
 		throw go$panic("Native function not implemented: LockOSThread");
 	};
- 0Åó UnlockOSThreadÅÄ	UnlockOSThread = go$pkg.UnlockOSThread = function() {
+ 0LockOSThread0 0Å©UnlockOSThreadÅÄ	UnlockOSThread = go$pkg.UnlockOSThread = function() {
 		throw go$panic("Native function not implemented: UnlockOSThread");
 	};
- 0Åë 
+ 0UnlockOSThread0 0Åü
 GOMAXPROCS	GOMAXPROCS = go$pkg.GOMAXPROCS = function(n) {
 			if (n > 1) {
 				go$notSupported("GOMAXPROCS != 1");
 			}
 			return 1;
 		};
- 0B NumCPU4	NumCPU = go$pkg.NumCPU = function() { return 1; };
- 0ÅÜ 
+ 0
+GOMAXPROCS0 0LNumCPU4	NumCPU = go$pkg.NumCPU = function() { return 1; };
+ 0NumCPU0 0Åî
 NumCgoCallt	NumCgoCall = go$pkg.NumCgoCall = function() {
 		throw go$panic("Native function not implemented: NumCgoCall");
 	};
- 0Åé NumGoroutinez	NumGoroutine = go$pkg.NumGoroutine = function() {
+ 0
+NumCgoCall0 0ÅûNumGoroutinez	NumGoroutine = go$pkg.NumGoroutine = function() {
 		throw go$panic("Native function not implemented: NumGoroutine");
 	};
- 0Ç!  Ç	MemProfileRecord.Ptr.prototype.InUseBytes = function() {
+ 0NumGoroutine0 0ÇR Ç	MemProfileRecord.Ptr.prototype.InUseBytes = function() {
 		var r, x, x$1;
 		r = this;
 		return (x = r.AllocBytes, x$1 = r.FreeBytes, new Go$Int64(x.high - x$1.high, x.low - x$1.low));
 	};
 	MemProfileRecord.prototype.InUseBytes = function() { return this.go$val.InUseBytes(); };
- 0Ç+  Ç!	MemProfileRecord.Ptr.prototype.InUseObjects = function() {
+ 0MemProfileRecord00runtimeMemProfileRecord0Ç\ Ç!	MemProfileRecord.Ptr.prototype.InUseObjects = function() {
 		var r, x, x$1;
 		r = this;
 		return (x = r.AllocObjects, x$1 = r.FreeObjects, new Go$Int64(x.high - x$1.high, x.low - x$1.low));
 	};
 	MemProfileRecord.prototype.InUseObjects = function() { return this.go$val.InUseObjects(); };
- 0Ç¥  Ç™	MemProfileRecord.Ptr.prototype.Stack = function() {
+ 0MemProfileRecord00runtimeMemProfileRecord0ÇÂ Ç™	MemProfileRecord.Ptr.prototype.Stack = function() {
 		var r, _ref, _i, v, i;
 		r = this;
 		_ref = r.Stack0;
@@ -1047,11 +1063,12 @@ NumCgoCallt	NumCgoCall = go$pkg.NumCgoCall = function() {
 		return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0);
 	};
 	MemProfileRecord.prototype.Stack = function() { return this.go$val.Stack(); };
- 0ÅÜ 
+ 0MemProfileRecord00runtimeMemProfileRecord0Åî
 MemProfilet	MemProfile = go$pkg.MemProfile = function() {
 		throw go$panic("Native function not implemented: MemProfile");
 	};
- 0Ç™  Ç†	StackRecord.Ptr.prototype.Stack = function() {
+ 0
+MemProfile0 0Ç— Ç†	StackRecord.Ptr.prototype.Stack = function() {
 		var r, _ref, _i, v, i;
 		r = this;
 		_ref = r.Stack0;
@@ -1067,32 +1084,33 @@ MemProfilet	MemProfile = go$pkg.MemProfile = function() {
 		return go$subslice(new (go$sliceType(Go$Uintptr))(r.Stack0), 0);
 	};
 	StackRecord.prototype.Stack = function() { return this.go$val.Stack(); };
- 0Å´ ThreadCreateProfileÅè	ThreadCreateProfile = go$pkg.ThreadCreateProfile = function() {
+ 0StackRecord00runtimeStackRecord0Å¬ThreadCreateProfileÅè	ThreadCreateProfile = go$pkg.ThreadCreateProfile = function() {
 		throw go$panic("Native function not implemented: ThreadCreateProfile");
 	};
- 0Åü GoroutineProfileÅÜ	GoroutineProfile = go$pkg.GoroutineProfile = function() {
+ 0ThreadCreateProfile0 0Å≥GoroutineProfileÅÜ	GoroutineProfile = go$pkg.GoroutineProfile = function() {
 		throw go$panic("Native function not implemented: GoroutineProfile");
 	};
- 0ÅÜ 
+ 0GoroutineProfile0 0Åî
 CPUProfilet	CPUProfile = go$pkg.CPUProfile = function() {
 		throw go$panic("Native function not implemented: CPUProfile");
 	};
- 0Å£ SetCPUProfileRateÅâ	SetCPUProfileRate = go$pkg.SetCPUProfileRate = function() {
+ 0
+CPUProfile0 0Å∏SetCPUProfileRateÅâ	SetCPUProfileRate = go$pkg.SetCPUProfileRate = function() {
 		throw go$panic("Native function not implemented: SetCPUProfileRate");
 	};
- 0Å´ SetBlockProfileRateÅè	SetBlockProfileRate = go$pkg.SetBlockProfileRate = function() {
+ 0SetCPUProfileRate0 0Å¬SetBlockProfileRateÅè	SetBlockProfileRate = go$pkg.SetBlockProfileRate = function() {
 		throw go$panic("Native function not implemented: SetBlockProfileRate");
 	};
- 0Åé BlockProfilez	BlockProfile = go$pkg.BlockProfile = function() {
+ 0SetBlockProfileRate0 0ÅûBlockProfilez	BlockProfile = go$pkg.BlockProfile = function() {
 		throw go$panic("Native function not implemented: BlockProfile");
 	};
- 0r Stacke	Stack = go$pkg.Stack = function() {
+ 0BlockProfile0 0{Stacke	Stack = go$pkg.Stack = function() {
 		throw go$panic("Native function not implemented: Stack");
 	};
- 0Å´  Å¢	TypeAssertionError.Ptr.prototype.RuntimeError = function() {
+ 0Stack0 0Å‡ Å¢	TypeAssertionError.Ptr.prototype.RuntimeError = function() {
 	};
 	TypeAssertionError.prototype.RuntimeError = function() { return this.go$val.RuntimeError(); };
- 0ÇÄ  Çv	TypeAssertionError.Ptr.prototype.Error = function() {
+ 0TypeAssertionError00runtimeTypeAssertionError0Çµ Çv	TypeAssertionError.Ptr.prototype.Error = function() {
 		var e, inter;
 		e = this;
 		inter = e.interfaceString;
@@ -1108,7 +1126,7 @@ CPUProfilet	CPUProfile = go$pkg.CPUProfile = function() {
 		return "interface conversion: " + e.concreteString + " is not " + e.assertedString + ": missing method " + e.missingMethod;
 	};
 	TypeAssertionError.prototype.Error = function() { return this.go$val.Error(); };
- 0Çã newTypeAssertionErrorÇl	newTypeAssertionError = function(ps1, ps2, ps3, pmeth, ret) {
+ 0TypeAssertionError00runtimeTypeAssertionError0Ç√newTypeAssertionErrorÇl	newTypeAssertionError = function(ps1, ps2, ps3, pmeth, ret) {
 		var _tuple, s1, s2, s3, meth;
 		_tuple = ["", "", "", ""], s1 = _tuple[0], s2 = _tuple[1], s3 = _tuple[2], meth = _tuple[3];
 		if (!(go$pointerIsEqual(ps1, (go$ptrType(Go$String)).nil))) {
@@ -1125,42 +1143,43 @@ CPUProfilet	CPUProfile = go$pkg.CPUProfile = function() {
 		}
 		ret.go$set(new TypeAssertionError.Ptr(s1, s2, s3, meth));
 	};
- 0Å‘  ÅÀ	errorString.prototype.RuntimeError = function() {
+ 0newTypeAssertionError00runtimeTypeAssertionError0Å˚ ÅÀ	errorString.prototype.RuntimeError = function() {
 		var e;
 		e = this.go$val;
 	};
 	go$ptrType(errorString).prototype.RuntimeError = function() { return new errorString(this.go$get()).RuntimeError(); };
- 0Åﬂ  Å÷	errorString.prototype.Error = function() {
+ 0errorString00runtimeerrorString0Ç Å÷	errorString.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return "runtime error: " + e;
 	};
 	go$ptrType(errorString).prototype.Error = function() { return new errorString(this.go$get()).Error(); };
- 0a newErrorStringK	newErrorString = function(s, ret) {
+ 0errorString00runtimeerrorString0ÅãnewErrorStringK	newErrorString = function(s, ret) {
 		ret.go$set(new errorString(s));
 	};
- 0Å◊  ÅŒ	errorCString.prototype.RuntimeError = function() {
+ 0newErrorString00runtimeerrorString0Ç  ÅŒ	errorCString.prototype.RuntimeError = function() {
 		var e;
 		e = this.go$val;
 	};
 	go$ptrType(errorCString).prototype.RuntimeError = function() { return new errorCString(this.go$get()).RuntimeError(); };
- 0u cstringToGob	cstringToGo = function() {
+ 0errorCString00runtimeerrorCString0ÅÑcstringToGob	cstringToGo = function() {
 		throw go$panic("Native function not implemented: cstringToGo");
 	};
- 0Å˜  ÅÓ	errorCString.prototype.Error = function() {
+ 0cstringToGo0 0Ç8 ÅÓ	errorCString.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return "runtime error: " + cstringToGo((e >>> 0));
 	};
 	go$ptrType(errorCString).prototype.Error = function() { return new errorCString(this.go$get()).Error(); };
- 0l newErrorCStringU	newErrorCString = function(s, ret) {
+ 0errorCString010runtimeerrorCString0runtimecstringToGo0ÅònewErrorCStringU	newErrorCString = function(s, ret) {
 		ret.go$set(new errorCString((s >>> 0)));
 	};
- 0r 
+ 0newErrorCString00runtimeerrorCString0ÅÄ
 typestring`	typestring = function() {
 		throw go$panic("Native function not implemented: typestring");
 	};
- 0Çv printanyÇd	printany = function(i) {
+ 0
+typestring0 0ÇÆprintanyÇd	printany = function(i) {
 		var v, _ref, _type$1;
 		_ref = i;
 		_type$1 = _ref !== null ? _ref.constructor : null;
@@ -1184,18 +1203,20 @@ typestring`	typestring = function() {
 			console.log("(", typestring(i), ") ", i);
 		}
 	};
- 0Å∫ 	panicwrapÅ®	panicwrap = function(pkg, typ, meth) {
+ 0
+printany0,0runtimestringer0runtime
+typestring0Å«	panicwrapÅ®	panicwrap = function(pkg, typ, meth) {
 		throw go$panic(new Go$String("value method " + pkg + "." + typ + "." + meth + " called using nil *" + typ + " pointer"));
 	};
- 0z Goschedk	Gosched = go$pkg.Gosched = function() {
+ 0	panicwrap0 0ÅÖGoschedk	Gosched = go$pkg.Gosched = function() {
 		throw go$panic("Native function not implemented: Gosched");
 	};
- 0| Goexitn	Goexit = go$pkg.Goexit = function() {
+ 0	Gosched0 0ÅÜGoexitn	Goexit = go$pkg.Goexit = function() {
 			var err = new Go$Error();
 			err.go$exit = true;
 			throw err;
 		};
- 0Ç. CallerÇ	Caller = go$pkg.Caller = function(skip) {
+ 0Goexit0 0Ç8CallerÇ	Caller = go$pkg.Caller = function(skip) {
 			var line = go$getStack()[skip + 3];
 			if (line === undefined) {
 				return [0, "", 0, false];
@@ -1203,25 +1224,25 @@ typestring`	typestring = function() {
 			var parts = line.substring(line.indexOf("(") + 1, line.indexOf(")")).split(":");
 			return [0, parts[0], parseInt(parts[1]), true];
 		};
- 0z Callersk	Callers = go$pkg.Callers = function() {
+ 0Caller0 0ÅÖCallersk	Callers = go$pkg.Callers = function() {
 		throw go$panic("Native function not implemented: Callers");
 	};
- 0ÅÇ 	FuncForPCq	FuncForPC = go$pkg.FuncForPC = function() {
+ 0	Callers0 0Åè	FuncForPCq	FuncForPC = go$pkg.FuncForPC = function() {
 		throw go$panic("Native function not implemented: FuncForPC");
 	};
- 0Å•  Åú	Func.Ptr.prototype.Name = function() {
+ 0	FuncForPC0 0Å÷ Åú	Func.Ptr.prototype.Name = function() {
 		var f;
 		f = this;
 		return funcname_go(f);
 	};
 	Func.prototype.Name = function() { return this.go$val.Name(); };
- 0Å©  Å†	Func.Ptr.prototype.Entry = function() {
+ 0Func0)0runtimeFunc0runtimefuncname-go0Å€ Å†	Func.Ptr.prototype.Entry = function() {
 		var f;
 		f = this;
 		return funcentry_go(f);
 	};
 	Func.prototype.Entry = function() { return this.go$val.Entry(); };
- 0Ç&  Ç	Func.Ptr.prototype.FileLine = function(pc) {
+ 0Func0*0runtimeFunc0runtimefuncentry-go0ÇW Ç	Func.Ptr.prototype.FileLine = function(pc) {
 		var file, line, f, _tuple;
 		file = "";
 		line = 0;
@@ -1230,20 +1251,20 @@ typestring`	typestring = function() {
 		return [file, line];
 	};
 	Func.prototype.FileLine = function(pc) { return this.go$val.FileLine(pc); };
- 0u funcline_gob	funcline_go = function() {
+ 0Func0)0runtimeFunc0runtimefuncline-go0ÅÑfuncline_gob	funcline_go = function() {
 		throw go$panic("Native function not implemented: funcline_go");
 	};
- 0u funcname_gob	funcname_go = function() {
+ 0funcline-go0 0ÅÑfuncname_gob	funcname_go = function() {
 		throw go$panic("Native function not implemented: funcname_go");
 	};
- 0x funcentry_god	funcentry_go = function() {
+ 0funcname-go0 0Åàfuncentry_god	funcentry_go = function() {
 		throw go$panic("Native function not implemented: funcentry_go");
 	};
- 0I SetFinalizer5	SetFinalizer = go$pkg.SetFinalizer = function() {};
- 0ÅÇ 	getgorootq	getgoroot = function() {
+ 0funcentry-go0 0YSetFinalizer5	SetFinalizer = go$pkg.SetFinalizer = function() {};
+ 0SetFinalizer0 0Åè	getgorootq	getgoroot = function() {
 			return (typeof process !== 'undefined') ? (process.env["GOROOT"] || "") : "/";
 		};
- 0Åñ GOROOTÅá	GOROOT = go$pkg.GOROOT = function() {
+ 0	getgoroot0 0Å∂GOROOTÅá	GOROOT = go$pkg.GOROOT = function() {
 		var s;
 		s = getgoroot();
 		if (!(s === "")) {
@@ -1251,18 +1272,19 @@ typestring`	typestring = function() {
 		}
 		return "/usr/local/go";
 	};
- 0N Version?	Version = go$pkg.Version = function() {
+ 0GOROOT00runtime	getgoroot0YVersion?	Version = go$pkg.Version = function() {
 		return "go1.2";
 	};
- 0I ReadMemStats5	ReadMemStats = go$pkg.ReadMemStats = function() {};
- 0+ GC!	GC = go$pkg.GC = function() {};
- 0S gc_m_ptrC	gc_m_ptr = function(ret) {
+ 0	Version0 0YReadMemStats5	ReadMemStats = go$pkg.ReadMemStats = function() {};
+ 0ReadMemStats0 01GC!	GC = go$pkg.GC = function() {};
+ 0GC0 0mgc_m_ptrC	gc_m_ptr = function(ret) {
 		ret.go$set((go$ptrType(m)).nil);
 	};
- 0\ gc_itab_ptrI	gc_itab_ptr = function(ret) {
+ 0
+gc-m-ptr00runtimem0|gc_itab_ptrI	gc_itab_ptr = function(ret) {
 		ret.go$set((go$ptrType(itab)).nil);
 	};
- 0Ç„ 	funpack64Ç–	funpack64 = function(f) {
+ 0gc-itab-ptr00runtimeitab0Ç	funpack64Ç–	funpack64 = function(f) {
 		var sign, mant, exp, inf, nan$1, _ref;
 		sign = new Go$Uint64(0, 0);
 		mant = new Go$Uint64(0, 0);
@@ -1294,7 +1316,7 @@ typestring`	typestring = function() {
 		}
 		return [sign, mant, exp, inf, nan$1];
 	};
- 0Ç‹ 	funpack32Ç…	funpack32 = function(f) {
+ 0	funpack640 0ÇÈ	funpack32Ç…	funpack32 = function(f) {
 		var sign, mant, exp, inf, nan$1, _ref;
 		sign = 0;
 		mant = 0;
@@ -1326,8 +1348,8 @@ typestring`	typestring = function() {
 		}
 		return [sign, mant, exp, inf, nan$1];
 	};
- 0Ç
-Å fpack64Ç
+ 0	funpack320 0Ç
+åfpack64Ç
 p	fpack64 = function(sign, mant, exp, trunc) {
 		var _tuple, mant0, exp0, trunc0, x, x$1, x$2, _tuple$1, x$3, x$4, x$5, x$6, x$7, x$8;
 		_tuple = [mant, exp, trunc], mant0 = _tuple[0], exp0 = _tuple[1], trunc0 = _tuple[2];
@@ -1378,7 +1400,7 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		}
 		return (x$6 = (x$7 = go$shiftLeft64(new Go$Uint64(0, (exp - -1023 >> 0)), 52), new Go$Uint64(sign.high | x$7.high, (sign.low | x$7.low) >>> 0)), x$8 = new Go$Uint64(mant.high & 1048575, (mant.low & 4294967295) >>> 0), new Go$Uint64(x$6.high | x$8.high, (x$6.low | x$8.low) >>> 0));
 	};
- 0Ç∂ fpack32Ç•	fpack32 = function(sign, mant, exp, trunc) {
+ 0	fpack640 0Ç¡fpack32Ç•	fpack32 = function(sign, mant, exp, trunc) {
 		var _tuple, mant0, exp0, trunc0, _tuple$1;
 		_tuple = [mant, exp, trunc], mant0 = _tuple[0], exp0 = _tuple[1], trunc0 = _tuple[2];
 		if (mant === 0) {
@@ -1428,7 +1450,7 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		}
 		return (((sign | (((exp - -127 >> 0) >>> 0) << 23 >>> 0)) >>> 0) | ((mant & 8388607) >>> 0)) >>> 0;
 	};
- 0Ç) fadd64Ç	fadd64 = function(f, g$1) {
+ 0	fpack320 0Ç]fadd64Ç	fadd64 = function(f, g$1) {
 		var _tuple, fs, fm, fe, fi, fn, _tuple$1, gs, gm, ge, gi, gn, x, _tuple$2, shift, x$1, x$2, trunc, x$3, x$4;
 		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
 		_tuple$1 = funpack64(g$1), gs = _tuple$1[0], gm = _tuple$1[1], ge = _tuple$1[2], gi = _tuple$1[3], gn = _tuple$1[4];
@@ -1471,13 +1493,13 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		}
 		return fpack64(fs, fm, fe - 2 >> 0, trunc);
 	};
- 0P fsub64B	fsub64 = function(f, g$1) {
+ 0fadd640*0runtime	funpack640runtimefpack640ÅÄfsub64B	fsub64 = function(f, g$1) {
 		return fadd64(f, fneg64(g$1));
 	};
- 0j fneg64\	fneg64 = function(f) {
+ 0fsub640&0runtimefadd640runtimefneg640tfneg64\	fneg64 = function(f) {
 		return new Go$Uint64(f.high ^ 2147483648, (f.low ^ 0) >>> 0);
 	};
- 0Çú fmul64Çå	fmul64 = function(f, g$1) {
+ 0fneg640 0Ç‚fmul64Çå	fmul64 = function(f, g$1) {
 		var _tuple, fs, fm, fe, fi, fn, _tuple$1, gs, gm, ge, gi, gn, _tuple$2, lo, hi, shift, x, x$1, trunc, x$2, x$3, mant;
 		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
 		_tuple$1 = funpack64(g$1), gs = _tuple$1[0], gm = _tuple$1[1], ge = _tuple$1[2], gi = _tuple$1[3], gn = _tuple$1[4];
@@ -1498,7 +1520,7 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		mant = (x$2 = go$shiftLeft64(hi, ((64 - shift >>> 0))), x$3 = go$shiftRightUint64(lo, shift), new Go$Uint64(x$2.high | x$3.high, (x$2.low | x$3.low) >>> 0));
 		return fpack64(new Go$Uint64(fs.high ^ gs.high, (fs.low ^ gs.low) >>> 0), mant, (fe + ge >> 0) - 1 >> 0, trunc);
 	};
- 0Ç fdiv64Ç	fdiv64 = function(f, g$1) {
+ 0fmul640<0runtime	funpack640runtimemullu0runtimefpack640ÇYfdiv64Ç	fdiv64 = function(f, g$1) {
 		var _tuple, fs, fm, fe, fi, fn, _tuple$1, gs, gm, ge, gi, gn, x, x$1, _tuple$2, shift, _tuple$3, q, r;
 		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
 		_tuple$1 = funpack64(g$1), gs = _tuple$1[0], gm = _tuple$1[1], ge = _tuple$1[2], gi = _tuple$1[3], gn = _tuple$1[4];
@@ -1518,7 +1540,7 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		_tuple$3 = divlu(go$shiftRightUint64(fm, ((64 - shift >>> 0))), go$shiftLeft64(fm, shift), gm), q = _tuple$3[0], r = _tuple$3[1];
 		return fpack64(new Go$Uint64(fs.high ^ gs.high, (fs.low ^ gs.low) >>> 0), q, (fe - ge >> 0) - 2 >> 0, r);
 	};
- 0Çﬁ f64to32ÇÕ	f64to32 = function(f) {
+ 0fdiv640<0runtime	funpack640runtimedivlu0runtimefpack640Çf64to32ÇÕ	f64to32 = function(f) {
 		var _tuple, fs, fm, fe, fi, fn, fs32;
 		_tuple = funpack64(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
 		if (fn) {
@@ -1530,7 +1552,7 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		}
 		return fpack32(fs32, (go$shiftRightUint64(fm, 28).low >>> 0), fe - 1 >> 0, (new Go$Uint64(fm.high & 0, (fm.low & 268435455) >>> 0).low >>> 0));
 	};
- 0Ç‹ f32to64ÇÀ	f32to64 = function(f) {
+ 0	f64to320*0runtime	funpack640runtimefpack320Çf32to64ÇÀ	f32to64 = function(f) {
 		var _tuple, fs, fm, fe, fi, fn, fs64;
 		_tuple = funpack32(f), fs = _tuple[0], fm = _tuple[1], fe = _tuple[2], fi = _tuple[3], fn = _tuple[4];
 		if (fn) {
@@ -1542,7 +1564,7 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		}
 		return fpack64(fs64, go$shiftLeft64(new Go$Uint64(0, fm), 29), fe, new Go$Uint64(0, 0));
 	};
- 0ÇŸ fcmp64Ç…	fcmp64 = function(f, g$1) {
+ 0	f32to640*0runtime	funpack320runtimefpack640Ç˘fcmp64Ç…	fcmp64 = function(f, g$1) {
 		var cmp, isnan, _tuple, fs, fm, fi, fn, _tuple$1, gs, gm, gi, gn, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8;
 		cmp = 0;
 		isnan = false;
@@ -1570,7 +1592,7 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		_tuple$8 = [0, false], cmp = _tuple$8[0], isnan = _tuple$8[1];
 		return [cmp, isnan];
 	};
- 0Çp f64tointÇ^	f64toint = function(f) {
+ 0fcmp6400runtime	funpack640Çíf64tointÇ^	f64toint = function(f) {
 		var val, ok, _tuple, fs, fm, fe, fi, fn, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6;
 		val = new Go$Int64(0, 0);
 		ok = false;
@@ -1608,7 +1630,8 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		_tuple$6 = [val, true], val = _tuple$6[0], ok = _tuple$6[1];
 		return [val, ok];
 	};
- 0Çí fintto64ÇÄ	fintto64 = function(val) {
+ 0
+f64toint00runtime	funpack640Ç≤fintto64ÇÄ	fintto64 = function(val) {
 		var f, x, fs, mant;
 		f = new Go$Uint64(0, 0);
 		fs = (x = new Go$Uint64(val.high, val.low), new Go$Uint64(x.high & 2147483648, (x.low & 0) >>> 0));
@@ -1619,7 +1642,8 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		f = fpack64(fs, mant, 52, new Go$Uint64(0, 0));
 		return f;
 	};
- 0ÇΩ mulluÇÆ	mullu = function(u, v) {
+ 0
+fintto6400runtimefpack640Ç∆mulluÇÆ	mullu = function(u, v) {
 		var lo, hi, u0, u1, v0, v1, w0, x, x$1, t, w1, w2, x$2, x$3, x$4, x$5, _tuple;
 		lo = new Go$Uint64(0, 0);
 		hi = new Go$Uint64(0, 0);
@@ -1635,7 +1659,7 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		_tuple = [go$mul64(u, v), (x$3 = (x$4 = go$mul64(u1, v1), new Go$Uint64(x$4.high + w2.high, x$4.low + w2.low)), x$5 = go$shiftRightUint64(w1, 32), new Go$Uint64(x$3.high + x$5.high, x$3.low + x$5.low))], lo = _tuple[0], hi = _tuple[1];
 		return [lo, hi];
 	};
- 0ÇÇ divluÇs	divlu = function(u1, u0, v) {
+ 0mullu0 0ÇãdivluÇs	divlu = function(u1, u0, v) {
 		var go$this = this, q, r, _tuple, s, x, vn1, vn0, x$1, x$2, un32, un10, un1, un0, q1, x$3, rhat, x$4, x$5, x$6, x$7, x$8, x$9, x$10, un21, q0, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, _tuple$1;
 		q = new Go$Uint64(0, 0);
 		r = new Go$Uint64(0, 0);
@@ -1680,97 +1704,114 @@ p	fpack64 = function(sign, mant, exp, trunc) {
 		return [q, r];
 		/* */ } break; } }; return go$f();
 	};
- 0T fadd64cE	fadd64c = function(f, g$1, ret) {
+ 0divlu0 0rfadd64cE	fadd64c = function(f, g$1, ret) {
 		ret.go$set(fadd64(f, g$1));
 	};
- 0T fsub64cE	fsub64c = function(f, g$1, ret) {
+ 0	fadd64c00runtimefadd640rfsub64cE	fsub64c = function(f, g$1, ret) {
 		ret.go$set(fsub64(f, g$1));
 	};
- 0T fmul64cE	fmul64c = function(f, g$1, ret) {
+ 0	fsub64c00runtimefsub640rfmul64cE	fmul64c = function(f, g$1, ret) {
 		ret.go$set(fmul64(f, g$1));
 	};
- 0T fdiv64cE	fdiv64c = function(f, g$1, ret) {
+ 0	fmul64c00runtimefmul640rfdiv64cE	fdiv64c = function(f, g$1, ret) {
 		ret.go$set(fdiv64(f, g$1));
 	};
- 0J fneg64c;	fneg64c = function(f, ret) {
+ 0	fdiv64c00runtimefdiv640hfneg64c;	fneg64c = function(f, ret) {
 		ret.go$set(fneg64(f));
 	};
- 0M f32to64c=	f32to64c = function(f, ret) {
+ 0	fneg64c00runtimefneg640mf32to64c=	f32to64c = function(f, ret) {
 		ret.go$set(f32to64(f));
 	};
- 0M f64to32c=	f64to32c = function(f, ret) {
+ 0
+f32to64c00runtimef32to640mf64to32c=	f64to32c = function(f, ret) {
 		ret.go$set(f64to32(f));
 	};
- 0Åô fcmp64cÅâ	fcmp64c = function(f, g$1, ret, retnan) {
+ 0
+f64to32c00runtimef64to320Å∑fcmp64cÅâ	fcmp64c = function(f, g$1, ret, retnan) {
 		var _tuple;
 		_tuple = fcmp64(f, g$1), ret.go$set(_tuple[0]), retnan.go$set(_tuple[1]);
 	};
- 0T 	fintto64cC	fintto64c = function(val, ret) {
+ 0	fcmp64c00runtimefcmp640v	fintto64cC	fintto64c = function(val, ret) {
 		ret.go$set(fintto64(val));
 	};
- 0Åì 	f64tointcÅÅ	f64tointc = function(f, ret, retok) {
+ 0	fintto64c00runtimefintto640Åµ	f64tointcÅÅ	f64tointc = function(f, ret, retok) {
 		var _tuple;
 		_tuple = f64toint(f), ret.go$set(_tuple[0]), retok.go$set(_tuple[1]);
 	};
- 0    01 sizeof_C_MStats 		sizeof_C_MStats = 3712;
-01 memStats !		memStats = new MemStats.Ptr();
-0( precisestack 		precisestack = 0;
-0e algarray U		algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
-0O startup_random_data 4		startup_random_data = (go$ptrType(Go$Uint8)).nil;
-0> startup_random_data_len 		startup_random_data_len = 0;
-0' emptystring 		emptystring = "";
-02 zerobase "		zerobase = new Go$Uint64(0, 0);
-0* allg 		allg = (go$ptrType(g)).nil;
-0, lastg 		lastg = (go$ptrType(g)).nil;
-0* allm 		allm = (go$ptrType(m)).nil;
-08 allp ,		allp = (go$ptrType((go$ptrType(p)))).nil;
-0$ 
+ 0	f64tointc00runtimef64toint0   0MemProfileRate0 0`sizeof_C_MStats 		sizeof_C_MStats = 3712;
+0sizeof-C-MStats00runtimesizeof-C-MStats0gmemStats !		memStats = new MemStats.Ptr();
+0
+memStats0*0runtimeMemStats0runtimememStats0Qprecisestack 		precisestack = 0;
+0precisestack00runtimeprecisestack0Åñalgarray U		algarray = go$makeNativeArray("Struct", 22, function() { return new alg.Ptr(); });
+0
+algarray0%0runtimealg0runtimealgarray0ÅÜstartup_random_data 4		startup_random_data = (go$ptrType(Go$Uint8)).nil;
+0startup-random-data0 0runtimestartup-random-data0}startup_random_data_len 		startup_random_data_len = 0;
+0startup-random-data-len0$0"runtimestartup-random-data-len0Nemptystring 		emptystring = "";
+0emptystring00runtimeemptystring0Szerobase "		zerobase = new Go$Uint64(0, 0);
+0
+zerobase00runtimezerobase0Qallg 		allg = (go$ptrType(g)).nil;
+0allg00runtimeg0runtimeallg0Ulastg 		lastg = (go$ptrType(g)).nil;
+0lastg0 0runtimeg0runtimelastg0Qallm 		allm = (go$ptrType(m)).nil;
+0allm00runtimem0runtimeallm0_allp ,		allp = (go$ptrType((go$ptrType(p)))).nil;
+0allp00runtimep0runtimeallp0I
 gomaxprocs 		gomaxprocs = 0;
-0$ 
+0
+gomaxprocs00runtime
+gomaxprocs0I
 needextram 		needextram = 0;
-0" 	panicking 		panicking = 0;
-00 goos $		goos = (go$ptrType(Go$Int8)).nil;
-0 ncpu 		ncpu = 0;
-0 iscgo 		iscgo = 0;
-04 sysargs %		sysargs = go$throwNilPointerError;
-04 	maxstring #		maxstring = new Go$Uint64(0, 0);
-0" 	hchansize 		hchansize = 0;
-0" 	cpuid_ecx 		cpuid_ecx = 0;
-0" 	cpuid_edx 		cpuid_edx = 0;
-0, debug 		debug = new debugvars.Ptr();
-0: maxstacksize &		maxstacksize = new Go$Uint64(0, 0);
-0A blockprofilerate )		blockprofilerate = new Go$Int64(0, 0);
-0" 	worldsema 		worldsema = 0;
-0 nan 		nan = 0;
-0 posinf 		posinf = 0;
-0 neginf 		neginf = 0;
-0/ memstats 		memstats = new mstats.Ptr();
-0b class_to_size M		class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
-0p class_to_allocnpages T		class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
-0d size_to_class8 N		size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
-0h size_to_class128 P		size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
-0  checking 		checking = 0;
-0 m0 		m0 = new m.Ptr();
-0 g0 		g0 = new g.Ptr();
-0. extram  		extram = (go$ptrType(m)).nil;
-0  newprocs 		newprocs = 0;
-02 	scavenger !		scavenger = new funcval.Ptr();
-00 initdone  		initdone = new funcval.Ptr();
-0H _cgo_thread_start /		_cgo_thread_start = go$throwNilPointerError;
-0$ prof 		prof = new _3_.Ptr();
-0Z 
+0
+needextram00runtime
+needextram0E	panicking 		panicking = 0;
+0	panicking00runtime	panicking0Igoos $		goos = (go$ptrType(Go$Int8)).nil;
+0goos00runtimegoos01ncpu 		ncpu = 0;
+0ncpu00runtimencpu05iscgo 		iscgo = 0;
+0iscgo00runtimeiscgo0Ssysargs %		sysargs = go$throwNilPointerError;
+0	sysargs00runtimesysargs0W	maxstring #		maxstring = new Go$Uint64(0, 0);
+0	maxstring00runtime	maxstring0E	hchansize 		hchansize = 0;
+0	hchansize00runtime	hchansize0E	cpuid_ecx 		cpuid_ecx = 0;
+0	cpuid-ecx00runtime	cpuid-ecx0E	cpuid_edx 		cpuid_edx = 0;
+0	cpuid-edx00runtime	cpuid-edx0]debug 		debug = new debugvars.Ptr();
+0debug0(0runtime	debugvars0runtimedebug0cmaxstacksize &		maxstacksize = new Go$Uint64(0, 0);
+0maxstacksize00runtimemaxstacksize0rblockprofilerate )		blockprofilerate = new Go$Int64(0, 0);
+0blockprofilerate00runtimeblockprofilerate0E	worldsema 		worldsema = 0;
+0	worldsema00runtime	worldsema0-nan 		nan = 0;
+0nan00runtimenan09posinf 		posinf = 0;
+0posinf00runtimeposinf09neginf 		neginf = 0;
+0neginf00runtimeneginf0cmemstats 		memstats = new mstats.Ptr();
+0
+memstats0(0runtimemstats0runtimememstats0Åçclass_to_size M		class_to_size = go$makeNativeArray("Int32", 61, function() { return 0; });
+0class-to-size00runtimeclass-to-size0Å©class_to_allocnpages T		class_to_allocnpages = go$makeNativeArray("Int32", 61, function() { return 0; });
+0class-to-allocnpages0!0runtimeclass-to-allocnpages0Åësize_to_class8 N		size_to_class8 = go$makeNativeArray("Int8", 129, function() { return 0; });
+0size-to-class800runtimesize-to-class80Åôsize_to_class128 P		size_to_class128 = go$makeNativeArray("Int8", 249, function() { return 0; });
+0size-to-class12800runtimesize-to-class1280Achecking 		checking = 0;
+0
+checking00runtimechecking0Am0 		m0 = new m.Ptr();
+0m000runtimem0runtimem00Ag0 		g0 = new g.Ptr();
+0g000runtimeg0runtimeg00Yextram  		extram = (go$ptrType(m)).nil;
+0extram0!0runtimem0runtimeextram0Anewprocs 		newprocs = 0;
+0
+newprocs00runtimenewprocs0i	scavenger !		scavenger = new funcval.Ptr();
+0	scavenger0*0runtimefuncval0runtime	scavenger0einitdone  		initdone = new funcval.Ptr();
+0
+initdone0)0runtimefuncval0runtimeinitdone0{_cgo_thread_start /		_cgo_thread_start = go$throwNilPointerError;
+0-cgo-thread-start00runtime-cgo-thread-start0Mprof 		prof = new _3_.Ptr();
+0prof0!0runtime-3-0runtimeprof0
 experiment H		experiment = go$makeNativeArray("Int8", 0, function() { return 0; });
-0e hash Y		hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
-0/ 	ifacelock 		ifacelock = new lock.Ptr();
-0k typelink [		typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
-0m 	etypelink \		etypelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
-0_ empty_value L		empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
-0  hashload 		hashload = 0;
-0*   "		go$pkg.MemProfileRate = 524288;
-0^  V
+0
+experiment00runtime
+experiment0Åèhash Y		hash = go$makeNativeArray("Ptr", 1009, function() { return (go$ptrType(itab)).nil; });
+0hash0"0runtimeitab0runtimehash0c	ifacelock 		ifacelock = new lock.Ptr();
+0	ifacelock0'0runtimelock0runtime	ifacelock0Åûtypelink [		typelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
+0
+typelink0'0runtime-type0runtimetypelink0Å¢	etypelink \		etypelink = go$makeNativeArray("Ptr", 0, function() { return (go$ptrType(_type)).nil; });
+0	etypelink0(0runtime-type0runtime	etypelink0ÅÜempty_value L		empty_value = go$makeNativeArray("Uint8", 128, function() { return 0; });
+0empty-value00runtimeempty-value0Ahashload 		hashload = 0;
+0
+hashload00runtimehashload0W  "		go$pkg.MemProfileRate = 524288;
+0MemProfileRate00runtimeMemProfileRate0Åó V
 			go$throwRuntimeError = function(msg) { throw go$panic(new errorString(msg)); };
-		 0Å•   Åú		if (!((sizeof_C_MStats === 3712))) {
+		 0 070runtimeerrorString0runtimeTypeAssertionError0Å√  Åú		if (!((sizeof_C_MStats === 3712))) {
 			console.log(sizeof_C_MStats, 3712);
 			throw go$panic(new Go$String("MStats vs MemStatsType size mismatch"));
 		}
-0 
+0 00runtimesizeof-C-MStats0 

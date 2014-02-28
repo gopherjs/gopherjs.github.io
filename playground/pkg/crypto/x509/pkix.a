@@ -1,5 +1,4 @@
-0Çï
-crypto/x509/pkixÇ\Ôpackage pkix
+0Çù¥crypto/x509/pkixÇ\Ôpackage pkix
 import asn1 "encoding/asn1"
 import big "math/big"
 import time "time"
@@ -278,30 +277,30 @@ type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time"
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
 $$
-0Å∆runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/binary	math/randstringsmath/bigencoding/asn1crypto/x509/pkix060encoding/asn1asn10math/bigbig0timetime0Ç6˛0Ç! AlgorithmIdentifierÇ	AlgorithmIdentifier = go$pkg.AlgorithmIdentifier = go$newType(0, "Struct", "pkix.AlgorithmIdentifier", "AlgorithmIdentifier", "crypto/x509/pkix", function(Algorithm_, Parameters_) {
+0Å∆runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtencoding/binary	math/randstringsmath/bigencoding/asn1crypto/x509/pkix060encoding/asn1asn10math/bigbig0timetime0Ç?®0ÇvAlgorithmIdentifierÇ	AlgorithmIdentifier = go$pkg.AlgorithmIdentifier = go$newType(0, "Struct", "pkix.AlgorithmIdentifier", "AlgorithmIdentifier", "crypto/x509/pkix", function(Algorithm_, Parameters_) {
 		this.go$val = this;
 		this.Algorithm = Algorithm_ !== undefined ? Algorithm_ : asn1.ObjectIdentifier.nil;
 		this.Parameters = Parameters_ !== undefined ? Parameters_ : new asn1.RawValue.Ptr();
 	});
 ÅÑ		AlgorithmIdentifier.init([["Algorithm", "", asn1.ObjectIdentifier, ""], ["Parameters", "", asn1.RawValue, "asn1:\"optional\""]]);
-0Åæ RDNSequencey	RDNSequence = go$pkg.RDNSequence = go$newType(0, "Slice", "pkix.RDNSequence", "RDNSequence", "crypto/x509/pkix", null);
+0AlgorithmIdentifier0>0!encoding/asn1ObjectIdentifier0encoding/asn1RawValue0ÅˇRDNSequencey	RDNSequence = go$pkg.RDNSequence = go$newType(0, "Slice", "pkix.RDNSequence", "RDNSequence", "crypto/x509/pkix", null);
 2		RDNSequence.init(RelativeDistinguishedNameSET);
-0Ç RelativeDistinguishedNameSETÅΩ	RelativeDistinguishedNameSET = go$pkg.RelativeDistinguishedNameSET = go$newType(0, "Slice", "pkix.RelativeDistinguishedNameSET", "RelativeDistinguishedNameSET", "crypto/x509/pkix", null);
+0RDNSequence0200crypto/x509/pkixRelativeDistinguishedNameSET0ÇiRelativeDistinguishedNameSETÅΩ	RelativeDistinguishedNameSET = go$pkg.RelativeDistinguishedNameSET = go$newType(0, "Slice", "pkix.RelativeDistinguishedNameSET", "RelativeDistinguishedNameSET", "crypto/x509/pkix", null);
 <		RelativeDistinguishedNameSET.init(AttributeTypeAndValue);
-0Ç⁄ AttributeTypeAndValueÇL	AttributeTypeAndValue = go$pkg.AttributeTypeAndValue = go$newType(0, "Struct", "pkix.AttributeTypeAndValue", "AttributeTypeAndValue", "crypto/x509/pkix", function(Type_, Value_) {
+0RelativeDistinguishedNameSET0+0)crypto/x509/pkixAttributeTypeAndValue0ÇAttributeTypeAndValueÇL	AttributeTypeAndValue = go$pkg.AttributeTypeAndValue = go$newType(0, "Struct", "pkix.AttributeTypeAndValue", "AttributeTypeAndValue", "crypto/x509/pkix", function(Type_, Value_) {
 		this.go$val = this;
 		this.Type = Type_ !== undefined ? Type_ : asn1.ObjectIdentifier.nil;
 		this.Value = Value_ !== undefined ? Value_ : null;
 	});
 o		AttributeTypeAndValue.init([["Type", "", asn1.ObjectIdentifier, ""], ["Value", "", go$emptyInterface, ""]]);
-0Ç" 	ExtensionÇv	Extension = go$pkg.Extension = go$newType(0, "Struct", "pkix.Extension", "Extension", "crypto/x509/pkix", function(Id_, Critical_, Value_) {
+0AttributeTypeAndValue0#0!encoding/asn1ObjectIdentifier0ÇR	ExtensionÇv	Extension = go$pkg.Extension = go$newType(0, "Struct", "pkix.Extension", "Extension", "crypto/x509/pkix", function(Id_, Critical_, Value_) {
 		this.go$val = this;
 		this.Id = Id_ !== undefined ? Id_ : asn1.ObjectIdentifier.nil;
 		this.Critical = Critical_ !== undefined ? Critical_ : false;
 		this.Value = Value_ !== undefined ? Value_ : (go$sliceType(Go$Uint8)).nil;
 	});
 Åò		Extension.init([["Id", "", asn1.ObjectIdentifier, ""], ["Critical", "", Go$Bool, "asn1:\"optional\""], ["Value", "", (go$sliceType(Go$Uint8)), ""]]);
-0Çj NameÇÉ	Name = go$pkg.Name = go$newType(0, "Struct", "pkix.Name", "Name", "crypto/x509/pkix", function(Country_, Organization_, OrganizationalUnit_, Locality_, Province_, StreetAddress_, PostalCode_, SerialNumber_, CommonName_, Names_) {
+0	Extension0#0!encoding/asn1ObjectIdentifier0ÇæNameÇÉ	Name = go$pkg.Name = go$newType(0, "Struct", "pkix.Name", "Name", "crypto/x509/pkix", function(Country_, Organization_, OrganizationalUnit_, Locality_, Province_, StreetAddress_, PostalCode_, SerialNumber_, CommonName_, Names_) {
 		this.go$val = this;
 		this.Country = Country_ !== undefined ? Country_ : (go$sliceType(Go$String)).nil;
 		this.Organization = Organization_ !== undefined ? Organization_ : (go$sliceType(Go$String)).nil;
@@ -317,7 +316,7 @@ $$
 Ç◊		Name.init([["Country", "", (go$sliceType(Go$String)), ""], ["Organization", "", (go$sliceType(Go$String)), ""], ["OrganizationalUnit", "", (go$sliceType(Go$String)), ""], ["Locality", "", (go$sliceType(Go$String)), ""], ["Province", "", (go$sliceType(Go$String)), ""], ["StreetAddress", "", (go$sliceType(Go$String)), ""], ["PostalCode", "", (go$sliceType(Go$String)), ""], ["SerialNumber", "", Go$String, ""], ["CommonName", "", Go$String, ""], ["Names", "", (go$sliceType(AttributeTypeAndValue)), ""]]);
 		Name.methods = [["ToRDNSequence", "", [], [RDNSequence], false]];
 		(go$ptrType(Name)).methods = [["FillFromRDNSequence", "", [(go$ptrType(RDNSequence))], [], false], ["ToRDNSequence", "", [], [RDNSequence], false]];
-0Ç7 CertificateListÇ	CertificateList = go$pkg.CertificateList = go$newType(0, "Struct", "pkix.CertificateList", "CertificateList", "crypto/x509/pkix", function(TBSCertList_, SignatureAlgorithm_, SignatureValue_) {
+0Name0L0)crypto/x509/pkixAttributeTypeAndValue0crypto/x509/pkixRDNSequence0Ç≈CertificateListÇ	CertificateList = go$pkg.CertificateList = go$newType(0, "Struct", "pkix.CertificateList", "CertificateList", "crypto/x509/pkix", function(TBSCertList_, SignatureAlgorithm_, SignatureValue_) {
 		this.go$val = this;
 		this.TBSCertList = TBSCertList_ !== undefined ? TBSCertList_ : new TBSCertificateList.Ptr();
 		this.SignatureAlgorithm = SignatureAlgorithm_ !== undefined ? SignatureAlgorithm_ : new AlgorithmIdentifier.Ptr();
@@ -325,7 +324,7 @@ $$
 	});
 Ç		CertificateList.init([["TBSCertList", "", TBSCertificateList, ""], ["SignatureAlgorithm", "", AlgorithmIdentifier, ""], ["SignatureValue", "", asn1.BitString, ""]]);
 		(go$ptrType(CertificateList)).methods = [["HasExpired", "", [time.Time], [Go$Bool], false]];
-0Ç TBSCertificateListÇÆ	TBSCertificateList = go$pkg.TBSCertificateList = go$newType(0, "Struct", "pkix.TBSCertificateList", "TBSCertificateList", "crypto/x509/pkix", function(Raw_, Version_, Signature_, Issuer_, ThisUpdate_, NextUpdate_, RevokedCertificates_, Extensions_) {
+0CertificateList0{0&crypto/x509/pkixTBSCertificateList0'crypto/x509/pkixAlgorithmIdentifier0encoding/asn1	BitString0timeTime0ÇRTBSCertificateListÇÆ	TBSCertificateList = go$pkg.TBSCertificateList = go$newType(0, "Struct", "pkix.TBSCertificateList", "TBSCertificateList", "crypto/x509/pkix", function(Raw_, Version_, Signature_, Issuer_, ThisUpdate_, NextUpdate_, RevokedCertificates_, Extensions_) {
 		this.go$val = this;
 		this.Raw = Raw_ !== undefined ? Raw_ : asn1.RawContent.nil;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -337,15 +336,16 @@ $$
 		this.Extensions = Extensions_ !== undefined ? Extensions_ : (go$sliceType(Extension)).nil;
 	});
 Ç≥		TBSCertificateList.init([["Raw", "", asn1.RawContent, ""], ["Version", "", Go$Int, "asn1:\"optional,default:2\""], ["Signature", "", AlgorithmIdentifier, ""], ["Issuer", "", RDNSequence, ""], ["ThisUpdate", "", time.Time, ""], ["NextUpdate", "", time.Time, ""], ["RevokedCertificates", "", (go$sliceType(RevokedCertificate)), "asn1:\"optional\""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"tag:0,optional,explicit\""]]);
-0Ç” RevokedCertificateÇ˝	RevokedCertificate = go$pkg.RevokedCertificate = go$newType(0, "Struct", "pkix.RevokedCertificate", "RevokedCertificate", "crypto/x509/pkix", function(SerialNumber_, RevocationTime_, Extensions_) {
+0TBSCertificateList0Åº0encoding/asn1
+RawContent0'crypto/x509/pkixAlgorithmIdentifier0crypto/x509/pkixRDNSequence0timeTime0&crypto/x509/pkixRevokedCertificate0crypto/x509/pkix	Extension0Ç'RevokedCertificateÇ˝	RevokedCertificate = go$pkg.RevokedCertificate = go$newType(0, "Struct", "pkix.RevokedCertificate", "RevokedCertificate", "crypto/x509/pkix", function(SerialNumber_, RevocationTime_, Extensions_) {
 		this.go$val = this;
 		this.SerialNumber = SerialNumber_ !== undefined ? SerialNumber_ : (go$ptrType(big.Int)).nil;
 		this.RevocationTime = RevocationTime_ !== undefined ? RevocationTime_ : new time.Time.Ptr();
 		this.Extensions = Extensions_ !== undefined ? Extensions_ : (go$sliceType(Extension)).nil;
 	});
 Åπ		RevokedCertificate.init([["SerialNumber", "", (go$ptrType(big.Int)), ""], ["RevocationTime", "", time.Time, ""], ["Extensions", "", (go$sliceType(Extension)), "asn1:\"optional\""]]);
-0Ç
-ì  Ç
+0RevokedCertificate0>0math/bigInt0timeTime0crypto/x509/pkix	Extension0Ç
+‡ Ç
 â	Name.Ptr.prototype.FillFromRDNSequence = function(rdns) {
 		var n, _ref, _i, _slice, _index, rdn, _slice$1, _index$1, _struct, atv, _struct$1, _tuple, x, value, ok, t, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _slice$5, _index$5;
 		n = this;
@@ -391,7 +391,7 @@ $$
 		}
 	};
 	Name.prototype.FillFromRDNSequence = function(rdns) { return this.go$val.FillFromRDNSequence(rdns); };
- 0Ç) 
+ 0Name0E0crypto/x509/pkixName0)crypto/x509/pkixAttributeTypeAndValue0Çî
 appendRDNsÇ	appendRDNs = function(in$1, values, oid) {
 		var s, _ref, _i, _slice, _index, value, i, _slice$1, _index$1, _slice$2, _index$2;
 		if (values.length === 0) {
@@ -409,7 +409,9 @@ appendRDNsÇ	appendRDNs = function(in$1, values, oid) {
 		}
 		return go$append(in$1, go$subslice(new RelativeDistinguishedNameSET(s.array), s.offset, s.offset + s.length));
 	};
- 0Çf  Ç\	Name.Ptr.prototype.ToRDNSequence = function() {
+ 0
+appendRDNs0]0)crypto/x509/pkixAttributeTypeAndValue00crypto/x509/pkixRelativeDistinguishedNameSET0Ç
+1 Ç\	Name.Ptr.prototype.ToRDNSequence = function() {
 		var ret, _struct, n;
 		ret = RDNSequence.nil;
 		n = (_struct = this, new Name.Ptr(_struct.Country, _struct.Organization, _struct.OrganizationalUnit, _struct.Locality, _struct.Province, _struct.StreetAddress, _struct.PostalCode, _struct.SerialNumber, _struct.CommonName, _struct.Names));
@@ -430,20 +432,27 @@ appendRDNsÇ	appendRDNs = function(in$1, values, oid) {
 		return ret;
 	};
 	Name.prototype.ToRDNSequence = function() { return this.go$val.ToRDNSequence(); };
- 0ÇQ  ÇG	CertificateList.Ptr.prototype.HasExpired = function(now) {
+ 0Name0Ç¡0crypto/x509/pkixRDNSequence0crypto/x509/pkixoidProvince0$crypto/x509/pkixoidStreetAddress0!crypto/x509/pkixoidPostalCode0#crypto/x509/pkixoidSerialNumber0crypto/x509/pkixName0crypto/x509/pkix
+appendRDNs0!encoding/asn1ObjectIdentifier0crypto/x509/pkix
+oidCountry0#crypto/x509/pkixoidOrganization0)crypto/x509/pkixoidOrganizationalUnit0crypto/x509/pkixoidLocality0!crypto/x509/pkixoidCommonName0Çó ÇG	CertificateList.Ptr.prototype.HasExpired = function(now) {
 		var certList, _struct;
 		certList = this;
 		return now.After((_struct = certList.TBSCertList.NextUpdate, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)));
 	};
 	CertificateList.prototype.HasExpired = function(now) { return this.go$val.HasExpired(now); };
- 0 
-oidCountry  0 oidOrganization  0 oidOrganizationalUnit  0 oidCommonName  0 oidSerialNumber  0 oidLocality  0 oidProvince  0 oidStreetAddress  0 oidPostalCode  0A   9		oidCountry = new (go$sliceType(Go$Int))([2, 5, 4, 6]);
-0G   ?		oidOrganization = new (go$sliceType(Go$Int))([2, 5, 4, 10]);
-0M   E		oidOrganizationalUnit = new (go$sliceType(Go$Int))([2, 5, 4, 11]);
-0D   <		oidCommonName = new (go$sliceType(Go$Int))([2, 5, 4, 3]);
-0F   >		oidSerialNumber = new (go$sliceType(Go$Int))([2, 5, 4, 5]);
-0B   :		oidLocality = new (go$sliceType(Go$Int))([2, 5, 4, 7]);
-0B   :		oidProvince = new (go$sliceType(Go$Int))([2, 5, 4, 8]);
-0G   ?		oidStreetAddress = new (go$sliceType(Go$Int))([2, 5, 4, 9]);
-0E   =		oidPostalCode = new (go$sliceType(Go$Int))([2, 5, 4, 17]);
-0    0    0 
+ 0CertificateList030#crypto/x509/pkixCertificateList0timeTime0 
+oidCountry  0
+oidCountry0 0*oidOrganization  0oidOrganization0 06oidOrganizationalUnit  0oidOrganizationalUnit0 0&oidCommonName  0oidCommonName0 0*oidSerialNumber  0oidSerialNumber0 0"oidLocality  0oidLocality0 0"oidProvince  0oidProvince0 0,oidStreetAddress  0oidStreetAddress0 0&oidPostalCode  0oidPostalCode0 0o  9		oidCountry = new (go$sliceType(Go$Int))([2, 5, 4, 6]);
+0
+oidCountry0 0crypto/x509/pkix
+oidCountry0  ?		oidOrganization = new (go$sliceType(Go$Int))([2, 5, 4, 10]);
+0oidOrganization0%0#crypto/x509/pkixoidOrganization0Åë  E		oidOrganizationalUnit = new (go$sliceType(Go$Int))([2, 5, 4, 11]);
+0oidOrganizationalUnit0+0)crypto/x509/pkixoidOrganizationalUnit0x  <		oidCommonName = new (go$sliceType(Go$Int))([2, 5, 4, 3]);
+0oidCommonName0#0!crypto/x509/pkixoidCommonName0~  >		oidSerialNumber = new (go$sliceType(Go$Int))([2, 5, 4, 5]);
+0oidSerialNumber0%0#crypto/x509/pkixoidSerialNumber0r  :		oidLocality = new (go$sliceType(Go$Int))([2, 5, 4, 7]);
+0oidLocality0!0crypto/x509/pkixoidLocality0r  :		oidProvince = new (go$sliceType(Go$Int))([2, 5, 4, 8]);
+0oidProvince0!0crypto/x509/pkixoidProvince0ÅÅ  ?		oidStreetAddress = new (go$sliceType(Go$Int))([2, 5, 4, 9]);
+0oidStreetAddress0&0$crypto/x509/pkixoidStreetAddress0y  =		oidPostalCode = new (go$sliceType(Go$Int))([2, 5, 4, 17]);
+0oidPostalCode0#0!crypto/x509/pkixoidPostalCode0
+   0 0 0
+   0 0 0 

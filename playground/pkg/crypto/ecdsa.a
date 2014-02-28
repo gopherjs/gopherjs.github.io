@@ -1,4 +1,4 @@
-0‚mÍcrypto/ecdsa‚Fÿpackage ecdsa
+0‚oócrypto/ecdsa‚Fÿpackage ecdsa
 import elliptic "crypto/elliptic"
 import io "io"
 import big "math/big"
@@ -167,7 +167,7 @@ type @"io".RuneScanner interface { @"io".ReadRune() (@"".r rune, @"".size int, @
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
 $$
-0½runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/ellipticcrypto/ecdsa080crypto/ellipticelliptic0ioio0math/bigbig0‚%¼0‚Ì 	PublicKey‚	PublicKey = go$pkg.PublicKey = go$newType(0, "Struct", "ecdsa.PublicKey", "PublicKey", "crypto/ecdsa", function(Curve_, X_, Y_) {
+0½runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/ellipticcrypto/ecdsa080crypto/ellipticelliptic0ioio0math/bigbig0‚'â0‚$	PublicKey‚	PublicKey = go$pkg.PublicKey = go$newType(0, "Struct", "ecdsa.PublicKey", "PublicKey", "crypto/ecdsa", function(Curve_, X_, Y_) {
 		this.go$val = this;
 		this.Curve = Curve_ !== undefined ? Curve_ : null;
 		this.X = X_ !== undefined ? X_ : (go$ptrType(big.Int)).nil;
@@ -188,7 +188,7 @@ $$
 ‚		PublicKey.init([["", "", elliptic.Curve, ""], ["X", "", (go$ptrType(big.Int)), ""], ["Y", "", (go$ptrType(big.Int)), ""]]);
 		PublicKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
 		(go$ptrType(PublicKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
-0‚ª 
+0	PublicKey0K0math/bigInt0crypto/ellipticCurve0crypto/ellipticCurveParams0‚
 PrivateKey‚¢	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.PrivateKey", "PrivateKey", "crypto/ecdsa", function(PublicKey_, D_) {
 		this.go$val = this;
 		this.PublicKey = PublicKey_ !== undefined ? PublicKey_ : new PublicKey.Ptr();
@@ -209,7 +209,8 @@ PrivateKey‚¢	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.P
 ‚ò		PrivateKey.init([["", "", PublicKey, ""], ["D", "", (go$ptrType(big.Int)), ""]]);
 		PrivateKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
 		(go$ptrType(PrivateKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
-0‚x randFieldElement‚^	randFieldElement = function(c, rand) {
+0
+PrivateKey0L0crypto/ecdsa	PublicKey0math/bigInt0crypto/ellipticCurveParams0‚ÂrandFieldElement‚^	randFieldElement = function(c, rand) {
 		var k, err, params, _q, b, _tuple, n;
 		k = (go$ptrType(big.Int)).nil;
 		err = null;
@@ -225,7 +226,7 @@ PrivateKey‚¢	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.P
 		k.Add(k, one);
 		return [k, err];
 	};
- 0‚ GenerateKey‚ì	GenerateKey = go$pkg.GenerateKey = function(c, rand) {
+ 0randFieldElement060math/bigInt0ioReadFull0crypto/ecdsaone0‚NGenerateKey‚ì	GenerateKey = go$pkg.GenerateKey = function(c, rand) {
 		var priv, err, _tuple, k, _tuple$1;
 		priv = (go$ptrType(PrivateKey)).nil;
 		err = null;
@@ -239,7 +240,8 @@ PrivateKey‚¢	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.P
 		_tuple$1 = c.ScalarBaseMult(k.Bytes()), priv.PublicKey.X = _tuple$1[0], priv.PublicKey.Y = _tuple$1[1];
 		return [priv, err];
 	};
- 0‚d 	hashToInt‚Q	hashToInt = function(hash, c) {
+ 0GenerateKey0>0crypto/ecdsa
+PrivateKey0 crypto/ecdsarandFieldElement0‚‚	hashToInt‚Q	hashToInt = function(hash, c) {
 		var orderBits, _q, orderBytes, ret, x, x$1, excess;
 		orderBits = c.Params().N.BitLen();
 		orderBytes = (_q = ((orderBits + 7 >> 0)) / 8, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
@@ -253,7 +255,7 @@ PrivateKey‚¢	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.P
 		}
 		return ret;
 	};
- 0‚Î Sign‚À	Sign = go$pkg.Sign = function(rand, priv, hash) {
+ 0	hashToInt00math/bigInt0‚$Sign‚À	Sign = go$pkg.Sign = function(rand, priv, hash) {
 		var r, s, err, c, N, _tuple, k, kInv, _tuple$1, _tuple$2, e;
 		r = (go$ptrType(big.Int)).nil;
 		s = (go$ptrType(big.Int)).nil;
@@ -286,7 +288,7 @@ PrivateKey‚¢	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.P
 		}
 		return [r, s, err];
 	};
- 0‚ Verify‚	Verify = go$pkg.Verify = function(pub, hash, r, s) {
+ 0Sign0N0math/bigInt0 crypto/ecdsarandFieldElement0crypto/ecdsa	hashToInt0‚RVerify‚	Verify = go$pkg.Verify = function(pub, hash, r, s) {
 		var c, N, e, w, u1, u2, _tuple, x1, y1, _tuple$1, x2, y2, _tuple$2, x, y;
 		c = pub.Curve;
 		N = c.Params().N;
@@ -311,5 +313,7 @@ PrivateKey‚¢	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.P
 		x.Mod(x, N);
 		return x.Cmp(r) === 0;
 	};
- 0 one  0@   8		one = new big.Int.Ptr().SetInt64(new Go$Int64(0, 1));
-0    0    0 
+ 0Verify0,0crypto/ecdsa	hashToInt0math/bigInt0one  0one0 0h  8		one = new big.Int.Ptr().SetInt64(new Go$Int64(0, 1));
+0 0&0math/bigInt0crypto/ecdsaone0
+   0 0 0
+   0 0 0 

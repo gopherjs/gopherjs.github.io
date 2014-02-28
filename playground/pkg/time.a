@@ -1,4 +1,4 @@
-0ÉêtimeÇ$ópackage time
+0É([timeÇ$ópackage time
 import errors "errors"
 import syscall "syscall"
 import sync "sync"
@@ -176,7 +176,7 @@ type @"".runtimeTimer struct { @"".i int32; @"".when int64; @"".period int64; @"
 type @"".zone struct { @"".name string; @"".offset int; @"".isDST bool }
 type @"".zoneTrans struct { @"".when int64; @"".index uint8; @"".isstd bool; @"".isutc bool }
 $$
-03runtimeerrorssync/atomicsyncsyscalltime0H0errorserrors0syscallsyscall0syncsync0runtimeruntime0ÉÁi0Ç˚ 
+03runtimeerrorssync/atomicsyncsyscalltime0H0errorserrors0syscallsyscall0syncsync0runtimeruntime0É40Ç	
 ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.ParseError", "ParseError", "time", function(Layout_, Value_, LayoutElem_, ValueElem_, Message_) {
 		this.go$val = this;
 		this.Layout = Layout_ !== undefined ? Layout_ : "";
@@ -187,7 +187,8 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 	});
 Ç		ParseError.init([["Layout", "", Go$String, ""], ["Value", "", Go$String, ""], ["LayoutElem", "", Go$String, ""], ["ValueElem", "", Go$String, ""], ["Message", "", Go$String, ""]]);
 		(go$ptrType(ParseError)).methods = [["Error", "", [], [Go$String], false]];
-0Ç« runtimeTimerÇ∆	runtimeTimer = go$pkg.runtimeTimer = go$newType(0, "Struct", "time.runtimeTimer", "runtimeTimer", "time", function(i_, when_, period_, f_, arg_) {
+0
+ParseError0 0Ç◊runtimeTimerÇ∆	runtimeTimer = go$pkg.runtimeTimer = go$newType(0, "Struct", "time.runtimeTimer", "runtimeTimer", "time", function(i_, when_, period_, f_, arg_) {
 		this.go$val = this;
 		this.i = i_ !== undefined ? i_ : 0;
 		this.when = when_ !== undefined ? when_ : new Go$Int64(0, 0);
@@ -196,21 +197,21 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 		this.arg = arg_ !== undefined ? arg_ : null;
 	});
 ÅÍ		runtimeTimer.init([["i", "time", Go$Int32, ""], ["when", "time", Go$Int64, ""], ["period", "time", Go$Int64, ""], ["f", "time", (go$funcType([Go$Int64, go$emptyInterface], [], false)), ""], ["arg", "time", go$emptyInterface, ""]]);
-0ÇÊ TimerÇ	Timer = go$pkg.Timer = go$newType(0, "Struct", "time.Timer", "Timer", "time", function(C_, r_) {
+0runtimeTimer0 0Ç%TimerÇ	Timer = go$pkg.Timer = go$newType(0, "Struct", "time.Timer", "Timer", "time", function(C_, r_) {
 		this.go$val = this;
 		this.C = C_ !== undefined ? C_ : (go$chanType(Time, false, true)).nil;
 		this.r = r_ !== undefined ? r_ : new runtimeTimer.Ptr();
 	});
 Å’		Timer.init([["C", "", (go$chanType(Time, false, true)), ""], ["r", "time", runtimeTimer, ""]]);
 		(go$ptrType(Timer)).methods = [["Reset", "", [Duration], [Go$Bool], false], ["Stop", "", [], [Go$Bool], false]];
-0Çπ TickerÇ	Ticker = go$pkg.Ticker = go$newType(0, "Struct", "time.Ticker", "Ticker", "time", function(C_, r_) {
+0Timer060timeTime0timeruntimeTimer0timeDuration0ÇÁTickerÇ	Ticker = go$pkg.Ticker = go$newType(0, "Struct", "time.Ticker", "Ticker", "time", function(C_, r_) {
 		this.go$val = this;
 		this.C = C_ !== undefined ? C_ : (go$chanType(Time, false, true)).nil;
 		this.r = r_ !== undefined ? r_ : new runtimeTimer.Ptr();
 	});
 Å£		Ticker.init([["C", "", (go$chanType(Time, false, true)), ""], ["r", "time", runtimeTimer, ""]]);
 		(go$ptrType(Ticker)).methods = [["Stop", "", [], [], false]];
-0Ç` TimeÇ5	Time = go$pkg.Time = go$newType(0, "Struct", "time.Time", "Time", "time", function(sec_, nsec_, loc_) {
+0Ticker0$0timeTime0timeruntimeTimer0Ç¨TimeÇ5	Time = go$pkg.Time = go$newType(0, "Struct", "time.Time", "Time", "time", function(sec_, nsec_, loc_) {
 		this.go$val = this;
 		this.sec = sec_ !== undefined ? sec_ : new Go$Int64(0, 0);
 		this.nsec = nsec_ !== undefined ? nsec_ : 0;
@@ -219,16 +220,17 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 Ç		Time.init([["sec", "time", Go$Int64, ""], ["nsec", "time", Go$Uintptr, ""], ["loc", "time", (go$ptrType(Location)), ""]]);
 		Time.methods = [["Add", "", [Duration], [Time], false], ["AddDate", "", [Go$Int, Go$Int, Go$Int], [Time], false], ["After", "", [Time], [Go$Bool], false], ["Before", "", [Time], [Go$Bool], false], ["Clock", "", [], [Go$Int, Go$Int, Go$Int], false], ["Date", "", [], [Go$Int, Month, Go$Int], false], ["Day", "", [], [Go$Int], false], ["Equal", "", [Time], [Go$Bool], false], ["Format", "", [Go$String], [Go$String], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Hour", "", [], [Go$Int], false], ["ISOWeek", "", [], [Go$Int, Go$Int], false], ["In", "", [(go$ptrType(Location))], [Time], false], ["IsZero", "", [], [Go$Bool], false], ["Local", "", [], [Time], false], ["Location", "", [], [(go$ptrType(Location))], false], ["MarshalBinary", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalText", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Minute", "", [], [Go$Int], false], ["Month", "", [], [Month], false], ["Nanosecond", "", [], [Go$Int], false], ["Round", "", [Duration], [Time], false], ["Second", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [Time], [Duration], false], ["Truncate", "", [Duration], [Time], false], ["UTC", "", [], [Time], false], ["Unix", "", [], [Go$Int64], false], ["UnixNano", "", [], [Go$Int64], false], ["Weekday", "", [], [Weekday], false], ["Year", "", [], [Go$Int], false], ["YearDay", "", [], [Go$Int], false], ["Zone", "", [], [Go$String, Go$Int], false], ["abs", "time", [], [Go$Uint64], false], ["date", "time", [Go$Bool], [Go$Int, Month, Go$Int, Go$Int], false], ["locabs", "time", [], [Go$String, Go$Int, Go$Uint64], false]];
 		(go$ptrType(Time)).methods = [["Add", "", [Duration], [Time], false], ["AddDate", "", [Go$Int, Go$Int, Go$Int], [Time], false], ["After", "", [Time], [Go$Bool], false], ["Before", "", [Time], [Go$Bool], false], ["Clock", "", [], [Go$Int, Go$Int, Go$Int], false], ["Date", "", [], [Go$Int, Month, Go$Int], false], ["Day", "", [], [Go$Int], false], ["Equal", "", [Time], [Go$Bool], false], ["Format", "", [Go$String], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Hour", "", [], [Go$Int], false], ["ISOWeek", "", [], [Go$Int, Go$Int], false], ["In", "", [(go$ptrType(Location))], [Time], false], ["IsZero", "", [], [Go$Bool], false], ["Local", "", [], [Time], false], ["Location", "", [], [(go$ptrType(Location))], false], ["MarshalBinary", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalText", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Minute", "", [], [Go$Int], false], ["Month", "", [], [Month], false], ["Nanosecond", "", [], [Go$Int], false], ["Round", "", [Duration], [Time], false], ["Second", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [Time], [Duration], false], ["Truncate", "", [Duration], [Time], false], ["UTC", "", [], [Time], false], ["Unix", "", [], [Go$Int64], false], ["UnixNano", "", [], [Go$Int64], false], ["UnmarshalBinary", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["UnmarshalJSON", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["UnmarshalText", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["Weekday", "", [], [Weekday], false], ["Year", "", [], [Go$Int], false], ["YearDay", "", [], [Go$Int], false], ["Zone", "", [], [Go$String, Go$Int], false], ["abs", "time", [], [Go$Uint64], false], ["date", "time", [Go$Bool], [Go$Int, Month, Go$Int, Go$Int], false], ["locabs", "time", [], [Go$String, Go$Int, Go$Uint64], false]];
-0ÅÁ MonthS	Month = go$pkg.Month = go$newType(4, "Int", "time.Month", "Month", "time", null);
+0Time0D0timeLocation0timeDuration0timeMonth0timeWeekday0ÅMonthS	Month = go$pkg.Month = go$newType(4, "Int", "time.Month", "Month", "time", null);
 ÅÜ		Month.methods = [["String", "", [], [Go$String], false]];
 		(go$ptrType(Month)).methods = [["String", "", [], [Go$String], false]];
-0Åı Weekday[	Weekday = go$pkg.Weekday = go$newType(4, "Int", "time.Weekday", "Weekday", "time", null);
+0Month0 0Ç Weekday[	Weekday = go$pkg.Weekday = go$newType(4, "Int", "time.Weekday", "Weekday", "time", null);
 Åä		Weekday.methods = [["String", "", [], [Go$String], false]];
 		(go$ptrType(Weekday)).methods = [["String", "", [], [Go$String], false]];
-0ÇO Durationa	Duration = go$pkg.Duration = go$newType(8, "Int64", "time.Duration", "Duration", "time", null);
+0	Weekday0 0Ç[Durationa	Duration = go$pkg.Duration = go$newType(8, "Int64", "time.Duration", "Duration", "time", null);
 Ç‹		Duration.methods = [["Hours", "", [], [Go$Float64], false], ["Minutes", "", [], [Go$Float64], false], ["Nanoseconds", "", [], [Go$Int64], false], ["Seconds", "", [], [Go$Float64], false], ["String", "", [], [Go$String], false]];
 		(go$ptrType(Duration)).methods = [["Hours", "", [], [Go$Float64], false], ["Minutes", "", [], [Go$Float64], false], ["Nanoseconds", "", [], [Go$Int64], false], ["Seconds", "", [], [Go$Float64], false], ["String", "", [], [Go$String], false]];
-0ÇÆ LocationÇd	Location = go$pkg.Location = go$newType(0, "Struct", "time.Location", "Location", "time", function(name_, zone_, tx_, cacheStart_, cacheEnd_, cacheZone_) {
+0
+Duration0 0Ç€LocationÇd	Location = go$pkg.Location = go$newType(0, "Struct", "time.Location", "Location", "time", function(name_, zone_, tx_, cacheStart_, cacheEnd_, cacheZone_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : "";
 		this.zone = zone_ !== undefined ? zone_ : (go$sliceType(zone)).nil;
@@ -239,14 +241,15 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 	});
 Ç6		Location.init([["name", "time", Go$String, ""], ["zone", "time", (go$sliceType(zone)), ""], ["tx", "time", (go$sliceType(zoneTrans)), ""], ["cacheStart", "time", Go$Int64, ""], ["cacheEnd", "time", Go$Int64, ""], ["cacheZone", "time", (go$ptrType(zone)), ""]]);
 		(go$ptrType(Location)).methods = [["String", "", [], [Go$String], false], ["get", "time", [], [(go$ptrType(Location))], false], ["lookup", "time", [Go$Int64], [Go$String, Go$Int, Go$Bool, Go$Int64, Go$Int64], false], ["lookupName", "time", [Go$String, Go$Int64], [Go$Int, Go$Bool, Go$Bool], false]];
-0Ç¢ zoneÇ$	zone = go$pkg.zone = go$newType(0, "Struct", "time.zone", "zone", "time", function(name_, offset_, isDST_) {
+0
+Location0!0timezone0time	zoneTrans0Ç™zoneÇ$	zone = go$pkg.zone = go$newType(0, "Struct", "time.zone", "zone", "time", function(name_, offset_, isDST_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : "";
 		this.offset = offset_ !== undefined ? offset_ : 0;
 		this.isDST = isDST_ !== undefined ? isDST_ : false;
 	});
 p		zone.init([["name", "time", Go$String, ""], ["offset", "time", Go$Int, ""], ["isDST", "time", Go$Bool, ""]]);
-0Ç+ 	zoneTransÇÇ	zoneTrans = go$pkg.zoneTrans = go$newType(0, "Struct", "time.zoneTrans", "zoneTrans", "time", function(when_, index_, isstd_, isutc_) {
+0zone0 0Ç8	zoneTransÇÇ	zoneTrans = go$pkg.zoneTrans = go$newType(0, "Struct", "time.zoneTrans", "zoneTrans", "time", function(when_, index_, isstd_, isutc_) {
 		this.go$val = this;
 		this.when = when_ !== undefined ? when_ : new Go$Int64(0, 0);
 		this.index = index_ !== undefined ? index_ : 0;
@@ -254,14 +257,14 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 		this.isutc = isutc_ !== undefined ? isutc_ : false;
 	});
 Åï		zoneTrans.init([["when", "time", Go$Int64, ""], ["index", "time", Go$Uint8, ""], ["isstd", "time", Go$Bool, ""], ["isutc", "time", Go$Bool, ""]]);
-0Ç$ dataÅÙ	data = go$pkg.data = go$newType(0, "Struct", "time.data", "data", "time", function(p_, error_) {
+0	zoneTrans0 0Ç,dataÅÙ	data = go$pkg.data = go$newType(0, "Struct", "time.data", "data", "time", function(p_, error_) {
 		this.go$val = this;
 		this.p = p_ !== undefined ? p_ : (go$sliceType(Go$Uint8)).nil;
 		this.error = error_ !== undefined ? error_ : false;
 	});
 Ç!		data.init([["p", "time", (go$sliceType(Go$Uint8)), ""], ["error", "time", Go$Bool, ""]]);
 		(go$ptrType(data)).methods = [["big4", "time", [], [Go$Uint32, Go$Bool], false], ["byte", "time", [], [Go$Uint8, Go$Bool], false], ["read", "time", [Go$Int], [(go$sliceType(Go$Uint8))], false]];
-0Å∂ startsWithLowerCaseÅö	startsWithLowerCase = function(str) {
+0data0 0ÅÕstartsWithLowerCaseÅö	startsWithLowerCase = function(str) {
 		var c;
 		if (str.length === 0) {
 			return false;
@@ -269,7 +272,7 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 		c = str.charCodeAt(0);
 		return 97 <= c && c <= 122;
 	};
- 0Ç © nextStdChunkÇ ì	nextStdChunk = function(layout) {
+ 0startsWithLowerCase0 0Ç ˆnextStdChunkÇ ì	nextStdChunk = function(layout) {
 		var prefix, std, suffix, i, c, _ref, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, ch, j, std$1, _tuple$25, _tuple$26;
 		prefix = "";
 		std = 0;
@@ -410,7 +413,7 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 		_tuple$26 = [layout, 0, ""], prefix = _tuple$26[0], std = _tuple$26[1], suffix = _tuple$26[2];
 		return [prefix, std, suffix];
 	};
- 0ÇY matchÇJ	match = function(s1, s2) {
+ 0nextStdChunk0=0timestartsWithLowerCase0timestd0x0timeisDigit0ÇbmatchÇJ	match = function(s1, s2) {
 		var i, c1, c2;
 		i = 0;
 		while (i < s1.length) {
@@ -427,7 +430,8 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 		}
 		return true;
 	};
- 0Ç· lookupÇ—	lookup = function(tab, val) {
+ 0match0 0Ç
+lookupÇ—	lookup = function(tab, val) {
 		var _ref, _i, _slice, _index, v, i;
 		_ref = tab;
 		_i = 0;
@@ -441,7 +445,7 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 		}
 		return [-1, val, errBad];
 	};
- 0Çg 
+ 0lookup00timematch0timeerrBad0Çu
 appendUintÇS	appendUint = function(b, x, pad) {
 		var _q, _r, buf, n, _r$1, _q$1;
 		if (x < 10) {
@@ -469,7 +473,8 @@ appendUintÇS	appendUint = function(b, x, pad) {
 		buf[n] = ((x + 48 >>> 0) << 24 >>> 24);
 		return go$appendSlice(b, go$subslice(new (go$sliceType(Go$Uint8))(buf), n));
 	};
- 0Çí atoiÇÑ	atoi = function(s) {
+ 0
+appendUint0 0Ç¡atoiÇÑ	atoi = function(s) {
 		var x, err, neg, _tuple, q, rem, _tuple$1, _tuple$2;
 		x = 0;
 		err = null;
@@ -490,7 +495,8 @@ appendUintÇS	appendUint = function(b, x, pad) {
 		_tuple$2 = [x, null], x = _tuple$2[0], err = _tuple$2[1];
 		return [x, err];
 	};
- 0Çˆ 
+ 0atoi0'0time
+leadingInt0time	atoiError0Ç
 formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		var u, buf, start, _r, _q;
 		u = nanosec;
@@ -515,13 +521,14 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		b = go$append(b, 46);
 		return go$appendSlice(b, go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, n));
 	};
- 0Ç  Ç	Time.Ptr.prototype.String = function() {
+ 0
+formatNano0 0Ç2 Ç	Time.Ptr.prototype.String = function() {
 		var _struct, t;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return t.Format("2006-01-02 15:04:05.999999999 -0700 MST");
 	};
 	Time.prototype.String = function() { return this.go$val.String(); };
- 0Ç‰  Ç⁄	Time.Ptr.prototype.Format = function(layout) {
+ 0Time00timeTime0Ç† Ç⁄	Time.Ptr.prototype.Format = function(layout) {
 		var _struct, t, _tuple, name, offset, abs, year, month, day, hour, min, sec, b, buf, max, _tuple$1, prefix, std, suffix, _tuple$2, _tuple$3, _ref, y, _r, y$1, m, s, _r$1, hr, _r$2, hr$1, _q, zone$1, absoffset, _q$1, _r$3, _r$4, _q$2, zone$2, _q$3, _r$5;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		_tuple = t.locabs(), name = _tuple[0], offset = _tuple[1], abs = _tuple[2], year = -1, month = 0, day = 0, hour = -1, min = 0, sec = 0, b = (go$sliceType(Go$Uint8)).nil, buf = go$makeNativeArray("Uint8", 64, function() { return 0; });
@@ -675,10 +682,13 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		return go$bytesToString(b);
 	};
 	Time.prototype.Format = function(layout) { return this.go$val.Format(layout); };
- 0B quote5	quote = function(s) {
+ 0Time0Å≥0timeMonth0time
+absWeekday0timeWeekday0time
+formatNano0timeTime0timelocabs0timenextStdChunk0timeabsDate0timeabsClock0time
+appendUint0Kquote5	quote = function(s) {
 		return "\"" + s + "\"";
 	};
- 0ÇÄ  Çv	ParseError.Ptr.prototype.Error = function() {
+ 0quote0 0Ç± Çv	ParseError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		if (e.Message === "") {
@@ -687,7 +697,9 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		return "parsing time " + quote(e.Value) + e.Message;
 	};
 	ParseError.prototype.Error = function() { return this.go$val.Error(); };
- 0Åô isDigitÅâ	isDigit = function(s, i) {
+ 0
+ParseError0#0time
+ParseError0timequote0Å§isDigitÅâ	isDigit = function(s, i) {
 		var c;
 		if (s.length <= i) {
 			return false;
@@ -695,7 +707,8 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		c = s.charCodeAt(i);
 		return 48 <= c && c <= 57;
 	};
- 0Çﬂ getnumÇœ	getnum = function(s, fixed) {
+ 0	isDigit0 0Ç
+getnumÇœ	getnum = function(s, fixed) {
 		var x, x$1;
 		if (!isDigit(s, 0)) {
 			return [0, s, errBad];
@@ -708,13 +721,14 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		}
 		return [(x = ((s.charCodeAt(0) - 48 << 24 >>> 24) >> 0), x$1 = 10, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) + ((s.charCodeAt(1) - 48 << 24 >>> 24) >> 0) >> 0, s.substring(2), null];
 	};
- 0Åä cutspacez	cutspace = function(s) {
+ 0getnum0!0timeisDigit0timeerrBad0Åñcutspacez	cutspace = function(s) {
 		while (s.length > 0 && (s.charCodeAt(0) === 32)) {
 			s = s.substring(1);
 		}
 		return s;
 	};
- 0Ç˙ skipÇÏ	skip = function(value, prefix) {
+ 0
+cutspace0 0Ç$skipÇÏ	skip = function(value, prefix) {
 		while (prefix.length > 0) {
 			if (prefix.charCodeAt(0) === 32) {
 				if (value.length > 0 && !((value.charCodeAt(0) === 32))) {
@@ -732,13 +746,13 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		}
 		return [value, null];
 	};
- 0| Parseo	Parse = go$pkg.Parse = function(layout, value) {
+ 0skip0"0timeerrBad0timecutspace0Å∞Parseo	Parse = go$pkg.Parse = function(layout, value) {
 		return parse(layout, value, go$pkg.UTC, go$pkg.Local);
 	};
- 0Åè ParseInLocationx	ParseInLocation = go$pkg.ParseInLocation = function(layout, value, loc) {
+ 0Parse0+0timeparse0timeUTC0timeLocal0Å±ParseInLocationx	ParseInLocation = go$pkg.ParseInLocation = function(layout, value, loc) {
 		return parse(layout, value, loc, loc);
 	};
- 0Ç1* parseÇ1	parse = function(layout, value, defaultLocation, local) {
+ 0ParseInLocation00timeparse0Ç2ΩparseÇ1	parse = function(layout, value, defaultLocation, local) {
 		var _tuple, alayout, avalue, rangeErrString, amSet, pmSet, year, month, day, hour, min, sec, nsec, z, zoneOffset, zoneName, err, _tuple$1, prefix, std, suffix, stdstr, _tuple$2, p, _ref, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, n, _tuple$18, _tuple$19, _ref$1, _tuple$20, _ref$2, _tuple$21, sign, hour$1, min$1, seconds, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, hr, mm, ss, _tuple$28, _tuple$29, _tuple$30, x, x$1, x$2, _ref$3, _tuple$31, n$1, ok, _tuple$32, ndigit, _tuple$33, i, _tuple$34, _struct, _struct$1, t, x$3, x$4, _tuple$35, x$5, name, offset, _struct$2, _struct$3, _struct$4, t$1, _tuple$36, x$6, offset$1, ok$1, x$7, x$8, _struct$5, _tuple$37, x$9, _struct$6, _struct$7;
 		_tuple = [layout, value], alayout = _tuple[0], avalue = _tuple[1];
 		rangeErrString = "";
@@ -999,7 +1013,9 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		}
 		return [(_struct$7 = Date(year, (month >> 0), day, hour, min, sec, nsec, defaultLocation), new Time.Ptr(_struct$7.sec, _struct$7.nsec, _struct$7.loc)), null];
 	};
- 0Ç parseTimeZoneÇÒ	parseTimeZone = function(value) {
+ 0parse0Çà0timeLocation0timenextStdChunk0timeTime0time
+ParseError0timeerrBad0timeisDigit0timeshortMonthNames0timelongDayNames0time	FixedZone0time
+lookupName0timegetnum0timeshortDayNames0timeparseNanoseconds0timeparseTimeZone0timeskip0timelookup0timelongMonthNames0timeatoi0timeUTC0timeDate0timelookup0Ç+parseTimeZoneÇÒ	parseTimeZone = function(value) {
 		var length, ok, _tuple, _tuple$1, _tuple$2, nUpper, c, _ref, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7;
 		length = 0;
 		ok = false;
@@ -1048,7 +1064,7 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		_tuple$7 = [0, false], length = _tuple$7[0], ok = _tuple$7[1];
 		return [length, ok];
 	};
- 0Ç™ parseGMTÇò	parseGMT = function(value) {
+ 0parseTimeZone00timeparseGMT0Ç parseGMTÇò	parseGMT = function(value) {
 		var sign, _tuple, x, rem, err;
 		value = value.substring(3);
 		if (value.length === 0) {
@@ -1070,7 +1086,9 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		}
 		return (3 + value.length >> 0) - rem.length >> 0;
 	};
- 0Çˇ parseNanosecondsÇÂ	parseNanoseconds = function(value, nbytes) {
+ 0
+parseGMT00time
+leadingInt0Ç1parseNanosecondsÇÂ	parseNanoseconds = function(value, nbytes) {
 		var ns, rangeErrString, err, _tuple, scaleDigits, i, x;
 		ns = 0;
 		rangeErrString = "";
@@ -1094,7 +1112,7 @@ formatNanoÇ‚	formatNano = function(b, nanosec, n, trim) {
 		}
 		return [ns, rangeErrString, err];
 	};
- 0Ç 
+ 0parseNanoseconds00timeerrBad0timeatoi0ÇC
 leadingIntÇ
 	leadingInt = function(s) {
 		var x, rem, err, i, c, _tuple, x$1, x$2, x$3, _tuple$1;
@@ -1117,7 +1135,8 @@ leadingIntÇ
 		_tuple$1 = [x, s.substring(i), null], x = _tuple$1[0], rem = _tuple$1[1], err = _tuple$1[2];
 		return [x, rem, err];
 	};
- 0Ç	& ParseDurationÇ		ParseDuration = go$pkg.ParseDuration = function(s) {
+ 0
+leadingInt00timeerrLeadingInt0Ç	}ParseDurationÇ		ParseDuration = go$pkg.ParseDuration = function(s) {
 		var orig, f, neg, c, g, x, err, pl, _tuple, pre, post, pl$1, _tuple$1, scale, n, i, c$1, u, _tuple$2, _entry, unit, ok;
 		orig = s;
 		f = 0;
@@ -1193,13 +1212,14 @@ leadingIntÇ
 		}
 		return [new Duration(0, f), null];
 	};
- 0p Sleepc	Sleep = go$pkg.Sleep = function() { go$notSupported("time.Sleep (use time.AfterFunc instead)") };
- 0Ç nanoÅ˘	nano = function() {
+ 0ParseDuration0F0timeDuration0errorsNew0time
+leadingInt0timeunitMap0ySleepc	Sleep = go$pkg.Sleep = function() { go$notSupported("time.Sleep (use time.AfterFunc instead)") };
+ 0Sleep0 0ÇnanoÅ˘	nano = function() {
 		var _tuple, sec, nsec, x, x$1;
 		_tuple = now(), sec = _tuple[0], nsec = _tuple[1];
 		return (x = go$mul64(sec, new Go$Int64(0, 1000000000)), x$1 = new Go$Int64(0, nsec), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 	};
- 0Ç` whenÇR	when = function(d) {
+ 0nano00timenow0ÇvwhenÇR	when = function(d) {
 		var x, x$1, t;
 		if ((d.high < 0 || (d.high === 0 && d.low <= 0))) {
 			return nano();
@@ -1210,21 +1230,23 @@ leadingIntÇ
 		}
 		return t;
 	};
- 0r 
+ 0when00timenano0ÅÄ
 startTimer`	startTimer = function() {
 		throw go$panic("Native function not implemented: startTimer");
 	};
- 0o 	stopTimer^	stopTimer = function() {
+ 0
+startTimer0 0|	stopTimer^	stopTimer = function() {
 		throw go$panic("Native function not implemented: stopTimer");
 	};
- 0Åß  Åû	Timer.Ptr.prototype.Stop = function() {
+ 0	stopTimer0 0Å“ Åû	Timer.Ptr.prototype.Stop = function() {
 		var t;
 		t = this;
 		return stopTimer(t.r);
 	};
 	Timer.prototype.Stop = function() { return this.go$val.Stop(); };
- 0| NewTimerl	NewTimer = go$pkg.NewTimer = function() { go$notSupported("time.NewTimer (use time.AfterFunc instead)") };
- 0Å˝  ÅÙ	Timer.Ptr.prototype.Reset = function(d) {
+ 0Timer0"0timeTimer0time	stopTimer0ÅàNewTimerl	NewTimer = go$pkg.NewTimer = function() { go$notSupported("time.NewTimer (use time.AfterFunc instead)") };
+ 0
+NewTimer0 0ÇJ ÅÙ	Timer.Ptr.prototype.Reset = function(d) {
 		var t, w, active;
 		t = this;
 		w = when(d);
@@ -1234,21 +1256,23 @@ startTimer`	startTimer = function() {
 		return active;
 	};
 	Timer.prototype.Reset = function(d) { return this.go$val.Reset(d); };
- 0Q sendTimeA	sendTime = function(now$1, c) {
+ 0Timer0D0timeTimer0timewhen0time	stopTimer0time
+startTimer0]sendTimeA	sendTime = function(now$1, c) {
 		go$notSupported("select")
 	};
- 0p Afterc	After = go$pkg.After = function() { go$notSupported("time.After (use time.AfterFunc instead)") };
- 0Åï 	AfterFuncÅÉ	AfterFunc = go$pkg.AfterFunc = function(d, f) {
+ 0
+sendTime0 0yAfterc	After = go$pkg.After = function() { go$notSupported("time.After (use time.AfterFunc instead)") };
+ 0After0 0Å¢	AfterFuncÅÉ	AfterFunc = go$pkg.AfterFunc = function(d, f) {
 			setTimeout(f, go$div64(d, new Duration(0, 1000000)).low);
 			return null;
 		};
- 0K goFunc=	goFunc = function(now$1, arg) {
+ 0	AfterFunc0 0UgoFunc=	goFunc = function(now$1, arg) {
 		go$notSupported("go")
 	};
- 0U 	interruptD	interrupt = function() {
+ 0goFunc0 0ÅÜ	interruptD	interrupt = function() {
 		syscall.Kill(syscall.Getpid(), 20);
 	};
- 0Ç∑ readFileÇ•	readFile = function(name) {
+ 0	interrupt0$0syscallKill0syscallGetpid0ÇÂreadFileÇ•	readFile = function(name) {
 		var _tuple, f, err, buf, ret, n, _tuple$1;
 		var go$deferred = [];
 		try {
@@ -1275,7 +1299,8 @@ startTimer`	startTimer = function() {
 			go$callDeferred(go$deferred);
 		}
 	};
- 0ÅÁ openÅ⁄	open = function(name) {
+ 0
+readFile0"0syscallOpen0syscallRead0Ç openÅ⁄	open = function(name) {
 		var _tuple, fd, err;
 		_tuple = syscall.Open(name, 0, 0), fd = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -1283,10 +1308,10 @@ startTimer`	startTimer = function() {
 		}
 		return [(fd >>> 0), null];
 	};
- 0I closefd:	closefd = function(fd) {
+ 0open00syscallOpen0fclosefd:	closefd = function(fd) {
 		syscall.Close((fd >> 0));
 	};
- 0ÇE preadnÇ5	preadn = function(fd, buf, off) {
+ 0	closefd00syscallClose0ÇÄpreadnÇ5	preadn = function(fd, buf, off) {
 		var whence, err, _tuple, _tuple$1, m, err$1;
 		whence = 0;
 		if (off < 0) {
@@ -1307,7 +1332,7 @@ startTimer`	startTimer = function() {
 		}
 		return null;
 	};
- 0ÇÊ 	NewTickerÇ”	NewTicker = go$pkg.NewTicker = function(d) {
+ 0preadn010syscallSeek0syscallRead0errorsNew0Çj	NewTickerÇ”	NewTicker = go$pkg.NewTicker = function(d) {
 		var c, x, x$1, t;
 		if ((d.high < 0 || (d.high === 0 && d.low <= 0))) {
 			throw go$panic(errors.New("non-positive interval for NewTicker"));
@@ -1317,50 +1342,51 @@ startTimer`	startTimer = function() {
 		startTimer(t.r);
 		return t;
 	};
- 0Å¢  Åô	Ticker.Ptr.prototype.Stop = function() {
+ 0	NewTicker0w0errorsNew0timeTime0timeruntimeTimer0timenano0timesendTime0timeTicker0time
+startTimer0Åœ Åô	Ticker.Ptr.prototype.Stop = function() {
 		var t;
 		t = this;
 		stopTimer(t.r);
 	};
 	Ticker.prototype.Stop = function() { return this.go$val.Stop(); };
- 0l Tick`	Tick = go$pkg.Tick = function() { go$notSupported("time.Tick (use time.AfterFunc instead)") };
- 0Çµ  Ç´	Time.Ptr.prototype.After = function(u) {
+ 0Ticker0#0timeTicker0time	stopTimer0tTick`	Tick = go$pkg.Tick = function() { go$notSupported("time.Tick (use time.AfterFunc instead)") };
+ 0Tick0 0ÇÀ Ç´	Time.Ptr.prototype.After = function(u) {
 		var _struct, t, x, x$1, x$2, x$3;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (x = t.sec, x$1 = u.sec, (x.high > x$1.high || (x.high === x$1.high && x.low > x$1.low))) || (x$2 = t.sec, x$3 = u.sec, (x$2.high === x$3.high && x$2.low === x$3.low)) && t.nsec > u.nsec;
 	};
 	Time.prototype.After = function(u) { return this.go$val.After(u); };
- 0Ç∏  ÇÆ	Time.Ptr.prototype.Before = function(u) {
+ 0Time00timeTime0ÇŒ ÇÆ	Time.Ptr.prototype.Before = function(u) {
 		var _struct, t, x, x$1, x$2, x$3;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (x = t.sec, x$1 = u.sec, (x.high < x$1.high || (x.high === x$1.high && x.low < x$1.low))) || (x$2 = t.sec, x$3 = u.sec, (x$2.high === x$3.high && x$2.low === x$3.low)) && t.nsec < u.nsec;
 	};
 	Time.prototype.Before = function(u) { return this.go$val.Before(u); };
- 0ÇL  ÇB	Time.Ptr.prototype.Equal = function(u) {
+ 0Time00timeTime0Çb ÇB	Time.Ptr.prototype.Equal = function(u) {
 		var _struct, t, x, x$1;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (x = t.sec, x$1 = u.sec, (x.high === x$1.high && x.low === x$1.low)) && (t.nsec === u.nsec);
 	};
 	Time.prototype.Equal = function(u) { return this.go$val.Equal(u); };
- 0Åœ  Å∆	Month.prototype.String = function() {
+ 0Time00timeTime0Å˜ Å∆	Month.prototype.String = function() {
 		var m;
 		m = this.go$val;
 		return months[(m - 1 >> 0)];
 	};
 	go$ptrType(Month).prototype.String = function() { return new Month(this.go$get()).String(); };
- 0Å»  Åø	Weekday.prototype.String = function() {
+ 0Month00timeMonth0timemonths0ÅÚ Åø	Weekday.prototype.String = function() {
 		var d;
 		d = this.go$val;
 		return days[d];
 	};
 	go$ptrType(Weekday).prototype.String = function() { return new Weekday(this.go$get()).String(); };
- 0Ç(  Ç	Time.Ptr.prototype.IsZero = function() {
+ 0	Weekday00timeWeekday0timedays0Ç> Ç	Time.Ptr.prototype.IsZero = function() {
 		var _struct, t, x;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (x = t.sec, (x.high === 0 && x.low === 0)) && (t.nsec === 0);
 	};
 	Time.prototype.IsZero = function() { return this.go$val.IsZero(); };
- 0Ç5  Ç+	Time.Ptr.prototype.abs = function() {
+ 0Time00timeTime0ÇØ Ç+	Time.Ptr.prototype.abs = function() {
 		var _struct, t, l, x, sec, x$1, x$2, x$3, _tuple, offset, x$4, x$5;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		l = t.loc;
@@ -1379,7 +1405,7 @@ startTimer`	startTimer = function() {
 		return (x$5 = new Go$Int64(sec.high + 2147483646, sec.low + 450480384), new Go$Uint64(x$5.high, x$5.low));
 	};
 	Time.prototype.abs = function() { return this.go$val.abs(); };
- 0Çó  Çç	Time.Ptr.prototype.locabs = function() {
+ 0Timeabs0m0timeTime0timeLocation0timelocalLoc0timeget0timeutcLoc0timezone0timelookup0Ç Çç	Time.Ptr.prototype.locabs = function() {
 		var name, offset, abs, _struct, t, l, x, sec, x$1, x$2, _tuple, x$3, x$4;
 		name = "";
 		offset = 0;
@@ -1405,7 +1431,7 @@ startTimer`	startTimer = function() {
 		return [name, offset, abs];
 	};
 	Time.prototype.locabs = function() { return this.go$val.locabs(); };
- 0ÇÇ  Çx	Time.Ptr.prototype.Date = function() {
+ 0Timelocabs0m0timeTime0timeLocation0timelocalLoc0timeget0timeutcLoc0timezone0timelookup0Ç¶ Çx	Time.Ptr.prototype.Date = function() {
 		var year, month, day, _struct, t, _tuple;
 		year = 0;
 		month = 0;
@@ -1415,40 +1441,42 @@ startTimer`	startTimer = function() {
 		return [year, month, day];
 	};
 	Time.prototype.Date = function() { return this.go$val.Date(); };
- 0Ç!  Ç	Time.Ptr.prototype.Year = function() {
+ 0Time00timeTime0timedate0ÇE Ç	Time.Ptr.prototype.Year = function() {
 		var _struct, t, _tuple, year;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		_tuple = t.date(false), year = _tuple[0];
 		return year;
 	};
 	Time.prototype.Year = function() { return this.go$val.Year(); };
- 0Ç&  Ç	Time.Ptr.prototype.Month = function() {
+ 0Time00timeTime0timedate0ÇJ Ç	Time.Ptr.prototype.Month = function() {
 		var _struct, t, _tuple, month;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		_tuple = t.date(true), month = _tuple[1];
 		return month;
 	};
 	Time.prototype.Month = function() { return this.go$val.Month(); };
- 0Ç  Ç	Time.Ptr.prototype.Day = function() {
+ 0Time00timeTime0timedate0Ç> Ç	Time.Ptr.prototype.Day = function() {
 		var _struct, t, _tuple, day;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		_tuple = t.date(true), day = _tuple[2];
 		return day;
 	};
 	Time.prototype.Day = function() { return this.go$val.Day(); };
- 0Å˛  Åı	Time.Ptr.prototype.Weekday = function() {
+ 0Time00timeTime0timedate0Ç5 Åı	Time.Ptr.prototype.Weekday = function() {
 		var _struct, t;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return absWeekday(t.abs());
 	};
 	Time.prototype.Weekday = function() { return this.go$val.Weekday(); };
- 0Ç; 
+ 0Time0/0timeTime0time
+absWeekday0timeabs0ÇI
 absWeekdayÇ'	absWeekday = function(abs) {
 		var sec, _q;
 		sec = go$div64((new Go$Uint64(abs.high + 0, abs.low + 86400)), new Go$Uint64(0, 604800), true);
 		return ((_q = (sec.low >> 0) / 86400, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero")) >> 0);
 	};
- 0ÇJ  Ç@	Time.Ptr.prototype.ISOWeek = function() {
+ 0
+absWeekday0 0Ç~ Ç@	Time.Ptr.prototype.ISOWeek = function() {
 		var year, week, _struct, t, _tuple, month, day, yday, _r, wday, _q, _r$1, jan1wday, dec31wday, _r$2;
 		year = 0;
 		week = 0;
@@ -1476,7 +1504,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [year, week];
 	};
 	Time.prototype.ISOWeek = function() { return this.go$val.ISOWeek(); };
- 0ÇÇ  Çx	Time.Ptr.prototype.Clock = function() {
+ 0Time0,0timeTime0timedate0timeisLeap0Ç∑ Çx	Time.Ptr.prototype.Clock = function() {
 		var hour, min, sec, _struct, t, _tuple;
 		hour = 0;
 		min = 0;
@@ -1486,7 +1514,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [hour, min, sec];
 	};
 	Time.prototype.Clock = function() { return this.go$val.Clock(); };
- 0Çë absClockÇ	absClock = function(abs) {
+ 0Time0-0timeTime0timeabsClock0timeabs0ÇùabsClockÇ	absClock = function(abs) {
 		var hour, min, sec, _q, _q$1;
 		hour = 0;
 		min = 0;
@@ -1498,38 +1526,39 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		sec = sec - (((((min >>> 16 << 16) * 60 >> 0) + (min << 16 >>> 16) * 60) >> 0)) >> 0;
 		return [hour, min, sec];
 	};
- 0Çï  Çã	Time.Ptr.prototype.Hour = function() {
+ 0
+absClock0 0Ç∏ Çã	Time.Ptr.prototype.Hour = function() {
 		var _struct, t, _q;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (_q = (go$div64(t.abs(), new Go$Uint64(0, 86400), true).low >> 0) / 3600, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
 	};
 	Time.prototype.Hour = function() { return this.go$val.Hour(); };
- 0Çò  Çé	Time.Ptr.prototype.Minute = function() {
+ 0Time00timeTime0timeabs0Çª Çé	Time.Ptr.prototype.Minute = function() {
 		var _struct, t, _q;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (_q = (go$div64(t.abs(), new Go$Uint64(0, 3600), true).low >> 0) / 60, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : go$throwRuntimeError("integer divide by zero"));
 	};
 	Time.prototype.Minute = function() { return this.go$val.Minute(); };
- 0Ç!  Ç	Time.Ptr.prototype.Second = function() {
+ 0Time00timeTime0timeabs0ÇD Ç	Time.Ptr.prototype.Second = function() {
 		var _struct, t;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (go$div64(t.abs(), new Go$Uint64(0, 60), true).low >> 0);
 	};
 	Time.prototype.Second = function() { return this.go$val.Second(); };
- 0Ç  Å¯	Time.Ptr.prototype.Nanosecond = function() {
+ 0Time00timeTime0timeabs0Ç Å¯	Time.Ptr.prototype.Nanosecond = function() {
 		var _struct, t;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (t.nsec >> 0);
 	};
 	Time.prototype.Nanosecond = function() { return this.go$val.Nanosecond(); };
- 0Ç3  Ç)	Time.Ptr.prototype.YearDay = function() {
+ 0Time00timeTime0ÇW Ç)	Time.Ptr.prototype.YearDay = function() {
 		var _struct, t, _tuple, yday;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		_tuple = t.date(false), yday = _tuple[3];
 		return yday + 1 >> 0;
 	};
 	Time.prototype.YearDay = function() { return this.go$val.YearDay(); };
- 0Çü  Çï	Duration.prototype.String = function() {
+ 0Time00timeTime0timedate0Çﬁ Çï	Duration.prototype.String = function() {
 		var d, buf, w, u, neg, prec, unit, _tuple, _tuple$1;
 		d = this;
 		buf = go$makeNativeArray("Uint8", 32, function() { return 0; });
@@ -1583,7 +1612,8 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return go$bytesToString(go$subslice(new (go$sliceType(Go$Uint8))(buf), w));
 	};
 	go$ptrType(Duration).prototype.String = function() { return this.go$get().String(); };
- 0Ç∏ fmtFracÇß	fmtFrac = function(buf, v, prec) {
+ 0
+Duration030timeDuration0timefmtFrac0timefmtInt0Ç√fmtFracÇß	fmtFrac = function(buf, v, prec) {
 		var nw, nv, w, print, i, digit, _slice, _index, _slice$1, _index$1, _tuple;
 		nw = 0;
 		nv = new Go$Uint64(0, 0);
@@ -1607,7 +1637,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		_tuple = [w, v], nw = _tuple[0], nv = _tuple[1];
 		return [nw, nv];
 	};
- 0ÇÊ fmtIntÇ÷	fmtInt = function(buf, v) {
+ 0	fmtFrac0 0ÇfmtIntÇ÷	fmtInt = function(buf, v) {
 		var w, _slice, _index, _slice$1, _index$1;
 		w = buf.length;
 		if ((v.high === 0 && v.low === 0)) {
@@ -1622,13 +1652,14 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		}
 		return w;
 	};
- 0ÅŸ  Å–	Duration.prototype.Nanoseconds = function() {
+ 0fmtInt0 0Å˜ Å–	Duration.prototype.Nanoseconds = function() {
 		var d;
 		d = this;
 		return new Go$Int64(d.high, d.low);
 	};
 	go$ptrType(Duration).prototype.Nanoseconds = function() { return this.go$get().Nanoseconds(); };
- 0Ç^  ÇT	Duration.prototype.Seconds = function() {
+ 0
+Duration00timeDuration0Ç| ÇT	Duration.prototype.Seconds = function() {
 		var d, sec, nsec;
 		d = this;
 		sec = go$div64(d, new Duration(0, 1000000000), false);
@@ -1636,7 +1667,8 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return go$flatten64(sec) + go$flatten64(nsec) * 1e-09;
 	};
 	go$ptrType(Duration).prototype.Seconds = function() { return this.go$get().Seconds(); };
- 0Çq  Çg	Duration.prototype.Minutes = function() {
+ 0
+Duration00timeDuration0Çè Çg	Duration.prototype.Minutes = function() {
 		var d, min, nsec;
 		d = this;
 		min = go$div64(d, new Duration(13, 4165425152), false);
@@ -1644,7 +1676,8 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return go$flatten64(min) + go$flatten64(nsec) * 1.6666666666666667e-11;
 	};
 	go$ptrType(Duration).prototype.Minutes = function() { return this.go$get().Minutes(); };
- 0Çm  Çc	Duration.prototype.Hours = function() {
+ 0
+Duration00timeDuration0Çã Çc	Duration.prototype.Hours = function() {
 		var d, hour, nsec;
 		d = this;
 		hour = go$div64(d, new Duration(838, 817405952), false);
@@ -1652,7 +1685,8 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return go$flatten64(hour) + go$flatten64(nsec) * 2.777777777777778e-13;
 	};
 	go$ptrType(Duration).prototype.Hours = function() { return this.go$get().Hours(); };
- 0Ç®  Çû	Time.Ptr.prototype.Add = function(d) {
+ 0
+Duration00timeDuration0Ç– Çû	Time.Ptr.prototype.Add = function(d) {
 		var _struct, t, x, x$1, x$2, x$3, nsec, x$4, x$5, _struct$1;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		t.sec = (x = t.sec, x$1 = (x$2 = go$div64(d, new Duration(0, 1000000000), false), new Go$Int64(x$2.high, x$2.low)), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
@@ -1668,7 +1702,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
 	};
 	Time.prototype.Add = function(d) { return this.go$val.Add(d); };
- 0Çd  ÇZ	Time.Ptr.prototype.Sub = function(u) {
+ 0Time0 0timeTime0timeDuration0Çå ÇZ	Time.Ptr.prototype.Sub = function(u) {
 		var _struct, t, x, x$1, x$2, x$3, x$4, d, _struct$1, _struct$2;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		d = (x = go$mul64((x$1 = (x$2 = t.sec, x$3 = u.sec, new Go$Int64(x$2.high - x$3.high, x$2.low - x$3.low)), new Duration(x$1.high, x$1.low)), new Duration(0, 1000000000)), x$4 = new Duration(0, ((t.nsec >> 0) - (u.nsec >> 0) >> 0)), new Duration(x.high + x$4.high, x.low + x$4.low));
@@ -1681,11 +1715,11 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		}
 	};
 	Time.prototype.Sub = function(u) { return this.go$val.Sub(u); };
- 0Å† SinceÅí	Since = go$pkg.Since = function(t) {
+ 0Time0 0timeTime0timeDuration0ÅƒSinceÅí	Since = go$pkg.Since = function(t) {
 		var _struct;
 		return Now().Sub((_struct = t, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)));
 	};
- 0Ç≈  Çª	Time.Ptr.prototype.AddDate = function(years, months$1, days$1) {
+ 0Since00timeNow0timeTime0ÇÈ Çª	Time.Ptr.prototype.AddDate = function(years, months$1, days$1) {
 		var _struct, t, _tuple, year, month, day, _tuple$1, hour, min, sec, _struct$1;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		_tuple = t.Date(), year = _tuple[0], month = _tuple[1], day = _tuple[2];
@@ -1693,7 +1727,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return (_struct$1 = Date(year + years >> 0, month + (months$1 >> 0) >> 0, day + days$1 >> 0, hour, min, sec, (t.nsec >> 0), t.loc), new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
 	};
 	Time.prototype.AddDate = function(years, months$1, days$1) { return this.go$val.AddDate(years, months$1, days$1); };
- 0Ç¬  Ç∏	Time.Ptr.prototype.date = function(full) {
+ 0Time00timeTime0timeDate0Ç¸ Ç∏	Time.Ptr.prototype.date = function(full) {
 		var year, month, day, yday, _struct, t, _tuple;
 		year = 0;
 		month = 0;
@@ -1704,7 +1738,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [year, month, day, yday];
 	};
 	Time.prototype.date = function(full) { return this.go$val.date(full); };
- 0Çç absDateÇ|	absDate = function(abs, full) {
+ 0Timedate0,0timeTime0timeabsDate0timeabs0ÇºabsDateÇ|	absDate = function(abs, full) {
 		var year, month, day, yday, d, n, y, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10, _q, end, begin;
 		year = 0;
 		month = 0;
@@ -1753,33 +1787,35 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		day = (day - begin >> 0) + 1 >> 0;
 		return [year, month, day, yday];
 	};
- 0Åß daysInÅò	daysIn = function(m, year) {
+ 0	absDate0$0timeisLeap0time
+daysBefore0Å’daysInÅò	daysIn = function(m, year) {
 		if ((m === 2) && isLeap(year)) {
 			return 29;
 		}
 		return ((daysBefore[m] - daysBefore[(m - 1 >> 0)] >> 0) >> 0);
 	};
- 0 now	now = go$now;
- 0ÅÂ NowÅŸ	Now = go$pkg.Now = function() {
+ 0daysIn0$0timeisLeap0time
+daysBefore0!now	now = go$now;
+ 0now0 0ÇNowÅŸ	Now = go$pkg.Now = function() {
 		var _tuple, sec, nsec;
 		_tuple = now(), sec = _tuple[0], nsec = _tuple[1];
 		return new Time.Ptr(new Go$Int64(sec.high + 14, sec.low + 2006054656), (nsec >>> 0), go$pkg.Local);
 	};
- 0ÇL  ÇB	Time.Ptr.prototype.UTC = function() {
+ 0Now0*0timenow0timeLocal0timeTime0Ço ÇB	Time.Ptr.prototype.UTC = function() {
 		var _struct, t, _struct$1;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		t.loc = go$pkg.UTC;
 		return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
 	};
 	Time.prototype.UTC = function() { return this.go$val.UTC(); };
- 0ÇT  ÇJ	Time.Ptr.prototype.Local = function() {
+ 0Time00timeTime0timeUTC0Çy ÇJ	Time.Ptr.prototype.Local = function() {
 		var _struct, t, _struct$1;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		t.loc = go$pkg.Local;
 		return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
 	};
 	Time.prototype.Local = function() { return this.go$val.Local(); };
- 0Ç   Ç¿	Time.Ptr.prototype.In = function(loc) {
+ 0Time00timeTime0timeLocal0ÇÚ Ç¿	Time.Ptr.prototype.In = function(loc) {
 		var _struct, t, _struct$1;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		if (loc === (go$ptrType(Location)).nil) {
@@ -1789,7 +1825,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return (_struct$1 = t, new Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
 	};
 	Time.prototype.In = function(loc) { return this.go$val.In(loc); };
- 0ÇA  Ç7	Time.Ptr.prototype.Location = function() {
+ 0Time0 0timeTime0timeLocation0Çv Ç7	Time.Ptr.prototype.Location = function() {
 		var _struct, t, l;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		l = t.loc;
@@ -1799,7 +1835,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return l;
 	};
 	Time.prototype.Location = function() { return this.go$val.Location(); };
- 0Ç°  Çó	Time.Ptr.prototype.Zone = function() {
+ 0Time0-0timeTime0timeLocation0timeUTC0Ç« Çó	Time.Ptr.prototype.Zone = function() {
 		var name, offset, _struct, t, _tuple, x;
 		name = "";
 		offset = 0;
@@ -1808,19 +1844,19 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [name, offset];
 	};
 	Time.prototype.Zone = function() { return this.go$val.Zone(); };
- 0Ç!  Ç	Time.Ptr.prototype.Unix = function() {
+ 0Time00timeTime0timelookup0Ç7 Ç	Time.Ptr.prototype.Unix = function() {
 		var _struct, t, x;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (x = t.sec, new Go$Int64(x.high + -15, x.low + 2288912640));
 	};
 	Time.prototype.Unix = function() { return this.go$val.Unix(); };
- 0Ç  ÇÊ	Time.Ptr.prototype.UnixNano = function() {
+ 0Time00timeTime0Ç ÇÊ	Time.Ptr.prototype.UnixNano = function() {
 		var _struct, t, x, x$1, x$2, x$3;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return (x = go$mul64(((x$1 = t.sec, new Go$Int64(x$1.high + -15, x$1.low + 2288912640))), new Go$Int64(0, 1000000000)), x$2 = (x$3 = t.nsec, new Go$Int64(0, x$3.constructor === Number ? x$3 : 1)), new Go$Int64(x.high + x$2.high, x.low + x$2.low));
 	};
 	Time.prototype.UnixNano = function() { return this.go$val.UnixNano(); };
- 0ÇQ  ÇG	Time.Ptr.prototype.MarshalBinary = function() {
+ 0Time00timeTime0ÇÜ ÇG	Time.Ptr.prototype.MarshalBinary = function() {
 		var _struct, t, offsetMin, _tuple, offset, _r, _q, enc;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		offsetMin = 0;
@@ -1841,7 +1877,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [enc, null];
 	};
 	Time.prototype.MarshalBinary = function() { return this.go$val.MarshalBinary(); };
- 0Ç8  Ç.	Time.Ptr.prototype.UnmarshalBinary = function(data$1) {
+ 0Time0-0timeTime0timeutcLoc0errorsNew0Çü Ç.	Time.Ptr.prototype.UnmarshalBinary = function(data$1) {
 		var t, buf, _slice, _index, x, x$1, x$2, x$3, x$4, x$5, x$6, _slice$1, _index$1, x$7, _slice$2, _index$2, x$8, _slice$3, _index$3, x$9, _slice$4, _index$4, x$10, _slice$5, _index$5, x$11, _slice$6, _index$6, x$12, _slice$7, _index$7, x$13, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, x$14, _slice$13, _index$13, _slice$14, _index$14, x$15, offset, localoff, _tuple, x$16;
 		t = this;
 		buf = data$1;
@@ -1870,19 +1906,19 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return null;
 	};
 	Time.prototype.UnmarshalBinary = function(data$1) { return this.go$val.UnmarshalBinary(data$1); };
- 0Ç  Å˘	Time.Ptr.prototype.GobEncode = function() {
+ 0Time0_0timeTime0errorsNew0timelookup0timeLocal0timeutcLoc0time	FixedZone0Ç Å˘	Time.Ptr.prototype.GobEncode = function() {
 		var _struct, t;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return t.MarshalBinary();
 	};
 	Time.prototype.GobEncode = function() { return this.go$val.GobEncode(); };
- 0Å—  Å»	Time.Ptr.prototype.GobDecode = function(data$1) {
+ 0Time00timeTime0ÅÁ Å»	Time.Ptr.prototype.GobDecode = function(data$1) {
 		var t;
 		t = this;
 		return t.UnmarshalBinary(data$1);
 	};
 	Time.prototype.GobDecode = function(data$1) { return this.go$val.GobDecode(data$1); };
- 0Çˇ  Çı	Time.Ptr.prototype.MarshalJSON = function() {
+ 0Time00timeTime0Ç$ Çı	Time.Ptr.prototype.MarshalJSON = function() {
 		var _struct, t, y;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		if (y = t.Year(), y < 0 || y >= 10000) {
@@ -1891,7 +1927,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [new (go$sliceType(Go$Uint8))(go$stringToBytes(t.Format("\"2006-01-02T15:04:05.999999999Z07:00\""))), null];
 	};
 	Time.prototype.MarshalJSON = function() { return this.go$val.MarshalJSON(); };
- 0Ç◊  ÇÕ	Time.Ptr.prototype.UnmarshalJSON = function(data$1) {
+ 0Time00timeTime0errorsNew0Ç¸ ÇÕ	Time.Ptr.prototype.UnmarshalJSON = function(data$1) {
 		var err, t, _tuple, _struct, l, r;
 		err = null;
 		t = this;
@@ -1899,7 +1935,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return err;
 	};
 	Time.prototype.UnmarshalJSON = function(data$1) { return this.go$val.UnmarshalJSON(data$1); };
- 0Ç˚  ÇÒ	Time.Ptr.prototype.MarshalText = function() {
+ 0Time00timeTime0timeParse0Ç  ÇÒ	Time.Ptr.prototype.MarshalText = function() {
 		var _struct, t, y;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		if (y = t.Year(), y < 0 || y >= 10000) {
@@ -1908,7 +1944,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [new (go$sliceType(Go$Uint8))(go$stringToBytes(t.Format("2006-01-02T15:04:05.999999999Z07:00"))), null];
 	};
 	Time.prototype.MarshalText = function() { return this.go$val.MarshalText(); };
- 0Ç”  Ç…	Time.Ptr.prototype.UnmarshalText = function(data$1) {
+ 0Time00timeTime0errorsNew0Ç¯ Ç…	Time.Ptr.prototype.UnmarshalText = function(data$1) {
 		var err, t, _tuple, _struct, l, r;
 		err = null;
 		t = this;
@@ -1916,7 +1952,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return err;
 	};
 	Time.prototype.UnmarshalText = function(data$1) { return this.go$val.UnmarshalText(data$1); };
- 0ÇÊ UnixÇÿ	Unix = go$pkg.Unix = function(sec, nsec) {
+ 0Time00timeTime0timeParse0ÇUnixÇÿ	Unix = go$pkg.Unix = function(sec, nsec) {
 		var n, x, x$1;
 		if ((nsec.high < 0 || (nsec.high === 0 && nsec.low < 0)) || (nsec.high > 0 || (nsec.high === 0 && nsec.low >= 1000000000))) {
 			n = go$div64(nsec, new Go$Int64(0, 1000000000), false);
@@ -1929,11 +1965,11 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		}
 		return new Time.Ptr(new Go$Int64(sec.high + 14, sec.low + 2006054656), (nsec.low >>> 0), go$pkg.Local);
 	};
- 0Çy isLeapÇi	isLeap = function(year) {
+ 0Unix00timeLocal0timeTime0ÇÉisLeapÇi	isLeap = function(year) {
 		var _r, _r$1, _r$2;
 		return ((_r = year % 4, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 0) && (!(((_r$1 = year % 100, _r$1 === _r$1 ? _r$1 : go$throwRuntimeError("integer divide by zero")) === 0)) || ((_r$2 = year % 400, _r$2 === _r$2 ? _r$2 : go$throwRuntimeError("integer divide by zero")) === 0));
 	};
- 0ÇÓ normÇ‡	norm = function(hi, lo, base) {
+ 0isLeap0 0ÇˆnormÇ‡	norm = function(hi, lo, base) {
 		var nhi, nlo, _q, n, _q$1, n$1, _tuple;
 		nhi = 0;
 		nlo = 0;
@@ -1950,7 +1986,8 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		_tuple = [hi, lo], nhi = _tuple[0], nlo = _tuple[1];
 		return [nhi, nlo];
 	};
- 0Ç† DateÇí	Date = go$pkg.Date = function(year, month, day, hour, min, sec, nsec, loc) {
+ 0norm0 0Ç
+DateÇí	Date = go$pkg.Date = function(year, month, day, hour, min, sec, nsec, loc) {
 		var m, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, x, x$1, y, n, x$2, d, x$3, x$4, x$5, x$6, x$7, x$8, x$9, abs, x$10, x$11, unix, _tuple$5, offset, start, end, x$12, utc, _tuple$6, _tuple$7, x$13;
 		if (loc === (go$ptrType(Location)).nil) {
 			throw go$panic(new Go$String("time: missing Location in call to Date"));
@@ -1994,7 +2031,8 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		}
 		return new Time.Ptr(new Go$Int64(unix.high + 14, unix.low + 2006054656), (nsec >>> 0), loc);
 	};
- 0Çå  ÇÇ	Time.Ptr.prototype.Truncate = function(d) {
+ 0Date0b0timeLocation0timenorm0time
+daysBefore0timeisLeap0timelookup0timeTime0Ç¡ ÇÇ	Time.Ptr.prototype.Truncate = function(d) {
 		var _struct, t, _struct$1, _tuple, _struct$2, r, _struct$3;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		if ((d.high < 0 || (d.high === 0 && d.low <= 0))) {
@@ -2004,7 +2042,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return (_struct$3 = t.Add(new Duration(-r.high, -r.low)), new Time.Ptr(_struct$3.sec, _struct$3.nsec, _struct$3.loc));
 	};
 	Time.prototype.Truncate = function(d) { return this.go$val.Truncate(d); };
- 0Çï  Çã	Time.Ptr.prototype.Round = function(d) {
+ 0Time0-0timeTime0timediv0timeDuration0Ç  Çã	Time.Ptr.prototype.Round = function(d) {
 		var _struct, t, _struct$1, _tuple, _struct$2, r, x, _struct$3, _struct$4;
 		t = (_struct = this, new Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		if ((d.high < 0 || (d.high === 0 && d.low <= 0))) {
@@ -2017,7 +2055,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return (_struct$4 = t.Add(new Duration(d.high - r.high, d.low - r.low)), new Time.Ptr(_struct$4.sec, _struct$4.nsec, _struct$4.loc));
 	};
 	Time.prototype.Round = function(d) { return this.go$val.Round(d); };
- 0Ç divÇ	div = function(t, d) {
+ 0Time0-0timeTime0timediv0timeDuration0Ç(divÇ	div = function(t, d) {
 		var qmod2, r, neg, nsec, x, x$1, x$2, x$3, x$4, _q, _r, x$5, d1, x$6, x$7, x$8, x$9, x$10, sec, tmp, u1, u0, _tuple, u0x, x$11, _tuple$1, d1$1, x$12, d0, _tuple$2, x$13, x$14, x$15;
 		qmod2 = 0;
 		r = new Duration(0, 0);
@@ -2083,7 +2121,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		}
 		return [qmod2, r];
 	};
- 0Ç  Ç	Location.Ptr.prototype.get = function() {
+ 0div00timeDuration0ÇÅ Ç	Location.Ptr.prototype.get = function() {
 		var l;
 		l = this;
 		if (l === (go$ptrType(Location)).nil) {
@@ -2095,19 +2133,20 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return l;
 	};
 	Location.prototype.get = function() { return this.go$val.get(); };
- 0Å±  Å®	Location.Ptr.prototype.String = function() {
+ 0Locationget0Z0timeLocation0timeutcLoc0timelocalLoc0time	localOnce0time	initLocal0Å‹ Å®	Location.Ptr.prototype.String = function() {
 		var l;
 		l = this;
 		return l.get().name;
 	};
 	Location.prototype.String = function() { return this.go$val.String(); };
- 0Ç= 	FixedZoneÇ*	FixedZone = go$pkg.FixedZone = function(name, offset) {
+ 0
+Location00timeLocation0timeget0Ç}	FixedZoneÇ*	FixedZone = go$pkg.FixedZone = function(name, offset) {
 		var l, _slice, _index;
 		l = new Location.Ptr(name, new (go$sliceType(zone))([new zone.Ptr(name, offset, false)]), new (go$sliceType(zoneTrans))([new zoneTrans.Ptr(new Go$Int64(-2147483648, 0), 0, false, false)]), new Go$Int64(-2147483648, 0), new Go$Int64(2147483647, 4294967295), (go$ptrType(zone)).nil);
 		l.cacheZone = (_slice = l.zone, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 		return l;
 	};
- 0Ç˘  ÇÔ	Location.Ptr.prototype.lookup = function(sec) {
+ 0	FixedZone030timezone0time	zoneTrans0timeLocation0Ç	: ÇÔ	Location.Ptr.prototype.lookup = function(sec) {
 		var name, offset, isDST, start, end, l, zone$1, x, x$1, tx, lo, hi, _q, m, _slice, _index, lim, _slice$1, _index$1, _slice$2, _index$2, zone$2, _slice$3, _index$3;
 		name = "";
 		offset = 0;
@@ -2154,7 +2193,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [name, offset, isDST, start, end];
 	};
 	Location.prototype.lookup = function(sec) { return this.go$val.lookup(sec); };
- 0Ç  Ç˜	Location.Ptr.prototype.lookupName = function(name, unix) {
+ 0Locationlookup0-0timeLocation0timeget0timezone0ÇH Ç˜	Location.Ptr.prototype.lookupName = function(name, unix) {
 		var offset, isDST, ok, l, _ref, _i, i, _slice, _index, zone$1, _tuple, x, nam, offset$1, isDST$1, _tuple$1, _ref$1, _i$1, i$1, _slice$1, _index$1, zone$2, _tuple$2;
 		offset = 0;
 		isDST = false;
@@ -2189,7 +2228,8 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [offset, isDST, ok];
 	};
 	Location.prototype.lookupName = function(name, unix) { return this.go$val.lookupName(name, unix); };
- 0Ç… LoadLocationÇ≥	LoadLocation = go$pkg.LoadLocation = function(name) {
+ 0Location
+lookupName0/0timeLocation0timeget0timelookup0Ç3LoadLocationÇ≥	LoadLocation = go$pkg.LoadLocation = function(name) {
 		var err, _tuple, z;
 		if (name === "" || name === "UTC") {
 			return [go$pkg.UTC, null];
@@ -2205,7 +2245,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		}
 		return loadLocation(name);
 	};
- 0ÇX  ÇN	data.Ptr.prototype.read = function(n) {
+ 0LoadLocation0Z0timeUTC0timeLocal0timezoneinfo0timeloadZoneFile0timeloadLocation0Çt ÇN	data.Ptr.prototype.read = function(n) {
 		var d, p;
 		d = this;
 		if (d.p.length < n) {
@@ -2218,7 +2258,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return p;
 	};
 	data.prototype.read = function(n) { return this.go$val.read(n); };
- 0Ç“  Ç»	data.Ptr.prototype.big4 = function() {
+ 0dataread00timedata0Ç¸ Ç»	data.Ptr.prototype.big4 = function() {
 		var n, ok, d, p, _tuple, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple$1;
 		n = 0;
 		ok = false;
@@ -2233,7 +2273,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [n, ok];
 	};
 	data.prototype.big4 = function() { return this.go$val.big4(); };
- 0Ç<  Ç2	data.Ptr.prototype.byte$ = function() {
+ 0databig400timedata0timeread0Çf Ç2	data.Ptr.prototype.byte$ = function() {
 		var n, ok, d, p, _tuple, _slice, _index, _tuple$1;
 		n = 0;
 		ok = false;
@@ -2248,7 +2288,7 @@ absWeekdayÇ'	absWeekday = function(abs) {
 		return [n, ok];
 	};
 	data.prototype.byte$ = function() { return this.go$val.byte$(); };
- 0ÇÇ 
+ 0databyte00timedata0timeread0Çê
 byteStringÇn	byteString = function(p) {
 		var i, _slice, _index;
 		i = 0;
@@ -2260,7 +2300,8 @@ byteStringÇn	byteString = function(p) {
 		}
 		return go$bytesToString(p);
 	};
- 0Çk loadZoneDataÇU	loadZoneData = function(bytes) {
+ 0
+byteString0 0Ç loadZoneDataÇU	loadZoneData = function(bytes) {
 		var l, err, d, magic, _tuple, p, _slice, _index, _slice$1, _index$1, _tuple$1, n, i, _tuple$2, nn, ok, _tuple$3, x, x$1, txtimes, txzones, x$2, x$3, zonedata, abbrev, x$4, x$5, isstd, isutc, _tuple$4, zone$1, _ref, _i, i$1, ok$1, n$1, _tuple$5, _tuple$6, _slice$2, _index$2, b, _tuple$7, _tuple$8, _slice$3, _index$3, _tuple$9, _tuple$10, _slice$4, _index$4, tx, _ref$1, _i$1, i$2, ok$2, n$2, _tuple$11, _tuple$12, _slice$5, _index$5, _slice$6, _index$6, _tuple$13, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _tuple$14, sec, _ref$2, _i$2, i$3, x$6, _slice$13, _index$13, x$7, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17, _slice$18, _index$18, _tuple$15;
 		l = (go$ptrType(Location)).nil;
 		err = null;
@@ -2368,7 +2409,8 @@ byteStringÇn	byteString = function(p) {
 		_tuple$15 = [l, null], l = _tuple$15[0], err = _tuple$15[1];
 		return [l, err];
 	};
- 0ÇZ loadZoneFileÇD	loadZoneFile = function(dir, name) {
+ 0loadZoneData0Åù0timedata0timebadData0timebig40time	zoneTrans0timeLocation0timeread0timezone0timebyte0time
+byteString0timenow0ÇπloadZoneFileÇD	loadZoneFile = function(dir, name) {
 		var l, err, _tuple, _tuple$1, buf, _tuple$2;
 		l = (go$ptrType(Location)).nil;
 		err = null;
@@ -2386,21 +2428,21 @@ byteStringÇn	byteString = function(p) {
 		_tuple$2 = loadZoneData(buf), l = _tuple$2[0], err = _tuple$2[1];
 		return [l, err];
 	};
- 0Ç get4Çq	get4 = function(b) {
+ 0loadZoneFile0O0timeLocation0timeloadZoneZip0timereadFile0timeloadZoneData0Çáget4Çq	get4 = function(b) {
 		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		if (b.length < 4) {
 			return 0;
 		}
 		return ((((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0) << 8 >> 0)) | (((_slice$2 = b, _index$2 = 2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")) >> 0) << 16 >> 0)) | (((_slice$3 = b, _index$3 = 3, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) >> 0) << 24 >> 0);
 	};
- 0Ç€ get2ÇÕ	get2 = function(b) {
+ 0get40 0Ç„get2ÇÕ	get2 = function(b) {
 		var _slice, _index, _slice$1, _index$1;
 		if (b.length < 2) {
 			return 0;
 		}
 		return ((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >> 0) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >> 0) << 8 >> 0);
 	};
- 0Çt loadZoneZipÇ_	loadZoneZip = function(zipfile, name) {
+ 0get20 0ÇloadZoneZipÇ_	loadZoneZip = function(zipfile, name) {
 		var l, err, _tuple, fd, _tuple$1, buf, err$1, _tuple$2, n, size, off, err$2, _tuple$3, i, meth, size$1, namelen, xlen, fclen, off$1, zname, _tuple$4, err$3, _tuple$5, err$4, _tuple$6, _tuple$7, _tuple$8;
 		l = (go$ptrType(Location)).nil;
 		err = null;
@@ -2469,7 +2511,7 @@ byteStringÇn	byteString = function(p) {
 			return [l, err];
 		}
 	};
- 0Ç initTestingZoneÇÛ	initTestingZone = function() {
+ 0loadZoneZip0ÅÇ0errorsNew0timeget40timepreadn0timeloadZoneData0timeLocation0timeopen0timeclosefd0timeget20ÇlinitTestingZoneÇÛ	initTestingZone = function() {
 		var _tuple, z, err, _struct;
 		_tuple = loadZoneFile(runtime.GOROOT() + "/lib/time/zoneinfo.zip", "America/Los_Angeles"), z = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -2478,7 +2520,7 @@ byteStringÇn	byteString = function(p) {
 		z.name = "Local";
 		localLoc = (_struct = z, new Location.Ptr(_struct.name, _struct.zone, _struct.tx, _struct.cacheStart, _struct.cacheEnd, _struct.cacheZone));
 	};
- 0Ç	 forceZipFileForTestingÇÈ	forceZipFileForTesting = function(zipOnly) {
+ 0initTestingZone0M0timeloadZoneFile0runtimeGOROOT0timeLocation0timelocalLoc0ÇKforceZipFileForTestingÇÈ	forceZipFileForTesting = function(zipOnly) {
 		var i, _slice, _index;
 		zoneDirs = (go$sliceType(Go$String)).make(origZoneDirs.length, 0, function() { return ""; });
 		go$copySlice(zoneDirs, origZoneDirs);
@@ -2490,7 +2532,7 @@ byteStringÇn	byteString = function(p) {
 			}
 		}
 	};
- 0Ç~ 	initLocalÇk	initLocal = function() {
+ 0forceZipFileForTesting0(0timeorigZoneDirs0timezoneDirs0ÇÓ	initLocalÇk	initLocal = function() {
 		var _tuple, tz, ok, _tuple$1, z, err, _struct, err$1, _tuple$2, z$1, _struct$1;
 		_tuple = syscall.Getenv("TZ"), tz = _tuple[0], ok = _tuple[1];
 		if (!ok) {
@@ -2508,7 +2550,7 @@ byteStringÇn	byteString = function(p) {
 		}
 		localLoc.name = "UTC";
 	};
- 0ÇP loadLocationÇ:	loadLocation = function(name) {
+ 0	initLocal0c0syscallGetenv0timeloadZoneFile0timeLocation0timelocalLoc0timeloadLocation0Ç©loadLocationÇ:	loadLocation = function(name) {
 		var _ref, _i, _slice, _index, zoneDir, err, _tuple, z;
 		_ref = zoneDirs;
 		_i = 0;
@@ -2522,28 +2564,36 @@ byteStringÇn	byteString = function(p) {
 		}
 		return [(go$ptrType(Location)).nil, errors.New("unknown time zone " + name)];
 	};
- 0 std0x  0 longDayNames  0 shortDayNames  0 shortMonthNames  0 longMonthNames  0 	atoiError  0 errBad  0 errLeadingInt  0 unitMap  0 months  0 days  0 
-daysBefore  0    0 utcLoc  0    01 localLoc !		localLoc = new Location.Ptr();
-04 	localOnce #		localOnce = new sync.Once.Ptr();
-0 zoneinfo  0 badData  0 zoneDirs  0 origZoneDirs  0K   C		std0x = go$toNativeArray("Int", [260, 265, 524, 526, 528, 274]);
-0Åâ   ÅÄ		longDayNames = new (go$sliceType(Go$String))(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
-0l   d		shortDayNames = new (go$sliceType(Go$String))(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
-0Åô   Åê		shortMonthNames = new (go$sliceType(Go$String))(["---", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]);
-0Åæ   Åµ		longMonthNames = new (go$sliceType(Go$String))(["---", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
-0:   2		atoiError = errors.New("time: invalid number");
-06   .		errBad = errors.New("bad value for field");
-0:   2		errLeadingInt = errors.New("time: bad [0-9]*");
-0Ç”   Ç…		var _map, _key;
+ 0loadLocation0I0timezoneDirs0timeloadZoneFile0timeLocation0errorsNew0std0x  0std0x0 0$longDayNames  0longDayNames0 0&shortDayNames  0shortDayNames0 0*shortMonthNames  0shortMonthNames0 0(longMonthNames  0longMonthNames0 0	atoiError  0	atoiError0 0errBad  0errBad0 0&errLeadingInt  0errLeadingInt0 0unitMap  0	unitMap0 0months  0months0 0days  0days0 0 
+daysBefore  0
+daysBefore0 0   0UTC0 0utcLoc  0utcLoc0 0   0Local0 0alocalLoc !		localLoc = new Location.Ptr();
+0
+localLoc0$0timeLocation0timelocalLoc0b	localOnce #		localOnce = new sync.Once.Ptr();
+0	localOnce0!0syncOnce0time	localOnce0zoneinfo  0
+zoneinfo0 0badData  0	badData0 0zoneDirs  0
+zoneDirs0 0$origZoneDirs  0origZoneDirs0 0c  C		std0x = go$toNativeArray("Int", [260, 265, 524, 526, 528, 274]);
+0std0x00timestd0x0ÅØ  ÅÄ		longDayNames = new (go$sliceType(Go$String))(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
+0longDayNames00timelongDayNames0Åî  d		shortDayNames = new (go$sliceType(Go$String))(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
+0shortDayNames00timeshortDayNames0Å≈  Åê		shortMonthNames = new (go$sliceType(Go$String))(["---", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]);
+0shortMonthNames00timeshortMonthNames0ÅË  Åµ		longMonthNames = new (go$sliceType(Go$String))(["---", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
+0longMonthNames00timelongMonthNames0^  2		atoiError = errors.New("time: invalid number");
+0 0"0errorsNew0time	atoiError0W  .		errBad = errors.New("bad value for field");
+0 00errorsNew0timeerrBad0b  2		errLeadingInt = errors.New("time: bad [0-9]*");
+0 0&0errorsNew0timeerrLeadingInt0ÇÔ  Ç…		var _map, _key;
 		unitMap = (_map = new Go$Map(), _key = "ns", _map[_key] = { k: _key, v: 1 }, _key = "us", _map[_key] = { k: _key, v: 1000 }, _key = "\xC2\xB5s", _map[_key] = { k: _key, v: 1000 }, _key = "\xCE\xBCs", _map[_key] = { k: _key, v: 1000 }, _key = "ms", _map[_key] = { k: _key, v: 1e+06 }, _key = "s", _map[_key] = { k: _key, v: 1e+09 }, _key = "m", _map[_key] = { k: _key, v: 6e+10 }, _key = "h", _map[_key] = { k: _key, v: 3.6e+12 }, _map);
-0Å¨   Å£		months = go$toNativeArray("String", ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
-0}   u		days = go$toNativeArray("String", ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
-0p   h		daysBefore = go$toNativeArray("Int32", [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365]);
-0Å¶   Åù		utcLoc = new Location.Ptr("UTC", (go$sliceType(zone)).nil, (go$sliceType(zoneTrans)).nil, new Go$Int64(0, 0), new Go$Int64(0, 0), (go$ptrType(zone)).nil);
-0   		go$pkg.UTC = utcLoc;
-0#   		go$pkg.Local = localLoc;
-0S   K		var _tuple;
+0	unitMap00timeunitMap0Å∆  Å£		months = go$toNativeArray("String", ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
+0months00timemonths0Åì  u		days = go$toNativeArray("String", ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
+0days00timedays0Åí  h		daysBefore = go$toNativeArray("Int32", [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365]);
+0
+daysBefore00time
+daysBefore0ÅÛ  Åù		utcLoc = new Location.Ptr("UTC", (go$sliceType(zone)).nil, (go$sliceType(zoneTrans)).nil, new Go$Int64(0, 0), new Go$Int64(0, 0), (go$ptrType(zone)).nil);
+0utcLoc0C0timezone0time	zoneTrans0timeLocation0timeutcLoc0C  		go$pkg.UTC = utcLoc;
+0UTC00timeutcLoc0timeUTC0M  		go$pkg.Local = localLoc;
+0Local0!0timelocalLoc0timeLocal0z  K		var _tuple;
 		_tuple = syscall.Getenv("ZONEINFO"), zoneinfo = _tuple[0];
-0C   ;		badData = errors.New("malformed time zone information");
-0ÅØ   Å¶		zoneDirs = new (go$sliceType(Go$String))(["/usr/share/zoneinfo/", "/usr/share/lib/zoneinfo/", "/usr/lib/locale/TZ/", runtime.GOROOT() + "/lib/time/zoneinfo.zip"]);
-0#   		origZoneDirs = zoneDirs;
-0    0    0 
+0 0%0syscallGetenv0timezoneinfo0e  ;		badData = errors.New("malformed time zone information");
+0 0 0errorsNew0timebadData0Å÷  Å¶		zoneDirs = new (go$sliceType(Go$String))(["/usr/share/zoneinfo/", "/usr/share/lib/zoneinfo/", "/usr/lib/locale/TZ/", runtime.GOROOT() + "/lib/time/zoneinfo.zip"]);
+0 0%0runtimeGOROOT0timezoneDirs0[  		origZoneDirs = zoneDirs;
+0origZoneDirs0(0timezoneDirs0timeorigZoneDirs0
+   0 0 0
+   0 0 0 
