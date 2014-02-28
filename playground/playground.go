@@ -23,7 +23,7 @@ func main() {
 	app := angularjs.NewModule("playground", nil, nil)
 
 	app.NewController("PlaygroundCtrl", func(scope *angularjs.Scope) {
-		scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global(\"alert\").Invoke(\"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
+		scope.Set("code", "package main\n\nimport (\n\t\"fmt\"\n\t\"github.com/gopherjs/gopherjs/js\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello, playground\")\n\tjs.Global.Call(\"alert\", \"Hello, JavaScript\")\n\tprintln(\"Hello, JS console\")\n}\n")
 		scope.Set("showGenerated", false)
 		scope.Set("generated", `(generated code will be shown here after clicking "Run")`)
 
@@ -108,13 +108,9 @@ func main() {
 				return
 			}
 
-			var pkgsToEval []string
 			if len(pkgsToLoad) == 0 {
 				for _, path := range mainPkg.Dependencies {
 					importPackage(path)
-					if path == "main" || !isAlreadyLoaded(path) {
-						pkgsToEval = append(pkgsToEval, path)
-					}
 				}
 			}
 
@@ -123,7 +119,7 @@ func main() {
 				for _, p := range pkgsToLoad {
 					path := p
 
-					req := js.Global("XMLHttpRequest").New()
+					req := js.Global.Get("XMLHttpRequest").New()
 					req.Call("open", "GET", "pkg/"+path+".a", true)
 					req.Set("responseType", "arraybuffer")
 					req.Set("onload", func() {
@@ -134,7 +130,7 @@ func main() {
 							return
 						}
 
-						data := js.Global("Uint8Array").New(req.Get("response")).Interface().([]byte)
+						data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
 						packages[path], err = translator.ReadArchive(path+".a", path, []byte(data))
 						if err != nil {
 							scope.Apply(func() {
@@ -161,17 +157,21 @@ func main() {
 			scope.Set("generated", mainPkgCode.String())
 
 			jsCode := bytes.NewBuffer(nil)
-			for _, path := range pkgsToEval {
+			jsCode.WriteString("\"use strict\";\n(function() {\n\n")
+			jsCode.WriteString(strings.TrimSpace(translator.Prelude))
+			jsCode.WriteString("\n")
+
+			for _, path := range mainPkg.Dependencies {
 				packages[path].WriteCode(jsCode)
 			}
 
 			translator.WriteInterfaces(mainPkg.Dependencies, jsCode, true)
 
-			for _, path := range pkgsToEval {
+			for _, path := range mainPkg.Dependencies {
 				jsCode.WriteString("go$packages[\"" + path + "\"].init();\n")
 			}
 
-			jsCode.WriteString("go$packages[\"main\"].main();\n")
+			jsCode.WriteString("go$packages[\"main\"].main();\n\n\n})();")
 
 			evalScript(jsCode.String(), scope)
 		}
@@ -209,7 +209,7 @@ func writeString(scope *angularjs.Scope, s string) {
 }
 
 func setupEnvironment(scope *angularjs.Scope) {
-	js.Global("go$packages").Get("syscall").Call("go$setSyscall", func(trap int, a1, a2, a3 js.Object) (r1, r2 int, err error) {
+	js.Global.Set("go$syscall", func(trap int, a1, a2, a3 js.Object) (r1, r2 int, err error) {
 		switch trap {
 		case 4:
 			s := string(a2.Interface().([]byte))
@@ -221,10 +221,6 @@ func setupEnvironment(scope *angularjs.Scope) {
 	})
 }
 
-func isAlreadyLoaded(path string) bool {
-	return !js.Global("go$packages").Get(path).IsUndefined()
-}
-
 func evalScript(script string, scope *angularjs.Scope) {
 	defer func() {
 		if err := recover(); err != nil {
@@ -232,5 +228,5 @@ func evalScript(script string, scope *angularjs.Scope) {
 			scope.Set("output", output)
 		}
 	}()
-	js.Global("eval").Invoke(script)
+	js.Global.Call("eval", script)
 }
