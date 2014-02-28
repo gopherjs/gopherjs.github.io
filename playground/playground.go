@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"github.com/gopherjs/go-angularjs"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/gopherjs/gopherjs/translator"
@@ -108,9 +107,11 @@ func main() {
 				return
 			}
 
+			var allPkgs []*translator.Archive
 			if len(pkgsToLoad) == 0 {
-				for _, path := range mainPkg.Dependencies {
-					importPackage(path)
+				for _, depPath := range mainPkg.Dependencies {
+					dep, _ := importPackage(depPath)
+					allPkgs = append(allPkgs, dep)
 				}
 			}
 
@@ -153,27 +154,14 @@ func main() {
 			}
 
 			mainPkgCode := bytes.NewBuffer(nil)
-			packages["main"].WriteCode(mainPkgCode)
+			translator.WritePkgCode(packages["main"], mainPkgCode)
 			scope.Set("generated", mainPkgCode.String())
 
 			jsCode := bytes.NewBuffer(nil)
-			jsCode.WriteString("\"use strict\";\n(function() {\n\n")
-			jsCode.WriteString(strings.TrimSpace(translator.Prelude))
-			jsCode.WriteString("\n")
-
-			for _, path := range mainPkg.Dependencies {
-				packages[path].WriteCode(jsCode)
-			}
-
-			translator.WriteInterfaces(mainPkg.Dependencies, jsCode, true)
-
-			for _, path := range mainPkg.Dependencies {
-				jsCode.WriteString("go$packages[\"" + path + "\"].init();\n")
-			}
-
-			jsCode.WriteString("go$packages[\"main\"].main();\n\n\n})();")
-
-			evalScript(jsCode.String(), scope)
+			jsCode.WriteString("try{\n")
+			translator.WriteProgramCode(allPkgs, "main", jsCode)
+			jsCode.WriteString("} catch (err) {\ngo$panicHandler(err.message);\n}\n")
+			js.Global.Call("eval", jsCode.String())
 		}
 		scope.Set("run", run)
 		run(true)
@@ -219,14 +207,8 @@ func setupEnvironment(scope *angularjs.Scope) {
 			panic("syscall not supported")
 		}
 	})
-}
-
-func evalScript(script string, scope *angularjs.Scope) {
-	defer func() {
-		if err := recover(); err != nil {
-			output = append(output, Line{"type": "err", "content": fmt.Sprintf("panic: %v", err)})
-			scope.Set("output", output)
-		}
-	}()
-	js.Global.Call("eval", script)
+	js.Global.Set("go$panicHandler", func(msg string) {
+		output = append(output, Line{"type": "err", "content": "panic: " + msg})
+		scope.Set("output", output)
+	})
 }
