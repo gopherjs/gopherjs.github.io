@@ -78,16 +78,15 @@
         position: absolute;
         right: 0;
         top: 0;
-      }
-      #head {
-        float: left;
-        font-family: Georgia,serif;
-        font-size: 30px;
+        white-space: nowrap;
         padding: 8px;
       }
+      #head {
+        font-family: Georgia,serif;
+        font-size: 30px;
+      }
       #controls {
-        float: left;
-        padding: 10px;
+        padding-left: 20px;
       }
       input[type="button"] {
         background: #eee;
@@ -129,12 +128,12 @@
   </head>
   <body ng-controller="PlaygroundCtrl">
     <div id="banner">
-      <div id="head" itemprop="name"><a href="https://github.com/gopherjs/gopherjs" style="color: black;">GopherJS</a> Playground</div>
-      <div id="controls">
+      <span id="head"><a href="https://github.com/gopherjs/gopherjs" style="color: black;">GopherJS</a> Playground</span>
+      <span id="controls">
         <input type="button" value="Run" ng-click="run(false)" />
         <input type="button" value="Format" ng-click="format()" />
         <label><input ng-model="showGenerated" type="checkbox" />Show generated code for main package</label>
-      </div>
+      </span>
     </div>
     
     <div class="box show-generated-{{showGenerated}}" style="top: 50px; bottom: 25%;">
