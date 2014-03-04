@@ -1,4 +1,4 @@
-0Çé+index/suffixarrayÇ'¯package suffixarray
+0Çé~index/suffixarrayÇ'¯package suffixarray
 import sort "sort"
 import bytes "bytes"
 import binary "encoding/binary"
@@ -115,22 +115,22 @@ type @"regexp".input interface { @"regexp".canCheckPrefix() (? bool); @"regexp".
 type @"regexp/syntax".InstOp uint8
 type @"regexp".entry struct { @"regexp".pc uint32; @"regexp".t *@"regexp".thread }
 $$
-0Å®runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysortstringsregexp/syntaxregexpindex/suffixarray0U0sortsort0bytesbytes0encoding/binarybinary0ioio0regexpregexp0Çe0Ç¥suffixSortableÇ¥	suffixSortable = go$pkg.suffixSortable = go$newType(0, "Struct", "suffixarray.suffixSortable", "suffixSortable", "index/suffixarray", function(sa_, inv_, h_, buf_) {
+0Å®runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysortstringsregexp/syntaxregexpindex/suffixarray0U0sortsort0bytesbytes0encoding/binarybinary0ioio0regexpregexp0Çeg0Ç›suffixSortableÇ¥	suffixSortable = go$pkg.suffixSortable = go$newType(0, "Struct", "suffixarray.suffixSortable", "suffixSortable", "index/suffixarray", function(sa_, inv_, h_, buf_) {
 		this.go$val = this;
 		this.sa = sa_ !== undefined ? sa_ : (go$sliceType(Go$Int)).nil;
 		this.inv = inv_ !== undefined ? inv_ : (go$sliceType(Go$Int)).nil;
 		this.h = h_ !== undefined ? h_ : 0;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Int)).nil;
 	});
-Ç‘		suffixSortable.init([["sa", "index/suffixarray", (go$sliceType(Go$Int)), ""], ["inv", "index/suffixarray", (go$sliceType(Go$Int)), ""], ["h", "index/suffixarray", Go$Int, ""], ["buf", "index/suffixarray", (go$sliceType(Go$Int)), ""]]);
-		(go$ptrType(suffixSortable)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false], ["updateGroups", "index/suffixarray", [Go$Int], [], false]];
-0suffixSortable0 0ÇIndexÇ!	Index = go$pkg.Index = go$newType(0, "Struct", "suffixarray.Index", "Index", "index/suffixarray", function(data_, sa_) {
+Ç˝		(go$ptrType(suffixSortable)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1], ["updateGroups", "index/suffixarray", [Go$Int], [], false, -1]];
+		suffixSortable.init([["sa", "sa", "index/suffixarray", (go$sliceType(Go$Int)), ""], ["inv", "inv", "index/suffixarray", (go$sliceType(Go$Int)), ""], ["h", "h", "index/suffixarray", Go$Int, ""], ["buf", "buf", "index/suffixarray", (go$sliceType(Go$Int)), ""]]);
+0suffixSortable0 0Ç<IndexÇ!	Index = go$pkg.Index = go$newType(0, "Struct", "suffixarray.Index", "Index", "index/suffixarray", function(data_, sa_) {
 		this.go$val = this;
 		this.data = data_ !== undefined ? data_ : (go$sliceType(Go$Uint8)).nil;
 		this.sa = sa_ !== undefined ? sa_ : (go$sliceType(Go$Int)).nil;
 	});
-Ç©		Index.init([["data", "index/suffixarray", (go$sliceType(Go$Uint8)), ""], ["sa", "index/suffixarray", (go$sliceType(Go$Int)), ""]]);
-		(go$ptrType(Index)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["FindAllIndex", "", [(go$ptrType(regexp.Regexp)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["Lookup", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType(Go$Int))], false], ["Read", "", [io.Reader], [go$error], false], ["Write", "", [io.Writer], [go$error], false], ["at", "index/suffixarray", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["lookupAll", "index/suffixarray", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false]];
+Ç”		(go$ptrType(Index)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false, -1], ["FindAllIndex", "", [(go$ptrType(regexp.Regexp)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["Lookup", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType(Go$Int))], false, -1], ["Read", "", [io.Reader], [go$error], false, -1], ["Write", "", [io.Writer], [go$error], false, -1], ["at", "index/suffixarray", [Go$Int], [(go$sliceType(Go$Uint8))], false, -1], ["lookupAll", "index/suffixarray", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false, -1]];
+		Index.init([["data", "data", "index/suffixarray", (go$sliceType(Go$Uint8)), ""], ["sa", "sa", "index/suffixarray", (go$sliceType(Go$Int)), ""]]);
 0Index0.0regexpRegexp0ioReader0ioWriter0Ç	iqsufsortÇ´	qsufsort = function(data) {
 		var sa, inv, sufSortable, _slice, _index, pi, sl, s, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, pk, _slice$4, _index$4, x, x$1, _ref, _i, i, _slice$5, _index$5, _slice$6, _index$6;
 		sa = sortedByFirstByte(data);

@@ -1,4 +1,4 @@
-0ÉHcompress/flateÇ[package flate
+0Éñcompress/flateÇ[package flate
 import fmt "fmt"
 import io "io"
 import math "math"
@@ -102,7 +102,7 @@ type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"".p []by
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
 0Åìruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flate0V0
-fmtfmt0ioio0mathmath0sortsort0bufiobufio0strconvstrconv0É„‰0ÇcompressionLevelÇÍ	compressionLevel = go$pkg.compressionLevel = go$newType(0, "Struct", "flate.compressionLevel", "compressionLevel", "compress/flate", function(good_, lazy_, nice_, chain_, fastSkipHashing_) {
+fmtfmt0ioio0mathmath0sortsort0bufiobufio0strconvstrconv0ÉË20Ç=compressionLevelÇÍ	compressionLevel = go$pkg.compressionLevel = go$newType(0, "Struct", "flate.compressionLevel", "compressionLevel", "compress/flate", function(good_, lazy_, nice_, chain_, fastSkipHashing_) {
 		this.go$val = this;
 		this.good = good_ !== undefined ? good_ : 0;
 		this.lazy = lazy_ !== undefined ? lazy_ : 0;
@@ -110,8 +110,8 @@ $$
 		this.chain = chain_ !== undefined ? chain_ : 0;
 		this.fastSkipHashing = fastSkipHashing_ !== undefined ? fastSkipHashing_ : 0;
 	});
-ÅÔ		compressionLevel.init([["good", "compress/flate", Go$Int, ""], ["lazy", "compress/flate", Go$Int, ""], ["nice", "compress/flate", Go$Int, ""], ["chain", "compress/flate", Go$Int, ""], ["fastSkipHashing", "compress/flate", Go$Int, ""]]);
-0compressionLevel0 0Ç,
+Ç#		compressionLevel.init([["good", "good", "compress/flate", Go$Int, ""], ["lazy", "lazy", "compress/flate", Go$Int, ""], ["nice", "nice", "compress/flate", Go$Int, ""], ["chain", "chain", "compress/flate", Go$Int, ""], ["fastSkipHashing", "fastSkipHashing", "compress/flate", Go$Int, ""]]);
+0compressionLevel0 0ÇB
 compressorÇ™	compressor = go$pkg.compressor = go$newType(0, "Struct", "flate.compressor", "compressor", "compress/flate", function(compressionLevel_, w_, fill_, step_, sync_, chainHead_, hashHead_, hashPrev_, hashOffset_, index_, window_, windowEnd_, blockStart_, byteAvailable_, tokens_, length_, offset_, hash_, maxInsertIndex_, err_) {
 		this.go$val = this;
 		this.compressionLevel = compressionLevel_ !== undefined ? compressionLevel_ : new compressionLevel.Ptr();
@@ -135,27 +135,27 @@ compressorÇ™	compressor = go$pkg.compressor = go$newType(0, "Struct", "flate.c
 		this.maxInsertIndex = maxInsertIndex_ !== undefined ? maxInsertIndex_ : 0;
 		this.err = err_ !== undefined ? err_ : null;
 	});
-ÇÔ		compressor.init([["", "compress/flate", compressionLevel, ""], ["w", "compress/flate", (go$ptrType(huffmanBitWriter)), ""], ["fill", "compress/flate", (go$funcType([(go$ptrType(compressor)), (go$sliceType(Go$Uint8))], [Go$Int], false)), ""], ["step", "compress/flate", (go$funcType([(go$ptrType(compressor))], [], false)), ""], ["sync", "compress/flate", Go$Bool, ""], ["chainHead", "compress/flate", Go$Int, ""], ["hashHead", "compress/flate", (go$sliceType(Go$Int)), ""], ["hashPrev", "compress/flate", (go$sliceType(Go$Int)), ""], ["hashOffset", "compress/flate", Go$Int, ""], ["index", "compress/flate", Go$Int, ""], ["window", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["windowEnd", "compress/flate", Go$Int, ""], ["blockStart", "compress/flate", Go$Int, ""], ["byteAvailable", "compress/flate", Go$Bool, ""], ["tokens", "compress/flate", (go$sliceType(token)), ""], ["length", "compress/flate", Go$Int, ""], ["offset", "compress/flate", Go$Int, ""], ["hash", "compress/flate", Go$Int, ""], ["maxInsertIndex", "compress/flate", Go$Int, ""], ["err", "compress/flate", go$error, ""]]);
-		(go$ptrType(compressor)).methods = [["close", "compress/flate", [], [go$error], false], ["deflate", "compress/flate", [], [], false], ["fillDeflate", "compress/flate", [(go$sliceType(Go$Uint8))], [Go$Int], false], ["fillStore", "compress/flate", [(go$sliceType(Go$Uint8))], [Go$Int], false], ["findMatch", "compress/flate", [Go$Int, Go$Int, Go$Int, Go$Int], [Go$Int, Go$Int, Go$Bool], false], ["init", "compress/flate", [io.Writer, Go$Int], [go$error], false], ["initDeflate", "compress/flate", [], [], false], ["reset", "compress/flate", [io.Writer], [], false], ["store", "compress/flate", [], [], false], ["syncFlush", "compress/flate", [], [go$error], false], ["write", "compress/flate", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["writeBlock", "compress/flate", [(go$sliceType(token)), Go$Int, Go$Bool], [go$error], false], ["writeStoredBlock", "compress/flate", [(go$sliceType(Go$Uint8))], [go$error], false]];
+Ç			(go$ptrType(compressor)).methods = [["close", "compress/flate", [], [go$error], false, -1], ["deflate", "compress/flate", [], [], false, -1], ["fillDeflate", "compress/flate", [(go$sliceType(Go$Uint8))], [Go$Int], false, -1], ["fillStore", "compress/flate", [(go$sliceType(Go$Uint8))], [Go$Int], false, -1], ["findMatch", "compress/flate", [Go$Int, Go$Int, Go$Int, Go$Int], [Go$Int, Go$Int, Go$Bool], false, -1], ["init", "compress/flate", [io.Writer, Go$Int], [go$error], false, -1], ["initDeflate", "compress/flate", [], [], false, -1], ["reset", "compress/flate", [io.Writer], [], false, -1], ["store", "compress/flate", [], [], false, -1], ["syncFlush", "compress/flate", [], [go$error], false, -1], ["write", "compress/flate", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["writeBlock", "compress/flate", [(go$sliceType(token)), Go$Int, Go$Bool], [go$error], false, -1], ["writeStoredBlock", "compress/flate", [(go$sliceType(Go$Uint8))], [go$error], false, -1]];
+		compressor.init([["compressionLevel", "", "compress/flate", compressionLevel, ""], ["w", "w", "compress/flate", (go$ptrType(huffmanBitWriter)), ""], ["fill", "fill", "compress/flate", (go$funcType([(go$ptrType(compressor)), (go$sliceType(Go$Uint8))], [Go$Int], false)), ""], ["step", "step", "compress/flate", (go$funcType([(go$ptrType(compressor))], [], false)), ""], ["sync", "sync", "compress/flate", Go$Bool, ""], ["chainHead", "chainHead", "compress/flate", Go$Int, ""], ["hashHead", "hashHead", "compress/flate", (go$sliceType(Go$Int)), ""], ["hashPrev", "hashPrev", "compress/flate", (go$sliceType(Go$Int)), ""], ["hashOffset", "hashOffset", "compress/flate", Go$Int, ""], ["index", "index", "compress/flate", Go$Int, ""], ["window", "window", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["windowEnd", "windowEnd", "compress/flate", Go$Int, ""], ["blockStart", "blockStart", "compress/flate", Go$Int, ""], ["byteAvailable", "byteAvailable", "compress/flate", Go$Bool, ""], ["tokens", "tokens", "compress/flate", (go$sliceType(token)), ""], ["length", "length", "compress/flate", Go$Int, ""], ["offset", "offset", "compress/flate", Go$Int, ""], ["hash", "hash", "compress/flate", Go$Int, ""], ["maxInsertIndex", "maxInsertIndex", "compress/flate", Go$Int, ""], ["err", "err", "compress/flate", go$error, ""]]);
 0
-compressor0o0"compress/flatecompressionLevel0"compress/flatehuffmanBitWriter0compress/flatetoken0ioWriter0Ç
+compressor0o0"compress/flatecompressionLevel0"compress/flatehuffmanBitWriter0compress/flatetoken0ioWriter0Ç"
 dictWriterÇ	dictWriter = go$pkg.dictWriter = go$newType(0, "Struct", "flate.dictWriter", "dictWriter", "compress/flate", function(w_, enabled_) {
 		this.go$val = this;
 		this.w = w_ !== undefined ? w_ : null;
 		this.enabled = enabled_ !== undefined ? enabled_ : false;
 	});
-Å÷		dictWriter.init([["w", "compress/flate", io.Writer, ""], ["enabled", "compress/flate", Go$Bool, ""]]);
-		(go$ptrType(dictWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+ÅÍ		(go$ptrType(dictWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1]];
+		dictWriter.init([["w", "w", "compress/flate", io.Writer, ""], ["enabled", "enabled", "compress/flate", Go$Bool, ""]]);
 0
-dictWriter00ioWriter0Ç™WriterÇ	Writer = go$pkg.Writer = go$newType(0, "Struct", "flate.Writer", "Writer", "compress/flate", function(d_, dict_) {
+dictWriter00ioWriter0Ç«WriterÇ	Writer = go$pkg.Writer = go$newType(0, "Struct", "flate.Writer", "Writer", "compress/flate", function(d_, dict_) {
 		this.go$val = this;
 		this.d = d_ !== undefined ? d_ : new compressor.Ptr();
 		this.dict = dict_ !== undefined ? dict_ : (go$sliceType(Go$Uint8)).nil;
 	});
-ÇP		Writer.init([["d", "compress/flate", compressor, ""], ["dict", "compress/flate", (go$sliceType(Go$Uint8)), ""]]);
-		(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false], ["Flush", "", [], [go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
+Çm		(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false, -1], ["Flush", "", [], [go$error], false, -1], ["Reset", "", [io.Writer], [], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1]];
+		Writer.init([["d", "d", "compress/flate", compressor, ""], ["dict", "dict", "compress/flate", (go$sliceType(Go$Uint8)), ""]]);
 0Writer0,0compress/flate
-compressor0ioWriter0ÇıhuffmanBitWriterÇM	huffmanBitWriter = go$pkg.huffmanBitWriter = go$newType(0, "Struct", "flate.huffmanBitWriter", "huffmanBitWriter", "compress/flate", function(w_, bits_, nbits_, bytes_, nbytes_, literalFreq_, offsetFreq_, codegen_, codegenFreq_, literalEncoding_, offsetEncoding_, codegenEncoding_, err_) {
+compressor0ioWriter0Ç¿huffmanBitWriterÇM	huffmanBitWriter = go$pkg.huffmanBitWriter = go$newType(0, "Struct", "flate.huffmanBitWriter", "huffmanBitWriter", "compress/flate", function(w_, bits_, nbits_, bytes_, nbytes_, literalFreq_, offsetFreq_, codegen_, codegenFreq_, literalEncoding_, offsetEncoding_, codegenEncoding_, err_) {
 		this.go$val = this;
 		this.w = w_ !== undefined ? w_ : null;
 		this.bits = bits_ !== undefined ? bits_ : 0;
@@ -171,22 +171,22 @@ compressor0ioWriter0ÇıhuffmanBitWriterÇM	huffmanBitWriter = go$pkg.huf
 		this.codegenEncoding = codegenEncoding_ !== undefined ? codegenEncoding_ : (go$ptrType(huffmanEncoder)).nil;
 		this.err = err_ !== undefined ? err_ : null;
 	});
-Ç/		huffmanBitWriter.init([["w", "compress/flate", io.Writer, ""], ["bits", "compress/flate", Go$Uint32, ""], ["nbits", "compress/flate", Go$Uint32, ""], ["bytes", "compress/flate", (go$arrayType(Go$Uint8, 64)), ""], ["nbytes", "compress/flate", Go$Int, ""], ["literalFreq", "compress/flate", (go$sliceType(Go$Int32)), ""], ["offsetFreq", "compress/flate", (go$sliceType(Go$Int32)), ""], ["codegen", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["codegenFreq", "compress/flate", (go$sliceType(Go$Int32)), ""], ["literalEncoding", "compress/flate", (go$ptrType(huffmanEncoder)), ""], ["offsetEncoding", "compress/flate", (go$ptrType(huffmanEncoder)), ""], ["codegenEncoding", "compress/flate", (go$ptrType(huffmanEncoder)), ""], ["err", "compress/flate", go$error, ""]]);
-		(go$ptrType(huffmanBitWriter)).methods = [["flush", "compress/flate", [], [], false], ["flushBits", "compress/flate", [], [], false], ["generateCodegen", "compress/flate", [Go$Int, Go$Int], [], false], ["reset", "compress/flate", [io.Writer], [], false], ["writeBits", "compress/flate", [Go$Int32, Go$Int32], [], false], ["writeBlock", "compress/flate", [(go$sliceType(token)), Go$Bool, (go$sliceType(Go$Uint8))], [], false], ["writeBytes", "compress/flate", [(go$sliceType(Go$Uint8))], [], false], ["writeCode", "compress/flate", [(go$ptrType(huffmanEncoder)), Go$Uint32], [], false], ["writeDynamicHeader", "compress/flate", [Go$Int, Go$Int, Go$Int, Go$Bool], [], false], ["writeFixedHeader", "compress/flate", [Go$Bool], [], false], ["writeStoredHeader", "compress/flate", [Go$Int, Go$Bool], [], false]];
-0huffmanBitWriter0I0 compress/flatehuffmanEncoder0ioWriter0compress/flatetoken0ÇﬁhuffmanEncoderÇW	huffmanEncoder = go$pkg.huffmanEncoder = go$newType(0, "Struct", "flate.huffmanEncoder", "huffmanEncoder", "compress/flate", function(codeBits_, code_) {
+Ç˙		(go$ptrType(huffmanBitWriter)).methods = [["flush", "compress/flate", [], [], false, -1], ["flushBits", "compress/flate", [], [], false, -1], ["generateCodegen", "compress/flate", [Go$Int, Go$Int], [], false, -1], ["reset", "compress/flate", [io.Writer], [], false, -1], ["writeBits", "compress/flate", [Go$Int32, Go$Int32], [], false, -1], ["writeBlock", "compress/flate", [(go$sliceType(token)), Go$Bool, (go$sliceType(Go$Uint8))], [], false, -1], ["writeBytes", "compress/flate", [(go$sliceType(Go$Uint8))], [], false, -1], ["writeCode", "compress/flate", [(go$ptrType(huffmanEncoder)), Go$Uint32], [], false, -1], ["writeDynamicHeader", "compress/flate", [Go$Int, Go$Int, Go$Int, Go$Bool], [], false, -1], ["writeFixedHeader", "compress/flate", [Go$Bool], [], false, -1], ["writeStoredHeader", "compress/flate", [Go$Int, Go$Bool], [], false, -1]];
+		huffmanBitWriter.init([["w", "w", "compress/flate", io.Writer, ""], ["bits", "bits", "compress/flate", Go$Uint32, ""], ["nbits", "nbits", "compress/flate", Go$Uint32, ""], ["bytes", "bytes", "compress/flate", (go$arrayType(Go$Uint8, 64)), ""], ["nbytes", "nbytes", "compress/flate", Go$Int, ""], ["literalFreq", "literalFreq", "compress/flate", (go$sliceType(Go$Int32)), ""], ["offsetFreq", "offsetFreq", "compress/flate", (go$sliceType(Go$Int32)), ""], ["codegen", "codegen", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["codegenFreq", "codegenFreq", "compress/flate", (go$sliceType(Go$Int32)), ""], ["literalEncoding", "literalEncoding", "compress/flate", (go$ptrType(huffmanEncoder)), ""], ["offsetEncoding", "offsetEncoding", "compress/flate", (go$ptrType(huffmanEncoder)), ""], ["codegenEncoding", "codegenEncoding", "compress/flate", (go$ptrType(huffmanEncoder)), ""], ["err", "err", "compress/flate", go$error, ""]]);
+0huffmanBitWriter0I0 compress/flatehuffmanEncoder0ioWriter0compress/flatetoken0ÇhuffmanEncoderÇW	huffmanEncoder = go$pkg.huffmanEncoder = go$newType(0, "Struct", "flate.huffmanEncoder", "huffmanEncoder", "compress/flate", function(codeBits_, code_) {
 		this.go$val = this;
 		this.codeBits = codeBits_ !== undefined ? codeBits_ : (go$sliceType(Go$Uint8)).nil;
 		this.code = code_ !== undefined ? code_ : (go$sliceType(Go$Uint16)).nil;
 	});
-Ç<		huffmanEncoder.init([["codeBits", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["code", "compress/flate", (go$sliceType(Go$Uint16)), ""]]);
-		(go$ptrType(huffmanEncoder)).methods = [["assignEncodingAndSize", "compress/flate", [(go$sliceType(Go$Int32)), (go$sliceType(literalNode))], [], false], ["bitCounts", "compress/flate", [(go$sliceType(literalNode)), Go$Int32], [(go$sliceType(Go$Int32))], false], ["bitLength", "compress/flate", [(go$sliceType(Go$Int32))], [Go$Int64], false], ["generate", "compress/flate", [(go$sliceType(Go$Int32)), Go$Int32], [], false]];
-0huffmanEncoder00compress/flateliteralNode0Ç¢literalNodeÇ	literalNode = go$pkg.literalNode = go$newType(0, "Struct", "flate.literalNode", "literalNode", "compress/flate", function(literal_, freq_) {
+Ç`		(go$ptrType(huffmanEncoder)).methods = [["assignEncodingAndSize", "compress/flate", [(go$sliceType(Go$Int32)), (go$sliceType(literalNode))], [], false, -1], ["bitCounts", "compress/flate", [(go$sliceType(literalNode)), Go$Int32], [(go$sliceType(Go$Int32))], false, -1], ["bitLength", "compress/flate", [(go$sliceType(Go$Int32))], [Go$Int64], false, -1], ["generate", "compress/flate", [(go$sliceType(Go$Int32)), Go$Int32], [], false, -1]];
+		huffmanEncoder.init([["codeBits", "codeBits", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["code", "code", "compress/flate", (go$sliceType(Go$Uint16)), ""]]);
+0huffmanEncoder00compress/flateliteralNode0Ç∂literalNodeÇ	literalNode = go$pkg.literalNode = go$newType(0, "Struct", "flate.literalNode", "literalNode", "compress/flate", function(literal_, freq_) {
 		this.go$val = this;
 		this.literal = literal_ !== undefined ? literal_ : 0;
 		this.freq = freq_ !== undefined ? freq_ : 0;
 	});
-n		literalNode.init([["literal", "compress/flate", Go$Uint16, ""], ["freq", "compress/flate", Go$Int32, ""]]);
-0literalNode0 0Ç	levelInfoÇ˙	levelInfo = go$pkg.levelInfo = go$newType(0, "Struct", "flate.levelInfo", "levelInfo", "compress/flate", function(level_, lastFreq_, nextCharFreq_, nextPairFreq_, needed_) {
+ÅÅ		literalNode.init([["literal", "literal", "compress/flate", Go$Uint16, ""], ["freq", "freq", "compress/flate", Go$Int32, ""]]);
+0literalNode0 0ÇX	levelInfoÇ˙	levelInfo = go$pkg.levelInfo = go$newType(0, "Struct", "flate.levelInfo", "levelInfo", "compress/flate", function(level_, lastFreq_, nextCharFreq_, nextPairFreq_, needed_) {
 		this.go$val = this;
 		this.level = level_ !== undefined ? level_ : 0;
 		this.lastFreq = lastFreq_ !== undefined ? lastFreq_ : 0;
@@ -194,49 +194,49 @@ compressor0ioWriter0ÇıhuffmanBitWriterÇM	huffmanBitWriter = go$pkg.huf
 		this.nextPairFreq = nextPairFreq_ !== undefined ? nextPairFreq_ : 0;
 		this.needed = needed_ !== undefined ? needed_ : 0;
 	});
-Å˝		levelInfo.init([["level", "compress/flate", Go$Int32, ""], ["lastFreq", "compress/flate", Go$Int32, ""], ["nextCharFreq", "compress/flate", Go$Int32, ""], ["nextPairFreq", "compress/flate", Go$Int32, ""], ["needed", "compress/flate", Go$Int32, ""]]);
-0	levelInfo0 0ÇäliteralNodeSorterÇD	literalNodeSorter = go$pkg.literalNodeSorter = go$newType(0, "Struct", "flate.literalNodeSorter", "literalNodeSorter", "compress/flate", function(a_, less_) {
+Ç<		levelInfo.init([["level", "level", "compress/flate", Go$Int32, ""], ["lastFreq", "lastFreq", "compress/flate", Go$Int32, ""], ["nextCharFreq", "nextCharFreq", "compress/flate", Go$Int32, ""], ["nextPairFreq", "nextPairFreq", "compress/flate", Go$Int32, ""], ["needed", "needed", "compress/flate", Go$Int32, ""]]);
+0	levelInfo0 0ÇØliteralNodeSorterÇD	literalNodeSorter = go$pkg.literalNodeSorter = go$newType(0, "Struct", "flate.literalNodeSorter", "literalNodeSorter", "compress/flate", function(a_, less_) {
 		this.go$val = this;
 		this.a = a_ !== undefined ? a_ : (go$sliceType(literalNode)).nil;
 		this.less = less_ !== undefined ? less_ : go$throwNilPointerError;
 	});
-Çı		literalNodeSorter.init([["a", "compress/flate", (go$sliceType(literalNode)), ""], ["less", "compress/flate", (go$funcType([Go$Int, Go$Int], [Go$Bool], false)), ""]]);
-		literalNodeSorter.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(literalNodeSorter)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-0literalNodeSorter00compress/flateliteralNode0Ç\CorruptInputErrorÅê	CorruptInputError = go$pkg.CorruptInputError = go$newType(8, "Int64", "flate.CorruptInputError", "CorruptInputError", "compress/flate", null);
-Åú		CorruptInputError.methods = [["Error", "", [], [Go$String], false]];
-		(go$ptrType(CorruptInputError)).methods = [["Error", "", [], [Go$String], false]];
-0CorruptInputError0 0Ç=InternalErrorÅÅ	InternalError = go$pkg.InternalError = go$newType(0, "String", "flate.InternalError", "InternalError", "compress/flate", null);
-Åî		InternalError.methods = [["Error", "", [], [Go$String], false]];
-		(go$ptrType(InternalError)).methods = [["Error", "", [], [Go$String], false]];
-0InternalError0 0Çœ	ReadErrorÇ	ReadError = go$pkg.ReadError = go$newType(0, "Struct", "flate.ReadError", "ReadError", "compress/flate", function(Offset_, Err_) {
+Ç		literalNodeSorter.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(literalNodeSorter)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		literalNodeSorter.init([["a", "a", "compress/flate", (go$sliceType(literalNode)), ""], ["less", "less", "compress/flate", (go$funcType([Go$Int, Go$Int], [Go$Bool], false)), ""]]);
+0literalNodeSorter00compress/flateliteralNode0ÇdCorruptInputErrorÅê	CorruptInputError = go$pkg.CorruptInputError = go$newType(8, "Int64", "flate.CorruptInputError", "CorruptInputError", "compress/flate", null);
+Å§		CorruptInputError.methods = [["Error", "", [], [Go$String], false, -1]];
+		(go$ptrType(CorruptInputError)).methods = [["Error", "", [], [Go$String], false, -1]];
+0CorruptInputError0 0ÇEInternalErrorÅÅ	InternalError = go$pkg.InternalError = go$newType(0, "String", "flate.InternalError", "InternalError", "compress/flate", null);
+Åú		InternalError.methods = [["Error", "", [], [Go$String], false, -1]];
+		(go$ptrType(InternalError)).methods = [["Error", "", [], [Go$String], false, -1]];
+0InternalError0 0Ç‰	ReadErrorÇ	ReadError = go$pkg.ReadError = go$newType(0, "Struct", "flate.ReadError", "ReadError", "compress/flate", function(Offset_, Err_) {
 		this.go$val = this;
 		this.Offset = Offset_ !== undefined ? Offset_ : new Go$Int64(0, 0);
 		this.Err = Err_ !== undefined ? Err_ : null;
 	});
-Åö		ReadError.init([["Offset", "", Go$Int64, ""], ["Err", "", go$error, ""]]);
-		(go$ptrType(ReadError)).methods = [["Error", "", [], [Go$String], false]];
-0	ReadError0 0Ç◊
+ÅØ		(go$ptrType(ReadError)).methods = [["Error", "", [], [Go$String], false, -1]];
+		ReadError.init([["Offset", "Offset", "", Go$Int64, ""], ["Err", "Err", "", go$error, ""]]);
+0	ReadError0 0ÇÏ
 WriteErrorÇ	WriteError = go$pkg.WriteError = go$newType(0, "Struct", "flate.WriteError", "WriteError", "compress/flate", function(Offset_, Err_) {
 		this.go$val = this;
 		this.Offset = Offset_ !== undefined ? Offset_ : new Go$Int64(0, 0);
 		this.Err = Err_ !== undefined ? Err_ : null;
 	});
-Åú		WriteError.init([["Offset", "", Go$Int64, ""], ["Err", "", go$error, ""]]);
-		(go$ptrType(WriteError)).methods = [["Error", "", [], [Go$String], false]];
+Å±		(go$ptrType(WriteError)).methods = [["Error", "", [], [Go$String], false, -1]];
+		WriteError.init([["Offset", "Offset", "", Go$Int64, ""], ["Err", "Err", "", go$error, ""]]);
 0
-WriteError0 0ÇñhuffmanDecoderÇ˙	huffmanDecoder = go$pkg.huffmanDecoder = go$newType(0, "Struct", "flate.huffmanDecoder", "huffmanDecoder", "compress/flate", function(min_, chunks_, links_, linkMask_) {
+WriteError0 0Ç¿huffmanDecoderÇ˙	huffmanDecoder = go$pkg.huffmanDecoder = go$newType(0, "Struct", "flate.huffmanDecoder", "huffmanDecoder", "compress/flate", function(min_, chunks_, links_, linkMask_) {
 		this.go$val = this;
 		this.min = min_ !== undefined ? min_ : 0;
 		this.chunks = chunks_ !== undefined ? chunks_ : go$makeNativeArray("Uint32", 512, function() { return 0; });
 		this.links = links_ !== undefined ? links_ : (go$sliceType((go$sliceType(Go$Uint32)))).nil;
 		this.linkMask = linkMask_ !== undefined ? linkMask_ : 0;
 	});
-Çp		huffmanDecoder.init([["min", "compress/flate", Go$Int, ""], ["chunks", "compress/flate", (go$arrayType(Go$Uint32, 512)), ""], ["links", "compress/flate", (go$sliceType((go$sliceType(Go$Uint32)))), ""], ["linkMask", "compress/flate", Go$Uint32, ""]]);
-		(go$ptrType(huffmanDecoder)).methods = [["init", "compress/flate", [(go$sliceType(Go$Int))], [Go$Bool], false]];
+Çö		(go$ptrType(huffmanDecoder)).methods = [["init", "compress/flate", [(go$sliceType(Go$Int))], [Go$Bool], false, -1]];
+		huffmanDecoder.init([["min", "min", "compress/flate", Go$Int, ""], ["chunks", "chunks", "compress/flate", (go$arrayType(Go$Uint32, 512)), ""], ["links", "links", "compress/flate", (go$sliceType((go$sliceType(Go$Uint32)))), ""], ["linkMask", "linkMask", "compress/flate", Go$Uint32, ""]]);
 0huffmanDecoder0 0Ç(Readerh	Reader = go$pkg.Reader = go$newType(0, "Interface", "flate.Reader", "Reader", "compress/flate", null);
 Åß		Reader.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["ReadByte", "", (go$funcType([], [Go$Uint8, go$error], false))]]);
-0Reader0 0ÇˆdecompressorÇ”	decompressor = go$pkg.decompressor = go$newType(0, "Struct", "flate.decompressor", "decompressor", "compress/flate", function(r_, roffset_, woffset_, b_, nb_, h1_, h2_, bits_, codebits_, hist_, hp_, hw_, hfull_, buf_, step_, final$15_, err_, toRead_, hl_, hd_, copyLen_, copyDist_) {
+0Reader0 0Ç‹decompressorÇ”	decompressor = go$pkg.decompressor = go$newType(0, "Struct", "flate.decompressor", "decompressor", "compress/flate", function(r_, roffset_, woffset_, b_, nb_, h1_, h2_, bits_, codebits_, hist_, hp_, hw_, hfull_, buf_, step_, final$15_, err_, toRead_, hl_, hd_, copyLen_, copyDist_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.roffset = roffset_ !== undefined ? roffset_ : new Go$Int64(0, 0);
@@ -261,11 +261,11 @@ WriteError0 0ÇñhuffmanDecoderÇ˙	huffmanDecoder = go$pkg.huffmanDecoder = go
 		this.copyLen = copyLen_ !== undefined ? copyLen_ : 0;
 		this.copyDist = copyDist_ !== undefined ? copyDist_ : 0;
 	});
-Çø		decompressor.init([["r", "compress/flate", Reader, ""], ["roffset", "compress/flate", Go$Int64, ""], ["woffset", "compress/flate", Go$Int64, ""], ["b", "compress/flate", Go$Uint32, ""], ["nb", "compress/flate", Go$Uint, ""], ["h1", "compress/flate", huffmanDecoder, ""], ["h2", "compress/flate", huffmanDecoder, ""], ["bits", "compress/flate", (go$ptrType((go$arrayType(Go$Int, 318)))), ""], ["codebits", "compress/flate", (go$ptrType((go$arrayType(Go$Int, 19)))), ""], ["hist", "compress/flate", (go$ptrType((go$arrayType(Go$Uint8, 32768)))), ""], ["hp", "compress/flate", Go$Int, ""], ["hw", "compress/flate", Go$Int, ""], ["hfull", "compress/flate", Go$Bool, ""], ["buf", "compress/flate", (go$arrayType(Go$Uint8, 4)), ""], ["step", "compress/flate", (go$funcType([(go$ptrType(decompressor))], [], false)), ""], ["final", "compress/flate", Go$Bool, ""], ["err", "compress/flate", go$error, ""], ["toRead", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["hl", "compress/flate", (go$ptrType(huffmanDecoder)), ""], ["hd", "compress/flate", (go$ptrType(huffmanDecoder)), ""], ["copyLen", "compress/flate", Go$Int, ""], ["copyDist", "compress/flate", Go$Int, ""]]);
-		(go$ptrType(decompressor)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["copyData", "compress/flate", [], [], false], ["copyHist", "compress/flate", [], [Go$Bool], false], ["copyHuff", "compress/flate", [], [], false], ["dataBlock", "compress/flate", [], [], false], ["flush", "compress/flate", [(go$funcType([(go$ptrType(decompressor))], [], false))], [], false], ["huffSym", "compress/flate", [(go$ptrType(huffmanDecoder))], [Go$Int, go$error], false], ["huffmanBlock", "compress/flate", [], [], false], ["moreBits", "compress/flate", [], [go$error], false], ["nextBlock", "compress/flate", [], [], false], ["readHuffman", "compress/flate", [], [go$error], false], ["setDict", "compress/flate", [(go$sliceType(Go$Uint8))], [], false]];
-0decompressor0<0 compress/flatehuffmanDecoder0compress/flateReader0Ç[tokena	token = go$pkg.token = go$newType(4, "Uint32", "flate.token", "token", "compress/flate", null);
-Ç‚		token.methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
-		(go$ptrType(token)).methods = [["length", "compress/flate", [], [Go$Uint32], false], ["literal", "compress/flate", [], [Go$Uint32], false], ["offset", "compress/flate", [], [Go$Uint32], false], ["typ", "compress/flate", [], [Go$Uint32], false]];
+Ç•		(go$ptrType(decompressor)).methods = [["Close", "", [], [go$error], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["copyData", "compress/flate", [], [], false, -1], ["copyHist", "compress/flate", [], [Go$Bool], false, -1], ["copyHuff", "compress/flate", [], [], false, -1], ["dataBlock", "compress/flate", [], [], false, -1], ["flush", "compress/flate", [(go$funcType([(go$ptrType(decompressor))], [], false))], [], false, -1], ["huffSym", "compress/flate", [(go$ptrType(huffmanDecoder))], [Go$Int, go$error], false, -1], ["huffmanBlock", "compress/flate", [], [], false, -1], ["moreBits", "compress/flate", [], [go$error], false, -1], ["nextBlock", "compress/flate", [], [], false, -1], ["readHuffman", "compress/flate", [], [go$error], false, -1], ["setDict", "compress/flate", [(go$sliceType(Go$Uint8))], [], false, -1]];
+		decompressor.init([["r", "r", "compress/flate", Reader, ""], ["roffset", "roffset", "compress/flate", Go$Int64, ""], ["woffset", "woffset", "compress/flate", Go$Int64, ""], ["b", "b", "compress/flate", Go$Uint32, ""], ["nb", "nb", "compress/flate", Go$Uint, ""], ["h1", "h1", "compress/flate", huffmanDecoder, ""], ["h2", "h2", "compress/flate", huffmanDecoder, ""], ["bits", "bits", "compress/flate", (go$ptrType((go$arrayType(Go$Int, 318)))), ""], ["codebits", "codebits", "compress/flate", (go$ptrType((go$arrayType(Go$Int, 19)))), ""], ["hist", "hist", "compress/flate", (go$ptrType((go$arrayType(Go$Uint8, 32768)))), ""], ["hp", "hp", "compress/flate", Go$Int, ""], ["hw", "hw", "compress/flate", Go$Int, ""], ["hfull", "hfull", "compress/flate", Go$Bool, ""], ["buf", "buf", "compress/flate", (go$arrayType(Go$Uint8, 4)), ""], ["step", "step", "compress/flate", (go$funcType([(go$ptrType(decompressor))], [], false)), ""], ["final$15", "final", "compress/flate", Go$Bool, ""], ["err", "err", "compress/flate", go$error, ""], ["toRead", "toRead", "compress/flate", (go$sliceType(Go$Uint8)), ""], ["hl", "hl", "compress/flate", (go$ptrType(huffmanDecoder)), ""], ["hd", "hd", "compress/flate", (go$ptrType(huffmanDecoder)), ""], ["copyLen", "copyLen", "compress/flate", Go$Int, ""], ["copyDist", "copyDist", "compress/flate", Go$Int, ""]]);
+0decompressor0<0 compress/flatehuffmanDecoder0compress/flateReader0Ç{tokena	token = go$pkg.token = go$newType(4, "Uint32", "flate.token", "token", "compress/flate", null);
+Ç		token.methods = [["length", "compress/flate", [], [Go$Uint32], false, -1], ["literal", "compress/flate", [], [Go$Uint32], false, -1], ["offset", "compress/flate", [], [Go$Uint32], false, -1], ["typ", "compress/flate", [], [Go$Uint32], false, -1]];
+		(go$ptrType(token)).methods = [["length", "compress/flate", [], [Go$Uint32], false, -1], ["literal", "compress/flate", [], [Go$Uint32], false, -1], ["offset", "compress/flate", [], [Go$Uint32], false, -1], ["typ", "compress/flate", [], [Go$Uint32], false, -1]];
 0token0 0Ç)forwardCopyÇ	forwardCopy = function(mem, dst, src, n) {
 		var k;
 		if (dst <= src) {
@@ -641,8 +641,8 @@ compressor0#compress/flatewriteStoredHeader0compress/flateflush0Çˇ Ç
 	};
 	compressor.prototype.init = function(w, level) { return this.go$val.init(w, level); };
  0
-compressorinit0Ç!0compress/flate
-compressor0%compress/flatenewHuffmanBitWriter0"compress/flatecompressionLevel0compress/flateinitDeflate0fmtErrorf0compress/flate	fillStore0compress/flatestore0compress/flatelevels0compress/flatefillDeflate0compress/flatedeflate0Ç' Çú	compressor.Ptr.prototype.reset = function(w) {
+compressorinit0Ç!0compress/flate	fillStore0compress/flateinitDeflate0compress/flatefillDeflate0compress/flate
+compressor0%compress/flatenewHuffmanBitWriter0compress/flatestore0compress/flatelevels0"compress/flatecompressionLevel0compress/flatedeflate0fmtErrorf0Ç' Çú	compressor.Ptr.prototype.reset = function(w) {
 		var d, _ref, _ref$1, _i, i, _slice, _index, s, n, s$1, _tuple, s$2, n$1, _tuple$1, i$1, _slice$1, _index$1;
 		d = this;
 		d.w.reset(w);
@@ -1210,12 +1210,12 @@ writeBytes0E0"compress/flatehuffmanBitWriter0compress/flateInternalErro
 	};
 	huffmanBitWriter.prototype.writeBlock = function(tokens, eof, input) { return this.go$val.writeBlock(tokens, eof, input); };
  0huffmanBitWriter
-writeBlock0ÇÛ0"compress/flatehuffmanBitWriter0compress/flatetoken0!compress/flatelengthExtraBits0compress/flatecodegenOrder0#compress/flatewriteStoredHeader0compress/flateoffset0&compress/flatefixedLiteralEncoding0compress/flate
-writeBytes0"compress/flatewriteFixedHeader0compress/flatetyp0compress/flatelength0%compress/flatefixedOffsetEncoding0compress/flate	writeCode0compress/flate
-lengthBase0compress/flateliteral0compress/flate
-lengthCode0compress/flate
-offsetCode0compress/flategenerate0!compress/flateoffsetExtraBits0compress/flate	bitLength0!compress/flategenerateCodegen0$compress/flatewriteDynamicHeader0compress/flate	writeBits0compress/flate
-offsetBase0ÅÜmaxNodeM	maxNode = function() {
+writeBlock0ÇÛ0compress/flatetyp0compress/flate
+offsetCode0compress/flategenerate0compress/flate	bitLength0&compress/flatefixedLiteralEncoding0%compress/flatefixedOffsetEncoding0!compress/flategenerateCodegen0#compress/flatewriteStoredHeader0"compress/flatewriteFixedHeader0compress/flate
+offsetBase0!compress/flateoffsetExtraBits0compress/flatecodegenOrder0$compress/flatewriteDynamicHeader0"compress/flatehuffmanBitWriter0compress/flatetoken0compress/flate
+lengthCode0!compress/flatelengthExtraBits0compress/flate	writeCode0compress/flate
+lengthBase0compress/flateliteral0compress/flatelength0compress/flateoffset0compress/flate
+writeBytes0compress/flate	writeBits0ÅÜmaxNodeM	maxNode = function() {
 		return new literalNode.Ptr(65535, 2147483647);
 	};
  0	maxNode00compress/flateliteralNode0Ç!newHuffmanEncoderÅ–	newHuffmanEncoder = function(size) {
@@ -1627,7 +1627,7 @@ WriteError0strconv	FormatInt0Ç€ Çx	huffmanDecoder.Ptr.prototype.init = f
 		} }
 	};
 	decompressor.prototype.nextBlock = function() { return this.go$val.nextBlock(); };
- 0decompressor	nextBlock0Ç*0compress/flateflush0compress/flatehuffmanBlock0#compress/flateCorruptInputError0compress/flatedecompressor0	ioEOF0compress/flatemoreBits0compress/flate	dataBlock0%compress/flatefixedHuffmanDecoder0 compress/flatehuffmanDecoder0compress/flatereadHuffman0Ç≈ Çã	decompressor.Ptr.prototype.Read = function(b) {
+ 0decompressor	nextBlock0Ç*0compress/flateflush0	ioEOF0%compress/flatefixedHuffmanDecoder0compress/flatehuffmanBlock0compress/flatereadHuffman0#compress/flateCorruptInputError0compress/flatedecompressor0compress/flatemoreBits0compress/flate	dataBlock0 compress/flatehuffmanDecoder0Ç≈ Çã	decompressor.Ptr.prototype.Read = function(b) {
 		var f, n;
 		f = this;
 		while (true) {
@@ -1854,7 +1854,7 @@ WriteError0strconv	FormatInt0Ç€ Çx	huffmanDecoder.Ptr.prototype.init = f
 		}
 	};
 	decompressor.prototype.huffmanBlock = function() { return this.go$val.huffmanBlock(); };
- 0decompressorhuffmanBlock0Ç00compress/flatedecompressor0compress/flateflush0compress/flatemoreBits0 compress/flatehuffmanDecoder0compress/flatereverseByte0compress/flateInternalError0compress/flatehuffSym0compress/flate	nextBlock0#compress/flateCorruptInputError0compress/flatecopyHist0Çe ÇÕ	decompressor.Ptr.prototype.copyHist = function() {
+ 0decompressorhuffmanBlock0Ç00compress/flatehuffSym0compress/flate	nextBlock0#compress/flateCorruptInputError0compress/flatedecompressor0compress/flateflush0compress/flatemoreBits0 compress/flatehuffmanDecoder0compress/flatereverseByte0compress/flateInternalError0compress/flatecopyHist0Çe ÇÕ	decompressor.Ptr.prototype.copyHist = function() {
 		var f, p, n, x, x$1;
 		f = this;
 		p = f.hp - f.copyDist >> 0;

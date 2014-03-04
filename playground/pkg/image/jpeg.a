@@ -1,4 +1,4 @@
-0ÉfÒ
+0Éhƒ
 image/jpegÇ'Ìpackage jpeg
 import io "io"
 import bufio "bufio"
@@ -133,14 +133,14 @@ func (? @"image".YCbCrSubsampleRatio) @"image".String() (? string)
 func (? *@"image".YCbCrSubsampleRatio) @"image".String() (? string)
 $$
 0|runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage
-image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0errorserrors0É>0ÇÇbitsÅı	bits = go$pkg.bits = go$newType(0, "Struct", "jpeg.bits", "bits", "image/jpeg", function(a_, m_, n_) {
+image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0errorserrors0É?Ó0ÇíbitsÅı	bits = go$pkg.bits = go$newType(0, "Struct", "jpeg.bits", "bits", "image/jpeg", function(a_, m_, n_) {
 		this.go$val = this;
 		this.a = a_ !== undefined ? a_ : 0;
 		this.m = m_ !== undefined ? m_ : 0;
 		this.n = n_ !== undefined ? n_ : 0;
 	});
-x		bits.init([["a", "image/jpeg", Go$Uint32, ""], ["m", "image/jpeg", Go$Uint32, ""], ["n", "image/jpeg", Go$Int, ""]]);
-0bits0 0ÇªhuffmanÇ“	huffman = go$pkg.huffman = go$newType(0, "Struct", "jpeg.huffman", "huffman", "image/jpeg", function(l_, length_, val_, size_, code_, minCode_, maxCode_, valIndex_) {
+Åá		bits.init([["a", "a", "image/jpeg", Go$Uint32, ""], ["m", "m", "image/jpeg", Go$Uint32, ""], ["n", "n", "image/jpeg", Go$Int, ""]]);
+0bits0 0ÇhuffmanÇ“	huffman = go$pkg.huffman = go$newType(0, "Struct", "jpeg.huffman", "huffman", "image/jpeg", function(l_, length_, val_, size_, code_, minCode_, maxCode_, valIndex_) {
 		this.go$val = this;
 		this.l = l_ !== undefined ? l_ : go$makeNativeArray("Int", 16, function() { return 0; });
 		this.length = length_ !== undefined ? length_ : 0;
@@ -151,26 +151,27 @@ image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0
 		this.maxCode = maxCode_ !== undefined ? maxCode_ : go$makeNativeArray("Int", 16, function() { return 0; });
 		this.valIndex = valIndex_ !== undefined ? valIndex_ : go$makeNativeArray("Int", 16, function() { return 0; });
 	});
-ÇÀ		huffman.init([["l", "image/jpeg", (go$arrayType(Go$Int, 16)), ""], ["length", "image/jpeg", Go$Int, ""], ["val", "image/jpeg", (go$arrayType(Go$Uint8, 256)), ""], ["size", "image/jpeg", (go$arrayType(Go$Int, 256)), ""], ["code", "image/jpeg", (go$arrayType(Go$Int, 256)), ""], ["minCode", "image/jpeg", (go$arrayType(Go$Int, 16)), ""], ["maxCode", "image/jpeg", (go$arrayType(Go$Int, 16)), ""], ["valIndex", "image/jpeg", (go$arrayType(Go$Int, 16)), ""]]);
+Ç		huffman.init([["l", "l", "image/jpeg", (go$arrayType(Go$Int, 16)), ""], ["length", "length", "image/jpeg", Go$Int, ""], ["val", "val", "image/jpeg", (go$arrayType(Go$Uint8, 256)), ""], ["size", "size", "image/jpeg", (go$arrayType(Go$Int, 256)), ""], ["code", "code", "image/jpeg", (go$arrayType(Go$Int, 256)), ""], ["minCode", "minCode", "image/jpeg", (go$arrayType(Go$Int, 16)), ""], ["maxCode", "maxCode", "image/jpeg", (go$arrayType(Go$Int, 16)), ""], ["valIndex", "valIndex", "image/jpeg", (go$arrayType(Go$Int, 16)), ""]]);
 0	huffman0 0Åçblock[	block = go$pkg.block = go$newType(0, "Array", "jpeg.block", "block", "image/jpeg", null);
 		block.init(Go$Int32, 64);
-0block0 0Ç'FormatErrort	FormatError = go$pkg.FormatError = go$newType(0, "String", "jpeg.FormatError", "FormatError", "image/jpeg", null);
-Åê		FormatError.methods = [["Error", "", [], [Go$String], false]];
-		(go$ptrType(FormatError)).methods = [["Error", "", [], [Go$String], false]];
-0FormatError0 0ÇPUnsupportedErrorÅà	UnsupportedError = go$pkg.UnsupportedError = go$newType(0, "String", "jpeg.UnsupportedError", "UnsupportedError", "image/jpeg", null);
-Åö		UnsupportedError.methods = [["Error", "", [], [Go$String], false]];
-		(go$ptrType(UnsupportedError)).methods = [["Error", "", [], [Go$String], false]];
-0UnsupportedError0 0Çı	componentÇ7	component = go$pkg.component = go$newType(0, "Struct", "jpeg.component", "component", "image/jpeg", function(h_, v_, c_, tq_) {
+0block0 0Ç/FormatErrort	FormatError = go$pkg.FormatError = go$newType(0, "String", "jpeg.FormatError", "FormatError", "image/jpeg", null);
+Åò		FormatError.methods = [["Error", "", [], [Go$String], false, -1]];
+		(go$ptrType(FormatError)).methods = [["Error", "", [], [Go$String], false, -1]];
+0FormatError0 0ÇXUnsupportedErrorÅà	UnsupportedError = go$pkg.UnsupportedError = go$newType(0, "String", "jpeg.UnsupportedError", "UnsupportedError", "image/jpeg", null);
+Å¢		UnsupportedError.methods = [["Error", "", [], [Go$String], false, -1]];
+		(go$ptrType(UnsupportedError)).methods = [["Error", "", [], [Go$String], false, -1]];
+0UnsupportedError0 0Ç
+	componentÇ7	component = go$pkg.component = go$newType(0, "Struct", "jpeg.component", "component", "image/jpeg", function(h_, v_, c_, tq_) {
 		this.go$val = this;
 		this.h = h_ !== undefined ? h_ : 0;
 		this.v = v_ !== undefined ? v_ : 0;
 		this.c = c_ !== undefined ? c_ : 0;
 		this.tq = tq_ !== undefined ? tq_ : 0;
 	});
-Åù		component.init([["h", "image/jpeg", Go$Int, ""], ["v", "image/jpeg", Go$Int, ""], ["c", "image/jpeg", Go$Uint8, ""], ["tq", "image/jpeg", Go$Uint8, ""]]);
+Å≤		component.init([["h", "h", "image/jpeg", Go$Int, ""], ["v", "v", "image/jpeg", Go$Int, ""], ["c", "c", "image/jpeg", Go$Uint8, ""], ["tq", "tq", "image/jpeg", Go$Uint8, ""]]);
 0	component0 0Ç#Readerc	Reader = go$pkg.Reader = go$newType(0, "Interface", "jpeg.Reader", "Reader", "image/jpeg", null);
 Åß		Reader.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["ReadByte", "", (go$funcType([], [Go$Uint8, go$error], false))]]);
-0Reader0 0ÇdecoderÇÂ	decoder = go$pkg.decoder = go$newType(0, "Struct", "jpeg.decoder", "decoder", "image/jpeg", function(r_, b_, width_, height_, img1_, img3_, ri_, nComp_, progressive_, eobRun_, comp_, progCoeffs_, huff_, quant_, tmp_) {
+0Reader0 0Ç decoderÇÂ	decoder = go$pkg.decoder = go$newType(0, "Struct", "jpeg.decoder", "decoder", "image/jpeg", function(r_, b_, width_, height_, img1_, img3_, ri_, nComp_, progressive_, eobRun_, comp_, progCoeffs_, huff_, quant_, tmp_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.b = b_ !== undefined ? b_ : new bits.Ptr();
@@ -188,32 +189,32 @@ image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0
 		this.quant = quant_ !== undefined ? quant_ : go$makeNativeArray("Array", 4, function() { return go$makeNativeArray("Int32", 64, function() { return 0; }); });
 		this.tmp = tmp_ !== undefined ? tmp_ : go$makeNativeArray("Uint8", 1024, function() { return 0; });
 	});
-Ç[		decoder.init([["r", "image/jpeg", Reader, ""], ["b", "image/jpeg", bits, ""], ["width", "image/jpeg", Go$Int, ""], ["height", "image/jpeg", Go$Int, ""], ["img1", "image/jpeg", (go$ptrType(image.Gray)), ""], ["img3", "image/jpeg", (go$ptrType(image.YCbCr)), ""], ["ri", "image/jpeg", Go$Int, ""], ["nComp", "image/jpeg", Go$Int, ""], ["progressive", "image/jpeg", Go$Bool, ""], ["eobRun", "image/jpeg", Go$Uint16, ""], ["comp", "image/jpeg", (go$arrayType(component, 3)), ""], ["progCoeffs", "image/jpeg", (go$arrayType((go$sliceType(block)), 3)), ""], ["huff", "image/jpeg", (go$arrayType((go$arrayType(huffman, 4)), 2)), ""], ["quant", "image/jpeg", (go$arrayType(block, 4)), ""], ["tmp", "image/jpeg", (go$arrayType(Go$Uint8, 1024)), ""]]);
-		(go$ptrType(decoder)).methods = [["decode", "image/jpeg", [io.Reader, Go$Bool], [image.Image, go$error], false], ["decodeBit", "image/jpeg", [], [Go$Bool, go$error], false], ["decodeBits", "image/jpeg", [Go$Int], [Go$Uint32, go$error], false], ["decodeHuffman", "image/jpeg", [(go$ptrType(huffman))], [Go$Uint8, go$error], false], ["ensureNBits", "image/jpeg", [Go$Int], [go$error], false], ["ignore", "image/jpeg", [Go$Int], [go$error], false], ["makeImg", "image/jpeg", [Go$Int, Go$Int, Go$Int, Go$Int], [], false], ["processDHT", "image/jpeg", [Go$Int], [go$error], false], ["processDQT", "image/jpeg", [Go$Int], [go$error], false], ["processDRI", "image/jpeg", [Go$Int], [go$error], false], ["processSOF", "image/jpeg", [Go$Int], [go$error], false], ["processSOS", "image/jpeg", [Go$Int], [go$error], false], ["receiveExtend", "image/jpeg", [Go$Uint8], [Go$Int32, go$error], false], ["refine", "image/jpeg", [(go$ptrType(block)), (go$ptrType(huffman)), Go$Int32, Go$Int32, Go$Int32], [go$error], false], ["refineNonZeroes", "image/jpeg", [(go$ptrType(block)), Go$Int32, Go$Int32, Go$Int32, Go$Int32], [Go$Int32, go$error], false]];
-0	decoder0Å¨0imageGray0imageYCbCr0
+Ç		(go$ptrType(decoder)).methods = [["decode", "image/jpeg", [io.Reader, Go$Bool], [image.Image, go$error], false, -1], ["decodeBit", "image/jpeg", [], [Go$Bool, go$error], false, -1], ["decodeBits", "image/jpeg", [Go$Int], [Go$Uint32, go$error], false, -1], ["decodeHuffman", "image/jpeg", [(go$ptrType(huffman))], [Go$Uint8, go$error], false, -1], ["ensureNBits", "image/jpeg", [Go$Int], [go$error], false, -1], ["ignore", "image/jpeg", [Go$Int], [go$error], false, -1], ["makeImg", "image/jpeg", [Go$Int, Go$Int, Go$Int, Go$Int], [], false, -1], ["processDHT", "image/jpeg", [Go$Int], [go$error], false, -1], ["processDQT", "image/jpeg", [Go$Int], [go$error], false, -1], ["processDRI", "image/jpeg", [Go$Int], [go$error], false, -1], ["processSOF", "image/jpeg", [Go$Int], [go$error], false, -1], ["processSOS", "image/jpeg", [Go$Int], [go$error], false, -1], ["receiveExtend", "image/jpeg", [Go$Uint8], [Go$Int32, go$error], false, -1], ["refine", "image/jpeg", [(go$ptrType(block)), (go$ptrType(huffman)), Go$Int32, Go$Int32, Go$Int32], [go$error], false, -1], ["refineNonZeroes", "image/jpeg", [(go$ptrType(block)), Go$Int32, Go$Int32, Go$Int32, Go$Int32], [Go$Int32, go$error], false, -1]];
+		decoder.init([["r", "r", "image/jpeg", Reader, ""], ["b", "b", "image/jpeg", bits, ""], ["width", "width", "image/jpeg", Go$Int, ""], ["height", "height", "image/jpeg", Go$Int, ""], ["img1", "img1", "image/jpeg", (go$ptrType(image.Gray)), ""], ["img3", "img3", "image/jpeg", (go$ptrType(image.YCbCr)), ""], ["ri", "ri", "image/jpeg", Go$Int, ""], ["nComp", "nComp", "image/jpeg", Go$Int, ""], ["progressive", "progressive", "image/jpeg", Go$Bool, ""], ["eobRun", "eobRun", "image/jpeg", Go$Uint16, ""], ["comp", "comp", "image/jpeg", (go$arrayType(component, 3)), ""], ["progCoeffs", "progCoeffs", "image/jpeg", (go$arrayType((go$sliceType(block)), 3)), ""], ["huff", "huff", "image/jpeg", (go$arrayType((go$arrayType(huffman, 4)), 2)), ""], ["quant", "quant", "image/jpeg", (go$arrayType(block, 4)), ""], ["tmp", "tmp", "image/jpeg", (go$arrayType(Go$Uint8, 1024)), ""]]);
+0	decoder0Å¨0
+image/jpegbits0
+image/jpeghuffman0ioReader0imageGray0imageYCbCr0
 image/jpeg	component0
-image/jpegblock0
-image/jpeghuffman0
-image/jpegReader0ioReader0
-image/jpegbits0imageImage0Åç
+image/jpegblock0imageImage0
+image/jpegReader0Åç
 quantIndexm	quantIndex = go$pkg.quantIndex = go$newType(4, "Int", "jpeg.quantIndex", "quantIndex", "image/jpeg", null);
  0
 quantIndex0 0Åá	huffIndexi	huffIndex = go$pkg.huffIndex = go$newType(4, "Int", "jpeg.huffIndex", "huffIndex", "image/jpeg", null);
- 0	huffIndex0 0ÇhuffmanSpecÇZ	huffmanSpec = go$pkg.huffmanSpec = go$newType(0, "Struct", "jpeg.huffmanSpec", "huffmanSpec", "image/jpeg", function(count_, value_) {
+ 0	huffIndex0 0ÇhuffmanSpecÇZ	huffmanSpec = go$pkg.huffmanSpec = go$newType(0, "Struct", "jpeg.huffmanSpec", "huffmanSpec", "image/jpeg", function(count_, value_) {
 		this.go$val = this;
 		this.count = count_ !== undefined ? count_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.value = value_ !== undefined ? value_ : (go$sliceType(Go$Uint8)).nil;
 	});
-Åà		huffmanSpec.init([["count", "image/jpeg", (go$arrayType(Go$Uint8, 16)), ""], ["value", "image/jpeg", (go$sliceType(Go$Uint8)), ""]]);
-0huffmanSpec0 0Ç!
+Åö		huffmanSpec.init([["count", "count", "image/jpeg", (go$arrayType(Go$Uint8, 16)), ""], ["value", "value", "image/jpeg", (go$sliceType(Go$Uint8)), ""]]);
+0huffmanSpec0 0Ç%
 huffmanLUTo	huffmanLUT = go$pkg.huffmanLUT = go$newType(0, "Slice", "jpeg.huffmanLUT", "huffmanLUT", "image/jpeg", null);
-w		huffmanLUT.init(Go$Uint32);
-		(go$ptrType(huffmanLUT)).methods = [["init", "image/jpeg", [huffmanSpec], [], false]];
+{		(go$ptrType(huffmanLUT)).methods = [["init", "image/jpeg", [huffmanSpec], [], false, -1]];
+		huffmanLUT.init(Go$Uint32);
 0
 huffmanLUT00
 image/jpeghuffmanSpec0ÇXwriterc	writer = go$pkg.writer = go$newType(0, "Interface", "jpeg.writer", "writer", "image/jpeg", null);
 Å‹		writer.init([["Flush", "", (go$funcType([], [go$error], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["WriteByte", "", (go$funcType([Go$Uint8], [go$error], false))]]);
-0writer0 0ÇencoderÇh	encoder = go$pkg.encoder = go$newType(0, "Struct", "jpeg.encoder", "encoder", "image/jpeg", function(w_, err_, buf_, bits_, nBits_, quant_) {
+0writer0 0ÇxencoderÇh	encoder = go$pkg.encoder = go$newType(0, "Struct", "jpeg.encoder", "encoder", "image/jpeg", function(w_, err_, buf_, bits_, nBits_, quant_) {
 		this.go$val = this;
 		this.w = w_ !== undefined ? w_ : null;
 		this.err = err_ !== undefined ? err_ : null;
@@ -222,18 +223,18 @@ image/jpeghuffmanSpec0ÇXwriterc	writer = go$pkg.writer = go$newType(0, "In
 		this.nBits = nBits_ !== undefined ? nBits_ : 0;
 		this.quant = quant_ !== undefined ? quant_ : go$makeNativeArray("Array", 2, function() { return go$makeNativeArray("Uint8", 64, function() { return 0; }); });
 	});
-Ç		encoder.init([["w", "image/jpeg", writer, ""], ["err", "image/jpeg", go$error, ""], ["buf", "image/jpeg", (go$arrayType(Go$Uint8, 16)), ""], ["bits", "image/jpeg", Go$Uint32, ""], ["nBits", "image/jpeg", Go$Uint32, ""], ["quant", "image/jpeg", (go$arrayType((go$arrayType(Go$Uint8, 64)), 2)), ""]]);
-		(go$ptrType(encoder)).methods = [["emit", "image/jpeg", [Go$Uint32, Go$Uint32], [], false], ["emitHuff", "image/jpeg", [huffIndex, Go$Int32], [], false], ["emitHuffRLE", "image/jpeg", [huffIndex, Go$Int32, Go$Int32], [], false], ["flush", "image/jpeg", [], [], false], ["write", "image/jpeg", [(go$sliceType(Go$Uint8))], [], false], ["writeBlock", "image/jpeg", [(go$ptrType(block)), quantIndex, Go$Int32], [Go$Int32], false], ["writeByte", "image/jpeg", [Go$Uint8], [], false], ["writeDHT", "image/jpeg", [], [], false], ["writeDQT", "image/jpeg", [], [], false], ["writeMarkerHeader", "image/jpeg", [Go$Uint8, Go$Int], [], false], ["writeSOF0", "image/jpeg", [image.Point], [], false], ["writeSOS", "image/jpeg", [image.Image], [], false]];
-0	encoder0~0
-image/jpegwriter0
+Çt		(go$ptrType(encoder)).methods = [["emit", "image/jpeg", [Go$Uint32, Go$Uint32], [], false, -1], ["emitHuff", "image/jpeg", [huffIndex, Go$Int32], [], false, -1], ["emitHuffRLE", "image/jpeg", [huffIndex, Go$Int32, Go$Int32], [], false, -1], ["flush", "image/jpeg", [], [], false, -1], ["write", "image/jpeg", [(go$sliceType(Go$Uint8))], [], false, -1], ["writeBlock", "image/jpeg", [(go$ptrType(block)), quantIndex, Go$Int32], [Go$Int32], false, -1], ["writeByte", "image/jpeg", [Go$Uint8], [], false, -1], ["writeDHT", "image/jpeg", [], [], false, -1], ["writeDQT", "image/jpeg", [], [], false, -1], ["writeMarkerHeader", "image/jpeg", [Go$Uint8, Go$Int], [], false, -1], ["writeSOF0", "image/jpeg", [image.Point], [], false, -1], ["writeSOS", "image/jpeg", [image.Image], [], false, -1]];
+		encoder.init([["w", "w", "image/jpeg", writer, ""], ["err", "err", "image/jpeg", go$error, ""], ["buf", "buf", "image/jpeg", (go$arrayType(Go$Uint8, 16)), ""], ["bits", "bits", "image/jpeg", Go$Uint32, ""], ["nBits", "nBits", "image/jpeg", Go$Uint32, ""], ["quant", "quant", "image/jpeg", (go$arrayType((go$arrayType(Go$Uint8, 64)), 2)), ""]]);
+0	encoder0~0
 image/jpeg	huffIndex0
 image/jpegblock0
 image/jpeg
-quantIndex0imagePoint0imageImage0ÇOptionsÅ≈	Options = go$pkg.Options = go$newType(0, "Struct", "jpeg.Options", "Options", "image/jpeg", function(Quality_) {
+quantIndex0imagePoint0imageImage0
+image/jpegwriter0ÇOptionsÅ≈	Options = go$pkg.Options = go$newType(0, "Struct", "jpeg.Options", "Options", "image/jpeg", function(Quality_) {
 		this.go$val = this;
 		this.Quality = Quality_ !== undefined ? Quality_ : 0;
 	});
-/		Options.init([["Quality", "", Go$Int, ""]]);
+:		Options.init([["Quality", "Quality", "", Go$Int, ""]]);
 0	Options0 0ÇûfdctÇà	fdct = function(b) {
 		var y, x, x0, x$1, x1, x$2, x2, x$3, x3, x$4, x4, x$5, x5, x$6, x6, x$7, x7, tmp0, tmp1, tmp2, tmp3, tmp10, tmp12, tmp11, tmp13, x$8, x$9, x$10, z1, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$20, x$21, x$22, tmp0$1, tmp1$1, tmp2$1, tmp3$1, tmp10$1, tmp12$1, tmp11$1, tmp13$1, x$23, z1$1, x$24, x$25, x$26, x$27, x$28;
 		y = 0;
@@ -850,22 +851,22 @@ image/jpegFormatError0ioReadFull0Ç( Ç
 		return [null, new FormatError("missing SOS marker")];
 	};
 	decoder.prototype.decode = function(r, configOnly) { return this.go$val.decode(r, configOnly); };
- 0decoderdecode0ÇC0
-image/jpeg
-processDRI0
-image/jpegignore0
-image/jpegdecoder0ioReadFull0
-image/jpeg
-processSOF0imageYCbCr0
-image/jpegReader0bufio	NewReader0
-image/jpeg
-processDHT0
-image/jpegUnsupportedError0imageGray0
+ 0decoderdecode0ÇC0
 image/jpegFormatError0
 image/jpeg
-processDQT0
+processSOF0
 image/jpeg
-processSOS0Å∞Decodek	Decode = go$pkg.Decode = function(r) {
+processSOS0
+image/jpeg
+processDRI0
+image/jpegUnsupportedError0imageYCbCr0bufio	NewReader0
+image/jpeg
+processDQT0
+image/jpegReader0
+image/jpeg
+processDHT0
+image/jpegignore0imageGray0
+image/jpegdecoder0ioReadFull0Å∞Decodek	Decode = go$pkg.Decode = function(r) {
 		var d;
 		d = new decoder.Ptr();
 		return d.decode(r, false);
@@ -916,7 +917,7 @@ _ Ç	≤	decoder.Ptr.prototype.makeImg = function(h0, v0, mxx, myy) {
 	};
 	decoder.prototype.makeImg = function(h0, v0, mxx, myy) { return this.go$val.makeImg(h0, v0, mxx, myy); };
  0decodermakeImg0Åé0
-image/jpegdecoder0imageNewGray0imageRect0imagePoint0image	Rectangle0imageGray0imageNewYCbCr0imageYCbCr0Ç9H Ç7∏	decoder.Ptr.prototype.processSOS = function(n) {
+image/jpegdecoder0imageNewGray0imageRect0imagePoint0image	Rectangle0imageGray0imageNewYCbCr0imageYCbCr0Ç9a Ç7—	decoder.Ptr.prototype.processSOS = function(n) {
 		var d, x, x$1, _r, _tuple, err, nComp, x$2, scan, i, x$3, cs, compIndex, _ref, _i, _struct, comp, j, x$4, x$5, _tuple$1, zigStart, zigEnd, ah, al, x$6, x$7, x$8, x$9, _tuple$2, h0, v0, _q, x$10, x$11, mxx, _q$1, x$12, x$13, myy, i$1, compIndex$1, x$14, x$15, x$16, x$17, _tuple$3, mcu, expectedRST, b, dc, _tuple$4, mx0, my0, blockCount, my, mx, i$2, compIndex$2, qt, j$1, x$18, x$19, x$20, x$21, _tuple$5, _r$1, _q$2, x$22, q, _r$2, _q$3, x$23, x$24, _slice, _index, x$25, x$26, err$1, y, zig, _tuple$6, value, err$2, _tuple$7, dcDelta, _lhs, _index$1, y$1, _tuple$8, value$1, err$3, val0, val1, _tuple$9, ac, err$4, y$2, y$3, _tuple$10, bits$1, err$5, _slice$1, _index$2, x$27, x$28, zig$1, _lhs$1, _index$3, x$29, x$30, _tuple$11, dst, stride, x$31, x$32, x$33, _tuple$12, _ref$1, x$34, x$35, x$36, _tuple$13, x$37, x$38, x$39, _tuple$14, x$40, x$41, x$42, _tuple$15, y$4, x$43, y8, yStride, x$44, c, _slice$2, _index$4, _r$3, _tuple$16, err$6;
 		d = this;
 		if (d.nComp === 0) {
@@ -933,7 +934,7 @@ image/jpegdecoder0imageNewGray0imageRect0imagePoint0image	R
 		if (!((n === (4 + (x$2 = 2, (((x$2 >>> 16 << 16) * nComp >> 0) + (x$2 << 16 >>> 16) * nComp) >> 0) >> 0)))) {
 			return new FormatError("SOS length inconsistent with number of components");
 		}
-		scan = go$makeNativeArray("Struct", 3, function() { return new (go$structType([["compIndex", "image/jpeg", Go$Uint8, ""], ["td", "image/jpeg", Go$Uint8, ""], ["ta", "image/jpeg", Go$Uint8, ""]])).Ptr(0, 0, 0); });
+		scan = go$makeNativeArray("Struct", 3, function() { return new (go$structType([["compIndex", "compIndex", "image/jpeg", Go$Uint8, ""], ["td", "td", "image/jpeg", Go$Uint8, ""], ["ta", "ta", "image/jpeg", Go$Uint8, ""]])).Ptr(0, 0, 0); });
 		i = 0;
 		while (i < nComp) {
 			cs = d.tmp[(1 + (x$3 = 2, (((x$3 >>> 16 << 16) * i >> 0) + (x$3 << 16 >>> 16) * i) >> 0) >> 0)];
@@ -1162,20 +1163,20 @@ image/jpegdecoder0imageNewGray0imageRect0imagePoint0image	R
 	decoder.prototype.processSOS = function(n) { return this.go$val.processSOS(n); };
  0decoder
 processSOS0Çm0
-image/jpegFormatError0ioReadFull0
-image/jpeg	component0
+image/jpegFormatError0imageGray0imageYCbCr0
 image/jpegmakeImg0
 image/jpegbits0
-image/jpegdecodeHuffman0
-image/jpeg
-decodeBits0imageYCbCr0
-image/jpegunzig0
-image/jpegidct0
-image/jpegblock0
-image/jpegdecoder0imageGray0
-image/jpegrefine0
+image/jpegdecodeHuffman0
 image/jpegUnsupportedError0
-image/jpegreceiveExtend0Ç
+image/jpegreceiveExtend0
+image/jpegunzig0
+image/jpegidct0
+image/jpeg	component0
+image/jpegrefine0
+image/jpegdecoder0ioReadFull0
+image/jpegblock0
+image/jpeg
+decodeBits0Ç
  Ç	0	decoder.Ptr.prototype.refine = function(b, h, zigStart, zigEnd, delta) {
 		var d, _tuple, bit, err, _lhs, _index, zig, z, _tuple$1, value, err$1, val0, val1, _ref, y, _tuple$2, bits$1, err$2, _tuple$3, bit$1, err$3, _tuple$4, err$4, _tuple$5;
 		d = this;
@@ -1643,14 +1644,14 @@ RGBToYCbCr0Ç·scaleÇ…	scale = function(dst, src) {
 		e.emit(127, 7);
 	};
 	encoder.prototype.writeSOS = function(m) { return this.go$val.writeSOS(m); };
- 0encoderwriteSOS0Å˙0
-image/jpegwrite0imagePoint0imageRGBA0
+ 0encoderwriteSOS0Å˙0
+image/jpeg	sosHeader0image	Rectangle0
 image/jpegtoYCbCr0
 image/jpeg
 writeBlock0
 image/jpegscale0
-image/jpegencoder0
-image/jpeg	sosHeader0image	Rectangle0imagePt0
+image/jpegencoder0
+image/jpegwrite0imagePoint0imageRGBA0imagePt0
 image/jpegrgbaToYCbCr0
 image/jpegemit0Ç	öEncodeÇK	Encode = go$pkg.Encode = function(w, m, o) {
 		var _struct, _struct$1, _struct$2, b, e, ok, _tuple, ww, quality, scale$1, _q, x, _ref, _i, i, _ref$1, _i$1, j, x$1, _q$1, _struct$3;
@@ -1712,17 +1713,17 @@ image/jpegemit0Ç	öEncodeÇK	Encode = go$pkg.Encode = function(w, m, o) {
 		e.flush();
 		return e.err;
 	};
- 0Encode0Ç30errorsNew0
-image/jpegflush0
-image/jpegwrite0
-image/jpeg	writeSOF00
-image/jpegwriteSOS0imagePoint0image	Rectangle0
-image/jpegencoder0
-image/jpegwriter0bufio	NewWriter0
-image/jpegOptions0
-image/jpegunscaledQuant0
+ 0Encode0Ç30imagePoint0image	Rectangle0
+image/jpegwriter0
+image/jpegOptions0
+image/jpegwrite0
+image/jpegwriteDHT0
+image/jpegunscaledQuant0
+image/jpeg	writeSOF00
+image/jpegflush0errorsNew0
+image/jpegencoder0bufio	NewWriter0
 image/jpegwriteDQT0
-image/jpegwriteDHT0unzig  0unzig0 0bitCount  0
+image/jpegwriteSOS0unzig  0unzig0 0bitCount  0
 bitCount0 0&unscaledQuant  0unscaledQuant0 0(theHuffmanSpec  0theHuffmanSpec0 0Å∂theHuffmanLUT Y		theHuffmanLUT = go$makeNativeArray("Slice", 4, function() { return huffmanLUT.nil; });
 0theHuffmanLUT070
 image/jpeg

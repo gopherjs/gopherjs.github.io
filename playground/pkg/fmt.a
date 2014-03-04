@@ -1,4 +1,4 @@
-0ÉvfmtÇl÷package fmt
+0ÉyjfmtÇl÷package fmt
 import strconv "strconv"
 import utf8 "unicode/utf8"
 import errors "errors"
@@ -350,7 +350,7 @@ func (? @"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 func (? *@"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
-0fruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmt0ÅÄ0strconvstrconv0unicode/utf8utf80errorserrors0ioio0osos0reflectreflect0syncsync0mathmath0ÉA0Ç<fmtÇ¯	fmt = go$pkg.fmt = go$newType(0, "Struct", "fmt.fmt", "fmt", "fmt", function(intbuf_, buf_, wid_, prec_, widPresent_, precPresent_, minus_, plus_, sharp_, space_, unicode_, uniQuote_, zero_) {
+0fruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmt0ÅÄ0strconvstrconv0unicode/utf8utf80errorserrors0ioio0osos0reflectreflect0syncsync0mathmath0Éô0Ç3fmtÇ¯	fmt = go$pkg.fmt = go$newType(0, "Struct", "fmt.fmt", "fmt", "fmt", function(intbuf_, buf_, wid_, prec_, widPresent_, precPresent_, minus_, plus_, sharp_, space_, unicode_, uniQuote_, zero_) {
 		this.go$val = this;
 		this.intbuf = intbuf_ !== undefined ? intbuf_ : go$makeNativeArray("Uint8", 65, function() { return 0; });
 		this.buf = buf_ !== undefined ? buf_ : (go$ptrType(buffer)).nil;
@@ -366,8 +366,8 @@ $$
 		this.uniQuote = uniQuote_ !== undefined ? uniQuote_ : false;
 		this.zero = zero_ !== undefined ? zero_ : false;
 	});
-Ç		fmt.init([["intbuf", "fmt", (go$arrayType(Go$Uint8, 65)), ""], ["buf", "fmt", (go$ptrType(buffer)), ""], ["wid", "fmt", Go$Int, ""], ["prec", "fmt", Go$Int, ""], ["widPresent", "fmt", Go$Bool, ""], ["precPresent", "fmt", Go$Bool, ""], ["minus", "fmt", Go$Bool, ""], ["plus", "fmt", Go$Bool, ""], ["sharp", "fmt", Go$Bool, ""], ["space", "fmt", Go$Bool, ""], ["unicode", "fmt", Go$Bool, ""], ["uniQuote", "fmt", Go$Bool, ""], ["zero", "fmt", Go$Bool, ""]]);
-		(go$ptrType(fmt)).methods = [["clearflags", "fmt", [], [], false], ["computePadding", "fmt", [Go$Int], [(go$sliceType(Go$Uint8)), Go$Int, Go$Int], false], ["fmt_E32", "fmt", [Go$Float32], [], false], ["fmt_E64", "fmt", [Go$Float64], [], false], ["fmt_G32", "fmt", [Go$Float32], [], false], ["fmt_G64", "fmt", [Go$Float64], [], false], ["fmt_boolean", "fmt", [Go$Bool], [], false], ["fmt_bx", "fmt", [(go$sliceType(Go$Uint8)), Go$String], [], false], ["fmt_c128", "fmt", [Go$Complex128, Go$Int32], [], false], ["fmt_c64", "fmt", [Go$Complex64, Go$Int32], [], false], ["fmt_e32", "fmt", [Go$Float32], [], false], ["fmt_e64", "fmt", [Go$Float64], [], false], ["fmt_f32", "fmt", [Go$Float32], [], false], ["fmt_f64", "fmt", [Go$Float64], [], false], ["fmt_fb32", "fmt", [Go$Float32], [], false], ["fmt_fb64", "fmt", [Go$Float64], [], false], ["fmt_g32", "fmt", [Go$Float32], [], false], ["fmt_g64", "fmt", [Go$Float64], [], false], ["fmt_q", "fmt", [Go$String], [], false], ["fmt_qc", "fmt", [Go$Int64], [], false], ["fmt_s", "fmt", [Go$String], [], false], ["fmt_sbx", "fmt", [Go$String, (go$sliceType(Go$Uint8)), Go$String], [], false], ["fmt_sx", "fmt", [Go$String, Go$String], [], false], ["formatFloat", "fmt", [Go$Float64, Go$Uint8, Go$Int, Go$Int], [], false], ["init", "fmt", [(go$ptrType(buffer))], [], false], ["integer", "fmt", [Go$Int64, Go$Uint64, Go$Bool, Go$String], [], false], ["pad", "fmt", [(go$sliceType(Go$Uint8))], [], false], ["padString", "fmt", [Go$String], [], false], ["truncate", "fmt", [Go$String], [Go$String], false], ["writePadding", "fmt", [Go$Int, (go$sliceType(Go$Uint8))], [], false]];
+Ç			(go$ptrType(fmt)).methods = [["clearflags", "fmt", [], [], false, -1], ["computePadding", "fmt", [Go$Int], [(go$sliceType(Go$Uint8)), Go$Int, Go$Int], false, -1], ["fmt_E32", "fmt", [Go$Float32], [], false, -1], ["fmt_E64", "fmt", [Go$Float64], [], false, -1], ["fmt_G32", "fmt", [Go$Float32], [], false, -1], ["fmt_G64", "fmt", [Go$Float64], [], false, -1], ["fmt_boolean", "fmt", [Go$Bool], [], false, -1], ["fmt_bx", "fmt", [(go$sliceType(Go$Uint8)), Go$String], [], false, -1], ["fmt_c128", "fmt", [Go$Complex128, Go$Int32], [], false, -1], ["fmt_c64", "fmt", [Go$Complex64, Go$Int32], [], false, -1], ["fmt_e32", "fmt", [Go$Float32], [], false, -1], ["fmt_e64", "fmt", [Go$Float64], [], false, -1], ["fmt_f32", "fmt", [Go$Float32], [], false, -1], ["fmt_f64", "fmt", [Go$Float64], [], false, -1], ["fmt_fb32", "fmt", [Go$Float32], [], false, -1], ["fmt_fb64", "fmt", [Go$Float64], [], false, -1], ["fmt_g32", "fmt", [Go$Float32], [], false, -1], ["fmt_g64", "fmt", [Go$Float64], [], false, -1], ["fmt_q", "fmt", [Go$String], [], false, -1], ["fmt_qc", "fmt", [Go$Int64], [], false, -1], ["fmt_s", "fmt", [Go$String], [], false, -1], ["fmt_sbx", "fmt", [Go$String, (go$sliceType(Go$Uint8)), Go$String], [], false, -1], ["fmt_sx", "fmt", [Go$String, Go$String], [], false, -1], ["formatFloat", "fmt", [Go$Float64, Go$Uint8, Go$Int, Go$Int], [], false, -1], ["init", "fmt", [(go$ptrType(buffer))], [], false, -1], ["integer", "fmt", [Go$Int64, Go$Uint64, Go$Bool, Go$String], [], false, -1], ["pad", "fmt", [(go$sliceType(Go$Uint8))], [], false, -1], ["padString", "fmt", [Go$String], [], false, -1], ["truncate", "fmt", [Go$String], [Go$String], false, -1], ["writePadding", "fmt", [Go$Int, (go$sliceType(Go$Uint8))], [], false, -1]];
+		fmt.init([["intbuf", "intbuf", "fmt", (go$arrayType(Go$Uint8, 65)), ""], ["buf", "buf", "fmt", (go$ptrType(buffer)), ""], ["wid", "wid", "fmt", Go$Int, ""], ["prec", "prec", "fmt", Go$Int, ""], ["widPresent", "widPresent", "fmt", Go$Bool, ""], ["precPresent", "precPresent", "fmt", Go$Bool, ""], ["minus", "minus", "fmt", Go$Bool, ""], ["plus", "plus", "fmt", Go$Bool, ""], ["sharp", "sharp", "fmt", Go$Bool, ""], ["space", "space", "fmt", Go$Bool, ""], ["unicode", "unicode", "fmt", Go$Bool, ""], ["uniQuote", "uniQuote", "fmt", Go$Bool, ""], ["zero", "zero", "fmt", Go$Bool, ""]]);
 0fmt00fmtbuffer0ÇâStateW	State = go$pkg.State = go$newType(0, "Interface", "fmt.State", "State", "fmt", null);
 Ç		State.init([["Flag", "", (go$funcType([Go$Int], [Go$Bool], false))], ["Precision", "", (go$funcType([], [Go$Int, Go$Bool], false))], ["Width", "", (go$funcType([], [Go$Int, Go$Bool], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
 0State0 0Å‰	Formatterg	Formatter = go$pkg.Formatter = go$newType(0, "Interface", "fmt.Formatter", "Formatter", "fmt", null);
@@ -379,10 +379,10 @@ $$
 GoStringerk	GoStringer = go$pkg.GoStringer = go$newType(0, "Interface", "fmt.GoStringer", "GoStringer", "fmt", null);
 N		GoStringer.init([["GoString", "", (go$funcType([], [Go$String], false))]]);
 0
-GoStringer0 0ÇîbufferW	buffer = go$pkg.buffer = go$newType(0, "Slice", "fmt.buffer", "buffer", "fmt", null);
-Ç#		buffer.init(Go$Uint8);
-		(go$ptrType(buffer)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-0buffer0 0ÇhppÇ@	pp = go$pkg.pp = go$newType(0, "Struct", "fmt.pp", "pp", "fmt", function(n_, panicking_, erroring_, buf_, arg_, value_, reordered_, goodArgNum_, runeBuf_, fmt_) {
+GoStringer0 0Ç§bufferW	buffer = go$pkg.buffer = go$newType(0, "Slice", "fmt.buffer", "buffer", "fmt", null);
+Ç3		(go$ptrType(buffer)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteByte", "", [Go$Uint8], [go$error], false, -1], ["WriteRune", "", [Go$Int32], [go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
+		buffer.init(Go$Uint8);
+0buffer0 0Ç>ppÇ@	pp = go$pkg.pp = go$newType(0, "Struct", "fmt.pp", "pp", "fmt", function(n_, panicking_, erroring_, buf_, arg_, value_, reordered_, goodArgNum_, runeBuf_, fmt_) {
 		this.go$val = this;
 		this.n = n_ !== undefined ? n_ : 0;
 		this.panicking = panicking_ !== undefined ? panicking_ : false;
@@ -395,31 +395,31 @@ GoStringer0 0ÇîbufferW	buffer = go$pkg.buffer = go$newType(0, "Slice", "fmt.
 		this.runeBuf = runeBuf_ !== undefined ? runeBuf_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.fmt = fmt_ !== undefined ? fmt_ : new fmt.Ptr();
 	});
-Ç÷		pp.init([["n", "fmt", Go$Int, ""], ["panicking", "fmt", Go$Bool, ""], ["erroring", "fmt", Go$Bool, ""], ["buf", "fmt", buffer, ""], ["arg", "fmt", go$emptyInterface, ""], ["value", "fmt", reflect.Value, ""], ["reordered", "fmt", Go$Bool, ""], ["goodArgNum", "fmt", Go$Bool, ""], ["runeBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["fmt", "fmt", fmt, ""]]);
-		(go$ptrType(pp)).methods = [["Flag", "", [Go$Int], [Go$Bool], false], ["Precision", "", [], [Go$Int, Go$Bool], false], ["Width", "", [], [Go$Int, Go$Bool], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["add", "fmt", [Go$Int32], [], false], ["argNumber", "fmt", [Go$Int, Go$String, Go$Int, Go$Int], [Go$Int, Go$Int, Go$Bool], false], ["badVerb", "fmt", [Go$Int32], [], false], ["catchPanic", "fmt", [go$emptyInterface, Go$Int32], [], false], ["doPrint", "fmt", [(go$sliceType(go$emptyInterface)), Go$Bool, Go$Bool], [], false], ["doPrintf", "fmt", [Go$String, (go$sliceType(go$emptyInterface))], [], false], ["fmt0x64", "fmt", [Go$Uint64, Go$Bool], [], false], ["fmtBool", "fmt", [Go$Bool, Go$Int32], [], false], ["fmtBytes", "fmt", [(go$sliceType(Go$Uint8)), Go$Int32, Go$Bool, reflect.Type, Go$Int], [], false], ["fmtC", "fmt", [Go$Int64], [], false], ["fmtComplex128", "fmt", [Go$Complex128, Go$Int32], [], false], ["fmtComplex64", "fmt", [Go$Complex64, Go$Int32], [], false], ["fmtFloat32", "fmt", [Go$Float32, Go$Int32], [], false], ["fmtFloat64", "fmt", [Go$Float64, Go$Int32], [], false], ["fmtInt64", "fmt", [Go$Int64, Go$Int32], [], false], ["fmtPointer", "fmt", [reflect.Value, Go$Int32, Go$Bool], [], false], ["fmtString", "fmt", [Go$String, Go$Int32, Go$Bool], [], false], ["fmtUint64", "fmt", [Go$Uint64, Go$Int32, Go$Bool], [], false], ["fmtUnicode", "fmt", [Go$Int64], [], false], ["free", "fmt", [], [], false], ["handleMethods", "fmt", [Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool, Go$Bool], false], ["printArg", "fmt", [go$emptyInterface, Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool], false], ["printReflectValue", "fmt", [reflect.Value, Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool], false], ["printValue", "fmt", [reflect.Value, Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool], false], ["unknownType", "fmt", [go$emptyInterface], [], false]];
+Ç	¨		(go$ptrType(pp)).methods = [["Flag", "", [Go$Int], [Go$Bool], false, -1], ["Precision", "", [], [Go$Int, Go$Bool], false, -1], ["Width", "", [], [Go$Int, Go$Bool], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["add", "fmt", [Go$Int32], [], false, -1], ["argNumber", "fmt", [Go$Int, Go$String, Go$Int, Go$Int], [Go$Int, Go$Int, Go$Bool], false, -1], ["badVerb", "fmt", [Go$Int32], [], false, -1], ["catchPanic", "fmt", [go$emptyInterface, Go$Int32], [], false, -1], ["doPrint", "fmt", [(go$sliceType(go$emptyInterface)), Go$Bool, Go$Bool], [], false, -1], ["doPrintf", "fmt", [Go$String, (go$sliceType(go$emptyInterface))], [], false, -1], ["fmt0x64", "fmt", [Go$Uint64, Go$Bool], [], false, -1], ["fmtBool", "fmt", [Go$Bool, Go$Int32], [], false, -1], ["fmtBytes", "fmt", [(go$sliceType(Go$Uint8)), Go$Int32, Go$Bool, reflect.Type, Go$Int], [], false, -1], ["fmtC", "fmt", [Go$Int64], [], false, -1], ["fmtComplex128", "fmt", [Go$Complex128, Go$Int32], [], false, -1], ["fmtComplex64", "fmt", [Go$Complex64, Go$Int32], [], false, -1], ["fmtFloat32", "fmt", [Go$Float32, Go$Int32], [], false, -1], ["fmtFloat64", "fmt", [Go$Float64, Go$Int32], [], false, -1], ["fmtInt64", "fmt", [Go$Int64, Go$Int32], [], false, -1], ["fmtPointer", "fmt", [reflect.Value, Go$Int32, Go$Bool], [], false, -1], ["fmtString", "fmt", [Go$String, Go$Int32, Go$Bool], [], false, -1], ["fmtUint64", "fmt", [Go$Uint64, Go$Int32, Go$Bool], [], false, -1], ["fmtUnicode", "fmt", [Go$Int64], [], false, -1], ["free", "fmt", [], [], false, -1], ["handleMethods", "fmt", [Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool, Go$Bool], false, -1], ["printArg", "fmt", [go$emptyInterface, Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool], false, -1], ["printReflectValue", "fmt", [reflect.Value, Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool], false, -1], ["printValue", "fmt", [reflect.Value, Go$Int32, Go$Bool, Go$Bool, Go$Int], [Go$Bool], false, -1], ["unknownType", "fmt", [go$emptyInterface], [], false, -1]];
+		pp.init([["n", "n", "fmt", Go$Int, ""], ["panicking", "panicking", "fmt", Go$Bool, ""], ["erroring", "erroring", "fmt", Go$Bool, ""], ["buf", "buf", "fmt", buffer, ""], ["arg", "arg", "fmt", go$emptyInterface, ""], ["value", "value", "fmt", reflect.Value, ""], ["reordered", "reordered", "fmt", Go$Bool, ""], ["goodArgNum", "goodArgNum", "fmt", Go$Bool, ""], ["runeBuf", "runeBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["fmt", "fmt", "fmt", fmt, ""]]);
 0pp0>0fmtbuffer0reflectValue0
-fmtfmt0reflectType0Ç∏cacheÇb	cache = go$pkg.cache = go$newType(0, "Struct", "fmt.cache", "cache", "fmt", function(mu_, saved_, new$2_) {
+fmtfmt0reflectType0ÇÿcacheÇb	cache = go$pkg.cache = go$newType(0, "Struct", "fmt.cache", "cache", "fmt", function(mu_, saved_, new$2_) {
 		this.go$val = this;
 		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
 		this.saved = saved_ !== undefined ? saved_ : (go$sliceType(go$emptyInterface)).nil;
 		this.new$2 = new$2_ !== undefined ? new$2_ : go$throwNilPointerError;
 	});
-Ç-		cache.init([["mu", "fmt", sync.Mutex, ""], ["saved", "fmt", (go$sliceType(go$emptyInterface)), ""], ["new", "fmt", (go$funcType([], [go$emptyInterface], false)), ""]]);
-		(go$ptrType(cache)).methods = [["get", "fmt", [], [go$emptyInterface], false], ["put", "fmt", [go$emptyInterface], [], false]];
+ÇM		(go$ptrType(cache)).methods = [["get", "fmt", [], [go$emptyInterface], false, -1], ["put", "fmt", [go$emptyInterface], [], false, -1]];
+		cache.init([["mu", "mu", "fmt", sync.Mutex, ""], ["saved", "saved", "fmt", (go$sliceType(go$emptyInterface)), ""], ["new$2", "new", "fmt", (go$funcType([], [go$emptyInterface], false)), ""]]);
 0cache00syncMutex0ÅËruneUnreaders	runeUnreader = go$pkg.runeUnreader = go$newType(0, "Interface", "fmt.runeUnreader", "runeUnreader", "fmt", null);
 Q		runeUnreader.init([["UnreadRune", "", (go$funcType([], [go$error], false))]]);
 0runeUnreader0 0Çc	ScanStateg	ScanState = go$pkg.ScanState = go$newType(0, "Interface", "fmt.ScanState", "ScanState", "fmt", null);
 Ç‹		ScanState.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["ReadRune", "", (go$funcType([], [Go$Int32, Go$Int, go$error], false))], ["SkipSpace", "", (go$funcType([], [], false))], ["Token", "", (go$funcType([Go$Bool, (go$funcType([Go$Int32], [Go$Bool], false))], [(go$sliceType(Go$Uint8)), go$error], false))], ["UnreadRune", "", (go$funcType([], [go$error], false))], ["Width", "", (go$funcType([], [Go$Int, Go$Bool], false))]]);
 0	ScanState0 0Å‰Scanner_	Scanner = go$pkg.Scanner = go$newType(0, "Interface", "fmt.Scanner", "Scanner", "fmt", null);
 Y		Scanner.init([["Scan", "", (go$funcType([ScanState, Go$Int32], [go$error], false))]]);
-0	Scanner00fmt	ScanState0ÇstringReaderp	stringReader = go$pkg.stringReader = go$newType(0, "String", "fmt.stringReader", "stringReader", "fmt", null);
-n		(go$ptrType(stringReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-0stringReader0 0Ç		scanErrorÅ∏	scanError = go$pkg.scanError = go$newType(0, "Struct", "fmt.scanError", "scanError", "fmt", function(err_) {
+0	Scanner00fmt	ScanState0ÇstringReaderp	stringReader = go$pkg.stringReader = go$newType(0, "String", "fmt.stringReader", "stringReader", "fmt", null);
+r		(go$ptrType(stringReader)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1]];
+0stringReader0 0Ç	scanErrorÅ∏	scanError = go$pkg.scanError = go$newType(0, "Struct", "fmt.scanError", "scanError", "fmt", function(err_) {
 		this.go$val = this;
 		this.err = err_ !== undefined ? err_ : null;
 	});
-2		scanError.init([["err", "fmt", go$error, ""]]);
-0	scanError0 0Ç ssÇ	ss = go$pkg.ss = go$newType(0, "Struct", "fmt.ss", "ss", "fmt", function(rr_, buf_, peekRune_, prevRune_, count_, atEOF_, ssave_) {
+9		scanError.init([["err", "err", "fmt", go$error, ""]]);
+0	scanError0 0ÇÿssÇ	ss = go$pkg.ss = go$newType(0, "Struct", "fmt.ss", "ss", "fmt", function(rr_, buf_, peekRune_, prevRune_, count_, atEOF_, ssave_) {
 		this.go$val = this;
 		this.rr = rr_ !== undefined ? rr_ : null;
 		this.buf = buf_ !== undefined ? buf_ : buffer.nil;
@@ -429,10 +429,11 @@ GoStringer0 0ÇîbufferW	buffer = go$pkg.buffer = go$newType(0, "Slice", "fmt.
 		this.atEOF = atEOF_ !== undefined ? atEOF_ : false;
 		this.ssave = ssave_ !== undefined ? ssave_ : new ssave.Ptr();
 	});
-Ç	û		ss.init([["rr", "fmt", io.RuneReader, ""], ["buf", "fmt", buffer, ""], ["peekRune", "fmt", Go$Int32, ""], ["prevRune", "fmt", Go$Int32, ""], ["count", "fmt", Go$Int, ""], ["atEOF", "fmt", Go$Bool, ""], ["", "fmt", ssave, ""]]);
-		(go$ptrType(ss)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["SkipSpace", "", [], [], false], ["Token", "", [Go$Bool, (go$funcType([Go$Int32], [Go$Bool], false))], [(go$sliceType(Go$Uint8)), go$error], false], ["UnreadRune", "", [], [go$error], false], ["Width", "", [], [Go$Int, Go$Bool], false], ["accept", "fmt", [Go$String], [Go$Bool], false], ["advance", "fmt", [Go$String], [Go$Int], false], ["complexTokens", "fmt", [], [Go$String, Go$String], false], ["consume", "fmt", [Go$String, Go$Bool], [Go$Bool], false], ["convertFloat", "fmt", [Go$String, Go$Int], [Go$Float64], false], ["convertString", "fmt", [Go$Int32], [Go$String], false], ["doScan", "fmt", [(go$sliceType(go$emptyInterface))], [Go$Int, go$error], false], ["doScanf", "fmt", [Go$String, (go$sliceType(go$emptyInterface))], [Go$Int, go$error], false], ["error", "fmt", [go$error], [], false], ["errorString", "fmt", [Go$String], [], false], ["floatToken", "fmt", [], [Go$String], false], ["free", "fmt", [ssave], [], false], ["getBase", "fmt", [Go$Int32], [Go$Int, Go$String], false], ["getRune", "fmt", [], [Go$Int32], false], ["hexByte", "fmt", [], [Go$Uint8, Go$Bool], false], ["hexDigit", "fmt", [Go$Int32], [Go$Int], false], ["hexString", "fmt", [], [Go$String], false], ["mustReadRune", "fmt", [], [Go$Int32], false], ["notEOF", "fmt", [], [], false], ["okVerb", "fmt", [Go$Int32, Go$String, Go$String], [Go$Bool], false], ["peek", "fmt", [Go$String], [Go$Bool], false], ["quotedString", "fmt", [], [Go$String], false], ["scanBasePrefix", "fmt", [], [Go$Int, Go$String, Go$Bool], false], ["scanBool", "fmt", [Go$Int32], [Go$Bool], false], ["scanComplex", "fmt", [Go$Int32, Go$Int], [Go$Complex128], false], ["scanInt", "fmt", [Go$Int32, Go$Int], [Go$Int64], false], ["scanNumber", "fmt", [Go$String, Go$Bool], [Go$String], false], ["scanOne", "fmt", [Go$Int32, go$emptyInterface], [], false], ["scanRune", "fmt", [Go$Int], [Go$Int64], false], ["scanUint", "fmt", [Go$Int32, Go$Int], [Go$Uint64], false], ["skipSpace", "fmt", [Go$Bool], [], false], ["token", "fmt", [Go$Bool, (go$funcType([Go$Int32], [Go$Bool], false))], [(go$sliceType(Go$Uint8))], false]];
+Ç
+v		(go$ptrType(ss)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, -1], ["SkipSpace", "", [], [], false, -1], ["Token", "", [Go$Bool, (go$funcType([Go$Int32], [Go$Bool], false))], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["UnreadRune", "", [], [go$error], false, -1], ["Width", "", [], [Go$Int, Go$Bool], false, -1], ["accept", "fmt", [Go$String], [Go$Bool], false, -1], ["advance", "fmt", [Go$String], [Go$Int], false, -1], ["complexTokens", "fmt", [], [Go$String, Go$String], false, -1], ["consume", "fmt", [Go$String, Go$Bool], [Go$Bool], false, -1], ["convertFloat", "fmt", [Go$String, Go$Int], [Go$Float64], false, -1], ["convertString", "fmt", [Go$Int32], [Go$String], false, -1], ["doScan", "fmt", [(go$sliceType(go$emptyInterface))], [Go$Int, go$error], false, -1], ["doScanf", "fmt", [Go$String, (go$sliceType(go$emptyInterface))], [Go$Int, go$error], false, -1], ["error", "fmt", [go$error], [], false, -1], ["errorString", "fmt", [Go$String], [], false, -1], ["floatToken", "fmt", [], [Go$String], false, -1], ["free", "fmt", [ssave], [], false, -1], ["getBase", "fmt", [Go$Int32], [Go$Int, Go$String], false, -1], ["getRune", "fmt", [], [Go$Int32], false, -1], ["hexByte", "fmt", [], [Go$Uint8, Go$Bool], false, -1], ["hexDigit", "fmt", [Go$Int32], [Go$Int], false, -1], ["hexString", "fmt", [], [Go$String], false, -1], ["mustReadRune", "fmt", [], [Go$Int32], false, -1], ["notEOF", "fmt", [], [], false, -1], ["okVerb", "fmt", [Go$Int32, Go$String, Go$String], [Go$Bool], false, -1], ["peek", "fmt", [Go$String], [Go$Bool], false, -1], ["quotedString", "fmt", [], [Go$String], false, -1], ["scanBasePrefix", "fmt", [], [Go$Int, Go$String, Go$Bool], false, -1], ["scanBool", "fmt", [Go$Int32], [Go$Bool], false, -1], ["scanComplex", "fmt", [Go$Int32, Go$Int], [Go$Complex128], false, -1], ["scanInt", "fmt", [Go$Int32, Go$Int], [Go$Int64], false, -1], ["scanNumber", "fmt", [Go$String, Go$Bool], [Go$String], false, -1], ["scanOne", "fmt", [Go$Int32, go$emptyInterface], [], false, -1], ["scanRune", "fmt", [Go$Int], [Go$Int64], false, -1], ["scanUint", "fmt", [Go$Int32, Go$Int], [Go$Uint64], false, -1], ["skipSpace", "fmt", [Go$Bool], [], false, -1], ["token", "fmt", [Go$Bool, (go$funcType([Go$Int32], [Go$Bool], false))], [(go$sliceType(Go$Uint8))], false, -1]];
+		ss.init([["rr", "rr", "fmt", io.RuneReader, ""], ["buf", "buf", "fmt", buffer, ""], ["peekRune", "peekRune", "fmt", Go$Int32, ""], ["prevRune", "prevRune", "fmt", Go$Int32, ""], ["count", "count", "fmt", Go$Int, ""], ["atEOF", "atEOF", "fmt", Go$Bool, ""], ["ssave", "", "fmt", ssave, ""]]);
 0ss0/0fmtbuffer0fmtssave0io
-RuneReader0ÇssaveÇ	ssave = go$pkg.ssave = go$newType(0, "Struct", "fmt.ssave", "ssave", "fmt", function(validSave_, nlIsEnd_, nlIsSpace_, argLimit_, limit_, maxWid_) {
+RuneReader0ÇFssaveÇ	ssave = go$pkg.ssave = go$newType(0, "Struct", "fmt.ssave", "ssave", "fmt", function(validSave_, nlIsEnd_, nlIsSpace_, argLimit_, limit_, maxWid_) {
 		this.go$val = this;
 		this.validSave = validSave_ !== undefined ? validSave_ : false;
 		this.nlIsEnd = nlIsEnd_ !== undefined ? nlIsEnd_ : false;
@@ -441,16 +442,16 @@ RuneReader0ÇssaveÇ	ssave = go$pkg.ssave = go$newType(0, "Struct", "fmt.ss
 		this.limit = limit_ !== undefined ? limit_ : 0;
 		this.maxWid = maxWid_ !== undefined ? maxWid_ : 0;
 	});
-Å’		ssave.init([["validSave", "fmt", Go$Bool, ""], ["nlIsEnd", "fmt", Go$Bool, ""], ["nlIsSpace", "fmt", Go$Bool, ""], ["argLimit", "fmt", Go$Int, ""], ["limit", "fmt", Go$Int, ""], ["maxWid", "fmt", Go$Int, ""]]);
-0ssave0 0ÇùreadRuneÇ‰	readRune = go$pkg.readRune = go$newType(0, "Struct", "fmt.readRune", "readRune", "fmt", function(reader_, buf_, pending_, pendBuf_) {
+Ç		ssave.init([["validSave", "validSave", "fmt", Go$Bool, ""], ["nlIsEnd", "nlIsEnd", "fmt", Go$Bool, ""], ["nlIsSpace", "nlIsSpace", "fmt", Go$Bool, ""], ["argLimit", "argLimit", "fmt", Go$Int, ""], ["limit", "limit", "fmt", Go$Int, ""], ["maxWid", "maxWid", "fmt", Go$Int, ""]]);
+0ssave0 0Ç–readRuneÇ‰	readRune = go$pkg.readRune = go$newType(0, "Struct", "fmt.readRune", "readRune", "fmt", function(reader_, buf_, pending_, pendBuf_) {
 		this.go$val = this;
 		this.reader = reader_ !== undefined ? reader_ : null;
 		this.buf = buf_ !== undefined ? buf_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.pending = pending_ !== undefined ? pending_ : 0;
 		this.pendBuf = pendBuf_ !== undefined ? pendBuf_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 	});
-Çã		readRune.init([["reader", "fmt", io.Reader, ""], ["buf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["pending", "fmt", Go$Int, ""], ["pendBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""]]);
-		(go$ptrType(readRune)).methods = [["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["readByte", "fmt", [], [Go$Uint8, go$error], false], ["unread", "fmt", [(go$sliceType(Go$Uint8))], [], false]];
+Çæ		(go$ptrType(readRune)).methods = [["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, -1], ["readByte", "fmt", [], [Go$Uint8, go$error], false, -1], ["unread", "fmt", [(go$sliceType(Go$Uint8))], [], false, -1]];
+		readRune.init([["reader", "reader", "fmt", io.Reader, ""], ["buf", "buf", "fmt", (go$arrayType(Go$Uint8, 4)), ""], ["pending", "pending", "fmt", Go$Int, ""], ["pendBuf", "pendBuf", "fmt", (go$arrayType(Go$Uint8, 4)), ""]]);
 0
 readRune00ioReader0Çê Çg	fmt.Ptr.prototype.clearflags = function() {
 		var f;
@@ -1518,8 +1519,8 @@ fmtFloat640|0	fmtpp0fmtfmt-fb640fmtfmt-e640fmtfmt-E640fmt
 		}
 	};
 	pp.prototype.fmtBytes = function(v, verb, goSyntax, typ, depth) { return this.go$val.fmtBytes(v, verb, goSyntax, typ, depth); };
- 0ppfmtBytes0Åë0fmtprintArg0fmtfmt-s0fmtfmt-q0fmtbadVerb0	fmtpp0fmtbuffer0fmt
-bytesBytes0fmtcommaSpaceBytes0fmtfmt-bx0Ç] Ç¬	pp.Ptr.prototype.fmtPointer = function(value, verb, goSyntax) {
+ 0ppfmtBytes0Åë0	fmtpp0fmtcommaSpaceBytes0fmtfmt-s0fmtfmt-bx0fmtfmt-q0fmtbuffer0fmt
+bytesBytes0fmtprintArg0fmtbadVerb0Ç] Ç¬	pp.Ptr.prototype.fmtPointer = function(value, verb, goSyntax) {
 		var p, use0x64, _ref, u, _ref$1, v, v$1, v$2;
 		p = this;
 		use0x64 = true;
@@ -1585,8 +1586,8 @@ fmtPointer00	fmtpp0fmtbadVerb0
 	};
 	pp.prototype.catchPanic = function(arg, verb) { return this.go$val.catchPanic(arg, verb); };
  0pp
-catchPanic0Åü0reflectValue0fmtbuffer0
-fmtadd0fmtprintArg0	fmtpp0reflectValueOf0fmtnilAngleBytes0fmtpercentBangBytes0fmt
+catchPanic0Åü0	fmtpp0reflectValue0fmtnilAngleBytes0fmtpercentBangBytes0fmtprintArg0reflectValueOf0fmtbuffer0
+fmtadd0fmt
 panicBytes0Ç	π Ç	#	pp.Ptr.prototype.handleMethods = function(verb, plus, goSyntax, depth) {
 		var wasString, handled, p, ok, _tuple, x, formatter, ok$1, _tuple$1, x$1, stringer, _ref, v, _ref$1, _type;
 		wasString = false;
@@ -1756,11 +1757,11 @@ GoStringer0fmt	fmtString0fmtStringer0fmtprintArg0Çr Ç‰	pp.Ptr.
 		return wasString;
 	};
 	pp.prototype.printArg = function(arg, verb, plus, goSyntax, depth) { return this.go$val.printArg(arg, verb, plus, goSyntax, depth); };
- 0ppprintArg0Çr0	fmtpp0reflectrtype0fmtbadVerb0fmt	fmtUint640fmt	fmtString0fmthandleMethods0fmtprintReflectValue0reflectValue0
-fmtpad0fmtfmtBool0fmt
-fmtFloat320fmt
-fmtFloat640fmtfmtInt640fmtfmtBytes0reflectTypeOf0fmt
-fmtPointer0reflectValueOf0fmtfmtComplex640fmtnilAngleBytes0fmtfmtComplex1280Ç ÇS	pp.Ptr.prototype.printValue = function(value, verb, plus, goSyntax, depth) {
+ 0ppprintArg0Çr0	fmtpp0reflectrtype0reflectTypeOf0fmtfmtBool0fmt	fmtUint640fmtprintReflectValue0reflectValueOf0fmthandleMethods0reflectValue0
+fmtpad0fmtbadVerb0fmt
+fmtFloat640fmtfmtComplex640fmtfmtComplex1280fmtfmtInt640fmtnilAngleBytes0fmt
+fmtPointer0fmt
+fmtFloat320fmt	fmtString0fmtfmtBytes0Ç ÇS	pp.Ptr.prototype.printValue = function(value, verb, plus, goSyntax, depth) {
 		var wasString, p, v, _ref, _struct, handled, _tuple, isString, _struct$1;
 		wasString = false;
 		p = this;
@@ -1796,8 +1797,8 @@ fmtPointer0reflectValueOf0fmtfmtComplex640fmtnilAngleBytes0fmt
 	};
 	pp.prototype.printValue = function(value, verb, plus, goSyntax, depth) { return this.go$val.printValue(value, verb, plus, goSyntax, depth); };
  0pp
-printValue0Å¶0fmtnilAngleBytes0fmtbadVerb0fmtprintArg0fmt
-fmtPointer0fmthandleMethods0	fmtpp0fmtbuffer0reflectValue0fmtprintReflectValue0Ç'∑ Ç%˚	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
+printValue0Å¶0	fmtpp0fmtnilAngleBytes0fmtbadVerb0fmtprintReflectValue0fmtbuffer0fmtprintArg0fmt
+fmtPointer0reflectValue0fmthandleMethods0Ç'∑ Ç%˚	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
 		var wasString, p, _struct, oldValue, _struct$1, _struct$2, f, _ref, x, v, v$1, v$2, v$3, keys, _ref$1, _i, _slice, _index, _struct$3, key, i, v$4, v$5, _struct$4, v$6, _struct$5, _struct$6, v$7, v$8, v$9, _struct$7, v$10, t, i$1, v$11, v$12, f$1, _struct$8, v$13, v$14, _struct$9, _struct$10, v$15, _struct$11, value$1, v$16, v$17, v$18, _struct$12, typ, bytes, _ref$2, _i$1, i$2, _slice$1, _index$1, v$19, v$20, v$21, v$22, i$3, v$23, v$24, _struct$13, v$25, v$26, v$27, _struct$14, a, _ref$3, v$28, _struct$15, v$29, _struct$16, _struct$17, _struct$18, _struct$19;
 		wasString = false;
 		p = this;
@@ -1972,12 +1973,12 @@ fmtPointer0fmthandleMethods0	fmtpp0fmtbuffer0reflectValue0
 		return wasString;
 	};
 	pp.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) { return this.go$val.printReflectValue(value, verb, plus, goSyntax, depth); };
- 0ppprintReflectValue0Çó0fmt
-fmtFloat640fmtbuffer0fmtcommaSpaceBytes0fmtfmtBytes0fmtunknownType0	fmtpp0fmtfmtInt640fmtfmtComplex640fmt	fmtString0fmtmapBytes0
-fmtadd0fmtnilAngleBytes0fmt
-fmtPointer0reflectValue0fmt	fmtUint640fmt
-fmtFloat320fmtfmtComplex1280fmt
-printValue0reflectStructField0fmtfmtBool0fmtgetField0fmtnilParenBytes0ÇB
+ 0ppprintReflectValue0Çó0	fmtpp0fmt	fmtString0fmtmapBytes0reflectStructField0fmtnilParenBytes0fmt
+fmtPointer0fmtfmtInt640fmt
+fmtFloat640fmtfmtComplex640
+fmtadd0fmtnilAngleBytes0reflectValue0fmt	fmtUint640fmtfmtComplex1280fmt
+printValue0fmtfmtBool0fmt
+fmtFloat320fmtbuffer0fmtcommaSpaceBytes0fmtgetField0fmtfmtBytes0fmtunknownType0ÇB
 intFromArgÇ 	intFromArg = function(a, argNum) {
 		var num, isInt, newArgNum, _tuple, x, _slice, _index;
 		num = 0;
@@ -2156,11 +2157,11 @@ intFromArg0 0ÇFparseArgNumberÇ	parseArgNumber = function(format) {
 		}
 	};
 	pp.prototype.doPrintf = function(format, a) { return this.go$val.doPrintf(format, a); };
- 0ppdoPrintf0Çe0fmtbuffer0fmt	argNumber0"unicode/utf8DecodeRuneInString0fmtprintArg0fmt
-extraBytes0	fmtpp0fmtparsenum0fmtbadPrecBytes0reflectTypeOf0fmtbadWidthBytes0fmtbadIndexBytes0fmtmissingBytes0fmtcommaSpaceBytes0fmt
-clearflags0fmt
-intFromArg0fmtnoVerbBytes0fmtpercentBangBytes0
-fmtadd0Ç] ÇÛ	pp.Ptr.prototype.doPrint = function(a, addspace, addnewline) {
+ 0ppdoPrintf0Çe0	fmtpp0fmtbuffer0fmt	argNumber0fmtbadWidthBytes0fmtpercentBangBytes0fmt
+extraBytes0fmt
+intFromArg0fmtnoVerbBytes0
+fmtadd0fmtprintArg0reflectTypeOf0fmt
+clearflags0fmtparsenum0fmtbadPrecBytes0"unicode/utf8DecodeRuneInString0fmtbadIndexBytes0fmtmissingBytes0fmtcommaSpaceBytes0Ç] ÇÛ	pp.Ptr.prototype.doPrint = function(a, addspace, addnewline) {
 		var p, prevString, argNum, _slice, _index, arg, isString, v, v$1;
 		p = this;
 		prevString = false;
@@ -2796,7 +2797,7 @@ scanNumber0=0	fmtss0fmtnotEOF0fmtaccept0fmterrorString0Ç) 
 		return i;
 	};
 	ss.prototype.scanInt = function(verb, bitSize) { return this.go$val.scanInt(verb, bitSize); };
- 0ssscanInt0ÅÕ0	fmtss0fmtgetBase0fmtconsume0strconvParseInt0fmtscanRune0fmt	skipSpace0fmtnotEOF0fmterrorString0fmtaccept0fmtscanBasePrefix0fmt
+ 0ssscanInt0ÅÕ0	fmtss0fmtscanRune0fmtnotEOF0fmterrorString0fmtaccept0fmtscanBasePrefix0strconvParseInt0fmt	skipSpace0fmtgetBase0fmtconsume0fmt
 scanNumber0fmterror0Çh Çé	ss.Ptr.prototype.scanUint = function(verb, bitSize) {
 		var s, x, _tuple, base, digits, haveDigits, _tuple$1, tok, _tuple$2, i, err, n, x$1;
 		s = this;
@@ -2827,8 +2828,8 @@ scanNumber0fmterror0Çh Çé	ss.Ptr.prototype.scanUint = function(verb, bi
 		return i;
 	};
 	ss.prototype.scanUint = function(verb, bitSize) { return this.go$val.scanUint(verb, bitSize); };
- 0ssscanUint0Åø0	fmtss0fmtscanRune0fmt	skipSpace0fmtgetBase0fmtconsume0fmterrorString0fmtscanBasePrefix0fmtnotEOF0fmt
-scanNumber0strconv	ParseUint0fmterror0Ç© Çs	ss.Ptr.prototype.floatToken = function() {
+ 0ssscanUint0Åø0fmt	skipSpace0fmtnotEOF0fmtscanBasePrefix0fmt
+scanNumber0strconv	ParseUint0fmterror0	fmtss0fmtscanRune0fmtgetBase0fmtconsume0fmterrorString0Ç© Çs	ss.Ptr.prototype.floatToken = function() {
 		var s;
 		s = this;
 		s.buf = go$subslice(s.buf, 0, 0);
@@ -3151,8 +3152,8 @@ ParseFloat0strconvNumError0fmterror0strconvAtoi0mathLdexp0Ç
 		}
 	};
 	ss.prototype.scanOne = function(verb, arg) { return this.go$val.scanOne(verb, arg); };
- 0ssscanOne0Çt0	ioEOF0fmtscanBool0fmtscanInt0fmtokVerb0reflectValueOf0fmtScanner0fmtscanUint0fmtuintptrBits0fmt
-floatToken0reflect	MakeSlice0fmtscanComplex0fmtintBits0fmt	skipSpace0fmtconvertFloat0fmterrorString0	fmtss0ioErrUnexpectedEOF0fmterror0fmtnotEOF0fmtconvertString0reflectValue0ÇƒerrorHandlerÇÅ	errorHandler = function(errp) {
+ 0ssscanOne0Çt0	fmtss0ioErrUnexpectedEOF0fmtuintptrBits0fmtokVerb0fmt	skipSpace0reflectValueOf0reflect	MakeSlice0fmtscanInt0fmtscanUint0fmtnotEOF0fmterrorString0	ioEOF0fmterror0fmtscanBool0fmtscanComplex0fmtintBits0fmtconvertFloat0fmtconvertString0fmtScanner0fmt
+floatToken0reflectValue0ÇƒerrorHandlerÇÅ	errorHandler = function(errp) {
 		var e, ok, _tuple, _struct, se, ok$1, eof, _tuple$1;
 		if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
 			if (_tuple = (e !== null && e.constructor === scanError ? [e.go$val, true] : [new scanError.Ptr(), false]), se = (_struct = _tuple[0], new scanError.Ptr(_struct.err)), ok = _tuple[1], ok) {

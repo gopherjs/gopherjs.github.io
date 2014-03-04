@@ -1,4 +1,4 @@
-0ƒ-Ÿencoding/xml‚hèpackage xml
+0ƒ+encoding/xml‚hèpackage xml
 import bufio "bufio"
 import bytes "bytes"
 import encoding "encoding"
@@ -354,18 +354,18 @@ func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
 0žruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioencodingmathsyscalltimeosstrconvreflectfmtstringsencoding/xml0Ò0bufiobufio0bytesbytes0encodingencoding0
-fmtfmt0ioio0reflectreflect0strconvstrconv0stringsstrings0errorserrors0syncsync0unicodeunicode0unicode/utf8utf80ƒÃ(0‚6	Marshalerp	Marshaler = go$pkg.Marshaler = go$newType(0, "Interface", "xml.Marshaler", "Marshaler", "encoding/xml", null);
+fmtfmt0ioio0reflectreflect0strconvstrconv0stringsstrings0errorserrors0syncsync0unicodeunicode0unicode/utf8utf80ƒÀ—0‚6	Marshalerp	Marshaler = go$pkg.Marshaler = go$newType(0, "Interface", "xml.Marshaler", "Marshaler", "encoding/xml", null);
 q		Marshaler.init([["MarshalXML", "", (go$funcType([(go$ptrType(Encoder)), StartElement], [go$error], false))]]);
 0	Marshaler070encoding/xmlEncoder0encoding/xmlStartElement0‚3MarshalerAttr€	MarshalerAttr = go$pkg.MarshalerAttr = go$newType(0, "Interface", "xml.MarshalerAttr", "MarshalerAttr", "encoding/xml", null);
 `		MarshalerAttr.init([["MarshalXMLAttr", "", (go$funcType([Name], [Attr, go$error], false))]]);
-0MarshalerAttr0,0encoding/xmlName0encoding/xmlAttr0‚’Encoder¾	Encoder = go$pkg.Encoder = go$newType(0, "Struct", "xml.Encoder", "Encoder", "encoding/xml", function(p_) {
+0MarshalerAttr0,0encoding/xmlName0encoding/xmlAttr0‚«Encoder¾	Encoder = go$pkg.Encoder = go$newType(0, "Struct", "xml.Encoder", "Encoder", "encoding/xml", function(p_) {
 		this.go$val = this;
 		this.p = p_ !== undefined ? p_ : new printer.Ptr();
 	});
-‚i		Encoder.init([["p", "encoding/xml", printer, ""]]);
-		(go$ptrType(Encoder)).methods = [["Encode", "", [go$emptyInterface], [go$error], false], ["EncodeElement", "", [go$emptyInterface, StartElement], [go$error], false], ["EncodeToken", "", [Token], [go$error], false], ["Flush", "", [], [go$error], false], ["Indent", "", [Go$String, Go$String], [], false]];
-0	Encoder0N0encoding/xmlprinter0encoding/xmlStartElement0encoding/xmlToken0‚printer‚
-6	printer = go$pkg.printer = go$newType(0, "Struct", "xml.printer", "printer", "encoding/xml", function(Writer_, encoder_, seq_, indent_, prefix_, depth_, indentedIn_, putNewline_, attrNS_, attrPrefix_, prefixes_, tags_) {
+‚‚		(go$ptrType(Encoder)).methods = [["Encode", "", [go$emptyInterface], [go$error], false, -1], ["EncodeElement", "", [go$emptyInterface, StartElement], [go$error], false, -1], ["EncodeToken", "", [Token], [go$error], false, -1], ["Flush", "", [], [go$error], false, -1], ["Indent", "", [Go$String, Go$String], [], false, -1]];
+		Encoder.init([["p", "p", "encoding/xml", printer, ""]]);
+0	Encoder0N0encoding/xmlprinter0encoding/xmlStartElement0encoding/xmlToken0‚Ìprinter‚
+	printer = go$pkg.printer = go$newType(0, "Struct", "xml.printer", "printer", "encoding/xml", function(Writer_, encoder_, seq_, indent_, prefix_, depth_, indentedIn_, putNewline_, attrNS_, attrPrefix_, prefixes_, tags_) {
 		this.go$val = this;
 		this.Writer = Writer_ !== undefined ? Writer_ : (go$ptrType(bufio.Writer)).nil;
 		this.encoder = encoder_ !== undefined ? encoder_ : (go$ptrType(Encoder)).nil;
@@ -380,58 +380,37 @@ $$
 		this.prefixes = prefixes_ !== undefined ? prefixes_ : (go$sliceType(Go$String)).nil;
 		this.tags = tags_ !== undefined ? tags_ : (go$sliceType(Name)).nil;
 	});
-	printer.prototype.Available = function() { return this.go$val.Available(); };
-	printer.Ptr.prototype.Available = function() { return this.Writer.Available(); };
-	printer.prototype.Buffered = function() { return this.go$val.Buffered(); };
-	printer.Ptr.prototype.Buffered = function() { return this.Writer.Buffered(); };
-	printer.prototype.Flush = function() { return this.go$val.Flush(); };
-	printer.Ptr.prototype.Flush = function() { return this.Writer.Flush(); };
-	printer.prototype.ReadFrom = function(r) { return this.go$val.ReadFrom(r); };
-	printer.Ptr.prototype.ReadFrom = function(r) { return this.Writer.ReadFrom(r); };
-	printer.prototype.Reset = function(w) { return this.go$val.Reset(w); };
-	printer.Ptr.prototype.Reset = function(w) { return this.Writer.Reset(w); };
-	printer.prototype.Write = function(p) { return this.go$val.Write(p); };
-	printer.Ptr.prototype.Write = function(p) { return this.Writer.Write(p); };
-	printer.prototype.WriteByte = function(c) { return this.go$val.WriteByte(c); };
-	printer.Ptr.prototype.WriteByte = function(c) { return this.Writer.WriteByte(c); };
-	printer.prototype.WriteRune = function(r) { return this.go$val.WriteRune(r); };
-	printer.Ptr.prototype.WriteRune = function(r) { return this.Writer.WriteRune(r); };
-	printer.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
-	printer.Ptr.prototype.WriteString = function(s) { return this.Writer.WriteString(s); };
-	printer.prototype.flush = function() { return this.go$val.flush(); };
-	printer.Ptr.prototype.flush = function() { return this.Writer.flush(); };
-‚
-¥		printer.init([["", "", (go$ptrType(bufio.Writer)), ""], ["encoder", "encoding/xml", (go$ptrType(Encoder)), ""], ["seq", "encoding/xml", Go$Int, ""], ["indent", "encoding/xml", Go$String, ""], ["prefix", "encoding/xml", Go$String, ""], ["depth", "encoding/xml", Go$Int, ""], ["indentedIn", "encoding/xml", Go$Bool, ""], ["putNewline", "encoding/xml", Go$Bool, ""], ["attrNS", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["attrPrefix", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["prefixes", "encoding/xml", (go$sliceType(Go$String)), ""], ["tags", "encoding/xml", (go$sliceType(Name)), ""]]);
-		printer.methods = [["Available", "", [], [Go$Int], false], ["Buffered", "", [], [Go$Int], false], ["Flush", "", [], [go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["flush", "bufio", [], [go$error], false]];
-		(go$ptrType(printer)).methods = [["Available", "", [], [Go$Int], false], ["Buffered", "", [], [Go$Int], false], ["EscapeString", "", [Go$String], [], false], ["Flush", "", [], [go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["flush", "bufio", [], [go$error], false], ["cachedWriteError", "encoding/xml", [], [go$error], false], ["createAttrPrefix", "encoding/xml", [Go$String], [Go$String], false], ["deleteAttrPrefix", "encoding/xml", [Go$String], [], false], ["markPrefix", "encoding/xml", [], [], false], ["marshalInterface", "encoding/xml", [Marshaler, StartElement], [go$error], false], ["marshalSimple", "encoding/xml", [reflect.Type, reflect.Value], [Go$String, (go$sliceType(Go$Uint8)), go$error], false], ["marshalStruct", "encoding/xml", [(go$ptrType(typeInfo)), reflect.Value], [go$error], false], ["marshalTextInterface", "encoding/xml", [encoding.TextMarshaler, StartElement], [go$error], false], ["marshalValue", "encoding/xml", [reflect.Value, (go$ptrType(fieldInfo)), (go$ptrType(StartElement))], [go$error], false], ["popPrefix", "encoding/xml", [], [], false], ["writeEnd", "encoding/xml", [Name], [go$error], false], ["writeIndent", "encoding/xml", [Go$Int], [], false], ["writeStart", "encoding/xml", [(go$ptrType(StartElement))], [go$error], false]];
-0	printer0‚0encoding/xmlName0encoding/xmlStartElement0reflectType0reflectValue0encoding/xml	fieldInfo0bufioWriter0encoding/xmlEncoder0ioReader0ioWriter0encoding/xml	Marshaler0encoding/xmltypeInfo0encodingTextMarshaler0‚©parentStack‚,	parentStack = go$pkg.parentStack = go$newType(0, "Struct", "xml.parentStack", "parentStack", "encoding/xml", function(p_, stack_) {
+‚š		printer.methods = [["Available", "", [], [Go$Int], false, 0], ["Buffered", "", [], [Go$Int], false, 0], ["Flush", "", [], [go$error], false, 0], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, 0], ["Reset", "", [io.Writer], [], false, 0], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 0], ["WriteByte", "", [Go$Uint8], [go$error], false, 0], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false, 0], ["WriteString", "", [Go$String], [Go$Int, go$error], false, 0], ["flush", "bufio", [], [go$error], false, 0]];
+		(go$ptrType(printer)).methods = [["Available", "", [], [Go$Int], false, 0], ["Buffered", "", [], [Go$Int], false, 0], ["EscapeString", "", [Go$String], [], false, -1], ["Flush", "", [], [go$error], false, 0], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, 0], ["Reset", "", [io.Writer], [], false, 0], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 0], ["WriteByte", "", [Go$Uint8], [go$error], false, 0], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false, 0], ["WriteString", "", [Go$String], [Go$Int, go$error], false, 0], ["flush", "bufio", [], [go$error], false, 0], ["cachedWriteError", "encoding/xml", [], [go$error], false, -1], ["createAttrPrefix", "encoding/xml", [Go$String], [Go$String], false, -1], ["deleteAttrPrefix", "encoding/xml", [Go$String], [], false, -1], ["markPrefix", "encoding/xml", [], [], false, -1], ["marshalInterface", "encoding/xml", [Marshaler, StartElement], [go$error], false, -1], ["marshalSimple", "encoding/xml", [reflect.Type, reflect.Value], [Go$String, (go$sliceType(Go$Uint8)), go$error], false, -1], ["marshalStruct", "encoding/xml", [(go$ptrType(typeInfo)), reflect.Value], [go$error], false, -1], ["marshalTextInterface", "encoding/xml", [encoding.TextMarshaler, StartElement], [go$error], false, -1], ["marshalValue", "encoding/xml", [reflect.Value, (go$ptrType(fieldInfo)), (go$ptrType(StartElement))], [go$error], false, -1], ["popPrefix", "encoding/xml", [], [], false, -1], ["writeEnd", "encoding/xml", [Name], [go$error], false, -1], ["writeIndent", "encoding/xml", [Go$Int], [], false, -1], ["writeStart", "encoding/xml", [(go$ptrType(StartElement))], [go$error], false, -1]];
+		printer.init([["Writer", "", "", (go$ptrType(bufio.Writer)), ""], ["encoder", "encoder", "encoding/xml", (go$ptrType(Encoder)), ""], ["seq", "seq", "encoding/xml", Go$Int, ""], ["indent", "indent", "encoding/xml", Go$String, ""], ["prefix", "prefix", "encoding/xml", Go$String, ""], ["depth", "depth", "encoding/xml", Go$Int, ""], ["indentedIn", "indentedIn", "encoding/xml", Go$Bool, ""], ["putNewline", "putNewline", "encoding/xml", Go$Bool, ""], ["attrNS", "attrNS", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["attrPrefix", "attrPrefix", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["prefixes", "prefixes", "encoding/xml", (go$sliceType(Go$String)), ""], ["tags", "tags", "encoding/xml", (go$sliceType(Name)), ""]]);
+0	printer0‚0ioReader0reflectType0encoding/xmltypeInfo0bufioWriter0encoding/xmlEncoder0encoding/xmlName0ioWriter0encoding/xml	Marshaler0encoding/xmlStartElement0reflectValue0encodingTextMarshaler0encoding/xml	fieldInfo0‚¿parentStack‚,	parentStack = go$pkg.parentStack = go$newType(0, "Struct", "xml.parentStack", "parentStack", "encoding/xml", function(p_, stack_) {
 		this.go$val = this;
 		this.p = p_ !== undefined ? p_ : (go$ptrType(printer)).nil;
 		this.stack = stack_ !== undefined ? stack_ : (go$sliceType(Go$String)).nil;
 	});
-‚>		parentStack.init([["p", "encoding/xml", (go$ptrType(printer)), ""], ["stack", "encoding/xml", (go$sliceType(Go$String)), ""]]);
-		(go$ptrType(parentStack)).methods = [["push", "encoding/xml", [(go$sliceType(Go$String))], [go$error], false], ["trim", "encoding/xml", [(go$sliceType(Go$String))], [go$error], false]];
-0parentStack00encoding/xmlprinter0‚ÏUnsupportedTypeErrorñ	UnsupportedTypeError = go$pkg.UnsupportedTypeError = go$newType(0, "Struct", "xml.UnsupportedTypeError", "UnsupportedTypeError", "encoding/xml", function(Type_) {
+‚T		(go$ptrType(parentStack)).methods = [["push", "encoding/xml", [(go$sliceType(Go$String))], [go$error], false, -1], ["trim", "encoding/xml", [(go$sliceType(Go$String))], [go$error], false, -1]];
+		parentStack.init([["p", "p", "encoding/xml", (go$ptrType(printer)), ""], ["stack", "stack", "encoding/xml", (go$sliceType(Go$String)), ""]]);
+0parentStack00encoding/xmlprinter0‚ÛUnsupportedTypeErrorñ	UnsupportedTypeError = go$pkg.UnsupportedTypeError = go$newType(0, "Struct", "xml.UnsupportedTypeError", "UnsupportedTypeError", "encoding/xml", function(Type_) {
 		this.go$val = this;
 		this.Type = Type_ !== undefined ? Type_ : null;
 	});
-—		UnsupportedTypeError.init([["Type", "", reflect.Type, ""]]);
-		(go$ptrType(UnsupportedTypeError)).methods = [["Error", "", [], [Go$String], false]];
-0UnsupportedTypeError00reflectType0‚AUnmarshalError	UnmarshalError = go$pkg.UnmarshalError = go$newType(0, "String", "xml.UnmarshalError", "UnmarshalError", "encoding/xml", null);
-–		UnmarshalError.methods = [["Error", "", [], [Go$String], false]];
-		(go$ptrType(UnmarshalError)).methods = [["Error", "", [], [Go$String], false]];
+£		(go$ptrType(UnsupportedTypeError)).methods = [["Error", "", [], [Go$String], false, -1]];
+		UnsupportedTypeError.init([["Type", "Type", "", reflect.Type, ""]]);
+0UnsupportedTypeError00reflectType0‚IUnmarshalError	UnmarshalError = go$pkg.UnmarshalError = go$newType(0, "String", "xml.UnmarshalError", "UnmarshalError", "encoding/xml", null);
+ž		UnmarshalError.methods = [["Error", "", [], [Go$String], false, -1]];
+		(go$ptrType(UnmarshalError)).methods = [["Error", "", [], [Go$String], false, -1]];
 0UnmarshalError0 0‚FUnmarshalerx	Unmarshaler = go$pkg.Unmarshaler = go$newType(0, "Interface", "xml.Unmarshaler", "Unmarshaler", "encoding/xml", null);
 u		Unmarshaler.init([["UnmarshalXML", "", (go$funcType([(go$ptrType(Decoder)), StartElement], [go$error], false))]]);
 0Unmarshaler070encoding/xmlDecoder0encoding/xmlStartElement0‚'UnmarshalerAttrˆ	UnmarshalerAttr = go$pkg.UnmarshalerAttr = go$newType(0, "Interface", "xml.UnmarshalerAttr", "UnmarshalerAttr", "encoding/xml", null);
 ^		UnmarshalerAttr.init([["UnmarshalXMLAttr", "", (go$funcType([Attr], [go$error], false))]]);
-0UnmarshalerAttr00encoding/xmlAttr0‚ typeInfo‚>	typeInfo = go$pkg.typeInfo = go$newType(0, "Struct", "xml.typeInfo", "typeInfo", "encoding/xml", function(xmlname_, fields_) {
+0UnmarshalerAttr00encoding/xmlAttr0‚typeInfo‚>	typeInfo = go$pkg.typeInfo = go$newType(0, "Struct", "xml.typeInfo", "typeInfo", "encoding/xml", function(xmlname_, fields_) {
 		this.go$val = this;
 		this.xmlname = xmlname_ !== undefined ? xmlname_ : (go$ptrType(fieldInfo)).nil;
 		this.fields = fields_ !== undefined ? fields_ : (go$sliceType(fieldInfo)).nil;
 	});
-ˆ		typeInfo.init([["xmlname", "encoding/xml", (go$ptrType(fieldInfo)), ""], ["fields", "encoding/xml", (go$sliceType(fieldInfo)), ""]]);
+		typeInfo.init([["xmlname", "xmlname", "encoding/xml", (go$ptrType(fieldInfo)), ""], ["fields", "fields", "encoding/xml", (go$sliceType(fieldInfo)), ""]]);
 0
-typeInfo00encoding/xml	fieldInfo0‚ž	fieldInfo‚á	fieldInfo = go$pkg.fieldInfo = go$newType(0, "Struct", "xml.fieldInfo", "fieldInfo", "encoding/xml", function(idx_, name_, xmlns_, flags_, parents_) {
+typeInfo00encoding/xml	fieldInfo0‚Î	fieldInfo‚á	fieldInfo = go$pkg.fieldInfo = go$newType(0, "Struct", "xml.fieldInfo", "fieldInfo", "encoding/xml", function(idx_, name_, xmlns_, flags_, parents_) {
 		this.go$val = this;
 		this.idx = idx_ !== undefined ? idx_ : (go$sliceType(Go$Int)).nil;
 		this.name = name_ !== undefined ? name_ : "";
@@ -439,13 +418,13 @@ $$
 		this.flags = flags_ !== undefined ? flags_ : 0;
 		this.parents = parents_ !== undefined ? parents_ : (go$sliceType(Go$String)).nil;
 	});
-‚m		fieldInfo.init([["idx", "encoding/xml", (go$sliceType(Go$Int)), ""], ["name", "encoding/xml", Go$String, ""], ["xmlns", "encoding/xml", Go$String, ""], ["flags", "encoding/xml", fieldFlags, ""], ["parents", "encoding/xml", (go$sliceType(Go$String)), ""]]);
-		(go$ptrType(fieldInfo)).methods = [["value", "encoding/xml", [reflect.Value], [reflect.Value], false]];
-0	fieldInfo0.0encoding/xml
-fieldFlags0reflectValue0Ž
+‚		(go$ptrType(fieldInfo)).methods = [["value", "encoding/xml", [reflect.Value], [reflect.Value], false, -1]];
+		fieldInfo.init([["idx", "idx", "encoding/xml", (go$sliceType(Go$Int)), ""], ["name", "name", "encoding/xml", Go$String, ""], ["xmlns", "xmlns", "encoding/xml", Go$String, ""], ["flags", "flags", "encoding/xml", fieldFlags, ""], ["parents", "parents", "encoding/xml", (go$sliceType(Go$String)), ""]]);
+0	fieldInfo0.0reflectValue0encoding/xml
+fieldFlags0Ž
 fieldFlagsn	fieldFlags = go$pkg.fieldFlags = go$newType(4, "Int", "xml.fieldFlags", "fieldFlags", "encoding/xml", null);
  0
-fieldFlags0 0‚ÿTagPathError‚Å	TagPathError = go$pkg.TagPathError = go$newType(0, "Struct", "xml.TagPathError", "TagPathError", "encoding/xml", function(Struct_, Field1_, Tag1_, Field2_, Tag2_) {
+fieldFlags0 0‚1TagPathError‚Å	TagPathError = go$pkg.TagPathError = go$newType(0, "Struct", "xml.TagPathError", "TagPathError", "encoding/xml", function(Struct_, Field1_, Tag1_, Field2_, Tag2_) {
 		this.go$val = this;
 		this.Struct = Struct_ !== undefined ? Struct_ : null;
 		this.Field1 = Field1_ !== undefined ? Field1_ : "";
@@ -453,68 +432,68 @@ fieldFlags0 0‚ÿTagPathError‚Å	TagPathError = go$pkg.TagPathError = go$newTy
 		this.Field2 = Field2_ !== undefined ? Field2_ : "";
 		this.Tag2 = Tag2_ !== undefined ? Tag2_ : "";
 	});
-‚		TagPathError.init([["Struct", "", reflect.Type, ""], ["Field1", "", Go$String, ""], ["Tag1", "", Go$String, ""], ["Field2", "", Go$String, ""], ["Tag2", "", Go$String, ""]]);
-		(go$ptrType(TagPathError)).methods = [["Error", "", [], [Go$String], false]];
-0TagPathError00reflectType0‚¼SyntaxErrorý	SyntaxError = go$pkg.SyntaxError = go$newType(0, "Struct", "xml.SyntaxError", "SyntaxError", "encoding/xml", function(Msg_, Line_) {
+‚3		(go$ptrType(TagPathError)).methods = [["Error", "", [], [Go$String], false, -1]];
+		TagPathError.init([["Struct", "Struct", "", reflect.Type, ""], ["Field1", "Field1", "", Go$String, ""], ["Tag1", "Tag1", "", Go$String, ""], ["Field2", "Field2", "", Go$String, ""], ["Tag2", "Tag2", "", Go$String, ""]]);
+0TagPathError00reflectType0‚ÏSyntaxErrorý	SyntaxError = go$pkg.SyntaxError = go$newType(0, "Struct", "xml.SyntaxError", "SyntaxError", "encoding/xml", function(Msg_, Line_) {
 		this.go$val = this;
 		this.Msg = Msg_ !== undefined ? Msg_ : "";
 		this.Line = Line_ !== undefined ? Line_ : 0;
 	});
-›		SyntaxError.init([["Msg", "", Go$String, ""], ["Line", "", Go$Int, ""]]);
-		(go$ptrType(SyntaxError)).methods = [["Error", "", [], [Go$String], false]];
-0SyntaxError0 0‚NNameî	Name = go$pkg.Name = go$newType(0, "Struct", "xml.Name", "Name", "encoding/xml", function(Space_, Local_) {
+®		(go$ptrType(SyntaxError)).methods = [["Error", "", [], [Go$String], false, -1]];
+		SyntaxError.init([["Msg", "Msg", "", Go$String, ""], ["Line", "Line", "", Go$Int, ""]]);
+0SyntaxError0 0‚`Nameî	Name = go$pkg.Name = go$newType(0, "Struct", "xml.Name", "Name", "encoding/xml", function(Space_, Local_) {
 		this.go$val = this;
 		this.Space = Space_ !== undefined ? Space_ : "";
 		this.Local = Local_ !== undefined ? Local_ : "";
 	});
-K		Name.init([["Space", "", Go$String, ""], ["Local", "", Go$String, ""]]);
-0Name0 0‚fAttrö	Attr = go$pkg.Attr = go$newType(0, "Struct", "xml.Attr", "Attr", "encoding/xml", function(Name_, Value_) {
+]		Name.init([["Space", "Space", "", Go$String, ""], ["Local", "Local", "", Go$String, ""]]);
+0Name0 0‚wAttrö	Attr = go$pkg.Attr = go$newType(0, "Struct", "xml.Attr", "Attr", "encoding/xml", function(Name_, Value_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : new Name.Ptr();
 		this.Value = Value_ !== undefined ? Value_ : "";
 	});
-E		Attr.init([["Name", "", Name, ""], ["Value", "", Go$String, ""]]);
+V		Attr.init([["Name", "Name", "", Name, ""], ["Value", "Value", "", Go$String, ""]]);
 0Attr00encoding/xmlName0ˆToken`	Token = go$pkg.Token = go$newType(0, "Interface", "xml.Token", "Token", "encoding/xml", null);
 		Token.init([]);
-0Token0 0‚ÑStartElement‚(	StartElement = go$pkg.StartElement = go$newType(0, "Struct", "xml.StartElement", "StartElement", "encoding/xml", function(Name_, Attr_) {
+0Token0 0‚ñStartElement‚(	StartElement = go$pkg.StartElement = go$newType(0, "Struct", "xml.StartElement", "StartElement", "encoding/xml", function(Name_, Attr_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : new Name.Ptr();
 		this.Attr = Attr_ !== undefined ? Attr_ : (go$sliceType(Attr)).nil;
 	});
-‚9		StartElement.init([["Name", "", Name, ""], ["Attr", "", (go$sliceType(Attr)), ""]]);
-		StartElement.methods = [["Copy", "", [], [StartElement], false], ["End", "", [], [EndElement], false]];
-		(go$ptrType(StartElement)).methods = [["Copy", "", [], [StartElement], false], ["End", "", [], [EndElement], false]];
+‚Y		StartElement.methods = [["Copy", "", [], [StartElement], false, -1], ["End", "", [], [EndElement], false, -1]];
+		(go$ptrType(StartElement)).methods = [["Copy", "", [], [StartElement], false, -1], ["End", "", [], [EndElement], false, -1]];
+		StartElement.init([["Name", "Name", "", Name, ""], ["Attr", "Attr", "", (go$sliceType(Attr)), ""]]);
 0StartElement0H0encoding/xmlName0encoding/xmlAttr0encoding/xml
-EndElement0‚7
+EndElement0‚?
 EndElementÓ	EndElement = go$pkg.EndElement = go$newType(0, "Struct", "xml.EndElement", "EndElement", "encoding/xml", function(Name_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : new Name.Ptr();
 	});
--		EndElement.init([["Name", "", Name, ""]]);
+5		EndElement.init([["Name", "Name", "", Name, ""]]);
 0
-EndElement00encoding/xmlName0‚&CharDatah	CharData = go$pkg.CharData = go$newType(0, "Slice", "xml.CharData", "CharData", "encoding/xml", null);
-¡		CharData.init(Go$Uint8);
-		CharData.methods = [["Copy", "", [], [CharData], false]];
-		(go$ptrType(CharData)).methods = [["Copy", "", [], [CharData], false]];
+EndElement00encoding/xmlName0‚.CharDatah	CharData = go$pkg.CharData = go$newType(0, "Slice", "xml.CharData", "CharData", "encoding/xml", null);
+©		CharData.methods = [["Copy", "", [], [CharData], false, -1]];
+		(go$ptrType(CharData)).methods = [["Copy", "", [], [CharData], false, -1]];
+		CharData.init(Go$Uint8);
 0
-CharData0 0‚Commentd	Comment = go$pkg.Comment = go$newType(0, "Slice", "xml.Comment", "Comment", "encoding/xml", null);
-œ		Comment.init(Go$Uint8);
-		Comment.methods = [["Copy", "", [], [Comment], false]];
-		(go$ptrType(Comment)).methods = [["Copy", "", [], [Comment], false]];
-0	Comment0 0‚ProcInst‚	ProcInst = go$pkg.ProcInst = go$newType(0, "Struct", "xml.ProcInst", "ProcInst", "encoding/xml", function(Target_, Inst_) {
+CharData0 0‚#Commentd	Comment = go$pkg.Comment = go$newType(0, "Slice", "xml.Comment", "Comment", "encoding/xml", null);
+¤		Comment.methods = [["Copy", "", [], [Comment], false, -1]];
+		(go$ptrType(Comment)).methods = [["Copy", "", [], [Comment], false, -1]];
+		Comment.init(Go$Uint8);
+0	Comment0 0‚5ProcInst‚	ProcInst = go$pkg.ProcInst = go$newType(0, "Struct", "xml.ProcInst", "ProcInst", "encoding/xml", function(Target_, Inst_) {
 		this.go$val = this;
 		this.Target = Target_ !== undefined ? Target_ : "";
 		this.Inst = Inst_ !== undefined ? Inst_ : (go$sliceType(Go$Uint8)).nil;
 	});
-ä		ProcInst.init([["Target", "", Go$String, ""], ["Inst", "", (go$sliceType(Go$Uint8)), ""]]);
-		ProcInst.methods = [["Copy", "", [], [ProcInst], false]];
-		(go$ptrType(ProcInst)).methods = [["Copy", "", [], [ProcInst], false]];
+þ		ProcInst.methods = [["Copy", "", [], [ProcInst], false, -1]];
+		(go$ptrType(ProcInst)).methods = [["Copy", "", [], [ProcInst], false, -1]];
+		ProcInst.init([["Target", "Target", "", Go$String, ""], ["Inst", "Inst", "", (go$sliceType(Go$Uint8)), ""]]);
 0
-ProcInst0 0‚1	Directivel	Directive = go$pkg.Directive = go$newType(0, "Slice", "xml.Directive", "Directive", "encoding/xml", null);
-¦		Directive.init(Go$Uint8);
-		Directive.methods = [["Copy", "", [], [Directive], false]];
-		(go$ptrType(Directive)).methods = [["Copy", "", [], [Directive], false]];
-0	Directive0 0‚Decoder‚¿	Decoder = go$pkg.Decoder = go$newType(0, "Struct", "xml.Decoder", "Decoder", "encoding/xml", function(Strict_, AutoClose_, Entity_, CharsetReader_, DefaultSpace_, r_, buf_, saved_, stk_, free_, needClose_, toClose_, nextToken_, nextByte_, ns_, err_, line_, unmarshalDepth_) {
+ProcInst0 0‚9	Directivel	Directive = go$pkg.Directive = go$newType(0, "Slice", "xml.Directive", "Directive", "encoding/xml", null);
+®		Directive.methods = [["Copy", "", [], [Directive], false, -1]];
+		(go$ptrType(Directive)).methods = [["Copy", "", [], [Directive], false, -1]];
+		Directive.init(Go$Uint8);
+0	Directive0 0‚NDecoder‚¿	Decoder = go$pkg.Decoder = go$newType(0, "Struct", "xml.Decoder", "Decoder", "encoding/xml", function(Strict_, AutoClose_, Entity_, CharsetReader_, DefaultSpace_, r_, buf_, saved_, stk_, free_, needClose_, toClose_, nextToken_, nextByte_, ns_, err_, line_, unmarshalDepth_) {
 		this.go$val = this;
 		this.Strict = Strict_ !== undefined ? Strict_ : false;
 		this.AutoClose = AutoClose_ !== undefined ? AutoClose_ : (go$sliceType(Go$String)).nil;
@@ -535,18 +514,18 @@ EndElement00encoding/xmlName0‚&CharDatah	CharData = go$pkg.CharData = 
 		this.line = line_ !== undefined ? line_ : 0;
 		this.unmarshalDepth = unmarshalDepth_ !== undefined ? unmarshalDepth_ : 0;
 	});
-‚		Decoder.init([["Strict", "", Go$Bool, ""], ["AutoClose", "", (go$sliceType(Go$String)), ""], ["Entity", "", (go$mapType(Go$String, Go$String)), ""], ["CharsetReader", "", (go$funcType([Go$String, io.Reader], [io.Reader, go$error], false)), ""], ["DefaultSpace", "", Go$String, ""], ["r", "encoding/xml", io.ByteReader, ""], ["buf", "encoding/xml", bytes.Buffer, ""], ["saved", "encoding/xml", (go$ptrType(bytes.Buffer)), ""], ["stk", "encoding/xml", (go$ptrType(stack)), ""], ["free", "encoding/xml", (go$ptrType(stack)), ""], ["needClose", "encoding/xml", Go$Bool, ""], ["toClose", "encoding/xml", Name, ""], ["nextToken", "encoding/xml", Token, ""], ["nextByte", "encoding/xml", Go$Int, ""], ["ns", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["err", "encoding/xml", go$error, ""], ["line", "encoding/xml", Go$Int, ""], ["unmarshalDepth", "encoding/xml", Go$Int, ""]]);
-		(go$ptrType(Decoder)).methods = [["Decode", "", [go$emptyInterface], [go$error], false], ["DecodeElement", "", [go$emptyInterface, (go$ptrType(StartElement))], [go$error], false], ["RawToken", "", [], [Token, go$error], false], ["Skip", "", [], [go$error], false], ["Token", "", [], [Token, go$error], false], ["attrval", "encoding/xml", [], [(go$sliceType(Go$Uint8))], false], ["autoClose", "encoding/xml", [Token], [Token, Go$Bool], false], ["getc", "encoding/xml", [], [Go$Uint8, Go$Bool], false], ["mustgetc", "encoding/xml", [], [Go$Uint8, Go$Bool], false], ["name", "encoding/xml", [], [Go$String, Go$Bool], false], ["nsname", "encoding/xml", [], [Name, Go$Bool], false], ["pop", "encoding/xml", [], [(go$ptrType(stack))], false], ["popEOF", "encoding/xml", [], [Go$Bool], false], ["popElement", "encoding/xml", [(go$ptrType(EndElement))], [Go$Bool], false], ["push", "encoding/xml", [Go$Int], [(go$ptrType(stack))], false], ["pushEOF", "encoding/xml", [], [], false], ["pushElement", "encoding/xml", [Name], [], false], ["pushNs", "encoding/xml", [Go$String, Go$String, Go$Bool], [], false], ["rawToken", "encoding/xml", [], [Token, go$error], false], ["readName", "encoding/xml", [], [Go$Bool], false], ["savedOffset", "encoding/xml", [], [Go$Int], false], ["space", "encoding/xml", [], [], false], ["switchToReader", "encoding/xml", [io.Reader], [], false], ["syntaxError", "encoding/xml", [Go$String], [go$error], false], ["text", "encoding/xml", [Go$Int, Go$Bool], [(go$sliceType(Go$Uint8))], false], ["translate", "encoding/xml", [(go$ptrType(Name)), Go$Bool], [], false], ["ungetc", "encoding/xml", [Go$Uint8], [], false], ["unmarshal", "encoding/xml", [reflect.Value, (go$ptrType(StartElement))], [go$error], false], ["unmarshalAttr", "encoding/xml", [reflect.Value, Attr], [go$error], false], ["unmarshalInterface", "encoding/xml", [Unmarshaler, (go$ptrType(StartElement))], [go$error], false], ["unmarshalPath", "encoding/xml", [(go$ptrType(typeInfo)), reflect.Value, (go$sliceType(Go$String)), (go$ptrType(StartElement))], [Go$Bool, go$error], false], ["unmarshalTextInterface", "encoding/xml", [encoding.TextUnmarshaler, (go$ptrType(StartElement))], [go$error], false]];
-0	Decoder0‚+0bytesBuffer0encoding/xmlName0ioReader0io
-ByteReader0encoding/xmlstack0encoding/xmlStartElement0encoding/xmlAttr0encodingTextUnmarshaler0encoding/xmlToken0encoding/xmltypeInfo0encoding/xml
-EndElement0reflectValue0encoding/xmlUnmarshaler0‚Tstack‚s	stack = go$pkg.stack = go$newType(0, "Struct", "xml.stack", "stack", "encoding/xml", function(next_, kind_, name_, ok_) {
+‚D		(go$ptrType(Decoder)).methods = [["Decode", "", [go$emptyInterface], [go$error], false, -1], ["DecodeElement", "", [go$emptyInterface, (go$ptrType(StartElement))], [go$error], false, -1], ["RawToken", "", [], [Token, go$error], false, -1], ["Skip", "", [], [go$error], false, -1], ["Token", "", [], [Token, go$error], false, -1], ["attrval", "encoding/xml", [], [(go$sliceType(Go$Uint8))], false, -1], ["autoClose", "encoding/xml", [Token], [Token, Go$Bool], false, -1], ["getc", "encoding/xml", [], [Go$Uint8, Go$Bool], false, -1], ["mustgetc", "encoding/xml", [], [Go$Uint8, Go$Bool], false, -1], ["name", "encoding/xml", [], [Go$String, Go$Bool], false, -1], ["nsname", "encoding/xml", [], [Name, Go$Bool], false, -1], ["pop", "encoding/xml", [], [(go$ptrType(stack))], false, -1], ["popEOF", "encoding/xml", [], [Go$Bool], false, -1], ["popElement", "encoding/xml", [(go$ptrType(EndElement))], [Go$Bool], false, -1], ["push", "encoding/xml", [Go$Int], [(go$ptrType(stack))], false, -1], ["pushEOF", "encoding/xml", [], [], false, -1], ["pushElement", "encoding/xml", [Name], [], false, -1], ["pushNs", "encoding/xml", [Go$String, Go$String, Go$Bool], [], false, -1], ["rawToken", "encoding/xml", [], [Token, go$error], false, -1], ["readName", "encoding/xml", [], [Go$Bool], false, -1], ["savedOffset", "encoding/xml", [], [Go$Int], false, -1], ["space", "encoding/xml", [], [], false, -1], ["switchToReader", "encoding/xml", [io.Reader], [], false, -1], ["syntaxError", "encoding/xml", [Go$String], [go$error], false, -1], ["text", "encoding/xml", [Go$Int, Go$Bool], [(go$sliceType(Go$Uint8))], false, -1], ["translate", "encoding/xml", [(go$ptrType(Name)), Go$Bool], [], false, -1], ["ungetc", "encoding/xml", [Go$Uint8], [], false, -1], ["unmarshal", "encoding/xml", [reflect.Value, (go$ptrType(StartElement))], [go$error], false, -1], ["unmarshalAttr", "encoding/xml", [reflect.Value, Attr], [go$error], false, -1], ["unmarshalInterface", "encoding/xml", [Unmarshaler, (go$ptrType(StartElement))], [go$error], false, -1], ["unmarshalPath", "encoding/xml", [(go$ptrType(typeInfo)), reflect.Value, (go$sliceType(Go$String)), (go$ptrType(StartElement))], [Go$Bool, go$error], false, -1], ["unmarshalTextInterface", "encoding/xml", [encoding.TextUnmarshaler, (go$ptrType(StartElement))], [go$error], false, -1]];
+		Decoder.init([["Strict", "Strict", "", Go$Bool, ""], ["AutoClose", "AutoClose", "", (go$sliceType(Go$String)), ""], ["Entity", "Entity", "", (go$mapType(Go$String, Go$String)), ""], ["CharsetReader", "CharsetReader", "", (go$funcType([Go$String, io.Reader], [io.Reader, go$error], false)), ""], ["DefaultSpace", "DefaultSpace", "", Go$String, ""], ["r", "r", "encoding/xml", io.ByteReader, ""], ["buf", "buf", "encoding/xml", bytes.Buffer, ""], ["saved", "saved", "encoding/xml", (go$ptrType(bytes.Buffer)), ""], ["stk", "stk", "encoding/xml", (go$ptrType(stack)), ""], ["free", "free", "encoding/xml", (go$ptrType(stack)), ""], ["needClose", "needClose", "encoding/xml", Go$Bool, ""], ["toClose", "toClose", "encoding/xml", Name, ""], ["nextToken", "nextToken", "encoding/xml", Token, ""], ["nextByte", "nextByte", "encoding/xml", Go$Int, ""], ["ns", "ns", "encoding/xml", (go$mapType(Go$String, Go$String)), ""], ["err", "err", "encoding/xml", go$error, ""], ["line", "line", "encoding/xml", Go$Int, ""], ["unmarshalDepth", "unmarshalDepth", "encoding/xml", Go$Int, ""]]);
+0	Decoder0‚+0bytesBuffer0encoding/xml
+EndElement0reflectValue0encodingTextUnmarshaler0encoding/xmlStartElement0encoding/xmlToken0encoding/xmlAttr0encoding/xmltypeInfo0io
+ByteReader0encoding/xmlName0encoding/xmlUnmarshaler0encoding/xmlstack0ioReader0‚rstack‚s	stack = go$pkg.stack = go$newType(0, "Struct", "xml.stack", "stack", "encoding/xml", function(next_, kind_, name_, ok_) {
 		this.go$val = this;
 		this.next = next_ !== undefined ? next_ : (go$ptrType(stack)).nil;
 		this.kind = kind_ !== undefined ? kind_ : 0;
 		this.name = name_ !== undefined ? name_ : new Name.Ptr();
 		this.ok = ok_ !== undefined ? ok_ : false;
 	});
-²		stack.init([["next", "encoding/xml", (go$ptrType(stack)), ""], ["kind", "encoding/xml", Go$Int, ""], ["name", "encoding/xml", Name, ""], ["ok", "encoding/xml", Go$Bool, ""]]);
+Ð		stack.init([["next", "next", "encoding/xml", (go$ptrType(stack)), ""], ["kind", "kind", "encoding/xml", Go$Int, ""], ["name", "name", "encoding/xml", Name, ""], ["ok", "ok", "encoding/xml", Go$Bool, ""]]);
 0stack00encoding/xmlName0‚;Marshaló	Marshal = go$pkg.Marshal = function(v) {
 		var b, err;
 		b = new bytes.Buffer.Ptr();
@@ -658,10 +637,10 @@ NewEncoder0m0bufioWriter0encoding/xmlEncoder0encoding/xmlName0
 	};
 	Encoder.prototype.EncodeToken = function(t) { return this.go$val.EncodeToken(t); };
  0	Encoder0‚Ü0encoding/xml
-EndElement0encoding/xmlCharData0encoding/xml
-writeStart0encoding/xml
-EscapeText0fmtErrorf0encoding/xmlendProcInst0encoding/xmlEncoder0 encoding/xmlcachedWriteError0encoding/xmlendDirective0encoding/xmlComment0encoding/xmlProcInst0encoding/xmlwriteEnd0encoding/xml
-endComment0encoding/xmlStartElement0encoding/xml	Directive0encoding/xmlName0bytesContains0encoding/xmlisNameString0Ü ¯	Encoder.Ptr.prototype.Flush = function() {
+EndElement0encoding/xmlComment0bytesContains0fmtErrorf0encoding/xmlEncoder0encoding/xml
+writeStart0encoding/xmlName0encoding/xml
+endComment0encoding/xmlisNameString0encoding/xmlProcInst0encoding/xmlendProcInst0encoding/xmlendDirective0encoding/xmlStartElement0encoding/xmlCharData0encoding/xml	Directive0encoding/xmlwriteEnd0encoding/xml
+EscapeText0 encoding/xmlcachedWriteError0Ü ¯	Encoder.Ptr.prototype.Flush = function() {
 		var enc;
 		enc = this;
 		return enc.p.Writer.Flush();
@@ -920,9 +899,9 @@ markPrefix00encoding/xmlprinter0‚‰ ‚.	printer.Ptr.prototype.popPrefix 
 		return p.cachedWriteError();
 	};
 	printer.prototype.marshalValue = function(val, finfo, startTemplate) { return this.go$val.marshalValue(val, finfo, startTemplate); };
- 0printermarshalValue0‚é0encoding/xmlStartElement0reflectValue0encoding/xmldefaultStart0!encoding/xmlmarshalerAttrType0encoding/xmlAttr0encoding/xml
-EscapeText0encoding/xmlprinter0fmtErrorf0encoding/xmlmarshalerType0encoding/xmlisEmptyValue0 encoding/xmlcachedWriteError0 encoding/xmlmarshalInterface0encoding/xml	Marshaler0encoding/xmlvalue0encoding/xmlmarshalStruct0!encoding/xmltextMarshalerType0encodingTextMarshaler0encoding/xml	fieldInfo0encoding/xmlName0$encoding/xmlUnsupportedTypeError0encoding/xmlwriteEnd0$encoding/xmlmarshalTextInterface0encoding/xmlgetTypeInfo0encoding/xmlMarshalerAttr0encoding/xmlmarshalSimple0encoding/xml
-writeStart0‚}defaultStart‚	defaultStart = function(typ, finfo, startTemplate) {
+ 0printermarshalValue0‚é0fmtErrorf0 encoding/xmlmarshalInterface0!encoding/xmltextMarshalerType0encoding/xmlStartElement0encoding/xml	fieldInfo0encoding/xmlmarshalerType0$encoding/xmlUnsupportedTypeError0!encoding/xmlmarshalerAttrType0reflectValue0encoding/xmlMarshalerAttr0encoding/xmlmarshalSimple0 encoding/xmlcachedWriteError0encoding/xmlgetTypeInfo0encoding/xmlprinter0encoding/xml	Marshaler0encodingTextMarshaler0encoding/xmlvalue0encoding/xml
+EscapeText0encoding/xmlName0encoding/xmlisEmptyValue0$encoding/xmlmarshalTextInterface0encoding/xmlAttr0encoding/xmlmarshalStruct0encoding/xmldefaultStart0encoding/xml
+writeStart0encoding/xmlwriteEnd0‚}defaultStart‚	defaultStart = function(typ, finfo, startTemplate) {
 		var start, _struct, _struct$1, _struct$2;
 		start = new StartElement.Ptr();
 		if (!(startTemplate === (go$ptrType(StartElement)).nil)) {
@@ -1072,9 +1051,9 @@ markPrefix0encoding/xmlwriteIndent0encoding/xmlAttr0 encoding/xmlc
 		return ["", (go$sliceType(Go$Uint8)).nil, new UnsupportedTypeError.Ptr(typ)];
 	};
 	printer.prototype.marshalSimple = function(typ, val) { return this.go$val.marshalSimple(typ, val); };
- 0printermarshalSimple0Ò0strconv	FormatInt0strconvFormatFloat0reflectValue0$encoding/xmlUnsupportedTypeError0encoding/xmlprinter0strconv
-FormatUint0strconv
-FormatBool0reflectCopy0reflectValueOf0‚‚ ‚>	printer.Ptr.prototype.marshalStruct = function(tinfo, val) {
+ 0printermarshalSimple0Ò0strconv	FormatInt0reflectValueOf0reflectValue0$encoding/xmlUnsupportedTypeError0encoding/xmlprinter0strconv
+FormatUint0strconvFormatFloat0strconv
+FormatBool0reflectCopy0‚‚ ‚>	printer.Ptr.prototype.marshalStruct = function(tinfo, val) {
 		var p, s, _ref, _i, i, _slice, _index, finfo, _struct, _struct$1, vf, _ref$1, _struct$2, _ref$2, _tuple, x, data, err, _struct$3, pv, _tuple$1, x$1, data$1, err$1, scratch, _ref$3, err$2, ok, _tuple$2, x$2, elem, err$3, k, dashDash, dashLast, _ref$4, s$1, b, _slice$1, _index$1, iface, raw, _ref$5, _type, err$4, err$5, err$6, _struct$4;
 		p = this;
 		s = new parentStack.Ptr(p, (go$sliceType(Go$String)).nil);
@@ -1216,10 +1195,10 @@ FormatBool0reflectCopy0reflectValueOf0‚‚ ‚>	printer.Ptr.prototype.
 		return p.cachedWriteError();
 	};
 	printer.prototype.marshalStruct = function(tinfo, val) { return this.go$val.marshalStruct(tinfo, val); };
- 0printermarshalStruct0‚0encoding/xmlparentStack0encoding/xmlEscape0strconv
-AppendUint0encoding/xmlwriteIndent0encoding/xmlmarshalValue0encoding/xmlprinter0!encoding/xmltextMarshalerType0strconvAppendFloat0encoding/xml
-EscapeText0encoding/xmlddBytes0encoding/xmltrim0encoding/xmlvalue0reflectValue0encodingTextMarshaler0strconv	AppendInt0encoding/xmlStartElement0 encoding/xmlcachedWriteError0strconv
-AppendBool0fmtErrorf0stringsIndex0bytesIndex0encoding/xmlpush0‚R ‚	printer.Ptr.prototype.cachedWriteError = function() {
+ 0printermarshalStruct0‚0encoding/xmlvalue0strconv	AppendInt0bytesIndex0encoding/xmlmarshalValue0!encoding/xmltextMarshalerType0encoding/xmlEscape0strconvAppendFloat0encoding/xmlpush0reflectValue0encoding/xml
+EscapeText0stringsIndex0encoding/xmlddBytes0encoding/xmltrim0 encoding/xmlcachedWriteError0encoding/xmlprinter0encoding/xmlparentStack0encodingTextMarshaler0strconv
+AppendUint0strconv
+AppendBool0fmtErrorf0encoding/xmlwriteIndent0encoding/xmlStartElement0‚R ‚	printer.Ptr.prototype.cachedWriteError = function() {
 		var p, _tuple, err;
 		p = this;
 		_tuple = p.Writer.Write((go$sliceType(Go$Uint8)).nil), err = _tuple[1];
@@ -1434,7 +1413,7 @@ EndElement0‚
 	};
 	Decoder.prototype.unmarshalAttr = function(val, attr) { return this.go$val.unmarshalAttr(val, attr); };
  0DecoderunmarshalAttr0‚
-0reflectValue0#encoding/xmlunmarshalerAttrType0encoding/xmlAttr0#encoding/xmltextUnmarshalerType0encoding/xmlDecoder0reflectNew0encoding/xmlUnmarshalerAttr0encoding/xmlName0encodingTextUnmarshaler0encoding/xml	copyValue0‚7ê ‚4¢	Decoder.Ptr.prototype.unmarshal = function(val, start) {
+0reflectNew0reflectValue0#encoding/xmlunmarshalerAttrType0encoding/xmlUnmarshalerAttr0encoding/xmlAttr0encoding/xml	copyValue0encoding/xmlDecoder0encoding/xmlName0#encoding/xmltextUnmarshalerType0encodingTextUnmarshaler0‚7ê ‚4¢	Decoder.Ptr.prototype.unmarshal = function(val, start) {
 		var p, _tuple, tok, err, ok, _tuple$1, _struct, _struct$1, t, _struct$2, _struct$3, x, _struct$4, pv, x$1, x$2, _struct$5, pv$1, x$3, data, saveData, comment, saveComment, saveXML, saveXMLIndex, saveXMLData, saveAny, sv, tinfo, err$1, _struct$6, v, _ref, typ, _struct$7, n, x$4, ncap, _struct$8, new$1, _struct$9, _struct$10, _struct$11, err$2, _struct$12, _struct$13, typ$1, x$5, _struct$14, _struct$15, _tuple$2, finfo, e, _struct$16, _struct$17, fv, ok$1, _tuple$3, x$6, x$7, _struct$18, _ref$1, _i, i, _slice, _index, finfo$1, _ref$2, _struct$19, _struct$20, strv, _ref$3, _i$1, _slice$1, _index$1, _struct$21, _struct$22, a, err$3, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, savedOffset, _tuple$4, tok$1, err$4, t$1, _ref$4, _type, consumed, _tuple$5, _struct$34, err$5, _struct$35, err$6, err$7, x$8, _struct$36, pv$2, err$8, x$9, err$9, _struct$37, _struct$38, t$2, _ref$5, _struct$39, _struct$40, t$3, _ref$6, _struct$41;
 		p = this;
 		if (start === (go$ptrType(StartElement)).nil) {
@@ -1668,8 +1647,8 @@ EndElement0‚
 		return null;
 	};
 	Decoder.prototype.unmarshal = function(val, start) { return this.go$val.unmarshal(val, start); };
- 0Decoder	unmarshal0‚&0#encoding/xmltextUnmarshalerType0encoding/xmltypeInfo0errorsNew0encoding/xmlStartElement0reflectCopy0encoding/xml	fieldInfo0encoding/xmlunmarshalPath0reflectrtype0encoding/xml	copyValue0reflectNew0reflect	MakeSlice0reflectValueOf0encoding/xmlvalue0&encoding/xmlunmarshalTextInterface0encoding/xml
-EndElement0reflectValue0encoding/xmlunmarshalerType0encoding/xmlUnmarshaler0encoding/xmlnameType0encoding/xmlName0"encoding/xmlunmarshalInterface0encodingTextUnmarshaler0encoding/xmlUnmarshalError0encoding/xmlAttr0bytesBuffer0encoding/xmlsavedOffset0encoding/xmlDecoder0encoding/xmlgetTypeInfo0encoding/xmlunmarshalAttr0encoding/xmlCharData0encoding/xmlComment0‚å	copyValue‚%	copyValue = function(dst, src) {
+ 0Decoder	unmarshal0‚&0encoding/xmlStartElement0"encoding/xmlunmarshalInterface0#encoding/xmltextUnmarshalerType0encoding/xmlunmarshalAttr0encoding/xmlDecoder0encoding/xmlgetTypeInfo0encoding/xmlvalue0reflectrtype0encoding/xmltypeInfo0encoding/xmlsavedOffset0encodingTextUnmarshaler0reflectValueOf0reflect	MakeSlice0reflectCopy0encoding/xmlAttr0encoding/xml
+EndElement0encoding/xmlCharData0reflectNew0encoding/xmlnameType0encoding/xml	fieldInfo0encoding/xmlUnmarshalError0encoding/xmlName0encoding/xmlUnmarshaler0&encoding/xmlunmarshalTextInterface0reflectValue0encoding/xmlunmarshalerType0bytesBuffer0errorsNew0encoding/xmlComment0encoding/xmlunmarshalPath0encoding/xml	copyValue0‚å	copyValue‚%	copyValue = function(dst, src) {
 		var err, _struct, dst0, _struct$1, _struct$2, _ref, _tuple, itmp, err$1, _tuple$1, utmp, err$2, _tuple$2, ftmp, err$3, _tuple$3, value, err$4;
 		err = null;
 		dst0 = (_struct = dst, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -1723,8 +1702,8 @@ EndElement0reflectValue0encoding/xmlunmarshalerType0encoding/xmlU
 		err = null;
 		return err;
 	};
- 0	copyValue0Ÿ0reflectValue0reflectNew0strconvParseInt0strconv	ParseUint0strconv
-ParseFloat0strconv	ParseBool0strings	TrimSpace0errorsNew0‚V ‚š	Decoder.Ptr.prototype.unmarshalPath = function(tinfo, sv, parents, start) {
+ 0	copyValue0Ÿ0reflectValue0strconv	ParseBool0strings	TrimSpace0reflectNew0strconvParseInt0strconv	ParseUint0strconv
+ParseFloat0errorsNew0‚V ‚š	Decoder.Ptr.prototype.unmarshalPath = function(tinfo, sv, parents, start) {
 		var consumed, err, p, recurse, _ref, _i, i, _slice, _index, finfo, _ref$1, _i$1, j, _slice$1, _index$1, _slice$2, _index$2, _struct, _struct$1, _tuple, _slice$3, _index$3, _tuple$1, tok, _tuple$2, _tuple$3, t, _ref$2, _type, _tuple$4, _struct$2, consumed2, err$1, _tuple$5, err$2, _tuple$6, _tuple$7;
 		consumed = false;
 		err = null;
@@ -1880,7 +1859,7 @@ EndElement0‚JgetTypeInfo‚
 		tinfoLock.Unlock();
 		return [tinfo, null];
 	};
- 0getTypeInfo0ñ0encoding/xml	tinfoLock0encoding/xmltypeInfo0encoding/xml	fieldInfo0reflect	StructTag0encoding/xmladdFieldInfo0encoding/xmlstructFieldInfo0encoding/xmltinfoMap0encoding/xmlnameType0reflectStructField0‚—structFieldInfo‚Ö	structFieldInfo = function(typ, f) {
+ 0getTypeInfo0ñ0encoding/xml	tinfoLock0encoding/xmltinfoMap0encoding/xmltypeInfo0encoding/xml	fieldInfo0encoding/xmlnameType0reflectStructField0reflect	StructTag0encoding/xmladdFieldInfo0encoding/xmlstructFieldInfo0‚—structFieldInfo‚Ö	structFieldInfo = function(typ, f) {
 		var finfo, tag, i, _tuple, tokens, _slice, _index, _ref, _i, _slice$1, _index$1, flag, _ref$1, valid, mode, _ref$2, xmlname, _tuple$1, parents, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, ftyp, xmlname$1;
 		finfo = new fieldInfo.Ptr(f.Index, "", "", 0, (go$sliceType(Go$String)).nil);
 		tag = (new reflect.StructTag(f.Tag)).Get("xml");
@@ -2260,9 +2239,9 @@ NewDecoder0w0bytesBuffer0encoding/xmlstack0encoding/xmlName0en
 		return [t, err];
 	};
 	Decoder.prototype.Token = function() { return this.go$val.Token(); };
- 0	Decoder0‚B0encoding/xmlstack0encoding/xml
-EndElement0encoding/xmlName0encoding/xmlAttr0encoding/xml	translate0encoding/xmlDecoder0	ioEOF0encoding/xmlrawToken0encoding/xml	autoClose0encoding/xmlStartElement0encoding/xmlpushNs0encoding/xmlpushElement0encoding/xml
-popElement0‚í ‚´	Decoder.Ptr.prototype.translate = function(n, isElementName) {
+ 0	Decoder0‚B0encoding/xmlDecoder0encoding/xmlpushNs0encoding/xmlpushElement0encoding/xml
+popElement0encoding/xmlstack0	ioEOF0encoding/xmlrawToken0encoding/xml	autoClose0encoding/xmlStartElement0encoding/xml
+EndElement0encoding/xmlName0encoding/xmlAttr0encoding/xml	translate0‚í ‚´	Decoder.Ptr.prototype.translate = function(n, isElementName) {
 		var d, ok, _tuple, _entry, v;
 		d = this;
 		if (n.Space === "xmlns") {
@@ -2695,8 +2674,8 @@ EndElement0encoding/xmlName0‚Q í	Decoder.Ptr.prototype.RawToken = funct
 		/* */ } break; } }; return go$f();
 	};
 	Decoder.prototype.rawToken = function() { return this.go$val.rawToken(); };
- 0DecoderrawToken0‚0encoding/xmlName0encoding/xmlCharData0encoding/xmlmustgetc0encoding/xmlnsname0encoding/xmlsyntaxError0encoding/xmlProcInst0encoding/xmlComment0encoding/xmlattrval0encoding/xmlungetc0fmtErrorf0encoding/xml	Directive0encoding/xmlStartElement0encoding/xmlDecoder0encoding/xml
-EndElement0encoding/xmlname0 encoding/xmlprocInstEncoding0encoding/xmlAttr0encoding/xmlgetc0encoding/xmltext0encoding/xmlspace0ioReader0encoding/xmlswitchToReader0‚ ‚p	Decoder.Ptr.prototype.attrval = function() {
+ 0DecoderrawToken0‚0encoding/xmlDecoder0encoding/xmlungetc0encoding/xmlsyntaxError0encoding/xmlspace0encoding/xmlname0encoding/xmlProcInst0encoding/xmlattrval0encoding/xmlCharData0encoding/xmlmustgetc0encoding/xml	Directive0encoding/xmlName0encoding/xml
+EndElement0 encoding/xmlprocInstEncoding0encoding/xmlswitchToReader0encoding/xmlStartElement0encoding/xmlgetc0encoding/xmltext0encoding/xmlnsname0fmtErrorf0ioReader0encoding/xmlComment0encoding/xmlAttr0‚ ‚p	Decoder.Ptr.prototype.attrval = function() {
 		var d, _tuple, b, ok, _tuple$1;
 		d = this;
 		_tuple = d.mustgetc(), b = _tuple[0], ok = _tuple[1];
@@ -2952,8 +2931,8 @@ EndElement0encoding/xmlname0 encoding/xmlprocInstEncoding0encoding/x
 		return data;
 	};
 	Decoder.prototype.text = function(quote, cdata) { return this.go$val.text(quote, cdata); };
- 0Decodertext0‚90	ioEOF0encoding/xmlsyntaxError0encoding/xmlungetc0strconv	ParseUint0encoding/xmlentity0unicode/utf8
-DecodeRune0"encoding/xmlisInCharacterRange0encoding/xmlDecoder0encoding/xmlgetc0encoding/xmlmustgetc0encoding/xmlreadName0encoding/xmlisName0fmtSprintf0‚isInCharacterRangeâ	isInCharacterRange = function(r) {
+ 0Decodertext0‚90encoding/xmlDecoder0encoding/xmlsyntaxError0strconv	ParseUint0encoding/xmlreadName0encoding/xmlentity0"encoding/xmlisInCharacterRange0encoding/xmlgetc0	ioEOF0encoding/xmlungetc0encoding/xmlmustgetc0encoding/xmlisName0unicode/utf8
+DecodeRune0fmtSprintf0‚isInCharacterRangeâ	isInCharacterRange = function(r) {
 		var inrange;
 		inrange = false;
 		inrange = (r === 9) || (r === 10) || (r === 13) || r >= 32 && r <= 57207 || r >= 57344 && r <= 65533 || r >= 65536 && r <= 1114111;
@@ -3129,8 +3108,8 @@ EscapeText‚	EscapeText = go$pkg.EscapeText = function(w, s) {
 		return null;
 	};
  0
-EscapeText0‚ 0unicode/utf8
-DecodeRune0encoding/xmlesc-quot0encoding/xmlesc-apos0encoding/xmlesc-gt0encoding/xmlesc-tab0encoding/xmlesc-nl0encoding/xmlesc-amp0encoding/xmlesc-lt0encoding/xmlesc-cr0"encoding/xmlisInCharacterRange0encoding/xmlesc-fffd0‚Ÿ ‚G	printer.Ptr.prototype.EscapeString = function(s) {
+EscapeText0‚ 0encoding/xmlesc-apos0encoding/xmlesc-amp0encoding/xmlesc-lt0unicode/utf8
+DecodeRune0encoding/xmlesc-quot0encoding/xmlesc-gt0encoding/xmlesc-tab0encoding/xmlesc-nl0encoding/xmlesc-cr0"encoding/xmlisInCharacterRange0encoding/xmlesc-fffd0‚Ÿ ‚G	printer.Ptr.prototype.EscapeString = function(s) {
 		var p, esc, last, i, _tuple, r, width, _ref;
 		p = this;
 		esc = (go$sliceType(Go$Uint8)).nil;
@@ -3170,7 +3149,7 @@ DecodeRune0encoding/xmlesc-quot0encoding/xmlesc-apos0encoding/xml
 		p.Writer.WriteString(s.substring(last));
 	};
 	printer.prototype.EscapeString = function(s) { return this.go$val.EscapeString(s); };
- 0	printer0‚A0encoding/xmlesc-quot0encoding/xmlesc-lt0encoding/xmlesc-gt0encoding/xmlesc-tab0encoding/xmlprinter0"unicode/utf8DecodeRuneInString0encoding/xmlesc-apos0encoding/xmlesc-amp0encoding/xmlesc-nl0encoding/xmlesc-cr0"encoding/xmlisInCharacterRange0encoding/xmlesc-fffd0wEscapeC	Escape = go$pkg.Escape = function(w, s) {
+ 0	printer0‚A0encoding/xmlesc-amp0encoding/xmlesc-tab0encoding/xmlesc-cr0encoding/xmlesc-fffd0encoding/xmlprinter0"unicode/utf8DecodeRuneInString0encoding/xmlesc-quot0encoding/xmlesc-apos0encoding/xmlesc-lt0encoding/xmlesc-gt0encoding/xmlesc-nl0"encoding/xmlisInCharacterRange0wEscapeC	Escape = go$pkg.Escape = function(w, s) {
 		EscapeText(w, s);
 	};
  0Escape00encoding/xml

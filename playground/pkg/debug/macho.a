@@ -1,4 +1,5 @@
-0ÉSdebug/machoÇ2Ãpackage macho
+0É
+debug/machoÇ2Ãpackage macho
 import bytes "bytes"
 import dwarf "debug/dwarf"
 import binary "encoding/binary"
@@ -137,7 +138,7 @@ func (? *@"debug/dwarf".Attr) @"debug/dwarf".String() (? string)
 type @"debug/dwarf".format uint32
 $$
 0Å°runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarydebug/dwarfsyscalltimeosfmtdebug/macho0Åá0bytesbytes0debug/dwarfdwarf0encoding/binarybinary0errorserrors0
-fmtfmt0ioio0osos0strconvstrconv0Ç“B0Ç—FileÇ€	File = go$pkg.File = go$newType(0, "Struct", "macho.File", "File", "debug/macho", function(FileHeader_, ByteOrder_, Loads_, Sections_, Symtab_, Dysymtab_, closer_) {
+fmtfmt0ioio0osos0strconvstrconv0Ç’˝0ÇAFileÇ€	File = go$pkg.File = go$newType(0, "Struct", "macho.File", "File", "debug/macho", function(FileHeader_, ByteOrder_, Loads_, Sections_, Symtab_, Dysymtab_, closer_) {
 		this.go$val = this;
 		this.FileHeader = FileHeader_ !== undefined ? FileHeader_ : new FileHeader.Ptr();
 		this.ByteOrder = ByteOrder_ !== undefined ? ByteOrder_ : null;
@@ -147,16 +148,16 @@ $$
 		this.Dysymtab = Dysymtab_ !== undefined ? Dysymtab_ : (go$ptrType(Dysymtab)).nil;
 		this.closer = closer_ !== undefined ? closer_ : null;
 	});
-Ç‚		File.init([["", "", FileHeader, ""], ["ByteOrder", "", binary.ByteOrder, ""], ["Loads", "", (go$sliceType(Load)), ""], ["Sections", "", (go$sliceType((go$ptrType(Section)))), ""], ["Symtab", "", (go$ptrType(Symtab)), ""], ["Dysymtab", "", (go$ptrType(Dysymtab)), ""], ["closer", "debug/macho", io.Closer, ""]]);
-		(go$ptrType(File)).methods = [["Close", "", [], [go$error], false], ["DWARF", "", [], [(go$ptrType(dwarf.Data)), go$error], false], ["ImportedLibraries", "", [], [(go$sliceType(Go$String)), go$error], false], ["ImportedSymbols", "", [], [(go$sliceType(Go$String)), go$error], false], ["Section", "", [Go$String], [(go$ptrType(Section))], false], ["Segment", "", [Go$String], [(go$ptrType(Segment))], false], ["parseSymtab", "debug/macho", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$ptrType(SymtabCmd)), Go$Int64], [(go$ptrType(Symtab)), go$error], false], ["pushSection", "debug/macho", [(go$ptrType(Section)), io.ReaderAt], [], false]];
-0File0Å˚0debug/machoSection0debug/machoSegment0debug/macho
-FileHeader0debug/machoLoad0debug/machoSymtab0debug/machoDysymtab0encoding/binary	ByteOrder0ioCloser0debug/dwarfData0debug/macho	SymtabCmd0ioReaderAt0Å√Load]	Load = go$pkg.Load = go$newType(0, "Interface", "macho.Load", "Load", "debug/macho", null);
+ÇR		(go$ptrType(File)).methods = [["Close", "", [], [go$error], false, -1], ["DWARF", "", [], [(go$ptrType(dwarf.Data)), go$error], false, -1], ["ImportedLibraries", "", [], [(go$sliceType(Go$String)), go$error], false, -1], ["ImportedSymbols", "", [], [(go$sliceType(Go$String)), go$error], false, -1], ["Section", "", [Go$String], [(go$ptrType(Section))], false, -1], ["Segment", "", [Go$String], [(go$ptrType(Segment))], false, -1], ["parseSymtab", "debug/macho", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$ptrType(SymtabCmd)), Go$Int64], [(go$ptrType(Symtab)), go$error], false, -1], ["pushSection", "debug/macho", [(go$ptrType(Section)), io.ReaderAt], [], false, -1]];
+		File.init([["FileHeader", "", "", FileHeader, ""], ["ByteOrder", "ByteOrder", "", binary.ByteOrder, ""], ["Loads", "Loads", "", (go$sliceType(Load)), ""], ["Sections", "Sections", "", (go$sliceType((go$ptrType(Section)))), ""], ["Symtab", "Symtab", "", (go$ptrType(Symtab)), ""], ["Dysymtab", "Dysymtab", "", (go$ptrType(Dysymtab)), ""], ["closer", "closer", "debug/macho", io.Closer, ""]]);
+0File0Å˚0debug/macho
+FileHeader0debug/machoSegment0debug/macho	SymtabCmd0ioReaderAt0encoding/binary	ByteOrder0debug/machoLoad0debug/machoSection0debug/machoSymtab0debug/machoDysymtab0debug/dwarfData0ioCloser0Å√Load]	Load = go$pkg.Load = go$newType(0, "Interface", "macho.Load", "Load", "debug/macho", null);
 R		Load.init([["Raw", "", (go$funcType([], [(go$sliceType(Go$Uint8))], false))]]);
-0Load0 0ÇN	LoadBytesm	LoadBytes = go$pkg.LoadBytes = go$newType(0, "Slice", "macho.LoadBytes", "LoadBytes", "debug/macho", null);
-Å¬		LoadBytes.init(Go$Uint8);
-		LoadBytes.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false]];
-		(go$ptrType(LoadBytes)).methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false]];
-0	LoadBytes0 0ÇÚSegmentHeaderÇT	SegmentHeader = go$pkg.SegmentHeader = go$newType(0, "Struct", "macho.SegmentHeader", "SegmentHeader", "debug/macho", function(Cmd_, Len_, Name_, Addr_, Memsz_, Offset_, Filesz_, Maxprot_, Prot_, Nsect_, Flag_) {
+0Load0 0ÇV	LoadBytesm	LoadBytes = go$pkg.LoadBytes = go$newType(0, "Slice", "macho.LoadBytes", "LoadBytes", "debug/macho", null);
+Å 		LoadBytes.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false, -1]];
+		(go$ptrType(LoadBytes)).methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false, -1]];
+		LoadBytes.init(Go$Uint8);
+0	LoadBytes0 0ÇQSegmentHeaderÇT	SegmentHeader = go$pkg.SegmentHeader = go$newType(0, "Struct", "macho.SegmentHeader", "SegmentHeader", "debug/macho", function(Cmd_, Len_, Name_, Addr_, Memsz_, Offset_, Filesz_, Maxprot_, Prot_, Nsect_, Flag_) {
 		this.go$val = this;
 		this.Cmd = Cmd_ !== undefined ? Cmd_ : 0;
 		this.Len = Len_ !== undefined ? Len_ : 0;
@@ -170,23 +171,19 @@ FileHeader0debug/machoLoad0debug/machoSymtab0debug/machoDysymtab0
 		this.Nsect = Nsect_ !== undefined ? Nsect_ : 0;
 		this.Flag = Flag_ !== undefined ? Flag_ : 0;
 	});
-Ç\		SegmentHeader.init([["Cmd", "", LoadCmd, ""], ["Len", "", Go$Uint32, ""], ["Name", "", Go$String, ""], ["Addr", "", Go$Uint64, ""], ["Memsz", "", Go$Uint64, ""], ["Offset", "", Go$Uint64, ""], ["Filesz", "", Go$Uint64, ""], ["Maxprot", "", Go$Uint32, ""], ["Prot", "", Go$Uint32, ""], ["Nsect", "", Go$Uint32, ""], ["Flag", "", Go$Uint32, ""]]);
-0SegmentHeader00debug/machoLoadCmd0Ç¯SegmentÇ 	Segment = go$pkg.Segment = go$newType(0, "Struct", "macho.Segment", "Segment", "debug/macho", function(LoadBytes_, SegmentHeader_, ReaderAt_, sr_) {
+Çª		SegmentHeader.init([["Cmd", "Cmd", "", LoadCmd, ""], ["Len", "Len", "", Go$Uint32, ""], ["Name", "Name", "", Go$String, ""], ["Addr", "Addr", "", Go$Uint64, ""], ["Memsz", "Memsz", "", Go$Uint64, ""], ["Offset", "Offset", "", Go$Uint64, ""], ["Filesz", "Filesz", "", Go$Uint64, ""], ["Maxprot", "Maxprot", "", Go$Uint32, ""], ["Prot", "Prot", "", Go$Uint32, ""], ["Nsect", "Nsect", "", Go$Uint32, ""], ["Flag", "Flag", "", Go$Uint32, ""]]);
+0SegmentHeader00debug/machoLoadCmd0ÇˇSegmentÇ„	Segment = go$pkg.Segment = go$newType(0, "Struct", "macho.Segment", "Segment", "debug/macho", function(LoadBytes_, SegmentHeader_, ReaderAt_, sr_) {
 		this.go$val = this;
 		this.LoadBytes = LoadBytes_ !== undefined ? LoadBytes_ : LoadBytes.nil;
 		this.SegmentHeader = SegmentHeader_ !== undefined ? SegmentHeader_ : new SegmentHeader.Ptr();
 		this.ReaderAt = ReaderAt_ !== undefined ? ReaderAt_ : null;
 		this.sr = sr_ !== undefined ? sr_ : (go$ptrType(io.SectionReader)).nil;
 	});
-	Segment.prototype.Raw = function() { return this.go$val.Raw(); };
-	Segment.Ptr.prototype.Raw = function() { return this.LoadBytes.Raw(); };
-	Segment.prototype.ReadAt = function(p, off) { return this.go$val.ReadAt(p, off); };
-	Segment.Ptr.prototype.ReadAt = function(p, off) { return this.ReaderAt.ReadAt(p, off); };
-ÇK		Segment.init([["", "", LoadBytes, ""], ["", "", SegmentHeader, ""], ["", "", io.ReaderAt, ""], ["sr", "debug/macho", (go$ptrType(io.SectionReader)), ""]]);
-		Segment.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
-		(go$ptrType(Segment)).methods = [["Data", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Open", "", [], [io.ReadSeeker], false], ["Raw", "", [], [(go$sliceType(Go$Uint8))], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
-0	Segment0o0debug/macho	LoadBytes0debug/machoSegmentHeader0ioSectionReader0ioReaderAt0io
-ReadSeeker0ÇSectionHeaderÇ≈	SectionHeader = go$pkg.SectionHeader = go$newType(0, "Struct", "macho.SectionHeader", "SectionHeader", "debug/macho", function(Name_, Seg_, Addr_, Size_, Offset_, Align_, Reloff_, Nreloc_, Flags_) {
+Çè		Segment.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false, 0], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, 2]];
+		(go$ptrType(Segment)).methods = [["Data", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["Open", "", [], [io.ReadSeeker], false, -1], ["Raw", "", [], [(go$sliceType(Go$Uint8))], false, 0], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, 2]];
+		Segment.init([["LoadBytes", "", "", LoadBytes, ""], ["SegmentHeader", "", "", SegmentHeader, ""], ["ReaderAt", "", "", io.ReaderAt, ""], ["sr", "sr", "debug/macho", (go$ptrType(io.SectionReader)), ""]]);
+0	Segment0o0debug/macho	LoadBytes0debug/machoSegmentHeader0ioSectionReader0io
+ReadSeeker0ioReaderAt0ÇbSectionHeaderÇ≈	SectionHeader = go$pkg.SectionHeader = go$newType(0, "Struct", "macho.SectionHeader", "SectionHeader", "debug/macho", function(Name_, Seg_, Addr_, Size_, Offset_, Align_, Reloff_, Nreloc_, Flags_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Seg = Seg_ !== undefined ? Seg_ : "";
@@ -198,20 +195,18 @@ ReadSeeker0ÇSectionHeaderÇ≈	SectionHeader = go$pkg.SectionHeader = go$newT
 		this.Nreloc = Nreloc_ !== undefined ? Nreloc_ : 0;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
 	});
-Ç$		SectionHeader.init([["Name", "", Go$String, ""], ["Seg", "", Go$String, ""], ["Addr", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""], ["Offset", "", Go$Uint32, ""], ["Align", "", Go$Uint32, ""], ["Reloff", "", Go$Uint32, ""], ["Nreloc", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""]]);
-0SectionHeader0 0ÇzSectionÇ=	Section = go$pkg.Section = go$newType(0, "Struct", "macho.Section", "Section", "debug/macho", function(SectionHeader_, ReaderAt_, sr_) {
+Çs		SectionHeader.init([["Name", "Name", "", Go$String, ""], ["Seg", "Seg", "", Go$String, ""], ["Addr", "Addr", "", Go$Uint64, ""], ["Size", "Size", "", Go$Uint64, ""], ["Offset", "Offset", "", Go$Uint32, ""], ["Align", "Align", "", Go$Uint32, ""], ["Reloff", "Reloff", "", Go$Uint32, ""], ["Nreloc", "Nreloc", "", Go$Uint32, ""], ["Flags", "Flags", "", Go$Uint32, ""]]);
+0SectionHeader0 0Ç˚SectionÇç	Section = go$pkg.Section = go$newType(0, "Struct", "macho.Section", "Section", "debug/macho", function(SectionHeader_, ReaderAt_, sr_) {
 		this.go$val = this;
 		this.SectionHeader = SectionHeader_ !== undefined ? SectionHeader_ : new SectionHeader.Ptr();
 		this.ReaderAt = ReaderAt_ !== undefined ? ReaderAt_ : null;
 		this.sr = sr_ !== undefined ? sr_ : (go$ptrType(io.SectionReader)).nil;
 	});
-	Section.prototype.ReadAt = function(p, off) { return this.go$val.ReadAt(p, off); };
-	Section.Ptr.prototype.ReadAt = function(p, off) { return this.ReaderAt.ReadAt(p, off); };
-Ç 		Section.init([["", "", SectionHeader, ""], ["", "", io.ReaderAt, ""], ["sr", "debug/macho", (go$ptrType(io.SectionReader)), ""]]);
-		Section.methods = [["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
-		(go$ptrType(Section)).methods = [["Data", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Open", "", [], [io.ReadSeeker], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false]];
-0	Section0U0debug/machoSectionHeader0ioSectionReader0ioReaderAt0io
-ReadSeeker0ÇDylibÇÅ	Dylib = go$pkg.Dylib = go$newType(0, "Struct", "macho.Dylib", "Dylib", "debug/macho", function(LoadBytes_, Name_, Time_, CurrentVersion_, CompatVersion_) {
+Ç˚		Section.methods = [["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, 1]];
+		(go$ptrType(Section)).methods = [["Data", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["Open", "", [], [io.ReadSeeker], false, -1], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, 1]];
+		Section.init([["SectionHeader", "", "", SectionHeader, ""], ["ReaderAt", "", "", io.ReaderAt, ""], ["sr", "sr", "debug/macho", (go$ptrType(io.SectionReader)), ""]]);
+0	Section0U0debug/machoSectionHeader0ioSectionReader0io
+ReadSeeker0ioReaderAt0Ç¿DylibÇ¯	Dylib = go$pkg.Dylib = go$newType(0, "Struct", "macho.Dylib", "Dylib", "debug/macho", function(LoadBytes_, Name_, Time_, CurrentVersion_, CompatVersion_) {
 		this.go$val = this;
 		this.LoadBytes = LoadBytes_ !== undefined ? LoadBytes_ : LoadBytes.nil;
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -219,43 +214,37 @@ ReadSeeker0ÇDylibÇÅ	Dylib = go$pkg.Dylib = go$newType(0, "Struct", "macho.
 		this.CurrentVersion = CurrentVersion_ !== undefined ? CurrentVersion_ : 0;
 		this.CompatVersion = CompatVersion_ !== undefined ? CompatVersion_ : 0;
 	});
-	Dylib.prototype.Raw = function() { return this.go$val.Raw(); };
-	Dylib.Ptr.prototype.Raw = function() { return this.LoadBytes.Raw(); };
-ÇN		Dylib.init([["", "", LoadBytes, ""], ["Name", "", Go$String, ""], ["Time", "", Go$Uint32, ""], ["CurrentVersion", "", Go$Uint32, ""], ["CompatVersion", "", Go$Uint32, ""]]);
-		Dylib.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false]];
-		(go$ptrType(Dylib)).methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false]];
-0Dylib00debug/macho	LoadBytes0ÇÅSymtabÇ	Symtab = go$pkg.Symtab = go$newType(0, "Struct", "macho.Symtab", "Symtab", "debug/macho", function(LoadBytes_, SymtabCmd_, Syms_) {
+Çî		Dylib.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false, 0]];
+		(go$ptrType(Dylib)).methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false, 0]];
+		Dylib.init([["LoadBytes", "", "", LoadBytes, ""], ["Name", "Name", "", Go$String, ""], ["Time", "Time", "", Go$Uint32, ""], ["CurrentVersion", "CurrentVersion", "", Go$Uint32, ""], ["CompatVersion", "CompatVersion", "", Go$Uint32, ""]]);
+0Dylib00debug/macho	LoadBytes0ÇSymtabÇÇ	Symtab = go$pkg.Symtab = go$newType(0, "Struct", "macho.Symtab", "Symtab", "debug/macho", function(LoadBytes_, SymtabCmd_, Syms_) {
 		this.go$val = this;
 		this.LoadBytes = LoadBytes_ !== undefined ? LoadBytes_ : LoadBytes.nil;
 		this.SymtabCmd = SymtabCmd_ !== undefined ? SymtabCmd_ : new SymtabCmd.Ptr();
 		this.Syms = Syms_ !== undefined ? Syms_ : (go$sliceType(Symbol)).nil;
 	});
-	Symtab.prototype.Raw = function() { return this.go$val.Raw(); };
-	Symtab.Ptr.prototype.Raw = function() { return this.LoadBytes.Raw(); };
-Ç		Symtab.init([["", "", LoadBytes, ""], ["", "", SymtabCmd, ""], ["Syms", "", (go$sliceType(Symbol)), ""]]);
-		Symtab.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false]];
-		(go$ptrType(Symtab)).methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false]];
-0Symtab0K0debug/macho	LoadBytes0debug/macho	SymtabCmd0debug/machoSymbol0ÇºDysymtabÇF	Dysymtab = go$pkg.Dysymtab = go$newType(0, "Struct", "macho.Dysymtab", "Dysymtab", "debug/macho", function(LoadBytes_, DysymtabCmd_, IndirectSyms_) {
+Ç5		Symtab.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false, 0]];
+		(go$ptrType(Symtab)).methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false, 0]];
+		Symtab.init([["LoadBytes", "", "", LoadBytes, ""], ["SymtabCmd", "", "", SymtabCmd, ""], ["Syms", "Syms", "", (go$sliceType(Symbol)), ""]]);
+0Symtab0K0debug/macho	LoadBytes0debug/macho	SymtabCmd0debug/machoSymbol0Ç_DysymtabÇ∑	Dysymtab = go$pkg.Dysymtab = go$newType(0, "Struct", "macho.Dysymtab", "Dysymtab", "debug/macho", function(LoadBytes_, DysymtabCmd_, IndirectSyms_) {
 		this.go$val = this;
 		this.LoadBytes = LoadBytes_ !== undefined ? LoadBytes_ : LoadBytes.nil;
 		this.DysymtabCmd = DysymtabCmd_ !== undefined ? DysymtabCmd_ : new DysymtabCmd.Ptr();
 		this.IndirectSyms = IndirectSyms_ !== undefined ? IndirectSyms_ : (go$sliceType(Go$Uint32)).nil;
 	});
-	Dysymtab.prototype.Raw = function() { return this.go$val.Raw(); };
-	Dysymtab.Ptr.prototype.Raw = function() { return this.LoadBytes.Raw(); };
-Ç 		Dysymtab.init([["", "", LoadBytes, ""], ["", "", DysymtabCmd, ""], ["IndirectSyms", "", (go$sliceType(Go$Uint32)), ""]]);
-		Dysymtab.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false]];
-		(go$ptrType(Dysymtab)).methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false]];
+ÇR		Dysymtab.methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false, 0]];
+		(go$ptrType(Dysymtab)).methods = [["Raw", "", [], [(go$sliceType(Go$Uint8))], false, 0]];
+		Dysymtab.init([["LoadBytes", "", "", LoadBytes, ""], ["DysymtabCmd", "", "", DysymtabCmd, ""], ["IndirectSyms", "IndirectSyms", "", (go$sliceType(Go$Uint32)), ""]]);
 0
-Dysymtab060debug/macho	LoadBytes0debug/machoDysymtabCmd0ÇFFormatErrorÇ@	FormatError = go$pkg.FormatError = go$newType(0, "Struct", "macho.FormatError", "FormatError", "debug/macho", function(off_, msg_, val_) {
+Dysymtab060debug/macho	LoadBytes0debug/machoDysymtabCmd0Ç_FormatErrorÇ@	FormatError = go$pkg.FormatError = go$newType(0, "Struct", "macho.FormatError", "FormatError", "debug/macho", function(off_, msg_, val_) {
 		this.go$val = this;
 		this.off = off_ !== undefined ? off_ : new Go$Int64(0, 0);
 		this.msg = msg_ !== undefined ? msg_ : "";
 		this.val = val_ !== undefined ? val_ : null;
 	});
-Å·		FormatError.init([["off", "debug/macho", Go$Int64, ""], ["msg", "debug/macho", Go$String, ""], ["val", "debug/macho", go$emptyInterface, ""]]);
-		(go$ptrType(FormatError)).methods = [["Error", "", [], [Go$String], false]];
-0FormatError0 0Ç@
+Å˙		(go$ptrType(FormatError)).methods = [["Error", "", [], [Go$String], false, -1]];
+		FormatError.init([["off", "off", "debug/macho", Go$Int64, ""], ["msg", "msg", "debug/macho", Go$String, ""], ["val", "val", "debug/macho", go$emptyInterface, ""]]);
+0FormatError0 0Ç}
 FileHeaderÇ	FileHeader = go$pkg.FileHeader = go$newType(0, "Struct", "macho.FileHeader", "FileHeader", "debug/macho", function(Magic_, Cpu_, SubCpu_, Type_, Ncmd_, Cmdsz_, Flags_) {
 		this.go$val = this;
 		this.Magic = Magic_ !== undefined ? Magic_ : 0;
@@ -266,16 +255,16 @@ FileHeaderÇ	FileHeader = go$pkg.FileHeader = go$newType(0, "Struct", "macho.F
 		this.Cmdsz = Cmdsz_ !== undefined ? Cmdsz_ : 0;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
 	});
-ÅŸ		FileHeader.init([["Magic", "", Go$Uint32, ""], ["Cpu", "", Cpu, ""], ["SubCpu", "", Go$Uint32, ""], ["Type", "", Type, ""], ["Ncmd", "", Go$Uint32, ""], ["Cmdsz", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""]]);
+Ç		FileHeader.init([["Magic", "Magic", "", Go$Uint32, ""], ["Cpu", "Cpu", "", Cpu, ""], ["SubCpu", "SubCpu", "", Go$Uint32, ""], ["Type", "Type", "", Type, ""], ["Ncmd", "Ncmd", "", Go$Uint32, ""], ["Cmdsz", "Cmdsz", "", Go$Uint32, ""], ["Flags", "Flags", "", Go$Uint32, ""]]);
 0
 FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Type = go$newType(4, "Uint32", "macho.Type", "Type", "debug/macho", null);
- 0Type0 0Ç?CpuV	Cpu = go$pkg.Cpu = go$newType(4, "Uint32", "macho.Cpu", "Cpu", "debug/macho", null);
-Å÷		Cpu.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-		(go$ptrType(Cpu)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0Cpu0 0Ç_LoadCmdf	LoadCmd = go$pkg.LoadCmd = go$newType(4, "Uint32", "macho.LoadCmd", "LoadCmd", "debug/macho", null);
-Åﬁ		LoadCmd.methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-		(go$ptrType(LoadCmd)).methods = [["GoString", "", [], [Go$String], false], ["String", "", [], [Go$String], false]];
-0	LoadCmd0 0Ç 	Segment64Ç{	Segment64 = go$pkg.Segment64 = go$newType(0, "Struct", "macho.Segment64", "Segment64", "debug/macho", function(Cmd_, Len_, Name_, Addr_, Memsz_, Offset_, Filesz_, Maxprot_, Prot_, Nsect_, Flag_) {
+ 0Type0 0ÇOCpuV	Cpu = go$pkg.Cpu = go$newType(4, "Uint32", "macho.Cpu", "Cpu", "debug/macho", null);
+ÅÊ		Cpu.methods = [["GoString", "", [], [Go$String], false, -1], ["String", "", [], [Go$String], false, -1]];
+		(go$ptrType(Cpu)).methods = [["GoString", "", [], [Go$String], false, -1], ["String", "", [], [Go$String], false, -1]];
+0Cpu0 0ÇoLoadCmdf	LoadCmd = go$pkg.LoadCmd = go$newType(4, "Uint32", "macho.LoadCmd", "LoadCmd", "debug/macho", null);
+ÅÓ		LoadCmd.methods = [["GoString", "", [], [Go$String], false, -1], ["String", "", [], [Go$String], false, -1]];
+		(go$ptrType(LoadCmd)).methods = [["GoString", "", [], [Go$String], false, -1], ["String", "", [], [Go$String], false, -1]];
+0	LoadCmd0 0Ç	Segment64Ç{	Segment64 = go$pkg.Segment64 = go$newType(0, "Struct", "macho.Segment64", "Segment64", "debug/macho", function(Cmd_, Len_, Name_, Addr_, Memsz_, Offset_, Filesz_, Maxprot_, Prot_, Nsect_, Flag_) {
 		this.go$val = this;
 		this.Cmd = Cmd_ !== undefined ? Cmd_ : 0;
 		this.Len = Len_ !== undefined ? Len_ : 0;
@@ -289,8 +278,8 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.Nsect = Nsect_ !== undefined ? Nsect_ : 0;
 		this.Flag = Flag_ !== undefined ? Flag_ : 0;
 	});
-Çk		Segment64.init([["Cmd", "", LoadCmd, ""], ["Len", "", Go$Uint32, ""], ["Name", "", (go$arrayType(Go$Uint8, 16)), ""], ["Addr", "", Go$Uint64, ""], ["Memsz", "", Go$Uint64, ""], ["Offset", "", Go$Uint64, ""], ["Filesz", "", Go$Uint64, ""], ["Maxprot", "", Go$Uint32, ""], ["Prot", "", Go$Uint32, ""], ["Nsect", "", Go$Uint32, ""], ["Flag", "", Go$Uint32, ""]]);
-0	Segment6400debug/machoLoadCmd0Çÿ	Segment32Ç3	Segment32 = go$pkg.Segment32 = go$newType(0, "Struct", "macho.Segment32", "Segment32", "debug/macho", function(Cmd_, Len_, Name_, Addr_, Memsz_, Offset_, Filesz_, Maxprot_, Prot_, Nsect_, Flag_) {
+Ç 		Segment64.init([["Cmd", "Cmd", "", LoadCmd, ""], ["Len", "Len", "", Go$Uint32, ""], ["Name", "Name", "", (go$arrayType(Go$Uint8, 16)), ""], ["Addr", "Addr", "", Go$Uint64, ""], ["Memsz", "Memsz", "", Go$Uint64, ""], ["Offset", "Offset", "", Go$Uint64, ""], ["Filesz", "Filesz", "", Go$Uint64, ""], ["Maxprot", "Maxprot", "", Go$Uint32, ""], ["Prot", "Prot", "", Go$Uint32, ""], ["Nsect", "Nsect", "", Go$Uint32, ""], ["Flag", "Flag", "", Go$Uint32, ""]]);
+0	Segment6400debug/machoLoadCmd0Ç7	Segment32Ç3	Segment32 = go$pkg.Segment32 = go$newType(0, "Struct", "macho.Segment32", "Segment32", "debug/macho", function(Cmd_, Len_, Name_, Addr_, Memsz_, Offset_, Filesz_, Maxprot_, Prot_, Nsect_, Flag_) {
 		this.go$val = this;
 		this.Cmd = Cmd_ !== undefined ? Cmd_ : 0;
 		this.Len = Len_ !== undefined ? Len_ : 0;
@@ -304,8 +293,8 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.Nsect = Nsect_ !== undefined ? Nsect_ : 0;
 		this.Flag = Flag_ !== undefined ? Flag_ : 0;
 	});
-Çk		Segment32.init([["Cmd", "", LoadCmd, ""], ["Len", "", Go$Uint32, ""], ["Name", "", (go$arrayType(Go$Uint8, 16)), ""], ["Addr", "", Go$Uint32, ""], ["Memsz", "", Go$Uint32, ""], ["Offset", "", Go$Uint32, ""], ["Filesz", "", Go$Uint32, ""], ["Maxprot", "", Go$Uint32, ""], ["Prot", "", Go$Uint32, ""], ["Nsect", "", Go$Uint32, ""], ["Flag", "", Go$Uint32, ""]]);
-0	Segment3200debug/machoLoadCmd0ÇDylibCmdÇ	DylibCmd = go$pkg.DylibCmd = go$newType(0, "Struct", "macho.DylibCmd", "DylibCmd", "debug/macho", function(Cmd_, Len_, Name_, Time_, CurrentVersion_, CompatVersion_) {
+Ç 		Segment32.init([["Cmd", "Cmd", "", LoadCmd, ""], ["Len", "Len", "", Go$Uint32, ""], ["Name", "Name", "", (go$arrayType(Go$Uint8, 16)), ""], ["Addr", "Addr", "", Go$Uint32, ""], ["Memsz", "Memsz", "", Go$Uint32, ""], ["Offset", "Offset", "", Go$Uint32, ""], ["Filesz", "Filesz", "", Go$Uint32, ""], ["Maxprot", "Maxprot", "", Go$Uint32, ""], ["Prot", "Prot", "", Go$Uint32, ""], ["Nsect", "Nsect", "", Go$Uint32, ""], ["Flag", "Flag", "", Go$Uint32, ""]]);
+0	Segment3200debug/machoLoadCmd0ÇZDylibCmdÇ	DylibCmd = go$pkg.DylibCmd = go$newType(0, "Struct", "macho.DylibCmd", "DylibCmd", "debug/macho", function(Cmd_, Len_, Name_, Time_, CurrentVersion_, CompatVersion_) {
 		this.go$val = this;
 		this.Cmd = Cmd_ !== undefined ? Cmd_ : 0;
 		this.Len = Len_ !== undefined ? Len_ : 0;
@@ -314,9 +303,9 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.CurrentVersion = CurrentVersion_ !== undefined ? CurrentVersion_ : 0;
 		this.CompatVersion = CompatVersion_ !== undefined ? CompatVersion_ : 0;
 	});
-Å–		DylibCmd.init([["Cmd", "", LoadCmd, ""], ["Len", "", Go$Uint32, ""], ["Name", "", Go$Uint32, ""], ["Time", "", Go$Uint32, ""], ["CurrentVersion", "", Go$Uint32, ""], ["CompatVersion", "", Go$Uint32, ""]]);
+Ç		DylibCmd.init([["Cmd", "Cmd", "", LoadCmd, ""], ["Len", "Len", "", Go$Uint32, ""], ["Name", "Name", "", Go$Uint32, ""], ["Time", "Time", "", Go$Uint32, ""], ["CurrentVersion", "CurrentVersion", "", Go$Uint32, ""], ["CompatVersion", "CompatVersion", "", Go$Uint32, ""]]);
 0
-DylibCmd00debug/machoLoadCmd0Ç5	Section32Çã	Section32 = go$pkg.Section32 = go$newType(0, "Struct", "macho.Section32", "Section32", "debug/macho", function(Name_, Seg_, Addr_, Size_, Offset_, Align_, Reloff_, Nreloc_, Flags_, Reserve1_, Reserve2_) {
+DylibCmd00debug/machoLoadCmd0Çú	Section32Çã	Section32 = go$pkg.Section32 = go$newType(0, "Struct", "macho.Section32", "Section32", "debug/macho", function(Name_, Seg_, Addr_, Size_, Offset_, Align_, Reloff_, Nreloc_, Flags_, Reserve1_, Reserve2_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Seg = Seg_ !== undefined ? Seg_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
@@ -330,8 +319,8 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.Reserve1 = Reserve1_ !== undefined ? Reserve1_ : 0;
 		this.Reserve2 = Reserve2_ !== undefined ? Reserve2_ : 0;
 	});
-Çà		Section32.init([["Name", "", (go$arrayType(Go$Uint8, 16)), ""], ["Seg", "", (go$arrayType(Go$Uint8, 16)), ""], ["Addr", "", Go$Uint32, ""], ["Size", "", Go$Uint32, ""], ["Offset", "", Go$Uint32, ""], ["Align", "", Go$Uint32, ""], ["Reloff", "", Go$Uint32, ""], ["Nreloc", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Reserve1", "", Go$Uint32, ""], ["Reserve2", "", Go$Uint32, ""]]);
-0	Section320 0Ç¿	Section64Çı	Section64 = go$pkg.Section64 = go$newType(0, "Struct", "macho.Section64", "Section64", "debug/macho", function(Name_, Seg_, Addr_, Size_, Offset_, Align_, Reloff_, Nreloc_, Flags_, Reserve1_, Reserve2_, Reserve3_) {
+ÇÔ		Section32.init([["Name", "Name", "", (go$arrayType(Go$Uint8, 16)), ""], ["Seg", "Seg", "", (go$arrayType(Go$Uint8, 16)), ""], ["Addr", "Addr", "", Go$Uint32, ""], ["Size", "Size", "", Go$Uint32, ""], ["Offset", "Offset", "", Go$Uint32, ""], ["Align", "Align", "", Go$Uint32, ""], ["Reloff", "Reloff", "", Go$Uint32, ""], ["Nreloc", "Nreloc", "", Go$Uint32, ""], ["Flags", "Flags", "", Go$Uint32, ""], ["Reserve1", "Reserve1", "", Go$Uint32, ""], ["Reserve2", "Reserve2", "", Go$Uint32, ""]]);
+0	Section320 0Ç3	Section64Çı	Section64 = go$pkg.Section64 = go$newType(0, "Struct", "macho.Section64", "Section64", "debug/macho", function(Name_, Seg_, Addr_, Size_, Offset_, Align_, Reloff_, Nreloc_, Flags_, Reserve1_, Reserve2_, Reserve3_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Seg = Seg_ !== undefined ? Seg_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
@@ -346,8 +335,8 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.Reserve2 = Reserve2_ !== undefined ? Reserve2_ : 0;
 		this.Reserve3 = Reserve3_ !== undefined ? Reserve3_ : 0;
 	});
-Ç©		Section64.init([["Name", "", (go$arrayType(Go$Uint8, 16)), ""], ["Seg", "", (go$arrayType(Go$Uint8, 16)), ""], ["Addr", "", Go$Uint64, ""], ["Size", "", Go$Uint64, ""], ["Offset", "", Go$Uint32, ""], ["Align", "", Go$Uint32, ""], ["Reloff", "", Go$Uint32, ""], ["Nreloc", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Reserve1", "", Go$Uint32, ""], ["Reserve2", "", Go$Uint32, ""], ["Reserve3", "", Go$Uint32, ""]]);
-0	Section640 0ÇË	SymtabCmdÇÈ	SymtabCmd = go$pkg.SymtabCmd = go$newType(0, "Struct", "macho.SymtabCmd", "SymtabCmd", "debug/macho", function(Cmd_, Len_, Symoff_, Nsyms_, Stroff_, Strsize_) {
+Ç		Section64.init([["Name", "Name", "", (go$arrayType(Go$Uint8, 16)), ""], ["Seg", "Seg", "", (go$arrayType(Go$Uint8, 16)), ""], ["Addr", "Addr", "", Go$Uint64, ""], ["Size", "Size", "", Go$Uint64, ""], ["Offset", "Offset", "", Go$Uint32, ""], ["Align", "Align", "", Go$Uint32, ""], ["Reloff", "Reloff", "", Go$Uint32, ""], ["Nreloc", "Nreloc", "", Go$Uint32, ""], ["Flags", "Flags", "", Go$Uint32, ""], ["Reserve1", "Reserve1", "", Go$Uint32, ""], ["Reserve2", "Reserve2", "", Go$Uint32, ""], ["Reserve3", "Reserve3", "", Go$Uint32, ""]]);
+0	Section640 0Ç	SymtabCmdÇÈ	SymtabCmd = go$pkg.SymtabCmd = go$newType(0, "Struct", "macho.SymtabCmd", "SymtabCmd", "debug/macho", function(Cmd_, Len_, Symoff_, Nsyms_, Stroff_, Strsize_) {
 		this.go$val = this;
 		this.Cmd = Cmd_ !== undefined ? Cmd_ : 0;
 		this.Len = Len_ !== undefined ? Len_ : 0;
@@ -356,8 +345,9 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.Stroff = Stroff_ !== undefined ? Stroff_ : 0;
 		this.Strsize = Strsize_ !== undefined ? Strsize_ : 0;
 	});
-Å∆		SymtabCmd.init([["Cmd", "", LoadCmd, ""], ["Len", "", Go$Uint32, ""], ["Symoff", "", Go$Uint32, ""], ["Nsyms", "", Go$Uint32, ""], ["Stroff", "", Go$Uint32, ""], ["Strsize", "", Go$Uint32, ""]]);
-0	SymtabCmd00debug/machoLoadCmd0Ç	4DysymtabCmdÇA	DysymtabCmd = go$pkg.DysymtabCmd = go$newType(0, "Struct", "macho.DysymtabCmd", "DysymtabCmd", "debug/macho", function(Cmd_, Len_, Ilocalsym_, Nlocalsym_, Iextdefsym_, Nextdefsym_, Iundefsym_, Nundefsym_, Tocoffset_, Ntoc_, Modtaboff_, Nmodtab_, Extrefsymoff_, Nextrefsyms_, Indirectsymoff_, Nindirectsyms_, Extreloff_, Nextrel_, Locreloff_, Nlocrel_) {
+Å¸		SymtabCmd.init([["Cmd", "Cmd", "", LoadCmd, ""], ["Len", "Len", "", Go$Uint32, ""], ["Symoff", "Symoff", "", Go$Uint32, ""], ["Nsyms", "Nsyms", "", Go$Uint32, ""], ["Stroff", "Stroff", "", Go$Uint32, ""], ["Strsize", "Strsize", "", Go$Uint32, ""]]);
+0	SymtabCmd00debug/machoLoadCmd0Ç
+1DysymtabCmdÇA	DysymtabCmd = go$pkg.DysymtabCmd = go$newType(0, "Struct", "macho.DysymtabCmd", "DysymtabCmd", "debug/macho", function(Cmd_, Len_, Ilocalsym_, Nlocalsym_, Iextdefsym_, Nextdefsym_, Iundefsym_, Nundefsym_, Tocoffset_, Ntoc_, Modtaboff_, Nmodtab_, Extrefsymoff_, Nextrefsyms_, Indirectsymoff_, Nindirectsyms_, Extreloff_, Nextrel_, Locreloff_, Nlocrel_) {
 		this.go$val = this;
 		this.Cmd = Cmd_ !== undefined ? Cmd_ : 0;
 		this.Len = Len_ !== undefined ? Len_ : 0;
@@ -380,8 +370,8 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.Locreloff = Locreloff_ !== undefined ? Locreloff_ : 0;
 		this.Nlocrel = Nlocrel_ !== undefined ? Nlocrel_ : 0;
 	});
-Çµ		DysymtabCmd.init([["Cmd", "", LoadCmd, ""], ["Len", "", Go$Uint32, ""], ["Ilocalsym", "", Go$Uint32, ""], ["Nlocalsym", "", Go$Uint32, ""], ["Iextdefsym", "", Go$Uint32, ""], ["Nextdefsym", "", Go$Uint32, ""], ["Iundefsym", "", Go$Uint32, ""], ["Nundefsym", "", Go$Uint32, ""], ["Tocoffset", "", Go$Uint32, ""], ["Ntoc", "", Go$Uint32, ""], ["Modtaboff", "", Go$Uint32, ""], ["Nmodtab", "", Go$Uint32, ""], ["Extrefsymoff", "", Go$Uint32, ""], ["Nextrefsyms", "", Go$Uint32, ""], ["Indirectsymoff", "", Go$Uint32, ""], ["Nindirectsyms", "", Go$Uint32, ""], ["Extreloff", "", Go$Uint32, ""], ["Nextrel", "", Go$Uint32, ""], ["Locreloff", "", Go$Uint32, ""], ["Nlocrel", "", Go$Uint32, ""]]);
-0DysymtabCmd00debug/machoLoadCmd0ÇVNlist32Çó	Nlist32 = go$pkg.Nlist32 = go$newType(0, "Struct", "macho.Nlist32", "Nlist32", "debug/macho", function(Name_, Type_, Sect_, Desc_, Value_) {
+Ç≤		DysymtabCmd.init([["Cmd", "Cmd", "", LoadCmd, ""], ["Len", "Len", "", Go$Uint32, ""], ["Ilocalsym", "Ilocalsym", "", Go$Uint32, ""], ["Nlocalsym", "Nlocalsym", "", Go$Uint32, ""], ["Iextdefsym", "Iextdefsym", "", Go$Uint32, ""], ["Nextdefsym", "Nextdefsym", "", Go$Uint32, ""], ["Iundefsym", "Iundefsym", "", Go$Uint32, ""], ["Nundefsym", "Nundefsym", "", Go$Uint32, ""], ["Tocoffset", "Tocoffset", "", Go$Uint32, ""], ["Ntoc", "Ntoc", "", Go$Uint32, ""], ["Modtaboff", "Modtaboff", "", Go$Uint32, ""], ["Nmodtab", "Nmodtab", "", Go$Uint32, ""], ["Extrefsymoff", "Extrefsymoff", "", Go$Uint32, ""], ["Nextrefsyms", "Nextrefsyms", "", Go$Uint32, ""], ["Indirectsymoff", "Indirectsymoff", "", Go$Uint32, ""], ["Nindirectsyms", "Nindirectsyms", "", Go$Uint32, ""], ["Extreloff", "Extreloff", "", Go$Uint32, ""], ["Nextrel", "Nextrel", "", Go$Uint32, ""], ["Locreloff", "Locreloff", "", Go$Uint32, ""], ["Nlocrel", "Nlocrel", "", Go$Uint32, ""]]);
+0DysymtabCmd00debug/machoLoadCmd0ÇNlist32Çó	Nlist32 = go$pkg.Nlist32 = go$newType(0, "Struct", "macho.Nlist32", "Nlist32", "debug/macho", function(Name_, Type_, Sect_, Desc_, Value_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : 0;
@@ -389,8 +379,8 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.Desc = Desc_ !== undefined ? Desc_ : 0;
 		this.Value = Value_ !== undefined ? Value_ : 0;
 	});
-Å¢		Nlist32.init([["Name", "", Go$Uint32, ""], ["Type", "", Go$Uint8, ""], ["Sect", "", Go$Uint8, ""], ["Desc", "", Go$Uint16, ""], ["Value", "", Go$Uint32, ""]]);
-0	Nlist320 0ÇhNlist64Ç©	Nlist64 = go$pkg.Nlist64 = go$newType(0, "Struct", "macho.Nlist64", "Nlist64", "debug/macho", function(Name_, Type_, Sect_, Desc_, Value_) {
+ÅÀ		Nlist32.init([["Name", "Name", "", Go$Uint32, ""], ["Type", "Type", "", Go$Uint8, ""], ["Sect", "Sect", "", Go$Uint8, ""], ["Desc", "Desc", "", Go$Uint16, ""], ["Value", "Value", "", Go$Uint32, ""]]);
+0	Nlist320 0ÇëNlist64Ç©	Nlist64 = go$pkg.Nlist64 = go$newType(0, "Struct", "macho.Nlist64", "Nlist64", "debug/macho", function(Name_, Type_, Sect_, Desc_, Value_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : 0;
@@ -398,8 +388,8 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.Desc = Desc_ !== undefined ? Desc_ : 0;
 		this.Value = Value_ !== undefined ? Value_ : new Go$Uint64(0, 0);
 	});
-Å¢		Nlist64.init([["Name", "", Go$Uint32, ""], ["Type", "", Go$Uint8, ""], ["Sect", "", Go$Uint8, ""], ["Desc", "", Go$Uint16, ""], ["Value", "", Go$Uint64, ""]]);
-0	Nlist640 0ÇbSymbolÇ¶	Symbol = go$pkg.Symbol = go$newType(0, "Struct", "macho.Symbol", "Symbol", "debug/macho", function(Name_, Type_, Sect_, Desc_, Value_) {
+ÅÀ		Nlist64.init([["Name", "Name", "", Go$Uint32, ""], ["Type", "Type", "", Go$Uint8, ""], ["Sect", "Sect", "", Go$Uint8, ""], ["Desc", "Desc", "", Go$Uint16, ""], ["Value", "Value", "", Go$Uint64, ""]]);
+0	Nlist640 0ÇãSymbolÇ¶	Symbol = go$pkg.Symbol = go$newType(0, "Struct", "macho.Symbol", "Symbol", "debug/macho", function(Name_, Type_, Sect_, Desc_, Value_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Type = Type_ !== undefined ? Type_ : 0;
@@ -407,16 +397,16 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.Desc = Desc_ !== undefined ? Desc_ : 0;
 		this.Value = Value_ !== undefined ? Value_ : new Go$Uint64(0, 0);
 	});
-Å°		Symbol.init([["Name", "", Go$String, ""], ["Type", "", Go$Uint8, ""], ["Sect", "", Go$Uint8, ""], ["Desc", "", Go$Uint16, ""], ["Value", "", Go$Uint64, ""]]);
-0Symbol0 0Ç1ThreadÇm	Thread = go$pkg.Thread = go$newType(0, "Struct", "macho.Thread", "Thread", "debug/macho", function(Cmd_, Len_, Type_, Data_) {
+Å 		Symbol.init([["Name", "Name", "", Go$String, ""], ["Type", "Type", "", Go$Uint8, ""], ["Sect", "Sect", "", Go$Uint8, ""], ["Desc", "Desc", "", Go$Uint16, ""], ["Value", "Value", "", Go$Uint64, ""]]);
+0Symbol0 0ÇOThreadÇm	Thread = go$pkg.Thread = go$newType(0, "Struct", "macho.Thread", "Thread", "debug/macho", function(Cmd_, Len_, Type_, Data_) {
 		this.go$val = this;
 		this.Cmd = Cmd_ !== undefined ? Cmd_ : 0;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : 0;
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint32)).nil;
 	});
-Åë		Thread.init([["Cmd", "", LoadCmd, ""], ["Len", "", Go$Uint32, ""], ["Type", "", Go$Uint32, ""], ["Data", "", (go$sliceType(Go$Uint32)), ""]]);
-0Thread00debug/machoLoadCmd0ÇTRegs386Çq	Regs386 = go$pkg.Regs386 = go$newType(0, "Struct", "macho.Regs386", "Regs386", "debug/macho", function(AX_, BX_, CX_, DX_, DI_, SI_, BP_, SP_, SS_, FLAGS_, IP_, CS_, DS_, ES_, FS_, GS_) {
+ÅØ		Thread.init([["Cmd", "Cmd", "", LoadCmd, ""], ["Len", "Len", "", Go$Uint32, ""], ["Type", "Type", "", Go$Uint32, ""], ["Data", "Data", "", (go$sliceType(Go$Uint32)), ""]]);
+0Thread00debug/machoLoadCmd0Ç∑Regs386Çq	Regs386 = go$pkg.Regs386 = go$newType(0, "Struct", "macho.Regs386", "Regs386", "debug/macho", function(AX_, BX_, CX_, DX_, DI_, SI_, BP_, SP_, SS_, FLAGS_, IP_, CS_, DS_, ES_, FS_, GS_) {
 		this.go$val = this;
 		this.AX = AX_ !== undefined ? AX_ : 0;
 		this.BX = BX_ !== undefined ? BX_ : 0;
@@ -435,8 +425,8 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.FS = FS_ !== undefined ? FS_ : 0;
 		this.GS = GS_ !== undefined ? GS_ : 0;
 	});
-Ç≈		Regs386.init([["AX", "", Go$Uint32, ""], ["BX", "", Go$Uint32, ""], ["CX", "", Go$Uint32, ""], ["DX", "", Go$Uint32, ""], ["DI", "", Go$Uint32, ""], ["SI", "", Go$Uint32, ""], ["BP", "", Go$Uint32, ""], ["SP", "", Go$Uint32, ""], ["SS", "", Go$Uint32, ""], ["FLAGS", "", Go$Uint32, ""], ["IP", "", Go$Uint32, ""], ["CS", "", Go$Uint32, ""], ["DS", "", Go$Uint32, ""], ["ES", "", Go$Uint32, ""], ["FS", "", Go$Uint32, ""], ["GS", "", Go$Uint32, ""]]);
-0	Regs3860 0Çg	RegsAMD64ÇÒ	RegsAMD64 = go$pkg.RegsAMD64 = go$newType(0, "Struct", "macho.RegsAMD64", "RegsAMD64", "debug/macho", function(AX_, BX_, CX_, DX_, DI_, SI_, BP_, SP_, R8_, R9_, R10_, R11_, R12_, R13_, R14_, R15_, IP_, FLAGS_, CS_, FS_, GS_) {
+Ç(		Regs386.init([["AX", "AX", "", Go$Uint32, ""], ["BX", "BX", "", Go$Uint32, ""], ["CX", "CX", "", Go$Uint32, ""], ["DX", "DX", "", Go$Uint32, ""], ["DI", "DI", "", Go$Uint32, ""], ["SI", "SI", "", Go$Uint32, ""], ["BP", "BP", "", Go$Uint32, ""], ["SP", "SP", "", Go$Uint32, ""], ["SS", "SS", "", Go$Uint32, ""], ["FLAGS", "FLAGS", "", Go$Uint32, ""], ["IP", "IP", "", Go$Uint32, ""], ["CS", "CS", "", Go$Uint32, ""], ["DS", "DS", "", Go$Uint32, ""], ["ES", "ES", "", Go$Uint32, ""], ["FS", "FS", "", Go$Uint32, ""], ["GS", "GS", "", Go$Uint32, ""]]);
+0	Regs3860 0ÇÓ	RegsAMD64ÇÒ	RegsAMD64 = go$pkg.RegsAMD64 = go$newType(0, "Struct", "macho.RegsAMD64", "RegsAMD64", "debug/macho", function(AX_, BX_, CX_, DX_, DI_, SI_, BP_, SP_, R8_, R9_, R10_, R11_, R12_, R13_, R14_, R15_, IP_, FLAGS_, CS_, FS_, GS_) {
 		this.go$val = this;
 		this.AX = AX_ !== undefined ? AX_ : new Go$Uint64(0, 0);
 		this.BX = BX_ !== undefined ? BX_ : new Go$Uint64(0, 0);
@@ -460,13 +450,13 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		this.FS = FS_ !== undefined ? FS_ : new Go$Uint64(0, 0);
 		this.GS = GS_ !== undefined ? GS_ : new Go$Uint64(0, 0);
 	});
-ÇT		RegsAMD64.init([["AX", "", Go$Uint64, ""], ["BX", "", Go$Uint64, ""], ["CX", "", Go$Uint64, ""], ["DX", "", Go$Uint64, ""], ["DI", "", Go$Uint64, ""], ["SI", "", Go$Uint64, ""], ["BP", "", Go$Uint64, ""], ["SP", "", Go$Uint64, ""], ["R8", "", Go$Uint64, ""], ["R9", "", Go$Uint64, ""], ["R10", "", Go$Uint64, ""], ["R11", "", Go$Uint64, ""], ["R12", "", Go$Uint64, ""], ["R13", "", Go$Uint64, ""], ["R14", "", Go$Uint64, ""], ["R15", "", Go$Uint64, ""], ["IP", "", Go$Uint64, ""], ["FLAGS", "", Go$Uint64, ""], ["CS", "", Go$Uint64, ""], ["FS", "", Go$Uint64, ""], ["GS", "", Go$Uint64, ""]]);
-0	RegsAMD640 0ÇQintNameÅ⁄	intName = go$pkg.intName = go$newType(0, "Struct", "macho.intName", "intName", "debug/macho", function(i_, s_) {
+Ç€		RegsAMD64.init([["AX", "AX", "", Go$Uint64, ""], ["BX", "BX", "", Go$Uint64, ""], ["CX", "CX", "", Go$Uint64, ""], ["DX", "DX", "", Go$Uint64, ""], ["DI", "DI", "", Go$Uint64, ""], ["SI", "SI", "", Go$Uint64, ""], ["BP", "BP", "", Go$Uint64, ""], ["SP", "SP", "", Go$Uint64, ""], ["R8", "R8", "", Go$Uint64, ""], ["R9", "R9", "", Go$Uint64, ""], ["R10", "R10", "", Go$Uint64, ""], ["R11", "R11", "", Go$Uint64, ""], ["R12", "R12", "", Go$Uint64, ""], ["R13", "R13", "", Go$Uint64, ""], ["R14", "R14", "", Go$Uint64, ""], ["R15", "R15", "", Go$Uint64, ""], ["IP", "IP", "", Go$Uint64, ""], ["FLAGS", "FLAGS", "", Go$Uint64, ""], ["CS", "CS", "", Go$Uint64, ""], ["FS", "FS", "", Go$Uint64, ""], ["GS", "GS", "", Go$Uint64, ""]]);
+0	RegsAMD640 0Ç[intNameÅ⁄	intName = go$pkg.intName = go$newType(0, "Struct", "macho.intName", "intName", "debug/macho", function(i_, s_) {
 		this.go$val = this;
 		this.i = i_ !== undefined ? i_ : 0;
 		this.s = s_ !== undefined ? s_ : "";
 	});
-\		intName.init([["i", "debug/macho", Go$Uint32, ""], ["s", "debug/macho", Go$String, ""]]);
+f		intName.init([["i", "i", "debug/macho", Go$Uint32, ""], ["s", "s", "debug/macho", Go$String, ""]]);
 0	intName0 0Ç  Å	LoadBytes.prototype.Raw = function() {
 		var b;
 		b = this;
@@ -739,7 +729,7 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		}
 		return [f, null];
 	};
- 0	NewFile0ÇJ0ioNewSectionReader0encoding/binary	BigEndian0debug/machoFormatError0encoding/binaryRead0debug/machoDylibCmd0debug/machoDylib0debug/machocstring0debug/macho	LoadBytes0debug/machoDysymtabCmd0debug/macho	Section640debug/machoFile0debug/machoSegment0bytes	NewBuffer0debug/machopushSection0debug/machoLoad0debug/macho	Segment320debug/macho	Section320debug/macho	Segment640encoding/binaryLittleEndian0debug/macho	SymtabCmd0debug/machoparseSymtab0debug/machoDysymtab0debug/machoSection0Çø Ç±	File.Ptr.prototype.parseSymtab = function(symdat, strtab, cmddat, hdr, offset) {
+ 0	NewFile0ÇJ0debug/machoFile0ioNewSectionReader0encoding/binary	BigEndian0debug/machoSegment0debug/machocstring0debug/machoparseSymtab0debug/machoDysymtabCmd0debug/machoFormatError0debug/machoLoad0debug/machoDylibCmd0bytes	NewBuffer0debug/machoDylib0debug/macho	SymtabCmd0debug/machoDysymtab0debug/macho	Section320debug/machoSection0debug/machopushSection0debug/macho	Section640encoding/binaryLittleEndian0debug/macho	LoadBytes0encoding/binaryRead0debug/macho	Segment320debug/macho	Segment640Çø Ç±	File.Ptr.prototype.parseSymtab = function(symdat, strtab, cmddat, hdr, offset) {
 		var f, bo, symtab, b, _ref, _i, i, n, err, n32, err$1, _slice, _index, sym, st;
 		f = this;
 		bo = f.ByteOrder;
@@ -782,7 +772,7 @@ FileHeader0)0debug/machoCpu0debug/machoType0nTypeZ	Type = go$pkg.Ty
 		return [st, null];
 	};
 	File.prototype.parseSymtab = function(symdat, strtab, cmddat, hdr, offset) { return this.go$val.parseSymtab(symdat, strtab, cmddat, hdr, offset); };
- 0FileparseSymtab0ÅÓ0debug/machoFile0debug/machoSymbol0encoding/binaryRead0debug/machoSymtab0bytes	NewBuffer0debug/machoNlist640debug/machoNlist320debug/machoFormatError0debug/machocstring0debug/macho	LoadBytes0ÇΩ Çq	File.Ptr.prototype.pushSection = function(sh, r) {
+ 0FileparseSymtab0ÅÓ0debug/machoFile0bytes	NewBuffer0encoding/binaryRead0debug/machoFormatError0debug/machocstring0debug/macho	LoadBytes0debug/machoSymbol0debug/machoNlist640debug/machoSymtab0debug/machoNlist320ÇΩ Çq	File.Ptr.prototype.pushSection = function(sh, r) {
 		var f, x;
 		f = this;
 		f.Sections = go$append(f.Sections, sh);

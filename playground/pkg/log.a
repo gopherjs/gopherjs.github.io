@@ -1,4 +1,4 @@
-0ÇVlogÇ$Ïpackage log
+0ÇVzlogÇ$Ïpackage log
 import fmt "fmt"
 import io "io"
 import os "os"
@@ -151,7 +151,7 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0kruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtlog0P0
-fmtfmt0ioio0osos0runtimeruntime0syncsync0timetime0Ç0^0ÇoLoggerÇØ	Logger = go$pkg.Logger = go$newType(0, "Struct", "log.Logger", "Logger", "log", function(mu_, prefix_, flag_, out_, buf_) {
+fmtfmt0ioio0osos0runtimeruntime0syncsync0timetime0Ç0¿0Ç—LoggerÇØ	Logger = go$pkg.Logger = go$newType(0, "Struct", "log.Logger", "Logger", "log", function(mu_, prefix_, flag_, out_, buf_) {
 		this.go$val = this;
 		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
 		this.prefix = prefix_ !== undefined ? prefix_ : "";
@@ -159,9 +159,9 @@ $$
 		this.out = out_ !== undefined ? out_ : null;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
 	});
-Çy		Logger.init([["mu", "log", sync.Mutex, ""], ["prefix", "log", Go$String, ""], ["flag", "log", Go$Int, ""], ["out", "log", io.Writer, ""], ["buf", "log", (go$sliceType(Go$Uint8)), ""]]);
-		(go$ptrType(Logger)).methods = [["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fatalln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Flags", "", [], [Go$Int], false], ["Output", "", [Go$Int, Go$String], [go$error], false], ["Panic", "", [(go$sliceType(go$emptyInterface))], [], true], ["Panicf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Panicln", "", [(go$sliceType(go$emptyInterface))], [], true], ["Prefix", "", [], [Go$String], false], ["Print", "", [(go$sliceType(go$emptyInterface))], [], true], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Println", "", [(go$sliceType(go$emptyInterface))], [], true], ["SetFlags", "", [Go$Int], [], false], ["SetPrefix", "", [Go$String], [], false], ["formatHeader", "log", [(go$ptrType((go$sliceType(Go$Uint8)))), time.Time, Go$String, Go$Int], [], false]];
-0Logger0+0syncMutex0ioWriter0timeTime0Å«NewÅñ	New = go$pkg.New = function(out, prefix, flag) {
+Ç€		(go$ptrType(Logger)).methods = [["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Fatalln", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Flags", "", [], [Go$Int], false, -1], ["Output", "", [Go$Int, Go$String], [go$error], false, -1], ["Panic", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Panicf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Panicln", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Prefix", "", [], [Go$String], false, -1], ["Print", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Println", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["SetFlags", "", [Go$Int], [], false, -1], ["SetPrefix", "", [Go$String], [], false, -1], ["formatHeader", "log", [(go$ptrType((go$sliceType(Go$Uint8)))), time.Time, Go$String, Go$Int], [], false, -1]];
+		Logger.init([["mu", "mu", "log", sync.Mutex, ""], ["prefix", "prefix", "log", Go$String, ""], ["flag", "flag", "log", Go$Int, ""], ["out", "out", "log", io.Writer, ""], ["buf", "buf", "log", (go$sliceType(Go$Uint8)), ""]]);
+0Logger0+0syncMutex0timeTime0ioWriter0Å«NewÅñ	New = go$pkg.New = function(out, prefix, flag) {
 		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
 	};
  0New00syncMutex0logLogger0Ç¨itoaÇñ	itoa = function(buf, i, wid) {

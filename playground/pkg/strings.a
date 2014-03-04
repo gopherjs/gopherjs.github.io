@@ -1,4 +1,4 @@
-0É∏stringsÇpackage strings
+0ÉÙstringsÇpackage strings
 import errors "errors"
 import io "io"
 import utf8 "unicode/utf8"
@@ -97,30 +97,30 @@ func (? *@"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
 type @"unicode".CaseRange struct { @"unicode".Lo uint32; @"unicode".Hi uint32; @"unicode".Delta @"unicode".d }
 type @"unicode".d [3]rune
 $$
-0Hruntimeerrorssync/atomicsynciounicodeunicode/utf8strings0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0ÇÎ˜0Ç“ReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "strings.Reader", "Reader", "strings", function(s_, i_, prevRune_) {
+0Hruntimeerrorssync/atomicsynciounicodeunicode/utf8strings0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0ÇÌ30ÇReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "strings.Reader", "Reader", "strings", function(s_, i_, prevRune_) {
 		this.go$val = this;
 		this.s = s_ !== undefined ? s_ : "";
 		this.i = i_ !== undefined ? i_ : 0;
 		this.prevRune = prevRune_ !== undefined ? prevRune_ : 0;
 	});
-Çé		Reader.init([["s", "strings", Go$String, ""], ["i", "strings", Go$Int, ""], ["prevRune", "strings", Go$Int, ""]]);
-		(go$ptrType(Reader)).methods = [["Len", "", [], [Go$Int], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false]];
-0Reader00ioWriter0Ç«ReplacerÅ¥	Replacer = go$pkg.Replacer = go$newType(0, "Struct", "strings.Replacer", "Replacer", "strings", function(r_) {
+Ç»		(go$ptrType(Reader)).methods = [["Len", "", [], [Go$Int], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, -1], ["ReadByte", "", [], [Go$Uint8, go$error], false, -1], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, -1], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false, -1], ["UnreadByte", "", [], [go$error], false, -1], ["UnreadRune", "", [], [go$error], false, -1], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false, -1]];
+		Reader.init([["s", "s", "strings", Go$String, ""], ["i", "i", "strings", Go$Int, ""], ["prevRune", "prevRune", "strings", Go$Int, ""]]);
+0Reader00ioWriter0Ç‘ReplacerÅ¥	Replacer = go$pkg.Replacer = go$newType(0, "Struct", "strings.Replacer", "Replacer", "strings", function(r_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 	});
-Å“		Replacer.init([["r", "strings", replacer, ""]]);
-		(go$ptrType(Replacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
+Åﬂ		(go$ptrType(Replacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1]];
+		Replacer.init([["r", "r", "strings", replacer, ""]]);
 0
-Replacer0#0stringsreplacer0ioWriter0ÇAreplacerk	replacer = go$pkg.replacer = go$newType(0, "Interface", "strings.replacer", "replacer", "strings", null);
+Replacer0#0ioWriter0stringsreplacer0ÇAreplacerk	replacer = go$pkg.replacer = go$newType(0, "Interface", "strings.replacer", "replacer", "strings", null);
 Å´		replacer.init([["Replace", "", (go$funcType([Go$String], [Go$String], false))], ["WriteString", "", (go$funcType([io.Writer, Go$String], [Go$Int, go$error], false))]]);
 0
-replacer00ioWriter0Ç
+replacer00ioWriter0Ç
 byteBitmapo	byteBitmap = go$pkg.byteBitmap = go$newType(0, "Array", "strings.byteBitmap", "byteBitmap", "strings", null);
-s		byteBitmap.init(Go$Uint32, 8);
-		(go$ptrType(byteBitmap)).methods = [["set", "strings", [Go$Uint8], [], false]];
+w		(go$ptrType(byteBitmap)).methods = [["set", "strings", [Go$Uint8], [], false, -1]];
+		byteBitmap.init(Go$Uint32, 8);
 0
-byteBitmap0 0ÇÆtrieNodeÇ˘	trieNode = go$pkg.trieNode = go$newType(0, "Struct", "strings.trieNode", "trieNode", "strings", function(value_, priority_, prefix_, next_, table_) {
+byteBitmap0 0Ç‚trieNodeÇ˘	trieNode = go$pkg.trieNode = go$newType(0, "Struct", "strings.trieNode", "trieNode", "strings", function(value_, priority_, prefix_, next_, table_) {
 		this.go$val = this;
 		this.value = value_ !== undefined ? value_ : "";
 		this.priority = priority_ !== undefined ? priority_ : 0;
@@ -128,60 +128,60 @@ byteBitmap0 0ÇÆtrieNodeÇ˘	trieNode = go$pkg.trieNode = go$newType(0, "Struc
 		this.next = next_ !== undefined ? next_ : (go$ptrType(trieNode)).nil;
 		this.table = table_ !== undefined ? table_ : (go$sliceType((go$ptrType(trieNode)))).nil;
 	});
-Çy		trieNode.init([["value", "strings", Go$String, ""], ["priority", "strings", Go$Int, ""], ["prefix", "strings", Go$String, ""], ["next", "strings", (go$ptrType(trieNode)), ""], ["table", "strings", (go$sliceType((go$ptrType(trieNode)))), ""]]);
-		(go$ptrType(trieNode)).methods = [["add", "strings", [Go$String, Go$String, Go$Int, (go$ptrType(genericReplacer))], [], false]];
+Ç≠		(go$ptrType(trieNode)).methods = [["add", "strings", [Go$String, Go$String, Go$Int, (go$ptrType(genericReplacer))], [], false, -1]];
+		trieNode.init([["value", "value", "strings", Go$String, ""], ["priority", "priority", "strings", Go$Int, ""], ["prefix", "prefix", "strings", Go$String, ""], ["next", "next", "strings", (go$ptrType(trieNode)), ""], ["table", "table", "strings", (go$sliceType((go$ptrType(trieNode)))), ""]]);
 0
-trieNode00stringsgenericReplacer0ÇñgenericReplacerÇØ	genericReplacer = go$pkg.genericReplacer = go$newType(0, "Struct", "strings.genericReplacer", "genericReplacer", "strings", function(root_, tableSize_, mapping_) {
+trieNode00stringsgenericReplacer0Ç¬genericReplacerÇØ	genericReplacer = go$pkg.genericReplacer = go$newType(0, "Struct", "strings.genericReplacer", "genericReplacer", "strings", function(root_, tableSize_, mapping_) {
 		this.go$val = this;
 		this.root = root_ !== undefined ? root_ : new trieNode.Ptr();
 		this.tableSize = tableSize_ !== undefined ? tableSize_ : 0;
 		this.mapping = mapping_ !== undefined ? mapping_ : go$makeNativeArray("Uint8", 256, function() { return 0; });
 	});
-Çñ		genericReplacer.init([["root", "strings", trieNode, ""], ["tableSize", "strings", Go$Int, ""], ["mapping", "strings", (go$arrayType(Go$Uint8, 256)), ""]]);
-		(go$ptrType(genericReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false], ["lookup", "strings", [Go$String, Go$Bool], [Go$String, Go$Int, Go$Bool], false]];
-0genericReplacer0#0stringstrieNode0ioWriter0ÇêappendSliceWriterÅã	appendSliceWriter = go$pkg.appendSliceWriter = go$newType(0, "Slice", "strings.appendSliceWriter", "appendSliceWriter", "strings", null);
-Å’		appendSliceWriter.init(Go$Uint8);
-		(go$ptrType(appendSliceWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
+Ç¬		(go$ptrType(genericReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1], ["lookup", "strings", [Go$String, Go$Bool], [Go$String, Go$Int, Go$Bool], false, -1]];
+		genericReplacer.init([["root", "root", "strings", trieNode, ""], ["tableSize", "tableSize", "strings", Go$Int, ""], ["mapping", "mapping", "strings", (go$arrayType(Go$Uint8, 256)), ""]]);
+0genericReplacer0#0stringstrieNode0ioWriter0ÇòappendSliceWriterÅã	appendSliceWriter = go$pkg.appendSliceWriter = go$newType(0, "Slice", "strings.appendSliceWriter", "appendSliceWriter", "strings", null);
+Å›		(go$ptrType(appendSliceWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
+		appendSliceWriter.init(Go$Uint8);
 0appendSliceWriter0 0Ç&stringWriterIfaceÅè	stringWriterIface = go$pkg.stringWriterIface = go$newType(0, "Interface", "strings.stringWriterIface", "stringWriterIface", "strings", null);
 h		stringWriterIface.init([["WriteString", "", (go$funcType([Go$String], [Go$Int, go$error], false))]]);
-0stringWriterIface0 0ÇÓstringWriterÅƒ	stringWriter = go$pkg.stringWriter = go$newType(0, "Struct", "strings.stringWriter", "stringWriter", "strings", function(w_) {
+0stringWriterIface0 0Ç¸stringWriterÅƒ	stringWriter = go$pkg.stringWriter = go$newType(0, "Struct", "strings.stringWriter", "stringWriter", "strings", function(w_) {
 		this.go$val = this;
 		this.w = w_ !== undefined ? w_ : null;
 	});
-Åˆ		stringWriter.init([["w", "strings", io.Writer, ""]]);
-		stringWriter.methods = [["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-		(go$ptrType(stringWriter)).methods = [["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-0stringWriter00ioWriter0Ç“singleStringReplacerÇM	singleStringReplacer = go$pkg.singleStringReplacer = go$newType(0, "Struct", "strings.singleStringReplacer", "singleStringReplacer", "strings", function(finder_, value_) {
+Ç		stringWriter.methods = [["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
+		(go$ptrType(stringWriter)).methods = [["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
+		stringWriter.init([["w", "w", "strings", io.Writer, ""]]);
+0stringWriter00ioWriter0ÇÌsingleStringReplacerÇM	singleStringReplacer = go$pkg.singleStringReplacer = go$newType(0, "Struct", "strings.singleStringReplacer", "singleStringReplacer", "strings", function(finder_, value_) {
 		this.go$val = this;
 		this.finder = finder_ !== undefined ? finder_ : (go$ptrType(stringFinder)).nil;
 		this.value = value_ !== undefined ? value_ : "";
 	});
-Ç&		singleStringReplacer.init([["finder", "strings", (go$ptrType(stringFinder)), ""], ["value", "strings", Go$String, ""]]);
-		(go$ptrType(singleStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
-0singleStringReplacer0'0stringsstringFinder0ioWriter0Ç÷byteReplacerÇt	byteReplacer = go$pkg.byteReplacer = go$newType(0, "Struct", "strings.byteReplacer", "byteReplacer", "strings", function(old_, new$1_) {
+ÇA		(go$ptrType(singleStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1]];
+		singleStringReplacer.init([["finder", "finder", "strings", (go$ptrType(stringFinder)), ""], ["value", "value", "strings", Go$String, ""]]);
+0singleStringReplacer0'0stringsstringFinder0ioWriter0ÇÓbyteReplacerÇt	byteReplacer = go$pkg.byteReplacer = go$newType(0, "Struct", "strings.byteReplacer", "byteReplacer", "strings", function(old_, new$1_) {
 		this.go$val = this;
 		this.old = old_ !== undefined ? old_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
 		this.new$1 = new$1_ !== undefined ? new$1_ : go$makeNativeArray("Uint8", 256, function() { return 0; });
 	});
-Ç		byteReplacer.init([["old", "strings", byteBitmap, ""], ["new", "strings", (go$arrayType(Go$Uint8, 256)), ""]]);
-		(go$ptrType(byteReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
-0byteReplacer0%0strings
-byteBitmap0ioWriter0Ç1byteStringReplacerÇß	byteStringReplacer = go$pkg.byteStringReplacer = go$newType(0, "Struct", "strings.byteStringReplacer", "byteStringReplacer", "strings", function(old_, new$1_) {
+Ç-		(go$ptrType(byteReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1]];
+		byteReplacer.init([["old", "old", "strings", byteBitmap, ""], ["new$1", "new", "strings", (go$arrayType(Go$Uint8, 256)), ""]]);
+0byteReplacer0%0ioWriter0strings
+byteBitmap0ÇIbyteStringReplacerÇß	byteStringReplacer = go$pkg.byteStringReplacer = go$newType(0, "Struct", "strings.byteStringReplacer", "byteStringReplacer", "strings", function(old_, new$1_) {
 		this.go$val = this;
 		this.old = old_ !== undefined ? old_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
 		this.new$1 = new$1_ !== undefined ? new$1_ : go$makeNativeArray("Slice", 256, function() { return (go$sliceType(Go$Uint8)).nil; });
 	});
-Ç1		byteStringReplacer.init([["old", "strings", byteBitmap, ""], ["new", "strings", (go$arrayType((go$sliceType(Go$Uint8)), 256)), ""]]);
-		(go$ptrType(byteStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false]];
-0byteStringReplacer0%0strings
-byteBitmap0ioWriter0ÇstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType(0, "Struct", "strings.stringFinder", "stringFinder", "strings", function(pattern_, badCharSkip_, goodSuffixSkip_) {
+ÇI		(go$ptrType(byteStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1]];
+		byteStringReplacer.init([["old", "old", "strings", byteBitmap, ""], ["new$1", "new", "strings", (go$arrayType((go$sliceType(Go$Uint8)), 256)), ""]]);
+0byteStringReplacer0%0ioWriter0strings
+byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType(0, "Struct", "strings.stringFinder", "stringFinder", "strings", function(pattern_, badCharSkip_, goodSuffixSkip_) {
 		this.go$val = this;
 		this.pattern = pattern_ !== undefined ? pattern_ : "";
 		this.badCharSkip = badCharSkip_ !== undefined ? badCharSkip_ : go$makeNativeArray("Int", 256, function() { return 0; });
 		this.goodSuffixSkip = goodSuffixSkip_ !== undefined ? goodSuffixSkip_ : (go$sliceType(Go$Int)).nil;
 	});
-Ç		stringFinder.init([["pattern", "strings", Go$String, ""], ["badCharSkip", "strings", (go$arrayType(Go$Int, 256)), ""], ["goodSuffixSkip", "strings", (go$sliceType(Go$Int)), ""]]);
-		(go$ptrType(stringFinder)).methods = [["next", "strings", [Go$String], [Go$Int], false]];
+ÇB		(go$ptrType(stringFinder)).methods = [["next", "strings", [Go$String], [Go$Int], false, -1]];
+		stringFinder.init([["pattern", "pattern", "strings", Go$String, ""], ["badCharSkip", "badCharSkip", "strings", (go$arrayType(Go$Int, 256)), ""], ["goodSuffixSkip", "goodSuffixSkip", "strings", (go$sliceType(Go$Int)), ""]]);
 0stringFinder0 0Åˆ Å–	Reader.Ptr.prototype.Len = function() {
 		var r;
 		r = this;

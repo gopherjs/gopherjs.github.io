@@ -1,4 +1,4 @@
-0É(œtestingÇ0*package testing
+0ÉπtestingÇ0*package testing
 import runtime "runtime"
 import flag "flag"
 import fmt "fmt"
@@ -184,13 +184,13 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0Å∫runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortflagbufiostringstext/tabwriterruntime/pproftesting0ÅÆ0runtimeruntime0flagflag0
-fmtfmt0osos0syncsync0timetime0bytesbytes0ioio0stringsstrings0runtime/pprofpprof0strconvstrconv0Ç˜$0Ç’InternalBenchmarkÇ"	InternalBenchmark = go$pkg.InternalBenchmark = go$newType(0, "Struct", "testing.InternalBenchmark", "InternalBenchmark", "testing", function(Name_, F_) {
+fmtfmt0osos0syncsync0timetime0bytesbytes0ioio0stringsstrings0runtime/pprofpprof0strconvstrconv0ÇÁ0Ç„InternalBenchmarkÇ"	InternalBenchmark = go$pkg.InternalBenchmark = go$newType(0, "Struct", "testing.InternalBenchmark", "InternalBenchmark", "testing", function(Name_, F_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
 	});
-u		InternalBenchmark.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([(go$ptrType(B))], [], false)), ""]]);
-0InternalBenchmark00testingB0Ç}BÇ{	B = go$pkg.B = go$newType(0, "Struct", "testing.B", "B", "testing", function(common_, N_, benchmark_, bytes_, timerOn_, showAllocResult_, result_, startAllocs_, startBytes_, netAllocs_, netBytes_) {
+ÅÇ		InternalBenchmark.init([["Name", "Name", "", Go$String, ""], ["F", "F", "", (go$funcType([(go$ptrType(B))], [], false)), ""]]);
+0InternalBenchmark00testingB0ÇËBÇ	B = go$pkg.B = go$newType(0, "Struct", "testing.B", "B", "testing", function(common_, N_, benchmark_, bytes_, timerOn_, showAllocResult_, result_, startAllocs_, startBytes_, netAllocs_, netBytes_) {
 		this.go$val = this;
 		this.common = common_ !== undefined ? common_ : new common.Ptr();
 		this.N = N_ !== undefined ? N_ : 0;
@@ -204,41 +204,9 @@ $$
 		this.netAllocs = netAllocs_ !== undefined ? netAllocs_ : new Go$Uint64(0, 0);
 		this.netBytes = netBytes_ !== undefined ? netBytes_ : new Go$Uint64(0, 0);
 	});
-	B.prototype.Error = function(args) { return this.go$val.Error(args); };
-	B.Ptr.prototype.Error = function(args) { return this.common.Error(args); };
-	B.prototype.Errorf = function(format, args) { return this.go$val.Errorf(format, args); };
-	B.Ptr.prototype.Errorf = function(format, args) { return this.common.Errorf(format, args); };
-	B.prototype.Fail = function() { return this.go$val.Fail(); };
-	B.Ptr.prototype.Fail = function() { return this.common.Fail(); };
-	B.prototype.FailNow = function() { return this.go$val.FailNow(); };
-	B.Ptr.prototype.FailNow = function() { return this.common.FailNow(); };
-	B.prototype.Failed = function() { return this.go$val.Failed(); };
-	B.Ptr.prototype.Failed = function() { return this.common.Failed(); };
-	B.prototype.Fatal = function(args) { return this.go$val.Fatal(args); };
-	B.Ptr.prototype.Fatal = function(args) { return this.common.Fatal(args); };
-	B.prototype.Fatalf = function(format, args) { return this.go$val.Fatalf(format, args); };
-	B.Ptr.prototype.Fatalf = function(format, args) { return this.common.Fatalf(format, args); };
-	B.prototype.Log = function(args) { return this.go$val.Log(args); };
-	B.Ptr.prototype.Log = function(args) { return this.common.Log(args); };
-	B.prototype.Logf = function(format, args) { return this.go$val.Logf(format, args); };
-	B.Ptr.prototype.Logf = function(format, args) { return this.common.Logf(format, args); };
-	B.prototype.Skip = function(args) { return this.go$val.Skip(args); };
-	B.Ptr.prototype.Skip = function(args) { return this.common.Skip(args); };
-	B.prototype.SkipNow = function() { return this.go$val.SkipNow(); };
-	B.Ptr.prototype.SkipNow = function() { return this.common.SkipNow(); };
-	B.prototype.Skipf = function(format, args) { return this.go$val.Skipf(format, args); };
-	B.Ptr.prototype.Skipf = function(format, args) { return this.common.Skipf(format, args); };
-	B.prototype.Skipped = function() { return this.go$val.Skipped(); };
-	B.Ptr.prototype.Skipped = function() { return this.common.Skipped(); };
-	B.prototype.log = function(s) { return this.go$val.log(s); };
-	B.Ptr.prototype.log = function(s) { return this.common.log(s); };
-	B.prototype.private = function() { return this.go$val.private(); };
-	B.Ptr.prototype.private = function() { return this.common.private(); };
-	B.prototype.skip = function() { return this.go$val.skip(); };
-	B.Ptr.prototype.skip = function() { return this.common.skip(); };
-Ç£		B.init([["", "testing", common, ""], ["N", "", Go$Int, ""], ["benchmark", "testing", InternalBenchmark, ""], ["bytes", "testing", Go$Int64, ""], ["timerOn", "testing", Go$Bool, ""], ["showAllocResult", "testing", Go$Bool, ""], ["result", "testing", BenchmarkResult, ""], ["startAllocs", "testing", Go$Uint64, ""], ["startBytes", "testing", Go$Uint64, ""], ["netAllocs", "testing", Go$Uint64, ""], ["netBytes", "testing", Go$Uint64, ""]]);
-		(go$ptrType(B)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fail", "", [], [], false], ["FailNow", "", [], [], false], ["Failed", "", [], [Go$Bool], false], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["ReportAllocs", "", [], [], false], ["ResetTimer", "", [], [], false], ["SetBytes", "", [Go$Int64], [], false], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true], ["SkipNow", "", [], [], false], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skipped", "", [], [Go$Bool], false], ["StartTimer", "", [], [], false], ["StopTimer", "", [], [], false], ["launch", "testing", [], [], false], ["log", "testing", [Go$String], [], false], ["nsPerOp", "testing", [], [Go$Int64], false], ["private", "testing", [], [], false], ["run", "testing", [], [BenchmarkResult], false], ["runN", "testing", [Go$Int], [], false], ["skip", "testing", [], [], false], ["trimOutput", "testing", [], [], false]];
-0B0M0testingcommon0testingInternalBenchmark0testingBenchmarkResult0Ç[BenchmarkResultÇ	BenchmarkResult = go$pkg.BenchmarkResult = go$newType(0, "Struct", "testing.BenchmarkResult", "BenchmarkResult", "testing", function(N_, T_, Bytes_, MemAllocs_, MemBytes_) {
+Ç~		(go$ptrType(B)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true, 0], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, 0], ["Fail", "", [], [], false, 0], ["FailNow", "", [], [], false, 0], ["Failed", "", [], [Go$Bool], false, 0], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true, 0], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, 0], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true, 0], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, 0], ["ReportAllocs", "", [], [], false, -1], ["ResetTimer", "", [], [], false, -1], ["SetBytes", "", [Go$Int64], [], false, -1], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true, 0], ["SkipNow", "", [], [], false, 0], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, 0], ["Skipped", "", [], [Go$Bool], false, 0], ["StartTimer", "", [], [], false, -1], ["StopTimer", "", [], [], false, -1], ["launch", "testing", [], [], false, -1], ["log", "testing", [Go$String], [], false, 0], ["nsPerOp", "testing", [], [Go$Int64], false, -1], ["private", "testing", [], [], false, 0], ["run", "testing", [], [BenchmarkResult], false, -1], ["runN", "testing", [Go$Int], [], false, -1], ["skip", "testing", [], [], false, 0], ["trimOutput", "testing", [], [], false, -1]];
+		B.init([["common", "", "testing", common, ""], ["N", "N", "", Go$Int, ""], ["benchmark", "benchmark", "testing", InternalBenchmark, ""], ["bytes", "bytes", "testing", Go$Int64, ""], ["timerOn", "timerOn", "testing", Go$Bool, ""], ["showAllocResult", "showAllocResult", "testing", Go$Bool, ""], ["result", "result", "testing", BenchmarkResult, ""], ["startAllocs", "startAllocs", "testing", Go$Uint64, ""], ["startBytes", "startBytes", "testing", Go$Uint64, ""], ["netAllocs", "netAllocs", "testing", Go$Uint64, ""], ["netBytes", "netBytes", "testing", Go$Uint64, ""]]);
+0B0M0testingcommon0testingInternalBenchmark0testingBenchmarkResult0Ç∑BenchmarkResultÇ	BenchmarkResult = go$pkg.BenchmarkResult = go$newType(0, "Struct", "testing.BenchmarkResult", "BenchmarkResult", "testing", function(N_, T_, Bytes_, MemAllocs_, MemBytes_) {
 		this.go$val = this;
 		this.N = N_ !== undefined ? N_ : 0;
 		this.T = T_ !== undefined ? T_ : new time.Duration(0, 0);
@@ -246,10 +214,10 @@ $$
 		this.MemAllocs = MemAllocs_ !== undefined ? MemAllocs_ : new Go$Uint64(0, 0);
 		this.MemBytes = MemBytes_ !== undefined ? MemBytes_ : new Go$Uint64(0, 0);
 	});
-Ç		BenchmarkResult.init([["N", "", Go$Int, ""], ["T", "", time.Duration, ""], ["Bytes", "", Go$Int64, ""], ["MemAllocs", "", Go$Uint64, ""], ["MemBytes", "", Go$Uint64, ""]]);
-		BenchmarkResult.methods = [["AllocedBytesPerOp", "", [], [Go$Int64], false], ["AllocsPerOp", "", [], [Go$Int64], false], ["MemString", "", [], [Go$String], false], ["NsPerOp", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false], ["mbPerSec", "testing", [], [Go$Float64], false]];
-		(go$ptrType(BenchmarkResult)).methods = [["AllocedBytesPerOp", "", [], [Go$Int64], false], ["AllocsPerOp", "", [], [Go$Int64], false], ["MemString", "", [], [Go$String], false], ["NsPerOp", "", [], [Go$Int64], false], ["String", "", [], [Go$String], false], ["mbPerSec", "testing", [], [Go$Float64], false]];
-0BenchmarkResult00timeDuration0Çu
+Çk		BenchmarkResult.methods = [["AllocedBytesPerOp", "", [], [Go$Int64], false, -1], ["AllocsPerOp", "", [], [Go$Int64], false, -1], ["MemString", "", [], [Go$String], false, -1], ["NsPerOp", "", [], [Go$Int64], false, -1], ["String", "", [], [Go$String], false, -1], ["mbPerSec", "testing", [], [Go$Float64], false, -1]];
+		(go$ptrType(BenchmarkResult)).methods = [["AllocedBytesPerOp", "", [], [Go$Int64], false, -1], ["AllocsPerOp", "", [], [Go$Int64], false, -1], ["MemString", "", [], [Go$String], false, -1], ["NsPerOp", "", [], [Go$Int64], false, -1], ["String", "", [], [Go$String], false, -1], ["mbPerSec", "testing", [], [Go$Float64], false, -1]];
+		BenchmarkResult.init([["N", "N", "", Go$Int, ""], ["T", "T", "", time.Duration, ""], ["Bytes", "Bytes", "", Go$Int64, ""], ["MemAllocs", "MemAllocs", "", Go$Uint64, ""], ["MemBytes", "MemBytes", "", Go$Uint64, ""]]);
+0BenchmarkResult00timeDuration0Ç†
 CoverBlockÇ©	CoverBlock = go$pkg.CoverBlock = go$newType(0, "Struct", "testing.CoverBlock", "CoverBlock", "testing", function(Line0_, Col0_, Line1_, Col1_, Stmts_) {
 		this.go$val = this;
 		this.Line0 = Line0_ !== undefined ? Line0_ : 0;
@@ -258,25 +226,25 @@ CoverBlockÇ©	CoverBlock = go$pkg.CoverBlock = go$newType(0, "Struct", "testing
 		this.Col1 = Col1_ !== undefined ? Col1_ : 0;
 		this.Stmts = Stmts_ !== undefined ? Stmts_ : 0;
 	});
-Å©		CoverBlock.init([["Line0", "", Go$Uint32, ""], ["Col0", "", Go$Uint16, ""], ["Line1", "", Go$Uint32, ""], ["Col1", "", Go$Uint16, ""], ["Stmts", "", Go$Uint16, ""]]);
+Å‘		CoverBlock.init([["Line0", "Line0", "", Go$Uint32, ""], ["Col0", "Col0", "", Go$Uint16, ""], ["Line1", "Line1", "", Go$Uint32, ""], ["Col1", "Col1", "", Go$Uint16, ""], ["Stmts", "Stmts", "", Go$Uint16, ""]]);
 0
-CoverBlock0 0ÇπCoverÇ°	Cover = go$pkg.Cover = go$newType(0, "Struct", "testing.Cover", "Cover", "testing", function(Mode_, Counters_, Blocks_, CoveredPackages_) {
+CoverBlock0 0ÇÎCoverÇ°	Cover = go$pkg.Cover = go$newType(0, "Struct", "testing.Cover", "Cover", "testing", function(Mode_, Counters_, Blocks_, CoveredPackages_) {
 		this.go$val = this;
 		this.Mode = Mode_ !== undefined ? Mode_ : "";
 		this.Counters = Counters_ !== undefined ? Counters_ : false;
 		this.Blocks = Blocks_ !== undefined ? Blocks_ : false;
 		this.CoveredPackages = CoveredPackages_ !== undefined ? CoveredPackages_ : "";
 	});
-ÅË		Cover.init([["Mode", "", Go$String, ""], ["Counters", "", (go$mapType(Go$String, (go$sliceType(Go$Uint32)))), ""], ["Blocks", "", (go$mapType(Go$String, (go$sliceType(CoverBlock)))), ""], ["CoveredPackages", "", Go$String, ""]]);
+Ç		Cover.init([["Mode", "Mode", "", Go$String, ""], ["Counters", "Counters", "", (go$mapType(Go$String, (go$sliceType(Go$Uint32)))), ""], ["Blocks", "Blocks", "", (go$mapType(Go$String, (go$sliceType(CoverBlock)))), ""], ["CoveredPackages", "CoveredPackages", "", Go$String, ""]]);
 0Cover00testing
-CoverBlock0Ç	InternalExampleÇY	InternalExample = go$pkg.InternalExample = go$newType(0, "Struct", "testing.InternalExample", "InternalExample", "testing", function(Name_, F_, Output_) {
+CoverBlock0Ç InternalExampleÇY	InternalExample = go$pkg.InternalExample = go$newType(0, "Struct", "testing.InternalExample", "InternalExample", "testing", function(Name_, F_, Output_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
 		this.Output = Output_ !== undefined ? Output_ : "";
 	});
-ÅÉ		InternalExample.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([], [], false)), ""], ["Output", "", Go$String, ""]]);
-0InternalExample0 0ÇcommonÇÛ	common = go$pkg.common = go$newType(0, "Struct", "testing.common", "common", "testing", function(mu_, output_, failed_, skipped_, start_, duration_, self_, signal_) {
+Åö		InternalExample.init([["Name", "Name", "", Go$String, ""], ["F", "F", "", (go$funcType([], [], false)), ""], ["Output", "Output", "", Go$String, ""]]);
+0InternalExample0 0Ç¶commonÇÛ	common = go$pkg.common = go$newType(0, "Struct", "testing.common", "common", "testing", function(mu_, output_, failed_, skipped_, start_, duration_, self_, signal_) {
 		this.go$val = this;
 		this.mu = mu_ !== undefined ? mu_ : new sync.RWMutex.Ptr();
 		this.output = output_ !== undefined ? output_ : (go$sliceType(Go$Uint8)).nil;
@@ -287,57 +255,24 @@ CoverBlock0Ç	InternalExampleÇY	InternalExample = go$pkg.InternalExample = g
 		this.self = self_ !== undefined ? self_ : null;
 		this.signal = signal_ !== undefined ? signal_ : (go$chanType(go$emptyInterface, false, false)).nil;
 	});
-Ç⁄		common.init([["mu", "testing", sync.RWMutex, ""], ["output", "testing", (go$sliceType(Go$Uint8)), ""], ["failed", "testing", Go$Bool, ""], ["skipped", "testing", Go$Bool, ""], ["start", "testing", time.Time, ""], ["duration", "testing", time.Duration, ""], ["self", "testing", go$emptyInterface, ""], ["signal", "testing", (go$chanType(go$emptyInterface, false, false)), ""]]);
-		(go$ptrType(common)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fail", "", [], [], false], ["FailNow", "", [], [], false], ["Failed", "", [], [Go$Bool], false], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true], ["SkipNow", "", [], [], false], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skipped", "", [], [Go$Bool], false], ["log", "testing", [Go$String], [], false], ["private", "testing", [], [], false], ["skip", "testing", [], [], false]];
+Çf		(go$ptrType(common)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Fail", "", [], [], false, -1], ["FailNow", "", [], [], false, -1], ["Failed", "", [], [Go$Bool], false, -1], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["SkipNow", "", [], [], false, -1], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Skipped", "", [], [Go$Bool], false, -1], ["log", "testing", [Go$String], [], false, -1], ["private", "testing", [], [], false, -1], ["skip", "testing", [], [], false, -1]];
+		common.init([["mu", "mu", "testing", sync.RWMutex, ""], ["output", "output", "testing", (go$sliceType(Go$Uint8)), ""], ["failed", "failed", "testing", Go$Bool, ""], ["skipped", "skipped", "testing", Go$Bool, ""], ["start", "start", "testing", time.Time, ""], ["duration", "duration", "testing", time.Duration, ""], ["self", "self", "testing", go$emptyInterface, ""], ["signal", "signal", "testing", (go$chanType(go$emptyInterface, false, false)), ""]]);
 0common010syncRWMutex0timeTime0timeDuration0Ç/TBS	TB = go$pkg.TB = go$newType(0, "Interface", "testing.TB", "TB", "testing", null);
 Ç 		TB.init([["Error", "", (go$funcType([(go$sliceType(go$emptyInterface))], [], true))], ["Errorf", "", (go$funcType([Go$String, (go$sliceType(go$emptyInterface))], [], true))], ["Fail", "", (go$funcType([], [], false))], ["FailNow", "", (go$funcType([], [], false))], ["Failed", "", (go$funcType([], [Go$Bool], false))], ["Fatal", "", (go$funcType([(go$sliceType(go$emptyInterface))], [], true))], ["Fatalf", "", (go$funcType([Go$String, (go$sliceType(go$emptyInterface))], [], true))], ["Log", "", (go$funcType([(go$sliceType(go$emptyInterface))], [], true))], ["Logf", "", (go$funcType([Go$String, (go$sliceType(go$emptyInterface))], [], true))], ["Skip", "", (go$funcType([(go$sliceType(go$emptyInterface))], [], true))], ["SkipNow", "", (go$funcType([], [], false))], ["Skipf", "", (go$funcType([Go$String, (go$sliceType(go$emptyInterface))], [], true))], ["Skipped", "", (go$funcType([], [Go$Bool], false))], ["private", "testing", (go$funcType([], [], false))]]);
-0TB0 0Ç:TÇ
-‡	T = go$pkg.T = go$newType(0, "Struct", "testing.T", "T", "testing", function(common_, name_, startParallel_) {
+0TB0 0Ç%TÇp	T = go$pkg.T = go$newType(0, "Struct", "testing.T", "T", "testing", function(common_, name_, startParallel_) {
 		this.go$val = this;
 		this.common = common_ !== undefined ? common_ : new common.Ptr();
 		this.name = name_ !== undefined ? name_ : "";
 		this.startParallel = startParallel_ !== undefined ? startParallel_ : (go$chanType(Go$Bool, false, false)).nil;
 	});
-	T.prototype.Error = function(args) { return this.go$val.Error(args); };
-	T.Ptr.prototype.Error = function(args) { return this.common.Error(args); };
-	T.prototype.Errorf = function(format, args) { return this.go$val.Errorf(format, args); };
-	T.Ptr.prototype.Errorf = function(format, args) { return this.common.Errorf(format, args); };
-	T.prototype.Fail = function() { return this.go$val.Fail(); };
-	T.Ptr.prototype.Fail = function() { return this.common.Fail(); };
-	T.prototype.FailNow = function() { return this.go$val.FailNow(); };
-	T.Ptr.prototype.FailNow = function() { return this.common.FailNow(); };
-	T.prototype.Failed = function() { return this.go$val.Failed(); };
-	T.Ptr.prototype.Failed = function() { return this.common.Failed(); };
-	T.prototype.Fatal = function(args) { return this.go$val.Fatal(args); };
-	T.Ptr.prototype.Fatal = function(args) { return this.common.Fatal(args); };
-	T.prototype.Fatalf = function(format, args) { return this.go$val.Fatalf(format, args); };
-	T.Ptr.prototype.Fatalf = function(format, args) { return this.common.Fatalf(format, args); };
-	T.prototype.Log = function(args) { return this.go$val.Log(args); };
-	T.Ptr.prototype.Log = function(args) { return this.common.Log(args); };
-	T.prototype.Logf = function(format, args) { return this.go$val.Logf(format, args); };
-	T.Ptr.prototype.Logf = function(format, args) { return this.common.Logf(format, args); };
-	T.prototype.Skip = function(args) { return this.go$val.Skip(args); };
-	T.Ptr.prototype.Skip = function(args) { return this.common.Skip(args); };
-	T.prototype.SkipNow = function() { return this.go$val.SkipNow(); };
-	T.Ptr.prototype.SkipNow = function() { return this.common.SkipNow(); };
-	T.prototype.Skipf = function(format, args) { return this.go$val.Skipf(format, args); };
-	T.Ptr.prototype.Skipf = function(format, args) { return this.common.Skipf(format, args); };
-	T.prototype.Skipped = function() { return this.go$val.Skipped(); };
-	T.Ptr.prototype.Skipped = function() { return this.common.Skipped(); };
-	T.prototype.log = function(s) { return this.go$val.log(s); };
-	T.Ptr.prototype.log = function(s) { return this.common.log(s); };
-	T.prototype.private = function() { return this.go$val.private(); };
-	T.Ptr.prototype.private = function() { return this.common.private(); };
-	T.prototype.skip = function() { return this.go$val.skip(); };
-	T.Ptr.prototype.skip = function() { return this.common.skip(); };
-Ç5		T.init([["", "testing", common, ""], ["name", "testing", Go$String, ""], ["startParallel", "testing", (go$chanType(Go$Bool, false, false)), ""]]);
-		(go$ptrType(T)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Fail", "", [], [], false], ["FailNow", "", [], [], false], ["Failed", "", [], [Go$Bool], false], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Parallel", "", [], [], false], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true], ["SkipNow", "", [], [], false], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true], ["Skipped", "", [], [Go$Bool], false], ["log", "testing", [Go$String], [], false], ["private", "testing", [], [], false], ["report", "testing", [], [], false], ["skip", "testing", [], [], false]];
-0T00testingcommon0Ç≤InternalTestÇ	InternalTest = go$pkg.InternalTest = go$newType(0, "Struct", "testing.InternalTest", "InternalTest", "testing", function(Name_, F_) {
+Çê		(go$ptrType(T)).methods = [["Error", "", [(go$sliceType(go$emptyInterface))], [], true, 0], ["Errorf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, 0], ["Fail", "", [], [], false, 0], ["FailNow", "", [], [], false, 0], ["Failed", "", [], [Go$Bool], false, 0], ["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true, 0], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, 0], ["Log", "", [(go$sliceType(go$emptyInterface))], [], true, 0], ["Logf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, 0], ["Parallel", "", [], [], false, -1], ["Skip", "", [(go$sliceType(go$emptyInterface))], [], true, 0], ["SkipNow", "", [], [], false, 0], ["Skipf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, 0], ["Skipped", "", [], [Go$Bool], false, 0], ["log", "testing", [Go$String], [], false, 0], ["private", "testing", [], [], false, 0], ["report", "testing", [], [], false, -1], ["skip", "testing", [], [], false, 0]];
+		T.init([["common", "", "testing", common, ""], ["name", "name", "testing", Go$String, ""], ["startParallel", "startParallel", "testing", (go$chanType(Go$Bool, false, false)), ""]]);
+0T00testingcommon0ÇøInternalTestÇ	InternalTest = go$pkg.InternalTest = go$newType(0, "Struct", "testing.InternalTest", "InternalTest", "testing", function(Name_, F_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
 	});
-p		InternalTest.init([["Name", "", Go$String, ""], ["F", "", (go$funcType([(go$ptrType(T))], [], false)), ""]]);
+}		InternalTest.init([["Name", "Name", "", Go$String, ""], ["F", "F", "", (go$funcType([(go$ptrType(T))], [], false)), ""]]);
 0InternalTest00testingT0ÇäAllocsPerRunÇ	AllocsPerRun = go$pkg.AllocsPerRun = function(runs, f) {
 		var avg, memstats, x, mallocs, i, x$1;
 		avg = 0;
@@ -638,9 +573,9 @@ GOMAXPROCS0runtimeMemStats0runtimeReadMemStats0Ç Çõ	B.Ptr.prototy
 		}
 	};
  0RunBenchmarks0Ço0
-osExit0testingcpuList0testing
-trimOutput0testingmatchBenchmarks0testingInternalBenchmark0testingcommon0testingBenchmarkResult0fmtFprintf0osStderr0syncRWMutex0timeDuration0testingB0testingrun0fmtPrintln0runtime
-GOMAXPROCS0timeTime0fmtSprintf0fmtPrintf0testingbenchmarkMemory0ÇÒ Ç»	B.Ptr.prototype.trimOutput = function() {
+osExit0testingcpuList0runtime
+GOMAXPROCS0testingBenchmarkResult0testing
+trimOutput0syncRWMutex0fmtSprintf0fmtPrintf0osStderr0testingcommon0timeDuration0testingrun0testingbenchmarkMemory0testingmatchBenchmarks0testingInternalBenchmark0fmtFprintf0timeTime0testingB0fmtPrintln0ÇÒ Ç»	B.Ptr.prototype.trimOutput = function() {
 		var b, _tuple, nlCount, j, _slice, _index;
 		b = this;
 		_tuple = [0, 0], nlCount = _tuple[0], j = _tuple[1];
@@ -662,7 +597,7 @@ trimOutput00testingB0Ç	BenchmarkÇJ	Benchmark = go$pkg.Benchmark = fun
 		b = new B.Ptr(new common.Ptr(new sync.RWMutex.Ptr(), (go$sliceType(Go$Uint8)).nil, false, false, new time.Time.Ptr(), new time.Duration(0, 0), null, new (go$chanType(go$emptyInterface, false, false))()), 0, new InternalBenchmark.Ptr("", f), new Go$Int64(0, 0), false, false, new BenchmarkResult.Ptr(), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0), new Go$Uint64(0, 0));
 		return (_struct = b.run(), new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
 	};
- 0	Benchmark0Åú0testingcommon0testingBenchmarkResult0timeTime0testingB0testingInternalBenchmark0syncRWMutex0timeDuration0testingrun0ÇRegisterCoverÅ∫	RegisterCover = go$pkg.RegisterCover = function(c) {
+ 0	Benchmark0Åú0testingcommon0testingInternalBenchmark0testingBenchmarkResult0testingB0syncRWMutex0timeTime0timeDuration0testingrun0ÇRegisterCoverÅ∫	RegisterCover = go$pkg.RegisterCover = function(c) {
 		var _struct;
 		cover = (_struct = c, new Cover.Ptr(_struct.Mode, _struct.Counters, _struct.Blocks, _struct.CoveredPackages));
 	};
@@ -724,9 +659,9 @@ trimOutput00testingB0Ç	BenchmarkÇJ	Benchmark = go$pkg.Benchmark = fun
 			go$callDeferred(go$deferred);
 		}
 	};
- 0coverReport0Å©0testingcoverProfile0osCreate0fmtFprintf0testingcover0testing
-CoverBlock0
-osFile0testingtoOutputDir0testing	mustBeNil0fmtPrintf0ÇxRunExamplesÇÂ	RunExamples = go$pkg.RunExamples = function(matchString, examples) {
+ 0coverReport0Å©0testingcoverProfile0fmtFprintf0testingcover0fmtPrintf0
+osFile0osCreate0testingtoOutputDir0testing	mustBeNil0testing
+CoverBlock0ÇxRunExamplesÇÂ	RunExamples = go$pkg.RunExamples = function(matchString, examples) {
 		var ok, eg, _ref, _i, _slice, _index, _struct, _tuple, matched, err, _struct$1;
 		ok = false;
 		ok = true;
@@ -804,9 +739,9 @@ runExampleÇn	runExample = function(eg) {
 		}
 	};
  0
-runExample0Å®0fmtPrintf0
-osPipe0osStderr0
-osExit0timeNow0testingchatty0osStdout0fmtFprintln0timeTime0strings	TrimSpace0fmtSprintf0lShortD	Short = go$pkg.Short = function() {
+runExample0Å®0
+osPipe0fmtFprintln0osStderr0
+osExit0timeNow0fmtSprintf0testingchatty0fmtPrintf0osStdout0timeTime0strings	TrimSpace0lShortD	Short = go$pkg.Short = function() {
 		return short$1.go$get();
 	};
  0Short00testingshort0tVerboseG	Verbose = go$pkg.Verbose = function() {
@@ -1045,9 +980,9 @@ runExample0Å®0fmtPrintf0
 		RunBenchmarks(matchString, benchmarks);
 		after();
 	};
- 0Main0Åˆ0testingparseCpuList0testing
-startAlarm0testinghaveExamples0fmtPrintln0flagParse0testingbefore0testingRunTests0testingRunExamples0testing	stopAlarm0
-osExit0testingRunBenchmarks0testingafter0Ç± ÇZ	T.Ptr.prototype.report = function() {
+ 0Main0Åˆ0testingbefore0testing
+startAlarm0testinghaveExamples0testingRunExamples0fmtPrintln0
+osExit0testingafter0flagParse0testingparseCpuList0testingRunTests0testing	stopAlarm0testingRunBenchmarks0Ç± ÇZ	T.Ptr.prototype.report = function() {
 		var t, tstr, format;
 		t = this;
 		tstr = fmt.Sprintf("(%.2f seconds)", new (go$sliceType(go$emptyInterface))([new Go$Float64(t.common.duration.Seconds())]));
@@ -1130,9 +1065,9 @@ startAlarm0testinghaveExamples0fmtPrintln0flagParse0testingb
 		return ok;
 	};
  0
-RunTests0Ç=0fmtFprintln0
-osExit0syncRWMutex0testingparallel0testinghaveExamples0testingcpuList0fmtFprintf0fmtSprintf0testingT0testingreport0testingmatch0fmtPrintf0osStderr0runtime
-GOMAXPROCS0testingcommon0timeTime0timeDuration0testingchatty0ÇZbeforeÇ	before = function() {
+RunTests0Ç=0testinghaveExamples0runtime
+GOMAXPROCS0
+osExit0timeTime0fmtPrintf0testingreport0testingcpuList0testingcommon0testingparallel0fmtFprintln0osStderr0syncRWMutex0timeDuration0testingT0testingmatch0fmtFprintf0fmtSprintf0testingchatty0ÇZbeforeÇ	before = function() {
 		var _tuple, f, err, err$1;
 		if (memProfileRate.go$get() > 0) {
 			runtime.MemProfileRate = memProfileRate.go$get();
@@ -1157,9 +1092,9 @@ GOMAXPROCS0testingcommon0timeTime0timeDuration0testingchatty
 			os.Exit(2);
 		}
 	};
- 0before0Ç%0testingtoOutputDir0testingcover0testingmemProfileRate0testing
-cpuProfile0osCreate0osStderr0
-osExit0fmtFprintf0testingblockProfile0testingblockProfileRate0runtimeSetBlockProfileRate0testingcoverProfile0 runtime/pprofStartCPUProfile0ÇùafterÇH	after = function() {
+ 0before0Ç%0testing
+cpuProfile0osStderr0 runtime/pprofStartCPUProfile0runtimeSetBlockProfileRate0testingmemProfileRate0fmtFprintf0testingtoOutputDir0testingblockProfileRate0testingcoverProfile0testingcover0
+osExit0osCreate0testingblockProfile0ÇùafterÇH	after = function() {
 		var _tuple, f, err, _tuple$1, f$1, err$1;
 		if (!(cpuProfile.go$get() === "")) {
 			pprof.StopCPUProfile();
@@ -1192,10 +1127,10 @@ cpuProfile0osCreate0osStderr0
 			coverReport();
 		}
 	};
- 0after0Ç;0testing
-cpuProfile0testingblockProfileRate0testingcover0testingcoverReport0
-osExit0runtime/pprofStopCPUProfile0osCreate0osStderr0!runtime/pprofWriteHeapProfile0runtime/pprofLookup0testing
-memProfile0testingtoOutputDir0fmtFprintf0testingblockProfile0Ç¢toOutputDirÇA	toOutputDir = function(path) {
+ 0after0Ç;0runtime/pprofStopCPUProfile0testingtoOutputDir0osStderr0
+osExit0!runtime/pprofWriteHeapProfile0testingblockProfile0testingcoverReport0fmtFprintf0testingblockProfileRate0testing
+cpuProfile0testing
+memProfile0osCreate0runtime/pprofLookup0testingcover0Ç¢toOutputDirÇA	toOutputDir = function(path) {
 		if (outputDir.go$get() === "" || path === "") {
 			return path;
 		}
@@ -1244,9 +1179,9 @@ startAlarm0I0testingtimeout0time	AfterFunc0fmtSprintf0testing
 		}
 	};
  0parseCpuList0Å•0testing
-cpuListStr0stringsSplit0strings	TrimSpace0strconvAtoi0fmtFprintf0osStderr0
-osExit0testingcpuList0runtime
-GOMAXPROCS0*matchBenchmarks  0matchBenchmarks0 0	benchTime  0	benchTime0 0*benchmarkMemory  0benchmarkMemory0 0wbenchmarkLock (		benchmarkLock = new sync.Mutex.Ptr();
+cpuListStr0strings	TrimSpace0testingcpuList0runtime
+GOMAXPROCS0stringsSplit0strconvAtoi0fmtFprintf0osStderr0
+osExit0*matchBenchmarks  0matchBenchmarks0 0	benchTime  0	benchTime0 0*benchmarkMemory  0benchmarkMemory0 0wbenchmarkLock (		benchmarkLock = new sync.Mutex.Ptr();
 0benchmarkLock0)0syncMutex0testingbenchmarkLock0omemStats )		memStats = new runtime.MemStats.Ptr();
 0
 memStats0*0runtimeMemStats0testingmemStats0Ucover 		cover = new Cover.Ptr();
@@ -1280,8 +1215,9 @@ cpuProfile0Å≤  		blockProfile = flag.String("test.blockprofile", "", "write 
 0 0'0flagString0testing
 cpuListStr0Åû  [		parallel = flag.Int("test.parallel", runtime.GOMAXPROCS(0), "maximum test parallelism");
 0 090flagInt0runtime
-GOMAXPROCS0testingparallel0   0-0 0   0-0 0Ç) Ç–
-			go$pkg.RunTests2 = function(pkgPath, dir, names, tests) {
+GOMAXPROCS0testingparallel0   0-0 0   0-0 0ÇF ÇÌ
+			go$pkg.Main2 = function(pkgPath, dir, names, tests) {
+				flag.Parse();
 				if (tests.length === 0) {
 					console.log("?   \t" + pkgPath + "\t[no test files]");
 					return true;
@@ -1318,7 +1254,7 @@ GOMAXPROCS0testingparallel0   0-0 0   0-0 0Ç) Ç–
 				}
 				var duration = time.Now().Sub(start);
 				fmt.Printf("%s\t%s\t%.3fs\n", new (go$sliceType(go$emptyInterface))([new Go$String(ok ? "ok  " : "FAIL"), new Go$String(pkgPath), new Go$Float64(duration.Seconds())]));
-				return ok;
+				process.exit(ok ? 0 : 1);
 			};
 		 0 0M0
 osOpen0timeNow0testingT0testingcommon0testingreport0

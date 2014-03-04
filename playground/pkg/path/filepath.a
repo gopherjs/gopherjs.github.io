@@ -1,4 +1,4 @@
-0Çè1path/filepathÇ&package filepath
+0ÇèÅpath/filepathÇ&package filepath
 import errors "errors"
 import os "os"
 import runtime "runtime"
@@ -155,7 +155,7 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0wruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepath0x0errorserrors0osos0runtimeruntime0sortsort0stringsstrings0unicode/utf8utf80bytesbytes0Çh0ÇölazybufÇ≈	lazybuf = go$pkg.lazybuf = go$newType(0, "Struct", "filepath.lazybuf", "lazybuf", "path/filepath", function(path_, buf_, w_, volAndPath_, volLen_) {
+0wruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepath0x0errorserrors0osos0runtimeruntime0sortsort0stringsstrings0unicode/utf8utf80bytesbytes0Çhe0Ç“lazybufÇ≈	lazybuf = go$pkg.lazybuf = go$newType(0, "Struct", "filepath.lazybuf", "lazybuf", "path/filepath", function(path_, buf_, w_, volAndPath_, volLen_) {
 		this.go$val = this;
 		this.path = path_ !== undefined ? path_ : "";
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
@@ -163,15 +163,15 @@ $$
 		this.volAndPath = volAndPath_ !== undefined ? volAndPath_ : "";
 		this.volLen = volLen_ !== undefined ? volLen_ : 0;
 	});
-Ç∑		lazybuf.init([["path", "path/filepath", Go$String, ""], ["buf", "path/filepath", (go$sliceType(Go$Uint8)), ""], ["w", "path/filepath", Go$Int, ""], ["volAndPath", "path/filepath", Go$String, ""], ["volLen", "path/filepath", Go$Int, ""]]);
-		(go$ptrType(lazybuf)).methods = [["append", "path/filepath", [Go$Uint8], [], false], ["index", "path/filepath", [Go$Int], [Go$Uint8], false], ["string", "path/filepath", [], [Go$String], false]];
+ÇÔ		(go$ptrType(lazybuf)).methods = [["append", "path/filepath", [Go$Uint8], [], false, -1], ["index", "path/filepath", [Go$Int], [Go$Uint8], false, -1], ["string", "path/filepath", [], [Go$String], false, -1]];
+		lazybuf.init([["path", "path", "path/filepath", Go$String, ""], ["buf", "buf", "path/filepath", (go$sliceType(Go$Uint8)), ""], ["w", "w", "path/filepath", Go$Int, ""], ["volAndPath", "volAndPath", "path/filepath", Go$String, ""], ["volLen", "volLen", "path/filepath", Go$Int, ""]]);
 0	lazybuf0 0Å·WalkFuncm	WalkFunc = go$pkg.WalkFunc = go$newType(0, "Func", "filepath.WalkFunc", "WalkFunc", "path/filepath", null);
 H		WalkFunc.init([Go$String, os.FileInfo, go$error], [go$error], false);
 0
-WalkFunc00osFileInfo0Ç‚byNamef	byName = go$pkg.byName = go$newType(0, "Slice", "filepath.byName", "byName", "path/filepath", null);
-ÇR		byName.init(os.FileInfo);
-		byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+WalkFunc00osFileInfo0Ç˙byNamef	byName = go$pkg.byName = go$newType(0, "Slice", "filepath.byName", "byName", "path/filepath", null);
+Çj		byName.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		byName.init(os.FileInfo);
 0byName00osFileInfo0ÇÏMatchÇâ	Match = go$pkg.Match = function(pattern, name) {
 		var matched, err, star, chunk, _tuple, _tuple$1, _tuple$2, t, ok, err$1, _tuple$3, i, _tuple$4, t$1, ok$1, err$2, _tuple$5, _tuple$6, _tuple$7;
 		matched = false;

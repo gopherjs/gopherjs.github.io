@@ -1,4 +1,4 @@
-0ÇI»runtime/debugÇepackage debug
+0ÇJruntime/debugÇepackage debug
 import runtime "runtime"
 import sort "sort"
 import time "time"
@@ -126,7 +126,7 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0ÅÆruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilruntime/debug0k0runtimeruntime0sortsort0timetime0bytesbytes0
-fmtfmt0	io/ioutilioutil0osos0Ç*,0Ç}GCStatsÇ^	GCStats = go$pkg.GCStats = go$newType(0, "Struct", "debug.GCStats", "GCStats", "runtime/debug", function(LastGC_, NumGC_, PauseTotal_, Pause_, PauseQuantiles_) {
+fmtfmt0	io/ioutilioutil0osos0Ç*Å0Ç∫GCStatsÇ^	GCStats = go$pkg.GCStats = go$newType(0, "Struct", "debug.GCStats", "GCStats", "runtime/debug", function(LastGC_, NumGC_, PauseTotal_, Pause_, PauseQuantiles_) {
 		this.go$val = this;
 		this.LastGC = LastGC_ !== undefined ? LastGC_ : new time.Time.Ptr();
 		this.NumGC = NumGC_ !== undefined ? NumGC_ : new Go$Int64(0, 0);
@@ -134,12 +134,12 @@ $$
 		this.Pause = Pause_ !== undefined ? Pause_ : (go$sliceType(time.Duration)).nil;
 		this.PauseQuantiles = PauseQuantiles_ !== undefined ? PauseQuantiles_ : (go$sliceType(time.Duration)).nil;
 	});
-Å‚		GCStats.init([["LastGC", "", time.Time, ""], ["NumGC", "", Go$Int64, ""], ["PauseTotal", "", time.Duration, ""], ["Pause", "", (go$sliceType(time.Duration)), ""], ["PauseQuantiles", "", (go$sliceType(time.Duration)), ""]]);
-0	GCStats0 0timeTime0timeDuration0Ç
+Ç		GCStats.init([["LastGC", "LastGC", "", time.Time, ""], ["NumGC", "NumGC", "", Go$Int64, ""], ["PauseTotal", "PauseTotal", "", time.Duration, ""], ["Pause", "Pause", "", (go$sliceType(time.Duration)), ""], ["PauseQuantiles", "PauseQuantiles", "", (go$sliceType(time.Duration)), ""]]);
+0	GCStats0 0timeTime0timeDuration0Ç
 byDurations	byDuration = go$pkg.byDuration = go$newType(0, "Slice", "debug.byDuration", "byDuration", "runtime/debug", null);
-Ç`		byDuration.init(time.Duration);
-		byDuration.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(byDuration)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+Çx		byDuration.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(byDuration)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		byDuration.init(time.Duration);
 0
 byDuration00timeDuration0ÅÑreadGCStatsb	readGCStats = function() {
 		throw go$panic("Native function not implemented: readGCStats");

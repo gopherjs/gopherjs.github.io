@@ -1,4 +1,4 @@
-0ƒ@7go/build‚<#package build
+0ƒCygo/build‚<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -212,7 +212,7 @@ $$
 0‚@runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc	go/parserloggo/build0‚@0bytesbytes0errorserrors0
 fmtfmt0go/astast0go/docdoc0	go/parserparser0go/tokentoken0ioio0	io/ioutilioutil0
-loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio0ƒw0‚hContext‚$	Context = go$pkg.Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
+loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio0ƒ¹0‚ƒContext‚$	Context = go$pkg.Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
 		this.go$val = this;
 		this.GOARCH = GOARCH_ !== undefined ? GOARCH_ : "";
 		this.GOOS = GOOS_ !== undefined ? GOOS_ : "";
@@ -232,14 +232,15 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		this.ReadDir = ReadDir_ !== undefined ? ReadDir_ : go$throwNilPointerError;
 		this.OpenFile = OpenFile_ !== undefined ? OpenFile_ : go$throwNilPointerError;
 	});
-‚	¿		Context.init([["GOARCH", "", Go$String, ""], ["GOOS", "", Go$String, ""], ["GOROOT", "", Go$String, ""], ["GOPATH", "", Go$String, ""], ["CgoEnabled", "", Go$Bool, ""], ["UseAllFiles", "", Go$Bool, ""], ["Compiler", "", Go$String, ""], ["BuildTags", "", (go$sliceType(Go$String)), ""], ["ReleaseTags", "", (go$sliceType(Go$String)), ""], ["InstallSuffix", "", Go$String, ""], ["JoinPath", "", (go$funcType([(go$sliceType(Go$String))], [Go$String], true)), ""], ["SplitPathList", "", (go$funcType([Go$String], [(go$sliceType(Go$String))], false)), ""], ["IsAbsPath", "", (go$funcType([Go$String], [Go$Bool], false)), ""], ["IsDir", "", (go$funcType([Go$String], [Go$Bool], false)), ""], ["HasSubdir", "", (go$funcType([Go$String, Go$String], [Go$String, Go$Bool], false)), ""], ["ReadDir", "", (go$funcType([Go$String], [(go$sliceType(os.FileInfo)), go$error], false)), ""], ["OpenFile", "", (go$funcType([Go$String], [io.ReadCloser, go$error], false)), ""]]);
-		(go$ptrType(Context)).methods = [["Import", "", [Go$String, Go$String, ImportMode], [(go$ptrType(Package)), go$error], false], ["ImportDir", "", [Go$String, ImportMode], [(go$ptrType(Package)), go$error], false], ["MatchFile", "", [Go$String, Go$String], [Go$Bool, go$error], false], ["SrcDirs", "", [], [(go$sliceType(Go$String))], false], ["goodOSArchFile", "go/build", [Go$String, (go$mapType(Go$String, Go$Bool))], [Go$Bool], false], ["gopath", "go/build", [], [(go$sliceType(Go$String))], false], ["hasSubdir", "go/build", [Go$String, Go$String], [Go$String, Go$Bool], false], ["isAbsPath", "go/build", [Go$String], [Go$Bool], false], ["isDir", "go/build", [Go$String], [Go$Bool], false], ["isFile", "go/build", [Go$String], [Go$Bool], false], ["joinPath", "go/build", [(go$sliceType(Go$String))], [Go$String], true], ["match", "go/build", [Go$String, (go$mapType(Go$String, Go$Bool))], [Go$Bool], false], ["matchFile", "go/build", [Go$String, Go$String, Go$Bool, (go$mapType(Go$String, Go$Bool))], [Go$Bool, (go$sliceType(Go$Uint8)), Go$String, go$error], false], ["openFile", "go/build", [Go$String], [io.ReadCloser, go$error], false], ["readDir", "go/build", [Go$String], [(go$sliceType(os.FileInfo)), go$error], false], ["saveCgo", "go/build", [Go$String, (go$ptrType(Package)), (go$ptrType(ast.CommentGroup))], [go$error], false], ["shouldBuild", "go/build", [(go$sliceType(Go$Uint8)), (go$mapType(Go$String, Go$Bool))], [Go$Bool], false], ["splitPathList", "go/build", [Go$String], [(go$sliceType(Go$String))], false]];
-0	Context0g0osFileInfo0io
-ReadCloser0go/build
-ImportMode0go/buildPackage0go/astCommentGroup0
+‚
+Ú		(go$ptrType(Context)).methods = [["Import", "", [Go$String, Go$String, ImportMode], [(go$ptrType(Package)), go$error], false, -1], ["ImportDir", "", [Go$String, ImportMode], [(go$ptrType(Package)), go$error], false, -1], ["MatchFile", "", [Go$String, Go$String], [Go$Bool, go$error], false, -1], ["SrcDirs", "", [], [(go$sliceType(Go$String))], false, -1], ["goodOSArchFile", "go/build", [Go$String, (go$mapType(Go$String, Go$Bool))], [Go$Bool], false, -1], ["gopath", "go/build", [], [(go$sliceType(Go$String))], false, -1], ["hasSubdir", "go/build", [Go$String, Go$String], [Go$String, Go$Bool], false, -1], ["isAbsPath", "go/build", [Go$String], [Go$Bool], false, -1], ["isDir", "go/build", [Go$String], [Go$Bool], false, -1], ["isFile", "go/build", [Go$String], [Go$Bool], false, -1], ["joinPath", "go/build", [(go$sliceType(Go$String))], [Go$String], true, -1], ["match", "go/build", [Go$String, (go$mapType(Go$String, Go$Bool))], [Go$Bool], false, -1], ["matchFile", "go/build", [Go$String, Go$String, Go$Bool, (go$mapType(Go$String, Go$Bool))], [Go$Bool, (go$sliceType(Go$Uint8)), Go$String, go$error], false, -1], ["openFile", "go/build", [Go$String], [io.ReadCloser, go$error], false, -1], ["readDir", "go/build", [Go$String], [(go$sliceType(os.FileInfo)), go$error], false, -1], ["saveCgo", "go/build", [Go$String, (go$ptrType(Package)), (go$ptrType(ast.CommentGroup))], [go$error], false, -1], ["shouldBuild", "go/build", [(go$sliceType(Go$Uint8)), (go$mapType(Go$String, Go$Bool))], [Go$Bool], false, -1], ["splitPathList", "go/build", [Go$String], [(go$sliceType(Go$String))], false, -1]];
+		Context.init([["GOARCH", "GOARCH", "", Go$String, ""], ["GOOS", "GOOS", "", Go$String, ""], ["GOROOT", "GOROOT", "", Go$String, ""], ["GOPATH", "GOPATH", "", Go$String, ""], ["CgoEnabled", "CgoEnabled", "", Go$Bool, ""], ["UseAllFiles", "UseAllFiles", "", Go$Bool, ""], ["Compiler", "Compiler", "", Go$String, ""], ["BuildTags", "BuildTags", "", (go$sliceType(Go$String)), ""], ["ReleaseTags", "ReleaseTags", "", (go$sliceType(Go$String)), ""], ["InstallSuffix", "InstallSuffix", "", Go$String, ""], ["JoinPath", "JoinPath", "", (go$funcType([(go$sliceType(Go$String))], [Go$String], true)), ""], ["SplitPathList", "SplitPathList", "", (go$funcType([Go$String], [(go$sliceType(Go$String))], false)), ""], ["IsAbsPath", "IsAbsPath", "", (go$funcType([Go$String], [Go$Bool], false)), ""], ["IsDir", "IsDir", "", (go$funcType([Go$String], [Go$Bool], false)), ""], ["HasSubdir", "HasSubdir", "", (go$funcType([Go$String, Go$String], [Go$String, Go$Bool], false)), ""], ["ReadDir", "ReadDir", "", (go$funcType([Go$String], [(go$sliceType(os.FileInfo)), go$error], false)), ""], ["OpenFile", "OpenFile", "", (go$funcType([Go$String], [io.ReadCloser, go$error], false)), ""]]);
+0	Context0g0go/build
+ImportMode0go/buildPackage0io
+ReadCloser0osFileInfo0go/astCommentGroup0
 ImportModem	ImportMode = go$pkg.ImportMode = go$newType(4, "Uint", "build.ImportMode", "ImportMode", "go/build", null);
  0
-ImportMode0 0‚ÑPackage‚Î	Package = go$pkg.Package = go$newType(0, "Struct", "build.Package", "Package", "go/build", function(Dir_, Name_, Doc_, ImportPath_, Root_, SrcRoot_, PkgRoot_, BinDir_, Goroot_, PkgObj_, AllTags_, ConflictDir_, GoFiles_, CgoFiles_, IgnoredGoFiles_, CFiles_, CXXFiles_, HFiles_, SFiles_, SwigFiles_, SwigCXXFiles_, SysoFiles_, CgoCFLAGS_, CgoCPPFLAGS_, CgoCXXFLAGS_, CgoLDFLAGS_, CgoPkgConfig_, Imports_, ImportPos_, TestGoFiles_, TestImports_, TestImportPos_, XTestGoFiles_, XTestImports_, XTestImportPos_) {
+ImportMode0 0‚ŽPackage‚Î	Package = go$pkg.Package = go$newType(0, "Struct", "build.Package", "Package", "go/build", function(Dir_, Name_, Doc_, ImportPath_, Root_, SrcRoot_, PkgRoot_, BinDir_, Goroot_, PkgObj_, AllTags_, ConflictDir_, GoFiles_, CgoFiles_, IgnoredGoFiles_, CFiles_, CXXFiles_, HFiles_, SFiles_, SwigFiles_, SwigCXXFiles_, SysoFiles_, CgoCFLAGS_, CgoCPPFLAGS_, CgoCXXFLAGS_, CgoLDFLAGS_, CgoPkgConfig_, Imports_, ImportPos_, TestGoFiles_, TestImports_, TestImportPos_, XTestGoFiles_, XTestImports_, XTestImportPos_) {
 		this.go$val = this;
 		this.Dir = Dir_ !== undefined ? Dir_ : "";
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -277,15 +278,15 @@ ImportMode0 0‚ÑPackage‚Î	Package = go$pkg.Package = go$newType(0, "Struct",
 		this.XTestImports = XTestImports_ !== undefined ? XTestImports_ : (go$sliceType(Go$String)).nil;
 		this.XTestImportPos = XTestImportPos_ !== undefined ? XTestImportPos_ : false;
 	});
-‚Ï		Package.init([["Dir", "", Go$String, ""], ["Name", "", Go$String, ""], ["Doc", "", Go$String, ""], ["ImportPath", "", Go$String, ""], ["Root", "", Go$String, ""], ["SrcRoot", "", Go$String, ""], ["PkgRoot", "", Go$String, ""], ["BinDir", "", Go$String, ""], ["Goroot", "", Go$Bool, ""], ["PkgObj", "", Go$String, ""], ["AllTags", "", (go$sliceType(Go$String)), ""], ["ConflictDir", "", Go$String, ""], ["GoFiles", "", (go$sliceType(Go$String)), ""], ["CgoFiles", "", (go$sliceType(Go$String)), ""], ["IgnoredGoFiles", "", (go$sliceType(Go$String)), ""], ["CFiles", "", (go$sliceType(Go$String)), ""], ["CXXFiles", "", (go$sliceType(Go$String)), ""], ["HFiles", "", (go$sliceType(Go$String)), ""], ["SFiles", "", (go$sliceType(Go$String)), ""], ["SwigFiles", "", (go$sliceType(Go$String)), ""], ["SwigCXXFiles", "", (go$sliceType(Go$String)), ""], ["SysoFiles", "", (go$sliceType(Go$String)), ""], ["CgoCFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoCPPFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoCXXFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoLDFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoPkgConfig", "", (go$sliceType(Go$String)), ""], ["Imports", "", (go$sliceType(Go$String)), ""], ["ImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""], ["TestGoFiles", "", (go$sliceType(Go$String)), ""], ["TestImports", "", (go$sliceType(Go$String)), ""], ["TestImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""], ["XTestGoFiles", "", (go$sliceType(Go$String)), ""], ["XTestImports", "", (go$sliceType(Go$String)), ""], ["XTestImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""]]);
-		(go$ptrType(Package)).methods = [["IsCommand", "", [], [Go$Bool], false]];
-0	Package00go/tokenPosition0‚Y	NoGoError½	NoGoError = go$pkg.NoGoError = go$newType(0, "Struct", "build.NoGoError", "NoGoError", "go/build", function(Dir_) {
+‚Œ		(go$ptrType(Package)).methods = [["IsCommand", "", [], [Go$Bool], false, -1]];
+		Package.init([["Dir", "Dir", "", Go$String, ""], ["Name", "Name", "", Go$String, ""], ["Doc", "Doc", "", Go$String, ""], ["ImportPath", "ImportPath", "", Go$String, ""], ["Root", "Root", "", Go$String, ""], ["SrcRoot", "SrcRoot", "", Go$String, ""], ["PkgRoot", "PkgRoot", "", Go$String, ""], ["BinDir", "BinDir", "", Go$String, ""], ["Goroot", "Goroot", "", Go$Bool, ""], ["PkgObj", "PkgObj", "", Go$String, ""], ["AllTags", "AllTags", "", (go$sliceType(Go$String)), ""], ["ConflictDir", "ConflictDir", "", Go$String, ""], ["GoFiles", "GoFiles", "", (go$sliceType(Go$String)), ""], ["CgoFiles", "CgoFiles", "", (go$sliceType(Go$String)), ""], ["IgnoredGoFiles", "IgnoredGoFiles", "", (go$sliceType(Go$String)), ""], ["CFiles", "CFiles", "", (go$sliceType(Go$String)), ""], ["CXXFiles", "CXXFiles", "", (go$sliceType(Go$String)), ""], ["HFiles", "HFiles", "", (go$sliceType(Go$String)), ""], ["SFiles", "SFiles", "", (go$sliceType(Go$String)), ""], ["SwigFiles", "SwigFiles", "", (go$sliceType(Go$String)), ""], ["SwigCXXFiles", "SwigCXXFiles", "", (go$sliceType(Go$String)), ""], ["SysoFiles", "SysoFiles", "", (go$sliceType(Go$String)), ""], ["CgoCFLAGS", "CgoCFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoCPPFLAGS", "CgoCPPFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoCXXFLAGS", "CgoCXXFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoLDFLAGS", "CgoLDFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoPkgConfig", "CgoPkgConfig", "", (go$sliceType(Go$String)), ""], ["Imports", "Imports", "", (go$sliceType(Go$String)), ""], ["ImportPos", "ImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""], ["TestGoFiles", "TestGoFiles", "", (go$sliceType(Go$String)), ""], ["TestImports", "TestImports", "", (go$sliceType(Go$String)), ""], ["TestImportPos", "TestImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""], ["XTestGoFiles", "XTestGoFiles", "", (go$sliceType(Go$String)), ""], ["XTestImports", "XTestImports", "", (go$sliceType(Go$String)), ""], ["XTestImportPos", "XTestImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""]]);
+0	Package00go/tokenPosition0‚e	NoGoError½	NoGoError = go$pkg.NoGoError = go$newType(0, "Struct", "build.NoGoError", "NoGoError", "go/build", function(Dir_) {
 		this.go$val = this;
 		this.Dir = Dir_ !== undefined ? Dir_ : "";
 	});
-}		NoGoError.init([["Dir", "", Go$String, ""]]);
-		(go$ptrType(NoGoError)).methods = [["Error", "", [], [Go$String], false]];
-0	NoGoError0 0‚íimportReader‚	importReader = go$pkg.importReader = go$newType(0, "Struct", "build.importReader", "importReader", "go/build", function(b_, buf_, peek_, err_, eof_, nerr_) {
+ˆ		(go$ptrType(NoGoError)).methods = [["Error", "", [], [Go$String], false, -1]];
+		NoGoError.init([["Dir", "Dir", "", Go$String, ""]]);
+0	NoGoError0 0‚7importReader‚	importReader = go$pkg.importReader = go$newType(0, "Struct", "build.importReader", "importReader", "go/build", function(b_, buf_, peek_, err_, eof_, nerr_) {
 		this.go$val = this;
 		this.b = b_ !== undefined ? b_ : (go$ptrType(bufio.Reader)).nil;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
@@ -294,8 +295,8 @@ ImportMode0 0‚ÑPackage‚Î	Package = go$pkg.Package = go$newType(0, "Struct",
 		this.eof = eof_ !== undefined ? eof_ : false;
 		this.nerr = nerr_ !== undefined ? nerr_ : 0;
 	});
-‚³		importReader.init([["b", "go/build", (go$ptrType(bufio.Reader)), ""], ["buf", "go/build", (go$sliceType(Go$Uint8)), ""], ["peek", "go/build", Go$Uint8, ""], ["err", "go/build", go$error, ""], ["eof", "go/build", Go$Bool, ""], ["nerr", "go/build", Go$Int, ""]]);
-		(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false], ["readByte", "go/build", [], [Go$Uint8], false], ["readIdent", "go/build", [], [], false], ["readImport", "go/build", [], [], false], ["readKeyword", "go/build", [Go$String], [], false], ["readString", "go/build", [], [], false], ["syntaxError", "go/build", [], [], false]];
+‚ý		(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false, -1], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false, -1], ["readByte", "go/build", [], [Go$Uint8], false, -1], ["readIdent", "go/build", [], [], false, -1], ["readImport", "go/build", [], [], false, -1], ["readKeyword", "go/build", [Go$String], [], false, -1], ["readString", "go/build", [], [], false, -1], ["syntaxError", "go/build", [], [], false, -1]];
+		importReader.init([["b", "b", "go/build", (go$ptrType(bufio.Reader)), ""], ["buf", "buf", "go/build", (go$sliceType(Go$Uint8)), ""], ["peek", "peek", "go/build", Go$Uint8, ""], ["err", "err", "go/build", go$error, ""], ["eof", "eof", "go/build", Go$Bool, ""], ["nerr", "nerr", "go/build", Go$Int, ""]]);
 0importReader00bufioReader0‚g ‚	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
@@ -511,7 +512,7 @@ cgoEnabled0˜envOrt	envOr = function(name, def) {
 		}
 		return name.substring(i);
 	};
- 0	nameExt00strings	LastIndex0‚D¨ ‚B	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
+ 0	nameExt00strings	LastIndex0‚D¼ ‚B 	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
 		var go$this = this, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, ok, _tuple$1, sub, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, ok$1, _tuple$2, sub$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, _slice$4, _index$4, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, _slice$5, _index$5, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, _slice$6, _index$6, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$3, _key$3, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		ctxt = go$this;
@@ -586,7 +587,7 @@ cgoEnabled0˜envOrt	envOr = function(name, def) {
 			if (strings.HasPrefix(path$1, "/")) {
 				return [p, fmt.Errorf("import %q: cannot import absolute path", new (go$sliceType(go$emptyInterface))([new Go$String(path$1)]))];
 			}
-			tried = new (go$structType([["goroot", "go/build", Go$String, ""], ["gopath", "go/build", (go$sliceType(Go$String)), ""]])).Ptr("", (go$sliceType(Go$String)).nil);
+			tried = new (go$structType([["goroot", "goroot", "go/build", Go$String, ""], ["gopath", "gopath", "go/build", (go$sliceType(Go$String)), ""]])).Ptr("", (go$sliceType(Go$String)).nil);
 			/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 14; continue; }
 				dir$3 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", path$1]));
 				isDir = ctxt.isDir(dir$3);
@@ -834,9 +835,9 @@ cgoEnabled0˜envOrt	envOr = function(name, def) {
 		/* */ } break; } }; return go$f();
 	};
 	Context.prototype.Import = function(path$1, srcDir, mode) { return this.go$val.Import(path$1, srcDir, mode); };
- 0	Context0‚…0go/buildgopath0strings	HasPrefix0go/buildisFile0go/astCommentGroup0go/astGenDecl0go/buildcleanImports0go/buildIsLocalImport0go/buildreadDir0strings	HasSuffix0go/tokenPosition0go/build	NoGoError0go/buildnameExt0go/build	matchFile0	go/parser	ParseFile0go/buildsaveCgo0go/build	hasSubdir0go/token
-NewFileSet0sortStrings0pathSplit0go/build	isAbsPath0go/buildisDir0go/docSynopsis0strconvUnquote0go/buildContext0go/buildPackage0fmtErrorf0go/buildjoinPath0stringsJoin0logPanicf0fmtSprintf0go/ast
-ImportSpec0‚œ ‚[	Context.Ptr.prototype.MatchFile = function(dir, name) {
+ 0	Context0‚…0go/build	hasSubdir0go/tokenPosition0go/buildsaveCgo0go/buildPackage0fmtErrorf0go/buildisFile0go/astGenDecl0go/buildcleanImports0fmtSprintf0stringsJoin0pathSplit0go/buildIsLocalImport0go/buildreadDir0	go/parser	ParseFile0go/astCommentGroup0strconvUnquote0go/build	NoGoError0go/buildjoinPath0go/buildgopath0go/buildnameExt0go/docSynopsis0go/ast
+ImportSpec0go/buildContext0go/build	isAbsPath0go/buildisDir0strings	HasPrefix0go/token
+NewFileSet0go/build	matchFile0strings	HasSuffix0logPanicf0sortStrings0‚œ ‚[	Context.Ptr.prototype.MatchFile = function(dir, name) {
 		var match, err, ctxt, _tuple;
 		match = false;
 		err = null;
@@ -893,7 +894,7 @@ ImportSpec0‚œ ‚[	Context.Ptr.prototype.MatchFile = function(dir, name) {
 		return [match, data, filename, err];
 	};
 	Context.prototype.matchFile = function(dir, name, returnImports, allTags) { return this.go$val.matchFile(dir, name, returnImports, allTags); };
- 0Context	matchFile0ú0go/buildContext0go/buildgoodOSArchFile0go/buildopenFile0strings	HasSuffix0go/buildreadComments0strings	HasPrefix0strings	LastIndex0go/buildjoinPath0go/buildreadImports0fmtErrorf0go/buildshouldBuild0‚´cleanImports‚}	cleanImports = function(m) {
+ 0Context	matchFile0ú0go/buildContext0strings	HasPrefix0strings	LastIndex0go/buildjoinPath0go/buildopenFile0go/buildreadComments0fmtErrorf0go/buildshouldBuild0go/buildgoodOSArchFile0strings	HasSuffix0go/buildreadImports0‚´cleanImports‚}	cleanImports = function(m) {
 		var all, _ref, _i, _keys, _entry, path$1;
 		all = (go$sliceType(Go$String)).make(0, go$keys(m).length, function() { return ""; });
 		_ref = m;
@@ -1046,7 +1047,7 @@ slashslash0stringsFields0go/buildmatch0‚± ‚Ü	Context.Ptr.prototype
 		return null;
 	};
 	Context.prototype.saveCgo = function(filename, di, cg) { return this.go$val.saveCgo(filename, di, cg); };
- 0ContextsaveCgo0¶0stringsIndex0fmtErrorf0stringsFields0go/buildsafeCgoName0go/buildContext0stringsSplit0strings	TrimSpace0go/buildmatch0go/buildsplitQuoted0‚MsafeCgoNameÿ	safeCgoName = function(s) {
+ 0ContextsaveCgo0¶0strings	TrimSpace0go/buildsafeCgoName0go/buildContext0stringsSplit0stringsIndex0fmtErrorf0stringsFields0go/buildmatch0go/buildsplitQuoted0‚MsafeCgoNameÿ	safeCgoName = function(s) {
 		var i, c;
 		if (s === "") {
 			return false;
@@ -1424,8 +1425,8 @@ readString0‚§readComments‚,	readComments = function(f) {
 		}
 		return [r.buf, r.err];
 	};
- 0readImports0à0go/build	readIdent0go/buildnextByte0go/buildreadByte0bufioReader0bufio	NewReader0go/buildimportReader0go/buildreadKeyword0go/buildpeekByte0go/build
-readImport0go/build	errSyntax0   0	Default0 0 
+ 0readImports0à0go/buildreadKeyword0go/build	readIdent0go/buildnextByte0go/build
+readImport0bufioReader0bufio	NewReader0go/buildimportReader0go/buildpeekByte0go/build	errSyntax0go/buildreadByte0   0	Default0 0 
 cgoEnabled  0
 cgoEnabled0 0 
 slashslash  0

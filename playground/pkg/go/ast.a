@@ -1,4 +1,4 @@
-0É^)go/astÇ¨Ñpackage ast
+0Éh°go/astÇ¨Ñpackage ast
 import token "go/token"
 import strings "strings"
 import unicode "unicode"
@@ -610,7 +610,7 @@ $$
 0Å≤runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/ast0ÅŒ0go/tokentoken0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0
 fmtfmt0sortsort0strconvstrconv0ioio0osos0reflectreflect0
-go/scannerscanner0É∞0ÅÚNodeV	Node = go$pkg.Node = go$newType(0, "Interface", "ast.Node", "Node", "go/ast", null);
+go/scannerscanner0É∫Ñ0ÅÚNodeV	Node = go$pkg.Node = go$newType(0, "Interface", "ast.Node", "Node", "go/ast", null);
 w		Node.init([["End", "", (go$funcType([], [token.Pos], false))], ["Pos", "", (go$funcType([], [token.Pos], false))]]);
 0Node00go/tokenPos0Ç)ExprV	Expr = go$pkg.Expr = go$newType(0, "Interface", "ast.Expr", "Expr", "go/ast", null);
 Å≠		Expr.init([["End", "", (go$funcType([], [token.Pos], false))], ["Pos", "", (go$funcType([], [token.Pos], false))], ["exprNode", "go/ast", (go$funcType([], [], false))]]);
@@ -618,20 +618,20 @@ go/scannerscanner0É∞0ÅÚNodeV	Node = go$pkg.Node = go$newType(0, "Interfac
 Å≠		Stmt.init([["End", "", (go$funcType([], [token.Pos], false))], ["Pos", "", (go$funcType([], [token.Pos], false))], ["stmtNode", "go/ast", (go$funcType([], [], false))]]);
 0Stmt00go/tokenPos0Ç)DeclV	Decl = go$pkg.Decl = go$newType(0, "Interface", "ast.Decl", "Decl", "go/ast", null);
 Å≠		Decl.init([["End", "", (go$funcType([], [token.Pos], false))], ["Pos", "", (go$funcType([], [token.Pos], false))], ["declNode", "go/ast", (go$funcType([], [], false))]]);
-0Decl00go/tokenPos0Ç◊CommentÅÔ	Comment = go$pkg.Comment = go$newType(0, "Struct", "ast.Comment", "Comment", "go/ast", function(Slash_, Text_) {
+0Decl00go/tokenPos0ÇCommentÅÔ	Comment = go$pkg.Comment = go$newType(0, "Struct", "ast.Comment", "Comment", "go/ast", function(Slash_, Text_) {
 		this.go$val = this;
 		this.Slash = Slash_ !== undefined ? Slash_ : 0;
 		this.Text = Text_ !== undefined ? Text_ : "";
 	});
-Åª		Comment.init([["Slash", "", token.Pos, ""], ["Text", "", Go$String, ""]]);
-		(go$ptrType(Comment)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false]];
-0	Comment00go/tokenPos0Ç#CommentGroupÅ	CommentGroup = go$pkg.CommentGroup = go$newType(0, "Struct", "ast.CommentGroup", "CommentGroup", "go/ast", function(List_) {
+Å‘		(go$ptrType(Comment)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1]];
+		Comment.init([["Slash", "Slash", "", token.Pos, ""], ["Text", "Text", "", Go$String, ""]]);
+0	Comment00go/tokenPos0Ç7CommentGroupÅ	CommentGroup = go$pkg.CommentGroup = go$newType(0, "Struct", "ast.CommentGroup", "CommentGroup", "go/ast", function(List_) {
 		this.go$val = this;
 		this.List = List_ !== undefined ? List_ : (go$sliceType((go$ptrType(Comment)))).nil;
 	});
-ÅÈ		CommentGroup.init([["List", "", (go$sliceType((go$ptrType(Comment)))), ""]]);
-		(go$ptrType(CommentGroup)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["Text", "", [], [Go$String], false]];
-0CommentGroup0$0go/astComment0go/tokenPos0Ç”FieldÇ	Field = go$pkg.Field = go$newType(0, "Struct", "ast.Field", "Field", "go/ast", function(Doc_, Names_, Type_, Tag_, Comment_) {
+Å˝		(go$ptrType(CommentGroup)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["Text", "", [], [Go$String], false, -1]];
+		CommentGroup.init([["List", "List", "", (go$sliceType((go$ptrType(Comment)))), ""]]);
+0CommentGroup0$0go/astComment0go/tokenPos0ÇFieldÇ	Field = go$pkg.Field = go$newType(0, "Struct", "ast.Field", "Field", "go/ast", function(Doc_, Names_, Type_, Tag_, Comment_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : (go$ptrType(CommentGroup)).nil;
 		this.Names = Names_ !== undefined ? Names_ : (go$sliceType((go$ptrType(Ident)))).nil;
@@ -639,89 +639,89 @@ go/scannerscanner0É∞0ÅÚNodeV	Node = go$pkg.Node = go$newType(0, "Interfac
 		this.Tag = Tag_ !== undefined ? Tag_ : (go$ptrType(BasicLit)).nil;
 		this.Comment = Comment_ !== undefined ? Comment_ : (go$ptrType(CommentGroup)).nil;
 	});
-ÇS		Field.init([["Doc", "", (go$ptrType(CommentGroup)), ""], ["Names", "", (go$sliceType((go$ptrType(Ident)))), ""], ["Type", "", Expr, ""], ["Tag", "", (go$ptrType(BasicLit)), ""], ["Comment", "", (go$ptrType(CommentGroup)), ""]]);
-		(go$ptrType(Field)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false]];
-0Field0^0go/astCommentGroup0go/astIdent0go/astBasicLit0go/astExpr0go/tokenPos0ÇÕ	FieldListÇf	FieldList = go$pkg.FieldList = go$newType(0, "Struct", "ast.FieldList", "FieldList", "go/ast", function(Opening_, List_, Closing_) {
+ÇÖ		(go$ptrType(Field)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1]];
+		Field.init([["Doc", "Doc", "", (go$ptrType(CommentGroup)), ""], ["Names", "Names", "", (go$sliceType((go$ptrType(Ident)))), ""], ["Type", "Type", "", Expr, ""], ["Tag", "Tag", "", (go$ptrType(BasicLit)), ""], ["Comment", "Comment", "", (go$ptrType(CommentGroup)), ""]]);
+0Field0^0go/astCommentGroup0go/astIdent0go/astBasicLit0go/tokenPos0go/astExpr0Ç˜	FieldListÇf	FieldList = go$pkg.FieldList = go$newType(0, "Struct", "ast.FieldList", "FieldList", "go/ast", function(Opening_, List_, Closing_) {
 		this.go$val = this;
 		this.Opening = Opening_ !== undefined ? Opening_ : 0;
 		this.List = List_ !== undefined ? List_ : (go$sliceType((go$ptrType(Field)))).nil;
 		this.Closing = Closing_ !== undefined ? Closing_ : 0;
 	});
-Ç#		FieldList.init([["Opening", "", token.Pos, ""], ["List", "", (go$sliceType((go$ptrType(Field)))), ""], ["Closing", "", token.Pos, ""]]);
-		(go$ptrType(FieldList)).methods = [["End", "", [], [token.Pos], false], ["NumFields", "", [], [Go$Int], false], ["Pos", "", [], [token.Pos], false]];
-0	FieldList0"0go/astField0go/tokenPos0ÇÓBadExprÅ‚	BadExpr = go$pkg.BadExpr = go$newType(0, "Struct", "ast.BadExpr", "BadExpr", "go/ast", function(From_, To_) {
+ÇM		(go$ptrType(FieldList)).methods = [["End", "", [], [token.Pos], false, -1], ["NumFields", "", [], [Go$Int], false, -1], ["Pos", "", [], [token.Pos], false, -1]];
+		FieldList.init([["Opening", "Opening", "", token.Pos, ""], ["List", "List", "", (go$sliceType((go$ptrType(Field)))), ""], ["Closing", "Closing", "", token.Pos, ""]]);
+0	FieldList0"0go/astField0go/tokenPos0ÇBadExprÅ‚	BadExpr = go$pkg.BadExpr = go$newType(0, "Struct", "ast.BadExpr", "BadExpr", "go/ast", function(From_, To_) {
 		this.go$val = this;
 		this.From = From_ !== undefined ? From_ : 0;
 		this.To = To_ !== undefined ? To_ : 0;
 	});
-Åﬂ		BadExpr.init([["From", "", token.Pos, ""], ["To", "", token.Pos, ""]]);
-		(go$ptrType(BadExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0	BadExpr00go/tokenPos0ÇŒIdentÇ8	Ident = go$pkg.Ident = go$newType(0, "Struct", "ast.Ident", "Ident", "go/ast", function(NamePos_, Name_, Obj_) {
+Å˘		(go$ptrType(BadExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		BadExpr.init([["From", "From", "", token.Pos, ""], ["To", "To", "", token.Pos, ""]]);
+0	BadExpr00go/tokenPos0Ç¸IdentÇ8	Ident = go$pkg.Ident = go$newType(0, "Struct", "ast.Ident", "Ident", "go/ast", function(NamePos_, Name_, Obj_) {
 		this.go$val = this;
 		this.NamePos = NamePos_ !== undefined ? NamePos_ : 0;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Obj = Obj_ !== undefined ? Obj_ : (go$ptrType(Object)).nil;
 	});
-ÇY		Ident.init([["NamePos", "", token.Pos, ""], ["Name", "", Go$String, ""], ["Obj", "", (go$ptrType(Object)), ""]]);
-		(go$ptrType(Ident)).methods = [["End", "", [], [token.Pos], false], ["IsExported", "", [], [Go$Bool], false], ["Pos", "", [], [token.Pos], false], ["String", "", [], [Go$String], false], ["exprNode", "go/ast", [], [], false]];
-0Ident0#0go/astObject0go/tokenPos0ÇEllipsisÅ˝	Ellipsis = go$pkg.Ellipsis = go$newType(0, "Struct", "ast.Ellipsis", "Ellipsis", "go/ast", function(Ellipsis_, Elt_) {
+Çá		(go$ptrType(Ident)).methods = [["End", "", [], [token.Pos], false, -1], ["IsExported", "", [], [Go$Bool], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["String", "", [], [Go$String], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		Ident.init([["NamePos", "NamePos", "", token.Pos, ""], ["Name", "Name", "", Go$String, ""], ["Obj", "Obj", "", (go$ptrType(Object)), ""]]);
+0Ident0#0go/astObject0go/tokenPos0Ç=EllipsisÅ˝	Ellipsis = go$pkg.Ellipsis = go$newType(0, "Struct", "ast.Ellipsis", "Ellipsis", "go/ast", function(Ellipsis_, Elt_) {
 		this.go$val = this;
 		this.Ellipsis = Ellipsis_ !== undefined ? Ellipsis_ : 0;
 		this.Elt = Elt_ !== undefined ? Elt_ : null;
 	});
-Å·		Ellipsis.init([["Ellipsis", "", token.Pos, ""], ["Elt", "", Expr, ""]]);
-		(go$ptrType(Ellipsis)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
+Ç 		(go$ptrType(Ellipsis)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		Ellipsis.init([["Ellipsis", "Ellipsis", "", token.Pos, ""], ["Elt", "Elt", "", Expr, ""]]);
 0
-Ellipsis0!0go/tokenPos0go/astExpr0ÇÑBasicLitÇ9	BasicLit = go$pkg.BasicLit = go$newType(0, "Struct", "ast.BasicLit", "BasicLit", "go/ast", function(ValuePos_, Kind_, Value_) {
+Ellipsis0!0go/tokenPos0go/astExpr0Ç≠BasicLitÇ9	BasicLit = go$pkg.BasicLit = go$newType(0, "Struct", "ast.BasicLit", "BasicLit", "go/ast", function(ValuePos_, Kind_, Value_) {
 		this.go$val = this;
 		this.ValuePos = ValuePos_ !== undefined ? ValuePos_ : 0;
 		this.Kind = Kind_ !== undefined ? Kind_ : 0;
 		this.Value = Value_ !== undefined ? Value_ : "";
 	});
-Ç		BasicLit.init([["ValuePos", "", token.Pos, ""], ["Kind", "", token.Token, ""], ["Value", "", Go$String, ""]]);
-		(go$ptrType(BasicLit)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
+Ç0		(go$ptrType(BasicLit)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		BasicLit.init([["ValuePos", "ValuePos", "", token.Pos, ""], ["Kind", "Kind", "", token.Token, ""], ["Value", "Value", "", Go$String, ""]]);
 0
-BasicLit0$0go/tokenPos0go/tokenToken0ÇpFuncLitÇ	FuncLit = go$pkg.FuncLit = go$newType(0, "Struct", "ast.FuncLit", "FuncLit", "go/ast", function(Type_, Body_) {
+BasicLit0$0go/tokenPos0go/tokenToken0ÇçFuncLitÇ	FuncLit = go$pkg.FuncLit = go$newType(0, "Struct", "ast.FuncLit", "FuncLit", "go/ast", function(Type_, Body_) {
 		this.go$val = this;
 		this.Type = Type_ !== undefined ? Type_ : (go$ptrType(FuncType)).nil;
 		this.Body = Body_ !== undefined ? Body_ : (go$ptrType(BlockStmt)).nil;
 	});
-Å¸		FuncLit.init([["Type", "", (go$ptrType(FuncType)), ""], ["Body", "", (go$ptrType(BlockStmt)), ""]]);
-		(go$ptrType(FuncLit)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0	FuncLit0:0go/astFuncType0go/ast	BlockStmt0go/tokenPos0ÇCompositeLitÇî	CompositeLit = go$pkg.CompositeLit = go$newType(0, "Struct", "ast.CompositeLit", "CompositeLit", "go/ast", function(Type_, Lbrace_, Elts_, Rbrace_) {
+Ç		(go$ptrType(FuncLit)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		FuncLit.init([["Type", "Type", "", (go$ptrType(FuncType)), ""], ["Body", "Body", "", (go$ptrType(BlockStmt)), ""]]);
+0	FuncLit0:0go/astFuncType0go/ast	BlockStmt0go/tokenPos0Ç<CompositeLitÇî	CompositeLit = go$pkg.CompositeLit = go$newType(0, "Struct", "ast.CompositeLit", "CompositeLit", "go/ast", function(Type_, Lbrace_, Elts_, Rbrace_) {
 		this.go$val = this;
 		this.Type = Type_ !== undefined ? Type_ : null;
 		this.Lbrace = Lbrace_ !== undefined ? Lbrace_ : 0;
 		this.Elts = Elts_ !== undefined ? Elts_ : (go$sliceType(Expr)).nil;
 		this.Rbrace = Rbrace_ !== undefined ? Rbrace_ : 0;
 	});
-Ç/		CompositeLit.init([["Type", "", Expr, ""], ["Lbrace", "", token.Pos, ""], ["Elts", "", (go$sliceType(Expr)), ""], ["Rbrace", "", token.Pos, ""]]);
-		(go$ptrType(CompositeLit)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0CompositeLit0!0go/astExpr0go/tokenPos0Ço	ParenExprÇ/	ParenExpr = go$pkg.ParenExpr = go$newType(0, "Struct", "ast.ParenExpr", "ParenExpr", "go/ast", function(Lparen_, X_, Rparen_) {
+Ç_		(go$ptrType(CompositeLit)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		CompositeLit.init([["Type", "Type", "", Expr, ""], ["Lbrace", "Lbrace", "", token.Pos, ""], ["Elts", "Elts", "", (go$sliceType(Expr)), ""], ["Rbrace", "Rbrace", "", token.Pos, ""]]);
+0CompositeLit0!0go/astExpr0go/tokenPos0Çï	ParenExprÇ/	ParenExpr = go$pkg.ParenExpr = go$newType(0, "Struct", "ast.ParenExpr", "ParenExpr", "go/ast", function(Lparen_, X_, Rparen_) {
 		this.go$val = this;
 		this.Lparen = Lparen_ !== undefined ? Lparen_ : 0;
 		this.X = X_ !== undefined ? X_ : null;
 		this.Rparen = Rparen_ !== undefined ? Rparen_ : 0;
 	});
-Å˛		ParenExpr.init([["Lparen", "", token.Pos, ""], ["X", "", Expr, ""], ["Rparen", "", token.Pos, ""]]);
-		(go$ptrType(ParenExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0	ParenExpr0!0go/tokenPos0go/astExpr0ÇLSelectorExprÇ	SelectorExpr = go$pkg.SelectorExpr = go$newType(0, "Struct", "ast.SelectorExpr", "SelectorExpr", "go/ast", function(X_, Sel_) {
+Ç#		(go$ptrType(ParenExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		ParenExpr.init([["Lparen", "Lparen", "", token.Pos, ""], ["X", "X", "", Expr, ""], ["Rparen", "Rparen", "", token.Pos, ""]]);
+0	ParenExpr0!0go/tokenPos0go/astExpr0ÇeSelectorExprÇ	SelectorExpr = go$pkg.SelectorExpr = go$newType(0, "Struct", "ast.SelectorExpr", "SelectorExpr", "go/ast", function(X_, Sel_) {
 		this.go$val = this;
 		this.X = X_ !== undefined ? X_ : null;
 		this.Sel = Sel_ !== undefined ? Sel_ : (go$ptrType(Ident)).nil;
 	});
-ÅÏ		SelectorExpr.init([["X", "", Expr, ""], ["Sel", "", (go$ptrType(Ident)), ""]]);
-		(go$ptrType(SelectorExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0SelectorExpr020go/astIdent0go/astExpr0go/tokenPos0Ç∆	IndexExprÇl	IndexExpr = go$pkg.IndexExpr = go$newType(0, "Struct", "ast.IndexExpr", "IndexExpr", "go/ast", function(X_, Lbrack_, Index_, Rbrack_) {
+Ç		(go$ptrType(SelectorExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		SelectorExpr.init([["X", "X", "", Expr, ""], ["Sel", "Sel", "", (go$ptrType(Ident)), ""]]);
+0SelectorExpr020go/astIdent0go/tokenPos0go/astExpr0ÇÙ	IndexExprÇl	IndexExpr = go$pkg.IndexExpr = go$newType(0, "Struct", "ast.IndexExpr", "IndexExpr", "go/ast", function(X_, Lbrack_, Index_, Rbrack_) {
 		this.go$val = this;
 		this.X = X_ !== undefined ? X_ : null;
 		this.Lbrack = Lbrack_ !== undefined ? Lbrack_ : 0;
 		this.Index = Index_ !== undefined ? Index_ : null;
 		this.Rbrack = Rbrack_ !== undefined ? Rbrack_ : 0;
 	});
-Ç		IndexExpr.init([["X", "", Expr, ""], ["Lbrack", "", token.Pos, ""], ["Index", "", Expr, ""], ["Rbrack", "", token.Pos, ""]]);
-		(go$ptrType(IndexExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0	IndexExpr0!0go/astExpr0go/tokenPos0Ç∏	SliceExprÇ	SliceExpr = go$pkg.SliceExpr = go$newType(0, "Struct", "ast.SliceExpr", "SliceExpr", "go/ast", function(X_, Lbrack_, Low_, High_, Max_, Slice3_, Rbrack_) {
+ÇE		(go$ptrType(IndexExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		IndexExpr.init([["X", "X", "", Expr, ""], ["Lbrack", "Lbrack", "", token.Pos, ""], ["Index", "Index", "", Expr, ""], ["Rbrack", "Rbrack", "", token.Pos, ""]]);
+0	IndexExpr0!0go/tokenPos0go/astExpr0Ç˝	SliceExprÇ	SliceExpr = go$pkg.SliceExpr = go$newType(0, "Struct", "ast.SliceExpr", "SliceExpr", "go/ast", function(X_, Lbrack_, Low_, High_, Max_, Slice3_, Rbrack_) {
 		this.go$val = this;
 		this.X = X_ !== undefined ? X_ : null;
 		this.Lbrack = Lbrack_ !== undefined ? Lbrack_ : 0;
@@ -731,18 +731,18 @@ go/scannerscanner0É∞0ÅÚNodeV	Node = go$pkg.Node = go$newType(0, "Interfac
 		this.Slice3 = Slice3_ !== undefined ? Slice3_ : false;
 		this.Rbrack = Rbrack_ !== undefined ? Rbrack_ : 0;
 	});
-Ça		SliceExpr.init([["X", "", Expr, ""], ["Lbrack", "", token.Pos, ""], ["Low", "", Expr, ""], ["High", "", Expr, ""], ["Max", "", Expr, ""], ["Slice3", "", Go$Bool, ""], ["Rbrack", "", token.Pos, ""]]);
-		(go$ptrType(SliceExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0	SliceExpr0!0go/astExpr0go/tokenPos0ÇÈTypeAssertExprÇ|	TypeAssertExpr = go$pkg.TypeAssertExpr = go$newType(0, "Struct", "ast.TypeAssertExpr", "TypeAssertExpr", "go/ast", function(X_, Lparen_, Type_, Rparen_) {
+Ç¶		(go$ptrType(SliceExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		SliceExpr.init([["X", "X", "", Expr, ""], ["Lbrack", "Lbrack", "", token.Pos, ""], ["Low", "Low", "", Expr, ""], ["High", "High", "", Expr, ""], ["Max", "Max", "", Expr, ""], ["Slice3", "Slice3", "", Go$Bool, ""], ["Rbrack", "Rbrack", "", token.Pos, ""]]);
+0	SliceExpr0!0go/tokenPos0go/astExpr0ÇTypeAssertExprÇ|	TypeAssertExpr = go$pkg.TypeAssertExpr = go$newType(0, "Struct", "ast.TypeAssertExpr", "TypeAssertExpr", "go/ast", function(X_, Lparen_, Type_, Rparen_) {
 		this.go$val = this;
 		this.X = X_ !== undefined ? X_ : null;
 		this.Lparen = Lparen_ !== undefined ? Lparen_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : null;
 		this.Rparen = Rparen_ !== undefined ? Rparen_ : 0;
 	});
-Ç 		TypeAssertExpr.init([["X", "", Expr, ""], ["Lparen", "", token.Pos, ""], ["Type", "", Expr, ""], ["Rparen", "", token.Pos, ""]]);
-		(go$ptrType(TypeAssertExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0TypeAssertExpr0!0go/astExpr0go/tokenPos0ÇNCallExprÇ∆	CallExpr = go$pkg.CallExpr = go$newType(0, "Struct", "ast.CallExpr", "CallExpr", "go/ast", function(Fun_, Lparen_, Args_, Ellipsis_, Rparen_) {
+ÇM		(go$ptrType(TypeAssertExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		TypeAssertExpr.init([["X", "X", "", Expr, ""], ["Lparen", "Lparen", "", token.Pos, ""], ["Type", "Type", "", Expr, ""], ["Rparen", "Rparen", "", token.Pos, ""]]);
+0TypeAssertExpr0!0go/tokenPos0go/astExpr0ÇâCallExprÇ∆	CallExpr = go$pkg.CallExpr = go$newType(0, "Struct", "ast.CallExpr", "CallExpr", "go/ast", function(Fun_, Lparen_, Args_, Ellipsis_, Rparen_) {
 		this.go$val = this;
 		this.Fun = Fun_ !== undefined ? Fun_ : null;
 		this.Lparen = Lparen_ !== undefined ? Lparen_ : 0;
@@ -750,26 +750,26 @@ go/scannerscanner0É∞0ÅÚNodeV	Node = go$pkg.Node = go$newType(0, "Interfac
 		this.Ellipsis = Ellipsis_ !== undefined ? Ellipsis_ : 0;
 		this.Rparen = Rparen_ !== undefined ? Rparen_ : 0;
 	});
-ÇG		CallExpr.init([["Fun", "", Expr, ""], ["Lparen", "", token.Pos, ""], ["Args", "", (go$sliceType(Expr)), ""], ["Ellipsis", "", token.Pos, ""], ["Rparen", "", token.Pos, ""]]);
-		(go$ptrType(CallExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
+ÇÇ		(go$ptrType(CallExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		CallExpr.init([["Fun", "Fun", "", Expr, ""], ["Lparen", "Lparen", "", token.Pos, ""], ["Args", "Args", "", (go$sliceType(Expr)), ""], ["Ellipsis", "Ellipsis", "", token.Pos, ""], ["Rparen", "Rparen", "", token.Pos, ""]]);
 0
-CallExpr0!0go/astExpr0go/tokenPos0ÇˇStarExprÅÂ	StarExpr = go$pkg.StarExpr = go$newType(0, "Struct", "ast.StarExpr", "StarExpr", "go/ast", function(Star_, X_) {
+CallExpr0!0go/astExpr0go/tokenPos0ÇStarExprÅÂ	StarExpr = go$pkg.StarExpr = go$newType(0, "Struct", "ast.StarExpr", "StarExpr", "go/ast", function(Star_, X_) {
 		this.go$val = this;
 		this.Star = Star_ !== undefined ? Star_ : 0;
 		this.X = X_ !== undefined ? X_ : null;
 	});
-Å€		StarExpr.init([["Star", "", token.Pos, ""], ["X", "", Expr, ""]]);
-		(go$ptrType(StarExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
+ÅÙ		(go$ptrType(StarExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		StarExpr.init([["Star", "Star", "", token.Pos, ""], ["X", "X", "", Expr, ""]]);
 0
-StarExpr0!0go/tokenPos0go/astExpr0Çk	UnaryExprÇ	UnaryExpr = go$pkg.UnaryExpr = go$newType(0, "Struct", "ast.UnaryExpr", "UnaryExpr", "go/ast", function(OpPos_, Op_, X_) {
+StarExpr0!0go/tokenPos0go/astExpr0Çå	UnaryExprÇ	UnaryExpr = go$pkg.UnaryExpr = go$newType(0, "Struct", "ast.UnaryExpr", "UnaryExpr", "go/ast", function(OpPos_, Op_, X_) {
 		this.go$val = this;
 		this.OpPos = OpPos_ !== undefined ? OpPos_ : 0;
 		this.Op = Op_ !== undefined ? Op_ : 0;
 		this.X = X_ !== undefined ? X_ : null;
 	});
-Å˚		UnaryExpr.init([["OpPos", "", token.Pos, ""], ["Op", "", token.Token, ""], ["X", "", Expr, ""]]);
-		(go$ptrType(UnaryExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0	UnaryExpr040go/tokenPos0go/tokenToken0go/astExpr0Ç∂
+Ç		(go$ptrType(UnaryExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		UnaryExpr.init([["OpPos", "OpPos", "", token.Pos, ""], ["Op", "Op", "", token.Token, ""], ["X", "X", "", Expr, ""]]);
+0	UnaryExpr040go/tokenPos0go/tokenToken0go/astExpr0Ç€
 BinaryExprÇL	BinaryExpr = go$pkg.BinaryExpr = go$newType(0, "Struct", "ast.BinaryExpr", "BinaryExpr", "go/ast", function(X_, OpPos_, Op_, Y_) {
 		this.go$val = this;
 		this.X = X_ !== undefined ? X_ : null;
@@ -777,126 +777,126 @@ BinaryExprÇL	BinaryExpr = go$pkg.BinaryExpr = go$newType(0, "Struct", "ast.Bin
 		this.Op = Op_ !== undefined ? Op_ : 0;
 		this.Y = Y_ !== undefined ? Y_ : null;
 	});
-Ç		BinaryExpr.init([["X", "", Expr, ""], ["OpPos", "", token.Pos, ""], ["Op", "", token.Token, ""], ["Y", "", Expr, ""]]);
-		(go$ptrType(BinaryExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
+Ç7		(go$ptrType(BinaryExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		BinaryExpr.init([["X", "X", "", Expr, ""], ["OpPos", "OpPos", "", token.Pos, ""], ["Op", "Op", "", token.Token, ""], ["Y", "Y", "", Expr, ""]]);
 0
-BinaryExpr040go/astExpr0go/tokenPos0go/tokenToken0ÇÖKeyValueExprÇ>	KeyValueExpr = go$pkg.KeyValueExpr = go$newType(0, "Struct", "ast.KeyValueExpr", "KeyValueExpr", "go/ast", function(Key_, Colon_, Value_) {
+BinaryExpr040go/tokenPos0go/astExpr0go/tokenToken0Ç´KeyValueExprÇ>	KeyValueExpr = go$pkg.KeyValueExpr = go$newType(0, "Struct", "ast.KeyValueExpr", "KeyValueExpr", "go/ast", function(Key_, Colon_, Value_) {
 		this.go$val = this;
 		this.Key = Key_ !== undefined ? Key_ : null;
 		this.Colon = Colon_ !== undefined ? Colon_ : 0;
 		this.Value = Value_ !== undefined ? Value_ : null;
 	});
-Åˇ		KeyValueExpr.init([["Key", "", Expr, ""], ["Colon", "", token.Pos, ""], ["Value", "", Expr, ""]]);
-		(go$ptrType(KeyValueExpr)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0KeyValueExpr0!0go/astExpr0go/tokenPos0vChanDir\	ChanDir = go$pkg.ChanDir = go$newType(4, "Int", "ast.ChanDir", "ChanDir", "go/ast", null);
- 0	ChanDir0 0Çh	ArrayTypeÇ.	ArrayType = go$pkg.ArrayType = go$newType(0, "Struct", "ast.ArrayType", "ArrayType", "go/ast", function(Lbrack_, Len_, Elt_) {
+Ç$		(go$ptrType(KeyValueExpr)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		KeyValueExpr.init([["Key", "Key", "", Expr, ""], ["Colon", "Colon", "", token.Pos, ""], ["Value", "Value", "", Expr, ""]]);
+0KeyValueExpr0!0go/tokenPos0go/astExpr0vChanDir\	ChanDir = go$pkg.ChanDir = go$newType(4, "Int", "ast.ChanDir", "ChanDir", "go/ast", null);
+ 0	ChanDir0 0Çç	ArrayTypeÇ.	ArrayType = go$pkg.ArrayType = go$newType(0, "Struct", "ast.ArrayType", "ArrayType", "go/ast", function(Lbrack_, Len_, Elt_) {
 		this.go$val = this;
 		this.Lbrack = Lbrack_ !== undefined ? Lbrack_ : 0;
 		this.Len = Len_ !== undefined ? Len_ : null;
 		this.Elt = Elt_ !== undefined ? Elt_ : null;
 	});
-Å¯		ArrayType.init([["Lbrack", "", token.Pos, ""], ["Len", "", Expr, ""], ["Elt", "", Expr, ""]]);
-		(go$ptrType(ArrayType)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0	ArrayType0!0go/tokenPos0go/astExpr0Ç÷
+Ç		(go$ptrType(ArrayType)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		ArrayType.init([["Lbrack", "Lbrack", "", token.Pos, ""], ["Len", "Len", "", Expr, ""], ["Elt", "Elt", "", Expr, ""]]);
+0	ArrayType0!0go/tokenPos0go/astExpr0Ç
 StructTypeÇr	StructType = go$pkg.StructType = go$newType(0, "Struct", "ast.StructType", "StructType", "go/ast", function(Struct_, Fields_, Incomplete_) {
 		this.go$val = this;
 		this.Struct = Struct_ !== undefined ? Struct_ : 0;
 		this.Fields = Fields_ !== undefined ? Fields_ : (go$ptrType(FieldList)).nil;
 		this.Incomplete = Incomplete_ !== undefined ? Incomplete_ : false;
 	});
-Ç		StructType.init([["Struct", "", token.Pos, ""], ["Fields", "", (go$ptrType(FieldList)), ""], ["Incomplete", "", Go$Bool, ""]]);
-		(go$ptrType(StructType)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
+ÇH		(go$ptrType(StructType)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		StructType.init([["Struct", "Struct", "", token.Pos, ""], ["Fields", "Fields", "", (go$ptrType(FieldList)), ""], ["Incomplete", "Incomplete", "", Go$Bool, ""]]);
 0
-StructType0&0go/ast	FieldList0go/tokenPos0Ç”FuncTypeÇl	FuncType = go$pkg.FuncType = go$newType(0, "Struct", "ast.FuncType", "FuncType", "go/ast", function(Func_, Params_, Results_) {
+StructType0&0go/ast	FieldList0go/tokenPos0Ç¸FuncTypeÇl	FuncType = go$pkg.FuncType = go$newType(0, "Struct", "ast.FuncType", "FuncType", "go/ast", function(Func_, Params_, Results_) {
 		this.go$val = this;
 		this.Func = Func_ !== undefined ? Func_ : 0;
 		this.Params = Params_ !== undefined ? Params_ : (go$ptrType(FieldList)).nil;
 		this.Results = Results_ !== undefined ? Results_ : (go$ptrType(FieldList)).nil;
 	});
-Ç!		FuncType.init([["Func", "", token.Pos, ""], ["Params", "", (go$ptrType(FieldList)), ""], ["Results", "", (go$ptrType(FieldList)), ""]]);
-		(go$ptrType(FuncType)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
+ÇJ		(go$ptrType(FuncType)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		FuncType.init([["Func", "Func", "", token.Pos, ""], ["Params", "Params", "", (go$ptrType(FieldList)), ""], ["Results", "Results", "", (go$ptrType(FieldList)), ""]]);
 0
-FuncType0&0go/ast	FieldList0go/tokenPos0ÇInterfaceTypeÇé	InterfaceType = go$pkg.InterfaceType = go$newType(0, "Struct", "ast.InterfaceType", "InterfaceType", "go/ast", function(Interface_, Methods_, Incomplete_) {
+FuncType0&0go/ast	FieldList0go/tokenPos0Ç4InterfaceTypeÇé	InterfaceType = go$pkg.InterfaceType = go$newType(0, "Struct", "ast.InterfaceType", "InterfaceType", "go/ast", function(Interface_, Methods_, Incomplete_) {
 		this.go$val = this;
 		this.Interface = Interface_ !== undefined ? Interface_ : 0;
 		this.Methods = Methods_ !== undefined ? Methods_ : (go$ptrType(FieldList)).nil;
 		this.Incomplete = Incomplete_ !== undefined ? Incomplete_ : false;
 	});
-Ç$		InterfaceType.init([["Interface", "", token.Pos, ""], ["Methods", "", (go$ptrType(FieldList)), ""], ["Incomplete", "", Go$Bool, ""]]);
-		(go$ptrType(InterfaceType)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0InterfaceType0&0go/ast	FieldList0go/tokenPos0ÇSMapTypeÇ"	MapType = go$pkg.MapType = go$newType(0, "Struct", "ast.MapType", "MapType", "go/ast", function(Map_, Key_, Value_) {
+ÇV		(go$ptrType(InterfaceType)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		InterfaceType.init([["Interface", "Interface", "", token.Pos, ""], ["Methods", "Methods", "", (go$ptrType(FieldList)), ""], ["Incomplete", "Incomplete", "", Go$Bool, ""]]);
+0InterfaceType0&0go/ast	FieldList0go/tokenPos0ÇwMapTypeÇ"	MapType = go$pkg.MapType = go$newType(0, "Struct", "ast.MapType", "MapType", "go/ast", function(Map_, Key_, Value_) {
 		this.go$val = this;
 		this.Map = Map_ !== undefined ? Map_ : 0;
 		this.Key = Key_ !== undefined ? Key_ : null;
 		this.Value = Value_ !== undefined ? Value_ : null;
 	});
-ÅÛ		MapType.init([["Map", "", token.Pos, ""], ["Key", "", Expr, ""], ["Value", "", Expr, ""]]);
-		(go$ptrType(MapType)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
-0	MapType0!0go/tokenPos0go/astExpr0Ç—ChanTypeÇe	ChanType = go$pkg.ChanType = go$newType(0, "Struct", "ast.ChanType", "ChanType", "go/ast", function(Begin_, Arrow_, Dir_, Value_) {
+Ç		(go$ptrType(MapType)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		MapType.init([["Map", "Map", "", token.Pos, ""], ["Key", "Key", "", Expr, ""], ["Value", "Value", "", Expr, ""]]);
+0	MapType0!0go/tokenPos0go/astExpr0ÇˇChanTypeÇe	ChanType = go$pkg.ChanType = go$newType(0, "Struct", "ast.ChanType", "ChanType", "go/ast", function(Begin_, Arrow_, Dir_, Value_) {
 		this.go$val = this;
 		this.Begin = Begin_ !== undefined ? Begin_ : 0;
 		this.Arrow = Arrow_ !== undefined ? Arrow_ : 0;
 		this.Dir = Dir_ !== undefined ? Dir_ : 0;
 		this.Value = Value_ !== undefined ? Value_ : null;
 	});
-Ç		ChanType.init([["Begin", "", token.Pos, ""], ["Arrow", "", token.Pos, ""], ["Dir", "", ChanDir, ""], ["Value", "", Expr, ""]]);
-		(go$ptrType(ChanType)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["exprNode", "go/ast", [], [], false]];
+ÇF		(go$ptrType(ChanType)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["exprNode", "go/ast", [], [], false, -1]];
+		ChanType.init([["Begin", "Begin", "", token.Pos, ""], ["Arrow", "Arrow", "", token.Pos, ""], ["Dir", "Dir", "", ChanDir, ""], ["Value", "Value", "", Expr, ""]]);
 0
-ChanType040go/tokenPos0go/astChanDir0go/astExpr0ÇÓBadStmtÅ‚	BadStmt = go$pkg.BadStmt = go$newType(0, "Struct", "ast.BadStmt", "BadStmt", "go/ast", function(From_, To_) {
+ChanType040go/tokenPos0go/astChanDir0go/astExpr0ÇBadStmtÅ‚	BadStmt = go$pkg.BadStmt = go$newType(0, "Struct", "ast.BadStmt", "BadStmt", "go/ast", function(From_, To_) {
 		this.go$val = this;
 		this.From = From_ !== undefined ? From_ : 0;
 		this.To = To_ !== undefined ? To_ : 0;
 	});
-Åﬂ		BadStmt.init([["From", "", token.Pos, ""], ["To", "", token.Pos, ""]]);
-		(go$ptrType(BadStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
-0	BadStmt00go/tokenPos0ÇªDeclStmtÅª	DeclStmt = go$pkg.DeclStmt = go$newType(0, "Struct", "ast.DeclStmt", "DeclStmt", "go/ast", function(Decl_) {
+Å˘		(go$ptrType(BadStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		BadStmt.init([["From", "From", "", token.Pos, ""], ["To", "To", "", token.Pos, ""]]);
+0	BadStmt00go/tokenPos0ÇœDeclStmtÅª	DeclStmt = go$pkg.DeclStmt = go$newType(0, "Struct", "ast.DeclStmt", "DeclStmt", "go/ast", function(Decl_) {
 		this.go$val = this;
 		this.Decl = Decl_ !== undefined ? Decl_ : null;
 	});
-Å¡		DeclStmt.init([["Decl", "", Decl, ""]]);
-		(go$ptrType(DeclStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Å’		(go$ptrType(DeclStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		DeclStmt.init([["Decl", "Decl", "", Decl, ""]]);
 0
-DeclStmt0!0go/astDecl0go/tokenPos0ÇŒ	EmptyStmtÅ–	EmptyStmt = go$pkg.EmptyStmt = go$newType(0, "Struct", "ast.EmptyStmt", "EmptyStmt", "go/ast", function(Semicolon_) {
+DeclStmt0!0go/tokenPos0go/astDecl0ÇÁ	EmptyStmtÅ–	EmptyStmt = go$pkg.EmptyStmt = go$newType(0, "Struct", "ast.EmptyStmt", "EmptyStmt", "go/ast", function(Semicolon_) {
 		this.go$val = this;
 		this.Semicolon = Semicolon_ !== undefined ? Semicolon_ : 0;
 	});
-ÅÕ		EmptyStmt.init([["Semicolon", "", token.Pos, ""]]);
-		(go$ptrType(EmptyStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
-0	EmptyStmt00go/tokenPos0Ç∂LabeledStmtÇQ	LabeledStmt = go$pkg.LabeledStmt = go$newType(0, "Struct", "ast.LabeledStmt", "LabeledStmt", "go/ast", function(Label_, Colon_, Stmt_) {
+ÅÊ		(go$ptrType(EmptyStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		EmptyStmt.init([["Semicolon", "Semicolon", "", token.Pos, ""]]);
+0	EmptyStmt00go/tokenPos0Ç‹LabeledStmtÇQ	LabeledStmt = go$pkg.LabeledStmt = go$newType(0, "Struct", "ast.LabeledStmt", "LabeledStmt", "go/ast", function(Label_, Colon_, Stmt_) {
 		this.go$val = this;
 		this.Label = Label_ !== undefined ? Label_ : (go$ptrType(Ident)).nil;
 		this.Colon = Colon_ !== undefined ? Colon_ : 0;
 		this.Stmt = Stmt_ !== undefined ? Stmt_ : null;
 	});
-Ç		LabeledStmt.init([["Label", "", (go$ptrType(Ident)), ""], ["Colon", "", token.Pos, ""], ["Stmt", "", Stmt, ""]]);
-		(go$ptrType(LabeledStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
-0LabeledStmt020go/astIdent0go/tokenPos0go/astStmt0Ç¨ExprStmtÅØ	ExprStmt = go$pkg.ExprStmt = go$newType(0, "Struct", "ast.ExprStmt", "ExprStmt", "go/ast", function(X_) {
+Ç3		(go$ptrType(LabeledStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		LabeledStmt.init([["Label", "Label", "", (go$ptrType(Ident)), ""], ["Colon", "Colon", "", token.Pos, ""], ["Stmt", "Stmt", "", Stmt, ""]]);
+0LabeledStmt020go/astIdent0go/tokenPos0go/astStmt0ÇΩExprStmtÅØ	ExprStmt = go$pkg.ExprStmt = go$newType(0, "Struct", "ast.ExprStmt", "ExprStmt", "go/ast", function(X_) {
 		this.go$val = this;
 		this.X = X_ !== undefined ? X_ : null;
 	});
-Åæ		ExprStmt.init([["X", "", Expr, ""]]);
-		(go$ptrType(ExprStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Åœ		(go$ptrType(ExprStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		ExprStmt.init([["X", "X", "", Expr, ""]]);
 0
-ExprStmt0!0go/astExpr0go/tokenPos0ÇjSendStmtÇ2	SendStmt = go$pkg.SendStmt = go$newType(0, "Struct", "ast.SendStmt", "SendStmt", "go/ast", function(Chan_, Arrow_, Value_) {
+ExprStmt0!0go/tokenPos0go/astExpr0ÇëSendStmtÇ2	SendStmt = go$pkg.SendStmt = go$newType(0, "Struct", "ast.SendStmt", "SendStmt", "go/ast", function(Chan_, Arrow_, Value_) {
 		this.go$val = this;
 		this.Chan = Chan_ !== undefined ? Chan_ : null;
 		this.Arrow = Arrow_ !== undefined ? Arrow_ : 0;
 		this.Value = Value_ !== undefined ? Value_ : null;
 	});
-Å¯		SendStmt.init([["Chan", "", Expr, ""], ["Arrow", "", token.Pos, ""], ["Value", "", Expr, ""]]);
-		(go$ptrType(SendStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Ç		(go$ptrType(SendStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		SendStmt.init([["Chan", "Chan", "", Expr, ""], ["Arrow", "Arrow", "", token.Pos, ""], ["Value", "Value", "", Expr, ""]]);
 0
-SendStmt0!0go/astExpr0go/tokenPos0Ç}
+SendStmt0!0go/tokenPos0go/astExpr0Ç†
 IncDecStmtÇ'	IncDecStmt = go$pkg.IncDecStmt = go$newType(0, "Struct", "ast.IncDecStmt", "IncDecStmt", "go/ast", function(X_, TokPos_, Tok_) {
 		this.go$val = this;
 		this.X = X_ !== undefined ? X_ : null;
 		this.TokPos = TokPos_ !== undefined ? TokPos_ : 0;
 		this.Tok = Tok_ !== undefined ? Tok_ : 0;
 	});
-Åˇ		IncDecStmt.init([["X", "", Expr, ""], ["TokPos", "", token.Pos, ""], ["Tok", "", token.Token, ""]]);
-		(go$ptrType(IncDecStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Ç!		(go$ptrType(IncDecStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		IncDecStmt.init([["X", "X", "", Expr, ""], ["TokPos", "TokPos", "", token.Pos, ""], ["Tok", "Tok", "", token.Token, ""]]);
 0
-IncDecStmt040go/astExpr0go/tokenPos0go/tokenToken0Ç
+IncDecStmt040go/tokenPos0go/astExpr0go/tokenToken0ÇG
 AssignStmtÇå	AssignStmt = go$pkg.AssignStmt = go$newType(0, "Struct", "ast.AssignStmt", "AssignStmt", "go/ast", function(Lhs_, TokPos_, Tok_, Rhs_) {
 		this.go$val = this;
 		this.Lhs = Lhs_ !== undefined ? Lhs_ : (go$sliceType(Expr)).nil;
@@ -904,51 +904,51 @@ AssignStmtÇå	AssignStmt = go$pkg.AssignStmt = go$newType(0, "Struct", "ast.Ass
 		this.Tok = Tok_ !== undefined ? Tok_ : 0;
 		this.Rhs = Rhs_ !== undefined ? Rhs_ : (go$sliceType(Expr)).nil;
 	});
-Ç8		AssignStmt.init([["Lhs", "", (go$sliceType(Expr)), ""], ["TokPos", "", token.Pos, ""], ["Tok", "", token.Token, ""], ["Rhs", "", (go$sliceType(Expr)), ""]]);
-		(go$ptrType(AssignStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Çc		(go$ptrType(AssignStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		AssignStmt.init([["Lhs", "Lhs", "", (go$sliceType(Expr)), ""], ["TokPos", "TokPos", "", token.Pos, ""], ["Tok", "Tok", "", token.Token, ""], ["Rhs", "Rhs", "", (go$sliceType(Expr)), ""]]);
 0
-AssignStmt040go/astExpr0go/tokenPos0go/tokenToken0Ç GoStmtÅ˜	GoStmt = go$pkg.GoStmt = go$newType(0, "Struct", "ast.GoStmt", "GoStmt", "go/ast", function(Go_, Call_) {
+AssignStmt040go/astExpr0go/tokenPos0go/tokenToken0Ç;GoStmtÅ˜	GoStmt = go$pkg.GoStmt = go$newType(0, "Struct", "ast.GoStmt", "GoStmt", "go/ast", function(Go_, Call_) {
 		this.go$val = this;
 		this.Go = Go_ !== undefined ? Go_ : 0;
 		this.Call = Call_ !== undefined ? Call_ : (go$ptrType(CallExpr)).nil;
 	});
-ÅÍ		GoStmt.init([["Go", "", token.Pos, ""], ["Call", "", (go$ptrType(CallExpr)), ""]]);
-		(go$ptrType(GoStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
-0GoStmt0%0go/astCallExpr0go/tokenPos0ÇH	DeferStmtÇ	DeferStmt = go$pkg.DeferStmt = go$newType(0, "Struct", "ast.DeferStmt", "DeferStmt", "go/ast", function(Defer_, Call_) {
+Ç		(go$ptrType(GoStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		GoStmt.init([["Go", "Go", "", token.Pos, ""], ["Call", "Call", "", (go$ptrType(CallExpr)), ""]]);
+0GoStmt0%0go/astCallExpr0go/tokenPos0Çf	DeferStmtÇ	DeferStmt = go$pkg.DeferStmt = go$newType(0, "Struct", "ast.DeferStmt", "DeferStmt", "go/ast", function(Defer_, Call_) {
 		this.go$val = this;
 		this.Defer = Defer_ !== undefined ? Defer_ : 0;
 		this.Call = Call_ !== undefined ? Call_ : (go$ptrType(CallExpr)).nil;
 	});
-ÅÛ		DeferStmt.init([["Defer", "", token.Pos, ""], ["Call", "", (go$ptrType(CallExpr)), ""]]);
-		(go$ptrType(DeferStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
-0	DeferStmt0%0go/astCallExpr0go/tokenPos0Ç\
+Ç		(go$ptrType(DeferStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		DeferStmt.init([["Defer", "Defer", "", token.Pos, ""], ["Call", "Call", "", (go$ptrType(CallExpr)), ""]]);
+0	DeferStmt0%0go/astCallExpr0go/tokenPos0Ç~
 ReturnStmtÇ!	ReturnStmt = go$pkg.ReturnStmt = go$newType(0, "Struct", "ast.ReturnStmt", "ReturnStmt", "go/ast", function(Return_, Results_) {
 		this.go$val = this;
 		this.Return = Return_ !== undefined ? Return_ : 0;
 		this.Results = Results_ !== undefined ? Results_ : (go$sliceType(Expr)).nil;
 	});
-Å˜		ReturnStmt.init([["Return", "", token.Pos, ""], ["Results", "", (go$sliceType(Expr)), ""]]);
-		(go$ptrType(ReturnStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Ç		(go$ptrType(ReturnStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		ReturnStmt.init([["Return", "Return", "", token.Pos, ""], ["Results", "Results", "", (go$sliceType(Expr)), ""]]);
 0
-ReturnStmt0!0go/astExpr0go/tokenPos0Çµ
+ReturnStmt0!0go/astExpr0go/tokenPos0Ç€
 BranchStmtÇJ	BranchStmt = go$pkg.BranchStmt = go$newType(0, "Struct", "ast.BranchStmt", "BranchStmt", "go/ast", function(TokPos_, Tok_, Label_) {
 		this.go$val = this;
 		this.TokPos = TokPos_ !== undefined ? TokPos_ : 0;
 		this.Tok = Tok_ !== undefined ? Tok_ : 0;
 		this.Label = Label_ !== undefined ? Label_ : (go$ptrType(Ident)).nil;
 	});
-Ç		BranchStmt.init([["TokPos", "", token.Pos, ""], ["Tok", "", token.Token, ""], ["Label", "", (go$ptrType(Ident)), ""]]);
-		(go$ptrType(BranchStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Ç8		(go$ptrType(BranchStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		BranchStmt.init([["TokPos", "TokPos", "", token.Pos, ""], ["Tok", "Tok", "", token.Token, ""], ["Label", "Label", "", (go$ptrType(Ident)), ""]]);
 0
-BranchStmt050go/astIdent0go/tokenPos0go/tokenToken0Ç£	BlockStmtÇO	BlockStmt = go$pkg.BlockStmt = go$newType(0, "Struct", "ast.BlockStmt", "BlockStmt", "go/ast", function(Lbrace_, List_, Rbrace_) {
+BranchStmt050go/astIdent0go/tokenPos0go/tokenToken0ÇÀ	BlockStmtÇO	BlockStmt = go$pkg.BlockStmt = go$newType(0, "Struct", "ast.BlockStmt", "BlockStmt", "go/ast", function(Lbrace_, List_, Rbrace_) {
 		this.go$val = this;
 		this.Lbrace = Lbrace_ !== undefined ? Lbrace_ : 0;
 		this.List = List_ !== undefined ? List_ : (go$sliceType(Stmt)).nil;
 		this.Rbrace = Rbrace_ !== undefined ? Rbrace_ : 0;
 	});
-Ç		BlockStmt.init([["Lbrace", "", token.Pos, ""], ["List", "", (go$sliceType(Stmt)), ""], ["Rbrace", "", token.Pos, ""]]);
-		(go$ptrType(BlockStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
-0	BlockStmt0!0go/astStmt0go/tokenPos0Ç8IfStmtÇ£	IfStmt = go$pkg.IfStmt = go$newType(0, "Struct", "ast.IfStmt", "IfStmt", "go/ast", function(If_, Init_, Cond_, Body_, Else_) {
+Ç9		(go$ptrType(BlockStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		BlockStmt.init([["Lbrace", "Lbrace", "", token.Pos, ""], ["List", "List", "", (go$sliceType(Stmt)), ""], ["Rbrace", "Rbrace", "", token.Pos, ""]]);
+0	BlockStmt0!0go/astStmt0go/tokenPos0ÇjIfStmtÇ£	IfStmt = go$pkg.IfStmt = go$newType(0, "Struct", "ast.IfStmt", "IfStmt", "go/ast", function(If_, Init_, Cond_, Body_, Else_) {
 		this.go$val = this;
 		this.If = If_ !== undefined ? If_ : 0;
 		this.Init = Init_ !== undefined ? Init_ : null;
@@ -956,9 +956,9 @@ BranchStmt050go/astIdent0go/tokenPos0go/tokenToken0Ç£	BlockStmt
 		this.Body = Body_ !== undefined ? Body_ : (go$ptrType(BlockStmt)).nil;
 		this.Else = Else_ !== undefined ? Else_ : null;
 	});
-Ç3		IfStmt.init([["If", "", token.Pos, ""], ["Init", "", Stmt, ""], ["Cond", "", Expr, ""], ["Body", "", (go$ptrType(BlockStmt)), ""], ["Else", "", Stmt, ""]]);
-		(go$ptrType(IfStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
-0IfStmt0F0go/ast	BlockStmt0go/tokenPos0go/astStmt0go/astExpr0Ç!
+Çe		(go$ptrType(IfStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		IfStmt.init([["If", "If", "", token.Pos, ""], ["Init", "Init", "", Stmt, ""], ["Cond", "Cond", "", Expr, ""], ["Body", "Body", "", (go$ptrType(BlockStmt)), ""], ["Else", "Else", "", Stmt, ""]]);
+0IfStmt0F0go/ast	BlockStmt0go/tokenPos0go/astStmt0go/astExpr0ÇN
 CaseClauseÇî	CaseClause = go$pkg.CaseClause = go$newType(0, "Struct", "ast.CaseClause", "CaseClause", "go/ast", function(Case_, List_, Colon_, Body_) {
 		this.go$val = this;
 		this.Case = Case_ !== undefined ? Case_ : 0;
@@ -966,10 +966,10 @@ CaseClauseÇî	CaseClause = go$pkg.CaseClause = go$newType(0, "Struct", "ast.Cas
 		this.Colon = Colon_ !== undefined ? Colon_ : 0;
 		this.Body = Body_ !== undefined ? Body_ : (go$sliceType(Stmt)).nil;
 	});
-Ç8		CaseClause.init([["Case", "", token.Pos, ""], ["List", "", (go$sliceType(Expr)), ""], ["Colon", "", token.Pos, ""], ["Body", "", (go$sliceType(Stmt)), ""]]);
-		(go$ptrType(CaseClause)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Çe		(go$ptrType(CaseClause)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		CaseClause.init([["Case", "Case", "", token.Pos, ""], ["List", "List", "", (go$sliceType(Expr)), ""], ["Colon", "Colon", "", token.Pos, ""], ["Body", "Body", "", (go$sliceType(Stmt)), ""]]);
 0
-CaseClause010go/astExpr0go/astStmt0go/tokenPos0Ç
+CaseClause010go/astExpr0go/astStmt0go/tokenPos0ÇC
 SwitchStmtÇÜ	SwitchStmt = go$pkg.SwitchStmt = go$newType(0, "Struct", "ast.SwitchStmt", "SwitchStmt", "go/ast", function(Switch_, Init_, Tag_, Body_) {
 		this.go$val = this;
 		this.Switch = Switch_ !== undefined ? Switch_ : 0;
@@ -977,19 +977,19 @@ SwitchStmtÇÜ	SwitchStmt = go$pkg.SwitchStmt = go$newType(0, "Struct", "ast.Swi
 		this.Tag = Tag_ !== undefined ? Tag_ : null;
 		this.Body = Body_ !== undefined ? Body_ : (go$ptrType(BlockStmt)).nil;
 	});
-Ç&		SwitchStmt.init([["Switch", "", token.Pos, ""], ["Init", "", Stmt, ""], ["Tag", "", Expr, ""], ["Body", "", (go$ptrType(BlockStmt)), ""]]);
-		(go$ptrType(SwitchStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+ÇS		(go$ptrType(SwitchStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		SwitchStmt.init([["Switch", "Switch", "", token.Pos, ""], ["Init", "Init", "", Stmt, ""], ["Tag", "Tag", "", Expr, ""], ["Body", "Body", "", (go$ptrType(BlockStmt)), ""]]);
 0
-SwitchStmt0F0go/ast	BlockStmt0go/tokenPos0go/astStmt0go/astExpr0Ç5TypeSwitchStmtÇ¢	TypeSwitchStmt = go$pkg.TypeSwitchStmt = go$newType(0, "Struct", "ast.TypeSwitchStmt", "TypeSwitchStmt", "go/ast", function(Switch_, Init_, Assign_, Body_) {
+SwitchStmt0F0go/ast	BlockStmt0go/tokenPos0go/astStmt0go/astExpr0ÇeTypeSwitchStmtÇ¢	TypeSwitchStmt = go$pkg.TypeSwitchStmt = go$newType(0, "Struct", "ast.TypeSwitchStmt", "TypeSwitchStmt", "go/ast", function(Switch_, Init_, Assign_, Body_) {
 		this.go$val = this;
 		this.Switch = Switch_ !== undefined ? Switch_ : 0;
 		this.Init = Init_ !== undefined ? Init_ : null;
 		this.Assign = Assign_ !== undefined ? Assign_ : null;
 		this.Body = Body_ !== undefined ? Body_ : (go$ptrType(BlockStmt)).nil;
 	});
-Ç1		TypeSwitchStmt.init([["Switch", "", token.Pos, ""], ["Init", "", Stmt, ""], ["Assign", "", Stmt, ""], ["Body", "", (go$ptrType(BlockStmt)), ""]]);
-		(go$ptrType(TypeSwitchStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
-0TypeSwitchStmt060go/ast	BlockStmt0go/tokenPos0go/astStmt0ÇÌ
+Ça		(go$ptrType(TypeSwitchStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		TypeSwitchStmt.init([["Switch", "Switch", "", token.Pos, ""], ["Init", "Init", "", Stmt, ""], ["Assign", "Assign", "", Stmt, ""], ["Body", "Body", "", (go$ptrType(BlockStmt)), ""]]);
+0TypeSwitchStmt060go/ast	BlockStmt0go/tokenPos0go/astStmt0Ç
 CommClauseÇÄ	CommClause = go$pkg.CommClause = go$newType(0, "Struct", "ast.CommClause", "CommClause", "go/ast", function(Case_, Comm_, Colon_, Body_) {
 		this.go$val = this;
 		this.Case = Case_ !== undefined ? Case_ : 0;
@@ -997,19 +997,19 @@ CommClauseÇÄ	CommClause = go$pkg.CommClause = go$newType(0, "Struct", "ast.Com
 		this.Colon = Colon_ !== undefined ? Colon_ : 0;
 		this.Body = Body_ !== undefined ? Body_ : (go$sliceType(Stmt)).nil;
 	});
-Ç(		CommClause.init([["Case", "", token.Pos, ""], ["Comm", "", Stmt, ""], ["Colon", "", token.Pos, ""], ["Body", "", (go$sliceType(Stmt)), ""]]);
-		(go$ptrType(CommClause)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+ÇU		(go$ptrType(CommClause)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		CommClause.init([["Case", "Case", "", token.Pos, ""], ["Comm", "Comm", "", Stmt, ""], ["Colon", "Colon", "", token.Pos, ""], ["Body", "Body", "", (go$sliceType(Stmt)), ""]]);
 0
-CommClause0!0go/astStmt0go/tokenPos0ÇX
+CommClause0!0go/astStmt0go/tokenPos0Çw
 SelectStmtÇ	SelectStmt = go$pkg.SelectStmt = go$newType(0, "Struct", "ast.SelectStmt", "SelectStmt", "go/ast", function(Select_, Body_) {
 		this.go$val = this;
 		this.Select = Select_ !== undefined ? Select_ : 0;
 		this.Body = Body_ !== undefined ? Body_ : (go$ptrType(BlockStmt)).nil;
 	});
-Å˜		SelectStmt.init([["Select", "", token.Pos, ""], ["Body", "", (go$ptrType(BlockStmt)), ""]]);
-		(go$ptrType(SelectStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Ç		(go$ptrType(SelectStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		SelectStmt.init([["Select", "Select", "", token.Pos, ""], ["Body", "Body", "", (go$ptrType(BlockStmt)), ""]]);
 0
-SelectStmt0&0go/ast	BlockStmt0go/tokenPos0ÇEForStmtÇ´	ForStmt = go$pkg.ForStmt = go$newType(0, "Struct", "ast.ForStmt", "ForStmt", "go/ast", function(For_, Init_, Cond_, Post_, Body_) {
+SelectStmt0&0go/ast	BlockStmt0go/tokenPos0ÇxForStmtÇ´	ForStmt = go$pkg.ForStmt = go$newType(0, "Struct", "ast.ForStmt", "ForStmt", "go/ast", function(For_, Init_, Cond_, Post_, Body_) {
 		this.go$val = this;
 		this.For = For_ !== undefined ? For_ : 0;
 		this.Init = Init_ !== undefined ? Init_ : null;
@@ -1017,9 +1017,9 @@ SelectStmt0&0go/ast	BlockStmt0go/tokenPos0ÇEForStmtÇ´	ForStmt = go
 		this.Post = Post_ !== undefined ? Post_ : null;
 		this.Body = Body_ !== undefined ? Body_ : (go$ptrType(BlockStmt)).nil;
 	});
-Ç6		ForStmt.init([["For", "", token.Pos, ""], ["Init", "", Stmt, ""], ["Cond", "", Expr, ""], ["Post", "", Stmt, ""], ["Body", "", (go$ptrType(BlockStmt)), ""]]);
-		(go$ptrType(ForStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
-0	ForStmt0F0go/ast	BlockStmt0go/tokenPos0go/astStmt0go/astExpr0Çˆ	RangeStmtÇ	RangeStmt = go$pkg.RangeStmt = go$newType(0, "Struct", "ast.RangeStmt", "RangeStmt", "go/ast", function(For_, Key_, Value_, TokPos_, Tok_, X_, Body_) {
+Çi		(go$ptrType(ForStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		ForStmt.init([["For", "For", "", token.Pos, ""], ["Init", "Init", "", Stmt, ""], ["Cond", "Cond", "", Expr, ""], ["Post", "Post", "", Stmt, ""], ["Body", "Body", "", (go$ptrType(BlockStmt)), ""]]);
+0	ForStmt0F0go/ast	BlockStmt0go/tokenPos0go/astStmt0go/astExpr0Ç7	RangeStmtÇ	RangeStmt = go$pkg.RangeStmt = go$newType(0, "Struct", "ast.RangeStmt", "RangeStmt", "go/ast", function(For_, Key_, Value_, TokPos_, Tok_, X_, Body_) {
 		this.go$val = this;
 		this.For = For_ !== undefined ? For_ : 0;
 		this.Key = Key_ !== undefined ? Key_ : null;
@@ -1029,11 +1029,11 @@ SelectStmt0&0go/ast	BlockStmt0go/tokenPos0ÇEForStmtÇ´	ForStmt = go
 		this.X = X_ !== undefined ? X_ : null;
 		this.Body = Body_ !== undefined ? Body_ : (go$ptrType(BlockStmt)).nil;
 	});
-Çt		RangeStmt.init([["For", "", token.Pos, ""], ["Key", "", Expr, ""], ["Value", "", Expr, ""], ["TokPos", "", token.Pos, ""], ["Tok", "", token.Token, ""], ["X", "", Expr, ""], ["Body", "", (go$ptrType(BlockStmt)), ""]]);
-		(go$ptrType(RangeStmt)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["stmtNode", "go/ast", [], [], false]];
+Çµ		(go$ptrType(RangeStmt)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["stmtNode", "go/ast", [], [], false, -1]];
+		RangeStmt.init([["For", "For", "", token.Pos, ""], ["Key", "Key", "", Expr, ""], ["Value", "Value", "", Expr, ""], ["TokPos", "TokPos", "", token.Pos, ""], ["Tok", "Tok", "", token.Token, ""], ["X", "X", "", Expr, ""], ["Body", "Body", "", (go$ptrType(BlockStmt)), ""]]);
 0	RangeStmt0I0go/ast	BlockStmt0go/tokenPos0go/astExpr0go/tokenToken0Ç)SpecV	Spec = go$pkg.Spec = go$newType(0, "Interface", "ast.Spec", "Spec", "go/ast", null);
 Å≠		Spec.init([["End", "", (go$funcType([], [token.Pos], false))], ["Pos", "", (go$funcType([], [token.Pos], false))], ["specNode", "go/ast", (go$funcType([], [], false))]]);
-0Spec00go/tokenPos0Ç˛
+0Spec00go/tokenPos0Ç6
 ImportSpecÇ	ImportSpec = go$pkg.ImportSpec = go$newType(0, "Struct", "ast.ImportSpec", "ImportSpec", "go/ast", function(Doc_, Name_, Path_, Comment_, EndPos_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : (go$ptrType(CommentGroup)).nil;
@@ -1042,10 +1042,10 @@ ImportSpecÇ	ImportSpec = go$pkg.ImportSpec = go$newType(0, "Struct", "ast.Imp
 		this.Comment = Comment_ !== undefined ? Comment_ : (go$ptrType(CommentGroup)).nil;
 		this.EndPos = EndPos_ !== undefined ? EndPos_ : 0;
 	});
-Ç{		ImportSpec.init([["Doc", "", (go$ptrType(CommentGroup)), ""], ["Name", "", (go$ptrType(Ident)), ""], ["Path", "", (go$ptrType(BasicLit)), ""], ["Comment", "", (go$ptrType(CommentGroup)), ""], ["EndPos", "", token.Pos, ""]]);
-		(go$ptrType(ImportSpec)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["specNode", "go/ast", [], [], false]];
+Ç≥		(go$ptrType(ImportSpec)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["specNode", "go/ast", [], [], false, -1]];
+		ImportSpec.init([["Doc", "Doc", "", (go$ptrType(CommentGroup)), ""], ["Name", "Name", "", (go$ptrType(Ident)), ""], ["Path", "Path", "", (go$ptrType(BasicLit)), ""], ["Comment", "Comment", "", (go$ptrType(CommentGroup)), ""], ["EndPos", "EndPos", "", token.Pos, ""]]);
 0
-ImportSpec0N0go/astCommentGroup0go/astIdent0go/astBasicLit0go/tokenPos0Ç	ValueSpecÇ"	ValueSpec = go$pkg.ValueSpec = go$newType(0, "Struct", "ast.ValueSpec", "ValueSpec", "go/ast", function(Doc_, Names_, Type_, Values_, Comment_) {
+ImportSpec0N0go/astCommentGroup0go/astIdent0go/astBasicLit0go/tokenPos0ÇJ	ValueSpecÇ"	ValueSpec = go$pkg.ValueSpec = go$newType(0, "Struct", "ast.ValueSpec", "ValueSpec", "go/ast", function(Doc_, Names_, Type_, Values_, Comment_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : (go$ptrType(CommentGroup)).nil;
 		this.Names = Names_ !== undefined ? Names_ : (go$sliceType((go$ptrType(Ident)))).nil;
@@ -1053,26 +1053,26 @@ ImportSpec0N0go/astCommentGroup0go/astIdent0go/astBasicLit0go/
 		this.Values = Values_ !== undefined ? Values_ : (go$sliceType(Expr)).nil;
 		this.Comment = Comment_ !== undefined ? Comment_ : (go$ptrType(CommentGroup)).nil;
 	});
-ÇÉ		ValueSpec.init([["Doc", "", (go$ptrType(CommentGroup)), ""], ["Names", "", (go$sliceType((go$ptrType(Ident)))), ""], ["Type", "", Expr, ""], ["Values", "", (go$sliceType(Expr)), ""], ["Comment", "", (go$ptrType(CommentGroup)), ""]]);
-		(go$ptrType(ValueSpec)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["specNode", "go/ast", [], [], false]];
-0	ValueSpec0J0go/astCommentGroup0go/astIdent0go/astExpr0go/tokenPos0ÇeTypeSpecÇµ	TypeSpec = go$pkg.TypeSpec = go$newType(0, "Struct", "ast.TypeSpec", "TypeSpec", "go/ast", function(Doc_, Name_, Type_, Comment_) {
+Çº		(go$ptrType(ValueSpec)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["specNode", "go/ast", [], [], false, -1]];
+		ValueSpec.init([["Doc", "Doc", "", (go$ptrType(CommentGroup)), ""], ["Names", "Names", "", (go$sliceType((go$ptrType(Ident)))), ""], ["Type", "Type", "", Expr, ""], ["Values", "Values", "", (go$sliceType(Expr)), ""], ["Comment", "Comment", "", (go$ptrType(CommentGroup)), ""]]);
+0	ValueSpec0J0go/astCommentGroup0go/astIdent0go/astExpr0go/tokenPos0ÇìTypeSpecÇµ	TypeSpec = go$pkg.TypeSpec = go$newType(0, "Struct", "ast.TypeSpec", "TypeSpec", "go/ast", function(Doc_, Name_, Type_, Comment_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : (go$ptrType(CommentGroup)).nil;
 		this.Name = Name_ !== undefined ? Name_ : (go$ptrType(Ident)).nil;
 		this.Type = Type_ !== undefined ? Type_ : null;
 		this.Comment = Comment_ !== undefined ? Comment_ : (go$ptrType(CommentGroup)).nil;
 	});
-ÇF		TypeSpec.init([["Doc", "", (go$ptrType(CommentGroup)), ""], ["Name", "", (go$ptrType(Ident)), ""], ["Type", "", Expr, ""], ["Comment", "", (go$ptrType(CommentGroup)), ""]]);
-		(go$ptrType(TypeSpec)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["specNode", "go/ast", [], [], false]];
+Çt		(go$ptrType(TypeSpec)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["specNode", "go/ast", [], [], false, -1]];
+		TypeSpec.init([["Doc", "Doc", "", (go$ptrType(CommentGroup)), ""], ["Name", "Name", "", (go$ptrType(Ident)), ""], ["Type", "Type", "", Expr, ""], ["Comment", "Comment", "", (go$ptrType(CommentGroup)), ""]]);
 0
-TypeSpec0J0go/astCommentGroup0go/astIdent0go/astExpr0go/tokenPos0ÇÓBadDeclÅ‚	BadDecl = go$pkg.BadDecl = go$newType(0, "Struct", "ast.BadDecl", "BadDecl", "go/ast", function(From_, To_) {
+TypeSpec0J0go/astCommentGroup0go/astIdent0go/tokenPos0go/astExpr0ÇBadDeclÅ‚	BadDecl = go$pkg.BadDecl = go$newType(0, "Struct", "ast.BadDecl", "BadDecl", "go/ast", function(From_, To_) {
 		this.go$val = this;
 		this.From = From_ !== undefined ? From_ : 0;
 		this.To = To_ !== undefined ? To_ : 0;
 	});
-Åﬂ		BadDecl.init([["From", "", token.Pos, ""], ["To", "", token.Pos, ""]]);
-		(go$ptrType(BadDecl)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["declNode", "go/ast", [], [], false]];
-0	BadDecl00go/tokenPos0ÇÏGenDeclÇ
+Å˘		(go$ptrType(BadDecl)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["declNode", "go/ast", [], [], false, -1]];
+		BadDecl.init([["From", "From", "", token.Pos, ""], ["To", "To", "", token.Pos, ""]]);
+0	BadDecl00go/tokenPos0Ç-GenDeclÇ
 	GenDecl = go$pkg.GenDecl = go$newType(0, "Struct", "ast.GenDecl", "GenDecl", "go/ast", function(Doc_, TokPos_, Tok_, Lparen_, Specs_, Rparen_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : (go$ptrType(CommentGroup)).nil;
@@ -1082,9 +1082,9 @@ ImportSpec0N0go/astCommentGroup0go/astIdent0go/astBasicLit0go/
 		this.Specs = Specs_ !== undefined ? Specs_ : (go$sliceType(Spec)).nil;
 		this.Rparen = Rparen_ !== undefined ? Rparen_ : 0;
 	});
-Çx		GenDecl.init([["Doc", "", (go$ptrType(CommentGroup)), ""], ["TokPos", "", token.Pos, ""], ["Tok", "", token.Token, ""], ["Lparen", "", token.Pos, ""], ["Specs", "", (go$sliceType(Spec)), ""], ["Rparen", "", token.Pos, ""]]);
-		(go$ptrType(GenDecl)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["declNode", "go/ast", [], [], false]];
-0	GenDecl0L0go/astCommentGroup0go/astSpec0go/tokenPos0go/tokenToken0Ç!FuncDeclÇ	FuncDecl = go$pkg.FuncDecl = go$newType(0, "Struct", "ast.FuncDecl", "FuncDecl", "go/ast", function(Doc_, Recv_, Name_, Type_, Body_) {
+Çπ		(go$ptrType(GenDecl)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["declNode", "go/ast", [], [], false, -1]];
+		GenDecl.init([["Doc", "Doc", "", (go$ptrType(CommentGroup)), ""], ["TokPos", "TokPos", "", token.Pos, ""], ["Tok", "Tok", "", token.Token, ""], ["Lparen", "Lparen", "", token.Pos, ""], ["Specs", "Specs", "", (go$sliceType(Spec)), ""], ["Rparen", "Rparen", "", token.Pos, ""]]);
+0	GenDecl0L0go/astCommentGroup0go/astSpec0go/tokenPos0go/tokenToken0ÇTFuncDeclÇ	FuncDecl = go$pkg.FuncDecl = go$newType(0, "Struct", "ast.FuncDecl", "FuncDecl", "go/ast", function(Doc_, Recv_, Name_, Type_, Body_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : (go$ptrType(CommentGroup)).nil;
 		this.Recv = Recv_ !== undefined ? Recv_ : (go$ptrType(FieldList)).nil;
@@ -1092,10 +1092,10 @@ ImportSpec0N0go/astCommentGroup0go/astIdent0go/astBasicLit0go/
 		this.Type = Type_ !== undefined ? Type_ : (go$ptrType(FuncType)).nil;
 		this.Body = Body_ !== undefined ? Body_ : (go$ptrType(BlockStmt)).nil;
 	});
-Ç}		FuncDecl.init([["Doc", "", (go$ptrType(CommentGroup)), ""], ["Recv", "", (go$ptrType(FieldList)), ""], ["Name", "", (go$ptrType(Ident)), ""], ["Type", "", (go$ptrType(FuncType)), ""], ["Body", "", (go$ptrType(BlockStmt)), ""]]);
-		(go$ptrType(FuncDecl)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false], ["declNode", "go/ast", [], [], false]];
+Ç∞		(go$ptrType(FuncDecl)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1], ["declNode", "go/ast", [], [], false, -1]];
+		FuncDecl.init([["Doc", "Doc", "", (go$ptrType(CommentGroup)), ""], ["Recv", "Recv", "", (go$ptrType(FieldList)), ""], ["Name", "Name", "", (go$ptrType(Ident)), ""], ["Type", "Type", "", (go$ptrType(FuncType)), ""], ["Body", "Body", "", (go$ptrType(BlockStmt)), ""]]);
 0
-FuncDecl0x0go/astCommentGroup0go/ast	FieldList0go/astIdent0go/astFuncType0go/ast	BlockStmt0go/tokenPos0Ç FileÇD	File = go$pkg.File = go$newType(0, "Struct", "ast.File", "File", "go/ast", function(Doc_, Package_, Name_, Decls_, Scope_, Imports_, Unresolved_, Comments_) {
+FuncDecl0x0go/astCommentGroup0go/ast	FieldList0go/astIdent0go/astFuncType0go/ast	BlockStmt0go/tokenPos0Ç#FileÇD	File = go$pkg.File = go$newType(0, "Struct", "ast.File", "File", "go/ast", function(Doc_, Package_, Name_, Decls_, Scope_, Imports_, Unresolved_, Comments_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : (go$ptrType(CommentGroup)).nil;
 		this.Package = Package_ !== undefined ? Package_ : 0;
@@ -1106,35 +1106,35 @@ ImportSpec0N0go/astCommentGroup0go/astIdent0go/astBasicLit0go/
 		this.Unresolved = Unresolved_ !== undefined ? Unresolved_ : (go$sliceType((go$ptrType(Ident)))).nil;
 		this.Comments = Comments_ !== undefined ? Comments_ : (go$sliceType((go$ptrType(CommentGroup)))).nil;
 	});
-Ç˝		File.init([["Doc", "", (go$ptrType(CommentGroup)), ""], ["Package", "", token.Pos, ""], ["Name", "", (go$ptrType(Ident)), ""], ["Decls", "", (go$sliceType(Decl)), ""], ["Scope", "", (go$ptrType(Scope)), ""], ["Imports", "", (go$sliceType((go$ptrType(ImportSpec)))), ""], ["Unresolved", "", (go$sliceType((go$ptrType(Ident)))), ""], ["Comments", "", (go$sliceType((go$ptrType(CommentGroup)))), ""]]);
-		(go$ptrType(File)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false]];
+ÇV		(go$ptrType(File)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1]];
+		File.init([["Doc", "Doc", "", (go$ptrType(CommentGroup)), ""], ["Package", "Package", "", token.Pos, ""], ["Name", "Name", "", (go$ptrType(Ident)), ""], ["Decls", "Decls", "", (go$sliceType(Decl)), ""], ["Scope", "Scope", "", (go$ptrType(Scope)), ""], ["Imports", "Imports", "", (go$sliceType((go$ptrType(ImportSpec)))), ""], ["Unresolved", "Unresolved", "", (go$sliceType((go$ptrType(Ident)))), ""], ["Comments", "Comments", "", (go$sliceType((go$ptrType(CommentGroup)))), ""]]);
 0File0q0go/astCommentGroup0go/astIdent0go/astDecl0go/astScope0go/ast
-ImportSpec0go/tokenPos0Ç4PackageÇâ	Package = go$pkg.Package = go$newType(0, "Struct", "ast.Package", "Package", "go/ast", function(Name_, Scope_, Imports_, Files_) {
+ImportSpec0go/tokenPos0ÇaPackageÇâ	Package = go$pkg.Package = go$newType(0, "Struct", "ast.Package", "Package", "go/ast", function(Name_, Scope_, Imports_, Files_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Scope = Scope_ !== undefined ? Scope_ : (go$ptrType(Scope)).nil;
 		this.Imports = Imports_ !== undefined ? Imports_ : false;
 		this.Files = Files_ !== undefined ? Files_ : false;
 	});
-ÇI		Package.init([["Name", "", Go$String, ""], ["Scope", "", (go$ptrType(Scope)), ""], ["Imports", "", (go$mapType(Go$String, (go$ptrType(Object)))), ""], ["Files", "", (go$mapType(Go$String, (go$ptrType(File)))), ""]]);
-		(go$ptrType(Package)).methods = [["End", "", [], [token.Pos], false], ["Pos", "", [], [token.Pos], false]];
-0	Package0D0go/astScope0go/astObject0go/astFile0go/tokenPos0Ç‰byPosV	byPos = go$pkg.byPos = go$newType(0, "Slice", "ast.byPos", "byPos", "go/ast", null);
-Ç^		byPos.init((go$ptrType(CommentGroup)));
-		byPos.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(byPos)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-0byPos00go/astCommentGroup0Çc
+Çv		(go$ptrType(Package)).methods = [["End", "", [], [token.Pos], false, -1], ["Pos", "", [], [token.Pos], false, -1]];
+		Package.init([["Name", "Name", "", Go$String, ""], ["Scope", "Scope", "", (go$ptrType(Scope)), ""], ["Imports", "Imports", "", (go$mapType(Go$String, (go$ptrType(Object)))), ""], ["Files", "Files", "", (go$mapType(Go$String, (go$ptrType(File)))), ""]]);
+0	Package0D0go/astScope0go/tokenPos0go/astObject0go/astFile0Ç¸byPosV	byPos = go$pkg.byPos = go$newType(0, "Slice", "ast.byPos", "byPos", "go/ast", null);
+Çv		byPos.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(byPos)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		byPos.init((go$ptrType(CommentGroup)));
+0byPos00go/astCommentGroup0Çã
 CommentMaph	CommentMap = go$pkg.CommentMap = go$newType(0, "Map", "ast.CommentMap", "CommentMap", "go/ast", null);
-Ç±		CommentMap.init(Node, (go$sliceType((go$ptrType(CommentGroup)))));
-		CommentMap.methods = [["Comments", "", [], [(go$sliceType((go$ptrType(CommentGroup))))], false], ["Filter", "", [Node], [CommentMap], false], ["String", "", [], [Go$String], false], ["Update", "", [Node, Node], [Node], false], ["addComment", "go/ast", [Node, (go$ptrType(CommentGroup))], [], false]];
-		(go$ptrType(CommentMap)).methods = [["Comments", "", [], [(go$sliceType((go$ptrType(CommentGroup))))], false], ["Filter", "", [Node], [CommentMap], false], ["String", "", [], [Go$String], false], ["Update", "", [Node, Node], [Node], false], ["addComment", "go/ast", [Node, (go$ptrType(CommentGroup))], [], false]];
+ÇŸ		CommentMap.methods = [["Comments", "", [], [(go$sliceType((go$ptrType(CommentGroup))))], false, -1], ["Filter", "", [Node], [CommentMap], false, -1], ["String", "", [], [Go$String], false, -1], ["Update", "", [Node, Node], [Node], false, -1], ["addComment", "go/ast", [Node, (go$ptrType(CommentGroup))], [], false, -1]];
+		(go$ptrType(CommentMap)).methods = [["Comments", "", [], [(go$sliceType((go$ptrType(CommentGroup))))], false, -1], ["Filter", "", [Node], [CommentMap], false, -1], ["String", "", [], [Go$String], false, -1], ["Update", "", [Node, Node], [Node], false, -1], ["addComment", "go/ast", [Node, (go$ptrType(CommentGroup))], [], false, -1]];
+		CommentMap.init(Node, (go$sliceType((go$ptrType(CommentGroup)))));
 0
-CommentMap0(0go/astNode0go/astCommentGroup0ÇÛ
+CommentMap0(0go/astCommentGroup0go/astNode0Ç
 byIntervalj	byInterval = go$pkg.byInterval = go$newType(0, "Slice", "ast.byInterval", "byInterval", "go/ast", null);
-ÇW		byInterval.init(Node);
-		byInterval.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(byInterval)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+Ço		byInterval.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(byInterval)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		byInterval.init(Node);
 0
-byInterval00go/astNode0Ç≤commentListReaderÇà	commentListReader = go$pkg.commentListReader = go$newType(0, "Struct", "ast.commentListReader", "commentListReader", "go/ast", function(fset_, list_, index_, comment_, pos_, end_) {
+byInterval00go/astNode0ÇÏcommentListReaderÇà	commentListReader = go$pkg.commentListReader = go$newType(0, "Struct", "ast.commentListReader", "commentListReader", "go/ast", function(fset_, list_, index_, comment_, pos_, end_) {
 		this.go$val = this;
 		this.fset = fset_ !== undefined ? fset_ : (go$ptrType(token.FileSet)).nil;
 		this.list = list_ !== undefined ? list_ : (go$sliceType((go$ptrType(CommentGroup)))).nil;
@@ -1143,31 +1143,31 @@ byInterval00go/astNode0Ç≤commentListReaderÇà	commentListReader = go$p
 		this.pos = pos_ !== undefined ? pos_ : new token.Position.Ptr();
 		this.end = end_ !== undefined ? end_ : new token.Position.Ptr();
 	});
-Çµ		commentListReader.init([["fset", "go/ast", (go$ptrType(token.FileSet)), ""], ["list", "go/ast", (go$sliceType((go$ptrType(CommentGroup)))), ""], ["index", "go/ast", Go$Int, ""], ["comment", "go/ast", (go$ptrType(CommentGroup)), ""], ["pos", "go/ast", token.Position, ""], ["end", "go/ast", token.Position, ""]]);
-		(go$ptrType(commentListReader)).methods = [["eol", "go/ast", [], [Go$Bool], false], ["next", "go/ast", [], [], false]];
-0commentListReader0C0go/tokenFileSet0go/astCommentGroup0go/tokenPosition0Ç:	nodeStackf	nodeStack = go$pkg.nodeStack = go$newType(0, "Slice", "ast.nodeStack", "nodeStack", "go/ast", null);
-Åî		nodeStack.init(Node);
-		(go$ptrType(nodeStack)).methods = [["pop", "go/ast", [token.Pos], [Node], false], ["push", "go/ast", [Node], [], false]];
-0	nodeStack0!0go/astNode0go/tokenPos0ÅüFilterY	Filter = go$pkg.Filter = go$newType(0, "Func", "ast.Filter", "Filter", "go/ast", null);
+ÇÔ		(go$ptrType(commentListReader)).methods = [["eol", "go/ast", [], [Go$Bool], false, -1], ["next", "go/ast", [], [], false, -1]];
+		commentListReader.init([["fset", "fset", "go/ast", (go$ptrType(token.FileSet)), ""], ["list", "list", "go/ast", (go$sliceType((go$ptrType(CommentGroup)))), ""], ["index", "index", "go/ast", Go$Int, ""], ["comment", "comment", "go/ast", (go$ptrType(CommentGroup)), ""], ["pos", "pos", "go/ast", token.Position, ""], ["end", "end", "go/ast", token.Position, ""]]);
+0commentListReader0C0go/tokenFileSet0go/astCommentGroup0go/tokenPosition0ÇB	nodeStackf	nodeStack = go$pkg.nodeStack = go$newType(0, "Slice", "ast.nodeStack", "nodeStack", "go/ast", null);
+Åú		(go$ptrType(nodeStack)).methods = [["pop", "go/ast", [token.Pos], [Node], false, -1], ["push", "go/ast", [Node], [], false, -1]];
+		nodeStack.init(Node);
+0	nodeStack0!0go/tokenPos0go/astNode0ÅüFilterY	Filter = go$pkg.Filter = go$newType(0, "Func", "ast.Filter", "Filter", "go/ast", null);
 .		Filter.init([Go$String], [Go$Bool], false);
 0Filter0 0ÅÉ	MergeModee	MergeMode = go$pkg.MergeMode = go$newType(4, "Uint", "ast.MergeMode", "MergeMode", "go/ast", null);
- 0	MergeMode0 0ÇbposSpanÅÍ	posSpan = go$pkg.posSpan = go$newType(0, "Struct", "ast.posSpan", "posSpan", "go/ast", function(Start_, End_) {
+ 0	MergeMode0 0ÇrposSpanÅÍ	posSpan = go$pkg.posSpan = go$newType(0, "Struct", "ast.posSpan", "posSpan", "go/ast", function(Start_, End_) {
 		this.go$val = this;
 		this.Start = Start_ !== undefined ? Start_ : 0;
 		this.End = End_ !== undefined ? End_ : 0;
 	});
-L		posSpan.init([["Start", "", token.Pos, ""], ["End", "", token.Pos, ""]]);
-0	posSpan00go/tokenPos0ÇbyImportSpecr	byImportSpec = go$pkg.byImportSpec = go$newType(0, "Slice", "ast.byImportSpec", "byImportSpec", "go/ast", null);
-Ç]		byImportSpec.init(Spec);
-		byImportSpec.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(byImportSpec)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-0byImportSpec00go/astSpec0Ç#byCommentPosr	byCommentPos = go$pkg.byCommentPos = go$newType(0, "Slice", "ast.byCommentPos", "byCommentPos", "go/ast", null);
-Çs		byCommentPos.init((go$ptrType(CommentGroup)));
-		byCommentPos.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(byCommentPos)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+\		posSpan.init([["Start", "Start", "", token.Pos, ""], ["End", "End", "", token.Pos, ""]]);
+0	posSpan00go/tokenPos0ÇbyImportSpecr	byImportSpec = go$pkg.byImportSpec = go$newType(0, "Slice", "ast.byImportSpec", "byImportSpec", "go/ast", null);
+Çu		byImportSpec.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(byImportSpec)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		byImportSpec.init(Spec);
+0byImportSpec00go/astSpec0Ç;byCommentPosr	byCommentPos = go$pkg.byCommentPos = go$newType(0, "Slice", "ast.byCommentPos", "byCommentPos", "go/ast", null);
+Çã		byCommentPos.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(byCommentPos)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		byCommentPos.init((go$ptrType(CommentGroup)));
 0byCommentPos00go/astCommentGroup0Å„FieldFilterm	FieldFilter = go$pkg.FieldFilter = go$newType(0, "Func", "ast.FieldFilter", "FieldFilter", "go/ast", null);
 B		FieldFilter.init([Go$String, reflect.Value], [Go$Bool], false);
-0FieldFilter00reflectValue0Ç‚printerÇS	printer = go$pkg.printer = go$newType(0, "Struct", "ast.printer", "printer", "go/ast", function(output_, fset_, filter_, ptrmap_, indent_, last_, line_) {
+0FieldFilter00reflectValue0Ç.printerÇS	printer = go$pkg.printer = go$newType(0, "Struct", "ast.printer", "printer", "go/ast", function(output_, fset_, filter_, ptrmap_, indent_, last_, line_) {
 		this.go$val = this;
 		this.output = output_ !== undefined ? output_ : null;
 		this.fset = fset_ !== undefined ? fset_ : (go$ptrType(token.FileSet)).nil;
@@ -1177,36 +1177,36 @@ byInterval00go/astNode0Ç≤commentListReaderÇà	commentListReader = go$p
 		this.last = last_ !== undefined ? last_ : 0;
 		this.line = line_ !== undefined ? line_ : 0;
 	});
-Ç%		printer.init([["output", "go/ast", io.Writer, ""], ["fset", "go/ast", (go$ptrType(token.FileSet)), ""], ["filter", "go/ast", FieldFilter, ""], ["ptrmap", "go/ast", (go$mapType(go$emptyInterface, Go$Int)), ""], ["indent", "go/ast", Go$Int, ""], ["last", "go/ast", Go$Uint8, ""], ["line", "go/ast", Go$Int, ""]]);
-		(go$ptrType(printer)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["print", "go/ast", [reflect.Value], [], false], ["printf", "go/ast", [Go$String, (go$sliceType(go$emptyInterface))], [], true]];
-0	printer0L0go/tokenFileSet0ioWriter0go/astFieldFilter0reflectValue0Ç
+Çq		(go$ptrType(printer)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["print", "go/ast", [reflect.Value], [], false, -1], ["printf", "go/ast", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1]];
+		printer.init([["output", "output", "go/ast", io.Writer, ""], ["fset", "fset", "go/ast", (go$ptrType(token.FileSet)), ""], ["filter", "filter", "go/ast", FieldFilter, ""], ["ptrmap", "ptrmap", "go/ast", (go$mapType(go$emptyInterface, Go$Int)), ""], ["indent", "indent", "go/ast", Go$Int, ""], ["last", "last", "go/ast", Go$Uint8, ""], ["line", "line", "go/ast", Go$Int, ""]]);
+0	printer0L0go/tokenFileSet0reflectValue0ioWriter0go/astFieldFilter0Ç
 localErrorÅø	localError = go$pkg.localError = go$newType(0, "Struct", "ast.localError", "localError", "go/ast", function(err_) {
 		this.go$val = this;
 		this.err = err_ !== undefined ? err_ : null;
 	});
-6		localError.init([["err", "go/ast", go$error, ""]]);
+=		localError.init([["err", "err", "go/ast", go$error, ""]]);
 0
-localError0 0ÇK
+localError0 0Çi
 pkgBuilderÇ0	pkgBuilder = go$pkg.pkgBuilder = go$newType(0, "Struct", "ast.pkgBuilder", "pkgBuilder", "go/ast", function(fset_, errors_) {
 		this.go$val = this;
 		this.fset = fset_ !== undefined ? fset_ : (go$ptrType(token.FileSet)).nil;
 		this.errors = errors_ !== undefined ? errors_ : scanner.ErrorList.nil;
 	});
-Çï		pkgBuilder.init([["fset", "go/ast", (go$ptrType(token.FileSet)), ""], ["errors", "go/ast", scanner.ErrorList, ""]]);
-		(go$ptrType(pkgBuilder)).methods = [["declare", "go/ast", [(go$ptrType(Scope)), (go$ptrType(Scope)), (go$ptrType(Object))], [], false], ["error", "go/ast", [token.Pos, Go$String], [], false], ["errorf", "go/ast", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true]];
+Ç≥		(go$ptrType(pkgBuilder)).methods = [["declare", "go/ast", [(go$ptrType(Scope)), (go$ptrType(Scope)), (go$ptrType(Object))], [], false, -1], ["error", "go/ast", [token.Pos, Go$String], [], false, -1], ["errorf", "go/ast", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1]];
+		pkgBuilder.init([["fset", "fset", "go/ast", (go$ptrType(token.FileSet)), ""], ["errors", "errors", "go/ast", scanner.ErrorList, ""]]);
 0
 pkgBuilder0b0go/tokenFileSet0
 go/scanner	ErrorList0go/astScope0go/astObject0go/tokenPos0ÇImportera	Importer = go$pkg.Importer = go$newType(0, "Func", "ast.Importer", "Importer", "go/ast", null);
 v		Importer.init([(go$mapType(Go$String, (go$ptrType(Object)))), Go$String], [(go$ptrType(Object)), go$error], false);
 0
-Importer00go/astObject0ÇÅScopeÇ	Scope = go$pkg.Scope = go$newType(0, "Struct", "ast.Scope", "Scope", "go/ast", function(Outer_, Objects_) {
+Importer00go/astObject0Ç°ScopeÇ	Scope = go$pkg.Scope = go$newType(0, "Struct", "ast.Scope", "Scope", "go/ast", function(Outer_, Objects_) {
 		this.go$val = this;
 		this.Outer = Outer_ !== undefined ? Outer_ : (go$ptrType(Scope)).nil;
 		this.Objects = Objects_ !== undefined ? Objects_ : false;
 	});
-ÇI		Scope.init([["Outer", "", (go$ptrType(Scope)), ""], ["Objects", "", (go$mapType(Go$String, (go$ptrType(Object)))), ""]]);
-		(go$ptrType(Scope)).methods = [["Insert", "", [(go$ptrType(Object))], [(go$ptrType(Object))], false], ["Lookup", "", [Go$String], [(go$ptrType(Object))], false], ["String", "", [], [Go$String], false]];
-0Scope00go/astObject0Ç“ObjectÇí	Object = go$pkg.Object = go$newType(0, "Struct", "ast.Object", "Object", "go/ast", function(Kind_, Name_, Decl_, Data_, Type_) {
+Çi		(go$ptrType(Scope)).methods = [["Insert", "", [(go$ptrType(Object))], [(go$ptrType(Object))], false, -1], ["Lookup", "", [Go$String], [(go$ptrType(Object))], false, -1], ["String", "", [], [Go$String], false, -1]];
+		Scope.init([["Outer", "Outer", "", (go$ptrType(Scope)), ""], ["Objects", "Objects", "", (go$mapType(Go$String, (go$ptrType(Object)))), ""]]);
+0Scope00go/astObject0Ç˛ObjectÇí	Object = go$pkg.Object = go$newType(0, "Struct", "ast.Object", "Object", "go/ast", function(Kind_, Name_, Decl_, Data_, Type_) {
 		this.go$val = this;
 		this.Kind = Kind_ !== undefined ? Kind_ : 0;
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -1214,17 +1214,17 @@ go/scanner	ErrorList0go/astScope0go/astObject0go/tokenPos0ÇI
 		this.Data = Data_ !== undefined ? Data_ : null;
 		this.Type = Type_ !== undefined ? Type_ : null;
 	});
-Ç 		Object.init([["Kind", "", ObjKind, ""], ["Name", "", Go$String, ""], ["Decl", "", go$emptyInterface, ""], ["Data", "", go$emptyInterface, ""], ["Type", "", go$emptyInterface, ""]]);
-		(go$ptrType(Object)).methods = [["Pos", "", [], [token.Pos], false]];
-0Object0$0go/astObjKind0go/tokenPos0ÇObjKind\	ObjKind = go$pkg.ObjKind = go$newType(4, "Int", "ast.ObjKind", "ObjKind", "go/ast", null);
-Åä		ObjKind.methods = [["String", "", [], [Go$String], false]];
-		(go$ptrType(ObjKind)).methods = [["String", "", [], [Go$String], false]];
+Ç,		(go$ptrType(Object)).methods = [["Pos", "", [], [token.Pos], false, -1]];
+		Object.init([["Kind", "Kind", "", ObjKind, ""], ["Name", "Name", "", Go$String, ""], ["Decl", "Decl", "", go$emptyInterface, ""], ["Data", "Data", "", go$emptyInterface, ""], ["Type", "Type", "", go$emptyInterface, ""]]);
+0Object0$0go/tokenPos0go/astObjKind0Ç	ObjKind\	ObjKind = go$pkg.ObjKind = go$newType(4, "Int", "ast.ObjKind", "ObjKind", "go/ast", null);
+Åí		ObjKind.methods = [["String", "", [], [Go$String], false, -1]];
+		(go$ptrType(ObjKind)).methods = [["String", "", [], [Go$String], false, -1]];
 0	ObjKind0 0Å÷Visitorb	Visitor = go$pkg.Visitor = go$newType(0, "Interface", "ast.Visitor", "Visitor", "go/ast", null);
 J		Visitor.init([["Visit", "", (go$funcType([Node], [Visitor], false))]]);
-0	Visitor00go/astNode0Çc	inspectore	inspector = go$pkg.inspector = go$newType(0, "Func", "ast.inspector", "inspector", "go/ast", null);
-Åº		inspector.init([Node], [Go$Bool], false);
-		inspector.methods = [["Visit", "", [Node], [Visitor], false]];
-		(go$ptrType(inspector)).methods = [["Visit", "", [Node], [Visitor], false]];
+0	Visitor00go/astNode0Çk	inspectore	inspector = go$pkg.inspector = go$newType(0, "Func", "ast.inspector", "inspector", "go/ast", null);
+Åƒ		inspector.methods = [["Visit", "", [Node], [Visitor], false, -1]];
+		(go$ptrType(inspector)).methods = [["Visit", "", [Node], [Visitor], false, -1]];
+		inspector.init([Node], [Go$Bool], false);
 0	inspector0#0go/astNode0go/astVisitor0Åø Åò	Comment.Ptr.prototype.Pos = function() {
 		var c;
 		c = this;
@@ -2479,9 +2479,9 @@ byInterval0ÇÔnodeListÇÉ	nodeList = function(n) {
 		}
 		return cmap;
 	};
- 0NewCommentMap0Ç\0go/astSpec0go/tokenPosition0go/astnodeList0go/astFile0go/astDecl0go/astCommentGroup0go/astsortComments0go/tokenFileSet0go/astpop0go/ast
-addComment0go/ast
-CommentMap0go/astField0go/astpush0go/astcommentListReader0go/astnext0go/ast	nodeStack0go/asteol0go/astStmt0ÇW Ç	CommentMap.prototype.Update = function(old, new$1) {
+ 0NewCommentMap0Ç\0go/astsortComments0go/tokenFileSet0go/astnext0go/ast	nodeStack0go/astField0go/astpush0go/astCommentGroup0go/tokenPosition0go/ast
+addComment0go/asteol0go/astnodeList0go/ast
+CommentMap0go/astFile0go/astDecl0go/astSpec0go/astcommentListReader0go/astpop0go/astStmt0ÇW Ç	CommentMap.prototype.Update = function(old, new$1) {
 		var cmap, list, _entry, _entry$1, _key;
 		cmap = this.go$val;
 		if (list = (_entry = cmap[(old || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(CommentGroup)))).nil), list.length > 0) {
@@ -2739,8 +2739,8 @@ filterTypeÇ2	filterType = function(typ, f, export$1) {
 		return false;
 	};
  0
-filterType0Å€0go/astIdent0go/ast	ParenExpr0go/ast
-StructType0go/astFuncType0go/astMapType0go/astChanType0go/ast	ArrayType0go/astInterfaceType0go/astfilterFieldList0go/astfilterParamList0ÇÌ
+filterType0Å€0go/astInterfaceType0go/astMapType0go/astChanType0go/astfilterFieldList0go/astIdent0go/ast	ParenExpr0go/ast	ArrayType0go/ast
+StructType0go/astFuncType0go/astfilterParamList0ÇÌ
 filterSpecÇq	filterSpec = function(spec, f, export$1) {
 		var s, _ref, _type;
 		_ref = spec;
@@ -3019,8 +3019,8 @@ filterFile0ÇlnameOfÇ	nameOf = function(f) {
 		}
 		return new File.Ptr(doc, pos, NewIdent(pkg.Name), decls, pkg.Scope, imports, (go$sliceType((go$ptrType(Ident)))).nil, comments);
 	};
- 0MergePackageFiles0Å“0sortStrings0go/ast	separator0go/astnameOf0go/astIdent0go/astCommentGroup0go/astComment0go/astFile0go/astDecl0go/astFuncDecl0go/ast
-ImportSpec0go/astNewIdent0ÇGSortImportsÇÍ	SortImports = go$pkg.SortImports = function(fset, f) {
+ 0MergePackageFiles0Å“0sortStrings0go/astComment0go/astFuncDecl0go/astnameOf0go/ast
+ImportSpec0go/astCommentGroup0go/astFile0go/ast	separator0go/astDecl0go/astNewIdent0go/astIdent0ÇGSortImportsÇÍ	SortImports = go$pkg.SortImports = function(fset, f) {
 		var _ref, _i, _slice, _index, d, _tuple, d$1, ok, i, specs, _ref$1, _i$1, _slice$1, _index$1, s, j, _slice$2, _index$2, _slice$3, _index$3, lastSpec, lastLine, rParenLine;
 		_ref = f.Decls;
 		_i = 0;
@@ -3195,8 +3195,8 @@ ImportSpec0go/astCommentGroup0Ç†	sortSpecsÇ€	sortSpecs = function(fset,
 		sort.Sort(go$subslice(new byCommentPos(comments.array), comments.offset, comments.offset + comments.length));
 		return specs;
 	};
- 0	sortSpecs0Å§0go/astCommentGroup0go/astbyImportSpec0go/astcollapse0go/astIdent0go/astbyCommentPos0go/astposSpan0go/ast
-ImportSpec0sortSort0Åﬁ Å≠	byImportSpec.prototype.Len = function() {
+ 0	sortSpecs0Å§0go/ast
+ImportSpec0sortSort0go/astcollapse0go/astposSpan0go/astCommentGroup0go/astbyImportSpec0go/astIdent0go/astbyCommentPos0Åﬁ Å≠	byImportSpec.prototype.Len = function() {
 		var x;
 		x = this;
 		return x.length;
@@ -3600,8 +3600,8 @@ NewPackageÇ5	NewPackage = go$pkg.NewPackage = function(fset, files, importer, 
 		return [new Package.Ptr(pkgName, pkgScope, imports, files), p.errors.Err()];
 	};
  0
-NewPackage0ÅΩ0go/astNewScope0go/astIdent0go/astNewObj0go/astresolve0go/ast
-pkgBuilder0go/asterrorf0go/astdeclare0go/astScope0strconvUnquote0go/astPackage0ÅéNewScopea	NewScope = go$pkg.NewScope = function(outer) {
+NewPackage0ÅΩ0go/ast
+pkgBuilder0go/astdeclare0go/astIdent0go/astNewObj0go/astresolve0go/astPackage0go/astNewScope0go/asterrorf0go/astScope0strconvUnquote0ÅéNewScopea	NewScope = go$pkg.NewScope = function(outer) {
 		return new Scope.Ptr(outer, new Go$Map());
 	};
  0
@@ -3709,9 +3709,9 @@ pkgBuilder0go/asterrorf0go/astdeclare0go/astScope0strconvUnq
 		return 0;
 	};
 	Object.prototype.Pos = function() { return this.go$val.Pos(); };
- 0Object0Å≈0go/ast	ValueSpec0go/astFuncDecl0go/astObject0go/astField0go/ast
-ImportSpec0go/astTypeSpec0go/astLabeledStmt0go/ast
-AssignStmt0go/astScope0go/astIdent0Ç Å“	ObjKind.prototype.String = function() {
+ 0Object0Å≈0go/astObject0go/astTypeSpec0go/astLabeledStmt0go/ast
+AssignStmt0go/astScope0go/astIdent0go/astField0go/ast
+ImportSpec0go/ast	ValueSpec0go/astFuncDecl0Ç Å“	ObjKind.prototype.String = function() {
 		var kind;
 		kind = this.go$val;
 		return objKindStrings[kind];
@@ -4076,18 +4076,18 @@ AssignStmt0go/astScope0go/astIdent0Ç Å“	ObjKind.prototype.String =
 		}
 		v.Visit(null);
 	};
- 0Walk0ÇÍ0go/ast	SliceExpr0go/ast
-StructType0go/ast
-AssignStmt0go/ast	BlockStmt0go/astBadStmt0go/astGoStmt0go/ast	IndexExpr0go/astKeyValueExpr0go/astLabeledStmt0go/astExprStmt0go/astBadDecl0go/ast	ParenExpr0go/ast
-IncDecStmt0go/ast
-CaseClause0go/ast	RangeStmt0go/astwalkIdentList0go/astwalkDeclList0go/astComment0go/astIdent0go/ast	DeferStmt0go/astFuncDecl0go/astField0go/ast	UnaryExpr0go/ast	ValueSpec0go/astCommentGroup0go/ast
-ReturnStmt0go/ast	EmptyStmt0go/ast
-SwitchStmt0go/astCallExpr0go/ast
-BinaryExpr0go/astStarExpr0go/astFuncType0go/astMapType0go/ast
-BranchStmt0go/ast	ArrayType0go/astFile0go/astwalkExprList0go/ast	FieldList0go/astFuncLit0go/astCompositeLit0go/ast
-CommClause0go/astGenDecl0go/astBadExpr0go/astBasicLit0go/astTypeAssertExpr0go/astInterfaceType0go/astDeclStmt0go/astForStmt0go/astwalkStmtList0go/astIfStmt0go/astEllipsis0go/astSelectorExpr0go/astChanType0go/astSendStmt0fmtPrintf0go/astTypeSwitchStmt0go/ast
-SelectStmt0go/ast
-ImportSpec0go/astTypeSpec0go/astPackage0Ç' Å¸	inspector.prototype.Visit = function(node) {
+ 0Walk0ÇÍ0go/ast
+BinaryExpr0go/astGoStmt0go/ast
+ImportSpec0go/astTypeAssertExpr0go/astTypeSwitchStmt0go/ast
+SelectStmt0go/astFuncDecl0go/ast	ArrayType0go/ast	BlockStmt0go/ast
+SwitchStmt0go/astGenDecl0go/astCommentGroup0go/astBadExpr0go/astCompositeLit0go/astCallExpr0go/astIfStmt0go/ast
+CommClause0go/astField0go/astDeclStmt0go/ast	RangeStmt0go/ast	UnaryExpr0go/astPackage0go/astComment0go/ast	SliceExpr0go/astStarExpr0go/astBadStmt0go/ast
+BranchStmt0go/astwalkIdentList0go/astMapType0go/astLabeledStmt0go/ast
+CaseClause0go/astSendStmt0go/astTypeSpec0go/astBadDecl0go/astwalkDeclList0go/ast	FieldList0go/astFuncType0go/astKeyValueExpr0go/ast
+StructType0go/astExprStmt0go/astwalkStmtList0go/astFuncLit0go/astSelectorExpr0go/astInterfaceType0go/astChanType0go/astForStmt0go/astFile0go/astIdent0go/ast
+AssignStmt0go/ast
+ReturnStmt0go/ast	ValueSpec0fmtPrintf0go/astEllipsis0go/ast	ParenExpr0go/ast	IndexExpr0go/ast	EmptyStmt0go/astwalkExprList0go/astBasicLit0go/ast
+IncDecStmt0go/ast	DeferStmt0Ç' Å¸	inspector.prototype.Visit = function(node) {
 		var f;
 		f = this.go$val;
 		if (f(node)) {

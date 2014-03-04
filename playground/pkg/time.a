@@ -1,4 +1,4 @@
-0É([timeÇ$ópackage time
+0É+timeÇ$ópackage time
 import errors "errors"
 import syscall "syscall"
 import sync "sync"
@@ -176,7 +176,7 @@ type @"".runtimeTimer struct { @"".i int32; @"".when int64; @"".period int64; @"
 type @"".zone struct { @"".name string; @"".offset int; @"".isDST bool }
 type @"".zoneTrans struct { @"".when int64; @"".index uint8; @"".isstd bool; @"".isutc bool }
 $$
-03runtimeerrorssync/atomicsyncsyscalltime0H0errorserrors0syscallsyscall0syncsync0runtimeruntime0É40Ç	
+03runtimeerrorssync/atomicsyncsyscalltime0H0errorserrors0syscallsyscall0syncsync0runtimeruntime0É·0ÇF
 ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.ParseError", "ParseError", "time", function(Layout_, Value_, LayoutElem_, ValueElem_, Message_) {
 		this.go$val = this;
 		this.Layout = Layout_ !== undefined ? Layout_ : "";
@@ -185,10 +185,10 @@ ParseErrorÇ‡	ParseError = go$pkg.ParseError = go$newType(0, "Struct", "time.Pa
 		this.ValueElem = ValueElem_ !== undefined ? ValueElem_ : "";
 		this.Message = Message_ !== undefined ? Message_ : "";
 	});
-Ç		ParseError.init([["Layout", "", Go$String, ""], ["Value", "", Go$String, ""], ["LayoutElem", "", Go$String, ""], ["ValueElem", "", Go$String, ""], ["Message", "", Go$String, ""]]);
-		(go$ptrType(ParseError)).methods = [["Error", "", [], [Go$String], false]];
+ÇB		(go$ptrType(ParseError)).methods = [["Error", "", [], [Go$String], false, -1]];
+		ParseError.init([["Layout", "Layout", "", Go$String, ""], ["Value", "Value", "", Go$String, ""], ["LayoutElem", "LayoutElem", "", Go$String, ""], ["ValueElem", "ValueElem", "", Go$String, ""], ["Message", "Message", "", Go$String, ""]]);
 0
-ParseError0 0Ç◊runtimeTimerÇ∆	runtimeTimer = go$pkg.runtimeTimer = go$newType(0, "Struct", "time.runtimeTimer", "runtimeTimer", "time", function(i_, when_, period_, f_, arg_) {
+ParseError0 0Ç˚runtimeTimerÇ∆	runtimeTimer = go$pkg.runtimeTimer = go$newType(0, "Struct", "time.runtimeTimer", "runtimeTimer", "time", function(i_, when_, period_, f_, arg_) {
 		this.go$val = this;
 		this.i = i_ !== undefined ? i_ : 0;
 		this.when = when_ !== undefined ? when_ : new Go$Int64(0, 0);
@@ -196,41 +196,41 @@ ParseError0 0Ç◊runtimeTimerÇ∆	runtimeTimer = go$pkg.runtimeTimer = go$newTy
 		this.f = f_ !== undefined ? f_ : go$throwNilPointerError;
 		this.arg = arg_ !== undefined ? arg_ : null;
 	});
-ÅÍ		runtimeTimer.init([["i", "time", Go$Int32, ""], ["when", "time", Go$Int64, ""], ["period", "time", Go$Int64, ""], ["f", "time", (go$funcType([Go$Int64, go$emptyInterface], [], false)), ""], ["arg", "time", go$emptyInterface, ""]]);
-0runtimeTimer0 0Ç%TimerÇ	Timer = go$pkg.Timer = go$newType(0, "Struct", "time.Timer", "Timer", "time", function(C_, r_) {
+Ç		runtimeTimer.init([["i", "i", "time", Go$Int32, ""], ["when", "when", "time", Go$Int64, ""], ["period", "period", "time", Go$Int64, ""], ["f", "f", "time", (go$funcType([Go$Int64, go$emptyInterface], [], false)), ""], ["arg", "arg", "time", go$emptyInterface, ""]]);
+0runtimeTimer0 0Ç7TimerÇ	Timer = go$pkg.Timer = go$newType(0, "Struct", "time.Timer", "Timer", "time", function(C_, r_) {
 		this.go$val = this;
 		this.C = C_ !== undefined ? C_ : (go$chanType(Time, false, true)).nil;
 		this.r = r_ !== undefined ? r_ : new runtimeTimer.Ptr();
 	});
-Å’		Timer.init([["C", "", (go$chanType(Time, false, true)), ""], ["r", "time", runtimeTimer, ""]]);
-		(go$ptrType(Timer)).methods = [["Reset", "", [Duration], [Go$Bool], false], ["Stop", "", [], [Go$Bool], false]];
-0Timer060timeTime0timeruntimeTimer0timeDuration0ÇÁTickerÇ	Ticker = go$pkg.Ticker = go$newType(0, "Struct", "time.Ticker", "Ticker", "time", function(C_, r_) {
+ÅÁ		(go$ptrType(Timer)).methods = [["Reset", "", [Duration], [Go$Bool], false, -1], ["Stop", "", [], [Go$Bool], false, -1]];
+		Timer.init([["C", "C", "", (go$chanType(Time, false, true)), ""], ["r", "r", "time", runtimeTimer, ""]]);
+0Timer060timeTime0timeruntimeTimer0timeDuration0ÇıTickerÇ	Ticker = go$pkg.Ticker = go$newType(0, "Struct", "time.Ticker", "Ticker", "time", function(C_, r_) {
 		this.go$val = this;
 		this.C = C_ !== undefined ? C_ : (go$chanType(Time, false, true)).nil;
 		this.r = r_ !== undefined ? r_ : new runtimeTimer.Ptr();
 	});
-Å£		Ticker.init([["C", "", (go$chanType(Time, false, true)), ""], ["r", "time", runtimeTimer, ""]]);
-		(go$ptrType(Ticker)).methods = [["Stop", "", [], [], false]];
-0Ticker0$0timeTime0timeruntimeTimer0Ç¨TimeÇ5	Time = go$pkg.Time = go$newType(0, "Struct", "time.Time", "Time", "time", function(sec_, nsec_, loc_) {
+Å±		(go$ptrType(Ticker)).methods = [["Stop", "", [], [], false, -1]];
+		Ticker.init([["C", "C", "", (go$chanType(Time, false, true)), ""], ["r", "r", "time", runtimeTimer, ""]]);
+0Ticker0$0timeTime0timeruntimeTimer0Ç˙TimeÇ5	Time = go$pkg.Time = go$newType(0, "Struct", "time.Time", "Time", "time", function(sec_, nsec_, loc_) {
 		this.go$val = this;
 		this.sec = sec_ !== undefined ? sec_ : new Go$Int64(0, 0);
 		this.nsec = nsec_ !== undefined ? nsec_ : 0;
 		this.loc = loc_ !== undefined ? loc_ : (go$ptrType(Location)).nil;
 	});
-Ç		Time.init([["sec", "time", Go$Int64, ""], ["nsec", "time", Go$Uintptr, ""], ["loc", "time", (go$ptrType(Location)), ""]]);
-		Time.methods = [["Add", "", [Duration], [Time], false], ["AddDate", "", [Go$Int, Go$Int, Go$Int], [Time], false], ["After", "", [Time], [Go$Bool], false], ["Before", "", [Time], [Go$Bool], false], ["Clock", "", [], [Go$Int, Go$Int, Go$Int], false], ["Date", "", [], [Go$Int, Month, Go$Int], false], ["Day", "", [], [Go$Int], false], ["Equal", "", [Time], [Go$Bool], false], ["Format", "", [Go$String], [Go$String], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Hour", "", [], [Go$Int], false], ["ISOWeek", "", [], [Go$Int, Go$Int], false], ["In", "", [(go$ptrType(Location))], [Time], false], ["IsZero", "", [], [Go$Bool], false], ["Local", "", [], [Time], false], ["Location", "", [], [(go$ptrType(Location))], false], ["MarshalBinary", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalText", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Minute", "", [], [Go$Int], false], ["Month", "", [], [Month], false], ["Nanosecond", "", [], [Go$Int], false], ["Round", "", [Duration], [Time], false], ["Second", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [Time], [Duration], false], ["Truncate", "", [Duration], [Time], false], ["UTC", "", [], [Time], false], ["Unix", "", [], [Go$Int64], false], ["UnixNano", "", [], [Go$Int64], false], ["Weekday", "", [], [Weekday], false], ["Year", "", [], [Go$Int], false], ["YearDay", "", [], [Go$Int], false], ["Zone", "", [], [Go$String, Go$Int], false], ["abs", "time", [], [Go$Uint64], false], ["date", "time", [Go$Bool], [Go$Int, Month, Go$Int, Go$Int], false], ["locabs", "time", [], [Go$String, Go$Int, Go$Uint64], false]];
-		(go$ptrType(Time)).methods = [["Add", "", [Duration], [Time], false], ["AddDate", "", [Go$Int, Go$Int, Go$Int], [Time], false], ["After", "", [Time], [Go$Bool], false], ["Before", "", [Time], [Go$Bool], false], ["Clock", "", [], [Go$Int, Go$Int, Go$Int], false], ["Date", "", [], [Go$Int, Month, Go$Int], false], ["Day", "", [], [Go$Int], false], ["Equal", "", [Time], [Go$Bool], false], ["Format", "", [Go$String], [Go$String], false], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Hour", "", [], [Go$Int], false], ["ISOWeek", "", [], [Go$Int, Go$Int], false], ["In", "", [(go$ptrType(Location))], [Time], false], ["IsZero", "", [], [Go$Bool], false], ["Local", "", [], [Time], false], ["Location", "", [], [(go$ptrType(Location))], false], ["MarshalBinary", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["MarshalText", "", [], [(go$sliceType(Go$Uint8)), go$error], false], ["Minute", "", [], [Go$Int], false], ["Month", "", [], [Month], false], ["Nanosecond", "", [], [Go$Int], false], ["Round", "", [Duration], [Time], false], ["Second", "", [], [Go$Int], false], ["String", "", [], [Go$String], false], ["Sub", "", [Time], [Duration], false], ["Truncate", "", [Duration], [Time], false], ["UTC", "", [], [Time], false], ["Unix", "", [], [Go$Int64], false], ["UnixNano", "", [], [Go$Int64], false], ["UnmarshalBinary", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["UnmarshalJSON", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["UnmarshalText", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["Weekday", "", [], [Weekday], false], ["Year", "", [], [Go$Int], false], ["YearDay", "", [], [Go$Int], false], ["Zone", "", [], [Go$String, Go$Int], false], ["abs", "time", [], [Go$Uint64], false], ["date", "time", [Go$Bool], [Go$Int, Month, Go$Int, Go$Int], false], ["locabs", "time", [], [Go$String, Go$Int, Go$Uint64], false]];
-0Time0D0timeLocation0timeDuration0timeMonth0timeWeekday0ÅMonthS	Month = go$pkg.Month = go$newType(4, "Int", "time.Month", "Month", "time", null);
-ÅÜ		Month.methods = [["String", "", [], [Go$String], false]];
-		(go$ptrType(Month)).methods = [["String", "", [], [Go$String], false]];
-0Month0 0Ç Weekday[	Weekday = go$pkg.Weekday = go$newType(4, "Int", "time.Weekday", "Weekday", "time", null);
-Åä		Weekday.methods = [["String", "", [], [Go$String], false]];
-		(go$ptrType(Weekday)).methods = [["String", "", [], [Go$String], false]];
-0	Weekday0 0Ç[Durationa	Duration = go$pkg.Duration = go$newType(8, "Int64", "time.Duration", "Duration", "time", null);
-Ç‹		Duration.methods = [["Hours", "", [], [Go$Float64], false], ["Minutes", "", [], [Go$Float64], false], ["Nanoseconds", "", [], [Go$Int64], false], ["Seconds", "", [], [Go$Float64], false], ["String", "", [], [Go$String], false]];
-		(go$ptrType(Duration)).methods = [["Hours", "", [], [Go$Float64], false], ["Minutes", "", [], [Go$Float64], false], ["Nanoseconds", "", [], [Go$Int64], false], ["Seconds", "", [], [Go$Float64], false], ["String", "", [], [Go$String], false]];
+Çi		Time.methods = [["Add", "", [Duration], [Time], false, -1], ["AddDate", "", [Go$Int, Go$Int, Go$Int], [Time], false, -1], ["After", "", [Time], [Go$Bool], false, -1], ["Before", "", [Time], [Go$Bool], false, -1], ["Clock", "", [], [Go$Int, Go$Int, Go$Int], false, -1], ["Date", "", [], [Go$Int, Month, Go$Int], false, -1], ["Day", "", [], [Go$Int], false, -1], ["Equal", "", [Time], [Go$Bool], false, -1], ["Format", "", [Go$String], [Go$String], false, -1], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["Hour", "", [], [Go$Int], false, -1], ["ISOWeek", "", [], [Go$Int, Go$Int], false, -1], ["In", "", [(go$ptrType(Location))], [Time], false, -1], ["IsZero", "", [], [Go$Bool], false, -1], ["Local", "", [], [Time], false, -1], ["Location", "", [], [(go$ptrType(Location))], false, -1], ["MarshalBinary", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["MarshalText", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["Minute", "", [], [Go$Int], false, -1], ["Month", "", [], [Month], false, -1], ["Nanosecond", "", [], [Go$Int], false, -1], ["Round", "", [Duration], [Time], false, -1], ["Second", "", [], [Go$Int], false, -1], ["String", "", [], [Go$String], false, -1], ["Sub", "", [Time], [Duration], false, -1], ["Truncate", "", [Duration], [Time], false, -1], ["UTC", "", [], [Time], false, -1], ["Unix", "", [], [Go$Int64], false, -1], ["UnixNano", "", [], [Go$Int64], false, -1], ["Weekday", "", [], [Weekday], false, -1], ["Year", "", [], [Go$Int], false, -1], ["YearDay", "", [], [Go$Int], false, -1], ["Zone", "", [], [Go$String, Go$Int], false, -1], ["abs", "time", [], [Go$Uint64], false, -1], ["date", "time", [Go$Bool], [Go$Int, Month, Go$Int, Go$Int], false, -1], ["locabs", "time", [], [Go$String, Go$Int, Go$Uint64], false, -1]];
+		(go$ptrType(Time)).methods = [["Add", "", [Duration], [Time], false, -1], ["AddDate", "", [Go$Int, Go$Int, Go$Int], [Time], false, -1], ["After", "", [Time], [Go$Bool], false, -1], ["Before", "", [Time], [Go$Bool], false, -1], ["Clock", "", [], [Go$Int, Go$Int, Go$Int], false, -1], ["Date", "", [], [Go$Int, Month, Go$Int], false, -1], ["Day", "", [], [Go$Int], false, -1], ["Equal", "", [Time], [Go$Bool], false, -1], ["Format", "", [Go$String], [Go$String], false, -1], ["GobDecode", "", [(go$sliceType(Go$Uint8))], [go$error], false, -1], ["GobEncode", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["Hour", "", [], [Go$Int], false, -1], ["ISOWeek", "", [], [Go$Int, Go$Int], false, -1], ["In", "", [(go$ptrType(Location))], [Time], false, -1], ["IsZero", "", [], [Go$Bool], false, -1], ["Local", "", [], [Time], false, -1], ["Location", "", [], [(go$ptrType(Location))], false, -1], ["MarshalBinary", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["MarshalJSON", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["MarshalText", "", [], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["Minute", "", [], [Go$Int], false, -1], ["Month", "", [], [Month], false, -1], ["Nanosecond", "", [], [Go$Int], false, -1], ["Round", "", [Duration], [Time], false, -1], ["Second", "", [], [Go$Int], false, -1], ["String", "", [], [Go$String], false, -1], ["Sub", "", [Time], [Duration], false, -1], ["Truncate", "", [Duration], [Time], false, -1], ["UTC", "", [], [Time], false, -1], ["Unix", "", [], [Go$Int64], false, -1], ["UnixNano", "", [], [Go$Int64], false, -1], ["UnmarshalBinary", "", [(go$sliceType(Go$Uint8))], [go$error], false, -1], ["UnmarshalJSON", "", [(go$sliceType(Go$Uint8))], [go$error], false, -1], ["UnmarshalText", "", [(go$sliceType(Go$Uint8))], [go$error], false, -1], ["Weekday", "", [], [Weekday], false, -1], ["Year", "", [], [Go$Int], false, -1], ["YearDay", "", [], [Go$Int], false, -1], ["Zone", "", [], [Go$String, Go$Int], false, -1], ["abs", "time", [], [Go$Uint64], false, -1], ["date", "time", [Go$Bool], [Go$Int, Month, Go$Int, Go$Int], false, -1], ["locabs", "time", [], [Go$String, Go$Int, Go$Uint64], false, -1]];
+		Time.init([["sec", "sec", "time", Go$Int64, ""], ["nsec", "nsec", "time", Go$Uintptr, ""], ["loc", "loc", "time", (go$ptrType(Location)), ""]]);
+0Time0D0timeLocation0timeDuration0timeMonth0timeWeekday0Å¯MonthS	Month = go$pkg.Month = go$newType(4, "Int", "time.Month", "Month", "time", null);
+Åé		Month.methods = [["String", "", [], [Go$String], false, -1]];
+		(go$ptrType(Month)).methods = [["String", "", [], [Go$String], false, -1]];
+0Month0 0ÇWeekday[	Weekday = go$pkg.Weekday = go$newType(4, "Int", "time.Weekday", "Weekday", "time", null);
+Åí		Weekday.methods = [["String", "", [], [Go$String], false, -1]];
+		(go$ptrType(Weekday)).methods = [["String", "", [], [Go$String], false, -1]];
+0	Weekday0 0ÇÉDurationa	Duration = go$pkg.Duration = go$newType(8, "Int64", "time.Duration", "Duration", "time", null);
+Ç		Duration.methods = [["Hours", "", [], [Go$Float64], false, -1], ["Minutes", "", [], [Go$Float64], false, -1], ["Nanoseconds", "", [], [Go$Int64], false, -1], ["Seconds", "", [], [Go$Float64], false, -1], ["String", "", [], [Go$String], false, -1]];
+		(go$ptrType(Duration)).methods = [["Hours", "", [], [Go$Float64], false, -1], ["Minutes", "", [], [Go$Float64], false, -1], ["Nanoseconds", "", [], [Go$Int64], false, -1], ["Seconds", "", [], [Go$Float64], false, -1], ["String", "", [], [Go$String], false, -1]];
 0
-Duration0 0Ç€LocationÇd	Location = go$pkg.Location = go$newType(0, "Struct", "time.Location", "Location", "time", function(name_, zone_, tx_, cacheStart_, cacheEnd_, cacheZone_) {
+Duration0 0Ç(LocationÇd	Location = go$pkg.Location = go$newType(0, "Struct", "time.Location", "Location", "time", function(name_, zone_, tx_, cacheStart_, cacheEnd_, cacheZone_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : "";
 		this.zone = zone_ !== undefined ? zone_ : (go$sliceType(zone)).nil;
@@ -239,31 +239,31 @@ ParseError0 0Ç◊runtimeTimerÇ∆	runtimeTimer = go$pkg.runtimeTimer = go$newTy
 		this.cacheEnd = cacheEnd_ !== undefined ? cacheEnd_ : new Go$Int64(0, 0);
 		this.cacheZone = cacheZone_ !== undefined ? cacheZone_ : (go$ptrType(zone)).nil;
 	});
-Ç6		Location.init([["name", "time", Go$String, ""], ["zone", "time", (go$sliceType(zone)), ""], ["tx", "time", (go$sliceType(zoneTrans)), ""], ["cacheStart", "time", Go$Int64, ""], ["cacheEnd", "time", Go$Int64, ""], ["cacheZone", "time", (go$ptrType(zone)), ""]]);
-		(go$ptrType(Location)).methods = [["String", "", [], [Go$String], false], ["get", "time", [], [(go$ptrType(Location))], false], ["lookup", "time", [Go$Int64], [Go$String, Go$Int, Go$Bool, Go$Int64, Go$Int64], false], ["lookupName", "time", [Go$String, Go$Int64], [Go$Int, Go$Bool, Go$Bool], false]];
+ÇÉ		(go$ptrType(Location)).methods = [["String", "", [], [Go$String], false, -1], ["get", "time", [], [(go$ptrType(Location))], false, -1], ["lookup", "time", [Go$Int64], [Go$String, Go$Int, Go$Bool, Go$Int64, Go$Int64], false, -1], ["lookupName", "time", [Go$String, Go$Int64], [Go$Int, Go$Bool, Go$Bool], false, -1]];
+		Location.init([["name", "name", "time", Go$String, ""], ["zone", "zone", "time", (go$sliceType(zone)), ""], ["tx", "tx", "time", (go$sliceType(zoneTrans)), ""], ["cacheStart", "cacheStart", "time", Go$Int64, ""], ["cacheEnd", "cacheEnd", "time", Go$Int64, ""], ["cacheZone", "cacheZone", "time", (go$ptrType(zone)), ""]]);
 0
-Location0!0timezone0time	zoneTrans0Ç™zoneÇ$	zone = go$pkg.zone = go$newType(0, "Struct", "time.zone", "zone", "time", function(name_, offset_, isDST_) {
+Location0!0timezone0time	zoneTrans0Ç∆zoneÇ$	zone = go$pkg.zone = go$newType(0, "Struct", "time.zone", "zone", "time", function(name_, offset_, isDST_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : "";
 		this.offset = offset_ !== undefined ? offset_ : 0;
 		this.isDST = isDST_ !== undefined ? isDST_ : false;
 	});
-p		zone.init([["name", "time", Go$String, ""], ["offset", "time", Go$Int, ""], ["isDST", "time", Go$Bool, ""]]);
-0zone0 0Ç8	zoneTransÇÇ	zoneTrans = go$pkg.zoneTrans = go$newType(0, "Struct", "time.zoneTrans", "zoneTrans", "time", function(when_, index_, isstd_, isutc_) {
+Åã		zone.init([["name", "name", "time", Go$String, ""], ["offset", "offset", "time", Go$Int, ""], ["isDST", "isDST", "time", Go$Bool, ""]]);
+0zone0 0Ç[	zoneTransÇÇ	zoneTrans = go$pkg.zoneTrans = go$newType(0, "Struct", "time.zoneTrans", "zoneTrans", "time", function(when_, index_, isstd_, isutc_) {
 		this.go$val = this;
 		this.when = when_ !== undefined ? when_ : new Go$Int64(0, 0);
 		this.index = index_ !== undefined ? index_ : 0;
 		this.isstd = isstd_ !== undefined ? isstd_ : false;
 		this.isutc = isutc_ !== undefined ? isutc_ : false;
 	});
-Åï		zoneTrans.init([["when", "time", Go$Int64, ""], ["index", "time", Go$Uint8, ""], ["isstd", "time", Go$Bool, ""], ["isutc", "time", Go$Bool, ""]]);
-0	zoneTrans0 0Ç,dataÅÙ	data = go$pkg.data = go$newType(0, "Struct", "time.data", "data", "time", function(p_, error_) {
+Å∏		zoneTrans.init([["when", "when", "time", Go$Int64, ""], ["index", "index", "time", Go$Uint8, ""], ["isstd", "isstd", "time", Go$Bool, ""], ["isutc", "isutc", "time", Go$Bool, ""]]);
+0	zoneTrans0 0ÇFdataÅÙ	data = go$pkg.data = go$newType(0, "Struct", "time.data", "data", "time", function(p_, error_) {
 		this.go$val = this;
 		this.p = p_ !== undefined ? p_ : (go$sliceType(Go$Uint8)).nil;
 		this.error = error_ !== undefined ? error_ : false;
 	});
-Ç!		data.init([["p", "time", (go$sliceType(Go$Uint8)), ""], ["error", "time", Go$Bool, ""]]);
-		(go$ptrType(data)).methods = [["big4", "time", [], [Go$Uint32, Go$Bool], false], ["byte", "time", [], [Go$Uint8, Go$Bool], false], ["read", "time", [Go$Int], [(go$sliceType(Go$Uint8))], false]];
+Ç;		(go$ptrType(data)).methods = [["big4", "time", [], [Go$Uint32, Go$Bool], false, -1], ["byte", "time", [], [Go$Uint8, Go$Bool], false, -1], ["read", "time", [Go$Int], [(go$sliceType(Go$Uint8))], false, -1]];
+		data.init([["p", "p", "time", (go$sliceType(Go$Uint8)), ""], ["error", "error", "time", Go$Bool, ""]]);
 0data0 0ÅÕstartsWithLowerCaseÅö	startsWithLowerCase = function(str) {
 		var c;
 		if (str.length === 0) {
@@ -682,10 +682,10 @@ formatNano0 0Ç2 Ç	Time.Ptr.prototype.String = function() {
 		return go$bytesToString(b);
 	};
 	Time.prototype.Format = function(layout) { return this.go$val.Format(layout); };
- 0Time0Å≥0timeMonth0time
-absWeekday0timeWeekday0time
-formatNano0timeTime0timelocabs0timenextStdChunk0timeabsDate0timeabsClock0time
-appendUint0Kquote5	quote = function(s) {
+ 0Time0Å≥0timenextStdChunk0timeabsClock0timeMonth0timeWeekday0time
+formatNano0timeTime0timelocabs0timeabsDate0time
+appendUint0time
+absWeekday0Kquote5	quote = function(s) {
 		return "\"" + s + "\"";
 	};
  0quote0 0Ç± Çv	ParseError.Ptr.prototype.Error = function() {
@@ -1013,9 +1013,9 @@ ParseError0timequote0Å§isDigitÅâ	isDigit = function(s, i) {
 		}
 		return [(_struct$7 = Date(year, (month >> 0), day, hour, min, sec, nsec, defaultLocation), new Time.Ptr(_struct$7.sec, _struct$7.nsec, _struct$7.loc)), null];
 	};
- 0parse0Çà0timeLocation0timenextStdChunk0timeTime0time
-ParseError0timeerrBad0timeisDigit0timeshortMonthNames0timelongDayNames0time	FixedZone0time
-lookupName0timegetnum0timeshortDayNames0timeparseNanoseconds0timeparseTimeZone0timeskip0timelookup0timelongMonthNames0timeatoi0timeUTC0timeDate0timelookup0Ç+parseTimeZoneÇÒ	parseTimeZone = function(value) {
+ 0parse0Çà0timeskip0time
+ParseError0timeerrBad0timeatoi0timeisDigit0timeshortMonthNames0timeDate0time	FixedZone0timeLocation0timeTime0timeshortDayNames0timelookup0time
+lookupName0timeUTC0timenextStdChunk0timelookup0timelongMonthNames0timegetnum0timelongDayNames0timeparseNanoseconds0timeparseTimeZone0Ç+parseTimeZoneÇÒ	parseTimeZone = function(value) {
 		var length, ok, _tuple, _tuple$1, _tuple$2, nUpper, c, _ref, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7;
 		length = 0;
 		ok = false;
@@ -2409,8 +2409,8 @@ byteString0 0Ç loadZoneDataÇU	loadZoneData = function(bytes) {
 		_tuple$15 = [l, null], l = _tuple$15[0], err = _tuple$15[1];
 		return [l, err];
 	};
- 0loadZoneData0Åù0timedata0timebadData0timebig40time	zoneTrans0timeLocation0timeread0timezone0timebyte0time
-byteString0timenow0ÇπloadZoneFileÇD	loadZoneFile = function(dir, name) {
+ 0loadZoneData0Åù0timeread0timebadData0timenow0timeLocation0timedata0timebig40timezone0timebyte0time
+byteString0time	zoneTrans0ÇπloadZoneFileÇD	loadZoneFile = function(dir, name) {
 		var l, err, _tuple, _tuple$1, buf, _tuple$2;
 		l = (go$ptrType(Location)).nil;
 		err = null;
@@ -2511,7 +2511,7 @@ byteString0timenow0ÇπloadZoneFileÇD	loadZoneFile = function(dir, name)
 			return [l, err];
 		}
 	};
- 0loadZoneZip0ÅÇ0errorsNew0timeget40timepreadn0timeloadZoneData0timeLocation0timeopen0timeclosefd0timeget20ÇlinitTestingZoneÇÛ	initTestingZone = function() {
+ 0loadZoneZip0ÅÇ0timeopen0timeclosefd0timeget20timeLocation0errorsNew0timeget40timepreadn0timeloadZoneData0ÇlinitTestingZoneÇÛ	initTestingZone = function() {
 		var _tuple, z, err, _struct;
 		_tuple = loadZoneFile(runtime.GOROOT() + "/lib/time/zoneinfo.zip", "America/Los_Angeles"), z = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {

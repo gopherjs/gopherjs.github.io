@@ -1,4 +1,4 @@
-0ÇÕñbytesÇ7package bytes
+0ÇŒ\bytesÇ7package bytes
 import errors "errors"
 import io "io"
 import utf8 "unicode/utf8"
@@ -96,7 +96,7 @@ func (? *@"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
 type @"unicode".CaseRange struct { @"unicode".Lo uint32; @"unicode".Hi uint32; @"unicode".Delta @"unicode".d }
 type @"unicode".d [3]rune
 $$
-0Fruntimeerrorssync/atomicsynciounicodeunicode/utf8bytes0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0Çµæ0Ç?BufferÇC	Buffer = go$pkg.Buffer = go$newType(0, "Struct", "bytes.Buffer", "Buffer", "bytes", function(buf_, off_, runeBytes_, bootstrap_, lastRead_) {
+0Fruntimeerrorssync/atomicsynciounicodeunicode/utf8bytes0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0Ç∂Ñ0ÇÀBufferÇC	Buffer = go$pkg.Buffer = go$newType(0, "Struct", "bytes.Buffer", "Buffer", "bytes", function(buf_, off_, runeBytes_, bootstrap_, lastRead_) {
 		this.go$val = this;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
 		this.off = off_ !== undefined ? off_ : 0;
@@ -104,17 +104,17 @@ $$
 		this.bootstrap = bootstrap_ !== undefined ? bootstrap_ : go$makeNativeArray("Uint8", 64, function() { return 0; });
 		this.lastRead = lastRead_ !== undefined ? lastRead_ : 0;
 	});
-Ç≥		Buffer.init([["buf", "bytes", (go$sliceType(Go$Uint8)), ""], ["off", "bytes", Go$Int, ""], ["runeBytes", "bytes", (go$arrayType(Go$Uint8, 4)), ""], ["bootstrap", "bytes", (go$arrayType(Go$Uint8, 64)), ""], ["lastRead", "bytes", readOp, ""]]);
-		(go$ptrType(Buffer)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Grow", "", [Go$Int], [], false], ["Len", "", [], [Go$Int], false], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [], [], false], ["String", "", [], [Go$String], false], ["Truncate", "", [Go$Int], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["grow", "bytes", [Go$Int], [Go$Int], false], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false]];
-0Buffer0-0bytesreadOp0ioReader0ioWriter0qreadOpY	readOp = go$pkg.readOp = go$newType(4, "Int", "bytes.readOp", "readOp", "bytes", null);
- 0readOp0 0ÇÒReaderÇ0	Reader = go$pkg.Reader = go$newType(0, "Struct", "bytes.Reader", "Reader", "bytes", function(s_, i_, prevRune_) {
+Ç?		(go$ptrType(Buffer)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false, -1], ["Grow", "", [Go$Int], [], false, -1], ["Len", "", [], [Go$Int], false, -1], ["Next", "", [Go$Int], [(go$sliceType(Go$Uint8))], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["ReadByte", "", [], [Go$Uint8, go$error], false, -1], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, -1], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, -1], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false, -1], ["Reset", "", [], [], false, -1], ["String", "", [], [Go$String], false, -1], ["Truncate", "", [Go$Int], [], false, -1], ["UnreadByte", "", [], [go$error], false, -1], ["UnreadRune", "", [], [go$error], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteByte", "", [Go$Uint8], [go$error], false, -1], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false, -1], ["grow", "bytes", [Go$Int], [Go$Int], false, -1], ["readSlice", "bytes", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, -1]];
+		Buffer.init([["buf", "buf", "bytes", (go$sliceType(Go$Uint8)), ""], ["off", "off", "bytes", Go$Int, ""], ["runeBytes", "runeBytes", "bytes", (go$arrayType(Go$Uint8, 4)), ""], ["bootstrap", "bootstrap", "bytes", (go$arrayType(Go$Uint8, 64)), ""], ["lastRead", "lastRead", "bytes", readOp, ""]]);
+0Buffer0-0ioReader0ioWriter0bytesreadOp0qreadOpY	readOp = go$pkg.readOp = go$newType(4, "Int", "bytes.readOp", "readOp", "bytes", null);
+ 0readOp0 0Ç+ReaderÇ0	Reader = go$pkg.Reader = go$newType(0, "Struct", "bytes.Reader", "Reader", "bytes", function(s_, i_, prevRune_) {
 		this.go$val = this;
 		this.s = s_ !== undefined ? s_ : (go$sliceType(Go$Uint8)).nil;
 		this.i = i_ !== undefined ? i_ : 0;
 		this.prevRune = prevRune_ !== undefined ? prevRune_ : 0;
 	});
-Çó		Reader.init([["s", "bytes", (go$sliceType(Go$Uint8)), ""], ["i", "bytes", Go$Int, ""], ["prevRune", "bytes", Go$Int, ""]]);
-		(go$ptrType(Reader)).methods = [["Len", "", [], [Go$Int], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false]];
+Ç—		(go$ptrType(Reader)).methods = [["Len", "", [], [Go$Int], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, -1], ["ReadByte", "", [], [Go$Uint8, go$error], false, -1], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, -1], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false, -1], ["UnreadByte", "", [], [go$error], false, -1], ["UnreadRune", "", [], [go$error], false, -1], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false, -1]];
+		Reader.init([["s", "s", "bytes", (go$sliceType(Go$Uint8)), ""], ["i", "i", "bytes", Go$Int, ""], ["prevRune", "prevRune", "bytes", Go$Int, ""]]);
 0Reader00ioWriter0Å“ ÅÆ	Buffer.Ptr.prototype.Bytes = function() {
 		var b;
 		b = this;

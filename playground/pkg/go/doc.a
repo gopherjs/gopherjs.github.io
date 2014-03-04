@@ -1,4 +1,4 @@
-0É◊Ngo/docÇ2‚package doc
+0É⁄bgo/docÇ2‚package doc
 import io "io"
 import regexp "regexp"
 import strings "strings"
@@ -162,14 +162,14 @@ func (? @"go/ast".ObjKind) @"go/ast".String() (? string)
 func (? *@"go/ast".ObjKind) @"go/ast".String() (? string)
 $$
 0Çruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
-go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc0Å«0ioio0regexpregexp0stringsstrings0text/templatetemplate0unicodeunicode0unicode/utf8utf80go/astast0go/tokentoken0pathpath0sortsort0strconvstrconv0É¢l0XopH	op = go$pkg.op = go$newType(4, "Int", "doc.op", "op", "go/doc", null);
- 0op0 0Ç}blockÅ˙	block = go$pkg.block = go$newType(0, "Struct", "doc.block", "block", "go/doc", function(op_, lines_) {
+go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc0Å«0ioio0regexpregexp0stringsstrings0text/templatetemplate0unicodeunicode0unicode/utf8utf80go/astast0go/tokentoken0pathpath0sortsort0strconvstrconv0É•Ä0XopH	op = go$pkg.op = go$newType(4, "Int", "doc.op", "op", "go/doc", null);
+ 0op0 0ÇåblockÅ˙	block = go$pkg.block = go$newType(0, "Struct", "doc.block", "block", "go/doc", function(op_, lines_) {
 		this.go$val = this;
 		this.op = op_ !== undefined ? op_ : 0;
 		this.lines = lines_ !== undefined ? lines_ : (go$sliceType(Go$String)).nil;
 	});
-^		block.init([["op", "go/doc", op, ""], ["lines", "go/doc", (go$sliceType(Go$String)), ""]]);
-0block00go/docop0ÇálineWrapperÇˆ	lineWrapper = go$pkg.lineWrapper = go$newType(0, "Struct", "doc.lineWrapper", "lineWrapper", "go/doc", function(out_, printed_, width_, indent_, n_, pendSpace_) {
+m		block.init([["op", "op", "go/doc", op, ""], ["lines", "lines", "go/doc", (go$sliceType(Go$String)), ""]]);
+0block00go/docop0Ç∆lineWrapperÇˆ	lineWrapper = go$pkg.lineWrapper = go$newType(0, "Struct", "doc.lineWrapper", "lineWrapper", "go/doc", function(out_, printed_, width_, indent_, n_, pendSpace_) {
 		this.go$val = this;
 		this.out = out_ !== undefined ? out_ : null;
 		this.printed = printed_ !== undefined ? printed_ : false;
@@ -178,9 +178,9 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		this.n = n_ !== undefined ? n_ : 0;
 		this.pendSpace = pendSpace_ !== undefined ? pendSpace_ : 0;
 	});
-Ç]		lineWrapper.init([["out", "go/doc", io.Writer, ""], ["printed", "go/doc", Go$Bool, ""], ["width", "go/doc", Go$Int, ""], ["indent", "go/doc", Go$String, ""], ["n", "go/doc", Go$Int, ""], ["pendSpace", "go/doc", Go$Int, ""]]);
-		(go$ptrType(lineWrapper)).methods = [["flush", "go/doc", [], [], false], ["write", "go/doc", [Go$String], [], false]];
-0lineWrapper00ioWriter0ÇÓPackageÇ		Package = go$pkg.Package = go$newType(0, "Struct", "doc.Package", "Package", "go/doc", function(Doc_, Name_, ImportPath_, Imports_, Filenames_, Notes_, Bugs_, Consts_, Types_, Vars_, Funcs_) {
+Çú		(go$ptrType(lineWrapper)).methods = [["flush", "go/doc", [], [], false, -1], ["write", "go/doc", [Go$String], [], false, -1]];
+		lineWrapper.init([["out", "out", "go/doc", io.Writer, ""], ["printed", "printed", "go/doc", Go$Bool, ""], ["width", "width", "go/doc", Go$Int, ""], ["indent", "indent", "go/doc", Go$String, ""], ["n", "n", "go/doc", Go$Int, ""], ["pendSpace", "pendSpace", "go/doc", Go$Int, ""]]);
+0lineWrapper00ioWriter0Ç\PackageÇ		Package = go$pkg.Package = go$newType(0, "Struct", "doc.Package", "Package", "go/doc", function(Doc_, Name_, ImportPath_, Imports_, Filenames_, Notes_, Bugs_, Consts_, Types_, Vars_, Funcs_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : "";
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -194,17 +194,17 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		this.Vars = Vars_ !== undefined ? Vars_ : (go$sliceType((go$ptrType(Value)))).nil;
 		this.Funcs = Funcs_ !== undefined ? Funcs_ : (go$sliceType((go$ptrType(Func)))).nil;
 	});
-Çt		Package.init([["Doc", "", Go$String, ""], ["Name", "", Go$String, ""], ["ImportPath", "", Go$String, ""], ["Imports", "", (go$sliceType(Go$String)), ""], ["Filenames", "", (go$sliceType(Go$String)), ""], ["Notes", "", (go$mapType(Go$String, (go$sliceType((go$ptrType(Note)))))), ""], ["Bugs", "", (go$sliceType(Go$String)), ""], ["Consts", "", (go$sliceType((go$ptrType(Value)))), ""], ["Types", "", (go$sliceType((go$ptrType(Type)))), ""], ["Vars", "", (go$sliceType((go$ptrType(Value)))), ""], ["Funcs", "", (go$sliceType((go$ptrType(Func)))), ""]]);
-		(go$ptrType(Package)).methods = [["Filter", "", [Filter], [], false]];
-0	Package0S0go/docValue0go/docType0go/docFunc0go/docNote0go/docFilter0Ç_ValueÇã	Value = go$pkg.Value = go$newType(0, "Struct", "doc.Value", "Value", "go/doc", function(Doc_, Names_, Decl_, order_) {
+Ç‚		(go$ptrType(Package)).methods = [["Filter", "", [Filter], [], false, -1]];
+		Package.init([["Doc", "Doc", "", Go$String, ""], ["Name", "Name", "", Go$String, ""], ["ImportPath", "ImportPath", "", Go$String, ""], ["Imports", "Imports", "", (go$sliceType(Go$String)), ""], ["Filenames", "Filenames", "", (go$sliceType(Go$String)), ""], ["Notes", "Notes", "", (go$mapType(Go$String, (go$sliceType((go$ptrType(Note)))))), ""], ["Bugs", "Bugs", "", (go$sliceType(Go$String)), ""], ["Consts", "Consts", "", (go$sliceType((go$ptrType(Value)))), ""], ["Types", "Types", "", (go$sliceType((go$ptrType(Type)))), ""], ["Vars", "Vars", "", (go$sliceType((go$ptrType(Value)))), ""], ["Funcs", "Funcs", "", (go$sliceType((go$ptrType(Func)))), ""]]);
+0	Package0S0go/docValue0go/docType0go/docFunc0go/docFilter0go/docNote0ÇÄValueÇã	Value = go$pkg.Value = go$newType(0, "Struct", "doc.Value", "Value", "go/doc", function(Doc_, Names_, Decl_, order_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : "";
 		this.Names = Names_ !== undefined ? Names_ : (go$sliceType(Go$String)).nil;
 		this.Decl = Decl_ !== undefined ? Decl_ : (go$ptrType(ast.GenDecl)).nil;
 		this.order = order_ !== undefined ? order_ : 0;
 	});
-Å®		Value.init([["Doc", "", Go$String, ""], ["Names", "", (go$sliceType(Go$String)), ""], ["Decl", "", (go$ptrType(ast.GenDecl)), ""], ["order", "go/doc", Go$Int, ""]]);
-0Value00go/astGenDecl0ÇUTypeÇ¥	Type = go$pkg.Type = go$newType(0, "Struct", "doc.Type", "Type", "go/doc", function(Doc_, Name_, Decl_, Consts_, Vars_, Funcs_, Methods_) {
+Å…		Value.init([["Doc", "Doc", "", Go$String, ""], ["Names", "Names", "", (go$sliceType(Go$String)), ""], ["Decl", "Decl", "", (go$ptrType(ast.GenDecl)), ""], ["order", "order", "go/doc", Go$Int, ""]]);
+0Value00go/astGenDecl0ÇíTypeÇ¥	Type = go$pkg.Type = go$newType(0, "Struct", "doc.Type", "Type", "go/doc", function(Doc_, Name_, Decl_, Consts_, Vars_, Funcs_, Methods_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : "";
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -214,8 +214,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		this.Funcs = Funcs_ !== undefined ? Funcs_ : (go$sliceType((go$ptrType(Func)))).nil;
 		this.Methods = Methods_ !== undefined ? Methods_ : (go$sliceType((go$ptrType(Func)))).nil;
 	});
-ÇU		Type.init([["Doc", "", Go$String, ""], ["Name", "", Go$String, ""], ["Decl", "", (go$ptrType(ast.GenDecl)), ""], ["Consts", "", (go$sliceType((go$ptrType(Value)))), ""], ["Vars", "", (go$sliceType((go$ptrType(Value)))), ""], ["Funcs", "", (go$sliceType((go$ptrType(Func)))), ""], ["Methods", "", (go$sliceType((go$ptrType(Func)))), ""]]);
-0Type040go/astGenDecl0go/docValue0go/docFunc0ÇÕFuncÇ◊	Func = go$pkg.Func = go$newType(0, "Struct", "doc.Func", "Func", "go/doc", function(Doc_, Name_, Decl_, Recv_, Orig_, Level_) {
+Çí		Type.init([["Doc", "Doc", "", Go$String, ""], ["Name", "Name", "", Go$String, ""], ["Decl", "Decl", "", (go$ptrType(ast.GenDecl)), ""], ["Consts", "Consts", "", (go$sliceType((go$ptrType(Value)))), ""], ["Vars", "Vars", "", (go$sliceType((go$ptrType(Value)))), ""], ["Funcs", "Funcs", "", (go$sliceType((go$ptrType(Func)))), ""], ["Methods", "Methods", "", (go$sliceType((go$ptrType(Func)))), ""]]);
+0Type040go/astGenDecl0go/docValue0go/docFunc0Ç˝FuncÇ◊	Func = go$pkg.Func = go$newType(0, "Struct", "doc.Func", "Func", "go/doc", function(Doc_, Name_, Decl_, Recv_, Orig_, Level_) {
 		this.go$val = this;
 		this.Doc = Doc_ !== undefined ? Doc_ : "";
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -224,17 +224,17 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		this.Orig = Orig_ !== undefined ? Orig_ : "";
 		this.Level = Level_ !== undefined ? Level_ : 0;
 	});
-ÅÀ		Func.init([["Doc", "", Go$String, ""], ["Name", "", Go$String, ""], ["Decl", "", (go$ptrType(ast.FuncDecl)), ""], ["Recv", "", Go$String, ""], ["Orig", "", Go$String, ""], ["Level", "", Go$Int, ""]]);
-0Func00go/astFuncDecl0ÇËNoteÇ@	Note = go$pkg.Note = go$newType(0, "Struct", "doc.Note", "Note", "go/doc", function(Pos_, End_, UID_, Body_) {
+Å˚		Func.init([["Doc", "Doc", "", Go$String, ""], ["Name", "Name", "", Go$String, ""], ["Decl", "Decl", "", (go$ptrType(ast.FuncDecl)), ""], ["Recv", "Recv", "", Go$String, ""], ["Orig", "Orig", "", Go$String, ""], ["Level", "Level", "", Go$Int, ""]]);
+0Func00go/astFuncDecl0ÇNoteÇ@	Note = go$pkg.Note = go$newType(0, "Struct", "doc.Note", "Note", "go/doc", function(Pos_, End_, UID_, Body_) {
 		this.go$val = this;
 		this.Pos = Pos_ !== undefined ? Pos_ : 0;
 		this.End = End_ !== undefined ? End_ : 0;
 		this.UID = UID_ !== undefined ? UID_ : "";
 		this.Body = Body_ !== undefined ? Body_ : "";
 	});
-ÅÄ		Note.init([["Pos", "", token.Pos, ""], ["End", "", token.Pos, ""], ["UID", "", Go$String, ""], ["Body", "", Go$String, ""]]);
+Åù		Note.init([["Pos", "Pos", "", token.Pos, ""], ["End", "End", "", token.Pos, ""], ["UID", "UID", "", Go$String, ""], ["Body", "Body", "", Go$String, ""]]);
 0Note00go/tokenPos0dModeP	Mode = go$pkg.Mode = go$newType(4, "Int", "doc.Mode", "Mode", "go/doc", null);
- 0Mode0 0Ç?ExampleÇ∂	Example = go$pkg.Example = go$newType(0, "Struct", "doc.Example", "Example", "go/doc", function(Name_, Doc_, Code_, Play_, Comments_, Output_, EmptyOutput_, Order_) {
+ 0Mode0 0ÇåExampleÇ∂	Example = go$pkg.Example = go$newType(0, "Struct", "doc.Example", "Example", "go/doc", function(Name_, Doc_, Code_, Play_, Comments_, Output_, EmptyOutput_, Order_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Doc = Doc_ !== undefined ? Doc_ : "";
@@ -245,20 +245,20 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		this.EmptyOutput = EmptyOutput_ !== undefined ? EmptyOutput_ : false;
 		this.Order = Order_ !== undefined ? Order_ : 0;
 	});
-Ç3		Example.init([["Name", "", Go$String, ""], ["Doc", "", Go$String, ""], ["Code", "", ast.Node, ""], ["Play", "", (go$ptrType(ast.File)), ""], ["Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""], ["Output", "", Go$String, ""], ["EmptyOutput", "", Go$Bool, ""], ["Order", "", Go$Int, ""]]);
-0	Example080go/astFile0go/astCommentGroup0go/astNode0Ç"exampleByNamev	exampleByName = go$pkg.exampleByName = go$newType(0, "Slice", "doc.exampleByName", "exampleByName", "go/doc", null);
-Çq		exampleByName.init((go$ptrType(Example)));
-		exampleByName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(exampleByName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+ÇÄ		Example.init([["Name", "Name", "", Go$String, ""], ["Doc", "Doc", "", Go$String, ""], ["Code", "Code", "", ast.Node, ""], ["Play", "Play", "", (go$ptrType(ast.File)), ""], ["Comments", "Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""], ["Output", "Output", "", Go$String, ""], ["EmptyOutput", "EmptyOutput", "", Go$Bool, ""], ["Order", "Order", "", Go$Int, ""]]);
+0	Example080go/astFile0go/astCommentGroup0go/astNode0Ç:exampleByNamev	exampleByName = go$pkg.exampleByName = go$newType(0, "Slice", "doc.exampleByName", "exampleByName", "go/doc", null);
+Çâ		exampleByName.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(exampleByName)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		exampleByName.init((go$ptrType(Example)));
 0exampleByName00go/docExample0ÅüFilterY	Filter = go$pkg.Filter = go$newType(0, "Func", "doc.Filter", "Filter", "go/doc", null);
 .		Filter.init([Go$String], [Go$Bool], false);
-0Filter0 0Ç˜	methodSetd	methodSet = go$pkg.methodSet = go$newType(0, "Map", "doc.methodSet", "methodSet", "go/doc", null);
-ÇO		methodSet.init(Go$String, (go$ptrType(Func)));
-		methodSet.methods = [["add", "go/doc", [(go$ptrType(Func))], [], false], ["set", "go/doc", [(go$ptrType(ast.FuncDecl))], [], false]];
-		(go$ptrType(methodSet)).methods = [["add", "go/doc", [(go$ptrType(Func))], [], false], ["set", "go/doc", [(go$ptrType(ast.FuncDecl))], [], false]];
+0Filter0 0Ç	methodSetd	methodSet = go$pkg.methodSet = go$newType(0, "Map", "doc.methodSet", "methodSet", "go/doc", null);
+Ç_		methodSet.methods = [["add", "go/doc", [(go$ptrType(Func))], [], false, -1], ["set", "go/doc", [(go$ptrType(ast.FuncDecl))], [], false, -1]];
+		(go$ptrType(methodSet)).methods = [["add", "go/doc", [(go$ptrType(Func))], [], false, -1], ["set", "go/doc", [(go$ptrType(ast.FuncDecl))], [], false, -1]];
+		methodSet.init(Go$String, (go$ptrType(Func)));
 0	methodSet0$0go/docFunc0go/astFuncDecl0ÅŸembeddedSetl	embeddedSet = go$pkg.embeddedSet = go$newType(0, "Map", "doc.embeddedSet", "embeddedSet", "go/doc", null);
 6		embeddedSet.init((go$ptrType(namedType)), Go$Bool);
-0embeddedSet00go/doc	namedType0Ç	namedTypeÇ	namedType = go$pkg.namedType = go$newType(0, "Struct", "doc.namedType", "namedType", "go/doc", function(doc_, name_, decl_, isEmbedded_, isStruct_, embedded_, values_, funcs_, methods_) {
+0embeddedSet00go/doc	namedType0Çg	namedTypeÇ	namedType = go$pkg.namedType = go$newType(0, "Struct", "doc.namedType", "namedType", "go/doc", function(doc_, name_, decl_, isEmbedded_, isStruct_, embedded_, values_, funcs_, methods_) {
 		this.go$val = this;
 		this.doc = doc_ !== undefined ? doc_ : "";
 		this.name = name_ !== undefined ? name_ : "";
@@ -270,8 +270,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		this.funcs = funcs_ !== undefined ? funcs_ : false;
 		this.methods = methods_ !== undefined ? methods_ : false;
 	});
-Çä		namedType.init([["doc", "go/doc", Go$String, ""], ["name", "go/doc", Go$String, ""], ["decl", "go/doc", (go$ptrType(ast.GenDecl)), ""], ["isEmbedded", "go/doc", Go$Bool, ""], ["isStruct", "go/doc", Go$Bool, ""], ["embedded", "go/doc", embeddedSet, ""], ["values", "go/doc", (go$sliceType((go$ptrType(Value)))), ""], ["funcs", "go/doc", methodSet, ""], ["methods", "go/doc", methodSet, ""]]);
-0	namedType0P0go/astGenDecl0go/docValue0go/docembeddedSet0go/doc	methodSet0ÇªreaderÇo	reader = go$pkg.reader = go$newType(0, "Struct", "doc.reader", "reader", "go/doc", function(mode_, doc_, filenames_, notes_, imports_, values_, types_, funcs_, errorDecl_, fixlist_) {
+ÇÂ		namedType.init([["doc", "doc", "go/doc", Go$String, ""], ["name", "name", "go/doc", Go$String, ""], ["decl", "decl", "go/doc", (go$ptrType(ast.GenDecl)), ""], ["isEmbedded", "isEmbedded", "go/doc", Go$Bool, ""], ["isStruct", "isStruct", "go/doc", Go$Bool, ""], ["embedded", "embedded", "go/doc", embeddedSet, ""], ["values", "values", "go/doc", (go$sliceType((go$ptrType(Value)))), ""], ["funcs", "funcs", "go/doc", methodSet, ""], ["methods", "methods", "go/doc", methodSet, ""]]);
+0	namedType0P0go/astGenDecl0go/docValue0go/docembeddedSet0go/doc	methodSet0ÇwreaderÇo	reader = go$pkg.reader = go$newType(0, "Struct", "doc.reader", "reader", "go/doc", function(mode_, doc_, filenames_, notes_, imports_, values_, types_, funcs_, errorDecl_, fixlist_) {
 		this.go$val = this;
 		this.mode = mode_ !== undefined ? mode_ : 0;
 		this.doc = doc_ !== undefined ? doc_ : "";
@@ -284,16 +284,16 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		this.errorDecl = errorDecl_ !== undefined ? errorDecl_ : false;
 		this.fixlist = fixlist_ !== undefined ? fixlist_ : (go$sliceType((go$ptrType(ast.InterfaceType)))).nil;
 	});
-Ç’		reader.init([["mode", "go/doc", Mode, ""], ["doc", "go/doc", Go$String, ""], ["filenames", "go/doc", (go$sliceType(Go$String)), ""], ["notes", "go/doc", (go$mapType(Go$String, (go$sliceType((go$ptrType(Note)))))), ""], ["imports", "go/doc", (go$mapType(Go$String, Go$Int)), ""], ["values", "go/doc", (go$sliceType((go$ptrType(Value)))), ""], ["types", "go/doc", (go$mapType(Go$String, (go$ptrType(namedType)))), ""], ["funcs", "go/doc", methodSet, ""], ["errorDecl", "go/doc", Go$Bool, ""], ["fixlist", "go/doc", (go$sliceType((go$ptrType(ast.InterfaceType)))), ""]]);
-		(go$ptrType(reader)).methods = [["cleanupTypes", "go/doc", [], [], false], ["collectEmbeddedMethods", "go/doc", [methodSet, (go$ptrType(namedType)), Go$String, Go$Bool, Go$Int, embeddedSet], [], false], ["computeMethodSets", "go/doc", [], [], false], ["fileExports", "go/doc", [(go$ptrType(ast.File))], [], false], ["filterDecl", "go/doc", [ast.Decl], [Go$Bool], false], ["filterFieldList", "go/doc", [(go$ptrType(namedType)), (go$ptrType(ast.FieldList)), (go$ptrType(ast.InterfaceType))], [Go$Bool], false], ["filterParamList", "go/doc", [(go$ptrType(ast.FieldList))], [], false], ["filterSpec", "go/doc", [ast.Spec], [Go$Bool], false], ["filterSpecList", "go/doc", [(go$sliceType(ast.Spec))], [(go$sliceType(ast.Spec))], false], ["filterType", "go/doc", [(go$ptrType(namedType)), ast.Expr], [], false], ["isVisible", "go/doc", [Go$String], [Go$Bool], false], ["lookupType", "go/doc", [Go$String], [(go$ptrType(namedType))], false], ["readDoc", "go/doc", [(go$ptrType(ast.CommentGroup))], [], false], ["readFile", "go/doc", [(go$ptrType(ast.File))], [], false], ["readFunc", "go/doc", [(go$ptrType(ast.FuncDecl))], [], false], ["readNote", "go/doc", [(go$sliceType((go$ptrType(ast.Comment))))], [], false], ["readNotes", "go/doc", [(go$sliceType((go$ptrType(ast.CommentGroup))))], [], false], ["readPackage", "go/doc", [(go$ptrType(ast.Package)), Mode], [], false], ["readType", "go/doc", [(go$ptrType(ast.GenDecl)), (go$ptrType(ast.TypeSpec))], [], false], ["readValue", "go/doc", [(go$ptrType(ast.GenDecl))], [], false], ["recordAnonymousField", "go/doc", [(go$ptrType(namedType)), ast.Expr], [Go$String], false], ["remember", "go/doc", [(go$ptrType(ast.InterfaceType))], [], false]];
-0reader0ÇY0go/docValue0go/docembeddedSet0go/astSpec0go/astPackage0go/docMode0go/doc	namedType0go/doc	methodSet0go/astFile0go/astDecl0go/ast	FieldList0go/astComment0go/astTypeSpec0go/astInterfaceType0go/docNote0go/astFuncDecl0go/astExpr0go/astCommentGroup0go/astGenDecl0ÇßdataÇ4	data = go$pkg.data = go$newType(0, "Struct", "doc.data", "data", "go/doc", function(n_, swap_, less_) {
+Ç	ë		(go$ptrType(reader)).methods = [["cleanupTypes", "go/doc", [], [], false, -1], ["collectEmbeddedMethods", "go/doc", [methodSet, (go$ptrType(namedType)), Go$String, Go$Bool, Go$Int, embeddedSet], [], false, -1], ["computeMethodSets", "go/doc", [], [], false, -1], ["fileExports", "go/doc", [(go$ptrType(ast.File))], [], false, -1], ["filterDecl", "go/doc", [ast.Decl], [Go$Bool], false, -1], ["filterFieldList", "go/doc", [(go$ptrType(namedType)), (go$ptrType(ast.FieldList)), (go$ptrType(ast.InterfaceType))], [Go$Bool], false, -1], ["filterParamList", "go/doc", [(go$ptrType(ast.FieldList))], [], false, -1], ["filterSpec", "go/doc", [ast.Spec], [Go$Bool], false, -1], ["filterSpecList", "go/doc", [(go$sliceType(ast.Spec))], [(go$sliceType(ast.Spec))], false, -1], ["filterType", "go/doc", [(go$ptrType(namedType)), ast.Expr], [], false, -1], ["isVisible", "go/doc", [Go$String], [Go$Bool], false, -1], ["lookupType", "go/doc", [Go$String], [(go$ptrType(namedType))], false, -1], ["readDoc", "go/doc", [(go$ptrType(ast.CommentGroup))], [], false, -1], ["readFile", "go/doc", [(go$ptrType(ast.File))], [], false, -1], ["readFunc", "go/doc", [(go$ptrType(ast.FuncDecl))], [], false, -1], ["readNote", "go/doc", [(go$sliceType((go$ptrType(ast.Comment))))], [], false, -1], ["readNotes", "go/doc", [(go$sliceType((go$ptrType(ast.CommentGroup))))], [], false, -1], ["readPackage", "go/doc", [(go$ptrType(ast.Package)), Mode], [], false, -1], ["readType", "go/doc", [(go$ptrType(ast.GenDecl)), (go$ptrType(ast.TypeSpec))], [], false, -1], ["readValue", "go/doc", [(go$ptrType(ast.GenDecl))], [], false, -1], ["recordAnonymousField", "go/doc", [(go$ptrType(namedType)), ast.Expr], [Go$String], false, -1], ["remember", "go/doc", [(go$ptrType(ast.InterfaceType))], [], false, -1]];
+		reader.init([["mode", "mode", "go/doc", Mode, ""], ["doc", "doc", "go/doc", Go$String, ""], ["filenames", "filenames", "go/doc", (go$sliceType(Go$String)), ""], ["notes", "notes", "go/doc", (go$mapType(Go$String, (go$sliceType((go$ptrType(Note)))))), ""], ["imports", "imports", "go/doc", (go$mapType(Go$String, Go$Int)), ""], ["values", "values", "go/doc", (go$sliceType((go$ptrType(Value)))), ""], ["types", "types", "go/doc", (go$mapType(Go$String, (go$ptrType(namedType)))), ""], ["funcs", "funcs", "go/doc", methodSet, ""], ["errorDecl", "errorDecl", "go/doc", Go$Bool, ""], ["fixlist", "fixlist", "go/doc", (go$sliceType((go$ptrType(ast.InterfaceType)))), ""]]);
+0reader0ÇY0go/astInterfaceType0go/docembeddedSet0go/astCommentGroup0go/astComment0go/astPackage0go/astFile0go/astFuncDecl0go/astGenDecl0go/doc	methodSet0go/ast	FieldList0go/astExpr0go/astTypeSpec0go/docNote0go/docValue0go/doc	namedType0go/astDecl0go/astSpec0go/docMode0Ç»dataÇ4	data = go$pkg.data = go$newType(0, "Struct", "doc.data", "data", "go/doc", function(n_, swap_, less_) {
 		this.go$val = this;
 		this.n = n_ !== undefined ? n_ : 0;
 		this.swap = swap_ !== undefined ? swap_ : go$throwNilPointerError;
 		this.less = less_ !== undefined ? less_ : go$throwNilPointerError;
 	});
-Ç[		data.init([["n", "go/doc", Go$Int, ""], ["swap", "go/doc", (go$funcType([Go$Int, Go$Int], [], false)), ""], ["less", "go/doc", (go$funcType([Go$Int, Go$Int], [Go$Bool], false)), ""]]);
-		(go$ptrType(data)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
+Ç|		(go$ptrType(data)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		data.init([["n", "n", "go/doc", Go$Int, ""], ["swap", "swap", "go/doc", (go$funcType([Go$Int, Go$Int], [], false)), ""], ["less", "less", "go/doc", (go$funcType([Go$Int, Go$Int], [Go$Bool], false)), ""]]);
 0data0 0Ç˙commentEscapeÇì	commentEscape = function(w, text, nice) {
 		var last, i, ch, _ref;
 		last = 0;
@@ -357,8 +357,8 @@ HTMLEscape0go/docldquo0go/docrdquo0Ç&	emphasizeÇ[	emphasize = func
 		}
 		commentEscape(w, line, nice);
 	};
- 0	emphasize0Å™0go/docmatchRx0text/template
-HTMLEscape0go/dochtml-aq0go/doccommentEscape0go/dochtml-a0go/dochtml-i0go/doc	html-endi0go/doc	html-enda0Å≈	indentLenÅ¶	indentLen = function(s) {
+ 0	emphasize0Å™0go/docmatchRx0go/doc	html-enda0go/doccommentEscape0go/dochtml-a0text/template
+HTMLEscape0go/dochtml-aq0go/dochtml-i0go/doc	html-endi0Å≈	indentLenÅ¶	indentLen = function(s) {
 		var i;
 		i = 0;
 		while (i < s.length && ((s.charCodeAt(i) === 32) || (s.charCodeAt(i) === 9))) {
@@ -435,7 +435,7 @@ HTMLEscape0go/dochtml-aq0go/doccommentEscape0go/dochtml-a0go/d
 		}
 		return line;
 	};
- 0	heading0Å 0strings	TrimSpace0"unicode/utf8DecodeRuneInString0unicodeIsLetter0&unicode/utf8DecodeLastRuneInString0unicodeIsUpper0unicodeIsDigit0stringsIndexAny0strings	IndexRune0ÅìanchorID^	anchorID = function(line) {
+ 0	heading0Å 0unicodeIsLetter0&unicode/utf8DecodeLastRuneInString0strings	IndexRune0strings	TrimSpace0"unicode/utf8DecodeRuneInString0unicodeIsUpper0unicodeIsDigit0stringsIndexAny0ÅìanchorID^	anchorID = function(line) {
 		return "hdr-" + nonAlphaNumRx.ReplaceAllString(line, "_");
 	};
  0
@@ -489,7 +489,7 @@ HTMLEscape0go/dochtml-aq0go/doccommentEscape0go/dochtml-a0go/d
 			_i++;
 		}
 	};
- 0ToHTML0ÅÒ0go/docblocks0go/docblock0go/dochtml-p0go/doc	html-endp0go/dochtml-h0go/docanchorID0go/doccommentEscape0go/dochtml-pre0go/doc	emphasize0go/dochtml-hq0go/doc	html-endh0go/dochtml-endpre0ÇTblocksÇ√	blocks = function(text) {
+ 0ToHTML0ÅÒ0go/doc	emphasize0go/dochtml-h0go/doc	html-endh0go/dochtml-pre0go/docblocks0go/docblock0go/dochtml-p0go/doc	html-endp0go/docanchorID0go/dochtml-hq0go/doccommentEscape0go/dochtml-endpre0ÇTblocksÇ√	blocks = function(text) {
 		var out, para, lastWasBlank, lastWasHeading, close, lines, i, _slice, _index, line, j, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, pre, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, head, _slice$7, _index$7;
 		out = (go$sliceType(block)).nil, para = (go$sliceType(Go$String)).nil, lastWasBlank = false, lastWasHeading = false;
 		close = (function() {
@@ -633,9 +633,9 @@ SplitAfter0go/docunindent0go/docisBlank0go/doc	indentLen0go/doc
 		r.cleanupTypes();
 		return new Package.Ptr(r.doc, pkg.Name, importPath, sortedKeys(r.imports), r.filenames, r.notes, noteBodies((_entry = r.notes["BUG"], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(Note)))).nil)), sortedValues(r.values, 64), sortedTypes(r.types, !(((mode & 2) === 0))), sortedValues(r.values, 85), sortedFuncs(r.funcs, true));
 	};
- 0New0Ç$0go/docreadPackage0go/doccleanupTypes0go/docsortedValues0go/docreader0go/docPackage0go/doccomputeMethodSets0go/docFunc0go/doc
-noteBodies0go/docsortedFuncs0go/docValue0go/docType0go/doc
-sortedKeys0go/docNote0go/docsortedTypes0ÇfExamplesÇ
+ 0New0Ç$0go/doccleanupTypes0go/docValue0go/docFunc0go/docsortedTypes0go/docreader0go/doccomputeMethodSets0go/docType0go/docsortedFuncs0go/doc
+sortedKeys0go/doc
+noteBodies0go/docNote0go/docsortedValues0go/docreadPackage0go/docPackage0ÇfExamplesÇ
 a	Examples = go$pkg.Examples = function(files) {
 		var list, _ref, _i, _slice, _index, file, hasTests, numDecl, flist, _ref$1, _i$1, _slice$1, _index$1, decl, ok, g, _tuple, _tuple$1, f, ok$1, name, doc, _tuple$2, output, hasOutput, _slice$2, _index$2, _slice$3, _index$3;
 		list = (go$sliceType((go$ptrType(Example)))).nil;
@@ -690,7 +690,7 @@ a	Examples = go$pkg.Examples = function(files) {
 		return list;
 	};
  0
-Examples0ÅÊ0go/astGenDecl0go/astFuncDecl0go/astCommentGroup0go/docexampleOutput0go/astFile0sortSort0go/docexampleByName0go/docExample0go/docisTest0go/docplayExample0go/docplayExampleFile0ÇˆexampleOutputÇr	exampleOutput = function(b, comments) {
+Examples0ÅÊ0go/astFuncDecl0go/docexampleOutput0go/docExample0go/astGenDecl0go/docisTest0go/astCommentGroup0go/astFile0go/docplayExample0go/docplayExampleFile0sortSort0go/docexampleByName0ÇˆexampleOutputÇr	exampleOutput = function(b, comments) {
 		var output, ok, last, _tuple, text, loc, _slice, _index, _tuple$1, _tuple$2;
 		output = "";
 		ok = false;
@@ -887,8 +887,8 @@ a	Examples = go$pkg.Examples = function(files) {
 		funcDecl = new ast.FuncDecl.Ptr((go$ptrType(ast.CommentGroup)).nil, (go$ptrType(ast.FieldList)).nil, ast.NewIdent("main"), new ast.FuncType.Ptr(0, new ast.FieldList.Ptr(0, (go$sliceType((go$ptrType(ast.Field)))).nil, 0), (go$ptrType(ast.FieldList)).nil), body);
 		return new ast.File.Ptr((go$ptrType(ast.CommentGroup)).nil, 0, ast.NewIdent("main"), new (go$sliceType(ast.Decl))([importDecl, funcDecl]), (go$ptrType(ast.Scope)).nil, (go$sliceType((go$ptrType(ast.ImportSpec)))).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, comments);
 	};
- 0playExample0Ç\0go/astObject0strconvUnquote0go/astNewIdent0go/astGenDecl0go/astInspect0go/astKeyValueExpr0go/docpredeclaredConstants0go/astSpec0pathBase0go/astBasicLit0go/astTypeSpec0go/astCommentGroup0strings	HasSuffix0go/docstripOutputComment0go/astFile0go/astSelectorExpr0strconvQuote0go/ast	FieldList0go/astFuncType0go/astScope0go/ast	ValueSpec0go/astIdent0go/docpredeclaredTypes0go/ast
-ImportSpec0go/ast	BlockStmt0go/astFuncDecl0go/astDecl0go/docpredeclaredFuncs0go/astField0ÇÿplayExampleFileÇ	playExampleFile = function(file) {
+ 0playExample0Ç\0strings	HasSuffix0go/astTypeSpec0go/docpredeclaredFuncs0pathBase0go/astBasicLit0go/astFuncType0go/astDecl0go/astScope0go/docpredeclaredTypes0go/docpredeclaredConstants0go/docstripOutputComment0go/ast	FieldList0go/astGenDecl0go/astInspect0go/astCommentGroup0go/astIdent0go/astSpec0strconvUnquote0go/ast	ValueSpec0go/astNewIdent0strconvQuote0go/ast	BlockStmt0go/astFile0go/astFuncDecl0go/astSelectorExpr0go/astKeyValueExpr0go/astObject0go/ast
+ImportSpec0go/astField0ÇÿplayExampleFileÇ	playExampleFile = function(file) {
 		var comments, _slice, _index, decls, _ref, _i, _slice$1, _index$1, d, ok, f, _tuple, _struct, newF, _tuple$1, _struct$1, f$1;
 		comments = file.Comments;
 		if (comments.length > 0 && strings.HasPrefix((_slice = comments, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Text(), "Copyright")) {
@@ -1034,9 +1034,9 @@ IsExported0Ç›removeErrorFieldÇó	removeErrorField = function(ityp) {
 		return removedFields;
 	};
 	reader.prototype.filterFieldList = function(parent, fields$1, ityp) { return this.go$val.filterFieldList(parent, fields$1, ityp); };
- 0readerfilterFieldList0Å–0go/docreader0go/docrecordAnonymousField0go/ast
-IsExported0go/docremember0go/docfilterIdentList0go/doc	namedType0go/ast	FieldList0go/astInterfaceType0go/doc
-filterType0Çº ÇE	reader.Ptr.prototype.filterParamList = function(fields$1) {
+ 0readerfilterFieldList0Å–0go/docrecordAnonymousField0go/astInterfaceType0go/docfilterIdentList0go/doc
+filterType0go/docreader0go/ast	FieldList0go/ast
+IsExported0go/docremember0go/doc	namedType0Çº ÇE	reader.Ptr.prototype.filterParamList = function(fields$1) {
 		var r, _ref, _i, _slice, _index, f;
 		r = this;
 		if (!(fields$1 === (go$ptrType(ast.FieldList)).nil)) {
@@ -1089,8 +1089,8 @@ filterType0go/doc	namedType0ÇÜ Çb	reader.Ptr.prototype.filterType = func
 	};
 	reader.prototype.filterType = function(parent, typ) { return this.go$val.filterType(parent, typ); };
  0reader
-filterType0Ç0go/astIdent0go/ast	ParenExpr0go/ast
-StructType0go/astMapType0go/docfilterParamList0go/docreader0go/ast	ArrayType0go/astFuncType0go/astInterfaceType0go/astChanType0go/doc	namedType0go/docfilterFieldList0Ç% ÇA	reader.Ptr.prototype.filterSpec = function(spec) {
+filterType0Ç0go/docreader0go/ast	ParenExpr0go/ast	ArrayType0go/astMapType0go/astChanType0go/astIdent0go/ast
+StructType0go/astFuncType0go/astInterfaceType0go/doc	namedType0go/docfilterFieldList0go/docfilterParamList0Ç% ÇA	reader.Ptr.prototype.filterSpec = function(spec) {
 		var r, s, _ref, _type, name;
 		r = this;
 		_ref = spec;
@@ -1119,9 +1119,9 @@ StructType0go/astMapType0go/docfilterParamList0go/docreader0go
 	reader.prototype.filterSpec = function(spec) { return this.go$val.filterSpec(spec); };
  0reader
 filterSpec0Å√0go/docreader0go/ast
-ImportSpec0go/astTypeSpec0go/docfilterIdentList0go/doc	namedType0go/doc
-lookupType0go/ast	ValueSpec0go/doc
-filterType0go/ast
+ImportSpec0go/astTypeSpec0go/docfilterIdentList0go/doc
+filterType0go/doc
+lookupType0go/ast	ValueSpec0go/doc	namedType0go/ast
 IsExported0Ç& Ç⁄	reader.Ptr.prototype.filterSpecList = function(list) {
 		var r, j, _ref, _i, _slice, _index, s, _slice$1, _index$1;
 		r = this;
@@ -1499,7 +1499,7 @@ lookupType0go/astStarExpr0ÇJ Ç	reader.Ptr.prototype.readDoc = function
 		decl.Doc = (go$ptrType(ast.CommentGroup)).nil;
 	};
 	reader.prototype.readValue = function(decl) { return this.go$val.readValue(decl); };
- 0reader	readValue0Å–0go/doc	namedType0go/astGenDecl0go/doc	specNames0go/docreader0go/ast	ValueSpec0go/docbaseTypeName0go/docValue0go/doc	isVisible0go/doc
+ 0reader	readValue0Å–0go/docreader0go/docbaseTypeName0go/doc	isVisible0go/doc	namedType0go/astGenDecl0go/doc	specNames0go/ast	ValueSpec0go/docValue0go/doc
 lookupType0go/astCommentGroup0Ç¬fieldsÇS	fields = function(typ) {
 		var list, isStruct, fields$1, t, _ref, _type;
 		list = (go$sliceType((go$ptrType(ast.Field)))).nil;
@@ -1578,8 +1578,8 @@ lookupType0go/doc	namedType0go/astCommentGroup0go/astField0go/d
 		(new methodSet(r.funcs)).set(fun);
 	};
 	reader.prototype.readFunc = function(fun) { return this.go$val.readFunc(fun); };
- 0readerreadFunc0Å∏0go/docreader0go/ast	BlockStmt0go/docbaseTypeName0go/doc
-lookupType0go/docset0go/doc	methodSet0go/ast	FieldList0go/doc	namedType0go/doc	isVisible0Ç~ ÇÍ	reader.Ptr.prototype.readNote = function(list) {
+ 0readerreadFunc0Å∏0go/docreader0go/ast	FieldList0go/docbaseTypeName0go/doc	namedType0go/doc
+lookupType0go/docset0go/doc	isVisible0go/ast	BlockStmt0go/doc	methodSet0Ç~ ÇÍ	reader.Ptr.prototype.readNote = function(list) {
 		var r, text, m, _slice, _index, body, _slice$1, _index$1, _slice$2, _index$2, marker, _entry, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _key;
 		r = this;
 		text = (new ast.CommentGroup.Ptr(list)).Text();
@@ -1679,8 +1679,8 @@ lookupType0go/docset0go/doc	methodSet0go/ast	FieldList0go/doc	n
 		src.Comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 	};
 	reader.prototype.readFile = function(src) { return this.go$val.readFile(src); };
- 0readerreadFile0Ç0go/astGenDecl0strconvUnquote0go/astTypeSpec0go/astSpec0go/docreadFunc0go/astCommentGroup0go/tokenPos0go/docreadType0go/doc	readNotes0go/astFuncDecl0go/docreader0go/docreadDoc0go/ast
-ImportSpec0go/doc	readValue0Ç“ ÇS	reader.Ptr.prototype.readPackage = function(pkg, mode) {
+ 0readerreadFile0Ç0go/astCommentGroup0go/ast
+ImportSpec0go/tokenPos0go/docreader0go/docreadFunc0go/doc	readNotes0strconvUnquote0go/astTypeSpec0go/docreadType0go/docreadDoc0go/astGenDecl0go/astFuncDecl0go/doc	readValue0go/astSpec0Ç“ ÇS	reader.Ptr.prototype.readPackage = function(pkg, mode) {
 		var r, i, _ref, _i, _keys, _entry, filename, _slice, _index, _ref$1, _i$1, _slice$1, _index$1, filename$1, _entry$1, f;
 		r = this;
 		r.filenames = (go$sliceType(Go$String)).make(go$keys(pkg.Files).length, 0, function() { return ""; });
@@ -1739,7 +1739,7 @@ ImportSpec0go/doc	readValue0Ç“ ÇS	reader.Ptr.prototype.readPackage = fun
 		newF.Level = level;
 		return newF;
 	};
- 0customizeRecv0Åó0go/ast	FieldList0go/astIdent0go/docFunc0go/astFuncDecl0go/astField0go/astStarExpr0go/astObject0go/doc
+ 0customizeRecv0Åó0go/astField0go/astStarExpr0go/astObject0go/docFunc0go/astFuncDecl0go/ast	FieldList0go/astIdent0go/doc
 recvString0Çø ÇD	reader.Ptr.prototype.collectEmbeddedMethods = function(mset, typ, recvTypeName, embeddedIsPtr, level, visited) {
 		var r, _key, _ref, _i, _keys, _entry, isPtr, embedded, thisEmbeddedIsPtr, _ref$1, _i$1, _keys$1, _entry$1, m, _entry$2;
 		r = this;

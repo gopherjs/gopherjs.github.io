@@ -1,4 +1,4 @@
-0ÉErregexpÇ!ypackage regexp
+0ÉGªregexpÇ!ypackage regexp
 import io "io"
 import syntax "regexp/syntax"
 import bytes "bytes"
@@ -108,25 +108,26 @@ func (? *@"regexp/syntax".Inst) @"regexp/syntax".String() (? string)
 func (? *@"regexp/syntax".Inst) @"regexp/syntax".op() (? @"regexp/syntax".InstOp)
 type @"regexp/syntax".InstOp uint8
 $$
-0{runtimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxregexp0Åì0ioio0regexp/syntaxsyntax0bytesbytes0strconvstrconv0stringsstrings0syncsync0unicodeunicode0unicode/utf8utf80É"”0Ç√queueÇ%	queue = go$pkg.queue = go$newType(0, "Struct", "regexp.queue", "queue", "regexp", function(sparse_, dense_) {
+0{runtimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxregexp0Åì0ioio0regexp/syntaxsyntax0bytesbytes0strconvstrconv0stringsstrings0syncsync0unicodeunicode0unicode/utf8utf80É%0Ç◊queueÇ%	queue = go$pkg.queue = go$newType(0, "Struct", "regexp.queue", "queue", "regexp", function(sparse_, dense_) {
 		this.go$val = this;
 		this.sparse = sparse_ !== undefined ? sparse_ : (go$sliceType(Go$Uint32)).nil;
 		this.dense = dense_ !== undefined ? dense_ : (go$sliceType(entry)).nil;
 	});
-u		queue.init([["sparse", "regexp", (go$sliceType(Go$Uint32)), ""], ["dense", "regexp", (go$sliceType(entry)), ""]]);
-0queue00regexpentry0ÇmentryÅË	entry = go$pkg.entry = go$newType(0, "Struct", "regexp.entry", "entry", "regexp", function(pc_, t_) {
+Åà		queue.init([["sparse", "sparse", "regexp", (go$sliceType(Go$Uint32)), ""], ["dense", "dense", "regexp", (go$sliceType(entry)), ""]]);
+0queue00regexpentry0ÇxentryÅË	entry = go$pkg.entry = go$newType(0, "Struct", "regexp.entry", "entry", "regexp", function(pc_, t_) {
 		this.go$val = this;
 		this.pc = pc_ !== undefined ? pc_ : 0;
 		this.t = t_ !== undefined ? t_ : (go$ptrType(thread)).nil;
 	});
-\		entry.init([["pc", "regexp", Go$Uint32, ""], ["t", "regexp", (go$ptrType(thread)), ""]]);
-0entry00regexpthread0ÇæthreadÇ	thread = go$pkg.thread = go$newType(0, "Struct", "regexp.thread", "thread", "regexp", function(inst_, cap_) {
+g		entry.init([["pc", "pc", "regexp", Go$Uint32, ""], ["t", "t", "regexp", (go$ptrType(thread)), ""]]);
+0entry00regexpthread0ÇŒthreadÇ	thread = go$pkg.thread = go$newType(0, "Struct", "regexp.thread", "thread", "regexp", function(inst_, cap_) {
 		this.go$val = this;
 		this.inst = inst_ !== undefined ? inst_ : (go$ptrType(syntax.Inst)).nil;
 		this.cap = cap_ !== undefined ? cap_ : (go$sliceType(Go$Int)).nil;
 	});
-s		thread.init([["inst", "regexp", (go$ptrType(syntax.Inst)), ""], ["cap", "regexp", (go$sliceType(Go$Int)), ""]]);
-0thread00regexp/syntaxInst0Ç	åmachineÇ≥	machine = go$pkg.machine = go$newType(0, "Struct", "regexp.machine", "machine", "regexp", function(re_, p_, q0_, q1_, pool_, matched_, matchcap_, inputBytes_, inputString_, inputReader_) {
+ÅÇ		thread.init([["inst", "inst", "regexp", (go$ptrType(syntax.Inst)), ""], ["cap", "cap", "regexp", (go$sliceType(Go$Int)), ""]]);
+0thread00regexp/syntaxInst0Ç
+machineÇ≥	machine = go$pkg.machine = go$newType(0, "Struct", "regexp.machine", "machine", "regexp", function(re_, p_, q0_, q1_, pool_, matched_, matchcap_, inputBytes_, inputString_, inputReader_) {
 		this.go$val = this;
 		this.re = re_ !== undefined ? re_ : (go$ptrType(Regexp)).nil;
 		this.p = p_ !== undefined ? p_ : (go$ptrType(syntax.Prog)).nil;
@@ -139,11 +140,11 @@ $$
 		this.inputString = inputString_ !== undefined ? inputString_ : new inputString.Ptr();
 		this.inputReader = inputReader_ !== undefined ? inputReader_ : new inputReader.Ptr();
 	});
-Ç÷		machine.init([["re", "regexp", (go$ptrType(Regexp)), ""], ["p", "regexp", (go$ptrType(syntax.Prog)), ""], ["q0", "regexp", queue, ""], ["q1", "regexp", queue, ""], ["pool", "regexp", (go$sliceType((go$ptrType(thread)))), ""], ["matched", "regexp", Go$Bool, ""], ["matchcap", "regexp", (go$sliceType(Go$Int)), ""], ["inputBytes", "regexp", inputBytes, ""], ["inputString", "regexp", inputString, ""], ["inputReader", "regexp", inputReader, ""]]);
-		(go$ptrType(machine)).methods = [["add", "regexp", [(go$ptrType(queue)), Go$Uint32, Go$Int, (go$sliceType(Go$Int)), syntax.EmptyOp, (go$ptrType(thread))], [(go$ptrType(thread))], false], ["alloc", "regexp", [(go$ptrType(syntax.Inst))], [(go$ptrType(thread))], false], ["clear", "regexp", [(go$ptrType(queue))], [], false], ["free", "regexp", [(go$ptrType(thread))], [], false], ["init", "regexp", [Go$Int], [], false], ["match", "regexp", [input, Go$Int], [Go$Bool], false], ["newInputBytes", "regexp", [(go$sliceType(Go$Uint8))], [input], false], ["newInputReader", "regexp", [io.RuneReader], [input], false], ["newInputString", "regexp", [Go$String], [input], false], ["step", "regexp", [(go$ptrType(queue)), (go$ptrType(queue)), Go$Int, Go$Int, Go$Int32, syntax.EmptyOp], [], false]];
-0	machine0Å‰0regexp/syntaxProg0regexpqueue0regexpthread0regexp/syntaxEmptyOp0regexpinput0regexpRegexp0regexp
-inputBytes0regexpinputString0regexpinputReader0regexp/syntaxInst0io
-RuneReader0ÇRegexpÇA	Regexp = go$pkg.Regexp = go$newType(0, "Struct", "regexp.Regexp", "Regexp", "regexp", function(expr_, prog_, prefix_, prefixBytes_, prefixComplete_, prefixRune_, cond_, numSubexp_, subexpNames_, longest_, mu_, machine_) {
+Ç`		(go$ptrType(machine)).methods = [["add", "regexp", [(go$ptrType(queue)), Go$Uint32, Go$Int, (go$sliceType(Go$Int)), syntax.EmptyOp, (go$ptrType(thread))], [(go$ptrType(thread))], false, -1], ["alloc", "regexp", [(go$ptrType(syntax.Inst))], [(go$ptrType(thread))], false, -1], ["clear", "regexp", [(go$ptrType(queue))], [], false, -1], ["free", "regexp", [(go$ptrType(thread))], [], false, -1], ["init", "regexp", [Go$Int], [], false, -1], ["match", "regexp", [input, Go$Int], [Go$Bool], false, -1], ["newInputBytes", "regexp", [(go$sliceType(Go$Uint8))], [input], false, -1], ["newInputReader", "regexp", [io.RuneReader], [input], false, -1], ["newInputString", "regexp", [Go$String], [input], false, -1], ["step", "regexp", [(go$ptrType(queue)), (go$ptrType(queue)), Go$Int, Go$Int, Go$Int32, syntax.EmptyOp], [], false, -1]];
+		machine.init([["re", "re", "regexp", (go$ptrType(Regexp)), ""], ["p", "p", "regexp", (go$ptrType(syntax.Prog)), ""], ["q0", "q0", "regexp", queue, ""], ["q1", "q1", "regexp", queue, ""], ["pool", "pool", "regexp", (go$sliceType((go$ptrType(thread)))), ""], ["matched", "matched", "regexp", Go$Bool, ""], ["matchcap", "matchcap", "regexp", (go$sliceType(Go$Int)), ""], ["inputBytes", "inputBytes", "regexp", inputBytes, ""], ["inputString", "inputString", "regexp", inputString, ""], ["inputReader", "inputReader", "regexp", inputReader, ""]]);
+0	machine0Å‰0regexpRegexp0regexp/syntaxProg0regexpqueue0regexpthread0regexp/syntaxEmptyOp0regexp/syntaxInst0io
+RuneReader0regexp
+inputBytes0regexpinputString0regexpinputReader0regexpinput0ÇFRegexpÇA	Regexp = go$pkg.Regexp = go$newType(0, "Struct", "regexp.Regexp", "Regexp", "regexp", function(expr_, prog_, prefix_, prefixBytes_, prefixComplete_, prefixRune_, cond_, numSubexp_, subexpNames_, longest_, mu_, machine_) {
 		this.go$val = this;
 		this.expr = expr_ !== undefined ? expr_ : "";
 		this.prog = prog_ !== undefined ? prog_ : (go$ptrType(syntax.Prog)).nil;
@@ -158,35 +159,35 @@ RuneReader0ÇRegexpÇA	Regexp = go$pkg.Regexp = go$newType(0, "Struct", "reg
 		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
 		this.machine = machine_ !== undefined ? machine_ : (go$sliceType((go$ptrType(machine)))).nil;
 	});
-ÇS		Regexp.init([["expr", "regexp", Go$String, ""], ["prog", "regexp", (go$ptrType(syntax.Prog)), ""], ["prefix", "regexp", Go$String, ""], ["prefixBytes", "regexp", (go$sliceType(Go$Uint8)), ""], ["prefixComplete", "regexp", Go$Bool, ""], ["prefixRune", "regexp", Go$Int32, ""], ["cond", "regexp", syntax.EmptyOp, ""], ["numSubexp", "regexp", Go$Int, ""], ["subexpNames", "regexp", (go$sliceType(Go$String)), ""], ["longest", "regexp", Go$Bool, ""], ["mu", "regexp", sync.Mutex, ""], ["machine", "regexp", (go$sliceType((go$ptrType(machine)))), ""]]);
-		(go$ptrType(Regexp)).methods = [["Expand", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false], ["ExpandString", "", [(go$sliceType(Go$Uint8)), Go$String, Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false], ["Find", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["FindAll", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Uint8))))], false], ["FindAllIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["FindAllString", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false], ["FindAllStringIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["FindAllStringSubmatch", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$String))))], false], ["FindAllStringSubmatchIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["FindAllSubmatch", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType((go$sliceType(Go$Uint8))))))], false], ["FindAllSubmatchIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false], ["FindIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false], ["FindReaderIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false], ["FindReaderSubmatchIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false], ["FindString", "", [Go$String], [Go$String], false], ["FindStringIndex", "", [Go$String], [(go$sliceType(Go$Int))], false], ["FindStringSubmatch", "", [Go$String], [(go$sliceType(Go$String))], false], ["FindStringSubmatchIndex", "", [Go$String], [(go$sliceType(Go$Int))], false], ["FindSubmatch", "", [(go$sliceType(Go$Uint8))], [(go$sliceType((go$sliceType(Go$Uint8))))], false], ["FindSubmatchIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false], ["LiteralPrefix", "", [], [Go$String, Go$Bool], false], ["Longest", "", [], [], false], ["Match", "", [(go$sliceType(Go$Uint8))], [Go$Bool], false], ["MatchReader", "", [io.RuneReader], [Go$Bool], false], ["MatchString", "", [Go$String], [Go$Bool], false], ["NumSubexp", "", [], [Go$Int], false], ["ReplaceAll", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["ReplaceAllFunc", "", [(go$sliceType(Go$Uint8)), (go$funcType([(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false], ["ReplaceAllLiteral", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false], ["ReplaceAllLiteralString", "", [Go$String, Go$String], [Go$String], false], ["ReplaceAllString", "", [Go$String, Go$String], [Go$String], false], ["ReplaceAllStringFunc", "", [Go$String, (go$funcType([Go$String], [Go$String], false))], [Go$String], false], ["Split", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false], ["String", "", [], [Go$String], false], ["SubexpNames", "", [], [(go$sliceType(Go$String))], false], ["allMatches", "regexp", [Go$String, (go$sliceType(Go$Uint8)), Go$Int, (go$funcType([(go$sliceType(Go$Int))], [], false))], [], false], ["doExecute", "regexp", [io.RuneReader, (go$sliceType(Go$Uint8)), Go$String, Go$Int, Go$Int], [(go$sliceType(Go$Int))], false], ["expand", "regexp", [(go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false], ["get", "regexp", [], [(go$ptrType(machine))], false], ["pad", "regexp", [(go$sliceType(Go$Int))], [(go$sliceType(Go$Int))], false], ["put", "regexp", [(go$ptrType(machine))], [], false], ["replaceAll", "regexp", [(go$sliceType(Go$Uint8)), Go$String, Go$Int, (go$funcType([(go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false]];
-0Regexp0e0regexp/syntaxProg0syncMutex0regexpmachine0regexp/syntaxEmptyOp0io
-RuneReader0Ç,input]	input = go$pkg.input = go$newType(0, "Interface", "regexp.input", "input", "regexp", null);
+ÇÑ		(go$ptrType(Regexp)).methods = [["Expand", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false, -1], ["ExpandString", "", [(go$sliceType(Go$Uint8)), Go$String, Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false, -1], ["Find", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false, -1], ["FindAll", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Uint8))))], false, -1], ["FindAllIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindAllString", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false, -1], ["FindAllStringIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindAllStringSubmatch", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$String))))], false, -1], ["FindAllStringSubmatchIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindAllSubmatch", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType((go$sliceType(Go$Uint8))))))], false, -1], ["FindAllSubmatchIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false, -1], ["FindReaderIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false, -1], ["FindReaderSubmatchIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false, -1], ["FindString", "", [Go$String], [Go$String], false, -1], ["FindStringIndex", "", [Go$String], [(go$sliceType(Go$Int))], false, -1], ["FindStringSubmatch", "", [Go$String], [(go$sliceType(Go$String))], false, -1], ["FindStringSubmatchIndex", "", [Go$String], [(go$sliceType(Go$Int))], false, -1], ["FindSubmatch", "", [(go$sliceType(Go$Uint8))], [(go$sliceType((go$sliceType(Go$Uint8))))], false, -1], ["FindSubmatchIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false, -1], ["LiteralPrefix", "", [], [Go$String, Go$Bool], false, -1], ["Longest", "", [], [], false, -1], ["Match", "", [(go$sliceType(Go$Uint8))], [Go$Bool], false, -1], ["MatchReader", "", [io.RuneReader], [Go$Bool], false, -1], ["MatchString", "", [Go$String], [Go$Bool], false, -1], ["NumSubexp", "", [], [Go$Int], false, -1], ["ReplaceAll", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false, -1], ["ReplaceAllFunc", "", [(go$sliceType(Go$Uint8)), (go$funcType([(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false, -1], ["ReplaceAllLiteral", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false, -1], ["ReplaceAllLiteralString", "", [Go$String, Go$String], [Go$String], false, -1], ["ReplaceAllString", "", [Go$String, Go$String], [Go$String], false, -1], ["ReplaceAllStringFunc", "", [Go$String, (go$funcType([Go$String], [Go$String], false))], [Go$String], false, -1], ["Split", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false, -1], ["String", "", [], [Go$String], false, -1], ["SubexpNames", "", [], [(go$sliceType(Go$String))], false, -1], ["allMatches", "regexp", [Go$String, (go$sliceType(Go$Uint8)), Go$Int, (go$funcType([(go$sliceType(Go$Int))], [], false))], [], false, -1], ["doExecute", "regexp", [io.RuneReader, (go$sliceType(Go$Uint8)), Go$String, Go$Int, Go$Int], [(go$sliceType(Go$Int))], false, -1], ["expand", "regexp", [(go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false, -1], ["get", "regexp", [], [(go$ptrType(machine))], false, -1], ["pad", "regexp", [(go$sliceType(Go$Int))], [(go$sliceType(Go$Int))], false, -1], ["put", "regexp", [(go$ptrType(machine))], [], false, -1], ["replaceAll", "regexp", [(go$sliceType(Go$Uint8)), Go$String, Go$Int, (go$funcType([(go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false, -1]];
+		Regexp.init([["expr", "expr", "regexp", Go$String, ""], ["prog", "prog", "regexp", (go$ptrType(syntax.Prog)), ""], ["prefix", "prefix", "regexp", Go$String, ""], ["prefixBytes", "prefixBytes", "regexp", (go$sliceType(Go$Uint8)), ""], ["prefixComplete", "prefixComplete", "regexp", Go$Bool, ""], ["prefixRune", "prefixRune", "regexp", Go$Int32, ""], ["cond", "cond", "regexp", syntax.EmptyOp, ""], ["numSubexp", "numSubexp", "regexp", Go$Int, ""], ["subexpNames", "subexpNames", "regexp", (go$sliceType(Go$String)), ""], ["longest", "longest", "regexp", Go$Bool, ""], ["mu", "mu", "regexp", sync.Mutex, ""], ["machine", "machine", "regexp", (go$sliceType((go$ptrType(machine)))), ""]]);
+0Regexp0e0regexp/syntaxProg0syncMutex0regexpmachine0io
+RuneReader0regexp/syntaxEmptyOp0Ç,input]	input = go$pkg.input = go$newType(0, "Interface", "regexp.input", "input", "regexp", null);
 Çã		input.init([["canCheckPrefix", "regexp", (go$funcType([], [Go$Bool], false))], ["context", "regexp", (go$funcType([Go$Int], [syntax.EmptyOp], false))], ["hasPrefix", "regexp", (go$funcType([(go$ptrType(Regexp))], [Go$Bool], false))], ["index", "regexp", (go$funcType([(go$ptrType(Regexp)), Go$Int], [Go$Int], false))], ["step", "regexp", (go$funcType([Go$Int], [Go$Int32, Go$Int], false))]]);
-0input0,0regexp/syntaxEmptyOp0regexpRegexp0Ç•inputStringÅƒ	inputString = go$pkg.inputString = go$newType(0, "Struct", "regexp.inputString", "inputString", "regexp", function(str_) {
+0input0,0regexp/syntaxEmptyOp0regexpRegexp0Ç¿inputStringÅƒ	inputString = go$pkg.inputString = go$newType(0, "Struct", "regexp.inputString", "inputString", "regexp", function(str_) {
 		this.go$val = this;
 		this.str = str_ !== undefined ? str_ : "";
 	});
-Çê		inputString.init([["str", "regexp", Go$String, ""]]);
-		(go$ptrType(inputString)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
-0inputString0,0regexp/syntaxEmptyOp0regexpRegexp0Ç∆
+Ç´		(go$ptrType(inputString)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false, -1], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false, -1], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false, -1], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false, -1], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false, -1]];
+		inputString.init([["str", "str", "regexp", Go$String, ""]]);
+0inputString0,0regexp/syntaxEmptyOp0regexpRegexp0Ç·
 inputBytesÅ⁄	inputBytes = go$pkg.inputBytes = go$newType(0, "Struct", "regexp.inputBytes", "inputBytes", "regexp", function(str_) {
 		this.go$val = this;
 		this.str = str_ !== undefined ? str_ : (go$sliceType(Go$Uint8)).nil;
 	});
-Çù		inputBytes.init([["str", "regexp", (go$sliceType(Go$Uint8)), ""]]);
-		(go$ptrType(inputBytes)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
+Ç∏		(go$ptrType(inputBytes)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false, -1], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false, -1], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false, -1], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false, -1], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false, -1]];
+		inputBytes.init([["str", "str", "regexp", (go$sliceType(Go$Uint8)), ""]]);
 0
-inputBytes0,0regexp/syntaxEmptyOp0regexpRegexp0ÇeinputReaderÇ.	inputReader = go$pkg.inputReader = go$newType(0, "Struct", "regexp.inputReader", "inputReader", "regexp", function(r_, atEOT_, pos_) {
+inputBytes0,0regexp/syntaxEmptyOp0regexpRegexp0ÇéinputReaderÇ.	inputReader = go$pkg.inputReader = go$newType(0, "Struct", "regexp.inputReader", "inputReader", "regexp", function(r_, atEOT_, pos_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.atEOT = atEOT_ !== undefined ? atEOT_ : false;
 		this.pos = pos_ !== undefined ? pos_ : 0;
 	});
-Ç”		inputReader.init([["r", "regexp", io.RuneReader, ""], ["atEOT", "regexp", Go$Bool, ""], ["pos", "regexp", Go$Int, ""]]);
-		(go$ptrType(inputReader)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false]];
-0inputReader0>0io
-RuneReader0regexp/syntaxEmptyOp0regexpRegexp0Ç Å÷	machine.Ptr.prototype.newInputBytes = function(b) {
+Ç¸		(go$ptrType(inputReader)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false, -1], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false, -1], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false, -1], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false, -1], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false, -1]];
+		inputReader.init([["r", "r", "regexp", io.RuneReader, ""], ["atEOT", "atEOT", "regexp", Go$Bool, ""], ["pos", "pos", "regexp", Go$Int, ""]]);
+0inputReader0>0regexp/syntaxEmptyOp0regexpRegexp0io
+RuneReader0Ç Å÷	machine.Ptr.prototype.newInputBytes = function(b) {
 		var m;
 		m = this;
 		m.inputBytes.str = b;
@@ -222,8 +223,8 @@ RuneReader0regexp/syntaxEmptyOp0regexpRegexp0Ç Å÷	machine.Ptr.prot
 		m.matchcap = (go$sliceType(Go$Int)).make(ncap, 0, function() { return 0; });
 		return m;
 	};
- 0progMachine0Å¥0regexpRegexp0regexp/syntaxProg0regexp
-inputBytes0regexpinputString0regexpentry0regexpqueue0regexpthread0regexpinputReader0regexpmachine0Ç  ÇÚ	machine.Ptr.prototype.init = function(ncap) {
+ 0progMachine0Å¥0regexp/syntaxProg0regexpqueue0regexpthread0regexpmachine0regexpRegexp0regexp
+inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  ÇÚ	machine.Ptr.prototype.init = function(ncap) {
 		var m, _ref, _i, _slice, _index, t;
 		m = this;
 		_ref = m.pool;
@@ -333,7 +334,7 @@ inputBytes0regexpinputString0regexpentry0regexpqueue0regexpt
 		return m.matched;
 	};
 	machine.prototype.match = function(i, pos) { return this.go$val.match(i, pos); };
- 0machinematch0Åƒ0regexpmachine0regexpstep0regexp/syntaxEmptyOpContext0regexpcontext0regexpcanCheckPrefix0regexpthread0regexpindex0regexpadd0regexpstep0regexpclear0Ç° ÇO	machine.Ptr.prototype.clear = function(q) {
+ 0machinematch0Åƒ0regexpmachine0regexpcontext0regexpstep0regexpstep0regexp/syntaxEmptyOpContext0regexpcanCheckPrefix0regexpindex0regexpadd0regexpthread0regexpclear0Ç° ÇO	machine.Ptr.prototype.clear = function(q) {
 		var m, _ref, _i, _slice, _index, _struct, d;
 		m = this;
 		_ref = q.dense;
@@ -488,7 +489,7 @@ inputBytes0regexpinputString0regexpentry0regexpqueue0regexpt
 		return cap;
 	};
 	Regexp.prototype.doExecute = function(r, b, s, pos, ncap) { return this.go$val.doExecute(r, b, s, pos, ncap); };
- 0Regexp	doExecute0ÅØ0regexpnewInputString0regexpinit0regexpRegexp0regexpget0regexpnewInputReader0regexpnewInputBytes0regexpmatch0regexpput0regexpempty0Å∆ Å°	Regexp.Ptr.prototype.String = function() {
+ 0Regexp	doExecute0ÅØ0regexpRegexp0regexpnewInputBytes0regexpmatch0regexpput0regexpget0regexpnewInputReader0regexpnewInputString0regexpinit0regexpempty0Å∆ Å°	Regexp.Ptr.prototype.String = function() {
 		var re;
 		re = this;
 		return re.expr;

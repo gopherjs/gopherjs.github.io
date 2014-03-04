@@ -1,4 +1,4 @@
-0É2·encoding/binaryÇSpackage binary
+0É3‚encoding/binaryÇSpackage binary
 import errors "errors"
 import io "io"
 import math "math"
@@ -273,41 +273,41 @@ type @"reflect".StructTag string
 func (? @"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 func (? *@"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 $$
-0_runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binary0>0errorserrors0ioio0mathmath0reflectreflect0Çﬂ0Ç 	ByteOrderv	ByteOrder = go$pkg.ByteOrder = go$newType(0, "Interface", "binary.ByteOrder", "ByteOrder", "encoding/binary", null);
+0_runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binary0>0errorserrors0ioio0mathmath0reflectreflect0Ç‡0Ç 	ByteOrderv	ByteOrder = go$pkg.ByteOrder = go$newType(0, "Interface", "binary.ByteOrder", "ByteOrder", "encoding/binary", null);
 Ç4		ByteOrder.init([["PutUint16", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Uint16], [], false))], ["PutUint32", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Uint32], [], false))], ["PutUint64", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Uint64], [], false))], ["String", "", (go$funcType([], [Go$String], false))], ["Uint16", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Uint16], false))], ["Uint32", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Uint32], false))], ["Uint64", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Uint64], false))]]);
-0	ByteOrder0 0ÇÊlittleEndianÅ†	littleEndian = go$pkg.littleEndian = go$newType(0, "Struct", "binary.littleEndian", "littleEndian", "encoding/binary", function() {
+0	ByteOrder0 0Ç&littleEndianÅ†	littleEndian = go$pkg.littleEndian = go$newType(0, "Struct", "binary.littleEndian", "littleEndian", "encoding/binary", function() {
 		this.go$val = this;
 	});
-Ç		littleEndian.init([]);
-		littleEndian.methods = [["GoString", "", [], [Go$String], false], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false], ["String", "", [], [Go$String], false], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false]];
-		(go$ptrType(littleEndian)).methods = [["GoString", "", [], [Go$String], false], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false], ["String", "", [], [Go$String], false], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false]];
-0littleEndian0 0ÇÀ	bigEndianÅî	bigEndian = go$pkg.bigEndian = go$newType(0, "Struct", "binary.bigEndian", "bigEndian", "encoding/binary", function() {
+Ç_		littleEndian.methods = [["GoString", "", [], [Go$String], false, -1], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false, -1], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false, -1], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false, -1], ["String", "", [], [Go$String], false, -1], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false, -1], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false, -1], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false, -1]];
+		(go$ptrType(littleEndian)).methods = [["GoString", "", [], [Go$String], false, -1], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false, -1], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false, -1], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false, -1], ["String", "", [], [Go$String], false, -1], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false, -1], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false, -1], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false, -1]];
+		littleEndian.init([]);
+0littleEndian0 0Ç	bigEndianÅî	bigEndian = go$pkg.bigEndian = go$newType(0, "Struct", "binary.bigEndian", "bigEndian", "encoding/binary", function() {
 		this.go$val = this;
 	});
-Ç		bigEndian.init([]);
-		bigEndian.methods = [["GoString", "", [], [Go$String], false], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false], ["String", "", [], [Go$String], false], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false]];
-		(go$ptrType(bigEndian)).methods = [["GoString", "", [], [Go$String], false], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false], ["String", "", [], [Go$String], false], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false]];
-0	bigEndian0 0ÇπcoderÇ	coder = go$pkg.coder = go$newType(0, "Struct", "binary.coder", "coder", "encoding/binary", function(order_, buf_) {
-		this.go$val = this;
-		this.order = order_ !== undefined ? order_ : null;
-		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
-	});
-w		coder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
-0coder00encoding/binary	ByteOrder0ÇdecoderÇ	decoder = go$pkg.decoder = go$newType(0, "Struct", "binary.decoder", "decoder", "encoding/binary", function(order_, buf_) {
+ÇV		bigEndian.methods = [["GoString", "", [], [Go$String], false, -1], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false, -1], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false, -1], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false, -1], ["String", "", [], [Go$String], false, -1], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false, -1], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false, -1], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false, -1]];
+		(go$ptrType(bigEndian)).methods = [["GoString", "", [], [Go$String], false, -1], ["PutUint16", "", [(go$sliceType(Go$Uint8)), Go$Uint16], [], false, -1], ["PutUint32", "", [(go$sliceType(Go$Uint8)), Go$Uint32], [], false, -1], ["PutUint64", "", [(go$sliceType(Go$Uint8)), Go$Uint64], [], false, -1], ["String", "", [], [Go$String], false, -1], ["Uint16", "", [(go$sliceType(Go$Uint8))], [Go$Uint16], false, -1], ["Uint32", "", [(go$sliceType(Go$Uint8))], [Go$Uint32], false, -1], ["Uint64", "", [(go$sliceType(Go$Uint8))], [Go$Uint64], false, -1]];
+		bigEndian.init([]);
+0	bigEndian0 0Ç coderÇ	coder = go$pkg.coder = go$newType(0, "Struct", "binary.coder", "coder", "encoding/binary", function(order_, buf_) {
 		this.go$val = this;
 		this.order = order_ !== undefined ? order_ : null;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
 	});
-Çº		decoder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
-		(go$ptrType(decoder)).methods = [["int16", "encoding/binary", [], [Go$Int16], false], ["int32", "encoding/binary", [], [Go$Int32], false], ["int64", "encoding/binary", [], [Go$Int64], false], ["int8", "encoding/binary", [], [Go$Int8], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [], [Go$Uint16], false], ["uint32", "encoding/binary", [], [Go$Uint32], false], ["uint64", "encoding/binary", [], [Go$Uint64], false], ["uint8", "encoding/binary", [], [Go$Uint8], false], ["value", "encoding/binary", [reflect.Value], [], false]];
-0	decoder000encoding/binary	ByteOrder0reflectValue0ÇencoderÇ	encoder = go$pkg.encoder = go$newType(0, "Struct", "binary.encoder", "encoder", "encoding/binary", function(order_, buf_) {
+Åá		coder.init([["order", "order", "encoding/binary", ByteOrder, ""], ["buf", "buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
+0coder00encoding/binary	ByteOrder0ÇVdecoderÇ	decoder = go$pkg.decoder = go$newType(0, "Struct", "binary.decoder", "decoder", "encoding/binary", function(order_, buf_) {
 		this.go$val = this;
 		this.order = order_ !== undefined ? order_ : null;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
 	});
-Çº		encoder.init([["order", "encoding/binary", ByteOrder, ""], ["buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
-		(go$ptrType(encoder)).methods = [["int16", "encoding/binary", [Go$Int16], [], false], ["int32", "encoding/binary", [Go$Int32], [], false], ["int64", "encoding/binary", [Go$Int64], [], false], ["int8", "encoding/binary", [Go$Int8], [], false], ["skip", "encoding/binary", [reflect.Value], [], false], ["uint16", "encoding/binary", [Go$Uint16], [], false], ["uint32", "encoding/binary", [Go$Uint32], [], false], ["uint64", "encoding/binary", [Go$Uint64], [], false], ["uint8", "encoding/binary", [Go$Uint8], [], false], ["value", "encoding/binary", [reflect.Value], [], false]];
-0	encoder000encoding/binary	ByteOrder0reflectValue0Çn Ç3	littleEndian.Ptr.prototype.Uint16 = function(b) {
+ÇÙ		(go$ptrType(decoder)).methods = [["int16", "encoding/binary", [], [Go$Int16], false, -1], ["int32", "encoding/binary", [], [Go$Int32], false, -1], ["int64", "encoding/binary", [], [Go$Int64], false, -1], ["int8", "encoding/binary", [], [Go$Int8], false, -1], ["skip", "encoding/binary", [reflect.Value], [], false, -1], ["uint16", "encoding/binary", [], [Go$Uint16], false, -1], ["uint32", "encoding/binary", [], [Go$Uint32], false, -1], ["uint64", "encoding/binary", [], [Go$Uint64], false, -1], ["uint8", "encoding/binary", [], [Go$Uint8], false, -1], ["value", "encoding/binary", [reflect.Value], [], false, -1]];
+		decoder.init([["order", "order", "encoding/binary", ByteOrder, ""], ["buf", "buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
+0	decoder000reflectValue0encoding/binary	ByteOrder0ÇVencoderÇ	encoder = go$pkg.encoder = go$newType(0, "Struct", "binary.encoder", "encoder", "encoding/binary", function(order_, buf_) {
+		this.go$val = this;
+		this.order = order_ !== undefined ? order_ : null;
+		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
+	});
+ÇÙ		(go$ptrType(encoder)).methods = [["int16", "encoding/binary", [Go$Int16], [], false, -1], ["int32", "encoding/binary", [Go$Int32], [], false, -1], ["int64", "encoding/binary", [Go$Int64], [], false, -1], ["int8", "encoding/binary", [Go$Int8], [], false, -1], ["skip", "encoding/binary", [reflect.Value], [], false, -1], ["uint16", "encoding/binary", [Go$Uint16], [], false, -1], ["uint32", "encoding/binary", [Go$Uint32], [], false, -1], ["uint64", "encoding/binary", [Go$Uint64], [], false, -1], ["uint8", "encoding/binary", [Go$Uint8], [], false, -1], ["value", "encoding/binary", [reflect.Value], [], false, -1]];
+		encoder.init([["order", "order", "encoding/binary", ByteOrder, ""], ["buf", "buf", "encoding/binary", (go$sliceType(Go$Uint8)), ""]]);
+0	encoder000reflectValue0encoding/binary	ByteOrder0Çn Ç3	littleEndian.Ptr.prototype.Uint16 = function(b) {
 		var _slice, _index, _slice$1, _index$1;
 		return (((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) << 16 >>> 16) | (((_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) << 16 >>> 16) << 8 << 16 >>> 16)) >>> 0;
 	};
@@ -537,7 +537,7 @@ $$
 		d$1.value((_struct$4 = v, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
 		return null;
 	};
- 0Read0Å∏0ioReadFull0reflectValueOf0errorsNew0encoding/binaryintDataSize0reflectValue0encoding/binarydataSize0encoding/binarydecoder0encoding/binaryvalue0Ç±WriteÇ€	Write = go$pkg.Write = function(w, order, data) {
+ 0Read0Å∏0ioReadFull0reflectValue0reflectValueOf0errorsNew0encoding/binarydecoder0encoding/binaryvalue0encoding/binaryintDataSize0encoding/binarydataSize0Ç±WriteÇ€	Write = go$pkg.Write = function(w, order, data) {
 		var n, b, bs, v, _ref, _type, _ref$1, _i, _slice, _index, x, i, _slice$1, _index$1, _ref$2, _i$1, _slice$2, _index$2, x$1, i$1, x$2, _ref$3, _i$2, _slice$3, _index$3, x$3, i$2, x$4, _ref$4, _i$3, _slice$4, _index$4, x$5, i$3, x$6, _ref$5, _i$4, _slice$5, _index$5, x$7, i$4, x$8, x$9, _ref$6, _i$5, _slice$6, _index$6, x$10, i$5, x$11, _ref$7, _i$6, _slice$7, _index$7, x$12, i$6, x$13, _tuple, err, _struct, _struct$1, v$1, _tuple$1, _struct$2, size, err$1, buf, e, _struct$3, _tuple$2;
 		if (n = intDataSize(data), !((n === 0))) {
 			b = go$makeNativeArray("Uint8", 8, function() { return 0; });
@@ -701,7 +701,7 @@ $$
 		_tuple$2 = w.Write(buf), err$1 = _tuple$2[1];
 		return err$1;
 	};
- 0Write0ÅΩ0reflectIndirect0reflectValueOf0reflectValue0errorsNew0encoding/binaryencoder0encoding/binaryvalue0encoding/binaryintDataSize0encoding/binarydataSize0ÇSizeÇî	Size = go$pkg.Size = function(v) {
+ 0Write0ÅΩ0reflectValueOf0reflectValue0encoding/binarydataSize0encoding/binaryvalue0encoding/binaryintDataSize0reflectIndirect0errorsNew0encoding/binaryencoder0ÇSizeÇî	Size = go$pkg.Size = function(v) {
 		var _tuple, _struct, _struct$1, n, err;
 		_tuple = dataSize((_struct$1 = reflect.Indirect((_struct = reflect.ValueOf(v), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag))), n = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -913,7 +913,7 @@ $$
 		}
 	};
 	decoder.prototype.value = function(v) { return this.go$val.value(v); };
- 0decodervalue0ÇK0encoding/binaryint320encoding/binaryuint160encoding/binaryskip0encoding/binaryint640encoding/binaryuint80encoding/binaryuint640mathFloat32frombits0encoding/binarydecoder0encoding/binaryint160reflectValue0encoding/binaryint80encoding/binaryuint320mathFloat64frombits0ÇË Ç
+ 0decodervalue0ÇK0encoding/binaryint80encoding/binaryuint320mathFloat32frombits0encoding/binaryint160encoding/binaryint320encoding/binaryuint640mathFloat64frombits0encoding/binarydecoder0reflectValue0encoding/binaryint640encoding/binaryuint80encoding/binaryuint160encoding/binaryskip0ÇË Ç
 á	encoder.Ptr.prototype.value = function(v) {
 		var e, _ref, l, i, _struct, t, l$1, i$1, v$1, _struct$1, _struct$2, _struct$3, l$2, i$2, _struct$4, _ref$1, x, x$1, x$2, _ref$2, _ref$3, _ref$4, x$3, x$4;
 		e = this;
@@ -987,7 +987,7 @@ $$
 		}
 	};
 	encoder.prototype.value = function(v) { return this.go$val.value(v); };
- 0encodervalue0ÇC0encoding/binaryencoder0encoding/binaryskip0encoding/binaryint80encoding/binaryuint80encoding/binaryuint320reflectValue0encoding/binaryint160encoding/binaryint320encoding/binaryuint160encoding/binaryuint640mathFloat32bits0encoding/binaryint640mathFloat64bits0Çô Ç3	decoder.Ptr.prototype.skip = function(v) {
+ 0encodervalue0ÇC0encoding/binaryint80encoding/binaryint320encoding/binaryuint80encoding/binaryencoder0reflectValue0encoding/binaryuint640mathFloat32bits0encoding/binaryskip0encoding/binaryint640encoding/binaryuint160mathFloat64bits0encoding/binaryint160encoding/binaryuint320Çô Ç3	decoder.Ptr.prototype.skip = function(v) {
 		var d, _tuple, _struct, n;
 		d = this;
 		_tuple = dataSize((_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag))), n = _tuple[0];

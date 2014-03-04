@@ -1,4 +1,4 @@
-0Ç¬%bufioÇspackage bufio
+0Ç≤_bufioÇspackage bufio
 import bytes "bytes"
 import errors "errors"
 import io "io"
@@ -63,7 +63,7 @@ func (? *@"".Writer) @"".flush() (? error)
 type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
 type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
 $$
-0Mruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufio0B0bytesbytes0errorserrors0ioio0unicode/utf8utf80Ç≤0ÇKReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "bufio.Reader", "Reader", "bufio", function(buf_, rd_, r_, w_, err_, lastByte_, lastRuneSize_) {
+0Mruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufio0B0bytesbytes0errorserrors0ioio0unicode/utf8utf80Ç¢H0Ç…ReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "bufio.Reader", "Reader", "bufio", function(buf_, rd_, r_, w_, err_, lastByte_, lastRuneSize_) {
 		this.go$val = this;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
 		this.rd = rd_ !== undefined ? rd_ : null;
@@ -73,83 +73,28 @@ $$
 		this.lastByte = lastByte_ !== undefined ? lastByte_ : 0;
 		this.lastRuneSize = lastRuneSize_ !== undefined ? lastRuneSize_ : 0;
 	});
-Çı		Reader.init([["buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["rd", "bufio", io.Reader, ""], ["r", "bufio", Go$Int, ""], ["w", "bufio", Go$Int, ""], ["err", "bufio", go$error, ""], ["lastByte", "bufio", Go$Int, ""], ["lastRuneSize", "bufio", Go$Int, ""]]);
-		(go$ptrType(Reader)).methods = [["Buffered", "", [], [Go$Int], false], ["Peek", "", [Go$Int], [(go$sliceType(Go$Uint8)), go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadLine", "", [], [(go$sliceType(Go$Uint8)), Go$Bool, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadSlice", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["Reset", "", [io.Reader], [], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["fill", "bufio", [], [], false], ["readErr", "bufio", [], [go$error], false], ["reset", "bufio", [(go$sliceType(Go$Uint8)), io.Reader], [], false], ["writeBuf", "bufio", [io.Writer], [Go$Int64, go$error], false]];
-0Reader00ioReader0ioWriter0ÇBWriterÇX	Writer = go$pkg.Writer = go$newType(0, "Struct", "bufio.Writer", "Writer", "bufio", function(err_, buf_, n_, wr_) {
+Çs		(go$ptrType(Reader)).methods = [["Buffered", "", [], [Go$Int], false, -1], ["Peek", "", [Go$Int], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["ReadByte", "", [], [Go$Uint8, go$error], false, -1], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["ReadLine", "", [], [(go$sliceType(Go$Uint8)), Go$Bool, go$error], false, -1], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, -1], ["ReadSlice", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false, -1], ["Reset", "", [io.Reader], [], false, -1], ["UnreadByte", "", [], [go$error], false, -1], ["UnreadRune", "", [], [go$error], false, -1], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false, -1], ["fill", "bufio", [], [], false, -1], ["readErr", "bufio", [], [go$error], false, -1], ["reset", "bufio", [(go$sliceType(Go$Uint8)), io.Reader], [], false, -1], ["writeBuf", "bufio", [io.Writer], [Go$Int64, go$error], false, -1]];
+		Reader.init([["buf", "buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["rd", "rd", "bufio", io.Reader, ""], ["r", "r", "bufio", Go$Int, ""], ["w", "w", "bufio", Go$Int, ""], ["err", "err", "bufio", go$error, ""], ["lastByte", "lastByte", "bufio", Go$Int, ""], ["lastRuneSize", "lastRuneSize", "bufio", Go$Int, ""]]);
+0Reader00ioReader0ioWriter0ÇÉWriterÇX	Writer = go$pkg.Writer = go$newType(0, "Struct", "bufio.Writer", "Writer", "bufio", function(err_, buf_, n_, wr_) {
 		this.go$val = this;
 		this.err = err_ !== undefined ? err_ : null;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
 		this.n = n_ !== undefined ? n_ : 0;
 		this.wr = wr_ !== undefined ? wr_ : null;
 	});
-Ç≤		Writer.init([["err", "bufio", go$error, ""], ["buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["n", "bufio", Go$Int, ""], ["wr", "bufio", io.Writer, ""]]);
-		(go$ptrType(Writer)).methods = [["Available", "", [], [Go$Int], false], ["Buffered", "", [], [Go$Int], false], ["Flush", "", [], [go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Reset", "", [io.Writer], [], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["flush", "bufio", [], [go$error], false]];
-0Writer00ioWriter0ioReader0Ç
-ReadWriterÇπ	ReadWriter = go$pkg.ReadWriter = go$newType(0, "Struct", "bufio.ReadWriter", "ReadWriter", "bufio", function(Reader_, Writer_) {
+ÇÛ		(go$ptrType(Writer)).methods = [["Available", "", [], [Go$Int], false, -1], ["Buffered", "", [], [Go$Int], false, -1], ["Flush", "", [], [go$error], false, -1], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, -1], ["Reset", "", [io.Writer], [], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteByte", "", [Go$Uint8], [go$error], false, -1], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1], ["flush", "bufio", [], [go$error], false, -1]];
+		Writer.init([["err", "err", "bufio", go$error, ""], ["buf", "buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["n", "n", "bufio", Go$Int, ""], ["wr", "wr", "bufio", io.Writer, ""]]);
+0Writer00ioReader0ioWriter0Ç
+ReadWriterÇ5	ReadWriter = go$pkg.ReadWriter = go$newType(0, "Struct", "bufio.ReadWriter", "ReadWriter", "bufio", function(Reader_, Writer_) {
 		this.go$val = this;
 		this.Reader = Reader_ !== undefined ? Reader_ : (go$ptrType(Reader)).nil;
 		this.Writer = Writer_ !== undefined ? Writer_ : (go$ptrType(Writer)).nil;
 	});
-	ReadWriter.prototype.Buffered = function() { return this.go$val.Buffered(); };
-	ReadWriter.Ptr.prototype.Buffered = function() { return this.Reader.Buffered(); };
-	ReadWriter.prototype.Peek = function(n) { return this.go$val.Peek(n); };
-	ReadWriter.Ptr.prototype.Peek = function(n) { return this.Reader.Peek(n); };
-	ReadWriter.prototype.Read = function(p) { return this.go$val.Read(p); };
-	ReadWriter.Ptr.prototype.Read = function(p) { return this.Reader.Read(p); };
-	ReadWriter.prototype.ReadByte = function() { return this.go$val.ReadByte(); };
-	ReadWriter.Ptr.prototype.ReadByte = function() { return this.Reader.ReadByte(); };
-	ReadWriter.prototype.ReadBytes = function(delim) { return this.go$val.ReadBytes(delim); };
-	ReadWriter.Ptr.prototype.ReadBytes = function(delim) { return this.Reader.ReadBytes(delim); };
-	ReadWriter.prototype.ReadLine = function() { return this.go$val.ReadLine(); };
-	ReadWriter.Ptr.prototype.ReadLine = function() { return this.Reader.ReadLine(); };
-	ReadWriter.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
-	ReadWriter.Ptr.prototype.ReadRune = function() { return this.Reader.ReadRune(); };
-	ReadWriter.prototype.ReadSlice = function(delim) { return this.go$val.ReadSlice(delim); };
-	ReadWriter.Ptr.prototype.ReadSlice = function(delim) { return this.Reader.ReadSlice(delim); };
-	ReadWriter.prototype.ReadString = function(delim) { return this.go$val.ReadString(delim); };
-	ReadWriter.Ptr.prototype.ReadString = function(delim) { return this.Reader.ReadString(delim); };
-	ReadWriter.prototype.Reset = function(r) { return this.go$val.Reset(r); };
-	ReadWriter.Ptr.prototype.Reset = function(r) { return this.Reader.Reset(r); };
-	ReadWriter.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
-	ReadWriter.Ptr.prototype.UnreadByte = function() { return this.Reader.UnreadByte(); };
-	ReadWriter.prototype.UnreadRune = function() { return this.go$val.UnreadRune(); };
-	ReadWriter.Ptr.prototype.UnreadRune = function() { return this.Reader.UnreadRune(); };
-	ReadWriter.prototype.WriteTo = function(w) { return this.go$val.WriteTo(w); };
-	ReadWriter.Ptr.prototype.WriteTo = function(w) { return this.Reader.WriteTo(w); };
-	ReadWriter.prototype.fill = function() { return this.go$val.fill(); };
-	ReadWriter.Ptr.prototype.fill = function() { return this.Reader.fill(); };
-	ReadWriter.prototype.readErr = function() { return this.go$val.readErr(); };
-	ReadWriter.Ptr.prototype.readErr = function() { return this.Reader.readErr(); };
-	ReadWriter.prototype.reset = function(buf, r) { return this.go$val.reset(buf, r); };
-	ReadWriter.Ptr.prototype.reset = function(buf, r) { return this.Reader.reset(buf, r); };
-	ReadWriter.prototype.writeBuf = function(w) { return this.go$val.writeBuf(w); };
-	ReadWriter.Ptr.prototype.writeBuf = function(w) { return this.Reader.writeBuf(w); };
-	ReadWriter.prototype.Available = function() { return this.go$val.Available(); };
-	ReadWriter.Ptr.prototype.Available = function() { return this.Writer.Available(); };
-	ReadWriter.prototype.Buffered = function() { return this.go$val.Buffered(); };
-	ReadWriter.Ptr.prototype.Buffered = function() { return this.Writer.Buffered(); };
-	ReadWriter.prototype.Flush = function() { return this.go$val.Flush(); };
-	ReadWriter.Ptr.prototype.Flush = function() { return this.Writer.Flush(); };
-	ReadWriter.prototype.ReadFrom = function(r) { return this.go$val.ReadFrom(r); };
-	ReadWriter.Ptr.prototype.ReadFrom = function(r) { return this.Writer.ReadFrom(r); };
-	ReadWriter.prototype.Reset = function(w) { return this.go$val.Reset(w); };
-	ReadWriter.Ptr.prototype.Reset = function(w) { return this.Writer.Reset(w); };
-	ReadWriter.prototype.Write = function(p) { return this.go$val.Write(p); };
-	ReadWriter.Ptr.prototype.Write = function(p) { return this.Writer.Write(p); };
-	ReadWriter.prototype.WriteByte = function(c) { return this.go$val.WriteByte(c); };
-	ReadWriter.Ptr.prototype.WriteByte = function(c) { return this.Writer.WriteByte(c); };
-	ReadWriter.prototype.WriteRune = function(r) { return this.go$val.WriteRune(r); };
-	ReadWriter.Ptr.prototype.WriteRune = function(r) { return this.Writer.WriteRune(r); };
-	ReadWriter.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
-	ReadWriter.Ptr.prototype.WriteString = function(s) { return this.Writer.WriteString(s); };
-	ReadWriter.prototype.flush = function() { return this.go$val.flush(); };
-	ReadWriter.Ptr.prototype.flush = function() { return this.Writer.flush(); };
-Ç
-Á		ReadWriter.init([["", "", (go$ptrType(Reader)), ""], ["", "", (go$ptrType(Writer)), ""]]);
-		ReadWriter.methods = [["Available", "", [], [Go$Int], false], ["Flush", "", [], [go$error], false], ["Peek", "", [Go$Int], [(go$sliceType(Go$Uint8)), go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadLine", "", [], [(go$sliceType(Go$Uint8)), Go$Bool, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadSlice", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["fill", "bufio", [], [], false], ["flush", "bufio", [], [go$error], false], ["readErr", "bufio", [], [go$error], false], ["reset", "bufio", [(go$sliceType(Go$Uint8)), io.Reader], [], false], ["writeBuf", "bufio", [io.Writer], [Go$Int64, go$error], false]];
-		(go$ptrType(ReadWriter)).methods = [["Available", "", [], [Go$Int], false], ["Flush", "", [], [go$error], false], ["Peek", "", [Go$Int], [(go$sliceType(Go$Uint8)), go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["ReadByte", "", [], [Go$Uint8, go$error], false], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["ReadLine", "", [], [(go$sliceType(Go$Uint8)), Go$Bool, go$error], false], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false], ["ReadSlice", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false], ["UnreadByte", "", [], [go$error], false], ["UnreadRune", "", [], [go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteByte", "", [Go$Uint8], [go$error], false], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false], ["fill", "bufio", [], [], false], ["flush", "bufio", [], [go$error], false], ["readErr", "bufio", [], [go$error], false], ["reset", "bufio", [(go$sliceType(Go$Uint8)), io.Reader], [], false], ["writeBuf", "bufio", [io.Writer], [Go$Int64, go$error], false]];
+ÇÖ		ReadWriter.methods = [["Available", "", [], [Go$Int], false, 1], ["Flush", "", [], [go$error], false, 1], ["Peek", "", [Go$Int], [(go$sliceType(Go$Uint8)), go$error], false, 0], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 0], ["ReadByte", "", [], [Go$Uint8, go$error], false, 0], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, 0], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, 1], ["ReadLine", "", [], [(go$sliceType(Go$Uint8)), Go$Bool, go$error], false, 0], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, 0], ["ReadSlice", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, 0], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false, 0], ["UnreadByte", "", [], [go$error], false, 0], ["UnreadRune", "", [], [go$error], false, 0], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 1], ["WriteByte", "", [Go$Uint8], [go$error], false, 1], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false, 1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, 1], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false, 0], ["fill", "bufio", [], [], false, 0], ["flush", "bufio", [], [go$error], false, 1], ["readErr", "bufio", [], [go$error], false, 0], ["reset", "bufio", [(go$sliceType(Go$Uint8)), io.Reader], [], false, 0], ["writeBuf", "bufio", [io.Writer], [Go$Int64, go$error], false, 0]];
+		(go$ptrType(ReadWriter)).methods = [["Available", "", [], [Go$Int], false, 1], ["Flush", "", [], [go$error], false, 1], ["Peek", "", [Go$Int], [(go$sliceType(Go$Uint8)), go$error], false, 0], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 0], ["ReadByte", "", [], [Go$Uint8, go$error], false, 0], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, 0], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, 1], ["ReadLine", "", [], [(go$sliceType(Go$Uint8)), Go$Bool, go$error], false, 0], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, 0], ["ReadSlice", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, 0], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false, 0], ["UnreadByte", "", [], [go$error], false, 0], ["UnreadRune", "", [], [go$error], false, 0], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 1], ["WriteByte", "", [Go$Uint8], [go$error], false, 1], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false, 1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, 1], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false, 0], ["fill", "bufio", [], [], false, 0], ["flush", "bufio", [], [go$error], false, 1], ["readErr", "bufio", [], [go$error], false, 0], ["reset", "bufio", [(go$sliceType(Go$Uint8)), io.Reader], [], false, 0], ["writeBuf", "bufio", [io.Writer], [Go$Int64, go$error], false, 0]];
+		ReadWriter.init([["Reader", "", "", (go$ptrType(Reader)), ""], ["Writer", "", "", (go$ptrType(Writer)), ""]]);
 0
-ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Ç]ScannerÇï	Scanner = go$pkg.Scanner = go$newType(0, "Struct", "bufio.Scanner", "Scanner", "bufio", function(r_, split_, maxTokenSize_, token_, buf_, start_, end_, err_) {
+ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0ÇæScannerÇï	Scanner = go$pkg.Scanner = go$newType(0, "Struct", "bufio.Scanner", "Scanner", "bufio", function(r_, split_, maxTokenSize_, token_, buf_, start_, end_, err_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.split = split_ !== undefined ? split_ : go$throwNilPointerError;
@@ -160,9 +105,9 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Ç]
 		this.end = end_ !== undefined ? end_ : 0;
 		this.err = err_ !== undefined ? err_ : null;
 	});
-Çà		Scanner.init([["r", "bufio", io.Reader, ""], ["split", "bufio", SplitFunc, ""], ["maxTokenSize", "bufio", Go$Int, ""], ["token", "bufio", (go$sliceType(Go$Uint8)), ""], ["buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["start", "bufio", Go$Int, ""], ["end", "bufio", Go$Int, ""], ["err", "bufio", go$error, ""]]);
-		(go$ptrType(Scanner)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false], ["Err", "", [], [go$error], false], ["Scan", "", [], [Go$Bool], false], ["Split", "", [SplitFunc], [], false], ["Text", "", [], [Go$String], false], ["advance", "bufio", [Go$Int], [Go$Bool], false], ["setErr", "bufio", [go$error], [], false]];
-0	Scanner0"0ioReader0bufio	SplitFunc0Å	SplitFuncf	SplitFunc = go$pkg.SplitFunc = go$newType(0, "Func", "bufio.SplitFunc", "SplitFunc", "bufio", null);
+ÇÈ		(go$ptrType(Scanner)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false, -1], ["Err", "", [], [go$error], false, -1], ["Scan", "", [], [Go$Bool], false, -1], ["Split", "", [SplitFunc], [], false, -1], ["Text", "", [], [Go$String], false, -1], ["advance", "bufio", [Go$Int], [Go$Bool], false, -1], ["setErr", "bufio", [go$error], [], false, -1]];
+		Scanner.init([["r", "r", "bufio", io.Reader, ""], ["split", "split", "bufio", SplitFunc, ""], ["maxTokenSize", "maxTokenSize", "bufio", Go$Int, ""], ["token", "token", "bufio", (go$sliceType(Go$Uint8)), ""], ["buf", "buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["start", "start", "bufio", Go$Int, ""], ["end", "end", "bufio", Go$Int, ""], ["err", "err", "bufio", go$error, ""]]);
+0	Scanner0"0bufio	SplitFunc0ioReader0Å	SplitFuncf	SplitFunc = go$pkg.SplitFunc = go$newType(0, "Func", "bufio.SplitFunc", "SplitFunc", "bufio", null);
 l		SplitFunc.init([(go$sliceType(Go$Uint8)), Go$Bool], [Go$Int, (go$sliceType(Go$Uint8)), go$error], false);
 0	SplitFunc0 0ÇNewReaderSizeÇƒ	NewReaderSize = go$pkg.NewReaderSize = function(rd, size) {
 		var _tuple, b, ok, r;

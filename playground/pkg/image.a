@@ -1,4 +1,4 @@
-0ÉgimageÇ>√package image
+0ÉimageÇ>√package image
 import bufio "bufio"
 import errors "errors"
 import io "io"
@@ -215,128 +215,127 @@ type @"image/color".RGBA64 struct { @"image/color".R uint16; @"image/color".G ui
 func (? @"image/color".RGBA64) @"image/color".RGBA() (@"image/color".r uint32, @"image/color".g uint32, @"image/color".b uint32, @"image/color".a uint32)
 func (? *@"image/color".RGBA64) @"image/color".RGBA() (@"image/color".r uint32, @"image/color".g uint32, @"image/color".b uint32, @"image/color".a uint32)
 $$
-0pruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage0V0bufiobufio0errorserrors0ioio0strconvstrconv0image/colorcolor0ÉÃ»0ÇÚformatÇ≠	format = go$pkg.format = go$newType(0, "Struct", "image.format", "format", "image", function(name_, magic_, decode_, decodeConfig_) {
+0pruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage0V0bufiobufio0errorserrors0ioio0strconvstrconv0image/colorcolor0É–p0ÇformatÇ≠	format = go$pkg.format = go$newType(0, "Struct", "image.format", "format", "image", function(name_, magic_, decode_, decodeConfig_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : "";
 		this.magic = magic_ !== undefined ? magic_ : "";
 		this.decode = decode_ !== undefined ? decode_ : go$throwNilPointerError;
 		this.decodeConfig = decodeConfig_ !== undefined ? decodeConfig_ : go$throwNilPointerError;
 	});
-Å˚		format.init([["name", "image", Go$String, ""], ["magic", "image", Go$String, ""], ["decode", "image", (go$funcType([io.Reader], [Image, go$error], false)), ""], ["decodeConfig", "image", (go$funcType([io.Reader], [Config, go$error], false)), ""]]);
+Ç&		format.init([["name", "name", "image", Go$String, ""], ["magic", "magic", "image", Go$String, ""], ["decode", "decode", "image", (go$funcType([io.Reader], [Image, go$error], false)), ""], ["decodeConfig", "decodeConfig", "image", (go$funcType([io.Reader], [Config, go$error], false)), ""]]);
 0format0/0ioReader0imageImage0imageConfig0Ç1reader_	reader = go$pkg.reader = go$newType(0, "Interface", "image.reader", "reader", "image", null);
 Åπ		reader.init([["Peek", "", (go$funcType([Go$Int], [(go$sliceType(Go$Uint8)), go$error], false))], ["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))]]);
-0reader0 0ÇËPointÅÀ	Point = go$pkg.Point = go$newType(0, "Struct", "image.Point", "Point", "image", function(X_, Y_) {
+0reader0 0Ç2PointÅÀ	Point = go$pkg.Point = go$newType(0, "Struct", "image.Point", "Point", "image", function(X_, Y_) {
 		this.go$val = this;
 		this.X = X_ !== undefined ? X_ : 0;
 		this.Y = Y_ !== undefined ? Y_ : 0;
 	});
-Ç		Point.init([["X", "", Go$Int, ""], ["Y", "", Go$Int, ""]]);
-		Point.methods = [["Add", "", [Point], [Point], false], ["Div", "", [Go$Int], [Point], false], ["Eq", "", [Point], [Go$Bool], false], ["In", "", [Rectangle], [Go$Bool], false], ["Mod", "", [Rectangle], [Point], false], ["Mul", "", [Go$Int], [Point], false], ["String", "", [], [Go$String], false], ["Sub", "", [Point], [Point], false]];
-		(go$ptrType(Point)).methods = [["Add", "", [Point], [Point], false], ["Div", "", [Go$Int], [Point], false], ["Eq", "", [Point], [Go$Bool], false], ["In", "", [Rectangle], [Go$Bool], false], ["Mod", "", [Rectangle], [Point], false], ["Mul", "", [Go$Int], [Point], false], ["String", "", [], [Go$String], false], ["Sub", "", [Point], [Point], false]];
-0Point00image	Rectangle0ÇC	RectangleÇ	Rectangle = go$pkg.Rectangle = go$newType(0, "Struct", "image.Rectangle", "Rectangle", "image", function(Min_, Max_) {
+Ç:		Point.methods = [["Add", "", [Point], [Point], false, -1], ["Div", "", [Go$Int], [Point], false, -1], ["Eq", "", [Point], [Go$Bool], false, -1], ["In", "", [Rectangle], [Go$Bool], false, -1], ["Mod", "", [Rectangle], [Point], false, -1], ["Mul", "", [Go$Int], [Point], false, -1], ["String", "", [], [Go$String], false, -1], ["Sub", "", [Point], [Point], false, -1]];
+		(go$ptrType(Point)).methods = [["Add", "", [Point], [Point], false, -1], ["Div", "", [Go$Int], [Point], false, -1], ["Eq", "", [Point], [Go$Bool], false, -1], ["In", "", [Rectangle], [Go$Bool], false, -1], ["Mod", "", [Rectangle], [Point], false, -1], ["Mul", "", [Go$Int], [Point], false, -1], ["String", "", [], [Go$String], false, -1], ["Sub", "", [Point], [Point], false, -1]];
+		Point.init([["X", "X", "", Go$Int, ""], ["Y", "Y", "", Go$Int, ""]]);
+0Point00image	Rectangle0Ç¡	RectangleÇ	Rectangle = go$pkg.Rectangle = go$newType(0, "Struct", "image.Rectangle", "Rectangle", "image", function(Min_, Max_) {
 		this.go$val = this;
 		this.Min = Min_ !== undefined ? Min_ : new Point.Ptr();
 		this.Max = Max_ !== undefined ? Max_ : new Point.Ptr();
 	});
-Ç
-		Rectangle.init([["Min", "", Point, ""], ["Max", "", Point, ""]]);
-		Rectangle.methods = [["Add", "", [Point], [Rectangle], false], ["Canon", "", [], [Rectangle], false], ["Dx", "", [], [Go$Int], false], ["Dy", "", [], [Go$Int], false], ["Empty", "", [], [Go$Bool], false], ["Eq", "", [Rectangle], [Go$Bool], false], ["In", "", [Rectangle], [Go$Bool], false], ["Inset", "", [Go$Int], [Rectangle], false], ["Intersect", "", [Rectangle], [Rectangle], false], ["Overlaps", "", [Rectangle], [Go$Bool], false], ["Size", "", [], [Point], false], ["String", "", [], [Go$String], false], ["Sub", "", [Point], [Rectangle], false], ["Union", "", [Rectangle], [Rectangle], false]];
-		(go$ptrType(Rectangle)).methods = [["Add", "", [Point], [Rectangle], false], ["Canon", "", [], [Rectangle], false], ["Dx", "", [], [Go$Int], false], ["Dy", "", [], [Go$Int], false], ["Empty", "", [], [Go$Bool], false], ["Eq", "", [Rectangle], [Go$Bool], false], ["In", "", [Rectangle], [Go$Bool], false], ["Inset", "", [Go$Int], [Rectangle], false], ["Intersect", "", [Rectangle], [Rectangle], false], ["Overlaps", "", [Rectangle], [Go$Bool], false], ["Size", "", [], [Point], false], ["String", "", [], [Go$String], false], ["Sub", "", [Point], [Rectangle], false], ["Union", "", [Rectangle], [Rectangle], false]];
-0	Rectangle00imagePoint0Ç·ConfigÇD	Config = go$pkg.Config = go$newType(0, "Struct", "image.Config", "Config", "image", function(ColorModel_, Width_, Height_) {
+Çà		Rectangle.methods = [["Add", "", [Point], [Rectangle], false, -1], ["Canon", "", [], [Rectangle], false, -1], ["Dx", "", [], [Go$Int], false, -1], ["Dy", "", [], [Go$Int], false, -1], ["Empty", "", [], [Go$Bool], false, -1], ["Eq", "", [Rectangle], [Go$Bool], false, -1], ["In", "", [Rectangle], [Go$Bool], false, -1], ["Inset", "", [Go$Int], [Rectangle], false, -1], ["Intersect", "", [Rectangle], [Rectangle], false, -1], ["Overlaps", "", [Rectangle], [Go$Bool], false, -1], ["Size", "", [], [Point], false, -1], ["String", "", [], [Go$String], false, -1], ["Sub", "", [Point], [Rectangle], false, -1], ["Union", "", [Rectangle], [Rectangle], false, -1]];
+		(go$ptrType(Rectangle)).methods = [["Add", "", [Point], [Rectangle], false, -1], ["Canon", "", [], [Rectangle], false, -1], ["Dx", "", [], [Go$Int], false, -1], ["Dy", "", [], [Go$Int], false, -1], ["Empty", "", [], [Go$Bool], false, -1], ["Eq", "", [Rectangle], [Go$Bool], false, -1], ["In", "", [Rectangle], [Go$Bool], false, -1], ["Inset", "", [Go$Int], [Rectangle], false, -1], ["Intersect", "", [Rectangle], [Rectangle], false, -1], ["Overlaps", "", [Rectangle], [Go$Bool], false, -1], ["Size", "", [], [Point], false, -1], ["String", "", [], [Go$String], false, -1], ["Sub", "", [Point], [Rectangle], false, -1], ["Union", "", [Rectangle], [Rectangle], false, -1]];
+		Rectangle.init([["Min", "Min", "", Point, ""], ["Max", "Max", "", Point, ""]]);
+0	Rectangle00imagePoint0ÇConfigÇD	Config = go$pkg.Config = go$newType(0, "Struct", "image.Config", "Config", "image", function(ColorModel_, Width_, Height_) {
 		this.go$val = this;
 		this.ColorModel = ColorModel_ !== undefined ? ColorModel_ : null;
 		this.Width = Width_ !== undefined ? Width_ : 0;
 		this.Height = Height_ !== undefined ? Height_ : 0;
 	});
-m		Config.init([["ColorModel", "", color.Model, ""], ["Width", "", Go$Int, ""], ["Height", "", Go$Int, ""]]);
+Åé		Config.init([["ColorModel", "ColorModel", "", color.Model, ""], ["Width", "Width", "", Go$Int, ""], ["Height", "Height", "", Go$Int, ""]]);
 0Config00image/colorModel0ÇyImage[	Image = go$pkg.Image = go$newType(0, "Interface", "image.Image", "Image", "image", null);
 Å«		Image.init([["At", "", (go$funcType([Go$Int, Go$Int], [color.Color], false))], ["Bounds", "", (go$funcType([], [Rectangle], false))], ["ColorModel", "", (go$funcType([], [color.Model], false))]]);
 0Image0@0image/colorColor0image	Rectangle0image/colorModel0Ç¸PalettedImage{	PalettedImage = go$pkg.PalettedImage = go$newType(0, "Interface", "image.PalettedImage", "PalettedImage", "image", null);
 Ç		PalettedImage.init([["At", "", (go$funcType([Go$Int, Go$Int], [color.Color], false))], ["Bounds", "", (go$funcType([], [Rectangle], false))], ["ColorIndexAt", "", (go$funcType([Go$Int, Go$Int], [Go$Uint8], false))], ["ColorModel", "", (go$funcType([], [color.Model], false))]]);
-0PalettedImage0@0image/colorColor0image	Rectangle0image/colorModel0Ç›RGBAÇF	RGBA = go$pkg.RGBA = go$newType(0, "Struct", "image.RGBA", "RGBA", "image", function(Pix_, Stride_, Rect_) {
+0PalettedImage0@0image/colorColor0image	Rectangle0image/colorModel0ÇRGBAÇF	RGBA = go$pkg.RGBA = go$newType(0, "Struct", "image.RGBA", "RGBA", "image", function(Pix_, Stride_, Rect_) {
 		this.go$val = this;
 		this.Pix = Pix_ !== undefined ? Pix_ : (go$sliceType(Go$Uint8)).nil;
 		this.Stride = Stride_ !== undefined ? Stride_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 	});
-Ç		RGBA.init([["Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "", Go$Int, ""], ["Rect", "", Rectangle, ""]]);
-		(go$ptrType(RGBA)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false], ["Set", "", [Go$Int, Go$Int, color.Color], [], false], ["SetRGBA", "", [Go$Int, Go$Int, color.RGBA], [], false], ["SubImage", "", [Rectangle], [Image], false]];
-0RGBA0e0image	Rectangle0image/colorColor0image/colorModel0image/colorRGBA0imageImage0ÇÛRGBA64ÇN	RGBA64 = go$pkg.RGBA64 = go$newType(0, "Struct", "image.RGBA64", "RGBA64", "image", function(Pix_, Stride_, Rect_) {
+ÇS		(go$ptrType(RGBA)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["Set", "", [Go$Int, Go$Int, color.Color], [], false, -1], ["SetRGBA", "", [Go$Int, Go$Int, color.RGBA], [], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1]];
+		RGBA.init([["Pix", "Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "Stride", "", Go$Int, ""], ["Rect", "Rect", "", Rectangle, ""]]);
+0RGBA0e0image	Rectangle0image/colorColor0image/colorModel0image/colorRGBA0imageImage0Ç,RGBA64ÇN	RGBA64 = go$pkg.RGBA64 = go$newType(0, "Struct", "image.RGBA64", "RGBA64", "image", function(Pix_, Stride_, Rect_) {
 		this.go$val = this;
 		this.Pix = Pix_ !== undefined ? Pix_ : (go$sliceType(Go$Uint8)).nil;
 		this.Stride = Stride_ !== undefined ? Stride_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 	});
-Ç"		RGBA64.init([["Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "", Go$Int, ""], ["Rect", "", Rectangle, ""]]);
-		(go$ptrType(RGBA64)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false], ["Set", "", [Go$Int, Go$Int, color.Color], [], false], ["SetRGBA64", "", [Go$Int, Go$Int, color.RGBA64], [], false], ["SubImage", "", [Rectangle], [Image], false]];
-0RGBA640g0image	Rectangle0image/colorColor0image/colorModel0image/colorRGBA640imageImage0ÇËNRGBAÇJ	NRGBA = go$pkg.NRGBA = go$newType(0, "Struct", "image.NRGBA", "NRGBA", "image", function(Pix_, Stride_, Rect_) {
+Ç[		(go$ptrType(RGBA64)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["Set", "", [Go$Int, Go$Int, color.Color], [], false, -1], ["SetRGBA64", "", [Go$Int, Go$Int, color.RGBA64], [], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1]];
+		RGBA64.init([["Pix", "Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "Stride", "", Go$Int, ""], ["Rect", "Rect", "", Rectangle, ""]]);
+0RGBA640g0image	Rectangle0image/colorColor0image/colorModel0image/colorRGBA640imageImage0Ç!NRGBAÇJ	NRGBA = go$pkg.NRGBA = go$newType(0, "Struct", "image.NRGBA", "NRGBA", "image", function(Pix_, Stride_, Rect_) {
 		this.go$val = this;
 		this.Pix = Pix_ !== undefined ? Pix_ : (go$sliceType(Go$Uint8)).nil;
 		this.Stride = Stride_ !== undefined ? Stride_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 	});
-Ç		NRGBA.init([["Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "", Go$Int, ""], ["Rect", "", Rectangle, ""]]);
-		(go$ptrType(NRGBA)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false], ["Set", "", [Go$Int, Go$Int, color.Color], [], false], ["SetNRGBA", "", [Go$Int, Go$Int, color.NRGBA], [], false], ["SubImage", "", [Rectangle], [Image], false]];
-0NRGBA0f0image	Rectangle0image/colorColor0image/colorModel0image/colorNRGBA0imageImage0Ç˛NRGBA64ÇR	NRGBA64 = go$pkg.NRGBA64 = go$newType(0, "Struct", "image.NRGBA64", "NRGBA64", "image", function(Pix_, Stride_, Rect_) {
+ÇW		(go$ptrType(NRGBA)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["Set", "", [Go$Int, Go$Int, color.Color], [], false, -1], ["SetNRGBA", "", [Go$Int, Go$Int, color.NRGBA], [], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1]];
+		NRGBA.init([["Pix", "Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "Stride", "", Go$Int, ""], ["Rect", "Rect", "", Rectangle, ""]]);
+0NRGBA0f0image	Rectangle0image/colorColor0image/colorModel0image/colorNRGBA0imageImage0Ç7NRGBA64ÇR	NRGBA64 = go$pkg.NRGBA64 = go$newType(0, "Struct", "image.NRGBA64", "NRGBA64", "image", function(Pix_, Stride_, Rect_) {
 		this.go$val = this;
 		this.Pix = Pix_ !== undefined ? Pix_ : (go$sliceType(Go$Uint8)).nil;
 		this.Stride = Stride_ !== undefined ? Stride_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 	});
-Ç&		NRGBA64.init([["Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "", Go$Int, ""], ["Rect", "", Rectangle, ""]]);
-		(go$ptrType(NRGBA64)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false], ["Set", "", [Go$Int, Go$Int, color.Color], [], false], ["SetNRGBA64", "", [Go$Int, Go$Int, color.NRGBA64], [], false], ["SubImage", "", [Rectangle], [Image], false]];
-0	NRGBA640h0image	Rectangle0image/colorColor0image/colorModel0image/colorNRGBA640imageImage0ÇËAlphaÇJ	Alpha = go$pkg.Alpha = go$newType(0, "Struct", "image.Alpha", "Alpha", "image", function(Pix_, Stride_, Rect_) {
+Ç_		(go$ptrType(NRGBA64)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["Set", "", [Go$Int, Go$Int, color.Color], [], false, -1], ["SetNRGBA64", "", [Go$Int, Go$Int, color.NRGBA64], [], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1]];
+		NRGBA64.init([["Pix", "Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "Stride", "", Go$Int, ""], ["Rect", "Rect", "", Rectangle, ""]]);
+0	NRGBA640h0image	Rectangle0image/colorColor0image/colorModel0image/colorNRGBA640imageImage0Ç!AlphaÇJ	Alpha = go$pkg.Alpha = go$newType(0, "Struct", "image.Alpha", "Alpha", "image", function(Pix_, Stride_, Rect_) {
 		this.go$val = this;
 		this.Pix = Pix_ !== undefined ? Pix_ : (go$sliceType(Go$Uint8)).nil;
 		this.Stride = Stride_ !== undefined ? Stride_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 	});
-Ç		Alpha.init([["Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "", Go$Int, ""], ["Rect", "", Rectangle, ""]]);
-		(go$ptrType(Alpha)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false], ["Set", "", [Go$Int, Go$Int, color.Color], [], false], ["SetAlpha", "", [Go$Int, Go$Int, color.Alpha], [], false], ["SubImage", "", [Rectangle], [Image], false]];
-0Alpha0f0image	Rectangle0image/colorColor0image/colorModel0image/colorAlpha0imageImage0Ç˛Alpha16ÇR	Alpha16 = go$pkg.Alpha16 = go$newType(0, "Struct", "image.Alpha16", "Alpha16", "image", function(Pix_, Stride_, Rect_) {
+ÇW		(go$ptrType(Alpha)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["Set", "", [Go$Int, Go$Int, color.Color], [], false, -1], ["SetAlpha", "", [Go$Int, Go$Int, color.Alpha], [], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1]];
+		Alpha.init([["Pix", "Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "Stride", "", Go$Int, ""], ["Rect", "Rect", "", Rectangle, ""]]);
+0Alpha0f0image	Rectangle0image/colorColor0image/colorModel0image/colorAlpha0imageImage0Ç7Alpha16ÇR	Alpha16 = go$pkg.Alpha16 = go$newType(0, "Struct", "image.Alpha16", "Alpha16", "image", function(Pix_, Stride_, Rect_) {
 		this.go$val = this;
 		this.Pix = Pix_ !== undefined ? Pix_ : (go$sliceType(Go$Uint8)).nil;
 		this.Stride = Stride_ !== undefined ? Stride_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 	});
-Ç&		Alpha16.init([["Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "", Go$Int, ""], ["Rect", "", Rectangle, ""]]);
-		(go$ptrType(Alpha16)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false], ["Set", "", [Go$Int, Go$Int, color.Color], [], false], ["SetAlpha16", "", [Go$Int, Go$Int, color.Alpha16], [], false], ["SubImage", "", [Rectangle], [Image], false]];
-0	Alpha160h0image	Rectangle0image/colorColor0image/colorModel0image/colorAlpha160imageImage0Ç›GrayÇF	Gray = go$pkg.Gray = go$newType(0, "Struct", "image.Gray", "Gray", "image", function(Pix_, Stride_, Rect_) {
+Ç_		(go$ptrType(Alpha16)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["Set", "", [Go$Int, Go$Int, color.Color], [], false, -1], ["SetAlpha16", "", [Go$Int, Go$Int, color.Alpha16], [], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1]];
+		Alpha16.init([["Pix", "Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "Stride", "", Go$Int, ""], ["Rect", "Rect", "", Rectangle, ""]]);
+0	Alpha160h0image	Rectangle0image/colorColor0image/colorModel0image/colorAlpha160imageImage0ÇGrayÇF	Gray = go$pkg.Gray = go$newType(0, "Struct", "image.Gray", "Gray", "image", function(Pix_, Stride_, Rect_) {
 		this.go$val = this;
 		this.Pix = Pix_ !== undefined ? Pix_ : (go$sliceType(Go$Uint8)).nil;
 		this.Stride = Stride_ !== undefined ? Stride_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 	});
-Ç		Gray.init([["Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "", Go$Int, ""], ["Rect", "", Rectangle, ""]]);
-		(go$ptrType(Gray)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false], ["Set", "", [Go$Int, Go$Int, color.Color], [], false], ["SetGray", "", [Go$Int, Go$Int, color.Gray], [], false], ["SubImage", "", [Rectangle], [Image], false]];
-0Gray0e0image	Rectangle0image/colorColor0image/colorModel0image/colorGray0imageImage0ÇÛGray16ÇN	Gray16 = go$pkg.Gray16 = go$newType(0, "Struct", "image.Gray16", "Gray16", "image", function(Pix_, Stride_, Rect_) {
+ÇS		(go$ptrType(Gray)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["Set", "", [Go$Int, Go$Int, color.Color], [], false, -1], ["SetGray", "", [Go$Int, Go$Int, color.Gray], [], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1]];
+		Gray.init([["Pix", "Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "Stride", "", Go$Int, ""], ["Rect", "Rect", "", Rectangle, ""]]);
+0Gray0e0image	Rectangle0image/colorColor0image/colorModel0image/colorGray0imageImage0Ç,Gray16ÇN	Gray16 = go$pkg.Gray16 = go$newType(0, "Struct", "image.Gray16", "Gray16", "image", function(Pix_, Stride_, Rect_) {
 		this.go$val = this;
 		this.Pix = Pix_ !== undefined ? Pix_ : (go$sliceType(Go$Uint8)).nil;
 		this.Stride = Stride_ !== undefined ? Stride_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 	});
-Ç"		Gray16.init([["Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "", Go$Int, ""], ["Rect", "", Rectangle, ""]]);
-		(go$ptrType(Gray16)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false], ["Set", "", [Go$Int, Go$Int, color.Color], [], false], ["SetGray16", "", [Go$Int, Go$Int, color.Gray16], [], false], ["SubImage", "", [Rectangle], [Image], false]];
-0Gray160g0image	Rectangle0image/colorColor0image/colorModel0image/colorGray160imageImage0ÇµPalettedÇ®	Paletted = go$pkg.Paletted = go$newType(0, "Struct", "image.Paletted", "Paletted", "image", function(Pix_, Stride_, Rect_, Palette_) {
+Ç[		(go$ptrType(Gray16)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["Set", "", [Go$Int, Go$Int, color.Color], [], false, -1], ["SetGray16", "", [Go$Int, Go$Int, color.Gray16], [], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1]];
+		Gray16.init([["Pix", "Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "Stride", "", Go$Int, ""], ["Rect", "Rect", "", Rectangle, ""]]);
+0Gray160g0image	Rectangle0image/colorColor0image/colorModel0image/colorGray160imageImage0Ç˝PalettedÇ®	Paletted = go$pkg.Paletted = go$newType(0, "Struct", "image.Paletted", "Paletted", "image", function(Pix_, Stride_, Rect_, Palette_) {
 		this.go$val = this;
 		this.Pix = Pix_ !== undefined ? Pix_ : (go$sliceType(Go$Uint8)).nil;
 		this.Stride = Stride_ !== undefined ? Stride_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 		this.Palette = Palette_ !== undefined ? Palette_ : color.Palette.nil;
 	});
-ÇÖ		Paletted.init([["Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "", Go$Int, ""], ["Rect", "", Rectangle, ""], ["Palette", "", color.Palette, ""]]);
-		(go$ptrType(Paletted)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorIndexAt", "", [Go$Int, Go$Int], [Go$Uint8], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false], ["Set", "", [Go$Int, Go$Int, color.Color], [], false], ["SetColorIndex", "", [Go$Int, Go$Int, Go$Uint8], [], false], ["SubImage", "", [Rectangle], [Image], false]];
+ÇÕ		(go$ptrType(Paletted)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorIndexAt", "", [Go$Int, Go$Int], [Go$Uint8], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["PixOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["Set", "", [Go$Int, Go$Int, color.Color], [], false, -1], ["SetColorIndex", "", [Go$Int, Go$Int, Go$Uint8], [], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1]];
+		Paletted.init([["Pix", "Pix", "", (go$sliceType(Go$Uint8)), ""], ["Stride", "Stride", "", Go$Int, ""], ["Rect", "Rect", "", Rectangle, ""], ["Palette", "Palette", "", color.Palette, ""]]);
 0
-Paletted0h0image	Rectangle0image/colorPalette0image/colorColor0image/colorModel0imageImage0ÇàUniformÅ¨	Uniform = go$pkg.Uniform = go$newType(0, "Struct", "image.Uniform", "Uniform", "image", function(C_) {
+Paletted0h0image	Rectangle0image/colorPalette0image/colorColor0image/colorModel0imageImage0Ç•UniformÅ¨	Uniform = go$pkg.Uniform = go$newType(0, "Struct", "image.Uniform", "Uniform", "image", function(C_) {
 		this.go$val = this;
 		this.C = C_ !== undefined ? C_ : null;
 	});
-Ç		Uniform.init([["C", "", color.Color, ""]]);
-		(go$ptrType(Uniform)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["ColorModel", "", [], [color.Model], false], ["Convert", "", [color.Color], [color.Color], false], ["Opaque", "", [], [Go$Bool], false], ["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false]];
-0	Uniform0@0image/colorColor0image	Rectangle0image/colorModel0ÇcYCbCrSubsampleRatioÅç	YCbCrSubsampleRatio = go$pkg.YCbCrSubsampleRatio = go$newType(4, "Int", "image.YCbCrSubsampleRatio", "YCbCrSubsampleRatio", "image", null);
-Å¢		YCbCrSubsampleRatio.methods = [["String", "", [], [Go$String], false]];
-		(go$ptrType(YCbCrSubsampleRatio)).methods = [["String", "", [], [Go$String], false]];
-0YCbCrSubsampleRatio0 0Ç~YCbCrÇx	YCbCr = go$pkg.YCbCr = go$newType(0, "Struct", "image.YCbCr", "YCbCr", "image", function(Y_, Cb_, Cr_, YStride_, CStride_, SubsampleRatio_, Rect_) {
+Çú		(go$ptrType(Uniform)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Convert", "", [color.Color], [color.Color], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["RGBA", "", [], [Go$Uint32, Go$Uint32, Go$Uint32, Go$Uint32], false, -1]];
+		Uniform.init([["C", "C", "", color.Color, ""]]);
+0	Uniform0@0image/colorColor0image	Rectangle0image/colorModel0ÇkYCbCrSubsampleRatioÅç	YCbCrSubsampleRatio = go$pkg.YCbCrSubsampleRatio = go$newType(4, "Int", "image.YCbCrSubsampleRatio", "YCbCrSubsampleRatio", "image", null);
+Å™		YCbCrSubsampleRatio.methods = [["String", "", [], [Go$String], false, -1]];
+		(go$ptrType(YCbCrSubsampleRatio)).methods = [["String", "", [], [Go$String], false, -1]];
+0YCbCrSubsampleRatio0 0Ç€YCbCrÇx	YCbCr = go$pkg.YCbCr = go$newType(0, "Struct", "image.YCbCr", "YCbCr", "image", function(Y_, Cb_, Cr_, YStride_, CStride_, SubsampleRatio_, Rect_) {
 		this.go$val = this;
 		this.Y = Y_ !== undefined ? Y_ : (go$sliceType(Go$Uint8)).nil;
 		this.Cb = Cb_ !== undefined ? Cb_ : (go$sliceType(Go$Uint8)).nil;
@@ -346,9 +345,9 @@ $$
 		this.SubsampleRatio = SubsampleRatio_ !== undefined ? SubsampleRatio_ : 0;
 		this.Rect = Rect_ !== undefined ? Rect_ : new Rectangle.Ptr();
 	});
-Ç~		YCbCr.init([["Y", "", (go$sliceType(Go$Uint8)), ""], ["Cb", "", (go$sliceType(Go$Uint8)), ""], ["Cr", "", (go$sliceType(Go$Uint8)), ""], ["YStride", "", Go$Int, ""], ["CStride", "", Go$Int, ""], ["SubsampleRatio", "", YCbCrSubsampleRatio, ""], ["Rect", "", Rectangle, ""]]);
-		(go$ptrType(YCbCr)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false], ["Bounds", "", [], [Rectangle], false], ["COffset", "", [Go$Int, Go$Int], [Go$Int], false], ["ColorModel", "", [], [color.Model], false], ["Opaque", "", [], [Go$Bool], false], ["SubImage", "", [Rectangle], [Image], false], ["YOffset", "", [Go$Int, Go$Int], [Go$Int], false]];
-0YCbCr0n0image	Rectangle0imageYCbCrSubsampleRatio0image/colorColor0image/colorModel0imageImage0Å˚RegisterFormatÅØ	RegisterFormat = go$pkg.RegisterFormat = function(name, magic, decode, decodeConfig) {
+Ç€		(go$ptrType(YCbCr)).methods = [["At", "", [Go$Int, Go$Int], [color.Color], false, -1], ["Bounds", "", [], [Rectangle], false, -1], ["COffset", "", [Go$Int, Go$Int], [Go$Int], false, -1], ["ColorModel", "", [], [color.Model], false, -1], ["Opaque", "", [], [Go$Bool], false, -1], ["SubImage", "", [Rectangle], [Image], false, -1], ["YOffset", "", [Go$Int, Go$Int], [Go$Int], false, -1]];
+		YCbCr.init([["Y", "Y", "", (go$sliceType(Go$Uint8)), ""], ["Cb", "Cb", "", (go$sliceType(Go$Uint8)), ""], ["Cr", "Cr", "", (go$sliceType(Go$Uint8)), ""], ["YStride", "YStride", "", Go$Int, ""], ["CStride", "CStride", "", Go$Int, ""], ["SubsampleRatio", "SubsampleRatio", "", YCbCrSubsampleRatio, ""], ["Rect", "Rect", "", Rectangle, ""]]);
+0YCbCr0n0image	Rectangle0image/colorColor0image/colorModel0imageImage0imageYCbCrSubsampleRatio0Å˚RegisterFormatÅØ	RegisterFormat = go$pkg.RegisterFormat = function(name, magic, decode, decodeConfig) {
 		formats = go$append(formats, new format.Ptr(name, magic, decode, decodeConfig));
 	};
  0RegisterFormat0#0imageformats0imageformat0Ç:asReaderÅ¯	asReader = function(r) {

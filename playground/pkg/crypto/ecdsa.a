@@ -1,4 +1,4 @@
-0ÇoÛcrypto/ecdsaÇFˇpackage ecdsa
+0Çg†crypto/ecdsaÇFˇpackage ecdsa
 import elliptic "crypto/elliptic"
 import io "io"
 import big "math/big"
@@ -167,48 +167,24 @@ type @"io".RuneScanner interface { @"io".ReadRune() (@"".r rune, @"".size int, @
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
 $$
-0ÅΩruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/ellipticcrypto/ecdsa080crypto/ellipticelliptic0ioio0math/bigbig0Ç'‚0Ç$	PublicKeyÇù	PublicKey = go$pkg.PublicKey = go$newType(0, "Struct", "ecdsa.PublicKey", "PublicKey", "crypto/ecdsa", function(Curve_, X_, Y_) {
+0ÅΩruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/ellipticcrypto/ecdsa080crypto/ellipticelliptic0ioio0math/bigbig0Çè0Ç	PublicKeyÇO	PublicKey = go$pkg.PublicKey = go$newType(0, "Struct", "ecdsa.PublicKey", "PublicKey", "crypto/ecdsa", function(Curve_, X_, Y_) {
 		this.go$val = this;
 		this.Curve = Curve_ !== undefined ? Curve_ : null;
 		this.X = X_ !== undefined ? X_ : (go$ptrType(big.Int)).nil;
 		this.Y = Y_ !== undefined ? Y_ : (go$ptrType(big.Int)).nil;
 	});
-	PublicKey.prototype.Add = function(x1, y1, x2, y2) { return this.go$val.Add(x1, y1, x2, y2); };
-	PublicKey.Ptr.prototype.Add = function(x1, y1, x2, y2) { return this.Curve.Add(x1, y1, x2, y2); };
-	PublicKey.prototype.Double = function(x1, y1) { return this.go$val.Double(x1, y1); };
-	PublicKey.Ptr.prototype.Double = function(x1, y1) { return this.Curve.Double(x1, y1); };
-	PublicKey.prototype.IsOnCurve = function(x, y) { return this.go$val.IsOnCurve(x, y); };
-	PublicKey.Ptr.prototype.IsOnCurve = function(x, y) { return this.Curve.IsOnCurve(x, y); };
-	PublicKey.prototype.Params = function() { return this.go$val.Params(); };
-	PublicKey.Ptr.prototype.Params = function() { return this.Curve.Params(); };
-	PublicKey.prototype.ScalarBaseMult = function(k) { return this.go$val.ScalarBaseMult(k); };
-	PublicKey.Ptr.prototype.ScalarBaseMult = function(k) { return this.Curve.ScalarBaseMult(k); };
-	PublicKey.prototype.ScalarMult = function(x1, y1, k) { return this.go$val.ScalarMult(x1, y1, k); };
-	PublicKey.Ptr.prototype.ScalarMult = function(x1, y1, k) { return this.Curve.ScalarMult(x1, y1, k); };
-Ç		PublicKey.init([["", "", elliptic.Curve, ""], ["X", "", (go$ptrType(big.Int)), ""], ["Y", "", (go$ptrType(big.Int)), ""]]);
-		PublicKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
-		(go$ptrType(PublicKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
-0	PublicKey0K0math/bigInt0crypto/ellipticCurve0crypto/ellipticCurveParams0Ç
-PrivateKeyÇ¢	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.PrivateKey", "PrivateKey", "crypto/ecdsa", function(PublicKey_, D_) {
+ÇQ		PublicKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false, 0], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false, 0], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0]];
+		(go$ptrType(PublicKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false, 0], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false, 0], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0]];
+		PublicKey.init([["Curve", "", "", elliptic.Curve, ""], ["X", "X", "", (go$ptrType(big.Int)), ""], ["Y", "Y", "", (go$ptrType(big.Int)), ""]]);
+0	PublicKey0K0math/bigInt0crypto/ellipticCurveParams0crypto/ellipticCurve0Ç»
+PrivateKeyÇ0	PrivateKey = go$pkg.PrivateKey = go$newType(0, "Struct", "ecdsa.PrivateKey", "PrivateKey", "crypto/ecdsa", function(PublicKey_, D_) {
 		this.go$val = this;
 		this.PublicKey = PublicKey_ !== undefined ? PublicKey_ : new PublicKey.Ptr();
 		this.D = D_ !== undefined ? D_ : (go$ptrType(big.Int)).nil;
 	});
-	PrivateKey.prototype.Add = function(x1, y1, x2, y2) { return this.go$val.Add(x1, y1, x2, y2); };
-	PrivateKey.Ptr.prototype.Add = function(x1, y1, x2, y2) { return this.PublicKey.Add(x1, y1, x2, y2); };
-	PrivateKey.prototype.Double = function(x1, y1) { return this.go$val.Double(x1, y1); };
-	PrivateKey.Ptr.prototype.Double = function(x1, y1) { return this.PublicKey.Double(x1, y1); };
-	PrivateKey.prototype.IsOnCurve = function(x, y) { return this.go$val.IsOnCurve(x, y); };
-	PrivateKey.Ptr.prototype.IsOnCurve = function(x, y) { return this.PublicKey.IsOnCurve(x, y); };
-	PrivateKey.prototype.Params = function() { return this.go$val.Params(); };
-	PrivateKey.Ptr.prototype.Params = function() { return this.PublicKey.Params(); };
-	PrivateKey.prototype.ScalarBaseMult = function(k) { return this.go$val.ScalarBaseMult(k); };
-	PrivateKey.Ptr.prototype.ScalarBaseMult = function(k) { return this.PublicKey.ScalarBaseMult(k); };
-	PrivateKey.prototype.ScalarMult = function(x1, y1, k) { return this.go$val.ScalarMult(x1, y1, k); };
-	PrivateKey.Ptr.prototype.ScalarMult = function(x1, y1, k) { return this.PublicKey.ScalarMult(x1, y1, k); };
-ÇÚ		PrivateKey.init([["", "", PublicKey, ""], ["D", "", (go$ptrType(big.Int)), ""]]);
-		PrivateKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
-		(go$ptrType(PrivateKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false]];
+Ç(		PrivateKey.methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false, 0], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false, 0], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0]];
+		(go$ptrType(PrivateKey)).methods = [["Add", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["Double", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["IsOnCurve", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false, 0], ["Params", "", [], [(go$ptrType(elliptic.CurveParams))], false, 0], ["ScalarBaseMult", "", [(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0], ["ScalarMult", "", [(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false, 0]];
+		PrivateKey.init([["PublicKey", "", "", PublicKey, ""], ["D", "D", "", (go$ptrType(big.Int)), ""]]);
 0
 PrivateKey0L0crypto/ecdsa	PublicKey0math/bigInt0crypto/ellipticCurveParams0Ç¬randFieldElementÇ^	randFieldElement = function(c, rand) {
 		var k, err, params, _q, b, _tuple, n;

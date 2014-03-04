@@ -1,4 +1,4 @@
-0Ç\ˆ	io/ioutilÇ.ipackage ioutil
+0Ç\ß	io/ioutilÇ.ipackage ioutil
 import bytes "bytes"
 import io "io"
 import os "os"
@@ -177,22 +177,20 @@ type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutil0}0bytesbytes0ioio0osos0sortsort0path/filepathfilepath0strconvstrconv0syncsync0timetime0Ç-e0Ç‹byName`	byName = go$pkg.byName = go$newType(0, "Slice", "ioutil.byName", "byName", "io/ioutil", null);
-ÇR		byName.init(os.FileInfo);
-		byName.methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-0byName00osFileInfo0Ç‘	nopCloserÇc	nopCloser = go$pkg.nopCloser = go$newType(0, "Struct", "ioutil.nopCloser", "nopCloser", "io/ioutil", function(Reader_) {
+0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutil0}0bytesbytes0ioio0osos0sortsort0path/filepathfilepath0strconvstrconv0syncsync0timetime0Ç-0ÇÙbyName`	byName = go$pkg.byName = go$newType(0, "Slice", "ioutil.byName", "byName", "io/ioutil", null);
+Çj		byName.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		byName.init(os.FileInfo);
+0byName00osFileInfo0ÇU	nopCloserÅÕ	nopCloser = go$pkg.nopCloser = go$newType(0, "Struct", "ioutil.nopCloser", "nopCloser", "io/ioutil", function(Reader_) {
 		this.go$val = this;
 		this.Reader = Reader_ !== undefined ? Reader_ : null;
 	});
-	nopCloser.prototype.Read = function(p) { return this.go$val.Read(p); };
-	nopCloser.Ptr.prototype.Read = function(p) { return this.Reader.Read(p); };
-ÇA		nopCloser.init([["", "", io.Reader, ""]]);
-		nopCloser.methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-		(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false]];
-0	nopCloser00ioReader0ÇDdevNullb	devNull = go$pkg.devNull = go$newType(4, "Int", "ioutil.devNull", "devNull", "io/ioutil", null);
-Ç∏		devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
-		(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["WriteString", "", [Go$String], [Go$Int, go$error], false]];
+ÇY		nopCloser.methods = [["Close", "", [], [go$error], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 0]];
+		(go$ptrType(nopCloser)).methods = [["Close", "", [], [go$error], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 0]];
+		nopCloser.init([["Reader", "", "", io.Reader, ""]]);
+0	nopCloser00ioReader0Ç\devNullb	devNull = go$pkg.devNull = go$newType(4, "Int", "ioutil.devNull", "devNull", "io/ioutil", null);
+Ç–		devNull.methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
+		(go$ptrType(devNull)).methods = [["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
 0	devNull00ioReader0Åõ	blackHole}	blackHole = function() {
 			return blackHoles.pop() || go$sliceType(Go$Uint8).make(8192, 0, function() { return 0; });
 		};
@@ -390,9 +388,9 @@ nextSuffix0N0	io/ioutilrandmu0	io/ioutilrand0	io/ioutilreseed0str
 		return [f, err];
 	};
  0
-TempFile0Åí0path/filepathJoin0	io/ioutil
-nextSuffix0osOpenFile0osIsExist0	io/ioutilrand0
-osFile0osTempDir0	io/ioutilreseed0ÇÈTempDirÇI	TempDir = go$pkg.TempDir = function(dir, prefix) {
+TempFile0Åí0
+osFile0path/filepathJoin0osOpenFile0osIsExist0osTempDir0	io/ioutil
+nextSuffix0	io/ioutilreseed0	io/ioutilrand0ÇÈTempDirÇI	TempDir = go$pkg.TempDir = function(dir, prefix) {
 		var name, err, nconflict, i, try$1;
 		name = "";
 		err = null;

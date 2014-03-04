@@ -1,4 +1,4 @@
-0É]4	image/pngÇûpackage png
+0É^	image/pngÇûpackage png
 import zlib "compress/zlib"
 import binary "encoding/binary"
 import fmt "fmt"
@@ -99,7 +99,7 @@ $$
 0ÅÚruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flatehashhash/adler32compress/zlibencoding/binary
 hash/crc32image/colorimage	image/png0Åµ0compress/zlibzlib0encoding/binarybinary0
 fmtfmt0hashhash0
-hash/crc32crc320imageimage0image/colorcolor0ioio0bufiobufio0strconvstrconv0É?”0Ç€decoderÇ=	decoder = go$pkg.decoder = go$newType(0, "Struct", "png.decoder", "decoder", "image/png", function(r_, img_, crc_, width_, height_, depth_, palette_, cb_, stage_, idatLength_, tmp_) {
+hash/crc32crc320imageimage0image/colorcolor0ioio0bufiobufio0strconvstrconv0É@≥0ÇadecoderÇ=	decoder = go$pkg.decoder = go$newType(0, "Struct", "png.decoder", "decoder", "image/png", function(r_, img_, crc_, width_, height_, depth_, palette_, cb_, stage_, idatLength_, tmp_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.img = img_ !== undefined ? img_ : null;
@@ -113,15 +113,15 @@ hash/crc32crc320imageimage0image/colorcolor0ioio0bufiobufi
 		this.idatLength = idatLength_ !== undefined ? idatLength_ : 0;
 		this.tmp = tmp_ !== undefined ? tmp_ : go$makeNativeArray("Uint8", 768, function() { return 0; });
 	});
-Ç:		decoder.init([["r", "image/png", io.Reader, ""], ["img", "image/png", image.Image, ""], ["crc", "image/png", hash.Hash32, ""], ["width", "image/png", Go$Int, ""], ["height", "image/png", Go$Int, ""], ["depth", "image/png", Go$Int, ""], ["palette", "image/png", color.Palette, ""], ["cb", "image/png", Go$Int, ""], ["stage", "image/png", Go$Int, ""], ["idatLength", "image/png", Go$Uint32, ""], ["tmp", "image/png", (go$arrayType(Go$Uint8, 768)), ""]]);
-		(go$ptrType(decoder)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["checkHeader", "image/png", [], [go$error], false], ["decode", "image/png", [], [image.Image, go$error], false], ["parseChunk", "image/png", [], [go$error], false], ["parseIDAT", "image/png", [Go$Uint32], [go$error], false], ["parseIEND", "image/png", [Go$Uint32], [go$error], false], ["parseIHDR", "image/png", [Go$Uint32], [go$error], false], ["parsePLTE", "image/png", [Go$Uint32], [go$error], false], ["parsetRNS", "image/png", [Go$Uint32], [go$error], false], ["verifyChecksum", "image/png", [], [go$error], false]];
-0	decoder0F0image/colorPalette0ioReader0imageImage0hashHash320Ç%FormatErrorr	FormatError = go$pkg.FormatError = go$newType(0, "String", "png.FormatError", "FormatError", "image/png", null);
-Åê		FormatError.methods = [["Error", "", [], [Go$String], false]];
-		(go$ptrType(FormatError)).methods = [["Error", "", [], [Go$String], false]];
-0FormatError0 0ÇNUnsupportedErrorÅÜ	UnsupportedError = go$pkg.UnsupportedError = go$newType(0, "String", "png.UnsupportedError", "UnsupportedError", "image/png", null);
-Åö		UnsupportedError.methods = [["Error", "", [], [Go$String], false]];
-		(go$ptrType(UnsupportedError)).methods = [["Error", "", [], [Go$String], false]];
-0UnsupportedError0 0ÇØencoderÇî	encoder = go$pkg.encoder = go$newType(0, "Struct", "png.encoder", "encoder", "image/png", function(w_, m_, cb_, err_, header_, footer_, tmp_) {
+Ç¿		(go$ptrType(decoder)).methods = [["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["checkHeader", "image/png", [], [go$error], false, -1], ["decode", "image/png", [], [image.Image, go$error], false, -1], ["parseChunk", "image/png", [], [go$error], false, -1], ["parseIDAT", "image/png", [Go$Uint32], [go$error], false, -1], ["parseIEND", "image/png", [Go$Uint32], [go$error], false, -1], ["parseIHDR", "image/png", [Go$Uint32], [go$error], false, -1], ["parsePLTE", "image/png", [Go$Uint32], [go$error], false, -1], ["parsetRNS", "image/png", [Go$Uint32], [go$error], false, -1], ["verifyChecksum", "image/png", [], [go$error], false, -1]];
+		decoder.init([["r", "r", "image/png", io.Reader, ""], ["img", "img", "image/png", image.Image, ""], ["crc", "crc", "image/png", hash.Hash32, ""], ["width", "width", "image/png", Go$Int, ""], ["height", "height", "image/png", Go$Int, ""], ["depth", "depth", "image/png", Go$Int, ""], ["palette", "palette", "image/png", color.Palette, ""], ["cb", "cb", "image/png", Go$Int, ""], ["stage", "stage", "image/png", Go$Int, ""], ["idatLength", "idatLength", "image/png", Go$Uint32, ""], ["tmp", "tmp", "image/png", (go$arrayType(Go$Uint8, 768)), ""]]);
+0	decoder0F0image/colorPalette0imageImage0ioReader0hashHash320Ç-FormatErrorr	FormatError = go$pkg.FormatError = go$newType(0, "String", "png.FormatError", "FormatError", "image/png", null);
+Åò		FormatError.methods = [["Error", "", [], [Go$String], false, -1]];
+		(go$ptrType(FormatError)).methods = [["Error", "", [], [Go$String], false, -1]];
+0FormatError0 0ÇVUnsupportedErrorÅÜ	UnsupportedError = go$pkg.UnsupportedError = go$newType(0, "String", "png.UnsupportedError", "UnsupportedError", "image/png", null);
+Å¢		UnsupportedError.methods = [["Error", "", [], [Go$String], false, -1]];
+		(go$ptrType(UnsupportedError)).methods = [["Error", "", [], [Go$String], false, -1]];
+0UnsupportedError0 0Ç˘encoderÇî	encoder = go$pkg.encoder = go$newType(0, "Struct", "png.encoder", "encoder", "image/png", function(w_, m_, cb_, err_, header_, footer_, tmp_) {
 		this.go$val = this;
 		this.w = w_ !== undefined ? w_ : null;
 		this.m = m_ !== undefined ? m_ : null;
@@ -131,9 +131,9 @@ hash/crc32crc320imageimage0image/colorcolor0ioio0bufiobufi
 		this.footer = footer_ !== undefined ? footer_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.tmp = tmp_ !== undefined ? tmp_ : go$makeNativeArray("Uint8", 1024, function() { return 0; });
 	});
-Ç«		encoder.init([["w", "image/png", io.Writer, ""], ["m", "image/png", image.Image, ""], ["cb", "image/png", Go$Int, ""], ["err", "image/png", go$error, ""], ["header", "image/png", (go$arrayType(Go$Uint8, 8)), ""], ["footer", "image/png", (go$arrayType(Go$Uint8, 4)), ""], ["tmp", "image/png", (go$arrayType(Go$Uint8, 1024)), ""]]);
-		(go$ptrType(encoder)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false], ["writeChunk", "image/png", [(go$sliceType(Go$Uint8)), Go$String], [], false], ["writeIDATs", "image/png", [], [], false], ["writeIEND", "image/png", [], [], false], ["writeIHDR", "image/png", [], [], false], ["writePLTEAndTRNS", "image/png", [color.Palette], [], false]];
-0	encoder060ioWriter0imageImage0image/colorPalette0Å∆opaquere	opaquer = go$pkg.opaquer = go$newType(0, "Interface", "png.opaquer", "opaquer", "image/png", null);
+Ç		(go$ptrType(encoder)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["writeChunk", "image/png", [(go$sliceType(Go$Uint8)), Go$String], [], false, -1], ["writeIDATs", "image/png", [], [], false, -1], ["writeIEND", "image/png", [], [], false, -1], ["writeIHDR", "image/png", [], [], false, -1], ["writePLTEAndTRNS", "image/png", [color.Palette], [], false, -1]];
+		encoder.init([["w", "w", "image/png", io.Writer, ""], ["m", "m", "image/png", image.Image, ""], ["cb", "cb", "image/png", Go$Int, ""], ["err", "err", "image/png", go$error, ""], ["header", "header", "image/png", (go$arrayType(Go$Uint8, 8)), ""], ["footer", "footer", "image/png", (go$arrayType(Go$Uint8, 4)), ""], ["tmp", "tmp", "image/png", (go$arrayType(Go$Uint8, 1024)), ""]]);
+0	encoder060image/colorPalette0ioWriter0imageImage0Å∆opaquere	opaquer = go$pkg.opaquer = go$newType(0, "Interface", "png.opaquer", "opaquer", "image/png", null);
 G		opaquer.init([["Opaque", "", (go$funcType([], [Go$Bool], false))]]);
 0	opaquer0 0ÇkpaethÇS	paeth = function(a, b, c) {
 		var pc, pa, pb;
@@ -656,8 +656,8 @@ hash/crc32crc320imageimage0image/colorcolor0ioio0bufiobufi
 		}
 	};
 	decoder.prototype.decode = function() { return this.go$val.decode(); };
- 0decoderdecode0Ç$0image/colorNRGBA0imageNRGBA640imageRect0image	NewGray160imageGray160imageRGBA640imageNewNRGBA0image/colorGray0image/colorGray160imageGray0imagePoint0image	Rectangle0image
-NewNRGBA640	image/pngFormatError0	image/pngdecoder0	image/pngfilterPaeth0compress/zlib	NewReader0imageNewRGBA0imageNewPaletted0imageRGBA0imageNRGBA0image	NewRGBA640	ioEOF0imagePaletted0imageNewGray0ioReadFull0image/colorNRGBA640image/colorRGBA640Ç˜ Çè	decoder.Ptr.prototype.parseIDAT = function(length) {
+ 0decoderdecode0Ç$0imageGray160image	Rectangle0imageNewPaletted0image	NewGray160ioReadFull0image/colorGray160image/colorNRGBA640imageRGBA0	image/pngFormatError0image/colorGray0imagePoint0image
+NewNRGBA640image	NewRGBA640imageNRGBA0imageNRGBA640image/colorNRGBA0compress/zlib	NewReader0imageGray0imagePaletted0imageNewRGBA0	ioEOF0imageRGBA640imageRect0imageNewNRGBA0	image/pngdecoder0imageNewGray0	image/pngfilterPaeth0image/colorRGBA640Ç˜ Çè	decoder.Ptr.prototype.parseIDAT = function(length) {
 		var err, d, _tuple;
 		err = null;
 		d = this;
@@ -734,7 +734,7 @@ NewNRGBA640	image/pngFormatError0	image/pngdecoder0	image/pngfilterP
 	};
 	decoder.prototype.parseChunk = function() { return this.go$val.parseChunk(); };
  0decoder
-parseChunk0Ç#0	image/pngFormatError0	image/pngchunkOrderError0	image/png	parseIEND0	image/pngmin0	image/pngverifyChecksum0	image/pngdecoder0ioReadFull0encoding/binary	BigEndian0	image/png	parseIHDR0	image/png	parsePLTE0	image/png	parsetRNS0	image/png	parseIDAT0Çã Ç	decoder.Ptr.prototype.verifyChecksum = function() {
+parseChunk0Ç#0	image/pngdecoder0	image/pngFormatError0	image/pngchunkOrderError0	image/png	parseIHDR0	image/png	parseIDAT0	image/png	parseIEND0ioReadFull0encoding/binary	BigEndian0	image/png	parsePLTE0	image/png	parsetRNS0	image/pngmin0	image/pngverifyChecksum0Çã Ç	decoder.Ptr.prototype.verifyChecksum = function() {
 		var d, err, _tuple;
 		d = this;
 		if (_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 4)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
@@ -827,10 +827,10 @@ parseChunk0ÇdDecodeConfigÇÏ	DecodeConfig = go$pkg.DecodeConfig = function(r
 		}
 		return [new image.Config.Ptr(cm, d.width, d.height), null];
 	};
- 0DecodeConfig0ÇP0
-hash/crc32NewIEEE0imageConfig0	image/pngdecoder0	image/png
-parseChunk0image/color
-NRGBAModel0image/colorRGBA64Model0image/colorPalette0	image/pngcheckHeader0	ioEOF0image/color	GrayModel0image/color	RGBAModel0image/colorNRGBA64Model0ioErrUnexpectedEOF0image/colorGray16Model0Ç¥writeUint32Çê	writeUint32 = function(b, u) {
+ 0DecodeConfig0ÇP0image/colorPalette0
+hash/crc32NewIEEE0	image/pngdecoder0ioErrUnexpectedEOF0image/color	RGBAModel0	image/pngcheckHeader0imageConfig0image/color
+NRGBAModel0	ioEOF0	image/png
+parseChunk0image/colorRGBA64Model0image/color	GrayModel0image/colorGray16Model0image/colorNRGBA64Model0Ç¥writeUint32Çê	writeUint32 = function(b, u) {
 		var _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? (_slice.array[_slice.offset + _index] = ((u >>> 24 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
 		_slice$1 = b, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = ((u >>> 16 >>> 0) << 24 >>> 24)) : go$throwRuntimeError("index out of range");
@@ -1236,8 +1236,8 @@ writeImageÇ8	writeImage = function(w, m, cb) {
 		}
 	};
  0
-writeImage0Çv0compress/zlib	NewWriter0imagePoint0image	Rectangle0imageGray0imageRGBA0image/color	GrayModel0image/color
-NRGBAModel0imagePalettedImage0image/colorNRGBA64Model0imagePaletted0imageNRGBA0image/colorGray0image/colorNRGBA0image/colorGray160image/colorGray16Model0image/colorNRGBA640	image/pngfilter0Ç Çü	encoder.Ptr.prototype.writeIDATs = function() {
+writeImage0Çv0compress/zlib	NewWriter0imageNRGBA0image/colorNRGBA64Model0imagePoint0image/colorGray0image/colorNRGBA0image	Rectangle0imagePaletted0imagePalettedImage0image/colorGray160image/colorGray16Model0image/colorNRGBA640imageGray0imageRGBA0image/color	GrayModel0image/color
+NRGBAModel0	image/pngfilter0Ç Çü	encoder.Ptr.prototype.writeIDATs = function() {
 		var e, bw;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -1305,10 +1305,10 @@ writeChunk0ÇOEncodeÇß	Encode = go$pkg.Encode = function(w, m) {
 		e.writeIEND();
 		return e.err;
 	};
- 0Encode0Çå0strconv	FormatInt0	image/pngopaque0	image/png	writeIEND0image/colorPalette0imagePalettedImage0image/colorGray16Model0image/color	RGBAModel0image/color
-NRGBAModel0	image/png	writeIHDR0	image/png
-writeIDATs0image/color	GrayModel0image/color
-AlphaModel0ioWriteString0	image/pngFormatError0	image/pngencoder0	image/pngwritePLTEAndTRNS0*chunkOrderError  0chunkOrderError0 0c  *		chunkOrderError = "chunk out of order";
+ 0Encode0Çå0image/color	GrayModel0	image/png	writeIHDR0image/colorPalette0imagePalettedImage0	image/pngopaque0	image/png
+writeIDATs0	image/pngFormatError0	image/pngencoder0image/color
+NRGBAModel0	image/pngwritePLTEAndTRNS0	image/png	writeIEND0strconv	FormatInt0image/colorGray16Model0image/color	RGBAModel0image/color
+AlphaModel0ioWriteString0*chunkOrderError  0chunkOrderError0 0c  *		chunkOrderError = "chunk out of order";
 0chunkOrderError00	image/pngchunkOrderError0
    0 0 0Åù  J		image.RegisterFormat("png", "\x89PNG\r\n\x1A\n", Decode, DecodeConfig);
 0 0I0imageRegisterFormat0	image/pngDecode0	image/pngDecodeConfig0 

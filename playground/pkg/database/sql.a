@@ -1,4 +1,4 @@
-0Éíºdatabase/sqlÇ0_package sql
+0Éíédatabase/sqlÇ0_package sql
 import driver "database/sql/driver"
 import errors "errors"
 import fmt "fmt"
@@ -145,47 +145,47 @@ type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 type @"database/sql/driver".Result interface { @"database/sql/driver".LastInsertId() (? int64, ? error); @"database/sql/driver".RowsAffected() (? int64, ? error) }
 $$
 0Åôruntimecontainer/listerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtdatabase/sql/driverdatabase/sql0Å©0database/sql/driverdriver0errorserrors0
-fmtfmt0reflectreflect0strconvstrconv0container/listlist0ioio0runtimeruntime0syncsync0É`¸0ÅüRawBytesh	RawBytes = go$pkg.RawBytes = go$newType(0, "Slice", "sql.RawBytes", "RawBytes", "database/sql", null);
+fmtfmt0reflectreflect0strconvstrconv0container/listlist0ioio0runtimeruntime0syncsync0É`Œ0ÅüRawBytesh	RawBytes = go$pkg.RawBytes = go$newType(0, "Slice", "sql.RawBytes", "RawBytes", "database/sql", null);
 		RawBytes.init(Go$Uint8);
 0
-RawBytes0 0Ç}
+RawBytes0 0Çú
 NullStringÇ	NullString = go$pkg.NullString = go$newType(0, "Struct", "sql.NullString", "NullString", "database/sql", function(String_, Valid_) {
 		this.go$val = this;
 		this.String = String_ !== undefined ? String_ : "";
 		this.Valid = Valid_ !== undefined ? Valid_ : false;
 	});
-Ç.		NullString.init([["String", "", Go$String, ""], ["Valid", "", Go$Bool, ""]]);
-		NullString.methods = [["Value", "", [], [driver.Value, go$error], false]];
-		(go$ptrType(NullString)).methods = [["Scan", "", [go$emptyInterface], [go$error], false], ["Value", "", [], [driver.Value, go$error], false]];
+ÇM		NullString.methods = [["Value", "", [], [driver.Value, go$error], false, -1]];
+		(go$ptrType(NullString)).methods = [["Scan", "", [go$emptyInterface], [go$error], false, -1], ["Value", "", [], [driver.Value, go$error], false, -1]];
+		NullString.init([["String", "String", "", Go$String, ""], ["Valid", "Valid", "", Go$Bool, ""]]);
 0
-NullString00database/sql/driverValue0Ç~	NullInt64Ç	NullInt64 = go$pkg.NullInt64 = go$newType(0, "Struct", "sql.NullInt64", "NullInt64", "database/sql", function(Int64_, Valid_) {
+NullString00database/sql/driverValue0Çú	NullInt64Ç	NullInt64 = go$pkg.NullInt64 = go$newType(0, "Struct", "sql.NullInt64", "NullInt64", "database/sql", function(Int64_, Valid_) {
 		this.go$val = this;
 		this.Int64 = Int64_ !== undefined ? Int64_ : new Go$Int64(0, 0);
 		this.Valid = Valid_ !== undefined ? Valid_ : false;
 	});
-Ç)		NullInt64.init([["Int64", "", Go$Int64, ""], ["Valid", "", Go$Bool, ""]]);
-		NullInt64.methods = [["Value", "", [], [driver.Value, go$error], false]];
-		(go$ptrType(NullInt64)).methods = [["Scan", "", [go$emptyInterface], [go$error], false], ["Value", "", [], [driver.Value, go$error], false]];
-0	NullInt6400database/sql/driverValue0ÇãNullFloat64Ç	NullFloat64 = go$pkg.NullFloat64 = go$newType(0, "Struct", "sql.NullFloat64", "NullFloat64", "database/sql", function(Float64_, Valid_) {
+ÇG		NullInt64.methods = [["Value", "", [], [driver.Value, go$error], false, -1]];
+		(go$ptrType(NullInt64)).methods = [["Scan", "", [go$emptyInterface], [go$error], false, -1], ["Value", "", [], [driver.Value, go$error], false, -1]];
+		NullInt64.init([["Int64", "Int64", "", Go$Int64, ""], ["Valid", "Valid", "", Go$Bool, ""]]);
+0	NullInt6400database/sql/driverValue0Ç´NullFloat64Ç	NullFloat64 = go$pkg.NullFloat64 = go$newType(0, "Struct", "sql.NullFloat64", "NullFloat64", "database/sql", function(Float64_, Valid_) {
 		this.go$val = this;
 		this.Float64 = Float64_ !== undefined ? Float64_ : 0;
 		this.Valid = Valid_ !== undefined ? Valid_ : false;
 	});
-Ç3		NullFloat64.init([["Float64", "", Go$Float64, ""], ["Valid", "", Go$Bool, ""]]);
-		NullFloat64.methods = [["Value", "", [], [driver.Value, go$error], false]];
-		(go$ptrType(NullFloat64)).methods = [["Scan", "", [go$emptyInterface], [go$error], false], ["Value", "", [], [driver.Value, go$error], false]];
-0NullFloat6400database/sql/driverValue0ÇbNullBoolÇ 	NullBool = go$pkg.NullBool = go$newType(0, "Struct", "sql.NullBool", "NullBool", "database/sql", function(Bool_, Valid_) {
+ÇS		NullFloat64.methods = [["Value", "", [], [driver.Value, go$error], false, -1]];
+		(go$ptrType(NullFloat64)).methods = [["Scan", "", [go$emptyInterface], [go$error], false, -1], ["Value", "", [], [driver.Value, go$error], false, -1]];
+		NullFloat64.init([["Float64", "Float64", "", Go$Float64, ""], ["Valid", "Valid", "", Go$Bool, ""]]);
+0NullFloat6400database/sql/driverValue0ÇNullBoolÇ 	NullBool = go$pkg.NullBool = go$newType(0, "Struct", "sql.NullBool", "NullBool", "database/sql", function(Bool_, Valid_) {
 		this.go$val = this;
 		this.Bool = Bool_ !== undefined ? Bool_ : false;
 		this.Valid = Valid_ !== undefined ? Valid_ : false;
 	});
-Ç$		NullBool.init([["Bool", "", Go$Bool, ""], ["Valid", "", Go$Bool, ""]]);
-		NullBool.methods = [["Value", "", [], [driver.Value, go$error], false]];
-		(go$ptrType(NullBool)).methods = [["Scan", "", [go$emptyInterface], [go$error], false], ["Value", "", [], [driver.Value, go$error], false]];
+ÇA		NullBool.methods = [["Value", "", [], [driver.Value, go$error], false, -1]];
+		(go$ptrType(NullBool)).methods = [["Scan", "", [go$emptyInterface], [go$error], false, -1], ["Value", "", [], [driver.Value, go$error], false, -1]];
+		NullBool.init([["Bool", "Bool", "", Go$Bool, ""], ["Valid", "Valid", "", Go$Bool, ""]]);
 0
 NullBool00database/sql/driverValue0ÅŸScannerh	Scanner = go$pkg.Scanner = go$newType(0, "Interface", "sql.Scanner", "Scanner", "database/sql", null);
 W		Scanner.init([["Scan", "", (go$funcType([go$emptyInterface], [go$error], false))]]);
-0	Scanner0 0ÇÚDBÇH	DB = go$pkg.DB = go$newType(0, "Struct", "sql.DB", "DB", "database/sql", function(driver_, dsn_, mu_, freeConn_, connRequests_, numOpen_, pendingOpens_, openerCh_, closed_, dep_, lastPut_, maxIdle_, maxOpen_) {
+0	Scanner0 0ÇÓDBÇH	DB = go$pkg.DB = go$newType(0, "Struct", "sql.DB", "DB", "database/sql", function(driver_, dsn_, mu_, freeConn_, connRequests_, numOpen_, pendingOpens_, openerCh_, closed_, dep_, lastPut_, maxIdle_, maxOpen_) {
 		this.go$val = this;
 		this.driver = driver_ !== undefined ? driver_ : null;
 		this.dsn = dsn_ !== undefined ? dsn_ : "";
@@ -201,11 +201,11 @@ NullString00database/sql/driverValue0Ç~	NullInt64Ç	NullInt64 = go$pkg
 		this.maxIdle = maxIdle_ !== undefined ? maxIdle_ : 0;
 		this.maxOpen = maxOpen_ !== undefined ? maxOpen_ : 0;
 	});
-Çs		DB.init([["driver", "database/sql", driver.Driver, ""], ["dsn", "database/sql", Go$String, ""], ["mu", "database/sql", sync.Mutex, ""], ["freeConn", "database/sql", (go$ptrType(list.List)), ""], ["connRequests", "database/sql", (go$ptrType(list.List)), ""], ["numOpen", "database/sql", Go$Int, ""], ["pendingOpens", "database/sql", Go$Int, ""], ["openerCh", "database/sql", (go$chanType((go$structType([])), false, false)), ""], ["closed", "database/sql", Go$Bool, ""], ["dep", "database/sql", (go$mapType(finalCloser, depSet)), ""], ["lastPut", "database/sql", (go$mapType((go$ptrType(driverConn)), Go$String)), ""], ["maxIdle", "database/sql", Go$Int, ""], ["maxOpen", "database/sql", Go$Int, ""]]);
-		(go$ptrType(DB)).methods = [["Begin", "", [], [(go$ptrType(Tx)), go$error], false], ["Close", "", [], [go$error], false], ["Driver", "", [], [driver.Driver], false], ["Exec", "", [Go$String, (go$sliceType(go$emptyInterface))], [Result, go$error], true], ["Ping", "", [], [go$error], false], ["Prepare", "", [Go$String], [(go$ptrType(Stmt)), go$error], false], ["Query", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], true], ["QueryRow", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Row))], true], ["SetMaxIdleConns", "", [Go$Int], [], false], ["SetMaxOpenConns", "", [Go$Int], [], false], ["addDep", "database/sql", [finalCloser, go$emptyInterface], [], false], ["addDepLocked", "database/sql", [finalCloser, go$emptyInterface], [], false], ["begin", "database/sql", [], [(go$ptrType(Tx)), go$error], false], ["conn", "database/sql", [], [(go$ptrType(driverConn)), go$error], false], ["connIfFree", "database/sql", [(go$ptrType(driverConn))], [(go$ptrType(driverConn)), go$error], false], ["connectionOpener", "database/sql", [], [], false], ["exec", "database/sql", [Go$String, (go$sliceType(go$emptyInterface))], [Result, go$error], false], ["maxIdleConnsLocked", "database/sql", [], [Go$Int], false], ["maybeOpenNewConnections", "database/sql", [], [], false], ["noteUnusedDriverStatement", "database/sql", [(go$ptrType(driverConn)), driver.Stmt], [], false], ["openNewConnection", "database/sql", [], [], false], ["prepare", "database/sql", [Go$String], [(go$ptrType(Stmt)), go$error], false], ["putConn", "database/sql", [(go$ptrType(driverConn)), go$error], [], false], ["putConnDBLocked", "database/sql", [(go$ptrType(driverConn)), go$error], [Go$Bool], false], ["query", "database/sql", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], false], ["queryConn", "database/sql", [(go$ptrType(driverConn)), (go$funcType([go$error], [], false)), Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], false], ["removeDep", "database/sql", [finalCloser, go$emptyInterface], [go$error], false], ["removeDepLocked", "database/sql", [finalCloser, go$emptyInterface], [(go$funcType([], [go$error], false))], false]];
-0DB0Ç!0database/sql/driverDriver0database/sqldepSet0database/sql
-driverConn0database/sqlRows0database/sql/driverStmt0syncMutex0container/listList0database/sqlfinalCloser0database/sqlTx0database/sqlResult0database/sqlStmt0database/sqlRow0Ç	6
-driverConnÇª	driverConn = go$pkg.driverConn = go$newType(0, "Struct", "sql.driverConn", "driverConn", "database/sql", function(db_, Mutex_, ci_, closed_, finalClosed_, openStmt_, inUse_, onPut_, dbmuClosed_, listElem_) {
+Ço		(go$ptrType(DB)).methods = [["Begin", "", [], [(go$ptrType(Tx)), go$error], false, -1], ["Close", "", [], [go$error], false, -1], ["Driver", "", [], [driver.Driver], false, -1], ["Exec", "", [Go$String, (go$sliceType(go$emptyInterface))], [Result, go$error], true, -1], ["Ping", "", [], [go$error], false, -1], ["Prepare", "", [Go$String], [(go$ptrType(Stmt)), go$error], false, -1], ["Query", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], true, -1], ["QueryRow", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Row))], true, -1], ["SetMaxIdleConns", "", [Go$Int], [], false, -1], ["SetMaxOpenConns", "", [Go$Int], [], false, -1], ["addDep", "database/sql", [finalCloser, go$emptyInterface], [], false, -1], ["addDepLocked", "database/sql", [finalCloser, go$emptyInterface], [], false, -1], ["begin", "database/sql", [], [(go$ptrType(Tx)), go$error], false, -1], ["conn", "database/sql", [], [(go$ptrType(driverConn)), go$error], false, -1], ["connIfFree", "database/sql", [(go$ptrType(driverConn))], [(go$ptrType(driverConn)), go$error], false, -1], ["connectionOpener", "database/sql", [], [], false, -1], ["exec", "database/sql", [Go$String, (go$sliceType(go$emptyInterface))], [Result, go$error], false, -1], ["maxIdleConnsLocked", "database/sql", [], [Go$Int], false, -1], ["maybeOpenNewConnections", "database/sql", [], [], false, -1], ["noteUnusedDriverStatement", "database/sql", [(go$ptrType(driverConn)), driver.Stmt], [], false, -1], ["openNewConnection", "database/sql", [], [], false, -1], ["prepare", "database/sql", [Go$String], [(go$ptrType(Stmt)), go$error], false, -1], ["putConn", "database/sql", [(go$ptrType(driverConn)), go$error], [], false, -1], ["putConnDBLocked", "database/sql", [(go$ptrType(driverConn)), go$error], [Go$Bool], false, -1], ["query", "database/sql", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], false, -1], ["queryConn", "database/sql", [(go$ptrType(driverConn)), (go$funcType([go$error], [], false)), Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], false, -1], ["removeDep", "database/sql", [finalCloser, go$emptyInterface], [go$error], false, -1], ["removeDepLocked", "database/sql", [finalCloser, go$emptyInterface], [(go$funcType([], [go$error], false))], false, -1]];
+		DB.init([["driver", "driver", "database/sql", driver.Driver, ""], ["dsn", "dsn", "database/sql", Go$String, ""], ["mu", "mu", "database/sql", sync.Mutex, ""], ["freeConn", "freeConn", "database/sql", (go$ptrType(list.List)), ""], ["connRequests", "connRequests", "database/sql", (go$ptrType(list.List)), ""], ["numOpen", "numOpen", "database/sql", Go$Int, ""], ["pendingOpens", "pendingOpens", "database/sql", Go$Int, ""], ["openerCh", "openerCh", "database/sql", (go$chanType((go$structType([])), false, false)), ""], ["closed", "closed", "database/sql", Go$Bool, ""], ["dep", "dep", "database/sql", (go$mapType(finalCloser, depSet)), ""], ["lastPut", "lastPut", "database/sql", (go$mapType((go$ptrType(driverConn)), Go$String)), ""], ["maxIdle", "maxIdle", "database/sql", Go$Int, ""], ["maxOpen", "maxOpen", "database/sql", Go$Int, ""]]);
+0DB0Ç!0syncMutex0container/listList0database/sql/driverDriver0database/sqlResult0database/sqlfinalCloser0database/sql
+driverConn0database/sql/driverStmt0database/sqldepSet0database/sqlTx0database/sqlStmt0database/sqlRows0database/sqlRow0Çå
+driverConnÇç	driverConn = go$pkg.driverConn = go$newType(0, "Struct", "sql.driverConn", "driverConn", "database/sql", function(db_, Mutex_, ci_, closed_, finalClosed_, openStmt_, inUse_, onPut_, dbmuClosed_, listElem_) {
 		this.go$val = this;
 		this.db = db_ !== undefined ? db_ : (go$ptrType(DB)).nil;
 		this.Mutex = Mutex_ !== undefined ? Mutex_ : new sync.Mutex.Ptr();
@@ -218,26 +218,18 @@ driverConnÇª	driverConn = go$pkg.driverConn = go$newType(0, "Struct", "sql.dri
 		this.dbmuClosed = dbmuClosed_ !== undefined ? dbmuClosed_ : false;
 		this.listElem = listElem_ !== undefined ? listElem_ : (go$ptrType(list.Element)).nil;
 	});
-	driverConn.prototype.Lock = function() { return this.go$val.Lock(); };
-	driverConn.Ptr.prototype.Lock = function() { return this.Mutex.Lock(); };
-	driverConn.prototype.Unlock = function() { return this.go$val.Unlock(); };
-	driverConn.Ptr.prototype.Unlock = function() { return this.Mutex.Unlock(); };
-Çﬂ		driverConn.init([["db", "database/sql", (go$ptrType(DB)), ""], ["", "", sync.Mutex, ""], ["ci", "database/sql", driver.Conn, ""], ["closed", "database/sql", Go$Bool, ""], ["finalClosed", "database/sql", Go$Bool, ""], ["openStmt", "database/sql", (go$mapType(driver.Stmt, Go$Bool)), ""], ["inUse", "database/sql", Go$Bool, ""], ["onPut", "database/sql", (go$sliceType((go$funcType([], [], false)))), ""], ["dbmuClosed", "database/sql", Go$Bool, ""], ["listElem", "database/sql", (go$ptrType(list.Element)), ""]]);
-		(go$ptrType(driverConn)).methods = [["Close", "", [], [go$error], false], ["Lock", "", [], [], false], ["Unlock", "", [], [], false], ["closeDBLocked", "database/sql", [], [(go$funcType([], [go$error], false))], false], ["finalClose", "database/sql", [], [go$error], false], ["prepareLocked", "database/sql", [Go$String], [driver.Stmt, go$error], false], ["releaseConn", "database/sql", [go$error], [], false], ["removeOpenStmt", "database/sql", [driver.Stmt], [], false]];
+Çc		(go$ptrType(driverConn)).methods = [["Close", "", [], [go$error], false, -1], ["Lock", "", [], [], false, 1], ["Unlock", "", [], [], false, 1], ["closeDBLocked", "database/sql", [], [(go$funcType([], [go$error], false))], false, -1], ["finalClose", "database/sql", [], [go$error], false, -1], ["prepareLocked", "database/sql", [Go$String], [driver.Stmt, go$error], false, -1], ["releaseConn", "database/sql", [go$error], [], false, -1], ["removeOpenStmt", "database/sql", [driver.Stmt], [], false, -1]];
+		driverConn.init([["db", "db", "database/sql", (go$ptrType(DB)), ""], ["Mutex", "", "", sync.Mutex, ""], ["ci", "ci", "database/sql", driver.Conn, ""], ["closed", "closed", "database/sql", Go$Bool, ""], ["finalClosed", "finalClosed", "database/sql", Go$Bool, ""], ["openStmt", "openStmt", "database/sql", (go$mapType(driver.Stmt, Go$Bool)), ""], ["inUse", "inUse", "database/sql", Go$Bool, ""], ["onPut", "onPut", "database/sql", (go$sliceType((go$funcType([], [], false)))), ""], ["dbmuClosed", "dbmuClosed", "database/sql", Go$Bool, ""], ["listElem", "listElem", "database/sql", (go$ptrType(list.Element)), ""]]);
 0
-driverConn0x0database/sqlDB0syncMutex0container/listElement0database/sql/driverConn0database/sql/driverStmt0Ç∫
-driverStmtÇ2	driverStmt = go$pkg.driverStmt = go$newType(0, "Struct", "sql.driverStmt", "driverStmt", "database/sql", function(Locker_, si_) {
+driverConn0x0database/sqlDB0syncMutex0container/listElement0database/sql/driverStmt0database/sql/driverConn0Ç™
+driverStmtÇ	driverStmt = go$pkg.driverStmt = go$newType(0, "Struct", "sql.driverStmt", "driverStmt", "database/sql", function(Locker_, si_) {
 		this.go$val = this;
 		this.Locker = Locker_ !== undefined ? Locker_ : null;
 		this.si = si_ !== undefined ? si_ : null;
 	});
-	driverStmt.prototype.Lock = function() { return this.go$val.Lock(); };
-	driverStmt.Ptr.prototype.Lock = function() { return this.Locker.Lock(); };
-	driverStmt.prototype.Unlock = function() { return this.go$val.Unlock(); };
-	driverStmt.Ptr.prototype.Unlock = function() { return this.Locker.Unlock(); };
-Ç7		driverStmt.init([["", "", sync.Locker, ""], ["si", "database/sql", driver.Stmt, ""]]);
-		driverStmt.methods = [["Lock", "", [], [], false], ["Unlock", "", [], [], false]];
-		(go$ptrType(driverStmt)).methods = [["Close", "", [], [go$error], false], ["Lock", "", [], [], false], ["Unlock", "", [], [], false]];
+ÇW		driverStmt.methods = [["Lock", "", [], [], false, 0], ["Unlock", "", [], [], false, 0]];
+		(go$ptrType(driverStmt)).methods = [["Close", "", [], [go$error], false, -1], ["Lock", "", [], [], false, 0], ["Unlock", "", [], [], false, 0]];
+		driverStmt.init([["Locker", "", "", sync.Locker, ""], ["si", "si", "database/sql", driver.Stmt, ""]]);
 0
 driverStmt0-0syncLocker0database/sql/driverStmt0Å°depSet^	depSet = go$pkg.depSet = go$newType(0, "Map", "sql.depSet", "depSet", "database/sql", null);
 +		depSet.init(go$emptyInterface, Go$Bool);
@@ -245,25 +237,25 @@ driverStmt0-0syncLocker0database/sql/driverStmt0Å°depSet^	depSet = 
 \		finalCloser.init([["finalClose", "database/sql", (go$funcType([], [go$error], false))]]);
 0finalCloser0 0Å…connRequests	connRequest = go$pkg.connRequest = go$newType(0, "Chan", "sql.connRequest", "connRequest", "database/sql", null);
 4		connRequest.init(go$emptyInterface, true, false);
-0connRequest0 0ÇjTxÇi	Tx = go$pkg.Tx = go$newType(0, "Struct", "sql.Tx", "Tx", "database/sql", function(db_, dc_, txi_, done_) {
+0connRequest0 0Ç©TxÇi	Tx = go$pkg.Tx = go$newType(0, "Struct", "sql.Tx", "Tx", "database/sql", function(db_, dc_, txi_, done_) {
 		this.go$val = this;
 		this.db = db_ !== undefined ? db_ : (go$ptrType(DB)).nil;
 		this.dc = dc_ !== undefined ? dc_ : (go$ptrType(driverConn)).nil;
 		this.txi = txi_ !== undefined ? txi_ : null;
 		this.done = done_ !== undefined ? done_ : false;
 	});
-ÇH		Tx.init([["db", "database/sql", (go$ptrType(DB)), ""], ["dc", "database/sql", (go$ptrType(driverConn)), ""], ["txi", "database/sql", driver.Tx, ""], ["done", "database/sql", Go$Bool, ""]]);
-		(go$ptrType(Tx)).methods = [["Commit", "", [], [go$error], false], ["Exec", "", [Go$String, (go$sliceType(go$emptyInterface))], [Result, go$error], true], ["Prepare", "", [Go$String], [(go$ptrType(Stmt)), go$error], false], ["Query", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], true], ["QueryRow", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Row))], true], ["Rollback", "", [], [go$error], false], ["Stmt", "", [(go$ptrType(Stmt))], [(go$ptrType(Stmt))], false], ["close", "database/sql", [], [], false], ["grabConn", "database/sql", [], [(go$ptrType(driverConn)), go$error], false]];
+Çá		(go$ptrType(Tx)).methods = [["Commit", "", [], [go$error], false, -1], ["Exec", "", [Go$String, (go$sliceType(go$emptyInterface))], [Result, go$error], true, -1], ["Prepare", "", [Go$String], [(go$ptrType(Stmt)), go$error], false, -1], ["Query", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], true, -1], ["QueryRow", "", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(Row))], true, -1], ["Rollback", "", [], [go$error], false, -1], ["Stmt", "", [(go$ptrType(Stmt))], [(go$ptrType(Stmt))], false, -1], ["close", "database/sql", [], [], false, -1], ["grabConn", "database/sql", [], [(go$ptrType(driverConn)), go$error], false, -1]];
+		Tx.init([["db", "db", "database/sql", (go$ptrType(DB)), ""], ["dc", "dc", "database/sql", (go$ptrType(driverConn)), ""], ["txi", "txi", "database/sql", driver.Tx, ""], ["done", "done", "database/sql", Go$Bool, ""]]);
 0Tx0Å§0database/sqlDB0database/sql
-driverConn0database/sql/driverTx0database/sqlResult0database/sqlStmt0database/sqlRows0database/sqlRow0ÇÀconnStmtÇ	connStmt = go$pkg.connStmt = go$newType(0, "Struct", "sql.connStmt", "connStmt", "database/sql", function(dc_, si_) {
+driverConn0database/sqlResult0database/sqlStmt0database/sqlRows0database/sqlRow0database/sql/driverTx0Ç◊connStmtÇ	connStmt = go$pkg.connStmt = go$newType(0, "Struct", "sql.connStmt", "connStmt", "database/sql", function(dc_, si_) {
 		this.go$val = this;
 		this.dc = dc_ !== undefined ? dc_ : (go$ptrType(driverConn)).nil;
 		this.si = si_ !== undefined ? si_ : null;
 	});
-r		connStmt.init([["dc", "database/sql", (go$ptrType(driverConn)), ""], ["si", "database/sql", driver.Stmt, ""]]);
+~		connStmt.init([["dc", "dc", "database/sql", (go$ptrType(driverConn)), ""], ["si", "si", "database/sql", driver.Stmt, ""]]);
 0
 connStmt090database/sql
-driverConn0database/sql/driverStmt0Ç∑StmtÇ˙	Stmt = go$pkg.Stmt = go$newType(0, "Struct", "sql.Stmt", "Stmt", "database/sql", function(db_, query_, stickyErr_, closemu_, tx_, txsi_, mu_, closed_, css_) {
+driverConn0database/sql/driverStmt0ÇStmtÇ˙	Stmt = go$pkg.Stmt = go$newType(0, "Struct", "sql.Stmt", "Stmt", "database/sql", function(db_, query_, stickyErr_, closemu_, tx_, txsi_, mu_, closed_, css_) {
 		this.go$val = this;
 		this.db = db_ !== undefined ? db_ : (go$ptrType(DB)).nil;
 		this.query = query_ !== undefined ? query_ : "";
@@ -275,11 +267,11 @@ driverConn0database/sql/driverStmt0Ç∑StmtÇ˙	Stmt = go$pkg.Stmt = go$ne
 		this.closed = closed_ !== undefined ? closed_ : false;
 		this.css = css_ !== undefined ? css_ : (go$sliceType(connStmt)).nil;
 	});
-Ç™		Stmt.init([["db", "database/sql", (go$ptrType(DB)), ""], ["query", "database/sql", Go$String, ""], ["stickyErr", "database/sql", go$error, ""], ["closemu", "database/sql", sync.RWMutex, ""], ["tx", "database/sql", (go$ptrType(Tx)), ""], ["txsi", "database/sql", (go$ptrType(driverStmt)), ""], ["mu", "database/sql", sync.Mutex, ""], ["closed", "database/sql", Go$Bool, ""], ["css", "database/sql", (go$sliceType(connStmt)), ""]]);
-		(go$ptrType(Stmt)).methods = [["Close", "", [], [go$error], false], ["Exec", "", [(go$sliceType(go$emptyInterface))], [Result, go$error], true], ["Query", "", [(go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], true], ["QueryRow", "", [(go$sliceType(go$emptyInterface))], [(go$ptrType(Row))], true], ["connStmt", "database/sql", [], [(go$ptrType(driverConn)), (go$funcType([go$error], [], false)), driver.Stmt, go$error], false], ["finalClose", "database/sql", [], [go$error], false]];
-0Stmt0Å˙0database/sqlTx0database/sql
-driverStmt0syncMutex0database/sqlconnStmt0database/sqlRows0database/sqlRow0database/sql/driverStmt0database/sqlDB0syncRWMutex0database/sqlResult0database/sql
-driverConn0Ç¬RowsÇü	Rows = go$pkg.Rows = go$newType(0, "Struct", "sql.Rows", "Rows", "database/sql", function(dc_, releaseConn_, rowsi_, closed_, lastcols_, lasterr_, closeStmt_) {
+Ç		(go$ptrType(Stmt)).methods = [["Close", "", [], [go$error], false, -1], ["Exec", "", [(go$sliceType(go$emptyInterface))], [Result, go$error], true, -1], ["Query", "", [(go$sliceType(go$emptyInterface))], [(go$ptrType(Rows)), go$error], true, -1], ["QueryRow", "", [(go$sliceType(go$emptyInterface))], [(go$ptrType(Row))], true, -1], ["connStmt", "database/sql", [], [(go$ptrType(driverConn)), (go$funcType([go$error], [], false)), driver.Stmt, go$error], false, -1], ["finalClose", "database/sql", [], [go$error], false, -1]];
+		Stmt.init([["db", "db", "database/sql", (go$ptrType(DB)), ""], ["query", "query", "database/sql", Go$String, ""], ["stickyErr", "stickyErr", "database/sql", go$error, ""], ["closemu", "closemu", "database/sql", sync.RWMutex, ""], ["tx", "tx", "database/sql", (go$ptrType(Tx)), ""], ["txsi", "txsi", "database/sql", (go$ptrType(driverStmt)), ""], ["mu", "mu", "database/sql", sync.Mutex, ""], ["closed", "closed", "database/sql", Go$Bool, ""], ["css", "css", "database/sql", (go$sliceType(connStmt)), ""]]);
+0Stmt0Å˙0database/sqlDB0database/sqlTx0syncMutex0database/sqlResult0database/sql
+driverConn0syncRWMutex0database/sql
+driverStmt0database/sqlconnStmt0database/sqlRows0database/sqlRow0database/sql/driverStmt0Ç"RowsÇü	Rows = go$pkg.Rows = go$newType(0, "Struct", "sql.Rows", "Rows", "database/sql", function(dc_, releaseConn_, rowsi_, closed_, lastcols_, lasterr_, closeStmt_) {
 		this.go$val = this;
 		this.dc = dc_ !== undefined ? dc_ : (go$ptrType(driverConn)).nil;
 		this.releaseConn = releaseConn_ !== undefined ? releaseConn_ : go$throwNilPointerError;
@@ -289,30 +281,26 @@ driverConn0Ç¬RowsÇü	Rows = go$pkg.Rows = go$newType(0, "Struct", "sql.Rows"
 		this.lasterr = lasterr_ !== undefined ? lasterr_ : null;
 		this.closeStmt = closeStmt_ !== undefined ? closeStmt_ : null;
 	});
-Çó		Rows.init([["dc", "database/sql", (go$ptrType(driverConn)), ""], ["releaseConn", "database/sql", (go$funcType([go$error], [], false)), ""], ["rowsi", "database/sql", driver.Rows, ""], ["closed", "database/sql", Go$Bool, ""], ["lastcols", "database/sql", (go$sliceType(driver.Value)), ""], ["lasterr", "database/sql", go$error, ""], ["closeStmt", "database/sql", driver.Stmt, ""]]);
-		(go$ptrType(Rows)).methods = [["Close", "", [], [go$error], false], ["Columns", "", [], [(go$sliceType(Go$String)), go$error], false], ["Err", "", [], [go$error], false], ["Next", "", [], [Go$Bool], false], ["Scan", "", [(go$sliceType(go$emptyInterface))], [go$error], true]];
+Ç˜		(go$ptrType(Rows)).methods = [["Close", "", [], [go$error], false, -1], ["Columns", "", [], [(go$sliceType(Go$String)), go$error], false, -1], ["Err", "", [], [go$error], false, -1], ["Next", "", [], [Go$Bool], false, -1], ["Scan", "", [(go$sliceType(go$emptyInterface))], [go$error], true, -1]];
+		Rows.init([["dc", "dc", "database/sql", (go$ptrType(driverConn)), ""], ["releaseConn", "releaseConn", "database/sql", (go$funcType([go$error], [], false)), ""], ["rowsi", "rowsi", "database/sql", driver.Rows, ""], ["closed", "closed", "database/sql", Go$Bool, ""], ["lastcols", "lastcols", "database/sql", (go$sliceType(driver.Value)), ""], ["lasterr", "lasterr", "database/sql", go$error, ""], ["closeStmt", "closeStmt", "database/sql", driver.Stmt, ""]]);
 0Rows0t0database/sql
-driverConn0database/sql/driverValue0database/sql/driverRows0database/sql/driverStmt0ÇÍRowÅÙ	Row = go$pkg.Row = go$newType(0, "Struct", "sql.Row", "Row", "database/sql", function(err_, rows_) {
+driverConn0database/sql/driverValue0database/sql/driverRows0database/sql/driverStmt0Ç˝RowÅÙ	Row = go$pkg.Row = go$newType(0, "Struct", "sql.Row", "Row", "database/sql", function(err_, rows_) {
 		this.go$val = this;
 		this.err = err_ !== undefined ? err_ : null;
 		this.rows = rows_ !== undefined ? rows_ : (go$ptrType(Rows)).nil;
 	});
-ÅÃ		Row.init([["err", "database/sql", go$error, ""], ["rows", "database/sql", (go$ptrType(Rows)), ""]]);
-		(go$ptrType(Row)).methods = [["Scan", "", [(go$sliceType(go$emptyInterface))], [go$error], true]];
+Åﬂ		(go$ptrType(Row)).methods = [["Scan", "", [(go$sliceType(go$emptyInterface))], [go$error], true, -1]];
+		Row.init([["err", "err", "database/sql", go$error, ""], ["rows", "rows", "database/sql", (go$ptrType(Rows)), ""]]);
 0Row00database/sqlRows0ÇResultd	Result = go$pkg.Result = go$newType(0, "Interface", "sql.Result", "Result", "database/sql", null);
 Åù		Result.init([["LastInsertId", "", (go$funcType([], [Go$Int64, go$error], false))], ["RowsAffected", "", (go$funcType([], [Go$Int64, go$error], false))]]);
-0Result0 0ÇòdriverResultÇJ	driverResult = go$pkg.driverResult = go$newType(0, "Struct", "sql.driverResult", "driverResult", "database/sql", function(Locker_, resi_) {
+0Result0 0ÇédriverResultÇ	driverResult = go$pkg.driverResult = go$newType(0, "Struct", "sql.driverResult", "driverResult", "database/sql", function(Locker_, resi_) {
 		this.go$val = this;
 		this.Locker = Locker_ !== undefined ? Locker_ : null;
 		this.resi = resi_ !== undefined ? resi_ : null;
 	});
-	driverResult.prototype.Lock = function() { return this.go$val.Lock(); };
-	driverResult.Ptr.prototype.Lock = function() { return this.Locker.Lock(); };
-	driverResult.prototype.Unlock = function() { return this.go$val.Unlock(); };
-	driverResult.Ptr.prototype.Unlock = function() { return this.Locker.Unlock(); };
-Ç˜		driverResult.init([["", "", sync.Locker, ""], ["resi", "database/sql", driver.Result, ""]]);
-		driverResult.methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
-		(go$ptrType(driverResult)).methods = [["LastInsertId", "", [], [Go$Int64, go$error], false], ["Lock", "", [], [], false], ["RowsAffected", "", [], [Go$Int64, go$error], false], ["Unlock", "", [], [], false]];
+Ç%		driverResult.methods = [["LastInsertId", "", [], [Go$Int64, go$error], false, -1], ["Lock", "", [], [], false, 0], ["RowsAffected", "", [], [Go$Int64, go$error], false, -1], ["Unlock", "", [], [], false, 0]];
+		(go$ptrType(driverResult)).methods = [["LastInsertId", "", [], [Go$Int64, go$error], false, -1], ["Lock", "", [], [], false, 0], ["RowsAffected", "", [], [Go$Int64, go$error], false, -1], ["Unlock", "", [], [], false, 0]];
+		driverResult.init([["Locker", "", "", sync.Locker, ""], ["resi", "resi", "database/sql", driver.Result, ""]]);
 0driverResult0/0syncLocker0database/sql/driverResult0Ç‚
 driverArgsÇ›	driverArgs = function(ds, args) {
 		var dargs, si, _tuple, cc, ok, _ref, _i, _slice, _index, arg, n, err, _tuple$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, arg$1, n$1, ok$1, _tuple$2, svi, _tuple$3, sv, err$1, err$2, _tuple$4, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5;
@@ -544,9 +532,9 @@ driverStmt0&database/sql/driverColumnConverter00database/sql/driverDefau
 		}
 		return fmt.Errorf("unsupported driver -> Scan pair: %T -> %T", new (go$sliceType(go$emptyInterface))([src, dest]));
 	};
- 0convertAssign0Ç~0database/sql	errNilPtr0database/sqlRawBytes0reflectZero0fmtErrorf0reflectKind0strconv	ParseUint0strconv
-ParseFloat0database/sql/driverBool0reflectValue0reflectValueOf0reflectNew0database/sqlasString0database/sql
-cloneBytes0fmtSprintf0database/sqlScanner0errorsNew0reflectIndirect0strconvParseInt0Ç
+ 0convertAssign0Ç~0reflectValue0reflectIndirect0strconv	ParseUint0database/sql	errNilPtr0database/sqlRawBytes0database/sql
+cloneBytes0reflectValueOf0fmtSprintf0database/sql/driverBool0errorsNew0reflectNew0reflectKind0reflectZero0fmtErrorf0strconv
+ParseFloat0database/sqlScanner0database/sqlasString0strconvParseInt0Ç
 cloneBytesÅ˝	cloneBytes = function(b) {
 		var c;
 		if (b === (go$sliceType(Go$Uint8)).nil) {
@@ -1036,7 +1024,7 @@ driverConn0container/listElement0Çœ Çá	DB.Ptr.prototype.SetMaxOpenConns
 	};
 	DB.prototype.openNewConnection = function() { return this.go$val.openNewConnection(); };
  0DBopenNewConnection0Åô0database/sqlDB0database/sqlputConnDBLocked0database/sql
-driverConn0syncMutex0container/listElement0database/sqladdDepLocked0Ç	B Çm	DB.Ptr.prototype.conn = function() {
+driverConn0syncMutex0container/listElement0database/sqladdDepLocked0Ç	@ Çk	DB.Ptr.prototype.conn = function() {
 		var db, ch, req, _tuple, ret, ok, _ref, _type, f, x, conn, _tuple$1, ci, err, dc;
 		db = this;
 		db.mu.Lock();
@@ -1044,7 +1032,7 @@ driverConn0syncMutex0container/listElement0database/sqladdDepLock
 			db.mu.Unlock();
 			return [(go$ptrType(driverConn)).nil, errDBClosed];
 		}
-		if (db.maxOpen > 0 && (db.numOpen >= db.maxOpen || (db.freeConn.Len() === 0))) {
+		if (db.maxOpen > 0 && db.numOpen >= db.maxOpen && (db.freeConn.Len() === 0)) {
 			ch = new (go$chanType(go$emptyInterface, false, false))();
 			req = ch;
 			db.connRequests.PushBack(req);
@@ -1233,8 +1221,8 @@ ErrBadConn0ÇW ÇC	DB.Ptr.prototype.prepare = function(query) {
 		return [stmt, null];
 	};
 	DB.prototype.prepare = function(query) { return this.go$val.prepare(query); };
- 0DBprepare0Å˙0database/sqlDB0database/sqlconn0database/sqlprepareLocked0syncRWMutex0database/sql
-driverStmt0syncMutex0database/sqlconnStmt0database/sqladdDep0database/sqlStmt0database/sqlputConn0database/sqlTx0Ç Ç®	DB.Ptr.prototype.Exec = function(query, args) {
+ 0DBprepare0Å˙0database/sqlTx0database/sqlconnStmt0database/sqladdDep0database/sqlDB0database/sqlconn0database/sqlStmt0database/sqlprepareLocked0database/sqlputConn0syncRWMutex0database/sql
+driverStmt0syncMutex0Ç Ç®	DB.Ptr.prototype.Exec = function(query, args) {
 		var db, res, err, i, _tuple;
 		db = this;
 		res = null;
@@ -1305,9 +1293,9 @@ ErrBadConn0Ç	¬ Çì	DB.Ptr.prototype.exec = function(query, args) {
 	};
 	DB.prototype.exec = function(query, args) { return this.go$val.exec(query, args); };
  0
-DBexec0Ç0database/sqlDB0database/sql
-driverArgs0database/sqldriverResult0database/sqlwithLock0database/sqlconn0database/sqlputConn0database/sql/driverExecer0database/sql
-driverStmt0database/sql/driverErrSkip0#database/sqlresultFromStatement0Ç6 Ç¬	DB.Ptr.prototype.Query = function(query, args) {
+DBexec0Ç0database/sqlDB0database/sql/driverExecer0database/sql
+driverArgs0database/sql
+driverStmt0database/sql/driverErrSkip0#database/sqlresultFromStatement0database/sqlconn0database/sqlputConn0database/sqldriverResult0database/sqlwithLock0Ç6 Ç¬	DB.Ptr.prototype.Query = function(query, args) {
 		var db, rows, err, i, _tuple;
 		db = this;
 		rows = (go$ptrType(Rows)).nil;
@@ -1375,10 +1363,10 @@ ErrBadConn0ÇN Çø	DB.Ptr.prototype.query = function(query, args) {
 		return [rows$1, null];
 	};
 	DB.prototype.queryConn = function(dc, releaseConn, query, args) { return this.go$val.queryConn(dc, releaseConn, query, args); };
- 0DB	queryConn0Ç 0database/sql/driverQueryer0database/sql
-driverStmt0database/sql/driverValue0database/sqlDB0database/sql
-driverArgs0database/sqlRows0database/sql/driverErrSkip0database/sql
-driverConn0"database/sqlrowsiFromStatement0Çv Ç'	DB.Ptr.prototype.QueryRow = function(query, args) {
+ 0DB	queryConn0Ç 0database/sqlDB0database/sql/driverQueryer0database/sql
+driverStmt0database/sqlRows0database/sql/driverErrSkip0"database/sqlrowsiFromStatement0database/sql
+driverArgs0database/sql
+driverConn0database/sql/driverValue0Çv Ç'	DB.Ptr.prototype.QueryRow = function(query, args) {
 		var db, _tuple, rows, err;
 		db = this;
 		_tuple = db.Query(query, args), rows = _tuple[0], err = _tuple[1];
@@ -1529,8 +1517,8 @@ driverStmt0syncMutex0database/sqlconnStmt0Çÿ Ç
 		return new Stmt.Ptr(tx.db, stmt.query, err, new sync.RWMutex.Ptr(), tx, new driverStmt.Ptr(dc, si), new sync.Mutex.Ptr(), false, (go$sliceType(connStmt)).nil);
 	};
 	Tx.prototype.Stmt = function(stmt) { return this.go$val.Stmt(stmt); };
- 0Tx0ÅΩ0database/sqlTx0database/sql
-driverStmt0database/sqlconnStmt0errorsNew0database/sqlStmt0database/sqlgrabConn0database/sqlDB0syncRWMutex0syncMutex0Çg ÇS	Tx.Ptr.prototype.Exec = function(query, args) {
+ 0Tx0ÅΩ0database/sqlTx0errorsNew0database/sqlStmt0database/sqlDB0syncRWMutex0database/sql
+driverStmt0syncMutex0database/sqlconnStmt0database/sqlgrabConn0Çg ÇS	Tx.Ptr.prototype.Exec = function(query, args) {
 		var tx, _tuple, dc, err, ok, _tuple$1, x, execer, _tuple$2, dargs, err$1, _tuple$3, resi, x$1, _tuple$4, si;
 		var go$deferred = [];
 		try {
@@ -1572,9 +1560,9 @@ driverStmt0database/sqlconnStmt0errorsNew0database/sqlStmt0dat
 		}
 	};
 	Tx.prototype.Exec = function(query, args) { return this.go$val.Exec(query, args); };
- 0Tx0Ç0database/sqlTx0database/sqldriverResult0database/sql/driverErrSkip0#database/sqlresultFromStatement0database/sqlgrabConn0database/sql/driverExecer0database/sql
+ 0Tx0Ç0database/sqlTx0database/sqlgrabConn0database/sql
 driverArgs0database/sql
-driverStmt0database/sqlwithLock0Ç! Ç≤	Tx.Ptr.prototype.Query = function(query, args) {
+driverStmt0database/sqldriverResult0database/sqlwithLock0#database/sqlresultFromStatement0database/sql/driverExecer0database/sql/driverErrSkip0Ç! Ç≤	Tx.Ptr.prototype.Query = function(query, args) {
 		var tx, _tuple, dc, err, releaseConn;
 		tx = this;
 		_tuple = tx.grabConn(), dc = _tuple[0], err = _tuple[1];
@@ -1714,9 +1702,9 @@ driverArgs0database/sqldriverResult0Çe Ç	Stmt.Ptr.prototype.connStmt =
 	};
 	Stmt.prototype.connStmt = function() { return this.go$val.connStmt(); };
  0StmtconnStmt0Ç90database/sql
-driverConn0errorsNew0database/sqlTx0database/sqlconnStmt0database/sql
-connIfFree0database/sqlerrConnClosed0database/sqlprepareLocked0database/sqlStmt0database/sqlgrabConn0database/sqlconn0!database/sql/driver
-ErrBadConn0database/sqlreleaseConn0Çœ Ç…	Stmt.Ptr.prototype.Query = function(args) {
+driverConn0errorsNew0database/sqlTx0database/sqlgrabConn0database/sql
+connIfFree0database/sqlprepareLocked0!database/sql/driver
+ErrBadConn0database/sqlreleaseConn0database/sqlStmt0database/sqlconnStmt0database/sqlerrConnClosed0database/sqlconn0Çœ Ç…	Stmt.Ptr.prototype.Query = function(args) {
 		var s, _tuple, dc, releaseConn, si, err, ds, _tuple$1, _struct, rowsi, rows;
 		var go$deferred = [];
 		try {
@@ -1748,9 +1736,9 @@ ErrBadConn0database/sqlreleaseConn0Çœ Ç…	Stmt.Ptr.prototype.Query = fun
 		}
 	};
 	Stmt.prototype.Query = function(args) { return this.go$val.Query(args); };
- 0Stmt0ÅÛ0database/sqlRows0database/sql
-driverStmt0database/sqladdDep0database/sqlStmt0database/sqlconnStmt0"database/sqlrowsiFromStatement0database/sql
-driverConn0database/sql/driverValue0database/sql	removeDep0Ç7rowsiFromStatementÇ⁄	rowsiFromStatement = function(ds, args) {
+ 0Stmt0ÅÛ0database/sqlStmt0database/sql
+driverStmt0database/sql/driverValue0database/sqladdDep0database/sqlconnStmt0database/sqlRows0"database/sqlrowsiFromStatement0database/sql
+driverConn0database/sql	removeDep0Ç7rowsiFromStatementÇ⁄	rowsiFromStatement = function(ds, args) {
 		var want, _tuple, dargs, err, _tuple$1, rowsi;
 		ds.Locker.Lock();
 		want = ds.si.NumInput();

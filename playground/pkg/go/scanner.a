@@ -1,4 +1,5 @@
-0‚¦
+0‚§
+
 go/scanner‚<package scanner
 import fmt "fmt"
 import token "go/token"
@@ -110,23 +111,22 @@ type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
 0ªruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scanner0 0
-fmtfmt0go/tokentoken0ioio0sortsort0bytesbytes0path/filepathfilepath0strconvstrconv0unicodeunicode0unicode/utf8utf80‚‡c0‚ùErrorú	Error = go$pkg.Error = go$newType(0, "Struct", "scanner.Error", "Error", "go/scanner", function(Pos_, Msg_) {
+fmtfmt0go/tokentoken0ioio0sortsort0bytesbytes0path/filepathfilepath0strconvstrconv0unicodeunicode0unicode/utf8utf80‚ˆh0‚Errorú	Error = go$pkg.Error = go$newType(0, "Struct", "scanner.Error", "Error", "go/scanner", function(Pos_, Msg_) {
 		this.go$val = this;
 		this.Pos = Pos_ !== undefined ? Pos_ : new token.Position.Ptr();
 		this.Msg = Msg_ !== undefined ? Msg_ : "";
 	});
-Ñ		Error.init([["Pos", "", token.Position, ""], ["Msg", "", Go$String, ""]]);
-		Error.methods = [["Error", "", [], [Go$String], false]];
-		(go$ptrType(Error)).methods = [["Error", "", [], [Go$String], false]];
-0Error00go/tokenPosition0‚g	ErrorListn	ErrorList = go$pkg.ErrorList = go$newType(0, "Slice", "scanner.ErrorList", "ErrorList", "go/scanner", null);
-‚®		ErrorList.init((go$ptrType(Error)));
-		ErrorList.methods = [["Err", "", [], [go$error], false], ["Error", "", [], [Go$String], false], ["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["Sort", "", [], [], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-		(go$ptrType(ErrorList)).methods = [["Add", "", [token.Position, Go$String], [], false], ["Err", "", [], [go$error], false], ["Error", "", [], [Go$String], false], ["Len", "", [], [Go$Int], false], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false], ["RemoveMultiples", "", [], [], false], ["Reset", "", [], [], false], ["Sort", "", [], [], false], ["Swap", "", [Go$Int, Go$Int], [], false]];
-0	ErrorList0+0
-go/scannerError0go/tokenPosition0ðErrorHandlery	ErrorHandler = go$pkg.ErrorHandler = go$newType(0, "Func", "scanner.ErrorHandler", "ErrorHandler", "go/scanner", null);
+ç		Error.methods = [["Error", "", [], [Go$String], false, -1]];
+		(go$ptrType(Error)).methods = [["Error", "", [], [Go$String], false, -1]];
+		Error.init([["Pos", "Pos", "", token.Position, ""], ["Msg", "Msg", "", Go$String, ""]]);
+0Error00go/tokenPosition0‚£	ErrorListn	ErrorList = go$pkg.ErrorList = go$newType(0, "Slice", "scanner.ErrorList", "ErrorList", "go/scanner", null);
+‚ê		ErrorList.methods = [["Err", "", [], [go$error], false, -1], ["Error", "", [], [Go$String], false, -1], ["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Sort", "", [], [], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		(go$ptrType(ErrorList)).methods = [["Add", "", [token.Position, Go$String], [], false, -1], ["Err", "", [], [go$error], false, -1], ["Error", "", [], [Go$String], false, -1], ["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["RemoveMultiples", "", [], [], false, -1], ["Reset", "", [], [], false, -1], ["Sort", "", [], [], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
+		ErrorList.init((go$ptrType(Error)));
+0	ErrorList0+0go/tokenPosition0
+go/scannerError0ðErrorHandlery	ErrorHandler = go$pkg.ErrorHandler = go$newType(0, "Func", "scanner.ErrorHandler", "ErrorHandler", "go/scanner", null);
 =		ErrorHandler.init([token.Position, Go$String], [], false);
-0ErrorHandler00go/tokenPosition0‚
-’Scanner‚u	Scanner = go$pkg.Scanner = go$newType(0, "Struct", "scanner.Scanner", "Scanner", "go/scanner", function(file_, dir_, src_, err_, mode_, ch_, offset_, rdOffset_, lineOffset_, insertSemi_, ErrorCount_) {
+0ErrorHandler00go/tokenPosition0‚EScanner‚u	Scanner = go$pkg.Scanner = go$newType(0, "Struct", "scanner.Scanner", "Scanner", "go/scanner", function(file_, dir_, src_, err_, mode_, ch_, offset_, rdOffset_, lineOffset_, insertSemi_, ErrorCount_) {
 		this.go$val = this;
 		this.file = file_ !== undefined ? file_ : (go$ptrType(token.File)).nil;
 		this.dir = dir_ !== undefined ? dir_ : "";
@@ -140,8 +140,8 @@ go/scannerError0go/tokenPosition0ðErrorHandlery	ErrorHandler = go$pkg
 		this.insertSemi = insertSemi_ !== undefined ? insertSemi_ : false;
 		this.ErrorCount = ErrorCount_ !== undefined ? ErrorCount_ : 0;
 	});
-‚™		Scanner.init([["file", "go/scanner", (go$ptrType(token.File)), ""], ["dir", "go/scanner", Go$String, ""], ["src", "go/scanner", (go$sliceType(Go$Uint8)), ""], ["err", "go/scanner", ErrorHandler, ""], ["mode", "go/scanner", Mode, ""], ["ch", "go/scanner", Go$Int32, ""], ["offset", "go/scanner", Go$Int, ""], ["rdOffset", "go/scanner", Go$Int, ""], ["lineOffset", "go/scanner", Go$Int, ""], ["insertSemi", "go/scanner", Go$Bool, ""], ["ErrorCount", "", Go$Int, ""]]);
-		(go$ptrType(Scanner)).methods = [["Init", "", [(go$ptrType(token.File)), (go$sliceType(Go$Uint8)), ErrorHandler, Mode], [], false], ["Scan", "", [], [token.Pos, token.Token, Go$String], false], ["error", "go/scanner", [Go$Int, Go$String], [], false], ["findLineEnd", "go/scanner", [], [Go$Bool], false], ["interpretLineComment", "go/scanner", [(go$sliceType(Go$Uint8))], [], false], ["next", "go/scanner", [], [], false], ["scanChar", "go/scanner", [], [Go$String], false], ["scanComment", "go/scanner", [], [Go$String], false], ["scanEscape", "go/scanner", [Go$Int32], [], false], ["scanIdentifier", "go/scanner", [], [Go$String], false], ["scanMantissa", "go/scanner", [Go$Int], [], false], ["scanNumber", "go/scanner", [Go$Bool], [token.Token, Go$String], false], ["scanRawString", "go/scanner", [], [Go$String], false], ["scanString", "go/scanner", [], [Go$String], false], ["skipWhitespace", "go/scanner", [], [], false], ["switch2", "go/scanner", [token.Token, token.Token], [token.Token], false], ["switch3", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token], [token.Token], false], ["switch4", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token, token.Token], [token.Token], false]];
+‚L		(go$ptrType(Scanner)).methods = [["Init", "", [(go$ptrType(token.File)), (go$sliceType(Go$Uint8)), ErrorHandler, Mode], [], false, -1], ["Scan", "", [], [token.Pos, token.Token, Go$String], false, -1], ["error", "go/scanner", [Go$Int, Go$String], [], false, -1], ["findLineEnd", "go/scanner", [], [Go$Bool], false, -1], ["interpretLineComment", "go/scanner", [(go$sliceType(Go$Uint8))], [], false, -1], ["next", "go/scanner", [], [], false, -1], ["scanChar", "go/scanner", [], [Go$String], false, -1], ["scanComment", "go/scanner", [], [Go$String], false, -1], ["scanEscape", "go/scanner", [Go$Int32], [], false, -1], ["scanIdentifier", "go/scanner", [], [Go$String], false, -1], ["scanMantissa", "go/scanner", [Go$Int], [], false, -1], ["scanNumber", "go/scanner", [Go$Bool], [token.Token, Go$String], false, -1], ["scanRawString", "go/scanner", [], [Go$String], false, -1], ["scanString", "go/scanner", [], [Go$String], false, -1], ["skipWhitespace", "go/scanner", [], [], false, -1], ["switch2", "go/scanner", [token.Token, token.Token], [token.Token], false, -1], ["switch3", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token], [token.Token], false, -1], ["switch4", "go/scanner", [token.Token, token.Token, Go$Int32, token.Token, token.Token], [token.Token], false, -1]];
+		Scanner.init([["file", "file", "go/scanner", (go$ptrType(token.File)), ""], ["dir", "dir", "go/scanner", Go$String, ""], ["src", "src", "go/scanner", (go$sliceType(Go$Uint8)), ""], ["err", "err", "go/scanner", ErrorHandler, ""], ["mode", "mode", "go/scanner", Mode, ""], ["ch", "ch", "go/scanner", Go$Int32, ""], ["offset", "offset", "go/scanner", Go$Int, ""], ["rdOffset", "rdOffset", "go/scanner", Go$Int, ""], ["lineOffset", "lineOffset", "go/scanner", Go$Int, ""], ["insertSemi", "insertSemi", "go/scanner", Go$Bool, ""], ["ErrorCount", "ErrorCount", "", Go$Int, ""]]);
 0	Scanner0f0go/tokenFile0
 go/scannerErrorHandler0
 go/scannerMode0go/tokenPos0go/tokenToken0mModeY	Mode = go$pkg.Mode = go$newType(4, "Uint", "scanner.Mode", "Mode", "go/scanner", null);
@@ -932,23 +932,23 @@ go/scannernext0‚y ‚Æ	Scanner.Ptr.prototype.Scan = function() {
 		/* */ } break; } }; return go$f();
 	};
 	Scanner.prototype.Scan = function() { return this.go$val.Scan(); };
- 0	Scanner0‚œ0
-go/scannerScanner0
-go/scannerscanIdentifier0go/tokenLookup0
-go/scannerscanChar0
-go/scannerscanRawString0
-go/scannerfindLineEnd0fmtSprintf0
-go/scannererror0
-go/scannerswitch40
-go/scannerskipWhitespace0
+ 0	Scanner0‚œ0
 go/scannerisLetter0
 go/scanner
 scanNumber0
 go/scannernext0
 go/scanner
-scanString0
+scanString0
+go/scannererror0
+go/scannerscanIdentifier0
+go/scannerscanChar0
+go/scannerscanRawString0
+go/scannerfindLineEnd0
+go/scannerswitch40
+go/scannerskipWhitespace0go/tokenLookup0
 go/scannerswitch20
-go/scannerswitch30
+go/scannerswitch30fmtSprintf0
+go/scannerScanner0
 go/scannerscanComment0prefix  0prefix0 0n  F		prefix = new (go$sliceType(Go$Uint8))(go$stringToBytes("//line "));
 0prefix00
 go/scannerprefix0

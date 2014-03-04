@@ -1,4 +1,4 @@
-0Éÿ…syscallÉ%:package syscall
+0É‰bsyscallÉ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -1958,13 +1958,13 @@ func (? *@"sync".Mutex) @"sync".Lock() ()
 func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
-0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$10É≥0Ç≠ivalueÇ'	ivalue = go$pkg.ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
+0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$10Éæ¨0ÇæivalueÇ'	ivalue = go$pkg.ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.value = value_ !== undefined ? value_ : 0;
 	});
-l		ivalue.init([["name", "syscall", (go$arrayType(Go$Uint8, 16)), ""], ["value", "syscall", Go$Int16, ""]]);
-0ivalue0 0Ç√SysProcAttrÇç	SysProcAttr = go$pkg.SysProcAttr = go$newType(0, "Struct", "syscall.SysProcAttr", "SysProcAttr", "syscall", function(Chroot_, Credential_, Ptrace_, Setsid_, Setpgid_, Setctty_, Noctty_) {
+}		ivalue.init([["name", "name", "syscall", (go$arrayType(Go$Uint8, 16)), ""], ["value", "value", "syscall", Go$Int16, ""]]);
+0ivalue0 0ÇSysProcAttrÇç	SysProcAttr = go$pkg.SysProcAttr = go$newType(0, "Struct", "syscall.SysProcAttr", "SysProcAttr", "syscall", function(Chroot_, Credential_, Ptrace_, Setsid_, Setpgid_, Setctty_, Noctty_) {
 		this.go$val = this;
 		this.Chroot = Chroot_ !== undefined ? Chroot_ : "";
 		this.Credential = Credential_ !== undefined ? Credential_ : (go$ptrType(Credential)).nil;
@@ -1974,79 +1974,78 @@ $$
 		this.Setctty = Setctty_ !== undefined ? Setctty_ : false;
 		this.Noctty = Noctty_ !== undefined ? Noctty_ : false;
 	});
-Å˙		SysProcAttr.init([["Chroot", "", Go$String, ""], ["Credential", "", (go$ptrType(Credential)), ""], ["Ptrace", "", Go$Bool, ""], ["Setsid", "", Go$Bool, ""], ["Setpgid", "", Go$Bool, ""], ["Setctty", "", Go$Bool, ""], ["Noctty", "", Go$Bool, ""]]);
+ÇF		SysProcAttr.init([["Chroot", "Chroot", "", Go$String, ""], ["Credential", "Credential", "", (go$ptrType(Credential)), ""], ["Ptrace", "Ptrace", "", Go$Bool, ""], ["Setsid", "Setsid", "", Go$Bool, ""], ["Setpgid", "Setpgid", "", Go$Bool, ""], ["Setctty", "Setctty", "", Go$Bool, ""], ["Noctty", "Noctty", "", Go$Bool, ""]]);
 0SysProcAttr00syscall
-Credential0ÇÎ
+Credential0Ç
 CredentialÇM	Credential = go$pkg.Credential = go$newType(0, "Struct", "syscall.Credential", "Credential", "syscall", function(Uid_, Gid_, Groups_) {
 		this.go$val = this;
 		this.Uid = Uid_ !== undefined ? Uid_ : 0;
 		this.Gid = Gid_ !== undefined ? Gid_ : 0;
 		this.Groups = Groups_ !== undefined ? Groups_ : (go$sliceType(Go$Uint32)).nil;
 	});
-|		Credential.init([["Uid", "", Go$Uint32, ""], ["Gid", "", Go$Uint32, ""], ["Groups", "", (go$sliceType(Go$Uint32)), ""]]);
+Åî		Credential.init([["Uid", "Uid", "", Go$Uint32, ""], ["Gid", "Gid", "", Go$Uint32, ""], ["Groups", "Groups", "", (go$sliceType(Go$Uint32)), ""]]);
 0
-Credential0 0ÇöProcAttrÇ≠	ProcAttr = go$pkg.ProcAttr = go$newType(0, "Struct", "syscall.ProcAttr", "ProcAttr", "syscall", function(Dir_, Env_, Files_, Sys_) {
+Credential0 0Ç∏ProcAttrÇ≠	ProcAttr = go$pkg.ProcAttr = go$newType(0, "Struct", "syscall.ProcAttr", "ProcAttr", "syscall", function(Dir_, Env_, Files_, Sys_) {
 		this.go$val = this;
 		this.Dir = Dir_ !== undefined ? Dir_ : "";
 		this.Env = Env_ !== undefined ? Env_ : (go$sliceType(Go$String)).nil;
 		this.Files = Files_ !== undefined ? Files_ : (go$sliceType(Go$Uintptr)).nil;
 		this.Sys = Sys_ !== undefined ? Sys_ : (go$ptrType(SysProcAttr)).nil;
 	});
-Å∂		ProcAttr.init([["Dir", "", Go$String, ""], ["Env", "", (go$sliceType(Go$String)), ""], ["Files", "", (go$sliceType(Go$Uintptr)), ""], ["Sys", "", (go$ptrType(SysProcAttr)), ""]]);
+Å‘		ProcAttr.init([["Dir", "Dir", "", Go$String, ""], ["Env", "Env", "", (go$sliceType(Go$String)), ""], ["Files", "Files", "", (go$sliceType(Go$Uintptr)), ""], ["Sys", "Sys", "", (go$ptrType(SysProcAttr)), ""]]);
 0
 ProcAttr00syscallSysProcAttr0Ç)RoutingMessageÅÉ	RoutingMessage = go$pkg.RoutingMessage = go$newType(0, "Interface", "syscall.RoutingMessage", "RoutingMessage", "syscall", null);
 h		RoutingMessage.init([["sockaddr", "syscall", (go$funcType([], [(go$sliceType(Sockaddr))], false))]]);
-0RoutingMessage00syscallSockaddr0Ço
+0RoutingMessage00syscallSockaddr0Çë
 anyMessageÇE	anyMessage = go$pkg.anyMessage = go$newType(0, "Struct", "syscall.anyMessage", "anyMessage", "syscall", function(Msglen_, Version_, Type_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : 0;
 	});
-ÅÏ		anyMessage.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""]]);
-		(go$ptrType(anyMessage)).methods = [["toRoutingMessage", "syscall", [(go$sliceType(Go$Uint8))], [RoutingMessage], false]];
+Ç		(go$ptrType(anyMessage)).methods = [["toRoutingMessage", "syscall", [(go$sliceType(Go$Uint8))], [RoutingMessage], false, -1]];
+		anyMessage.init([["Msglen", "Msglen", "", Go$Uint16, ""], ["Version", "Version", "", Go$Uint8, ""], ["Type", "Type", "", Go$Uint8, ""]]);
 0
-anyMessage00syscallRoutingMessage0ÇRRouteMessageÇ7	RouteMessage = go$pkg.RouteMessage = go$newType(0, "Struct", "syscall.RouteMessage", "RouteMessage", "syscall", function(Header_, Data_) {
+anyMessage00syscallRoutingMessage0ÇhRouteMessageÇ7	RouteMessage = go$pkg.RouteMessage = go$newType(0, "Struct", "syscall.RouteMessage", "RouteMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new RtMsghdr.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-Å 		RouteMessage.init([["Header", "", RtMsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-		(go$ptrType(RouteMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
-0RouteMessage0*0syscallRtMsghdr0syscallSockaddr0ÇrInterfaceMessageÇG	InterfaceMessage = go$pkg.InterfaceMessage = go$newType(0, "Struct", "syscall.InterfaceMessage", "InterfaceMessage", "syscall", function(Header_, Data_) {
+Å‡		(go$ptrType(RouteMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false, -1]];
+		RouteMessage.init([["Header", "Header", "", RtMsghdr, ""], ["Data", "Data", "", (go$sliceType(Go$Uint8)), ""]]);
+0RouteMessage0*0syscallRtMsghdr0syscallSockaddr0ÇàInterfaceMessageÇG	InterfaceMessage = go$pkg.InterfaceMessage = go$newType(0, "Struct", "syscall.InterfaceMessage", "InterfaceMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new IfMsghdr.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-Å“		InterfaceMessage.init([["Header", "", IfMsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-		(go$ptrType(InterfaceMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
-0InterfaceMessage0*0syscallIfMsghdr0syscallSockaddr0ÇïInterfaceAddrMessageÇX	InterfaceAddrMessage = go$pkg.InterfaceAddrMessage = go$newType(0, "Struct", "syscall.InterfaceAddrMessage", "InterfaceAddrMessage", "syscall", function(Header_, Data_) {
+ÅË		(go$ptrType(InterfaceMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false, -1]];
+		InterfaceMessage.init([["Header", "Header", "", IfMsghdr, ""], ["Data", "Data", "", (go$sliceType(Go$Uint8)), ""]]);
+0InterfaceMessage0*0syscallIfMsghdr0syscallSockaddr0Ç´InterfaceAddrMessageÇX	InterfaceAddrMessage = go$pkg.InterfaceAddrMessage = go$newType(0, "Struct", "syscall.InterfaceAddrMessage", "InterfaceAddrMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new IfaMsghdr.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-Å€		InterfaceAddrMessage.init([["Header", "", IfaMsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-		(go$ptrType(InterfaceAddrMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
-0InterfaceAddrMessage0+0syscall	IfaMsghdr0syscallSockaddr0Ç„InterfaceMulticastAddrMessageÇ~	InterfaceMulticastAddrMessage = go$pkg.InterfaceMulticastAddrMessage = go$newType(0, "Struct", "syscall.InterfaceMulticastAddrMessage", "InterfaceMulticastAddrMessage", "syscall", function(Header_, Data_) {
+ÅÒ		(go$ptrType(InterfaceAddrMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false, -1]];
+		InterfaceAddrMessage.init([["Header", "Header", "", IfaMsghdr, ""], ["Data", "Data", "", (go$sliceType(Go$Uint8)), ""]]);
+0InterfaceAddrMessage0+0syscall	IfaMsghdr0syscallSockaddr0Ç˙InterfaceMulticastAddrMessageÇ~	InterfaceMulticastAddrMessage = go$pkg.InterfaceMulticastAddrMessage = go$newType(0, "Struct", "syscall.InterfaceMulticastAddrMessage", "InterfaceMulticastAddrMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new IfmaMsghdr2.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-ÅÔ		InterfaceMulticastAddrMessage.init([["Header", "", IfmaMsghdr2, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-		(go$ptrType(InterfaceMulticastAddrMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false]];
-0InterfaceMulticastAddrMessage0-0syscallIfmaMsghdr20syscallSockaddr0ÇSocketControlMessageÇV	SocketControlMessage = go$pkg.SocketControlMessage = go$newType(0, "Struct", "syscall.SocketControlMessage", "SocketControlMessage", "syscall", function(Header_, Data_) {
+Ç		(go$ptrType(InterfaceMulticastAddrMessage)).methods = [["sockaddr", "syscall", [], [(go$sliceType(Sockaddr))], false, -1]];
+		InterfaceMulticastAddrMessage.init([["Header", "Header", "", IfmaMsghdr2, ""], ["Data", "Data", "", (go$sliceType(Go$Uint8)), ""]]);
+0InterfaceMulticastAddrMessage0-0syscallIfmaMsghdr20syscallSockaddr0ÇSocketControlMessageÇV	SocketControlMessage = go$pkg.SocketControlMessage = go$newType(0, "Struct", "syscall.SocketControlMessage", "SocketControlMessage", "syscall", function(Header_, Data_) {
 		this.go$val = this;
 		this.Header = Header_ !== undefined ? Header_ : new Cmsghdr.Ptr();
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 	});
-h		SocketControlMessage.init([["Header", "", Cmsghdr, ""], ["Data", "", (go$sliceType(Go$Uint8)), ""]]);
-0SocketControlMessage00syscallCmsghdr0ÇØ
+z		SocketControlMessage.init([["Header", "Header", "", Cmsghdr, ""], ["Data", "Data", "", (go$sliceType(Go$Uint8)), ""]]);
+0SocketControlMessage00syscallCmsghdr0Ç˜
 WaitStatusp	WaitStatus = go$pkg.WaitStatus = go$newType(4, "Uint32", "syscall.WaitStatus", "WaitStatus", "syscall", null);
-Ç
-		WaitStatus.methods = [["Continued", "", [], [Go$Bool], false], ["CoreDump", "", [], [Go$Bool], false], ["ExitStatus", "", [], [Go$Int], false], ["Exited", "", [], [Go$Bool], false], ["Signal", "", [], [Signal], false], ["Signaled", "", [], [Go$Bool], false], ["StopSignal", "", [], [Signal], false], ["Stopped", "", [], [Go$Bool], false], ["TrapCause", "", [], [Go$Int], false]];
-		(go$ptrType(WaitStatus)).methods = [["Continued", "", [], [Go$Bool], false], ["CoreDump", "", [], [Go$Bool], false], ["ExitStatus", "", [], [Go$Int], false], ["Exited", "", [], [Go$Bool], false], ["Signal", "", [], [Signal], false], ["Signaled", "", [], [Go$Bool], false], ["StopSignal", "", [], [Signal], false], ["Stopped", "", [], [Go$Bool], false], ["TrapCause", "", [], [Go$Int], false]];
+ÇR		WaitStatus.methods = [["Continued", "", [], [Go$Bool], false, -1], ["CoreDump", "", [], [Go$Bool], false, -1], ["ExitStatus", "", [], [Go$Int], false, -1], ["Exited", "", [], [Go$Bool], false, -1], ["Signal", "", [], [Signal], false, -1], ["Signaled", "", [], [Go$Bool], false, -1], ["StopSignal", "", [], [Signal], false, -1], ["Stopped", "", [], [Go$Bool], false, -1], ["TrapCause", "", [], [Go$Int], false, -1]];
+		(go$ptrType(WaitStatus)).methods = [["Continued", "", [], [Go$Bool], false, -1], ["CoreDump", "", [], [Go$Bool], false, -1], ["ExitStatus", "", [], [Go$Int], false, -1], ["Exited", "", [], [Go$Bool], false, -1], ["Signal", "", [], [Signal], false, -1], ["Signaled", "", [], [Go$Bool], false, -1], ["StopSignal", "", [], [Signal], false, -1], ["Stopped", "", [], [Go$Bool], false, -1], ["TrapCause", "", [], [Go$Int], false, -1]];
 0
-WaitStatus00syscallSignal0Ç˙SockaddrDatalinkÇ‰	SockaddrDatalink = go$pkg.SockaddrDatalink = go$newType(0, "Struct", "syscall.SockaddrDatalink", "SockaddrDatalink", "syscall", function(Len_, Family_, Index_, Type_, Nlen_, Alen_, Slen_, Data_, raw_) {
+WaitStatus00syscallSignal0ÇGSockaddrDatalinkÇ‰	SockaddrDatalink = go$pkg.SockaddrDatalink = go$newType(0, "Struct", "syscall.SockaddrDatalink", "SockaddrDatalink", "syscall", function(Len_, Family_, Index_, Type_, Nlen_, Alen_, Slen_, Data_, raw_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
@@ -2058,9 +2057,9 @@ WaitStatus00syscallSignal0Ç˙SockaddrDatalinkÇ‰	SockaddrDatalink = go$
 		this.Data = Data_ !== undefined ? Data_ : go$makeNativeArray("Int8", 12, function() { return 0; });
 		this.raw = raw_ !== undefined ? raw_ : new RawSockaddrDatalink.Ptr();
 	});
-Ç±		SockaddrDatalink.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Index", "", Go$Uint16, ""], ["Type", "", Go$Uint8, ""], ["Nlen", "", Go$Uint8, ""], ["Alen", "", Go$Uint8, ""], ["Slen", "", Go$Uint8, ""], ["Data", "", (go$arrayType(Go$Int8, 12)), ""], ["raw", "syscall", RawSockaddrDatalink, ""]]);
-		(go$ptrType(SockaddrDatalink)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
-0SockaddrDatalink050syscallRawSockaddrDatalink0syscall-Socklen0ÇçattrListÇi	attrList = go$pkg.attrList = go$newType(0, "Struct", "syscall.attrList", "attrList", "syscall", function(bitmapCount_, _$1_, CommonAttr_, VolAttr_, DirAttr_, FileAttr_, Forkattr_) {
+Ç˛		(go$ptrType(SockaddrDatalink)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false, -1]];
+		SockaddrDatalink.init([["Len", "Len", "", Go$Uint8, ""], ["Family", "Family", "", Go$Uint8, ""], ["Index", "Index", "", Go$Uint16, ""], ["Type", "Type", "", Go$Uint8, ""], ["Nlen", "Nlen", "", Go$Uint8, ""], ["Alen", "Alen", "", Go$Uint8, ""], ["Slen", "Slen", "", Go$Uint8, ""], ["Data", "Data", "", (go$arrayType(Go$Int8, 12)), ""], ["raw", "raw", "syscall", RawSockaddrDatalink, ""]]);
+0SockaddrDatalink050syscallRawSockaddrDatalink0syscall-Socklen0ÇﬂattrListÇi	attrList = go$pkg.attrList = go$newType(0, "Struct", "syscall.attrList", "attrList", "syscall", function(bitmapCount_, _$1_, CommonAttr_, VolAttr_, DirAttr_, FileAttr_, Forkattr_) {
 		this.go$val = this;
 		this.bitmapCount = bitmapCount_ !== undefined ? bitmapCount_ : 0;
 		this._$1 = _$1_ !== undefined ? _$1_ : 0;
@@ -2070,82 +2069,79 @@ WaitStatus00syscallSignal0Ç˙SockaddrDatalinkÇ‰	SockaddrDatalink = go$
 		this.FileAttr = FileAttr_ !== undefined ? FileAttr_ : 0;
 		this.Forkattr = Forkattr_ !== undefined ? Forkattr_ : 0;
 	});
-Ç		attrList.init([["bitmapCount", "syscall", Go$Uint16, ""], ["_", "syscall", Go$Uint16, ""], ["CommonAttr", "", Go$Uint32, ""], ["VolAttr", "", Go$Uint32, ""], ["DirAttr", "", Go$Uint32, ""], ["FileAttr", "", Go$Uint32, ""], ["Forkattr", "", Go$Uint32, ""]]);
+ÇV		attrList.init([["bitmapCount", "bitmapCount", "syscall", Go$Uint16, ""], ["_$1", "_", "syscall", Go$Uint16, ""], ["CommonAttr", "CommonAttr", "", Go$Uint32, ""], ["VolAttr", "VolAttr", "", Go$Uint32, ""], ["DirAttr", "DirAttr", "", Go$Uint32, ""], ["FileAttr", "FileAttr", "", Go$Uint32, ""], ["Forkattr", "Forkattr", "", Go$Uint32, ""]]);
 0
-attrList0 0ÇhmmapperÇ‘	mmapper = go$pkg.mmapper = go$newType(0, "Struct", "syscall.mmapper", "mmapper", "syscall", function(Mutex_, active_, mmap_, munmap_) {
+attrList0 0ÇymmapperÇ≤	mmapper = go$pkg.mmapper = go$newType(0, "Struct", "syscall.mmapper", "mmapper", "syscall", function(Mutex_, active_, mmap_, munmap_) {
 		this.go$val = this;
 		this.Mutex = Mutex_ !== undefined ? Mutex_ : new sync.Mutex.Ptr();
 		this.active = active_ !== undefined ? active_ : false;
 		this.mmap = mmap_ !== undefined ? mmap_ : go$throwNilPointerError;
 		this.munmap = munmap_ !== undefined ? munmap_ : go$throwNilPointerError;
 	});
-	mmapper.prototype.Lock = function() { return this.go$val.Lock(); };
-	mmapper.Ptr.prototype.Lock = function() { return this.Mutex.Lock(); };
-	mmapper.prototype.Unlock = function() { return this.go$val.Unlock(); };
-	mmapper.Ptr.prototype.Unlock = function() { return this.Mutex.Unlock(); };
-Çg		mmapper.init([["", "", sync.Mutex, ""], ["active", "syscall", (go$mapType((go$ptrType(Go$Uint8)), (go$sliceType(Go$Uint8)))), ""], ["mmap", "syscall", (go$funcType([Go$Uintptr, Go$Uintptr, Go$Int, Go$Int, Go$Int, Go$Int64], [Go$Uintptr, go$error], false)), ""], ["munmap", "syscall", (go$funcType([Go$Uintptr, Go$Uintptr], [go$error], false)), ""]]);
-		(go$ptrType(mmapper)).methods = [["Lock", "", [], [], false], ["Mmap", "", [Go$Int, Go$Int64, Go$Int, Go$Int, Go$Int], [(go$sliceType(Go$Uint8)), go$error], false], ["Munmap", "", [(go$sliceType(Go$Uint8))], [go$error], false], ["Unlock", "", [], [], false]];
-0	mmapper00syncMutex0ÇôErrno]	Errno = go$pkg.Errno = go$newType(4, "Uintptr", "syscall.Errno", "Errno", "syscall", null);
-Ç$		Errno.methods = [["Error", "", [], [Go$String], false], ["Temporary", "", [], [Go$Bool], false], ["Timeout", "", [], [Go$Bool], false]];
-		(go$ptrType(Errno)).methods = [["Error", "", [], [Go$String], false], ["Temporary", "", [], [Go$Bool], false], ["Timeout", "", [], [Go$Bool], false]];
-0Errno0 0Ç<Signal]	Signal = go$pkg.Signal = go$newType(4, "Int", "syscall.Signal", "Signal", "syscall", null);
-Å∆		Signal.methods = [["Signal", "", [], [], false], ["String", "", [], [Go$String], false]];
-		(go$ptrType(Signal)).methods = [["Signal", "", [], [], false], ["String", "", [], [Go$String], false]];
+Çö		(go$ptrType(mmapper)).methods = [["Lock", "", [], [], false, 0], ["Mmap", "", [Go$Int, Go$Int64, Go$Int, Go$Int, Go$Int], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["Munmap", "", [(go$sliceType(Go$Uint8))], [go$error], false, -1], ["Unlock", "", [], [], false, 0]];
+		mmapper.init([["Mutex", "", "", sync.Mutex, ""], ["active", "active", "syscall", (go$mapType((go$ptrType(Go$Uint8)), (go$sliceType(Go$Uint8)))), ""], ["mmap", "mmap", "syscall", (go$funcType([Go$Uintptr, Go$Uintptr, Go$Int, Go$Int, Go$Int, Go$Int64], [Go$Uintptr, go$error], false)), ""], ["munmap", "munmap", "syscall", (go$funcType([Go$Uintptr, Go$Uintptr], [go$error], false)), ""]]);
+0	mmapper00syncMutex0Ç±Errno]	Errno = go$pkg.Errno = go$newType(4, "Uintptr", "syscall.Errno", "Errno", "syscall", null);
+Ç<		Errno.methods = [["Error", "", [], [Go$String], false, -1], ["Temporary", "", [], [Go$Bool], false, -1], ["Timeout", "", [], [Go$Bool], false, -1]];
+		(go$ptrType(Errno)).methods = [["Error", "", [], [Go$String], false, -1], ["Temporary", "", [], [Go$Bool], false, -1], ["Timeout", "", [], [Go$Bool], false, -1]];
+0Errno0 0ÇLSignal]	Signal = go$pkg.Signal = go$newType(4, "Int", "syscall.Signal", "Signal", "syscall", null);
+Å÷		Signal.methods = [["Signal", "", [], [], false, -1], ["String", "", [], [Go$String], false, -1]];
+		(go$ptrType(Signal)).methods = [["Signal", "", [], [], false, -1], ["String", "", [], [Go$String], false, -1]];
 0Signal0 0ÇSockaddrk	Sockaddr = go$pkg.Sockaddr = go$newType(0, "Interface", "syscall.Sockaddr", "Sockaddr", "syscall", null);
 h		Sockaddr.init([["sockaddr", "syscall", (go$funcType([], [Go$Uintptr, _Socklen, go$error], false))]]);
 0
-Sockaddr00syscall-Socklen0ÇﬂSockaddrInet4Çâ	SockaddrInet4 = go$pkg.SockaddrInet4 = go$newType(0, "Struct", "syscall.SockaddrInet4", "SockaddrInet4", "syscall", function(Port_, Addr_, raw_) {
+Sockaddr00syscall-Socklen0Ç˚SockaddrInet4Çâ	SockaddrInet4 = go$pkg.SockaddrInet4 = go$newType(0, "Struct", "syscall.SockaddrInet4", "SockaddrInet4", "syscall", function(Port_, Addr_, raw_) {
 		this.go$val = this;
 		this.Port = Port_ !== undefined ? Port_ : 0;
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.raw = raw_ !== undefined ? raw_ : new RawSockaddrInet4.Ptr();
 	});
-Å˚		SockaddrInet4.init([["Port", "", Go$Int, ""], ["Addr", "", (go$arrayType(Go$Uint8, 4)), ""], ["raw", "syscall", RawSockaddrInet4, ""]]);
-		(go$ptrType(SockaddrInet4)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
-0SockaddrInet4020syscallRawSockaddrInet40syscall-Socklen0Ç?SockaddrInet6Ç»	SockaddrInet6 = go$pkg.SockaddrInet6 = go$newType(0, "Struct", "syscall.SockaddrInet6", "SockaddrInet6", "syscall", function(Port_, ZoneId_, Addr_, raw_) {
+Ç		(go$ptrType(SockaddrInet4)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false, -1]];
+		SockaddrInet4.init([["Port", "Port", "", Go$Int, ""], ["Addr", "Addr", "", (go$arrayType(Go$Uint8, 4)), ""], ["raw", "raw", "syscall", RawSockaddrInet4, ""]]);
+0SockaddrInet4020syscallRawSockaddrInet40syscall-Socklen0ÇdSockaddrInet6Ç»	SockaddrInet6 = go$pkg.SockaddrInet6 = go$newType(0, "Struct", "syscall.SockaddrInet6", "SockaddrInet6", "syscall", function(Port_, ZoneId_, Addr_, raw_) {
 		this.go$val = this;
 		this.Port = Port_ !== undefined ? Port_ : 0;
 		this.ZoneId = ZoneId_ !== undefined ? ZoneId_ : 0;
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.raw = raw_ !== undefined ? raw_ : new RawSockaddrInet6.Ptr();
 	});
-Ç		SockaddrInet6.init([["Port", "", Go$Int, ""], ["ZoneId", "", Go$Uint32, ""], ["Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["raw", "syscall", RawSockaddrInet6, ""]]);
-		(go$ptrType(SockaddrInet6)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
-0SockaddrInet6020syscallRawSockaddrInet60syscall-Socklen0Ç<SockaddrUnixÇ	SockaddrUnix = go$pkg.SockaddrUnix = go$newType(0, "Struct", "syscall.SockaddrUnix", "SockaddrUnix", "syscall", function(Name_, raw_) {
+Ç@		(go$ptrType(SockaddrInet6)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false, -1]];
+		SockaddrInet6.init([["Port", "Port", "", Go$Int, ""], ["ZoneId", "ZoneId", "", Go$Uint32, ""], ["Addr", "Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["raw", "raw", "syscall", RawSockaddrInet6, ""]]);
+0SockaddrInet6020syscallRawSockaddrInet60syscall-Socklen0ÇOSockaddrUnixÇ	SockaddrUnix = go$pkg.SockaddrUnix = go$newType(0, "Struct", "syscall.SockaddrUnix", "SockaddrUnix", "syscall", function(Name_, raw_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.raw = raw_ !== undefined ? raw_ : new RawSockaddrUnix.Ptr();
 	});
-ÅÃ		SockaddrUnix.init([["Name", "", Go$String, ""], ["raw", "syscall", RawSockaddrUnix, ""]]);
-		(go$ptrType(SockaddrUnix)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false]];
+Åﬂ		(go$ptrType(SockaddrUnix)).methods = [["sockaddr", "syscall", [], [Go$Uintptr, _Socklen, go$error], false, -1]];
+		SockaddrUnix.init([["Name", "Name", "", Go$String, ""], ["raw", "raw", "syscall", RawSockaddrUnix, ""]]);
 0SockaddrUnix010syscallRawSockaddrUnix0syscall-Socklen0ÅÉ_C_shortg	_C_short = go$pkg._C_short = go$newType(2, "Int16", "syscall._C_short", "_C_short", "syscall", null);
  0
 -C-short0 0w_C_int_	_C_int = go$pkg._C_int = go$newType(4, "Int32", "syscall._C_int", "_C_int", "syscall", null);
  0-C-int0 0}_C_longc	_C_long = go$pkg._C_long = go$newType(8, "Int64", "syscall._C_long", "_C_long", "syscall", null);
  0	-C-long0 0Åõ_C_long_longw	_C_long_long = go$pkg._C_long_long = go$newType(8, "Int64", "syscall._C_long_long", "_C_long_long", "syscall", null);
- 0-C-long-long0 0ÇÛTimespecÇ	Timespec = go$pkg.Timespec = go$newType(0, "Struct", "syscall.Timespec", "Timespec", "syscall", function(Sec_, Nsec_) {
+ 0-C-long-long0 0Ç
+TimespecÇ	Timespec = go$pkg.Timespec = go$newType(0, "Struct", "syscall.Timespec", "Timespec", "syscall", function(Sec_, Nsec_) {
 		this.go$val = this;
 		this.Sec = Sec_ !== undefined ? Sec_ : new Go$Int64(0, 0);
 		this.Nsec = Nsec_ !== undefined ? Nsec_ : new Go$Int64(0, 0);
 	});
-Å√		Timespec.init([["Sec", "", Go$Int64, ""], ["Nsec", "", Go$Int64, ""]]);
-		(go$ptrType(Timespec)).methods = [["Nano", "", [], [Go$Int64], false], ["Unix", "", [], [Go$Int64, Go$Int64], false]];
+Å⁄		(go$ptrType(Timespec)).methods = [["Nano", "", [], [Go$Int64], false, -1], ["Unix", "", [], [Go$Int64, Go$Int64], false, -1]];
+		Timespec.init([["Sec", "Sec", "", Go$Int64, ""], ["Nsec", "Nsec", "", Go$Int64, ""]]);
 0
-Timespec0 0ÇèTimevalÇ}	Timeval = go$pkg.Timeval = go$newType(0, "Struct", "syscall.Timeval", "Timeval", "syscall", function(Sec_, Usec_, Pad_cgo_0_) {
+Timespec0 0Ç¥TimevalÇ}	Timeval = go$pkg.Timeval = go$newType(0, "Struct", "syscall.Timeval", "Timeval", "syscall", function(Sec_, Usec_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Sec = Sec_ !== undefined ? Sec_ : new Go$Int64(0, 0);
 		this.Usec = Usec_ !== undefined ? Usec_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 	});
-Åı		Timeval.init([["Sec", "", Go$Int64, ""], ["Usec", "", Go$Int32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""]]);
-		(go$ptrType(Timeval)).methods = [["Nano", "", [], [Go$Int64], false], ["Unix", "", [], [Go$Int64, Go$Int64], false]];
-0	Timeval0 0Ç]	Timeval32ÅÛ	Timeval32 = go$pkg.Timeval32 = go$newType(0, "Struct", "syscall.Timeval32", "Timeval32", "syscall", function(Sec_, Usec_) {
+Ç		(go$ptrType(Timeval)).methods = [["Nano", "", [], [Go$Int64], false, -1], ["Unix", "", [], [Go$Int64, Go$Int64], false, -1]];
+		Timeval.init([["Sec", "Sec", "", Go$Int64, ""], ["Usec", "Usec", "", Go$Int32, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""]]);
+0	Timeval0 0Çl	Timeval32ÅÛ	Timeval32 = go$pkg.Timeval32 = go$newType(0, "Struct", "syscall.Timeval32", "Timeval32", "syscall", function(Sec_, Usec_) {
 		this.go$val = this;
 		this.Sec = Sec_ !== undefined ? Sec_ : 0;
 		this.Usec = Usec_ !== undefined ? Usec_ : 0;
 	});
-K		Timeval32.init([["Sec", "", Go$Int32, ""], ["Usec", "", Go$Int32, ""]]);
-0	Timeval320 0Ç}RusageÇa	Rusage = go$pkg.Rusage = go$newType(0, "Struct", "syscall.Rusage", "Rusage", "syscall", function(Utime_, Stime_, Maxrss_, Ixrss_, Idrss_, Isrss_, Minflt_, Majflt_, Nswap_, Inblock_, Oublock_, Msgsnd_, Msgrcv_, Nsignals_, Nvcsw_, Nivcsw_) {
+Z		Timeval32.init([["Sec", "Sec", "", Go$Int32, ""], ["Usec", "Usec", "", Go$Int32, ""]]);
+0	Timeval320 0ÇRusageÇa	Rusage = go$pkg.Rusage = go$newType(0, "Struct", "syscall.Rusage", "Rusage", "syscall", function(Utime_, Stime_, Maxrss_, Ixrss_, Idrss_, Isrss_, Minflt_, Majflt_, Nswap_, Inblock_, Oublock_, Msgsnd_, Msgrcv_, Nsignals_, Nvcsw_, Nivcsw_) {
 		this.go$val = this;
 		this.Utime = Utime_ !== undefined ? Utime_ : new Timeval.Ptr();
 		this.Stime = Stime_ !== undefined ? Stime_ : new Timeval.Ptr();
@@ -2164,15 +2160,15 @@ WaitStatus00syscallSignal0Ç˙SockaddrDatalinkÇ‰	SockaddrDatalink = go$
 		this.Nvcsw = Nvcsw_ !== undefined ? Nvcsw_ : new Go$Int64(0, 0);
 		this.Nivcsw = Nivcsw_ !== undefined ? Nivcsw_ : new Go$Int64(0, 0);
 	});
-ÇÏ		Rusage.init([["Utime", "", Timeval, ""], ["Stime", "", Timeval, ""], ["Maxrss", "", Go$Int64, ""], ["Ixrss", "", Go$Int64, ""], ["Idrss", "", Go$Int64, ""], ["Isrss", "", Go$Int64, ""], ["Minflt", "", Go$Int64, ""], ["Majflt", "", Go$Int64, ""], ["Nswap", "", Go$Int64, ""], ["Inblock", "", Go$Int64, ""], ["Oublock", "", Go$Int64, ""], ["Msgsnd", "", Go$Int64, ""], ["Msgrcv", "", Go$Int64, ""], ["Nsignals", "", Go$Int64, ""], ["Nvcsw", "", Go$Int64, ""], ["Nivcsw", "", Go$Int64, ""]]);
-0Rusage00syscallTimeval0ÇjRlimitÇ	Rlimit = go$pkg.Rlimit = go$newType(0, "Struct", "syscall.Rlimit", "Rlimit", "syscall", function(Cur_, Max_) {
+Çâ		Rusage.init([["Utime", "Utime", "", Timeval, ""], ["Stime", "Stime", "", Timeval, ""], ["Maxrss", "Maxrss", "", Go$Int64, ""], ["Ixrss", "Ixrss", "", Go$Int64, ""], ["Idrss", "Idrss", "", Go$Int64, ""], ["Isrss", "Isrss", "", Go$Int64, ""], ["Minflt", "Minflt", "", Go$Int64, ""], ["Majflt", "Majflt", "", Go$Int64, ""], ["Nswap", "Nswap", "", Go$Int64, ""], ["Inblock", "Inblock", "", Go$Int64, ""], ["Oublock", "Oublock", "", Go$Int64, ""], ["Msgsnd", "Msgsnd", "", Go$Int64, ""], ["Msgrcv", "Msgrcv", "", Go$Int64, ""], ["Nsignals", "Nsignals", "", Go$Int64, ""], ["Nvcsw", "Nvcsw", "", Go$Int64, ""], ["Nivcsw", "Nivcsw", "", Go$Int64, ""]]);
+0Rusage00syscallTimeval0ÇxRlimitÇ	Rlimit = go$pkg.Rlimit = go$newType(0, "Struct", "syscall.Rlimit", "Rlimit", "syscall", function(Cur_, Max_) {
 		this.go$val = this;
 		this.Cur = Cur_ !== undefined ? Cur_ : new Go$Uint64(0, 0);
 		this.Max = Max_ !== undefined ? Max_ : new Go$Uint64(0, 0);
 	});
-I		Rlimit.init([["Cur", "", Go$Uint64, ""], ["Max", "", Go$Uint64, ""]]);
+W		Rlimit.init([["Cur", "Cur", "", Go$Uint64, ""], ["Max", "Max", "", Go$Uint64, ""]]);
 0Rlimit0 0x_Gid_t`	_Gid_t = go$pkg._Gid_t = go$newType(4, "Uint32", "syscall._Gid_t", "_Gid_t", "syscall", null);
- 0-Gid-t0 0Ç™Stat_tÇ	Stat_t = go$pkg.Stat_t = go$newType(0, "Struct", "syscall.Stat_t", "Stat_t", "syscall", function(Dev_, Mode_, Nlink_, Ino_, Uid_, Gid_, Rdev_, Pad_cgo_0_, Atimespec_, Mtimespec_, Ctimespec_, Birthtimespec_, Size_, Blocks_, Blksize_, Flags_, Gen_, Lspare_, Qspare_) {
+ 0-Gid-t0 0Ç	eStat_tÇ	Stat_t = go$pkg.Stat_t = go$newType(0, "Struct", "syscall.Stat_t", "Stat_t", "syscall", function(Dev_, Mode_, Nlink_, Ino_, Uid_, Gid_, Rdev_, Pad_cgo_0_, Atimespec_, Mtimespec_, Ctimespec_, Birthtimespec_, Size_, Blocks_, Blksize_, Flags_, Gen_, Lspare_, Qspare_) {
 		this.go$val = this;
 		this.Dev = Dev_ !== undefined ? Dev_ : 0;
 		this.Mode = Mode_ !== undefined ? Mode_ : 0;
@@ -2194,8 +2190,8 @@ WaitStatus00syscallSignal0Ç˙SockaddrDatalinkÇ‰	SockaddrDatalink = go$
 		this.Lspare = Lspare_ !== undefined ? Lspare_ : 0;
 		this.Qspare = Qspare_ !== undefined ? Qspare_ : go$makeNativeArray("Int64", 2, function() { return new Go$Int64(0, 0); });
 	});
-Çu		Stat_t.init([["Dev", "", Go$Int32, ""], ["Mode", "", Go$Uint16, ""], ["Nlink", "", Go$Uint16, ""], ["Ino", "", Go$Uint64, ""], ["Uid", "", Go$Uint32, ""], ["Gid", "", Go$Uint32, ""], ["Rdev", "", Go$Int32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Atimespec", "", Timespec, ""], ["Mtimespec", "", Timespec, ""], ["Ctimespec", "", Timespec, ""], ["Birthtimespec", "", Timespec, ""], ["Size", "", Go$Int64, ""], ["Blocks", "", Go$Int64, ""], ["Blksize", "", Go$Int32, ""], ["Flags", "", Go$Uint32, ""], ["Gen", "", Go$Uint32, ""], ["Lspare", "", Go$Int32, ""], ["Qspare", "", (go$arrayType(Go$Int64, 2)), ""]]);
-0Stat-t00syscallTimespec0ÇMStatfs_tÇÀ	Statfs_t = go$pkg.Statfs_t = go$newType(0, "Struct", "syscall.Statfs_t", "Statfs_t", "syscall", function(Bsize_, Iosize_, Blocks_, Bfree_, Bavail_, Files_, Ffree_, Fsid_, Owner_, Type_, Flags_, Fssubtype_, Fstypename_, Mntonname_, Mntfromname_, Reserved_) {
+Ç0		Stat_t.init([["Dev", "Dev", "", Go$Int32, ""], ["Mode", "Mode", "", Go$Uint16, ""], ["Nlink", "Nlink", "", Go$Uint16, ""], ["Ino", "Ino", "", Go$Uint64, ""], ["Uid", "Uid", "", Go$Uint32, ""], ["Gid", "Gid", "", Go$Uint32, ""], ["Rdev", "Rdev", "", Go$Int32, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Atimespec", "Atimespec", "", Timespec, ""], ["Mtimespec", "Mtimespec", "", Timespec, ""], ["Ctimespec", "Ctimespec", "", Timespec, ""], ["Birthtimespec", "Birthtimespec", "", Timespec, ""], ["Size", "Size", "", Go$Int64, ""], ["Blocks", "Blocks", "", Go$Int64, ""], ["Blksize", "Blksize", "", Go$Int32, ""], ["Flags", "Flags", "", Go$Uint32, ""], ["Gen", "Gen", "", Go$Uint32, ""], ["Lspare", "Lspare", "", Go$Int32, ""], ["Qspare", "Qspare", "", (go$arrayType(Go$Int64, 2)), ""]]);
+0Stat-t00syscallTimespec0ÇÙStatfs_tÇÀ	Statfs_t = go$pkg.Statfs_t = go$newType(0, "Struct", "syscall.Statfs_t", "Statfs_t", "syscall", function(Bsize_, Iosize_, Blocks_, Bfree_, Bavail_, Files_, Ffree_, Fsid_, Owner_, Type_, Flags_, Fssubtype_, Fstypename_, Mntonname_, Mntfromname_, Reserved_) {
 		this.go$val = this;
 		this.Bsize = Bsize_ !== undefined ? Bsize_ : 0;
 		this.Iosize = Iosize_ !== undefined ? Iosize_ : 0;
@@ -2214,9 +2210,9 @@ WaitStatus00syscallSignal0Ç˙SockaddrDatalinkÇ‰	SockaddrDatalink = go$
 		this.Mntfromname = Mntfromname_ !== undefined ? Mntfromname_ : go$makeNativeArray("Int8", 1024, function() { return 0; });
 		this.Reserved = Reserved_ !== undefined ? Reserved_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
 	});
-ÇQ		Statfs_t.init([["Bsize", "", Go$Uint32, ""], ["Iosize", "", Go$Int32, ""], ["Blocks", "", Go$Uint64, ""], ["Bfree", "", Go$Uint64, ""], ["Bavail", "", Go$Uint64, ""], ["Files", "", Go$Uint64, ""], ["Ffree", "", Go$Uint64, ""], ["Fsid", "", Fsid, ""], ["Owner", "", Go$Uint32, ""], ["Type", "", Go$Uint32, ""], ["Flags", "", Go$Uint32, ""], ["Fssubtype", "", Go$Uint32, ""], ["Fstypename", "", (go$arrayType(Go$Int8, 16)), ""], ["Mntonname", "", (go$arrayType(Go$Int8, 1024)), ""], ["Mntfromname", "", (go$arrayType(Go$Int8, 1024)), ""], ["Reserved", "", (go$arrayType(Go$Uint32, 8)), ""]]);
+Ç¯		Statfs_t.init([["Bsize", "Bsize", "", Go$Uint32, ""], ["Iosize", "Iosize", "", Go$Int32, ""], ["Blocks", "Blocks", "", Go$Uint64, ""], ["Bfree", "Bfree", "", Go$Uint64, ""], ["Bavail", "Bavail", "", Go$Uint64, ""], ["Files", "Files", "", Go$Uint64, ""], ["Ffree", "Ffree", "", Go$Uint64, ""], ["Fsid", "Fsid", "", Fsid, ""], ["Owner", "Owner", "", Go$Uint32, ""], ["Type", "Type", "", Go$Uint32, ""], ["Flags", "Flags", "", Go$Uint32, ""], ["Fssubtype", "Fssubtype", "", Go$Uint32, ""], ["Fstypename", "Fstypename", "", (go$arrayType(Go$Int8, 16)), ""], ["Mntonname", "Mntonname", "", (go$arrayType(Go$Int8, 1024)), ""], ["Mntfromname", "Mntfromname", "", (go$arrayType(Go$Int8, 1024)), ""], ["Reserved", "Reserved", "", (go$arrayType(Go$Uint32, 8)), ""]]);
 0
-Statfs-t00syscallFsid0ÇsFlock_tÇ∑	Flock_t = go$pkg.Flock_t = go$newType(0, "Struct", "syscall.Flock_t", "Flock_t", "syscall", function(Start_, Len_, Pid_, Type_, Whence_) {
+Statfs-t00syscallFsid0ÇúFlock_tÇ∑	Flock_t = go$pkg.Flock_t = go$newType(0, "Struct", "syscall.Flock_t", "Flock_t", "syscall", function(Start_, Len_, Pid_, Type_, Whence_) {
 		this.go$val = this;
 		this.Start = Start_ !== undefined ? Start_ : new Go$Int64(0, 0);
 		this.Len = Len_ !== undefined ? Len_ : new Go$Int64(0, 0);
@@ -2224,8 +2220,8 @@ WaitStatus00syscallSignal0Ç˙SockaddrDatalinkÇ‰	SockaddrDatalink = go$
 		this.Type = Type_ !== undefined ? Type_ : 0;
 		this.Whence = Whence_ !== undefined ? Whence_ : 0;
 	});
-Åü		Flock_t.init([["Start", "", Go$Int64, ""], ["Len", "", Go$Int64, ""], ["Pid", "", Go$Int32, ""], ["Type", "", Go$Int16, ""], ["Whence", "", Go$Int16, ""]]);
-0	Flock-t0 0ÇÕFstore_tÇ 	Fstore_t = go$pkg.Fstore_t = go$newType(0, "Struct", "syscall.Fstore_t", "Fstore_t", "syscall", function(Flags_, Posmode_, Offset_, Length_, Bytesalloc_) {
+Å»		Flock_t.init([["Start", "Start", "", Go$Int64, ""], ["Len", "Len", "", Go$Int64, ""], ["Pid", "Pid", "", Go$Int32, ""], ["Type", "Type", "", Go$Int16, ""], ["Whence", "Whence", "", Go$Int16, ""]]);
+0	Flock-t0 0ÇFstore_tÇ 	Fstore_t = go$pkg.Fstore_t = go$newType(0, "Struct", "syscall.Fstore_t", "Fstore_t", "syscall", function(Flags_, Posmode_, Offset_, Length_, Bytesalloc_) {
 		this.go$val = this;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
 		this.Posmode = Posmode_ !== undefined ? Posmode_ : 0;
@@ -2233,37 +2229,37 @@ WaitStatus00syscallSignal0Ç˙SockaddrDatalinkÇ‰	SockaddrDatalink = go$
 		this.Length = Length_ !== undefined ? Length_ : new Go$Int64(0, 0);
 		this.Bytesalloc = Bytesalloc_ !== undefined ? Bytesalloc_ : new Go$Int64(0, 0);
 	});
-ÅÆ		Fstore_t.init([["Flags", "", Go$Uint32, ""], ["Posmode", "", Go$Int32, ""], ["Offset", "", Go$Int64, ""], ["Length", "", Go$Int64, ""], ["Bytesalloc", "", Go$Int64, ""]]);
+Å‰		Fstore_t.init([["Flags", "Flags", "", Go$Uint32, ""], ["Posmode", "Posmode", "", Go$Int32, ""], ["Offset", "Offset", "", Go$Int64, ""], ["Length", "Length", "", Go$Int64, ""], ["Bytesalloc", "Bytesalloc", "", Go$Int64, ""]]);
 0
-Fstore-t0 0ÇGRadvisory_tÇù	Radvisory_t = go$pkg.Radvisory_t = go$newType(0, "Struct", "syscall.Radvisory_t", "Radvisory_t", "syscall", function(Offset_, Count_, Pad_cgo_0_) {
+Fstore-t0 0ÇgRadvisory_tÇù	Radvisory_t = go$pkg.Radvisory_t = go$newType(0, "Struct", "syscall.Radvisory_t", "Radvisory_t", "syscall", function(Offset_, Count_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Offset = Offset_ !== undefined ? Offset_ : new Go$Int64(0, 0);
 		this.Count = Count_ !== undefined ? Count_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 	});
-ÅÖ		Radvisory_t.init([["Offset", "", Go$Int64, ""], ["Count", "", Go$Int32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""]]);
-0Radvisory-t0 0ÇlFbootstraptransfer_tÇ≠	Fbootstraptransfer_t = go$pkg.Fbootstraptransfer_t = go$newType(0, "Struct", "syscall.Fbootstraptransfer_t", "Fbootstraptransfer_t", "syscall", function(Offset_, Length_, Buffer_) {
+Å•		Radvisory_t.init([["Offset", "Offset", "", Go$Int64, ""], ["Count", "Count", "", Go$Int32, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""]]);
+0Radvisory-t0 0ÇäFbootstraptransfer_tÇ≠	Fbootstraptransfer_t = go$pkg.Fbootstraptransfer_t = go$newType(0, "Struct", "syscall.Fbootstraptransfer_t", "Fbootstraptransfer_t", "syscall", function(Offset_, Length_, Buffer_) {
 		this.go$val = this;
 		this.Offset = Offset_ !== undefined ? Offset_ : new Go$Int64(0, 0);
 		this.Length = Length_ !== undefined ? Length_ : new Go$Uint64(0, 0);
 		this.Buffer = Buffer_ !== undefined ? Buffer_ : (go$ptrType(Go$Uint8)).nil;
 	});
-Åà		Fbootstraptransfer_t.init([["Offset", "", Go$Int64, ""], ["Length", "", Go$Uint64, ""], ["Buffer", "", (go$ptrType(Go$Uint8)), ""]]);
-0Fbootstraptransfer-t0 0Ç 
+Å¶		Fbootstraptransfer_t.init([["Offset", "Offset", "", Go$Int64, ""], ["Length", "Length", "", Go$Uint64, ""], ["Buffer", "Buffer", "", (go$ptrType(Go$Uint8)), ""]]);
+0Fbootstraptransfer-t0 0ÇF
 Log2phys_tÇá	Log2phys_t = go$pkg.Log2phys_t = go$newType(0, "Struct", "syscall.Log2phys_t", "Log2phys_t", "syscall", function(Flags_, Contigbytes_, Devoffset_) {
 		this.go$val = this;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
 		this.Contigbytes = Contigbytes_ !== undefined ? Contigbytes_ : new Go$Int64(0, 0);
 		this.Devoffset = Devoffset_ !== undefined ? Devoffset_ : new Go$Int64(0, 0);
 	});
-w		Log2phys_t.init([["Flags", "", Go$Uint32, ""], ["Contigbytes", "", Go$Int64, ""], ["Devoffset", "", Go$Int64, ""]]);
+Åú		Log2phys_t.init([["Flags", "Flags", "", Go$Uint32, ""], ["Contigbytes", "Contigbytes", "", Go$Int64, ""], ["Devoffset", "Devoffset", "", Go$Int64, ""]]);
 0
-Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.Fsid", "Fsid", "syscall", function(Val_) {
+Log2phys-t0 0Ç9FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.Fsid", "Fsid", "syscall", function(Val_) {
 		this.go$val = this;
 		this.Val = Val_ !== undefined ? Val_ : go$makeNativeArray("Int32", 2, function() { return 0; });
 	});
-=		Fsid.init([["Val", "", (go$arrayType(Go$Int32, 2)), ""]]);
-0Fsid0 0Ç·DirentÇπ	Dirent = go$pkg.Dirent = go$newType(0, "Struct", "syscall.Dirent", "Dirent", "syscall", function(Ino_, Seekoff_, Reclen_, Namlen_, Type_, Name_, Pad_cgo_0_) {
+D		Fsid.init([["Val", "Val", "", (go$arrayType(Go$Int32, 2)), ""]]);
+0Fsid0 0Ç$DirentÇπ	Dirent = go$pkg.Dirent = go$newType(0, "Struct", "syscall.Dirent", "Dirent", "syscall", function(Ino_, Seekoff_, Reclen_, Namlen_, Type_, Name_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Ino = Ino_ !== undefined ? Ino_ : new Go$Uint64(0, 0);
 		this.Seekoff = Seekoff_ !== undefined ? Seekoff_ : new Go$Uint64(0, 0);
@@ -2273,8 +2269,8 @@ Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.
 		this.Name = Name_ !== undefined ? Name_ : go$makeNativeArray("Int8", 1024, function() { return 0; });
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 3, function() { return 0; });
 	});
-Ç		Dirent.init([["Ino", "", Go$Uint64, ""], ["Seekoff", "", Go$Uint64, ""], ["Reclen", "", Go$Uint16, ""], ["Namlen", "", Go$Uint16, ""], ["Type", "", Go$Uint8, ""], ["Name", "", (go$arrayType(Go$Int8, 1024)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 3)), ""]]);
-0Dirent0 0Ç#RawSockaddrInet4Ç&	RawSockaddrInet4 = go$pkg.RawSockaddrInet4 = go$newType(0, "Struct", "syscall.RawSockaddrInet4", "RawSockaddrInet4", "syscall", function(Len_, Family_, Port_, Addr_, Zero_) {
+ÇO		Dirent.init([["Ino", "Ino", "", Go$Uint64, ""], ["Seekoff", "Seekoff", "", Go$Uint64, ""], ["Reclen", "Reclen", "", Go$Uint16, ""], ["Namlen", "Namlen", "", Go$Uint16, ""], ["Type", "Type", "", Go$Uint8, ""], ["Name", "Name", "", (go$arrayType(Go$Int8, 1024)), ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 3)), ""]]);
+0Dirent0 0ÇLRawSockaddrInet4Ç&	RawSockaddrInet4 = go$pkg.RawSockaddrInet4 = go$newType(0, "Struct", "syscall.RawSockaddrInet4", "RawSockaddrInet4", "syscall", function(Len_, Family_, Port_, Addr_, Zero_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
@@ -2282,8 +2278,8 @@ Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.Zero = Zero_ !== undefined ? Zero_ : go$makeNativeArray("Int8", 8, function() { return 0; });
 	});
-ÅŒ		RawSockaddrInet4.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Port", "", Go$Uint16, ""], ["Addr", "", (go$arrayType(Go$Uint8, 4)), ""], ["Zero", "", (go$arrayType(Go$Int8, 8)), ""]]);
-0RawSockaddrInet40 0ÇYRawSockaddrInet6ÇG	RawSockaddrInet6 = go$pkg.RawSockaddrInet6 = go$newType(0, "Struct", "syscall.RawSockaddrInet6", "RawSockaddrInet6", "syscall", function(Len_, Family_, Port_, Flowinfo_, Addr_, Scope_id_) {
+Å˜		RawSockaddrInet4.init([["Len", "Len", "", Go$Uint8, ""], ["Family", "Family", "", Go$Uint8, ""], ["Port", "Port", "", Go$Uint16, ""], ["Addr", "Addr", "", (go$arrayType(Go$Uint8, 4)), ""], ["Zero", "Zero", "", (go$arrayType(Go$Int8, 8)), ""]]);
+0RawSockaddrInet40 0ÇìRawSockaddrInet6ÇG	RawSockaddrInet6 = go$pkg.RawSockaddrInet6 = go$newType(0, "Struct", "syscall.RawSockaddrInet6", "RawSockaddrInet6", "syscall", function(Len_, Family_, Port_, Flowinfo_, Addr_, Scope_id_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
@@ -2292,15 +2288,15 @@ Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Scope_id = Scope_id_ !== undefined ? Scope_id_ : 0;
 	});
-Å„		RawSockaddrInet6.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Port", "", Go$Uint16, ""], ["Flowinfo", "", Go$Uint32, ""], ["Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Scope_id", "", Go$Uint32, ""]]);
-0RawSockaddrInet60 0Ç1RawSockaddrUnixÇÅ	RawSockaddrUnix = go$pkg.RawSockaddrUnix = go$newType(0, "Struct", "syscall.RawSockaddrUnix", "RawSockaddrUnix", "syscall", function(Len_, Family_, Path_) {
+Ç		RawSockaddrInet6.init([["Len", "Len", "", Go$Uint8, ""], ["Family", "Family", "", Go$Uint8, ""], ["Port", "Port", "", Go$Uint16, ""], ["Flowinfo", "Flowinfo", "", Go$Uint32, ""], ["Addr", "Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Scope_id", "Scope_id", "", Go$Uint32, ""]]);
+0RawSockaddrInet60 0ÇJRawSockaddrUnixÇÅ	RawSockaddrUnix = go$pkg.RawSockaddrUnix = go$newType(0, "Struct", "syscall.RawSockaddrUnix", "RawSockaddrUnix", "syscall", function(Len_, Family_, Path_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
 		this.Path = Path_ !== undefined ? Path_ : go$makeNativeArray("Int8", 104, function() { return 0; });
 	});
-ÅÉ		RawSockaddrUnix.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Path", "", (go$arrayType(Go$Int8, 104)), ""]]);
-0RawSockaddrUnix0 0ÇÏRawSockaddrDatalinkÇ¢	RawSockaddrDatalink = go$pkg.RawSockaddrDatalink = go$newType(0, "Struct", "syscall.RawSockaddrDatalink", "RawSockaddrDatalink", "syscall", function(Len_, Family_, Index_, Type_, Nlen_, Alen_, Slen_, Data_) {
+Åú		RawSockaddrUnix.init([["Len", "Len", "", Go$Uint8, ""], ["Family", "Family", "", Go$Uint8, ""], ["Path", "Path", "", (go$arrayType(Go$Int8, 104)), ""]]);
+0RawSockaddrUnix0 0Ç.RawSockaddrDatalinkÇ¢	RawSockaddrDatalink = go$pkg.RawSockaddrDatalink = go$newType(0, "Struct", "syscall.RawSockaddrDatalink", "RawSockaddrDatalink", "syscall", function(Len_, Family_, Index_, Type_, Nlen_, Alen_, Slen_, Data_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
@@ -2311,49 +2307,49 @@ Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.
 		this.Slen = Slen_ !== undefined ? Slen_ : 0;
 		this.Data = Data_ !== undefined ? Data_ : go$makeNativeArray("Int8", 12, function() { return 0; });
 	});
-Ç		RawSockaddrDatalink.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Index", "", Go$Uint16, ""], ["Type", "", Go$Uint8, ""], ["Nlen", "", Go$Uint8, ""], ["Alen", "", Go$Uint8, ""], ["Slen", "", Go$Uint8, ""], ["Data", "", (go$arrayType(Go$Int8, 12)), ""]]);
-0RawSockaddrDatalink0 0ÇRawSockaddrÇp	RawSockaddr = go$pkg.RawSockaddr = go$newType(0, "Struct", "syscall.RawSockaddr", "RawSockaddr", "syscall", function(Len_, Family_, Data_) {
+ÇV		RawSockaddrDatalink.init([["Len", "Len", "", Go$Uint8, ""], ["Family", "Family", "", Go$Uint8, ""], ["Index", "Index", "", Go$Uint16, ""], ["Type", "Type", "", Go$Uint8, ""], ["Nlen", "Nlen", "", Go$Uint8, ""], ["Alen", "Alen", "", Go$Uint8, ""], ["Slen", "Slen", "", Go$Uint8, ""], ["Data", "Data", "", (go$arrayType(Go$Int8, 12)), ""]]);
+0RawSockaddrDatalink0 0Ç,RawSockaddrÇp	RawSockaddr = go$pkg.RawSockaddr = go$newType(0, "Struct", "syscall.RawSockaddr", "RawSockaddr", "syscall", function(Len_, Family_, Data_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Family = Family_ !== undefined ? Family_ : 0;
 		this.Data = Data_ !== undefined ? Data_ : go$makeNativeArray("Int8", 14, function() { return 0; });
 	});
-~		RawSockaddr.init([["Len", "", Go$Uint8, ""], ["Family", "", Go$Uint8, ""], ["Data", "", (go$arrayType(Go$Int8, 14)), ""]]);
-0RawSockaddr0 0Ç˙RawSockaddrAnyÇR	RawSockaddrAny = go$pkg.RawSockaddrAny = go$newType(0, "Struct", "syscall.RawSockaddrAny", "RawSockaddrAny", "syscall", function(Addr_, Pad_) {
+Åó		RawSockaddr.init([["Len", "Len", "", Go$Uint8, ""], ["Family", "Family", "", Go$Uint8, ""], ["Data", "Data", "", (go$arrayType(Go$Int8, 14)), ""]]);
+0RawSockaddr0 0Ç	RawSockaddrAnyÇR	RawSockaddrAny = go$pkg.RawSockaddrAny = go$newType(0, "Struct", "syscall.RawSockaddrAny", "RawSockaddrAny", "syscall", function(Addr_, Pad_) {
 		this.go$val = this;
 		this.Addr = Addr_ !== undefined ? Addr_ : new RawSockaddr.Ptr();
 		this.Pad = Pad_ !== undefined ? Pad_ : go$makeNativeArray("Int8", 92, function() { return 0; });
 	});
-f		RawSockaddrAny.init([["Addr", "", RawSockaddr, ""], ["Pad", "", (go$arrayType(Go$Int8, 92)), ""]]);
+u		RawSockaddrAny.init([["Addr", "Addr", "", RawSockaddr, ""], ["Pad", "Pad", "", (go$arrayType(Go$Int8, 92)), ""]]);
 0RawSockaddrAny00syscallRawSockaddr0ÅÑ_Socklenh	_Socklen = go$pkg._Socklen = go$newType(4, "Uint32", "syscall._Socklen", "_Socklen", "syscall", null);
  0
--Socklen0 0Ç\LingerÅ˜	Linger = go$pkg.Linger = go$newType(0, "Struct", "syscall.Linger", "Linger", "syscall", function(Onoff_, Linger_) {
+-Socklen0 0ÇoLingerÅ˜	Linger = go$pkg.Linger = go$newType(0, "Struct", "syscall.Linger", "Linger", "syscall", function(Onoff_, Linger_) {
 		this.go$val = this;
 		this.Onoff = Onoff_ !== undefined ? Onoff_ : 0;
 		this.Linger = Linger_ !== undefined ? Linger_ : 0;
 	});
-L		Linger.init([["Onoff", "", Go$Int32, ""], ["Linger", "", Go$Int32, ""]]);
-0Linger0 0ÇƒIovecÇ	Iovec = go$pkg.Iovec = go$newType(0, "Struct", "syscall.Iovec", "Iovec", "syscall", function(Base_, Len_) {
+_		Linger.init([["Onoff", "Onoff", "", Go$Int32, ""], ["Linger", "Linger", "", Go$Int32, ""]]);
+0Linger0 0Ç◊IovecÇ	Iovec = go$pkg.Iovec = go$newType(0, "Struct", "syscall.Iovec", "Iovec", "syscall", function(Base_, Len_) {
 		this.go$val = this;
 		this.Base = Base_ !== undefined ? Base_ : (go$ptrType(Go$Uint8)).nil;
 		this.Len = Len_ !== undefined ? Len_ : new Go$Uint64(0, 0);
 	});
-Åù		Iovec.init([["Base", "", (go$ptrType(Go$Uint8)), ""], ["Len", "", Go$Uint64, ""]]);
-		(go$ptrType(Iovec)).methods = [["SetLen", "", [Go$Int], [], false]];
-0Iovec0 0ÇIPMreqÇÅ	IPMreq = go$pkg.IPMreq = go$newType(0, "Struct", "syscall.IPMreq", "IPMreq", "syscall", function(Multiaddr_, Interface_) {
+Å∞		(go$ptrType(Iovec)).methods = [["SetLen", "", [Go$Int], [], false, -1]];
+		Iovec.init([["Base", "Base", "", (go$ptrType(Go$Uint8)), ""], ["Len", "Len", "", Go$Uint64, ""]]);
+0Iovec0 0Ç/IPMreqÇÅ	IPMreq = go$pkg.IPMreq = go$newType(0, "Struct", "syscall.IPMreq", "IPMreq", "syscall", function(Multiaddr_, Interface_) {
 		this.go$val = this;
 		this.Multiaddr = Multiaddr_ !== undefined ? Multiaddr_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.Interface = Interface_ !== undefined ? Interface_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 	});
-y		IPMreq.init([["Multiaddr", "", (go$arrayType(Go$Uint8, 4)), ""], ["Interface", "", (go$arrayType(Go$Uint8, 4)), ""]]);
-0IPMreq0 0Ç€IPv6MreqÇS	IPv6Mreq = go$pkg.IPv6Mreq = go$newType(0, "Struct", "syscall.IPv6Mreq", "IPv6Mreq", "syscall", function(Multiaddr_, Interface_) {
+Åì		IPMreq.init([["Multiaddr", "Multiaddr", "", (go$arrayType(Go$Uint8, 4)), ""], ["Interface", "Interface", "", (go$arrayType(Go$Uint8, 4)), ""]]);
+0IPMreq0 0ÇˆIPv6MreqÇS	IPv6Mreq = go$pkg.IPv6Mreq = go$newType(0, "Struct", "syscall.IPv6Mreq", "IPv6Mreq", "syscall", function(Multiaddr_, Interface_) {
 		this.go$val = this;
 		this.Multiaddr = Multiaddr_ !== undefined ? Multiaddr_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Interface = Interface_ !== undefined ? Interface_ : 0;
 	});
-j		IPv6Mreq.init([["Multiaddr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Interface", "", Go$Uint32, ""]]);
+ÅÑ		IPv6Mreq.init([["Multiaddr", "Multiaddr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Interface", "Interface", "", Go$Uint32, ""]]);
 0
-IPv6Mreq0 0ÇlMsghdrÇ{	Msghdr = go$pkg.Msghdr = go$newType(0, "Struct", "syscall.Msghdr", "Msghdr", "syscall", function(Name_, Namelen_, Pad_cgo_0_, Iov_, Iovlen_, Pad_cgo_1_, Control_, Controllen_, Flags_) {
+IPv6Mreq0 0Ç–MsghdrÇ{	Msghdr = go$pkg.Msghdr = go$newType(0, "Struct", "syscall.Msghdr", "Msghdr", "syscall", function(Name_, Namelen_, Pad_cgo_0_, Iov_, Iovlen_, Pad_cgo_1_, Control_, Controllen_, Flags_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : (go$ptrType(Go$Uint8)).nil;
 		this.Namelen = Namelen_ !== undefined ? Namelen_ : 0;
@@ -2365,41 +2361,41 @@ Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.
 		this.Controllen = Controllen_ !== undefined ? Controllen_ : 0;
 		this.Flags = Flags_ !== undefined ? Flags_ : 0;
 	});
-Ç√		Msghdr.init([["Name", "", (go$ptrType(Go$Uint8)), ""], ["Namelen", "", Go$Uint32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Iov", "", (go$ptrType(Iovec)), ""], ["Iovlen", "", Go$Int32, ""], ["Pad_cgo_1", "", (go$arrayType(Go$Uint8, 4)), ""], ["Control", "", (go$ptrType(Go$Uint8)), ""], ["Controllen", "", Go$Uint32, ""], ["Flags", "", Go$Int32, ""]]);
-		(go$ptrType(Msghdr)).methods = [["SetControllen", "", [Go$Int], [], false]];
-0Msghdr00syscallIovec0ÇÚCmsghdrÇ%	Cmsghdr = go$pkg.Cmsghdr = go$newType(0, "Struct", "syscall.Cmsghdr", "Cmsghdr", "syscall", function(Len_, Level_, Type_) {
+Ç'		(go$ptrType(Msghdr)).methods = [["SetControllen", "", [Go$Int], [], false, -1]];
+		Msghdr.init([["Name", "Name", "", (go$ptrType(Go$Uint8)), ""], ["Namelen", "Namelen", "", Go$Uint32, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Iov", "Iov", "", (go$ptrType(Iovec)), ""], ["Iovlen", "Iovlen", "", Go$Int32, ""], ["Pad_cgo_1", "Pad_cgo_1", "", (go$arrayType(Go$Uint8, 4)), ""], ["Control", "Control", "", (go$ptrType(Go$Uint8)), ""], ["Controllen", "Controllen", "", Go$Uint32, ""], ["Flags", "Flags", "", Go$Int32, ""]]);
+0Msghdr00syscallIovec0ÇCmsghdrÇ%	Cmsghdr = go$pkg.Cmsghdr = go$newType(0, "Struct", "syscall.Cmsghdr", "Cmsghdr", "syscall", function(Len_, Level_, Type_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Level = Level_ !== undefined ? Level_ : 0;
 		this.Type = Type_ !== undefined ? Type_ : 0;
 	});
-Å∞		Cmsghdr.init([["Len", "", Go$Uint32, ""], ["Level", "", Go$Int32, ""], ["Type", "", Go$Int32, ""]]);
-		(go$ptrType(Cmsghdr)).methods = [["SetLen", "", [Go$Int], [], false]];
-0	Cmsghdr0 0ÇÉInet4PktinfoÇ√	Inet4Pktinfo = go$pkg.Inet4Pktinfo = go$newType(0, "Struct", "syscall.Inet4Pktinfo", "Inet4Pktinfo", "syscall", function(Ifindex_, Spec_dst_, Addr_) {
+ÅÃ		(go$ptrType(Cmsghdr)).methods = [["SetLen", "", [Go$Int], [], false, -1]];
+		Cmsghdr.init([["Len", "Len", "", Go$Uint32, ""], ["Level", "Level", "", Go$Int32, ""], ["Type", "Type", "", Go$Int32, ""]]);
+0	Cmsghdr0 0Ç¢Inet4PktinfoÇ√	Inet4Pktinfo = go$pkg.Inet4Pktinfo = go$newType(0, "Struct", "syscall.Inet4Pktinfo", "Inet4Pktinfo", "syscall", function(Ifindex_, Spec_dst_, Addr_) {
 		this.go$val = this;
 		this.Ifindex = Ifindex_ !== undefined ? Ifindex_ : 0;
 		this.Spec_dst = Spec_dst_ !== undefined ? Spec_dst_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 	});
-Åô		Inet4Pktinfo.init([["Ifindex", "", Go$Uint32, ""], ["Spec_dst", "", (go$arrayType(Go$Uint8, 4)), ""], ["Addr", "", (go$arrayType(Go$Uint8, 4)), ""]]);
-0Inet4Pktinfo0 0Ç‘Inet6PktinfoÇG	Inet6Pktinfo = go$pkg.Inet6Pktinfo = go$newType(0, "Struct", "syscall.Inet6Pktinfo", "Inet6Pktinfo", "syscall", function(Addr_, Ifindex_) {
+Å∏		Inet4Pktinfo.init([["Ifindex", "Ifindex", "", Go$Uint32, ""], ["Spec_dst", "Spec_dst", "", (go$arrayType(Go$Uint8, 4)), ""], ["Addr", "Addr", "", (go$arrayType(Go$Uint8, 4)), ""]]);
+0Inet4Pktinfo0 0ÇÁInet6PktinfoÇG	Inet6Pktinfo = go$pkg.Inet6Pktinfo = go$newType(0, "Struct", "syscall.Inet6Pktinfo", "Inet6Pktinfo", "syscall", function(Addr_, Ifindex_) {
 		this.go$val = this;
 		this.Addr = Addr_ !== undefined ? Addr_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.Ifindex = Ifindex_ !== undefined ? Ifindex_ : 0;
 	});
-g		Inet6Pktinfo.init([["Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Ifindex", "", Go$Uint32, ""]]);
-0Inet6Pktinfo0 0Ç´IPv6MTUInfoÇ	IPv6MTUInfo = go$pkg.IPv6MTUInfo = go$newType(0, "Struct", "syscall.IPv6MTUInfo", "IPv6MTUInfo", "syscall", function(Addr_, Mtu_) {
+z		Inet6Pktinfo.init([["Addr", "Addr", "", (go$arrayType(Go$Uint8, 16)), ""], ["Ifindex", "Ifindex", "", Go$Uint32, ""]]);
+0Inet6Pktinfo0 0Ç∫IPv6MTUInfoÇ	IPv6MTUInfo = go$pkg.IPv6MTUInfo = go$newType(0, "Struct", "syscall.IPv6MTUInfo", "IPv6MTUInfo", "syscall", function(Addr_, Mtu_) {
 		this.go$val = this;
 		this.Addr = Addr_ !== undefined ? Addr_ : new RawSockaddrInet6.Ptr();
 		this.Mtu = Mtu_ !== undefined ? Mtu_ : 0;
 	});
-V		IPv6MTUInfo.init([["Addr", "", RawSockaddrInet6, ""], ["Mtu", "", Go$Uint32, ""]]);
-0IPv6MTUInfo00syscallRawSockaddrInet60ÇrICMPv6FilterÇ	ICMPv6Filter = go$pkg.ICMPv6Filter = go$newType(0, "Struct", "syscall.ICMPv6Filter", "ICMPv6Filter", "syscall", function(Filt_) {
+e		IPv6MTUInfo.init([["Addr", "Addr", "", RawSockaddrInet6, ""], ["Mtu", "Mtu", "", Go$Uint32, ""]]);
+0IPv6MTUInfo00syscallRawSockaddrInet60ÇzICMPv6FilterÇ	ICMPv6Filter = go$pkg.ICMPv6Filter = go$newType(0, "Struct", "syscall.ICMPv6Filter", "ICMPv6Filter", "syscall", function(Filt_) {
 		this.go$val = this;
 		this.Filt = Filt_ !== undefined ? Filt_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
 	});
-G		ICMPv6Filter.init([["Filt", "", (go$arrayType(Go$Uint32, 8)), ""]]);
-0ICMPv6Filter0 0ÇKevent_tÇ#	Kevent_t = go$pkg.Kevent_t = go$newType(0, "Struct", "syscall.Kevent_t", "Kevent_t", "syscall", function(Ident_, Filter_, Flags_, Fflags_, Data_, Udata_) {
+O		ICMPv6Filter.init([["Filt", "Filt", "", (go$arrayType(Go$Uint32, 8)), ""]]);
+0ICMPv6Filter0 0ÇMKevent_tÇ#	Kevent_t = go$pkg.Kevent_t = go$newType(0, "Struct", "syscall.Kevent_t", "Kevent_t", "syscall", function(Ident_, Filter_, Flags_, Fflags_, Data_, Udata_) {
 		this.go$val = this;
 		this.Ident = Ident_ !== undefined ? Ident_ : new Go$Uint64(0, 0);
 		this.Filter = Filter_ !== undefined ? Filter_ : 0;
@@ -2408,14 +2404,15 @@ Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.
 		this.Data = Data_ !== undefined ? Data_ : new Go$Int64(0, 0);
 		this.Udata = Udata_ !== undefined ? Udata_ : (go$ptrType(Go$Uint8)).nil;
 	});
-Å”		Kevent_t.init([["Ident", "", Go$Uint64, ""], ["Filter", "", Go$Int16, ""], ["Flags", "", Go$Uint16, ""], ["Fflags", "", Go$Uint32, ""], ["Data", "", Go$Int64, ""], ["Udata", "", (go$ptrType(Go$Uint8)), ""]]);
+Ç
+		Kevent_t.init([["Ident", "Ident", "", Go$Uint64, ""], ["Filter", "Filter", "", Go$Int16, ""], ["Flags", "Flags", "", Go$Uint16, ""], ["Fflags", "Fflags", "", Go$Uint32, ""], ["Data", "Data", "", Go$Int64, ""], ["Udata", "Udata", "", (go$ptrType(Go$Uint8)), ""]]);
 0
-Kevent-t0 0Ç@FdSetÅÈ	FdSet = go$pkg.FdSet = go$newType(0, "Struct", "syscall.FdSet", "FdSet", "syscall", function(Bits_) {
+Kevent-t0 0ÇHFdSetÅÈ	FdSet = go$pkg.FdSet = go$newType(0, "Struct", "syscall.FdSet", "FdSet", "syscall", function(Bits_) {
 		this.go$val = this;
 		this.Bits = Bits_ !== undefined ? Bits_ : go$makeNativeArray("Int32", 32, function() { return 0; });
 	});
-@		FdSet.init([["Bits", "", (go$arrayType(Go$Int32, 32)), ""]]);
-0FdSet0 0Ç˜IfMsghdrÇ±	IfMsghdr = go$pkg.IfMsghdr = go$newType(0, "Struct", "syscall.IfMsghdr", "IfMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Data_) {
+H		FdSet.init([["Bits", "Bits", "", (go$arrayType(Go$Int32, 32)), ""]]);
+0FdSet0 0ÇDIfMsghdrÇ±	IfMsghdr = go$pkg.IfMsghdr = go$newType(0, "Struct", "syscall.IfMsghdr", "IfMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Data_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -2426,9 +2423,9 @@ Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 		this.Data = Data_ !== undefined ? Data_ : new IfData.Ptr();
 	});
-Ç		IfMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Data", "", IfData, ""]]);
+Ç`		IfMsghdr.init([["Msglen", "Msglen", "", Go$Uint16, ""], ["Version", "Version", "", Go$Uint8, ""], ["Type", "Type", "", Go$Uint8, ""], ["Addrs", "Addrs", "", Go$Int32, ""], ["Flags", "Flags", "", Go$Int32, ""], ["Index", "Index", "", Go$Uint16, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Data", "Data", "", IfData, ""]]);
 0
-IfMsghdr00syscallIfData0Ç,IfDataÇC	IfData = go$pkg.IfData = go$newType(0, "Struct", "syscall.IfData", "IfData", "syscall", function(Type_, Typelen_, Physical_, Addrlen_, Hdrlen_, Recvquota_, Xmitquota_, Unused1_, Mtu_, Metric_, Baudrate_, Ipackets_, Ierrors_, Opackets_, Oerrors_, Collisions_, Ibytes_, Obytes_, Imcasts_, Omcasts_, Iqdrops_, Noproto_, Recvtiming_, Xmittiming_, Lastchange_, Unused2_, Hwassist_, Reserved1_, Reserved2_) {
+IfMsghdr00syscallIfData0ÇyIfDataÇC	IfData = go$pkg.IfData = go$newType(0, "Struct", "syscall.IfData", "IfData", "syscall", function(Type_, Typelen_, Physical_, Addrlen_, Hdrlen_, Recvquota_, Xmitquota_, Unused1_, Mtu_, Metric_, Baudrate_, Ipackets_, Ierrors_, Opackets_, Oerrors_, Collisions_, Ibytes_, Obytes_, Imcasts_, Omcasts_, Iqdrops_, Noproto_, Recvtiming_, Xmittiming_, Lastchange_, Unused2_, Hwassist_, Reserved1_, Reserved2_) {
 		this.go$val = this;
 		this.Type = Type_ !== undefined ? Type_ : 0;
 		this.Typelen = Typelen_ !== undefined ? Typelen_ : 0;
@@ -2460,8 +2457,8 @@ Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.
 		this.Reserved1 = Reserved1_ !== undefined ? Reserved1_ : 0;
 		this.Reserved2 = Reserved2_ !== undefined ? Reserved2_ : 0;
 	});
-Ç∑		IfData.init([["Type", "", Go$Uint8, ""], ["Typelen", "", Go$Uint8, ""], ["Physical", "", Go$Uint8, ""], ["Addrlen", "", Go$Uint8, ""], ["Hdrlen", "", Go$Uint8, ""], ["Recvquota", "", Go$Uint8, ""], ["Xmitquota", "", Go$Uint8, ""], ["Unused1", "", Go$Uint8, ""], ["Mtu", "", Go$Uint32, ""], ["Metric", "", Go$Uint32, ""], ["Baudrate", "", Go$Uint32, ""], ["Ipackets", "", Go$Uint32, ""], ["Ierrors", "", Go$Uint32, ""], ["Opackets", "", Go$Uint32, ""], ["Oerrors", "", Go$Uint32, ""], ["Collisions", "", Go$Uint32, ""], ["Ibytes", "", Go$Uint32, ""], ["Obytes", "", Go$Uint32, ""], ["Imcasts", "", Go$Uint32, ""], ["Omcasts", "", Go$Uint32, ""], ["Iqdrops", "", Go$Uint32, ""], ["Noproto", "", Go$Uint32, ""], ["Recvtiming", "", Go$Uint32, ""], ["Xmittiming", "", Go$Uint32, ""], ["Lastchange", "", Timeval32, ""], ["Unused2", "", Go$Uint32, ""], ["Hwassist", "", Go$Uint32, ""], ["Reserved1", "", Go$Uint32, ""], ["Reserved2", "", Go$Uint32, ""]]);
-0IfData00syscall	Timeval320ÇË	IfaMsghdrÇÆ	IfaMsghdr = go$pkg.IfaMsghdr = go$newType(0, "Struct", "syscall.IfaMsghdr", "IfaMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Metric_) {
+Ç		IfData.init([["Type", "Type", "", Go$Uint8, ""], ["Typelen", "Typelen", "", Go$Uint8, ""], ["Physical", "Physical", "", Go$Uint8, ""], ["Addrlen", "Addrlen", "", Go$Uint8, ""], ["Hdrlen", "Hdrlen", "", Go$Uint8, ""], ["Recvquota", "Recvquota", "", Go$Uint8, ""], ["Xmitquota", "Xmitquota", "", Go$Uint8, ""], ["Unused1", "Unused1", "", Go$Uint8, ""], ["Mtu", "Mtu", "", Go$Uint32, ""], ["Metric", "Metric", "", Go$Uint32, ""], ["Baudrate", "Baudrate", "", Go$Uint32, ""], ["Ipackets", "Ipackets", "", Go$Uint32, ""], ["Ierrors", "Ierrors", "", Go$Uint32, ""], ["Opackets", "Opackets", "", Go$Uint32, ""], ["Oerrors", "Oerrors", "", Go$Uint32, ""], ["Collisions", "Collisions", "", Go$Uint32, ""], ["Ibytes", "Ibytes", "", Go$Uint32, ""], ["Obytes", "Obytes", "", Go$Uint32, ""], ["Imcasts", "Imcasts", "", Go$Uint32, ""], ["Omcasts", "Omcasts", "", Go$Uint32, ""], ["Iqdrops", "Iqdrops", "", Go$Uint32, ""], ["Noproto", "Noproto", "", Go$Uint32, ""], ["Recvtiming", "Recvtiming", "", Go$Uint32, ""], ["Xmittiming", "Xmittiming", "", Go$Uint32, ""], ["Lastchange", "Lastchange", "", Timeval32, ""], ["Unused2", "Unused2", "", Go$Uint32, ""], ["Hwassist", "Hwassist", "", Go$Uint32, ""], ["Reserved1", "Reserved1", "", Go$Uint32, ""], ["Reserved2", "Reserved2", "", Go$Uint32, ""]]);
+0IfData00syscall	Timeval320Ç7	IfaMsghdrÇÆ	IfaMsghdr = go$pkg.IfaMsghdr = go$newType(0, "Struct", "syscall.IfaMsghdr", "IfaMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Metric_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -2472,8 +2469,8 @@ Log2phys-t0 0Ç2FsidÅ‡	Fsid = go$pkg.Fsid = go$newType(0, "Struct", "syscall.
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 		this.Metric = Metric_ !== undefined ? Metric_ : 0;
 	});
-Ç		IfaMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Metric", "", Go$Int32, ""]]);
-0	IfaMsghdr0 0Çí
+Çg		IfaMsghdr.init([["Msglen", "Msglen", "", Go$Uint16, ""], ["Version", "Version", "", Go$Uint8, ""], ["Type", "Type", "", Go$Uint8, ""], ["Addrs", "Addrs", "", Go$Int32, ""], ["Flags", "Flags", "", Go$Int32, ""], ["Index", "Index", "", Go$Uint16, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Metric", "Metric", "", Go$Int32, ""]]);
+0	IfaMsghdr0 0Çÿ
 IfmaMsghdrÇt	IfmaMsghdr = go$pkg.IfmaMsghdr = go$newType(0, "Struct", "syscall.IfmaMsghdr", "IfmaMsghdr", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
@@ -2484,9 +2481,9 @@ IfmaMsghdrÇt	IfmaMsghdr = go$pkg.IfmaMsghdr = go$newType(0, "Struct", "syscall
 		this.Index = Index_ !== undefined ? Index_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 	});
-Å˚		IfmaMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
+Ç@		IfmaMsghdr.init([["Msglen", "Msglen", "", Go$Uint16, ""], ["Version", "Version", "", Go$Uint8, ""], ["Type", "Type", "", Go$Uint8, ""], ["Addrs", "Addrs", "", Go$Int32, ""], ["Flags", "Flags", "", Go$Int32, ""], ["Index", "Index", "", Go$Uint16, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
 0
-IfmaMsghdr0 0Ç IfmaMsghdr2Çæ	IfmaMsghdr2 = go$pkg.IfmaMsghdr2 = go$newType(0, "Struct", "syscall.IfmaMsghdr2", "IfmaMsghdr2", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Refcount_) {
+IfmaMsghdr0 0ÇQIfmaMsghdr2Çæ	IfmaMsghdr2 = go$pkg.IfmaMsghdr2 = go$newType(0, "Struct", "syscall.IfmaMsghdr2", "IfmaMsghdr2", "syscall", function(Msglen_, Version_, Type_, Addrs_, Flags_, Index_, Pad_cgo_0_, Refcount_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -2497,8 +2494,8 @@ IfmaMsghdr0 0Ç IfmaMsghdr2Çæ	IfmaMsghdr2 = go$pkg.IfmaMsghdr2 = go$newType(
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 		this.Refcount = Refcount_ !== undefined ? Refcount_ : 0;
 	});
-Ç		IfmaMsghdr2.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Addrs", "", Go$Int32, ""], ["Flags", "", Go$Int32, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Refcount", "", Go$Int32, ""]]);
-0IfmaMsghdr20 0ÇëRtMsghdrÇ∫	RtMsghdr = go$pkg.RtMsghdr = go$newType(0, "Struct", "syscall.RtMsghdr", "RtMsghdr", "syscall", function(Msglen_, Version_, Type_, Index_, Pad_cgo_0_, Flags_, Addrs_, Pid_, Seq_, Errno_, Use_, Inits_, Rmx_) {
+Çm		IfmaMsghdr2.init([["Msglen", "Msglen", "", Go$Uint16, ""], ["Version", "Version", "", Go$Uint8, ""], ["Type", "Type", "", Go$Uint8, ""], ["Addrs", "Addrs", "", Go$Int32, ""], ["Flags", "Flags", "", Go$Int32, ""], ["Index", "Index", "", Go$Uint16, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Refcount", "Refcount", "", Go$Int32, ""]]);
+0IfmaMsghdr20 0ÇRtMsghdrÇ∫	RtMsghdr = go$pkg.RtMsghdr = go$newType(0, "Struct", "syscall.RtMsghdr", "RtMsghdr", "syscall", function(Msglen_, Version_, Type_, Index_, Pad_cgo_0_, Flags_, Addrs_, Pid_, Seq_, Errno_, Use_, Inits_, Rmx_) {
 		this.go$val = this;
 		this.Msglen = Msglen_ !== undefined ? Msglen_ : 0;
 		this.Version = Version_ !== undefined ? Version_ : 0;
@@ -2514,9 +2511,9 @@ IfmaMsghdr0 0Ç IfmaMsghdr2Çæ	IfmaMsghdr2 = go$pkg.IfmaMsghdr2 = go$newType(
 		this.Inits = Inits_ !== undefined ? Inits_ : 0;
 		this.Rmx = Rmx_ !== undefined ? Rmx_ : new RtMetrics.Ptr();
 	});
-Ç°		RtMsghdr.init([["Msglen", "", Go$Uint16, ""], ["Version", "", Go$Uint8, ""], ["Type", "", Go$Uint8, ""], ["Index", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Flags", "", Go$Int32, ""], ["Addrs", "", Go$Int32, ""], ["Pid", "", Go$Int32, ""], ["Seq", "", Go$Int32, ""], ["Errno", "", Go$Int32, ""], ["Use", "", Go$Int32, ""], ["Inits", "", Go$Uint32, ""], ["Rmx", "", RtMetrics, ""]]);
+Ç		RtMsghdr.init([["Msglen", "Msglen", "", Go$Uint16, ""], ["Version", "Version", "", Go$Uint8, ""], ["Type", "Type", "", Go$Uint8, ""], ["Index", "Index", "", Go$Uint16, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""], ["Flags", "Flags", "", Go$Int32, ""], ["Addrs", "Addrs", "", Go$Int32, ""], ["Pid", "Pid", "", Go$Int32, ""], ["Seq", "Seq", "", Go$Int32, ""], ["Errno", "Errno", "", Go$Int32, ""], ["Use", "Use", "", Go$Int32, ""], ["Inits", "Inits", "", Go$Uint32, ""], ["Rmx", "Rmx", "", RtMetrics, ""]]);
 0
-RtMsghdr00syscall	RtMetrics0Ç	RtMetricsÇq	RtMetrics = go$pkg.RtMetrics = go$newType(0, "Struct", "syscall.RtMetrics", "RtMetrics", "syscall", function(Locks_, Mtu_, Hopcount_, Expire_, Recvpipe_, Sendpipe_, Ssthresh_, Rtt_, Rttvar_, Pksent_, Filler_) {
+RtMsghdr00syscall	RtMetrics0Ç~	RtMetricsÇq	RtMetrics = go$pkg.RtMetrics = go$newType(0, "Struct", "syscall.RtMetrics", "RtMetrics", "syscall", function(Locks_, Mtu_, Hopcount_, Expire_, Recvpipe_, Sendpipe_, Ssthresh_, Rtt_, Rttvar_, Pksent_, Filler_) {
 		this.go$val = this;
 		this.Locks = Locks_ !== undefined ? Locks_ : 0;
 		this.Mtu = Mtu_ !== undefined ? Mtu_ : 0;
@@ -2530,39 +2527,39 @@ IfmaMsghdr0 0Ç IfmaMsghdr2Çæ	IfmaMsghdr2 = go$pkg.IfmaMsghdr2 = go$newType(
 		this.Pksent = Pksent_ !== undefined ? Pksent_ : 0;
 		this.Filler = Filler_ !== undefined ? Filler_ : go$makeNativeArray("Uint32", 4, function() { return 0; });
 	});
-Ç|		RtMetrics.init([["Locks", "", Go$Uint32, ""], ["Mtu", "", Go$Uint32, ""], ["Hopcount", "", Go$Uint32, ""], ["Expire", "", Go$Int32, ""], ["Recvpipe", "", Go$Uint32, ""], ["Sendpipe", "", Go$Uint32, ""], ["Ssthresh", "", Go$Uint32, ""], ["Rtt", "", Go$Uint32, ""], ["Rttvar", "", Go$Uint32, ""], ["Pksent", "", Go$Uint32, ""], ["Filler", "", (go$arrayType(Go$Uint32, 4)), ""]]);
-0	RtMetrics0 0Çv
+ÇÎ		RtMetrics.init([["Locks", "Locks", "", Go$Uint32, ""], ["Mtu", "Mtu", "", Go$Uint32, ""], ["Hopcount", "Hopcount", "", Go$Uint32, ""], ["Expire", "Expire", "", Go$Int32, ""], ["Recvpipe", "Recvpipe", "", Go$Uint32, ""], ["Sendpipe", "Sendpipe", "", Go$Uint32, ""], ["Ssthresh", "Ssthresh", "", Go$Uint32, ""], ["Rtt", "Rtt", "", Go$Uint32, ""], ["Rttvar", "Rttvar", "", Go$Uint32, ""], ["Pksent", "Pksent", "", Go$Uint32, ""], ["Filler", "Filler", "", (go$arrayType(Go$Uint32, 4)), ""]]);
+0	RtMetrics0 0Çà
 BpfVersionÇ	BpfVersion = go$pkg.BpfVersion = go$newType(0, "Struct", "syscall.BpfVersion", "BpfVersion", "syscall", function(Major_, Minor_) {
 		this.go$val = this;
 		this.Major = Major_ !== undefined ? Major_ : 0;
 		this.Minor = Minor_ !== undefined ? Minor_ : 0;
 	});
-Q		BpfVersion.init([["Major", "", Go$Uint16, ""], ["Minor", "", Go$Uint16, ""]]);
+c		BpfVersion.init([["Major", "Major", "", Go$Uint16, ""], ["Minor", "Minor", "", Go$Uint16, ""]]);
 0
-BpfVersion0 0ÇVBpfStatÅÔ	BpfStat = go$pkg.BpfStat = go$newType(0, "Struct", "syscall.BpfStat", "BpfStat", "syscall", function(Recv_, Drop_) {
+BpfVersion0 0ÇfBpfStatÅÔ	BpfStat = go$pkg.BpfStat = go$newType(0, "Struct", "syscall.BpfStat", "BpfStat", "syscall", function(Recv_, Drop_) {
 		this.go$val = this;
 		this.Recv = Recv_ !== undefined ? Recv_ : 0;
 		this.Drop = Drop_ !== undefined ? Drop_ : 0;
 	});
-L		BpfStat.init([["Recv", "", Go$Uint32, ""], ["Drop", "", Go$Uint32, ""]]);
-0	BpfStat0 0ÇZ
+\		BpfStat.init([["Recv", "Recv", "", Go$Uint32, ""], ["Drop", "Drop", "", Go$Uint32, ""]]);
+0	BpfStat0 0Çw
 BpfProgramÇî	BpfProgram = go$pkg.BpfProgram = go$newType(0, "Struct", "syscall.BpfProgram", "BpfProgram", "syscall", function(Len_, Pad_cgo_0_, Insns_) {
 		this.go$val = this;
 		this.Len = Len_ !== undefined ? Len_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 4, function() { return 0; });
 		this.Insns = Insns_ !== undefined ? Insns_ : (go$ptrType(BpfInsn)).nil;
 	});
-Åè		BpfProgram.init([["Len", "", Go$Uint32, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Insns", "", (go$ptrType(BpfInsn)), ""]]);
+Å¨		BpfProgram.init([["Len", "Len", "", Go$Uint32, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Insns", "Insns", "", (go$ptrType(BpfInsn)), ""]]);
 0
-BpfProgram00syscallBpfInsn0ÇÿBpfInsnÇ?	BpfInsn = go$pkg.BpfInsn = go$newType(0, "Struct", "syscall.BpfInsn", "BpfInsn", "syscall", function(Code_, Jt_, Jf_, K_) {
+BpfProgram00syscallBpfInsn0ÇÚBpfInsnÇ?	BpfInsn = go$pkg.BpfInsn = go$newType(0, "Struct", "syscall.BpfInsn", "BpfInsn", "syscall", function(Code_, Jt_, Jf_, K_) {
 		this.go$val = this;
 		this.Code = Code_ !== undefined ? Code_ : 0;
 		this.Jt = Jt_ !== undefined ? Jt_ : 0;
 		this.Jf = Jf_ !== undefined ? Jf_ : 0;
 		this.K = K_ !== undefined ? K_ : 0;
 	});
-}		BpfInsn.init([["Code", "", Go$Uint16, ""], ["Jt", "", Go$Uint8, ""], ["Jf", "", Go$Uint8, ""], ["K", "", Go$Uint32, ""]]);
-0	BpfInsn0 0ÇBpfHdrÇ	BpfHdr = go$pkg.BpfHdr = go$newType(0, "Struct", "syscall.BpfHdr", "BpfHdr", "syscall", function(Tstamp_, Caplen_, Datalen_, Hdrlen_, Pad_cgo_0_) {
+Åñ		BpfInsn.init([["Code", "Code", "", Go$Uint16, ""], ["Jt", "Jt", "", Go$Uint8, ""], ["Jf", "Jf", "", Go$Uint8, ""], ["K", "K", "", Go$Uint32, ""]]);
+0	BpfInsn0 0Ç7BpfHdrÇ	BpfHdr = go$pkg.BpfHdr = go$newType(0, "Struct", "syscall.BpfHdr", "BpfHdr", "syscall", function(Tstamp_, Caplen_, Datalen_, Hdrlen_, Pad_cgo_0_) {
 		this.go$val = this;
 		this.Tstamp = Tstamp_ !== undefined ? Tstamp_ : new Timeval32.Ptr();
 		this.Caplen = Caplen_ !== undefined ? Caplen_ : 0;
@@ -2570,8 +2567,8 @@ BpfProgram00syscallBpfInsn0ÇÿBpfInsnÇ?	BpfInsn = go$pkg.BpfInsn = go$
 		this.Hdrlen = Hdrlen_ !== undefined ? Hdrlen_ : 0;
 		this.Pad_cgo_0 = Pad_cgo_0_ !== undefined ? Pad_cgo_0_ : go$makeNativeArray("Uint8", 2, function() { return 0; });
 	});
-Å¬		BpfHdr.init([["Tstamp", "", Timeval32, ""], ["Caplen", "", Go$Uint32, ""], ["Datalen", "", Go$Uint32, ""], ["Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
-0BpfHdr00syscall	Timeval320ÇÇTermiosÇ:	Termios = go$pkg.Termios = go$newType(0, "Struct", "syscall.Termios", "Termios", "syscall", function(Iflag_, Oflag_, Cflag_, Lflag_, Cc_, Pad_cgo_0_, Ispeed_, Ospeed_) {
+Å¯		BpfHdr.init([["Tstamp", "Tstamp", "", Timeval32, ""], ["Caplen", "Caplen", "", Go$Uint32, ""], ["Datalen", "Datalen", "", Go$Uint32, ""], ["Hdrlen", "Hdrlen", "", Go$Uint16, ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 2)), ""]]);
+0BpfHdr00syscall	Timeval320ÇÕTermiosÇ:	Termios = go$pkg.Termios = go$newType(0, "Struct", "syscall.Termios", "Termios", "syscall", function(Iflag_, Oflag_, Cflag_, Lflag_, Cc_, Pad_cgo_0_, Ispeed_, Ospeed_) {
 		this.go$val = this;
 		this.Iflag = Iflag_ !== undefined ? Iflag_ : new Go$Uint64(0, 0);
 		this.Oflag = Oflag_ !== undefined ? Oflag_ : new Go$Uint64(0, 0);
@@ -2582,7 +2579,7 @@ BpfProgram00syscallBpfInsn0ÇÿBpfInsnÇ?	BpfInsn = go$pkg.BpfInsn = go$
 		this.Ispeed = Ispeed_ !== undefined ? Ispeed_ : new Go$Uint64(0, 0);
 		this.Ospeed = Ospeed_ !== undefined ? Ospeed_ : new Go$Uint64(0, 0);
 	});
-Ç*		Termios.init([["Iflag", "", Go$Uint64, ""], ["Oflag", "", Go$Uint64, ""], ["Cflag", "", Go$Uint64, ""], ["Lflag", "", Go$Uint64, ""], ["Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "", Go$Uint64, ""], ["Ospeed", "", Go$Uint64, ""]]);
+Çu		Termios.init([["Iflag", "Iflag", "", Go$Uint64, ""], ["Oflag", "Oflag", "", Go$Uint64, ""], ["Cflag", "Cflag", "", Go$Uint64, ""], ["Lflag", "Lflag", "", Go$Uint64, ""], ["Cc", "Cc", "", (go$arrayType(Go$Uint8, 20)), ""], ["Pad_cgo_0", "Pad_cgo_0", "", (go$arrayType(Go$Uint8, 4)), ""], ["Ispeed", "Ispeed", "", Go$Uint64, ""], ["Ospeed", "Ospeed", "", Go$Uint64, ""]]);
 0	Termios0 0Å¢BpfStmtt	BpfStmt = go$pkg.BpfStmt = function(code, k) {
 		return new BpfInsn.Ptr((code << 16 >>> 16), 0, 0, (k >>> 0));
 	};
@@ -3200,8 +3197,8 @@ Credential0syscallErrno0Ç€forkExecPipeÇí	forkExecPipe = function(p) {
 		/* */ } break; } }; return go$f();
 	};
  0
-forkExec0Ça0syscallErrno0syscallClose0syscall
-WaitStatus0syscallzeroProcAttr0syscallforkAndExecInChild0syscallSysProcAttr0syscallzeroSysProcAttr0syscallforkExecPipe0syscallreadlen0syscallWait40syscallRusage0syscallProcAttr0syscallBytePtrFromString0syscallSlicePtrFromStrings0syscallForkLock0ÇForkExecÅ–	ForkExec = go$pkg.ForkExec = function(argv0, argv, attr) {
+forkExec0Ça0syscallErrno0syscallreadlen0syscallWait40syscallRusage0syscallProcAttr0syscallzeroProcAttr0syscallForkLock0syscallforkAndExecInChild0syscallSysProcAttr0syscallzeroSysProcAttr0syscallBytePtrFromString0syscallSlicePtrFromStrings0syscallforkExecPipe0syscallClose0syscall
+WaitStatus0ÇForkExecÅ–	ForkExec = go$pkg.ForkExec = function(argv0, argv, attr) {
 		var pid, err, _tuple;
 		pid = 0;
 		err = null;
@@ -3329,8 +3326,8 @@ rsaAlignOf0 0ÇVRouteRIBÇ	RouteRIB = go$pkg.RouteRIB = function(facility, p
 		return new (go$sliceType(Sockaddr))(sas);
 	};
 	RouteMessage.prototype.sockaddr = function() { return this.go$val.sockaddr(); };
- 0RouteMessagesockaddr0Ç 0syscallRawSockaddr0syscallanyToSockaddr0syscallSockaddr0syscallSockaddrInet40syscallRawSockaddrInet60syscallSockaddrInet60syscall
-rsaAlignOf0syscallRouteMessage0syscallRawSockaddrAny0syscallRawSockaddrInet40ÇÜ Ç˜	InterfaceMessage.Ptr.prototype.sockaddr = function() {
+ 0RouteMessagesockaddr0Ç 0syscallRouteMessage0syscallRawSockaddrAny0syscallSockaddr0syscallRawSockaddrInet60syscall
+rsaAlignOf0syscallRawSockaddr0syscallanyToSockaddr0syscallRawSockaddrInet40syscallSockaddrInet40syscallSockaddrInet60ÇÜ Ç˜	InterfaceMessage.Ptr.prototype.sockaddr = function() {
 		var sas, m, _tuple, _array, _struct, _view, sa, err;
 		sas = (go$sliceType(Sockaddr)).nil;
 		m = this;
@@ -3464,8 +3461,8 @@ anyMessage0syscallErrno0syscalltoRoutingMessage0ÇeParseRoutingSocka
 	};
 	anyMessage.prototype.toRoutingMessage = function(b) { return this.go$val.toRoutingMessage(b); };
  0
-anyMessagetoRoutingMessage0Ç/0syscallRouteMessage0syscallRtMsghdr0syscall	RtMetrics0syscallInterfaceAddrMessage0syscallIfmaMsghdr20syscall
-anyMessage0syscallInterfaceMessage0syscallIfMsghdr0syscall	Timeval320syscallIfData0syscall	IfaMsghdr0(syscallInterfaceMulticastAddrMessage0Ç	 Ç:	InterfaceMulticastAddrMessage.Ptr.prototype.sockaddr = function() {
+anyMessagetoRoutingMessage0Ç/0syscallRouteMessage0syscallRtMsghdr0syscallInterfaceMessage0syscallIfMsghdr0syscallIfData0(syscallInterfaceMulticastAddrMessage0syscall
+anyMessage0syscall	RtMetrics0syscall	Timeval320syscallInterfaceAddrMessage0syscall	IfaMsghdr0syscallIfmaMsghdr20Ç	 Ç:	InterfaceMulticastAddrMessage.Ptr.prototype.sockaddr = function() {
 		var sas, m, b, i, y, _array, _struct, _view, rsa, _ref, _tuple, _array$1, _struct$1, _array$2, _struct$2, _view$1, _view$2, sa, e;
 		sas = (go$sliceType(Sockaddr)).nil;
 		m = this;
@@ -3968,7 +3965,7 @@ WaitStatus0Çﬂ Çé	SockaddrInet4.Ptr.prototype.sockaddr = function() {
 		}
 		return [null, new Errno(47)];
 	};
- 0anyToSockaddr0ÅÚ0syscallErrno0syscallSockaddrUnix0syscallSockaddrInet40syscallRawSockaddrInet60syscallRawSockaddrDatalink0syscallSockaddrDatalink0syscallRawSockaddrUnix0syscallRawSockaddrInet40syscallSockaddrInet60ÇáAcceptÇÎ	Accept = go$pkg.Accept = function(fd) {
+ 0anyToSockaddr0ÅÚ0syscallRawSockaddrUnix0syscallRawSockaddrInet60syscallRawSockaddrDatalink0syscallSockaddrDatalink0syscallErrno0syscallSockaddrUnix0syscallRawSockaddrInet40syscallSockaddrInet40syscallSockaddrInet60ÇáAcceptÇÎ	Accept = go$pkg.Accept = function(fd) {
 		var nfd, sa, err, rsa, len, _tuple, v, _tuple$1, _tuple$2;
 		nfd = 0;
 		sa = null;
@@ -4476,7 +4473,7 @@ RawSyscallt	RawSyscall = go$pkg.RawSyscall = function() {
 RawSyscall0 0ÅôRawSyscall6w	RawSyscall6 = go$pkg.RawSyscall6 = function() {
 		throw go$panic("Native function not implemented: RawSyscall6");
 	};
- 0RawSyscall60 0ÇÄ ÇE	mmapper.Ptr.prototype.Mmap = function(fd, offset, length, prot, flags) {
+ 0RawSyscall60 0Çñ Ç[	mmapper.Ptr.prototype.Mmap = function(fd, offset, length, prot, flags) {
 		var data, err, m, _tuple, _tuple$1, addr, errno, _tuple$2, sl, b, v, _slice, _index, _slice$1, _index$1, p, _key, _tuple$3;
 		data = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -4492,7 +4489,7 @@ RawSyscall0 0ÅôRawSyscall6w	RawSyscall6 = go$pkg.RawSyscall6 = function() {
 				_tuple$2 = [(go$sliceType(Go$Uint8)).nil, errno], data = _tuple$2[0], err = _tuple$2[1];
 				return [data, err];
 			}
-			sl = new (go$structType([["addr", "syscall", Go$Uintptr, ""], ["len", "syscall", Go$Int, ""], ["cap", "syscall", Go$Int, ""]])).Ptr(addr, length, length);
+			sl = new (go$structType([["addr", "addr", "syscall", Go$Uintptr, ""], ["len", "len", "syscall", Go$Int, ""], ["cap", "cap", "syscall", Go$Int, ""]])).Ptr(addr, length, length);
 			b = sl;
 			p = new (go$ptrType(Go$Uint8))(function() { return (_slice = b, _index = (b.capacity - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v) { _slice$1 = b, _index$1 = b.capacity - 1 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v) : go$throwRuntimeError("index out of range"); });
 			m.Mutex.Lock();

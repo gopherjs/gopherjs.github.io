@@ -1,4 +1,4 @@
-0ƒ>ì
+0ƒ>ý
 image/draw‚Npackage draw
 import image "image"
 import color "image/color"
@@ -72,23 +72,23 @@ func (? *@"image/color".Palette) @"image/color".Convert(@"image/color".c @"image
 func (? *@"image/color".Palette) @"image/color".Index(@"image/color".c @"image/color".Color) (? int)
 $$
 0|runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage
-image/draw0&0imageimage0image/colorcolor0ƒ&á0‚ÊImage_	Image = go$pkg.Image = go$newType(0, "Interface", "draw.Image", "Image", "image/draw", null);
+image/draw0&0imageimage0image/colorcolor0ƒ&ò0‚ÊImage_	Image = go$pkg.Image = go$newType(0, "Interface", "draw.Image", "Image", "image/draw", null);
 ‚		Image.init([["At", "", (go$funcType([Go$Int, Go$Int], [color.Color], false))], ["Bounds", "", (go$funcType([], [image.Rectangle], false))], ["ColorModel", "", (go$funcType([], [color.Model], false))], ["Set", "", (go$funcType([Go$Int, Go$Int, color.Color], [], false))]]);
 0Image0@0image/colorColor0image	Rectangle0image/colorModel0‚ 	Quantizero	Quantizer = go$pkg.Quantizer = go$newType(0, "Interface", "draw.Quantizer", "Quantizer", "image/draw", null);
 k		Quantizer.init([["Quantize", "", (go$funcType([color.Palette, image.Image], [color.Palette], false))]]);
-0	Quantizer0(0image/colorPalette0imageImage0‚qOpM	Op = go$pkg.Op = go$newType(4, "Int", "draw.Op", "Op", "image/draw", null);
-Ê		Op.methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false]];
-		(go$ptrType(Op)).methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false]];
+0	Quantizer0(0image/colorPalette0imageImage0‚yOpM	Op = go$pkg.Op = go$newType(4, "Int", "draw.Op", "Op", "image/draw", null);
+Ò		Op.methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false, -1]];
+		(go$ptrType(Op)).methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false, -1]];
 0Op0I0
 image/drawImage0image	Rectangle0imageImage0imagePoint0‚1Drawerc	Drawer = go$pkg.Drawer = go$newType(0, "Interface", "draw.Drawer", "Drawer", "image/draw", null);
 m		Drawer.init([["Draw", "", (go$funcType([Image, image.Rectangle, image.Image, image.Point], [], false))]]);
 0Drawer0I0
-image/drawImage0image	Rectangle0imageImage0imagePoint0‚floydSteinberg¡	floydSteinberg = go$pkg.floydSteinberg = go$newType(0, "Struct", "draw.floydSteinberg", "floydSteinberg", "image/draw", function() {
+image/drawImage0image	Rectangle0imageImage0imagePoint0‚floydSteinberg¡	floydSteinberg = go$pkg.floydSteinberg = go$newType(0, "Struct", "draw.floydSteinberg", "floydSteinberg", "image/draw", function() {
 		this.go$val = this;
 	});
-ý		floydSteinberg.init([]);
-		floydSteinberg.methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false]];
-		(go$ptrType(floydSteinberg)).methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false]];
+‚		floydSteinberg.methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false, -1]];
+		(go$ptrType(floydSteinberg)).methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false, -1]];
+		floydSteinberg.init([]);
 0floydSteinberg0I0
 image/drawImage0image	Rectangle0imageImage0imagePoint0‚‡ ‚)	Op.prototype.Draw = function(dst, r, src, sp) {
 		var op, _struct, _struct$1, _struct$2, _struct$3;
@@ -259,19 +259,19 @@ image/drawDrawMask0imagePoint0image	Rectangle0‚+DrawMask‚)b	DrawM
 		}
 	};
  0
-DrawMask0‚ÿ0imagePoint0image	Rectangle0
-image/drawdrawNRGBAOver0
-image/drawdrawFillSrc0
-image/drawdrawCopySrc0image/colorRGBA640
-image/drawclip0imagePaletted0imageAlpha0imageNRGBA0image/colorTransparent0imageRGBA0imageYCbCr0
-image/drawdrawCopyOver0
-image/draw	drawYCbCr0
-image/drawdrawGlyphOver0
+DrawMask0‚ÿ0
+image/drawdrawFillOver0
+image/drawclip0imageAlpha0
 image/drawdrawNRGBASrc0
-image/drawdrawRGBA0imageUniform0
-image/drawdrawFillOver0
-image/drawprocessBackward0
-image/drawdrawPaletted0‚drawFillOver‚ð	drawFillOver = function(dst, r, src) {
+image/drawdrawRGBA0
+image/drawprocessBackward0imageRGBA0imagePaletted0imageNRGBA0imageYCbCr0imagePoint0
+image/drawdrawCopyOver0
+image/drawdrawNRGBAOver0
+image/draw	drawYCbCr0
+image/drawdrawGlyphOver0
+image/drawdrawFillSrc0
+image/drawdrawCopySrc0imageUniform0image	Rectangle0
+image/drawdrawPaletted0image/colorRGBA640image/colorTransparent0‚drawFillOver‚ð	drawFillOver = function(dst, r, src) {
 		var _tuple, sr, sg, sb, sa, x, x$1, a, i0, x$2, x$3, i1, y, i, _slice, _index, dr, _slice$1, _index$1, dg, _slice$2, _index$2, db, _slice$3, _index$3, da, _q, _slice$4, _index$4, _q$1, _slice$5, _index$5, _q$2, _slice$6, _index$6, _q$3, _slice$7, _index$7;
 		_tuple = src.RGBA(), sr = _tuple[0], sg = _tuple[1], sb = _tuple[2], sa = _tuple[3];
 		a = (x = (65535 - sa >>> 0), x$1 = 257, (((x >>> 16 << 16) * x$1 >>> 0) + (x << 16 >>> 16) * x$1) >>> 0);
