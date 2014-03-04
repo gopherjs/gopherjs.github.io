@@ -26,6 +26,7 @@ func main() {
 		scope.Set("showGenerated", false)
 		scope.Set("generated", `(generated code will be shown here after clicking "Run")`)
 
+		t := translator.New()
 		packages := make(map[string]*translator.Archive)
 		fileSet := token.NewFileSet()
 		var pkgsToLoad []string
@@ -92,7 +93,7 @@ func main() {
 				pkgsToLoad = append(pkgsToLoad, path)
 				return &translator.Archive{}, nil
 			}
-			mainPkg, err := translator.TranslatePackage("main", []*ast.File{file}, fileSet, importPackage)
+			mainPkg, err := t.TranslatePackage("main", []*ast.File{file}, fileSet, importPackage)
 			packages["main"] = mainPkg
 			if err != nil && len(pkgsToLoad) == 0 {
 				if list, ok := err.(translator.ErrorList); ok {
@@ -132,7 +133,7 @@ func main() {
 						}
 
 						data := js.Global.Get("Uint8Array").New(req.Get("response")).Interface().([]byte)
-						packages[path], err = translator.ReadArchive(path+".a", path, []byte(data))
+						packages[path], err = t.ReadArchive(path+".a", path, []byte(data))
 						if err != nil {
 							scope.Apply(func() {
 								scope.Set("output", []Line{Line{"type": "err", "content": err.Error()}})
@@ -154,12 +155,12 @@ func main() {
 			}
 
 			mainPkgCode := bytes.NewBuffer(nil)
-			translator.WritePkgCode(packages["main"], mainPkgCode)
+			t.WritePkgCode(packages["main"], mainPkgCode)
 			scope.Set("generated", mainPkgCode.String())
 
 			jsCode := bytes.NewBuffer(nil)
 			jsCode.WriteString("try{\n")
-			translator.WriteProgramCode(allPkgs, "main", jsCode)
+			t.WriteProgramCode(allPkgs, "main", jsCode)
 			jsCode.WriteString("} catch (err) {\ngo$panicHandler(err.message);\n}\n")
 			js.Global.Call("eval", jsCode.String())
 		}
