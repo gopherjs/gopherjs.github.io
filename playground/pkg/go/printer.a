@@ -1,4 +1,4 @@
-0É¿
+0É
 go/printerÇB0package printer
 import bytes "bytes"
 import ast "go/ast"
@@ -205,12 +205,12 @@ $$
 0ÅŒruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/asttext/tabwriter
 go/printer0Å¡0bytesbytes0go/astast0go/tokentoken0unicode/utf8utf80
-fmtfmt0ioio0osos0strconvstrconv0stringsstrings0text/tabwriter	tabwriter0unicodeunicode0É—‰0ÅùexprListModey	exprListMode = go$pkg.exprListMode = go$newType(4, "Uint", "printer.exprListMode", "exprListMode", "go/printer", null);
+fmtfmt0ioio0osos0strconvstrconv0stringsstrings0text/tabwriter	tabwriter0unicodeunicode0ÉÃ<0ÅùexprListModey	exprListMode = go$pkg.exprListMode = go$newType(4, "Uint", "printer.exprListMode", "exprListMode", "go/printer", null);
  0exprListMode0 0Åí
 whiteSpacer	whiteSpace = go$pkg.whiteSpace = go$newType(1, "Uint8", "printer.whiteSpace", "whiteSpace", "go/printer", null);
  0
 whiteSpace0 0rpmode\	pmode = go$pkg.pmode = go$newType(4, "Int", "printer.pmode", "pmode", "go/printer", null);
- 0pmode0 0Ç¥printerÇ‚	printer = go$pkg.printer = go$newType(0, "Struct", "printer.printer", "printer", "go/printer", function(Config_, fset_, output_, indent_, mode_, impliedSemi_, lastTok_, wsbuf_, pos_, out_, last_, comments_, cindex_, useNodeComments_, comment_, commentOffset_, commentNewline_, nodeSizes_, cachedPos_, cachedLine_) {
+ 0pmode0 0ÇiprinterÇ‚	printer = go$pkg.printer = go$newType(0, "Struct", "printer.printer", "printer", "go/printer", function(Config_, fset_, output_, indent_, mode_, impliedSemi_, lastTok_, wsbuf_, pos_, out_, last_, comments_, cindex_, useNodeComments_, comment_, commentOffset_, commentNewline_, nodeSizes_, cachedPos_, cachedLine_) {
 		this.go$val = this;
 		this.Config = Config_ !== undefined ? Config_ : new Config.Ptr();
 		this.fset = fset_ !== undefined ? fset_ : (go$ptrType(token.FileSet)).nil;
@@ -235,13 +235,7 @@ whiteSpace0 0rpmode\	pmode = go$pkg.pmode = go$newType(4, "Int", "printer.pmo
 	});
 ÇÀ		(go$ptrType(printer)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false, 0], ["adjBlock", "go/printer", [Go$Int, whiteSpace, (go$ptrType(ast.BlockStmt))], [], false, -1], ["atLineBegin", "go/printer", [token.Position], [], false, -1], ["binaryExpr", "go/printer", [(go$ptrType(ast.BinaryExpr)), Go$Int, Go$Int, Go$Int], [], false, -1], ["block", "go/printer", [(go$ptrType(ast.BlockStmt)), Go$Int], [], false, -1], ["bodySize", "go/printer", [(go$ptrType(ast.BlockStmt)), Go$Int], [Go$Int], false, -1], ["commentBefore", "go/printer", [token.Position], [Go$Bool], false, -1], ["commentsHaveNewline", "go/printer", [(go$sliceType((go$ptrType(ast.Comment))))], [Go$Bool], false, -1], ["controlClause", "go/printer", [Go$Bool, ast.Stmt, ast.Expr, ast.Stmt], [], false, -1], ["decl", "go/printer", [ast.Decl], [], false, -1], ["declList", "go/printer", [(go$sliceType(ast.Decl))], [], false, -1], ["distanceFrom", "go/printer", [token.Pos], [Go$Int], false, -1], ["expr", "go/printer", [ast.Expr], [], false, -1], ["expr0", "go/printer", [ast.Expr, Go$Int], [], false, -1], ["expr1", "go/printer", [ast.Expr, Go$Int, Go$Int], [], false, -1], ["exprList", "go/printer", [token.Pos, (go$sliceType(ast.Expr)), Go$Int, exprListMode, token.Pos], [], false, -1], ["fieldList", "go/printer", [(go$ptrType(ast.FieldList)), Go$Bool, Go$Bool], [], false, -1], ["file", "go/printer", [(go$ptrType(ast.File))], [], false, -1], ["flush", "go/printer", [token.Position, token.Token], [Go$Bool, Go$Bool], false, -1], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false, 0], ["funcDecl", "go/printer", [(go$ptrType(ast.FuncDecl))], [], false, -1], ["genDecl", "go/printer", [(go$ptrType(ast.GenDecl))], [], false, -1], ["identList", "go/printer", [(go$sliceType((go$ptrType(ast.Ident)))), Go$Bool], [], false, -1], ["indentList", "go/printer", [(go$sliceType(ast.Expr))], [Go$Bool], false, -1], ["init", "go/printer", [(go$ptrType(Config)), (go$ptrType(token.FileSet)), (go$mapType(ast.Node, Go$Int))], [], false, -1], ["internalError", "go/printer", [(go$sliceType(go$emptyInterface))], [], true, -1], ["intersperseComments", "go/printer", [token.Position, token.Token], [Go$Bool, Go$Bool], false, -1], ["isMultiLine", "go/printer", [ast.Node], [Go$Bool], false, -1], ["isOneLineFieldList", "go/printer", [(go$sliceType((go$ptrType(ast.Field))))], [Go$Bool], false, -1], ["lineFor", "go/printer", [token.Pos], [Go$Int], false, -1], ["linebreak", "go/printer", [Go$Int, Go$Int, whiteSpace, Go$Bool], [Go$Bool], false, -1], ["nextComment", "go/printer", [], [], false, -1], ["nodeSize", "go/printer", [ast.Node, Go$Int], [Go$Int], false, -1], ["parameters", "go/printer", [(go$ptrType(ast.FieldList))], [], false, -1], ["posFor", "go/printer", [token.Pos], [token.Position], false, -1], ["print", "go/printer", [(go$sliceType(go$emptyInterface))], [], true, -1], ["printNode", "go/printer", [go$emptyInterface], [go$error], false, -1], ["setComment", "go/printer", [(go$ptrType(ast.CommentGroup))], [], false, -1], ["setLineComment", "go/printer", [Go$String], [], false, -1], ["signature", "go/printer", [(go$ptrType(ast.FieldList)), (go$ptrType(ast.FieldList))], [], false, -1], ["spec", "go/printer", [ast.Spec, Go$Int, Go$Bool], [], false, -1], ["stmt", "go/printer", [ast.Stmt, Go$Bool], [], false, -1], ["stmtList", "go/printer", [(go$sliceType(ast.Stmt)), Go$Int, Go$Bool], [], false, -1], ["valueSpec", "go/printer", [(go$ptrType(ast.ValueSpec)), Go$Bool], [], false, -1], ["writeByte", "go/printer", [Go$Uint8, Go$Int], [], false, -1], ["writeComment", "go/printer", [(go$ptrType(ast.Comment))], [], false, -1], ["writeCommentPrefix", "go/printer", [token.Position, token.Position, (go$ptrType(ast.Comment)), (go$ptrType(ast.Comment)), token.Token], [], false, -1], ["writeCommentSuffix", "go/printer", [Go$Bool], [Go$Bool, Go$Bool], false, -1], ["writeString", "go/printer", [token.Position, Go$String, Go$Bool], [], false, -1], ["writeWhitespace", "go/printer", [Go$Int], [], false, -1]];
 		printer.init([["Config", "", "", Config, ""], ["fset", "fset", "go/printer", (go$ptrType(token.FileSet)), ""], ["output", "output", "go/printer", (go$sliceType(Go$Uint8)), ""], ["indent", "indent", "go/printer", Go$Int, ""], ["mode", "mode", "go/printer", pmode, ""], ["impliedSemi", "impliedSemi", "go/printer", Go$Bool, ""], ["lastTok", "lastTok", "go/printer", token.Token, ""], ["wsbuf", "wsbuf", "go/printer", (go$sliceType(whiteSpace)), ""], ["pos", "pos", "go/printer", token.Position, ""], ["out", "out", "go/printer", token.Position, ""], ["last", "last", "go/printer", token.Position, ""], ["comments", "comments", "go/printer", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""], ["cindex", "cindex", "go/printer", Go$Int, ""], ["useNodeComments", "useNodeComments", "go/printer", Go$Bool, ""], ["comment", "comment", "go/printer", (go$ptrType(ast.CommentGroup)), ""], ["commentOffset", "commentOffset", "go/printer", Go$Int, ""], ["commentNewline", "commentNewline", "go/printer", Go$Bool, ""], ["nodeSizes", "nodeSizes", "go/printer", (go$mapType(ast.Node, Go$Int)), ""], ["cachedPos", "cachedPos", "go/printer", token.Pos, ""], ["cachedLine", "cachedLine", "go/printer", Go$Int, ""]]);
-0	printer0ÇÁ0
-go/printer
-whiteSpace0go/astCommentGroup0go/tokenPos0go/tokenToken0ioWriter0go/ast	BlockStmt0go/ast
-BinaryExpr0go/astFile0go/astFuncDecl0
-go/printerpmode0
-go/printerConfig0go/astComment0go/astStmt0
-go/printerexprListMode0go/ast	FieldList0go/astIdent0go/astSpec0go/ast	ValueSpec0go/tokenFileSet0go/tokenPosition0go/astExpr0go/astDecl0go/astNode0go/astGenDecl0go/astField0Ç‘trimmerÇV	trimmer = go$pkg.trimmer = go$newType(0, "Struct", "printer.trimmer", "trimmer", "go/printer", function(output_, state_, space_) {
+0	printer0Çúgo/ast:BinaryExprgo/ast:BlockStmtgo/ast:Commentgo/ast:CommentGroupgo/ast:Declgo/ast:Exprgo/ast:Fieldgo/ast:FieldListgo/ast:Filego/ast:FuncDeclgo/ast:GenDeclgo/ast:Identgo/ast:Nodego/ast:Specgo/ast:Stmtgo/ast:ValueSpecgo/printer:Configgo/printer:exprListModego/printer:pmodego/printer:whiteSpacego/token:FileSetgo/token:Posgo/token:Positiongo/token:Token	io:Writer0Ç—trimmerÇV	trimmer = go$pkg.trimmer = go$newType(0, "Struct", "printer.trimmer", "trimmer", "go/printer", function(output_, state_, space_) {
 		this.go$val = this;
 		this.output = output_ !== undefined ? output_ : null;
 		this.state = state_ !== undefined ? state_ : 0;
@@ -249,8 +243,8 @@ go/printerexprListMode0go/ast	FieldList0go/astIdent0go/astSpec0
 	});
 ÇR		(go$ptrType(trimmer)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["resetSpace", "go/printer", [], [], false, -1]];
 		trimmer.init([["output", "output", "go/printer", io.Writer, ""], ["state", "state", "go/printer", Go$Int, ""], ["space", "space", "go/printer", (go$sliceType(Go$Uint8)), ""]]);
-0	trimmer00ioWriter0mModeY	Mode = go$pkg.Mode = go$newType(4, "Uint", "printer.Mode", "Mode", "go/printer", null);
- 0Mode0 0Ç5ConfigÇ<	Config = go$pkg.Config = go$newType(0, "Struct", "printer.Config", "Config", "go/printer", function(Mode_, Tabwidth_, Indent_) {
+0	trimmer0	io:Writer0mModeY	Mode = go$pkg.Mode = go$newType(4, "Uint", "printer.Mode", "Mode", "go/printer", null);
+ 0Mode0 0Ç)ConfigÇ<	Config = go$pkg.Config = go$newType(0, "Struct", "printer.Config", "Config", "go/printer", function(Mode_, Tabwidth_, Indent_) {
 		this.go$val = this;
 		this.Mode = Mode_ !== undefined ? Mode_ : 0;
 		this.Tabwidth = Tabwidth_ !== undefined ? Tabwidth_ : 0;
@@ -258,14 +252,13 @@ go/printerexprListMode0go/ast	FieldList0go/astIdent0go/astSpec0
 	});
 Çñ		(go$ptrType(Config)).methods = [["Fprint", "", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface], [go$error], false, -1], ["fprint", "go/printer", [io.Writer, (go$ptrType(token.FileSet)), go$emptyInterface, (go$mapType(ast.Node, Go$Int))], [go$error], false, -1]];
 		Config.init([["Mode", "Mode", "", Mode, ""], ["Tabwidth", "Tabwidth", "", Go$Int, ""], ["Indent", "Indent", "", Go$Int, ""]]);
-0Config0G0ioWriter0go/tokenFileSet0go/astNode0
-go/printerMode0Ç&CommentedNodeÇN	CommentedNode = go$pkg.CommentedNode = go$newType(0, "Struct", "printer.CommentedNode", "CommentedNode", "go/printer", function(Node_, Comments_) {
+0Config0;go/ast:Nodego/printer:Modego/token:FileSet	io:Writer0Ç#CommentedNodeÇN	CommentedNode = go$pkg.CommentedNode = go$newType(0, "Struct", "printer.CommentedNode", "CommentedNode", "go/printer", function(Node_, Comments_) {
 		this.go$val = this;
 		this.Node = Node_ !== undefined ? Node_ : null;
 		this.Comments = Comments_ !== undefined ? Comments_ : (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 	});
 Åó		CommentedNode.init([["Node", "Node", "", go$emptyInterface, ""], ["Comments", "Comments", "", (go$sliceType((go$ptrType(ast.CommentGroup)))), ""]]);
-0CommentedNode00go/astCommentGroup0ÇH ÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
+0CommentedNode0go/ast:CommentGroup0Ç< ÇÃ	printer.Ptr.prototype.linebreak = function(line, min, ws, newSection) {
 		var printedBreak, p, n;
 		printedBreak = false;
 		p = this;
@@ -288,12 +281,7 @@ go/printerMode0Ç&CommentedNodeÇN	CommentedNode = go$pkg.CommentedNode = g
 		return printedBreak;
 	};
 	printer.prototype.linebreak = function(line, min, ws, newSection) { return this.go$val.linebreak(line, min, ws, newSection); };
- 0printer	linebreak0\0
-go/printerprinter0
-go/printernlimit0
-go/printerprint0
-go/printer
-whiteSpace0Ç≥ ÇÈ	printer.Ptr.prototype.setComment = function(g) {
+ 0printer	linebreak0Pgo/printer:nlimitgo/printer:printgo/printer:printergo/printer:whiteSpace0Çû ÇÈ	printer.Ptr.prototype.setComment = function(g) {
 		var p, _slice, _index, _struct, _slice$1, _index$1;
 		p = this;
 		if (g === (go$ptrType(ast.CommentGroup)).nil || !p.useNodeComments) {
@@ -314,12 +302,7 @@ whiteSpace0Ç≥ ÇÈ	printer.Ptr.prototype.setComment = function(g) {
 	};
 	printer.prototype.setComment = function(g) { return this.go$val.setComment(g); };
  0printer
-setComment0Å®0
-go/printerprinter0go/astCommentGroup0
-go/printerflush0
-go/printerposFor0go/tokenPosition0
-go/printerinternalError0
-go/printernextComment0Ç¶ ÇG	printer.Ptr.prototype.identList = function(list, indent) {
+setComment0Åìgo/ast:CommentGroupgo/printer:flushgo/printer:internalErrorgo/printer:nextCommentgo/printer:posForgo/printer:printergo/token:Position0Çù ÇG	printer.Ptr.prototype.identList = function(list, indent) {
 		var p, xlist, _ref, _i, _slice, _index, x, i, _slice$1, _index$1, mode;
 		p = this;
 		xlist = (go$sliceType(ast.Expr)).make(list.length, 0, function() { return null; });
@@ -338,9 +321,7 @@ go/printernextComment0Ç¶ ÇG	printer.Ptr.prototype.identList = function(lis
 		p.exprList(0, xlist, 1, mode, 0);
 	};
 	printer.prototype.identList = function(list, indent) { return this.go$val.identList(list, indent); };
- 0printer	identList0?0
-go/printerprinter0go/astExpr0
-go/printerexprList0Ç∞ Çp	printer.Ptr.prototype.exprList = function(prev0, list, depth, mode, next0) {
+ 0printer	identList06go/ast:Exprgo/printer:exprListgo/printer:printer0Çà Çp	printer.Ptr.prototype.exprList = function(prev0, list, depth, mode, next0) {
 		var p, _struct, prev, _struct$1, next, _slice, _index, line, _slice$1, _index$1, endLine, _ref, _i, _slice$2, _index$2, x, i, ws, prevBreak, size, _ref$1, _i$1, _slice$3, _index$3, x$1, i$1, prevLine, useFF, prevSize, _tuple, pair, isPair, ratio, needsLinebreak, needsBlank;
 		p = this;
 		if (list.length === 0) {
@@ -440,17 +421,7 @@ go/printerexprList0Ç∞ Çp	printer.Ptr.prototype.exprList = function(prev0, 
 		}
 	};
 	printer.prototype.exprList = function(prev0, list, depth, mode, next0) { return this.go$val.exprList(prev0, list, depth, mode, next0); };
- 0printerexprList0Ç0
-go/printerposFor0go/tokenPosition0
-go/printerlineFor0
-go/printerprint0go/tokenToken0
-go/printernodeSize0
-go/printerprinter0go/tokenPos0
-go/printer
-whiteSpace0
-go/printerexpr00
-go/printer	linebreak0go/astKeyValueExpr0
-go/printerexpr0Ç	ö Çê	printer.Ptr.prototype.parameters = function(fields) {
+ 0printerexprList0Å¯go/ast:KeyValueExprgo/printer:exprgo/printer:expr0go/printer:lineForgo/printer:linebreakgo/printer:nodeSizego/printer:posForgo/printer:printgo/printer:printergo/printer:whiteSpacego/token:Posgo/token:Positiongo/token:Token0Ç	| Çê	printer.Ptr.prototype.parameters = function(fields) {
 		var p, prevLine, ws, _ref, _i, _slice, _index, par, i, parLineBeg, _slice$1, _index$1, parLineEnd, needsLinebreak, closing;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(fields.Opening), new token.Token(49)]));
@@ -501,16 +472,7 @@ go/printerexpr0Ç	ö Çê	printer.Ptr.prototype.parameters = function(fields) {
 	};
 	printer.prototype.parameters = function(fields) { return this.go$val.parameters(fields); };
  0printer
-parameters0ÅË0
-go/printerprinter0
-go/printer	linebreak0
-go/printer	identList0
-go/printerprint0go/tokenPos0go/tokenToken0
-go/printerlineFor0
-go/printer
-whiteSpace0
-go/printerexpr0
-go/printerstripParensAlways0Ç¯ Ç		printer.Ptr.prototype.signature = function(params, result) {
+parameters0Å go/printer:exprgo/printer:identListgo/printer:lineForgo/printer:linebreakgo/printer:printgo/printer:printergo/printer:stripParensAlwaysgo/printer:whiteSpacego/token:Posgo/token:Token0Ç› Ç		printer.Ptr.prototype.signature = function(params, result) {
 		var p, n, _slice, _index, _slice$1, _index$1;
 		p = this;
 		if (!(params === (go$ptrType(ast.FieldList)).nil)) {
@@ -529,15 +491,7 @@ go/printerstripParensAlways0Ç¯ Ç		printer.Ptr.prototype.signature = functi
 		}
 	};
 	printer.prototype.signature = function(params, result) { return this.go$val.signature(params, result); };
- 0printer	signature0ÅŒ0go/ast	FieldList0
-go/printer
-parameters0
-go/printer
-whiteSpace0
-go/printerexpr0
-go/printerstripParensAlways0
-go/printerprinter0
-go/printerprint0go/tokenToken0go/astIdent0ÇBidentListSizeÇ˜	identListSize = function(list, maxSize) {
+ 0printer	signature0Å≥go/ast:FieldListgo/ast:Identgo/printer:exprgo/printer:parametersgo/printer:printgo/printer:printergo/printer:stripParensAlwaysgo/printer:whiteSpacego/token:Token0Ç?identListSizeÇ˜	identListSize = function(list, maxSize) {
 		var size, _ref, _i, _slice, _index, x, i;
 		size = 0;
 		_ref = list;
@@ -556,7 +510,7 @@ go/printerprint0go/tokenToken0go/astIdent0ÇBidentListSizeÇ˜	ide
 		}
 		return size;
 	};
- 0identListSize0#0!unicode/utf8RuneCountInString0ÇÜ ÇÂ	printer.Ptr.prototype.isOneLineFieldList = function(list) {
+ 0identListSize0 unicode/utf8:RuneCountInString0Çw ÇÂ	printer.Ptr.prototype.isOneLineFieldList = function(list) {
 		var p, _slice, _index, f, namesSize, typeSize;
 		p = this;
 		if (!((list.length === 1))) {
@@ -574,27 +528,19 @@ go/printerprint0go/tokenToken0go/astIdent0ÇBidentListSizeÇ˜	ide
 		return (namesSize + typeSize >> 0) <= 30;
 	};
 	printer.prototype.isOneLineFieldList = function(list) { return this.go$val.isOneLineFieldList(list); };
- 0printerisOneLineFieldList0x0
-go/printerprinter0go/astBasicLit0go/astCommentGroup0
-go/printeridentListSize0
-go/printernodeSize0Ç≠ Ç,	printer.Ptr.prototype.setLineComment = function(text) {
+ 0printerisOneLineFieldList0igo/ast:BasicLitgo/ast:CommentGroupgo/printer:identListSizego/printer:nodeSizego/printer:printer0Ç° Ç,	printer.Ptr.prototype.setLineComment = function(text) {
 		var p;
 		p = this;
 		p.setComment(new ast.CommentGroup.Ptr(new (go$sliceType((go$ptrType(ast.Comment))))([new ast.Comment.Ptr(0, text)])));
 	};
 	printer.prototype.setLineComment = function(text) { return this.go$val.setLineComment(text); };
- 0printersetLineComment0\0
-go/printerprinter0
-go/printer
-setComment0go/astComment0go/astCommentGroup0Ç- Åﬁ	printer.Ptr.prototype.isMultiLine = function(n) {
+ 0printersetLineComment0Pgo/ast:Commentgo/ast:CommentGroupgo/printer:printergo/printer:setComment0Ç' Åﬁ	printer.Ptr.prototype.isMultiLine = function(n) {
 		var p;
 		p = this;
 		return (p.lineFor(n.End()) - p.lineFor(n.Pos()) >> 0) > 0;
 	};
 	printer.prototype.isMultiLine = function(n) { return this.go$val.isMultiLine(n); };
- 0printerisMultiLine0.0
-go/printerprinter0
-go/printerlineFor0Ç ÇÌ	printer.Ptr.prototype.fieldList = function(fields, isStruct, isIncomplete) {
+ 0printerisMultiLine0(go/printer:lineForgo/printer:printer0Ç√ ÇÌ	printer.Ptr.prototype.fieldList = function(fields, isStruct, isIncomplete) {
 		var p, lbrace, list, rbrace, _struct, hasComments, srcIsOneLine, _slice, _index, f, _ref, _i, _slice$1, _index$1, x, i, sep, newSection, _ref$1, _i$1, _slice$2, _index$2, f$1, i$1, extraTabs, _struct$1, newSection$1, _ref$2, _i$2, _slice$3, _index$3, f$2, i$2, isFtyp, _tuple, x$1, ftyp, _slice$4, _index$4, _struct$2;
 		p = this;
 		lbrace = fields.Opening;
@@ -714,24 +660,7 @@ go/printerlineFor0Ç ÇÌ	printer.Ptr.prototype.fieldList = function(fields,
 		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60), new whiteSpace(12), new token.Pos(rbrace), new token.Token(56)]));
 	};
 	printer.prototype.fieldList = function(fields, isStruct, isIncomplete) { return this.go$val.fieldList(fields, isStruct, isIncomplete); };
- 0printer	fieldList0ÇÛ0
-go/printercommentBefore0
-go/printerposFor0
-go/printer
-whiteSpace0
-go/printerexpr0go/tokenPosition0go/astBasicLit0
-go/printersetLineComment0 
-go/printerisOneLineFieldList0go/tokenToken0
-go/printer	linebreak0
-go/printer
-setComment0
-go/printer	identList0
-go/printerisMultiLine0
-go/printerflush0
-go/printer	signature0
-go/printerprinter0go/tokenPos0
-go/printerlineFor0
-go/printerprint0go/astCommentGroup0go/astFuncType0ÇY
+ 0printer	fieldList0Ç¥go/ast:BasicLitgo/ast:CommentGroupgo/ast:FuncTypego/printer:commentBeforego/printer:exprgo/printer:flushgo/printer:identListgo/printer:isMultiLinego/printer:isOneLineFieldListgo/printer:lineForgo/printer:linebreakgo/printer:posForgo/printer:printgo/printer:printergo/printer:setCommentgo/printer:setLineCommentgo/printer:signaturego/printer:whiteSpacego/token:Posgo/token:Positiongo/token:Token0ÇM
 walkBinaryÇÂ	walkBinary = function(e) {
 		var has4, has5, maxProblem, _ref, l, _ref$1, _type, _tuple, h4, h5, mp, r, _ref$2, _type$1, _tuple$1, h4$1, h5$1, mp$1, _ref$3;
 		has4 = false;
@@ -789,8 +718,7 @@ walkBinaryÇÂ	walkBinary = function(e) {
 		return [has4, has5, maxProblem];
 	};
  0
-walkBinary0R0go/tokenToken0go/ast
-BinaryExpr0go/astStarExpr0go/ast	UnaryExpr0ÇêcutoffÇ\	cutoff = function(e, depth) {
+walkBinary0Fgo/ast:BinaryExprgo/ast:StarExprgo/ast:UnaryExprgo/token:Token0ÇçcutoffÇ\	cutoff = function(e, depth) {
 		var _tuple, has4, has5, maxProblem;
 		_tuple = walkBinary(e), has4 = _tuple[0], has5 = _tuple[1], maxProblem = _tuple[2];
 		if (maxProblem > 0) {
@@ -807,9 +735,7 @@ BinaryExpr0go/astStarExpr0go/ast	UnaryExpr0ÇêcutoffÇ\	cutoff = fun
 		}
 		return 4;
 	};
- 0cutoff00
-go/printer
-walkBinary0ÇïdiffPrecÇN	diffPrec = function(expr, prec) {
+ 0cutoff0go/printer:walkBinary0ÇèdiffPrecÇN	diffPrec = function(expr, prec) {
 		var _tuple, x, ok;
 		_tuple = (expr !== null && expr.constructor === (go$ptrType(ast.BinaryExpr)) ? [expr.go$val, true] : [(go$ptrType(ast.BinaryExpr)).nil, false]), x = _tuple[0], ok = _tuple[1];
 		if (!ok || !((prec === (new token.Token(x.Op)).Precedence()))) {
@@ -818,15 +744,14 @@ walkBinary0ÇïdiffPrecÇN	diffPrec = function(expr, prec) {
 		return 0;
 	};
  0
-diffPrec0)0go/ast
-BinaryExpr0go/tokenToken0ÅñreduceDeptht	reduceDepth = function(depth) {
+diffPrec0#go/ast:BinaryExprgo/token:Token0ÅñreduceDeptht	reduceDepth = function(depth) {
 		depth = depth - 1 >> 0;
 		if (depth < 1) {
 			depth = 1;
 		}
 		return depth;
 	};
- 0reduceDepth0 0Ç	 Ç	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, depth) {
+ 0reduceDepth0 0ÇË Ç	printer.Ptr.prototype.binaryExpr = function(x, prec1, cutoff$1, depth) {
 		var p, prec, printBlank, ws, xline, yline;
 		p = this;
 		prec = (new token.Token(x.Op)).Precedence();
@@ -861,24 +786,13 @@ BinaryExpr0go/tokenToken0ÅñreduceDeptht	reduceDepth = function(depth) {
 	};
 	printer.prototype.binaryExpr = function(x, prec1, cutoff$1, depth) { return this.go$val.binaryExpr(x, prec1, cutoff$1, depth); };
  0printer
-binaryExpr0Å˜0go/tokenToken0
-go/printerexpr00
-go/printerreduceDepth0
-go/printerexpr10
-go/printer
-whiteSpace0
-go/printerprinter0
-go/printerprint0
-go/printerdiffPrec0
-go/printerlineFor0go/tokenPos0
-go/printer	linebreak0ÇisBinaryÅ„	isBinary = function(expr) {
+binaryExpr0Å÷go/printer:diffPrecgo/printer:expr0go/printer:expr1go/printer:lineForgo/printer:linebreakgo/printer:printgo/printer:printergo/printer:reduceDepthgo/printer:whiteSpacego/token:Posgo/token:Token0ÇisBinaryÅ„	isBinary = function(expr) {
 		var _tuple, ok;
 		_tuple = (expr !== null && expr.constructor === (go$ptrType(ast.BinaryExpr)) ? [expr.go$val, true] : [(go$ptrType(ast.BinaryExpr)).nil, false]), ok = _tuple[1];
 		return ok;
 	};
  0
-isBinary00go/ast
-BinaryExpr0Ç(T Ç$ó	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) {
+isBinary0go/ast:BinaryExpr0Ç'÷ Ç$ó	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) {
 		var p, x, _ref, _type, hasParens, _tuple, x$1, line, indices, _ref$1, _i, _slice, _index, y, i, _slice$1, _index$1, x$2, ok, _tuple$1, x$3, _ref$2;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(expr.Pos())]));
@@ -1076,44 +990,19 @@ BinaryExpr0Ç(T Ç$ó	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) 
 		return;
 	};
 	printer.prototype.expr1 = function(expr, prec1, depth) { return this.go$val.expr1(expr, prec1, depth); };
- 0printerexpr10Çü0go/ast	ParenExpr0go/astFuncType0
-go/printer
-whiteSpace0go/astBadExpr0go/astKeyValueExpr0go/ast
-StructType0
-go/printer
-binaryExpr0
-go/printerprint0go/astIdent0go/astBasicLit0go/astFuncLit0go/astCallExpr0go/ast	ArrayType0
-go/printeradjBlock0go/tokenPos0go/ast	UnaryExpr0go/ast	SliceExpr0go/astEllipsis0go/astMapType0
-go/printerexpr0
-go/printerreduceDepth0go/astExpr0
-go/printerisBinary0go/astSelectorExpr0go/ast	IndexExpr0go/astCompositeLit0
-go/printerlineFor0
-go/printer	fieldList0
-go/printerprinter0go/astStarExpr0go/astTypeAssertExpr0go/astInterfaceType0go/astChanType0
-go/printerexprList0
-go/printerpmode0
-go/printer	signature0
-go/printercutoff0go/tokenToken0go/ast
-BinaryExpr0
-go/printerinternalError0
-go/printerdistanceFrom0
-go/printerexpr00Ç Åº	printer.Ptr.prototype.expr0 = function(x, depth) {
+ 0printerexpr10Ç!go/ast:ArrayTypego/ast:BadExprgo/ast:BasicLitgo/ast:BinaryExprgo/ast:CallExprgo/ast:ChanTypego/ast:CompositeLitgo/ast:Ellipsisgo/ast:Exprgo/ast:FuncLitgo/ast:FuncTypego/ast:Identgo/ast:IndexExprgo/ast:InterfaceTypego/ast:KeyValueExprgo/ast:MapTypego/ast:ParenExprgo/ast:SelectorExprgo/ast:SliceExprgo/ast:StarExprgo/ast:StructTypego/ast:TypeAssertExprgo/ast:UnaryExprgo/printer:adjBlockgo/printer:binaryExprgo/printer:cutoffgo/printer:distanceFromgo/printer:exprgo/printer:expr0go/printer:exprListgo/printer:fieldListgo/printer:internalErrorgo/printer:isBinarygo/printer:lineForgo/printer:pmodego/printer:printgo/printer:printergo/printer:reduceDepthgo/printer:signaturego/printer:whiteSpacego/token:Posgo/token:Token0Å˝ Åº	printer.Ptr.prototype.expr0 = function(x, depth) {
 		var p;
 		p = this;
 		p.expr1(x, 0, depth);
 	};
 	printer.prototype.expr0 = function(x, depth) { return this.go$val.expr0(x, depth); };
- 0printerexpr00,0
-go/printerprinter0
-go/printerexpr10ÅÊ Å†	printer.Ptr.prototype.expr = function(x) {
+ 0printerexpr00&go/printer:expr1go/printer:printer0Å‡ Å†	printer.Ptr.prototype.expr = function(x) {
 		var p;
 		p = this;
 		p.expr1(x, 0, 1);
 	};
 	printer.prototype.expr = function(x) { return this.go$val.expr(x); };
- 0printerexpr0,0
-go/printerprinter0
-go/printerexpr10Çg Çç	printer.Ptr.prototype.stmtList = function(list, nindent, nextIsRBrace) {
+ 0printerexpr0&go/printer:expr1go/printer:printer0ÇO Çç	printer.Ptr.prototype.stmtList = function(list, nindent, nextIsRBrace) {
 		var p, multiLine, i, _ref, _i, _slice, _index, s, isEmpty, _tuple;
 		p = this;
 		if (nindent > 0) {
@@ -1140,15 +1029,7 @@ go/printerexpr10Çg Çç	printer.Ptr.prototype.stmtList = function(list, nind
 		}
 	};
 	printer.prototype.stmtList = function(list, nindent, nextIsRBrace) { return this.go$val.stmtList(list, nindent, nextIsRBrace); };
- 0printerstmtList0Å∫0
-go/printerprinter0
-go/printerprint0
-go/printer
-whiteSpace0go/ast	EmptyStmt0
-go/printer	linebreak0
-go/printerlineFor0
-go/printerstmt0
-go/printerisMultiLine0Çx Ç√	printer.Ptr.prototype.block = function(b, nindent) {
+ 0printerstmtList0Å¢go/ast:EmptyStmtgo/printer:isMultiLinego/printer:lineForgo/printer:linebreakgo/printer:printgo/printer:printergo/printer:stmtgo/printer:whiteSpace0Çc Ç√	printer.Ptr.prototype.block = function(b, nindent) {
 		var p;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(b.Lbrace), new token.Token(51)]));
@@ -1157,12 +1038,7 @@ go/printerisMultiLine0Çx Ç√	printer.Ptr.prototype.block = function(b, nind
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(b.Rbrace), new token.Token(56)]));
 	};
 	printer.prototype.block = function(b, nindent) { return this.go$val.block(b, nindent); };
- 0printerblock0Åò0
-go/printerprinter0
-go/printerprint0go/tokenPos0go/tokenToken0
-go/printerstmtList0
-go/printer	linebreak0
-go/printerlineFor0Çã
+ 0printerblock0ÅÉgo/printer:lineForgo/printer:linebreakgo/printer:printgo/printer:printergo/printer:stmtListgo/token:Posgo/token:Token0ÇÖ
 isTypeNameÇ@	isTypeName = function(x) {
 		var t, _ref, _type;
 		_ref = x;
@@ -1177,7 +1053,7 @@ isTypeNameÇ@	isTypeName = function(x) {
 		return false;
 	};
  0
-isTypeName0)0go/astIdent0go/astSelectorExpr0ÇXstripParensÇ⁄	stripParens = function(x) {
+isTypeName0#go/ast:Identgo/ast:SelectorExpr0ÇLstripParensÇ⁄	stripParens = function(x) {
 		var strip, _tuple, px;
 		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), px = _tuple[0], strip = _tuple[1], strip) {
 			ast.Inspect(px.X, (function(node) {
@@ -1202,16 +1078,14 @@ isTypeName0)0go/astIdent0go/astSelectorExpr0ÇXstripParensÇ⁄	strip
 		}
 		return x;
 	};
- 0stripParens0Z0go/ast	ParenExpr0go/astInspect0go/astCompositeLit0
-go/printer
-isTypeName0ÇjstripParensAlwaysÇ%	stripParensAlways = function(x) {
+ 0stripParens0Ngo/ast:CompositeLitgo/ast:Inspectgo/ast:ParenExprgo/printer:isTypeName0ÇgstripParensAlwaysÇ%	stripParensAlways = function(x) {
 		var ok, _tuple, x$1;
 		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), x$1 = _tuple[0], ok = _tuple[1], ok) {
 			return stripParensAlways(x$1.X);
 		}
 		return x;
 	};
- 0stripParensAlways00go/ast	ParenExpr0ÇK Çä	printer.Ptr.prototype.controlClause = function(isForStmt, init, expr, post) {
+ 0stripParensAlways0go/ast:ParenExpr0Ç6 Çä	printer.Ptr.prototype.controlClause = function(isForStmt, init, expr, post) {
 		var p, needsBlank;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(32)]));
@@ -1244,14 +1118,7 @@ isTypeName0ÇjstripParensAlwaysÇ%	stripParensAlways = function(x) {
 		}
 	};
 	printer.prototype.controlClause = function(isForStmt, init, expr, post) { return this.go$val.controlClause(isForStmt, init, expr, post); };
- 0printercontrolClause0Åú0
-go/printerprinter0
-go/printerprint0
-go/printer
-whiteSpace0
-go/printerexpr0
-go/printerstripParens0
-go/printerstmt0go/tokenToken0Ç  Ç±	printer.Ptr.prototype.indentList = function(list) {
+ 0printercontrolClause0Åágo/printer:exprgo/printer:printgo/printer:printergo/printer:stmtgo/printer:stripParensgo/printer:whiteSpacego/token:Token0Ç˙ Ç±	printer.Ptr.prototype.indentList = function(list) {
 		var p, _slice, _index, b, _slice$1, _index$1, e, n, line, _ref, _i, _slice$2, _index$2, x, xb, xe;
 		p = this;
 		if (list.length >= 2) {
@@ -1282,9 +1149,7 @@ go/printerstmt0go/tokenToken0Ç  Ç±	printer.Ptr.prototype.indentList =
 	};
 	printer.prototype.indentList = function(list) { return this.go$val.indentList(list); };
  0printer
-indentList0.0
-go/printerprinter0
-go/printerlineFor0Ç"Û ÇC	printer.Ptr.prototype.stmt = function(stmt, nextIsRBrace) {
+indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.prototype.stmt = function(stmt, nextIsRBrace) {
 		var p, s, _ref, _type, isEmpty, _tuple, x, e, depth, _ref$1, _type$1, body, _struct;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(stmt.Pos())]));
@@ -1451,33 +1316,7 @@ go/printerlineFor0Ç"Û ÇC	printer.Ptr.prototype.stmt = function(stmt, nextIs
 		return;
 	};
 	printer.prototype.stmt = function(stmt, nextIsRBrace) { return this.go$val.stmt(stmt, nextIsRBrace); };
- 0printerstmt0Çì0go/astTypeSwitchStmt0
-go/printerblock0
-go/printerstmtList0go/tokenPosition0
-go/printerprinter0go/ast	DeferStmt0go/ast
-SelectStmt0
-go/printerexprList0
-go/printerprint0go/ast
-AssignStmt0
-go/printerexpr0
-go/printerlineFor0go/astDeclStmt0go/ast	BlockStmt0go/astIfStmt0
-go/printer	linebreak0
-go/printercommentBefore0
-go/printerposFor0
-go/printerstripParens0go/astGoStmt0go/ast
-CaseClause0go/ast
-CommClause0go/astForStmt0go/ast	RangeStmt0
-go/printercontrolClause0go/astBadStmt0go/ast	EmptyStmt0go/ast
-IncDecStmt0go/ast
-BranchStmt0
-go/printer
-whiteSpace0
-go/printerexpr00go/tokenPos0go/astExprStmt0go/ast
-SwitchStmt0go/tokenToken0go/astExpr0
-go/printer
-indentList0go/astLabeledStmt0go/astSendStmt0go/ast
-ReturnStmt0
-go/printerdecl0go/astIdent0Ç6keepTypeColumnÇÁ	keepTypeColumn = function(specs) {
+ 0printerstmt0Çgo/ast:AssignStmtgo/ast:BadStmtgo/ast:BlockStmtgo/ast:BranchStmtgo/ast:CaseClausego/ast:CommClausego/ast:DeclStmtgo/ast:DeferStmtgo/ast:EmptyStmtgo/ast:Exprgo/ast:ExprStmtgo/ast:ForStmtgo/ast:GoStmtgo/ast:Identgo/ast:IfStmtgo/ast:IncDecStmtgo/ast:LabeledStmtgo/ast:RangeStmtgo/ast:ReturnStmtgo/ast:SelectStmtgo/ast:SendStmtgo/ast:SwitchStmtgo/ast:TypeSwitchStmtgo/printer:blockgo/printer:commentBeforego/printer:controlClausego/printer:declgo/printer:exprgo/printer:expr0go/printer:exprListgo/printer:indentListgo/printer:lineForgo/printer:linebreakgo/printer:posForgo/printer:printgo/printer:printergo/printer:stmtListgo/printer:stripParensgo/printer:whiteSpacego/token:Posgo/token:Positiongo/token:Token0Ç0keepTypeColumnÇÁ	keepTypeColumn = function(specs) {
 		var m, populate, i0, keepType, _ref, _i, _slice, _index, s, i, t;
 		m = (go$sliceType(Go$Bool)).make(specs.length, 0, function() { return false; });
 		populate = (function(i, j, keepType) {
@@ -1518,7 +1357,7 @@ go/printerdecl0go/astIdent0Ç6keepTypeColumnÇÁ	keepTypeColumn = funct
 		}
 		return m;
 	};
- 0keepTypeColumn0%0go/ast	ValueSpec0go/astExpr0Ç⁄ ÇŸ	printer.Ptr.prototype.valueSpec = function(s, keepType) {
+ 0keepTypeColumn0go/ast:Exprgo/ast:ValueSpec0Çº ÇŸ	printer.Ptr.prototype.valueSpec = function(s, keepType) {
 		var p, extraTabs;
 		p = this;
 		p.setComment(s.Doc);
@@ -1545,16 +1384,7 @@ go/printerdecl0go/astIdent0Ç6keepTypeColumnÇÁ	keepTypeColumn = funct
 		}
 	};
 	printer.prototype.valueSpec = function(s, keepType) { return this.go$val.valueSpec(s, keepType); };
- 0printer	valueSpec0Å‡0
-go/printer	identList0go/astExpr0go/tokenToken0
-go/printerexprList0
-go/printerprinter0
-go/printer
-setComment0
-go/printerprint0
-go/printer
-whiteSpace0
-go/printerexpr0go/astCommentGroup0Ç Çº	printer.Ptr.prototype.spec = function(spec, n, doIndent) {
+ 0printer	valueSpec0Å¬go/ast:CommentGroupgo/ast:Exprgo/printer:exprgo/printer:exprListgo/printer:identListgo/printer:printgo/printer:printergo/printer:setCommentgo/printer:whiteSpacego/token:Token0ÇÚ Çº	printer.Ptr.prototype.spec = function(spec, n, doIndent) {
 		var p, s, _ref, _type;
 		p = this;
 		_ref = spec;
@@ -1602,19 +1432,8 @@ go/printerexpr0go/astCommentGroup0Ç Çº	printer.Ptr.prototype.spec = 
 		}
 	};
 	printer.prototype.spec = function(spec, n, doIndent) { return this.go$val.spec(spec, n, doIndent); };
- 0printerspec0ÇF0
-go/printer
-setComment0
-go/printerexprList0go/astTypeSpec0
-go/printerprint0
-go/printerprinter0go/astIdent0
-go/printer	identList0go/ast
-ImportSpec0go/ast	ValueSpec0
-go/printerexpr0
-go/printer
-whiteSpace0go/tokenPos0
-go/printerinternalError0go/astExpr0go/tokenToken0Ç
- Ç	°	printer.Ptr.prototype.genDecl = function(d) {
+ 0printerspec0Çgo/ast:Exprgo/ast:Identgo/ast:ImportSpecgo/ast:TypeSpecgo/ast:ValueSpecgo/printer:exprgo/printer:exprListgo/printer:identListgo/printer:internalErrorgo/printer:printgo/printer:printergo/printer:setCommentgo/printer:whiteSpacego/token:Posgo/token:Token0Ç
+… Ç	°	printer.Ptr.prototype.genDecl = function(d) {
 		var p, n, keepType, newSection, _ref, _i, _slice, _index, s, i, _slice$1, _index$1, newSection$1, _ref$1, _i$1, _slice$2, _index$2, s$1, i$1, _slice$3, _index$3;
 		p = this;
 		p.setComment(d.Doc);
@@ -1661,19 +1480,7 @@ go/printerinternalError0go/astExpr0go/tokenToken0Ç
 		}
 	};
 	printer.prototype.genDecl = function(d) { return this.go$val.genDecl(d); };
- 0printergenDecl0Ç/0
-go/printer
-setComment0
-go/printerprint0go/tokenPos0
-go/printer
-whiteSpace0
-go/printer	linebreak0
-go/printer	valueSpec0go/ast	ValueSpec0
-go/printerspec0
-go/printerprinter0go/tokenToken0
-go/printerkeepTypeColumn0
-go/printerlineFor0
-go/printerisMultiLine0Çª ÇH	printer.Ptr.prototype.nodeSize = function(n, maxSize) {
+ 0printergenDecl0Çgo/ast:ValueSpecgo/printer:isMultiLinego/printer:keepTypeColumngo/printer:lineForgo/printer:linebreakgo/printer:printgo/printer:printergo/printer:setCommentgo/printer:specgo/printer:valueSpecgo/printer:whiteSpacego/token:Posgo/token:Token0ÇØ ÇH	printer.Ptr.prototype.nodeSize = function(n, maxSize) {
 		var size, p, found, _tuple, _entry, size$1, _key, cfg, buf, err, _ref, _i, _slice, _index, ch, _key$1;
 		size = 0;
 		p = this;
@@ -1704,10 +1511,7 @@ go/printerisMultiLine0Çª ÇH	printer.Ptr.prototype.nodeSize = function(n, m
 		return size;
 	};
 	printer.prototype.nodeSize = function(n, maxSize) { return this.go$val.nodeSize(n, maxSize); };
- 0printernodeSize0T0
-go/printerprinter0
-go/printerConfig0bytesBuffer0
-go/printerfprint0Çµ Çı	printer.Ptr.prototype.bodySize = function(b, maxSize) {
+ 0printernodeSize0Hbytes:Buffergo/printer:Configgo/printer:fprintgo/printer:printer0Ç† Çı	printer.Ptr.prototype.bodySize = function(b, maxSize) {
 		var p, pos1, pos2, _struct, bodySize, _ref, _i, _slice, _index, s, i;
 		p = this;
 		pos1 = b.Pos();
@@ -1733,12 +1537,7 @@ go/printerfprint0Çµ Çı	printer.Ptr.prototype.bodySize = function(b, maxSiz
 		return bodySize;
 	};
 	printer.prototype.bodySize = function(b, maxSize) { return this.go$val.bodySize(b, maxSize); };
- 0printerbodySize0Å†0
-go/printerprinter0go/tokenPos0
-go/printerlineFor0
-go/printercommentBefore0
-go/printerposFor0go/tokenPosition0
-go/printernodeSize0Çˇ Ç	printer.Ptr.prototype.adjBlock = function(headerSize, sep, b) {
+ 0printerbodySize0Åãgo/printer:commentBeforego/printer:lineForgo/printer:nodeSizego/printer:posForgo/printer:printergo/token:Posgo/token:Position0Ç‰ Ç	printer.Ptr.prototype.adjBlock = function(headerSize, sep, b) {
 		var p, _ref, _i, _slice, _index, s, i;
 		p = this;
 		if (b === (go$ptrType(ast.BlockStmt)).nil) {
@@ -1770,14 +1569,7 @@ go/printernodeSize0Çˇ Ç	printer.Ptr.prototype.adjBlock = function(headerS
 		p.block(b, 1);
 	};
 	printer.prototype.adjBlock = function(headerSize, sep, b) { return this.go$val.adjBlock(headerSize, sep, b); };
- 0printeradjBlock0Å¿0
-go/printerprinter0go/ast	BlockStmt0
-go/printerbodySize0
-go/printerprint0
-go/printer
-whiteSpace0go/tokenPos0
-go/printerstmt0
-go/printerblock0go/tokenToken0ÇK Ç‘	printer.Ptr.prototype.distanceFrom = function(from) {
+ 0printeradjBlock0Å•go/ast:BlockStmtgo/printer:blockgo/printer:bodySizego/printer:printgo/printer:printergo/printer:stmtgo/printer:whiteSpacego/token:Posgo/token:Token0Ç? Ç‘	printer.Ptr.prototype.distanceFrom = function(from) {
 		var p, f, _struct;
 		p = this;
 		if ((new token.Pos(from)).IsValid() && p.pos.IsValid()) {
@@ -1788,9 +1580,7 @@ go/printerblock0go/tokenToken0ÇK Ç‘	printer.Ptr.prototype.distanceFro
 		return 1073741824;
 	};
 	printer.prototype.distanceFrom = function(from) { return this.go$val.distanceFrom(from); };
- 0printerdistanceFrom0T0
-go/printerprinter0go/tokenPos0
-go/printerposFor0go/tokenPosition0Çi Ç4	printer.Ptr.prototype.funcDecl = function(d) {
+ 0printerdistanceFrom0Hgo/printer:posForgo/printer:printergo/token:Posgo/token:Position0ÇD Ç4	printer.Ptr.prototype.funcDecl = function(d) {
 		var p;
 		p = this;
 		p.setComment(d.Doc);
@@ -1804,19 +1594,7 @@ go/printerposFor0go/tokenPosition0Çi Ç4	printer.Ptr.prototype.funcDec
 		p.adjBlock(p.distanceFrom(d.Pos()), 11, d.Body);
 	};
 	printer.prototype.funcDecl = function(d) { return this.go$val.funcDecl(d); };
- 0printerfuncDecl0Ç0go/tokenPos0go/tokenToken0
-go/printer
-whiteSpace0go/ast	FieldList0
-go/printerexpr0
-go/printer	signature0
-go/printerprinter0
-go/printer
-setComment0
-go/printerprint0
-go/printer
-parameters0
-go/printeradjBlock0
-go/printerdistanceFrom0ÇR Çê	printer.Ptr.prototype.decl = function(decl) {
+ 0printerfuncDecl0Ågo/ast:FieldListgo/printer:adjBlockgo/printer:distanceFromgo/printer:exprgo/printer:parametersgo/printer:printgo/printer:printergo/printer:setCommentgo/printer:signaturego/printer:whiteSpacego/token:Posgo/token:Token0Ç: Çê	printer.Ptr.prototype.decl = function(decl) {
 		var p, d, _ref, _type;
 		p = this;
 		_ref = decl;
@@ -1836,11 +1614,7 @@ go/printerdistanceFrom0ÇR Çê	printer.Ptr.prototype.decl = function(decl) {
 		}
 	};
 	printer.prototype.decl = function(decl) { return this.go$val.decl(decl); };
- 0printerdecl0Å¶0
-go/printerprinter0go/astBadDecl0go/astGenDecl0go/astFuncDecl0
-go/printerprint0go/tokenPos0
-go/printergenDecl0
-go/printerfuncDecl0Çï	declTokenÇN	declToken = function(decl) {
+ 0printerdecl0Åégo/ast:BadDeclgo/ast:FuncDeclgo/ast:GenDeclgo/printer:funcDeclgo/printer:genDeclgo/printer:printgo/printer:printergo/token:Pos0Çè	declTokenÇN	declToken = function(decl) {
 		var tok, d, _ref, _type;
 		tok = 0;
 		tok = 0;
@@ -1855,7 +1629,7 @@ go/printerfuncDecl0Çï	declTokenÇN	declToken = function(decl) {
 		}
 		return tok;
 	};
- 0	declToken0'0go/astGenDecl0go/astFuncDecl0ÇÄ Çæ	printer.Ptr.prototype.declList = function(list) {
+ 0	declToken0!go/ast:FuncDeclgo/ast:GenDecl0Çk Çæ	printer.Ptr.prototype.declList = function(list) {
 		var p, tok, _ref, _i, _slice, _index, d, prev, min;
 		p = this;
 		tok = 0;
@@ -1877,13 +1651,7 @@ go/printerfuncDecl0Çï	declTokenÇN	declToken = function(decl) {
 		}
 	};
 	printer.prototype.declList = function(list) { return this.go$val.declList(list); };
- 0printerdeclList0Å¢0
-go/printerprinter0
-go/printer	declToken0
-go/printergetDoc0go/astCommentGroup0
-go/printer	linebreak0
-go/printerlineFor0
-go/printerdecl0Çc Çó	printer.Ptr.prototype.file = function(src) {
+ 0printerdeclList0Åçgo/ast:CommentGroupgo/printer:declgo/printer:declTokengo/printer:getDocgo/printer:lineForgo/printer:linebreakgo/printer:printer0ÇK Çó	printer.Ptr.prototype.file = function(src) {
 		var p;
 		p = this;
 		p.setComment(src.Doc);
@@ -1893,15 +1661,7 @@ go/printerdecl0Çc Çó	printer.Ptr.prototype.file = function(src) {
 		p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10)]));
 	};
 	printer.prototype.file = function(src) { return this.go$val.file(src); };
- 0printerfile0Å∞0
-go/printerprinter0
-go/printer
-setComment0
-go/printerprint0go/tokenPos0go/tokenToken0
-go/printer
-whiteSpace0
-go/printerexpr0
-go/printerdeclList0Çê Ç	printer.Ptr.prototype.init = function(cfg, fset, nodeSizes) {
+ 0printerfile0Åògo/printer:declListgo/printer:exprgo/printer:printgo/printer:printergo/printer:setCommentgo/printer:whiteSpacego/token:Posgo/token:Token0ÇÑ Ç	printer.Ptr.prototype.init = function(cfg, fset, nodeSizes) {
 		var p, _struct;
 		p = this;
 		p.Config = (_struct = cfg, new Config.Ptr(_struct.Mode, _struct.Tabwidth, _struct.Indent));
@@ -1913,11 +1673,7 @@ go/printerdeclList0Çê Ç	printer.Ptr.prototype.init = function(cfg, fset, 
 		p.cachedPos = -1;
 	};
 	printer.prototype.init = function(cfg, fset, nodeSizes) { return this.go$val.init(cfg, fset, nodeSizes); };
- 0printerinit0]0
-go/printerprinter0
-go/printerConfig0go/tokenPosition0
-go/printer
-whiteSpace0Ç™ Ç=	printer.Ptr.prototype.commentsHaveNewline = function(list) {
+ 0printerinit0Qgo/printer:Configgo/printer:printergo/printer:whiteSpacego/token:Position0Ç° Ç=	printer.Ptr.prototype.commentsHaveNewline = function(list) {
 		var p, _slice, _index, line, _ref, _i, _slice$1, _index$1, c, i, _slice$2, _index$2, t;
 		p = this;
 		line = p.lineFor((_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos());
@@ -1937,9 +1693,7 @@ whiteSpace0Ç™ Ç=	printer.Ptr.prototype.commentsHaveNewline = function(list) 
 		return false;
 	};
 	printer.prototype.commentsHaveNewline = function(list) { return this.go$val.commentsHaveNewline(list); };
- 0printercommentsHaveNewline0C0
-go/printerprinter0
-go/printerlineFor0stringsContains0Ç± Ç?	printer.Ptr.prototype.nextComment = function() {
+ 0printercommentsHaveNewline0:go/printer:lineForgo/printer:printerstrings:Contains0Ç® Ç?	printer.Ptr.prototype.nextComment = function() {
 		var p, _slice, _index, c, list, _slice$1, _index$1;
 		p = this;
 		while (p.cindex < p.comments.length) {
@@ -1955,23 +1709,18 @@ go/printerlineFor0stringsContains0Ç± Ç?	printer.Ptr.prototype.nextCom
 		p.commentOffset = 1073741824;
 	};
 	printer.prototype.nextComment = function() { return this.go$val.nextComment(); };
- 0printernextComment0P0
-go/printerprinter0
-go/printerposFor0!
-go/printercommentsHaveNewline0ÅÁ Å≠	printer.Ptr.prototype.internalError = function(msg) {
+ 0printernextComment0Ggo/printer:commentsHaveNewlinego/printer:posForgo/printer:printer0Å‰ Å≠	printer.Ptr.prototype.internalError = function(msg) {
 		var p;
 		p = this;
 	};
 	printer.prototype.internalError = function(msg) { return this.go$val.internalError(msg); };
- 0printerinternalError00
-go/printerprinter0Çn Ç$	printer.Ptr.prototype.posFor = function(pos) {
+ 0printerinternalError0go/printer:printer0Çh Ç$	printer.Ptr.prototype.posFor = function(pos) {
 		var p, _struct;
 		p = this;
 		return (_struct = p.fset.Position(pos), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
 	};
 	printer.prototype.posFor = function(pos) { return this.go$val.posFor(pos); };
- 0printerposFor0-0
-go/printerprinter0go/tokenPosition0ÇP Ç	printer.Ptr.prototype.lineFor = function(pos) {
+ 0printerposFor0'go/printer:printergo/token:Position0ÇM Ç	printer.Ptr.prototype.lineFor = function(pos) {
 		var p;
 		p = this;
 		if (!((pos === p.cachedPos))) {
@@ -1981,8 +1730,7 @@ go/printerprinter0go/tokenPosition0ÇP Ç	printer.Ptr.prototype.lineFo
 		return p.cachedLine;
 	};
 	printer.prototype.lineFor = function(pos) { return this.go$val.lineFor(pos); };
- 0printerlineFor00
-go/printerprinter0Çﬂ Çñ	printer.Ptr.prototype.atLineBegin = function(pos) {
+ 0printerlineFor0go/printer:printer0ÇŸ Çñ	printer.Ptr.prototype.atLineBegin = function(pos) {
 		var p, n, i;
 		p = this;
 		if (!((((p.Config.Mode & 8) >>> 0) === 0)) && pos.IsValid() && (!((p.out.Line === pos.Line)) || !(p.out.Filename === pos.Filename))) {
@@ -2003,8 +1751,7 @@ go/printerprinter0Çﬂ Çñ	printer.Ptr.prototype.atLineBegin = function(pos) 
 		p.out.Column = p.out.Column + (n) >> 0;
 	};
 	printer.prototype.atLineBegin = function(pos) { return this.go$val.atLineBegin(pos); };
- 0printeratLineBegin0'0
-go/printerprinter0fmtSprintf0Ç: Ç“	printer.Ptr.prototype.writeByte = function(ch, n) {
+ 0printeratLineBegin0!fmt:Sprintfgo/printer:printer0Ç1 Ç“	printer.Ptr.prototype.writeByte = function(ch, n) {
 		var p, _struct, i;
 		p = this;
 		if (p.out.Column === 1) {
@@ -2027,9 +1774,7 @@ go/printerprinter0fmtSprintf0Ç: Ç“	printer.Ptr.prototype.writeByte = 
 		p.out.Column = p.out.Column + (n) >> 0;
 	};
 	printer.prototype.writeByte = function(ch, n) { return this.go$val.writeByte(ch, n); };
- 0printer	writeByte0H0
-go/printerprinter0
-go/printeratLineBegin0go/tokenPosition0Ç⁄ Çp	printer.Ptr.prototype.writeString = function(pos, s, isLit) {
+ 0printer	writeByte0?go/printer:atLineBegingo/printer:printergo/token:Position0Ç— Çp	printer.Ptr.prototype.writeString = function(pos, s, isLit) {
 		var p, _struct, _struct$1, nlines, li, i, c, _struct$2;
 		p = this;
 		if (p.out.Column === 1) {
@@ -2069,9 +1814,7 @@ go/printeratLineBegin0go/tokenPosition0Ç⁄ Çp	printer.Ptr.prototype.wr
 		p.last = (_struct$2 = p.pos, new token.Position.Ptr(_struct$2.Filename, _struct$2.Offset, _struct$2.Line, _struct$2.Column));
 	};
 	printer.prototype.writeString = function(pos, s, isLit) { return this.go$val.writeString(pos, s, isLit); };
- 0printerwriteString0H0
-go/printerprinter0
-go/printeratLineBegin0go/tokenPosition0Ç Çy	printer.Ptr.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) {
+ 0printerwriteString0?go/printer:atLineBegingo/printer:printergo/token:Position0Ç Çy	printer.Ptr.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) {
 		var p, hasSep, j, _ref, _i, _slice, _index, ch, i, _ref$1, _slice$1, _index$1, sep, droppedLinebreak, j$1, _ref$2, _i$1, _slice$2, _index$2, ch$1, i$1, _ref$3, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, n;
 		p = this;
 		if (p.output.length === 0) {
@@ -2167,11 +1910,7 @@ go/printeratLineBegin0go/tokenPosition0Ç Çy	printer.Ptr.prototype.wr
 		}
 	};
 	printer.prototype.writeCommentPrefix = function(pos, next, prev, comment, tok) { return this.go$val.writeCommentPrefix(pos, next, prev, comment, tok); };
- 0printerwriteCommentPrefix0x0
-go/printerprinter0
-go/printer	writeByte0go/astComment0
-go/printerwriteWhitespace0
-go/printernlimit0ÅøisBlankÅ§	isBlank = function(s) {
+ 0printerwriteCommentPrefix0igo/ast:Commentgo/printer:nlimitgo/printer:printergo/printer:writeBytego/printer:writeWhitespace0ÅøisBlankÅ§	isBlank = function(s) {
 		var i;
 		i = 0;
 		while (i < s.length) {
@@ -2190,10 +1929,10 @@ go/printernlimit0ÅøisBlankÅ§	isBlank = function(s) {
 		}
 		return a.substring(0, i);
 	};
- 0commonPrefix0 0Åü	trimRightS	trimRight = function(s) {
+ 0commonPrefix0 0Åô	trimRightS	trimRight = function(s) {
 		return strings.TrimRightFunc(s, unicode.IsSpace);
 	};
- 0	trimRight0.0stringsTrimRightFunc0unicodeIsSpace0ÇistripCommonPrefixÇ›	stripCommonPrefix = function(lines) {
+ 0	trimRight0(strings:TrimRightFuncunicode:IsSpace0Ç]stripCommonPrefixÇ›	stripCommonPrefix = function(lines) {
 		var prefix, first, _ref, _i, _slice, _index, line, i, _slice$1, _index$1, _slice$2, _index$2, line$1, lineOfStars, i$1, _slice$3, _index$3, first$1, i$2, n, suffix, n$1, _slice$4, _index$4, _slice$5, _index$5, _tuple, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, last, closing, i$3, _slice$9, _index$9, _ref$1, _i$1, _slice$10, _index$10, line$2, i$4, _slice$11, _index$11;
 		if (lines.length <= 1) {
 			return;
@@ -2278,10 +2017,7 @@ go/printernlimit0ÅøisBlankÅ§	isBlank = function(s) {
 			_i$1++;
 		}
 	};
- 0stripCommonPrefix0\0
-go/printerisBlank0
-go/printercommonPrefix0stringsIndex0strings
-TrimSuffix0ÇÓ Ç
+ 0stripCommonPrefix0Pgo/printer:commonPrefixgo/printer:isBlankstrings:Indexstrings:TrimSuffix0Ç… Ç
 ≥	printer.Ptr.prototype.writeComment = function(comment) {
 		var p, text, _struct, pos, ldir, i, err, line, _tuple, indent, _struct$1, lines, _ref, _i, _slice, _index, line$1, i$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, line$2, i$2, _struct$2, _struct$3;
 		var go$deferred = [];
@@ -2341,13 +2077,7 @@ TrimSuffix0ÇÓ Ç
 		}
 	};
 	printer.prototype.writeComment = function(comment) { return this.go$val.writeComment(comment); };
- 0printerwriteComment0Ç0
-go/printerprinter0go/tokenPosition0
-go/printer	trimRight0
-go/printerstripCommonPrefix0
-go/printer	writeByte0
-go/printerposFor0strings	HasPrefix0strings	TrimSpace0strings	LastIndex0strconvAtoi0
-go/printerwriteString0stringsSplit0Ç Çû	printer.Ptr.prototype.writeCommentSuffix = function(needsLinebreak) {
+ 0printerwriteComment0ÅÚgo/printer:posForgo/printer:printergo/printer:stripCommonPrefixgo/printer:trimRightgo/printer:writeBytego/printer:writeStringgo/token:Positionstrconv:Atoistrings:HasPrefixstrings:LastIndexstrings:Splitstrings:TrimSpace0Ç Çû	printer.Ptr.prototype.writeCommentSuffix = function(needsLinebreak) {
 		var wroteNewline, droppedFF, p, _ref, _i, _slice, _index, ch, i, _ref$1, _slice$1, _index$1, _slice$2, _index$2;
 		wroteNewline = false;
 		droppedFF = false;
@@ -2382,10 +2112,7 @@ go/printerwriteString0stringsSplit0Ç Çû	printer.Ptr.prototype.writeC
 		return [wroteNewline, droppedFF];
 	};
 	printer.prototype.writeCommentSuffix = function(needsLinebreak) { return this.go$val.writeCommentSuffix(needsLinebreak); };
- 0printerwriteCommentSuffix0O0
-go/printerprinter0
-go/printerwriteWhitespace0
-go/printer	writeByte0Çd Ç˝	printer.Ptr.prototype.intersperseComments = function(next, tok) {
+ 0printerwriteCommentSuffix0Fgo/printer:printergo/printer:writeBytego/printer:writeWhitespace0Ç@ Ç˝	printer.Ptr.prototype.intersperseComments = function(next, tok) {
 		var wroteNewline, droppedFF, p, last, _struct, _ref, _i, _slice, _index, c, _struct$1, _struct$2, needsLinebreak, _tuple;
 		wroteNewline = false;
 		droppedFF = false;
@@ -2415,17 +2142,7 @@ go/printer	writeByte0Çd Ç˝	printer.Ptr.prototype.intersperseComments = func
 		return [wroteNewline, droppedFF];
 	};
 	printer.prototype.intersperseComments = function(next, tok) { return this.go$val.intersperseComments(next, tok); };
- 0printerintersperseComments0Ç;0go/astComment0 
-go/printerwriteCommentPrefix0
-go/printerposFor0
-go/printernextComment0
-go/printerinternalError0
-go/printerprinter0
-go/printercommentBefore0go/tokenPosition0
-go/printerwriteComment0
-go/printerlineFor0
-go/printer	writeByte0 
-go/printerwriteCommentSuffix0ÇÚ Ç	printer.Ptr.prototype.writeWhitespace = function(n) {
+ 0printerintersperseComments0Çgo/ast:Commentgo/printer:commentBeforego/printer:internalErrorgo/printer:lineForgo/printer:nextCommentgo/printer:posForgo/printer:printergo/printer:writeBytego/printer:writeCommentgo/printer:writeCommentPrefixgo/printer:writeCommentSuffixgo/token:Position0ÇÈ Ç	printer.Ptr.prototype.writeWhitespace = function(n) {
 		var p, i, _slice, _index, ch, _ref, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3, i$1, _slice$4, _index$4, _slice$5, _index$5;
 		p = this;
 		i = 0;
@@ -2463,10 +2180,7 @@ go/printerwriteCommentSuffix0ÇÚ Ç	printer.Ptr.prototype.writeWhitespace =
 		p.wsbuf = go$subslice(p.wsbuf, 0, i$1);
 	};
 	printer.prototype.writeWhitespace = function(n) { return this.go$val.writeWhitespace(n); };
- 0printerwriteWhitespace0M0
-go/printerprinter0
-go/printerinternalError0
-go/printer	writeByte0]nlimitE	nlimit = function(n) {
+ 0printerwriteWhitespace0Dgo/printer:internalErrorgo/printer:printergo/printer:writeByte0]nlimitE	nlimit = function(n) {
 		if (n > 2) {
 			n = 2;
 		}
@@ -2493,7 +2207,7 @@ mayCombineÇ¢	mayCombine = function(prev, next) {
 		return b;
 	};
  0
-mayCombine0 0Ç´ Çˇ	printer.Ptr.prototype.print = function(args) {
+mayCombine0 0Çu Çˇ	printer.Ptr.prototype.print = function(args) {
 		var p, _ref, _i, _slice, _index, arg, data, isLit, impliedSemi, x, _ref$1, _type, i, _slice$1, _index$1, s, _slice$2, _index$2, _ref$2, _struct, _struct$1, next, _tuple, _struct$2, wroteNewline, droppedFF, n, ch, _struct$3;
 		p = this;
 		_ref = args;
@@ -2596,20 +2310,7 @@ mayCombine0 0Ç´ Çˇ	printer.Ptr.prototype.print = function(args) {
 		}
 	};
 	printer.prototype.print = function(args) { return this.go$val.print(args); };
- 0printerprint0Çé0
-go/printer
-whiteSpace0
-go/printerinternalError0go/tokenPosition0fmtFprintf0
-go/printerflush0
-go/printerpmode0go/tokenToken0
-go/printernlimit0
-go/printer	writeByte0
-go/printerwriteString0go/astBasicLit0
-go/printer
-mayCombine0
-go/printerprinter0go/astIdent0go/tokenPos0
-go/printerwriteWhitespace0
-go/printerposFor0osStderr0Çi Ç.	printer.Ptr.prototype.commentBefore = function(next) {
+ 0printerprint0ÇXfmt:Fprintfgo/ast:BasicLitgo/ast:Identgo/printer:flushgo/printer:internalErrorgo/printer:mayCombinego/printer:nlimitgo/printer:pmodego/printer:posForgo/printer:printergo/printer:whiteSpacego/printer:writeBytego/printer:writeStringgo/printer:writeWhitespacego/token:Posgo/token:Positiongo/token:Token	os:Stderr0Çf Ç.	printer.Ptr.prototype.commentBefore = function(next) {
 		var result, p;
 		result = false;
 		p = this;
@@ -2617,8 +2318,7 @@ go/printerposFor0osStderr0Çi Ç.	printer.Ptr.prototype.commentBefore =
 		return result;
 	};
 	printer.prototype.commentBefore = function(next) { return this.go$val.commentBefore(next); };
- 0printercommentBefore00
-go/printerprinter0Ç[ Ç≤	printer.Ptr.prototype.flush = function(next, tok) {
+ 0printercommentBefore0go/printer:printer0ÇK Ç≤	printer.Ptr.prototype.flush = function(next, tok) {
 		var wroteNewline, droppedFF, p, _struct, _tuple, _struct$1;
 		wroteNewline = false;
 		droppedFF = false;
@@ -2631,11 +2331,7 @@ go/printerprinter0Ç[ Ç≤	printer.Ptr.prototype.flush = function(next, tok) 
 		return [wroteNewline, droppedFF];
 	};
 	printer.prototype.flush = function(next, tok) { return this.go$val.flush(next, tok); };
- 0printerflush0Åå0
-go/printerprinter0
-go/printercommentBefore0go/tokenPosition0!
-go/printerintersperseComments0
-go/printerwriteWhitespace0Ç‰getDocÇ*	getDoc = function(n) {
+ 0printerflush0}go/printer:commentBeforego/printer:intersperseCommentsgo/printer:printergo/printer:writeWhitespacego/token:Position0ÇÃgetDocÇ*	getDoc = function(n) {
 		var n$1, _ref, _type;
 		_ref = n;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -2663,8 +2359,7 @@ go/printerwriteWhitespace0Ç‰getDocÇ*	getDoc = function(n) {
 		}
 		return (go$ptrType(ast.CommentGroup)).nil;
 	};
- 0getDoc0Åü0go/astGenDecl0go/astFuncDecl0go/astFile0go/astCommentGroup0go/astField0go/ast
-ImportSpec0go/ast	ValueSpec0go/astTypeSpec0ÇO Çñ	printer.Ptr.prototype.printNode = function(node) {
+ 0getDoc0Åágo/ast:CommentGroupgo/ast:Fieldgo/ast:Filego/ast:FuncDeclgo/ast:GenDeclgo/ast:ImportSpecgo/ast:TypeSpecgo/ast:ValueSpec0Ç Çñ	printer.Ptr.prototype.printNode = function(node) {
 		var go$this = this, p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, _tuple$2, n$1, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		p = go$this;
@@ -2744,18 +2439,8 @@ ImportSpec0go/ast	ValueSpec0go/astTypeSpec0ÇO Çñ	printer.Ptr.protot
 		/* */ } break; } }; return go$f();
 	};
 	printer.prototype.printNode = function(node) { return this.go$val.printNode(node); };
- 0printer	printNode0Çó0go/astCommentGroup0go/astFile0go/astDecl0go/astLabeledStmt0
-go/printerdecl0
-go/printerspec0go/astNode0
-go/printergetDoc0go/astExpr0fmtErrorf0
-go/printerprinter0
-go/printernextComment0go/astSpec0
-go/printerexpr0
-go/printerCommentedNode0go/astStmt0
-go/printerstmt0
-go/printerstmtList0
-go/printerdeclList0
-go/printerfile0Ç	 Å“	trimmer.Ptr.prototype.resetSpace = function() {
+ 0printer	printNode0Ç[
+fmt:Errorfgo/ast:CommentGroupgo/ast:Declgo/ast:Exprgo/ast:Filego/ast:LabeledStmtgo/ast:Nodego/ast:Specgo/ast:Stmtgo/printer:CommentedNodego/printer:declgo/printer:declListgo/printer:exprgo/printer:filego/printer:getDocgo/printer:nextCommentgo/printer:printergo/printer:specgo/printer:stmtgo/printer:stmtList0Ç Å“	trimmer.Ptr.prototype.resetSpace = function() {
 		var p;
 		p = this;
 		p.state = 0;
@@ -2763,8 +2448,7 @@ go/printerfile0Ç	 Å“	trimmer.Ptr.prototype.resetSpace = function() {
 	};
 	trimmer.prototype.resetSpace = function() { return this.go$val.resetSpace(); };
  0trimmer
-resetSpace00
-go/printertrimmer0Ç¯ Çö	trimmer.Ptr.prototype.Write = function(data) {
+resetSpace0go/printer:trimmer0ÇÔ Çö	trimmer.Ptr.prototype.Write = function(data) {
 		var n, err, p, m, b, _ref, _i, _slice, _index, _ref$1, _ref$2, _tuple, _tuple$1, _tuple$2, _tuple$3, _ref$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _ref$4, _tuple$8;
 		n = 0;
 		err = null;
@@ -2833,11 +2517,7 @@ go/printertrimmer0Ç¯ Çö	trimmer.Ptr.prototype.Write = function(data) {
 		return [n, err];
 	};
 	trimmer.prototype.Write = function(data) { return this.go$val.Write(data); };
- 0	trimmer0I0
-go/printertrimmer0
-go/printer
-resetSpace0
-go/printeraNewline0Ç0 Ç@	Config.Ptr.prototype.fprint = function(output, fset, node, nodeSizes) {
+ 0	trimmer0@go/printer:aNewlinego/printer:resetSpacego/printer:trimmer0Ç Ç@	Config.Ptr.prototype.fprint = function(output, fset, node, nodeSizes) {
 		var err, cfg, p, minwidth, padchar, twmode, _tuple, tw, _tuple$1;
 		err = null;
 		cfg = this;
@@ -2871,28 +2551,18 @@ go/printeraNewline0Ç0 Ç@	Config.Ptr.prototype.fprint = function(output, fs
 		return err;
 	};
 	Config.prototype.fprint = function(output, fset, node, nodeSizes) { return this.go$val.fprint(output, fset, node, nodeSizes); };
- 0Configfprint0Å”0
-go/printerprinter0
-go/printerinit0
-go/printer	printNode0go/tokenPosition0text/tabwriterWriter0
-go/printerConfig0
-go/printerflush0
-go/printertrimmer0text/tabwriter	NewWriter0Ç= Å˛	Config.Ptr.prototype.Fprint = function(output, fset, node) {
+ 0Configfprint0Å∏go/printer:Configgo/printer:flushgo/printer:initgo/printer:printNodego/printer:printergo/printer:trimmergo/token:Positiontext/tabwriter:NewWritertext/tabwriter:Writer0Ç7 Å˛	Config.Ptr.prototype.Fprint = function(output, fset, node) {
 		var cfg;
 		cfg = this;
 		return cfg.fprint(output, fset, node, new Go$Map());
 	};
 	Config.prototype.Fprint = function(output, fset, node) { return this.go$val.Fprint(output, fset, node); };
- 0Config0,0
-go/printerConfig0
-go/printerfprint0Å™Fprint|	Fprint = go$pkg.Fprint = function(output, fset, node) {
+ 0Config0&go/printer:Configgo/printer:fprint0ÅßFprint|	Fprint = go$pkg.Fprint = function(output, fset, node) {
 		return (new Config.Ptr(0, 8, 0)).Fprint(output, fset, node);
 	};
- 0Fprint00
-go/printerConfig0aNewline  0
-aNewline0 0o  C		aNewline = new (go$sliceType(Go$Uint8))(go$stringToBytes("\n"));
+ 0Fprint0go/printer:Config0aNewline  0
+aNewline0 0l  C		aNewline = new (go$sliceType(Go$Uint8))(go$stringToBytes("\n"));
 0
-aNewline00
-go/printeraNewline0
+aNewline0go/printer:aNewline0
    0 0 0
    0 0 0 

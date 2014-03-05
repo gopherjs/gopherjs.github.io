@@ -1,4 +1,4 @@
-0ÉÈhtml/templateÇõ~package template
+0É„Shtml/templateÇõ~package template
 import strings "strings"
 import fmt "fmt"
 import reflect "reflect"
@@ -442,7 +442,7 @@ func (? @"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 func (? *@"reflect".StructTag) @"reflect".Get(@"".key string) (? string)
 $$
 0Ç*runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesencodingmathstrconvstringsencoding/base64syscalltimeosreflectfmtsortunicode/utf16encoding/jsonhtmlpath/filepath	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatehtml/template0Ç0stringsstrings0
-fmtfmt0reflectreflect0bytesbytes0unicodeunicode0unicode/utf8utf80htmlhtml0ioio0text/templatetemplate0text/template/parseparse0encoding/jsonjson0	io/ioutilioutil0path/filepathfilepath0syncsync0ÉK@0mCSS[	CSS = go$pkg.CSS = go$newType(0, "String", "template.CSS", "CSS", "html/template", null);
+fmtfmt0reflectreflect0bytesbytes0unicodeunicode0unicode/utf8utf80htmlhtml0ioio0text/templatetemplate0text/template/parseparse0encoding/jsonjson0	io/ioutilioutil0path/filepathfilepath0syncsync0ÉEu0mCSS[	CSS = go$pkg.CSS = go$newType(0, "String", "template.CSS", "CSS", "html/template", null);
  0CSS0 0sHTML_	HTML = go$pkg.HTML = go$newType(0, "String", "template.HTML", "HTML", "html/template", null);
  0HTML0 0ÅãHTMLAttro	HTMLAttr = go$pkg.HTMLAttr = go$newType(0, "String", "template.HTMLAttr", "HTMLAttr", "html/template", null);
  0
@@ -450,7 +450,7 @@ $$
  0JS0 0yJSStrc	JSStr = go$pkg.JSStr = go$newType(0, "String", "template.JSStr", "JSStr", "html/template", null);
  0JSStr0 0mURL[	URL = go$pkg.URL = go$newType(0, "String", "template.URL", "URL", "html/template", null);
  0URL0 0ÅúcontentTypez	contentType = go$pkg.contentType = go$newType(1, "Uint8", "template.contentType", "contentType", "html/template", null);
- 0contentType0 0ÇcontextÇ:	context = go$pkg.context = go$newType(0, "Struct", "template.context", "context", "html/template", function(state_, delim_, urlPart_, jsCtx_, attr_, element_, err_) {
+ 0contentType0 0ÇÓcontextÇ:	context = go$pkg.context = go$newType(0, "Struct", "template.context", "context", "html/template", function(state_, delim_, urlPart_, jsCtx_, attr_, element_, err_) {
 		this.go$val = this;
 		this.state = state_ !== undefined ? state_ : 0;
 		this.delim = delim_ !== undefined ? delim_ : 0;
@@ -463,7 +463,7 @@ $$
 Çˇ		context.methods = [["String", "", [], [Go$String], false, -1], ["eq", "html/template", [context], [Go$Bool], false, -1], ["mangle", "html/template", [Go$String], [Go$String], false, -1]];
 		(go$ptrType(context)).methods = [["String", "", [], [Go$String], false, -1], ["eq", "html/template", [context], [Go$Bool], false, -1], ["mangle", "html/template", [Go$String], [Go$String], false, -1]];
 		context.init([["state", "state", "html/template", state, ""], ["delim", "delim", "html/template", delim, ""], ["urlPart", "urlPart", "html/template", urlPart, ""], ["jsCtx", "jsCtx", "html/template", jsCtx, ""], ["attr", "attr", "html/template", attr, ""], ["element", "element", "html/template", element, ""], ["err", "err", "html/template", (go$ptrType(Error)), ""]]);
-0	context0Å´0html/templateError0html/templatestate0html/templatedelim0html/templateurlPart0html/templatejsCtx0html/templateattr0html/templateelement0Çstateb	state = go$pkg.state = go$newType(1, "Uint8", "template.state", "state", "html/template", null);
+0	context0Åñhtml/template:Errorhtml/template:attrhtml/template:delimhtml/template:elementhtml/template:jsCtxhtml/template:statehtml/template:urlPart0Çstateb	state = go$pkg.state = go$newType(1, "Uint8", "template.state", "state", "html/template", null);
 Åé		state.methods = [["String", "", [], [Go$String], false, -1]];
 		(go$ptrType(state)).methods = [["String", "", [], [Go$String], false, -1]];
 0state0 0Çdelimb	delim = go$pkg.delim = go$newType(1, "Uint8", "template.delim", "delim", "html/template", null);
@@ -481,7 +481,7 @@ $$
 0	element0 0Åˇattr^	attr = go$pkg.attr = go$newType(1, "Uint8", "template.attr", "attr", "html/template", null);
 Åå		attr.methods = [["String", "", [], [Go$String], false, -1]];
 		(go$ptrType(attr)).methods = [["String", "", [], [Go$String], false, -1]];
-0attr0 0Ç»ErrorÇå	Error = go$pkg.Error = go$newType(0, "Struct", "template.Error", "Error", "html/template", function(ErrorCode_, Name_, Line_, Description_) {
+0attr0 0Ç≈ErrorÇå	Error = go$pkg.Error = go$newType(0, "Struct", "template.Error", "Error", "html/template", function(ErrorCode_, Name_, Line_, Description_) {
 		this.go$val = this;
 		this.ErrorCode = ErrorCode_ !== undefined ? ErrorCode_ : 0;
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -490,9 +490,8 @@ $$
 	});
 Ç		(go$ptrType(Error)).methods = [["Error", "", [], [Go$String], false, -1]];
 		Error.init([["ErrorCode", "ErrorCode", "", ErrorCode, ""], ["Name", "Name", "", Go$String, ""], ["Line", "Line", "", Go$Int, ""], ["Description", "Description", "", Go$String, ""]]);
-0Error00html/template	ErrorCode0Åé	ErrorCodep	ErrorCode = go$pkg.ErrorCode = go$newType(4, "Int", "template.ErrorCode", "ErrorCode", "html/template", null);
- 0	ErrorCode0 0Ç
-escaperÇ’	escaper = go$pkg.escaper = go$newType(0, "Struct", "template.escaper", "escaper", "html/template", function(tmpl_, output_, derived_, called_, actionNodeEdits_, templateNodeEdits_, textNodeEdits_) {
+0Error0html/template:ErrorCode0Åé	ErrorCodep	ErrorCode = go$pkg.ErrorCode = go$newType(4, "Int", "template.ErrorCode", "ErrorCode", "html/template", null);
+ 0	ErrorCode0 0ÇÓescaperÇ’	escaper = go$pkg.escaper = go$newType(0, "Struct", "template.escaper", "escaper", "html/template", function(tmpl_, output_, derived_, called_, actionNodeEdits_, templateNodeEdits_, textNodeEdits_) {
 		this.go$val = this;
 		this.tmpl = tmpl_ !== undefined ? tmpl_ : (go$ptrType(Template)).nil;
 		this.output = output_ !== undefined ? output_ : false;
@@ -504,9 +503,7 @@ $$
 	});
 Ç˚		(go$ptrType(escaper)).methods = [["commit", "html/template", [], [], false, -1], ["computeOutCtx", "html/template", [context, (go$ptrType(template.Template))], [context], false, -1], ["editActionNode", "html/template", [(go$ptrType(parse.ActionNode)), (go$sliceType(Go$String))], [], false, -1], ["editTemplateNode", "html/template", [(go$ptrType(parse.TemplateNode)), Go$String], [], false, -1], ["editTextNode", "html/template", [(go$ptrType(parse.TextNode)), (go$sliceType(Go$Uint8))], [], false, -1], ["escape", "html/template", [context, parse.Node], [context], false, -1], ["escapeAction", "html/template", [context, (go$ptrType(parse.ActionNode))], [context], false, -1], ["escapeBranch", "html/template", [context, (go$ptrType(parse.BranchNode)), Go$String], [context], false, -1], ["escapeList", "html/template", [context, (go$ptrType(parse.ListNode))], [context], false, -1], ["escapeListConditionally", "html/template", [context, (go$ptrType(parse.ListNode)), (go$funcType([(go$ptrType(escaper)), context], [Go$Bool], false))], [context, Go$Bool], false, -1], ["escapeTemplate", "html/template", [context, (go$ptrType(parse.TemplateNode))], [context], false, -1], ["escapeTemplateBody", "html/template", [context, (go$ptrType(template.Template))], [context, Go$Bool], false, -1], ["escapeText", "html/template", [context, (go$ptrType(parse.TextNode))], [context], false, -1], ["escapeTree", "html/template", [context, Go$String, Go$Int], [context, Go$String], false, -1], ["template", "html/template", [Go$String], [(go$ptrType(template.Template))], false, -1]];
 		escaper.init([["tmpl", "tmpl", "html/template", (go$ptrType(Template)), ""], ["output", "output", "html/template", (go$mapType(Go$String, context)), ""], ["derived", "derived", "html/template", (go$mapType(Go$String, (go$ptrType(template.Template)))), ""], ["called", "called", "html/template", (go$mapType(Go$String, Go$Bool)), ""], ["actionNodeEdits", "actionNodeEdits", "html/template", (go$mapType((go$ptrType(parse.ActionNode)), (go$sliceType(Go$String)))), ""], ["templateNodeEdits", "templateNodeEdits", "html/template", (go$mapType((go$ptrType(parse.TemplateNode)), Go$String)), ""], ["textNodeEdits", "textNodeEdits", "html/template", (go$mapType((go$ptrType(parse.TextNode)), (go$sliceType(Go$Uint8)))), ""]]);
-0	escaper0Ç0#text/template/parseTemplateNode0text/template/parseTextNode0!text/template/parse
-BranchNode0text/template/parseListNode0html/templateTemplate0html/templatecontext0text/templateTemplate0!text/template/parse
-ActionNode0text/template/parseNode0ÇcTemplateÇ·	Template = go$pkg.Template = go$newType(0, "Struct", "template.Template", "Template", "html/template", function(escaped_, text_, Tree_, nameSpace_) {
+0	escaper0Åˇhtml/template:Templatehtml/template:contexttext/template/parse:ActionNodetext/template/parse:BranchNodetext/template/parse:ListNodetext/template/parse:Node text/template/parse:TemplateNodetext/template/parse:TextNodetext/template:Template0ÇTTemplateÇ·	Template = go$pkg.Template = go$newType(0, "Struct", "template.Template", "Template", "html/template", function(escaped_, text_, Tree_, nameSpace_) {
 		this.go$val = this;
 		this.escaped = escaped_ !== undefined ? escaped_ : false;
 		this.text = text_ !== undefined ? text_ : (go$ptrType(template.Template)).nil;
@@ -516,15 +513,16 @@ ActionNode0text/template/parseNode0ÇcTemplateÇ·	Template = go$pkg.Temp
 ÇÊ		(go$ptrType(Template)).methods = [["AddParseTree", "", [Go$String, (go$ptrType(parse.Tree))], [(go$ptrType(Template)), go$error], false, -1], ["Clone", "", [], [(go$ptrType(Template)), go$error], false, -1], ["Delims", "", [Go$String, Go$String], [(go$ptrType(Template))], false, -1], ["Execute", "", [io.Writer, go$emptyInterface], [go$error], false, -1], ["ExecuteTemplate", "", [io.Writer, Go$String, go$emptyInterface], [go$error], false, -1], ["Funcs", "", [FuncMap], [(go$ptrType(Template))], false, -1], ["Lookup", "", [Go$String], [(go$ptrType(Template))], false, -1], ["Name", "", [], [Go$String], false, -1], ["New", "", [Go$String], [(go$ptrType(Template))], false, -1], ["Parse", "", [Go$String], [(go$ptrType(Template)), go$error], false, -1], ["ParseFiles", "", [(go$sliceType(Go$String))], [(go$ptrType(Template)), go$error], true, -1], ["ParseGlob", "", [Go$String], [(go$ptrType(Template)), go$error], false, -1], ["Templates", "", [], [(go$sliceType((go$ptrType(Template))))], false, -1], ["escape", "html/template", [], [go$error], false, -1], ["lookupAndEscapeTemplate", "html/template", [Go$String], [(go$ptrType(Template)), go$error], false, -1], ["new", "html/template", [Go$String], [(go$ptrType(Template))], false, -1]];
 		Template.init([["escaped", "escaped", "html/template", Go$Bool, ""], ["text", "text", "html/template", (go$ptrType(template.Template)), ""], ["Tree", "Tree", "", (go$ptrType(parse.Tree)), ""], ["nameSpace", "", "html/template", (go$ptrType(nameSpace)), ""]]);
 0
-Template0|0text/templateTemplate0text/template/parseTree0html/template	nameSpace0ioWriter0html/templateFuncMap0ÇÌ	nameSpaceÇ		nameSpace = go$pkg.nameSpace = go$newType(0, "Struct", "template.nameSpace", "nameSpace", "html/template", function(mu_, set_) {
+Template0mhtml/template:FuncMaphtml/template:nameSpace	io:Writertext/template/parse:Treetext/template:Template0ÇÁ	nameSpaceÇ		nameSpace = go$pkg.nameSpace = go$newType(0, "Struct", "template.nameSpace", "nameSpace", "html/template", function(mu_, set_) {
 		this.go$val = this;
 		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
 		this.set = set_ !== undefined ? set_ : false;
 	});
 Åô		nameSpace.init([["mu", "mu", "html/template", sync.Mutex, ""], ["set", "set", "html/template", (go$mapType(Go$String, (go$ptrType(Template)))), ""]]);
-0	nameSpace0*0syncMutex0html/templateTemplate0Å∞FuncMaph	FuncMap = go$pkg.FuncMap = go$newType(0, "Map", "template.FuncMap", "FuncMap", "html/template", null);
+0	nameSpace0$html/template:Template
+sync:Mutex0Å∞FuncMaph	FuncMap = go$pkg.FuncMap = go$newType(0, "Map", "template.FuncMap", "FuncMap", "html/template", null);
 .		FuncMap.init(Go$String, go$emptyInterface);
-0	FuncMap0 0ÇMattrTypeÇº	attrType = function(name) {
+0	FuncMap0 0Ç>attrTypeÇº	attrType = function(name) {
 		var colon, ok, _tuple, _entry, t;
 		name = strings.ToLower(name);
 		if (strings.HasPrefix(name, "data-")) {
@@ -547,7 +545,7 @@ ActionNode0text/template/parseNode0ÇcTemplateÇ·	Template = go$pkg.Temp
 		return 0;
 	};
  0
-attrType0s0stringsToLower0strings	HasPrefix0strings	IndexRune0html/templateattrTypeMap0stringsContains0Ç&indirectÇœ	indirect = function(a) {
+attrType0dhtml/template:attrTypeMapstrings:Containsstrings:HasPrefixstrings:IndexRunestrings:ToLower0ÇindirectÇœ	indirect = function(a) {
 		var t, _struct, v, _struct$1;
 		if (go$interfaceIsEqual(a, null)) {
 			return null;
@@ -562,7 +560,7 @@ ActionNode0text/template/parseNode0ÇcTemplateÇ·	Template = go$pkg.Temp
 		return v.Interface();
 	};
  0
-indirect090reflectTypeOf0reflectValueOf0reflectValue0ÇáindirectToStringerOrErrorÇ„	indirectToStringerOrError = function(a) {
+indirect00reflect:TypeOfreflect:Valuereflect:ValueOf0Ç{indirectToStringerOrErrorÇ„	indirectToStringerOrError = function(a) {
 		var _struct, v, _struct$1;
 		if (go$interfaceIsEqual(a, null)) {
 			return null;
@@ -573,7 +571,7 @@ ActionNode0text/template/parseNode0ÇcTemplateÇ·	Template = go$pkg.Temp
 		}
 		return v.Interface();
 	};
- 0indirectToStringerOrError0d0reflectValueOf0reflectValue0 html/templatefmtStringerType0html/template	errorType0Çy	stringifyÇw	stringify = function(args) {
+ 0indirectToStringerOrError0Xhtml/template:errorTypehtml/template:fmtStringerTypereflect:Valuereflect:ValueOf0Ç^	stringifyÇw	stringify = function(args) {
 		var s, _ref, _type, _slice, _index, _ref$1, _i, _slice$1, _index$1, arg, i, _slice$2, _index$2;
 		if (args.length === 1) {
 			_ref = indirect((_slice = args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
@@ -611,19 +609,20 @@ ActionNode0text/template/parseNode0ÇcTemplateÇ·	Template = go$pkg.Temp
 		}
 		return [fmt.Sprint(args), 0];
 	};
- 0	stringify0Å·0html/templateindirect0html/templateCSS0html/templateHTML0html/templateHTMLAttr0html/templateJSStr0fmtSprint0html/templateJS0html/templateURL0*html/templateindirectToStringerOrError0Ç– Ç˝	context.Ptr.prototype.String = function() {
+ 0	stringify0Å∆
+fmt:Sprinthtml/template:CSShtml/template:HTMLhtml/template:HTMLAttrhtml/template:JShtml/template:JSStrhtml/template:URLhtml/template:indirect'html/template:indirectToStringerOrError0Ç∏ Ç˝	context.Ptr.prototype.String = function() {
 		var _struct, c;
 		c = (_struct = this, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
 		return fmt.Sprintf("{%v %v %v %v %v %v %v}", new (go$sliceType(go$emptyInterface))([new state(c.state), new delim(c.delim), new urlPart(c.urlPart), new jsCtx(c.jsCtx), new attr(c.attr), new element(c.element), c.err]));
 	};
 	context.prototype.String = function() { return this.go$val.String(); };
- 0	context0ÅΩ0html/templatecontext0fmtSprintf0html/templatestate0html/templatedelim0html/templateurlPart0html/templatejsCtx0html/templateattr0html/templateelement0Çˇ ÇÃ	context.Ptr.prototype.eq = function(d) {
+ 0	context0Å•fmt:Sprintfhtml/template:attrhtml/template:contexthtml/template:delimhtml/template:elementhtml/template:jsCtxhtml/template:statehtml/template:urlPart0Ç¸ ÇÃ	context.Ptr.prototype.eq = function(d) {
 		var _struct, c;
 		c = (_struct = this, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
 		return (c.state === d.state) && (c.delim === d.delim) && (c.urlPart === d.urlPart) && (c.jsCtx === d.jsCtx) && (c.attr === d.attr) && (c.element === d.element) && c.err === d.err;
 	};
 	context.prototype.eq = function(d) { return this.go$val.eq(d); };
- 0contexteq00html/templatecontext0Ç: Ço	context.Ptr.prototype.mangle = function(templateName) {
+ 0contexteq0html/template:context0Ç% Ço	context.Ptr.prototype.mangle = function(templateName) {
 		var _struct, c, s;
 		c = (_struct = this, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
 		if (c.state === 0) {
@@ -648,7 +647,7 @@ ActionNode0text/template/parseNode0ÇcTemplateÇ·	Template = go$pkg.Temp
 		return s;
 	};
 	context.prototype.mangle = function(templateName) { return this.go$val.mangle(templateName); };
- 0contextmangle0Å≠0html/templatecontext0html/templatestate0html/templatedelim0html/templateurlPart0html/templatejsCtx0html/templateattr0html/templateelement0Çú ÇD	state.prototype.String = function() {
+ 0contextmangle0Åòhtml/template:attrhtml/template:contexthtml/template:delimhtml/template:elementhtml/template:jsCtxhtml/template:statehtml/template:urlPart0Çì ÇD	state.prototype.String = function() {
 		var s;
 		s = this.go$val;
 		if ((s >> 0) < 24) {
@@ -657,8 +656,7 @@ ActionNode0text/template/parseNode0ÇcTemplateÇ·	Template = go$pkg.Temp
 		return fmt.Sprintf("illegal state %d", new (go$sliceType(go$emptyInterface))([new Go$Int((s >> 0))]));
 	};
 	go$ptrType(state).prototype.String = function() { return new state(this.go$get()).String(); };
- 0state0E0html/templatestate0html/template
-stateNames0fmtSprintf0Å 	isCommentÅ´	isComment = function(s) {
+ 0state0<fmt:Sprintfhtml/template:statehtml/template:stateNames0Å 	isCommentÅ´	isComment = function(s) {
 		var _ref;
 		_ref = s;
 		if (_ref === 5 || _ref === 13 || _ref === 14 || _ref === 21 || _ref === 22) {
@@ -674,7 +672,7 @@ stateNames0fmtSprintf0Å 	isCommentÅ´	isComment = function(s) {
 		}
 		return false;
 	};
- 0	isInTag0 0Çõ ÇC	delim.prototype.String = function() {
+ 0	isInTag0 0Çí ÇC	delim.prototype.String = function() {
 		var d;
 		d = this.go$val;
 		if ((d >> 0) < 4) {
@@ -683,8 +681,7 @@ stateNames0fmtSprintf0Å 	isCommentÅ´	isComment = function(s) {
 		return fmt.Sprintf("illegal delim %d", new (go$sliceType(go$emptyInterface))([new Go$Int((d >> 0))]));
 	};
 	go$ptrType(delim).prototype.String = function() { return new delim(this.go$get()).String(); };
- 0delim0E0html/templatedelim0html/template
-delimNames0fmtSprintf0Ç´ ÇM	urlPart.prototype.String = function() {
+ 0delim0<fmt:Sprintfhtml/template:delimhtml/template:delimNames0Ç¢ ÇM	urlPart.prototype.String = function() {
 		var u;
 		u = this.go$val;
 		if ((u >> 0) < 4) {
@@ -693,7 +690,7 @@ delimNames0fmtSprintf0Ç´ ÇM	urlPart.prototype.String = function() {
 		return fmt.Sprintf("illegal urlPart %d", new (go$sliceType(go$emptyInterface))([new Go$Int((u >> 0))]));
 	};
 	go$ptrType(urlPart).prototype.String = function() { return new urlPart(this.go$get()).String(); };
- 0	urlPart0I0html/templateurlPart0html/templateurlPartNames0fmtSprintf0Çˆ Çª	jsCtx.prototype.String = function() {
+ 0	urlPart0@fmt:Sprintfhtml/template:urlParthtml/template:urlPartNames0Ç Çª	jsCtx.prototype.String = function() {
 		var c, _ref;
 		c = this.go$val;
 		_ref = c;
@@ -707,7 +704,7 @@ delimNames0fmtSprintf0Ç´ ÇM	urlPart.prototype.String = function() {
 		return fmt.Sprintf("illegal jsCtx %d", new (go$sliceType(go$emptyInterface))([new Go$Int((c >> 0))]));
 	};
 	go$ptrType(jsCtx).prototype.String = function() { return new jsCtx(this.go$get()).String(); };
- 0jsCtx0(0html/templatejsCtx0fmtSprintf0Ç´ ÇM	element.prototype.String = function() {
+ 0jsCtx0"fmt:Sprintfhtml/template:jsCtx0Ç¢ ÇM	element.prototype.String = function() {
 		var e;
 		e = this.go$val;
 		if ((e >> 0) < 5) {
@@ -716,7 +713,7 @@ delimNames0fmtSprintf0Ç´ ÇM	urlPart.prototype.String = function() {
 		return fmt.Sprintf("illegal element %d", new (go$sliceType(go$emptyInterface))([new Go$Int((e >> 0))]));
 	};
 	go$ptrType(element).prototype.String = function() { return new element(this.go$get()).String(); };
- 0	element0I0html/templateelement0html/templateelementNames0fmtSprintf0Çì Ç>	attr.prototype.String = function() {
+ 0	element0@fmt:Sprintfhtml/template:elementhtml/template:elementNames0Çä Ç>	attr.prototype.String = function() {
 		var a;
 		a = this.go$val;
 		if ((a >> 0) < 4) {
@@ -725,7 +722,7 @@ delimNames0fmtSprintf0Ç´ ÇM	urlPart.prototype.String = function() {
 		return fmt.Sprintf("illegal attr %d", new (go$sliceType(go$emptyInterface))([new Go$Int((a >> 0))]));
 	};
 	go$ptrType(attr).prototype.String = function() { return new attr(this.go$get()).String(); };
- 0attr0C0html/templateattr0html/template	attrNames0fmtSprintf0Ç€endsWithCSSKeywordÇY	endsWithCSSKeyword = function(b, kw) {
+ 0attr0:fmt:Sprintfhtml/template:attrhtml/template:attrNames0Ç“endsWithCSSKeywordÇY	endsWithCSSKeyword = function(b, kw) {
 		var i, _tuple, r;
 		i = b.length - kw.length >> 0;
 		if (i < 0) {
@@ -739,10 +736,10 @@ delimNames0fmtSprintf0Ç´ ÇM	urlPart.prototype.String = function() {
 		}
 		return go$bytesToString(bytes.ToLower(go$subslice(b, i))) === kw;
 	};
- 0endsWithCSSKeyword0P0unicode/utf8DecodeLastRune0html/templateisCSSNmchar0bytesToLower0Å˛isCSSNmcharÅ€	isCSSNmchar = function(r) {
+ 0endsWithCSSKeyword0Gbytes:ToLowerhtml/template:isCSSNmcharunicode/utf8:DecodeLastRune0Å˛isCSSNmcharÅ€	isCSSNmchar = function(r) {
 		return 97 <= r && r <= 122 || 65 <= r && r <= 90 || 48 <= r && r <= 57 || (r === 45) || (r === 95) || 128 <= r && r <= 55295 || 57344 <= r && r <= 65533 || 65536 <= r && r <= 1114111;
 	};
- 0isCSSNmchar0 0Ç.	decodeCSSÇn	decodeCSS = function(s) {
+ 0isCSSNmchar0 0Ç	decodeCSSÇn	decodeCSS = function(s) {
 		var i, b, i$1, _tuple, _slice, _index, j, _slice$1, _index$1, r, _q, _tuple$1, n, _tuple$2, _tuple$3, n$1, _tuple$4;
 		i = bytes.IndexByte(s, 92);
 		if (i === -1) {
@@ -776,12 +773,10 @@ delimNames0fmtSprintf0Ç´ ÇM	urlPart.prototype.String = function() {
 		}
 		return b;
 	};
- 0	decodeCSS0Åü0bytes	IndexByte0html/templateisHex0html/template	hexDecode0unicode/utf8
-EncodeRune0html/templateskipCSSSpace0unicode/utf8
-DecodeRune0{isHexe	isHex = function(c) {
+ 0	decodeCSS0Åçbytes:IndexBytehtml/template:hexDecodehtml/template:isHexhtml/template:skipCSSSpaceunicode/utf8:DecodeRuneunicode/utf8:EncodeRune0{isHexe	isHex = function(c) {
 		return 48 <= c && c <= 57 || 97 <= c && c <= 102 || 65 <= c && c <= 70;
 	};
- 0isHex0 0Ç	hexDecodeÇ÷	hexDecode = function(s) {
+ 0isHex0 0Ç	hexDecodeÇ÷	hexDecode = function(s) {
 		var n, _ref, _i, _slice, _index, c;
 		n = 0;
 		_ref = s;
@@ -802,7 +797,7 @@ DecodeRune0{isHexe	isHex = function(c) {
 		}
 		return n;
 	};
- 0	hexDecode00fmtSprintf0Ç’skipCSSSpaceÇØ	skipCSSSpace = function(c) {
+ 0	hexDecode0fmt:Sprintf0Ç’skipCSSSpaceÇØ	skipCSSSpace = function(c) {
 		var _ref, _slice, _index, _slice$1, _index$1;
 		if (c.length === 0) {
 			return c;
@@ -828,7 +823,7 @@ isCSSSpaceÅ¨	isCSSSpace = function(b) {
 		return false;
 	};
  0
-isCSSSpace0 0ÇD
+isCSSSpace0 0Ç5
 cssEscaperÇß	cssEscaper = function(args) {
 		var _tuple, s, b, written, _ref, _i, _rune, r, i, repl, _ref$1;
 		_tuple = stringify(args), s = _tuple[0];
@@ -899,8 +894,7 @@ cssEscaperÇß	cssEscaper = function(args) {
 		return b.String();
 	};
  0
-cssEscaper0{0html/template	stringify0bytesBuffer0unicode/utf8RuneLen0html/templateisHex0html/template
-isCSSSpace0Ç≠cssValueFilterÇ∆	cssValueFilter = function(args) {
+cssEscaper0lbytes:Bufferhtml/template:isCSSSpacehtml/template:isHexhtml/template:stringifyunicode/utf8:RuneLen0ÇòcssValueFilterÇ∆	cssValueFilter = function(args) {
 		var _tuple, s, t, _tuple$1, b, id, _ref, _i, _slice, _index, c, i, _ref$1, _slice$1, _index$1;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 1) {
@@ -932,7 +926,7 @@ isCSSSpace0Ç≠cssValueFilterÇ∆	cssValueFilter = function(args) {
 		}
 		return go$bytesToString(b);
 	};
- 0cssValueFilter0Åº0html/template	stringify0html/template	decodeCSS0html/templateisCSSNmchar0bytesToLower0bytesIndex0 html/templateexpressionBytes0 html/templatemozBindingBytes0Ç` Ç%	Error.Ptr.prototype.Error = function() {
+ 0cssValueFilter0Åßbytes:Indexbytes:ToLowerhtml/template:decodeCSShtml/template:expressionByteshtml/template:isCSSNmcharhtml/template:mozBindingByteshtml/template:stringify0ÇZ Ç%	Error.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		if (!((e.Line === 0))) {
@@ -943,10 +937,10 @@ isCSSSpace0Ç≠cssValueFilterÇ∆	cssValueFilter = function(args) {
 		return "html/template: " + e.Description;
 	};
 	Error.prototype.Error = function() { return this.go$val.Error(); };
- 0Error0(0html/templateError0fmtSprintf0Å¶errorff	errorf = function(k, line, f, args) {
+ 0Error0"fmt:Sprintfhtml/template:Error0Å†errorff	errorf = function(k, line, f, args) {
 		return new Error.Ptr(k, "", line, fmt.Sprintf(f, args));
 	};
- 0errorf0(0fmtSprintf0html/templateError0ÇïescapeTemplatesÇõ	escapeTemplates = function(tmpl, names) {
+ 0errorf0"fmt:Sprintfhtml/template:Error0Ç}escapeTemplatesÇõ	escapeTemplates = function(tmpl, names) {
 		var e, _ref, _i, _slice, _index, name, _tuple, _struct, c, err, _tuple$1, _ref$1, _i$1, _slice$1, _index$1, name$1, t, _entry;
 		e = newEscaper(tmpl);
 		_ref = names;
@@ -980,15 +974,13 @@ isCSSSpace0Ç≠cssValueFilterÇ∆	cssValueFilter = function(args) {
 		e.commit();
 		return null;
 	};
- 0escapeTemplates0ÅÕ0html/templatecontext0html/template
-newEscaper0html/template
-escapeTree0html/templateError0fmtSprintf0html/templateTemplate0text/template/parseTree0html/templatecommit0Çù
+ 0escapeTemplates0Åµfmt:Sprintfhtml/template:Errorhtml/template:Templatehtml/template:commithtml/template:contexthtml/template:escapeTreehtml/template:newEscapertext/template/parse:Tree0Çö
 newEscaperÇa	newEscaper = function(t) {
 		var _map, _key, _map$1, _key$1, _map$2, _key$2, _map$3, _key$3, _map$4, _key$4, _map$5, _key$5;
 		return new escaper.Ptr(t, (_map = new Go$Map(), _map), (_map$1 = new Go$Map(), _map$1), (_map$2 = new Go$Map(), _map$2), (_map$3 = new Go$Map(), _map$3), (_map$4 = new Go$Map(), _map$4), (_map$5 = new Go$Map(), _map$5));
 	};
  0
-newEscaper00html/templateescaper0ÇD Çl	escaper.Ptr.prototype.escape = function(c, n) {
+newEscaper0html/template:escaper0Ç Çl	escaper.Ptr.prototype.escape = function(c, n) {
 		var e, n$1, _ref, _type, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13;
 		e = this;
 		_ref = n;
@@ -1018,10 +1010,7 @@ newEscaper00html/templateescaper0ÇD Çl	escaper.Ptr.prototype.escape = 
 		throw go$panic(new Go$String("escaping " + n.String() + " is unimplemented"));
 	};
 	escaper.prototype.escape = function(c, n) { return this.go$val.escape(c, n); };
- 0escaperescape0Çπ0text/template/parseListNode0text/template/parseTextNode0html/template
-escapeText0text/template/parseIfNode0text/template/parseWithNode0html/templateescapeAction0html/templateescapeBranch0#text/template/parseTemplateNode0html/template
-escapeList0html/templateescaper0!text/template/parse
-ActionNode0 text/template/parse	RangeNode0html/templatecontext0html/templateescapeTemplate0Ç´ Çõ	escaper.Ptr.prototype.escapeAction = function(c, n) {
+ 0escaperescape0Çèhtml/template:contexthtml/template:escapeActionhtml/template:escapeBranchhtml/template:escapeListhtml/template:escapeTemplatehtml/template:escapeTexthtml/template:escapertext/template/parse:ActionNodetext/template/parse:IfNodetext/template/parse:ListNodetext/template/parse:RangeNode text/template/parse:TemplateNodetext/template/parse:TextNodetext/template/parse:WithNode0Çê Çõ	escaper.Ptr.prototype.escapeAction = function(c, n) {
 		var e, _struct, _struct$1, _struct$2, s, _ref, _struct$3, _ref$1, _ref$2, _ref$3, _ref$4, _struct$4;
 		e = this;
 		if (!((n.Pipe.Decl.length === 0))) {
@@ -1091,7 +1080,7 @@ ActionNode0 text/template/parse	RangeNode0html/templatecontext0html/t
 		return (_struct$4 = c, new context.Ptr(_struct$4.state, _struct$4.delim, _struct$4.urlPart, _struct$4.jsCtx, _struct$4.attr, _struct$4.element, _struct$4.err));
 	};
 	escaper.prototype.escapeAction = function(c, n) { return this.go$val.escapeAction(c, n); };
- 0escaperescapeAction0ÅÏ0html/templatenudge0html/templateurlPart0html/template	isComment0html/templateeditActionNode0html/templateescaper0html/templatecontext0html/templateError0html/templateerrorf0html/templatestate0ÇvensurePipelineContainsÇb	ensurePipelineContains = function(p, s) {
+ 0escaperescapeAction0Å—html/template:Errorhtml/template:contexthtml/template:editActionNodehtml/template:errorfhtml/template:escaperhtml/template:isCommenthtml/template:nudgehtml/template:statehtml/template:urlPart0ÇaensurePipelineContainsÇb	ensurePipelineContains = function(p, s) {
 		var n, idents, i, cmd, _slice, _index, ok, _tuple, x, _slice$1, _index$1, dups, _ref, _i, _slice$2, _index$2, id, _slice$3, _index$3, x$1, _slice$4, _index$4, newCmds, _ref$1, _i$1, _slice$5, _index$5, id$1, _slice$6, _index$6, pos, x$2, _slice$7, _index$7, i$1, _ref$2, _i$2, _slice$8, _index$8, name, _ref$3, _i$3, _slice$9, _index$9, name$1;
 		if (s.length === 0) {
 			return;
@@ -1152,8 +1141,7 @@ ActionNode0 text/template/parse	RangeNode0html/templatecontext0html/t
 		}
 		p.Cmds = newCmds;
 	};
- 0ensurePipelineContains0ÅŸ0%text/template/parseIdentifierNode0html/templateescFnsEq0"text/template/parseCommandNode0html/template
-indexOfStr0html/template	appendCmd0html/templatenewIdentCmd0text/template/parsePos0Çá	appendCmdÇ	appendCmd = function(cmds, cmd) {
+ 0ensurePipelineContains0Åƒhtml/template:appendCmdhtml/template:escFnsEqhtml/template:indexOfStrhtml/template:newIdentCmdtext/template/parse:CommandNode"text/template/parse:IdentifierNodetext/template/parse:Pos0ÇÅ	appendCmdÇ	appendCmd = function(cmds, cmd) {
 		var n, _tuple, x, _slice, _index, _slice$1, _index$1, last, ok, _tuple$1, x$1, _slice$2, _index$2, next, _entry, _entry$1;
 		if (n = cmds.length, !((n === 0))) {
 			_tuple = (x = (_slice = (_slice$1 = cmds, _index$1 = (n - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Args, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(parse.IdentifierNode)) ? [x.go$val, true] : [(go$ptrType(parse.IdentifierNode)).nil, false])), last = _tuple[0], ok = _tuple[1];
@@ -1164,7 +1152,7 @@ indexOfStr0html/template	appendCmd0html/templatenewIdentCmd0text/tem
 		}
 		return go$append(cmds, cmd);
 	};
- 0	appendCmd0H0%text/template/parseIdentifierNode0html/templateredundantFuncs0Çï
+ 0	appendCmd0Bhtml/template:redundantFuncs"text/template/parse:IdentifierNode0Çï
 indexOfStrÇs	indexOfStr = function(s, strs, eq) {
 		var _ref, _i, _slice, _index, t, i;
 		_ref = strs;
@@ -1180,7 +1168,7 @@ indexOfStrÇs	indexOfStr = function(s, strs, eq) {
 		return -1;
 	};
  0
-indexOfStr0 0ÇqescFnsEqÇ3	escFnsEq = function(a, b) {
+indexOfStr0 0ÇnescFnsEqÇ3	escFnsEq = function(a, b) {
 		var e, _entry, e$1, _entry$1;
 		if (e = (_entry = equivEscapers[a], _entry !== undefined ? _entry.v : ""), !(e === "")) {
 			a = e;
@@ -1191,10 +1179,10 @@ indexOfStr0 0ÇqescFnsEqÇ3	escFnsEq = function(a, b) {
 		return a === b;
 	};
  0
-escFnsEq0 0html/templateequivEscapers0Ç2newIdentCmdÅ®	newIdentCmd = function(identifier, pos) {
+escFnsEq0html/template:equivEscapers0Ç)newIdentCmdÅ®	newIdentCmd = function(identifier, pos) {
 		return new parse.CommandNode.Ptr(4, 0, new (go$sliceType(parse.Node))([parse.NewIdentifier(identifier).SetPos(pos)]));
 	};
- 0newIdentCmd0g0text/template/parseNode0$text/template/parseNewIdentifier0"text/template/parseCommandNode0ÇGnudgeÇÛ	nudge = function(c) {
+ 0newIdentCmd0^text/template/parse:CommandNode!text/template/parse:NewIdentifiertext/template/parse:Node0ÇAnudgeÇÛ	nudge = function(c) {
 		var _ref, _tuple, _tuple$1, _struct;
 		_ref = c.state;
 		if (_ref === 1) {
@@ -1206,7 +1194,7 @@ indexOfStr0 0ÇqescFnsEqÇ3	escFnsEq = function(a, b) {
 		}
 		return (_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
 	};
- 0nudge0<0 html/templateattrStartStates0html/templatecontext0ÇájoinÇ˘	join = function(a, b, line, nodeName) {
+ 0nudge06html/template:attrStartStateshtml/template:context0ÇxjoinÇ˘	join = function(a, b, line, nodeName) {
 		var _struct, _struct$1, _struct$2, _struct$3, _struct$4, c, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, c$1, _struct$10, d, _struct$11, _struct$12, _struct$13, _struct$14, _struct$15, _tuple, e, _struct$16, _struct$17, _struct$18, _struct$19;
 		if (a.state === 23) {
 			return (_struct = a, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err));
@@ -1236,7 +1224,7 @@ indexOfStr0 0ÇqescFnsEqÇ3	escFnsEq = function(a, b) {
 		}
 		return new context.Ptr(23, 0, 0, 0, 0, 0, errorf(3, line, "{{%s}} branches end in different contexts: %v, %v", new (go$sliceType(go$emptyInterface))([new Go$String(nodeName), new a.constructor.Struct(a), new b.constructor.Struct(b)])));
 	};
- 0join0x0html/templatecontext0html/templateeq0html/templatenudge0html/templateError0html/templateerrorf0Çõ Ç
+ 0join0ihtml/template:Errorhtml/template:contexthtml/template:eqhtml/template:errorfhtml/template:nudge0Çå Ç
 Â	escaper.Ptr.prototype.escapeBranch = function(c, n, nodeName) {
 		var e, _struct, _struct$1, c0, _tuple, _struct$2, _struct$3, c1, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, c1$1, _struct$10, _struct$11, _struct$12;
 		e = this;
@@ -1254,8 +1242,7 @@ indexOfStr0 0ÇqescFnsEqÇ3	escFnsEq = function(a, b) {
 		return (_struct$12 = join((_struct$10 = c0, new context.Ptr(_struct$10.state, _struct$10.delim, _struct$10.urlPart, _struct$10.jsCtx, _struct$10.attr, _struct$10.element, _struct$10.err)), (_struct$11 = c1$1, new context.Ptr(_struct$11.state, _struct$11.delim, _struct$11.urlPart, _struct$11.jsCtx, _struct$11.attr, _struct$11.element, _struct$11.err)), n.Line, nodeName), new context.Ptr(_struct$12.state, _struct$12.delim, _struct$12.urlPart, _struct$12.jsCtx, _struct$12.attr, _struct$12.element, _struct$12.err));
 	};
 	escaper.prototype.escapeBranch = function(c, n, nodeName) { return this.go$val.escapeBranch(c, n, nodeName); };
- 0escaperescapeBranch0Åí0html/templateescaper0html/template
-escapeList0html/templatecontext0(html/templateescapeListConditionally0html/templatejoin0Ç ÇÜ	escaper.Ptr.prototype.escapeList = function(c, n) {
+ 0escaperescapeBranch0ÅÉhtml/template:contexthtml/template:escapeList%html/template:escapeListConditionallyhtml/template:escaperhtml/template:join0Ç	 ÇÜ	escaper.Ptr.prototype.escapeList = function(c, n) {
 		var e, _struct, _ref, _i, _slice, _index, m, _struct$1, _struct$2, _struct$3;
 		e = this;
 		if (n === (go$ptrType(parse.ListNode)).nil) {
@@ -1272,7 +1259,7 @@ escapeList0html/templatecontext0(html/templateescapeListConditionally0
 	};
 	escaper.prototype.escapeList = function(c, n) { return this.go$val.escapeList(c, n); };
  0escaper
-escapeList0n0html/templateescaper0text/template/parseListNode0html/templatecontext0html/templateescape0Ç! Ç!	escaper.Ptr.prototype.escapeListConditionally = function(c, n, filter) {
+escapeList0bhtml/template:contexthtml/template:escapehtml/template:escapertext/template/parse:ListNode0Ç Ç!	escaper.Ptr.prototype.escapeListConditionally = function(c, n, filter) {
 		var e, e1, _ref, _i, _keys, _entry, v, k, _struct, _key, _struct$1, _struct$2, _struct$3, ok, _ref$1, _i$1, _keys$1, _entry$1, v$1, k$1, _struct$4, _key$1, _ref$2, _i$2, _keys$2, _entry$2, v$2, k$2, _key$2, _ref$3, _i$3, _keys$3, _entry$3, v$3, k$3, _key$3, _ref$4, _i$4, _keys$4, _entry$4, v$4, k$4, _ref$5, _i$5, _keys$5, _entry$5, v$5, k$5, _ref$6, _i$6, _keys$6, _entry$6, v$6, k$6, _struct$5;
 		e = this;
 		e1 = newEscaper(e.tmpl);
@@ -1353,9 +1340,7 @@ escapeList0n0html/templateescaper0text/template/parseListNode0html/
 		return [(_struct$5 = c, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err)), ok];
 	};
 	escaper.prototype.escapeListConditionally = function(c, n, filter) { return this.go$val.escapeListConditionally(c, n, filter); };
- 0"escaperescapeListConditionally0Å—0html/templateescaper0html/template
-newEscaper0html/templatecontext0html/template
-escapeList0html/templateeditActionNode0!html/templateeditTemplateNode0html/templateeditTextNode0Ç« Ç.	escaper.Ptr.prototype.escapeTemplate = function(c, n) {
+ 0"escaperescapeListConditionally0Åºhtml/template:contexthtml/template:editActionNodehtml/template:editTemplateNodehtml/template:editTextNodehtml/template:escapeListhtml/template:escaperhtml/template:newEscaper0Çª Ç.	escaper.Ptr.prototype.escapeTemplate = function(c, n) {
 		var e, _tuple, _struct, _struct$1, name, _struct$2;
 		e = this;
 		_tuple = e.escapeTree((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), n.Name, n.Line), c = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), name = _tuple[1];
@@ -1365,9 +1350,8 @@ escapeList0html/templateeditActionNode0!html/templateeditTemplateNode0
 		return (_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err));
 	};
 	escaper.prototype.escapeTemplate = function(c, n) { return this.go$val.escapeTemplate(c, n); };
- 0escaperescapeTemplate0t0html/templateescaper0html/template
-escapeTree0html/templatecontext0!html/templateeditTemplateNode0Ç
-Ë Ç	G	escaper.Ptr.prototype.escapeTree = function(c, name, line) {
+ 0escaperescapeTemplate0hhtml/template:contexthtml/template:editTemplateNodehtml/template:escapeTreehtml/template:escaper0Ç
+æ Ç	G	escaper.Ptr.prototype.escapeTree = function(c, name, line) {
 		var e, dname, _key, ok, _tuple, _entry, _struct, out, _struct$1, t, _entry$1, dt, _key$1, _struct$2, _struct$3;
 		e = this;
 		dname = c.mangle(name);
@@ -1395,7 +1379,7 @@ escapeTree0html/templatecontext0!html/templateeditTemplateNode0Ç
 	};
 	escaper.prototype.escapeTree = function(c, name, line) { return this.go$val.escapeTree(c, name, line); };
  0escaper
-escapeTree0Ç~0html/templateescaper0text/templateTemplate0html/templateError0text/templateNew0html/templatetemplate0html/templateerrorf0html/templatecomputeOutCtx0text/template/parselexer0text/template/parseitem0html/templatemangle0html/templatecontext0html/templateTemplate0text/template/parseListNode0text/template/parseTree0Ç" Çs	escaper.Ptr.prototype.computeOutCtx = function(c, t) {
+escapeTree0ÇThtml/template:Errorhtml/template:Templatehtml/template:computeOutCtxhtml/template:contexthtml/template:errorfhtml/template:escaperhtml/template:manglehtml/template:templatetext/template/parse:ListNodetext/template/parse:Treetext/template/parse:itemtext/template/parse:lexertext/template:Newtext/template:Template0Ç Çs	escaper.Ptr.prototype.computeOutCtx = function(c, t) {
 		var e, _tuple, _struct, _struct$1, c1, ok, ok2, _tuple$1, _struct$2, _struct$3, c2, _struct$4, _tuple$2, _struct$5;
 		e = this;
 		_tuple = e.escapeTemplateBody((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), t), c1 = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), ok = _tuple[1];
@@ -1410,7 +1394,7 @@ escapeTree0Ç~0html/templateescaper0text/templateTemplate0html/temp
 		return (_struct$5 = c1, new context.Ptr(_struct$5.state, _struct$5.delim, _struct$5.urlPart, _struct$5.jsCtx, _struct$5.attr, _struct$5.element, _struct$5.err));
 	};
 	escaper.prototype.computeOutCtx = function(c, t) { return this.go$val.computeOutCtx(c, t); };
- 0escapercomputeOutCtx0Åä0html/templateescaper0#html/templateescapeTemplateBody0html/templatecontext0html/templateError0html/templateerrorf0Çº Ç 	escaper.Ptr.prototype.escapeTemplateBody = function(c, t) {
+ 0escapercomputeOutCtx0{html/template:Errorhtml/template:contexthtml/template:errorf html/template:escapeTemplateBodyhtml/template:escaper0Ç∞ Ç 	escaper.Ptr.prototype.escapeTemplateBody = function(c, t) {
 		var e, filter, _struct, _key, _struct$1;
 		e = this;
 		filter = (function(e1, c1) {
@@ -1427,7 +1411,7 @@ escapeTree0Ç~0html/templateescaper0text/templateTemplate0html/temp
 		return e.escapeListConditionally((_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), t.Tree.Root, filter);
 	};
 	escaper.prototype.escapeTemplateBody = function(c, t) { return this.go$val.escapeTemplateBody(c, t); };
- 0escaperescapeTemplateBody0s0html/templateescaper0html/templateeq0html/templatecontext0(html/templateescapeListConditionally0Ç[ Ç-	escaper.Ptr.prototype.escapeText = function(c, n) {
+ 0escaperescapeTemplateBody0ghtml/template:contexthtml/template:eq%html/template:escapeListConditionallyhtml/template:escaper0Ç9 Ç-	escaper.Ptr.prototype.escapeText = function(c, n) {
 		var e, _tuple, s, written, i, b, _tuple$1, _struct, _struct$1, c1, nread, i1, end, j, _slice, _index, j$1, _slice$1, _index$1, _ref, cs, _struct$2, _tuple$2, _struct$3;
 		e = this;
 		_tuple = [n.Text, 0, 0, new bytes.Buffer.Ptr()], s = _tuple[0], written = _tuple[1], i = _tuple[2], b = _tuple[3];
@@ -1491,8 +1475,8 @@ escapeTree0Ç~0html/templateescaper0text/templateTemplate0html/temp
 	};
 	escaper.prototype.escapeText = function(c, n) { return this.go$val.escapeText(c, n); };
  0escaper
-escapeText0Ç0html/templateescaper0!html/templatecontextAfterText0html/templatecontext0html/template	isComment0bytes	HasPrefix0bytesToUpper0bytesIndexAny0fmtSprintf0bytesBuffer0html/templatedoctypeBytes0html/templateeditTextNode0Ç
-úcontextAfterTextÇ	ô	contextAfterText = function(c, s) {
+escapeText0ÅÍbytes:Bufferbytes:HasPrefixbytes:IndexAnybytes:ToUpperfmt:Sprintfhtml/template:contexthtml/template:contextAfterTexthtml/template:doctypeByteshtml/template:editTextNodehtml/template:escaperhtml/template:isComment0Ç
+ÑcontextAfterTextÇ	ô	contextAfterText = function(c, s) {
 		var _tuple, _struct, _struct$1, c1, i, _struct$2, _struct$3, i$1, j, u, _tuple$1, _struct$4, _struct$5, c1$1, i1, _struct$6, _tuple$2, _struct$7;
 		if (c.delim === 0) {
 			_tuple = tSpecialTagEnd((_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s), c1 = (_struct$1 = _tuple[0], new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i = _tuple[1];
@@ -1523,7 +1507,7 @@ escapeText0Ç0html/templateescaper0!html/templatecontextAfterText0h
 		}
 		return [new context.Ptr(1, 0, 0, 0, 0, c.element, (go$ptrType(Error)).nil), i$1];
 	};
- 0contextAfterText0Å‘0html/templatetSpecialTagEnd0html/templatetransitionFunc0html/template	delimEnds0html/templateerrorf0htmlUnescapeString0html/templatecontext0bytesIndexAny0html/templateError0Ç  Ç{	escaper.Ptr.prototype.editActionNode = function(n, cmds) {
+ 0contextAfterText0Åºbytes:IndexAnyhtml/template:Errorhtml/template:contexthtml/template:delimEndshtml/template:errorfhtml/template:tSpecialTagEndhtml/template:transitionFunchtml:UnescapeString0Çƒ Ç{	escaper.Ptr.prototype.editActionNode = function(n, cmds) {
 		var e, ok, _tuple, _entry, _key;
 		e = this;
 		if (_tuple = (_entry = e.actionNodeEdits[n.go$key()], _entry !== undefined ? [_entry.v, true] : [(go$sliceType(Go$String)).nil, false]), ok = _tuple[1], ok) {
@@ -1532,7 +1516,7 @@ escapeText0Ç0html/templateescaper0!html/templatecontextAfterText0h
 		_key = n, (e.actionNodeEdits || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: cmds };
 	};
 	escaper.prototype.editActionNode = function(n, cmds) { return this.go$val.editActionNode(n, cmds); };
- 0escapereditActionNode0*0html/templateescaper0fmtSprintf0Ç√ Çr	escaper.Ptr.prototype.editTemplateNode = function(n, callee) {
+ 0escapereditActionNode0$fmt:Sprintfhtml/template:escaper0ÇΩ Çr	escaper.Ptr.prototype.editTemplateNode = function(n, callee) {
 		var e, ok, _tuple, _entry, _key;
 		e = this;
 		if (_tuple = (_entry = e.templateNodeEdits[n.go$key()], _entry !== undefined ? [_entry.v, true] : ["", false]), ok = _tuple[1], ok) {
@@ -1541,7 +1525,7 @@ escapeText0Ç0html/templateescaper0!html/templatecontextAfterText0h
 		_key = n, (e.templateNodeEdits || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: callee };
 	};
 	escaper.prototype.editTemplateNode = function(n, callee) { return this.go$val.editTemplateNode(n, callee); };
- 0escapereditTemplateNode0*0html/templateescaper0fmtSprintf0ÇΩ Çp	escaper.Ptr.prototype.editTextNode = function(n, text) {
+ 0escapereditTemplateNode0$fmt:Sprintfhtml/template:escaper0Ç∑ Çp	escaper.Ptr.prototype.editTextNode = function(n, text) {
 		var e, ok, _tuple, _entry, _key;
 		e = this;
 		if (_tuple = (_entry = e.textNodeEdits[n.go$key()], _entry !== undefined ? [_entry.v, true] : [(go$sliceType(Go$Uint8)).nil, false]), ok = _tuple[1], ok) {
@@ -1550,7 +1534,7 @@ escapeText0Ç0html/templateescaper0!html/templatecontextAfterText0h
 		_key = n, (e.textNodeEdits || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: text };
 	};
 	escaper.prototype.editTextNode = function(n, text) { return this.go$val.editTextNode(n, text); };
- 0escapereditTextNode0*0html/templateescaper0fmtSprintf0Ç∞ Ç	escaper.Ptr.prototype.commit = function() {
+ 0escapereditTextNode0$fmt:Sprintfhtml/template:escaper0Ç§ Ç	escaper.Ptr.prototype.commit = function() {
 		var e, _ref, _i, _keys, _entry, name, _ref$1, _i$1, _keys$1, _entry$1, t, err, _tuple, _ref$2, _i$2, _keys$2, _entry$2, s, n, _ref$3, _i$3, _keys$3, _entry$3, name$1, n$1, _ref$4, _i$4, _keys$4, _entry$4, s$1, n$2;
 		e = this;
 		_ref = e.output;
@@ -1605,7 +1589,7 @@ escapeText0Ç0html/templateescaper0!html/templatecontextAfterText0h
 		}
 	};
 	escaper.prototype.commit = function() { return this.go$val.commit(); };
- 0escapercommit0x0html/templateescaper0html/templatetemplate0html/templatefuncMap0'html/templateensurePipelineContains0ÇÕ Çy	escaper.Ptr.prototype.template = function(name) {
+ 0escapercommit0l$html/template:ensurePipelineContainshtml/template:escaperhtml/template:funcMaphtml/template:template0Ç« Çy	escaper.Ptr.prototype.template = function(name) {
 		var e, t, _entry;
 		e = this;
 		t = e.tmpl.text.Lookup(name);
@@ -1615,32 +1599,31 @@ escapeText0Ç0html/templateescaper0!html/templatecontextAfterText0h
 		return t;
 	};
 	escaper.prototype.template = function(name) { return this.go$val.template(name); };
- 0escapertemplate050html/templateescaper0text/templateTemplate0Åë
+ 0escapertemplate0/html/template:escapertext/template:Template0Åé
 HTMLEscapeT	HTMLEscape = go$pkg.HTMLEscape = function(w, b) {
 		template.HTMLEscape(w, b);
 	};
  0
-HTMLEscape00text/template
-HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = function(s) {
+HTMLEscape0text/template:HTMLEscape0Å≥HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = function(s) {
 		return template.HTMLEscapeString(s);
 	};
- 0HTMLEscapeString0#0!text/templateHTMLEscapeString0ÅûHTMLEscaper^	HTMLEscaper = go$pkg.HTMLEscaper = function(args) {
+ 0HTMLEscapeString0 text/template:HTMLEscapeString0ÅõHTMLEscaper^	HTMLEscaper = go$pkg.HTMLEscaper = function(args) {
 		return template.HTMLEscaper(args);
 	};
- 0HTMLEscaper00text/templateHTMLEscaper0ÅÖJSEscapeN	JSEscape = go$pkg.JSEscape = function(w, b) {
+ 0HTMLEscaper0text/template:HTMLEscaper0ÅÇJSEscapeN	JSEscape = go$pkg.JSEscape = function(w, b) {
 		template.JSEscape(w, b);
 	};
  0
-JSEscape00text/templateJSEscape0Å™JSEscapeStringa	JSEscapeString = go$pkg.JSEscapeString = function(s) {
+JSEscape0text/template:JSEscape0ÅßJSEscapeStringa	JSEscapeString = go$pkg.JSEscapeString = function(s) {
 		return template.JSEscapeString(s);
 	};
- 0JSEscapeString0!0text/templateJSEscapeString0Åí	JSEscaperX	JSEscaper = go$pkg.JSEscaper = function(args) {
+ 0JSEscapeString0text/template:JSEscapeString0Åè	JSEscaperX	JSEscaper = go$pkg.JSEscaper = function(args) {
 		return template.JSEscaper(args);
 	};
- 0	JSEscaper00text/template	JSEscaper0Å∂URLQueryEscaperj	URLQueryEscaper = go$pkg.URLQueryEscaper = function(args) {
+ 0	JSEscaper0text/template:JSEscaper0Å≥URLQueryEscaperj	URLQueryEscaper = go$pkg.URLQueryEscaper = function(args) {
 		return template.URLQueryEscaper(args);
 	};
- 0URLQueryEscaper0"0 text/templateURLQueryEscaper0ÇhtmlNospaceEscaperÇ	htmlNospaceEscaper = function(args) {
+ 0URLQueryEscaper0text/template:URLQueryEscaper0ÇıhtmlNospaceEscaperÇ	htmlNospaceEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 2) {
@@ -1648,7 +1631,7 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		}
 		return htmlReplacer(s, htmlNospaceReplacementTable, false);
 	};
- 0htmlNospaceEscaper0Å∑0html/template	stringify0html/templatehtmlReplacer0html/template	stripTags00html/templatehtmlNospaceNormReplacementTable0,html/templatehtmlNospaceReplacementTable0Ç—attrEscaperÇ	attrEscaper = function(args) {
+ 0htmlNospaceEscaper0Å®-html/template:htmlNospaceNormReplacementTable)html/template:htmlNospaceReplacementTablehtml/template:htmlReplacerhtml/template:stringifyhtml/template:stripTags0Ç¬attrEscaperÇ	attrEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 2) {
@@ -1656,7 +1639,7 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		}
 		return htmlReplacer(s, htmlReplacementTable, true);
 	};
- 0attrEscaper0Å©0html/template	stringify0html/templatehtmlReplacer0html/template	stripTags0)html/templatehtmlNormReplacementTable0%html/templatehtmlReplacementTable0ÇØrcdataEscaperÅ˙	rcdataEscaper = function(args) {
+ 0attrEscaper0Åö&html/template:htmlNormReplacementTable"html/template:htmlReplacementTablehtml/template:htmlReplacerhtml/template:stringifyhtml/template:stripTags0Ç£rcdataEscaperÅ˙	rcdataEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 2) {
@@ -1664,7 +1647,7 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		}
 		return htmlReplacer(s, htmlReplacementTable, true);
 	};
- 0rcdataEscaper0Åç0html/template	stringify0html/templatehtmlReplacer0)html/templatehtmlNormReplacementTable0%html/templatehtmlReplacementTable0ÇOhtmlEscaperÅ 	htmlEscaper = function(args) {
+ 0rcdataEscaper0ÅÅ&html/template:htmlNormReplacementTable"html/template:htmlReplacementTablehtml/template:htmlReplacerhtml/template:stringify0ÇFhtmlEscaperÅ 	htmlEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 2) {
@@ -1672,7 +1655,7 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		}
 		return htmlReplacer(s, htmlReplacementTable, true);
 	};
- 0htmlEscaper0b0html/template	stringify0html/templatehtmlReplacer0%html/templatehtmlReplacementTable0Ç†htmlReplacerÇ@	htmlReplacer = function(s, replacementTable, badRunes) {
+ 0htmlEscaper0Y"html/template:htmlReplacementTablehtml/template:htmlReplacerhtml/template:stringify0ÇóhtmlReplacerÇ@	htmlReplacer = function(s, replacementTable, badRunes) {
 		var _tuple, written, b, _ref, _i, _rune, r, i, repl, _slice, _index;
 		_tuple = [0, new bytes.Buffer.Ptr()], written = _tuple[0], b = _tuple[1];
 		_ref = s;
@@ -1700,7 +1683,7 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		b.WriteString(s.substring(written));
 		return b.String();
 	};
- 0htmlReplacer0:0bytesBuffer0unicode/utf8RuneLen0fmtFprintf0Ç		stripTagsÇ3	stripTags = function(html$1) {
+ 0htmlReplacer01bytes:Bufferfmt:Fprintfunicode/utf8:RuneLen0ÇÏ	stripTagsÇ3	stripTags = function(html$1) {
 		var b, _tuple, s, c, i, allText, st, _tuple$1, _struct, _struct$1, d, nread, i1, j, j1, _slice, _index, _struct$2, _tuple$2, i1$1, _tuple$3;
 		b = new bytes.Buffer.Ptr();
 		_tuple = [new (go$sliceType(Go$Uint8))(go$stringToBytes(html$1)), new context.Ptr(0, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), 0, true], s = _tuple[0], c = _tuple[1], i = _tuple[2], allText = _tuple[3];
@@ -1747,7 +1730,7 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		}
 		return b.String();
 	};
- 0	stripTags0Å≠0bytesBuffer0html/templateError0html/templatecontext0html/templateisInTag0html/templatetransitionFunc0bytesIndexAny0html/template	delimEnds0Ç´htmlNameFilterÇ6	htmlNameFilter = function(args) {
+ 0	stripTags0Åòbytes:Bufferbytes:IndexAnyhtml/template:Errorhtml/template:contexthtml/template:delimEndshtml/template:isInTaghtml/template:transitionFunc0Ç¢htmlNameFilterÇ6	htmlNameFilter = function(args) {
 		var _tuple, s, t, t$1, _ref, _i, _rune, r;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 3) {
@@ -1774,10 +1757,10 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		}
 		return s;
 	};
- 0htmlNameFilter0K0html/template	stringify0stringsToLower0html/templateattrType0\commentEscaper4	commentEscaper = function(args) {
+ 0htmlNameFilter0Bhtml/template:attrTypehtml/template:stringifystrings:ToLower0\commentEscaper4	commentEscaper = function(args) {
 		return "";
 	};
- 0commentEscaper0 0Ç		nextJSCtxÇè	nextJSCtx = function(s, preceding) {
+ 0commentEscaper0 0Ç		nextJSCtxÇè	nextJSCtx = function(s, preceding) {
 		var _slice, _index, _tuple, c, n, _ref, start, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, j, _slice$4, _index$4, _entry;
 		s = bytes.TrimRight(s, "\t\n\f\r \xE2\x80\xA8\xE2\x80\xA9");
 		if (s.length === 0) {
@@ -1820,7 +1803,7 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		}
 		return 1;
 	};
- 0	nextJSCtx0]0bytes	TrimRight0html/templateisJSIdentPart0'html/templateregexpPrecederKeywords0ÇindirectToJSONMarshalerÇÑ	indirectToJSONMarshaler = function(a) {
+ 0	nextJSCtx0Tbytes:TrimRighthtml/template:isJSIdentPart$html/template:regexpPrecederKeywords0ÇˇindirectToJSONMarshalerÇÑ	indirectToJSONMarshaler = function(a) {
 		var _struct, v, _struct$1;
 		v = (_struct = reflect.ValueOf(a), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		while (!v.Type().Implements(jsonMarshalType) && (v.Kind() === 22) && !v.IsNil()) {
@@ -1828,7 +1811,7 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		}
 		return v.Interface();
 	};
- 0indirectToJSONMarshaler0H0reflectValueOf0reflectValue0 html/templatejsonMarshalType0Ç;jsValEscaperÇ	’	jsValEscaper = function(args) {
+ 0indirectToJSONMarshaler0?html/template:jsonMarshalTypereflect:Valuereflect:ValueOf0ÇjsValEscaperÇ	’	jsValEscaper = function(args) {
 		var a, _slice, _index, t, _ref, _type, _ref$1, _i, _slice$1, _index$1, arg, i, _slice$2, _index$2, _tuple, b, err, _tuple$1, first, _tuple$2, last, buf, pad, written, i$1, _tuple$3, rune, n, repl;
 		a = null;
 		if (args.length === 1) {
@@ -1898,8 +1881,8 @@ HTMLEscape0Å∂HTMLEscapeStringg	HTMLEscapeString = go$pkg.HTMLEscapeString = f
 		}
 		return go$bytesToString(b);
 	};
- 0jsValEscaper0Ç>0encoding/jsonMarshal0stringsReplace0bytesBuffer0html/templateisJSIdentPart0(html/templateindirectToJSONMarshaler0html/templateJSStr0fmtSprint0fmtSprintf0unicode/utf8DecodeLastRune0html/templateJS0encoding/json	Marshaler0fmtStringer0unicode/utf8
-DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
+ 0jsValEscaper0Çbytes:Bufferencoding/json:Marshalencoding/json:Marshaler
+fmt:Sprintfmt:Sprintffmt:Stringerhtml/template:JShtml/template:JSStr%html/template:indirectToJSONMarshalerhtml/template:isJSIdentPartstrings:Replaceunicode/utf8:DecodeLastRuneunicode/utf8:DecodeRune0ÇàjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 		var _tuple, s, t;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 5) {
@@ -1907,7 +1890,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 		}
 		return replace(s, jsStrReplacementTable);
 	};
- 0jsStrEscaper0Åä0html/template	stringify0html/templatereplace0*html/templatejsStrNormReplacementTable0&html/templatejsStrReplacementTable0ÇPjsRegexpEscaperÅƒ	jsRegexpEscaper = function(args) {
+ 0jsStrEscaper0~'html/template:jsStrNormReplacementTable#html/template:jsStrReplacementTablehtml/template:replacehtml/template:stringify0ÇGjsRegexpEscaperÅƒ	jsRegexpEscaper = function(args) {
 		var _tuple, s;
 		_tuple = stringify(args), s = _tuple[0];
 		s = replace(s, jsRegexpReplacementTable);
@@ -1916,7 +1899,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 		}
 		return s;
 	};
- 0jsRegexpEscaper0a0html/template	stringify0html/templatereplace0)html/templatejsRegexpReplacementTable0ÇíreplaceÇL	replace = function(s, replacementTable) {
+ 0jsRegexpEscaper0X&html/template:jsRegexpReplacementTablehtml/template:replacehtml/template:stringify0ÇåreplaceÇL	replace = function(s, replacementTable) {
 		var b, written, _ref, _i, _rune, r, i, repl, _slice, _index, _slice$1, _index$1;
 		b = new bytes.Buffer.Ptr();
 		written = 0;
@@ -1948,7 +1931,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 		b.WriteString(s.substring(written));
 		return b.String();
 	};
- 0	replace0*0bytesBuffer0unicode/utf8RuneLen0ÇDisJSIdentPartÇ	isJSIdentPart = function(r) {
+ 0	replace0$bytes:Bufferunicode/utf8:RuneLen0ÇDisJSIdentPartÇ	isJSIdentPart = function(r) {
 		if (r === 36) {
 			return true;
 		} else if (48 <= r && r <= 57) {
@@ -1962,7 +1945,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 		}
 		return false;
 	};
- 0isJSIdentPart0 0ÇH Ç	Template.Ptr.prototype.Templates = function() {
+ 0isJSIdentPart0 0ÇE Ç	Template.Ptr.prototype.Templates = function() {
 		var t, ns, m, _ref, _i, _keys, _entry, v;
 		var go$deferred = [];
 		try {
@@ -1990,7 +1973,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.Templates = function() { return this.go$val.Templates(); };
  0
-Template00html/templateTemplate0ÇÆ ÇS	Template.Ptr.prototype.escape = function() {
+Template0html/template:Template0Ç® ÇS	Template.Ptr.prototype.escape = function() {
 		var t, err;
 		var go$deferred = [];
 		try {
@@ -2012,7 +1995,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 		}
 	};
 	Template.prototype.escape = function() { return this.go$val.escape(); };
- 0Templateescape0=0html/templateTemplate0 html/templateescapeTemplates0Çn Ç$	Template.Ptr.prototype.Execute = function(wr, data) {
+ 0Templateescape07html/template:Templatehtml/template:escapeTemplates0Çh Ç$	Template.Ptr.prototype.Execute = function(wr, data) {
 		var t, err;
 		t = this;
 		if (err = t.escape(), !(go$interfaceIsEqual(err, null))) {
@@ -2022,7 +2005,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.Execute = function(wr, data) { return this.go$val.Execute(wr, data); };
  0
-Template040html/templateTemplate0html/templateescape0Ç˜ Çú	Template.Ptr.prototype.ExecuteTemplate = function(wr, name, data) {
+Template0.html/template:Templatehtml/template:escape0ÇÒ Çú	Template.Ptr.prototype.ExecuteTemplate = function(wr, name, data) {
 		var t, _tuple, tmpl, err;
 		t = this;
 		_tuple = t.lookupAndEscapeTemplate(name), tmpl = _tuple[0], err = _tuple[1];
@@ -2033,7 +2016,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.ExecuteTemplate = function(wr, name, data) { return this.go$val.ExecuteTemplate(wr, name, data); };
  0
-Template0E0html/templateTemplate0(html/templatelookupAndEscapeTemplate0Çf Çë	Template.Ptr.prototype.lookupAndEscapeTemplate = function(name) {
+Template0?html/template:Template%html/template:lookupAndEscapeTemplate0ÇT Çë	Template.Ptr.prototype.lookupAndEscapeTemplate = function(name) {
 		var tmpl, err, t, _entry, _tuple, _tuple$1, _tuple$2;
 		tmpl = (go$ptrType(Template)).nil;
 		err = null;
@@ -2067,7 +2050,8 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 		}
 	};
 	Template.prototype.lookupAndEscapeTemplate = function(name) { return this.go$val.lookupAndEscapeTemplate(name); };
- 0#TemplatelookupAndEscapeTemplate0Å•0html/templateTemplate0fmtErrorf0text/template/parseTree0text/template/parseListNode0text/templateTemplate0 html/templateescapeTemplates0Ç> Ç˜	Template.Ptr.prototype.Parse = function(src) {
+ 0#TemplatelookupAndEscapeTemplate0Åì
+fmt:Errorfhtml/template:Templatehtml/template:escapeTemplatestext/template/parse:ListNodetext/template/parse:Treetext/template:Template0Ç8 Ç˜	Template.Ptr.prototype.Parse = function(src) {
 		var t, _tuple, ret, err, _ref, _i, _slice, _index, v, name, _entry, tmpl;
 		var go$deferred = [];
 		try {
@@ -2105,7 +2089,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.Parse = function(src) { return this.go$val.Parse(src); };
  0
-Template010html/templateTemplate0html/templatenew0ÇÇ ÇB	Template.Ptr.prototype.AddParseTree = function(name, tree) {
+Template0+html/template:Templatehtml/template:new0Ç| ÇB	Template.Ptr.prototype.AddParseTree = function(name, tree) {
 		var t, _tuple, text, err, ret, _key;
 		var go$deferred = [];
 		try {
@@ -2131,7 +2115,8 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.AddParseTree = function(name, tree) { return this.go$val.AddParseTree(name, tree); };
  0
-Template0*0html/templateTemplate0fmtErrorf0Çà Ç	Template.Ptr.prototype.Clone = function() {
+Template0$
+fmt:Errorfhtml/template:Template0Ç| Ç	Template.Ptr.prototype.Clone = function() {
 		var t, _tuple, textClone, err, ret, _ref, _i, _slice, _index, x, name, _entry, src, _key;
 		var go$deferred = [];
 		try {
@@ -2169,13 +2154,16 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.Clone = function() { return this.go$val.Clone(); };
  0
-Template0U0html/templateTemplate0fmtErrorf0syncMutex0html/template	nameSpace0ÇﬁNewÇQ	New = go$pkg.New = function(name) {
+Template0I
+fmt:Errorfhtml/template:Templatehtml/template:nameSpace
+sync:Mutex0ÇœNewÇQ	New = go$pkg.New = function(name) {
 		var tmpl, _key;
 		tmpl = new Template.Ptr(false, template.New(name), (go$ptrType(parse.Tree)).nil, new nameSpace.Ptr(new sync.Mutex.Ptr(), new Go$Map()));
 		_key = name, (tmpl.nameSpace.set || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: tmpl };
 		return tmpl;
 	};
- 0New0y0text/templateNew0text/template/parseTree0syncMutex0html/template	nameSpace0html/templateTemplate0Ç˝ Ç∂	Template.Ptr.prototype.New = function(name) {
+ 0New0jhtml/template:Templatehtml/template:nameSpace
+sync:Mutextext/template/parse:Treetext/template:New0Ç˜ Ç∂	Template.Ptr.prototype.New = function(name) {
 		var t;
 		var go$deferred = [];
 		try {
@@ -2192,7 +2180,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.New = function(name) { return this.go$val.New(name); };
  0
-Template010html/templateTemplate0html/templatenew0Ç‡ Çç	Template.Ptr.prototype.new$ = function(name) {
+Template0+html/template:Templatehtml/template:new0Ç⁄ Çç	Template.Ptr.prototype.new$ = function(name) {
 		var t, tmpl, _key;
 		t = this;
 		tmpl = new Template.Ptr(false, t.text.New(name), (go$ptrType(parse.Tree)).nil, t.nameSpace);
@@ -2200,14 +2188,14 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 		return tmpl;
 	};
 	Template.prototype.new$ = function(name) { return this.go$val.new$(name); };
- 0Templatenew080html/templateTemplate0text/template/parseTree0Å” Å£	Template.Ptr.prototype.Name = function() {
+ 0Templatenew02html/template:Templatetext/template/parse:Tree0Å– Å£	Template.Ptr.prototype.Name = function() {
 		var t;
 		t = this;
 		return t.text.Name();
 	};
 	Template.prototype.Name = function() { return this.go$val.Name(); };
  0
-Template00html/templateTemplate0Ç  Å–	Template.Ptr.prototype.Funcs = function(funcMap$1) {
+Template0html/template:Template0Å˝ Å–	Template.Ptr.prototype.Funcs = function(funcMap$1) {
 		var t;
 		t = this;
 		t.text.Funcs(funcMap$1);
@@ -2215,7 +2203,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.Funcs = function(funcMap$1) { return this.go$val.Funcs(funcMap$1); };
  0
-Template00html/templateTemplate0Ç Å‹	Template.Ptr.prototype.Delims = function(left, right) {
+Template0html/template:Template0Ç	 Å‹	Template.Ptr.prototype.Delims = function(left, right) {
 		var t;
 		t = this;
 		t.text.Delims(left, right);
@@ -2223,7 +2211,7 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.Delims = function(left, right) { return this.go$val.Delims(left, right); };
  0
-Template00html/templateTemplate0ÇJ Ç	Template.Ptr.prototype.Lookup = function(name) {
+Template0html/template:Template0ÇG Ç	Template.Ptr.prototype.Lookup = function(name) {
 		var t, _entry;
 		var go$deferred = [];
 		try {
@@ -2240,27 +2228,25 @@ DecodeRune0ÇïjsStrEscaperÅÂ	jsStrEscaper = function(args) {
 	};
 	Template.prototype.Lookup = function(name) { return this.go$val.Lookup(name); };
  0
-Template00html/templateTemplate0ÅïMustÅÄ	Must = go$pkg.Must = function(t, err) {
+Template0html/template:Template0ÅïMustÅÄ	Must = go$pkg.Must = function(t, err) {
 		if (!(go$interfaceIsEqual(err, null))) {
 			throw go$panic(err);
 		}
 		return t;
 	};
- 0Must0 0Å–
+ 0Must0 0Å 
 ParseFilesx	ParseFiles = go$pkg.ParseFiles = function(filenames) {
 		return parseFiles((go$ptrType(Template)).nil, filenames);
 	};
  0
-ParseFiles080html/template
-parseFiles0html/templateTemplate0Ç( Å€	Template.Ptr.prototype.ParseFiles = function(filenames) {
+ParseFiles02html/template:Templatehtml/template:parseFiles0Ç" Å€	Template.Ptr.prototype.ParseFiles = function(filenames) {
 		var t;
 		t = this;
 		return parseFiles(t, filenames);
 	};
 	Template.prototype.ParseFiles = function(filenames) { return this.go$val.ParseFiles(filenames); };
  0
-Template080html/templateTemplate0html/template
-parseFiles0Ç˝
+Template02html/template:Templatehtml/template:parseFiles0ÇÓ
 parseFilesÇm	parseFiles = function(t, filenames) {
 		var _ref, _i, _slice, _index, filename, _tuple, b, err, s, name, tmpl, _tuple$1;
 		if (filenames.length === 0) {
@@ -2294,17 +2280,18 @@ parseFilesÇm	parseFiles = function(t, filenames) {
 		return [t, null];
 	};
  0
-parseFiles0n0html/templateTemplate0fmtErrorf0	io/ioutilReadFile0path/filepathBase0html/templateNew0Å∆	ParseGlobq	ParseGlob = go$pkg.ParseGlob = function(pattern) {
+parseFiles0_
+fmt:Errorfhtml/template:Newhtml/template:Templateio/ioutil:ReadFilepath/filepath:Base0Å¿	ParseGlobq	ParseGlob = go$pkg.ParseGlob = function(pattern) {
 		return parseGlob((go$ptrType(Template)).nil, pattern);
 	};
- 0	ParseGlob070html/template	parseGlob0html/templateTemplate0Ç Åœ	Template.Ptr.prototype.ParseGlob = function(pattern) {
+ 0	ParseGlob01html/template:Templatehtml/template:parseGlob0Ç Åœ	Template.Ptr.prototype.ParseGlob = function(pattern) {
 		var t;
 		t = this;
 		return parseGlob(t, pattern);
 	};
 	Template.prototype.ParseGlob = function(pattern) { return this.go$val.ParseGlob(pattern); };
  0
-Template070html/templateTemplate0html/template	parseGlob0ÇW	parseGlobÇŸ	parseGlob = function(t, pattern) {
+Template01html/template:Templatehtml/template:parseGlob0ÇK	parseGlobÇŸ	parseGlob = function(t, pattern) {
 		var _tuple, filenames, err;
 		_tuple = filepath.Glob(pattern), filenames = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -2315,8 +2302,8 @@ parseFiles0n0html/templateTemplate0fmtErrorf0	io/ioutilReadFile0
 		}
 		return parseFiles(t, filenames);
 	};
- 0	parseGlob0^0path/filepathGlob0html/templateTemplate0fmtErrorf0html/template
-parseFiles0Ç¿tTextÇ	tText = function(c, s) {
+ 0	parseGlob0R
+fmt:Errorfhtml/template:Templatehtml/template:parseFilespath/filepath:Glob0ÇÆtTextÇ	tText = function(c, s) {
 		var k, i, _struct, end, _slice, _index, _struct$1, _tuple, _tuple$1, j, e;
 		k = 0;
 		while (true) {
@@ -2344,8 +2331,7 @@ parseFiles0Ç¿tTextÇ	tText = function(c, s) {
 			k = j;
 		}
 	};
- 0tText0Åí0bytes	IndexByte0bytesEqual0html/templatecommentStart0html/templatecontext0html/templateError0html/template
-eatTagName0ÇctTagÇÉ	tTag = function(c, s) {
+ 0tText0ÅÄbytes:Equalbytes:IndexBytehtml/template:Errorhtml/template:commentStarthtml/template:contexthtml/template:eatTagName0ÇNtTagÇÉ	tTag = function(c, s) {
 		var i, _struct, _slice, _index, _tuple, j, err, _tuple$1, state$1, attr$1, _ref;
 		i = eatWhiteSpace(s, 0);
 		if (i === s.length) {
@@ -2377,7 +2363,7 @@ eatTagName0ÇctTagÇÉ	tTag = function(c, s) {
 		}
 		return [new context.Ptr(state$1, 0, 0, 0, attr$1, c.element, (go$ptrType(Error)).nil), j];
 	};
- 0tTag0Å…0html/templateeatWhiteSpace0html/templatecontext0html/templateError0#html/templateelementContentType0html/templateeatAttrName0html/templateerrorf0html/templateattrType0Ç*	tAttrNameÇ∫	tAttrName = function(c, s) {
+ 0tTag0Å¥html/template:Errorhtml/template:attrTypehtml/template:contexthtml/template:eatAttrNamehtml/template:eatWhiteSpace html/template:elementContentTypehtml/template:errorf0Ç!	tAttrNameÇ∫	tAttrName = function(c, s) {
 		var _tuple, i, err, _struct;
 		_tuple = eatAttrName(s, 0), i = _tuple[0], err = _tuple[1];
 		if (!(err === (go$ptrType(Error)).nil)) {
@@ -2387,7 +2373,7 @@ eatTagName0ÇctTagÇÉ	tTag = function(c, s) {
 		}
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), i];
 	};
- 0	tAttrName0P0html/templateeatAttrName0html/templateError0html/templatecontext0Çπ
+ 0	tAttrName0Ghtml/template:Errorhtml/template:contexthtml/template:eatAttrName0Ç≥
 tAfterNameÇ]	tAfterName = function(c, s) {
 		var i, _slice, _index, _struct, _struct$1, _struct$2;
 		i = eatWhiteSpace(s, 0);
@@ -2401,7 +2387,7 @@ tAfterNameÇ]	tAfterName = function(c, s) {
 		return [(_struct$2 = c, new context.Ptr(_struct$2.state, _struct$2.delim, _struct$2.urlPart, _struct$2.jsCtx, _struct$2.attr, _struct$2.element, _struct$2.err)), i + 1 >> 0];
 	};
  0
-tAfterName0:0html/templateeatWhiteSpace0html/templatecontext0ÇbtBeforeValueÇ‡	tBeforeValue = function(c, s) {
+tAfterName04html/template:contexthtml/template:eatWhiteSpace0ÇYtBeforeValueÇ‡	tBeforeValue = function(c, s) {
 		var i, _struct, delim$1, _ref, _slice, _index, _tuple, _tuple$1, _tuple$2, _struct$1;
 		i = eatWhiteSpace(s, 0);
 		if (i === s.length) {
@@ -2417,7 +2403,7 @@ tAfterName0:0html/templateeatWhiteSpace0html/templatecontext0ÇbtBef
 		_tuple$2 = [attrStartStates[c.attr], delim$1, 0], c.state = _tuple$2[0], c.delim = _tuple$2[1], c.attr = _tuple$2[2];
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i];
 	};
- 0tBeforeValue0\0html/templateeatWhiteSpace0html/templatecontext0 html/templateattrStartStates0ÇﬁtHTMLCmtÇa	tHTMLCmt = function(c, s) {
+ 0tBeforeValue0Shtml/template:attrStartStateshtml/template:contexthtml/template:eatWhiteSpace0Ç“tHTMLCmtÇa	tHTMLCmt = function(c, s) {
 		var i, _struct;
 		if (i = bytes.Index(s, commentEnd), !((i === -1))) {
 			return [new context.Ptr(0, 0, 0, 0, 0, 0, (go$ptrType(Error)).nil), i + 3 >> 0];
@@ -2425,8 +2411,7 @@ tAfterName0:0html/templateeatWhiteSpace0html/templatecontext0ÇbtBef
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
  0
-tHTMLCmt0_0bytesIndex0html/template
-commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEndÇΩ	tSpecialTagEnd = function(c, s) {
+tHTMLCmt0Sbytes:Indexhtml/template:Errorhtml/template:commentEndhtml/template:context0ÇWtSpecialTagEndÇΩ	tSpecialTagEnd = function(c, s) {
 		var i, _struct;
 		if (!((c.element === 0))) {
 			if (i = strings.Index(strings.ToLower(go$bytesToString(s)), specialTagEndMarkers[c.element]), !((i === -1))) {
@@ -2435,11 +2420,11 @@ commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEnd
 		}
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
- 0tSpecialTagEnd00stringsIndex0stringsToLower0%html/templatespecialTagEndMarkers0html/templateError0html/templatecontext0Å˝tAttrÅÃ	tAttr = function(c, s) {
+ 0tSpecialTagEnd0phtml/template:Errorhtml/template:context"html/template:specialTagEndMarkersstrings:Indexstrings:ToLower0Å˙tAttrÅÃ	tAttr = function(c, s) {
 		var _struct;
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
- 0tAttr00html/templatecontext0Ç«tURLÇd	tURL = function(c, s) {
+ 0tAttr0html/template:context0ÇætURLÇd	tURL = function(c, s) {
 		var _struct;
 		if (bytes.IndexAny(s, "#?") >= 0) {
 			c.urlPart = 2;
@@ -2448,7 +2433,7 @@ commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEnd
 		}
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
- 0tURL0M0bytesIndexAny0html/templateeatWhiteSpace0html/templatecontext0Ç<tJSÇÆ	tJS = function(c, s) {
+ 0tURL0Dbytes:IndexAnyhtml/template:contexthtml/template:eatWhiteSpace0Ç-tJSÇÆ	tJS = function(c, s) {
 		var i, _struct, _ref, _slice, _index, _tuple, _tuple$1, _slice$1, _index$1, _slice$2, _index$2, _tuple$2, _tuple$3, _struct$1;
 		i = bytes.IndexAny(s, "\"'/");
 		if (i === -1) {
@@ -2478,7 +2463,7 @@ commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEnd
 		}
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i + 1 >> 0];
 	};
- 0tJS0z0bytesIndexAny0html/template	nextJSCtx0html/templatecontext0html/templateError0html/templateerrorf0ÇÃtJSDelimitedÇH	tJSDelimited = function(c, s) {
+ 0tJS0kbytes:IndexAnyhtml/template:Errorhtml/template:contexthtml/template:errorfhtml/template:nextJSCtx0Ç¿tJSDelimitedÇH	tJSDelimited = function(c, s) {
 		var specials, _ref, _tuple, k, inCharset, i, _ref$1, _slice, _index, _tuple$1, _struct, _struct$1;
 		specials = "\\\"";
 		_ref = c.state;
@@ -2516,7 +2501,7 @@ commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEnd
 		}
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), s.length];
 	};
- 0tJSDelimited0^0bytesIndexAny0html/templateError0html/templateerrorf0html/templatecontext0Ç	tBlockCmtÇá	tBlockCmt = function(c, s) {
+ 0tJSDelimited0Rbytes:IndexAnyhtml/template:Errorhtml/template:contexthtml/template:errorf0Çˇ	tBlockCmtÇá	tBlockCmt = function(c, s) {
 		var i, _struct, _ref, _struct$1;
 		i = bytes.Index(s, blockCommentEnd);
 		if (i === -1) {
@@ -2532,7 +2517,7 @@ commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEnd
 		}
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i + 2 >> 0];
 	};
- 0	tBlockCmt0d0bytesIndex0 html/templateblockCommentEnd0html/templatecontext0html/templatestate0ÇÊtLineCmtÇÉ	tLineCmt = function(c, s) {
+ 0	tBlockCmt0Xbytes:Indexhtml/template:blockCommentEndhtml/template:contexthtml/template:state0Ç›tLineCmtÇÉ	tLineCmt = function(c, s) {
 		var lineTerminators, endState, _ref, _tuple, _tuple$1, i, _struct, _struct$1;
 		lineTerminators = "";
 		endState = 0;
@@ -2552,7 +2537,7 @@ commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEnd
 		return [(_struct$1 = c, new context.Ptr(_struct$1.state, _struct$1.delim, _struct$1.urlPart, _struct$1.jsCtx, _struct$1.attr, _struct$1.element, _struct$1.err)), i];
 	};
  0
-tLineCmt0E0html/templatestate0bytesIndexAny0html/templatecontext0ÇªtCSSÇ,	tCSS = function(c, s) {
+tLineCmt0<bytes:IndexAnyhtml/template:contexthtml/template:state0Ç¨tCSSÇ,	tCSS = function(c, s) {
 		var k, i, _struct, _ref, _slice, _index, p, j, _slice$1, _index$1, _slice$2, _index$2, _tuple, _tuple$1, _struct$1, _ref$1, _slice$3, _index$3, _struct$2, _struct$3, _struct$4, _struct$5;
 		k = 0;
 		while (true) {
@@ -2595,7 +2580,7 @@ commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEnd
 			k = i + 1 >> 0;
 		}
 	};
- 0tCSS0y0bytesIndexAny0html/templatecontext0bytes	TrimRight0#html/templateendsWithCSSKeyword0bytesTrimLeft0Ç	(tCSSStrÇb	tCSSStr = function(c, s) {
+ 0tCSS0jbytes:IndexAnybytes:TrimLeftbytes:TrimRighthtml/template:context html/template:endsWithCSSKeyword0Ç	tCSSStrÇb	tCSSStr = function(c, s) {
 		var endAndEsc, _ref, k, i, _tuple, _struct, _struct$1, c$1, nread, _struct$2, _slice, _index, _struct$3, _tuple$1, _struct$4, _struct$5;
 		endAndEsc = "";
 		_ref = c.state;
@@ -2628,11 +2613,11 @@ commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEnd
 			k = i + 1 >> 0;
 		}
 	};
- 0	tCSSStr0Å©0html/templatestate0bytesIndexAny0html/templatetURL0html/templatecontext0html/template	decodeCSS0html/templateError0html/templateerrorf0Ç tErrorÅÕ	tError = function(c, s) {
+ 0	tCSSStr0Åîbytes:IndexAnyhtml/template:Errorhtml/template:contexthtml/template:decodeCSShtml/template:errorfhtml/template:statehtml/template:tURL0Å˝tErrorÅÕ	tError = function(c, s) {
 		var _struct;
 		return [(_struct = c, new context.Ptr(_struct.state, _struct.delim, _struct.urlPart, _struct.jsCtx, _struct.attr, _struct.element, _struct.err)), s.length];
 	};
- 0tError00html/templatecontext0ÇeatAttrNameÇ∫	eatAttrName = function(s, i) {
+ 0tError0html/template:context0Ç	eatAttrNameÇ∫	eatAttrName = function(s, i) {
 		var j, _ref, _slice, _index;
 		j = i;
 		while (j < s.length) {
@@ -2647,16 +2632,15 @@ commentEnd0html/templateError0html/templatecontext0ÇftSpecialTagEnd
 		}
 		return [s.length, (go$ptrType(Error)).nil];
 	};
- 0eatAttrName010html/templateError0html/templateerrorf0t
+ 0eatAttrName0+html/template:Errorhtml/template:errorf0t
 asciiAlphaT	asciiAlpha = function(c) {
 		return 65 <= c && c <= 90 || 97 <= c && c <= 122;
 	};
  0
-asciiAlpha0 0ÅîasciiAlphaNumQ	asciiAlphaNum = function(c) {
+asciiAlpha0 0ÅëasciiAlphaNumQ	asciiAlphaNum = function(c) {
 		return asciiAlpha(c) || 48 <= c && c <= 57;
 	};
- 0asciiAlphaNum00html/template
-asciiAlpha0Ç≥
+ 0asciiAlphaNum0html/template:asciiAlpha0Çß
 eatTagNameÇ	eatTagName = function(s, i) {
 		var _slice, _index, j, _slice$1, _index$1, x, _slice$2, _index$2, _entry;
 		if ((i === s.length) || !asciiAlpha((_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")))) {
@@ -2678,8 +2662,7 @@ eatTagNameÇ	eatTagName = function(s, i) {
 		return [j, (_entry = elementNameMap[strings.ToLower(go$bytesToString(go$subslice(s, i, j)))], _entry !== undefined ? _entry.v : 0)];
 	};
  0
-eatTagName0r0html/template
-asciiAlpha0html/templateasciiAlphaNum0stringsToLower0html/templateelementNameMap0Ç eatWhiteSpaceÇ¢	eatWhiteSpace = function(s, i) {
+eatTagName0fhtml/template:asciiAlphahtml/template:asciiAlphaNumhtml/template:elementNameMapstrings:ToLower0Ç eatWhiteSpaceÇ¢	eatWhiteSpace = function(s, i) {
 		var j, _ref, _slice, _index;
 		j = i;
 		while (j < s.length) {
@@ -2692,7 +2675,7 @@ asciiAlpha0html/templateasciiAlphaNum0stringsToLower0html/template
 		}
 		return s.length;
 	};
- 0eatWhiteSpace0 0Ç	urlFilterÇ¥	urlFilter = function(args) {
+ 0eatWhiteSpace0 0Ç	urlFilterÇ¥	urlFilter = function(args) {
 		var _tuple, s, t, i, protocol;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 6) {
@@ -2706,15 +2689,15 @@ asciiAlpha0html/templateasciiAlphaNum0stringsToLower0html/template
 		}
 		return s;
 	};
- 0	urlFilter0F0html/template	stringify0strings	IndexRune0stringsToLower0ÅÜ
+ 0	urlFilter0=html/template:stringifystrings:IndexRunestrings:ToLower0ÅÉ
 urlEscaperG	urlEscaper = function(args) {
 		return urlProcessor(false, args);
 	};
  0
-urlEscaper00html/templateurlProcessor0ÅéurlNormalizerI	urlNormalizer = function(args) {
+urlEscaper0html/template:urlProcessor0ÅãurlNormalizerI	urlNormalizer = function(args) {
 		return urlProcessor(true, args);
 	};
- 0urlNormalizer00html/templateurlProcessor0Ç+urlProcessorÇ∞	urlProcessor = function(norm, args) {
+ 0urlNormalizer0html/template:urlProcessor0ÇurlProcessorÇ∞	urlProcessor = function(norm, args) {
 		var _tuple, s, t, b, written, _tuple$1, i, n, c, _ref;
 		_tuple = stringify(args), s = _tuple[0], t = _tuple[1];
 		if (t === 6) {
@@ -2764,59 +2747,54 @@ urlEscaper00html/templateurlProcessor0ÅéurlNormalizerI	urlNormalizer = 
 		b.WriteString(s.substring(written));
 		return b.String();
 	};
- 0urlProcessor0U0html/template	stringify0bytesBuffer0html/templateisHex0fmtFprintf0"attrTypeMap  0attrTypeMap0 0	errorType  0	errorType0 0*fmtStringerType  0fmtStringerType0 0 
+ 0urlProcessor0Ibytes:Bufferfmt:Fprintfhtml/template:isHexhtml/template:stringify0"attrTypeMap  0attrTypeMap0 0	errorType  0	errorType0 0*fmtStringerType  0fmtStringerType0 0 
 stateNames  0
 stateNames0 0 
 delimNames  0
 delimNames0 0$urlPartNames  0urlPartNames0 0$elementNames  0elementNames0 0	attrNames  0	attrNames0 0*expressionBytes  0expressionBytes0 0*mozBindingBytes  0mozBindingBytes0 0funcMap  0	funcMap0 0&equivEscapers  0equivEscapers0 0(redundantFuncs  0redundantFuncs0 0	delimEnds  0	delimEnds0 0$doctypeBytes  0doctypeBytes0 04htmlReplacementTable  0htmlReplacementTable0 0<htmlNormReplacementTable  0htmlNormReplacementTable0 0BhtmlNospaceReplacementTable  0htmlNospaceReplacementTable0 0JhtmlNospaceNormReplacementTable  0!htmlNospaceNormReplacementTable0 08regexpPrecederKeywords  0regexpPrecederKeywords0 0*jsonMarshalType  0jsonMarshalType0 06jsStrReplacementTable  0jsStrReplacementTable0 0>jsStrNormReplacementTable  0jsStrNormReplacementTable0 0<jsRegexpReplacementTable  0jsRegexpReplacementTable0 0(transitionFunc  0transitionFunc0 0$commentStart  0commentStart0 0 
 commentEnd  0
-commentEnd0 00elementContentType  0elementContentType0 0*attrStartStates  0attrStartStates0 04specialTagEndMarkers  0specialTagEndMarkers0 0*blockCommentEnd  0blockCommentEnd0 0(elementNameMap  0elementNameMap0 0Ç-  Çˆ		var _map, _key;
+commentEnd0 00elementContentType  0elementContentType0 0*attrStartStates  0attrStartStates0 04specialTagEndMarkers  0specialTagEndMarkers0 0*blockCommentEnd  0blockCommentEnd0 0(elementNameMap  0elementNameMap0 0Ç*  Çˆ		var _map, _key;
 		attrTypeMap = (_map = new Go$Map(), _key = "accept", _map[_key] = { k: _key, v: 0 }, _key = "accept-charset", _map[_key] = { k: _key, v: 7 }, _key = "action", _map[_key] = { k: _key, v: 6 }, _key = "alt", _map[_key] = { k: _key, v: 0 }, _key = "archive", _map[_key] = { k: _key, v: 6 }, _key = "async", _map[_key] = { k: _key, v: 7 }, _key = "autocomplete", _map[_key] = { k: _key, v: 0 }, _key = "autofocus", _map[_key] = { k: _key, v: 0 }, _key = "autoplay", _map[_key] = { k: _key, v: 0 }, _key = "background", _map[_key] = { k: _key, v: 6 }, _key = "border", _map[_key] = { k: _key, v: 0 }, _key = "checked", _map[_key] = { k: _key, v: 0 }, _key = "cite", _map[_key] = { k: _key, v: 6 }, _key = "challenge", _map[_key] = { k: _key, v: 7 }, _key = "charset", _map[_key] = { k: _key, v: 7 }, _key = "class", _map[_key] = { k: _key, v: 0 }, _key = "classid", _map[_key] = { k: _key, v: 6 }, _key = "codebase", _map[_key] = { k: _key, v: 6 }, _key = "cols", _map[_key] = { k: _key, v: 0 }, _key = "colspan", _map[_key] = { k: _key, v: 0 }, _key = "content", _map[_key] = { k: _key, v: 7 }, _key = "contenteditable", _map[_key] = { k: _key, v: 0 }, _key = "contextmenu", _map[_key] = { k: _key, v: 0 }, _key = "controls", _map[_key] = { k: _key, v: 0 }, _key = "coords", _map[_key] = { k: _key, v: 0 }, _key = "crossorigin", _map[_key] = { k: _key, v: 7 }, _key = "data", _map[_key] = { k: _key, v: 6 }, _key = "datetime", _map[_key] = { k: _key, v: 0 }, _key = "default", _map[_key] = { k: _key, v: 0 }, _key = "defer", _map[_key] = { k: _key, v: 7 }, _key = "dir", _map[_key] = { k: _key, v: 0 }, _key = "dirname", _map[_key] = { k: _key, v: 0 }, _key = "disabled", _map[_key] = { k: _key, v: 0 }, _key = "draggable", _map[_key] = { k: _key, v: 0 }, _key = "dropzone", _map[_key] = { k: _key, v: 0 }, _key = "enctype", _map[_key] = { k: _key, v: 7 }, _key = "for", _map[_key] = { k: _key, v: 0 }, _key = "form", _map[_key] = { k: _key, v: 7 }, _key = "formaction", _map[_key] = { k: _key, v: 6 }, _key = "formenctype", _map[_key] = { k: _key, v: 7 }, _key = "formmethod", _map[_key] = { k: _key, v: 7 }, _key = "formnovalidate", _map[_key] = { k: _key, v: 7 }, _key = "formtarget", _map[_key] = { k: _key, v: 0 }, _key = "headers", _map[_key] = { k: _key, v: 0 }, _key = "height", _map[_key] = { k: _key, v: 0 }, _key = "hidden", _map[_key] = { k: _key, v: 0 }, _key = "high", _map[_key] = { k: _key, v: 0 }, _key = "href", _map[_key] = { k: _key, v: 6 }, _key = "hreflang", _map[_key] = { k: _key, v: 0 }, _key = "http-equiv", _map[_key] = { k: _key, v: 7 }, _key = "icon", _map[_key] = { k: _key, v: 6 }, _key = "id", _map[_key] = { k: _key, v: 0 }, _key = "ismap", _map[_key] = { k: _key, v: 0 }, _key = "keytype", _map[_key] = { k: _key, v: 7 }, _key = "kind", _map[_key] = { k: _key, v: 0 }, _key = "label", _map[_key] = { k: _key, v: 0 }, _key = "lang", _map[_key] = { k: _key, v: 0 }, _key = "language", _map[_key] = { k: _key, v: 7 }, _key = "list", _map[_key] = { k: _key, v: 0 }, _key = "longdesc", _map[_key] = { k: _key, v: 6 }, _key = "loop", _map[_key] = { k: _key, v: 0 }, _key = "low", _map[_key] = { k: _key, v: 0 }, _key = "manifest", _map[_key] = { k: _key, v: 6 }, _key = "max", _map[_key] = { k: _key, v: 0 }, _key = "maxlength", _map[_key] = { k: _key, v: 0 }, _key = "media", _map[_key] = { k: _key, v: 0 }, _key = "mediagroup", _map[_key] = { k: _key, v: 0 }, _key = "method", _map[_key] = { k: _key, v: 7 }, _key = "min", _map[_key] = { k: _key, v: 0 }, _key = "multiple", _map[_key] = { k: _key, v: 0 }, _key = "name", _map[_key] = { k: _key, v: 0 }, _key = "novalidate", _map[_key] = { k: _key, v: 7 }, _key = "open", _map[_key] = { k: _key, v: 0 }, _key = "optimum", _map[_key] = { k: _key, v: 0 }, _key = "pattern", _map[_key] = { k: _key, v: 7 }, _key = "placeholder", _map[_key] = { k: _key, v: 0 }, _key = "poster", _map[_key] = { k: _key, v: 6 }, _key = "profile", _map[_key] = { k: _key, v: 6 }, _key = "preload", _map[_key] = { k: _key, v: 0 }, _key = "pubdate", _map[_key] = { k: _key, v: 0 }, _key = "radiogroup", _map[_key] = { k: _key, v: 0 }, _key = "readonly", _map[_key] = { k: _key, v: 0 }, _key = "rel", _map[_key] = { k: _key, v: 7 }, _key = "required", _map[_key] = { k: _key, v: 0 }, _key = "reversed", _map[_key] = { k: _key, v: 0 }, _key = "rows", _map[_key] = { k: _key, v: 0 }, _key = "rowspan", _map[_key] = { k: _key, v: 0 }, _key = "sandbox", _map[_key] = { k: _key, v: 7 }, _key = "spellcheck", _map[_key] = { k: _key, v: 0 }, _key = "scope", _map[_key] = { k: _key, v: 0 }, _key = "scoped", _map[_key] = { k: _key, v: 0 }, _key = "seamless", _map[_key] = { k: _key, v: 0 }, _key = "selected", _map[_key] = { k: _key, v: 0 }, _key = "shape", _map[_key] = { k: _key, v: 0 }, _key = "size", _map[_key] = { k: _key, v: 0 }, _key = "sizes", _map[_key] = { k: _key, v: 0 }, _key = "span", _map[_key] = { k: _key, v: 0 }, _key = "src", _map[_key] = { k: _key, v: 6 }, _key = "srcdoc", _map[_key] = { k: _key, v: 2 }, _key = "srclang", _map[_key] = { k: _key, v: 0 }, _key = "start", _map[_key] = { k: _key, v: 0 }, _key = "step", _map[_key] = { k: _key, v: 0 }, _key = "style", _map[_key] = { k: _key, v: 1 }, _key = "tabindex", _map[_key] = { k: _key, v: 0 }, _key = "target", _map[_key] = { k: _key, v: 0 }, _key = "title", _map[_key] = { k: _key, v: 0 }, _key = "type", _map[_key] = { k: _key, v: 7 }, _key = "usemap", _map[_key] = { k: _key, v: 6 }, _key = "value", _map[_key] = { k: _key, v: 7 }, _key = "width", _map[_key] = { k: _key, v: 0 }, _key = "wrap", _map[_key] = { k: _key, v: 0 }, _key = "xmlns", _map[_key] = { k: _key, v: 6 }, _map);
-0attrTypeMap00html/templateattrTypeMap0z  A		errorType = reflect.TypeOf((go$ptrType(go$error)).nil).Elem();
-0 0/0reflectTypeOf0html/template	errorType0Åõ  K		fmtStringerType = reflect.TypeOf((go$ptrType(fmt.Stringer)).nil).Elem();
-0 0F0reflectTypeOf0fmtStringer0 html/templatefmtStringerType0Çﬂ  Ç™		stateNames = go$toNativeArray("String", ["stateText", "stateTag", "stateAttrName", "stateAfterName", "stateBeforeValue", "stateHTMLCmt", "stateRCDATA", "stateAttr", "stateURL", "stateJS", "stateJSDqStr", "stateJSSqStr", "stateJSRegexp", "stateJSBlockCmt", "stateJSLineCmt", "stateCSS", "stateCSSDqStr", "stateCSSSqStr", "stateCSSDqURL", "stateCSSSqURL", "stateCSSURL", "stateCSSBlockCmt", "stateCSSLineCmt", "stateError"]);
+0attrTypeMap0html/template:attrTypeMap0t  A		errorType = reflect.TypeOf((go$ptrType(go$error)).nil).Elem();
+0 0)html/template:errorTypereflect:TypeOf0Åí  K		fmtStringerType = reflect.TypeOf((go$ptrType(fmt.Stringer)).nil).Elem();
+0 0=fmt:Stringerhtml/template:fmtStringerTypereflect:TypeOf0Ç‹  Ç™		stateNames = go$toNativeArray("String", ["stateText", "stateTag", "stateAttrName", "stateAfterName", "stateBeforeValue", "stateHTMLCmt", "stateRCDATA", "stateAttr", "stateURL", "stateJS", "stateJSDqStr", "stateJSSqStr", "stateJSRegexp", "stateJSBlockCmt", "stateJSLineCmt", "stateCSS", "stateCSSDqStr", "stateCSSSqStr", "stateCSSDqURL", "stateCSSSqURL", "stateCSSURL", "stateCSSBlockCmt", "stateCSSLineCmt", "stateError"]);
 0
-stateNames00html/template
-stateNames0Å´  x		delimNames = go$toNativeArray("String", ["delimNone", "delimDoubleQuote", "delimSingleQuote", "delimSpaceOrTagEnd"]);
+stateNames0html/template:stateNames0Å®  x		delimNames = go$toNativeArray("String", ["delimNone", "delimDoubleQuote", "delimSingleQuote", "delimSpaceOrTagEnd"]);
 0
-delimNames00html/template
-delimNames0Å∞  y		urlPartNames = go$toNativeArray("String", ["urlPartNone", "urlPartPreQuery", "urlPartQueryOrFrag", "urlPartUnknown"]);
-0urlPartNames00html/templateurlPartNames0Å∫  ÅÇ		elementNames = go$toNativeArray("String", ["elementNone", "elementScript", "elementStyle", "elementTextarea", "elementTitle"]);
-0elementNames00html/templateelementNames0Åè  ^		attrNames = go$toNativeArray("String", ["attrNone", "attrScript", "attrStyle", "attrURL"]);
-0	attrNames00html/template	attrNames0Åè  R		expressionBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("expression"));
-0expressionBytes0"0 html/templateexpressionBytes0Åè  R		mozBindingBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("mozbinding"));
-0mozBindingBytes0"0 html/templatemozBindingBytes0Çg  Ç		htmlNospaceReplacementTable = new (go$sliceType(Go$String))(["&#xfffd;", "", "", "", "", "", "", "", "", "&#9;", "&#10;", "&#11;", "&#12;", "&#13;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#32;", "", "&#34;", "", "", "", "&amp;", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "&#61;", "&gt;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#96;"]);
-0htmlNospaceReplacementTable0.0,html/templatehtmlNospaceReplacementTable0Çn  Ç		htmlNospaceNormReplacementTable = new (go$sliceType(Go$String))(["&#xfffd;", "", "", "", "", "", "", "", "", "&#9;", "&#10;", "&#11;", "&#12;", "&#13;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#32;", "", "&#34;", "", "", "", "", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "&#61;", "&gt;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#96;"]);
-0!htmlNospaceNormReplacementTable0200html/templatehtmlNospaceNormReplacementTable0z  I		delimEnds = go$toNativeArray("String", ["", "\"", "'", " \t\n\f\r>"]);
-0	delimEnds00html/template	delimEnds0ÅÄ  I		commentStart = new (go$sliceType(Go$Uint8))(go$stringToBytes("<!--"));
-0commentStart00html/templatecommentStart0Çk  Ç.		var _map$1, _key$1;
+delimNames0html/template:delimNames0Å≠  y		urlPartNames = go$toNativeArray("String", ["urlPartNone", "urlPartPreQuery", "urlPartQueryOrFrag", "urlPartUnknown"]);
+0urlPartNames0html/template:urlPartNames0Å∑  ÅÇ		elementNames = go$toNativeArray("String", ["elementNone", "elementScript", "elementStyle", "elementTextarea", "elementTitle"]);
+0elementNames0html/template:elementNames0Åå  ^		attrNames = go$toNativeArray("String", ["attrNone", "attrScript", "attrStyle", "attrURL"]);
+0	attrNames0html/template:attrNames0Åå  R		expressionBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("expression"));
+0expressionBytes0html/template:expressionBytes0Åå  R		mozBindingBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("mozbinding"));
+0mozBindingBytes0html/template:mozBindingBytes0Çd  Ç		htmlNospaceReplacementTable = new (go$sliceType(Go$String))(["&#xfffd;", "", "", "", "", "", "", "", "", "&#9;", "&#10;", "&#11;", "&#12;", "&#13;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#32;", "", "&#34;", "", "", "", "&amp;", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "&#61;", "&gt;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#96;"]);
+0htmlNospaceReplacementTable0+)html/template:htmlNospaceReplacementTable0Çk  Ç		htmlNospaceNormReplacementTable = new (go$sliceType(Go$String))(["&#xfffd;", "", "", "", "", "", "", "", "", "&#9;", "&#10;", "&#11;", "&#12;", "&#13;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#32;", "", "&#34;", "", "", "", "", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "&#61;", "&gt;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#96;"]);
+0!htmlNospaceNormReplacementTable0/-html/template:htmlNospaceNormReplacementTable0w  I		delimEnds = go$toNativeArray("String", ["", "\"", "'", " \t\n\f\r>"]);
+0	delimEnds0html/template:delimEnds0}  I		commentStart = new (go$sliceType(Go$Uint8))(go$stringToBytes("<!--"));
+0commentStart0html/template:commentStart0Çh  Ç.		var _map$1, _key$1;
 		elementNameMap = (_map$1 = new Go$Map(), _key$1 = "script", _map$1[_key$1] = { k: _key$1, v: 1 }, _key$1 = "style", _map$1[_key$1] = { k: _key$1, v: 2 }, _key$1 = "textarea", _map$1[_key$1] = { k: _key$1, v: 3 }, _key$1 = "title", _map$1[_key$1] = { k: _key$1, v: 4 }, _map$1);
-0elementNameMap0!0html/templateelementNameMap0Åá  D		elementContentType = go$toNativeArray("Uint8", [0, 9, 15, 6, 6]);
-0elementContentType0%0#html/templateelementContentType0{  >		attrStartStates = go$toNativeArray("Uint8", [7, 9, 15, 8]);
-0attrStartStates0"0 html/templateattrStartStates0y  F		commentEnd = new (go$sliceType(Go$Uint8))(go$stringToBytes("-->"));
+0elementNameMap0html/template:elementNameMap0ÅÑ  D		elementContentType = go$toNativeArray("Uint8", [0, 9, 15, 6, 6]);
+0elementContentType0" html/template:elementContentType0x  >		attrStartStates = go$toNativeArray("Uint8", [7, 9, 15, 8]);
+0attrStartStates0html/template:attrStartStates0v  F		commentEnd = new (go$sliceType(Go$Uint8))(go$stringToBytes("-->"));
 0
-commentEnd00html/template
-commentEnd0Å≤  k		specialTagEndMarkers = go$toNativeArray("String", ["", "</script", "</style", "</textarea", "</title"]);
-0specialTagEndMarkers0'0%html/templatespecialTagEndMarkers0Ç€  Çé		var _map$2, _key$2;
+commentEnd0html/template:commentEnd0ÅØ  k		specialTagEndMarkers = go$toNativeArray("String", ["", "</script", "</style", "</textarea", "</title"]);
+0specialTagEndMarkers0$"html/template:specialTagEndMarkers0Çÿ  Çé		var _map$2, _key$2;
 		regexpPrecederKeywords = (_map$2 = new Go$Map(), _key$2 = "break", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "case", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "continue", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "delete", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "do", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "else", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "finally", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "in", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "instanceof", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "return", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "throw", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "try", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "typeof", _map$2[_key$2] = { k: _key$2, v: true }, _key$2 = "void", _map$2[_key$2] = { k: _key$2, v: true }, _map$2);
-0regexpPrecederKeywords0)0'html/templateregexpPrecederKeywords0Åá  J		blockCommentEnd = new (go$sliceType(Go$Uint8))(go$stringToBytes("*/"));
-0blockCommentEnd0"0 html/templateblockCommentEnd0Ç  Ç		transitionFunc = go$toNativeArray("Func", [tText, tTag, tAttrName, tAfterName, tBeforeValue, tHTMLCmt, tSpecialTagEnd, tAttr, tURL, tJS, tJSDelimited, tJSDelimited, tJSDelimited, tBlockCmt, tLineCmt, tCSS, tCSSStr, tCSSStr, tCSSStr, tCSSStr, tCSSStr, tBlockCmt, tLineCmt, tError]);
-0transitionFunc0Ç…0html/templatetText0html/templatetTag0html/templatetJS0html/template	tBlockCmt0html/templatetransitionFunc0html/template	tAttrName0html/template
-tAfterName0html/templatetAttr0html/templatetLineCmt0html/templatetCSS0html/templatetBeforeValue0html/templatetHTMLCmt0html/templatetSpecialTagEnd0html/templatetURL0html/templatetCSSStr0html/templatetError0html/templatetJSDelimited0Çß  Ç^		htmlReplacementTable = new (go$sliceType(Go$String))(["\xEF\xBF\xBD", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#34;", "", "", "", "&amp;", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "", "&gt;"]);
-0htmlReplacementTable0'0%html/templatehtmlReplacementTable0ÇÆ  Ç]		htmlNormReplacementTable = new (go$sliceType(Go$String))(["\xEF\xBF\xBD", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#34;", "", "", "", "", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "", "&gt;"]);
-0htmlNormReplacementTable0+0)html/templatehtmlNormReplacementTable0Å®  M		jsonMarshalType = reflect.TypeOf((go$ptrType(json.Marshaler)).nil).Elem();
-0 0Q0reflectTypeOf0encoding/json	Marshaler0 html/templatejsonMarshalType0Ç3  ÇË		jsStrReplacementTable = new (go$sliceType(Go$String))(["\\0", "", "", "", "", "", "", "", "", "\\t", "\\n", "\\x0b", "\\f", "\\r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\x22", "", "", "", "\\x26", "\\x27", "", "", "", "\\x2b", "", "", "", "\\/", "", "", "", "", "", "", "", "", "", "", "", "", "\\x3c", "", "\\x3e", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\\\"]);
-0jsStrReplacementTable0(0&html/templatejsStrReplacementTable0Ç√  Çp		jsStrNormReplacementTable = new (go$sliceType(Go$String))(["\\0", "", "", "", "", "", "", "", "", "\\t", "\\n", "\\x0b", "\\f", "\\r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\x22", "", "", "", "\\x26", "\\x27", "", "", "", "\\x2b", "", "", "", "\\/", "", "", "", "", "", "", "", "", "", "", "", "", "\\x3c", "", "\\x3e"]);
-0jsStrNormReplacementTable0,0*html/templatejsStrNormReplacementTable0ÇÁ  Çñ		jsRegexpReplacementTable = new (go$sliceType(Go$String))(["\\0", "", "", "", "", "", "", "", "", "\\t", "\\n", "\\x0b", "\\f", "\\r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\x22", "", "\\$", "", "\\x26", "\\x27", "\\(", "\\)", "\\*", "\\x2b", "", "\\-", "\\.", "\\/", "", "", "", "", "", "", "", "", "", "", "", "", "\\x3c", "", "\\x3e", "\\?", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\[", "\\\\", "\\]", "\\^", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\{", "\\|", "\\}"]);
-0jsRegexpReplacementTable0+0)html/templatejsRegexpReplacementTable0Ç$  Ç	9		var _map$3, _key$3;
+0regexpPrecederKeywords0&$html/template:regexpPrecederKeywords0ÅÑ  J		blockCommentEnd = new (go$sliceType(Go$Uint8))(go$stringToBytes("*/"));
+0blockCommentEnd0html/template:blockCommentEnd0Ç–  Ç		transitionFunc = go$toNativeArray("Func", [tText, tTag, tAttrName, tAfterName, tBeforeValue, tHTMLCmt, tSpecialTagEnd, tAttr, tURL, tJS, tJSDelimited, tJSDelimited, tJSDelimited, tBlockCmt, tLineCmt, tCSS, tCSSStr, tCSSStr, tCSSStr, tCSSStr, tCSSStr, tBlockCmt, tLineCmt, tError]);
+0transitionFunc0Çñhtml/template:tAfterNamehtml/template:tAttrhtml/template:tAttrNamehtml/template:tBeforeValuehtml/template:tBlockCmthtml/template:tCSShtml/template:tCSSStrhtml/template:tErrorhtml/template:tHTMLCmthtml/template:tJShtml/template:tJSDelimitedhtml/template:tLineCmthtml/template:tSpecialTagEndhtml/template:tTaghtml/template:tTexthtml/template:tURLhtml/template:transitionFunc0Ç§  Ç^		htmlReplacementTable = new (go$sliceType(Go$String))(["\xEF\xBF\xBD", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#34;", "", "", "", "&amp;", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "", "&gt;"]);
+0htmlReplacementTable0$"html/template:htmlReplacementTable0Ç´  Ç]		htmlNormReplacementTable = new (go$sliceType(Go$String))(["\xEF\xBF\xBD", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&#34;", "", "", "", "", "&#39;", "", "", "", "&#43;", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "&lt;", "", "&gt;"]);
+0htmlNormReplacementTable0(&html/template:htmlNormReplacementTable0Åü  M		jsonMarshalType = reflect.TypeOf((go$ptrType(json.Marshaler)).nil).Elem();
+0 0Hencoding/json:Marshalerhtml/template:jsonMarshalTypereflect:TypeOf0Ç0  ÇË		jsStrReplacementTable = new (go$sliceType(Go$String))(["\\0", "", "", "", "", "", "", "", "", "\\t", "\\n", "\\x0b", "\\f", "\\r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\x22", "", "", "", "\\x26", "\\x27", "", "", "", "\\x2b", "", "", "", "\\/", "", "", "", "", "", "", "", "", "", "", "", "", "\\x3c", "", "\\x3e", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\\\"]);
+0jsStrReplacementTable0%#html/template:jsStrReplacementTable0Ç¿  Çp		jsStrNormReplacementTable = new (go$sliceType(Go$String))(["\\0", "", "", "", "", "", "", "", "", "\\t", "\\n", "\\x0b", "\\f", "\\r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\x22", "", "", "", "\\x26", "\\x27", "", "", "", "\\x2b", "", "", "", "\\/", "", "", "", "", "", "", "", "", "", "", "", "", "\\x3c", "", "\\x3e"]);
+0jsStrNormReplacementTable0)'html/template:jsStrNormReplacementTable0Ç‰  Çñ		jsRegexpReplacementTable = new (go$sliceType(Go$String))(["\\0", "", "", "", "", "", "", "", "", "\\t", "\\n", "\\x0b", "\\f", "\\r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\x22", "", "\\$", "", "\\x26", "\\x27", "\\(", "\\)", "\\*", "\\x2b", "", "\\-", "\\.", "\\/", "", "", "", "", "", "", "", "", "", "", "", "", "\\x3c", "", "\\x3e", "\\?", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\[", "\\\\", "\\]", "\\^", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "\\{", "\\|", "\\}"]);
+0jsRegexpReplacementTable0(&html/template:jsRegexpReplacementTable0Ç
+˜  Ç	9		var _map$3, _key$3;
 		funcMap = (_map$3 = new Go$Map(), _key$3 = "html_template_attrescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(attrEscaper) }, _key$3 = "html_template_commentescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(commentEscaper) }, _key$3 = "html_template_cssescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(cssEscaper) }, _key$3 = "html_template_cssvaluefilter", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(cssValueFilter) }, _key$3 = "html_template_htmlnamefilter", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(htmlNameFilter) }, _key$3 = "html_template_htmlescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(htmlEscaper) }, _key$3 = "html_template_jsregexpescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(jsRegexpEscaper) }, _key$3 = "html_template_jsstrescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(jsStrEscaper) }, _key$3 = "html_template_jsvalescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(jsValEscaper) }, _key$3 = "html_template_nospaceescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(htmlNospaceEscaper) }, _key$3 = "html_template_rcdataescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(rcdataEscaper) }, _key$3 = "html_template_urlescaper", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(urlEscaper) }, _key$3 = "html_template_urlfilter", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(urlFilter) }, _key$3 = "html_template_urlnormalizer", _map$3[_key$3] = { k: _key$3, v: new (go$funcType([(go$sliceType(go$emptyInterface))], [Go$String], true))(urlNormalizer) }, _map$3);
-0	funcMap0Ç‘0html/templatehtmlNameFilter0 html/templatejsRegexpEscaper0html/templatefuncMap0html/templateattrEscaper0html/templatejsStrEscaper0html/templatejsValEscaper0html/template
-cssEscaper0html/templatehtmlEscaper0html/template	urlFilter0html/templateurlNormalizer0html/templatecommentEscaper0html/templatecssValueFilter0#html/templatehtmlNospaceEscaper0html/templatercdataEscaper0html/template
-urlEscaper0Çx  Ç=		var _map$4, _key$4;
+0	funcMap0Çßhtml/template:attrEscaperhtml/template:commentEscaperhtml/template:cssEscaperhtml/template:cssValueFilterhtml/template:funcMaphtml/template:htmlEscaperhtml/template:htmlNameFilter html/template:htmlNospaceEscaperhtml/template:jsRegexpEscaperhtml/template:jsStrEscaperhtml/template:jsValEscaperhtml/template:rcdataEscaperhtml/template:urlEscaperhtml/template:urlFilterhtml/template:urlNormalizer0Çu  Ç=		var _map$4, _key$4;
 		equivEscapers = (_map$4 = new Go$Map(), _key$4 = "html_template_attrescaper", _map$4[_key$4] = { k: _key$4, v: "html" }, _key$4 = "html_template_htmlescaper", _map$4[_key$4] = { k: _key$4, v: "html" }, _key$4 = "html_template_nospaceescaper", _map$4[_key$4] = { k: _key$4, v: "html" }, _key$4 = "html_template_rcdataescaper", _map$4[_key$4] = { k: _key$4, v: "html" }, _key$4 = "html_template_urlescaper", _map$4[_key$4] = { k: _key$4, v: "urlquery" }, _key$4 = "html_template_urlnormalizer", _map$4[_key$4] = { k: _key$4, v: "urlquery" }, _map$4);
-0equivEscapers0 0html/templateequivEscapers0Ç%  ÇË		var _map$5, _key$5, _map$6, _key$6, _map$7, _key$7, _map$8, _key$8, _map$9, _key$9, _map$10, _key$10;
+0equivEscapers0html/template:equivEscapers0Ç"  ÇË		var _map$5, _key$5, _map$6, _key$6, _map$7, _key$7, _map$8, _key$8, _map$9, _key$9, _map$10, _key$10;
 		redundantFuncs = (_map$5 = new Go$Map(), _key$5 = "html_template_commentescaper", _map$5[_key$5] = { k: _key$5, v: (_map$6 = new Go$Map(), _key$6 = "html_template_attrescaper", _map$6[_key$6] = { k: _key$6, v: true }, _key$6 = "html_template_nospaceescaper", _map$6[_key$6] = { k: _key$6, v: true }, _key$6 = "html_template_htmlescaper", _map$6[_key$6] = { k: _key$6, v: true }, _map$6) }, _key$5 = "html_template_cssescaper", _map$5[_key$5] = { k: _key$5, v: (_map$7 = new Go$Map(), _key$7 = "html_template_attrescaper", _map$7[_key$7] = { k: _key$7, v: true }, _map$7) }, _key$5 = "html_template_jsregexpescaper", _map$5[_key$5] = { k: _key$5, v: (_map$8 = new Go$Map(), _key$8 = "html_template_attrescaper", _map$8[_key$8] = { k: _key$8, v: true }, _map$8) }, _key$5 = "html_template_jsstrescaper", _map$5[_key$5] = { k: _key$5, v: (_map$9 = new Go$Map(), _key$9 = "html_template_attrescaper", _map$9[_key$9] = { k: _key$9, v: true }, _map$9) }, _key$5 = "html_template_urlescaper", _map$5[_key$5] = { k: _key$5, v: (_map$10 = new Go$Map(), _key$10 = "html_template_urlnormalizer", _map$10[_key$10] = { k: _key$10, v: true }, _map$10) }, _map$5);
-0redundantFuncs0!0html/templateredundantFuncs0ÅÖ  N		doctypeBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("<!DOCTYPE"));
-0doctypeBytes00html/templatedoctypeBytes0
+0redundantFuncs0html/template:redundantFuncs0ÅÇ  N		doctypeBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("<!DOCTYPE"));
+0doctypeBytes0html/template:doctypeBytes0
    0 0 0
    0 0 0 

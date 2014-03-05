@@ -1,4 +1,4 @@
-0ÉGªregexpÇ!ypackage regexp
+0ÉE7regexpÇ!ypackage regexp
 import io "io"
 import syntax "regexp/syntax"
 import bytes "bytes"
@@ -108,26 +108,25 @@ func (? *@"regexp/syntax".Inst) @"regexp/syntax".String() (? string)
 func (? *@"regexp/syntax".Inst) @"regexp/syntax".op() (? @"regexp/syntax".InstOp)
 type @"regexp/syntax".InstOp uint8
 $$
-0{runtimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxregexp0Åì0ioio0regexp/syntaxsyntax0bytesbytes0strconvstrconv0stringsstrings0syncsync0unicodeunicode0unicode/utf8utf80É%0Ç◊queueÇ%	queue = go$pkg.queue = go$newType(0, "Struct", "regexp.queue", "queue", "regexp", function(sparse_, dense_) {
+0{runtimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxregexp0Åì0ioio0regexp/syntaxsyntax0bytesbytes0strconvstrconv0stringsstrings0syncsync0unicodeunicode0unicode/utf8utf80É"ò0Ç‘queueÇ%	queue = go$pkg.queue = go$newType(0, "Struct", "regexp.queue", "queue", "regexp", function(sparse_, dense_) {
 		this.go$val = this;
 		this.sparse = sparse_ !== undefined ? sparse_ : (go$sliceType(Go$Uint32)).nil;
 		this.dense = dense_ !== undefined ? dense_ : (go$sliceType(entry)).nil;
 	});
 Åà		queue.init([["sparse", "sparse", "regexp", (go$sliceType(Go$Uint32)), ""], ["dense", "dense", "regexp", (go$sliceType(entry)), ""]]);
-0queue00regexpentry0ÇxentryÅË	entry = go$pkg.entry = go$newType(0, "Struct", "regexp.entry", "entry", "regexp", function(pc_, t_) {
+0queue0regexp:entry0ÇuentryÅË	entry = go$pkg.entry = go$newType(0, "Struct", "regexp.entry", "entry", "regexp", function(pc_, t_) {
 		this.go$val = this;
 		this.pc = pc_ !== undefined ? pc_ : 0;
 		this.t = t_ !== undefined ? t_ : (go$ptrType(thread)).nil;
 	});
 g		entry.init([["pc", "pc", "regexp", Go$Uint32, ""], ["t", "t", "regexp", (go$ptrType(thread)), ""]]);
-0entry00regexpthread0ÇŒthreadÇ	thread = go$pkg.thread = go$newType(0, "Struct", "regexp.thread", "thread", "regexp", function(inst_, cap_) {
+0entry0regexp:thread0ÇÀthreadÇ	thread = go$pkg.thread = go$newType(0, "Struct", "regexp.thread", "thread", "regexp", function(inst_, cap_) {
 		this.go$val = this;
 		this.inst = inst_ !== undefined ? inst_ : (go$ptrType(syntax.Inst)).nil;
 		this.cap = cap_ !== undefined ? cap_ : (go$sliceType(Go$Int)).nil;
 	});
 ÅÇ		thread.init([["inst", "inst", "regexp", (go$ptrType(syntax.Inst)), ""], ["cap", "cap", "regexp", (go$sliceType(Go$Int)), ""]]);
-0thread00regexp/syntaxInst0Ç
-machineÇ≥	machine = go$pkg.machine = go$newType(0, "Struct", "regexp.machine", "machine", "regexp", function(re_, p_, q0_, q1_, pool_, matched_, matchcap_, inputBytes_, inputString_, inputReader_) {
+0thread0regexp/syntax:Inst0Ç	ımachineÇ≥	machine = go$pkg.machine = go$newType(0, "Struct", "regexp.machine", "machine", "regexp", function(re_, p_, q0_, q1_, pool_, matched_, matchcap_, inputBytes_, inputString_, inputReader_) {
 		this.go$val = this;
 		this.re = re_ !== undefined ? re_ : (go$ptrType(Regexp)).nil;
 		this.p = p_ !== undefined ? p_ : (go$ptrType(syntax.Prog)).nil;
@@ -142,9 +141,7 @@ $$
 	});
 Ç`		(go$ptrType(machine)).methods = [["add", "regexp", [(go$ptrType(queue)), Go$Uint32, Go$Int, (go$sliceType(Go$Int)), syntax.EmptyOp, (go$ptrType(thread))], [(go$ptrType(thread))], false, -1], ["alloc", "regexp", [(go$ptrType(syntax.Inst))], [(go$ptrType(thread))], false, -1], ["clear", "regexp", [(go$ptrType(queue))], [], false, -1], ["free", "regexp", [(go$ptrType(thread))], [], false, -1], ["init", "regexp", [Go$Int], [], false, -1], ["match", "regexp", [input, Go$Int], [Go$Bool], false, -1], ["newInputBytes", "regexp", [(go$sliceType(Go$Uint8))], [input], false, -1], ["newInputReader", "regexp", [io.RuneReader], [input], false, -1], ["newInputString", "regexp", [Go$String], [input], false, -1], ["step", "regexp", [(go$ptrType(queue)), (go$ptrType(queue)), Go$Int, Go$Int, Go$Int32, syntax.EmptyOp], [], false, -1]];
 		machine.init([["re", "re", "regexp", (go$ptrType(Regexp)), ""], ["p", "p", "regexp", (go$ptrType(syntax.Prog)), ""], ["q0", "q0", "regexp", queue, ""], ["q1", "q1", "regexp", queue, ""], ["pool", "pool", "regexp", (go$sliceType((go$ptrType(thread)))), ""], ["matched", "matched", "regexp", Go$Bool, ""], ["matchcap", "matchcap", "regexp", (go$sliceType(Go$Int)), ""], ["inputBytes", "inputBytes", "regexp", inputBytes, ""], ["inputString", "inputString", "regexp", inputString, ""], ["inputReader", "inputReader", "regexp", inputReader, ""]]);
-0	machine0Å‰0regexpRegexp0regexp/syntaxProg0regexpqueue0regexpthread0regexp/syntaxEmptyOp0regexp/syntaxInst0io
-RuneReader0regexp
-inputBytes0regexpinputString0regexpinputReader0regexpinput0ÇFRegexpÇA	Regexp = go$pkg.Regexp = go$newType(0, "Struct", "regexp.Regexp", "Regexp", "regexp", function(expr_, prog_, prefix_, prefixBytes_, prefixComplete_, prefixRune_, cond_, numSubexp_, subexpNames_, longest_, mu_, machine_) {
+0	machine0Å√io:RuneReaderregexp/syntax:EmptyOpregexp/syntax:Instregexp/syntax:Progregexp:Regexpregexp:inputregexp:inputBytesregexp:inputReaderregexp:inputStringregexp:queueregexp:thread0Ç7RegexpÇA	Regexp = go$pkg.Regexp = go$newType(0, "Struct", "regexp.Regexp", "Regexp", "regexp", function(expr_, prog_, prefix_, prefixBytes_, prefixComplete_, prefixRune_, cond_, numSubexp_, subexpNames_, longest_, mu_, machine_) {
 		this.go$val = this;
 		this.expr = expr_ !== undefined ? expr_ : "";
 		this.prog = prog_ !== undefined ? prog_ : (go$ptrType(syntax.Prog)).nil;
@@ -161,16 +158,16 @@ inputBytes0regexpinputString0regexpinputReader0regexpinput0ÇFR
 	});
 ÇÑ		(go$ptrType(Regexp)).methods = [["Expand", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false, -1], ["ExpandString", "", [(go$sliceType(Go$Uint8)), Go$String, Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false, -1], ["Find", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false, -1], ["FindAll", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Uint8))))], false, -1], ["FindAllIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindAllString", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false, -1], ["FindAllStringIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindAllStringSubmatch", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$String))))], false, -1], ["FindAllStringSubmatchIndex", "", [Go$String, Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindAllSubmatch", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType((go$sliceType(Go$Uint8))))))], false, -1], ["FindAllSubmatchIndex", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["FindIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false, -1], ["FindReaderIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false, -1], ["FindReaderSubmatchIndex", "", [io.RuneReader], [(go$sliceType(Go$Int))], false, -1], ["FindString", "", [Go$String], [Go$String], false, -1], ["FindStringIndex", "", [Go$String], [(go$sliceType(Go$Int))], false, -1], ["FindStringSubmatch", "", [Go$String], [(go$sliceType(Go$String))], false, -1], ["FindStringSubmatchIndex", "", [Go$String], [(go$sliceType(Go$Int))], false, -1], ["FindSubmatch", "", [(go$sliceType(Go$Uint8))], [(go$sliceType((go$sliceType(Go$Uint8))))], false, -1], ["FindSubmatchIndex", "", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false, -1], ["LiteralPrefix", "", [], [Go$String, Go$Bool], false, -1], ["Longest", "", [], [], false, -1], ["Match", "", [(go$sliceType(Go$Uint8))], [Go$Bool], false, -1], ["MatchReader", "", [io.RuneReader], [Go$Bool], false, -1], ["MatchString", "", [Go$String], [Go$Bool], false, -1], ["NumSubexp", "", [], [Go$Int], false, -1], ["ReplaceAll", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false, -1], ["ReplaceAllFunc", "", [(go$sliceType(Go$Uint8)), (go$funcType([(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false, -1], ["ReplaceAllLiteral", "", [(go$sliceType(Go$Uint8)), (go$sliceType(Go$Uint8))], [(go$sliceType(Go$Uint8))], false, -1], ["ReplaceAllLiteralString", "", [Go$String, Go$String], [Go$String], false, -1], ["ReplaceAllString", "", [Go$String, Go$String], [Go$String], false, -1], ["ReplaceAllStringFunc", "", [Go$String, (go$funcType([Go$String], [Go$String], false))], [Go$String], false, -1], ["Split", "", [Go$String, Go$Int], [(go$sliceType(Go$String))], false, -1], ["String", "", [], [Go$String], false, -1], ["SubexpNames", "", [], [(go$sliceType(Go$String))], false, -1], ["allMatches", "regexp", [Go$String, (go$sliceType(Go$Uint8)), Go$Int, (go$funcType([(go$sliceType(Go$Int))], [], false))], [], false, -1], ["doExecute", "regexp", [io.RuneReader, (go$sliceType(Go$Uint8)), Go$String, Go$Int, Go$Int], [(go$sliceType(Go$Int))], false, -1], ["expand", "regexp", [(go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Uint8)), Go$String, (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false, -1], ["get", "regexp", [], [(go$ptrType(machine))], false, -1], ["pad", "regexp", [(go$sliceType(Go$Int))], [(go$sliceType(Go$Int))], false, -1], ["put", "regexp", [(go$ptrType(machine))], [], false, -1], ["replaceAll", "regexp", [(go$sliceType(Go$Uint8)), Go$String, Go$Int, (go$funcType([(go$sliceType(Go$Uint8)), (go$sliceType(Go$Int))], [(go$sliceType(Go$Uint8))], false))], [(go$sliceType(Go$Uint8))], false, -1]];
 		Regexp.init([["expr", "expr", "regexp", Go$String, ""], ["prog", "prog", "regexp", (go$ptrType(syntax.Prog)), ""], ["prefix", "prefix", "regexp", Go$String, ""], ["prefixBytes", "prefixBytes", "regexp", (go$sliceType(Go$Uint8)), ""], ["prefixComplete", "prefixComplete", "regexp", Go$Bool, ""], ["prefixRune", "prefixRune", "regexp", Go$Int32, ""], ["cond", "cond", "regexp", syntax.EmptyOp, ""], ["numSubexp", "numSubexp", "regexp", Go$Int, ""], ["subexpNames", "subexpNames", "regexp", (go$sliceType(Go$String)), ""], ["longest", "longest", "regexp", Go$Bool, ""], ["mu", "mu", "regexp", sync.Mutex, ""], ["machine", "machine", "regexp", (go$sliceType((go$ptrType(machine)))), ""]]);
-0Regexp0e0regexp/syntaxProg0syncMutex0regexpmachine0io
-RuneReader0regexp/syntaxEmptyOp0Ç,input]	input = go$pkg.input = go$newType(0, "Interface", "regexp.input", "input", "regexp", null);
+0Regexp0Vio:RuneReaderregexp/syntax:EmptyOpregexp/syntax:Progregexp:machine
+sync:Mutex0Ç&input]	input = go$pkg.input = go$newType(0, "Interface", "regexp.input", "input", "regexp", null);
 Çã		input.init([["canCheckPrefix", "regexp", (go$funcType([], [Go$Bool], false))], ["context", "regexp", (go$funcType([Go$Int], [syntax.EmptyOp], false))], ["hasPrefix", "regexp", (go$funcType([(go$ptrType(Regexp))], [Go$Bool], false))], ["index", "regexp", (go$funcType([(go$ptrType(Regexp)), Go$Int], [Go$Int], false))], ["step", "regexp", (go$funcType([Go$Int], [Go$Int32, Go$Int], false))]]);
-0input0,0regexp/syntaxEmptyOp0regexpRegexp0Ç¿inputStringÅƒ	inputString = go$pkg.inputString = go$newType(0, "Struct", "regexp.inputString", "inputString", "regexp", function(str_) {
+0input0&regexp/syntax:EmptyOpregexp:Regexp0Ç∫inputStringÅƒ	inputString = go$pkg.inputString = go$newType(0, "Struct", "regexp.inputString", "inputString", "regexp", function(str_) {
 		this.go$val = this;
 		this.str = str_ !== undefined ? str_ : "";
 	});
 Ç´		(go$ptrType(inputString)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false, -1], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false, -1], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false, -1], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false, -1], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false, -1]];
 		inputString.init([["str", "str", "regexp", Go$String, ""]]);
-0inputString0,0regexp/syntaxEmptyOp0regexpRegexp0Ç·
+0inputString0&regexp/syntax:EmptyOpregexp:Regexp0Ç€
 inputBytesÅ⁄	inputBytes = go$pkg.inputBytes = go$newType(0, "Struct", "regexp.inputBytes", "inputBytes", "regexp", function(str_) {
 		this.go$val = this;
 		this.str = str_ !== undefined ? str_ : (go$sliceType(Go$Uint8)).nil;
@@ -178,7 +175,7 @@ inputBytesÅ⁄	inputBytes = go$pkg.inputBytes = go$newType(0, "Struct", "regexp.i
 Ç∏		(go$ptrType(inputBytes)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false, -1], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false, -1], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false, -1], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false, -1], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false, -1]];
 		inputBytes.init([["str", "str", "regexp", (go$sliceType(Go$Uint8)), ""]]);
 0
-inputBytes0,0regexp/syntaxEmptyOp0regexpRegexp0ÇéinputReaderÇ.	inputReader = go$pkg.inputReader = go$newType(0, "Struct", "regexp.inputReader", "inputReader", "regexp", function(r_, atEOT_, pos_) {
+inputBytes0&regexp/syntax:EmptyOpregexp:Regexp0ÇÖinputReaderÇ.	inputReader = go$pkg.inputReader = go$newType(0, "Struct", "regexp.inputReader", "inputReader", "regexp", function(r_, atEOT_, pos_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.atEOT = atEOT_ !== undefined ? atEOT_ : false;
@@ -186,22 +183,21 @@ inputBytes0,0regexp/syntaxEmptyOp0regexpRegexp0ÇéinputReaderÇ.	in
 	});
 Ç¸		(go$ptrType(inputReader)).methods = [["canCheckPrefix", "regexp", [], [Go$Bool], false, -1], ["context", "regexp", [Go$Int], [syntax.EmptyOp], false, -1], ["hasPrefix", "regexp", [(go$ptrType(Regexp))], [Go$Bool], false, -1], ["index", "regexp", [(go$ptrType(Regexp)), Go$Int], [Go$Int], false, -1], ["step", "regexp", [Go$Int], [Go$Int32, Go$Int], false, -1]];
 		inputReader.init([["r", "r", "regexp", io.RuneReader, ""], ["atEOT", "atEOT", "regexp", Go$Bool, ""], ["pos", "pos", "regexp", Go$Int, ""]]);
-0inputReader0>0regexp/syntaxEmptyOp0regexpRegexp0io
-RuneReader0Ç Å÷	machine.Ptr.prototype.newInputBytes = function(b) {
+0inputReader05io:RuneReaderregexp/syntax:EmptyOpregexp:Regexp0Ç	 Å÷	machine.Ptr.prototype.newInputBytes = function(b) {
 		var m;
 		m = this;
 		m.inputBytes.str = b;
 		return m.inputBytes;
 	};
 	machine.prototype.newInputBytes = function(b) { return this.go$val.newInputBytes(b); };
- 0machinenewInputBytes00regexpmachine0Ç Å€	machine.Ptr.prototype.newInputString = function(s) {
+ 0machinenewInputBytes0regexp:machine0Ç Å€	machine.Ptr.prototype.newInputString = function(s) {
 		var m;
 		m = this;
 		m.inputString.str = s;
 		return m.inputString;
 	};
 	machine.prototype.newInputString = function(s) { return this.go$val.newInputString(s); };
- 0machinenewInputString00regexpmachine0ÇI Ç	machine.Ptr.prototype.newInputReader = function(r) {
+ 0machinenewInputString0regexp:machine0ÇF Ç	machine.Ptr.prototype.newInputReader = function(r) {
 		var m;
 		m = this;
 		m.inputReader.r = r;
@@ -210,7 +206,7 @@ RuneReader0Ç Å÷	machine.Ptr.prototype.newInputBytes = function(b) {
 		return m.inputReader;
 	};
 	machine.prototype.newInputReader = function(r) { return this.go$val.newInputReader(r); };
- 0machinenewInputReader00regexpmachine0ÇﬂprogMachineÇ	progMachine = function(p) {
+ 0machinenewInputReader0regexp:machine0ÇƒprogMachineÇ	progMachine = function(p) {
 		var m, n, ncap;
 		m = new machine.Ptr((go$ptrType(Regexp)).nil, p, new queue.Ptr(), new queue.Ptr(), (go$sliceType((go$ptrType(thread)))).nil, false, (go$sliceType(Go$Int)).nil, new inputBytes.Ptr(), new inputString.Ptr(), new inputReader.Ptr());
 		n = m.p.Inst.length;
@@ -223,8 +219,7 @@ RuneReader0Ç Å÷	machine.Ptr.prototype.newInputBytes = function(b) {
 		m.matchcap = (go$sliceType(Go$Int)).make(ncap, 0, function() { return 0; });
 		return m;
 	};
- 0progMachine0Å¥0regexp/syntaxProg0regexpqueue0regexpthread0regexpmachine0regexpRegexp0regexp
-inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  ÇÚ	machine.Ptr.prototype.init = function(ncap) {
+ 0progMachine0Åôregexp/syntax:Progregexp:Regexpregexp:entryregexp:inputBytesregexp:inputReaderregexp:inputStringregexp:machineregexp:queueregexp:thread0Ç ÇÚ	machine.Ptr.prototype.init = function(ncap) {
 		var m, _ref, _i, _slice, _index, t;
 		m = this;
 		_ref = m.pool;
@@ -237,7 +232,7 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		m.matchcap = go$subslice(m.matchcap, 0, ncap);
 	};
 	machine.prototype.init = function(ncap) { return this.go$val.init(ncap); };
- 0machineinit00regexpmachine0Ç¥ Çs	machine.Ptr.prototype.alloc = function(i) {
+ 0machineinit0regexp:machine0ÇÆ Çs	machine.Ptr.prototype.alloc = function(i) {
 		var m, t, n, _slice, _index;
 		m = this;
 		t = (go$ptrType(thread)).nil;
@@ -252,7 +247,7 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		return t;
 	};
 	machine.prototype.alloc = function(i) { return this.go$val.alloc(i); };
- 0machinealloc0%0regexpmachine0regexpthread0ÇB Ç	machine.Ptr.prototype.free = function(t) {
+ 0machinealloc0regexp:machineregexp:thread0Ç? Ç	machine.Ptr.prototype.free = function(t) {
 		var m;
 		m = this;
 		m.inputBytes.str = (go$sliceType(Go$Uint8)).nil;
@@ -261,8 +256,8 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		m.pool = go$append(m.pool, t);
 	};
 	machine.prototype.free = function(t) { return this.go$val.free(t); };
- 0machinefree00regexpmachine0Ç
-Í Ç
+ 0machinefree0regexp:machine0Ç
+Ã Ç
 		machine.Ptr.prototype.match = function(i, pos) {
 		var m, startCond, _ref, _i, i$1, _slice, _index, _tuple, runq, nextq, _tuple$1, r, r1, _tuple$2, width, width1, _tuple$3, _tuple$4, flag, advance, _tuple$5, _tuple$6, _slice$1, _index$1, _tuple$7, _tuple$8, _tuple$9;
 		m = this;
@@ -334,7 +329,8 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		return m.matched;
 	};
 	machine.prototype.match = function(i, pos) { return this.go$val.match(i, pos); };
- 0machinematch0Åƒ0regexpmachine0regexpcontext0regexpstep0regexpstep0regexp/syntaxEmptyOpContext0regexpcanCheckPrefix0regexpindex0regexpadd0regexpthread0regexpclear0Ç° ÇO	machine.Ptr.prototype.clear = function(q) {
+ 0machinematch0Å¶regexp/syntax:EmptyOpContext
+regexp:addregexp:canCheckPrefixregexp:clearregexp:contextregexp:indexregexp:machineregexp:stepregexp:stepregexp:thread0Çò ÇO	machine.Ptr.prototype.clear = function(q) {
 		var m, _ref, _i, _slice, _index, _struct, d;
 		m = this;
 		_ref = q.dense;
@@ -349,7 +345,7 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		q.dense = go$subslice(q.dense, 0, 0);
 	};
 	machine.prototype.clear = function(q) { return this.go$val.clear(q); };
- 0machineclear060regexpmachine0regexpentry0regexpthread0Ç Ç¥	machine.Ptr.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) {
+ 0machineclear0-regexp:entryregexp:machineregexp:thread0Ç Ç¥	machine.Ptr.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) {
 		var m, longest, j, _slice, _index, d, t, _slice$1, _index$1, _slice$2, _index$2, i, add, _ref, _slice$3, _index$3, _slice$4, _index$4, _ref$1, _i, _slice$5, _index$5, _struct, d$1, _slice$6, _index$6;
 		m = this;
 		longest = m.re.longest;
@@ -409,7 +405,8 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		runq.dense = go$subslice(runq.dense, 0, 0);
 	};
 	machine.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) { return this.go$val.step(runq, nextq, pos, nextPos, c, nextCond); };
- 0machinestep0E0regexpmachine0regexpthread0regexpentry0regexpadd0Ç Ç±	machine.Ptr.prototype.add = function(q, pc, pos, cap, cond, t) {
+ 0machinestep09
+regexp:addregexp:entryregexp:machineregexp:thread0Ç¯ Ç±	machine.Ptr.prototype.add = function(q, pc, pos, cap, cond, t) {
 		var m, j, _slice, _index, _slice$1, _index$1, j$1, _slice$2, _index$2, d, _slice$3, _index$3, _slice$4, _index$4, i, _ref, _slice$5, _index$5, opos, _slice$6, _index$6, _slice$7, _index$7;
 		m = this;
 		if (pc === 0) {
@@ -462,7 +459,7 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		return t;
 	};
 	machine.prototype.add = function(q, pc, pos, cap, cond, t) { return this.go$val.add(q, pc, pos, cap, cond, t); };
- 0machineadd060regexpmachine0regexpthread0regexpalloc0Ç¢ Ç”	Regexp.Ptr.prototype.doExecute = function(r, b, s, pos, ncap) {
+ 0machineadd0-regexp:allocregexp:machineregexp:thread0Çá Ç”	Regexp.Ptr.prototype.doExecute = function(r, b, s, pos, ncap) {
 		var re, m, i, cap;
 		re = this;
 		m = re.get();
@@ -489,25 +486,27 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		return cap;
 	};
 	Regexp.prototype.doExecute = function(r, b, s, pos, ncap) { return this.go$val.doExecute(r, b, s, pos, ncap); };
- 0Regexp	doExecute0ÅØ0regexpRegexp0regexpnewInputBytes0regexpmatch0regexpput0regexpget0regexpnewInputReader0regexpnewInputString0regexpinit0regexpempty0Å∆ Å°	Regexp.Ptr.prototype.String = function() {
+ 0Regexp	doExecute0Åîregexp:Regexpregexp:empty
+regexp:getregexp:initregexp:matchregexp:newInputBytesregexp:newInputReaderregexp:newInputString
+regexp:put0Å√ Å°	Regexp.Ptr.prototype.String = function() {
 		var re;
 		re = this;
 		return re.expr;
 	};
 	Regexp.prototype.String = function() { return this.go$val.String(); };
- 0Regexp00regexpRegexp0ÅÇCompileU	Compile = go$pkg.Compile = function(expr) {
+ 0Regexp0regexp:Regexp0CompileU	Compile = go$pkg.Compile = function(expr) {
 		return compile(expr, 212, false);
 	};
- 0	Compile00regexpcompile0ÅìCompilePOSIX\	CompilePOSIX = go$pkg.CompilePOSIX = function(expr) {
+ 0	Compile0regexp:compile0ÅêCompilePOSIX\	CompilePOSIX = go$pkg.CompilePOSIX = function(expr) {
 		return compile(expr, 0, true);
 	};
- 0CompilePOSIX00regexpcompile0ÅÃ Åß	Regexp.Ptr.prototype.Longest = function() {
+ 0CompilePOSIX0regexp:compile0Å… Åß	Regexp.Ptr.prototype.Longest = function() {
 		var re;
 		re = this;
 		re.longest = true;
 	};
 	Regexp.prototype.Longest = function() { return this.go$val.Longest(); };
- 0Regexp00regexpRegexp0ÇŸcompileÇ	compile = function(expr, mode, longest) {
+ 0Regexp0regexp:Regexp0ÇƒcompileÇ	compile = function(expr, mode, longest) {
 		var _tuple, re, err, maxCap, capNames, _tuple$1, prog, regexp, _tuple$2, _tuple$3;
 		_tuple = syntax.Parse(expr, mode), re = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -528,7 +527,8 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		}
 		return [regexp, null];
 	};
- 0	compile0Å°0regexp/syntaxParse0regexpRegexp0regexp/syntaxCompile0regexp/syntaxProg0syncMutex0regexpmachine0"unicode/utf8DecodeRuneInString0Çv Ç4	Regexp.Ptr.prototype.get = function() {
+ 0	compile0Ååregexp/syntax:Compileregexp/syntax:Parseregexp/syntax:Progregexp:Regexpregexp:machine
+sync:Mutexunicode/utf8:DecodeRuneInString0Çp Ç4	Regexp.Ptr.prototype.get = function() {
 		var re, n, _slice, _index, z, z$1;
 		re = this;
 		re.mu.Lock();
@@ -544,7 +544,7 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		return z$1;
 	};
 	Regexp.prototype.get = function() { return this.go$val.get(); };
- 0Regexpget0)0regexpRegexp0regexpprogMachine0Å˛ Å‘	Regexp.Ptr.prototype.put = function(z) {
+ 0Regexpget0#regexp:Regexpregexp:progMachine0Å˚ Å‘	Regexp.Ptr.prototype.put = function(z) {
 		var re;
 		re = this;
 		re.mu.Lock();
@@ -552,7 +552,7 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		re.mu.Unlock();
 	};
 	Regexp.prototype.put = function(z) { return this.go$val.put(z); };
- 0Regexpput00regexpRegexp0ÇzMustCompileÇ2	MustCompile = go$pkg.MustCompile = function(str) {
+ 0Regexpput0regexp:Regexp0ÇtMustCompileÇ2	MustCompile = go$pkg.MustCompile = function(str) {
 		var _tuple, regexp, error;
 		_tuple = Compile(str), regexp = _tuple[0], error = _tuple[1];
 		if (!(go$interfaceIsEqual(error, null))) {
@@ -560,7 +560,7 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		}
 		return regexp;
 	};
- 0MustCompile0$0regexpCompile0regexpquote0ÇùMustCompilePOSIXÇF	MustCompilePOSIX = go$pkg.MustCompilePOSIX = function(str) {
+ 0MustCompile0regexp:Compileregexp:quote0ÇóMustCompilePOSIXÇF	MustCompilePOSIX = go$pkg.MustCompilePOSIX = function(str) {
 		var _tuple, regexp, error;
 		_tuple = CompilePOSIX(str), regexp = _tuple[0], error = _tuple[1];
 		if (!(go$interfaceIsEqual(error, null))) {
@@ -568,25 +568,25 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		}
 		return regexp;
 	};
- 0MustCompilePOSIX0)0regexpCompilePOSIX0regexpquote0Åµquotet	quote = function(s) {
+ 0MustCompilePOSIX0#regexp:CompilePOSIXregexp:quote0ÅØquotet	quote = function(s) {
 		if (strconv.CanBackquote(s)) {
 			return "`" + s + "`";
 		}
 		return strconv.Quote(s);
 	};
- 0quote0+0strconvCanBackquote0strconvQuote0Å‘ ÅØ	Regexp.Ptr.prototype.NumSubexp = function() {
+ 0quote0%strconv:CanBackquotestrconv:Quote0Å— ÅØ	Regexp.Ptr.prototype.NumSubexp = function() {
 		var re;
 		re = this;
 		return re.numSubexp;
 	};
 	Regexp.prototype.NumSubexp = function() { return this.go$val.NumSubexp(); };
- 0Regexp00regexpRegexp0Å‹ Å∑	Regexp.Ptr.prototype.SubexpNames = function() {
+ 0Regexp0regexp:Regexp0ÅŸ Å∑	Regexp.Ptr.prototype.SubexpNames = function() {
 		var re;
 		re = this;
 		return re.subexpNames;
 	};
 	Regexp.prototype.SubexpNames = function() { return this.go$val.SubexpNames(); };
- 0Regexp00regexpRegexp0Ç± ÇW	inputString.Ptr.prototype.step = function(pos) {
+ 0Regexp0regexp:Regexp0Ç´ ÇW	inputString.Ptr.prototype.step = function(pos) {
 		var i, c;
 		i = this;
 		if (pos < i.str.length) {
@@ -599,25 +599,25 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		return [-1, 0];
 	};
 	inputString.prototype.step = function(pos) { return this.go$val.step(pos); };
- 0inputStringstep0;0regexpinputString0"unicode/utf8DecodeRuneInString0Å˝ Åæ	inputString.Ptr.prototype.canCheckPrefix = function() {
+ 0inputStringstep05regexp:inputStringunicode/utf8:DecodeRuneInString0Å˙ Åæ	inputString.Ptr.prototype.canCheckPrefix = function() {
 		var i;
 		i = this;
 		return true;
 	};
 	inputString.prototype.canCheckPrefix = function() { return this.go$val.canCheckPrefix(); };
- 0inputStringcanCheckPrefix00regexpinputString0Ç$ Å‘	inputString.Ptr.prototype.hasPrefix = function(re) {
+ 0inputStringcanCheckPrefix0regexp:inputString0Ç Å‘	inputString.Ptr.prototype.hasPrefix = function(re) {
 		var i;
 		i = this;
 		return strings.HasPrefix(i.str, re.prefix);
 	};
 	inputString.prototype.hasPrefix = function(re) { return this.go$val.hasPrefix(re); };
- 0inputString	hasPrefix0-0regexpinputString0strings	HasPrefix0Ç* Å‚	inputString.Ptr.prototype.index = function(re, pos) {
+ 0inputString	hasPrefix0'regexp:inputStringstrings:HasPrefix0Ç$ Å‚	inputString.Ptr.prototype.index = function(re, pos) {
 		var i;
 		i = this;
 		return strings.Index(i.str.substring(pos), re.prefix);
 	};
 	inputString.prototype.index = function(re, pos) { return this.go$val.index(re, pos); };
- 0inputStringindex0)0regexpinputString0stringsIndex0Çº Ç	inputString.Ptr.prototype.context = function(pos) {
+ 0inputStringindex0#regexp:inputStringstrings:Index0ÇØ Ç	inputString.Ptr.prototype.context = function(pos) {
 		var i, _tuple, r1, r2, _tuple$1, _tuple$2;
 		i = this;
 		_tuple = [-1, -1], r1 = _tuple[0], r2 = _tuple[1];
@@ -630,7 +630,7 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 		return syntax.EmptyOpContext(r1, r2);
 	};
 	inputString.prototype.context = function(pos) { return this.go$val.context(pos); };
- 0inputStringcontext0ÅÑ0regexpinputString0&unicode/utf8DecodeLastRuneInString0"unicode/utf8DecodeRuneInString0regexp/syntaxEmptyOpContext0Ç6 ÇÊ	inputBytes.Ptr.prototype.step = function(pos) {
+ 0inputStringcontext0xregexp/syntax:EmptyOpContextregexp:inputString#unicode/utf8:DecodeLastRuneInStringunicode/utf8:DecodeRuneInString0Ç0 ÇÊ	inputBytes.Ptr.prototype.step = function(pos) {
 		var i, _slice, _index, c;
 		i = this;
 		if (pos < i.str.length) {
@@ -644,33 +644,28 @@ inputBytes0regexpinputString0regexpinputReader0regexpentry0Ç  
 	};
 	inputBytes.prototype.step = function(pos) { return this.go$val.step(pos); };
  0
-inputBytesstep020regexp
-inputBytes0unicode/utf8
-DecodeRune0Å˘ Åº	inputBytes.Ptr.prototype.canCheckPrefix = function() {
+inputBytesstep0,regexp:inputBytesunicode/utf8:DecodeRune0Åˆ Åº	inputBytes.Ptr.prototype.canCheckPrefix = function() {
 		var i;
 		i = this;
 		return true;
 	};
 	inputBytes.prototype.canCheckPrefix = function() { return this.go$val.canCheckPrefix(); };
  0
-inputBytescanCheckPrefix00regexp
-inputBytes0Ç! Å’	inputBytes.Ptr.prototype.hasPrefix = function(re) {
+inputBytescanCheckPrefix0regexp:inputBytes0Ç Å’	inputBytes.Ptr.prototype.hasPrefix = function(re) {
 		var i;
 		i = this;
 		return bytes.HasPrefix(i.str, re.prefixBytes);
 	};
 	inputBytes.prototype.hasPrefix = function(re) { return this.go$val.hasPrefix(re); };
  0
-inputBytes	hasPrefix0*0regexp
-inputBytes0bytes	HasPrefix0Ç* ÅÊ	inputBytes.Ptr.prototype.index = function(re, pos) {
+inputBytes	hasPrefix0$bytes:HasPrefixregexp:inputBytes0Ç$ ÅÊ	inputBytes.Ptr.prototype.index = function(re, pos) {
 		var i;
 		i = this;
 		return bytes.Index(go$subslice(i.str, pos), re.prefixBytes);
 	};
 	inputBytes.prototype.index = function(re, pos) { return this.go$val.index(re, pos); };
  0
-inputBytesindex0&0regexp
-inputBytes0bytesIndex0Çù Ç		inputBytes.Ptr.prototype.context = function(pos) {
+inputBytesindex0 bytes:Indexregexp:inputBytes0Çë Ç		inputBytes.Ptr.prototype.context = function(pos) {
 		var i, _tuple, r1, r2, _tuple$1, _tuple$2;
 		i = this;
 		_tuple = [-1, -1], r1 = _tuple[0], r2 = _tuple[1];
@@ -684,9 +679,7 @@ inputBytes0bytesIndex0Çù Ç		inputBytes.Ptr.prototype.context = function
 	};
 	inputBytes.prototype.context = function(pos) { return this.go$val.context(pos); };
  0
-inputBytescontext0s0regexp
-inputBytes0unicode/utf8DecodeLastRune0unicode/utf8
-DecodeRune0regexp/syntaxEmptyOpContext0ÇÓ Ç∏	inputReader.Ptr.prototype.step = function(pos) {
+inputBytescontext0gregexp/syntax:EmptyOpContextregexp:inputBytesunicode/utf8:DecodeLastRuneunicode/utf8:DecodeRune0ÇÎ Ç∏	inputReader.Ptr.prototype.step = function(pos) {
 		var i, _tuple, r, w, err;
 		i = this;
 		if (!i.atEOT && !((pos === i.pos))) {
@@ -701,31 +694,31 @@ DecodeRune0regexp/syntaxEmptyOpContext0ÇÓ Ç∏	inputReader.Ptr.prototype.
 		return [r, w];
 	};
 	inputReader.prototype.step = function(pos) { return this.go$val.step(pos); };
- 0inputReaderstep00regexpinputReader0Å˛ Åø	inputReader.Ptr.prototype.canCheckPrefix = function() {
+ 0inputReaderstep0regexp:inputReader0Å˚ Åø	inputReader.Ptr.prototype.canCheckPrefix = function() {
 		var i;
 		i = this;
 		return false;
 	};
 	inputReader.prototype.canCheckPrefix = function() { return this.go$val.canCheckPrefix(); };
- 0inputReadercanCheckPrefix00regexpinputReader0Å Å∂	inputReader.Ptr.prototype.hasPrefix = function(re) {
+ 0inputReadercanCheckPrefix0regexp:inputReader0ÅÌ Å∂	inputReader.Ptr.prototype.hasPrefix = function(re) {
 		var i;
 		i = this;
 		return false;
 	};
 	inputReader.prototype.hasPrefix = function(re) { return this.go$val.hasPrefix(re); };
- 0inputReader	hasPrefix00regexpinputReader0ÅÏ Å∂	inputReader.Ptr.prototype.index = function(re, pos) {
+ 0inputReader	hasPrefix0regexp:inputReader0ÅÈ Å∂	inputReader.Ptr.prototype.index = function(re, pos) {
 		var i;
 		i = this;
 		return -1;
 	};
 	inputReader.prototype.index = function(re, pos) { return this.go$val.index(re, pos); };
- 0inputReaderindex00regexpinputReader0ÅÁ ÅØ	inputReader.Ptr.prototype.context = function(pos) {
+ 0inputReaderindex0regexp:inputReader0Å‰ ÅØ	inputReader.Ptr.prototype.context = function(pos) {
 		var i;
 		i = this;
 		return 0;
 	};
 	inputReader.prototype.context = function(pos) { return this.go$val.context(pos); };
- 0inputReadercontext00regexpinputReader0Çy ÇS	Regexp.Ptr.prototype.LiteralPrefix = function() {
+ 0inputReadercontext0regexp:inputReader0Çv ÇS	Regexp.Ptr.prototype.LiteralPrefix = function() {
 		var prefix, complete, re, _tuple;
 		prefix = "";
 		complete = false;
@@ -734,25 +727,25 @@ DecodeRune0regexp/syntaxEmptyOpContext0ÇÓ Ç∏	inputReader.Ptr.prototype.
 		return [prefix, complete];
 	};
 	Regexp.prototype.LiteralPrefix = function() { return this.go$val.LiteralPrefix(); };
- 0Regexp00regexpRegexp0Ç@ Ç	Regexp.Ptr.prototype.MatchReader = function(r) {
+ 0Regexp0regexp:Regexp0Ç: Ç	Regexp.Ptr.prototype.MatchReader = function(r) {
 		var re;
 		re = this;
 		return !(re.doExecute(r, (go$sliceType(Go$Uint8)).nil, "", 0, 0) === (go$sliceType(Go$Int)).nil);
 	};
 	Regexp.prototype.MatchReader = function(r) { return this.go$val.MatchReader(r); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0ÇB Ç	Regexp.Ptr.prototype.MatchString = function(s) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0Ç< Ç	Regexp.Ptr.prototype.MatchString = function(s) {
 		var re;
 		re = this;
 		return !(re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, 0) === (go$sliceType(Go$Int)).nil);
 	};
 	Regexp.prototype.MatchString = function(s) { return this.go$val.MatchString(s); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0Ç Å€	Regexp.Ptr.prototype.Match = function(b) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0Ç Å€	Regexp.Ptr.prototype.Match = function(b) {
 		var re;
 		re = this;
 		return !(re.doExecute(null, b, "", 0, 0) === (go$sliceType(Go$Int)).nil);
 	};
 	Regexp.prototype.Match = function(b) { return this.go$val.Match(b); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0ÇMatchReaderÇÃ	MatchReader = go$pkg.MatchReader = function(pattern, r) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0Ç MatchReaderÇÃ	MatchReader = go$pkg.MatchReader = function(pattern, r) {
 		var matched, err, _tuple, re, _tuple$1, _tuple$2;
 		matched = false;
 		err = null;
@@ -764,7 +757,7 @@ DecodeRune0regexp/syntaxEmptyOpContext0ÇÓ Ç∏	inputReader.Ptr.prototype.
 		_tuple$2 = [re.MatchReader(r), null], matched = _tuple$2[0], err = _tuple$2[1];
 		return [matched, err];
 	};
- 0MatchReader00regexpCompile0ÇMatchStringÇÃ	MatchString = go$pkg.MatchString = function(pattern, s) {
+ 0MatchReader0regexp:Compile0Ç MatchStringÇÃ	MatchString = go$pkg.MatchString = function(pattern, s) {
 		var matched, err, _tuple, re, _tuple$1, _tuple$2;
 		matched = false;
 		err = null;
@@ -776,7 +769,7 @@ DecodeRune0regexp/syntaxEmptyOpContext0ÇÓ Ç∏	inputReader.Ptr.prototype.
 		_tuple$2 = [re.MatchString(s), null], matched = _tuple$2[0], err = _tuple$2[1];
 		return [matched, err];
 	};
- 0MatchString00regexpCompile0ÇÂMatchÇ∫	Match = go$pkg.Match = function(pattern, b) {
+ 0MatchString0regexp:Compile0Ç‚MatchÇ∫	Match = go$pkg.Match = function(pattern, b) {
 		var matched, err, _tuple, re, _tuple$1, _tuple$2;
 		matched = false;
 		err = null;
@@ -788,7 +781,7 @@ DecodeRune0regexp/syntaxEmptyOpContext0ÇÓ Ç∏	inputReader.Ptr.prototype.
 		_tuple$2 = [re.Match(b), null], matched = _tuple$2[0], err = _tuple$2[1];
 		return [matched, err];
 	};
- 0Match00regexpCompile0Çô Ç9	Regexp.Ptr.prototype.ReplaceAllString = function(src, repl) {
+ 0Match0regexp:Compile0Çç Ç9	Regexp.Ptr.prototype.ReplaceAllString = function(src, repl) {
 		var re, n, x, x$1, b;
 		re = this;
 		n = 2;
@@ -801,8 +794,7 @@ DecodeRune0regexp/syntaxEmptyOpContext0ÇÓ Ç∏	inputReader.Ptr.prototype.
 		return go$bytesToString(b);
 	};
 	Regexp.prototype.ReplaceAllString = function(src, repl) { return this.go$val.ReplaceAllString(src, repl); };
- 0Regexp0L0regexpRegexp0stringsIndex0regexp
-replaceAll0regexpexpand0Ç‹ Ç†	Regexp.Ptr.prototype.ReplaceAllLiteralString = function(src, repl) {
+ 0Regexp0@regexp:Regexpregexp:expandregexp:replaceAllstrings:Index0Ç÷ Ç†	Regexp.Ptr.prototype.ReplaceAllLiteralString = function(src, repl) {
 		var re;
 		re = this;
 		return go$bytesToString(re.replaceAll((go$sliceType(Go$Uint8)).nil, src, 2, (function(dst, match) {
@@ -810,8 +802,7 @@ replaceAll0regexpexpand0Ç‹ Ç†	Regexp.Ptr.prototype.ReplaceAllLiteralStr
 		})));
 	};
 	Regexp.prototype.ReplaceAllLiteralString = function(src, repl) { return this.go$val.ReplaceAllLiteralString(src, repl); };
- 0Regexp0(0regexpRegexp0regexp
-replaceAll0Ç_ Ç#	Regexp.Ptr.prototype.ReplaceAllStringFunc = function(src, repl) {
+ 0Regexp0"regexp:Regexpregexp:replaceAll0ÇY Ç#	Regexp.Ptr.prototype.ReplaceAllStringFunc = function(src, repl) {
 		var re, b;
 		re = this;
 		b = re.replaceAll((go$sliceType(Go$Uint8)).nil, src, 2, (function(dst, match) {
@@ -821,8 +812,7 @@ replaceAll0Ç_ Ç#	Regexp.Ptr.prototype.ReplaceAllStringFunc = function(src, r
 		return go$bytesToString(b);
 	};
 	Regexp.prototype.ReplaceAllStringFunc = function(src, repl) { return this.go$val.ReplaceAllStringFunc(src, repl); };
- 0Regexp0(0regexpRegexp0regexp
-replaceAll0Ç™ Ç#	Regexp.Ptr.prototype.replaceAll = function(bsrc, src, nmatch, repl) {
+ 0Regexp0"regexp:Regexpregexp:replaceAll0Çû Ç#	Regexp.Ptr.prototype.replaceAll = function(bsrc, src, nmatch, repl) {
 		var re, lastMatchEnd, searchPos, buf, endPos, a, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, width, _tuple, _tuple$1, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		re = this;
 		lastMatchEnd = 0;
@@ -871,8 +861,7 @@ replaceAll0Ç™ Ç#	Regexp.Ptr.prototype.replaceAll = function(bsrc, src, nmatc
 	};
 	Regexp.prototype.replaceAll = function(bsrc, src, nmatch, repl) { return this.go$val.replaceAll(bsrc, src, nmatch, repl); };
  0Regexp
-replaceAll0g0regexpRegexp0regexp	doExecute0unicode/utf8
-DecodeRune0"unicode/utf8DecodeRuneInString0ÇØ ÇM	Regexp.Ptr.prototype.ReplaceAll = function(src, repl) {
+replaceAll0[regexp:Regexpregexp:doExecuteunicode/utf8:DecodeRuneunicode/utf8:DecodeRuneInString0Ç£ ÇM	Regexp.Ptr.prototype.ReplaceAll = function(src, repl) {
 		var re, n, x, x$1, srepl, b;
 		re = this;
 		n = 2;
@@ -889,8 +878,7 @@ DecodeRune0"unicode/utf8DecodeRuneInString0ÇØ ÇM	Regexp.Ptr.prototype.Re
 		return b;
 	};
 	Regexp.prototype.ReplaceAll = function(src, repl) { return this.go$val.ReplaceAll(src, repl); };
- 0Regexp0N0regexpRegexp0bytes	IndexByte0regexp
-replaceAll0regexpexpand0Çn Ç2	Regexp.Ptr.prototype.ReplaceAllLiteral = function(src, repl) {
+ 0Regexp0Bbytes:IndexByteregexp:Regexpregexp:expandregexp:replaceAll0Çh Ç2	Regexp.Ptr.prototype.ReplaceAllLiteral = function(src, repl) {
 		var re;
 		re = this;
 		return re.replaceAll(src, "", 2, (function(dst, match) {
@@ -898,8 +886,7 @@ replaceAll0regexpexpand0Çn Ç2	Regexp.Ptr.prototype.ReplaceAllLiteral = 
 		}));
 	};
 	Regexp.prototype.ReplaceAllLiteral = function(src, repl) { return this.go$val.ReplaceAllLiteral(src, repl); };
- 0Regexp0(0regexpRegexp0regexp
-replaceAll0ÇË Ç¨	Regexp.Ptr.prototype.ReplaceAllFunc = function(src, repl) {
+ 0Regexp0"regexp:Regexpregexp:replaceAll0Ç‚ Ç¨	Regexp.Ptr.prototype.ReplaceAllFunc = function(src, repl) {
 		var re;
 		re = this;
 		return re.replaceAll(src, "", 2, (function(dst, match) {
@@ -908,11 +895,10 @@ replaceAll0ÇË Ç¨	Regexp.Ptr.prototype.ReplaceAllFunc = function(src, repl) {
 		}));
 	};
 	Regexp.prototype.ReplaceAllFunc = function(src, repl) { return this.go$val.ReplaceAllFunc(src, repl); };
- 0Regexp0(0regexpRegexp0regexp
-replaceAll0ÅìspecialM	special = function(b) {
+ 0Regexp0"regexp:Regexpregexp:replaceAll0ÅçspecialM	special = function(b) {
 		return bytes.IndexByte(specialBytes, b) >= 0;
 	};
- 0	special0,0bytes	IndexByte0regexpspecialBytes0ÇX	QuoteMetaÇ%	QuoteMeta = go$pkg.QuoteMeta = function(s) {
+ 0	special0&bytes:IndexByteregexp:specialBytes0ÇU	QuoteMetaÇ%	QuoteMeta = go$pkg.QuoteMeta = function(s) {
 		var x, x$1, b, j, i, _slice, _index, _slice$1, _index$1;
 		b = (go$sliceType(Go$Uint8)).make((x = 2, x$1 = s.length, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0), 0, function() { return 0; });
 		j = 0;
@@ -928,7 +914,7 @@ replaceAll0ÅìspecialM	special = function(b) {
 		}
 		return go$bytesToString(go$subslice(b, 0, j));
 	};
- 0	QuoteMeta00regexpspecial0Ç¬ Çó	Regexp.Ptr.prototype.pad = function(a) {
+ 0	QuoteMeta0regexp:special0Çø Çó	Regexp.Ptr.prototype.pad = function(a) {
 		var re, x, x$1, n;
 		re = this;
 		if (a === (go$sliceType(Go$Int)).nil) {
@@ -941,7 +927,7 @@ replaceAll0ÅìspecialM	special = function(b) {
 		return a;
 	};
 	Regexp.prototype.pad = function(a) { return this.go$val.pad(a); };
- 0Regexppad00regexpRegexp0Ç Çy	Regexp.Ptr.prototype.allMatches = function(s, b, n, deliver) {
+ 0Regexppad0regexp:Regexp0Ç  Çy	Regexp.Ptr.prototype.allMatches = function(s, b, n, deliver) {
 		var re, end, _tuple, pos, i, prevMatchEnd, matches, accept, _slice, _index, _slice$1, _index$1, width, _tuple$1, _tuple$2, _slice$2, _index$2, _slice$3, _index$3;
 		re = this;
 		end = 0;
@@ -984,8 +970,8 @@ replaceAll0ÅìspecialM	special = function(b) {
 	};
 	Regexp.prototype.allMatches = function(s, b, n, deliver) { return this.go$val.allMatches(s, b, n, deliver); };
  0Regexp
-allMatches0v0regexpRegexp0regexp	doExecute0"unicode/utf8DecodeRuneInString0unicode/utf8
-DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
+allMatches0gregexp:Regexpregexp:doExecute
+regexp:padunicode/utf8:DecodeRuneunicode/utf8:DecodeRuneInString0Çº Çá	Regexp.Ptr.prototype.Find = function(b) {
 		var re, a, _slice, _index, _slice$1, _index$1;
 		re = this;
 		a = re.doExecute(null, b, "", 0, 2);
@@ -995,7 +981,7 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		return go$subslice(b, (_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = a, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
 	};
 	Regexp.prototype.Find = function(b) { return this.go$val.Find(b); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0Ç∑ Ç|	Regexp.Ptr.prototype.FindIndex = function(b) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0Ç± Ç|	Regexp.Ptr.prototype.FindIndex = function(b) {
 		var loc, re, a;
 		loc = (go$sliceType(Go$Int)).nil;
 		re = this;
@@ -1008,7 +994,7 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		return loc;
 	};
 	Regexp.prototype.FindIndex = function(b) { return this.go$val.FindIndex(b); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0Ç— Çñ	Regexp.Ptr.prototype.FindString = function(s) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0ÇÀ Çñ	Regexp.Ptr.prototype.FindString = function(s) {
 		var re, a, _slice, _index, _slice$1, _index$1;
 		re = this;
 		a = re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, 2);
@@ -1018,7 +1004,7 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		return s.substring((_slice = a, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = a, _index$1 = 1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")));
 	};
 	Regexp.prototype.FindString = function(s) { return this.go$val.FindString(s); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0Ç„ Ç®	Regexp.Ptr.prototype.FindStringIndex = function(s) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0Ç› Ç®	Regexp.Ptr.prototype.FindStringIndex = function(s) {
 		var loc, re, a;
 		loc = (go$sliceType(Go$Int)).nil;
 		re = this;
@@ -1031,7 +1017,7 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		return loc;
 	};
 	Regexp.prototype.FindStringIndex = function(s) { return this.go$val.FindStringIndex(s); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0Ç· Ç¶	Regexp.Ptr.prototype.FindReaderIndex = function(r) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0Ç€ Ç¶	Regexp.Ptr.prototype.FindReaderIndex = function(r) {
 		var loc, re, a;
 		loc = (go$sliceType(Go$Int)).nil;
 		re = this;
@@ -1044,7 +1030,7 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		return loc;
 	};
 	Regexp.prototype.FindReaderIndex = function(r) { return this.go$val.FindReaderIndex(r); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0Ç¥ Çy	Regexp.Ptr.prototype.FindSubmatch = function(b) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0ÇÆ Çy	Regexp.Ptr.prototype.FindSubmatch = function(b) {
 		var re, a, ret, _ref, _i, i, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3;
 		re = this;
 		a = re.doExecute(null, b, "", 0, re.prog.NumCap);
@@ -1064,19 +1050,19 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		return ret;
 	};
 	Regexp.prototype.FindSubmatch = function(b) { return this.go$val.FindSubmatch(b); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0ÇW Ç	Regexp.Ptr.prototype.Expand = function(dst, template, src, match) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0ÇQ Ç	Regexp.Ptr.prototype.Expand = function(dst, template, src, match) {
 		var re;
 		re = this;
 		return re.expand(dst, go$bytesToString(template), src, "", match);
 	};
 	Regexp.prototype.Expand = function(dst, template, src, match) { return this.go$val.Expand(dst, template, src, match); };
- 0Regexp0$0regexpRegexp0regexpexpand0Çq Ç9	Regexp.Ptr.prototype.ExpandString = function(dst, template, src, match) {
+ 0Regexp0regexp:Regexpregexp:expand0Çk Ç9	Regexp.Ptr.prototype.ExpandString = function(dst, template, src, match) {
 		var re;
 		re = this;
 		return re.expand(dst, template, (go$sliceType(Go$Uint8)).nil, src, match);
 	};
 	Regexp.prototype.ExpandString = function(dst, template, src, match) { return this.go$val.ExpandString(dst, template, src, match); };
- 0Regexp0$0regexpRegexp0regexpexpand0Ç= ÇÍ	Regexp.Ptr.prototype.expand = function(dst, template, bsrc, src, match) {
+ 0Regexp0regexp:Regexpregexp:expand0Ç4 ÇÍ	Regexp.Ptr.prototype.expand = function(dst, template, bsrc, src, match) {
 		var re, i, _tuple, name, num, rest, ok, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3, x$4, _slice$4, _index$4, x$5, _ref, _i, _slice$5, _index$5, namei, i$1, x$6, _slice$6, _index$6, x$7, _slice$7, _index$7, x$8, _slice$8, _index$8, x$9, _slice$9, _index$9, x$10, _slice$10, _index$10, x$11;
 		re = this;
 		while (template.length > 0) {
@@ -1128,7 +1114,7 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		return dst;
 	};
 	Regexp.prototype.expand = function(dst, template, bsrc, src, match) { return this.go$val.expand(dst, template, bsrc, src, match); };
- 0Regexpexpand070regexpRegexp0stringsIndex0regexpextract0ÇêextractÇ'	extract = function(str) {
+ 0Regexpexpand0.regexp:Regexpregexp:extractstrings:Index0ÇáextractÇ'	extract = function(str) {
 		var name, num, rest, ok, brace, i, _tuple, rune, size, i$1, x;
 		name = "";
 		num = 0;
@@ -1179,13 +1165,14 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		ok = true;
 		return [name, num, rest, ok];
 	};
- 0	extract0M0"unicode/utf8DecodeRuneInString0unicodeIsLetter0unicodeIsDigit0Ç; ÅÚ	Regexp.Ptr.prototype.FindSubmatchIndex = function(b) {
+ 0	extract0Dunicode/utf8:DecodeRuneInStringunicode:IsDigitunicode:IsLetter0Ç2 ÅÚ	Regexp.Ptr.prototype.FindSubmatchIndex = function(b) {
 		var re;
 		re = this;
 		return re.pad(re.doExecute(null, b, "", 0, re.prog.NumCap));
 	};
 	Regexp.prototype.FindSubmatchIndex = function(b) { return this.go$val.FindSubmatchIndex(b); };
- 0Regexp060regexpRegexp0regexppad0regexp	doExecute0Ç• Çj	Regexp.Ptr.prototype.FindStringSubmatch = function(s) {
+ 0Regexp0-regexp:Regexpregexp:doExecute
+regexp:pad0Çü Çj	Regexp.Ptr.prototype.FindStringSubmatch = function(s) {
 		var re, a, ret, _ref, _i, i, x, _slice, _index, x$1, _slice$1, _index$1, x$2, _slice$2, _index$2, x$3, _slice$3, _index$3;
 		re = this;
 		a = re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, re.prog.NumCap);
@@ -1205,19 +1192,21 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		return ret;
 	};
 	Regexp.prototype.FindStringSubmatch = function(s) { return this.go$val.FindStringSubmatch(s); };
- 0Regexp0'0regexpRegexp0regexp	doExecute0Çh Ç	Regexp.Ptr.prototype.FindStringSubmatchIndex = function(s) {
+ 0Regexp0!regexp:Regexpregexp:doExecute0Ç_ Ç	Regexp.Ptr.prototype.FindStringSubmatchIndex = function(s) {
 		var re;
 		re = this;
 		return re.pad(re.doExecute(null, (go$sliceType(Go$Uint8)).nil, s, 0, re.prog.NumCap));
 	};
 	Regexp.prototype.FindStringSubmatchIndex = function(s) { return this.go$val.FindStringSubmatchIndex(s); };
- 0Regexp060regexpRegexp0regexppad0regexp	doExecute0Çf Ç	Regexp.Ptr.prototype.FindReaderSubmatchIndex = function(r) {
+ 0Regexp0-regexp:Regexpregexp:doExecute
+regexp:pad0Ç] Ç	Regexp.Ptr.prototype.FindReaderSubmatchIndex = function(r) {
 		var re;
 		re = this;
 		return re.pad(re.doExecute(r, (go$sliceType(Go$Uint8)).nil, "", 0, re.prog.NumCap));
 	};
 	Regexp.prototype.FindReaderSubmatchIndex = function(r) { return this.go$val.FindReaderSubmatchIndex(r); };
- 0Regexp060regexpRegexp0regexppad0regexp	doExecute0Ç√ Çá	Regexp.Ptr.prototype.FindAll = function(b, n) {
+ 0Regexp0-regexp:Regexpregexp:doExecute
+regexp:pad0ÇΩ Çá	Regexp.Ptr.prototype.FindAll = function(b, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1234,8 +1223,7 @@ DecodeRune0regexppad0Ç¬ Çá	Regexp.Ptr.prototype.Find = function(b) {
 		return result;
 	};
 	Regexp.prototype.FindAll = function(b, n) { return this.go$val.FindAll(b, n); };
- 0Regexp0(0regexpRegexp0regexp
-allMatches0Çe Ç)	Regexp.Ptr.prototype.FindAllIndex = function(b, n) {
+ 0Regexp0"regexp:Regexpregexp:allMatches0Ç_ Ç)	Regexp.Ptr.prototype.FindAllIndex = function(b, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1251,8 +1239,7 @@ allMatches0Çe Ç)	Regexp.Ptr.prototype.FindAllIndex = function(b, n) {
 		return result;
 	};
 	Regexp.prototype.FindAllIndex = function(b, n) { return this.go$val.FindAllIndex(b, n); };
- 0Regexp0(0regexpRegexp0regexp
-allMatches0Ç¥ Çx	Regexp.Ptr.prototype.FindAllString = function(s, n) {
+ 0Regexp0"regexp:Regexpregexp:allMatches0ÇÆ Çx	Regexp.Ptr.prototype.FindAllString = function(s, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1269,8 +1256,7 @@ allMatches0Ç¥ Çx	Regexp.Ptr.prototype.FindAllString = function(s, n) {
 		return result;
 	};
 	Regexp.prototype.FindAllString = function(s, n) { return this.go$val.FindAllString(s, n); };
- 0Regexp0(0regexpRegexp0regexp
-allMatches0Çë ÇU	Regexp.Ptr.prototype.FindAllStringIndex = function(s, n) {
+ 0Regexp0"regexp:Regexpregexp:allMatches0Çã ÇU	Regexp.Ptr.prototype.FindAllStringIndex = function(s, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1286,8 +1272,7 @@ allMatches0Çë ÇU	Regexp.Ptr.prototype.FindAllStringIndex = function(s, n) {
 		return result;
 	};
 	Regexp.prototype.FindAllStringIndex = function(s, n) { return this.go$val.FindAllStringIndex(s, n); };
- 0Regexp0(0regexpRegexp0regexp
-allMatches0ÇÔ Ç≥	Regexp.Ptr.prototype.FindAllSubmatch = function(b, n) {
+ 0Regexp0"regexp:Regexpregexp:allMatches0ÇÈ Ç≥	Regexp.Ptr.prototype.FindAllSubmatch = function(b, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1314,8 +1299,7 @@ allMatches0ÇÔ Ç≥	Regexp.Ptr.prototype.FindAllSubmatch = function(b, n) {
 		return result;
 	};
 	Regexp.prototype.FindAllSubmatch = function(b, n) { return this.go$val.FindAllSubmatch(b, n); };
- 0Regexp0(0regexpRegexp0regexp
-allMatches0Çj Ç.	Regexp.Ptr.prototype.FindAllSubmatchIndex = function(b, n) {
+ 0Regexp0"regexp:Regexpregexp:allMatches0Çd Ç.	Regexp.Ptr.prototype.FindAllSubmatchIndex = function(b, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1331,8 +1315,7 @@ allMatches0Çj Ç.	Regexp.Ptr.prototype.FindAllSubmatchIndex = function(b, n) 
 		return result;
 	};
 	Regexp.prototype.FindAllSubmatchIndex = function(b, n) { return this.go$val.FindAllSubmatchIndex(b, n); };
- 0Regexp0(0regexpRegexp0regexp
-allMatches0Ç¬ ÇÜ	Regexp.Ptr.prototype.FindAllStringSubmatch = function(s, n) {
+ 0Regexp0"regexp:Regexpregexp:allMatches0Çº ÇÜ	Regexp.Ptr.prototype.FindAllStringSubmatch = function(s, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1359,8 +1342,7 @@ allMatches0Ç¬ ÇÜ	Regexp.Ptr.prototype.FindAllStringSubmatch = function(s, n)
 		return result;
 	};
 	Regexp.prototype.FindAllStringSubmatch = function(s, n) { return this.go$val.FindAllStringSubmatch(s, n); };
- 0Regexp0(0regexpRegexp0regexp
-allMatches0Çñ ÇZ	Regexp.Ptr.prototype.FindAllStringSubmatchIndex = function(s, n) {
+ 0Regexp0"regexp:Regexpregexp:allMatches0Çê ÇZ	Regexp.Ptr.prototype.FindAllStringSubmatchIndex = function(s, n) {
 		var re, result;
 		re = this;
 		if (n < 0) {
@@ -1376,8 +1358,7 @@ allMatches0Çñ ÇZ	Regexp.Ptr.prototype.FindAllStringSubmatchIndex = function(
 		return result;
 	};
 	Regexp.prototype.FindAllStringSubmatchIndex = function(s, n) { return this.go$val.FindAllStringSubmatchIndex(s, n); };
- 0Regexp0(0regexpRegexp0regexp
-allMatches0Ç| ÇV	Regexp.Ptr.prototype.Split = function(s, n) {
+ 0Regexp0"regexp:Regexpregexp:allMatches0Çy ÇV	Regexp.Ptr.prototype.Split = function(s, n) {
 		var re, matches, strings$1, beg, end, _ref, _i, _slice, _index, match, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		re = this;
 		if (n === 0) {
@@ -1410,9 +1391,9 @@ allMatches0Ç| ÇV	Regexp.Ptr.prototype.Split = function(s, n) {
 		return strings$1;
 	};
 	Regexp.prototype.Split = function(s, n) { return this.go$val.Split(s, n); };
- 0Regexp00regexpRegexp0empty  0empty0 0debug  0debug0 0$specialBytes  0specialBytes0 0b  G		empty = (go$sliceType(Go$Int)).make(0, 0, function() { return 0; });
-0 00regexpempty03  		debug = false;
-0debug00regexpdebug0ÅÑ  T		specialBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("\\.+*?()|[]{}^$"));
-0specialBytes00regexpspecialBytes0
+ 0Regexp0regexp:Regexp0empty  0empty0 0debug  0debug0 0$specialBytes  0specialBytes0 0_  G		empty = (go$sliceType(Go$Int)).make(0, 0, function() { return 0; });
+0 0regexp:empty00  		debug = false;
+0debug0regexp:debug0ÅÅ  T		specialBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("\\.+*?()|[]{}^$"));
+0specialBytes0regexp:specialBytes0
    0 0 0
    0 0 0 

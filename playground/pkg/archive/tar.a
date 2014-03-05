@@ -1,4 +1,4 @@
-0ÇÌ‚archive/tarÇ+œpackage tar
+0ÇÎÛarchive/tarÇ+œpackage tar
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -182,7 +182,7 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0Å≤runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilpatharchive/tar0ÅØ0bytesbytes0errorserrors0
-fmtfmt0osos0pathpath0timetime0ioio0	io/ioutilioutil0strconvstrconv0stringsstrings0syscallsyscall0Ç¿ï0ÇDHeaderÇm	Header = go$pkg.Header = go$newType(0, "Struct", "tar.Header", "Header", "archive/tar", function(Name_, Mode_, Uid_, Gid_, Size_, ModTime_, Typeflag_, Linkname_, Uname_, Gname_, Devmajor_, Devminor_, AccessTime_, ChangeTime_) {
+fmtfmt0osos0pathpath0timetime0ioio0	io/ioutilioutil0strconvstrconv0stringsstrings0syscallsyscall0Çæ¶0Ç>HeaderÇm	Header = go$pkg.Header = go$newType(0, "Struct", "tar.Header", "Header", "archive/tar", function(Name_, Mode_, Uid_, Gid_, Size_, ModTime_, Typeflag_, Linkname_, Uname_, Gname_, Devmajor_, Devminor_, AccessTime_, ChangeTime_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Mode = Mode_ !== undefined ? Mode_ : new Go$Int64(0, 0);
@@ -201,17 +201,17 @@ $$
 	});
 Çù		(go$ptrType(Header)).methods = [["FileInfo", "", [], [os.FileInfo], false, -1]];
 		Header.init([["Name", "Name", "", Go$String, ""], ["Mode", "Mode", "", Go$Int64, ""], ["Uid", "Uid", "", Go$Int, ""], ["Gid", "Gid", "", Go$Int, ""], ["Size", "Size", "", Go$Int64, ""], ["ModTime", "ModTime", "", time.Time, ""], ["Typeflag", "Typeflag", "", Go$Uint8, ""], ["Linkname", "Linkname", "", Go$String, ""], ["Uname", "Uname", "", Go$String, ""], ["Gname", "Gname", "", Go$String, ""], ["Devmajor", "Devmajor", "", Go$Int64, ""], ["Devminor", "Devminor", "", Go$Int64, ""], ["AccessTime", "AccessTime", "", time.Time, ""], ["ChangeTime", "ChangeTime", "", time.Time, ""]]);
-0Header00timeTime0osFileInfo0Ç‚headerFileInfoÅ‡	headerFileInfo = go$pkg.headerFileInfo = go$newType(0, "Struct", "tar.headerFileInfo", "headerFileInfo", "archive/tar", function(h_) {
+0Header0os:FileInfo	time:Time0ÇŸheaderFileInfoÅ‡	headerFileInfo = go$pkg.headerFileInfo = go$newType(0, "Struct", "tar.headerFileInfo", "headerFileInfo", "archive/tar", function(h_) {
 		this.go$val = this;
 		this.h = h_ !== undefined ? h_ : (go$ptrType(Header)).nil;
 	});
 Ç¢		headerFileInfo.methods = [["IsDir", "", [], [Go$Bool], false, -1], ["ModTime", "", [], [time.Time], false, -1], ["Mode", "", [], [os.FileMode], false, -1], ["Name", "", [], [Go$String], false, -1], ["Size", "", [], [Go$Int64], false, -1], ["Sys", "", [], [go$emptyInterface], false, -1]];
 		(go$ptrType(headerFileInfo)).methods = [["IsDir", "", [], [Go$Bool], false, -1], ["ModTime", "", [], [time.Time], false, -1], ["Mode", "", [], [os.FileMode], false, -1], ["Name", "", [], [Go$String], false, -1], ["Size", "", [], [Go$Int64], false, -1], ["Sys", "", [], [go$emptyInterface], false, -1]];
 		headerFileInfo.init([["h", "h", "archive/tar", (go$ptrType(Header)), ""]]);
-0headerFileInfo050archive/tarHeader0timeTime0osFileMode0Å˛slicer_	slicer = go$pkg.slicer = go$newType(0, "Slice", "tar.slicer", "slicer", "archive/tar", null);
+0headerFileInfo0,archive/tar:Headeros:FileMode	time:Time0Å˛slicer_	slicer = go$pkg.slicer = go$newType(0, "Slice", "tar.slicer", "slicer", "archive/tar", null);
 ÅÜ		(go$ptrType(slicer)).methods = [["next", "archive/tar", [Go$Int], [(go$sliceType(Go$Uint8))], false, -1]];
 		slicer.init(Go$Uint8);
-0slicer0 0Ç)ReaderÇc	Reader = go$pkg.Reader = go$newType(0, "Struct", "tar.Reader", "Reader", "archive/tar", function(r_, err_, nb_, pad_) {
+0slicer0 0Ç#ReaderÇc	Reader = go$pkg.Reader = go$newType(0, "Struct", "tar.Reader", "Reader", "archive/tar", function(r_, err_, nb_, pad_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.err = err_ !== undefined ? err_ : null;
@@ -220,7 +220,7 @@ $$
 	});
 ÇÖ		(go$ptrType(Reader)).methods = [["Next", "", [], [(go$ptrType(Header)), go$error], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["octal", "archive/tar", [(go$sliceType(Go$Uint8))], [Go$Int64], false, -1], ["readHeader", "archive/tar", [], [(go$ptrType(Header))], false, -1], ["skipUnread", "archive/tar", [], [], false, -1], ["verifyChecksum", "archive/tar", [(go$sliceType(Go$Uint8))], [Go$Bool], false, -1]];
 		Reader.init([["r", "r", "archive/tar", io.Reader, ""], ["err", "err", "archive/tar", go$error, ""], ["nb", "nb", "archive/tar", Go$Int64, ""], ["pad", "pad", "archive/tar", Go$Int64, ""]]);
-0Reader0%0archive/tarHeader0ioReader0ÇÄWriterÇE	Writer = go$pkg.Writer = go$newType(0, "Struct", "tar.Writer", "Writer", "archive/tar", function(w_, err_, nb_, pad_, closed_, usedBinary_, preferPax_) {
+0Reader0archive/tar:Header	io:Reader0ÇzWriterÇE	Writer = go$pkg.Writer = go$newType(0, "Struct", "tar.Writer", "Writer", "archive/tar", function(w_, err_, nb_, pad_, closed_, usedBinary_, preferPax_) {
 		this.go$val = this;
 		this.w = w_ !== undefined ? w_ : null;
 		this.err = err_ !== undefined ? err_ : null;
@@ -232,37 +232,37 @@ $$
 	});
 Ç˙		(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false, -1], ["Flush", "", [], [go$error], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteHeader", "", [(go$ptrType(Header))], [go$error], false, -1], ["cString", "archive/tar", [(go$sliceType(Go$Uint8)), Go$String, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false, -1], ["numeric", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64, Go$Bool, Go$String, (go$mapType(Go$String, Go$String))], [], false, -1], ["octal", "archive/tar", [(go$sliceType(Go$Uint8)), Go$Int64], [], false, -1], ["splitUSTARLongName", "archive/tar", [Go$String], [Go$String, Go$String, go$error], false, -1], ["writeHeader", "archive/tar", [(go$ptrType(Header)), Go$Bool], [go$error], false, -1], ["writePAXHeader", "archive/tar", [(go$ptrType(Header)), (go$mapType(Go$String, Go$String))], [go$error], false, -1]];
 		Writer.init([["w", "w", "archive/tar", io.Writer, ""], ["err", "err", "archive/tar", go$error, ""], ["nb", "nb", "archive/tar", Go$Int64, ""], ["pad", "pad", "archive/tar", Go$Int64, ""], ["closed", "closed", "archive/tar", Go$Bool, ""], ["usedBinary", "usedBinary", "archive/tar", Go$Bool, ""], ["preferPax", "preferPax", "archive/tar", Go$Bool, ""]]);
-0Writer0%0archive/tarHeader0ioWriter0Ç& Å›	Header.Ptr.prototype.FileInfo = function() {
+0Writer0archive/tar:Header	io:Writer0Ç  Å›	Header.Ptr.prototype.FileInfo = function() {
 		var h, x;
 		h = this;
 		return (x = new headerFileInfo.Ptr(h), new x.constructor.Struct(x));
 	};
 	Header.prototype.FileInfo = function() { return this.go$val.FileInfo(); };
- 0Header060archive/tarHeader0archive/tarheaderFileInfo0Ç ÅÂ	headerFileInfo.Ptr.prototype.Size = function() {
+ 0Header00archive/tar:Headerarchive/tar:headerFileInfo0Ç ÅÂ	headerFileInfo.Ptr.prototype.Size = function() {
 		var _struct, fi;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
 		return fi.h.Size;
 	};
 	headerFileInfo.prototype.Size = function() { return this.go$val.Size(); };
- 0headerFileInfo00archive/tarheaderFileInfo0ÇN Ç	headerFileInfo.Ptr.prototype.IsDir = function() {
+ 0headerFileInfo0archive/tar:headerFileInfo0ÇH Ç	headerFileInfo.Ptr.prototype.IsDir = function() {
 		var _struct, fi;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
 		return (new os.FileMode(fi.Mode())).IsDir();
 	};
 	headerFileInfo.prototype.IsDir = function() { return this.go$val.IsDir(); };
- 0headerFileInfo0/0archive/tarheaderFileInfo0osFileMode0Çî ÇK	headerFileInfo.Ptr.prototype.ModTime = function() {
+ 0headerFileInfo0)archive/tar:headerFileInfoos:FileMode0Çé ÇK	headerFileInfo.Ptr.prototype.ModTime = function() {
 		var _struct, fi, _struct$1;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
 		return (_struct$1 = fi.h.ModTime, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
 	};
 	headerFileInfo.prototype.ModTime = function() { return this.go$val.ModTime(); };
- 0headerFileInfo0-0archive/tarheaderFileInfo0timeTime0Ç Å›	headerFileInfo.Ptr.prototype.Sys = function() {
+ 0headerFileInfo0'archive/tar:headerFileInfo	time:Time0Ç Å›	headerFileInfo.Ptr.prototype.Sys = function() {
 		var _struct, fi;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
 		return fi.h;
 	};
 	headerFileInfo.prototype.Sys = function() { return this.go$val.Sys(); };
- 0headerFileInfo00archive/tarheaderFileInfo0Çå Ç4	headerFileInfo.Ptr.prototype.Name = function() {
+ 0headerFileInfo0archive/tar:headerFileInfo0ÇÉ Ç4	headerFileInfo.Ptr.prototype.Name = function() {
 		var _struct, fi;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
 		if (fi.IsDir()) {
@@ -271,7 +271,8 @@ $$
 		return path.Base(fi.h.Name);
 	};
 	headerFileInfo.prototype.Name = function() { return this.go$val.Name(); };
- 0headerFileInfo0<0archive/tarheaderFileInfo0pathBase0pathClean0Ç¡ Çv	headerFileInfo.Ptr.prototype.Mode = function() {
+ 0headerFileInfo03archive/tar:headerFileInfo	path:Base
+path:Clean0Çª Çv	headerFileInfo.Ptr.prototype.Mode = function() {
 		var mode, _struct, fi, x, x$1, x$2, x$3, x$4, x$5, m, _ref;
 		mode = 0;
 		fi = (_struct = this, new headerFileInfo.Ptr(_struct.h));
@@ -322,7 +323,7 @@ $$
 		return mode;
 	};
 	headerFileInfo.prototype.Mode = function() { return this.go$val.Mode(); };
- 0headerFileInfo0/0archive/tarheaderFileInfo0osFileMode0Ç	éFileInfoHeaderÇ˘	FileInfoHeader = go$pkg.FileInfoHeader = function(fi, link) {
+ 0headerFileInfo0)archive/tar:headerFileInfoos:FileMode0Ç	|FileInfoHeaderÇ˘	FileInfoHeader = go$pkg.FileInfoHeader = function(fi, link) {
 		var fm, _struct, h, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9;
 		if (go$interfaceIsEqual(fi, null)) {
 			return [(go$ptrType(Header)).nil, errors.New("tar: FileInfo is nil")];
@@ -371,7 +372,9 @@ $$
 		}
 		return [h, null];
 	};
- 0FileInfoHeader0k0archive/tarHeader0errorsNew0timeTime0osFileMode0fmtErrorf0archive/tarsysStat0ÇchecksumÇÓ	checksum = function(header) {
+ 0FileInfoHeader0Yarchive/tar:Headerarchive/tar:sysStat
+errors:New
+fmt:Errorfos:FileMode	time:Time0ÇchecksumÇÓ	checksum = function(header) {
 		var unsigned, signed, i, x, _slice, _index, x$1, _slice$1, _index$1;
 		unsigned = new Go$Int64(0, 0);
 		signed = new Go$Int64(0, 0);
@@ -391,7 +394,7 @@ $$
 		return [unsigned, signed];
 	};
  0
-checksum0 0Ç Ç›	go$ptrType(slicer).prototype.next = function(n) {
+checksum0 0Ç Ç›	go$ptrType(slicer).prototype.next = function(n) {
 		var b, sp, s, x, _tuple;
 		b = (go$sliceType(Go$Uint8)).nil;
 		sp = this;
@@ -400,7 +403,7 @@ $$
 		return b;
 	};
 	slicer.prototype.next = function(n) { var obj = this; return (new (go$ptrType(slicer))(function() { return obj; }, null)).next(n); };
- 0slicernext00archive/tarslicer0Ç
+ 0slicernext0archive/tar:slicer0Ç
 isASCIIÅÔ	isASCII = function(s) {
 		var _ref, _i, _rune, c;
 		_ref = s;
@@ -415,7 +418,7 @@ $$
 		}
 		return true;
 	};
- 0	isASCII0 0ÇòtoASCIIÇS	toASCII = function(s) {
+ 0	isASCII0 0ÇítoASCIIÇS	toASCII = function(s) {
 		var buf, _ref, _i, _rune, c;
 		if (isASCII(s)) {
 			return s;
@@ -433,10 +436,10 @@ $$
 		}
 		return buf.String();
 	};
- 0	toASCII0)0archive/tarisASCII0bytesBuffer0Å±	NewReader|	NewReader = go$pkg.NewReader = function(r) {
+ 0	toASCII0#archive/tar:isASCIIbytes:Buffer0ÅÆ	NewReader|	NewReader = go$pkg.NewReader = function(r) {
 		return new Reader.Ptr(r, null, new Go$Int64(0, 0), new Go$Int64(0, 0));
 	};
- 0	NewReader00archive/tarReader0Ç” Ç˙	Reader.Ptr.prototype.Next = function() {
+ 0	NewReader0archive/tar:Reader0Çª Ç˙	Reader.Ptr.prototype.Next = function() {
 		var tr, hdr, _ref, _tuple, headers, err, _tuple$1, realname, err$1, _tuple$2, hdr$1, _tuple$3, realname$1, err$2, _tuple$4, hdr$2;
 		tr = this;
 		hdr = (go$ptrType(Header)).nil;
@@ -480,10 +483,8 @@ $$
 		return [hdr, tr.err];
 	};
 	Reader.prototype.Next = function() { return this.go$val.Next(); };
- 0Reader0Åƒ0archive/tarReader0archive/tarHeader0archive/tar
-skipUnread0archive/tar
-readHeader0archive/tarparsePAX0archive/tarmergePAX0	io/ioutilReadAll0archive/tarcString0Ç
-	mergePAXÇ	´	mergePAX = function(hdr, headers) {
+ 0Reader0Å¨archive/tar:Headerarchive/tar:Readerarchive/tar:cStringarchive/tar:mergePAXarchive/tar:parsePAXarchive/tar:readHeaderarchive/tar:skipUnreadio/ioutil:ReadAll0Ç
+ mergePAXÇ	´	mergePAX = function(hdr, headers) {
 		var _ref, _i, _keys, _entry, v, k, _ref$1, _tuple, uid, err, _tuple$1, gid, err$1, _tuple$2, _struct, t, err$2, _struct$1, _tuple$3, _struct$2, t$1, err$3, _struct$3, _tuple$4, _struct$4, t$2, err$4, _struct$5, _tuple$5, size, err$5;
 		_ref = headers;
 		_i = 0;
@@ -543,7 +544,7 @@ readHeader0archive/tarparsePAX0archive/tarmergePAX0	io/ioutilReadA
 		return null;
 	};
  0
-mergePAX0@0strconvParseInt0archive/tarparsePAXTime0timeTime0Ç¡parsePAXTimeÇ1	parsePAXTime = function(t) {
+mergePAX07archive/tar:parsePAXTimestrconv:ParseInt	time:Time0ÇØparsePAXTimeÇ1	parsePAXTime = function(t) {
 		var buf, pos, _tuple, seconds, nanoseconds, err, _tuple$1, _tuple$2, nano_buf, _tuple$3, _struct, ts, _struct$1;
 		buf = new (go$sliceType(Go$Uint8))(go$stringToBytes(t));
 		pos = bytes.IndexByte(buf, 46);
@@ -573,7 +574,7 @@ readHeader0archive/tarparsePAX0archive/tarmergePAX0	io/ioutilReadA
 		ts = (_struct = time.Unix(seconds, nanoseconds), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 		return [(_struct$1 = ts, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)), null];
 	};
- 0parsePAXTime0j0bytes	IndexByte0strconvParseInt0timeLocation0timeTime0stringsRepeat0timeUnix0ÇaparsePAXÇÍ	parsePAX = function(r) {
+ 0parsePAXTime0Xbytes:IndexBytestrconv:ParseIntstrings:Repeattime:Location	time:Time	time:Unix0ÇUparsePAXÇÍ	parsePAX = function(r) {
 		var _tuple, buf, err, headers, sp, _tuple$1, n, err$1, record, _tuple$2, eq, _tuple$3, key, value, _key;
 		_tuple = ioutil.ReadAll(r), buf = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -602,7 +603,7 @@ readHeader0archive/tarparsePAX0archive/tarmergePAX0	io/ioutilReadA
 		return [headers, null];
 	};
  0
-parsePAX0Y0	io/ioutilReadAll0bytes	IndexByte0archive/tar	ErrHeader0strconvParseInt0Ç`cStringÇD	cString = function(b) {
+parsePAX0Marchive/tar:ErrHeaderbytes:IndexByteio/ioutil:ReadAllstrconv:ParseInt0Ç`cStringÇD	cString = function(b) {
 		var n, _slice, _index;
 		n = 0;
 		while (n < b.length && !(((_slice = b, _index = n, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 0))) {
@@ -610,7 +611,7 @@ readHeader0archive/tarparsePAX0archive/tarmergePAX0	io/ioutilReadA
 		}
 		return go$bytesToString(go$subslice(b, 0, n));
 	};
- 0	cString0 0Ç Ç¢	Reader.Ptr.prototype.octal = function(b) {
+ 0	cString0 0Ç Ç¢	Reader.Ptr.prototype.octal = function(b) {
 		var tr, _slice, _index, x, _ref, _i, _slice$1, _index$1, c, i, x$1, x$2, _tuple, x$3, err;
 		tr = this;
 		if (b.length > 0 && !(((((_slice = b, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) & 128) >>> 0) === 0))) {
@@ -639,7 +640,8 @@ readHeader0archive/tarparsePAX0archive/tarmergePAX0	io/ioutilReadA
 		return new Go$Int64(x$3.high, x$3.low);
 	};
 	Reader.prototype.octal = function(b) { return this.go$val.octal(b); };
- 0Readeroctal0T0archive/tarReader0bytesTrim0strconv	ParseUint0archive/tarcString0Ç\ ÇÙ	Reader.Ptr.prototype.skipUnread = function() {
+ 0Readeroctal0Harchive/tar:Readerarchive/tar:cString
+bytes:Trimstrconv:ParseUint0ÇP ÇÙ	Reader.Ptr.prototype.skipUnread = function() {
 		var tr, x, x$1, nr, _tuple, ok, _tuple$1, x$2, sr, err, _tuple$2, _tuple$3;
 		tr = this;
 		nr = (x = tr.nb, x$1 = tr.pad, new Go$Int64(x.high + x$1.high, x.low + x$1.low));
@@ -653,7 +655,7 @@ readHeader0archive/tarparsePAX0archive/tarmergePAX0	io/ioutilReadA
 	};
 	Reader.prototype.skipUnread = function() { return this.go$val.skipUnread(); };
  0Reader
-skipUnread0H0archive/tarReader0ioSeeker0ioCopyN0	io/ioutilDiscard0ÇÑ Ç	Reader.Ptr.prototype.verifyChecksum = function(header) {
+skipUnread0<archive/tar:Readerio/ioutil:Discardio:CopyN	io:Seeker0Ç{ Ç	Reader.Ptr.prototype.verifyChecksum = function(header) {
 		var tr, given, _tuple, unsigned, signed;
 		tr = this;
 		if (!(go$interfaceIsEqual(tr.err, null))) {
@@ -664,7 +666,7 @@ skipUnread0H0archive/tarReader0ioSeeker0ioCopyN0	io/ioutilDis
 		return (given.high === unsigned.high && given.low === unsigned.low) || (given.high === signed.high && given.low === signed.low);
 	};
 	Reader.prototype.verifyChecksum = function(header) { return this.go$val.verifyChecksum(header); };
- 0ReaderverifyChecksum0F0archive/tarReader0archive/taroctal0archive/tarchecksum0Ç ÇÕ	Reader.Ptr.prototype.readHeader = function() {
+ 0ReaderverifyChecksum0=archive/tar:Readerarchive/tar:checksumarchive/tar:octal0ÇÊ ÇÕ	Reader.Ptr.prototype.readHeader = function() {
 		var tr, header, _tuple, _tuple$1, hdr, s, v, v$1, x, v$2, x$1, v$3, v$4, v$5, _struct, v$6, _slice, _index, v$7, v$8, v$9, magic, format, _ref, _ref$1, v$10, v$11, v$12, devmajor, v$13, devminor, prefix, _ref$2, v$14, v$15, v$16, _struct$1, v$17, _struct$2, x$2, x$3;
 		tr = this;
 		header = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
@@ -742,7 +744,7 @@ skipUnread0H0archive/tarReader0ioSeeker0ioCopyN0	io/ioutilDis
 	};
 	Reader.prototype.readHeader = function() { return this.go$val.readHeader(); };
  0Reader
-readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0archive/tarslicer0timeUnix0ioReadFull0	ioEOF0archive/tarcString0timeTime0archive/tar	zeroBlock0archive/tar	ErrHeader0archive/tarverifyChecksum0archive/tarnext0archive/taroctal0Çπ Çk	Reader.Ptr.prototype.Read = function(b) {
+readHeader0Å¯archive/tar:ErrHeaderarchive/tar:Headerarchive/tar:Readerarchive/tar:cStringarchive/tar:nextarchive/tar:octalarchive/tar:slicerarchive/tar:verifyChecksumarchive/tar:zeroBlockbytes:Equalio:EOFio:ReadFull	time:Time	time:Unix0Ç∞ Çk	Reader.Ptr.prototype.Read = function(b) {
 		var n, err, tr, x, _tuple, x$1, x$2, _tuple$1, x$3, x$4, x$5;
 		n = 0;
 		err = null;
@@ -763,15 +765,15 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		return [n, err];
 	};
 	Reader.prototype.Read = function(b) { return this.go$val.Read(b); };
- 0Reader0:0archive/tarReader0	ioEOF0ioErrUnexpectedEOF0Ç	statAtimeÅ»	statAtime = function(st) {
+ 0Reader01archive/tar:Readerio:EOFio:ErrUnexpectedEOF0Å˝	statAtimeÅ»	statAtime = function(st) {
 		var _tuple, _struct;
 		return (_struct = (_tuple = st.Atimespec.Unix(), time.Unix(_tuple[0], _tuple[1])), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 	};
- 0	statAtime00timeUnix0timeTime0Ç	statCtimeÅ»	statCtime = function(st) {
+ 0	statAtime0	time:Time	time:Unix0Å˝	statCtimeÅ»	statCtime = function(st) {
 		var _tuple, _struct;
 		return (_struct = (_tuple = st.Ctimespec.Unix(), time.Unix(_tuple[0], _tuple[1])), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 	};
- 0	statCtime00timeUnix0timeTime0Ç∫statUnixÇG	statUnix = function(fi, h) {
+ 0	statCtime0	time:Time	time:Unix0ÇÆstatUnixÇG	statUnix = function(fi, h) {
 		var _tuple, x, sys, ok, _struct, _struct$1;
 		_tuple = (x = fi.Sys(), (x !== null && x.constructor === (go$ptrType(syscall.Stat_t)) ? [x.go$val, true] : [(go$ptrType(syscall.Stat_t)).nil, false])), sys = _tuple[0], ok = _tuple[1];
 		if (!ok) {
@@ -784,10 +786,10 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		return null;
 	};
  0
-statUnix0U0syscallStat-t0archive/tar	statAtime0timeTime0archive/tar	statCtime0Å«	NewWriterÅë	NewWriter = go$pkg.NewWriter = function(w) {
+statUnix0Iarchive/tar:statAtimearchive/tar:statCtimesyscall:Stat-t	time:Time0Åƒ	NewWriterÅë	NewWriter = go$pkg.NewWriter = function(w) {
 		return new Writer.Ptr(w, null, new Go$Int64(0, 0), new Go$Int64(0, 0), false, false, false);
 	};
- 0	NewWriter00archive/tarWriter0Ç	 Çµ	Writer.Ptr.prototype.Flush = function() {
+ 0	NewWriter0archive/tar:Writer0Ç  Çµ	Writer.Ptr.prototype.Flush = function() {
 		var tw, x, x$1, x$2, n, nr, nw, _tuple, x$3;
 		tw = this;
 		if ((x = tw.nb, (x.high > 0 || (x.high === 0 && x.low > 0)))) {
@@ -809,7 +811,8 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		return tw.err;
 	};
 	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
- 0Writer0@0archive/tarWriter0fmtErrorf0archive/tar	zeroBlock0Ç Çî	Writer.Ptr.prototype.cString = function(b, s, allowPax, paxKeyword, paxHeaders) {
+ 0Writer07archive/tar:Writerarchive/tar:zeroBlock
+fmt:Errorf0Ç Çî	Writer.Ptr.prototype.cString = function(b, s, allowPax, paxKeyword, paxHeaders) {
 		var tw, needsPaxHeader, _key, ascii, _slice, _index;
 		tw = this;
 		needsPaxHeader = allowPax && s.length > b.length || !isASCII(s);
@@ -830,7 +833,7 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		}
 	};
 	Writer.prototype.cString = function(b, s, allowPax, paxKeyword, paxHeaders) { return this.go$val.cString(b, s, allowPax, paxKeyword, paxHeaders); };
- 0WritercString0g0archive/tarWriter0archive/tarisASCII0archive/tarErrFieldTooLong0archive/tartoASCII0Ç Ç	Writer.Ptr.prototype.octal = function(b, x) {
+ 0WritercString0[archive/tar:ErrFieldTooLongarchive/tar:Writerarchive/tar:isASCIIarchive/tar:toASCII0Çv Ç	Writer.Ptr.prototype.octal = function(b, x) {
 		var tw, s;
 		tw = this;
 		s = strconv.FormatInt(x, 8);
@@ -840,7 +843,7 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		tw.cString(b, s, false, "", false);
 	};
 	Writer.prototype.octal = function(b, x) { return this.go$val.octal(b, x); };
- 0Writeroctal0E0archive/tarWriter0strconv	FormatInt0archive/tarcString0ÇÙ Çî	Writer.Ptr.prototype.numeric = function(b, x, allowPax, paxKeyword, paxHeaders) {
+ 0Writeroctal0<archive/tar:Writerarchive/tar:cStringstrconv:FormatInt0ÇÎ Çî	Writer.Ptr.prototype.numeric = function(b, x, allowPax, paxKeyword, paxHeaders) {
 		var tw, s, s$1, _key, i, _slice, _index, _lhs, _index$1, _slice$1, _index$2, _slice$2, _index$3;
 		tw = this;
 		s = strconv.FormatInt(x, 8);
@@ -864,13 +867,13 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		_lhs = b, _index$1 = 0, _slice$2 = _lhs, _index$3 = _index$1, (_index$3 >= 0 && _index$3 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$3] = ((_slice$1 = _lhs, _index$2 = _index$1, (_index$2 >= 0 && _index$2 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$2] : go$throwRuntimeError("index out of range")) | 128) >>> 0) : go$throwRuntimeError("index out of range");
 	};
 	Writer.prototype.numeric = function(b, x, allowPax, paxKeyword, paxHeaders) { return this.go$val.numeric(b, x, allowPax, paxKeyword, paxHeaders); };
- 0Writernumeric0C0archive/tarWriter0strconv	FormatInt0archive/taroctal0Ç ÅÀ	Writer.Ptr.prototype.WriteHeader = function(hdr) {
+ 0Writernumeric0:archive/tar:Writerarchive/tar:octalstrconv:FormatInt0Ç ÅÀ	Writer.Ptr.prototype.WriteHeader = function(hdr) {
 		var tw;
 		tw = this;
 		return tw.writeHeader(hdr, true);
 	};
 	Writer.prototype.WriteHeader = function(hdr) { return this.go$val.WriteHeader(hdr); };
- 0Writer030archive/tarWriter0archive/tarwriteHeader0Çƒ Ç#	Writer.Ptr.prototype.writeHeader = function(hdr, allowPax) {
+ 0Writer0-archive/tar:Writerarchive/tar:writeHeader0Çó Ç#	Writer.Ptr.prototype.writeHeader = function(hdr, allowPax) {
 		var tw, paxHeaders, header, s, v, pathHeaderBytes, modTime, _struct, _struct$1, v$1, v$2, v$3, v$4, v$5, v$6, _slice, _index, v$7, v$8, v$9, v$10, v$11, v$12, v$13, v$14, prefixHeaderBytes, _tuple, _entry, paxPathUsed, suffix, prefix, err, _tuple$1, _tuple$2, chksum, _slice$1, _index$1, err$1, x, _tuple$3;
 		tw = this;
 		if (tw.closed) {
@@ -946,7 +949,7 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		return tw.err;
 	};
 	Writer.prototype.writeHeader = function(hdr, allowPax) { return this.go$val.writeHeader(hdr, allowPax); };
- 0WriterwriteHeader0Ç~0archive/tarnumeric0!archive/tarsplitUSTARLongName0archive/tarerrInvalidHeader0archive/tarwritePAXHeader0archive/tarWriter0archive/tarslicer0archive/tarcString0timeTime0archive/tarmaxTime0archive/taroctal0archive/tarnext0archive/tarchecksum0!archive/tarErrWriteAfterClose0archive/tarminTime0archive/tarisASCII0Çü Ç+	Writer.Ptr.prototype.splitUSTARLongName = function(name) {
+ 0WriterwriteHeader0ÇQarchive/tar:ErrWriteAfterClosearchive/tar:Writerarchive/tar:cStringarchive/tar:checksumarchive/tar:errInvalidHeaderarchive/tar:isASCIIarchive/tar:maxTimearchive/tar:minTimearchive/tar:nextarchive/tar:numericarchive/tar:octalarchive/tar:slicerarchive/tar:splitUSTARLongNamearchive/tar:writePAXHeader	time:Time0Çñ Ç+	Writer.Ptr.prototype.splitUSTARLongName = function(name) {
 		var prefix, suffix, err, tw, length, i, nlen, plen, _tuple;
 		prefix = "";
 		suffix = "";
@@ -969,7 +972,7 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		return [prefix, suffix, err];
 	};
 	Writer.prototype.splitUSTARLongName = function(name) { return this.go$val.splitUSTARLongName(name); };
- 0WritersplitUSTARLongName0L0archive/tarWriter0strings	LastIndex0archive/tarerrNameTooLong0ÇÍ Ç‡	Writer.Ptr.prototype.writePAXHeader = function(hdr, paxHeaders) {
+ 0WritersplitUSTARLongName0Carchive/tar:Writerarchive/tar:errNameTooLongstrings:LastIndex0Ç∆ Ç‡	Writer.Ptr.prototype.writePAXHeader = function(hdr, paxHeaders) {
 		var tw, ext, _struct, pid, _tuple, dir, file, fullName, ascii, buf, _ref, _i, _keys, _entry, v, k, err, err$1, _tuple$1, err$2;
 		tw = this;
 		ext = new Header.Ptr();
@@ -1007,7 +1010,9 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		return null;
 	};
 	Writer.prototype.writePAXHeader = function(hdr, paxHeaders) { return this.go$val.writePAXHeader(hdr, paxHeaders); };
- 0WriterwritePAXHeader0ÅÂ0archive/tarHeader0pathJoin0archive/tartoASCII0bytesBuffer0archive/tar	paxHeader0archive/tarwriteHeader0archive/tarWriter0timeTime0osGetpid0pathSplit0fmtSprintf0fmtFprint0Ç˛	paxHeaderÇΩ	paxHeader = function(msg) {
+ 0WriterwritePAXHeader0Å¡archive/tar:Headerarchive/tar:Writerarchive/tar:paxHeaderarchive/tar:toASCIIarchive/tar:writeHeaderbytes:Buffer
+fmt:Fprintfmt:Sprintf	os:Getpid	path:Join
+path:Split	time:Time0Ç¯	paxHeaderÇΩ	paxHeader = function(msg) {
 		var size, record;
 		size = msg.length + 2 >> 0;
 		size = size + (strconv.Itoa(size).length) >> 0;
@@ -1018,7 +1023,7 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		}
 		return record;
 	};
- 0	paxHeader0!0strconvItoa0fmtSprintf0Çr Ç'	Writer.Ptr.prototype.Write = function(b) {
+ 0	paxHeader0fmt:Sprintfstrconv:Itoa0Çl Ç'	Writer.Ptr.prototype.Write = function(b) {
 		var n, err, tw, overwrite, x, x$1, _tuple, x$2, x$3;
 		n = 0;
 		err = null;
@@ -1042,7 +1047,7 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		return [n, err];
 	};
 	Writer.prototype.Write = function(b) { return this.go$val.Write(b); };
- 0Writer070archive/tarWriter0archive/tarErrWriteTooLong0ÇL Ç	Writer.Ptr.prototype.Close = function() {
+ 0Writer01archive/tar:ErrWriteTooLongarchive/tar:Writer0ÇF Ç	Writer.Ptr.prototype.Close = function() {
 		var tw, i, _tuple;
 		tw = this;
 		if (!(go$interfaceIsEqual(tw.err, null)) || tw.closed) {
@@ -1064,18 +1069,24 @@ readHeader0Ç"0archive/tarReader0archive/tarHeader0bytesEqual0
 		return tw.err;
 	};
 	Writer.prototype.Close = function() { return this.go$val.Close(); };
- 0Writer010archive/tarWriter0archive/tar	zeroBlock0WsysStat %		sysStat = go$throwNilPointerError;
-0	sysStat00archive/tarsysStat0	zeroBlock  0	zeroBlock0 0   0	ErrHeader0 0   0ErrWriteTooLong0 0   0ErrFieldTooLong0 0   0ErrWriteAfterClose0 0(errNameTooLong  0errNameTooLong0 0,errInvalidHeader  0errInvalidHeader0 0minTime  0	minTime0 0maxTime  0	maxTime0 0s  O		zeroBlock = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
-0 00archive/tar	zeroBlock0w  D		go$pkg.ErrHeader = errors.New("archive/tar: invalid tar header");
-0 0)0errorsNew0archive/tar	ErrHeader0  F		go$pkg.ErrWriteTooLong = errors.New("archive/tar: write too long");
-0 0/0errorsNew0archive/tarErrWriteTooLong0ÅÜ  M		go$pkg.ErrFieldTooLong = errors.New("archive/tar: header field too long");
-0 0/0errorsNew0archive/tarErrFieldTooLong0Åà  L		go$pkg.ErrWriteAfterClose = errors.New("archive/tar: write after close");
-0 020errorsNew0!archive/tarErrWriteAfterClose0u  =		errNameTooLong = errors.New("archive/tar: name too long");
-0 0.0errorsNew0archive/tarerrNameTooLong0Åú  b		errInvalidHeader = errors.New("archive/tar: header field too long or contains invalid values");
-0 000errorsNew0archive/tarerrInvalidHeader0Å‘  Åï		var _struct;
+ 0Writer0+archive/tar:Writerarchive/tar:zeroBlock0TsysStat %		sysStat = go$throwNilPointerError;
+0	sysStat0archive/tar:sysStat0	zeroBlock  0	zeroBlock0 0   0	ErrHeader0 0   0ErrWriteTooLong0 0   0ErrFieldTooLong0 0   0ErrWriteAfterClose0 0(errNameTooLong  0errNameTooLong0 0,errInvalidHeader  0errInvalidHeader0 0minTime  0	minTime0 0maxTime  0	maxTime0 0p  O		zeroBlock = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
+0 0archive/tar:zeroBlock0q  D		go$pkg.ErrHeader = errors.New("archive/tar: invalid tar header");
+0 0#archive/tar:ErrHeader
+errors:New0y  F		go$pkg.ErrWriteTooLong = errors.New("archive/tar: write too long");
+0 0)archive/tar:ErrWriteTooLong
+errors:New0ÅÄ  M		go$pkg.ErrFieldTooLong = errors.New("archive/tar: header field too long");
+0 0)archive/tar:ErrFieldTooLong
+errors:New0ÅÇ  L		go$pkg.ErrWriteAfterClose = errors.New("archive/tar: write after close");
+0 0,archive/tar:ErrWriteAfterClose
+errors:New0o  =		errNameTooLong = errors.New("archive/tar: name too long");
+0 0(archive/tar:errNameTooLong
+errors:New0Åñ  b		errInvalidHeader = errors.New("archive/tar: header field too long or contains invalid values");
+0 0*archive/tar:errInvalidHeader
+errors:New0ÅÀ  Åï		var _struct;
 		minTime = (_struct = time.Unix(new Go$Int64(0, 0), new Go$Int64(0, 0)), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
-0 040timeUnix0timeTime0archive/tarminTime0Åˇ  Å§		var _struct$1;
+0 0+archive/tar:minTime	time:Time	time:Unix0ÅÛ  Å§		var _struct$1;
 		maxTime = (_struct$1 = minTime.Add(new time.Duration(1999999999, 3294967296)), new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc));
-0 0P0archive/tarminTime0timeDuration0timeTime0archive/tarmaxTime0
-   0 0 0Q  		sysStat = statUnix;
-0 010archive/tarstatUnix0archive/tarsysStat0 
+0 0Darchive/tar:maxTimearchive/tar:minTimetime:Duration	time:Time0
+   0 0 0K  		sysStat = statUnix;
+0 0+archive/tar:statUnixarchive/tar:sysStat0 

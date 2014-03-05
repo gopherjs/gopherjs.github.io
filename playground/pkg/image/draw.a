@@ -1,4 +1,4 @@
-0É>˝
+0É>@
 image/drawÇNpackage draw
 import image "image"
 import color "image/color"
@@ -72,33 +72,28 @@ func (? *@"image/color".Palette) @"image/color".Convert(@"image/color".c @"image
 func (? *@"image/color".Palette) @"image/color".Index(@"image/color".c @"image/color".Color) (? int)
 $$
 0|runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage
-image/draw0&0imageimage0image/colorcolor0É&Ú0Ç Image_	Image = go$pkg.Image = go$newType(0, "Interface", "draw.Image", "Image", "image/draw", null);
+image/draw0&0imageimage0image/colorcolor0É&50Ç¡Image_	Image = go$pkg.Image = go$newType(0, "Interface", "draw.Image", "Image", "image/draw", null);
 Ç		Image.init([["At", "", (go$funcType([Go$Int, Go$Int], [color.Color], false))], ["Bounds", "", (go$funcType([], [image.Rectangle], false))], ["ColorModel", "", (go$funcType([], [color.Model], false))], ["Set", "", (go$funcType([Go$Int, Go$Int, color.Color], [], false))]]);
-0Image0@0image/colorColor0image	Rectangle0image/colorModel0Ç 	Quantizero	Quantizer = go$pkg.Quantizer = go$newType(0, "Interface", "draw.Quantizer", "Quantizer", "image/draw", null);
+0Image07image/color:Colorimage/color:Modelimage:Rectangle0Ç	Quantizero	Quantizer = go$pkg.Quantizer = go$newType(0, "Interface", "draw.Quantizer", "Quantizer", "image/draw", null);
 k		Quantizer.init([["Quantize", "", (go$funcType([color.Palette, image.Image], [color.Palette], false))]]);
-0	Quantizer0(0image/colorPalette0imageImage0ÇyOpM	Op = go$pkg.Op = go$newType(4, "Int", "draw.Op", "Op", "image/draw", null);
+0	Quantizer0"image/color:Paletteimage:Image0ÇmOpM	Op = go$pkg.Op = go$newType(4, "Int", "draw.Op", "Op", "image/draw", null);
 Å“		Op.methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false, -1]];
 		(go$ptrType(Op)).methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false, -1]];
-0Op0I0
-image/drawImage0image	Rectangle0imageImage0imagePoint0Ç1Drawerc	Drawer = go$pkg.Drawer = go$newType(0, "Interface", "draw.Drawer", "Drawer", "image/draw", null);
+0Op0=image/draw:Imageimage:Imageimage:Pointimage:Rectangle0Ç%Drawerc	Drawer = go$pkg.Drawer = go$newType(0, "Interface", "draw.Drawer", "Drawer", "image/draw", null);
 m		Drawer.init([["Draw", "", (go$funcType([Image, image.Rectangle, image.Image, image.Point], [], false))]]);
-0Drawer0I0
-image/drawImage0image	Rectangle0imageImage0imagePoint0ÇfloydSteinbergÅ°	floydSteinberg = go$pkg.floydSteinberg = go$newType(0, "Struct", "draw.floydSteinberg", "floydSteinberg", "image/draw", function() {
+0Drawer0=image/draw:Imageimage:Imageimage:Pointimage:Rectangle0ÇfloydSteinbergÅ°	floydSteinberg = go$pkg.floydSteinberg = go$newType(0, "Struct", "draw.floydSteinberg", "floydSteinberg", "image/draw", function() {
 		this.go$val = this;
 	});
 Ç		floydSteinberg.methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false, -1]];
 		(go$ptrType(floydSteinberg)).methods = [["Draw", "", [Image, image.Rectangle, image.Image, image.Point], [], false, -1]];
 		floydSteinberg.init([]);
-0floydSteinberg0I0
-image/drawImage0image	Rectangle0imageImage0imagePoint0Çá Ç)	Op.prototype.Draw = function(dst, r, src, sp) {
+0floydSteinberg0=image/draw:Imageimage:Imageimage:Pointimage:Rectangle0Ç{ Ç)	Op.prototype.Draw = function(dst, r, src, sp) {
 		var op, _struct, _struct$1, _struct$2, _struct$3;
 		op = this.go$val;
 		DrawMask(dst, (_struct = r, new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y)))), src, (_struct$3 = sp, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), null, new image.Point.Ptr(0, 0), op);
 	};
 	go$ptrType(Op).prototype.Draw = function(dst, r, src, sp) { return new Op(this.go$get()).Draw(dst, r, src, sp); };
- 0Op0N0
-image/drawOp0
-image/drawDrawMask0imagePoint0image	Rectangle0ÇÍ Ç\	floydSteinberg.Ptr.prototype.Draw = function(dst, r, src, sp) {
+ 0Op0Bimage/draw:DrawMaskimage/draw:Opimage:Pointimage:Rectangle0Ç€ Ç\	floydSteinberg.Ptr.prototype.Draw = function(dst, r, src, sp) {
 		var _struct, _struct$1, _struct$2, _struct$3;
 		clip(dst, r, src, sp, null, (go$ptrType(image.Point)).nil);
 		if (r.Empty()) {
@@ -107,10 +102,7 @@ image/drawDrawMask0imagePoint0image	Rectangle0ÇÍ Ç\	floydSteinber
 		drawPaletted(dst, (_struct = r, new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y)))), src, (_struct$3 = sp, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), true);
 	};
 	floydSteinberg.prototype.Draw = function(dst, r, src, sp) { return this.go$val.Draw(dst, r, src, sp); };
- 0floydSteinberg0r0
-image/drawfloydSteinberg0
-image/drawclip0imagePoint0
-image/drawdrawPaletted0image	Rectangle0Ç	ßclipÇ	m	clip = function(dst, r, src, sp, mask, mp) {
+ 0floydSteinberg0cimage/draw:clipimage/draw:drawPalettedimage/draw:floydSteinbergimage:Pointimage:Rectangle0Ç	°clipÇ	m	clip = function(dst, r, src, sp, mask, mp) {
 		var _struct, orig, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, l, r$1, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, l$1, r$2, _struct$15, _struct$16, _struct$17, _struct$18, _struct$19, _struct$20, _struct$21, _struct$22, l$2, r$3, dx, dy;
 		orig = (_struct = r.Min, new image.Point.Ptr(_struct.X, _struct.Y));
 		l = r, r$1 = (_struct$4 = r.Intersect((_struct$1 = dst.Bounds(), new image.Rectangle.Ptr((_struct$2 = _struct$1.Min, new image.Point.Ptr(_struct$2.X, _struct$2.Y)), (_struct$3 = _struct$1.Max, new image.Point.Ptr(_struct$3.X, _struct$3.Y))))), new image.Rectangle.Ptr((_struct$5 = _struct$4.Min, new image.Point.Ptr(_struct$5.X, _struct$5.Y)), (_struct$6 = _struct$4.Max, new image.Point.Ptr(_struct$6.X, _struct$6.Y)))), l.Min = r$1.Min, l.Max = r$1.Max;
@@ -128,16 +120,15 @@ image/drawdrawPaletted0image	Rectangle0Ç	ßclipÇ	m	clip = function(dst, 
 		mp.X = (mp).X + (dx) >> 0;
 		mp.Y = (mp).Y + (dy) >> 0;
 	};
- 0clip0$0imagePoint0image	Rectangle0Ç{processBackwardÇ+	processBackward = function(dst, r, src, sp) {
+ 0clip0image:Pointimage:Rectangle0ÇuprocessBackwardÇ+	processBackward = function(dst, r, src, sp) {
 		var _struct, _struct$1, _struct$2, _struct$3, _struct$4;
 		return go$interfaceIsEqual(dst, src) && r.Overlaps((_struct$2 = r.Add((_struct$1 = sp.Sub((_struct = r.Min, new image.Point.Ptr(_struct.X, _struct.Y))), new image.Point.Ptr(_struct$1.X, _struct$1.Y))), new image.Rectangle.Ptr((_struct$3 = _struct$2.Min, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), (_struct$4 = _struct$2.Max, new image.Point.Ptr(_struct$4.X, _struct$4.Y))))) && (sp.Y < r.Min.Y || ((sp.Y === r.Min.Y) && sp.X < r.Min.X));
 	};
- 0processBackward0$0imagePoint0image	Rectangle0ÇÙDrawÇ¢	Draw = go$pkg.Draw = function(dst, r, src, sp, op) {
+ 0processBackward0image:Pointimage:Rectangle0ÇÎDrawÇ¢	Draw = go$pkg.Draw = function(dst, r, src, sp, op) {
 		var _struct, _struct$1, _struct$2, _struct$3;
 		DrawMask(dst, (_struct = r, new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y)))), src, (_struct$3 = sp, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), null, new image.Point.Ptr(0, 0), op);
 	};
- 0Draw0<0
-image/drawDrawMask0imagePoint0image	Rectangle0Ç+ÅDrawMaskÇ)b	DrawMask = go$pkg.DrawMask = function(dst, r, src, sp, mask, mp, op) {
+ 0Draw03image/draw:DrawMaskimage:Pointimage:Rectangle0Ç+?DrawMaskÇ)b	DrawMask = go$pkg.DrawMask = function(dst, r, src, sp, mask, mp, op) {
 		var dst0, _ref, _type, ok, _tuple, mask0, src0, _ref$1, _type$1, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, src0$1, _ref$2, _type$2, _struct$15, _struct$16, _struct$17, _struct$18, src0$2, _ref$3, _type$3, _struct$19, _struct$20, _struct$21, _struct$22, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, _struct$34, _struct$35, _struct$36, _struct$37, _struct$38, _struct$39, _struct$40, _struct$41, _struct$42, _struct$43, _struct$44, _struct$45, _struct$46, _tuple$1, x0, x1, dx, _tuple$2, y0, y1, dy, _struct$47, _struct$48, _struct$49, _struct$50, _tuple$3, _tuple$4, out, sy, my, y, _tuple$5, sx, mx, x, _tuple$6, ma, _tuple$7, x$1, _tuple$8, sr, sg, sb, sa, _tuple$9, dr, dg, db, da, _q, a, _q$1, _q$2, _q$3, _q$4, _q$5, _q$6, _q$7, _q$8;
 		clip(dst, r, src, sp, mask, mp);
 		if (r.Empty()) {
@@ -259,19 +250,8 @@ image/drawDrawMask0imagePoint0image	Rectangle0Ç+ÅDrawMaskÇ)b	DrawM
 		}
 	};
  0
-DrawMask0Çˇ0
-image/drawdrawFillOver0
-image/drawclip0imageAlpha0
-image/drawdrawNRGBASrc0
-image/drawdrawRGBA0
-image/drawprocessBackward0imageRGBA0imagePaletted0imageNRGBA0imageYCbCr0imagePoint0
-image/drawdrawCopyOver0
-image/drawdrawNRGBAOver0
-image/draw	drawYCbCr0
-image/drawdrawGlyphOver0
-image/drawdrawFillSrc0
-image/drawdrawCopySrc0imageUniform0image	Rectangle0
-image/drawdrawPaletted0image/colorRGBA640image/colorTransparent0ÇdrawFillOverÇ	drawFillOver = function(dst, r, src) {
+DrawMask0ÇΩimage/color:RGBA64image/color:Transparentimage/draw:clipimage/draw:drawCopyOverimage/draw:drawCopySrcimage/draw:drawFillOverimage/draw:drawFillSrcimage/draw:drawGlyphOverimage/draw:drawNRGBAOverimage/draw:drawNRGBASrcimage/draw:drawPalettedimage/draw:drawRGBAimage/draw:drawYCbCrimage/draw:processBackwardimage:Alphaimage:NRGBAimage:Palettedimage:Point
+image:RGBAimage:Rectangleimage:Uniformimage:YCbCr0ÇdrawFillOverÇ	drawFillOver = function(dst, r, src) {
 		var _tuple, sr, sg, sb, sa, x, x$1, a, i0, x$2, x$3, i1, y, i, _slice, _index, dr, _slice$1, _index$1, dg, _slice$2, _index$2, db, _slice$3, _index$3, da, _q, _slice$4, _index$4, _q$1, _slice$5, _index$5, _q$2, _slice$6, _index$6, _q$3, _slice$7, _index$7;
 		_tuple = src.RGBA(), sr = _tuple[0], sg = _tuple[1], sb = _tuple[2], sa = _tuple[3];
 		a = (x = (65535 - sa >>> 0), x$1 = 257, (((x >>> 16 << 16) * x$1 >>> 0) + (x << 16 >>> 16) * x$1) >>> 0);
@@ -439,7 +419,7 @@ image/drawdrawPaletted0image/colorRGBA640image/colorTransparent0Ç
 			_tuple = [y + 1 >> 0, sy + 1 >> 0], y = _tuple[0], sy = _tuple[1];
 		}
 	};
- 0drawNRGBASrc0 0Ç.È	drawYCbCrÇ.Æ	drawYCbCr = function(dst, r, src, sp) {
+ 0drawNRGBASrc0 0Ç.Ê	drawYCbCrÇ.Æ	drawYCbCr = function(dst, r, src, sp) {
 		var ok, x, x$1, x0, x$2, x$3, x1, y0, y1, _ref, _tuple, y, sy, _tuple$1, x$4, dpix, x$5, x$6, yi, x$7, x$8, ci, x$9, _tuple$2, _tuple$3, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, rr, gg, bb, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _tuple$4, y$1, sy$1, _tuple$5, x$10, dpix$1, x$11, x$12, yi$1, x$13, x$14, _q, ciBase, _tuple$6, x$15, sx, _tuple$7, _q$1, ci$1, _tuple$8, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, rr$1, gg$1, bb$1, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _tuple$9, y$2, sy$2, _tuple$10, x$16, dpix$2, x$17, x$18, yi$2, x$19, _q$2, _q$3, x$20, _q$4, ciBase$1, _tuple$11, x$21, sx$1, _tuple$12, _q$5, ci$2, _tuple$13, _slice$14, _index$14, _slice$15, _index$15, _slice$16, _index$16, rr$2, gg$2, bb$2, _slice$17, _index$17, _slice$18, _index$18, _slice$19, _index$19, _slice$20, _index$20, _tuple$14, y$3, sy$3, _tuple$15, x$22, dpix$3, x$23, x$24, yi$3, x$25, _q$6, _q$7, x$26, ci$3, x$27, _tuple$16, _tuple$17, _slice$21, _index$21, _slice$22, _index$22, _slice$23, _index$23, rr$3, gg$3, bb$3, _slice$24, _index$24, _slice$25, _index$25, _slice$26, _index$26, _slice$27, _index$27;
 		ok = false;
 		x0 = (x = (r.Min.X - dst.Rect.Min.X >> 0), x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
@@ -524,8 +504,7 @@ image/drawdrawPaletted0image/colorRGBA640image/colorTransparent0Ç
 		ok = true;
 		return ok;
 	};
- 0	drawYCbCr00image/color
-YCbCrToRGB0Ç≤drawGlyphOverÇä	drawGlyphOver = function(dst, r, src, mask, mp) {
+ 0	drawYCbCr0image/color:YCbCrToRGB0Ç≤drawGlyphOverÇä	drawGlyphOver = function(dst, r, src, mask, mp) {
 		var i0, x, x$1, i1, mi0, _tuple, sr, sg, sb, sa, _tuple$1, y, my, _tuple$2, _tuple$3, i, mi, _tuple$4, _slice, _index, ma, _slice$1, _index$1, dr, _slice$2, _index$2, dg, _slice$3, _index$3, db, _slice$4, _index$4, da, x$2, _q, x$3, a, _q$1, _slice$5, _index$5, _q$2, _slice$6, _index$6, _q$3, _slice$7, _index$7, _q$4, _slice$8, _index$8;
 		i0 = dst.PixOffset(r.Min.X, r.Min.Y);
 		i1 = i0 + (x = r.Dx(), x$1 = 4, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) >> 0;
@@ -558,7 +537,7 @@ YCbCrToRGB0Ç≤drawGlyphOverÇä	drawGlyphOver = function(dst, r, src, mask, mp
 			_tuple$2 = [y + 1 >> 0, my + 1 >> 0], y = _tuple$2[0], my = _tuple$2[1];
 		}
 	};
- 0drawGlyphOver0 0ÇÇdrawRGBAÇ@	drawRGBA = function(dst, r, src, sp, mask, mp, op) {
+ 0drawGlyphOver0 0Ç|drawRGBAÇ@	drawRGBA = function(dst, r, src, sp, mask, mp, op) {
 		var _tuple, x0, x1, dx, _tuple$1, y0, y1, dy, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _tuple$2, _tuple$3, sy, my, sx0, mx0, sx1, i0, x, di, y, _tuple$4, _tuple$5, i, sx, mx, _tuple$6, ma, _tuple$7, _tuple$8, sr, sg, sb, sa, _slice, _index, dr, _slice$1, _index$1, dg, _slice$2, _index$2, db, _slice$3, _index$3, da, x$1, _q, x$2, a, _q$1, _slice$4, _index$4, _q$2, _slice$5, _index$5, _q$3, _slice$6, _index$6, _q$4, _slice$7, _index$7, _q$5, _slice$8, _index$8, _q$6, _slice$9, _index$9, _q$7, _slice$10, _index$10, _q$8, _slice$11, _index$11, x$3;
 		_tuple = [r.Min.X, r.Max.X, 1], x0 = _tuple[0], x1 = _tuple[1], dx = _tuple[2];
 		_tuple$1 = [r.Min.Y, r.Max.Y, 1], y0 = _tuple$1[0], y1 = _tuple$1[1], dy = _tuple$1[2];
@@ -607,7 +586,7 @@ YCbCrToRGB0Ç≤drawGlyphOverÇä	drawGlyphOver = function(dst, r, src, mask, mp
 		}
 	};
  0
-drawRGBA0$0imagePoint0image	Rectangle0ÅÖclampo	clamp = function(i) {
+drawRGBA0image:Pointimage:Rectangle0ÅÖclampo	clamp = function(i) {
 		if (i < 0) {
 			return 0;
 		}
@@ -616,7 +595,7 @@ YCbCrToRGB0Ç≤drawGlyphOverÇä	drawGlyphOver = function(dst, r, src, mask, mp
 		}
 		return i;
 	};
- 0clamp0 0Ç/xdrawPalettedÇ/	drawPaletted = function(dst, r, src, sp, floydSteinberg$1) {
+ 0clamp0 0Ç/odrawPalettedÇ/	drawPaletted = function(dst, r, src, sp, floydSteinberg$1) {
 		var _tuple, palette, pix, stride, ok, _tuple$1, p, _ref, _i, _slice, _index, col, i, _tuple$2, r$1, g, b, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple$3, _tuple$4, quantErrorCurr, quantErrorNext, out, y, x, _tuple$5, sr, sg, sb, _tuple$6, er, eg, eb, _q, _slice$4, _index$4, _q$1, _slice$5, _index$5, _q$2, _slice$6, _index$6, _tuple$7, bestIndex, bestSSD, _ref$1, _i$1, _slice$7, _index$7, p$1, index, delta, ssd, _tuple$8, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _tuple$9, _lhs, _index$12, _slice$12, _index$13, x$1, _lhs$1, _index$14, _slice$13, _index$15, x$2, _lhs$2, _index$16, _slice$14, _index$17, x$3, _lhs$3, _index$18, _slice$15, _index$19, x$4, _lhs$4, _index$20, _slice$16, _index$21, x$5, _lhs$5, _index$22, _slice$17, _index$23, x$6, _lhs$6, _index$24, _slice$18, _index$25, x$7, _lhs$7, _index$26, _slice$19, _index$27, x$8, _lhs$8, _index$28, _slice$20, _index$29, x$9, _lhs$9, _index$30, _slice$21, _index$31, x$10, _lhs$10, _index$32, _slice$22, _index$33, x$11, _lhs$11, _index$34, _slice$23, _index$35, x$12, _tuple$10, _ref$2, _i$2, i$1, _slice$24, _index$36;
 		_tuple = [(go$sliceType((go$arrayType(Go$Int32, 3)))).nil, (go$sliceType(Go$Uint8)).nil, 0], palette = _tuple[0], pix = _tuple[1], stride = _tuple[2];
 		if (_tuple$1 = (dst !== null && dst.constructor === (go$ptrType(image.Paletted)) ? [dst.go$val, true] : [(go$ptrType(image.Paletted)).nil, false]), p = _tuple$1[0], ok = _tuple$1[1], ok) {
@@ -721,11 +700,8 @@ YCbCrToRGB0Ç≤drawGlyphOverÇä	drawGlyphOver = function(dst, r, src, mask, mp
 			y = y + 1 >> 0;
 		}
 	};
- 0drawPaletted0?0imagePaletted0image/colorRGBA640
-image/drawclamp0   0FloydSteinberg0 0Å∂  `		var x;
+ 0drawPaletted06image/color:RGBA64image/draw:clampimage:Paletted0   0FloydSteinberg0 0Å∞  `		var x;
 		go$pkg.FloydSteinberg = (x = new floydSteinberg.Ptr(), new x.constructor.Struct(x));
-0FloydSteinberg0<0
-image/drawfloydSteinberg0
-image/drawFloydSteinberg0
+0FloydSteinberg06image/draw:FloydSteinbergimage/draw:floydSteinberg0
    0 0 0
    0 0 0 

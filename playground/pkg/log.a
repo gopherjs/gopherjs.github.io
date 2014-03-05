@@ -1,4 +1,4 @@
-0ÇVzlogÇ$Ïpackage log
+0ÇU≤logÇ$Ïpackage log
 import fmt "fmt"
 import io "io"
 import os "os"
@@ -151,7 +151,7 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0kruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtlog0P0
-fmtfmt0ioio0osos0runtimeruntime0syncsync0timetime0Ç0¿0Ç—LoggerÇØ	Logger = go$pkg.Logger = go$newType(0, "Struct", "log.Logger", "Logger", "log", function(mu_, prefix_, flag_, out_, buf_) {
+fmtfmt0ioio0osos0runtimeruntime0syncsync0timetime0Ç/¯0Ç»LoggerÇØ	Logger = go$pkg.Logger = go$newType(0, "Struct", "log.Logger", "Logger", "log", function(mu_, prefix_, flag_, out_, buf_) {
 		this.go$val = this;
 		this.mu = mu_ !== undefined ? mu_ : new sync.Mutex.Ptr();
 		this.prefix = prefix_ !== undefined ? prefix_ : "";
@@ -161,10 +161,13 @@ $$
 	});
 Ç€		(go$ptrType(Logger)).methods = [["Fatal", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Fatalf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Fatalln", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Flags", "", [], [Go$Int], false, -1], ["Output", "", [Go$Int, Go$String], [go$error], false, -1], ["Panic", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Panicf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Panicln", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Prefix", "", [], [Go$String], false, -1], ["Print", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Println", "", [(go$sliceType(go$emptyInterface))], [], true, -1], ["SetFlags", "", [Go$Int], [], false, -1], ["SetPrefix", "", [Go$String], [], false, -1], ["formatHeader", "log", [(go$ptrType((go$sliceType(Go$Uint8)))), time.Time, Go$String, Go$Int], [], false, -1]];
 		Logger.init([["mu", "mu", "log", sync.Mutex, ""], ["prefix", "prefix", "log", Go$String, ""], ["flag", "flag", "log", Go$Int, ""], ["out", "out", "log", io.Writer, ""], ["buf", "buf", "log", (go$sliceType(Go$Uint8)), ""]]);
-0Logger0+0syncMutex0timeTime0ioWriter0Å«NewÅñ	New = go$pkg.New = function(out, prefix, flag) {
+0Logger0"	io:Writer
+sync:Mutex	time:Time0Å¡NewÅñ	New = go$pkg.New = function(out, prefix, flag) {
 		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
 	};
- 0New00syncMutex0logLogger0Ç¨itoaÇñ	itoa = function(buf, i, wid) {
+ 0New0
+log:Logger
+sync:Mutex0Ç¨itoaÇñ	itoa = function(buf, i, wid) {
 		var u, b, bp, _q, _r;
 		u = (i >>> 0);
 		if ((u === 0) && wid <= 1) {
@@ -181,7 +184,7 @@ $$
 		}
 		buf.go$set(go$appendSlice(buf.go$get(), go$subslice(new (go$sliceType(Go$Uint8))(b), bp)));
 	};
- 0itoa0 0Çñ ÇX	Logger.Ptr.prototype.formatHeader = function(buf, t, file, line) {
+ 0itoa0 0Çê ÇX	Logger.Ptr.prototype.formatHeader = function(buf, t, file, line) {
 		var l, _tuple, year, month, day, _tuple$1, hour, min, sec, _q, short$1, i;
 		l = this;
 		buf.go$set(go$appendSlice(buf.go$get(), new (go$sliceType(Go$Uint8))(go$stringToBytes(l.prefix))));
@@ -229,7 +232,8 @@ $$
 		}
 	};
 	Logger.prototype.formatHeader = function(buf, t, file, line) { return this.go$val.formatHeader(buf, t, file, line); };
- 0LoggerformatHeader00logLogger0logitoa0Ç¶ Ç@	Logger.Ptr.prototype.Output = function(calldepth, s) {
+ 0LoggerformatHeader0
+log:Loggerlog:itoa0Çó Ç@	Logger.Ptr.prototype.Output = function(calldepth, s) {
 		var l, _struct, now, file, line, ok, _tuple, v, _struct$1, _tuple$1, err;
 		var go$deferred = [];
 		try {
@@ -265,49 +269,55 @@ $$
 		}
 	};
 	Logger.prototype.Output = function(calldepth, s) { return this.go$val.Output(calldepth, s); };
- 0Logger0R0logLogger0timeNow0timeTime0runtimeCaller0logformatHeader0Ç Åœ	Logger.Ptr.prototype.Printf = function(format, v) {
+ 0Logger0C
+log:Loggerlog:formatHeaderruntime:Callertime:Now	time:Time0Å˚ Åœ	Logger.Ptr.prototype.Printf = function(format, v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprintf(format, v));
 	};
 	Logger.prototype.Printf = function(format, v) { return this.go$val.Printf(format, v); };
- 0Logger00logLogger0fmtSprintf0Å‹ Å´	Logger.Ptr.prototype.Print = function(v) {
+ 0Logger0fmt:Sprintf
+log:Logger0Å÷ Å´	Logger.Ptr.prototype.Print = function(v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprint(v));
 	};
 	Logger.prototype.Print = function(v) { return this.go$val.Print(v); };
- 0Logger00logLogger0fmtSprint0ÅÊ Å≥	Logger.Ptr.prototype.Println = function(v) {
+ 0Logger0
+fmt:Sprint
+log:Logger0Å‡ Å≥	Logger.Ptr.prototype.Println = function(v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprintln(v));
 	};
 	Logger.prototype.Println = function(v) { return this.go$val.Println(v); };
- 0Logger0 0logLogger0fmtSprintln0Åˆ Åπ	Logger.Ptr.prototype.Fatal = function(v) {
+ 0Logger0fmt:Sprintln
+log:Logger0ÅÌ Åπ	Logger.Ptr.prototype.Fatal = function(v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprint(v));
 		os.Exit(1);
 	};
 	Logger.prototype.Fatal = function(v) { return this.go$val.Fatal(v); };
- 0Logger0*0logLogger0fmtSprint0
-osExit0Ç Å›	Logger.Ptr.prototype.Fatalf = function(format, v) {
+ 0Logger0!
+fmt:Sprint
+log:Loggeros:Exit0Ç Å›	Logger.Ptr.prototype.Fatalf = function(format, v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprintf(format, v));
 		os.Exit(1);
 	};
 	Logger.prototype.Fatalf = function(format, v) { return this.go$val.Fatalf(format, v); };
- 0Logger0+0logLogger0fmtSprintf0
-osExit0Ç  Å¡	Logger.Ptr.prototype.Fatalln = function(v) {
+ 0Logger0"fmt:Sprintf
+log:Loggeros:Exit0Å˜ Å¡	Logger.Ptr.prototype.Fatalln = function(v) {
 		var l;
 		l = this;
 		l.Output(2, fmt.Sprintln(v));
 		os.Exit(1);
 	};
 	Logger.prototype.Fatalln = function(v) { return this.go$val.Fatalln(v); };
- 0Logger0,0logLogger0fmtSprintln0
-osExit0Ç Å€	Logger.Ptr.prototype.Panic = function(v) {
+ 0Logger0#fmt:Sprintln
+log:Loggeros:Exit0Ç Å€	Logger.Ptr.prototype.Panic = function(v) {
 		var l, s;
 		l = this;
 		s = fmt.Sprint(v);
@@ -315,7 +325,9 @@ $$
 		throw go$panic(new Go$String(s));
 	};
 	Logger.prototype.Panic = function(v) { return this.go$val.Panic(v); };
- 0Logger00logLogger0fmtSprint0Ç1 Åˇ	Logger.Ptr.prototype.Panicf = function(format, v) {
+ 0Logger0
+fmt:Sprint
+log:Logger0Ç+ Åˇ	Logger.Ptr.prototype.Panicf = function(format, v) {
 		var l, s;
 		l = this;
 		s = fmt.Sprintf(format, v);
@@ -323,7 +335,8 @@ $$
 		throw go$panic(new Go$String(s));
 	};
 	Logger.prototype.Panicf = function(format, v) { return this.go$val.Panicf(format, v); };
- 0Logger00logLogger0fmtSprintf0Ç Å„	Logger.Ptr.prototype.Panicln = function(v) {
+ 0Logger0fmt:Sprintf
+log:Logger0Ç Å„	Logger.Ptr.prototype.Panicln = function(v) {
 		var l, s;
 		l = this;
 		s = fmt.Sprintln(v);
@@ -331,7 +344,8 @@ $$
 		throw go$panic(new Go$String(s));
 	};
 	Logger.prototype.Panicln = function(v) { return this.go$val.Panicln(v); };
- 0Logger0 0logLogger0fmtSprintln0Çú Çy	Logger.Ptr.prototype.Flags = function() {
+ 0Logger0fmt:Sprintln
+log:Logger0Çô Çy	Logger.Ptr.prototype.Flags = function() {
 		var l;
 		var go$deferred = [];
 		try {
@@ -347,7 +361,8 @@ $$
 		}
 	};
 	Logger.prototype.Flags = function() { return this.go$val.Flags(); };
- 0Logger00logLogger0Ç§ ÇÅ	Logger.Ptr.prototype.SetFlags = function(flag) {
+ 0Logger0
+log:Logger0Ç° ÇÅ	Logger.Ptr.prototype.SetFlags = function(flag) {
 		var l;
 		var go$deferred = [];
 		try {
@@ -362,7 +377,8 @@ $$
 		}
 	};
 	Logger.prototype.SetFlags = function(flag) { return this.go$val.SetFlags(flag); };
- 0Logger00logLogger0Ç¢ Ç	Logger.Ptr.prototype.Prefix = function() {
+ 0Logger0
+log:Logger0Çü Ç	Logger.Ptr.prototype.Prefix = function() {
 		var l;
 		var go$deferred = [];
 		try {
@@ -378,7 +394,8 @@ $$
 		}
 	};
 	Logger.prototype.Prefix = function() { return this.go$val.Prefix(); };
- 0Logger00logLogger0Ç± Çé	Logger.Ptr.prototype.SetPrefix = function(prefix) {
+ 0Logger0
+log:Logger0ÇÆ Çé	Logger.Ptr.prototype.SetPrefix = function(prefix) {
 		var l;
 		var go$deferred = [];
 		try {
@@ -393,7 +410,8 @@ $$
 		}
 	};
 	Logger.prototype.SetPrefix = function(prefix) { return this.go$val.SetPrefix(prefix); };
- 0Logger00logLogger0ÇA	SetOutputÇ	SetOutput = go$pkg.SetOutput = function(w) {
+ 0Logger0
+log:Logger0Ç>	SetOutputÇ	SetOutput = go$pkg.SetOutput = function(w) {
 		var go$deferred = [];
 		try {
 			std.mu.Lock();
@@ -405,78 +423,62 @@ $$
 			go$callDeferred(go$deferred);
 		}
 	};
- 0	SetOutput00
-logstd0aFlags?	Flags = go$pkg.Flags = function() {
+ 0	SetOutput0	log:std0^Flags?	Flags = go$pkg.Flags = function() {
 		return std.Flags();
 	};
- 0Flags00
-logstd0qSetFlagsI	SetFlags = go$pkg.SetFlags = function(flag) {
+ 0Flags0	log:std0nSetFlagsI	SetFlags = go$pkg.SetFlags = function(flag) {
 		std.SetFlags(flag);
 	};
  0
-SetFlags00
-logstd0fPrefixB	Prefix = go$pkg.Prefix = function() {
+SetFlags0	log:std0cPrefixB	Prefix = go$pkg.Prefix = function() {
 		return std.Prefix();
 	};
- 0Prefix00
-logstd0z	SetPrefixP	SetPrefix = go$pkg.SetPrefix = function(prefix) {
+ 0Prefix0	log:std0w	SetPrefixP	SetPrefix = go$pkg.SetPrefix = function(prefix) {
 		std.SetPrefix(prefix);
 	};
- 0	SetPrefix00
-logstd0{PrintJ	Print = go$pkg.Print = function(v) {
+ 0	SetPrefix0	log:std0uPrintJ	Print = go$pkg.Print = function(v) {
 		std.Output(2, fmt.Sprint(v));
 	};
- 0Print00
-logstd0fmtSprint0ÅëPrintf]	Printf = go$pkg.Printf = function(format, v) {
+ 0Print0
+fmt:Sprintlog:std0ÅãPrintf]	Printf = go$pkg.Printf = function(format, v) {
 		std.Output(2, fmt.Sprintf(format, v));
 	};
- 0Printf00
-logstd0fmtSprintf0ÅáPrintlnP	Println = go$pkg.Println = function(v) {
+ 0Printf0fmt:Sprintflog:std0ÅÅPrintlnP	Println = go$pkg.Println = function(v) {
 		std.Output(2, fmt.Sprintln(v));
 	};
- 0	Println00
-logstd0fmtSprintln0ÅïFatalX	Fatal = go$pkg.Fatal = function(v) {
+ 0	Println0fmt:Sprintlnlog:std0ÅåFatalX	Fatal = go$pkg.Fatal = function(v) {
 		std.Output(2, fmt.Sprint(v));
 		os.Exit(1);
 	};
- 0Fatal0'0
-logstd0fmtSprint0
-osExit0Å´Fatalfk	Fatalf = go$pkg.Fatalf = function(format, v) {
+ 0Fatal0
+fmt:Sprintlog:stdos:Exit0Å¢Fatalfk	Fatalf = go$pkg.Fatalf = function(format, v) {
 		std.Output(2, fmt.Sprintf(format, v));
 		os.Exit(1);
 	};
- 0Fatalf0(0
-logstd0fmtSprintf0
-osExit0Å°Fatalln^	Fatalln = go$pkg.Fatalln = function(v) {
+ 0Fatalf0fmt:Sprintflog:stdos:Exit0ÅòFatalln^	Fatalln = go$pkg.Fatalln = function(v) {
 		std.Output(2, fmt.Sprintln(v));
 		os.Exit(1);
 	};
- 0	Fatalln0)0
-logstd0fmtSprintln0
-osExit0Å≤PanicÅÄ	Panic = go$pkg.Panic = function(v) {
+ 0	Fatalln0 fmt:Sprintlnlog:stdos:Exit0Å¨PanicÅÄ	Panic = go$pkg.Panic = function(v) {
 		var s;
 		s = fmt.Sprint(v);
 		std.Output(2, s);
 		throw go$panic(new Go$String(s));
 	};
- 0Panic00fmtSprint0
-logstd0Å»PanicfÅì	Panicf = go$pkg.Panicf = function(format, v) {
+ 0Panic0
+fmt:Sprintlog:std0Å¬PanicfÅì	Panicf = go$pkg.Panicf = function(format, v) {
 		var s;
 		s = fmt.Sprintf(format, v);
 		std.Output(2, s);
 		throw go$panic(new Go$String(s));
 	};
- 0Panicf00fmtSprintf0
-logstd0ÅæPaniclnÅÜ	Panicln = go$pkg.Panicln = function(v) {
+ 0Panicf0fmt:Sprintflog:std0Å∏PaniclnÅÜ	Panicln = go$pkg.Panicln = function(v) {
 		var s;
 		s = fmt.Sprintln(v);
 		std.Output(2, s);
 		throw go$panic(new Go$String(s));
 	};
- 0	Panicln00fmtSprintln0
-logstd0std  0std0 0O  		std = New(os.Stderr, "", 3);
-0 0&0
-logNew0osStderr0
-logstd0
+ 0	Panicln0fmt:Sprintlnlog:std0std  0std0 0F  		std = New(os.Stderr, "", 3);
+0 0log:Newlog:std	os:Stderr0
    0 0 0
    0 0 0 

@@ -1,4 +1,4 @@
-0ÉÙstringsÇpackage strings
+0ÉRstringsÇpackage strings
 import errors "errors"
 import io "io"
 import utf8 "unicode/utf8"
@@ -97,7 +97,7 @@ func (? *@"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
 type @"unicode".CaseRange struct { @"unicode".Lo uint32; @"unicode".Hi uint32; @"unicode".Delta @"unicode".d }
 type @"unicode".d [3]rune
 $$
-0Hruntimeerrorssync/atomicsynciounicodeunicode/utf8strings0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0ÇÌ30ÇReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "strings.Reader", "Reader", "strings", function(s_, i_, prevRune_) {
+0Hruntimeerrorssync/atomicsynciounicodeunicode/utf8strings0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0ÇÎë0Ç	ReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "strings.Reader", "Reader", "strings", function(s_, i_, prevRune_) {
 		this.go$val = this;
 		this.s = s_ !== undefined ? s_ : "";
 		this.i = i_ !== undefined ? i_ : 0;
@@ -105,22 +105,22 @@ $$
 	});
 Ç»		(go$ptrType(Reader)).methods = [["Len", "", [], [Go$Int], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["ReadAt", "", [(go$sliceType(Go$Uint8)), Go$Int64], [Go$Int, go$error], false, -1], ["ReadByte", "", [], [Go$Uint8, go$error], false, -1], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, -1], ["Seek", "", [Go$Int64, Go$Int], [Go$Int64, go$error], false, -1], ["UnreadByte", "", [], [go$error], false, -1], ["UnreadRune", "", [], [go$error], false, -1], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false, -1]];
 		Reader.init([["s", "s", "strings", Go$String, ""], ["i", "i", "strings", Go$Int, ""], ["prevRune", "prevRune", "strings", Go$Int, ""]]);
-0Reader00ioWriter0Ç‘ReplacerÅ¥	Replacer = go$pkg.Replacer = go$newType(0, "Struct", "strings.Replacer", "Replacer", "strings", function(r_) {
+0Reader0	io:Writer0ÇŒReplacerÅ¥	Replacer = go$pkg.Replacer = go$newType(0, "Struct", "strings.Replacer", "Replacer", "strings", function(r_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 	});
 Åﬂ		(go$ptrType(Replacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1]];
 		Replacer.init([["r", "r", "strings", replacer, ""]]);
 0
-Replacer0#0ioWriter0stringsreplacer0ÇAreplacerk	replacer = go$pkg.replacer = go$newType(0, "Interface", "strings.replacer", "replacer", "strings", null);
+Replacer0	io:Writerstrings:replacer0Ç>replacerk	replacer = go$pkg.replacer = go$newType(0, "Interface", "strings.replacer", "replacer", "strings", null);
 Å´		replacer.init([["Replace", "", (go$funcType([Go$String], [Go$String], false))], ["WriteString", "", (go$funcType([io.Writer, Go$String], [Go$Int, go$error], false))]]);
 0
-replacer00ioWriter0Ç
+replacer0	io:Writer0Ç
 byteBitmapo	byteBitmap = go$pkg.byteBitmap = go$newType(0, "Array", "strings.byteBitmap", "byteBitmap", "strings", null);
 w		(go$ptrType(byteBitmap)).methods = [["set", "strings", [Go$Uint8], [], false, -1]];
 		byteBitmap.init(Go$Uint32, 8);
 0
-byteBitmap0 0Ç‚trieNodeÇ˘	trieNode = go$pkg.trieNode = go$newType(0, "Struct", "strings.trieNode", "trieNode", "strings", function(value_, priority_, prefix_, next_, table_) {
+byteBitmap0 0ÇﬂtrieNodeÇ˘	trieNode = go$pkg.trieNode = go$newType(0, "Struct", "strings.trieNode", "trieNode", "strings", function(value_, priority_, prefix_, next_, table_) {
 		this.go$val = this;
 		this.value = value_ !== undefined ? value_ : "";
 		this.priority = priority_ !== undefined ? priority_ : 0;
@@ -131,7 +131,7 @@ byteBitmap0 0Ç‚trieNodeÇ˘	trieNode = go$pkg.trieNode = go$newType(0, "Struc
 Ç≠		(go$ptrType(trieNode)).methods = [["add", "strings", [Go$String, Go$String, Go$Int, (go$ptrType(genericReplacer))], [], false, -1]];
 		trieNode.init([["value", "value", "strings", Go$String, ""], ["priority", "priority", "strings", Go$Int, ""], ["prefix", "prefix", "strings", Go$String, ""], ["next", "next", "strings", (go$ptrType(trieNode)), ""], ["table", "table", "strings", (go$sliceType((go$ptrType(trieNode)))), ""]]);
 0
-trieNode00stringsgenericReplacer0Ç¬genericReplacerÇØ	genericReplacer = go$pkg.genericReplacer = go$newType(0, "Struct", "strings.genericReplacer", "genericReplacer", "strings", function(root_, tableSize_, mapping_) {
+trieNode0strings:genericReplacer0ÇºgenericReplacerÇØ	genericReplacer = go$pkg.genericReplacer = go$newType(0, "Struct", "strings.genericReplacer", "genericReplacer", "strings", function(root_, tableSize_, mapping_) {
 		this.go$val = this;
 		this.root = root_ !== undefined ? root_ : new trieNode.Ptr();
 		this.tableSize = tableSize_ !== undefined ? tableSize_ : 0;
@@ -139,42 +139,40 @@ byteBitmap0 0Ç‚trieNodeÇ˘	trieNode = go$pkg.trieNode = go$newType(0, "Struc
 	});
 Ç¬		(go$ptrType(genericReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1], ["lookup", "strings", [Go$String, Go$Bool], [Go$String, Go$Int, Go$Bool], false, -1]];
 		genericReplacer.init([["root", "root", "strings", trieNode, ""], ["tableSize", "tableSize", "strings", Go$Int, ""], ["mapping", "mapping", "strings", (go$arrayType(Go$Uint8, 256)), ""]]);
-0genericReplacer0#0stringstrieNode0ioWriter0ÇòappendSliceWriterÅã	appendSliceWriter = go$pkg.appendSliceWriter = go$newType(0, "Slice", "strings.appendSliceWriter", "appendSliceWriter", "strings", null);
+0genericReplacer0	io:Writerstrings:trieNode0ÇòappendSliceWriterÅã	appendSliceWriter = go$pkg.appendSliceWriter = go$newType(0, "Slice", "strings.appendSliceWriter", "appendSliceWriter", "strings", null);
 Å›		(go$ptrType(appendSliceWriter)).methods = [["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
 		appendSliceWriter.init(Go$Uint8);
 0appendSliceWriter0 0Ç&stringWriterIfaceÅè	stringWriterIface = go$pkg.stringWriterIface = go$newType(0, "Interface", "strings.stringWriterIface", "stringWriterIface", "strings", null);
 h		stringWriterIface.init([["WriteString", "", (go$funcType([Go$String], [Go$Int, go$error], false))]]);
-0stringWriterIface0 0Ç¸stringWriterÅƒ	stringWriter = go$pkg.stringWriter = go$newType(0, "Struct", "strings.stringWriter", "stringWriter", "strings", function(w_) {
+0stringWriterIface0 0Ç˘stringWriterÅƒ	stringWriter = go$pkg.stringWriter = go$newType(0, "Struct", "strings.stringWriter", "stringWriter", "strings", function(w_) {
 		this.go$val = this;
 		this.w = w_ !== undefined ? w_ : null;
 	});
 Ç		stringWriter.methods = [["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
 		(go$ptrType(stringWriter)).methods = [["WriteString", "", [Go$String], [Go$Int, go$error], false, -1]];
 		stringWriter.init([["w", "w", "strings", io.Writer, ""]]);
-0stringWriter00ioWriter0ÇÌsingleStringReplacerÇM	singleStringReplacer = go$pkg.singleStringReplacer = go$newType(0, "Struct", "strings.singleStringReplacer", "singleStringReplacer", "strings", function(finder_, value_) {
+0stringWriter0	io:Writer0ÇÁsingleStringReplacerÇM	singleStringReplacer = go$pkg.singleStringReplacer = go$newType(0, "Struct", "strings.singleStringReplacer", "singleStringReplacer", "strings", function(finder_, value_) {
 		this.go$val = this;
 		this.finder = finder_ !== undefined ? finder_ : (go$ptrType(stringFinder)).nil;
 		this.value = value_ !== undefined ? value_ : "";
 	});
 ÇA		(go$ptrType(singleStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1]];
 		singleStringReplacer.init([["finder", "finder", "strings", (go$ptrType(stringFinder)), ""], ["value", "value", "strings", Go$String, ""]]);
-0singleStringReplacer0'0stringsstringFinder0ioWriter0ÇÓbyteReplacerÇt	byteReplacer = go$pkg.byteReplacer = go$newType(0, "Struct", "strings.byteReplacer", "byteReplacer", "strings", function(old_, new$1_) {
+0singleStringReplacer0!	io:Writerstrings:stringFinder0ÇËbyteReplacerÇt	byteReplacer = go$pkg.byteReplacer = go$newType(0, "Struct", "strings.byteReplacer", "byteReplacer", "strings", function(old_, new$1_) {
 		this.go$val = this;
 		this.old = old_ !== undefined ? old_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
 		this.new$1 = new$1_ !== undefined ? new$1_ : go$makeNativeArray("Uint8", 256, function() { return 0; });
 	});
 Ç-		(go$ptrType(byteReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1]];
 		byteReplacer.init([["old", "old", "strings", byteBitmap, ""], ["new$1", "new", "strings", (go$arrayType(Go$Uint8, 256)), ""]]);
-0byteReplacer0%0ioWriter0strings
-byteBitmap0ÇIbyteStringReplacerÇß	byteStringReplacer = go$pkg.byteStringReplacer = go$newType(0, "Struct", "strings.byteStringReplacer", "byteStringReplacer", "strings", function(old_, new$1_) {
+0byteReplacer0	io:Writerstrings:byteBitmap0ÇCbyteStringReplacerÇß	byteStringReplacer = go$pkg.byteStringReplacer = go$newType(0, "Struct", "strings.byteStringReplacer", "byteStringReplacer", "strings", function(old_, new$1_) {
 		this.go$val = this;
 		this.old = old_ !== undefined ? old_ : go$makeNativeArray("Uint32", 8, function() { return 0; });
 		this.new$1 = new$1_ !== undefined ? new$1_ : go$makeNativeArray("Slice", 256, function() { return (go$sliceType(Go$Uint8)).nil; });
 	});
 ÇI		(go$ptrType(byteStringReplacer)).methods = [["Replace", "", [Go$String], [Go$String], false, -1], ["WriteString", "", [io.Writer, Go$String], [Go$Int, go$error], false, -1]];
 		byteStringReplacer.init([["old", "old", "strings", byteBitmap, ""], ["new$1", "new", "strings", (go$arrayType((go$sliceType(Go$Uint8)), 256)), ""]]);
-0byteStringReplacer0%0ioWriter0strings
-byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType(0, "Struct", "strings.stringFinder", "stringFinder", "strings", function(pattern_, badCharSkip_, goodSuffixSkip_) {
+0byteStringReplacer0	io:Writerstrings:byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType(0, "Struct", "strings.stringFinder", "stringFinder", "strings", function(pattern_, badCharSkip_, goodSuffixSkip_) {
 		this.go$val = this;
 		this.pattern = pattern_ !== undefined ? pattern_ : "";
 		this.badCharSkip = badCharSkip_ !== undefined ? badCharSkip_ : go$makeNativeArray("Int", 256, function() { return 0; });
@@ -182,7 +180,7 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 	});
 ÇB		(go$ptrType(stringFinder)).methods = [["next", "strings", [Go$String], [Go$Int], false, -1]];
 		stringFinder.init([["pattern", "pattern", "strings", Go$String, ""], ["badCharSkip", "badCharSkip", "strings", (go$arrayType(Go$Int, 256)), ""], ["goodSuffixSkip", "goodSuffixSkip", "strings", (go$sliceType(Go$Int)), ""]]);
-0stringFinder0 0Åˆ Å–	Reader.Ptr.prototype.Len = function() {
+0stringFinder0 0ÅÛ Å–	Reader.Ptr.prototype.Len = function() {
 		var r;
 		r = this;
 		if (r.i >= r.s.length) {
@@ -191,7 +189,7 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 		return r.s.length - r.i >> 0;
 	};
 	Reader.prototype.Len = function() { return this.go$val.Len(); };
- 0Reader00stringsReader0Ç0 Ç˛	Reader.Ptr.prototype.Read = function(b) {
+ 0Reader0strings:Reader0Ç* Ç˛	Reader.Ptr.prototype.Read = function(b) {
 		var n, err, r, _tuple, _tuple$1;
 		n = 0;
 		err = null;
@@ -210,7 +208,7 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 		return [n, err];
 	};
 	Reader.prototype.Read = function(b) { return this.go$val.Read(b); };
- 0Reader00stringsReader0	ioEOF0Ç Ç€	Reader.Ptr.prototype.ReadAt = function(b, off) {
+ 0Reader0io:EOFstrings:Reader0Ç Ç€	Reader.Ptr.prototype.ReadAt = function(b, off) {
 		var n, err, r, _tuple, x, _tuple$1;
 		n = 0;
 		err = null;
@@ -230,7 +228,8 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 		return [n, err];
 	};
 	Reader.prototype.ReadAt = function(b, off) { return this.go$val.ReadAt(b, off); };
- 0Reader0-0stringsReader0errorsNew0	ioEOF0ÇØ Ç}	Reader.Ptr.prototype.ReadByte = function() {
+ 0Reader0$
+errors:Newio:EOFstrings:Reader0Ç© Ç}	Reader.Ptr.prototype.ReadByte = function() {
 		var b, err, r, _tuple;
 		b = 0;
 		err = null;
@@ -245,7 +244,7 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 		return [b, err];
 	};
 	Reader.prototype.ReadByte = function() { return this.go$val.ReadByte(); };
- 0Reader00stringsReader0	ioEOF0Ç] Ç'	Reader.Ptr.prototype.UnreadByte = function() {
+ 0Reader0io:EOFstrings:Reader0ÇW Ç'	Reader.Ptr.prototype.UnreadByte = function() {
 		var r;
 		r = this;
 		if (r.i <= 0) {
@@ -256,7 +255,8 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 		return null;
 	};
 	Reader.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
- 0Reader0"0stringsReader0errorsNew0Ç) Ç”	Reader.Ptr.prototype.ReadRune = function() {
+ 0Reader0
+errors:Newstrings:Reader0Ç  Ç”	Reader.Ptr.prototype.ReadRune = function() {
 		var ch, size, err, r, _tuple, c, _tuple$1, _tuple$2;
 		ch = 0;
 		size = 0;
@@ -277,7 +277,7 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 		return [ch, size, err];
 	};
 	Reader.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
- 0Reader0B0stringsReader0	ioEOF0"unicode/utf8DecodeRuneInString0Çn Ç8	Reader.Ptr.prototype.UnreadRune = function() {
+ 0Reader09io:EOFstrings:Readerunicode/utf8:DecodeRuneInString0Çh Ç8	Reader.Ptr.prototype.UnreadRune = function() {
 		var r;
 		r = this;
 		if (r.prevRune < 0) {
@@ -288,7 +288,8 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 		return null;
 	};
 	Reader.prototype.UnreadRune = function() { return this.go$val.UnreadRune(); };
- 0Reader0"0stringsReader0errorsNew0Ç Ç€	Reader.Ptr.prototype.Seek = function(offset, whence) {
+ 0Reader0
+errors:Newstrings:Reader0Ç Ç€	Reader.Ptr.prototype.Seek = function(offset, whence) {
 		var r, abs, _ref, x, x$1;
 		r = this;
 		abs = new Go$Int64(0, 0);
@@ -312,7 +313,8 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 		return [abs, null];
 	};
 	Reader.prototype.Seek = function(offset, whence) { return this.go$val.Seek(offset, whence); };
- 0Reader0"0stringsReader0errorsNew0Ç- Çﬁ	Reader.Ptr.prototype.WriteTo = function(w) {
+ 0Reader0
+errors:Newstrings:Reader0Ç$ Çﬁ	Reader.Ptr.prototype.WriteTo = function(w) {
 		var n, err, r, _tuple, s, _tuple$1, m;
 		n = new Go$Int64(0, 0);
 		err = null;
@@ -335,18 +337,17 @@ byteBitmap0ÇDstringFinderÇ⁄	stringFinder = go$pkg.stringFinder = go$newType
 		return [n, err];
 	};
 	Reader.prototype.WriteTo = function(w) { return this.go$val.WriteTo(w); };
- 0Reader0;0stringsReader0ioWriteString0ioErrShortWrite0ÅÜ	NewReaderU	NewReader = go$pkg.NewReader = function(s) {
+ 0Reader02io:ErrShortWriteio:WriteStringstrings:Reader0ÅÉ	NewReaderU	NewReader = go$pkg.NewReader = function(s) {
 		return new Reader.Ptr(s, 0, -1);
 	};
- 0	NewReader00stringsReader0ÇÉ ÇO	byteBitmap.prototype.set = function(b) {
+ 0	NewReader0strings:Reader0ÇÄ ÇO	byteBitmap.prototype.set = function(b) {
 		var m, _lhs, _index, y;
 		m = this.go$val;
 		_lhs = m, _index = b >>> 5 << 24 >>> 24, _lhs[_index] = (_lhs[_index] | (((y = (((b & 31) >>> 0)), y < 32 ? (1 << y) : 0) >>> 0))) >>> 0;
 	};
 	go$ptrType(byteBitmap).prototype.set = function(b) { return (new byteBitmap(this.go$get())).set(b); };
  0
-byteBitmapset00strings
-byteBitmap0ÇNewReplacerÇ.	NewReplacer = go$pkg.NewReplacer = function(oldnew) {
+byteBitmapset0strings:byteBitmap0Ç˜NewReplacerÇ.	NewReplacer = go$pkg.NewReplacer = function(oldnew) {
 		var _r, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, allNewBytes, i, _slice$3, _index$3, _slice$4, _index$4, bb, i$1, _slice$5, _index$5, _slice$6, _index$6, _tuple, o, n, y, bs, i$2, _slice$7, _index$7, _slice$8, _index$8, _tuple$1, o$1, new$1, y$1;
 		if ((_r = oldnew.length % 2, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) === 1) {
 			throw go$panic(new Go$String("strings.NewReplacer: odd argument count"));
@@ -394,15 +395,14 @@ byteBitmap0ÇNewReplacerÇ.	NewReplacer = go$pkg.NewReplacer = function(oldn
 		}
 		return new Replacer.Ptr(bs);
 	};
- 0NewReplacer0Åπ0#stringsmakeSingleStringReplacer0stringsReplacer0stringsmakeGenericReplacer0stringsbyteReplacer0stringsset0strings
-byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace = function(s) {
+ 0NewReplacer0Å§strings:Replacerstrings:byteBitmapstrings:byteReplacerstrings:byteStringReplacerstrings:makeGenericReplacer strings:makeSingleStringReplacerstrings:set0Å◊ Å∞	Replacer.Ptr.prototype.Replace = function(s) {
 		var r;
 		r = this;
 		return r.r.Replace(s);
 	};
 	Replacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
  0
-Replacer00stringsReplacer0ÇS Ç(	Replacer.Ptr.prototype.WriteString = function(w, s) {
+Replacer0strings:Replacer0ÇP Ç(	Replacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, _tuple;
 		n = 0;
 		err = null;
@@ -412,8 +412,8 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 	};
 	Replacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
  0
-Replacer00stringsReplacer0Ç
-˘ Ç
+Replacer0strings:Replacer0Ç
+ˆ Ç
 …	trieNode.Ptr.prototype.add = function(key, val, priority, r) {
 		var t, n, prefixNode, keyNode, _slice, _index, _slice$1, _index$1, next, m, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4;
 		t = this;
@@ -467,7 +467,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 	};
 	trieNode.prototype.add = function(key, val, priority, r) { return this.go$val.add(key, val, priority, r); };
- 0trieNodeadd00stringstrieNode0Ç: ÇŒ	genericReplacer.Ptr.prototype.lookup = function(s, ignoreRoot) {
+ 0trieNodeadd0strings:trieNode0Ç1 ÇŒ	genericReplacer.Ptr.prototype.lookup = function(s, ignoreRoot) {
 		var val, keylen, found, r, bestPriority, node, n, index, _slice, _index;
 		val = "";
 		keylen = 0;
@@ -505,7 +505,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return [val, keylen, found];
 	};
 	genericReplacer.prototype.lookup = function(s, ignoreRoot) { return this.go$val.lookup(s, ignoreRoot); };
- 0genericReplacerlookup0G0stringsgenericReplacer0stringstrieNode0strings	HasPrefix0ÇÅmakeGenericReplacerÇ	makeGenericReplacer = function(oldnew) {
+ 0genericReplacerlookup0>strings:HasPrefixstrings:genericReplacerstrings:trieNode0ÇxmakeGenericReplacerÇ	makeGenericReplacer = function(oldnew) {
 		var r, i, _slice, _index, key, j, _ref, _i, b, index, _ref$1, _i$1, b$1, i$1, i$2, _slice$1, _index$1, _slice$2, _index$2;
 		r = new genericReplacer.Ptr();
 		i = 0;
@@ -547,27 +547,27 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 		return r;
 	};
- 0makeGenericReplacer0A0stringsgenericReplacer0stringstrieNode0stringsadd0Çz Ç=	go$ptrType(appendSliceWriter).prototype.Write = function(p) {
+ 0makeGenericReplacer08strings:addstrings:genericReplacerstrings:trieNode0Çw Ç=	go$ptrType(appendSliceWriter).prototype.Write = function(p) {
 		var w;
 		w = this;
 		w.go$set(go$appendSlice(w.go$get(), p));
 		return [p.length, null];
 	};
 	appendSliceWriter.prototype.Write = function(p) { var obj = this; return (new (go$ptrType(appendSliceWriter))(function() { return obj; }, null)).Write(p); };
- 0appendSliceWriter00stringsappendSliceWriter0Çµ Çx	go$ptrType(appendSliceWriter).prototype.WriteString = function(s) {
+ 0appendSliceWriter0strings:appendSliceWriter0Ç≤ Çx	go$ptrType(appendSliceWriter).prototype.WriteString = function(s) {
 		var w;
 		w = this;
 		w.go$set(go$appendSlice(w.go$get(), new appendSliceWriter(go$stringToBytes(s))));
 		return [s.length, null];
 	};
 	appendSliceWriter.prototype.WriteString = function(s) { var obj = this; return (new (go$ptrType(appendSliceWriter))(function() { return obj; }, null)).WriteString(s); };
- 0appendSliceWriter00stringsappendSliceWriter0Ç[ Ç(	stringWriter.Ptr.prototype.WriteString = function(s) {
+ 0appendSliceWriter0strings:appendSliceWriter0ÇX Ç(	stringWriter.Ptr.prototype.WriteString = function(s) {
 		var _struct, w;
 		w = (_struct = this, new stringWriter.Ptr(_struct.w));
 		return w.w.Write(new (go$sliceType(Go$Uint8))(go$stringToBytes(s)));
 	};
 	stringWriter.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
- 0stringWriter00stringsstringWriter0ÇôgetStringWriterÇ6	getStringWriter = function(w) {
+ 0stringWriter0strings:stringWriter0ÇìgetStringWriterÇ6	getStringWriter = function(w) {
 		var _tuple, sw, ok, x;
 		_tuple = (w !== null && stringWriterIface.implementedBy.indexOf(w.constructor) !== -1 ? [w, true] : [null, false]), sw = _tuple[0], ok = _tuple[1];
 		if (!ok) {
@@ -575,7 +575,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 		return sw;
 	};
- 0getStringWriter070stringsstringWriterIface0stringsstringWriter0Ç⁄ ÇÉ	genericReplacer.Ptr.prototype.Replace = function(s) {
+ 0getStringWriter01strings:stringWriterstrings:stringWriterIface0Ç‘ ÇÉ	genericReplacer.Ptr.prototype.Replace = function(s) {
 		var r, buf, v;
 		r = this;
 		buf = appendSliceWriter.make(0, s.length, function() { return 0; });
@@ -583,7 +583,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return go$bytesToString(buf);
 	};
 	genericReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
- 0genericReplacer0:0stringsgenericReplacer0stringsappendSliceWriter0Ç? Ç◊	genericReplacer.Ptr.prototype.WriteString = function(w, s) {
+ 0genericReplacer04strings:appendSliceWriterstrings:genericReplacer0Ç6 Ç◊	genericReplacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, sw, _tuple, last, wn, prevMatchEmpty, i, _tuple$1, val, keylen, match, _tuple$2, _tuple$3, _tuple$4;
 		n = 0;
 		err = null;
@@ -619,10 +619,10 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return [n, err];
 	};
 	genericReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
- 0genericReplacer0K0stringsgenericReplacer0stringsgetStringWriter0stringslookup0ÇmakeSingleStringReplacerÅÑ	makeSingleStringReplacer = function(pattern, value) {
+ 0genericReplacer0Bstrings:genericReplacerstrings:getStringWriterstrings:lookup0ÇmakeSingleStringReplacerÅÑ	makeSingleStringReplacer = function(pattern, value) {
 		return new singleStringReplacer.Ptr(makeStringFinder(pattern), value);
 	};
- 0makeSingleStringReplacer0W0stringsstringFinder0stringsmakeStringFinder0stringssingleStringReplacer0Çû ÇJ	singleStringReplacer.Ptr.prototype.Replace = function(s) {
+ 0makeSingleStringReplacer0Nstrings:makeStringFinderstrings:singleStringReplacerstrings:stringFinder0Çò ÇJ	singleStringReplacer.Ptr.prototype.Replace = function(s) {
 		var r, buf, _tuple, i, matched, match;
 		r = this;
 		buf = (go$sliceType(Go$Uint8)).nil;
@@ -644,7 +644,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return go$bytesToString(buf);
 	};
 	singleStringReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
- 0singleStringReplacer020stringssingleStringReplacer0stringsnext0Ç[ ÇÎ	singleStringReplacer.Ptr.prototype.WriteString = function(w, s) {
+ 0singleStringReplacer0,strings:nextstrings:singleStringReplacer0ÇR ÇÎ	singleStringReplacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, sw, _tuple, i, wn, match, _tuple$1, _tuple$2, _tuple$3;
 		n = 0;
 		err = null;
@@ -673,7 +673,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return [n, err];
 	};
 	singleStringReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
- 0singleStringReplacer0N0stringssingleStringReplacer0stringsgetStringWriter0stringsnext0Ç` Ç-	byteReplacer.Ptr.prototype.Replace = function(s) {
+ 0singleStringReplacer0Estrings:getStringWriterstrings:nextstrings:singleStringReplacer0Ç] Ç-	byteReplacer.Ptr.prototype.Replace = function(s) {
 		var r, buf, i, b, y, _slice, _index;
 		r = this;
 		buf = (go$sliceType(Go$Uint8)).nil;
@@ -694,7 +694,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return go$bytesToString(buf);
 	};
 	byteReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
- 0byteReplacer00stringsbyteReplacer0Ç ÇΩ	byteReplacer.Ptr.prototype.WriteString = function(w, s) {
+ 0byteReplacer0strings:byteReplacer0ÇÌ ÇΩ	byteReplacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, bufsize, buf, ncopy, _ref, _i, _slice, _index, b, i, y, _slice$1, _index$1, _tuple, wn, err$1, _tuple$1, _tuple$2;
 		n = 0;
 		err = null;
@@ -728,7 +728,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return [n, err];
 	};
 	byteReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
- 0byteReplacer00stringsbyteReplacer0Ç, ÇÌ	byteStringReplacer.Ptr.prototype.Replace = function(s) {
+ 0byteReplacer0strings:byteReplacer0Ç) ÇÌ	byteStringReplacer.Ptr.prototype.Replace = function(s) {
 		var r, newSize, anyChanges, i, b, y, buf, bi, i$1, b$1, y$1, n, _slice, _index;
 		r = this;
 		newSize = 0;
@@ -764,7 +764,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return go$bytesToString(buf);
 	};
 	byteStringReplacer.prototype.Replace = function(s) { return this.go$val.Replace(s); };
- 0byteStringReplacer00stringsbyteStringReplacer0Ç? Ç 	byteStringReplacer.Ptr.prototype.WriteString = function(w, s) {
+ 0byteStringReplacer0strings:byteStringReplacer0Ç< Ç 	byteStringReplacer.Ptr.prototype.WriteString = function(w, s) {
 		var n, err, r, bufsize, buf, bi, i, b, new$1, y, _tuple, nw, err$1, _tuple$1, _tuple$2, nw$1, err$2, _tuple$3, _tuple$4, nw$2, err$3, _tuple$5, _tuple$6;
 		n = 0;
 		err = null;
@@ -815,7 +815,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return [n, err];
 	};
 	byteStringReplacer.prototype.WriteString = function(w, s) { return this.go$val.WriteString(w, s); };
- 0byteStringReplacer00stringsbyteStringReplacer0ÇOmakeStringFinderÇ“	makeStringFinder = function(pattern) {
+ 0byteStringReplacer0strings:byteStringReplacer0ÇFmakeStringFinderÇ“	makeStringFinder = function(pattern) {
 		var f, last, _ref, _i, i, i$1, lastPrefix, i$2, _slice, _index, i$3, lenSuffix, _slice$1, _index$1;
 		f = new stringFinder.Ptr(pattern, go$makeNativeArray("Int", 256, function() { return 0; }), (go$sliceType(Go$Int)).make(pattern.length, 0, function() { return 0; }));
 		last = pattern.length - 1 >> 0;
@@ -850,7 +850,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 		return f;
 	};
- 0makeStringFinder0O0stringsstringFinder0strings	HasPrefix0stringslongestCommonSuffix0Ç;longestCommonSuffixÇ	longestCommonSuffix = function(a, b) {
+ 0makeStringFinder0Fstrings:HasPrefixstrings:longestCommonSuffixstrings:stringFinder0Ç;longestCommonSuffixÇ	longestCommonSuffix = function(a, b) {
 		var i;
 		i = 0;
 		while (i < a.length && i < b.length) {
@@ -861,7 +861,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 		return i;
 	};
- 0longestCommonSuffix0 0ÇÔ Ç¶	stringFinder.Ptr.prototype.next = function(text) {
+ 0longestCommonSuffix0 0ÇÈ Ç¶	stringFinder.Ptr.prototype.next = function(text) {
 		var f, i, j, _slice, _index;
 		f = this;
 		i = f.pattern.length - 1 >> 0;
@@ -879,13 +879,13 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return -1;
 	};
 	stringFinder.prototype.next = function(text) { return this.go$val.next(text); };
- 0stringFindernext0)0stringsstringFinder0stringsmax0ZmaxH	max = function(a, b) {
+ 0stringFindernext0#strings:maxstrings:stringFinder0ZmaxH	max = function(a, b) {
 		if (a > b) {
 			return a;
 		}
 		return b;
 	};
- 0max0 0Ç:explodeÇ◊	explode = function(s, n) {
+ 0max0 0Ç4explodeÇ◊	explode = function(s, n) {
 		var l, a, size, ch, _tuple, i, cur, _tuple$1, _slice, _index, _slice$1, _index$1, _slice$2, _index$2;
 		if (n === 0) {
 			return (go$sliceType(Go$String)).nil;
@@ -913,7 +913,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 		return a;
 	};
- 0	explode0G0!unicode/utf8RuneCountInString0"unicode/utf8DecodeRuneInString0ÇìhashstrÇw	hashstr = function(sep) {
+ 0	explode0Aunicode/utf8:DecodeRuneInStringunicode/utf8:RuneCountInString0ÇìhashstrÇw	hashstr = function(sep) {
 		var hash, i, _tuple, pow, sq, i$1, x, x$1;
 		hash = 0;
 		i = 0;
@@ -932,7 +932,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 		return [hash, pow];
 	};
- 0	hashstr0 0ÇıCountÇ¶	Count = go$pkg.Count = function(s, sep) {
+ 0	hashstr0 0ÇÔCountÇ¶	Count = go$pkg.Count = function(s, sep) {
 		var n, c, i, _tuple, hashsep, pow, h, i$1, lastmatch, i$2, x, x$1;
 		n = 0;
 		if (sep.length === 0) {
@@ -980,17 +980,17 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 		return n;
 	};
- 0Count070!unicode/utf8RuneCountInString0stringshashstr0ÅÜContainsX	Contains = go$pkg.Contains = function(s, substr) {
+ 0Count01strings:hashstrunicode/utf8:RuneCountInString0ÅÉContainsX	Contains = go$pkg.Contains = function(s, substr) {
 		return Index(s, substr) >= 0;
 	};
  0
-Contains00stringsIndex0ÅñContainsAny_	ContainsAny = go$pkg.ContainsAny = function(s, chars) {
+Contains0strings:Index0ÅìContainsAny_	ContainsAny = go$pkg.ContainsAny = function(s, chars) {
 		return IndexAny(s, chars) >= 0;
 	};
- 0ContainsAny00stringsIndexAny0ÅîContainsRuneZ	ContainsRune = go$pkg.ContainsRune = function(s, r) {
+ 0ContainsAny0strings:IndexAny0ÅëContainsRuneZ	ContainsRune = go$pkg.ContainsRune = function(s, r) {
 		return IndexRune(s, r) >= 0;
 	};
- 0ContainsRune00strings	IndexRune0ÇÜIndexÇD	Index = go$pkg.Index = function(s, sep) {
+ 0ContainsRune0strings:IndexRune0ÇÄIndexÇD	Index = go$pkg.Index = function(s, sep) {
 		var n, _tuple, hashsep, pow, h, i, i$1, x, x$1;
 		n = sep.length;
 		if (n === 0) {
@@ -1027,7 +1027,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 		return -1;
 	};
- 0Index0*0strings	IndexByte0stringshashstr0Ç	LastIndexÇ¸	LastIndex = go$pkg.LastIndex = function(s, sep) {
+ 0Index0$strings:IndexBytestrings:hashstr0Ç	LastIndexÇ¸	LastIndex = go$pkg.LastIndex = function(s, sep) {
 		var n, c, i, i$1;
 		n = sep.length;
 		if (n === 0) {
@@ -1104,7 +1104,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return -1;
 	};
  0
-IndexAny0 0ÇKLastIndexAnyÇ˝	LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
+IndexAny0 0ÇHLastIndexAnyÇ˝	LastIndexAny = go$pkg.LastIndexAny = function(s, chars) {
 		var i, _tuple, rune, size, _ref, _i, _rune, m;
 		if (chars.length > 0) {
 			i = s.length;
@@ -1125,7 +1125,7 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		}
 		return -1;
 	};
- 0LastIndexAny0(0&unicode/utf8DecodeLastRuneInString0Ç¨genSplitÇh	genSplit = function(s, sep, sepSave, n) {
+ 0LastIndexAny0%#unicode/utf8:DecodeLastRuneInString0Ç¶genSplitÇh	genSplit = function(s, sep, sepSave, n) {
 		var c, start, a, na, i, _slice, _index, _slice$1, _index$1;
 		if (n === 0) {
 			return (go$sliceType(Go$String)).nil;
@@ -1154,25 +1154,24 @@ byteBitmap0stringsbyteStringReplacer0Å⁄ Å∞	Replacer.Ptr.prototype.Replace
 		return go$subslice(a, 0, (na + 1 >> 0));
 	};
  0
-genSplit0&0stringsexplode0stringsCount0ÅÇSplitNU	SplitN = go$pkg.SplitN = function(s, sep, n) {
+genSplit0 strings:Countstrings:explode0SplitNU	SplitN = go$pkg.SplitN = function(s, sep, n) {
 		return genSplit(s, sep, 0, n);
 	};
- 0SplitN00stringsgenSplit0ÅüSplitAfterNh	SplitAfterN = go$pkg.SplitAfterN = function(s, sep, n) {
+ 0SplitN0strings:genSplit0ÅúSplitAfterNh	SplitAfterN = go$pkg.SplitAfterN = function(s, sep, n) {
 		return genSplit(s, sep, sep.length, n);
 	};
- 0SplitAfterN00stringsgenSplit0|SplitQ	Split = go$pkg.Split = function(s, sep) {
+ 0SplitAfterN0strings:genSplit0ySplitQ	Split = go$pkg.Split = function(s, sep) {
 		return genSplit(s, sep, 0, -1);
 	};
- 0Split00stringsgenSplit0Åô
+ 0Split0strings:genSplit0Åñ
 SplitAfterd	SplitAfter = go$pkg.SplitAfter = function(s, sep) {
 		return genSplit(s, sep, sep.length, -1);
 	};
  0
-SplitAfter00stringsgenSplit0ÅòFieldsU	Fields = go$pkg.Fields = function(s) {
+SplitAfter0strings:genSplit0ÅíFieldsU	Fields = go$pkg.Fields = function(s) {
 		return FieldsFunc(s, unicode.IsSpace);
 	};
- 0Fields0+0strings
-FieldsFunc0unicodeIsSpace0Ç>
+ 0Fields0%strings:FieldsFuncunicode:IsSpace0Ç>
 FieldsFuncÇ	FieldsFunc = go$pkg.FieldsFunc = function(s, f) {
 		var n, inField, _ref, _i, _rune, rune, wasInField, a, na, fieldStart, _ref$1, _i$1, _rune$1, rune$1, i, _slice, _index, _slice$1, _index$1;
 		n = 0;
@@ -1247,7 +1246,7 @@ FieldsFunc0 0Ç§JoinÇé	Join = go$pkg.Join = function(a, sep) {
  0	HasPrefix0 0Å∏	HasSuffixÅô	HasSuffix = go$pkg.HasSuffix = function(s, suffix) {
 		return s.length >= suffix.length && s.substring((s.length - suffix.length >> 0)) === suffix;
 	};
- 0	HasSuffix0 0Ç◊MapÇé	Map = go$pkg.Map = function(mapping, s) {
+ 0	HasSuffix0 0Ç—MapÇé	Map = go$pkg.Map = function(mapping, s) {
 		var maxbytes, nbytes, b, _ref, _i, _rune, c, i, r, wid, x, nb;
 		maxbytes = s.length;
 		nbytes = 0;
@@ -1287,8 +1286,7 @@ FieldsFunc0 0Ç§JoinÇé	Join = go$pkg.Join = function(a, sep) {
 		}
 		return go$bytesToString(go$subslice(b, 0, nbytes));
 	};
- 0Map050unicode/utf8RuneLen0unicode/utf8
-EncodeRune0ÇçRepeatÇs	Repeat = go$pkg.Repeat = function(s, count) {
+ 0Map0/unicode/utf8:EncodeRuneunicode/utf8:RuneLen0ÇçRepeatÇs	Repeat = go$pkg.Repeat = function(s, count) {
 		var x, b, bp, i;
 		b = (go$sliceType(Go$Uint8)).make((x = s.length, (((x >>> 16 << 16) * count >> 0) + (x << 16 >>> 16) * count) >> 0), 0, function() { return 0; });
 		bp = 0;
@@ -1299,31 +1297,31 @@ EncodeRune0ÇçRepeatÇs	Repeat = go$pkg.Repeat = function(s, count) {
 		}
 		return go$bytesToString(b);
 	};
- 0Repeat0 0ÅéToUpperP	ToUpper = go$pkg.ToUpper = function(s) {
+ 0Repeat0 0ÅàToUpperP	ToUpper = go$pkg.ToUpper = function(s) {
 		return Map(unicode.ToUpper, s);
 	};
- 0	ToUpper0$0stringsMap0unicodeToUpper0ÅéToLowerP	ToLower = go$pkg.ToLower = function(s) {
+ 0	ToUpper0strings:Mapunicode:ToUpper0ÅàToLowerP	ToLower = go$pkg.ToLower = function(s) {
 		return Map(unicode.ToLower, s);
 	};
- 0	ToLower0$0stringsMap0unicodeToLower0ÅéToTitleP	ToTitle = go$pkg.ToTitle = function(s) {
+ 0	ToLower0strings:Mapunicode:ToLower0ÅàToTitleP	ToTitle = go$pkg.ToTitle = function(s) {
 		return Map(unicode.ToTitle, s);
 	};
- 0	ToTitle0$0stringsMap0unicodeToTitle0ÅæToUpperSpecialÅÖ	ToUpperSpecial = go$pkg.ToUpperSpecial = function(_case, s) {
+ 0	ToTitle0strings:Mapunicode:ToTitle0ÅªToUpperSpecialÅÖ	ToUpperSpecial = go$pkg.ToUpperSpecial = function(_case, s) {
 		return Map((function(r) {
 			return _case.ToUpper(r);
 		}), s);
 	};
- 0ToUpperSpecial00stringsMap0ÅæToLowerSpecialÅÖ	ToLowerSpecial = go$pkg.ToLowerSpecial = function(_case, s) {
+ 0ToUpperSpecial0strings:Map0ÅªToLowerSpecialÅÖ	ToLowerSpecial = go$pkg.ToLowerSpecial = function(_case, s) {
 		return Map((function(r) {
 			return _case.ToLower(r);
 		}), s);
 	};
- 0ToLowerSpecial00stringsMap0ÅæToTitleSpecialÅÖ	ToTitleSpecial = go$pkg.ToTitleSpecial = function(_case, s) {
+ 0ToLowerSpecial0strings:Map0ÅªToTitleSpecialÅÖ	ToTitleSpecial = go$pkg.ToTitleSpecial = function(_case, s) {
 		return Map((function(r) {
 			return _case.ToTitle(r);
 		}), s);
 	};
- 0ToTitleSpecial00stringsMap0Ç⁄isSeparatorÇy	isSeparator = function(r) {
+ 0ToTitleSpecial0strings:Map0Ç—isSeparatorÇy	isSeparator = function(r) {
 		if (r <= 127) {
 			if (48 <= r && r <= 57) {
 				return false;
@@ -1341,7 +1339,7 @@ EncodeRune0ÇçRepeatÇs	Repeat = go$pkg.Repeat = function(s, count) {
 		}
 		return unicode.IsSpace(r);
 	};
- 0isSeparator0=0unicodeIsLetter0unicodeIsDigit0unicodeIsSpace0Ç$TitleÅ—	Title = go$pkg.Title = function(s) {
+ 0isSeparator04unicode:IsDigitunicode:IsLetterunicode:IsSpace0ÇTitleÅ—	Title = go$pkg.Title = function(s) {
 		var prev;
 		prev = 32;
 		return Map((function(r) {
@@ -1353,7 +1351,7 @@ EncodeRune0ÇçRepeatÇs	Repeat = go$pkg.Repeat = function(s, count) {
 			return r;
 		}), s);
 	};
- 0Title0<0stringsMap0stringsisSeparator0unicodeToTitle0Å⁄TrimLeftFuncÅü	TrimLeftFunc = go$pkg.TrimLeftFunc = function(s, f) {
+ 0Title03strings:Mapstrings:isSeparatorunicode:ToTitle0Å◊TrimLeftFuncÅü	TrimLeftFunc = go$pkg.TrimLeftFunc = function(s, f) {
 		var i;
 		i = indexFunc(s, f, false);
 		if (i === -1) {
@@ -1361,7 +1359,7 @@ EncodeRune0ÇçRepeatÇs	Repeat = go$pkg.Repeat = function(s, count) {
 		}
 		return s.substring(i);
 	};
- 0TrimLeftFunc00strings	indexFunc0Ç†TrimRightFuncÇ:	TrimRightFunc = go$pkg.TrimRightFunc = function(s, f) {
+ 0TrimLeftFunc0strings:indexFunc0ÇöTrimRightFuncÇ:	TrimRightFunc = go$pkg.TrimRightFunc = function(s, f) {
 		var i, _tuple, wid;
 		i = lastIndexFunc(s, f, false);
 		if (i >= 0 && s.charCodeAt(i) >= 128) {
@@ -1372,17 +1370,17 @@ EncodeRune0ÇçRepeatÇs	Repeat = go$pkg.Repeat = function(s, count) {
 		}
 		return s.substring(0, i);
 	};
- 0TrimRightFunc0>0stringslastIndexFunc0"unicode/utf8DecodeRuneInString0Å±TrimFuncb	TrimFunc = go$pkg.TrimFunc = function(s, f) {
+ 0TrimRightFunc08strings:lastIndexFuncunicode/utf8:DecodeRuneInString0Å´TrimFuncb	TrimFunc = go$pkg.TrimFunc = function(s, f) {
 		return TrimRightFunc(TrimLeftFunc(s, f), f);
 	};
  0
-TrimFunc030stringsTrimRightFunc0stringsTrimLeftFunc0Åâ	IndexFuncU	IndexFunc = go$pkg.IndexFunc = function(s, f) {
+TrimFunc0-strings:TrimLeftFuncstrings:TrimRightFunc0ÅÜ	IndexFuncU	IndexFunc = go$pkg.IndexFunc = function(s, f) {
 		return indexFunc(s, f, true);
 	};
- 0	IndexFunc00strings	indexFunc0Å°LastIndexFunca	LastIndexFunc = go$pkg.LastIndexFunc = function(s, f) {
+ 0	IndexFunc0strings:indexFunc0ÅûLastIndexFunca	LastIndexFunc = go$pkg.LastIndexFunc = function(s, f) {
 		return lastIndexFunc(s, f, true);
 	};
- 0LastIndexFunc00stringslastIndexFunc0Çµ	indexFuncÇq	indexFunc = function(s, f, truth) {
+ 0LastIndexFunc0strings:lastIndexFunc0Ç≤	indexFuncÇq	indexFunc = function(s, f, truth) {
 		var start, wid, r, _tuple;
 		start = 0;
 		while (start < s.length) {
@@ -1398,7 +1396,7 @@ EncodeRune0ÇçRepeatÇs	Repeat = go$pkg.Repeat = function(s, count) {
 		}
 		return -1;
 	};
- 0	indexFunc0$0"unicode/utf8DecodeRuneInString0ÇklastIndexFuncÇ	lastIndexFunc = function(s, f, truth) {
+ 0	indexFunc0!unicode/utf8:DecodeRuneInString0ÇhlastIndexFuncÇ	lastIndexFunc = function(s, f, truth) {
 		var i, _tuple, r, size;
 		i = s.length;
 		while (i > 0) {
@@ -1410,34 +1408,34 @@ EncodeRune0ÇçRepeatÇs	Repeat = go$pkg.Repeat = function(s, count) {
 		}
 		return -1;
 	};
- 0lastIndexFunc0(0&unicode/utf8DecodeLastRuneInString0Å™makeCutsetFuncl	makeCutsetFunc = function(cutset) {
+ 0lastIndexFunc0%#unicode/utf8:DecodeLastRuneInString0ÅßmakeCutsetFuncl	makeCutsetFunc = function(cutset) {
 		return (function(r) {
 			return IndexRune(cutset, r) >= 0;
 		});
 	};
- 0makeCutsetFunc00strings	IndexRune0Å◊TrimÅí	Trim = go$pkg.Trim = function(s, cutset) {
+ 0makeCutsetFunc0strings:IndexRune0Å—TrimÅí	Trim = go$pkg.Trim = function(s, cutset) {
 		if (s === "" || cutset === "") {
 			return s;
 		}
 		return TrimFunc(s, makeCutsetFunc(cutset));
 	};
- 0Trim000stringsTrimFunc0stringsmakeCutsetFunc0ÅÔTrimLeftÅû	TrimLeft = go$pkg.TrimLeft = function(s, cutset) {
+ 0Trim0*strings:TrimFuncstrings:makeCutsetFunc0ÅÈTrimLeftÅû	TrimLeft = go$pkg.TrimLeft = function(s, cutset) {
 		if (s === "" || cutset === "") {
 			return s;
 		}
 		return TrimLeftFunc(s, makeCutsetFunc(cutset));
 	};
  0
-TrimLeft040stringsTrimLeftFunc0stringsmakeCutsetFunc0Åı	TrimRightÅ°	TrimRight = go$pkg.TrimRight = function(s, cutset) {
+TrimLeft0.strings:TrimLeftFuncstrings:makeCutsetFunc0ÅÔ	TrimRightÅ°	TrimRight = go$pkg.TrimRight = function(s, cutset) {
 		if (s === "" || cutset === "") {
 			return s;
 		}
 		return TrimRightFunc(s, makeCutsetFunc(cutset));
 	};
- 0	TrimRight050stringsTrimRightFunc0stringsmakeCutsetFunc0Å†	TrimSpaceY	TrimSpace = go$pkg.TrimSpace = function(s) {
+ 0	TrimRight0/strings:TrimRightFuncstrings:makeCutsetFunc0Åö	TrimSpaceY	TrimSpace = go$pkg.TrimSpace = function(s) {
 		return TrimFunc(s, unicode.IsSpace);
 	};
- 0	TrimSpace0)0stringsTrimFunc0unicodeIsSpace0Å«
+ 0	TrimSpace0#strings:TrimFuncunicode:IsSpace0Åƒ
 TrimPrefixÅê	TrimPrefix = go$pkg.TrimPrefix = function(s, prefix) {
 		if (HasPrefix(s, prefix)) {
 			return s.substring(prefix.length);
@@ -1445,7 +1443,7 @@ TrimPrefixÅê	TrimPrefix = go$pkg.TrimPrefix = function(s, prefix) {
 		return s;
 	};
  0
-TrimPrefix00strings	HasPrefix0Å‹
+TrimPrefix0strings:HasPrefix0ÅŸ
 TrimSuffixÅ•	TrimSuffix = go$pkg.TrimSuffix = function(s, suffix) {
 		if (HasSuffix(s, suffix)) {
 			return s.substring(0, (s.length - suffix.length >> 0));
@@ -1453,7 +1451,7 @@ TrimSuffixÅ•	TrimSuffix = go$pkg.TrimSuffix = function(s, suffix) {
 		return s;
 	};
  0
-TrimSuffix00strings	HasSuffix0ÇdReplaceÇ 	Replace = go$pkg.Replace = function(s, old, new$1, n) {
+TrimSuffix0strings:HasSuffix0Ç[ReplaceÇ 	Replace = go$pkg.Replace = function(s, old, new$1, n) {
 		var m, x, t, w, start, i, j, _tuple, wid;
 		if (old === new$1 || (n === 0)) {
 			return s;
@@ -1485,7 +1483,7 @@ TrimSuffix00strings	HasSuffix0ÇdReplaceÇ 	Replace = go$pkg.Replace = f
 		w = w + (go$copyString(go$subslice(t, w), s.substring(start))) >> 0;
 		return go$bytesToString(go$subslice(t, 0, w));
 	};
- 0	Replace0H0stringsCount0"unicode/utf8DecodeRuneInString0stringsIndex0Çx	EqualFoldÇ	EqualFold = go$pkg.EqualFold = function(s, t) {
+ 0	Replace0?strings:Countstrings:Indexunicode/utf8:DecodeRuneInString0Çr	EqualFoldÇ	EqualFold = go$pkg.EqualFold = function(s, t) {
 		var _tuple, sr, tr, _tuple$1, _tuple$2, r, size, _tuple$3, _tuple$4, _tuple$5, r$1, size$1, _tuple$6, _tuple$7, r$2;
 		while (!(s === "") && !(t === "")) {
 			_tuple = [0, 0], sr = _tuple[0], tr = _tuple[1];
@@ -1524,8 +1522,7 @@ TrimSuffix00strings	HasSuffix0ÇdReplaceÇ 	Replace = go$pkg.Replace = f
 		}
 		return s === t;
 	};
- 0	EqualFold0;0"unicode/utf8DecodeRuneInString0unicode
-SimpleFold0|	IndexByte^	IndexByte = go$pkg.IndexByte = function(s, c) { return s.indexOf(String.fromCharCode(c)); };
+ 0	EqualFold05unicode/utf8:DecodeRuneInStringunicode:SimpleFold0|	IndexByte^	IndexByte = go$pkg.IndexByte = function(s, c) { return s.indexOf(String.fromCharCode(c)); };
  0	IndexByte0 0
    0 0 0
    0 0 0 

@@ -1,4 +1,4 @@
-0É:KreflectÇE&package reflect
+0É3hreflectÇE&package reflect
 import strconv "strconv"
 import sync "sync"
 import math "math"
@@ -287,33 +287,33 @@ func (? *@"".uncommonType) @"".PkgPath() (? string)
 func (? *@"".uncommonType) @"".uncommon() (? *@"".uncommonType)
 type @"".visit struct { @"".a1 uintptr; @"".a2 uintptr; @"".typ @"".Type }
 $$
-0Jruntimematherrorsunicode/utf8strconvsync/atomicsyncreflect0D0strconvstrconv0syncsync0mathmath0runtimeruntime0ÉÙ0ÇΩvisitÇ	visit = go$pkg.visit = go$newType(0, "Struct", "reflect.visit", "visit", "reflect", function(a1_, a2_, typ_) {
+0Jruntimematherrorsunicode/utf8strconvsync/atomicsyncreflect0D0strconvstrconv0syncsync0mathmath0runtimeruntime0ÉÌú0Ç∫visitÇ	visit = go$pkg.visit = go$newType(0, "Struct", "reflect.visit", "visit", "reflect", function(a1_, a2_, typ_) {
 		this.go$val = this;
 		this.a1 = a1_ !== undefined ? a1_ : 0;
 		this.a2 = a2_ !== undefined ? a2_ : 0;
 		this.typ = typ_ !== undefined ? typ_ : null;
 	});
 Åá		visit.init([["a1", "a1", "reflect", Go$Uintptr, ""], ["a2", "a2", "reflect", Go$Uintptr, ""], ["typ", "typ", "reflect", Type, ""]]);
-0visit00reflectType0ÇämakeFuncImplÇ\	makeFuncImpl = go$pkg.makeFuncImpl = go$newType(0, "Struct", "reflect.makeFuncImpl", "makeFuncImpl", "reflect", function(code_, typ_, fn_) {
+0visit0reflect:Type0ÇÑmakeFuncImplÇ\	makeFuncImpl = go$pkg.makeFuncImpl = go$newType(0, "Struct", "reflect.makeFuncImpl", "makeFuncImpl", "reflect", function(code_, typ_, fn_) {
 		this.go$val = this;
 		this.code = code_ !== undefined ? code_ : 0;
 		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(funcType)).nil;
 		this.fn = fn_ !== undefined ? fn_ : go$throwNilPointerError;
 	});
 Å‡		makeFuncImpl.init([["code", "code", "reflect", Go$Uintptr, ""], ["typ", "typ", "reflect", (go$ptrType(funcType)), ""], ["fn", "fn", "reflect", (go$funcType([(go$sliceType(Value))], [(go$sliceType(Value))], false)), ""]]);
-0makeFuncImpl0'0reflectfuncType0reflectValue0ÇmethodValueÇC	methodValue = go$pkg.methodValue = go$newType(0, "Struct", "reflect.methodValue", "methodValue", "reflect", function(fn_, method_, rcvr_) {
+0makeFuncImpl0!reflect:Valuereflect:funcType0ÇmethodValueÇC	methodValue = go$pkg.methodValue = go$newType(0, "Struct", "reflect.methodValue", "methodValue", "reflect", function(fn_, method_, rcvr_) {
 		this.go$val = this;
 		this.fn = fn_ !== undefined ? fn_ : 0;
 		this.method = method_ !== undefined ? method_ : 0;
 		this.rcvr = rcvr_ !== undefined ? rcvr_ : new Value.Ptr();
 	});
 Åî		methodValue.init([["fn", "fn", "reflect", Go$Uintptr, ""], ["method", "method", "reflect", Go$Int, ""], ["rcvr", "rcvr", "reflect", Value, ""]]);
-0methodValue00reflectValue0ÇType[	Type = go$pkg.Type = go$newType(0, "Interface", "reflect.Type", "Type", "reflect", null);
+0methodValue0reflect:Value0ÇType[	Type = go$pkg.Type = go$newType(0, "Interface", "reflect.Type", "Type", "reflect", null);
 Ç'		Type.init([["Align", "", (go$funcType([], [Go$Int], false))], ["AssignableTo", "", (go$funcType([Type], [Go$Bool], false))], ["Bits", "", (go$funcType([], [Go$Int], false))], ["ChanDir", "", (go$funcType([], [ChanDir], false))], ["ConvertibleTo", "", (go$funcType([Type], [Go$Bool], false))], ["Elem", "", (go$funcType([], [Type], false))], ["Field", "", (go$funcType([Go$Int], [StructField], false))], ["FieldAlign", "", (go$funcType([], [Go$Int], false))], ["FieldByIndex", "", (go$funcType([(go$sliceType(Go$Int))], [StructField], false))], ["FieldByName", "", (go$funcType([Go$String], [StructField, Go$Bool], false))], ["FieldByNameFunc", "", (go$funcType([(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false))], ["Implements", "", (go$funcType([Type], [Go$Bool], false))], ["In", "", (go$funcType([Go$Int], [Type], false))], ["IsVariadic", "", (go$funcType([], [Go$Bool], false))], ["Key", "", (go$funcType([], [Type], false))], ["Kind", "", (go$funcType([], [Kind], false))], ["Len", "", (go$funcType([], [Go$Int], false))], ["Method", "", (go$funcType([Go$Int], [Method], false))], ["MethodByName", "", (go$funcType([Go$String], [Method, Go$Bool], false))], ["Name", "", (go$funcType([], [Go$String], false))], ["NumField", "", (go$funcType([], [Go$Int], false))], ["NumIn", "", (go$funcType([], [Go$Int], false))], ["NumMethod", "", (go$funcType([], [Go$Int], false))], ["NumOut", "", (go$funcType([], [Go$Int], false))], ["Out", "", (go$funcType([Go$Int], [Type], false))], ["PkgPath", "", (go$funcType([], [Go$String], false))], ["Size", "", (go$funcType([], [Go$Uintptr], false))], ["String", "", (go$funcType([], [Go$String], false))], ["common", "reflect", (go$funcType([], [(go$ptrType(rtype))], false))], ["uncommon", "reflect", (go$funcType([], [(go$ptrType(uncommonType))], false))]]);
-0Type0{0reflectChanDir0reflectStructField0reflectKind0reflectMethod0reflectrtype0reflectuncommonType0Å˜KindV	Kind = go$pkg.Kind = go$newType(4, "Uint", "reflect.Kind", "Kind", "reflect", null);
+0Type0ireflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:rtypereflect:uncommonType0Å˜KindV	Kind = go$pkg.Kind = go$newType(4, "Uint", "reflect.Kind", "Kind", "reflect", null);
 Åå		Kind.methods = [["String", "", [], [Go$String], false, -1]];
 		(go$ptrType(Kind)).methods = [["String", "", [], [Go$String], false, -1]];
-0Kind0 0Ç€rtypeÇ}	rtype = go$pkg.rtype = go$newType(0, "Struct", "reflect.rtype", "rtype", "reflect", function(size_, hash_, _$2_, align_, fieldAlign_, kind_, alg_, gc_, string_, uncommonType_, ptrToThis_) {
+0Kind0 0Ç…rtypeÇ}	rtype = go$pkg.rtype = go$newType(0, "Struct", "reflect.rtype", "rtype", "reflect", function(size_, hash_, _$2_, align_, fieldAlign_, kind_, alg_, gc_, string_, uncommonType_, ptrToThis_) {
 		this.go$val = this;
 		this.size = size_ !== undefined ? size_ : 0;
 		this.hash = hash_ !== undefined ? hash_ : 0;
@@ -330,7 +330,7 @@ $$
 Ç 		rtype.methods = [["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 9]];
 		(go$ptrType(rtype)).methods = [["Align", "", [], [Go$Int], false, -1], ["AssignableTo", "", [Type], [Go$Bool], false, -1], ["Bits", "", [], [Go$Int], false, -1], ["ChanDir", "", [], [ChanDir], false, -1], ["ConvertibleTo", "", [Type], [Go$Bool], false, -1], ["Elem", "", [], [Type], false, -1], ["Field", "", [Go$Int], [StructField], false, -1], ["FieldAlign", "", [], [Go$Int], false, -1], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [StructField], false, -1], ["FieldByName", "", [Go$String], [StructField, Go$Bool], false, -1], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false, -1], ["Implements", "", [Type], [Go$Bool], false, -1], ["In", "", [Go$Int], [Type], false, -1], ["IsVariadic", "", [], [Go$Bool], false, -1], ["Key", "", [], [Type], false, -1], ["Kind", "", [], [Kind], false, -1], ["Len", "", [], [Go$Int], false, -1], ["Method", "", [Go$Int], [Method], false, -1], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, -1], ["Name", "", [], [Go$String], false, -1], ["NumField", "", [], [Go$Int], false, -1], ["NumIn", "", [], [Go$Int], false, -1], ["NumMethod", "", [], [Go$Int], false, -1], ["NumOut", "", [], [Go$Int], false, -1], ["Out", "", [Go$Int], [Type], false, -1], ["PkgPath", "", [], [Go$String], false, -1], ["Size", "", [], [Go$Uintptr], false, -1], ["String", "", [], [Go$String], false, -1], ["common", "reflect", [], [(go$ptrType(rtype))], false, -1], ["ptrTo", "reflect", [], [(go$ptrType(rtype))], false, -1], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 9]];
 		rtype.init([["size", "size", "reflect", Go$Uintptr, ""], ["hash", "hash", "reflect", Go$Uint32, ""], ["_$2", "_", "reflect", Go$Uint8, ""], ["align", "align", "reflect", Go$Uint8, ""], ["fieldAlign", "fieldAlign", "reflect", Go$Uint8, ""], ["kind", "kind", "reflect", Go$Uint8, ""], ["alg", "alg", "reflect", (go$ptrType(Go$Uintptr)), ""], ["gc", "gc", "reflect", Go$UnsafePointer, ""], ["string", "string", "reflect", (go$ptrType(Go$String)), ""], ["uncommonType", "", "reflect", (go$ptrType(uncommonType)), ""], ["ptrToThis", "ptrToThis", "reflect", (go$ptrType(rtype)), ""]]);
-0rtype0z0reflectuncommonType0reflectType0reflectChanDir0reflectStructField0reflectKind0reflectMethod0Ç®methodÇ#	method = go$pkg.method = go$newType(0, "Struct", "reflect.method", "method", "reflect", function(name_, pkgPath_, mtyp_, typ_, ifn_, tfn_) {
+0rtype0hreflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:Typereflect:uncommonType0Ç•methodÇ#	method = go$pkg.method = go$newType(0, "Struct", "reflect.method", "method", "reflect", function(name_, pkgPath_, mtyp_, typ_, ifn_, tfn_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
@@ -340,7 +340,7 @@ $$
 		this.tfn = tfn_ !== undefined ? tfn_ : 0;
 	});
 ÇW		method.init([["name", "name", "reflect", (go$ptrType(Go$String)), ""], ["pkgPath", "pkgPath", "reflect", (go$ptrType(Go$String)), ""], ["mtyp", "mtyp", "reflect", (go$ptrType(rtype)), ""], ["typ", "typ", "reflect", (go$ptrType(rtype)), ""], ["ifn", "ifn", "reflect", Go$UnsafePointer, ""], ["tfn", "tfn", "reflect", Go$UnsafePointer, ""]]);
-0method00reflectrtype0ÇuncommonTypeÇû	uncommonType = go$pkg.uncommonType = go$newType(0, "Struct", "reflect.uncommonType", "uncommonType", "reflect", function(name_, pkgPath_, methods_) {
+0method0reflect:rtype0ÇuncommonTypeÇû	uncommonType = go$pkg.uncommonType = go$newType(0, "Struct", "reflect.uncommonType", "uncommonType", "reflect", function(name_, pkgPath_, methods_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
@@ -348,10 +348,10 @@ $$
 	});
 Ç2		(go$ptrType(uncommonType)).methods = [["Method", "", [Go$Int], [Method], false, -1], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, -1], ["Name", "", [], [Go$String], false, -1], ["NumMethod", "", [], [Go$Int], false, -1], ["PkgPath", "", [], [Go$String], false, -1], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, -1]];
 		uncommonType.init([["name", "name", "reflect", (go$ptrType(Go$String)), ""], ["pkgPath", "pkgPath", "reflect", (go$ptrType(Go$String)), ""], ["methods", "methods", "reflect", (go$sliceType(method)), ""]]);
-0uncommonType0&0reflectmethod0reflectMethod0ÇChanDira	ChanDir = go$pkg.ChanDir = go$newType(4, "Int", "reflect.ChanDir", "ChanDir", "reflect", null);
+0uncommonType0 reflect:Methodreflect:method0ÇChanDira	ChanDir = go$pkg.ChanDir = go$newType(4, "Int", "reflect.ChanDir", "ChanDir", "reflect", null);
 Åí		ChanDir.methods = [["String", "", [], [Go$String], false, -1]];
 		(go$ptrType(ChanDir)).methods = [["String", "", [], [Go$String], false, -1]];
-0	ChanDir0 0Ç	°	arrayTypeÇ°	arrayType = go$pkg.arrayType = go$newType(0, "Struct", "reflect.arrayType", "arrayType", "reflect", function(rtype_, elem_, slice_, len_) {
+0	ChanDir0 0Ç	ã	arrayTypeÇ°	arrayType = go$pkg.arrayType = go$newType(0, "Struct", "reflect.arrayType", "arrayType", "reflect", function(rtype_, elem_, slice_, len_) {
 		this.go$val = this;
 		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
 		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(rtype)).nil;
@@ -361,7 +361,7 @@ $$
 ÇQ		arrayType.methods = [["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		(go$ptrType(arrayType)).methods = [["Align", "", [], [Go$Int], false, 0], ["AssignableTo", "", [Type], [Go$Bool], false, 0], ["Bits", "", [], [Go$Int], false, 0], ["ChanDir", "", [], [ChanDir], false, 0], ["ConvertibleTo", "", [Type], [Go$Bool], false, 0], ["Elem", "", [], [Type], false, 0], ["Field", "", [Go$Int], [StructField], false, 0], ["FieldAlign", "", [], [Go$Int], false, 0], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [StructField], false, 0], ["FieldByName", "", [Go$String], [StructField, Go$Bool], false, 0], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false, 0], ["Implements", "", [Type], [Go$Bool], false, 0], ["In", "", [Go$Int], [Type], false, 0], ["IsVariadic", "", [], [Go$Bool], false, 0], ["Key", "", [], [Type], false, 0], ["Kind", "", [], [Kind], false, 0], ["Len", "", [], [Go$Int], false, 0], ["Method", "", [Go$Int], [Method], false, 0], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, 0], ["Name", "", [], [Go$String], false, 0], ["NumField", "", [], [Go$Int], false, 0], ["NumIn", "", [], [Go$Int], false, 0], ["NumMethod", "", [], [Go$Int], false, 0], ["NumOut", "", [], [Go$Int], false, 0], ["Out", "", [Go$Int], [Type], false, 0], ["PkgPath", "", [], [Go$String], false, 0], ["Size", "", [], [Go$Uintptr], false, 0], ["String", "", [], [Go$String], false, 0], ["common", "reflect", [], [(go$ptrType(rtype))], false, 0], ["ptrTo", "reflect", [], [(go$ptrType(rtype))], false, 0], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		arrayType.init([["rtype", "", "reflect", rtype, "reflect:\"array\""], ["elem", "elem", "reflect", (go$ptrType(rtype)), ""], ["slice", "slice", "reflect", (go$ptrType(rtype)), ""], ["len", "len", "reflect", Go$Uintptr, ""]]);
-0	arrayType0Åå0reflectrtype0reflectuncommonType0reflectType0reflectChanDir0reflectStructField0reflectKind0reflectMethod0Ç	chanTypeÇM	chanType = go$pkg.chanType = go$newType(0, "Struct", "reflect.chanType", "chanType", "reflect", function(rtype_, elem_, dir_) {
+0	arrayType0wreflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:Typereflect:rtypereflect:uncommonType0Ç˘chanTypeÇM	chanType = go$pkg.chanType = go$newType(0, "Struct", "reflect.chanType", "chanType", "reflect", function(rtype_, elem_, dir_) {
 		this.go$val = this;
 		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
 		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(rtype)).nil;
@@ -371,7 +371,7 @@ $$
 		(go$ptrType(chanType)).methods = [["Align", "", [], [Go$Int], false, 0], ["AssignableTo", "", [Type], [Go$Bool], false, 0], ["Bits", "", [], [Go$Int], false, 0], ["ChanDir", "", [], [ChanDir], false, 0], ["ConvertibleTo", "", [Type], [Go$Bool], false, 0], ["Elem", "", [], [Type], false, 0], ["Field", "", [Go$Int], [StructField], false, 0], ["FieldAlign", "", [], [Go$Int], false, 0], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [StructField], false, 0], ["FieldByName", "", [Go$String], [StructField, Go$Bool], false, 0], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false, 0], ["Implements", "", [Type], [Go$Bool], false, 0], ["In", "", [Go$Int], [Type], false, 0], ["IsVariadic", "", [], [Go$Bool], false, 0], ["Key", "", [], [Type], false, 0], ["Kind", "", [], [Kind], false, 0], ["Len", "", [], [Go$Int], false, 0], ["Method", "", [Go$Int], [Method], false, 0], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, 0], ["Name", "", [], [Go$String], false, 0], ["NumField", "", [], [Go$Int], false, 0], ["NumIn", "", [], [Go$Int], false, 0], ["NumMethod", "", [], [Go$Int], false, 0], ["NumOut", "", [], [Go$Int], false, 0], ["Out", "", [Go$Int], [Type], false, 0], ["PkgPath", "", [], [Go$String], false, 0], ["Size", "", [], [Go$Uintptr], false, 0], ["String", "", [], [Go$String], false, 0], ["common", "reflect", [], [(go$ptrType(rtype))], false, 0], ["ptrTo", "reflect", [], [(go$ptrType(rtype))], false, 0], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		chanType.init([["rtype", "", "reflect", rtype, "reflect:\"chan\""], ["elem", "elem", "reflect", (go$ptrType(rtype)), ""], ["dir", "dir", "reflect", Go$Uintptr, ""]]);
 0
-chanType0Åå0reflectrtype0reflectuncommonType0reflectType0reflectChanDir0reflectStructField0reflectKind0reflectMethod0Ç	ÓfuncTypeÇ—	funcType = go$pkg.funcType = go$newType(0, "Struct", "reflect.funcType", "funcType", "reflect", function(rtype_, dotdotdot_, in$2_, out_) {
+chanType0wreflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:Typereflect:rtypereflect:uncommonType0Ç	ÿfuncTypeÇ—	funcType = go$pkg.funcType = go$newType(0, "Struct", "reflect.funcType", "funcType", "reflect", function(rtype_, dotdotdot_, in$2_, out_) {
 		this.go$val = this;
 		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
 		this.dotdotdot = dotdotdot_ !== undefined ? dotdotdot_ : false;
@@ -382,14 +382,14 @@ $$
 		(go$ptrType(funcType)).methods = [["Align", "", [], [Go$Int], false, 0], ["AssignableTo", "", [Type], [Go$Bool], false, 0], ["Bits", "", [], [Go$Int], false, 0], ["ChanDir", "", [], [ChanDir], false, 0], ["ConvertibleTo", "", [Type], [Go$Bool], false, 0], ["Elem", "", [], [Type], false, 0], ["Field", "", [Go$Int], [StructField], false, 0], ["FieldAlign", "", [], [Go$Int], false, 0], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [StructField], false, 0], ["FieldByName", "", [Go$String], [StructField, Go$Bool], false, 0], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false, 0], ["Implements", "", [Type], [Go$Bool], false, 0], ["In", "", [Go$Int], [Type], false, 0], ["IsVariadic", "", [], [Go$Bool], false, 0], ["Key", "", [], [Type], false, 0], ["Kind", "", [], [Kind], false, 0], ["Len", "", [], [Go$Int], false, 0], ["Method", "", [Go$Int], [Method], false, 0], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, 0], ["Name", "", [], [Go$String], false, 0], ["NumField", "", [], [Go$Int], false, 0], ["NumIn", "", [], [Go$Int], false, 0], ["NumMethod", "", [], [Go$Int], false, 0], ["NumOut", "", [], [Go$Int], false, 0], ["Out", "", [Go$Int], [Type], false, 0], ["PkgPath", "", [], [Go$String], false, 0], ["Size", "", [], [Go$Uintptr], false, 0], ["String", "", [], [Go$String], false, 0], ["common", "reflect", [], [(go$ptrType(rtype))], false, 0], ["ptrTo", "reflect", [], [(go$ptrType(rtype))], false, 0], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		funcType.init([["rtype", "", "reflect", rtype, "reflect:\"func\""], ["dotdotdot", "dotdotdot", "reflect", Go$Bool, ""], ["in$2", "in", "reflect", (go$sliceType((go$ptrType(rtype)))), ""], ["out", "out", "reflect", (go$sliceType((go$ptrType(rtype)))), ""]]);
 0
-funcType0Åå0reflectrtype0reflectuncommonType0reflectType0reflectChanDir0reflectStructField0reflectKind0reflectMethod0ÇfimethodÇw	imethod = go$pkg.imethod = go$newType(0, "Struct", "reflect.imethod", "imethod", "reflect", function(name_, pkgPath_, typ_) {
+funcType0wreflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:Typereflect:rtypereflect:uncommonType0ÇcimethodÇw	imethod = go$pkg.imethod = go$newType(0, "Struct", "reflect.imethod", "imethod", "reflect", function(name_, pkgPath_, typ_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
 		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(rtype)).nil;
 	});
 Å¿		imethod.init([["name", "name", "reflect", (go$ptrType(Go$String)), ""], ["pkgPath", "pkgPath", "reflect", (go$ptrType(Go$String)), ""], ["typ", "typ", "reflect", (go$ptrType(rtype)), ""]]);
-0	imethod00reflectrtype0Ç	interfaceTypeÇ?	interfaceType = go$pkg.interfaceType = go$newType(0, "Struct", "reflect.interfaceType", "interfaceType", "reflect", function(rtype_, methods_) {
+0	imethod0reflect:rtype0Ç˝interfaceTypeÇ?	interfaceType = go$pkg.interfaceType = go$newType(0, "Struct", "reflect.interfaceType", "interfaceType", "reflect", function(rtype_, methods_) {
 		this.go$val = this;
 		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
 		this.methods = methods_ !== undefined ? methods_ : (go$sliceType(imethod)).nil;
@@ -397,8 +397,8 @@ $$
 Ç		interfaceType.methods = [["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		(go$ptrType(interfaceType)).methods = [["Align", "", [], [Go$Int], false, 0], ["AssignableTo", "", [Type], [Go$Bool], false, 0], ["Bits", "", [], [Go$Int], false, 0], ["ChanDir", "", [], [ChanDir], false, 0], ["ConvertibleTo", "", [Type], [Go$Bool], false, 0], ["Elem", "", [], [Type], false, 0], ["Field", "", [Go$Int], [StructField], false, 0], ["FieldAlign", "", [], [Go$Int], false, 0], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [StructField], false, 0], ["FieldByName", "", [Go$String], [StructField, Go$Bool], false, 0], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false, 0], ["Implements", "", [Type], [Go$Bool], false, 0], ["In", "", [Go$Int], [Type], false, 0], ["IsVariadic", "", [], [Go$Bool], false, 0], ["Key", "", [], [Type], false, 0], ["Kind", "", [], [Kind], false, 0], ["Len", "", [], [Go$Int], false, 0], ["Method", "", [Go$Int], [Method], false, -1], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, -1], ["Name", "", [], [Go$String], false, 0], ["NumField", "", [], [Go$Int], false, 0], ["NumIn", "", [], [Go$Int], false, 0], ["NumMethod", "", [], [Go$Int], false, -1], ["NumOut", "", [], [Go$Int], false, 0], ["Out", "", [Go$Int], [Type], false, 0], ["PkgPath", "", [], [Go$String], false, 0], ["Size", "", [], [Go$Uintptr], false, 0], ["String", "", [], [Go$String], false, 0], ["common", "reflect", [], [(go$ptrType(rtype))], false, 0], ["ptrTo", "reflect", [], [(go$ptrType(rtype))], false, 0], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		interfaceType.init([["rtype", "", "reflect", rtype, "reflect:\"interface\""], ["methods", "methods", "reflect", (go$sliceType(imethod)), ""]]);
-0interfaceType0Å†0reflectrtype0reflectimethod0reflectuncommonType0reflectChanDir0reflectType0reflectStructField0reflectKind0reflectMethod0Ç
-4mapTypeÇˇ	mapType = go$pkg.mapType = go$newType(0, "Struct", "reflect.mapType", "mapType", "reflect", function(rtype_, key_, elem_, bucket_, hmap_) {
+0interfaceType0Åàreflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:Typereflect:imethodreflect:rtypereflect:uncommonType0Ç
+mapTypeÇˇ	mapType = go$pkg.mapType = go$newType(0, "Struct", "reflect.mapType", "mapType", "reflect", function(rtype_, key_, elem_, bucket_, hmap_) {
 		this.go$val = this;
 		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
 		this.key = key_ !== undefined ? key_ : (go$ptrType(rtype)).nil;
@@ -409,7 +409,7 @@ $$
 Çä		mapType.methods = [["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		(go$ptrType(mapType)).methods = [["Align", "", [], [Go$Int], false, 0], ["AssignableTo", "", [Type], [Go$Bool], false, 0], ["Bits", "", [], [Go$Int], false, 0], ["ChanDir", "", [], [ChanDir], false, 0], ["ConvertibleTo", "", [Type], [Go$Bool], false, 0], ["Elem", "", [], [Type], false, 0], ["Field", "", [Go$Int], [StructField], false, 0], ["FieldAlign", "", [], [Go$Int], false, 0], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [StructField], false, 0], ["FieldByName", "", [Go$String], [StructField, Go$Bool], false, 0], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false, 0], ["Implements", "", [Type], [Go$Bool], false, 0], ["In", "", [Go$Int], [Type], false, 0], ["IsVariadic", "", [], [Go$Bool], false, 0], ["Key", "", [], [Type], false, 0], ["Kind", "", [], [Kind], false, 0], ["Len", "", [], [Go$Int], false, 0], ["Method", "", [Go$Int], [Method], false, 0], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, 0], ["Name", "", [], [Go$String], false, 0], ["NumField", "", [], [Go$Int], false, 0], ["NumIn", "", [], [Go$Int], false, 0], ["NumMethod", "", [], [Go$Int], false, 0], ["NumOut", "", [], [Go$Int], false, 0], ["Out", "", [Go$Int], [Type], false, 0], ["PkgPath", "", [], [Go$String], false, 0], ["Size", "", [], [Go$Uintptr], false, 0], ["String", "", [], [Go$String], false, 0], ["common", "reflect", [], [(go$ptrType(rtype))], false, 0], ["ptrTo", "reflect", [], [(go$ptrType(rtype))], false, 0], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		mapType.init([["rtype", "", "reflect", rtype, "reflect:\"map\""], ["key", "key", "reflect", (go$ptrType(rtype)), ""], ["elem", "elem", "reflect", (go$ptrType(rtype)), ""], ["bucket", "bucket", "reflect", (go$ptrType(rtype)), ""], ["hmap", "hmap", "reflect", (go$ptrType(rtype)), ""]]);
-0	mapType0Åå0reflectrtype0reflectuncommonType0reflectType0reflectChanDir0reflectStructField0reflectKind0reflectMethod0Ç®ptrTypeÇ	ptrType = go$pkg.ptrType = go$newType(0, "Struct", "reflect.ptrType", "ptrType", "reflect", function(rtype_, elem_) {
+0	mapType0wreflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:Typereflect:rtypereflect:uncommonType0ÇíptrTypeÇ	ptrType = go$pkg.ptrType = go$newType(0, "Struct", "reflect.ptrType", "ptrType", "reflect", function(rtype_, elem_) {
 		this.go$val = this;
 		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
 		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(rtype)).nil;
@@ -417,7 +417,7 @@ $$
 ÇÊ		ptrType.methods = [["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		(go$ptrType(ptrType)).methods = [["Align", "", [], [Go$Int], false, 0], ["AssignableTo", "", [Type], [Go$Bool], false, 0], ["Bits", "", [], [Go$Int], false, 0], ["ChanDir", "", [], [ChanDir], false, 0], ["ConvertibleTo", "", [Type], [Go$Bool], false, 0], ["Elem", "", [], [Type], false, 0], ["Field", "", [Go$Int], [StructField], false, 0], ["FieldAlign", "", [], [Go$Int], false, 0], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [StructField], false, 0], ["FieldByName", "", [Go$String], [StructField, Go$Bool], false, 0], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false, 0], ["Implements", "", [Type], [Go$Bool], false, 0], ["In", "", [Go$Int], [Type], false, 0], ["IsVariadic", "", [], [Go$Bool], false, 0], ["Key", "", [], [Type], false, 0], ["Kind", "", [], [Kind], false, 0], ["Len", "", [], [Go$Int], false, 0], ["Method", "", [Go$Int], [Method], false, 0], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, 0], ["Name", "", [], [Go$String], false, 0], ["NumField", "", [], [Go$Int], false, 0], ["NumIn", "", [], [Go$Int], false, 0], ["NumMethod", "", [], [Go$Int], false, 0], ["NumOut", "", [], [Go$Int], false, 0], ["Out", "", [Go$Int], [Type], false, 0], ["PkgPath", "", [], [Go$String], false, 0], ["Size", "", [], [Go$Uintptr], false, 0], ["String", "", [], [Go$String], false, 0], ["common", "reflect", [], [(go$ptrType(rtype))], false, 0], ["ptrTo", "reflect", [], [(go$ptrType(rtype))], false, 0], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		ptrType.init([["rtype", "", "reflect", rtype, "reflect:\"ptr\""], ["elem", "elem", "reflect", (go$ptrType(rtype)), ""]]);
-0	ptrType0Åå0reflectrtype0reflectuncommonType0reflectType0reflectChanDir0reflectStructField0reflectKind0reflectMethod0Çº	sliceTypeÇ	sliceType = go$pkg.sliceType = go$newType(0, "Struct", "reflect.sliceType", "sliceType", "reflect", function(rtype_, elem_) {
+0	ptrType0wreflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:Typereflect:rtypereflect:uncommonType0Ç¶	sliceTypeÇ	sliceType = go$pkg.sliceType = go$newType(0, "Struct", "reflect.sliceType", "sliceType", "reflect", function(rtype_, elem_) {
 		this.go$val = this;
 		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
 		this.elem = elem_ !== undefined ? elem_ : (go$ptrType(rtype)).nil;
@@ -425,7 +425,7 @@ $$
 ÇÓ		sliceType.methods = [["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		(go$ptrType(sliceType)).methods = [["Align", "", [], [Go$Int], false, 0], ["AssignableTo", "", [Type], [Go$Bool], false, 0], ["Bits", "", [], [Go$Int], false, 0], ["ChanDir", "", [], [ChanDir], false, 0], ["ConvertibleTo", "", [Type], [Go$Bool], false, 0], ["Elem", "", [], [Type], false, 0], ["Field", "", [Go$Int], [StructField], false, 0], ["FieldAlign", "", [], [Go$Int], false, 0], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [StructField], false, 0], ["FieldByName", "", [Go$String], [StructField, Go$Bool], false, 0], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false, 0], ["Implements", "", [Type], [Go$Bool], false, 0], ["In", "", [Go$Int], [Type], false, 0], ["IsVariadic", "", [], [Go$Bool], false, 0], ["Key", "", [], [Type], false, 0], ["Kind", "", [], [Kind], false, 0], ["Len", "", [], [Go$Int], false, 0], ["Method", "", [Go$Int], [Method], false, 0], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, 0], ["Name", "", [], [Go$String], false, 0], ["NumField", "", [], [Go$Int], false, 0], ["NumIn", "", [], [Go$Int], false, 0], ["NumMethod", "", [], [Go$Int], false, 0], ["NumOut", "", [], [Go$Int], false, 0], ["Out", "", [Go$Int], [Type], false, 0], ["PkgPath", "", [], [Go$String], false, 0], ["Size", "", [], [Go$Uintptr], false, 0], ["String", "", [], [Go$String], false, 0], ["common", "reflect", [], [(go$ptrType(rtype))], false, 0], ["ptrTo", "reflect", [], [(go$ptrType(rtype))], false, 0], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		sliceType.init([["rtype", "", "reflect", rtype, "reflect:\"slice\""], ["elem", "elem", "reflect", (go$ptrType(rtype)), ""]]);
-0	sliceType0Åå0reflectrtype0reflectuncommonType0reflectType0reflectChanDir0reflectStructField0reflectKind0reflectMethod0ÇvstructFieldÇ	structField = go$pkg.structField = go$newType(0, "Struct", "reflect.structField", "structField", "reflect", function(name_, pkgPath_, typ_, tag_, offset_) {
+0	sliceType0wreflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:Typereflect:rtypereflect:uncommonType0ÇsstructFieldÇ	structField = go$pkg.structField = go$newType(0, "Struct", "reflect.structField", "structField", "reflect", function(name_, pkgPath_, typ_, tag_, offset_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : (go$ptrType(Go$String)).nil;
 		this.pkgPath = pkgPath_ !== undefined ? pkgPath_ : (go$ptrType(Go$String)).nil;
@@ -434,7 +434,7 @@ $$
 		this.offset = offset_ !== undefined ? offset_ : 0;
 	});
 Ç-		structField.init([["name", "name", "reflect", (go$ptrType(Go$String)), ""], ["pkgPath", "pkgPath", "reflect", (go$ptrType(Go$String)), ""], ["typ", "typ", "reflect", (go$ptrType(rtype)), ""], ["tag", "tag", "reflect", (go$ptrType(Go$String)), ""], ["offset", "offset", "reflect", Go$Uintptr, ""]]);
-0structField00reflectrtype0Ç˛
+0structField0reflect:rtype0ÇÊ
 structTypeÇ3	structType = go$pkg.structType = go$newType(0, "Struct", "reflect.structType", "structType", "reflect", function(rtype_, fields_) {
 		this.go$val = this;
 		this.rtype = rtype_ !== undefined ? rtype_ : new rtype.Ptr();
@@ -444,7 +444,7 @@ structTypeÇ3	structType = go$pkg.structType = go$newType(0, "Struct", "reflect
 		(go$ptrType(structType)).methods = [["Align", "", [], [Go$Int], false, 0], ["AssignableTo", "", [Type], [Go$Bool], false, 0], ["Bits", "", [], [Go$Int], false, 0], ["ChanDir", "", [], [ChanDir], false, 0], ["ConvertibleTo", "", [Type], [Go$Bool], false, 0], ["Elem", "", [], [Type], false, 0], ["Field", "", [Go$Int], [StructField], false, -1], ["FieldAlign", "", [], [Go$Int], false, 0], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [StructField], false, -1], ["FieldByName", "", [Go$String], [StructField, Go$Bool], false, -1], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [StructField, Go$Bool], false, -1], ["Implements", "", [Type], [Go$Bool], false, 0], ["In", "", [Go$Int], [Type], false, 0], ["IsVariadic", "", [], [Go$Bool], false, 0], ["Key", "", [], [Type], false, 0], ["Kind", "", [], [Kind], false, 0], ["Len", "", [], [Go$Int], false, 0], ["Method", "", [Go$Int], [Method], false, 0], ["MethodByName", "", [Go$String], [Method, Go$Bool], false, 0], ["Name", "", [], [Go$String], false, 0], ["NumField", "", [], [Go$Int], false, 0], ["NumIn", "", [], [Go$Int], false, 0], ["NumMethod", "", [], [Go$Int], false, 0], ["NumOut", "", [], [Go$Int], false, 0], ["Out", "", [Go$Int], [Type], false, 0], ["PkgPath", "", [], [Go$String], false, 0], ["Size", "", [], [Go$Uintptr], false, 0], ["String", "", [], [Go$String], false, 0], ["common", "reflect", [], [(go$ptrType(rtype))], false, 0], ["ptrTo", "reflect", [], [(go$ptrType(rtype))], false, 0], ["uncommon", "reflect", [], [(go$ptrType(uncommonType))], false, 0]];
 		structType.init([["rtype", "", "reflect", rtype, "reflect:\"struct\""], ["fields", "fields", "reflect", (go$sliceType(structField)), ""]]);
 0
-structType0Å§0reflectrtype0reflectstructField0reflectuncommonType0reflectType0reflectChanDir0reflectStructField0reflectKind0reflectMethod0Ç¥MethodÇ∞	Method = go$pkg.Method = go$newType(0, "Struct", "reflect.Method", "Method", "reflect", function(Name_, PkgPath_, Type_, Func_, Index_) {
+structType0Ååreflect:ChanDirreflect:Kindreflect:Methodreflect:StructFieldreflect:Typereflect:rtypereflect:structFieldreflect:uncommonType0ÇÆMethodÇ∞	Method = go$pkg.Method = go$newType(0, "Struct", "reflect.Method", "Method", "reflect", function(Name_, PkgPath_, Type_, Func_, Index_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.PkgPath = PkgPath_ !== undefined ? PkgPath_ : "";
@@ -453,7 +453,7 @@ structType0Å§0reflectrtype0reflectstructField0reflectuncommonType
 		this.Index = Index_ !== undefined ? Index_ : 0;
 	});
 Å∆		Method.init([["Name", "Name", "", Go$String, ""], ["PkgPath", "PkgPath", "", Go$String, ""], ["Type", "Type", "", Type, ""], ["Func", "Func", "", Value, ""], ["Index", "Index", "", Go$Int, ""]]);
-0Method0#0reflectValue0reflectType0ÇŸStructFieldÇX	StructField = go$pkg.StructField = go$newType(0, "Struct", "reflect.StructField", "StructField", "reflect", function(Name_, PkgPath_, Type_, Tag_, Offset_, Index_, Anonymous_) {
+0Method0reflect:Typereflect:Value0Ç”StructFieldÇX	StructField = go$pkg.StructField = go$newType(0, "Struct", "reflect.StructField", "StructField", "reflect", function(Name_, PkgPath_, Type_, Tag_, Offset_, Index_, Anonymous_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.PkgPath = PkgPath_ !== undefined ? PkgPath_ : "";
@@ -464,17 +464,16 @@ structType0Å§0reflectrtype0reflectstructField0reflectuncommonType
 		this.Anonymous = Anonymous_ !== undefined ? Anonymous_ : false;
 	});
 Ç4		StructField.init([["Name", "Name", "", Go$String, ""], ["PkgPath", "PkgPath", "", Go$String, ""], ["Type", "Type", "", Type, ""], ["Tag", "Tag", "", StructTag, ""], ["Offset", "Offset", "", Go$Uintptr, ""], ["Index", "Index", "", (go$sliceType(Go$Int)), ""], ["Anonymous", "Anonymous", "", Go$Bool, ""]]);
-0StructField0'0reflectType0reflect	StructTag0Ç-	StructTagl	StructTag = go$pkg.StructTag = go$newType(0, "String", "reflect.StructTag", "StructTag", "reflect", null);
+0StructField0!reflect:StructTagreflect:Type0Ç-	StructTagl	StructTag = go$pkg.StructTag = go$newType(0, "String", "reflect.StructTag", "StructTag", "reflect", null);
 Å¢		StructTag.methods = [["Get", "", [Go$String], [Go$String], false, -1]];
 		(go$ptrType(StructTag)).methods = [["Get", "", [Go$String], [Go$String], false, -1]];
-0	StructTag0 0ÇÎ	fieldScanÇ+	fieldScan = go$pkg.fieldScan = go$newType(0, "Struct", "reflect.fieldScan", "fieldScan", "reflect", function(typ_, index_) {
+0	StructTag0 0ÇË	fieldScanÇ+	fieldScan = go$pkg.fieldScan = go$newType(0, "Struct", "reflect.fieldScan", "fieldScan", "reflect", function(typ_, index_) {
 		this.go$val = this;
 		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(structType)).nil;
 		this.index = index_ !== undefined ? index_ : (go$sliceType(Go$Int)).nil;
 	});
 Åà		fieldScan.init([["typ", "typ", "reflect", (go$ptrType(structType)), ""], ["index", "index", "reflect", (go$sliceType(Go$Int)), ""]]);
-0	fieldScan00reflect
-structType0Ç:	ptrDataGCÇW	ptrDataGC = go$pkg.ptrDataGC = go$newType(0, "Struct", "reflect.ptrDataGC", "ptrDataGC", "reflect", function(width_, op_, off_, end_) {
+0	fieldScan0reflect:structType0Ç:	ptrDataGCÇW	ptrDataGC = go$pkg.ptrDataGC = go$newType(0, "Struct", "reflect.ptrDataGC", "ptrDataGC", "reflect", function(width_, op_, off_, end_) {
 		this.go$val = this;
 		this.width = width_ !== undefined ? width_ : 0;
 		this.op = op_ !== undefined ? op_ : 0;
@@ -491,7 +490,7 @@ structType0Ç:	ptrDataGCÇW	ptrDataGC = go$pkg.ptrDataGC = go$newType(0, "Stru
 		this.end = end_ !== undefined ? end_ : 0;
 	});
 Åı		ptrGC.init([["width", "width", "reflect", Go$Uintptr, ""], ["op", "op", "reflect", Go$Uintptr, ""], ["off", "off", "reflect", Go$Uintptr, ""], ["elemgc", "elemgc", "reflect", Go$UnsafePointer, ""], ["end", "end", "reflect", Go$Uintptr, ""]]);
-0ptrGC0 0ÇécacheKeyÇ	cacheKey = go$pkg.cacheKey = go$newType(0, "Struct", "reflect.cacheKey", "cacheKey", "reflect", function(kind_, t1_, t2_, extra_) {
+0ptrGC0 0ÇàcacheKeyÇ	cacheKey = go$pkg.cacheKey = go$newType(0, "Struct", "reflect.cacheKey", "cacheKey", "reflect", function(kind_, t1_, t2_, extra_) {
 		this.go$val = this;
 		this.kind = kind_ !== undefined ? kind_ : 0;
 		this.t1 = t1_ !== undefined ? t1_ : (go$ptrType(rtype)).nil;
@@ -500,7 +499,7 @@ structType0Ç:	ptrDataGCÇW	ptrDataGC = go$pkg.ptrDataGC = go$newType(0, "Stru
 	});
 ÅÕ		cacheKey.init([["kind", "kind", "reflect", Kind, ""], ["t1", "t1", "reflect", (go$ptrType(rtype)), ""], ["t2", "t2", "reflect", (go$ptrType(rtype)), ""], ["extra", "extra", "reflect", Go$Uintptr, ""]]);
 0
-cacheKey0#0reflectrtype0reflectKind0Ç≥chanGCÇì	chanGC = go$pkg.chanGC = go$newType(0, "Struct", "reflect.chanGC", "chanGC", "reflect", function(width_, op_, off_, typ_, end_) {
+cacheKey0reflect:Kindreflect:rtype0Ç∞chanGCÇì	chanGC = go$pkg.chanGC = go$newType(0, "Struct", "reflect.chanGC", "chanGC", "reflect", function(width_, op_, off_, typ_, end_) {
 		this.go$val = this;
 		this.width = width_ !== undefined ? width_ : 0;
 		this.op = op_ !== undefined ? op_ : 0;
@@ -509,7 +508,7 @@ structType0Ç:	ptrDataGCÇW	ptrDataGC = go$pkg.ptrDataGC = go$newType(0, "Stru
 		this.end = end_ !== undefined ? end_ : 0;
 	});
 ÅÛ		chanGC.init([["width", "width", "reflect", Go$Uintptr, ""], ["op", "op", "reflect", Go$Uintptr, ""], ["off", "off", "reflect", Go$Uintptr, ""], ["typ", "typ", "reflect", (go$ptrType(rtype)), ""], ["end", "end", "reflect", Go$Uintptr, ""]]);
-0chanGC00reflectrtype0ÇhbadGCÅÁ	badGC = go$pkg.badGC = go$newType(0, "Struct", "reflect.badGC", "badGC", "reflect", function(width_, end_) {
+0chanGC0reflect:rtype0ÇhbadGCÅÁ	badGC = go$pkg.badGC = go$newType(0, "Struct", "reflect.badGC", "badGC", "reflect", function(width_, end_) {
 		this.go$val = this;
 		this.width = width_ !== undefined ? width_ : 0;
 		this.end = end_ !== undefined ? end_ : 0;
@@ -532,7 +531,7 @@ structType0Ç:	ptrDataGCÇW	ptrDataGC = go$pkg.ptrDataGC = go$newType(0, "Stru
 		this.end = end_ !== undefined ? end_ : 0;
 	});
 Å≈		sliceEmptyGC.init([["width", "width", "reflect", Go$Uintptr, ""], ["op", "op", "reflect", Go$Uintptr, ""], ["off", "off", "reflect", Go$Uintptr, ""], ["end", "end", "reflect", Go$Uintptr, ""]]);
-0sliceEmptyGC0 0ÇêValueÇ+	Value = go$pkg.Value = go$newType(0, "Struct", "reflect.Value", "Value", "reflect", function(typ_, val_, flag_) {
+0sliceEmptyGC0 0ÇÅValueÇ+	Value = go$pkg.Value = go$newType(0, "Struct", "reflect.Value", "Value", "reflect", function(typ_, val_, flag_) {
 		this.go$val = this;
 		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(rtype)).nil;
 		this.val = val_ !== undefined ? val_ : 0;
@@ -541,10 +540,10 @@ structType0Ç:	ptrDataGCÇW	ptrDataGC = go$pkg.ptrDataGC = go$newType(0, "Stru
 ÇÙ		Value.methods = [["Addr", "", [], [Value], false, -1], ["Bool", "", [], [Go$Bool], false, -1], ["Bytes", "", [], [(go$sliceType(Go$Uint8))], false, -1], ["Call", "", [(go$sliceType(Value))], [(go$sliceType(Value))], false, -1], ["CallSlice", "", [(go$sliceType(Value))], [(go$sliceType(Value))], false, -1], ["CanAddr", "", [], [Go$Bool], false, -1], ["CanInterface", "", [], [Go$Bool], false, -1], ["CanSet", "", [], [Go$Bool], false, -1], ["Cap", "", [], [Go$Int], false, -1], ["Close", "", [], [], false, -1], ["Complex", "", [], [Go$Complex128], false, -1], ["Convert", "", [Type], [Value], false, -1], ["Elem", "", [], [Value], false, -1], ["Field", "", [Go$Int], [Value], false, -1], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [Value], false, -1], ["FieldByName", "", [Go$String], [Value], false, -1], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [Value], false, -1], ["Float", "", [], [Go$Float64], false, -1], ["Index", "", [Go$Int], [Value], false, -1], ["Int", "", [], [Go$Int64], false, -1], ["Interface", "", [], [go$emptyInterface], false, -1], ["InterfaceData", "", [], [(go$arrayType(Go$Uintptr, 2))], false, -1], ["IsNil", "", [], [Go$Bool], false, -1], ["IsValid", "", [], [Go$Bool], false, -1], ["Kind", "", [], [Kind], false, -1], ["Len", "", [], [Go$Int], false, -1], ["MapIndex", "", [Value], [Value], false, -1], ["MapKeys", "", [], [(go$sliceType(Value))], false, -1], ["Method", "", [Go$Int], [Value], false, -1], ["MethodByName", "", [Go$String], [Value], false, -1], ["NumField", "", [], [Go$Int], false, -1], ["NumMethod", "", [], [Go$Int], false, -1], ["OverflowComplex", "", [Go$Complex128], [Go$Bool], false, -1], ["OverflowFloat", "", [Go$Float64], [Go$Bool], false, -1], ["OverflowInt", "", [Go$Int64], [Go$Bool], false, -1], ["OverflowUint", "", [Go$Uint64], [Go$Bool], false, -1], ["Pointer", "", [], [Go$Uintptr], false, -1], ["Recv", "", [], [Value, Go$Bool], false, -1], ["Send", "", [Value], [], false, -1], ["Set", "", [Value], [], false, -1], ["SetBool", "", [Go$Bool], [], false, -1], ["SetBytes", "", [(go$sliceType(Go$Uint8))], [], false, -1], ["SetCap", "", [Go$Int], [], false, -1], ["SetComplex", "", [Go$Complex128], [], false, -1], ["SetFloat", "", [Go$Float64], [], false, -1], ["SetInt", "", [Go$Int64], [], false, -1], ["SetLen", "", [Go$Int], [], false, -1], ["SetMapIndex", "", [Value, Value], [], false, -1], ["SetPointer", "", [Go$UnsafePointer], [], false, -1], ["SetString", "", [Go$String], [], false, -1], ["SetUint", "", [Go$Uint64], [], false, -1], ["Slice", "", [Go$Int, Go$Int], [Value], false, -1], ["Slice3", "", [Go$Int, Go$Int, Go$Int], [Value], false, -1], ["String", "", [], [Go$String], false, -1], ["TryRecv", "", [], [Value, Go$Bool], false, -1], ["TrySend", "", [Value], [Go$Bool], false, -1], ["Type", "", [], [Type], false, -1], ["Uint", "", [], [Go$Uint64], false, -1], ["UnsafeAddr", "", [], [Go$Uintptr], false, -1], ["assignTo", "reflect", [Go$String, (go$ptrType(rtype)), (go$ptrType(go$emptyInterface))], [Value], false, -1], ["call", "reflect", [Go$String, (go$sliceType(Value))], [(go$sliceType(Value))], false, -1], ["iword", "reflect", [], [iword], false, -1], ["kind", "reflect", [], [Kind], false, 2], ["mustBe", "reflect", [Kind], [], false, 2], ["mustBeAssignable", "reflect", [], [], false, 2], ["mustBeExported", "reflect", [], [], false, 2], ["recv", "reflect", [Go$Bool], [Value, Go$Bool], false, -1], ["runes", "reflect", [], [(go$sliceType(Go$Int32))], false, -1], ["send", "reflect", [Value, Go$Bool], [Go$Bool], false, -1], ["setRunes", "reflect", [(go$sliceType(Go$Int32))], [], false, -1]];
 		(go$ptrType(Value)).methods = [["Addr", "", [], [Value], false, -1], ["Bool", "", [], [Go$Bool], false, -1], ["Bytes", "", [], [(go$sliceType(Go$Uint8))], false, -1], ["Call", "", [(go$sliceType(Value))], [(go$sliceType(Value))], false, -1], ["CallSlice", "", [(go$sliceType(Value))], [(go$sliceType(Value))], false, -1], ["CanAddr", "", [], [Go$Bool], false, -1], ["CanInterface", "", [], [Go$Bool], false, -1], ["CanSet", "", [], [Go$Bool], false, -1], ["Cap", "", [], [Go$Int], false, -1], ["Close", "", [], [], false, -1], ["Complex", "", [], [Go$Complex128], false, -1], ["Convert", "", [Type], [Value], false, -1], ["Elem", "", [], [Value], false, -1], ["Field", "", [Go$Int], [Value], false, -1], ["FieldByIndex", "", [(go$sliceType(Go$Int))], [Value], false, -1], ["FieldByName", "", [Go$String], [Value], false, -1], ["FieldByNameFunc", "", [(go$funcType([Go$String], [Go$Bool], false))], [Value], false, -1], ["Float", "", [], [Go$Float64], false, -1], ["Index", "", [Go$Int], [Value], false, -1], ["Int", "", [], [Go$Int64], false, -1], ["Interface", "", [], [go$emptyInterface], false, -1], ["InterfaceData", "", [], [(go$arrayType(Go$Uintptr, 2))], false, -1], ["IsNil", "", [], [Go$Bool], false, -1], ["IsValid", "", [], [Go$Bool], false, -1], ["Kind", "", [], [Kind], false, -1], ["Len", "", [], [Go$Int], false, -1], ["MapIndex", "", [Value], [Value], false, -1], ["MapKeys", "", [], [(go$sliceType(Value))], false, -1], ["Method", "", [Go$Int], [Value], false, -1], ["MethodByName", "", [Go$String], [Value], false, -1], ["NumField", "", [], [Go$Int], false, -1], ["NumMethod", "", [], [Go$Int], false, -1], ["OverflowComplex", "", [Go$Complex128], [Go$Bool], false, -1], ["OverflowFloat", "", [Go$Float64], [Go$Bool], false, -1], ["OverflowInt", "", [Go$Int64], [Go$Bool], false, -1], ["OverflowUint", "", [Go$Uint64], [Go$Bool], false, -1], ["Pointer", "", [], [Go$Uintptr], false, -1], ["Recv", "", [], [Value, Go$Bool], false, -1], ["Send", "", [Value], [], false, -1], ["Set", "", [Value], [], false, -1], ["SetBool", "", [Go$Bool], [], false, -1], ["SetBytes", "", [(go$sliceType(Go$Uint8))], [], false, -1], ["SetCap", "", [Go$Int], [], false, -1], ["SetComplex", "", [Go$Complex128], [], false, -1], ["SetFloat", "", [Go$Float64], [], false, -1], ["SetInt", "", [Go$Int64], [], false, -1], ["SetLen", "", [Go$Int], [], false, -1], ["SetMapIndex", "", [Value, Value], [], false, -1], ["SetPointer", "", [Go$UnsafePointer], [], false, -1], ["SetString", "", [Go$String], [], false, -1], ["SetUint", "", [Go$Uint64], [], false, -1], ["Slice", "", [Go$Int, Go$Int], [Value], false, -1], ["Slice3", "", [Go$Int, Go$Int, Go$Int], [Value], false, -1], ["String", "", [], [Go$String], false, -1], ["TryRecv", "", [], [Value, Go$Bool], false, -1], ["TrySend", "", [Value], [Go$Bool], false, -1], ["Type", "", [], [Type], false, -1], ["Uint", "", [], [Go$Uint64], false, -1], ["UnsafeAddr", "", [], [Go$Uintptr], false, -1], ["assignTo", "reflect", [Go$String, (go$ptrType(rtype)), (go$ptrType(go$emptyInterface))], [Value], false, -1], ["call", "reflect", [Go$String, (go$sliceType(Value))], [(go$sliceType(Value))], false, -1], ["iword", "reflect", [], [iword], false, -1], ["kind", "reflect", [], [Kind], false, 2], ["mustBe", "reflect", [Kind], [], false, 2], ["mustBeAssignable", "reflect", [], [], false, 2], ["mustBeExported", "reflect", [], [], false, 2], ["recv", "reflect", [Go$Bool], [Value, Go$Bool], false, -1], ["runes", "reflect", [], [(go$sliceType(Go$Int32))], false, -1], ["send", "reflect", [Value, Go$Bool], [Go$Bool], false, -1], ["setRunes", "reflect", [(go$sliceType(Go$Int32))], [], false, -1]];
 		Value.init([["typ", "typ", "reflect", (go$ptrType(rtype)), ""], ["val", "val", "reflect", Go$UnsafePointer, ""], ["flag", "", "reflect", flag, ""]]);
-0Value0W0reflectrtype0reflectType0reflectKind0reflectiword0reflectflag0Ç4flagY	flag = go$pkg.flag = go$newType(4, "Uintptr", "reflect.flag", "flag", "reflect", null);
+0Value0Hreflect:Kindreflect:Typereflect:flagreflect:iwordreflect:rtype0Ç1flagY	flag = go$pkg.flag = go$newType(4, "Uintptr", "reflect.flag", "flag", "reflect", null);
 Ç¥		flag.methods = [["kind", "reflect", [], [Kind], false, -1], ["mustBe", "reflect", [Kind], [], false, -1], ["mustBeAssignable", "reflect", [], [], false, -1], ["mustBeExported", "reflect", [], [], false, -1]];
 		(go$ptrType(flag)).methods = [["kind", "reflect", [], [Kind], false, -1], ["mustBe", "reflect", [Kind], [], false, -1], ["mustBeAssignable", "reflect", [], [], false, -1], ["mustBeExported", "reflect", [], [], false, -1]];
-0flag00reflectKind0ÇË
+0flag0reflect:Kind0ÇÂ
 ValueErrorÇ	ValueError = go$pkg.ValueError = go$newType(0, "Struct", "reflect.ValueError", "ValueError", "reflect", function(Method_, Kind_) {
 		this.go$val = this;
 		this.Method = Method_ !== undefined ? Method_ : "";
@@ -553,20 +552,20 @@ ValueErrorÇ	ValueError = go$pkg.ValueError = go$newType(0, "Struct", "reflect
 Å∞		(go$ptrType(ValueError)).methods = [["Error", "", [], [Go$String], false, -1]];
 		ValueError.init([["Method", "Method", "", Go$String, ""], ["Kind", "Kind", "", Kind, ""]]);
 0
-ValueError00reflectKind0yiwordc	iword = go$pkg.iword = go$newType(0, "UnsafePointer", "reflect.iword", "iword", "reflect", null);
- 0iword0 0Ç‡emptyInterfaceÇ	emptyInterface = go$pkg.emptyInterface = go$newType(0, "Struct", "reflect.emptyInterface", "emptyInterface", "reflect", function(typ_, word_) {
+ValueError0reflect:Kind0yiwordc	iword = go$pkg.iword = go$newType(0, "UnsafePointer", "reflect.iword", "iword", "reflect", null);
+ 0iword0 0Ç⁄emptyInterfaceÇ	emptyInterface = go$pkg.emptyInterface = go$newType(0, "Struct", "reflect.emptyInterface", "emptyInterface", "reflect", function(typ_, word_) {
 		this.go$val = this;
 		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(rtype)).nil;
 		this.word = word_ !== undefined ? word_ : 0;
 	});
 u		emptyInterface.init([["typ", "typ", "reflect", (go$ptrType(rtype)), ""], ["word", "word", "reflect", iword, ""]]);
-0emptyInterface0$0reflectrtype0reflectiword0ÇënonEmptyInterfaceÇw	nonEmptyInterface = go$pkg.nonEmptyInterface = go$newType(0, "Struct", "reflect.nonEmptyInterface", "nonEmptyInterface", "reflect", function(itab_, word_) {
+0emptyInterface0reflect:iwordreflect:rtype0ÇãnonEmptyInterfaceÇw	nonEmptyInterface = go$pkg.nonEmptyInterface = go$newType(0, "Struct", "reflect.nonEmptyInterface", "nonEmptyInterface", "reflect", function(itab_, word_) {
 		this.go$val = this;
 		this.itab = itab_ !== undefined ? itab_ : (go$ptrType((go$structType([["ityp", "ityp", "reflect", (go$ptrType(rtype)), ""], ["typ", "typ", "reflect", (go$ptrType(rtype)), ""], ["link", "link", "reflect", Go$UnsafePointer, ""], ["bad", "bad", "reflect", Go$Int32, ""], ["unused", "unused", "reflect", Go$Int32, ""], ["fun", "fun", "reflect", (go$arrayType(Go$UnsafePointer, 100000)), ""]])))).nil;
 		this.word = word_ !== undefined ? word_ : 0;
 	});
 Çƒ		nonEmptyInterface.init([["itab", "itab", "reflect", (go$ptrType((go$structType([["ityp", "ityp", "reflect", (go$ptrType(rtype)), ""], ["typ", "typ", "reflect", (go$ptrType(rtype)), ""], ["link", "link", "reflect", Go$UnsafePointer, ""], ["bad", "bad", "reflect", Go$Int32, ""], ["unused", "unused", "reflect", Go$Int32, ""], ["fun", "fun", "reflect", (go$arrayType(Go$UnsafePointer, 100000)), ""]])))), ""], ["word", "word", "reflect", iword, ""]]);
-0nonEmptyInterface0$0reflectrtype0reflectiword0ÇÅStringHeaderÅˇ	StringHeader = go$pkg.StringHeader = go$newType(0, "Struct", "reflect.StringHeader", "StringHeader", "reflect", function(Data_, Len_) {
+0nonEmptyInterface0reflect:iwordreflect:rtype0ÇÅStringHeaderÅˇ	StringHeader = go$pkg.StringHeader = go$newType(0, "Struct", "reflect.StringHeader", "StringHeader", "reflect", function(Data_, Len_) {
 		this.go$val = this;
 		this.Data = Data_ !== undefined ? Data_ : 0;
 		this.Len = Len_ !== undefined ? Len_ : 0;
@@ -579,7 +578,7 @@ ValueError00reflectKind0yiwordc	iword = go$pkg.iword = go$newType(0, "U
 		this.Cap = Cap_ !== undefined ? Cap_ : 0;
 	});
 |		SliceHeader.init([["Data", "Data", "", Go$Uintptr, ""], ["Len", "Len", "", Go$Int, ""], ["Cap", "Cap", "", Go$Int, ""]]);
-0SliceHeader0 0ÇÉruntimeSelectÇu	runtimeSelect = go$pkg.runtimeSelect = go$newType(0, "Struct", "reflect.runtimeSelect", "runtimeSelect", "reflect", function(dir_, typ_, ch_, val_) {
+0SliceHeader0 0Ç}runtimeSelectÇu	runtimeSelect = go$pkg.runtimeSelect = go$newType(0, "Struct", "reflect.runtimeSelect", "runtimeSelect", "reflect", function(dir_, typ_, ch_, val_) {
 		this.go$val = this;
 		this.dir = dir_ !== undefined ? dir_ : 0;
 		this.typ = typ_ !== undefined ? typ_ : (go$ptrType(rtype)).nil;
@@ -587,8 +586,8 @@ ValueError00reflectKind0yiwordc	iword = go$pkg.iword = go$newType(0, "U
 		this.val = val_ !== undefined ? val_ : 0;
 	});
 Å¡		runtimeSelect.init([["dir", "dir", "reflect", Go$Uintptr, ""], ["typ", "typ", "reflect", (go$ptrType(rtype)), ""], ["ch", "ch", "reflect", iword, ""], ["val", "val", "reflect", iword, ""]]);
-0runtimeSelect0$0reflectrtype0reflectiword0Åá	SelectDiri	SelectDir = go$pkg.SelectDir = go$newType(4, "Int", "reflect.SelectDir", "SelectDir", "reflect", null);
- 0	SelectDir0 0Ç
+0runtimeSelect0reflect:iwordreflect:rtype0Åá	SelectDiri	SelectDir = go$pkg.SelectDir = go$newType(4, "Int", "reflect.SelectDir", "SelectDir", "reflect", null);
+ 0	SelectDir0 0Ç
 SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect.SelectCase", "SelectCase", "reflect", function(Dir_, Chan_, Send_) {
 		this.go$val = this;
 		this.Dir = Dir_ !== undefined ? Dir_ : 0;
@@ -597,7 +596,7 @@ SelectCaseÇI	SelectCase = go$pkg.SelectCase = go$newType(0, "Struct", "reflect
 	});
 z		SelectCase.init([["Dir", "Dir", "", SelectDir, ""], ["Chan", "Chan", "", Value, ""], ["Send", "Send", "", Value, ""]]);
 0
-SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	deepValueEqual = function(v1, v2, visited, depth) {
+SelectCase0"reflect:SelectDirreflect:Value0ÇùdeepValueEqualÇ=	deepValueEqual = function(v1, v2, visited, depth) {
 		var hard, addr1, addr2, _tuple, typ, v, _entry, _key, _struct, _ref, i, _struct$1, _struct$2, i$1, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _tuple$1, i$2, n, _struct$9, _struct$10, _ref$1, _i, _slice, _index, _struct$11, k, _struct$12, _struct$13, _struct$14, _struct$15, _struct$16, _struct$17;
 		if (!v1.IsValid() || !v2.IsValid()) {
 			return v1.IsValid() === v2.IsValid();
@@ -705,7 +704,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 			return go$interfaceIsEqual(valueInterface((_struct$16 = v1, new Value.Ptr(_struct$16.typ, _struct$16.val, _struct$16.flag)), false), valueInterface((_struct$17 = v2, new Value.Ptr(_struct$17.typ, _struct$17.val, _struct$17.flag)), false));
 		}
 	};
- 0deepValueEqual0?0reflectvisit0reflectValue0reflectvalueInterface0Ç	DeepEqualÅ˚	DeepEqual = go$pkg.DeepEqual = function(a1, a2) {
+ 0deepValueEqual06reflect:Valuereflect:valueInterfacereflect:visit0Ç	DeepEqualÅ˚	DeepEqual = go$pkg.DeepEqual = function(a1, a2) {
 			if (a1 === a2) {
 				return true;
 			}
@@ -755,7 +754,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
  0makeMethodValue0 0ÅîmethodValueCallj	methodValueCall = function() {
 		throw go$panic("Native function not implemented: methodValueCall");
 	};
- 0methodValueCall0 0Ç˙ Ç∞	Kind.prototype.String = function() {
+ 0methodValueCall0 0ÇÒ Ç∞	Kind.prototype.String = function() {
 		var k, _slice, _index;
 		k = this.go$val;
 		if ((k >> 0) < kindNames.length) {
@@ -764,13 +763,13 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return "kind" + strconv.Itoa((k >> 0));
 	};
 	go$ptrType(Kind).prototype.String = function() { return new Kind(this.go$get()).String(); };
- 0Kind080reflectKind0reflect	kindNames0strconvItoa0ÅÁ Å´	uncommonType.Ptr.prototype.uncommon = function() {
+ 0Kind0/reflect:Kindreflect:kindNamesstrconv:Itoa0Å‰ Å´	uncommonType.Ptr.prototype.uncommon = function() {
 		var t;
 		t = this;
 		return t;
 	};
 	uncommonType.prototype.uncommon = function() { return this.go$val.uncommon(); };
- 0uncommonTypeuncommon00reflectuncommonType0Çi Ç6	uncommonType.Ptr.prototype.PkgPath = function() {
+ 0uncommonTypeuncommon0reflect:uncommonType0Çf Ç6	uncommonType.Ptr.prototype.PkgPath = function() {
 		var t;
 		t = this;
 		if (t === (go$ptrType(uncommonType)).nil || go$pointerIsEqual(t.pkgPath, (go$ptrType(Go$String)).nil)) {
@@ -779,7 +778,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return t.pkgPath.go$get();
 	};
 	uncommonType.prototype.PkgPath = function() { return this.go$val.PkgPath(); };
- 0uncommonType00reflectuncommonType0ÇZ Ç'	uncommonType.Ptr.prototype.Name = function() {
+ 0uncommonType0reflect:uncommonType0ÇW Ç'	uncommonType.Ptr.prototype.Name = function() {
 		var t;
 		t = this;
 		if (t === (go$ptrType(uncommonType)).nil || go$pointerIsEqual(t.name, (go$ptrType(Go$String)).nil)) {
@@ -788,20 +787,19 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return t.name.go$get();
 	};
 	uncommonType.prototype.Name = function() { return this.go$val.Name(); };
- 0uncommonType00reflectuncommonType0ÅÀ Åß	rtype.Ptr.prototype.String = function() {
+ 0uncommonType0reflect:uncommonType0Å» Åß	rtype.Ptr.prototype.String = function() {
 		var t;
 		t = this;
 		return t.string.go$get();
 	};
 	rtype.prototype.String = function() { return this.go$val.String(); };
- 0rtype00reflectrtype0Å∫ Åñ	rtype.Ptr.prototype.Size = function() {
+ 0rtype0reflect:rtype0Å∑ Åñ	rtype.Ptr.prototype.Size = function() {
 		var t;
 		t = this;
 		return t.size;
 	};
 	rtype.prototype.Size = function() { return this.go$val.Size(); };
- 0rtype00reflectrtype0Ç
- ÇÂ	rtype.Ptr.prototype.Bits = function() {
+ 0rtype0reflect:rtype0Ç ÇÂ	rtype.Ptr.prototype.Bits = function() {
 		var t, k, x, x$1;
 		t = this;
 		if (t === (go$ptrType(rtype)).nil) {
@@ -814,31 +812,31 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return (x = (t.size >> 0), x$1 = 8, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0);
 	};
 	rtype.prototype.Bits = function() { return this.go$val.Bits(); };
- 0rtype00reflectrtype0Å≈ Å°	rtype.Ptr.prototype.Align = function() {
+ 0rtype0reflect:rtype0Å¬ Å°	rtype.Ptr.prototype.Align = function() {
 		var t;
 		t = this;
 		return (t.align >> 0);
 	};
 	rtype.prototype.Align = function() { return this.go$val.Align(); };
- 0rtype00reflectrtype0ÅŸ Åµ	rtype.Ptr.prototype.FieldAlign = function() {
+ 0rtype0reflect:rtype0Å÷ Åµ	rtype.Ptr.prototype.FieldAlign = function() {
 		var t;
 		t = this;
 		return (t.fieldAlign >> 0);
 	};
 	rtype.prototype.FieldAlign = function() { return this.go$val.FieldAlign(); };
- 0rtype00reflectrtype0Å“ ÅÆ	rtype.Ptr.prototype.Kind = function() {
+ 0rtype0reflect:rtype0Åœ ÅÆ	rtype.Ptr.prototype.Kind = function() {
 		var t;
 		t = this;
 		return (((t.kind & 127) >>> 0) >>> 0);
 	};
 	rtype.prototype.Kind = function() { return this.go$val.Kind(); };
- 0rtype00reflectrtype0Å√ Åó	rtype.Ptr.prototype.common = function() {
+ 0rtype0reflect:rtype0Å¿ Åó	rtype.Ptr.prototype.common = function() {
 		var t;
 		t = this;
 		return t;
 	};
 	rtype.prototype.common = function() { return this.go$val.common(); };
- 0rtypecommon00reflectrtype0Çd Ç1	uncommonType.Ptr.prototype.Method = function(i) {
+ 0rtypecommon0reflect:rtype0Ça Ç1	uncommonType.Ptr.prototype.Method = function(i) {
 			if (this === uncommonType.Ptr.nil || i < 0 || i >= this.methods.length) {
 				throw go$panic(new Go$String("reflect: Method index out of range"));
 			}
@@ -860,7 +858,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 			return new Method.Ptr(p.name.go$get(), pkgPath, mt, new Value.Ptr(mt, fn, fl), i);
 		};
 	uncommonType.prototype.Method = function() { return this.go$val.Method(); };
- 0uncommonType00reflectuncommonType0Ç. Å¸	uncommonType.Ptr.prototype.NumMethod = function() {
+ 0uncommonType0reflect:uncommonType0Ç+ Å¸	uncommonType.Ptr.prototype.NumMethod = function() {
 		var t;
 		t = this;
 		if (t === (go$ptrType(uncommonType)).nil) {
@@ -869,7 +867,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return t.methods.length;
 	};
 	uncommonType.prototype.NumMethod = function() { return this.go$val.NumMethod(); };
- 0uncommonType00reflectuncommonType0Çﬂ Çt	uncommonType.Ptr.prototype.MethodByName = function(name) {
+ 0uncommonType0reflect:uncommonType0Ç” Çt	uncommonType.Ptr.prototype.MethodByName = function(name) {
 		var m, ok, t, _struct, _struct$1, p, _ref, _i, i, _slice, _index, _struct$2, _struct$3, _tuple, _struct$4, _struct$5, _struct$6, _struct$7;
 		m = new Method.Ptr();
 		ok = false;
@@ -892,7 +890,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return [(_struct$6 = m, new Method.Ptr(_struct$6.Name, _struct$6.PkgPath, _struct$6.Type, (_struct$7 = _struct$6.Func, new Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)), _struct$6.Index)), ok];
 	};
 	uncommonType.prototype.MethodByName = function(name) { return this.go$val.MethodByName(name); };
- 0uncommonType0Q0reflectuncommonType0reflectMethod0reflectValue0reflectmethod0Ç2 Ç	rtype.Ptr.prototype.NumMethod = function() {
+ 0uncommonType0Ereflect:Methodreflect:Valuereflect:methodreflect:uncommonType0Ç/ Ç	rtype.Ptr.prototype.NumMethod = function() {
 		var t, tt;
 		t = this;
 		if (t.Kind() === 20) {
@@ -902,7 +900,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return t.uncommonType.NumMethod();
 	};
 	rtype.prototype.NumMethod = function() { return this.go$val.NumMethod(); };
- 0rtype00reflectrtype0Çπ Ço	rtype.Ptr.prototype.Method = function(i) {
+ 0rtype0reflect:rtype0Ç∞ Ço	rtype.Ptr.prototype.Method = function(i) {
 		var m, t, tt, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7;
 		m = new Method.Ptr();
 		t = this;
@@ -915,7 +913,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return (_struct$6 = m, new Method.Ptr(_struct$6.Name, _struct$6.PkgPath, _struct$6.Type, (_struct$7 = _struct$6.Func, new Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)), _struct$6.Index));
 	};
 	rtype.prototype.Method = function(i) { return this.go$val.Method(i); };
- 0rtype070reflectrtype0reflectMethod0reflectValue0Çd Ç	rtype.Ptr.prototype.MethodByName = function(name) {
+ 0rtype0.reflect:Methodreflect:Valuereflect:rtype0Ç[ Ç	rtype.Ptr.prototype.MethodByName = function(name) {
 		var m, ok, t, tt, _tuple, _struct, _struct$1, _struct$2, _struct$3, _tuple$1, _struct$4, _struct$5, _struct$6, _struct$7;
 		m = new Method.Ptr();
 		ok = false;
@@ -929,19 +927,19 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return [(_struct$6 = m, new Method.Ptr(_struct$6.Name, _struct$6.PkgPath, _struct$6.Type, (_struct$7 = _struct$6.Func, new Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)), _struct$6.Index)), ok];
 	};
 	rtype.prototype.MethodByName = function(name) { return this.go$val.MethodByName(name); };
- 0rtype070reflectrtype0reflectMethod0reflectValue0Å’ Å±	rtype.Ptr.prototype.PkgPath = function() {
+ 0rtype0.reflect:Methodreflect:Valuereflect:rtype0Å“ Å±	rtype.Ptr.prototype.PkgPath = function() {
 		var t;
 		t = this;
 		return t.uncommonType.PkgPath();
 	};
 	rtype.prototype.PkgPath = function() { return this.go$val.PkgPath(); };
- 0rtype00reflectrtype0Å… Å•	rtype.Ptr.prototype.Name = function() {
+ 0rtype0reflect:rtype0Å∆ Å•	rtype.Ptr.prototype.Name = function() {
 		var t;
 		t = this;
 		return t.uncommonType.Name();
 	};
 	rtype.prototype.Name = function() { return this.go$val.Name(); };
- 0rtype00reflectrtype0ÇK Ç&	rtype.Ptr.prototype.ChanDir = function() {
+ 0rtype0reflect:rtype0ÇH Ç&	rtype.Ptr.prototype.ChanDir = function() {
 		var t, tt;
 		t = this;
 		if (!((t.Kind() === 18))) {
@@ -951,7 +949,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return (tt.dir >> 0);
 	};
 	rtype.prototype.ChanDir = function() { return this.go$val.ChanDir(); };
- 0rtype00reflectrtype0ÇV Ç1	rtype.Ptr.prototype.IsVariadic = function() {
+ 0rtype0reflect:rtype0ÇS Ç1	rtype.Ptr.prototype.IsVariadic = function() {
 		var t, tt;
 		t = this;
 		if (!((t.Kind() === 19))) {
@@ -961,7 +959,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return tt.dotdotdot;
 	};
 	rtype.prototype.IsVariadic = function() { return this.go$val.IsVariadic(); };
- 0rtype00reflectrtype0Ç∏ ÇÄ	rtype.Ptr.prototype.Elem = function() {
+ 0rtype0reflect:rtype0Ç≤ ÇÄ	rtype.Ptr.prototype.Elem = function() {
 		var t, _ref, tt, tt$1, tt$2, tt$3, tt$4;
 		t = this;
 		_ref = t.Kind();
@@ -984,7 +982,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		throw go$panic(new Go$String("reflect: Elem of invalid type"));
 	};
 	rtype.prototype.Elem = function() { return this.go$val.Elem(); };
- 0rtype0%0reflectrtype0reflecttoType0Çˆ Çπ	rtype.Ptr.prototype.Field = function(i) {
+ 0rtype0reflect:rtypereflect:toType0Ç Çπ	rtype.Ptr.prototype.Field = function(i) {
 		var t, tt, _struct;
 		t = this;
 		if (!((t.Kind() === 25))) {
@@ -994,7 +992,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return (_struct = tt.Field(i), new StructField.Ptr(_struct.Name, _struct.PkgPath, _struct.Type, _struct.Tag, _struct.Offset, _struct.Index, _struct.Anonymous));
 	};
 	rtype.prototype.Field = function(i) { return this.go$val.Field(i); };
- 0rtype0*0reflectrtype0reflectStructField0Ç) ÇÏ	rtype.Ptr.prototype.FieldByIndex = function(index) {
+ 0rtype0$reflect:StructFieldreflect:rtype0Ç# ÇÏ	rtype.Ptr.prototype.FieldByIndex = function(index) {
 		var t, tt, _struct;
 		t = this;
 		if (!((t.Kind() === 25))) {
@@ -1004,7 +1002,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return (_struct = tt.FieldByIndex(index), new StructField.Ptr(_struct.Name, _struct.PkgPath, _struct.Type, _struct.Tag, _struct.Offset, _struct.Index, _struct.Anonymous));
 	};
 	rtype.prototype.FieldByIndex = function(index) { return this.go$val.FieldByIndex(index); };
- 0rtype0*0reflectrtype0reflectStructField0Çr ÇM	rtype.Ptr.prototype.FieldByName = function(name) {
+ 0rtype0$reflect:StructFieldreflect:rtype0Ço ÇM	rtype.Ptr.prototype.FieldByName = function(name) {
 		var t, tt;
 		t = this;
 		if (!((t.Kind() === 25))) {
@@ -1014,7 +1012,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return tt.FieldByName(name);
 	};
 	rtype.prototype.FieldByName = function(name) { return this.go$val.FieldByName(name); };
- 0rtype00reflectrtype0Çä Çe	rtype.Ptr.prototype.FieldByNameFunc = function(match) {
+ 0rtype0reflect:rtype0Çá Çe	rtype.Ptr.prototype.FieldByNameFunc = function(match) {
 		var t, tt;
 		t = this;
 		if (!((t.Kind() === 25))) {
@@ -1024,7 +1022,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return tt.FieldByNameFunc(match);
 	};
 	rtype.prototype.FieldByNameFunc = function(match) { return this.go$val.FieldByNameFunc(match); };
- 0rtype00reflectrtype0ÇÛ Çª	rtype.Ptr.prototype.In = function(i) {
+ 0rtype0reflect:rtype0ÇÌ Çª	rtype.Ptr.prototype.In = function(i) {
 		var t, tt, _slice, _index;
 		t = this;
 		if (!((t.Kind() === 19))) {
@@ -1034,7 +1032,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return toType((_slice = tt.in$2, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
 	};
 	rtype.prototype.In = function(i) { return this.go$val.In(i); };
- 0rtype0%0reflectrtype0reflecttoType0ÇM Ç	rtype.Ptr.prototype.Key = function() {
+ 0rtype0reflect:rtypereflect:toType0ÇG Ç	rtype.Ptr.prototype.Key = function() {
 		var t, tt;
 		t = this;
 		if (!((t.Kind() === 21))) {
@@ -1044,7 +1042,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return toType(tt.key);
 	};
 	rtype.prototype.Key = function() { return this.go$val.Key(); };
- 0rtype0%0reflectrtype0reflecttoType0Ç= Ç	rtype.Ptr.prototype.Len = function() {
+ 0rtype0reflect:rtypereflect:toType0Ç: Ç	rtype.Ptr.prototype.Len = function() {
 		var t, tt;
 		t = this;
 		if (!((t.Kind() === 17))) {
@@ -1054,7 +1052,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return (tt.len >> 0);
 	};
 	rtype.prototype.Len = function() { return this.go$val.Len(); };
- 0rtype00reflectrtype0ÇV Ç1	rtype.Ptr.prototype.NumField = function() {
+ 0rtype0reflect:rtype0ÇS Ç1	rtype.Ptr.prototype.NumField = function() {
 		var t, tt;
 		t = this;
 		if (!((t.Kind() === 25))) {
@@ -1064,7 +1062,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return tt.fields.length;
 	};
 	rtype.prototype.NumField = function() { return this.go$val.NumField(); };
- 0rtype00reflectrtype0ÇD Ç	rtype.Ptr.prototype.NumIn = function() {
+ 0rtype0reflect:rtype0ÇA Ç	rtype.Ptr.prototype.NumIn = function() {
 		var t, tt;
 		t = this;
 		if (!((t.Kind() === 19))) {
@@ -1074,7 +1072,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return tt.in$2.length;
 	};
 	rtype.prototype.NumIn = function() { return this.go$val.NumIn(); };
- 0rtype00reflectrtype0ÇG Ç"	rtype.Ptr.prototype.NumOut = function() {
+ 0rtype0reflect:rtype0ÇD Ç"	rtype.Ptr.prototype.NumOut = function() {
 		var t, tt;
 		t = this;
 		if (!((t.Kind() === 19))) {
@@ -1084,7 +1082,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return tt.out.length;
 	};
 	rtype.prototype.NumOut = function() { return this.go$val.NumOut(); };
- 0rtype00reflectrtype0Çˆ Çæ	rtype.Ptr.prototype.Out = function(i) {
+ 0rtype0reflect:rtype0Ç Çæ	rtype.Ptr.prototype.Out = function(i) {
 		var t, tt, _slice, _index;
 		t = this;
 		if (!((t.Kind() === 19))) {
@@ -1094,7 +1092,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return toType((_slice = tt.out, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
 	};
 	rtype.prototype.Out = function(i) { return this.go$val.Out(i); };
- 0rtype0%0reflectrtype0reflecttoType0ÇÆ Çt	ChanDir.prototype.String = function() {
+ 0rtype0reflect:rtypereflect:toType0Ç® Çt	ChanDir.prototype.String = function() {
 		var d, _ref;
 		d = this.go$val;
 		_ref = d;
@@ -1108,7 +1106,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return "ChanDir" + strconv.Itoa((d >> 0));
 	};
 	go$ptrType(ChanDir).prototype.String = function() { return new ChanDir(this.go$get()).String(); };
- 0	ChanDir0%0reflectChanDir0strconvItoa0Çm Ç 	interfaceType.Ptr.prototype.Method = function(i) {
+ 0	ChanDir0reflect:ChanDirstrconv:Itoa0Ça Ç 	interfaceType.Ptr.prototype.Method = function(i) {
 		var m, t, _struct, _struct$1, _slice, _index, p, _struct$2, _struct$3;
 		m = new Method.Ptr();
 		t = this;
@@ -1125,13 +1123,13 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return (_struct$2 = m, new Method.Ptr(_struct$2.Name, _struct$2.PkgPath, _struct$2.Type, (_struct$3 = _struct$2.Func, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), _struct$2.Index));
 	};
 	interfaceType.prototype.Method = function(i) { return this.go$val.Method(i); };
- 0interfaceType0R0reflectinterfaceType0reflectMethod0reflectValue0reflecttoType0ÅÛ Åø	interfaceType.Ptr.prototype.NumMethod = function() {
+ 0interfaceType0Freflect:Methodreflect:Valuereflect:interfaceTypereflect:toType0Å Åø	interfaceType.Ptr.prototype.NumMethod = function() {
 		var t;
 		t = this;
 		return t.methods.length;
 	};
 	interfaceType.prototype.NumMethod = function() { return this.go$val.NumMethod(); };
- 0interfaceType00reflectinterfaceType0Ç© Ç;	interfaceType.Ptr.prototype.MethodByName = function(name) {
+ 0interfaceType0reflect:interfaceType0Çù Ç;	interfaceType.Ptr.prototype.MethodByName = function(name) {
 		var m, ok, t, _struct, _struct$1, p, _ref, _i, i, _slice, _index, _struct$2, _struct$3, _tuple, _struct$4, _struct$5, _struct$6, _struct$7;
 		m = new Method.Ptr();
 		ok = false;
@@ -1154,7 +1152,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return [(_struct$6 = m, new Method.Ptr(_struct$6.Name, _struct$6.PkgPath, _struct$6.Type, (_struct$7 = _struct$6.Func, new Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)), _struct$6.Index)), ok];
 	};
 	interfaceType.prototype.MethodByName = function(name) { return this.go$val.MethodByName(name); };
- 0interfaceType0S0reflectinterfaceType0reflectMethod0reflectValue0reflectimethod0ÇÀ Çä	StructTag.prototype.Get = function(key) {
+ 0interfaceType0Greflect:Methodreflect:Valuereflect:imethodreflect:interfaceType0Ç≈ Çä	StructTag.prototype.Get = function(key) {
 		var tag, i, name, qvalue, _tuple, value;
 		tag = this.go$val;
 		while (!(tag === "")) {
@@ -1195,7 +1193,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 		return "";
 	};
 	go$ptrType(StructTag).prototype.Get = function(key) { return new StructTag(this.go$get()).Get(key); };
- 0	StructTag0*0reflect	StructTag0strconvUnquote0Ç_ Ç	structType.Ptr.prototype.Field = function(i) {
+ 0	StructTag0$reflect:StructTagstrconv:Unquote0ÇV Ç	structType.Ptr.prototype.Field = function(i) {
 		var f, t, _struct, _slice, _index, p, t$1, _struct$1;
 		f = new StructField.Ptr();
 		t = this;
@@ -1226,8 +1224,7 @@ SelectCase0(0reflectValue0reflect	SelectDir0Ç¶deepValueEqualÇ=	dee
 	};
 	structType.prototype.Field = function(i) { return this.go$val.Field(i); };
  0
-structType0B0reflect
-structType0reflectStructField0reflecttoType0ÇP Çˆ	structType.Ptr.prototype.FieldByIndex = function(index) {
+structType09reflect:StructFieldreflect:structTypereflect:toType0ÇG Çˆ	structType.Ptr.prototype.FieldByIndex = function(index) {
 		var f, t, _ref, _i, _slice, _index, x, i, ft, _struct, _struct$1;
 		f = new StructField.Ptr();
 		t = this;
@@ -1251,8 +1248,7 @@ structType0reflectStructField0reflecttoType0ÇP Çˆ	structType.Ptr.p
 	};
 	structType.prototype.FieldByIndex = function(index) { return this.go$val.FieldByIndex(index); };
  0
-structType0B0reflect
-structType0reflectStructField0reflecttoType0Ç⁄ ÇX	structType.Ptr.prototype.FieldByNameFunc = function(match) {
+structType09reflect:StructFieldreflect:structTypereflect:toType0ÇÀ ÇX	structType.Ptr.prototype.FieldByNameFunc = function(match) {
 		var result, ok, t, current, next, nextCount, _map, _key, visited, _tuple, count, _ref, _i, _slice, _index, _struct, scan, t$1, _entry, _key$1, _ref$1, _i$1, i, _slice$1, _index$1, f, fname, ntyp, _entry$1, _tuple$1, _struct$1, _struct$2, styp, _entry$2, _key$2, _map$1, _key$3, _key$4, _entry$3, _key$5, index, _struct$3;
 		result = new StructField.Ptr();
 		ok = false;
@@ -1337,8 +1333,7 @@ structType0reflectStructField0reflecttoType0Ç⁄ ÇX	structType.Ptr.p
 	};
 	structType.prototype.FieldByNameFunc = function(match) { return this.go$val.FieldByNameFunc(match); };
  0
-structType0j0reflect
-structType0reflectStructField0reflect	fieldScan0reflectrtype0reflectcommon0Çé ÇG	structType.Ptr.prototype.FieldByName = function(name) {
+structType0[reflect:StructFieldreflect:commonreflect:fieldScanreflect:rtypereflect:structType0Çà ÇG	structType.Ptr.prototype.FieldByName = function(name) {
 		var f, present, t, hasAnon, _ref, _i, i, _slice, _index, tf, _struct, _tuple, _struct$1, _struct$2, _tuple$1, _struct$3, _struct$4;
 		f = new StructField.Ptr();
 		present = false;
@@ -1372,8 +1367,7 @@ structType0reflectStructField0reflect	fieldScan0reflectrtype0re
 	};
 	structType.prototype.FieldByName = function(name) { return this.go$val.FieldByName(name); };
  0
-structType0/0reflect
-structType0reflectStructField0Å˘TypeOfÅ‡	TypeOf = go$pkg.TypeOf = function(i) {
+structType0)reflect:StructFieldreflect:structType0Å˘TypeOfÅ‡	TypeOf = go$pkg.TypeOf = function(i) {
 			if (i === null) {
 				return null;
 			}
@@ -1382,14 +1376,14 @@ structType0reflectStructField0Å˘TypeOfÅ‡	TypeOf = go$pkg.TypeOf = functi
 			}
 			return i.constructor.reflectType();
 		};
- 0TypeOf0 0ÅÈPtrToÅÆ	PtrTo = go$pkg.PtrTo = function(t) {
+ 0TypeOf0 0Å„PtrToÅÆ	PtrTo = go$pkg.PtrTo = function(t) {
 		return (t !== null && t.constructor === (go$ptrType(rtype)) ? t.go$val : go$typeAssertionFailed(t, (go$ptrType(rtype)))).ptrTo();
 	};
- 0PtrTo0$0reflectptrTo0reflectrtype0Å– Å•	rtype.Ptr.prototype.ptrTo = function() {
+ 0PtrTo0reflect:ptrToreflect:rtype0ÅÕ Å•	rtype.Ptr.prototype.ptrTo = function() {
 			return go$ptrType(this.jsType).reflectType();
 		};
 	rtype.prototype.ptrTo = function() { return this.go$val.ptrTo(); };
- 0rtypeptrTo00reflectrtype0ÇΩfnv1Çß	fnv1 = function(x, list) {
+ 0rtypeptrTo0reflect:rtype0ÇΩfnv1Çß	fnv1 = function(x, list) {
 		var _ref, _i, _slice, _index, b, x$1;
 		_ref = list;
 		_i = 0;
@@ -1400,7 +1394,7 @@ structType0reflectStructField0Å˘TypeOfÅ‡	TypeOf = go$pkg.TypeOf = functi
 		}
 		return x;
 	};
- 0fnv10 0Ç[ Ç	rtype.Ptr.prototype.Implements = function(u) {
+ 0fnv10 0ÇU Ç	rtype.Ptr.prototype.Implements = function(u) {
 		var t;
 		t = this;
 		if (go$interfaceIsEqual(u, null)) {
@@ -1412,8 +1406,7 @@ structType0reflectStructField0Å˘TypeOfÅ‡	TypeOf = go$pkg.TypeOf = functi
 		return implements$1((u !== null && u.constructor === (go$ptrType(rtype)) ? u.go$val : go$typeAssertionFailed(u, (go$ptrType(rtype)))), t);
 	};
 	rtype.prototype.Implements = function(u) { return this.go$val.Implements(u); };
- 0rtype0)0reflectrtype0reflect
-implements0Ç1 Ç÷	rtype.Ptr.prototype.AssignableTo = function(u) {
+ 0rtype0#reflect:implementsreflect:rtype0Ç( Ç÷	rtype.Ptr.prototype.AssignableTo = function(u) {
 		var t, uu;
 		t = this;
 		if (go$interfaceIsEqual(u, null)) {
@@ -1423,8 +1416,7 @@ implements0Ç1 Ç÷	rtype.Ptr.prototype.AssignableTo = function(u) {
 		return directlyAssignable(uu, t) || implements$1(uu, t);
 	};
 	rtype.prototype.AssignableTo = function(u) { return this.go$val.AssignableTo(u); };
- 0rtype0H0reflectrtype0reflectdirectlyAssignable0reflect
-implements0Ç ÇŸ	rtype.Ptr.prototype.ConvertibleTo = function(u) {
+ 0rtype0?reflect:directlyAssignablereflect:implementsreflect:rtype0Ç ÇŸ	rtype.Ptr.prototype.ConvertibleTo = function(u) {
 		var t, uu;
 		t = this;
 		if (go$interfaceIsEqual(u, null)) {
@@ -1434,7 +1426,7 @@ implements0Ç ÇŸ	rtype.Ptr.prototype.ConvertibleTo = function(u) {
 		return !(convertOp(uu, t) === go$throwNilPointerError);
 	};
 	rtype.prototype.ConvertibleTo = function(u) { return this.go$val.ConvertibleTo(u); };
- 0rtype0(0reflectrtype0reflect	convertOp0ÇEimplements$1ÇÛ	implements$1 = function(T, V) {
+ 0rtype0"reflect:convertOpreflect:rtype0Ç?implements$1ÇÛ	implements$1 = function(T, V) {
 		var t, v, i, j, _slice, _index, tm, _slice$1, _index$1, vm, v$1, i$1, j$1, _slice$2, _index$2, tm$1, _slice$3, _index$3, vm$1;
 		if (!((T.Kind() === 20))) {
 			return false;
@@ -1478,7 +1470,7 @@ implements0Ç ÇŸ	rtype.Ptr.prototype.ConvertibleTo = function(u) {
 		return false;
 	};
  0
-implements0.0reflectuncommon0reflectuncommonType0Ç:directlyAssignableÅ·	directlyAssignable = function(T, V) {
+implements0(reflect:uncommonreflect:uncommonType0Ç7directlyAssignableÅ·	directlyAssignable = function(T, V) {
 		if (T === V) {
 			return true;
 		}
@@ -1487,7 +1479,7 @@ implements0.0reflectuncommon0reflectuncommonType0Ç:directlyAssignab
 		}
 		return haveIdenticalUnderlyingType(T, V);
 	};
- 0directlyAssignable0(0&reflecthaveIdenticalUnderlyingType0ÇóhaveIdenticalUnderlyingTypeÇS	haveIdenticalUnderlyingType = function(T, V) {
+ 0directlyAssignable0%#reflect:haveIdenticalUnderlyingType0ÇóhaveIdenticalUnderlyingTypeÇS	haveIdenticalUnderlyingType = function(T, V) {
 		var kind, _ref, t, v, _ref$1, _i, _slice, _index, typ, i, _slice$1, _index$1, _ref$2, _i$1, _slice$2, _index$2, typ$1, i$1, _slice$3, _index$3, t$1, v$1, t$2, v$2, _ref$3, _i$2, i$2, _slice$4, _index$4, tf, _slice$5, _index$5, vf;
 		if (T === V) {
 			return true;
@@ -1581,7 +1573,7 @@ implements0.0reflectuncommon0reflectuncommonType0Ç:directlyAssignab
  0haveIdenticalUnderlyingType0 0|	typelinks^	typelinks = function() {
 		throw go$panic("Native function not implemented: typelinks");
 	};
- 0	typelinks0 0Ç°typesByStringÇc	typesByString = function(s) {
+ 0	typelinks0 0ÇûtypesByStringÇc	typesByString = function(s) {
 		var typ, _tuple, i, j, _q, h, _slice, _index, _slice$1, _index$1;
 		typ = typelinks();
 		_tuple = [0, typ.length], i = _tuple[0], j = _tuple[1];
@@ -1599,7 +1591,7 @@ implements0.0reflectuncommon0reflectuncommonType0Ç:directlyAssignab
 		}
 		return go$subslice(typ, i, j);
 	};
- 0typesByString00reflect	typelinks0Ç‘cacheGetÇw	cacheGet = function(k) {
+ 0typesByString0reflect:typelinks0ÇÀcacheGetÇw	cacheGet = function(k) {
 		var _entry, t, _entry$1;
 		lookupCache.RWMutex.RLock();
 		t = (_entry = lookupCache.m[(new cacheKey(k)).go$key()], _entry !== undefined ? _entry.v : (go$ptrType(rtype)).nil);
@@ -1619,14 +1611,14 @@ implements0.0reflectuncommon0reflectuncommonType0Ç:directlyAssignab
 		return null;
 	};
  0
-cacheGet0?0reflectlookupCache0reflectcacheKey0reflectrtype0ÇäcachePutÇ?	cachePut = function(k, t) {
+cacheGet06reflect:cacheKeyreflect:lookupCachereflect:rtype0ÇÑcachePutÇ?	cachePut = function(k, t) {
 		var _key, _struct;
 		_key = (_struct = k, new cacheKey.Ptr(_struct.kind, _struct.t1, _struct.t2, _struct.extra)), (lookupCache.m || go$throwRuntimeError("assignment to entry in nil map"))[(new cacheKey(_key)).go$key()] = { k: _key, v: t };
 		lookupCache.RWMutex.Unlock();
 		return t;
 	};
  0
-cachePut0-0reflectcacheKey0reflectlookupCache0ÅúChanOfÅÉ	ChanOf = go$pkg.ChanOf = function(dir, t) {
+cachePut0'reflect:cacheKeyreflect:lookupCache0ÅúChanOfÅÉ	ChanOf = go$pkg.ChanOf = function(dir, t) {
 			return go$chanType(t.jsType, dir === SendDir, dir === RecvDir).reflectType();
 		};
  0ChanOf0 0xismapkey\	ismapkey = function() {
@@ -1642,7 +1634,7 @@ implements0.0reflectuncommon0reflectuncommonType0Ç:directlyAssignab
 			}
 			return go$mapType(key.jsType, elem.jsType).reflectType();
 		};
- 0MapOf0 0Ç|bucketOfÇ	bucketOf = function(ktyp, etyp) {
+ 0MapOf0 0ÇsbucketOfÇ	bucketOf = function(ktyp, etyp) {
 		var x, x$1, ptrsize, gc, offset, x$2, x$3, _slice, _index, _slice$1, _index$1, b, s, v;
 		if (ktyp.size > 128) {
 			ktyp = (x = PtrTo(ktyp), (x !== null && x.constructor === (go$ptrType(rtype)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(rtype)))));
@@ -1678,7 +1670,7 @@ implements0.0reflectuncommon0reflectuncommonType0Ç:directlyAssignab
 		return b;
 	};
  0
-bucketOf0@0reflectrtype0reflectPtrTo0reflectappendGCProgram0ÇBappendGCProgramÇˇ	appendGCProgram = function(gc, t) {
+bucketOf07reflect:PtrToreflect:appendGCProgramreflect:rtype0Ç?appendGCProgramÇˇ	appendGCProgram = function(gc, t) {
 		var p, argcnt, _ref, i;
 		p = t.gc;
 		p = (p + 4 >>> 0);
@@ -1708,8 +1700,7 @@ implements0.0reflectuncommon0reflectuncommonType0Ç:directlyAssignab
 		}
 		return gc;
 	};
- 0appendGCProgram00strconv
-FormatUint0Ç˘hMapOfÇÕ	hMapOf = function(bucket) {
+ 0appendGCProgram0strconv:FormatUint0ÇˆhMapOfÇÕ	hMapOf = function(bucket) {
 		var ptrsize, gc, offset, x, _q, x$1, x$2, _q$1, _slice, _index, h, s, v;
 		ptrsize = 4;
 		gc = (go$sliceType(Go$Uintptr)).make(1, 0, function() { return 0; });
@@ -1736,19 +1727,19 @@ FormatUint0Ç˘hMapOfÇÕ	hMapOf = function(bucket) {
 		h.string = new (go$ptrType(Go$String))(function() { return s; }, function(v) { s = v; });
 		return h;
 	};
- 0hMapOf00reflectrtype0ySliceOf_	SliceOf = go$pkg.SliceOf = function(t) {
+ 0hMapOf0reflect:rtype0ySliceOf_	SliceOf = go$pkg.SliceOf = function(t) {
 			return go$sliceType(t.jsType).reflectType();
 		};
  0	SliceOf0 0narrayOfT	arrayOf = function(n, t) {
 			return go$arrayType(t.jsType, n).reflectType();
 		};
- 0	arrayOf0 0ÅçtoTypec	toType = function(t) {
+ 0	arrayOf0 0ÅätoTypec	toType = function(t) {
 		if (t === (go$ptrType(rtype)).nil) {
 			return null;
 		}
 		return t;
 	};
- 0toType00reflectrtype0ÇememmoveÇI	memmove = function(adst, asrc, n) {
+ 0toType0reflect:rtype0ÇememmoveÇI	memmove = function(adst, asrc, n) {
 		var dst, src, i, i$1, i$2;
 		dst = adst;
 		src = asrc;
@@ -1772,13 +1763,13 @@ FormatUint0Ç˘hMapOfÇÕ	hMapOf = function(bucket) {
 			}
 		}
 	};
- 0	memmove0 0Å˘ Å—	flag.prototype.kind = function() {
+ 0	memmove0 0Åˆ Å—	flag.prototype.kind = function() {
 		var f;
 		f = this.go$val;
 		return (((((f >>> 4 >>> 0)) & 31) >>> 0) >>> 0);
 	};
 	go$ptrType(flag).prototype.kind = function() { return new flag(this.go$get()).kind(); };
- 0flagkind00reflectflag0ÇÑ ÇD	ValueError.Ptr.prototype.Error = function() {
+ 0flagkind0reflect:flag0Ç~ ÇD	ValueError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		if (e.Kind === 0) {
@@ -1788,20 +1779,19 @@ FormatUint0Ç˘hMapOfÇÕ	hMapOf = function(bucket) {
 	};
 	ValueError.prototype.Error = function() { return this.go$val.Error(); };
  0
-ValueError0(0reflect
-ValueError0reflectKind0U
+ValueError0"reflect:Kindreflect:ValueError0U
 methodName5	methodName = function() {
 			return "?FIXME?";
 		};
  0
-methodName0 0Ç: Ç	Value.Ptr.prototype.iword = function() {
+methodName0 0Ç7 Ç	Value.Ptr.prototype.iword = function() {
 			if ((this.flag & flagIndir) !== 0 && this.typ.Kind() !== Array && this.typ.Kind() !== Struct) {
 				return this.val.go$get();
 			}
 			return this.val;
 		};
 	Value.prototype.iword = function() { return this.go$val.iword(); };
- 0Valueiword00reflectValue0Ç	loadIwordÇƒ	loadIword = function(p, n) {
+ 0Valueiword0reflect:Value0Ç	loadIwordÇƒ	loadIword = function(p, n) {
 		var w, _ref, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7;
 		w = 0;
 		_ref = n;
@@ -1827,7 +1817,7 @@ methodName0 0Ç: Ç	Value.Ptr.prototype.iword = function() {
 		}
 		return w;
 	};
- 0	loadIword0#0reflectiword0strconvItoa0Ç>
+ 0	loadIword0reflect:iwordstrconv:Itoa0Ç;
 storeIwordÇ	storeIword = function(p, w, n) {
 		var _ref;
 		_ref = n;
@@ -1853,7 +1843,7 @@ storeIwordÇ	storeIword = function(p, w, n) {
 		}
 	};
  0
-storeIword00strconvItoa0Çû Ç4	flag.prototype.mustBe = function(expected) {
+storeIword0strconv:Itoa0Çí Ç4	flag.prototype.mustBe = function(expected) {
 		var f, k;
 		f = this.go$val;
 		k = (new flag(f)).kind();
@@ -1862,9 +1852,7 @@ storeIword00strconvItoa0Çû Ç4	flag.prototype.mustBe = function(expecte
 		}
 	};
 	go$ptrType(flag).prototype.mustBe = function(expected) { return new flag(this.go$get()).mustBe(expected); };
- 0flagmustBe0P0reflectflag0reflectkind0reflect
-methodName0reflect
-ValueError0Ç Ç†	flag.prototype.mustBeExported = function() {
+ 0flagmustBe0Dreflect:ValueErrorreflect:flagreflect:kindreflect:methodName0Ç¯ Ç†	flag.prototype.mustBeExported = function() {
 		var f;
 		f = this.go$val;
 		if (f === 0) {
@@ -1875,9 +1863,7 @@ ValueError0Ç Ç†	flag.prototype.mustBeExported = function() {
 		}
 	};
 	go$ptrType(flag).prototype.mustBeExported = function() { return new flag(this.go$get()).mustBeExported(); };
- 0flagmustBeExported0?0reflectflag0reflect
-methodName0reflect
-ValueError0Çâ Ç&	flag.prototype.mustBeAssignable = function() {
+ 0flagmustBeExported06reflect:ValueErrorreflect:flagreflect:methodName0ÇÄ Ç&	flag.prototype.mustBeAssignable = function() {
 		var f;
 		f = this.go$val;
 		if (f === 0) {
@@ -1891,9 +1877,7 @@ ValueError0Çâ Ç&	flag.prototype.mustBeAssignable = function() {
 		}
 	};
 	go$ptrType(flag).prototype.mustBeAssignable = function() { return new flag(this.go$get()).mustBeAssignable(); };
- 0flagmustBeAssignable0?0reflectflag0reflect
-methodName0reflect
-ValueError0Ç” Çú	Value.Ptr.prototype.Addr = function() {
+ 0flagmustBeAssignable06reflect:ValueErrorreflect:flagreflect:methodName0ÇÕ Çú	Value.Ptr.prototype.Addr = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (((v.flag & 4) >>> 0) === 0) {
@@ -1902,7 +1886,7 @@ ValueError0Ç” Çú	Value.Ptr.prototype.Addr = function() {
 		return new Value.Ptr(v.typ.ptrTo(), v.val, ((((v.flag & 1) >>> 0)) | 352) >>> 0);
 	};
 	Value.prototype.Addr = function() { return this.go$val.Addr(); };
- 0Value0$0reflectValue0reflectptrTo0Çë ÇH	Value.Ptr.prototype.Bool = function() {
+ 0Value0reflect:Valuereflect:ptrTo0Çà ÇH	Value.Ptr.prototype.Bool = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(1);
@@ -1912,7 +1896,7 @@ ValueError0Ç” Çú	Value.Ptr.prototype.Addr = function() {
 		return v.val;
 	};
 	Value.prototype.Bool = function() { return this.go$val.Bool(); };
- 0Value060reflectValue0reflectmustBe0reflectflag0ÇD Ç	Value.Ptr.prototype.Bytes = function() {
+ 0Value0-reflect:Valuereflect:flagreflect:mustBe0ÇA Ç	Value.Ptr.prototype.Bytes = function() {
 			this.mustBe(Slice);
 			if (this.typ.Elem().Kind() !== Uint8) {
 				throw go$panic(new Go$String("reflect.Value.Bytes of non-byte slice"));
@@ -1920,7 +1904,7 @@ ValueError0Ç” Çú	Value.Ptr.prototype.Addr = function() {
 			return this.iword();
 		};
 	Value.prototype.Bytes = function() { return this.go$val.Bytes(); };
- 0Value00reflectValue0ÇO Ç#	Value.Ptr.prototype.runes = function() {
+ 0Value0reflect:Value0ÇL Ç#	Value.Ptr.prototype.runes = function() {
 			this.mustBe(Slice);
 			if (this.typ.Elem().Kind() !== Int32) {
 				throw new go$panic(new Go$String("reflect.Value.Bytes of non-rune slice"));
@@ -1928,19 +1912,19 @@ ValueError0Ç” Çú	Value.Ptr.prototype.Addr = function() {
 			return this.iword();
 		};
 	Value.prototype.runes = function() { return this.go$val.runes(); };
- 0Valuerunes00reflectValue0Ç) Ç	Value.Ptr.prototype.CanAddr = function() {
+ 0Valuerunes0reflect:Value0Ç& Ç	Value.Ptr.prototype.CanAddr = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		return !((((v.flag & 4) >>> 0) === 0));
 	};
 	Value.prototype.CanAddr = function() { return this.go$val.CanAddr(); };
- 0Value00reflectValue0Ç  Å¸	Value.Ptr.prototype.CanSet = function() {
+ 0Value0reflect:Value0Ç Å¸	Value.Ptr.prototype.CanSet = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		return ((v.flag & 5) >>> 0) === 4;
 	};
 	Value.prototype.CanSet = function() { return this.go$val.CanSet(); };
- 0Value00reflectValue0Çπ ÇD	Value.Ptr.prototype.Call = function(in$1) {
+ 0Value0reflect:Value0Ç™ ÇD	Value.Ptr.prototype.Call = function(in$1) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(19);
@@ -1948,7 +1932,7 @@ ValueError0Ç” Çú	Value.Ptr.prototype.Addr = function() {
 		return v.call("Call", in$1);
 	};
 	Value.prototype.Call = function(in$1) { return this.go$val.Call(in$1); };
- 0Value0b0reflectValue0reflectmustBe0reflectflag0reflectmustBeExported0reflectcall0ÇÕ ÇX	Value.Ptr.prototype.CallSlice = function(in$1) {
+ 0Value0Sreflect:Valuereflect:callreflect:flagreflect:mustBereflect:mustBeExported0Çæ ÇX	Value.Ptr.prototype.CallSlice = function(in$1) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(19);
@@ -1956,7 +1940,7 @@ ValueError0Ç” Çú	Value.Ptr.prototype.Addr = function() {
 		return v.call("CallSlice", in$1);
 	};
 	Value.prototype.CallSlice = function(in$1) { return this.go$val.CallSlice(in$1); };
- 0Value0b0reflectValue0reflectmustBe0reflectflag0reflectmustBeExported0reflectcall0Çì Çh	Value.Ptr.prototype.call = function(op, args) {
+ 0Value0Sreflect:Valuereflect:callreflect:flagreflect:mustBereflect:mustBeExported0Çê Çh	Value.Ptr.prototype.call = function(op, args) {
 			var t = this.typ, fn, rcvr;
 
 			if ((this.flag & flagMethod) !== 0) {
@@ -2044,7 +2028,7 @@ ValueError0Ç” Çú	Value.Ptr.prototype.Addr = function() {
 			return new (go$sliceType(Value))(results);
 		};
 	Value.prototype.call = function() { return this.go$val.call(); };
- 0Valuecall00reflectValue0Ç¢callReflectÇ
+ 0Valuecall0reflect:Value0ÇêcallReflectÇ
 ˇ	callReflect = function(ctxt, frame) {
 		var ftyp, f, ptr, off, in$1, _ref, _i, _slice, _index, arg, typ, v, _struct, out, _ref$1, _i$1, _slice$1, _index$1, arg$1, i, typ$1, _slice$2, _index$2, _struct$1, v$1, _slice$3, _index$3, addr;
 		ftyp = ctxt.typ;
@@ -2101,9 +2085,7 @@ ValueError0Ç” Çú	Value.Ptr.prototype.Addr = function() {
 			}
 		}
 	};
- 0callReflect00reflectValue0reflect	loadIword0reflect
-unsafe-New0reflectmemmove0reflectfuncName0reflect
-storeIword0ÇDmethodReceiverÇ	methodReceiver = function(op, v, i) {
+ 0callReflect0mreflect:Valuereflect:funcNamereflect:loadIwordreflect:memmovereflect:storeIwordreflect:unsafe-New0ÇDmethodReceiverÇ	methodReceiver = function(op, v, i) {
 			var m, t;
 			if (v.typ.Kind() === Interface) {
 				var tt = v.typ.interfaceType;
@@ -2139,7 +2121,7 @@ storeIword0ÇDmethodReceiverÇ	methodReceiver = function(op, v, i) {
  0methodReceiver0 0malignW	align = function(x, n) {
 		return (((x + n >>> 0) - 1 >>> 0)) & ~((n - 1 >>> 0));
 	};
- 0align0 0Çe	frameSizeÇ3	frameSize = function(t, rcvr) {
+ 0align0 0Çb	frameSizeÇ3	frameSize = function(t, rcvr) {
 		var total, in$1, outOffset, out, nin, i, tv, nout, i$1, tv$1;
 		total = 0;
 		in$1 = 0;
@@ -2176,7 +2158,7 @@ storeIword0ÇDmethodReceiverÇ	methodReceiver = function(op, v, i) {
 		total = align(total, 4);
 		return [total, in$1, outOffset, out];
 	};
- 0	frameSize00reflectalign0Çy
+ 0	frameSize0reflect:align0Çj
 callMethodÇÔ	callMethod = function(ctxt, frame) {
 		var _tuple, _struct, t, fn, rcvr, _tuple$1, total, in$1, outOffset, out, _q, args, _slice, _index, base;
 		_tuple = methodReceiver("call", (_struct = ctxt.rcvr, new Value.Ptr(_struct.typ, _struct.val, _struct.flag)), ctxt.method), t = _tuple[0], fn = _tuple[1], rcvr = _tuple[2];
@@ -2189,7 +2171,7 @@ callMethodÇÔ	callMethod = function(ctxt, frame) {
 		memmove(((frame + outOffset >>> 0) - 4 >>> 0), (base + outOffset >>> 0), out);
 	};
  0
-callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0reflectmemmove0reflectcall0Å˜funcNameÅ≥	funcName = function(f) {
+callMethod0Yreflect:Valuereflect:callreflect:frameSizereflect:memmovereflect:methodReceiver0ÅÒfuncNameÅ≥	funcName = function(f) {
 		var pc, rf;
 		pc = f;
 		rf = runtime.FuncForPC(pc);
@@ -2199,7 +2181,7 @@ callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0
 		return "closure";
 	};
  0
-funcName0'0runtime	FuncForPC0runtimeFunc0Ç0 Ç	Value.Ptr.prototype.Cap = function() {
+funcName0!runtime:Funcruntime:FuncForPC0Ç- Ç	Value.Ptr.prototype.Cap = function() {
 			var k = this.kind();
 			switch (k) {
 			case Slice:
@@ -2208,7 +2190,7 @@ callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0
 			throw go$panic(new ValueError.Ptr("reflect.Value.Cap", k));
 		};
 	Value.prototype.Cap = function() { return this.go$val.Cap(); };
- 0Value00reflectValue0Ç¿ Ç4	Value.Ptr.prototype.Close = function() {
+ 0Value0reflect:Value0ÇÆ Ç4	Value.Ptr.prototype.Close = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(18);
@@ -2216,11 +2198,11 @@ callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0
 		chanclose(v.iword());
 	};
 	Value.prototype.Close = function() { return this.go$val.Close(); };
- 0Value0y0reflectValue0reflectmustBe0reflectflag0reflectmustBeExported0reflect	chanclose0reflectiword0Å∂ Åí	Value.Ptr.prototype.Complex = function() {
+ 0Value0greflect:Valuereflect:chanclosereflect:flagreflect:iwordreflect:mustBereflect:mustBeExported0Å≥ Åí	Value.Ptr.prototype.Complex = function() {
 			return this.iword();
 		};
 	Value.prototype.Complex = function() { return this.go$val.Complex(); };
- 0Value00reflectValue0Ç¬ Çù	Value.Ptr.prototype.Elem = function() {
+ 0Value0reflect:Value0Çø Çù	Value.Ptr.prototype.Elem = function() {
 			switch (this.kind()) {
 			case Interface:
 				var val = this.iword();
@@ -2248,7 +2230,7 @@ callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0
 			throw go$panic(new ValueError.Ptr("reflect.Value.Elem", this.kind()));
 		};
 	Value.prototype.Elem = function() { return this.go$val.Elem(); };
- 0Value00reflectValue0Çï Çp	Value.Ptr.prototype.Field = function(i) {
+ 0Value0reflect:Value0Çí Çp	Value.Ptr.prototype.Field = function(i) {
 			this.mustBe(Struct);
 			var tt = this.typ.structType;
 			if (i < 0 || i >= tt.fields.length) {
@@ -2269,7 +2251,7 @@ callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0
 			return new Value.Ptr(typ, this.val[name], fl);
 		};
 	Value.prototype.Field = function() { return this.go$val.Field(); };
- 0Value00reflectValue0Ç˚ Ç≤	Value.Ptr.prototype.FieldByIndex = function(index) {
+ 0Value0reflect:Value0ÇÚ Ç≤	Value.Ptr.prototype.FieldByIndex = function(index) {
 		var _struct, v, _ref, _i, _slice, _index, x, i, _struct$1, _struct$2, _struct$3;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(25);
@@ -2289,7 +2271,7 @@ callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0
 		return (_struct$3 = v, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 	};
 	Value.prototype.FieldByIndex = function(index) { return this.go$val.FieldByIndex(index); };
- 0Value060reflectValue0reflectmustBe0reflectflag0Ç> ÇÀ	Value.Ptr.prototype.FieldByName = function(name) {
+ 0Value0-reflect:Valuereflect:flagreflect:mustBe0Ç/ ÇÀ	Value.Ptr.prototype.FieldByName = function(name) {
 		var _struct, v, ok, _tuple, _struct$1, f, _struct$2;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(25);
@@ -2299,7 +2281,7 @@ callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0
 		return new Value.Ptr((go$ptrType(rtype)).nil, 0, 0);
 	};
 	Value.prototype.FieldByName = function(name) { return this.go$val.FieldByName(name); };
- 0Value0`0reflectValue0reflectmustBe0reflectflag0reflectStructField0reflectrtype0ÇR Çﬂ	Value.Ptr.prototype.FieldByNameFunc = function(match) {
+ 0Value0Qreflect:StructFieldreflect:Valuereflect:flagreflect:mustBereflect:rtype0ÇC Çﬂ	Value.Ptr.prototype.FieldByNameFunc = function(match) {
 		var _struct, v, ok, _tuple, _struct$1, f, _struct$2;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(25);
@@ -2309,7 +2291,7 @@ callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0
 		return new Value.Ptr((go$ptrType(rtype)).nil, 0, 0);
 	};
 	Value.prototype.FieldByNameFunc = function(match) { return this.go$val.FieldByNameFunc(match); };
- 0Value0`0reflectValue0reflectmustBe0reflectflag0reflectStructField0reflectrtype0Ç€ Ç}	Value.Ptr.prototype.Float = function() {
+ 0Value0Qreflect:StructFieldreflect:Valuereflect:flagreflect:mustBereflect:rtype0Çœ Ç}	Value.Ptr.prototype.Float = function() {
 		var _struct, v, k, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
@@ -2328,8 +2310,7 @@ callMethod0h0reflectmethodReceiver0reflectValue0reflect	frameSize0
 		throw go$panic(new ValueError.Ptr("reflect.Value.Float", k));
 	};
 	Value.prototype.Float = function() { return this.go$val.Float(); };
- 0Value0K0reflectValue0reflectkind0reflectflag0reflect
-ValueError0Çû Çy	Value.Ptr.prototype.Index = function(i) {
+ 0Value0?reflect:Valuereflect:ValueErrorreflect:flagreflect:kind0Çõ Çy	Value.Ptr.prototype.Index = function(i) {
 			var k = this.kind();
 			switch (k) {
 			case Array:
@@ -2369,7 +2350,7 @@ ValueError0Çû Çy	Value.Ptr.prototype.Index = function(i) {
 			throw go$panic(new ValueError.Ptr("reflect.Value.Index", k));
 		};
 	Value.prototype.Index = function() { return this.go$val.Index(); };
- 0Value00reflectValue0Çñ Ç8	Value.Ptr.prototype.Int = function() {
+ 0Value0reflect:Value0Çä Ç8	Value.Ptr.prototype.Int = function() {
 		var _struct, v, k, p, v$1, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
@@ -2394,8 +2375,7 @@ ValueError0Çû Çy	Value.Ptr.prototype.Index = function(i) {
 		throw go$panic(new ValueError.Ptr("reflect.Value.Int", k));
 	};
 	Value.prototype.Int = function() { return this.go$val.Int(); };
- 0Value0K0reflectValue0reflectkind0reflectflag0reflect
-ValueError0Ç¨ Çp	Value.Ptr.prototype.CanInterface = function() {
+ 0Value0?reflect:Valuereflect:ValueErrorreflect:flagreflect:kind0Ç¶ Çp	Value.Ptr.prototype.CanInterface = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (v.flag === 0) {
@@ -2404,8 +2384,7 @@ ValueError0Ç¨ Çp	Value.Ptr.prototype.CanInterface = function() {
 		return ((v.flag & 1) >>> 0) === 0;
 	};
 	Value.prototype.CanInterface = function() { return this.go$val.CanInterface(); };
- 0Value0)0reflectValue0reflect
-ValueError0Ç∞ Çp	Value.Ptr.prototype.Interface = function() {
+ 0Value0#reflect:Valuereflect:ValueError0Ç™ Çp	Value.Ptr.prototype.Interface = function() {
 		var i, _struct, v, _struct$1;
 		i = null;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -2413,7 +2392,7 @@ ValueError0Ç∞ Çp	Value.Ptr.prototype.Interface = function() {
 		return i;
 	};
 	Value.prototype.Interface = function() { return this.go$val.Interface(); };
- 0Value0-0reflectValue0reflectvalueInterface0ÇvalueInterfaceÇË	valueInterface = function(v, safe) {
+ 0Value0'reflect:Valuereflect:valueInterface0ÇvalueInterfaceÇË	valueInterface = function(v, safe) {
 			if (v.flag === 0) {
 				throw go$panic(new ValueError.Ptr("reflect.Value.Interface", 0));
 			}
@@ -2428,14 +2407,14 @@ ValueError0Ç∞ Çp	Value.Ptr.prototype.Interface = function() {
 			}
 			return v.iword();
 		};
- 0valueInterface0 0Çñ ÇM	Value.Ptr.prototype.InterfaceData = function() {
+ 0valueInterface0 0Çç ÇM	Value.Ptr.prototype.InterfaceData = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(20);
 		return go$mapArray(v.val, function(entry) { return entry; });
 	};
 	Value.prototype.InterfaceData = function() { return this.go$val.InterfaceData(); };
- 0Value060reflectValue0reflectmustBe0reflectflag0Ç Ç·	Value.Ptr.prototype.IsNil = function() {
+ 0Value0-reflect:Valuereflect:flagreflect:mustBe0Ç Ç·	Value.Ptr.prototype.IsNil = function() {
 			switch (this.kind()) {
 			case Chan:
 			case Ptr:
@@ -2451,19 +2430,19 @@ ValueError0Ç∞ Çp	Value.Ptr.prototype.Interface = function() {
 			throw go$panic(new ValueError.Ptr("reflect.Value.IsNil", this.kind()));
 		};
 	Value.prototype.IsNil = function() { return this.go$val.IsNil(); };
- 0Value00reflectValue0Ç Åˆ	Value.Ptr.prototype.IsValid = function() {
+ 0Value0reflect:Value0Ç Åˆ	Value.Ptr.prototype.IsValid = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		return !((v.flag === 0));
 	};
 	Value.prototype.IsValid = function() { return this.go$val.IsValid(); };
- 0Value00reflectValue0Ç; Åı	Value.Ptr.prototype.Kind = function() {
+ 0Value0reflect:Value0Ç2 Åı	Value.Ptr.prototype.Kind = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		return (new flag(v.flag)).kind();
 	};
 	Value.prototype.Kind = function() { return this.go$val.Kind(); };
- 0Value040reflectValue0reflectkind0reflectflag0ÇÉ Ç^	Value.Ptr.prototype.Len = function() {
+ 0Value0+reflect:Valuereflect:flagreflect:kind0ÇÄ Ç^	Value.Ptr.prototype.Len = function() {
 			var k = this.kind();
 			switch (k) {
 			case Array:
@@ -2476,7 +2455,7 @@ ValueError0Ç∞ Çp	Value.Ptr.prototype.Interface = function() {
 			throw go$panic(new ValueError.Ptr("reflect.Value.Len", k));
 		};
 	Value.prototype.Len = function() { return this.go$val.Len(); };
- 0Value00reflectValue0Ç˚ Çb	Value.Ptr.prototype.MapIndex = function(key) {
+ 0Value0reflect:Value0ÇÂ Çb	Value.Ptr.prototype.MapIndex = function(key) {
 		var _struct, v, tt, _struct$1, _tuple, word, ok, typ, fl;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(21);
@@ -2495,7 +2474,7 @@ ValueError0Ç∞ Çp	Value.Ptr.prototype.Interface = function() {
 		return new Value.Ptr(typ, word, fl);
 	};
 	Value.prototype.MapIndex = function(key) { return this.go$val.MapIndex(key); };
- 0Value0ÅÖ0reflectValue0reflectmustBe0reflectflag0reflectassignTo0reflect	mapaccess0reflectiword0reflectrtype0Çˇ ÇI	Value.Ptr.prototype.MapKeys = function() {
+ 0Value0preflect:Valuereflect:assignToreflect:flagreflect:iwordreflect:mapaccessreflect:mustBereflect:rtype0ÇÁ ÇI	Value.Ptr.prototype.MapKeys = function() {
 		var _struct, v, tt, keyType, fl, m, mlen, it, a, i, _tuple, keyWord, ok, _slice, _index;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(21);
@@ -2527,8 +2506,7 @@ ValueError0Ç∞ Çp	Value.Ptr.prototype.Interface = function() {
 		return go$subslice(a, 0, i);
 	};
 	Value.prototype.MapKeys = function() { return this.go$val.MapKeys(); };
- 0Value0Å¢0reflectValue0reflectmustBe0reflectflag0reflectiword0reflectmaplen0reflectmapiterinit0reflect
-mapiterkey0reflectmapiternext0ÇK Ç˝	Value.Ptr.prototype.Method = function(i) {
+ 0Value0Åäreflect:Valuereflect:flagreflect:iwordreflect:mapiterinitreflect:mapiterkeyreflect:mapiternextreflect:maplenreflect:mustBe0ÇB Ç˝	Value.Ptr.prototype.Method = function(i) {
 		var _struct, v, fl;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (v.typ === (go$ptrType(rtype)).nil) {
@@ -2546,8 +2524,7 @@ mapiterkey0reflectmapiternext0ÇK Ç˝	Value.Ptr.prototype.Method = functi
 		return new Value.Ptr(v.typ, v.val, fl);
 	};
 	Value.prototype.Method = function(i) { return this.go$val.Method(i); };
- 0Value0;0reflectValue0reflectrtype0reflect
-ValueError0Ç¯ Ç™	Value.Ptr.prototype.NumMethod = function() {
+ 0Value02reflect:Valuereflect:ValueErrorreflect:rtype0ÇÔ Ç™	Value.Ptr.prototype.NumMethod = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (v.typ === (go$ptrType(rtype)).nil) {
@@ -2559,8 +2536,7 @@ ValueError0Ç¯ Ç™	Value.Ptr.prototype.NumMethod = function() {
 		return v.typ.NumMethod();
 	};
 	Value.prototype.NumMethod = function() { return this.go$val.NumMethod(); };
- 0Value0;0reflectValue0reflectrtype0reflect
-ValueError0Ç Ç≤	Value.Ptr.prototype.MethodByName = function(name) {
+ 0Value02reflect:Valuereflect:ValueErrorreflect:rtype0Ç Ç≤	Value.Ptr.prototype.MethodByName = function(name) {
 		var _struct, v, _tuple, _struct$1, _struct$2, m, ok, _struct$3;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (v.typ === (go$ptrType(rtype)).nil) {
@@ -2576,8 +2552,7 @@ ValueError0Ç Ç≤	Value.Ptr.prototype.MethodByName = function(name) {
 		return (_struct$3 = v.Method(m.Index), new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 	};
 	Value.prototype.MethodByName = function(name) { return this.go$val.MethodByName(name); };
- 0Value0N0reflectValue0reflectrtype0reflect
-ValueError0reflectMethod0Ç Ç6	Value.Ptr.prototype.NumField = function() {
+ 0Value0Breflect:Methodreflect:Valuereflect:ValueErrorreflect:rtype0Çv Ç6	Value.Ptr.prototype.NumField = function() {
 		var _struct, v, tt;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(25);
@@ -2585,7 +2560,7 @@ ValueError0reflectMethod0Ç Ç6	Value.Ptr.prototype.NumField = function(
 		return tt.fields.length;
 	};
 	Value.prototype.NumField = function() { return this.go$val.NumField(); };
- 0Value060reflectValue0reflectmustBe0reflectflag0Çs Ç˘	Value.Ptr.prototype.OverflowComplex = function(x) {
+ 0Value0-reflect:Valuereflect:flagreflect:mustBe0Çd Ç˘	Value.Ptr.prototype.OverflowComplex = function(x) {
 		var _struct, v, k, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
@@ -2598,8 +2573,7 @@ ValueError0reflectMethod0Ç Ç6	Value.Ptr.prototype.NumField = function(
 		throw go$panic(new ValueError.Ptr("reflect.Value.OverflowComplex", k));
 	};
 	Value.prototype.OverflowComplex = function(x) { return this.go$val.OverflowComplex(x); };
- 0Value0g0reflectValue0reflectkind0reflectflag0reflectoverflowFloat320reflect
-ValueError0ÇK Ç—	Value.Ptr.prototype.OverflowFloat = function(x) {
+ 0Value0Xreflect:Valuereflect:ValueErrorreflect:flagreflect:kindreflect:overflowFloat320Ç< Ç—	Value.Ptr.prototype.OverflowFloat = function(x) {
 		var _struct, v, k, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
@@ -2612,14 +2586,13 @@ ValueError0ÇK Ç—	Value.Ptr.prototype.OverflowFloat = function(x) {
 		throw go$panic(new ValueError.Ptr("reflect.Value.OverflowFloat", k));
 	};
 	Value.prototype.OverflowFloat = function(x) { return this.go$val.OverflowFloat(x); };
- 0Value0g0reflectValue0reflectkind0reflectflag0reflectoverflowFloat320reflect
-ValueError0Å≥overflowFloat32Åà	overflowFloat32 = function(x) {
+ 0Value0Xreflect:Valuereflect:ValueErrorreflect:flagreflect:kindreflect:overflowFloat320Å≥overflowFloat32Åà	overflowFloat32 = function(x) {
 		if (x < 0) {
 			x = -x;
 		}
 		return 3.4028234663852886e+38 < x && x <= 1.7976931348623157e+308;
 	};
- 0overflowFloat320 0Ç= Çﬂ	Value.Ptr.prototype.OverflowInt = function(x) {
+ 0overflowFloat320 0Ç1 Çﬂ	Value.Ptr.prototype.OverflowInt = function(x) {
 		var _struct, v, k, _ref, x$1, x$2, bitSize, trunc;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
@@ -2632,8 +2605,7 @@ ValueError0Å≥overflowFloat32Åà	overflowFloat32 = function(x) {
 		throw go$panic(new ValueError.Ptr("reflect.Value.OverflowInt", k));
 	};
 	Value.prototype.OverflowInt = function(x) { return this.go$val.OverflowInt(x); };
- 0Value0K0reflectValue0reflectkind0reflectflag0reflect
-ValueError0ÇS Çı	Value.Ptr.prototype.OverflowUint = function(x) {
+ 0Value0?reflect:Valuereflect:ValueErrorreflect:flagreflect:kind0ÇG Çı	Value.Ptr.prototype.OverflowUint = function(x) {
 		var _struct, v, k, _ref, x$1, x$2, bitSize, trunc;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
@@ -2646,8 +2618,7 @@ ValueError0ÇS Çı	Value.Ptr.prototype.OverflowUint = function(x) {
 		throw go$panic(new ValueError.Ptr("reflect.Value.OverflowUint", k));
 	};
 	Value.prototype.OverflowUint = function(x) { return this.go$val.OverflowUint(x); };
- 0Value0K0reflectValue0reflectkind0reflectflag0reflect
-ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
+ 0Value0?reflect:Valuereflect:ValueErrorreflect:flagreflect:kind0ÇÈ Ç«	Value.Ptr.prototype.Pointer = function() {
 			var k = this.kind();
 			switch (k) {
 			case Chan:
@@ -2668,7 +2639,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 			throw go$panic(new ValueError.Ptr("reflect.Value.Pointer", k));
 		};
 	Value.prototype.Pointer = function() { return this.go$val.Pointer(); };
- 0Value00reflectValue0Çπ ÇD	Value.Ptr.prototype.Recv = function() {
+ 0Value0reflect:Value0Ç™ ÇD	Value.Ptr.prototype.Recv = function() {
 		var x, ok, _struct, v, _tuple, _struct$1, _struct$2;
 		x = new Value.Ptr();
 		ok = false;
@@ -2679,7 +2650,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 		return [(_struct$2 = x, new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), ok];
 	};
 	Value.prototype.Recv = function() { return this.go$val.Recv(); };
- 0Value0b0reflectValue0reflectmustBe0reflectflag0reflectmustBeExported0reflectrecv0Ç| Ç*	Value.Ptr.prototype.recv = function(nb) {
+ 0Value0Sreflect:Valuereflect:flagreflect:mustBereflect:mustBeExportedreflect:recv0Çs Ç*	Value.Ptr.prototype.recv = function(nb) {
 		var val, ok, _struct, v, tt, _tuple, word, selected, typ, fl, _struct$1;
 		val = new Value.Ptr();
 		ok = false;
@@ -2700,7 +2671,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 		return [(_struct$1 = val, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), ok];
 	};
 	Value.prototype.recv = function(nb) { return this.go$val.recv(nb); };
- 0Valuerecv090reflectValue0reflectchanrecv0reflectiword0Ç˚ ÇÜ	Value.Ptr.prototype.Send = function(x) {
+ 0Valuerecv00reflect:Valuereflect:chanrecvreflect:iword0ÇÏ ÇÜ	Value.Ptr.prototype.Send = function(x) {
 		var _struct, v, _struct$1;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(18);
@@ -2708,7 +2679,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 		v.send((_struct$1 = x, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), false);
 	};
 	Value.prototype.Send = function(x) { return this.go$val.Send(x); };
- 0Value0b0reflectValue0reflectmustBe0reflectflag0reflectmustBeExported0reflectsend0Ç9 Ç¶	Value.Ptr.prototype.send = function(x, nb) {
+ 0Value0Sreflect:Valuereflect:flagreflect:mustBereflect:mustBeExportedreflect:send0Ç' Ç¶	Value.Ptr.prototype.send = function(x, nb) {
 		var selected, _struct, v, tt, _struct$1;
 		selected = false;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -2722,7 +2693,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 		return selected;
 	};
 	Value.prototype.send = function(x, nb) { return this.go$val.send(x, nb); };
- 0Valuesend0z0reflectValue0reflectmustBeExported0reflectflag0reflectassignTo0reflectchansend0reflectiword0ÇE Ç 	Value.Ptr.prototype.Set = function(x) {
+ 0Valuesend0hreflect:Valuereflect:assignToreflect:chansendreflect:flagreflect:iwordreflect:mustBeExported0ÇB Ç 	Value.Ptr.prototype.Set = function(x) {
 			this.mustBeAssignable();
 			x.mustBeExported();
 			if ((this.flag & flagIndir) !== 0) {
@@ -2744,7 +2715,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 			this.val = x.val;
 		};
 	Value.prototype.Set = function() { return this.go$val.Set(); };
- 0Value00reflectValue0Çü Ç9	Value.Ptr.prototype.SetBool = function(x) {
+ 0Value0reflect:Value0Çì Ç9	Value.Ptr.prototype.SetBool = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
@@ -2752,7 +2723,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 		v.val.go$set(x);
 	};
 	Value.prototype.SetBool = function(x) { return this.go$val.SetBool(x); };
- 0Value0S0reflectValue0reflectmustBeAssignable0reflectflag0reflectmustBe0Ç Ç∑	Value.Ptr.prototype.SetBytes = function(x) {
+ 0Value0Greflect:Valuereflect:flagreflect:mustBereflect:mustBeAssignable0Ç Ç∑	Value.Ptr.prototype.SetBytes = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
@@ -2763,7 +2734,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 		v.val.go$set(x);
 	};
 	Value.prototype.SetBytes = function(x) { return this.go$val.SetBytes(x); };
- 0Value0S0reflectValue0reflectmustBeAssignable0reflectflag0reflectmustBe0Ç' Ç∑	Value.Ptr.prototype.setRunes = function(x) {
+ 0Value0Greflect:Valuereflect:flagreflect:mustBereflect:mustBeAssignable0Ç Ç∑	Value.Ptr.prototype.setRunes = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
@@ -2774,7 +2745,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 		v.val.go$set(x);
 	};
 	Value.prototype.setRunes = function(x) { return this.go$val.setRunes(x); };
- 0ValuesetRunes0S0reflectValue0reflectmustBeAssignable0reflectflag0reflectmustBe0Ç• ÇÄ	Value.Ptr.prototype.SetComplex = function(x) {
+ 0ValuesetRunes0Greflect:Valuereflect:flagreflect:mustBereflect:mustBeAssignable0Ç¢ ÇÄ	Value.Ptr.prototype.SetComplex = function(x) {
 			this.mustBeAssignable();
 			var k = this.kind();
 			switch (k) {
@@ -2786,7 +2757,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetComplex", k));
 		};
 	Value.prototype.SetComplex = function() { return this.go$val.SetComplex(); };
- 0Value00reflectValue0Çf ÇÎ	Value.Ptr.prototype.SetFloat = function(x) {
+ 0Value0reflect:Value0ÇW ÇÎ	Value.Ptr.prototype.SetFloat = function(x) {
 		var _struct, v, k, _ref;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
@@ -2801,8 +2772,7 @@ ValueError0ÇÏ Ç«	Value.Ptr.prototype.Pointer = function() {
 		}
 	};
 	Value.prototype.SetFloat = function(x) { return this.go$val.SetFloat(x); };
- 0Value0h0reflectValue0reflectmustBeAssignable0reflectflag0reflectkind0reflect
-ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
+ 0Value0Yreflect:Valuereflect:ValueErrorreflect:flagreflect:kindreflect:mustBeAssignable0Ç‰ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 			this.mustBeAssignable();
 			var k = this.kind();
 			switch (k) {
@@ -2819,7 +2789,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetInt", k));
 		};
 	Value.prototype.SetInt = function() { return this.go$val.SetInt(); };
- 0Value00reflectValue0Ç ÇÎ	Value.Ptr.prototype.SetLen = function(n) {
+ 0Value0reflect:Value0Ç ÇÎ	Value.Ptr.prototype.SetLen = function(n) {
 			this.mustBeAssignable();
 			this.mustBe(Slice);
 			var s = this.val.go$get();
@@ -2833,7 +2803,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 			this.val.go$set(newSlice);
 		};
 	Value.prototype.SetLen = function() { return this.go$val.SetLen(); };
- 0Value00reflectValue0Ç ÇÚ	Value.Ptr.prototype.SetCap = function(n) {
+ 0Value0reflect:Value0Ç ÇÚ	Value.Ptr.prototype.SetCap = function(n) {
 			this.mustBeAssignable();
 			this.mustBe(Slice);
 			var s = this.val.go$get();
@@ -2847,7 +2817,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 			this.val.go$set(newSlice);
 		};
 	Value.prototype.SetCap = function() { return this.go$val.SetCap(); };
- 0Value00reflectValue0Çj Ç∂	Value.Ptr.prototype.SetMapIndex = function(key, val) {
+ 0Value0reflect:Value0ÇR Ç∂	Value.Ptr.prototype.SetMapIndex = function(key, val) {
 		var _struct, v, tt, _struct$1, _struct$2;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(21);
@@ -2862,7 +2832,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 		mapassign(v.typ, v.iword(), key.iword(), val.iword(), !(val.typ === (go$ptrType(rtype)).nil));
 	};
 	Value.prototype.SetMapIndex = function(key, val) { return this.go$val.SetMapIndex(key, val); };
- 0Value0Å†0reflectValue0reflectmustBe0reflectflag0reflectmustBeExported0reflectassignTo0reflectrtype0reflect	mapassign0reflectiword0Ç˜ Ç“	Value.Ptr.prototype.SetUint = function(x) {
+ 0Value0Åàreflect:Valuereflect:assignToreflect:flagreflect:iwordreflect:mapassignreflect:mustBereflect:mustBeExportedreflect:rtype0ÇÙ Ç“	Value.Ptr.prototype.SetUint = function(x) {
 			this.mustBeAssignable();
 			var k = this.kind();
 			switch (k) {
@@ -2880,7 +2850,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 			throw go$panic(new ValueError.Ptr("reflect.Value.SetUint", k));
 		};
 	Value.prototype.SetUint = function() { return this.go$val.SetUint(); };
- 0Value00reflectValue0Ç© ÇC	Value.Ptr.prototype.SetPointer = function(x) {
+ 0Value0reflect:Value0Çù ÇC	Value.Ptr.prototype.SetPointer = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
@@ -2888,7 +2858,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 		v.val.go$set(x);
 	};
 	Value.prototype.SetPointer = function(x) { return this.go$val.SetPointer(x); };
- 0Value0S0reflectValue0reflectmustBeAssignable0reflectflag0reflectmustBe0Ç¶ Ç@	Value.Ptr.prototype.SetString = function(x) {
+ 0Value0Greflect:Valuereflect:flagreflect:mustBereflect:mustBeAssignable0Çö Ç@	Value.Ptr.prototype.SetString = function(x) {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBeAssignable();
@@ -2896,7 +2866,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 		v.val.go$set(x);
 	};
 	Value.prototype.SetString = function(x) { return this.go$val.SetString(x); };
- 0Value0S0reflectValue0reflectmustBeAssignable0reflectflag0reflectmustBe0Ç¢ Ç}	Value.Ptr.prototype.Slice = function(i, j) {
+ 0Value0Greflect:Valuereflect:flagreflect:mustBereflect:mustBeAssignable0Çü Ç}	Value.Ptr.prototype.Slice = function(i, j) {
 			var typ, s, cap;
 			var kind = this.kind();
 			switch (kind) {
@@ -2932,7 +2902,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 			return new Value.Ptr(typ.common(), go$subslice(s, i, j), fl);
 		};
 	Value.prototype.Slice = function() { return this.go$val.Slice(); };
- 0Value00reflectValue0Ç¬ Çù	Value.Ptr.prototype.Slice3 = function(i, j, k) {
+ 0Value0reflect:Value0Çø Çù	Value.Ptr.prototype.Slice3 = function(i, j, k) {
 			var typ, s, cap;
 			var kind = this.kind();
 			switch (kind) {
@@ -2962,7 +2932,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 			return new Value.Ptr(typ.common(), go$subslice(s, i, j, k), fl);
 		};
 	Value.prototype.Slice3 = function() { return this.go$val.Slice3(); };
- 0Value00reflectValue0ÇB Ç	Value.Ptr.prototype.String = function() {
+ 0Value0reflect:Value0Ç? Ç	Value.Ptr.prototype.String = function() {
 			switch (this.kind()) {
 			case Invalid:
 				return "<invalid Value>";
@@ -2972,7 +2942,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 			return "<" + this.typ.String() + " Value>";
 		};
 	Value.prototype.String = function() { return this.go$val.String(); };
- 0Value00reflectValue0Ç¡ ÇL	Value.Ptr.prototype.TryRecv = function() {
+ 0Value0reflect:Value0Ç≤ ÇL	Value.Ptr.prototype.TryRecv = function() {
 		var x, ok, _struct, v, _tuple, _struct$1, _struct$2;
 		x = new Value.Ptr();
 		ok = false;
@@ -2983,8 +2953,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 		return [(_struct$2 = x, new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), ok];
 	};
 	Value.prototype.TryRecv = function() { return this.go$val.TryRecv(); };
- 0Value0b0reflectValue0reflectmustBe0reflectflag0reflectmustBeExported0reflectrecv0Ç
- Çï	Value.Ptr.prototype.TrySend = function(x) {
+ 0Value0Sreflect:Valuereflect:flagreflect:mustBereflect:mustBeExportedreflect:recv0Ç˚ Çï	Value.Ptr.prototype.TrySend = function(x) {
 		var _struct, v, _struct$1;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(18);
@@ -2992,7 +2961,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 		return v.send((_struct$1 = x, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), true);
 	};
 	Value.prototype.TrySend = function(x) { return this.go$val.TrySend(x); };
- 0Value0b0reflectValue0reflectmustBe0reflectflag0reflectmustBeExported0reflectsend0Ç> Ç‘	Value.Ptr.prototype.Type = function() {
+ 0Value0Sreflect:Valuereflect:flagreflect:mustBereflect:mustBeExportedreflect:send0Ç2 Ç‘	Value.Ptr.prototype.Type = function() {
 		var _struct, v, f, i, tt, _slice, _index, m, ut, _slice$1, _index$1, m$1;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		f = v.flag;
@@ -3019,8 +2988,7 @@ ValueError0ÇÁ Ç¬	Value.Ptr.prototype.SetInt = function(x) {
 		return m$1.mtyp;
 	};
 	Value.prototype.Type = function() { return this.go$val.Type(); };
- 0Value0W0reflectValue0reflect
-ValueError0reflectuncommon0reflectuncommonType0Ç Ç±	Value.Ptr.prototype.Uint = function() {
+ 0Value0Kreflect:Valuereflect:ValueErrorreflect:uncommonreflect:uncommonType0Ç Ç±	Value.Ptr.prototype.Uint = function() {
 		var _struct, v, k, p, v$1, _ref, x;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		k = (new flag(v.flag)).kind();
@@ -3047,8 +3015,7 @@ ValueError0reflectuncommon0reflectuncommonType0Ç Ç±	Value.Ptr.pro
 		throw go$panic(new ValueError.Ptr("reflect.Value.Uint", k));
 	};
 	Value.prototype.Uint = function() { return this.go$val.Uint(); };
- 0Value0K0reflectValue0reflectkind0reflectflag0reflect
-ValueError0Ç3 ÇÂ	Value.Ptr.prototype.UnsafeAddr = function() {
+ 0Value0?reflect:Valuereflect:ValueErrorreflect:flagreflect:kind0Ç* ÇÂ	Value.Ptr.prototype.UnsafeAddr = function() {
 		var _struct, v;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (v.typ === (go$ptrType(rtype)).nil) {
@@ -3060,13 +3027,12 @@ ValueError0Ç3 ÇÂ	Value.Ptr.prototype.UnsafeAddr = function() {
 		return v.val;
 	};
 	Value.prototype.UnsafeAddr = function() { return this.go$val.UnsafeAddr(); };
- 0Value0;0reflectValue0reflectrtype0reflect
-ValueError0ÅÿtypesMustMatchÅØ	typesMustMatch = function(what, t1, t2) {
+ 0Value02reflect:Valuereflect:ValueErrorreflect:rtype0ÅÿtypesMustMatchÅØ	typesMustMatch = function(what, t1, t2) {
 		if (!(go$interfaceIsEqual(t1, t2))) {
 			throw go$panic(new Go$String(what + ": " + t1.String() + " != " + t2.String()));
 		}
 	};
- 0typesMustMatch0 0ÇHgrowÇ˘	grow = function(s, extra) {
+ 0typesMustMatch0 0Ç?growÇ˘	grow = function(s, extra) {
 		var i0, i1, m, _struct, _q, _struct$1, t, _struct$2, _struct$3, _struct$4;
 		i0 = s.Len();
 		i1 = i0 + extra >> 0;
@@ -3092,7 +3058,7 @@ ValueError0ÅÿtypesMustMatchÅØ	typesMustMatch = function(what, t1, t2) {
 		Copy((_struct$2 = t, new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), (_struct$3 = s, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
 		return [(_struct$4 = t, new Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), i0, i1];
 	};
- 0grow090reflectValue0reflect	MakeSlice0reflectCopy0Ç€AppendÇz	Append = go$pkg.Append = function(s, x) {
+ 0grow00reflect:Copyreflect:MakeSlicereflect:Value0ÇœAppendÇz	Append = go$pkg.Append = function(s, x) {
 		var _tuple, _struct, _struct$1, i0, i1, _tuple$1, i, j, _tuple$2, _slice, _index, _struct$2, _struct$3;
 		(new flag(s.flag)).mustBe(23);
 		_tuple = grow((_struct = s, new Value.Ptr(_struct.typ, _struct.val, _struct.flag)), x.length), s = (_struct$1 = _tuple[0], new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), i0 = _tuple[1], i1 = _tuple[2];
@@ -3103,7 +3069,7 @@ ValueError0ÅÿtypesMustMatchÅØ	typesMustMatch = function(what, t1, t2) {
 		}
 		return (_struct$3 = s, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 	};
- 0Append0G0reflectmustBe0reflectflag0reflectgrow0reflectValue0ÇãAppendSliceÇÙ	AppendSlice = go$pkg.AppendSlice = function(s, t) {
+ 0Append0;reflect:Valuereflect:flagreflect:growreflect:mustBe0ÇyAppendSliceÇÙ	AppendSlice = go$pkg.AppendSlice = function(s, t) {
 		var _tuple, _struct, _struct$1, i0, i1, _struct$2, _struct$3, _struct$4;
 		(new flag(s.flag)).mustBe(23);
 		(new flag(t.flag)).mustBe(23);
@@ -3112,7 +3078,7 @@ ValueError0ÅÿtypesMustMatchÅØ	typesMustMatch = function(what, t1, t2) {
 		Copy((_struct$2 = s.Slice(i0, i1), new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), (_struct$3 = t, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
 		return (_struct$4 = s, new Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 	};
- 0AppendSlice0s0reflectmustBe0reflectflag0reflecttypesMustMatch0reflectgrow0reflectValue0reflectCopy0ÇCopyÇ˘	Copy = go$pkg.Copy = function(dst, src) {
+ 0AppendSlice0areflect:Copyreflect:Valuereflect:flagreflect:growreflect:mustBereflect:typesMustMatch0ÇCopyÇ˘	Copy = go$pkg.Copy = function(dst, src) {
 			var dk = dst.kind();
 			if (dk !== Array && dk !== Slice) {
 				throw go$panic(new ValueError.Ptr("reflect.Copy", dk));
@@ -3143,7 +3109,7 @@ ValueError0ÅÿtypesMustMatchÅØ	typesMustMatch = function(what, t1, t2) {
  0Copy0 0trselectZ	rselect = function() {
 		throw go$panic("Native function not implemented: rselect");
 	};
- 0	rselect0 0ÇSelectÇ,	Select = go$pkg.Select = function(cases) {
+ 0	rselect0 0ÇÈSelectÇ,	Select = go$pkg.Select = function(cases) {
 		var chosen, recv, recvOK, runcases, haveDefault, _ref, _i, _slice, _index, _struct, _struct$1, _struct$2, c, i, _slice$1, _index$1, rc, _ref$1, _struct$3, ch, tt, _struct$4, v, _struct$5, _struct$6, ch$1, tt$1, _tuple, word, _slice$2, _index$2, _slice$3, _index$3, tt$2, typ, fl, _struct$7, _tuple$1, _struct$8;
 		chosen = 0;
 		recv = new Value.Ptr();
@@ -3223,8 +3189,7 @@ ValueError0ÅÿtypesMustMatchÅØ	typesMustMatch = function(what, t1, t2) {
 		_tuple$1 = [chosen, (_struct$7 = recv, new Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)), recvOK], chosen = _tuple$1[0], recv = _tuple$1[1], recvOK = _tuple$1[2];
 		return [chosen, (_struct$8 = recv, new Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag)), recvOK];
 	};
- 0Select0ÅΩ0reflectflag0reflectmustBeExported0reflectiword0reflectassignTo0reflectValue0reflectruntimeSelect0reflect
-SelectCase0reflectmustBe0reflectrselect0Ç
+ 0Select0Å¢reflect:SelectCasereflect:Valuereflect:assignToreflect:flagreflect:iwordreflect:mustBereflect:mustBeExportedreflect:rselectreflect:runtimeSelect0Ç
 unsafe_NewÅÊ	unsafe_New = function(typ) {
 			switch (typ.Kind()) {
 			case Struct:
@@ -3254,7 +3219,7 @@ unsafe-New0 0Åîunsafe_NewArrayj	unsafe_NewArray = function() {
 			}
 			return new Value.Ptr(typ.common(), typ.jsType.make(len, cap, function() { return zeroVal(typ.Elem()); }), Slice << flagKindShift);
 		};
- 0	MakeSlice0 0ÇÀMakeChanÇa	MakeChan = go$pkg.MakeChan = function(typ, buffer) {
+ 0	MakeSlice0 0ÇøMakeChanÇa	MakeChan = go$pkg.MakeChan = function(typ, buffer) {
 		var ch;
 		if (!((typ.Kind() === 18))) {
 			throw go$panic(new Go$String("reflect.MakeChan of non-chan type"));
@@ -3269,7 +3234,7 @@ unsafe-New0 0Åîunsafe_NewArrayj	unsafe_NewArray = function() {
 		return new Value.Ptr(typ.common(), ch, 288);
 	};
  0
-MakeChan0L0reflectmakechan0reflectrtype0reflectcommon0reflectValue0Ç¡MakeMapÇZ	MakeMap = go$pkg.MakeMap = function(typ) {
+MakeChan0@reflect:Valuereflect:commonreflect:makechanreflect:rtype0ÇµMakeMapÇZ	MakeMap = go$pkg.MakeMap = function(typ) {
 		var m;
 		if (!((typ.Kind() === 21))) {
 			throw go$panic(new Go$String("reflect.MakeMap of non-map type"));
@@ -3277,7 +3242,7 @@ unsafe-New0 0Åîunsafe_NewArrayj	unsafe_NewArray = function() {
 		m = makemap((typ !== null && typ.constructor === (go$ptrType(rtype)) ? typ.go$val : go$typeAssertionFailed(typ, (go$ptrType(rtype)))));
 		return new Value.Ptr(typ.common(), m, 336);
 	};
- 0	MakeMap0K0reflectmakemap0reflectrtype0reflectcommon0reflectValue0ÇJIndirectÇ	Indirect = go$pkg.Indirect = function(v) {
+ 0	MakeMap0?reflect:Valuereflect:commonreflect:makemapreflect:rtype0ÇGIndirectÇ	Indirect = go$pkg.Indirect = function(v) {
 		var _struct, _struct$1;
 		if (!((v.Kind() === 22))) {
 			return (_struct = v, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3285,7 +3250,7 @@ unsafe-New0 0Åîunsafe_NewArrayj	unsafe_NewArray = function() {
 		return (_struct$1 = v.Elem(), new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 	};
  0
-Indirect00reflectValue0ÇâValueOfÇm	ValueOf = go$pkg.ValueOf = function(i) {
+Indirect0reflect:Value0ÇâValueOfÇm	ValueOf = go$pkg.ValueOf = function(i) {
 			if (i === null) {
 				return new Value.Ptr();
 			}
@@ -3298,7 +3263,7 @@ unsafe-New0 0Åîunsafe_NewArrayj	unsafe_NewArray = function() {
  0	ValueOf0 0ÅàZerot	Zero = go$pkg.Zero = function(typ) {
 			return new Value.Ptr(typ, zeroVal(typ), typ.Kind() << flagKindShift);
 		};
- 0Zero0 0Ç‡NewÇl	New = go$pkg.New = function(typ) {
+ 0Zero0 0Ç—NewÇl	New = go$pkg.New = function(typ) {
 		var ptr, fl;
 		if (go$interfaceIsEqual(typ, null)) {
 			throw go$panic(new Go$String("reflect: New(nil)"));
@@ -3307,13 +3272,12 @@ unsafe-New0 0Åîunsafe_NewArrayj	unsafe_NewArray = function() {
 		fl = 352;
 		return new Value.Ptr(typ.common().ptrTo(), ptr, fl);
 	};
- 0New0`0reflect
-unsafe-New0reflectrtype0reflectptrTo0reflectcommon0reflectValue0Å«NewAtz	NewAt = go$pkg.NewAt = function(typ, p) {
+ 0New0Qreflect:Valuereflect:commonreflect:ptrToreflect:rtypereflect:unsafe-New0ÅæNewAtz	NewAt = go$pkg.NewAt = function(typ, p) {
 		var fl;
 		fl = 352;
 		return new Value.Ptr(typ.common().ptrTo(), p, fl);
 	};
- 0NewAt070reflectptrTo0reflectcommon0reflectValue0Çº Ç
+ 0NewAt0.reflect:Valuereflect:commonreflect:ptrTo0Ç™ Ç
 	Value.Ptr.prototype.assignTo = function(context, dst, target) {
 		var _struct, v, _struct$1, _struct$2, fl, _struct$3, x;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3340,8 +3304,7 @@ unsafe-New0reflectrtype0reflectptrTo0reflectcommon0reflectVa
 		throw go$panic(new Go$String(context + ": value of type " + v.typ.String() + " is not assignable to type " + dst.String()));
 	};
 	Value.prototype.assignTo = function(context, dst, target) { return this.go$val.assignTo(context, dst, target); };
- 0ValueassignTo0Åî0reflectValue0reflectmakeMethodValue0reflectdirectlyAssignable0reflect
-implements0reflectvalueInterface0reflectifaceE2I0ÇÂ Ç{	Value.Ptr.prototype.Convert = function(t) {
+ 0ValueassignTo0ÅÇreflect:Valuereflect:directlyAssignablereflect:ifaceE2Ireflect:implementsreflect:makeMethodValuereflect:valueInterface0ÇŸ Ç{	Value.Ptr.prototype.Convert = function(t) {
 		var _struct, v, _struct$1, _struct$2, op, _struct$3, _struct$4;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		if (!((((v.flag & 8) >>> 0) === 0))) {
@@ -3354,7 +3317,7 @@ implements0reflectvalueInterface0reflectifaceE2I0ÇÂ Ç{	Value.Ptr.p
 		return (_struct$4 = op((_struct$3 = v, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), t), new Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 	};
 	Value.prototype.Convert = function(t) { return this.go$val.Convert(t); };
- 0Value0W0reflectValue0reflectmakeMethodValue0reflect	convertOp0reflectcommon0Çé	convertOpÇ	ä	convertOp = function(dst, src) {
+ 0Value0Kreflect:Valuereflect:commonreflect:convertOpreflect:makeMethodValue0ÇR	convertOpÇ	ä	convertOp = function(dst, src) {
 		var _ref, _ref$1, _ref$2, _ref$3, _ref$4, _ref$5, _ref$6;
 		_ref = src.Kind();
 		if (_ref === 2 || _ref === 3 || _ref === 4 || _ref === 5 || _ref === 6) {
@@ -3422,9 +3385,7 @@ implements0reflectvalueInterface0reflectifaceE2I0ÇÂ Ç{	Value.Ptr.p
 		}
 		return go$throwNilPointerError;
 	};
- 0	convertOp0Ç‚0reflectcvtStringBytes0reflectcvtIntFloat0reflectcvtUint0reflect
-cvtComplex0&reflecthaveIdenticalUnderlyingType0reflectcommon0reflectcvtT2I0reflectcvtUintString0reflectcvtFloatInt0reflectcvtStringRunes0reflectcvtRunesString0reflectcvtI2I0reflectcvtInt0reflectcvtIntString0reflectcvtUintFloat0reflectcvtFloatUint0reflectcvtFloat0reflectcvtBytesString0reflect	cvtDirect0reflect
-implements0Ç[makeIntÇ?	makeInt = function(f, bits, typ) {
+ 0	convertOp0Ç¶reflect:commonreflect:cvtBytesStringreflect:cvtComplexreflect:cvtDirectreflect:cvtFloatreflect:cvtFloatIntreflect:cvtFloatUintreflect:cvtI2Ireflect:cvtIntreflect:cvtIntFloatreflect:cvtIntStringreflect:cvtRunesStringreflect:cvtStringBytesreflect:cvtStringRunesreflect:cvtT2Ireflect:cvtUintreflect:cvtUintFloatreflect:cvtUintString#reflect:haveIdenticalUnderlyingTypereflect:implements0Ç[makeIntÇ?	makeInt = function(f, bits, typ) {
 			var val;
 			switch (typ.Kind()) {
 			case Int8:
@@ -3455,7 +3416,7 @@ implements0Ç[makeIntÇ?	makeInt = function(f, bits, typ) {
 			}
 			return new Value.Ptr(typ, val, f | (typ.Kind() << flagKindShift));
 		};
- 0	makeInt0 0Ç¬	makeFloatÇT	makeFloat = function(f, v, t) {
+ 0	makeInt0 0Ç∂	makeFloatÇT	makeFloat = function(f, v, t) {
 		var typ, ptr, w, _ref, v$1, v$2;
 		typ = t.common();
 		if (typ.size > 4) {
@@ -3472,11 +3433,10 @@ implements0Ç[makeIntÇ?	makeInt = function(f, bits, typ) {
 		}
 		return new Value.Ptr(typ, w, (f | ((typ.Kind() >>> 0) << 4 >>> 0)) >>> 0);
 	};
- 0	makeFloat0N0reflectcommon0reflect
-unsafe-New0reflectValue0reflectiword0ÅÆmakeComplexÅã	makeComplex = function(f, v, typ) {
+ 0	makeFloat0Breflect:Valuereflect:commonreflect:iwordreflect:unsafe-New0ÅÆmakeComplexÅã	makeComplex = function(f, v, typ) {
 			return new Value.Ptr(typ, new typ.jsType(v.real, v.imag), f | (typ.Kind() << flagKindShift));
 		};
- 0makeComplex0 0Çz
+ 0makeComplex0 0Çt
 makeStringÇ6	makeString = function(f, v, t) {
 		var _struct, ret, _struct$1;
 		ret = (_struct = New(t).Elem(), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3485,79 +3445,75 @@ makeStringÇ6	makeString = function(f, v, t) {
 		return (_struct$1 = ret, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 	};
  0
-makeString0"0reflectNew0reflectValue0Çv	makeBytesÇ4	makeBytes = function(f, v, t) {
+makeString0reflect:Newreflect:Value0Çp	makeBytesÇ4	makeBytes = function(f, v, t) {
 		var _struct, ret, _struct$1;
 		ret = (_struct = New(t).Elem(), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		ret.SetBytes(v);
 		ret.flag = ((ret.flag & ~4) | f) >>> 0;
 		return (_struct$1 = ret, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 	};
- 0	makeBytes0"0reflectNew0reflectValue0Çã	makeRunesÇ4	makeRunes = function(f, v, t) {
+ 0	makeBytes0reflect:Newreflect:Value0ÇÇ	makeRunesÇ4	makeRunes = function(f, v, t) {
 		var _struct, ret, _struct$1;
 		ret = (_struct = New(t).Elem(), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		ret.setRunes(v);
 		ret.flag = ((ret.flag & ~4) | f) >>> 0;
 		return (_struct$1 = ret, new Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 	};
- 0	makeRunes070reflectNew0reflectValue0reflectsetRunes0Ç	cvtIntÅ 	cvtInt = function(v, t) {
+ 0	makeRunes0.reflect:Newreflect:Valuereflect:setRunes0ÇcvtIntÅ 	cvtInt = function(v, t) {
 		var x, _struct;
 		return (_struct = makeInt((v.flag & 1) >>> 0, (x = v.Int(), new Go$Uint64(x.high, x.low)), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0cvtInt0&0reflectmakeInt0reflectValue0ÅÊcvtUintÅ•	cvtUint = function(v, t) {
+ 0cvtInt0 reflect:Valuereflect:makeInt0Å‡cvtUintÅ•	cvtUint = function(v, t) {
 		var _struct;
 		return (_struct = makeInt((v.flag & 1) >>> 0, v.Uint(), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0	cvtUint0&0reflectmakeInt0reflectValue0Ç+cvtFloatIntÅ‚	cvtFloatInt = function(v, t) {
+ 0	cvtUint0 reflect:Valuereflect:makeInt0Ç%cvtFloatIntÅ‚	cvtFloatInt = function(v, t) {
 		var x, _struct;
 		return (_struct = makeInt((v.flag & 1) >>> 0, (x = new Go$Int64(0, v.Float()), new Go$Uint64(x.high, x.low)), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0cvtFloatInt0&0reflectmakeInt0reflectValue0ÇcvtFloatUintÅΩ	cvtFloatUint = function(v, t) {
+ 0cvtFloatInt0 reflect:Valuereflect:makeInt0ÇcvtFloatUintÅΩ	cvtFloatUint = function(v, t) {
 		var _struct;
 		return (_struct = makeInt((v.flag & 1) >>> 0, new Go$Uint64(0, v.Float()), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0cvtFloatUint0&0reflectmakeInt0reflectValue0ÇcvtIntFloatÅ∏	cvtIntFloat = function(v, t) {
+ 0cvtFloatUint0 reflect:Valuereflect:makeInt0Å˝cvtIntFloatÅ∏	cvtIntFloat = function(v, t) {
 		var _struct;
 		return (_struct = makeFloat((v.flag & 1) >>> 0, go$flatten64(v.Int()), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0cvtIntFloat0(0reflect	makeFloat0reflectValue0ÇcvtUintFloatÅ∫	cvtUintFloat = function(v, t) {
+ 0cvtIntFloat0"reflect:Valuereflect:makeFloat0ÇcvtUintFloatÅ∫	cvtUintFloat = function(v, t) {
 		var _struct;
 		return (_struct = makeFloat((v.flag & 1) >>> 0, go$flatten64(v.Uint()), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0cvtUintFloat0(0reflect	makeFloat0reflectValue0ÅÓcvtFloatÅ©	cvtFloat = function(v, t) {
+ 0cvtUintFloat0"reflect:Valuereflect:makeFloat0ÅËcvtFloatÅ©	cvtFloat = function(v, t) {
 		var _struct;
 		return (_struct = makeFloat((v.flag & 1) >>> 0, v.Float(), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
  0
-cvtFloat0(0reflect	makeFloat0reflectValue0Å˙
+cvtFloat0"reflect:Valuereflect:makeFloat0ÅÙ
 cvtComplexÅØ	cvtComplex = function(v, t) {
 		var _struct;
 		return (_struct = makeComplex((v.flag & 1) >>> 0, v.Complex(), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
  0
-cvtComplex0*0reflectmakeComplex0reflectValue0ÇcvtIntStringÅø	cvtIntString = function(v, t) {
+cvtComplex0$reflect:Valuereflect:makeComplex0ÇcvtIntStringÅø	cvtIntString = function(v, t) {
 		var _struct;
 		return (_struct = makeString((v.flag & 1) >>> 0, go$encodeRune(v.Int().low), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0cvtIntString0)0reflect
-makeString0reflectValue0ÇcvtUintStringÅ¡	cvtUintString = function(v, t) {
+ 0cvtIntString0#reflect:Valuereflect:makeString0ÇcvtUintStringÅ¡	cvtUintString = function(v, t) {
 		var _struct;
 		return (_struct = makeString((v.flag & 1) >>> 0, go$encodeRune(v.Uint().low), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0cvtUintString0)0reflect
-makeString0reflectValue0ÇcvtBytesStringÅ¬	cvtBytesString = function(v, t) {
+ 0cvtUintString0#reflect:Valuereflect:makeString0ÇcvtBytesStringÅ¬	cvtBytesString = function(v, t) {
 		var _struct;
 		return (_struct = makeString((v.flag & 1) >>> 0, go$bytesToString(v.Bytes()), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0cvtBytesString0)0reflect
-makeString0reflectValue0ÅÃcvtStringBytesÅ£	cvtStringBytes = function(v, typ) {
+ 0cvtBytesString0#reflect:Valuereflect:makeString0ÅÃcvtStringBytesÅ£	cvtStringBytes = function(v, typ) {
 			return new Value.Ptr(typ, new typ.jsType(go$stringToBytes(v.iword())), (v.flag & flagRO) | (Slice << flagKindShift));
 		};
- 0cvtStringBytes0 0Ç&cvtRunesStringÅ¬	cvtRunesString = function(v, t) {
+ 0cvtStringBytes0 0ÇcvtRunesStringÅ¬	cvtRunesString = function(v, t) {
 		var _struct;
 		return (_struct = makeString((v.flag & 1) >>> 0, go$runesToString(v.runes()), t), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 	};
- 0cvtRunesString0;0reflect
-makeString0reflectrunes0reflectValue0ÅÃcvtStringRunesÅ£	cvtStringRunes = function(v, typ) {
+ 0cvtRunesString02reflect:Valuereflect:makeStringreflect:runes0ÅÃcvtStringRunesÅ£	cvtStringRunes = function(v, typ) {
 			return new Value.Ptr(typ, new typ.jsType(go$stringToRunes(v.iword())), (v.flag & flagRO) | (Slice << flagKindShift));
 		};
  0cvtStringRunes0 0Ç"	cvtDirectÇ	cvtDirect = function(v, typ) {
@@ -3603,7 +3559,7 @@ makeString0reflectrunes0reflectValue0ÅÃcvtStringRunesÅ£	cvtStringRu
 			}
 			return new Value.Ptr(typ, val, (v.flag & flagRO) | (typ.Kind() << flagKindShift));
 		};
- 0	cvtDirect0 0ÇöcvtT2IÇ	cvtT2I = function(v, typ) {
+ 0	cvtDirect0 0ÇãcvtT2IÇ	cvtT2I = function(v, typ) {
 		var target, _struct, x;
 		target = go$newDataPointer(null, (go$ptrType(go$emptyInterface)));
 		x = valueInterface((_struct = v, new Value.Ptr(_struct.typ, _struct.val, _struct.flag)), false);
@@ -3614,7 +3570,7 @@ makeString0reflectrunes0reflectValue0ÅÃcvtStringRunesÅ£	cvtStringRu
 		}
 		return new Value.Ptr(typ.common(), target, (((((v.flag & 1) >>> 0) | 2) >>> 0) | 320) >>> 0);
 	};
- 0cvtT2I0g0reflectvalueInterface0reflectValue0reflectifaceE2I0reflectrtype0reflectcommon0Ç]cvtI2IÇ	cvtI2I = function(v, typ) {
+ 0cvtT2I0Xreflect:Valuereflect:commonreflect:ifaceE2Ireflect:rtypereflect:valueInterface0ÇTcvtI2IÇ	cvtI2I = function(v, typ) {
 		var _struct, ret, _struct$1, _struct$2, _struct$3;
 		if (v.IsNil()) {
 			ret = (_struct = Zero(typ), new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -3623,7 +3579,7 @@ makeString0reflectrunes0reflectValue0ÅÃcvtStringRunesÅ£	cvtStringRu
 		}
 		return (_struct$3 = cvtT2I((_struct$2 = v.Elem(), new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), typ), new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 	};
- 0cvtI2I060reflectZero0reflectValue0reflectcvtT2I0Tchancap:	chancap = function(ch) { go$notSupported("channels"); };
+ 0cvtI2I0-reflect:Valuereflect:Zeroreflect:cvtT2I0Tchancap:	chancap = function(ch) { go$notSupported("channels"); };
  0	chancap0 0Z	chanclose<	chanclose = function(ch) { go$notSupported("channels"); };
  0	chanclose0 0Tchanlen:	chanlen = function(ch) { go$notSupported("channels"); };
  0	chanlen0 0^chanrecvB	chanrecv = function(t, ch, nb) { go$notSupported("channels"); };
@@ -3678,20 +3634,20 @@ mapiterkey0 0Pmapiternext.	mapiternext = function(it) {
 			dst.go$set(src);
 		};
  0
-ifaceE2I0 0nescapesB	escapes = function(x) {
+ifaceE2I0 0kescapesB	escapes = function(x) {
 		if (dummy.b) {
 			dummy.x = x;
 		}
 	};
- 0	escapes00reflectdummy0	kindNames  0	kindNames0 0Ç$ptrMap Å¡		ptrMap = new (go$structType([["RWMutex", "", "", sync.RWMutex, ""], ["m", "m", "reflect", (go$mapType((go$ptrType(rtype)), (go$ptrType(ptrType)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-0ptrMap0J0syncRWMutex0reflectrtype0reflectptrType0reflectptrMap0&ptrDataGCProg  0ptrDataGCProg0 0Ç,lookupCache Åπ		lookupCache = new (go$structType([["RWMutex", "", "", sync.RWMutex, ""], ["m", "m", "reflect", (go$mapType(cacheKey, (go$ptrType(rtype)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
-0lookupCache0P0syncRWMutex0reflectcacheKey0reflectrtype0reflectlookupCache0,sliceEmptyGCProg  0sliceEmptyGCProg0 0	uint8Type  0	uint8Type0 0Å≠dummy ÅÑ		dummy = new (go$structType([["b", "b", "reflect", Go$Bool, ""], ["x", "x", "reflect", go$emptyInterface, ""]])).Ptr(false, null);
-0dummy00reflectdummy0Çg  Ç:		kindNames = new (go$sliceType(Go$String))(["invalid", "bool", "int", "int8", "int16", "int32", "int64", "uint", "uint8", "uint16", "uint32", "uint64", "uintptr", "float32", "float64", "complex64", "complex128", "array", "chan", "func", "interface", "map", "ptr", "slice", "string", "struct", "unsafe.Pointer"]);
-0	kindNames00reflect	kindNames0z  1		ptrDataGCProg = new ptrDataGC.Ptr(4, 2, 0, 0);
-0ptrDataGCProg000reflect	ptrDataGC0reflectptrDataGCProg0Åä  8		sliceEmptyGCProg = new sliceEmptyGC.Ptr(12, 2, 0, 0);
-0sliceEmptyGCProg060reflectsliceEmptyGC0reflectsliceEmptyGCProg0ÅÔ  Å©		var x;
+ 0	escapes0reflect:dummy0	kindNames  0	kindNames0 0ÇptrMap Å¡		ptrMap = new (go$structType([["RWMutex", "", "", sync.RWMutex, ""], ["m", "m", "reflect", (go$mapType((go$ptrType(rtype)), (go$ptrType(ptrType)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+0ptrMap0>reflect:ptrMapreflect:ptrTypereflect:rtypesync:RWMutex0&ptrDataGCProg  0ptrDataGCProg0 0Ç lookupCache Åπ		lookupCache = new (go$structType([["RWMutex", "", "", sync.RWMutex, ""], ["m", "m", "reflect", (go$mapType(cacheKey, (go$ptrType(rtype)))), ""]])).Ptr(new sync.RWMutex.Ptr(), false);
+0lookupCache0Dreflect:cacheKeyreflect:lookupCachereflect:rtypesync:RWMutex0,sliceEmptyGCProg  0sliceEmptyGCProg0 0	uint8Type  0	uint8Type0 0Å™dummy ÅÑ		dummy = new (go$structType([["b", "b", "reflect", Go$Bool, ""], ["x", "x", "reflect", go$emptyInterface, ""]])).Ptr(false, null);
+0dummy0reflect:dummy0Çd  Ç:		kindNames = new (go$sliceType(Go$String))(["invalid", "bool", "int", "int8", "int16", "int32", "int64", "uint", "uint8", "uint16", "uint32", "uint64", "uintptr", "float32", "float64", "complex64", "complex128", "array", "chan", "func", "interface", "map", "ptr", "slice", "string", "struct", "unsafe.Pointer"]);
+0	kindNames0reflect:kindNames0t  1		ptrDataGCProg = new ptrDataGC.Ptr(4, 2, 0, 0);
+0ptrDataGCProg0*reflect:ptrDataGCreflect:ptrDataGCProg0ÅÑ  8		sliceEmptyGCProg = new sliceEmptyGC.Ptr(12, 2, 0, 0);
+0sliceEmptyGCProg00reflect:sliceEmptyGCreflect:sliceEmptyGCProg0ÅÊ  Å©		var x;
 		uint8Type = (x = TypeOf(new Go$Uint8(0)), (x !== null && x.constructor === (go$ptrType(rtype)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(rtype)))));
-0 0;0reflectrtype0reflectTypeOf0reflect	uint8Type0Ç Ç»
+0 02reflect:TypeOfreflect:rtypereflect:uint8Type0Ç  Ç»
 			var Invalid = 0;
 			var Bool = 1;
 			var Int = 2;
@@ -3903,6 +3859,5 @@ mapiterkey0 0Pmapiternext.	mapiternext = function(it) {
 				}
 				return v;
 			};
-		 0 0Ç?0reflectrtype0reflectuncommonType0reflectmethod0reflect	arrayType0reflectchanType0reflectfuncType0reflectinterfaceType0reflectmapType0reflectptrType0reflect	sliceType0reflect
-structType0reflectimethod0reflectstructField0reflectmethodReceiver0reflectValueOf0reflectSliceOf0reflect	MakeSlice0reflectvalueInterface0reflectmakeMethodValue0reflectmethodReceiver0reflecttypesMustMatch0reflectmustBeAssignable0reflectmustBeExported0reflectmustBe0reflectassignTo0
+		 0 0ÇÙreflect:rtypereflect:uncommonTypereflect:methodreflect:arrayTypereflect:chanTypereflect:funcTypereflect:interfaceTypereflect:mapTypereflect:ptrTypereflect:sliceTypereflect:structTypereflect:imethodreflect:structFieldreflect:methodReceiverreflect:ValueOfreflect:SliceOfreflect:MakeSlicereflect:valueInterfacereflect:makeMethodValuereflect:methodReceiverreflect:typesMustMatchreflect:mustBeAssignablereflect:mustBeExportedreflect:mustBereflect:assignTo0
    0 0 0 

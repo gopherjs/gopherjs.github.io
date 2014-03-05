@@ -1,4 +1,4 @@
-0ÉCygo/buildÇ<#package build
+0ÉASgo/buildÇ<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -212,7 +212,7 @@ $$
 0Ç@runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc	go/parserloggo/build0Ç@0bytesbytes0errorserrors0
 fmtfmt0go/astast0go/docdoc0	go/parserparser0go/tokentoken0ioio0	io/ioutilioutil0
-loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio0Éπ0ÇÉContextÇ$	Context = go$pkg.Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
+loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio0Éì0ÇtContextÇ$	Context = go$pkg.Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
 		this.go$val = this;
 		this.GOARCH = GOARCH_ !== undefined ? GOARCH_ : "";
 		this.GOOS = GOOS_ !== undefined ? GOOS_ : "";
@@ -235,12 +235,10 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 Ç
 ⁄		(go$ptrType(Context)).methods = [["Import", "", [Go$String, Go$String, ImportMode], [(go$ptrType(Package)), go$error], false, -1], ["ImportDir", "", [Go$String, ImportMode], [(go$ptrType(Package)), go$error], false, -1], ["MatchFile", "", [Go$String, Go$String], [Go$Bool, go$error], false, -1], ["SrcDirs", "", [], [(go$sliceType(Go$String))], false, -1], ["goodOSArchFile", "go/build", [Go$String, (go$mapType(Go$String, Go$Bool))], [Go$Bool], false, -1], ["gopath", "go/build", [], [(go$sliceType(Go$String))], false, -1], ["hasSubdir", "go/build", [Go$String, Go$String], [Go$String, Go$Bool], false, -1], ["isAbsPath", "go/build", [Go$String], [Go$Bool], false, -1], ["isDir", "go/build", [Go$String], [Go$Bool], false, -1], ["isFile", "go/build", [Go$String], [Go$Bool], false, -1], ["joinPath", "go/build", [(go$sliceType(Go$String))], [Go$String], true, -1], ["match", "go/build", [Go$String, (go$mapType(Go$String, Go$Bool))], [Go$Bool], false, -1], ["matchFile", "go/build", [Go$String, Go$String, Go$Bool, (go$mapType(Go$String, Go$Bool))], [Go$Bool, (go$sliceType(Go$Uint8)), Go$String, go$error], false, -1], ["openFile", "go/build", [Go$String], [io.ReadCloser, go$error], false, -1], ["readDir", "go/build", [Go$String], [(go$sliceType(os.FileInfo)), go$error], false, -1], ["saveCgo", "go/build", [Go$String, (go$ptrType(Package)), (go$ptrType(ast.CommentGroup))], [go$error], false, -1], ["shouldBuild", "go/build", [(go$sliceType(Go$Uint8)), (go$mapType(Go$String, Go$Bool))], [Go$Bool], false, -1], ["splitPathList", "go/build", [Go$String], [(go$sliceType(Go$String))], false, -1]];
 		Context.init([["GOARCH", "GOARCH", "", Go$String, ""], ["GOOS", "GOOS", "", Go$String, ""], ["GOROOT", "GOROOT", "", Go$String, ""], ["GOPATH", "GOPATH", "", Go$String, ""], ["CgoEnabled", "CgoEnabled", "", Go$Bool, ""], ["UseAllFiles", "UseAllFiles", "", Go$Bool, ""], ["Compiler", "Compiler", "", Go$String, ""], ["BuildTags", "BuildTags", "", (go$sliceType(Go$String)), ""], ["ReleaseTags", "ReleaseTags", "", (go$sliceType(Go$String)), ""], ["InstallSuffix", "InstallSuffix", "", Go$String, ""], ["JoinPath", "JoinPath", "", (go$funcType([(go$sliceType(Go$String))], [Go$String], true)), ""], ["SplitPathList", "SplitPathList", "", (go$funcType([Go$String], [(go$sliceType(Go$String))], false)), ""], ["IsAbsPath", "IsAbsPath", "", (go$funcType([Go$String], [Go$Bool], false)), ""], ["IsDir", "IsDir", "", (go$funcType([Go$String], [Go$Bool], false)), ""], ["HasSubdir", "HasSubdir", "", (go$funcType([Go$String, Go$String], [Go$String, Go$Bool], false)), ""], ["ReadDir", "ReadDir", "", (go$funcType([Go$String], [(go$sliceType(os.FileInfo)), go$error], false)), ""], ["OpenFile", "OpenFile", "", (go$funcType([Go$String], [io.ReadCloser, go$error], false)), ""]]);
-0	Context0g0go/build
-ImportMode0go/buildPackage0io
-ReadCloser0osFileInfo0go/astCommentGroup0Åç
+0	Context0Xgo/ast:CommentGroupgo/build:ImportModego/build:Packageio:ReadCloseros:FileInfo0Åç
 ImportModem	ImportMode = go$pkg.ImportMode = go$newType(4, "Uint", "build.ImportMode", "ImportMode", "go/build", null);
  0
-ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct", "build.Package", "Package", "go/build", function(Dir_, Name_, Doc_, ImportPath_, Root_, SrcRoot_, PkgRoot_, BinDir_, Goroot_, PkgObj_, AllTags_, ConflictDir_, GoFiles_, CgoFiles_, IgnoredGoFiles_, CFiles_, CXXFiles_, HFiles_, SFiles_, SwigFiles_, SwigCXXFiles_, SysoFiles_, CgoCFLAGS_, CgoCPPFLAGS_, CgoCXXFLAGS_, CgoLDFLAGS_, CgoPkgConfig_, Imports_, ImportPos_, TestGoFiles_, TestImports_, TestImportPos_, XTestGoFiles_, XTestImports_, XTestImportPos_) {
+ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct", "build.Package", "Package", "go/build", function(Dir_, Name_, Doc_, ImportPath_, Root_, SrcRoot_, PkgRoot_, BinDir_, Goroot_, PkgObj_, AllTags_, ConflictDir_, GoFiles_, CgoFiles_, IgnoredGoFiles_, CFiles_, CXXFiles_, HFiles_, SFiles_, SwigFiles_, SwigCXXFiles_, SysoFiles_, CgoCFLAGS_, CgoCPPFLAGS_, CgoCXXFLAGS_, CgoLDFLAGS_, CgoPkgConfig_, Imports_, ImportPos_, TestGoFiles_, TestImports_, TestImportPos_, XTestGoFiles_, XTestImports_, XTestImportPos_) {
 		this.go$val = this;
 		this.Dir = Dir_ !== undefined ? Dir_ : "";
 		this.Name = Name_ !== undefined ? Name_ : "";
@@ -280,13 +278,13 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 	});
 Çå		(go$ptrType(Package)).methods = [["IsCommand", "", [], [Go$Bool], false, -1]];
 		Package.init([["Dir", "Dir", "", Go$String, ""], ["Name", "Name", "", Go$String, ""], ["Doc", "Doc", "", Go$String, ""], ["ImportPath", "ImportPath", "", Go$String, ""], ["Root", "Root", "", Go$String, ""], ["SrcRoot", "SrcRoot", "", Go$String, ""], ["PkgRoot", "PkgRoot", "", Go$String, ""], ["BinDir", "BinDir", "", Go$String, ""], ["Goroot", "Goroot", "", Go$Bool, ""], ["PkgObj", "PkgObj", "", Go$String, ""], ["AllTags", "AllTags", "", (go$sliceType(Go$String)), ""], ["ConflictDir", "ConflictDir", "", Go$String, ""], ["GoFiles", "GoFiles", "", (go$sliceType(Go$String)), ""], ["CgoFiles", "CgoFiles", "", (go$sliceType(Go$String)), ""], ["IgnoredGoFiles", "IgnoredGoFiles", "", (go$sliceType(Go$String)), ""], ["CFiles", "CFiles", "", (go$sliceType(Go$String)), ""], ["CXXFiles", "CXXFiles", "", (go$sliceType(Go$String)), ""], ["HFiles", "HFiles", "", (go$sliceType(Go$String)), ""], ["SFiles", "SFiles", "", (go$sliceType(Go$String)), ""], ["SwigFiles", "SwigFiles", "", (go$sliceType(Go$String)), ""], ["SwigCXXFiles", "SwigCXXFiles", "", (go$sliceType(Go$String)), ""], ["SysoFiles", "SysoFiles", "", (go$sliceType(Go$String)), ""], ["CgoCFLAGS", "CgoCFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoCPPFLAGS", "CgoCPPFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoCXXFLAGS", "CgoCXXFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoLDFLAGS", "CgoLDFLAGS", "", (go$sliceType(Go$String)), ""], ["CgoPkgConfig", "CgoPkgConfig", "", (go$sliceType(Go$String)), ""], ["Imports", "Imports", "", (go$sliceType(Go$String)), ""], ["ImportPos", "ImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""], ["TestGoFiles", "TestGoFiles", "", (go$sliceType(Go$String)), ""], ["TestImports", "TestImports", "", (go$sliceType(Go$String)), ""], ["TestImportPos", "TestImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""], ["XTestGoFiles", "XTestGoFiles", "", (go$sliceType(Go$String)), ""], ["XTestImports", "XTestImports", "", (go$sliceType(Go$String)), ""], ["XTestImportPos", "XTestImportPos", "", (go$mapType(Go$String, (go$sliceType(token.Position)))), ""]]);
-0	Package00go/tokenPosition0Çe	NoGoErrorÅΩ	NoGoError = go$pkg.NoGoError = go$newType(0, "Struct", "build.NoGoError", "NoGoError", "go/build", function(Dir_) {
+0	Package0go/token:Position0Çe	NoGoErrorÅΩ	NoGoError = go$pkg.NoGoError = go$newType(0, "Struct", "build.NoGoError", "NoGoError", "go/build", function(Dir_) {
 		this.go$val = this;
 		this.Dir = Dir_ !== undefined ? Dir_ : "";
 	});
 Åà		(go$ptrType(NoGoError)).methods = [["Error", "", [], [Go$String], false, -1]];
 		NoGoError.init([["Dir", "Dir", "", Go$String, ""]]);
-0	NoGoError0 0Ç7importReaderÇ	importReader = go$pkg.importReader = go$newType(0, "Struct", "build.importReader", "importReader", "go/build", function(b_, buf_, peek_, err_, eof_, nerr_) {
+0	NoGoError0 0Ç4importReaderÇ	importReader = go$pkg.importReader = go$newType(0, "Struct", "build.importReader", "importReader", "go/build", function(b_, buf_, peek_, err_, eof_, nerr_) {
 		this.go$val = this;
 		this.b = b_ !== undefined ? b_ : (go$ptrType(bufio.Reader)).nil;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
@@ -297,7 +295,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 	});
 Ç˝		(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false, -1], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false, -1], ["readByte", "go/build", [], [Go$Uint8], false, -1], ["readIdent", "go/build", [], [], false, -1], ["readImport", "go/build", [], [], false, -1], ["readKeyword", "go/build", [Go$String], [], false, -1], ["readString", "go/build", [], [], false, -1], ["syntaxError", "go/build", [], [], false, -1]];
 		importReader.init([["b", "b", "go/build", (go$ptrType(bufio.Reader)), ""], ["buf", "buf", "go/build", (go$sliceType(Go$Uint8)), ""], ["peek", "peek", "go/build", Go$Uint8, ""], ["err", "err", "go/build", go$error, ""], ["eof", "eof", "go/build", Go$Bool, ""], ["nerr", "nerr", "go/build", Go$Int, ""]]);
-0importReader00bufioReader0Çg Ç	Context.Ptr.prototype.joinPath = function(elem) {
+0importReader0bufio:Reader0Ça Ç	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.JoinPath, !(f === go$throwNilPointerError)) {
@@ -306,7 +304,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return filepath.Join(elem);
 	};
 	Context.prototype.joinPath = function(elem) { return this.go$val.joinPath(elem); };
- 0ContextjoinPath0,0go/buildContext0path/filepathJoin0Ç{ Ç&	Context.Ptr.prototype.splitPathList = function(s) {
+ 0ContextjoinPath0&go/build:Contextpath/filepath:Join0Çu Ç&	Context.Ptr.prototype.splitPathList = function(s) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.SplitPathList, !(f === go$throwNilPointerError)) {
@@ -315,7 +313,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return filepath.SplitList(s);
 	};
 	Context.prototype.splitPathList = function(s) { return this.go$val.splitPathList(s); };
- 0ContextsplitPathList010go/buildContext0path/filepath	SplitList0Çx Ç+	Context.Ptr.prototype.isAbsPath = function(path$1) {
+ 0ContextsplitPathList0+go/build:Contextpath/filepath:SplitList0Çr Ç+	Context.Ptr.prototype.isAbsPath = function(path$1) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.IsAbsPath, !(f === go$throwNilPointerError)) {
@@ -324,7 +322,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return filepath.IsAbs(path$1);
 	};
 	Context.prototype.isAbsPath = function(path$1) { return this.go$val.isAbsPath(path$1); };
- 0Context	isAbsPath0-0go/buildContext0path/filepathIsAbs0Çº Ç	Context.Ptr.prototype.isDir = function(path$1) {
+ 0Context	isAbsPath0'go/build:Contextpath/filepath:IsAbs0Ç∂ Ç	Context.Ptr.prototype.isDir = function(path$1) {
 		var ctxt, f, _tuple, fi, err;
 		ctxt = this;
 		if (f = ctxt.IsDir, !(f === go$throwNilPointerError)) {
@@ -334,8 +332,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return go$interfaceIsEqual(err, null) && fi.IsDir();
 	};
 	Context.prototype.isDir = function(path$1) { return this.go$val.isDir(path$1); };
- 0ContextisDir0!0go/buildContext0
-osStat0ÇZ ÇÔ	Context.Ptr.prototype.hasSubdir = function(root, dir) {
+ 0ContextisDir0go/build:Contextos:Stat0ÇQ ÇÔ	Context.Ptr.prototype.hasSubdir = function(root, dir) {
 		var rel, ok, ctxt, f, _tuple, _tuple$1, _tuple$2, rootSym, _tuple$3, dirSym, _tuple$4, _tuple$5, _tuple$6;
 		rel = "";
 		ok = false;
@@ -359,7 +356,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return [rel, ok];
 	};
 	Context.prototype.hasSubdir = function(root, dir) { return this.go$val.hasSubdir(root, dir); };
- 0Context	hasSubdir0K0go/buildContext0go/build	hasSubdir0path/filepathEvalSymlinks0ÇS	hasSubdirÇ’	hasSubdir = function(root, dir) {
+ 0Context	hasSubdir0Bgo/build:Contextgo/build:hasSubdirpath/filepath:EvalSymlinks0ÇG	hasSubdirÇ’	hasSubdir = function(root, dir) {
 		var rel, ok, _tuple, _tuple$1;
 		rel = "";
 		ok = false;
@@ -375,7 +372,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		_tuple$1 = [filepath.ToSlash(dir.substring(root.length)), true], rel = _tuple$1[0], ok = _tuple$1[1];
 		return [rel, ok];
 	};
- 0	hasSubdir0^0path/filepathClean0strings	HasSuffix0strings	HasPrefix0path/filepathToSlash0Çl Ç#	Context.Ptr.prototype.readDir = function(path$1) {
+ 0	hasSubdir0Rpath/filepath:Cleanpath/filepath:ToSlashstrings:HasPrefixstrings:HasSuffix0Çf Ç#	Context.Ptr.prototype.readDir = function(path$1) {
 		var ctxt, f;
 		ctxt = this;
 		if (f = ctxt.ReadDir, !(f === go$throwNilPointerError)) {
@@ -384,7 +381,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return ioutil.ReadDir(path$1);
 	};
 	Context.prototype.readDir = function(path$1) { return this.go$val.readDir(path$1); };
- 0ContextreadDir0+0go/buildContext0	io/ioutilReadDir0Ç Ç∞	Context.Ptr.prototype.openFile = function(path$1) {
+ 0ContextreadDir0%go/build:Contextio/ioutil:ReadDir0ÇÍ Ç∞	Context.Ptr.prototype.openFile = function(path$1) {
 		var ctxt, fn, _tuple, f, err;
 		ctxt = this;
 		if (fn = ctxt.OpenFile, !(fn === go$throwNilPointerError)) {
@@ -397,8 +394,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return [f, null];
 	};
 	Context.prototype.openFile = function(path$1) { return this.go$val.openFile(path$1); };
- 0ContextopenFile0!0go/buildContext0
-osOpen0Çù ÇU	Context.Ptr.prototype.isFile = function(path$1) {
+ 0ContextopenFile0go/build:Contextos:Open0Çó ÇU	Context.Ptr.prototype.isFile = function(path$1) {
 		var ctxt, _tuple, f, err;
 		ctxt = this;
 		_tuple = ctxt.openFile(path$1), f = _tuple[0], err = _tuple[1];
@@ -409,7 +405,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return true;
 	};
 	Context.prototype.isFile = function(path$1) { return this.go$val.isFile(path$1); };
- 0ContextisFile0+0go/buildContext0go/buildopenFile0ÇÒ Çé	Context.Ptr.prototype.gopath = function() {
+ 0ContextisFile0%go/build:Contextgo/build:openFile0ÇË Çé	Context.Ptr.prototype.gopath = function() {
 		var ctxt, all, _ref, _i, _slice, _index, p;
 		ctxt = this;
 		all = (go$sliceType(Go$String)).nil;
@@ -431,7 +427,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return all;
 	};
 	Context.prototype.gopath = function() { return this.go$val.gopath(); };
- 0Contextgopath0F0go/buildContext0go/buildsplitPathList0strings	HasPrefix0Çå Ç%	Context.Ptr.prototype.SrcDirs = function() {
+ 0Contextgopath0=go/build:Contextgo/build:splitPathListstrings:HasPrefix0ÇÄ Ç%	Context.Ptr.prototype.SrcDirs = function() {
 		var ctxt, all, dir, _ref, _i, _slice, _index, p, dir$1;
 		ctxt = this;
 		all = (go$sliceType(Go$String)).nil;
@@ -454,7 +450,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		return all;
 	};
 	Context.prototype.SrcDirs = function() { return this.go$val.SrcDirs(); };
- 0	Context0R0go/buildContext0go/buildjoinPath0go/buildisDir0go/buildgopath0Ç¢defaultContextÇ	defaultContext = function() {
+ 0	Context0Fgo/build:Contextgo/build:gopathgo/build:isDirgo/build:joinPath0ÇìdefaultContextÇ	defaultContext = function() {
 		var c, _ref, _entry, _struct;
 		c = new Context.Ptr();
 		c.GOARCH = envOr("GOARCH", "js");
@@ -477,8 +473,7 @@ ImportMode0 0ÇéPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		} }
 		return (_struct = c, new Context.Ptr(_struct.GOARCH, _struct.GOOS, _struct.GOROOT, _struct.GOPATH, _struct.CgoEnabled, _struct.UseAllFiles, _struct.Compiler, _struct.BuildTags, _struct.ReleaseTags, _struct.InstallSuffix, _struct.JoinPath, _struct.SplitPathList, _struct.IsAbsPath, _struct.IsDir, _struct.HasSubdir, _struct.ReadDir, _struct.OpenFile));
 	};
- 0defaultContext0a0go/buildContext0go/buildenvOr0runtimeGOROOT0osGetenv0go/build
-cgoEnabled0ÅòenvOrt	envOr = function(name, def) {
+ 0defaultContext0Rgo/build:Contextgo/build:cgoEnabledgo/build:envOr	os:Getenvruntime:GOROOT0ÅïenvOrt	envOr = function(name, def) {
 		var s;
 		s = os.Getenv(name);
 		if (s === "") {
@@ -486,25 +481,25 @@ cgoEnabled0ÅòenvOrt	envOr = function(name, def) {
 		}
 		return s;
 	};
- 0envOr00osGetenv0Å› Å¥	Package.Ptr.prototype.IsCommand = function() {
+ 0envOr0	os:Getenv0Å⁄ Å¥	Package.Ptr.prototype.IsCommand = function() {
 		var p;
 		p = this;
 		return p.Name === "main";
 	};
 	Package.prototype.IsCommand = function() { return this.go$val.IsCommand(); };
- 0	Package00go/buildPackage0Ç Åﬂ	Context.Ptr.prototype.ImportDir = function(dir, mode) {
+ 0	Package0go/build:Package0Ç Åﬂ	Context.Ptr.prototype.ImportDir = function(dir, mode) {
 		var ctxt;
 		ctxt = this;
 		return ctxt.Import(".", dir, mode);
 	};
 	Context.prototype.ImportDir = function(dir, mode) { return this.go$val.ImportDir(dir, mode); };
- 0	Context00go/buildContext0ÅÚ Å≈	NoGoError.Ptr.prototype.Error = function() {
+ 0	Context0go/build:Context0ÅÔ Å≈	NoGoError.Ptr.prototype.Error = function() {
 		var e;
 		e = this;
 		return "no buildable Go source files in " + e.Dir;
 	};
 	NoGoError.prototype.Error = function() { return this.go$val.Error(); };
- 0	NoGoError00go/build	NoGoError0ÅªnameExtÅä	nameExt = function(name) {
+ 0	NoGoError0go/build:NoGoError0Å∏nameExtÅä	nameExt = function(name) {
 		var i;
 		i = strings.LastIndex(name, ".");
 		if (i < 0) {
@@ -512,7 +507,7 @@ cgoEnabled0ÅòenvOrt	envOr = function(name, def) {
 		}
 		return name.substring(i);
 	};
- 0	nameExt00strings	LastIndex0ÇDº ÇB 	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
+ 0	nameExt0strings:LastIndex0ÇD_ ÇB 	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
 		var go$this = this, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, ok, _tuple$1, sub, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, ok$1, _tuple$2, sub$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, _slice$4, _index$4, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, _slice$5, _index$5, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, _slice$6, _index$6, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$3, _key$3, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		ctxt = go$this;
@@ -835,9 +830,10 @@ cgoEnabled0ÅòenvOrt	envOr = function(name, def) {
 		/* */ } break; } }; return go$f();
 	};
 	Context.prototype.Import = function(path$1, srcDir, mode) { return this.go$val.Import(path$1, srcDir, mode); };
- 0	Context0ÇÖ0go/build	hasSubdir0go/tokenPosition0go/buildsaveCgo0go/buildPackage0fmtErrorf0go/buildisFile0go/astGenDecl0go/buildcleanImports0fmtSprintf0stringsJoin0pathSplit0go/buildIsLocalImport0go/buildreadDir0	go/parser	ParseFile0go/astCommentGroup0strconvUnquote0go/build	NoGoError0go/buildjoinPath0go/buildgopath0go/buildnameExt0go/docSynopsis0go/ast
-ImportSpec0go/buildContext0go/build	isAbsPath0go/buildisDir0strings	HasPrefix0go/token
-NewFileSet0go/build	matchFile0strings	HasSuffix0logPanicf0sortStrings0Çú Ç[	Context.Ptr.prototype.MatchFile = function(dir, name) {
+ 0	Context0Ç(
+fmt:Errorffmt:Sprintfgo/ast:CommentGroupgo/ast:GenDeclgo/ast:ImportSpecgo/build:Contextgo/build:IsLocalImportgo/build:NoGoErrorgo/build:Packagego/build:cleanImportsgo/build:gopathgo/build:hasSubdirgo/build:isAbsPathgo/build:isDirgo/build:isFilego/build:joinPathgo/build:matchFilego/build:nameExtgo/build:readDirgo/build:saveCgogo/doc:Synopsisgo/parser:ParseFilego/token:NewFileSetgo/token:Position
+log:Panicf
+path:Splitsort:Stringsstrconv:Unquotestrings:HasPrefixstrings:HasSuffixstrings:Join0Çñ Ç[	Context.Ptr.prototype.MatchFile = function(dir, name) {
 		var match, err, ctxt, _tuple;
 		match = false;
 		err = null;
@@ -846,7 +842,7 @@ NewFileSet0go/build	matchFile0strings	HasSuffix0logPanicf0sort
 		return [match, err];
 	};
 	Context.prototype.MatchFile = function(dir, name) { return this.go$val.MatchFile(dir, name); };
- 0	Context0,0go/buildContext0go/build	matchFile0Çπ Çû	Context.Ptr.prototype.matchFile = function(dir, name, returnImports, allTags) {
+ 0	Context0&go/build:Contextgo/build:matchFile0Çò Çû	Context.Ptr.prototype.matchFile = function(dir, name, returnImports, allTags) {
 		var match, data, filename, err, ctxt, i, ext, _ref, _tuple, f, _tuple$1, _tuple$2;
 		match = false;
 		data = (go$sliceType(Go$Uint8)).nil;
@@ -894,7 +890,8 @@ NewFileSet0go/build	matchFile0strings	HasSuffix0logPanicf0sort
 		return [match, data, filename, err];
 	};
 	Context.prototype.matchFile = function(dir, name, returnImports, allTags) { return this.go$val.matchFile(dir, name, returnImports, allTags); };
- 0Context	matchFile0Å˙0go/buildContext0strings	HasPrefix0strings	LastIndex0go/buildjoinPath0go/buildopenFile0go/buildreadComments0fmtErrorf0go/buildshouldBuild0go/buildgoodOSArchFile0strings	HasSuffix0go/buildreadImports0Ç¥cleanImportsÇ}	cleanImports = function(m) {
+ 0Context	matchFile0ÅŸ
+fmt:Errorfgo/build:Contextgo/build:goodOSArchFilego/build:joinPathgo/build:openFilego/build:readCommentsgo/build:readImportsgo/build:shouldBuildstrings:HasPrefixstrings:HasSuffixstrings:LastIndex0Ç±cleanImportsÇ}	cleanImports = function(m) {
 		var all, _ref, _i, _keys, _entry, path$1;
 		all = (go$sliceType(Go$String)).make(0, go$keys(m).length, function() { return ""; });
 		_ref = m;
@@ -909,13 +906,13 @@ NewFileSet0go/build	matchFile0strings	HasSuffix0logPanicf0sort
 		sort.Strings(all);
 		return [all, m];
 	};
- 0cleanImports00sortStrings0Å¢Importu	Import = go$pkg.Import = function(path$1, srcDir, mode) {
+ 0cleanImports0sort:Strings0ÅüImportu	Import = go$pkg.Import = function(path$1, srcDir, mode) {
 		return go$pkg.Default.Import(path$1, srcDir, mode);
 	};
- 0Import00go/buildDefault0Åõ	ImportDirh	ImportDir = go$pkg.ImportDir = function(dir, mode) {
+ 0Import0go/build:Default0Åò	ImportDirh	ImportDir = go$pkg.ImportDir = function(dir, mode) {
 		return go$pkg.Default.ImportDir(dir, mode);
 	};
- 0	ImportDir00go/buildDefault0Ç	4 ÇÇ	Context.Ptr.prototype.shouldBuild = function(content, allTags) {
+ 0	ImportDir0go/build:Default0Ç	 ÇÇ	Context.Ptr.prototype.shouldBuild = function(content, allTags) {
 		var ctxt, end, p, line, i, _tuple, allok, line$1, i$1, _tuple$1, _slice, _index, f, _slice$1, _index$1, ok, _ref, _i, _slice$2, _index$2, tok;
 		ctxt = this;
 		end = 0;
@@ -972,8 +969,7 @@ NewFileSet0go/build	matchFile0strings	HasSuffix0logPanicf0sort
 		return allok;
 	};
 	Context.prototype.shouldBuild = function(content, allTags) { return this.go$val.shouldBuild(content, allTags); };
- 0ContextshouldBuild0Åè0go/buildContext0bytes	IndexByte0bytes	TrimSpace0bytes	HasPrefix0go/build
-slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype.saveCgo = function(filename, di, cg) {
+ 0ContextshouldBuild0zbytes:HasPrefixbytes:IndexBytebytes:TrimSpacego/build:Contextgo/build:matchgo/build:slashslashstrings:Fields0Çñ Ç‹	Context.Ptr.prototype.saveCgo = function(filename, di, cg) {
 		var ctxt, text, _ref, _i, _slice, _index, line, orig, i, _tuple, line$1, argstr, f, _slice$1, _index$1, _tuple$1, cond, verb, ok, _ref$1, _i$1, _slice$2, _index$2, c, _tuple$2, args, err, _ref$2, _i$2, _slice$3, _index$3, arg, _ref$3;
 		ctxt = this;
 		text = cg.Text();
@@ -1047,7 +1043,8 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		return null;
 	};
 	Context.prototype.saveCgo = function(filename, di, cg) { return this.go$val.saveCgo(filename, di, cg); };
- 0ContextsaveCgo0Å∂0strings	TrimSpace0go/buildsafeCgoName0go/buildContext0stringsSplit0stringsIndex0fmtErrorf0stringsFields0go/buildmatch0go/buildsplitQuoted0ÇMsafeCgoNameÅˇ	safeCgoName = function(s) {
+ 0ContextsaveCgo0Åõ
+fmt:Errorfgo/build:Contextgo/build:matchgo/build:safeCgoNamego/build:splitQuotedstrings:Fieldsstrings:Indexstrings:Splitstrings:TrimSpace0ÇGsafeCgoNameÅˇ	safeCgoName = function(s) {
 		var i, c;
 		if (s === "") {
 			return false;
@@ -1061,7 +1058,7 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		}
 		return true;
 	};
- 0safeCgoName0+0bytes	IndexByte0go/build	safeBytes0Ç[splitQuotedÇ	splitQuoted = function(s) {
+ 0safeCgoName0%bytes:IndexBytego/build:safeBytes0ÇUsplitQuotedÇ	splitQuoted = function(s) {
 		var r, err, args, arg, escaped, quoted, quote, i, _ref, _i, _rune, rune, _slice, _index, _tuple;
 		r = (go$sliceType(Go$String)).nil;
 		err = null;
@@ -1117,7 +1114,8 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		_tuple = [args, err], r = _tuple[0], err = _tuple[1];
 		return [r, err];
 	};
- 0splitQuoted0#0unicodeIsSpace0errorsNew0ÇÖ Ç	Context.Ptr.prototype.match = function(name, allTags) {
+ 0splitQuoted0
+errors:Newunicode:IsSpace0Çv Ç	Context.Ptr.prototype.match = function(name, allTags) {
 		var ctxt, _key, i, ok1, ok2, _key$1, _ref, _i, _rune, c, _ref$1, _i$1, _slice, _index, tag, _ref$2, _i$2, _slice$1, _index$1, tag$1;
 		ctxt = this;
 		if (name === "") {
@@ -1177,7 +1175,7 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		return false;
 	};
 	Context.prototype.match = function(name, allTags) { return this.go$val.match(name, allTags); };
- 0Contextmatch0f0go/buildContext0stringsIndex0strings	HasPrefix0unicodeIsLetter0unicodeIsDigit0Ç∫ Ç0	Context.Ptr.prototype.goodOSArchFile = function(name, allTags) {
+ 0Contextmatch0Wgo/build:Contextstrings:HasPrefixstrings:Indexunicode:IsDigitunicode:IsLetter0Ç´ Ç0	Context.Ptr.prototype.goodOSArchFile = function(name, allTags) {
 		var ctxt, dot, l, n, _slice, _index, n$1, _slice$1, _index$1, _entry, _slice$2, _index$2, _entry$1, _key, _slice$3, _index$3, _key$1, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _entry$2, _key$2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _entry$3, _key$3, _slice$11, _index$11, _slice$12, _index$12;
 		ctxt = this;
 		if (dot = strings.Index(name, "."), !((dot === -1))) {
@@ -1210,10 +1208,10 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		return true;
 	};
 	Context.prototype.goodOSArchFile = function(name, allTags) { return this.go$val.goodOSArchFile(name, allTags); };
- 0ContextgoodOSArchFile0e0go/buildContext0stringsIndex0stringsSplit0go/buildknownOS0go/build	knownArch0ÅÔIsLocalImportÅ≤	IsLocalImport = go$pkg.IsLocalImport = function(path$1) {
+ 0ContextgoodOSArchFile0Vgo/build:Contextgo/build:knownArchgo/build:knownOSstrings:Indexstrings:Split0ÅÏIsLocalImportÅ≤	IsLocalImport = go$pkg.IsLocalImport = function(path$1) {
 		return path$1 === "." || path$1 === ".." || strings.HasPrefix(path$1, "./") || strings.HasPrefix(path$1, "../");
 	};
- 0IsLocalImport00strings	HasPrefix0Ç[ArchCharÇ.	ArchChar = go$pkg.ArchChar = function(goarch) {
+ 0IsLocalImport0strings:HasPrefix0ÇXArchCharÇ.	ArchChar = go$pkg.ArchChar = function(goarch) {
 		var _ref;
 		_ref = goarch;
 		if (_ref === "386") {
@@ -1226,10 +1224,11 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		return ["", errors.New("unsupported GOARCH " + goarch)];
 	};
  0
-ArchChar00errorsNew0ÅúisIdentÅÅ	isIdent = function(c) {
+ArchChar0
+errors:New0ÅúisIdentÅÅ	isIdent = function(c) {
 		return 65 <= c && c <= 90 || 97 <= c && c <= 122 || 48 <= c && c <= 57 || (c === 95) || c >= 128;
 	};
- 0	isIdent0 0ÇC ÅÏ	importReader.Ptr.prototype.syntaxError = function() {
+ 0	isIdent0 0Ç= ÅÏ	importReader.Ptr.prototype.syntaxError = function() {
 		var r;
 		r = this;
 		if (go$interfaceIsEqual(r.err, null)) {
@@ -1237,7 +1236,7 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		}
 	};
 	importReader.prototype.syntaxError = function() { return this.go$val.syntaxError(); };
- 0importReadersyntaxError010go/buildimportReader0go/build	errSyntax0ÇÜ Ç)	importReader.Ptr.prototype.readByte = function() {
+ 0importReadersyntaxError0+go/build:errSyntaxgo/build:importReader0Ç} Ç)	importReader.Ptr.prototype.readByte = function() {
 		var r, _tuple, c, err;
 		r = this;
 		_tuple = r.b.ReadByte(), c = _tuple[0], err = _tuple[1];
@@ -1258,7 +1257,7 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		return c;
 	};
 	importReader.prototype.readByte = function() { return this.go$val.readByte(); };
- 0importReaderreadByte090go/buildimportReader0go/builderrNUL0	ioEOF0ÇR ÇÂ	importReader.Ptr.prototype.peekByte = function(skipSpace) {
+ 0importReaderreadByte00go/build:errNULgo/build:importReaderio:EOF0ÇI ÇÂ	importReader.Ptr.prototype.peekByte = function(skipSpace) {
 		var r, c, _ref, c1, _tuple;
 		r = this;
 		if (!(go$interfaceIsEqual(r.err, null))) {
@@ -1304,7 +1303,7 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		return r.peek;
 	};
 	importReader.prototype.peekByte = function(skipSpace) { return this.go$val.peekByte(skipSpace); };
- 0importReaderpeekByte0I0go/buildimportReader0go/buildreadByte0go/buildsyntaxError0ÇG ÅÙ	importReader.Ptr.prototype.nextByte = function(skipSpace) {
+ 0importReaderpeekByte0@go/build:importReadergo/build:readBytego/build:syntaxError0ÇA ÅÙ	importReader.Ptr.prototype.nextByte = function(skipSpace) {
 		var r, c;
 		r = this;
 		c = r.peekByte(skipSpace);
@@ -1312,7 +1311,7 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		return c;
 	};
 	importReader.prototype.nextByte = function(skipSpace) { return this.go$val.nextByte(skipSpace); };
- 0importReadernextByte000go/buildimportReader0go/buildpeekByte0Ç2 Çó	importReader.Ptr.prototype.readKeyword = function(kw) {
+ 0importReadernextByte0*go/build:importReadergo/build:peekByte0Ç# Çó	importReader.Ptr.prototype.readKeyword = function(kw) {
 		var r, i;
 		r = this;
 		r.peekByte(true);
@@ -1329,7 +1328,7 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		}
 	};
 	importReader.prototype.readKeyword = function(kw) { return this.go$val.readKeyword(kw); };
- 0importReaderreadKeyword0t0go/buildimportReader0go/buildpeekByte0go/buildnextByte0go/buildsyntaxError0go/buildisIdent0Ç≤ Ç/	importReader.Ptr.prototype.readIdent = function() {
+ 0importReaderreadKeyword0ego/build:importReadergo/build:isIdentgo/build:nextBytego/build:peekBytego/build:syntaxError0Ç¶ Ç/	importReader.Ptr.prototype.readIdent = function() {
 		var r, c;
 		r = this;
 		c = r.peekByte(true);
@@ -1342,7 +1341,7 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 		}
 	};
 	importReader.prototype.readIdent = function() { return this.go$val.readIdent(); };
- 0importReader	readIdent0^0go/buildimportReader0go/buildpeekByte0go/buildisIdent0go/buildsyntaxError0Ç Çî	importReader.Ptr.prototype.readString = function() {
+ 0importReader	readIdent0Rgo/build:importReadergo/build:isIdentgo/build:peekBytego/build:syntaxError0Ç˙ Çî	importReader.Ptr.prototype.readString = function() {
 		var r, _ref, c;
 		r = this;
 		_ref = r.nextByte(true);
@@ -1374,7 +1373,7 @@ slashslash0stringsFields0go/buildmatch0Ç± Ç‹	Context.Ptr.prototype
 	};
 	importReader.prototype.readString = function() { return this.go$val.readString(); };
  0importReader
-readString0I0go/buildimportReader0go/buildnextByte0go/buildsyntaxError0Çæ Ç$	importReader.Ptr.prototype.readImport = function() {
+readString0@go/build:importReadergo/build:nextBytego/build:syntaxError0ÇØ Ç$	importReader.Ptr.prototype.readImport = function() {
 		var r, c;
 		r = this;
 		c = r.peekByte(true);
@@ -1387,8 +1386,7 @@ readString0I0go/buildimportReader0go/buildnextByte0go/buildsyntax
 	};
 	importReader.prototype.readImport = function() { return this.go$val.readImport(); };
  0importReader
-readImport0t0go/buildimportReader0go/buildpeekByte0go/buildisIdent0go/build	readIdent0go/build
-readString0ÇßreadCommentsÇ,	readComments = function(f) {
+readImport0ego/build:importReadergo/build:isIdentgo/build:peekBytego/build:readIdentgo/build:readString0ÇõreadCommentsÇ,	readComments = function(f) {
 		var r;
 		r = new importReader.Ptr(bufio.NewReader(f), (go$sliceType(Go$Uint8)).nil, 0, null, false, 0);
 		r.peekByte(true);
@@ -1397,7 +1395,7 @@ readString0ÇßreadCommentsÇ,	readComments = function(f) {
 		}
 		return [r.buf, r.err];
 	};
- 0readComments0U0bufioReader0bufio	NewReader0go/buildimportReader0go/buildpeekByte0Ç0readImportsÇ+	readImports = function(f, reportSyntaxError) {
+ 0readComments0Ibufio:NewReaderbufio:Readergo/build:importReadergo/build:peekByte0ÇreadImportsÇ+	readImports = function(f, reportSyntaxError) {
 		var r;
 		r = new importReader.Ptr(bufio.NewReader(f), (go$sliceType(Go$Uint8)).nil, 0, null, false, 0);
 		r.readKeyword("package");
@@ -1425,28 +1423,27 @@ readString0ÇßreadCommentsÇ,	readComments = function(f) {
 		}
 		return [r.buf, r.err];
 	};
- 0readImports0Å‡0go/buildreadKeyword0go/build	readIdent0go/buildnextByte0go/build
-readImport0bufioReader0bufio	NewReader0go/buildimportReader0go/buildpeekByte0go/build	errSyntax0go/buildreadByte0   0	Default0 0 
+ 0readImports0Å¬bufio:NewReaderbufio:Readergo/build:errSyntaxgo/build:importReadergo/build:nextBytego/build:peekBytego/build:readBytego/build:readIdentgo/build:readImportgo/build:readKeyword0   0	Default0 0 
 cgoEnabled  0
 cgoEnabled0 0 
 slashslash  0
-slashslash0 0	safeBytes  0	safeBytes0 0knownOS  0	knownOS0 0	knownArch  0	knownArch0 0   0	ToolDir0 0	errSyntax  0	errSyntax0 0errNUL  0errNUL0 0Ç>  Ç		var _map, _key;
+slashslash0 0	safeBytes  0	safeBytes0 0knownOS  0	knownOS0 0	knownArch  0	knownArch0 0   0	ToolDir0 0	errSyntax  0	errSyntax0 0errNUL  0errNUL0 0Ç;  Ç		var _map, _key;
 		cgoEnabled = (_map = new Go$Map(), _key = "darwin/386", _map[_key] = { k: _key, v: true }, _key = "darwin/amd64", _map[_key] = { k: _key, v: true }, _key = "dragonfly/386", _map[_key] = { k: _key, v: true }, _key = "dragonfly/amd64", _map[_key] = { k: _key, v: true }, _key = "freebsd/386", _map[_key] = { k: _key, v: true }, _key = "freebsd/amd64", _map[_key] = { k: _key, v: true }, _key = "freebsd/arm", _map[_key] = { k: _key, v: true }, _key = "linux/386", _map[_key] = { k: _key, v: true }, _key = "linux/amd64", _map[_key] = { k: _key, v: true }, _key = "linux/arm", _map[_key] = { k: _key, v: true }, _key = "netbsd/386", _map[_key] = { k: _key, v: true }, _key = "netbsd/amd64", _map[_key] = { k: _key, v: true }, _key = "netbsd/arm", _map[_key] = { k: _key, v: true }, _key = "openbsd/386", _map[_key] = { k: _key, v: true }, _key = "openbsd/amd64", _map[_key] = { k: _key, v: true }, _key = "windows/386", _map[_key] = { k: _key, v: true }, _key = "windows/amd64", _map[_key] = { k: _key, v: true }, _map);
 0
-cgoEnabled00go/build
-cgoEnabled0Ç‹  Çä		var _struct;
+cgoEnabled0go/build:cgoEnabled0Ç”  Çä		var _struct;
 		go$pkg.Default = (_struct = defaultContext(), new Context.Ptr(_struct.GOARCH, _struct.GOOS, _struct.GOROOT, _struct.GOPATH, _struct.CgoEnabled, _struct.UseAllFiles, _struct.Compiler, _struct.BuildTags, _struct.ReleaseTags, _struct.InstallSuffix, _struct.JoinPath, _struct.SplitPathList, _struct.IsAbsPath, _struct.IsDir, _struct.HasSubdir, _struct.ReadDir, _struct.OpenFile));
-0 0F0go/builddefaultContext0go/buildContext0go/buildDefault0s  E		slashslash = new (go$sliceType(Go$Uint8))(go$stringToBytes("//"));
+0 0=go/build:Contextgo/build:Defaultgo/build:defaultContext0p  E		slashslash = new (go$sliceType(Go$Uint8))(go$stringToBytes("//"));
 0
-slashslash00go/build
-slashslash0Å∂  Åâ		safeBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("+-.,/0123456789=ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz:$"));
-0	safeBytes00go/build	safeBytes09  		knownOS = new Go$Map();
-0 00go/buildknownOS0=  		knownArch = new Go$Map();
-0 00go/build	knownArch0Å¥  k		go$pkg.ToolDir = filepath.Join(new (go$sliceType(Go$String))([runtime.GOROOT(), "pkg/tool/darwin_js"]));
-0 0?0path/filepathJoin0runtimeGOROOT0go/buildToolDir0Z  *		errSyntax = errors.New("syntax error");
-0 0&0errorsNew0go/build	errSyntax0_  2		errNUL = errors.New("unexpected NUL in input");
-0 0#0errorsNew0go/builderrNUL0
-   0 0 0Ç„  Çò		var _ref, _i, _slice, _index, v, _key$1, _ref$1, _i$1, _slice$1, _index$1, v$1, _key$2;
+slashslash0go/build:slashslash0Å≥  Åâ		safeBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes("+-.,/0123456789=ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz:$"));
+0	safeBytes0go/build:safeBytes06  		knownOS = new Go$Map();
+0 0go/build:knownOS0:  		knownArch = new Go$Map();
+0 0go/build:knownArch0Å´  k		go$pkg.ToolDir = filepath.Join(new (go$sliceType(Go$String))([runtime.GOROOT(), "pkg/tool/darwin_js"]));
+0 06go/build:ToolDirpath/filepath:Joinruntime:GOROOT0T  *		errSyntax = errors.New("syntax error");
+0 0 
+errors:Newgo/build:errSyntax0Y  2		errNUL = errors.New("unexpected NUL in input");
+0 0
+errors:Newgo/build:errNUL0
+   0 0 0Ç⁄  Çò		var _ref, _i, _slice, _index, v, _key$1, _ref$1, _i$1, _slice$1, _index$1, v$1, _key$2;
 		_ref = strings.Fields("darwin dragonfly freebsd linux netbsd openbsd plan9 windows ");
 		_i = 0;
 		while (_i < _ref.length) {
@@ -1461,4 +1458,4 @@ slashslash0Å∂  Åâ		safeBytes = new (go$sliceType(Go$Uint8))(go$stringToBytes(
 			_key$2 = v$1, (knownArch || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: true };
 			_i$1++;
 		}
-0 0?0stringsFields0go/buildknownOS0go/build	knownArch0 
+0 06go/build:knownArchgo/build:knownOSstrings:Fields0 

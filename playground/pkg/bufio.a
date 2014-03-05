@@ -1,4 +1,4 @@
-0Ç≤_bufioÇspackage bufio
+0Ç∞ÒbufioÇspackage bufio
 import bytes "bytes"
 import errors "errors"
 import io "io"
@@ -63,7 +63,7 @@ func (? *@"".Writer) @"".flush() (? error)
 type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
 type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
 $$
-0Mruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufio0B0bytesbytes0errorserrors0ioio0unicode/utf8utf80Ç¢H0Ç…ReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "bufio.Reader", "Reader", "bufio", function(buf_, rd_, r_, w_, err_, lastByte_, lastRuneSize_) {
+0Mruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufio0B0bytesbytes0errorserrors0ioio0unicode/utf8utf80Ç†⁄0Ç√ReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "bufio.Reader", "Reader", "bufio", function(buf_, rd_, r_, w_, err_, lastByte_, lastRuneSize_) {
 		this.go$val = this;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
 		this.rd = rd_ !== undefined ? rd_ : null;
@@ -75,7 +75,7 @@ $$
 	});
 Çs		(go$ptrType(Reader)).methods = [["Buffered", "", [], [Go$Int], false, -1], ["Peek", "", [Go$Int], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["ReadByte", "", [], [Go$Uint8, go$error], false, -1], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["ReadLine", "", [], [(go$sliceType(Go$Uint8)), Go$Bool, go$error], false, -1], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, -1], ["ReadSlice", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, -1], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false, -1], ["Reset", "", [io.Reader], [], false, -1], ["UnreadByte", "", [], [go$error], false, -1], ["UnreadRune", "", [], [go$error], false, -1], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false, -1], ["fill", "bufio", [], [], false, -1], ["readErr", "bufio", [], [go$error], false, -1], ["reset", "bufio", [(go$sliceType(Go$Uint8)), io.Reader], [], false, -1], ["writeBuf", "bufio", [io.Writer], [Go$Int64, go$error], false, -1]];
 		Reader.init([["buf", "buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["rd", "rd", "bufio", io.Reader, ""], ["r", "r", "bufio", Go$Int, ""], ["w", "w", "bufio", Go$Int, ""], ["err", "err", "bufio", go$error, ""], ["lastByte", "lastByte", "bufio", Go$Int, ""], ["lastRuneSize", "lastRuneSize", "bufio", Go$Int, ""]]);
-0Reader00ioReader0ioWriter0ÇÉWriterÇX	Writer = go$pkg.Writer = go$newType(0, "Struct", "bufio.Writer", "Writer", "bufio", function(err_, buf_, n_, wr_) {
+0Reader0	io:Reader	io:Writer0Ç}WriterÇX	Writer = go$pkg.Writer = go$newType(0, "Struct", "bufio.Writer", "Writer", "bufio", function(err_, buf_, n_, wr_) {
 		this.go$val = this;
 		this.err = err_ !== undefined ? err_ : null;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
@@ -84,7 +84,7 @@ $$
 	});
 ÇÛ		(go$ptrType(Writer)).methods = [["Available", "", [], [Go$Int], false, -1], ["Buffered", "", [], [Go$Int], false, -1], ["Flush", "", [], [go$error], false, -1], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, -1], ["Reset", "", [io.Writer], [], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["WriteByte", "", [Go$Uint8], [go$error], false, -1], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false, -1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, -1], ["flush", "bufio", [], [go$error], false, -1]];
 		Writer.init([["err", "err", "bufio", go$error, ""], ["buf", "buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["n", "n", "bufio", Go$Int, ""], ["wr", "wr", "bufio", io.Writer, ""]]);
-0Writer00ioReader0ioWriter0Ç
+0Writer0	io:Reader	io:Writer0Ç
 ReadWriterÇ5	ReadWriter = go$pkg.ReadWriter = go$newType(0, "Struct", "bufio.ReadWriter", "ReadWriter", "bufio", function(Reader_, Writer_) {
 		this.go$val = this;
 		this.Reader = Reader_ !== undefined ? Reader_ : (go$ptrType(Reader)).nil;
@@ -94,7 +94,7 @@ ReadWriterÇ5	ReadWriter = go$pkg.ReadWriter = go$newType(0, "Struct", "bufio.R
 		(go$ptrType(ReadWriter)).methods = [["Available", "", [], [Go$Int], false, 1], ["Flush", "", [], [go$error], false, 1], ["Peek", "", [Go$Int], [(go$sliceType(Go$Uint8)), go$error], false, 0], ["Read", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 0], ["ReadByte", "", [], [Go$Uint8, go$error], false, 0], ["ReadBytes", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, 0], ["ReadFrom", "", [io.Reader], [Go$Int64, go$error], false, 1], ["ReadLine", "", [], [(go$sliceType(Go$Uint8)), Go$Bool, go$error], false, 0], ["ReadRune", "", [], [Go$Int32, Go$Int, go$error], false, 0], ["ReadSlice", "", [Go$Uint8], [(go$sliceType(Go$Uint8)), go$error], false, 0], ["ReadString", "", [Go$Uint8], [Go$String, go$error], false, 0], ["UnreadByte", "", [], [go$error], false, 0], ["UnreadRune", "", [], [go$error], false, 0], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, 1], ["WriteByte", "", [Go$Uint8], [go$error], false, 1], ["WriteRune", "", [Go$Int32], [Go$Int, go$error], false, 1], ["WriteString", "", [Go$String], [Go$Int, go$error], false, 1], ["WriteTo", "", [io.Writer], [Go$Int64, go$error], false, 0], ["fill", "bufio", [], [], false, 0], ["flush", "bufio", [], [go$error], false, 1], ["readErr", "bufio", [], [go$error], false, 0], ["reset", "bufio", [(go$sliceType(Go$Uint8)), io.Reader], [], false, 0], ["writeBuf", "bufio", [io.Writer], [Go$Int64, go$error], false, 0]];
 		ReadWriter.init([["Reader", "", "", (go$ptrType(Reader)), ""], ["Writer", "", "", (go$ptrType(Writer)), ""]]);
 0
-ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0ÇæScannerÇï	Scanner = go$pkg.Scanner = go$newType(0, "Struct", "bufio.Scanner", "Scanner", "bufio", function(r_, split_, maxTokenSize_, token_, buf_, start_, end_, err_) {
+ReadWriter02bufio:Readerbufio:Writer	io:Reader	io:Writer0Ç∏ScannerÇï	Scanner = go$pkg.Scanner = go$newType(0, "Struct", "bufio.Scanner", "Scanner", "bufio", function(r_, split_, maxTokenSize_, token_, buf_, start_, end_, err_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.split = split_ !== undefined ? split_ : go$throwNilPointerError;
@@ -107,9 +107,9 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Çæ
 	});
 ÇÈ		(go$ptrType(Scanner)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false, -1], ["Err", "", [], [go$error], false, -1], ["Scan", "", [], [Go$Bool], false, -1], ["Split", "", [SplitFunc], [], false, -1], ["Text", "", [], [Go$String], false, -1], ["advance", "bufio", [Go$Int], [Go$Bool], false, -1], ["setErr", "bufio", [go$error], [], false, -1]];
 		Scanner.init([["r", "r", "bufio", io.Reader, ""], ["split", "split", "bufio", SplitFunc, ""], ["maxTokenSize", "maxTokenSize", "bufio", Go$Int, ""], ["token", "token", "bufio", (go$sliceType(Go$Uint8)), ""], ["buf", "buf", "bufio", (go$sliceType(Go$Uint8)), ""], ["start", "start", "bufio", Go$Int, ""], ["end", "end", "bufio", Go$Int, ""], ["err", "err", "bufio", go$error, ""]]);
-0	Scanner0"0bufio	SplitFunc0ioReader0Å	SplitFuncf	SplitFunc = go$pkg.SplitFunc = go$newType(0, "Func", "bufio.SplitFunc", "SplitFunc", "bufio", null);
+0	Scanner0bufio:SplitFunc	io:Reader0Å	SplitFuncf	SplitFunc = go$pkg.SplitFunc = go$newType(0, "Func", "bufio.SplitFunc", "SplitFunc", "bufio", null);
 l		SplitFunc.init([(go$sliceType(Go$Uint8)), Go$Bool], [Go$Int, (go$sliceType(Go$Uint8)), go$error], false);
-0	SplitFunc0 0ÇNewReaderSizeÇƒ	NewReaderSize = go$pkg.NewReaderSize = function(rd, size) {
+0	SplitFunc0 0ÇNewReaderSizeÇƒ	NewReaderSize = go$pkg.NewReaderSize = function(rd, size) {
 		var _tuple, b, ok, r;
 		_tuple = (rd !== null && rd.constructor === (go$ptrType(Reader)) ? [rd.go$val, true] : [(go$ptrType(Reader)).nil, false]), b = _tuple[0], ok = _tuple[1];
 		if (ok && b.buf.length >= size) {
@@ -122,22 +122,22 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Çæ
 		r.reset((go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; }), rd);
 		return r;
 	};
- 0NewReaderSize0!0bufioReader0bufioreset0Åã	NewReaderU	NewReader = go$pkg.NewReader = function(rd) {
+ 0NewReaderSize0bufio:Readerbufio:reset0Åà	NewReaderU	NewReader = go$pkg.NewReader = function(rd) {
 		return NewReaderSize(rd, 4096);
 	};
- 0	NewReader00bufioNewReaderSize0Å÷ Å¢	Reader.Ptr.prototype.Reset = function(r) {
+ 0	NewReader0bufio:NewReaderSize0Å– Å¢	Reader.Ptr.prototype.Reset = function(r) {
 		var b;
 		b = this;
 		b.reset(b.buf, r);
 	};
 	Reader.prototype.Reset = function(r) { return this.go$val.Reset(r); };
- 0Reader0!0bufioReader0bufioreset0Çî Çh	Reader.Ptr.prototype.reset = function(buf, r) {
+ 0Reader0bufio:Readerbufio:reset0Çë Çh	Reader.Ptr.prototype.reset = function(buf, r) {
 		var b, l, r$1;
 		b = this;
 		l = b, r$1 = new Reader.Ptr(buf, r, 0, 0, null, -1, -1), l.buf = r$1.buf, l.rd = r$1.rd, l.r = r$1.r, l.w = r$1.w, l.err = r$1.err, l.lastByte = r$1.lastByte, l.lastRuneSize = r$1.lastRuneSize;
 	};
 	Reader.prototype.reset = function(buf, r) { return this.go$val.reset(buf, r); };
- 0Readerreset00bufioReader0Ç+ ÇÊ	Reader.Ptr.prototype.fill = function() {
+ 0Readerreset0bufio:Reader0Ç% ÇÊ	Reader.Ptr.prototype.fill = function() {
 		var b, _tuple, n, err;
 		b = this;
 		if (b.r > 0) {
@@ -155,7 +155,7 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Çæ
 		}
 	};
 	Reader.prototype.fill = function() { return this.go$val.fill(); };
- 0Readerfill0+0bufioReader0bufioerrNegativeRead0ÅÔ Å¬	Reader.Ptr.prototype.readErr = function() {
+ 0Readerfill0%bufio:Readerbufio:errNegativeRead0ÅÏ Å¬	Reader.Ptr.prototype.readErr = function() {
 		var b, err;
 		b = this;
 		err = b.err;
@@ -163,7 +163,7 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Çæ
 		return err;
 	};
 	Reader.prototype.readErr = function() { return this.go$val.readErr(); };
- 0ReaderreadErr00bufioReader0Ç Çç	Reader.Ptr.prototype.Peek = function(n) {
+ 0ReaderreadErr0bufio:Reader0Ç˜ Çç	Reader.Ptr.prototype.Peek = function(n) {
 		var b, m, err;
 		b = this;
 		if (n < 0) {
@@ -189,7 +189,8 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Çæ
 		return [go$subslice(b.buf, b.r, (b.r + m >> 0)), err];
 	};
 	Reader.prototype.Peek = function(n) { return this.go$val.Peek(n); };
- 0Reader0e0bufioReader0bufioErrNegativeCount0bufioErrBufferFull0bufiofill0bufioreadErr0Ça Ç	Reader.Ptr.prototype.Read = function(p) {
+ 0Reader0Vbufio:ErrBufferFullbufio:ErrNegativeCountbufio:Reader
+bufio:fillbufio:readErr0ÇX Ç	Reader.Ptr.prototype.Read = function(p) {
 		var n, err, b, _tuple, _tuple$1, _tuple$2, _slice, _index, _tuple$3, _tuple$4, _slice$1, _index$1, _tuple$5;
 		n = 0;
 		err = null;
@@ -230,7 +231,8 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Çæ
 		return [n, err];
 	};
 	Reader.prototype.Read = function(p) { return this.go$val.Read(p); };
- 0Reader020bufioReader0bufioreadErr0bufiofill0Ç Çº	Reader.Ptr.prototype.ReadByte = function() {
+ 0Reader0)bufio:Reader
+bufio:fillbufio:readErr0Ç˘ Çº	Reader.Ptr.prototype.ReadByte = function() {
 		var c, err, b, _tuple, _slice, _index, _tuple$1;
 		c = 0;
 		err = null;
@@ -250,7 +252,8 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Çæ
 		return [c, err];
 	};
 	Reader.prototype.ReadByte = function() { return this.go$val.ReadByte(); };
- 0Reader020bufioReader0bufioreadErr0bufiofill0Çù ÇY	Reader.Ptr.prototype.UnreadByte = function() {
+ 0Reader0)bufio:Reader
+bufio:fillbufio:readErr0Çó ÇY	Reader.Ptr.prototype.UnreadByte = function() {
 		var b, _slice, _index;
 		b = this;
 		b.lastRuneSize = -1;
@@ -269,7 +272,7 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Çæ
 		return null;
 	};
 	Reader.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
- 0Reader000bufioReader0bufioErrInvalidUnreadByte0Çq Çı	Reader.Ptr.prototype.ReadRune = function() {
+ 0Reader0*bufio:ErrInvalidUnreadBytebufio:Reader0Çb Çı	Reader.Ptr.prototype.ReadRune = function() {
 		var r, size, err, b, _tuple, _slice, _index, _tuple$1, _tuple$2, _slice$1, _index$1, _tuple$3;
 		r = 0;
 		size = 0;
@@ -294,8 +297,8 @@ ReadWriter0>0bufioReader0bufioWriter0ioReader0ioWriter0Çæ
 		return [r, size, err];
 	};
 	Reader.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
- 0Reader0h0bufioReader0unicode/utf8FullRune0bufiofill0bufioreadErr0unicode/utf8
-DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
+ 0Reader0Ybufio:Reader
+bufio:fillbufio:readErrunicode/utf8:DecodeRuneunicode/utf8:FullRune0Çã ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		var b;
 		b = this;
 		if (b.lastRuneSize < 0 || (b.r === 0)) {
@@ -307,13 +310,13 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return null;
 	};
 	Reader.prototype.UnreadRune = function() { return this.go$val.UnreadRune(); };
- 0Reader000bufioReader0bufioErrInvalidUnreadRune0Å– Å¨	Reader.Ptr.prototype.Buffered = function() {
+ 0Reader0*bufio:ErrInvalidUnreadRunebufio:Reader0ÅÕ Å¨	Reader.Ptr.prototype.Buffered = function() {
 		var b;
 		b = this;
 		return b.w - b.r >> 0;
 	};
 	Reader.prototype.Buffered = function() { return this.go$val.Buffered(); };
- 0Reader00bufioReader0Çh Çˆ	Reader.Ptr.prototype.ReadSlice = function(delim) {
+ 0Reader0bufio:Reader0ÇY Çˆ	Reader.Ptr.prototype.ReadSlice = function(delim) {
 		var line, err, b, i, line1, _tuple, line$1, _tuple$1, n, i$1, line$2, _tuple$2, _tuple$3;
 		line = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -347,7 +350,8 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		}
 	};
 	Reader.prototype.ReadSlice = function(delim) { return this.go$val.ReadSlice(delim); };
- 0Reader0^0bufioReader0bytes	IndexByte0bufioreadErr0bufiofill0bufioErrBufferFull0ÇÏ ÇØ	Reader.Ptr.prototype.ReadLine = function() {
+ 0Reader0Obufio:ErrBufferFullbufio:Reader
+bufio:fillbufio:readErrbytes:IndexByte0ÇÊ ÇØ	Reader.Ptr.prototype.ReadLine = function() {
 		var line, isPrefix, err, b, _tuple, _slice, _index, _tuple$1, _slice$1, _index$1, drop, _slice$2, _index$2;
 		line = (go$sliceType(Go$Uint8)).nil;
 		isPrefix = false;
@@ -382,7 +386,7 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return [line, isPrefix, err];
 	};
 	Reader.prototype.ReadLine = function() { return this.go$val.ReadLine(); };
- 0Reader0)0bufioReader0bufioErrBufferFull0Çø ÇÇ	Reader.Ptr.prototype.ReadBytes = function(delim) {
+ 0Reader0#bufio:ErrBufferFullbufio:Reader0Çπ ÇÇ	Reader.Ptr.prototype.ReadBytes = function(delim) {
 		var line, err, b, frag, full, e, _tuple, buf, n, _ref, _i, i, _slice, _index, buf$1, _ref$1, _i$1, i$1, _slice$1, _index$1, _tuple$1;
 		line = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -427,7 +431,7 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return [line, err];
 	};
 	Reader.prototype.ReadBytes = function(delim) { return this.go$val.ReadBytes(delim); };
- 0Reader0)0bufioReader0bufioErrBufferFull0ÇŒ Ç©	Reader.Ptr.prototype.ReadString = function(delim) {
+ 0Reader0#bufio:ErrBufferFullbufio:Reader0ÇÀ Ç©	Reader.Ptr.prototype.ReadString = function(delim) {
 		var line, err, b, _tuple, bytes$1, _tuple$1;
 		line = "";
 		err = null;
@@ -438,7 +442,7 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return [line, err];
 	};
 	Reader.prototype.ReadString = function(delim) { return this.go$val.ReadString(delim); };
- 0Reader00bufioReader0ÇÖ Ç	Reader.Ptr.prototype.WriteTo = function(w) {
+ 0Reader0bufio:Reader0Çs Ç	Reader.Ptr.prototype.WriteTo = function(w) {
 		var n, err, b, _tuple, ok, _tuple$1, x, r, _tuple$2, m, err$1, x$1, _tuple$3, _tuple$4, m$1, err$2, x$2, _tuple$5, _tuple$6;
 		n = new Go$Int64(0, 0);
 		err = null;
@@ -470,7 +474,8 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return [n, err];
 	};
 	Reader.prototype.WriteTo = function(w) { return this.go$val.WriteTo(w); };
- 0Reader0`0bufioReader0bufiowriteBuf0ioWriterTo0bufiofill0	ioEOF0bufioreadErr0Çc Ç4	Reader.Ptr.prototype.writeBuf = function(w) {
+ 0Reader0Nbufio:Reader
+bufio:fillbufio:readErrbufio:writeBufio:EOFio:WriterTo0Ç` Ç4	Reader.Ptr.prototype.writeBuf = function(w) {
 		var b, _tuple, n, err;
 		b = this;
 		_tuple = w.Write(go$subslice(b.buf, b.r, b.w)), n = _tuple[0], err = _tuple[1];
@@ -478,7 +483,7 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return [new Go$Int64(0, n), err];
 	};
 	Reader.prototype.writeBuf = function(w) { return this.go$val.writeBuf(w); };
- 0ReaderwriteBuf00bufioReader0ÇÍNewWriterSizeÇ±	NewWriterSize = go$pkg.NewWriterSize = function(w, size) {
+ 0ReaderwriteBuf0bufio:Reader0ÇÁNewWriterSizeÇ±	NewWriterSize = go$pkg.NewWriterSize = function(w, size) {
 		var _tuple, b, ok;
 		_tuple = (w !== null && w.constructor === (go$ptrType(Writer)) ? [w.go$val, true] : [(go$ptrType(Writer)).nil, false]), b = _tuple[0], ok = _tuple[1];
 		if (ok && b.buf.length >= size) {
@@ -489,10 +494,10 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		}
 		return new Writer.Ptr(null, (go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; }), 0, w);
 	};
- 0NewWriterSize00bufioWriter0Åâ	NewWriterS	NewWriter = go$pkg.NewWriter = function(w) {
+ 0NewWriterSize0bufio:Writer0ÅÜ	NewWriterS	NewWriter = go$pkg.NewWriter = function(w) {
 		return NewWriterSize(w, 4096);
 	};
- 0	NewWriter00bufioNewWriterSize0Åÿ Å¥	Writer.Ptr.prototype.Reset = function(w) {
+ 0	NewWriter0bufio:NewWriterSize0Å’ Å¥	Writer.Ptr.prototype.Reset = function(w) {
 		var b;
 		b = this;
 		b.err = null;
@@ -500,14 +505,14 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		b.wr = w;
 	};
 	Writer.prototype.Reset = function(w) { return this.go$val.Reset(w); };
- 0Writer00bufioWriter0Å‰ Å∞	Writer.Ptr.prototype.Flush = function() {
+ 0Writer0bufio:Writer0Åﬁ Å∞	Writer.Ptr.prototype.Flush = function() {
 		var b, err;
 		b = this;
 		err = b.flush();
 		return err;
 	};
 	Writer.prototype.Flush = function() { return this.go$val.Flush(); };
- 0Writer0!0bufioWriter0bufioflush0Çﬂ Çû	Writer.Ptr.prototype.flush = function() {
+ 0Writer0bufio:Writerbufio:flush0ÇŸ Çû	Writer.Ptr.prototype.flush = function() {
 		var b, _tuple, n, err;
 		b = this;
 		if (!(go$interfaceIsEqual(b.err, null))) {
@@ -532,19 +537,19 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return null;
 	};
 	Writer.prototype.flush = function() { return this.go$val.flush(); };
- 0Writerflush0&0bufioWriter0ioErrShortWrite0Å‹ Å∏	Writer.Ptr.prototype.Available = function() {
+ 0Writerflush0 bufio:Writerio:ErrShortWrite0ÅŸ Å∏	Writer.Ptr.prototype.Available = function() {
 		var b;
 		b = this;
 		return b.buf.length - b.n >> 0;
 	};
 	Writer.prototype.Available = function() { return this.go$val.Available(); };
- 0Writer00bufioWriter0Å≈ Å°	Writer.Ptr.prototype.Buffered = function() {
+ 0Writer0bufio:Writer0Å¬ Å°	Writer.Ptr.prototype.Buffered = function() {
 		var b;
 		b = this;
 		return b.n;
 	};
 	Writer.prototype.Buffered = function() { return this.go$val.Buffered(); };
- 0Writer00bufioWriter0Çí Ç]	Writer.Ptr.prototype.Write = function(p) {
+ 0Writer0bufio:Writer0Çå Ç]	Writer.Ptr.prototype.Write = function(p) {
 		var nn, err, b, n, _tuple, _tuple$1, n$1, _tuple$2;
 		nn = 0;
 		err = null;
@@ -572,7 +577,7 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return [nn, err];
 	};
 	Writer.prototype.Write = function(p) { return this.go$val.Write(p); };
- 0Writer0!0bufioWriter0bufioflush0ÇD Ç	Writer.Ptr.prototype.WriteByte = function(c) {
+ 0Writer0bufio:Writerbufio:flush0Ç> Ç	Writer.Ptr.prototype.WriteByte = function(c) {
 		var b, _slice, _index;
 		b = this;
 		if (!(go$interfaceIsEqual(b.err, null))) {
@@ -586,7 +591,7 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return null;
 	};
 	Writer.prototype.WriteByte = function(c) { return this.go$val.WriteByte(c); };
- 0Writer0!0bufioWriter0bufioflush0ÇÔ Çû	Writer.Ptr.prototype.WriteRune = function(r) {
+ 0Writer0bufio:Writerbufio:flush0ÇÊ Çû	Writer.Ptr.prototype.WriteRune = function(r) {
 		var size, err, b, _tuple, _tuple$1, _tuple$2, n, _tuple$3, _tuple$4, _tuple$5;
 		size = 0;
 		err = null;
@@ -622,8 +627,7 @@ DecodeRune0Çë ÇM	Reader.Ptr.prototype.UnreadRune = function() {
 		return [size, err];
 	};
 	Writer.prototype.WriteRune = function(r) { return this.go$val.WriteRune(r); };
- 0Writer0=0bufioWriter0bufioflush0unicode/utf8
-EncodeRune0ÇÄ ÇK	Writer.Ptr.prototype.WriteString = function(s) {
+ 0Writer04bufio:Writerbufio:flushunicode/utf8:EncodeRune0Çz ÇK	Writer.Ptr.prototype.WriteString = function(s) {
 		var b, nn, n, n$1;
 		b = this;
 		nn = 0;
@@ -643,7 +647,7 @@ EncodeRune0ÇÄ ÇK	Writer.Ptr.prototype.WriteString = function(s) {
 		return [nn, null];
 	};
 	Writer.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
- 0Writer0!0bufioWriter0bufioflush0ÇO Ç˝	Writer.Ptr.prototype.ReadFrom = function(r) {
+ 0Writer0bufio:Writerbufio:flush0ÇC Ç˝	Writer.Ptr.prototype.ReadFrom = function(r) {
 		var n, err, b, ok, _tuple, x, w, _tuple$1, m, err1, _tuple$2, _tuple$3, x$1, _tuple$4;
 		n = new Go$Int64(0, 0);
 		err = null;
@@ -683,17 +687,15 @@ EncodeRune0ÇÄ ÇK	Writer.Ptr.prototype.WriteString = function(s) {
 		return [n, err];
 	};
 	Writer.prototype.ReadFrom = function(r) { return this.go$val.ReadFrom(r); };
- 0Writer0>0bufioWriter0io
-ReaderFrom0bufioflush0	ioEOF0ÅõNewReadWriter`	NewReadWriter = go$pkg.NewReadWriter = function(r, w) {
+ 0Writer02bufio:Writerbufio:flushio:EOFio:ReaderFrom0ÅòNewReadWriter`	NewReadWriter = go$pkg.NewReadWriter = function(r, w) {
 		return new ReadWriter.Ptr(r, w);
 	};
- 0NewReadWriter00bufio
-ReadWriter0Ç
+ 0NewReadWriter0bufio:ReadWriter0Ç
 NewScannerÅœ	NewScanner = go$pkg.NewScanner = function(r) {
 		return new Scanner.Ptr(r, ScanLines, 65536, (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).make(4096, 0, function() { return 0; }), 0, 0, null);
 	};
  0
-NewScanner0&0bufio	ScanLines0bufioScanner0Ç Å÷	Scanner.Ptr.prototype.Err = function() {
+NewScanner0 bufio:ScanLinesbufio:Scanner0Ç Å÷	Scanner.Ptr.prototype.Err = function() {
 		var s;
 		s = this;
 		if (go$interfaceIsEqual(s.err, io.EOF)) {
@@ -702,19 +704,19 @@ NewScanner0&0bufio	ScanLines0bufioScanner0Ç Å÷	Scanner.Ptr.prototyp
 		return s.err;
 	};
 	Scanner.prototype.Err = function() { return this.go$val.Err(); };
- 0	Scanner00bufioScanner0	ioEOF0Åƒ Åû	Scanner.Ptr.prototype.Bytes = function() {
+ 0	Scanner0bufio:Scannerio:EOF0Å¡ Åû	Scanner.Ptr.prototype.Bytes = function() {
 		var s;
 		s = this;
 		return s.token;
 	};
 	Scanner.prototype.Bytes = function() { return this.go$val.Bytes(); };
- 0	Scanner00bufioScanner0Å” Å≠	Scanner.Ptr.prototype.Text = function() {
+ 0	Scanner0bufio:Scanner0Å– Å≠	Scanner.Ptr.prototype.Text = function() {
 		var s;
 		s = this;
 		return go$bytesToString(s.token);
 	};
 	Scanner.prototype.Text = function() { return this.go$val.Text(); };
- 0	Scanner00bufioScanner0ÇW Ç„	Scanner.Ptr.prototype.Scan = function() {
+ 0	Scanner0bufio:Scanner0ÇH Ç„	Scanner.Ptr.prototype.Scan = function() {
 		var s, _tuple, advance, token, err, _q, x, x$1, newSize, newBuf, loop, _tuple$1, n, err$1;
 		s = this;
 		while (true) {
@@ -778,8 +780,7 @@ NewScanner0&0bufio	ScanLines0bufioScanner0Ç Å÷	Scanner.Ptr.prototyp
 		}
 	};
 	Scanner.prototype.Scan = function() { return this.go$val.Scan(); };
- 0	Scanner0_0bufioScanner0bufiosetErr0bufioadvance0bufio
-ErrTooLong0ioErrNoProgress0ÇË Ço	Scanner.Ptr.prototype.advance = function(n) {
+ 0	Scanner0Pbufio:ErrTooLongbufio:Scannerbufio:advancebufio:setErrio:ErrNoProgress0Ç‹ Ço	Scanner.Ptr.prototype.advance = function(n) {
 		var s;
 		s = this;
 		if (n < 0) {
@@ -794,7 +795,7 @@ ErrTooLong0ioErrNoProgress0ÇË Ço	Scanner.Ptr.prototype.advance = functi
 		return true;
 	};
 	Scanner.prototype.advance = function(n) { return this.go$val.advance(n); };
- 0Scanneradvance0[0bufioScanner0bufiosetErr0bufioErrNegativeAdvance0bufioErrAdvanceTooFar0Ç5 Å¸	Scanner.Ptr.prototype.setErr = function(err) {
+ 0Scanneradvance0Obufio:ErrAdvanceTooFarbufio:ErrNegativeAdvancebufio:Scannerbufio:setErr0Ç/ Å¸	Scanner.Ptr.prototype.setErr = function(err) {
 		var s;
 		s = this;
 		if (go$interfaceIsEqual(s.err, null) || go$interfaceIsEqual(s.err, io.EOF)) {
@@ -802,13 +803,13 @@ ErrTooLong0ioErrNoProgress0ÇË Ço	Scanner.Ptr.prototype.advance = functi
 		}
 	};
 	Scanner.prototype.setErr = function(err) { return this.go$val.setErr(err); };
- 0ScannersetErr00bufioScanner0	ioEOF0Å‘ ÅÆ	Scanner.Ptr.prototype.Split = function(split) {
+ 0ScannersetErr0bufio:Scannerio:EOF0Å— ÅÆ	Scanner.Ptr.prototype.Split = function(split) {
 		var s;
 		s = this;
 		s.split = split;
 	};
 	Scanner.prototype.Split = function(split) { return this.go$val.Split(split); };
- 0	Scanner00bufioScanner0Ç	ScanBytesÇ˜	ScanBytes = go$pkg.ScanBytes = function(data, atEOF) {
+ 0	Scanner0bufio:Scanner0Ç	ScanBytesÇ˜	ScanBytes = go$pkg.ScanBytes = function(data, atEOF) {
 		var advance, token, err, _tuple, _tuple$1;
 		advance = 0;
 		token = (go$sliceType(Go$Uint8)).nil;
@@ -820,7 +821,7 @@ ErrTooLong0ioErrNoProgress0ÇË Ço	Scanner.Ptr.prototype.advance = functi
 		_tuple$1 = [1, go$subslice(data, 0, 1), null], advance = _tuple$1[0], token = _tuple$1[1], err = _tuple$1[2];
 		return [advance, token, err];
 	};
- 0	ScanBytes0 0Ç}	ScanRunesÇ	ScanRunes = go$pkg.ScanRunes = function(data, atEOF) {
+ 0	ScanBytes0 0Çt	ScanRunesÇ	ScanRunes = go$pkg.ScanRunes = function(data, atEOF) {
 		var advance, token, err, _tuple, _slice, _index, _tuple$1, _tuple$2, width, _tuple$3, _tuple$4, _tuple$5;
 		advance = 0;
 		token = (go$sliceType(Go$Uint8)).nil;
@@ -845,15 +846,14 @@ ErrTooLong0ioErrNoProgress0ÇË Ço	Scanner.Ptr.prototype.advance = functi
 		_tuple$5 = [1, errorRune, null], advance = _tuple$5[0], token = _tuple$5[1], err = _tuple$5[2];
 		return [advance, token, err];
 	};
- 0	ScanRunes0J0unicode/utf8
-DecodeRune0unicode/utf8FullRune0bufio	errorRune0ÇmdropCRÇS	dropCR = function(data) {
+ 0	ScanRunes0Abufio:errorRuneunicode/utf8:DecodeRuneunicode/utf8:FullRune0ÇmdropCRÇS	dropCR = function(data) {
 		var _slice, _index;
 		if (data.length > 0 && ((_slice = data, _index = (data.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === 13)) {
 			return go$subslice(data, 0, (data.length - 1 >> 0));
 		}
 		return data;
 	};
- 0dropCR0 0Ç“	ScanLinesÇç	ScanLines = go$pkg.ScanLines = function(data, atEOF) {
+ 0dropCR0 0ÇÃ	ScanLinesÇç	ScanLines = go$pkg.ScanLines = function(data, atEOF) {
 		var advance, token, err, _tuple, i, _tuple$1, _tuple$2, _tuple$3;
 		advance = 0;
 		token = (go$sliceType(Go$Uint8)).nil;
@@ -873,7 +873,7 @@ DecodeRune0unicode/utf8FullRune0bufio	errorRune0ÇmdropCRÇS	dropCR 
 		_tuple$3 = [0, (go$sliceType(Go$Uint8)).nil, null], advance = _tuple$3[0], token = _tuple$3[1], err = _tuple$3[2];
 		return [advance, token, err];
 	};
- 0	ScanLines0%0bytes	IndexByte0bufiodropCR0Ç(isSpaceÇ	isSpace = function(r) {
+ 0	ScanLines0bufio:dropCRbytes:IndexByte0Ç(isSpaceÇ	isSpace = function(r) {
 		var _ref, _ref$1;
 		if (r <= 255) {
 			_ref = r;
@@ -893,7 +893,7 @@ DecodeRune0unicode/utf8FullRune0bufio	errorRune0ÇmdropCRÇS	dropCR 
 		}
 		return false;
 	};
- 0	isSpace0 0Çˇ	ScanWordsÇ±	ScanWords = go$pkg.ScanWords = function(data, atEOF) {
+ 0	isSpace0 0Ç˘	ScanWordsÇ±	ScanWords = go$pkg.ScanWords = function(data, atEOF) {
 		var advance, token, err, start, width, r, _tuple, _tuple$1, _tuple$2, width$1, i, r$1, _tuple$3, _tuple$4, _tuple$5, _tuple$6;
 		advance = 0;
 		token = (go$sliceType(Go$Uint8)).nil;
@@ -929,18 +929,24 @@ DecodeRune0unicode/utf8FullRune0bufio	errorRune0ÇmdropCRÇS	dropCR 
 		_tuple$6 = [0, (go$sliceType(Go$Uint8)).nil, null], advance = _tuple$6[0], token = _tuple$6[1], err = _tuple$6[2];
 		return [advance, token, err];
 	};
- 0	ScanWords0.0unicode/utf8
-DecodeRune0bufioisSpace0    0ErrInvalidUnreadByte0 0    0ErrInvalidUnreadRune0 0   0ErrBufferFull0 0   0ErrNegativeCount0 0*errNegativeRead  0errNegativeRead0 0   0
-ErrTooLong0 0   0ErrNegativeAdvance0 0   0ErrAdvanceTooFar0 0	errorRune  0	errorRune0 0Åà  P		go$pkg.ErrInvalidUnreadByte = errors.New("bufio: invalid use of UnreadByte");
-0 0.0errorsNew0bufioErrInvalidUnreadByte0Åà  P		go$pkg.ErrInvalidUnreadRune = errors.New("bufio: invalid use of UnreadRune");
-0 0.0errorsNew0bufioErrInvalidUnreadRune0l  ;		go$pkg.ErrBufferFull = errors.New("bufio: buffer full");
-0 0'0errorsNew0bufioErrBufferFull0u  A		go$pkg.ErrNegativeCount = errors.New("bufio: negative count");
-0 0*0errorsNew0bufioErrNegativeCount0ÅÜ  S		errNegativeRead = errors.New("bufio: reader returned negative count from Read");
-0 0)0errorsNew0bufioerrNegativeRead0q  C		go$pkg.ErrTooLong = errors.New("bufio.Scanner: token too long");
-0 0$0errorsNew0bufio
-ErrTooLong0Åõ  e		go$pkg.ErrNegativeAdvance = errors.New("bufio.Scanner: SplitFunc returns negative advance count");
-0 0,0errorsNew0bufioErrNegativeAdvance0Åõ  g		go$pkg.ErrAdvanceTooFar = errors.New("bufio.Scanner: SplitFunc returns advance count beyond input");
-0 0*0errorsNew0bufioErrAdvanceTooFar0w  N		errorRune = new (go$sliceType(Go$Uint8))(go$stringToBytes("\xEF\xBF\xBD"));
-0	errorRune00bufio	errorRune0
+ 0	ScanWords0(bufio:isSpaceunicode/utf8:DecodeRune0    0ErrInvalidUnreadByte0 0    0ErrInvalidUnreadRune0 0   0ErrBufferFull0 0   0ErrNegativeCount0 0*errNegativeRead  0errNegativeRead0 0   0
+ErrTooLong0 0   0ErrNegativeAdvance0 0   0ErrAdvanceTooFar0 0	errorRune  0	errorRune0 0ÅÇ  P		go$pkg.ErrInvalidUnreadByte = errors.New("bufio: invalid use of UnreadByte");
+0 0(bufio:ErrInvalidUnreadByte
+errors:New0ÅÇ  P		go$pkg.ErrInvalidUnreadRune = errors.New("bufio: invalid use of UnreadRune");
+0 0(bufio:ErrInvalidUnreadRune
+errors:New0f  ;		go$pkg.ErrBufferFull = errors.New("bufio: buffer full");
+0 0!bufio:ErrBufferFull
+errors:New0o  A		go$pkg.ErrNegativeCount = errors.New("bufio: negative count");
+0 0$bufio:ErrNegativeCount
+errors:New0ÅÄ  S		errNegativeRead = errors.New("bufio: reader returned negative count from Read");
+0 0#bufio:errNegativeRead
+errors:New0k  C		go$pkg.ErrTooLong = errors.New("bufio.Scanner: token too long");
+0 0bufio:ErrTooLong
+errors:New0Åï  e		go$pkg.ErrNegativeAdvance = errors.New("bufio.Scanner: SplitFunc returns negative advance count");
+0 0&bufio:ErrNegativeAdvance
+errors:New0Åï  g		go$pkg.ErrAdvanceTooFar = errors.New("bufio.Scanner: SplitFunc returns advance count beyond input");
+0 0$bufio:ErrAdvanceTooFar
+errors:New0t  N		errorRune = new (go$sliceType(Go$Uint8))(go$stringToBytes("\xEF\xBF\xBD"));
+0	errorRune0bufio:errorRune0
    0 0 0
    0 0 0 

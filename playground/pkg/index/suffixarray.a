@@ -1,4 +1,4 @@
-0Çé~index/suffixarrayÇ'¯package suffixarray
+0Çéindex/suffixarrayÇ'¯package suffixarray
 import sort "sort"
 import bytes "bytes"
 import binary "encoding/binary"
@@ -115,7 +115,7 @@ type @"regexp".input interface { @"regexp".canCheckPrefix() (? bool); @"regexp".
 type @"regexp/syntax".InstOp uint8
 type @"regexp".entry struct { @"regexp".pc uint32; @"regexp".t *@"regexp".thread }
 $$
-0Å®runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysortstringsregexp/syntaxregexpindex/suffixarray0U0sortsort0bytesbytes0encoding/binarybinary0ioio0regexpregexp0Çeg0Ç›suffixSortableÇ¥	suffixSortable = go$pkg.suffixSortable = go$newType(0, "Struct", "suffixarray.suffixSortable", "suffixSortable", "index/suffixarray", function(sa_, inv_, h_, buf_) {
+0Å®runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysortstringsregexp/syntaxregexpindex/suffixarray0U0sortsort0bytesbytes0encoding/binarybinary0ioio0regexpregexp0ÇdÏ0Ç›suffixSortableÇ¥	suffixSortable = go$pkg.suffixSortable = go$newType(0, "Struct", "suffixarray.suffixSortable", "suffixSortable", "index/suffixarray", function(sa_, inv_, h_, buf_) {
 		this.go$val = this;
 		this.sa = sa_ !== undefined ? sa_ : (go$sliceType(Go$Int)).nil;
 		this.inv = inv_ !== undefined ? inv_ : (go$sliceType(Go$Int)).nil;
@@ -124,14 +124,14 @@ $$
 	});
 Ç˝		(go$ptrType(suffixSortable)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1], ["updateGroups", "index/suffixarray", [Go$Int], [], false, -1]];
 		suffixSortable.init([["sa", "sa", "index/suffixarray", (go$sliceType(Go$Int)), ""], ["inv", "inv", "index/suffixarray", (go$sliceType(Go$Int)), ""], ["h", "h", "index/suffixarray", Go$Int, ""], ["buf", "buf", "index/suffixarray", (go$sliceType(Go$Int)), ""]]);
-0suffixSortable0 0Ç<IndexÇ!	Index = go$pkg.Index = go$newType(0, "Struct", "suffixarray.Index", "Index", "index/suffixarray", function(data_, sa_) {
+0suffixSortable0 0Ç3IndexÇ!	Index = go$pkg.Index = go$newType(0, "Struct", "suffixarray.Index", "Index", "index/suffixarray", function(data_, sa_) {
 		this.go$val = this;
 		this.data = data_ !== undefined ? data_ : (go$sliceType(Go$Uint8)).nil;
 		this.sa = sa_ !== undefined ? sa_ : (go$sliceType(Go$Int)).nil;
 	});
 Ç”		(go$ptrType(Index)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false, -1], ["FindAllIndex", "", [(go$ptrType(regexp.Regexp)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["Lookup", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType(Go$Int))], false, -1], ["Read", "", [io.Reader], [go$error], false, -1], ["Write", "", [io.Writer], [go$error], false, -1], ["at", "index/suffixarray", [Go$Int], [(go$sliceType(Go$Uint8))], false, -1], ["lookupAll", "index/suffixarray", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false, -1]];
 		Index.init([["data", "data", "index/suffixarray", (go$sliceType(Go$Uint8)), ""], ["sa", "sa", "index/suffixarray", (go$sliceType(Go$Int)), ""]]);
-0Index0.0regexpRegexp0ioReader0ioWriter0Ç	iqsufsortÇ´	qsufsort = function(data) {
+0Index0%	io:Reader	io:Writerregexp:Regexp0Ç	ZqsufsortÇ´	qsufsort = function(data) {
 		var sa, inv, sufSortable, _slice, _index, pi, sl, s, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, pk, _slice$4, _index$4, x, x$1, _ref, _i, i, _slice$5, _index$5, _slice$6, _index$6;
 		sa = sortedByFirstByte(data);
 		if (sa.length < 2) {
@@ -173,8 +173,7 @@ $$
 		return sa;
 	};
  0
-qsufsort0Åü0&index/suffixarraysortedByFirstByte0index/suffixarray
-initGroups0#index/suffixarraysuffixSortable0sortSort0!index/suffixarrayupdateGroups0Ç°sortedByFirstByteÇq	sortedByFirstByte = function(data) {
+qsufsort0Åêindex/suffixarray:initGroups#index/suffixarray:sortedByFirstByte index/suffixarray:suffixSortableindex/suffixarray:updateGroups	sort:Sort0Ç°sortedByFirstByteÇq	sortedByFirstByte = function(data) {
 		var count, _ref, _i, _slice, _index, b, _lhs, _index$1, sum, _ref$1, _i$1, b$1, _tuple, sa, _ref$2, _i$2, _slice$1, _index$2, b$2, i, _slice$2, _index$3, _lhs$1, _index$4;
 		count = go$makeNativeArray("Int", 256, function() { return 0; });
 		_ref = data;
@@ -247,25 +246,25 @@ initGroupsÇE	initGroups = function(sa, data) {
 		return inv;
 	};
  0
-initGroups0 0ÅÍ Å™	suffixSortable.Ptr.prototype.Len = function() {
+initGroups0 0ÅÁ Å™	suffixSortable.Ptr.prototype.Len = function() {
 		var x;
 		x = this;
 		return x.sa.length;
 	};
 	suffixSortable.prototype.Len = function() { return this.go$val.Len(); };
- 0suffixSortable0%0#index/suffixarraysuffixSortable0ÇË Çß	suffixSortable.Ptr.prototype.Less = function(i, j) {
+ 0suffixSortable0" index/suffixarray:suffixSortable0ÇÂ Çß	suffixSortable.Ptr.prototype.Less = function(i, j) {
 		var x, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3;
 		x = this;
 		return (_slice = x.inv, _index = ((_slice$1 = x.sa, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) + x.h >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) < (_slice$2 = x.inv, _index$2 = ((_slice$3 = x.sa, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) + x.h >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 	};
 	suffixSortable.prototype.Less = function(i, j) { return this.go$val.Less(i, j); };
- 0suffixSortable0%0#index/suffixarraysuffixSortable0Çı Ç¥	suffixSortable.Ptr.prototype.Swap = function(i, j) {
+ 0suffixSortable0" index/suffixarray:suffixSortable0ÇÚ Ç¥	suffixSortable.Ptr.prototype.Swap = function(i, j) {
 		var x, _slice, _index, _slice$1, _index$1, _tuple, _slice$2, _index$2, _slice$3, _index$3;
 		x = this;
 		_tuple = [(_slice = x.sa, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x.sa, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = x.sa, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x.sa, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	suffixSortable.prototype.Swap = function(i, j) { return this.go$val.Swap(i, j); };
- 0suffixSortable0%0#index/suffixarraysuffixSortable0Ç	 Ç–	suffixSortable.Ptr.prototype.updateGroups = function(offset) {
+ 0suffixSortable0" index/suffixarray:suffixSortable0Ç	 Ç–	suffixSortable.Ptr.prototype.updateGroups = function(offset) {
 		var x, bounds, _slice, _index, _slice$1, _index$1, group, i, g, _slice$2, _index$2, _slice$3, _index$3, prev, _ref, _i, _slice$4, _index$4, b, i$1, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		x = this;
 		bounds = go$subslice(x.buf, 0, 0);
@@ -298,23 +297,23 @@ initGroups0 0ÅÍ Å™	suffixSortable.Ptr.prototype.Len = function() {
 		}
 	};
 	suffixSortable.prototype.updateGroups = function(offset) { return this.go$val.updateGroups(offset); };
- 0suffixSortableupdateGroups0%0#index/suffixarraysuffixSortable0Å§NewW	New = go$pkg.New = function(data) {
+ 0suffixSortableupdateGroups0" index/suffixarray:suffixSortable0ÅûNewW	New = go$pkg.New = function(data) {
 		return new Index.Ptr(data, qsufsort(data));
 	};
- 0New0;0index/suffixarrayqsufsort0index/suffixarrayIndex0ÅÌwriteIntÅ≤	writeInt = function(w, buf, x) {
+ 0New05index/suffixarray:Indexindex/suffixarray:qsufsort0ÅÍwriteIntÅ≤	writeInt = function(w, buf, x) {
 		var _tuple, err;
 		binary.PutVarint(buf, new Go$Int64(0, x));
 		_tuple = w.Write(go$subslice(buf, 0, 10)), err = _tuple[1];
 		return err;
 	};
  0
-writeInt00encoding/binary	PutVarint0Ç?readIntÅ˘	readInt = function(r, buf) {
+writeInt0encoding/binary:PutVarint0Ç9readIntÅ˘	readInt = function(r, buf) {
 		var _tuple, err, _tuple$1, x;
 		_tuple = io.ReadFull(r, go$subslice(buf, 0, 10)), err = _tuple[1];
 		_tuple$1 = binary.Varint(buf), x = _tuple$1[0];
 		return [((x.low + ((x.high >> 31) * 4294967296)) >> 0), err];
 	};
- 0	readInt0+0ioReadFull0encoding/binaryVarint0Çâ
+ 0	readInt0%encoding/binary:Varintio:ReadFull0ÇÉ
 writeSliceÇ*	writeSlice = function(w, buf, data) {
 		var n, err, p, _slice, _index, _tuple;
 		n = 0;
@@ -329,8 +328,7 @@ writeSliceÇ*	writeSlice = function(w, buf, data) {
 		return [n, err];
 	};
  0
-writeSlice0=0encoding/binary
-PutUvarint0encoding/binary	PutVarint0Çn	readSliceÇ	readSlice = function(r, buf, data) {
+writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0Çe	readSliceÇ	readSlice = function(r, buf, data) {
 		var n, err, size, _tuple, _tuple$1, p, _tuple$2, x, w, _slice, _index;
 		n = 0;
 		err = null;
@@ -351,7 +349,7 @@ PutUvarint0encoding/binary	PutVarint0Çn	readSliceÇ	readSlice = function
 		}
 		return [n, err];
 	};
- 0	readSlice0J0index/suffixarrayreadInt0ioReadFull0encoding/binaryUvarint0ÇŸ Ç\	Index.Ptr.prototype.Read = function(r) {
+ 0	readSlice0Aencoding/binary:Uvarintindex/suffixarray:readIntio:ReadFull0ÇÕ Ç\	Index.Ptr.prototype.Read = function(r) {
 		var x, buf, _tuple, n, err, x$1, err$1, _tuple$1, sa, _tuple$2, n$1, err$2;
 		x = this;
 		buf = (go$sliceType(Go$Uint8)).make(16384, 0, function() { return 0; });
@@ -380,7 +378,7 @@ PutUvarint0encoding/binary	PutVarint0Çn	readSliceÇ	readSlice = function
 		return null;
 	};
 	Index.prototype.Read = function(r) { return this.go$val.Read(r); };
- 0Index0j0index/suffixarrayIndex0index/suffixarrayreadInt0ioReadFull0index/suffixarray	readSlice0Ç1 Ç¬	Index.Ptr.prototype.Write = function(w) {
+ 0Index0^index/suffixarray:Indexindex/suffixarray:readIntindex/suffixarray:readSliceio:ReadFull0Ç( Ç¬	Index.Ptr.prototype.Write = function(w) {
 		var x, buf, err, err$1, _tuple, sa, _tuple$1, n, err$2;
 		x = this;
 		buf = (go$sliceType(Go$Uint8)).make(16384, 0, function() { return 0; });
@@ -401,20 +399,19 @@ PutUvarint0encoding/binary	PutVarint0Çn	readSliceÇ	readSlice = function
 		return null;
 	};
 	Index.prototype.Write = function(w) { return this.go$val.Write(w); };
- 0Index0\0index/suffixarrayIndex0index/suffixarraywriteInt0index/suffixarray
-writeSlice0Å« Åô	Index.Ptr.prototype.Bytes = function() {
+ 0Index0Sindex/suffixarray:Indexindex/suffixarray:writeIntindex/suffixarray:writeSlice0Åƒ Åô	Index.Ptr.prototype.Bytes = function() {
 		var x;
 		x = this;
 		return x.data;
 	};
 	Index.prototype.Bytes = function() { return this.go$val.Bytes(); };
- 0Index00index/suffixarrayIndex0Ç} ÇJ	Index.Ptr.prototype.at = function(i) {
+ 0Index0index/suffixarray:Index0Çz ÇJ	Index.Ptr.prototype.at = function(i) {
 		var x, _slice, _index;
 		x = this;
 		return go$subslice(x.data, (_slice = x.sa, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
 	};
 	Index.prototype.at = function(i) { return this.go$val.at(i); };
- 0Indexat00index/suffixarrayIndex0Ç Çñ	Index.Ptr.prototype.lookupAll = function(s) {
+ 0Indexat0index/suffixarray:Index0Ç Çñ	Index.Ptr.prototype.lookupAll = function(s) {
 		var x, i, j;
 		x = this;
 		i = sort.Search(x.sa.length, (function(i) {
@@ -426,7 +423,7 @@ writeSlice0Å« Åô	Index.Ptr.prototype.Bytes = function() {
 		return go$subslice(x.sa, i, j);
 	};
 	Index.prototype.lookupAll = function(s) { return this.go$val.lookupAll(s); };
- 0Index	lookupAll0k0index/suffixarrayIndex0sortSearch0bytesCompare0index/suffixarrayat0bytes	HasPrefix0Ç; ÇÏ	Index.Ptr.prototype.Lookup = function(s, n) {
+ 0Index	lookupAll0\bytes:Comparebytes:HasPrefixindex/suffixarray:Indexindex/suffixarray:atsort:Search0Ç5 ÇÏ	Index.Ptr.prototype.Lookup = function(s, n) {
 		var result, x, matches;
 		result = (go$sliceType(Go$Int)).nil;
 		x = this;
@@ -443,7 +440,7 @@ writeSlice0Å« Åô	Index.Ptr.prototype.Bytes = function() {
 		return result;
 	};
 	Index.prototype.Lookup = function(s, n) { return this.go$val.Lookup(s, n); };
- 0Index0<0index/suffixarrayIndex0index/suffixarray	lookupAll0Ç  ÇÃ	Index.Ptr.prototype.FindAllIndex = function(r, n) {
+ 0Index06index/suffixarray:Indexindex/suffixarray:lookupAll0Ç ÇÃ	Index.Ptr.prototype.FindAllIndex = function(r, n) {
 		var result, x, _tuple, prefix, complete, lit, n1, x$1, x$2, indices, x$3, x$4, pairs, count, prev, _ref, _i, _slice, _index, i, x$5, j, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, n1$1, x$6, x$7, indices$1, prev$1, _ref$1, _i$1, _slice$4, _index$4, i$1, m, _slice$5, _index$5, _lhs, _index$6, _slice$6, _index$7, _slice$7, _index$8, _slice$8, _index$9;
 		result = (go$sliceType((go$sliceType(Go$Int)))).nil;
 		x = this;
@@ -530,6 +527,6 @@ writeSlice0Å« Åô	Index.Ptr.prototype.Bytes = function() {
 		return result;
 	};
 	Index.prototype.FindAllIndex = function(r, n) { return this.go$val.FindAllIndex(r, n); };
- 0Index0A0index/suffixarrayIndex0sortInts0regexpMustCompile0
+ 0Index08index/suffixarray:Indexregexp:MustCompile	sort:Ints0
    0 0 0
    0 0 0 

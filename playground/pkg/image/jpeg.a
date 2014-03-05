@@ -1,4 +1,4 @@
-0Éhƒ
+0Éfú
 image/jpegÇ'Ìpackage jpeg
 import io "io"
 import bufio "bufio"
@@ -133,7 +133,7 @@ func (? @"image".YCbCrSubsampleRatio) @"image".String() (? string)
 func (? *@"image".YCbCrSubsampleRatio) @"image".String() (? string)
 $$
 0|runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage
-image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0errorserrors0É?Ó0ÇíbitsÅı	bits = go$pkg.bits = go$newType(0, "Struct", "jpeg.bits", "bits", "image/jpeg", function(a_, m_, n_) {
+image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0errorserrors0É=∆0ÇíbitsÅı	bits = go$pkg.bits = go$newType(0, "Struct", "jpeg.bits", "bits", "image/jpeg", function(a_, m_, n_) {
 		this.go$val = this;
 		this.a = a_ !== undefined ? a_ : 0;
 		this.m = m_ !== undefined ? m_ : 0;
@@ -171,7 +171,7 @@ image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0
 Å≤		component.init([["h", "h", "image/jpeg", Go$Int, ""], ["v", "v", "image/jpeg", Go$Int, ""], ["c", "c", "image/jpeg", Go$Uint8, ""], ["tq", "tq", "image/jpeg", Go$Uint8, ""]]);
 0	component0 0Ç#Readerc	Reader = go$pkg.Reader = go$newType(0, "Interface", "jpeg.Reader", "Reader", "image/jpeg", null);
 Åß		Reader.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["ReadByte", "", (go$funcType([], [Go$Uint8, go$error], false))]]);
-0Reader0 0Ç decoderÇÂ	decoder = go$pkg.decoder = go$newType(0, "Struct", "jpeg.decoder", "decoder", "image/jpeg", function(r_, b_, width_, height_, img1_, img3_, ri_, nComp_, progressive_, eobRun_, comp_, progCoeffs_, huff_, quant_, tmp_) {
+0Reader0 0ÇØdecoderÇÂ	decoder = go$pkg.decoder = go$newType(0, "Struct", "jpeg.decoder", "decoder", "image/jpeg", function(r_, b_, width_, height_, img1_, img3_, ri_, nComp_, progressive_, eobRun_, comp_, progCoeffs_, huff_, quant_, tmp_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.b = b_ !== undefined ? b_ : new bits.Ptr();
@@ -191,12 +191,8 @@ image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0
 	});
 Ç		(go$ptrType(decoder)).methods = [["decode", "image/jpeg", [io.Reader, Go$Bool], [image.Image, go$error], false, -1], ["decodeBit", "image/jpeg", [], [Go$Bool, go$error], false, -1], ["decodeBits", "image/jpeg", [Go$Int], [Go$Uint32, go$error], false, -1], ["decodeHuffman", "image/jpeg", [(go$ptrType(huffman))], [Go$Uint8, go$error], false, -1], ["ensureNBits", "image/jpeg", [Go$Int], [go$error], false, -1], ["ignore", "image/jpeg", [Go$Int], [go$error], false, -1], ["makeImg", "image/jpeg", [Go$Int, Go$Int, Go$Int, Go$Int], [], false, -1], ["processDHT", "image/jpeg", [Go$Int], [go$error], false, -1], ["processDQT", "image/jpeg", [Go$Int], [go$error], false, -1], ["processDRI", "image/jpeg", [Go$Int], [go$error], false, -1], ["processSOF", "image/jpeg", [Go$Int], [go$error], false, -1], ["processSOS", "image/jpeg", [Go$Int], [go$error], false, -1], ["receiveExtend", "image/jpeg", [Go$Uint8], [Go$Int32, go$error], false, -1], ["refine", "image/jpeg", [(go$ptrType(block)), (go$ptrType(huffman)), Go$Int32, Go$Int32, Go$Int32], [go$error], false, -1], ["refineNonZeroes", "image/jpeg", [(go$ptrType(block)), Go$Int32, Go$Int32, Go$Int32, Go$Int32], [Go$Int32, go$error], false, -1]];
 		decoder.init([["r", "r", "image/jpeg", Reader, ""], ["b", "b", "image/jpeg", bits, ""], ["width", "width", "image/jpeg", Go$Int, ""], ["height", "height", "image/jpeg", Go$Int, ""], ["img1", "img1", "image/jpeg", (go$ptrType(image.Gray)), ""], ["img3", "img3", "image/jpeg", (go$ptrType(image.YCbCr)), ""], ["ri", "ri", "image/jpeg", Go$Int, ""], ["nComp", "nComp", "image/jpeg", Go$Int, ""], ["progressive", "progressive", "image/jpeg", Go$Bool, ""], ["eobRun", "eobRun", "image/jpeg", Go$Uint16, ""], ["comp", "comp", "image/jpeg", (go$arrayType(component, 3)), ""], ["progCoeffs", "progCoeffs", "image/jpeg", (go$arrayType((go$sliceType(block)), 3)), ""], ["huff", "huff", "image/jpeg", (go$arrayType((go$arrayType(huffman, 4)), 2)), ""], ["quant", "quant", "image/jpeg", (go$arrayType(block, 4)), ""], ["tmp", "tmp", "image/jpeg", (go$arrayType(Go$Uint8, 1024)), ""]]);
-0	decoder0Å¨0
-image/jpegbits0
-image/jpeghuffman0ioReader0imageGray0imageYCbCr0
-image/jpeg	component0
-image/jpegblock0imageImage0
-image/jpegReader0Åç
+0	decoder0Åëimage/jpeg:Readerimage/jpeg:bitsimage/jpeg:blockimage/jpeg:componentimage/jpeg:huffman
+image:Grayimage:Imageimage:YCbCr	io:Reader0Åç
 quantIndexm	quantIndex = go$pkg.quantIndex = go$newType(4, "Int", "jpeg.quantIndex", "quantIndex", "image/jpeg", null);
  0
 quantIndex0 0Åá	huffIndexi	huffIndex = go$pkg.huffIndex = go$newType(4, "Int", "jpeg.huffIndex", "huffIndex", "image/jpeg", null);
@@ -206,15 +202,14 @@ quantIndex0 0Åá	huffIndexi	huffIndex = go$pkg.huffIndex = go$newType(4, "Int",
 		this.value = value_ !== undefined ? value_ : (go$sliceType(Go$Uint8)).nil;
 	});
 Åö		huffmanSpec.init([["count", "count", "image/jpeg", (go$arrayType(Go$Uint8, 16)), ""], ["value", "value", "image/jpeg", (go$sliceType(Go$Uint8)), ""]]);
-0huffmanSpec0 0Ç%
+0huffmanSpec0 0Ç"
 huffmanLUTo	huffmanLUT = go$pkg.huffmanLUT = go$newType(0, "Slice", "jpeg.huffmanLUT", "huffmanLUT", "image/jpeg", null);
 {		(go$ptrType(huffmanLUT)).methods = [["init", "image/jpeg", [huffmanSpec], [], false, -1]];
 		huffmanLUT.init(Go$Uint32);
 0
-huffmanLUT00
-image/jpeghuffmanSpec0ÇXwriterc	writer = go$pkg.writer = go$newType(0, "Interface", "jpeg.writer", "writer", "image/jpeg", null);
+huffmanLUT0image/jpeg:huffmanSpec0ÇXwriterc	writer = go$pkg.writer = go$newType(0, "Interface", "jpeg.writer", "writer", "image/jpeg", null);
 Å‹		writer.init([["Flush", "", (go$funcType([], [go$error], false))], ["Write", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["WriteByte", "", (go$funcType([Go$Uint8], [go$error], false))]]);
-0writer0 0ÇxencoderÇh	encoder = go$pkg.encoder = go$newType(0, "Struct", "jpeg.encoder", "encoder", "image/jpeg", function(w_, err_, buf_, bits_, nBits_, quant_) {
+0writer0 0ÇfencoderÇh	encoder = go$pkg.encoder = go$newType(0, "Struct", "jpeg.encoder", "encoder", "image/jpeg", function(w_, err_, buf_, bits_, nBits_, quant_) {
 		this.go$val = this;
 		this.w = w_ !== undefined ? w_ : null;
 		this.err = err_ !== undefined ? err_ : null;
@@ -225,12 +220,7 @@ image/jpeghuffmanSpec0ÇXwriterc	writer = go$pkg.writer = go$newType(0, "In
 	});
 Çt		(go$ptrType(encoder)).methods = [["emit", "image/jpeg", [Go$Uint32, Go$Uint32], [], false, -1], ["emitHuff", "image/jpeg", [huffIndex, Go$Int32], [], false, -1], ["emitHuffRLE", "image/jpeg", [huffIndex, Go$Int32, Go$Int32], [], false, -1], ["flush", "image/jpeg", [], [], false, -1], ["write", "image/jpeg", [(go$sliceType(Go$Uint8))], [], false, -1], ["writeBlock", "image/jpeg", [(go$ptrType(block)), quantIndex, Go$Int32], [Go$Int32], false, -1], ["writeByte", "image/jpeg", [Go$Uint8], [], false, -1], ["writeDHT", "image/jpeg", [], [], false, -1], ["writeDQT", "image/jpeg", [], [], false, -1], ["writeMarkerHeader", "image/jpeg", [Go$Uint8, Go$Int], [], false, -1], ["writeSOF0", "image/jpeg", [image.Point], [], false, -1], ["writeSOS", "image/jpeg", [image.Image], [], false, -1]];
 		encoder.init([["w", "w", "image/jpeg", writer, ""], ["err", "err", "image/jpeg", go$error, ""], ["buf", "buf", "image/jpeg", (go$arrayType(Go$Uint8, 16)), ""], ["bits", "bits", "image/jpeg", Go$Uint32, ""], ["nBits", "nBits", "image/jpeg", Go$Uint32, ""], ["quant", "quant", "image/jpeg", (go$arrayType((go$arrayType(Go$Uint8, 64)), 2)), ""]]);
-0	encoder0~0
-image/jpeg	huffIndex0
-image/jpegblock0
-image/jpeg
-quantIndex0imagePoint0imageImage0
-image/jpegwriter0ÇOptionsÅ≈	Options = go$pkg.Options = go$newType(0, "Struct", "jpeg.Options", "Options", "image/jpeg", function(Quality_) {
+0	encoder0limage/jpeg:blockimage/jpeg:huffIndeximage/jpeg:quantIndeximage/jpeg:writerimage:Imageimage:Point0ÇOptionsÅ≈	Options = go$pkg.Options = go$newType(0, "Struct", "jpeg.Options", "Options", "image/jpeg", function(Quality_) {
 		this.go$val = this;
 		this.Quality = Quality_ !== undefined ? Quality_ : 0;
 	});
@@ -330,7 +320,7 @@ image/jpegwriter0ÇOptionsÅ≈	Options = go$pkg.Options = go$newType(0, "Str
 			x$22 = x$22 + 1 >> 0;
 		}
 	};
- 0fdct0 0ÇO Ç˚	decoder.Ptr.prototype.ensureNBits = function(n) {
+ 0fdct0 0ÇI Ç˚	decoder.Ptr.prototype.ensureNBits = function(n) {
 		var d, _tuple, c, err, _tuple$1;
 		d = this;
 		while (d.b.n < n) {
@@ -358,9 +348,7 @@ image/jpegwriter0ÇOptionsÅ≈	Options = go$pkg.Options = go$newType(0, "Str
 		return null;
 	};
 	decoder.prototype.ensureNBits = function(n) { return this.go$val.ensureNBits(n); };
- 0decoderensureNBits020
-image/jpegdecoder0
-image/jpegFormatError0Ç Ç∂	decoder.Ptr.prototype.receiveExtend = function(t) {
+ 0decoderensureNBits0,image/jpeg:FormatErrorimage/jpeg:decoder0Ç Ç∂	decoder.Ptr.prototype.receiveExtend = function(t) {
 		var d, err, y, y$1, s, y$2, x, y$3;
 		d = this;
 		if (d.b.n < (t >> 0)) {
@@ -378,9 +366,7 @@ image/jpegFormatError0Ç Ç∂	decoder.Ptr.prototype.receiveExtend = function
 		return [x, null];
 	};
 	decoder.prototype.receiveExtend = function(t) { return this.go$val.receiveExtend(t); };
- 0decoderreceiveExtend020
-image/jpegdecoder0
-image/jpegensureNBits0Ç	l Ç			decoder.Ptr.prototype.processDHT = function(n) {
+ 0decoderreceiveExtend0,image/jpeg:decoderimage/jpeg:ensureNBits0Ç	c Ç			decoder.Ptr.prototype.processDHT = function(n) {
 		var d, _tuple, err, tc, th, h, i, _tuple$1, k, i$1, j, code, size, i$2, y, index, i$3;
 		d = this;
 		while (n > 0) {
@@ -467,9 +453,7 @@ image/jpegensureNBits0Ç	l Ç			decoder.Ptr.prototype.processDHT = function(n)
 	};
 	decoder.prototype.processDHT = function(n) { return this.go$val.processDHT(n); };
  0decoder
-processDHT0B0
-image/jpegdecoder0
-image/jpegFormatError0ioReadFull0Ç° Ç0	decoder.Ptr.prototype.decodeHuffman = function(h) {
+processDHT09image/jpeg:FormatErrorimage/jpeg:decoderio:ReadFull0Çò Ç0	decoder.Ptr.prototype.decodeHuffman = function(h) {
 		var d, _tuple, i, code, err;
 		d = this;
 		if (h.length === 0) {
@@ -496,10 +480,7 @@ image/jpegFormatError0ioReadFull0Ç° Ç0	decoder.Ptr.prototype.decodeHu
 		return [0, new FormatError("bad Huffman code")];
 	};
 	decoder.prototype.decodeHuffman = function(h) { return this.go$val.decodeHuffman(h); };
- 0decoderdecodeHuffman0M0
-image/jpegdecoder0
-image/jpegFormatError0
-image/jpegensureNBits0ÇË Çñ	decoder.Ptr.prototype.decodeBit = function() {
+ 0decoderdecodeHuffman0Dimage/jpeg:FormatErrorimage/jpeg:decoderimage/jpeg:ensureNBits0Ç‚ Çñ	decoder.Ptr.prototype.decodeBit = function() {
 		var d, err, ret;
 		d = this;
 		if (d.b.n === 0) {
@@ -513,9 +494,7 @@ image/jpegensureNBits0ÇË Çñ	decoder.Ptr.prototype.decodeBit = function() {
 		return [ret, null];
 	};
 	decoder.prototype.decodeBit = function() { return this.go$val.decodeBit(); };
- 0decoder	decodeBit020
-image/jpegdecoder0
-image/jpegensureNBits0Çö ÇG	decoder.Ptr.prototype.decodeBits = function(n) {
+ 0decoder	decodeBit0,image/jpeg:decoderimage/jpeg:ensureNBits0Çî ÇG	decoder.Ptr.prototype.decodeBits = function(n) {
 		var d, err, y, ret, y$1, y$2;
 		d = this;
 		if (d.b.n < n) {
@@ -531,9 +510,7 @@ image/jpegensureNBits0Çö ÇG	decoder.Ptr.prototype.decodeBits = function(n)
 	};
 	decoder.prototype.decodeBits = function(n) { return this.go$val.decodeBits(n); };
  0decoder
-decodeBits020
-image/jpegdecoder0
-image/jpegensureNBits0ÇÄidctÇj	idct = function(src) {
+decodeBits0,image/jpeg:decoderimage/jpeg:ensureNBits0ÇÄidctÇj	idct = function(src) {
 		var y, x, y8, dc, x0, x1, x2, x3, x4, x5, x6, x7, x$1, x8, x$2, x$3, x$4, x$5, x$6, y0, y1, y2, y3, y4, y5, y6, y7, x$7, y8$1, x$8, x$9, x$10, x$11;
 		y = 0;
 		while (y < 8) {
@@ -632,21 +609,19 @@ image/jpegensureNBits0ÇÄidctÇj	idct = function(src) {
 			x$6 = x$6 + 1 >> 0;
 		}
 	};
- 0idct0 0Ç Å‹	FormatError.prototype.Error = function() {
+ 0idct0 0Ç Å‹	FormatError.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return "invalid JPEG format: " + e;
 	};
 	go$ptrType(FormatError).prototype.Error = function() { return new FormatError(this.go$get()).Error(); };
- 0FormatError00
-image/jpegFormatError0Ç- Å	UnsupportedError.prototype.Error = function() {
+ 0FormatError0image/jpeg:FormatError0Ç* Å	UnsupportedError.prototype.Error = function() {
 		var e;
 		e = this.go$val;
 		return "unsupported JPEG feature: " + e;
 	};
 	go$ptrType(UnsupportedError).prototype.Error = function() { return new UnsupportedError(this.go$get()).Error(); };
- 0UnsupportedError0 0
-image/jpegUnsupportedError0Çı Ç±	decoder.Ptr.prototype.ignore = function(n) {
+ 0UnsupportedError0image/jpeg:UnsupportedError0ÇÔ Ç±	decoder.Ptr.prototype.ignore = function(n) {
 		var d, m, _tuple, err;
 		d = this;
 		while (n > 0) {
@@ -663,8 +638,7 @@ image/jpegUnsupportedError0Çı Ç±	decoder.Ptr.prototype.ignore = function(n
 		return null;
 	};
 	decoder.prototype.ignore = function(n) { return this.go$val.ignore(n); };
- 0decoderignore0'0
-image/jpegdecoder0ioReadFull0Ç Ç™	decoder.Ptr.prototype.processSOF = function(n) {
+ 0decoderignore0!image/jpeg:decoderio:ReadFull0Ç	 Ç™	decoder.Ptr.prototype.processSOF = function(n) {
 		var d, _ref, _tuple, err, i, x, x$1, x$2, hv;
 		d = this;
 		_ref = n;
@@ -713,9 +687,7 @@ image/jpegdecoder0ioReadFull0Ç Ç™	decoder.Ptr.prototype.processSOF =
 	};
 	decoder.prototype.processSOF = function(n) { return this.go$val.processSOF(n); };
  0decoder
-processSOF0G0
-image/jpegdecoder0
-image/jpegUnsupportedError0ioReadFull0ÇÀ ÇH	decoder.Ptr.prototype.processDQT = function(n) {
+processSOF0>image/jpeg:UnsupportedErrorimage/jpeg:decoderio:ReadFull0Çø ÇH	decoder.Ptr.prototype.processDQT = function(n) {
 		var d, _tuple, err, pq, tq, _ref, _i, i;
 		d = this;
 		while (n >= 65) {
@@ -747,10 +719,7 @@ image/jpegUnsupportedError0ioReadFull0ÇÀ ÇH	decoder.Ptr.prototype.pro
 	};
 	decoder.prototype.processDQT = function(n) { return this.go$val.processDQT(n); };
  0decoder
-processDQT0b0
-image/jpegdecoder0ioReadFull0
-image/jpegUnsupportedError0
-image/jpegFormatError0ÇK ÇË	decoder.Ptr.prototype.processDRI = function(n) {
+processDQT0Vimage/jpeg:FormatErrorimage/jpeg:UnsupportedErrorimage/jpeg:decoderio:ReadFull0ÇB ÇË	decoder.Ptr.prototype.processDRI = function(n) {
 		var d, _tuple, err;
 		d = this;
 		if (!((n === 2))) {
@@ -765,9 +734,7 @@ image/jpegFormatError0ÇK ÇË	decoder.Ptr.prototype.processDRI = function(n)
 	};
 	decoder.prototype.processDRI = function(n) { return this.go$val.processDRI(n); };
  0decoder
-processDRI0B0
-image/jpegdecoder0
-image/jpegFormatError0ioReadFull0Ç( Ç
+processDRI09image/jpeg:FormatErrorimage/jpeg:decoderio:ReadFull0Ç˛ Ç
 ∆	decoder.Ptr.prototype.decode = function(r, configOnly) {
 		var d, ok, _tuple, rr, _tuple$1, err, _tuple$2, err$1, _tuple$3, marker, _tuple$4, _tuple$5, n;
 		d = this;
@@ -851,29 +818,13 @@ image/jpegFormatError0ioReadFull0Ç( Ç
 		return [null, new FormatError("missing SOS marker")];
 	};
 	decoder.prototype.decode = function(r, configOnly) { return this.go$val.decode(r, configOnly); };
- 0decoderdecode0ÇC0
-image/jpegFormatError0
-image/jpeg
-processSOF0
-image/jpeg
-processSOS0
-image/jpeg
-processDRI0
-image/jpegUnsupportedError0imageYCbCr0bufio	NewReader0
-image/jpeg
-processDQT0
-image/jpegReader0
-image/jpeg
-processDHT0
-image/jpegignore0imageGray0
-image/jpegdecoder0ioReadFull0Å∞Decodek	Decode = go$pkg.Decode = function(r) {
+ 0decoderdecode0Çbufio:NewReaderimage/jpeg:FormatErrorimage/jpeg:Readerimage/jpeg:UnsupportedErrorimage/jpeg:decoderimage/jpeg:ignoreimage/jpeg:processDHTimage/jpeg:processDQTimage/jpeg:processDRIimage/jpeg:processSOFimage/jpeg:processSOS
+image:Grayimage:YCbCrio:ReadFull0Å™Decodek	Decode = go$pkg.Decode = function(r) {
 		var d;
 		d = new decoder.Ptr();
 		return d.decode(r, false);
 	};
- 0Decode0-0
-image/jpegdecoder0
-image/jpegdecode0Ç„DecodeConfigÇ.	DecodeConfig = go$pkg.DecodeConfig = function(r) {
+ 0Decode0'image/jpeg:decodeimage/jpeg:decoder0Ç–DecodeConfigÇ.	DecodeConfig = go$pkg.DecodeConfig = function(r) {
 		var d, err, _tuple, _ref;
 		d = new decoder.Ptr();
 		if (_tuple = d.decode(r, true), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
@@ -887,12 +838,8 @@ image/jpegdecode0Ç„DecodeConfigÇ.	DecodeConfig = go$pkg.DecodeConfig = fu
 		}
 		return [new image.Config.Ptr(null, 0, 0), new FormatError("missing SOF marker")];
 	};
- 0DecodeConfig0Åé0
-image/jpegdecoder0
-image/jpegdecode0imageConfig0image/color	GrayModel0image/color
-YCbCrModel0
-image/jpegFormatError0Ç
-_ Ç	≤	decoder.Ptr.prototype.makeImg = function(h0, v0, mxx, myy) {
+ 0DecodeConfig0|image/color:GrayModelimage/color:YCbCrModelimage/jpeg:FormatErrorimage/jpeg:decodeimage/jpeg:decoderimage:Config0Ç
+F Ç	≤	decoder.Ptr.prototype.makeImg = function(h0, v0, mxx, myy) {
 		var d, x, x$1, _struct, _struct$1, _struct$2, m, x$2, _struct$3, _struct$4, _struct$5, subsampleRatio, x$3, x$4, x$5, x$6, _struct$6, _struct$7, _struct$8, m$1, x$7, _struct$9, _struct$10, _struct$11;
 		d = this;
 		if (d.nComp === 1) {
@@ -916,8 +863,9 @@ _ Ç	≤	decoder.Ptr.prototype.makeImg = function(h0, v0, mxx, myy) {
 		d.img3 = (x$7 = m$1.SubImage((_struct$9 = image.Rect(0, 0, d.width, d.height), new image.Rectangle.Ptr((_struct$10 = _struct$9.Min, new image.Point.Ptr(_struct$10.X, _struct$10.Y)), (_struct$11 = _struct$9.Max, new image.Point.Ptr(_struct$11.X, _struct$11.Y))))), (x$7 !== null && x$7.constructor === (go$ptrType(image.YCbCr)) ? x$7.go$val : go$typeAssertionFailed(x$7, (go$ptrType(image.YCbCr)))));
 	};
 	decoder.prototype.makeImg = function(h0, v0, mxx, myy) { return this.go$val.makeImg(h0, v0, mxx, myy); };
- 0decodermakeImg0Åé0
-image/jpegdecoder0imageNewGray0imageRect0imagePoint0image	Rectangle0imageGray0imageNewYCbCr0imageYCbCr0Ç9a Ç7—	decoder.Ptr.prototype.processSOS = function(n) {
+ 0decodermakeImg0vimage/jpeg:decoder
+image:Grayimage:NewGrayimage:NewYCbCrimage:Point
+image:Rectimage:Rectangleimage:YCbCr0Ç91 Ç7—	decoder.Ptr.prototype.processSOS = function(n) {
 		var d, x, x$1, _r, _tuple, err, nComp, x$2, scan, i, x$3, cs, compIndex, _ref, _i, _struct, comp, j, x$4, x$5, _tuple$1, zigStart, zigEnd, ah, al, x$6, x$7, x$8, x$9, _tuple$2, h0, v0, _q, x$10, x$11, mxx, _q$1, x$12, x$13, myy, i$1, compIndex$1, x$14, x$15, x$16, x$17, _tuple$3, mcu, expectedRST, b, dc, _tuple$4, mx0, my0, blockCount, my, mx, i$2, compIndex$2, qt, j$1, x$18, x$19, x$20, x$21, _tuple$5, _r$1, _q$2, x$22, q, _r$2, _q$3, x$23, x$24, _slice, _index, x$25, x$26, err$1, y, zig, _tuple$6, value, err$2, _tuple$7, dcDelta, _lhs, _index$1, y$1, _tuple$8, value$1, err$3, val0, val1, _tuple$9, ac, err$4, y$2, y$3, _tuple$10, bits$1, err$5, _slice$1, _index$2, x$27, x$28, zig$1, _lhs$1, _index$3, x$29, x$30, _tuple$11, dst, stride, x$31, x$32, x$33, _tuple$12, _ref$1, x$34, x$35, x$36, _tuple$13, x$37, x$38, x$39, _tuple$14, x$40, x$41, x$42, _tuple$15, y$4, x$43, y8, yStride, x$44, c, _slice$2, _index$4, _r$3, _tuple$16, err$6;
 		d = this;
 		if (d.nComp === 0) {
@@ -1162,22 +1110,8 @@ image/jpegdecoder0imageNewGray0imageRect0imagePoint0image	R
 	};
 	decoder.prototype.processSOS = function(n) { return this.go$val.processSOS(n); };
  0decoder
-processSOS0Çm0
-image/jpegFormatError0imageGray0imageYCbCr0
-image/jpegmakeImg0
-image/jpegbits0
-image/jpegdecodeHuffman0
-image/jpegUnsupportedError0
-image/jpegreceiveExtend0
-image/jpegunzig0
-image/jpegidct0
-image/jpeg	component0
-image/jpegrefine0
-image/jpegdecoder0ioReadFull0
-image/jpegblock0
-image/jpeg
-decodeBits0Ç
- Ç	0	decoder.Ptr.prototype.refine = function(b, h, zigStart, zigEnd, delta) {
+processSOS0Ç=image/jpeg:FormatErrorimage/jpeg:UnsupportedErrorimage/jpeg:bitsimage/jpeg:blockimage/jpeg:componentimage/jpeg:decodeBitsimage/jpeg:decodeHuffmanimage/jpeg:decoderimage/jpeg:idctimage/jpeg:makeImgimage/jpeg:receiveExtendimage/jpeg:refineimage/jpeg:unzig
+image:Grayimage:YCbCrio:ReadFull0Ç	Ô Ç	0	decoder.Ptr.prototype.refine = function(b, h, zigStart, zigEnd, delta) {
 		var d, _tuple, bit, err, _lhs, _index, zig, z, _tuple$1, value, err$1, val0, val1, _ref, y, _tuple$2, bits$1, err$2, _tuple$3, bit$1, err$3, _tuple$4, err$4, _tuple$5;
 		d = this;
 		if (zigStart === 0) {
@@ -1251,15 +1185,7 @@ decodeBits0Ç
 		return null;
 	};
 	decoder.prototype.refine = function(b, h, zigStart, zigEnd, delta) { return this.go$val.refine(b, h, zigStart, zigEnd, delta); };
- 0decoderrefine0Å∂0
-image/jpegdecoder0
-image/jpeg	decodeBit0
-image/jpegdecodeHuffman0
-image/jpeg
-decodeBits0
-image/jpegFormatError0
-image/jpegrefineNonZeroes0
-image/jpegunzig0ÇÈ Ç~	decoder.Ptr.prototype.refineNonZeroes = function(b, zig, zigEnd, nz, delta) {
+ 0decoderrefine0Å°image/jpeg:FormatErrorimage/jpeg:decodeBitimage/jpeg:decodeBitsimage/jpeg:decodeHuffmanimage/jpeg:decoderimage/jpeg:refineNonZeroesimage/jpeg:unzig0Ç‡ Ç~	decoder.Ptr.prototype.refineNonZeroes = function(b, zig, zigEnd, nz, delta) {
 		var d, u, _tuple, bit, err, _lhs, _index, _lhs$1, _index$1;
 		d = this;
 		while (zig <= zigEnd) {
@@ -1290,10 +1216,7 @@ image/jpegunzig0ÇÈ Ç~	decoder.Ptr.prototype.refineNonZeroes = function(b, 
 		return [zig, null];
 	};
 	decoder.prototype.refineNonZeroes = function(b, zig, zigEnd, nz, delta) { return this.go$val.refineNonZeroes(b, zig, zigEnd, nz, delta); };
- 0decoderrefineNonZeroes0E0
-image/jpegdecoder0
-image/jpegunzig0
-image/jpeg	decodeBit0ZminH	min = function(x, y) {
+ 0decoderrefineNonZeroes0<image/jpeg:decodeBitimage/jpeg:decoderimage/jpeg:unzig0ZminH	min = function(x, y) {
 		if (x < y) {
 			return x;
 		}
@@ -1306,7 +1229,7 @@ image/jpeg	decodeBit0ZminH	min = function(x, y) {
 		}
 		return -((_q$1 = ((-a + ((b >> 1 >> 0)) >> 0)) / b, (_q$1 === _q$1 && _q$1 !== 1/0 && _q$1 !== -1/0) ? _q$1 >> 0 : go$throwRuntimeError("integer divide by zero")));
 	};
- 0div0 0Ç¸ Çƒ	go$ptrType(huffmanLUT).prototype.init = function(s) {
+ 0div0 0Ç˘ Çƒ	go$ptrType(huffmanLUT).prototype.init = function(s) {
 		var h, maxValue, _ref, _i, _slice, _index, v, x, _tuple, code, k, i, nBits, j, _slice$1, _index$1, _slice$2, _index$2;
 		h = this;
 		maxValue = 0;
@@ -1337,9 +1260,7 @@ image/jpeg	decodeBit0ZminH	min = function(x, y) {
 	};
 	huffmanLUT.prototype.init = function(s) { var obj = this; return (new (go$ptrType(huffmanLUT))(function() { return obj; }, null)).init(s); };
  0
-huffmanLUTinit00
-image/jpeg
-huffmanLUT0Ç Åﬂ	encoder.Ptr.prototype.flush = function() {
+huffmanLUTinit0image/jpeg:huffmanLUT0Ç Åﬂ	encoder.Ptr.prototype.flush = function() {
 		var e;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -1348,8 +1269,7 @@ huffmanLUT0Ç Åﬂ	encoder.Ptr.prototype.flush = function() {
 		e.err = e.w.Flush();
 	};
 	encoder.prototype.flush = function() { return this.go$val.flush(); };
- 0encoderflush00
-image/jpegencoder0Ç1 Åˇ	encoder.Ptr.prototype.write = function(p) {
+ 0encoderflush0image/jpeg:encoder0Ç. Åˇ	encoder.Ptr.prototype.write = function(p) {
 		var e, _tuple;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -1358,8 +1278,7 @@ image/jpegencoder0Ç1 Åˇ	encoder.Ptr.prototype.write = function(p) {
 		_tuple = e.w.Write(p), e.err = _tuple[1];
 	};
 	encoder.prototype.write = function(p) { return this.go$val.write(p); };
- 0encoderwrite00
-image/jpegencoder0Ç) ÅÛ	encoder.Ptr.prototype.writeByte = function(b) {
+ 0encoderwrite0image/jpeg:encoder0Ç& ÅÛ	encoder.Ptr.prototype.writeByte = function(b) {
 		var e;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
@@ -1368,8 +1287,7 @@ image/jpegencoder0Ç) ÅÛ	encoder.Ptr.prototype.writeByte = function(b) {
 		e.err = e.w.WriteByte(b);
 	};
 	encoder.prototype.writeByte = function(b) { return this.go$val.writeByte(b); };
- 0encoder	writeByte00
-image/jpegencoder0Ç£ ÇX	encoder.Ptr.prototype.emit = function(bits$1, nBits) {
+ 0encoder	writeByte0image/jpeg:encoder0Çù ÇX	encoder.Ptr.prototype.emit = function(bits$1, nBits) {
 		var e, y, b, _tuple;
 		e = this;
 		nBits = nBits + (e.nBits) >>> 0;
@@ -1387,19 +1305,14 @@ image/jpegencoder0Ç£ ÇX	encoder.Ptr.prototype.emit = function(bits$1, nBit
 		_tuple = [bits$1, nBits], e.bits = _tuple[0], e.nBits = _tuple[1];
 	};
 	encoder.prototype.emit = function(bits$1, nBits) { return this.go$val.emit(bits$1, nBits); };
- 0encoderemit000
-image/jpegencoder0
-image/jpeg	writeByte0Ç Ç†	encoder.Ptr.prototype.emitHuff = function(h, value) {
+ 0encoderemit0*image/jpeg:encoderimage/jpeg:writeByte0Ç˛ Ç†	encoder.Ptr.prototype.emitHuff = function(h, value) {
 		var e, _slice, _index, x;
 		e = this;
 		x = (_slice = theHuffmanLUT[h], _index = value, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 		e.emit((x & 16777215) >>> 0, x >>> 24 >>> 0);
 	};
 	encoder.prototype.emitHuff = function(h, value) { return this.go$val.emitHuff(h, value); };
- 0encoderemitHuff0H0
-image/jpegencoder0
-image/jpegtheHuffmanLUT0
-image/jpegemit0Ç= Ç¿	encoder.Ptr.prototype.emitHuffRLE = function(h, runLength, value) {
+ 0encoderemitHuff0?image/jpeg:emitimage/jpeg:encoderimage/jpeg:theHuffmanLUT0Ç1 Ç¿	encoder.Ptr.prototype.emitHuffRLE = function(h, runLength, value) {
 		var e, _tuple, a, b, _tuple$1, nBits, y;
 		e = this;
 		_tuple = [value, value], a = _tuple[0], b = _tuple[1];
@@ -1418,11 +1331,7 @@ image/jpegemit0Ç= Ç¿	encoder.Ptr.prototype.emitHuffRLE = function(h, runLe
 		}
 	};
 	encoder.prototype.emitHuffRLE = function(h, runLength, value) { return this.go$val.emitHuffRLE(h, runLength, value); };
- 0encoderemitHuffRLE0[0
-image/jpegencoder0
-image/jpegbitCount0
-image/jpegemitHuff0
-image/jpegemit0Ç ÇØ	encoder.Ptr.prototype.writeMarkerHeader = function(marker, markerlen) {
+ 0encoderemitHuffRLE0Oimage/jpeg:bitCountimage/jpeg:emitimage/jpeg:emitHuffimage/jpeg:encoder0Ç˝ ÇØ	encoder.Ptr.prototype.writeMarkerHeader = function(marker, markerlen) {
 		var e;
 		e = this;
 		e.buf[0] = 255;
@@ -1432,9 +1341,7 @@ image/jpegemit0Ç ÇØ	encoder.Ptr.prototype.writeMarkerHeader = function(ma
 		e.write(go$subslice(new (go$sliceType(Go$Uint8))(e.buf), 0, 4));
 	};
 	encoder.prototype.writeMarkerHeader = function(marker, markerlen) { return this.go$val.writeMarkerHeader(marker, markerlen); };
- 0encoderwriteMarkerHeader0,0
-image/jpegencoder0
-image/jpegwrite0ÇÁ Çb	encoder.Ptr.prototype.writeDQT = function() {
+ 0encoderwriteMarkerHeader0&image/jpeg:encoderimage/jpeg:write0Ç€ Çb	encoder.Ptr.prototype.writeDQT = function() {
 		var e, _ref, _i, i;
 		e = this;
 		e.writeMarkerHeader(219, 132);
@@ -1448,11 +1355,7 @@ image/jpegwrite0ÇÁ Çb	encoder.Ptr.prototype.writeDQT = function() {
 		}
 	};
 	encoder.prototype.writeDQT = function() { return this.go$val.writeDQT(); };
- 0encoderwriteDQT0f0
-image/jpegencoder0
-image/jpegwriteMarkerHeader0
-image/jpeg	writeByte0
-image/jpegwrite0Ç˙ Çç	encoder.Ptr.prototype.writeSOF0 = function(size) {
+ 0encoderwriteDQT0Zimage/jpeg:encoderimage/jpeg:writeimage/jpeg:writeByteimage/jpeg:writeMarkerHeader0ÇÒ Çç	encoder.Ptr.prototype.writeSOF0 = function(size) {
 		var e, i, x, x$1, x$2;
 		e = this;
 		e.writeMarkerHeader(192, 17);
@@ -1472,10 +1375,7 @@ image/jpegwrite0Ç˙ Çç	encoder.Ptr.prototype.writeSOF0 = function(size) {
 		e.write(go$subslice(new (go$sliceType(Go$Uint8))(e.buf), 0, 15));
 	};
 	encoder.prototype.writeSOF0 = function(size) { return this.go$val.writeSOF0(size); };
- 0encoder	writeSOF00M0
-image/jpegencoder0
-image/jpegwriteMarkerHeader0
-image/jpegwrite0Ç1 Çr	encoder.Ptr.prototype.writeDHT = function() {
+ 0encoder	writeSOF00Dimage/jpeg:encoderimage/jpeg:writeimage/jpeg:writeMarkerHeader0Ç Çr	encoder.Ptr.prototype.writeDHT = function() {
 		var e, markerlen, _ref, _i, _struct, s, _ref$1, _i$1, _struct$1, s$1, i;
 		e = this;
 		markerlen = 2;
@@ -1499,13 +1399,8 @@ image/jpegwrite0Ç1 Çr	encoder.Ptr.prototype.writeDHT = function() {
 		}
 	};
 	encoder.prototype.writeDHT = function() { return this.go$val.writeDHT(); };
- 0encoderwriteDHT0Åü0
-image/jpegencoder0
-image/jpegtheHuffmanSpec0
-image/jpeghuffmanSpec0
-image/jpegwriteMarkerHeader0
-image/jpeg	writeByte0
-image/jpegwrite0Ç Çu	encoder.Ptr.prototype.writeBlock = function(b, q, prevDC) {
+ 0encoderwriteDHT0Åçimage/jpeg:encoderimage/jpeg:huffmanSpecimage/jpeg:theHuffmanSpecimage/jpeg:writeimage/jpeg:writeByteimage/jpeg:writeMarkerHeader0Ç
+ Çu	encoder.Ptr.prototype.writeBlock = function(b, q, prevDC) {
 		var e, x, x$1, dc, x$2, x$3, _tuple, h, runLength, zig, x$4, x$5, ac;
 		e = this;
 		fdct(b);
@@ -1534,13 +1429,7 @@ image/jpegwrite0Ç Çu	encoder.Ptr.prototype.writeBlock = function(b, q, pr
 	};
 	encoder.prototype.writeBlock = function(b, q, prevDC) { return this.go$val.writeBlock(b, q, prevDC); };
  0encoder
-writeBlock0ÅÜ0
-image/jpegencoder0
-image/jpegfdct0
-image/jpegdiv0
-image/jpegemitHuffRLE0
-image/jpegunzig0
-image/jpegemitHuff0ÇÚtoYCbCrÇÑ	toYCbCr = function(m, p, yBlock, cbBlock, crBlock) {
+writeBlock0timage/jpeg:divimage/jpeg:emitHuffimage/jpeg:emitHuffRLEimage/jpeg:encoderimage/jpeg:fdctimage/jpeg:unzig0ÇÊtoYCbCrÇÑ	toYCbCr = function(m, p, yBlock, cbBlock, crBlock) {
 		var _struct, _struct$1, _struct$2, b, xmax, ymax, j, i, _tuple, r, g, b$1, _tuple$1, yy, cb, cr, x, x$1, x$2;
 		b = (_struct = m.Bounds(), new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y))));
 		xmax = b.Max.X - 1 >> 0;
@@ -1559,9 +1448,7 @@ image/jpegemitHuff0ÇÚtoYCbCrÇÑ	toYCbCr = function(m, p, yBlock, cbBlock, 
 			j = j + 1 >> 0;
 		}
 	};
- 0	toYCbCr0R0imagePoint0image	Rectangle0
-image/jpegmin0image/color
-RGBToYCbCr0ÇrgbaToYCbCrÇ∏	rgbaToYCbCr = function(m, p, yBlock, cbBlock, crBlock) {
+ 0	toYCbCr0Fimage/color:RGBToYCbCrimage/jpeg:minimage:Pointimage:Rectangle0ÇrgbaToYCbCrÇ∏	rgbaToYCbCr = function(m, p, yBlock, cbBlock, crBlock) {
 		var _struct, _struct$1, _struct$2, b, xmax, ymax, j, sj, x, x$1, x$2, x$3, offset, i, sx, x$4, pix, _tuple, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, yy, cb, cr, x$5, x$6, x$7;
 		b = (_struct = m.Bounds(), new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y))));
 		xmax = b.Max.X - 1 >> 0;
@@ -1589,8 +1476,7 @@ RGBToYCbCr0ÇrgbaToYCbCrÇ∏	rgbaToYCbCr = function(m, p, yBlock, cbBlock, cr
 			j = j + 1 >> 0;
 		}
 	};
- 0rgbaToYCbCr0?0imagePoint0image	Rectangle0image/color
-RGBToYCbCr0Ç·scaleÇ…	scale = function(dst, src) {
+ 0rgbaToYCbCr06image/color:RGBToYCbCrimage:Pointimage:Rectangle0Ç·scaleÇ…	scale = function(dst, src) {
 		var i, dstOff, y, x, x$1, x$2, j, sum, x$3;
 		i = 0;
 		while (i < 4) {
@@ -1609,7 +1495,7 @@ RGBToYCbCr0Ç·scaleÇ…	scale = function(dst, src) {
 			i = i + 1 >> 0;
 		}
 	};
- 0scale0 0Ç	~ Çd	encoder.Ptr.prototype.writeSOS = function(m) {
+ 0scale0 0Ç	Z Çd	encoder.Ptr.prototype.writeSOS = function(m) {
 		var e, b, _tuple, cb, cr, _tuple$1, prevDCY, prevDCCb, prevDCCr, _struct, _struct$1, _struct$2, bounds, _tuple$2, rgba, y, x, i, x$1, x$2, xOff, x$3, x$4, yOff, _struct$3, p, _struct$4, _struct$5;
 		e = this;
 		e.write(sosHeader);
@@ -1644,16 +1530,8 @@ RGBToYCbCr0Ç·scaleÇ…	scale = function(dst, src) {
 		e.emit(127, 7);
 	};
 	encoder.prototype.writeSOS = function(m) { return this.go$val.writeSOS(m); };
- 0encoderwriteSOS0Å˙0
-image/jpeg	sosHeader0image	Rectangle0
-image/jpegtoYCbCr0
-image/jpeg
-writeBlock0
-image/jpegscale0
-image/jpegencoder0
-image/jpegwrite0imagePoint0imageRGBA0imagePt0
-image/jpegrgbaToYCbCr0
-image/jpegemit0Ç	öEncodeÇK	Encode = go$pkg.Encode = function(w, m, o) {
+ 0encoderwriteSOS0Å÷image/jpeg:emitimage/jpeg:encoderimage/jpeg:rgbaToYCbCrimage/jpeg:scaleimage/jpeg:sosHeaderimage/jpeg:toYCbCrimage/jpeg:writeimage/jpeg:writeBlockimage:Pointimage:Pt
+image:RGBAimage:Rectangle0Ç	pEncodeÇK	Encode = go$pkg.Encode = function(w, m, o) {
 		var _struct, _struct$1, _struct$2, b, e, ok, _tuple, ww, quality, scale$1, _q, x, _ref, _i, i, _ref$1, _i$1, j, x$1, _q$1, _struct$3;
 		b = (_struct = m.Bounds(), new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (b.Dx() >= 65536 || b.Dy() >= 65536) {
@@ -1713,35 +1591,17 @@ image/jpegemit0Ç	öEncodeÇK	Encode = go$pkg.Encode = function(w, m, o) {
 		e.flush();
 		return e.err;
 	};
- 0Encode0Ç30imagePoint0image	Rectangle0
-image/jpegwriter0
-image/jpegOptions0
-image/jpegwrite0
-image/jpegwriteDHT0
-image/jpegunscaledQuant0
-image/jpeg	writeSOF00
-image/jpegflush0errorsNew0
-image/jpegencoder0bufio	NewWriter0
-image/jpegwriteDQT0
-image/jpegwriteSOS0unzig  0unzig0 0bitCount  0
-bitCount0 0&unscaledQuant  0unscaledQuant0 0(theHuffmanSpec  0theHuffmanSpec0 0Å∂theHuffmanLUT Y		theHuffmanLUT = go$makeNativeArray("Slice", 4, function() { return huffmanLUT.nil; });
-0theHuffmanLUT070
-image/jpeg
-huffmanLUT0
-image/jpegtheHuffmanLUT0	sosHeader  0	sosHeader0 0ÇC  Ç		unzig = go$toNativeArray("Int", [0, 1, 8, 16, 9, 2, 3, 10, 17, 24, 32, 25, 18, 11, 4, 5, 12, 19, 26, 33, 40, 48, 41, 34, 27, 20, 13, 6, 7, 14, 21, 28, 35, 42, 49, 56, 57, 50, 43, 36, 29, 22, 15, 23, 30, 37, 44, 51, 58, 59, 52, 45, 38, 31, 39, 46, 53, 60, 61, 54, 47, 55, 62, 63]);
-0unzig00
-image/jpegunzig0ÇX  Ç*		bitCount = go$toNativeArray("Uint8", [0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]);
+ 0Encode0Ç	bufio:NewWriter
+errors:Newimage/jpeg:Optionsimage/jpeg:encoderimage/jpeg:flushimage/jpeg:unscaledQuantimage/jpeg:writeimage/jpeg:writeDHTimage/jpeg:writeDQTimage/jpeg:writeSOF0image/jpeg:writeSOSimage/jpeg:writerimage:Pointimage:Rectangle0unzig  0unzig0 0bitCount  0
+bitCount0 0&unscaledQuant  0unscaledQuant0 0(theHuffmanSpec  0theHuffmanSpec0 0Å∞theHuffmanLUT Y		theHuffmanLUT = go$makeNativeArray("Slice", 4, function() { return huffmanLUT.nil; });
+0theHuffmanLUT01image/jpeg:huffmanLUTimage/jpeg:theHuffmanLUT0	sosHeader  0	sosHeader0 0Ç@  Ç		unzig = go$toNativeArray("Int", [0, 1, 8, 16, 9, 2, 3, 10, 17, 24, 32, 25, 18, 11, 4, 5, 12, 19, 26, 33, 40, 48, 41, 34, 27, 20, 13, 6, 7, 14, 21, 28, 35, 42, 49, 56, 57, 50, 43, 36, 29, 22, 15, 23, 30, 37, 44, 51, 58, 59, 52, 45, 38, 31, 39, 46, 53, 60, 61, 54, 47, 55, 62, 63]);
+0unzig0image/jpeg:unzig0ÇU  Ç*		bitCount = go$toNativeArray("Uint8", [0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]);
 0
-bitCount00
-image/jpegbitCount0Ç¨  Çt		unscaledQuant = go$toNativeArray("Array", [go$toNativeArray("Uint8", [16, 11, 12, 14, 12, 10, 16, 14, 13, 14, 18, 17, 16, 19, 24, 40, 26, 24, 22, 22, 24, 49, 35, 37, 29, 40, 58, 51, 61, 60, 57, 51, 56, 55, 64, 72, 92, 78, 64, 68, 87, 69, 55, 56, 80, 109, 81, 87, 95, 98, 103, 104, 103, 62, 77, 113, 121, 112, 100, 120, 92, 101, 103, 99]), go$toNativeArray("Uint8", [17, 18, 18, 24, 21, 24, 47, 26, 26, 47, 99, 66, 56, 66, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99])]);
-0unscaledQuant00
-image/jpegunscaledQuant0Çû  ÇI		theHuffmanSpec = go$toNativeArray("Struct", [new huffmanSpec.Ptr(go$toNativeArray("Uint8", [0, 1, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0]), new (go$sliceType(Go$Uint8))([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])), new huffmanSpec.Ptr(go$toNativeArray("Uint8", [0, 2, 1, 3, 3, 2, 4, 3, 5, 5, 4, 4, 0, 0, 1, 125]), new (go$sliceType(Go$Uint8))([1, 2, 3, 0, 4, 17, 5, 18, 33, 49, 65, 6, 19, 81, 97, 7, 34, 113, 20, 50, 129, 145, 161, 8, 35, 66, 177, 193, 21, 82, 209, 240, 36, 51, 98, 114, 130, 9, 10, 22, 23, 24, 25, 26, 37, 38, 39, 40, 41, 42, 52, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138, 146, 147, 148, 149, 150, 151, 152, 153, 154, 162, 163, 164, 165, 166, 167, 168, 169, 170, 178, 179, 180, 181, 182, 183, 184, 185, 186, 194, 195, 196, 197, 198, 199, 200, 201, 202, 210, 211, 212, 213, 214, 215, 216, 217, 218, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250])), new huffmanSpec.Ptr(go$toNativeArray("Uint8", [0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0]), new (go$sliceType(Go$Uint8))([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])), new huffmanSpec.Ptr(go$toNativeArray("Uint8", [0, 2, 1, 2, 4, 4, 3, 4, 7, 5, 4, 4, 0, 1, 2, 119]), new (go$sliceType(Go$Uint8))([0, 1, 2, 3, 17, 4, 5, 33, 49, 6, 18, 65, 81, 7, 97, 113, 19, 34, 50, 129, 8, 20, 66, 145, 161, 177, 193, 9, 35, 51, 82, 240, 21, 98, 114, 209, 10, 22, 36, 52, 225, 37, 241, 23, 24, 25, 26, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, 130, 131, 132, 133, 134, 135, 136, 137, 138, 146, 147, 148, 149, 150, 151, 152, 153, 154, 162, 163, 164, 165, 166, 167, 168, 169, 170, 178, 179, 180, 181, 182, 183, 184, 185, 186, 194, 195, 196, 197, 198, 199, 200, 201, 202, 210, 211, 212, 213, 214, 215, 216, 217, 218, 226, 227, 228, 229, 230, 231, 232, 233, 234, 242, 243, 244, 245, 246, 247, 248, 249, 250]))]);
-0theHuffmanSpec090
-image/jpeghuffmanSpec0
-image/jpegtheHuffmanSpec0Åé  `		sosHeader = new (go$sliceType(Go$Uint8))([255, 218, 0, 12, 3, 1, 0, 2, 17, 3, 17, 0, 63, 0]);
-0	sosHeader00
-image/jpeg	sosHeader0
-   0 0 0Ç	  Ç-		var _ref, _i, _struct, s, i, v, _struct$1;
+bitCount0image/jpeg:bitCount0Ç©  Çt		unscaledQuant = go$toNativeArray("Array", [go$toNativeArray("Uint8", [16, 11, 12, 14, 12, 10, 16, 14, 13, 14, 18, 17, 16, 19, 24, 40, 26, 24, 22, 22, 24, 49, 35, 37, 29, 40, 58, 51, 61, 60, 57, 51, 56, 55, 64, 72, 92, 78, 64, 68, 87, 69, 55, 56, 80, 109, 81, 87, 95, 98, 103, 104, 103, 62, 77, 113, 121, 112, 100, 120, 92, 101, 103, 99]), go$toNativeArray("Uint8", [17, 18, 18, 24, 21, 24, 47, 26, 26, 47, 99, 66, 56, 66, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99])]);
+0unscaledQuant0image/jpeg:unscaledQuant0Çò  ÇI		theHuffmanSpec = go$toNativeArray("Struct", [new huffmanSpec.Ptr(go$toNativeArray("Uint8", [0, 1, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0]), new (go$sliceType(Go$Uint8))([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])), new huffmanSpec.Ptr(go$toNativeArray("Uint8", [0, 2, 1, 3, 3, 2, 4, 3, 5, 5, 4, 4, 0, 0, 1, 125]), new (go$sliceType(Go$Uint8))([1, 2, 3, 0, 4, 17, 5, 18, 33, 49, 65, 6, 19, 81, 97, 7, 34, 113, 20, 50, 129, 145, 161, 8, 35, 66, 177, 193, 21, 82, 209, 240, 36, 51, 98, 114, 130, 9, 10, 22, 23, 24, 25, 26, 37, 38, 39, 40, 41, 42, 52, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138, 146, 147, 148, 149, 150, 151, 152, 153, 154, 162, 163, 164, 165, 166, 167, 168, 169, 170, 178, 179, 180, 181, 182, 183, 184, 185, 186, 194, 195, 196, 197, 198, 199, 200, 201, 202, 210, 211, 212, 213, 214, 215, 216, 217, 218, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250])), new huffmanSpec.Ptr(go$toNativeArray("Uint8", [0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0]), new (go$sliceType(Go$Uint8))([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])), new huffmanSpec.Ptr(go$toNativeArray("Uint8", [0, 2, 1, 2, 4, 4, 3, 4, 7, 5, 4, 4, 0, 1, 2, 119]), new (go$sliceType(Go$Uint8))([0, 1, 2, 3, 17, 4, 5, 33, 49, 6, 18, 65, 81, 7, 97, 113, 19, 34, 50, 129, 8, 20, 66, 145, 161, 177, 193, 9, 35, 51, 82, 240, 21, 98, 114, 209, 10, 22, 36, 52, 225, 37, 241, 23, 24, 25, 26, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, 130, 131, 132, 133, 134, 135, 136, 137, 138, 146, 147, 148, 149, 150, 151, 152, 153, 154, 162, 163, 164, 165, 166, 167, 168, 169, 170, 178, 179, 180, 181, 182, 183, 184, 185, 186, 194, 195, 196, 197, 198, 199, 200, 201, 202, 210, 211, 212, 213, 214, 215, 216, 217, 218, 226, 227, 228, 229, 230, 231, 232, 233, 234, 242, 243, 244, 245, 246, 247, 248, 249, 250]))]);
+0theHuffmanSpec03image/jpeg:huffmanSpecimage/jpeg:theHuffmanSpec0Åã  `		sosHeader = new (go$sliceType(Go$Uint8))([255, 218, 0, 12, 3, 1, 0, 2, 17, 3, 17, 0, 63, 0]);
+0	sosHeader0image/jpeg:sosHeader0
+   0 0 0ÇÒ  Ç-		var _ref, _i, _struct, s, i, v, _struct$1;
 		image.RegisterFormat("jpeg", "\xFF\xD8", Decode, DecodeConfig);
 		_ref = theHuffmanSpec;
 		_i = 0;
@@ -1751,12 +1611,4 @@ image/jpeg	sosHeader0
 			(new (go$ptrType(huffmanLUT))(function() { return theHuffmanLUT[i]; }, function(v) { theHuffmanLUT[i] = v; })).init((_struct$1 = s, new huffmanSpec.Ptr(go$mapArray(_struct$1.count, function(entry) { return entry; }), _struct$1.value)));
 			_i++;
 		}
-0 0Åœ0imageRegisterFormat0
-image/jpegDecode0
-image/jpegDecodeConfig0
-image/jpegtheHuffmanSpec0
-image/jpeghuffmanSpec0
-image/jpeginit0
-image/jpegtheHuffmanLUT0
-image/jpeg
-huffmanLUT0 
+0 0Å∑image/jpeg:Decodeimage/jpeg:DecodeConfigimage/jpeg:huffmanLUTimage/jpeg:huffmanSpecimage/jpeg:initimage/jpeg:theHuffmanLUTimage/jpeg:theHuffmanSpecimage:RegisterFormat0 
