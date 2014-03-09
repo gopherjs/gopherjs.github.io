@@ -1,4 +1,4 @@
-0ƒ,ûruntime‚=Vpackage runtime
+0ƒ,ýruntime‚=Vpackage runtime
 func @"".BlockProfile(@"".p []@"".BlockProfileRecord) (@"".n int, @"".ok bool)
 type @"".BlockProfileRecord struct { @"".Count int64; @"".Cycles int64; ? @"".StackRecord }
 func @"".Breakpoint() ()
@@ -128,7 +128,7 @@ type @"".waitq struct { @"".first *@"".sudog; @"".last *@"".sudog }
 type @"".wincall struct { @"".fn func (? @"unsafe".Pointer) (); @"".n uint64; @"".args @"unsafe".Pointer; @"".r1 uint64; @"".r2 uint64; @"".err uint64 }
 type @"".wincallbackcontext struct { @"".gobody @"unsafe".Pointer; @"".argsize uint64; @"".restorestack uint64 }
 $$
-0	runtime0 0ƒï„0‚¹MemProfileRecord‚£	MemProfileRecord = go$pkg.MemProfileRecord = go$newType(0, "Struct", "runtime.MemProfileRecord", "MemProfileRecord", "runtime", function(AllocBytes_, FreeBytes_, AllocObjects_, FreeObjects_, Stack0_) {
+0	runtime0 0ƒï†0‚¹MemProfileRecord‚£	MemProfileRecord = go$pkg.MemProfileRecord = go$newType(0, "Struct", "runtime.MemProfileRecord", "MemProfileRecord", "runtime", function(AllocBytes_, FreeBytes_, AllocObjects_, FreeObjects_, Stack0_) {
 		this.go$val = this;
 		this.AllocBytes = AllocBytes_ !== undefined ? AllocBytes_ : new Go$Int64(0, 0);
 		this.FreeBytes = FreeBytes_ !== undefined ? FreeBytes_ : new Go$Int64(0, 0);
@@ -1265,8 +1265,8 @@ typestring0 0‚¨printany‚d	printany = function(i) {
 		}
 		return "/usr/local/go";
 	};
- 0GOROOT0runtime:getgoroot0YVersion?	Version = go$pkg.Version = function() {
-		return "go1.2";
+ 0GOROOT0runtime:getgoroot0[VersionA	Version = go$pkg.Version = function() {
+		return "go1.2.1";
 	};
  0	Version0 0YReadMemStats5	ReadMemStats = go$pkg.ReadMemStats = function() {};
  0ReadMemStats0 01GC!	GC = go$pkg.GC = function() {};
