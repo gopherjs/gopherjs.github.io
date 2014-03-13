@@ -441,7 +441,7 @@ writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0‚e	readSli
 	};
 	Index.prototype.Lookup = function(s, n) { return this.go$val.Lookup(s, n); };
  0Index06index/suffixarray:Indexindex/suffixarray:lookupAll0‚ ‚Ì	Index.Ptr.prototype.FindAllIndex = function(r, n) {
-		var result, x, _tuple, prefix, complete, lit, n1, x$1, x$2, indices, x$3, x$4, pairs, count, prev, _ref, _i, _slice, _index, i, x$5, j, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, n1$1, x$6, x$7, indices$1, prev$1, _ref$1, _i$1, _slice$4, _index$4, i$1, m, _slice$5, _index$5, _lhs, _index$6, _slice$6, _index$7, _slice$7, _index$8, _slice$8, _index$9;
+		var result, x, _tuple, prefix, complete, lit, n1, indices, x$1, x$2, pairs, count, prev, _ref, _i, _slice, _index, i, x$3, j, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, x$4, x$5, n1$1, indices$1, prev$1, _ref$1, _i$1, _slice$4, _index$4, i$1, m, _slice$5, _index$5, _lhs, _index$6, _slice$6, _index$7, _slice$7, _index$8, _slice$8, _index$9, x$6, x$7;
 		result = (go$sliceType((go$sliceType(Go$Int)))).nil;
 		x = this;
 		_tuple = r.LiteralPrefix(), prefix = _tuple[0], complete = _tuple[1];
@@ -458,7 +458,7 @@ writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0‚e	readSli
 					return result;
 				}
 				sort.Ints(indices);
-				pairs = (go$sliceType(Go$Int)).make((x$3 = 2, x$4 = indices.length, (((x$3 >>> 16 << 16) * x$4 >> 0) + (x$3 << 16 >>> 16) * x$4) >> 0), 0, function() { return 0; });
+				pairs = (go$sliceType(Go$Int)).make((x$1 = 2, x$2 = indices.length, (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0), 0, function() { return 0; });
 				result = (go$sliceType((go$sliceType(Go$Int)))).make(indices.length, 0, function() { return (go$sliceType(Go$Int)).nil; });
 				count = 0;
 				prev = 0;
@@ -470,7 +470,7 @@ writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0‚e	readSli
 						break;
 					}
 					if (prev <= i) {
-						j = (x$5 = 2, (((x$5 >>> 16 << 16) * count >> 0) + (x$5 << 16 >>> 16) * count) >> 0);
+						j = (x$3 = 2, (((x$3 >>> 16 << 16) * count >> 0) + (x$3 << 16 >>> 16) * count) >> 0);
 						_slice$1 = pairs, _index$1 = j + 0 >> 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = i) : go$throwRuntimeError("index out of range");
 						_slice$2 = pairs, _index$2 = j + 1 >> 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = i + lit.length >> 0) : go$throwRuntimeError("index out of range");
 						_slice$3 = result, _index$3 = count, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = go$subslice(pairs, j, (j + 2 >> 0))) : go$throwRuntimeError("index out of range");
@@ -483,7 +483,7 @@ writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0‚e	readSli
 				if (result.length >= n || !((indices.length === n1))) {
 					break;
 				}
-				n1 = n1 + ((x$1 = 2, x$2 = (n - result.length >> 0), (((x$1 >>> 16 << 16) * x$2 >> 0) + (x$1 << 16 >>> 16) * x$2) >> 0)) >> 0;
+				n1 = n1 + ((x$4 = 2, x$5 = (n - result.length >> 0), (((x$4 >>> 16 << 16) * x$5 >> 0) + (x$4 << 16 >>> 16) * x$5) >> 0)) >> 0;
 			}
 			if (result.length === 0) {
 				result = (go$sliceType((go$sliceType(Go$Int)))).nil;

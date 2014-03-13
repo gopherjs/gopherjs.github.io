@@ -6959,7 +6959,7 @@ go$packages["os"] = (function() {
 		throw go$panic("Native function not implemented: sigpipe");
 	};
 	Readlink = go$pkg.Readlink = function(name) {
-		var len, x, b, _tuple, n, e;
+		var len, b, _tuple, n, e, x;
 		len = 128;
 		while (true) {
 			b = (go$sliceType(Go$Uint8)).make(len, 0, function() { return 0; });
@@ -37632,18 +37632,18 @@ go$packages["text/template"] = (function() {
 		return false;
 	};
 	indirect = function(v) {
-		var rv, isNil, _struct, _struct$1, _tuple, _struct$2, _struct$3, _tuple$1, _struct$4;
+		var rv, isNil, _struct, _tuple, _struct$1, _struct$2, _struct$3, _tuple$1, _struct$4;
 		rv = new reflect.Value.Ptr();
 		isNil = false;
 		while ((v.Kind() === 22) || (v.Kind() === 20)) {
 			if (v.IsNil()) {
-				_tuple = [(_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), true], rv = _tuple[0], isNil = _tuple[1];
-				return [(_struct$2 = rv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), isNil];
+				_tuple = [(_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), true], rv = _tuple[0], isNil = _tuple[1];
+				return [(_struct$1 = rv, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), isNil];
 			}
 			if ((v.Kind() === 20) && v.NumMethod() > 0) {
 				break;
 			}
-			v = (_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+			v = (_struct$2 = v.Elem(), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 		}
 		_tuple$1 = [(_struct$3 = v, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), false], rv = _tuple$1[0], isNil = _tuple$1[1];
 		return [(_struct$4 = rv, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), isNil];
@@ -38222,7 +38222,7 @@ go$packages["log"] = (function() {
 		return new Logger.Ptr(new sync.Mutex.Ptr(), prefix, flag, out, (go$sliceType(Go$Uint8)).nil);
 	};
 	itoa = function(buf, i, wid) {
-		var u, b, bp, _q, _r;
+		var u, b, bp, _r, _q;
 		u = (i >>> 0);
 		if ((u === 0) && wid <= 1) {
 			buf.go$set(go$append(buf.go$get(), 48));
@@ -42783,7 +42783,7 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 	});
 	flowData = go$pkg.flowData = go$newType(0, "Struct", "translator.flowData", "flowData", "github.com/gopherjs/gopherjs/translator", function(postStmt_, beginCase_, endCase_) {
 		this.go$val = this;
-		this.postStmt = postStmt_ !== undefined ? postStmt_ : "";
+		this.postStmt = postStmt_ !== undefined ? postStmt_ : go$throwNilPointerError;
 		this.beginCase = beginCase_ !== undefined ? beginCase_ : 0;
 		this.endCase = endCase_ !== undefined ? endCase_ : 0;
 	});
@@ -44286,7 +44286,7 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 			return [(go$ptrType(Archive)).nil, err];
 		}
 		_key = importPath, (t.typesPackages || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: typesPkg };
-		c = new funcContext.Ptr(new pkgContext.Ptr(typesPkg, info, new Go$Map(), new Go$Map(), 1, new Go$Map()), (go$ptrType(types.Signature)).nil, new Go$Map(), (go$sliceType(Go$String)).nil, (go$sliceType(ast.Expr)).nil, (_map = new Go$Map(), _key$1 = "", _map[_key$1] = { k: _key$1, v: new flowData.Ptr("", 0, 0) }, _map), (go$sliceType(Go$String)).nil, false, 1, new Go$Map(), new Go$Map(), (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil);
+		c = new funcContext.Ptr(new pkgContext.Ptr(typesPkg, info, new Go$Map(), new Go$Map(), 1, new Go$Map()), (go$ptrType(types.Signature)).nil, new Go$Map(), (go$sliceType(Go$String)).nil, (go$sliceType(ast.Expr)).nil, (_map = new Go$Map(), _key$1 = "", _map[_key$1] = { k: _key$1, v: new flowData.Ptr(go$throwNilPointerError, 0, 0) }, _map), (go$sliceType(Go$String)).nil, false, 1, new Go$Map(), new Go$Map(), (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil);
 		_ref = reservedKeywords;
 		_i = 0;
 		_keys = go$keys(_ref);
@@ -44840,7 +44840,7 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 			_key = k, (vars || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: v };
 			_i++;
 		}
-		newFuncContext = new funcContext.Ptr(c.p, sig, vars, (go$sliceType(Go$String)).nil, (go$sliceType(ast.Expr)).nil, (_map = new Go$Map(), _key$1 = "", _map[_key$1] = { k: _key$1, v: new flowData.Ptr("", 0, 0) }, _map), (go$sliceType(Go$String)).nil, false, 1, new Go$Map(), new Go$Map(), (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil);
+		newFuncContext = new funcContext.Ptr(c.p, sig, vars, (go$sliceType(Go$String)).nil, (go$sliceType(ast.Expr)).nil, (_map = new Go$Map(), _key$1 = "", _map[_key$1] = { k: _key$1, v: new flowData.Ptr(go$throwNilPointerError, 0, 0) }, _map), (go$sliceType(Go$String)).nil, false, 1, new Go$Map(), new Go$Map(), (go$sliceType(Go$Uint8)).nil, (go$sliceType(Go$Uint8)).nil);
 		_ref$1 = t.Params.List;
 		_i$1 = 0;
 		while (_i$1 < _ref$1.length) {
@@ -45027,7 +45027,7 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 	};
 	funcContext.prototype.translateStmtList = function(stmts) { return this.go$val.translateStmtList(stmts); };
 	funcContext.Ptr.prototype.translateStmt = function(stmt, label) {
-		var c, s, _ref, _type, caseClauses, initStmts, ifStmt, elseStmt, _ref$1, _type$1, expr, _recv, _entry, translateCond, refVar, _entry$1, expr$1, typeSwitchVar, a, _ref$2, _type$2, x, _slice, _index, x$1, _slice$1, _index$1, _ref$3, _i, _slice$2, _index$2, caseClause, _key, _entry$2, x$2, refVar$1, typeVar, translateCond$1, printCaseBodyPrefix, _entry$3, cond, post, _entry$4, refVar$2, iVar, t, _ref$4, _type$3, _entry$5, runeVar, _entry$6, keysVar, _entry$7, length, t2, _ref$5, _type$4, x$3, _entry$8, labelSuffix, _entry$9, data, _entry$10, _ref$6, _entry$11, results, _ref$7, _slice$3, _index$3, _slice$4, _index$4, v, values, _ref$8, _i$1, _slice$5, _index$5, result, i, _slice$6, _index$6, isIdent, _tuple, x$4, ident, isBuiltin, _tuple$1, x$5, _entry$12, builtin, args, _ref$9, _i$2, _slice$7, _index$7, arg, i$1, _entry$13, _slice$8, _index$8, call, x$6, _entry$14, sig, args$1, isSelector, _tuple$2, x$7, sel, _entry$15, obj, _key$1, x$8, decl, _ref$10, _ref$11, _i$3, _slice$9, _index$9, spec, x$9, _entry$16, o, r;
+		var c, s, _ref, _type, caseClauses, initStmts, ifStmt, elseStmt, _ref$1, _type$1, expr, _recv, _entry, translateCond, refVar, _entry$1, expr$1, typeSwitchVar, a, _ref$2, _type$2, x, _slice, _index, x$1, _slice$1, _index$1, _ref$3, _i, _slice$2, _index$2, caseClause, _key, _entry$2, x$2, refVar$1, typeVar, translateCond$1, printCaseBodyPrefix, _entry$3, cond, _entry$4, refVar$2, iVar, t, _ref$4, _type$3, _entry$5, runeVar, _entry$6, keysVar, _entry$7, length, t2, _ref$5, _type$4, x$3, _entry$8, labelSuffix, _entry$9, data, _entry$10, _ref$6, _entry$11, results, _ref$7, _slice$3, _index$3, _slice$4, _index$4, v, values, _ref$8, _i$1, _slice$5, _index$5, result, i, _slice$6, _index$6, isIdent, _tuple, x$4, ident, isBuiltin, _tuple$1, x$5, _entry$12, builtin, args, _ref$9, _i$2, _slice$7, _index$7, arg, i$1, _entry$13, _slice$8, _index$8, call, x$6, _entry$14, sig, args$1, isSelector, _tuple$2, x$7, sel, _entry$15, obj, _key$1, x$8, decl, _ref$10, _ref$11, _i$3, _slice$9, _index$9, spec, x$9, _entry$16, o, r;
 		c = this;
 		_ref = stmt;
 		_type = _ref !== null ? _ref.constructor : null;
@@ -45135,11 +45135,11 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 			if (!(go$interfaceIsEqual(s.Cond, null))) {
 				cond = c.translateExpr(s.Cond).String();
 			}
-			post = "";
-			if (!(go$interfaceIsEqual(s.Post, null))) {
-				post = c.translateSimpleStmt(s.Post);
-			}
-			c.translateLoopingStmt(cond, post, s.Body, go$throwNilPointerError, label, (_entry$4 = c.hasGoto[(s || go$interfaceNil).go$key()], _entry$4 !== undefined ? _entry$4.v : false));
+			c.translateLoopingStmt(cond, s.Body, go$throwNilPointerError, (function() {
+				if (!(go$interfaceIsEqual(s.Post, null))) {
+					c.translateStmt(s.Post, "");
+				}
+			}), label, (_entry$4 = c.hasGoto[(s || go$interfaceNil).go$key()], _entry$4 !== undefined ? _entry$4.v : false));
 		} else if (_type === (go$ptrType(ast.RangeStmt))) {
 			s = _ref.go$val;
 			refVar$2 = c.newVariable("_ref");
@@ -45151,7 +45151,7 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 			if (_type$3 === (go$ptrType(types.Basic))) {
 				t = _ref$4.go$val;
 				runeVar = c.newVariable("_rune");
-				c.translateLoopingStmt(iVar + " < " + refVar$2 + ".length", iVar + " += " + runeVar + "[1]", s.Body, (function() {
+				c.translateLoopingStmt(iVar + " < " + refVar$2 + ".length", s.Body, (function() {
 					c.Printf("%s = go$decodeRune(%s, %s);", new (go$sliceType(go$emptyInterface))([new Go$String(runeVar), new Go$String(refVar$2), new Go$String(iVar)]));
 					if (!isBlank(s.Value)) {
 						c.Printf("%s;", new (go$sliceType(go$emptyInterface))([new Go$String(c.translateAssign(s.Value, runeVar + "[0]"))]));
@@ -45159,12 +45159,14 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 					if (!isBlank(s.Key)) {
 						c.Printf("%s;", new (go$sliceType(go$emptyInterface))([new Go$String(c.translateAssign(s.Key, iVar))]));
 					}
+				}), (function() {
+					c.Printf("%s += %s[1];", new (go$sliceType(go$emptyInterface))([new Go$String(iVar), new Go$String(runeVar)]));
 				}), label, (_entry$6 = c.hasGoto[(s || go$interfaceNil).go$key()], _entry$6 !== undefined ? _entry$6.v : false));
 			} else if (_type$3 === (go$ptrType(types.Map))) {
 				t = _ref$4.go$val;
 				keysVar = c.newVariable("_keys");
 				c.Printf("%s = go$keys(%s);", new (go$sliceType(go$emptyInterface))([new Go$String(keysVar), new Go$String(refVar$2)]));
-				c.translateLoopingStmt(iVar + " < " + keysVar + ".length", iVar + "++", s.Body, (function() {
+				c.translateLoopingStmt(iVar + " < " + keysVar + ".length", s.Body, (function() {
 					var entryVar;
 					entryVar = c.newVariable("_entry");
 					c.Printf("%s = %s[%s[%s]];", new (go$sliceType(go$emptyInterface))([new Go$String(entryVar), new Go$String(refVar$2), new Go$String(keysVar), new Go$String(iVar)]));
@@ -45174,6 +45176,8 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 					if (!isBlank(s.Key)) {
 						c.Printf("%s;", new (go$sliceType(go$emptyInterface))([new Go$String(c.translateAssign(s.Key, entryVar + ".k"))]));
 					}
+				}), (function() {
+					c.Printf("%s++;", new (go$sliceType(go$emptyInterface))([new Go$String(iVar)]));
 				}), label, (_entry$7 = c.hasGoto[(s || go$interfaceNil).go$key()], _entry$7 !== undefined ? _entry$7.v : false));
 			} else if (_type$3 === (go$ptrType(types.Array)) || _type$3 === (go$ptrType(types.Pointer)) || _type$3 === (go$ptrType(types.Slice))) {
 				t = _ref$4;
@@ -45190,7 +45194,7 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 					t2 = _ref$5.go$val;
 					length = refVar$2 + ".length";
 				}
-				c.translateLoopingStmt(iVar + " < " + length, iVar + "++", s.Body, (function() {
+				c.translateLoopingStmt(iVar + " < " + length, s.Body, (function() {
 					var indexExpr, et, _key$1;
 					if (!isBlank(s.Value)) {
 						indexExpr = new ast.IndexExpr.Ptr(c.newIdent(refVar$2, t), 0, c.newIdent(iVar, types.Typ[2]), 0);
@@ -45201,6 +45205,8 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 					if (!isBlank(s.Key)) {
 						c.Printf("%s;", new (go$sliceType(go$emptyInterface))([new Go$String(c.translateAssign(s.Key, iVar))]));
 					}
+				}), (function() {
+					c.Printf("%s++;", new (go$sliceType(go$emptyInterface))([new Go$String(iVar)]));
 				}), label, (_entry$8 = c.hasGoto[(s || go$interfaceNil).go$key()], _entry$8 !== undefined ? _entry$8.v : false));
 			} else if (_type$3 === (go$ptrType(types.Chan))) {
 				t = _ref$4.go$val;
@@ -45222,9 +45228,7 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 			if (_ref$6 === 61) {
 				c.PrintCond(data.endCase === 0, fmt.Sprintf("break%s;", new (go$sliceType(go$emptyInterface))([new Go$String(labelSuffix)])), fmt.Sprintf("go$s = %d; continue;", new (go$sliceType(go$emptyInterface))([new Go$Int(data.endCase)])));
 			} else if (_ref$6 === 65) {
-				if (!(data.postStmt === "")) {
-					c.Printf("%s;", new (go$sliceType(go$emptyInterface))([new Go$String(data.postStmt)]));
-				}
+				data.postStmt();
 				c.PrintCond(data.beginCase === 0, fmt.Sprintf("continue%s;", new (go$sliceType(go$emptyInterface))([new Go$String(labelSuffix)])), fmt.Sprintf("go$s = %d; continue;", new (go$sliceType(go$emptyInterface))([new Go$Int(data.beginCase)])));
 			} else if (_ref$6 === 73) {
 				c.PrintCond(false, "goto " + s.Label.Name, fmt.Sprintf("go$s = %d; continue;", new (go$sliceType(go$emptyInterface))([new Go$Int((_entry$11 = c.labelCases[s.Label.Name], _entry$11 !== undefined ? _entry$11.v : 0))])));
@@ -45503,7 +45507,7 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 		}
 	};
 	funcContext.prototype.translateBranchingStmt = function(caseClauses, initStmts, isSwitch, translateCond, printCaseBodyPrefix, label, flatten) { return this.go$val.translateBranchingStmt(caseClauses, initStmts, isSwitch, translateCond, printCaseBodyPrefix, label, flatten); };
-	funcContext.Ptr.prototype.translateLoopingStmt = function(cond, post, body, bodyPrefix, label, flatten) {
+	funcContext.Ptr.prototype.translateLoopingStmt = function(cond, body, bodyPrefix, post, label, flatten) {
 		var c, _entry, prevFlowData, data, ok, _tuple, _entry$1, _key, _key$1, _key$2;
 		c = this;
 		prevFlowData = (_entry = c.flowDatas[""], _entry !== undefined ? _entry.v : (go$ptrType(flowData)).nil);
@@ -45548,8 +45552,8 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 					isTerminated = true;
 				}
 			}
-			if (!(post === "") && !isTerminated) {
-				c.Printf("%s;", new (go$sliceType(go$emptyInterface))([new Go$String(post)]));
+			if (!isTerminated) {
+				post();
 			}
 			c.escapingVars = prevEV;
 		}));
@@ -45557,7 +45561,7 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 		delete c.flowDatas[label];
 		_key$2 = "", (c.flowDatas || go$throwRuntimeError("assignment to entry in nil map"))[_key$2] = { k: _key$2, v: prevFlowData };
 	};
-	funcContext.prototype.translateLoopingStmt = function(cond, post, body, bodyPrefix, label, flatten) { return this.go$val.translateLoopingStmt(cond, post, body, bodyPrefix, label, flatten); };
+	funcContext.prototype.translateLoopingStmt = function(cond, body, bodyPrefix, post, label, flatten) { return this.go$val.translateLoopingStmt(cond, body, bodyPrefix, post, label, flatten); };
 	funcContext.Ptr.prototype.translateSimpleStmt = function(stmt) {
 		var c, s, _ref, _type, op, _ref$1, parts, _slice, _index, lhs, l, _ref$2, _type$1, lhsVar, indexVar, _entry, _entry$1, _entry$2, _struct, _key, lhsVar$1, _entry$3, _entry$4, _struct$1, _key$1, v, lhsVar$2, _entry$5, _entry$6, _struct$2, _key$2, _entry$7, _key$3, _slice$1, _index$1, parenExpr, _slice$2, _index$2, _entry$8, _struct$3, _key$4, binaryExpr, _slice$3, _index$3, _entry$9, _struct$4, _key$5, _ref$3, _i, _slice$4, _index$4, lhs$1, _entry$10, _key$6, removeParens, _slice$5, _index$5, lhs$2, v$1, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _entry$11, tupleVar, _slice$10, _index$10, out, x, _slice$11, _index$11, _entry$12, tuple, _ref$4, _i$1, _slice$12, _index$12, lhs$3, i, _slice$13, _index$13, _entry$13, parts$1, _ref$5, _i$2, _slice$14, _index$14, rhs, i$1, _slice$15, _index$15, _entry$14, _slice$16, _index$16, tupleVar$1, out$1, _ref$6, _i$3, _slice$17, _index$17, lhs$4, i$2, _entry$15, t, isIExpr, _tuple, x$1, iExpr, u, _ref$7, _type$2, _entry$16, tok, one, _key$7, parts$2, _ref$8, x$2, _i$4, _slice$18, _index$18, spec, valueSpec, lhs$5, _ref$9, _i$5, _slice$19, _index$19, name, i$3, _slice$20, _index$20, rhs$1, isTuple, _tuple$1, x$3, _slice$21, _index$21, _entry$17;
 		c = this;
@@ -46788,10 +46792,10 @@ go$packages["github.com/gopherjs/gopherjs/translator"] = (function() {
 	go$pkg.init = function() {
 		(go$ptrType(expression)).methods = [["String", "", [], [Go$String], false, -1], ["StringWithParens", "", [], [Go$String], false, -1]];
 		expression.init([["str", "str", "github.com/gopherjs/gopherjs/translator", Go$String, ""], ["parens", "parens", "github.com/gopherjs/gopherjs/translator", Go$Bool, ""]]);
-		(go$ptrType(funcContext)).methods = [["CatchOutput", "", [Go$Int, (go$funcType([], [], false))], [(go$sliceType(Go$Uint8))], false, -1], ["Delayed", "", [(go$funcType([], [], false))], [], false, -1], ["Indent", "", [(go$funcType([], [], false))], [], false, -1], ["PrintCond", "", [Go$Bool, Go$String, Go$String], [], false, -1], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["clone", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(expression)), types.Type], [(go$ptrType(expression))], false, -1], ["externalize", "github.com/gopherjs/gopherjs/translator", [Go$String, types.Type], [Go$String], false, -1], ["fixNumber", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(expression)), (go$ptrType(types.Basic))], [(go$ptrType(expression))], false, -1], ["flatten64", "github.com/gopherjs/gopherjs/translator", [ast.Expr], [(go$ptrType(expression))], false, -1], ["formatExpr", "github.com/gopherjs/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(expression))], true, -1], ["formatExprInternal", "github.com/gopherjs/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface)), Go$Bool], [(go$ptrType(expression))], false, -1], ["formatParenExpr", "github.com/gopherjs/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(expression))], true, -1], ["identifierConstant", "github.com/gopherjs/gopherjs/translator", [ast.Expr], [Go$String, Go$Bool], false, -1], ["initArgs", "github.com/gopherjs/gopherjs/translator", [types.Type], [Go$String], false, -1], ["initType", "github.com/gopherjs/gopherjs/translator", [types.Object], [], false, -1], ["internalize", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(expression)), types.Type], [(go$ptrType(expression))], false, -1], ["loadStruct", "github.com/gopherjs/gopherjs/translator", [Go$String, Go$String, (go$ptrType(types.Struct))], [Go$String], false, -1], ["makeKey", "github.com/gopherjs/gopherjs/translator", [ast.Expr, types.Type], [Go$String], false, -1], ["newIdent", "github.com/gopherjs/gopherjs/translator", [Go$String, types.Type], [(go$ptrType(ast.Ident))], false, -1], ["newVariable", "github.com/gopherjs/gopherjs/translator", [Go$String], [Go$String], false, -1], ["objectName", "github.com/gopherjs/gopherjs/translator", [types.Object], [Go$String], false, -1], ["printLabel", "github.com/gopherjs/gopherjs/translator", [Go$String], [], false, -1], ["translateArgs", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(types.Signature)), (go$sliceType(ast.Expr)), Go$Bool], [Go$String], false, -1], ["translateAssign", "github.com/gopherjs/gopherjs/translator", [ast.Expr, Go$String], [Go$String], false, -1], ["translateBranchingStmt", "github.com/gopherjs/gopherjs/translator", [(go$sliceType(ast.Stmt)), (go$sliceType(ast.Stmt)), Go$Bool, (go$funcType([ast.Expr], [(go$ptrType(expression))], false)), (go$funcType([(go$sliceType(ast.Expr))], [], false)), Go$String, Go$Bool], [], false, -1], ["translateConversion", "github.com/gopherjs/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false, -1], ["translateConversionToSlice", "github.com/gopherjs/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false, -1], ["translateExpr", "github.com/gopherjs/gopherjs/translator", [ast.Expr], [(go$ptrType(expression))], false, -1], ["translateExprSlice", "github.com/gopherjs/gopherjs/translator", [(go$sliceType(ast.Expr)), types.Type], [(go$sliceType(Go$String))], false, -1], ["translateFunction", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(ast.FuncType)), (go$ptrType(types.Signature)), (go$sliceType(ast.Stmt))], [(go$sliceType(Go$String)), (go$sliceType(Go$Uint8))], false, -1], ["translateFunctionBody", "github.com/gopherjs/gopherjs/translator", [Go$Int, (go$sliceType(ast.Stmt))], [(go$sliceType(Go$Uint8))], false, -1], ["translateImplicitConversion", "github.com/gopherjs/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false, -1], ["translateLoopingStmt", "github.com/gopherjs/gopherjs/translator", [Go$String, Go$String, (go$ptrType(ast.BlockStmt)), (go$funcType([], [], false)), Go$String, Go$Bool], [], false, -1], ["translateSelection", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(types.Selection))], [(go$sliceType(Go$String)), Go$String], false, -1], ["translateSimpleStmt", "github.com/gopherjs/gopherjs/translator", [ast.Stmt], [Go$String], false, -1], ["translateStmt", "github.com/gopherjs/gopherjs/translator", [ast.Stmt, Go$String], [], false, -1], ["translateStmtList", "github.com/gopherjs/gopherjs/translator", [(go$sliceType(ast.Stmt))], [], false, -1], ["translateToplevelFunction", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(ast.FuncDecl)), Go$String], [(go$sliceType(Go$Uint8))], false, -1], ["translateType", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(types.TypeName)), Go$Bool], [], false, -1], ["typeArray", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(types.Tuple))], [Go$String], false, -1], ["typeCheck", "github.com/gopherjs/gopherjs/translator", [Go$String, types.Type], [Go$String], false, -1], ["typeName", "github.com/gopherjs/gopherjs/translator", [types.Type], [Go$String], false, -1], ["zeroValue", "github.com/gopherjs/gopherjs/translator", [types.Type], [Go$String], false, -1]];
+		(go$ptrType(funcContext)).methods = [["CatchOutput", "", [Go$Int, (go$funcType([], [], false))], [(go$sliceType(Go$Uint8))], false, -1], ["Delayed", "", [(go$funcType([], [], false))], [], false, -1], ["Indent", "", [(go$funcType([], [], false))], [], false, -1], ["PrintCond", "", [Go$Bool, Go$String, Go$String], [], false, -1], ["Printf", "", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["clone", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(expression)), types.Type], [(go$ptrType(expression))], false, -1], ["externalize", "github.com/gopherjs/gopherjs/translator", [Go$String, types.Type], [Go$String], false, -1], ["fixNumber", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(expression)), (go$ptrType(types.Basic))], [(go$ptrType(expression))], false, -1], ["flatten64", "github.com/gopherjs/gopherjs/translator", [ast.Expr], [(go$ptrType(expression))], false, -1], ["formatExpr", "github.com/gopherjs/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(expression))], true, -1], ["formatExprInternal", "github.com/gopherjs/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface)), Go$Bool], [(go$ptrType(expression))], false, -1], ["formatParenExpr", "github.com/gopherjs/gopherjs/translator", [Go$String, (go$sliceType(go$emptyInterface))], [(go$ptrType(expression))], true, -1], ["identifierConstant", "github.com/gopherjs/gopherjs/translator", [ast.Expr], [Go$String, Go$Bool], false, -1], ["initArgs", "github.com/gopherjs/gopherjs/translator", [types.Type], [Go$String], false, -1], ["initType", "github.com/gopherjs/gopherjs/translator", [types.Object], [], false, -1], ["internalize", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(expression)), types.Type], [(go$ptrType(expression))], false, -1], ["loadStruct", "github.com/gopherjs/gopherjs/translator", [Go$String, Go$String, (go$ptrType(types.Struct))], [Go$String], false, -1], ["makeKey", "github.com/gopherjs/gopherjs/translator", [ast.Expr, types.Type], [Go$String], false, -1], ["newIdent", "github.com/gopherjs/gopherjs/translator", [Go$String, types.Type], [(go$ptrType(ast.Ident))], false, -1], ["newVariable", "github.com/gopherjs/gopherjs/translator", [Go$String], [Go$String], false, -1], ["objectName", "github.com/gopherjs/gopherjs/translator", [types.Object], [Go$String], false, -1], ["printLabel", "github.com/gopherjs/gopherjs/translator", [Go$String], [], false, -1], ["translateArgs", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(types.Signature)), (go$sliceType(ast.Expr)), Go$Bool], [Go$String], false, -1], ["translateAssign", "github.com/gopherjs/gopherjs/translator", [ast.Expr, Go$String], [Go$String], false, -1], ["translateBranchingStmt", "github.com/gopherjs/gopherjs/translator", [(go$sliceType(ast.Stmt)), (go$sliceType(ast.Stmt)), Go$Bool, (go$funcType([ast.Expr], [(go$ptrType(expression))], false)), (go$funcType([(go$sliceType(ast.Expr))], [], false)), Go$String, Go$Bool], [], false, -1], ["translateConversion", "github.com/gopherjs/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false, -1], ["translateConversionToSlice", "github.com/gopherjs/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false, -1], ["translateExpr", "github.com/gopherjs/gopherjs/translator", [ast.Expr], [(go$ptrType(expression))], false, -1], ["translateExprSlice", "github.com/gopherjs/gopherjs/translator", [(go$sliceType(ast.Expr)), types.Type], [(go$sliceType(Go$String))], false, -1], ["translateFunction", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(ast.FuncType)), (go$ptrType(types.Signature)), (go$sliceType(ast.Stmt))], [(go$sliceType(Go$String)), (go$sliceType(Go$Uint8))], false, -1], ["translateFunctionBody", "github.com/gopherjs/gopherjs/translator", [Go$Int, (go$sliceType(ast.Stmt))], [(go$sliceType(Go$Uint8))], false, -1], ["translateImplicitConversion", "github.com/gopherjs/gopherjs/translator", [ast.Expr, types.Type], [(go$ptrType(expression))], false, -1], ["translateLoopingStmt", "github.com/gopherjs/gopherjs/translator", [Go$String, (go$ptrType(ast.BlockStmt)), (go$funcType([], [], false)), (go$funcType([], [], false)), Go$String, Go$Bool], [], false, -1], ["translateSelection", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(types.Selection))], [(go$sliceType(Go$String)), Go$String], false, -1], ["translateSimpleStmt", "github.com/gopherjs/gopherjs/translator", [ast.Stmt], [Go$String], false, -1], ["translateStmt", "github.com/gopherjs/gopherjs/translator", [ast.Stmt, Go$String], [], false, -1], ["translateStmtList", "github.com/gopherjs/gopherjs/translator", [(go$sliceType(ast.Stmt))], [], false, -1], ["translateToplevelFunction", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(ast.FuncDecl)), Go$String], [(go$sliceType(Go$Uint8))], false, -1], ["translateType", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(types.TypeName)), Go$Bool], [], false, -1], ["typeArray", "github.com/gopherjs/gopherjs/translator", [(go$ptrType(types.Tuple))], [Go$String], false, -1], ["typeCheck", "github.com/gopherjs/gopherjs/translator", [Go$String, types.Type], [Go$String], false, -1], ["typeName", "github.com/gopherjs/gopherjs/translator", [types.Type], [Go$String], false, -1], ["zeroValue", "github.com/gopherjs/gopherjs/translator", [types.Type], [Go$String], false, -1]];
 		funcContext.init([["p", "p", "github.com/gopherjs/gopherjs/translator", (go$ptrType(pkgContext)), ""], ["sig", "sig", "github.com/gopherjs/gopherjs/translator", (go$ptrType(types.Signature)), ""], ["allVars", "allVars", "github.com/gopherjs/gopherjs/translator", (go$mapType(Go$String, Go$Int)), ""], ["localVars", "localVars", "github.com/gopherjs/gopherjs/translator", (go$sliceType(Go$String)), ""], ["resultNames", "resultNames", "github.com/gopherjs/gopherjs/translator", (go$sliceType(ast.Expr)), ""], ["flowDatas", "flowDatas", "github.com/gopherjs/gopherjs/translator", (go$mapType(Go$String, (go$ptrType(flowData)))), ""], ["escapingVars", "escapingVars", "github.com/gopherjs/gopherjs/translator", (go$sliceType(Go$String)), ""], ["flattened", "flattened", "github.com/gopherjs/gopherjs/translator", Go$Bool, ""], ["caseCounter", "caseCounter", "github.com/gopherjs/gopherjs/translator", Go$Int, ""], ["labelCases", "labelCases", "github.com/gopherjs/gopherjs/translator", (go$mapType(Go$String, Go$Int)), ""], ["hasGoto", "hasGoto", "github.com/gopherjs/gopherjs/translator", (go$mapType(ast.Node, Go$Bool)), ""], ["output", "output", "github.com/gopherjs/gopherjs/translator", (go$sliceType(Go$Uint8)), ""], ["delayedOutput", "delayedOutput", "github.com/gopherjs/gopherjs/translator", (go$sliceType(Go$Uint8)), ""]]);
 		pkgContext.init([["pkg", "pkg", "github.com/gopherjs/gopherjs/translator", (go$ptrType(types.Package)), ""], ["info", "info", "github.com/gopherjs/gopherjs/translator", (go$ptrType(types.Info)), ""], ["pkgVars", "pkgVars", "github.com/gopherjs/gopherjs/translator", (go$mapType(Go$String, Go$String)), ""], ["objectVars", "objectVars", "github.com/gopherjs/gopherjs/translator", (go$mapType(types.Object, Go$String)), ""], ["indentation", "indentation", "github.com/gopherjs/gopherjs/translator", Go$Int, ""], ["dependencies", "dependencies", "github.com/gopherjs/gopherjs/translator", (go$mapType(types.Object, Go$Bool)), ""]]);
-		flowData.init([["postStmt", "postStmt", "github.com/gopherjs/gopherjs/translator", Go$String, ""], ["beginCase", "beginCase", "github.com/gopherjs/gopherjs/translator", Go$Int, ""], ["endCase", "endCase", "github.com/gopherjs/gopherjs/translator", Go$Int, ""]]);
+		flowData.init([["postStmt", "postStmt", "github.com/gopherjs/gopherjs/translator", (go$funcType([], [], false)), ""], ["beginCase", "beginCase", "github.com/gopherjs/gopherjs/translator", Go$Int, ""], ["endCase", "endCase", "github.com/gopherjs/gopherjs/translator", Go$Int, ""]]);
 		(go$ptrType(hasDeferVisitor)).methods = [["Visit", "", [ast.Node], [ast.Visitor], false, -1]];
 		hasDeferVisitor.init([["hasDefer", "hasDefer", "github.com/gopherjs/gopherjs/translator", Go$Bool, ""]]);
 		(go$ptrType(gotoVisitor)).methods = [["Visit", "", [ast.Node], [ast.Visitor], false, -1]];

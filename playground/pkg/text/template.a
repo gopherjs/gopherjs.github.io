@@ -1286,18 +1286,18 @@ evalString0yreflect:Newreflect:Valuetext/template/parse:StringNodetext/t
 	};
 	state.prototype.evalEmptyInterface = function(dot, n) { return this.go$val.evalEmptyInterface(dot, n); };
  0stateevalEmptyInterface0‚8reflect:Valuereflect:ValueOftext/template/parse:BoolNodetext/template/parse:DotNodetext/template/parse:FieldNode"text/template/parse:IdentifierNodetext/template/parse:NilNodetext/template/parse:Nodetext/template/parse:NumberNodetext/template/parse:PipeNodetext/template/parse:StringNode text/template/parse:VariableNodetext/template:attext/template:errorftext/template:evalFieldNodetext/template:evalFunctiontext/template:evalPipelinetext/template:evalVariableNodetext/template:idealConstanttext/template:statetext/template:zero0‚¶indirect‚‰	indirect = function(v) {
-		var rv, isNil, _struct, _struct$1, _tuple, _struct$2, _struct$3, _tuple$1, _struct$4;
+		var rv, isNil, _struct, _tuple, _struct$1, _struct$2, _struct$3, _tuple$1, _struct$4;
 		rv = new reflect.Value.Ptr();
 		isNil = false;
 		while ((v.Kind() === 22) || (v.Kind() === 20)) {
 			if (v.IsNil()) {
-				_tuple = [(_struct$1 = v, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), true], rv = _tuple[0], isNil = _tuple[1];
-				return [(_struct$2 = rv, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), isNil];
+				_tuple = [(_struct = v, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), true], rv = _tuple[0], isNil = _tuple[1];
+				return [(_struct$1 = rv, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), isNil];
 			}
 			if ((v.Kind() === 20) && v.NumMethod() > 0) {
 				break;
 			}
-			v = (_struct = v.Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+			v = (_struct$2 = v.Elem(), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 		}
 		_tuple$1 = [(_struct$3 = v, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), false], rv = _tuple$1[0], isNil = _tuple$1[1];
 		return [(_struct$4 = rv, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)), isNil];

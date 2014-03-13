@@ -1132,7 +1132,7 @@ os:dirInfoos:seeksyscall:Errno0‚ ‚Ú	File.Ptr.prototype.WriteString = fu
 		return null;
 	};
  0	Symlink0os:LinkErrorsyscall:Symlink0‚JReadlink‚	Readlink = go$pkg.Readlink = function(name) {
-		var len, x, b, _tuple, n, e;
+		var len, b, _tuple, n, e, x;
 		len = 128;
 		while (true) {
 			b = (go$sliceType(Go$Uint8)).make(len, 0, function() { return 0; });
