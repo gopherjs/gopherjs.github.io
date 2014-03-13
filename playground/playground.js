@@ -25786,7 +25786,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	checker.prototype.assignVars = function(lhs, rhs) { return this.go$val.assignVars(lhs, rhs); };
 	checker.Ptr.prototype.shortVarDecl = function(pos, lhs, rhs) {
-		var check, scope, newVars, lhsVars, _ref, _i, _slice, _index, lhs$1, i, obj, ident, _tuple, alt, alt$1, _tuple$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, obj$1;
+		var check, scope, newVars, lhsVars, _ref, _i, _slice, _index, lhs$1, i, obj, ident, _tuple, name, alt, alt$1, _tuple$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, obj$1;
 		check = this;
 		scope = check.context.scope;
 		newVars = (go$sliceType((go$ptrType(Var)))).nil;
@@ -25798,15 +25798,18 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			i = _i;
 			obj = (go$ptrType(Var)).nil;
 			if (_tuple = (lhs$1 !== null && lhs$1.constructor === (go$ptrType(ast.Ident)) ? [lhs$1.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], !(ident === (go$ptrType(ast.Ident)).nil)) {
-				if (alt = scope.Lookup(ident.Name), !(go$interfaceIsEqual(alt, null))) {
+				name = ident.Name;
+				if (alt = scope.Lookup(name), !(go$interfaceIsEqual(alt, null))) {
 					if (_tuple$1 = (alt !== null && alt.constructor === (go$ptrType(Var)) ? [alt.go$val, true] : [(go$ptrType(Var)).nil, false]), alt$1 = _tuple$1[0], !(alt$1 === (go$ptrType(Var)).nil)) {
 						obj = alt$1;
 					} else {
 						check.errorf(lhs$1.Pos(), "cannot assign to %s", new (go$sliceType(go$emptyInterface))([lhs$1]));
 					}
 				} else {
-					obj = NewVar(ident.Pos(), check.pkg, ident.Name, null);
-					newVars = go$append(newVars, obj);
+					obj = NewVar(ident.Pos(), check.pkg, name, null);
+					if (!(name === "_")) {
+						newVars = go$append(newVars, obj);
+					}
 				}
 				if (!(obj === (go$ptrType(Var)).nil)) {
 					check.recordDef(ident, obj);
@@ -25830,7 +25833,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 				_i$1++;
 			}
 		} else {
-			check.errorf(pos, "no new variables on left side of :=", new (go$sliceType(go$emptyInterface))([]));
+			check.softErrorf(pos, "no new variables on left side of :=", new (go$sliceType(go$emptyInterface))([]));
 		}
 	};
 	checker.prototype.shortVarDecl = function(pos, lhs, rhs) { return this.go$val.shortVarDecl(pos, lhs, rhs); };
@@ -26708,6 +26711,14 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 	checker.Ptr.prototype.initFiles = function(files) {
 		var check, pkg, _ref, _i, _slice, _index, file, name, _ref$1, fileScope;
 		check = this;
+		check.files = (go$sliceType((go$ptrType(ast.File)))).nil;
+		check.fileScopes = (go$sliceType((go$ptrType(Scope)))).nil;
+		check.dotImports = (go$sliceType((go$mapType((go$ptrType(Package)), token.Pos)))).nil;
+		check.firstErr = null;
+		check.methods = false;
+		check.untyped = false;
+		check.funcs = (go$sliceType(funcInfo)).nil;
+		check.delayed = (go$sliceType((go$funcType([], [], false)))).nil;
 		pkg = check.pkg;
 		_ref = files;
 		_i = 0;
@@ -26733,11 +26744,6 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			}
 			_i++;
 		}
-		check.firstErr = null;
-		check.methods = false;
-		check.untyped = false;
-		check.funcs = (go$sliceType(funcInfo)).nil;
-		check.delayed = (go$sliceType((go$funcType([], [], false)))).nil;
 	};
 	checker.prototype.initFiles = function(files) { return this.go$val.initFiles(files); };
 	checker.Ptr.prototype.handleBailout = function(err) {
@@ -26755,7 +26761,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	checker.prototype.handleBailout = function(err) { return this.go$val.handleBailout(err); };
 	checker.Ptr.prototype.Files = function(files) {
-		var err, check, v, _ref, _i, _slice, _index, f;
+		var err, check, v, objList, _ref, _i, _slice, _index, f;
 		err = null;
 		var go$deferred = [];
 		try {
@@ -26763,9 +26769,10 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			go$deferred.push({ recv: check, method: "handleBailout", args: [new (go$ptrType(go$error))(function() { return err; }, function(v) { err = v; })] });
 			check.initFiles(files);
 			check.collectObjects();
-			check.packageObjects();
+			objList = objectsOf(check.objMap);
+			check.packageObjects(objList);
 			check.functionBodies();
-			check.initDependencies();
+			check.initDependencies(objList);
 			check.unusedImports();
 			_ref = check.delayed;
 			_i = 0;
@@ -27158,7 +27165,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 	};
 	Named.prototype.setUnderlying = function(typ) { return this.go$val.setUnderlying(typ); };
 	checker.Ptr.prototype.typeDecl = function(obj, typ, def$1, path) {
-		var check, named, _entry, methods, mset, t, _tuple, x, _ref, _i, _slice, _index, fld, v, _ref$1, _i$1, _slice$1, _index$1, m, alt, v$1, _ref$2, _type, _entry$1;
+		var check, named;
 		check = this;
 		assert(go$interfaceIsEqual(obj.object.typ, null));
 		assert(go$interfaceIsEqual(check.context.iota, null));
@@ -27167,12 +27174,20 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		obj.object.typ = named;
 		check.typExpr(typ, named, go$append(path, obj));
 		named.underlying = underlying(named.underlying);
+		check.addMethodDecls(obj);
+	};
+	checker.prototype.typeDecl = function(obj, typ, def$1, path) { return this.go$val.typeDecl(obj, typ, def$1, path); };
+	checker.Ptr.prototype.addMethodDecls = function(obj) {
+		var check, _entry, methods, mset, x, base, t, _tuple, x$1, _ref, _i, _slice, _index, fld, v, _ref$1, _i$1, _slice$1, _index$1, m, v$1, _ref$2, _i$2, _slice$2, _index$2, m$1, alt, v$2, _ref$3, _type;
+		check = this;
 		methods = (_entry = check.methods[obj.object.name], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(Func)))).nil);
 		if (methods.length === 0) {
 			return;
 		}
+		delete check.methods[obj.object.name];
 		mset = false;
-		if (_tuple = (x = named.underlying, (x !== null && x.constructor === (go$ptrType(Struct)) ? [x.go$val, true] : [(go$ptrType(Struct)).nil, false])), t = _tuple[0], !(t === (go$ptrType(Struct)).nil)) {
+		base = (x = obj.object.typ, (x !== null && x.constructor === (go$ptrType(Named)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(Named)))));
+		if (_tuple = (x$1 = base.underlying, (x$1 !== null && x$1.constructor === (go$ptrType(Struct)) ? [x$1.go$val, true] : [(go$ptrType(Struct)).nil, false])), t = _tuple[0], !(t === (go$ptrType(Struct)).nil)) {
 			_ref = t.fields;
 			_i = 0;
 			while (_i < _ref.length) {
@@ -27183,36 +27198,42 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 				_i++;
 			}
 		}
-		_ref$1 = methods;
+		_ref$1 = base.methods;
 		_i$1 = 0;
 		while (_i$1 < _ref$1.length) {
 			m = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			if (!(m.object.name === "_")) {
-				if (alt = (new (go$ptrType(objset))(function() { return mset; }, function(v$1) { mset = v$1; })).insert(m), !(go$interfaceIsEqual(alt, null))) {
-					_ref$2 = alt;
-					_type = _ref$2 !== null ? _ref$2.constructor : null;
+			assert(!(m.object.name === "_"));
+			assert(go$interfaceIsEqual((new (go$ptrType(objset))(function() { return mset; }, function(v$1) { mset = v$1; })).insert(m), null));
+			_i$1++;
+		}
+		_ref$2 = methods;
+		_i$2 = 0;
+		while (_i$2 < _ref$2.length) {
+			m$1 = (_slice$2 = _ref$2, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+			if (!(m$1.object.name === "_")) {
+				if (alt = (new (go$ptrType(objset))(function() { return mset; }, function(v$2) { mset = v$2; })).insert(m$1), !(go$interfaceIsEqual(alt, null))) {
+					_ref$3 = alt;
+					_type = _ref$3 !== null ? _ref$3.constructor : null;
 					if (_type === (go$ptrType(Var))) {
-						check.errorf(m.object.pos, "field and method with the same name %s", new (go$sliceType(go$emptyInterface))([new Go$String(m.object.name)]));
+						check.errorf(m$1.object.pos, "field and method with the same name %s", new (go$sliceType(go$emptyInterface))([new Go$String(m$1.object.name)]));
 					} else if (_type === (go$ptrType(Func))) {
-						check.errorf(m.object.pos, "method %s already declared for %s", new (go$sliceType(go$emptyInterface))([new Go$String(m.object.name), named]));
+						check.errorf(m$1.object.pos, "method %s already declared for %s", new (go$sliceType(go$emptyInterface))([new Go$String(m$1.object.name), base]));
 					} else {
 						unreachable();
 					}
 					check.reportAltDecl(alt);
-					_i$1++;
+					_i$2++;
 					continue;
 				}
 			}
-			check.recordDef((_entry$1 = check.objMap[(m || go$interfaceNil).go$key()], _entry$1 !== undefined ? _entry$1.v : (go$ptrType(declInfo)).nil).fdecl.Name, m);
-			check.objDecl(m, (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
-			if (!(m.object.name === "_")) {
-				named.methods = go$append(named.methods, m);
+			check.objDecl(m$1, (go$ptrType(Named)).nil, (go$sliceType((go$ptrType(TypeName)))).nil);
+			if (!(m$1.object.name === "_")) {
+				base.methods = go$append(base.methods, m$1);
 			}
-			_i$1++;
+			_i$2++;
 		}
-		delete check.methods[obj.object.name];
 	};
-	checker.prototype.typeDecl = function(obj, typ, def$1, path) { return this.go$val.typeDecl(obj, typ, def$1, path); };
+	checker.prototype.addMethodDecls = function(obj) { return this.go$val.addMethodDecls(obj); };
 	checker.Ptr.prototype.funcDecl = function(obj, decl) {
 		var check, sig, fdecl;
 		check = this;
@@ -30630,6 +30651,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 							check.declare(pkg.scope, d.Name, obj$5);
 						}
 					} else {
+						check.recordDef(d.Name, obj$5);
 						if (list = d.Recv.List, list.length > 0) {
 							typ = (_slice$13 = list, _index$13 = 0, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range")).Type;
 							if (_tuple$2 = (typ !== null && typ.constructor === (go$ptrType(ast.StarExpr)) ? [typ.go$val, true] : [(go$ptrType(ast.StarExpr)).nil, false]), ptr = _tuple$2[0], !(ptr === (go$ptrType(ast.StarExpr)).nil)) {
@@ -30669,20 +30691,29 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 	};
 	checker.prototype.collectObjects = function() { return this.go$val.collectObjects(); };
-	checker.Ptr.prototype.packageObjects = function() {
-		var check, typePath, _ref, _i, _slice, _index, obj;
+	checker.Ptr.prototype.packageObjects = function(objList) {
+		var check, _ref, _i, _slice, _index, obj, obj$1, _tuple, typePath, _ref$1, _i$1, _slice$1, _index$1, obj$2;
 		check = this;
-		typePath = (go$sliceType((go$ptrType(TypeName)))).make(0, 8, function() { return (go$ptrType(TypeName)).nil; });
-		_ref = objectsOf(check.objMap);
+		_ref = objList;
 		_i = 0;
 		while (_i < _ref.length) {
 			obj = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			check.objDecl(obj, (go$ptrType(Named)).nil, typePath);
+			if (_tuple = (obj !== null && obj.constructor === (go$ptrType(TypeName)) ? [obj.go$val, true] : [(go$ptrType(TypeName)).nil, false]), obj$1 = _tuple[0], !(obj$1 === (go$ptrType(TypeName)).nil) && !(go$interfaceIsEqual(obj$1.object.typ, null))) {
+				check.addMethodDecls(obj$1);
+			}
 			_i++;
+		}
+		typePath = (go$sliceType((go$ptrType(TypeName)))).make(0, 8, function() { return (go$ptrType(TypeName)).nil; });
+		_ref$1 = objList;
+		_i$1 = 0;
+		while (_i$1 < _ref$1.length) {
+			obj$2 = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+			check.objDecl(obj$2, (go$ptrType(Named)).nil, typePath);
+			_i$1++;
 		}
 		check.methods = false;
 	};
-	checker.prototype.packageObjects = function() { return this.go$val.packageObjects(); };
+	checker.prototype.packageObjects = function(objList) { return this.go$val.packageObjects(objList); };
 	checker.Ptr.prototype.functionBodies = function() {
 		var check, _ref, _i, _slice, _index, _struct, f;
 		check = this;
@@ -30695,11 +30726,11 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		}
 	};
 	checker.prototype.functionBodies = function() { return this.go$val.functionBodies(); };
-	checker.Ptr.prototype.initDependencies = function() {
+	checker.Ptr.prototype.initDependencies = function(objList) {
 		var check, initPath, _ref, _i, _slice, _index, obj, _ref$1, _type, d, _entry;
 		check = this;
 		initPath = (go$sliceType(Object)).make(0, 8, function() { return null; });
-		_ref = objectsOf(check.objMap);
+		_ref = objList;
 		_i = 0;
 		while (_i < _ref.length) {
 			obj = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
@@ -30713,7 +30744,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 			_i++;
 		}
 	};
-	checker.prototype.initDependencies = function() { return this.go$val.initDependencies(); };
+	checker.prototype.initDependencies = function(objList) { return this.go$val.initDependencies(objList); };
 	checker.Ptr.prototype.unusedImports = function() {
 		var check, _ref, _i, _slice, _index, scope, i, usedDotImports, _ref$1, _i$1, _keys, _entry, obj, obj$1, _ref$2, _type, _key, _ref$3, _slice$1, _index$1, _i$2, _keys$1, _entry$1, pos, pkg, _entry$2;
 		check = this;
@@ -33519,7 +33550,7 @@ go$packages["code.google.com/p/go.tools/go/types"] = (function() {
 		exprInfo.init([["isLhs", "isLhs", "code.google.com/p/go.tools/go/types", Go$Bool, ""], ["typ", "typ", "code.google.com/p/go.tools/go/types", (go$ptrType(Basic)), ""], ["val", "val", "code.google.com/p/go.tools/go/types", exact.Value, ""]]);
 		funcInfo.init([["name", "name", "code.google.com/p/go.tools/go/types", Go$String, ""], ["decl", "decl", "code.google.com/p/go.tools/go/types", (go$ptrType(declInfo)), ""], ["sig", "sig", "code.google.com/p/go.tools/go/types", (go$ptrType(Signature)), ""], ["body", "body", "code.google.com/p/go.tools/go/types", (go$ptrType(ast.BlockStmt)), ""]]);
 		context.init([["decl", "decl", "code.google.com/p/go.tools/go/types", (go$ptrType(declInfo)), ""], ["scope", "scope", "code.google.com/p/go.tools/go/types", (go$ptrType(Scope)), ""], ["iota", "iota", "code.google.com/p/go.tools/go/types", exact.Value, ""], ["sig", "sig", "code.google.com/p/go.tools/go/types", (go$ptrType(Signature)), ""], ["hasLabel", "hasLabel", "code.google.com/p/go.tools/go/types", Go$Bool, ""], ["hasCallOrRecv", "hasCallOrRecv", "code.google.com/p/go.tools/go/types", Go$Bool, ""]]);
-		(go$ptrType(checker)).methods = [["Files", "", [(go$sliceType((go$ptrType(ast.File))))], [go$error], false, -1], ["addDeclDep", "code.google.com/p/go.tools/go/types", [Object], [], false, -1], ["argument", "code.google.com/p/go.tools/go/types", [(go$ptrType(Signature)), Go$Int, (go$ptrType(operand)), Go$Bool], [], false, -1], ["arguments", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.CallExpr)), (go$ptrType(Signature)), getter, Go$Int], [], false, -1], ["arityMatch", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.ValueSpec)), (go$ptrType(ast.ValueSpec))], [], false, -1], ["arrayLength", "code.google.com/p/go.tools/go/types", [ast.Expr], [Go$Int64], false, -1], ["assignVar", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$ptrType(operand))], [Type], false, -1], ["assignVars", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Expr)), (go$sliceType(ast.Expr))], [], false, -1], ["assignment", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), Type], [Go$Bool], false, -1], ["assocMethod", "code.google.com/p/go.tools/go/types", [Go$String, (go$ptrType(Func))], [], false, -1], ["binary", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr, ast.Expr, token.Token], [], false, -1], ["blockBranches", "code.google.com/p/go.tools/go/types", [(go$ptrType(Scope)), (go$ptrType(block)), (go$ptrType(ast.LabeledStmt)), (go$sliceType(ast.Stmt))], [(go$sliceType((go$ptrType(ast.BranchStmt))))], false, -1], ["builtin", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.CallExpr)), builtinId], [Go$Bool], false, -1], ["call", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.CallExpr))], [exprKind], false, -1], ["caseTypes", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(Interface)), (go$sliceType(ast.Expr)), (go$mapType(Type, token.Pos))], [Type], false, -1], ["caseValues", "code.google.com/p/go.tools/go/types", [operand, (go$sliceType(ast.Expr))], [], false, -1], ["closeScope", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["collectObjects", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["collectParams", "code.google.com/p/go.tools/go/types", [(go$ptrType(Scope)), (go$ptrType(ast.FieldList)), Go$Bool], [(go$sliceType((go$ptrType(Var)))), Go$Bool], false, -1], ["comparison", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(operand)), token.Token], [], false, -1], ["complexArg", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand))], [Go$Bool], false, -1], ["constDecl", "code.google.com/p/go.tools/go/types", [(go$ptrType(Const)), ast.Expr, ast.Expr], [], false, -1], ["conversion", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), Type], [], false, -1], ["convertUntyped", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), Type], [], false, -1], ["declStmt", "code.google.com/p/go.tools/go/types", [ast.Decl], [], false, -1], ["declare", "code.google.com/p/go.tools/go/types", [(go$ptrType(Scope)), (go$ptrType(ast.Ident)), Object], [], false, -1], ["declareInSet", "code.google.com/p/go.tools/go/types", [(go$ptrType(objset)), token.Pos, Object], [Go$Bool], false, -1], ["declarePkgObj", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.Ident)), Object, (go$ptrType(declInfo))], [], false, -1], ["delay", "code.google.com/p/go.tools/go/types", [(go$funcType([], [], false))], [], false, -1], ["dependencies", "code.google.com/p/go.tools/go/types", [Object, (go$ptrType(declInfo)), (go$sliceType(Object))], [], false, -1], ["dump", "code.google.com/p/go.tools/go/types", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["err", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, Go$Bool], [], false, -1], ["error", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String], [], false, -1], ["errorf", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["expr", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr], [], false, -1], ["exprInternal", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr, Type], [exprKind], false, -1], ["exprOrType", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr], [], false, -1], ["exprWithHint", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr, Type], [], false, -1], ["funcBody", "code.google.com/p/go.tools/go/types", [(go$ptrType(declInfo)), Go$String, (go$ptrType(Signature)), (go$ptrType(ast.BlockStmt))], [], false, -1], ["funcDecl", "code.google.com/p/go.tools/go/types", [(go$ptrType(Func)), (go$ptrType(declInfo))], [], false, -1], ["funcType", "code.google.com/p/go.tools/go/types", [(go$ptrType(Signature)), (go$ptrType(ast.FieldList)), (go$ptrType(ast.FuncType))], [(go$ptrType(Signature))], false, -1], ["functionBodies", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["handleBailout", "code.google.com/p/go.tools/go/types", [(go$ptrType(go$error))], [], false, -1], ["ident", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.Ident)), (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["index", "code.google.com/p/go.tools/go/types", [ast.Expr, Go$Int64], [Go$Int64, Go$Bool], false, -1], ["indexedElts", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Expr)), Type, Go$Int64], [Go$Int64], false, -1], ["initConst", "code.google.com/p/go.tools/go/types", [(go$ptrType(Const)), (go$ptrType(operand))], [], false, -1], ["initDependencies", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["initFiles", "code.google.com/p/go.tools/go/types", [(go$sliceType((go$ptrType(ast.File))))], [], false, -1], ["initStmt", "code.google.com/p/go.tools/go/types", [ast.Stmt], [], false, -1], ["initVar", "code.google.com/p/go.tools/go/types", [(go$ptrType(Var)), (go$ptrType(operand)), Go$Bool], [Type], false, -1], ["initVars", "code.google.com/p/go.tools/go/types", [(go$sliceType((go$ptrType(Var)))), (go$sliceType(ast.Expr)), token.Pos], [], false, -1], ["interfaceType", "code.google.com/p/go.tools/go/types", [(go$ptrType(Interface)), (go$ptrType(ast.InterfaceType)), (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["invalidAST", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["invalidArg", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["invalidOp", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["isTerminating", "code.google.com/p/go.tools/go/types", [ast.Stmt, Go$String], [Go$Bool], false, -1], ["isTerminatingList", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Stmt)), Go$String], [Go$Bool], false, -1], ["isTerminatingSwitch", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.BlockStmt)), Go$String], [Go$Bool], false, -1], ["labels", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.BlockStmt))], [], false, -1], ["later", "code.google.com/p/go.tools/go/types", [Go$String, (go$ptrType(declInfo)), (go$ptrType(Signature)), (go$ptrType(ast.BlockStmt))], [], false, -1], ["multipleDefaults", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Stmt))], [], false, -1], ["objDecl", "code.google.com/p/go.tools/go/types", [Object, (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["op", "code.google.com/p/go.tools/go/types", [opPredicates, (go$ptrType(operand)), token.Token], [Go$Bool], false, -1], ["openScope", "code.google.com/p/go.tools/go/types", [ast.Stmt], [], false, -1], ["packageObjects", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["rawExpr", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr, Type], [exprKind], false, -1], ["recordBuiltinType", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$ptrType(Signature))], [], false, -1], ["recordCommaOkTypes", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$arrayType(Type, 2))], [], false, -1], ["recordDef", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.Ident)), Object], [], false, -1], ["recordImplicit", "code.google.com/p/go.tools/go/types", [ast.Node, Object], [], false, -1], ["recordScope", "code.google.com/p/go.tools/go/types", [ast.Node, (go$ptrType(Scope))], [], false, -1], ["recordSelection", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.SelectorExpr)), SelectionKind, Type, Object, (go$sliceType(Go$Int)), Go$Bool], [], false, -1], ["recordTypeAndValue", "code.google.com/p/go.tools/go/types", [ast.Expr, Type, exact.Value], [], false, -1], ["recordUntyped", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["recordUse", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.Ident)), Object], [], false, -1], ["rememberUntyped", "code.google.com/p/go.tools/go/types", [ast.Expr, Go$Bool, (go$ptrType(Basic)), exact.Value], [], false, -1], ["reportAltDecl", "code.google.com/p/go.tools/go/types", [Object], [], false, -1], ["representable", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(Basic))], [], false, -1], ["selector", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.SelectorExpr))], [], false, -1], ["shift", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(operand)), token.Token], [], false, -1], ["shortVarDecl", "code.google.com/p/go.tools/go/types", [token.Pos, (go$sliceType(ast.Expr)), (go$sliceType(ast.Expr))], [], false, -1], ["softErrorf", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["sprintf", "code.google.com/p/go.tools/go/types", [Go$String, (go$sliceType(go$emptyInterface))], [Go$String], true, -1], ["stmt", "code.google.com/p/go.tools/go/types", [stmtContext, ast.Stmt], [], false, -1], ["stmtList", "code.google.com/p/go.tools/go/types", [stmtContext, (go$sliceType(ast.Stmt))], [], false, -1], ["structType", "code.google.com/p/go.tools/go/types", [(go$ptrType(Struct)), (go$ptrType(ast.StructType)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["suspendedCall", "code.google.com/p/go.tools/go/types", [Go$String, (go$ptrType(ast.CallExpr))], [], false, -1], ["tag", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.BasicLit))], [Go$String], false, -1], ["trace", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["typ", "code.google.com/p/go.tools/go/types", [ast.Expr], [Type], false, -1], ["typExpr", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [Type], false, -1], ["typExprInternal", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [Type], false, -1], ["typOrNil", "code.google.com/p/go.tools/go/types", [ast.Expr], [Type], false, -1], ["typeAssertion", "code.google.com/p/go.tools/go/types", [token.Pos, (go$ptrType(operand)), (go$ptrType(Interface)), Type], [], false, -1], ["typeDecl", "code.google.com/p/go.tools/go/types", [(go$ptrType(TypeName)), ast.Expr, (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["unary", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), token.Token], [], false, -1], ["unusedImports", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["updateExprType", "code.google.com/p/go.tools/go/types", [ast.Expr, Type, Go$Bool], [], false, -1], ["updateExprVal", "code.google.com/p/go.tools/go/types", [ast.Expr, exact.Value], [], false, -1], ["usage", "code.google.com/p/go.tools/go/types", [(go$ptrType(Scope))], [], false, -1], ["use", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Expr))], [], false, -1], ["varDecl", "code.google.com/p/go.tools/go/types", [(go$ptrType(Var)), (go$sliceType((go$ptrType(Var)))), ast.Expr, ast.Expr], [], false, -1]];
+		(go$ptrType(checker)).methods = [["Files", "", [(go$sliceType((go$ptrType(ast.File))))], [go$error], false, -1], ["addDeclDep", "code.google.com/p/go.tools/go/types", [Object], [], false, -1], ["addMethodDecls", "code.google.com/p/go.tools/go/types", [(go$ptrType(TypeName))], [], false, -1], ["argument", "code.google.com/p/go.tools/go/types", [(go$ptrType(Signature)), Go$Int, (go$ptrType(operand)), Go$Bool], [], false, -1], ["arguments", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.CallExpr)), (go$ptrType(Signature)), getter, Go$Int], [], false, -1], ["arityMatch", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.ValueSpec)), (go$ptrType(ast.ValueSpec))], [], false, -1], ["arrayLength", "code.google.com/p/go.tools/go/types", [ast.Expr], [Go$Int64], false, -1], ["assignVar", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$ptrType(operand))], [Type], false, -1], ["assignVars", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Expr)), (go$sliceType(ast.Expr))], [], false, -1], ["assignment", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), Type], [Go$Bool], false, -1], ["assocMethod", "code.google.com/p/go.tools/go/types", [Go$String, (go$ptrType(Func))], [], false, -1], ["binary", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr, ast.Expr, token.Token], [], false, -1], ["blockBranches", "code.google.com/p/go.tools/go/types", [(go$ptrType(Scope)), (go$ptrType(block)), (go$ptrType(ast.LabeledStmt)), (go$sliceType(ast.Stmt))], [(go$sliceType((go$ptrType(ast.BranchStmt))))], false, -1], ["builtin", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.CallExpr)), builtinId], [Go$Bool], false, -1], ["call", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.CallExpr))], [exprKind], false, -1], ["caseTypes", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(Interface)), (go$sliceType(ast.Expr)), (go$mapType(Type, token.Pos))], [Type], false, -1], ["caseValues", "code.google.com/p/go.tools/go/types", [operand, (go$sliceType(ast.Expr))], [], false, -1], ["closeScope", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["collectObjects", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["collectParams", "code.google.com/p/go.tools/go/types", [(go$ptrType(Scope)), (go$ptrType(ast.FieldList)), Go$Bool], [(go$sliceType((go$ptrType(Var)))), Go$Bool], false, -1], ["comparison", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(operand)), token.Token], [], false, -1], ["complexArg", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand))], [Go$Bool], false, -1], ["constDecl", "code.google.com/p/go.tools/go/types", [(go$ptrType(Const)), ast.Expr, ast.Expr], [], false, -1], ["conversion", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), Type], [], false, -1], ["convertUntyped", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), Type], [], false, -1], ["declStmt", "code.google.com/p/go.tools/go/types", [ast.Decl], [], false, -1], ["declare", "code.google.com/p/go.tools/go/types", [(go$ptrType(Scope)), (go$ptrType(ast.Ident)), Object], [], false, -1], ["declareInSet", "code.google.com/p/go.tools/go/types", [(go$ptrType(objset)), token.Pos, Object], [Go$Bool], false, -1], ["declarePkgObj", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.Ident)), Object, (go$ptrType(declInfo))], [], false, -1], ["delay", "code.google.com/p/go.tools/go/types", [(go$funcType([], [], false))], [], false, -1], ["dependencies", "code.google.com/p/go.tools/go/types", [Object, (go$ptrType(declInfo)), (go$sliceType(Object))], [], false, -1], ["dump", "code.google.com/p/go.tools/go/types", [Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["err", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, Go$Bool], [], false, -1], ["error", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String], [], false, -1], ["errorf", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["expr", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr], [], false, -1], ["exprInternal", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr, Type], [exprKind], false, -1], ["exprOrType", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr], [], false, -1], ["exprWithHint", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr, Type], [], false, -1], ["funcBody", "code.google.com/p/go.tools/go/types", [(go$ptrType(declInfo)), Go$String, (go$ptrType(Signature)), (go$ptrType(ast.BlockStmt))], [], false, -1], ["funcDecl", "code.google.com/p/go.tools/go/types", [(go$ptrType(Func)), (go$ptrType(declInfo))], [], false, -1], ["funcType", "code.google.com/p/go.tools/go/types", [(go$ptrType(Signature)), (go$ptrType(ast.FieldList)), (go$ptrType(ast.FuncType))], [(go$ptrType(Signature))], false, -1], ["functionBodies", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["handleBailout", "code.google.com/p/go.tools/go/types", [(go$ptrType(go$error))], [], false, -1], ["ident", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.Ident)), (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["index", "code.google.com/p/go.tools/go/types", [ast.Expr, Go$Int64], [Go$Int64, Go$Bool], false, -1], ["indexedElts", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Expr)), Type, Go$Int64], [Go$Int64], false, -1], ["initConst", "code.google.com/p/go.tools/go/types", [(go$ptrType(Const)), (go$ptrType(operand))], [], false, -1], ["initDependencies", "code.google.com/p/go.tools/go/types", [(go$sliceType(Object))], [], false, -1], ["initFiles", "code.google.com/p/go.tools/go/types", [(go$sliceType((go$ptrType(ast.File))))], [], false, -1], ["initStmt", "code.google.com/p/go.tools/go/types", [ast.Stmt], [], false, -1], ["initVar", "code.google.com/p/go.tools/go/types", [(go$ptrType(Var)), (go$ptrType(operand)), Go$Bool], [Type], false, -1], ["initVars", "code.google.com/p/go.tools/go/types", [(go$sliceType((go$ptrType(Var)))), (go$sliceType(ast.Expr)), token.Pos], [], false, -1], ["interfaceType", "code.google.com/p/go.tools/go/types", [(go$ptrType(Interface)), (go$ptrType(ast.InterfaceType)), (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["invalidAST", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["invalidArg", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["invalidOp", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["isTerminating", "code.google.com/p/go.tools/go/types", [ast.Stmt, Go$String], [Go$Bool], false, -1], ["isTerminatingList", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Stmt)), Go$String], [Go$Bool], false, -1], ["isTerminatingSwitch", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.BlockStmt)), Go$String], [Go$Bool], false, -1], ["labels", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.BlockStmt))], [], false, -1], ["later", "code.google.com/p/go.tools/go/types", [Go$String, (go$ptrType(declInfo)), (go$ptrType(Signature)), (go$ptrType(ast.BlockStmt))], [], false, -1], ["multipleDefaults", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Stmt))], [], false, -1], ["objDecl", "code.google.com/p/go.tools/go/types", [Object, (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["op", "code.google.com/p/go.tools/go/types", [opPredicates, (go$ptrType(operand)), token.Token], [Go$Bool], false, -1], ["openScope", "code.google.com/p/go.tools/go/types", [ast.Stmt], [], false, -1], ["packageObjects", "code.google.com/p/go.tools/go/types", [(go$sliceType(Object))], [], false, -1], ["rawExpr", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), ast.Expr, Type], [exprKind], false, -1], ["recordBuiltinType", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$ptrType(Signature))], [], false, -1], ["recordCommaOkTypes", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$arrayType(Type, 2))], [], false, -1], ["recordDef", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.Ident)), Object], [], false, -1], ["recordImplicit", "code.google.com/p/go.tools/go/types", [ast.Node, Object], [], false, -1], ["recordScope", "code.google.com/p/go.tools/go/types", [ast.Node, (go$ptrType(Scope))], [], false, -1], ["recordSelection", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.SelectorExpr)), SelectionKind, Type, Object, (go$sliceType(Go$Int)), Go$Bool], [], false, -1], ["recordTypeAndValue", "code.google.com/p/go.tools/go/types", [ast.Expr, Type, exact.Value], [], false, -1], ["recordUntyped", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["recordUse", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.Ident)), Object], [], false, -1], ["rememberUntyped", "code.google.com/p/go.tools/go/types", [ast.Expr, Go$Bool, (go$ptrType(Basic)), exact.Value], [], false, -1], ["reportAltDecl", "code.google.com/p/go.tools/go/types", [Object], [], false, -1], ["representable", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(Basic))], [], false, -1], ["selector", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(ast.SelectorExpr))], [], false, -1], ["shift", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), (go$ptrType(operand)), token.Token], [], false, -1], ["shortVarDecl", "code.google.com/p/go.tools/go/types", [token.Pos, (go$sliceType(ast.Expr)), (go$sliceType(ast.Expr))], [], false, -1], ["softErrorf", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["sprintf", "code.google.com/p/go.tools/go/types", [Go$String, (go$sliceType(go$emptyInterface))], [Go$String], true, -1], ["stmt", "code.google.com/p/go.tools/go/types", [stmtContext, ast.Stmt], [], false, -1], ["stmtList", "code.google.com/p/go.tools/go/types", [stmtContext, (go$sliceType(ast.Stmt))], [], false, -1], ["structType", "code.google.com/p/go.tools/go/types", [(go$ptrType(Struct)), (go$ptrType(ast.StructType)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["suspendedCall", "code.google.com/p/go.tools/go/types", [Go$String, (go$ptrType(ast.CallExpr))], [], false, -1], ["tag", "code.google.com/p/go.tools/go/types", [(go$ptrType(ast.BasicLit))], [Go$String], false, -1], ["trace", "code.google.com/p/go.tools/go/types", [token.Pos, Go$String, (go$sliceType(go$emptyInterface))], [], true, -1], ["typ", "code.google.com/p/go.tools/go/types", [ast.Expr], [Type], false, -1], ["typExpr", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [Type], false, -1], ["typExprInternal", "code.google.com/p/go.tools/go/types", [ast.Expr, (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [Type], false, -1], ["typOrNil", "code.google.com/p/go.tools/go/types", [ast.Expr], [Type], false, -1], ["typeAssertion", "code.google.com/p/go.tools/go/types", [token.Pos, (go$ptrType(operand)), (go$ptrType(Interface)), Type], [], false, -1], ["typeDecl", "code.google.com/p/go.tools/go/types", [(go$ptrType(TypeName)), ast.Expr, (go$ptrType(Named)), (go$sliceType((go$ptrType(TypeName))))], [], false, -1], ["unary", "code.google.com/p/go.tools/go/types", [(go$ptrType(operand)), token.Token], [], false, -1], ["unusedImports", "code.google.com/p/go.tools/go/types", [], [], false, -1], ["updateExprType", "code.google.com/p/go.tools/go/types", [ast.Expr, Type, Go$Bool], [], false, -1], ["updateExprVal", "code.google.com/p/go.tools/go/types", [ast.Expr, exact.Value], [], false, -1], ["usage", "code.google.com/p/go.tools/go/types", [(go$ptrType(Scope))], [], false, -1], ["use", "code.google.com/p/go.tools/go/types", [(go$sliceType(ast.Expr))], [], false, -1], ["varDecl", "code.google.com/p/go.tools/go/types", [(go$ptrType(Var)), (go$sliceType((go$ptrType(Var)))), ast.Expr, ast.Expr], [], false, -1]];
 		checker.init([["conf", "conf", "code.google.com/p/go.tools/go/types", (go$ptrType(Config)), ""], ["fset", "fset", "code.google.com/p/go.tools/go/types", (go$ptrType(token.FileSet)), ""], ["pkg", "pkg", "code.google.com/p/go.tools/go/types", (go$ptrType(Package)), ""], ["Info", "", "", (go$ptrType(Info)), ""], ["objMap", "objMap", "code.google.com/p/go.tools/go/types", (go$mapType(Object, (go$ptrType(declInfo)))), ""], ["files", "files", "code.google.com/p/go.tools/go/types", (go$sliceType((go$ptrType(ast.File)))), ""], ["fileScopes", "fileScopes", "code.google.com/p/go.tools/go/types", (go$sliceType((go$ptrType(Scope)))), ""], ["dotImports", "dotImports", "code.google.com/p/go.tools/go/types", (go$sliceType((go$mapType((go$ptrType(Package)), token.Pos)))), ""], ["firstErr", "firstErr", "code.google.com/p/go.tools/go/types", go$error, ""], ["methods", "methods", "code.google.com/p/go.tools/go/types", (go$mapType(Go$String, (go$sliceType((go$ptrType(Func)))))), ""], ["untyped", "untyped", "code.google.com/p/go.tools/go/types", (go$mapType(ast.Expr, exprInfo)), ""], ["funcs", "funcs", "code.google.com/p/go.tools/go/types", (go$sliceType(funcInfo)), ""], ["delayed", "delayed", "code.google.com/p/go.tools/go/types", (go$sliceType((go$funcType([], [], false)))), ""], ["context", "", "code.google.com/p/go.tools/go/types", context, ""], ["indent", "indent", "code.google.com/p/go.tools/go/types", Go$Int, ""]]);
 		bailout.init([]);
 		opPredicates.init(token.Token, (go$funcType([Type], [Go$Bool], false)));
