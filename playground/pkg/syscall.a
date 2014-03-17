@@ -1,4 +1,4 @@
-0ƒάλsyscallƒ%:package syscall
+0ƒά‹syscallƒ%:package syscall
 import sync "sync"
 import runtime "runtime"
 import errors "errors"
@@ -1958,7 +1958,7 @@ func (? *@"sync".Mutex) @"sync".Lock() ()
 func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
-0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$10ƒ·50‚Ύivalue‚'	ivalue = go$pkg.ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
+0-runtimeerrorssync/atomicsyncsyscall060syncsync0runtimeruntime0errorserrors$10ƒ¶Υ0‚Ύivalue‚'	ivalue = go$pkg.ivalue = go$newType(0, "Struct", "syscall.ivalue", "ivalue", "syscall", function(name_, value_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : go$makeNativeArray("Uint8", 16, function() { return 0; });
 		this.value = value_ !== undefined ? value_ : 0;
@@ -2751,8 +2751,8 @@ BpfTimeout01syscall:Errnosyscall:Syscallsyscall:Timeval0‚›SetBpfTimeout
 		throw go$panic("Native function not implemented: setenv_c");
 	};
  0
-setenv-c0 0‚copyenv‚α	copyenv = function() {
-		var _ref, _i, _slice, _index, s, i, j, key, ok, _tuple, _entry, _key;
+setenv-c0 0‚copyenv‚ζ	copyenv = function() {
+		var _ref, _i, _slice, _index, s, i, j, key, _tuple, _entry, ok, _key;
 		env = new Go$Map();
 		_ref = envs;
 		_i = 0;
@@ -2763,7 +2763,8 @@ BpfTimeout01syscall:Errnosyscall:Syscallsyscall:Timeval0‚›SetBpfTimeout
 			while (j < s.length) {
 				if (s.charCodeAt(j) === 61) {
 					key = s.substring(0, j);
-					if (_tuple = (_entry = env[key], _entry !== undefined ? [_entry.v, true] : [0, false]), ok = _tuple[1], !ok) {
+					_tuple = (_entry = env[key], _entry !== undefined ? [_entry.v, true] : [0, false]), ok = _tuple[1];
+					if (!ok) {
 						_key = key, (env || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: i };
 					}
 					break;
@@ -2889,12 +2890,15 @@ BpfTimeout01syscall:Errnosyscall:Syscallsyscall:Timeval0‚›SetBpfTimeout
  0runtime-BeforeFork0 0runtime_AfterForkn	runtime_AfterFork = function() {
 		throw go$panic("Native function not implemented: runtime_AfterFork");
 	};
- 0runtime-AfterFork0 0‚%lforkAndExecInChild‚$Μ	forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
+ 0runtime-AfterFork0 0‚%]forkAndExecInChild‚$½	forkAndExecInChild = function(argv0, argv, envv, chroot, dir, attr, sys, pipe$1) {
 		var go$this = this, pid, err, _tuple, r1, r2, err1, nextfd, i, fd, _ref, _i, _slice, _index, ufd, i$1, _slice$1, _index$1, darwin, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, cred, ngroups, groups, _tuple$8, _tuple$9, _tuple$10, _tuple$11, _tuple$12, _slice$2, _index$2, _slice$3, _index$3, _tuple$13, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _tuple$14, _slice$8, _index$8, _tuple$15, _slice$9, _index$9, _tuple$16, _tuple$17, _tuple$18, v;
 		pid = 0;
 		err = 0;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
-		_tuple = [0, 0], r1 = _tuple[0], r2 = _tuple[1], err1 = 0, nextfd = 0, i = 0;
+		_tuple = [0, 0], r1 = _tuple[0], r2 = _tuple[1];
+		err1 = 0;
+		nextfd = 0;
+		i = 0;
 		fd = (go$sliceType(Go$Int)).make(attr.Files.length, 0, function() { return 0; });
 		nextfd = attr.Files.length;
 		_ref = attr.Files;
@@ -2949,7 +2953,8 @@ BpfTimeout01syscall:Errnosyscall:Syscallsyscall:Timeval0‚›SetBpfTimeout
 				/* goto childerror */ go$s = 1; continue;
 			/* } */ case 9:
 		/* } */ case 8:
-		/* if (cred = sys.Credential, !(cred === (go$ptrType(Credential)).nil)) { */ if (cred = sys.Credential, !(cred === (go$ptrType(Credential)).nil)) {} else { go$s = 10; continue; }
+		cred = sys.Credential;
+		/* if (!(cred === (go$ptrType(Credential)).nil)) { */ if (!(cred === (go$ptrType(Credential)).nil)) {} else { go$s = 10; continue; }
 			ngroups = (cred.Groups.length >>> 0);
 			groups = 0;
 			if (ngroups > 0) {
@@ -3104,7 +3109,7 @@ BpfTimeout01syscall:Errnosyscall:Syscallsyscall:Timeval0‚›SetBpfTimeout
 		err = err;
 		return err;
 	};
- 0SetNonblock0syscall:fcntl0‚MforkExec‚ω	forkExec = function(argv0, argv, attr) {
+ 0SetNonblock0syscall:fcntl0‚ΩforkExec‚…	forkExec = function(argv0, argv, attr) {
 		var go$this = this, pid, err, p, n, err1, wstatus, sys, _tuple, argv0p, _tuple$1, _tuple$2, argvp, _tuple$3, _tuple$4, envvp, _tuple$5, _slice, _index, chroot, _tuple$6, _tuple$7, dir, _tuple$8, _tuple$9, _tuple$10, _tuple$11, v, _tuple$12, v$1, err1$1, _tuple$13, v$2, _tuple$14, _tuple$15, _tuple$16;
 		pid = 0;
 		err = null;
@@ -3154,7 +3159,8 @@ BpfTimeout01syscall:Errnosyscall:Syscallsyscall:Timeval0‚›SetBpfTimeout
 			}
 		}
 		go$pkg.ForkLock.Lock();
-		/* if (err = forkExecPipe(new (go$sliceType(Go$Int))(p)), !(go$interfaceIsEqual(err, null))) { */ if (err = forkExecPipe(new (go$sliceType(Go$Int))(p)), !(go$interfaceIsEqual(err, null))) {} else { go$s = 2; continue; }
+		err = forkExecPipe(new (go$sliceType(Go$Int))(p));
+		/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 2; continue; }
 			/* goto error */ go$s = 1; continue;
 		/* } */ case 2:
 		_tuple$10 = forkAndExecInChild(argv0p, argvp, envvp, chroot, dir, attr, sys, p[1]), pid = _tuple$10[0], err1 = _tuple$10[1];
@@ -3183,10 +3189,10 @@ BpfTimeout01syscall:Errnosyscall:Syscallsyscall:Timeval0‚›SetBpfTimeout
 		_tuple$15 = [pid, null], pid = _tuple$15[0], err = _tuple$15[1];
 		return [pid, err];
 		/* error: */ case 1:
-		/* if (p[0] >= 0) { */ if (p[0] >= 0) {} else { go$s = 4; continue; }
+		if (p[0] >= 0) {
 			Close(p[0]);
 			Close(p[1]);
-		/* } */ case 4:
+		}
 		go$pkg.ForkLock.Unlock();
 		_tuple$16 = [0, err], pid = _tuple$16[0], err = _tuple$16[1];
 		return [pid, err];
@@ -3251,27 +3257,30 @@ rsaAlignOfΔ	rsaAlignOf = function(salen) {
 		return (((salen + salign >> 0) - 1 >> 0)) & (~((salign - 1 >> 0)) >> 0);
 	};
  0
-rsaAlignOf0 0‚PRouteRIB‚	RouteRIB = go$pkg.RouteRIB = function(facility, param) {
-		var mib, n, err, v, tab, err$1, v$1, _slice, _index, _slice$1, _index$1, v$2;
+rsaAlignOf0 0‚TRouteRIB‚	RouteRIB = go$pkg.RouteRIB = function(facility, param) {
+		var mib, n, v, err, tab, v$1, _slice, _index, _slice$1, _index$1, v$2, err$1;
 		mib = new (go$sliceType(_C_int))([4, 17, 0, 0, (facility >> 0), (param >> 0)]);
 		n = 0;
-		if (err = sysctl(mib, (go$ptrType(Go$Uint8)).nil, new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v) { n = v; }), (go$ptrType(Go$Uint8)).nil, 0), !(go$interfaceIsEqual(err, null))) {
+		err = sysctl(mib, (go$ptrType(Go$Uint8)).nil, new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v) { n = v; }), (go$ptrType(Go$Uint8)).nil, 0);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [(go$sliceType(Go$Uint8)).nil, err];
 		}
 		if (n === 0) {
 			return [(go$sliceType(Go$Uint8)).nil, null];
 		}
 		tab = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
-		if (err$1 = sysctl(mib, new (go$ptrType(Go$Uint8))(function() { return (_slice = tab, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v$1) { _slice$1 = tab, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v$1) : go$throwRuntimeError("index out of range"); }), new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v$2) { n = v$2; }), (go$ptrType(Go$Uint8)).nil, 0), !(go$interfaceIsEqual(err$1, null))) {
+		err$1 = sysctl(mib, new (go$ptrType(Go$Uint8))(function() { return (_slice = tab, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v$1) { _slice$1 = tab, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v$1) : go$throwRuntimeError("index out of range"); }), new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v$2) { n = v$2; }), (go$ptrType(Go$Uint8)).nil, 0);
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			return [(go$sliceType(Go$Uint8)).nil, err$1];
 		}
 		return [go$subslice(tab, 0, n), null];
 	};
  0
-RouteRIB0 syscall:-C-intsyscall:sysctl0‚ΐ ‚Ή	RouteMessage.Ptr.prototype.sockaddr = function() {
+RouteRIB0 syscall:-C-intsyscall:sysctl0‚Β ‚»	RouteMessage.Ptr.prototype.sockaddr = function() {
 		var m, af, sas, b, i, y, _array, _struct, _view, rsa, _ref, _tuple, _array$1, _struct$1, _array$2, _struct$2, _view$1, _view$2, sa, err, _ref$1, _array$3, _struct$3, _view$3, rsa4, sa$1, j, _array$4, _struct$4, _view$4, rsa6, sa$2, j$1;
 		m = this;
-		af = 0, sas = go$makeNativeArray("Interface", 4, function() { return null; });
+		af = 0;
+		sas = go$makeNativeArray("Interface", 4, function() { return null; });
 		b = m.Data;
 		i = 0;
 		while (i < 8) {
@@ -3968,13 +3977,14 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 		}
 		return [nfd, sa, err];
 	};
- 0Accept0osyscall:-Socklensyscall:Closesyscall:Errnosyscall:RawSockaddrAnysyscall:acceptsyscall:anyToSockaddr0‚%Getsockname‚«	Getsockname = go$pkg.Getsockname = function(fd) {
+ 0Accept0osyscall:-Socklensyscall:Closesyscall:Errnosyscall:RawSockaddrAnysyscall:acceptsyscall:anyToSockaddr0‚'Getsockname‚­	Getsockname = go$pkg.Getsockname = function(fd) {
 		var sa, err, rsa, len, v, _tuple;
 		sa = null;
 		err = null;
 		rsa = new RawSockaddrAny.Ptr();
 		len = 108;
-		if (err = getsockname(fd, rsa, new (go$ptrType(_Socklen))(function() { return len; }, function(v) { len = v; })), !(go$interfaceIsEqual(err, null))) {
+		err = getsockname(fd, rsa, new (go$ptrType(_Socklen))(function() { return len; }, function(v) { len = v; }));
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [sa, err];
 		}
 		_tuple = anyToSockaddr(rsa), sa = _tuple[0], err = _tuple[1];
@@ -4036,7 +4046,7 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 		_struct = value, _view = new DataView(_array.buffer, _array.byteOffset), _struct.Filt = new (go$nativeArray("Uint32"))(_array.buffer, go$min(_array.byteOffset + 0, _array.buffer.byteLength));
 		return [value, err];
 	};
- 0GetsockoptICMPv6Filter0<syscall:-Socklensyscall:ICMPv6Filtersyscall:getsockopt0‚Recvmsg‚	Recvmsg = go$pkg.Recvmsg = function(fd, p, oob, flags) {
+ 0GetsockoptICMPv6Filter0<syscall:-Socklensyscall:ICMPv6Filtersyscall:getsockopt0‚Recvmsg‚	Recvmsg = go$pkg.Recvmsg = function(fd, p, oob, flags) {
 		var n, oobn, recvflags, from, err, msg, rsa, _array, _struct, _view, iov, dummy, v, _tuple, _tuple$1;
 		n = 0;
 		oobn = 0;
@@ -4065,7 +4075,8 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 		}
 		msg.Iov = iov;
 		msg.Iovlen = 1;
-		if (_tuple = recvmsg(fd, msg, flags), n = _tuple[0], err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = recvmsg(fd, msg, flags), n = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [n, oobn, recvflags, from, err];
 		}
 		oobn = (msg.Controllen >> 0);
@@ -4075,7 +4086,7 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 		}
 		return [n, oobn, recvflags, from, err];
 	};
- 0	Recvmsg0_syscall:Iovecsyscall:Msghdrsyscall:RawSockaddrAnysyscall:anyToSockaddrsyscall:recvmsg0‚Sendmsg‚©	Sendmsg = go$pkg.Sendmsg = function(fd, p, oob, to, flags) {
+ 0	Recvmsg0_syscall:Iovecsyscall:Msghdrsyscall:RawSockaddrAnysyscall:anyToSockaddrsyscall:recvmsg0‚	Sendmsg‚«	Sendmsg = go$pkg.Sendmsg = function(fd, p, oob, to, flags) {
 		var err, ptr, salen, _tuple, msg, iov, dummy, v;
 		err = null;
 		ptr = 0;
@@ -4105,7 +4116,8 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 		}
 		msg.Iov = iov;
 		msg.Iovlen = 1;
-		if (err = sendmsg(fd, msg, flags), !(go$interfaceIsEqual(err, null))) {
+		err = sendmsg(fd, msg, flags);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
 		return err;
@@ -4124,7 +4136,7 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 		_tuple$1 = kevent(kq, change, changes.length, event, events.length, timeout), n = _tuple$1[0], err = _tuple$1[1];
 		return [n, err];
 	};
- 0Kevent0syscall:kevent0‚ΡSysctl‚”	Sysctl = go$pkg.Sysctl = function(name) {
+ 0Kevent0syscall:kevent0‚ΥSysctl‚	Sysctl = go$pkg.Sysctl = function(name) {
 		var value, err, _tuple, mib, _tuple$1, n, v, _tuple$2, _tuple$3, buf, v$1, _slice, _index, _slice$1, _index$1, v$2, _tuple$4, _slice$2, _index$2, _tuple$5;
 		value = "";
 		err = null;
@@ -4134,7 +4146,8 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 			return [value, err];
 		}
 		n = 0;
-		if (err = sysctl(mib, (go$ptrType(Go$Uint8)).nil, new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v) { n = v; }), (go$ptrType(Go$Uint8)).nil, 0), !(go$interfaceIsEqual(err, null))) {
+		err = sysctl(mib, (go$ptrType(Go$Uint8)).nil, new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v) { n = v; }), (go$ptrType(Go$Uint8)).nil, 0);
+		if (!(go$interfaceIsEqual(err, null))) {
 			_tuple$2 = ["", err], value = _tuple$2[0], err = _tuple$2[1];
 			return [value, err];
 		}
@@ -4143,7 +4156,8 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 			return [value, err];
 		}
 		buf = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
-		if (err = sysctl(mib, new (go$ptrType(Go$Uint8))(function() { return (_slice = buf, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v$1) { _slice$1 = buf, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v$1) : go$throwRuntimeError("index out of range"); }), new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v$2) { n = v$2; }), (go$ptrType(Go$Uint8)).nil, 0), !(go$interfaceIsEqual(err, null))) {
+		err = sysctl(mib, new (go$ptrType(Go$Uint8))(function() { return (_slice = buf, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v$1) { _slice$1 = buf, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v$1) : go$throwRuntimeError("index out of range"); }), new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v$2) { n = v$2; }), (go$ptrType(Go$Uint8)).nil, 0);
+		if (!(go$interfaceIsEqual(err, null))) {
 			_tuple$4 = ["", err], value = _tuple$4[0], err = _tuple$4[1];
 			return [value, err];
 		}
@@ -4153,7 +4167,7 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 		_tuple$5 = [go$bytesToString(go$subslice(buf, 0, n)), null], value = _tuple$5[0], err = _tuple$5[1];
 		return [value, err];
 	};
- 0Sysctl0#syscall:nametomibsyscall:sysctl0‚aSysctlUint32‚		SysctlUint32 = go$pkg.SysctlUint32 = function(name) {
+ 0Sysctl0#syscall:nametomibsyscall:sysctl0‚cSysctlUint32‚	SysctlUint32 = go$pkg.SysctlUint32 = function(name) {
 		var value, err, _tuple, mib, _tuple$1, n, buf, v, _slice, _index, _slice$1, _index$1, v$1, _tuple$2, _tuple$3, _slice$2, _index$2, _tuple$4;
 		value = 0;
 		err = null;
@@ -4164,7 +4178,8 @@ WaitStatus0syscall:WaitStatus0‚ Wait4‚µ	Wait4 = go$pkg.Wait4 = function(
 		}
 		n = 4;
 		buf = (go$sliceType(Go$Uint8)).make(4, 0, function() { return 0; });
-		if (err = sysctl(mib, new (go$ptrType(Go$Uint8))(function() { return (_slice = buf, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v) { _slice$1 = buf, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v) : go$throwRuntimeError("index out of range"); }), new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v$1) { n = v$1; }), (go$ptrType(Go$Uint8)).nil, 0), !(go$interfaceIsEqual(err, null))) {
+		err = sysctl(mib, new (go$ptrType(Go$Uint8))(function() { return (_slice = buf, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v) { _slice$1 = buf, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v) : go$throwRuntimeError("index out of range"); }), new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v$1) { n = v$1; }), (go$ptrType(Go$Uint8)).nil, 0);
+		if (!(go$interfaceIsEqual(err, null))) {
 			_tuple$2 = [0, err], value = _tuple$2[0], err = _tuple$2[1];
 			return [value, err];
 		}
@@ -4230,7 +4245,7 @@ UtimesNano0qsyscall:Errnosyscall:NsecToTimevalsyscall:Timespecsyscall:Ti
 		}
 		return ["", new Errno(45)];
 	};
- 0Getwd06syscall:Errnosyscall:attrListsyscall:getAttrList0‚S	nametomib‚φ	nametomib = function(name) {
+ 0Getwd06syscall:Errnosyscall:attrListsyscall:getAttrList0‚U	nametomib‚ψ	nametomib = function(name) {
 		var mib, err, buf, n, p, _tuple, bytes, _tuple$1, v, v$1, _slice, _index, _slice$1, _index$1, _tuple$2, _q, _tuple$3;
 		mib = (go$sliceType(_C_int)).nil;
 		err = null;
@@ -4242,7 +4257,8 @@ UtimesNano0qsyscall:Errnosyscall:NsecToTimevalsyscall:Timespecsyscall:Ti
 			_tuple$1 = [(go$sliceType(_C_int)).nil, err], mib = _tuple$1[0], err = _tuple$1[1];
 			return [mib, err];
 		}
-		if (err = sysctl(new (go$sliceType(_C_int))([0, 3]), p, new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v) { n = v; }), new (go$ptrType(Go$Uint8))(function() { return (_slice = bytes, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v$1) { _slice$1 = bytes, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v$1) : go$throwRuntimeError("index out of range"); }), (name.length >>> 0)), !(go$interfaceIsEqual(err, null))) {
+		err = sysctl(new (go$sliceType(_C_int))([0, 3]), p, new (go$ptrType(Go$Uintptr))(function() { return n; }, function(v) { n = v; }), new (go$ptrType(Go$Uint8))(function() { return (_slice = bytes, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")); }, function(v$1) { _slice$1 = bytes, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? (_slice$1.array[_slice$1.offset + _index$1] = v$1) : go$throwRuntimeError("index out of range"); }), (name.length >>> 0));
+		if (!(go$interfaceIsEqual(err, null))) {
 			_tuple$2 = [(go$sliceType(_C_int)).nil, err], mib = _tuple$2[0], err = _tuple$2[1];
 			return [mib, err];
 		}
@@ -4290,8 +4306,8 @@ UtimesNano0qsyscall:Errnosyscall:NsecToTimevalsyscall:Timespecsyscall:Ti
 		err = ptrace(11, pid, 0, 0);
 		return err;
 	};
- 0PtraceDetach0syscall:ptrace0‚QgetAttrList‚ε	getAttrList = function(path, attrList$1, attrBuf, options) {
-		var attrs, err, _tuple, _p0, _tuple$1, _tuple$2, _tuple$3, _array, _struct, _view, e1, _tuple$4, _slice, _index, size, dat, i, header, _tuple$5, _slice$1, _index$1, datOff, _slice$2, _index$2, attrLen, _tuple$6, end, r, _r;
+ 0PtraceDetach0syscall:ptrace0‚TgetAttrList‚θ	getAttrList = function(path, attrList$1, attrBuf, options) {
+		var attrs, err, _tuple, _p0, _tuple$1, _tuple$2, _tuple$3, _array, _struct, _view, e1, _tuple$4, _slice, _index, size, dat, i, header, _tuple$5, _slice$1, _index$1, datOff, _slice$2, _index$2, attrLen, _tuple$6, end, _r, r;
 		attrs = (go$sliceType((go$sliceType(Go$Uint8)))).nil;
 		err = null;
 		if (attrBuf.length < 4) {
@@ -4335,7 +4351,8 @@ UtimesNano0qsyscall:Errnosyscall:NsecToTimevalsyscall:Timespecsyscall:Ti
 			end = (datOff >>> 0) + attrLen >>> 0;
 			attrs = go$append(attrs, go$subslice(dat, datOff, end));
 			i = end;
-			if (r = (_r = i % 4, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")), !((r === 0))) {
+			r = (_r = i % 4, _r === _r ? _r : go$throwRuntimeError("integer divide by zero"));
+			if (!((r === 0))) {
 				i = i + (((4 - r >>> 0))) >>> 0;
 			}
 		}
@@ -4480,7 +4497,7 @@ RawSyscall0 0™RawSyscall6w	RawSyscall6 = go$pkg.RawSyscall6 = function() {
 		}
 	};
 	mmapper.prototype.Mmap = function(fd, offset, length, prot, flags) { return this.go$val.Mmap(fd, offset, length, prot, flags); };
- 0	mmapper0 syscall:Errnosyscall:mmapper0‚α ‚¬	mmapper.Ptr.prototype.Munmap = function(data) {
+ 0	mmapper0 syscall:Errnosyscall:mmapper0‚δ ‚―	mmapper.Ptr.prototype.Munmap = function(data) {
 		var err, m, v, _slice, _index, _slice$1, _index$1, p, _entry, b, errno;
 		err = null;
 		var go$deferred = [];
@@ -4498,7 +4515,8 @@ RawSyscall0 0™RawSyscall6w	RawSyscall6 = go$pkg.RawSyscall6 = function() {
 				err = new Errno(22);
 				return err;
 			}
-			if (errno = m.munmap(go$sliceToArray(b), (b.length >>> 0)), !(go$interfaceIsEqual(errno, null))) {
+			errno = m.munmap(go$sliceToArray(b), (b.length >>> 0));
+			if (!(go$interfaceIsEqual(errno, null))) {
 				err = errno;
 				return err;
 			}
@@ -4590,13 +4608,14 @@ RawSyscall0 0™RawSyscall6w	RawSyscall6 = go$pkg.RawSyscall6 = function() {
 		err = connect(fd, ptr, n);
 		return err;
 	};
- 0	Connect0#syscall:connectsyscall:sockaddr0‚%Getpeername‚«	Getpeername = go$pkg.Getpeername = function(fd) {
+ 0	Connect0#syscall:connectsyscall:sockaddr0‚'Getpeername‚­	Getpeername = go$pkg.Getpeername = function(fd) {
 		var sa, err, rsa, len, v, _tuple;
 		sa = null;
 		err = null;
 		rsa = new RawSockaddrAny.Ptr();
 		len = 108;
-		if (err = getpeername(fd, rsa, new (go$ptrType(_Socklen))(function() { return len; }, function(v) { len = v; })), !(go$interfaceIsEqual(err, null))) {
+		err = getpeername(fd, rsa, new (go$ptrType(_Socklen))(function() { return len; }, function(v) { len = v; }));
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [sa, err];
 		}
 		_tuple = anyToSockaddr(rsa), sa = _tuple[0], err = _tuple[1];
@@ -4612,14 +4631,15 @@ RawSyscall0 0™RawSyscall6w	RawSyscall6 = go$pkg.RawSyscall6 = function() {
 		_tuple = [(n >> 0), err], value = _tuple[0], err = _tuple[1];
 		return [value, err];
 	};
- 0GetsockoptInt0&syscall:-Socklensyscall:getsockopt0‚Recvfrom‚.	Recvfrom = go$pkg.Recvfrom = function(fd, p, flags) {
+ 0GetsockoptInt0&syscall:-Socklensyscall:getsockopt0‚΅Recvfrom‚0	Recvfrom = go$pkg.Recvfrom = function(fd, p, flags) {
 		var n, from, err, rsa, len, _tuple, v, _tuple$1;
 		n = 0;
 		from = null;
 		err = null;
 		rsa = new RawSockaddrAny.Ptr();
 		len = 108;
-		if (_tuple = recvfrom(fd, p, flags, rsa, new (go$ptrType(_Socklen))(function() { return len; }, function(v) { len = v; })), n = _tuple[0], err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = recvfrom(fd, p, flags, rsa, new (go$ptrType(_Socklen))(function() { return len; }, function(v) { len = v; })), n = _tuple[0], err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [n, from, err];
 		}
 		if (!((rsa.Addr.Family === 0))) {

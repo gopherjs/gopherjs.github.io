@@ -1,4 +1,4 @@
-0ÉRstringsÇpackage strings
+0ÉVstringsÇpackage strings
 import errors "errors"
 import io "io"
 import utf8 "unicode/utf8"
@@ -97,7 +97,7 @@ func (? *@"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
 type @"unicode".CaseRange struct { @"unicode".Lo uint32; @"unicode".Hi uint32; @"unicode".Delta @"unicode".d }
 type @"unicode".d [3]rune
 $$
-0Hruntimeerrorssync/atomicsynciounicodeunicode/utf8strings0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0ÇÎë0Ç	ReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "strings.Reader", "Reader", "strings", function(s_, i_, prevRune_) {
+0Hruntimeerrorssync/atomicsynciounicodeunicode/utf8strings0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0ÇÎï0Ç	ReaderÇ	Reader = go$pkg.Reader = go$newType(0, "Struct", "strings.Reader", "Reader", "strings", function(s_, i_, prevRune_) {
 		this.go$val = this;
 		this.s = s_ !== undefined ? s_ : "";
 		this.i = i_ !== undefined ? i_ : 0;
@@ -256,7 +256,7 @@ errors:Newio:EOFstrings:Reader0Ç© Ç}	Reader.Ptr.prototype.ReadByte = fun
 	};
 	Reader.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
  0Reader0
-errors:Newstrings:Reader0Ç  Ç”	Reader.Ptr.prototype.ReadRune = function() {
+errors:Newstrings:Reader0Ç" Ç’	Reader.Ptr.prototype.ReadRune = function() {
 		var ch, size, err, r, _tuple, c, _tuple$1, _tuple$2;
 		ch = 0;
 		size = 0;
@@ -267,7 +267,8 @@ errors:Newstrings:Reader0Ç  Ç”	Reader.Ptr.prototype.ReadRune = function() 
 			return [ch, size, err];
 		}
 		r.prevRune = r.i;
-		if (c = r.s.charCodeAt(r.i), c < 128) {
+		c = r.s.charCodeAt(r.i);
+		if (c < 128) {
 			r.i = r.i + 1 >> 0;
 			_tuple$1 = [(c >> 0), 1, null], ch = _tuple$1[0], size = _tuple$1[1], err = _tuple$1[2];
 			return [ch, size, err];
@@ -1451,12 +1452,13 @@ TrimSuffixÅ•	TrimSuffix = go$pkg.TrimSuffix = function(s, suffix) {
 		return s;
 	};
  0
-TrimSuffix0strings:HasSuffix0Ç[ReplaceÇ 	Replace = go$pkg.Replace = function(s, old, new$1, n) {
+TrimSuffix0strings:HasSuffix0Ç]ReplaceÇ	Replace = go$pkg.Replace = function(s, old, new$1, n) {
 		var m, x, t, w, start, i, j, _tuple, wid;
 		if (old === new$1 || (n === 0)) {
 			return s;
 		}
-		if (m = Count(s, old), m === 0) {
+		m = Count(s, old);
+		if (m === 0) {
 			return s;
 		} else if (n < 0 || m < n) {
 			n = m;

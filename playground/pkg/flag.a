@@ -1,4 +1,4 @@
-0Çƒ…flagÇ¯package flag
+0Çƒ’flagÇ¯package flag
 import errors "errors"
 import fmt "fmt"
 import io "io"
@@ -128,7 +128,7 @@ func (? *@"time".Duration) @"time".String() (? string)
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
 0rruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmtsortflag0b0errorserrors0
-fmtfmt0ioio0osos0sortsort0strconvstrconv0timetime0Ç§È0Çe	boolValued	boolValue = go$pkg.boolValue = go$newType(0, "Bool", "flag.boolValue", "boolValue", "flag", null);
+fmtfmt0ioio0osos0sortsort0strconvstrconv0timetime0Ç§ı0Çe	boolValued	boolValue = go$pkg.boolValue = go$newType(0, "Bool", "flag.boolValue", "boolValue", "flag", null);
 Å‚		(go$ptrType(boolValue)).methods = [["Get", "", [], [go$emptyInterface], false, -1], ["IsBoolFlag", "", [], [Go$Bool], false, -1], ["Set", "", [Go$String], [go$error], false, -1], ["String", "", [], [Go$String], false, -1]];
 0	boolValue0 0ÇAboolFlage	boolFlag = go$pkg.boolFlag = go$newType(0, "Interface", "flag.boolFlag", "boolFlag", "flag", null);
 Åø		boolFlag.init([["IsBoolFlag", "", (go$funcType([], [Go$Bool], false))], ["Set", "", (go$funcType([Go$String], [go$error], false))], ["String", "", (go$funcType([], [Go$String], false))]]);
@@ -486,13 +486,14 @@ int64Value0flag:int64Valuefmt:Sprintf0Å¶newUintValuer	newUintValue = fun
 fmt:Errorf0ÅÇSet^	Set = go$pkg.Set = function(name, value) {
 		return go$pkg.CommandLine.Set(name, value);
 	};
- 0Set0flag:CommandLine0Çƒ Çx	FlagSet.Ptr.prototype.PrintDefaults = function() {
+ 0Set0flag:CommandLine0Ç« Ç{	FlagSet.Ptr.prototype.PrintDefaults = function() {
 		var f;
 		f = this;
 		f.VisitAll((function(flag) {
-			var format, ok, _tuple, x;
+			var format, _tuple, x, ok;
 			format = "  -%s=%s: %s\n";
-			if (_tuple = (x = flag.Value, (x !== null && x.constructor === (go$ptrType(stringValue)) ? [x.go$val, true] : [(go$ptrType(stringValue)).nil, false])), ok = _tuple[1], ok) {
+			_tuple = (x = flag.Value, (x !== null && x.constructor === (go$ptrType(stringValue)) ? [x.go$val, true] : [(go$ptrType(stringValue)).nil, false])), ok = _tuple[1];
+			if (ok) {
 				format = "  -%s=%q: %s\n";
 			}
 			fmt.Fprintf(f.out(), format, new (go$sliceType(go$emptyInterface))([new Go$String(flag.Name), new Go$String(flag.DefValue), new Go$String(flag.Usage)]));
@@ -761,8 +762,8 @@ fmt:Errorffmt:Fprintln0ÇÅ Ç&	FlagSet.Ptr.prototype.usage = function() {
 	};
 	FlagSet.prototype.usage = function() { return this.go$val.usage(); };
  0FlagSetusage0?flag:CommandLineflag:FlagSet
-flag:Usageflag:defaultUsage0Ç” Çf	FlagSet.Ptr.prototype.parseOne = function() {
-		var f, _slice, _index, s, num_minuses, name, has_value, value, i, m, _tuple, _entry, flag, alreadythere, ok, fv, _tuple$1, x, err, _slice$1, _index$1, _tuple$2, err$1, _key;
+flag:Usageflag:defaultUsage0Ç‹ Ço	FlagSet.Ptr.prototype.parseOne = function() {
+		var f, _slice, _index, s, num_minuses, name, has_value, value, i, m, _tuple, _entry, flag, alreadythere, _tuple$1, x, fv, ok, err, _slice$1, _index$1, _tuple$2, err$1, _key;
 		f = this;
 		if (f.args.length === 0) {
 			return [false, null];
@@ -805,9 +806,11 @@ flag:Usageflag:defaultUsage0Ç” Çf	FlagSet.Ptr.prototype.parseOne = functio
 			}
 			return [false, f.failf("flag provided but not defined: -%s", new (go$sliceType(go$emptyInterface))([new Go$String(name)]))];
 		}
-		if (_tuple$1 = (x = flag.Value, (x !== null && boolFlag.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), fv = _tuple$1[0], ok = _tuple$1[1], ok && fv.IsBoolFlag()) {
+		_tuple$1 = (x = flag.Value, (x !== null && boolFlag.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), fv = _tuple$1[0], ok = _tuple$1[1];
+		if (ok && fv.IsBoolFlag()) {
 			if (has_value) {
-				if (err = fv.Set(value), !(go$interfaceIsEqual(err, null))) {
+				err = fv.Set(value);
+				if (!(go$interfaceIsEqual(err, null))) {
 					return [false, f.failf("invalid boolean value %q for  -%s: %v", new (go$sliceType(go$emptyInterface))([new Go$String(value), new Go$String(name), err]))];
 				}
 			} else {
@@ -821,7 +824,8 @@ flag:Usageflag:defaultUsage0Ç” Çf	FlagSet.Ptr.prototype.parseOne = functio
 			if (!has_value) {
 				return [false, f.failf("flag needs an argument: -%s", new (go$sliceType(go$emptyInterface))([new Go$String(name)]))];
 			}
-			if (err$1 = flag.Value.Set(value), !(go$interfaceIsEqual(err$1, null))) {
+			err$1 = flag.Value.Set(value);
+			if (!(go$interfaceIsEqual(err$1, null))) {
 				return [false, f.failf("invalid value %q for flag -%s: %v", new (go$sliceType(go$emptyInterface))([new Go$String(value), new Go$String(name), err$1]))];
 			}
 		}

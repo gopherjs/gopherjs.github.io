@@ -1,4 +1,4 @@
-0ƒago/ast‚¬„package ast
+0ƒa}go/ast‚¬„package ast
 import token "go/token"
 import strings "strings"
 import unicode "unicode"
@@ -610,7 +610,7 @@ $$
 0²runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/ast0Î0go/tokentoken0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0
 fmtfmt0sortsort0strconvstrconv0ioio0osos0reflectreflect0
-go/scannerscanner0ƒ²ÿ0ïNodeV	Node = go$pkg.Node = go$newType(0, "Interface", "ast.Node", "Node", "go/ast", null);
+go/scannerscanner0ƒ³`0ïNodeV	Node = go$pkg.Node = go$newType(0, "Interface", "ast.Node", "Node", "go/ast", null);
 w		Node.init([["End", "", (go$funcType([], [token.Pos], false))], ["Pos", "", (go$funcType([], [token.Pos], false))]]);
 0Node0go/token:Pos0‚&ExprV	Expr = go$pkg.Expr = go$newType(0, "Interface", "ast.Expr", "Expr", "go/ast", null);
 ­		Expr.init([["End", "", (go$funcType([], [token.Pos], false))], ["Pos", "", (go$funcType([], [token.Pos], false))], ["exprNode", "go/ast", (go$funcType([], [], false))]]);
@@ -1345,13 +1345,14 @@ pkgBuilder0Sgo/ast:Objectgo/ast:Scopego/scanner:ErrorListgo/token:FileSe
 		return 0;
 	};
 	FieldList.prototype.Pos = function() { return this.go$val.Pos(); };
- 0	FieldList0 go/ast:FieldListgo/token:Pos0‚ ‚Ö	FieldList.Ptr.prototype.End = function() {
+ 0	FieldList0 go/ast:FieldListgo/token:Pos0‚ ‚Ø	FieldList.Ptr.prototype.End = function() {
 		var f, n, _slice, _index;
 		f = this;
 		if ((new token.Pos(f.Closing)).IsValid()) {
 			return f.Closing + 1 >> 0;
 		}
-		if (n = f.List.length, n > 0) {
+		n = f.List.length;
+		if (n > 0) {
 			return (_slice = f.List, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).End();
 		}
 		return 0;
@@ -1965,10 +1966,11 @@ AssignStmt0go/ast:AssignStmt0½ ›	GoStmt.Ptr.prototype.End = function() {
 		return s.Call.End();
 	};
 	DeferStmt.prototype.End = function() { return this.go$val.End(); };
- 0	DeferStmt0go/ast:DeferStmt0‚É ‚ž	ReturnStmt.Ptr.prototype.End = function() {
+ 0	DeferStmt0go/ast:DeferStmt0‚Ë ‚ 	ReturnStmt.Ptr.prototype.End = function() {
 		var s, n, _slice, _index;
 		s = this;
-		if (n = s.Results.length, n > 0) {
+		n = s.Results.length;
+		if (n > 0) {
 			return (_slice = s.Results, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).End();
 		}
 		return s.Return + 6 >> 0;
@@ -2000,10 +2002,11 @@ BranchStmt01go/ast:BranchStmtgo/ast:Identgo/token:Token0Î ¦	BlockStmt.
 		return s.Body.End();
 	};
 	IfStmt.prototype.End = function() { return this.go$val.End(); };
- 0IfStmt0go/ast:IfStmt0‚Â ‚—	CaseClause.Ptr.prototype.End = function() {
+ 0IfStmt0go/ast:IfStmt0‚Ä ‚™	CaseClause.Ptr.prototype.End = function() {
 		var s, n, _slice, _index;
 		s = this;
-		if (n = s.Body.length, n > 0) {
+		n = s.Body.length;
+		if (n > 0) {
 			return (_slice = s.Body, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).End();
 		}
 		return s.Colon + 1 >> 0;
@@ -2023,10 +2026,11 @@ SwitchStmt0go/ast:SwitchStmt0Ý «	TypeSwitchStmt.Ptr.prototype.End = funct
 		return s.Body.End();
 	};
 	TypeSwitchStmt.prototype.End = function() { return this.go$val.End(); };
- 0TypeSwitchStmt0go/ast:TypeSwitchStmt0‚Â ‚—	CommClause.Ptr.prototype.End = function() {
+ 0TypeSwitchStmt0go/ast:TypeSwitchStmt0‚Ä ‚™	CommClause.Ptr.prototype.End = function() {
 		var s, n, _slice, _index;
 		s = this;
-		if (n = s.Body.length, n > 0) {
+		n = s.Body.length;
+		if (n > 0) {
 			return (_slice = s.Body, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).End();
 		}
 		return s.Colon + 1 >> 0;
@@ -2156,10 +2160,11 @@ ImportSpec0!go/ast:Identgo/ast:ImportSpec0‚o ‚F	ValueSpec.Ptr.prototype.
 	};
 	ImportSpec.prototype.End = function() { return this.go$val.End(); };
  0
-ImportSpec0go/ast:ImportSpec0‚Ù ‚°	ValueSpec.Ptr.prototype.End = function() {
+ImportSpec0go/ast:ImportSpec0‚Û ‚²	ValueSpec.Ptr.prototype.End = function() {
 		var s, n, _slice, _index, _slice$1, _index$1;
 		s = this;
-		if (n = s.Values.length, n > 0) {
+		n = s.Values.length;
+		if (n > 0) {
 			return (_slice = s.Values, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).End();
 		}
 		if (!(go$interfaceIsEqual(s.Type, null))) {
@@ -2244,10 +2249,11 @@ ImportSpecspecNode0go/ast:ImportSpec0¶ „	ValueSpec.Ptr.prototype.specNo
 		return f.Package;
 	};
 	File.prototype.Pos = function() { return this.go$val.Pos(); };
- 0File0go/ast:File0‚¨ ‚‰	File.Ptr.prototype.End = function() {
+ 0File0go/ast:File0‚ª ‚‹	File.Ptr.prototype.End = function() {
 		var f, n, _slice, _index;
 		f = this;
-		if (n = f.Decls.length, n > 0) {
+		n = f.Decls.length;
+		if (n > 0) {
 			return (_slice = f.Decls, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).End();
 		}
 		return f.Name.End();
@@ -2283,9 +2289,10 @@ ImportSpecspecNode0go/ast:ImportSpec0¶ „	ValueSpec.Ptr.prototype.specNo
 		_tuple = [(_slice = a, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = a, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = a, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = a, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	go$ptrType(byPos).prototype.Swap = function(i, j) { return this.go$get().Swap(i, j); };
- 0byPos0go/ast:byPos0‚#sortCommentsÖ	sortComments = function(list) {
+ 0byPos0go/ast:byPos0‚%sortCommentsØ	sortComments = function(list) {
 		var orderedList;
-		if (orderedList = go$subslice(new byPos(list.array), list.offset, list.offset + list.length), !sort.IsSorted(orderedList)) {
+		orderedList = go$subslice(new byPos(list.array), list.offset, list.offset + list.length);
+		if (!sort.IsSorted(orderedList)) {
 			sort.Sort(orderedList);
 		}
 	};
@@ -2381,8 +2388,8 @@ go/ast:pop0‚S ‚%	go$ptrType(nodeStack).prototype.pop = function(pos) {
 		return top;
 	};
 	nodeStack.prototype.pop = function(pos) { var obj = this; return (new (go$ptrType(nodeStack))(function() { return obj; }, null)).pop(pos); };
- 0	nodeStackpop0go/ast:nodeStack0‚ÚNewCommentMap‚Š	NewCommentMap = go$pkg.NewCommentMap = function(fset, node, comments) {
-		var cmap, tmp, r, nodes, p, pend, pg, pgend, stack, _ref, _i, _slice, _index, q, qpos, _struct, top, v, _struct$1, assoc, _struct$2, _ref$1, _type, v$1;
+ 0	nodeStackpop0go/ast:nodeStack0‚æNewCommentMap‚–	NewCommentMap = go$pkg.NewCommentMap = function(fset, node, comments) {
+		var cmap, tmp, r, nodes, p, pend, pg, pgend, stack, _ref, _i, _slice, _index, q, qpos, _struct, v, top, _struct$1, assoc, _struct$2, _ref$1, _type, v$1;
 		if (comments.length === 0) {
 			return false;
 		}
@@ -2394,7 +2401,11 @@ go/ast:pop0‚S ‚%	go$ptrType(nodeStack).prototype.pop = function(pos) {
 		r.next();
 		nodes = nodeList(node);
 		nodes = go$append(nodes, null);
-		p = null, pend = new token.Position.Ptr(), pg = null, pgend = new token.Position.Ptr(), stack = nodeStack.nil;
+		p = null;
+		pend = new token.Position.Ptr();
+		pg = null;
+		pgend = new token.Position.Ptr();
+		stack = nodeStack.nil;
 		_ref = nodes;
 		_i = 0;
 		while (_i < _ref.length) {
@@ -2407,7 +2418,8 @@ go/ast:pop0‚S ‚%	go$ptrType(nodeStack).prototype.pop = function(pos) {
 				qpos.Line = 1073741824;
 			}
 			while (r.end.Offset <= qpos.Offset) {
-				if (top = (new (go$ptrType(nodeStack))(function() { return stack; }, function(v) { stack = v; })).pop(r.comment.Pos()), !(go$interfaceIsEqual(top, null))) {
+				top = (new (go$ptrType(nodeStack))(function() { return stack; }, function(v) { stack = v; })).pop(r.comment.Pos());
+				if (!(go$interfaceIsEqual(top, null))) {
 					pg = top;
 					pgend = (_struct$1 = fset.Position(pg.End()), new token.Position.Ptr(_struct$1.Filename, _struct$1.Offset, _struct$1.Line, _struct$1.Column));
 				}
@@ -2441,10 +2453,11 @@ go/ast:pop0‚S ‚%	go$ptrType(nodeStack).prototype.pop = function(pos) {
 	};
  0NewCommentMap0‚&go/ast:CommentGroupgo/ast:CommentMapgo/ast:Declgo/ast:Fieldgo/ast:Filego/ast:Specgo/ast:Stmtgo/ast:addCommentgo/ast:commentListReader
 go/ast:eolgo/ast:nextgo/ast:nodeListgo/ast:nodeStack
-go/ast:popgo/ast:pushgo/ast:sortCommentsgo/token:FileSetgo/token:Position0‚Q ‚	CommentMap.prototype.Update = function(old, new$1) {
-		var cmap, list, _entry, _entry$1, _key;
+go/ast:popgo/ast:pushgo/ast:sortCommentsgo/token:FileSetgo/token:Position0‚S ‚	CommentMap.prototype.Update = function(old, new$1) {
+		var cmap, _entry, list, _entry$1, _key;
 		cmap = this.go$val;
-		if (list = (_entry = cmap[(old || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(CommentGroup)))).nil), list.length > 0) {
+		list = (_entry = cmap[(old || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(CommentGroup)))).nil);
+		if (list.length > 0) {
 			delete cmap[(old || go$interfaceNil).go$key()];
 			_key = new$1, (cmap || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: go$appendSlice((_entry$1 = cmap[(new$1 || go$interfaceNil).go$key()], _entry$1 !== undefined ? _entry$1.v : (go$sliceType((go$ptrType(CommentGroup)))).nil), list) };
 		}
@@ -2452,13 +2465,14 @@ go/ast:popgo/ast:pushgo/ast:sortCommentsgo/token:FileSetgo/token:Positio
 	};
 	go$ptrType(CommentMap).prototype.Update = function(old, new$1) { return new CommentMap(this.go$get()).Update(old, new$1); };
  0
-CommentMap0(go/ast:CommentGroupgo/ast:CommentMap0‚¾ ‚n	CommentMap.prototype.Filter = function(node) {
+CommentMap0(go/ast:CommentGroupgo/ast:CommentMap0‚Á ‚q	CommentMap.prototype.Filter = function(node) {
 		var cmap, umap;
 		cmap = this.go$val;
 		umap = new Go$Map();
 		Inspect(node, (function(n) {
-			var g, _entry, _key;
-			if (g = (_entry = cmap[(n || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(CommentGroup)))).nil), g.length > 0) {
+			var _entry, g, _key;
+			g = (_entry = cmap[(n || go$interfaceNil).go$key()], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(CommentGroup)))).nil);
+			if (g.length > 0) {
 				_key = n, (umap || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: g };
 			}
 			return true;
@@ -2523,8 +2537,8 @@ CommentMap0=go/ast:CommentGroupgo/ast:CommentMapgo/ast:sortComments0‚s
 		}
 		return go$bytesToString(bytes$1);
 	};
- 0	summary0bytes:Buffer0‚¾ ‚?	CommentMap.prototype.String = function() {
-		var cmap, buf, _ref, _i, _keys, _entry, comment, node, s, ok, _tuple, ident;
+ 0	summary0bytes:Buffer0‚Á ‚B	CommentMap.prototype.String = function() {
+		var cmap, buf, _ref, _i, _keys, _entry, comment, node, s, _tuple, ident, ok;
 		cmap = this.go$val;
 		buf = new bytes.Buffer.Ptr();
 		fmt.Fprintln(buf, new (go$sliceType(go$emptyInterface))([new Go$String("CommentMap {")]));
@@ -2536,7 +2550,8 @@ CommentMap0=go/ast:CommentGroupgo/ast:CommentMapgo/ast:sortComments0‚s
 			comment = _entry.v;
 			node = _entry.k;
 			s = "";
-			if (_tuple = (node !== null && node.constructor === (go$ptrType(Ident)) ? [node.go$val, true] : [(go$ptrType(Ident)).nil, false]), ident = _tuple[0], ok = _tuple[1], ok) {
+			_tuple = (node !== null && node.constructor === (go$ptrType(Ident)) ? [node.go$val, true] : [(go$ptrType(Ident)).nil, false]), ident = _tuple[0], ok = _tuple[1];
+			if (ok) {
 				s = ident.Name;
 			} else {
 				s = fmt.Sprintf("%T", new (go$sliceType(go$emptyInterface))([node]));
@@ -2573,8 +2588,8 @@ CommentMap0gbytes:Bufferfmt:Fprintffmt:Fprintlnfmt:Sprintfgo/ast:Comme
 		}
 		return go$subslice(list, 0, j);
 	};
- 0filterIdentList0 0‚¬	fieldName‚X	fieldName = function(x) {
-		var t, _ref, _type, ok, _tuple, x$1;
+ 0filterIdentList0 0‚¯	fieldName‚[	fieldName = function(x) {
+		var t, _ref, _type, _tuple, x$1, ok;
 		_ref = x;
 		_type = _ref !== null ? _ref.constructor : null;
 		if (_type === (go$ptrType(Ident))) {
@@ -2582,7 +2597,8 @@ CommentMap0gbytes:Bufferfmt:Fprintffmt:Fprintlnfmt:Sprintfgo/ast:Comme
 			return t;
 		} else if (_type === (go$ptrType(SelectorExpr))) {
 			t = _ref.go$val;
-			if (_tuple = (x$1 = t.X, (x$1 !== null && x$1.constructor === (go$ptrType(Ident)) ? [x$1.go$val, true] : [(go$ptrType(Ident)).nil, false])), ok = _tuple[1], ok) {
+			_tuple = (x$1 = t.X, (x$1 !== null && x$1.constructor === (go$ptrType(Ident)) ? [x$1.go$val, true] : [(go$ptrType(Ident)).nil, false])), ok = _tuple[1];
+			if (ok) {
 				return t.Sel;
 			}
 		} else if (_type === (go$ptrType(StarExpr))) {
@@ -2798,21 +2814,24 @@ filterFile0go/ast:filterDecl0¢FilterPackagef	FilterPackage = go$pkg.Filte
 		}
 		return hasDecls;
 	};
- 0filterPackage0go/ast:filterFile0‚cnameOf‚	nameOf = function(f) {
-		var r, _slice, _index, t, p, _tuple, p$1, _tuple$1;
-		if (r = f.Recv, !(r === (go$ptrType(FieldList)).nil) && (r.List.length === 1)) {
+ 0filterPackage0go/ast:filterFile0‚knameOf‚ 	nameOf = function(f) {
+		var r, _slice, _index, t, _tuple, p, _tuple$1, p$1;
+		r = f.Recv;
+		if (!(r === (go$ptrType(FieldList)).nil) && (r.List.length === 1)) {
 			t = (_slice = r.List, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Type;
-			if (_tuple = (t !== null && t.constructor === (go$ptrType(StarExpr)) ? [t.go$val, true] : [(go$ptrType(StarExpr)).nil, false]), p = _tuple[0], !(p === (go$ptrType(StarExpr)).nil)) {
+			_tuple = (t !== null && t.constructor === (go$ptrType(StarExpr)) ? [t.go$val, true] : [(go$ptrType(StarExpr)).nil, false]), p = _tuple[0];
+			if (!(p === (go$ptrType(StarExpr)).nil)) {
 				t = p.X;
 			}
-			if (_tuple$1 = (t !== null && t.constructor === (go$ptrType(Ident)) ? [t.go$val, true] : [(go$ptrType(Ident)).nil, false]), p$1 = _tuple$1[0], !(p$1 === (go$ptrType(Ident)).nil)) {
+			_tuple$1 = (t !== null && t.constructor === (go$ptrType(Ident)) ? [t.go$val, true] : [(go$ptrType(Ident)).nil, false]), p$1 = _tuple$1[0];
+			if (!(p$1 === (go$ptrType(Ident)).nil)) {
 				return p$1.Name + "." + f.Name.Name;
 			}
 		}
 		return f.Name.Name;
 	};
- 0nameOf01go/ast:FieldListgo/ast:Identgo/ast:StarExpr0‚ ÄMergePackageFiles‚â	MergePackageFiles = go$pkg.MergePackageFiles = function(pkg, mode) {
-		var ndocs, ncomments, ndecls, filenames, i, _ref, _i, _keys, _entry, f, filename, _slice, _index, doc, pos, list, i$1, _ref$1, _i$1, _slice$1, _index$1, filename$1, _entry$1, f$1, _slice$2, _index$2, _ref$2, _i$2, _slice$3, _index$3, c, _slice$4, _index$4, decls, funcs, i$2, n, _ref$3, _i$3, _slice$5, _index$5, filename$2, _entry$2, f$2, _ref$4, _i$4, _slice$6, _index$6, d, isFun, _tuple, f$3, name, exists, _tuple$1, _entry$3, j, _slice$7, _index$7, x, _slice$8, _index$8, _slice$9, _index$9, _key, _slice$10, _index$10, _ref$5, _i$5, _slice$11, _index$11, d$1, _slice$12, _index$12, imports, seen, _ref$6, _i$6, _slice$13, _index$13, filename$3, _entry$4, f$4, _ref$7, _i$7, _slice$14, _index$14, imp, path, _entry$5, _key$1, _ref$8, _i$8, _keys$1, _entry$6, f$5, comments, i$3, _ref$9, _i$9, _keys$2, _entry$7, f$6;
+ 0nameOf01go/ast:FieldListgo/ast:Identgo/ast:StarExpr0‚ ÖMergePackageFiles‚ô	MergePackageFiles = go$pkg.MergePackageFiles = function(pkg, mode) {
+		var ndocs, ncomments, ndecls, filenames, i, _ref, _i, _keys, _entry, f, filename, _slice, _index, doc, pos, list, i$1, _ref$1, _i$1, _slice$1, _index$1, filename$1, _entry$1, f$1, _slice$2, _index$2, _ref$2, _i$2, _slice$3, _index$3, c, _slice$4, _index$4, decls, funcs, i$2, n, _ref$3, _i$3, _slice$5, _index$5, filename$2, _entry$2, f$2, _ref$4, _i$4, _slice$6, _index$6, d, _tuple, f$3, isFun, name, _tuple$1, _entry$3, j, exists, _slice$7, _index$7, x, _slice$8, _index$8, _slice$9, _index$9, _key, _slice$10, _index$10, _ref$5, _i$5, _slice$11, _index$11, d$1, _slice$12, _index$12, imports, seen, _ref$6, _i$6, _slice$13, _index$13, filename$3, _entry$4, f$4, _ref$7, _i$7, _slice$14, _index$14, imp, path, _entry$5, _key$1, _ref$8, _i$8, _keys$1, _entry$6, f$5, comments, i$3, _ref$9, _i$9, _keys$2, _entry$7, f$6;
 		ndocs = 0;
 		ncomments = 0;
 		ndecls = 0;
@@ -2882,9 +2901,11 @@ filterFile0go/ast:filterDecl0¢FilterPackagef	FilterPackage = go$pkg.Filte
 				while (_i$4 < _ref$4.length) {
 					d = (_slice$6 = _ref$4, _index$6 = _i$4, (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"));
 					if (!((((mode & 1) >>> 0) === 0))) {
-						if (_tuple = (d !== null && d.constructor === (go$ptrType(FuncDecl)) ? [d.go$val, true] : [(go$ptrType(FuncDecl)).nil, false]), f$3 = _tuple[0], isFun = _tuple[1], isFun) {
+						_tuple = (d !== null && d.constructor === (go$ptrType(FuncDecl)) ? [d.go$val, true] : [(go$ptrType(FuncDecl)).nil, false]), f$3 = _tuple[0], isFun = _tuple[1];
+						if (isFun) {
 							name = nameOf(f$3);
-							if (_tuple$1 = (_entry$3 = funcs[name], _entry$3 !== undefined ? [_entry$3.v, true] : [0, false]), j = _tuple$1[0], exists = _tuple$1[1], exists) {
+							_tuple$1 = (_entry$3 = funcs[name], _entry$3 !== undefined ? [_entry$3.v, true] : [0, false]), j = _tuple$1[0], exists = _tuple$1[1];
+							if (exists) {
 								if (!(go$interfaceIsEqual((_slice$7 = decls, _index$7 = j, (_index$7 >= 0 && _index$7 < _slice$7.length) ? _slice$7.array[_slice$7.offset + _index$7] : go$throwRuntimeError("index out of range")), null)) && (x = (_slice$8 = decls, _index$8 = j, (_index$8 >= 0 && _index$8 < _slice$8.length) ? _slice$8.array[_slice$8.offset + _index$8] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(FuncDecl)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(FuncDecl))))).Doc === (go$ptrType(CommentGroup)).nil) {
 									_slice$9 = decls, _index$9 = j, (_index$9 >= 0 && _index$9 < _slice$9.length) ? (_slice$9.array[_slice$9.offset + _index$9] = null) : go$throwRuntimeError("index out of range");
 								} else {
@@ -2929,7 +2950,8 @@ filterFile0go/ast:filterDecl0¢FilterPackagef	FilterPackage = go$pkg.Filte
 				_i$7 = 0;
 				while (_i$7 < _ref$7.length) {
 					imp = (_slice$14 = _ref$7, _index$14 = _i$7, (_index$14 >= 0 && _index$14 < _slice$14.length) ? _slice$14.array[_slice$14.offset + _index$14] : go$throwRuntimeError("index out of range"));
-					if (path = imp.Path.Value, !(_entry$5 = seen[path], _entry$5 !== undefined ? _entry$5.v : false)) {
+					path = imp.Path.Value;
+					if (!(_entry$5 = seen[path], _entry$5 !== undefined ? _entry$5.v : false)) {
 						imports = go$append(imports, imp);
 						_key$1 = path, (seen || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: true };
 					}
@@ -2964,7 +2986,7 @@ filterFile0go/ast:filterDecl0¢FilterPackagef	FilterPackage = go$pkg.Filte
 		}
 		return new File.Ptr(doc, pos, NewIdent(pkg.Name), decls, pkg.Scope, imports, (go$sliceType((go$ptrType(Ident)))).nil, comments);
 	};
- 0MergePackageFiles0±go/ast:Commentgo/ast:CommentGroupgo/ast:Declgo/ast:Filego/ast:FuncDeclgo/ast:Identgo/ast:ImportSpecgo/ast:NewIdentgo/ast:nameOfgo/ast:separatorsort:Strings0‚>SortImports‚ê	SortImports = go$pkg.SortImports = function(fset, f) {
+ 0MergePackageFiles0±go/ast:Commentgo/ast:CommentGroupgo/ast:Declgo/ast:Filego/ast:FuncDeclgo/ast:Identgo/ast:ImportSpecgo/ast:NewIdentgo/ast:nameOfgo/ast:separatorsort:Strings0‚BSortImports‚î	SortImports = go$pkg.SortImports = function(fset, f) {
 		var _ref, _i, _slice, _index, d, _tuple, d$1, ok, i, specs, _ref$1, _i$1, _slice$1, _index$1, s, j, _slice$2, _index$2, _slice$3, _index$3, lastSpec, lastLine, rParenLine;
 		_ref = f.Decls;
 		_i = 0;
@@ -2996,7 +3018,8 @@ filterFile0go/ast:filterDecl0¢FilterPackagef	FilterPackage = go$pkg.Filte
 			if (d$1.Specs.length > 0) {
 				lastSpec = (_slice$3 = d$1.Specs, _index$3 = (d$1.Specs.length - 1 >> 0), (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 				lastLine = fset.Position(lastSpec.Pos()).Line;
-				if (rParenLine = fset.Position(d$1.Rparen).Line, rParenLine > (lastLine + 1 >> 0)) {
+				rParenLine = fset.Position(d$1.Rparen).Line;
+				if (rParenLine > (lastLine + 1 >> 0)) {
 					fset.File(d$1.Rparen).MergeLine(rParenLine - 1 >> 0);
 				}
 			}
@@ -3187,7 +3210,7 @@ importName0!go/ast:Identgo/ast:ImportSpec0‚ZimportComment‚
 		}
 		return true;
 	};
- 0NotNilFilter0 0‚ãFprint‚W	Fprint = go$pkg.Fprint = function(w, fset, x, f) {
+ 0NotNilFilter0 0‚çFprint‚[	Fprint = go$pkg.Fprint = function(w, fset, x, f) {
 		var err, p, _struct;
 		err = null;
 		var go$deferred = [];
@@ -3195,7 +3218,8 @@ importName0!go/ast:Identgo/ast:ImportSpec0‚ZimportComment‚
 			p = new printer.Ptr(w, fset, f, new Go$Map(), 0, 10, 0);
 			go$deferred.push({ fun: (function() {
 				var e;
-				if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
+				e = go$recover();
+				if (!(go$interfaceIsEqual(e, null))) {
 					err = (e !== null && e.constructor === localError ? e.go$val : go$typeAssertionFailed(e, localError)).err;
 				}
 			}), args: [] });
@@ -3258,16 +3282,17 @@ importName0!go/ast:Identgo/ast:ImportSpec0‚ZimportComment‚
 		return [n, err];
 	};
 	printer.prototype.Write = function(data) { return this.go$val.Write(data); };
- 0	printer0,fmt:Fprintfgo/ast:indentgo/ast:printer0‚Æ ‚y	printer.Ptr.prototype.printf = function(format, args) {
-		var p, err, _tuple, x;
+ 0	printer0,fmt:Fprintfgo/ast:indentgo/ast:printer0‚È ‚{	printer.Ptr.prototype.printf = function(format, args) {
+		var p, _tuple, err, x;
 		p = this;
-		if (_tuple = fmt.Fprintf(p, format, args), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = fmt.Fprintf(p, format, args), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			throw go$panic((x = new localError.Ptr(err), new x.constructor.Struct(x)));
 		}
 	};
 	printer.prototype.printf = function(format, args) { return this.go$val.printf(format, args); };
- 0printerprintf00fmt:Fprintfgo/ast:localErrorgo/ast:printer0‚Ï ‚=	printer.Ptr.prototype.print = function(x) {
-		var p, _struct, _ref, _struct$1, _ref$1, _i, _slice, _index, _struct$2, key, _struct$3, _struct$4, _struct$5, ptr, exists, _tuple, _entry, line, _key, _struct$6, _tuple$1, i, n, _struct$7, ok, _tuple$2, x$1, s, _tuple$3, i$1, n$1, _struct$8, t, first, _tuple$4, i$2, n$2, name, _struct$9, value, _struct$10, _struct$11, v, v$1, _ref$2, _type, x$2;
+ 0printerprintf00fmt:Fprintfgo/ast:localErrorgo/ast:printer0‚Ù ‚G	printer.Ptr.prototype.print = function(x) {
+		var p, _struct, _ref, _struct$1, _ref$1, _i, _slice, _index, _struct$2, key, _struct$3, _struct$4, _struct$5, ptr, _tuple, _entry, line, exists, _key, _struct$6, _tuple$1, i, n, _struct$7, _tuple$2, x$1, s, ok, _tuple$3, i$1, n$1, _struct$8, t, first, _tuple$4, i$2, n$2, name, _struct$9, value, _struct$10, _struct$11, v, v$1, _ref$2, _type, x$2;
 		p = this;
 		if (!NotNilFilter("", (_struct = x, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)))) {
 			p.printf("nil", new (go$sliceType(go$emptyInterface))([]));
@@ -3297,7 +3322,8 @@ importName0!go/ast:Identgo/ast:ImportSpec0‚ZimportComment‚
 		} else if (_ref === 22) {
 			p.printf("*", new (go$sliceType(go$emptyInterface))([]));
 			ptr = x.Interface();
-			if (_tuple = (_entry = p.ptrmap[(ptr || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [0, false]), line = _tuple[0], exists = _tuple[1], exists) {
+			_tuple = (_entry = p.ptrmap[(ptr || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [0, false]), line = _tuple[0], exists = _tuple[1];
+			if (exists) {
 				p.printf("(obj @ %d)", new (go$sliceType(go$emptyInterface))([new Go$Int(line)]));
 			} else {
 				_key = ptr, (p.ptrmap || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: p.line };
@@ -3319,7 +3345,8 @@ importName0!go/ast:Identgo/ast:ImportSpec0‚ZimportComment‚
 			}
 			p.printf("}", new (go$sliceType(go$emptyInterface))([]));
 		} else if (_ref === 23) {
-			if (_tuple$2 = (x$1 = x.Interface(), (x$1 !== null && x$1.constructor === (go$sliceType(Go$Uint8)) ? [x$1.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), s = _tuple$2[0], ok = _tuple$2[1], ok) {
+			_tuple$2 = (x$1 = x.Interface(), (x$1 !== null && x$1.constructor === (go$sliceType(Go$Uint8)) ? [x$1.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), s = _tuple$2[0], ok = _tuple$2[1];
+			if (ok) {
 				p.printf("%#q", new (go$sliceType(go$emptyInterface))([s]));
 				return;
 			}
@@ -3344,7 +3371,8 @@ importName0!go/ast:Identgo/ast:ImportSpec0‚ZimportComment‚
 			first = true;
 			_tuple$4 = [0, t.NumField()], i$2 = _tuple$4[0], n$2 = _tuple$4[1];
 			while (i$2 < n$2) {
-				if (name = t.Field(i$2).Name, IsExported(name)) {
+				name = t.Field(i$2).Name;
+				if (IsExported(name)) {
 					value = (_struct$9 = x.Field(i$2), new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag));
 					if (p.filter === go$throwNilPointerError || p.filter(name, (_struct$10 = value, new reflect.Value.Ptr(_struct$10.typ, _struct$10.val, _struct$10.flag)))) {
 						if (first) {
@@ -3393,7 +3421,7 @@ pkgBuildererror0<go/ast:pkgBuildergo/scanner:ErrorListgo/token:Position0
 	};
 	pkgBuilder.prototype.errorf = function(pos, format, args) { return this.go$val.errorf(pos, format, args); };
  0
-pkgBuildererrorf0.fmt:Sprintfgo/ast:errorgo/ast:pkgBuilder0‚¿ ‚E	pkgBuilder.Ptr.prototype.declare = function(scope, altScope, obj) {
+pkgBuildererrorf0.fmt:Sprintfgo/ast:errorgo/ast:pkgBuilder0‚Â ‚H	pkgBuilder.Ptr.prototype.declare = function(scope, altScope, obj) {
 		var p, alt, prevDecl, pos, x;
 		p = this;
 		alt = scope.Insert(obj);
@@ -3402,7 +3430,8 @@ pkgBuildererrorf0.fmt:Sprintfgo/ast:errorgo/ast:pkgBuilder0‚¿ ‚E	pkg
 		}
 		if (!(alt === (go$ptrType(Object)).nil)) {
 			prevDecl = "";
-			if (pos = alt.Pos(), (new token.Pos(pos)).IsValid()) {
+			pos = alt.Pos();
+			if ((new token.Pos(pos)).IsValid()) {
 				prevDecl = fmt.Sprintf("\n\tprevious declaration at %s", new (go$sliceType(go$emptyInterface))([(x = p.fset.Position(pos), new x.constructor.Struct(x))]));
 			}
 			p.error(obj.Pos(), fmt.Sprintf("%s redeclared in this block%s", new (go$sliceType(go$emptyInterface))([new Go$String(obj.Name), new Go$String(prevDecl)])));
@@ -3410,10 +3439,11 @@ pkgBuildererrorf0.fmt:Sprintfgo/ast:errorgo/ast:pkgBuilder0‚¿ ‚E	pkg
 	};
 	pkgBuilder.prototype.declare = function(scope, altScope, obj) { return this.go$val.declare(scope, altScope, obj); };
  0
-pkgBuilderdeclare0Yfmt:Sprintfgo/ast:Objectgo/ast:Scopego/ast:errorgo/ast:pkgBuildergo/token:Pos0‚Bresolve‚		resolve = function(scope, ident) {
+pkgBuilderdeclare0Yfmt:Sprintfgo/ast:Objectgo/ast:Scopego/ast:errorgo/ast:pkgBuildergo/token:Pos0‚Eresolve‚	resolve = function(scope, ident) {
 		var obj;
 		while (!(scope === (go$ptrType(Scope)).nil)) {
-			if (obj = scope.Lookup(ident.Name), !(obj === (go$ptrType(Object)).nil)) {
+			obj = scope.Lookup(ident.Name);
+			if (!(obj === (go$ptrType(Object)).nil)) {
 				ident.Obj = obj;
 				return true;
 			}
@@ -3538,11 +3568,12 @@ NewPackage0Ÿgo/ast:Identgo/ast:NewObjgo/ast:NewScopego/ast:Packagego/
 		return (_entry = s.Objects[name], _entry !== undefined ? _entry.v : (go$ptrType(Object)).nil);
 	};
 	Scope.prototype.Lookup = function(name) { return this.go$val.Lookup(name); };
- 0Scope0go/ast:Objectgo/ast:Scope0‚ ‚Þ	Scope.Ptr.prototype.Insert = function(obj) {
+ 0Scope0go/ast:Objectgo/ast:Scope0‚ ‚à	Scope.Ptr.prototype.Insert = function(obj) {
 		var alt, s, _entry, _key;
 		alt = (go$ptrType(Object)).nil;
 		s = this;
-		if (alt = (_entry = s.Objects[obj.Name], _entry !== undefined ? _entry.v : (go$ptrType(Object)).nil), alt === (go$ptrType(Object)).nil) {
+		alt = (_entry = s.Objects[obj.Name], _entry !== undefined ? _entry.v : (go$ptrType(Object)).nil);
+		if (alt === (go$ptrType(Object)).nil) {
 			_key = obj.Name, (s.Objects || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: obj };
 		}
 		return alt;
@@ -3572,8 +3603,8 @@ NewPackage0Ÿgo/ast:Identgo/ast:NewObjgo/ast:NewScopego/ast:Packagego/
  0Scope0Gbytes:Bufferfmt:Fprintffmt:Fprintlngo/ast:ObjKindgo/ast:Scope0“NewObjl	NewObj = go$pkg.NewObj = function(kind, name) {
 		return new Object.Ptr(kind, name, null, null, null);
 	};
- 0NewObj0go/ast:Object0‚	Á ‚		Object.Ptr.prototype.Pos = function() {
-		var obj, name, d, _ref, _type, _ref$1, _i, _slice, _index, n, _ref$2, _i$1, _slice$1, _index$1, n$1, _ref$3, _i$2, _slice$2, _index$2, x, isIdent, ident, _tuple;
+ 0NewObj0go/ast:Object0‚	Å ‚			Object.Ptr.prototype.Pos = function() {
+		var obj, name, d, _ref, _type, _ref$1, _i, _slice, _index, n, _ref$2, _i$1, _slice$1, _index$1, n$1, _ref$3, _i$2, _slice$2, _index$2, x, _tuple, ident, isIdent;
 		obj = this;
 		name = obj.Name;
 		_ref = obj.Decl;
@@ -3627,7 +3658,8 @@ NewPackage0Ÿgo/ast:Identgo/ast:NewObjgo/ast:NewScopego/ast:Packagego/
 			_i$2 = 0;
 			while (_i$2 < _ref$3.length) {
 				x = (_slice$2 = _ref$3, _index$2 = _i$2, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-				if (_tuple = (x !== null && x.constructor === (go$ptrType(Ident)) ? [x.go$val, true] : [(go$ptrType(Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1], isIdent && ident.Name === name) {
+				_tuple = (x !== null && x.constructor === (go$ptrType(Ident)) ? [x.go$val, true] : [(go$ptrType(Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1];
+				if (isIdent && ident.Name === name) {
 					return ident.Pos();
 				}
 				_i$2++;
@@ -3682,9 +3714,10 @@ NewPackage0Ÿgo/ast:Identgo/ast:NewObjgo/ast:NewScopego/ast:Packagego/
 			_i++;
 		}
 	};
- 0walkDeclList0go/ast:Walk0‚(ÞWalk‚$	Walk = go$pkg.Walk = function(v, node) {
+ 0walkDeclList0go/ast:Walk0‚(àWalk‚$’	Walk = go$pkg.Walk = function(v, node) {
 		var n, _ref, _type, _ref$1, _i, _slice, _index, c, _ref$2, _i$1, _slice$1, _index$1, f, _ref$3, _i$2, _slice$2, _index$2, s, _ref$4, _i$3, _keys, _entry, f$1;
-		if (v = v.Visit(node), go$interfaceIsEqual(v, null)) {
+		v = v.Visit(node);
+		if (go$interfaceIsEqual(v, null)) {
 			return;
 		}
 		_ref = node;

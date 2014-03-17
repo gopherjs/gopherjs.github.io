@@ -1,4 +1,4 @@
-0ÉASgo/buildÇ<#package build
+0É?˝go/buildÇ<#package build
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -212,7 +212,7 @@ $$
 0Ç@runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc	go/parserloggo/build0Ç@0bytesbytes0errorserrors0
 fmtfmt0go/astast0go/docdoc0	go/parserparser0go/tokentoken0ioio0	io/ioutilioutil0
-loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio0Éì0ÇtContextÇ$	Context = go$pkg.Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
+loglog0osos0pathpath0path/filepathfilepath0runtimeruntime0sortsort0strconvstrconv0stringsstrings0unicodeunicode0bufiobufio0É=0ÇtContextÇ$	Context = go$pkg.Context = go$newType(0, "Struct", "build.Context", "Context", "go/build", function(GOARCH_, GOOS_, GOROOT_, GOPATH_, CgoEnabled_, UseAllFiles_, Compiler_, BuildTags_, ReleaseTags_, InstallSuffix_, JoinPath_, SplitPathList_, IsAbsPath_, IsDir_, HasSubdir_, ReadDir_, OpenFile_) {
 		this.go$val = this;
 		this.GOARCH = GOARCH_ !== undefined ? GOARCH_ : "";
 		this.GOOS = GOOS_ !== undefined ? GOOS_ : "";
@@ -295,61 +295,69 @@ ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 	});
 Ç˝		(go$ptrType(importReader)).methods = [["nextByte", "go/build", [Go$Bool], [Go$Uint8], false, -1], ["peekByte", "go/build", [Go$Bool], [Go$Uint8], false, -1], ["readByte", "go/build", [], [Go$Uint8], false, -1], ["readIdent", "go/build", [], [], false, -1], ["readImport", "go/build", [], [], false, -1], ["readKeyword", "go/build", [Go$String], [], false, -1], ["readString", "go/build", [], [], false, -1], ["syntaxError", "go/build", [], [], false, -1]];
 		importReader.init([["b", "b", "go/build", (go$ptrType(bufio.Reader)), ""], ["buf", "buf", "go/build", (go$sliceType(Go$Uint8)), ""], ["peek", "peek", "go/build", Go$Uint8, ""], ["err", "err", "go/build", go$error, ""], ["eof", "eof", "go/build", Go$Bool, ""], ["nerr", "nerr", "go/build", Go$Int, ""]]);
-0importReader0bufio:Reader0Ça Ç	Context.Ptr.prototype.joinPath = function(elem) {
+0importReader0bufio:Reader0Çc Ç	Context.Ptr.prototype.joinPath = function(elem) {
 		var ctxt, f;
 		ctxt = this;
-		if (f = ctxt.JoinPath, !(f === go$throwNilPointerError)) {
+		f = ctxt.JoinPath;
+		if (!(f === go$throwNilPointerError)) {
 			return f(elem);
 		}
 		return filepath.Join(elem);
 	};
 	Context.prototype.joinPath = function(elem) { return this.go$val.joinPath(elem); };
- 0ContextjoinPath0&go/build:Contextpath/filepath:Join0Çu Ç&	Context.Ptr.prototype.splitPathList = function(s) {
+ 0ContextjoinPath0&go/build:Contextpath/filepath:Join0Çw Ç(	Context.Ptr.prototype.splitPathList = function(s) {
 		var ctxt, f;
 		ctxt = this;
-		if (f = ctxt.SplitPathList, !(f === go$throwNilPointerError)) {
+		f = ctxt.SplitPathList;
+		if (!(f === go$throwNilPointerError)) {
 			return f(s);
 		}
 		return filepath.SplitList(s);
 	};
 	Context.prototype.splitPathList = function(s) { return this.go$val.splitPathList(s); };
- 0ContextsplitPathList0+go/build:Contextpath/filepath:SplitList0Çr Ç+	Context.Ptr.prototype.isAbsPath = function(path$1) {
+ 0ContextsplitPathList0+go/build:Contextpath/filepath:SplitList0Çt Ç-	Context.Ptr.prototype.isAbsPath = function(path$1) {
 		var ctxt, f;
 		ctxt = this;
-		if (f = ctxt.IsAbsPath, !(f === go$throwNilPointerError)) {
+		f = ctxt.IsAbsPath;
+		if (!(f === go$throwNilPointerError)) {
 			return f(path$1);
 		}
 		return filepath.IsAbs(path$1);
 	};
 	Context.prototype.isAbsPath = function(path$1) { return this.go$val.isAbsPath(path$1); };
- 0Context	isAbsPath0'go/build:Contextpath/filepath:IsAbs0Ç∂ Ç	Context.Ptr.prototype.isDir = function(path$1) {
+ 0Context	isAbsPath0'go/build:Contextpath/filepath:IsAbs0Ç∏ ÇÅ	Context.Ptr.prototype.isDir = function(path$1) {
 		var ctxt, f, _tuple, fi, err;
 		ctxt = this;
-		if (f = ctxt.IsDir, !(f === go$throwNilPointerError)) {
+		f = ctxt.IsDir;
+		if (!(f === go$throwNilPointerError)) {
 			return f(path$1);
 		}
 		_tuple = os.Stat(path$1), fi = _tuple[0], err = _tuple[1];
 		return go$interfaceIsEqual(err, null) && fi.IsDir();
 	};
 	Context.prototype.isDir = function(path$1) { return this.go$val.isDir(path$1); };
- 0ContextisDir0go/build:Contextos:Stat0ÇQ ÇÔ	Context.Ptr.prototype.hasSubdir = function(root, dir) {
+ 0ContextisDir0go/build:Contextos:Stat0ÇY Ç˜	Context.Ptr.prototype.hasSubdir = function(root, dir) {
 		var rel, ok, ctxt, f, _tuple, _tuple$1, _tuple$2, rootSym, _tuple$3, dirSym, _tuple$4, _tuple$5, _tuple$6;
 		rel = "";
 		ok = false;
 		ctxt = this;
-		if (f = ctxt.HasSubdir, !(f === go$throwNilPointerError)) {
+		f = ctxt.HasSubdir;
+		if (!(f === go$throwNilPointerError)) {
 			_tuple = f(root, dir), rel = _tuple[0], ok = _tuple[1];
 			return [rel, ok];
 		}
-		if (_tuple$1 = hasSubdir(root, dir), rel = _tuple$1[0], ok = _tuple$1[1], ok) {
+		_tuple$1 = hasSubdir(root, dir), rel = _tuple$1[0], ok = _tuple$1[1];
+		if (ok) {
 			return [rel, ok];
 		}
 		_tuple$2 = filepath.EvalSymlinks(root), rootSym = _tuple$2[0];
 		_tuple$3 = filepath.EvalSymlinks(dir), dirSym = _tuple$3[0];
-		if (_tuple$4 = hasSubdir(rootSym, dir), rel = _tuple$4[0], ok = _tuple$4[1], ok) {
+		_tuple$4 = hasSubdir(rootSym, dir), rel = _tuple$4[0], ok = _tuple$4[1];
+		if (ok) {
 			return [rel, ok];
 		}
-		if (_tuple$5 = hasSubdir(root, dirSym), rel = _tuple$5[0], ok = _tuple$5[1], ok) {
+		_tuple$5 = hasSubdir(root, dirSym), rel = _tuple$5[0], ok = _tuple$5[1];
+		if (ok) {
 			return [rel, ok];
 		}
 		_tuple$6 = hasSubdir(rootSym, dirSym), rel = _tuple$6[0], ok = _tuple$6[1];
@@ -372,19 +380,21 @@ ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		_tuple$1 = [filepath.ToSlash(dir.substring(root.length)), true], rel = _tuple$1[0], ok = _tuple$1[1];
 		return [rel, ok];
 	};
- 0	hasSubdir0Rpath/filepath:Cleanpath/filepath:ToSlashstrings:HasPrefixstrings:HasSuffix0Çf Ç#	Context.Ptr.prototype.readDir = function(path$1) {
+ 0	hasSubdir0Rpath/filepath:Cleanpath/filepath:ToSlashstrings:HasPrefixstrings:HasSuffix0Çh Ç%	Context.Ptr.prototype.readDir = function(path$1) {
 		var ctxt, f;
 		ctxt = this;
-		if (f = ctxt.ReadDir, !(f === go$throwNilPointerError)) {
+		f = ctxt.ReadDir;
+		if (!(f === go$throwNilPointerError)) {
 			return f(path$1);
 		}
 		return ioutil.ReadDir(path$1);
 	};
 	Context.prototype.readDir = function(path$1) { return this.go$val.readDir(path$1); };
- 0ContextreadDir0%go/build:Contextio/ioutil:ReadDir0ÇÍ Ç∞	Context.Ptr.prototype.openFile = function(path$1) {
+ 0ContextreadDir0%go/build:Contextio/ioutil:ReadDir0ÇÏ Ç≤	Context.Ptr.prototype.openFile = function(path$1) {
 		var ctxt, fn, _tuple, f, err;
 		ctxt = this;
-		if (fn = ctxt.OpenFile, !(fn === go$throwNilPointerError)) {
+		fn = ctxt.OpenFile;
+		if (!(fn === go$throwNilPointerError)) {
 			return fn(path$1);
 		}
 		_tuple = os.Open(path$1), f = _tuple[0], err = _tuple[1];
@@ -507,8 +517,8 @@ ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 		}
 		return name.substring(i);
 	};
- 0	nameExt0strings:LastIndex0ÇD_ ÇB 	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
-		var go$this = this, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, ok, _tuple$1, sub, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, ok$1, _tuple$2, sub$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, _slice$4, _index$4, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, _slice$5, _index$5, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, _slice$6, _index$6, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$3, _key$3, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
+ 0	nameExt0strings:LastIndex0ÇB‚ Ç@£	Context.Ptr.prototype.Import = function(path$1, srcDir, mode) {
+		var go$this = this, ctxt, p, pkga, pkgerr, _ref, _tuple, dir, elem, suffix, binaryOnly, root, _tuple$1, sub, ok, all, _ref$1, _i, _slice, _index, root$1, i, rootsrc, _tuple$2, sub$1, ok$1, dir$1, _ref$2, _i$1, _slice$1, _index$1, earlyRoot, dir$2, tried, dir$3, isDir, _ref$3, _i$2, _slice$2, _index$2, root$2, dir$4, isDir$1, paths, i$1, format, _slice$3, _index$3, _tuple$3, dirs, err, Sfiles, firstFile, imported, testImported, xTestImported, allTags, fset, _ref$4, _i$3, _slice$4, _index$4, d, name, ext, _tuple$4, match, data, filename, err$1, _ref$5, _tuple$5, pf, pkg, isTest, isXTest, isCgo, _ref$6, _i$4, _slice$5, _index$5, decl, _tuple$6, d$1, ok$2, _ref$7, _i$5, _slice$6, _index$6, dspec, _tuple$7, spec, ok$3, quoted, _tuple$8, path$2, err$2, _entry, _struct, _key, _entry$1, _struct$1, _key$1, _entry$2, _struct$2, _key$2, cg, err$3, _key$3, _ref$8, _i$6, _keys, _entry$3, tag, _tuple$9, _tuple$10, _tuple$11;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		ctxt = go$this;
 		p = new Package.Ptr("", "", "", path$1, "", "", "", "", false, "", (go$sliceType(Go$String)).nil, "", (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false, (go$sliceType(Go$String)).nil, (go$sliceType(Go$String)).nil, false);
@@ -541,7 +551,8 @@ ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 			}
 			/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 4; continue; }
 				root = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg"]));
-				/* if (_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1], ok) { */ if (_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1], ok) {} else { go$s = 5; continue; }
+				_tuple$1 = ctxt.hasSubdir(root, p.Dir), sub = _tuple$1[0], ok = _tuple$1[1];
+				/* if (ok) { */ if (ok) {} else { go$s = 5; continue; }
 					p.Goroot = true;
 					p.ImportPath = sub;
 					p.Root = ctxt.GOROOT;
@@ -555,9 +566,11 @@ ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 				root$1 = (_slice = _ref$1, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				i = _i;
 				rootsrc = ctxt.joinPath(new (go$sliceType(Go$String))([root$1, "src"]));
-				/* if (_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) { */ if (_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {} else { go$s = 8; continue; }
+				_tuple$2 = ctxt.hasSubdir(rootsrc, p.Dir), sub$1 = _tuple$2[0], ok$1 = _tuple$2[1];
+				/* if (ok$1) { */ if (ok$1) {} else { go$s = 8; continue; }
 					/* if (!(ctxt.GOROOT === "")) { */ if (!(ctxt.GOROOT === "")) {} else { go$s = 9; continue; }
-						/* if (dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1])), ctxt.isDir(dir$1)) { */ if (dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1])), ctxt.isDir(dir$1)) {} else { go$s = 10; continue; }
+						dir$1 = ctxt.joinPath(new (go$sliceType(Go$String))([ctxt.GOROOT, "src", "pkg", sub$1]));
+						/* if (ctxt.isDir(dir$1)) { */ if (ctxt.isDir(dir$1)) {} else { go$s = 10; continue; }
 							p.ConflictDir = dir$1;
 							/* goto Found */ go$s = 1; continue;
 						/* } */ case 10:
@@ -566,7 +579,8 @@ ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 					_i$1 = 0;
 					/* while (_i$1 < _ref$2.length) { */ case 11: if(!(_i$1 < _ref$2.length)) { go$s = 12; continue; }
 						earlyRoot = (_slice$1 = _ref$2, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-						/* if (dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1])), ctxt.isDir(dir$2)) { */ if (dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1])), ctxt.isDir(dir$2)) {} else { go$s = 13; continue; }
+						dir$2 = ctxt.joinPath(new (go$sliceType(Go$String))([earlyRoot, "src", sub$1]));
+						/* if (ctxt.isDir(dir$2)) { */ if (ctxt.isDir(dir$2)) {} else { go$s = 13; continue; }
 							p.ConflictDir = dir$2;
 							/* goto Found */ go$s = 1; continue;
 						/* } */ case 13:
@@ -631,7 +645,7 @@ ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 			return [p, fmt.Errorf("cannot find package %q in any of:\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(path$1), new Go$String(strings.Join(paths, "\n"))]))];
 		/* } */ case 3:
 		/* Found: */ case 1:
-		/* if (!(p.Root === "")) { */ if (!(p.Root === "")) {} else { go$s = 19; continue; }
+		if (!(p.Root === "")) {
 			if (p.Goroot) {
 				p.SrcRoot = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, "src", "pkg"]));
 			} else {
@@ -642,7 +656,7 @@ ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 			if (!(pkga === "")) {
 				p.PkgObj = ctxt.joinPath(new (go$sliceType(Go$String))([p.Root, pkga]));
 			}
-		/* } */ case 19:
+		}
 		if (!((((mode & 1) >>> 0) === 0))) {
 			return [p, pkgerr];
 		}
@@ -780,7 +794,8 @@ ImportMode0 0ÇãPackageÇŒ	Package = go$pkg.Package = go$newType(0, "Struct",
 							cg = d$1.Doc;
 						}
 						if (!(cg === (go$ptrType(ast.CommentGroup)).nil)) {
-							if (err$3 = ctxt.saveCgo(filename, p, cg), !(go$interfaceIsEqual(err$3, null))) {
+							err$3 = ctxt.saveCgo(filename, p, cg);
+							if (!(go$interfaceIsEqual(err$3, null))) {
 								return [p, err$3];
 							}
 						}
@@ -912,14 +927,15 @@ fmt:Errorfgo/build:Contextgo/build:goodOSArchFilego/build:joinPathgo/bui
  0Import0go/build:Default0Åò	ImportDirh	ImportDir = go$pkg.ImportDir = function(dir, mode) {
 		return go$pkg.Default.ImportDir(dir, mode);
 	};
- 0	ImportDir0go/build:Default0Ç	 ÇÇ	Context.Ptr.prototype.shouldBuild = function(content, allTags) {
+ 0	ImportDir0go/build:Default0Ç	$ Çà	Context.Ptr.prototype.shouldBuild = function(content, allTags) {
 		var ctxt, end, p, line, i, _tuple, allok, line$1, i$1, _tuple$1, _slice, _index, f, _slice$1, _index$1, ok, _ref, _i, _slice$2, _index$2, tok;
 		ctxt = this;
 		end = 0;
 		p = content;
 		while (p.length > 0) {
 			line = p;
-			if (i = bytes.IndexByte(line, 10), i >= 0) {
+			i = bytes.IndexByte(line, 10);
+			if (i >= 0) {
 				_tuple = [go$subslice(line, 0, i), go$subslice(p, (i + 1 >> 0))], line = _tuple[0], p = _tuple[1];
 			} else {
 				p = go$subslice(p, p.length);
@@ -938,7 +954,8 @@ fmt:Errorfgo/build:Contextgo/build:goodOSArchFilego/build:joinPathgo/bui
 		allok = true;
 		while (p.length > 0) {
 			line$1 = p;
-			if (i$1 = bytes.IndexByte(line$1, 10), i$1 >= 0) {
+			i$1 = bytes.IndexByte(line$1, 10);
+			if (i$1 >= 0) {
 				_tuple$1 = [go$subslice(line$1, 0, i$1), go$subslice(p, (i$1 + 1 >> 0))], line$1 = _tuple$1[0], p = _tuple$1[1];
 			} else {
 				p = go$subslice(p, p.length);
@@ -1044,14 +1061,15 @@ fmt:Errorfgo/build:Contextgo/build:goodOSArchFilego/build:joinPathgo/bui
 	};
 	Context.prototype.saveCgo = function(filename, di, cg) { return this.go$val.saveCgo(filename, di, cg); };
  0ContextsaveCgo0Åõ
-fmt:Errorfgo/build:Contextgo/build:matchgo/build:safeCgoNamego/build:splitQuotedstrings:Fieldsstrings:Indexstrings:Splitstrings:TrimSpace0ÇGsafeCgoNameÅˇ	safeCgoName = function(s) {
+fmt:Errorfgo/build:Contextgo/build:matchgo/build:safeCgoNamego/build:splitQuotedstrings:Fieldsstrings:Indexstrings:Splitstrings:TrimSpace0ÇKsafeCgoNameÇ	safeCgoName = function(s) {
 		var i, c;
 		if (s === "") {
 			return false;
 		}
 		i = 0;
 		while (i < s.length) {
-			if (c = s.charCodeAt(i), c < 128 && bytes.IndexByte(safeBytes, c) < 0) {
+			c = s.charCodeAt(i);
+			if (c < 128 && bytes.IndexByte(safeBytes, c) < 0) {
 				return false;
 			}
 			i = i + 1 >> 0;
@@ -1115,7 +1133,7 @@ fmt:Errorfgo/build:Contextgo/build:matchgo/build:safeCgoNamego/build:spl
 		return [r, err];
 	};
  0splitQuoted0
-errors:Newunicode:IsSpace0Çv Ç	Context.Ptr.prototype.match = function(name, allTags) {
+errors:Newunicode:IsSpace0Çx Ç	Context.Ptr.prototype.match = function(name, allTags) {
 		var ctxt, _key, i, ok1, ok2, _key$1, _ref, _i, _rune, c, _ref$1, _i$1, _slice, _index, tag, _ref$2, _i$2, _slice$1, _index$1, tag$1;
 		ctxt = this;
 		if (name === "") {
@@ -1124,7 +1142,8 @@ errors:Newunicode:IsSpace0Çv Ç	Context.Ptr.prototype.match = function(nam
 			}
 			return false;
 		}
-		if (i = strings.Index(name, ","), i >= 0) {
+		i = strings.Index(name, ",");
+		if (i >= 0) {
 			ok1 = ctxt.match(name.substring(0, i), allTags);
 			ok2 = ctxt.match(name.substring((i + 1 >> 0)), allTags);
 			return ok1 && ok2;
@@ -1175,14 +1194,16 @@ errors:Newunicode:IsSpace0Çv Ç	Context.Ptr.prototype.match = function(nam
 		return false;
 	};
 	Context.prototype.match = function(name, allTags) { return this.go$val.match(name, allTags); };
- 0Contextmatch0Wgo/build:Contextstrings:HasPrefixstrings:Indexunicode:IsDigitunicode:IsLetter0Ç´ Ç0	Context.Ptr.prototype.goodOSArchFile = function(name, allTags) {
+ 0Contextmatch0Wgo/build:Contextstrings:HasPrefixstrings:Indexunicode:IsDigitunicode:IsLetter0ÇØ Ç4	Context.Ptr.prototype.goodOSArchFile = function(name, allTags) {
 		var ctxt, dot, l, n, _slice, _index, n$1, _slice$1, _index$1, _entry, _slice$2, _index$2, _entry$1, _key, _slice$3, _index$3, _key$1, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _entry$2, _key$2, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _entry$3, _key$3, _slice$11, _index$11, _slice$12, _index$12;
 		ctxt = this;
-		if (dot = strings.Index(name, "."), !((dot === -1))) {
+		dot = strings.Index(name, ".");
+		if (!((dot === -1))) {
 			name = name.substring(0, dot);
 		}
 		l = strings.Split(name, "_");
-		if (n = l.length, n > 0 && (_slice = l, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === "test") {
+		n = l.length;
+		if (n > 0 && (_slice = l, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === "test") {
 			l = go$subslice(l, 0, (n - 1 >> 0));
 		}
 		n$1 = l.length;
@@ -1257,11 +1278,12 @@ errors:New0ÅúisIdentÅÅ	isIdent = function(c) {
 		return c;
 	};
 	importReader.prototype.readByte = function() { return this.go$val.readByte(); };
- 0importReaderreadByte00go/build:errNULgo/build:importReaderio:EOF0ÇI ÇÂ	importReader.Ptr.prototype.peekByte = function(skipSpace) {
+ 0importReaderreadByte00go/build:errNULgo/build:importReaderio:EOF0ÇL ÇË	importReader.Ptr.prototype.peekByte = function(skipSpace) {
 		var r, c, _ref, c1, _tuple;
 		r = this;
 		if (!(go$interfaceIsEqual(r.err, null))) {
-			if (r.nerr = r.nerr + 1 >> 0, r.nerr > 10000) {
+			r.nerr = r.nerr + 1 >> 0;
+			if (r.nerr > 10000) {
 				throw go$panic(new Go$String("go/build: import reader looping"));
 			}
 			return 0;

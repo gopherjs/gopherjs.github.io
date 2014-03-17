@@ -1,4 +1,4 @@
-0Éfú
+0Éf√
 image/jpegÇ'Ìpackage jpeg
 import io "io"
 import bufio "bufio"
@@ -133,7 +133,7 @@ func (? @"image".YCbCrSubsampleRatio) @"image".String() (? string)
 func (? *@"image".YCbCrSubsampleRatio) @"image".String() (? string)
 $$
 0|runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage
-image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0errorserrors0É=∆0ÇíbitsÅı	bits = go$pkg.bits = go$newType(0, "Struct", "jpeg.bits", "bits", "image/jpeg", function(a_, m_, n_) {
+image/jpeg0R0ioio0bufiobufio0imageimage0image/colorcolor0errorserrors0É=Ì0ÇíbitsÅı	bits = go$pkg.bits = go$newType(0, "Struct", "jpeg.bits", "bits", "image/jpeg", function(a_, m_, n_) {
 		this.go$val = this;
 		this.a = a_ !== undefined ? a_ : 0;
 		this.m = m_ !== undefined ? m_ : 0;
@@ -348,11 +348,12 @@ huffmanLUT0image/jpeg:huffmanSpec0ÇXwriterc	writer = go$pkg.writer = go$n
 		return null;
 	};
 	decoder.prototype.ensureNBits = function(n) { return this.go$val.ensureNBits(n); };
- 0decoderensureNBits0,image/jpeg:FormatErrorimage/jpeg:decoder0Ç Ç∂	decoder.Ptr.prototype.receiveExtend = function(t) {
+ 0decoderensureNBits0,image/jpeg:FormatErrorimage/jpeg:decoder0Ç	 Çπ	decoder.Ptr.prototype.receiveExtend = function(t) {
 		var d, err, y, y$1, s, y$2, x, y$3;
 		d = this;
 		if (d.b.n < (t >> 0)) {
-			if (err = d.ensureNBits((t >> 0)), !(go$interfaceIsEqual(err, null))) {
+			err = d.ensureNBits((t >> 0));
+			if (!(go$interfaceIsEqual(err, null))) {
 				return [0, err];
 			}
 		}
@@ -453,7 +454,7 @@ huffmanLUT0image/jpeg:huffmanSpec0ÇXwriterc	writer = go$pkg.writer = go$n
 	};
 	decoder.prototype.processDHT = function(n) { return this.go$val.processDHT(n); };
  0decoder
-processDHT09image/jpeg:FormatErrorimage/jpeg:decoderio:ReadFull0Çò Ç0	decoder.Ptr.prototype.decodeHuffman = function(h) {
+processDHT09image/jpeg:FormatErrorimage/jpeg:decoderio:ReadFull0Çú Ç4	decoder.Ptr.prototype.decodeHuffman = function(h) {
 		var d, _tuple, i, code, err;
 		d = this;
 		if (h.length === 0) {
@@ -462,7 +463,8 @@ processDHT09image/jpeg:FormatErrorimage/jpeg:decoderio:ReadFull0Çò Ç0	
 		_tuple = [0, 0], i = _tuple[0], code = _tuple[1];
 		while (i < 16) {
 			if (d.b.n === 0) {
-				if (err = d.ensureNBits(1), !(go$interfaceIsEqual(err, null))) {
+				err = d.ensureNBits(1);
+				if (!(go$interfaceIsEqual(err, null))) {
 					return [0, err];
 				}
 			}
@@ -480,11 +482,12 @@ processDHT09image/jpeg:FormatErrorimage/jpeg:decoderio:ReadFull0Çò Ç0	
 		return [0, new FormatError("bad Huffman code")];
 	};
 	decoder.prototype.decodeHuffman = function(h) { return this.go$val.decodeHuffman(h); };
- 0decoderdecodeHuffman0Dimage/jpeg:FormatErrorimage/jpeg:decoderimage/jpeg:ensureNBits0Ç‚ Çñ	decoder.Ptr.prototype.decodeBit = function() {
+ 0decoderdecodeHuffman0Dimage/jpeg:FormatErrorimage/jpeg:decoderimage/jpeg:ensureNBits0ÇÂ Çô	decoder.Ptr.prototype.decodeBit = function() {
 		var d, err, ret;
 		d = this;
 		if (d.b.n === 0) {
-			if (err = d.ensureNBits(1), !(go$interfaceIsEqual(err, null))) {
+			err = d.ensureNBits(1);
+			if (!(go$interfaceIsEqual(err, null))) {
 				return [false, err];
 			}
 		}
@@ -494,11 +497,12 @@ processDHT09image/jpeg:FormatErrorimage/jpeg:decoderio:ReadFull0Çò Ç0	
 		return [ret, null];
 	};
 	decoder.prototype.decodeBit = function() { return this.go$val.decodeBit(); };
- 0decoder	decodeBit0,image/jpeg:decoderimage/jpeg:ensureNBits0Çî ÇG	decoder.Ptr.prototype.decodeBits = function(n) {
+ 0decoder	decodeBit0,image/jpeg:decoderimage/jpeg:ensureNBits0Çó ÇJ	decoder.Ptr.prototype.decodeBits = function(n) {
 		var d, err, y, ret, y$1, y$2;
 		d = this;
 		if (d.b.n < n) {
-			if (err = d.ensureNBits(n), !(go$interfaceIsEqual(err, null))) {
+			err = d.ensureNBits(n);
+			if (!(go$interfaceIsEqual(err, null))) {
 				return [0, err];
 			}
 		}
@@ -734,11 +738,12 @@ processDQT0Vimage/jpeg:FormatErrorimage/jpeg:UnsupportedErrorimage/jpeg:de
 	};
 	decoder.prototype.processDRI = function(n) { return this.go$val.processDRI(n); };
  0decoder
-processDRI09image/jpeg:FormatErrorimage/jpeg:decoderio:ReadFull0Ç˛ Ç
-∆	decoder.Ptr.prototype.decode = function(r, configOnly) {
-		var d, ok, _tuple, rr, _tuple$1, err, _tuple$2, err$1, _tuple$3, marker, _tuple$4, _tuple$5, n;
+processDRI09image/jpeg:FormatErrorimage/jpeg:decoderio:ReadFull0Ç  Ç
+»	decoder.Ptr.prototype.decode = function(r, configOnly) {
+		var d, _tuple, rr, ok, _tuple$1, err, _tuple$2, err$1, _tuple$3, marker, _tuple$4, _tuple$5, n;
 		d = this;
-		if (_tuple = (r !== null && Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (r !== null && Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			d.r = rr;
 		} else {
 			d.r = bufio.NewReader(r);
@@ -824,10 +829,11 @@ image:Grayimage:YCbCrio:ReadFull0Å™Decodek	Decode = go$pkg.Decode = funct
 		d = new decoder.Ptr();
 		return d.decode(r, false);
 	};
- 0Decode0'image/jpeg:decodeimage/jpeg:decoder0Ç–DecodeConfigÇ.	DecodeConfig = go$pkg.DecodeConfig = function(r) {
-		var d, err, _tuple, _ref;
+ 0Decode0'image/jpeg:decodeimage/jpeg:decoder0Ç“DecodeConfigÇ0	DecodeConfig = go$pkg.DecodeConfig = function(r) {
+		var d, _tuple, err, _ref;
 		d = new decoder.Ptr();
-		if (_tuple = d.decode(r, true), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = d.decode(r, true), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [new image.Config.Ptr(null, 0, 0), err];
 		}
 		_ref = d.nComp;
@@ -865,8 +871,8 @@ F Ç	≤	decoder.Ptr.prototype.makeImg = function(h0, v0, mxx, myy) {
 	decoder.prototype.makeImg = function(h0, v0, mxx, myy) { return this.go$val.makeImg(h0, v0, mxx, myy); };
  0decodermakeImg0vimage/jpeg:decoder
 image:Grayimage:NewGrayimage:NewYCbCrimage:Point
-image:Rectimage:Rectangleimage:YCbCr0Ç91 Ç7—	decoder.Ptr.prototype.processSOS = function(n) {
-		var d, x, x$1, _r, _tuple, err, nComp, x$2, scan, i, x$3, cs, compIndex, _ref, _i, _struct, comp, j, x$4, x$5, _tuple$1, zigStart, zigEnd, ah, al, x$6, x$7, x$8, x$9, _tuple$2, h0, v0, _q, x$10, x$11, mxx, _q$1, x$12, x$13, myy, i$1, compIndex$1, x$14, x$15, x$16, x$17, _tuple$3, mcu, expectedRST, b, dc, _tuple$4, mx0, my0, blockCount, my, mx, i$2, compIndex$2, qt, j$1, x$18, x$19, x$20, x$21, _tuple$5, _r$1, _q$2, x$22, q, _r$2, _q$3, x$23, x$24, _slice, _index, x$25, x$26, err$1, y, zig, _tuple$6, value, err$2, _tuple$7, dcDelta, _lhs, _index$1, y$1, _tuple$8, value$1, err$3, val0, val1, _tuple$9, ac, err$4, y$2, y$3, _tuple$10, bits$1, err$5, _slice$1, _index$2, x$27, x$28, zig$1, _lhs$1, _index$3, x$29, x$30, _tuple$11, dst, stride, x$31, x$32, x$33, _tuple$12, _ref$1, x$34, x$35, x$36, _tuple$13, x$37, x$38, x$39, _tuple$14, x$40, x$41, x$42, _tuple$15, y$4, x$43, y8, yStride, x$44, c, _slice$2, _index$4, _r$3, _tuple$16, err$6;
+image:Rectimage:Rectangleimage:YCbCr0Ç9> Ç7ﬁ	decoder.Ptr.prototype.processSOS = function(n) {
+		var d, x, x$1, _r, _tuple, err, nComp, x$2, scan, i, x$3, cs, compIndex, _ref, _i, _struct, comp, j, x$4, x$5, _tuple$1, zigStart, zigEnd, ah, al, x$6, x$7, x$8, x$9, _tuple$2, h0, v0, _q, x$10, x$11, mxx, _q$1, x$12, x$13, myy, i$1, compIndex$1, x$14, x$15, x$16, x$17, _tuple$3, mcu, expectedRST, b, dc, _tuple$4, mx0, my0, blockCount, my, mx, i$2, compIndex$2, qt, j$1, x$18, x$19, x$20, x$21, _tuple$5, _r$1, _q$2, x$22, q, _r$2, _q$3, x$23, x$24, _slice, _index, x$25, x$26, y, err$1, zig, _tuple$6, value, err$2, _tuple$7, dcDelta, _lhs, _index$1, y$1, _tuple$8, value$1, err$3, val0, val1, _tuple$9, ac, err$4, y$2, y$3, _tuple$10, bits$1, err$5, _slice$1, _index$2, x$27, x$28, zig$1, _lhs$1, _index$3, x$29, x$30, _tuple$11, dst, stride, x$31, x$32, x$33, _tuple$12, _ref$1, x$34, x$35, x$36, _tuple$13, x$37, x$38, x$39, _tuple$14, x$40, x$41, x$42, _tuple$15, y$4, x$43, y8, yStride, x$44, c, _slice$2, _index$4, _r$3, _tuple$16, err$6;
 		d = this;
 		if (d.nComp === 0) {
 			return new FormatError("missing SOF marker");
@@ -939,7 +945,10 @@ image:Rectimage:Rectangleimage:YCbCr0Ç91 Ç7—	decoder.Ptr.prototype.process
 		}
 		d.b = new bits.Ptr(0, 0, 0);
 		_tuple$3 = [0, 208], mcu = _tuple$3[0], expectedRST = _tuple$3[1];
-		b = go$makeNativeArray("Int32", 64, function() { return 0; }), dc = go$makeNativeArray("Int32", 3, function() { return 0; }), _tuple$4 = [0, 0], mx0 = _tuple$4[0], my0 = _tuple$4[1], blockCount = 0;
+		b = go$makeNativeArray("Int32", 64, function() { return 0; });
+		dc = go$makeNativeArray("Int32", 3, function() { return 0; });
+		_tuple$4 = [0, 0], mx0 = _tuple$4[0], my0 = _tuple$4[1];
+		blockCount = 0;
 		my = 0;
 		while (my < myy) {
 			mx = 0;
@@ -974,7 +983,8 @@ image:Rectimage:Rectangleimage:YCbCr0Ç91 Ç7—	decoder.Ptr.prototype.process
 							b = go$makeNativeArray("Int32", 64, function() { return 0; });
 						}
 						if (!((ah === 0))) {
-							if (err$1 = d.refine(b, d.huff[1][scan[i$2].ta], zigStart, zigEnd, (y = al, y < 32 ? (1 << y) : 0) >> 0), !(go$interfaceIsEqual(err$1, null))) {
+							err$1 = d.refine(b, d.huff[1][scan[i$2].ta], zigStart, zigEnd, (y = al, y < 32 ? (1 << y) : 0) >> 0);
+							if (!(go$interfaceIsEqual(err$1, null))) {
 								return err$1;
 							}
 						} else {
@@ -1111,8 +1121,8 @@ image:Rectimage:Rectangleimage:YCbCr0Ç91 Ç7—	decoder.Ptr.prototype.process
 	decoder.prototype.processSOS = function(n) { return this.go$val.processSOS(n); };
  0decoder
 processSOS0Ç=image/jpeg:FormatErrorimage/jpeg:UnsupportedErrorimage/jpeg:bitsimage/jpeg:blockimage/jpeg:componentimage/jpeg:decodeBitsimage/jpeg:decodeHuffmanimage/jpeg:decoderimage/jpeg:idctimage/jpeg:makeImgimage/jpeg:receiveExtendimage/jpeg:refineimage/jpeg:unzig
-image:Grayimage:YCbCrio:ReadFull0Ç	Ô Ç	0	decoder.Ptr.prototype.refine = function(b, h, zigStart, zigEnd, delta) {
-		var d, _tuple, bit, err, _lhs, _index, zig, z, _tuple$1, value, err$1, val0, val1, _ref, y, _tuple$2, bits$1, err$2, _tuple$3, bit$1, err$3, _tuple$4, err$4, _tuple$5;
+image:Grayimage:YCbCrio:ReadFull0Ç	Ú Ç	3	decoder.Ptr.prototype.refine = function(b, h, zigStart, zigEnd, delta) {
+		var d, _tuple, bit, err, _lhs, _index, zig, z, _tuple$1, value, err$1, val0, val1, _ref, y, _tuple$2, bits$1, err$2, _tuple$3, bit$1, err$3, _tuple$4, _tuple$5, err$4;
 		d = this;
 		if (zigStart === 0) {
 			if (!((zigEnd === 0))) {
@@ -1178,7 +1188,8 @@ image:Grayimage:YCbCrio:ReadFull0Ç	Ô Ç	0	decoder.Ptr.prototype.refine = fu
 		}
 		if (d.eobRun > 0) {
 			d.eobRun = d.eobRun - 1 << 16 >>> 16;
-			if (_tuple$5 = d.refineNonZeroes(b, zig, zigEnd, -1, delta), err$4 = _tuple$5[1], !(go$interfaceIsEqual(err$4, null))) {
+			_tuple$5 = d.refineNonZeroes(b, zig, zigEnd, -1, delta), err$4 = _tuple$5[1];
+			if (!(go$interfaceIsEqual(err$4, null))) {
 				return err$4;
 			}
 		}
@@ -1495,11 +1506,13 @@ writeBlock0timage/jpeg:divimage/jpeg:emitHuffimage/jpeg:emitHuffRLEimage
 			i = i + 1 >> 0;
 		}
 	};
- 0scale0 0Ç	Z Çd	encoder.Ptr.prototype.writeSOS = function(m) {
+ 0scale0 0Ç	^ Çh	encoder.Ptr.prototype.writeSOS = function(m) {
 		var e, b, _tuple, cb, cr, _tuple$1, prevDCY, prevDCCb, prevDCCr, _struct, _struct$1, _struct$2, bounds, _tuple$2, rgba, y, x, i, x$1, x$2, xOff, x$3, x$4, yOff, _struct$3, p, _struct$4, _struct$5;
 		e = this;
 		e.write(sosHeader);
-		b = go$makeNativeArray("Int32", 64, function() { return 0; }), _tuple = [go$makeNativeArray("Array", 4, function() { return go$makeNativeArray("Int32", 64, function() { return 0; }); }), go$makeNativeArray("Array", 4, function() { return go$makeNativeArray("Int32", 64, function() { return 0; }); })], cb = _tuple[0], cr = _tuple[1], _tuple$1 = [0, 0, 0], prevDCY = _tuple$1[0], prevDCCb = _tuple$1[1], prevDCCr = _tuple$1[2];
+		b = go$makeNativeArray("Int32", 64, function() { return 0; });
+		_tuple = [go$makeNativeArray("Array", 4, function() { return go$makeNativeArray("Int32", 64, function() { return 0; }); }), go$makeNativeArray("Array", 4, function() { return go$makeNativeArray("Int32", 64, function() { return 0; }); })], cb = _tuple[0], cr = _tuple[1];
+		_tuple$1 = [0, 0, 0], prevDCY = _tuple$1[0], prevDCCb = _tuple$1[1], prevDCCr = _tuple$1[2];
 		bounds = (_struct = m.Bounds(), new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y))));
 		_tuple$2 = (m !== null && m.constructor === (go$ptrType(image.RGBA)) ? [m.go$val, true] : [(go$ptrType(image.RGBA)).nil, false]), rgba = _tuple$2[0];
 		y = bounds.Min.Y;
@@ -1531,14 +1544,15 @@ writeBlock0timage/jpeg:divimage/jpeg:emitHuffimage/jpeg:emitHuffRLEimage
 	};
 	encoder.prototype.writeSOS = function(m) { return this.go$val.writeSOS(m); };
  0encoderwriteSOS0Å÷image/jpeg:emitimage/jpeg:encoderimage/jpeg:rgbaToYCbCrimage/jpeg:scaleimage/jpeg:sosHeaderimage/jpeg:toYCbCrimage/jpeg:writeimage/jpeg:writeBlockimage:Pointimage:Pt
-image:RGBAimage:Rectangle0Ç	pEncodeÇK	Encode = go$pkg.Encode = function(w, m, o) {
-		var _struct, _struct$1, _struct$2, b, e, ok, _tuple, ww, quality, scale$1, _q, x, _ref, _i, i, _ref$1, _i$1, j, x$1, _q$1, _struct$3;
+image:RGBAimage:Rectangle0Ç	rEncodeÇM	Encode = go$pkg.Encode = function(w, m, o) {
+		var _struct, _struct$1, _struct$2, b, e, _tuple, ww, ok, quality, scale$1, _q, x, _ref, _i, i, _ref$1, _i$1, j, x$1, _q$1, _struct$3;
 		b = (_struct = m.Bounds(), new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y))));
 		if (b.Dx() >= 65536 || b.Dy() >= 65536) {
 			return errors.New("jpeg: image is too large to encode");
 		}
 		e = new encoder.Ptr();
-		if (_tuple = (w !== null && writer.implementedBy.indexOf(w.constructor) !== -1 ? [w, true] : [null, false]), ww = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (w !== null && writer.implementedBy.indexOf(w.constructor) !== -1 ? [w, true] : [null, false]), ww = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			e.w = ww;
 		} else {
 			e.w = bufio.NewWriter(w);

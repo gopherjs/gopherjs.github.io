@@ -1,4 +1,4 @@
-0‚Tcompress/zlib‚"ppackage zlib
+0‚Tcompress/zlib‚"ppackage zlib
 import bufio "bufio"
 import flate "compress/flate"
 import errors "errors"
@@ -81,7 +81,7 @@ func (? *@"compress/flate".huffmanEncoder) @"compress/flate".generate(@"compress
 type @"compress/flate".literalNode struct { @"compress/flate".literal uint16; @"compress/flate".freq int32 }
 $$
 0¶runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flatehashhash/adler32compress/zlib0x0bufiobufio0compress/flateflate0errorserrors0hashhash0hash/adler32adler320ioio0
-fmtfmt0‚0T0‚reader‚÷	reader = go$pkg.reader = go$newType(0, "Struct", "zlib.reader", "reader", "compress/zlib", function(r_, decompressor_, digest_, err_, scratch_) {
+fmtfmt0‚0]0‚reader‚÷	reader = go$pkg.reader = go$newType(0, "Struct", "zlib.reader", "reader", "compress/zlib", function(r_, decompressor_, digest_, err_, scratch_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.decompressor = decompressor_ !== undefined ? decompressor_ : null;
@@ -107,10 +107,11 @@ $$
 0Writer0/compress/flate:Writerhash:Hash32	io:Writer0¦	NewReaderk	NewReader = go$pkg.NewReader = function(r) {
 		return NewReaderDict(r, (go$sliceType(Go$Uint8)).nil);
 	};
- 0	NewReader0compress/zlib:NewReaderDict0‚ÃNewReaderDict‚¸	NewReaderDict = go$pkg.NewReaderDict = function(r, dict) {
-		var z, ok, _tuple, fr, _tuple$1, err, h, _r, _tuple$2, checksum;
+ 0	NewReader0compress/zlib:NewReaderDict0‚ÅNewReaderDict‚º	NewReaderDict = go$pkg.NewReaderDict = function(r, dict) {
+		var z, _tuple, fr, ok, _tuple$1, err, h, _r, _tuple$2, checksum;
 		z = new reader.Ptr();
-		if (_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), fr = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), fr = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			z.r = fr;
 		} else {
 			z.r = bufio.NewReader(r);
@@ -139,8 +140,8 @@ $$
 		z.digest = adler32.New();
 		return [z, null];
 	};
- 0NewReaderDict0âbufio:NewReadercompress/flate:NewReadercompress/flate:NewReaderDictcompress/flate:Readercompress/zlib:ErrDictionarycompress/zlib:ErrHeadercompress/zlib:readerhash/adler32:Checksumhash/adler32:Newio:ReadFull0‚r ‚	reader.Ptr.prototype.Read = function(p) {
-		var n, err, z, _tuple, _tuple$1, _tuple$2, err$1, _tuple$3, _tuple$4, checksum, _tuple$5;
+ 0NewReaderDict0âbufio:NewReadercompress/flate:NewReadercompress/flate:NewReaderDictcompress/flate:Readercompress/zlib:ErrDictionarycompress/zlib:ErrHeadercompress/zlib:readerhash/adler32:Checksumhash/adler32:Newio:ReadFull0‚t ‚	reader.Ptr.prototype.Read = function(p) {
+		var n, err, z, _tuple, _tuple$1, _tuple$2, _tuple$3, err$1, _tuple$4, checksum, _tuple$5;
 		n = 0;
 		err = null;
 		z = this;
@@ -158,7 +159,8 @@ $$
 			z.err = err;
 			return [n, err];
 		}
-		if (_tuple$3 = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 4)), err$1 = _tuple$3[1], !(go$interfaceIsEqual(err$1, null))) {
+		_tuple$3 = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 4)), err$1 = _tuple$3[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			z.err = err$1;
 			_tuple$4 = [0, err$1], n = _tuple$4[0], err = _tuple$4[1];
 			return [n, err];
@@ -212,7 +214,7 @@ fmt:Errorf0‚í ‚¬	Writer.Ptr.prototype.Reset = function(w) {
 		z.wroteHeader = false;
 	};
 	Writer.prototype.Reset = function(w) { return this.go$val.Reset(w); };
- 0Writer0-compress/flate:Writercompress/zlib:Writer0‚· ‚"	Writer.Ptr.prototype.writeHeader = function() {
+ 0Writer0-compress/flate:Writercompress/zlib:Writer0‚¼ ‚'	Writer.Ptr.prototype.writeHeader = function() {
 		var err, z, _ref, _lhs, _index, _lhs$1, _index$1, _r, _tuple, checksum, _tuple$1, _tuple$2;
 		err = null;
 		z = this;
@@ -234,7 +236,8 @@ fmt:Errorf0‚í ‚¬	Writer.Ptr.prototype.Reset = function(w) {
 			_lhs = z.scratch, _index = 1, _lhs[_index] = (_lhs[_index] | 32) >>> 0;
 		}
 		_lhs$1 = z.scratch, _index$1 = 1, _lhs$1[_index$1] = _lhs$1[_index$1] + (((31 - (_r = ((((z.scratch[0] << 16 >>> 16) << 8 << 16 >>> 16) + (z.scratch[1] << 16 >>> 16) << 16 >>> 16)) % 31, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) << 16 >>> 16) << 24 >>> 24)) << 24 >>> 24;
-		if (_tuple = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 2)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 2)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			err = err;
 			return err;
 		}
@@ -244,7 +247,8 @@ fmt:Errorf0‚í ‚¬	Writer.Ptr.prototype.Reset = function(w) {
 			z.scratch[1] = ((checksum >>> 16 >>> 0) << 24 >>> 24);
 			z.scratch[2] = ((checksum >>> 8 >>> 0) << 24 >>> 24);
 			z.scratch[3] = ((checksum >>> 0 >>> 0) << 24 >>> 24);
-			if (_tuple$1 = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 4)), err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
+			_tuple$1 = z.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(z.scratch), 0, 4)), err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err, null))) {
 				err = err;
 				return err;
 			}

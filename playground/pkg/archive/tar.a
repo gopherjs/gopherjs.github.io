@@ -1,4 +1,4 @@
-0‚ëóarchive/tar‚+Ïpackage tar
+0‚ìarchive/tar‚+Ïpackage tar
 import bytes "bytes"
 import errors "errors"
 import fmt "fmt"
@@ -182,7 +182,7 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0²runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilpatharchive/tar0¯0bytesbytes0errorserrors0
-fmtfmt0osos0pathpath0timetime0ioio0	io/ioutilioutil0strconvstrconv0stringsstrings0syscallsyscall0‚¾¦0‚>Header‚m	Header = go$pkg.Header = go$newType(0, "Struct", "tar.Header", "Header", "archive/tar", function(Name_, Mode_, Uid_, Gid_, Size_, ModTime_, Typeflag_, Linkname_, Uname_, Gname_, Devmajor_, Devminor_, AccessTime_, ChangeTime_) {
+fmtfmt0osos0pathpath0timetime0ioio0	io/ioutilioutil0strconvstrconv0stringsstrings0syscallsyscall0‚¾¹0‚>Header‚m	Header = go$pkg.Header = go$newType(0, "Struct", "tar.Header", "Header", "archive/tar", function(Name_, Mode_, Uid_, Gid_, Size_, ModTime_, Typeflag_, Linkname_, Uname_, Gname_, Devmajor_, Devminor_, AccessTime_, ChangeTime_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Mode = Mode_ !== undefined ? Mode_ : new Go$Int64(0, 0);
@@ -641,13 +641,15 @@ fmt:Errorfos:FileMode	time:Time0‚checksum‚î	checksum = function(header)
 	};
 	Reader.prototype.octal = function(b) { return this.go$val.octal(b); };
  0Readeroctal0Harchive/tar:Readerarchive/tar:cString
-bytes:Trimstrconv:ParseUint0‚P ‚ô	Reader.Ptr.prototype.skipUnread = function() {
-		var tr, x, x$1, nr, _tuple, ok, _tuple$1, x$2, sr, err, _tuple$2, _tuple$3;
+bytes:Trimstrconv:ParseUint0‚U ‚ù	Reader.Ptr.prototype.skipUnread = function() {
+		var tr, x, x$1, nr, _tuple, _tuple$1, x$2, sr, ok, _tuple$2, err, _tuple$3;
 		tr = this;
 		nr = (x = tr.nb, x$1 = tr.pad, new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 		_tuple = [new Go$Int64(0, 0), new Go$Int64(0, 0)], tr.nb = _tuple[0], tr.pad = _tuple[1];
-		if (_tuple$1 = (x$2 = tr.r, (x$2 !== null && io.Seeker.implementedBy.indexOf(x$2.constructor) !== -1 ? [x$2, true] : [null, false])), sr = _tuple$1[0], ok = _tuple$1[1], ok) {
-			if (_tuple$2 = sr.Seek(nr, 1), err = _tuple$2[1], go$interfaceIsEqual(err, null)) {
+		_tuple$1 = (x$2 = tr.r, (x$2 !== null && io.Seeker.implementedBy.indexOf(x$2.constructor) !== -1 ? [x$2, true] : [null, false])), sr = _tuple$1[0], ok = _tuple$1[1];
+		if (ok) {
+			_tuple$2 = sr.Seek(nr, 1), err = _tuple$2[1];
+			if (go$interfaceIsEqual(err, null)) {
 				return;
 			}
 		}
@@ -666,15 +668,17 @@ skipUnread0<archive/tar:Readerio/ioutil:Discardio:CopyN	io:Seeker0‚{ ‚
 		return (given.high === unsigned.high && given.low === unsigned.low) || (given.high === signed.high && given.low === signed.low);
 	};
 	Reader.prototype.verifyChecksum = function(header) { return this.go$val.verifyChecksum(header); };
- 0ReaderverifyChecksum0=archive/tar:Readerarchive/tar:checksumarchive/tar:octal0‚æ ‚Í	Reader.Ptr.prototype.readHeader = function() {
+ 0ReaderverifyChecksum0=archive/tar:Readerarchive/tar:checksumarchive/tar:octal0‚ë ‚Ò	Reader.Ptr.prototype.readHeader = function() {
 		var tr, header, _tuple, _tuple$1, hdr, s, v, v$1, x, v$2, x$1, v$3, v$4, v$5, _struct, v$6, _slice, _index, v$7, v$8, v$9, magic, format, _ref, _ref$1, v$10, v$11, v$12, devmajor, v$13, devminor, prefix, _ref$2, v$14, v$15, v$16, _struct$1, v$17, _struct$2, x$2, x$3;
 		tr = this;
 		header = (go$sliceType(Go$Uint8)).make(512, 0, function() { return 0; });
-		if (_tuple = io.ReadFull(tr.r, header), tr.err = _tuple[1], !(go$interfaceIsEqual(tr.err, null))) {
+		_tuple = io.ReadFull(tr.r, header), tr.err = _tuple[1];
+		if (!(go$interfaceIsEqual(tr.err, null))) {
 			return (go$ptrType(Header)).nil;
 		}
 		if (bytes.Equal(header, go$subslice(zeroBlock, 0, 512))) {
-			if (_tuple$1 = io.ReadFull(tr.r, header), tr.err = _tuple$1[1], !(go$interfaceIsEqual(tr.err, null))) {
+			_tuple$1 = io.ReadFull(tr.r, header), tr.err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(tr.err, null))) {
 				return (go$ptrType(Header)).nil;
 			}
 			if (bytes.Equal(header, go$subslice(zeroBlock, 0, 512))) {
@@ -873,7 +877,7 @@ fmt:Errorf0‚ ‚”	Writer.Ptr.prototype.cString = function(b, s, allowPax, pax
 		return tw.writeHeader(hdr, true);
 	};
 	Writer.prototype.WriteHeader = function(hdr) { return this.go$val.WriteHeader(hdr); };
- 0Writer0-archive/tar:Writerarchive/tar:writeHeader0‚— ‚#	Writer.Ptr.prototype.writeHeader = function(hdr, allowPax) {
+ 0Writer0-archive/tar:Writerarchive/tar:writeHeader0‚š ‚&	Writer.Ptr.prototype.writeHeader = function(hdr, allowPax) {
 		var tw, paxHeaders, header, s, v, pathHeaderBytes, modTime, _struct, _struct$1, v$1, v$2, v$3, v$4, v$5, v$6, _slice, _index, v$7, v$8, v$9, v$10, v$11, v$12, v$13, v$14, prefixHeaderBytes, _tuple, _entry, paxPathUsed, suffix, prefix, err, _tuple$1, _tuple$2, chksum, _slice$1, _index$1, err$1, x, _tuple$3;
 		tw = this;
 		if (tw.closed) {
@@ -939,7 +943,8 @@ fmt:Errorf0‚ ‚”	Writer.Ptr.prototype.cString = function(b, s, allowPax, pax
 			if (!allowPax) {
 				return errInvalidHeader;
 			}
-			if (err$1 = tw.writePAXHeader(hdr, paxHeaders), !(go$interfaceIsEqual(err$1, null))) {
+			err$1 = tw.writePAXHeader(hdr, paxHeaders);
+			if (!(go$interfaceIsEqual(err$1, null))) {
 				return err$1;
 			}
 		}
@@ -972,8 +977,8 @@ fmt:Errorf0‚ ‚”	Writer.Ptr.prototype.cString = function(b, s, allowPax, pax
 		return [prefix, suffix, err];
 	};
 	Writer.prototype.splitUSTARLongName = function(name) { return this.go$val.splitUSTARLongName(name); };
- 0WritersplitUSTARLongName0Carchive/tar:Writerarchive/tar:errNameTooLongstrings:LastIndex0‚Æ ‚à	Writer.Ptr.prototype.writePAXHeader = function(hdr, paxHeaders) {
-		var tw, ext, _struct, pid, _tuple, dir, file, fullName, ascii, buf, _ref, _i, _keys, _entry, v, k, err, err$1, _tuple$1, err$2;
+ 0WritersplitUSTARLongName0Carchive/tar:Writerarchive/tar:errNameTooLongstrings:LastIndex0‚Ì ‚æ	Writer.Ptr.prototype.writePAXHeader = function(hdr, paxHeaders) {
+		var tw, ext, _struct, pid, _tuple, dir, file, fullName, ascii, buf, _ref, _i, _keys, _entry, v, k, err, _tuple$1, err$1, err$2;
 		tw = this;
 		ext = new Header.Ptr();
 		ext.Typeflag = 120;
@@ -998,13 +1003,16 @@ fmt:Errorf0‚ ‚”	Writer.Ptr.prototype.cString = function(b, s, allowPax, pax
 			_i++;
 		}
 		ext.Size = new Go$Int64(0, buf.Bytes().length);
-		if (err = tw.writeHeader(ext, false), !(go$interfaceIsEqual(err, null))) {
+		err = tw.writeHeader(ext, false);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
-		if (_tuple$1 = tw.Write(buf.Bytes()), err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+		_tuple$1 = tw.Write(buf.Bytes()), err$1 = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			return err$1;
 		}
-		if (err$2 = tw.Flush(), !(go$interfaceIsEqual(err$2, null))) {
+		err$2 = tw.Flush();
+		if (!(go$interfaceIsEqual(err$2, null))) {
 			return err$2;
 		}
 		return null;

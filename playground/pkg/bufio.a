@@ -1,4 +1,4 @@
-0‚°ñbufio‚spackage bufio
+0‚±bufio‚spackage bufio
 import bytes "bytes"
 import errors "errors"
 import io "io"
@@ -63,7 +63,7 @@ func (? *@"".Writer) @"".flush() (? error)
 type @"io".Reader interface { @"io".Read(@"io".p []byte) (@"io".n int, @"io".err error) }
 type @"io".Writer interface { @"io".Write(@"io".p []byte) (@"io".n int, @"io".err error) }
 $$
-0Mruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufio0B0bytesbytes0errorserrors0ioio0unicode/utf8utf80‚ Ú0‚ÃReader‚	Reader = go$pkg.Reader = go$newType(0, "Struct", "bufio.Reader", "Reader", "bufio", function(buf_, rd_, r_, w_, err_, lastByte_, lastRuneSize_) {
+0Mruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufio0B0bytesbytes0errorserrors0ioio0unicode/utf8utf80‚ í0‚ÃReader‚	Reader = go$pkg.Reader = go$newType(0, "Struct", "bufio.Reader", "Reader", "bufio", function(buf_, rd_, r_, w_, err_, lastByte_, lastRuneSize_) {
 		this.go$val = this;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
 		this.rd = rd_ !== undefined ? rd_ : null;
@@ -316,12 +316,13 @@ bufio:fillbufio:readErrunicode/utf8:DecodeRuneunicode/utf8:FullRune0‚‹ 
 		return b.w - b.r >> 0;
 	};
 	Reader.prototype.Buffered = function() { return this.go$val.Buffered(); };
- 0Reader0bufio:Reader0‚Y ‚ö	Reader.Ptr.prototype.ReadSlice = function(delim) {
+ 0Reader0bufio:Reader0‚^ ‚û	Reader.Ptr.prototype.ReadSlice = function(delim) {
 		var line, err, b, i, line1, _tuple, line$1, _tuple$1, n, i$1, line$2, _tuple$2, _tuple$3;
 		line = (go$sliceType(Go$Uint8)).nil;
 		err = null;
 		b = this;
-		if (i = bytes.IndexByte(go$subslice(b.buf, b.r, b.w), delim), i >= 0) {
+		i = bytes.IndexByte(go$subslice(b.buf, b.r, b.w), delim);
+		if (i >= 0) {
 			line1 = go$subslice(b.buf, b.r, ((b.r + i >> 0) + 1 >> 0));
 			b.r = b.r + ((i + 1 >> 0)) >> 0;
 			_tuple = [line1, null], line = _tuple[0], err = _tuple[1];
@@ -336,7 +337,8 @@ bufio:fillbufio:readErrunicode/utf8:DecodeRuneunicode/utf8:FullRune0‚‹ 
 			}
 			n = b.Buffered();
 			b.fill();
-			if (i$1 = bytes.IndexByte(go$subslice(b.buf, n, b.w), delim), i$1 >= 0) {
+			i$1 = bytes.IndexByte(go$subslice(b.buf, n, b.w), delim);
+			if (i$1 >= 0) {
 				line$2 = go$subslice(b.buf, 0, ((n + i$1 >> 0) + 1 >> 0));
 				b.r = (n + i$1 >> 0) + 1 >> 0;
 				_tuple$2 = [line$2, null], line = _tuple$2[0], err = _tuple$2[1];
@@ -442,8 +444,8 @@ bufio:fillbufio:readErrbytes:IndexByte0‚æ ‚¯	Reader.Ptr.prototype.ReadLi
 		return [line, err];
 	};
 	Reader.prototype.ReadString = function(delim) { return this.go$val.ReadString(delim); };
- 0Reader0bufio:Reader0‚s ‚	Reader.Ptr.prototype.WriteTo = function(w) {
-		var n, err, b, _tuple, ok, _tuple$1, x, r, _tuple$2, m, err$1, x$1, _tuple$3, _tuple$4, m$1, err$2, x$2, _tuple$5, _tuple$6;
+ 0Reader0bufio:Reader0‚u ‚	Reader.Ptr.prototype.WriteTo = function(w) {
+		var n, err, b, _tuple, _tuple$1, x, r, ok, _tuple$2, m, err$1, x$1, _tuple$3, _tuple$4, m$1, err$2, x$2, _tuple$5, _tuple$6;
 		n = new Go$Int64(0, 0);
 		err = null;
 		b = this;
@@ -451,7 +453,8 @@ bufio:fillbufio:readErrbytes:IndexByte0‚æ ‚¯	Reader.Ptr.prototype.ReadLi
 		if (!(go$interfaceIsEqual(err, null))) {
 			return [n, err];
 		}
-		if (_tuple$1 = (x = b.rd, (x !== null && io.WriterTo.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), r = _tuple$1[0], ok = _tuple$1[1], ok) {
+		_tuple$1 = (x = b.rd, (x !== null && io.WriterTo.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), r = _tuple$1[0], ok = _tuple$1[1];
+		if (ok) {
 			_tuple$2 = r.WriteTo(w), m = _tuple$2[0], err$1 = _tuple$2[1];
 			n = (x$1 = m, new Go$Int64(n.high + x$1.high, n.low + x$1.low));
 			_tuple$3 = [n, err$1], n = _tuple$3[0], err = _tuple$3[1];
@@ -591,7 +594,7 @@ bufio:fillbufio:readErrbufio:writeBufio:EOFio:WriterTo0‚` ‚4	Reader.
 		return null;
 	};
 	Writer.prototype.WriteByte = function(c) { return this.go$val.WriteByte(c); };
- 0Writer0bufio:Writerbufio:flush0‚æ ‚ž	Writer.Ptr.prototype.WriteRune = function(r) {
+ 0Writer0bufio:Writerbufio:flush0‚é ‚¡	Writer.Ptr.prototype.WriteRune = function(r) {
 		var size, err, b, _tuple, _tuple$1, _tuple$2, n, _tuple$3, _tuple$4, _tuple$5;
 		size = 0;
 		err = null;
@@ -611,7 +614,8 @@ bufio:fillbufio:readErrbufio:writeBufio:EOFio:WriterTo0‚` ‚4	Reader.
 		}
 		n = b.Available();
 		if (n < 4) {
-			if (b.flush(), !(go$interfaceIsEqual(b.err, null))) {
+			b.flush();
+			if (!(go$interfaceIsEqual(b.err, null))) {
 				_tuple$3 = [0, b.err], size = _tuple$3[0], err = _tuple$3[1];
 				return [size, err];
 			}
@@ -647,13 +651,14 @@ bufio:fillbufio:readErrbufio:writeBufio:EOFio:WriterTo0‚` ‚4	Reader.
 		return [nn, null];
 	};
 	Writer.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
- 0Writer0bufio:Writerbufio:flush0‚C ‚ý	Writer.Ptr.prototype.ReadFrom = function(r) {
-		var n, err, b, ok, _tuple, x, w, _tuple$1, m, err1, _tuple$2, _tuple$3, x$1, _tuple$4;
+ 0Writer0bufio:Writerbufio:flush0‚J ‚	Writer.Ptr.prototype.ReadFrom = function(r) {
+		var n, err, b, _tuple, x, w, ok, _tuple$1, m, err1, _tuple$2, _tuple$3, x$1, _tuple$4;
 		n = new Go$Int64(0, 0);
 		err = null;
 		b = this;
 		if (b.Buffered() === 0) {
-			if (_tuple = (x = b.wr, (x !== null && io.ReaderFrom.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), w = _tuple[0], ok = _tuple[1], ok) {
+			_tuple = (x = b.wr, (x !== null && io.ReaderFrom.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), w = _tuple[0], ok = _tuple[1];
+			if (ok) {
 				_tuple$1 = w.ReadFrom(r), n = _tuple$1[0], err = _tuple$1[1];
 				return [n, err];
 			}
@@ -661,7 +666,8 @@ bufio:fillbufio:readErrbufio:writeBufio:EOFio:WriterTo0‚` ‚4	Reader.
 		m = 0;
 		while (true) {
 			if (b.Available() === 0) {
-				if (err1 = b.flush(), !(go$interfaceIsEqual(err1, null))) {
+				err1 = b.flush();
+				if (!(go$interfaceIsEqual(err1, null))) {
 					_tuple$2 = [n, err1], n = _tuple$2[0], err = _tuple$2[1];
 					return [n, err];
 				}
@@ -853,7 +859,7 @@ NewScanner0 bufio:ScanLinesbufio:Scanner0‚ Ö	Scanner.Ptr.prototype.Err 
 		}
 		return data;
 	};
- 0dropCR0 0‚Ì	ScanLines‚	ScanLines = go$pkg.ScanLines = function(data, atEOF) {
+ 0dropCR0 0‚Î	ScanLines‚	ScanLines = go$pkg.ScanLines = function(data, atEOF) {
 		var advance, token, err, _tuple, i, _tuple$1, _tuple$2, _tuple$3;
 		advance = 0;
 		token = (go$sliceType(Go$Uint8)).nil;
@@ -862,7 +868,8 @@ NewScanner0 bufio:ScanLinesbufio:Scanner0‚ Ö	Scanner.Ptr.prototype.Err 
 			_tuple = [0, (go$sliceType(Go$Uint8)).nil, null], advance = _tuple[0], token = _tuple[1], err = _tuple[2];
 			return [advance, token, err];
 		}
-		if (i = bytes.IndexByte(data, 10), i >= 0) {
+		i = bytes.IndexByte(data, 10);
+		if (i >= 0) {
 			_tuple$1 = [i + 1 >> 0, dropCR(go$subslice(data, 0, i)), null], advance = _tuple$1[0], token = _tuple$1[1], err = _tuple$1[2];
 			return [advance, token, err];
 		}

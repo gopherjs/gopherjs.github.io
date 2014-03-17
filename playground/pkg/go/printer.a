@@ -1,4 +1,4 @@
-0É
+0Éñ
 go/printerÇB0package printer
 import bytes "bytes"
 import ast "go/ast"
@@ -205,7 +205,7 @@ $$
 0ÅŒruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/asttext/tabwriter
 go/printer0Å¡0bytesbytes0go/astast0go/tokentoken0unicode/utf8utf80
-fmtfmt0ioio0osos0strconvstrconv0stringsstrings0text/tabwriter	tabwriter0unicodeunicode0ÉÃ<0ÅùexprListModey	exprListMode = go$pkg.exprListMode = go$newType(4, "Uint", "printer.exprListMode", "exprListMode", "go/printer", null);
+fmtfmt0ioio0osos0strconvstrconv0stringsstrings0text/tabwriter	tabwriter0unicodeunicode0ÉÀ∫0ÅùexprListModey	exprListMode = go$pkg.exprListMode = go$newType(4, "Uint", "printer.exprListMode", "exprListMode", "go/printer", null);
  0exprListMode0 0Åí
 whiteSpacer	whiteSpace = go$pkg.whiteSpace = go$newType(1, "Uint8", "printer.whiteSpace", "whiteSpace", "go/printer", null);
  0
@@ -421,7 +421,7 @@ setComment0Åìgo/ast:CommentGroupgo/printer:flushgo/printer:internalError
 		}
 	};
 	printer.prototype.exprList = function(prev0, list, depth, mode, next0) { return this.go$val.exprList(prev0, list, depth, mode, next0); };
- 0printerexprList0Å¯go/ast:KeyValueExprgo/printer:exprgo/printer:expr0go/printer:lineForgo/printer:linebreakgo/printer:nodeSizego/printer:posForgo/printer:printgo/printer:printergo/printer:whiteSpacego/token:Posgo/token:Positiongo/token:Token0Ç	| Çê	printer.Ptr.prototype.parameters = function(fields) {
+ 0printerexprList0Å¯go/ast:KeyValueExprgo/printer:exprgo/printer:expr0go/printer:lineForgo/printer:linebreakgo/printer:nodeSizego/printer:posForgo/printer:printgo/printer:printergo/printer:whiteSpacego/token:Posgo/token:Positiongo/token:Token0Ç	 Çì	printer.Ptr.prototype.parameters = function(fields) {
 		var p, prevLine, ws, _ref, _i, _slice, _index, par, i, parLineBeg, _slice$1, _index$1, parLineEnd, needsLinebreak, closing;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(fields.Opening), new token.Token(49)]));
@@ -460,7 +460,8 @@ setComment0Åìgo/ast:CommentGroupgo/printer:flushgo/printer:internalError
 				prevLine = parLineEnd;
 				_i++;
 			}
-			if (closing = p.lineFor(fields.Closing), 0 < prevLine && prevLine < closing) {
+			closing = p.lineFor(fields.Closing);
+			if (0 < prevLine && prevLine < closing) {
 				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(52)]));
 				p.linebreak(closing, 0, 0, true);
 			}
@@ -540,8 +541,8 @@ parameters0Å go/printer:exprgo/printer:identListgo/printer:lineForgo/pri
 		return (p.lineFor(n.End()) - p.lineFor(n.Pos()) >> 0) > 0;
 	};
 	printer.prototype.isMultiLine = function(n) { return this.go$val.isMultiLine(n); };
- 0printerisMultiLine0(go/printer:lineForgo/printer:printer0Ç√ ÇÌ	printer.Ptr.prototype.fieldList = function(fields, isStruct, isIncomplete) {
-		var p, lbrace, list, rbrace, _struct, hasComments, srcIsOneLine, _slice, _index, f, _ref, _i, _slice$1, _index$1, x, i, sep, newSection, _ref$1, _i$1, _slice$2, _index$2, f$1, i$1, extraTabs, _struct$1, newSection$1, _ref$2, _i$2, _slice$3, _index$3, f$2, i$2, isFtyp, _tuple, x$1, ftyp, _slice$4, _index$4, _struct$2;
+ 0printerisMultiLine0(go/printer:lineForgo/printer:printer0Ç« ÇÒ	printer.Ptr.prototype.fieldList = function(fields, isStruct, isIncomplete) {
+		var p, lbrace, list, rbrace, _struct, hasComments, srcIsOneLine, _slice, _index, f, _ref, _i, _slice$1, _index$1, x, i, sep, newSection, _ref$1, _i$1, _slice$2, _index$2, f$1, i$1, extraTabs, _struct$1, newSection$1, _ref$2, _i$2, _slice$3, _index$3, f$2, i$2, _tuple, x$1, ftyp, isFtyp, _slice$4, _index$4, _struct$2;
 		p = this;
 		lbrace = fields.Opening;
 		list = fields.List;
@@ -639,7 +640,8 @@ parameters0Å go/printer:exprgo/printer:identListgo/printer:lineForgo/pri
 					p.linebreak(p.lineFor(f$2.Pos()), 1, 0, newSection$1);
 				}
 				p.setComment(f$2.Doc);
-				if (_tuple = (x$1 = f$2.Type, (x$1 !== null && x$1.constructor === (go$ptrType(ast.FuncType)) ? [x$1.go$val, true] : [(go$ptrType(ast.FuncType)).nil, false])), ftyp = _tuple[0], isFtyp = _tuple[1], isFtyp) {
+				_tuple = (x$1 = f$2.Type, (x$1 !== null && x$1.constructor === (go$ptrType(ast.FuncType)) ? [x$1.go$val, true] : [(go$ptrType(ast.FuncType)).nil, false])), ftyp = _tuple[0], isFtyp = _tuple[1];
+				if (isFtyp) {
 					p.expr((_slice$4 = f$2.Names, _index$4 = 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")));
 					p.signature(ftyp.Params, ftyp.Results);
 				} else {
@@ -792,8 +794,8 @@ binaryExpr0Å÷go/printer:diffPrecgo/printer:expr0go/printer:expr1go/print
 		return ok;
 	};
  0
-isBinary0go/ast:BinaryExpr0Ç'÷ Ç$ó	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) {
-		var p, x, _ref, _type, hasParens, _tuple, x$1, line, indices, _ref$1, _i, _slice, _index, y, i, _slice$1, _index$1, x$2, ok, _tuple$1, x$3, _ref$2;
+isBinary0go/ast:BinaryExpr0Ç'ﬂ Ç$†	printer.Ptr.prototype.expr1 = function(expr, prec1, depth) {
+		var p, x, _ref, _type, _tuple, x$1, hasParens, line, indices, _ref$1, _i, _slice, _index, y, i, _slice$1, _index$1, x$2, _tuple$1, x$3, ok, _ref$2;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(expr.Pos())]));
 		_ref = expr;
@@ -849,7 +851,8 @@ binaryExpr0Å÷go/printer:diffPrecgo/printer:expr0go/printer:expr1go/print
 			p.adjBlock(p.distanceFrom(x.Type.Pos()), 32, x.Body);
 		} else if (_type === (go$ptrType(ast.ParenExpr))) {
 			x = _ref.go$val;
-			if (_tuple = (x$1 = x.X, (x$1 !== null && x$1.constructor === (go$ptrType(ast.ParenExpr)) ? [x$1.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false])), hasParens = _tuple[1], hasParens) {
+			_tuple = (x$1 = x.X, (x$1 !== null && x$1.constructor === (go$ptrType(ast.ParenExpr)) ? [x$1.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false])), hasParens = _tuple[1];
+			if (hasParens) {
 				p.expr0(x.X, reduceDepth(depth));
 			} else {
 				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(49)]));
@@ -860,7 +863,8 @@ binaryExpr0Å÷go/printer:diffPrecgo/printer:expr0go/printer:expr1go/print
 			x = _ref.go$val;
 			p.expr1(x.X, 7, depth);
 			p.print(new (go$sliceType(go$emptyInterface))([new token.Token(53)]));
-			if (line = p.lineFor(x.Sel.Pos()), p.pos.IsValid() && p.pos.Line < line) {
+			line = p.lineFor(x.Sel.Pos());
+			if (p.pos.IsValid() && p.pos.Line < line) {
 				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62), new whiteSpace(10), new token.Pos(x.Sel.Pos()), x.Sel, new whiteSpace(60)]));
 			} else {
 				p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(x.Sel.Pos()), x.Sel]));
@@ -913,7 +917,8 @@ binaryExpr0Å÷go/printer:diffPrecgo/printer:expr0go/printer:expr1go/print
 			if (x.Args.length > 1) {
 				depth = depth + 1 >> 0;
 			}
-			if (_tuple$1 = (x$3 = x.Fun, (x$3 !== null && x$3.constructor === (go$ptrType(ast.FuncType)) ? [x$3.go$val, true] : [(go$ptrType(ast.FuncType)).nil, false])), ok = _tuple$1[1], ok) {
+			_tuple$1 = (x$3 = x.Fun, (x$3 !== null && x$3.constructor === (go$ptrType(ast.FuncType)) ? [x$3.go$val, true] : [(go$ptrType(ast.FuncType)).nil, false])), ok = _tuple$1[1];
+			if (ok) {
 				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(49)]));
 				p.expr1(x.Fun, 7, depth);
 				p.print(new (go$sliceType(go$emptyInterface))([new token.Token(54)]));
@@ -1002,8 +1007,8 @@ binaryExpr0Å÷go/printer:diffPrecgo/printer:expr0go/printer:expr1go/print
 		p.expr1(x, 0, 1);
 	};
 	printer.prototype.expr = function(x) { return this.go$val.expr(x); };
- 0printerexpr0&go/printer:expr1go/printer:printer0ÇO Çç	printer.Ptr.prototype.stmtList = function(list, nindent, nextIsRBrace) {
-		var p, multiLine, i, _ref, _i, _slice, _index, s, isEmpty, _tuple;
+ 0printerexpr0&go/printer:expr1go/printer:printer0ÇR Çê	printer.Ptr.prototype.stmtList = function(list, nindent, nextIsRBrace) {
+		var p, multiLine, i, _ref, _i, _slice, _index, s, _tuple, isEmpty;
 		p = this;
 		if (nindent > 0) {
 			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62)]));
@@ -1014,7 +1019,8 @@ binaryExpr0Å÷go/printer:diffPrecgo/printer:expr0go/printer:expr1go/print
 		_i = 0;
 		while (_i < _ref.length) {
 			s = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (_tuple = (s !== null && s.constructor === (go$ptrType(ast.EmptyStmt)) ? [s.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false]), isEmpty = _tuple[1], !isEmpty) {
+			_tuple = (s !== null && s.constructor === (go$ptrType(ast.EmptyStmt)) ? [s.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false]), isEmpty = _tuple[1];
+			if (!isEmpty) {
 				if (p.output.length > 0) {
 					p.linebreak(p.lineFor(s.Pos()), 1, 0, (i === 0) || (nindent === 0) || multiLine);
 				}
@@ -1053,9 +1059,10 @@ isTypeNameÇ@	isTypeName = function(x) {
 		return false;
 	};
  0
-isTypeName0#go/ast:Identgo/ast:SelectorExpr0ÇLstripParensÇ⁄	stripParens = function(x) {
-		var strip, _tuple, px;
-		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), px = _tuple[0], strip = _tuple[1], strip) {
+isTypeName0#go/ast:Identgo/ast:SelectorExpr0ÇNstripParensÇ‹	stripParens = function(x) {
+		var _tuple, px, strip;
+		_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), px = _tuple[0], strip = _tuple[1];
+		if (strip) {
 			ast.Inspect(px.X, (function(node) {
 				var x$1, _ref, _type;
 				_ref = node;
@@ -1078,9 +1085,10 @@ isTypeName0#go/ast:Identgo/ast:SelectorExpr0ÇLstripParensÇ⁄	stripParens
 		}
 		return x;
 	};
- 0stripParens0Ngo/ast:CompositeLitgo/ast:Inspectgo/ast:ParenExprgo/printer:isTypeName0ÇgstripParensAlwaysÇ%	stripParensAlways = function(x) {
-		var ok, _tuple, x$1;
-		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), x$1 = _tuple[0], ok = _tuple[1], ok) {
+ 0stripParens0Ngo/ast:CompositeLitgo/ast:Inspectgo/ast:ParenExprgo/printer:isTypeName0ÇistripParensAlwaysÇ'	stripParensAlways = function(x) {
+		var _tuple, x$1, ok;
+		_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), x$1 = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			return stripParensAlways(x$1.X);
 		}
 		return x;
@@ -1149,8 +1157,8 @@ isTypeName0#go/ast:Identgo/ast:SelectorExpr0ÇLstripParensÇ⁄	stripParens
 	};
 	printer.prototype.indentList = function(list) { return this.go$val.indentList(list); };
  0printer
-indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.prototype.stmt = function(stmt, nextIsRBrace) {
-		var p, s, _ref, _type, isEmpty, _tuple, x, e, depth, _ref$1, _type$1, body, _struct;
+indentList0(go/printer:lineForgo/printer:printer0Ç"x ÇF	printer.Ptr.prototype.stmt = function(stmt, nextIsRBrace) {
+		var p, s, _ref, _type, _tuple, x, e, isEmpty, depth, _ref$1, _type$1, body, _struct;
 		p = this;
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(stmt.Pos())]));
 		_ref = stmt;
@@ -1168,7 +1176,8 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 			p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(60)]));
 			p.expr(s.Label);
 			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(s.Colon), new token.Token(58), new whiteSpace(62)]));
-			if (_tuple = (x = s.Stmt, (x !== null && x.constructor === (go$ptrType(ast.EmptyStmt)) ? [x.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false])), e = _tuple[0], isEmpty = _tuple[1], isEmpty) {
+			_tuple = (x = s.Stmt, (x !== null && x.constructor === (go$ptrType(ast.EmptyStmt)) ? [x.go$val, true] : [(go$ptrType(ast.EmptyStmt)).nil, false])), e = _tuple[0], isEmpty = _tuple[1];
+			if (isEmpty) {
 				if (!nextIsRBrace) {
 					p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(10), new token.Pos(e.Pos()), new token.Token(57)]));
 					break;
@@ -1433,14 +1442,15 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 	};
 	printer.prototype.spec = function(spec, n, doIndent) { return this.go$val.spec(spec, n, doIndent); };
  0printerspec0Çgo/ast:Exprgo/ast:Identgo/ast:ImportSpecgo/ast:TypeSpecgo/ast:ValueSpecgo/printer:exprgo/printer:exprListgo/printer:identListgo/printer:internalErrorgo/printer:printgo/printer:printergo/printer:setCommentgo/printer:whiteSpacego/token:Posgo/token:Token0Ç
-… Ç	°	printer.Ptr.prototype.genDecl = function(d) {
+Ã Ç	§	printer.Ptr.prototype.genDecl = function(d) {
 		var p, n, keepType, newSection, _ref, _i, _slice, _index, s, i, _slice$1, _index$1, newSection$1, _ref$1, _i$1, _slice$2, _index$2, s$1, i$1, _slice$3, _index$3;
 		p = this;
 		p.setComment(d.Doc);
 		p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(d.Pos()), new token.Token(d.Tok), new whiteSpace(32)]));
 		if ((new token.Pos(d.Lparen)).IsValid()) {
 			p.print(new (go$sliceType(go$emptyInterface))([new token.Pos(d.Lparen), new token.Token(49)]));
-			if (n = d.Specs.length, n > 0) {
+			n = d.Specs.length;
+			if (n > 0) {
 				p.print(new (go$sliceType(go$emptyInterface))([new whiteSpace(62), new whiteSpace(12)]));
 				if (n > 1 && ((d.Tok === 64) || (d.Tok === 85))) {
 					keepType = keepTypeColumn(d.Specs);
@@ -1480,11 +1490,12 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 		}
 	};
 	printer.prototype.genDecl = function(d) { return this.go$val.genDecl(d); };
- 0printergenDecl0Çgo/ast:ValueSpecgo/printer:isMultiLinego/printer:keepTypeColumngo/printer:lineForgo/printer:linebreakgo/printer:printgo/printer:printergo/printer:setCommentgo/printer:specgo/printer:valueSpecgo/printer:whiteSpacego/token:Posgo/token:Token0ÇØ ÇH	printer.Ptr.prototype.nodeSize = function(n, maxSize) {
-		var size, p, found, _tuple, _entry, size$1, _key, cfg, buf, err, _ref, _i, _slice, _index, ch, _key$1;
+ 0printergenDecl0Çgo/ast:ValueSpecgo/printer:isMultiLinego/printer:keepTypeColumngo/printer:lineForgo/printer:linebreakgo/printer:printgo/printer:printergo/printer:setCommentgo/printer:specgo/printer:valueSpecgo/printer:whiteSpacego/token:Posgo/token:Token0Ç≥ ÇL	printer.Ptr.prototype.nodeSize = function(n, maxSize) {
+		var size, p, _tuple, _entry, size$1, found, _key, cfg, buf, err, _ref, _i, _slice, _index, ch, _key$1;
 		size = 0;
 		p = this;
-		if (_tuple = (_entry = p.nodeSizes[(n || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [0, false]), size$1 = _tuple[0], found = _tuple[1], found) {
+		_tuple = (_entry = p.nodeSizes[(n || go$interfaceNil).go$key()], _entry !== undefined ? [_entry.v, true] : [0, false]), size$1 = _tuple[0], found = _tuple[1];
+		if (found) {
 			size = size$1;
 			return size;
 		}
@@ -1492,7 +1503,8 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 		_key = n, (p.nodeSizes || go$throwRuntimeError("assignment to entry in nil map"))[(_key || go$interfaceNil).go$key()] = { k: _key, v: size };
 		cfg = new Config.Ptr(1, 0, 0);
 		buf = new bytes.Buffer.Ptr();
-		if (err = cfg.fprint(buf, p.fset, n, p.nodeSizes), !(go$interfaceIsEqual(err, null))) {
+		err = cfg.fprint(buf, p.fset, n, p.nodeSizes);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return size;
 		}
 		if (buf.Len() <= maxSize) {
@@ -1569,11 +1581,12 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 		p.block(b, 1);
 	};
 	printer.prototype.adjBlock = function(headerSize, sep, b) { return this.go$val.adjBlock(headerSize, sep, b); };
- 0printeradjBlock0Å•go/ast:BlockStmtgo/printer:blockgo/printer:bodySizego/printer:printgo/printer:printergo/printer:stmtgo/printer:whiteSpacego/token:Posgo/token:Token0Ç? Ç‘	printer.Ptr.prototype.distanceFrom = function(from) {
-		var p, f, _struct;
+ 0printeradjBlock0Å•go/ast:BlockStmtgo/printer:blockgo/printer:bodySizego/printer:printgo/printer:printergo/printer:stmtgo/printer:whiteSpacego/token:Posgo/token:Token0ÇB Ç◊	printer.Ptr.prototype.distanceFrom = function(from) {
+		var p, _struct, f;
 		p = this;
 		if ((new token.Pos(from)).IsValid() && p.pos.IsValid()) {
-			if (f = (_struct = p.posFor(from), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column)), f.Line === p.pos.Line) {
+			f = (_struct = p.posFor(from), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
+			if (f.Line === p.pos.Line) {
 				return p.pos.Column - f.Column >> 0;
 			}
 		}
@@ -1673,7 +1686,7 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 		p.cachedPos = -1;
 	};
 	printer.prototype.init = function(cfg, fset, nodeSizes) { return this.go$val.init(cfg, fset, nodeSizes); };
- 0printerinit0Qgo/printer:Configgo/printer:printergo/printer:whiteSpacego/token:Position0Ç° Ç=	printer.Ptr.prototype.commentsHaveNewline = function(list) {
+ 0printerinit0Qgo/printer:Configgo/printer:printergo/printer:whiteSpacego/token:Position0Ç§ Ç@	printer.Ptr.prototype.commentsHaveNewline = function(list) {
 		var p, _slice, _index, line, _ref, _i, _slice$1, _index$1, c, i, _slice$2, _index$2, t;
 		p = this;
 		line = p.lineFor((_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Pos());
@@ -1685,7 +1698,8 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 			if (i > 0 && !((p.lineFor((_slice$2 = list, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Pos()) === line))) {
 				return true;
 			}
-			if (t = c.Text, t.length >= 2 && ((t.charCodeAt(1) === 47) || strings.Contains(t, "\n"))) {
+			t = c.Text;
+			if (t.length >= 2 && ((t.charCodeAt(1) === 47) || strings.Contains(t, "\n"))) {
 				return true;
 			}
 			_i++;
@@ -1693,13 +1707,14 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 		return false;
 	};
 	printer.prototype.commentsHaveNewline = function(list) { return this.go$val.commentsHaveNewline(list); };
- 0printercommentsHaveNewline0:go/printer:lineForgo/printer:printerstrings:Contains0Ç® Ç?	printer.Ptr.prototype.nextComment = function() {
+ 0printercommentsHaveNewline0:go/printer:lineForgo/printer:printerstrings:Contains0Ç´ ÇB	printer.Ptr.prototype.nextComment = function() {
 		var p, _slice, _index, c, list, _slice$1, _index$1;
 		p = this;
 		while (p.cindex < p.comments.length) {
 			c = (_slice = p.comments, _index = p.cindex, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			p.cindex = p.cindex + 1 >> 0;
-			if (list = c.List, list.length > 0) {
+			list = c.List;
+			if (list.length > 0) {
 				p.comment = c;
 				p.commentOffset = p.posFor((_slice$1 = list, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Pos()).Offset;
 				p.commentNewline = p.commentsHaveNewline(list);
@@ -1932,7 +1947,7 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
  0commonPrefix0 0Åô	trimRightS	trimRight = function(s) {
 		return strings.TrimRightFunc(s, unicode.IsSpace);
 	};
- 0	trimRight0(strings:TrimRightFuncunicode:IsSpace0Ç]stripCommonPrefixÇ›	stripCommonPrefix = function(lines) {
+ 0	trimRight0(strings:TrimRightFuncunicode:IsSpace0Ç_stripCommonPrefixÇﬂ	stripCommonPrefix = function(lines) {
 		var prefix, first, _ref, _i, _slice, _index, line, i, _slice$1, _index$1, _slice$2, _index$2, line$1, lineOfStars, i$1, _slice$3, _index$3, first$1, i$2, n, suffix, n$1, _slice$4, _index$4, _slice$5, _index$5, _tuple, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, last, closing, i$3, _slice$9, _index$9, _ref$1, _i$1, _slice$10, _index$10, line$2, i$4, _slice$11, _index$11;
 		if (lines.length <= 1) {
 			return;
@@ -1960,7 +1975,8 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 			prefix = commonPrefix(line$1, line$1);
 		}
 		lineOfStars = false;
-		if (i$1 = strings.Index(prefix, "*"), i$1 >= 0) {
+		i$1 = strings.Index(prefix, "*");
+		if (i$1 >= 0) {
 			if (i$1 > 0 && (prefix.charCodeAt((i$1 - 1 >> 0)) === 32)) {
 				i$1 = i$1 - 1 >> 0;
 			}
@@ -2017,9 +2033,9 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 			_i$1++;
 		}
 	};
- 0stripCommonPrefix0Pgo/printer:commonPrefixgo/printer:isBlankstrings:Indexstrings:TrimSuffix0Ç… Ç
-≥	printer.Ptr.prototype.writeComment = function(comment) {
-		var p, text, _struct, pos, ldir, i, err, line, _tuple, indent, _struct$1, lines, _ref, _i, _slice, _index, line$1, i$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, line$2, i$2, _struct$2, _struct$3;
+ 0stripCommonPrefix0Pgo/printer:commonPrefixgo/printer:isBlankstrings:Indexstrings:TrimSuffix0Ç“ Ç
+º	printer.Ptr.prototype.writeComment = function(comment) {
+		var p, text, _struct, pos, ldir, i, _tuple, line, err, indent, _struct$1, lines, _ref, _i, _slice, _index, line$1, i$1, _slice$1, _index$1, _ref$1, _i$1, _slice$2, _index$2, line$2, i$2, _struct$2, _struct$3;
 		var go$deferred = [];
 		try {
 			p = this;
@@ -2027,8 +2043,10 @@ indentList0(go/printer:lineForgo/printer:printer0Ç"u ÇC	printer.Ptr.proto
 			pos = (_struct = p.posFor(comment.Pos()), new token.Position.Ptr(_struct.Filename, _struct.Offset, _struct.Line, _struct.Column));
 			if (strings.HasPrefix(text, "//line ") && (!pos.IsValid() || (pos.Column === 1))) {
 				ldir = strings.TrimSpace(text.substring(7));
-				if (i = strings.LastIndex(ldir, ":"), i >= 0) {
-					if (_tuple = strconv.Atoi(ldir.substring((i + 1 >> 0))), line = _tuple[0], err = _tuple[1], go$interfaceIsEqual(err, null) && line > 0) {
+				i = strings.LastIndex(ldir, ":");
+				if (i >= 0) {
+					_tuple = strconv.Atoi(ldir.substring((i + 1 >> 0))), line = _tuple[0], err = _tuple[1];
+					if (go$interfaceIsEqual(err, null) && line > 0) {
 						indent = p.indent;
 						p.indent = 0;
 						go$deferred.push({ fun: (function() {
@@ -2359,23 +2377,25 @@ mayCombine0 0Çu Çˇ	printer.Ptr.prototype.print = function(args) {
 		}
 		return (go$ptrType(ast.CommentGroup)).nil;
 	};
- 0getDoc0Åágo/ast:CommentGroupgo/ast:Fieldgo/ast:Filego/ast:FuncDeclgo/ast:GenDeclgo/ast:ImportSpecgo/ast:TypeSpecgo/ast:ValueSpec0Ç Çñ	printer.Ptr.prototype.printNode = function(node) {
-		var go$this = this, p, comments, ok, _tuple, cnode, ok$1, _tuple$1, n, _tuple$2, n$1, ok$2, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, n$2, _ref, _type, ok$3, _tuple$3, _ref$1, _i, _slice$2, _index$2, s, ok$4, _tuple$4;
+ 0getDoc0Åágo/ast:CommentGroupgo/ast:Fieldgo/ast:Filego/ast:FuncDeclgo/ast:GenDeclgo/ast:ImportSpecgo/ast:TypeSpecgo/ast:ValueSpec0ÇV ÇŸ	printer.Ptr.prototype.printNode = function(node) {
+		var go$this = this, p, comments, _tuple, cnode, ok, _tuple$1, n, ok$1, beg, end, doc, i, _slice, _index, j, _slice$1, _index$1, _tuple$2, n$1, ok$2, n$2, _ref, _type, _tuple$3, ok$3, _ref$1, _i, _slice$2, _index$2, s, _tuple$4, ok$4;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		p = go$this;
 		comments = (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
-		if (_tuple = (node !== null && node.constructor === (go$ptrType(CommentedNode)) ? [node.go$val, true] : [(go$ptrType(CommentedNode)).nil, false]), cnode = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (node !== null && node.constructor === (go$ptrType(CommentedNode)) ? [node.go$val, true] : [(go$ptrType(CommentedNode)).nil, false]), cnode = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			node = cnode.Node;
 			comments = cnode.Comments;
 		}
-		/* if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) { */ if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) {} else if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) { go$s = 2; continue; } else { go$s = 3; continue; }
-			_tuple$2 = (node !== null && ast.Node.implementedBy.indexOf(node.constructor) !== -1 ? [node, true] : [null, false]), n$1 = _tuple$2[0], ok$2 = _tuple$2[1];
-			/* if (!ok$2) { */ if (!ok$2) {} else { go$s = 4; continue; }
+		/* if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) { */ if (!(comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil)) {} else { go$s = 2; continue; }
+			_tuple$1 = (node !== null && ast.Node.implementedBy.indexOf(node.constructor) !== -1 ? [node, true] : [null, false]), n = _tuple$1[0], ok$1 = _tuple$1[1];
+			/* if (!ok$1) { */ if (!ok$1) {} else { go$s = 4; continue; }
 				/* goto unsupported */ go$s = 1; continue;
 			/* } */ case 4:
-			beg = n$1.Pos();
-			end = n$1.End();
-			if (doc = getDoc(n$1), !(doc === (go$ptrType(ast.CommentGroup)).nil)) {
+			beg = n.Pos();
+			end = n.End();
+			doc = getDoc(n);
+			if (!(doc === (go$ptrType(ast.CommentGroup)).nil)) {
 				beg = doc.Pos();
 			}
 			i = 0;
@@ -2389,8 +2409,11 @@ mayCombine0 0Çu Çˇ	printer.Ptr.prototype.print = function(args) {
 			if (i < j) {
 				p.comments = go$subslice(comments, i, j);
 			}
-		/* } else if (_tuple$1 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) { */ go$s = 3; continue; case 2: 
-			p.comments = n.Comments;
+		/* } else { */ go$s = 3; continue; case 2: 
+			_tuple$2 = (node !== null && node.constructor === (go$ptrType(ast.File)) ? [node.go$val, true] : [(go$ptrType(ast.File)).nil, false]), n$1 = _tuple$2[0], ok$2 = _tuple$2[1];
+			if (ok$2) {
+				p.comments = n$1.Comments;
+			}
 		/* } */ case 3:
 		p.useNodeComments = p.comments === (go$sliceType((go$ptrType(ast.CommentGroup)))).nil;
 		p.nextComment();
@@ -2401,7 +2424,8 @@ mayCombine0 0Çu Çˇ	printer.Ptr.prototype.print = function(args) {
 			p.expr(n$2);
 		/* } else if (ast.Stmt.implementedBy.indexOf(_type) !== -1) { */ go$s = 12; continue; case 5: 
 			n$2 = _ref;
-			if (_tuple$3 = (n$2 !== null && n$2.constructor === (go$ptrType(ast.LabeledStmt)) ? [n$2.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), ok$3 = _tuple$3[1], ok$3) {
+			_tuple$3 = (n$2 !== null && n$2.constructor === (go$ptrType(ast.LabeledStmt)) ? [n$2.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), ok$3 = _tuple$3[1];
+			if (ok$3) {
 				p.indent = 1;
 			}
 			p.stmt(n$2, false);
@@ -2417,7 +2441,8 @@ mayCombine0 0Çu Çˇ	printer.Ptr.prototype.print = function(args) {
 			_i = 0;
 			while (_i < _ref$1.length) {
 				s = (_slice$2 = _ref$1, _index$2 = _i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
-				if (_tuple$4 = (s !== null && s.constructor === (go$ptrType(ast.LabeledStmt)) ? [s.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), ok$4 = _tuple$4[1], ok$4) {
+				_tuple$4 = (s !== null && s.constructor === (go$ptrType(ast.LabeledStmt)) ? [s.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), ok$4 = _tuple$4[1];
+				if (ok$4) {
 					p.indent = 1;
 				}
 				_i++;
@@ -2517,13 +2542,14 @@ resetSpace0go/printer:trimmer0ÇÔ Çö	trimmer.Ptr.prototype.Write = functio
 		return [n, err];
 	};
 	trimmer.prototype.Write = function(data) { return this.go$val.Write(data); };
- 0	trimmer0@go/printer:aNewlinego/printer:resetSpacego/printer:trimmer0Ç Ç@	Config.Ptr.prototype.fprint = function(output, fset, node, nodeSizes) {
-		var err, cfg, p, minwidth, padchar, twmode, _tuple, tw, _tuple$1;
+ 0	trimmer0@go/printer:aNewlinego/printer:resetSpacego/printer:trimmer0Ç ÇF	Config.Ptr.prototype.fprint = function(output, fset, node, nodeSizes) {
+		var err, cfg, p, minwidth, padchar, twmode, _tuple, _tuple$1, tw;
 		err = null;
 		cfg = this;
 		p = new printer.Ptr();
 		p.init(cfg, fset, nodeSizes);
-		if (err = p.printNode(node), !(go$interfaceIsEqual(err, null))) {
+		err = p.printNode(node);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
 		p.impliedSemi = false;
@@ -2542,10 +2568,12 @@ resetSpace0go/printer:trimmer0ÇÔ Çö	trimmer.Ptr.prototype.Write = functio
 			}
 			output = tabwriter.NewWriter(output, minwidth, cfg.Tabwidth, 1, padchar, twmode);
 		}
-		if (_tuple = output.Write(p.output), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = output.Write(p.output), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
-		if (_tuple$1 = (output !== null && output.constructor === (go$ptrType(tabwriter.Writer)) ? [output.go$val, true] : [(go$ptrType(tabwriter.Writer)).nil, false]), tw = _tuple$1[0], !(tw === (go$ptrType(tabwriter.Writer)).nil)) {
+		_tuple$1 = (output !== null && output.constructor === (go$ptrType(tabwriter.Writer)) ? [output.go$val, true] : [(go$ptrType(tabwriter.Writer)).nil, false]), tw = _tuple$1[0];
+		if (!(tw === (go$ptrType(tabwriter.Writer)).nil)) {
 			err = tw.Flush();
 		}
 		return err;

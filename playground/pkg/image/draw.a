@@ -1,4 +1,4 @@
-0ƒ>J
+0ƒ>h
 image/draw‚Npackage draw
 import image "image"
 import color "image/color"
@@ -72,7 +72,7 @@ func (? *@"image/color".Palette) @"image/color".Convert(@"image/color".c @"image
 func (? *@"image/color".Palette) @"image/color".Index(@"image/color".c @"image/color".Color) (? int)
 $$
 0|runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage
-image/draw0&0imageimage0image/colorcolor0ƒ&?0‚ÁImage_	Image = go$pkg.Image = go$newType(0, "Interface", "draw.Image", "Image", "image/draw", null);
+image/draw0&0imageimage0image/colorcolor0ƒ&]0‚ÁImage_	Image = go$pkg.Image = go$newType(0, "Interface", "draw.Image", "Image", "image/draw", null);
 ‚		Image.init([["At", "", (go$funcType([Go$Int, Go$Int], [color.Color], false))], ["Bounds", "", (go$funcType([], [image.Rectangle], false))], ["ColorModel", "", (go$funcType([], [color.Model], false))], ["Set", "", (go$funcType([Go$Int, Go$Int, color.Color], [], false))]]);
 0Image07image/color:Colorimage/color:Modelimage:Rectangle0‚	Quantizero	Quantizer = go$pkg.Quantizer = go$newType(0, "Interface", "draw.Quantizer", "Quantizer", "image/draw", null);
 k		Quantizer.init([["Quantize", "", (go$funcType([color.Palette, image.Image], [color.Palette], false))]]);
@@ -128,8 +128,8 @@ image/draw0&0imageimage0image/colorcolor0ƒ&?0‚ÁImage_	Image = go$
 		var _struct, _struct$1, _struct$2, _struct$3;
 		DrawMask(dst, (_struct = r, new image.Rectangle.Ptr((_struct$1 = _struct.Min, new image.Point.Ptr(_struct$1.X, _struct$1.Y)), (_struct$2 = _struct.Max, new image.Point.Ptr(_struct$2.X, _struct$2.Y)))), src, (_struct$3 = sp, new image.Point.Ptr(_struct$3.X, _struct$3.Y)), null, new image.Point.Ptr(0, 0), op);
 	};
- 0Draw03image/draw:DrawMaskimage:Pointimage:Rectangle0‚+?DrawMask‚)b	DrawMask = go$pkg.DrawMask = function(dst, r, src, sp, mask, mp, op) {
-		var dst0, _ref, _type, ok, _tuple, mask0, src0, _ref$1, _type$1, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, src0$1, _ref$2, _type$2, _struct$15, _struct$16, _struct$17, _struct$18, src0$2, _ref$3, _type$3, _struct$19, _struct$20, _struct$21, _struct$22, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, _struct$34, _struct$35, _struct$36, _struct$37, _struct$38, _struct$39, _struct$40, _struct$41, _struct$42, _struct$43, _struct$44, _struct$45, _struct$46, _tuple$1, x0, x1, dx, _tuple$2, y0, y1, dy, _struct$47, _struct$48, _struct$49, _struct$50, _tuple$3, _tuple$4, out, sy, my, y, sx, mx, x, ma, _tuple$5, x$1, _tuple$6, sr, sg, sb, sa, _tuple$7, dr, dg, db, da, _q, a, _q$1, _q$2, _q$3, _q$4, _q$5, _q$6, _q$7, _q$8, _tuple$8, _tuple$9;
+ 0Draw03image/draw:DrawMaskimage:Pointimage:Rectangle0‚+YDrawMask‚)|	DrawMask = go$pkg.DrawMask = function(dst, r, src, sp, mask, mp, op) {
+		var dst0, _ref, _type, src0, _ref$1, _type$1, _struct, _struct$1, _struct$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, _struct$10, _struct$11, _struct$12, _struct$13, _struct$14, _tuple, mask0, ok, src0$1, _ref$2, _type$2, _struct$15, _struct$16, _struct$17, _struct$18, src0$2, _ref$3, _type$3, _struct$19, _struct$20, _struct$21, _struct$22, _struct$23, _struct$24, _struct$25, _struct$26, _struct$27, _struct$28, _struct$29, _struct$30, _struct$31, _struct$32, _struct$33, _struct$34, _struct$35, _struct$36, _struct$37, _struct$38, _struct$39, _struct$40, _struct$41, _struct$42, _struct$43, _struct$44, _struct$45, _struct$46, _tuple$1, x0, x1, dx, _tuple$2, y0, y1, dy, _struct$47, _struct$48, _struct$49, _struct$50, _tuple$3, _tuple$4, out, sy, my, y, sx, mx, x, ma, _tuple$5, x$1, _tuple$6, sr, sg, sb, sa, _tuple$7, dr, dg, db, da, _q, a, _q$1, _q$2, _q$3, _q$4, _q$5, _q$6, _q$7, _q$8, _tuple$8, _tuple$9;
 		clip(dst, r, src, sp, mask, mp);
 		if (r.Empty()) {
 			return;
@@ -160,13 +160,16 @@ image/draw0&0imageimage0image/colorcolor0ƒ&?0‚ÁImage_	Image = go$
 							return;
 						}
 					}
-				} else if (_tuple = (mask !== null && mask.constructor === (go$ptrType(image.Alpha)) ? [mask.go$val, true] : [(go$ptrType(image.Alpha)).nil, false]), mask0 = _tuple[0], ok = _tuple[1], ok) {
-					_ref$2 = src;
-					_type$2 = _ref$2 !== null ? _ref$2.constructor : null;
-					if (_type$2 === (go$ptrType(image.Uniform))) {
-						src0$1 = _ref$2.go$val;
-						drawGlyphOver(dst0, (_struct$15 = r, new image.Rectangle.Ptr((_struct$16 = _struct$15.Min, new image.Point.Ptr(_struct$16.X, _struct$16.Y)), (_struct$17 = _struct$15.Max, new image.Point.Ptr(_struct$17.X, _struct$17.Y)))), src0$1, mask0, (_struct$18 = mp, new image.Point.Ptr(_struct$18.X, _struct$18.Y)));
-						return;
+				} else {
+					_tuple = (mask !== null && mask.constructor === (go$ptrType(image.Alpha)) ? [mask.go$val, true] : [(go$ptrType(image.Alpha)).nil, false]), mask0 = _tuple[0], ok = _tuple[1];
+					if (ok) {
+						_ref$2 = src;
+						_type$2 = _ref$2 !== null ? _ref$2.constructor : null;
+						if (_type$2 === (go$ptrType(image.Uniform))) {
+							src0$1 = _ref$2.go$val;
+							drawGlyphOver(dst0, (_struct$15 = r, new image.Rectangle.Ptr((_struct$16 = _struct$15.Min, new image.Point.Ptr(_struct$16.X, _struct$16.Y)), (_struct$17 = _struct$15.Max, new image.Point.Ptr(_struct$17.X, _struct$17.Y)))), src0$1, mask0, (_struct$18 = mp, new image.Point.Ptr(_struct$18.X, _struct$18.Y)));
+							return;
+						}
 					}
 				}
 			} else {
@@ -298,12 +301,13 @@ image:RGBAimage:Rectangleimage:Uniformimage:YCbCr0‚drawFillOver‚ð	dr
 			y = y + 1 >> 0;
 		}
 	};
- 0drawFillSrc0 0‚údrawCopyOver‚Ô	drawCopyOver = function(dst, r, src, sp) {
+ 0drawFillSrc0 0‚üdrawCopyOver‚Ö	drawCopyOver = function(dst, r, src, sp) {
 		var _tuple, dx, dy, d0, s0, _tuple$1, ddelta, sdelta, _tuple$2, i0, i1, idelta, x, _tuple$3, x$1, x$2, x$3, x$4, x$5, x$6, _tuple$4, dpix, spix, i, x$7, _slice, _index, x$8, sr, x$9, _slice$1, _index$1, x$10, sg, x$11, _slice$2, _index$2, x$12, sb, x$13, _slice$3, _index$3, x$14, sa, _slice$4, _index$4, dr, _slice$5, _index$5, dg, _slice$6, _index$6, db, _slice$7, _index$7, da, x$15, x$16, a, _q, _slice$8, _index$8, _q$1, _slice$9, _index$9, _q$2, _slice$10, _index$10, _q$3, _slice$11, _index$11;
 		_tuple = [r.Dx(), r.Dy()], dx = _tuple[0], dy = _tuple[1];
 		d0 = dst.PixOffset(r.Min.X, r.Min.Y);
 		s0 = src.PixOffset(sp.X, sp.Y);
-		_tuple$1 = [0, 0], ddelta = _tuple$1[0], sdelta = _tuple$1[1], _tuple$2 = [0, 0, 0], i0 = _tuple$2[0], i1 = _tuple$2[1], idelta = _tuple$2[2];
+		_tuple$1 = [0, 0], ddelta = _tuple$1[0], sdelta = _tuple$1[1];
+		_tuple$2 = [0, 0, 0], i0 = _tuple$2[0], i1 = _tuple$2[1], idelta = _tuple$2[2];
 		if (r.Min.Y < sp.Y || (r.Min.Y === sp.Y) && r.Min.X <= sp.X) {
 			ddelta = dst.Stride;
 			sdelta = src.Stride;
@@ -595,10 +599,11 @@ image:RGBAimage:Rectangleimage:Uniformimage:YCbCr0‚drawFillOver‚ð	dr
 		}
 		return i;
 	};
- 0clamp0 0‚/odrawPaletted‚/	drawPaletted = function(dst, r, src, sp, floydSteinberg$1) {
-		var _tuple, palette, pix, stride, ok, _tuple$1, p, _ref, _i, _slice, _index, col, i, _tuple$2, r$1, g, b, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple$3, _tuple$4, quantErrorCurr, quantErrorNext, out, y, x, _tuple$5, sr, sg, sb, _tuple$6, er, eg, eb, _q, _slice$4, _index$4, _q$1, _slice$5, _index$5, _q$2, _slice$6, _index$6, _tuple$7, bestIndex, bestSSD, _ref$1, _i$1, _slice$7, _index$7, p$1, index, delta, ssd, _tuple$8, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _tuple$9, _lhs, _index$12, _slice$12, _index$13, x$1, _lhs$1, _index$14, _slice$13, _index$15, x$2, _lhs$2, _index$16, _slice$14, _index$17, x$3, _lhs$3, _index$18, _slice$15, _index$19, x$4, _lhs$4, _index$20, _slice$16, _index$21, x$5, _lhs$5, _index$22, _slice$17, _index$23, x$6, _lhs$6, _index$24, _slice$18, _index$25, x$7, _lhs$7, _index$26, _slice$19, _index$27, x$8, _lhs$8, _index$28, _slice$20, _index$29, x$9, _lhs$9, _index$30, _slice$21, _index$31, x$10, _lhs$10, _index$32, _slice$22, _index$33, x$11, _lhs$11, _index$34, _slice$23, _index$35, x$12, _tuple$10, _ref$2, _i$2, i$1, _slice$24, _index$36;
+ 0clamp0 0‚/qdrawPaletted‚/	drawPaletted = function(dst, r, src, sp, floydSteinberg$1) {
+		var _tuple, palette, pix, stride, _tuple$1, p, ok, _ref, _i, _slice, _index, col, i, _tuple$2, r$1, g, b, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _tuple$3, _tuple$4, quantErrorCurr, quantErrorNext, out, y, x, _tuple$5, sr, sg, sb, _tuple$6, er, eg, eb, _q, _slice$4, _index$4, _q$1, _slice$5, _index$5, _q$2, _slice$6, _index$6, _tuple$7, bestIndex, bestSSD, _ref$1, _i$1, _slice$7, _index$7, p$1, index, delta, ssd, _tuple$8, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _tuple$9, _lhs, _index$12, _slice$12, _index$13, x$1, _lhs$1, _index$14, _slice$13, _index$15, x$2, _lhs$2, _index$16, _slice$14, _index$17, x$3, _lhs$3, _index$18, _slice$15, _index$19, x$4, _lhs$4, _index$20, _slice$16, _index$21, x$5, _lhs$5, _index$22, _slice$17, _index$23, x$6, _lhs$6, _index$24, _slice$18, _index$25, x$7, _lhs$7, _index$26, _slice$19, _index$27, x$8, _lhs$8, _index$28, _slice$20, _index$29, x$9, _lhs$9, _index$30, _slice$21, _index$31, x$10, _lhs$10, _index$32, _slice$22, _index$33, x$11, _lhs$11, _index$34, _slice$23, _index$35, x$12, _tuple$10, _ref$2, _i$2, i$1, _slice$24, _index$36;
 		_tuple = [(go$sliceType((go$arrayType(Go$Int32, 3)))).nil, (go$sliceType(Go$Uint8)).nil, 0], palette = _tuple[0], pix = _tuple[1], stride = _tuple[2];
-		if (_tuple$1 = (dst !== null && dst.constructor === (go$ptrType(image.Paletted)) ? [dst.go$val, true] : [(go$ptrType(image.Paletted)).nil, false]), p = _tuple$1[0], ok = _tuple$1[1], ok) {
+		_tuple$1 = (dst !== null && dst.constructor === (go$ptrType(image.Paletted)) ? [dst.go$val, true] : [(go$ptrType(image.Paletted)).nil, false]), p = _tuple$1[0], ok = _tuple$1[1];
+		if (ok) {
 			palette = (go$sliceType((go$arrayType(Go$Int32, 3)))).make(p.Palette.length, 0, function() { return go$makeNativeArray("Int32", 3, function() { return 0; }); });
 			_ref = p.Palette;
 			_i = 0;

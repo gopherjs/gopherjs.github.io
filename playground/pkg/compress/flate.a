@@ -1,4 +1,4 @@
-0É∑compress/flateÇ[package flate
+0Écompress/flateÇ[package flate
 import fmt "fmt"
 import io "io"
 import math "math"
@@ -102,7 +102,7 @@ type @"io".ReadCloser interface { @"io".Close() (? error); @"io".Read(@"".p []by
 type @"io".Writer interface { @"io".Write(@"".p []byte) (@"".n int, @"".err error) }
 $$
 0Åìruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flate0V0
-fmtfmt0ioio0mathmath0sortsort0bufiobufio0strconvstrconv0ÉÂS0Ç=compressionLevelÇÍ	compressionLevel = go$pkg.compressionLevel = go$newType(0, "Struct", "flate.compressionLevel", "compressionLevel", "compress/flate", function(good_, lazy_, nice_, chain_, fastSkipHashing_) {
+fmtfmt0ioio0mathmath0sortsort0bufiobufio0strconvstrconv0ÉÂ™0Ç=compressionLevelÇÍ	compressionLevel = go$pkg.compressionLevel = go$newType(0, "Struct", "flate.compressionLevel", "compressionLevel", "compress/flate", function(good_, lazy_, nice_, chain_, fastSkipHashing_) {
 		this.go$val = this;
 		this.good = good_ !== undefined ? good_ : 0;
 		this.lazy = lazy_ !== undefined ? lazy_ : 0;
@@ -348,7 +348,7 @@ compressorfillDeflate0compress/flate:compressor0ÇB ÇË	compressor.Ptr.pr
 	compressor.prototype.writeBlock = function(tokens, index, eof) { return this.go$val.writeBlock(tokens, index, eof); };
  0
 compressor
-writeBlock06compress/flate:compressorcompress/flate:writeBlock0ÇT Ç	compressor.Ptr.prototype.findMatch = function(pos, prevHead, prevLength, lookahead) {
+writeBlock06compress/flate:compressorcompress/flate:writeBlock0ÇW Ç	compressor.Ptr.prototype.findMatch = function(pos, prevHead, prevLength, lookahead) {
 		var length, offset, ok, d, minMatchLook, win, nice, tries, _slice, _index, w0, _slice$1, _index$1, w1, _slice$2, _index$2, wEnd, minIndex, i, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, n, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9;
 		length = 0;
 		offset = 0;
@@ -392,7 +392,8 @@ writeBlock06compress/flate:compressorcompress/flate:writeBlock0ÇT Ç	com
 			if (i === minIndex) {
 				break;
 			}
-			if (i = (_slice$9 = d.hashPrev, _index$9 = (i & 32767), (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) - d.hashOffset >> 0, i < minIndex || i < 0) {
+			i = (_slice$9 = d.hashPrev, _index$9 = (i & 32767), (_index$9 >= 0 && _index$9 < _slice$9.length) ? _slice$9.array[_slice$9.offset + _index$9] : go$throwRuntimeError("index out of range")) - d.hashOffset >> 0;
+			if (i < minIndex || i < 0) {
 				break;
 			}
 			tries = tries - 1 >> 0;
@@ -401,10 +402,11 @@ writeBlock06compress/flate:compressorcompress/flate:writeBlock0ÇT Ç	com
 	};
 	compressor.prototype.findMatch = function(pos, prevHead, prevLength, lookahead) { return this.go$val.findMatch(pos, prevHead, prevLength, lookahead); };
  0
-compressor	findMatch0compress/flate:compressor0Ç◊ ÇU	compressor.Ptr.prototype.writeStoredBlock = function(buf) {
+compressor	findMatch0compress/flate:compressor0ÇŸ ÇW	compressor.Ptr.prototype.writeStoredBlock = function(buf) {
 		var d;
 		d = this;
-		if (d.w.writeStoredHeader(buf.length, false), !(go$interfaceIsEqual(d.w.err, null))) {
+		d.w.writeStoredHeader(buf.length, false);
+		if (!(go$interfaceIsEqual(d.w.err, null))) {
 			return d.w.err;
 		}
 		d.w.writeBytes(buf);
@@ -429,8 +431,8 @@ compressorwriteStoredBlock0Xcompress/flate:compressorcompress/flate:writeB
 	};
 	compressor.prototype.initDeflate = function() { return this.go$val.initDeflate(); };
  0
-compressorinitDeflate01compress/flate:compressorcompress/flate:token0ÇÔ ÇE	compressor.Ptr.prototype.deflate = function() {
-		var d, _slice, _index, _slice$1, _index$1, lookahead, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, prevLength, prevOffset, minIndex, ok, _tuple, newLength, newOffset, newIndex, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, i, _slice$13, _index$13;
+compressorinitDeflate01compress/flate:compressorcompress/flate:token0Ç ÇZ	compressor.Ptr.prototype.deflate = function() {
+		var d, _slice, _index, _slice$1, _index$1, lookahead, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, prevLength, prevOffset, minIndex, _tuple, newLength, newOffset, ok, newIndex, _slice$7, _index$7, _slice$8, _index$8, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, i, _slice$13, _index$13;
 		d = this;
 		if ((d.windowEnd - d.index >> 0) < 261 && !d.sync) {
 			return;
@@ -458,7 +460,8 @@ compressorinitDeflate01compress/flate:compressorcompress/flate:token0ÇÔ 
 						d.byteAvailable = false;
 					}
 					if (d.tokens.length > 0) {
-						if (d.err = d.writeBlock(d.tokens, d.index, false), !(go$interfaceIsEqual(d.err, null))) {
+						d.err = d.writeBlock(d.tokens, d.index, false);
+						if (!(go$interfaceIsEqual(d.err, null))) {
 							return;
 						}
 						d.tokens = go$subslice(d.tokens, 0, 0);
@@ -481,7 +484,8 @@ compressorinitDeflate01compress/flate:compressorcompress/flate:token0ÇÔ 
 				minIndex = 0;
 			}
 			if ((d.chainHead - d.hashOffset >> 0) >= minIndex && (!((d.compressionLevel.fastSkipHashing === 2147483647)) && lookahead > 2 || (d.compressionLevel.fastSkipHashing === 2147483647) && lookahead > prevLength && prevLength < d.compressionLevel.lazy)) {
-				if (_tuple = d.findMatch(d.index, d.chainHead - d.hashOffset >> 0, 2, lookahead), newLength = _tuple[0], newOffset = _tuple[1], ok = _tuple[2], ok) {
+				_tuple = d.findMatch(d.index, d.chainHead - d.hashOffset >> 0, 2, lookahead), newLength = _tuple[0], newOffset = _tuple[1], ok = _tuple[2];
+				if (ok) {
 					d.length = newLength;
 					d.offset = newOffset;
 				}
@@ -519,7 +523,8 @@ compressorinitDeflate01compress/flate:compressorcompress/flate:token0ÇÔ 
 					}
 				}
 				if (d.tokens.length === 16384) {
-					if (d.err = d.writeBlock(d.tokens, d.index, false), !(go$interfaceIsEqual(d.err, null))) {
+					d.err = d.writeBlock(d.tokens, d.index, false);
+					if (!(go$interfaceIsEqual(d.err, null))) {
 						return;
 					}
 					d.tokens = go$subslice(d.tokens, 0, 0);
@@ -532,7 +537,8 @@ compressorinitDeflate01compress/flate:compressorcompress/flate:token0ÇÔ 
 					}
 					d.tokens = go$append(d.tokens, literalToken(((_slice$13 = d.window, _index$13 = i, (_index$13 >= 0 && _index$13 < _slice$13.length) ? _slice$13.array[_slice$13.offset + _index$13] : go$throwRuntimeError("index out of range")) >>> 0)));
 					if (d.tokens.length === 16384) {
-						if (d.err = d.writeBlock(d.tokens, i + 1 >> 0, false), !(go$interfaceIsEqual(d.err, null))) {
+						d.err = d.writeBlock(d.tokens, i + 1 >> 0, false);
+						if (!(go$interfaceIsEqual(d.err, null))) {
 							return;
 						}
 						d.tokens = go$subslice(d.tokens, 0, 0);
@@ -678,7 +684,7 @@ fmt:Errorf0Ç Çú	compressor.Ptr.prototype.reset = function(w) {
 	};
 	compressor.prototype.reset = function(w) { return this.go$val.reset(w); };
  0
-compressorreset0`compress/flate:bzeroescompress/flate:compressorcompress/flate:resetcompress/flate:zeroes0ÇÎ Çy	compressor.Ptr.prototype.close = function() {
+compressorreset0`compress/flate:bzeroescompress/flate:compressorcompress/flate:resetcompress/flate:zeroes0ÇÌ Ç{	compressor.Ptr.prototype.close = function() {
 		var d;
 		d = this;
 		d.sync = true;
@@ -686,7 +692,8 @@ compressorreset0`compress/flate:bzeroescompress/flate:compressorcompress
 		if (!(go$interfaceIsEqual(d.err, null))) {
 			return d.err;
 		}
-		if (d.w.writeStoredHeader(0, true), !(go$interfaceIsEqual(d.w.err, null))) {
+		d.w.writeStoredHeader(0, true);
+		if (!(go$interfaceIsEqual(d.w.err, null))) {
 			return d.w.err;
 		}
 		d.w.flush();
@@ -694,10 +701,11 @@ compressorreset0`compress/flate:bzeroescompress/flate:compressorcompress
 	};
 	compressor.prototype.close = function() { return this.go$val.close(); };
  0
-compressorclose0Scompress/flate:compressorcompress/flate:flush compress/flate:writeStoredHeader0Ç6	NewWriterÅÎ	NewWriter = go$pkg.NewWriter = function(w, level) {
+compressorclose0Scompress/flate:compressorcompress/flate:flush compress/flate:writeStoredHeader0Ç8	NewWriterÅÌ	NewWriter = go$pkg.NewWriter = function(w, level) {
 		var dw, err;
 		dw = new Writer.Ptr();
-		if (err = dw.d.init(w, level), !(go$interfaceIsEqual(err, null))) {
+		err = dw.d.init(w, level);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [(go$ptrType(Writer)).nil, err];
 		}
 		return [dw, null];
@@ -750,10 +758,11 @@ dictWriter0compress/flate:dictWriter0ÇM Ç	Writer.Ptr.prototype.Write = f
 		return w.d.close();
 	};
 	Writer.prototype.Close = function() { return this.go$val.Close(); };
- 0Writer0-compress/flate:Writercompress/flate:close0ÇO ÇÛ	Writer.Ptr.prototype.Reset = function(dst) {
-		var w, ok, _tuple, x, dw;
+ 0Writer0-compress/flate:Writercompress/flate:close0ÇQ Çı	Writer.Ptr.prototype.Reset = function(dst) {
+		var w, _tuple, x, dw, ok;
 		w = this;
-		if (_tuple = (x = w.d.w.w, (x !== null && x.constructor === (go$ptrType(dictWriter)) ? [x.go$val, true] : [(go$ptrType(dictWriter)).nil, false])), dw = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (x = w.d.w.w, (x !== null && x.constructor === (go$ptrType(dictWriter)) ? [x.go$val, true] : [(go$ptrType(dictWriter)).nil, false])), dw = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			dw.w = dst;
 			w.d.reset(dw);
 			dw.enabled = false;
@@ -816,7 +825,7 @@ dictWriter0compress/flate:dictWriter0ÇM Ç	Writer.Ptr.prototype.Write = f
 		}
 	};
 	huffmanBitWriter.prototype.reset = function(writer) { return this.go$val.reset(writer); };
- 0huffmanBitWriterreset0@compress/flate:huffmanBitWritercompress/flate:huffmanEncoder0Ç± Çg	huffmanBitWriter.Ptr.prototype.flushBits = function() {
+ 0huffmanBitWriterreset0@compress/flate:huffmanBitWritercompress/flate:huffmanEncoder0Ç≥ Çi	huffmanBitWriter.Ptr.prototype.flushBits = function() {
 		var w, bits, n, _tuple;
 		w = this;
 		if (!(go$interfaceIsEqual(w.err, null))) {
@@ -829,7 +838,8 @@ dictWriter0compress/flate:dictWriter0ÇM Ç	Writer.Ptr.prototype.Write = f
 		n = w.nbytes;
 		w.bytes[n] = (bits << 24 >>> 24);
 		w.bytes[n + 1 >> 0] = ((bits >>> 8 >>> 0) << 24 >>> 24);
-		if (n = n + 2 >> 0, n >= 64) {
+		n = n + 2 >> 0;
+		if (n >= 64) {
 			_tuple = w.w.Write(go$subslice(new (go$sliceType(Go$Uint8))(w.bytes), 0)), w.err = _tuple[1];
 			n = 0;
 		}
@@ -860,11 +870,12 @@ dictWriter0compress/flate:dictWriter0ÇM Ç	Writer.Ptr.prototype.Write = f
 		w.nbytes = 0;
 	};
 	huffmanBitWriter.prototype.flush = function() { return this.go$val.flush(); };
- 0huffmanBitWriterflush0!compress/flate:huffmanBitWriter0Ç… Çe	huffmanBitWriter.Ptr.prototype.writeBits = function(b, nb) {
+ 0huffmanBitWriterflush0!compress/flate:huffmanBitWriter0ÇÀ Çg	huffmanBitWriter.Ptr.prototype.writeBits = function(b, nb) {
 		var w, y;
 		w = this;
 		w.bits = (w.bits | (((y = w.nbits, y < 32 ? ((b >>> 0) << y) : 0) >>> 0))) >>> 0;
-		if (w.nbits = w.nbits + ((nb >>> 0)) >>> 0, w.nbits >= 16) {
+		w.nbits = w.nbits + ((nb >>> 0)) >>> 0;
+		if (w.nbits >= 16) {
 			w.flushBits();
 		}
 	};
@@ -1258,7 +1269,7 @@ writeBlock0Ç´compress/flate:bitLengthcompress/flate:codegenOrder#compress/
 		return total;
 	};
 	huffmanEncoder.prototype.bitLength = function(freq) { return this.go$val.bitLength(freq); };
- 0huffmanEncoder	bitLength0compress/flate:huffmanEncoder0ÇX Çƒ	huffmanEncoder.Ptr.prototype.bitCounts = function(list, maxBits) {
+ 0huffmanEncoder	bitLength0compress/flate:huffmanEncoder0Ç[ Ç«	huffmanEncoder.Ptr.prototype.bitCounts = function(list, maxBits) {
 		var h, n, _struct, _slice, _index, levels$1, leafCounts, level, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, x, level$1, l, prevFreq, n$1, _slice$5, _index$5, bitCount, bits, counts, level$2, _slice$6, _index$6;
 		h = this;
 		if (maxBits >= 16) {
@@ -1302,7 +1313,8 @@ writeBlock0Ç´compress/flate:bitLengthcompress/flate:codegenOrder#compress/
 				go$copySlice(go$subslice(new (go$sliceType(Go$Int32))(leafCounts[level$1]), 0, level$1), go$subslice(new (go$sliceType(Go$Int32))(leafCounts[(level$1 - 1 >> 0)]), 0, level$1));
 				levels$1[(l.level - 1 >> 0)].needed = 2;
 			}
-			if (l.needed = l.needed - 1 >> 0, l.needed === 0) {
+			l.needed = l.needed - 1 >> 0;
+			if (l.needed === 0) {
 				if (l.level === maxBits) {
 					break;
 				}
@@ -1560,7 +1572,7 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 		return true;
 	};
 	huffmanDecoder.prototype.init = function(bits) { return this.go$val.init(bits); };
- 0huffmanDecoderinit0;compress/flate:huffmanDecodercompress/flate:reverseByte0Ç< Ç		decompressor.Ptr.prototype.nextBlock = function() {
+ 0huffmanDecoderinit0;compress/flate:huffmanDecodercompress/flate:reverseByte0ÇB Ç	decompressor.Ptr.prototype.nextBlock = function() {
 		var f, typ, _ref, x;
 		f = this;
 		if (f.final$15) {
@@ -1572,7 +1584,8 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 			return;
 		}
 		while (f.nb < 3) {
-			if (f.err = f.moreBits(), !(go$interfaceIsEqual(f.err, null))) {
+			f.err = f.moreBits();
+			if (!(go$interfaceIsEqual(f.err, null))) {
 				return;
 			}
 		}
@@ -1589,7 +1602,8 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 			f.hd = (go$ptrType(huffmanDecoder)).nil;
 			f.huffmanBlock();
 		} else if (_ref === 2) {
-			if (f.err = f.readHuffman(), !(go$interfaceIsEqual(f.err, null))) {
+			f.err = f.readHuffman();
+			if (!(go$interfaceIsEqual(f.err, null))) {
 				break;
 			}
 			f.hl = f.h1;
@@ -1625,12 +1639,13 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 		return f.err;
 	};
 	decompressor.prototype.Close = function() { return this.go$val.Close(); };
- 0decompressor0%compress/flate:decompressorio:EOF0Ç‘ Ç
-Ô	decompressor.Ptr.prototype.readHuffman = function() {
+ 0decompressor0%compress/flate:decompressorio:EOF0Çﬂ Ç
+˙	decompressor.Ptr.prototype.readHuffman = function() {
 		var f, err, nlit, x, ndist, nclen, i, err$1, i$1, x$1, _tuple, i$2, n, _tuple$1, x$2, err$2, rep, nb, b, _ref, x$3, err$3, y, y$1, x$4, j, x$5;
 		f = this;
 		while (f.nb < 14) {
-			if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+			err = f.moreBits();
+			if (!(go$interfaceIsEqual(err, null))) {
 				return err;
 			}
 		}
@@ -1647,7 +1662,8 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 		i = 0;
 		while (i < nclen) {
 			while (f.nb < 3) {
-				if (err$1 = f.moreBits(), !(go$interfaceIsEqual(err$1, null))) {
+				err$1 = f.moreBits();
+				if (!(go$interfaceIsEqual(err$1, null))) {
 					return err$1;
 				}
 			}
@@ -1698,7 +1714,8 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 				return new InternalError("unexpected length code");
 			}
 			while (f.nb < nb) {
-				if (err$3 = f.moreBits(), !(go$interfaceIsEqual(err$3, null))) {
+				err$3 = f.moreBits();
+				if (!(go$interfaceIsEqual(err$3, null))) {
 					return err$3;
 				}
 			}
@@ -1721,7 +1738,7 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 		return null;
 	};
 	decompressor.prototype.readHuffman = function() { return this.go$val.readHuffman(); };
- 0decompressorreadHuffman0ÅΩ compress/flate:CorruptInputErrorcompress/flate:InternalErrorcompress/flate:codeOrdercompress/flate:decompressorcompress/flate:huffSymcompress/flate:initcompress/flate:moreBits0Ç∂ Çz	decompressor.Ptr.prototype.huffmanBlock = function() {
+ 0decompressorreadHuffman0ÅΩ compress/flate:CorruptInputErrorcompress/flate:InternalErrorcompress/flate:codeOrdercompress/flate:decompressorcompress/flate:huffSymcompress/flate:initcompress/flate:moreBits0Ç… Çç	decompressor.Ptr.prototype.huffmanBlock = function() {
 		var f, _tuple, v, err, n, length, x, x$1, x$2, x$3, x$4, y, y$1, dist, _tuple$1, x$5, nb, y$2, extra, y$3, y$4, y$5, x$6, _tuple$2;
 		f = this;
 		while (true) {
@@ -1767,7 +1784,8 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 			}
 			if (n > 0) {
 				while (f.nb < n) {
-					if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+					err = f.moreBits();
+					if (!(go$interfaceIsEqual(err, null))) {
 						f.err = err;
 						return;
 					}
@@ -1779,7 +1797,8 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 			dist = 0;
 			if (f.hd === (go$ptrType(huffmanDecoder)).nil) {
 				while (f.nb < 5) {
-					if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+					err = f.moreBits();
+					if (!(go$interfaceIsEqual(err, null))) {
 						f.err = err;
 						return;
 					}
@@ -1788,7 +1807,8 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 				f.b = f.b >>> 5 >>> 0;
 				f.nb = f.nb - 5 >>> 0;
 			} else {
-				if (_tuple$1 = f.huffSym(f.hd), dist = _tuple$1[0], err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
+				_tuple$1 = f.huffSym(f.hd), dist = _tuple$1[0], err = _tuple$1[1];
+				if (!(go$interfaceIsEqual(err, null))) {
 					f.err = err;
 					return;
 				}
@@ -1802,7 +1822,8 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 				nb = ((dist - 2 >> 0) >>> 0) >>> 1 >>> 0;
 				extra = (y$2 = nb, y$2 < 32 ? (((dist & 1)) << y$2) : 0) >> 0;
 				while (f.nb < nb) {
-					if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+					err = f.moreBits();
+					if (!(go$interfaceIsEqual(err, null))) {
 						f.err = err;
 						return;
 					}
@@ -1827,7 +1848,7 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 		}
 	};
 	decompressor.prototype.huffmanBlock = function() { return this.go$val.huffmanBlock(); };
- 0decompressorhuffmanBlock0Ç compress/flate:CorruptInputErrorcompress/flate:InternalErrorcompress/flate:copyHistcompress/flate:decompressorcompress/flate:flushcompress/flate:huffSymcompress/flate:huffmanDecodercompress/flate:moreBitscompress/flate:nextBlockcompress/flate:reverseByte0ÇY ÇÕ	decompressor.Ptr.prototype.copyHist = function() {
+ 0decompressorhuffmanBlock0Ç compress/flate:CorruptInputErrorcompress/flate:InternalErrorcompress/flate:copyHistcompress/flate:decompressorcompress/flate:flushcompress/flate:huffSymcompress/flate:huffmanDecodercompress/flate:moreBitscompress/flate:nextBlockcompress/flate:reverseByte0Ç_ Ç”	decompressor.Ptr.prototype.copyHist = function() {
 		var f, p, n, x, x$1;
 		f = this;
 		p = f.hp - f.copyDist >> 0;
@@ -1836,10 +1857,12 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 		}
 		while (f.copyLen > 0) {
 			n = f.copyLen;
-			if (x = 32768 - f.hp >> 0, n > x) {
+			x = 32768 - f.hp >> 0;
+			if (n > x) {
 				n = x;
 			}
-			if (x$1 = 32768 - p >> 0, n > x$1) {
+			x$1 = 32768 - p >> 0;
+			if (n > x$1) {
 				n = x$1;
 			}
 			forwardCopy(new (go$sliceType(Go$Uint8))(f.hist), f.hp, p, n);
@@ -1947,13 +1970,14 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 		return null;
 	};
 	decompressor.prototype.moreBits = function() { return this.go$val.moreBits(); };
- 0decompressormoreBits0:compress/flate:decompressorio:EOFio:ErrUnexpectedEOF0Ç Çõ	decompressor.Ptr.prototype.huffSym = function(h) {
+ 0decompressormoreBits0:compress/flate:decompressorio:EOFio:ErrUnexpectedEOF0Ç Çü	decompressor.Ptr.prototype.huffSym = function(h) {
 		var f, n, err, chunk, _slice, _index, _slice$1, _index$1, x, y;
 		f = this;
 		n = (h.min >>> 0);
 		while (true) {
 			while (f.nb < n) {
-				if (err = f.moreBits(), !(go$interfaceIsEqual(err, null))) {
+				err = f.moreBits();
+				if (!(go$interfaceIsEqual(err, null))) {
 					return [0, err];
 				}
 			}
@@ -1989,10 +2013,11 @@ WriteError0.compress/flate:WriteErrorstrconv:FormatInt0Ç’ Çx	huffmanDeco
 		f.step = step;
 	};
 	decompressor.prototype.flush = function(step) { return this.go$val.flush(step); };
- 0decompressorflush0compress/flate:decompressor0ÇC
-makeReaderÅ˙	makeReader = function(r) {
-		var ok, _tuple, rr;
-		if (_tuple = (r !== null && Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
+ 0decompressorflush0compress/flate:decompressor0ÇE
+makeReaderÅ¸	makeReader = function(r) {
+		var _tuple, rr, ok;
+		_tuple = (r !== null && Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			return rr;
 		}
 		return bufio.NewReader(r);

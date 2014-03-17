@@ -1,4 +1,4 @@
-0ÉBtestingÇ0*package testing
+0ÉqtestingÇ0*package testing
 import runtime "runtime"
 import flag "flag"
 import fmt "fmt"
@@ -184,7 +184,7 @@ type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDS
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
 0Å∫runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortflagbufiostringstext/tabwriterruntime/pproftesting0ÅÆ0runtimeruntime0flagflag0
-fmtfmt0osos0syncsync0timetime0bytesbytes0ioio0stringsstrings0runtime/pprofpprof0strconvstrconv0Ç„ó0Ç‡InternalBenchmarkÇ"	InternalBenchmark = go$pkg.InternalBenchmark = go$newType(0, "Struct", "testing.InternalBenchmark", "InternalBenchmark", "testing", function(Name_, F_) {
+fmtfmt0osos0syncsync0timetime0bytesbytes0ioio0stringsstrings0runtime/pprofpprof0strconvstrconv0Ç„∆0Ç‡InternalBenchmarkÇ"	InternalBenchmark = go$pkg.InternalBenchmark = go$newType(0, "Struct", "testing.InternalBenchmark", "InternalBenchmark", "testing", function(Name_, F_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.F = F_ !== undefined ? F_ : go$throwNilPointerError;
@@ -418,10 +418,10 @@ runtime:GC	testing:Btesting:benchmarkLock0ZminH	min = function(x, y) {
 			return (x$4 = 10, (((x$4 >>> 16 << 16) * base >> 0) + (x$4 << 16 >>> 16) * base) >> 0);
 		}
 	};
- 0	roundUp0testing:roundDown100Çb Ç*	B.Ptr.prototype.run = function() {
+ 0	roundUp0testing:roundDown100Çc Ç+	B.Ptr.prototype.run = function() {
 		var b, _struct;
 		b = this;
-		go$notSupported("go")
+		go$notSupported("go");
 		undefined;
 		return (_struct = b.result, new BenchmarkResult.Ptr(_struct.N, _struct.T, _struct.Bytes, _struct.MemAllocs, _struct.MemBytes));
 	};
@@ -519,7 +519,7 @@ runtime:GC	testing:Btesting:benchmarkLock0ZminH	min = function(x, y) {
 		return fmt.Sprintf("%8d B/op\t%8d allocs/op", new (go$sliceType(go$emptyInterface))([r.AllocedBytesPerOp(), r.AllocsPerOp()]));
 	};
 	BenchmarkResult.prototype.MemString = function() { return this.go$val.MemString(); };
- 0BenchmarkResult0&fmt:Sprintftesting:BenchmarkResult0Ç›RunBenchmarksÇ}	RunBenchmarks = go$pkg.RunBenchmarks = function(matchString, benchmarks) {
+ 0BenchmarkResult0&fmt:Sprintftesting:BenchmarkResult0Ç·RunBenchmarksÇÅ	RunBenchmarks = go$pkg.RunBenchmarks = function(matchString, benchmarks) {
 		var _ref, _i, _slice, _index, _struct, Benchmark$1, _tuple, matched, err, _ref$1, _i$1, _slice$1, _index$1, procs, _struct$1, b, benchName, _struct$2, r, results, p;
 		if (matchBenchmarks.go$get().length === 0) {
 			return;
@@ -563,7 +563,8 @@ runtime:GC	testing:Btesting:benchmarkLock0ZminH	min = function(x, y) {
 					b.trimOutput();
 					fmt.Printf("--- BENCH: %s\n%s", new (go$sliceType(go$emptyInterface))([new Go$String(benchName), b.common.output]));
 				}
-				if (p = runtime.GOMAXPROCS(-1), !((p === procs))) {
+				p = runtime.GOMAXPROCS(-1);
+				if (!((p === procs))) {
 					fmt.Fprintf(os.Stderr, "testing: %s left GOMAXPROCS set to %d\n", new (go$sliceType(go$emptyInterface))([new Go$String(benchName), new Go$Int(p)]));
 				}
 				_i$1++;
@@ -681,8 +682,8 @@ fmt:Printf	os:Createos:Filetesting:CoverBlocktesting:covertesting:cover
 		}
 		return ok;
 	};
- 0RunExamples0]fmt:Fprintfos:Exit	os:Stderrtesting:InternalExampletesting:matchtesting:runExample0Ç
-runExampleÇn	runExample = function(eg) {
+ 0RunExamples0]fmt:Fprintfos:Exit	os:Stderrtesting:InternalExampletesting:matchtesting:runExample0Ç
+runExampleÇs	runExample = function(eg) {
 		var ok, stdout, _tuple, r, w, err, outC, _struct, start;
 		ok = false;
 		var go$deferred = [];
@@ -698,18 +699,19 @@ runExampleÇn	runExample = function(eg) {
 			}
 			os.Stdout = w;
 			outC = new (go$chanType(Go$String, false, false))();
-			go$notSupported("go")
+			go$notSupported("go");
 			start = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 			ok = true;
 			go$deferred.push({ fun: (function() {
-				var _struct$1, d, out, fail, err$1, g, e, _tuple$1;
+				var _struct$1, d, out, fail, err$1, _tuple$1, g, e;
 				d = time.Now().Sub((_struct$1 = start, new time.Time.Ptr(_struct$1.sec, _struct$1.nsec, _struct$1.loc)));
 				w.Close();
 				os.Stdout = stdout;
 				out = undefined;
 				fail = "";
 				err$1 = go$recover();
-				if (_tuple$1 = [strings.TrimSpace(out), strings.TrimSpace(eg.Output)], g = _tuple$1[0], e = _tuple$1[1], !(g === e) && go$interfaceIsEqual(err$1, null)) {
+				_tuple$1 = [strings.TrimSpace(out), strings.TrimSpace(eg.Output)], g = _tuple$1[0], e = _tuple$1[1];
+				if (!(g === e) && go$interfaceIsEqual(err$1, null)) {
 					fail = fmt.Sprintf("got:\n%s\nwant:\n%s\n", new (go$sliceType(go$emptyInterface))([new Go$String(g), new Go$String(e)]));
 				}
 				if (!(fail === "") || !(go$interfaceIsEqual(err$1, null))) {
@@ -739,14 +741,18 @@ fmt:Printffmt:Sprintfos:Exitos:Pipe	os:Stderr	os:Stdoutstrings:TrimSpa
  0Short0testing:short0qVerboseG	Verbose = go$pkg.Verbose = function() {
 		return chatty.go$get();
 	};
- 0	Verbose0testing:chatty0Ç©decorateÇ>	decorate = function(s) {
+ 0	Verbose0testing:chatty0ÇødecorateÇT	decorate = function(s) {
 		var _tuple, file, line, ok, index, buf, lines, l, _slice, _index, _ref, _i, _slice$1, _index$1, line$1, i;
 		_tuple = runtime.Caller(3), file = _tuple[1], line = _tuple[2], ok = _tuple[3];
 		if (ok) {
-			if (index = strings.LastIndex(file, "/"), index >= 0) {
+			index = strings.LastIndex(file, "/");
+			if (index >= 0) {
 				file = file.substring((index + 1 >> 0));
-			} else if (index = strings.LastIndex(file, "\\"), index >= 0) {
-				file = file.substring((index + 1 >> 0));
+			} else {
+				index = strings.LastIndex(file, "\\");
+				if (index >= 0) {
+					file = file.substring((index + 1 >> 0));
+				}
 			}
 		} else {
 			file = "???";
@@ -756,7 +762,8 @@ fmt:Printffmt:Sprintfos:Exitos:Pipe	os:Stderr	os:Stdoutstrings:TrimSpa
 		buf.WriteByte(9);
 		fmt.Fprintf(buf, "%s:%d: ", new (go$sliceType(go$emptyInterface))([new Go$String(file), new Go$Int(line)]));
 		lines = strings.Split(s, "\n");
-		if (l = lines.length, l > 1 && (_slice = lines, _index = (l - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === "") {
+		l = lines.length;
+		if (l > 1 && (_slice = lines, _index = (l - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) === "") {
 			lines = go$subslice(lines, 0, (l - 1 >> 0));
 		}
 		_ref = lines;
@@ -932,14 +939,15 @@ fmt:Printffmt:Sprintfos:Exitos:Pipe	os:Stderr	os:Stdoutstrings:TrimSpa
 		t.common.start = (_struct = time.Now(), new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc));
 	};
 	T.prototype.Parallel = function() { return this.go$val.Parallel(); };
- 0T0 	testing:Ttime:Now	time:Time0Ç›tRunnerÇú	tRunner = function(t, test) {
+ 0T0 	testing:Ttime:Now	time:Time0Ç·tRunnerÇ†	tRunner = function(t, test) {
 		var _struct;
 		var go$deferred = [];
 		try {
 			go$deferred.push({ fun: (function() {
 				var _struct, err;
 				t.common.duration = time.Now().Sub((_struct = t.common.start, new time.Time.Ptr(_struct.sec, _struct.nsec, _struct.loc)));
-				if (err = go$recover(), !(go$interfaceIsEqual(err, null))) {
+				err = go$recover();
+				if (!(go$interfaceIsEqual(err, null))) {
 					t.common.Fail();
 					t.report();
 					throw go$panic(err);
@@ -990,7 +998,7 @@ flag:Parsefmt:Printlnos:Exittesting:RunBenchmarkstesting:RunExampleste
 	};
 	T.prototype.report = function() { return this.go$val.report(); };
  0Treport04
-fmt:Printffmt:Sprintf	testing:Ttesting:chatty0ÇÏRunTestsÇ≈	RunTests = go$pkg.RunTests = function(matchString, tests) {
+fmt:Printffmt:Sprintf	testing:Ttesting:chatty0ÇÓRunTestsÇ«	RunTests = go$pkg.RunTests = function(matchString, tests) {
 		var ok, _ref, _i, _slice, _index, procs, collector, numParallel, startParallel, i, t, _tuple, _slice$1, _index$1, matched, err, _slice$2, _index$2, testName, _slice$3, _index$3, x, out, running, x$1, t$1;
 		ok = false;
 		ok = true;
@@ -1027,10 +1035,10 @@ fmt:Printffmt:Sprintf	testing:Ttesting:chatty0ÇÏRunTestsÇ≈	RunTests = 
 				if (chatty.go$get()) {
 					fmt.Printf("=== RUN %s\n", new (go$sliceType(go$emptyInterface))([new Go$String(t[0].name)]));
 				}
-				go$notSupported("go")
+				go$notSupported("go");
 				out = (x = undefined, (x !== null && x.constructor === (go$ptrType(T)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(T)))));
 				if (out === (go$ptrType(T)).nil) {
-					go$notSupported("go")
+					go$notSupported("go");
 					numParallel = numParallel + 1 >> 0;
 					i = i + 1 >> 0;
 					continue;
@@ -1058,7 +1066,7 @@ fmt:Printffmt:Sprintf	testing:Ttesting:chatty0ÇÏRunTestsÇ≈	RunTests = 
 	};
  0
 RunTests0Çfmt:Fprintffmt:Fprintln
-fmt:Printffmt:Sprintfos:Exit	os:Stderrruntime:GOMAXPROCSsync:RWMutex	testing:Ttesting:chattytesting:commontesting:cpuListtesting:haveExamplestesting:matchtesting:paralleltesting:reporttime:Duration	time:Time0Ç2beforeÇ	before = function() {
+fmt:Printffmt:Sprintfos:Exit	os:Stderrruntime:GOMAXPROCSsync:RWMutex	testing:Ttesting:chattytesting:commontesting:cpuListtesting:haveExamplestesting:matchtesting:paralleltesting:reporttime:Duration	time:Time0Ç5beforeÇ	before = function() {
 		var _tuple, f, err, err$1;
 		if (memProfileRate.go$get() > 0) {
 			runtime.MemProfileRate = memProfileRate.go$get();
@@ -1069,7 +1077,8 @@ fmt:Printffmt:Sprintfos:Exit	os:Stderrruntime:GOMAXPROCSsync:RWMutex	t
 				fmt.Fprintf(os.Stderr, "testing: %s", new (go$sliceType(go$emptyInterface))([err]));
 				return;
 			}
-			if (err$1 = pprof.StartCPUProfile(f), !(go$interfaceIsEqual(err$1, null))) {
+			err$1 = pprof.StartCPUProfile(f);
+			if (!(go$interfaceIsEqual(err$1, null))) {
 				fmt.Fprintf(os.Stderr, "testing: can't start cpu profile: %s", new (go$sliceType(go$emptyInterface))([err$1]));
 				f.Close();
 				return;
@@ -1083,7 +1092,7 @@ fmt:Printffmt:Sprintfos:Exit	os:Stderrruntime:GOMAXPROCSsync:RWMutex	t
 			os.Exit(2);
 		}
 	};
- 0before0Å˛fmt:Fprintf	os:Createos:Exit	os:Stderrruntime/pprof:StartCPUProfileruntime:SetBlockProfileRatetesting:blockProfiletesting:blockProfileRatetesting:covertesting:coverProfiletesting:cpuProfiletesting:memProfileRatetesting:toOutputDir0ÇsafterÇH	after = function() {
+ 0before0Å˛fmt:Fprintf	os:Createos:Exit	os:Stderrruntime/pprof:StartCPUProfileruntime:SetBlockProfileRatetesting:blockProfiletesting:blockProfileRatetesting:covertesting:coverProfiletesting:cpuProfiletesting:memProfileRatetesting:toOutputDir0ÇyafterÇN	after = function() {
 		var _tuple, f, err, _tuple$1, f$1, err$1;
 		if (!(cpuProfile.go$get() === "")) {
 			pprof.StopCPUProfile();
@@ -1094,7 +1103,8 @@ fmt:Printffmt:Sprintfos:Exit	os:Stderrruntime:GOMAXPROCSsync:RWMutex	t
 				fmt.Fprintf(os.Stderr, "testing: %s\n", new (go$sliceType(go$emptyInterface))([err]));
 				os.Exit(2);
 			}
-			if (err = pprof.WriteHeapProfile(f), !(go$interfaceIsEqual(err, null))) {
+			err = pprof.WriteHeapProfile(f);
+			if (!(go$interfaceIsEqual(err, null))) {
 				fmt.Fprintf(os.Stderr, "testing: can't write %s: %s\n", new (go$sliceType(go$emptyInterface))([new Go$String(memProfile.go$get()), err]));
 				os.Exit(2);
 			}
@@ -1106,7 +1116,8 @@ fmt:Printffmt:Sprintfos:Exit	os:Stderrruntime:GOMAXPROCSsync:RWMutex	t
 				fmt.Fprintf(os.Stderr, "testing: %s\n", new (go$sliceType(go$emptyInterface))([err$1]));
 				os.Exit(2);
 			}
-			if (err$1 = pprof.Lookup("block").WriteTo(f$1, 0), !(go$interfaceIsEqual(err$1, null))) {
+			err$1 = pprof.Lookup("block").WriteTo(f$1, 0);
+			if (!(go$interfaceIsEqual(err$1, null))) {
 				fmt.Fprintf(os.Stderr, "testing: can't write %s: %s\n", new (go$sliceType(go$emptyInterface))([new Go$String(blockProfile.go$get()), err$1]));
 				os.Exit(2);
 			}

@@ -1,4 +1,4 @@
-0‚Ì½bytes‚7package bytes
+0‚ÌÂbytes‚7package bytes
 import errors "errors"
 import io "io"
 import utf8 "unicode/utf8"
@@ -96,7 +96,7 @@ func (? *@"unicode".SpecialCase) @"unicode".ToUpper(@"unicode".r rune) (? rune)
 type @"unicode".CaseRange struct { @"unicode".Lo uint32; @"unicode".Hi uint32; @"unicode".Delta @"unicode".d }
 type @"unicode".d [3]rune
 $$
-0Fruntimeerrorssync/atomicsynciounicodeunicode/utf8bytes0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0‚´å0‚ÂBuffer‚C	Buffer = go$pkg.Buffer = go$newType(0, "Struct", "bytes.Buffer", "Buffer", "bytes", function(buf_, off_, runeBytes_, bootstrap_, lastRead_) {
+0Fruntimeerrorssync/atomicsynciounicodeunicode/utf8bytes0F0errorserrors0ioio0unicode/utf8utf80unicodeunicode0‚´ê0‚ÂBuffer‚C	Buffer = go$pkg.Buffer = go$newType(0, "Struct", "bytes.Buffer", "Buffer", "bytes", function(buf_, off_, runeBytes_, bootstrap_, lastRead_) {
 		this.go$val = this;
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
 		this.off = off_ !== undefined ? off_ : 0;
@@ -214,7 +214,7 @@ bytes:grow0‚ ‚b	Buffer.Ptr.prototype.WriteString = function(s) {
 	};
 	Buffer.prototype.WriteString = function(s) { return this.go$val.WriteString(s); };
  0Buffer0bytes:Buffer
-bytes:grow0‚  ‚å	Buffer.Ptr.prototype.ReadFrom = function(r) {
+bytes:grow0‚# ‚è	Buffer.Ptr.prototype.ReadFrom = function(r) {
 		var n, err, b, free, newBuf, x, x$1, _tuple, m, e, x$2, _tuple$1, _tuple$2;
 		n = new Go$Int64(0, 0);
 		err = null;
@@ -224,7 +224,8 @@ bytes:grow0‚  ‚å	Buffer.Ptr.prototype.ReadFrom = function(r) {
 			b.Truncate(0);
 		}
 		while (true) {
-			if (free = b.buf.capacity - b.buf.length >> 0, free < 512) {
+			free = b.buf.capacity - b.buf.length >> 0;
+			if (free < 512) {
 				newBuf = b.buf;
 				if ((b.off + free >> 0) < 512) {
 					newBuf = makeSlice((x = 2, x$1 = b.buf.capacity, (((x >>> 16 << 16) * x$1 >> 0) + (x << 16 >>> 16) * x$1) >> 0) + 512 >> 0);
@@ -1182,8 +1183,8 @@ errors:Newio:EOF0‚= ‚	Reader.Ptr.prototype.ReadByte = function() {
 	};
 	Reader.prototype.UnreadByte = function() { return this.go$val.UnreadByte(); };
  0Reader0bytes:Reader
-errors:New0‚§ ‚d	Reader.Ptr.prototype.ReadRune = function() {
-		var ch, size, err, r, _tuple, c, _slice, _index, _tuple$1, _tuple$2;
+errors:New0‚© ‚f	Reader.Ptr.prototype.ReadRune = function() {
+		var ch, size, err, r, _tuple, _slice, _index, c, _tuple$1, _tuple$2;
 		ch = 0;
 		size = 0;
 		err = null;
@@ -1193,7 +1194,8 @@ errors:New0‚§ ‚d	Reader.Ptr.prototype.ReadRune = function() {
 			return [ch, size, err];
 		}
 		r.prevRune = r.i;
-		if (c = (_slice = r.s, _index = r.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), c < 128) {
+		c = (_slice = r.s, _index = r.i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (c < 128) {
 			r.i = r.i + 1 >> 0;
 			_tuple$1 = [(c >> 0), 1, null], ch = _tuple$1[0], size = _tuple$1[1], err = _tuple$1[2];
 			return [ch, size, err];

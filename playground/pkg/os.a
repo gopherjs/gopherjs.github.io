@@ -1,4 +1,4 @@
-0É\VosÇH˜package os
+0É\vosÇH˜package os
 import io "io"
 import syscall "syscall"
 import time "time"
@@ -304,7 +304,7 @@ func (? *@"syscall".Timeval) @"syscall".Unix() (@"syscall".sec int64, @"syscall"
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0;runtimeerrorssync/atomicsynciosyscalltimeos0w0ioio0syscallsyscall0timetime0errorserrors0runtimeruntime0sync/atomicatomic0syncsync0Éö0Ç
+0;runtimeerrorssync/atomicsynciosyscalltimeos0w0ioio0syscallsyscall0timetime0errorserrors0runtimeruntime0sync/atomicatomic0syncsync0É∫0Ç
 	PathErrorÇ	PathError = go$pkg.PathError = go$newType(0, "Struct", "os.PathError", "PathError", "os", function(Op_, Path_, Err_) {
 		this.go$val = this;
 		this.Op = Op_ !== undefined ? Op_ : "";
@@ -739,12 +739,13 @@ os:Processsync/atomic:LoadUint320nGetpidF	Getpid = go$pkg.Getpid = function
  0Getpid0syscall:Getpid0tGetppidI	Getppid = go$pkg.Getppid = function() {
 		return syscall.Getppid();
 	};
- 0	Getppid0syscall:Getppid0Ç€startProcessÇ,	startProcess = function(name, argv, attr) {
-		var p, err, err$1, _tuple, pe, _tuple$1, sysattr, _ref, _i, _slice, _index, f, _tuple$2, pid, h, e, _tuple$3, _tuple$4;
+ 0	Getppid0syscall:Getppid0ÇﬁstartProcessÇ/	startProcess = function(name, argv, attr) {
+		var p, err, _tuple, err$1, pe, _tuple$1, sysattr, _ref, _i, _slice, _index, f, _tuple$2, pid, h, e, _tuple$3, _tuple$4;
 		p = (go$ptrType(Process)).nil;
 		err = null;
 		if (!(attr === (go$ptrType(ProcAttr)).nil) && attr.Sys === (go$ptrType(syscall.SysProcAttr)).nil && !(attr.Dir === "")) {
-			if (_tuple = Stat(attr.Dir), err$1 = _tuple[1], !(go$interfaceIsEqual(err$1, null))) {
+			_tuple = Stat(attr.Dir), err$1 = _tuple[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
 				pe = (err$1 !== null && err$1.constructor === (go$ptrType(PathError)) ? err$1.go$val : go$typeAssertionFailed(err$1, (go$ptrType(PathError))));
 				pe.Op = "chdir";
 				_tuple$1 = [(go$ptrType(Process)).nil, pe], p = _tuple$1[0], err = _tuple$1[1];
@@ -883,7 +884,7 @@ os:Process0Å  Å†	ProcessState.Ptr.prototype.Pid = function() {
 	Process.prototype.wait = function() { return this.go$val.wait(); };
  0Processwait0os:NewSyscallError
 os:Processos:ProcessState
-os:setDonesyscall:Errnosyscall:Rusagesyscall:Wait4syscall:WaitStatus0Ç Ç#	Process.Ptr.prototype.signal = function(sig) {
+os:setDonesyscall:Errnosyscall:Rusagesyscall:Wait4syscall:WaitStatus0ÇÅ Ç%	Process.Ptr.prototype.signal = function(sig) {
 		var p, _tuple, s, ok, e;
 		p = this;
 		if (p.done()) {
@@ -893,7 +894,8 @@ os:setDonesyscall:Errnosyscall:Rusagesyscall:Wait4syscall:WaitStatus0Ç
 		if (!ok) {
 			return errors.New("os: unsupported signal type");
 		}
-		if (e = syscall.Kill(p.Pid, s), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Kill(p.Pid, s);
+		if (!(go$interfaceIsEqual(e, null))) {
 			return e;
 		}
 		return null;
@@ -1079,20 +1081,22 @@ os:dirInfoos:seeksyscall:Errno0Ç Ç⁄	File.Ptr.prototype.WriteString = fu
 		}
 		return null;
 	};
- 0Mkdir0-os:PathErroros:syscallModesyscall:Mkdir0ÅÎChdirÅ∑	Chdir = go$pkg.Chdir = function(dir) {
+ 0Mkdir0-os:PathErroros:syscallModesyscall:Mkdir0ÅÌChdirÅπ	Chdir = go$pkg.Chdir = function(dir) {
 		var e;
-		if (e = syscall.Chdir(dir), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Chdir(dir);
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("chdir", dir, e);
 		}
 		return null;
 	};
- 0Chdir0os:PathErrorsyscall:Chdir0Ç© Ça	File.Ptr.prototype.Chdir = function() {
+ 0Chdir0os:PathErrorsyscall:Chdir0Ç´ Çc	File.Ptr.prototype.Chdir = function() {
 		var f, e;
 		f = this;
 		if (f === (go$ptrType(File)).nil) {
 			return go$pkg.ErrInvalid;
 		}
-		if (e = syscall.Fchdir(f.file.fd), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Fchdir(f.file.fd);
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("chdir", f.file.name, e);
 		}
 		return null;
@@ -1170,64 +1174,70 @@ os:dirInfoos:seeksyscall:Errno0Ç Ç⁄	File.Ptr.prototype.WriteString = fu
 		}
 		return o;
 	};
- 0syscallMode0os:FileMode0ÇChmodÅ”	Chmod = go$pkg.Chmod = function(name, mode) {
+ 0syscallMode0os:FileMode0ÇChmodÅ’	Chmod = go$pkg.Chmod = function(name, mode) {
 		var e;
-		if (e = syscall.Chmod(name, syscallMode(mode)), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Chmod(name, syscallMode(mode));
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("chmod", name, e);
 		}
 		return null;
 	};
- 0Chmod0-os:PathErroros:syscallModesyscall:Chmod0Çÿ ÇÄ	File.Ptr.prototype.Chmod = function(mode) {
+ 0Chmod0-os:PathErroros:syscallModesyscall:Chmod0Ç⁄ ÇÇ	File.Ptr.prototype.Chmod = function(mode) {
 		var f, e;
 		f = this;
 		if (f === (go$ptrType(File)).nil) {
 			return go$pkg.ErrInvalid;
 		}
-		if (e = syscall.Fchmod(f.file.fd, syscallMode(mode)), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Fchmod(f.file.fd, syscallMode(mode));
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("chmod", f.file.name, e);
 		}
 		return null;
 	};
 	File.prototype.Chmod = function(mode) { return this.go$val.Chmod(mode); };
- 0File0Fos:ErrInvalidos:Fileos:PathErroros:syscallModesyscall:Fchmod0ÇChownÅŒ	Chown = go$pkg.Chown = function(name, uid, gid) {
+ 0File0Fos:ErrInvalidos:Fileos:PathErroros:syscallModesyscall:Fchmod0ÇChownÅ–	Chown = go$pkg.Chown = function(name, uid, gid) {
 		var e;
-		if (e = syscall.Chown(name, uid, gid), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Chown(name, uid, gid);
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("chown", name, e);
 		}
 		return null;
 	};
- 0Chown0os:PathErrorsyscall:Chown0Ç	LchownÅ“	Lchown = go$pkg.Lchown = function(name, uid, gid) {
+ 0Chown0os:PathErrorsyscall:Chown0ÇLchownÅ‘	Lchown = go$pkg.Lchown = function(name, uid, gid) {
 		var e;
-		if (e = syscall.Lchown(name, uid, gid), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Lchown(name, uid, gid);
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("lchown", name, e);
 		}
 		return null;
 	};
- 0Lchown0os:PathErrorsyscall:Lchown0ÇÀ ÇÉ	File.Ptr.prototype.Chown = function(uid, gid) {
+ 0Lchown0os:PathErrorsyscall:Lchown0ÇÕ ÇÖ	File.Ptr.prototype.Chown = function(uid, gid) {
 		var f, e;
 		f = this;
 		if (f === (go$ptrType(File)).nil) {
 			return go$pkg.ErrInvalid;
 		}
-		if (e = syscall.Fchown(f.file.fd, uid, gid), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Fchown(f.file.fd, uid, gid);
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("chown", f.file.name, e);
 		}
 		return null;
 	};
 	File.prototype.Chown = function(uid, gid) { return this.go$val.Chown(uid, gid); };
- 0File06os:ErrInvalidos:Fileos:PathErrorsyscall:Fchown0ÇÕ ÇÇ	File.Ptr.prototype.Truncate = function(size) {
+ 0File06os:ErrInvalidos:Fileos:PathErrorsyscall:Fchown0Çœ ÇÑ	File.Ptr.prototype.Truncate = function(size) {
 		var f, e;
 		f = this;
 		if (f === (go$ptrType(File)).nil) {
 			return go$pkg.ErrInvalid;
 		}
-		if (e = syscall.Ftruncate(f.file.fd, size), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Ftruncate(f.file.fd, size);
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("truncate", f.file.name, e);
 		}
 		return null;
 	};
 	File.prototype.Truncate = function(size) { return this.go$val.Truncate(size); };
- 0File09os:ErrInvalidos:Fileos:PathErrorsyscall:Ftruncate0Ç€ Çé	File.Ptr.prototype.Sync = function() {
+ 0File09os:ErrInvalidos:Fileos:PathErrorsyscall:Ftruncate0Ç› Çê	File.Ptr.prototype.Sync = function() {
 		var err, f, e;
 		err = null;
 		f = this;
@@ -1235,7 +1245,8 @@ os:dirInfoos:seeksyscall:Errno0Ç Ç⁄	File.Ptr.prototype.WriteString = fu
 			err = new syscall.Errno(22);
 			return err;
 		}
-		if (e = syscall.Fsync(f.file.fd), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Fsync(f.file.fd);
+		if (!(go$interfaceIsEqual(e, null))) {
 			err = NewSyscallError("fsync", e);
 			return err;
 		}
@@ -1243,12 +1254,13 @@ os:dirInfoos:seeksyscall:Errno0Ç Ç⁄	File.Ptr.prototype.WriteString = fu
 		return err;
 	};
 	File.prototype.Sync = function() { return this.go$val.Sync(); };
- 0File0;os:Fileos:NewSyscallErrorsyscall:Errnosyscall:Fsync0ÇChtimesÇà	Chtimes = go$pkg.Chtimes = function(name, atime$1, mtime) {
+ 0File0;os:Fileos:NewSyscallErrorsyscall:Errnosyscall:Fsync0ÇÚChtimesÇä	Chtimes = go$pkg.Chtimes = function(name, atime$1, mtime) {
 		var utimes, _struct, _struct$1, e;
 		utimes = go$makeNativeArray("Struct", 2, function() { return new syscall.Timespec.Ptr(); });
 		utimes[0] = (_struct = syscall.NsecToTimespec(atime$1.UnixNano()), new syscall.Timespec.Ptr(_struct.Sec, _struct.Nsec));
 		utimes[1] = (_struct$1 = syscall.NsecToTimespec(mtime.UnixNano()), new syscall.Timespec.Ptr(_struct$1.Sec, _struct$1.Nsec));
-		if (e = syscall.UtimesNano(name, go$subslice(new (go$sliceType(syscall.Timespec))(utimes), 0)), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.UtimesNano(name, go$subslice(new (go$sliceType(syscall.Timespec))(utimes), 0));
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("chtimes", name, e);
 		}
 		return null;
@@ -1310,14 +1322,15 @@ os:NewFileos:PathErroros:syscallModesyscall:CloseOnExecsyscall:Open0Ç
 		return f.file.close();
 	};
 	File.prototype.Close = function() { return this.go$val.Close(); };
- 0File0"os:ErrInvalidos:Fileos:close0Ç1 ÇÕ	file.Ptr.prototype.close = function() {
+ 0File0"os:ErrInvalidos:Fileos:close0Ç3 Çœ	file.Ptr.prototype.close = function() {
 		var file$1, err, e;
 		file$1 = this;
 		if (file$1 === (go$ptrType(file)).nil || file$1.fd < 0) {
 			return new syscall.Errno(22);
 		}
 		err = null;
-		if (e = syscall.Close(file$1.fd), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Close(file$1.fd);
+		if (!(go$interfaceIsEqual(e, null))) {
 			err = new PathError.Ptr("close", file$1.name, e);
 		}
 		file$1.fd = -1;
@@ -1453,9 +1466,10 @@ os:NewFileos:PathErroros:syscallModesyscall:CloseOnExecsyscall:Open0Ç
 		return [ret, err];
 	};
 	File.prototype.seek = function(offset, whence) { return this.go$val.seek(offset, whence); };
- 0Fileseek0os:Filesyscall:Seek0ÇTruncateÅ“	Truncate = go$pkg.Truncate = function(name, size) {
+ 0Fileseek0os:Filesyscall:Seek0ÇTruncateÅ‘	Truncate = go$pkg.Truncate = function(name, size) {
 		var e;
-		if (e = syscall.Truncate(name, size), !(go$interfaceIsEqual(e, null))) {
+		e = syscall.Truncate(name, size);
+		if (!(go$interfaceIsEqual(e, null))) {
 			return new PathError.Ptr("truncate", name, e);
 		}
 		return null;
@@ -1632,15 +1646,16 @@ os:NewFileos:PathErroros:syscallModesyscall:CloseOnExecsyscall:Open0Ç
 		return null;
 	};
  0
-MkdirAll0Nos:IsPathSeparatoros:Lstatos:Mkdiros:PathErroros:Statsyscall:Errno0Ç≤	RemoveAllÇ@	RemoveAll = go$pkg.RemoveAll = function(path) {
-		var err, _tuple, dir, serr, ok, serr$1, _tuple$1, _tuple$2, fd, _tuple$3, names, err1, _ref, _i, _slice, _index, name, err1$1, err1$2;
+MkdirAll0Nos:IsPathSeparatoros:Lstatos:Mkdiros:PathErroros:Statsyscall:Errno0Çµ	RemoveAllÇC	RemoveAll = go$pkg.RemoveAll = function(path) {
+		var err, _tuple, dir, serr, _tuple$1, serr$1, ok, _tuple$2, fd, _tuple$3, names, err1, _ref, _i, _slice, _index, name, err1$1, err1$2;
 		err = Remove(path);
 		if (go$interfaceIsEqual(err, null)) {
 			return null;
 		}
 		_tuple = Lstat(path), dir = _tuple[0], serr = _tuple[1];
 		if (!(go$interfaceIsEqual(serr, null))) {
-			if (_tuple$1 = (serr !== null && serr.constructor === (go$ptrType(PathError)) ? [serr.go$val, true] : [(go$ptrType(PathError)).nil, false]), serr$1 = _tuple$1[0], ok = _tuple$1[1], ok && (IsNotExist(serr$1.Err) || go$interfaceIsEqual(serr$1.Err, new syscall.Errno(20)))) {
+			_tuple$1 = (serr !== null && serr.constructor === (go$ptrType(PathError)) ? [serr.go$val, true] : [(go$ptrType(PathError)).nil, false]), serr$1 = _tuple$1[0], ok = _tuple$1[1];
+			if (ok && (IsNotExist(serr$1.Err) || go$interfaceIsEqual(serr$1.Err, new syscall.Errno(20)))) {
 				return null;
 			}
 			return serr;

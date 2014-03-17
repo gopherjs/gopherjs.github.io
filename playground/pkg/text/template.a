@@ -1,4 +1,4 @@
-0ƒŒtext/template‚¦package template
+0ƒŒ(text/template‚¦package template
 import bytes "bytes"
 import fmt "fmt"
 import io "io"
@@ -422,7 +422,7 @@ func (? *@"container/list".Element) @"container/list".Prev() (? *@"container/lis
 $$
 0Üruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortstringspath/filepath	io/ioutilnet/urlcontainer/listtext/template/parsetext/template0‚
 0bytesbytes0
-fmtfmt0ioio0reflectreflect0runtimeruntime0sortsort0stringsstrings0text/template/parseparse0errorserrors0net/urlurl0unicodeunicode0unicode/utf8utf80	io/ioutilioutil0path/filepathfilepath0ƒãì0‚¾state‚Œ	state = go$pkg.state = go$newType(0, "Struct", "template.state", "state", "text/template", function(tmpl_, wr_, node_, vars_) {
+fmtfmt0ioio0reflectreflect0runtimeruntime0sortsort0stringsstrings0text/template/parseparse0errorserrors0net/urlurl0unicodeunicode0unicode/utf8utf80	io/ioutilioutil0path/filepathfilepath0ƒä0‚¾state‚Œ	state = go$pkg.state = go$newType(0, "Struct", "template.state", "state", "text/template", function(tmpl_, wr_, node_, vars_) {
 		this.go$val = this;
 		this.tmpl = tmpl_ !== undefined ? tmpl_ : (go$ptrType(Template)).nil;
 		this.wr = wr_ !== undefined ? wr_ : null;
@@ -635,9 +635,9 @@ fmt:Errorftext/template:Template0‚l ‚D	Template.Ptr.prototype.Execute = fu
 	};
 	Template.prototype.Execute = function(wr, data) { return this.go$val.Execute(wr, data); };
  0
-Template0‚bytes:Bufferfmt:Fprintfreflect:Valuereflect:ValueOftext/template/parse:ListNodetext/template/parse:Treetext/template:Templatetext/template:errRecovertext/template:errorftext/template:inittext/template:statetext/template:variabletext/template:walk0‚È ‚
-	state.Ptr.prototype.walk = function(dot, node) {
-		var s, node$1, _ref, _type, _struct, _struct$1, val, _struct$2, _struct$3, _ref$1, _i, _slice, _index, node$2, _struct$4, _struct$5, _struct$6, err, _tuple, _struct$7;
+Template0‚bytes:Bufferfmt:Fprintfreflect:Valuereflect:ValueOftext/template/parse:ListNodetext/template/parse:Treetext/template:Templatetext/template:errRecovertext/template:errorftext/template:inittext/template:statetext/template:variabletext/template:walk0‚Ë ‚
+	state.Ptr.prototype.walk = function(dot, node) {
+		var s, node$1, _ref, _type, _struct, _struct$1, val, _struct$2, _struct$3, _ref$1, _i, _slice, _index, node$2, _struct$4, _struct$5, _struct$6, _tuple, err, _struct$7;
 		s = this;
 		s.at(node);
 		_ref = node;
@@ -668,7 +668,8 @@ fmt:Errorftext/template:Template0‚l ‚D	Template.Ptr.prototype.Execute = fu
 			s.walkTemplate((_struct$6 = dot, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), node$1);
 		} else if (_type === (go$ptrType(parse.TextNode))) {
 			node$1 = _ref.go$val;
-			if (_tuple = s.wr.Write(node$1.Text), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			_tuple = s.wr.Write(node$1.Text), err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
 				s.errorf("%s", new (go$sliceType(go$emptyInterface))([err]));
 			}
 		} else if (_type === (go$ptrType(parse.WithNode))) {
@@ -985,8 +986,8 @@ fmt:Errorftext/template:Template0‚l ‚D	Template.Ptr.prototype.Execute = fu
 		return (_struct$4 = s.evalCall((_struct$1 = dot, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), (_struct$2 = function$1, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), cmd, name, args, (_struct$3 = final$1, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag))), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 	};
 	state.prototype.evalFunction = function(dot, node, cmd, args, final$1) { return this.go$val.evalFunction(dot, node, cmd, args, final$1); };
- 0stateevalFunction0€reflect:Valuetext/template:attext/template:errorftext/template:evalCalltext/template:findFunctiontext/template:state0‚e ‚¢	state.Ptr.prototype.evalField = function(dot, fieldName, node, args, final$1, receiver) {
-		var s, _struct, typ, _tuple, _struct$1, _struct$2, _struct$3, ptr, _struct$4, method, _struct$5, _struct$6, _struct$7, _struct$8, _struct$9, hasArgs, _tuple$1, _struct$10, _struct$11, isNil, _ref, _tuple$2, _struct$12, tField, ok, _struct$13, field, _struct$14, _struct$15, nameVal, _struct$16, _struct$17;
+ 0stateevalFunction0€reflect:Valuetext/template:attext/template:errorftext/template:evalCalltext/template:findFunctiontext/template:state0‚g ‚¤	state.Ptr.prototype.evalField = function(dot, fieldName, node, args, final$1, receiver) {
+		var s, _struct, typ, _tuple, _struct$1, _struct$2, _struct$3, ptr, _struct$4, _struct$5, method, _struct$6, _struct$7, _struct$8, _struct$9, hasArgs, _tuple$1, _struct$10, _struct$11, isNil, _ref, _tuple$2, _struct$12, tField, ok, _struct$13, field, _struct$14, _struct$15, nameVal, _struct$16, _struct$17;
 		s = this;
 		if (!receiver.IsValid()) {
 			return (_struct = zero, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -997,7 +998,8 @@ fmt:Errorftext/template:Template0‚l ‚D	Template.Ptr.prototype.Execute = fu
 		if (!((ptr.Kind() === 20)) && ptr.CanAddr()) {
 			ptr = (_struct$4 = ptr.Addr(), new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag));
 		}
-		if (method = (_struct$5 = ptr.MethodByName(fieldName), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag)), method.IsValid()) {
+		method = (_struct$5 = ptr.MethodByName(fieldName), new reflect.Value.Ptr(_struct$5.typ, _struct$5.val, _struct$5.flag));
+		if (method.IsValid()) {
 			return (_struct$9 = s.evalCall((_struct$6 = dot, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag)), (_struct$7 = method, new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)), node, fieldName, args, (_struct$8 = final$1, new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag))), new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag));
 		}
 		hasArgs = args.length > 1 || final$1.IsValid();
@@ -1169,11 +1171,12 @@ fmt:Errorftext/template:Template0‚l ‚D	Template.Ptr.prototype.Execute = fu
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalArg = function(dot, typ, n) { return this.go$val.evalArg(dot, typ, n); };
- 0stateevalArg0‚´reflect:Valuereflect:Zerotext/template/parse:DotNodetext/template/parse:FieldNode"text/template/parse:IdentifierNodetext/template/parse:NilNodetext/template/parse:Nodetext/template/parse:PipeNode text/template/parse:VariableNodetext/template:attext/template:canBeNiltext/template:errorftext/template:evalBooltext/template:evalComplex text/template:evalEmptyInterfacetext/template:evalFieldNodetext/template:evalFloattext/template:evalFunctiontext/template:evalIntegertext/template:evalPipelinetext/template:evalString!text/template:evalUnsignedIntegertext/template:evalVariableNodetext/template:statetext/template:validateTypetext/template:zero0‚™ ‚	state.Ptr.prototype.evalBool = function(typ, n) {
-		var s, ok, _tuple, n$1, _struct, value, _struct$1;
+ 0stateevalArg0‚´reflect:Valuereflect:Zerotext/template/parse:DotNodetext/template/parse:FieldNode"text/template/parse:IdentifierNodetext/template/parse:NilNodetext/template/parse:Nodetext/template/parse:PipeNode text/template/parse:VariableNodetext/template:attext/template:canBeNiltext/template:errorftext/template:evalBooltext/template:evalComplex text/template:evalEmptyInterfacetext/template:evalFieldNodetext/template:evalFloattext/template:evalFunctiontext/template:evalIntegertext/template:evalPipelinetext/template:evalString!text/template:evalUnsignedIntegertext/template:evalVariableNodetext/template:statetext/template:validateTypetext/template:zero0‚› ‚	state.Ptr.prototype.evalBool = function(typ, n) {
+		var s, _tuple, n$1, ok, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
-		if (_tuple = (n !== null && n.constructor === (go$ptrType(parse.BoolNode)) ? [n.go$val, true] : [(go$ptrType(parse.BoolNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (n !== null && n.constructor === (go$ptrType(parse.BoolNode)) ? [n.go$val, true] : [(go$ptrType(parse.BoolNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			value = (_struct = reflect.New(typ).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			value.SetBool(n$1.True);
 			return (_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1182,11 +1185,12 @@ fmt:Errorftext/template:Template0‚l ‚D	Template.Ptr.prototype.Execute = fu
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalBool = function(typ, n) { return this.go$val.evalBool(typ, n); };
- 0stateevalBool0wreflect:Newreflect:Valuetext/template/parse:BoolNodetext/template:attext/template:errorftext/template:state0‚« ‚	state.Ptr.prototype.evalString = function(typ, n) {
-		var s, ok, _tuple, n$1, _struct, value, _struct$1;
+ 0stateevalBool0wreflect:Newreflect:Valuetext/template/parse:BoolNodetext/template:attext/template:errorftext/template:state0‚­ ‚	state.Ptr.prototype.evalString = function(typ, n) {
+		var s, _tuple, n$1, ok, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
-		if (_tuple = (n !== null && n.constructor === (go$ptrType(parse.StringNode)) ? [n.go$val, true] : [(go$ptrType(parse.StringNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (n !== null && n.constructor === (go$ptrType(parse.StringNode)) ? [n.go$val, true] : [(go$ptrType(parse.StringNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			value = (_struct = reflect.New(typ).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			value.SetString(n$1.Text);
 			return (_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1196,11 +1200,12 @@ fmt:Errorftext/template:Template0‚l ‚D	Template.Ptr.prototype.Execute = fu
 	};
 	state.prototype.evalString = function(typ, n) { return this.go$val.evalString(typ, n); };
  0state
-evalString0yreflect:Newreflect:Valuetext/template/parse:StringNodetext/template:attext/template:errorftext/template:state0‚» ‚"	state.Ptr.prototype.evalInteger = function(typ, n) {
-		var s, ok, n$1, _tuple, _struct, value, _struct$1;
+evalString0yreflect:Newreflect:Valuetext/template/parse:StringNodetext/template:attext/template:errorftext/template:state0‚½ ‚$	state.Ptr.prototype.evalInteger = function(typ, n) {
+		var s, _tuple, n$1, ok, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
-		if (_tuple = (n !== null && n.constructor === (go$ptrType(parse.NumberNode)) ? [n.go$val, true] : [(go$ptrType(parse.NumberNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1], ok && n$1.IsInt) {
+		_tuple = (n !== null && n.constructor === (go$ptrType(parse.NumberNode)) ? [n.go$val, true] : [(go$ptrType(parse.NumberNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1];
+		if (ok && n$1.IsInt) {
 			value = (_struct = reflect.New(typ).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			value.SetInt(n$1.Int64);
 			return (_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1209,11 +1214,12 @@ evalString0yreflect:Newreflect:Valuetext/template/parse:StringNodetext/t
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalInteger = function(typ, n) { return this.go$val.evalInteger(typ, n); };
- 0stateevalInteger0yreflect:Newreflect:Valuetext/template/parse:NumberNodetext/template:attext/template:errorftext/template:state0‚ç ‚F	state.Ptr.prototype.evalUnsignedInteger = function(typ, n) {
-		var s, ok, n$1, _tuple, _struct, value, _struct$1;
+ 0stateevalInteger0yreflect:Newreflect:Valuetext/template/parse:NumberNodetext/template:attext/template:errorftext/template:state0‚é ‚H	state.Ptr.prototype.evalUnsignedInteger = function(typ, n) {
+		var s, _tuple, n$1, ok, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
-		if (_tuple = (n !== null && n.constructor === (go$ptrType(parse.NumberNode)) ? [n.go$val, true] : [(go$ptrType(parse.NumberNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1], ok && n$1.IsUint) {
+		_tuple = (n !== null && n.constructor === (go$ptrType(parse.NumberNode)) ? [n.go$val, true] : [(go$ptrType(parse.NumberNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1];
+		if (ok && n$1.IsUint) {
 			value = (_struct = reflect.New(typ).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			value.SetUint(n$1.Uint64);
 			return (_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1222,11 +1228,12 @@ evalString0yreflect:Newreflect:Valuetext/template/parse:StringNodetext/t
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalUnsignedInteger = function(typ, n) { return this.go$val.evalUnsignedInteger(typ, n); };
- 0stateevalUnsignedInteger0yreflect:Newreflect:Valuetext/template/parse:NumberNodetext/template:attext/template:errorftext/template:state0‚· ‚ 	state.Ptr.prototype.evalFloat = function(typ, n) {
-		var s, ok, n$1, _tuple, _struct, value, _struct$1;
+ 0stateevalUnsignedInteger0yreflect:Newreflect:Valuetext/template/parse:NumberNodetext/template:attext/template:errorftext/template:state0‚¹ ‚"	state.Ptr.prototype.evalFloat = function(typ, n) {
+		var s, _tuple, n$1, ok, _struct, value, _struct$1;
 		s = this;
 		s.at(n);
-		if (_tuple = (n !== null && n.constructor === (go$ptrType(parse.NumberNode)) ? [n.go$val, true] : [(go$ptrType(parse.NumberNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1], ok && n$1.IsFloat) {
+		_tuple = (n !== null && n.constructor === (go$ptrType(parse.NumberNode)) ? [n.go$val, true] : [(go$ptrType(parse.NumberNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1];
+		if (ok && n$1.IsFloat) {
 			value = (_struct = reflect.New(typ).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			value.SetFloat(n$1.Float64);
 			return (_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1235,10 +1242,11 @@ evalString0yreflect:Newreflect:Valuetext/template/parse:StringNodetext/t
 		throw go$panic(new Go$String("not reached"));
 	};
 	state.prototype.evalFloat = function(typ, n) { return this.go$val.evalFloat(typ, n); };
- 0state	evalFloat0yreflect:Newreflect:Valuetext/template/parse:NumberNodetext/template:attext/template:errorftext/template:state0‚« ‚$	state.Ptr.prototype.evalComplex = function(typ, n) {
-		var s, ok, n$1, _tuple, _struct, value, _struct$1;
+ 0state	evalFloat0yreflect:Newreflect:Valuetext/template/parse:NumberNodetext/template:attext/template:errorftext/template:state0‚­ ‚&	state.Ptr.prototype.evalComplex = function(typ, n) {
+		var s, _tuple, n$1, ok, _struct, value, _struct$1;
 		s = this;
-		if (_tuple = (n !== null && n.constructor === (go$ptrType(parse.NumberNode)) ? [n.go$val, true] : [(go$ptrType(parse.NumberNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1], ok && n$1.IsComplex) {
+		_tuple = (n !== null && n.constructor === (go$ptrType(parse.NumberNode)) ? [n.go$val, true] : [(go$ptrType(parse.NumberNode)).nil, false]), n$1 = _tuple[0], ok = _tuple[1];
+		if (ok && n$1.IsComplex) {
 			value = (_struct = reflect.New(typ).Elem(), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 			value.SetComplex(n$1.Complex128);
 			return (_struct$1 = value, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
@@ -1441,20 +1449,22 @@ fmt:Errorfreflect:Valuereflect:ValueOftext/template:goodFunc0‚addFuncs
 		return false;
 	};
  0
-goodFunc0text/template:errorType0‚2findFunction‚¤	findFunction = function(name, tmpl) {
-		var fn, _entry, _struct, _struct$1, fn$1, _entry$1, _struct$2, _struct$3;
+goodFunc0text/template:errorType0‚7findFunction‚©	findFunction = function(name, tmpl) {
+		var _entry, _struct, fn, _struct$1, _entry$1, _struct$2, fn$1, _struct$3;
 		if (!(tmpl === (go$ptrType(Template)).nil) && !(tmpl.common === (go$ptrType(common)).nil)) {
-			if (fn = (_struct = (_entry = tmpl.common.execFuncs[name], _entry !== undefined ? _entry.v : new reflect.Value.Ptr()), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), fn.IsValid()) {
+			fn = (_struct = (_entry = tmpl.common.execFuncs[name], _entry !== undefined ? _entry.v : new reflect.Value.Ptr()), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+			if (fn.IsValid()) {
 				return [(_struct$1 = fn, new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), true];
 			}
 		}
-		if (fn$1 = (_struct$2 = (_entry$1 = builtinFuncs[name], _entry$1 !== undefined ? _entry$1.v : new reflect.Value.Ptr()), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)), fn$1.IsValid()) {
+		fn$1 = (_struct$2 = (_entry$1 = builtinFuncs[name], _entry$1 !== undefined ? _entry$1.v : new reflect.Value.Ptr()), new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
+		if (fn$1.IsValid()) {
 			return [(_struct$3 = fn$1, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), true];
 		}
 		return [new reflect.Value.Ptr((go$ptrType(reflect.rtype)).nil, 0, 0), false];
 	};
- 0findFunction0hreflect:Valuereflect:rtypetext/template:Templatetext/template:builtinFuncstext/template:common0‚Uindex‚ë	index = function(item, indices) {
-		var _struct, v, _ref, _i, _slice, _index, i, _struct$1, index$1, isNil, _tuple, _struct$2, _struct$3, _ref$1, x, _ref$2, x$1, x$2, _struct$4, _struct$5, x$3, _struct$6, _struct$7, _struct$8, _struct$9;
+ 0findFunction0hreflect:Valuereflect:rtypetext/template:Templatetext/template:builtinFuncstext/template:common0‚\index‚ò	index = function(item, indices) {
+		var _struct, v, _ref, _i, _slice, _index, i, _struct$1, index$1, isNil, _tuple, _struct$2, _struct$3, _ref$1, x, _ref$2, x$1, x$2, _struct$4, _struct$5, _struct$6, _struct$7, x$3, _struct$8, _struct$9;
 		v = (_struct = reflect.ValueOf(item), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		_ref = indices;
 		_i = 0;
@@ -1462,7 +1472,8 @@ fmt:Errorfreflect:Valuereflect:ValueOftext/template:goodFunc0‚addFuncs
 			i = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			index$1 = (_struct$1 = reflect.ValueOf(i), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
 			isNil = false;
-			if (_tuple = indirect((_struct$2 = v, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag))), v = (_struct$3 = _tuple[0], new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), isNil = _tuple[1], isNil) {
+			_tuple = indirect((_struct$2 = v, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag))), v = (_struct$3 = _tuple[0], new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)), isNil = _tuple[1];
+			if (isNil) {
 				return [null, fmt.Errorf("index of nil pointer", new (go$sliceType(go$emptyInterface))([]))];
 			}
 			_ref$1 = v.Kind();
@@ -1487,7 +1498,8 @@ fmt:Errorfreflect:Valuereflect:ValueOftext/template:goodFunc0‚addFuncs
 				if (!index$1.Type().AssignableTo(v.Type().Key())) {
 					return [null, fmt.Errorf("%s is not index type for %s", new (go$sliceType(go$emptyInterface))([index$1.Type(), v.Type()]))];
 				}
-				if (x$3 = (_struct$7 = v.MapIndex((_struct$6 = index$1, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag))), new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag)), x$3.IsValid()) {
+				x$3 = (_struct$7 = v.MapIndex((_struct$6 = index$1, new reflect.Value.Ptr(_struct$6.typ, _struct$6.val, _struct$6.flag))), new reflect.Value.Ptr(_struct$7.typ, _struct$7.val, _struct$7.flag));
+				if (x$3.IsValid()) {
 					v = (_struct$8 = x$3, new reflect.Value.Ptr(_struct$8.typ, _struct$8.val, _struct$8.flag));
 				} else {
 					v = (_struct$9 = reflect.Zero(v.Type().Elem()), new reflect.Value.Ptr(_struct$9.typ, _struct$9.val, _struct$9.flag));
@@ -2095,8 +2107,8 @@ fmt:Errorftext/template:Template0‚¦ ‚b	Template.Ptr.prototype.Templates = 
 	};
 	Template.prototype.Lookup = function(name) { return this.go$val.Lookup(name); };
  0
-Template0.text/template:Templatetext/template:common0‚Ó ‚E	Template.Ptr.prototype.Parse = function(text) {
-		var t, _tuple, trees, err, _ref, _i, _keys, _entry, tree, name, tmpl, err$1, _tuple$1, replace;
+Template0.text/template:Templatetext/template:common0‚Ö ‚H	Template.Ptr.prototype.Parse = function(text) {
+		var t, _tuple, trees, err, _ref, _i, _keys, _entry, tree, name, tmpl, _tuple$1, replace, err$1;
 		t = this;
 		t.init();
 		_tuple = parse.Parse(t.name, text, t.leftDelim, t.rightDelim, new (go$sliceType((go$mapType(Go$String, go$emptyInterface))))([t.common.parseFuncs, builtins])), trees = _tuple[0], err = _tuple[1];
@@ -2114,7 +2126,8 @@ fmt:Errorftext/template:Template0‚¦ ‚b	Template.Ptr.prototype.Templates = 
 			if (!(name === t.name)) {
 				tmpl = t.New(name);
 			}
-			if (_tuple$1 = t.associate(tmpl, tree), replace = _tuple$1[0], err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+			_tuple$1 = t.associate(tmpl, tree), replace = _tuple$1[0], err$1 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
 				return [(go$ptrType(Template)).nil, err$1];
 			} else if (replace) {
 				tmpl.Tree = tree;
@@ -2127,14 +2140,15 @@ fmt:Errorftext/template:Template0‚¦ ‚b	Template.Ptr.prototype.Templates = 
 	};
 	Template.prototype.Parse = function(text) { return this.go$val.Parse(text); };
  0
-Template0xtext/template/parse:Parsetext/template:Templatetext/template:associatetext/template:builtinstext/template:init0‚7 ‚Ñ	Template.Ptr.prototype.associate = function(new$1, tree) {
-		var t, name, old, _entry, oldIsEmpty, newIsEmpty, _key;
+Template0xtext/template/parse:Parsetext/template:Templatetext/template:associatetext/template:builtinstext/template:init0‚9 ‚Ó	Template.Ptr.prototype.associate = function(new$1, tree) {
+		var t, name, _entry, old, oldIsEmpty, newIsEmpty, _key;
 		t = this;
 		if (!(new$1.common === t.common)) {
 			throw go$panic(new Go$String("internal error: associate not common"));
 		}
 		name = new$1.name;
-		if (old = (_entry = t.common.tmpl[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil), !(old === (go$ptrType(Template)).nil)) {
+		old = (_entry = t.common.tmpl[name], _entry !== undefined ? _entry.v : (go$ptrType(Template)).nil);
+		if (!(old === (go$ptrType(Template)).nil)) {
 			oldIsEmpty = parse.IsEmptyTree(old.Tree.Root);
 			newIsEmpty = parse.IsEmptyTree(tree.Root);
 			if (newIsEmpty) {

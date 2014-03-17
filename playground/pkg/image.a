@@ -1,4 +1,4 @@
-0ÉnimageÇ>√package image
+0ÉpimageÇ>√package image
 import bufio "bufio"
 import errors "errors"
 import io "io"
@@ -215,7 +215,7 @@ type @"image/color".RGBA64 struct { @"image/color".R uint16; @"image/color".G ui
 func (? @"image/color".RGBA64) @"image/color".RGBA() (@"image/color".r uint32, @"image/color".g uint32, @"image/color".b uint32, @"image/color".a uint32)
 func (? *@"image/color".RGBA64) @"image/color".RGBA() (@"image/color".r uint32, @"image/color".g uint32, @"image/color".b uint32, @"image/color".a uint32)
 $$
-0pruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage0V0bufiobufio0errorserrors0ioio0strconvstrconv0image/colorcolor0ÉÀœ0ÇformatÇ≠	format = go$pkg.format = go$newType(0, "Struct", "image.format", "format", "image", function(name_, magic_, decode_, decodeConfig_) {
+0pruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufioimage/colormathstrconvimage0V0bufiobufio0errorserrors0ioio0strconvstrconv0image/colorcolor0ÉÀ—0ÇformatÇ≠	format = go$pkg.format = go$newType(0, "Struct", "image.format", "format", "image", function(name_, magic_, decode_, decodeConfig_) {
 		this.go$val = this;
 		this.name = name_ !== undefined ? name_ : "";
 		this.magic = magic_ !== undefined ? magic_ : "";
@@ -350,9 +350,10 @@ $$
 0YCbCr0_image/color:Colorimage/color:Modelimage:Imageimage:Rectangleimage:YCbCrSubsampleRatio0ÅıRegisterFormatÅØ	RegisterFormat = go$pkg.RegisterFormat = function(name, magic, decode, decodeConfig) {
 		formats = go$append(formats, new format.Ptr(name, magic, decode, decodeConfig));
 	};
- 0RegisterFormat0image:formatimage:formats0Ç4asReaderÅ¯	asReader = function(r) {
-		var ok, _tuple, rr;
-		if (_tuple = (r !== null && reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
+ 0RegisterFormat0image:formatimage:formats0Ç6asReaderÅ˙	asReader = function(r) {
+		var _tuple, rr, ok;
+		_tuple = (r !== null && reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			return rr;
 		}
 		return bufio.NewReader(r);

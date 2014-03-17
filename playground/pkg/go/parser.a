@@ -1,4 +1,4 @@
-0ƒd	go/parser‚‰package parser
+0ƒdá	go/parser‚‰package parser
 import bytes "bytes"
 import errors "errors"
 import ast "go/ast"
@@ -445,7 +445,7 @@ $$
 0Èruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scannergo/ast	io/ioutil	go/parser0ç0bytesbytes0errorserrors0go/astast0go/tokentoken0ioio0	io/ioutilioutil0osos0path/filepathfilepath0stringsstrings0
 fmtfmt0
-go/scannerscanner0strconvstrconv0unicodeunicode0ƒÙ­0kModeW	Mode = go$pkg.Mode = go$newType(4, "Uint", "parser.Mode", "Mode", "go/parser", null);
+go/scannerscanner0strconvstrconv0unicodeunicode0ƒÚ0kModeW	Mode = go$pkg.Mode = go$newType(4, "Uint", "parser.Mode", "Mode", "go/parser", null);
  0Mode0 0‚+8parser‚Ä	parser = go$pkg.parser = go$newType(0, "Struct", "parser.parser", "parser", "go/parser", function(file_, errors_, scanner_, mode_, trace_, indent_, comments_, leadComment_, lineComment_, pos_, tok_, lit_, syncPos_, syncCnt_, exprLev_, inRhs_, pkgScope_, topScope_, unresolved_, imports_, labelScope_, targetStack_) {
 		this.go$val = this;
 		this.file = file_ !== undefined ? file_ : (go$ptrType(token.File)).nil;
@@ -479,9 +479,9 @@ go/scannerscanner0strconvstrconv0unicodeunicode0ƒÙ­0kModeW	Mode 
 		bailout.init([]);
 0	bailout0 0‚PparseSpecFunction‹	parseSpecFunction = go$pkg.parseSpecFunction = go$newType(0, "Func", "parser.parseSpecFunction", "parseSpecFunction", "go/parser", null);
 d		parseSpecFunction.init([(go$ptrType(ast.CommentGroup)), token.Token, Go$Int], [ast.Spec], false);
-0parseSpecFunction02go/ast:CommentGroupgo/ast:Specgo/token:Token0‚4
-readSource‚Ð	readSource = function(filename, src) {
-		var s, _ref, _type, buf, err, _tuple;
+0parseSpecFunction02go/ast:CommentGroupgo/ast:Specgo/token:Token0‚8
+readSource‚Ô	readSource = function(filename, src) {
+		var s, _ref, _type, buf, _tuple, err;
 		if (!(go$interfaceIsEqual(src, null))) {
 			_ref = src;
 			_type = _ref !== null ? _ref.constructor : null;
@@ -499,7 +499,8 @@ readSource‚Ð	readSource = function(filename, src) {
 			} else if (io.Reader.implementedBy.indexOf(_type) !== -1) {
 				s = _ref;
 				buf = new bytes.Buffer.Ptr();
-				if (_tuple = io.Copy(buf, s), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+				_tuple = io.Copy(buf, s), err = _tuple[1];
+				if (!(go$interfaceIsEqual(err, null))) {
 					return [(go$sliceType(Go$Uint8)).nil, err];
 				}
 				return [buf.Bytes(), null];
@@ -510,7 +511,7 @@ readSource‚Ð	readSource = function(filename, src) {
 	};
  0
 readSource0Bbytes:Buffer
-errors:Newio/ioutil:ReadFileio:Copy	io:Reader0‚	ParseFile‚¤	ParseFile = go$pkg.ParseFile = function(fset, filename, src, mode) {
+errors:Newio/ioutil:ReadFileio:Copy	io:Reader0‚…	ParseFile‚¨	ParseFile = go$pkg.ParseFile = function(fset, filename, src, mode) {
 		var f, err, _tuple, text, _tuple$1, p;
 		f = (go$ptrType(ast.File)).nil;
 		err = null;
@@ -524,7 +525,8 @@ errors:Newio/ioutil:ReadFileio:Copy	io:Reader0‚	ParseFile‚¤	ParseFile 
 			p = new parser.Ptr();
 			go$deferred.push({ fun: (function() {
 				var e;
-				if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
+				e = go$recover();
+				if (!(go$interfaceIsEqual(e, null))) {
 				}
 				if (f === (go$ptrType(ast.File)).nil) {
 					f = new ast.File.Ptr((go$ptrType(ast.CommentGroup)).nil, 0, new ast.Ident.Ptr(), (go$sliceType(ast.Decl)).nil, ast.NewScope((go$ptrType(ast.Scope)).nil), (go$sliceType((go$ptrType(ast.ImportSpec)))).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, (go$sliceType((go$ptrType(ast.CommentGroup)))).nil);
@@ -542,8 +544,8 @@ errors:Newio/ioutil:ReadFileio:Copy	io:Reader0‚	ParseFile‚¤	ParseFile 
 			return [f, err];
 		}
 	};
- 0	ParseFile0¼go/ast:CommentGroupgo/ast:Declgo/ast:Filego/ast:Identgo/ast:ImportSpecgo/ast:NewScopego/ast:Scopego/parser:initgo/parser:parseFilego/parser:parsergo/parser:readSource0‚éParseDir‚h	ParseDir = go$pkg.ParseDir = function(fset, path, filter, mode) {
-		var pkgs, first, _tuple, fd, err, _tuple$1, _tuple$2, list, _tuple$3, _ref, _i, _slice, _index, d, filename, err$1, _tuple$4, src, name, _tuple$5, _entry, pkg, found, _key, _key$1;
+ 0	ParseFile0¼go/ast:CommentGroupgo/ast:Declgo/ast:Filego/ast:Identgo/ast:ImportSpecgo/ast:NewScopego/ast:Scopego/parser:initgo/parser:parseFilego/parser:parsergo/parser:readSource0‚îParseDir‚m	ParseDir = go$pkg.ParseDir = function(fset, path, filter, mode) {
+		var pkgs, first, _tuple, fd, err, _tuple$1, _tuple$2, list, _tuple$3, _ref, _i, _slice, _index, d, filename, _tuple$4, src, err$1, name, _tuple$5, _entry, pkg, found, _key, _key$1;
 		pkgs = false;
 		first = null;
 		var go$deferred = [];
@@ -566,7 +568,8 @@ errors:Newio/ioutil:ReadFileio:Copy	io:Reader0‚	ParseFile‚¤	ParseFile 
 				d = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				if (strings.HasSuffix(d.Name(), ".go") && (filter === go$throwNilPointerError || filter(d))) {
 					filename = filepath.Join(new (go$sliceType(Go$String))([path, d.Name()]));
-					if (_tuple$4 = ParseFile(fset, filename, null, mode), src = _tuple$4[0], err$1 = _tuple$4[1], go$interfaceIsEqual(err$1, null)) {
+					_tuple$4 = ParseFile(fset, filename, null, mode), src = _tuple$4[0], err$1 = _tuple$4[1];
+					if (go$interfaceIsEqual(err$1, null)) {
 						name = src.Name.Name;
 						_tuple$5 = (_entry = pkgs[name], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(ast.Package)).nil, false]), pkg = _tuple$5[0], found = _tuple$5[1];
 						if (!found) {
@@ -661,7 +664,7 @@ closeScope0go/parser:parser0‚€ ‚+	parser.Ptr.prototype.openLabelScope = f
 		p.labelScope = p.labelScope.Outer;
 	};
 	parser.prototype.closeLabelScope = function() { return this.go$val.closeLabelScope(); };
- 0parsercloseLabelScope0?fmt:Sprintfgo/ast:Objectgo/parser:errorgo/parser:parser0‚Ÿ ‚	parser.Ptr.prototype.declare = function(decl, data, scope, kind, idents) {
+ 0parsercloseLabelScope0?fmt:Sprintfgo/ast:Objectgo/parser:errorgo/parser:parser0‚¨ ‚	parser.Ptr.prototype.declare = function(decl, data, scope, kind, idents) {
 		var p, _ref, _i, _slice, _index, ident, obj, alt, prevDecl, pos, x;
 		p = this;
 		_ref = idents;
@@ -674,9 +677,11 @@ closeScope0go/parser:parser0‚€ ‚+	parser.Ptr.prototype.openLabelScope = f
 			obj.Data = data;
 			ident.Obj = obj;
 			if (!(ident.Name === "_")) {
-				if (alt = scope.Insert(obj), !(alt === (go$ptrType(ast.Object)).nil) && !((((p.mode & 16) >>> 0) === 0))) {
+				alt = scope.Insert(obj);
+				if (!(alt === (go$ptrType(ast.Object)).nil) && !((((p.mode & 16) >>> 0) === 0))) {
 					prevDecl = "";
-					if (pos = alt.Pos(), (new token.Pos(pos)).IsValid()) {
+					pos = alt.Pos();
+					if ((new token.Pos(pos)).IsValid()) {
 						prevDecl = fmt.Sprintf("\n\tprevious declaration at %s", new (go$sliceType(go$emptyInterface))([(x = p.file.Position(pos), new x.constructor.Struct(x))]));
 					}
 					p.error(ident.Pos(), fmt.Sprintf("%s redeclared in this block%s", new (go$sliceType(go$emptyInterface))([new Go$String(ident.Name), new Go$String(prevDecl)])));
@@ -686,21 +691,23 @@ closeScope0go/parser:parser0‚€ ‚+	parser.Ptr.prototype.openLabelScope = f
 		}
 	};
 	parser.prototype.declare = function(decl, data, scope, kind, idents) { return this.go$val.declare(decl, data, scope, kind, idents); };
- 0parserdeclare0nfmt:Sprintfgo/ast:NewObjgo/ast:Objectgo/parser:assertgo/parser:errorgo/parser:parsergo/token:Pos0‚0 ‚”	parser.Ptr.prototype.shortVarDecl = function(decl, list) {
-		var p, n, _ref, _i, _slice, _index, x, isIdent, _tuple, ident, obj, alt, _slice$1, _index$1;
+ 0parserdeclare0nfmt:Sprintfgo/ast:NewObjgo/ast:Objectgo/parser:assertgo/parser:errorgo/parser:parsergo/token:Pos0‚8 ‚œ	parser.Ptr.prototype.shortVarDecl = function(decl, list) {
+		var p, n, _ref, _i, _slice, _index, x, _tuple, ident, isIdent, obj, alt, _slice$1, _index$1;
 		p = this;
 		n = 0;
 		_ref = list;
 		_i = 0;
 		while (_i < _ref.length) {
 			x = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-			if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1], isIdent) {
+			_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1];
+			if (isIdent) {
 				assert(ident.Obj === (go$ptrType(ast.Object)).nil, "identifier already declared or resolved");
 				obj = ast.NewObj(4, ident.Name);
 				obj.Decl = decl;
 				ident.Obj = obj;
 				if (!(ident.Name === "_")) {
-					if (alt = p.topScope.Insert(obj), !(alt === (go$ptrType(ast.Object)).nil)) {
+					alt = p.topScope.Insert(obj);
+					if (!(alt === (go$ptrType(ast.Object)).nil)) {
 						ident.Obj = alt;
 					} else {
 						n = n + 1 >> 0;
@@ -716,7 +723,7 @@ closeScope0go/parser:parser0‚€ ‚+	parser.Ptr.prototype.openLabelScope = f
 		}
 	};
 	parser.prototype.shortVarDecl = function(decl, list) { return this.go$val.shortVarDecl(decl, list); };
- 0parsershortVarDecl0zgo/ast:Identgo/ast:NewObjgo/ast:Objectgo/parser:assertgo/parser:errorgo/parser:errorExpectedgo/parser:parser0‚ ‚€	parser.Ptr.prototype.tryResolve = function(x, collectUnresolved) {
+ 0parsershortVarDecl0zgo/ast:Identgo/ast:NewObjgo/ast:Objectgo/parser:assertgo/parser:errorgo/parser:errorExpectedgo/parser:parser0‚ ‚ƒ	parser.Ptr.prototype.tryResolve = function(x, collectUnresolved) {
 		var p, _tuple, ident, s, obj;
 		p = this;
 		_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0];
@@ -729,7 +736,8 @@ closeScope0go/parser:parser0‚€ ‚+	parser.Ptr.prototype.openLabelScope = f
 		}
 		s = p.topScope;
 		while (!(s === (go$ptrType(ast.Scope)).nil)) {
-			if (obj = s.Lookup(ident.Name), !(obj === (go$ptrType(ast.Object)).nil)) {
+			obj = s.Lookup(ident.Name);
+			if (!(obj === (go$ptrType(ast.Object)).nil)) {
 				ident.Obj = obj;
 				return;
 			}
@@ -1148,8 +1156,8 @@ parseIdent0Qgo/ast:Identgo/ast:Objectgo/parser:expectgo/parser:nextgo/
 		}
 	};
 	parser.prototype.parseArrayType = function() { return this.go$val.parseArrayType(); };
- 0parserparseArrayType0Ÿgo/ast:ArrayTypego/ast:Ellipsisgo/parser:expectgo/parser:nextgo/parser:parseRhsgo/parser:parseTypego/parser:parsergo/parser:tracego/parser:un0‚­ ‚2	parser.Ptr.prototype.makeIdentList = function(list) {
-		var p, idents, _ref, _i, _slice, _index, x, i, _tuple, ident, isIdent, isBad, _tuple$1, _slice$1, _index$1;
+ 0parserparseArrayType0Ÿgo/ast:ArrayTypego/ast:Ellipsisgo/parser:expectgo/parser:nextgo/parser:parseRhsgo/parser:parseTypego/parser:parsergo/parser:tracego/parser:un0‚± ‚6	parser.Ptr.prototype.makeIdentList = function(list) {
+		var p, idents, _ref, _i, _slice, _index, x, i, _tuple, ident, isIdent, _tuple$1, isBad, _slice$1, _index$1;
 		p = this;
 		idents = (go$sliceType((go$ptrType(ast.Ident)))).make(list.length, 0, function() { return (go$ptrType(ast.Ident)).nil; });
 		_ref = list;
@@ -1159,7 +1167,8 @@ parseIdent0Qgo/ast:Identgo/ast:Objectgo/parser:expectgo/parser:nextgo/
 			i = _i;
 			_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1];
 			if (!isIdent) {
-				if (_tuple$1 = (x !== null && x.constructor === (go$ptrType(ast.BadExpr)) ? [x.go$val, true] : [(go$ptrType(ast.BadExpr)).nil, false]), isBad = _tuple$1[1], !isBad) {
+				_tuple$1 = (x !== null && x.constructor === (go$ptrType(ast.BadExpr)) ? [x.go$val, true] : [(go$ptrType(ast.BadExpr)).nil, false]), isBad = _tuple$1[1];
+				if (!isBad) {
 					p.errorExpected(x.Pos(), "identifier");
 				}
 				ident = new ast.Ident.Ptr(x.Pos(), "_", (go$ptrType(ast.Object)).nil);
@@ -1170,7 +1179,7 @@ parseIdent0Qgo/ast:Identgo/ast:Objectgo/parser:expectgo/parser:nextgo/
 		return idents;
 	};
 	parser.prototype.makeIdentList = function(list) { return this.go$val.makeIdentList(list); };
- 0parsermakeIdentList0Xgo/ast:BadExprgo/ast:Identgo/ast:Objectgo/parser:errorExpectedgo/parser:parser0‚£ ‚=	parser.Ptr.prototype.parseFieldDecl = function(scope) {
+ 0parsermakeIdentList0Xgo/ast:BadExprgo/ast:Identgo/ast:Objectgo/parser:errorExpectedgo/parser:parser0‚§ ‚A	parser.Ptr.prototype.parseFieldDecl = function(scope) {
 		var p, doc, _tuple, list, typ, tag, idents, _slice, _index, n, pos, _slice$1, _index$1, field;
 		var go$deferred = [];
 		try {
@@ -1190,7 +1199,8 @@ parseIdent0Qgo/ast:Identgo/ast:Objectgo/parser:expectgo/parser:nextgo/
 				idents = p.makeIdentList(list);
 			} else {
 				typ = (_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
-				if (n = list.length, n > 1 || !isTypeName(deref(typ))) {
+				n = list.length;
+				if (n > 1 || !isTypeName(deref(typ))) {
 					pos = typ.Pos();
 					p.errorExpected(pos, "anonymous field");
 					typ = new ast.BadExpr.Ptr(pos, (_slice$1 = list, _index$1 = (n - 1 >> 0), (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).End());
@@ -1457,8 +1467,8 @@ tryVarType0go/ast:BadExprgo/ast:Ellipsisgo/parser:errorgo/parser:next
 		}
 	};
 	parser.prototype.parseFuncType = function() { return this.go$val.parseFuncType(); };
- 0parserparseFuncType0Ÿgo/ast:FieldListgo/ast:FuncTypego/ast:NewScopego/ast:Scopego/parser:expectgo/parser:parseSignaturego/parser:parsergo/parser:tracego/parser:un0‚ƒ ‚8	parser.Ptr.prototype.parseMethodSpec = function(scope) {
-		var p, doc, idents, typ, x, isIdent, _tuple, ident, scope$1, _tuple$1, params, results, spec;
+ 0parserparseFuncType0Ÿgo/ast:FieldListgo/ast:FuncTypego/ast:NewScopego/ast:Scopego/parser:expectgo/parser:parseSignaturego/parser:parsergo/parser:tracego/parser:un0‚† ‚;	parser.Ptr.prototype.parseMethodSpec = function(scope) {
+		var p, doc, idents, typ, x, _tuple, ident, isIdent, scope$1, _tuple$1, params, results, spec;
 		var go$deferred = [];
 		try {
 			p = this;
@@ -1469,7 +1479,8 @@ tryVarType0go/ast:BadExprgo/ast:Ellipsisgo/parser:errorgo/parser:next
 			idents = (go$sliceType((go$ptrType(ast.Ident)))).nil;
 			typ = null;
 			x = p.parseTypeName();
-			if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1], isIdent && (p.tok === 49)) {
+			_tuple = (x !== null && x.constructor === (go$ptrType(ast.Ident)) ? [x.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), ident = _tuple[0], isIdent = _tuple[1];
+			if (isIdent && (p.tok === 49)) {
 				idents = new (go$sliceType((go$ptrType(ast.Ident))))([ident]);
 				scope$1 = ast.NewScope((go$ptrType(ast.Scope)).nil);
 				_tuple$1 = p.parseSignature(scope$1), params = _tuple$1[0], results = _tuple$1[1];
@@ -1702,7 +1713,7 @@ tryVarType0go/ast:BadExprgo/ast:Ellipsisgo/parser:errorgo/parser:next
 		}
 	};
 	parser.prototype.parseFuncTypeOrLit = function() { return this.go$val.parseFuncTypeOrLit(); };
- 0parserparseFuncTypeOrLit0’go/ast:BlockStmtgo/ast:FuncLitgo/ast:FuncTypego/parser:parseBodygo/parser:parseFuncTypego/parser:parsergo/parser:tracego/parser:un0‚0 ‚¾	parser.Ptr.prototype.parseOperand = function(lhs) {
+ 0parserparseFuncTypeOrLit0’go/ast:BlockStmtgo/ast:FuncLitgo/ast:FuncTypego/parser:parseBodygo/parser:parseFuncTypego/parser:parsergo/parser:tracego/parser:un0‚3 ‚Á	parser.Ptr.prototype.parseOperand = function(lhs) {
 		var p, _ref, x, x$1, lparen, x$2, rparen, typ, _tuple, isIdent, pos;
 		var go$deferred = [];
 		try {
@@ -1732,7 +1743,8 @@ tryVarType0go/ast:BadExprgo/ast:Ellipsisgo/parser:errorgo/parser:next
 			} else if (_ref === 71) {
 				return p.parseFuncTypeOrLit();
 			}
-			if (typ = p.tryIdentOrType(), !(go$interfaceIsEqual(typ, null))) {
+			typ = p.tryIdentOrType();
+			if (!(go$interfaceIsEqual(typ, null))) {
 				_tuple = (typ !== null && typ.constructor === (go$ptrType(ast.Ident)) ? [typ.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), isIdent = _tuple[1];
 				assert(!isIdent, "type cannot be identifier");
 				return typ;
@@ -2013,22 +2025,24 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 		}
 		return true;
 	};
- 0isLiteralType0hgo/ast:ArrayTypego/ast:BadExprgo/ast:Identgo/ast:MapTypego/ast:SelectorExprgo/ast:StructType0‚-deref‚	deref = function(x) {
-		var isPtr, _tuple, p;
-		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.StarExpr)) ? [x.go$val, true] : [(go$ptrType(ast.StarExpr)).nil, false]), p = _tuple[0], isPtr = _tuple[1], isPtr) {
+ 0isLiteralType0hgo/ast:ArrayTypego/ast:BadExprgo/ast:Identgo/ast:MapTypego/ast:SelectorExprgo/ast:StructType0‚/deref‚	deref = function(x) {
+		var _tuple, p, isPtr;
+		_tuple = (x !== null && x.constructor === (go$ptrType(ast.StarExpr)) ? [x.go$val, true] : [(go$ptrType(ast.StarExpr)).nil, false]), p = _tuple[0], isPtr = _tuple[1];
+		if (isPtr) {
 			x = p.X;
 		}
 		return x;
 	};
- 0deref0go/ast:StarExpr0‚Eunparen‚	unparen = function(x) {
-		var isParen, _tuple, p;
-		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), p = _tuple[0], isParen = _tuple[1], isParen) {
+ 0deref0go/ast:StarExpr0‚Gunparen‚	unparen = function(x) {
+		var _tuple, p, isParen;
+		_tuple = (x !== null && x.constructor === (go$ptrType(ast.ParenExpr)) ? [x.go$val, true] : [(go$ptrType(ast.ParenExpr)).nil, false]), p = _tuple[0], isParen = _tuple[1];
+		if (isParen) {
 			x = unparen(p.X);
 		}
 		return x;
 	};
- 0	unparen0go/ast:ParenExpr0‚5 ‚‚	parser.Ptr.prototype.checkExprOrType = function(x) {
-		var p, t, _ref, _type, isEllipsis, _tuple, x$1, len;
+ 0	unparen0go/ast:ParenExpr0‚8 ‚…	parser.Ptr.prototype.checkExprOrType = function(x) {
+		var p, t, _ref, _type, _tuple, x$1, len, isEllipsis;
 		p = this;
 		_ref = unparen(x);
 		_type = _ref !== null ? _ref.constructor : null;
@@ -2039,7 +2053,8 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 			t = _ref.go$val;
 		} else if (_type === (go$ptrType(ast.ArrayType))) {
 			t = _ref.go$val;
-			if (_tuple = (x$1 = t.Len, (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ellipsis)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ellipsis)).nil, false])), len = _tuple[0], isEllipsis = _tuple[1], isEllipsis) {
+			_tuple = (x$1 = t.Len, (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ellipsis)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ellipsis)).nil, false])), len = _tuple[0], isEllipsis = _tuple[1];
+			if (isEllipsis) {
 				p.error(len.Pos(), "expected array length, found '...'");
 				x = new ast.BadExpr.Ptr(x.Pos(), x.End());
 			}
@@ -2108,8 +2123,8 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 		}
 	};
 	parser.prototype.parsePrimaryExpr = function(lhs) { return this.go$val.parsePrimaryExpr(lhs); };
- 0parserparsePrimaryExpr0‚†go/ast:BadExprgo/parser:checkExprgo/parser:checkExprOrTypego/parser:errorExpectedgo/parser:isLiteralTypego/parser:isTypeNamego/parser:nextgo/parser:parseCallOrConversiongo/parser:parseIndexOrSlicego/parser:parseLiteralValuego/parser:parseOperandgo/parser:parseSelectorgo/parser:parseTypeAssertiongo/parser:parsergo/parser:resolvego/parser:tracego/parser:un0‚£ ‚¤	parser.Ptr.prototype.parseUnaryExpr = function(lhs) {
-		var p, _ref, _tuple, pos, op, x, arrow, x$1, ok, _tuple$1, typ, dir, _tuple$2, _tuple$3, _tuple$4, x$2, pos$1, x$3;
+ 0parserparsePrimaryExpr0‚†go/ast:BadExprgo/parser:checkExprgo/parser:checkExprOrTypego/parser:errorExpectedgo/parser:isLiteralTypego/parser:isTypeNamego/parser:nextgo/parser:parseCallOrConversiongo/parser:parseIndexOrSlicego/parser:parseLiteralValuego/parser:parseOperandgo/parser:parseSelectorgo/parser:parseTypeAssertiongo/parser:parsergo/parser:resolvego/parser:tracego/parser:un0‚§ ‚¨	parser.Ptr.prototype.parseUnaryExpr = function(lhs) {
+		var p, _ref, _tuple, pos, op, x, arrow, x$1, _tuple$1, typ, ok, dir, _tuple$2, _tuple$3, _tuple$4, x$2, pos$1, x$3;
 		var go$deferred = [];
 		try {
 			p = this;
@@ -2126,7 +2141,8 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 				arrow = p.pos;
 				p.next();
 				x$1 = p.parseUnaryExpr(false);
-				if (_tuple$1 = (x$1 !== null && x$1.constructor === (go$ptrType(ast.ChanType)) ? [x$1.go$val, true] : [(go$ptrType(ast.ChanType)).nil, false]), typ = _tuple$1[0], ok = _tuple$1[1], ok) {
+				_tuple$1 = (x$1 !== null && x$1.constructor === (go$ptrType(ast.ChanType)) ? [x$1.go$val, true] : [(go$ptrType(ast.ChanType)).nil, false]), typ = _tuple$1[0], ok = _tuple$1[1];
+				if (ok) {
 					dir = 1;
 					while (ok && (dir === 1)) {
 						if (typ.Dir === 2) {
@@ -2239,8 +2255,8 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 		return x;
 	};
 	parser.prototype.parseRhsOrType = function() { return this.go$val.parseRhsOrType(); };
- 0parserparseRhsOrType0Bgo/parser:checkExprOrTypego/parser:parseExprgo/parser:parser0‚ ‚]	parser.Ptr.prototype.parseSimpleStmt = function(mode) {
-		var p, x, _ref, _tuple, pos, tok, y, isRange, pos$1, as, _slice, _index, _ref$1, colon, isIdent, _tuple$1, x$1, _slice$1, _index$1, label, stmt, _slice$2, _index$2, arrow, y$1, _slice$3, _index$3, _slice$4, _index$4, s, _slice$5, _index$5;
+ 0parserparseRhsOrType0Bgo/parser:checkExprOrTypego/parser:parseExprgo/parser:parser0‚ ‚a	parser.Ptr.prototype.parseSimpleStmt = function(mode) {
+		var p, x, _ref, _tuple, pos, tok, y, isRange, pos$1, as, _slice, _index, _ref$1, colon, _tuple$1, x$1, _slice$1, _index$1, label, isIdent, stmt, _slice$2, _index$2, arrow, y$1, _slice$3, _index$3, _slice$4, _index$4, s, _slice$5, _index$5;
 		var go$deferred = [];
 		try {
 			p = this;
@@ -2275,7 +2291,8 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 			if (_ref$1 === 58) {
 				colon = p.pos;
 				p.next();
-				if (_tuple$1 = (x$1 = (_slice$1 = x, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ident)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), label = _tuple$1[0], isIdent = _tuple$1[1], (mode === 1) && isIdent) {
+				_tuple$1 = (x$1 = (_slice$1 = x, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ident)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), label = _tuple$1[0], isIdent = _tuple$1[1];
+				if ((mode === 1) && isIdent) {
 					stmt = new ast.LabeledStmt.Ptr(label, colon, p.parseStmt());
 					p.declare(stmt, null, p.labelScope, 6, new (go$sliceType((go$ptrType(ast.Ident))))([label]));
 					return [stmt, false];
@@ -2301,14 +2318,16 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 		}
 	};
 	parser.prototype.parseSimpleStmt = function(mode) { return this.go$val.parseSimpleStmt(mode); };
- 0parserparseSimpleStmt0‚ˆgo/ast:AssignStmtgo/ast:BadStmtgo/ast:Exprgo/ast:ExprStmtgo/ast:Identgo/ast:IncDecStmtgo/ast:LabeledStmtgo/ast:SendStmtgo/ast:UnaryExprgo/parser:declarego/parser:errorgo/parser:errorExpectedgo/parser:nextgo/parser:parseLhsListgo/parser:parseRhsgo/parser:parseRhsListgo/parser:parseStmtgo/parser:parsergo/parser:shortVarDeclgo/parser:tracego/parser:un0‚H ‚¿	parser.Ptr.prototype.parseCallExpr = function() {
-		var p, x, isCall, _tuple, call, isBad, _tuple$1;
+ 0parserparseSimpleStmt0‚ˆgo/ast:AssignStmtgo/ast:BadStmtgo/ast:Exprgo/ast:ExprStmtgo/ast:Identgo/ast:IncDecStmtgo/ast:LabeledStmtgo/ast:SendStmtgo/ast:UnaryExprgo/parser:declarego/parser:errorgo/parser:errorExpectedgo/parser:nextgo/parser:parseLhsListgo/parser:parseRhsgo/parser:parseRhsListgo/parser:parseStmtgo/parser:parsergo/parser:shortVarDeclgo/parser:tracego/parser:un0‚L ‚Ã	parser.Ptr.prototype.parseCallExpr = function() {
+		var p, x, _tuple, call, isCall, _tuple$1, isBad;
 		p = this;
 		x = p.parseRhsOrType();
-		if (_tuple = (x !== null && x.constructor === (go$ptrType(ast.CallExpr)) ? [x.go$val, true] : [(go$ptrType(ast.CallExpr)).nil, false]), call = _tuple[0], isCall = _tuple[1], isCall) {
+		_tuple = (x !== null && x.constructor === (go$ptrType(ast.CallExpr)) ? [x.go$val, true] : [(go$ptrType(ast.CallExpr)).nil, false]), call = _tuple[0], isCall = _tuple[1];
+		if (isCall) {
 			return call;
 		}
-		if (_tuple$1 = (x !== null && x.constructor === (go$ptrType(ast.BadExpr)) ? [x.go$val, true] : [(go$ptrType(ast.BadExpr)).nil, false]), isBad = _tuple$1[1], !isBad) {
+		_tuple$1 = (x !== null && x.constructor === (go$ptrType(ast.BadExpr)) ? [x.go$val, true] : [(go$ptrType(ast.BadExpr)).nil, false]), isBad = _tuple$1[1];
+		if (!isBad) {
 			p.errorExpected(x.Pos(), "function/method call");
 		}
 		return (go$ptrType(ast.CallExpr)).nil;
@@ -2409,13 +2428,14 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 		}
 	};
 	parser.prototype.parseBranchStmt = function(tok) { return this.go$val.parseBranchStmt(tok); };
- 0parserparseBranchStmt0go/ast:BranchStmtgo/ast:Identgo/parser:expectgo/parser:expectSemigo/parser:parseIdentgo/parser:parsergo/parser:tracego/parser:un0‚¦ ‚/	parser.Ptr.prototype.makeExpr = function(s) {
-		var p, isExpr, _tuple, es;
+ 0parserparseBranchStmt0go/ast:BranchStmtgo/ast:Identgo/parser:expectgo/parser:expectSemigo/parser:parseIdentgo/parser:parsergo/parser:tracego/parser:un0‚¨ ‚1	parser.Ptr.prototype.makeExpr = function(s) {
+		var p, _tuple, es, isExpr;
 		p = this;
 		if (go$interfaceIsEqual(s, null)) {
 			return null;
 		}
-		if (_tuple = (s !== null && s.constructor === (go$ptrType(ast.ExprStmt)) ? [s.go$val, true] : [(go$ptrType(ast.ExprStmt)).nil, false]), es = _tuple[0], isExpr = _tuple[1], isExpr) {
+		_tuple = (s !== null && s.constructor === (go$ptrType(ast.ExprStmt)) ? [s.go$val, true] : [(go$ptrType(ast.ExprStmt)).nil, false]), es = _tuple[0], isExpr = _tuple[1];
+		if (isExpr) {
 			return p.checkExpr(es.X);
 		}
 		p.error(s.Pos(), "expected condition, found simple statement");
@@ -2593,7 +2613,7 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 		}
 	};
 	parser.prototype.parseSwitchStmt = function() { return this.go$val.parseSwitchStmt(); };
- 0parserparseSwitchStmt0‚Dgo/ast:BlockStmtgo/ast:Stmtgo/ast:SwitchStmtgo/ast:TypeSwitchStmtgo/parser:closeScopego/parser:expectgo/parser:expectSemigo/parser:isTypeSwitchGuardgo/parser:makeExprgo/parser:nextgo/parser:openScopego/parser:parseCaseClausego/parser:parseSimpleStmtgo/parser:parsergo/parser:tracego/parser:un0‚. ‚	±	parser.Ptr.prototype.parseCommClause = function() {
+ 0parserparseSwitchStmt0‚Dgo/ast:BlockStmtgo/ast:Stmtgo/ast:SwitchStmtgo/ast:TypeSwitchStmtgo/parser:closeScopego/parser:expectgo/parser:expectSemigo/parser:isTypeSwitchGuardgo/parser:makeExprgo/parser:nextgo/parser:openScopego/parser:parseCaseClausego/parser:parseSimpleStmtgo/parser:parsergo/parser:tracego/parser:un0‚3 ‚	¶	parser.Ptr.prototype.parseCommClause = function() {
 		var p, pos, comm, lhs, _slice, _index, arrow, rhs, _slice$1, _index$1, tok, _slice$2, _index$2, pos$1, rhs$1, as, _slice$3, _index$3, _slice$4, _index$4, colon, body;
 		var go$deferred = [];
 		try {
@@ -2616,7 +2636,8 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 					rhs = p.parseRhs();
 					comm = new ast.SendStmt.Ptr((_slice$1 = lhs, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), arrow, rhs);
 				} else {
-					if (tok = p.tok, (tok === 42) || (tok === 47)) {
+					tok = p.tok;
+					if ((tok === 42) || (tok === 47)) {
 						if (lhs.length > 2) {
 							p.errorExpected((_slice$2 = lhs, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Pos(), "1 or 2 expressions");
 							lhs = go$subslice(lhs, 0, 2);
@@ -2736,8 +2757,8 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 		}
 	};
 	parser.prototype.parseForStmt = function() { return this.go$val.parseForStmt(); };
- 0parserparseForStmt0‚_go/ast:AssignStmtgo/ast:BadStmtgo/ast:BlockStmtgo/ast:ForStmtgo/ast:RangeStmtgo/ast:UnaryExprgo/parser:closeScopego/parser:errorExpectedgo/parser:expectgo/parser:expectSemigo/parser:makeExprgo/parser:nextgo/parser:openScopego/parser:parseBlockStmtgo/parser:parseSimpleStmtgo/parser:parsergo/parser:tracego/parser:un0‚	° ‚®	parser.Ptr.prototype.parseStmt = function() {
-		var s, p, _ref, _tuple, isLabeledStmt, _tuple$1, pos;
+ 0parserparseForStmt0‚_go/ast:AssignStmtgo/ast:BadStmtgo/ast:BlockStmtgo/ast:ForStmtgo/ast:RangeStmtgo/ast:UnaryExprgo/parser:closeScopego/parser:errorExpectedgo/parser:expectgo/parser:expectSemigo/parser:makeExprgo/parser:nextgo/parser:openScopego/parser:parseBlockStmtgo/parser:parseSimpleStmtgo/parser:parsergo/parser:tracego/parser:un0‚	´ ‚²	parser.Ptr.prototype.parseStmt = function() {
+		var s, p, _ref, _tuple, _tuple$1, isLabeledStmt, pos;
 		s = null;
 		var go$deferred = [];
 		try {
@@ -2750,7 +2771,8 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 				s = new ast.DeclStmt.Ptr(p.parseDecl(syncStmt));
 			} else if (_ref === 4 || _ref === 5 || _ref === 6 || _ref === 7 || _ref === 8 || _ref === 9 || _ref === 71 || _ref === 49 || _ref === 50 || _ref === 82 || _ref === 12 || _ref === 13 || _ref === 14 || _ref === 17 || _ref === 19 || _ref === 36 || _ref === 43) {
 				_tuple = p.parseSimpleStmt(1), s = _tuple[0];
-				if (_tuple$1 = (s !== null && s.constructor === (go$ptrType(ast.LabeledStmt)) ? [s.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), isLabeledStmt = _tuple$1[1], !isLabeledStmt) {
+				_tuple$1 = (s !== null && s.constructor === (go$ptrType(ast.LabeledStmt)) ? [s.go$val, true] : [(go$ptrType(ast.LabeledStmt)).nil, false]), isLabeledStmt = _tuple$1[1];
+				if (!isLabeledStmt) {
 					p.expectSemi();
 				}
 			} else if (_ref === 72) {
@@ -2934,8 +2956,8 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 		}
 	};
 	parser.prototype.parseGenDecl = function(keyword, f) { return this.go$val.parseGenDecl(keyword, f); };
- 0parserparseGenDecl0«go/ast:CommentGroupgo/ast:GenDeclgo/ast:Specgo/parser:expectgo/parser:expectSemigo/parser:nextgo/parser:parsergo/parser:tracego/parser:ungo/token:Token0‚B ‚D	parser.Ptr.prototype.parseReceiver = function(scope) {
-		var p, par, _slice, _index, recv, base, isIdent, _tuple, isBad, _tuple$1;
+ 0parserparseGenDecl0«go/ast:CommentGroupgo/ast:GenDeclgo/ast:Specgo/parser:expectgo/parser:expectSemigo/parser:nextgo/parser:parsergo/parser:tracego/parser:ungo/token:Token0‚I ‚K	parser.Ptr.prototype.parseReceiver = function(scope) {
+		var p, par, _slice, _index, recv, base, _tuple, isIdent, _tuple$1, isBad;
 		var go$deferred = [];
 		try {
 			p = this;
@@ -2950,8 +2972,10 @@ isTypeName03go/ast:BadExprgo/ast:Identgo/ast:SelectorExpr0‚ÇisLiteralTy
 			}
 			recv = (_slice = par.List, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			base = deref(recv.Type);
-			if (_tuple = (base !== null && base.constructor === (go$ptrType(ast.Ident)) ? [base.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), isIdent = _tuple[1], !isIdent) {
-				if (_tuple$1 = (base !== null && base.constructor === (go$ptrType(ast.BadExpr)) ? [base.go$val, true] : [(go$ptrType(ast.BadExpr)).nil, false]), isBad = _tuple$1[1], !isBad) {
+			_tuple = (base !== null && base.constructor === (go$ptrType(ast.Ident)) ? [base.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), isIdent = _tuple[1];
+			if (!isIdent) {
+				_tuple$1 = (base !== null && base.constructor === (go$ptrType(ast.BadExpr)) ? [base.go$val, true] : [(go$ptrType(ast.BadExpr)).nil, false]), isBad = _tuple$1[1];
+				if (!isBad) {
 					p.errorExpected(base.Pos(), "(unqualified) identifier");
 				}
 				par.List = new (go$sliceType((go$ptrType(ast.Field))))([new ast.Field.Ptr((go$ptrType(ast.CommentGroup)).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, new ast.BadExpr.Ptr(recv.Pos(), recv.End()), (go$ptrType(ast.BasicLit)).nil, (go$ptrType(ast.CommentGroup)).nil)]);

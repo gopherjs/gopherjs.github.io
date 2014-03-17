@@ -1,4 +1,4 @@
-0ƒ3hreflect‚E&package reflect
+0ƒ3ureflect‚E&package reflect
 import strconv "strconv"
 import sync "sync"
 import math "math"
@@ -287,7 +287,7 @@ func (? *@"".uncommonType) @"".PkgPath() (? string)
 func (? *@"".uncommonType) @"".uncommon() (? *@"".uncommonType)
 type @"".visit struct { @"".a1 uintptr; @"".a2 uintptr; @"".typ @"".Type }
 $$
-0Jruntimematherrorsunicode/utf8strconvsync/atomicsyncreflect0D0strconvstrconv0syncsync0mathmath0runtimeruntime0ƒíœ0‚ºvisit‚	visit = go$pkg.visit = go$newType(0, "Struct", "reflect.visit", "visit", "reflect", function(a1_, a2_, typ_) {
+0Jruntimematherrorsunicode/utf8strconvsync/atomicsyncreflect0D0strconvstrconv0syncsync0mathmath0runtimeruntime0ƒí©0‚ºvisit‚	visit = go$pkg.visit = go$newType(0, "Struct", "reflect.visit", "visit", "reflect", function(a1_, a2_, typ_) {
 		this.go$val = this;
 		this.a1 = a1_ !== undefined ? a1_ : 0;
 		this.a2 = a2_ !== undefined ? a2_ : 0;
@@ -1426,7 +1426,7 @@ structType0)reflect:StructFieldreflect:structType0ùTypeOfà	TypeOf = go$
 		return !(convertOp(uu, t) === go$throwNilPointerError);
 	};
 	rtype.prototype.ConvertibleTo = function(u) { return this.go$val.ConvertibleTo(u); };
- 0rtype0"reflect:convertOpreflect:rtype0‚?implements$1‚ó	implements$1 = function(T, V) {
+ 0rtype0"reflect:convertOpreflect:rtype0‚Himplements$1‚ü	implements$1 = function(T, V) {
 		var t, v, i, j, _slice, _index, tm, _slice$1, _index$1, vm, v$1, i$1, j$1, _slice$2, _index$2, tm$1, _slice$3, _index$3, vm$1;
 		if (!((T.Kind() === 20))) {
 			return false;
@@ -1443,7 +1443,8 @@ structType0)reflect:StructFieldreflect:structType0ùTypeOfà	TypeOf = go$
 				tm = (_slice = t.methods, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				vm = (_slice$1 = v.methods, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 				if (go$pointerIsEqual(vm.name, tm.name) && go$pointerIsEqual(vm.pkgPath, tm.pkgPath) && vm.typ === tm.typ) {
-					if (i = i + 1 >> 0, i >= t.methods.length) {
+					i = i + 1 >> 0;
+					if (i >= t.methods.length) {
 						return true;
 					}
 				}
@@ -1461,7 +1462,8 @@ structType0)reflect:StructFieldreflect:structType0ùTypeOfà	TypeOf = go$
 			tm$1 = (_slice$2 = t.methods, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
 			vm$1 = (_slice$3 = v$1.methods, _index$3 = j$1, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
 			if (go$pointerIsEqual(vm$1.name, tm$1.name) && go$pointerIsEqual(vm$1.pkgPath, tm$1.pkgPath) && vm$1.mtyp === tm$1.typ) {
-				if (i$1 = i$1 + 1 >> 0, i$1 >= t.methods.length) {
+				i$1 = i$1 + 1 >> 0;
+				if (i$1 >= t.methods.length) {
 					return true;
 				}
 			}
@@ -2271,21 +2273,23 @@ callMethod0Yreflect:Valuereflect:callreflect:frameSizereflect:memmover
 		return (_struct$3 = v, new Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag));
 	};
 	Value.prototype.FieldByIndex = function(index) { return this.go$val.FieldByIndex(index); };
- 0Value0-reflect:Valuereflect:flagreflect:mustBe0‚/ ‚Ë	Value.Ptr.prototype.FieldByName = function(name) {
-		var _struct, v, ok, _tuple, _struct$1, f, _struct$2;
+ 0Value0-reflect:Valuereflect:flagreflect:mustBe0‚1 ‚Í	Value.Ptr.prototype.FieldByName = function(name) {
+		var _struct, v, _tuple, _struct$1, f, ok, _struct$2;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(25);
-		if (_tuple = v.typ.FieldByName(name), f = (_struct$1 = _tuple[0], new StructField.Ptr(_struct$1.Name, _struct$1.PkgPath, _struct$1.Type, _struct$1.Tag, _struct$1.Offset, _struct$1.Index, _struct$1.Anonymous)), ok = _tuple[1], ok) {
+		_tuple = v.typ.FieldByName(name), f = (_struct$1 = _tuple[0], new StructField.Ptr(_struct$1.Name, _struct$1.PkgPath, _struct$1.Type, _struct$1.Tag, _struct$1.Offset, _struct$1.Index, _struct$1.Anonymous)), ok = _tuple[1];
+		if (ok) {
 			return (_struct$2 = v.FieldByIndex(f.Index), new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 		}
 		return new Value.Ptr((go$ptrType(rtype)).nil, 0, 0);
 	};
 	Value.prototype.FieldByName = function(name) { return this.go$val.FieldByName(name); };
- 0Value0Qreflect:StructFieldreflect:Valuereflect:flagreflect:mustBereflect:rtype0‚C ‚ß	Value.Ptr.prototype.FieldByNameFunc = function(match) {
-		var _struct, v, ok, _tuple, _struct$1, f, _struct$2;
+ 0Value0Qreflect:StructFieldreflect:Valuereflect:flagreflect:mustBereflect:rtype0‚E ‚á	Value.Ptr.prototype.FieldByNameFunc = function(match) {
+		var _struct, v, _tuple, _struct$1, f, ok, _struct$2;
 		v = (_struct = this, new Value.Ptr(_struct.typ, _struct.val, _struct.flag));
 		(new flag(v.flag)).mustBe(25);
-		if (_tuple = v.typ.FieldByNameFunc(match), f = (_struct$1 = _tuple[0], new StructField.Ptr(_struct$1.Name, _struct$1.PkgPath, _struct$1.Type, _struct$1.Tag, _struct$1.Offset, _struct$1.Index, _struct$1.Anonymous)), ok = _tuple[1], ok) {
+		_tuple = v.typ.FieldByNameFunc(match), f = (_struct$1 = _tuple[0], new StructField.Ptr(_struct$1.Name, _struct$1.PkgPath, _struct$1.Type, _struct$1.Tag, _struct$1.Offset, _struct$1.Index, _struct$1.Anonymous)), ok = _tuple[1];
+		if (ok) {
 			return (_struct$2 = v.FieldByIndex(f.Index), new Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag));
 		}
 		return new Value.Ptr((go$ptrType(rtype)).nil, 0, 0);

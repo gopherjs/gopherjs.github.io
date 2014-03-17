@@ -1,4 +1,4 @@
-0Çéindex/suffixarrayÇ'¯package suffixarray
+0Çéindex/suffixarrayÇ'¯package suffixarray
 import sort "sort"
 import bytes "bytes"
 import binary "encoding/binary"
@@ -115,7 +115,7 @@ type @"regexp".input interface { @"regexp".canCheckPrefix() (? bool); @"regexp".
 type @"regexp/syntax".InstOp uint8
 type @"regexp".entry struct { @"regexp".pc uint32; @"regexp".t *@"regexp".thread }
 $$
-0Å®runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysortstringsregexp/syntaxregexpindex/suffixarray0U0sortsort0bytesbytes0encoding/binarybinary0ioio0regexpregexp0ÇdÏ0Ç›suffixSortableÇ¥	suffixSortable = go$pkg.suffixSortable = go$newType(0, "Struct", "suffixarray.suffixSortable", "suffixSortable", "index/suffixarray", function(sa_, inv_, h_, buf_) {
+0Å®runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysortstringsregexp/syntaxregexpindex/suffixarray0U0sortsort0bytesbytes0encoding/binarybinary0ioio0regexpregexp0Çd˛0Ç›suffixSortableÇ¥	suffixSortable = go$pkg.suffixSortable = go$newType(0, "Struct", "suffixarray.suffixSortable", "suffixSortable", "index/suffixarray", function(sa_, inv_, h_, buf_) {
 		this.go$val = this;
 		this.sa = sa_ !== undefined ? sa_ : (go$sliceType(Go$Int)).nil;
 		this.inv = inv_ !== undefined ? inv_ : (go$sliceType(Go$Int)).nil;
@@ -131,8 +131,8 @@ $$
 	});
 Ç”		(go$ptrType(Index)).methods = [["Bytes", "", [], [(go$sliceType(Go$Uint8))], false, -1], ["FindAllIndex", "", [(go$ptrType(regexp.Regexp)), Go$Int], [(go$sliceType((go$sliceType(Go$Int))))], false, -1], ["Lookup", "", [(go$sliceType(Go$Uint8)), Go$Int], [(go$sliceType(Go$Int))], false, -1], ["Read", "", [io.Reader], [go$error], false, -1], ["Write", "", [io.Writer], [go$error], false, -1], ["at", "index/suffixarray", [Go$Int], [(go$sliceType(Go$Uint8))], false, -1], ["lookupAll", "index/suffixarray", [(go$sliceType(Go$Uint8))], [(go$sliceType(Go$Int))], false, -1]];
 		Index.init([["data", "data", "index/suffixarray", (go$sliceType(Go$Uint8)), ""], ["sa", "sa", "index/suffixarray", (go$sliceType(Go$Int)), ""]]);
-0Index0%	io:Reader	io:Writerregexp:Regexp0Ç	ZqsufsortÇ´	qsufsort = function(data) {
-		var sa, inv, sufSortable, _slice, _index, pi, sl, s, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, pk, _slice$4, _index$4, x, x$1, _ref, _i, i, _slice$5, _index$5, _slice$6, _index$6;
+0Index0%	io:Reader	io:Writerregexp:Regexp0Ç	^qsufsortÇØ	qsufsort = function(data) {
+		var sa, inv, sufSortable, _slice, _index, pi, sl, _slice$1, _index$1, s, _slice$2, _index$2, _slice$3, _index$3, pk, _slice$4, _index$4, x, x$1, _ref, _i, i, _slice$5, _index$5, _slice$6, _index$6;
 		sa = sortedByFirstByte(data);
 		if (sa.length < 2) {
 			return sa;
@@ -143,7 +143,8 @@ $$
 			pi = 0;
 			sl = 0;
 			while (pi < sa.length) {
-				if (s = (_slice$1 = sa, _index$1 = pi, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), s < 0) {
+				s = (_slice$1 = sa, _index$1 = pi, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
+				if (s < 0) {
 					pi = pi - (s) >> 0;
 					sl = sl + (s) >> 0;
 				} else {
@@ -203,15 +204,16 @@ $$
 		}
 		return sa;
 	};
- 0sortedByFirstByte0 0Çg
-initGroupsÇE	initGroups = function(sa, data) {
-		var inv, prevGroup, _slice, _index, _slice$1, _index$1, groupByte, i, b, _slice$2, _index$2, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, lastByte, s, _ref, _i, i$1, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _tuple, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17, _slice$18, _index$18, _slice$19, _index$19;
+ 0sortedByFirstByte0 0Çj
+initGroupsÇH	initGroups = function(sa, data) {
+		var inv, prevGroup, _slice, _index, _slice$1, _index$1, groupByte, i, _slice$2, _index$2, _slice$3, _index$3, b, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7, _slice$8, _index$8, lastByte, s, _ref, _i, i$1, _slice$9, _index$9, _slice$10, _index$10, _slice$11, _index$11, _slice$12, _index$12, _slice$13, _index$13, _slice$14, _index$14, _tuple, _slice$15, _index$15, _slice$16, _index$16, _slice$17, _index$17, _slice$18, _index$18, _slice$19, _index$19;
 		inv = (go$sliceType(Go$Int)).make(data.length, 0, function() { return 0; });
 		prevGroup = sa.length - 1 >> 0;
 		groupByte = (_slice = data, _index = (_slice$1 = sa, _index$1 = prevGroup, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 		i = sa.length - 1 >> 0;
 		while (i >= 0) {
-			if (b = (_slice$2 = data, _index$2 = (_slice$3 = sa, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), b < groupByte) {
+			b = (_slice$2 = data, _index$2 = (_slice$3 = sa, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+			if (b < groupByte) {
 				if (prevGroup === (i + 1 >> 0)) {
 					_slice$4 = sa, _index$4 = i + 1 >> 0, (_index$4 >= 0 && _index$4 < _slice$4.length) ? (_slice$4.array[_slice$4.offset + _index$4] = -1) : go$throwRuntimeError("index out of range");
 				}
@@ -264,14 +266,15 @@ initGroups0 0ÅÁ Å™	suffixSortable.Ptr.prototype.Len = function() {
 		_tuple = [(_slice = x.sa, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (_slice$1 = x.sa, _index$1 = i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"))], _slice$2 = x.sa, _index$2 = i, (_index$2 >= 0 && _index$2 < _slice$2.length) ? (_slice$2.array[_slice$2.offset + _index$2] = _tuple[0]) : go$throwRuntimeError("index out of range"), _slice$3 = x.sa, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? (_slice$3.array[_slice$3.offset + _index$3] = _tuple[1]) : go$throwRuntimeError("index out of range");
 	};
 	suffixSortable.prototype.Swap = function(i, j) { return this.go$val.Swap(i, j); };
- 0suffixSortable0" index/suffixarray:suffixSortable0Ç	 Ç–	suffixSortable.Ptr.prototype.updateGroups = function(offset) {
-		var x, bounds, _slice, _index, _slice$1, _index$1, group, i, g, _slice$2, _index$2, _slice$3, _index$3, prev, _ref, _i, _slice$4, _index$4, b, i$1, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
+ 0suffixSortable0" index/suffixarray:suffixSortable0Ç	 Ç”	suffixSortable.Ptr.prototype.updateGroups = function(offset) {
+		var x, bounds, _slice, _index, _slice$1, _index$1, group, i, _slice$2, _index$2, _slice$3, _index$3, g, prev, _ref, _i, _slice$4, _index$4, b, i$1, _slice$5, _index$5, _slice$6, _index$6, _slice$7, _index$7;
 		x = this;
 		bounds = go$subslice(x.buf, 0, 0);
 		group = (_slice = x.inv, _index = ((_slice$1 = x.sa, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) + x.h >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 		i = 1;
 		while (i < x.sa.length) {
-			if (g = (_slice$2 = x.inv, _index$2 = ((_slice$3 = x.sa, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) + x.h >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), g > group) {
+			g = (_slice$2 = x.inv, _index$2 = ((_slice$3 = x.sa, _index$3 = i, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")) + x.h >> 0), (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range"));
+			if (g > group) {
 				bounds = go$append(bounds, i);
 				group = g;
 			}
@@ -328,7 +331,7 @@ writeSliceÇ*	writeSlice = function(w, buf, data) {
 		return [n, err];
 	};
  0
-writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0Çe	readSliceÇ	readSlice = function(r, buf, data) {
+writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0Çg	readSliceÇ	readSlice = function(r, buf, data) {
 		var n, err, size, _tuple, _tuple$1, p, _tuple$2, x, w, _slice, _index;
 		n = 0;
 		err = null;
@@ -337,7 +340,8 @@ writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0Çe	readSli
 		if (!(go$interfaceIsEqual(err, null))) {
 			return [n, err];
 		}
-		if (_tuple$1 = io.ReadFull(r, go$subslice(buf, 10, size)), err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple$1 = io.ReadFull(r, go$subslice(buf, 10, size)), err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [n, err];
 		}
 		p = 10;
@@ -349,8 +353,8 @@ writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0Çe	readSli
 		}
 		return [n, err];
 	};
- 0	readSlice0Aencoding/binary:Uvarintindex/suffixarray:readIntio:ReadFull0ÇÕ Ç\	Index.Ptr.prototype.Read = function(r) {
-		var x, buf, _tuple, n, err, x$1, err$1, _tuple$1, sa, _tuple$2, n$1, err$2;
+ 0	readSlice0Aencoding/binary:Uvarintindex/suffixarray:readIntio:ReadFull0Çœ Ç^	Index.Ptr.prototype.Read = function(r) {
+		var x, buf, _tuple, n, err, x$1, _tuple$1, err$1, sa, _tuple$2, n$1, err$2;
 		x = this;
 		buf = (go$sliceType(Go$Uint8)).make(16384, 0, function() { return 0; });
 		_tuple = readInt(r, buf), n = _tuple[0], err = _tuple[1];
@@ -364,7 +368,8 @@ writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0Çe	readSli
 			x.data = go$subslice(x.data, 0, n);
 			x.sa = go$subslice(x.sa, 0, n);
 		}
-		if (_tuple$1 = io.ReadFull(r, x.data), err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+		_tuple$1 = io.ReadFull(r, x.data), err$1 = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			return err$1;
 		}
 		sa = x.sa;
@@ -378,14 +383,16 @@ writeSlice07encoding/binary:PutUvarintencoding/binary:PutVarint0Çe	readSli
 		return null;
 	};
 	Index.prototype.Read = function(r) { return this.go$val.Read(r); };
- 0Index0^index/suffixarray:Indexindex/suffixarray:readIntindex/suffixarray:readSliceio:ReadFull0Ç( Ç¬	Index.Ptr.prototype.Write = function(w) {
-		var x, buf, err, err$1, _tuple, sa, _tuple$1, n, err$2;
+ 0Index0^index/suffixarray:Indexindex/suffixarray:readIntindex/suffixarray:readSliceio:ReadFull0Ç, Ç∆	Index.Ptr.prototype.Write = function(w) {
+		var x, buf, err, _tuple, err$1, sa, _tuple$1, n, err$2;
 		x = this;
 		buf = (go$sliceType(Go$Uint8)).make(16384, 0, function() { return 0; });
-		if (err = writeInt(w, buf, x.data.length), !(go$interfaceIsEqual(err, null))) {
+		err = writeInt(w, buf, x.data.length);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
-		if (_tuple = w.Write(x.data), err$1 = _tuple[1], !(go$interfaceIsEqual(err$1, null))) {
+		_tuple = w.Write(x.data), err$1 = _tuple[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			return err$1;
 		}
 		sa = x.sa;

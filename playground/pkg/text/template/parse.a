@@ -1,4 +1,4 @@
-0Éﬂ§text/template/parseÇ2Wpackage parse
+0Éﬂ≈text/template/parseÇ2Wpackage parse
 import list "container/list"
 import fmt "fmt"
 import strings "strings"
@@ -191,7 +191,8 @@ func (? *@"container/list".Element) @"container/list".Next() (? *@"container/lis
 func (? *@"container/list".Element) @"container/list".Prev() (? *@"container/list".Element)
 $$
 0Å§runtimeerrorssync/atomicsynciounicodeunicode/utf8bytescontainer/listmathsyscalltimeosstrconvreflectfmtstringstext/template/parse0Åö0container/listlist0
-fmtfmt0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0strconvstrconv0runtimeruntime0É´È0ÇùitemÇ	item = go$pkg.item = go$newType(0, "Struct", "parse.item", "item", "text/template/parse", function(typ_, pos_, val_) {
+fmtfmt0stringsstrings0unicodeunicode0unicode/utf8utf80bytesbytes0strconvstrconv0runtimeruntime0É¨
+0ÇùitemÇ	item = go$pkg.item = go$newType(0, "Struct", "parse.item", "item", "text/template/parse", function(typ_, pos_, val_) {
 		this.go$val = this;
 		this.typ = typ_ !== undefined ? typ_ : 0;
 		this.pos = pos_ !== undefined ? pos_ : 0;
@@ -745,8 +746,8 @@ lexComment0wstrings:HasPrefixstrings:Indextext/template/parse:errorftext
 		l.emit(typ);
 		return lexInsideAction;
 	};
- 0lexFieldOrVariable0Å◊ text/template/parse:atTerminatortext/template/parse:backuptext/template/parse:emittext/template/parse:errorf"text/template/parse:isAlphaNumeric#text/template/parse:lexInsideActiontext/template/parse:next0Ç∏ Ç	lexer.Ptr.prototype.atTerminator = function() {
-		var l, r, _ref, rd, _tuple;
+ 0lexFieldOrVariable0Å◊ text/template/parse:atTerminatortext/template/parse:backuptext/template/parse:emittext/template/parse:errorf"text/template/parse:isAlphaNumeric#text/template/parse:lexInsideActiontext/template/parse:next0Ç∫ Ç	lexer.Ptr.prototype.atTerminator = function() {
+		var l, r, _ref, _tuple, rd;
 		l = this;
 		r = l.peek();
 		if (isSpace(r) || isEndOfLine(r)) {
@@ -756,19 +757,21 @@ lexComment0wstrings:HasPrefixstrings:Indextext/template/parse:errorftext
 		if (_ref === -1 || _ref === 46 || _ref === 44 || _ref === 124 || _ref === 58 || _ref === 41 || _ref === 40) {
 			return true;
 		}
-		if (_tuple = utf8.DecodeRuneInString(l.rightDelim), rd = _tuple[0], rd === r) {
+		_tuple = utf8.DecodeRuneInString(l.rightDelim), rd = _tuple[0];
+		if (rd === r) {
 			return true;
 		}
 		return false;
 	};
 	lexer.prototype.atTerminator = function() { return this.go$val.atTerminator(); };
- 0lexeratTerminator0Åîtext/template/parse:isEndOfLinetext/template/parse:isSpacetext/template/parse:lexertext/template/parse:peekunicode/utf8:DecodeRuneInString0Ç±lexCharÇ 	lexChar = function(l) {
+ 0lexeratTerminator0Åîtext/template/parse:isEndOfLinetext/template/parse:isSpacetext/template/parse:lexertext/template/parse:peekunicode/utf8:DecodeRuneInString0ÇµlexCharÇ$	lexChar = function(l) {
 		var _ref, r;
 		Loop:
 		while (true) {
 			_ref = l.next();
 			switch (0) { default: if (_ref === 92) {
-				if (r = l.next(), !((r === -1)) && !((r === 10))) {
+				r = l.next();
+				if (!((r === -1)) && !((r === 10))) {
 					break;
 				}
 				return l.errorf("unterminated character constant", new (go$sliceType(go$emptyInterface))([]));
@@ -781,12 +784,13 @@ lexComment0wstrings:HasPrefixstrings:Indextext/template/parse:errorftext
 		l.emit(3);
 		return lexInsideAction;
 	};
- 0	lexChar0utext/template/parse:emittext/template/parse:errorf#text/template/parse:lexInsideActiontext/template/parse:next0Ç‚	lexNumberÇ,	lexNumber = function(l) {
+ 0	lexChar0utext/template/parse:emittext/template/parse:errorf#text/template/parse:lexInsideActiontext/template/parse:next0Ç‰	lexNumberÇ.	lexNumber = function(l) {
 		var sign;
 		if (!l.scanNumber()) {
 			return l.errorf("bad number syntax: %q", new (go$sliceType(go$emptyInterface))([new Go$String(l.input.substring(l.start, l.pos))]));
 		}
-		if (sign = l.peek(), (sign === 43) || (sign === 45)) {
+		sign = l.peek();
+		if ((sign === 43) || (sign === 45)) {
 			if (!l.scanNumber() || !((l.input.charCodeAt((l.pos - 1 >> 0)) === 105))) {
 				return l.errorf("bad number syntax: %q", new (go$sliceType(go$emptyInterface))([new Go$String(l.input.substring(l.start, l.pos))]));
 			}
@@ -821,13 +825,14 @@ lexComment0wstrings:HasPrefixstrings:Indextext/template/parse:errorftext
 	};
 	lexer.prototype.scanNumber = function() { return this.go$val.scanNumber(); };
  0lexer
-scanNumber0ÅÆtext/template/parse:accepttext/template/parse:acceptRun"text/template/parse:isAlphaNumerictext/template/parse:lexertext/template/parse:nexttext/template/parse:peek0Ç´lexQuoteÇ	lexQuote = function(l) {
+scanNumber0ÅÆtext/template/parse:accepttext/template/parse:acceptRun"text/template/parse:isAlphaNumerictext/template/parse:lexertext/template/parse:nexttext/template/parse:peek0ÇØlexQuoteÇ	lexQuote = function(l) {
 		var _ref, r;
 		Loop:
 		while (true) {
 			_ref = l.next();
 			switch (0) { default: if (_ref === 92) {
-				if (r = l.next(), !((r === -1)) && !((r === 10))) {
+				r = l.next();
+				if (!((r === -1)) && !((r === 10))) {
 					break;
 				}
 				return l.errorf("unterminated quoted string", new (go$sliceType(go$emptyInterface))([]));
@@ -1052,8 +1057,8 @@ newCommand0;text/template/parse:CommandNodetext/template/parse:Node0Ç Å√
 		c.Args = go$append(c.Args, arg);
 	};
 	CommandNode.prototype.append = function(arg) { return this.go$val.append(arg); };
- 0CommandNodeappend0!text/template/parse:CommandNode0Çk Ç	CommandNode.Ptr.prototype.String = function() {
-		var c, s, _ref, _i, _slice, _index, arg, i, ok, _tuple, arg$1;
+ 0CommandNodeappend0!text/template/parse:CommandNode0Çn Ç	CommandNode.Ptr.prototype.String = function() {
+		var c, s, _ref, _i, _slice, _index, arg, i, _tuple, arg$1, ok;
 		c = this;
 		s = "";
 		_ref = c.Args;
@@ -1064,7 +1069,8 @@ newCommand0;text/template/parse:CommandNodetext/template/parse:Node0Ç Å√
 			if (i > 0) {
 				s = s + " ";
 			}
-			if (_tuple = (arg !== null && arg.constructor === (go$ptrType(PipeNode)) ? [arg.go$val, true] : [(go$ptrType(PipeNode)).nil, false]), arg$1 = _tuple[0], ok = _tuple[1], ok) {
+			_tuple = (arg !== null && arg.constructor === (go$ptrType(PipeNode)) ? [arg.go$val, true] : [(go$ptrType(PipeNode)).nil, false]), arg$1 = _tuple[0], ok = _tuple[1];
+			if (ok) {
 				s = s + ("(" + arg$1.String() + ")");
 				_i++;
 				continue;
@@ -1224,11 +1230,12 @@ newCommand0;text/template/parse:CommandNodetext/template/parse:Node0Ç Å√
 		c.Field = go$append(c.Field, field);
 	};
 	ChainNode.prototype.Add = function(field) { return this.go$val.Add(field); };
- 0	ChainNode0text/template/parse:ChainNode0Ç ÇØ	ChainNode.Ptr.prototype.String = function() {
-		var c, s, ok, _tuple, x, _ref, _i, _slice, _index, field;
+ 0	ChainNode0text/template/parse:ChainNode0Ç Ç±	ChainNode.Ptr.prototype.String = function() {
+		var c, s, _tuple, x, ok, _ref, _i, _slice, _index, field;
 		c = this;
 		s = c.Node.String();
-		if (_tuple = (x = c.Node, (x !== null && x.constructor === (go$ptrType(PipeNode)) ? [x.go$val, true] : [(go$ptrType(PipeNode)).nil, false])), ok = _tuple[1], ok) {
+		_tuple = (x = c.Node, (x !== null && x.constructor === (go$ptrType(PipeNode)) ? [x.go$val, true] : [(go$ptrType(PipeNode)).nil, false])), ok = _tuple[1];
+		if (ok) {
 			s = "(" + s + ")";
 		}
 		_ref = c.Field;
@@ -1267,8 +1274,8 @@ newCommand0;text/template/parse:CommandNodetext/template/parse:Node0Ç Å√
 	};
 	BoolNode.prototype.Copy = function() { return this.go$val.Copy(); };
  0
-BoolNode0;text/template/parse:BoolNodetext/template/parse:newBool0ÇF	newNumberÇ{	newNumber = function(pos, text, typ) {
-		var n, _ref, _tuple, rune, tail, err, err$1, _tuple$1, v, _tuple$2, f, err$2, _tuple$3, u, err$3, _tuple$4, i, _tuple$5, f$1, err$4;
+BoolNode0;text/template/parse:BoolNodetext/template/parse:newBool0ÇI	newNumberÇ~	newNumber = function(pos, text, typ) {
+		var n, _ref, _tuple, rune, tail, err, _tuple$1, v, err$1, _tuple$2, f, err$2, _tuple$3, u, err$3, _tuple$4, i, _tuple$5, f$1, err$4;
 		n = new NumberNode.Ptr(13, pos, false, false, false, false, new Go$Int64(0, 0), new Go$Uint64(0, 0), 0, new Go$Complex128(0, 0), text);
 		_ref = typ;
 		if (_ref === 3) {
@@ -1287,7 +1294,8 @@ newCommand0;text/template/parse:CommandNodetext/template/parse:Node0Ç Å√
 			n.IsFloat = true;
 			return [n, null];
 		} else if (_ref === 4) {
-			if (_tuple$1 = fmt.Sscan(text, new (go$sliceType(go$emptyInterface))([new (go$ptrType(Go$Complex128))(function() { return n.Complex128; }, function(v) { n.Complex128 = v; })])), err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+			_tuple$1 = fmt.Sscan(text, new (go$sliceType(go$emptyInterface))([new (go$ptrType(Go$Complex128))(function() { return n.Complex128; }, function(v) { n.Complex128 = v; })])), err$1 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
 				return [(go$ptrType(NumberNode)).nil, err$1];
 			}
 			n.IsComplex = true;
@@ -1667,12 +1675,13 @@ fmt:Errorffmt:Sprintftext/template/parse:ListNodetext/template/parse:Tree
 	};
 	Tree.prototype.unexpected = function(token, context) { return this.go$val.unexpected(token, context); };
  0Tree
-unexpected06text/template/parse:Treetext/template/parse:errorf0Ç¿ Ç]	Tree.Ptr.prototype.recover = function(errp) {
-		var t, e, ok, _tuple;
+unexpected06text/template/parse:Treetext/template/parse:errorf0Ç√ Ç`	Tree.Ptr.prototype.recover = function(errp) {
+		var t, e, _tuple, ok;
 		t = this;
 		e = go$recover();
 		if (!(go$interfaceIsEqual(e, null))) {
-			if (_tuple = (e !== null && runtime.Error.implementedBy.indexOf(e.constructor) !== -1 ? [e, true] : [null, false]), ok = _tuple[1], ok) {
+			_tuple = (e !== null && runtime.Error.implementedBy.indexOf(e.constructor) !== -1 ? [e, true] : [null, false]), ok = _tuple[1];
+			if (ok) {
 				throw go$panic(e);
 			}
 			if (!(t === (go$ptrType(Tree)).nil)) {
@@ -1887,17 +1896,19 @@ startParse08text/template/parse:ListNodetext/template/parse:Tree0Ç} Ç+	T
 		return n;
 	};
 	Tree.prototype.action = function() { return this.go$val.action(); };
- 0Treeaction0Ç±text/template/parse:Treetext/template/parse:backuptext/template/parse:elseControltext/template/parse:endControltext/template/parse:ifControltext/template/parse:itemtext/template/parse:lineNumbertext/template/parse:newAction text/template/parse:nextNonSpacetext/template/parse:peektext/template/parse:pipeline text/template/parse:rangeControl#text/template/parse:templateControltext/template/parse:withControl0Ç© Ç	r	Tree.Ptr.prototype.pipeline = function(context) {
-		var pipe, t, decl, pos, v, _struct, _struct$1, tokenAfterVariable, next, _struct$2, variable, _struct$3, _struct$4, _struct$5, _struct$6, token, _ref, _struct$7;
+ 0Treeaction0Ç±text/template/parse:Treetext/template/parse:backuptext/template/parse:elseControltext/template/parse:endControltext/template/parse:ifControltext/template/parse:itemtext/template/parse:lineNumbertext/template/parse:newAction text/template/parse:nextNonSpacetext/template/parse:peektext/template/parse:pipeline text/template/parse:rangeControl#text/template/parse:templateControltext/template/parse:withControl0Ç∞ Ç	y	Tree.Ptr.prototype.pipeline = function(context) {
+		var pipe, t, decl, pos, _struct, v, _struct$1, tokenAfterVariable, _struct$2, next, variable, _struct$3, _struct$4, _struct$5, _struct$6, token, _ref, _struct$7;
 		pipe = (go$ptrType(PipeNode)).nil;
 		t = this;
 		decl = (go$sliceType((go$ptrType(VariableNode)))).nil;
 		pos = t.peekNonSpace().pos;
 		while (true) {
-			if (v = (_struct = t.peekNonSpace(), new item.Ptr(_struct.typ, _struct.pos, _struct.val)), v.typ === 19) {
+			v = (_struct = t.peekNonSpace(), new item.Ptr(_struct.typ, _struct.pos, _struct.val));
+			if (v.typ === 19) {
 				t.next();
 				tokenAfterVariable = (_struct$1 = t.peek(), new item.Ptr(_struct$1.typ, _struct$1.pos, _struct$1.val));
-				if (next = (_struct$2 = t.peekNonSpace(), new item.Ptr(_struct$2.typ, _struct$2.pos, _struct$2.val)), (next.typ === 5) || ((next.typ === 2) && next.val === ",")) {
+				next = (_struct$2 = t.peekNonSpace(), new item.Ptr(_struct$2.typ, _struct$2.pos, _struct$2.val));
+				if ((next.typ === 5) || ((next.typ === 2) && next.val === ",")) {
 					t.nextNonSpace();
 					variable = newVariable(v.pos, v.val);
 					decl = go$append(decl, variable);
@@ -2090,8 +2101,8 @@ endControl0Rtext/template/parse:Treetext/template/parse:expecttext/templat
 		return node;
 	};
 	Tree.prototype.operand = function() { return this.go$val.operand(); };
- 0Treeoperand0Åﬁtext/template/parse:Postext/template/parse:Treetext/template/parse:newChaintext/template/parse:newFieldtext/template/parse:newVariabletext/template/parse:nexttext/template/parse:peektext/template/parse:term0Ç	h ÇK	Tree.Ptr.prototype.term = function() {
-		var t, _struct, token, _ref, _tuple, number, err, pipe, token$1, _struct$1, _tuple$1, s, err$1;
+ 0Treeoperand0Åﬁtext/template/parse:Postext/template/parse:Treetext/template/parse:newChaintext/template/parse:newFieldtext/template/parse:newVariabletext/template/parse:nexttext/template/parse:peektext/template/parse:term0Ç	k ÇN	Tree.Ptr.prototype.term = function() {
+		var t, _struct, token, _ref, _tuple, number, err, pipe, _struct$1, token$1, _tuple$1, s, err$1;
 		t = this;
 		token = (_struct = t.nextNonSpace(), new item.Ptr(_struct.typ, _struct.pos, _struct.val));
 		_ref = token.typ;
@@ -2120,7 +2131,8 @@ endControl0Rtext/template/parse:Treetext/template/parse:expecttext/templat
 			return number;
 		} else if (_ref === 10) {
 			pipe = t.pipeline("parenthesized pipeline");
-			if (token$1 = (_struct$1 = t.next(), new item.Ptr(_struct$1.typ, _struct$1.pos, _struct$1.val)), !((token$1.typ === 15))) {
+			token$1 = (_struct$1 = t.next(), new item.Ptr(_struct$1.typ, _struct$1.pos, _struct$1.val));
+			if (!((token$1.typ === 15))) {
 				t.errorf("unclosed right paren: unexpected %s", new (go$sliceType(go$emptyInterface))([new token$1.constructor.Struct(token$1)]));
 			}
 			return pipe;

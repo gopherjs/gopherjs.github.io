@@ -1,4 +1,4 @@
-0‚ôÉdebug/gosym‚þpackage gosym
+0‚ôÝdebug/gosym‚þpackage gosym
 import binary "encoding/binary"
 import sync "sync"
 import bytes "bytes"
@@ -56,7 +56,7 @@ func (? *@"sync".Mutex) @"sync".Unlock() ()
 type @"encoding/binary".ByteOrder interface { @"encoding/binary".PutUint16(? []byte, ? uint16) (); @"encoding/binary".PutUint32(? []byte, ? uint32) (); @"encoding/binary".PutUint64(? []byte, ? uint64) (); @"encoding/binary".String() (? string); @"encoding/binary".Uint16(? []byte) (? uint16); @"encoding/binary".Uint32(? []byte) (? uint32); @"encoding/binary".Uint64(? []byte) (? uint64) }
 $$
 0runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathstrconvreflectencoding/binarysyscalltimeosfmtstringsdebug/gosym0m0encoding/binarybinary0syncsync0bytesbytes0
-fmtfmt0strconvstrconv0stringsstrings0‚â¥0‚	LineTable‚	LineTable = go$pkg.LineTable = go$newType(0, "Struct", "gosym.LineTable", "LineTable", "debug/gosym", function(Data_, PC_, Line_, mu_, go12_, binary_, quantum_, ptrsize_, functab_, nfunctab_, filetab_, nfiletab_, fileMap_) {
+fmtfmt0strconvstrconv0stringsstrings0‚â¹0‚	LineTable‚	LineTable = go$pkg.LineTable = go$newType(0, "Struct", "gosym.LineTable", "LineTable", "debug/gosym", function(Data_, PC_, Line_, mu_, go12_, binary_, quantum_, ptrsize_, functab_, nfunctab_, filetab_, nfiletab_, fileMap_) {
 		this.go$val = this;
 		this.Data = Data_ !== undefined ? Data_ : (go$sliceType(Go$Uint8)).nil;
 		this.PC = PC_ !== undefined ? PC_ : new Go$Uint64(0, 0);
@@ -549,10 +549,11 @@ readvarint0debug/gosym:LineTable0‚ ‚Í	LineTable.Ptr.prototype.string = f
 		return s.Type >= 97;
 	};
 	Sym.prototype.Static = function() { return this.go$val.Static(); };
- 0Sym0debug/gosym:Sym0‚4 ‚	Sym.Ptr.prototype.PackageName = function() {
+ 0Sym0debug/gosym:Sym0‚6 ‚	Sym.Ptr.prototype.PackageName = function() {
 		var s, i;
 		s = this;
-		if (i = strings.Index(s.Name, "."), !((i === -1))) {
+		i = strings.Index(s.Name, ".");
+		if (!((i === -1))) {
 			return s.Name.substring(0, i);
 		}
 		return "";
@@ -569,11 +570,11 @@ readvarint0debug/gosym:LineTable0‚ ‚Í	LineTable.Ptr.prototype.string = f
 		return s.Name.substring(l + 1 >> 0, r);
 	};
 	Sym.prototype.ReceiverName = function() { return this.go$val.ReceiverName(); };
- 0Sym03debug/gosym:Symstrings:Indexstrings:LastIndex0‚? ‚
-	Sym.Ptr.prototype.BaseName = function() {
+ 0Sym03debug/gosym:Symstrings:Indexstrings:LastIndex0‚A ‚	Sym.Ptr.prototype.BaseName = function() {
 		var s, i;
 		s = this;
-		if (i = strings.LastIndex(s.Name, "."), !((i === -1))) {
+		i = strings.LastIndex(s.Name, ".");
+		if (!((i === -1))) {
 			return s.Name.substring((i + 1 >> 0));
 		}
 		return s.Name;
@@ -709,8 +710,8 @@ walksymtab‚	walksymtab = function(data, fn) {
 		return null;
 	};
  0
-walksymtab0Öbytes:HasPrefixdebug/gosym:DecodingErrordebug/gosym:bigEndianSymtabdebug/gosym:littleEndianSymtab!debug/gosym:oldLittleEndianSymtabdebug/gosym:symencoding/binary:BigEndianencoding/binary:LittleEndian0‚$7NewTable‚#+	NewTable = go$pkg.NewTable = function(symtab, pcln) {
-		var n, err, t, fname, nf, nz, lasttyp, obj, _slice, _index, lastf, i, _slice$1, _index$1, sym$1, _ref, n$1, _slice$2, _index$2, end, c, _slice$3, _index$3, depth, _ref$1, _i, j, _slice$4, _index$4, s, _key, n$2, _slice$5, _index$5, _tuple, np, na, end$1, _ref$2, _slice$6, _index$6, n$3, _slice$7, _index$7, fn, j$1, _slice$8, _index$8, s$1, _ref$3, n$4, _slice$9, _index$9, n$5, _slice$10, _index$10;
+walksymtab0Öbytes:HasPrefixdebug/gosym:DecodingErrordebug/gosym:bigEndianSymtabdebug/gosym:littleEndianSymtab!debug/gosym:oldLittleEndianSymtabdebug/gosym:symencoding/binary:BigEndianencoding/binary:LittleEndian0‚$ENewTable‚#9	NewTable = go$pkg.NewTable = function(symtab, pcln) {
+		var n, err, t, fname, nf, nz, lasttyp, obj, _slice, _index, lastf, i, _slice$1, _index$1, sym$1, _ref, n$1, _slice$2, _index$2, end, _slice$3, _index$3, c, depth, _ref$1, _i, j, _slice$4, _index$4, s, _key, n$2, _slice$5, _index$5, _tuple, np, na, end$1, _ref$2, _slice$6, _index$6, n$3, _slice$7, _index$7, fn, j$1, _slice$8, _index$8, s$1, _ref$3, n$4, _slice$9, _index$9, n$5, _slice$10, _index$10;
 		n = 0;
 		err = walksymtab(symtab, (function(s) {
 			n = n + 1 >> 0;
@@ -748,7 +749,8 @@ walksymtab0Öbytes:HasPrefixdebug/gosym:DecodingErrordebug/gosym:bigEndian
 					if (!ok) {
 						return new DecodingError.Ptr(-1, "bad filename code", new Go$Uint16(eltIdx));
 					}
-					if (n$2 = ts.Name.length, n$2 > 0 && !((ts.Name.charCodeAt((n$2 - 1 >> 0)) === 47))) {
+					n$2 = ts.Name.length;
+					if (n$2 > 0 && !((ts.Name.charCodeAt((n$2 - 1 >> 0)) === 47))) {
 						ts.Name = ts.Name + "/";
 					}
 					ts.Name = ts.Name + (elt);
@@ -810,7 +812,8 @@ walksymtab0Öbytes:HasPrefixdebug/gosym:DecodingErrordebug/gosym:bigEndian
 				end = 0;
 				end = i + 1 >> 0;
 				while (end < t.Syms.length) {
-					if (c = (_slice$3 = t.Syms, _index$3 = end, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Type, !((c === 90)) && !((c === 122))) {
+					c = (_slice$3 = t.Syms, _index$3 = end, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Type;
+					if (!((c === 90)) && !((c === 122))) {
 						break;
 					}
 					end = end + 1 >> 0;
@@ -834,7 +837,8 @@ walksymtab0Öbytes:HasPrefixdebug/gosym:DecodingErrordebug/gosym:bigEndian
 					_i++;
 				}
 			} else if (_ref === 84 || _ref === 116 || _ref === 76 || _ref === 108) {
-				if (n$2 = t.Funcs.length, n$2 > 0) {
+				n$2 = t.Funcs.length;
+				if (n$2 > 0) {
 					(_slice$5 = t.Funcs, _index$5 = (n$2 - 1 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).End = sym$1.Value;
 				}
 				if (sym$1.Name === "etext") {
@@ -916,13 +920,14 @@ walksymtab0Öbytes:HasPrefixdebug/gosym:DecodingErrordebug/gosym:bigEndian
 		return (go$ptrType(Func)).nil;
 	};
 	Table.prototype.PCToFunc = function(pc) { return this.go$val.PCToFunc(pc); };
- 0Table0%debug/gosym:Funcdebug/gosym:Table0‚ò ‚S	Table.Ptr.prototype.PCToLine = function(pc) {
+ 0Table0%debug/gosym:Funcdebug/gosym:Table0‚ô ‚U	Table.Ptr.prototype.PCToLine = function(pc) {
 		var file, line, fn, t, _tuple;
 		file = "";
 		line = 0;
 		fn = (go$ptrType(Func)).nil;
 		t = this;
-		if (fn = t.PCToFunc(pc), fn === (go$ptrType(Func)).nil) {
+		fn = t.PCToFunc(pc);
+		if (fn === (go$ptrType(Func)).nil) {
 			return [file, line, fn];
 		}
 		if (!(t.go12line === (go$ptrType(LineTable)).nil)) {

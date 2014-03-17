@@ -1,4 +1,4 @@
-0ƒE7regexp‚!ypackage regexp
+0ƒE=regexp‚!ypackage regexp
 import io "io"
 import syntax "regexp/syntax"
 import bytes "bytes"
@@ -108,7 +108,7 @@ func (? *@"regexp/syntax".Inst) @"regexp/syntax".String() (? string)
 func (? *@"regexp/syntax".Inst) @"regexp/syntax".op() (? @"regexp/syntax".InstOp)
 type @"regexp/syntax".InstOp uint8
 $$
-0{runtimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxregexp0“0ioio0regexp/syntaxsyntax0bytesbytes0strconvstrconv0stringsstrings0syncsync0unicodeunicode0unicode/utf8utf80ƒ"˜0‚Ôqueue‚%	queue = go$pkg.queue = go$newType(0, "Struct", "regexp.queue", "queue", "regexp", function(sparse_, dense_) {
+0{runtimeerrorssync/atomicsynciounicodeunicode/utf8bytessortmathstrconvstringsregexp/syntaxregexp0“0ioio0regexp/syntaxsyntax0bytesbytes0strconvstrconv0stringsstrings0syncsync0unicodeunicode0unicode/utf8utf80ƒ"ž0‚Ôqueue‚%	queue = go$pkg.queue = go$newType(0, "Struct", "regexp.queue", "queue", "regexp", function(sparse_, dense_) {
 		this.go$val = this;
 		this.sparse = sparse_ !== undefined ? sparse_ : (go$sliceType(Go$Uint32)).nil;
 		this.dense = dense_ !== undefined ? dense_ : (go$sliceType(entry)).nil;
@@ -232,11 +232,12 @@ inputBytes0&regexp/syntax:EmptyOpregexp:Regexp0‚…inputReader‚.	inputRea
 		m.matchcap = go$subslice(m.matchcap, 0, ncap);
 	};
 	machine.prototype.init = function(ncap) { return this.go$val.init(ncap); };
- 0machineinit0regexp:machine0‚® ‚s	machine.Ptr.prototype.alloc = function(i) {
+ 0machineinit0regexp:machine0‚° ‚u	machine.Ptr.prototype.alloc = function(i) {
 		var m, t, n, _slice, _index;
 		m = this;
 		t = (go$ptrType(thread)).nil;
-		if (n = m.pool.length, n > 0) {
+		n = m.pool.length;
+		if (n > 0) {
 			t = (_slice = m.pool, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			m.pool = go$subslice(m.pool, 0, (n - 1 >> 0));
 		} else {
@@ -406,13 +407,14 @@ regexp:addregexp:canCheckPrefixregexp:clearregexp:contextregexp:indexr
 	};
 	machine.prototype.step = function(runq, nextq, pos, nextPos, c, nextCond) { return this.go$val.step(runq, nextq, pos, nextPos, c, nextCond); };
  0machinestep09
-regexp:addregexp:entryregexp:machineregexp:thread0‚ø ‚±	machine.Ptr.prototype.add = function(q, pc, pos, cap, cond, t) {
-		var m, j, _slice, _index, _slice$1, _index$1, j$1, _slice$2, _index$2, d, _slice$3, _index$3, _slice$4, _index$4, i, _ref, _slice$5, _index$5, opos, _slice$6, _index$6, _slice$7, _index$7;
+regexp:addregexp:entryregexp:machineregexp:thread0‚ú ‚³	machine.Ptr.prototype.add = function(q, pc, pos, cap, cond, t) {
+		var m, _slice, _index, j, _slice$1, _index$1, j$1, _slice$2, _index$2, d, _slice$3, _index$3, _slice$4, _index$4, i, _ref, _slice$5, _index$5, opos, _slice$6, _index$6, _slice$7, _index$7;
 		m = this;
 		if (pc === 0) {
 			return t;
 		}
-		if (j = (_slice$1 = q.sparse, _index$1 = pc, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), j < (q.dense.length >>> 0) && ((_slice = q.dense, _index = j, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).pc === pc)) {
+		j = (_slice = q.sparse, _index = pc, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
+		if (j < (q.dense.length >>> 0) && ((_slice$1 = q.dense, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).pc === pc)) {
 			return t;
 		}
 		j$1 = q.dense.length;
@@ -528,11 +530,12 @@ regexp:put0Ã ¡	Regexp.Ptr.prototype.String = function() {
 		return [regexp, null];
 	};
  0	compile0Œregexp/syntax:Compileregexp/syntax:Parseregexp/syntax:Progregexp:Regexpregexp:machine
-sync:Mutexunicode/utf8:DecodeRuneInString0‚p ‚4	Regexp.Ptr.prototype.get = function() {
+sync:Mutexunicode/utf8:DecodeRuneInString0‚r ‚6	Regexp.Ptr.prototype.get = function() {
 		var re, n, _slice, _index, z, z$1;
 		re = this;
 		re.mu.Lock();
-		if (n = re.machine.length, n > 0) {
+		n = re.machine.length;
+		if (n > 0) {
 			z = (_slice = re.machine, _index = (n - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			re.machine = go$subslice(re.machine, 0, (n - 1 >> 0));
 			re.mu.Unlock();

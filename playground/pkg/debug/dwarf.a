@@ -1,4 +1,4 @@
-0Éfdebug/dwarfÇ-Âpackage dwarf
+0Éd¸debug/dwarfÇ-Âpackage dwarf
 import binary "encoding/binary"
 import strconv "strconv"
 import errors "errors"
@@ -229,7 +229,7 @@ func (? *@"".unknownFormat) @"".dwarf64() (? bool, ? bool)
 func (? *@"".unknownFormat) @"".version() (? int)
 type @"encoding/binary".ByteOrder interface { @"encoding/binary".PutUint16(? []byte, ? uint16) (); @"encoding/binary".PutUint32(? []byte, ? uint32) (); @"encoding/binary".PutUint64(? []byte, ? uint64) (); @"encoding/binary".String() (? string); @"encoding/binary".Uint16(? []byte) (? uint16); @"encoding/binary".Uint32(? []byte) (? uint32); @"encoding/binary".Uint64(? []byte) (? uint64) }
 $$
-0lruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarydebug/dwarf0A0encoding/binarybinary0strconvstrconv0errorserrors0É7o0Ç_bufÇ1	buf = go$pkg.buf = go$newType(0, "Struct", "dwarf.buf", "buf", "debug/dwarf", function(dwarf_, order_, format_, name_, off_, data_, err_) {
+0lruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarydebug/dwarf0A0encoding/binarybinary0strconvstrconv0errorserrors0É6N0Ç_bufÇ1	buf = go$pkg.buf = go$newType(0, "Struct", "dwarf.buf", "buf", "debug/dwarf", function(dwarf_, order_, format_, name_, off_, data_, err_) {
 		this.go$val = this;
 		this.dwarf = dwarf_ !== undefined ? dwarf_ : (go$ptrType(Data)).nil;
 		this.order = order_ !== undefined ? order_ : null;
@@ -724,10 +724,11 @@ StructType01debug/dwarf:CommonTypedebug/dwarf:StructField0Ç∞StructFieldÇ
 	};
 	go$ptrType(Tag).prototype.GoString = function() { return new Tag(this.go$get()).GoString(); };
  0Tag0:debug/dwarf:Tagdebug/dwarf:tagNamesstrconv:FormatInt0Ç
-ê Ç	–	Data.Ptr.prototype.parseAbbrev = function(off) {
-		var d, ok, _tuple, _entry, m, data, x, _struct, b, m$1, id, n, _struct$1, b1, tag, fmt, a, _ref, _i, i, _slice, _index, _slice$1, _index$1, _struct$2, _key, _key$1;
+í Ç	“	Data.Ptr.prototype.parseAbbrev = function(off) {
+		var d, _tuple, _entry, m, ok, data, x, _struct, b, m$1, id, n, _struct$1, b1, tag, fmt, a, _ref, _i, i, _slice, _index, _slice$1, _index$1, _struct$2, _key, _key$1;
 		d = this;
-		if (_tuple = (_entry = d.abbrevCache[off], _entry !== undefined ? [_entry.v, true] : [false, false]), m = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (_entry = d.abbrevCache[off], _entry !== undefined ? [_entry.v, true] : [false, false]), m = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			return [m, null];
 		}
 		data = d.abbrev;
@@ -1210,11 +1211,12 @@ StructType0+debug/dwarf:StructTypestrconv:FormatInt0Çø ÇÄ	EnumType.Ptr.p
 		return t.Type.Size();
 	};
 	TypedefType.prototype.Size = function() { return this.go$val.Size(); };
- 0TypedefType0debug/dwarf:TypedefType0ÇG~ ÇD¶	Data.Ptr.prototype.Type = function(off) {
-		var go$this = this, d, ok, _tuple, _entry, t, r, _tuple$1, e, err, x, typ, nextDepth, next, typeOf, _ref, t$1, _key, _tuple$2, x$1, ndim, kid, _ref$1, _tuple$3, x$2, max, ok$1, x$3, _tuple$4, x$4, name, _tuple$5, x$5, enc, ok$2, x$6, _ref$2, x$7, _key$1, t$2, _tuple$6, x$8, _tuple$7, x$9, t$3, _key$2, _ref$3, _tuple$8, x$10, lastFieldType, lastFieldBitOffset, kid$1, f, ok$3, _tuple$9, x$11, loc, x$12, _struct, b, x$13, x$14, haveBitOffset, _tuple$10, x$15, _tuple$11, x$16, _tuple$12, x$17, _tuple$13, x$18, bito, _tuple$14, x$19, b$1, ok$4, x$20, t$4, _key$3, _ref$4, t$5, _key$4, _tuple$15, x$21, kid$2, f$1, _tuple$16, x$22, _tuple$17, x$23, n, x$24, val, _slice, _index, t$6, _key$5, t$7, _key$6, kid$3, tkid, _ref$5, t$8, _key$7, _tuple$18, x$25, _tuple$19, x$26, b$2, ok$5;
+ 0TypedefType0debug/dwarf:TypedefType0ÇF[ ÇCÉ	Data.Ptr.prototype.Type = function(off) {
+		var go$this = this, d, _tuple, _entry, t, ok, r, _tuple$1, e, err, x, typ, nextDepth, next, typeOf, _ref, t$1, _key, _tuple$2, x$1, ndim, kid, _ref$1, _tuple$3, x$2, max, ok$1, x$3, _tuple$4, x$4, name, _tuple$5, x$5, enc, ok$2, x$6, _ref$2, x$7, _key$1, t$2, _tuple$6, x$8, _tuple$7, x$9, t$3, _key$2, _ref$3, _tuple$8, x$10, lastFieldType, lastFieldBitOffset, kid$1, f, _tuple$9, x$11, loc, ok$3, x$12, _struct, b, x$13, x$14, haveBitOffset, _tuple$10, x$15, _tuple$11, x$16, _tuple$12, x$17, _tuple$13, x$18, bito, _tuple$14, x$19, b$1, ok$4, x$20, t$4, _key$3, _ref$4, t$5, _key$4, _tuple$15, x$21, kid$2, f$1, _tuple$16, x$22, _tuple$17, x$23, n, x$24, val, _slice, _index, t$6, _key$5, t$7, _key$6, kid$3, tkid, _ref$5, t$8, _key$7, _tuple$18, x$25, _tuple$19, x$26, b$2, ok$5;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		d = go$this;
-		if (_tuple = (_entry = d.typeCache[off], _entry !== undefined ? [_entry.v, true] : [null, false]), t = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (_entry = d.typeCache[off], _entry !== undefined ? [_entry.v, true] : [null, false]), t = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			return [t, null];
 		}
 		r = d.Reader();
@@ -1266,7 +1268,8 @@ StructType0+debug/dwarf:StructTypestrconv:FormatInt0Çø ÇÄ	EnumType.Ptr.p
 				return new VoidType.Ptr();
 			}
 			t$1 = null;
-			if (_tuple$3 = d.Type(toff), t$1 = _tuple$3[0], err = _tuple$3[1], !(go$interfaceIsEqual(err, null))) {
+			_tuple$3 = d.Type(toff), t$1 = _tuple$3[0], err = _tuple$3[1];
+			if (!(go$interfaceIsEqual(err, null))) {
 				return null;
 			}
 			return t$1;
@@ -1276,7 +1279,8 @@ StructType0+debug/dwarf:StructTypestrconv:FormatInt0Çø ÇÄ	EnumType.Ptr.p
 			t$1 = new ArrayType.Ptr();
 			typ = t$1;
 			_key = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: t$1 };
-			/* if (t$1.Type = typeOf(e), !(go$interfaceIsEqual(err, null))) { */ if (t$1.Type = typeOf(e), !(go$interfaceIsEqual(err, null))) {} else { go$s = 10; continue; }
+			t$1.Type = typeOf(e);
+			/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 10; continue; }
 				/* goto Error */ go$s = 1; continue;
 			/* } */ case 10:
 			_tuple$2 = (x$1 = e.Val(46), (x$1 !== null && x$1.constructor === Go$Int64 ? [x$1.go$val, true] : [new Go$Int64(0, 0), false])), t$1.StrideBitSize = _tuple$2[0];
@@ -1358,10 +1362,12 @@ StructType0+debug/dwarf:StructTypestrconv:FormatInt0Çø ÇÄ	EnumType.Ptr.p
 			/* while (!(kid$1 === (go$ptrType(Entry)).nil)) { */ case 25: if(!(!(kid$1 === (go$ptrType(Entry)).nil))) { go$s = 26; continue; }
 				/* if (kid$1.Tag === 13) { */ if (kid$1.Tag === 13) {} else { go$s = 27; continue; }
 					f = new StructField.Ptr();
-					/* if (f.Type = typeOf(kid$1), !(go$interfaceIsEqual(err, null))) { */ if (f.Type = typeOf(kid$1), !(go$interfaceIsEqual(err, null))) {} else { go$s = 28; continue; }
+					f.Type = typeOf(kid$1);
+					/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 28; continue; }
 						/* goto Error */ go$s = 1; continue;
 					/* } */ case 28:
-					/* if (_tuple$9 = (x$11 = kid$1.Val(56), (x$11 !== null && x$11.constructor === (go$sliceType(Go$Uint8)) ? [x$11.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), loc = _tuple$9[0], ok$3 = _tuple$9[1], ok$3) { */ if (_tuple$9 = (x$11 = kid$1.Val(56), (x$11 !== null && x$11.constructor === (go$sliceType(Go$Uint8)) ? [x$11.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), loc = _tuple$9[0], ok$3 = _tuple$9[1], ok$3) {} else { go$s = 29; continue; }
+					_tuple$9 = (x$11 = kid$1.Val(56), (x$11 !== null && x$11.constructor === (go$sliceType(Go$Uint8)) ? [x$11.go$val, true] : [(go$sliceType(Go$Uint8)).nil, false])), loc = _tuple$9[0], ok$3 = _tuple$9[1];
+					/* if (ok$3) { */ if (ok$3) {} else { go$s = 29; continue; }
 						b = (_struct = makeBuf(d, (x$12 = new unknownFormat.Ptr(), new x$12.constructor.Struct(x$12)), "location", 0, loc), new buf.Ptr(_struct.dwarf, _struct.order, _struct.format, _struct.name, _struct.off, _struct.data, _struct.err));
 						/* if (!((b.uint8() === 35))) { */ if (!((b.uint8() === 35))) {} else { go$s = 30; continue; }
 							err = (x$13 = new DecodeError.Ptr("info", kid$1.Offset, "unexpected opcode"), new x$13.constructor.Struct(x$13));
@@ -1401,7 +1407,8 @@ StructType0+debug/dwarf:StructTypestrconv:FormatInt0Çø ÇÄ	EnumType.Ptr.p
 			t$4 = new QualType.Ptr();
 			typ = t$4;
 			_key$3 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: t$4 };
-			/* if (t$4.Type = typeOf(e), !(go$interfaceIsEqual(err, null))) { */ if (t$4.Type = typeOf(e), !(go$interfaceIsEqual(err, null))) {} else { go$s = 32; continue; }
+			t$4.Type = typeOf(e);
+			/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 32; continue; }
 				/* goto Error */ go$s = 1; continue;
 			/* } */ case 32:
 			_ref$4 = e.Tag;
@@ -1448,7 +1455,8 @@ StructType0+debug/dwarf:StructTypestrconv:FormatInt0Çø ÇÄ	EnumType.Ptr.p
 			t$7 = new FuncType.Ptr();
 			typ = t$7;
 			_key$6 = off, (d.typeCache || go$throwRuntimeError("assignment to entry in nil map"))[_key$6] = { k: _key$6, v: t$7 };
-			/* if (t$7.ReturnType = typeOf(e), !(go$interfaceIsEqual(err, null))) { */ if (t$7.ReturnType = typeOf(e), !(go$interfaceIsEqual(err, null))) {} else { go$s = 33; continue; }
+			t$7.ReturnType = typeOf(e);
+			/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 33; continue; }
 				/* goto Error */ go$s = 1; continue;
 			/* } */ case 33:
 			t$7.ParamType = (go$sliceType(Type)).make(0, 8, function() { return null; });
@@ -1457,7 +1465,8 @@ StructType0+debug/dwarf:StructTypestrconv:FormatInt0Çø ÇÄ	EnumType.Ptr.p
 				tkid = null;
 				_ref$5 = kid$3.Tag;
 				/* if (_ref$5 === 5) { */ if (_ref$5 === 5) {} else if (_ref$5 === 24) { go$s = 36; continue; } else { go$s = 37; continue; }
-					/* if (tkid = typeOf(kid$3), !(go$interfaceIsEqual(err, null))) { */ if (tkid = typeOf(kid$3), !(go$interfaceIsEqual(err, null))) {} else { go$s = 39; continue; }
+					tkid = typeOf(kid$3);
+					/* if (!(go$interfaceIsEqual(err, null))) { */ if (!(go$interfaceIsEqual(err, null))) {} else { go$s = 39; continue; }
 						/* goto Error */ go$s = 1; continue;
 					/* } */ case 39:
 				/* } else if (_ref$5 === 24) { */ go$s = 38; continue; case 36: 

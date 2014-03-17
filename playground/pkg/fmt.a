@@ -1,4 +1,4 @@
-0ƒrNfmt‚lÖpackage fmt
+0ƒržfmt‚lÖpackage fmt
 import strconv "strconv"
 import utf8 "unicode/utf8"
 import errors "errors"
@@ -350,7 +350,7 @@ func (? @"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 func (? *@"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 type @"reflect".method struct { @"reflect".name *string; @"reflect".pkgPath *string; @"reflect".mtyp *@"reflect".rtype; @"reflect".typ *@"reflect".rtype; @"reflect".ifn @"unsafe".Pointer; @"reflect".tfn @"unsafe".Pointer }
 $$
-0fruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmt0€0strconvstrconv0unicode/utf8utf80errorserrors0ioio0osos0reflectreflect0syncsync0mathmath0ƒ}0‚0fmt‚ø	fmt = go$pkg.fmt = go$newType(0, "Struct", "fmt.fmt", "fmt", "fmt", function(intbuf_, buf_, wid_, prec_, widPresent_, precPresent_, minus_, plus_, sharp_, space_, unicode_, uniQuote_, zero_) {
+0fruntimeerrorssync/atomicsynciomathsyscalltimeosunicode/utf8strconvreflectfmt0€0strconvstrconv0unicode/utf8utf80errorserrors0ioio0osos0reflectreflect0syncsync0mathmath0ƒÍ0‚0fmt‚ø	fmt = go$pkg.fmt = go$newType(0, "Struct", "fmt.fmt", "fmt", "fmt", function(intbuf_, buf_, wid_, prec_, widPresent_, precPresent_, minus_, plus_, sharp_, space_, unicode_, uniQuote_, zero_) {
 		this.go$val = this;
 		this.intbuf = intbuf_ !== undefined ? intbuf_ : go$makeNativeArray("Uint8", 65, function() { return 0; });
 		this.buf = buf_ !== undefined ? buf_ : (go$ptrType(buffer)).nil;
@@ -1540,11 +1540,13 @@ fmt:fmt-bx	fmt:fmt-q	fmt:fmt-sfmt:ppfmt:printArg0‚E ‚Â	pp.Ptr.prototyp
 	pp.prototype.fmtPointer = function(value, verb, goSyntax) { return this.go$val.fmtPointer(value, verb, goSyntax); };
  0pp
 fmtPointer0gfmt:addfmt:badVerb
-fmt:bufferfmt:fmt0x64fmt:fmtUint64fmt:nilAngleBytesfmt:nilBytesfmt:pp0‚³ ‚	pp.Ptr.prototype.catchPanic = function(arg, verb) {
-		var p, err, v, _struct, v$1, v$2, v$3, v$4;
+fmt:bufferfmt:fmt0x64fmt:fmtUint64fmt:nilAngleBytesfmt:nilBytesfmt:pp0‚¸ ‚	pp.Ptr.prototype.catchPanic = function(arg, verb) {
+		var p, err, _struct, v, v$1, v$2, v$3, v$4;
 		p = this;
-		if (err = go$recover(), !(go$interfaceIsEqual(err, null))) {
-			if (v = (_struct = reflect.ValueOf(arg), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag)), (v.Kind() === 22) && v.IsNil()) {
+		err = go$recover();
+		if (!(go$interfaceIsEqual(err, null))) {
+			v = (_struct = reflect.ValueOf(arg), new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
+			if ((v.Kind() === 22) && v.IsNil()) {
 				(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$1) { p.buf = v$1; })).Write(nilAngleBytes);
 				return;
 			}
@@ -1563,8 +1565,8 @@ fmt:bufferfmt:fmt0x64fmt:fmtUint64fmt:nilAngleBytesfmt:nilBytesfmt:pp0
 	pp.prototype.catchPanic = function(arg, verb) { return this.go$val.catchPanic(arg, verb); };
  0pp
 catchPanic0„fmt:add
-fmt:bufferfmt:nilAngleBytesfmt:panicBytesfmt:percentBangBytesfmt:ppfmt:printArgreflect:Valuereflect:ValueOf0‚	¤ ‚	#	pp.Ptr.prototype.handleMethods = function(verb, plus, goSyntax, depth) {
-		var wasString, handled, p, ok, _tuple, x, formatter, ok$1, _tuple$1, x$1, stringer, _ref, v, _ref$1, _type;
+fmt:bufferfmt:nilAngleBytesfmt:panicBytesfmt:percentBangBytesfmt:ppfmt:printArgreflect:Valuereflect:ValueOf0‚	« ‚	*	pp.Ptr.prototype.handleMethods = function(verb, plus, goSyntax, depth) {
+		var wasString, handled, p, _tuple, x, formatter, ok, _tuple$1, x$1, stringer, ok$1, _ref, v, _ref$1, _type;
 		wasString = false;
 		handled = false;
 		var go$deferred = [];
@@ -1573,7 +1575,8 @@ fmt:bufferfmt:nilAngleBytesfmt:panicBytesfmt:percentBangBytesfmt:ppfmt
 			if (p.erroring) {
 				return [wasString, handled];
 			}
-			if (_tuple = (x = p.arg, (x !== null && Formatter.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), formatter = _tuple[0], ok = _tuple[1], ok) {
+			_tuple = (x = p.arg, (x !== null && Formatter.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), formatter = _tuple[0], ok = _tuple[1];
+			if (ok) {
 				handled = true;
 				wasString = false;
 				go$deferred.push({ recv: p, method: "catchPanic", args: [p.arg, verb] });
@@ -1585,7 +1588,8 @@ fmt:bufferfmt:nilAngleBytesfmt:panicBytesfmt:percentBangBytesfmt:ppfmt
 			}
 			if (goSyntax) {
 				p.fmt.sharp = false;
-				if (_tuple$1 = (x$1 = p.arg, (x$1 !== null && GoStringer.implementedBy.indexOf(x$1.constructor) !== -1 ? [x$1, true] : [null, false])), stringer = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) {
+				_tuple$1 = (x$1 = p.arg, (x$1 !== null && GoStringer.implementedBy.indexOf(x$1.constructor) !== -1 ? [x$1, true] : [null, false])), stringer = _tuple$1[0], ok$1 = _tuple$1[1];
+				if (ok$1) {
 					wasString = false;
 					handled = true;
 					go$deferred.push({ recv: p, method: "catchPanic", args: [p.arg, verb] });
@@ -1624,8 +1628,8 @@ fmt:bufferfmt:nilAngleBytesfmt:panicBytesfmt:percentBangBytesfmt:ppfmt
 		}
 	};
 	pp.prototype.handleMethods = function(verb, plus, goSyntax, depth) { return this.go$val.handleMethods(verb, plus, goSyntax, depth); };
- 0pphandleMethods0bfmt:Formatterfmt:GoStringerfmt:Stringerfmt:catchPanicfmt:fmtStringfmt:ppfmt:printArg0‚6 ‚ä	pp.Ptr.prototype.printArg = function(arg, verb, plus, goSyntax, depth) {
-		var wasString, p, _ref, _struct, oldPlus, oldSharp, f, _ref$1, _type, handled, _tuple, isString, _struct$1;
+ 0pphandleMethods0bfmt:Formatterfmt:GoStringerfmt:Stringerfmt:catchPanicfmt:fmtStringfmt:ppfmt:printArg0‚9 ‚ç	pp.Ptr.prototype.printArg = function(arg, verb, plus, goSyntax, depth) {
+		var wasString, p, _ref, _struct, oldPlus, oldSharp, f, _ref$1, _type, _tuple, isString, handled, _struct$1;
 		wasString = false;
 		p = this;
 		p.arg = arg;
@@ -1719,7 +1723,8 @@ fmt:bufferfmt:nilAngleBytesfmt:panicBytesfmt:percentBangBytesfmt:ppfmt
 			f = _ref$1;
 			p.fmt.plus = oldPlus;
 			p.fmt.sharp = oldSharp;
-			if (_tuple = p.handleMethods(verb, plus, goSyntax, depth), isString = _tuple[0], handled = _tuple[1], handled) {
+			_tuple = p.handleMethods(verb, plus, goSyntax, depth), isString = _tuple[0], handled = _tuple[1];
+			if (handled) {
 				wasString = isString;
 				return wasString;
 			}
@@ -1730,8 +1735,8 @@ fmt:bufferfmt:nilAngleBytesfmt:panicBytesfmt:percentBangBytesfmt:ppfmt
 		return wasString;
 	};
 	pp.prototype.printArg = function(arg, verb, plus, goSyntax, depth) { return this.go$val.printArg(arg, verb, plus, goSyntax, depth); };
- 0ppprintArg0‚6fmt:badVerbfmt:fmtBoolfmt:fmtBytesfmt:fmtComplex128fmt:fmtComplex64fmt:fmtFloat32fmt:fmtFloat64fmt:fmtInt64fmt:fmtPointerfmt:fmtStringfmt:fmtUint64fmt:handleMethodsfmt:nilAngleBytesfmt:padfmt:ppfmt:printReflectValuereflect:TypeOfreflect:Valuereflect:ValueOfreflect:rtype0‚û ‚S	pp.Ptr.prototype.printValue = function(value, verb, plus, goSyntax, depth) {
-		var wasString, p, v, _ref, _struct, handled, _tuple, isString, _struct$1;
+ 0ppprintArg0‚6fmt:badVerbfmt:fmtBoolfmt:fmtBytesfmt:fmtComplex128fmt:fmtComplex64fmt:fmtFloat32fmt:fmtFloat64fmt:fmtInt64fmt:fmtPointerfmt:fmtStringfmt:fmtUint64fmt:handleMethodsfmt:nilAngleBytesfmt:padfmt:ppfmt:printReflectValuereflect:TypeOfreflect:Valuereflect:ValueOfreflect:rtype0‚ý ‚U	pp.Ptr.prototype.printValue = function(value, verb, plus, goSyntax, depth) {
+		var wasString, p, v, _ref, _struct, _tuple, isString, handled, _struct$1;
 		wasString = false;
 		p = this;
 		if (!value.IsValid()) {
@@ -1757,7 +1762,8 @@ fmt:bufferfmt:nilAngleBytesfmt:panicBytesfmt:percentBangBytesfmt:ppfmt
 		if (value.CanInterface()) {
 			p.arg = value.Interface();
 		}
-		if (_tuple = p.handleMethods(verb, plus, goSyntax, depth), isString = _tuple[0], handled = _tuple[1], handled) {
+		_tuple = p.handleMethods(verb, plus, goSyntax, depth), isString = _tuple[0], handled = _tuple[1];
+		if (handled) {
 			wasString = isString;
 			return wasString;
 		}
@@ -1767,8 +1773,8 @@ fmt:bufferfmt:nilAngleBytesfmt:panicBytesfmt:percentBangBytesfmt:ppfmt
 	pp.prototype.printValue = function(value, verb, plus, goSyntax, depth) { return this.go$val.printValue(value, verb, plus, goSyntax, depth); };
  0pp
 printValue0‹fmt:badVerb
-fmt:bufferfmt:fmtPointerfmt:handleMethodsfmt:nilAngleBytesfmt:ppfmt:printArgfmt:printReflectValuereflect:Value0‚'u ‚%û	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
-		var wasString, p, _struct, oldValue, _struct$1, _struct$2, f, _ref, x, v, v$1, v$2, v$3, keys, _ref$1, _i, _slice, _index, _struct$3, key, i, v$4, v$5, _struct$4, v$6, _struct$5, _struct$6, v$7, v$8, v$9, _struct$7, v$10, t, i$1, v$11, v$12, f$1, _struct$8, v$13, v$14, _struct$9, _struct$10, v$15, _struct$11, value$1, v$16, v$17, v$18, _struct$12, typ, bytes, _ref$2, _i$1, i$2, _slice$1, _index$1, v$19, v$20, v$21, v$22, i$3, v$23, v$24, _struct$13, v$25, v$26, v$27, _struct$14, a, _ref$3, v$28, _struct$15, v$29, _struct$16, _struct$17, _struct$18, _struct$19;
+fmt:bufferfmt:fmtPointerfmt:handleMethodsfmt:nilAngleBytesfmt:ppfmt:printArgfmt:printReflectValuereflect:Value0‚'} ‚&	pp.Ptr.prototype.printReflectValue = function(value, verb, plus, goSyntax, depth) {
+		var wasString, p, _struct, oldValue, _struct$1, _struct$2, f, _ref, x, v, v$1, v$2, v$3, keys, _ref$1, _i, _slice, _index, _struct$3, key, i, v$4, v$5, _struct$4, v$6, _struct$5, _struct$6, v$7, v$8, v$9, _struct$7, v$10, t, i$1, v$11, v$12, _struct$8, f$1, v$13, v$14, _struct$9, _struct$10, v$15, _struct$11, value$1, v$16, v$17, v$18, _struct$12, typ, bytes, _ref$2, _i$1, i$2, _slice$1, _index$1, v$19, v$20, v$21, v$22, i$3, v$23, v$24, _struct$13, v$25, v$26, v$27, _struct$14, a, _ref$3, v$28, _struct$15, v$29, _struct$16, _struct$17, _struct$18, _struct$19;
 		wasString = false;
 		p = this;
 		oldValue = (_struct = p.value, new reflect.Value.Ptr(_struct.typ, _struct.val, _struct.flag));
@@ -1847,7 +1853,8 @@ fmt:bufferfmt:fmtPointerfmt:handleMethodsfmt:nilAngleBytesfmt:ppfmt:pr
 					}
 				}
 				if (plus || goSyntax) {
-					if (f$1 = (_struct$8 = t.Field(i$1), new reflect.StructField.Ptr(_struct$8.Name, _struct$8.PkgPath, _struct$8.Type, _struct$8.Tag, _struct$8.Offset, _struct$8.Index, _struct$8.Anonymous)), !(f$1.Name === "")) {
+					f$1 = (_struct$8 = t.Field(i$1), new reflect.StructField.Ptr(_struct$8.Name, _struct$8.PkgPath, _struct$8.Type, _struct$8.Tag, _struct$8.Offset, _struct$8.Index, _struct$8.Anonymous));
+					if (!(f$1.Name === "")) {
 						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$13) { p.buf = v$13; })).WriteString(f$1.Name);
 						(new (go$ptrType(buffer))(function() { return p.buf; }, function(v$14) { p.buf = v$14; })).WriteByte(58);
 					}
@@ -1869,7 +1876,8 @@ fmt:bufferfmt:fmtPointerfmt:handleMethodsfmt:nilAngleBytesfmt:ppfmt:pr
 				wasString = p.printValue((_struct$12 = value$1, new reflect.Value.Ptr(_struct$12.typ, _struct$12.val, _struct$12.flag)), verb, plus, goSyntax, depth + 1 >> 0);
 			}
 		} else if (_ref === 17 || _ref === 23) {
-			if (typ = f.Type(), typ.Elem().Kind() === 8) {
+			typ = f.Type();
+			if (typ.Elem().Kind() === 8) {
 				bytes = (go$sliceType(Go$Uint8)).nil;
 				if (f.Kind() === 23) {
 					bytes = f.Bytes();
@@ -2309,10 +2317,11 @@ errors:Newfmt:ss0‚7 ‚	ss.Ptr.prototype.ReadRune = function() {
 		return r;
 	};
 	ss.prototype.mustReadRune = function() { return this.go$val.mustReadRune(); };
- 0ssmustReadRune05	fmt:errorfmt:getRunefmt:ssio:ErrUnexpectedEOF0‚ñ ‚Ç	ss.Ptr.prototype.UnreadRune = function() {
-		var s, ok, _tuple, x, u;
+ 0ssmustReadRune05	fmt:errorfmt:getRunefmt:ssio:ErrUnexpectedEOF0‚ó ‚É	ss.Ptr.prototype.UnreadRune = function() {
+		var s, _tuple, x, u, ok;
 		s = this;
-		if (_tuple = (x = s.rr, (x !== null && runeUnreader.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), u = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (x = s.rr, (x !== null && runeUnreader.implementedBy.indexOf(x.constructor) !== -1 ? [x, true] : [null, false])), u = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			u.UnreadRune();
 		} else {
 			s.peekRune = s.prevRune;
@@ -2335,7 +2344,7 @@ errors:Newfmt:ss0‚7 ‚	ss.Ptr.prototype.ReadRune = function() {
 	};
 	ss.prototype.errorString = function(err) { return this.go$val.errorString(err); };
  0sserrorString0#
-errors:Newfmt:scanErrorfmt:ss0‚ü ‚¼	ss.Ptr.prototype.Token = function(skipSpace, f) {
+errors:Newfmt:scanErrorfmt:ss0‚ ‚Å	ss.Ptr.prototype.Token = function(skipSpace, f) {
 		var tok, err, s;
 		tok = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -2343,9 +2352,11 @@ errors:Newfmt:scanErrorfmt:ss0‚ü ‚¼	ss.Ptr.prototype.Token = function(sk
 		try {
 			s = this;
 			go$deferred.push({ fun: (function() {
-				var e, ok, _tuple, _struct, se;
-				if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
-					if (_tuple = (e !== null && e.constructor === scanError ? [e.go$val, true] : [new scanError.Ptr(), false]), se = (_struct = _tuple[0], new scanError.Ptr(_struct.err)), ok = _tuple[1], ok) {
+				var e, _tuple, _struct, se, ok;
+				e = go$recover();
+				if (!(go$interfaceIsEqual(e, null))) {
+					_tuple = (e !== null && e.constructor === scanError ? [e.go$val, true] : [new scanError.Ptr(), false]), se = (_struct = _tuple[0], new scanError.Ptr(_struct.err)), ok = _tuple[1];
+					if (ok) {
 						err = se.err;
 					} else {
 						throw go$panic(e);
@@ -2461,8 +2472,8 @@ errors:Newfmt:scanErrorfmt:ss0‚ü ‚¼	ss.Ptr.prototype.Token = function(sk
 	readRune.prototype.ReadRune = function() { return this.go$val.ReadRune(); };
  0
 readRune0`fmt:readBytefmt:readRune
-fmt:unreadio:EOFunicode/utf8:DecodeRuneunicode/utf8:FullRune0‚ýnewScanState‚’	newScanState = function(r, nlIsSpace, nlIsEnd) {
-		var s, old, _tuple, ok, _struct, _struct$1, x, ok$1, _tuple$1, rr, _struct$2;
+fmt:unreadio:EOFunicode/utf8:DecodeRuneunicode/utf8:FullRune0‚ÿnewScanState‚”	newScanState = function(r, nlIsSpace, nlIsEnd) {
+		var s, old, _tuple, ok, _struct, _struct$1, x, _tuple$1, rr, ok$1, _struct$2;
 		s = (go$ptrType(ss)).nil;
 		old = new ssave.Ptr();
 		_tuple = (r !== null && r.constructor === (go$ptrType(ss)) ? [r.go$val, true] : [(go$ptrType(ss)).nil, false]), s = _tuple[0], ok = _tuple[1];
@@ -2474,7 +2485,8 @@ fmt:unreadio:EOFunicode/utf8:DecodeRuneunicode/utf8:FullRune0‚ýnewScanS
 			return [s, (_struct$1 = old, new ssave.Ptr(_struct$1.validSave, _struct$1.nlIsEnd, _struct$1.nlIsSpace, _struct$1.argLimit, _struct$1.limit, _struct$1.maxWid))];
 		}
 		s = (x = ssFree.get(), (x !== null && x.constructor === (go$ptrType(ss)) ? x.go$val : go$typeAssertionFailed(x, (go$ptrType(ss)))));
-		if (_tuple$1 = (r !== null && io.RuneReader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) {
+		_tuple$1 = (r !== null && io.RuneReader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple$1[0], ok$1 = _tuple$1[1];
+		if (ok$1) {
 			s.rr = rr;
 		} else {
 			s.rr = new readRune.Ptr(r, go$makeNativeArray("Uint8", 4, function() { return 0; }), 0, go$makeNativeArray("Uint8", 4, function() { return 0; }));
@@ -2604,10 +2616,11 @@ fmt:bufferfmt:getRunefmt:indexRunefmt:ss0‚" é	ss.Ptr.prototype.peek = 
 	};
 	ss.prototype.peek = function(ok) { return this.go$val.peek(ok); };
  0
-sspeek0$fmt:getRunefmt:indexRunefmt:ss0‚ Ü	ss.Ptr.prototype.notEOF = function() {
+sspeek0$fmt:getRunefmt:indexRunefmt:ss0‚ Þ	ss.Ptr.prototype.notEOF = function() {
 		var s, r;
 		s = this;
-		if (r = s.getRune(), r === -1) {
+		r = s.getRune();
+		if (r === -1) {
 			throw go$panic(io.EOF);
 		}
 		s.UnreadRune();
@@ -2858,20 +2871,23 @@ fmt:acceptfmt:ss0‚Ü ‚|	ss.Ptr.prototype.complexTokens = function() {
 	};
 	ss.prototype.complexTokens = function() { return this.go$val.complexTokens(); };
  0sscomplexTokens0A
-fmt:acceptfmt:complexError	fmt:errorfmt:floatTokenfmt:ss0‚n ‚î	ss.Ptr.prototype.convertFloat = function(str, n) {
-		var s, p, _tuple, f, err, ok, _tuple$1, e, _tuple$2, m, ok$1, _tuple$3, e$1, _tuple$4, f$1, err$1;
+fmt:acceptfmt:complexError	fmt:errorfmt:floatTokenfmt:ss0‚x ‚ø	ss.Ptr.prototype.convertFloat = function(str, n) {
+		var s, p, _tuple, f, err, _tuple$1, e, ok, _tuple$2, m, _tuple$3, e$1, ok$1, _tuple$4, f$1, err$1;
 		s = this;
-		if (p = indexRune(str, 112), p >= 0) {
+		p = indexRune(str, 112);
+		if (p >= 0) {
 			_tuple = strconv.ParseFloat(str.substring(0, p), n), f = _tuple[0], err = _tuple[1];
 			if (!(go$interfaceIsEqual(err, null))) {
-				if (_tuple$1 = (err !== null && err.constructor === (go$ptrType(strconv.NumError)) ? [err.go$val, true] : [(go$ptrType(strconv.NumError)).nil, false]), e = _tuple$1[0], ok = _tuple$1[1], ok) {
+				_tuple$1 = (err !== null && err.constructor === (go$ptrType(strconv.NumError)) ? [err.go$val, true] : [(go$ptrType(strconv.NumError)).nil, false]), e = _tuple$1[0], ok = _tuple$1[1];
+				if (ok) {
 					e.Num = str;
 				}
 				s.error(err);
 			}
 			_tuple$2 = strconv.Atoi(str.substring((p + 1 >> 0))), m = _tuple$2[0], err = _tuple$2[1];
 			if (!(go$interfaceIsEqual(err, null))) {
-				if (_tuple$3 = (err !== null && err.constructor === (go$ptrType(strconv.NumError)) ? [err.go$val, true] : [(go$ptrType(strconv.NumError)).nil, false]), e$1 = _tuple$3[0], ok$1 = _tuple$3[1], ok$1) {
+				_tuple$3 = (err !== null && err.constructor === (go$ptrType(strconv.NumError)) ? [err.go$val, true] : [(go$ptrType(strconv.NumError)).nil, false]), e$1 = _tuple$3[0], ok$1 = _tuple$3[1];
+				if (ok$1) {
 					e$1.Num = str;
 				}
 				s.error(err);
@@ -3018,12 +3034,13 @@ fmt:notEOFfmt:ssstrconv:Unquote0‚þ ‚Ë	ss.Ptr.prototype.hexDigit = functi
 	ss.prototype.hexString = function() { return this.go$val.hexString(); };
  0ss	hexString0>
 fmt:bufferfmt:errorStringfmt:hexByte
-fmt:notEOFfmt:ss0‚@ ‚ð	ss.Ptr.prototype.scanOne = function(verb, arg) {
-		var s, err, ok, _tuple, v, v$1, _ref, _type, x, x$1, x$2, x$3, x$4, _struct, val, _struct$1, ptr, _struct$2, v$2, _ref$1, typ, str, _struct$3, i;
+fmt:notEOFfmt:ss0‚B ‚ò	ss.Ptr.prototype.scanOne = function(verb, arg) {
+		var s, err, _tuple, v, ok, v$1, _ref, _type, x, x$1, x$2, x$3, x$4, _struct, val, _struct$1, ptr, _struct$2, v$2, _ref$1, typ, str, _struct$3, i;
 		s = this;
 		s.buf = go$subslice(s.buf, 0, 0);
 		err = null;
-		if (_tuple = (arg !== null && Scanner.implementedBy.indexOf(arg.constructor) !== -1 ? [arg, true] : [null, false]), v = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (arg !== null && Scanner.implementedBy.indexOf(arg.constructor) !== -1 ? [arg, true] : [null, false]), v = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			err = v.Scan(s, verb);
 			if (!(go$interfaceIsEqual(err, null))) {
 				if (go$interfaceIsEqual(err, io.EOF)) {
@@ -3141,15 +3158,20 @@ fmt:notEOFfmt:ss0‚@ ‚ð	ss.Ptr.prototype.scanOne = function(verb, arg) {
 	ss.prototype.scanOne = function(verb, arg) { return this.go$val.scanOne(verb, arg); };
  0ssscanOne0‚5fmt:Scannerfmt:convertFloatfmt:convertString	fmt:errorfmt:errorStringfmt:floatTokenfmt:intBits
 fmt:notEOF
-fmt:okVerbfmt:scanBoolfmt:scanComplexfmt:scanIntfmt:scanUintfmt:skipSpacefmt:ssfmt:uintptrBitsio:EOFio:ErrUnexpectedEOFreflect:MakeSlicereflect:Valuereflect:ValueOf0‚¾errorHandler‚	errorHandler = function(errp) {
-		var e, ok, _tuple, _struct, se, ok$1, eof, _tuple$1;
-		if (e = go$recover(), !(go$interfaceIsEqual(e, null))) {
-			if (_tuple = (e !== null && e.constructor === scanError ? [e.go$val, true] : [new scanError.Ptr(), false]), se = (_struct = _tuple[0], new scanError.Ptr(_struct.err)), ok = _tuple[1], ok) {
+fmt:okVerbfmt:scanBoolfmt:scanComplexfmt:scanIntfmt:scanUintfmt:skipSpacefmt:ssfmt:uintptrBitsio:EOFio:ErrUnexpectedEOFreflect:MakeSlicereflect:Valuereflect:ValueOf0‚ÖerrorHandler‚™	errorHandler = function(errp) {
+		var e, _tuple, _struct, se, ok, _tuple$1, eof, ok$1;
+		e = go$recover();
+		if (!(go$interfaceIsEqual(e, null))) {
+			_tuple = (e !== null && e.constructor === scanError ? [e.go$val, true] : [new scanError.Ptr(), false]), se = (_struct = _tuple[0], new scanError.Ptr(_struct.err)), ok = _tuple[1];
+			if (ok) {
 				errp.go$set(se.err);
-			} else if (_tuple$1 = (e !== null && go$error.implementedBy.indexOf(e.constructor) !== -1 ? [e, true] : [null, false]), eof = _tuple$1[0], ok$1 = _tuple$1[1], ok$1 && go$interfaceIsEqual(eof, io.EOF)) {
-				errp.go$set(eof);
 			} else {
-				throw go$panic(e);
+				_tuple$1 = (e !== null && go$error.implementedBy.indexOf(e.constructor) !== -1 ? [e, true] : [null, false]), eof = _tuple$1[0], ok$1 = _tuple$1[1];
+				if (ok$1 && go$interfaceIsEqual(eof, io.EOF)) {
+					errp.go$set(eof);
+				} else {
+					throw go$panic(e);
+				}
 			}
 		}
 	};
@@ -3231,7 +3253,7 @@ fmt:okVerbfmt:scanBoolfmt:scanComplexfmt:scanIntfmt:scanUintfmt:skipSp
 		return i;
 	};
 	ss.prototype.advance = function(format) { return this.go$val.advance(format); };
- 0ssadvance0ufmt:errorStringfmt:getRunefmt:isSpacefmt:mustReadRunefmt:skipSpacefmt:ssunicode/utf8:DecodeRuneInString0‚ç ‚Z	ss.Ptr.prototype.doScanf = function(format, a) {
+ 0ssadvance0ufmt:errorStringfmt:getRunefmt:isSpacefmt:mustReadRunefmt:skipSpacefmt:ssunicode/utf8:DecodeRuneInString0‚ë ‚^	ss.Ptr.prototype.doScanf = function(format, a) {
 		var numProcessed, err, s, v, end, i, w, widPresent, _tuple, f, _tuple$1, c, _slice, _index, arg;
 		numProcessed = 0;
 		err = null;
@@ -3260,7 +3282,8 @@ fmt:okVerbfmt:scanBoolfmt:scanComplexfmt:scanIntfmt:scanUintfmt:skipSp
 					s.ssave.maxWid = 1073741824;
 				}
 				s.ssave.argLimit = s.ssave.limit;
-				if (f = s.count + s.ssave.maxWid >> 0, f < s.ssave.argLimit) {
+				f = s.count + s.ssave.maxWid >> 0;
+				if (f < s.ssave.argLimit) {
 					s.ssave.argLimit = f;
 				}
 				_tuple$1 = utf8.DecodeRuneInString(format.substring(i)), c = _tuple$1[0], w = _tuple$1[1];

@@ -1,4 +1,4 @@
-0ƒÃunicode‚ –package unicode
+0ƒÇunicode‚ –package unicode
 var @"".ASCII_Hex_Digit *@"".RangeTable
 var @"".Arabic *@"".RangeTable
 var @"".Armenian *@"".RangeTable
@@ -235,7 +235,7 @@ var @"".Zs *@"".RangeTable
 type @"".d [3]rune
 type @"".foldPair struct { @"".From uint16; @"".To uint16 }
 $$
-0runtimeunicode0 0ƒ÷0‚e
+0runtimeunicode0 0ƒ÷0‚e
 RangeTable‚y	RangeTable = go$pkg.RangeTable = go$newType(0, "Struct", "unicode.RangeTable", "RangeTable", "unicode", function(R16_, R32_, LatinOffset_) {
 		this.go$val = this;
 		this.R16 = R16_ !== undefined ? R16_ : (go$sliceType(Range16)).nil;
@@ -454,10 +454,11 @@ unicode:Isunicode:Punctunicode:properties0‚‰IsSpace‚>	IsSpace = go$pkg.
 		}
 		return false;
 	};
- 0Is0unicode:is16unicode:is320‚isExcludingLatin‚Ì	isExcludingLatin = function(rangeTab, r) {
+ 0Is0unicode:is16unicode:is320‚isExcludingLatin‚Î	isExcludingLatin = function(rangeTab, r) {
 		var r16, off, _slice, _index, r32, _slice$1, _index$1;
 		r16 = rangeTab.R16;
-		if (off = rangeTab.LatinOffset, r16.length > off && r <= ((_slice = r16, _index = (r16.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Hi >> 0)) {
+		off = rangeTab.LatinOffset;
+		if (r16.length > off && r <= ((_slice = r16, _index = (r16.length - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Hi >> 0)) {
 			return is16(go$subslice(r16, off), (r << 16 >>> 16));
 		}
 		r32 = rangeTab.R32;
@@ -576,8 +577,8 @@ unicode:to0‚É ‚k	SpecialCase.prototype.ToLower = function(r) {
 	};
 	go$ptrType(SpecialCase).prototype.ToLower = function(r) { return this.go$get().ToLower(r); };
  0SpecialCase0Eunicode:CaseRangeunicode:SpecialCaseunicode:ToLower
-unicode:to0‚Œ
-SimpleFold‚5	SimpleFold = go$pkg.SimpleFold = function(r) {
+unicode:to0‚Ž
+SimpleFold‚7	SimpleFold = go$pkg.SimpleFold = function(r) {
 		var lo, hi, _q, m, _slice, _index, _slice$1, _index$1, _slice$2, _index$2, l;
 		lo = 0;
 		hi = caseOrbit.length;
@@ -592,7 +593,8 @@ SimpleFold‚5	SimpleFold = go$pkg.SimpleFold = function(r) {
 		if (lo < caseOrbit.length && (((_slice$1 = caseOrbit, _index$1 = lo, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).From >> 0) === r)) {
 			return ((_slice$2 = caseOrbit, _index$2 = lo, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).To >> 0);
 		}
-		if (l = ToLower(r), !((l === r))) {
+		l = ToLower(r);
+		if (!((l === r))) {
 			return l;
 		}
 		return ToUpper(r);

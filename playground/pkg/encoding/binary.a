@@ -1,4 +1,4 @@
-0ƒ2šencoding/binary‚Spackage binary
+0ƒ2«encoding/binary‚Spackage binary
 import errors "errors"
 import io "io"
 import math "math"
@@ -273,7 +273,7 @@ type @"reflect".StructTag string
 func (? @"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 func (? *@"reflect".StructTag) @"reflect".Get(@"reflect".key string) (? string)
 $$
-0_runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binary0>0errorserrors0ioio0mathmath0reflectreflect0‚ÞÅ0‚Ê	ByteOrderv	ByteOrder = go$pkg.ByteOrder = go$newType(0, "Interface", "binary.ByteOrder", "ByteOrder", "encoding/binary", null);
+0_runtimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binary0>0errorserrors0ioio0mathmath0reflectreflect0‚ÞÖ0‚Ê	ByteOrderv	ByteOrder = go$pkg.ByteOrder = go$newType(0, "Interface", "binary.ByteOrder", "ByteOrder", "encoding/binary", null);
 ‚4		ByteOrder.init([["PutUint16", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Uint16], [], false))], ["PutUint32", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Uint32], [], false))], ["PutUint64", "", (go$funcType([(go$sliceType(Go$Uint8)), Go$Uint64], [], false))], ["String", "", (go$funcType([], [Go$String], false))], ["Uint16", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Uint16], false))], ["Uint32", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Uint32], false))], ["Uint64", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Uint64], false))]]);
 0	ByteOrder0 0‚&littleEndian 	littleEndian = go$pkg.littleEndian = go$newType(0, "Struct", "binary.littleEndian", "littleEndian", "encoding/binary", function() {
 		this.go$val = this;
@@ -408,9 +408,10 @@ $$
 		return "binary.BigEndian";
 	};
 	bigEndian.prototype.GoString = function() { return this.go$val.GoString(); };
- 0	bigEndian0encoding/binary:bigEndian0‚œRead‚å	Read = go$pkg.Read = function(r, order, data) {
-		var n, b, bs, err, _tuple, data$1, _ref, _type, x, _ref$1, _i, _slice, _index, x$1, i, _slice$1, _index$1, _ref$2, _i$1, i$1, x$2, _slice$2, _index$2, _ref$3, _i$2, i$2, x$3, _slice$3, _index$3, _ref$4, _i$3, i$3, x$4, _slice$4, _index$4, _ref$5, _i$4, i$4, x$5, _slice$5, _index$5, _ref$6, _i$5, i$5, x$6, x$7, _slice$6, _index$6, _ref$7, _i$6, i$6, x$8, _slice$7, _index$7, v, _struct, d, _ref$8, _struct$1, _struct$2, _tuple$1, _struct$3, size, err$1, d$1, err$2, _tuple$2, _struct$4;
-		if (n = intDataSize(data), !((n === 0))) {
+ 0	bigEndian0encoding/binary:bigEndian0‚£Read‚ì	Read = go$pkg.Read = function(r, order, data) {
+		var n, b, bs, _tuple, err, data$1, _ref, _type, x, _ref$1, _i, _slice, _index, x$1, i, _slice$1, _index$1, _ref$2, _i$1, i$1, x$2, _slice$2, _index$2, _ref$3, _i$2, i$2, x$3, _slice$3, _index$3, _ref$4, _i$3, i$3, x$4, _slice$4, _index$4, _ref$5, _i$4, i$4, x$5, _slice$5, _index$5, _ref$6, _i$5, i$5, x$6, x$7, _slice$6, _index$6, _ref$7, _i$6, i$6, x$8, _slice$7, _index$7, v, _struct, d, _ref$8, _struct$1, _struct$2, _tuple$1, _struct$3, size, err$1, d$1, _tuple$2, err$2, _struct$4;
+		n = intDataSize(data);
+		if (!((n === 0))) {
 			b = go$makeNativeArray("Uint8", 8, function() { return 0; });
 			bs = (go$sliceType(Go$Uint8)).nil;
 			if (n > 8) {
@@ -418,7 +419,8 @@ $$
 			} else {
 				bs = go$subslice(new (go$sliceType(Go$Uint8))(b), 0, n);
 			}
-			if (_tuple = io.ReadFull(r, bs), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			_tuple = io.ReadFull(r, bs), err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
 				return err;
 			}
 			_ref = data;
@@ -532,16 +534,18 @@ $$
 			return errors.New("binary.Read: " + err$1.Error());
 		}
 		d$1 = new decoder.Ptr(order, (go$sliceType(Go$Uint8)).make(size, 0, function() { return 0; }));
-		if (_tuple$2 = io.ReadFull(r, d$1.buf), err$2 = _tuple$2[1], !(go$interfaceIsEqual(err$2, null))) {
+		_tuple$2 = io.ReadFull(r, d$1.buf), err$2 = _tuple$2[1];
+		if (!(go$interfaceIsEqual(err$2, null))) {
 			return err$2;
 		}
 		d$1.value((_struct$4 = v, new reflect.Value.Ptr(_struct$4.typ, _struct$4.val, _struct$4.flag)));
 		return null;
 	};
  0Read0 encoding/binary:dataSizeencoding/binary:decoderencoding/binary:intDataSizeencoding/binary:value
-errors:Newio:ReadFullreflect:Valuereflect:ValueOf0‚™Write‚Û	Write = go$pkg.Write = function(w, order, data) {
+errors:Newio:ReadFullreflect:Valuereflect:ValueOf0‚›Write‚Ý	Write = go$pkg.Write = function(w, order, data) {
 		var n, b, bs, v, _ref, _type, _ref$1, _i, _slice, _index, x, i, _slice$1, _index$1, _ref$2, _i$1, _slice$2, _index$2, x$1, i$1, x$2, _ref$3, _i$2, _slice$3, _index$3, x$3, i$2, x$4, _ref$4, _i$3, _slice$4, _index$4, x$5, i$3, x$6, _ref$5, _i$4, _slice$5, _index$5, x$7, i$4, x$8, x$9, _ref$6, _i$5, _slice$6, _index$6, x$10, i$5, x$11, _ref$7, _i$6, _slice$7, _index$7, x$12, i$6, x$13, _tuple, err, _struct, _struct$1, v$1, _tuple$1, _struct$2, size, err$1, buf, e, _struct$3, _tuple$2;
-		if (n = intDataSize(data), !((n === 0))) {
+		n = intDataSize(data);
+		if (!((n === 0))) {
 			b = go$makeNativeArray("Uint8", 8, function() { return 0; });
 			bs = (go$sliceType(Go$Uint8)).nil;
 			if (n > 8) {
@@ -859,8 +863,8 @@ errors:New0‚¢ ‚m	decoder.Ptr.prototype.uint8 = function() {
 		e.uint64(new Go$Uint64(x.high, x.low));
 	};
 	encoder.prototype.int64 = function(x) { return this.go$val.int64(x); };
- 0encoderint6401encoding/binary:encoderencoding/binary:uint640‚	ø ‚¶	decoder.Ptr.prototype.value = function(v) {
-		var d, _ref, l, i, _struct, t, l$1, i$1, v$1, _struct$1, _struct$2, _struct$3, l$2, i$2, _struct$4;
+ 0encoderint6401encoding/binary:encoderencoding/binary:uint640‚	ü ‚º	decoder.Ptr.prototype.value = function(v) {
+		var d, _ref, l, i, _struct, t, l$1, i$1, _struct$1, v$1, _struct$2, _struct$3, l$2, i$2, _struct$4;
 		d = this;
 		_ref = v.Kind();
 		if (_ref === 17) {
@@ -875,7 +879,8 @@ errors:New0‚¢ ‚m	decoder.Ptr.prototype.uint8 = function() {
 			l$1 = v.NumField();
 			i$1 = 0;
 			while (i$1 < l$1) {
-				if (v$1 = (_struct$1 = v.Field(i$1), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), v$1.CanSet() || !(t.Field(i$1).Name === "_")) {
+				v$1 = (_struct$1 = v.Field(i$1), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+				if (v$1.CanSet() || !(t.Field(i$1).Name === "_")) {
 					d.value((_struct$2 = v$1, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)));
 				} else {
 					d.skip((_struct$3 = v$1, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));
@@ -916,9 +921,9 @@ errors:New0‚¢ ‚m	decoder.Ptr.prototype.uint8 = function() {
 		}
 	};
 	decoder.prototype.value = function(v) { return this.go$val.value(v); };
- 0decodervalue0‚$encoding/binary:decoderencoding/binary:int16encoding/binary:int32encoding/binary:int64encoding/binary:int8encoding/binary:skipencoding/binary:uint16encoding/binary:uint32encoding/binary:uint64encoding/binary:uint8math:Float32frombitsmath:Float64frombitsreflect:Value0‚Á ‚
-‡	encoder.Ptr.prototype.value = function(v) {
-		var e, _ref, l, i, _struct, t, l$1, i$1, v$1, _struct$1, _struct$2, _struct$3, l$2, i$2, _struct$4, _ref$1, x, x$1, x$2, _ref$2, _ref$3, _ref$4, x$3, x$4;
+ 0decodervalue0‚$encoding/binary:decoderencoding/binary:int16encoding/binary:int32encoding/binary:int64encoding/binary:int8encoding/binary:skipencoding/binary:uint16encoding/binary:uint32encoding/binary:uint64encoding/binary:uint8math:Float32frombitsmath:Float64frombitsreflect:Value0‚Å ‚
+‹	encoder.Ptr.prototype.value = function(v) {
+		var e, _ref, l, i, _struct, t, l$1, i$1, _struct$1, v$1, _struct$2, _struct$3, l$2, i$2, _struct$4, _ref$1, x, x$1, x$2, _ref$2, _ref$3, _ref$4, x$3, x$4;
 		e = this;
 		_ref = v.Kind();
 		if (_ref === 17) {
@@ -933,7 +938,8 @@ errors:New0‚¢ ‚m	decoder.Ptr.prototype.uint8 = function() {
 			l$1 = v.NumField();
 			i$1 = 0;
 			while (i$1 < l$1) {
-				if (v$1 = (_struct$1 = v.Field(i$1), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag)), v$1.CanSet() || !(t.Field(i$1).Name === "_")) {
+				v$1 = (_struct$1 = v.Field(i$1), new reflect.Value.Ptr(_struct$1.typ, _struct$1.val, _struct$1.flag));
+				if (v$1.CanSet() || !(t.Field(i$1).Name === "_")) {
 					e.value((_struct$2 = v$1, new reflect.Value.Ptr(_struct$2.typ, _struct$2.val, _struct$2.flag)));
 				} else {
 					e.skip((_struct$3 = v$1, new reflect.Value.Ptr(_struct$3.typ, _struct$3.val, _struct$3.flag)));

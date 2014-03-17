@@ -1,4 +1,4 @@
-0Ç\		io/ioutilÇ.ipackage ioutil
+0Ç\	io/ioutilÇ.ipackage ioutil
 import bytes "bytes"
 import io "io"
 import os "os"
@@ -177,7 +177,7 @@ type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutil0}0bytesbytes0ioio0osos0sortsort0path/filepathfilepath0strconvstrconv0syncsync0timetime0Ç,x0ÇÒbyName`	byName = go$pkg.byName = go$newType(0, "Slice", "ioutil.byName", "byName", "io/ioutil", null);
+0Åëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepathmathstrconv	io/ioutil0}0bytesbytes0ioio0osos0sortsort0path/filepathfilepath0strconvstrconv0syncsync0timetime0Ç,ç0ÇÒbyName`	byName = go$pkg.byName = go$newType(0, "Slice", "ioutil.byName", "byName", "io/ioutil", null);
 Çj		byName.methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
 		(go$ptrType(byName)).methods = [["Len", "", [], [Go$Int], false, -1], ["Less", "", [Go$Int, Go$Int], [Go$Bool], false, -1], ["Swap", "", [Go$Int, Go$Int], [], false, -1]];
 		byName.init(os.FileInfo);
@@ -197,7 +197,7 @@ $$
  0	blackHole0 0^blackHolePut:	blackHolePut = function(p) {
 			blackHoles.push(p);
 		};
- 0blackHolePut0 0ÇreadAllÇ»	readAll = function(r, capacity) {
+ 0blackHolePut0 0ÇreadAllÇÃ	readAll = function(r, capacity) {
 		var b, err, buf, _tuple, _tuple$1;
 		b = (go$sliceType(Go$Uint8)).nil;
 		err = null;
@@ -205,12 +205,13 @@ $$
 		try {
 			buf = bytes.NewBuffer((go$sliceType(Go$Uint8)).make(0, go$flatten64(capacity), function() { return 0; }));
 			go$deferred.push({ fun: (function() {
-				var e, ok, panicErr, _tuple;
+				var e, _tuple, panicErr, ok;
 				e = go$recover();
 				if (go$interfaceIsEqual(e, null)) {
 					return;
 				}
-				if (_tuple = (e !== null && go$error.implementedBy.indexOf(e.constructor) !== -1 ? [e, true] : [null, false]), panicErr = _tuple[0], ok = _tuple[1], ok && go$interfaceIsEqual(panicErr, bytes.ErrTooLarge)) {
+				_tuple = (e !== null && go$error.implementedBy.indexOf(e.constructor) !== -1 ? [e, true] : [null, false]), panicErr = _tuple[0], ok = _tuple[1];
+				if (ok && go$interfaceIsEqual(panicErr, bytes.ErrTooLarge)) {
 					err = panicErr;
 				} else {
 					throw go$panic(e);
@@ -229,8 +230,8 @@ $$
  0	readAll0$bytes:ErrTooLargebytes:NewBuffer0ÅÜReadAllY	ReadAll = go$pkg.ReadAll = function(r) {
 		return readAll(r, new Go$Int64(0, 512));
 	};
- 0	ReadAll0io/ioutil:readAll0ÇdReadFileÇ*	ReadFile = go$pkg.ReadFile = function(filename) {
-		var _tuple, f, err, n, err$1, _tuple$1, fi, size;
+ 0	ReadAll0io/ioutil:readAll0ÇkReadFileÇ1	ReadFile = go$pkg.ReadFile = function(filename) {
+		var _tuple, f, err, n, _tuple$1, fi, err$1, size;
 		var go$deferred = [];
 		try {
 			_tuple = os.Open(filename), f = _tuple[0], err = _tuple[1];
@@ -239,8 +240,10 @@ $$
 			}
 			go$deferred.push({ recv: f, method: "Close", args: [] });
 			n = new Go$Int64(0, 0);
-			if (_tuple$1 = f.Stat(), fi = _tuple$1[0], err$1 = _tuple$1[1], go$interfaceIsEqual(err$1, null)) {
-				if (size = fi.Size(), (size.high < 0 || (size.high === 0 && size.low < 1000000000))) {
+			_tuple$1 = f.Stat(), fi = _tuple$1[0], err$1 = _tuple$1[1];
+			if (go$interfaceIsEqual(err$1, null)) {
+				size = fi.Size();
+				if ((size.high < 0 || (size.high === 0 && size.low < 1000000000))) {
 					n = size;
 				}
 			}
@@ -253,7 +256,7 @@ $$
 		}
 	};
  0
-ReadFile0io/ioutil:readAllos:Open0Ç.	WriteFileÇÔ	WriteFile = go$pkg.WriteFile = function(filename, data, perm) {
+ReadFile0io/ioutil:readAllos:Open0Ç0	WriteFileÇÒ	WriteFile = go$pkg.WriteFile = function(filename, data, perm) {
 		var _tuple, f, err, _tuple$1, n, err1;
 		_tuple = os.OpenFile(filename, 1537, perm), f = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -263,7 +266,8 @@ $$
 		if (go$interfaceIsEqual(err, null) && n < data.length) {
 			err = io.ErrShortWrite;
 		}
-		if (err1 = f.Close(), go$interfaceIsEqual(err, null)) {
+		err1 = f.Close();
+		if (go$interfaceIsEqual(err, null)) {
 			err = err1;
 		}
 		return err;
@@ -362,7 +366,7 @@ nextSuffixÇé	nextSuffix = function() {
 		return strconv.Itoa(((1000000000 + (_r = r % 1000000000, _r === _r ? _r : go$throwRuntimeError("integer divide by zero")) >>> 0) >> 0)).substring(1);
 	};
  0
-nextSuffix0Bio/ioutil:randio/ioutil:randmuio/ioutil:reseedstrconv:Itoa0Ç‚TempFileÇJ	TempFile = go$pkg.TempFile = function(dir, prefix) {
+nextSuffix0Bio/ioutil:randio/ioutil:randmuio/ioutil:reseedstrconv:Itoa0ÇÊTempFileÇN	TempFile = go$pkg.TempFile = function(dir, prefix) {
 		var f, err, nconflict, i, name, _tuple;
 		f = (go$ptrType(os.File)).nil;
 		err = null;
@@ -375,7 +379,8 @@ nextSuffix0Bio/ioutil:randio/ioutil:randmuio/ioutil:reseedstrconv:Itoa0Ç
 			name = filepath.Join(new (go$sliceType(Go$String))([dir, prefix + nextSuffix()]));
 			_tuple = os.OpenFile(name, 2562, 384), f = _tuple[0], err = _tuple[1];
 			if (os.IsExist(err)) {
-				if (nconflict = nconflict + 1 >> 0, nconflict > 10) {
+				nconflict = nconflict + 1 >> 0;
+				if (nconflict > 10) {
 					rand = reseed();
 				}
 				i = i + 1 >> 0;
@@ -388,7 +393,7 @@ nextSuffix0Bio/ioutil:randio/ioutil:randmuio/ioutil:reseedstrconv:Itoa0Ç
  0
 TempFile0zio/ioutil:nextSuffixio/ioutil:randio/ioutil:reseedos:File
 os:IsExistos:OpenFile
-os:TempDirpath/filepath:Join0Ç”TempDirÇI	TempDir = go$pkg.TempDir = function(dir, prefix) {
+os:TempDirpath/filepath:Join0Ç◊TempDirÇM	TempDir = go$pkg.TempDir = function(dir, prefix) {
 		var name, err, nconflict, i, try$1;
 		name = "";
 		err = null;
@@ -401,7 +406,8 @@ os:TempDirpath/filepath:Join0Ç”TempDirÇI	TempDir = go$pkg.TempDir = funct
 			try$1 = filepath.Join(new (go$sliceType(Go$String))([dir, prefix + nextSuffix()]));
 			err = os.Mkdir(try$1, 448);
 			if (os.IsExist(err)) {
-				if (nconflict = nconflict + 1 >> 0, nconflict > 10) {
+				nconflict = nconflict + 1 >> 0;
+				if (nconflict > 10) {
 					rand = reseed();
 				}
 				i = i + 1 >> 0;

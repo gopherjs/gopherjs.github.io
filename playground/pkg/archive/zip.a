@@ -1,4 +1,4 @@
-0ÉGcarchive/zipÇ;package zip
+0ÉG∞archive/zipÇ;package zip
 import bufio "bufio"
 import binary "encoding/binary"
 import errors "errors"
@@ -229,7 +229,7 @@ $$
 0ÅÏruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flateencoding/binaryhash
 hash/crc32stringspath/filepath	io/ioutilpatharchive/zip0ÅÃ0bufiobufio0encoding/binarybinary0errorserrors0hashhash0
 hash/crc32crc320ioio0osos0compress/flateflate0	io/ioutilioutil0syncsync0pathpath0timetime0É
-x0ÇóReaderÇJ	Reader = go$pkg.Reader = go$newType(0, "Struct", "zip.Reader", "Reader", "archive/zip", function(r_, File_, Comment_) {
+≈0ÇóReaderÇJ	Reader = go$pkg.Reader = go$newType(0, "Struct", "zip.Reader", "Reader", "archive/zip", function(r_, File_, Comment_) {
 		this.go$val = this;
 		this.r = r_ !== undefined ? r_ : null;
 		this.File = File_ !== undefined ? File_ : (go$sliceType((go$ptrType(File)))).nil;
@@ -372,8 +372,8 @@ fileWriter0zarchive/zip:countWriterarchive/zip:headerhash:Hash32io:Write
 		return !((((f.FileHeader.Flags & 8) >>> 0) === 0));
 	};
 	File.prototype.hasDataDescriptor = function() { return this.go$val.hasDataDescriptor(); };
- 0FilehasDataDescriptor0archive/zip:File0Ç 
-OpenReaderÇu	OpenReader = go$pkg.OpenReader = function(name) {
+ 0FilehasDataDescriptor0archive/zip:File0ÇÃ
+OpenReaderÇw	OpenReader = go$pkg.OpenReader = function(name) {
 		var _tuple, f, err, _tuple$1, fi, r, err$1;
 		_tuple = os.Open(name), f = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -385,7 +385,8 @@ OpenReaderÇu	OpenReader = go$pkg.OpenReader = function(name) {
 			return [(go$ptrType(ReadCloser)).nil, err];
 		}
 		r = new ReadCloser.Ptr();
-		if (err$1 = r.Reader.init(f, fi.Size()), !(go$interfaceIsEqual(err$1, null))) {
+		err$1 = r.Reader.init(f, fi.Size());
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			f.Close();
 			return [(go$ptrType(ReadCloser)).nil, err$1];
 		}
@@ -393,15 +394,16 @@ OpenReaderÇu	OpenReader = go$pkg.OpenReader = function(name) {
 		return [r, null];
 	};
  0
-OpenReader03archive/zip:ReadCloserarchive/zip:initos:Open0Ç,	NewReaderÅÁ	NewReader = go$pkg.NewReader = function(r, size) {
+OpenReader03archive/zip:ReadCloserarchive/zip:initos:Open0Ç.	NewReaderÅÈ	NewReader = go$pkg.NewReader = function(r, size) {
 		var zr, err;
 		zr = new Reader.Ptr();
-		if (err = zr.init(r, size), !(go$interfaceIsEqual(err, null))) {
+		err = zr.init(r, size);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [(go$ptrType(Reader)).nil, err];
 		}
 		return [zr, null];
 	};
- 0	NewReader0&archive/zip:Readerarchive/zip:init0Ç≤ Ç»	Reader.Ptr.prototype.init = function(r, size) {
+ 0	NewReader0&archive/zip:Readerarchive/zip:init0Ç¥ Ç 	Reader.Ptr.prototype.init = function(r, size) {
 		var z, _tuple, end, err, rs, _tuple$1, x, buf, f;
 		z = this;
 		_tuple = readDirectoryEnd(r, size), end = _tuple[0], err = _tuple[1];
@@ -412,7 +414,8 @@ OpenReader03archive/zip:ReadCloserarchive/zip:initos:Open0Ç,	NewReaderÅ
 		z.File = (go$sliceType((go$ptrType(File)))).make(0, go$flatten64(end.directoryRecords), function() { return (go$ptrType(File)).nil; });
 		z.Comment = end.comment;
 		rs = io.NewSectionReader(r, new Go$Int64(0, 0), size);
-		if (_tuple$1 = rs.Seek((x = end.directoryOffset, new Go$Int64(x.high, x.low)), 0), err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple$1 = rs.Seek((x = end.directoryOffset, new Go$Int64(x.high, x.low)), 0), err = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
 		buf = bufio.NewReader(rs);
@@ -478,7 +481,7 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 		return [rc, err];
 	};
 	File.prototype.Open = function() { return this.go$val.Open(); };
- 0File0Å∆archive/zip:ErrAlgorithmarchive/zip:Filearchive/zip:checksumReaderarchive/zip:decompressorarchive/zip:findBodyOffsetarchive/zip:hasDataDescriptorhash/crc32:NewIEEEio:NewSectionReader0ÇG ÇŒ	checksumReader.Ptr.prototype.Read = function(b) {
+ 0File0Å∆archive/zip:ErrAlgorithmarchive/zip:Filearchive/zip:checksumReaderarchive/zip:decompressorarchive/zip:findBodyOffsetarchive/zip:hasDataDescriptorhash/crc32:NewIEEEio:NewSectionReader0ÇK Ç“	checksumReader.Ptr.prototype.Read = function(b) {
 		var n, err, r, _tuple, _tuple$1, err1;
 		n = 0;
 		err = null;
@@ -494,7 +497,8 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 		}
 		if (go$interfaceIsEqual(err, io.EOF)) {
 			if (!(go$interfaceIsEqual(r.desr, null))) {
-				if (err1 = readDataDescriptor(r.desr, r.f), !(go$interfaceIsEqual(err1, null))) {
+				err1 = readDataDescriptor(r.desr, r.f);
+				if (!(go$interfaceIsEqual(err1, null))) {
 					err = err1;
 				} else if (!((r.hash.Sum32() === r.f.FileHeader.CRC32))) {
 					err = go$pkg.ErrChecksum;
@@ -515,15 +519,17 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 		return r.rc.Close();
 	};
 	checksumReader.prototype.Close = function() { return this.go$val.Close(); };
- 0checksumReader0archive/zip:checksumReader0ÇÀ ÇC	File.Ptr.prototype.findBodyOffset = function() {
-		var f, buf, err, _tuple, x, b, sig, v, v$1, filenameLen, v$2, extraLen;
+ 0checksumReader0archive/zip:checksumReader0Çœ ÇG	File.Ptr.prototype.findBodyOffset = function() {
+		var f, buf, _tuple, err, x, b, v, sig, v$1, filenameLen, v$2, extraLen;
 		f = this;
 		buf = go$makeNativeArray("Uint8", 30, function() { return 0; });
-		if (_tuple = f.zipr.ReadAt(new (go$sliceType(Go$Uint8))(buf), f.headerOffset), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = f.zipr.ReadAt(new (go$sliceType(Go$Uint8))(buf), f.headerOffset), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [new Go$Int64(0, 0), err];
 		}
 		b = (x = new (go$sliceType(Go$Uint8))(buf), go$subslice(new readBuf(x.array), x.offset, x.offset + x.length));
-		if (sig = (new (go$ptrType(readBuf))(function() { return b; }, function(v) { b = v; })).uint32(), !((sig === 67324752))) {
+		sig = (new (go$ptrType(readBuf))(function() { return b; }, function(v) { b = v; })).uint32();
+		if (!((sig === 67324752))) {
 			return [new Go$Int64(0, 0), go$pkg.ErrFormat];
 		}
 		b = go$subslice(b, 22);
@@ -532,14 +538,16 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 		return [new Go$Int64(0, ((30 + filenameLen >> 0) + extraLen >> 0)), null];
 	};
 	File.prototype.findBodyOffset = function() { return this.go$val.findBodyOffset(); };
- 0FilefindBodyOffset0farchive/zip:ErrFormatarchive/zip:Filearchive/zip:readBufarchive/zip:uint16archive/zip:uint320ÇXreadDirectoryHeaderÇØ	readDirectoryHeader = function(f, r) {
-		var buf, err, _tuple, x, b, sig, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v$10, filenameLen, v$11, extraLen, v$12, commentLen, v$13, v$14, d, err$1, _tuple$1, x$1, b$1, v$15, tag, v$16, size, eb, v$17, v$18, x$2, v$19;
+ 0FilefindBodyOffset0farchive/zip:ErrFormatarchive/zip:Filearchive/zip:readBufarchive/zip:uint16archive/zip:uint320Ç^readDirectoryHeaderÇµ	readDirectoryHeader = function(f, r) {
+		var buf, _tuple, err, x, b, v, sig, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v$10, filenameLen, v$11, extraLen, v$12, commentLen, v$13, v$14, d, _tuple$1, err$1, x$1, b$1, v$15, tag, v$16, size, eb, v$17, v$18, x$2, v$19;
 		buf = go$makeNativeArray("Uint8", 46, function() { return 0; });
-		if (_tuple = io.ReadFull(r, new (go$sliceType(Go$Uint8))(buf)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = io.ReadFull(r, new (go$sliceType(Go$Uint8))(buf)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
 		b = (x = new (go$sliceType(Go$Uint8))(buf), go$subslice(new readBuf(x.array), x.offset, x.offset + x.length));
-		if (sig = (new (go$ptrType(readBuf))(function() { return b; }, function(v) { b = v; })).uint32(), !((sig === 33639248))) {
+		sig = (new (go$ptrType(readBuf))(function() { return b; }, function(v) { b = v; })).uint32();
+		if (!((sig === 33639248))) {
 			return go$pkg.ErrFormat;
 		}
 		f.FileHeader.CreatorVersion = (new (go$ptrType(readBuf))(function() { return b; }, function(v$1) { b = v$1; })).uint16();
@@ -560,7 +568,8 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 		f.FileHeader.ExternalAttrs = (new (go$ptrType(readBuf))(function() { return b; }, function(v$13) { b = v$13; })).uint32();
 		f.headerOffset = new Go$Int64(0, (new (go$ptrType(readBuf))(function() { return b; }, function(v$14) { b = v$14; })).uint32());
 		d = (go$sliceType(Go$Uint8)).make((filenameLen + extraLen >> 0) + commentLen >> 0, 0, function() { return 0; });
-		if (_tuple$1 = io.ReadFull(r, d), err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+		_tuple$1 = io.ReadFull(r, d), err$1 = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			return err$1;
 		}
 		f.FileHeader.Name = go$bytesToString(go$subslice(d, 0, filenameLen));
@@ -594,10 +603,11 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 		}
 		return null;
 	};
- 0readDirectoryHeader0uarchive/zip:ErrFormatarchive/zip:readBufarchive/zip:uint16archive/zip:uint32archive/zip:uint64io:ReadFull0ÇıreadDataDescriptorÇt	readDataDescriptor = function(r, f) {
-		var buf, err, _tuple, off, x, maybeSig, v, err$1, _tuple$1, x$1, b, v$1;
+ 0readDirectoryHeader0uarchive/zip:ErrFormatarchive/zip:readBufarchive/zip:uint16archive/zip:uint32archive/zip:uint64io:ReadFull0Ç˘readDataDescriptorÇx	readDataDescriptor = function(r, f) {
+		var buf, _tuple, err, off, x, maybeSig, v, _tuple$1, err$1, x$1, b, v$1;
 		buf = go$makeNativeArray("Uint8", 16, function() { return 0; });
-		if (_tuple = io.ReadFull(r, go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, 4)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = io.ReadFull(r, go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, 4)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
 		off = 0;
@@ -605,7 +615,8 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 		if (!(((new (go$ptrType(readBuf))(function() { return maybeSig; }, function(v) { maybeSig = v; })).uint32() === 134695760))) {
 			off = off + 4 >> 0;
 		}
-		if (_tuple$1 = io.ReadFull(r, go$subslice(new (go$sliceType(Go$Uint8))(buf), off, 12)), err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+		_tuple$1 = io.ReadFull(r, go$subslice(new (go$sliceType(Go$Uint8))(buf), off, 12)), err$1 = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			return err$1;
 		}
 		b = (x$1 = go$subslice(new (go$sliceType(Go$Uint8))(buf), 0, 12), go$subslice(new readBuf(x$1.array), x$1.offset, x$1.offset + x$1.length));
@@ -614,8 +625,8 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 		}
 		return null;
 	};
- 0readDataDescriptor0Oarchive/zip:ErrChecksumarchive/zip:readBufarchive/zip:uint32io:ReadFull0ÇZreadDirectoryEndÇG	readDirectoryEnd = function(r, size) {
-		var dir, err, buf, directoryEndOffset, _ref, _i, _slice, _index, bLen, i, err$1, _tuple, _tuple$1, p, x, x$1, _tuple$2, x$2, b, v, v$1, v$2, v$3, v$4, v$5, v$6, d, l, _tuple$3, _tuple$4, p$1, _tuple$5, o, x$3, _tuple$6, _tuple$7;
+ 0readDataDescriptor0Oarchive/zip:ErrChecksumarchive/zip:readBufarchive/zip:uint32io:ReadFull0ÇbreadDirectoryEndÇO	readDirectoryEnd = function(r, size) {
+		var dir, err, buf, directoryEndOffset, _ref, _i, _slice, _index, bLen, i, _tuple, err$1, _tuple$1, p, x, x$1, _tuple$2, x$2, b, v, v$1, v$2, v$3, v$4, v$5, v$6, d, l, _tuple$3, _tuple$4, p$1, _tuple$5, x$3, o, _tuple$6, _tuple$7;
 		dir = (go$ptrType(directoryEnd)).nil;
 		err = null;
 		buf = (go$sliceType(Go$Uint8)).nil;
@@ -629,11 +640,13 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 				bLen = size;
 			}
 			buf = (go$sliceType(Go$Uint8)).make(((bLen.low + ((bLen.high >> 31) * 4294967296)) >> 0), 0, function() { return 0; });
-			if (_tuple = r.ReadAt(buf, new Go$Int64(size.high - bLen.high, size.low - bLen.low)), err$1 = _tuple[1], !(go$interfaceIsEqual(err$1, null)) && !(go$interfaceIsEqual(err$1, io.EOF))) {
+			_tuple = r.ReadAt(buf, new Go$Int64(size.high - bLen.high, size.low - bLen.low)), err$1 = _tuple[1];
+			if (!(go$interfaceIsEqual(err$1, null)) && !(go$interfaceIsEqual(err$1, io.EOF))) {
 				_tuple$1 = [(go$ptrType(directoryEnd)).nil, err$1], dir = _tuple$1[0], err = _tuple$1[1];
 				return [dir, err];
 			}
-			if (p = findSignatureInBlock(buf), p >= 0) {
+			p = findSignatureInBlock(buf);
+			if (p >= 0) {
 				buf = go$subslice(buf, p);
 				directoryEndOffset = (x = new Go$Int64(size.high - bLen.high, size.low - bLen.low), x$1 = new Go$Int64(0, p), new Go$Int64(x.high + x$1.high, x.low + x$1.low));
 				break;
@@ -660,7 +673,8 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 			_tuple$5 = [(go$ptrType(directoryEnd)).nil, err], dir = _tuple$5[0], err = _tuple$5[1];
 			return [dir, err];
 		}
-		if (o = (x$3 = d.directoryOffset, new Go$Int64(x$3.high, x$3.low)), (o.high < 0 || (o.high === 0 && o.low < 0)) || (o.high > size.high || (o.high === size.high && o.low >= size.low))) {
+		o = (x$3 = d.directoryOffset, new Go$Int64(x$3.high, x$3.low));
+		if ((o.high < 0 || (o.high === 0 && o.low < 0)) || (o.high > size.high || (o.high === size.high && o.low >= size.low))) {
 			_tuple$6 = [(go$ptrType(directoryEnd)).nil, go$pkg.ErrFormat], dir = _tuple$6[0], err = _tuple$6[1];
 			return [dir, err];
 		}
@@ -668,34 +682,38 @@ ReadCloser0archive/zip:ReadCloser0Çl Ç,	File.Ptr.prototype.DataOffset = f
 		return [dir, err];
 	};
  0readDirectoryEnd0Å‰archive/zip:ErrFormatarchive/zip:directoryEndarchive/zip:findDirectory64End archive/zip:findSignatureInBlockarchive/zip:readBufarchive/zip:readDirectory64Endarchive/zip:uint16archive/zip:uint32
-errors:Newio:EOF0Ç=findDirectory64EndÇŒ	findDirectory64End = function(r, directoryEndOffset) {
-		var locOffset, buf, err, _tuple, b, sig, v, v$1, p;
+errors:Newio:EOF0ÇAfindDirectory64EndÇ“	findDirectory64End = function(r, directoryEndOffset) {
+		var locOffset, buf, _tuple, err, b, v, sig, v$1, p;
 		locOffset = new Go$Int64(directoryEndOffset.high - 0, directoryEndOffset.low - 20);
 		if ((locOffset.high < 0 || (locOffset.high === 0 && locOffset.low < 0))) {
 			return [new Go$Int64(-1, 4294967295), null];
 		}
 		buf = (go$sliceType(Go$Uint8)).make(20, 0, function() { return 0; });
-		if (_tuple = r.ReadAt(buf, locOffset), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = r.ReadAt(buf, locOffset), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [new Go$Int64(-1, 4294967295), err];
 		}
 		b = go$subslice(new readBuf(buf.array), buf.offset, buf.offset + buf.length);
-		if (sig = (new (go$ptrType(readBuf))(function() { return b; }, function(v) { b = v; })).uint32(), !((sig === 117853008))) {
+		sig = (new (go$ptrType(readBuf))(function() { return b; }, function(v) { b = v; })).uint32();
+		if (!((sig === 117853008))) {
 			return [new Go$Int64(-1, 4294967295), null];
 		}
 		b = go$subslice(b, 4);
 		p = (new (go$ptrType(readBuf))(function() { return b; }, function(v$1) { b = v$1; })).uint64();
 		return [new Go$Int64(p.high, p.low), null];
 	};
- 0findDirectory64End0=archive/zip:readBufarchive/zip:uint32archive/zip:uint640Ç≠readDirectory64EndÇ'	readDirectory64End = function(r, offset, d) {
-		var err, buf, err$1, _tuple, b, sig, v, v$1, v$2, v$3, v$4, v$5, v$6;
+ 0findDirectory64End0=archive/zip:readBufarchive/zip:uint32archive/zip:uint640Ç±readDirectory64EndÇ+	readDirectory64End = function(r, offset, d) {
+		var err, buf, _tuple, err$1, b, v, sig, v$1, v$2, v$3, v$4, v$5, v$6;
 		err = null;
 		buf = (go$sliceType(Go$Uint8)).make(56, 0, function() { return 0; });
-		if (_tuple = r.ReadAt(buf, offset), err$1 = _tuple[1], !(go$interfaceIsEqual(err$1, null))) {
+		_tuple = r.ReadAt(buf, offset), err$1 = _tuple[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			err = err$1;
 			return err;
 		}
 		b = go$subslice(new readBuf(buf.array), buf.offset, buf.offset + buf.length);
-		if (sig = (new (go$ptrType(readBuf))(function() { return b; }, function(v) { b = v; })).uint32(), !((sig === 101075792))) {
+		sig = (new (go$ptrType(readBuf))(function() { return b; }, function(v) { b = v; })).uint32();
+		if (!((sig === 101075792))) {
 			err = go$pkg.ErrFormat;
 			return err;
 		}
@@ -747,13 +765,14 @@ errors:Newio:EOF0Ç=findDirectory64EndÇŒ	findDirectory64End = function(r, 
 		return v;
 	};
 	readBuf.prototype.uint64 = function() { var obj = this; return (new (go$ptrType(readBuf))(function() { return obj; }, null)).uint64(); };
- 0readBufuint6403archive/zip:readBufencoding/binary:LittleEndian0ÇÚRegisterDecompressorÇë	RegisterDecompressor = go$pkg.RegisterDecompressor = function(method, d) {
-		var ok, _tuple, _entry, _key;
+ 0readBufuint6403archive/zip:readBufencoding/binary:LittleEndian0ÇıRegisterDecompressorÇî	RegisterDecompressor = go$pkg.RegisterDecompressor = function(method, d) {
+		var _tuple, _entry, ok, _key;
 		var go$deferred = [];
 		try {
 			mu.Lock();
 			go$deferred.push({ recv: mu, method: "Unlock", args: [] });
-			if (_tuple = (_entry = decompressors[method], _entry !== undefined ? [_entry.v, true] : [go$throwNilPointerError, false]), ok = _tuple[1], ok) {
+			_tuple = (_entry = decompressors[method], _entry !== undefined ? [_entry.v, true] : [go$throwNilPointerError, false]), ok = _tuple[1];
+			if (ok) {
 				throw go$panic(new Go$String("decompressor already registered"));
 			}
 			_key = method, (decompressors || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: d };
@@ -763,13 +782,14 @@ errors:Newio:EOF0Ç=findDirectory64EndÇŒ	findDirectory64End = function(r, 
 			go$callDeferred(go$deferred);
 		}
 	};
- 0RegisterDecompressor0+archive/zip:decompressorsarchive/zip:mu0ÇËRegisterCompressorÇç	RegisterCompressor = go$pkg.RegisterCompressor = function(method, comp) {
-		var ok, _tuple, _entry, _key;
+ 0RegisterDecompressor0+archive/zip:decompressorsarchive/zip:mu0ÇÎRegisterCompressorÇê	RegisterCompressor = go$pkg.RegisterCompressor = function(method, comp) {
+		var _tuple, _entry, ok, _key;
 		var go$deferred = [];
 		try {
 			mu.Lock();
 			go$deferred.push({ recv: mu, method: "Unlock", args: [] });
-			if (_tuple = (_entry = compressors[method], _entry !== undefined ? [_entry.v, true] : [go$throwNilPointerError, false]), ok = _tuple[1], ok) {
+			_tuple = (_entry = compressors[method], _entry !== undefined ? [_entry.v, true] : [go$throwNilPointerError, false]), ok = _tuple[1];
+			if (ok) {
 				throw go$panic(new Go$String("compressor already registered"));
 			}
 			_key = method, (compressors || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: comp };
@@ -1012,11 +1032,12 @@ FileHeaderisZip640archive/zip:FileHeader0Ç*msdosModeToFileModeÅ˜	msdosM
  0unixModeToFileMode0 0Ç`	NewWriterÅ◊	NewWriter = go$pkg.NewWriter = function(w) {
 		return new Writer.Ptr(new countWriter.Ptr(bufio.NewWriter(w), new Go$Int64(0, 0)), (go$sliceType((go$ptrType(header)))).nil, (go$ptrType(fileWriter)).nil, false);
 	};
- 0	NewWriter0jarchive/zip:Writerarchive/zip:countWriterarchive/zip:fileWriterarchive/zip:headerbufio:NewWriter0Ç#D Ç"_	Writer.Ptr.prototype.Close = function() {
-		var w, err, start, _ref, _i, _slice, _index, h, buf, x, b, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, x$1, v$8, v$9, buf$1, x$2, eb, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$20, x$3, v$21, v$22, err$1, _tuple, err$2, _tuple$1, err$3, _tuple$2, err$4, _tuple$3, end, records, x$4, size, offset, buf$2, x$5, b$1, v$23, v$24, v$25, v$26, v$27, v$28, v$29, v$30, v$31, v$32, v$33, v$34, v$35, v$36, err$5, _tuple$4, buf$3, x$6, b$2, v$37, v$38, v$39, v$40, v$41, err$6, _tuple$5, x$7;
+ 0	NewWriter0jarchive/zip:Writerarchive/zip:countWriterarchive/zip:fileWriterarchive/zip:headerbufio:NewWriter0Ç#X Ç"s	Writer.Ptr.prototype.Close = function() {
+		var w, err, start, _ref, _i, _slice, _index, h, buf, x, b, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, x$1, v$8, v$9, buf$1, x$2, eb, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$20, x$3, v$21, v$22, _tuple, err$1, _tuple$1, err$2, _tuple$2, err$3, _tuple$3, err$4, end, records, x$4, size, offset, buf$2, x$5, b$1, v$23, v$24, v$25, v$26, v$27, v$28, v$29, v$30, v$31, v$32, v$33, v$34, v$35, v$36, _tuple$4, err$5, buf$3, x$6, b$2, v$37, v$38, v$39, v$40, v$41, _tuple$5, err$6, x$7;
 		w = this;
 		if (!(w.last === (go$ptrType(fileWriter)).nil) && !w.last.closed) {
-			if (err = w.last.close(), !(go$interfaceIsEqual(err, null))) {
+			err = w.last.close();
+			if (!(go$interfaceIsEqual(err, null))) {
 				return err;
 			}
 			w.last = (go$ptrType(fileWriter)).nil;
@@ -1065,16 +1086,20 @@ FileHeaderisZip640archive/zip:FileHeader0Ç*msdosModeToFileModeÅ˜	msdosM
 			} else {
 				(new (go$ptrType(writeBuf))(function() { return b; }, function(v$22) { b = v$22; })).uint32((h.offset.low >>> 0));
 			}
-			if (_tuple = w.cw.Write(new (go$sliceType(Go$Uint8))(buf)), err$1 = _tuple[1], !(go$interfaceIsEqual(err$1, null))) {
+			_tuple = w.cw.Write(new (go$sliceType(Go$Uint8))(buf)), err$1 = _tuple[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
 				return err$1;
 			}
-			if (_tuple$1 = io.WriteString(w.cw, h.FileHeader.Name), err$2 = _tuple$1[1], !(go$interfaceIsEqual(err$2, null))) {
+			_tuple$1 = io.WriteString(w.cw, h.FileHeader.Name), err$2 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$2, null))) {
 				return err$2;
 			}
-			if (_tuple$2 = w.cw.Write(h.FileHeader.Extra), err$3 = _tuple$2[1], !(go$interfaceIsEqual(err$3, null))) {
+			_tuple$2 = w.cw.Write(h.FileHeader.Extra), err$3 = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err$3, null))) {
 				return err$3;
 			}
-			if (_tuple$3 = io.WriteString(w.cw, h.FileHeader.Comment), err$4 = _tuple$3[1], !(go$interfaceIsEqual(err$4, null))) {
+			_tuple$3 = io.WriteString(w.cw, h.FileHeader.Comment), err$4 = _tuple$3[1];
+			if (!(go$interfaceIsEqual(err$4, null))) {
 				return err$4;
 			}
 			_i++;
@@ -1100,7 +1125,8 @@ FileHeaderisZip640archive/zip:FileHeader0Ç*msdosModeToFileModeÅ˜	msdosM
 			(new (go$ptrType(writeBuf))(function() { return b$1; }, function(v$34) { b$1 = v$34; })).uint32(0);
 			(new (go$ptrType(writeBuf))(function() { return b$1; }, function(v$35) { b$1 = v$35; })).uint64(new Go$Uint64(end.high, end.low));
 			(new (go$ptrType(writeBuf))(function() { return b$1; }, function(v$36) { b$1 = v$36; })).uint32(1);
-			if (_tuple$4 = w.cw.Write(new (go$sliceType(Go$Uint8))(buf$2)), err$5 = _tuple$4[1], !(go$interfaceIsEqual(err$5, null))) {
+			_tuple$4 = w.cw.Write(new (go$sliceType(Go$Uint8))(buf$2)), err$5 = _tuple$4[1];
+			if (!(go$interfaceIsEqual(err$5, null))) {
 				return err$5;
 			}
 			records = new Go$Uint64(0, 65535);
@@ -1115,7 +1141,8 @@ FileHeaderisZip640archive/zip:FileHeader0Ç*msdosModeToFileModeÅ˜	msdosM
 		(new (go$ptrType(writeBuf))(function() { return b$2; }, function(v$39) { b$2 = v$39; })).uint16((records.low << 16 >>> 16));
 		(new (go$ptrType(writeBuf))(function() { return b$2; }, function(v$40) { b$2 = v$40; })).uint32((size.low >>> 0));
 		(new (go$ptrType(writeBuf))(function() { return b$2; }, function(v$41) { b$2 = v$41; })).uint32((offset.low >>> 0));
-		if (_tuple$5 = w.cw.Write(new (go$sliceType(Go$Uint8))(buf$3)), err$6 = _tuple$5[1], !(go$interfaceIsEqual(err$6, null))) {
+		_tuple$5 = w.cw.Write(new (go$sliceType(Go$Uint8))(buf$3)), err$6 = _tuple$5[1];
+		if (!(go$interfaceIsEqual(err$6, null))) {
 			return err$6;
 		}
 		return (x$7 = w.cw.w, (x$7 !== null && x$7.constructor === (go$ptrType(bufio.Writer)) ? x$7.go$val : go$typeAssertionFailed(x$7, (go$ptrType(bufio.Writer))))).Flush();
@@ -1129,11 +1156,12 @@ errors:Newio:WriteString0Çó ÇW	Writer.Ptr.prototype.Create = function(name
 		return w.CreateHeader(header$1);
 	};
 	Writer.prototype.Create = function(name) { return this.go$val.Create(name); };
- 0Writer0,archive/zip:FileHeaderarchive/zip:Writer0Ç˚ Ç	Writer.Ptr.prototype.CreateHeader = function(fh) {
+ 0Writer0,archive/zip:FileHeaderarchive/zip:Writer0Ç  Ç	Writer.Ptr.prototype.CreateHeader = function(fh) {
 		var w, err, fw, comp, err$1, _tuple, x, h, err$2;
 		w = this;
 		if (!(w.last === (go$ptrType(fileWriter)).nil) && !w.last.closed) {
-			if (err = w.last.close(), !(go$interfaceIsEqual(err, null))) {
+			err = w.last.close();
+			if (!(go$interfaceIsEqual(err, null))) {
 				return [null, err];
 			}
 		}
@@ -1154,15 +1182,16 @@ errors:Newio:WriteString0Çó ÇW	Writer.Ptr.prototype.Create = function(name
 		h = new header.Ptr(fh, (x = w.cw.count, new Go$Uint64(x.high, x.low)));
 		w.dir = go$append(w.dir, h);
 		fw.header = h;
-		if (err$2 = writeHeader(w.cw, fh), !(go$interfaceIsEqual(err$2, null))) {
+		err$2 = writeHeader(w.cw, fh);
+		if (!(go$interfaceIsEqual(err$2, null))) {
 			return [null, err$2];
 		}
 		w.last = fw;
 		return [fw, null];
 	};
 	Writer.prototype.CreateHeader = function(fh) { return this.go$val.CreateHeader(fh); };
- 0Writer0Å„archive/zip:ErrAlgorithmarchive/zip:FileHeaderarchive/zip:Writerarchive/zip:closearchive/zip:compressorarchive/zip:countWriterarchive/zip:fileWriterarchive/zip:headerarchive/zip:writeHeaderhash/crc32:NewIEEE0ÇówriteHeaderÇ%	writeHeader = function(w, h) {
-		var buf, x, b, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v$10, err, _tuple, err$1, _tuple$1, _tuple$2, err$2;
+ 0Writer0Å„archive/zip:ErrAlgorithmarchive/zip:FileHeaderarchive/zip:Writerarchive/zip:closearchive/zip:compressorarchive/zip:countWriterarchive/zip:fileWriterarchive/zip:headerarchive/zip:writeHeaderhash/crc32:NewIEEE0ÇõwriteHeaderÇ)	writeHeader = function(w, h) {
+		var buf, x, b, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v$10, _tuple, err, _tuple$1, err$1, _tuple$2, err$2;
 		buf = go$makeNativeArray("Uint8", 30, function() { return 0; });
 		b = (x = new (go$sliceType(Go$Uint8))(buf), go$subslice(new writeBuf(x.array), x.offset, x.offset + x.length));
 		(new (go$ptrType(writeBuf))(function() { return b; }, function(v) { b = v; })).uint32(67324752);
@@ -1176,10 +1205,12 @@ errors:Newio:WriteString0Çó ÇW	Writer.Ptr.prototype.Create = function(name
 		(new (go$ptrType(writeBuf))(function() { return b; }, function(v$8) { b = v$8; })).uint32(0);
 		(new (go$ptrType(writeBuf))(function() { return b; }, function(v$9) { b = v$9; })).uint16((h.Name.length << 16 >>> 16));
 		(new (go$ptrType(writeBuf))(function() { return b; }, function(v$10) { b = v$10; })).uint16((h.Extra.length << 16 >>> 16));
-		if (_tuple = w.Write(new (go$sliceType(Go$Uint8))(buf)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = w.Write(new (go$sliceType(Go$Uint8))(buf)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
-		if (_tuple$1 = io.WriteString(w, h.Name), err$1 = _tuple$1[1], !(go$interfaceIsEqual(err$1, null))) {
+		_tuple$1 = io.WriteString(w, h.Name), err$1 = _tuple$1[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			return err$1;
 		}
 		_tuple$2 = w.Write(h.Extra), err$2 = _tuple$2[1];
@@ -1197,14 +1228,15 @@ errors:Newio:WriteString0Çó ÇW	Writer.Ptr.prototype.Create = function(name
 	fileWriter.prototype.Write = function(p) { return this.go$val.Write(p); };
  0
 fileWriter0$archive/zip:fileWriter
-errors:New0Ç Çà	fileWriter.Ptr.prototype.close = function() {
+errors:New0Ç  Çä	fileWriter.Ptr.prototype.close = function() {
 		var w, err, fh, x, x$1, buf, b, v, v$1, v$2, v$3, v$4, v$5, _tuple, err$1;
 		w = this;
 		if (w.closed) {
 			return errors.New("zip: file closed twice");
 		}
 		w.closed = true;
-		if (err = w.comp.Close(), !(go$interfaceIsEqual(err, null))) {
+		err = w.comp.Close();
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
 		fh = w.header.FileHeader;

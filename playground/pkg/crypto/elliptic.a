@@ -1,4 +1,4 @@
-0É9Lcrypto/ellipticÇK}package elliptic
+0É9Wcrypto/ellipticÇK}package elliptic
 import io "io"
 import big "math/big"
 import sync "sync"
@@ -191,7 +191,7 @@ type @"io".RuneScanner interface { @"io".ReadRune() (@"".r rune, @"".size int, @
 type @"math/big".divisor struct { @"math/big".bbb @"math/big".nat; @"math/big".nbits int; @"math/big".ndigits int }
 type @"math/rand".Source interface { @"math/rand".Int63() (? int64); @"math/rand".Seed(@"".seed int64) () }
 $$
-0ÅØruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/elliptic0)0ioio0math/bigbig0syncsync0ÉÏ÷0ÇªCurveh	Curve = go$pkg.Curve = go$newType(0, "Interface", "elliptic.Curve", "Curve", "crypto/elliptic", null);
+0ÅØruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarysyscalltimeosfmt	math/randunicodestringsmath/bigcrypto/elliptic0)0ioio0math/bigbig0syncsync0ÉÏ·0ÇªCurveh	Curve = go$pkg.Curve = go$newType(0, "Interface", "elliptic.Curve", "Curve", "crypto/elliptic", null);
 Ç		Curve.init([["Add", "", (go$funcType([(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false))], ["Double", "", (go$funcType([(go$ptrType(big.Int)), (go$ptrType(big.Int))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false))], ["IsOnCurve", "", (go$funcType([(go$ptrType(big.Int)), (go$ptrType(big.Int))], [Go$Bool], false))], ["Params", "", (go$funcType([], [(go$ptrType(CurveParams))], false))], ["ScalarBaseMult", "", (go$funcType([(go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false))], ["ScalarMult", "", (go$funcType([(go$ptrType(big.Int)), (go$ptrType(big.Int)), (go$sliceType(Go$Uint8))], [(go$ptrType(big.Int)), (go$ptrType(big.Int))], false))]]);
 0Curve0+crypto/elliptic:CurveParamsmath/big:Int0Ç“CurveParamsÇ0	CurveParams = go$pkg.CurveParams = go$newType(0, "Struct", "elliptic.CurveParams", "CurveParams", "crypto/elliptic", function(P_, N_, B_, Gx_, Gy_, BitSize_) {
 		this.go$val = this;
@@ -1082,11 +1082,12 @@ p224Invert05crypto/elliptic:p224Mulcrypto/elliptic:p224Square0Çõp224Contr
 			_i++;
 		}
 	};
- 0p224ScalarMult0jcrypto/elliptic:p224AddJacobian#crypto/elliptic:p224CopyConditional"crypto/elliptic:p224DoubleJacobian0ÇOp224ToAffineÇt	p224ToAffine = function(x, y, z) {
+ 0p224ScalarMult0jcrypto/elliptic:p224AddJacobian#crypto/elliptic:p224CopyConditional"crypto/elliptic:p224DoubleJacobian0ÇQp224ToAffineÇv	p224ToAffine = function(x, y, z) {
 		var _tuple, zinv, zinvsq, outx, outy, tmp, isPointAtInfinity;
 		_tuple = [go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; }), go$makeNativeArray("Uint32", 8, function() { return 0; })], zinv = _tuple[0], zinvsq = _tuple[1], outx = _tuple[2], outy = _tuple[3];
 		tmp = go$makeNativeArray("Uint64", 15, function() { return new Go$Uint64(0, 0); });
-		if (isPointAtInfinity = p224IsZero(z), isPointAtInfinity === 1) {
+		isPointAtInfinity = p224IsZero(z);
+		if (isPointAtInfinity === 1) {
 			return [new big.Int.Ptr(), new big.Int.Ptr()];
 		}
 		p224Invert(zinv, z);
@@ -1098,13 +1099,14 @@ p224Invert05crypto/elliptic:p224Mulcrypto/elliptic:p224Square0Çõp224Contr
 		p224Contract(outy, y);
 		return [p224ToBig(outx), p224ToBig(outy)];
 	};
- 0p224ToAffine0Å¥crypto/elliptic:p224Contractcrypto/elliptic:p224Invertcrypto/elliptic:p224IsZerocrypto/elliptic:p224Mulcrypto/elliptic:p224Squarecrypto/elliptic:p224ToBigmath/big:Int0Çˆget28BitsFromEndÇ»	get28BitsFromEnd = function(buf, shift) {
+ 0p224ToAffine0Å¥crypto/elliptic:p224Contractcrypto/elliptic:p224Invertcrypto/elliptic:p224IsZerocrypto/elliptic:p224Mulcrypto/elliptic:p224Squarecrypto/elliptic:p224ToBigmath/big:Int0Ç˘get28BitsFromEndÇÀ	get28BitsFromEnd = function(buf, shift) {
 		var ret, i, b, l, _slice, _index, y, y$1, x;
 		ret = 0;
 		i = 0;
 		while (i < 4) {
 			b = 0;
-			if (l = buf.length, l > 0) {
+			l = buf.length;
+			if (l > 0) {
 				b = (_slice = buf, _index = (l - 1 >> 0), (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 				if (!((i === 3)) || (shift === 4)) {
 					buf = go$subslice(buf, 0, (l - 1 >> 0));
@@ -1907,13 +1909,14 @@ hp256ScalarBaseMultÇ	,	p256ScalarBaseMult = function(xOut, yOut, zOut, scalar
 			i$4 = i$4 + 1 >> 0;
 		}
 	};
- 0p256ScalarMult0ÅÎ crypto/elliptic:nonZeroToAllOnes#crypto/elliptic:p256CopyConditionalcrypto/elliptic:p256Onecrypto/elliptic:p256PointAdd!crypto/elliptic:p256PointAddMixedcrypto/elliptic:p256PointDouble'crypto/elliptic:p256SelectJacobianPoint0Ç»p256FromBigÇÄ	p256FromBig = function(out, in$1) {
+ 0p256ScalarMult0ÅÎ crypto/elliptic:nonZeroToAllOnes#crypto/elliptic:p256CopyConditionalcrypto/elliptic:p256Onecrypto/elliptic:p256PointAdd!crypto/elliptic:p256PointAddMixedcrypto/elliptic:p256PointDouble'crypto/elliptic:p256SelectJacobianPoint0ÇŒp256FromBigÇÜ	p256FromBig = function(out, in$1) {
 		var tmp, i, bits, _slice, _index, bits$1, _slice$1, _index$1;
 		tmp = new big.Int.Ptr().Lsh(in$1, 257);
 		tmp.Mod(tmp, p256.CurveParams.P);
 		i = 0;
 		while (i < 9) {
-			if (bits = tmp.Bits(), bits.length > 0) {
+			bits = tmp.Bits();
+			if (bits.length > 0) {
 				out[i] = (((_slice = bits, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")) >>> 0) & 536870911) >>> 0;
 			} else {
 				out[i] = 0;
@@ -1923,7 +1926,8 @@ hp256ScalarBaseMultÇ	,	p256ScalarBaseMult = function(xOut, yOut, zOut, scalar
 			if (i === 9) {
 				break;
 			}
-			if (bits$1 = tmp.Bits(), bits$1.length > 0) {
+			bits$1 = tmp.Bits();
+			if (bits$1.length > 0) {
 				out[i] = (((_slice$1 = bits$1, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")) >>> 0) & 268435455) >>> 0;
 			} else {
 				out[i] = 0;

@@ -1,4 +1,4 @@
-0ÇÑdebug/peÇ%Ûpackage pe
+0ÇÑ%debug/peÇ%Ûpackage pe
 import dwarf "debug/dwarf"
 import binary "encoding/binary"
 import errors "errors"
@@ -108,7 +108,7 @@ func (? *@"debug/dwarf".Attr) @"debug/dwarf".String() (? string)
 type @"debug/dwarf".format uint32
 $$
 0Åéruntimeerrorssync/atomicsynciomathunicode/utf8strconvreflectencoding/binarydebug/dwarfsyscalltimeosfmtdebug/pe0w0debug/dwarfdwarf0encoding/binarybinary0errorserrors0
-fmtfmt0ioio0osos0strconvstrconv0Ç]0Ç¡FileÇÏ	File = go$pkg.File = go$newType(0, "Struct", "pe.File", "File", "debug/pe", function(FileHeader_, Sections_, Symbols_, closer_) {
+fmtfmt0ioio0osos0strconvstrconv0Ç]0Ç¡FileÇÏ	File = go$pkg.File = go$newType(0, "Struct", "pe.File", "File", "debug/pe", function(FileHeader_, Sections_, Symbols_, closer_) {
 		this.go$val = this;
 		this.FileHeader = FileHeader_ !== undefined ? FileHeader_ : new FileHeader.Ptr();
 		this.Sections = Sections_ !== undefined ? Sections_ : (go$sliceType((go$ptrType(Section)))).nil;
@@ -257,12 +257,13 @@ COFFSymbol0 0Çù Çv	Section.Ptr.prototype.Data = function() {
 		return err;
 	};
 	File.prototype.Close = function() { return this.go$val.Close(); };
- 0File0debug/pe:File0Ç.NewFileÇ	NewFile = go$pkg.NewFile = function(r) {
-		var f, sr, dosheader, err, _tuple, base, signoff, sign, err$1, x, ss, x$1, l, err$2, x$2, v, err$3, _tuple$1, x$3, aux, i, cs, err$4, x$4, name, si, _tuple$2, s, x$5, i$1, sh, err$5, x$6, name$1, _tuple$3, si$1, _tuple$4, s$1, _slice, _index;
+ 0File0debug/pe:File0Ç?NewFileÇ	NewFile = go$pkg.NewFile = function(r) {
+		var f, sr, dosheader, _tuple, err, base, signoff, sign, x, err$1, ss, x$1, l, x$2, v, err$2, _tuple$1, x$3, err$3, aux, i, cs, x$4, err$4, name, si, _tuple$2, s, x$5, i$1, sh, x$6, err$5, name$1, _tuple$3, si$1, _tuple$4, s$1, _slice, _index;
 		f = new File.Ptr();
 		sr = io.NewSectionReader(r, new Go$Int64(0, 0), new Go$Int64(2147483647, 4294967295));
 		dosheader = go$makeNativeArray("Uint8", 96, function() { return 0; });
-		if (_tuple = r.ReadAt(go$subslice(new (go$sliceType(Go$Uint8))(dosheader), 0), new Go$Int64(0, 0)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = r.ReadAt(go$subslice(new (go$sliceType(Go$Uint8))(dosheader), 0), new Go$Int64(0, 0)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [(go$ptrType(File)).nil, err];
 		}
 		base = new Go$Int64(0, 0);
@@ -278,7 +279,8 @@ COFFSymbol0 0Çù Çv	Section.Ptr.prototype.Data = function() {
 			base = new Go$Int64(0, 0);
 		}
 		sr.Seek(base, 0);
-		if (err$1 = binary.Read(sr, (x = binary.LittleEndian, new x.constructor.Struct(x)), f.FileHeader), !(go$interfaceIsEqual(err$1, null))) {
+		err$1 = binary.Read(sr, (x = binary.LittleEndian, new x.constructor.Struct(x)), f.FileHeader);
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			return [(go$ptrType(File)).nil, err$1];
 		}
 		if (!((f.FileHeader.Machine === 0)) && !((f.FileHeader.Machine === 34404)) && !((f.FileHeader.Machine === 332))) {
@@ -288,11 +290,13 @@ COFFSymbol0 0Çù Çv	Section.Ptr.prototype.Data = function() {
 		if (f.FileHeader.NumberOfSymbols > 0) {
 			sr.Seek(new Go$Int64(0, (f.FileHeader.PointerToSymbolTable + (x$1 = f.FileHeader.NumberOfSymbols, (((18 >>> 16 << 16) * x$1 >>> 0) + (18 << 16 >>> 16) * x$1) >>> 0) >>> 0)), 0);
 			l = 0;
-			if (err$2 = binary.Read(sr, (x$2 = binary.LittleEndian, new x$2.constructor.Struct(x$2)), new (go$ptrType(Go$Uint32))(function() { return l; }, function(v) { l = v; })), !(go$interfaceIsEqual(err$2, null))) {
+			err$2 = binary.Read(sr, (x$2 = binary.LittleEndian, new x$2.constructor.Struct(x$2)), new (go$ptrType(Go$Uint32))(function() { return l; }, function(v) { l = v; }));
+			if (!(go$interfaceIsEqual(err$2, null))) {
 				return [(go$ptrType(File)).nil, err$2];
 			}
 			ss = (go$sliceType(Go$Uint8)).make(l, 0, function() { return 0; });
-			if (_tuple$1 = r.ReadAt(ss, new Go$Int64(0, (f.FileHeader.PointerToSymbolTable + (x$3 = f.FileHeader.NumberOfSymbols, (((18 >>> 16 << 16) * x$3 >>> 0) + (18 << 16 >>> 16) * x$3) >>> 0) >>> 0))), err$3 = _tuple$1[1], !(go$interfaceIsEqual(err$3, null))) {
+			_tuple$1 = r.ReadAt(ss, new Go$Int64(0, (f.FileHeader.PointerToSymbolTable + (x$3 = f.FileHeader.NumberOfSymbols, (((18 >>> 16 << 16) * x$3 >>> 0) + (18 << 16 >>> 16) * x$3) >>> 0) >>> 0))), err$3 = _tuple$1[1];
+			if (!(go$interfaceIsEqual(err$3, null))) {
 				return [(go$ptrType(File)).nil, err$3];
 			}
 			sr.Seek(new Go$Int64(0, f.FileHeader.PointerToSymbolTable), 0);
@@ -300,7 +304,8 @@ COFFSymbol0 0Çù Çv	Section.Ptr.prototype.Data = function() {
 			i = 0;
 			while (i < (f.FileHeader.NumberOfSymbols >> 0)) {
 				cs = new COFFSymbol.Ptr();
-				if (err$4 = binary.Read(sr, (x$4 = binary.LittleEndian, new x$4.constructor.Struct(x$4)), cs), !(go$interfaceIsEqual(err$4, null))) {
+				err$4 = binary.Read(sr, (x$4 = binary.LittleEndian, new x$4.constructor.Struct(x$4)), cs);
+				if (!(go$interfaceIsEqual(err$4, null))) {
 					return [(go$ptrType(File)).nil, err$4];
 				}
 				if (aux > 0) {
@@ -328,7 +333,8 @@ COFFSymbol0 0Çù Çv	Section.Ptr.prototype.Data = function() {
 		i$1 = 0;
 		while (i$1 < (f.FileHeader.NumberOfSections >> 0)) {
 			sh = new SectionHeader32.Ptr();
-			if (err$5 = binary.Read(sr, (x$6 = binary.LittleEndian, new x$6.constructor.Struct(x$6)), sh), !(go$interfaceIsEqual(err$5, null))) {
+			err$5 = binary.Read(sr, (x$6 = binary.LittleEndian, new x$6.constructor.Struct(x$6)), sh);
+			if (!(go$interfaceIsEqual(err$5, null))) {
 				return [(go$ptrType(File)).nil, err$5];
 			}
 			name$1 = "";

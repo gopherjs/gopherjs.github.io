@@ -1,4 +1,4 @@
-0É’¨go/docÇ2‚package doc
+0É÷"go/docÇ2‚package doc
 import io "io"
 import regexp "regexp"
 import strings "strings"
@@ -162,7 +162,7 @@ func (? @"go/ast".ObjKind) @"go/ast".String() (? string)
 func (? *@"go/ast".ObjKind) @"go/ast".String() (? string)
 $$
 0Çruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
-go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc0Å«0ioio0regexpregexp0stringsstrings0text/templatetemplate0unicodeunicode0unicode/utf8utf80go/astast0go/tokentoken0pathpath0sortsort0strconvstrconv0É† 0XopH	op = go$pkg.op = go$newType(4, "Int", "doc.op", "op", "go/doc", null);
+go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/listtext/template/parsetext/templatego/doc0Å«0ioio0regexpregexp0stringsstrings0text/templatetemplate0unicodeunicode0unicode/utf8utf80go/astast0go/tokentoken0pathpath0sortsort0strconvstrconv0É°@0XopH	op = go$pkg.op = go$newType(4, "Int", "doc.op", "op", "go/doc", null);
  0op0 0ÇâblockÅ˙	block = go$pkg.block = go$newType(0, "Struct", "doc.block", "block", "go/doc", function(op_, lines_) {
 		this.go$val = this;
 		this.op = op_ !== undefined ? op_ : 0;
@@ -487,9 +487,12 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 			_i++;
 		}
 	};
- 0ToHTML0ÅÕgo/doc:anchorIDgo/doc:blockgo/doc:blocksgo/doc:commentEscapego/doc:emphasizego/doc:html-endhgo/doc:html-endpgo/doc:html-endprego/doc:html-hgo/doc:html-hqgo/doc:html-pgo/doc:html-pre0ÇBblocksÇ√	blocks = function(text) {
+ 0ToHTML0ÅÕgo/doc:anchorIDgo/doc:blockgo/doc:blocksgo/doc:commentEscapego/doc:emphasizego/doc:html-endhgo/doc:html-endpgo/doc:html-endprego/doc:html-hgo/doc:html-hqgo/doc:html-pgo/doc:html-pre0ÇLblocksÇÕ	blocks = function(text) {
 		var out, para, lastWasBlank, lastWasHeading, close, lines, i, _slice, _index, line, j, _slice$1, _index$1, _slice$2, _index$2, _slice$3, _index$3, pre, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, head, _slice$7, _index$7;
-		out = (go$sliceType(block)).nil, para = (go$sliceType(Go$String)).nil, lastWasBlank = false, lastWasHeading = false;
+		out = (go$sliceType(block)).nil;
+		para = (go$sliceType(Go$String)).nil;
+		lastWasBlank = false;
+		lastWasHeading = false;
 		close = (function() {
 			if (!(para === (go$sliceType(Go$String)).nil)) {
 				out = go$append(out, new block.Ptr(0, para));
@@ -524,7 +527,8 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 				continue;
 			}
 			if (lastWasBlank && !lastWasHeading && (i + 2 >> 0) < lines.length && isBlank((_slice$4 = lines, _index$4 = (i + 1 >> 0), (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"))) && !isBlank((_slice$5 = lines, _index$5 = (i + 2 >> 0), (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range"))) && (indentLen((_slice$6 = lines, _index$6 = (i + 2 >> 0), (_index$6 >= 0 && _index$6 < _slice$6.length) ? _slice$6.array[_slice$6.offset + _index$6] : go$throwRuntimeError("index out of range"))) === 0)) {
-				if (head = heading(line), !(head === "")) {
+				head = heading(line);
+				if (!(head === "")) {
 					close();
 					out = go$append(out, new block.Ptr(1, new (go$sliceType(Go$String))([head])));
 					i = i + 2 >> 0;
@@ -630,9 +634,9 @@ go/scannergo/astpathregexp/syntaxregexp	io/ioutilnet/urlcontainer/l
 		r.cleanupTypes();
 		return new Package.Ptr(r.doc, pkg.Name, importPath, sortedKeys(r.imports), r.filenames, r.notes, noteBodies((_entry = r.notes["BUG"], _entry !== undefined ? _entry.v : (go$sliceType((go$ptrType(Note)))).nil)), sortedValues(r.values, 64), sortedTypes(r.types, !(((mode & 2) === 0))), sortedValues(r.values, 85), sortedFuncs(r.funcs, true));
 	};
- 0New0Å˙go/doc:Funcgo/doc:Notego/doc:Packagego/doc:Typego/doc:Valuego/doc:cleanupTypesgo/doc:computeMethodSetsgo/doc:noteBodiesgo/doc:readPackagego/doc:readergo/doc:sortedFuncsgo/doc:sortedKeysgo/doc:sortedTypesgo/doc:sortedValues0ÇEExamplesÇ
-a	Examples = go$pkg.Examples = function(files) {
-		var list, _ref, _i, _slice, _index, file, hasTests, numDecl, flist, _ref$1, _i$1, _slice$1, _index$1, decl, ok, g, _tuple, _tuple$1, f, ok$1, name, doc, _tuple$2, output, hasOutput, _slice$2, _index$2, _slice$3, _index$3;
+ 0New0Å˙go/doc:Funcgo/doc:Notego/doc:Packagego/doc:Typego/doc:Valuego/doc:cleanupTypesgo/doc:computeMethodSetsgo/doc:noteBodiesgo/doc:readPackagego/doc:readergo/doc:sortedFuncsgo/doc:sortedKeysgo/doc:sortedTypesgo/doc:sortedValues0ÇIExamplesÇ
+e	Examples = go$pkg.Examples = function(files) {
+		var list, _ref, _i, _slice, _index, file, hasTests, numDecl, flist, _ref$1, _i$1, _slice$1, _index$1, decl, _tuple, g, ok, _tuple$1, f, ok$1, name, doc, _tuple$2, output, hasOutput, _slice$2, _index$2, _slice$3, _index$3;
 		list = (go$sliceType((go$ptrType(Example)))).nil;
 		_ref = files;
 		_i = 0;
@@ -645,7 +649,8 @@ a	Examples = go$pkg.Examples = function(files) {
 			_i$1 = 0;
 			while (_i$1 < _ref$1.length) {
 				decl = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-				if (_tuple = (decl !== null && decl.constructor === (go$ptrType(ast.GenDecl)) ? [decl.go$val, true] : [(go$ptrType(ast.GenDecl)).nil, false]), g = _tuple[0], ok = _tuple[1], ok && !((g.Tok === 75))) {
+				_tuple = (decl !== null && decl.constructor === (go$ptrType(ast.GenDecl)) ? [decl.go$val, true] : [(go$ptrType(ast.GenDecl)).nil, false]), g = _tuple[0], ok = _tuple[1];
+				if (ok && !((g.Tok === 75))) {
 					numDecl = numDecl + 1 >> 0;
 					_i$1++;
 					continue;
@@ -685,13 +690,15 @@ a	Examples = go$pkg.Examples = function(files) {
 		return list;
 	};
  0
-Examples0Å≈go/ast:CommentGroupgo/ast:Filego/ast:FuncDeclgo/ast:GenDeclgo/doc:Examplego/doc:exampleByNamego/doc:exampleOutputgo/doc:isTestgo/doc:playExamplego/doc:playExampleFile	sort:Sort0ÇÍexampleOutputÇr	exampleOutput = function(b, comments) {
-		var output, ok, last, _tuple, text, loc, _slice, _index, _tuple$1, _tuple$2;
+Examples0Å≈go/ast:CommentGroupgo/ast:Filego/ast:FuncDeclgo/ast:GenDeclgo/doc:Examplego/doc:exampleByNamego/doc:exampleOutputgo/doc:isTestgo/doc:playExamplego/doc:playExampleFile	sort:Sort0ÇÔexampleOutputÇw	exampleOutput = function(b, comments) {
+		var output, ok, _tuple, last, text, loc, _slice, _index, _tuple$1, _tuple$2;
 		output = "";
 		ok = false;
-		if (_tuple = lastComment(b, comments), last = _tuple[1], !(last === (go$ptrType(ast.CommentGroup)).nil)) {
+		_tuple = lastComment(b, comments), last = _tuple[1];
+		if (!(last === (go$ptrType(ast.CommentGroup)).nil)) {
 			text = last.Text();
-			if (loc = outputPrefix.FindStringIndex(text), !(loc === (go$sliceType(Go$Int)).nil)) {
+			loc = outputPrefix.FindStringIndex(text);
+			if (!(loc === (go$sliceType(Go$Int)).nil)) {
 				text = text.substring((_slice = loc, _index = 1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")));
 				text = strings.TrimLeft(text, " ");
 				if (text.length > 0 && (text.charCodeAt(0) === 10)) {
@@ -733,7 +740,7 @@ a	Examples = go$pkg.Examples = function(files) {
 		return (_slice = s, _index = i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Name < (_slice$1 = s, _index$1 = j, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name;
 	};
 	go$ptrType(exampleByName).prototype.Less = function(i, j) { return this.go$get().Less(i, j); };
- 0exampleByName0go/doc:exampleByName0Ç›playExampleÇ≤	playExample = function(file, body) {
+ 0exampleByName0go/doc:exampleByName0ÇÈplayExampleÇæ	playExample = function(file, body) {
 		var topDecls, _ref, _i, _slice, _index, decl, d, _ref$1, _type, _key, _ref$2, _i$1, _slice$1, _index$1, spec, s, _ref$3, _type$1, _key$1, _ref$4, _i$2, _slice$2, _index$2, id, _key$2, unresolved, usesTopDecl, inspectFunc, _ref$5, _i$3, _keys, _entry, n, _entry$1, _entry$2, _entry$3, namedImports, blankImports, _ref$6, _i$4, _slice$3, _index$3, s$1, _tuple, p, err, n$1, _ref$7, _entry$4, _key$3, comments, _ref$8, _i$5, _slice$4, _index$4, s$2, c, _ref$9, _i$6, _slice$5, _index$5, c$1, _tuple$1, importDecl, _ref$10, _i$7, _keys$1, _entry$5, p$1, n$2, s$3, funcDecl;
 		if (!strings.HasSuffix(file.Name.Name, "_test")) {
 			return (go$ptrType(ast.File)).nil;
@@ -778,16 +785,19 @@ a	Examples = go$pkg.Examples = function(files) {
 		usesTopDecl = false;
 		inspectFunc = go$throwNilPointerError;
 		inspectFunc = (function(n) {
-			var ok, _tuple, e, ok$1, _tuple$1, e$1, ok$2, _tuple$2, id$1, _entry, _key$3;
-			if (_tuple = (n !== null && n.constructor === (go$ptrType(ast.SelectorExpr)) ? [n.go$val, true] : [(go$ptrType(ast.SelectorExpr)).nil, false]), e = _tuple[0], ok = _tuple[1], ok) {
+			var _tuple, e, ok, _tuple$1, e$1, ok$1, _tuple$2, id$1, ok$2, _entry, _key$3;
+			_tuple = (n !== null && n.constructor === (go$ptrType(ast.SelectorExpr)) ? [n.go$val, true] : [(go$ptrType(ast.SelectorExpr)).nil, false]), e = _tuple[0], ok = _tuple[1];
+			if (ok) {
 				ast.Inspect(e.X, inspectFunc);
 				return false;
 			}
-			if (_tuple$1 = (n !== null && n.constructor === (go$ptrType(ast.KeyValueExpr)) ? [n.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false]), e$1 = _tuple$1[0], ok$1 = _tuple$1[1], ok$1) {
+			_tuple$1 = (n !== null && n.constructor === (go$ptrType(ast.KeyValueExpr)) ? [n.go$val, true] : [(go$ptrType(ast.KeyValueExpr)).nil, false]), e$1 = _tuple$1[0], ok$1 = _tuple$1[1];
+			if (ok$1) {
 				ast.Inspect(e$1.Value, inspectFunc);
 				return false;
 			}
-			if (_tuple$2 = (n !== null && n.constructor === (go$ptrType(ast.Ident)) ? [n.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), id$1 = _tuple$2[0], ok$2 = _tuple$2[1], ok$2) {
+			_tuple$2 = (n !== null && n.constructor === (go$ptrType(ast.Ident)) ? [n.go$val, true] : [(go$ptrType(ast.Ident)).nil, false]), id$1 = _tuple$2[0], ok$2 = _tuple$2[1];
+			if (ok$2) {
 				if (id$1.Obj === (go$ptrType(ast.Object)).nil) {
 					_key$3 = id$1.Name, (unresolved || go$throwRuntimeError("assignment to entry in nil map"))[_key$3] = { k: _key$3, v: true };
 				} else if ((_entry = topDecls[id$1.Obj.go$key()], _entry !== undefined ? _entry.v : false)) {
@@ -848,7 +858,8 @@ a	Examples = go$pkg.Examples = function(files) {
 		_i$5 = 0;
 		while (_i$5 < _ref$8.length) {
 			s$2 = (_slice$4 = _ref$8, _index$4 = _i$5, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range"));
-			if (c = (s$2 !== null && s$2.constructor === (go$ptrType(ast.ImportSpec)) ? s$2.go$val : go$typeAssertionFailed(s$2, (go$ptrType(ast.ImportSpec)))).Doc, !(c === (go$ptrType(ast.CommentGroup)).nil)) {
+			c = (s$2 !== null && s$2.constructor === (go$ptrType(ast.ImportSpec)) ? s$2.go$val : go$typeAssertionFailed(s$2, (go$ptrType(ast.ImportSpec)))).Doc;
+			if (!(c === (go$ptrType(ast.CommentGroup)).nil)) {
 				comments = go$append(comments, c);
 			}
 			_i$5++;
@@ -882,8 +893,8 @@ a	Examples = go$pkg.Examples = function(files) {
 		funcDecl = new ast.FuncDecl.Ptr((go$ptrType(ast.CommentGroup)).nil, (go$ptrType(ast.FieldList)).nil, ast.NewIdent("main"), new ast.FuncType.Ptr(0, new ast.FieldList.Ptr(0, (go$sliceType((go$ptrType(ast.Field)))).nil, 0), (go$ptrType(ast.FieldList)).nil), body);
 		return new ast.File.Ptr((go$ptrType(ast.CommentGroup)).nil, 0, ast.NewIdent("main"), new (go$sliceType(ast.Decl))([importDecl, funcDecl]), (go$ptrType(ast.Scope)).nil, (go$sliceType((go$ptrType(ast.ImportSpec)))).nil, (go$sliceType((go$ptrType(ast.Ident)))).nil, comments);
 	};
- 0playExample0Çgo/ast:BasicLitgo/ast:BlockStmtgo/ast:CommentGroupgo/ast:Declgo/ast:Fieldgo/ast:FieldListgo/ast:Filego/ast:FuncDeclgo/ast:FuncTypego/ast:GenDeclgo/ast:Identgo/ast:ImportSpecgo/ast:Inspectgo/ast:KeyValueExprgo/ast:NewIdentgo/ast:Objectgo/ast:Scopego/ast:SelectorExprgo/ast:Specgo/ast:TypeSpecgo/ast:ValueSpecgo/doc:predeclaredConstantsgo/doc:predeclaredFuncsgo/doc:predeclaredTypesgo/doc:stripOutputComment	path:Basestrconv:Quotestrconv:Unquotestrings:HasSuffix0Ç¬playExampleFileÇ	playExampleFile = function(file) {
-		var comments, _slice, _index, decls, _ref, _i, _slice$1, _index$1, d, ok, f, _tuple, _struct, newF, _tuple$1, _struct$1, f$1;
+ 0playExample0Çgo/ast:BasicLitgo/ast:BlockStmtgo/ast:CommentGroupgo/ast:Declgo/ast:Fieldgo/ast:FieldListgo/ast:Filego/ast:FuncDeclgo/ast:FuncTypego/ast:GenDeclgo/ast:Identgo/ast:ImportSpecgo/ast:Inspectgo/ast:KeyValueExprgo/ast:NewIdentgo/ast:Objectgo/ast:Scopego/ast:SelectorExprgo/ast:Specgo/ast:TypeSpecgo/ast:ValueSpecgo/doc:predeclaredConstantsgo/doc:predeclaredFuncsgo/doc:predeclaredTypesgo/doc:stripOutputComment	path:Basestrconv:Quotestrconv:Unquotestrings:HasSuffix0Ç≈playExampleFileÇ 	playExampleFile = function(file) {
+		var comments, _slice, _index, decls, _ref, _i, _slice$1, _index$1, d, _tuple, f, ok, _struct, newF, _tuple$1, _struct$1, f$1;
 		comments = file.Comments;
 		if (comments.length > 0 && strings.HasPrefix((_slice = comments, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Text(), "Copyright")) {
 			comments = go$subslice(comments, 1);
@@ -893,7 +904,8 @@ a	Examples = go$pkg.Examples = function(files) {
 		_i = 0;
 		while (_i < _ref.length) {
 			d = (_slice$1 = _ref, _index$1 = _i, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			if (_tuple = (d !== null && d.constructor === (go$ptrType(ast.FuncDecl)) ? [d.go$val, true] : [(go$ptrType(ast.FuncDecl)).nil, false]), f = _tuple[0], ok = _tuple[1], ok && isTest(f.Name.Name, "Example")) {
+			_tuple = (d !== null && d.constructor === (go$ptrType(ast.FuncDecl)) ? [d.go$val, true] : [(go$ptrType(ast.FuncDecl)).nil, false]), f = _tuple[0], ok = _tuple[1];
+			if (ok && isTest(f.Name.Name, "Example")) {
 				newF = (_struct = f, new ast.FuncDecl.Ptr(_struct.Doc, _struct.Recv, _struct.Name, _struct.Type, _struct.Body));
 				newF.Name = ast.NewIdent("main");
 				_tuple$1 = stripOutputComment(f.Body, comments), newF.Body = _tuple$1[0], comments = _tuple$1[1];
@@ -957,8 +969,8 @@ a	Examples = go$pkg.Examples = function(files) {
 		}
 		return go$subslice(list, 0, j);
 	};
- 0filterIdentList0go/ast:IsExported0Ç⁄removeErrorFieldÇó	removeErrorField = function(ityp) {
-		var list, j, _ref, _i, _slice, _index, field, keepField, n, fname, _tuple, _slice$1, _index$1;
+ 0filterIdentList0go/ast:IsExported0Ç·removeErrorFieldÇû	removeErrorField = function(ityp) {
+		var list, j, _ref, _i, _slice, _index, field, keepField, n, _tuple, fname, _slice$1, _index$1;
 		list = ityp.Methods.List;
 		j = 0;
 		_ref = list;
@@ -966,8 +978,10 @@ a	Examples = go$pkg.Examples = function(files) {
 		while (_i < _ref.length) {
 			field = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			keepField = true;
-			if (n = field.Names.length, n === 0) {
-				if (_tuple = baseTypeName(field.Type), fname = _tuple[0], fname === "error") {
+			n = field.Names.length;
+			if (n === 0) {
+				_tuple = baseTypeName(field.Type), fname = _tuple[0];
+				if (fname === "error") {
 					keepField = false;
 				}
 			}
@@ -982,7 +996,7 @@ a	Examples = go$pkg.Examples = function(files) {
 		}
 		ityp.Methods.List = go$subslice(list, 0, j);
 	};
- 0removeErrorField0go/doc:baseTypeName0Ç2 ÇW	reader.Ptr.prototype.filterFieldList = function(parent, fields$1, ityp) {
+ 0removeErrorField0go/doc:baseTypeName0Ç5 ÇZ	reader.Ptr.prototype.filterFieldList = function(parent, fields$1, ityp) {
 		var removedFields, r, list, j, _ref, _i, _slice, _index, field, keepField, n, fname, _slice$1, _index$1;
 		removedFields = false;
 		r = this;
@@ -996,7 +1010,8 @@ a	Examples = go$pkg.Examples = function(files) {
 		while (_i < _ref.length) {
 			field = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			keepField = false;
-			if (n = field.Names.length, n === 0) {
+			n = field.Names.length;
+			if (n === 0) {
 				fname = r.recordAnonymousField(parent, field.Type);
 				if (ast.IsExported(fname)) {
 					keepField = true;
@@ -1079,8 +1094,7 @@ a	Examples = go$pkg.Examples = function(files) {
 	};
 	reader.prototype.filterType = function(parent, typ) { return this.go$val.filterType(parent, typ); };
  0reader
-filterType0Åﬁgo/ast:ArrayTypego/ast:ChanTypego/ast:FuncTypego/ast:Identgo/ast:InterfaceTypego/ast:MapTypego/ast:ParenExprgo/ast:StructTypego/doc:filterFieldListgo/doc:filterParamListgo/doc:namedTypego/doc:reader0Ç
- ÇA	reader.Ptr.prototype.filterSpec = function(spec) {
+filterType0Åﬁgo/ast:ArrayTypego/ast:ChanTypego/ast:FuncTypego/ast:Identgo/ast:InterfaceTypego/ast:MapTypego/ast:ParenExprgo/ast:StructTypego/doc:filterFieldListgo/doc:filterParamListgo/doc:namedTypego/doc:reader0Ç ÇD	reader.Ptr.prototype.filterSpec = function(spec) {
 		var r, s, _ref, _type, name;
 		r = this;
 		_ref = spec;
@@ -1097,7 +1111,8 @@ filterType0Åﬁgo/ast:ArrayTypego/ast:ChanTypego/ast:FuncTypego/ast:Ident
 			}
 		} else if (_type === (go$ptrType(ast.TypeSpec))) {
 			s = _ref.go$val;
-			if (name = s.Name.Name, ast.IsExported(name)) {
+			name = s.Name.Name;
+			if (ast.IsExported(name)) {
 				r.filterType(r.lookupType(s.Name.Name), s.Type);
 				return true;
 			} else if (name === "error") {
@@ -1302,17 +1317,19 @@ recvStringÇN	recvString = function(recv) {
 		return "BADRECV";
 	};
  0
-recvString0go/ast:Identgo/ast:StarExpr0ÇA Çª	methodSet.prototype.set = function(f) {
-		var mset, name, g, _entry, recv, typ, list, _slice, _index, _key;
+recvString0go/ast:Identgo/ast:StarExpr0ÇF Ç¿	methodSet.prototype.set = function(f) {
+		var mset, name, _entry, g, recv, typ, list, _slice, _index, _key;
 		mset = this.go$val;
 		name = f.Name.Name;
-		if (g = (_entry = mset[name], _entry !== undefined ? _entry.v : (go$ptrType(Func)).nil), !(g === (go$ptrType(Func)).nil) && !(g.Doc === "")) {
+		g = (_entry = mset[name], _entry !== undefined ? _entry.v : (go$ptrType(Func)).nil);
+		if (!(g === (go$ptrType(Func)).nil) && !(g.Doc === "")) {
 			return;
 		}
 		recv = "";
 		if (!(f.Recv === (go$ptrType(ast.FieldList)).nil)) {
 			typ = null;
-			if (list = f.Recv.List, list.length === 1) {
+			list = f.Recv.List;
+			if (list.length === 1) {
 				typ = (_slice = list, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")).Type;
 			}
 			recv = recvString(typ);
@@ -1334,8 +1351,8 @@ recvString0go/ast:Identgo/ast:StarExpr0ÇA Çª	methodSet.prototype.set = 
 		}
 	};
 	go$ptrType(methodSet).prototype.add = function(m) { return new methodSet(this.go$get()).add(m); };
- 0	methodSetadd00go/ast:FuncDeclgo/doc:Funcgo/doc:methodSet0ÇbaseTypeNameÇ∏	baseTypeName = function(x) {
-		var name, imported, t, _ref, _type, _tuple, ok, _tuple$1, x$1, _tuple$2, _tuple$3;
+ 0	methodSetadd00go/ast:FuncDeclgo/doc:Funcgo/doc:methodSet0ÇbaseTypeNameÇª	baseTypeName = function(x) {
+		var name, imported, t, _ref, _type, _tuple, _tuple$1, x$1, ok, _tuple$2, _tuple$3;
 		name = "";
 		imported = false;
 		_ref = x;
@@ -1346,7 +1363,8 @@ recvString0go/ast:Identgo/ast:StarExpr0ÇA Çª	methodSet.prototype.set = 
 			return [name, imported];
 		} else if (_type === (go$ptrType(ast.SelectorExpr))) {
 			t = _ref.go$val;
-			if (_tuple$1 = (x$1 = t.X, (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ident)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), ok = _tuple$1[1], ok) {
+			_tuple$1 = (x$1 = t.X, (x$1 !== null && x$1.constructor === (go$ptrType(ast.Ident)) ? [x$1.go$val, true] : [(go$ptrType(ast.Ident)).nil, false])), ok = _tuple$1[1];
+			if (ok) {
 				_tuple$2 = [t.Sel.Name, true], name = _tuple$2[0], imported = _tuple$2[1];
 				return [name, imported];
 			}
@@ -1363,13 +1381,14 @@ recvString0go/ast:Identgo/ast:StarExpr0ÇA Çª	methodSet.prototype.set = 
 		return !(((r.mode & 1) === 0)) || ast.IsExported(name);
 	};
 	reader.prototype.isVisible = function(name) { return this.go$val.isVisible(name); };
- 0reader	isVisible0"go/ast:IsExportedgo/doc:reader0Ç_ Ç 	reader.Ptr.prototype.lookupType = function(name) {
-		var r, found, _tuple, _entry, typ, typ$1, _key;
+ 0reader	isVisible0"go/ast:IsExportedgo/doc:reader0Ça Ç	reader.Ptr.prototype.lookupType = function(name) {
+		var r, _tuple, _entry, typ, found, typ$1, _key;
 		r = this;
 		if (name === "" || name === "_") {
 			return (go$ptrType(namedType)).nil;
 		}
-		if (_tuple = (_entry = r.types[name], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(namedType)).nil, false]), typ = _tuple[0], found = _tuple[1], found) {
+		_tuple = (_entry = r.types[name], _entry !== undefined ? [_entry.v, true] : [(go$ptrType(namedType)).nil, false]), typ = _tuple[0], found = _tuple[1];
+		if (found) {
 			return typ;
 		}
 		typ$1 = new namedType.Ptr("", name, (go$ptrType(ast.GenDecl)).nil, false, false, new Go$Map(), (go$sliceType((go$ptrType(Value)))).nil, new Go$Map(), new Go$Map());
@@ -1378,7 +1397,7 @@ recvString0go/ast:Identgo/ast:StarExpr0ÇA Çª	methodSet.prototype.set = 
 	};
 	reader.prototype.lookupType = function(name) { return this.go$val.lookupType(name); };
  0reader
-lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Çˆ Çr	reader.Ptr.prototype.recordAnonymousField = function(parent, fieldType) {
+lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Ç¯ Çt	reader.Ptr.prototype.recordAnonymousField = function(parent, fieldType) {
 		var fname, r, _tuple, imp, ftype, _tuple$1, ptr, _key;
 		fname = "";
 		r = this;
@@ -1386,7 +1405,8 @@ lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Çˆ
 		if (parent === (go$ptrType(namedType)).nil || imp) {
 			return fname;
 		}
-		if (ftype = r.lookupType(fname), !(ftype === (go$ptrType(namedType)).nil)) {
+		ftype = r.lookupType(fname);
+		if (!(ftype === (go$ptrType(namedType)).nil)) {
 			ftype.isEmbedded = true;
 			_tuple$1 = (fieldType !== null && fieldType.constructor === (go$ptrType(ast.StarExpr)) ? [fieldType.go$val, true] : [(go$ptrType(ast.StarExpr)).nil, false]), ptr = _tuple$1[1];
 			_key = ftype, (parent.embedded || go$throwRuntimeError("assignment to entry in nil map"))[_key.go$key()] = { k: _key, v: ptr };
@@ -1429,8 +1449,8 @@ lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Çˆ
 		}
 		return names;
 	};
- 0	specNames0go/ast:ValueSpec0Ç5 Çc	reader.Ptr.prototype.readValue = function(decl) {
-		var r, domName, domFreq, prev, n, _ref, _i, _slice, _index, spec, _tuple, s, ok, name, imp, _tuple$1, n$1, v, values, typ, v$1;
+ 0	specNames0go/ast:ValueSpec0Ç< Çj	reader.Ptr.prototype.readValue = function(decl) {
+		var r, domName, domFreq, prev, n, _ref, _i, _slice, _index, spec, _tuple, s, ok, name, _tuple$1, n$1, imp, v, values, typ, v$1;
 		r = this;
 		domName = "";
 		domFreq = 0;
@@ -1447,7 +1467,8 @@ lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Çˆ
 			}
 			name = "";
 			if (!(go$interfaceIsEqual(s.Type, null))) {
-				if (_tuple$1 = baseTypeName(s.Type), n$1 = _tuple$1[0], imp = _tuple$1[1], !imp) {
+				_tuple$1 = baseTypeName(s.Type), n$1 = _tuple$1[0], imp = _tuple$1[1];
+				if (!imp) {
 					name = n$1;
 				}
 			} else if (decl.Tok === 64) {
@@ -1470,7 +1491,8 @@ lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Çˆ
 		}
 		values = new (go$ptrType((go$sliceType((go$ptrType(Value))))))(function() { return r.values; }, function(v) { r.values = v; });
 		if (!(domName === "") && r.isVisible(domName) && domFreq >= (decl.Specs.length * 0.75 >> 0)) {
-			if (typ = r.lookupType(domName), !(typ === (go$ptrType(namedType)).nil)) {
+			typ = r.lookupType(domName);
+			if (!(typ === (go$ptrType(namedType)).nil)) {
 				values = new (go$ptrType((go$sliceType((go$ptrType(Value))))))(function() { return typ.values; }, function(v$1) { typ.values = v$1; });
 			}
 		}
@@ -1526,8 +1548,8 @@ lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Çˆ
 		}
 	};
 	reader.prototype.readType = function(decl, spec) { return this.go$val.readType(decl, spec); };
- 0readerreadType0ÅÉgo/ast:CommentGroupgo/ast:Fieldgo/doc:fieldsgo/doc:lookupTypego/doc:namedTypego/doc:readergo/doc:recordAnonymousField0Ç ÇE	reader.Ptr.prototype.readFunc = function(fun) {
-		var r, _tuple, _slice, _index, recvTypeName, imp, typ, _slice$1, _index$1, res, imp$1, n, _tuple$1, typ$1;
+ 0readerreadType0ÅÉgo/ast:CommentGroupgo/ast:Fieldgo/doc:fieldsgo/doc:lookupTypego/doc:namedTypego/doc:readergo/doc:recordAnonymousField0Ç ÇQ	reader.Ptr.prototype.readFunc = function(fun) {
+		var r, _tuple, _slice, _index, recvTypeName, imp, typ, _slice$1, _index$1, res, _tuple$1, n, imp$1, typ$1;
 		r = this;
 		fun.Body = (go$ptrType(ast.BlockStmt)).nil;
 		if (!(fun.Recv === (go$ptrType(ast.FieldList)).nil)) {
@@ -1535,7 +1557,8 @@ lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Çˆ
 			if (imp) {
 				return;
 			}
-			if (typ = r.lookupType(recvTypeName), !(typ === (go$ptrType(namedType)).nil)) {
+			typ = r.lookupType(recvTypeName);
+			if (!(typ === (go$ptrType(namedType)).nil)) {
 				(new methodSet(typ.methods)).set(fun);
 			}
 			return;
@@ -1543,8 +1566,10 @@ lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Çˆ
 		if (fun.Type.Results.NumFields() >= 1) {
 			res = (_slice$1 = fun.Type.Results.List, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
 			if (res.Names.length <= 1) {
-				if (_tuple$1 = baseTypeName(res.Type), n = _tuple$1[0], imp$1 = _tuple$1[1], !imp$1 && r.isVisible(n)) {
-					if (typ$1 = r.lookupType(n), !(typ$1 === (go$ptrType(namedType)).nil)) {
+				_tuple$1 = baseTypeName(res.Type), n = _tuple$1[0], imp$1 = _tuple$1[1];
+				if (!imp$1 && r.isVisible(n)) {
+					typ$1 = r.lookupType(n);
+					if (!(typ$1 === (go$ptrType(namedType)).nil)) {
 						(new methodSet(typ$1.funcs)).set(fun);
 						return;
 					}
@@ -1555,11 +1580,12 @@ lookupType0?go/ast:GenDeclgo/doc:Valuego/doc:namedTypego/doc:reader0Çˆ
 	};
 	reader.prototype.readFunc = function(fun) { return this.go$val.readFunc(fun); };
  0readerreadFunc0Åùgo/ast:BlockStmtgo/ast:FieldListgo/doc:baseTypeNamego/doc:isVisiblego/doc:lookupTypego/doc:methodSetgo/doc:namedTypego/doc:reader
-go/doc:set0Çl ÇÍ	reader.Ptr.prototype.readNote = function(list) {
+go/doc:set0Çn ÇÏ	reader.Ptr.prototype.readNote = function(list) {
 		var r, text, m, _slice, _index, body, _slice$1, _index$1, _slice$2, _index$2, marker, _entry, _slice$3, _index$3, _slice$4, _index$4, _slice$5, _index$5, _slice$6, _index$6, _key;
 		r = this;
 		text = (new ast.CommentGroup.Ptr(list)).Text();
-		if (m = noteMarkerRx.FindStringSubmatchIndex(text), !(m === (go$sliceType(Go$Int)).nil)) {
+		m = noteMarkerRx.FindStringSubmatchIndex(text);
+		if (!(m === (go$sliceType(Go$Int)).nil)) {
 			body = clean(text.substring((_slice = m, _index = 1, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"))), 1);
 			if (!(body === "")) {
 				marker = text.substring((_slice$1 = m, _index$1 = 2, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")), (_slice$2 = m, _index$2 = 3, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")));
@@ -1597,8 +1623,8 @@ go/doc:set0Çl ÇÍ	reader.Ptr.prototype.readNote = function(list) {
 		}
 	};
 	reader.prototype.readNotes = function(comments) { return this.go$val.readNotes(comments); };
- 0reader	readNotes06go/doc:noteCommentRxgo/doc:readNotego/doc:reader0Çp Çf	reader.Ptr.prototype.readFile = function(src) {
-		var r, _ref, _i, _slice, _index, decl, d, _ref$1, _type, _ref$2, _ref$3, _i$1, _slice$1, _index$1, spec, ok, _tuple, s, err, _tuple$1, import_, _key, ok$1, _tuple$2, x, _slice$2, _index$2, s$1, _ref$4, _i$2, _slice$3, _index$3, spec$1, ok$2, _tuple$3, s$2, fake;
+ 0reader	readNotes06go/doc:noteCommentRxgo/doc:readNotego/doc:reader0Çâ Ç	reader.Ptr.prototype.readFile = function(src) {
+		var r, _ref, _i, _slice, _index, decl, d, _ref$1, _type, _ref$2, _ref$3, _i$1, _slice$1, _index$1, spec, _tuple, s, ok, _tuple$1, import_, err, _key, _tuple$2, x, _slice$2, _index$2, s$1, ok$1, _ref$4, _i$2, _slice$3, _index$3, spec$1, _tuple$3, s$2, ok$2, fake;
 		r = this;
 		if (!(src.Doc === (go$ptrType(ast.CommentGroup)).nil)) {
 			r.readDoc(src.Doc);
@@ -1618,8 +1644,10 @@ go/doc:set0Çl ÇÍ	reader.Ptr.prototype.readNote = function(list) {
 					_i$1 = 0;
 					while (_i$1 < _ref$3.length) {
 						spec = (_slice$1 = _ref$3, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-						if (_tuple = (spec !== null && spec.constructor === (go$ptrType(ast.ImportSpec)) ? [spec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), s = _tuple[0], ok = _tuple[1], ok) {
-							if (_tuple$1 = strconv.Unquote(s.Path.Value), import_ = _tuple$1[0], err = _tuple$1[1], go$interfaceIsEqual(err, null)) {
+						_tuple = (spec !== null && spec.constructor === (go$ptrType(ast.ImportSpec)) ? [spec.go$val, true] : [(go$ptrType(ast.ImportSpec)).nil, false]), s = _tuple[0], ok = _tuple[1];
+						if (ok) {
+							_tuple$1 = strconv.Unquote(s.Path.Value), import_ = _tuple$1[0], err = _tuple$1[1];
+							if (go$interfaceIsEqual(err, null)) {
 								_key = import_, (r.imports || go$throwRuntimeError("assignment to entry in nil map"))[_key] = { k: _key, v: 1 };
 							}
 						}
@@ -1629,7 +1657,8 @@ go/doc:set0Çl ÇÍ	reader.Ptr.prototype.readNote = function(list) {
 					r.readValue(d);
 				} else if (_ref$2 === 84) {
 					if ((d.Specs.length === 1) && !(new token.Pos(d.Lparen)).IsValid()) {
-						if (_tuple$2 = (x = (_slice$2 = d.Specs, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.TypeSpec)) ? [x.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false])), s$1 = _tuple$2[0], ok$1 = _tuple$2[1], ok$1) {
+						_tuple$2 = (x = (_slice$2 = d.Specs, _index$2 = 0, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.TypeSpec)) ? [x.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false])), s$1 = _tuple$2[0], ok$1 = _tuple$2[1];
+						if (ok$1) {
 							r.readType(d, s$1);
 						}
 						break;
@@ -1638,7 +1667,8 @@ go/doc:set0Çl ÇÍ	reader.Ptr.prototype.readNote = function(list) {
 					_i$2 = 0;
 					while (_i$2 < _ref$4.length) {
 						spec$1 = (_slice$3 = _ref$4, _index$3 = _i$2, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range"));
-						if (_tuple$3 = (spec$1 !== null && spec$1.constructor === (go$ptrType(ast.TypeSpec)) ? [spec$1.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false]), s$2 = _tuple$3[0], ok$2 = _tuple$3[1], ok$2) {
+						_tuple$3 = (spec$1 !== null && spec$1.constructor === (go$ptrType(ast.TypeSpec)) ? [spec$1.go$val, true] : [(go$ptrType(ast.TypeSpec)).nil, false]), s$2 = _tuple$3[0], ok$2 = _tuple$3[1];
+						if (ok$2) {
 							fake = new ast.GenDecl.Ptr(d.Doc, s$2.Pos(), 84, 0, new (go$sliceType(ast.Spec))([s$2]), 0);
 							r.readType(fake, s$2);
 						}
@@ -1772,8 +1802,8 @@ go/doc:addgo/doc:customizeRecvgo/doc:methodSetgo/doc:reader0Çí Ç$	read
 		}
 	};
 	reader.prototype.computeMethodSets = function() { return this.go$val.computeMethodSets(); };
- 0readercomputeMethodSets0Ggo/doc:collectEmbeddedMethodsgo/doc:readergo/doc:removeErrorField0Ç‡ Çg	reader.Ptr.prototype.cleanupTypes = function() {
-		var r, _ref, _i, _keys, _entry, t, visible, _entry$1, _ref$1, _i$1, _keys$1, _entry$2, f, name, _key, _ref$2, _i$2, _keys$2, _entry$3, m, name$1, found, _tuple, _entry$4, _key$1;
+ 0readercomputeMethodSets0Ggo/doc:collectEmbeddedMethodsgo/doc:readergo/doc:removeErrorField0ÇÂ Çl	reader.Ptr.prototype.cleanupTypes = function() {
+		var r, _ref, _i, _keys, _entry, t, visible, _entry$1, _ref$1, _i$1, _keys$1, _entry$2, f, name, _key, _ref$2, _i$2, _keys$2, _entry$3, m, name$1, _tuple, _entry$4, found, _key$1;
 		r = this;
 		_ref = r.types;
 		_i = 0;
@@ -1801,7 +1831,8 @@ go/doc:addgo/doc:customizeRecvgo/doc:methodSetgo/doc:reader0Çí Ç$	read
 					_entry$3 = _ref$2[_keys$2[_i$2]];
 					m = _entry$3.v;
 					name$1 = _entry$3.k;
-					if (_tuple = (_entry$4 = r.funcs[name$1], _entry$4 !== undefined ? [_entry$4.v, true] : [(go$ptrType(Func)).nil, false]), found = _tuple[1], !found) {
+					_tuple = (_entry$4 = r.funcs[name$1], _entry$4 !== undefined ? [_entry$4.v, true] : [(go$ptrType(Func)).nil, false]), found = _tuple[1];
+					if (!found) {
 						_key$1 = name$1, (r.funcs || go$throwRuntimeError("assignment to entry in nil map"))[_key$1] = { k: _key$1, v: m };
 					}
 					_i$2++;
@@ -1854,18 +1885,19 @@ sortedKeysÇ%	sortedKeys = function(m) {
 		return list;
 	};
  0
-sortedKeys0sort:Strings0ÇŸsortingNameÇ£	sortingName = function(d) {
-		var ok, _tuple, x, _slice, _index, s, _slice$1, _index$1;
+sortedKeys0sort:Strings0Ç‹sortingNameÇ¶	sortingName = function(d) {
+		var _tuple, x, _slice, _index, s, ok, _slice$1, _index$1;
 		if (d.Specs.length === 1) {
-			if (_tuple = (x = (_slice = d.Specs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.ValueSpec)) ? [x.go$val, true] : [(go$ptrType(ast.ValueSpec)).nil, false])), s = _tuple[0], ok = _tuple[1], ok) {
+			_tuple = (x = (_slice = d.Specs, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), (x !== null && x.constructor === (go$ptrType(ast.ValueSpec)) ? [x.go$val, true] : [(go$ptrType(ast.ValueSpec)).nil, false])), s = _tuple[0], ok = _tuple[1];
+			if (ok) {
 				return (_slice$1 = s.Names, _index$1 = 0, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range")).Name;
 			}
 		}
 		return "";
 	};
  0sortingName0go/ast:ValueSpec0Ç
-_sortedValuesÇ
-	sortedValues = function(m, tok) {
+bsortedValuesÇ
+	sortedValues = function(m, tok) {
 		var list, i, _ref, _i, _slice, _index, val, _slice$1, _index$1;
 		list = (go$sliceType((go$ptrType(Value)))).make(m.length, 0, function() { return (go$ptrType(Value)).nil; });
 		i = 0;
@@ -1881,8 +1913,9 @@ _sortedValuesÇ
 		}
 		list = go$subslice(list, 0, i);
 		sortBy((function(i$1, j) {
-			var ni, nj, _slice$2, _index$2, _slice$3, _index$3, _tuple, _slice$4, _index$4, _slice$5, _index$5;
-			if (_tuple = [sortingName((_slice$2 = list, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Decl), sortingName((_slice$3 = list, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Decl)], ni = _tuple[0], nj = _tuple[1], !(ni === nj)) {
+			var _slice$2, _index$2, _slice$3, _index$3, _tuple, ni, nj, _slice$4, _index$4, _slice$5, _index$5;
+			_tuple = [sortingName((_slice$2 = list, _index$2 = i$1, (_index$2 >= 0 && _index$2 < _slice$2.length) ? _slice$2.array[_slice$2.offset + _index$2] : go$throwRuntimeError("index out of range")).Decl), sortingName((_slice$3 = list, _index$3 = j, (_index$3 >= 0 && _index$3 < _slice$3.length) ? _slice$3.array[_slice$3.offset + _index$3] : go$throwRuntimeError("index out of range")).Decl)], ni = _tuple[0], nj = _tuple[1];
+			if (!(ni === nj)) {
 				return ni < nj;
 			}
 			return (_slice$4 = list, _index$4 = i$1, (_index$4 >= 0 && _index$4 < _slice$4.length) ? _slice$4.array[_slice$4.offset + _index$4] : go$throwRuntimeError("index out of range")).order < (_slice$5 = list, _index$5 = j, (_index$5 >= 0 && _index$5 < _slice$5.length) ? _slice$5.array[_slice$5.offset + _index$5] : go$throwRuntimeError("index out of range")).order;
@@ -1987,7 +2020,7 @@ noteBodies0 0Ç∏firstSentenceLenÇy	firstSentenceLen = function(s) {
 		}
 		return s.length;
 	};
- 0firstSentenceLen0unicode:IsUpper0ÇÔcleanÇ◊	clean = function(s, flags) {
+ 0firstSentenceLen0unicode:IsUpper0ÇÒcleanÇŸ	clean = function(s, flags) {
 		var b, p, i, q, n;
 		b = (go$sliceType(Go$Uint8)).nil;
 		p = 32;
@@ -2003,7 +2036,8 @@ noteBodies0 0Ç∏firstSentenceLenÇy	firstSentenceLen = function(s) {
 			}
 			i = i + 1 >> 0;
 		}
-		if (n = b.length, n > 0 && (p === 32)) {
+		n = b.length;
+		if (n > 0 && (p === 32)) {
 			b = go$subslice(b, 0, (n - 1 >> 0));
 		}
 		return go$bytesToString(b);

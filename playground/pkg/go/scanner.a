@@ -1,4 +1,4 @@
-0‚¥Æ
+0‚¥/
 go/scanner‚<package scanner
 import fmt "fmt"
 import token "go/token"
@@ -110,7 +110,7 @@ type @"sync".Locker interface { @"sync".Lock() (); @"sync".Unlock() () }
 $$
 0ªruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesmathsyscalltimeosstrconvreflectfmtsortgo/tokenstringspath/filepath
 go/scanner0 0
-fmtfmt0go/tokentoken0ioio0sortsort0bytesbytes0path/filepathfilepath0strconvstrconv0unicodeunicode0unicode/utf8utf80‚‡$0‚Errorú	Error = go$pkg.Error = go$newType(0, "Struct", "scanner.Error", "Error", "go/scanner", function(Pos_, Msg_) {
+fmtfmt0go/tokentoken0ioio0sortsort0bytesbytes0path/filepathfilepath0strconvstrconv0unicodeunicode0unicode/utf8utf80‚†0‚Errorú	Error = go$pkg.Error = go$newType(0, "Struct", "scanner.Error", "Error", "go/scanner", function(Pos_, Msg_) {
 		this.go$val = this;
 		this.Pos = Pos_ !== undefined ? Pos_ : new token.Position.Ptr();
 		this.Msg = Msg_ !== undefined ? Msg_ : "";
@@ -240,10 +240,11 @@ go/scanner0 0
 		return p;
 	};
 	go$ptrType(ErrorList).prototype.Err = function() { return this.go$get().Err(); };
- 0	ErrorList0go/scanner:ErrorList0‚û
-PrintError‚¶	PrintError = go$pkg.PrintError = function(w, err) {
-		var ok, _tuple, list, _ref, _i, _slice, _index, e;
-		if (_tuple = (err !== null && err.constructor === ErrorList ? [err.go$val, true] : [ErrorList.nil, false]), list = _tuple[0], ok = _tuple[1], ok) {
+ 0	ErrorList0go/scanner:ErrorList0‚ý
+PrintError‚¸	PrintError = go$pkg.PrintError = function(w, err) {
+		var _tuple, list, ok, _ref, _i, _slice, _index, e;
+		_tuple = (err !== null && err.constructor === ErrorList ? [err.go$val, true] : [ErrorList.nil, false]), list = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			_ref = list;
 			_i = 0;
 			while (_i < _ref.length) {
@@ -320,12 +321,14 @@ PrintError0#fmt:Fprintfgo/scanner:ErrorList0‚¿ ‚e	Scanner.Ptr.prototype.
 		s.ErrorCount = s.ErrorCount + 1 >> 0;
 	};
 	Scanner.prototype.error = function(offs, msg) { return this.go$val.error(offs, msg); };
- 0Scannererror0'go/scanner:Scannergo/token:Position0‚ù ‚8	Scanner.Ptr.prototype.interpretLineComment = function(text) {
-		var s, i, err, line, _tuple, filename;
+ 0Scannererror0'go/scanner:Scannergo/token:Position0‚  ‚?	Scanner.Ptr.prototype.interpretLineComment = function(text) {
+		var s, i, _tuple, line, err, filename;
 		s = this;
 		if (bytes.HasPrefix(text, prefix)) {
-			if (i = bytes.LastIndex(text, new (go$sliceType(Go$Uint8))([58])), i > 0) {
-				if (_tuple = strconv.Atoi(go$bytesToString(go$subslice(text, (i + 1 >> 0)))), line = _tuple[0], err = _tuple[1], go$interfaceIsEqual(err, null) && line > 0) {
+			i = bytes.LastIndex(text, new (go$sliceType(Go$Uint8))([58]));
+			if (i > 0) {
+				_tuple = strconv.Atoi(go$bytesToString(go$subslice(text, (i + 1 >> 0)))), line = _tuple[0], err = _tuple[1];
+				if (go$interfaceIsEqual(err, null) && line > 0) {
 					filename = filepath.Clean(go$bytesToString(go$subslice(text, prefix.length, i)));
 					if (!filepath.IsAbs(filename)) {
 						filename = filepath.Join(new (go$sliceType(Go$String))([s.dir, filename]));
@@ -458,7 +461,7 @@ PrintError0#fmt:Fprintfgo/scanner:ErrorList0‚¿ ‚e	Scanner.Ptr.prototype.
 		}
 	};
 	Scanner.prototype.scanMantissa = function(base) { return this.go$val.scanMantissa(base); };
- 0ScannerscanMantissa0:go/scanner:Scannergo/scanner:digitValgo/scanner:next0‚	 ‚’	Scanner.Ptr.prototype.scanNumber = function(seenDecimalPoint) {
+ 0ScannerscanMantissa0:go/scanner:Scannergo/scanner:digitValgo/scanner:next0‚c ‚ò	Scanner.Ptr.prototype.scanNumber = function(seenDecimalPoint) {
 		var go$this = this, s, offs, tok, offs$1, seenDecimalDigit;
 		/* */ var go$s = 0, go$f = function() { while (true) { switch (go$s) { case 0:
 		s = go$this;
@@ -497,20 +500,20 @@ PrintError0#fmt:Fprintfgo/scanner:ErrorList0‚¿ ‚e	Scanner.Ptr.prototype.
 		/* } */ case 5:
 		s.scanMantissa(10);
 		/* fraction: */ case 2:
-		/* if (s.ch === 46) { */ if (s.ch === 46) {} else { go$s = 9; continue; }
+		if (s.ch === 46) {
 			tok = 6;
 			s.next();
 			s.scanMantissa(10);
-		/* } */ case 9:
+		}
 		/* exponent: */ case 1:
-		/* if ((s.ch === 101) || (s.ch === 69)) { */ if ((s.ch === 101) || (s.ch === 69)) {} else { go$s = 10; continue; }
+		if ((s.ch === 101) || (s.ch === 69)) {
 			tok = 6;
 			s.next();
 			if ((s.ch === 45) || (s.ch === 43)) {
 				s.next();
 			}
 			s.scanMantissa(10);
-		/* } */ case 10:
+		}
 		if (s.ch === 105) {
 			tok = 7;
 			s.next();

@@ -1,4 +1,4 @@
-0‚¸m	image/gif‚$package gif
+0‚¸	image/gif‚$package gif
 import bufio "bufio"
 import lzw "compress/lzw"
 import errors "errors"
@@ -113,7 +113,7 @@ $$
 0Ëruntimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtcompress/lzwimage/colorimageimage/color/palette
 image/draw	image/gif0§0bufiobufio0compress/lzwlzw0errorserrors0
 fmtfmt0imageimage0image/colorcolor0ioio0image/color/palettepalette0
-image/drawdraw0‚’Þ0‚!readera	reader = go$pkg.reader = go$newType(0, "Interface", "gif.reader", "reader", "image/gif", null);
+image/drawdraw0‚“0‚!readera	reader = go$pkg.reader = go$newType(0, "Interface", "gif.reader", "reader", "image/gif", null);
 §		reader.init([["Read", "", (go$funcType([(go$sliceType(Go$Uint8))], [Go$Int, go$error], false))], ["ReadByte", "", (go$funcType([], [Go$Uint8, go$error], false))]]);
 0reader0 0‚Mdecoder‚¹	decoder = go$pkg.decoder = go$newType(0, "Struct", "gif.decoder", "decoder", "image/gif", function(r_, vers_, width_, height_, flags_, headerFields_, backgroundIndex_, loopCount_, delayTime_, aspect_, imageFields_, transparentIndex_, pixelSize_, globalColorMap_, delay_, image_, tmp_) {
 		this.go$val = this;
@@ -184,7 +184,7 @@ image/drawdraw0‚’Þ0‚!readera	reader = go$pkg.reader = go$newType(0, "Inter
 		this.Drawer = Drawer_ !== undefined ? Drawer_ : null;
 	});
 		Options.init([["NumColors", "NumColors", "", Go$Int, ""], ["Quantizer", "Quantizer", "", draw.Quantizer, ""], ["Drawer", "Drawer", "", draw.Drawer, ""]]);
-0	Options0)image/draw:Drawerimage/draw:Quantizer0‚¥ ‚`	blockReader.Ptr.prototype.Read = function(p) {
+0	Options0)image/draw:Drawerimage/draw:Quantizer0‚¨ ‚c	blockReader.Ptr.prototype.Read = function(p) {
 		var b, blockLen, _tuple, _tuple$1, n;
 		b = this;
 		if (!(go$interfaceIsEqual(b.err, null))) {
@@ -204,7 +204,8 @@ image/drawdraw0‚’Þ0‚!readera	reader = go$pkg.reader = go$newType(0, "Inter
 				return [0, b.err];
 			}
 			b.slice = go$subslice(new (go$sliceType(Go$Uint8))(b.tmp), 0, blockLen);
-			if (_tuple$1 = io.ReadFull(b.r, b.slice), b.err = _tuple$1[1], !(go$interfaceIsEqual(b.err, null))) {
+			_tuple$1 = io.ReadFull(b.r, b.slice), b.err = _tuple$1[1];
+			if (!(go$interfaceIsEqual(b.err, null))) {
 				return [0, b.err];
 			}
 		}
@@ -213,12 +214,13 @@ image/drawdraw0‚’Þ0‚!readera	reader = go$pkg.reader = go$newType(0, "Inter
 		return [n, null];
 	};
 	blockReader.prototype.Read = function(p) { return this.go$val.Read(p); };
- 0blockReader0,image/gif:blockReaderio:EOFio:ReadFull0‚“ ‚	decoder.Ptr.prototype.decode = function(r, configOnly) {
-		var d, ok, _tuple, rr, err, _tuple$1, _tuple$2, c, err$1, _ref, _tuple$3, m, err$2, _tuple$4, _tuple$5, litWidth, br, lzwr, _tuple$6, n, err$3, _tuple$7, n$1, err$4, _tuple$8, _ref$1, _i, _slice, _index, pixel;
+ 0blockReader0,image/gif:blockReaderio:EOFio:ReadFull0‚® ‚	decoder.Ptr.prototype.decode = function(r, configOnly) {
+		var d, _tuple, rr, ok, err, _tuple$1, _tuple$2, c, err$1, _ref, _tuple$3, m, err$2, _tuple$4, _tuple$5, litWidth, br, lzwr, _tuple$6, _tuple$7, n, err$3, _tuple$8, n$1, err$4, _ref$1, _i, _slice, _index, pixel;
 		var go$deferred = [];
 		try {
 			d = this;
-			if (_tuple = (r !== null && reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
+			_tuple = (r !== null && reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1];
+			if (ok) {
 				d.r = rr;
 			} else {
 				d.r = bufio.NewReader(r);
@@ -231,7 +233,8 @@ image/drawdraw0‚’Þ0‚!readera	reader = go$pkg.reader = go$newType(0, "Inter
 				return null;
 			}
 			if (!((((d.headerFields & 128) >>> 0) === 0))) {
-				if (_tuple$1 = d.readColorMap(), d.globalColorMap = _tuple$1[0], err = _tuple$1[1], !(go$interfaceIsEqual(err, null))) {
+				_tuple$1 = d.readColorMap(), d.globalColorMap = _tuple$1[0], err = _tuple$1[1];
+				if (!(go$interfaceIsEqual(err, null))) {
 					return err;
 				}
 			}
@@ -242,7 +245,8 @@ image/drawdraw0‚’Þ0‚!readera	reader = go$pkg.reader = go$newType(0, "Inter
 				}
 				_ref = c;
 				if (_ref === 33) {
-					if (err$1 = d.readExtension(), !(go$interfaceIsEqual(err$1, null))) {
+					err$1 = d.readExtension();
+					if (!(go$interfaceIsEqual(err$1, null))) {
 						return err$1;
 					}
 				} else if (_ref === 44) {
@@ -268,19 +272,22 @@ image/drawdraw0‚’Þ0‚!readera	reader = go$pkg.reader = go$newType(0, "Inter
 					br = new blockReader.Ptr(d.r, (go$sliceType(Go$Uint8)).nil, null, go$makeNativeArray("Uint8", 256, function() { return 0; }));
 					lzwr = lzw.NewReader(br, 0, (litWidth >> 0));
 					go$deferred.push({ recv: lzwr, method: "Close", args: [] });
-					if (_tuple$6 = io.ReadFull(lzwr, m.Pix), err$2 = _tuple$6[1], !(go$interfaceIsEqual(err$2, null))) {
+					_tuple$6 = io.ReadFull(lzwr, m.Pix), err$2 = _tuple$6[1];
+					if (!(go$interfaceIsEqual(err$2, null))) {
 						if (!(go$interfaceIsEqual(err$2, io.ErrUnexpectedEOF))) {
 							return err$2;
 						}
 						return errNotEnough;
 					}
-					if (_tuple$7 = lzwr.Read(go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 1)), n = _tuple$7[0], err$3 = _tuple$7[1], !((n === 0)) || !(go$interfaceIsEqual(err$3, io.EOF))) {
+					_tuple$7 = lzwr.Read(go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 1)), n = _tuple$7[0], err$3 = _tuple$7[1];
+					if (!((n === 0)) || !(go$interfaceIsEqual(err$3, io.EOF))) {
 						if (!(go$interfaceIsEqual(err$3, null))) {
 							return err$3;
 						}
 						return errTooMuch;
 					}
-					if (_tuple$8 = br.Read(go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 1)), n$1 = _tuple$8[0], err$4 = _tuple$8[1], !((n$1 === 0)) || !(go$interfaceIsEqual(err$4, io.EOF))) {
+					_tuple$8 = br.Read(go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 1)), n$1 = _tuple$8[0], err$4 = _tuple$8[1];
+					if (!((n$1 === 0)) || !(go$interfaceIsEqual(err$4, io.EOF))) {
 						if (!(go$interfaceIsEqual(err$4, null))) {
 							return err$4;
 						}
@@ -372,8 +379,8 @@ fmt:Errorfimage/gif:decoderio:ReadFull0‚x ‚	decoder.Ptr.prototype.readC
 	};
 	decoder.prototype.readColorMap = function() { return this.go$val.readColorMap(); };
  0decoderreadColorMap0S
-fmt:Errorfimage/color:Paletteimage/color:RGBAimage/gif:decoderio:ReadFull0‚ö ‚s	decoder.Ptr.prototype.readExtension = function() {
-		var d, _tuple, extension, err, size, _ref, _tuple$1, b, err$1, err$2, _tuple$2, _tuple$3, n, err$3, _tuple$4, n$1, err$4;
+fmt:Errorfimage/color:Paletteimage/color:RGBAimage/gif:decoderio:ReadFull0‚ù ‚v	decoder.Ptr.prototype.readExtension = function() {
+		var d, _tuple, extension, err, size, _ref, _tuple$1, b, err$1, _tuple$2, err$2, _tuple$3, n, err$3, _tuple$4, n$1, err$4;
 		d = this;
 		_tuple = d.r.ReadByte(), extension = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
@@ -396,7 +403,8 @@ fmt:Errorfimage/color:Paletteimage/color:RGBAimage/gif:decoderio:ReadFul
 			return fmt.Errorf("gif: unknown extension 0x%.2x", new (go$sliceType(go$emptyInterface))([new Go$Uint8(extension)]));
 		}
 		if (size > 0) {
-			if (_tuple$2 = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, size)), err$2 = _tuple$2[1], !(go$interfaceIsEqual(err$2, null))) {
+			_tuple$2 = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, size)), err$2 = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err$2, null))) {
 				return err$2;
 			}
 		}
@@ -418,11 +426,11 @@ fmt:Errorfimage/color:Paletteimage/color:RGBAimage/gif:decoderio:ReadFul
 	};
 	decoder.prototype.readExtension = function() { return this.go$val.readExtension(); };
  0decoderreadExtension0_
-fmt:Errorfimage/gif:decoderimage/gif:readBlockimage/gif:readGraphicControlio:ReadFull0‚
- ‚š	decoder.Ptr.prototype.readGraphicControl = function() {
-		var d, err, _tuple;
+fmt:Errorfimage/gif:decoderimage/gif:readBlockimage/gif:readGraphicControlio:ReadFull0‚ ‚œ	decoder.Ptr.prototype.readGraphicControl = function() {
+		var d, _tuple, err;
 		d = this;
-		if (_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 6)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 6)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return fmt.Errorf("gif: can't read graphic control: %s", new (go$sliceType(go$emptyInterface))([err]));
 		}
 		d.flags = d.tmp[1];
@@ -443,10 +451,11 @@ fmt:Errorfimage/gif:decoderimage/gif:setTransparencyio:ReadFull0‚O ‚	
 		}
 	};
 	decoder.prototype.setTransparency = function(colorMap) { return this.go$val.setTransparency(colorMap); };
- 0decodersetTransparency0%image/color:RGBAimage/gif:decoder0‚f ‚ž	decoder.Ptr.prototype.newImageFromDescriptor = function() {
-		var d, err, _tuple, left, top, width, height, _struct, _struct$1, _struct$2, bounds, x, y, x$1, y$1, x$2, y$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8;
+ 0decodersetTransparency0%image/color:RGBAimage/gif:decoder0‚h ‚ 	decoder.Ptr.prototype.newImageFromDescriptor = function() {
+		var d, _tuple, err, left, top, width, height, _struct, _struct$1, _struct$2, bounds, x, y, x$1, y$1, x$2, y$2, _struct$3, _struct$4, _struct$5, _struct$6, _struct$7, _struct$8;
 		d = this;
-		if (_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 9)), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+		_tuple = io.ReadFull(d.r, go$subslice(new (go$sliceType(Go$Uint8))(d.tmp), 0, 9)), err = _tuple[1];
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [(go$ptrType(image.Paletted)).nil, fmt.Errorf("gif: can't read image descriptor: %s", new (go$sliceType(go$emptyInterface))([err]))];
 		}
 		left = (d.tmp[0] >> 0) + ((d.tmp[1] >> 0) << 8 >> 0) >> 0;
@@ -497,27 +506,30 @@ image:Rectimage:Rectangleio:ReadFull0‚Æ ‚†	decoder.Ptr.prototype.readBlo
 		}
 		m.Pix = nPix;
 	};
- 0uninterlace00image/gif:interlaceScanimage/gif:interlacing0‚°Decode‚q	Decode = go$pkg.Decode = function(r) {
+ 0uninterlace00image/gif:interlaceScanimage/gif:interlacing0‚²Decode‚s	Decode = go$pkg.Decode = function(r) {
 		var d, err, _slice, _index;
 		d = new decoder.Ptr();
-		if (err = d.decode(r, false), !(go$interfaceIsEqual(err, null))) {
+		err = d.decode(r, false);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [null, err];
 		}
 		return [(_slice = d.image, _index = 0, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range")), null];
 	};
- 0Decode0%image/gif:decodeimage/gif:decoder0‚}	DecodeAll‚	DecodeAll = go$pkg.DecodeAll = function(r) {
+ 0Decode0%image/gif:decodeimage/gif:decoder0‚	DecodeAll‚	DecodeAll = go$pkg.DecodeAll = function(r) {
 		var d, err, gif;
 		d = new decoder.Ptr();
-		if (err = d.decode(r, false), !(go$interfaceIsEqual(err, null))) {
+		err = d.decode(r, false);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [(go$ptrType(GIF)).nil, err];
 		}
 		gif = new GIF.Ptr(d.image, d.delay, d.loopCount);
 		return [gif, null];
 	};
- 0	DecodeAll0Dimage/gif:GIFimage/gif:decodeimage/gif:decoderimage:Paletted0‚DecodeConfig‚&	DecodeConfig = go$pkg.DecodeConfig = function(r) {
+ 0	DecodeAll0Dimage/gif:GIFimage/gif:decodeimage/gif:decoderimage:Paletted0‚DecodeConfig‚(	DecodeConfig = go$pkg.DecodeConfig = function(r) {
 		var d, err;
 		d = new decoder.Ptr();
-		if (err = d.decode(r, true), !(go$interfaceIsEqual(err, null))) {
+		err = d.decode(r, true);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [new image.Config.Ptr(null, 0, 0), err];
 		}
 		return [new image.Config.Ptr(d.globalColorMap, d.width, d.height), null];
@@ -648,9 +660,9 @@ image:Rectimage:Rectangleio:ReadFull0‚Æ ‚†	decoder.Ptr.prototype.readBlo
 		e.write(go$subslice(new (go$sliceType(Go$Uint8))(e.buf), 0, (x$6 = 3, x$7 = log2Lookup[size], (((x$6 >>> 16 << 16) * x$7 >> 0) + (x$6 << 16 >>> 16) * x$7) >> 0)));
 	};
 	encoder.prototype.writeColorTable = function(p, size) { return this.go$val.writeColorTable(p, size); };
- 0encoderwriteColorTable0:image/gif:encoderimage/gif:log2Lookupimage/gif:write0‚Ç ‚
-Ì	encoder.Ptr.prototype.writeImageBlock = function(pm, delay) {
-		var e, _struct, _struct$1, _struct$2, b, transparentIndex, _ref, _i, _slice, _index, c, i, a, _tuple, paddedSize, litWidth, x, lzww, _tuple$1;
+ 0encoderwriteColorTable0:image/gif:encoderimage/gif:log2Lookupimage/gif:write0‚Ê ‚
+Ï	encoder.Ptr.prototype.writeImageBlock = function(pm, delay) {
+		var e, _struct, _struct$1, _struct$2, b, transparentIndex, _ref, _i, _slice, _index, c, i, _tuple, a, paddedSize, litWidth, x, lzww, _tuple$1;
 		e = this;
 		if (!(go$interfaceIsEqual(e.err, null))) {
 			return;
@@ -670,7 +682,8 @@ image:Rectimage:Rectangleio:ReadFull0‚Æ ‚†	decoder.Ptr.prototype.readBlo
 		while (_i < _ref.length) {
 			c = (_slice = _ref, _index = _i, (_index >= 0 && _index < _slice.length) ? _slice.array[_slice.offset + _index] : go$throwRuntimeError("index out of range"));
 			i = _i;
-			if (_tuple = c.RGBA(), a = _tuple[3], a === 0) {
+			_tuple = c.RGBA(), a = _tuple[3];
+			if (a === 0) {
 				transparentIndex = i;
 				break;
 			}
@@ -719,8 +732,8 @@ image:Rectimage:Rectangleio:ReadFull0‚Æ ‚†	decoder.Ptr.prototype.readBlo
 	};
 	encoder.prototype.writeImageBlock = function(pm, delay) { return this.go$val.writeImageBlock(pm, delay); };
  0encoderwriteImageBlock0Ôcompress/lzw:NewWriter
-errors:Newimage/gif:blockWriterimage/gif:encoderimage/gif:log2image/gif:writeimage/gif:writeByteimage/gif:writeColorTableimage/gif:writeUint16image:Pointimage:Rectangle0‚‚	EncodeAll‚¸	EncodeAll = go$pkg.EncodeAll = function(w, g) {
-		var e, ok, _tuple, ww, _ref, _i, _slice, _index, pm, i, _slice$1, _index$1;
+errors:Newimage/gif:blockWriterimage/gif:encoderimage/gif:log2image/gif:writeimage/gif:writeByteimage/gif:writeColorTableimage/gif:writeUint16image:Pointimage:Rectangle0‚„	EncodeAll‚º	EncodeAll = go$pkg.EncodeAll = function(w, g) {
+		var e, _tuple, ww, ok, _ref, _i, _slice, _index, pm, i, _slice$1, _index$1;
 		if (g.Image.length === 0) {
 			return errors.New("gif: must provide at least one image");
 		}
@@ -731,7 +744,8 @@ errors:Newimage/gif:blockWriterimage/gif:encoderimage/gif:log2image/gif:
 			g.LoopCount = 0;
 		}
 		e = new encoder.Ptr(null, null, g, go$makeNativeArray("Uint8", 1024, function() { return 0; }));
-		if (_tuple = (w !== null && writer.implementedBy.indexOf(w.constructor) !== -1 ? [w, true] : [null, false]), ww = _tuple[0], ok = _tuple[1], ok) {
+		_tuple = (w !== null && writer.implementedBy.indexOf(w.constructor) !== -1 ? [w, true] : [null, false]), ww = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			e.w = ww;
 		} else {
 			e.w = bufio.NewWriter(w);

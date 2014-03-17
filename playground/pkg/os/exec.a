@@ -1,4 +1,5 @@
-0Ç•¯os/execÇ@hpackage exec
+0Ç¶
+os/execÇ@hpackage exec
 import bytes "bytes"
 import errors "errors"
 import io "io"
@@ -242,7 +243,7 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0zruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeosmathstrconvstringsos/exec0ÅÄ0bytesbytes0errorserrors0ioio0osos0strconvstrconv0syncsync0syscallsyscall0stringsstrings0Çd~0Ç†ErrorÅ‰	Error = go$pkg.Error = go$newType(0, "Struct", "exec.Error", "Error", "os/exec", function(Name_, Err_) {
+0zruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeosmathstrconvstringsos/exec0ÅÄ0bytesbytes0errorserrors0ioio0osos0strconvstrconv0syncsync0syscallsyscall0stringsstrings0Çdê0Ç†ErrorÅ‰	Error = go$pkg.Error = go$newType(0, "Struct", "exec.Error", "Error", "os/exec", function(Name_, Err_) {
 		this.go$val = this;
 		this.Name = Name_ !== undefined ? Name_ : "";
 		this.Err = Err_ !== undefined ? Err_ : null;
@@ -337,8 +338,8 @@ os:Environ0Ç Å‰	Cmd.Ptr.prototype.argv = function() {
 		return new (go$sliceType(Go$String))([c.Path]);
 	};
 	Cmd.prototype.argv = function() { return this.go$val.argv(); };
- 0Cmdargv0os/exec:Cmd0Ç® Ç_	Cmd.Ptr.prototype.stdin = function() {
-		var f, err, c, _tuple, ok, _tuple$1, x, f$1, _tuple$2, _tuple$3, pr, pw, _tuple$4;
+ 0Cmdargv0os/exec:Cmd0Ç≠ Çd	Cmd.Ptr.prototype.stdin = function() {
+		var f, err, c, _tuple, _tuple$1, x, f$1, ok, _tuple$2, _tuple$3, pr, pw, _tuple$4;
 		f = (go$ptrType(os.File)).nil;
 		err = null;
 		c = this;
@@ -350,7 +351,8 @@ os:Environ0Ç Å‰	Cmd.Ptr.prototype.argv = function() {
 			c.closeAfterStart = go$append(c.closeAfterStart, f);
 			return [f, err];
 		}
-		if (_tuple$1 = (x = c.Stdin, (x !== null && x.constructor === (go$ptrType(os.File)) ? [x.go$val, true] : [(go$ptrType(os.File)).nil, false])), f$1 = _tuple$1[0], ok = _tuple$1[1], ok) {
+		_tuple$1 = (x = c.Stdin, (x !== null && x.constructor === (go$ptrType(os.File)) ? [x.go$val, true] : [(go$ptrType(os.File)).nil, false])), f$1 = _tuple$1[0], ok = _tuple$1[1];
+		if (ok) {
 			_tuple$2 = [f$1, null], f = _tuple$2[0], err = _tuple$2[1];
 			return [f, err];
 		}
@@ -363,7 +365,8 @@ os:Environ0Ç Å‰	Cmd.Ptr.prototype.argv = function() {
 		c.goroutine = go$append(c.goroutine, (function() {
 			var _tuple$4, err$1, err1;
 			_tuple$4 = io.Copy(pw, c.Stdin), err$1 = _tuple$4[1];
-			if (err1 = pw.Close(), go$interfaceIsEqual(err$1, null)) {
+			err1 = pw.Close();
+			if (go$interfaceIsEqual(err$1, null)) {
 				err$1 = err1;
 			}
 			return err$1;
@@ -394,8 +397,8 @@ os:Environ0Ç Å‰	Cmd.Ptr.prototype.argv = function() {
 		return [f, err];
 	};
 	Cmd.prototype.stderr = function() { return this.go$val.stderr(); };
- 0Cmdstderr0Hos/exec:Cmdos/exec:interfaceEqualos/exec:writerDescriptoros:File0Çl Ç	Cmd.Ptr.prototype.writerDescriptor = function(w) {
-		var f, err, c, _tuple, ok, _tuple$1, f$1, _tuple$2, _tuple$3, pr, pw, _tuple$4;
+ 0Cmdstderr0Hos/exec:Cmdos/exec:interfaceEqualos/exec:writerDescriptoros:File0Çn Ç	Cmd.Ptr.prototype.writerDescriptor = function(w) {
+		var f, err, c, _tuple, _tuple$1, f$1, ok, _tuple$2, _tuple$3, pr, pw, _tuple$4;
 		f = (go$ptrType(os.File)).nil;
 		err = null;
 		c = this;
@@ -407,7 +410,8 @@ os:Environ0Ç Å‰	Cmd.Ptr.prototype.argv = function() {
 			c.closeAfterStart = go$append(c.closeAfterStart, f);
 			return [f, err];
 		}
-		if (_tuple$1 = (w !== null && w.constructor === (go$ptrType(os.File)) ? [w.go$val, true] : [(go$ptrType(os.File)).nil, false]), f$1 = _tuple$1[0], ok = _tuple$1[1], ok) {
+		_tuple$1 = (w !== null && w.constructor === (go$ptrType(os.File)) ? [w.go$val, true] : [(go$ptrType(os.File)).nil, false]), f$1 = _tuple$1[0], ok = _tuple$1[1];
+		if (ok) {
 			_tuple$2 = [f$1, null], f = _tuple$2[0], err = _tuple$2[1];
 			return [f, err];
 		}
@@ -438,16 +442,17 @@ os:Environ0Ç Å‰	Cmd.Ptr.prototype.argv = function() {
 		}
 	};
 	Cmd.prototype.closeDescriptors = function(closers) { return this.go$val.closeDescriptors(closers); };
- 0CmdcloseDescriptors0os/exec:Cmd0Ç ÅÂ	Cmd.Ptr.prototype.Run = function() {
+ 0CmdcloseDescriptors0os/exec:Cmd0Ç ÅÁ	Cmd.Ptr.prototype.Run = function() {
 		var c, err;
 		c = this;
-		if (err = c.Start(), !(go$interfaceIsEqual(err, null))) {
+		err = c.Start();
+		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
 		return c.Wait();
 	};
 	Cmd.prototype.Run = function() { return this.go$val.Run(); };
- 0Cmd0os/exec:Cmd0ÇÊ Ç	Cmd.Ptr.prototype.Start = function() {
+ 0Cmd0os/exec:Cmd0ÇÁ Ç	Cmd.Ptr.prototype.Start = function() {
 		var c, F, _ref, _i, _slice, _index, setupFd, _tuple, fd, err, err$1, _tuple$1, _ref$1, _i$1, _slice$1, _index$1, fn;
 		c = this;
 		if (!(go$interfaceIsEqual(c.err, null))) {
@@ -487,7 +492,7 @@ os:Environ0Ç Å‰	Cmd.Ptr.prototype.argv = function() {
 		_i$1 = 0;
 		while (_i$1 < _ref$1.length) {
 			fn = (_slice$1 = _ref$1, _index$1 = _i$1, (_index$1 >= 0 && _index$1 < _slice$1.length) ? _slice$1.array[_slice$1.offset + _index$1] : go$throwRuntimeError("index out of range"));
-			go$notSupported("go")
+			go$notSupported("go");
 			_i$1++;
 		}
 		return null;
@@ -501,7 +506,7 @@ os:Processos:StartProcesssyscall:SysProcAttr0Å€ Å≤	ExitError.Ptr.prototype
 		return e.ProcessState.String();
 	};
 	ExitError.prototype.Error = function() { return this.go$val.Error(); };
- 0	ExitError0os/exec:ExitError0Çÿ Çu	Cmd.Ptr.prototype.Wait = function() {
+ 0	ExitError0os/exec:ExitError0Ç€ Çx	Cmd.Ptr.prototype.Wait = function() {
 		var c, _tuple, state, err, copyError, _ref, _i, err$1;
 		c = this;
 		if (c.Process === (go$ptrType(os.Process)).nil) {
@@ -517,7 +522,8 @@ os:Processos:StartProcesssyscall:SysProcAttr0Å€ Å≤	ExitError.Ptr.prototype
 		_ref = c.goroutine;
 		_i = 0;
 		while (_i < _ref.length) {
-			if (err$1 = undefined, !(go$interfaceIsEqual(err$1, null)) && go$interfaceIsEqual(copyError, null)) {
+			err$1 = undefined;
+			if (!(go$interfaceIsEqual(err$1, null)) && go$interfaceIsEqual(copyError, null)) {
 				copyError = err$1;
 			}
 			_i++;
@@ -636,18 +642,19 @@ os:Process0Ç˘ Ç∫	Cmd.Ptr.prototype.StderrPipe = function() {
 	Cmd.prototype.StderrPipe = function() { return this.go$val.StderrPipe(); };
  0Cmd0.
 errors:Newos/exec:Cmdos:Pipe
-os:Process0ÇçfindExecutableÇ;	findExecutable = function(file) {
+os:Process0ÇèfindExecutableÇ=	findExecutable = function(file) {
 		var _tuple, d, err, m;
 		_tuple = os.Stat(file), d = _tuple[0], err = _tuple[1];
 		if (!(go$interfaceIsEqual(err, null))) {
 			return err;
 		}
-		if (m = d.Mode(), !(new os.FileMode(m)).IsDir() && !((((m & 73) >>> 0) === 0))) {
+		m = d.Mode();
+		if (!(new os.FileMode(m)).IsDir() && !((((m & 73) >>> 0) === 0))) {
 			return null;
 		}
 		return os.ErrPermission;
 	};
- 0findExecutable0(os:ErrPermissionos:FileModeos:Stat0ÇLookPathÇÇ	LookPath = go$pkg.LookPath = function(file) {
+ 0findExecutable0(os:ErrPermissionos:FileModeos:Stat0ÇLookPathÇÖ	LookPath = go$pkg.LookPath = function(file) {
 		var err, pathenv, _ref, _i, _slice, _index, dir, path, err$1;
 		if (strings.Contains(file, "/")) {
 			err = findExecutable(file);
@@ -668,7 +675,8 @@ os:Process0ÇçfindExecutableÇ;	findExecutable = function(file) {
 				dir = ".";
 			}
 			path = dir + "/" + file;
-			if (err$1 = findExecutable(path), go$interfaceIsEqual(err$1, null)) {
+			err$1 = findExecutable(path);
+			if (go$interfaceIsEqual(err$1, null)) {
 				return [path, null];
 			}
 			_i++;

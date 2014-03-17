@@ -1,4 +1,4 @@
-0‚Ž’path/filepath‚&package filepath
+0‚Ž path/filepath‚&package filepath
 import errors "errors"
 import os "os"
 import runtime "runtime"
@@ -155,7 +155,7 @@ func (? *@"time".Weekday) @"time".String() (? string)
 type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
 type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
 $$
-0wruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepath0x0errorserrors0osos0runtimeruntime0sortsort0stringsstrings0unicode/utf8utf80bytesbytes0‚gv0‚Òlazybuf‚Å	lazybuf = go$pkg.lazybuf = go$newType(0, "Struct", "filepath.lazybuf", "lazybuf", "path/filepath", function(path_, buf_, w_, volAndPath_, volLen_) {
+0wruntimeerrorssync/atomicsynciounicodeunicode/utf8bytessyscalltimeossortstringspath/filepath0x0errorserrors0osos0runtimeruntime0sortsort0stringsstrings0unicode/utf8utf80bytesbytes0‚g„0‚Òlazybuf‚Å	lazybuf = go$pkg.lazybuf = go$newType(0, "Struct", "filepath.lazybuf", "lazybuf", "path/filepath", function(path_, buf_, w_, volAndPath_, volLen_) {
 		this.go$val = this;
 		this.path = path_ !== undefined ? path_ : "";
 		this.buf = buf_ !== undefined ? buf_ : (go$sliceType(Go$Uint8)).nil;
@@ -252,8 +252,8 @@ $$
 		_tuple = [star, pattern.substring(0, i), pattern.substring(i)], star = _tuple[0], chunk = _tuple[1], rest = _tuple[2];
 		return [star, chunk, rest];
 	};
- 0	scanChunk0 0‚	h
-matchChunk‚ò	matchChunk = function(chunk, s) {
+ 0	scanChunk0 0‚	s
+matchChunk‚ý	matchChunk = function(chunk, s) {
 		var rest, ok, err, _ref, _tuple, r, n, negated, match, nrange, _tuple$1, lo, hi, _tuple$2, _tuple$3, _tuple$4, n$1, _tuple$5;
 		rest = "";
 		ok = false;
@@ -283,12 +283,14 @@ matchChunk‚ò	matchChunk = function(chunk, s) {
 						break;
 					}
 					_tuple$1 = [0, 0], lo = _tuple$1[0], hi = _tuple$1[1];
-					if (_tuple$2 = getEsc(chunk), lo = _tuple$2[0], chunk = _tuple$2[1], err = _tuple$2[2], !(go$interfaceIsEqual(err, null))) {
+					_tuple$2 = getEsc(chunk), lo = _tuple$2[0], chunk = _tuple$2[1], err = _tuple$2[2];
+					if (!(go$interfaceIsEqual(err, null))) {
 						return [rest, ok, err];
 					}
 					hi = lo;
 					if (chunk.charCodeAt(0) === 45) {
-						if (_tuple$3 = getEsc(chunk.substring(1)), hi = _tuple$3[0], chunk = _tuple$3[1], err = _tuple$3[2], !(go$interfaceIsEqual(err, null))) {
+						_tuple$3 = getEsc(chunk.substring(1)), hi = _tuple$3[0], chunk = _tuple$3[1], err = _tuple$3[2];
+						if (!(go$interfaceIsEqual(err, null))) {
 							return [rest, ok, err];
 						}
 					}
@@ -356,12 +358,13 @@ matchChunk0Tpath/filepath:ErrBadPatternpath/filepath:getEscunicode/utf8:De
 		}
 		return [r, nchunk, err];
 	};
- 0getEsc0>path/filepath:ErrBadPatternunicode/utf8:DecodeRuneInString0‚ƒGlob‚$	Glob = go$pkg.Glob = function(pattern) {
+ 0getEsc0>path/filepath:ErrBadPatternunicode/utf8:DecodeRuneInString0‚†Glob‚'	Glob = go$pkg.Glob = function(pattern) {
 		var matches, err, _tuple, _tuple$1, _tuple$2, _tuple$3, dir, file, _ref, _tuple$4, m, _tuple$5, _ref$1, _i, _slice, _index, d, _tuple$6;
 		matches = (go$sliceType(Go$String)).nil;
 		err = null;
 		if (!hasMeta(pattern)) {
-			if (_tuple = os.Stat(pattern), err = _tuple[1], !(go$interfaceIsEqual(err, null))) {
+			_tuple = os.Stat(pattern), err = _tuple[1];
+			if (!(go$interfaceIsEqual(err, null))) {
 				_tuple$1 = [(go$sliceType(Go$String)).nil, null], matches = _tuple$1[0], err = _tuple$1[1];
 				return [matches, err];
 			}

@@ -1,4 +1,4 @@
-0ÇëAcompress/gzipÇ>&package gzip
+0ÇëRcompress/gzipÇ>&package gzip
 import bufio "bufio"
 import flate "compress/flate"
 import errors "errors"
@@ -190,7 +190,7 @@ $$
 0Å¥runtimeerrorssync/atomicsynciounicodeunicode/utf8bytesbufiomathsyscalltimeosstrconvreflectfmtsortcompress/flatehash
 hash/crc32compress/gzip0ÅÇ0bufiobufio0compress/flateflate0errorserrors0hashhash0
 hash/crc32crc320ioio0timetime0
-fmtfmt0ÇQ∆0Ç€HeaderÇ”	Header = go$pkg.Header = go$newType(0, "Struct", "gzip.Header", "Header", "compress/gzip", function(Comment_, Extra_, ModTime_, Name_, OS_) {
+fmtfmt0ÇQ◊0Ç€HeaderÇ”	Header = go$pkg.Header = go$newType(0, "Struct", "gzip.Header", "Header", "compress/gzip", function(Comment_, Extra_, ModTime_, Name_, OS_) {
 		this.go$val = this;
 		this.Comment = Comment_ !== undefined ? Comment_ : "";
 		this.Extra = Extra_ !== undefined ? Extra_ : (go$sliceType(Go$Uint8)).nil;
@@ -227,21 +227,23 @@ hash/crc32crc320ioio0timetime0
 	});
 Ç		(go$ptrType(Writer)).methods = [["Close", "", [], [go$error], false, -1], ["Flush", "", [], [go$error], false, -1], ["Reset", "", [io.Writer], [], false, -1], ["Write", "", [(go$sliceType(Go$Uint8))], [Go$Int, go$error], false, -1], ["init", "compress/gzip", [io.Writer, Go$Int], [], false, -1], ["writeBytes", "compress/gzip", [(go$sliceType(Go$Uint8))], [go$error], false, -1], ["writeString", "compress/gzip", [Go$String], [go$error], false, -1]];
 		Writer.init([["Header", "", "", Header, ""], ["w", "w", "compress/gzip", io.Writer, ""], ["level", "level", "compress/gzip", Go$Int, ""], ["wroteHeader", "wroteHeader", "compress/gzip", Go$Bool, ""], ["compressor", "compressor", "compress/gzip", (go$ptrType(flate.Writer)), ""], ["digest", "digest", "compress/gzip", hash.Hash32, ""], ["size", "size", "compress/gzip", Go$Uint32, ""], ["closed", "closed", "compress/gzip", Go$Bool, ""], ["buf", "buf", "compress/gzip", (go$arrayType(Go$Uint8, 10)), ""], ["err", "err", "compress/gzip", go$error, ""]]);
-0Writer0Ecompress/flate:Writercompress/gzip:Headerhash:Hash32	io:Writer0ÇJ
-makeReaderÇ 	makeReader = function(r) {
-		var ok, _tuple, rr;
-		if (_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1], ok) {
+0Writer0Ecompress/flate:Writercompress/gzip:Headerhash:Hash32	io:Writer0ÇL
+makeReaderÇ	makeReader = function(r) {
+		var _tuple, rr, ok;
+		_tuple = (r !== null && flate.Reader.implementedBy.indexOf(r.constructor) !== -1 ? [r, true] : [null, false]), rr = _tuple[0], ok = _tuple[1];
+		if (ok) {
 			return rr;
 		}
 		return bufio.NewReader(r);
 	};
  0
-makeReader0(bufio:NewReadercompress/flate:Reader0Çì	NewReaderÇ	NewReader = go$pkg.NewReader = function(r) {
+makeReader0(bufio:NewReadercompress/flate:Reader0Çï	NewReaderÇ	NewReader = go$pkg.NewReader = function(r) {
 		var z, err;
 		z = new Reader.Ptr();
 		z.r = makeReader(r);
 		z.digest = crc32.NewIEEE();
-		if (err = z.readHeader(true), !(go$interfaceIsEqual(err, null))) {
+		err = z.readHeader(true);
+		if (!(go$interfaceIsEqual(err, null))) {
 			return [(go$ptrType(Reader)).nil, err];
 		}
 		return [z, null];
@@ -296,7 +298,7 @@ readString0/compress/gzip:ErrHeadercompress/gzip:Reader0Ç… Çã	Reader.Ptr
 		return [((z.buf[0] >>> 0) | ((z.buf[1] >>> 0) << 8 >>> 0)) >>> 0, null];
 	};
 	Reader.prototype.read2 = function() { return this.go$val.read2(); };
- 0Readerread20#compress/gzip:Readerio:ReadFull0Ç	& ÇV	Reader.Ptr.prototype.readHeader = function(save) {
+ 0Readerread20#compress/gzip:Readerio:ReadFull0Ç	/ Ç_	Reader.Ptr.prototype.readHeader = function(save) {
 		var z, _tuple, err, _struct, _tuple$1, n, err$1, data, _tuple$2, s, _tuple$3, _tuple$4, _tuple$5, n$1, err$2, sum;
 		z = this;
 		_tuple = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 10)), err = _tuple[1];
@@ -319,7 +321,8 @@ readString0/compress/gzip:ErrHeadercompress/gzip:Reader0Ç… Çã	Reader.Ptr
 				return err$1;
 			}
 			data = (go$sliceType(Go$Uint8)).make(n, 0, function() { return 0; });
-			if (_tuple$2 = io.ReadFull(z.r, data), err$1 = _tuple$2[1], !(go$interfaceIsEqual(err$1, null))) {
+			_tuple$2 = io.ReadFull(z.r, data), err$1 = _tuple$2[1];
+			if (!(go$interfaceIsEqual(err$1, null))) {
 				return err$1;
 			}
 			if (save) {
@@ -328,7 +331,8 @@ readString0/compress/gzip:ErrHeadercompress/gzip:Reader0Ç… Çã	Reader.Ptr
 		}
 		s = "";
 		if (!((((z.flg & 8) >>> 0) === 0))) {
-			if (_tuple$3 = z.readString(), s = _tuple$3[0], err = _tuple$3[1], !(go$interfaceIsEqual(err, null))) {
+			_tuple$3 = z.readString(), s = _tuple$3[0], err = _tuple$3[1];
+			if (!(go$interfaceIsEqual(err, null))) {
 				return err;
 			}
 			if (save) {
@@ -336,7 +340,8 @@ readString0/compress/gzip:ErrHeadercompress/gzip:Reader0Ç… Çã	Reader.Ptr
 			}
 		}
 		if (!((((z.flg & 16) >>> 0) === 0))) {
-			if (_tuple$4 = z.readString(), s = _tuple$4[0], err = _tuple$4[1], !(go$interfaceIsEqual(err, null))) {
+			_tuple$4 = z.readString(), s = _tuple$4[0], err = _tuple$4[1];
+			if (!(go$interfaceIsEqual(err, null))) {
 				return err;
 			}
 			if (save) {
@@ -359,8 +364,8 @@ readString0/compress/gzip:ErrHeadercompress/gzip:Reader0Ç… Çã	Reader.Ptr
 	};
 	Reader.prototype.readHeader = function(save) { return this.go$val.readHeader(save); };
  0Reader
-readHeader0ÅØcompress/flate:NewReadercompress/gzip:ErrHeadercompress/gzip:Readercompress/gzip:get4compress/gzip:read2compress/gzip:readStringio:ReadFull	time:Time	time:Unix0Ç› ÇU	Reader.Ptr.prototype.Read = function(p) {
-		var n, err, z, _tuple, _tuple$1, _tuple$2, err$1, _tuple$3, _tuple$4, _tuple$5, crc32$1, isize, sum, _tuple$6, _tuple$7;
+readHeader0ÅØcompress/flate:NewReadercompress/gzip:ErrHeadercompress/gzip:Readercompress/gzip:get4compress/gzip:read2compress/gzip:readStringio:ReadFull	time:Time	time:Unix0Ç· ÇY	Reader.Ptr.prototype.Read = function(p) {
+		var n, err, z, _tuple, _tuple$1, _tuple$2, _tuple$3, err$1, _tuple$4, _tuple$5, crc32$1, isize, sum, _tuple$6, _tuple$7;
 		n = 0;
 		err = null;
 		z = this;
@@ -379,7 +384,8 @@ readHeader0ÅØcompress/flate:NewReadercompress/gzip:ErrHeadercompress/gzip:
 			z.err = err;
 			return [n, err];
 		}
-		if (_tuple$3 = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 8)), err$1 = _tuple$3[1], !(go$interfaceIsEqual(err$1, null))) {
+		_tuple$3 = io.ReadFull(z.r, go$subslice(new (go$sliceType(Go$Uint8))(z.buf), 0, 8)), err$1 = _tuple$3[1];
+		if (!(go$interfaceIsEqual(err$1, null))) {
 			z.err = err$1;
 			_tuple$4 = [0, err$1], n = _tuple$4[0], err = _tuple$4[1];
 			return [n, err];
@@ -391,7 +397,8 @@ readHeader0ÅØcompress/flate:NewReadercompress/gzip:ErrHeadercompress/gzip:
 			_tuple$6 = [0, z.err], n = _tuple$6[0], err = _tuple$6[1];
 			return [n, err];
 		}
-		if (err = z.readHeader(false), !(go$interfaceIsEqual(err, null))) {
+		err = z.readHeader(false);
+		if (!(go$interfaceIsEqual(err, null))) {
 			z.err = err;
 			return [n, err];
 		}
