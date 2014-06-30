@@ -162,7 +162,7 @@ func main() {
 			jsCode.WriteString("try{\n")
 			compiler.WriteProgramCode(allPkgs, importContext, &compiler.SourceMapFilter{Writer: jsCode})
 			jsCode.WriteString("} catch (err) {\ngoPanicHandler(err.message);\n}\n")
-			js.Global.Call("eval", jsCode.String())
+			js.Global.Call("eval", js.InternalObject(jsCode.String()))
 		}
 		scope.Set("run", run)
 		run(true)
